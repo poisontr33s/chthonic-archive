@@ -1,0 +1,57 @@
+{
+  // 🔥💀⚓ Chthonic Archive - MCP Server Configuration
+  // Model Context Protocol servers for enhanced AI assistance
+  // Uses global bun installation at C:\Users\erdno\.bun
+
+  "servers": {
+    // GitHub Copilot MCP (HTTP)
+    "github": {
+      "type": "http",
+      "url": "https://api.githubcopilot.com/mcp/"
+    },
+
+    // Playwright Browser Automation (via bun x)
+    "playwright": {
+      "type": "stdio",
+      "command": "C:\\Users\\erdno\\.bun\\bin\\bun.exe",
+      "args": ["x", "-y", "@playwright/mcp@latest"],
+      "cwd": "C:\\Users\\erdno\\PsychoNoir-Kontrapunkt"
+    },
+
+    // Sentry Error Tracking (HTTP)
+    "sentry": {
+      "type": "http",
+      "url": "https://mcp.sentry.dev",
+      "headers": {
+        "Authorization": "Bearer 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"
+      }
+    },
+
+    // Bun Documentation (HTTP)
+    "Bun": {
+      "url": "https://bun.com/docs/mcp",
+      "type": "http"
+    },
+
+    // Microsoft Documentation Server (via bun x)
+    "microsoft-docs": {
+      "type": "stdio",
+      "command": "C:\\Users\\erdno\\.bun\\bin\\bun.exe",
+      "args": ["x", "-y", "@anthropic/mcp-server-microsoft-docs"],
+      "cwd": "C:\\Users\\erdno\\chthonic-archive"
+    },
+
+    // Filesystem Server (via bun x)
+    "filesystem": {
+      "type": "stdio",
+      "command": "C:\\Users\\erdno\\.bun\\bin\\bun.exe",
+      "args": [
+        "x",
+        "-y",
+        "@modelcontextprotocol/server-filesystem",
+        "C:\\Users\\erdno\\PsychoNoir-Kontrapunkt"
+      ],
+      "cwd": "C:\\Users\\erdno\\chthonic-archive"
+    }
+  }
+}
