@@ -1,31 +1,56 @@
 {
   // 🔥💀⚓ Chthonic Archive - MCP Server Configuration
   // Model Context Protocol servers for enhanced AI assistance
-  
-  "mcpServers": {
-    // Microsoft Documentation Server (for Vulkan/Windows APIs)
-    "microsoft-docs": {
-      "command": "npx",
-      "args": ["-y", "@anthropic/mcp-server-microsoft-docs"]
+  // Uses global bun installation at C:\Users\erdno\.computer_languages\bun
+
+  "servers": {
+    // GitHub Copilot MCP (HTTP)
+    "github": {
+      "type": "http",
+      "url": "https://api.githubcopilot.com/mcp/"
     },
-    
-    // Filesystem Server (for project navigation)
+
+    // Playwright Browser Automation (via bunx)
+    "playwright": {
+      "type": "stdio",
+      "command": "C:\\Users\\erdno\\.computer_languages\\bun\\bin\\bunx.exe",
+      "args": ["-y", "@playwright/mcp@latest"],
+      "cwd": "C:\\Users\\erdno\\PsychoNoir-Kontrapunkt"
+    },
+
+    // Sentry Error Tracking (HTTP)
+    "sentry": {
+      "type": "http",
+      "url": "https://mcp.sentry.dev",
+      "headers": {
+        "Authorization": "Bearer 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"
+      }
+    },
+
+    // Bun Documentation (HTTP)
+    "Bun": {
+      "url": "https://bun.com/docs/mcp",
+      "type": "http"
+    },
+
+    // Microsoft Documentation Server (via bunx)
+    "microsoft-docs": {
+      "type": "stdio",
+      "command": "C:\\Users\\erdno\\.computer_languages\\bun\\bin\\bunx.exe",
+      "args": ["-y", "@anthropic/mcp-server-microsoft-docs"],
+      "cwd": "C:\\Users\\erdno\\PsychoNoir-Kontrapunkt"
+    },
+
+    // Filesystem Server (via bunx)
     "filesystem": {
-      "command": "npx",
+      "type": "stdio",
+      "command": "C:\\Users\\erdno\\.computer_languages\\bun\\bin\\bunx.exe",
       "args": [
         "-y",
         "@modelcontextprotocol/server-filesystem",
         "C:\\Users\\erdno\\PsychoNoir-Kontrapunkt"
-      ]
-    },
-    
-    // GitHub Server (for repository operations)
-    "github": {
-      "command": "npx",
-      "args": ["-y", "@modelcontextprotocol/server-github"],
-      "env": {
-        "GITHUB_PERSONAL_ACCESS_TOKEN": "${env:GITHUB_TOKEN}"
-      }
+      ],
+      "cwd": "C:\\Users\\erdno\\PsychoNoir-Kontrapunkt"
     }
   }
 }
