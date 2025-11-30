@@ -1,0 +1,22 @@
+{
+  // 🔥💀⚓ Chthonic Archive - Recommended Extensions
+  "recommendations": [
+    // Rust Development
+    "rust-lang.rust-analyzer",
+    "tamasfe.even-better-toml",
+    "serayuzgur.crates",
+    
+    // GLSL/Shaders
+    "slevesque.shader",
+    "dtoplak.vscode-glsllint",
+    
+    // General Development
+    "ms-vscode.hexeditor",
+    "usernamehw.errorlens",
+    "eamodio.gitlens",
+    
+    // Markdown (for ASC Framework)
+    "yzhang.markdown-all-in-one",
+    "bierner.markdown-mermaid"
+  ]
+}

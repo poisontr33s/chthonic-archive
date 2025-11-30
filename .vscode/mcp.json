@@ -1,0 +1,31 @@
+{
+  // 🔥💀⚓ Chthonic Archive - MCP Server Configuration
+  // Model Context Protocol servers for enhanced AI assistance
+  
+  "mcpServers": {
+    // Microsoft Documentation Server (for Vulkan/Windows APIs)
+    "microsoft-docs": {
+      "command": "npx",
+      "args": ["-y", "@anthropic/mcp-server-microsoft-docs"]
+    },
+    
+    // Filesystem Server (for project navigation)
+    "filesystem": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-filesystem",
+        "C:\\Users\\erdno\\PsychoNoir-Kontrapunkt"
+      ]
+    },
+    
+    // GitHub Server (for repository operations)
+    "github": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-github"],
+      "env": {
+        "GITHUB_PERSONAL_ACCESS_TOKEN": "${env:GITHUB_TOKEN}"
+      }
+    }
+  }
+}
