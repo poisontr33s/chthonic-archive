@@ -1,0 +1,52 @@
+{
+    // ╔══════════════════════════════════════════════════════════════════╗
+    // ║   THE CHTHONIC ARCHIVE - Debug Configuration                     ║
+    // ║   RTX 4090 Vulkan Engine | Native Windows Debugging              ║
+    // ║   Visual Studio 2022 for breakpoints, Console for quick runs     ║
+    // ╚══════════════════════════════════════════════════════════════════╝
+    "version": "0.2.0",
+    "configurations": [
+        {
+            // Quick run with full Rust backtraces - no external debugger needed
+            "name": "▶️ Run Debug (Console)",
+            "type": "node-terminal",
+            "request": "launch",
+            "command": "cargo run",
+            "cwd": "${workspaceFolder}",
+            "env": {
+                "RUST_BACKTRACE": "full",
+                "RUST_LOG": "info,chthonic_archive=debug",
+                "VK_LOADER_DEBUG": "warn"
+            }
+        },
+        {
+            // Launch Visual Studio 2022's native debugger (breakpoints, watch, etc)
+            "name": "🔥 Debug in Visual Studio",
+            "type": "node-terminal",
+            "request": "launch",
+            "command": "& 'C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\Common7\\IDE\\devenv.exe' /debugexe target\\debug\\chthonic-archive.exe",
+            "cwd": "${workspaceFolder}",
+            "preLaunchTask": "cargo build"
+        },
+        {
+            // Release mode - optimized, minimal debug info
+            "name": "🚀 Run Release (Console)",
+            "type": "node-terminal",
+            "request": "launch",
+            "command": "cargo run --release",
+            "cwd": "${workspaceFolder}",
+            "env": {
+                "RUST_BACKTRACE": "1",
+                "RUST_LOG": "info"
+            }
+        },
+        {
+            // Build only - useful for checking compilation
+            "name": "🔨 Build Debug",
+            "type": "node-terminal",
+            "request": "launch",
+            "command": "cargo build",
+            "cwd": "${workspaceFolder}"
+        }
+    ]
+}
