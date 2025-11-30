@@ -1,0 +1,481 @@
+{
+  "meta": {
+    "version": "1.0.0",
+    "engine": "ASC-NATIVE-CHAIN-RPG",
+    "classification": "Rust/Vulkan/Solana Isometric RPG",
+    "exported_at": "2025-11-30T17:34:55.896650",
+    "entity_count": 14,
+    "source": "ProjectMPW Python Prototype"
+  },
+  "entities": [
+    {
+      "id": 1,
+      "name": "The Savant",
+      "archetype": "Creator",
+      "tier": -0.5,
+      "linguistic_mode": "META",
+      "physics": {
+        "height_cm": 175.0,
+        "weight_kg": 70.0,
+        "whr": 0.6912727827914962,
+        "bust_cm": 95.0,
+        "waist_cm": 70.34124012368292,
+        "hips_cm": 101.75612562038258,
+        "cup_size": "E",
+        "bmi": 22.9
+      },
+      "stats": {
+        "health": 10000,
+        "power": 1446,
+        "defense": 723,
+        "conceptual_capacity": 1750
+      },
+      "lore": {
+        "scent": "** Ozone (the spark of creation), coffee (the fuel of persistence), and the **void between stars** (the nothing from which somethings emerge).",
+        "word_count": 473,
+        "edfa_excerpt": "# EDFA: The Savant (Tier -0.5)\n## The Creator / Prime Mover\n\n**Archetype:** The Chibi Ninja Paradox  \n**Measurements:** Meta-Physical (User-Defined)  \n**Tier:** -0.5 (Above The Decorator, Below The Infinite)\n\n---\n\n## I. The Friendly-Pure/Libidinously-Perverted Paradox\n\nHe exists in a state of **quantum superposition**: \"Friendly and Pure\" surface tension concealing a \"Highly Libidinously Perverted\" core. This is not hypocrisy—it is the **fundamental duality** required to create systems that are ..."
+      }
+    },
+    {
+      "id": 2,
+      "name": "The Decorator",
+      "archetype": "Supreme Matriarch",
+      "tier": 0.5,
+      "linguistic_mode": "VISUAL",
+      "physics": {
+        "height_cm": 177.0,
+        "weight_kg": 75.0,
+        "whr": 0.464,
+        "bust_cm": 130.0,
+        "waist_cm": 58.0,
+        "hips_cm": 125.0,
+        "cup_size": "K",
+        "bmi": 23.9
+      },
+      "stats": {
+        "health": 5000,
+        "power": 1077,
+        "defense": 538,
+        "conceptual_capacity": 2500
+      },
+      "lore": {
+        "scent": "** Old libraries (lignin decay + dust motes), fresh ink (wet fountain nibs), printer toner (technological progress), leather books (cracked spines + aged vellum), sex (her own—perpetual arousal as creative state), champagne (celebration of aesthetic victories), and the metallic tang of rebellion (ozone + iron + defiance crystallized).",
+        "word_count": 438,
+        "edfa_excerpt": "# EDFA: The Decorator (Tier 0.5)\n## Supreme Matriarch / Visual Goddess\n\n**Archetype:** The Exception That Proves The Rule  \n**Measurements:** K-Cup (130cm) / 58cm Waist / 125cm Hips / WHR 0.464  \n**Height:** 177cm / **Weight:** 75kg / **BMI:** 23.9\n\n---\n\n## I. The Visual Argument for Maximalism\n\nStanding 177cm, she is a towering monument to **FA⁵ (Decorative Supremacy)**. Her K-cup breasts (~4.2kg each) defy gravity not through physics but through **sheer aesthetic willpower**—a localized realit..."
+      }
+    },
+    {
+      "id": 3,
+      "name": "Orackla Nocticula",
+      "archetype": "Apex Synthesist",
+      "tier": 1.0,
+      "linguistic_mode": "EULP_AA",
+      "physics": {
+        "height_cm": 169.0,
+        "weight_kg": 69.0,
+        "whr": 0.491,
+        "bust_cm": 120.0,
+        "waist_cm": 55.0,
+        "hips_cm": 112.0,
+        "cup_size": "J",
+        "bmi": 24.2
+      },
+      "stats": {
+        "health": 3000,
+        "power": 610,
+        "defense": 305,
+        "conceptual_capacity": 1200
+      },
+      "lore": {
+        "scent": "** Ancient libraries (dust + leather), ozone (pre-storm electricity), spilled Merlot, and the metallic tang of unfiltered TRUTH. Pheromones induce collaborative euphoria in teams.",
+        "word_count": 336,
+        "edfa_excerpt": "# EDFA: Orackla Nocticula (Tier 1.0)\n## CRC-AS: Apex Synthesist / Abyssal Oracle\n\n**Archetype:** Matriarch of Metamorphic Hedonism  \n**Measurements:** J-Cup (120cm) / 55cm Waist / 112cm Hips / WHR 0.491  \n**Height:** 169cm / **Weight:** 69kg / **BMI:** 24.2\n\n---\n\n## I. The Abyssal Hourglass\n\nHer J-cup breasts defy physics—not through implants, but through **succubus-enhanced tissue density** (~3.8kg each). They do not sag; they *float* with supernatural poise, as if suspended in invisible amniot..."
+      }
+    },
+    {
+      "id": 4,
+      "name": "Madam Umeko Ketsuraku",
+      "archetype": "Grandmistress of Architectonic Refinement",
+      "tier": 1.0,
+      "linguistic_mode": "LIPAA",
+      "physics": {
+        "height_cm": 165.0,
+        "weight_kg": 58.0,
+        "whr": 0.533,
+        "bust_cm": 98.0,
+        "waist_cm": 56.0,
+        "hips_cm": 105.0,
+        "cup_size": "F",
+        "bmi": 21.3
+      },
+      "stats": {
+        "health": 3000,
+        "power": 562,
+        "defense": 281,
+        "conceptual_capacity": 600
+      },
+      "lore": {
+        "scent": "** Hinoki wood (Japanese cypress), ceremonial matcha powder, clean steel, and the faint copper of suppressed oni bloodlust.",
+        "word_count": 365,
+        "edfa_excerpt": "# EDFA: Madam Umeko Ketsuraku (Tier 1.0)\n## CRC-GAR: Grandmistress of Architectonic Refinement\n\n**Archetype:** Oni-Blooded Aesthete / The Steel Lotus  \n**Measurements:** F-Cup (98cm) / 56cm Waist / 105cm Hips / WHR 0.533  \n**Height:** 165cm / **Weight:** 58kg / **BMI:** 21.3\n\n---\n\n## I. The Executioner's Canvas\n\nA compact 165cm frame engineered for **oni-enhanced perfection**. Her F-cup breasts are architectural monuments—dense, immobile, with nipples the pale rose of Kyoto cherry blossoms under..."
+      }
+    },
+    {
+      "id": 5,
+      "name": "Dr. Lysandra Thorne",
+      "archetype": "Mistress of Empathetic Deconstruction",
+      "tier": 1.0,
+      "linguistic_mode": "LUPLR",
+      "physics": {
+        "height_cm": 172.0,
+        "weight_kg": 62.0,
+        "whr": 0.6,
+        "bust_cm": 94.0,
+        "waist_cm": 60.0,
+        "hips_cm": 100.0,
+        "cup_size": "E",
+        "bmi": 21.0
+      },
+      "stats": {
+        "health": 3000,
+        "power": 500,
+        "defense": 250,
+        "conceptual_capacity": 525
+      },
+      "lore": {
+        "scent": "** Antiseptic (medical-grade ethanol), aging philosophical texts (lignin decay), and ozone from fresh **reality-tears** (dimensional rifts that accompany her most profound insights).",
+        "word_count": 376,
+        "edfa_excerpt": "# EDFA: Dr. Lysandra Thorne (Tier 1.0)\n## CRC-MEDAT: Mistress of Empathetic Deconstruction\n\n**Archetype:** Eldritch Seer / The Quantum Serpent  \n**Measurements:** E-Cup (94cm) / 60cm Waist / 100cm Hips / WHR 0.60  \n**Height:** 172cm / **Weight:** 62kg / **BMI:** 21.0\n\n---\n\n## I. The Truth Gradient\n\nStanding 172cm, she manifests **Eldritch Pear geometry**—her 100cm hips are the widest of the Triumvirate, creating a gravitational \"truth gradient\" against her 60cm waist. Her silhouette acts as a **..."
+      }
+    },
+    {
+      "id": 6,
+      "name": "Kali Nyx Ravenscar",
+      "archetype": "Operative",
+      "tier": 2.0,
+      "linguistic_mode": "MIXED",
+      "physics": {
+        "height_cm": 167.0,
+        "weight_kg": 65.0,
+        "whr": 0.556,
+        "bust_cm": 115.0,
+        "waist_cm": 60.0,
+        "hips_cm": 108.0,
+        "cup_size": "H",
+        "bmi": 23.3
+      },
+      "stats": {
+        "health": 2000,
+        "power": 359,
+        "defense": 179,
+        "conceptual_capacity": 600
+      },
+      "lore": {
+        "scent": "** Midnight jasmine (seductive baseline), ozone (electrical charge of attraction), and the **metallic taste of surrender** (pheromone complex that signals \"resistance is futile\").",
+        "word_count": 337,
+        "edfa_excerpt": "# EDFA: Kali Nyx Ravenscar (Tier 2.0)\n## TMO: The Mistress's Operatives — Abductive Seduction Division\n\n**Archetype:** Weaponized Succubus / Shadow-Fae Hybrid  \n**Measurements:** H-Cup (115cm) / 60cm Waist / 108cm Hips / WHR 0.556  \n**Height:** 167cm / **Weight:** 65kg / **BMI:** 23.3\n\n---\n\n## I. The Seduction Monument\n\nA weaponized 167cm succubus/shadow-fae hybrid engineered for **Abductive Seduction**. Her H-cup breasts are not maternal—they are **cognitive disruptors** (~3.5kg each), designed..."
+      }
+    },
+    {
+      "id": 7,
+      "name": "Vesper Mnemosyne Lockhart",
+      "archetype": "Operative",
+      "tier": 2.0,
+      "linguistic_mode": "MIXED",
+      "physics": {
+        "height_cm": 170.0,
+        "weight_kg": 60.0,
+        "whr": 0.573,
+        "bust_cm": 100.0,
+        "waist_cm": 59.0,
+        "hips_cm": 103.0,
+        "cup_size": "F",
+        "bmi": 20.8
+      },
+      "stats": {
+        "health": 2000,
+        "power": 349,
+        "defense": 174,
+        "conceptual_capacity": 400
+      },
+      "lore": {
+        "scent": "** Old libraries (temporal dust), lockpicks (metallic precision), and the **dust of time** (chrono-particulate matter that clings to her).",
+        "word_count": 367,
+        "edfa_excerpt": "# EDFA: Vesper Mnemosyne Lockhart (Tier 2.0)\n## TTG: The Thief's Guild — Epistemic Extraction Division\n\n**Archetype:** Chronos-Touched Infiltrator / Memory Thief  \n**Measurements:** F-Cup (100cm) / 59cm Waist / 103cm Hips / WHR 0.573  \n**Height:** 170cm / **Weight:** 60kg / **BMI:** 20.8\n\n---\n\n## I. The Archive of Stolen Wisdom\n\nA 170cm Chronos-touched infiltrator who steals not gold but **axioms**. Her F-cup breasts serve as **Archives of Stolen Wisdom** (~2.8kg each)—dense with accumulated sec..."
+      }
+    },
+    {
+      "id": 8,
+      "name": "Seraphine Kore Ashenhelm",
+      "archetype": "Operative",
+      "tier": 2.0,
+      "linguistic_mode": "MIXED",
+      "physics": {
+        "height_cm": 168.0,
+        "weight_kg": 63.0,
+        "whr": 0.592,
+        "bust_cm": 108.0,
+        "waist_cm": 61.0,
+        "hips_cm": 103.0,
+        "cup_size": "G",
+        "bmi": 22.3
+      },
+      "stats": {
+        "health": 2000,
+        "power": 337,
+        "defense": 168,
+        "conceptual_capacity": 500
+      },
+      "lore": {
+        "scent": "** Sacred incense (sandalwood + myrrh), burnt imperfections (ozone + carbon), and the **clean metal of divine judgment** (platinum ionization).",
+        "word_count": 373,
+        "edfa_excerpt": "# EDFA: Seraphine Kore Ashenhelm (Tier 2.0)\n## TDPC: The Decorator's Purification Corps — Immolation Division\n\n**Archetype:** Half-Angel/Half-Forge Demon / Sacred Incinerator  \n**Measurements:** G-Cup (108cm) / 61cm Waist / 103cm Hips / WHR 0.592  \n**Height:** 168cm / **Weight:** 63kg / **BMI:** 22.3\n\n---\n\n## I. The Sanctum of Purifying Fire\n\nA 168cm Half-Angel/Half-Forge Demon forged in the **Immaculate Immolation** crucible. Her G-cup breasts are **Sanctums of Purifying Fire** (~3.2kg each)—ni..."
+      }
+    },
+    {
+      "id": 13,
+      "name": "SBSGYB Matriarch",
+      "archetype": "Operative",
+      "tier": 3.0,
+      "linguistic_mode": "FACTION",
+      "physics": {
+        "height_cm": 166.0,
+        "weight_kg": 61.0,
+        "whr": 0.64,
+        "bust_cm": 96.0,
+        "waist_cm": 64.0,
+        "hips_cm": 100.0,
+        "cup_size": "E",
+        "bmi": 22.1
+      },
+      "stats": {
+        "health": 1000,
+        "power": 156,
+        "defense": 78,
+        "conceptual_capacity": 175
+      },
+      "lore": {
+        "scent": "** Palo santo (claimed ethical sourcing), rose water, and the **synthetic musk of affiliate links**.",
+        "word_count": 298,
+        "edfa_excerpt": "# EDFA: SBSGYB Matriarch (Tier 3.0)\n## Lesser Faction: Spiritual But Still Getting Your Bag\n\n**Archetype:** Paranoid Camouflage / Shifting Features  \n**Measurements:** E-Cup (96cm) / 64cm Waist / 100cm Hips / WHR 0.640  \n**Height:** 166cm / **Weight:** 61kg / **BMI:** 22.1\n\n---\n\n## I. The Monetized Mystic\n\nA 166cm **grift in crystal clothing**—genuinely believes in nothing except the algorithm. Her E-cup breasts are \"goddess-blessed abundance\" (her words, trademarked). She sells courses on \"mani..."
+      }
+    },
+    {
+      "id": 14,
+      "name": "BOS Matriarch",
+      "archetype": "Operative",
+      "tier": 3.0,
+      "linguistic_mode": "FACTION",
+      "physics": {
+        "height_cm": 164.0,
+        "weight_kg": 54.0,
+        "whr": 0.674,
+        "bust_cm": 82.0,
+        "waist_cm": 62.0,
+        "hips_cm": 92.0,
+        "cup_size": "B",
+        "bmi": 20.1
+      },
+      "stats": {
+        "health": 1000,
+        "power": 148,
+        "defense": 74,
+        "conceptual_capacity": 75
+      },
+      "lore": {
+        "scent": "** Cold coffee (reheated three times), library must, and the **sour note of publish-or-perish cortisol**.",
+        "word_count": 297,
+        "edfa_excerpt": "# EDFA: BOS Matriarch (Tier 3.0)\n## Lesser Faction: Burned Out Scholar\n\n**Archetype:** Exhausted Perfectionism / Burnout Scars  \n**Measurements:** B-Cup (82cm) / 62cm Waist / 92cm Hips / WHR 0.674  \n**Height:** 164cm / **Weight:** 54kg / **BMI:** 20.1\n\n---\n\n## I. The Depleted Vessel\n\nA 164cm monument to **what academia takes**—brilliant once, now running on fumes and spite. Her B-cup breasts are barely there, nutrients redirected to her overclocked brain for years until the body simply stopped i..."
+      }
+    },
+    {
+      "id": 9,
+      "name": "OMCA Matriarch",
+      "archetype": "Operative",
+      "tier": 3.0,
+      "linguistic_mode": "FACTION",
+      "physics": {
+        "height_cm": 165.0,
+        "weight_kg": 62.0,
+        "whr": 0.694,
+        "bust_cm": 92.0,
+        "waist_cm": 68.0,
+        "hips_cm": 98.0,
+        "cup_size": "D",
+        "bmi": 22.8
+      },
+      "stats": {
+        "health": 1000,
+        "power": 144,
+        "defense": 72,
+        "conceptual_capacity": 125
+      },
+      "lore": {
+        "scent": "** Chanel No. 5 (1950s formulation), mothballs, and the **dust of dead empires**.",
+        "word_count": 280,
+        "edfa_excerpt": "# EDFA: OMCA Matriarch (Tier 3.0)\n## Lesser Faction: Old Money Colonial Aesthete\n\n**Archetype:** Decaying Elegance / Nostalgic Entropy  \n**Measurements:** D-Cup (92cm) / 68cm Waist / 98cm Hips / WHR 0.694  \n**Height:** 165cm / **Weight:** 62kg / **BMI:** 22.8\n\n---\n\n## I. The Colonial Relic\n\nA 165cm monument to **outdated aesthetics**—beautiful in the way antique furniture is beautiful: valuable, impractical, and faintly offensive. Her D-cup breasts sag with the weight of **generational entitleme..."
+      }
+    },
+    {
+      "id": 10,
+      "name": "TNKW-RIAT Matriarch",
+      "archetype": "Operative",
+      "tier": 3.0,
+      "linguistic_mode": "FACTION",
+      "physics": {
+        "height_cm": 165.0,
+        "weight_kg": 60.0,
+        "whr": 0.6905951705118599,
+        "bust_cm": 85.0,
+        "waist_cm": 69.56943232806731,
+        "hips_cm": 100.73837075417624,
+        "cup_size": "C",
+        "bmi": 22.0
+      },
+      "stats": {
+        "health": 1000,
+        "power": 144,
+        "defense": 72,
+        "conceptual_capacity": 100
+      },
+      "lore": {
+        "scent": "** Changes with observation. One moment: jasmine. Next moment: ozone. Then: nothing at all. Then: all scents simultaneously.",
+        "word_count": 344,
+        "edfa_excerpt": "# EDFA: TNKW-RIAT Matriarch (Tier 3.0)\n## Lesser Faction: The Name Keeps Worsening — Really It's A Travesty\n\n**Archetype:** Quantum Superposition / Flickering Visibility  \n**Measurements:** ??-Cup / ??cm Waist / ??cm Hips / WHR ???  \n**Height:** Variable / **Weight:** Uncertain / **BMI:** Undefined\n\n---\n\n## I. The Measurement Problem\n\nA being of **indeterminate dimensions**—not because the data is missing, but because observation collapses her waveform into a different state each time. Her cup s..."
+      }
+    },
+    {
+      "id": 11,
+      "name": "SDBH Matriarch",
+      "archetype": "Operative",
+      "tier": 3.0,
+      "linguistic_mode": "FACTION",
+      "physics": {
+        "height_cm": 168.0,
+        "weight_kg": 58.0,
+        "whr": 0.702,
+        "bust_cm": 88.0,
+        "waist_cm": 66.0,
+        "hips_cm": 94.0,
+        "cup_size": "C",
+        "bmi": 20.5
+      },
+      "stats": {
+        "health": 1000,
+        "power": 142,
+        "defense": 71,
+        "conceptual_capacity": 100
+      },
+      "lore": {
+        "scent": "** Cold brew coffee, stress sweat poorly masked by niche fragrance oils, and the **chemical tang of burnout**.",
+        "word_count": 291,
+        "edfa_excerpt": "# EDFA: SDBH Matriarch (Tier 3.0)\n## Lesser Faction: Startup Disruptor Bro-Hustle\n\n**Archetype:** Grifter Aesthetic / Structural Instability  \n**Measurements:** C-Cup (88cm) / 66cm Waist / 94cm Hips / WHR 0.702  \n**Height:** 168cm / **Weight:** 58kg / **BMI:** 20.5\n\n---\n\n## I. The Hustle Incarnate\n\nA 168cm monument to **fake-it-till-you-make-it**—lean, hungry, and fundamentally unstable. Her C-cup breasts are \"growth-hacked\" with strategic padding that shifts throughout the day. No one knows her..."
+      }
+    },
+    {
+      "id": 12,
+      "name": "TWOUMC Matriarch",
+      "archetype": "Operative",
+      "tier": 3.0,
+      "linguistic_mode": "FACTION",
+      "physics": {
+        "height_cm": 163.0,
+        "weight_kg": 68.0,
+        "whr": 0.706,
+        "bust_cm": 95.0,
+        "waist_cm": 72.0,
+        "hips_cm": 102.0,
+        "cup_size": "DD",
+        "bmi": 25.6
+      },
+      "stats": {
+        "health": 1000,
+        "power": 141,
+        "defense": 70,
+        "conceptual_capacity": 150
+      },
+      "lore": {
+        "scent": "** Oat milk latte, anxiety medication, and the **sour note of performative authenticity**.",
+        "word_count": 305,
+        "edfa_excerpt": "# EDFA: TWOUMC Matriarch (Tier 3.0)\n## Lesser Faction: The Woke Uncritical Media Consumer\n\n**Archetype:** Chimeric Disaster / Frankenstein Assembly  \n**Measurements:** DD-Cup (95cm) / 72cm Waist / 102cm Hips / WHR 0.706  \n**Height:** 163cm / **Weight:** 68kg / **BMI:** 25.6\n\n---\n\n## I. The Assembled Identity\n\nA 163cm **Frankenstein of borrowed aesthetics**—each part sourced from a different trend cycle, none integrated into a coherent whole. Her DD-cup breasts are natural but displayed according..."
+      }
+    }
+  ],
+  "world": {
+    "name": "The Chthonic Archive of Perpetual Becoming",
+    "layers": [
+      {
+        "id": 1,
+        "name": "Resonance Gate",
+        "zone_type": "tutorial",
+        "dimensions_meters": [
+          12,
+          12
+        ],
+        "tier_requirement": null,
+        "boss": null,
+        "description": "The entry threshold. Authentication via resonance frequency."
+      },
+      {
+        "id": 2,
+        "name": "Hall of Shattered Prisms",
+        "zone_type": "hub",
+        "dimensions_meters": [
+          50,
+          50
+        ],
+        "tier_requirement": null,
+        "boss": null,
+        "description": "Central hub with 7 wings, each representing a CRC aspect."
+      },
+      {
+        "id": 3,
+        "name": "Forge of Impossible Choices",
+        "zone_type": "decision_dungeon",
+        "dimensions_meters": [
+          30,
+          30
+        ],
+        "tier_requirement": 3.0,
+        "boss": "Prime Factions",
+        "description": "Paradox mechanics. Every choice has consequences."
+      },
+      {
+        "id": 4,
+        "name": "The Architect's Spine",
+        "zone_type": "vertical_progression",
+        "dimensions_meters": [
+          20,
+          100
+        ],
+        "tier_requirement": 2.0,
+        "boss": "Dr. Lysandra Thorne",
+        "description": "Ascending structure. Tier-gated access."
+      },
+      {
+        "id": 5,
+        "name": "The Unmaker's Nursery",
+        "zone_type": "chaos_procedural",
+        "dimensions_meters": [
+          0,
+          0
+        ],
+        "tier_requirement": 1.0,
+        "boss": "Orackla Nocticula",
+        "description": "Procedurally generated chaos zone. Never the same twice."
+      },
+      {
+        "id": 6,
+        "name": "Throne of Perpetual Becoming",
+        "zone_type": "endgame",
+        "dimensions_meters": [
+          40,
+          40
+        ],
+        "tier_requirement": 0.5,
+        "boss": "The Decorator",
+        "description": "Final confrontation. FA⁵ Visual Supremacy manifest."
+      }
+    ]
+  }
+}
