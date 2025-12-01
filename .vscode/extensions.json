@@ -2,6 +2,7 @@
     // ╔══════════════════════════════════════════════════════════════════╗
     // ║   THE CHTHONIC ARCHIVE - Recommended Extensions                  ║
     // ║   Rust/Vulkan/GLSL Development Stack                             ║
+    // ║   + GitHub Copilot Pro Ecosystem                                 ║
     // ╚══════════════════════════════════════════════════════════════════╝
     "recommendations": [
         // === RUST ===
@@ -14,9 +15,14 @@
         "slevesque.shader",
         "dtoplak.vscode-glsllint",
 
+        // === GITHUB COPILOT PRO ECOSYSTEM ===
+        // Core extensions for full agent functionality (@workspace, @terminal, @vscode)
+        "GitHub.copilot",           // Core AI code completion
+        "GitHub.copilot-chat",      // Chat-based AI assistance (required for agents)
+        "GitHub.copilot-workspace", // Project-wide AI, session sync (tech preview)
+        "GitHub.vscode-pull-request-github", // PR/issue integration, agent tracking
+
         // === GENERAL ===
-        "GitHub.copilot",
-        "GitHub.copilot-chat",
         "eamodio.gitlens",
         "usernamehw.errorlens",
         "aaron-bond.better-comments",

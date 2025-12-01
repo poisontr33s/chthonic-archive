@@ -120,4 +120,71 @@
 
     // === COPILOT CONTEXT ===
     // Instructions loaded from .github/copilot-instructions.md automatically
+
+    // ╔══════════════════════════════════════════════════════════════════╗
+    // ║   GITHUB COPILOT PRO - OPTIMAL CONFIGURATION                     ║
+    // ║   Research-based settings for maximum productivity               ║
+    // ║   See: COPILOT_PRO_VSCODE_SETUP_REPORT.md                        ║
+    // ╚══════════════════════════════════════════════════════════════════╝
+
+    // === COPILOT CORE SETTINGS ===
+    "github.copilot.enable": {
+        "*": true,
+        "plaintext": true,
+        "markdown": true,
+        "scminput": false
+    },
+    "github.copilot.editor.enableCodeActions": true,
+    "github.copilot.renameSuggestions.triggerAutomatically": true,
+
+    // === INLINE SUGGESTIONS ===
+    "editor.inlineSuggest.enabled": true,
+    "editor.inlineSuggest.showToolbar": "always",
+    "github.copilot.nextEditSuggestions.enabled": true,
+
+    // === COPILOT CHAT CONFIGURATION ===
+    "github.copilot.chat.localeOverride": "auto",
+    "github.copilot.chat.useProjectTemplates": true,
+    "github.copilot.chat.scopeSelection": true,
+    "github.copilot.chat.terminalChatLocation": "chatView",
+    "github.copilot.chat.codesearch.enabled": true,
+    "github.copilot.chat.editor.temporalContext.enabled": true,
+
+    // === CHAT EDITING & CHECKPOINTS ===
+    "chat.editRequests": "inline",
+    "chat.editing.autoAcceptDelay": 0,
+    "chat.editing.confirmEditRequestRemoval": true,
+    "chat.editing.confirmEditRequestRetry": true,
+    "chat.checkpoints.enabled": true,
+    "chat.checkpoints.showFileChanges": true,
+    "chat.emptyState.history.enabled": true,
+
+    // === CHAT UI SETTINGS ===
+    "chat.editor.wordWrap": "on",
+    "chat.editor.fontSize": 14,
+    "chat.detectParticipant.enabled": true,
+    "chat.math.enabled": true,
+
+    // === INLINE CHAT ===
+    "inlineChat.finishOnType": false,
+    "inlineChat.holdToSpeech": true,
+
+    // === INSTRUCTION FILES ===
+    "github.copilot.chat.codeGeneration.useInstructionFiles": true,
+
+    // === TERMINAL INTEGRATION ===
+    "chat.tools.terminal.autoReplyToPrompts": true,
+
+    // === YOLO MODE (SANDBOX ONLY - UNCOMMENT TO ENABLE) ===
+    // WARNING: Auto-approves all Copilot tool actions. Use in sandboxes only!
+    // "chat.tools.autoApprove": true,
+    // "chat.tools.terminal.autoApprove": {
+    //     "/^git\\s+(status|diff|log|show)\\b/": true,
+    //     "/^npm\\s+(test|run\\s+lint)\\b/": true,
+    //     "/^cargo\\s+(check|test|clippy)\\b/": true,
+    //     "rm": false,
+    //     "rmdir": false,
+    //     "del": false,
+    //     "/^git\\s+(push|reset|revert|clean)\\b/": false
+    // }
 }
