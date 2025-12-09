@@ -1,0 +1,159 @@
+[project]
+name = "mas-mcp"
+version = "0.2.0"
+description = "Meta-Archaeological Salvager - MCP Server with GPU execution lane and governance"
+readme = "README.md"
+requires-python = ">=3.11"
+keywords = ["mcp", "gpu", "tensorrt", "onnx", "governance", "milf"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Environment :: GPU :: NVIDIA CUDA :: 12",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+
+dependencies = [
+    "mcp>=1.0.0",
+    "networkx>=3.6",
+    "numpy>=1.26",
+    "onnx>=1.20.0",
+    # JSON schema validation
+    "jsonschema>=4.20",
+    # HTTP client for dashboard integration
+    "httpx>=0.27",
+]
+
+[project.optional-dependencies]
+# Primary GPU lane - CUDA 12.4+ / TensorRT 10.x
+gpu = [
+    "cupy-cuda12x>=13.0",
+    "pynvml>=11.5",  # NVIDIA Management Library for VRAM monitoring
+]
+
+# CPU fallback with JIT compilation
+gpu-fallback = [
+    "numba>=0.59",
+]
+
+# ONNX Runtime GPU execution providers
+# NOTE: onnxruntime-gpu must be installed from Azure DevOps feed for Python 3.13+:
+# uv pip install --pre --index-url https://aiinfra.pkgs.visualstudio.com/PublicPackages/_packaging/ort-cuda-13-nightly/pypi/simple/ onnxruntime-gpu --no-deps
+onnx-gpu = [
+    # Placeholder - see NOTE above
+]
+
+# Machine learning utilities
+ml = [
+    "scikit-learn>=1.4",
+]
+
+# Governance & monitoring utilities
+governance = [
+    "jsonschema>=4.20",
+    "httpx>=0.27",
+    "pyyaml>=6.0",
+]
+
+# Development dependencies
+dev = [
+    "pytest>=8.0",
+    "pytest-asyncio>=0.23",
+    "ruff>=0.4",
+    "mypy>=1.10",
+]
+
+# All production extras (excluding dev)
+all = [
+    "cupy-cuda12x>=13.0",
+    "pynvml>=11.5",
+    "numba>=0.59",
+    "scikit-learn>=1.4",
+    "jsonschema>=4.20",
+    "httpx>=0.27",
+    "pyyaml>=6.0",
+]
+
+[project.scripts]
+# Core MCP server
+mas-mcp = "server:main"
+
+# GPU compatibility probe
+mas-probe = "scripts.probe_gpu_compatibility:main"
+
+# MILF activation gate evaluator
+mas-activate = "scripts.milf_activator:main"
+
+# Genesis scheduler (background synthesis)
+mas-genesis = "genesis_scheduler:main"
+
+# Dashboard monitoring
+mas-monitor = "scripts.monitor_dashboard_extended:main"
+
+# Claude cycle report generator
+mas-cycle = "scripts.generate_claude_cycle:main"
+
+[project.urls]
+Documentation = "https://github.com/your-org/mas-mcp#readme"
+Repository = "https://github.com/your-org/mas-mcp"
+Issues = "https://github.com/your-org/mas-mcp/issues"
+
+[build-system]
+requires = ["hatchling>=1.21"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["."]
+
+[tool.hatch.build.targets.sdist]
+include = [
+    "/server.py",
+    "/genesis_scheduler.py",
+    "/milf_genesis.py",
+    "/milf_genesis_v2.py",
+    "/scripts/",
+    "/schemas/",
+    "/artifacts/",
+]
+
+# Ruff configuration (fast Python linter)
+[tool.ruff]
+target-version = "py311"
+line-length = 100
+
+[tool.ruff.lint]
+select = [
+    "E",    # pycodestyle errors
+    "W",    # pycodestyle warnings
+    "F",    # Pyflakes
+    "I",    # isort
+    "B",    # flake8-bugbear
+    "C4",   # flake8-comprehensions
+    "UP",   # pyupgrade
+]
+ignore = [
+    "E501",  # line too long (handled by formatter)
+    "B008",  # function call in default argument
+]
+
+[tool.ruff.lint.isort]
+known-first-party = ["mas_mcp", "scripts"]
+
+# MyPy configuration
+[tool.mypy]
+python_version = "3.11"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
+ignore_missing_imports = true
+
+# Pytest configuration
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]
+filterwarnings = [
+    "ignore::DeprecationWarning",
+]

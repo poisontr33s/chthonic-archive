@@ -1,0 +1,33 @@
+{
+  "name": "Luna Stormborn",
+  "tier": 3.0,
+  "archetype": "Tidal Ordeal",
+  "age_apparent": 34,
+  "age_actual": 247,
+  "race": "Human-Touched",
+  "physique": {
+    "height_cm": 158,
+    "weight_kg": 59,
+    "bust_cm": 108,
+    "waist_cm": 69,
+    "hip_cm": 110,
+    "cup_size": "H",
+    "underbust_cm": 83
+  },
+  "scent": "old libraries, smoke, rain",
+  "linguistic_mandate": "TLM",
+  "expertise": [
+    "conceptual manipulation",
+    "operational efficiency"
+  ],
+  "status": "Active",
+  "faction": null,
+  "reports_to": "Triumvirate (Tier 1)",
+  "signature_technique": "The Purifying Strike",
+  "genesis_timestamp": "2025-12-07T14:04:01.878128",
+  "genesis_seed": 2028566871,
+  "genesis_hash": "6f5fb90bbb9c7040",
+  "schema_crc": "ff6b6f02b5ef9601",
+  "whr": 0.627,
+  "measurements": "H-cup (B108/W69/H110cm)"
+}

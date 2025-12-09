@@ -1,0 +1,33 @@
+{
+  "name": "Morrigan Ravenscar",
+  "tier": 3.0,
+  "archetype": "Chaos Engineer",
+  "age_apparent": 37,
+  "age_actual": 172,
+  "race": "Human-Touched",
+  "physique": {
+    "height_cm": 163,
+    "weight_kg": 61,
+    "bust_cm": 105,
+    "waist_cm": 72,
+    "hip_cm": 116,
+    "cup_size": "G",
+    "underbust_cm": 73
+  },
+  "scent": "ancient texts, decay, fire",
+  "linguistic_mandate": "EULP-AA",
+  "expertise": [
+    "conceptual manipulation",
+    "operational efficiency"
+  ],
+  "status": "Active",
+  "faction": null,
+  "reports_to": "Triumvirate (Tier 1)",
+  "signature_technique": "The Purifying Strike",
+  "genesis_timestamp": "2025-12-07T14:03:43.631535",
+  "genesis_seed": 2028548703,
+  "genesis_hash": "513eac6691426516",
+  "schema_crc": "ff6b6f02b5ef9601",
+  "whr": 0.621,
+  "measurements": "G-cup (B105/W72/H116cm)"
+}

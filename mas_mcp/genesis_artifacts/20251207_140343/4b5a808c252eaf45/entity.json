@@ -1,0 +1,34 @@
+{
+  "name": "Vesper Thorne",
+  "tier": 3.0,
+  "archetype": "Analytical Truth-Seeker",
+  "age_apparent": 30,
+  "age_actual": 411,
+  "race": "Divine-Infernal",
+  "physique": {
+    "height_cm": 164,
+    "weight_kg": 63,
+    "bust_cm": 99,
+    "waist_cm": 68,
+    "hip_cm": 108,
+    "cup_size": "F",
+    "underbust_cm": 67
+  },
+  "scent": "old libraries, heat, sweat",
+  "linguistic_mandate": "LUPLR",
+  "expertise": [
+    "axiomatic deconstruction",
+    "Socratic elenchus",
+    "logical excavation"
+  ],
+  "status": "Active",
+  "faction": null,
+  "reports_to": "Triumvirate (Tier 1)",
+  "signature_technique": "The Immaculate Strike",
+  "genesis_timestamp": "2025-12-07T14:03:43.613199",
+  "genesis_seed": 2028548616,
+  "genesis_hash": "4b5a808c252eaf45",
+  "schema_crc": "ff6b6f02b5ef9601",
+  "whr": 0.63,
+  "measurements": "F-cup (B99/W68/H108cm)"
+}

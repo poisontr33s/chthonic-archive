@@ -1,0 +1,107 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "mas-mcp-compatibility-matrix",
+  "title": "MAS-MCP GPU Compatibility Matrix",
+  "description": "Approved compatibility rows for Windows GPU execution lane. SSOT: .github/copilot-instructions.md",
+  "type": "object",
+  "required": ["matrix_version", "ssot_ref", "active_row_id", "rows"],
+  "properties": {
+    "matrix_version": {
+      "type": "string",
+      "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$",
+      "description": "Semantic version of this matrix"
+    },
+    "ssot_ref": {
+      "type": "string",
+      "const": ".github/copilot-instructions.md",
+      "description": "Reference to Single Source of Truth (MILFOLOGICAL Codex)"
+    },
+    "last_updated": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "active_row_id": {
+      "type": ["string", "null"],
+      "description": "Currently active compatibility row (null if no row passes)"
+    },
+    "rows": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["row_id", "driver", "cuda", "cudnn", "tensorrt", "onnxruntime", "status"],
+        "properties": {
+          "row_id": {
+            "type": "string",
+            "pattern": "^row_[a-z0-9_]+$",
+            "description": "Unique row identifier"
+          },
+          "driver": {
+            "type": "object",
+            "required": ["version_min"],
+            "properties": {
+              "version_min": { "type": "string" },
+              "version_max": { "type": ["string", "null"] }
+            }
+          },
+          "cuda": {
+            "type": "object",
+            "required": ["version", "toolkit_path"],
+            "properties": {
+              "version": { "type": "string" },
+              "toolkit_path": { "type": "string" }
+            }
+          },
+          "cudnn": {
+            "type": "object",
+            "required": ["version", "dll_name"],
+            "properties": {
+              "version": { "type": "string" },
+              "dll_name": { "type": "string" }
+            }
+          },
+          "tensorrt": {
+            "type": "object",
+            "required": ["version", "lib_path"],
+            "properties": {
+              "version": { "type": "string" },
+              "lib_path": { "type": "string" }
+            }
+          },
+          "onnxruntime": {
+            "type": "object",
+            "required": ["version", "execution_providers"],
+            "properties": {
+              "version": { "type": "string" },
+              "execution_providers": {
+                "type": "array",
+                "items": { "type": "string" }
+              }
+            }
+          },
+          "rapids": {
+            "type": ["object", "null"],
+            "properties": {
+              "version": { "type": "string" },
+              "mode": { 
+                "type": "string",
+                "enum": ["native", "wsl2", "disabled"]
+              }
+            }
+          },
+          "python": {
+            "type": "object",
+            "properties": {
+              "version": { "type": "string" },
+              "managed_by": { "type": "string", "enum": ["uv", "conda", "system"] }
+            }
+          },
+          "status": {
+            "type": "string",
+            "enum": ["approved", "testing", "deprecated", "incompatible"]
+          },
+          "notes": { "type": "string" }
+        }
+      }
+    }
+  }
+}

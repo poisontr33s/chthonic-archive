@@ -1,0 +1,396 @@
+{
+  "validated_truths": {
+    "The Decorator": {
+      "metrics": {
+        "whr": 0.464,
+        "tier": 0.5,
+        "cup": "K"
+      },
+      "validated_at": "2025-12-07T04:02:14.686952"
+    }
+  },
+  "discrepancies": [
+    {
+      "entity": "The Decorator",
+      "expected": {
+        "whr": 0.464
+      },
+      "got": {
+        "whr": 0.533
+      },
+      "source": {
+        "file": "C:\\Users\\erdno\\chthonic-archive\\output.stderr.log",
+        "line": 0,
+        "value": 0.691
+      },
+      "timestamp": "2025-12-06T21:45:18.105746",
+      "resolved": false
+    },
+    {
+      "entity": "Orackla Nocticula",
+      "expected": {
+        "whr": 0.491
+      },
+      "got": {
+        "whr": 0.464
+      },
+      "source": {
+        "file": "C:\\Users\\erdno\\chthonic-archive\\output.stderr.log",
+        "line": 0,
+        "value": 0.691
+      },
+      "timestamp": "2025-12-06T21:45:20.367023",
+      "resolved": false
+    },
+    {
+      "entity": "Orackla Nocticula",
+      "expected": {
+        "tier": 1.0
+      },
+      "got": {
+        "tier": 0.5
+      },
+      "source": {
+        "file": "C:\\Users\\erdno\\chthonic-archive\\output.stderr.log",
+        "line": 0,
+        "value": 0.5
+      },
+      "timestamp": "2025-12-06T21:45:20.367687",
+      "resolved": false
+    },
+    {
+      "entity": "Orackla Nocticula",
+      "expected": {
+        "cup": "J"
+      },
+      "got": {
+        "cup": "G"
+      },
+      "source": {
+        "file": "C:\\Users\\erdno\\chthonic-archive\\.github\\abbr-system.json",
+        "line": 0,
+        "value": "K"
+      },
+      "timestamp": "2025-12-06T21:45:20.368243",
+      "resolved": false
+    },
+    {
+      "entity": "Claudine Sin'claire",
+      "expected": {
+        "whr": 0.563
+      },
+      "got": {
+        "whr": 0.464
+      },
+      "source": {
+        "file": "C:\\Users\\erdno\\chthonic-archive\\output.stderr.log",
+        "line": 0,
+        "value": 0.691
+      },
+      "timestamp": "2025-12-06T21:45:22.515272",
+      "resolved": false
+    },
+    {
+      "entity": "Claudine Sin'claire",
+      "expected": {
+        "tier": 2.0
+      },
+      "got": {
+        "tier": 0.5
+      },
+      "source": {
+        "file": "C:\\Users\\erdno\\chthonic-archive\\output.stderr.log",
+        "line": 0,
+        "value": 0.5
+      },
+      "timestamp": "2025-12-06T21:45:22.515968",
+      "resolved": false
+    },
+    {
+      "entity": "Claudine Sin'claire",
+      "expected": {
+        "cup": "I"
+      },
+      "got": {
+        "cup": "K"
+      },
+      "source": {
+        "file": "C:\\Users\\erdno\\chthonic-archive\\.github\\abbr-system.json",
+        "line": 0,
+        "value": "I"
+      },
+      "timestamp": "2025-12-06T21:45:22.516562",
+      "resolved": false
+    },
+    {
+      "entity": "Orackla Nocticula",
+      "expected": {
+        "whr": 0.491
+      },
+      "got": {
+        "whr": 0.464
+      },
+      "source": {
+        "file": "C:\\Users\\erdno\\chthonic-archive\\output.stderr.log",
+        "line": 0,
+        "value": 0.691
+      },
+      "timestamp": "2025-12-07T04:02:18.331351",
+      "resolved": false
+    },
+    {
+      "entity": "Orackla Nocticula",
+      "expected": {
+        "tier": 1.0
+      },
+      "got": {
+        "tier": 0.5
+      },
+      "source": {
+        "file": "C:\\Users\\erdno\\chthonic-archive\\output.stderr.log",
+        "line": 0,
+        "value": 0.5
+      },
+      "timestamp": "2025-12-07T04:02:18.332384",
+      "resolved": false
+    },
+    {
+      "entity": "Orackla Nocticula",
+      "expected": {
+        "cup": "J"
+      },
+      "got": {
+        "cup": "G"
+      },
+      "source": {
+        "file": "C:\\Users\\erdno\\chthonic-archive\\.github\\abbr-system.json",
+        "line": 0,
+        "value": "K"
+      },
+      "timestamp": "2025-12-07T04:02:18.333089",
+      "resolved": false
+    },
+    {
+      "entity": "Claudine Sin'claire",
+      "expected": {
+        "whr": 0.563
+      },
+      "got": {
+        "whr": 0.464
+      },
+      "source": {
+        "file": "C:\\Users\\erdno\\chthonic-archive\\output.stderr.log",
+        "line": 0,
+        "value": 0.691
+      },
+      "timestamp": "2025-12-07T04:02:21.848470",
+      "resolved": false
+    },
+    {
+      "entity": "Claudine Sin'claire",
+      "expected": {
+        "tier": 1.0
+      },
+      "got": {
+        "tier": 0.5
+      },
+      "source": {
+        "file": "C:\\Users\\erdno\\chthonic-archive\\output.stderr.log",
+        "line": 0,
+        "value": 0.5
+      },
+      "timestamp": "2025-12-07T04:02:21.849602",
+      "resolved": false
+    },
+    {
+      "entity": "Claudine Sin'claire",
+      "expected": {
+        "cup": "I"
+      },
+      "got": {
+        "cup": "K"
+      },
+      "source": {
+        "file": "C:\\Users\\erdno\\chthonic-archive\\.github\\abbr-system.json",
+        "line": 0,
+        "value": "I"
+      },
+      "timestamp": "2025-12-07T04:02:21.850371",
+      "resolved": false
+    }
+  ],
+  "extraction_history": [
+    {
+      "entity": "The Decorator",
+      "metrics": {
+        "measurements": "B120/W55/H112",
+        "whr": 0.533,
+        "tier": 0.5,
+        "cup": "K"
+      },
+      "timestamp": "2025-12-06T21:45:18.106710"
+    },
+    {
+      "entity": "Orackla Nocticula",
+      "metrics": {
+        "measurements": "B120/W55/H112",
+        "whr": 0.464,
+        "tier": 0.5,
+        "cup": "G"
+      },
+      "timestamp": "2025-12-06T21:45:20.368752"
+    },
+    {
+      "entity": "Claudine Sin'claire",
+      "metrics": {
+        "measurements": "B120/W55/H112",
+        "whr": 0.464,
+        "tier": 0.5,
+        "cup": "K"
+      },
+      "timestamp": "2025-12-06T21:45:22.517609"
+    },
+    {
+      "entity": "The Decorator",
+      "metrics": {
+        "measurements": "B120/W55/H112",
+        "whr": 0.464,
+        "tier": 0.5,
+        "cup": "K"
+      },
+      "timestamp": "2025-12-07T04:02:14.685769"
+    },
+    {
+      "entity": "Orackla Nocticula",
+      "metrics": {
+        "measurements": "B120/W55/H112",
+        "whr": 0.464,
+        "tier": 0.5,
+        "cup": "G"
+      },
+      "timestamp": "2025-12-07T04:02:18.333804"
+    },
+    {
+      "entity": "Claudine Sin'claire",
+      "metrics": {
+        "measurements": "B120/W55/H112",
+        "whr": 0.464,
+        "tier": 0.5,
+        "cup": "K"
+      },
+      "timestamp": "2025-12-07T04:02:21.851295"
+    }
+  ],
+  "pattern_evolution": [],
+  "session_count": 26,
+  "extensions_installed": [
+    {
+      "package": "networkx",
+      "purpose": "Graph analysis and relational mapping",
+      "installed_at": "2025-12-04T20:51:14.932298",
+      "session": 4
+    }
+  ],
+  "snapshots": [
+    {
+      "id": "20251204_210546",
+      "hash": "89bbfef70e1e579eb575d521",
+      "timestamp": "2025-12-04T21:05:46.525080"
+    },
+    {
+      "id": "20251204_210558",
+      "hash": "20ca82a59a14bdf9d49cfaee",
+      "timestamp": "2025-12-04T21:05:58.984922"
+    },
+    {
+      "id": "20251206_203707",
+      "hash": "925a51c0ef9fcb0354704348",
+      "timestamp": "2025-12-06T20:37:11.393391"
+    },
+    {
+      "id": "20251206_204217",
+      "hash": "8086508c25e0d05b412c7a29",
+      "timestamp": "2025-12-06T20:42:19.630938"
+    },
+    {
+      "id": "20251206_210312",
+      "hash": "8d19b852d05f1a3036fc4520",
+      "timestamp": "2025-12-06T21:03:14.338719"
+    }
+  ],
+  "tested_functions": [
+    {
+      "name": "calculate_entity_density",
+      "status": "emergent",
+      "overall_score": 0.8,
+      "timestamp": "2025-12-04T21:06:15.232309"
+    },
+    {
+      "name": "delete_everything",
+      "status": "redundant",
+      "overall_score": 0.57,
+      "timestamp": "2025-12-04T21:06:35.049299"
+    },
+    {
+      "name": "scan_signals",
+      "status": "potential",
+      "overall_score": 0.65,
+      "timestamp": "2025-12-04T21:07:33.711360"
+    },
+    {
+      "name": "test_function",
+      "status": "emergent",
+      "overall_score": 0.8,
+      "timestamp": "2025-12-06T21:04:51.503316"
+    }
+  ],
+  "self_snapshots": [
+    {
+      "snapshot_id": "20251204_225421",
+      "timestamp": "2025-12-04T22:54:21.046304",
+      "label": "genesis",
+      "state_hash": "93a35e582660cf80",
+      "tool_count": 23,
+      "total_patterns": 20,
+      "extensions": 0,
+      "truths": 0
+    },
+    {
+      "snapshot_id": "20251204_225449",
+      "timestamp": "2025-12-04T22:54:49.620357",
+      "label": "post_recursive",
+      "state_hash": "93a35e582660cf80",
+      "tool_count": 23,
+      "total_patterns": 20,
+      "extensions": 0,
+      "truths": 0
+    },
+    {
+      "snapshot_id": "20251206_214930",
+      "timestamp": "2025-12-06T21:49:30.753988",
+      "label": "block-scoped-patterns-fix",
+      "state_hash": "5c6fac5561987439",
+      "tool_count": 36,
+      "total_patterns": 34,
+      "extensions": 0,
+      "truths": 0
+    }
+  ],
+  "invariant_checks": [
+    {
+      "timestamp": "2025-12-04T23:05:29.131433",
+      "all_passed": true,
+      "violations": []
+    }
+  ],
+  "last_fingerprint": {
+    "exists": true,
+    "size_kb": 280.5,
+    "modified": "2025-12-06T20:47:49.669736",
+    "line_count": 3536,
+    "entity_mentions": 189,
+    "tier_mentions": 97,
+    "whr_mentions": 15,
+    "section_count": 2
+  }
+}

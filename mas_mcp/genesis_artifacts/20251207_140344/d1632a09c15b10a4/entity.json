@@ -1,0 +1,33 @@
+{
+  "name": "Hana Ironveil",
+  "tier": 3.0,
+  "archetype": "Structural Guardian",
+  "age_apparent": 40,
+  "age_actual": 202,
+  "race": "Half-Succubus",
+  "physique": {
+    "height_cm": 172,
+    "weight_kg": 63,
+    "bust_cm": 93,
+    "waist_cm": 71,
+    "hip_cm": 113,
+    "cup_size": "E",
+    "underbust_cm": 62
+  },
+  "scent": "stone, old libraries, sex",
+  "linguistic_mandate": "TLM",
+  "expertise": [
+    "conceptual manipulation",
+    "operational efficiency"
+  ],
+  "status": "Active",
+  "faction": null,
+  "reports_to": "Triumvirate (Tier 1)",
+  "signature_technique": "The Temporal Strike",
+  "genesis_timestamp": "2025-12-07T14:03:44.603888",
+  "genesis_seed": 2028549598,
+  "genesis_hash": "d1632a09c15b10a4",
+  "schema_crc": "ff6b6f02b5ef9601",
+  "whr": 0.628,
+  "measurements": "E-cup (B93/W71/H113cm)"
+}

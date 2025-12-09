@@ -1,0 +1,33 @@
+{
+  "name": "Hana Ironveil",
+  "tier": 3.0,
+  "archetype": "Structural Guardian",
+  "age_apparent": 38,
+  "age_actual": 67,
+  "race": "Divine-Infernal",
+  "physique": {
+    "height_cm": 169,
+    "weight_kg": 58,
+    "bust_cm": 98,
+    "waist_cm": 66,
+    "hip_cm": 103,
+    "cup_size": "E",
+    "underbust_cm": 63
+  },
+  "scent": "stone, leather, musk",
+  "linguistic_mandate": "TLM",
+  "expertise": [
+    "conceptual manipulation",
+    "operational efficiency"
+  ],
+  "status": "Active",
+  "faction": null,
+  "reports_to": "Triumvirate (Tier 1)",
+  "signature_technique": "The Temporal Dissolution",
+  "genesis_timestamp": "2025-12-07T14:03:43.614803",
+  "genesis_seed": 2028548623,
+  "genesis_hash": "b5b0bd54f3f39117",
+  "schema_crc": "ff6b6f02b5ef9601",
+  "whr": 0.641,
+  "measurements": "E-cup (B98/W66/H103cm)"
+}

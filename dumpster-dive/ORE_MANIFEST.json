@@ -1,0 +1,299 @@
+{
+  "manifest_version": "1.1.0",
+  "created": "2025-12-08",
+  "last_updated": "2025-12-08",
+  "philosophy": "Raw ore waiting for the forge, not garbage",
+  "blacksmith": {
+    "name": "Sister Ferrum Scoriae",
+    "designation": "SFS",
+    "tier": 3,
+    "whr": 0.596,
+    "cup": "F",
+    "domain": "dumpster-dive/",
+    "creed": "Nothing is garbage. Everything is ore.",
+    "profile": "BLACKSMITH_MATRIARCH.md"
+  },
+  "current_state": {
+    "total_files": 96,
+    "total_size_mb": 4.58,
+    "location": "dumpster-dive/from-github/"
+  },
+  "rating_scale": {
+    "5": "⚗️ High-grade ore - Extract immediately",
+    "4": "🔧 Workable ore - Minor processing needed",
+    "3": "⚖️ Mixed ore - Separate valuable from slag",
+    "2": "🪨 Low-grade ore - Archive for reference",
+    "1": "💀 Tailings - Historical preservation only"
+  },
+  "inventory": {
+    "from_.github": {
+      "asc.py": {
+        "original_path": ".github/asc.py",
+        "lines": 4083,
+        "rating": 5,
+        "symbol": "⚗️",
+        "description": "Full ASC toolchain with typer CLI - lore extraction, validation, entity generation",
+        "extractable": [
+          "Pydantic models for entity validation",
+          "Lore extraction regex patterns",
+          "CLI command structure for mas_mcp integration",
+          "Rich console formatting patterns"
+        ],
+        "action": "Migrate to mas_mcp/lib/asc_toolchain.py",
+        "status": "pending"
+      },
+      "abbr-system.json": {
+        "original_path": ".github/abbr-system.json",
+        "lines": 1024,
+        "rating": 5,
+        "symbol": "⚗️",
+        "description": "Structured entity database with tier system, WHR, cup sizes, abbreviations",
+        "extractable": [
+          "Complete matriarch definitions",
+          "Tier hierarchy structure",
+          "Abbreviation mappings",
+          "Color coding system"
+        ],
+        "action": "Migrate to assets/entities/abbreviations.json",
+        "status": "pending"
+      },
+      "mas-inventory.json": {
+        "original_path": ".github/mas-inventory.json",
+        "lines": 159780,
+        "rating": 4,
+        "symbol": "🔧",
+        "description": "Complete signal extraction inventory from MAS scan",
+        "extractable": [
+          "Entity cross-references",
+          "File location mappings",
+          "Signal type distributions"
+        ],
+        "action": "Archive in mas_mcp/data/ - too large for active use, reference only",
+        "status": "pending"
+      },
+      "MILFCORE_EXTRACTION_LENS.md": {
+        "original_path": ".github/MILFCORE_EXTRACTION_LENS.md",
+        "lines": 536,
+        "rating": 4,
+        "symbol": "🔧",
+        "description": "Genre extraction design document - WHR as stat, axioms as disciplines",
+        "extractable": [
+          "Game design patterns",
+          "Stat system translation tables",
+          "Visual truth → gameplay mapping"
+        ],
+        "action": "Migrate to docs/design/genre-extraction.md",
+        "status": "pending"
+      },
+      "SSOT-MPW-WIP.ts": {
+        "original_path": ".github/SSOT-MPW-WIP.ts",
+        "lines": 3698,
+        "rating": 2,
+        "symbol": "🪨",
+        "description": "Failed TypeScript embedding of M-P-W Codex - template literal conflicts",
+        "extractable": [
+          "None - content duplicates copilot-instructions.md",
+          "Pattern lesson: don't embed backtick-heavy markdown in template literals"
+        ],
+        "action": "Archive for historical reference, delete after verification",
+        "status": "pending"
+      },
+      "copilot-instructions.py": {
+        "original_path": ".github/copilot-instructions.py",
+        "lines": 116,
+        "rating": 3,
+        "symbol": "⚖️",
+        "description": "Prototype Codex parser with Rich formatting",
+        "extractable": [
+          "Section regex pattern",
+          "Rich tree visualization approach"
+        ],
+        "action": "Extract patterns into asc.py, then archive",
+        "status": "pending"
+      },
+      "validate_level_1.py": {
+        "original_path": ".github/validate_level_1.py",
+        "lines": 50,
+        "rating": 2,
+        "symbol": "🪨",
+        "description": "Simple string presence validator",
+        "extractable": [
+          "Required string checklist (The Decorator, FA⁵, MMPS, TPEF, etc.)"
+        ],
+        "action": "Extract checklist into asc.py validation, then archive",
+        "status": "pending"
+      },
+      "copilot-not-very-instructions.md": {
+        "original_path": ".github/copilot-not-very-instructions.md",
+        "lines": 100,
+        "rating": 2,
+        "symbol": "🪨",
+        "description": "Stripped technical reference without lore",
+        "extractable": [
+          "Minimal - mostly duplicates Section XIV of SSOT"
+        ],
+        "action": "Diff against SSOT, merge unique bits, archive",
+        "status": "pending"
+      },
+      "copilot-un-un-instructions.md": {
+        "original_path": ".github/copilot-un-un-instructions.md",
+        "lines": 2381,
+        "rating": 1,
+        "symbol": "💀",
+        "description": "COLLAPSED TEA: Identical to SSOT with LF line endings (CRLF→LF conversion only)",
+        "extractable": [
+          "NONE - Pure duplicate",
+          "Difference: 2380 bytes = line ending format only"
+        ],
+        "action": "DELETE - Zero unique content",
+        "status": "tea_collapsed",
+        "tea_report": "protocols/TEA_COLLAPSE_REPORT_UN-UN.md",
+        "collapse_date": "2025-12-09"
+      },
+      "abbr-validation-report.json": {
+        "original_path": ".github/abbr-validation-report.json",
+        "lines": "unknown",
+        "rating": 3,
+        "symbol": "⚖️",
+        "description": "Validation report from abbreviation system",
+        "extractable": [
+          "Validation patterns",
+          "Known-good abbreviation set"
+        ],
+        "action": "Archive with abbr-system.json",
+        "status": "pending"
+      },
+      "macro-prompt-world/": {
+        "original_path": ".github/macro-prompt-world/",
+        "type": "directory",
+        "file_count": 90,
+        "rating": 5,
+        "symbol": "⚗️",
+        "description": "MASSIVE ore vein - complete Chthonic Archive world-building, faction profiles, grimoires",
+        "subdirectories": {
+          "prime-factions/": {
+            "rating": 5,
+            "files": 7,
+            "description": "Complete TP-FNS profiles (TMO 411 lines, TTG, TDPC, Triumvirate Core)",
+            "extractable": ["Full faction profiles for all Prime Factions", "District architecture specs", "Matriarch combat profiles"]
+          },
+          "sub-milfs/": {
+            "rating": 4,
+            "files": 1,
+            "description": "Spectra Chroma Excavatus - procedurally manifested Tier 3",
+            "extractable": ["MMPS manifestation example", "Chromatic archaeology subspecialization"]
+          },
+          "heritage/": {
+            "rating": 4,
+            "files": 1,
+            "description": "Caribbean Elder Lineage Integration (Claudine's ancestry)",
+            "extractable": ["Lineage protocol patterns", "Tetrahedral resonance integration"]
+          },
+          "disparate-md-documentation/": {
+            "rating": 4,
+            "files": 24,
+            "description": "FA Census, Body System Architecture, Recovery protocols",
+            "extractable": ["Complete FA¹⁻⁵ census methodology", "Body System tier mapping", "Recovery protocols"]
+          },
+          "Tripartite_Grimoire_Master_Index.md": {
+            "rating": 5,
+            "lines": 443,
+            "description": "Master index of all three CRC grimoires with cross-references",
+            "extractable": ["Grimoire navigation system", "CRC specialization mapping"]
+          },
+          "individual_grimoires": {
+            "rating": 5,
+            "files": 3,
+            "description": "Orackla (672 lines), Lysandra (~1450 lines), Umeko grimoires",
+            "extractable": ["Complete psychological/operational profiles", "ET-S definitions per matriarch"]
+          }
+        },
+        "action": "PRIORITY EXTRACTION - Integrate faction profiles into SSOT Section 4.4, grimoires into CRC documentation",
+        "status": "pending"
+      }
+    }
+  },
+  "extraction_log": [
+    {
+      "date": "2025-12-09",
+      "file": "CROSS_TIER_MATRIX.md",
+      "rating": 4,
+      "source": "dumpster-dive/from-github/",
+      "destination": "docs/protocols/CROSS_TIER_MATRIX.md",
+      "extractor": "SFS",
+      "status": "completed"
+    },
+    {
+      "date": "2025-12-09",
+      "file": "TEA_EXAMPLES.md",
+      "rating": 4,
+      "source": "dumpster-dive/from-github/",
+      "destination": "docs/protocols/TEA_EXAMPLES.md",
+      "extractor": "SFS",
+      "status": "completed"
+    },
+    {
+      "date": "2025-12-09",
+      "file": "abbr-system.json",
+      "rating": 5,
+      "source": ".github/",
+      "destination": "assets/entities/abbreviations.json",
+      "extractor": "SFS",
+      "status": "previously_extracted",
+      "note": "Data already present in destination - confirmed intact"
+    },
+    {
+      "date": "2025-12-09",
+      "file": "copilot-un-un-instructions.md",
+      "rating": 1,
+      "source": "dumpster-dive/from-github/",
+      "destination": null,
+      "extractor": "SFS",
+      "status": "tea_collapsed",
+      "note": "💀 Identical to SSOT (LF vs CRLF only) - ZERO unique content",
+      "tea_report": "protocols/TEA_COLLAPSE_REPORT_UN-UN.md"
+    },
+    {
+      "date": "2025-12-09",
+      "file": "The_Chthonic_Archive_World.md",
+      "rating": 5,
+      "source": "dumpster-dive/from-github/macro-prompt-world/",
+      "destination": "docs/architecture/CHTHONIC_ARCHIVE_WORLD_TPEF.md",
+      "extractor": "SFS",
+      "status": "completed",
+      "note": "⚗️⚗️⚗️ EXCEPTIONAL! 698KB, 30K words, complete TPEF demonstration",
+      "tea_report": "protocols/TEA_COLLAPSE_REPORT_CHTHONIC_WORLD.md"
+    }
+  ],
+  "tea_collapse_log": [
+    {
+      "date": "2025-12-09",
+      "file": "copilot-un-un-instructions.md",
+      "initial_rating": 3,
+      "final_rating": 1,
+      "result": "SLAG - Pure duplicate",
+      "report": "protocols/TEA_COLLAPSE_REPORT_UN-UN.md"
+    },
+    {
+      "date": "2025-12-09",
+      "file": "The_Chthonic_Archive_World.md",
+      "initial_rating": "unknown",
+      "final_rating": 5,
+      "result": "EXCEPTIONAL - Complete TPEF artifact",
+      "report": "protocols/TEA_COLLAPSE_REPORT_CHTHONIC_WORLD.md"
+    }
+  ],
+  "notes": "Files moved here retain full git history via move, not copy-delete. Extraction log tracks all forge operations. TEA collapse log tracks probability analysis results.",
+  "high_priority_queue": [
+    "macro-prompt-world/prime-factions/*.md → SSOT Section 4.4 integration (CTF-001 pending)",
+    "macro-prompt-world/Tripartite_Grimoire_Master_Index.md → Appendix F candidate (CTF-002 pending)",
+    "asc.py → mas_mcp/lib/asc_toolchain.py (CTF-003 pending)",
+    "The_Chthonic_Archive_World.md → SSOT Appendix K candidate (CTF-007 proposed)"
+  ],
+  "completed_extractions": [
+    "✅ abbr-system.json → assets/entities/abbreviations.json",
+    "✅ CROSS_TIER_MATRIX.md → docs/protocols/CROSS_TIER_MATRIX.md",
+    "✅ TEA_EXAMPLES.md → docs/protocols/TEA_EXAMPLES.md",
+    "✅ The_Chthonic_Archive_World.md → docs/architecture/CHTHONIC_ARCHIVE_WORLD_TPEF.md"
+  ]
+}

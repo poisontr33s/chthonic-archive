@@ -1,0 +1,34 @@
+{
+  "name": "Athena Lockhart",
+  "tier": 3.0,
+  "archetype": "Epistemic Thief",
+  "age_apparent": 37,
+  "age_actual": 472,
+  "race": "Human-Touched",
+  "physique": {
+    "height_cm": 164,
+    "weight_kg": 58,
+    "bust_cm": 92,
+    "waist_cm": 70,
+    "hip_cm": 112,
+    "cup_size": "E",
+    "underbust_cm": 66
+  },
+  "scent": "old libraries, musk, transformation",
+  "linguistic_mandate": "TLM",
+  "expertise": [
+    "memory extraction",
+    "temporal manipulation",
+    "axiom larceny"
+  ],
+  "status": "Active",
+  "faction": null,
+  "reports_to": "Triumvirate (Tier 1)",
+  "signature_technique": "The Purifying Whisper",
+  "genesis_timestamp": "2025-12-07T14:08:43.467247",
+  "genesis_seed": 2028848492,
+  "genesis_hash": "7ff11828d9ff34e9",
+  "schema_crc": "ff6b6f02b5ef9601",
+  "whr": 0.625,
+  "measurements": "E-cup (B92/W70/H112cm)"
+}

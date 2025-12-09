@@ -1,0 +1,34 @@
+{
+  "name": "Nyx Voidweaver",
+  "tier": 3.0,
+  "archetype": "Seductive Operative",
+  "age_apparent": 42,
+  "age_actual": 392,
+  "race": "Half-Succubus",
+  "physique": {
+    "height_cm": 173,
+    "weight_kg": 52,
+    "bust_cm": 111,
+    "waist_cm": 59,
+    "hip_cm": 95,
+    "cup_size": "H",
+    "underbust_cm": 83
+  },
+  "scent": "stone, sweat, rain",
+  "linguistic_mandate": "TLM",
+  "expertise": [
+    "cognitive armor dissolution",
+    "desire mapping",
+    "abductive protocols"
+  ],
+  "status": "Active",
+  "faction": null,
+  "reports_to": "Triumvirate (Tier 1)",
+  "signature_technique": "The Temporal Revelation",
+  "genesis_timestamp": "2025-12-07T14:04:01.900563",
+  "genesis_seed": 2028566909,
+  "genesis_hash": "886a98284712718a",
+  "schema_crc": "ff6b6f02b5ef9601",
+  "whr": 0.621,
+  "measurements": "H-cup (B111/W59/H95cm)"
+}

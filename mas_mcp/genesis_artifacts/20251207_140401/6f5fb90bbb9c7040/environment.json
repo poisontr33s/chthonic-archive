@@ -1,0 +1,14 @@
+{
+  "python": "3.13.10",
+  "gpu_available": true,
+  "numba_available": false,
+  "onnx_available": true,
+  "cuda_runtime": 12090,
+  "onnx_providers": [
+    "TensorrtExecutionProvider",
+    "CUDAExecutionProvider",
+    "CPUExecutionProvider"
+  ],
+  "schema_version": "1.0.0",
+  "mpw_hash": "6488797f538b57d2"
+}

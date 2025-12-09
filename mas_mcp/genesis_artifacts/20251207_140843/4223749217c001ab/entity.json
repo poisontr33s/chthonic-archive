@@ -1,0 +1,34 @@
+{
+  "name": "Rei Steelgrace",
+  "tier": 3.0,
+  "archetype": "Purification Priestess",
+  "age_apparent": 42,
+  "age_actual": 134,
+  "race": "Abyssal",
+  "physique": {
+    "height_cm": 155,
+    "weight_kg": 66,
+    "bust_cm": 98,
+    "waist_cm": 63,
+    "hip_cm": 100,
+    "cup_size": "E",
+    "underbust_cm": 71
+  },
+  "scent": "ancient texts, wood, sweat",
+  "linguistic_mandate": "TLM",
+  "expertise": [
+    "forbidden methodologies",
+    "immolation rituals",
+    "structural fire"
+  ],
+  "status": "Active",
+  "faction": null,
+  "reports_to": "Triumvirate (Tier 1)",
+  "signature_technique": "The Purifying Embrace",
+  "genesis_timestamp": "2025-12-07T14:08:43.471482",
+  "genesis_seed": 2028848502,
+  "genesis_hash": "4223749217c001ab",
+  "schema_crc": "ff6b6f02b5ef9601",
+  "whr": 0.63,
+  "measurements": "E-cup (B98/W63/H100cm)"
+}

@@ -1,0 +1,33 @@
+{
+  "name": "Nova Saltweaver",
+  "tier": 3.0,
+  "archetype": "Liberation Specialist",
+  "age_apparent": 43,
+  "age_actual": 326,
+  "race": "Human-Touched",
+  "physique": {
+    "height_cm": 169,
+    "weight_kg": 60,
+    "bust_cm": 99,
+    "waist_cm": 70,
+    "hip_cm": 113,
+    "cup_size": "F",
+    "underbust_cm": 66
+  },
+  "scent": "wood, fire, musk",
+  "linguistic_mandate": "TLM",
+  "expertise": [
+    "conceptual manipulation",
+    "operational efficiency"
+  ],
+  "status": "Active",
+  "faction": null,
+  "reports_to": "Triumvirate (Tier 1)",
+  "signature_technique": "The Purifying Dissolution",
+  "genesis_timestamp": "2025-12-07T05:57:35.941129",
+  "genesis_seed": 1999380941,
+  "genesis_hash": "f7cfc1e2a27ac535",
+  "schema_crc": "ff6b6f02b5ef9601",
+  "whr": 0.619,
+  "measurements": "F-cup (B99/W70/H113cm)"
+}

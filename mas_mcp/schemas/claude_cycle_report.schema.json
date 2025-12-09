@@ -1,0 +1,213 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "mas-mcp-claude-cycle-report",
+  "title": "MAS-MCP Claude Cycle Report",
+  "description": "Schema for Claude LLM outputs ingested into MAS-MCP governance layer",
+  "type": "object",
+  "required": ["cycle_id", "timestamp", "source", "input", "output", "metrics"],
+  "properties": {
+    "cycle_id": {
+      "type": "string",
+      "pattern": "^claude_[0-9]{8}_[0-9]{6}_[a-f0-9]{8}$",
+      "description": "Unique cycle identifier: claude_YYYYMMDD_HHMMSS_hash8",
+      "examples": ["claude_20251207_143022_a1b2c3d4"]
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 timestamp of cycle completion"
+    },
+    "source": {
+      "type": "object",
+      "required": ["engine", "model", "session_id"],
+      "properties": {
+        "engine": {
+          "type": "string",
+          "const": "claude",
+          "description": "Engine identifier (always 'claude' for LLM cycles)"
+        },
+        "model": {
+          "type": "string",
+          "enum": ["claude-3-opus", "claude-3-sonnet", "claude-3-haiku", "claude-3.5-sonnet", "claude-3.5-haiku", "claude-4-opus"],
+          "description": "Claude model variant"
+        },
+        "session_id": {
+          "type": "string",
+          "description": "VS Code / API session identifier for lineage tracking"
+        },
+        "context_tokens": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Input context token count"
+        },
+        "output_tokens": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Output token count"
+        }
+      }
+    },
+    "input": {
+      "type": "object",
+      "required": ["prompt_hash", "intent"],
+      "properties": {
+        "prompt_hash": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$",
+          "description": "SHA-256 hash of the prompt (privacy-preserving)"
+        },
+        "intent": {
+          "type": "string",
+          "enum": [
+            "code_generation",
+            "code_review",
+            "refactoring",
+            "debugging",
+            "documentation",
+            "architecture",
+            "analysis",
+            "explanation",
+            "other"
+          ],
+          "description": "Classified intent of the request"
+        },
+        "domain": {
+          "type": "string",
+          "description": "Technical domain (e.g., 'rust', 'typescript', 'python', 'infrastructure')"
+        },
+        "complexity": {
+          "type": "string",
+          "enum": ["trivial", "simple", "moderate", "complex", "extreme"],
+          "description": "Estimated complexity tier"
+        },
+        "context_files": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "List of files referenced in context (paths only, no content)"
+        }
+      }
+    },
+    "output": {
+      "type": "object",
+      "required": ["artifact_type", "artifact_hash"],
+      "properties": {
+        "artifact_type": {
+          "type": "string",
+          "enum": [
+            "code",
+            "documentation",
+            "analysis",
+            "schema",
+            "configuration",
+            "script",
+            "explanation",
+            "mixed"
+          ],
+          "description": "Primary artifact type produced"
+        },
+        "artifact_hash": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$",
+          "description": "SHA-256 hash of the output (privacy-preserving)"
+        },
+        "files_created": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Paths of files created"
+        },
+        "files_modified": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Paths of files modified"
+        },
+        "tools_invoked": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "MCP/VS Code tools invoked during cycle"
+        },
+        "terminal_commands": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Number of terminal commands executed"
+        }
+      }
+    },
+    "metrics": {
+      "type": "object",
+      "required": ["latency_ms", "accepted"],
+      "properties": {
+        "latency_ms": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Total cycle latency in milliseconds"
+        },
+        "time_to_first_token_ms": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Time to first token (streaming latency)"
+        },
+        "accepted": {
+          "type": "boolean",
+          "description": "Whether the output was accepted by the user"
+        },
+        "acceptance_type": {
+          "type": "string",
+          "enum": ["full", "partial", "rejected", "pending"],
+          "description": "Granular acceptance classification"
+        },
+        "revisions": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Number of follow-up revisions requested"
+        },
+        "error_flags": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "syntax_error",
+              "type_error",
+              "runtime_error",
+              "build_failure",
+              "test_failure",
+              "lint_warning",
+              "security_issue",
+              "performance_issue",
+              "incomplete",
+              "off_topic",
+              "hallucination"
+            ]
+          },
+          "description": "Error flags detected in output"
+        },
+        "quality_score": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100,
+          "description": "Computed quality score (0-100)"
+        }
+      }
+    },
+    "governance": {
+      "type": "object",
+      "description": "MAS-MCP governance metadata",
+      "properties": {
+        "slo_status": {
+          "type": "string",
+          "enum": ["excellent", "acceptable", "degraded", "critical"],
+          "description": "SLO evaluation based on quality_score"
+        },
+        "lineage_parent": {
+          "type": "string",
+          "description": "Parent cycle_id if this is a revision/follow-up"
+        },
+        "tags": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Custom tags for filtering/analysis"
+        }
+      }
+    }
+  },
+  "additionalProperties": false
+}

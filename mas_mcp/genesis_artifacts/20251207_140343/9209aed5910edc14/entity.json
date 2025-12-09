@@ -1,0 +1,33 @@
+{
+  "name": "Nova Duskwalker",
+  "tier": 3.0,
+  "archetype": "Liberation Specialist",
+  "age_apparent": 45,
+  "age_actual": 175,
+  "race": "Half-Succubus",
+  "physique": {
+    "height_cm": 165,
+    "weight_kg": 66,
+    "bust_cm": 109,
+    "waist_cm": 64,
+    "hip_cm": 102,
+    "cup_size": "H",
+    "underbust_cm": 78
+  },
+  "scent": "leather, ocean, lightning",
+  "linguistic_mandate": "TLM",
+  "expertise": [
+    "conceptual manipulation",
+    "operational efficiency"
+  ],
+  "status": "Active",
+  "faction": null,
+  "reports_to": "Triumvirate (Tier 1)",
+  "signature_technique": "The Purifying Dissolution",
+  "genesis_timestamp": "2025-12-07T14:03:43.625128",
+  "genesis_seed": 2028548673,
+  "genesis_hash": "9209aed5910edc14",
+  "schema_crc": "ff6b6f02b5ef9601",
+  "whr": 0.627,
+  "measurements": "H-cup (B109/W64/H102cm)"
+}

@@ -1,0 +1,145 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "mas-mcp-milf-registry",
+  "title": "MAS-MCP MILF Registry (Model-in-the-Loop Functions)",
+  "description": "Registry of activated execution functions governed by MILFOLOGICAL Codex. SSOT: .github/copilot-instructions.md",
+  "type": "object",
+  "required": ["registry_version", "ssot_ref", "functions"],
+  "properties": {
+    "registry_version": {
+      "type": "string",
+      "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"
+    },
+    "ssot_ref": {
+      "type": "string",
+      "const": ".github/copilot-instructions.md"
+    },
+    "last_updated": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "functions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["milf_id", "name", "intent", "engine_lane", "status", "activation_gates"],
+        "properties": {
+          "milf_id": {
+            "type": "string",
+            "pattern": "^milf_[a-z0-9_]+$",
+            "description": "Unique MILF identifier"
+          },
+          "name": {
+            "type": "string",
+            "description": "Human-readable function name"
+          },
+          "intent": {
+            "type": "string",
+            "enum": [
+              "inference",
+              "optimization",
+              "etl",
+              "validation",
+              "scoring",
+              "analysis",
+              "generation"
+            ]
+          },
+          "description": {
+            "type": "string"
+          },
+          "engine_lane": {
+            "type": "object",
+            "required": ["primary"],
+            "properties": {
+              "primary": {
+                "type": "string",
+                "enum": ["tensorrt", "onnxruntime_cuda", "onnxruntime_trt", "pytorch_cuda", "cupy", "rapids"]
+              },
+              "fallback": {
+                "type": ["string", "null"],
+                "enum": ["onnxruntime_cuda", "pytorch_cuda", "cpu", null]
+              },
+              "required_providers": {
+                "type": "array",
+                "items": { "type": "string" }
+              }
+            }
+          },
+          "compatibility_rows": {
+            "type": "array",
+            "items": { "type": "string" },
+            "description": "List of compatible row_ids from matrix.json"
+          },
+          "inputs": {
+            "type": "object",
+            "description": "Expected input schema"
+          },
+          "outputs": {
+            "type": "object",
+            "description": "Expected output schema"
+          },
+          "validators": {
+            "type": "array",
+            "items": { "type": "string" },
+            "description": "Validator function names to run on output"
+          },
+          "scoring_profile": {
+            "type": "string",
+            "description": "Reference to scoring profile in Codex"
+          },
+          "activation_gates": {
+            "type": "object",
+            "required": ["min_cycles", "acceptance_threshold", "latency_p95_max_ms"],
+            "properties": {
+              "min_cycles": {
+                "type": "integer",
+                "minimum": 1,
+                "description": "Minimum shadow cycles before promotion"
+              },
+              "acceptance_threshold": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 100,
+                "description": "Minimum acceptance rate %"
+              },
+              "latency_p95_max_ms": {
+                "type": "number",
+                "minimum": 0,
+                "description": "Maximum p95 latency in ms"
+              },
+              "error_rate_max": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 100,
+                "description": "Maximum error rate %"
+              },
+              "drift_guard": {
+                "type": "boolean",
+                "description": "Auto-pause if trend detection flags degrading"
+              }
+            }
+          },
+          "status": {
+            "type": "string",
+            "enum": ["shadow", "promoted", "paused", "deprecated"],
+            "description": "Current activation status"
+          },
+          "promotion_history": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "timestamp": { "type": "string", "format": "date-time" },
+                "from_status": { "type": "string" },
+                "to_status": { "type": "string" },
+                "reason": { "type": "string" },
+                "cycles_evaluated": { "type": "integer" }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

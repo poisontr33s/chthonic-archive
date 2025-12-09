@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🧬 MAS-MCP Genesis Dashboard</title>
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🧬</text></svg>">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>🧬 MAS-MCP Genesis Dashboard</h1>
+      <div class="status-bar">
+        <span id="status" class="status loading">Connecting...</span>
+        <span id="gpu-provider">GPU: Loading...</span>
+        <span id="bun-version">Bun: Loading...</span>
+        <span id="last-update">Updated: --</span>
+      </div>
+    </header>
+
+    <main>
+      <!-- SLO Compliance Panel -->
+      <section class="panel slo-panel">
+        <h2>📊 SLO Compliance</h2>
+        <div class="slo-grid" id="slo-grid">
+          <div class="slo-item" id="slo-acceptance">
+            <span class="label">Acceptance Rate</span>
+            <span class="value">--</span>
+            <span class="status">⏳</span>
+          </div>
+          <div class="slo-item" id="slo-p50">
+            <span class="label">P50 Latency</span>
+            <span class="value">--</span>
+            <span class="status">⏳</span>
+          </div>
+          <div class="slo-item" id="slo-p95">
+            <span class="label">P95 Latency</span>
+            <span class="value">--</span>
+            <span class="status">⏳</span>
+          </div>
+          <div class="slo-item" id="slo-vram">
+            <span class="label">VRAM Usage</span>
+            <span class="value">--</span>
+            <span class="status">⏳</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Daily Digest Panel -->
+      <section class="panel digest-panel">
+        <h2>📅 Daily Digest</h2>
+        <div class="digest-stats" id="digest-stats">
+          <div class="stat">
+            <span class="label">Total Cycles</span>
+            <span class="value" id="total-cycles">--</span>
+          </div>
+          <div class="stat">
+            <span class="label">Generated</span>
+            <span class="value" id="total-generated">--</span>
+          </div>
+          <div class="stat">
+            <span class="label">Accepted</span>
+            <span class="value" id="total-accepted">--</span>
+          </div>
+          <div class="stat">
+            <span class="label">Acceptance Rate</span>
+            <span class="value" id="acceptance-rate">--</span>
+          </div>
+          <div class="stat">
+            <span class="label">Degraded Cycles</span>
+            <span class="value" id="degraded-cycles">--</span>
+          </div>
+          <div class="stat">
+            <span class="label">Error Cycles</span>
+            <span class="value" id="error-cycles">--</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Recent Cycles Panel -->
+      <section class="panel cycles-panel">
+        <h2>🔄 Recent Cycles</h2>
+        <div class="cycles-list" id="cycles-list">
+          <p class="loading-text">Loading cycles...</p>
+        </div>
+      </section>
+
+      <!-- Latency Chart Panel -->
+      <section class="panel chart-panel">
+        <h2>⏱️ Latency Trends</h2>
+        <div class="chart-container" id="latency-chart">
+          <p class="loading-text">Loading chart...</p>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <p>MAS-MCP Genesis Dashboard v2.0.0 | Bun-native | <a href="/api/health">API Health</a></p>
+    </footer>
+  </div>
+
+  <script src="/app.js"></script>
+</body>
+</html>

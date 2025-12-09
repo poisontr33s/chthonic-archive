@@ -1,0 +1,24 @@
+{
+  "cycle_id": "20251207_055658",
+  "start_time": "2025-12-07T05:56:58.781582",
+  "end_time": "2025-12-07T05:56:59.782051",
+  "duration_s": 1.0,
+  "accepted": 5,
+  "rejected": 20,
+  "attempts": 25,
+  "acceptance_rate": 0.2,
+  "latency_p50_ms": 0.7,
+  "latency_p95_ms": 1.2,
+  "latency_p99_ms": 1.2,
+  "status": "complete (dry run)",
+  "error": null,
+  "novelty_threshold": 0.035,
+  "derivation_tolerance": 0.005,
+  "gpu_enabled": true,
+  "providers": [
+    "TensorrtExecutionProvider",
+    "CUDAExecutionProvider",
+    "CPUExecutionProvider"
+  ],
+  "artifact_hashes": {}
+}

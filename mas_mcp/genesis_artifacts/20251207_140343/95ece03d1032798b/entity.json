@@ -1,0 +1,33 @@
+{
+  "name": "Nova Saltweaver",
+  "tier": 3.0,
+  "archetype": "Conceptual Saboteur",
+  "age_apparent": 44,
+  "age_actual": 458,
+  "race": "Human-Touched",
+  "physique": {
+    "height_cm": 159,
+    "weight_kg": 59,
+    "bust_cm": 100,
+    "waist_cm": 69,
+    "hip_cm": 111,
+    "cup_size": "F",
+    "underbust_cm": 66
+  },
+  "scent": "ancient texts, sweat, heat",
+  "linguistic_mandate": "TLM",
+  "expertise": [
+    "conceptual manipulation",
+    "operational efficiency"
+  ],
+  "status": "Active",
+  "faction": null,
+  "reports_to": "Triumvirate (Tier 1)",
+  "signature_technique": "The Purifying Revelation",
+  "genesis_timestamp": "2025-12-07T14:03:43.621215",
+  "genesis_seed": 2028548655,
+  "genesis_hash": "95ece03d1032798b",
+  "schema_crc": "ff6b6f02b5ef9601",
+  "whr": 0.622,
+  "measurements": "F-cup (B100/W69/H111cm)"
+}

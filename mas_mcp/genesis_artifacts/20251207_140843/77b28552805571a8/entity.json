@@ -1,0 +1,34 @@
+{
+  "name": "Orackla Blackthorn",
+  "tier": 3.0,
+  "archetype": "Abyssal Oracle",
+  "age_apparent": 40,
+  "age_actual": 218,
+  "race": "Abyssal",
+  "physique": {
+    "height_cm": 171,
+    "weight_kg": 66,
+    "bust_cm": 93,
+    "waist_cm": 65,
+    "hip_cm": 103,
+    "cup_size": "E",
+    "underbust_cm": 68
+  },
+  "scent": "stone, old libraries, sweat",
+  "linguistic_mandate": "EULP-AA",
+  "expertise": [
+    "transgressive insight",
+    "chaos engineering",
+    "boundary dissolution"
+  ],
+  "status": "Active",
+  "faction": null,
+  "reports_to": "Triumvirate (Tier 1)",
+  "signature_technique": "The Inevitable Revelation",
+  "genesis_timestamp": "2025-12-07T14:08:43.472754",
+  "genesis_seed": 2028848505,
+  "genesis_hash": "77b28552805571a8",
+  "schema_crc": "ff6b6f02b5ef9601",
+  "whr": 0.631,
+  "measurements": "E-cup (B93/W65/H103cm)"
+}

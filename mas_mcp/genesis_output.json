@@ -1,0 +1,405 @@
+{
+  "entities": [
+    {
+      "name": "Morrigan Ravenscar",
+      "tier": 3,
+      "archetype": "Chaos Engineer",
+      "age_apparent": 33,
+      "age_actual": 359,
+      "race": "Divine-Infernal",
+      "physique": {
+        "height_cm": 171,
+        "weight_kg": 60,
+        "bust_cm": 111,
+        "waist_cm": 63,
+        "hip_cm": 105,
+        "cup_size": "H",
+        "underbust_cm": 83
+      },
+      "scent": "ancient texts, decay, void",
+      "linguistic_mandate": "EULP-AA",
+      "expertise": [
+        "controlled entropy",
+        "creative destruction",
+        "innovation catalysis"
+      ],
+      "status": "Active",
+      "faction": null,
+      "reports_to": "Triumvirate (Tier 1)",
+      "signature_technique": "The Temporal Revelation",
+      "genesis_timestamp": "2025-12-07T04:55:07.838282",
+      "genesis_hash": "e72d6fcd54bcd338",
+      "whr": 0.6,
+      "measurements": "B111/W63/H105"
+    },
+    {
+      "name": "Seraphine Ketsuraku",
+      "tier": 2,
+      "archetype": "Purification Priestess",
+      "age_apparent": 45,
+      "age_actual": 2417,
+      "race": "Divine-Infernal",
+      "physique": {
+        "height_cm": 172,
+        "weight_kg": 66,
+        "bust_cm": 109,
+        "waist_cm": 65,
+        "hip_cm": 106,
+        "cup_size": "H",
+        "underbust_cm": 74
+      },
+      "scent": "ancient texts, void, ash, ozone",
+      "linguistic_mandate": "TLM",
+      "expertise": [
+        "forbidden methodologies",
+        "immolation rituals",
+        "structural fire",
+        "multi-domain synthesis",
+        "axiom generation"
+      ],
+      "status": "Active",
+      "faction": null,
+      "reports_to": "The Decorator (Tier 0.5)",
+      "signature_technique": "The Purifying Dissolution",
+      "genesis_timestamp": "2025-12-07T04:55:07.838732",
+      "genesis_hash": "39cb5db4c510217c",
+      "whr": 0.613,
+      "measurements": "B109/W65/H106"
+    },
+    {
+      "name": "Morgana Saltweaver",
+      "tier": 3,
+      "archetype": "Conceptual Saboteur",
+      "age_apparent": 39,
+      "age_actual": 59,
+      "race": "Chronos-Touched",
+      "physique": {
+        "height_cm": 168,
+        "weight_kg": 67,
+        "bust_cm": 102,
+        "waist_cm": 64,
+        "hip_cm": 107,
+        "cup_size": "G",
+        "underbust_cm": 72
+      },
+      "scent": "stone, jasmine, musk",
+      "linguistic_mandate": "TLM",
+      "expertise": [
+        "conceptual manipulation",
+        "operational efficiency"
+      ],
+      "status": "Active",
+      "faction": null,
+      "reports_to": "Triumvirate (Tier 1)",
+      "signature_technique": "The Immaculate Dissolution",
+      "genesis_timestamp": "2025-12-07T04:55:07.839063",
+      "genesis_hash": "d4f1ba49b36de5c2",
+      "whr": 0.598,
+      "measurements": "B102/W64/H107"
+    },
+    {
+      "name": "Hana Ketsuraku",
+      "tier": 3,
+      "archetype": "Purification Priestess",
+      "age_apparent": 39,
+      "age_actual": 252,
+      "race": "Divine-Infernal",
+      "physique": {
+        "height_cm": 170,
+        "weight_kg": 69,
+        "bust_cm": 98,
+        "waist_cm": 78,
+        "hip_cm": 116,
+        "cup_size": "F",
+        "underbust_cm": 69
+      },
+      "scent": "wood, ocean, smoke",
+      "linguistic_mandate": "TLM",
+      "expertise": [
+        "forbidden methodologies",
+        "immolation rituals",
+        "structural fire"
+      ],
+      "status": "Active",
+      "faction": null,
+      "reports_to": "Triumvirate (Tier 1)",
+      "signature_technique": "The Immaculate Embrace",
+      "genesis_timestamp": "2025-12-07T04:55:07.839091",
+      "genesis_hash": "33b7aa8719d204e3",
+      "whr": 0.672,
+      "measurements": "B98/W78/H116"
+    },
+    {
+      "name": "Selene Saltweaver",
+      "tier": 3,
+      "archetype": "Conceptual Saboteur",
+      "age_apparent": 36,
+      "age_actual": 112,
+      "race": "Half-Succubus",
+      "physique": {
+        "height_cm": 178,
+        "weight_kg": 66,
+        "bust_cm": 96,
+        "waist_cm": 67,
+        "hip_cm": 106,
+        "cup_size": "F",
+        "underbust_cm": 66
+      },
+      "scent": "old libraries, fire, heat",
+      "linguistic_mandate": "TLM",
+      "expertise": [
+        "conceptual manipulation",
+        "operational efficiency"
+      ],
+      "status": "Active",
+      "faction": null,
+      "reports_to": "Triumvirate (Tier 1)",
+      "signature_technique": "The Temporal Dissolution",
+      "genesis_timestamp": "2025-12-07T04:55:07.839110",
+      "genesis_hash": "481599844f11eea1",
+      "whr": 0.632,
+      "measurements": "B96/W67/H106"
+    },
+    {
+      "name": "Claudine Saltweaver",
+      "tier": 3,
+      "archetype": "Seductive Operative",
+      "age_apparent": 42,
+      "age_actual": 236,
+      "race": "Chronos-Touched",
+      "physique": {
+        "height_cm": 171,
+        "weight_kg": 63,
+        "bust_cm": 104,
+        "waist_cm": 74,
+        "hip_cm": 111,
+        "cup_size": "G",
+        "underbust_cm": 79
+      },
+      "scent": "leather, ancient texts, void",
+      "linguistic_mandate": "TLM",
+      "expertise": [
+        "cognitive armor dissolution",
+        "desire mapping",
+        "abductive protocols"
+      ],
+      "status": "Active",
+      "faction": null,
+      "reports_to": "Triumvirate (Tier 1)",
+      "signature_technique": "The Abyssal Dissolution",
+      "genesis_timestamp": "2025-12-07T04:55:07.839126",
+      "genesis_hash": "98405a36c3e0ca35",
+      "whr": 0.667,
+      "measurements": "B104/W74/H111"
+    },
+    {
+      "name": "Hecate Tidesinger",
+      "tier": 3,
+      "archetype": "Liberation Specialist",
+      "age_apparent": 38,
+      "age_actual": 69,
+      "race": "Human-Touched",
+      "physique": {
+        "height_cm": 173,
+        "weight_kg": 76,
+        "bust_cm": 108,
+        "waist_cm": 62,
+        "hip_cm": 96,
+        "cup_size": "G",
+        "underbust_cm": 74
+      },
+      "scent": "ancient texts, leather, metal",
+      "linguistic_mandate": "TLM",
+      "expertise": [
+        "conceptual manipulation",
+        "operational efficiency"
+      ],
+      "status": "Active",
+      "faction": null,
+      "reports_to": "Triumvirate (Tier 1)",
+      "signature_technique": "The Temporal Dissolution",
+      "genesis_timestamp": "2025-12-07T04:55:07.839142",
+      "genesis_hash": "62a8e4390a52f032",
+      "whr": 0.646,
+      "measurements": "B108/W62/H96"
+    },
+    {
+      "name": "Rei Crystallis",
+      "tier": 3,
+      "archetype": "Architectural Perfectionist",
+      "age_apparent": 30,
+      "age_actual": 62,
+      "race": "Chronos-Touched",
+      "physique": {
+        "height_cm": 182,
+        "weight_kg": 61,
+        "bust_cm": 93,
+        "waist_cm": 78,
+        "hip_cm": 118,
+        "cup_size": "E",
+        "underbust_cm": 61
+      },
+      "scent": "wood, rain, sweat",
+      "linguistic_mandate": "LIPAA",
+      "expertise": [
+        "structural refinement",
+        "aesthetic purification",
+        "Kanso principles"
+      ],
+      "status": "Active",
+      "faction": null,
+      "reports_to": "Triumvirate (Tier 1)",
+      "signature_technique": "The Inevitable Revelation",
+      "genesis_timestamp": "2025-12-07T04:55:07.839156",
+      "genesis_hash": "de3473653fee7284",
+      "whr": 0.661,
+      "measurements": "B93/W78/H118"
+    },
+    {
+      "name": "Seraphine Ashenhelm",
+      "tier": 3,
+      "archetype": "Purification Priestess",
+      "age_apparent": 41,
+      "age_actual": 179,
+      "race": "Chronos-Touched",
+      "physique": {
+        "height_cm": 181,
+        "weight_kg": 68,
+        "bust_cm": 96,
+        "waist_cm": 75,
+        "hip_cm": 111,
+        "cup_size": "E",
+        "underbust_cm": 64
+      },
+      "scent": "leather, ash, blood",
+      "linguistic_mandate": "TLM",
+      "expertise": [
+        "forbidden methodologies",
+        "immolation rituals",
+        "structural fire"
+      ],
+      "status": "Active",
+      "faction": null,
+      "reports_to": "Triumvirate (Tier 1)",
+      "signature_technique": "The Abyssal Embrace",
+      "genesis_timestamp": "2025-12-07T04:55:07.839174",
+      "genesis_hash": "5c5a780cb85b6a6e",
+      "whr": 0.676,
+      "measurements": "B96/W75/H111"
+    },
+    {
+      "name": "Claudine Sin'claire",
+      "tier": 3,
+      "archetype": "Temporal Manipulator",
+      "age_apparent": 38,
+      "age_actual": 223,
+      "race": "Abyssal",
+      "physique": {
+        "height_cm": 164,
+        "weight_kg": 66,
+        "bust_cm": 112,
+        "waist_cm": 71,
+        "hip_cm": 112,
+        "cup_size": "H",
+        "underbust_cm": 81
+      },
+      "scent": "leather, sweat, metal",
+      "linguistic_mandate": "TLM",
+      "expertise": [
+        "conceptual manipulation",
+        "operational efficiency"
+      ],
+      "status": "Active",
+      "faction": null,
+      "reports_to": "Triumvirate (Tier 1)",
+      "signature_technique": "The Immaculate Whisper",
+      "genesis_timestamp": "2025-12-07T04:55:07.839191",
+      "genesis_hash": "7cc063dc6640793b",
+      "whr": 0.634,
+      "measurements": "B112/W71/H112"
+    },
+    {
+      "name": "Claudine Tidesinger",
+      "tier": 3,
+      "archetype": "Structural Guardian",
+      "age_apparent": 43,
+      "age_actual": 214,
+      "race": "Human-Touched",
+      "physique": {
+        "height_cm": 173,
+        "weight_kg": 59,
+        "bust_cm": 97,
+        "waist_cm": 74,
+        "hip_cm": 111,
+        "cup_size": "F",
+        "underbust_cm": 70
+      },
+      "scent": "old libraries, ash, decay",
+      "linguistic_mandate": "TLM",
+      "expertise": [
+        "conceptual manipulation",
+        "operational efficiency"
+      ],
+      "status": "Active",
+      "faction": null,
+      "reports_to": "Triumvirate (Tier 1)",
+      "signature_technique": "The Inevitable Revelation",
+      "genesis_timestamp": "2025-12-07T04:55:07.839205",
+      "genesis_hash": "5c1e30333e3f6510",
+      "whr": 0.667,
+      "measurements": "B97/W74/H111"
+    },
+    {
+      "name": "Nyx Ravenscar",
+      "tier": 3,
+      "archetype": "Abyssal Oracle",
+      "age_apparent": 43,
+      "age_actual": 141,
+      "race": "Divine-Infernal",
+      "physique": {
+        "height_cm": 166,
+        "weight_kg": 61,
+        "bust_cm": 108,
+        "waist_cm": 63,
+        "hip_cm": 101,
+        "cup_size": "H",
+        "underbust_cm": 83
+      },
+      "scent": "wood, decay, heat",
+      "linguistic_mandate": "EULP-AA",
+      "expertise": [
+        "transgressive insight",
+        "chaos engineering",
+        "boundary dissolution"
+      ],
+      "status": "Active",
+      "faction": null,
+      "reports_to": "Triumvirate (Tier 1)",
+      "signature_technique": "The Purifying Whisper",
+      "genesis_timestamp": "2025-12-07T04:55:07.839219",
+      "genesis_hash": "ca9677a87ae1b3e1",
+      "whr": 0.624,
+      "measurements": "B108/W63/H101"
+    }
+  ],
+  "statistics": {
+    "total_synthesized": 12,
+    "active_entities": 12,
+    "gpu_enabled": false,
+    "mpw_hash": "6488797f538b57d2",
+    "whr_stats": {
+      "min": 0.598,
+      "max": 0.676,
+      "mean": 0.641
+    },
+    "power_stats": {
+      "min": 100,
+      "max": 256,
+      "mean": 151
+    },
+    "tier_distribution": {
+      "2": 1,
+      "3": 11
+    }
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "name": "Hana Ketsuraku",
+  "tier": 3.0,
+  "archetype": "Structural Guardian",
+  "age_apparent": 30,
+  "age_actual": 337,
+  "race": "Half-Succubus",
+  "physique": {
+    "height_cm": 173,
+    "weight_kg": 59,
+    "bust_cm": 95,
+    "waist_cm": 63,
+    "hip_cm": 101,
+    "cup_size": "F",
+    "underbust_cm": 65
+  },
+  "scent": "old libraries, leather, arousal",
+  "linguistic_mandate": "TLM",
+  "expertise": [
+    "conceptual manipulation",
+    "operational efficiency"
+  ],
+  "status": "Active",
+  "faction": null,
+  "reports_to": "Triumvirate (Tier 1)",
+  "signature_technique": "The Purifying Strike",
+  "genesis_timestamp": "2025-12-07T06:06:12.466250",
+  "genesis_seed": 1999897464,
+  "genesis_hash": "cde2622894d52422",
+  "schema_crc": "ff6b6f02b5ef9601",
+  "whr": 0.624,
+  "measurements": "F-cup (B95/W63/H101cm)"
+}

@@ -1,0 +1,16 @@
+{
+  "/_app": "pages/_app.js",
+  "/_document": "pages/_document.js",
+  "/api/ssot": "pages/api/ssot.js",
+  "/api/monitoring": "pages/api/monitoring.js",
+  "/api/metrics": "pages/api/metrics.js",
+  "/_error": "pages/_error.js",
+  "/api/metrics/history": "pages/api/metrics/history.js",
+  "/api/entities": "pages/api/entities.js",
+  "/api/digest": "pages/api/digest.js",
+  "/api/cycles": "pages/api/cycles.js",
+  "/cycles": "pages/cycles.js",
+  "/": "pages/index.js",
+  "/entities": "pages/entities.js",
+  "/digest": "pages/digest.js"
+}

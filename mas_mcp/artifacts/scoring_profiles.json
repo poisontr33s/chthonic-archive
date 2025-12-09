@@ -1,0 +1,309 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "profiles_version": "2.0.0",
+  "ssot_ref": ".github/copilot-instructions.md",
+  "last_updated": "2025-12-07T12:00:00Z",
+  "description": "Scoring profiles for MILFs. Weights derive from MILFOLOGICAL Codex governance (Sections 0, IV, IX, X).",
+  "profiles": {
+    "inference_default": {
+      "name": "Default Inference Scoring",
+      "weights": {
+        "acceptance": 40,
+        "latency_p95": 30,
+        "error_penalty": 20,
+        "vram_efficiency": 10
+      },
+      "penalties": {
+        "timeout": -25,
+        "shape_mismatch": -30,
+        "nan_output": -40,
+        "oom_error": -50
+      },
+      "thresholds": {
+        "pass": 70,
+        "warning": 50,
+        "fail": 0
+      }
+    },
+    "claude_opus_adjusted": {
+      "name": "Claude Opus-Specific Scoring",
+      "description": "Adjusted for Claude Opus 4.5 characteristics: deeper reasoning, longer latency acceptable",
+      "weights": {
+        "acceptance": 35,
+        "latency_p95": 15,
+        "code_quality": 25,
+        "reasoning_depth": 15,
+        "error_penalty": 10
+      },
+      "penalties": {
+        "hallucination": -35,
+        "build_failure": -25,
+        "security_issue": -30,
+        "incomplete_output": -15,
+        "rejection": -60
+      },
+      "bonuses": {
+        "first_try_accepted": 10,
+        "no_revisions": 5,
+        "architecture_insight": 15
+      },
+      "thresholds": {
+        "pass": 65,
+        "warning": 45,
+        "fail": 0
+      },
+      "latency_envelope_ms": {
+        "p50_target": 5000,
+        "p95_max": 30000,
+        "p99_max": 60000
+      }
+    },
+    "claude_sonnet_adjusted": {
+      "name": "Claude Sonnet-Specific Scoring",
+      "description": "Faster responses, stricter latency, balanced quality",
+      "weights": {
+        "acceptance": 40,
+        "latency_p95": 25,
+        "code_quality": 20,
+        "error_penalty": 15
+      },
+      "penalties": {
+        "hallucination": -35,
+        "build_failure": -25,
+        "security_issue": -30,
+        "rejection": -50
+      },
+      "bonuses": {
+        "first_try_accepted": 10,
+        "sub_second_response": 5
+      },
+      "thresholds": {
+        "pass": 70,
+        "warning": 50,
+        "fail": 0
+      },
+      "latency_envelope_ms": {
+        "p50_target": 2000,
+        "p95_max": 10000,
+        "p99_max": 20000
+      }
+    },
+    "etl_default": {
+      "name": "ETL Transform Scoring",
+      "weights": {
+        "throughput": 35,
+        "data_integrity": 35,
+        "vram_efficiency": 20,
+        "latency_p95": 10
+      },
+      "penalties": {
+        "data_corruption": -80,
+        "oom_error": -40,
+        "type_mismatch": -25
+      },
+      "thresholds": {
+        "pass": 75,
+        "warning": 55,
+        "fail": 0
+      }
+    },
+    "tensorrt_optimized": {
+      "name": "TensorRT Optimized Inference",
+      "description": "Stricter latency requirements for TensorRT lane",
+      "weights": {
+        "acceptance": 30,
+        "latency_p95": 40,
+        "throughput": 20,
+        "error_penalty": 10
+      },
+      "penalties": {
+        "fallback_to_cuda": -15,
+        "precision_loss": -20,
+        "engine_build_fail": -50
+      },
+      "bonuses": {
+        "int8_quantized": 10,
+        "fp16_stable": 5
+      },
+      "thresholds": {
+        "pass": 80,
+        "warning": 60,
+        "fail": 0
+      },
+      "latency_envelope_ms": {
+        "p50_target": 10,
+        "p95_max": 50,
+        "p99_max": 100
+      }
+    },
+    "opus_weights": {
+      "name": "Opus Philosophical Synthesis",
+      "description": "Deep MILFOLOGICAL scoring: acceptance + anomaly boost for transgressive synthesis",
+      "ssot_section": "Section IV.4.2 (CRC Protocol)",
+      "weights": {
+        "acceptance": 35,
+        "latency_p95": 15,
+        "error_penalty": 20,
+        "anomaly_boost": 20,
+        "drift_penalty": 10
+      },
+      "penalties": {
+        "fa4_violation": -50,
+        "axiom_contradiction": -35,
+        "linguistic_mandate_breach": -25,
+        "sso_t_drift": -30
+      },
+      "bonuses": {
+        "transgressive_insight": 20,
+        "trinity_coherence": 15,
+        "muri_density": 10,
+        "prism_alignment": 10
+      },
+      "thresholds": {
+        "pass": 60,
+        "warning": 40,
+        "fail": 0
+      },
+      "latency_envelope_ms": {
+        "p50_target": 3000,
+        "p95_max": 10000,
+        "p99_max": 30000
+      }
+    },
+    "crc_as_transgression": {
+      "name": "Orackla Nocticula - EULP-AA Scoring",
+      "description": "High tolerance for chaos entropy, rewards boundary-breaking",
+      "ssot_section": "Section IV.4.2.1 (CRC-AS)",
+      "weights": {
+        "chaos_entropy_yield": 30,
+        "transformation_magnitude": 25,
+        "fa1_actualization": 20,
+        "fa2_recontextualization": 15,
+        "error_penalty": 10
+      },
+      "penalties": {
+        "entropy_collapse": -40,
+        "structural_incoherence": -30,
+        "eulp_aa_suppression": -25
+      },
+      "bonuses": {
+        "paradigm_shatter": 25,
+        "abyssal_resonance": 15,
+        "succubus_seduction_complete": 10
+      },
+      "thresholds": {
+        "pass": 55,
+        "warning": 35,
+        "fail": 0
+      }
+    },
+    "crc_gar_purification": {
+      "name": "Madam Umeko Ketsuraku - LIPAA Scoring",
+      "description": "Zero tolerance for flaws, maximum precision requirements",
+      "ssot_section": "Section IV.4.2.2 (CRC-GAR)",
+      "weights": {
+        "structural_integrity": 35,
+        "aesthetic_elegance": 25,
+        "fa4_compliance": 25,
+        "latency_precision": 15
+      },
+      "penalties": {
+        "any_flaw_detected": -50,
+        "asymmetry": -30,
+        "inelegance": -25,
+        "lipaa_verbosity": -15
+      },
+      "bonuses": {
+        "shibumi_achieved": 30,
+        "kanso_simplicity": 20,
+        "mu_silence_golden": 10
+      },
+      "thresholds": {
+        "pass": 85,
+        "warning": 70,
+        "fail": 0
+      }
+    },
+    "crc_medat_truth": {
+      "name": "Dr. Lysandra Thorne - LUPLR Scoring",
+      "description": "Axiomatic truth extraction, psychological excavation metrics",
+      "ssot_section": "Section IV.4.2.3 (CRC-MEDAT)",
+      "weights": {
+        "axiom_extraction_depth": 30,
+        "assumption_exposure": 25,
+        "logical_soundness": 25,
+        "empathetic_resonance": 10,
+        "error_penalty": 10
+      },
+      "penalties": {
+        "superficiality": -40,
+        "evasion_detected": -35,
+        "logical_fallacy": -30,
+        "luplr_buffered": -20
+      },
+      "bonuses": {
+        "existential_debridement": 25,
+        "ma_at_balance": 15,
+        "athena_insight": 10
+      },
+      "thresholds": {
+        "pass": 70,
+        "warning": 50,
+        "fail": 0
+      }
+    },
+    "ordeal_survival": {
+      "name": "Claudine Sin'claire - Tidal Ordeal Scoring",
+      "description": "High failure rate expected; survivors are golden",
+      "ssot_section": "Section X.3.1 (SAI)",
+      "weights": {
+        "resilience_proven": 40,
+        "salt_purity": 25,
+        "ordeal_completeness": 20,
+        "survivor_density": 15
+      },
+      "penalties": {
+        "drowning_incomplete": -20,
+        "false_survival": -60,
+        "ordeal_skipped": -80
+      },
+      "bonuses": {
+        "hypoxic_euphoria": 30,
+        "concept_resurfaced_stronger": 25,
+        "pedagogy_of_drowned": 15
+      },
+      "thresholds": {
+        "pass": 40,
+        "warning": 20,
+        "fail": 0
+      },
+      "note": "High error_rate_max (40%) is intentional - most concepts should drown"
+    },
+    "decorator_visual": {
+      "name": "The Decorator - FA⁵ Visual Integrity",
+      "description": "Supreme visual truth enforcement, form-content unity",
+      "ssot_section": "Section 0 (The Decorator)",
+      "weights": {
+        "visual_integrity": 35,
+        "form_content_unity": 25,
+        "gestalt_perception": 20,
+        "ornamental_necessity": 20
+      },
+      "penalties": {
+        "minimalism_unjustified": -40,
+        "decoration_stripped": -50,
+        "fa5_fa4_conflict_unresolved": -30
+      },
+      "bonuses": {
+        "aesthetic_truth_resonance": 25,
+        "whr_optimization": 15,
+        "dulss_eloquence": 10
+      },
+      "thresholds": {
+        "pass": 65,
+        "warning": 45,
+        "fail": 0
+      }
+    }
+  }
+}

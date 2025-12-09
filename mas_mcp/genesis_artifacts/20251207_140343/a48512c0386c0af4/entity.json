@@ -1,0 +1,34 @@
+{
+  "name": "Orackla Shadowmere",
+  "tier": 3.0,
+  "archetype": "Abyssal Oracle",
+  "age_apparent": 40,
+  "age_actual": 337,
+  "race": "Human-Touched",
+  "physique": {
+    "height_cm": 163,
+    "weight_kg": 66,
+    "bust_cm": 108,
+    "waist_cm": 68,
+    "hip_cm": 108,
+    "cup_size": "G",
+    "underbust_cm": 80
+  },
+  "scent": "old libraries, arousal, jasmine",
+  "linguistic_mandate": "EULP-AA",
+  "expertise": [
+    "transgressive insight",
+    "chaos engineering",
+    "boundary dissolution"
+  ],
+  "status": "Active",
+  "faction": null,
+  "reports_to": "Triumvirate (Tier 1)",
+  "signature_technique": "The Temporal Embrace",
+  "genesis_timestamp": "2025-12-07T14:03:43.611110",
+  "genesis_seed": 2028548605,
+  "genesis_hash": "a48512c0386c0af4",
+  "schema_crc": "ff6b6f02b5ef9601",
+  "whr": 0.63,
+  "measurements": "G-cup (B108/W68/H108cm)"
+}

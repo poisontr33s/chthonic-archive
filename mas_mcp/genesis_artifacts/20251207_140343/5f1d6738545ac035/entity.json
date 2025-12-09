@@ -1,0 +1,33 @@
+{
+  "name": "Hana Steelgrace",
+  "tier": 3.0,
+  "archetype": "Structural Guardian",
+  "age_apparent": 43,
+  "age_actual": 318,
+  "race": "Divine-Infernal",
+  "physique": {
+    "height_cm": 177,
+    "weight_kg": 58,
+    "bust_cm": 104,
+    "waist_cm": 73,
+    "hip_cm": 117,
+    "cup_size": "G",
+    "underbust_cm": 76
+  },
+  "scent": "leather, lightning, sweat",
+  "linguistic_mandate": "TLM",
+  "expertise": [
+    "conceptual manipulation",
+    "operational efficiency"
+  ],
+  "status": "Active",
+  "faction": null,
+  "reports_to": "Triumvirate (Tier 1)",
+  "signature_technique": "The Purifying Dissolution",
+  "genesis_timestamp": "2025-12-07T14:03:43.629614",
+  "genesis_seed": 2028548692,
+  "genesis_hash": "5f1d6738545ac035",
+  "schema_crc": "ff6b6f02b5ef9601",
+  "whr": 0.624,
+  "measurements": "G-cup (B104/W73/H117cm)"
+}

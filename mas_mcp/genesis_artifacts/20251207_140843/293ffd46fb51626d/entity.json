@@ -1,0 +1,33 @@
+{
+  "name": "Nova Duskwalker",
+  "tier": 3.0,
+  "archetype": "Conceptual Saboteur",
+  "age_apparent": 32,
+  "age_actual": 79,
+  "race": "Human-Touched",
+  "physique": {
+    "height_cm": 185,
+    "weight_kg": 64,
+    "bust_cm": 98,
+    "waist_cm": 64,
+    "hip_cm": 103,
+    "cup_size": "E",
+    "underbust_cm": 66
+  },
+  "scent": "old libraries, orchid, salt",
+  "linguistic_mandate": "TLM",
+  "expertise": [
+    "conceptual manipulation",
+    "operational efficiency"
+  ],
+  "status": "Active",
+  "faction": null,
+  "reports_to": "Triumvirate (Tier 1)",
+  "signature_technique": "The Inevitable Strike",
+  "genesis_timestamp": "2025-12-07T14:08:43.479165",
+  "genesis_seed": 2028848530,
+  "genesis_hash": "293ffd46fb51626d",
+  "schema_crc": "ff6b6f02b5ef9601",
+  "whr": 0.621,
+  "measurements": "E-cup (B98/W64/H103cm)"
+}

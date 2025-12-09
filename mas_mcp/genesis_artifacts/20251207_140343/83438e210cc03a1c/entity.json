@@ -1,0 +1,33 @@
+{
+  "name": "Iris Saltweaver",
+  "tier": 3.0,
+  "archetype": "Temporal Manipulator",
+  "age_apparent": 45,
+  "age_actual": 448,
+  "race": "Half-Succubus",
+  "physique": {
+    "height_cm": 176,
+    "weight_kg": 62,
+    "bust_cm": 109,
+    "waist_cm": 66,
+    "hip_cm": 106,
+    "cup_size": "H",
+    "underbust_cm": 82
+  },
+  "scent": "ancient texts, transformation, stone",
+  "linguistic_mandate": "TLM",
+  "expertise": [
+    "conceptual manipulation",
+    "operational efficiency"
+  ],
+  "status": "Active",
+  "faction": null,
+  "reports_to": "Triumvirate (Tier 1)",
+  "signature_technique": "The Abyssal Embrace",
+  "genesis_timestamp": "2025-12-07T14:03:43.627808",
+  "genesis_seed": 2028548682,
+  "genesis_hash": "83438e210cc03a1c",
+  "schema_crc": "ff6b6f02b5ef9601",
+  "whr": 0.623,
+  "measurements": "H-cup (B109/W66/H106cm)"
+}

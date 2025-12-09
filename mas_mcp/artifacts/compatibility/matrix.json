@@ -1,0 +1,71 @@
+{
+  "matrix_version": "1.0.0",
+  "ssot_ref": ".github/copilot-instructions.md",
+  "last_updated": "2025-12-07T00:00:00Z",
+  "active_row_id": null,
+  "rows": [
+    {
+      "row_id": "row_cuda124_trt10",
+      "driver": {
+        "version_min": "550.0",
+        "version_max": null
+      },
+      "cuda": {
+        "version": "12.4",
+        "toolkit_path": "C:\\Program Files\\NVIDIA GPU Computing Toolkit\\CUDA\\v12.4"
+      },
+      "cudnn": {
+        "version": "9.0.0",
+        "dll_name": "cudnn64_9.dll"
+      },
+      "tensorrt": {
+        "version": "10.0.1",
+        "lib_path": "C:\\TensorRT-10.0.1\\lib"
+      },
+      "onnxruntime": {
+        "version": "1.18.0",
+        "execution_providers": ["CUDAExecutionProvider", "TensorrtExecutionProvider"]
+      },
+      "rapids": {
+        "version": "24.06",
+        "mode": "wsl2"
+      },
+      "python": {
+        "version": "3.12",
+        "managed_by": "uv"
+      },
+      "status": "testing",
+      "notes": "Primary Windows GPU lane. RAPIDS via WSL2 due to limited native support."
+    },
+    {
+      "row_id": "row_cuda121_trt86",
+      "driver": {
+        "version_min": "530.0",
+        "version_max": "549.99"
+      },
+      "cuda": {
+        "version": "12.1",
+        "toolkit_path": "C:\\Program Files\\NVIDIA GPU Computing Toolkit\\CUDA\\v12.1"
+      },
+      "cudnn": {
+        "version": "8.9.7",
+        "dll_name": "cudnn64_8.dll"
+      },
+      "tensorrt": {
+        "version": "8.6.1",
+        "lib_path": "C:\\TensorRT-8.6.1\\lib"
+      },
+      "onnxruntime": {
+        "version": "1.16.0",
+        "execution_providers": ["CUDAExecutionProvider"]
+      },
+      "rapids": null,
+      "python": {
+        "version": "3.11",
+        "managed_by": "uv"
+      },
+      "status": "deprecated",
+      "notes": "Legacy row. No TensorRT EP in ORT. Migrate to row_cuda124_trt10."
+    }
+  ]
+}

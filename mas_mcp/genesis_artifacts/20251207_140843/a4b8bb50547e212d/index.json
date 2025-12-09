@@ -1,0 +1,15 @@
+{
+  "genesis_timestamp": "20251207_140843",
+  "entity_hash": "a4b8bb50547e212d",
+  "schema_crc": "ff6b6f02b5ef9601",
+  "paths": {
+    "entity": "genesis_artifacts\\20251207_140843\\a4b8bb50547e212d\\entity.json",
+    "validation": "genesis_artifacts\\20251207_140843\\a4b8bb50547e212d\\validation.json",
+    "environment": "genesis_artifacts\\20251207_140843\\a4b8bb50547e212d\\environment.json"
+  },
+  "sha256": {
+    "entity": "ca822ac3367ccaa06e4eb8001773f2ec29dab5c48053b8145d651249104dd71e",
+    "validation": "8c8cadb4d27a9c14fcae23291cc042a9170fa3ff7a5d384ca1cbd76c88817dc9",
+    "environment": "a3a4267b436a920be80ee4f3f107f61c2288bf4bd7f468c959c99366a9ad31ac"
+  }
+}

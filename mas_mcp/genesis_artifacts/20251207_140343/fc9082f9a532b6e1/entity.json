@@ -1,0 +1,34 @@
+{
+  "name": "Athena Thorne",
+  "tier": 3.0,
+  "archetype": "Epistemic Thief",
+  "age_apparent": 33,
+  "age_actual": 189,
+  "race": "Abyssal",
+  "physique": {
+    "height_cm": 166,
+    "weight_kg": 71,
+    "bust_cm": 98,
+    "waist_cm": 74,
+    "hip_cm": 118,
+    "cup_size": "E",
+    "underbust_cm": 73
+  },
+  "scent": "wood, orchid, smoke",
+  "linguistic_mandate": "TLM",
+  "expertise": [
+    "memory extraction",
+    "temporal manipulation",
+    "axiom larceny"
+  ],
+  "status": "Active",
+  "faction": null,
+  "reports_to": "Triumvirate (Tier 1)",
+  "signature_technique": "The Abyssal Strike",
+  "genesis_timestamp": "2025-12-07T14:03:43.616424",
+  "genesis_seed": 2028548632,
+  "genesis_hash": "fc9082f9a532b6e1",
+  "schema_crc": "ff6b6f02b5ef9601",
+  "whr": 0.627,
+  "measurements": "E-cup (B98/W74/H118cm)"
+}

@@ -1,0 +1,34 @@
+{
+  "name": "Nyx Shadowmere",
+  "tier": 3.0,
+  "archetype": "Seductive Operative",
+  "age_apparent": 37,
+  "age_actual": 381,
+  "race": "Human-Touched",
+  "physique": {
+    "height_cm": 169,
+    "weight_kg": 71,
+    "bust_cm": 98,
+    "waist_cm": 59,
+    "hip_cm": 95,
+    "cup_size": "E",
+    "underbust_cm": 67
+  },
+  "scent": "ancient texts, rain, old libraries",
+  "linguistic_mandate": "TLM",
+  "expertise": [
+    "cognitive armor dissolution",
+    "desire mapping",
+    "abductive protocols"
+  ],
+  "status": "Active",
+  "faction": null,
+  "reports_to": "Triumvirate (Tier 1)",
+  "signature_technique": "The Temporal Strike",
+  "genesis_timestamp": "2025-12-07T14:03:43.629962",
+  "genesis_seed": 2028548693,
+  "genesis_hash": "8bfc1aae222a31ad",
+  "schema_crc": "ff6b6f02b5ef9601",
+  "whr": 0.621,
+  "measurements": "E-cup (B98/W59/H95cm)"
+}

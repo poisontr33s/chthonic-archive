@@ -1,0 +1,147 @@
+{
+  "timestamp": "2025-12-05T19:08:30.006434",
+  "hardware": {
+    "platform": "Windows-11-10.0.26200-SP0",
+    "processor": "Intel64 Family 6 Model 183 Stepping 1, GenuineIntel",
+    "python": "3.14.0",
+    "machine": "AMD64",
+    "cpu_count": 32,
+    "gpu_name": "NVIDIA GeForce RTX 4090 Laptop GPU",
+    "gpu_vram_mb": 16376,
+    "nvidia_driver": "581.80"
+  },
+  "uv_version": "uv 0.9.15 (5eafae332 2025-12-02)",
+  "python_version": "3.14.0",
+  "pass_rate": 83.33333333333334,
+  "results": [
+    {
+      "name": "UV Environment",
+      "category": "environment",
+      "passed": false,
+      "elapsed_ms": 0.0,
+      "details": {
+        "synced": false,
+        "lockfile_current": true,
+        "output": "Would use project environment at: .venv\nResolved 43 packages in 0.65ms\nFound up-to-date lockfile at: uv.lock\nWould uninstall 4 packages\n - cmake==4.2.0\n - cython==3.2.2\n - ninja==1.13.0\n - onnxruntime-gpu==1.24.0.dev20251204001\n"
+      },
+      "error": null,
+      "recommendation": "Run 'uv sync' to update environment"
+    },
+    {
+      "name": "GPU Detection",
+      "category": "hardware",
+      "passed": true,
+      "elapsed_ms": 0.0,
+      "details": {
+        "cupy_available": false,
+        "numba_available": false,
+        "onnx_gpu_available": true,
+        "backend": "onnx_gpu",
+        "cuda_version": null,
+        "device_name": "NVIDIA GeForce RTX 4090 Laptop GPU",
+        "onnx_providers": [
+          "TensorrtExecutionProvider",
+          "CUDAExecutionProvider"
+        ]
+      },
+      "error": null,
+      "recommendation": null
+    },
+    {
+      "name": "Spatial Grid Correctness",
+      "category": "algorithm",
+      "passed": true,
+      "elapsed_ms": 0.0,
+      "details": {
+        "test_sizes": [
+          100,
+          300,
+          600
+        ],
+        "tolerances": [
+          0.004762142896652222,
+          0.05207835137844086,
+          0.2521061301231384
+        ],
+        "speedups": [
+          0.6547629208595624,
+          0.6543116750965394,
+          0.6847164777473941
+        ],
+        "fast_threshold": 200
+      },
+      "error": null,
+      "recommendation": null
+    },
+    {
+      "name": "Spatial Grid Performance",
+      "category": "performance",
+      "passed": true,
+      "elapsed_ms": 0.0,
+      "details": {
+        "sizes": [
+          500,
+          1000,
+          2000
+        ],
+        "times_ms": [
+          638.6181666666744,
+          2068.1960666667387,
+          5581.813066666655
+        ],
+        "scaling_factor": 8.740454559571075,
+        "is_subquadratic": true
+      },
+      "error": null,
+      "recommendation": null
+    },
+    {
+      "name": "TDR-Safe Scoring",
+      "category": "tdr",
+      "passed": true,
+      "elapsed_ms": 0.0,
+      "details": {
+        "batch_sizes": [
+          1000,
+          5000,
+          10000
+        ],
+        "tile_counts": [
+          1,
+          1,
+          1
+        ],
+        "max_tile_ms": [
+          50.3089000003456,
+          39.97239999989688,
+          80.39499999995314
+        ],
+        "total_ms": [
+          50.3089000003456,
+          39.97239999989688,
+          80.39499999995314
+        ]
+      },
+      "error": null,
+      "recommendation": null
+    },
+    {
+      "name": "MAS-MCP Integration",
+      "category": "integration",
+      "passed": true,
+      "elapsed_ms": 0.0,
+      "details": {
+        "tools_available": [
+          "mas_pulse",
+          "mas_gpu_status",
+          "mas_gpu_batch_score"
+        ],
+        "server_import": true,
+        "pulse_works": false,
+        "gpu_status": "ONNX_GPU"
+      },
+      "error": null,
+      "recommendation": null
+    }
+  ]
+}

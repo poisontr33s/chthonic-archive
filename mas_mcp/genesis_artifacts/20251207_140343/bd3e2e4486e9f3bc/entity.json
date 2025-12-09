@@ -1,0 +1,34 @@
+{
+  "name": "Rei Steelgrace",
+  "tier": 3.0,
+  "archetype": "Purification Priestess",
+  "age_apparent": 30,
+  "age_actual": 183,
+  "race": "Half-Succubus",
+  "physique": {
+    "height_cm": 170,
+    "weight_kg": 61,
+    "bust_cm": 98,
+    "waist_cm": 69,
+    "hip_cm": 109,
+    "cup_size": "E",
+    "underbust_cm": 72
+  },
+  "scent": "stone, smoke, musk",
+  "linguistic_mandate": "TLM",
+  "expertise": [
+    "forbidden methodologies",
+    "immolation rituals",
+    "structural fire"
+  ],
+  "status": "Active",
+  "faction": null,
+  "reports_to": "Triumvirate (Tier 1)",
+  "signature_technique": "The Inevitable Revelation",
+  "genesis_timestamp": "2025-12-07T14:03:43.617797",
+  "genesis_seed": 2028548638,
+  "genesis_hash": "bd3e2e4486e9f3bc",
+  "schema_crc": "ff6b6f02b5ef9601",
+  "whr": 0.633,
+  "measurements": "E-cup (B98/W69/H109cm)"
+}

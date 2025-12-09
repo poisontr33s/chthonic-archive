@@ -1,0 +1,35 @@
+# ═══════════════════════════════════════════════════════════════════════════════
+# 🧬 MAS-MCP Dashboard - Bun Configuration
+# Bun v1.3.4+ compatible
+# ═══════════════════════════════════════════════════════════════════════════════
+
+[serve]
+# Development server settings
+port = 8080
+hostname = "127.0.0.1"
+
+[install]
+# Lockfile settings
+lockfile = "bun.lock"
+
+# Use exact versions for reproducibility
+exact = true
+
+# Frozen lockfile in CI
+frozen = false
+
+[install.cache]
+# Enable global cache
+disable = false
+
+[test]
+# Test configuration
+coverage = true
+coverageDir = "coverage"
+
+[run]
+# Bun-native file imports - loader config is handled in Bun.serve
+
+[define]
+# Build-time constants
+"process.env.NODE_ENV" = "'development'"

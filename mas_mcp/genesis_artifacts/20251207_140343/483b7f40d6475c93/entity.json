@@ -1,0 +1,33 @@
+{
+  "name": "Iris Stormborn",
+  "tier": 3.0,
+  "archetype": "Temporal Manipulator",
+  "age_apparent": 36,
+  "age_actual": 372,
+  "race": "Human-Touched",
+  "physique": {
+    "height_cm": 169,
+    "weight_kg": 58,
+    "bust_cm": 108,
+    "waist_cm": 66,
+    "hip_cm": 103,
+    "cup_size": "G",
+    "underbust_cm": 79
+  },
+  "scent": "old libraries, arousal, leather",
+  "linguistic_mandate": "TLM",
+  "expertise": [
+    "conceptual manipulation",
+    "operational efficiency"
+  ],
+  "status": "Active",
+  "faction": null,
+  "reports_to": "Triumvirate (Tier 1)",
+  "signature_technique": "The Immaculate Strike",
+  "genesis_timestamp": "2025-12-07T14:03:43.622454",
+  "genesis_seed": 2028548661,
+  "genesis_hash": "483b7f40d6475c93",
+  "schema_crc": "ff6b6f02b5ef9601",
+  "whr": 0.641,
+  "measurements": "G-cup (B108/W66/H103cm)"
+}

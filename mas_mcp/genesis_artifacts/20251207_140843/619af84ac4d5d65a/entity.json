@@ -1,0 +1,33 @@
+{
+  "name": "Nova Stormborn",
+  "tier": 3.0,
+  "archetype": "Liberation Specialist",
+  "age_apparent": 37,
+  "age_actual": 249,
+  "race": "Divine-Infernal",
+  "physique": {
+    "height_cm": 158,
+    "weight_kg": 70,
+    "bust_cm": 98,
+    "waist_cm": 66,
+    "hip_cm": 105,
+    "cup_size": "F",
+    "underbust_cm": 64
+  },
+  "scent": "leather, heat, transformation",
+  "linguistic_mandate": "TLM",
+  "expertise": [
+    "conceptual manipulation",
+    "operational efficiency"
+  ],
+  "status": "Active",
+  "faction": null,
+  "reports_to": "Triumvirate (Tier 1)",
+  "signature_technique": "The Purifying Revelation",
+  "genesis_timestamp": "2025-12-07T14:08:43.458780",
+  "genesis_seed": 2028848458,
+  "genesis_hash": "619af84ac4d5d65a",
+  "schema_crc": "ff6b6f02b5ef9601",
+  "whr": 0.629,
+  "measurements": "F-cup (B98/W66/H105cm)"
+}

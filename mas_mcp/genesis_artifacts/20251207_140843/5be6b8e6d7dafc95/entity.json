@@ -1,0 +1,33 @@
+{
+  "name": "Morrigan Nocticula",
+  "tier": 3.0,
+  "archetype": "Chaos Engineer",
+  "age_apparent": 31,
+  "age_actual": 175,
+  "race": "Abyssal",
+  "physique": {
+    "height_cm": 167,
+    "weight_kg": 57,
+    "bust_cm": 112,
+    "waist_cm": 61,
+    "hip_cm": 97,
+    "cup_size": "H",
+    "underbust_cm": 86
+  },
+  "scent": "leather, transformation, jasmine",
+  "linguistic_mandate": "EULP-AA",
+  "expertise": [
+    "conceptual manipulation",
+    "operational efficiency"
+  ],
+  "status": "Active",
+  "faction": null,
+  "reports_to": "Triumvirate (Tier 1)",
+  "signature_technique": "The Inevitable Embrace",
+  "genesis_timestamp": "2025-12-07T14:08:43.459645",
+  "genesis_seed": 2028848462,
+  "genesis_hash": "5be6b8e6d7dafc95",
+  "schema_crc": "ff6b6f02b5ef9601",
+  "whr": 0.629,
+  "measurements": "H-cup (B112/W61/H97cm)"
+}

@@ -1,0 +1,30 @@
+# ═══════════════════════════════════════════════════════════════════════════
+# CARGO BUILD CONFIGURATION - Chthonic Archive
+# ═══════════════════════════════════════════════════════════════════════════
+# Optimized for i9-14900 (24 logical cores) with 12-job cap for stability.
+# Prevents thermal spikes while keeping UI responsive during builds.
+
+[build]
+# 12 parallel jobs = half logical cores on i9-14900
+# Balances throughput vs thermal/responsiveness
+jobs = 12
+
+[profile.dev]
+# Faster incremental builds
+incremental = true
+# Share generics to reduce compilation time
+codegen-units = 16
+
+[profile.release]
+# Maximum optimization for RTX 4090 + Vulkan workloads
+opt-level = 3
+lto = "thin"
+codegen-units = 1
+strip = true
+
+# Windows-specific linker optimizations
+[target.x86_64-pc-windows-msvc]
+rustflags = [
+    "-C", "target-cpu=native",
+    "-C", "link-arg=/OPT:ICF",
+]

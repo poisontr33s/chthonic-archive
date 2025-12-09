@@ -1,0 +1,51 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --mas-dark: #1a1a2e;
+  --mas-darker: #16213e;
+  --mas-accent: #0f3460;
+  --mas-highlight: #e94560;
+}
+
+body {
+  @apply bg-mas-darker text-gray-100 antialiased;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+/* Custom scrollbar for dark theme */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-mas-dark;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-mas-accent rounded;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-mas-highlight;
+}
+
+/* Card base styles */
+.card {
+  @apply bg-mas-dark rounded-lg shadow-lg border border-gray-700/50;
+}
+
+/* Status badge styles */
+.badge-success {
+  @apply bg-mas-success/20 text-mas-success px-2 py-0.5 rounded text-xs font-medium;
+}
+
+.badge-warning {
+  @apply bg-mas-warning/20 text-mas-warning px-2 py-0.5 rounded text-xs font-medium;
+}
+
+.badge-error {
+  @apply bg-mas-error/20 text-mas-error px-2 py-0.5 rounded text-xs font-medium;
+}

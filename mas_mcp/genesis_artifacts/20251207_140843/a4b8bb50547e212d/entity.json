@@ -1,0 +1,33 @@
+{
+  "name": "Hana Crystallis",
+  "tier": 3.0,
+  "archetype": "Structural Guardian",
+  "age_apparent": 44,
+  "age_actual": 227,
+  "race": "Abyssal",
+  "physique": {
+    "height_cm": 167,
+    "weight_kg": 63,
+    "bust_cm": 98,
+    "waist_cm": 71,
+    "hip_cm": 114,
+    "cup_size": "E",
+    "underbust_cm": 68
+  },
+  "scent": "ancient texts, leather, smoke",
+  "linguistic_mandate": "TLM",
+  "expertise": [
+    "conceptual manipulation",
+    "operational efficiency"
+  ],
+  "status": "Active",
+  "faction": null,
+  "reports_to": "Triumvirate (Tier 1)",
+  "signature_technique": "The Immaculate Whisper",
+  "genesis_timestamp": "2025-12-07T14:08:43.463498",
+  "genesis_seed": 2028848480,
+  "genesis_hash": "a4b8bb50547e212d",
+  "schema_crc": "ff6b6f02b5ef9601",
+  "whr": 0.623,
+  "measurements": "E-cup (B98/W71/H114cm)"
+}

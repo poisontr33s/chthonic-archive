@@ -1,0 +1,33 @@
+{
+  "name": "Nova Tidesinger",
+  "tier": 3.0,
+  "archetype": "Conceptual Saboteur",
+  "age_apparent": 38,
+  "age_actual": 277,
+  "race": "Human-Touched",
+  "physique": {
+    "height_cm": 159,
+    "weight_kg": 68,
+    "bust_cm": 102,
+    "waist_cm": 68,
+    "hip_cm": 109,
+    "cup_size": "G",
+    "underbust_cm": 67
+  },
+  "scent": "ancient texts, heat, blood",
+  "linguistic_mandate": "TLM",
+  "expertise": [
+    "conceptual manipulation",
+    "operational efficiency"
+  ],
+  "status": "Active",
+  "faction": null,
+  "reports_to": "Triumvirate (Tier 1)",
+  "signature_technique": "The Inevitable Strike",
+  "genesis_timestamp": "2025-12-07T14:08:43.477253",
+  "genesis_seed": 2028848522,
+  "genesis_hash": "40d55fd81035254b",
+  "schema_crc": "ff6b6f02b5ef9601",
+  "whr": 0.624,
+  "measurements": "G-cup (B102/W68/H109cm)"
+}

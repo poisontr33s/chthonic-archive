@@ -1,0 +1,33 @@
+{
+  "name": "Morrigan Ravenscar",
+  "tier": 3.0,
+  "archetype": "Chaos Engineer",
+  "age_apparent": 34,
+  "age_actual": 116,
+  "race": "Abyssal",
+  "physique": {
+    "height_cm": 173,
+    "weight_kg": 60,
+    "bust_cm": 100,
+    "waist_cm": 68,
+    "hip_cm": 109,
+    "cup_size": "F",
+    "underbust_cm": 71
+  },
+  "scent": "ancient texts, smoke, sex",
+  "linguistic_mandate": "EULP-AA",
+  "expertise": [
+    "conceptual manipulation",
+    "operational efficiency"
+  ],
+  "status": "Active",
+  "faction": null,
+  "reports_to": "Triumvirate (Tier 1)",
+  "signature_technique": "The Abyssal Embrace",
+  "genesis_timestamp": "2025-12-07T14:04:01.901874",
+  "genesis_seed": 2028566914,
+  "genesis_hash": "a72aa921f042e8b5",
+  "schema_crc": "ff6b6f02b5ef9601",
+  "whr": 0.624,
+  "measurements": "F-cup (B100/W68/H109cm)"
+}

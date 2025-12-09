@@ -1,0 +1,34 @@
+{
+  "name": "Athena Thorne",
+  "tier": 3.0,
+  "archetype": "Epistemic Thief",
+  "age_apparent": 31,
+  "age_actual": 316,
+  "race": "Divine-Infernal",
+  "physique": {
+    "height_cm": 177,
+    "weight_kg": 58,
+    "bust_cm": 97,
+    "waist_cm": 70,
+    "hip_cm": 113,
+    "cup_size": "F",
+    "underbust_cm": 64
+  },
+  "scent": "leather, metal, smoke",
+  "linguistic_mandate": "TLM",
+  "expertise": [
+    "memory extraction",
+    "temporal manipulation",
+    "axiom larceny"
+  ],
+  "status": "Active",
+  "faction": null,
+  "reports_to": "Triumvirate (Tier 1)",
+  "signature_technique": "The Temporal Dissolution",
+  "genesis_timestamp": "2025-12-07T14:08:43.456751",
+  "genesis_seed": 2028848450,
+  "genesis_hash": "a6a8b1f110054111",
+  "schema_crc": "ff6b6f02b5ef9601",
+  "whr": 0.619,
+  "measurements": "F-cup (B97/W70/H113cm)"
+}

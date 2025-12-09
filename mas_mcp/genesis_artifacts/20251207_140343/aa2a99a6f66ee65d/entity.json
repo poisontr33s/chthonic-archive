@@ -1,0 +1,33 @@
+{
+  "name": "Morrigan Blackthorn",
+  "tier": 3.0,
+  "archetype": "Chaos Engineer",
+  "age_apparent": 40,
+  "age_actual": 211,
+  "race": "Divine-Infernal",
+  "physique": {
+    "height_cm": 166,
+    "weight_kg": 63,
+    "bust_cm": 113,
+    "waist_cm": 76,
+    "hip_cm": 120,
+    "cup_size": "H",
+    "underbust_cm": 88
+  },
+  "scent": "wood, ash, transformation",
+  "linguistic_mandate": "EULP-AA",
+  "expertise": [
+    "conceptual manipulation",
+    "operational efficiency"
+  ],
+  "status": "Active",
+  "faction": null,
+  "reports_to": "Triumvirate (Tier 1)",
+  "signature_technique": "The Temporal Whisper",
+  "genesis_timestamp": "2025-12-07T14:03:43.624097",
+  "genesis_seed": 2028548668,
+  "genesis_hash": "aa2a99a6f66ee65d",
+  "schema_crc": "ff6b6f02b5ef9601",
+  "whr": 0.633,
+  "measurements": "H-cup (B113/W76/H120cm)"
+}

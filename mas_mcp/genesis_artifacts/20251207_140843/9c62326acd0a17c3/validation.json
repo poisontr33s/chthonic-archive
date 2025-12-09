@@ -1,0 +1,11 @@
+{
+  "bounds_pass": true,
+  "derivation_pass": true,
+  "safety_pass": true,
+  "novelty_min": 0.041821014136075974,
+  "redundancy_score": 0.0,
+  "passed": true,
+  "refinement_depth": 3,
+  "rejection_reason": null,
+  "coherence_score": 0.0
+}

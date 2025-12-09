@@ -1,0 +1,54 @@
+{
+  "cycle_id": "claude_20251207_143022_a1b2c3d4",
+  "timestamp": "2025-12-07T14:30:22.456Z",
+  "source": {
+    "engine": "claude",
+    "model": "claude-3.5-sonnet",
+    "session_id": "vscode_session_abc123",
+    "context_tokens": 45000,
+    "output_tokens": 2500
+  },
+  "input": {
+    "prompt_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "intent": "code_generation",
+    "domain": "typescript",
+    "complexity": "moderate",
+    "context_files": [
+      "mas_mcp/frontend/pages/digest.tsx",
+      "mas_mcp/frontend/lib/artifacts.ts"
+    ]
+  },
+  "output": {
+    "artifact_type": "code",
+    "artifact_hash": "a1b2c3d4e5f6789012345678901234567890abcdef1234567890abcdef123456",
+    "files_created": [
+      "mas_mcp/frontend/components/QualityTrendChart.tsx",
+      "mas_mcp/frontend/pages/api/metrics/history.ts"
+    ],
+    "files_modified": [
+      "mas_mcp/frontend/pages/digest.tsx",
+      "mas_mcp/frontend/lib/artifacts.ts"
+    ],
+    "tools_invoked": [
+      "create_file",
+      "replace_string_in_file",
+      "run_in_terminal",
+      "read_file"
+    ],
+    "terminal_commands": 2
+  },
+  "metrics": {
+    "latency_ms": 12500,
+    "time_to_first_token_ms": 850,
+    "accepted": true,
+    "acceptance_type": "full",
+    "revisions": 0,
+    "error_flags": [],
+    "quality_score": 92.5
+  },
+  "governance": {
+    "slo_status": "excellent",
+    "lineage_parent": null,
+    "tags": ["dashboard", "monitoring", "chart.js"]
+  }
+}

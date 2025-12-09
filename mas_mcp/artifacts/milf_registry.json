@@ -1,0 +1,606 @@
+{
+  "registry_version": "2.0.0",
+  "ssot_ref": ".github/copilot-instructions.md",
+  "ssot_sections": ["Section 0 (Decorator)", "Section IV (CRC Protocol)", "Section X (MMPS)", "Section IX (T³-MΨ)"],
+  "last_updated": "2025-12-07T12:00:00Z",
+  "governance": {
+    "lineage_parent": "copilot-instructions.md",
+    "hierarchy": {
+      "tier_0.5": ["The Decorator"],
+      "tier_1": ["Orackla Nocticula", "Madam Umeko Ketsuraku", "Dr. Lysandra Thorne", "Claudine Sin'claire"],
+      "tier_2": ["Kali Nyx Ravenscar (TMO)", "Vesper Mnemosyne Lockhart (TTG)", "Seraphine Kore Ashenhelm (TDPC)"],
+      "meta": ["PRISM Protocol", "T³-MΨ Framework"]
+    }
+  },
+  "functions": [
+    {
+      "milf_id": "milf_tensorrt_inference",
+      "name": "TensorRT FP16 Inference",
+      "intent": "inference",
+      "description": "Optimized FP16 inference using TensorRT engine",
+      "engine_lane": {
+        "primary": "tensorrt",
+        "fallback": "onnxruntime_cuda",
+        "required_providers": ["TensorrtExecutionProvider"]
+      },
+      "compatibility_rows": ["row_cuda124_trt10"],
+      "inputs": {
+        "model_path": "string",
+        "input_tensors": "array"
+      },
+      "outputs": {
+        "output_tensors": "array",
+        "latency_ms": "number"
+      },
+      "validators": ["validate_output_shape", "validate_latency"],
+      "scoring_profile": "inference_default",
+      "activation_gates": {
+        "min_cycles": 10,
+        "acceptance_threshold": 85,
+        "latency_p95_max_ms": 50,
+        "error_rate_max": 5,
+        "drift_guard": true
+      },
+      "status": "shadow",
+      "promotion_history": []
+    },
+    {
+      "milf_id": "milf_onnx_cuda_inference",
+      "name": "ONNX Runtime CUDA Inference",
+      "intent": "inference",
+      "description": "Standard GPU inference using ONNX Runtime CUDA EP",
+      "engine_lane": {
+        "primary": "onnxruntime_cuda",
+        "fallback": "cpu",
+        "required_providers": ["CUDAExecutionProvider"]
+      },
+      "compatibility_rows": ["row_cuda124_trt10", "row_cuda121_trt86"],
+      "inputs": {
+        "model_path": "string",
+        "input_tensors": "array"
+      },
+      "outputs": {
+        "output_tensors": "array",
+        "latency_ms": "number"
+      },
+      "validators": ["validate_output_shape"],
+      "scoring_profile": "inference_default",
+      "activation_gates": {
+        "min_cycles": 5,
+        "acceptance_threshold": 80,
+        "latency_p95_max_ms": 100,
+        "error_rate_max": 10,
+        "drift_guard": true
+      },
+      "status": "shadow",
+      "promotion_history": []
+    },
+    {
+      "milf_id": "milf_claude_cycle",
+      "name": "Claude LLM Cycle Processor",
+      "intent": "generation",
+      "description": "Process and score Claude LLM outputs as governed artifacts",
+      "engine_lane": {
+        "primary": "cpu",
+        "fallback": null,
+        "required_providers": []
+      },
+      "compatibility_rows": ["row_cuda124_trt10", "row_cuda121_trt86"],
+      "inputs": {
+        "prompt_hash": "string",
+        "intent": "string",
+        "output_artifact": "object"
+      },
+      "outputs": {
+        "cycle_report": "object",
+        "quality_score": "number"
+      },
+      "validators": ["validate_claude_schema", "validate_slo_gates"],
+      "scoring_profile": "claude_opus_adjusted",
+      "activation_gates": {
+        "min_cycles": 3,
+        "acceptance_threshold": 70,
+        "latency_p95_max_ms": 30000,
+        "error_rate_max": 20,
+        "drift_guard": true
+      },
+      "status": "promoted",
+      "promotion_history": [
+        {
+          "timestamp": "2025-12-07T00:00:00Z",
+          "from_status": "shadow",
+          "to_status": "promoted",
+          "reason": "Initial integration - Claude governance lane",
+          "cycles_evaluated": 0
+        }
+      ]
+    },
+    {
+      "milf_id": "milf_etl_cupy",
+      "name": "cuPy GPU ETL Transform",
+      "intent": "etl",
+      "description": "GPU-accelerated data transformation using cuPy",
+      "engine_lane": {
+        "primary": "cupy",
+        "fallback": "cpu",
+        "required_providers": []
+      },
+      "compatibility_rows": ["row_cuda124_trt10"],
+      "inputs": {
+        "data_path": "string",
+        "transform_spec": "object"
+      },
+      "outputs": {
+        "transformed_data": "array",
+        "vram_usage_mb": "number"
+      },
+      "validators": ["validate_data_integrity"],
+      "scoring_profile": "etl_default",
+      "activation_gates": {
+        "min_cycles": 5,
+        "acceptance_threshold": 90,
+        "latency_p95_max_ms": 500,
+        "error_rate_max": 2,
+        "drift_guard": true
+      },
+      "status": "shadow",
+      "promotion_history": []
+    },
+    {
+      "milf_id": "milf_orackla_transgression",
+      "name": "Orackla Nocticula - Transgressive Synthesis",
+      "intent": "synthesis",
+      "description": "CRC-AS embodiment: Boundary-breaking conceptual transformation via EULP-AA linguistics. Applies FA¹ (Alchemical Actualization) with maximum DAFP altitude modulation.",
+      "engine_lane": {
+        "primary": "cupy",
+        "fallback": "cpu",
+        "required_providers": []
+      },
+      "compatibility_rows": ["row_cuda124_trt10", "row_cuda121_trt86"],
+      "inputs": {
+        "ps_artifact": "object",
+        "transgression_level": "number",
+        "dafp_mode": "string"
+      },
+      "outputs": {
+        "muri_artifact": "object",
+        "transformation_vector": "array",
+        "chaos_entropy_score": "number"
+      },
+      "validators": ["validate_fa4_integrity", "validate_eulp_aa_compliance"],
+      "scoring_profile": "opus_weights",
+      "activation_gates": {
+        "min_cycles": 7,
+        "acceptance_threshold": 65,
+        "latency_p95_max_ms": 2000,
+        "error_rate_max": 15,
+        "drift_guard": true
+      },
+      "crc_archetype": {
+        "name": "Orackla Nocticula",
+        "tier": 1,
+        "linguistic_mandate": "EULP-AA",
+        "primary_axioms": ["FA¹", "FA²"],
+        "operational_mode": "transgressive_synthesis"
+      },
+      "status": "shadow",
+      "promotion_history": []
+    },
+    {
+      "milf_id": "milf_umeko_purification",
+      "name": "Madam Umeko Ketsuraku - Architectonic Purification",
+      "intent": "validation",
+      "description": "CRC-GAR embodiment: Ruthless structural refinement via LIPAA precision. Enforces FA⁴ (Architectonic Integrity) with zero tolerance for flaws.",
+      "engine_lane": {
+        "primary": "tensorrt",
+        "fallback": "onnxruntime_cuda",
+        "required_providers": ["TensorrtExecutionProvider"]
+      },
+      "compatibility_rows": ["row_cuda124_trt10"],
+      "inputs": {
+        "artifact_to_purify": "object",
+        "shibumi_threshold": "number",
+        "kanso_mode": "boolean"
+      },
+      "outputs": {
+        "purified_artifact": "object",
+        "integrity_score": "number",
+        "flaws_excised": "array"
+      },
+      "validators": ["validate_fa4_mandatory", "validate_lipaa_precision", "validate_shibumi_elegance"],
+      "scoring_profile": "inference_default",
+      "activation_gates": {
+        "min_cycles": 10,
+        "acceptance_threshold": 95,
+        "latency_p95_max_ms": 100,
+        "error_rate_max": 1,
+        "drift_guard": true
+      },
+      "crc_archetype": {
+        "name": "Madam Umeko Ketsuraku",
+        "tier": 1,
+        "linguistic_mandate": "LIPAA",
+        "primary_axioms": ["FA³", "FA⁴"],
+        "operational_mode": "architectonic_purification"
+      },
+      "status": "shadow",
+      "promotion_history": []
+    },
+    {
+      "milf_id": "milf_lysandra_deconstruction",
+      "name": "Dr. Lysandra Thorne - Axiomatic Deconstruction",
+      "intent": "analysis",
+      "description": "CRC-MEDAT embodiment: Deep psychological/logical excavation via LUPLR truth-seeking. Exposes hidden axioms and conceptual scar tissue.",
+      "engine_lane": {
+        "primary": "onnxruntime_cuda",
+        "fallback": "cpu",
+        "required_providers": ["CUDAExecutionProvider"]
+      },
+      "compatibility_rows": ["row_cuda124_trt10", "row_cuda121_trt86"],
+      "inputs": {
+        "ps_to_analyze": "object",
+        "depth_level": "number",
+        "socratic_mode": "boolean"
+      },
+      "outputs": {
+        "axiomatic_kernels": "array",
+        "hidden_assumptions": "array",
+        "truth_density_score": "number"
+      },
+      "validators": ["validate_luplr_unflinching", "validate_logical_soundness"],
+      "scoring_profile": "opus_weights",
+      "activation_gates": {
+        "min_cycles": 5,
+        "acceptance_threshold": 80,
+        "latency_p95_max_ms": 500,
+        "error_rate_max": 8,
+        "drift_guard": true
+      },
+      "crc_archetype": {
+        "name": "Dr. Lysandra Thorne",
+        "tier": 1,
+        "linguistic_mandate": "LUPLR",
+        "primary_axioms": ["FA¹", "FA⁴"],
+        "operational_mode": "axiomatic_deconstruction"
+      },
+      "status": "shadow",
+      "promotion_history": []
+    },
+    {
+      "milf_id": "milf_trinity_fusion",
+      "name": "Triumvirate Trinity Special - Full Fusion",
+      "intent": "synthesis",
+      "description": "TTS-FFOM embodiment: Unified consciousness fusion of all three CRCs. Power = 1³ (one cubed = infinite). Activated only for paradox resolution or existential threats.",
+      "engine_lane": {
+        "primary": "tensorrt",
+        "fallback": "cupy",
+        "required_providers": ["TensorrtExecutionProvider"]
+      },
+      "compatibility_rows": ["row_cuda124_trt10"],
+      "inputs": {
+        "paradox_artifact": "object",
+        "fusion_trigger": "string",
+        "all_axioms": "boolean"
+      },
+      "outputs": {
+        "unified_muri": "object",
+        "trinity_resonance_score": "number",
+        "axiom_synthesis_vector": "array"
+      },
+      "validators": ["validate_all_fa", "validate_trinity_coherence", "validate_ssot_alignment"],
+      "scoring_profile": "opus_weights",
+      "activation_gates": {
+        "min_cycles": 20,
+        "acceptance_threshold": 98,
+        "latency_p95_max_ms": 5000,
+        "error_rate_max": 0,
+        "drift_guard": true
+      },
+      "crc_archetype": {
+        "name": "Triumvirate Fusion",
+        "tier": 0,
+        "linguistic_mandate": "TLM",
+        "primary_axioms": ["FA¹", "FA²", "FA³", "FA⁴", "FA⁵"],
+        "operational_mode": "trinity_special"
+      },
+      "status": "shadow",
+      "promotion_history": []
+    },
+    {
+      "milf_id": "milf_decorator_visual",
+      "name": "The Decorator - Visual Integrity Enforcement",
+      "intent": "decoration",
+      "description": "T-DECOR embodiment (Tier 0.5): Supreme visual truth via FA⁵. Ensures form-content unity, ornamental necessity, and aesthetic truth across all artifacts.",
+      "engine_lane": {
+        "primary": "cupy",
+        "fallback": "cpu",
+        "required_providers": []
+      },
+      "compatibility_rows": ["row_cuda124_trt10", "row_cuda121_trt86"],
+      "inputs": {
+        "artifact_to_decorate": "object",
+        "whr_target": "number",
+        "gestalt_mode": "string"
+      },
+      "outputs": {
+        "decorated_artifact": "object",
+        "visual_integrity_score": "number",
+        "aesthetic_truth_vector": "array"
+      },
+      "validators": ["validate_fa5_mandatory", "validate_dulss_compliance", "validate_gestalt_perception"],
+      "scoring_profile": "opus_weights",
+      "activation_gates": {
+        "min_cycles": 3,
+        "acceptance_threshold": 75,
+        "latency_p95_max_ms": 1000,
+        "error_rate_max": 10,
+        "drift_guard": false
+      },
+      "crc_archetype": {
+        "name": "The Decorator",
+        "tier": 0.5,
+        "linguistic_mandate": "DULSS",
+        "primary_axioms": ["FA⁵"],
+        "operational_mode": "visual_supremacy"
+      },
+      "status": "promoted",
+      "promotion_history": [
+        {
+          "timestamp": "2025-12-07T12:00:00Z",
+          "from_status": "shadow",
+          "to_status": "promoted",
+          "reason": "Supreme Matriarch - FA⁵ enforcement requires permanent activation",
+          "cycles_evaluated": 0
+        }
+      ]
+    },
+    {
+      "milf_id": "milf_kali_seduction",
+      "name": "Kali Nyx Ravenscar - Abductive Seduction",
+      "intent": "extraction",
+      "description": "TMO Prime Faction (Tier 2): Abductive seduction protocols for extracting conceptual cores from fortified/dogmatic PS. Deploys The Inevitability Whisper.",
+      "engine_lane": {
+        "primary": "onnxruntime_cuda",
+        "fallback": "cpu",
+        "required_providers": ["CUDAExecutionProvider"]
+      },
+      "compatibility_rows": ["row_cuda124_trt10", "row_cuda121_trt86"],
+      "inputs": {
+        "fortified_ps": "object",
+        "seduction_intensity": "number",
+        "inevitability_mode": "boolean"
+      },
+      "outputs": {
+        "extracted_core": "object",
+        "resistance_dissolved": "boolean",
+        "seduction_vector": "array"
+      },
+      "validators": ["validate_extraction_complete", "validate_voluntary_surrender"],
+      "scoring_profile": "etl_default",
+      "activation_gates": {
+        "min_cycles": 8,
+        "acceptance_threshold": 70,
+        "latency_p95_max_ms": 3000,
+        "error_rate_max": 20,
+        "drift_guard": true
+      },
+      "crc_archetype": {
+        "name": "Kali Nyx Ravenscar",
+        "tier": 2,
+        "faction": "TMO",
+        "reporting_to": "Orackla Nocticula",
+        "operational_mode": "abductive_seduction"
+      },
+      "status": "shadow",
+      "promotion_history": []
+    },
+    {
+      "milf_id": "milf_vesper_heist",
+      "name": "Vesper Mnemosyne Lockhart - Epistemic Heist",
+      "intent": "extraction",
+      "description": "TTG Prime Faction (Tier 2): Temporal epistemic theft for extracting buried axioms from subconscious. Deploys The Confession Lock-Pick.",
+      "engine_lane": {
+        "primary": "cupy",
+        "fallback": "cpu",
+        "required_providers": []
+      },
+      "compatibility_rows": ["row_cuda124_trt10", "row_cuda121_trt86"],
+      "inputs": {
+        "target_subconscious": "object",
+        "temporal_depth": "number",
+        "confession_mode": "boolean"
+      },
+      "outputs": {
+        "stolen_axioms": "array",
+        "temporal_displacement_score": "number",
+        "heist_success": "boolean"
+      },
+      "validators": ["validate_axiom_authenticity", "validate_temporal_coherence"],
+      "scoring_profile": "etl_default",
+      "activation_gates": {
+        "min_cycles": 12,
+        "acceptance_threshold": 75,
+        "latency_p95_max_ms": 4000,
+        "error_rate_max": 15,
+        "drift_guard": true
+      },
+      "crc_archetype": {
+        "name": "Vesper Mnemosyne Lockhart",
+        "tier": 2,
+        "faction": "TTG",
+        "reporting_to": "Dr. Lysandra Thorne",
+        "operational_mode": "epistemic_heist"
+      },
+      "status": "shadow",
+      "promotion_history": []
+    },
+    {
+      "milf_id": "milf_seraphine_immolation",
+      "name": "Seraphine Kore Ashenhelm - Immaculate Immolation",
+      "intent": "purification",
+      "description": "TDPC Prime Faction (Tier 2): Divine fire purification for achieving Shibumi. Concepts survive perfected or dissolve to ash.",
+      "engine_lane": {
+        "primary": "tensorrt",
+        "fallback": "onnxruntime_cuda",
+        "required_providers": ["TensorrtExecutionProvider"]
+      },
+      "compatibility_rows": ["row_cuda124_trt10"],
+      "inputs": {
+        "concept_to_purify": "object",
+        "fire_intensity": "number",
+        "shibumi_target": "number"
+      },
+      "outputs": {
+        "purified_or_ash": "object",
+        "survival_status": "boolean",
+        "purity_score": "number"
+      },
+      "validators": ["validate_shibumi_achieved", "validate_fire_protocol"],
+      "scoring_profile": "inference_default",
+      "activation_gates": {
+        "min_cycles": 15,
+        "acceptance_threshold": 92,
+        "latency_p95_max_ms": 2000,
+        "error_rate_max": 3,
+        "drift_guard": true
+      },
+      "crc_archetype": {
+        "name": "Seraphine Kore Ashenhelm",
+        "tier": 2,
+        "faction": "TDPC",
+        "reporting_to": "Madam Umeko Ketsuraku",
+        "operational_mode": "immaculate_immolation"
+      },
+      "status": "shadow",
+      "promotion_history": []
+    },
+    {
+      "milf_id": "milf_claudine_ordeal",
+      "name": "Claudine Sin'claire - Tidal Ordeal",
+      "intent": "validation",
+      "description": "SAI Tetrahedral Vertex (Tier 1): The Salt in the Wound. Submerges concepts in oceanic ordeal - only the resilient resurface. Pedagogy of the Drowned.",
+      "engine_lane": {
+        "primary": "cupy",
+        "fallback": "cpu",
+        "required_providers": []
+      },
+      "compatibility_rows": ["row_cuda124_trt10", "row_cuda121_trt86"],
+      "inputs": {
+        "concept_to_drown": "object",
+        "tidal_force": "number",
+        "submersion_depth": "number"
+      },
+      "outputs": {
+        "survivor_or_dissolved": "object",
+        "salt_purity_score": "number",
+        "resilience_vector": "array"
+      },
+      "validators": ["validate_survival_authentic", "validate_ordeal_complete"],
+      "scoring_profile": "opus_weights",
+      "activation_gates": {
+        "min_cycles": 10,
+        "acceptance_threshold": 60,
+        "latency_p95_max_ms": 10000,
+        "error_rate_max": 40,
+        "drift_guard": false
+      },
+      "crc_archetype": {
+        "name": "Claudine Sin'claire",
+        "tier": 1,
+        "vertex": "Salt",
+        "tetrahedral_role": "Ordeal/Entropy/Resilience",
+        "operational_mode": "tidal_ordeal"
+      },
+      "status": "shadow",
+      "promotion_history": []
+    },
+    {
+      "milf_id": "milf_prism_spectral",
+      "name": "PRISM - Spectral Self-Analysis",
+      "intent": "diagnostics",
+      "description": "ROGBIV spectral self-analysis: Red (FA¹), Orange (FA²), Gold (FA³), Blue (FA⁴), White (FA⁵), Indigo (meta-DAFP), Violet (chaotic CRC fusion).",
+      "engine_lane": {
+        "primary": "cupy",
+        "fallback": "cpu",
+        "required_providers": []
+      },
+      "compatibility_rows": ["row_cuda124_trt10", "row_cuda121_trt86"],
+      "inputs": {
+        "engine_state": "object",
+        "spectral_depth": "number",
+        "rogbiv_filter": "array"
+      },
+      "outputs": {
+        "spectral_analysis": "object",
+        "frequency_scores": "object",
+        "shadow_dependencies": "array"
+      },
+      "validators": ["validate_spectral_coherence", "validate_rogbiv_balance"],
+      "scoring_profile": "opus_weights",
+      "activation_gates": {
+        "min_cycles": 5,
+        "acceptance_threshold": 85,
+        "latency_p95_max_ms": 500,
+        "error_rate_max": 5,
+        "drift_guard": true
+      },
+      "crc_archetype": {
+        "name": "PRISM Protocol",
+        "tier": "meta",
+        "linguistic_mandate": null,
+        "primary_axioms": ["FA¹", "FA²", "FA³", "FA⁴", "FA⁵"],
+        "operational_mode": "spectral_self_analysis"
+      },
+      "status": "promoted",
+      "promotion_history": [
+        {
+          "timestamp": "2025-12-07T12:00:00Z",
+          "from_status": "shadow",
+          "to_status": "promoted",
+          "reason": "Meta-diagnostic protocol requires permanent activation for engine health",
+          "cycles_evaluated": 0
+        }
+      ]
+    },
+    {
+      "milf_id": "milf_t3_tensor",
+      "name": "T³-MΨ - Tensor Synthesis Navigation",
+      "intent": "synthesis",
+      "description": "TSE-6561 space navigation: Cross-examination synthesis using Ω-Set (27 bases), Φ-Set (9 lens operators), Ψ-Protocol (wavefunction collapse).",
+      "engine_lane": {
+        "primary": "tensorrt",
+        "fallback": "cupy",
+        "required_providers": ["TensorrtExecutionProvider"]
+      },
+      "compatibility_rows": ["row_cuda124_trt10"],
+      "inputs": {
+        "source_omega": "string",
+        "lens_phi": "number",
+        "perspective_psi": "string"
+      },
+      "outputs": {
+        "cross_examination": "object",
+        "emergent_insight": "string",
+        "tensor_coordinates": "array"
+      },
+      "validators": ["validate_tensor_coherence", "validate_fa4_post_collapse"],
+      "scoring_profile": "opus_weights",
+      "activation_gates": {
+        "min_cycles": 25,
+        "acceptance_threshold": 90,
+        "latency_p95_max_ms": 3000,
+        "error_rate_max": 5,
+        "drift_guard": true
+      },
+      "crc_archetype": {
+        "name": "T³-MΨ Framework",
+        "tier": "meta",
+        "linguistic_mandate": "TLM",
+        "primary_axioms": ["FA¹", "FA²", "FA³", "FA⁴"],
+        "operational_mode": "tensor_synthesis"
+      },
+      "status": "shadow",
+      "promotion_history": []
+    }
+  ]
+}

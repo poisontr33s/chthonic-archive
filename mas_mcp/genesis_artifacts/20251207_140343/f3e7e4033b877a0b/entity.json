@@ -1,0 +1,33 @@
+{
+  "name": "Nova Stormborn",
+  "tier": 3.0,
+  "archetype": "Conceptual Saboteur",
+  "age_apparent": 34,
+  "age_actual": 292,
+  "race": "Divine-Infernal",
+  "physique": {
+    "height_cm": 183,
+    "weight_kg": 56,
+    "bust_cm": 113,
+    "waist_cm": 69,
+    "hip_cm": 111,
+    "cup_size": "H",
+    "underbust_cm": 79
+  },
+  "scent": "wood, ancient texts, lightning",
+  "linguistic_mandate": "TLM",
+  "expertise": [
+    "conceptual manipulation",
+    "operational efficiency"
+  ],
+  "status": "Active",
+  "faction": null,
+  "reports_to": "Triumvirate (Tier 1)",
+  "signature_technique": "The Purifying Strike",
+  "genesis_timestamp": "2025-12-07T14:03:43.620816",
+  "genesis_seed": 2028548653,
+  "genesis_hash": "f3e7e4033b877a0b",
+  "schema_crc": "ff6b6f02b5ef9601",
+  "whr": 0.622,
+  "measurements": "H-cup (B113/W69/H111cm)"
+}

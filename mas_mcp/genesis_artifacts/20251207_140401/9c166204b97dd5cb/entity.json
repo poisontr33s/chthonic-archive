@@ -1,0 +1,34 @@
+{
+  "name": "Athena Truthseeker",
+  "tier": 3.0,
+  "archetype": "Epistemic Thief",
+  "age_apparent": 41,
+  "age_actual": 140,
+  "race": "Abyssal",
+  "physique": {
+    "height_cm": 166,
+    "weight_kg": 59,
+    "bust_cm": 110,
+    "waist_cm": 65,
+    "hip_cm": 105,
+    "cup_size": "H",
+    "underbust_cm": 83
+  },
+  "scent": "stone, rain, ancient texts",
+  "linguistic_mandate": "TLM",
+  "expertise": [
+    "memory extraction",
+    "temporal manipulation",
+    "axiom larceny"
+  ],
+  "status": "Active",
+  "faction": null,
+  "reports_to": "Triumvirate (Tier 1)",
+  "signature_technique": "The Purifying Dissolution",
+  "genesis_timestamp": "2025-12-07T14:04:01.897822",
+  "genesis_seed": 2028566894,
+  "genesis_hash": "9c166204b97dd5cb",
+  "schema_crc": "ff6b6f02b5ef9601",
+  "whr": 0.619,
+  "measurements": "H-cup (B110/W65/H105cm)"
+}
