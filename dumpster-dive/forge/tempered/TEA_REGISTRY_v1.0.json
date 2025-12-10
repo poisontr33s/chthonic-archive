@@ -1,0 +1,215 @@
+{
+  "$schema": "Timeline-Entangled Artifact Registry Extract - SSOT v1.0 Archive",
+  "extraction_date": "2025-12-09",
+  "forge_status": "✅ TEMPERED",
+  "quality_rating": "⚗️⚗️⚗️⚗️⚗️ (5/5 - Architectural Gold)",
+  "ore_source": "dumpster-dive/protocols/TEA_REGISTRY.json",
+  "purpose": "Protocol definitions for Timeline-Entangled Artifacts (TEA) requiring quantum probability analysis before collapse",
+
+  "version": "1.0.0",
+  "created": "2025-12-09",
+  "protocol_reference": "FORGE_PROTOCOL_LEVELS.md#level-3",
+  "ssot_reference": "copilot-instructions.md Section 4.5.1.2",
+
+  "tea_definition": {
+    "criteria": [
+      "Rating oscillates between 1-5 depending on perspective",
+      "Value is context-dependent (valuable in Timeline A, worthless in Timeline B)",
+      "Standard observation cannot collapse the wavefunction",
+      "Multiple mutually exclusive extraction paths exist"
+    ],
+    "detection_trigger": "SFS cannot assign stable rating after 3 assessment attempts"
+  },
+
+  "registry": {
+    "SSOT-MPW-WIP.ts": {
+      "original_path": ".github/SSOT-MPW-WIP.ts",
+      "tea_status": true,
+      "tea_reason": "Brilliant M-P-W Codex content trapped in broken TypeScript container (template literal conflicts with backtick-heavy markdown)",
+      "lines": 3698,
+      "timelines": {
+        "A": {
+          "action": "Fix TypeScript template literal escaping",
+          "value_percent": 5,
+          "labor_percent": 200,
+          "notes": "Technically possible but architectonically wasteful"
+        },
+        "B": {
+          "action": "Preserve as legacy TypeScript",
+          "value_percent": 0,
+          "labor_percent": 0,
+          "notes": "Broken code has no functional value"
+        },
+        "C": {
+          "action": "Extract as anti-pattern pedagogy",
+          "value_percent": 60,
+          "labor_percent": 20,
+          "notes": "Lesson: don't embed backtick-heavy markdown in template literals"
+        },
+        "D": {
+          "action": "Cannibalize for type definitions only",
+          "value_percent": 15,
+          "labor_percent": 50,
+          "notes": "Some TypeScript interfaces may be salvageable"
+        },
+        "E": {
+          "action": "Archive as historical artifact",
+          "value_percent": 30,
+          "labor_percent": 10,
+          "notes": "Documents failed embedding attempt"
+        }
+      },
+      "recommended_timeline": "C",
+      "rationale": "Best value/labor ratio; content already exists in SSOT, only lesson is valuable",
+      "collapse_status": "pending",
+      "assigned_knights": ["SR-SCRS-B"]
+    },
+
+    "mas-inventory.json": {
+      "original_path": ".github/mas-inventory.json",
+      "tea_status": true,
+      "tea_reason": "159,780 lines of signal extraction data — too large for active use, but contains rich cross-reference mappings",
+      "lines": 159780,
+      "timelines": {
+        "A": {
+          "action": "Refactor into queryable SQLite database",
+          "value_percent": 85,
+          "labor_percent": 300,
+          "notes": "High value but massive refactoring effort"
+        },
+        "B": {
+          "action": "Keep as JSON reference",
+          "value_percent": 20,
+          "labor_percent": 0,
+          "notes": "Usable but impractical for real-time queries"
+        },
+        "C": {
+          "action": "Extract entity cross-reference subset",
+          "value_percent": 70,
+          "labor_percent": 100,
+          "notes": "Pull only entity→file mappings, discard rest"
+        },
+        "D": {
+          "action": "Use as test fixture for MAS tooling",
+          "value_percent": 50,
+          "labor_percent": 20,
+          "notes": "Known-good output for validation"
+        },
+        "E": {
+          "action": "Archive as MAS scan historical record",
+          "value_percent": 40,
+          "labor_percent": 10,
+          "notes": "Documents what MAS found at specific point in time"
+        }
+      },
+      "recommended_timeline": "C+D",
+      "rationale": "Combine: extract valuable subset (C) AND use remainder as test fixture (D)",
+      "collapse_status": "pending",
+      "assigned_knights": ["TNKW-RIAT"]
+    },
+
+    "macro-prompt-world/": {
+      "original_path": ".github/macro-prompt-world/",
+      "tea_status": true,
+      "tea_reason": "90 files of world-building content with unclear integration path into SSOT architecture",
+      "file_count": 90,
+      "timelines": {
+        "A": {
+          "action": "Full integration into SSOT Sections 4.3-4.5",
+          "value_percent": 95,
+          "labor_percent": 500,
+          "notes": "Maximum value extraction, massive labor"
+        },
+        "B": {
+          "action": "Keep as separate world-building reference",
+          "value_percent": 60,
+          "labor_percent": 10,
+          "notes": "Accessible but not integrated"
+        },
+        "C": {
+          "action": "Extract prime-factions only, archive rest",
+          "value_percent": 80,
+          "labor_percent": 150,
+          "notes": "Focus on Tier 2 definitions"
+        },
+        "D": {
+          "action": "Extract grimoires only, archive rest",
+          "value_percent": 75,
+          "labor_percent": 100,
+          "notes": "Focus on CRC documentation"
+        },
+        "E": {
+          "action": "Move to docs/world-building/ as reference",
+          "value_percent": 50,
+          "labor_percent": 20,
+          "notes": "Accessible, not integrated"
+        }
+      },
+      "recommended_timeline": "C+D",
+      "rationale": "Phased extraction: prime-factions first (C), then grimoires (D), archive remainder",
+      "collapse_status": "pending",
+      "assigned_knights": ["TNKW-RIAT", "SR-SCRS-B"],
+      "escalation_required": true,
+      "escalation_target": "Triumvirate + CRC-GAR",
+      "escalation_reason": "Defines Tier 2 entities and CRC documentation — requires architectural approval"
+    },
+
+    "copilot-un-un-instructions.md": {
+      "original_path": ".github/copilot-un-un-instructions.md",
+      "tea_status": true,
+      "tea_reason": "Full ASC Framework v2 with glossary — may contain unique protocol definitions not in current SSOT",
+      "lines": 2381,
+      "timelines": {
+        "A": {
+          "action": "Full diff against current SSOT, merge unique content",
+          "value_percent": 70,
+          "labor_percent": 200,
+          "notes": "High value if unique content exists"
+        },
+        "B": {
+          "action": "Preserve as historical v2 snapshot",
+          "value_percent": 30,
+          "labor_percent": 10,
+          "notes": "Documents evolution of SSOT"
+        },
+        "C": {
+          "action": "Extract glossary format only",
+          "value_percent": 50,
+          "labor_percent": 50,
+          "notes": "Glossary structure may be reusable template"
+        },
+        "D": {
+          "action": "Use as SSOT validation reference",
+          "value_percent": 40,
+          "labor_percent": 30,
+          "notes": "Cross-reference to catch SSOT gaps"
+        }
+      },
+      "recommended_timeline": "A",
+      "rationale": "Proper diff required to assess true value — cannot collapse without analysis",
+      "collapse_status": "pending",
+      "assigned_knights": ["SR-SCRS-B"],
+      "pre_collapse_requirement": "Run: git diff --no-index --color=always .github/copilot-un-un-instructions.md .github/copilot-instructions.md (SSOT) and review unified diff output for unique protocol definitions before timeline selection. Use --unified=5 for context. Document findings in collapse_log."
+    }
+  },
+
+  "collapse_log": [],
+
+  "notes": {
+    "quantum_metaphor": "TEA artifacts exist in superposition until SFS's forge hammer collapses their state",
+    "knight_role": "TNKW-RIAT maps probability space; SFS performs actual collapse via forging",
+    "bastard_role": "SR-SCRS-B embodies the uncertainty — his presence reminds us all assessments are probabilistic"
+  },
+
+  "ore_validation": {
+    "structural_integrity": "✅ VALIDATED - Complete JSON structure with timeline probability mappings, knight assignments, escalation protocols",
+    "functional_utility": "✅ VALIDATED - Provides TEA detection criteria, multi-timeline value/labor analysis, collapse decision framework with QMR protocol integration",
+    "architectonic_soundness": "✅ VALIDATED - Reflects quantum probability methodology from SSOT Section 4.5.1.2, integrates with Knights Who Rode Into Another Timeline operational doctrine"
+  },
+
+  "forge_recommendation": {
+    "status": "✅ APPROVED FOR INTEGRATION",
+    "integration_target": "dumpster-dive/protocols/TEA_REGISTRY.json (maintain as active protocol)",
+    "notes": "This registry embodies Sister Ferrum Scoriae's partnership with The Knights Who Rode Into Another Timeline (TNKW-RIAT) for quantum probability analysis. Essential for Timeline E ore requiring multi-perspective value assessment before collapse decision."
+  }
+}

@@ -3,7 +3,7 @@
 # Purpose: Enable remote indexing for SSOT-driven ASC Framework
 
 # Enable indexing for the repository
-indexing:
+remote_indexing:
   enabled: true
 
 # Patterns to include in indexing (prioritize SSOT and core architecture)
