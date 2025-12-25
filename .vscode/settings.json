@@ -80,7 +80,7 @@
 
     // === FORMATTING ===
     "[rust]": {
-        "editor.defaultFormatter": "rust-lang.rust-analyzer",
+        "editor.defaultFormatter": "GitHub.copilot-chat",
         "editor.formatOnSave": true
     },
     "[glsl]": {
