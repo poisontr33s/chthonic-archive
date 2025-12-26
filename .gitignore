@@ -1,3 +1,9 @@
 # Rust build artifacts
 /target/
 Cargo.lock
+
+# Python bytecode / caches
+**/__pycache__/
+**/*.pyc
+**/*.pyo
+
