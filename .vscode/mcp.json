@@ -19,23 +19,20 @@
     },
     // Sentry Local Proxy
     "sentry-local-proxy": {
-      "type": "Sentry + SSOT MCP Proxy (local)",
-      "command": "bun",
-      "args": ["run", "${workspaceFolder}/scripts/mcp-sentry-proxy.ts"],
+      "type": "stdio",
+      "command": "C:\\Users\\erdno\\.bun\\bin\\bun.exe",
+      "args": ["run", "C:\\Users\\erdno\\chthonic-archive\\scripts\\mcp-sentry-proxy.ts"],
       "env": {
-        "SENTRY_AUTH_TOKEN": "<YOUR_SENTRY_API_TOKEN>",
-        "SENTRY_ORG_SLUG": "<YOUR_SENTRY_ORG_SLUG>",
-        "SENTRY_PROJECT_SLUG": "<YOUR_SENTRY_PROJECT_SLUG>",
-        "SSOT_PATH": "${workspaceFolder}/docs/ssot.txt",
-        "PORT": "0"
-      },
-      "description": "Local MCP proxy that reads Sentry (via API token) and your SSOT file; communicates via stdio."
+        "SENTRY_AUTH_TOKEN": "Bearer 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",
+        "SSOT_PATH": "C:\\Users\\erdno\\chthonic-archive\\.github\\copilot-instructions.md"
+      }
+      // Description: "Local MCP proxy that reads Sentry (via API token) and your SSOT file; communicates via stdio."
     },
 
     // Bun Documentation (HTTP)
     "Bun": {
-      "url": "https://bun.com/docs/mcp",
-      "type": "http"
+      "type": "http",
+      "url": "https://bun.com/docs/mcp"
     },
 
     // Microsoft Learn MCP Server (official)
@@ -61,8 +58,9 @@
     "artisan": {
       "type": "stdio",
       "command": "C:\\Users\\erdno\\.bun\\bin\\bun.exe",
-      "args": ["C:\\Users\\erdno\\chthonic-archive\\scripts\\mcp_artisan_server.ts"],
+      "args": ["run", "C:\\Users\\erdno\\chthonic-archive\\scripts\\mcp_artisan_server.ts"],
       "cwd": "C:\\Users\\erdno\\chthonic-archive"
     }
   }
 }
+
