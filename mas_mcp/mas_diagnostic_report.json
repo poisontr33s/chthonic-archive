@@ -1,51 +1,47 @@
 {
-  "timestamp": "2025-12-05T19:08:30.006434",
+  "timestamp": "2025-12-25T09:27:43.560469",
   "hardware": {
     "platform": "Windows-11-10.0.26200-SP0",
     "processor": "Intel64 Family 6 Model 183 Stepping 1, GenuineIntel",
-    "python": "3.14.0",
+    "python": "3.13.11",
     "machine": "AMD64",
     "cpu_count": 32,
     "gpu_name": "NVIDIA GeForce RTX 4090 Laptop GPU",
     "gpu_vram_mb": 16376,
-    "nvidia_driver": "581.80"
+    "nvidia_driver": "591.59"
   },
-  "uv_version": "uv 0.9.15 (5eafae332 2025-12-02)",
-  "python_version": "3.14.0",
+  "uv_version": "uv 0.9.18 (0cee76417 2025-12-16)",
+  "python_version": "3.13.11",
   "pass_rate": 83.33333333333334,
   "results": [
     {
       "name": "UV Environment",
       "category": "environment",
-      "passed": false,
+      "passed": true,
       "elapsed_ms": 0.0,
       "details": {
-        "synced": false,
+        "synced": true,
         "lockfile_current": true,
-        "output": "Would use project environment at: .venv\nResolved 43 packages in 0.65ms\nFound up-to-date lockfile at: uv.lock\nWould uninstall 4 packages\n - cmake==4.2.0\n - cython==3.2.2\n - ninja==1.13.0\n - onnxruntime-gpu==1.24.0.dev20251204001\n"
+        "output": "Would use project environment at: .venv\nResolved 59 packages in 1ms\nFound up-to-date lockfile at: uv.lock\nAudited 37 packages in 2ms\nWould make no changes\n"
       },
       "error": null,
-      "recommendation": "Run 'uv sync' to update environment"
+      "recommendation": null
     },
     {
       "name": "GPU Detection",
       "category": "hardware",
-      "passed": true,
+      "passed": false,
       "elapsed_ms": 0.0,
       "details": {
         "cupy_available": false,
         "numba_available": false,
-        "onnx_gpu_available": true,
-        "backend": "onnx_gpu",
+        "onnx_gpu_available": false,
+        "backend": "cpu",
         "cuda_version": null,
-        "device_name": "NVIDIA GeForce RTX 4090 Laptop GPU",
-        "onnx_providers": [
-          "TensorrtExecutionProvider",
-          "CUDAExecutionProvider"
-        ]
+        "device_name": null
       },
       "error": null,
-      "recommendation": null
+      "recommendation": "Install cupy-cuda12x, numba, or onnxruntime-gpu with CUDA"
     },
     {
       "name": "Spatial Grid Correctness",
@@ -64,9 +60,9 @@
           0.2521061301231384
         ],
         "speedups": [
-          0.6547629208595624,
-          0.6543116750965394,
-          0.6847164777473941
+          0.671147400274097,
+          0.668130310222619,
+          0.7122492134719988
         ],
         "fast_threshold": 200
       },
@@ -85,11 +81,11 @@
           2000
         ],
         "times_ms": [
-          638.6181666666744,
-          2068.1960666667387,
-          5581.813066666655
+          649.0080999986579,
+          2109.2199999984587,
+          5602.979633336266
         ],
-        "scaling_factor": 8.740454559571075,
+        "scaling_factor": 8.633142842666912,
         "is_subquadratic": true
       },
       "error": null,
@@ -112,14 +108,14 @@
           1
         ],
         "max_tile_ms": [
-          50.3089000003456,
-          39.97239999989688,
-          80.39499999995314
+          15.83010000467766,
+          42.02160000568256,
+          83.93229999637697
         ],
         "total_ms": [
-          50.3089000003456,
-          39.97239999989688,
-          80.39499999995314
+          15.83010000467766,
+          42.02160000568256,
+          83.93229999637697
         ]
       },
       "error": null,
@@ -138,7 +134,7 @@
         ],
         "server_import": true,
         "pulse_works": false,
-        "gpu_status": "ONNX_GPU"
+        "gpu_status": "NONE"
       },
       "error": null,
       "recommendation": null

@@ -1,16 +1,33 @@
 {
+  "ssot_lineage": {
+    "ssot_hash": "C5864278B4A8BD04D427D78555030E71BF4ACA9EC8D18571BF2CEAB40774EDC4",
+    "ssot_source": ".github/copilot-instructions.md",
+    "computed_date": "2025-12-25",
+    "sections_impacted": [
+      "Section 4.5.1.2 (QMR Protocol)"
+    ],
+    "fa4_certification": "PASSED",
+    "extraction_phase": "Phase 1 - Timeline E",
+    "validator": "THE-SAVANT (User)",
+    "validation_date": "2025-12-09",
+    "integration_deployment": "DEPLOY-001-20251225"
+  },
+  "integration_status": {
+    "file_id": "FILE-1952a3bb-4946-545c-82d3-811bbfc51095",
+    "registry_ref": "DUMPSTER_DIVE_REGISTRY.json",
+    "integration_ready": true,
+    "rollback_checkpoint": "PRE-DEPLOY-001"
+  },
   "$schema": "Timeline-Entangled Artifact Registry Extract - SSOT v1.0 Archive",
   "extraction_date": "2025-12-09",
   "forge_status": "✅ TEMPERED",
   "quality_rating": "⚗️⚗️⚗️⚗️⚗️ (5/5 - Architectural Gold)",
   "ore_source": "dumpster-dive/protocols/TEA_REGISTRY.json",
   "purpose": "Protocol definitions for Timeline-Entangled Artifacts (TEA) requiring quantum probability analysis before collapse",
-
   "version": "1.0.0",
   "created": "2025-12-09",
   "protocol_reference": "FORGE_PROTOCOL_LEVELS.md#level-3",
   "ssot_reference": "copilot-instructions.md Section 4.5.1.2",
-
   "tea_definition": {
     "criteria": [
       "Rating oscillates between 1-5 depending on perspective",
@@ -20,7 +37,6 @@
     ],
     "detection_trigger": "SFS cannot assign stable rating after 3 assessment attempts"
   },
-
   "registry": {
     "SSOT-MPW-WIP.ts": {
       "original_path": ".github/SSOT-MPW-WIP.ts",
@@ -62,9 +78,10 @@
       "recommended_timeline": "C",
       "rationale": "Best value/labor ratio; content already exists in SSOT, only lesson is valuable",
       "collapse_status": "pending",
-      "assigned_knights": ["SR-SCRS-B"]
+      "assigned_knights": [
+        "SR-SCRS-B"
+      ]
     },
-
     "mas-inventory.json": {
       "original_path": ".github/mas-inventory.json",
       "tea_status": true,
@@ -105,9 +122,10 @@
       "recommended_timeline": "C+D",
       "rationale": "Combine: extract valuable subset (C) AND use remainder as test fixture (D)",
       "collapse_status": "pending",
-      "assigned_knights": ["TNKW-RIAT"]
+      "assigned_knights": [
+        "TNKW-RIAT"
+      ]
     },
-
     "macro-prompt-world/": {
       "original_path": ".github/macro-prompt-world/",
       "tea_status": true,
@@ -148,12 +166,14 @@
       "recommended_timeline": "C+D",
       "rationale": "Phased extraction: prime-factions first (C), then grimoires (D), archive remainder",
       "collapse_status": "pending",
-      "assigned_knights": ["TNKW-RIAT", "SR-SCRS-B"],
+      "assigned_knights": [
+        "TNKW-RIAT",
+        "SR-SCRS-B"
+      ],
       "escalation_required": true,
       "escalation_target": "Triumvirate + CRC-GAR",
       "escalation_reason": "Defines Tier 2 entities and CRC documentation — requires architectural approval"
     },
-
     "copilot-un-un-instructions.md": {
       "original_path": ".github/copilot-un-un-instructions.md",
       "tea_status": true,
@@ -188,25 +208,23 @@
       "recommended_timeline": "A",
       "rationale": "Proper diff required to assess true value — cannot collapse without analysis",
       "collapse_status": "pending",
-      "assigned_knights": ["SR-SCRS-B"],
+      "assigned_knights": [
+        "SR-SCRS-B"
+      ],
       "pre_collapse_requirement": "Run: git diff --no-index --color=always .github/copilot-un-un-instructions.md .github/copilot-instructions.md (SSOT) and review unified diff output for unique protocol definitions before timeline selection. Use --unified=5 for context. Document findings in collapse_log."
     }
   },
-
   "collapse_log": [],
-
   "notes": {
     "quantum_metaphor": "TEA artifacts exist in superposition until SFS's forge hammer collapses their state",
     "knight_role": "TNKW-RIAT maps probability space; SFS performs actual collapse via forging",
     "bastard_role": "SR-SCRS-B embodies the uncertainty — his presence reminds us all assessments are probabilistic"
   },
-
   "ore_validation": {
     "structural_integrity": "✅ VALIDATED - Complete JSON structure with timeline probability mappings, knight assignments, escalation protocols",
     "functional_utility": "✅ VALIDATED - Provides TEA detection criteria, multi-timeline value/labor analysis, collapse decision framework with QMR protocol integration",
     "architectonic_soundness": "✅ VALIDATED - Reflects quantum probability methodology from SSOT Section 4.5.1.2, integrates with Knights Who Rode Into Another Timeline operational doctrine"
   },
-
   "forge_recommendation": {
     "status": "✅ APPROVED FOR INTEGRATION",
     "integration_target": "dumpster-dive/protocols/TEA_REGISTRY.json (maintain as active protocol)",

@@ -1,3 +1,22 @@
+---
+ssot_lineage:
+  ssot_hash: "C5864278B4A8BD04D427D78555030E71BF4ACA9EC8D18571BF2CEAB40774EDC4"
+  ssot_source: ".github/copilot-instructions.md"
+  computed_date: "2025-12-25"
+  sections_impacted:
+    - "Section IV (Triumvirate profiles)"
+  fa4_certification: "PASSED"
+  extraction_phase: "Phase 1 - Timeline E"
+  validator: "THE-SAVANT (User)"
+  validation_date: "2025-12-09"
+  integration_deployment: "DEPLOY-001-20251225"
+  
+integration_status:
+  file_id: "FILE-d81fcf4c-4d09-5c70-8ec5-05a011063233"
+  registry_ref: "DUMPSTER_DIVE_REGISTRY.json"
+  integration_ready: true
+  rollback_checkpoint: "PRE-DEPLOY-001"
+---
 # **Extended Glossary & Conceptual Schema (SSOT v1.0 Archive Extraction)**
 
 **Ore Source:** `copilot-un-un-instructions.md` (Timeline E)  

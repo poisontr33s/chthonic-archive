@@ -40,6 +40,18 @@ This is **ET-S (Eternal Sadhana)** applied to tooling.
 
 ## Usage
 
+### Setup (uv)
+
+From inside `mas_mcp/`:
+
+```bash
+uv sync
+
+# Optional extras
+uv sync --extra dev
+uv sync --extra gpu
+```
+
 ### As MCP Server
 
 Add to your MCP client configuration:
@@ -49,7 +61,7 @@ Add to your MCP client configuration:
   "mcpServers": {
     "mas-mcp": {
       "command": "uv",
-      "args": ["run", "--directory", "/path/to/chthonic-archive/mas_mcp", "python", "-m", "mas_mcp"]
+      "args": ["run", "--directory", "/path/to/chthonic-archive/mas_mcp", "python", "-m", "server"]
     }
   }
 }
@@ -59,7 +71,7 @@ Add to your MCP client configuration:
 
 ```bash
 cd mas_mcp
-uv run python -m mas_mcp
+uv run python -m server
 ```
 
 ## Pattern Categories

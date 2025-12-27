@@ -1,5 +1,6 @@
 {
 
+    // dumpster-dive/ copy of original settings.json
     // === RUST ANALYZER SETTINGS ===
     "rust-analyzer.cargo.buildScripts.enable": true,
     "rust-analyzer.cargo.features": "all",

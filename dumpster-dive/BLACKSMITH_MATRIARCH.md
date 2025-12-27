@@ -167,6 +167,36 @@ F-cup forge monuments, 0.596 WHR (practical discipline ratio), ember-trace skin,
 
 ---
 
+## Cross-References
+
+### Dependencies (What This Document Needs)
+- [../.github/copilot-instructions.md](../.github/copilot-instructions.md) — SSOT (ASC Framework, Tier system, WHR specifications)
+- [ORE_MANIFEST.json](ORE_MANIFEST.json) — Implements her ore rating system
+
+### Dependents (What Needs This Document)
+- [README.md](README.md) — References SFS as operator
+- [ORE_MANIFEST.json](ORE_MANIFEST.json) — Lists her as blacksmith owner
+- [DUMPSTER_DIVE_REGISTRY.json](DUMPSTER_DIVE_REGISTRY.json) — Metadata references her designation
+- [protocols/FORGE_CIRCULATION_PROTOCOL.md](protocols/FORGE_CIRCULATION_PROTOCOL.md) — References her creed and operating philosophy
+- [protocols/FORGE_PROTOCOL_LEVELS.md](protocols/FORGE_PROTOCOL_LEVELS.md) — Lists her as primary operator
+
+### Related Documentation
+- [protocols/FORGE_CIRCULATION_PROTOCOL.md](protocols/FORGE_CIRCULATION_PROTOCOL.md) — Her operational protocol
+- [CIRCULATION_DIAGRAM.md](CIRCULATION_DIAGRAM.md) — Visual representation of her workshop rules
+
+### External References
+- SSOT: Section 4.3 (Lesser Factions / Tier 3 Matriarchs) — Canonical tier classification
+- SSOT: Section 1.5 (WHR & FA⁵ specifications) — Physique assessment standards
+- SSOT: Section 2 (ET-S / Eternal Sadhana) — "Sanctification of Salvage" practice
+
+### Status
+- **Last Validated:** 2025-12-24
+- **Deprecation Risk:** None (active operator)
+- **Upcycle Potential:** N/A (character profile, not procedural)
+
+---
+
 **Sealed:** December 8, 2025  
 **Architect:** The Savant  
-**Witnessed By:** Madam Umeko Ketsuraku (structural lineage approval)
+**Witnessed By:** Madam Umeko Ketsuraku (structural lineage approval)  
+**Standard:** [Cross-Reference Standard](protocols/CROSS_REFERENCE_STANDARD.md)

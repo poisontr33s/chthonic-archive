@@ -1,3 +1,22 @@
+---
+ssot_lineage:
+  ssot_hash: "C5864278B4A8BD04D427D78555030E71BF4ACA9EC8D18571BF2CEAB40774EDC4"
+  ssot_source: ".github/copilot-instructions.md"
+  computed_date: "2025-12-25"
+  sections_impacted:
+    - "Section 4.4 (Prime Factions)"
+  fa4_certification: "PASSED"
+  extraction_phase: "Phase 1 - Timeline E"
+  validator: "THE-SAVANT (User)"
+  validation_date: "2025-12-09"
+  integration_deployment: "DEPLOY-001-20251225"
+  
+integration_status:
+  file_id: "FILE-a337eeac-5726-539e-9295-e15dd3a786f8"
+  registry_ref: "DUMPSTER_DIVE_REGISTRY.json"
+  integration_ready: true
+  rollback_checkpoint: "PRE-DEPLOY-001"
+---
 # Prime Faction Operational Signatures v1.0
 
 **Document Type:** Character Operational Signatures (COS)  

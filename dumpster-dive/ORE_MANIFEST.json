@@ -295,5 +295,62 @@
     "✅ CROSS_TIER_MATRIX.md → docs/protocols/CROSS_TIER_MATRIX.md",
     "✅ TEA_EXAMPLES.md → docs/protocols/TEA_EXAMPLES.md",
     "✅ The_Chthonic_Archive_World.md → docs/architecture/CHTHONIC_ARCHIVE_WORLD_TPEF.md"
-  ]
+  ],
+  
+  "cross_references": {
+    "dependencies": [
+      {
+        "file": "BLACKSMITH_MATRIARCH.md",
+        "reason": "Defines SFS operator managing this inventory"
+      },
+      {
+        "file": "protocols/FORGE_PROTOCOL_LEVELS.md",
+        "reason": "Defines rating system interpretation (1-5 scale)"
+      },
+      {
+        "file": "protocols/FORGE_CIRCULATION_PROTOCOL.md",
+        "reason": "Defines how rated files move through states"
+      }
+    ],
+    "dependents": [
+      {
+        "file": "README.md",
+        "usage": "References ore quality rating system and file counts"
+      },
+      {
+        "file": "DUMPSTER_DIVE_REGISTRY.json",
+        "usage": "Cross-references inventory data and processing status"
+      },
+      {
+        "file": "forge/tempered/ORE_MANIFEST_v1.0.json",
+        "usage": "Versioned snapshot for SSOT integration"
+      },
+      {
+        "file": "protocols/FORGE_CIRCULATION_PROTOCOL.md",
+        "usage": "References rating system for state routing"
+      }
+    ],
+    "related": [
+      {
+        "file": "DUMPSTER_DIVE_REGISTRY.json",
+        "relationship": "REGISTRY tracks entire infrastructure; MANIFEST tracks raw ore inventory only"
+      },
+      {
+        "file": "protocols/TEA_REGISTRY.json",
+        "relationship": "TEA_REGISTRY tracks superposition artifacts; MANIFEST tracks all 96 files"
+      }
+    ],
+    "external": [
+      {
+        "location": "No direct SSOT mapping",
+        "relationship": "Internal infrastructure only"
+      }
+    ],
+    "validation": {
+      "last_checked": "2025-12-24",
+      "deprecation_risk": "low",
+      "upcycle_potential": "If deprecated, merge into REGISTRY as 'raw_ore_inventory' section"
+    }
+  }
 }
+

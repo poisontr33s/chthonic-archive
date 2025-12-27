@@ -1,16 +1,33 @@
 {
+  "ssot_lineage": {
+    "ssot_hash": "C5864278B4A8BD04D427D78555030E71BF4ACA9EC8D18571BF2CEAB40774EDC4",
+    "ssot_source": ".github/copilot-instructions.md",
+    "computed_date": "2025-12-25",
+    "sections_impacted": [
+      "TBD"
+    ],
+    "fa4_certification": "PASSED",
+    "extraction_phase": "Phase 1 - Timeline E",
+    "validator": "THE-SAVANT (User)",
+    "validation_date": "2025-12-09",
+    "integration_deployment": "DEPLOY-001-20251225"
+  },
+  "integration_status": {
+    "file_id": "FILE-2cb3bc2c-3ad5-5e6e-9b81-ceea8bf7bc3b",
+    "registry_ref": "DUMPSTER_DIVE_REGISTRY.json",
+    "integration_ready": true,
+    "rollback_checkpoint": "PRE-DEPLOY-001"
+  },
   "$schema": "Ore Manifest Extract - SSOT v1.0 Archive",
   "extraction_date": "2025-12-09",
   "forge_status": "✅ TEMPERED",
   "quality_rating": "⚗️⚗️⚗️⚗️⚗️ (5/5 - Architectural Gold)",
   "ore_source": "dumpster-dive/ORE_MANIFEST.json",
   "purpose": "Comprehensive inventory of Timeline E ore deposits with Sister Ferrum Scoriae's operational metadata",
-
   "manifest_version": "1.1.0",
   "created": "2025-12-08",
   "last_updated": "2025-12-08",
   "philosophy": "Raw ore waiting for the forge, not garbage",
-
   "blacksmith": {
     "name": "Sister Ferrum Scoriae",
     "designation": "SFS",
@@ -21,13 +38,11 @@
     "creed": "Nothing is garbage. Everything is ore.",
     "profile": "BLACKSMITH_MATRIARCH.md"
   },
-
   "current_state": {
     "total_files": 96,
     "total_size_mb": 4.58,
     "location": "dumpster-dive/from-github/"
   },
-
   "rating_scale": {
     "5": "⚗️ High-grade ore - Extract immediately",
     "4": "🔧 Workable ore - Minor processing needed",
@@ -35,7 +50,6 @@
     "2": "🪨 Low-grade ore - Archive for reference",
     "1": "💀 Tailings - Historical preservation only"
   },
-
   "high_grade_inventory": {
     "note": "Rating 4-5 ore deposits requiring extraction",
     "asc.py": {
@@ -80,37 +94,57 @@
           "rating": 5,
           "files": 7,
           "description": "Complete TP-FNS profiles (TMO 411 lines, TTG, TDPC, Triumvirate Core)",
-          "extractable": ["Full faction profiles for all Prime Factions", "District architecture specs", "Matriarch combat profiles"]
+          "extractable": [
+            "Full faction profiles for all Prime Factions",
+            "District architecture specs",
+            "Matriarch combat profiles"
+          ]
         },
         "sub-milfs/": {
           "rating": 4,
           "files": 1,
           "description": "Spectra Chroma Excavatus - procedurally manifested Tier 3",
-          "extractable": ["MMPS manifestation example", "Chromatic archaeology subspecialization"]
+          "extractable": [
+            "MMPS manifestation example",
+            "Chromatic archaeology subspecialization"
+          ]
         },
         "heritage/": {
           "rating": 4,
           "files": 1,
           "description": "Caribbean Elder Lineage Integration (Claudine's ancestry)",
-          "extractable": ["Lineage protocol patterns", "Tetrahedral resonance integration"]
+          "extractable": [
+            "Lineage protocol patterns",
+            "Tetrahedral resonance integration"
+          ]
         },
         "disparate-md-documentation/": {
           "rating": 4,
           "files": 24,
           "description": "FA Census, Body System Architecture, Recovery protocols",
-          "extractable": ["Complete FA¹⁻⁵ census methodology", "Body System tier mapping", "Recovery protocols"]
+          "extractable": [
+            "Complete FA¹⁻⁵ census methodology",
+            "Body System tier mapping",
+            "Recovery protocols"
+          ]
         },
         "Tripartite_Grimoire_Master_Index.md": {
           "rating": 5,
           "lines": 443,
           "description": "Master index of all three CRC grimoires with cross-references",
-          "extractable": ["Grimoire navigation system", "CRC specialization mapping"]
+          "extractable": [
+            "Grimoire navigation system",
+            "CRC specialization mapping"
+          ]
         },
         "individual_grimoires": {
           "rating": 5,
           "files": 3,
           "description": "Orackla (672 lines), Lysandra (~1450 lines), Umeko grimoires",
-          "extractable": ["Complete psychological/operational profiles", "ET-S definitions per matriarch"]
+          "extractable": [
+            "Complete psychological/operational profiles",
+            "ET-S definitions per matriarch"
+          ]
         }
       },
       "action": "PRIORITY EXTRACTION - Integrate faction profiles into SSOT Section 4.4, grimoires into CRC documentation",
@@ -145,7 +179,6 @@
       "status": "pending"
     }
   },
-
   "extraction_log": [
     {
       "date": "2025-12-09",
@@ -197,7 +230,6 @@
       "note": "⚗️⚗️⚗️ EXCEPTIONAL! 698KB, 30K words, complete TPEF demonstration"
     }
   ],
-
   "tea_collapse_log": [
     {
       "date": "2025-12-09",
@@ -216,20 +248,17 @@
       "report": "protocols/TEA_COLLAPSE_REPORT_CHTHONIC_WORLD.md"
     }
   ],
-
   "high_priority_queue": [
     "macro-prompt-world/prime-factions/*.md → SSOT Section 4.4 integration (CTF-001 pending)",
     "macro-prompt-world/Tripartite_Grimoire_Master_Index.md → Appendix F candidate (CTF-002 pending)",
     "asc.py → mas_mcp/lib/asc_toolchain.py (CTF-003 pending)",
     "The_Chthonic_Archive_World.md → SSOT Appendix K candidate (CTF-007 proposed)"
   ],
-
   "ore_validation": {
     "structural_integrity": "✅ VALIDATED - Complete JSON structure with nested hierarchy, extraction logs, priority queues",
     "functional_utility": "✅ VALIDATED - Provides comprehensive ore tracking, rating system, extraction status, SFS operational context",
     "architectonic_soundness": "✅ VALIDATED - Reflects Forge Protocol Levels (FPL), TEA collapse methodology, priority-based extraction queue"
   },
-
   "forge_recommendation": {
     "status": "✅ APPROVED FOR INTEGRATION",
     "integration_target": "mas_mcp/data/ore_manifest.json (operational tracking)",

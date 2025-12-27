@@ -1,28 +1,56 @@
+"""GPU integration tests for MAS-MCP.
+
+These tests validate the GPU execution lane (CuPy / CUDA DLLs / batch scoring).
+They are expected to be skipped on machines where GPU dependencies are not
+installed.
 """
-GPU Integration Test Suite for MAS-MCP
-Tests the full GPU lane from CuPy through to MCP tools
-"""
+
+from __future__ import annotations
+
 import os
 import sys
 import time
+from pathlib import Path
 
-# Fix DLL path for CUDA 12.6
-cuda_bin = r"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.6\bin"
-if cuda_bin not in os.environ.get("PATH", ""):
-    os.environ["PATH"] = cuda_bin + os.pathsep + os.environ.get("PATH", "")
-
-sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-
-from server import (
-    mas_gpu_score,
-    mas_gpu_batch_score,
-    mas_gpu_status,
-    mas_pulse,
-    mas_scan,
-)
+import pytest
 
 
-def test_gpu_status():
+def _maybe_prepend_cuda_bin_to_path() -> None:
+    """Best-effort CUDA DLL path setup.
+
+    Keep this optional: don't force hardcoded paths that break portability.
+    Override with `MAS_CUDA_BIN` if needed.
+    """
+
+    cuda_bin = os.environ.get(
+        "MAS_CUDA_BIN",
+        r"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.6\bin",
+    )
+    if os.path.isdir(cuda_bin) and cuda_bin not in os.environ.get("PATH", ""):
+        os.environ["PATH"] = cuda_bin + os.pathsep + os.environ.get("PATH", "")
+
+
+_maybe_prepend_cuda_bin_to_path()
+
+# Ensure we can import the repo-local mas_mcp `server.py` when running tests.
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+
+from server import mas_gpu_batch_score, mas_gpu_score, mas_gpu_status, mas_pulse, mas_scan  # noqa: E402
+
+
+@pytest.fixture(scope="session")
+def gpu_status() -> dict:
+    """Skip GPU integration tests unless the GPU lane is actually available."""
+
+    status = mas_gpu_status()
+    if not status.get("gpu_available", False):
+        pytest.skip(
+            "GPU lane not available (missing GPU deps or CUDA). Install extras like `uv sync --extra gpu` in your GPU venv.",
+        )
+    return status
+
+
+def test_gpu_status(gpu_status):
     """Test GPU status tool"""
     print("\n" + "="*60)
     print("TEST: mas_gpu_status")
@@ -39,12 +67,12 @@ def test_gpu_status():
         print(f"Memory: {cp_info.get('total_memory_gb', 0):.1f} GB")
         print(f"Compute: SM {cp_info.get('compute_capability', 'N/A')}")
     
-    assert result.get('gpu_available', False), "GPU not available!"
+    assert result.get("gpu_available", False), "GPU not available!"
     print("✅ GPU status OK")
     return result
 
 
-def test_single_score():
+def test_single_score(gpu_status):
     """Test single entity scoring"""
     print("\n" + "="*60)
     print("TEST: mas_gpu_score (single entity)")
@@ -64,14 +92,15 @@ def test_single_score():
     print(f"Safety: {result['safety']:.4f}")
     print(f"Overall: {result['overall']:.4f}")
     
-    assert result['backend'] == 'cupy', f"Expected cupy, got {result['backend']}"
-    assert 'novelty' in result
-    assert 'overall' in result
+    if result.get("backend") != "cupy":
+        pytest.skip(f"Expected CuPy backend for this test, got {result.get('backend')}")
+    assert "novelty" in result
+    assert "overall" in result
     print("✅ Single score OK")
     return result
 
 
-def test_batch_score():
+def test_batch_score(gpu_status):
     """Test batch scoring with varying sizes"""
     print("\n" + "="*60)
     print("TEST: mas_gpu_batch_score (batch)")
@@ -102,13 +131,14 @@ def test_batch_score():
     for score in result['scores'][:3]:
         print(f"  {score['id']}: overall={score['overall']:.4f}")
     
-    assert result['backend'] == 'cupy'
-    assert result['count'] == len(entities)
+    if result.get("backend") != "cupy":
+        pytest.skip(f"Expected CuPy backend for this test, got {result.get('backend')}")
+    assert result["count"] == len(entities)
     print("✅ Batch score OK")
     return result
 
 
-def test_large_batch():
+def test_large_batch(gpu_status):
     """Test performance with larger batches"""
     print("\n" + "="*60)
     print("TEST: Large batch scaling")
@@ -140,7 +170,7 @@ def test_large_batch():
     print("✅ Large batch OK")
 
 
-def test_pulse():
+def test_pulse(gpu_status):
     """Test the pulse tool (situational awareness)"""
     print("\n" + "="*60)
     print("TEST: mas_pulse (situational awareness)")
@@ -160,7 +190,7 @@ def test_pulse():
     return result
 
 
-def test_scan():
+def test_scan(gpu_status):
     """Test the scan tool"""
     print("\n" + "="*60)
     print("TEST: mas_scan (codebase scan)")

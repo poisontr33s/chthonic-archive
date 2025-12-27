@@ -6,6 +6,7 @@
     // ╚══════════════════════════════════════════════════════════════════╝
 
     // === RUST-ANALYZER CONFIGURATION ===
+    // Note: 'clippy' with 'clippy::pedantic' is enabled for strict CI-level checks; consider switching to 'check' for day-to-day development if this is too noisy.
     "rust-analyzer.cargo.features": "all",
     "rust-analyzer.checkOnSave.command": "clippy",
     "rust-analyzer.checkOnSave.extraArgs": [
@@ -35,7 +36,8 @@
     },
 
     // === EDITOR SETTINGS ===
-    "editor.formatOnSave": true,
+    // Formatting policy: prefer per-language formatters. Set global to false to avoid unexpected formatters running on save.
+    "editor.formatOnSave": false,
     "editor.rulers": [100, 120],
     "editor.tabSize": 4,
     "editor.insertSpaces": true,
@@ -63,14 +65,35 @@
     },
 
     // === TERMINAL ===
-    "terminal.integrated.defaultProfile.windows": "PowerShell",
+    // Crude mode: no profiles, no aliases, no wrapper functions, no activation scripts.
+    // Terminals start with `-NoProfile` and get a deterministic PATH prefix via terminal.integrated.env.windows.
+    "terminal.integrated.profiles.windows": {
+        "Pwsh (Chthonic)": {
+            "path": "C:\\Program Files\\PowerShell\\7\\pwsh.exe",
+            "args": [
+                "-NoProfile",
+                "-NoExit"
+            ]
+        },
+        "PowerShell (Chthonic)": {
+            "source": "PowerShell",
+            "args": [
+                "-NoProfile",
+                "-NoExit"
+            ]
+        }
+    },
+    "terminal.integrated.defaultProfile.windows": "Pwsh (Chthonic)",
     "terminal.integrated.env.windows": {
+        "PATH": "C:\\Windows\\System32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0;C:\\Program Files\\PowerShell\\7;${env:USERPROFILE}\\.local\\bin;${env:USERPROFILE}\\.bun\\bin;${env:USERPROFILE}\\.cargo\\bin;${workspaceFolder}\\scripts\\bin;C:\\Go\\bin;C:\\Ruby34-x64\\bin;C:\\Ruby34-x64\\msys64\\ucrt64\\bin;C:\\Program Files\\Git\\cmd;C:\\Program Files\\Git\\bin;C:\\Program Files\\Git\\usr\\bin",
         "RUST_BACKTRACE": "1",
         "RUST_LOG": "info,chthonic_archive=debug"
     },
 
-    // === PYTHON (uv 3.14 - use python3.14 or py command) ===
-    "python.defaultInterpreterPath": "${env:USERPROFILE}\\.local\\bin\\python3.14.exe",
+    // === PYTHON (uv lanes policy) ===
+    // Policy: latest stable lanes. Repo pins to `3.13` via `.python-version`; uv shims track latest patch within the lane.
+    // Maintenance: `uv python upgrade 3.13 --reinstall`, `uv python upgrade 3.14 --reinstall`, then `uv python update-shell`.
+    "python.defaultInterpreterPath": "${env:USERPROFILE}\\.local\\bin\\python3.13.exe",
     "python.terminal.activateEnvironment": false,
 
     // === DEBUG ===
@@ -80,7 +103,6 @@
 
     // === FORMATTING ===
     "[rust]": {
-        "editor.defaultFormatter": "GitHub.copilot-chat",
         "editor.formatOnSave": true
     },
     "[glsl]": {
@@ -88,7 +110,7 @@
         "editor.formatOnSave": false
     },
     "[toml]": {
-        "editor.defaultFormatter": "GitHub.copilot-chat"
+        "editor.formatOnSave": false
     },
     "[markdown]": {
         "editor.wordWrap": "on",
@@ -116,8 +138,46 @@
     "markdown.preview.fontFamily": "-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif",
     "markdown.validate.enabled": true,
     "markdown.editor.pasteUrlAsFormattedLink.enabled": "smart",
-    "editor.defaultFormatter": "GitHub.copilot-chat",
+    "chat.mcp.autostart": "newAndOutdated",
+    "editor.maxTokenizationLineLength": 20000,
+
+    // === COPILOT (Pro/Plus friendly defaults) ===
+    "github.copilot.enable": {
+        "*": true
+    },
+    "github.copilot.inlineSuggest.enable": true,
+    "github.copilot-chat.enable": true,
+    "chat.mcp.serverSampling": {
+        "chthonic-archive/.vscode/mcp.json: github": {
+            "allowedModels": [
+                "copilot/gpt-5-mini",
+                "copilot/auto",
+                "copilot/claude-haiku-4.5",
+                "copilot/claude-opus-41",
+                "copilot/claude-opus-4.5",
+                "copilot/claude-sonnet-4",
+                "copilot/claude-sonnet-4.5",
+                "gemini/models/gemini-2.5-flash",
+                "gemini/models/gemini-2.5-pro",
+                "copilot/gemini-2.5-pro",
+                "copilot/gemini-3-flash-preview",
+                "copilot/gemini-3-pro-preview",
+                "copilot/gpt-4.1",
+                "copilot/gpt-4o",
+                "copilot/gpt-4o-mini",
+                "copilot/gpt-5",
+                "copilot/gpt-5-codex",
+                "copilot/gpt-5.1",
+                "copilot/gpt-5.1-codex",
+                "copilot/gpt-5.1-codex-max",
+                "copilot/gpt-5.1-codex-mini",
+                "copilot/gpt-5.2",
+                "copilot/grok-code-fast-1",
+                "copilot/oswe-vscode-prime"
+            ]
+        }
+    },
 
     // === COPILOT CONTEXT ===
-    // Instructions loaded from .github/copilot-instructions.md automatically
+    // Canonical instructions live in `.github/instructions/*.instructions.md` (which points to SSOT + YOLIC).
 }

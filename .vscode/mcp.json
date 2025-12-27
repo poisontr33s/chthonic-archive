@@ -17,14 +17,19 @@
       "args": ["x", "-y", "@playwright/mcp@latest"],
       "cwd": "C:\\Users\\erdno\\PsychoNoir-Kontrapunkt"
     },
-
-    // Sentry Error Tracking (HTTP)
-    "sentry": {
-      "type": "http",
-      "url": "https://mcp.sentry.dev",
-      "headers": {
-        "Authorization": "Bearer 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"
-      }
+    // Sentry Local Proxy
+    "sentry-local-proxy": {
+      "type": "Sentry + SSOT MCP Proxy (local)",
+      "command": "bun",
+      "args": ["run", "${workspaceFolder}/scripts/mcp-sentry-proxy.ts"],
+      "env": {
+        "SENTRY_AUTH_TOKEN": "<YOUR_SENTRY_API_TOKEN>",
+        "SENTRY_ORG_SLUG": "<YOUR_SENTRY_ORG_SLUG>",
+        "SENTRY_PROJECT_SLUG": "<YOUR_SENTRY_PROJECT_SLUG>",
+        "SSOT_PATH": "${workspaceFolder}/docs/ssot.txt",
+        "PORT": "0"
+      },
+      "description": "Local MCP proxy that reads Sentry (via API token) and your SSOT file; communicates via stdio."
     },
 
     // Bun Documentation (HTTP)
@@ -33,12 +38,10 @@
       "type": "http"
     },
 
-    // Microsoft Documentation Server (via bun x)
+    // Microsoft Learn MCP Server (official)
     "microsoft-docs": {
-      "type": "stdio",
-      "command": "C:\\Users\\erdno\\.bun\\bin\\bun.exe",
-      "args": ["x", "-y", "@anthropic/mcp-server-microsoft-docs"],
-      "cwd": "C:\\Users\\erdno\\chthonic-archive"
+      "type": "http",
+      "url": "https://learn.microsoft.com/api/mcp"
     },
 
     // Filesystem Server (via bun x)
@@ -49,8 +52,16 @@
         "x",
         "-y",
         "@modelcontextprotocol/server-filesystem",
-        "C:\\Users\\erdno\\PsychoNoir-Kontrapunkt"
+        "C:\\Users\\erdno\\chthonic-archive"
       ],
+      "cwd": "C:\\Users\\erdno\\chthonic-archive"
+    },
+
+    // Repo-local Artisan tools (stdio)
+    "artisan": {
+      "type": "stdio",
+      "command": "C:\\Users\\erdno\\.bun\\bin\\bun.exe",
+      "args": ["C:\\Users\\erdno\\chthonic-archive\\scripts\\mcp_artisan_server.ts"],
       "cwd": "C:\\Users\\erdno\\chthonic-archive"
     }
   }
