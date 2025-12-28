@@ -42,7 +42,7 @@ These instructions apply to **all work in this repository**.
 |---|---|
 | Terminal boot | Start PowerShell with `-NoProfile` and use VS Code `terminal.integrated.env.windows` for deterministic PATH-only lane wiring (no dot-sourcing, no banners, no activation scripts). |
 | Python lanes | `python` is the uv-managed 3.13 lane; `python314` is the uv-managed 3.14 lane. |
-| claudine | `claudine` must resolve repo-locally and be deterministic. |
+| claudine | `claudine`-FIXED! |
 
 </details>
 

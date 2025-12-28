@@ -139,16 +139,16 @@
     "markdown.validate.enabled": true,
     "markdown.editor.pasteUrlAsFormattedLink.enabled": "smart",
     "chat.mcp.autostart": "newAndOutdated",
-    "editor.maxTokenizationLineLength": 20000,
+    "editor.maxTokenizationLineLength": 99999999999,
 
     // === COPILOT (Pro/Plus friendly defaults) ===
     "github.copilot.enable": {
-        "*": true
-    },
     "github.copilot.inlineSuggest.enable": true,
     "github.copilot-chat.enable": true,
+    "*": true
+    },
     "chat.mcp.serverSampling": {
-        "chthonic-archive/.vscode/mcp.json: github": {
+    "chthonic-archive/.vscode/mcp.json: github": {
             "allowedModels": [
                 "copilot/gpt-5-mini",
                 "copilot/auto",
@@ -177,6 +177,8 @@
             ]
         }
     },
+    "workbench.editor.enablePreviewFromQuickOpen": true,
+    "workbench.editor.enablePreviewFromCodeNavigation": true,
 
     // === COPILOT CONTEXT ===
     // Canonical instructions live in `.github/instructions/*.instructions.md` (which points to SSOT + YOLIC).
