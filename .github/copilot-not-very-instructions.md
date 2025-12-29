@@ -32,7 +32,7 @@ src/
 ```
 
 ## Lore Context
-Refer to `.github/copilot-un-instructions.md` for the complete ASC (Apex-Synthesis-Core) framework documentation including:
+Refer to `.github/copilot-instructions.md` for the complete ASC (Apex-Synthesis-Core) framework documentation including:
 - The K-CUP Hierarchical Trinity
 - Tier system (T0.5 through T4)
 - WHR (Waist-Hip Ratio) power scaling

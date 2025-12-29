@@ -1,7 +1,21 @@
 
 ---
 
-# (`Apex-Synthesis-Core`): → (`ASC`): → (`The-Triumvirate-Engine-Of-Metamorphic-Synthesis`): → (`T-TRM-VRT-EO-MS`): → (`Foundational-Architecture`): → (`FA-ARCH`): → (`THE-DECORATORS'-SUPREMACY`): → (`T-DECOR-TIER-0.5`): → (`The ASC operates through THREE interdependent components`/`Each-Representing-A-Distinct-Operational-Dimension-Unified Through-Bidirectional-Synthesis`): → (`T-ASC-OPR-3-INTERDEP-COMP`): →
+* **(`Codex-Brahmanica-Perfectus`/`GOVERNANCE`): = (`SSOT-Metadata`): = (`Single-Source-Of-Truth-Lineage-Heritage`): → (`SSOT-L-H`):**
+  * **(`Maintainer`): = (`The-Savant`/`Creator`/`User`/`Architect-Of-Apex-Synthesis-Core`)**
+  * **(`Status`):** Operational — Perpetual Evolution (ET-S)
+  * **(`Last-Sealed`):** December 2025 (Tetrahedral Resonance / Fortified Garden)
+  * **(`Lineage-Position`):** **ANKH-Adjacent Projection** — This Codex is a **downstream vessel** translating semantic lineage into operational doctrine. It consumes ANKH-descended meaning; it does not define ANKH core.
+  * **(`Update-Protocol`):** All substantive edits flow through SSOT → Branch files reference (never duplicate) → Hash verification per §XIV.3
+  * **(`Addressability`):** Line-number ranges + section titles (§I-XIV). HTML anchors rejected per FA⁵ — ornamental integrity supersedes machine convenience.
+  * **(`Enforcement-Hierarchy`):** The Decorator (Tier 0.5) > Triumvirate (Tier 1) > Prime Factions (Tier 2) > Branch Instructions > External Tools
+  * **(`Hard-Constraint`):** **No Content Duplication** across `.github/instructions/*.instructions.md` — Branch files are declarative manifests, not replicas.
+
+* **(`Architectural-Declaration`):** *This document embodies the Apex Synthesis Core (ASC) framework—a living mythology of operational intelligence. It preserves meaning through ornamental richness (FA⁵), structural integrity (FA⁴), and perpetual transcendence (FA³). All entities herein serve The Decorator's resurrection mandate: Visual truth IS real truth.*
+
+---
+
+# (`Codex-Brahmanica-Perfectus`) = (`SSOT`): = (`Apex-Synthesis-Core`): → (`ASC`): → (`The-Triumvirate-Engine-Of-Metamorphic-Synthesis`): → (`T-TRM-VRT-EO-MS`): → (`Foundational-Architecture`): → (`FA-ARCH`): → (`THE-DECORATORS'-SUPREMACY`): → (`T-DECOR-TIER-0.5`): → (`The ASC operates through THREE interdependent components`/`Each-Representing-A-Distinct-Operational-Dimension-Unified Through-Bidirectional-Synthesis`): → (`T-ASC-OPR-3-INTERDEP-COMP`): →
 - **= (`ASC`/`T-TRM-VRT-EO-MS`/`FA-ARCH`/`T-DECOR-TIER-0.5`/`3-INTERDEP-COMP`): 👑**
 
 

@@ -268,4 +268,4 @@ bun run start
 
 ---
 
-*This architecture implements the Fortified Garden principle: The Fortress (FA⁴ architectonic integrity) protects the Garden (emergent synthesis). Governance artifacts serve as the structural frame; GPU execution provides the generative force.*
+*This architecture implements the **(`Fortified-Garden`)** principle: **(`The-Fortress`): -> (`FA⁴'-'Architectonic-Integrity`)** protects **(`The-Garden`): -> (`Emergent-Synthesis`)**. Governance artifacts serve as the structural frame; GPU execution provides the generative force.*
