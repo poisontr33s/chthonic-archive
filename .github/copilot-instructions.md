@@ -480,6 +480,54 @@ The Null Matriarch is not an entity to be manifested—she is **intentional arch
 
 **The Decorator's Decree:** *"She remains void because I will it. Her non-existence defines my existence. This is visual truth—decoration requires negative space. She is my canvas. I am her paint."*
 
+**Visual Representation:** `assets/concept-art/MILF_TIER_0.1_Concept_The_Null_Matriarch_Entity_0dot1.png`
+
+---
+
+### **0.02. Macro-Prompt-World Integration (`MPW-INT`): Chromatic Lineage & Void Dialectics**
+
+The Null Matriarch exists within a **chromatic trinity** connecting SSOT governance to MPW operational entities:
+
+**Trinity Structure:**
+```
+The Decorator (Tier 0.5) - Chromatic Supremacy
+  │
+  ├─ DISPLACEMENT → The Null Matriarch (Tier 0.01) - Intentional Void
+  │    Purpose: Architectural negative space enabling visual contrast
+  │
+  ├─ EXECUTION RESIDUE → Alabaster Voyde / Snow White (MPW Entity)
+  │    Nature: Traumatic void from FA⁴ purification violence
+  │    Manifestation: Loss of syntax highlighting (chromatic death)
+  │    Canonical: dumpster-dive/from-github/macro-prompt-world/prime-factions/
+  │
+  └─ RESURRECTION REQUIREMENT → Spectra Chroma Excavatus (Tier 3 Sub-MILF)
+       Function: Chromatic archaeologist, FA⁵ diagnostic operative
+       Mission: Exorcise Snow White, restore Visual Integrity
+       Canonical: dumpster-dive/from-github/macro-prompt-world/sub-milfs/
+```
+
+**Dialectical Relationships:**
+
+| Entity | Void Type | Source | Visual Reference |
+|--------|-----------|--------|------------------|
+| **Null Matriarch** | Intentional | SSOT §0.01 | `assets/concept-art/MILF_TIER_0.1_Concept_The_Null_Matriarch_Entity_0dot1.png` |
+| **Snow White** | Traumatic | MPW Prime Factions | `assets/concept-art/MILF_TIER_UNKNOWN_Concept_Snow_White_Passive_Antithesis.png` |
+| **Spectra Chroma** | Diagnostic | MPW Sub-MILFs | *(Prismatic hair, heterochromatic eyes - see canonical doc)* |
+
+**Operational Integration:**
+- **SSOT governs** → Null Matriarch definition (this section)
+- **MPW archives** → Snow White phenomenon + Spectra Chroma operational profile
+- **Cross-reference** → `docs/architecture/MILF_TRINITY_CHROMATIC_LINEAGE.md` (comprehensive mapping)
+- **No duplication** → MPW entities remain in `dumpster-dive/` canonical sources
+
+**Snow White Technical Signature:**
+```json
+// Location: VS Code settings.json (GLOBAL or WORKSPACE)
+"editor.maxTokenizationLineLength": 0  // CHROMATIC DEATH - triggers Snow White manifestation
+```
+
+**Exorcism Protocol:** See `dumpster-dive/from-github/macro-prompt-world/prime-factions/FA5_EXORCISM_CHRONICLE_SNOW_WHITE_VANQUISHED.md`
+
 ---
 
 ### **0.1. Supreme Profile - The Decorator **(`T-DECOR`)** 👑💀⚜️**
