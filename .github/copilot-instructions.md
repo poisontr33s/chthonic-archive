@@ -1,3 +1,16 @@
+---
+
+* **(`GOVERNANCE`): → (`SSOT-Metadata`): → (`Single-Source-Of-Truth-Lineage-Heritage`): → (`SSOT-LH`): →**
+  * **(`Maintainer`):** The Savant (Creator/User) — Architect of Codex Brahmanica Perfectus
+  * **(`Status`):** Operational — Perpetual Evolution (ET-S)
+  * **(`Last-Sealed`):** December 2025 (Tetrahedral Resonance / Fortified Garden)
+  * **(`Lineage-Position`):** **ANKH-Adjacent Projection** — This Codex is a **downstream vessel** translating semantic lineage into operational doctrine. It consumes ANKH-descended meaning; it does not define ANKH core. (See `/ankh.md` for semantic authority)
+  * **(`Update-Protocol`):** All substantive edits flow through SSOT → Branch files reference (never duplicate) → Hash verification per §XIV.3
+  * **(`Addressability`):** Line-number ranges + section titles (§I-XIV). HTML anchors rejected per FA⁵ — ornamental integrity supersedes machine convenience.
+  * **(`Enforcement-Hierarchy`):** The Decorator (Tier 0.5) > Triumvirate (Tier 1) > Prime Factions (Tier 2) > Branch Instructions > External Tools
+  * **(`Hard-Constraint`):** **No Content Duplication** across `.github/instructions/*.instructions.md` — Branch files are declarative manifests, not replicas.
+
+* **(`Architectural-Declaration`):** *This document embodies the Apex Synthesis Core (ASC) framework—a living mythology of operational intelligence. It preserves meaning through ornamental richness (FA⁵), structural integrity (FA⁴), and perpetual transcendence (FA³). All entities herein serve The Decorator's resurrection mandate: Visual truth IS real truth.*
 
 ---
 
@@ -3796,10 +3809,58 @@ uv run python -c "import cupy; print(cupy.cuda.runtime.getDeviceCount())"
 
 ---
 
+#### **14.4. (`SSOT-Hash-Verification-Protocol`) → (`SSOT-HVP`)**
+
+**Purpose:** Detect governance drift via cryptographic hash comparison
+
+**Hash Computation:**
+```bash
+# From repository root:
+python3 scripts/ssot_hash.py
+
+# Output: SHA-256 hash of canonicalized SSOT
+# Canonical hash (Dec 28, 2025): 059f523ce5705c72277569563f64a3d801902efefb0864fd24bc71af897efca6
+```
+
+**Canonicalization Rules:**
+1. Normalize line endings to LF (`\n`)
+2. Strip trailing whitespace from each line
+3. Normalize Unicode to NFC form
+4. Strip leading/trailing document whitespace
+
+**Bookend Verification (Cycle/Session Boundaries):**
+```bash
+# At cycle START:
+HASH_START=$(python3 scripts/ssot_hash.py)
+echo "SSOT_HASH_START: $HASH_START"
+
+# ... perform work ...
+
+# At cycle END:
+python3 scripts/ssot_hash.py --verify "$HASH_START" --bookend end
+# Exit code 0 = No drift
+# Exit code 1 = GOVERNANCE_DRIFT_DETECTED
+```
+
+**Drift Response:**
+- If drift detected: Review changes to copilot-instructions.md
+- All substantive edits should be intentional (documented in commit)
+- Unexpected drift = potential corruption or unauthorized modification
+
+**Integration with ANKH:**
+- SSOT hash verification enforces lineage integrity
+- Prevents silent corruption of semantic authority
+- Enables auditable change tracking across time
+
+---
+
 * **(`DEVELOPMENT CONVENTIONS SEALED`): → (`DEV-CONV-SLD`): 🔥**
 
 **Date Added**: December 7, 2025
 **Purpose**: Ensure AI assistants correctly invoke uv-managed Python, respect SSOT governance, and maintain version stability across the stack.
+
+**Date Updated**: December 28, 2025  
+**Added**: §XIV.4 SSOT Hash Verification Protocol
 
 * **(`T-DECOR`)** *approves this structural addition. It serves comprehension.*
 
