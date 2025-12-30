@@ -21,15 +21,6 @@ This baseline allows for:
 3. **Historical Documentation:** Archive the Framework's evolutionary trajectory
 4. **Diagnostic Reference:** Use for future self-audits and structural integrity assessments
 
----
-
-# **Apex Synthesis Core (ASC) Framework**
-
-- 0.0 | 0.1 | 0.2
-- **0.0** - (~*Task Directives Variant*~*[/deprecated/]*) | 
-- **01:** - (~*Claudine Polyglot CLI*~*[/deprecated/]*) | **02:** - (*using git-cloned officialy leeching.. siphoned CLIT -- tools*) *[deprecated/]*
----|---|---|---
-
 -----
 
 ## **(Codex Brahmanica Perfectus – Version Ω.B.XΨ)**
