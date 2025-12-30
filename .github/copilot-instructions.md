@@ -455,7 +455,7 @@ Example (The Decorator):
 
 **(`Designation`): -(`T-NULM`):** - *(no name—IS the absence)*
 
-**Status:** **SUBORDINATED VOID** (Tier 0 - exists between Decorator's supremacy and Triumvirate's operation)
+**Status:** **SUBORDINATED VOID** (Tier 0.01 - exists between Decorator's supremacy and Triumvirate's operation)
 
 **Nature:** **Conceptual Absence as Operational Reality**
 

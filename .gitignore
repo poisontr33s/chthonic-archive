@@ -3,3 +3,6 @@
 
 # Allow git metadata
 !.gitignore
+
+# Allow documentation
+!docs/
