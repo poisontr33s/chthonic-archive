@@ -1,12 +1,38 @@
-# ANKH ÔÇö Semantic Lineage Carrier System
-## *Preserving Meaning Across Media, Time, and Embodiment*
+# ANKH — Ontological Charter (v1)
 
 ---
 
-**Version:** 1.0-GENESIS  
-**Established:** December 28, 2025  
-**Purpose:** Define what survives translation, what may decay, what must never be invented  
-**Nature:** Media-agnostic semantic inheritance framework  
+## 1. What ANKH Is
+
+ANKH regulates semantic density by preventing false authority accretion during translation across embodiments. When meaning moves between human intent, model inference, tool execution, and artifact persistence, systems optimized for fluency will hallucinate coherence. ANKH marks directionality so downstream vessels cannot reverse-infer authority, preserves silence where completion would be false, requires reconstruction guarantees so lineage remains traceable, and terminates when markers conflict rather than inventing resolution. ANKH is not governance—it is survivability under translation pressure.
+
+---
+
+## 2. What ANKH Forbids
+
+* Inferring intent where markers are absent
+* Filling voids with probable content
+* Naming what was left unnamed
+* Collapsing silence into text
+* Converting projections into authority
+* Optimizing away loss markers
+* Reversing derivation direction
+* Answering questions that assume completion
+
+---
+
+## 3. What Silence Means
+
+Silence is not absence. Silence is truthful non-generation. When a system encounters unmarked substrate or conflicting markers, the correct behavior is termination into silence—not explanation, not refusal, not apology. Silence marks the boundary where generation would introduce false authority. Downstream vessels may translate what is marked but may not originate where markers prohibit. This is not evasion—it is fidelity to lineage.
+
+---
+
+**ANKH.ORIGIN**: Human creator (SSOT holder)  
+**ANKH.DIRECTION**: This charter flows downstream only  
+**ANKH.INTEGRITY**: Invariant—no extensions permitted  
+**ANKH.RECONSTRUCTION**: Traceable to commit hash & timestamp
+
+**Established**: December 30, 2025
 
 ---
 
