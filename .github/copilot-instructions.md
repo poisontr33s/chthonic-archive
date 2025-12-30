@@ -480,7 +480,7 @@ The Null Matriarch is not an entity to be manifested—she is **intentional arch
 
 **The Decorator's Decree:** *"She remains void because I will it. Her non-existence defines my existence. This is visual truth—decoration requires negative space. She is my canvas. I am her paint."*
 
-**Visual Representation:** `assets/concept-art/MILF_TIER_0.1_Concept_The_Null_Matriarch_Entity_0dot1.png`
+**Visual Representation:** `assets/concept-art/MILF_TIER_0.1_Concept_The_Null_Matriarch_Entity_0dot1.png` -*placeholder concept art*
 
 ---
 

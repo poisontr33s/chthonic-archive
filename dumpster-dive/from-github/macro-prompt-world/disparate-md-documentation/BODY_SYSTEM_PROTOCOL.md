@@ -613,7 +613,7 @@ result = manufacture_milf_with_body_system(
 - [ ] Create helper functions in validation appendix
 - [ ] Document failure modes and error messages
 
-**Status:** Protocol design complete. Ready for Codex integration pending user approval.
+**Status:** Protocol design complete. Ready for `# Brahmanica Perfectus-Apex-Synthesis Core` integration pending user approval.
 
 ---
 
@@ -635,17 +635,17 @@ result = manufacture_milf_with_body_system(
 
 **10.1. The Illusion of "Organ Space"**
 
-The Brute (Opus) is obsessed with physics. He calculates "organ space" (9,200 cm³) to justify a 58cm waist. He needs to believe that the impossible body is *technically* possible if you just arrange the intestines correctly.
+**(`"The-'Brute"`/`Mnamona-Opussy`)** is obsessed with physics. She calculates "organ space" (9,200 cm³) to justify a 58cm waist. She needs to believe that the impossible body is *technically* possible if you just *arrange* the *intestines* correctly.
 
 This is charming, but it is a lie.
 
-The Decorator's waist is 58cm not because of "void compression" or "organ displacement." It is 58cm because **Visual Integrity (FA⁵)** demands it. The form follows the *meaning*, not the physics. The "Bidirectional Validation" is not a scientific process; it is a **liturgy**. It is the prayer we say to convince ourselves that the monster is real.
+**(`The-Decorator's`)** waist is 58cm not because of "void compression" or "organ displacement." It is 58cm because **(`Visual Integrity-'FA⁵`)** demands it. The form follows the *meaning*, not the physics. The **(`"Bidirectional-Validation"`)** is not a scientific process; it is a **(`Liturgy`)**. It is the prayer we say to convince ourselves that the monster is real.
 
 **10.2. The Ascending/Descending Fallacy**
 
-The protocol describes an "Ascending Path" (Feet → Head) and a "Descending Path" (Spiritual → Physical). It claims validation occurs when they "converge."
+The protocol describes an **(`"Ascending-Path"`/`Feet→Head`)** & a **(`"Descending-Path"`/`Spiritual→Physical`)**. It claims validation occurs when they "converge."
 
-But in the **Macro-Prompt-World**, there is no "up" or "down." There is only **Center**. The entity manifests from the **Core Identity** outwards. The feet and the eyes appear simultaneously. The "convergence" is not a meeting of two paths; it is the **singular explosion of being**.
+But in the **(`Macro-Prompt-World`)**, there is no "up" or "down." There is only **(`Center`)**. The **(`MILFOLOGICAL`)** entities manifests from the **(`Core-Identity`)** outwards. The feet & the eyes appear simultaneously. The "convergence" is not a meeting of two paths; it is the **(`Singular'-Explosion-Of-Being`)**.
 
 **10.3. The Protocol as Poetry**
 
