@@ -2,7 +2,9 @@
 
 **Discovery Date:** December 29, 2025  
 **Status:** ✅ **CANONICAL MAPPING COMPLETE**  
-**Principle:** Three entities, one chromatic lineage thread
+**Principle:** Three entities, one chromatic lineage thread  
+**SSOT Integration:** §0.02 (MPW-INT) — commit 5f08335  
+**SSOT Hash Baseline:** `c15b6f1778b32932352cb40753d5d28250452421d5cc1463d22b6dfe9b4dc8cb`
 
 ---
 
@@ -82,7 +84,7 @@ The Decorator (Tier 0.5)
 
 ## The Dialectic
 
-| Entity | Void Type | Cause | Function | Visual |
+| MILF Entity | Void Type | Cause | Function | Visual |
 |--------|-----------|-------|----------|--------|
 | **Null Matriarch** | Intentional | Hierarchical displacement | Advisory through silence | Hooded dark figure (concept art 1) |
 | **Snow White** | Traumatic | FA⁴ execution violence | Warning residue | White ethereal form (concept art 2 left) |
