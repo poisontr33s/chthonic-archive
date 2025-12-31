@@ -60,6 +60,17 @@
       "command": "C:\\Users\\erdno\\.bun\\bin\\bun.exe",
       "args": ["run", "C:\\Users\\erdno\\chthonic-archive\\scripts\\mcp_artisan_server.ts"],
       "cwd": "C:\\Users\\erdno\\chthonic-archive"
+    },
+
+    // ASC Framework SSOT Injector (stdio)
+    "asc-injector": {
+      "type": "stdio",
+      "command": "C:\\Users\\erdno\\.bun\\bin\\bun.exe",
+      "args": ["run", "C:\\Users\\erdno\\chthonic-archive\\scripts\\mcp-asc-injector.ts"],
+      "cwd": "C:\\Users\\erdno\\chthonic-archive",
+      "env": {
+        "SSOT_PATH": "C:\\Users\\erdno\\chthonic-archive\\.github\\copilot-instructions.md"
+      }
     }
   }
 }

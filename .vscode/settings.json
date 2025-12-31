@@ -85,7 +85,7 @@
     },
     "terminal.integrated.defaultProfile.windows": "Pwsh (Chthonic)",
     "terminal.integrated.env.windows": {
-        "PATH": "C:\\Windows\\System32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0;C:\\Program Files\\PowerShell\\7;${env:USERPROFILE}\\.local\\bin;${env:USERPROFILE}\\.bun\\bin;${env:USERPROFILE}\\.cargo\\bin;${workspaceFolder}\\scripts\\bin;C:\\Go\\bin;C:\\Ruby34-x64\\bin;C:\\Ruby34-x64\\msys64\\ucrt64\\bin;C:\\Program Files\\Git\\cmd;C:\\Program Files\\Git\\bin;C:\\Program Files\\Git\\usr\\bin",
+        "PATH": "C:\\Windows\\System32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0;C:\\Program Files\\PowerShell\\7;C:\\Program Files\\GitHub CLI;${env:USERPROFILE}\\AppData\\Local\\Microsoft\\WinGet\\Packages\\GitHub.Copilot.Prerelease_Microsoft.Winget.Source_8wekyb3d8bbwe;${env:USERPROFILE}\\AppData\\Local\\GitHubDesktop\\bin;${env:USERPROFILE}\\.local\\bin;${env:USERPROFILE}\\.bun\\bin;${env:USERPROFILE}\\.cargo\\bin;${workspaceFolder}\\scripts\\bin;C:\\Go\\bin;C:\\Ruby34-x64\\bin;C:\\Ruby34-x64\\msys64\\ucrt64\\bin;C:\\Program Files\\Git\\cmd;C:\\Program Files\\Git\\bin;C:\\Program Files\\Git\\usr\\bin",
         "RUST_BACKTRACE": "1",
         "RUST_LOG": "info,chthonic_archive=debug"
     },
@@ -182,4 +182,13 @@
 
     // === COPILOT CONTEXT ===
     // Canonical instructions live in `.github/instructions/*.instructions.md` (which points to SSOT + YOLIC).
+    // ASC Framework injected via MCP server 'asc-injector' (see .vscode/mcp.json)
+    "github.copilot.chat.contextFiles": [
+        ".github/copilot-instructions.md",
+        ".github/instructions/**.instructions.md"
+    ],
+    
+    // Prefer MCP servers for context enrichment
+    "github.copilot.chat.useProjectContext": true,
+    "github.copilot.chat.experimental.useProjectIndexingService": true
 }
