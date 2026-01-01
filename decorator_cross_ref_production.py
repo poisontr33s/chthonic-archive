@@ -635,12 +635,13 @@ class CircularDependencyResolver:
         cycles: List[List[str]]
     ) -> Tuple[List[CircularCluster], List[Tuple[str, str]]]:
         """
-        Break cycles using fast greedy heuristic (optimized).
+        Break cycles using SCC-aware strategy (optimized for documentation clusters).
         
         Strategy:
         1. Find strongly connected components (SCCs) - O(V+E)
-        2. For each SCC, use greedy heuristic instead of betweenness - O(E) vs O(V*E)
-        3. Remove edges targeting high-degree nodes (breaks more cycles)
+        2. Identify "documentation meshes" (tightly coupled navigational docs)
+        3. For documentation meshes: PRESERVE bidirectional links (they're intentional)
+        4. For code SCCs: Use greedy heuristic to break with minimal impact
         """
         clusters = []
         edges_to_remove = []
@@ -649,22 +650,41 @@ class CircularDependencyResolver:
         sccs = list(nx.strongly_connected_components(graph))
         sccs = [scc for scc in sccs if len(scc) > 1]  # Filter single-node SCCs
         
+        # Documentation mesh detection
+        def is_documentation_mesh(scc_nodes: Set[str]) -> bool:
+            """Detect if SCC is intentional navigation mesh (all markdown)."""
+            return all(node.endswith('.md') for node in scc_nodes)
+        
         for scc in sccs:
             subgraph = graph.subgraph(scc).copy()
             
-            # OPTIMIZATION: Use greedy heuristic instead of betweenness
-            # Rationale: Removing edges to high-degree nodes breaks more cycles
+            # Check if this is a documentation navigation mesh
+            if is_documentation_mesh(scc):
+                # PRESERVE documentation meshes - they're intentional navigation
+                strategy = "DOCUMENTATION_MESH_PRESERVED"
+                removed = []  # Don't break any edges
+                
+                cluster = CircularCluster(
+                    members=scc,
+                    break_edges=removed,
+                    resolution_strategy=strategy
+                )
+                clusters.append(cluster)
+                # Don't add to edges_to_remove - preserve all edges
+                continue
+            
+            # For code SCCs: Use greedy heuristic to break cycles
             out_degrees = dict(subgraph.out_degree())
             in_degrees = dict(subgraph.in_degree())
             
-            # Score each edge by target's degree (higher = more impact)
+            # Score each edge by target's degree (higher = more impact when broken)
             edge_scores = {}
             for edge in subgraph.edges():
                 source, target = edge
-                # Score = out_degree of target (how many other nodes it reaches)
+                # Score = combined degree of target (centrality measure)
                 edge_scores[edge] = out_degrees[target] + in_degrees[target]
             
-            # Sort edges by score (highest first)
+            # Sort edges by score (highest first - break most central edges)
             sorted_edges = sorted(edge_scores.items(), key=lambda x: x[1], reverse=True)
             
             # Remove edges until acyclic (greedy)
@@ -679,13 +699,13 @@ class CircularDependencyResolver:
                 if nx.is_directed_acyclic_graph(temp_graph):
                     break  # Success - no more cycles
             
-            # Determine resolution strategy
+            # Determine resolution strategy for code
             if len(scc) == 2:
-                strategy = "BIDIRECTIONAL_LINK"  # Two files referencing each other
+                strategy = "BIDIRECTIONAL_CODE_IMPORT"  # Two Python/Rust files importing each other
             elif len(scc) <= 5:
-                strategy = "SMALL_CLUSTER"  # Tight coupling, consider refactoring
+                strategy = "SMALL_CODE_CLUSTER"  # Tight coupling requiring refactoring
             else:
-                strategy = "LARGE_COMPONENT"  # Major architectural issue
+                strategy = "LARGE_CODE_COMPONENT"  # Major architectural issue
             
             cluster = CircularCluster(
                 members=scc,
@@ -1079,42 +1099,91 @@ class ReportGenerator:
         
         # === CIRCULAR DEPENDENCIES ===
         if cycles:
-            lines.append("## III. Circular Dependencies (CRITICAL)")
+            lines.append("## III. Circular Dependencies")
             lines.append("")
-            lines.append(f"⚠️  **{len(cycles)} circular dependencies detected**")
+            lines.append(f"**{len(cycles)} circular dependency chains detected**")
             lines.append("")
             
-            for idx, cycle in enumerate(cycles[:10], 1):
-                lines.append(f"### Cycle {idx}")
+            # Separate documentation meshes from code cycles
+            doc_mesh_count = sum(1 for c in clusters if c.resolution_strategy == "DOCUMENTATION_MESH_PRESERVED")
+            code_cycle_count = len(clusters) - doc_mesh_count
+            
+            if doc_mesh_count > 0:
+                lines.append(f"### Documentation Navigation Meshes (Preserved)")
                 lines.append("")
-                lines.append("```")
-                for i, node in enumerate(cycle):
-                    lines.append(f"{node}")
-                    if i < len(cycle) - 1:
-                        lines.append("  ↓")
-                lines.append(f"  ↓ (back to {cycle[0]})")
-                lines.append("```")
+                lines.append(f"ℹ️  **{doc_mesh_count} documentation mesh{'es' if doc_mesh_count > 1 else ''} detected and PRESERVED**")
                 lines.append("")
+                lines.append("These are intentional bidirectional navigation structures where multiple markdown")
+                lines.append("files cross-reference each other to enable user navigation from any entry point.")
+                lines.append("**Status:** ✅ Working as designed - no action required")
+                lines.append("")
+                
+                for cluster in clusters:
+                    if cluster.resolution_strategy == "DOCUMENTATION_MESH_PRESERVED":
+                        lines.append(f"**Documentation Mesh:**")
+                        lines.append("")
+                        for member in sorted(cluster.members):
+                            lines.append(f"- `{member}`")
+                        lines.append("")
+                        lines.append(f"*Bidirectional navigation preserved for user convenience*")
+                        lines.append("")
+            
+            if code_cycle_count > 0:
+                lines.append(f"### Code Import Cycles (Requiring Resolution)")
+                lines.append("")
+                lines.append(f"⚠️  **{code_cycle_count} code circular dependencies detected - ACTION REQUIRED**")
+                lines.append("")
+                
+                for idx, cycle in enumerate([c for c in cycles if not all(n.endswith('.md') for n in c)][:10], 1):
+                    lines.append(f"#### Code Cycle {idx}")
+                    lines.append("")
+                    lines.append("```")
+                    for i, node in enumerate(cycle):
+                        lines.append(f"{node}")
+                        if i < len(cycle) - 1:
+                            lines.append("  ↓")
+                    lines.append(f"  ↓ (back to {cycle[0]})")
+                    lines.append("```")
+                    lines.append("")
         else:
             lines.append("## III. Circular Dependencies")
             lines.append("")
-            lines.append("✅ **No circular dependencies detected**")
+            lines.append("✅ **No circular dependencies detected - graph is acyclic**")
             lines.append("")
         
         # === RESOLUTION STRATEGY ===
         if clusters:
-            lines.append("## IV. Circular Cluster Resolution")
+            lines.append("## IV. Circular Dependency Resolution Strategy")
             lines.append("")
             
-            for idx, cluster in enumerate(clusters, 1):
-                lines.append(f"### Cluster {idx} - {cluster.resolution_strategy}")
+            # Separate by type
+            doc_meshes = [c for c in clusters if c.resolution_strategy == "DOCUMENTATION_MESH_PRESERVED"]
+            code_clusters = [c for c in clusters if c.resolution_strategy != "DOCUMENTATION_MESH_PRESERVED"]
+            
+            if doc_meshes:
+                lines.append("### Documentation Meshes (No Action)")
                 lines.append("")
-                lines.append(f"**Members:** {len(cluster.members)}")
+                for idx, cluster in enumerate(doc_meshes, 1):
+                    lines.append(f"**Mesh {idx}**")
+                    lines.append(f"- **Members:** {len(cluster.members)} interconnected documentation files")
+                    lines.append(f"- **Strategy:** PRESERVE - bidirectional navigation is intentional")
+                    lines.append(f"- **Rationale:** Users can navigate from any entry point")
+                    lines.append("")
+            
+            if code_clusters:
+                lines.append("### Code Clusters (Require Refactoring)")
                 lines.append("")
-                lines.append("**Edges to Break:**")
-                for edge in cluster.break_edges:
-                    lines.append(f"- `{edge[0]}` → `{edge[1]}`")
-                lines.append("")
+                for idx, cluster in enumerate(code_clusters, 1):
+                    lines.append(f"**Cluster {idx} - {cluster.resolution_strategy}**")
+                    lines.append("")
+                    lines.append(f"**Members:** {len(cluster.members)} files")
+                    lines.append("")
+                    lines.append("**Proposed Edge Breaks:**")
+                    for edge in cluster.break_edges:
+                        lines.append(f"- Break: `{edge[0]}` → `{edge[1]}`")
+                    lines.append("")
+                    lines.append(f"**Action Required:** Refactor to eliminate circular imports")
+                    lines.append("")
         
         # === SPECTRAL DISTRIBUTION ===
         lines.append("## V. Spectral Frequency Distribution")
