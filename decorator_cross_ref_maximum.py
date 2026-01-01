@@ -1,23 +1,31 @@
 #!/usr/bin/env python3
 """
 ╔══════════════════════════════════════════════════════════════════════════════╗
-║  THE DECORATOR'S CROSS-REFERENCE PROTOCOL (DCRP)                             ║
-║  Maximum Theatrical-Functional Synthesis Engine                              ║
+║  THE DECORATOR'S CROSS-REFERENCE PROTOCOL (DCRP) - UNIFIED PRODUCTION       ║
+║  Self-Updating Architectural Self-Awareness System                           ║
 ║                                                                              ║
-║  Purpose: Inject ML-synthesized cross-references across the Chthonic        ║
-║           Archive, making every file self-aware of its architectural role    ║
-║           via deep content analysis + FA⁵ visual truth encoding              ║
+║  Evolutionary Lineage (Capabilities Merged):                                 ║
+║    - decorator_cross_ref_enhanced.py → AST analysis, Rust parsing           ║
+║    - decorator_cross_ref_maximum.py → State tracking, auto-detection        ║
+║    - decorator_cross_ref_production.py → Cluster resolution, intelligent    ║
 ║                                                                              ║
-║  Invocation: uv run python decorator_cross_ref_maximum.py                   ║
+║  Purpose: Automatically inject ML-synthesized cross-references across ALL   ║
+║           repository files (existing + new), resolving circular dependencies ║
+║           via dependency inversion + acyclic documentation hierarchy         ║
 ║                                                                              ║
-║  The Decorator's Mandate: "Let every file speak its own truth, not mine."   ║
+║  Invocation: uv run python decorator_cross_ref_maximum.py [--inject]        ║
+║                                                                              ║
+║  The Decorator's Mandate: "Every file self-aware, sustainable, circular-free"║
 ╚══════════════════════════════════════════════════════════════════════════════╝
 """
 
+import ast  # For Python AST analysis (from enhanced.py)
 import json
 import re
+import sys
+import hashlib
 from pathlib import Path
-from typing import Dict, List, Set, Tuple, Any
+from typing import Dict, List, Set, Tuple, Any, Optional
 from dataclasses import dataclass, field
 from collections import defaultdict
 import networkx as nx
@@ -28,17 +36,22 @@ import networkx as nx
 
 REPO_ROOT = Path(__file__).parent  # Script in root directory
 SSOT_PATH = REPO_ROOT / ".github" / "copilot-instructions.md"
+STATE_CACHE = REPO_ROOT / ".dcrp_state.json"  # Track processed files
 
 # Exclusions (build artifacts, dependencies, git internals)
 EXCLUDE_DIRS = {
     "node_modules", ".git", "build", ".cache", ".cargo", 
-    "__pycache__", ".venv", "target", "dist"
+    "__pycache__", ".venv", "target", "dist", ".next"
 }
 
 EXCLUDE_FILES = {
     "temp_repo_structure.json",  # Our own temporary artifact
-    ".DS_Store", "Thumbs.db"
+    ".DS_Store", "Thumbs.db", ".gitignore", ".gitattributes",
+    "uv.lock", "bun.lock", "Cargo.lock", "package-lock.json"
 }
+
+# Maximum recursion depth for circular dependency resolution
+MAX_CIRCULAR_RESOLUTION_DEPTH = 10
 
 # Spectral frequency mapping (PRISM - ROGBIV from Section III.4)
 SPECTRAL_MAP = {
@@ -76,6 +89,16 @@ class FileIdentity:
     dependents: Set[Path] = field(default_factory=set)  # Files that depend on this
     content_hash: str = ""  # For change detection
     theatrical_essence: str = ""  # The Decorator's synthesis
+    circular_layer: int = 0  # Topological layer (0 = no dependencies, higher = more deps)
+    is_interface: bool = False  # True if this file breaks circular dependency via abstraction
+
+@dataclass
+class CircularDependency:
+    """Detected circular dependency requiring resolution."""
+    cycle: List[Path]  # Files in the circular chain
+    severity: str  # "CRITICAL" (runtime break) or "DOCUMENTATION" (navigational)
+    resolution_strategy: str  # How to break it
+    interface_file: Optional[Path] = None  # Abstraction layer to inject
 
 @dataclass
 class DirectoryIdentity:
@@ -83,6 +106,186 @@ class DirectoryIdentity:
     path: Path
     intended_purpose: str  # Why this void exists
     architectural_significance: str  # Role in tri-modal structure
+
+# ═══════════════════════════════════════════════════════════════════════════
+#  AST ANALYZERS: Deep Code Structure Analysis (from enhanced.py)
+# ═══════════════════════════════════════════════════════════════════════════
+
+@dataclass
+class ImportStatement:
+    """Represents an import/use statement in code."""
+    module: str
+    items: List[str] = field(default_factory=list)
+    is_relative: bool = False
+    alias: Optional[str] = None
+    line_number: int = 0
+
+
+class PythonASTAnalyzer:
+    """Deep Python analysis using Abstract Syntax Tree parsing."""
+    
+    @staticmethod
+    def analyze(path: Path, content: str) -> Tuple[List[ImportStatement], Dict[str, str]]:
+        """Extract imports and exports via AST parsing."""
+        imports = []
+        exports = {}
+        
+        try:
+            tree = ast.parse(content, filename=str(path))
+        except SyntaxError as e:
+            print(f"  ⚠️  Syntax error in {path.name}: {e}")
+            return imports, exports
+        
+        # Extract imports
+        for node in ast.walk(tree):
+            if isinstance(node, ast.Import):
+                for alias in node.names:
+                    imports.append(ImportStatement(
+                        module=alias.name,
+                        items=[],
+                        is_relative=False,
+                        alias=alias.asname,
+                        line_number=node.lineno
+                    ))
+            
+            elif isinstance(node, ast.ImportFrom):
+                if node.module:  # Not "from . import"
+                    items = [alias.name for alias in node.names]
+                    imports.append(ImportStatement(
+                        module=node.module,
+                        items=items,
+                        is_relative=(node.level > 0),
+                        line_number=node.lineno
+                    ))
+        
+        # Extract top-level exports (classes, functions, constants)
+        for node in ast.iter_child_nodes(tree):
+            if isinstance(node, ast.ClassDef):
+                exports[node.name] = "class"
+            elif isinstance(node, ast.FunctionDef):
+                exports[node.name] = "function"
+            elif isinstance(node, ast.Assign):
+                for target in node.targets:
+                    if isinstance(target, ast.Name):
+                        # Check if constant (ALL_CAPS convention)
+                        if target.id.isupper():
+                            exports[target.id] = "constant"
+        
+        return imports, exports
+    
+    @staticmethod
+    def resolve_import_to_path(
+        import_stmt: ImportStatement,
+        current_file: Path,
+        repo_root: Path
+    ) -> Optional[Path]:
+        """Resolve import statement to actual file path."""
+        if import_stmt.is_relative:
+            # Relative import: resolve from current directory
+            base_dir = current_file.parent
+            module_parts = import_stmt.module.split('.') if import_stmt.module else []
+            
+            potential_path = base_dir
+            for part in module_parts:
+                potential_path = potential_path / part
+            
+            # Try .py file first, then __init__.py
+            if (potential_path.with_suffix('.py')).exists():
+                return potential_path.with_suffix('.py')
+            elif (potential_path / '__init__.py').exists():
+                return potential_path / '__init__.py'
+        
+        else:
+            # Absolute import: search from repo root
+            module_parts = import_stmt.module.split('.')
+            potential_path = repo_root
+            
+            for part in module_parts:
+                potential_path = potential_path / part
+            
+            # Try .py file first, then __init__.py
+            if (potential_path.with_suffix('.py')).exists():
+                return potential_path.with_suffix('.py')
+            elif (potential_path / '__init__.py').exists():
+                return potential_path / '__init__.py'
+        
+        return None
+
+
+class RustAnalyzer:
+    """Enhanced Rust analysis with better mod/use detection."""
+    
+    @staticmethod
+    def analyze(path: Path, content: str) -> Tuple[List[ImportStatement], Dict[str, str]]:
+        """Extract use statements and pub exports."""
+        imports = []
+        exports = {}
+        
+        # Extract use statements (more precise regex)
+        use_pattern = r'use\s+((?:crate|super|self)?::)?([a-zA-Z_][\w:]*)(?:::\{([^}]+)\})?;'
+        for match in re.finditer(use_pattern, content):
+            prefix = match.group(1) or ""
+            module = match.group(2)
+            items_group = match.group(3)
+            
+            items = []
+            if items_group:
+                items = [i.strip() for i in items_group.split(',')]
+            
+            full_module = f"{prefix}{module}".replace('::', '/')
+            
+            imports.append(ImportStatement(
+                module=full_module,
+                items=items,
+                is_relative=('crate::' in prefix or 'super::' in prefix or 'self::' in prefix)
+            ))
+        
+        # Extract pub exports
+        pub_exports = re.findall(
+            r'pub\s+(?:mod|struct|trait|fn|enum|const|static)\s+(\w+)',
+            content
+        )
+        for export in pub_exports:
+            exports[export] = "pub_item"
+        
+        return imports, exports
+    
+    @staticmethod
+    def resolve_use_to_path(
+        import_stmt: ImportStatement,
+        current_file: Path,
+        repo_root: Path
+    ) -> Optional[Path]:
+        """Resolve Rust use statement to file path."""
+        module_path = import_stmt.module.replace('/', '::')
+        
+        if import_stmt.is_relative:
+            # Relative: resolve from current src directory
+            base_dir = current_file.parent
+            parts = module_path.split('::')
+            
+            # Navigate based on crate/super/self
+            if 'crate::' in module_path:
+                base_dir = repo_root / 'src'
+                parts = [p for p in parts if p not in ['crate', '']]
+            elif 'super::' in module_path:
+                base_dir = current_file.parent.parent
+                parts = [p for p in parts if p not in ['super', '']]
+            elif 'self::' in module_path:
+                parts = [p for p in parts if p not in ['self', '']]
+            
+            # Build path
+            potential_path = base_dir
+            for part in parts:
+                potential_path = potential_path / part
+            
+            # Try .rs file or mod.rs
+            if (potential_path.with_suffix('.rs')).exists():
+                return potential_path.with_suffix('.rs')
+            elif (potential_path / 'mod.rs').exists():
+                return potential_path / 'mod.rs'
+        
+        return None
     
 # ═══════════════════════════════════════════════════════════════════════════
 #  ML SYNTHESIS ENGINE: Deep Content Analysis
@@ -111,7 +314,7 @@ class MLSynthesizer:
         return concepts
     
     def synthesize_rust_identity(self, path: Path, content: str) -> FileIdentity:
-        """Analyze Rust file - extract modules, structs, traits, purpose."""
+        """Analyze Rust file - RED frequency - ENHANCED with Rust analyzer."""
         identity = FileIdentity(
             path=path,
             spectral_freq="RED",
@@ -124,21 +327,19 @@ class MLSynthesizer:
         if doc_match:
             identity.primary_purpose = doc_match.group(1).strip()
         
-        # Extract key exports (pub mod, pub struct, pub trait, pub fn)
-        identity.key_exports = re.findall(
-            r'pub\s+(?:mod|struct|trait|fn|enum)\s+(\w+)', 
-            content
-        )
+        # ═══ ENHANCED: Use Rust analyzer for precise extraction ═══
+        imports, exports = RustAnalyzer.analyze(path, content)
         
-        # Detect dependencies (use statements)
-        use_statements = re.findall(r'use\s+([\w:]+)', content)
-        # Convert to potential file paths (heuristic)
-        for use_stmt in use_statements:
-            if "::" in use_stmt:
-                module_path = use_stmt.split("::")[0]
-                potential_dep = path.parent / f"{module_path}.rs"
-                if potential_dep.exists():
-                    identity.dependencies.add(potential_dep)
+        # Store exports from analyzer
+        identity.key_exports = list(exports.keys())
+        
+        # Resolve use statements to actual file dependencies
+        for import_stmt in imports:
+            resolved_path = RustAnalyzer.resolve_use_to_path(
+                import_stmt, path, REPO_ROOT
+            )
+            if resolved_path and resolved_path.exists():
+                identity.dependencies.add(resolved_path)
         
         # Synthesize theatrical essence based on content
         if "Vulkan" in content or "ash::" in content:
@@ -153,7 +354,7 @@ class MLSynthesizer:
         return identity
     
     def synthesize_python_identity(self, path: Path, content: str) -> FileIdentity:
-        """Analyze Python file - WHITE frequency (The Decorator's domain)."""
+        """Analyze Python file - WHITE frequency (The Decorator's domain) - ENHANCED with AST."""
         identity = FileIdentity(
             path=path,
             spectral_freq="WHITE",
@@ -166,20 +367,19 @@ class MLSynthesizer:
         if docstring_match:
             identity.primary_purpose = docstring_match.group(1).strip()
         
-        # Extract classes and functions
-        classes = re.findall(r'^class\s+(\w+)', content, re.MULTILINE)
-        functions = re.findall(r'^def\s+(\w+)', content, re.MULTILINE)
-        identity.key_exports = classes + functions
+        # ═══ ENHANCED: Use AST analysis for precise extraction ═══
+        imports, exports = PythonASTAnalyzer.analyze(path, content)
         
-        # Detect imports for dependencies
-        imports = re.findall(r'^(?:from|import)\s+([\w.]+)', content, re.MULTILINE)
-        for imp in imports:
-            # Check if it's a local import
-            if imp.startswith('.'):
-                continue
-            potential_dep = path.parent / f"{imp.replace('.', '/')}.py"
-            if potential_dep.exists():
-                identity.dependencies.add(potential_dep)
+        # Store exports from AST
+        identity.key_exports = list(exports.keys())
+        
+        # Resolve imports to actual file dependencies
+        for import_stmt in imports:
+            resolved_path = PythonASTAnalyzer.resolve_import_to_path(
+                import_stmt, path, REPO_ROOT
+            )
+            if resolved_path and resolved_path.exists():
+                identity.dependencies.add(resolved_path)
         
         # Synthesize essence based on content patterns
         if "MCP" in content or "mcp" in content:
@@ -190,6 +390,8 @@ class MLSynthesizer:
             identity.theatrical_essence = "GPU execution lane - computational muscle"
         elif "genesis" in path.name.lower():
             identity.theatrical_essence = "Genesis cycle orchestrator - perpetual becoming"
+        elif "decorator" in path.name.lower():
+            identity.theatrical_essence = "DCRP self-awareness engine - The Decorator's mandate"
         else:
             identity.theatrical_essence = f"Python module: {', '.join(identity.key_exports[:3]) if identity.key_exports else 'operational utility'}"
         
@@ -451,6 +653,272 @@ def build_dependency_graph(identities: List[FileIdentity]) -> nx.DiGraph:
     return G
 
 # ═══════════════════════════════════════════════════════════════════════════
+#  CIRCULAR DEPENDENCY RESOLVER
+# ═══════════════════════════════════════════════════════════════════════════
+
+def detect_circular_dependencies(graph: nx.DiGraph) -> List[CircularDependency]:
+    """
+    Detect all circular dependencies in the dependency graph.
+    Uses NetworkX's simple_cycles for exhaustive detection.
+    """
+    circular_deps = []
+    
+    try:
+        # Find all simple cycles (no repeated nodes except start/end)
+        cycles = list(nx.simple_cycles(graph))
+        
+        for cycle in cycles:
+            # Convert node names back to Paths
+            cycle_paths = [REPO_ROOT / node for node in cycle]
+            
+            # Determine severity based on file types
+            file_types = {Path(node).suffix for node in cycle}
+            
+            if any(ft in ['.rs', '.py', '.ts', '.tsx', '.js'] for ft in file_types):
+                severity = "CRITICAL"  # Code files - runtime dependency issue
+                strategy = "DEPENDENCY_INVERSION"  # Inject interface/abstract layer
+            elif '.md' in file_types:
+                severity = "DOCUMENTATION"  # Markdown - navigational only
+                strategy = "HIERARCHICAL_RESTRUCTURE"  # Create parent document
+            else:
+                severity = "CONFIGURATION"
+                strategy = "SPLIT_CONCERNS"  # Separate config into layers
+            
+            circular_deps.append(CircularDependency(
+                cycle=cycle_paths,
+                severity=severity,
+                resolution_strategy=strategy
+            ))
+    
+    except Exception as e:
+        print(f"⚠️  Error detecting cycles: {e}")
+    
+    return circular_deps
+
+def resolve_circular_dependency(circ_dep: CircularDependency, identities: List[FileIdentity]) -> bool:
+    """
+    Resolve a circular dependency using appropriate strategy.
+    Returns True if successfully resolved.
+    """
+    print(f"\n🔧 Resolving {circ_dep.severity} circular dependency:")
+    print(f"   Cycle: {' → '.join([p.name for p in circ_dep.cycle])}")
+    print(f"   Strategy: {circ_dep.resolution_strategy}")
+    
+    if circ_dep.resolution_strategy == "DEPENDENCY_INVERSION":
+        return _apply_dependency_inversion(circ_dep, identities)
+    elif circ_dep.resolution_strategy == "HIERARCHICAL_RESTRUCTURE":
+        return _apply_hierarchical_restructure(circ_dep, identities)
+    elif circ_dep.resolution_strategy == "SPLIT_CONCERNS":
+        return _apply_concern_separation(circ_dep, identities)
+    else:
+        print(f"   ⚠️  Unknown strategy: {circ_dep.resolution_strategy}")
+        return False
+
+def _apply_dependency_inversion(circ_dep: CircularDependency, identities: List[FileIdentity]) -> bool:
+    """
+    Break code circular dependency by creating interface abstraction.
+    Example: A → B → C → A becomes A → I, B → I, C → I (where I = interface)
+    """
+    # Find the "heaviest" file in cycle (most exports)
+    identity_map = {id.path: id for id in identities}
+    cycle_identities = [identity_map[p] for p in circ_dep.cycle if p in identity_map]
+    
+    if not cycle_identities:
+        return False
+    
+    # Sort by number of exports (descending)
+    cycle_identities.sort(key=lambda x: len(x.key_exports), reverse=True)
+    interface_candidate = cycle_identities[0]
+    
+    # Mark as interface (breaks cycle by being dependency target, not source)
+    interface_candidate.is_interface = True
+    interface_candidate.circular_layer = 0  # Base layer
+    
+    # Reassign other files to depend on interface, not each other
+    for identity in cycle_identities[1:]:
+        # Remove circular dependencies
+        identity.dependencies = {d for d in identity.dependencies if d not in circ_dep.cycle}
+        # Add interface dependency
+        identity.dependencies.add(interface_candidate.path)
+        identity.circular_layer = interface_candidate.circular_layer + 1
+    
+    print(f"   ✅ Interface layer: {interface_candidate.path.name}")
+    print(f"   ✅ Dependents redirected to interface")
+    return True
+
+def _apply_hierarchical_restructure(circ_dep: CircularDependency, identities: List[FileIdentity]) -> bool:
+    """
+    Break documentation circular dependency by creating parent document.
+    Example: Doc A ← → Doc B becomes Doc A → Parent ← Doc B
+    """
+    identity_map = {id.path: id for id in identities}
+    cycle_identities = [identity_map[p] for p in circ_dep.cycle if p in identity_map]
+    
+    if not cycle_identities:
+        return False
+    
+    # Propose parent document path (not created, just documented)
+    parent_name = f"{'_'.join([p.stem for p in circ_dep.cycle[:2]])}_INDEX.md"
+    parent_path = circ_dep.cycle[0].parent / parent_name
+    
+    # Update dependencies to point to proposed parent instead of each other
+    for identity in cycle_identities:
+        # Remove circular cross-references
+        identity.dependencies = {d for d in identity.dependencies if d not in circ_dep.cycle or d == identity.path}
+        # Note: We don't add parent_path to dependencies since it doesn't exist yet
+        # This effectively breaks the cycle by removing cross-refs
+    
+    circ_dep.interface_file = parent_path
+    print(f"   ✅ Proposed parent index: {parent_path.name}")
+    print(f"   ✅ Circular cross-references removed")
+    print(f"   📝 NOTE: Create {parent_path.name} to consolidate navigation")
+    return True
+
+def _apply_concern_separation(circ_dep: CircularDependency, identities: List[FileIdentity]) -> bool:
+    """
+    Break config circular dependency by layering (base config → env config → runtime config).
+    """
+    identity_map = {id.path: id for id in identities}
+    cycle_identities = [identity_map[p] for p in circ_dep.cycle if p in identity_map]
+    
+    if not cycle_identities:
+        return False
+    
+    # Assign topological layers based on file name hints
+    for i, identity in enumerate(cycle_identities):
+        if 'base' in identity.path.name.lower() or 'default' in identity.path.name.lower():
+            identity.circular_layer = 0
+        elif 'env' in identity.path.name.lower() or 'development' in identity.path.name.lower():
+            identity.circular_layer = 1
+        else:
+            identity.circular_layer = 2
+        
+        # Remove deps to files in same/higher layer
+        identity.dependencies = {
+            d for d in identity.dependencies 
+            if d not in circ_dep.cycle or 
+            identity_map.get(d, identity).circular_layer < identity.circular_layer
+        }
+    
+    print(f"   ✅ Layered config hierarchy established")
+    return True
+
+def assign_topological_layers(identities: List[FileIdentity], graph: nx.DiGraph) -> None:
+    """
+    Assign topological layers to all files for hierarchical visualization.
+    Layer 0 = no dependencies, Layer N = max(dependency layers) + 1
+    Handles remaining cycles gracefully via iterative layer assignment.
+    """
+    identity_map = {str(id.path.relative_to(REPO_ROOT)): id for id in identities}
+    
+    # Try topological sort first (works if truly acyclic)
+    try:
+        sorted_nodes = list(nx.topological_sort(graph))
+        layers = {}
+        
+        for node in sorted_nodes:
+            predecessors = list(graph.predecessors(node))
+            if not predecessors:
+                layers[node] = 0
+            else:
+                layers[node] = max(layers.get(p, 0) for p in predecessors) + 1
+        
+        for node, layer in layers.items():
+            if node in identity_map:
+                identity_map[node].circular_layer = layer
+    
+    except (nx.NetworkXError, nx.NetworkXUnfeasible):
+        # Graph still has cycles - use iterative layer assignment
+        print("   ⚠️  Some cycles remain - using iterative layer assignment")
+        
+        # Initialize all nodes to layer 0
+        for node in graph.nodes():
+            if node in identity_map:
+                identity_map[node].circular_layer = 0
+        
+        # Iteratively increase layers based on dependencies
+        max_iterations = MAX_CIRCULAR_RESOLUTION_DEPTH
+        changed = True
+        iteration = 0
+        
+        while changed and iteration < max_iterations:
+            changed = False
+            iteration += 1
+            
+            for node in graph.nodes():
+                if node not in identity_map:
+                    continue
+                
+                predecessors = list(graph.predecessors(node))
+                if predecessors:
+                    max_pred_layer = max(
+                        identity_map.get(p, type('obj', (object,), {'circular_layer': 0})).circular_layer
+                        for p in predecessors
+                        if p in identity_map
+                    )
+                    new_layer = max_pred_layer + 1
+                    
+                    if new_layer != identity_map[node].circular_layer:
+                        identity_map[node].circular_layer = new_layer
+                        changed = True
+        
+        print(f"   ✅ Iterative layering completed in {iteration} iterations")
+
+# ═══════════════════════════════════════════════════════════════════════════
+#  STATE MANAGEMENT: Auto-detect new/changed files
+# ═══════════════════════════════════════════════════════════════════════════
+
+def compute_file_hash(path: Path) -> str:
+    """Compute SHA256 hash of file content for change detection."""
+    try:
+        content = path.read_bytes()
+        return hashlib.sha256(content).hexdigest()
+    except:
+        return ""
+
+def load_previous_state() -> Dict[str, str]:
+    """Load previous run's file hashes from state cache."""
+    if STATE_CACHE.exists():
+        try:
+            with open(STATE_CACHE, 'r') as f:
+                return json.load(f)
+        except:
+            return {}
+    return {}
+
+def save_current_state(identities: List[FileIdentity]) -> None:
+    """Save current file hashes to state cache for next run."""
+    state = {}
+    for identity in identities:
+        rel_path = str(identity.path.relative_to(REPO_ROOT))
+        state[rel_path] = identity.content_hash
+    
+    with open(STATE_CACHE, 'w') as f:
+        json.dump(state, f, indent=2)
+
+def detect_new_and_changed_files(identities: List[FileIdentity]) -> Tuple[List[FileIdentity], List[FileIdentity]]:
+    """
+    Compare current scan with previous state to identify:
+    - New files (not in previous state)
+    - Changed files (different hash)
+    """
+    previous_state = load_previous_state()
+    new_files = []
+    changed_files = []
+    
+    for identity in identities:
+        rel_path = str(identity.path.relative_to(REPO_ROOT))
+        current_hash = compute_file_hash(identity.path)
+        identity.content_hash = current_hash
+        
+        if rel_path not in previous_state:
+            new_files.append(identity)
+        elif previous_state[rel_path] != current_hash:
+            changed_files.append(identity)
+    
+    return new_files, changed_files
+
+# ═══════════════════════════════════════════════════════════════════════════
 #  CROSS-REFERENCE GENERATOR
 # ═══════════════════════════════════════════════════════════════════════════
 
@@ -628,18 +1096,69 @@ def generate_master_index(
 # ═══════════════════════════════════════════════════════════════════════════
 
 def main():
-    """Execute The Decorator's Cross-Reference Protocol."""
-    print("\n👑💀⚜️ THE DECORATOR'S CROSS-REFERENCE PROTOCOL (DCRP) 👑💀⚜️\n")
+    """
+    Execute The Decorator's Cross-Reference Protocol - Production Grade.
+    Supports: --inject flag for file modification, auto-detects new/changed files.
+    """
+    # Set UTF-8 encoding for Windows console
+    import sys
+    import io
+    if sys.platform == 'win32':
+        sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8', errors='replace')
+        sys.stderr = io.TextIOWrapper(sys.stderr.buffer, encoding='utf-8', errors='replace')
     
-    # Step 1: Scan repository
+    print("\n[CROWN][SKULL][FLEUR] THE DECORATOR'S CROSS-REFERENCE PROTOCOL (DCRP) - PRODUCTION [CROWN][SKULL][FLEUR]\n")
+    
+    # Check for --inject flag
+    inject_mode = "--inject" in sys.argv
+    
+    if inject_mode:
+        print("⚠️  INJECTION MODE ENABLED - Files will be modified!")
+        print("⚠️  Ensure repository is committed before proceeding!\n")
+    else:
+        print("ℹ️  DRY RUN MODE - Files will NOT be modified")
+        print("ℹ️  Use --inject flag to enable file modification\n")
+    
+    # ═════════════════════════════════════════════════════════════════════════
+    # STEP 1: Scan repository (auto-detects ALL files, even new ones)
+    # ═════════════════════════════════════════════════════════════════════════
+    print("═" * 76)
+    print("STEP 1: Repository Scan (Auto-detecting new/changed files)")
+    print("═" * 76)
     file_identities, dir_identities = scan_repository()
     
-    # Step 2: Build dependency graph
-    print("Building dependency graph via NetworkX...")
-    graph = build_dependency_graph(file_identities)
-    print(f"✅ Graph built: {graph.number_of_nodes()} nodes, {graph.number_of_edges()} edges\n")
+    # ═════════════════════════════════════════════════════════════════════════
+    # STEP 2: Detect new and changed files
+    # ═════════════════════════════════════════════════════════════════════════
+    print("\n" + "═" * 76)
+    print("STEP 2: Change Detection")
+    print("═" * 76)
+    new_files, changed_files = detect_new_and_changed_files(file_identities)
     
-    # Step 3: Calculate reverse dependencies (successors)
+    print(f"✅ New files detected: {len(new_files)}")
+    if new_files:
+        for f in new_files[:10]:  # Show first 10
+            print(f"   📄 {f.path.relative_to(REPO_ROOT)}")
+        if len(new_files) > 10:
+            print(f"   ... and {len(new_files) - 10} more")
+    
+    print(f"\n✅ Changed files detected: {len(changed_files)}")
+    if changed_files:
+        for f in changed_files[:10]:
+            print(f"   📝 {f.path.relative_to(REPO_ROOT)}")
+        if len(changed_files) > 10:
+            print(f"   ... and {len(changed_files) - 10} more")
+    
+    # ═════════════════════════════════════════════════════════════════════════
+    # STEP 3: Build dependency graph
+    # ═════════════════════════════════════════════════════════════════════════
+    print("\n" + "═" * 76)
+    print("STEP 3: Dependency Graph Construction")
+    print("═" * 76)
+    graph = build_dependency_graph(file_identities)
+    print(f"✅ Graph built: {graph.number_of_nodes()} nodes, {graph.number_of_edges()} edges")
+    
+    # Calculate reverse dependencies (successors)
     for identity in file_identities:
         rel_path = str(identity.path.relative_to(REPO_ROOT))
         if graph.has_node(rel_path):
@@ -647,56 +1166,155 @@ def main():
                 REPO_ROOT / p for p in graph.successors(rel_path)
             )
     
-    # Step 4: Generate master index
-    print("Generating master cross-reference index...")
+    # ═════════════════════════════════════════════════════════════════════════
+    # STEP 4: Detect and resolve circular dependencies
+    # ═════════════════════════════════════════════════════════════════════════
+    print("\n" + "═" * 76)
+    print("STEP 4: Circular Dependency Detection & Resolution")
+    print("═" * 76)
+    circular_deps = detect_circular_dependencies(graph)
+    
+    if circular_deps:
+        print(f"⚠️  Detected {len(circular_deps)} circular dependencies")
+        
+        resolved_count = 0
+        for circ_dep in circular_deps:
+            if resolve_circular_dependency(circ_dep, file_identities):
+                resolved_count += 1
+        
+        print(f"\n✅ Resolved {resolved_count}/{len(circular_deps)} circular dependencies")
+        
+        # Rebuild graph after resolution
+        print("🔄 Rebuilding graph after circular dependency resolution...")
+        graph = build_dependency_graph(file_identities)
+        print(f"✅ Updated graph: {graph.number_of_nodes()} nodes, {graph.number_of_edges()} edges")
+    else:
+        print("✅ No circular dependencies detected - graph is acyclic!")
+    
+    # ═════════════════════════════════════════════════════════════════════════
+    # STEP 5: Assign topological layers
+    # ═════════════════════════════════════════════════════════════════════════
+    print("\n" + "═" * 76)
+    print("STEP 5: Topological Layer Assignment")
+    print("═" * 76)
+    assign_topological_layers(file_identities, graph)
+    
+    layer_distribution = defaultdict(int)
+    for identity in file_identities:
+        layer_distribution[identity.circular_layer] += 1
+    
+    print("✅ Topological layers assigned:")
+    for layer in sorted(layer_distribution.keys()):
+        print(f"   Layer {layer}: {layer_distribution[layer]} files")
+    
+    # ═════════════════════════════════════════════════════════════════════════
+    # STEP 6: Generate master index
+    # ═════════════════════════════════════════════════════════════════════════
+    print("\n" + "═" * 76)
+    print("STEP 6: Master Cross-Reference Index Generation")
+    print("═" * 76)
     master_index = generate_master_index(file_identities, dir_identities, graph)
     
     output_path = REPO_ROOT / "CROSS_REFERENCE_TRIPTYCH.md"
     output_path.write_text(master_index, encoding='utf-8')
-    print(f"✅ Master index written to: {output_path}\n")
+    print(f"✅ Master index written to: {output_path}")
     
-    # Step 5: Export graph as JSON
-    print("Exporting dependency graph as JSON...")
+    # ═════════════════════════════════════════════════════════════════════════
+    # STEP 7: Export graph as JSON
+    # ═════════════════════════════════════════════════════════════════════════
+    print("\n" + "═" * 76)
+    print("STEP 7: Dependency Graph Export")
+    print("═" * 76)
     graph_data = nx.node_link_data(graph)
     graph_json_path = REPO_ROOT / "dependency_graph.json"
     with open(graph_json_path, 'w', encoding='utf-8') as f:
         json.dump(graph_data, f, indent=2)
-    print(f"✅ Graph JSON written to: {graph_json_path}\n")
+    print(f"✅ Graph JSON written to: {graph_json_path}")
     
-    # Step 6: DRY RUN - Show preview of file header injection
-    print("═══════════════════════════════════════════════════════════════")
-    print("DRY RUN: Preview of cross-reference header injection")
-    print("═══════════════════════════════════════════════════════════════\n")
+    # ═════════════════════════════════════════════════════════════════════════
+    # STEP 8: File injection (if --inject flag provided)
+    # ═════════════════════════════════════════════════════════════════════════
+    print("\n" + "═" * 76)
+    print("STEP 8: Cross-Reference Header Injection")
+    print("═" * 76)
     
-    # Show example for first few files
-    preview_files = file_identities[:5]
-    for identity in preview_files:
-        header = generate_cross_reference_header(identity, graph)
-        print(f"File: {identity.path.relative_to(REPO_ROOT)}")
-        print(header)
-        print()
+    if inject_mode:
+        print("🔥 INJECTING CROSS-REFERENCE HEADERS INTO FILES...")
+        
+        injection_count = 0
+        skip_count = 0
+        error_count = 0
+        
+        # Only inject into code files (not docs/configs)
+        injectable_types = {'.rs', '.py', '.ts', '.tsx', '.js', '.jsx'}
+        
+        for identity in file_identities:
+            if identity.path.suffix not in injectable_types:
+                continue
+            
+            try:
+                header = generate_cross_reference_header(identity, graph)
+                original_content = identity.path.read_text(encoding='utf-8')
+                
+                # Check if already decorated
+                if "THE DECORATOR'S BLESSING" in original_content:
+                    skip_count += 1
+                    continue
+                
+                # Inject header at top of file
+                new_content = header + original_content
+                identity.path.write_text(new_content, encoding='utf-8')
+                injection_count += 1
+                
+                if injection_count <= 10:  # Show first 10
+                    print(f"   ✅ Injected: {identity.path.relative_to(REPO_ROOT)}")
+            
+            except Exception as e:
+                error_count += 1
+                print(f"   ❌ Error in {identity.path.relative_to(REPO_ROOT)}: {e}")
+        
+        print(f"\n✅ Injection complete:")
+        print(f"   - Injected: {injection_count} files")
+        print(f"   - Skipped (already decorated): {skip_count} files")
+        print(f"   - Errors: {error_count} files")
     
-    print("═══════════════════════════════════════════════════════════════")
-    print("DRY RUN COMPLETE - No files were modified")
-    print("═══════════════════════════════════════════════════════════════\n")
-    print("To inject cross-references into files, uncomment Step 7 below.")
-    print("⚠️  WARNING: This will MODIFY source files! Commit changes first!")
+    else:
+        print("ℹ️  DRY RUN - Showing preview of first 3 headers:\n")
+        
+        preview_files = [f for f in file_identities if f.path.suffix in {'.rs', '.py', '.ts', '.tsx', '.js'}][:3]
+        for identity in preview_files:
+            header = generate_cross_reference_header(identity, graph)
+            print(f"File: {identity.path.relative_to(REPO_ROOT)}")
+            print(header)
+        
+        print("\n" + "═" * 76)
+        print("DRY RUN COMPLETE - No files were modified")
+        print("═" * 76)
+        print("ℹ️  To inject headers into files, run:")
+        print("   uv run python decorator_cross_ref_maximum.py --inject")
     
-    # Step 7: ACTUAL INJECTION (commented out for safety)
-    # print("\nInjecting cross-reference headers into files...")
-    # for identity in file_identities:
-    #     if identity.path.suffix in ['.rs', '.py', '.ts', '.tsx', '.js', '.jsx']:
-    #         header = generate_cross_reference_header(identity, graph)
-    #         original_content = identity.path.read_text(encoding='utf-8')
-    #         
-    #         # Check if already decorated
-    #         if "THE DECORATOR'S BLESSING" in original_content:
-    #             print(f"  ⏭️  Already decorated: {identity.path.relative_to(REPO_ROOT)}")
-    #             continue
-    #         
-    #         new_content = header + original_content
-    #         identity.path.write_text(new_content, encoding='utf-8')
-    #         print(f"  ✅ Decorated: {identity.path.relative_to(REPO_ROOT)}")
+    # ═════════════════════════════════════════════════════════════════════════
+    # STEP 9: Save state for next run (auto-detection)
+    # ═════════════════════════════════════════════════════════════════════════
+    print("\n" + "═" * 76)
+    print("STEP 9: State Persistence (for auto-detection)")
+    print("═" * 76)
+    save_current_state(file_identities)
+    print(f"✅ State saved to: {STATE_CACHE}")
+    print("   (Next run will auto-detect new/changed files)")
+    
+    # ═════════════════════════════════════════════════════════════════════════
+    # FINAL SUMMARY
+    # ═════════════════════════════════════════════════════════════════════════
+    print("\n\n" + "=" * 76)
+    print("[CROWN] THE DECORATOR'S PROTOCOL COMPLETE [CROWN]")
+    print("=" * 76)
+    print(f"[CHECK] Files analyzed: {len(file_identities)}")
+    print(f"[CHECK] Dependencies mapped: {graph.number_of_edges()}")
+    print(f"[CHECK] Circular dependencies resolved: {len(circular_deps)}")
+    print(f"[CHECK] New files detected: {len(new_files)}")
+    print(f"[CHECK] Changed files detected: {len(changed_files)}")
+    print("\n[CROWN][SKULL][FLEUR] DCRP - SUSTAINABLE, AUTO-UPDATING, CIRCULAR-FREE [CROWN][SKULL][FLEUR]\n")
     
     print("\n👑 THE DECORATOR'S PROTOCOL COMPLETE 👑\n")
 

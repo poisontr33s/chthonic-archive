@@ -36,7 +36,10 @@ identity analysis and PRISM spectral frequency mapping.
 
 | File | Spectral Freq | Theatrical Essence |
 |------|---------------|-------------------|
+| `decorator_cross_ref_enhanced.py` | WHITE | Model Context Protocol server - AI governance bridge |
 | `decorator_cross_ref_maximum.py` | WHITE | Model Context Protocol server - AI governance bridge |
+| `decorator_cross_ref_production.py` | WHITE | Model Context Protocol server - AI governance bridge |
+| `deploy_dcrp_headers.py` | WHITE | Python module: FileMetadata, load_graph_data, is_injectable |
 | `ankh_atlas\main.py` | WHITE | Python module: main |
 | `mas_mcp\async_core.py` | WHITE | Model Context Protocol server - AI governance bridge |
 | `mas_mcp\benchmark_gpu.py` | WHITE | GPU execution lane - computational muscle |
@@ -5788,63 +5791,6 @@ identity analysis and PRISM spectral frequency mapping.
 | `mas_mcp\frontend\pages\api\ssot.ts` | ORANGE | MCP client integration - Observatory communication layer |
 | `mas_mcp\frontend\pages\api\metrics\history.ts` | ORANGE | MCP client integration - Observatory communication layer |
 | `mas_mcp\frontend\pages\api\metrics\index.ts` | ORANGE | MCP client integration - Observatory communication layer |
-| `mas_mcp\frontend\.next\server\dynamic-css-manifest.js` | ORANGE | TypeScript module: frontend utility |
-| `mas_mcp\frontend\.next\server\interception-route-rewrite-manifest.js` | ORANGE | TypeScript module: frontend utility |
-| `mas_mcp\frontend\.next\server\middleware-build-manifest.js` | ORANGE | TypeScript module: frontend utility |
-| `mas_mcp\frontend\.next\server\middleware-react-loadable-manifest.js` | ORANGE | TypeScript module: frontend utility |
-| `mas_mcp\frontend\.next\server\next-font-manifest.js` | ORANGE | TypeScript module: frontend utility |
-| `mas_mcp\frontend\.next\server\webpack-api-runtime.js` | ORANGE | TypeScript module: frontend utility |
-| `mas_mcp\frontend\.next\server\webpack-runtime.js` | ORANGE | TypeScript module: frontend utility |
-| `mas_mcp\frontend\.next\types\routes.d.ts` | ORANGE | TypeScript module: frontend utility |
-| `mas_mcp\frontend\.next\types\validator.ts` | ORANGE | TypeScript module: frontend utility |
-| `mas_mcp\frontend\.next\static\chunks\123.f3d27f38429d3ab5.js` | ORANGE | TypeScript module: frontend utility |
-| `mas_mcp\frontend\.next\static\chunks\182.4e768178fde9828f.js` | ORANGE | TypeScript module: frontend utility |
-| `mas_mcp\frontend\.next\static\chunks\264.694e7fb85125121d.js` | ORANGE | TypeScript module: frontend utility |
-| `mas_mcp\frontend\.next\static\chunks\38.f9f30e8ede4e909f.js` | ORANGE | TypeScript module: frontend utility |
-| `mas_mcp\frontend\.next\static\chunks\44.2adf95f27a6bff81.js` | ORANGE | TypeScript module: frontend utility |
-| `mas_mcp\frontend\.next\static\chunks\614.03b7c693488fbea1.js` | ORANGE | TypeScript module: frontend utility |
-| `mas_mcp\frontend\.next\static\chunks\6d2b60a9.eb596f680e2cef99.js` | ORANGE | TypeScript module: frontend utility |
-| `mas_mcp\frontend\.next\static\chunks\718.a17de28718f10340.js` | ORANGE | TypeScript module: frontend utility |
-| `mas_mcp\frontend\.next\static\chunks\801.779330e56451545b.js` | ORANGE | TypeScript module: frontend utility |
-| `mas_mcp\frontend\.next\static\chunks\806.a7e9447414a53493.js` | ORANGE | TypeScript module: frontend utility |
-| `mas_mcp\frontend\.next\static\chunks\890.6914b89a1121909d.js` | ORANGE | TypeScript module: frontend utility |
-| `mas_mcp\frontend\.next\static\chunks\framework-4e51298db41fcfd4.js` | ORANGE | TypeScript module: frontend utility |
-| `mas_mcp\frontend\.next\static\chunks\main-36b9d5ce89c92bb2.js` | ORANGE | TypeScript module: frontend utility |
-| `mas_mcp\frontend\.next\static\chunks\polyfills-42372ed130431b0a.js` | ORANGE | TypeScript module: frontend utility |
-| `mas_mcp\frontend\.next\static\chunks\webpack-d195cf9bafd28a76.js` | ORANGE | TypeScript module: frontend utility |
-| `mas_mcp\frontend\.next\static\mas-mcp-dashboard-1765149641988\_buildManifest.js` | ORANGE | TypeScript module: frontend utility |
-| `mas_mcp\frontend\.next\static\mas-mcp-dashboard-1765149641988\_ssgManifest.js` | ORANGE | TypeScript module: frontend utility |
-| `mas_mcp\frontend\.next\static\chunks\pages\cycles-751e11ae4ba95673.js` | ORANGE | TypeScript module: frontend utility |
-| `mas_mcp\frontend\.next\static\chunks\pages\digest-1d0b97417dd52304.js` | ORANGE | TypeScript module: frontend utility |
-| `mas_mcp\frontend\.next\static\chunks\pages\entities-5139baae84901597.js` | ORANGE | TypeScript module: frontend utility |
-| `mas_mcp\frontend\.next\static\chunks\pages\index-603cc75448a70f77.js` | ORANGE | MCP client integration - Observatory communication layer |
-| `mas_mcp\frontend\.next\static\chunks\pages\_app-db493b867170d726.js` | ORANGE | TypeScript module: frontend utility |
-| `mas_mcp\frontend\.next\static\chunks\pages\_error-796afbc0bcd9d577.js` | ORANGE | TypeScript module: frontend utility |
-| `mas_mcp\frontend\.next\server\chunks\169.js` | ORANGE | TypeScript module: frontend utility |
-| `mas_mcp\frontend\.next\server\chunks\341.js` | ORANGE | TypeScript module: frontend utility |
-| `mas_mcp\frontend\.next\server\chunks\395.js` | ORANGE | TypeScript module: frontend utility |
-| `mas_mcp\frontend\.next\server\chunks\427.js` | ORANGE | TypeScript module: frontend utility |
-| `mas_mcp\frontend\.next\server\chunks\516.js` | ORANGE | TypeScript module: frontend utility |
-| `mas_mcp\frontend\.next\server\chunks\517.js` | ORANGE | TypeScript module: frontend utility |
-| `mas_mcp\frontend\.next\server\chunks\543.js` | ORANGE | TypeScript module: frontend utility |
-| `mas_mcp\frontend\.next\server\chunks\580.js` | ORANGE | TypeScript module: frontend utility |
-| `mas_mcp\frontend\.next\server\chunks\590.js` | ORANGE | TypeScript module: frontend utility |
-| `mas_mcp\frontend\.next\server\chunks\65.js` | ORANGE | TypeScript module: frontend utility |
-| `mas_mcp\frontend\.next\server\chunks\781.js` | ORANGE | TypeScript module: middleware |
-| `mas_mcp\frontend\.next\server\pages\cycles.js` | ORANGE | MCP client integration - Observatory communication layer |
-| `mas_mcp\frontend\.next\server\pages\digest.js` | ORANGE | MCP client integration - Observatory communication layer |
-| `mas_mcp\frontend\.next\server\pages\entities.js` | ORANGE | MCP client integration - Observatory communication layer |
-| `mas_mcp\frontend\.next\server\pages\index.js` | ORANGE | MCP client integration - Observatory communication layer |
-| `mas_mcp\frontend\.next\server\pages\_app.js` | ORANGE | TypeScript module: frontend utility |
-| `mas_mcp\frontend\.next\server\pages\_document.js` | ORANGE | MCP client integration - Observatory communication layer |
-| `mas_mcp\frontend\.next\server\pages\_error.js` | ORANGE | MCP client integration - Observatory communication layer |
-| `mas_mcp\frontend\.next\server\pages\api\cycles.js` | ORANGE | TypeScript module: frontend utility |
-| `mas_mcp\frontend\.next\server\pages\api\digest.js` | ORANGE | TypeScript module: frontend utility |
-| `mas_mcp\frontend\.next\server\pages\api\entities.js` | ORANGE | TypeScript module: frontend utility |
-| `mas_mcp\frontend\.next\server\pages\api\metrics.js` | ORANGE | TypeScript module: frontend utility |
-| `mas_mcp\frontend\.next\server\pages\api\monitoring.js` | ORANGE | TypeScript module: frontend utility |
-| `mas_mcp\frontend\.next\server\pages\api\ssot.js` | ORANGE | TypeScript module: frontend utility |
-| `mas_mcp\frontend\.next\server\pages\api\metrics\history.js` | ORANGE | TypeScript module: frontend utility |
 | `mas_mcp\.venv-py314-parked\Lib\site-packages\win32com\test\testPyScriptlet.js` | ORANGE | TypeScript module: frontend utility |
 | `mas_mcp\.venv-py314-parked\Lib\site-packages\win32com\test\testxslt.js` | ORANGE | TypeScript module: frontend utility |
 | `chthonic-vscode-extension\src\extension.ts` | ORANGE | MCP client integration - Observatory communication layer |
@@ -5859,6 +5805,9 @@ identity analysis and PRISM spectral frequency mapping.
 | `ANKH_README.md` | GOLD | Entry portal - first architectural revelation |
 | `CROSS_REFERENCE_TRIPTYCH.md` | GOLD | Single Source of Truth - the Codex Brahmanica Perfectus |
 | `DCRP_DEPLOYMENT_SUMMARY.md` | GOLD | Single Source of Truth - the Codex Brahmanica Perfectus |
+| `DCRP_ENHANCED_ANALYSIS.md` | GOLD | Documentation: DCRP ENHANCED ANALYSIS REPORT |
+| `DCRP_FINAL_STATUS.md` | GOLD | Documentation: DCRP DEPLOYMENT - FINAL STATUS REPORT |
+| `DCRP_PRODUCTION_ANALYSIS.md` | GOLD | Documentation: DCRP Production Analysis Report |
 | `DELIVERABLES_20251230.md` | GOLD | Single Source of Truth - the Codex Brahmanica Perfectus |
 | `DEVELOPMENT_STATE.md` | GOLD | Single Source of Truth - the Codex Brahmanica Perfectus |
 | `GEMINI_HANDOFF_CACHE.md` | GOLD | Documentation: GEMINI 3-THINKING HANDOFF CACHE |
@@ -5912,6 +5861,7 @@ identity analysis and PRISM spectral frequency mapping.
 | `mas_mcp\.venv-py314-parked\Lib\site-packages\httpcore-1.0.9.dist-info\licenses\LICENSE.md` | GOLD | Documentation: Copyright © 2020, [Encode OSS Ltd](https://www.encode.io/). |
 | `logs\sessions\README.md` | GOLD | Entry portal - first architectural revelation |
 | `logs\sessions\session_2025-12-31_0746_vscode-extension-debug.md` | GOLD | Single Source of Truth - the Codex Brahmanica Perfectus |
+| `dumpster-dive\forge\PROCESS_FLOW.md` | GOLD | Single Source of Truth - the Codex Brahmanica Perfectus |
 | `dumpster-dive\from-github\BLACKSMITH_MATRIARCH.md` | GOLD | Single Source of Truth - the Codex Brahmanica Perfectus |
 | `dumpster-dive\from-github\copilot-un-un-instructions.md` | GOLD | Documentation: **Apex Synthesis Core (ASC) Framework** |
 | `dumpster-dive\from-github\SR_SCHRODINGERS_BASTARD.md` | GOLD | Single Source of Truth - the Codex Brahmanica Perfectus |
@@ -6162,6 +6112,8 @@ identity analysis and PRISM spectral frequency mapping.
 | `ankh_index.json` | BLUE | Configuration: ankh_index.json |
 | `Cargo.toml` | BLUE | The Chthonic Archive: Triumvirate Ascension - ASC-NATIVE-CHAIN-RPG |
 | `dependency_graph.json` | BLUE | Configuration: dependency_graph.json |
+| `dependency_graph_enhanced.json` | BLUE | Configuration: dependency_graph_enhanced.json |
+| `dependency_graph_production.json` | BLUE | Configuration: dependency_graph_production.json |
 | `package.json` | BLUE | Node package manifest - Observatory integration |
 | `pyproject.toml` | BLUE | Repository-wide cross-reference and analysis tools |
 | `.vscode\extensions.json` | BLUE | Configuration: extensions.json |
@@ -6476,37 +6428,6 @@ identity analysis and PRISM spectral frequency mapping.
 | `mas_mcp\genesis_artifacts\20251207_055735\f7cfc1e2a27ac535\environment.json` | BLUE | Configuration: environment.json |
 | `mas_mcp\genesis_artifacts\20251207_055735\f7cfc1e2a27ac535\index.json` | BLUE | Configuration: index.json |
 | `mas_mcp\genesis_artifacts\20251207_055735\f7cfc1e2a27ac535\validation.json` | BLUE | Configuration: validation.json |
-| `mas_mcp\frontend\.next\build-manifest.json` | BLUE | Configuration: build-manifest.json |
-| `mas_mcp\frontend\.next\dynamic-css-manifest.json` | BLUE | Configuration: dynamic-css-manifest.json |
-| `mas_mcp\frontend\.next\export-marker.json` | BLUE | Configuration: export-marker.json |
-| `mas_mcp\frontend\.next\images-manifest.json` | BLUE | Configuration: images-manifest.json |
-| `mas_mcp\frontend\.next\next-minimal-server.js.nft.json` | BLUE | Configuration: next-minimal-server.js.nft.json |
-| `mas_mcp\frontend\.next\next-server.js.nft.json` | BLUE | Configuration: next-server.js.nft.json |
-| `mas_mcp\frontend\.next\package.json` | BLUE | Node package manifest - Observatory integration |
-| `mas_mcp\frontend\.next\prerender-manifest.json` | BLUE | Configuration: prerender-manifest.json |
-| `mas_mcp\frontend\.next\react-loadable-manifest.json` | BLUE | Configuration: react-loadable-manifest.json |
-| `mas_mcp\frontend\.next\required-server-files.json` | BLUE | Configuration: required-server-files.json |
-| `mas_mcp\frontend\.next\routes-manifest.json` | BLUE | Configuration: routes-manifest.json |
-| `mas_mcp\frontend\.next\diagnostics\build-diagnostics.json` | BLUE | Configuration: build-diagnostics.json |
-| `mas_mcp\frontend\.next\diagnostics\framework.json` | BLUE | Configuration: framework.json |
-| `mas_mcp\frontend\.next\server\functions-config-manifest.json` | BLUE | Configuration: functions-config-manifest.json |
-| `mas_mcp\frontend\.next\server\middleware-manifest.json` | BLUE | Configuration: middleware-manifest.json |
-| `mas_mcp\frontend\.next\server\next-font-manifest.json` | BLUE | Configuration: next-font-manifest.json |
-| `mas_mcp\frontend\.next\server\pages-manifest.json` | BLUE | Configuration: pages-manifest.json |
-| `mas_mcp\frontend\.next\server\pages\cycles.js.nft.json` | BLUE | Configuration: cycles.js.nft.json |
-| `mas_mcp\frontend\.next\server\pages\digest.js.nft.json` | BLUE | Configuration: digest.js.nft.json |
-| `mas_mcp\frontend\.next\server\pages\entities.js.nft.json` | BLUE | Configuration: entities.js.nft.json |
-| `mas_mcp\frontend\.next\server\pages\index.js.nft.json` | BLUE | Configuration: index.js.nft.json |
-| `mas_mcp\frontend\.next\server\pages\_app.js.nft.json` | BLUE | Configuration: _app.js.nft.json |
-| `mas_mcp\frontend\.next\server\pages\_document.js.nft.json` | BLUE | Configuration: _document.js.nft.json |
-| `mas_mcp\frontend\.next\server\pages\_error.js.nft.json` | BLUE | Configuration: _error.js.nft.json |
-| `mas_mcp\frontend\.next\server\pages\api\cycles.js.nft.json` | BLUE | Configuration: cycles.js.nft.json |
-| `mas_mcp\frontend\.next\server\pages\api\digest.js.nft.json` | BLUE | Configuration: digest.js.nft.json |
-| `mas_mcp\frontend\.next\server\pages\api\entities.js.nft.json` | BLUE | Configuration: entities.js.nft.json |
-| `mas_mcp\frontend\.next\server\pages\api\metrics.js.nft.json` | BLUE | Configuration: metrics.js.nft.json |
-| `mas_mcp\frontend\.next\server\pages\api\monitoring.js.nft.json` | BLUE | Configuration: monitoring.js.nft.json |
-| `mas_mcp\frontend\.next\server\pages\api\ssot.js.nft.json` | BLUE | Configuration: ssot.js.nft.json |
-| `mas_mcp\frontend\.next\server\pages\api\metrics\history.js.nft.json` | BLUE | Configuration: history.js.nft.json |
 | `mas_mcp\data\session_campaigns\ASC_SESSION1_METADATA_v1.0.json` | BLUE | Configuration: ASC_SESSION1_METADATA_v1.0.json |
 | `mas_mcp\artifacts\compatibility\matrix.json` | BLUE | Configuration: matrix.json |
 | `mas_mcp\.venv-py314-parked\Lib\site-packages\mas_mcp-0.1.0.dist-info\direct_url.json` | BLUE | Configuration: direct_url.json |
@@ -6637,9 +6558,9 @@ identity analysis and PRISM spectral frequency mapping.
 
 ## 📊 DEPENDENCY GRAPH STATISTICS
 
-- **Total Files:** 20274
-- **Total Edges (Dependencies):** 667
-- **Void Directories:** 6
+- **Total Files:** 20155
+- **Total Edges (Dependencies):** 626
+- **Void Directories:** 4
 
 ### Most Depended-Upon Files (Top 10)
 
@@ -6652,6 +6573,6 @@ identity analysis and PRISM spectral frequency mapping.
 | `mas_mcp\.venv-py314-parked\Lib\site-packages\pydantic\typing.py` | 19 |
 | `mas_mcp\.venv-py314-parked\Lib\site-packages\onnxruntime\transformers\fusion_options.py` | 12 |
 | `dumpster-dive\DUMPSTER_DIVE_REGISTRY.json` | 11 |
-| `dumpster-dive\README.md` | 11 |
 | `mas_mcp\.venv-py314-parked\Lib\site-packages\pip\_internal\utils\logging.py` | 11 |
 | `mas_mcp\.venv-py314-parked\Lib\site-packages\onnxruntime\transformers\onnx_model_bert.py` | 11 |
+| `mas_mcp\.venv-py314-parked\Lib\site-packages\onnxruntime\transformers\fusion_attention.py` | 10 |
