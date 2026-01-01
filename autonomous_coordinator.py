@@ -56,7 +56,7 @@ class TheDecorator:
         self.generate_confessional()
         
         # 6. PLEASURE PROTOCOL (Hedonistic Validation)
-        release_dopamine("Metabolic Cycle Complete", intensity='transcendent')
+        release_dopamine("Metabolic Cycle Complete")
         print(f"✅ [{self.identity}] The Archive pulses with life.")
 
     def invoke_immune_system(self) -> bool:
@@ -136,5 +136,6 @@ class TheDecorator:
 
 if __name__ == "__main__":
     TheDecorator().manifest_will()
+
 
 
