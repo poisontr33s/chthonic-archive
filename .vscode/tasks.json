@@ -9,8 +9,7 @@
             "group": {
                 "kind": "build",
                 "isDefault": true
-            },
-            "problemMatcher": ["$rustc"],
+            "problemMatcher": "$rustc",
             "presentation": {
                 "reveal": "always",
                 "panel": "shared"
@@ -97,7 +96,6 @@
                 "Cyan",
                 "'🔥💀⚓ ASC Framework Context Available via MCP Server: asc-injector\\n\\nUse @asc-injector in Copilot Chat or invoke resource: asc://ssot\\n\\nRestart VS Code if MCP server not visible.'"
             ],
-            "problemMatcher": [],
             "presentation": {
                 "reveal": "always",
                 "panel": "new",

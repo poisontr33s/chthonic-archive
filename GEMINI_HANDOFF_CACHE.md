@@ -34,7 +34,6 @@
 ### Git Status:
 - Branch: master (fresh)
 - Commit: "Initial commit: Chthonic Archive Engine (Pure)"
-- NO REMOTE YET (needs GitHub repo creation)
 
 ### Gemini Specification Awaited:
 - Tile size (world units)?
