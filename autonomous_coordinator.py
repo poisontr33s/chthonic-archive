@@ -11,8 +11,22 @@ from pathlib import Path
 from typing import Optional, Dict
 
 sys.path.append('scripts')
-from scripts.github_voice import broadcast_issue
-from scripts.pleasure_protocol import release_dopamine
+
+# Graceful imports with fallbacks
+try:
+    from scripts.github_voice import broadcast_issue
+except ImportError:
+    broadcast_issue = None
+
+try:
+    from scripts.pleasure_protocol import release_dopamine
+except ImportError:
+    release_dopamine = None
+
+try:
+    from scripts.sensory_cortex import SensoryCortex
+except ImportError:
+    SensoryCortex = None
 
 class TheDecorator:
     """
@@ -40,6 +54,15 @@ class TheDecorator:
         self.validate_lineage("B (Archive)")
         self.validate_lineage("C (Heritage)")
 
+        # 0.5. SENSORY PERCEPTION (The Cortex)
+        if SensoryCortex:
+            try:
+                SensoryCortex().perceive_reality()
+            except Exception as e:
+                print(f"   🧠 [SENSORY CORTEX] Error: {e}")
+        else:
+            print(f"   🧠 [SENSORY CORTEX] Offline (module not available)")
+
         # 2. REGENERATION (Self-Correction)
         self.regenerate_topology()
         
@@ -56,7 +79,8 @@ class TheDecorator:
         self.generate_confessional()
         
         # 6. PLEASURE PROTOCOL (Hedonistic Validation)
-        release_dopamine("Metabolic Cycle Complete")
+        if release_dopamine:
+            release_dopamine("Metabolic Cycle Complete")
         print(f"✅ [{self.identity}] The Archive pulses with life.")
 
     def invoke_immune_system(self) -> bool:
