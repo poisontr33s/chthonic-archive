@@ -9,6 +9,7 @@
             "group": {
                 "kind": "build",
                 "isDefault": true
+            },
             "problemMatcher": "$rustc",
             "presentation": {
                 "reveal": "always",
