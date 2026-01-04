@@ -1,19 +1,26 @@
 # MCP Server Implementation Summary
 
-**Status:** ✅ OPERATIONAL  
+**Status:** ✅ OPERATIONAL (Bun-native refactor complete)  
 **Date:** 2026-01-04  
-**Commit:** 1d378b9
+**Last Updated:** 2026-01-04 (Bun API integration)  
+**Commit:** 1d378b9 (initial), pending (Bun-native refactor)
 
 ## What Was Built
 
-A **minimal stdio-based MCP server** for the chthonic-archive repository, implemented in **Bun-native TypeScript** with **zero SDK dependencies**.
+A **minimal stdio-based MCP server** for the chthonic-archive repository, implemented in **Bun-native TypeScript** with **zero external dependencies**.
+
+**Key upgrades from initial implementation:**
+- ✅ Replaced Node.js APIs with Bun-native equivalents (`Bun.file`, `Bun.CryptoHasher`, `Bun.spawn`)
+- ✅ Implemented SHA-256 canonicalization per SSOT Section XIV.3
+- ✅ Added comprehensive Bun test suite (5 tests, all passing)
+- ✅ Full compliance with Bun documentation and best practices
 
 ## Architecture
 
 **Transport:** JSON-RPC 2.0 over stdio (newline-delimited)  
 **Runtime:** Bun 1.3.5  
 **Language:** TypeScript (ESM modules)  
-**Dependencies:** None (uses Node.js fs/path/child_process only)
+**Dependencies:** Zero (Bun built-in APIs only)
 
 ## Files Created
 
@@ -37,9 +44,14 @@ mcp/
 - **Tested:** 44,206 files scanned successfully
 
 ### 2. validate_ssot_integrity
-- Reads `.github/copilot-instructions.md`
-- Returns status, path, size (313,634 bytes), line count (3,964 lines)
-- **TODO:** SHA-256 canonicalization per Section XIV.3
+- Reads `.github/copilot-instructions.md` using `Bun.file()`
+- Implements SHA-256 canonicalization per SSOT Section XIV.3:
+  - CRLF→LF normalization
+  - Trim trailing whitespace per line
+  - NFC Unicode normalization
+  - Strip final newline
+- Computes hash using `Bun.CryptoHasher("sha256")`
+- **Tested:** 313,634 bytes, 3,964 lines, hash `49ef091b564023919ef32a3cd2bfb951630487c8947bf65739d99f924ab37ef5`
 
 ### 3. query_dependency_graph
 - Stub accepting query parameter
@@ -47,24 +59,38 @@ mcp/
 
 ## Testing
 
+### Manual Test Client
 ```bash
-# Individual tool tests
-echo '{"id":1,"method":"scan_repository"}' | bun run mcp/server.ts
-echo '{"id":2,"method":"validate_ssot_integrity"}' | bun run mcp/server.ts
-echo '{"id":3,"method":"query_dependency_graph","params":{"query":"test"}}' | bun run mcp/server.ts
-
-# Full test client
 bun run mcp/test-client.ts
 ```
 
-All tests pass ✅
+**Expected output:**
+```
+[MCP Server] Starting stdio server...
+[Server Response] {"id":1,"result":{"pong":true}}
+[Server Response] {"id":2,"result":{"repository":"...","file_count":44207,...}}
+[Server Response] {"id":3,"result":{"status":"valid","hash":"49ef091b..."}}
+[Server Response] {"id":4,"result":{"query":"test","note":"Not yet implemented"}}
+[Test Client] Server terminated after timeout
+```
+
+### Bun Test Suite
+```bash
+bun test mcp/server.test.ts
+```
+
+**Test coverage:**
+- ✅ Ping/pong protocol verification
+- ✅ Repository scan (44K+ files detected)
+- ✅ SSOT integrity with SHA-256 hash validation (regex match)
+- ✅ Dependency graph stub response
+- ✅ Error handling for unknown methods
+
+**Results:** 5 pass, 0 fail, 15 expect() calls in ~2.87s
 
 ## Next Steps
 
-1. **Implement SSOT hashing** per Section XIV.3:
-   - Canonicalize text (CRLF→LF, trim lines, NFC normalization)
-   - Compute SHA-256 hash
-   - Return hash for verification
+1. **~~Implement SSOT hashing~~** ✅ COMPLETE (Bun-native SHA-256)
 
 2. **Implement dependency graph queries:**
    - Load dependency_graph_production.json
