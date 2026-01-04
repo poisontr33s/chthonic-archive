@@ -54,15 +54,16 @@ async function dispatch(req: MCPRequest): Promise<MCPResponse | null> {
             },
             {
               name: "query_dependency_graph",
-              description: "Query the dependency graph (stub - not yet implemented)",
+              description: "Query the dependency graph (supports: node <file>, dependencies <file>, dependents <file>, spectral <freq>, stats)",
               inputSchema: {
                 type: "object",
                 properties: {
                   query: {
                     type: "string",
-                    description: "Query string for dependency graph",
+                    description: "Query command: 'node <filename>', 'dependencies <filename>', 'dependents <filename>', 'spectral <RED|ORANGE|GOLD|BLUE|WHITE|INDIGO|VIOLET>', or 'stats'",
                   },
                 },
+                required: ["query"],
               },
             },
           ],
@@ -85,8 +86,8 @@ async function dispatch(req: MCPRequest): Promise<MCPResponse | null> {
             return ok(id, { content: [{ type: "text", text: JSON.stringify(validateResult, null, 2) }] });
 
           case "query_dependency_graph":
-            const queryResult = await queryDependencyGraph(toolArgs.query || "");
-            return ok(id, { content: [{ type: "text", text: JSON.stringify(queryResult, null, 2) }] });
+            const queryResult = await queryDependencyGraph(toolArgs.query || "stats");
+            return ok(id, { content: [{ type: "text", text: queryResult }] });
 
           default:
             return fail(id, `Unknown tool: ${toolName}`, -32601);
