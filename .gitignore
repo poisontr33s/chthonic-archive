@@ -13,6 +13,12 @@
 !docs/
 !docs/MCP_*.md
 
+# Allow MCP server implementation
+!mcp/
+!mcp/*.ts
+!mcp/tools/
+!mcp/tools/*.ts
+
 # Allow SSOT and governance
 !.github/
 !.github/**
