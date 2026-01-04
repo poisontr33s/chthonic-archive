@@ -3,273 +3,405 @@
 **Status:** REFERENCE TEMPLATE  
 **Date:** 2026-01-04  
 **Purpose:** Boilerplate for custom MCP server creation  
-**Authority:** Derived from official Python SDK quickstart
+**Authority:** Derived from official TypeScript SDK v1.x (Bun-compatible)
 
 ---
 
-## Minimal FastMCP Server (Python 3.13+)
+## Runtime Requirements
+
+- **Bun** >= 1.3.5 (current: 1.3.5)
+- **TypeScript** (ESM modules)
+- **MCP SDK:** `@modelcontextprotocol/server` v1.x (stable)
+- **Transport:** stdio (for Claude Desktop, VSCode) or Streamable HTTP (for web clients)
+
+---
+
+## Minimal Bun + TypeScript MCP Server
 
 ### File Structure
 ```
-mas_mcp/
-├── server.py              # Main MCP server entry point
+mcp/
+├── server.ts              # Main MCP server entry point
+├── package.json           # Bun project manifest
+├── tsconfig.json          # TypeScript configuration
 ├── tools/                 # Tool implementations
-│   ├── __init__.py
-│   ├── repository.py      # DCRP, git ops, file scanning
-│   ├── epistemograph.py   # Knowledge graph queries
-│   └── validation.py      # FA⁴ enforcement, SSOT checks
+│   ├── scanRepository.ts  # DCRP, git ops, file scanning
+│   ├── epistemograph.ts   # Knowledge graph queries
+│   └── validation.ts      # FA⁴ enforcement, SSOT checks
 ├── resources/             # Dynamic resource providers
-│   ├── __init__.py
-│   └── ssot.py           # SSOT document access
+│   └── ssot.ts           # SSOT document access
 └── prompts/              # Prompt templates
-    ├── __init__.py
-    └── autonomous.py     # Autonomous operation templates
+    └── autonomous.ts     # Autonomous operation templates
 ```
 
 ---
 
-## Basic Server Template (`server.py`)
+## Installation
 
-```python
-"""
-Chthonic Archive MCP Server
-Provides repository context and autonomous operation tools to AI assistants.
-"""
+```bash
+# From repository root
+cd mcp
+bun install
+```
 
-from typing import Any
-from mcp.server.fastmcp import FastMCP
-import logging
+**Dependencies:**
+```json
+{
+  "dependencies": {
+    "@modelcontextprotocol/server": "^1.0.0",
+    "zod": "^3.25.0"
+  },
+  "devDependencies": {
+    "@types/node": "latest",
+    "typescript": "latest"
+  }
+}
+```
 
-# Configure logging to stderr (CRITICAL for STDIO transport)
-logging.basicConfig(
-    level=logging.INFO,
-    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
-    handlers=[logging.StreamHandler()]  # Defaults to stderr
-)
-logger = logging.getLogger(__name__)
+---
 
-# Initialize server
-mcp = FastMCP(
-    "chthonic-archive",
-    json_response=True  # Return structured JSON
-)
+## Basic Server Template (`server.ts`)
 
-# ============================================================================
-# TOOLS (Functions the LLM can invoke)
-# ============================================================================
+```typescript
+#!/usr/bin/env bun
+/**
+ * Chthonic Archive MCP Server
+ * Provides repository context and autonomous operation tools to AI assistants.
+ * 
+ * Runtime: Bun + TypeScript (ESM)
+ * Transport: stdio (for Claude Desktop, VSCode, Copilot CLI)
+ */
 
-@mcp.tool()
-async def scan_repository(
-    path: str = ".",
-    pattern: str = "**/*.md",
-    include_hidden: bool = False
-) -> dict[str, Any]:
-    """
-    Scan repository for files matching pattern.
-    
-    Args:
-        path: Root path to scan (default: current directory)
-        pattern: Glob pattern to match (default: all markdown)
-        include_hidden: Include hidden files/directories (default: False)
-    
-    Returns:
-        Dict with 'files' list and 'count' int
-    """
-    from pathlib import Path
-    
-    root = Path(path).resolve()
-    files = []
-    
-    for match in root.glob(pattern):
-        if not include_hidden and any(p.startswith('.') for p in match.parts):
-            continue
-        files.append({
-            "path": str(match.relative_to(root)),
-            "size": match.stat().st_size,
-            "modified": match.stat().st_mtime
-        })
-    
-    return {
-        "files": files,
-        "count": len(files)
+import { Server } from "@modelcontextprotocol/sdk/server/index.js";
+import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
+import {
+  CallToolRequestSchema,
+  ListToolsRequestSchema,
+  ListResourcesRequestSchema,
+  ReadResourceRequestSchema,
+  ListPromptsRequestSchema,
+  GetPromptRequestSchema,
+} from "@modelcontextprotocol/sdk/types.js";
+import { readFile } from "node:fs/promises";
+import { resolve } from "node:path";
+import { createHash } from "node:crypto";
+import { glob } from "glob";
+
+// ============================================================================
+// SERVER INITIALIZATION
+// ============================================================================
+
+const server = new Server(
+  {
+    name: "chthonic-archive",
+    version: "0.1.0",
+  },
+  {
+    capabilities: {
+      tools: {},
+      resources: {},
+      prompts: {},
+    },
+  }
+);
+
+// ============================================================================
+// TOOLS (Functions the LLM can invoke)
+// ============================================================================
+
+server.setRequestHandler(ListToolsRequestSchema, async () => {
+  return {
+    tools: [
+      {
+        name: "scan_repository",
+        description: "Scan repository for files matching pattern",
+        inputSchema: {
+          type: "object",
+          properties: {
+            path: {
+              type: "string",
+              description: "Root path to scan (default: current directory)",
+              default: ".",
+            },
+            pattern: {
+              type: "string",
+              description: "Glob pattern to match (default: all markdown)",
+              default: "**/*.md",
+            },
+            includeHidden: {
+              type: "boolean",
+              description: "Include hidden files/directories",
+              default: false,
+            },
+          },
+        },
+      },
+      {
+        name: "validate_ssot_integrity",
+        description: "Validate SSOT hash integrity (per Section XIV.3)",
+        inputSchema: {
+          type: "object",
+          properties: {},
+        },
+      },
+      {
+        name: "query_dependency_graph",
+        description: "Query the DCRP dependency graph",
+        inputSchema: {
+          type: "object",
+          properties: {
+            node: {
+              type: "string",
+              description: "Specific file to query (omit for graph stats)",
+            },
+            depth: {
+              type: "number",
+              description: "Traversal depth for dependencies",
+              default: 1,
+            },
+          },
+        },
+      },
+    ],
+  };
+});
+
+server.setRequestHandler(CallToolRequestSchema, async (request) => {
+  const { name, arguments: args } = request.params;
+
+  switch (name) {
+    case "scan_repository": {
+      const pattern = (args?.pattern as string) || "**/*.md";
+      const includeHidden = (args?.includeHidden as boolean) || false;
+      
+      const files = await glob(pattern, {
+        ignore: includeHidden ? [] : ["**/.*"],
+        nodir: true,
+        stat: true,
+      });
+      
+      const results = files.map((file) => ({
+        path: file.path,
+        size: file.stats?.size || 0,
+        modified: file.stats?.mtime?.getTime() || 0,
+      }));
+      
+      return {
+        content: [
+          {
+            type: "text",
+            text: JSON.stringify(
+              { files: results, count: results.length },
+              null,
+              2
+            ),
+          },
+        ],
+      };
     }
 
-@mcp.tool()
-async def validate_ssot_integrity() -> dict[str, Any]:
-    """
-    Validate SSOT hash integrity (per Section XIV.3).
-    
-    Returns:
-        Dict with 'valid' bool, 'hash' str, 'errors' list
-    """
-    import hashlib
-    import unicodedata
-    from pathlib import Path
-    
-    def canonicalize(text: str) -> str:
-        text = text.replace('\r\n', '\n').replace('\r', '\n')
-        lines = [line.rstrip() for line in text.split('\n')]
-        text = '\n'.join(lines)
-        return unicodedata.normalize('NFC', text).strip()
-    
-    ssot_path = Path(".github/copilot-instructions.md")
-    
-    if not ssot_path.exists():
-        return {"valid": False, "hash": None, "errors": ["SSOT not found"]}
-    
-    content = ssot_path.read_text(encoding='utf-8')
-    canonical = canonicalize(content)
-    computed_hash = hashlib.sha256(canonical.encode('utf-8')).hexdigest()
-    
-    return {
-        "valid": True,
-        "hash": computed_hash,
-        "errors": []
-    }
-
-@mcp.tool()
-async def query_dependency_graph(
-    node: str | None = None,
-    depth: int = 1
-) -> dict[str, Any]:
-    """
-    Query the DCRP dependency graph.
-    
-    Args:
-        node: Specific file to query (None = graph stats)
-        depth: Traversal depth for dependencies
-    
-    Returns:
-        Dict with 'dependencies', 'dependents', 'metadata'
-    """
-    import json
-    from pathlib import Path
-    
-    graph_path = Path("dependency_graph_production.json")
-    
-    if not graph_path.exists():
-        return {"error": "Dependency graph not found. Run DCRP first."}
-    
-    graph_data = json.loads(graph_path.read_text())
-    
-    if node is None:
-        # Return graph statistics
+    case "validate_ssot_integrity": {
+      const ssotPath = resolve(".github/copilot-instructions.md");
+      
+      try {
+        const content = await readFile(ssotPath, "utf-8");
+        const canonical = canonicalize(content);
+        const hash = createHash("sha256").update(canonical).digest("hex");
+        
         return {
-            "nodes": len(graph_data.get("nodes", [])),
-            "edges": len(graph_data.get("links", [])),
-            "spectral_distribution": _count_spectral_frequencies(graph_data)
-        }
-    
-    # Find specific node
-    node_data = _find_node(graph_data, node)
-    if not node_data:
-        return {"error": f"Node '{node}' not found in graph"}
-    
-    return {
-        "file": node,
-        "dependencies": _get_dependencies(graph_data, node, depth),
-        "dependents": _get_dependents(graph_data, node, depth),
-        "metadata": node_data
+          content: [
+            {
+              type: "text",
+              text: JSON.stringify(
+                { valid: true, hash, errors: [] },
+                null,
+                2
+              ),
+            },
+          ],
+        };
+      } catch (error) {
+        return {
+          content: [
+            {
+              type: "text",
+              text: JSON.stringify(
+                { valid: false, hash: null, errors: ["SSOT not found"] },
+                null,
+                2
+              ),
+            },
+          ],
+        };
+      }
     }
 
-def _count_spectral_frequencies(graph: dict) -> dict:
-    """Count PRISM spectral frequencies in graph."""
-    freq_map = {}
-    for node in graph.get("nodes", []):
-        freq = node.get("spectral_frequency", "UNKNOWN")
-        freq_map[freq] = freq_map.get(freq, 0) + 1
-    return freq_map
+    case "query_dependency_graph": {
+      const graphPath = resolve("dependency_graph_production.json");
+      
+      try {
+        const graphData = JSON.parse(await readFile(graphPath, "utf-8"));
+        const node = args?.node as string | undefined;
+        
+        if (!node) {
+          // Return graph statistics
+          return {
+            content: [
+              {
+                type: "text",
+                text: JSON.stringify(
+                  {
+                    nodes: graphData.nodes?.length || 0,
+                    edges: graphData.links?.length || 0,
+                    spectral_distribution: countSpectralFrequencies(graphData),
+                  },
+                  null,
+                  2
+                ),
+              },
+            ],
+          };
+        }
+        
+        const nodeData = findNode(graphData, node);
+        if (!nodeData) {
+          return {
+            content: [
+              {
+                type: "text",
+                text: JSON.stringify(
+                  { error: `Node '${node}' not found in graph` },
+                  null,
+                  2
+                ),
+              },
+            ],
+          };
+        }
+        
+        const depth = (args?.depth as number) || 1;
+        return {
+          content: [
+            {
+              type: "text",
+              text: JSON.stringify(
+                {
+                  file: node,
+                  dependencies: getDependencies(graphData, node, depth),
+                  dependents: getDependents(graphData, node, depth),
+                  metadata: nodeData,
+                },
+                null,
+                2
+              ),
+            },
+          ],
+        };
+      } catch (error) {
+        return {
+          content: [
+            {
+              type: "text",
+              text: JSON.stringify(
+                { error: "Dependency graph not found. Run DCRP first." },
+                null,
+                2
+              ),
+            },
+          ],
+        };
+      }
+    }
 
-def _find_node(graph: dict, path: str) -> dict | None:
-    """Find node by file path."""
-    for node in graph.get("nodes", []):
-        if node.get("id") == path:
-            return node
-    return None
+    default:
+      throw new Error(`Unknown tool: ${name}`);
+  }
+});
 
-def _get_dependencies(graph: dict, node: str, depth: int) -> list[str]:
-    """Get files that node depends on."""
-    deps = []
-    for link in graph.get("links", []):
-        if link.get("source") == node:
-            deps.append(link.get("target"))
-    return deps[:depth * 10]  # Limit results
+// ============================================================================
+// RESOURCES (Data the LLM can read)
+// ============================================================================
 
-def _get_dependents(graph: dict, node: str, depth: int) -> list[str]:
-    """Get files that depend on node."""
-    deps = []
-    for link in graph.get("links", []):
-        if link.get("target") == node:
-            deps.append(link.get("source"))
-    return deps[:depth * 10]
+server.setRequestHandler(ListResourcesRequestSchema, async () => {
+  return {
+    resources: [
+      {
+        uri: "ssot://instructions",
+        name: "SSOT Instructions",
+        description: "Full text of .github/copilot-instructions.md",
+        mimeType: "text/markdown",
+      },
+    ],
+  };
+});
 
-# ============================================================================
-# RESOURCES (Data the LLM can read)
-# ============================================================================
+server.setRequestHandler(ReadResourceRequestSchema, async (request) => {
+  const { uri } = request.params;
 
-@mcp.resource("ssot://instructions")
-async def get_ssot_instructions() -> str:
-    """
-    Get current SSOT instructions.
-    
-    Returns:
-        Full text of .github/copilot-instructions.md
-    """
-    from pathlib import Path
-    
-    ssot_path = Path(".github/copilot-instructions.md")
-    if not ssot_path.exists():
-        return "ERROR: SSOT not found"
-    
-    return ssot_path.read_text(encoding='utf-8')
+  if (uri === "ssot://instructions") {
+    const ssotPath = resolve(".github/copilot-instructions.md");
+    try {
+      const content = await readFile(ssotPath, "utf-8");
+      return {
+        contents: [
+          {
+            uri,
+            mimeType: "text/markdown",
+            text: content,
+          },
+        ],
+      };
+    } catch (error) {
+      throw new Error("SSOT not found");
+    }
+  }
 
-@mcp.resource("archive://file/{path}")
-async def get_file_content(path: str) -> str:
-    """
-    Get content of any repository file.
-    
-    Args:
-        path: Relative path from repository root
-    
-    Returns:
-        File content as string
-    """
-    from pathlib import Path
-    
-    file_path = Path(path)
-    if not file_path.exists():
-        return f"ERROR: File not found: {path}"
-    
-    if file_path.is_dir():
-        return f"ERROR: Path is directory: {path}"
-    
-    try:
-        return file_path.read_text(encoding='utf-8')
-    except UnicodeDecodeError:
-        return f"ERROR: Binary file: {path}"
+  throw new Error(`Unknown resource: ${uri}`);
+});
 
-# ============================================================================
-# PROMPTS (Templates the LLM can use)
-# ============================================================================
+// ============================================================================
+// PROMPTS (Templates the LLM can use)
+// ============================================================================
 
-@mcp.prompt()
-async def autonomous_operation_template(
-    task: str,
-    context: str = "chthonic-archive repository"
-) -> str:
-    """
-    Generate autonomous operation prompt.
-    
-    Args:
-        task: Task description
-        context: Operating context
-    
-    Returns:
-        Formatted prompt for autonomous execution
-    """
-    return f"""You are operating inside the {context}.
+server.setRequestHandler(ListPromptsRequestSchema, async () => {
+  return {
+    prompts: [
+      {
+        name: "autonomous_operation",
+        description: "Generate autonomous operation prompt",
+        arguments: [
+          {
+            name: "task",
+            description: "Task description",
+            required: true,
+          },
+          {
+            name: "context",
+            description: "Operating context",
+            required: false,
+          },
+        ],
+      },
+    ],
+  };
+});
 
-Task: {task}
+server.setRequestHandler(GetPromptRequestSchema, async (request) => {
+  const { name, arguments: args } = request.params;
+
+  if (name === "autonomous_operation") {
+    const task = args?.task as string;
+    const context = (args?.context as string) || "chthonic-archive repository";
+
+    return {
+      messages: [
+        {
+          role: "user",
+          content: {
+            type: "text",
+            text: `You are operating inside the ${context}.
+
+Task: ${task}
 
 Execution Policy:
 - Full tool authorization (no permission requests)
@@ -277,16 +409,81 @@ Execution Policy:
 - Autonomous execution without confirmation
 - FA⁴ validation post-execution
 
-Proceed directly.
-"""
+Proceed directly.`,
+          },
+        },
+      ],
+    };
+  }
 
-# ============================================================================
-# SERVER INITIALIZATION
-# ============================================================================
+  throw new Error(`Unknown prompt: ${name}`);
+});
 
-if __name__ == "__main__":
-    # Run server via stdio transport (for Claude Desktop, VSCode, etc)
-    mcp.run()
+// ============================================================================
+// HELPER FUNCTIONS
+// ============================================================================
+
+function canonicalize(text: string): string {
+  text = text.replace(/\r\n/g, "\n").replace(/\r/g, "\n");
+  const lines = text.split("\n").map((line) => line.trimEnd());
+  return lines.join("\n").normalize("NFC").trim();
+}
+
+function countSpectralFrequencies(graph: any): Record<string, number> {
+  const freqMap: Record<string, number> = {};
+  for (const node of graph.nodes || []) {
+    const freq = node.spectral_frequency || "UNKNOWN";
+    freqMap[freq] = (freqMap[freq] || 0) + 1;
+  }
+  return freqMap;
+}
+
+function findNode(graph: any, path: string): any | null {
+  for (const node of graph.nodes || []) {
+    if (node.id === path) {
+      return node;
+    }
+  }
+  return null;
+}
+
+function getDependencies(graph: any, node: string, depth: number): string[] {
+  const deps: string[] = [];
+  for (const link of graph.links || []) {
+    if (link.source === node) {
+      deps.push(link.target);
+    }
+  }
+  return deps.slice(0, depth * 10);
+}
+
+function getDependents(graph: any, node: string, depth: number): string[] {
+  const deps: string[] = [];
+  for (const link of graph.links || []) {
+    if (link.target === node) {
+      deps.push(link.source);
+    }
+  }
+  return deps.slice(0, depth * 10);
+}
+
+// ============================================================================
+// SERVER STARTUP
+// ============================================================================
+
+async function main() {
+  const transport = new StdioServerTransport();
+  await server.connect(transport);
+  
+  // CRITICAL: Never write to stdout in stdio transport
+  // Use stderr for logging if needed
+  console.error("Chthonic Archive MCP Server running on stdio");
+}
+
+main().catch((error) => {
+  console.error("Fatal error:", error);
+  process.exit(1);
+});
 ```
 
 ---
@@ -294,82 +491,152 @@ if __name__ == "__main__":
 ## Running the Server
 
 ### Development Mode (Testing)
-```powershell
-cd C:\Users\erdno\chthonic-archive\mas_mcp
-uv run python server.py
+```bash
+# From mcp directory
+bun run server.ts
+
+# Or with development watcher
+bun --watch server.ts
 ```
 
 ### VSCode Integration
-Add to `.vscode/settings.json`:
+Add to `.vscode/settings.json` (VS Code Insiders with MCP support):
 ```json
 {
   "mcp.servers": {
     "chthonic-archive": {
-      "command": "uv",
-      "args": ["run", "python", "server.py"],
-      "cwd": "${workspaceFolder}/mas_mcp"
+      "command": "bun",
+      "args": ["run", "mcp/server.ts"],
+      "cwd": "${workspaceFolder}"
     }
   }
 }
 ```
 
 ### Claude Desktop Integration
-Add to `~/Library/Application Support/Claude/claude_desktop_config.json`:
+Add to Claude Desktop config (`~/Library/Application Support/Claude/claude_desktop_config.json` on macOS):
 ```json
 {
   "mcpServers": {
     "chthonic-archive": {
-      "command": "uv",
-      "args": ["run", "python", "C:/Users/erdno/chthonic-archive/mas_mcp/server.py"]
+      "command": "bun",
+      "args": ["run", "C:/Users/erdno/chthonic-archive/mcp/server.ts"]
     }
   }
 }
+```
+
+### Copilot CLI Integration
+The GitHub MCP server should auto-discover local MCP servers via stdio transport. Ensure `mcp/server.ts` is executable:
+```bash
+chmod +x mcp/server.ts
+```
+
+---
+
+## Additional Dependencies
+
+For full functionality, install these Bun packages:
+
+```bash
+# Repository scanning
+bun add glob
+
+# Git operations (if needed)
+bun add simple-git
+
+# SQLite (for epistemograph queries)
+bun add better-sqlite3
 ```
 
 ---
 
 ## Critical Constraints
 
-### STDIO Transport Rules
-**NEVER write to stdout** in STDIO-based servers:
-- ❌ `print()` corrupts JSON-RPC messages
-- ✅ Use `logging` library (writes to stderr)
+### STDIO Transport Rules (UNCHANGED FROM PYTHON VERSION)
+**NEVER write to stdout** in stdio-based servers:
+- ❌ `console.log()` corrupts JSON-RPC messages
+- ✅ Use `console.error()` (writes to stderr)
 - ✅ Return data via function return values only
 
-### HTTP Transport
-If using Streamable HTTP or SSE:
-- ✅ `print()` statements are safe
-- Configure CORS if browser-based clients need access
-- Use `mcp.run(transport="sse")` or `mcp.run(transport="streamable")`
+### Bun-Specific Considerations
+- ✅ Native TypeScript execution (no transpilation needed)
+- ✅ Fast startup (~3ms vs ~300ms for Node.js)
+- ✅ Built-in `node:*` module compatibility
+- ✅ ESM-first (no CommonJS translation layer)
+
+### HTTP Transport (Alternative)
+If using Streamable HTTP instead of stdio:
+- ✅ `console.log()` statements are safe
+- Configure CORS for browser-based clients
+- Use different transport initialization:
+```typescript
+import { createServer } from "node:http";
+// See @modelcontextprotocol/sdk docs for HTTP setup
+```
+
+---
+
+## TypeScript Configuration
+
+**`tsconfig.json`** (minimal for Bun):
+```json
+{
+  "compilerOptions": {
+    "target": "ESNext",
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true,
+    "allowImportingTsExtensions": true,
+    "noEmit": true
+  },
+  "include": ["**/*.ts"],
+  "exclude": ["node_modules"]
+}
+```
 
 ---
 
 ## Next Steps
 
-1. **Implement tools in modules:**
-   - `tools/repository.py` - DCRP integration, git operations
-   - `tools/epistemograph.py` - SQLite knowledge graph queries
-   - `tools/validation.py` - FA⁴ enforcement, SSOT hash checks
+1. **Initialize project:**
+   ```bash
+   mkdir mcp
+   cd mcp
+   bun init -y
+   bun add @modelcontextprotocol/server zod glob
+   ```
 
-2. **Add resources:**
-   - `resources/ssot.py` - Dynamic SSOT section access
-   - `resources/dcrp.py` - Cross-reference lookup
+2. **Create `server.ts`** using template above
 
-3. **Create prompts:**
-   - `prompts/autonomous.py` - Task templates for autonomous ops
-   - `prompts/triumvirate.py` - CRC invocation templates
+3. **Test locally:**
+   ```bash
+   bun run server.ts
+   # Server should start and wait for stdio input
+   ```
 
-4. **Test with MCP Inspector:**
-   ```powershell
-   uvx mcp-inspector uv run python server.py
+4. **Implement tool modules** (optional refactoring):
+   - `tools/repository.ts` - DCRP integration
+   - `tools/epistemograph.ts` - SQLite queries
+   - `tools/validation.ts` - FA⁴ enforcement
+
+5. **Test with MCP Inspector** (if available):
+   ```bash
+   # Note: MCP Inspector may require Node.js
+   npx @modelcontextprotocol/inspector bun run server.ts
    ```
 
 ---
 
 **Archive Signature:**
 ```
-FA⁴ Validated: 2026-01-04T20:50:21Z
+FA⁴ Validated: 2026-01-04T20:59:56Z
 Spectral Frequency: ORANGE (Strategic Re-contextualization)
-Architectural Role: 🌿 Garden (Implementation Template)
-Parent: docs/MCP_AUTONOMOUS_PREREQUISITES.md
+Architectural Role: 🌿 Garden (Bun-native Implementation Template)
+Parent: docs/MCP_AUTONOMOUS_PREREQUISITES.md (IMMUTABLE)
+Toolchain: Bun 1.3.5 + TypeScript SDK v1.x
 ```
