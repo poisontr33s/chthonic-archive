@@ -3,14 +3,19 @@ import { scanRepository } from "./tools/scanRepository.ts";
 import { validateSSOT } from "./tools/validateSSOT.ts";
 import { queryDependencyGraph } from "./tools/queryDependencyGraph.ts";
 
-async function dispatch(req: MCPRequest) {
-  const { id = null, method, params = {} } = req;
+async function dispatch(req: MCPRequest): Promise<MCPResponse | null> {
+  // Rule 1: Notifications have no id - never respond to them
+  if (typeof req.id !== "number" && typeof req.id !== "string") {
+    return null;
+  }
+
+  const { id, method, params = {} } = req;
 
   try {
     switch (method) {
       case "initialize":
         return ok(id, {
-          protocolVersion: "2024-11-05",
+          protocolVersion: params.protocolVersion || "2024-11-05",
           serverInfo: {
             name: "chthonic-archive",
             version: "0.1.0",
@@ -113,14 +118,17 @@ async function main() {
       try {
         req = JSON.parse(line);
       } catch {
-        process.stdout.write(
-          JSON.stringify(fail(null, "Parse error", -32700)) + "\n"
-        );
+        // Parse error for malformed JSON - we can't even extract an id
+        // Skip silently per MCP spec (can't respond without valid id)
+        console.error("[MCP Server] Parse error:", line);
         continue;
       }
 
       const res = await dispatch(req);
-      process.stdout.write(JSON.stringify(res) + "\n");
+      // Rule 2: Only write response if dispatch returned one (null = notification)
+      if (res) {
+        process.stdout.write(JSON.stringify(res) + "\n");
+      }
     }
   }
 }
