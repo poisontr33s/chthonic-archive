@@ -18,6 +18,7 @@
 !mcp/*.ts
 !mcp/*.md
 !mcp/*.json
+!mcp/*.ps1
 !mcp/tools/
 !mcp/tools/*.ts
 
