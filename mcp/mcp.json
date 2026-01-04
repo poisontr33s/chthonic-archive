@@ -1,0 +1,23 @@
+{
+  "name": "chthonic-archive",
+  "version": "0.1.0",
+  "description": "Bun-native MCP server for repository introspection",
+  "transport": {
+    "type": "stdio",
+    "command": ["bun", "run", "mcp/server.ts"]
+  },
+  "tools": [
+    {
+      "name": "scan_repository",
+      "description": "Recursive repository scan (excludes node_modules, .git). Returns file count and first 50 files with sizes."
+    },
+    {
+      "name": "validate_ssot_integrity",
+      "description": "Verify SSOT (.github/copilot-instructions.md) presence and cryptographic integrity using SHA-256 canonicalization per Section XIV.3"
+    },
+    {
+      "name": "query_dependency_graph",
+      "description": "Query dependency graph (stub - not yet implemented). Future: query dependency_graph_production.json for file relationships."
+    }
+  ]
+}
