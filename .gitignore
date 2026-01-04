@@ -9,6 +9,10 @@
 !dependency_graph.json
 !CROSS_REFERENCE_TRIPTYCH.md
 
+# Allow MCP autonomous prerequisites (immutable)
+!docs/
+!docs/MCP_*.md
+
 # Allow SSOT and governance
 !.github/
 !.github/**
