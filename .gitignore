@@ -16,6 +16,7 @@
 # Allow MCP server implementation
 !mcp/
 !mcp/*.ts
+!mcp/*.md
 !mcp/tools/
 !mcp/tools/*.ts
 
