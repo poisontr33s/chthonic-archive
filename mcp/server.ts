@@ -4,24 +4,91 @@ import { validateSSOT } from "./tools/validateSSOT.ts";
 import { queryDependencyGraph } from "./tools/queryDependencyGraph.ts";
 
 async function dispatch(req: MCPRequest) {
-  const { id, method, params = {} } = req;
+  const { id = null, method, params = {} } = req;
 
   try {
     switch (method) {
-      case "ping":
-        return ok(id, { pong: true });
+      case "initialize":
+        return ok(id, {
+          protocolVersion: "2024-11-05",
+          serverInfo: {
+            name: "chthonic-archive",
+            version: "0.1.0",
+          },
+          capabilities: {
+            tools: {},
+          },
+        });
 
-      case "scan_repository":
-        return ok(id, await scanRepository());
+      case "tools/list":
+        return ok(id, {
+          tools: [
+            {
+              name: "ping",
+              description: "Ping the MCP server to verify connectivity",
+              inputSchema: {
+                type: "object",
+                properties: {},
+              },
+            },
+            {
+              name: "scan_repository",
+              description: "Scan the chthonic-archive repository and return file statistics",
+              inputSchema: {
+                type: "object",
+                properties: {},
+              },
+            },
+            {
+              name: "validate_ssot_integrity",
+              description: "Validate SSOT (.github/copilot-instructions.md) integrity via SHA-256 hash",
+              inputSchema: {
+                type: "object",
+                properties: {},
+              },
+            },
+            {
+              name: "query_dependency_graph",
+              description: "Query the dependency graph (stub - not yet implemented)",
+              inputSchema: {
+                type: "object",
+                properties: {
+                  query: {
+                    type: "string",
+                    description: "Query string for dependency graph",
+                  },
+                },
+              },
+            },
+          ],
+        });
 
-      case "validate_ssot_integrity":
-        return ok(id, await validateSSOT());
+      case "tools/call":
+        const toolName = params.name;
+        const toolArgs = params.arguments || {};
 
-      case "query_dependency_graph":
-        return ok(id, await queryDependencyGraph(params.query || ""));
+        switch (toolName) {
+          case "ping":
+            return ok(id, { content: [{ type: "text", text: JSON.stringify({ pong: true }, null, 2) }] });
+
+          case "scan_repository":
+            const scanResult = await scanRepository();
+            return ok(id, { content: [{ type: "text", text: JSON.stringify(scanResult, null, 2) }] });
+
+          case "validate_ssot_integrity":
+            const validateResult = await validateSSOT();
+            return ok(id, { content: [{ type: "text", text: JSON.stringify(validateResult, null, 2) }] });
+
+          case "query_dependency_graph":
+            const queryResult = await queryDependencyGraph(toolArgs.query || "");
+            return ok(id, { content: [{ type: "text", text: JSON.stringify(queryResult, null, 2) }] });
+
+          default:
+            return fail(id, `Unknown tool: ${toolName}`, -32601);
+        }
 
       default:
-        return fail(id, `Unknown method: ${method}`);
+        return fail(id, `Method not found: ${method}`, -32601);
     }
   } catch (err: any) {
     return fail(id, err.message || "Internal error");
@@ -31,17 +98,34 @@ async function dispatch(req: MCPRequest) {
 async function main() {
   console.error("[MCP Server] Starting stdio server...");
 
-  for await (const line of console) {
-    if (!line.trim()) continue;
+  process.stdin.setEncoding("utf8");
+  let buffer = "";
 
-    try {
-      const req = JSON.parse(line);
+  for await (const chunk of process.stdin) {
+    buffer += chunk;
+    let idx;
+    while ((idx = buffer.indexOf("\n")) !== -1) {
+      const line = buffer.slice(0, idx).trim();
+      buffer = buffer.slice(idx + 1);
+      if (!line) continue;
+
+      let req: MCPRequest;
+      try {
+        req = JSON.parse(line);
+      } catch {
+        process.stdout.write(
+          JSON.stringify(fail(null, "Parse error", -32700)) + "\n"
+        );
+        continue;
+      }
+
       const res = await dispatch(req);
-      console.log(JSON.stringify(res));
-    } catch (err: any) {
-      console.error("[MCP Server] Parse error:", err.message);
+      process.stdout.write(JSON.stringify(res) + "\n");
     }
   }
 }
 
-main();
+main().catch((e) => {
+  console.error("[MCP Server] Fatal error:", e);
+  process.exit(1);
+});

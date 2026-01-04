@@ -1,4 +1,4 @@
-import { join } from "node:path";
+import { join, resolve } from "node:path";
 
 /**
  * Canonicalize text per Section XIV.3:
@@ -16,7 +16,9 @@ function canonicalize(text: string): string {
 }
 
 export async function validateSSOT() {
-  const ssotPath = join(process.cwd(), ".github", "copilot-instructions.md");
+  // Find repository root (parent of mcp/)
+  const repoRoot = resolve(import.meta.dir, "..", "..");
+  const ssotPath = join(repoRoot, ".github", "copilot-instructions.md");
 
   try {
     const file = Bun.file(ssotPath);

@@ -1,15 +1,17 @@
 // Bun-native spawn for process orchestration
-const server = Bun.spawn(["bun", "run", "mcp/server.ts"], {
+const server = Bun.spawn(["bun", "run", "./server.ts"], {
   stdin: "pipe",
   stdout: "pipe",
   stderr: "inherit",
+  cwd: import.meta.dir,
 });
 
 const requests = [
-  { id: 1, method: "ping" },
-  { id: 2, method: "scan_repository" },
-  { id: 3, method: "validate_ssot_integrity" },
-  { id: 4, method: "query_dependency_graph", params: { query: "test" } },
+  { jsonrpc: "2.0", id: 1, method: "initialize", params: { protocolVersion: "2024-11-05", capabilities: {}, clientInfo: { name: "test-client", version: "1.0" } } },
+  { jsonrpc: "2.0", id: 2, method: "tools/list" },
+  { jsonrpc: "2.0", id: 3, method: "tools/call", params: { name: "ping", arguments: {} } },
+  { jsonrpc: "2.0", id: 4, method: "tools/call", params: { name: "scan_repository", arguments: {} } },
+  { jsonrpc: "2.0", id: 5, method: "tools/call", params: { name: "validate_ssot_integrity", arguments: {} } },
 ];
 
 // Write all requests immediately

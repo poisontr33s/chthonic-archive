@@ -1,7 +1,9 @@
 import { readdir, stat } from "node:fs/promises";
-import { join } from "node:path";
+import { join, resolve } from "node:path";
 
 export async function scanRepository() {
+  // Find repository root (parent of mcp/)
+  const repoRoot = resolve(import.meta.dir, "..", "..");
   const files: { path: string; size: number }[] = [];
 
   async function walk(dir: string) {
@@ -10,7 +12,7 @@ export async function scanRepository() {
     for (const entry of entries) {
       const fullPath = join(dir, entry.name);
 
-      if (entry.name === "node_modules" || entry.name === ".git") continue;
+      if (entry.name === "node_modules" || entry.name === ".git" || entry.name === "target") continue;
 
       if (entry.isDirectory()) {
         await walk(fullPath);
@@ -21,10 +23,10 @@ export async function scanRepository() {
     }
   }
 
-  await walk(process.cwd());
+  await walk(repoRoot);
 
   return {
-    repository: process.cwd(),
+    repository: repoRoot,
     file_count: files.length,
     files: files.slice(0, 50), // Limit to 50 for brevity
   };
