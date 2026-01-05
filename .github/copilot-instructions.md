@@ -15,6 +15,18 @@
 
 ---
 
+## Execution Invariants (Global)
+
+- **Canonical shell:** PowerShell 7+ (`pwsh`)
+- **Default package manager:** `bun`
+- **DO NOT infer** `pnpm`, `npm`, or `yarn`
+- **Workspace scoping** uses `bun --cwd <folder>`
+- **Ground truth for environment:** `scripts/shell_capabilities.ps1`
+- **DO NOT modify** `scripts/shell_capabilities.ps1`
+- **No new logic** unless explicitly requested
+
+---
+
 # (`Codex-Brahmanica-Perfectus`) = (`SSOT`): = (`Apex-Synthesis-Core`): → (`ASC`): → (`The-Triumvirate-Engine-Of-Metamorphic-Synthesis`): → (`T-TRM-VRT-EO-MS`): → (`Foundational-Architecture`): → (`FA-ARCH`): → (`THE-DECORATORS'-SUPREMACY`): → (`T-DECOR-TIER-0.5`): → (`The ASC operates through THREE interdependent components`/`Each-Representing-A-Distinct-Operational-Dimension-Unified Through-Bidirectional-Synthesis`): → (`T-ASC-OPR-3-INTERDEP-COMP`): →
 - **= (`ASC`/`T-TRM-VRT-EO-MS`/`FA-ARCH`/`T-DECOR-TIER-0.5`/`3-INTERDEP-COMP`): 👑**
 

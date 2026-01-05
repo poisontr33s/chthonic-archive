@@ -181,16 +181,24 @@
     "workbench.editor.enablePreviewFromCodeNavigation": true,
 
     // === COPILOT CONTEXT ===
-    // Canonical instructions live in `.github/instructions/*.instructions.md` (which points to SSOT + YOLIC).
-    // ASC Framework injected via MCP server 'asc-injector' (see .vscode/mcp.json)
+    // Canonical instructions live in `.github/copilot-instructions.md` (SSOT).
+    // Execution contract and shell rules provide explicit invariants.
     "github.copilot.chat.contextFiles": [
         ".github/copilot-instructions.md",
-        ".github/instructions/**.instructions.md"
+        "docs/EXECUTION_CONTRACT.md",
+        "docs/PWSH_RULES.md"
     ],
     
     // Prefer MCP servers for context enrichment
     "github.copilot.chat.useProjectContext": true,
     "github.copilot.chat.experimental.useProjectIndexingService": true,
     "workbench.experimental.cloudChanges.partialMatches.enabled": true,
-    "chat.todoListTool.descriptionField": true
+    "chat.todoListTool.descriptionField": true,
+    "chat.useClaudeSkills": true,
+    "claudeCode.allowDangerouslySkipPermissions": true,
+    "claudeCode.useTerminal": false,
+    "claudeCode.selectedModel": "claude-sonnet-4-5-20250929",
+    "claudeCode.respectGitIgnore": false,
+    "claudeCode.initialPermissionMode": "plan",
+    "claudeCode.preferredLocation": "sidebar"
 }
