@@ -1,0 +1,8 @@
+{
+  "label": "chthonic-archive (local)",
+  "manifestPath": "C:\\Users\\erdno\\chthonic-archive\\mcp\\mcp.json",
+  "command": "bun",
+  "args": ["run", "mcp/server.ts"],
+  "workingDirectory": "C:\\Users\\erdno\\chthonic-archive",
+  "transport": "stdio"
+}

@@ -29,6 +29,12 @@
 # Allow root-level MCP smoke runner
 !run_mcp_smoke.ts
 
+# Allow Claude Code integration scripts (launcher/orchestrator layer)
+!scripts/
+!scripts/launch_claude_code.ps1
+!scripts/run_mcp_session.ps1
+!scripts/CLAUDE_CODE_INTEGRATION.md
+
 # Allow SSOT and governance
 !.github/
 !.github/**

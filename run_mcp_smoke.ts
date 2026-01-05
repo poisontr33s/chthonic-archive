@@ -5,9 +5,11 @@
  * Purpose: One-command validation of MCP server baseline + all 4 tools
  * Location: chthonic-archive/ (root)
  * Usage: 
- *   bun run run_mcp_smoke.ts                    # Default validation (7 tests)
- *   bun run run_mcp_smoke.ts --node BLACKSMITH  # Custom dependency graph node query
- *   bun run run_mcp_smoke.ts --spectral GOLD    # Custom spectral frequency query
+ *   bun run run_mcp_smoke.ts                       # Default validation (7 tests)
+ *   bun run run_mcp_smoke.ts --node BLACKSMITH     # Custom dependency graph node query
+ *   bun run run_mcp_smoke.ts --spectral GOLD       # Custom spectral frequency query
+ *   bun run run_mcp_smoke.ts --dry-run             # Print requests without executing
+ *   bun run run_mcp_smoke.ts --ensure-claude-code  # Ensure Claude Code installed/running first (Win11)
  * 
  * Validates:
  *   1. Server spawns and responds to initialize
@@ -23,6 +25,8 @@
  * No network, no CI, no remote dependencies.
  */
 
+import { spawnSync } from "child_process";
+
 const TIMEOUT_MS = 5000;
 const EXPECTED_TOOL_COUNT = 4;
 const EXPECTED_TOOLS = ["ping", "scan_repository", "validate_ssot_integrity", "query_dependency_graph"];
@@ -31,6 +35,7 @@ const EXPECTED_TOOLS = ["ping", "scan_repository", "validate_ssot_integrity", "q
 const args = process.argv.slice(2);
 let customQuery: string | null = null;
 let dryRun = false;
+let ensureClaudeCode = false;
 
 for (let i = 0; i < args.length; i++) {
   if (args[i] === "--node" && args[i + 1]) {
@@ -47,7 +52,32 @@ for (let i = 0; i < args.length; i++) {
     i++;
   } else if (args[i] === "--dry-run") {
     dryRun = true;
+  } else if (args[i] === "--ensure-claude-code") {
+    ensureClaudeCode = true;
   }
+}
+
+// Ensure Claude Code installed/running if requested (Win11 only)
+function ensureClaude() {
+  if (process.platform !== "win32") {
+    console.log("--ensure-claude-code only supported on Windows (skipping).");
+    return;
+  }
+  console.log("Ensuring Claude Code is installed & running...");
+  const ps = spawnSync("powershell.exe", [
+    "-NoProfile",
+    "-ExecutionPolicy", "Bypass",
+    "-File", "scripts\\launch_claude_code.ps1"
+  ], { stdio: "inherit" });
+  
+  if (ps.status !== 0) {
+    throw new Error(`launch_claude_code.ps1 failed with exit ${ps.status}`);
+  }
+  console.log("Claude Code ensured.\n");
+}
+
+if (ensureClaudeCode) {
+  ensureClaude();
 }
 
 interface TestResult {
