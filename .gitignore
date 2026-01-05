@@ -28,6 +28,7 @@
 
 # Allow root-level MCP smoke runner
 !run_mcp_smoke.ts
+!validate_mcp.ts
 
 # Allow SSOT and governance
 !.github/
