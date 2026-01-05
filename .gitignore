@@ -34,6 +34,7 @@
 !scripts/launch_claude_code.ps1
 !scripts/run_mcp_session.ps1
 !scripts/CLAUDE_CODE_INTEGRATION.md
+!CLAUDE_CODE_INTEGRATION_SUMMARY.md
 
 # Allow SSOT and governance
 !.github/
