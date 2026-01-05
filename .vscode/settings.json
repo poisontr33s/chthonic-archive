@@ -191,5 +191,6 @@
     // Prefer MCP servers for context enrichment
     "github.copilot.chat.useProjectContext": true,
     "github.copilot.chat.experimental.useProjectIndexingService": true,
-    "workbench.experimental.cloudChanges.partialMatches.enabled": true
+    "workbench.experimental.cloudChanges.partialMatches.enabled": true,
+    "chat.todoListTool.descriptionField": true
 }
