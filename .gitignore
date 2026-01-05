@@ -12,6 +12,7 @@
 # Allow MCP autonomous prerequisites (immutable)
 !docs/
 !docs/MCP_*.md
+!docs/CLI_EDITING_POLICY.md
 
 # Allow MCP server implementation
 !mcp/
