@@ -22,6 +22,10 @@
 !mcp/tools/
 !mcp/tools/*.ts
 
+# Allow MCP workflow artifacts (smoke suite provenance)
+!artifacts/
+!artifacts/mcp_run_*.json
+
 # Allow SSOT and governance
 !.github/
 !.github/**

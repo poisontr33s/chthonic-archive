@@ -1,0 +1,29 @@
+{
+  "run_id": "2026-01-05T00-43-12-981Z",
+  "workflow": "trace",
+  "inputs": {
+    "component": "README.md",
+    "max_depth": 3
+  },
+  "outputs": {
+    "component": "ANKH_README.md",
+    "adjacency_list": {
+      "ANKH_README.md": []
+    },
+    "flattened_paths": [
+      "ANKH_README.md"
+    ],
+    "depth_stats": {
+      "max_depth": 3,
+      "nodes_explored": 1
+    }
+  },
+  "elapsed_ms": 0,
+  "tool_versions": {
+    "server_commit": "5c666b2",
+    "bootstrap_spec": "1752952",
+    "workflows_doc": "622e57f"
+  },
+  "notes": "smoke suite validation run",
+  "success": true
+}

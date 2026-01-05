@@ -1,10 +1,12 @@
-# MCP User Workflows — chthonic-archive (v1.0)
+# MCP User Workflows — chthonic-archive (v1.1)
 
 **Purpose.** This document codifies canonical, repeatable user workflows for interacting with the `chthonic-archive` MCP server via the GitHub Copilot CLI. Each workflow composes the existing, **read-only** tool surface: `scan_repository`, `validate_ssot_integrity`, `query_dependency_graph`, and `ping`. No code changes. No new tools.
 
 **Audience.** Developers/operators using GitHub Copilot CLI to inspect, reason about, and plan work against the repository.
 
-**Assumption.** The session bootstrap spec (docs/SESSION_BOOTSTRAP_SPEC.md) has been applied and the MCP server is attached and trusted for this session.
+**Assumption.** The session bootstrap spec (docs/SESSION_BOOTSTRAP_SPEC.md v1.1) has been applied and the MCP server is attached and trusted for this session.
+
+**Status.** All 6 workflows validated via automated smoke suite (2026-01-05). See `mcp/smoke-suite.ts` and `artifacts/mcp_run_*_2026-01-05T00-43-47-483Z.json`.
 
 ---
 
@@ -391,14 +393,16 @@ MCP: session results snapshot — audit [YYYY-MM-DD] — includes scan, ssot, gr
 
 # 6. Commit & provenance note
 
-This document is read-only guidance for GH Copilot CLI usage against the frozen MCP server surface. After review, commit the file:
+This document is read-only guidance for GH Copilot CLI usage against the MCP server surface. After review, commit the file:
 
 ```bash
 git add docs/MCP_USER_WORKFLOWS.md
-git commit -m "docs: MCP user workflows (v1.0) — canonical prompt patterns and recovery"
+git commit -m "docs: MCP user workflows (v1.1) — validated via smoke suite"
 ```
 
 Record the commit hash in operational logs and treat the document as part of the session artifact chain.
+
+**Validation artifacts:** See `artifacts/mcp_run_*_2026-01-05T00-43-47-483Z.json` for smoke suite execution results (6/6 workflows passed).
 
 ---
 
@@ -408,15 +412,18 @@ Use this minimal reporting format when saving workflow outputs (ensures consiste
 
 ```json
 {
-  "run_id": "2026-01-04THHMMSSZ",
+  "run_id": "2026-01-05T00-43-47-483Z",
   "workflow": "audit|impact|curriculum|trace|spectral|discovery",
   "inputs": { /* user-provided */ },
   "outputs": { /* structured output from MCP tools */ },
   "elapsed_ms": 1234,
-  "tool_versions": { "server_commit": "5c666b2", "bootstrap_spec": "1752952" },
-  "notes": "human observations or remediation steps"
+  "tool_versions": { "server_commit": "5c666b2", "bootstrap_spec": "1752952", "workflows_doc": "622e57f" },
+  "notes": "human observations or remediation steps",
+  "success": true
 }
 ```
+
+**Reference implementation:** See `mcp/smoke-suite.ts` for automated generation of these artifacts.
 
 Save the JSON as `artifacts/mcp_run_<run_id>.json` and commit alongside session logs if the content is not sensitive.
 

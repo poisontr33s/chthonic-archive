@@ -1,0 +1,62 @@
+{
+  "run_id": "2026-01-05T00-43-12-981Z",
+  "workflow": "impact",
+  "inputs": {
+    "component": "BLACKSMITH"
+  },
+  "outputs": {
+    "node": "dumpster-dive\\BLACKSMITH_MATRIARCH.md",
+    "dependencies": [
+      ".github\\copilot-instructions.md",
+      "dumpster-dive\\ORE_MANIFEST.json",
+      "dumpster-dive\\protocols\\FORGE_PROTOCOL_LEVELS.md",
+      "dumpster-dive\\protocols\\CROSS_REFERENCE_STANDARD.md",
+      "dumpster-dive\\protocols\\FORGE_CIRCULATION_PROTOCOL.md",
+      "dumpster-dive\\README.md",
+      "dumpster-dive\\DUMPSTER_DIVE_REGISTRY.json",
+      "dumpster-dive\\CIRCULATION_DIAGRAM.md"
+    ],
+    "dependents": [
+      {
+        "path": "dumpster-dive\\CIRCULATION_DIAGRAM.md",
+        "spectral": "GOLD"
+      },
+      {
+        "path": "dumpster-dive\\README.md",
+        "spectral": "GOLD"
+      },
+      {
+        "path": "dumpster-dive\\protocols\\CROSS_REFERENCE_STANDARD.md",
+        "spectral": "GOLD"
+      },
+      {
+        "path": "dumpster-dive\\protocols\\FORGE_CIRCULATION_PROTOCOL.md",
+        "spectral": "GOLD"
+      },
+      {
+        "path": "dumpster-dive\\forge\\anvil\\README.md",
+        "spectral": "GOLD"
+      }
+    ],
+    "impact_summary": {
+      "dependents_count": 10,
+      "dependencies_count": 8,
+      "high_risk": [
+        "dumpster-dive\\CIRCULATION_DIAGRAM.md",
+        "dumpster-dive\\README.md",
+        "dumpster-dive\\protocols\\CROSS_REFERENCE_STANDARD.md",
+        "dumpster-dive\\protocols\\FORGE_CIRCULATION_PROTOCOL.md",
+        "dumpster-dive\\forge\\anvil\\README.md"
+      ]
+    },
+    "recommendation": "Low coupling - safe to modify with caution"
+  },
+  "elapsed_ms": 4,
+  "tool_versions": {
+    "server_commit": "5c666b2",
+    "bootstrap_spec": "1752952",
+    "workflows_doc": "622e57f"
+  },
+  "notes": "smoke suite validation run",
+  "success": true
+}

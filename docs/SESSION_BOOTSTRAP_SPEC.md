@@ -1,8 +1,8 @@
 # Session Bootstrap Specification
 
-**Version:** 1.0  
-**Date:** 2026-01-04  
-**Status:** VERIFIED (Validated end-to-end 2026-01-04)
+**Version:** 1.1  
+**Date:** 2026-01-05  
+**Status:** VERIFIED (Initial validation 2026-01-04, smoke suite validation 2026-01-05)
 
 ---
 
@@ -18,17 +18,24 @@
 ```
 chthonic-archive/
 ├── .github/
-│   └── copilot-instructions.md    ← SSOT (313,634 bytes, hash: 49ef091b...)
+│   └── copilot-instructions.md         ← SSOT (313,634 bytes, hash: 49ef091b...)
 ├── mcp/
-│   ├── server.ts                  ← MCP server entry point
-│   ├── protocol.ts                ← JSON-RPC 2.0 types
+│   ├── server.ts                       ← MCP server entry point
+│   ├── protocol.ts                     ← JSON-RPC 2.0 types
 │   ├── tools/
 │   │   ├── ping.ts
 │   │   ├── scanRepository.ts
-│   │   └── validateSSOT.ts
-│   └── test-client.ts             ← Local verification client
-└── docs/
-    └── SESSION_BOOTSTRAP_SPEC.md  ← This file
+│   │   ├── validateSSOT.ts
+│   │   └── queryDependencyGraph.ts     ← Dependency graph queries
+│   ├── test-client.ts                  ← Local verification client
+│   ├── test-dependency-graph.ts        ← Dependency graph test suite
+│   └── smoke-suite.ts                  ← Automated workflow validation
+├── docs/
+│   ├── SESSION_BOOTSTRAP_SPEC.md       ← This file
+│   └── MCP_USER_WORKFLOWS.md           ← Canonical workflow patterns
+├── dependency_graph_production.json    ← Dependency graph data (949 nodes, 187 edges)
+└── artifacts/
+    └── mcp_run_*.json                  ← Workflow execution artifacts
 ```
 
 ### 1.3 Claude Desktop Configuration (Required)
@@ -116,7 +123,7 @@ Start-Process "C:\Users\erdno\AppData\Local\AnthropicClaude\claude.exe"
 - `ping`: No filesystem access (returns `{"pong":true}`)
 - `scan_repository`: Read-only directory traversal
 - `validate_ssot_integrity`: Read-only SSOT file access + SHA-256 hash
-- `query_dependency_graph`: **NOT IMPLEMENTED** (stub only)
+- `query_dependency_graph`: Read-only dependency graph queries (5 commands: node, dependencies, dependents, spectral, stats)
 
 **Future guarantees (if write tools added):**
 - Must be explicitly documented in this spec
@@ -168,7 +175,7 @@ In Claude Desktop UI, execute canonical test:
 - ✅ `ping` (operational)
 - ✅ `scan_repository` (operational)
 - ✅ `validate_ssot_integrity` (operational)
-- ⚠️ `query_dependency_graph` (stub - UI-visible but not implemented)
+- ✅ `query_dependency_graph` (operational - 5 commands: node, dependencies, dependents, spectral, stats)
 
 ### 4.4 SSOT Integrity Verification
 **Prompt:** "Validate the SSOT integrity for chthonic-archive."
@@ -357,12 +364,20 @@ In Claude Desktop UI, execute canonical test:
 | Date | Version | Validator | Status |
 |------|---------|-----------|--------|
 | 2026-01-04 | 1.0 | GitHub Copilot CLI + Claude Desktop | ✅ VERIFIED |
+| 2026-01-05 | 1.1 | Smoke Suite (6/6 workflows) | ✅ VERIFIED |
 
-**Verification proof:**
+**Verification proof (v1.0):**
 - Commit: `00793ba` (notification handling fix)
 - Test run: `mcp/test-client.ts` (5 responses captured)
 - Claude Desktop: End-to-end vertical slice confirmed
 - SSOT hash: `49ef091b564023919ef32a3cd2bfb951630487c8947bf65739d99f924ab37ef5`
+
+**Verification proof (v1.1):**
+- Commit: `5c666b2` (query_dependency_graph implementation)
+- Smoke suite: `mcp/smoke-suite.ts` (6/6 workflows passed)
+- Test suite: `mcp/test-dependency-graph.ts` (7/7 tests passed)
+- Artifacts: `artifacts/mcp_run_*_2026-01-05T00-43-47-483Z.json`
+- SSOT hash: `49ef091b564023919ef32a3cd2bfb951630487c8947bf65739d99f924ab37ef5` (unchanged)
 
 ---
 

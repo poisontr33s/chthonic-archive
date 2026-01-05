@@ -1,0 +1,143 @@
+{
+  "run_id": "2026-01-05T00-42-49-176Z",
+  "workflow": "curriculum",
+  "inputs": {
+    "spectral_frequency": "GOLD"
+  },
+  "outputs": {
+    "frequency": "GOLD",
+    "ordered_nodes": [
+      {
+        "node": {
+          "spectral_freq": "GOLD",
+          "role": "📜 DOCUMENTATION",
+          "essence": "Single Source of Truth - Codex Brahmanica Perfectus",
+          "exports_count": 33,
+          "id": "ankh.md"
+        },
+        "in_degree": 0,
+        "dependencies": [],
+        "rationale": "Referenced by 0 nodes - specialized component"
+      },
+      {
+        "node": {
+          "spectral_freq": "GOLD",
+          "role": "📜 DOCUMENTATION",
+          "essence": "Single Source of Truth - Codex Brahmanica Perfectus",
+          "exports_count": 29,
+          "id": "ANKHOLOGY.md"
+        },
+        "in_degree": 0,
+        "dependencies": [],
+        "rationale": "Referenced by 0 nodes - specialized component"
+      },
+      {
+        "node": {
+          "spectral_freq": "GOLD",
+          "role": "📜 DOCUMENTATION",
+          "essence": "ANKH lineage heritage - ancestral knowledge",
+          "exports_count": 18,
+          "id": "ANKH_README.md"
+        },
+        "in_degree": 0,
+        "dependencies": [],
+        "rationale": "Referenced by 0 nodes - specialized component"
+      },
+      {
+        "node": {
+          "spectral_freq": "GOLD",
+          "role": "📜 DOCUMENTATION",
+          "essence": "Single Source of Truth - Codex Brahmanica Perfectus",
+          "exports_count": 46,
+          "id": "AUTONOMOUS_ORCHESTRATION_FRAMEWORK.md"
+        },
+        "in_degree": 0,
+        "dependencies": [],
+        "rationale": "Referenced by 0 nodes - specialized component"
+      },
+      {
+        "node": {
+          "spectral_freq": "GOLD",
+          "role": "📜 DOCUMENTATION",
+          "essence": "Documentation: Autonomous Session - January 1, 2026 (Extended Thinking)",
+          "exports_count": 23,
+          "id": "AUTONOMOUS_SESSION_2026-01-01.md"
+        },
+        "in_degree": 0,
+        "dependencies": [],
+        "rationale": "Referenced by 0 nodes - specialized component"
+      },
+      {
+        "node": {
+          "spectral_freq": "GOLD",
+          "role": "📜 DOCUMENTATION",
+          "essence": "Single Source of Truth - Codex Brahmanica Perfectus",
+          "exports_count": 38,
+          "id": "AUTONOMOUS_SESSION_2_COMPLETE.md"
+        },
+        "in_degree": 0,
+        "dependencies": [],
+        "rationale": "Referenced by 0 nodes - specialized component"
+      },
+      {
+        "node": {
+          "spectral_freq": "GOLD",
+          "role": "📜 DOCUMENTATION",
+          "essence": "Single Source of Truth - Codex Brahmanica Perfectus",
+          "exports_count": 54,
+          "id": "AUTONOMOUS_SESSION_3_COMPLETE.md"
+        },
+        "in_degree": 0,
+        "dependencies": [],
+        "rationale": "Referenced by 0 nodes - specialized component"
+      },
+      {
+        "node": {
+          "spectral_freq": "GOLD",
+          "role": "📜 DOCUMENTATION",
+          "essence": "Single Source of Truth - Codex Brahmanica Perfectus",
+          "exports_count": 34,
+          "id": "AUTONOMOUS_SESSION_3_DEEP_RESEARCH.md"
+        },
+        "in_degree": 0,
+        "dependencies": [],
+        "rationale": "Referenced by 0 nodes - specialized component"
+      },
+      {
+        "node": {
+          "spectral_freq": "GOLD",
+          "role": "📜 DOCUMENTATION",
+          "essence": "Single Source of Truth - Codex Brahmanica Perfectus",
+          "exports_count": 8,
+          "id": "CROSS_REFERENCE_TRIPTYCH.md"
+        },
+        "in_degree": 0,
+        "dependencies": [],
+        "rationale": "Referenced by 0 nodes - specialized component"
+      },
+      {
+        "node": {
+          "spectral_freq": "GOLD",
+          "role": "📜 DOCUMENTATION",
+          "essence": "Single Source of Truth - Codex Brahmanica Perfectus",
+          "exports_count": 23,
+          "id": "DCRP_DEPLOYMENT_SUMMARY.md"
+        },
+        "in_degree": 0,
+        "dependencies": [],
+        "rationale": "Referenced by 0 nodes - specialized component"
+      }
+    ],
+    "stats": {
+      "gold_percentage": "NaN"
+    }
+  },
+  "elapsed_ms": 3,
+  "tool_versions": {
+    "server_commit": "5c666b2",
+    "bootstrap_spec": "1752952",
+    "workflows_doc": "622e57f"
+  },
+  "notes": "smoke suite validation run",
+  "success": true
+}

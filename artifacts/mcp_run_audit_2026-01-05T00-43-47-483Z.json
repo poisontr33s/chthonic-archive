@@ -1,0 +1,89 @@
+{
+  "run_id": "2026-01-05T00-43-47-483Z",
+  "workflow": "audit",
+  "inputs": {},
+  "outputs": {
+    "scan": {
+      "count": 42936,
+      "largest": [
+        {
+          "path": "C:\\Users\\erdno\\chthonic-archive\\.cargo\\config.toml",
+          "size": 1204
+        },
+        {
+          "path": "C:\\Users\\erdno\\chthonic-archive\\.copilot\\AGENT.md",
+          "size": 481
+        },
+        {
+          "path": "C:\\Users\\erdno\\chthonic-archive\\.dcrp_evolution.json",
+          "size": 6931
+        },
+        {
+          "path": "C:\\Users\\erdno\\chthonic-archive\\.dcrp_state.json",
+          "size": 1313197
+        },
+        {
+          "path": "C:\\Users\\erdno\\chthonic-archive\\.github\\copilot-instructions.md",
+          "size": 313634
+        },
+        {
+          "path": "C:\\Users\\erdno\\chthonic-archive\\.github\\copilot-instructions_backup_2025-12-08.md",
+          "size": 304010
+        },
+        {
+          "path": "C:\\Users\\erdno\\chthonic-archive\\.github\\copilot-instructions_backup_20251209_033418.md",
+          "size": 304119
+        },
+        {
+          "path": "C:\\Users\\erdno\\chthonic-archive\\.github\\copilot-not-very-instructions.md",
+          "size": 1966
+        },
+        {
+          "path": "C:\\Users\\erdno\\chthonic-archive\\.github\\copilot-un-instructions.md",
+          "size": 222385
+        },
+        {
+          "path": "C:\\Users\\erdno\\chthonic-archive\\.github\\instructions\\ankh-workflow.instructions.md",
+          "size": 1388
+        }
+      ]
+    },
+    "ssot": {
+      "path": "C:\\Users\\erdno\\chthonic-archive\\.github\\copilot-instructions.md",
+      "size": 313634,
+      "sha256": "49ef091b564023919ef32a3cd2bfb951630487c8947bf65739d99f924ab37ef5"
+    },
+    "graph_summary": {
+      "top_by_degree": [
+        {
+          "id": "dumpster-dive\\protocols\\FORGE_CIRCULATION_PROTOCOL.md",
+          "degree": 19
+        },
+        {
+          "id": "dumpster-dive\\BLACKSMITH_MATRIARCH.md",
+          "degree": 18
+        },
+        {
+          "id": "dumpster-dive\\README.md",
+          "degree": 15
+        },
+        {
+          "id": "dumpster-dive\\protocols\\CROSS_REFERENCE_STANDARD.md",
+          "degree": 14
+        },
+        {
+          "id": "dumpster-dive\\CIRCULATION_DIAGRAM.md",
+          "degree": 12
+        }
+      ]
+    }
+  },
+  "elapsed_ms": 2409,
+  "tool_versions": {
+    "server_commit": "5c666b2",
+    "bootstrap_spec": "1752952",
+    "workflows_doc": "622e57f"
+  },
+  "notes": "smoke suite validation run",
+  "success": true
+}
