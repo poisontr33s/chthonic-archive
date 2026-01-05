@@ -78,14 +78,14 @@ pwsh -File .\scripts\run_mcp_session.ps1 -EnsureClaude
 
 ## Integration with Bun Smoke Runner
 
-The `run_mcp_smoke.ts` runner includes optional `--ensure-claude-code` flag:
+The `run_mcp_validation.ts` runner includes optional `--ensure-claude-code` flag:
 
 ```bash
 # Ensure Claude Code installed/running before MCP validation
-bun run run_mcp_smoke.ts --ensure-claude-code
+bun run run_mcp_validation.ts --ensure-claude-code
 
 # Combine with other flags
-bun run run_mcp_smoke.ts --ensure-claude-code --spectral GOLD
+bun run run_mcp_validation.ts --ensure-claude-code --spectral GOLD
 ```
 
 **Behavior (Windows only):**
@@ -125,13 +125,13 @@ pwsh -File .\scripts\run_mcp_session.ps1
 #    (Use values from mcp/claude_code_mcp_hint.json)
 
 # 4. Verify MCP connection
-bun run run_mcp_smoke.ts
+bun run run_mcp_validation.ts
 ```
 
 ### Daily Workflow
 ```powershell
 # One command: ensure environment + validate
-bun run run_mcp_smoke.ts --ensure-claude-code
+bun run run_mcp_validation.ts --ensure-claude-code
 ```
 
 ---
@@ -146,7 +146,7 @@ bun run run_mcp_smoke.ts --ensure-claude-code
 - Throws exception if Claude ensure fails
 - Otherwise completes successfully (server runs as background job)
 
-### `run_mcp_smoke.ts --ensure-claude-code`
+### `run_mcp_validation.ts --ensure-claude-code`
 - `0` - All validations passed (7/7)
 - `1` - One or more validations failed
 - Throws if Claude installation fails
@@ -191,4 +191,4 @@ bun run run_mcp_smoke.ts --ensure-claude-code
 - `docs/MCP_USER_WORKFLOWS.md` - Canonical MCP workflow patterns
 - `docs/SESSION_BOOTSTRAP_SPEC.md` - MCP session provisioning contract
 - `mcp/mcp.json` - MCP server manifest (4 tools)
-- `run_mcp_smoke.ts` - Local validation runner (7 checks)
+- `run_mcp_validation.ts` - Local validation runner (7 checks)

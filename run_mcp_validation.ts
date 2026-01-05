@@ -1,15 +1,15 @@
 #!/usr/bin/env bun
 /**
- * MCP Smoke Suite Runner (Root-Level)
+ * MCP Validation Runner (Root-Level)
  * 
- * Purpose: One-command validation of MCP server baseline + all 4 tools
+ * Purpose: Local validation and parameterized queries against MCP server
  * Location: chthonic-archive/ (root)
  * Usage: 
- *   bun run run_mcp_smoke.ts                       # Default validation (7 tests)
- *   bun run run_mcp_smoke.ts --node BLACKSMITH     # Custom dependency graph node query
- *   bun run run_mcp_smoke.ts --spectral GOLD       # Custom spectral frequency query
- *   bun run run_mcp_smoke.ts --dry-run             # Print requests without executing
- *   bun run run_mcp_smoke.ts --ensure-claude-code  # Ensure Claude Code installed/running first (Win11)
+ *   bun run run_mcp_validation.ts                       # Baseline validation (7 checks)
+ *   bun run run_mcp_validation.ts --node BLACKSMITH     # Custom dependency graph node query
+ *   bun run run_mcp_validation.ts --spectral GOLD       # Custom spectral frequency query
+ *   bun run run_mcp_validation.ts --dry-run             # Print requests without executing
+ *   bun run run_mcp_validation.ts --ensure-claude-code  # Ensure Claude Code installed/running first (Win11)
  * 
  * Validates:
  *   1. Server spawns and responds to initialize
@@ -21,7 +21,7 @@
  *   0 = All validations passed
  *   1 = One or more validations failed
  * 
- * Design: Boring, explicit, inspectable, disposable.
+ * Design: Boring, explicit, inspectable, operational.
  * No network, no CI, no remote dependencies.
  */
 
@@ -104,7 +104,7 @@ function logResult(result: TestResult): void {
 }
 
 console.log("\n" + "=".repeat(80));
-console.log(" ".repeat(25) + "MCP SMOKE SUITE RUNNER");
+console.log(" ".repeat(25) + "MCP VALIDATION RUNNER");
 console.log(" ".repeat(28) + "chthonic-archive");
 if (customQuery) {
   console.log(" ".repeat(22) + `Custom query: ${customQuery}`);
@@ -117,7 +117,7 @@ console.log("=".repeat(80) + "\n");
 // Dry-run mode: print requests without executing
 if (dryRun) {
   const requests = [
-    { jsonrpc: "2.0", id: 1, method: "initialize", params: { protocolVersion: "2024-11-05", capabilities: {}, clientInfo: { name: "smoke-runner", version: "1.0" } } },
+    { jsonrpc: "2.0", id: 1, method: "initialize", params: { protocolVersion: "2024-11-05", capabilities: {}, clientInfo: { name: "validation-runner", version: "1.0" } } },
     { jsonrpc: "2.0", id: 2, method: "tools/list" },
     { jsonrpc: "2.0", id: 3, method: "tools/call", params: { name: "ping", arguments: {} } },
     { jsonrpc: "2.0", id: 4, method: "tools/call", params: { name: "scan_repository", arguments: {} } },
@@ -147,7 +147,7 @@ const server = Bun.spawn(["bun", "run", "./mcp/server.ts"], {
 
 // Queue all requests (basic validation + optional custom query)
 const requests = [
-  { id: 1, method: "initialize", params: { protocolVersion: "2024-11-05", capabilities: {}, clientInfo: { name: "smoke-runner", version: "1.0" } } },
+  { id: 1, method: "initialize", params: { protocolVersion: "2024-11-05", capabilities: {}, clientInfo: { name: "validation-runner", version: "1.0" } } },
   { id: 2, method: "tools/list" },
   { id: 3, method: "tools/call", params: { name: "ping", arguments: {} } },
   { id: 4, method: "tools/call", params: { name: "scan_repository", arguments: {} } },

@@ -106,7 +106,7 @@ pwsh -File .\scripts\run_mcp_session.ps1 -EnsureClaude
 
 ## Modified Files
 
-### `run_mcp_smoke.ts` (+33 lines)
+### `run_mcp_validation.ts` (+33 lines)
 **Added Features:**
 - `--ensure-claude-code` flag (Windows-only)
 - Calls `launch_claude_code.ps1` before spawning MCP server
@@ -115,9 +115,9 @@ pwsh -File .\scripts\run_mcp_session.ps1 -EnsureClaude
 
 **New Usage:**
 ```bash
-bun run run_mcp_smoke.ts --ensure-claude-code
-bun run run_mcp_smoke.ts --ensure-claude-code --spectral GOLD
-bun run run_mcp_smoke.ts --ensure-claude-code --dry-run
+bun run run_mcp_validation.ts --ensure-claude-code
+bun run run_mcp_validation.ts --ensure-claude-code --spectral GOLD
+bun run run_mcp_validation.ts --ensure-claude-code --dry-run
 ```
 
 ---
@@ -163,7 +163,7 @@ Claude Code (orchestrator) ← WRONG
     ↓
 Bun MCP server
     ↓ (self-tooling)
-    run_smoke_suite tool ← ARCHITECTURAL VIOLATION
+    run_validation_suite tool ← ARCHITECTURAL VIOLATION
     ↓
 Spawns another MCP server ← RECURSION
 ```
@@ -187,16 +187,16 @@ Spawns another MCP server ← RECURSION
 
 ### Post-Integration Validation
 ```bash
-# Test 1: Normal smoke suite
-$ bun run run_mcp_smoke.ts
+# Test 1: Normal baseline validation
+$ bun run run_mcp_validation.ts
 ✓ 7/7 validations passed
 
 # Test 2: Dry-run mode
-$ bun run run_mcp_smoke.ts --dry-run
+$ bun run run_mcp_validation.ts --dry-run
 ✓ 6 requests printed, exit 0
 
 # Test 3: Dry-run with custom query
-$ bun run run_mcp_smoke.ts --dry-run --spectral BLUE
+$ bun run run_mcp_validation.ts --dry-run --spectral BLUE
 ✓ Custom query reflected in request 6
 
 # Test 4: PowerShell scripts exist
@@ -231,12 +231,12 @@ $ Get-ChildItem scripts\*.ps1
 ### Workflow 1: Daily Development (MCP validation)
 **Before:**
 ```bash
-bun run run_mcp_smoke.ts
+bun run run_mcp_validation.ts
 ```
 
 **After (optional):**
 ```bash
-bun run run_mcp_smoke.ts --ensure-claude-code
+bun run run_mcp_validation.ts --ensure-claude-code
 ```
 
 **Benefit:** Single command ensures full environment (Claude + MCP + validation)
@@ -264,7 +264,7 @@ pwsh -File .\scripts\launch_claude_code.ps1
 pwsh -File .\scripts\run_mcp_session.ps1
 
 # Step 6: Validate
-bun run run_mcp_smoke.ts
+bun run run_mcp_validation.ts
 ```
 
 **Benefit:** 3 commands instead of 6 manual steps
@@ -275,7 +275,7 @@ bun run run_mcp_smoke.ts
 **New capability via --dry-run:**
 ```bash
 # Inspect requests before execution
-bun run run_mcp_smoke.ts --dry-run --ensure-claude-code
+bun run run_mcp_validation.ts --dry-run --ensure-claude-code
 
 # Output: 6 JSON-RPC requests printed, no server spawned
 ```
@@ -291,7 +291,7 @@ scripts/launch_claude_code.ps1:        2,012 bytes
 scripts/run_mcp_session.ps1:           1,406 bytes
 scripts/CLAUDE_CODE_INTEGRATION.md:    6,202 bytes
 mcp/claude_code_mcp_hint.json:           261 bytes
-run_mcp_smoke.ts (additions):            ~900 bytes (33 lines)
+run_mcp_validation.ts (additions):            ~900 bytes (33 lines)
 .gitignore (additions):                  ~150 bytes (6 lines)
 ---
 Total new content:                    ~10,931 bytes (~11 KB)
@@ -313,7 +313,7 @@ Total new content:                    ~10,931 bytes (~11 KB)
 - Created `scripts/run_mcp_session.ps1`
 - Created `scripts/CLAUDE_CODE_INTEGRATION.md`
 - Created `mcp/claude_code_mcp_hint.json`
-- Modified `run_mcp_smoke.ts` (+33 lines)
+- Modified `run_mcp_validation.ts` (+33 lines)
 - Modified `.gitignore` (+6 lines)
 
 ---
@@ -324,7 +324,7 @@ Total new content:                    ~10,931 bytes (~11 KB)
 **Deletions:** 0  
 
 **Changes:**
-- Added `--dry-run` flag to `run_mcp_smoke.ts`
+- Added `--dry-run` flag to `run_mcp_validation.ts`
 - Prints 6 JSON-RPC requests without execution
 - Exit code 0 (inspection mode, not failure)
 
@@ -349,7 +349,7 @@ Total new content:                    ~10,931 bytes (~11 KB)
 
 4. Validate end-to-end:
    ```bash
-   bun run run_mcp_smoke.ts --ensure-claude-code
+   bun run run_mcp_validation.ts --ensure-claude-code
    ```
 
 ---
@@ -359,7 +359,7 @@ From earlier conversation (Phase 3 guidance):
 
 **Safe, Reversible Additions:**
 - `--list-nodes` flag: Dump dependency graph node IDs to console
-- `USAGE.md`: 10-line guide for smoke runner
+- `USAGE.md`: 10-line guide for validation runner
 - Additional PowerShell orchestrators for other MCP clients
 
 **Won't Add (Architectural Violations):**
@@ -428,7 +428,7 @@ From earlier conversation (Phase 3 guidance):
 **Command for Daily Use:**
 ```bash
 # Complete environment validation in one command
-bun run run_mcp_smoke.ts --ensure-claude-code
+bun run run_mcp_validation.ts --ensure-claude-code
 ```
 
 ---
