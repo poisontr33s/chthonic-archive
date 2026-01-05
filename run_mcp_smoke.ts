@@ -30,6 +30,7 @@ const EXPECTED_TOOLS = ["ping", "scan_repository", "validate_ssot_integrity", "q
 // Parse CLI arguments
 const args = process.argv.slice(2);
 let customQuery: string | null = null;
+let dryRun = false;
 
 for (let i = 0; i < args.length; i++) {
   if (args[i] === "--node" && args[i + 1]) {
@@ -44,6 +45,8 @@ for (let i = 0; i < args.length; i++) {
   } else if (args[i] === "--dependents" && args[i + 1]) {
     customQuery = `dependents ${args[i + 1]}`;
     i++;
+  } else if (args[i] === "--dry-run") {
+    dryRun = true;
   }
 }
 
@@ -76,7 +79,33 @@ console.log(" ".repeat(28) + "chthonic-archive");
 if (customQuery) {
   console.log(" ".repeat(22) + `Custom query: ${customQuery}`);
 }
+if (dryRun) {
+  console.log(" ".repeat(30) + "(DRY RUN MODE)");
+}
 console.log("=".repeat(80) + "\n");
+
+// Dry-run mode: print requests without executing
+if (dryRun) {
+  const requests = [
+    { jsonrpc: "2.0", id: 1, method: "initialize", params: { protocolVersion: "2024-11-05", capabilities: {}, clientInfo: { name: "smoke-runner", version: "1.0" } } },
+    { jsonrpc: "2.0", id: 2, method: "tools/list" },
+    { jsonrpc: "2.0", id: 3, method: "tools/call", params: { name: "ping", arguments: {} } },
+    { jsonrpc: "2.0", id: 4, method: "tools/call", params: { name: "scan_repository", arguments: {} } },
+    { jsonrpc: "2.0", id: 5, method: "tools/call", params: { name: "validate_ssot_integrity", arguments: {} } },
+    { jsonrpc: "2.0", id: 6, method: "tools/call", params: { name: "query_dependency_graph", arguments: { query: customQuery || "stats" } } },
+  ];
+  
+  console.log("The following JSON-RPC requests would be sent to the MCP server:\n");
+  requests.forEach((req, idx) => {
+    console.log(`[Request ${idx + 1}]`);
+    console.log(JSON.stringify(req, null, 2));
+    console.log();
+  });
+  
+  console.log("Dry-run complete. No server spawned, no execution performed.");
+  console.log("Run without --dry-run to execute validations.\n");
+  process.exit(0);
+}
 
 // Spawn MCP server
 const server = Bun.spawn(["bun", "run", "./mcp/server.ts"], {
