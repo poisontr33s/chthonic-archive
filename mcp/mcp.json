@@ -17,7 +17,11 @@
     },
     {
       "name": "query_dependency_graph",
-      "description": "Query dependency graph (stub - not yet implemented). Future: query dependency_graph_production.json for file relationships."
+      "description": "Query dependency_graph_production.json for file relationships (supports: node, dependencies, dependents, spectral, stats)"
+    },
+    {
+      "name": "run_smoke_suite",
+      "description": "Execute automated validation of all 4 MCP tools + server baseline. Returns structured results (5 validations)."
     }
   ]
 }

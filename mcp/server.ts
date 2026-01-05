@@ -2,6 +2,8 @@ import { ok, fail, type MCPRequest } from "./protocol.ts";
 import { scanRepository } from "./tools/scanRepository.ts";
 import { validateSSOT } from "./tools/validateSSOT.ts";
 import { queryDependencyGraph } from "./tools/queryDependencyGraph.ts";
+import { runSmokeSuite } from "./tools/runSmokeSuite.ts";
+import { resolve } from "path";
 
 async function dispatch(req: MCPRequest): Promise<MCPResponse | null> {
   // Rule 1: Notifications have no id - never respond to them
@@ -66,6 +68,14 @@ async function dispatch(req: MCPRequest): Promise<MCPResponse | null> {
                 required: ["query"],
               },
             },
+            {
+              name: "run_smoke_suite",
+              description: "Execute MCP smoke suite validation (all 4 tools + server baseline). Returns validation results.",
+              inputSchema: {
+                type: "object",
+                properties: {},
+              },
+            },
           ],
         });
 
@@ -88,6 +98,10 @@ async function dispatch(req: MCPRequest): Promise<MCPResponse | null> {
           case "query_dependency_graph":
             const queryResult = await queryDependencyGraph(toolArgs.query || "stats");
             return ok(id, { content: [{ type: "text", text: queryResult }] });
+
+          case "run_smoke_suite":
+            const smokeResult = await runSmokeSuite();
+            return ok(id, { content: [{ type: "text", text: JSON.stringify(smokeResult, null, 2) }] });
 
           default:
             return fail(id, `Unknown tool: ${toolName}`, -32601);
