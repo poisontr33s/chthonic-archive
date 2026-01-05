@@ -13,6 +13,7 @@
 !docs/
 !docs/MCP_*.md
 !docs/CLI_EDITING_POLICY.md
+!docs/CLAUDE_CODE_REGISTRATION.md
 
 # Allow MCP server implementation
 !mcp/
@@ -27,13 +28,13 @@
 !artifacts/
 !artifacts/mcp_run_*.json
 
-# Allow root-level MCP smoke runner
-!run_mcp_smoke.ts
+# Allow root-level MCP validation runner
+!run_mcp_validation.ts
 
 # Allow Claude Code integration scripts (launcher/orchestrator layer)
 !scripts/
 !scripts/launch_claude_code.ps1
-!scripts/run_mcp_session.ps1
+!scripts/start_mcp_session.ps1
 !scripts/CLAUDE_CODE_INTEGRATION.md
 !CLAUDE_CODE_INTEGRATION_SUMMARY.md
 
