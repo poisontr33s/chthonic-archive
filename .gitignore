@@ -26,6 +26,9 @@
 !artifacts/
 !artifacts/mcp_run_*.json
 
+# Allow root-level MCP smoke runner
+!run_mcp_smoke.ts
+
 # Allow SSOT and governance
 !.github/
 !.github/**
