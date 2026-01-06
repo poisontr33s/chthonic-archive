@@ -111,8 +111,8 @@ jobs:
 
           Write-Host "Validating response against schema..."
 
-          # Validate with ajv (node-compatible)
-          npx ajv validate `
+          # Validate with ajv (bun-compatible)
+          bunx ajv-cli validate `
             -s mcp/tools/ExecutionContext.schema.json `
             -d preflight_response.json `
             --strict=false
