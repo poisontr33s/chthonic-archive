@@ -1,0 +1,46 @@
+{
+  "description": "Unit test examples for preflight_execution_context MCP tool",
+  "test_cases": [
+    {
+      "name": "successful_preflight_check",
+      "request": {
+        "jsonrpc": "2.0",
+        "id": 1,
+        "method": "tools/call",
+        "params": {
+          "name": "preflight_execution_context",
+          "arguments": {}
+        }
+      },
+      "expected_response_structure": {
+        "jsonrpc": "2.0",
+        "id": 1,
+        "result": {
+          "content": [
+            {
+              "type": "text",
+              "text": "<JSON string conforming to ExecutionContextSchema.json>"
+            }
+          ]
+        }
+      },
+      "sample_response": {
+        "jsonrpc": "2.0",
+        "id": 1,
+        "result": {
+          "content": [
+            {
+              "type": "text",
+              "text": "{\n  \"execution_abi\": {\n    \"os\": \"windows\",\n    \"platform\": \"win32\",\n    \"shell\": \"pwsh\",\n    \"runtime\": \"bun\",\n    \"node_compat\": true,\n    \"bun_version\": \"1.3.5\"\n  },\n  \"shell_sovereignty\": {\n    \"status\": \"clean\",\n    \"cross_shell_detected\": false,\n    \"canonical_shell\": \"pwsh\"\n  },\n  \"permissions\": {\n    \"repo_mutation\": \"unknown\",\n    \"git_commit\": \"unknown\",\n    \"git_push\": \"unknown\"\n  },\n  \"governance\": {\n    \"shell_mismatch_retryable\": false,\n    \"permission_required_before_narration\": true,\n    \"structural_failures_non_retryable\": true\n  },\n  \"governance_version\": \"session-learning.v1\"\n}"
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "how_to_run": {
+    "command": "cd mcp && echo '{\"jsonrpc\":\"2.0\",\"id\":1,\"method\":\"tools/call\",\"params\":{\"name\":\"preflight_execution_context\",\"arguments\":{}}}' | bun run server.ts",
+    "expected_exit_code": 0,
+    "validation": "Parse result.content[0].text as JSON and validate against ExecutionContextSchema.json"
+  }
+}

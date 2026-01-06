@@ -1,5 +1,5 @@
-import { platform, type } from "node:os";
-import { version, versions } from "node:process";
+import { platform, type as osTypeFn } from "bun:os";
+import { versions } from "bun:process";
 
 /**
  * Preflight Execution Context Tool
@@ -38,6 +38,7 @@ interface ExecutionContext {
     permission_required_before_narration: true;
     structural_failures_non_retryable: true;
   };
+  governance_version?: string;
 }
 
 /**
@@ -51,10 +52,11 @@ function inferShell(): string | null {
   }
 
   // On Unix-like systems, check SHELL env var
-  const shell = process.env.SHELL;
+  const shell = (globalThis as any).process?.env?.SHELL || null;
   if (shell) {
-    // Extract shell name from path
-    const shellName = shell.split("/").pop() || null;
+    // Extract shell name from path, normalize
+    const parts = shell.split("/");
+    const shellName = parts[parts.length - 1] || null;
     return shellName;
   }
 
@@ -65,22 +67,29 @@ function inferShell(): string | null {
  * Detect runtime and verify it's Bun or Node-compatible.
  * Throws if runtime cannot be identified.
  */
-function detectRuntime(): { runtime: string; node_compat: boolean; bun_version?: string; node_version?: string } {
-  // Check for Bun runtime
-  if (typeof Bun !== "undefined") {
+function detectRuntime(): {
+  runtime: string;
+  node_compat: boolean;
+  bun_version?: string;
+  node_version?: string;
+} {
+  // Check for Bun runtime via globalThis
+  if (typeof (globalThis as any).Bun !== "undefined") {
+    const bun = (globalThis as any).Bun;
     return {
       runtime: "bun",
       node_compat: true,
-      bun_version: Bun.version,
+      bun_version: bun.version,
     };
   }
 
-  // Check for Node.js
-  if (versions.node) {
+  // Check for Node.js via process.versions.node
+  const nodeVersion = (globalThis as any).process?.versions?.node || versions?.node;
+  if (nodeVersion) {
     return {
       runtime: "node",
       node_compat: true,
-      node_version: versions.node,
+      node_version: nodeVersion,
     };
   }
 
@@ -101,7 +110,7 @@ function detectRuntime(): { runtime: string; node_compat: boolean; bun_version?:
 export async function preflightExecutionContext(): Promise<ExecutionContext> {
   // Detect OS
   const osPlatform = platform();
-  const osType = type();
+  const osType = osTypeFn();
 
   if (!osPlatform || !osType) {
     throw new Error("OS detection failed: platform or type unavailable");
@@ -116,25 +125,20 @@ export async function preflightExecutionContext(): Promise<ExecutionContext> {
     throw new Error("Shell detection failed: cannot determine canonical shell");
   }
 
-  // Map platform to OS name
-  const osName = osPlatform === "win32"
-    ? "windows"
-    : osPlatform === "darwin"
-    ? "macos"
-    : osPlatform === "linux"
-    ? "linux"
-    : osPlatform;
+  // Map platform to OS name (normalized)
+  const osName =
+    osPlatform === "win32" ? "windows" : osPlatform === "darwin" ? "macos" : osPlatform === "linux" ? "linux" : osPlatform;
 
   // Shell sovereignty status
-  // In this implementation, cross-shell is never detected because we don't spawn processes
-  // Status is "clean" if shell was successfully inferred
+  // In this implementation, cross-shell is never detected because we don't spawn processes.
+  // Status is "clean" if shell was successfully inferred.
   const shellSovereignty = {
     status: "clean" as const,
     cross_shell_detected: false,
     canonical_shell: shell,
   };
 
-  return {
+  const result: ExecutionContext = {
     execution_abi: {
       os: osName,
       platform: osPlatform,
@@ -155,5 +159,8 @@ export async function preflightExecutionContext(): Promise<ExecutionContext> {
       permission_required_before_narration: true,
       structural_failures_non_retryable: true,
     },
+    governance_version: "session-learning.v1",
   };
+
+  return result;
 }

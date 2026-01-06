@@ -4,6 +4,9 @@
 # Allow git metadata
 !.gitignore
 
+# Allow PR/patch suggestions
+!PR_SUGGESTION.md
+
 # Allow DCRP Cross-Reference System (Section XV)
 !decorator_cross_ref_maximum.py
 !dependency_graph.json
@@ -23,6 +26,7 @@
 !mcp/*.ps1
 !mcp/tools/
 !mcp/tools/*.ts
+!mcp/tools/*.json
 
 # Allow MCP workflow artifacts (smoke suite provenance)
 !artifacts/
