@@ -2,6 +2,7 @@ import { ok, fail, type MCPRequest } from "./protocol.ts";
 import { scanRepository } from "./tools/scanRepository.ts";
 import { validateSSOT } from "./tools/validateSSOT.ts";
 import { queryDependencyGraph } from "./tools/queryDependencyGraph.ts";
+import { preflightExecutionContext } from "./tools/preflightExecutionContext.ts";
 
 async function dispatch(req: MCPRequest): Promise<MCPResponse | null> {
   // Rule 1: Notifications have no id - never respond to them
@@ -31,6 +32,14 @@ async function dispatch(req: MCPRequest): Promise<MCPResponse | null> {
             {
               name: "ping",
               description: "Ping the MCP server to verify connectivity",
+              inputSchema: {
+                type: "object",
+                properties: {},
+              },
+            },
+            {
+              name: "preflight_execution_context",
+              description: "Report execution environment (OS, shell, runtime, permissions) with explicit refusal of ambiguity. Externalizes shell sovereignty and governance rules.",
               inputSchema: {
                 type: "object",
                 properties: {},
@@ -76,6 +85,10 @@ async function dispatch(req: MCPRequest): Promise<MCPResponse | null> {
         switch (toolName) {
           case "ping":
             return ok(id, { content: [{ type: "text", text: JSON.stringify({ pong: true }, null, 2) }] });
+
+          case "preflight_execution_context":
+            const preflightResult = await preflightExecutionContext();
+            return ok(id, { content: [{ type: "text", text: JSON.stringify(preflightResult, null, 2) }] });
 
           case "scan_repository":
             const scanResult = await scanRepository();
