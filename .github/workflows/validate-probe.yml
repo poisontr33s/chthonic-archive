@@ -7,6 +7,9 @@ on:
       - 'scripts/validate_probe.ps1'
       - 'scripts/validate_shell_probe.ps1'
       - 'scripts/lint_shell_sovereignty.ps1'
+      - 'mcp/tools/preflightExecutionContext.ts'
+      - 'mcp/tools/ExecutionContext.schema.json'
+      - 'mcp/server.ts'
       - '.github/workflows/validate-probe.yml'
   pull_request:
     paths:
@@ -14,6 +17,9 @@ on:
       - 'scripts/validate_probe.ps1'
       - 'scripts/validate_shell_probe.ps1'
       - 'scripts/lint_shell_sovereignty.ps1'
+      - 'mcp/tools/preflightExecutionContext.ts'
+      - 'mcp/tools/ExecutionContext.schema.json'
+      - 'mcp/server.ts'
       - '.github/workflows/validate-probe.yml'
   workflow_dispatch:
 
@@ -60,6 +66,65 @@ jobs:
           }
 
       # ========================================================================
+      # REQUIRED: MCP Preflight Execution Context (Schema Validation)
+      # ========================================================================
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
+
+      - name: MCP preflight execution context (REQUIRED)
+        shell: pwsh
+        run: |
+          Write-Host "=== MCP Preflight Execution Context (Hard Gate) ===" -ForegroundColor Cyan
+
+          $request = @'
+          {
+            "jsonrpc": "2.0",
+            "id": 1,
+            "method": "tools/call",
+            "params": {
+              "name": "preflight_execution_context",
+              "arguments": {}
+            }
+          }
+          '@
+
+          # Run MCP server and capture response
+          Write-Host "Running preflight_execution_context..."
+          $response = $request | bun run mcp/server.ts
+
+          if (-not $response) {
+            Write-Error "No response from MCP server"
+            exit 1
+          }
+
+          # Parse JSON-RPC wrapper
+          $rpc = $response | ConvertFrom-Json
+
+          if (-not $rpc.result.content[0].text) {
+            Write-Error "Missing MCP content payload"
+            exit 1
+          }
+
+          # Extract execution context payload
+          $payload = $rpc.result.content[0].text | ConvertFrom-Json
+          $payload | ConvertTo-Json -Depth 10 | Out-File preflight_response.json -Encoding utf8
+
+          Write-Host "Validating response against schema..."
+
+          # Validate with ajv (node-compatible)
+          npx ajv validate `
+            -s mcp/tools/ExecutionContext.schema.json `
+            -d preflight_response.json `
+            --strict=false
+
+          if ($LASTEXITCODE -ne 0) {
+            Write-Error "Preflight schema validation failed. CI blocked."
+            exit 1
+          }
+
+          Write-Host "✓ Preflight execution context validated successfully" -ForegroundColor Green
+
+      # ========================================================================
       # ADVISORY: Style and Quality Checks (Non-blocking)
       # ========================================================================
       - name: Run advisory checks (non-blocking)
@@ -103,6 +168,8 @@ jobs:
         run: |
           Write-Host "`n=== Validation Complete ===" -ForegroundColor Green
           Write-Host "✓ ABI contract validated (hard gate passed)" -ForegroundColor Green
+          Write-Host "✓ Shell sovereignty enforced (hard gate passed)" -ForegroundColor Green
+          Write-Host "✓ MCP preflight schema validated (hard gate passed)" -ForegroundColor Green
           Write-Host "✓ Advisory checks completed (informational only)" -ForegroundColor Green
           Write-Host "`nCanonical probe: scripts/shell_capabilities.ps1" -ForegroundColor Cyan
           Write-Host "Hash: 6D6782ED8FFC4BF434D2A7108A0F3BACF13C3B40CC5C8F00F53CB789A96D9DF8" -ForegroundColor DarkGray
