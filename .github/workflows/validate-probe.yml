@@ -6,12 +6,14 @@ on:
       - 'scripts/shell_capabilities.ps1'
       - 'scripts/validate_probe.ps1'
       - 'scripts/validate_shell_probe.ps1'
+      - 'scripts/lint_shell_sovereignty.ps1'
       - '.github/workflows/validate-probe.yml'
   pull_request:
     paths:
       - 'scripts/shell_capabilities.ps1'
       - 'scripts/validate_probe.ps1'
       - 'scripts/validate_shell_probe.ps1'
+      - 'scripts/lint_shell_sovereignty.ps1'
       - '.github/workflows/validate-probe.yml'
   workflow_dispatch:
 
@@ -40,6 +42,20 @@ jobs:
 
           if ($LASTEXITCODE -ne 0) {
             Write-Error "ABI contract validation failed. CI blocked."
+            exit 1
+          }
+
+      # ========================================================================
+      # REQUIRED: Shell Sovereignty Hard Gate
+      # ========================================================================
+      - name: Enforce shell sovereignty (REQUIRED)
+        shell: pwsh
+        run: |
+          Write-Host "=== Shell Sovereignty Enforcement (Hard Gate) ===" -ForegroundColor Cyan
+          .\scripts\lint_shell_sovereignty.ps1
+
+          if ($LASTEXITCODE -ne 0) {
+            Write-Error "Shell sovereignty violation detected. CI blocked."
             exit 1
           }
 
