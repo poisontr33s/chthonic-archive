@@ -1,0 +1,26 @@
+{
+  "execution_abi": {
+    "os": "windows",
+    "platform": "win32",
+    "shell": "pwsh",
+    "runtime": "bun",
+    "node_compat": true,
+    "bun_version": "1.3.5"
+  },
+  "shell_sovereignty": {
+    "status": "clean",
+    "cross_shell_detected": false,
+    "canonical_shell": "pwsh"
+  },
+  "permissions": {
+    "repo_mutation": "unknown",
+    "git_commit": "unknown",
+    "git_push": "unknown"
+  },
+  "governance": {
+    "shell_mismatch_retryable": false,
+    "permission_required_before_narration": true,
+    "structural_failures_non_retryable": true
+  },
+  "governance_version": "session-learning.v1"
+}

@@ -624,11 +624,16 @@ import { createServer } from "node:http";
    - `tools/epistemograph.ts` - SQLite queries
    - `tools/validation.ts` - FA⁴ enforcement
 
-5. **Test with MCP Inspector** (if available):
+5. **Test with MCP Inspector** (Bun-native):
    ```bash
-   # Note: MCP Inspector may require Node.js
-   npx @modelcontextprotocol/inspector bun run server.ts
+   # Use bunx (Bun's npx equivalent) per SSOT §XIV.2
+   bunx @modelcontextprotocol/inspector bun run server.ts
+   
+   # Or force Bun runtime (ignore Node.js shebang):
+   bunx --bun @modelcontextprotocol/inspector bun run server.ts
    ```
+   
+   **Reference:** [Bun CLI Documentation](https://bun.sh/docs/cli/bunx) for `bunx` usage and shebang handling.
 
 ---
 
