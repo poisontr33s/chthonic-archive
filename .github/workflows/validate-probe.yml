@@ -1,0 +1,65 @@
+name: Validate Shell Probe
+
+on:
+  push:
+    paths:
+      - 'scripts/shell_capabilities.ps1'
+      - 'scripts/validate_probe.ps1'
+      - '.github/workflows/validate-probe.yml'
+  pull_request:
+    paths:
+      - 'scripts/shell_capabilities.ps1'
+      - 'scripts/validate_probe.ps1'
+      - '.github/workflows/validate-probe.yml'
+  workflow_dispatch:
+
+jobs:
+  validate:
+    name: Validate Canonical Probe
+    runs-on: windows-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      
+      - name: Setup Python with uv
+        uses: astral-sh/setup-uv@v5
+        with:
+          enable-cache: true
+      
+      - name: Run probe validator
+        shell: pwsh
+        run: |
+          Write-Host "=== Running probe contract validation ===" -ForegroundColor Cyan
+          .\scripts\validate_probe.ps1
+          
+      - name: Test probe execution
+        shell: pwsh
+        run: |
+          Write-Host "`n=== Testing probe execution ===" -ForegroundColor Cyan
+          $json = .\scripts\shell_capabilities.ps1 | ConvertFrom-Json
+          Write-Host "✓ Probe executed successfully" -ForegroundColor Green
+          Write-Host "  OS: $($json.os)"
+          Write-Host "  PowerShell: $($json.pwsh_version)"
+          Write-Host "  Path entries: $($json.path.Count)"
+      
+      - name: Compare against variants (if any)
+        shell: pwsh
+        run: |
+          Write-Host "`n=== Scanning for probe variants ===" -ForegroundColor Cyan
+          $canonical = "636383C0DB1F4ACDF539335337C322FD9E4F30F429A15B46C647876D29918116"
+          
+          Get-ChildItem -Path . -Filter "*.ps1" -Recurse -File | 
+            Where-Object { $_.Name -like "*shell*" -or $_.Name -like "*probe*" -or $_.Name -like "*capabilities*" } |
+            ForEach-Object {
+              $hash = (Get-FileHash $_.FullName -Algorithm SHA256).Hash
+              $isCanonical = if ($hash -eq $canonical) { "✓ CANONICAL" } else { "⚠ VARIANT" }
+              $hasForbidden = if (Select-String -Path $_.FullName -Pattern '\b(if|foreach|while|switch|try|catch)\b' -Quiet) { "⚠ HAS LOGIC" } else { "✓ NO LOGIC" }
+              
+              [PSCustomObject]@{
+                Path = $_.FullName.Replace("$PWD\", "")
+                Status = $isCanonical
+                Logic = $hasForbidden
+                Hash = $hash.Substring(0, 16) + "..."
+              }
+            } | Format-Table -AutoSize
