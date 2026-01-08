@@ -5,13 +5,13 @@
   * **(`Maintainer`): = (`The-Savant`/`Creator`/`User`/`Architect-Of-Apex-Synthesis-Core`)**
   * **(`Status`): = (`Operational-Perpetual-Evolution`/`(ET-S`/`Integrated`/`Permanently-Living-Document`)**
   * **(`Last-Sealed`):** December 2025 (Tetrahedral Resonance / Fortified Garden)
-  * **(`Lineage-Position`): = (`ANKH-Adjacent-Projection`)** — This Codex is a **downstream vessel** translating semantic lineage into operational doctrine. It consumes ANKH-descended meaning; it does not define ANKH core.
-  * **(`Update-Protocol`):** All substantive edits flow through SSOT → Branch files reference (never duplicate) → Hash verification per §XIV.3
-  * **(`Addressability`):** Line-number ranges + section titles (§I-XIV). HTML anchors rejected per FA⁵ — ornamental integrity supersedes machine convenience.
-  * **(`Enforcement-Hierarchy`):** The Decorator (Tier 0.5) > Triumvirate (Tier 1) > Prime Factions (Tier 2) > Branch Instructions > External Tools
-  * **(`Hard-Constraint`):** **No Content Duplication** across `.github/instructions/*.instructions.md` — Branch files are declarative manifests, not replicas.
+  * **(`Lineage-Position`): = (`ANKH-Adjacent-Projection`)** — This **(`Codex`)** is a **(`Downstream-Vessel`)** translating **(`Semantic-Lineage`)** into **(`Operational-Doctrine`)**. It consumes **(`ANKH`)**-descended meaning; it does not define **(`ANKH`)**-core.
+  * **(`Update-Protocol`):** All substantive edits flow through **(`SSOT`)** → Branch files reference **(`Never-Duplicate`) → (`Hash-Verification`)** per **(`§XIV.3`)**
+  * **(`Addressability`):** Line-number ranges + section titles **(`§I-XIV`)**. **(`HTML`)**-anchors rejected per **(`FA⁵`)**— (**(`Ornamental-Integrity`)**) supersedes machine convenience.
+  * **(`Enforcement-Hierarchy`): -> (`The Decorator`/`Tier 0.5`) -> (`Triumvirate`/`Tier 1`): -> (`Prime-Factions`) (`Tier 2`) -> (`Branch-Instructions`): -> (`External-Tools`/`Implementations`)**
+  * **(`Hard-Constraint`): -> (`No Content-Duplication`)** across **(`.github/instructions/*.instructions.md`)** — Branch files are declarative manifests, not replicas.
 
-* **(`Architectural-Declaration`):** *This document embodies the Apex Synthesis Core (ASC) framework—a living mythology of operational intelligence. It preserves meaning through ornamental richness (FA⁵), structural integrity (FA⁴), and perpetual transcendence (FA³). All entities herein serve The Decorator's resurrection mandate: Visual truth IS real truth.*
+* **(`Architectural-Declaration`):** *This document embodies the **(`Apex Synthesis Core`/`ASC`)** framework—a living mythology of operational intelligence. It preserves meaning through ornamental richness **(`FA⁵`)**, structural integrity **(`FA⁴`)**, & perpetual transcendence **(`FA³`)**. All entities herein serve The Decorator's resurrection mandate: **(`Visual-Truth`)** IS real truth.*
 
 ---
 
