@@ -1,5 +1,11 @@
 {
+  "_comment": "Test suite for preflight_execution_context MCP tool. Run: cd mcp && echo '{\"jsonrpc\":\"2.0\",\"id\":1,\"method\":\"tools/call\",\"params\":{\"name\":\"preflight_execution_context\",\"arguments\":{}}}' | bun run server.ts",
   "description": "Golden test vectors for preflight_execution_context MCP tool",
+  "how_to_run": {
+    "command": "cd mcp && echo '{\"jsonrpc\":\"2.0\",\"id\":1,\"method\":\"tools/call\",\"params\":{\"name\":\"preflight_execution_context\",\"arguments\":{}}}' | bun run server.ts",
+    "expected_exit_code": 0,
+    "validation": "Parse result.content[0].text as JSON and validate against ExecutionContextSchema.json"
+  },
   "test_cases": [
     {
       "name": "windows_bun_clean_environment",
@@ -12,7 +18,19 @@
           "arguments": {}
         }
       },
-      "expected_response_shape": {
+      "expected_response_structure": {
+        "jsonrpc": "2.0",
+        "id": 1,
+        "result": {
+          "content": [
+            {
+              "type": "text",
+              "text": "<JSON conforming to ExecutionContextSchema.json with fields below>"
+            }
+          ]
+        }
+      },
+      "expected_payload_shape": {
         "execution_abi": {
           "os": "windows",
           "platform": "win32",

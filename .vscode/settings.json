@@ -143,9 +143,12 @@
 
     // === COPILOT (Pro/Plus friendly defaults) ===
     "github.copilot.enable": {
-    "github.copilot.inlineSuggest.enable": true,
-    "github.copilot-chat.enable": true,
-    "*": true
+        "*": true,
+        "plaintext": false,
+        "markdown": true,
+        "scminput": false,
+        "github.copilot.inlineSuggest.enable": true,
+        "github.copilot-chat.enable": true
     },
     "chat.mcp.serverSampling": {
     "chthonic-archive/.vscode/mcp.json: github": {
@@ -197,8 +200,9 @@
     "chat.useClaudeSkills": true,
     "claudeCode.allowDangerouslySkipPermissions": true,
     "claudeCode.useTerminal": false,
-    "claudeCode.selectedModel": "claude-sonnet-4-5-20250929",
+    "claudeCode.selectedModel": "claude-sonnet-4-5",
     "claudeCode.respectGitIgnore": false,
     "claudeCode.initialPermissionMode": "plan",
-    "claudeCode.preferredLocation": "sidebar"
+    "claudeCode.preferredLocation": "sidebar",
+    "chat.todoListTool.writeOnly": true
 }

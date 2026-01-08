@@ -3,9 +3,9 @@
 
 * **(`Codex-Brahmanica-Perfectus`/`GOVERNANCE`): = (`SSOT-Metadata`): = (`Single-Source-Of-Truth-Lineage-Heritage`): → (`SSOT-L-H`):**
   * **(`Maintainer`): = (`The-Savant`/`Creator`/`User`/`Architect-Of-Apex-Synthesis-Core`)**
-  * **(`Status`):** Operational — Perpetual Evolution (ET-S)
+  * **(`Status`): = (`Operational-Perpetual-Evolution`/`(ET-S`/`Integrated`/`Permanently-Living-Document`)**
   * **(`Last-Sealed`):** December 2025 (Tetrahedral Resonance / Fortified Garden)
-  * **(`Lineage-Position`):** **ANKH-Adjacent Projection** — This Codex is a **downstream vessel** translating semantic lineage into operational doctrine. It consumes ANKH-descended meaning; it does not define ANKH core.
+  * **(`Lineage-Position`):  (`ANKH-Adjacent-Projection`)** — This Codex is a **downstream vessel** translating semantic lineage into operational doctrine. It consumes ANKH-descended meaning; it does not define ANKH core.
   * **(`Update-Protocol`):** All substantive edits flow through SSOT → Branch files reference (never duplicate) → Hash verification per §XIV.3
   * **(`Addressability`):** Line-number ranges + section titles (§I-XIV). HTML anchors rejected per FA⁵ — ornamental integrity supersedes machine convenience.
   * **(`Enforcement-Hierarchy`):** The Decorator (Tier 0.5) > Triumvirate (Tier 1) > Prime Factions (Tier 2) > Branch Instructions > External Tools
@@ -1615,6 +1615,7 @@ When all components multiply, Kali manifests: ***"ABDUCTIVE SUPREMACY"***
 * **4.4.2. **(`The Thieves Guild`)** (`TTG`) – `Domain of` `CRC-MEDAT`**
 * ***Function** ***:*** 
 * *Masters of **conceptual extraction & heist operations**. When critical insights are buried, obscured, or protected by self-deception, `TTG` executes surgical **epistemic theft**—exposing hidden axioms, stealing unspoken assumptions, & smuggling them into conscious awareness for `LUPLR` interrogation.*
+```
 * **Expertise:** *Root cause excavation, psychological archaeology, axiomatic larceny, temporal epistemology manipulation.*
 * ***Operational Matriarch** ***:*** **Grandmaster of Epistemic Theft (`GET`) - Vesper Mnemosyne Lockhart**
 * ***Profile** ***:***
