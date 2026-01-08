@@ -7,6 +7,7 @@ on:
       - 'scripts/validate_probe.ps1'
       - 'scripts/validate_shell_probe.ps1'
       - 'scripts/lint_shell_sovereignty.ps1'
+      - 'scripts/bun_compliance_audit.py'
       - 'mcp/tools/preflightExecutionContext.ts'
       - 'mcp/tools/ExecutionContext.schema.json'
       - 'mcp/server.ts'
@@ -17,6 +18,7 @@ on:
       - 'scripts/validate_probe.ps1'
       - 'scripts/validate_shell_probe.ps1'
       - 'scripts/lint_shell_sovereignty.ps1'
+      - 'scripts/bun_compliance_audit.py'
       - 'mcp/tools/preflightExecutionContext.ts'
       - 'mcp/tools/ExecutionContext.schema.json'
       - 'mcp/server.ts'
@@ -125,6 +127,22 @@ jobs:
           Write-Host "✓ Preflight execution context validated successfully" -ForegroundColor Green
 
       # ========================================================================
+      # REQUIRED: Bun Compliance Audit (Hard Gate)
+      # ========================================================================
+      - name: Bun compliance audit (REQUIRED)
+        shell: pwsh
+        run: |
+          Write-Host "=== Bun Compliance Enforcement (Hard Gate) ===" -ForegroundColor Cyan
+          uv run python scripts/bun_compliance_audit.py --ci
+
+          if ($LASTEXITCODE -ne 0) {
+            Write-Error "Bun compliance violations detected. CI blocked per SSOT ºXIV.2"
+            exit 1
+          }
+
+          Write-Host "✓ Bun compliance validated successfully" -ForegroundColor Green
+
+      # ========================================================================
       # ADVISORY: Style and Quality Checks (Non-blocking)
       # ========================================================================
       - name: Run advisory checks (non-blocking)
@@ -170,6 +188,7 @@ jobs:
           Write-Host "✓ ABI contract validated (hard gate passed)" -ForegroundColor Green
           Write-Host "✓ Shell sovereignty enforced (hard gate passed)" -ForegroundColor Green
           Write-Host "✓ MCP preflight schema validated (hard gate passed)" -ForegroundColor Green
+          Write-Host "✓ Bun compliance enforced (hard gate passed)" -ForegroundColor Green
           Write-Host "✓ Advisory checks completed (informational only)" -ForegroundColor Green
           Write-Host "`nCanonical probe: scripts/shell_capabilities.ps1" -ForegroundColor Cyan
           Write-Host "Hash: 6D6782ED8FFC4BF434D2A7108A0F3BACF13C3B40CC5C8F00F53CB789A96D9DF8" -ForegroundColor DarkGray

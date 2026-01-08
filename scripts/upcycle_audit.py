@@ -174,9 +174,10 @@ def analyze_file(path: Path) -> Dict:
     if "pnpm" in content.lower():
         flags.append("contains_pnpm_references")
 
-    # NPM references (deprecated per bun-first policy)
-    if "npm " in content.lower() or "npm install" in content.lower():
-        flags.append("contains_npm_references")
+    # NPM/Yarn references (deprecated per bun-first policy)
+    # Note: Checking for legacy package manager usage, not Bun itself
+    if "bun " not in content.lower() and ("npm " in content.lower() or "yarn " in content.lower()):
+        flags.append("contains_legacy_package_manager_references")
 
     # Determine if upcycle candidate
     upcycle_flags = {
