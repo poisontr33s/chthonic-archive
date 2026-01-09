@@ -49,7 +49,7 @@
             "textMateRules": []
         }
     },
-    "workbench.colorTheme": "Default Dark Modern",
+    "workbench.colorTheme": "Chthonic Archive - Tetrahedral Resonance",
 
     // === FILE EXCLUSIONS (Performance) ===
     "files.exclude": {
@@ -191,17 +191,22 @@
         "docs/EXECUTION_CONTRACT.md",
         "docs/PWSH_RULES.md"
     ],
-    
+
     // Prefer MCP servers for context enrichment
     "github.copilot.chat.useProjectContext": true,
     "workbench.experimental.cloudChanges.partialMatches.enabled": true,
     "chat.todoListTool.descriptionField": true,
-    "chat.useClaudeSkills": true,
     "claudeCode.allowDangerouslySkipPermissions": true,
     "claudeCode.useTerminal": false,
     "claudeCode.selectedModel": "claude-sonnet-4-5",
     "claudeCode.respectGitIgnore": false,
     "claudeCode.initialPermissionMode": "plan",
     "claudeCode.preferredLocation": "sidebar",
-    "chat.todoListTool.writeOnly": true
+    "chat.todoListTool.writeOnly": true,
+    "github.copilot.chat.newWorkspace.useContext7": false,
+    "chat.useAgentSkills": true,
+    "editor.experimental.asyncTokenization": false,
+    "github.copilot.chat.codeGeneration.useInstructionFiles": false,
+    "chat.useAgentsMdFile": false,
+    "github.copilot.chat.customInstructionsInSystemMessage": false
 }
