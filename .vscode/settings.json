@@ -67,6 +67,7 @@
     // === TERMINAL ===
     // Crude mode: no profiles, no aliases, no wrapper functions, no activation scripts.
     // Terminals start with `-NoProfile` and get a deterministic PATH prefix via terminal.integrated.env.windows.
+    // Shell integration enabled for command detection, working directory tracking, and decorations.
     "terminal.integrated.profiles.windows": {
         "Pwsh (Chthonic)": {
             "path": "C:\\Program Files\\PowerShell\\7\\pwsh.exe",
@@ -84,8 +85,26 @@
         }
     },
     "terminal.integrated.defaultProfile.windows": "Pwsh (Chthonic)",
+
+    // Shell Integration Configuration (VSCode Insiders + PowerShell 7.5.4)
+    // Shell integration script: c:\Users\erdno\AppData\Local\Programs\Microsoft VS Code Insiders\7c62052af6\resources\app\out\vs\workbench\contrib\terminal\common\scripts\shellIntegration.ps1
+    "terminal.integrated.shellIntegration.enabled": true,
+    "terminal.integrated.shellIntegration.decorationsEnabled": "both",
+    "terminal.integrated.shellIntegration.showCommandGuide": true,
+    "terminal.integrated.shellIntegration.history": 100,
+    "terminal.integrated.suggest.enabled": true,
+    "terminal.integrated.suggest.quickSuggestions": true,
+    "terminal.integrated.suggest.suggestOnTriggerCharacters": true,
+    "terminal.integrated.stickyScroll.enabled": true,
+
+    // Prevent accidental WSL/bash launches (use explicit profile selection)
+    "terminal.integrated.commandsToSkipShell": [
+        "bash",
+        "wsl",
+        "ubuntu"
+    ],
     "terminal.integrated.env.windows": {
-        "PATH": "C:\\Windows\\System32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0;C:\\Program Files\\PowerShell\\7;C:\\Program Files\\GitHub CLI;${env:USERPROFILE}\\AppData\\Local\\Microsoft\\WinGet\\Packages\\GitHub.Copilot.Prerelease_Microsoft.Winget.Source_8wekyb3d8bbwe;${env:USERPROFILE}\\AppData\\Local\\GitHubDesktop\\bin;${env:USERPROFILE}\\.local\\bin;${env:USERPROFILE}\\.bun\\bin;${env:USERPROFILE}\\.cargo\\bin;${workspaceFolder}\\scripts\\bin;C:\\Go\\bin;C:\\Ruby34-x64\\bin;C:\\Ruby34-x64\\msys64\\ucrt64\\bin;C:\\Program Files\\Git\\cmd;C:\\Program Files\\Git\\bin;C:\\Program Files\\Git\\usr\\bin",
+        "PATH": "C:\\Windows\\System32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0;C:\\Program Files\\PowerShell\\7;C:\\Program Files\\GitHub CLI;${env:USERPROFILE}\\AppData\\Local\\Programs\\Microsoft VS Code Insiders\\bin;${env:USERPROFILE}\\AppData\\Local\\Microsoft\\WinGet\\Packages\\GitHub.Copilot.Prerelease_Microsoft.Winget.Source_8wekyb3d8bbwe;${env:USERPROFILE}\\AppData\\Local\\GitHubDesktop\\bin;${env:USERPROFILE}\\.local\\bin;${env:USERPROFILE}\\.bun\\bin;${env:USERPROFILE}\\.cargo\\bin;${workspaceFolder}\\scripts\\bin;C:\\Go\\bin;C:\\Ruby34-x64\\bin;C:\\Ruby34-x64\\msys64\\ucrt64\\bin;C:\\Program Files\\Git\\cmd;C:\\Program Files\\Git\\bin;C:\\Program Files\\Git\\usr\\bin",
         "RUST_BACKTRACE": "1",
         "RUST_LOG": "info,chthonic_archive=debug"
     },
@@ -208,5 +227,9 @@
     "editor.experimental.asyncTokenization": false,
     "github.copilot.chat.codeGeneration.useInstructionFiles": false,
     "chat.useAgentsMdFile": false,
-    "github.copilot.chat.customInstructionsInSystemMessage": false
+    "github.copilot.chat.customInstructionsInSystemMessage": false,
+    "@azure.enableAutoSetAzureRules": false,
+    "chat.instructionsFilesLocations": {
+        ".github/instructions": false
+    }
 }
