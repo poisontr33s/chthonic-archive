@@ -230,6 +230,6 @@
     "github.copilot.chat.customInstructionsInSystemMessage": false,
     "@azure.enableAutoSetAzureRules": false,
     "chat.instructionsFilesLocations": {
-        ".github/instructions": false
+        ".github/copilot-instructions.md ": true
     }
 }
