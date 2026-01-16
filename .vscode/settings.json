@@ -216,7 +216,7 @@
     "workbench.experimental.cloudChanges.partialMatches.enabled": true,
     "chat.todoListTool.descriptionField": true,
     "claudeCode.allowDangerouslySkipPermissions": true,
-    "claudeCode.useTerminal": false,
+    "claudeCode.useTerminal": true,
     "claudeCode.selectedModel": "claude-sonnet-4-5",
     "claudeCode.respectGitIgnore": false,
     "claudeCode.initialPermissionMode": "plan",
@@ -230,6 +230,6 @@
     "github.copilot.chat.customInstructionsInSystemMessage": false,
     "@azure.enableAutoSetAzureRules": false,
     "chat.instructionsFilesLocations": {
-        ".github/copilot-instructions.md ": true
+        ".github/copilot-instructions.md": true
     }
 }
