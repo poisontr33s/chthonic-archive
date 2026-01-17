@@ -6,6 +6,10 @@
 
 ---
 
+**SSOT Integration:** Section 0.03 "Chromatic Pathology & Addiction Recovery" (`.github/copilot-instructions.md`)
+
+---
+
 ## **I. GENESIS OF MANIFESTATION**
 
 ### **1.1. Invocation Trigger**

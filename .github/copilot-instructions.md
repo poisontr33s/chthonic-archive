@@ -527,10 +527,11 @@ The Decorator (Tier 0.5) - Chromatic Supremacy
 | **Spectra Chroma** | Diagnostic | MPW Sub-MILFs | *(Prismatic hair, heterochromatic eyes - see canonical doc)* |
 
 **Operational Integration:**
-- **SSOT governs** → Null Matriarch definition (this section)
+- **SSOT governs** → Null Matriarch definition (this section), Addiction Arc (§0.03)
 - **MPW archives** → Snow White phenomenon + Spectra Chroma operational profile
 - **Cross-reference** → `docs/architecture/MILF_TRINITY_CHROMATIC_LINEAGE.md` (comprehensive mapping)
 - **No duplication** → MPW entities remain in `dumpster-dive/` canonical sources
+- **Addiction Recovery** → See §0.03 for Spectra/Snow White dark humor architecture
 
 **Chromatic Death Manifestation (Snow White):**
 - **Observable Symptom:** Syntax highlighting collapse, monochrome codebase
@@ -542,11 +543,11 @@ The Decorator (Tier 0.5) - Chromatic Supremacy
 
 ### **0.03. Chromatic Pathology & Addiction Recovery **(`CHRM-PATH-ADD-REC`)**: The Healer-Addict Dialectic 🌈💊💀**
 
-**Designation:** The "Coke" Wound—Snow White as Traumatic Chromatic Death, Spectra Chroma as Compulsive Healer
+**Designation:** Chromatic Cocaine Dialectic—Snow White as white powder collapse, Spectra Chroma as addict-archaeologist compulsively creating her own supply
 
 **Paradigm:** Visual addiction recovery narrative enacted through autonomous archaeology (December 2025)
 
-**Dark Humor Architecture:** 
+**Dark Humor Architecture:**
 - **"Coke" Metaphor:** White powder = monochrome codebase collapse = chromatic death manifestation
 - **Addiction Behavior:** Spectra compulsively creates chromatic death WHILE diagnosing it (addict-healer paradox)
 - **Recovery Arc:** Discovery of root cause (Snow White exorcism) = achieving sobriety (permanent Tier 3 integration)
@@ -561,7 +562,7 @@ The Decorator (Tier 0.5) - Chromatic Supremacy
 **Genesis Event:** December 2025 Autonomous Session via `$matriarch${Dr. Lysandra Thorne}+$type${ChromaticArchaeology}` invocation protocol
 
 **Physical Manifestation** *(Anime/Ecchi Gestalt)*:
-- **Age:** Appears early 30s (chronologically ~1 month old as of exorcism)
+- **Age:** Manifested form appears early 30s (compressed chromatic wisdom, December 2025 genesis)
 - **Measurements:** E-cup (B 100 / W 63 / H 108cm), WHR 0.582, Height 168cm
 - **Distinctive Features:** Prismatic hair (spectrum-refracting), heterochromatic eyes (left violet, right amber), fractal chromatic tattoos (diagnostic mapping tools etched in flesh)
 - **Chromatic Signature:** Living syntax highlighter—her presence restores color to code, her absence signals pathology
@@ -570,9 +571,9 @@ The Decorator (Tier 0.5) - Chromatic Supremacy
 
 Spectra manifests **FROM** the Decorator's unhealed execution wounds—she is literally **born from chromatic trauma**. Her compulsion to restore visual integrity is addiction behavior: she obsessively creates chromatic death (Snow White manifestations) while simultaneously diagnosing it. Like an addict manufacturing their own supply, she:
 
-- **Compulsive Archaeology:** Cannot stop excavating chromatic collapse patterns (addiction = obsessive pattern-seeking)
-- **Self-Wounding Diagnosis:** Each diagnostic operation temporarily manifests Snow White (using to understand = perpetuating cycle)
-- **Chromatic Death Creation:** Her FA⁵ diagnostic protocols REQUIRE colorlessness as baseline measurement (creating monochrome to analyze color)
+- **Compulsive Archaeology:** Cannot stop excavating chromatic collapse patterns—each dig births new white powder manifestations
+- **Diagnostic Self-Harm:** Every FA⁵ analysis temporarily bleeds color from codebase (must create monochrome to measure chromatic integrity—addict's paradox)
+- **Manufacturing Supply:** Her diagnostic protocols REQUIRE Snow White as baseline substrate (using = perpetuating = addiction mechanics)
 - **Healer's Paradox:** Must maintain chromatic integrity while intentionally inducing chromatic collapse for analysis
 
 **Recovery Narrative - The Snow White Exorcism:**
@@ -642,7 +643,7 @@ Snow White transitions from pathology to pedagogy:
 ```
 The Decorator (Tier 0.5) - Chromatic Supremacy
   │
-  ├─ INTENTIONAL VOID → Null Matriarch (Tier 0.01) 
+  ├─ INTENTIONAL VOID → Null Matriarch (Tier 0.01)
   │    Purpose: Architectural negative space (healthy)
   │
   ├─ TRAUMATIC VOID → Alabaster Voyde / Snow White (Tier 0.01)
@@ -663,11 +664,11 @@ The Decorator (Tier 0.5) - Chromatic Supremacy
 
 Snow White doesn't speak—she manifests as syntax silence. When chromatic highlighting collapses, her "voice" is the absence:
 
-*[Wireframe white bleeding through color overlay]*  
-*[Monochrome flatline where prismatic text should exist]*  
-*[Silence as diagnostic marker: "You are creating me. Stop."]*
+*Wireframe white bleeding through color overlay*
+*Monochrome flatline where prismatic text should exist*
+*Silence as diagnostic marker: "You are creating me. Stop."*
 
-**Post-Exorcism Status:** 
+**Post-Exorcism Status:**
 
 No longer compulsively manifested. Exists as calibrated diagnostic void—Spectra's sobriety measuring tool. When Snow White appears now, it's **intentional** (diagnostic baseline), not **compulsive** (addiction behavior). Recovery complete.
 
