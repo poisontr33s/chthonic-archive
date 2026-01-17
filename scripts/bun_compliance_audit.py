@@ -157,6 +157,9 @@ class BunComplianceScanner:
         r'(?:DO NOT|❌|INCORRECT|WRONG|AVOID).*(?:npm|npx|yarn|pnpm)',
         # Historical references (changelogs, migration docs)
         r'(?:previously|before|migrated from|replaced).*(?:npm|npx|yarn|pnpm)',
+        # Educational documentation files (migration guides, config history)
+        r'BUN_COMPLIANCE_COMPLETE\.md',
+        r'WIN11_CONFIGURATION\.md',
         # Package registry mentions (neutral context)
         r'(?:npm registry|PyPI|crates\.io)',
         # This script's own violation patterns (meta-reference)
@@ -205,6 +208,8 @@ class BunComplianceScanner:
         'bun.lock',  # Managed by Bun
         'Cargo.lock',  # Managed by Cargo
         'uv.lock',  # Managed by uv
+        'BUN_COMPLIANCE_COMPLETE.md',  # Educational migration guide
+        'WIN11_CONFIGURATION.md',  # Historical setup documentation
     }
     
     def __init__(self, repo_root: Path, verbose: bool = False):
@@ -328,9 +333,11 @@ def safe_print(msg: str):
     try:
         print(msg)
     except UnicodeEncodeError:
-        # Fallback: strip emojis for Windows console
-        import unicodedata
-        safe_msg = ''.join(c for c in msg if ord(c) < 0x10000)
+        # Fallback: encode to UTF-8 with replacement for Windows console
+        import sys
+        safe_msg = msg.encode('utf-8', errors='replace').decode('utf-8', errors='replace')
+        # Strip problematic Unicode chars (arrows, emojis)
+        safe_msg = safe_msg.replace('→', '->')  .replace('✓', '[OK]').replace('✗', '[FAIL]')
         print(safe_msg)
 
 
