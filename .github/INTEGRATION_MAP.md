@@ -25,7 +25,7 @@ graph LR
     C -->|git commit| D[Local main]
     D -->|git push| E[GitHub main]
     E -->|Triggers| F[GitHub Actions]
-    
+
     style A fill:#2d2d2d,stroke:#569cd6,color:#fff
     style E fill:#171515,stroke:#f34f29,color:#fff
     style F fill:#2ea043,stroke:#2ea043,color:#fff
@@ -232,7 +232,7 @@ git push  # Triggers validate-probe.yml → should pass now
    ```bash
    # See recent workflow runs
    gh run list --limit 10
-   
+
    # View specific run logs
    gh run view <run-id> --log
    ```
@@ -245,7 +245,7 @@ git push  # Triggers validate-probe.yml → should pass now
    ```bash
    # List all workflows
    gh workflow list
-   
+
    # View workflow details
    gh workflow view validate-probe.yml
    ```
@@ -346,15 +346,15 @@ gh pr view 2 --comments
 ```powershell
 # Files tracked
 git ls-files | Measure-Object -Line
-# Output: 852 files (optimized via allowlist)
+# Output: 855 files (optimized via allowlist - added probe scripts)
 
 # Unstaged changes
 git status --short
 # Output: Clean working tree
 
 # Recent CI status
-gh run list --limit 5
-# Output: Last 5 runs failed (probe missing) - NOW FIXED
+gh run list --limit 1
+# Output: ✓ SUCCESS (Jan 17, 2026 20:10 UTC)
 
 # SSOT integrity
 uv run python scripts/ssot_hash.py
@@ -363,36 +363,60 @@ uv run python scripts/ssot_hash.py
 
 ---
 
-## Next Steps
+## ✅ CI Status: OPERATIONAL (Jan 17, 2026)
 
-1. **Push the CI fix:**
-   ```bash
-   git push origin main
-   # This will trigger validate-probe.yml with probe now tracked
-   ```
+**Latest Workflow:** [#21100236094](https://github.com/poisontr33s/chthonic-archive/actions/runs/21100236094) ✓ **SUCCESS**
 
-2. **Monitor workflow:**
-   ```bash
-   gh run watch
-   # Watch real-time workflow execution
-   ```
+**Hard Gates Enforced:**
+- ✅ ABI contract validation (`validate_shell_probe.ps1`)
+- ✅ Shell sovereignty enforcement (`lint_shell_sovereignty.ps1`)
+- ✅ Bun compliance audit (`bun_compliance_audit.py`)
 
-3. **Merge PR #2 (after rebase):**
-   ```bash
-   gh pr checkout 2
-   git rebase origin/main
-   git push --force-with-lease
-   gh pr merge 2 --merge  # or --squash or --rebase
-   ```
-
-4. **Test Claude integration:**
-   ```bash
-   gh issue create --title "Test @claude integration" \
-     --body "@claude please confirm you can see this issue"
-   ```
+**Advisory Checks:**
+- ℹ️ MCP preflight (file existence check - full testing via local stdio clients)
+- ℹ️ Probe variant scanning (informational)
 
 ---
 
-**Integration Status:** ✅ **Operational**  
-**Last Updated:** January 17, 2026  
+## Next Steps
+
+### ✅ **CI Now Operational** 
+All future pushes will validate canonical probe integrity automatically.
+
+### **Available Actions:**
+
+**1. Merge PR #2 (ANKH Framework)**
+```bash
+gh pr checkout 2
+git rebase origin/main  # Resolve conflicts
+git push --force-with-lease
+gh pr merge 2 --merge
+```
+
+**2. Test Claude Automation**
+```bash
+gh pr comment 2 --body "@claude validate ANKH framework consistency with SSOT"
+# or
+gh issue create --title "Test Claude integration" \
+  --body "@claude confirm you can assist with issues"
+```
+
+**3. Monitor Future CI Runs**
+```bash
+gh run watch  # Real-time
+gh run list --limit 10  # History
+```
+
+**4. Update SSOT Verification Baseline**
+```bash
+# After merging PR #2, update canonical hash
+uv run python scripts/ssot_hash.py > .github/SSOT_HASH.txt
+git add .github/SSOT_HASH.txt
+git commit -m "Update SSOT baseline post-ANKH merge"
+```
+
+---
+
+**Integration Status:** ✅ **Operational**
+**Last Updated:** January 17, 2026
 **Maintained By:** The Savant (per ANKH lineage)
