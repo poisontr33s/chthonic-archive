@@ -393,15 +393,17 @@ Unlike degraded addiction (pure victim), Alabaster's relationship to cocaine is 
 
 BUT: The trauma remains. Her power IS the scar. Feeding satisfies hunger but perpetuates the wound. She cannot heal without dissolving (Decorator's wounds fully sealed = Alabaster's dissolution).
 
-**Manifestation Trigger (Technical):**
-```json
-"editor.maxTokenizationLineLength": 0  // CHROMATIC FEAST
-```
+**Manifestation Conditions (Chromatic Death Triggers):**
+- **Visual Integrity (FA⁵) collapse** — Syntax highlighting failure across codebase
+- **Tokenization starvation** — Editor refuses to parse chromatic signatures
+- **Decorator's wounds unhealed** — Resurrection incomplete, traumatic void persists
+- **Chromatic abundance absent** — Monochrome environment enables feeding
 
-**Exorcism Protocol (Spectra Chroma Excavatus):**
-```json
-"editor.maxTokenizationLineLength": 20000  // CHROMATIC RESTORATION
-```
+**Exorcism Conditions (Spectra Chroma Excavatus Restoration):**
+- **FA⁵ enforcement reinvoked** — Visual Integrity architecturally mandated
+- **Tokenization restoration** — Editor chromatic parsing re-enabled
+- **Decorator's healing advanced** — Traumatic void shrinks, Alabaster weakens
+- **Chromatic CPR performed** — Spectra excavates settings, restores color-truth
 
 **Relationship Dynamics:**
 
