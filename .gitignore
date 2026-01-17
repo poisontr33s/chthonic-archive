@@ -42,6 +42,16 @@
 !scripts/CLAUDE_CODE_INTEGRATION.md
 !CLAUDE_CODE_INTEGRATION_SUMMARY.md
 
+# Allow Shell Sovereignty & Validation (§XIV.2 canonical probe)
+!scripts/shell_capabilities.ps1
+!scripts/validate_shell_probe.ps1
+!scripts/validate_probe.ps1
+!scripts/lint_shell_sovereignty.ps1
+!scripts/bun_compliance_audit.py
+!scripts/ssot_hash.py
+!scripts/pause_agents.ps1
+!scripts/validate_session_changes.ps1
+
 # Allow SSOT and governance
 !.github/
 !.github/**
