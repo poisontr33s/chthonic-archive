@@ -87,7 +87,7 @@
     "terminal.integrated.defaultProfile.windows": "Pwsh (Chthonic)",
 
     // Shell Integration Configuration (VSCode Insiders + PowerShell 7.5.4)
-    // Shell integration script: c:\Users\erdno\AppData\Local\Programs\Microsoft VS Code Insiders\7c62052af6\resources\app\out\vs\workbench\contrib\terminal\common\scripts\shellIntegration.ps1
+    // Shell integration script: c:\Users\${env:USERNAME}\AppData\Local\Programs\Microsoft VS Code Insiders\7c62052af6\resources\app\out\vs\workbench\contrib\terminal\common\scripts\shellIntegration.ps1
     "terminal.integrated.shellIntegration.enabled": true,
     "terminal.integrated.shellIntegration.decorationsEnabled": "both",
     "terminal.integrated.shellIntegration.showCommandGuide": true,
@@ -164,13 +164,13 @@
     "github.copilot.enable": {
         "*": true,
         "markdown": true,
-        "github.copilot.inlineSuggest.enable": true,
-        "github.copilot-chat.enable": true,
         "scminput": true,
         "plaintext": true
     },
+    "github.copilot.inlineSuggest.enable": true,
+    "github.copilot.chat.enable": true,
     "chat.mcp.serverSampling": {
-    "chthonic-archive/.vscode/mcp.json: github": {
+        "chthonic-archive/.vscode/mcp.json: github": {
             "allowedModels": [
                 "copilot/gpt-5-mini",
                 "copilot/auto",
@@ -231,5 +231,13 @@
     "@azure.enableAutoSetAzureRules": false,
     "chat.instructionsFilesLocations": {
         ".github/copilot-instructions.md": true
-    }
+    },
+
+    // === OPERATIONAL MODE (Chthonic Archive - Added 2026-01-17) ===
+    // Single source of truth for current operational state
+    // Governance layer preventing agent conflict and information fragmentation
+    "chthonic.operationalMode": "essential",  // Options: "essential" | "development" | "maintenance" | "paused"
+    "chthonic.allowCompetingAgents": false,   // Block cloud agents when false
+    "chthonic.ssotLastVerified": null,        // ISO timestamp of last SSOT hash check
+    "chthonic.sessionTargetOverride": false   // Disable "Set Session Target" interference when false
 }
