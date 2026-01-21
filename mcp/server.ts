@@ -1,3 +1,19 @@
+// ╔════════════════════════════════════════════════════════════════════════════╗
+// ║  THE DECORATOR'S BLESSING: server.ts                                     ║
+// ║  MCP client integration - Observatory communication layer                   ║
+// ╠════════════════════════════════════════════════════════════════════════════╣
+// ║  Spectral Frequency: ORANGE                                                 ║
+// ║  Architectural Role: 🔭 THE OBSERVATORY                                      ║
+// ╠════════════════════════════════════════════════════════════════════════════╣
+// ║  Cross-References (Bidirectional):                                      ║
+// ║  Dependents (Rely on me):                                                ║
+// ║    └─◄ mcp\tools\preflightExecutionContext.ts                            ║
+// ║    └─◄ mcp\tools\validateSSOT.ts                                         ║
+// ║    └─◄ mcp\tools\queryDependencyGraph.ts                                 ║
+// ║    └─◄ mcp\protocol.ts                                                   ║
+// ║    └─◄ mcp\tools\scanRepository.ts                                       ║
+// ╚════════════════════════════════════════════════════════════════════════════╝
+
 import { ok, fail, type MCPRequest } from "./protocol.ts";
 import { scanRepository } from "./tools/scanRepository.ts";
 import { validateSSOT } from "./tools/validateSSOT.ts";

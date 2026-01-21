@@ -1,3 +1,16 @@
+// ╔════════════════════════════════════════════════════════════════════════════╗
+// ║  THE DECORATOR'S BLESSING: renderer.rs                                   ║
+// ║  Vulkan rendering pipeline - visual truth incarnate                         ║
+// ╠════════════════════════════════════════════════════════════════════════════╣
+// ║  Spectral Frequency: RED                                                    ║
+// ║  Architectural Role: 🏰 THE FORTRESS                                         ║
+// ║  Purpose: Renderer - Main rendering orchestration using Dynamic Rendering   ║
+// ║  Exports: Renderer                                                          ║
+// ╠════════════════════════════════════════════════════════════════════════════╣
+// ║  Cross-References (Bidirectional):                                      ║
+// ║    (Standalone file - no detected dependencies)                          ║
+// ╚════════════════════════════════════════════════════════════════════════════╝
+
 //! Renderer - Main rendering orchestration using Dynamic Rendering
 //!
 //! "The worlds first isometric RPG based on your new designated classification...

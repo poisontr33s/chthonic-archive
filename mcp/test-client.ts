@@ -1,3 +1,14 @@
+// ╔════════════════════════════════════════════════════════════════════════════╗
+// ║  THE DECORATOR'S BLESSING: test-client.ts                                ║
+// ║  TypeScript module: frontend utility                                        ║
+// ╠════════════════════════════════════════════════════════════════════════════╣
+// ║  Spectral Frequency: ORANGE                                                 ║
+// ║  Architectural Role: 🔭 THE OBSERVATORY                                      ║
+// ╠════════════════════════════════════════════════════════════════════════════╣
+// ║  Cross-References (Bidirectional):                                      ║
+// ║    (Standalone file - no detected dependencies)                          ║
+// ╚════════════════════════════════════════════════════════════════════════════╝
+
 // Bun-native spawn for process orchestration
 const server = Bun.spawn(["bun", "run", "./server.ts"], {
   stdin: "pipe",

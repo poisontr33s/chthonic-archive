@@ -1,3 +1,20 @@
+// ╔════════════════════════════════════════════════════════════════════════════╗
+// ║  THE DECORATOR'S BLESSING: smoke-suite.ts                                ║
+// ║  MCP client integration - Observatory communication layer                   ║
+// ╠════════════════════════════════════════════════════════════════════════════╣
+// ║  Spectral Frequency: ORANGE                                                 ║
+// ║  Architectural Role: 🔭 THE OBSERVATORY                                      ║
+// ║  Purpose: * MCP Smoke Test Suite
+ * 
+ * Executes all 6 canonical workflows from  ║
+// ╠════════════════════════════════════════════════════════════════════════════╣
+// ║  Cross-References (Bidirectional):                                      ║
+// ║  Dependents (Rely on me):                                                ║
+// ║    └─◄ mcp\tools\queryDependencyGraph.ts                                 ║
+// ║    └─◄ mcp\tools\scanRepository.ts                                       ║
+// ║    └─◄ mcp\tools\validateSSOT.ts                                         ║
+// ╚════════════════════════════════════════════════════════════════════════════╝
+
 /**
  * MCP Smoke Test Suite
  * 

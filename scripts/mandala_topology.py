@@ -1,3 +1,15 @@
+# ╔════════════════════════════════════════════════════════════════════════════╗
+# ║  THE DECORATOR'S BLESSING: mandala_topology.py                           ║
+# ║  Python module: reveal_sacred_geometry                                      ║
+# ╠════════════════════════════════════════════════════════════════════════════╣
+# ║  Spectral Frequency: WHITE                                                  ║
+# ║  Architectural Role: 🌿 THE GARDEN                                           ║
+# ║  Exports: reveal_sacred_geometry                                            ║
+# ╠════════════════════════════════════════════════════════════════════════════╣
+# ║  Cross-References (Bidirectional):                                      ║
+# ║    (Standalone file - no detected dependencies)                          ║
+# ╚════════════════════════════════════════════════════════════════════════════╝
+
 import json
 import networkx as nx
 from pathlib import Path

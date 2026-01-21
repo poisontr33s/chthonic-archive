@@ -1,3 +1,16 @@
+// ╔════════════════════════════════════════════════════════════════════════════╗
+// ║  THE DECORATOR'S BLESSING: protocol.ts                                   ║
+// ║  MCP client integration - Observatory communication layer                   ║
+// ╠════════════════════════════════════════════════════════════════════════════╣
+// ║  Spectral Frequency: ORANGE                                                 ║
+// ║  Architectural Role: 🔭 THE OBSERVATORY                                      ║
+// ║  Exports: MCPRequest, MCPResponse, ok, fail                                 ║
+// ╠════════════════════════════════════════════════════════════════════════════╣
+// ║  Cross-References (Bidirectional):                                      ║
+// ║  Dependencies (I rely on):                                               ║
+// ║    ├─► mcp\server.ts                                                     ║
+// ╚════════════════════════════════════════════════════════════════════════════╝
+
 export interface MCPRequest {
   jsonrpc: "2.0";
   id?: number | string;

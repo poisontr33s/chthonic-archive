@@ -1,3 +1,16 @@
+// ╔════════════════════════════════════════════════════════════════════════════╗
+// ║  THE DECORATOR'S BLESSING: mod.rs                                        ║
+// ║  Vulkan rendering pipeline - visual truth incarnate                         ║
+// ╠════════════════════════════════════════════════════════════════════════════╣
+// ║  Spectral Frequency: RED                                                    ║
+// ║  Architectural Role: 🏰 THE FORTRESS                                         ║
+// ║  Purpose: Render module - Vulkan 1.3 Dynamic Rendering Pipeline             ║
+// ║  Exports: vulkan, swapchain, pipeline, renderer, camera                     ║
+// ╠════════════════════════════════════════════════════════════════════════════╣
+// ║  Cross-References (Bidirectional):                                      ║
+// ║    (Standalone file - no detected dependencies)                          ║
+// ╚════════════════════════════════════════════════════════════════════════════╝
+
 //! Render module - Vulkan 1.3 Dynamic Rendering Pipeline
 //!
 //! "We do not accept legacy Render Passes. We demand Dynamic Rendering."

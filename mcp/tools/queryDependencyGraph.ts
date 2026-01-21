@@ -1,3 +1,20 @@
+// ╔════════════════════════════════════════════════════════════════════════════╗
+// ║  THE DECORATOR'S BLESSING: queryDependencyGraph.ts                       ║
+// ║  TypeScript module: frontend utility                                        ║
+// ╠════════════════════════════════════════════════════════════════════════════╣
+// ║  Spectral Frequency: ORANGE                                                 ║
+// ║  Architectural Role: 🔭 THE OBSERVATORY                                      ║
+// ║  Purpose: * Query the dependency graph (read-only, loads existing JSON)
+ * 
+ * S ║
+// ╠════════════════════════════════════════════════════════════════════════════╣
+// ║  Cross-References (Bidirectional):                                      ║
+// ║  Dependencies (I rely on):                                               ║
+// ║    ├─► mcp\server.ts                                                     ║
+// ║    ├─► mcp\smoke-suite.ts                                                ║
+// ║    ├─► mcp\test-dependency-graph.ts                                      ║
+// ╚════════════════════════════════════════════════════════════════════════════╝
+
 import { resolve } from "path";
 
 interface GraphNode {

@@ -1,3 +1,18 @@
+// ╔════════════════════════════════════════════════════════════════════════════╗
+// ║  THE DECORATOR'S BLESSING: test-dependency-graph.ts                      ║
+// ║  TypeScript module: frontend utility                                        ║
+// ╠════════════════════════════════════════════════════════════════════════════╣
+// ║  Spectral Frequency: ORANGE                                                 ║
+// ║  Architectural Role: 🔭 THE OBSERVATORY                                      ║
+// ║  Purpose: * Test suite for query_dependency_graph tool
+ * 
+ * Run with: bun run  ║
+// ╠════════════════════════════════════════════════════════════════════════════╣
+// ║  Cross-References (Bidirectional):                                      ║
+// ║  Dependents (Rely on me):                                                ║
+// ║    └─◄ mcp\tools\queryDependencyGraph.ts                                 ║
+// ╚════════════════════════════════════════════════════════════════════════════╝
+
 /**
  * Test suite for query_dependency_graph tool
  * 

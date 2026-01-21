@@ -1,3 +1,16 @@
+// ╔════════════════════════════════════════════════════════════════════════════╗
+// ║  THE DECORATOR'S BLESSING: scanRepository.ts                             ║
+// ║  MCP client integration - Observatory communication layer                   ║
+// ╠════════════════════════════════════════════════════════════════════════════╣
+// ║  Spectral Frequency: ORANGE                                                 ║
+// ║  Architectural Role: 🔭 THE OBSERVATORY                                      ║
+// ╠════════════════════════════════════════════════════════════════════════════╣
+// ║  Cross-References (Bidirectional):                                      ║
+// ║  Dependencies (I rely on):                                               ║
+// ║    ├─► mcp\server.ts                                                     ║
+// ║    ├─► mcp\smoke-suite.ts                                                ║
+// ╚════════════════════════════════════════════════════════════════════════════╝
+
 import { readdir, stat } from "node:fs/promises";
 import { join, resolve } from "node:path";
 

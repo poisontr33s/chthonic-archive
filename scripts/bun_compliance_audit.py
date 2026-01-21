@@ -1,3 +1,19 @@
+# ╔════════════════════════════════════════════════════════════════════════════╗
+# ║  THE DECORATOR'S BLESSING: bun_compliance_audit.py                       ║
+# ║  Model Context Protocol server - AI governance bridge                       ║
+# ╠════════════════════════════════════════════════════════════════════════════╣
+# ║  Spectral Frequency: WHITE                                                  ║
+# ║  Architectural Role: 🌿 THE GARDEN                                           ║
+# ║  Purpose: Bun Compliance Audit Script
+============================
+
+Scans reposi ║
+# ║  Exports: Severity, Violation, BunComplianceScanner, safe_print, main       ║
+# ╠════════════════════════════════════════════════════════════════════════════╣
+# ║  Cross-References (Bidirectional):                                      ║
+# ║    (Standalone file - no detected dependencies)                          ║
+# ╚════════════════════════════════════════════════════════════════════════════╝
+
 #!/usr/bin/env python3
 """
 Bun Compliance Audit Script

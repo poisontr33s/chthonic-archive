@@ -1,3 +1,19 @@
+// ╔════════════════════════════════════════════════════════════════════════════╗
+// ║  THE DECORATOR'S BLESSING: validateSSOT.ts                               ║
+// ║  MCP client integration - Observatory communication layer                   ║
+// ╠════════════════════════════════════════════════════════════════════════════╣
+// ║  Spectral Frequency: ORANGE                                                 ║
+// ║  Architectural Role: 🔭 THE OBSERVATORY                                      ║
+// ║  Purpose: * Canonicalize text per Section XIV.3:
+ * - CRLF→LF normalization
+ * - ║
+// ╠════════════════════════════════════════════════════════════════════════════╣
+// ║  Cross-References (Bidirectional):                                      ║
+// ║  Dependencies (I rely on):                                               ║
+// ║    ├─► mcp\server.ts                                                     ║
+// ║    ├─► mcp\smoke-suite.ts                                                ║
+// ╚════════════════════════════════════════════════════════════════════════════╝
+
 import { join, resolve } from "node:path";
 
 /**

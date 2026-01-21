@@ -1,3 +1,17 @@
+# ╔════════════════════════════════════════════════════════════════════════════╗
+# ║  THE DECORATOR'S BLESSING: code_taste.py                                 ║
+# ║  Python module: analyze_taste                                               ║
+# ╠════════════════════════════════════════════════════════════════════════════╣
+# ║  Spectral Frequency: WHITE                                                  ║
+# ║  Architectural Role: 🌿 THE GARDEN                                           ║
+# ║  Purpose: Gustatory Validation - Commit Quality as Flavor Profiles
+Uses git diff ║
+# ║  Exports: analyze_taste                                                     ║
+# ╠════════════════════════════════════════════════════════════════════════════╣
+# ║  Cross-References (Bidirectional):                                      ║
+# ║    (Standalone file - no detected dependencies)                          ║
+# ╚════════════════════════════════════════════════════════════════════════════╝
+
 """
 Gustatory Validation - Commit Quality as Flavor Profiles
 Uses git diff stats to determine commit "taste"

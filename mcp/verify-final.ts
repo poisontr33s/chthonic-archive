@@ -1,3 +1,14 @@
+// ╔════════════════════════════════════════════════════════════════════════════╗
+// ║  THE DECORATOR'S BLESSING: verify-final.ts                               ║
+// ║  MCP client integration - Observatory communication layer                   ║
+// ╠════════════════════════════════════════════════════════════════════════════╣
+// ║  Spectral Frequency: ORANGE                                                 ║
+// ║  Architectural Role: 🔭 THE OBSERVATORY                                      ║
+// ╠════════════════════════════════════════════════════════════════════════════╣
+// ║  Cross-References (Bidirectional):                                      ║
+// ║    (Standalone file - no detected dependencies)                          ║
+// ╚════════════════════════════════════════════════════════════════════════════╝
+
 // Final clean verification of all 4 MCP tools
 const server = Bun.spawn(["bun", "run", "./server.ts"], {
   stdin: "pipe",

@@ -1,3 +1,17 @@
+# ╔════════════════════════════════════════════════════════════════════════════╗
+# ║  THE DECORATOR'S BLESSING: ssot_hash.py                                  ║
+# ║  Python module: canonicalize, ssot_hash, verify_ssot_integrity              ║
+# ╠════════════════════════════════════════════════════════════════════════════╣
+# ║  Spectral Frequency: WHITE                                                  ║
+# ║  Architectural Role: 🌿 THE GARDEN                                           ║
+# ║  Purpose: SSOT Hash Verification Script
+Per ┬ºXIV.3 of .github/copilot-instructi ║
+# ║  Exports: canonicalize, ssot_hash, verify_ssot_integrity, main              ║
+# ╠════════════════════════════════════════════════════════════════════════════╣
+# ║  Cross-References (Bidirectional):                                      ║
+# ║    (Standalone file - no detected dependencies)                          ║
+# ╚════════════════════════════════════════════════════════════════════════════╝
+
 #!/usr/bin/env python3
 """
 SSOT Hash Verification Script

@@ -1,3 +1,16 @@
+// ╔════════════════════════════════════════════════════════════════════════════╗
+// ║  THE DECORATOR'S BLESSING: camera.rs                                     ║
+// ║  Rust module: IsometricCamera, new, update_matrices                         ║
+// ╠════════════════════════════════════════════════════════════════════════════╣
+// ║  Spectral Frequency: RED                                                    ║
+// ║  Architectural Role: 🏰 THE FORTRESS                                         ║
+// ║  Purpose: Isometric Camera System                                           ║
+// ║  Exports: IsometricCamera, new, update_matrices, view_matrix, projection_matri ║
+// ╠════════════════════════════════════════════════════════════════════════════╣
+// ║  Cross-References (Bidirectional):                                      ║
+// ║    (Standalone file - no detected dependencies)                          ║
+// ╚════════════════════════════════════════════════════════════════════════════╝
+
 //! Isometric Camera System
 //!
 //! "The Ultimate pleasure found in the relentless transformation of perspective"

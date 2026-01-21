@@ -1,3 +1,16 @@
+// ╔════════════════════════════════════════════════════════════════════════════╗
+// ║  THE DECORATOR'S BLESSING: factions.rs                                   ║
+// ║  Vulkan rendering pipeline - visual truth incarnate                         ║
+// ╠════════════════════════════════════════════════════════════════════════════╣
+// ║  Spectral Frequency: RED                                                    ║
+// ║  Architectural Role: 🏰 THE FORTRESS                                         ║
+// ║  Purpose: Faction Registry - ASC Faction System Core                        ║
+// ║  Exports: FactionRegistry, new, initialize, activate_tsrp, deactivate_tsrp  ║
+// ╠════════════════════════════════════════════════════════════════════════════╣
+// ║  Cross-References (Bidirectional):                                      ║
+// ║    (Standalone file - no detected dependencies)                          ║
+// ╚════════════════════════════════════════════════════════════════════════════╝
+
 //! Faction Registry - ASC Faction System Core
 //!
 //! This module provides the central registry for all factions, districts,

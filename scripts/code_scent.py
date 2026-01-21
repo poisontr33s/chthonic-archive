@@ -1,3 +1,17 @@
+# ╔════════════════════════════════════════════════════════════════════════════╗
+# ║  THE DECORATOR'S BLESSING: code_scent.py                                 ║
+# ║  Python module: analyze_scent                                               ║
+# ╠════════════════════════════════════════════════════════════════════════════╣
+# ║  Spectral Frequency: WHITE                                                  ║
+# ║  Architectural Role: 🌿 THE GARDEN                                           ║
+# ║  Purpose: Olfactory Analysis - Code Smell Detection via Cyclomatic Complexity
+Us ║
+# ║  Exports: analyze_scent                                                     ║
+# ╠════════════════════════════════════════════════════════════════════════════╣
+# ║  Cross-References (Bidirectional):                                      ║
+# ║    (Standalone file - no detected dependencies)                          ║
+# ╚════════════════════════════════════════════════════════════════════════════╝
+
 """
 Olfactory Analysis - Code Smell Detection via Cyclomatic Complexity
 Uses radon to calculate actual complexity metrics

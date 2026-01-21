@@ -1,3 +1,16 @@
+// ╔════════════════════════════════════════════════════════════════════════════╗
+// ║  THE DECORATOR'S BLESSING: swapchain.rs                                  ║
+// ║  Vulkan rendering pipeline - visual truth incarnate                         ║
+// ╠════════════════════════════════════════════════════════════════════════════╣
+// ║  Spectral Frequency: RED                                                    ║
+// ║  Architectural Role: 🏰 THE FORTRESS                                         ║
+// ║  Purpose: Vulkan 1.3 Swapchain Management                                   ║
+// ║  Exports: VulkanSwapchain, SwapchainSupportDetails, MAX_FRAMES_IN_FLIGHT, curr ║
+// ╠════════════════════════════════════════════════════════════════════════════╣
+// ║  Cross-References (Bidirectional):                                      ║
+// ║    (Standalone file - no detected dependencies)                          ║
+// ╚════════════════════════════════════════════════════════════════════════════╝
+
 //! Vulkan 1.3 Swapchain Management
 //!
 //! "Your filth is structurally unsound. It leaks. It wobbles."

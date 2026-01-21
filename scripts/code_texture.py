@@ -1,3 +1,17 @@
+# ╔════════════════════════════════════════════════════════════════════════════╗
+# ║  THE DECORATOR'S BLESSING: code_texture.py                               ║
+# ║  Python module: analyze_texture                                             ║
+# ╠════════════════════════════════════════════════════════════════════════════╣
+# ║  Spectral Frequency: WHITE                                                  ║
+# ║  Architectural Role: 🌿 THE GARDEN                                           ║
+# ║  Purpose: Tactile Feedback - Code Structure as Physical Texture
+Uses AST import  ║
+# ║  Exports: analyze_texture                                                   ║
+# ╠════════════════════════════════════════════════════════════════════════════╣
+# ║  Cross-References (Bidirectional):                                      ║
+# ║    (Standalone file - no detected dependencies)                          ║
+# ╚════════════════════════════════════════════════════════════════════════════╝
+
 """
 Tactile Feedback - Code Structure as Physical Texture
 Uses AST import analysis to detect coupling

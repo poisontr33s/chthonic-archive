@@ -34,14 +34,16 @@ import networkx as nx
 #  CONFIGURATION: The Decorator's Parameters
 # ═══════════════════════════════════════════════════════════════════════════
 
-REPO_ROOT = Path(__file__).parent  # Script in root directory
+REPO_ROOT = Path(__file__).parent.parent  # Script in scripts/ directory
 SSOT_PATH = REPO_ROOT / ".github" / "copilot-instructions.md"
 STATE_CACHE = REPO_ROOT / ".dcrp_state.json"  # Track processed files
 
 # Exclusions (build artifacts, dependencies, git internals)
 EXCLUDE_DIRS = {
     "node_modules", ".git", "build", ".cache", ".cargo", 
-    "__pycache__", ".venv", "target", "dist", ".next"
+    "__pycache__", ".venv", "target", "dist", ".next",
+    "mas_mcp", "chthonic-vscode-extension", "dumpster-dive",  # Large sub-projects
+    "site-packages", "Lib",  # Python venv internals
 }
 
 EXCLUDE_FILES = {
@@ -590,8 +592,8 @@ def scan_repository() -> Tuple[List[FileIdentity], List[DirectoryIdentity]]:
     print("Scanning repository structure...")
     
     for path in REPO_ROOT.rglob('*'):
-        # Skip excluded directories
-        if any(excluded in path.parts for excluded in EXCLUDE_DIRS):
+        # Skip excluded directories (exact match or prefix match for .venv variants)
+        if any(excluded in path.parts or any(part.startswith(excluded) for part in path.parts) for excluded in EXCLUDE_DIRS):
             continue
         
         # Skip excluded files

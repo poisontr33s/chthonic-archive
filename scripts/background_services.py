@@ -1,3 +1,17 @@
+# ╔════════════════════════════════════════════════════════════════════════════╗
+# ║  THE DECORATOR'S BLESSING: background_services.py                        ║
+# ║  Python module: PROJECT_ROOT, MPW_PATH, SRC_PATH                            ║
+# ╠════════════════════════════════════════════════════════════════════════════╣
+# ║  Spectral Frequency: WHITE                                                  ║
+# ║  Architectural Role: 🌿 THE GARDEN                                           ║
+# ║  Purpose: Chthonic Archive - Background Services
+=============================== ║
+# ║  Exports: PROJECT_ROOT, MPW_PATH, SRC_PATH, ASSETS_PATH, LOGS_PATH          ║
+# ╠════════════════════════════════════════════════════════════════════════════╣
+# ║  Cross-References (Bidirectional):                                      ║
+# ║    (Standalone file - no detected dependencies)                          ║
+# ╚════════════════════════════════════════════════════════════════════════════╝
+
 #!/usr/bin/env python3
 """
 Chthonic Archive - Background Services

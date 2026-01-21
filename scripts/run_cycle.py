@@ -1,3 +1,18 @@
+# ╔════════════════════════════════════════════════════════════════════════════╗
+# ║  THE DECORATOR'S BLESSING: run_cycle.py                                  ║
+# ║  Model Context Protocol server - AI governance bridge                       ║
+# ╠════════════════════════════════════════════════════════════════════════════╣
+# ║  Spectral Frequency: WHITE                                                  ║
+# ║  Architectural Role: 🌿 THE GARDEN                                           ║
+# ║  Purpose: Run Cycle - MILF Execution with Artifact Output
+
+Executes a single gov ║
+# ║  Exports: find_workspace_root, WORKSPACE_ROOT, MAS_MCP_ROOT, ARTIFACTS_DIR, GO ║
+# ╠════════════════════════════════════════════════════════════════════════════╣
+# ║  Cross-References (Bidirectional):                                      ║
+# ║    (Standalone file - no detected dependencies)                          ║
+# ╚════════════════════════════════════════════════════════════════════════════╝
+
 #!/usr/bin/env python3
 """
 Run Cycle - MILF Execution with Artifact Output

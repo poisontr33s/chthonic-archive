@@ -1,3 +1,18 @@
+// ╔════════════════════════════════════════════════════════════════════════════╗
+// ║  THE DECORATOR'S BLESSING: preflightExecutionContext.ts                  ║
+// ║  MCP client integration - Observatory communication layer                   ║
+// ╠════════════════════════════════════════════════════════════════════════════╣
+// ║  Spectral Frequency: ORANGE                                                 ║
+// ║  Architectural Role: 🔭 THE OBSERVATORY                                      ║
+// ║  Purpose: * Preflight Execution Context Tool
+ *
+ * Reports execution environment ║
+// ╠════════════════════════════════════════════════════════════════════════════╣
+// ║  Cross-References (Bidirectional):                                      ║
+// ║  Dependencies (I rely on):                                               ║
+// ║    ├─► mcp\server.ts                                                     ║
+// ╚════════════════════════════════════════════════════════════════════════════╝
+
 import { platform, type as osTypeFn } from "bun:os";
 import { versions } from "bun:process";
 
