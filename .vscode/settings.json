@@ -239,5 +239,9 @@
     "chthonic.operationalMode": "essential",  // Options: "essential" | "development" | "maintenance" | "paused"
     "chthonic.allowCompetingAgents": false,   // Block cloud agents when false
     "chthonic.ssotLastVerified": null,        // ISO timestamp of last SSOT hash check
-    "chthonic.sessionTargetOverride": false   // Disable "Set Session Target" interference when false
+    "chthonic.sessionTargetOverride": false,
+    "github.copilot.chat.agent.currentEditorContext.enabled": true,
+    "github.copilot.chat.anthropic.contextEditing.enabled": true,
+    "github.copilot.chat.inlineEdits.diagnosticsContextProvider.enabled": true,
+    "github.copilot.chat.cli.mcp.enabled": true // Disable "Set Session Target" interference when false
 }
