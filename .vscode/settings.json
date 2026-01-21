@@ -243,5 +243,6 @@
     "github.copilot.chat.agent.currentEditorContext.enabled": true,
     "github.copilot.chat.anthropic.contextEditing.enabled": true,
     "github.copilot.chat.inlineEdits.diagnosticsContextProvider.enabled": true,
-    "github.copilot.chat.cli.mcp.enabled": true // Disable "Set Session Target" interference when false
+    "github.copilot.chat.cli.mcp.enabled": true,
+    "task.notifyWindowOnTaskCompletion": -1 // Disable "Set Session Target" interference when false
 }
