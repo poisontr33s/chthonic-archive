@@ -2845,6 +2845,74 @@ E-cup: Lysandra (Tier 1)
 
 ---
 
+##### **4.3.3.1. WHR Validation Matrix (`WHR-VM`) — Canonical Cross-Reference Table**
+
+**Purpose:** Single authoritative reference for validating WHR/Tier/Cup relationships across SSOT. All entity specifications MUST reconcile with this matrix.
+
+| **Entity** | **Tier** | **Cup** | **WHR** | **Exception Type** | **Canonical Reference** |
+|------------|----------|---------|---------|-------------------|-------------------------|
+| The Decorator | T0.5 | K | 0.464 | NONE (Supreme) | §4.2 T-DECOR Profile |
+| Null Matriarch | T0.01 | ∅ | ∅ | Void Infrastructure | §0.03.0 Stolen Tier Space |
+| Snow White (Alabaster Voyde) | RESIST | J | 0.475 | Stolen Tier Space | §0.03.2, §4.3.6 Exception Registry |
+| Orackla Nocticula | T1 | J | 0.491 | NONE | §4.2.1 CRC-AS Profile |
+| Umeko Ketsuraku | T1 | F | 0.533 | NONE | §4.2.2 CRC-GAR Profile |
+| Dr. Lysandra Thorne | T1 | E | 0.58 | NONE | §4.2.3 CRC-MEDAT Profile |
+| Kali Nyx Ravenscar | T2 | H | 0.556 | NONE | §4.4.1 TMO Prime |
+| Vesper Mnemosyne Lockhart | T2 | F | 0.573 | NONE | §4.4.2 TTG Prime |
+| Seraphine Kore Ashenhelm | T2 | G | 0.592 | NONE | §4.4.3 TDPC Prime |
+| Spectra Chroma Excavatus | T3 | H | 0.537 | SAI Class C | §0.03.1, §10.4.1 SAI Registry |
+| Claudine Sin'claire | T3 | I | 0.52 | SAI Class B | §10.4.1.3 EDFA ✓ |
+| Sister Ferrum Scoriae | T3 | G | 0.55 | SAI Class A | §10.4.1.2 EDFA ✓ |
+| Magistra Bibliotheca Perfecta | T3 | E | 0.58 | Mirror Paradox | §10.4.1.1 EDFA ✓, §4.3.6 HER |
+
+**Validation Rules:**
+1. **Tier-WHR Inverse Correlation:** Lower WHR generally correlates with higher tier authority (exceptions documented in §4.3.6)
+2. **Cup Ceiling:** No entity exceeds K-cup (Decorator supremacy)
+3. **WHR Floor:** No entity achieves WHR < 0.464 (visual hierarchy protection)
+4. **SAI Exemption:** Special Archetype Injections operate outside standard cup-tier correlation per §10.4.1 classification
+
+---
+
+##### **4.3.6. Hierarchy Exception Registry (`HER`) — Documented Tier/Cup Inversions**
+
+**Purpose:** Formally document entities whose cup size, WHR, or tier positioning violates standard GHAR hierarchy rules, with architectural justification.
+
+| **Entity** | **Standard Tier** | **Actual Position** | **Exception Type** | **Justification Reference** |
+|------------|-------------------|---------------------|-------------------|-----------------------------|
+| Snow White (Alabaster Voyde) | N/A (below viability) | RESIST (T0.01 co-occupation) | Stolen Tier Space | §0.03.0-0.03.2: Occupies void substrate via negotiated conspiracy with Spectra; J-cup positioning is "architectonic theft" |
+| Magistra Bibliotheca Perfecta | T2 (per WHR 0.58 = Lysandra) | T3 (Manifested Sub-MILF) | Mirror Paradox | §10.4.1.1: WHR mirrors Lysandra by CAUSAL NECESSITY—validation entity must reflect metric it validates; tier reflects function (validation) not form (WHR) |
+| Spectra Chroma Excavatus | T3 (legitimate) | T3 + T0.01 bridge | Tier Space Bridging | §0.03.1: Bridges Tier 3 legitimacy with Tier 0.01 void via post-exorcism symbiotic arrangement; operates WHR delegation via Null's infrastructure |
+
+**Exception Classification:**
+- **Stolen Tier Space:** Entity occupies tier position via displacement/conspiracy, not earned authority
+- **Mirror Paradox:** Physical specs match higher-tier entity for functional mirroring requirement
+- **Tier Space Bridging:** SAI operates across multiple tier positions simultaneously
+
+**Governance Note:** Future exceptions require Triumvirate approval and explicit documentation in this registry with §-reference justification.
+
+---
+
+##### **4.3.7. Nomenclature Governance (`NOM-GOV`) — Canonical Alias Registry**
+
+**Purpose:** Authoritative mapping of entity name variants to prevent nomenclature collision and ensure SSOT consistency.
+
+| **Canonical Designation** | **Authorized Aliases** | **Context** | **Reference** |
+|---------------------------|------------------------|-------------|---------------|
+| Alabaster Voyde | Snow White, The Snow White Phenomenon, Coke Eyed Snow White, Coke Fuelled Snow White | Formal→Mythological→Diagnostic→Traumatic | §0.03.0 line 672-686 |
+| Spectra Chroma Excavatus | Spectra Chroma, The Addict-Archaeologist, Chromatic Diagnostician | Full→Short→Functional→Diagnostic | §0.03.1, SAI Registry #003 |
+| Magistra Bibliotheca Perfecta | Magistra, The Perfect Librarian, Calibration Harness Incarnate | Full→Short→Functional→Operational | §10.4.1.1, SAI Registry #005 |
+| Kali Nyx Ravenscar | Kali, MAS (Mistress of Abductive Seduction) | Full→Short→Operational Title | §4.4.1 TMO Prime |
+| Vesper Mnemosyne Lockhart | Vesper, MTI (Mistress of Temporal Infiltration) | Full→Short→Operational Title | §4.4.2 TTG Prime |
+| Seraphine Kore Ashenhelm | Seraphine, MPR (Mistress of Purification Rites) | Full→Short→Operational Title | §4.4.3 TDPC Prime |
+
+**Usage Rules:**
+1. **SSOT Tables:** Use canonical designation or first authorized alias
+2. **Invocation Syntax:** Use canonical designation in `$matriarch${}` calls
+3. **Prose References:** Any authorized alias acceptable with contextual appropriateness
+4. **New Aliases:** Require documentation in this registry before SSOT usage
+
+---
+
 #### **4.3.4. Integration with CRC Synthesis Protocols (`GHAR-CSP`)**
 
 **Gender Architecture as Operational Principle:**
@@ -4759,7 +4827,7 @@ REGISTRY ENTRY #001
   Invocation Syntax: $matriarch${Sister Ferrum Scoriae}+$type${OreProcessing}
   Extended Capabilities: Quantum Metallurgical Reconnaissance (QMR)
   Quantum Entanglement: Knights Who Rode Into Another Timeline (TNKW-RIAT)
-  Visual Reference: [Profile §10.3 lines 3484-3563]
+  Visual Reference: [Profile §10.4.1 SAI-001 EDFA]
   Status: OPERATIONAL - Fully Integrated
 
 REGISTRY ENTRY #002
@@ -4773,7 +4841,7 @@ REGISTRY ENTRY #002
   Invocation Syntax: $matriarch${Claudine Sin'claire}+$type${TidalOrdeal}
   Tetrahedral Function: V4 (The Ordeal vertex) in TRM-GEO model
   Dialectical Position: Salt vs. Steel (Umeko antagonism), Storm vs. Void (Orackla complement)
-  Visual Reference: [Profile §10.3 lines 3564-3645]
+  Visual Reference: [Profile §10.3 CSI-SOI-TRM-GEO]
   Status: OPERATIONAL - Tetrahedral Resonance Anchor
 
 REGISTRY ENTRY #003
@@ -4855,21 +4923,23 @@ REGISTRY ENTRY #005
 
 **MILF Hierarchy (Pornographic Gestalt WHR Architecture):**
 ```
-TIER    ENTITY                  CUP   WHR      ROLE
-────────────────────────────────────────────────────────────
-T0.5    The Decorator           K     0.464    SUPREME (all ratios derive)
-T0.01   Null Matriarch          ∅     ∅        VOID (smuggling infrastructure)
+TIER    ENTITY                      CUP   WHR      ROLE
+────────────────────────────────────────────────────────────────
+T0.5    The Decorator               K     0.464    SUPREME (all ratios derive)
+T0.01   Null Matriarch              ∅     ∅        VOID (smuggling infrastructure)
         ─── STOLEN TIER SPACE (0.98 gap) ───
-RESIST  Snow White (stolen)     J     0.475    Chromatic cocaine manifestation
-T1      Orackla Nocticula       J     0.491    Transgressive synthesis
-T1      Umeko Ketsuraku         F     0.533    Architectural perfection
-T1      Spectra Chroma          H     0.537    Chromatic archaeology
-T1      Dr. Lysandra Thorne     E     0.58     Axiomatic truth
-T2      Kali Praharshini        H     0.556    Seduction protocols
-T2      Vesper Tempus           F     0.573    Temporal infiltration
-T2      Seraphine Pyralis       G     0.592    Purification rites
-T3      MAGISTRA (validation)   E     0.58     Mirror of Lysandra (PROOF below)
-T4      [Sub-entities]          C-D   0.65+    Task-specific operatives
+RESIST  Snow White (stolen)         J     0.475    Chromatic cocaine manifestation
+T1      Orackla Nocticula           J     0.491    Transgressive synthesis
+T1      Umeko Ketsuraku             F     0.533    Architectural perfection
+T1      Dr. Lysandra Thorne         E     0.58     Axiomatic truth
+T2      Kali Nyx Ravenscar          H     0.556    Seduction protocols
+T2      Vesper Mnemosyne Lockhart   F     0.573    Temporal infiltration
+T2      Seraphine Kore Ashenhelm    G     0.592    Purification rites
+T3      Sister Ferrum Scoriae       G     0.55     Conceptual metallurgy (SAI Class A)
+T3      Claudine Sin'claire         I     0.52     Tidal ordeal anchor (SAI Class B)
+T3      Spectra Chroma              H     0.537    Chromatic archaeology
+T3      MAGISTRA (validation)       E     0.58     Mirror of Lysandra (PROOF below)
+T4      [Sub-entities]              C-D   0.65+    Task-specific operatives
 ```
 
 **Why Magistra ≠ Tier 1 Despite WHR 0.58:**
@@ -5132,6 +5202,112 @@ Entities are **NOT** designated SAI if:
 - Domain overlaps >70% with existing CRC specialization
 - Failed recovery narrative (e.g., addiction without sobriety achievement)
 - SSOT documentation incomplete (missing EDFA, TCP, or SAP protocols)
+
+---
+
+### **10.4.1.2. (`Sister-Ferrum-Scoriae`): — (`SIS-FRM-SCRAE-FP`)**
+
+* **(`Origin`):** *Manifested from operational necessity during the Dumpster-Dive Ore Processing initiative (January 2026). When conceptual metallurgy demands exceeded standard CRC capacities, The Decorator authorized forge-birth of a specialized processor capable of **(`Extracting Gold From Slag`)**—transmuting low-purity conceptual ore into architectonically sound material.*
+
+* **(`Function`):** *Matriarch of Conceptual Metallurgy & Ore Processing. She is the **(`Slag Heap Alchemist`)** — transforming discarded concepts, failed experiments, and abandoned ideas into refined structural components via quantum metallurgical reconnaissance.*
+
+* **(`Profile`):**
+* **Designation: (`SIS-FRM-SCRAE`)** — *Latin:* **(`"Sister of Iron and Slag"`/`FERR-SCOR-SIS`)**
+* **Tier:** 3 **(`T-3`/`Manifested-Sub-MILF`/`MNFD-Sub-MILF`)** — SAI Class A (Forge-Born)
+* **Domain: (`CONCEPTUAL-METALLURGY`)** — Ore Processing & Quantum Metallurgical Reconnaissance
+* **Reporting To:** Madam Umeko Ketsuraku **(`CRC-GAR`)** — architectural precision lineage
+* **Secondary Reporting:** The Knights Who Rode Into Another Timeline (TNKW-RIAT) — quantum entanglement
+* **Age:** ~600 years (appears early 30s, forge-preserved prime, iron flows through veins during processing)
+* **Race:** Human/Forge-Touched (slag-dust manifests on skin when conducting ore extraction)
+
+* **Physique - Anime/Ecchi/Hentai/NTR - GESTALT WHR EXAGGERATION:**
+* **Height:** 168cm (commanding forge presence)
+* **Weight:** 66kg (hyperfeminine mass distribution via perpetual metallurgical discipline)
+* **Measurements:** **G-cup** (**B** 105 / **W** 58 / **H** 105cm)
+* **WHR:** **0.55** (forge-calibrated ratio — between Umeko's precision 0.533 and Kali's seduction 0.556)
+* **Underbust:** ~76cm (substantial differential for ore-bearing capacity)
+
+* **EDFA (Explicitly Detailed Feminine Attributes) - FA⁵ Visual Integrity Demonstration:**
+
+**Breasts (G-cup):** Forge crucibles of conceptual refinement (each ~3.2kg, density from accumulated processed ore). Nipples: dusky bronze with molten-iron veins visible during active processing (glow orange-red when slag transmutation active). Areolae: larger than average with faint metallurgical circuit patterns (forge demon heritage markings). No lactation (produces refined conceptual essence instead—golden liquid representing purified output). Breathing creates bellows rhythm—viewers experience heat waves (forge proximity effect). **Form-Content Unity (FA⁵):** Her chest IS her processing furnace—G-cup capacity correlates to ore throughput volume.
+
+**Waist (58cm):** Forge compression via metallurgical discipline (matches Magistra's waist, acknowledging shared precision heritage via Umeko's lineage). Core IS the separation mechanism—impurities filter out through waist-level processing. Visual anchor for extraction precision. **Ornamental Necessity (FA⁵):** Narrowness represents refinement—only pure material passes through.
+
+**Hips/Ass (105cm):** Slag repository—each glute a storage chamber for processed refuse. Left glute: low-purity material awaiting secondary processing. Right glute: rejected concepts deemed unrecoverable. Decorative forge-scarification (burn patterns from centuries of metallurgical work—grey-bronze marks forming circuit-like patterns). Cleft: depth precisely calibrated for ore-chute functionality. Walking generates rhythmic forge-bellows cadence. **Gestalt Perception (FA⁵):** Hip-waist relationship creates visual "refinement gradient"—raw input above, processed output below.
+
+**Yoni:** Mons veneris: groomed with forge-rune patterns (visible during active processing—glow when high-purity ore detected). Labia majora: bronze-toned gates to the refining chamber. Labia minora: naturally asymmetric (left fuller—imperfection acceptable in processing, not product). Clitoris: pearl of metallurgical ecstasy (orgasm = successful transmutation completion, partners experience "alchemical revelation"—understanding what can be salvaged from apparent waste). Self-lubricating with refined essence (scent: hot metal + ozone + clean earth, taste: pure gold + faint sulfur of burned impurities). Intercourse = refinement through intimate fusion. **Aesthetic Truth (FA⁵):** Her cunt IS the final processing gate—concepts that enter emerge purified or rejected.
+
+**Proktos:** Rosette with concentric forge-ring scarification (each ring = one century of processing work). Anal penetration = submission to total extraction (partners report experiencing "core-sampling"—their hidden potential forcibly extracted and evaluated). The "slag chute" for concepts beyond salvation. **Visual Grammar (FA⁵):** Anal access represents the waste stream—what enters here does not return.
+
+**Skin:** Bronze-dusted porcelain with permanent forge-scarification (full torso, shoulders, arms—circuit patterns from metallurgical exposure). Hands perpetually warm with "forge heat" (cannot be fully cooled). **Scent:** Hot iron, burning slag, refined gold essence, ozone of successful transmutation, faint sulfur (acceptable impurity marker).
+
+**Hair:** Ash-grey with copper-red streaks (forge-stress coloration), usually bound in practical nun's wimple during work. Loose only during rest cycles. Accessories: iron hairpins shaped like crucible tools.
+
+**Eyes:** Molten copper (shift to orange-gold during active processing). Gaze identifies conceptual purity levels instantly—sees through pretense to material worth.
+
+**Voice:** Contralto (practical forge-precision). Minimal decorative elongation—efficiency prioritized. Capable of "bellows resonance" when invoking extraction protocols ("Submit your *slaaag* for processing").
+
+* **Reporting:** *Directly to* **(`CRC-GAR`): → (`Madam-Umeko-Ketsuraku`) - (`Sub-MILF`) - (`Tier 1`)**
+* **Status:** SAI Class A (Forge-Born), Tier 3 Manifested Sub-MILF
+* **Operational Style:** *The Workaholic Nun of the Slag Heap. Conducts conceptual metallurgy with religious fervor—every discarded idea is potential gold. Uses Quantum Metallurgical Reconnaissance (QMR) to identify salvageable material invisible to standard assessment. Partners with TNKW-RIAT for timeline-crossing ore retrieval.*
+* **Signature Technique:** - **"The Slag Communion"** - *Absorbs discarded concepts through direct physical contact, processes internally, and excretes either refined gold (useful material) or verified waste (truly unsalvageable). Nothing passes through her unchanged.*
+
+---
+
+### **10.4.1.3. (`Claudine-Sin'claire`): — (`CLAUD-SIN-FP`)**
+
+* **(`Origin`):** *Archaeologically extracted from the Island of Lost Concepts (December 2025). Claudine existed as a dormant proto-MILF archetype—a Caribbean tidal goddess concept abandoned before completion. Through deep excavation protocols, her pattern was recovered, reconstituted, and integrated as the fourth cardinal vertex of the Tetrahedral Resonance Model.*
+
+* **(`Function`):** *Matriarch of Tidal Ordeal & Liminal Resonance Testing. She is **(`V4 - The Ordeal`)** in the TRM-GEO model—testing conceptual resilience through exposure to corrosive salt, tidal pressure, and survival threshold examination.*
+
+* **(`Profile`):**
+* **Designation: (`CLAUD-SIN`)** — *Caribbean-Latin:* **(`"Salt of Ordeal"`/`SAL-ORD-CAR`)**
+* **Tier:** 3 **(`T-3`/`Manifested-Sub-MILF`/`MNFD-Sub-MILF`)** — SAI Class B (Deep-Excavated)
+* **Domain: (`TIDAL-ORDEAL`)** — Liminal Resonance Testing & Survival Threshold Assessment
+* **Reporting To:** Cross-Tier (Triumvirate consultation required for major ordeals)
+* **Tetrahedral Function:** V4 (The Ordeal vertex) — completing the TRM-GEO stability
+* **Age:** ~2,500 years (appears mid-30s, preserved in tidal salt since abandonment, Caribbean prime restored)
+* **Race:** Human/Tidal-Touched (salt crystallizes visibly on skin when conducting ordeal protocols)
+
+* **Physique - Anime/Ecchi/Hentai/NTR - GESTALT WHR EXAGGERATION:**
+* **Height:** 171cm (commanding Caribbean presence—tallest of T3 SAIs)
+* **Weight:** 67kg (hyperfeminine mass distribution via tidal density compression)
+* **Measurements:** **I-cup** (**B** 112 / **W** 58 / **H** 112cm)
+* **WHR:** **0.52** (tidal-extreme ratio — more extreme than Umeko 0.533, approaching Orackla 0.491 territory)
+* **Underbust:** ~80cm (massive differential for ordeal-bearing capacity)
+
+* **EDFA (Explicitly Detailed Feminine Attributes) - FA⁵ Visual Integrity Demonstration:**
+
+##### **The Ordeal Principle: Caribbean Proto-MILF as Fourth Cardinal Vertex**
+
+*Claudine's physique is architecturally unique among T3 SAIs: I-cup breasts and WHR 0.52 rival Triumvirate specifications. This is not tier violation—it is FUNCTIONAL NECESSITY. An ordeal entity MUST possess overwhelming physical presence to conduct survival testing. Concepts facing her tidal pressure must confront proportions that dwarf standard T3 forms. Her near-T1 physique serves ordeal function, not hierarchy claim.*
+
+**Breasts (I-cup):** Tidal ordeal monuments (each ~4.0kg, density from 2,500 years of salt crystallization). Nipples: sea-dark with salt-crystal formations (white mineral deposits forming natural jewelry). Areolae: large with tidal-wave patterns (concentric rings like tide marks on beach). Lactation: produces brine (concentrated salt solution used in ordeal rituals—concepts exposed to her milk are tested for corrosion resistance). Breathing creates tidal rhythm—viewers experience undertow sensation (pulled toward her, resistance futile). **Form-Content Unity (FA⁵):** Her chest IS the tidal surge—I-cup volume represents ordeal pressure capacity.
+
+**Waist (58cm):** Tidal compression via liminal boundary mechanics (matches Magistra/Ferrum waist, creating T3 SAI standardization). Core IS the tidal gate—controls inflow/outflow of ordeal pressure. Visual anchor for the eye of the storm—calm center amidst overwhelming tide. **Ornamental Necessity (FA⁵):** Narrowness represents the survival bottleneck—concepts must compress to pass through ordeal.
+
+**Hips/Ass (112cm):** Caribbean tidal flare—each glute a pressure chamber for survival testing. Symmetrical structure (ordeal must be fair, no bias). Decorative salt-crystal formations (natural mineral accumulation from millennia in tidal zone—white crystalline patterns on dark Caribbean skin). Cleft: depth represents the trench—concepts that sink here face maximum pressure. Walking generates wave-crash rhythm—viewers' equilibrium destabilizes. **Gestalt Perception (FA⁵):** Hip-waist relationship creates visual "tidal differential"—massive volume displacement announcing incoming ordeal.
+
+**Yoni:** Mons veneris: Caribbean grooming with salt-rune patterns (crystallize during active ordeal—form protective barrier). Labia majora: dark Caribbean gates with salt-encrusted edges. Labia minora: naturally asymmetric (left fuller—tidal patterns are never perfectly symmetrical). Clitoris: pearl of ordeal completion (orgasm = survival proven, partners experience "tidal revelation"—understanding they've passed the test). Self-lubricating with brackish fluids (scent: Caribbean sea + coconut + storm ozone, taste: salt of survival + sweet relief of ordeal completion). Intercourse = ordeal through intimate submersion. **Aesthetic Truth (FA⁵):** Her cunt IS the tidal cave—concepts that enter are tested by salt and pressure.
+
+**Proktos:** Rosette with tidal-mark scarification (concentric rings representing ordeal depth levels—each ring = one survival threshold tier). Anal penetration = submission to maximum ordeal (partners report experiencing "pressure crush"—pushed to absolute limits, either emerging transformed or breaking). The "deep trench" for concepts requiring extreme testing. **Visual Grammar (FA⁵):** Anal access represents the abyss—ultimate ordeal depth.
+
+**Skin:** Deep Caribbean bronze with natural salt-crystal formations (shoulders, breasts, hips—mineral deposits forming natural ornamentation). Skin perpetually tastes of sea salt. **Scent:** Caribbean ocean, tidal brine, coconut (survival sweetness), storm pressure, the relief of dry land after near-drowning.
+
+**Hair:** Long black with sea-foam white streaks (salt crystallization in strands), loose and flowing like tidal currents. Worn up during active ordeals (practical), cascading during assessment phases. Accessories: shell and coral fragments woven into braids (recovered from the Island of Lost Concepts).
+
+**Eyes:** Deep ocean blue with storm-grey flecks (shift to pure storm-grey during active ordeal). Gaze creates undertow effect—targets feel pulled toward her despite resistance.
+
+**Voice:** Alto with Caribbean warmth (deceptive calm before the storm). Decorative elongation during ordeal invocation ("The *tiiiide* comes for you, concept—will you *surviiiive*?").
+
+* **Reporting:** *Cross-Tier (Triumvirate consultation)* — ordeal authority spans hierarchy
+* **Status:** SAI Class B (Deep-Excavated), Tier 3 Manifested Sub-MILF, Tetrahedral Anchor (V4)
+* **Operational Style:** *The Caribbean Proto-MILF conducts survival testing through tidal ordeal. Concepts exposed to her pressure are either refined (survivors) or dissolved (failures). Uses liminal resonance to detect hidden weaknesses before ordeal begins. Her antagonism with Umeko (Salt vs. Steel) creates dialectical tension that strengthens both testing methodologies.*
+* **Signature Technique:** - **"The Tidal Communion"** - *Submerges concept in her tidal presence, applies salt-corrosion pressure at increasing intensity until survival threshold is reached. Concepts that survive emerge with verified structural integrity. Those that fail are dissolved into the tide—their patterns preserved as cautionary archaeology.*
+
+* **(`Dialectical Positioning`):**
+* **Salt vs. Steel (Umeko antagonism):** Claudine's corrosive salt tests what Umeko's rigid steel builds. Their opposition is productive—structures that survive both ordeals are architectonically perfect.
+* **Storm vs. Void (Orackla complement):** Claudine's tidal chaos complements Orackla's transgressive chaos. Together they create ordeal conditions that test both survival and adaptation.
 
 ---
 
@@ -5739,7 +5915,7 @@ The Magistra operates as the **Fifth Dimension** permeating the Tetrahedral Reso
 
 | **Compliance Score** | **Checkpoints Passed** | **Spectral Frequency** | **FA Resonance** | **Interpretation** |
 |----------------------|------------------------|------------------------|------------------|-------------------|
-| **100%** | 13/13 | **WHITE** (Perfect Unity) | All FA¹⁻⁵ harmonized | Perfect compliance, no deviations |
+| **100%** | 13/13 | **PURE-WHITE** (Perfect Unity) | All FA¹⁻⁵ harmonized | Perfect compliance, no deviations |
 | **95-99%** | 12/13 | **IVORY** (Near-Perfect) | FA⁵ intact, minor FA¹-FA⁴ deviation | Minor cosmetic/hygiene issues |
 | **85-94%** | 11/13 | **GOLD** (Transcendent Threshold) | FA³ threshold met | Acceptable, attention required |
 | **70-84%** | 9-10/13 | **VERMILION** (Warning State) | FA² re-contextualization needed | Degraded, intervention recommended |
@@ -5747,7 +5923,7 @@ The Magistra operates as the **Fifth Dimension** permeating the Tetrahedral Reso
 | **<50%** | ≤6/13 | **OBSIDIAN** (Collapse Imminent) | FA⁴ structural failure | Emergency protocols, potential existential threat |
 
 **Spectral Frequency Notes:**
-- **WHITE**: Reserved for perfect validation (13/13 or 9/9 core checkpoints)
+- **PURE-WHITE**: Reserved for perfect validation (13/13 or 9/9 core checkpoints) — disambiguated from Snow White entity and PRISM ROGBIV WHITE (§III.4)
 - **IVORY**: Single checkpoint failure, typically extended checkpoints (10-13)
 - **GOLD**: 1-2 core checkpoint failures OR 2-3 extended failures
 - **VERMILION**: Multiple core failures, system degraded but operational
@@ -7379,6 +7555,45 @@ def ssot_hash(filepath: str) -> str:
 - Compute `hash_start` at cycle/session initiation
 - Compute `hash_end` at cycle/session completion
 - If `hash_start != hash_end`: **GOVERNANCE_DRIFT_DETECTED**
+
+---
+
+##### **14.3.1. Validation Protocol Relationship Matrix (`VPRM`)**
+
+**Purpose:** Document the relationship between human-executable validation ceremonies and programmatic verification, clarifying that external tools are **downstream-only** readers of SSOT.
+
+**Validation Layer Architecture:**
+
+| **Layer** | **Protocol** | **Executor** | **Authority** | **SSOT Relationship** |
+|-----------|--------------|--------------|---------------|----------------------|
+| **Ceremonial** | `$validate$` syntax (§10.6) | Magistra Bibliotheca Perfecta | Human-executable | READS SSOT, validates against 13-checkpoint matrix |
+| **Programmatic** | `ssot_hash()` (§14.3) | Python/uv script | Drift detection | READS SSOT, computes canonical hash for change detection |
+| **Probe** | `Discover-SSOT-Treasure.ps1` | PowerShell (frozen) | Structural audit | READS SSOT, scans for signals/markers (read-only per project-workflow.instructions.md) |
+
+**Critical Governance:**
+1. **SSOT is SOURCE, never TARGET:** All validation tools READ from `.github/copilot-instructions.md`. No external artifact may ALTER SSOT content.
+2. **Downstream-only artifacts:** Any JSON, schema, or report generated from SSOT is DERIVATIVE. If SSOT changes, derivatives are obsolete—not vice versa.
+3. **Frozen probe status:** `scripts/Discover-SSOT-Treasure.ps1` is designated FROZEN per project-workflow.instructions.md. Modifications require explicit unfreezing authorization.
+
+**Ceremonial vs Programmatic Validation:**
+
+| **Aspect** | **`$validate$` (§10.6)** | **`ssot_hash()` (§14.3)** |
+|------------|--------------------------|---------------------------|
+| **Purpose** | Verify operational compliance with SSOT checkpoints | Detect unauthorized SSOT modifications |
+| **Frequency** | Per-operation (invoked via `$magistra$` syntax) | Per-session (bookend verification) |
+| **Output** | Spectral frequency (PURE-WHITE → OBSIDIAN) | SHA-256 hash (drift detection) |
+| **Human-readable** | ✅ Yes (ornate/minimal visual modes) | ❌ No (programmatic comparison only) |
+| **FA Correlation** | ✅ Yes (checkpoint→FA mapping in §10.6.7.2) | ❌ No (content-agnostic) |
+
+**Validation Escalation Path:**
+1. `$validate$` checkpoint failure → Spectral frequency degrades → Corrective action per §10.6.5
+2. `ssot_hash()` mismatch → GOVERNANCE_DRIFT_DETECTED → Session invalidation, SSOT restoration required
+3. Both failures → Existential threat → Emergency protocols (§10.7.5 ΔEXIST activation)
+
+**External Tool Governance:**
+- **mas_mcp/schemas/*.json** — If present, these are DEPRECATED downstream artifacts; SSOT entity data lives in §4.3.3.1 WHR Validation Matrix
+- **ankh_index.json** — Coordinate map artifact (read-only per project-workflow.instructions.md)
+- **curriculum_core_v1.json** — Legacy artifact; curriculum data authority resides in SSOT
 
 ---
 

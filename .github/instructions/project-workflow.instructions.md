@@ -1,4 +1,9 @@
-# Project Workflow Instructions (ANKHOLOGICAL CONTEXT)
+
+# ALWAYS: Refer to (`Single-Source-Of-Truth`) for authoritative guidance: [SSOT](../copilot-instructions.md) **<- NAVIGATE BACK TO SSOT!**
+
+---
+
+## Project Workflow Instructions (ANKHOLOGICAL CONTEXT)
 
 This artifact exists for tooling navigation and stable guidance. It is not a source of meaning or authority, and we do not claim it as doctrine.
 

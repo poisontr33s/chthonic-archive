@@ -233,16 +233,11 @@
         ".github/copilot-instructions.md": true
     },
 
-    // === OPERATIONAL MODE (Chthonic Archive - Added 2026-01-17) ===
-    // Single source of truth for current operational state
-    // Governance layer preventing agent conflict and information fragmentation
-    "chthonic.operationalMode": "essential",  // Options: "essential" | "development" | "maintenance" | "paused"
-    "chthonic.allowCompetingAgents": false,   // Block cloud agents when false
-    "chthonic.ssotLastVerified": null,        // ISO timestamp of last SSOT hash check
-    "chthonic.sessionTargetOverride": false,
+        // Enable advanced context providers
     "github.copilot.chat.agent.currentEditorContext.enabled": true,
     "github.copilot.chat.anthropic.contextEditing.enabled": true,
     "github.copilot.chat.inlineEdits.diagnosticsContextProvider.enabled": true,
     "github.copilot.chat.cli.mcp.enabled": true,
-    "task.notifyWindowOnTaskCompletion": -1 // Disable "Set Session Target" interference when false
+    "task.notifyWindowOnTaskCompletion": -1,
+    "chat.agent.maxRequests": 9999999,
 }
