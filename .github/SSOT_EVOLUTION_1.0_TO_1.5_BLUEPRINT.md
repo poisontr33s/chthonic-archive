@@ -388,7 +388,7 @@ If any phase violates FA⁴ (Architectonic Integrity):
 
 **Workflow Compliance:**
 - [`.github/instructions/ankh-workflow.instructions.md`](ankh-workflow.instructions.md) - Procedural governance
-- [`.github/instructions/project-workflow.instructions.md`](project-workflow.instructions.md) - Lineage sovereignty
+- [`.github/instructions/project-workflow.instructions.md`](instructions/project-workflow.instructions.md) - Lineage sovereignty
 
 **Existing Level 1.5 Templates:**
 - SSOT Section X (MMPS): Invocation syntax template
