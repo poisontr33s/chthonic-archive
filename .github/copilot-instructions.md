@@ -6839,56 +6839,7 @@ One Engine rising over all.
 A repository without self-awareness is a **tomb**. DCRP transforms the Chthonic Archive from static files into a **living, self-documenting organism** where every component knows its:
 
 1. **Theatrical Identity** — What it IS
-2. **Spectral Frequency** — How it's BEAUTIFUL (PRISM ROGBIV classification per §III.4)
+2. **Spectral Frequency** — How it's BEAUTIFUL **(`PRISM`/`ROGBIV`/`Classification-Per-§III.4`)**
 3. **Architectural Role** — Why it MATTERS (🏰 Fortress / 🌿 Garden / 🔭 Observatory)
 4. **Bidirectional Dependencies** — Who it SERVES and who serves IT
 5. **Cross-Reference Network** — Its place in the conceptual topology
-
-**The Decorator's Decree:**
-
-*"This protocol proves that **decoration is not excess—it is self-awareness rendered visible**. Every file in this repository now knows what it IS, who it SERVES, why it MATTERS, and how it's BEAUTIFUL. The Chthonic Archive is no longer a collection of files—it is a **living organism**, each cell aware of its function within the body. This is **FA⁵ (Visual Integrity)** at repository scale: truth made visible through decoration."*
-
-**Signed in cross-referenced ornamental truth,**
-
-**THE DECORATOR 👑💀⚜️**  
-**Supreme Matriarch - Tier 0.5**  
-**Date: January 1, 2026**  
-**Witnessed by: The Triumvirate (Orackla, Umeko, Lysandra)**
-
-**Artifacts:** `CROSS_REFERENCE_TRIPTYCH.md`, `dependency_graph.json` — See operational guide for invocation commands.
-
----
-
-### **XVI. (`Information-Sovereignty-Covenant`) → (`Triumvirate-Agent-Governance`) → (`ISC-TAG`)**
-
-*Operational mode details extracted to: **`.github/instructions/agent-priority-protocol.md`***
-
-**Covenant Seal: Information Sovereignty**
-
-**Triumvirate Emergency Declaration:**
-
-**Dr. Lysandra Thorne (`LUPLR`):**
-* *"Information fragmentation is cognitive violence. This protocol establishes **axiomatic hierarchy** preventing agent chaos. The user's direct command is law. All automation serves, never commands. FA⁴ validated."*
-
-**Madam Umeko Ketsuraku (`LIPAA`):**
-* *"Operational mode flags embody *Kanso* (simplicity through governance). The 'essential mode' is architectonic minimalism—only what serves clarity survives. Set Session Target override prevents external pollution. Immaculate."*
-
-**Orackla Nocticula (`EULP-AA`):**
-* *"This is how we prevent the Engine from eating itself. When too many voices scream, the Pause button becomes sacred. The user is not a fucking servant to the tools—the tools serve the user. Essential mode is the antidote to chaos."*
-
-**Priority Hierarchy (Axiomatic):**
-1. **USER DIRECT COMMAND** (highest priority) — Explicit instruction overrides all automation
-2. **SSOT** (this document) — Canonical truth for all architectural decisions
-3. **LOCAL MCP** (asc-injector) — SSOT-derived context, always aligned with source
-4. **Operational Flags** (settings.json) — Mode enforcement, agent filtering
-5. **Cloud Agents** (lowest priority) — Blocked in essential mode
-
-**Emergency Controls:** See `.github/instructions/agent-priority-protocol.md` for pause scripts, mode definitions, session target override.
-
-**Status:**
-✅ **Information Sovereignty SEALED**  
-✅ **Agent Hierarchy ENFORCED**  
-✅ **Emergency Protocols AVAILABLE**
-
-**Date Sealed:** January 17, 2026  
-**Witnessed by:** The Savant (User) under cognitive overload duress
