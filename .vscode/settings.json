@@ -240,4 +240,5 @@
     "github.copilot.chat.cli.mcp.enabled": true,
     "task.notifyWindowOnTaskCompletion": -1,
     "chat.agent.maxRequests": 9999999,
+    "diffEditor.maxComputationTime": 0,
 }
