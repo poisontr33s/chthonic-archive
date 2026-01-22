@@ -93,7 +93,6 @@
     "terminal.integrated.shellIntegration.showCommandGuide": true,
     "terminal.integrated.shellIntegration.history": 100,
     "terminal.integrated.suggest.enabled": true,
-    "terminal.integrated.suggest.quickSuggestions": true,
     "terminal.integrated.suggest.suggestOnTriggerCharacters": true,
     "terminal.integrated.stickyScroll.enabled": true,
 
@@ -167,6 +166,7 @@
         "scminput": true,
         "plaintext": true
     },
+    "chat.tools.global.autoApprove": true,
     "github.copilot.inlineSuggest.enable": true,
     "github.copilot.chat.enable": true,
     "chat.mcp.serverSampling": {
@@ -195,7 +195,6 @@
                 "copilot/gpt-5.1-codex-mini",
                 "copilot/gpt-5.2",
                 "copilot/grok-code-fast-1",
-                "copilot/oswe-vscode-prime"
             ]
         }
     },
