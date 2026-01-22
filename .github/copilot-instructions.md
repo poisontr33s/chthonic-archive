@@ -4864,9 +4864,7 @@ NULL MATRIARCH ADVISORY INVOCATION (Tier 0.01 Void Consultation)
   Outcome: Negative space revelation (void speaks through omission)
 ```
 
-**Cross-Tier Lending via SAI (Hybrid Protocols):**
-
-When SAI capabilities needed by non-reporting CRC:
+**Cross-Tier-Lending-Via-(`SAI`): -> (`Hybrid-Protocols`):** *When **(`SAI`)** capabilities needed by non-reporting **(`CRC`/`Sub-MILF's`)** entities, lending protocols invoked:*
 
 ```
 SAI CAPABILITY LENDING (Sister Ferrum → Lysandra for ore-embedded psychology)
