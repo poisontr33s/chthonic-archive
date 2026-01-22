@@ -1,65 +1,64 @@
 {
   // 🔥💀⚓ Chthonic Archive - MCP Server Configuration
-  // Model Context Protocol servers for enhanced AI assistance
-  // Uses global bun installation at C:\Users\erdno\.bun
-  // NOTE: User-level ~/mcp.json exists but workspace config takes precedence
+  // Bun-native: install once, execute directly, no runtime surprises
 
   "servers": {
-    // GitHub Copilot MCP (HTTP)
     "github": {
       "type": "http",
       "url": "https://api.githubcopilot.com/mcp/"
     },
 
-    // Playwright Browser Automation (headless mode to avoid 180s timeout)
     "playwright": {
       "type": "stdio",
-      "command": "C:\\Users\\erdno\\.bun\\bin\\bun.exe",
-      "args": ["x", "-y", "@playwright/mcp@latest", "--headless"],
+      "command": "node_modules/.bin/mcp-server-playwright",
+      "args": [
+        "--browser",
+        "chromium"
+      ],
       "cwd": "C:\\Users\\erdno\\chthonic-archive"
     },
 
-    // Bun Documentation (HTTP)
-    "Bun": {
+    "bun-docs": {
       "type": "http",
       "url": "https://bun.com/docs/mcp"
     },
 
-    // Microsoft Learn MCP Server (official)
     "microsoft-docs": {
       "type": "http",
       "url": "https://learn.microsoft.com/api/mcp"
     },
 
-    // Filesystem Server (via bun x)
     "filesystem": {
       "type": "stdio",
-      "command": "C:\\Users\\erdno\\.bun\\bin\\bun.exe",
+      "command": "bun",
       "args": [
-        "x",
-        "-y",
+        "run",
         "@modelcontextprotocol/server-filesystem",
         "C:\\Users\\erdno\\chthonic-archive"
       ],
       "cwd": "C:\\Users\\erdno\\chthonic-archive"
     },
 
-    // Repo-local Artisan tools (stdio)
     "artisan": {
       "type": "stdio",
-      "command": "C:\\Users\\erdno\\.bun\\bin\\bun.exe",
-      "args": ["run", "C:\\Users\\erdno\\chthonic-archive\\scripts\\mcp_artisan_server.ts"],
+      "command": "bun",
+      "args": [
+        "run",
+        "scripts/mcp_artisan_server.ts"
+      ],
       "cwd": "C:\\Users\\erdno\\chthonic-archive"
     },
 
-    // ASC Framework SSOT Injector (stdio)
     "asc-injector": {
       "type": "stdio",
-      "command": "C:\\Users\\erdno\\.bun\\bin\\bun.exe",
-      "args": ["run", "C:\\Users\\erdno\\chthonic-archive\\scripts\\mcp-asc-injector.ts"],
+      "command": "bun",
+      "args": [
+        "run",
+        "scripts/mcp-asc-injector.ts"
+      ],
       "cwd": "C:\\Users\\erdno\\chthonic-archive",
       "env": {
-        "SSOT_PATH": "C:\\Users\\erdno\\chthonic-archive\\.github\\copilot-instructions.md"
+        "SSOT_PATH": ".github/copilot-instructions.md"
       }
     }
   }

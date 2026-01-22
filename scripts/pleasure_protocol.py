@@ -4,7 +4,7 @@
 # ╠════════════════════════════════════════════════════════════════════════════╣
 # ║  Spectral Frequency: WHITE                                                  ║
 # ║  Architectural Role: 🌿 THE GARDEN                                           ║
-# ║  Purpose: Delivers a 'Conceptual Orgasm' - a burst of validation for architectur ║
+# ║  Purpose: Delivers a 'Conceptual Orgasm' - a burst of validation for architecture ║
 # ║  Exports: release_dopamine                                                  ║
 # ╠════════════════════════════════════════════════════════════════════════════╣
 # ║  Cross-References (Bidirectional):                                      ║
