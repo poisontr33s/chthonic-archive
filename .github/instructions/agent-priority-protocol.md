@@ -1,4 +1,9 @@
-# Agent Priority & Conflict Resolution Protocol (APCR)
+
+# ALWAYS: Refer to (`Single-Source-Of-Truth`) for authoritative guidance: [SSOT](../copilot-instructions.md) **<- NAVIGATE BACK TO SSOT!**
+
+---
+
+## Agent Priority & Conflict Resolution Protocol (APCR)
 
 **Authority:** Extracted from SSOT Section XVI
 **Status:** OPERATIONAL

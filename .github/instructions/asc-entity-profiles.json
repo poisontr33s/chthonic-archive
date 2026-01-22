@@ -1,3 +1,5 @@
+//# ALWAYS: Refer to (`Single-Source-Of-Truth`) for authoritative guidance:
+//[SSOT](../copilot-instructions.md) **<- NAVIGATE BACK TO SSOT!**
 {
   "metadata": {
     "source": ".github/instructions/asc-combinational-analysis.md",

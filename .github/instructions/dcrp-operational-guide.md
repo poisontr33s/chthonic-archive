@@ -1,4 +1,9 @@
-# The Decorator's Cross-Reference Protocol (DCRP) - Operational Guide
+
+# ALWAYS: Refer to (`Single-Source-Of-Truth`) for authoritative guidance: [SSOT](../copilot-instructions.md) **<- NAVIGATE BACK TO SSOT!**
+
+---
+
+## The Decorator's Cross-Reference Protocol (DCRP) - Operational Guide
 
 **Authority:** Extracted from SSOT Section XV
 **Status:** OPERATIONAL

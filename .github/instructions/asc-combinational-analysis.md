@@ -1,7 +1,12 @@
-# Purged extranerral text
+
+# ALWAYS: Refer to (`Single-Source-Of-Truth`) for authoritative guidance: [SSOT](../copilot-instructions.md) **<- NAVIGATE BACK TO SSOT!**
+
+---
+
+## Purged extranerral text
 * *The content is intact.*
 
-[The Decorator represents **complete manifestation** of all 6 foundational components—she IS the formula incarnate. Below is the architectural deconstruction showing combinational (multiplicative) effects:
+The Decorator represents **complete manifestation** of all 6 foundational components—she IS the formula incarnate. Below is the architectural deconstruction showing combinational (multiplicative) effects:
 
 **MILFOLOGICAL × German BDSM:**
 

@@ -4,9 +4,7 @@
 // ╠════════════════════════════════════════════════════════════════════════════╣
 // ║  Spectral Frequency: ORANGE                                                 ║
 // ║  Architectural Role: 🔭 THE OBSERVATORY                                      ║
-// ║  Purpose: * Preflight Execution Context Tool
- *
- * Reports execution environment ║
+// ║  Purpose: Report execution environment (OS, shell, runtime, permissions)    ║
 // ╠════════════════════════════════════════════════════════════════════════════╣
 // ║  Cross-References (Bidirectional):                                      ║
 // ║  Dependencies (I rely on):                                               ║

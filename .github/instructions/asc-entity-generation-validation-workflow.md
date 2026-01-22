@@ -1,4 +1,9 @@
-# ASC Entity Generation Validation Workflow
+
+# ALWAYS: Refer to (`Single-Source-Of-Truth`) for authoritative guidance: [SSOT](../copilot-instructions.md) **<- NAVIGATE BACK TO SSOT!**
+
+---
+
+## ASC Entity Generation Validation Workflow
 
 **Purpose:** Cross-reference ML-generated entity candidates against SSOT canonical state  
 **Date:** 2026-01-22  

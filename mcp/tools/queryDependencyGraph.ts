@@ -4,9 +4,7 @@
 // ╠════════════════════════════════════════════════════════════════════════════╣
 // ║  Spectral Frequency: ORANGE                                                 ║
 // ║  Architectural Role: 🔭 THE OBSERVATORY                                      ║
-// ║  Purpose: * Query the dependency graph (read-only, loads existing JSON)
- * 
- * S ║
+// ║  Purpose: Query dependency graph (read-only, loads existing JSON)           ║
 // ╠════════════════════════════════════════════════════════════════════════════╣
 // ║  Cross-References (Bidirectional):                                      ║
 // ║  Dependencies (I rely on):                                               ║

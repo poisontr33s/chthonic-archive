@@ -4,9 +4,7 @@
 // ╠════════════════════════════════════════════════════════════════════════════╣
 // ║  Spectral Frequency: ORANGE                                                 ║
 // ║  Architectural Role: 🔭 THE OBSERVATORY                                      ║
-// ║  Purpose: * MCP Smoke Test Suite
- * 
- * Executes all 6 canonical workflows from  ║
+// ║  Purpose: MCP smoke test suite - validates all canonical workflows          ║
 // ╠════════════════════════════════════════════════════════════════════════════╣
 // ║  Cross-References (Bidirectional):                                      ║
 // ║  Dependents (Rely on me):                                                ║

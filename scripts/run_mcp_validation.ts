@@ -4,9 +4,7 @@
 // ╠════════════════════════════════════════════════════════════════════════════╣
 // ║  Spectral Frequency: ORANGE                                                 ║
 // ║  Architectural Role: 🔭 THE OBSERVATORY                                      ║
-// ║  Purpose: * MCP Validation Runner (Root-Level)
- * 
- * Purpose: Local validation  ║
+// ║  Purpose: MCP validation runner - local testing and queries                 ║
 // ╠════════════════════════════════════════════════════════════════════════════╣
 // ║  Cross-References (Bidirectional):                                      ║
 // ║    (Standalone file - no detected dependencies)                          ║

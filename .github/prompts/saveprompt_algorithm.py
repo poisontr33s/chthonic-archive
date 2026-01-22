@@ -738,26 +738,22 @@ ssot_compliance:
         return result
     
     def _insert_placeholders(self, content: str, task_type: str) -> str:
-        """Insert reusable placeholders appropriate for task type"""
+        """Insert reusable placeholders appropriate for task type.
+        
+        Uses {{argument}} for VS Code Copilot interpolation of user input.
+        """
         placeholders = {
-            'create': "Create {describe the component/feature} that {expected behavior}.",
-            'refactor': "Refactor the selected code to {improvement goal}.\n\nConsider:\n- Code clarity\n- Performance implications\n- Maintaining existing behavior",
-            'debug': "Debug the issue where {describe the problem}.\n\nExpected: {expected behavior}\nActual: {actual behavior}",
-            'explain': "Explain {the concept/code} focusing on:\n- How it works\n- Why this approach\n- Key considerations",
-            'test': "Generate tests for {the selected code/function}.\n\nInclude:\n- Happy path cases\n- Edge cases\n- Error handling",
-            'document': "Document {the selected code} with:\n- Purpose description\n- Parameter explanations\n- Usage examples",
-            'analyze': "Analyze {the selected code/file} for:\n- Potential issues\n- Improvement opportunities\n- Best practice alignment",
+            'create': "Create {{argument}}.\n\n## Guidelines\n\n- Follow existing codebase conventions\n- Include appropriate error handling\n- Add inline documentation",
+            'refactor': "Refactor {{argument}}.\n\n## Considerations\n\n- Maintain existing behavior\n- Improve code clarity\n- Optimize performance where applicable",
+            'debug': "Debug: {{argument}}\n\n## Investigation Steps\n\n1. Reproduce the issue\n2. Analyze error messages\n3. Identify root cause\n4. Implement fix",
+            'explain': "Explain {{argument}}.\n\n## Coverage\n\n- **How it works**: Step-by-step breakdown\n- **Why this approach**: Design rationale\n- **Key considerations**: Edge cases, performance",
+            'test': "Generate tests for {{argument}}.\n\n## Test Coverage\n\n- **Happy path**: Normal operation\n- **Edge cases**: Boundary conditions\n- **Error handling**: Invalid inputs",
+            'document': "Document {{argument}}.\n\n## Documentation Elements\n\n- **Purpose**: What it does\n- **Parameters**: Input descriptions\n- **Returns**: Output description\n- **Examples**: Usage demonstrations",
+            'analyze': "Analyze {{argument}}.\n\n## Review Areas\n\n- **Issues**: Bugs, security vulnerabilities\n- **Performance**: Inefficiencies\n- **Best practices**: Idiomatic patterns",
         }
         
-        template = placeholders.get(task_type, content)
-        
-        # If template exists, combine with any unique aspects of original
-        if task_type in placeholders and len(content) > 50:
-            # Extract any unique context from original (cleaned up)
-            cleaned = self._remove_specifics(content[:200])
-            template += f"\n\nContext pattern:\n{cleaned}"
-        
-        return template
+        # Return clean template without session-specific context noise
+        return placeholders.get(task_type, f"Process {{{{argument}}}} for {task_type} task.")
     
     def _generate_camel_case_title(self, task_type: str, sample: str, query_count: int) -> str:
         """Generate camelCase action-oriented title based on task type and session context"""

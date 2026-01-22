@@ -1,4 +1,9 @@
-# ASC Generative Rules: ML-Assisted Entity Creation Framework
+
+# ALWAYS: Refer to (`Single-Source-Of-Truth`) for authoritative guidance: [SSOT](../copilot-instructions.md) **<- NAVIGATE BACK TO SSOT!**
+
+---
+
+### ASC Generative Rules: ML-Assisted Entity Creation Framework
 
 **Date:** 2026-01-22  
 **Source Analysis:** `asc-entity-profiles.json` + `asc-combinational-analysis.md` (7 canonical entities)  

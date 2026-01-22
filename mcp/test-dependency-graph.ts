@@ -4,9 +4,7 @@
 // ╠════════════════════════════════════════════════════════════════════════════╣
 // ║  Spectral Frequency: ORANGE                                                 ║
 // ║  Architectural Role: 🔭 THE OBSERVATORY                                      ║
-// ║  Purpose: * Test suite for query_dependency_graph tool
- * 
- * Run with: bun run  ║
+// ║  Purpose: Test suite for query_dependency_graph tool                        ║
 // ╠════════════════════════════════════════════════════════════════════════════╣
 // ║  Cross-References (Bidirectional):                                      ║
 // ║  Dependents (Rely on me):                                                ║

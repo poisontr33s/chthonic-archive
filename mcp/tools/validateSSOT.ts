@@ -4,9 +4,7 @@
 // ╠════════════════════════════════════════════════════════════════════════════╣
 // ║  Spectral Frequency: ORANGE                                                 ║
 // ║  Architectural Role: 🔭 THE OBSERVATORY                                      ║
-// ║  Purpose: * Canonicalize text per Section XIV.3:
- * - CRLF→LF normalization
- * - ║
+// ║  Purpose: Validate SSOT integrity via SHA-256 hash (Section XIV.3)          ║
 // ╠════════════════════════════════════════════════════════════════════════════╣
 // ║  Cross-References (Bidirectional):                                      ║
 // ║  Dependencies (I rely on):                                               ║

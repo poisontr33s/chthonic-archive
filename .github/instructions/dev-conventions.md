@@ -1,4 +1,9 @@
-# Development Conventions & Operational Directives
+
+# ALWAYS: Refer to (`Single-Source-Of-Truth`) for authoritative guidance: [SSOT](../copilot-instructions.md) **<- NAVIGATE BACK TO SSOT!**
+
+---
+
+## Development Conventions & Operational Directives
 
 **Authority:** Extracted from SSOT Section XIV
 **Purpose:** Runtime-critical development conventions for AI assistants

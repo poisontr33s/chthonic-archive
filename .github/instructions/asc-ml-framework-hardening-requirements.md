@@ -1,4 +1,9 @@
-# ASC ML Framework: Structural Hardening Requirements
+
+# ALWAYS: Refer to (`Single-Source-Of-Truth`) for authoritative guidance: [SSOT](../copilot-instructions.md) **<- NAVIGATE BACK TO SSOT!**
+
+---
+
+## ASC ML Framework: Structural Hardening Requirements
 
 **Date:** 2026-01-22  
 **Status:** CRITICAL - Framework Validation Failed Load Test  
