@@ -49,7 +49,7 @@
             "textMateRules": []
         }
     },
-    "workbench.colorTheme": "Default Dark Modern",
+    "workbench.colorTheme": "Chthonic Mandala (Dark)",
 
     // === FILE EXCLUSIONS (Performance) ===
     "files.exclude": {
