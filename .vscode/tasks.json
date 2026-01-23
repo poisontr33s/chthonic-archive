@@ -1,107 +1,182 @@
 {
-    "version": "2.0.0",
-    "tasks": [
-        {
-            "label": "cargo build",
-            "type": "shell",
-            "command": "cargo",
-            "args": ["build"],
-            "group": {
-                "kind": "build",
-                "isDefault": true
-            },
-            "problemMatcher": "$rustc",
-            "presentation": {
-                "reveal": "always",
-                "panel": "shared"
-            }
-        },
-        {
-            "label": "cargo build --release",
-            "type": "shell",
-            "command": "cargo",
-            "args": ["build", "--release"],
-            "group": "build",
-            "problemMatcher": ["$rustc"]
-        },
-        {
-            "label": "cargo run",
-            "type": "shell",
-            "command": "cargo",
-            "args": ["run"],
-            "group": "build",
-            "problemMatcher": ["$rustc"],
-            "presentation": {
-                "reveal": "always",
-                "panel": "dedicated"
-            }
-        },
-        {
-            "label": "cargo clippy",
-            "type": "shell",
-            "command": "cargo",
-            "args": ["clippy", "--all-targets", "--all-features", "--", "-W", "clippy::pedantic"],
-            "group": "test",
-            "problemMatcher": ["$rustc"]
-        },
-        {
-            "label": "cargo test",
-            "type": "shell",
-            "command": "cargo",
-            "args": ["test"],
-            "group": {
-                "kind": "test",
-                "isDefault": true
-            },
-            "problemMatcher": ["$rustc"]
-        },
-        {
-            "label": "cargo clean",
-            "type": "shell",
-            "command": "cargo",
-            "args": ["clean"],
-            "problemMatcher": []
-        },
-        {
-            "label": "🔺 Run Archive (Debug)",
-            "type": "shell",
-            "command": "cargo",
-            "args": ["run"],
-            "group": "none",
-            "problemMatcher": ["$rustc"],
-            "presentation": {
-                "reveal": "always",
-                "panel": "dedicated",
-                "focus": true
-            }
-        },
-        {
-            "label": "🚀 Run Archive (Release)",
-            "type": "shell",
-            "command": "cargo",
-            "args": ["run", "--release"],
-            "group": "none",
-            "problemMatcher": ["$rustc"],
-            "presentation": {
-                "reveal": "always",
-                "panel": "dedicated",
-                "focus": true
-            }
-        },
-        {
-            "label": "🔥 Inject ASC Framework into Copilot",
-            "type": "shell",
-            "command": "Write-Host",
-            "args": [
-                "-ForegroundColor",
-                "Cyan",
-                "'🔥💀⚓ ASC Framework Context Available via MCP Server: asc-injector\\n\\nUse @asc-injector in Copilot Chat or invoke resource: asc://ssot\\n\\nRestart VS Code if MCP server not visible.'"
-            ],
-            "presentation": {
-                "reveal": "always",
-                "panel": "new",
-                "focus": true
-            }
-        }
-    ]
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "cargo build",
+			"type": "shell",
+			"command": "cargo",
+			"args": [
+				"build"
+			],
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			},
+			"problemMatcher": "$rustc",
+			"presentation": {
+				"reveal": "always",
+				"panel": "shared"
+			}
+		},
+		{
+			"label": "cargo build --release",
+			"type": "shell",
+			"command": "cargo",
+			"args": [
+				"build",
+				"--release"
+			],
+			"group": "build",
+			"problemMatcher": [
+				"$rustc"
+			]
+		},
+		{
+			"label": "cargo run",
+			"type": "shell",
+			"command": "cargo",
+			"args": [
+				"run"
+			],
+			"group": "build",
+			"problemMatcher": [
+				"$rustc"
+			],
+			"presentation": {
+				"reveal": "always",
+				"panel": "dedicated"
+			}
+		},
+		{
+			"label": "cargo clippy",
+			"type": "shell",
+			"command": "cargo",
+			"args": [
+				"clippy",
+				"--all-targets",
+				"--all-features",
+				"--",
+				"-W",
+				"clippy::pedantic"
+			],
+			"group": "test",
+			"problemMatcher": [
+				"$rustc"
+			]
+		},
+		{
+			"label": "cargo test",
+			"type": "shell",
+			"command": "cargo",
+			"args": [
+				"test"
+			],
+			"group": {
+				"kind": "test",
+				"isDefault": true
+			},
+			"problemMatcher": [
+				"$rustc"
+			]
+		},
+		{
+			"label": "cargo clean",
+			"type": "shell",
+			"command": "cargo",
+			"args": [
+				"clean"
+			],
+			"problemMatcher": []
+		},
+		{
+			"label": "🔺 Run Archive (Debug)",
+			"type": "shell",
+			"command": "cargo",
+			"args": [
+				"run"
+			],
+			"group": "none",
+			"problemMatcher": [
+				"$rustc"
+			],
+			"presentation": {
+				"reveal": "always",
+				"panel": "dedicated",
+				"focus": true
+			}
+		},
+		{
+			"label": "🚀 Run Archive (Release)",
+			"type": "shell",
+			"command": "cargo",
+			"args": [
+				"run",
+				"--release"
+			],
+			"group": "none",
+			"problemMatcher": [
+				"$rustc"
+			],
+			"presentation": {
+				"reveal": "always",
+				"panel": "dedicated",
+				"focus": true
+			}
+		},
+		{
+			"label": "🔥 Inject ASC Framework into Copilot",
+			"type": "shell",
+			"command": "Write-Host",
+			"args": [
+				"-ForegroundColor",
+				"Cyan",
+				"'🔥💀⚓ ASC Framework Context Available via MCP Server: asc-injector\\n\\nUse @asc-injector in Copilot Chat or invoke resource: asc://ssot\\n\\nRestart VS Code if MCP server not visible.'"
+			],
+			"presentation": {
+				"reveal": "always",
+				"panel": "new",
+				"focus": true
+			}
+		},
+		{
+			"label": "Run Inline Page Test",
+			"type": "shell",
+			"command": "cd bun-playwright-poc && bun run inline-page-test.ts"
+		},
+		{
+			"label": "List Playwright Browsers",
+			"type": "shell",
+			"command": "Get-ChildItem -Path \"$env:LOCALAPPDATA\\ms-playwright\" -Directory | Select-Object Name"
+		},
+		{
+			"label": "List Chromium Contents",
+			"type": "shell",
+			"command": "Get-ChildItem -Path \"$env:LOCALAPPDATA\\ms-playwright\\chromium-1207\" | Select-Object Name"
+		},
+		{
+			"label": "Inline Page Test",
+			"type": "shell",
+			"command": "cd bun-playwright-poc && bun run inline-page-test.ts"
+		},
+		{
+			"label": "Run Inline Page Test 2",
+			"type": "shell",
+			"command": "cd bun-playwright-poc && bun run inline-page-test.ts"
+		},
+		{
+			"label": "Test Fixed Navigation",
+			"type": "shell",
+			"command": "cd bun-playwright-poc && bun run example-buncdp.ts"
+		},
+		{
+			"label": "Test Interaction",
+			"type": "shell",
+			"command": "cd bun-playwright-poc && bun run test-interaction.ts"
+		},
+		{
+			"label": "Test NetworkIdle",
+			"type": "shell",
+			"command": "cd bun-playwright-poc && bun run test-networkidle.ts"
+		}
+	]
 }

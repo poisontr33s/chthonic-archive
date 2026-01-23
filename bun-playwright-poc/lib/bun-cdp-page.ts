@@ -18,12 +18,13 @@ import {
   waitForSelector,
   type ElementHandle,
 } from './bun-cdp-element';
+import { FrameRegistry, CDPFrame, type FrameInfo } from './bun-cdp-frame';
 
 export interface PageOptions {
   timeout?: number;
 }
 
-export type { ElementHandle };
+export type { ElementHandle, FrameInfo };
 
 export class CDPPage {
   private pageWs: WebSocket | null = null;
@@ -33,6 +34,13 @@ export class CDPPage {
     reject: (error: Error) => void;
   }>();
   private eventListeners = new Map<string, Set<(params: any) => void>>();
+  
+  // Network tracking state
+  private networkEnabled = false;
+  private inflightRequests = new Set<string>();  // requestId set
+  
+  // Frame registry
+  private frameRegistry: FrameRegistry | null = null;
   
   constructor(
     private browser: BunCDP,
@@ -177,27 +185,150 @@ export class CDPPage {
     });
   }
 
+  // ═══════════════════════════════════════════════════════════════════════════
+  // Network Tracking (for SPA support)
+  // ═══════════════════════════════════════════════════════════════════════════
+
+  /**
+   * Enable network domain and start tracking requests
+   */
+  private async enableNetwork(): Promise<void> {
+    if (this.networkEnabled) return;
+
+    await this.sendToTarget('Network.enable');
+    this.networkEnabled = true;
+
+    // Track request starts
+    this.on('Network.requestWillBeSent', (params) => {
+      this.inflightRequests.add(params.requestId);
+    });
+
+    // Track request completions
+    this.on('Network.loadingFinished', (params) => {
+      this.inflightRequests.delete(params.requestId);
+    });
+
+    // Track request failures
+    this.on('Network.loadingFailed', (params) => {
+      this.inflightRequests.delete(params.requestId);
+    });
+
+    // Track redirects (they complete the original request)
+    this.on('Network.responseReceived', (params) => {
+      // Response received but loading may continue
+    });
+  }
+
+  /**
+   * Get current number of in-flight network requests
+   */
+  get pendingRequestCount(): number {
+    return this.inflightRequests.size;
+  }
+
+  /**
+   * Wait for network to become idle (no pending requests for specified duration)
+   * 
+   * State machine:
+   * 1. Start tracking when inflightRequests.size === 0
+   * 2. If a new request starts, reset the idle timer
+   * 3. Resolve when idle duration is reached
+   * 
+   * @param idleTime - How long (ms) network must be idle. Default 500ms.
+   * @param timeout - Max time to wait. Default 30000ms.
+   */
+  async waitForNetworkIdle(options?: { idleTime?: number; timeout?: number }): Promise<void> {
+    const idleTime = options?.idleTime ?? 500;
+    const timeout = options?.timeout ?? 30000;
+
+    // Ensure network tracking is enabled
+    await this.enableNetwork();
+
+    return new Promise((resolve, reject) => {
+      let idleTimer: ReturnType<typeof setTimeout> | null = null;
+      const startTime = Date.now();
+
+      const checkIdle = () => {
+        // Timeout check
+        if (Date.now() - startTime > timeout) {
+          cleanup();
+          reject(new Error(`Network idle timeout (${this.inflightRequests.size} requests pending)`));
+          return;
+        }
+
+        if (this.inflightRequests.size === 0) {
+          // Start idle timer if not already running
+          if (!idleTimer) {
+            idleTimer = setTimeout(() => {
+              cleanup();
+              resolve();
+            }, idleTime);
+          }
+        } else {
+          // Requests in flight - reset timer
+          if (idleTimer) {
+            clearTimeout(idleTimer);
+            idleTimer = null;
+          }
+        }
+      };
+
+      // Event handlers
+      const onRequestStart = () => {
+        if (idleTimer) {
+          clearTimeout(idleTimer);
+          idleTimer = null;
+        }
+      };
+
+      const onRequestEnd = () => {
+        checkIdle();
+      };
+
+      const cleanup = () => {
+        if (idleTimer) clearTimeout(idleTimer);
+        this.off('Network.requestWillBeSent', onRequestStart);
+        this.off('Network.loadingFinished', onRequestEnd);
+        this.off('Network.loadingFailed', onRequestEnd);
+      };
+
+      // Subscribe to events
+      this.on('Network.requestWillBeSent', onRequestStart);
+      this.on('Network.loadingFinished', onRequestEnd);
+      this.on('Network.loadingFailed', onRequestEnd);
+
+      // Initial check
+      checkIdle();
+    });
+  }
+
   /**
    * Navigate to a URL and wait for load
    */
-  async goto(url: string, options?: { timeout?: number; waitUntil?: 'load' | 'domcontentloaded' }): Promise<void> {
+  async goto(url: string, options?: { 
+    timeout?: number; 
+    waitUntil?: 'load' | 'domcontentloaded' | 'networkidle' 
+  }): Promise<void> {
     const timeout = options?.timeout || this.options.timeout || 30000;
     const waitUntil = options?.waitUntil || 'load';
     
     // Enable Page.lifecycleEvent if not already
     await this.sendToTarget('Page.setLifecycleEventsEnabled', { enabled: true });
     
+    // For networkidle, enable network tracking before navigation
+    if (waitUntil === 'networkidle') {
+      await this.enableNetwork();
+    }
+    
     // Set up the wait BEFORE navigating to avoid race condition
-    const loadPromise = this.waitForEvent(
-      'Page.loadEventFired',
-      undefined,
-      timeout
-    );
+    const loadPromise = waitUntil === 'networkidle'
+      ? this.waitForNetworkIdle({ timeout })
+      : this.waitForEvent('Page.loadEventFired', undefined, timeout);
     
     // Navigate
     await this.sendToTarget('Page.navigate', { url });
     
-    // Wait for load event
+    // Wait for completion
     await loadPromise;
   }
 
@@ -340,6 +471,84 @@ export class CDPPage {
    */
   async waitForSelector(selector: string, options?: { timeout?: number; visible?: boolean }): Promise<ElementHandle> {
     return waitForSelector(this, selector, options);
+  }
+
+  // ═══════════════════════════════════════════════════════════════════════════
+  // Frame Support (Cross-frame interaction)
+  // ═══════════════════════════════════════════════════════════════════════════
+
+  /**
+   * Initialize frame tracking (lazy)
+   */
+  private async ensureFrameRegistry(): Promise<FrameRegistry> {
+    if (!this.frameRegistry) {
+      this.frameRegistry = new FrameRegistry(this);
+      await this.frameRegistry.init();
+    }
+    return this.frameRegistry;
+  }
+
+  /**
+   * Get all frames in the page
+   */
+  async frames(): Promise<FrameInfo[]> {
+    const registry = await this.ensureFrameRegistry();
+    return registry.getFrames();
+  }
+
+  /**
+   * Get a frame by name attribute
+   * 
+   * @example
+   * const stripeFrame = await page.frame('stripe-card-element');
+   * await stripeFrame.fill('input[name="cardnumber"]', '4242424242424242');
+   */
+  async frame(name: string): Promise<CDPFrame | null> {
+    const registry = await this.ensureFrameRegistry();
+    const frameInfo = registry.getFrameByName(name);
+    if (!frameInfo) return null;
+    return new CDPFrame(this, frameInfo, registry);
+  }
+
+  /**
+   * Get a frame by URL pattern
+   * 
+   * @example
+   * const oauthFrame = await page.frameByUrl('accounts.google.com');
+   */
+  async frameByUrl(urlPattern: string | RegExp): Promise<CDPFrame | null> {
+    const registry = await this.ensureFrameRegistry();
+    const frameInfo = registry.getFrameByUrl(urlPattern);
+    if (!frameInfo) return null;
+    return new CDPFrame(this, frameInfo, registry);
+  }
+
+  /**
+   * Get the main frame
+   */
+  async mainFrame(): Promise<CDPFrame | null> {
+    const registry = await this.ensureFrameRegistry();
+    const mainFrameId = registry.mainFrame;
+    if (!mainFrameId) return null;
+    const frameInfo = registry.getFrameById(mainFrameId);
+    if (!frameInfo) return null;
+    return new CDPFrame(this, frameInfo, registry);
+  }
+
+  /**
+   * Wait for a frame to appear by name
+   */
+  async waitForFrame(name: string, options?: { timeout?: number }): Promise<CDPFrame> {
+    const timeout = options?.timeout || 30000;
+    const start = Date.now();
+
+    while (Date.now() - start < timeout) {
+      const frame = await this.frame(name);
+      if (frame) return frame;
+      await new Promise(r => setTimeout(r, 100));
+    }
+
+    throw new Error(`Timeout waiting for frame: ${name}`);
   }
 }
 

@@ -8,16 +8,19 @@
       "url": "https://api.githubcopilot.com/mcp/"
     },
 
+    // Playwright MCP: DISABLED - blocked by enterprise security controls
+    // WebSocket handshakes rejected even with Admin privileges
+    // Tested: Chromium (timeout), Edge (101 error), Firefox (policy hardening)
+    // Conclusion: Incompatible with this machine's security posture
+    // Status: 6 of 7 MCP servers operational
+    /*
     "playwright": {
       "type": "stdio",
       "command": "node_modules/.bin/mcp-server-playwright",
-      "args": [
-        "--browser",
-        "chromium",
-        "--no-sandbox"
-      ],
+      "args": ["--browser", "chromium"],
       "cwd": "C:\\Users\\erdno\\chthonic-archive"
     },
+    */
 
     "bun-docs": {
       "type": "http",

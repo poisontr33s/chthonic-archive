@@ -7,7 +7,10 @@
 
 // Core
 export { BunCDP, launchBrowser, type BunCDPOptions, type BrowserVersion, type TargetInfo } from './bun-cdp';
-export { CDPPage, createPage, type PageOptions, type ElementHandle } from './bun-cdp-page';
+export { CDPPage, createPage, type PageOptions, type ElementHandle, type FrameInfo } from './bun-cdp-page';
+
+// Frame support
+export { FrameRegistry, CDPFrame } from './bun-cdp-frame';
 
 // Element utilities (for advanced usage)
 export {
