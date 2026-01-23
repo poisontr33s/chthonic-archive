@@ -1,84 +1,156 @@
-# Bun-Playwright PoC
+# bun-cdp
 
-Proof-of-concept demonstrating browser automation with Bun runtime.
+Lightweight Chrome DevTools Protocol driver for Bun. Bypasses Playwright's IPC layer that crashes on Bun.
 
-## ⚠️ Important Finding (2026-01-23)
+## Why?
 
-**Playwright's CDP layer is incompatible with Bun.** The `playwright.chromium.launch()` and `connectOverCDP()` methods cause Bun process crashes without throwing exceptions.
+Playwright's CDP layer (`pw:protocol`) uses Node.js-specific IPC that crashes Bun's process without exception. This library uses **raw CDP over WebSocket**, which works flawlessly with Bun's native WebSocket and subprocess APIs.
 
-**Solution:** Use the **BunCDP** library in `lib/` which uses raw CDP over WebSocket - this works perfectly.
+## Features
 
-See [BUNCDP_SUCCESS.md](./BUNCDP_SUCCESS.md) for full technical details.
+- **Core Automation**: Navigate, click, type, fill, screenshot
+- **SPA Support**: `NetworkIdle` wait for XHR/fetch completion  
+- **Iframe Support**: Cross-frame element interaction via `FrameRegistry`
+- **Safety Systems**: Auto-dismiss dialogs, detect popups/new tabs
+- **Zero Dependencies**: Pure Bun - no Node.js polyfills needed
 
-## BunCDP - The Working Solution
+## Installation
+
+```bash
+# Uses Playwright's bundled Chromium
+bunx playwright install chromium
+
+# Then import directly
+import { launchBrowser, createPage } from './src';
+```
+
+## Quick Start
 
 ```typescript
-import { launchBrowser, createPage } from './lib';
+import { launchBrowser, createPage } from 'bun-cdp';
 
 const browser = await launchBrowser({ headless: true });
-const page = await createPage(browser, 'https://example.com');
+const page = await createPage(browser, 'about:blank');
 
-const title = await page.title();
-const heading = await page.evaluate(`document.querySelector('h1')?.textContent`);
-const screenshot = await page.screenshot({ format: 'png' });
+await page.goto('https://example.com');
+console.log(await page.title()); // "Example Domain"
+
+await page.click('a');
+await page.fill('input[name="q"]', 'hello');
+await page.screenshot({ format: 'png' });
 
 await browser.close();
 ```
 
-### Run the Example
+## API
+
+### Browser
+
+```typescript
+const browser = await launchBrowser({
+  headless: true,           // default: true
+  chromePath: '/path/to/chrome',
+  port: 9222,              // debug port
+});
+
+// Popup handling
+browser.onPopup((target) => console.log('New tab:', target.url));
+const popup = await browser.waitForPopup();
+
+await browser.close();
+```
+
+### Page
+
+```typescript
+const page = await createPage(browser, 'about:blank');
+
+// Navigation
+await page.goto('https://example.com');
+await page.goto('https://spa-app.com', { waitUntil: 'networkidle' });
+
+// Elements
+await page.click('button');
+await page.fill('input', 'text');
+await page.type('input', 'char-by-char');
+const text = await page.textContent('h1');
+const el = await page.$('selector');
+const els = await page.$$('selector');
+await page.waitForSelector('.lazy-loaded');
+
+// Evaluation
+const result = await page.evaluate('document.title');
+
+// Screenshot
+const png = await page.screenshot({ format: 'png' });
+
+// Dialog handling
+page.setDialogHandler((dialog) => {
+  if (dialog.type === 'confirm') return { accept: true };
+});
+```
+
+### Frames
+
+```typescript
+// List all frames
+const frames = await page.frames();
+
+// Get frame by name
+const stripe = await page.frame('stripe-iframe');
+await stripe.fill('input[name="cardnumber"]', '4242...');
+
+// Get frame by URL
+const oauth = await page.frameByUrl('accounts.google.com');
+await oauth.click('button[type="submit"]');
+
+// Wait for iframe to load
+const popup = await page.waitForFrame('oauth-frame');
+```
+
+## Comparison with Playwright
+
+| Feature | Playwright on Bun | bun-cdp |
+|---------|-------------------|---------|
+| Basic navigation | ❌ Crashes | ✅ Works |
+| Element interaction | ❌ Crashes | ✅ Works |
+| Screenshots | ❌ Crashes | ✅ Works |
+| NetworkIdle | ❌ Crashes | ✅ Works |
+| Iframes | ❌ Crashes | ✅ Works |
+| Dialogs | ❌ Crashes | ✅ Auto-dismiss |
+| Popups | ❌ Crashes | ✅ Target tracking |
+
+## Architecture
+
+```
+src/
+├── bun-cdp.ts         # Browser spawn + WebSocket (PopupHandler)
+├── bun-cdp-page.ts    # Page API + NetworkIdle + DialogHandler
+├── bun-cdp-element.ts # Stateless element interaction
+├── bun-cdp-frame.ts   # FrameRegistry + CDPFrame
+└── index.ts           # Exports
+```
+
+## Run Tests
 
 ```bash
-bun run example-buncdp.ts
+bun run test        # Integration test
+bun run test:safety # Dialog/popup test
+bun run test:all    # All tests
 ```
 
-**Output:** `example-screenshot.png` with a screenshot of example.com
+## Limitations
 
-## Quick Start
-
-```bash
-# Install dependencies
-bun install
-
-# Install browsers (first time only)
-bun run install:browsers
-
-# Run BunCDP example (RECOMMENDED)
-bun run example-buncdp.ts
-
-# Run Playwright tests (may crash with Bun)
-bun run test
-```
-
-## Library Structure
-
-```
-lib/
-├── bun-cdp.ts        # Core CDP wrapper (BunCDP class)
-├── bun-cdp-page.ts   # Page abstraction (CDPPage class)
-└── index.ts          # Exports
-```
-
-## Key Findings
-
-### ✅ Works (BunCDP)
-- Chrome spawn via `Bun.spawn()` 
-- Raw CDP over WebSocket
-- `Page.navigate`, `Runtime.evaluate`
-- Screenshots (`Page.captureScreenshot`)
-- Both headless and headed modes
-
-### ❌ Does NOT Work
-- `playwright.chromium.launch()` - Crashes Bun
-- `playwright.connectOverCDP()` - Crashes Bun
-- Dynamic port via stderr parsing - Unreliable buffering
+- **Chromium only** - No Firefox/WebKit (CDP is Chrome's protocol)
+- **No test runner** - This is a driver, not a test framework
+- **No trace viewer** - Use Chrome DevTools for debugging
 
 ## Environment
 
-- **Bun:** 1.3.6
+- **Bun:** 1.3.6+
 - **Chrome:** Playwright's Chromium-1207 (Chrome/144.0.7559.20)
-- **OS:** Windows 11
+- **OS:** Windows 11 (tested), Linux/macOS (should work)
 
-## Related Documentation
+## License
 
-- [BUNCDP_SUCCESS.md](./BUNCDP_SUCCESS.md) - Technical success report
-- [BUN_PLAYWRIGHT_VALIDATION.md](../BUN_PLAYWRIGHT_VALIDATION.md) - Original validation study
+MIT

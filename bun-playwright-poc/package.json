@@ -1,19 +1,49 @@
 {
-  "name": "bun-playwright-poc",
-  "version": "0.1.0",
+  "name": "bun-cdp",
+  "version": "1.0.0",
+  "description": "Lightweight CDP (Chrome DevTools Protocol) driver for Bun - bypasses Playwright IPC incompatibility",
   "type": "module",
+  "main": "src/index.ts",
+  "module": "src/index.ts",
+  "types": "src/index.ts",
+  "exports": {
+    ".": {
+      "import": "./src/index.ts",
+      "types": "./src/index.ts"
+    }
+  },
+  "files": [
+    "src/**/*.ts"
+  ],
   "scripts": {
-    "install:browsers": "bun run scripts/install.ts",
-    "test": "bun run scripts/test.ts",
-    "test:headed": "bun run scripts/test.ts --headed",
-    "test:chromium": "bunx playwright test --project=chromium",
-    "test:firefox": "bunx playwright test --project=firefox",
-    "test:webkit": "bunx playwright test --project=webkit",
-    "codegen": "bunx playwright codegen",
-    "show-report": "bunx playwright show-report",
-    "trace": "bunx playwright show-trace",
-    "validate": "bun run scripts/validate.ts",
-    "launch-diag": "bun run bun-launcher.ts"
+    "test": "bun run test-integration.ts",
+    "test:safety": "bun run test-safety.ts",
+    "test:all": "bun run test-integration.ts && bun run test-safety.ts",
+    "install:browsers": "bun run scripts/install.ts"
+  },
+  "keywords": [
+    "bun",
+    "cdp",
+    "chrome",
+    "devtools",
+    "protocol",
+    "automation",
+    "browser",
+    "playwright-alternative",
+    "websocket"
+  ],
+  "author": "",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/poisontr33s/chthonic-archive.git",
+    "directory": "bun-playwright-poc"
+  },
+  "engines": {
+    "bun": ">=1.0.0"
+  },
+  "peerDependencies": {
+    "bun": ">=1.0.0"
   },
   "devDependencies": {
     "@playwright/test": "^1.48.0",

@@ -3,7 +3,7 @@
  * BunCDP Usage Example - Demonstrates working Bun + Chrome automation
  */
 
-import { launchBrowser, createPage } from './lib';
+import { launchBrowser, createPage } from './src';
 
 async function main() {
   console.log('🚀 BunCDP Example');

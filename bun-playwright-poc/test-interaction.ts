@@ -3,7 +3,7 @@
  * BunCDP Interaction Test - Validates click, type, fill operations
  */
 
-import { launchBrowser, createPage } from './lib';
+import { launchBrowser, createPage } from './src';
 
 async function main() {
   console.log('🎯 BunCDP Interaction Test');
