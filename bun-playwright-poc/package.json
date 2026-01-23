@@ -1,0 +1,23 @@
+{
+  "name": "bun-playwright-poc",
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "install:browsers": "bun run scripts/install.ts",
+    "test": "bun run scripts/test.ts",
+    "test:headed": "bun run scripts/test.ts --headed",
+    "test:chromium": "bunx playwright test --project=chromium",
+    "test:firefox": "bunx playwright test --project=firefox",
+    "test:webkit": "bunx playwright test --project=webkit",
+    "codegen": "bunx playwright codegen",
+    "show-report": "bunx playwright show-report",
+    "trace": "bunx playwright show-trace",
+    "validate": "bun run scripts/validate.ts",
+    "launch-diag": "bun run bun-launcher.ts"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.48.0",
+    "@types/bun": "latest",
+    "playwright": "^1.48.0"
+  }
+}
