@@ -33,19 +33,7 @@ export async function querySelector(
   page: CDPPage,
   selector: string
 ): Promise<ElementHandle | null> {
-  // Use Runtime.evaluate to find element and get its objectId
-  const result = await page.evaluate(`
-    (function() {
-      const el = document.querySelector(${JSON.stringify(selector)});
-      return el ? true : false;
-    })()
-  `);
-  
-  if (!result) {
-    return null;
-  }
-
-  // Get the element as a remote object
+  // Get element as remote object (single query, no redundant check)
   const evalResult = await (page as any).sendToTarget('Runtime.evaluate', {
     expression: `document.querySelector(${JSON.stringify(selector)})`,
     returnByValue: false,

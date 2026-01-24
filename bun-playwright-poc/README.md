@@ -6,6 +6,70 @@ Lightweight Chrome DevTools Protocol driver for Bun. Bypasses Playwright's IPC l
 
 Playwright's CDP layer (`pw:protocol`) uses Node.js-specific IPC that crashes Bun's process without exception. This library uses **raw CDP over WebSocket**, which works flawlessly with Bun's native WebSocket and subprocess APIs.
 
+---
+
+## Quick Start for Non-Programmers
+
+**If you primarily work with creative writing or prompt engineering**, here's what you need to know:
+
+### What This Does
+This tool controls a web browser automatically. You write simple commands, it clicks buttons, fills forms, takes screenshots, and extracts text from websites.
+
+### One-Liner to Run the Crawler
+
+```bash
+bun run chthonic-crawler.ts "Your Topic Here"
+```
+
+This will:
+1. Open a hidden Chrome browser
+2. Visit 4-5 web pages related to your topic  
+3. Save screenshots to `crawl-output/`
+4. Create `knowledge-graph.json` (machine-readable)
+5. Create `CRAWL_SUMMARY.md` (human-readable)
+
+### Example: Research "Generative AI Ethics"
+
+```bash
+bun run chthonic-crawler.ts "Generative AI Ethics"
+```
+
+Then open `crawl-output/CRAWL_SUMMARY.md` in any text editor.
+
+### Customize What It Looks For
+
+Edit `chthonic-crawler.ts` line ~243:
+
+```typescript
+const crawler = new ChthonicCrawler({
+  seed: seed,
+  maxDepth: 1,      // 1 = seed pages only, 2 = follow one link deep
+  maxPages: 5,      // How many pages to visit total
+  // ...
+});
+```
+
+### Add Your Own Seed URLs
+
+Edit the `getSeedUrls()` method (~line 130) to return URLs you want crawled:
+
+```typescript
+const defaultSeeds = [
+  'https://your-first-url.com',
+  'https://your-second-url.com',
+];
+```
+
+### What You Get
+
+| File | What It Is |
+|------|------------|
+| `crawl-output/knowledge-graph.json` | All extracted data (for tools/scripts) |
+| `crawl-output/CRAWL_SUMMARY.md` | Human-readable summary with excerpts |
+| `crawl-output/*.png` | Screenshots of each relevant page |
+
+---
+
 ## Features
 
 - **Core Automation**: Navigate, click, type, fill, screenshot

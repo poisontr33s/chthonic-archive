@@ -108,9 +108,9 @@ class ChthonicCrawler {
   async crawl(): Promise<KnowledgeGraph> {
     if (!this.browser) throw new Error('Call init() first');
 
-    // Phase 1: Search for seed topic
-    console.log(`\n🔍 Searching for: "${this.config.seed}"`);
-    const searchResults = await this.search(this.config.seed);
+    // Phase 1: Get seed URLs for topic
+    console.log(`\n🔍 Loading seeds for: "${this.config.seed}"`);
+    const searchResults = await this.getSeedUrls(this.config.seed);
     
     // Add search results to queue
     for (const url of searchResults) {
@@ -152,20 +152,19 @@ class ChthonicCrawler {
     return this.graph;
   }
 
-  private async search(query: string): Promise<string[]> {
-    // Direct seed URLs - bypasses search engine bot detection
-    // In production, this could use a search API (SerpAPI, Brave Search API, etc.)
-    const seedUrls: Record<string, string[]> = {
-      'default': [
-        'https://en.wikipedia.org/wiki/Circular_economy',
-        'https://ellenmacarthurfoundation.org/topics/circular-economy-introduction/overview',
-        'https://www.epa.gov/recyclingstrategy/what-circular-economy',
-        'https://www.weforum.org/stories/2022/01/what-is-the-circular-economy/',
-      ],
-    };
+  private async getSeedUrls(_query: string): Promise<string[]> {
+    // Seed URLs - search engines block bots, so we use direct URLs.
+    // To enable real search: add SerpAPI, Brave Search API, or similar.
+    // Set SERP_API_KEY env var and modify this method.
+    const defaultSeeds = [
+      'https://en.wikipedia.org/wiki/Circular_economy',
+      'https://ellenmacarthurfoundation.org/topics/circular-economy-introduction/overview',
+      'https://www.epa.gov/recyclingstrategy/what-circular-economy',
+      'https://www.weforum.org/stories/2022/01/what-is-the-circular-economy/',
+    ];
     
-    console.log(`   Using seed URLs (search APIs require keys)`);
-    return seedUrls['default'];
+    console.log(`   Using default seed URLs (search APIs disabled)`);
+    return defaultSeeds;
   }
 
   private async extractPage(url: string, depth: number): Promise<CrawlNode> {
@@ -213,7 +212,7 @@ class ChthonicCrawler {
         screenshotPath,
       };
     } finally {
-      // Page cleanup handled by browser
+      await page.close().catch(() => {});
     }
   }
 

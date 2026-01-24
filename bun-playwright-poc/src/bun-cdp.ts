@@ -5,14 +5,14 @@
  * bypassing Playwright's incompatible protocol layer while leveraging Bun's native
  * WebSocket and subprocess APIs.
  * 
- * PROVEN WORKING (2026-01-23):
- * - Bun.spawn() for Chrome process management ✓
- * - Native WebSocket for CDP communication ✓
- * - CDP commands: Browser.getVersion, Target.createTarget ✓
- * - Both headless and headed modes ✓
+ * Features:
+ * - Bun.spawn() for Chrome process management
+ * - Native WebSocket for CDP communication
+ * - Automatic popup/tab tracking
+ * - Dialog auto-dismissal (prevents hangs)
  * 
  * @module bun-cdp
- * @version 0.1.0
+ * @version 1.0.0
  */
 
 export interface CDPResponse<T = any> {
