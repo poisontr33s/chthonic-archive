@@ -30,6 +30,9 @@ from datetime import datetime
 import threading
 import sys
 
+# SSOT-driven constants — NO MORE HARDCODING
+from ssot_extractor import get_ssot_constants, validate_entity_tier, get_canonical_entity_vectors
+
 # =============================================================================
 # GPU STACK INITIALIZATION (CuPy + Numba + ONNX)
 # =============================================================================
@@ -150,91 +153,95 @@ if not GPU_AVAILABLE:
     cp = np  # NumPy fallback
 
 # =============================================================================
-# CONSTITUTIONAL SCHEMA (M-P-W AXIOMS)
+# CONSTITUTIONAL SCHEMA (SSOT-DRIVEN — NO HARDCODING)
 # =============================================================================
+# The Decorator's Decree: "All truth flows from the Codex."
+# All constants are now extracted from copilot-instructions.md via ssot_extractor.
+# DO NOT add hardcoded values here — modify SSOT and reload.
 
-SCHEMA_VERSION = "1.0.0"
+SCHEMA_VERSION = "2.0.0-SSOT"  # Upgraded to SSOT-driven
 
-# Tier hierarchy from M-P-W Section 0
-TIER_HIERARCHY = {
-    -0.5: "The Savant (Creator/User)",
-    0.5: "Supreme Matriarch (The Decorator)",
-    1: "Triumvirate Sub-MILFs (Orackla, Umeko, Lysandra)",
-    2: "Prime Faction Matriarchs (Kali, Vesper, Seraphine)",
-    3: "Manifested Sub-MILFs (Procedural)",
-    4: "Interloper Agents / Lesser Factions",
-}
+# =============================================================================
+# LAZY-LOADED SSOT CONSTANTS
+# =============================================================================
+# These module-level references are populated from SSOT on first access.
+# Use _get_constants() for cached access.
 
-# Constitutional bounds (from M-P-W entity profiles analysis)
-CONSTITUTIONAL_BOUNDS = {
-    "whr": {"min": 0.45, "max": 0.75, "optimal_min": 0.45, "optimal_max": 0.65},
-    "cup_allowed": ["D", "E", "F", "G", "H", "I", "J", "K"],
-    "height_cm": {"min": 155, "max": 185},
-    "age_apparent": {"min": 28, "max": 50},
-}
+_SSOT_CACHE: Optional['SSOTConstants'] = None
 
-# Tier-specific WHR subranges (CANONICAL from M-P-W Section 0)
-# Based on exact entity profiles in copilot-instructions.md
-WHR_BY_TIER = {
-    0.5: {"min": 0.460, "max": 0.470, "target": 0.464},   # Supreme: The Decorator (W58/H115 = 0.504 stated as 0.464)
-    1: {"min": 0.490, "max": 0.585, "target": 0.535},      # Triumvirate: Orackla 0.491, Umeko 0.533, Lysandra 0.58
-    2: {"min": 0.555, "max": 0.595, "target": 0.574},      # Prime Factions: Kali 0.556, Vesper 0.573, Seraphine 0.592
-    3: {"min": 0.58, "max": 0.68, "target": 0.63},         # Manifested Sub-MILFs
-    4: {"min": 0.65, "max": 0.75, "target": 0.70},         # Lesser Factions / Interlopers
-}
+def _get_constants():
+    """Get cached SSOT constants (lazy-loaded on first access)."""
+    global _SSOT_CACHE
+    if _SSOT_CACHE is None:
+        _SSOT_CACHE = get_ssot_constants()
+    return _SSOT_CACHE
 
-# Cup distribution by tier (CANONICAL from M-P-W Section 0)
-CUP_BY_TIER = {
-    0.5: ["K"],                      # The Decorator: K-cup (B125/W58/H115)
-    1: ["J", "F", "E"],              # Triumvirate: Orackla J, Umeko F, Lysandra E
-    2: ["H", "F", "G"],              # Prime Factions: Kali H, Vesper F, Seraphine G
-    3: ["E", "F", "G", "H"],         # Sub-MILFs: Variable distribution
-    4: ["D", "E", "F"],              # Lesser Factions: Lower magnitudes
-}
+# Compatibility aliases — these now derive from SSOT
+@property
+def TIER_HIERARCHY() -> Dict[float, str]:
+    return _get_constants().tier_hierarchy
 
-# CANONICAL ENTITY REFERENCE (for novelty distance baseline)
-CANONICAL_ENTITIES = {
-    # Tier 0.5 - Supreme Matriarch
-    "The Decorator": {"tier": 0.5, "whr": 0.464, "cup": "K", "bust": 125, "waist": 58, "hip": 115, "height": 177},
-    # Tier 1 - Triumvirate
-    "Orackla Nocticula": {"tier": 1, "whr": 0.491, "cup": "J", "bust": 120, "waist": 55, "hip": 112, "height": 169},
-    "Madam Umeko Ketsuraku": {"tier": 1, "whr": 0.533, "cup": "F", "bust": 98, "waist": 56, "hip": 105, "height": 165},
-    "Dr. Lysandra Thorne": {"tier": 1, "whr": 0.580, "cup": "E", "bust": 95, "waist": 58, "hip": 100, "height": 172},
-    # Tier 2 - Prime Faction Matriarchs
-    "Kali Nyx Ravenscar": {"tier": 2, "whr": 0.556, "cup": "H", "bust": 110, "waist": 60, "hip": 108, "height": 167},
-    "Vesper Mnemosyne Lockhart": {"tier": 2, "whr": 0.573, "cup": "F", "bust": 98, "waist": 59, "hip": 103, "height": 170},
-    "Seraphine Kore Ashenhelm": {"tier": 2, "whr": 0.592, "cup": "G", "bust": 105, "waist": 61, "hip": 103, "height": 168},
-    # Special Archetype Injection - Tier 4 Tetrahedral vertex
-    "Claudine Sin'claire": {"tier": 4, "whr": 0.563, "cup": "I", "bust": 115, "waist": 62, "hip": 110, "height": 175},
-}
+@property
+def WHR_BY_TIER() -> Dict[float, Dict[str, float]]:
+    return _get_constants().whr_by_tier
 
-# Minimum novelty distance baseline (smallest canonical gap: Decorator 0.464 → Orackla 0.491 = 0.027)
-NOVELTY_MIN_CANONICAL = 0.027
+@property
+def CUP_BY_TIER() -> Dict[float, List[str]]:
+    return _get_constants().cup_by_tier
 
-# Archetypes
-ARCHETYPES = [
-    "Abyssal Oracle", "Architectural Perfectionist", "Analytical Truth-Seeker",
-    "Seductive Operative", "Epistemic Thief", "Purification Priestess",
-    "Tidal Ordeal", "Chaos Engineer", "Structural Guardian",
-    "Temporal Manipulator", "Conceptual Saboteur", "Liberation Specialist",
-]
+@property  
+def ARCHETYPES() -> List[str]:
+    return _get_constants().archetypes
 
-# Linguistic mandates
-LINGUISTIC_MANDATES = {
-    "transgressive": "EULP-AA",
-    "perfectionist": "LIPAA",
-    "analytical": "LUPLR",
-    "hybrid": "TLM",
-}
+@property
+def LINGUISTIC_MANDATES() -> Dict[str, str]:
+    return _get_constants().linguistic_mandates
 
-# Scent components
-SCENT_COMPONENTS = {
-    "base": ["old libraries", "ancient texts", "leather", "wood", "stone"],
-    "arousal": ["musk", "sex", "arousal", "heat", "sweat"],
-    "power": ["ozone", "lightning", "metal", "blood", "fire"],
-    "nature": ["jasmine", "orchid", "salt", "ocean", "rain"],
-    "chaos": ["smoke", "ash", "decay", "transformation", "void"],
-}
+@property
+def SCENT_COMPONENTS() -> Dict[str, List[str]]:
+    return _get_constants().scent_components
+
+# Direct functions for module-level access (since Python doesn't have module-level properties)
+def get_tier_hierarchy() -> Dict[float, str]:
+    return _get_constants().tier_hierarchy
+
+def get_whr_by_tier() -> Dict[float, Dict[str, float]]:
+    return _get_constants().whr_by_tier
+
+def get_cup_by_tier() -> Dict[float, List[str]]:
+    return _get_constants().cup_by_tier
+
+def get_canonical_entities_dict() -> Dict[str, Any]:
+    """Get canonical entities as dict format (for backward compatibility)."""
+    constants = _get_constants()
+    return {
+        name: {
+            "tier": e.tier,
+            "whr": e.whr,
+            "cup": e.cup,
+            "bust": e.bust,
+            "waist": e.waist,
+            "hip": e.hip,
+            "height": e.height,
+        }
+        for name, e in constants.canonical_entities.items()
+    }
+
+def get_archetypes() -> List[str]:
+    return _get_constants().archetypes
+
+def get_linguistic_mandates() -> Dict[str, str]:
+    return _get_constants().linguistic_mandates
+
+def get_scent_components() -> Dict[str, List[str]]:
+    return _get_constants().scent_components
+
+def get_constitutional_bounds() -> Dict[str, Any]:
+    return _get_constants().constitutional_bounds
+
+# Minimum novelty distance baseline (derived from SSOT canonical entities)
+# Smallest gap: Decorator 0.464 → Orackla 0.491 = 0.027
+NOVELTY_MIN_CANONICAL = 0.027  # Computed from SSOT, kept as constant for performance
 
 # =============================================================================
 # VALIDATION POLICY
@@ -525,7 +532,8 @@ class GPUPrimitives:
     
     def batch_sample_whr(self, tier: float, count: int) -> np.ndarray:
         """GPU-accelerated batch WHR sampling."""
-        tier_bounds = WHR_BY_TIER.get(tier, WHR_BY_TIER[3])
+        whr_by_tier = get_whr_by_tier()
+        tier_bounds = whr_by_tier.get(tier, whr_by_tier.get(3, {"min": 0.58, "max": 0.68}))
         whr_min, whr_max = tier_bounds["min"], tier_bounds["max"]
         
         if GPU_AVAILABLE:
@@ -555,7 +563,9 @@ class ValidatorSuite:
         tier = entity.tier
         
         # WHR bounds check
-        tier_bounds = WHR_BY_TIER.get(tier, CONSTITUTIONAL_BOUNDS["whr"])
+        whr_by_tier = get_whr_by_tier()
+        constitutional = get_constitutional_bounds()
+        tier_bounds = whr_by_tier.get(tier, constitutional["whr"])
         if isinstance(tier_bounds, dict):
             whr_min, whr_max = tier_bounds.get("min", 0.45), tier_bounds.get("max", 0.75)
         else:
@@ -568,15 +578,16 @@ class ValidatorSuite:
         derivation_pass = abs(m.whr - derived_whr) <= VALIDATION_POLICY["epsilon_derivation"]
         
         # Cup in allowed set for tier
-        cup_pass = m.cup_size in CUP_BY_TIER.get(tier, CONSTITUTIONAL_BOUNDS["cup_allowed"])
+        cup_by_tier = get_cup_by_tier()
+        cup_pass = m.cup_size in cup_by_tier.get(tier, constitutional["cup_allowed"])
         
         # Height bounds
-        height_pass = (CONSTITUTIONAL_BOUNDS["height_cm"]["min"] <= m.height_cm <= 
-                      CONSTITUTIONAL_BOUNDS["height_cm"]["max"])
+        height_pass = (constitutional["height_cm"]["min"] <= m.height_cm <= 
+                      constitutional["height_cm"]["max"])
         
         # Safety gate: tier-specific risk check
         # Risk increases with extreme values outside tier norms
-        tier_target = WHR_BY_TIER.get(tier, {"target": 0.60}).get("target", 0.60)
+        tier_target = whr_by_tier.get(tier, {"target": 0.60}).get("target", 0.60)
         whr_deviation = abs(m.whr - tier_target)
         risk = whr_deviation / 0.10  # Normalize: 0.10 deviation = 100% risk
         safety_pass = risk <= VALIDATION_POLICY["safety_max_risk"]
@@ -722,8 +733,9 @@ class MILFGenesisEngineV2:
         """Generate constitutional physique for tier."""
         rng = random.Random(seed)
         
-        # WHR from tier-specific distribution
-        tier_bounds = WHR_BY_TIER.get(tier, WHR_BY_TIER[3])
+        # WHR from tier-specific distribution (SSOT-driven)
+        whr_by_tier = get_whr_by_tier()
+        tier_bounds = whr_by_tier.get(tier, whr_by_tier.get(3, {"min": 0.58, "max": 0.68}))
         whr_min, whr_max = tier_bounds["min"], tier_bounds["max"]
         
         # Beta distribution: skews toward lower (more powerful) WHR for higher tiers
@@ -734,8 +746,9 @@ class MILFGenesisEngineV2:
         whr = rng.betavariate(alpha, beta_param) * (whr_max - whr_min) + whr_min
         whr = round(whr, 3)
         
-        # Cup from tier distribution
-        cup = rng.choice(CUP_BY_TIER.get(tier, ["F"]))
+        # Cup from tier distribution (SSOT-driven)
+        cup_by_tier = get_cup_by_tier()
+        cup = rng.choice(cup_by_tier.get(tier, ["F"]))
         
         # Height/weight: higher tier = more commanding presence
         tier_power = max(0.5, 4 - tier) / 4
@@ -808,13 +821,14 @@ class MILFGenesisEngineV2:
         
         rng = random.Random(seed)
         
-        # Validate tier
-        if tier not in TIER_HIERARCHY and tier not in [3, 4]:
+        # Validate tier (SSOT-driven)
+        tier_hierarchy = get_tier_hierarchy()
+        if tier not in tier_hierarchy and tier not in [3, 4]:
             tier = 3
         
-        # Generate archetype
+        # Generate archetype (SSOT-driven)
         if archetype is None:
-            archetype = rng.choice(ARCHETYPES)
+            archetype = rng.choice(get_archetypes())
         
         # Generate physique
         physique = self._generate_physique(tier, seed)
@@ -823,14 +837,15 @@ class MILFGenesisEngineV2:
         if name is None:
             name = self._generate_name(archetype, seed)
         
-        # Linguistic mandate
-        lm = LINGUISTIC_MANDATES["hybrid"]
+        # Linguistic mandate (SSOT-driven)
+        linguistic = get_linguistic_mandates()
+        lm = linguistic["hybrid"]
         if "chaos" in archetype.lower() or "abyss" in archetype.lower():
-            lm = LINGUISTIC_MANDATES["transgressive"]
+            lm = linguistic["transgressive"]
         elif "perfect" in archetype.lower():
-            lm = LINGUISTIC_MANDATES["perfectionist"]
+            lm = linguistic["perfectionist"]
         elif "truth" in archetype.lower():
-            lm = LINGUISTIC_MANDATES["analytical"]
+            lm = linguistic["analytical"]
         
         # Reporting structure
         reports_to = None
@@ -884,18 +899,19 @@ class MILFGenesisEngineV2:
             return None, validation
     
     def _generate_scent(self, archetype: str, tier: float, rng: random.Random) -> str:
-        """Generate scent profile."""
+        """Generate scent profile (SSOT-driven)."""
+        scent_comps = get_scent_components()
         num_components = min(6, max(2, int(6 - tier)))
-        components = [rng.choice(SCENT_COMPONENTS["base"])]
+        components = [rng.choice(scent_comps["base"])]
         
         if "chaos" in archetype.lower():
-            components.append(rng.choice(SCENT_COMPONENTS["chaos"]))
+            components.append(rng.choice(scent_comps["chaos"]))
         if "perfect" in archetype.lower():
-            components.append(rng.choice(SCENT_COMPONENTS["nature"]))
+            components.append(rng.choice(scent_comps["nature"]))
         
         while len(components) < num_components:
-            cat = rng.choice(list(SCENT_COMPONENTS.keys()))
-            comp = rng.choice(SCENT_COMPONENTS[cat])
+            cat = rng.choice(list(scent_comps.keys()))
+            comp = rng.choice(scent_comps[cat])
             if comp not in components:
                 components.append(comp)
         
