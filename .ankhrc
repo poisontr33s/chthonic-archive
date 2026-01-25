@@ -64,9 +64,9 @@ SPECTRA_CHROMA_DOC = "dumpster-dive/from-github/macro-prompt-world/sub-milfs/Spe
 SNOW_WHITE_DOC = "dumpster-dive/from-github/macro-prompt-world/prime-factions/Alabaster_Voyde_The_Snow_White_Phenomenon.md"
 
 # Artifacts & Indices
-# Root (SSOT indices - stay at root)
-ANKH_INDEX = "ankh_index.json"
-SID_INDEX = "sid_index.json"
+# Indices (relocated 2026-01-25 Stage 1.5 → data/indices/)
+ANKH_INDEX = "data/indices/ankh_index.json"
+SID_INDEX = "data/indices/sid_index.json"
 # Reorganized: 2026-01-25 Stage 1.5 → data/
 CURRICULUM_CORE = "data/curriculum_core_v1.json"
 DEPENDENCY_GRAPH = "data/graphs/dependency_graph.json"
@@ -87,10 +87,11 @@ EMERGENCY_SEAL = ".EMERGENCY_SEAL"
 
 # =============================================================================
 # [state_files] - Runtime/persistent state artifacts
+# Reorganized: 2026-01-25 Stage 1.5 → data/state/
 # =============================================================================
 [state_files]
-DCRP_STATE = ".dcrp_state.json"
-DCRP_EVOLUTION = ".dcrp_evolution.json"
+DCRP_STATE = "data/state/.dcrp_state.json"
+DCRP_EVOLUTION = "data/state/.dcrp_evolution.json"
 
 # =============================================================================
 # [databases] - SQLite and persistent stores
@@ -204,8 +205,6 @@ dcrp_reports = "CONSOLIDATED"
 
 # KEEP (essential root files)
 SSOT = "KEEP"
-CLAUDE_MD = "KEEP"
-ANKH_INDEX = "KEEP"
 SID_INDEX = "KEEP"
 CARGO_TOML = "KEEP"
 ANKHRC = "KEEP"
