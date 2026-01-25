@@ -51,6 +51,31 @@
 !mcp/tools/*.ts
 !mcp/tools/*.json
 
+# Allow Bun configuration
+!bunfig.toml
+
+# Allow VS Code extensions (but not node_modules)
+!extensions/
+!extensions/*/
+!extensions/*/*.json
+!extensions/*/*.ts
+!extensions/*/*.md
+!extensions/*/src/
+!extensions/*/src/*.ts
+!extensions/*/dist/
+!extensions/*/dist/*.js
+!extensions/*/themes/
+!extensions/*/themes/*.json
+!extensions/*/icons/
+!extensions/*/icons/*.svg
+!extensions/*/resources/
+!extensions/*/resources/*.svg
+extensions/*/node_modules/
+extensions/*/bun.lock
+
+# Explicitly ignore all node_modules
+**/node_modules/
+
 # Allow MCP workflow artifacts (smoke suite provenance)
 !artifacts/
 !artifacts/mcp_run_*.json

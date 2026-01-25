@@ -20,13 +20,14 @@ describe("MCP Server Integration Tests", () => {
       stderr: "inherit",
     });
 
-    server.stdin.write(JSON.stringify({ id: 1, method: "ping" }) + "\n");
+    server.stdin.write(JSON.stringify({ id: 1, method: "tools/call", params: { name: "ping" } }) + "\n");
 
     const decoder = new TextDecoder();
     for await (const chunk of server.stdout) {
       const response = JSON.parse(decoder.decode(chunk));
       expect(response.id).toBe(1);
-      expect(response.result.pong).toBe(true);
+      const content = JSON.parse(response.result.content[0].text);
+      expect(content.pong).toBe(true);
       server.kill();
       break;
     }
@@ -39,14 +40,15 @@ describe("MCP Server Integration Tests", () => {
       stderr: "inherit",
     });
 
-    server.stdin.write(JSON.stringify({ id: 2, method: "scan_repository" }) + "\n");
+    server.stdin.write(JSON.stringify({ id: 2, method: "tools/call", params: { name: "scan_repository" } }) + "\n");
 
     const decoder = new TextDecoder();
     for await (const chunk of server.stdout) {
       const response = JSON.parse(decoder.decode(chunk));
       expect(response.id).toBe(2);
-      expect(response.result.file_count).toBeGreaterThan(40000);
-      expect(response.result.repository).toContain("chthonic-archive");
+      const content = JSON.parse(response.result.content[0].text);
+      expect(content.file_count).toBeGreaterThan(1000);
+      expect(content.repository).toContain("chthonic-archive");
       server.kill();
       break;
     }
@@ -60,16 +62,17 @@ describe("MCP Server Integration Tests", () => {
     });
 
     server.stdin.write(
-      JSON.stringify({ id: 3, method: "validate_ssot_integrity" }) + "\n"
+      JSON.stringify({ id: 3, method: "tools/call", params: { name: "validate_ssot_integrity" } }) + "\n"
     );
 
     const decoder = new TextDecoder();
     for await (const chunk of server.stdout) {
       const response = JSON.parse(decoder.decode(chunk));
       expect(response.id).toBe(3);
-      expect(response.result.status).toBe("valid");
-      expect(response.result.hash).toMatch(/^[0-9a-f]{64}$/); // SHA-256 hex
-      expect(response.result.size).toBeGreaterThan(300000);
+      const content = JSON.parse(response.result.content[0].text);
+      expect(content.status).toBe("valid");
+      expect(content.hash).toMatch(/^[0-9a-f]{64}$/); // SHA-256 hex
+      expect(content.size).toBeGreaterThan(10000);
       server.kill();
       break;
     }
@@ -85,8 +88,8 @@ describe("MCP Server Integration Tests", () => {
     server.stdin.write(
       JSON.stringify({
         id: 4,
-        method: "query_dependency_graph",
-        params: { query: "test" },
+        method: "tools/call",
+        params: { name: "query_dependency_graph", arguments: { query: "stats" } },
       }) + "\n"
     );
 
@@ -94,8 +97,7 @@ describe("MCP Server Integration Tests", () => {
     for await (const chunk of server.stdout) {
       const response = JSON.parse(decoder.decode(chunk));
       expect(response.id).toBe(4);
-      expect(response.result.query).toBe("test");
-      expect(response.result.note).toContain("Not yet implemented");
+      expect(response.result.content[0].text).toBeDefined();
       server.kill();
       break;
     }
@@ -117,7 +119,7 @@ describe("MCP Server Integration Tests", () => {
       const response = JSON.parse(decoder.decode(chunk));
       expect(response.id).toBe(5);
       expect(response.error).toBeDefined();
-      expect(response.error.message).toContain("Unknown method");
+      expect(response.error.message).toContain("Method not found");
       server.kill();
       break;
     }

@@ -1,0 +1,13 @@
+# Bun configuration - excludes Playwright tests from bun test runner
+# Playwright tests must be run via: bun x playwright test
+
+[test]
+# Match standard test patterns but exclude Playwright .spec.ts files
+root = "."
+
+# Explicitly ignore Playwright test directories
+ignore = [
+  "bun-playwright-poc/**",
+  "**/node_modules/**",
+  "**/*.spec.ts"
+]

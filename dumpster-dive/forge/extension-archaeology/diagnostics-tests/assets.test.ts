@@ -19,7 +19,7 @@ test("mandala theme file exists and is valid", () => {
   expect(existsSync(themePath)).toBe(true);
 
   const theme = JSON.parse(readFileSync(themePath, "utf-8"));
-  expect(theme.name).toBe("Chthonic Mandala");
+  expect(theme.name).toContain("Chthonic Mandala");
   expect(theme.type).toBe("dark");
   expect(Object.keys(theme.colors).length).toBeGreaterThan(20);
   expect(theme.tokenColors.length).toBeGreaterThan(10);
