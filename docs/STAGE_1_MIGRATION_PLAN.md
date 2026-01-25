@@ -166,16 +166,26 @@ Files newly tracked in `.ankhrc[ssot_ified]`:
 ## 5. Execution Checklist
 
 - [x] Create `docs/sessions/` directory
-- [x] Move 15 session report files
+- [x] Move 15 session report files (actual: 18)
 - [x] Create `docs/frameworks/` directory
-- [x] Move 4 framework/quickref files
+- [x] Move 4 framework/quickref files (actual: 8 incl. ankh/)
 - [x] Create `docs/handoffs/` directory
 - [x] Move 3 handoff files
 - [x] Generate `docs/DCRP_SYNTHESIS.md` from 10 DCRP files
-- [x] Archive DCRP originals to `dumpster-dive/consolidated/dcrp/`
+- [x] Archive DCRP originals to `dumpster-dive/consolidated/dcrp/` (9 files)
 - [x] Update `.ankhrc[migration_status]` entries to COMPLETE
 - [x] Document SSOT-ification methodology (`docs/SSOTIFICATION_METHODOLOGY.md`)
-- [ ] Commit with message: `chore: Stage 1 root-level repurposing complete`
+- [x] Commit: `7433a56` Stage 1 root-level repurposing complete
+- [x] Commit: `5affab9` Stage 1.5 actual reduction
+
+**STATUS: COMPLETE** (2026-01-25)
+
+### Stage 1.5 Additional Reductions:
+- Root .md: 29 → 1 (CLAUDE.md only)
+- Root .json: 11 → 5
+- Untracked: .next/ (113), genesis logs (16), daemon classifications (123)
+- Organized: data/epistemograph/, data/graphs/
+- Git-tracked: 1,351 → 1,221 (130 file reduction)
 
 ---
 

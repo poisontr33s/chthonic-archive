@@ -64,15 +64,20 @@ SPECTRA_CHROMA_DOC = "dumpster-dive/from-github/macro-prompt-world/sub-milfs/Spe
 SNOW_WHITE_DOC = "dumpster-dive/from-github/macro-prompt-world/prime-factions/Alabaster_Voyde_The_Snow_White_Phenomenon.md"
 
 # Artifacts & Indices
+# Root (SSOT indices - stay at root)
 ANKH_INDEX = "ankh_index.json"
 SID_INDEX = "sid_index.json"
-CURRICULUM_CORE = "curriculum_core_v1.json"
-DEPENDENCY_GRAPH = "dependency_graph.json"
-DEPENDENCY_GRAPH_PROD = "dependency_graph_production.json"
-DEPENDENCY_GRAPH_ENHANCED = "dependency_graph_enhanced.json"
-CROSS_REF_TRIPTYCH = "CROSS_REFERENCE_TRIPTYCH.md"
-EPISTEMOGRAPH = "epistemograph_custody_v1.1.1.md"
-TOPOLOGY_MAP = "topology_map.md"
+# Reorganized: 2026-01-25 Stage 1.5 → data/
+CURRICULUM_CORE = "data/curriculum_core_v1.json"
+DEPENDENCY_GRAPH = "data/graphs/dependency_graph.json"
+DEPENDENCY_GRAPH_PROD = "data/graphs/dependency_graph_production.json"
+DEPENDENCY_GRAPH_ENHANCED = "data/graphs/dependency_graph_enhanced.json"
+TOPOLOGY_GRAPH = "data/graphs/topology_graph.json"
+
+# Documentation (relocated 2026-01-25 Stage 1.5)
+CROSS_REF_TRIPTYCH = "docs/protocols/CROSS_REFERENCE_TRIPTYCH.md"
+EPISTEMOGRAPH_CUSTODY = "docs/reference/epistemograph/epistemograph_custody_v1.1.1.md"
+TOPOLOGY_MAP = "docs/architecture/topology_map.md"
 
 # Runtime Artifacts (ephemeral)
 MAGISTRA_SPECTRAL_HISTORY = ".magistra_spectral_history.json"
@@ -89,11 +94,13 @@ DCRP_EVOLUTION = ".dcrp_evolution.json"
 
 # =============================================================================
 # [databases] - SQLite and persistent stores
+# Reorganized: 2026-01-25 Stage 1.5 → data/epistemograph/
 # =============================================================================
 [databases]
-EPISTEMOGRAPH_DB_CURRENT = "chthonic_epistemograph_v1.1.1.sqlite"
-EPISTEMOGRAPH_DB_LEGACY = "chthonic_epistemograph_v1.1.sqlite"
-EPISTEMOGRAPH_DB_ORIGINAL = "chthonic_epistemograph.sqlite"
+EPISTEMOGRAPH_DB_CURRENT = "data/epistemograph/chthonic_epistemograph_v1.1.1.sqlite"
+EPISTEMOGRAPH_DB_LEGACY = "data/epistemograph/archive/chthonic_epistemograph_v1.1.sqlite"
+EPISTEMOGRAPH_DB_ORIGINAL = "data/epistemograph/archive/chthonic_epistemograph.sqlite"
+EPISTEMOGRAPH_TEST = "scripts/test_epistemograph.sqlite"
 
 # =============================================================================
 # [session_reports] - Session documentation ARCHIVED to docs/sessions/
