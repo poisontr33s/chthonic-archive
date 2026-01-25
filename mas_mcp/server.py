@@ -3749,16 +3749,20 @@ _genesis_engine = None
 _genesis_service = None  # Background genesis service (v2)
 
 def _get_genesis_engine():
-    """Get or create the Genesis Engine singleton (v1 - basic synthesis)."""
+    """Get or create the Genesis Engine singleton (SSOT-driven v2).
+    
+    NOTE: v1 (milf_genesis.py) has been deprecated and archived.
+    Now uses milf_genesis_v2 with SSOT-driven constants from ssot_extractor.
+    """
     global _genesis_engine
     if _genesis_engine is None:
         try:
-            from milf_genesis import MILFGenesisEngine
+            from milf_genesis_v2 import MILFGenesisEngineV2
             mpw_path = PROJECT_ROOT / ".github" / "copilot-instructions.md"
-            _genesis_engine = MILFGenesisEngine(mpw_path)
-            logger.info("🔥 Genesis Engine v1 initialized")
+            _genesis_engine = MILFGenesisEngineV2(mpw_path)
+            logger.info("🔥 Genesis Engine v2 (SSOT-driven) initialized")
         except Exception as e:
-            logger.error(f"Failed to initialize Genesis Engine v1: {e}")
+            logger.error(f"Failed to initialize Genesis Engine v2: {e}")
             return None
     return _genesis_engine
 

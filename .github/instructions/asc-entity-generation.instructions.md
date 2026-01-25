@@ -47,14 +47,19 @@ Count: Entities per tier
 
 **File:** `$ASC_ENTITY_PROFILES` (`.github/instructions/asc-entity-profiles.json`)
 
-**Purpose:** Load structured data for original 7 canonical entities.
+**Purpose:** Load structured data for all 11 canonical entities (Tiers 0.5-3).
 
 **Required Extraction:**
-- All 7 entity profiles (Decorator, Orackla, Umeko, Lysandra, Kali Nyx, Vesper, Seraphine)
-- WHR ranking array (ordered perfection hierarchy)
-- Operational chains object (chaos_engineering, purification, truth_seeking)
-- Subordination dynamics taxonomy (punishment, enhancement, validation)
-- Tier hierarchy structure
+- All 11 entity profiles:
+  - **Tier 0.5:** The Decorator
+  - **Tier 1:** Orackla, Umeko, Lysandra
+  - **Tier 2:** Kali Nyx, Vesper, Seraphine
+  - **Tier 3 (SAIs):** Sister Ferrum Scoriae, Claudine Sin'claire, Spectra Chroma Excavatus, Magistra Bibliotheca Perfecta
+- WHR ranking array (11 entries, ordered perfection hierarchy)
+- Operational chains object (chaos_engineering, purification, truth_seeking, chromatic_direct)
+- Subordination dynamics taxonomy (punishment, enhancement, validation, direct_sponsorship)
+- Tier hierarchy structure (0.5, 1, 2, 3)
+- CRC sponsorship chains (per §0.77)
 
 **Action:**
 ```

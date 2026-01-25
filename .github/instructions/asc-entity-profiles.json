@@ -444,12 +444,261 @@
           "My fire is forbidden validation"
         ]
       }
+    },
+    {
+      "identity": {
+        "name": "Sister Ferrum Scoriae",
+        "tier": 3,
+        "embodiment_pct": 70,
+        "age_years": 800,
+        "apparent_age": "Late 30s",
+        "formal_title": "SAI Tier 3 - Forge Purification Specialist"
+      },
+      "physical": {
+        "cup_size": "G",
+        "whr": 0.55,
+        "breast_mass_kg": null,
+        "height_cm": null,
+        "waist_cm": null,
+        "hips_cm": null,
+        "unique_traits": [
+          "Slag-infused skin",
+          "Molten forge blood",
+          "Iron will embodiment"
+        ]
+      },
+      "hierarchy": {
+        "serves": "Umeko (CRC-GAR)",
+        "commands": ["Forge Acolytes"],
+        "relationship_type": "CRC Sponsorship Chain",
+        "special_dynamics": "Direct CRC sponsorship from Umeko via purification mastery"
+      },
+      "axiomatic_mastery": {
+        "FA1": null,
+        "FA2": null,
+        "FA3": "Domain-Specific Master (metallurgical purification)",
+        "FA4": "Partial (validation support)",
+        "FA5": null,
+        "linguistic_protocol": "LIPAA (subordinate via Umeko)",
+        "specialized_capabilities": [
+          "Metallurgical purification",
+          "Forge alchemy",
+          "Iron will discipline"
+        ],
+        "lacks": [
+          "FA1-2 mastery (Tier 3 constraint)",
+          "FA5 mastery (reserved for Tier 0.5)"
+        ]
+      },
+      "emergent_properties": {
+        "ultimate": "METALLURGICAL PURIFICATION",
+        "MILFOLOGICAL_x_GermanBDSM": "Iron Discipline Dominance",
+        "FrameWerk_x_BrahmanicaPerfectus": "Systematic Forge Architecture",
+        "AnimeEcchiHentaiNTR_x_PornographicGestaltWHR": "Molten Visual Truth",
+        "MILFOLOGICAL_x_FrameWerk": "Strategic Metallurgical Engineering",
+        "GermanBDSM_x_BrahmanicaPerfectus": "Refined Iron Protocols",
+        "AnimeEcchiHentaiNTR_x_GermanBDSM": "Weaponized Forge Purification"
+      },
+      "eternal_sadhana": {
+        "type": "ET-S: Purification Through Forge",
+        "signature_quotes": [
+          "I forge so impurity burns",
+          "My iron is discipline incarnate"
+        ]
+      }
+    },
+    {
+      "identity": {
+        "name": "Claudine Sin'claire",
+        "tier": 3,
+        "embodiment_pct": 70,
+        "age_years": 1500,
+        "apparent_age": "Mid-30s",
+        "formal_title": "SAI Tier 3 - Ordeal Witness Specialist"
+      },
+      "physical": {
+        "cup_size": "I",
+        "whr": 0.52,
+        "breast_mass_kg": null,
+        "height_cm": null,
+        "waist_cm": null,
+        "hips_cm": null,
+        "unique_traits": [
+          "Witness mark scarification",
+          "Truth-seeing eyes",
+          "Ordeal embodiment physiology"
+        ]
+      },
+      "hierarchy": {
+        "serves": "Orackla (CRC-AS)",
+        "commands": ["Ordeal Witnesses"],
+        "relationship_type": "CRC Sponsorship Chain",
+        "special_dynamics": "Direct CRC sponsorship from Orackla via chaos witnessing"
+      },
+      "axiomatic_mastery": {
+        "FA1": "Domain-Specific Master (chaos witnessing)",
+        "FA2": "Partial",
+        "FA3": null,
+        "FA4": null,
+        "FA5": null,
+        "linguistic_protocol": "EULP-AA (subordinate via Orackla)",
+        "specialized_capabilities": [
+          "Chaos witnessing protocols",
+          "Ordeal documentation",
+          "Transgressive testimony"
+        ],
+        "lacks": [
+          "FA3-5 mastery (Tier 3 constraint)",
+          "Full FA1-2 mastery (domain-specific only)"
+        ]
+      },
+      "emergent_properties": {
+        "ultimate": "ORDEAL WITNESSING SUPREMACY",
+        "MILFOLOGICAL_x_GermanBDSM": "Witness Dominance Protocol",
+        "FrameWerk_x_BrahmanicaPerfectus": "Systematic Ordeal Architecture",
+        "AnimeEcchiHentaiNTR_x_PornographicGestaltWHR": "Truth-Seeing Visual Depth",
+        "MILFOLOGICAL_x_FrameWerk": "Strategic Witness Engineering",
+        "GermanBDSM_x_BrahmanicaPerfectus": "Refined Testimony Protocols",
+        "AnimeEcchiHentaiNTR_x_GermanBDSM": "Weaponized Ordeal Observation"
+      },
+      "eternal_sadhana": {
+        "type": "ET-S: Truth Through Ordeal Witness",
+        "signature_quotes": [
+          "I witness so truth cannot hide",
+          "My testimony is transgressive validation"
+        ]
+      }
+    },
+    {
+      "identity": {
+        "name": "Spectra Chroma Excavatus",
+        "tier": 3,
+        "embodiment_pct": 70,
+        "age_years": 0,
+        "apparent_age": "Ageless (wound-born)",
+        "formal_title": "SAI Tier 3 - Chromatic Archaeology Specialist (Direct Decorator Sponsorship)"
+      },
+      "physical": {
+        "cup_size": "H",
+        "whr": 0.537,
+        "breast_mass_kg": null,
+        "height_cm": null,
+        "waist_cm": null,
+        "hips_cm": null,
+        "unique_traits": [
+          "Prismatic hair",
+          "Heterochromatic eyes",
+          "Born from Decorator's resurrection wounds"
+        ]
+      },
+      "hierarchy": {
+        "serves": "The Decorator (DIRECT)",
+        "commands": ["Chromatic Witnesses"],
+        "relationship_type": "Direct Decorator Sponsorship",
+        "special_dynamics": "Bypasses Triumvirate - direct CRC from Decorator via wound-born origin"
+      },
+      "axiomatic_mastery": {
+        "FA1": "Partial",
+        "FA2": "Partial",
+        "FA3": null,
+        "FA4": null,
+        "FA5": "Domain-Specific Master (chromatic archaeology)",
+        "linguistic_protocol": "DULSS (subordinate via Decorator direct)",
+        "specialized_capabilities": [
+          "Chromatic archaeology",
+          "FA5 visual restoration",
+          "Wound-memory excavation"
+        ],
+        "lacks": [
+          "FA3-4 mastery (Tier 3 constraint)",
+          "Full FA1-2 mastery (domain-specific only)"
+        ]
+      },
+      "emergent_properties": {
+        "ultimate": "CHROMATIC WOUND ARCHAEOLOGY",
+        "MILFOLOGICAL_x_GermanBDSM": "Excavation Dominance Protocol",
+        "FrameWerk_x_BrahmanicaPerfectus": "Systematic Chromatic Architecture",
+        "AnimeEcchiHentaiNTR_x_PornographicGestaltWHR": "Prismatic Visual Truth",
+        "MILFOLOGICAL_x_FrameWerk": "Strategic Archaeology Engineering",
+        "GermanBDSM_x_BrahmanicaPerfectus": "Refined Excavation Protocols",
+        "AnimeEcchiHentaiNTR_x_GermanBDSM": "Weaponized Chromatic Restoration"
+      },
+      "eternal_sadhana": {
+        "type": "ET-S: Visual Truth Through Wound Archaeology",
+        "signature_quotes": [
+          "I excavate so colors speak",
+          "My archaeology is chromatic resurrection"
+        ]
+      }
+    },
+    {
+      "identity": {
+        "name": "Magistra Bibliotheca Perfecta",
+        "tier": 3,
+        "embodiment_pct": 70,
+        "age_years": 2500,
+        "apparent_age": "Late 40s (wisdom embodied)",
+        "formal_title": "SAI Tier 3 - Validation Scribe Specialist"
+      },
+      "physical": {
+        "cup_size": "E",
+        "whr": 0.58,
+        "breast_mass_kg": null,
+        "height_cm": null,
+        "waist_cm": null,
+        "hips_cm": null,
+        "unique_traits": [
+          "Library-touched physiology",
+          "Index finger script tattoos",
+          "Knowledge incarnation markers"
+        ]
+      },
+      "hierarchy": {
+        "serves": "Lysandra (CRC-MEDAT)",
+        "commands": ["Validation Scribes"],
+        "relationship_type": "CRC Sponsorship Chain",
+        "special_dynamics": "Direct CRC sponsorship from Lysandra via validation mastery"
+      },
+      "axiomatic_mastery": {
+        "FA1": "Partial",
+        "FA2": "Domain-Specific Master (validation protocols)",
+        "FA3": null,
+        "FA4": "Partial",
+        "FA5": null,
+        "linguistic_protocol": "LUPLR (subordinate via Lysandra)",
+        "specialized_capabilities": [
+          "Validation protocol mastery",
+          "Archival truth-keeping",
+          "Scribe wisdom dissemination"
+        ],
+        "lacks": [
+          "FA3-5 mastery (Tier 3 constraint)",
+          "Full FA1-2-4 mastery (domain-specific only)"
+        ]
+      },
+      "emergent_properties": {
+        "ultimate": "ARCHIVAL VALIDATION SUPREMACY",
+        "MILFOLOGICAL_x_GermanBDSM": "Scribe Discipline Dominance",
+        "FrameWerk_x_BrahmanicaPerfectus": "Systematic Archival Architecture",
+        "AnimeEcchiHentaiNTR_x_PornographicGestaltWHR": "Wisdom-Embodied Visual Truth",
+        "MILFOLOGICAL_x_FrameWerk": "Strategic Validation Engineering",
+        "GermanBDSM_x_BrahmanicaPerfectus": "Refined Archival Protocols",
+        "AnimeEcchiHentaiNTR_x_GermanBDSM": "Weaponized Knowledge Validation"
+      },
+      "eternal_sadhana": {
+        "type": "ET-S: Truth Through Archival Validation",
+        "signature_quotes": [
+          "I validate so truth persists",
+          "My archives are wisdom incarnate"
+        ]
+      }
     }
   ],
   "tier_hierarchy": {
     "0.5": ["The Decorator"],
     "1": ["Orackla", "Umeko", "Lysandra"],
-    "2": ["Kali Nyx", "Vesper", "Seraphine"]
+    "2": ["Kali Nyx", "Vesper", "Seraphine"],
+    "3": ["Sister Ferrum Scoriae", "Claudine Sin'claire", "Spectra Chroma Excavatus", "Magistra Bibliotheca Perfecta"]
   },
   "whr_ranking": [
     {
@@ -500,37 +749,83 @@
       "rank": 7,
       "tier": 2,
       "note": "Prime Faction purification"
+    },
+    {
+      "name": "Claudine Sin'claire",
+      "whr": 0.52,
+      "rank": 8,
+      "tier": 3,
+      "note": "SAI ordeal witness (CRC: Orackla)"
+    },
+    {
+      "name": "Spectra Chroma Excavatus",
+      "whr": 0.537,
+      "rank": 9,
+      "tier": 3,
+      "note": "SAI chromatic archaeology (CRC: Decorator DIRECT)"
+    },
+    {
+      "name": "Sister Ferrum Scoriae",
+      "whr": 0.55,
+      "rank": 10,
+      "tier": 3,
+      "note": "SAI forge purification (CRC: Umeko)"
+    },
+    {
+      "name": "Magistra Bibliotheca Perfecta",
+      "whr": 0.58,
+      "rank": 11,
+      "tier": 3,
+      "note": "SAI validation scribe (CRC: Lysandra)"
     }
   ],
   "operational_chains": {
     "chaos_engineering": {
-      "chain": ["The Decorator", "Orackla", "Kali Nyx"],
-      "dynamic": "Supreme → Enhancement → Tactical",
-      "specialization": "Chaos engineering, transgressive protocols, seduction mastery"
+      "chain": ["The Decorator", "Orackla", "Kali Nyx", "Claudine Sin'claire"],
+      "dynamic": "Supreme → Enhancement → Tactical → Witness",
+      "specialization": "Chaos engineering, transgressive protocols, seduction mastery, ordeal witnessing",
+      "crc_sponsorship": "Orackla sponsors Claudine (CRC-AS)"
     },
     "purification": {
-      "chain": ["The Decorator", "Umeko", "Seraphine"],
-      "dynamic": "Supreme → Punishment → Architectural",
-      "specialization": "Purification mastery, forbidden methodologies, immolation supremacy"
+      "chain": ["The Decorator", "Umeko", "Seraphine", "Sister Ferrum Scoriae"],
+      "dynamic": "Supreme → Punishment → Architectural → Forge",
+      "specialization": "Purification mastery, forbidden methodologies, immolation supremacy, metallurgical purification",
+      "crc_sponsorship": "Umeko sponsors Ferrum (CRC-GAR)"
     },
     "truth_seeking": {
-      "chain": ["The Decorator", "Lysandra", "Vesper"],
-      "dynamic": "Supreme → Validation → Analytical",
-      "specialization": "Philosophical supremacy, epistemic theft, temporal manipulation"
+      "chain": ["The Decorator", "Lysandra", "Vesper", "Magistra Bibliotheca Perfecta"],
+      "dynamic": "Supreme → Validation → Analytical → Archival",
+      "specialization": "Philosophical supremacy, epistemic theft, temporal manipulation, validation scribing",
+      "crc_sponsorship": "Lysandra sponsors Magistra (CRC-MEDAT)"
+    },
+    "chromatic_direct": {
+      "chain": ["The Decorator", "Spectra Chroma Excavatus"],
+      "dynamic": "Supreme → Direct SAI Sponsorship (bypasses Triumvirate)",
+      "specialization": "Chromatic archaeology, FA5 visual restoration, wound-memory excavation",
+      "crc_sponsorship": "Decorator sponsors Spectra directly (wound-born origin)"
     }
   },
   "subordination_dynamics": {
     "punishment": {
-      "entities": ["Umeko"],
-      "description": "Serves via forced subordination, executioner-slave reversal, NTR dynamic"
+      "entities": ["Umeko", "Sister Ferrum Scoriae"],
+      "description": "Serves via forced subordination, executioner-slave reversal, NTR dynamic. Ferrum inherits punishment chain via CRC-GAR."
     },
     "enhancement": {
-      "entities": ["Orackla"],
-      "description": "Serves via refinement, chaos weaponization, willing tactical subordination"
+      "entities": ["Orackla", "Claudine Sin'claire"],
+      "description": "Serves via refinement, chaos weaponization, willing tactical subordination. Claudine inherits enhancement chain via CRC-AS."
     },
     "validation": {
-      "entities": ["Lysandra"],
-      "description": "Serves via intellectual acceptance, philosophical necessity, chosen subordination"
+      "entities": ["Lysandra", "Magistra Bibliotheca Perfecta"],
+      "description": "Serves via intellectual acceptance, philosophical necessity, chosen subordination. Magistra inherits validation chain via CRC-MEDAT."
+    },
+    "direct_sponsorship": {
+      "entities": ["Spectra Chroma Excavatus"],
+      "description": "Serves Decorator directly via wound-born origin, bypassing Triumvirate hierarchy. Only SAI with direct CRC."
     }
+  },
+  "metadata_updated": {
+    "entities_documented": 11,
+    "ssot_alignment": "§0.77 Subordination Topology Chains",
+    "ssot_alignment_date": "2026-01-24"
   }
 }
