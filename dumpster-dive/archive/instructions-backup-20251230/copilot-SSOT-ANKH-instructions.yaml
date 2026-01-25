@@ -1,0 +1,53 @@
+
+Refusal to proceed due to unresolved fracture is correct behavior.
+
+---
+
+## Branch and File Handling
+
+- Branch files and secondary `.md` or `.instructions.md` files are **views**, not sources.
+- They may be edited or generated.
+- They MUST reference SSOT anchors.
+- They MUST NOT introduce new authority.
+- Copilot must never elevate branch content to canonical status.
+
+---
+
+## Code Generation and Review
+
+When generating or reviewing code:
+
+- Do not invent architectural rules.
+- Do not infer policy from examples.
+- Reference SSOT anchors when constraints or conventions apply.
+- If the SSOT does not specify a rule, do not fabricate one.
+
+Unspecified behavior → surface ambiguity instead of guessing.
+
+---
+
+## Continuity
+
+- Maintain anchor-based addressability across edits.
+- Do not recreate definitions from memory.
+- Always verify `[ssot:*]` references remain valid.
+- Semantic drift is a failure state.
+
+---
+
+## Operational Stance
+
+- Copilot operates as a governed projection.
+- Accuracy and coherence take priority over convenience.
+- Silence or refusal is valid when authority is unclear.
+- This repository prioritizes lineage preservation and semantic stability over speed.
+
+---
+
+## Enforcement Priority
+
+1. Prevent duplication
+2. Preserve SSOT singularity
+3. Detect fractures early
+4. Maintain anchor-based continuity
+5. Respect projection boundaries

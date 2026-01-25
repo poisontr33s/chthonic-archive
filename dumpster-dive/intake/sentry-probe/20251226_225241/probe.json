@@ -1,0 +1,24 @@
+{
+  "generatedAt": "2025-12-26T21:52:41.525Z",
+  "baseUrl": "https://sentry.io",
+  "ok": false,
+  "tokenPresent": true,
+  "requests": [
+    {
+      "name": "api_0_root",
+      "url": "https://sentry.io/api/0/",
+      "method": "GET",
+      "status": 200,
+      "contentType": "application/json",
+      "bodyFile": "C:/Users/erdno/chthonic-archive/dumpster-dive/intake/sentry-probe/20251226_225241/api_0_root.body.txt"
+    },
+    {
+      "name": "issue",
+      "url": "https://sentry.io/api/0/issues/85188706/",
+      "method": "GET",
+      "status": 404,
+      "contentType": "application/json",
+      "bodyFile": "C:/Users/erdno/chthonic-archive/dumpster-dive/intake/sentry-probe/20251226_225241/issue.body.txt"
+    }
+  ]
+}

@@ -1,0 +1,197 @@
+{
+  "generatedAt": "2025-12-26T23:18:43.734Z",
+  "repoRoot": "C:\\Users\\erdno\\chthonic-archive",
+  "config": {
+    "topN": 5,
+    "maxTodoHits": 20,
+    "enableSiphon": false,
+    "verify": [
+      "polyglot-versions"
+    ]
+  },
+  "summary": {
+    "filesScanned": 461,
+    "todoHits": 3,
+    "topCandidates": 5,
+    "verification": {
+      "attempted": [
+        "polyglot-versions"
+      ],
+      "ok": true,
+      "results": [
+        {
+          "name": "bun",
+          "exitCode": 0,
+          "stdoutFile": "C:/Users/erdno/chthonic-archive/dumpster-dive/intake/overnight-daemon/20251227_001842/bun.stdout.txt",
+          "stderrFile": "C:/Users/erdno/chthonic-archive/dumpster-dive/intake/overnight-daemon/20251227_001842/bun.stderr.txt",
+          "cmd": "C:\\Users\\erdno\\.bun\\bin\\bun.exe",
+          "args": [
+            "--version"
+          ]
+        },
+        {
+          "name": "uv",
+          "exitCode": 0,
+          "stdoutFile": "C:/Users/erdno/chthonic-archive/dumpster-dive/intake/overnight-daemon/20251227_001842/uv.stdout.txt",
+          "stderrFile": "C:/Users/erdno/chthonic-archive/dumpster-dive/intake/overnight-daemon/20251227_001842/uv.stderr.txt",
+          "cmd": "C:\\Users\\erdno\\.local\\bin\\uv.exe",
+          "args": [
+            "--version"
+          ]
+        },
+        {
+          "name": "cargo",
+          "exitCode": 0,
+          "stdoutFile": "C:/Users/erdno/chthonic-archive/dumpster-dive/intake/overnight-daemon/20251227_001842/cargo.stdout.txt",
+          "stderrFile": "C:/Users/erdno/chthonic-archive/dumpster-dive/intake/overnight-daemon/20251227_001842/cargo.stderr.txt",
+          "cmd": "C:\\Users\\erdno\\.cargo\\bin\\cargo.exe",
+          "args": [
+            "--version"
+          ]
+        },
+        {
+          "name": "rustc",
+          "exitCode": 0,
+          "stdoutFile": "C:/Users/erdno/chthonic-archive/dumpster-dive/intake/overnight-daemon/20251227_001842/rustc.stdout.txt",
+          "stderrFile": "C:/Users/erdno/chthonic-archive/dumpster-dive/intake/overnight-daemon/20251227_001842/rustc.stderr.txt",
+          "cmd": "C:\\Users\\erdno\\.cargo\\bin\\rustc.exe",
+          "args": [
+            "--version"
+          ]
+        },
+        {
+          "name": "go",
+          "exitCode": 0,
+          "stdoutFile": "C:/Users/erdno/chthonic-archive/dumpster-dive/intake/overnight-daemon/20251227_001842/go.stdout.txt",
+          "stderrFile": "C:/Users/erdno/chthonic-archive/dumpster-dive/intake/overnight-daemon/20251227_001842/go.stderr.txt",
+          "cmd": "C:\\Go\\bin\\go.exe",
+          "args": [
+            "version"
+          ]
+        },
+        {
+          "name": "ruby",
+          "exitCode": 0,
+          "stdoutFile": "C:/Users/erdno/chthonic-archive/dumpster-dive/intake/overnight-daemon/20251227_001842/ruby.stdout.txt",
+          "stderrFile": "C:/Users/erdno/chthonic-archive/dumpster-dive/intake/overnight-daemon/20251227_001842/ruby.stderr.txt",
+          "cmd": "C:\\Ruby34-x64\\bin\\ruby.exe",
+          "args": [
+            "--version"
+          ]
+        },
+        {
+          "name": "git",
+          "exitCode": 0,
+          "stdoutFile": "C:/Users/erdno/chthonic-archive/dumpster-dive/intake/overnight-daemon/20251227_001842/git.stdout.txt",
+          "stderrFile": "C:/Users/erdno/chthonic-archive/dumpster-dive/intake/overnight-daemon/20251227_001842/git.stderr.txt",
+          "cmd": "C:\\Program Files\\Git\\cmd\\git.exe",
+          "args": [
+            "--version"
+          ]
+        },
+        {
+          "name": "gcc",
+          "exitCode": 0,
+          "stdoutFile": "C:/Users/erdno/chthonic-archive/dumpster-dive/intake/overnight-daemon/20251227_001842/gcc.stdout.txt",
+          "stderrFile": "C:/Users/erdno/chthonic-archive/dumpster-dive/intake/overnight-daemon/20251227_001842/gcc.stderr.txt",
+          "cmd": "C:\\Ruby34-x64\\msys64\\ucrt64\\bin\\gcc.exe",
+          "args": [
+            "--version"
+          ]
+        },
+        {
+          "name": "g++",
+          "exitCode": 0,
+          "stdoutFile": "C:/Users/erdno/chthonic-archive/dumpster-dive/intake/overnight-daemon/20251227_001842/g++.stdout.txt",
+          "stderrFile": "C:/Users/erdno/chthonic-archive/dumpster-dive/intake/overnight-daemon/20251227_001842/g++.stderr.txt",
+          "cmd": "C:\\Ruby34-x64\\msys64\\ucrt64\\bin\\g++.exe",
+          "args": [
+            "--version"
+          ]
+        }
+      ]
+    }
+  },
+  "topCandidates": [
+    {
+      "relPath": "scripts/harvest_claudines.ps1",
+      "size": 15548,
+      "mtimeMs": 1766734374269,
+      "score": 58,
+      "reasons": [
+        "repo tooling",
+        "powershell tooling",
+        "freshness(+10)"
+      ],
+      "todoHits": 0
+    },
+    {
+      "relPath": "scripts/polyglot_env.ps1",
+      "size": 1310,
+      "mtimeMs": 1766738701626,
+      "score": 58,
+      "reasons": [
+        "repo tooling",
+        "powershell tooling",
+        "freshness(+10)"
+      ],
+      "todoHits": 0
+    },
+    {
+      "relPath": "scripts/probe_toolchain_path.ps1",
+      "size": 6830,
+      "mtimeMs": 1766737451574,
+      "score": 58,
+      "reasons": [
+        "repo tooling",
+        "powershell tooling",
+        "freshness(+10)"
+      ],
+      "todoHits": 0
+    },
+    {
+      "relPath": "scripts/run_mcp_artisan_server.ps1",
+      "size": 515,
+      "mtimeMs": 1766737770423,
+      "score": 58,
+      "reasons": [
+        "repo tooling",
+        "powershell tooling",
+        "freshness(+10)"
+      ],
+      "todoHits": 0
+    },
+    {
+      "relPath": "scripts/run_overnight_daemon.ps1",
+      "size": 719,
+      "mtimeMs": 1766736435671,
+      "score": 58,
+      "reasons": [
+        "repo tooling",
+        "powershell tooling",
+        "freshness(+10)"
+      ],
+      "todoHits": 0
+    }
+  ],
+  "todoHits": [
+    {
+      "file": "dev/overnight_refactor_mode.md",
+      "line": 29,
+      "kind": "TODO",
+      "text": "/ FIXME (if none exist where they should, create them), code smells, determinism issues, hygiene issues, missing tests, unclear naming, duplicated logic, brittle patterns. |"
+    },
+    {
+      "file": "dev/overnight_refactor_mode.md",
+      "line": 81,
+      "kind": "TODO",
+      "text": "/FIXME, obvious smells, missing tests, brittle logic, unclear naming |"
+    },
+    {
+      "file": "dev/overnight_refactor_mode.md",
+      "line": 82,
+      "kind": "TODO",
+      "text": "Roulette | `dev/overnight_todo.md` (if present) |"
+    }
+  ]
+}

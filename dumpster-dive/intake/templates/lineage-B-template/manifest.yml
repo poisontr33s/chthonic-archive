@@ -1,0 +1,8 @@
+# Lineage B Manifest
+
+name: consolidation-forge
+lineage_id: B
+submitter: Lineage B (Sonnet)
+phase: "⚓"
+entry_point: main.md
+notes: "Instruction consolidation + archive operations + protective oversight infrastructure"

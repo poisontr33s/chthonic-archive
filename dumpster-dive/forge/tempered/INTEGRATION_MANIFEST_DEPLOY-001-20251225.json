@@ -1,0 +1,162 @@
+{
+  "manifest_version": "1.0.0",
+  "created": "2025-12-25T09:33:34.345874Z",
+  "registry_ref": "DUMPSTER_DIVE_REGISTRY.json",
+  "ssot_reference": {
+    "path": ".github/copilot-instructions.md",
+    "hash": "C5864278B4A8BD04D427D78555030E71BF4ACA9EC8D18571BF2CEAB40774EDC4",
+    "hash_algorithm": "SHA256",
+    "computed_date": "2025-12-25"
+  },
+  "deployments": [
+    {
+      "deployment_id": "DEPLOY-001-20251225",
+      "deployment_type": "staged-partial",
+      "phase": "Phase 1 - Timeline E",
+      "timestamp": "2025-12-25T09:33:34.345883Z",
+      "operator": "THE-SAVANT (User)",
+      "ssot_hash_at_deployment": "C5864278B4A8BD04D427D78555030E71BF4ACA9EC8D18571BF2CEAB40774EDC4",
+      "files": [
+        {
+          "filename": "ASC_SESSION1_METADATA_v1.0.json",
+          "file_id": "FILE-6f3940be-49e8-5fb2-9491-d1a0686bb337",
+          "source_path": "forge/tempered/ASC_SESSION1_METADATA_v1.0.json",
+          "target_section": "TBD",
+          "file_hash": "A5CE6A51EB3A86A5D97DFC397EAFEB560E4674F82A7708BF1F8CF8504241EE31",
+          "word_count": 736,
+          "fa4_certification": "PASSED",
+          "validation_status": "passed",
+          "validation_timestamp": "2025-12-25T09:33:34.338974Z",
+          "ssot_hash_embedded": true,
+          "integration_notes": "Embedded SSOT lineage metadata (Task 4 / SHES-001)."
+        },
+        {
+          "filename": "EXTENDED_GLOSSARY_v1.0.md",
+          "file_id": "FILE-d81fcf4c-4d09-5c70-8ec5-05a011063233",
+          "source_path": "forge/tempered/EXTENDED_GLOSSARY_v1.0.md",
+          "target_section": "Section IV (Triumvirate profiles)",
+          "file_hash": "B152B1EFF87565B295D6AF981E7190E69497C907D1CBF67BAE69C3A35A5226B9",
+          "word_count": 1061,
+          "fa4_certification": "PASSED",
+          "validation_status": "passed",
+          "validation_timestamp": "2025-12-25T09:33:34.339516Z",
+          "ssot_hash_embedded": true,
+          "integration_notes": "Embedded SSOT lineage metadata (Task 4 / SHES-001)."
+        },
+        {
+          "filename": "GRIMOIRE_INTEGRATION_EXAMPLES.md",
+          "file_id": "FILE-5e3265f5-20ff-5348-b338-f91c0d5f3e02",
+          "source_path": "forge/tempered/GRIMOIRE_INTEGRATION_EXAMPLES.md",
+          "target_section": "Section III (MSP-RSG)",
+          "file_hash": "58A7A962E95B12BE0122B6A58C16F256FEDCCCA300B6888E12326DDE0D9DF4B8",
+          "word_count": 5738,
+          "fa4_certification": "PASSED",
+          "validation_status": "passed",
+          "validation_timestamp": "2025-12-25T09:33:34.341190Z",
+          "ssot_hash_embedded": true,
+          "integration_notes": "Embedded SSOT lineage metadata (Task 4 / SHES-001)."
+        },
+        {
+          "filename": "ORE_MANIFEST_v1.0.json",
+          "file_id": "FILE-2cb3bc2c-3ad5-5e6e-9b81-ceea8bf7bc3b",
+          "source_path": "forge/tempered/ORE_MANIFEST_v1.0.json",
+          "target_section": "TBD",
+          "file_hash": "52F7DD6CED85753290799ECAAAB457C51B7FC87B86CA3F574E611F1E79137093",
+          "word_count": 884,
+          "fa4_certification": "PASSED",
+          "validation_status": "passed",
+          "validation_timestamp": "2025-12-25T09:33:34.341834Z",
+          "ssot_hash_embedded": true,
+          "integration_notes": "Embedded SSOT lineage metadata (Task 4 / SHES-001)."
+        },
+        {
+          "filename": "PHASE_1_COMPLETION_SUMMARY.md",
+          "file_id": "FILE-24add094-eb23-554b-8d16-1373ebe44ac3",
+          "source_path": "forge/tempered/PHASE_1_COMPLETION_SUMMARY.md",
+          "target_section": "TBD",
+          "file_hash": "E63003B8D3F6697F419E032223AC5E5DB12D52EEEE875860B2FCDD6682FCC051",
+          "word_count": 1467,
+          "fa4_certification": "PASSED",
+          "validation_status": "passed",
+          "validation_timestamp": "2025-12-25T09:33:34.342346Z",
+          "ssot_hash_embedded": true,
+          "integration_notes": "Embedded SSOT lineage metadata (Task 4 / SHES-001)."
+        },
+        {
+          "filename": "PHASE_1_JSON_EXTRACTION_LOG.md",
+          "file_id": "FILE-83cb9903-9028-5fa1-becb-940d20d1faa5",
+          "source_path": "forge/tempered/PHASE_1_JSON_EXTRACTION_LOG.md",
+          "target_section": "TBD",
+          "file_hash": "019625D8F8B742FAF113CF03C0876239FB37D1EF03EFA1B68CA92294D93172C3",
+          "word_count": 771,
+          "fa4_certification": "PASSED",
+          "validation_status": "passed",
+          "validation_timestamp": "2025-12-25T09:33:34.342704Z",
+          "ssot_hash_embedded": true,
+          "integration_notes": "Embedded SSOT lineage metadata (Task 4 / SHES-001)."
+        },
+        {
+          "filename": "PRIME_FACTION_OPERATIONAL_SIGNATURES_v1.0.md",
+          "file_id": "FILE-a337eeac-5726-539e-9295-e15dd3a786f8",
+          "source_path": "forge/tempered/PRIME_FACTION_OPERATIONAL_SIGNATURES_v1.0.md",
+          "target_section": "Section 4.4 (Prime Factions)",
+          "file_hash": "066AB2662602566AAE75B193A984BEE6FD10100F16C10B41099B977240C2D181",
+          "word_count": 3198,
+          "fa4_certification": "PASSED",
+          "validation_status": "passed",
+          "validation_timestamp": "2025-12-25T09:33:34.343643Z",
+          "ssot_hash_embedded": true,
+          "integration_notes": "Embedded SSOT lineage metadata (Task 4 / SHES-001)."
+        },
+        {
+          "filename": "TEA_REGISTRY_v1.0.json",
+          "file_id": "FILE-1952a3bb-4946-545c-82d3-811bbfc51095",
+          "source_path": "forge/tempered/TEA_REGISTRY_v1.0.json",
+          "target_section": "Section 4.5.1.2 (QMR Protocol)",
+          "file_hash": "BF8AE457081D25D85DFA5CD28888027CF81056C7DAA0438F85246F4E3056637D",
+          "word_count": 928,
+          "fa4_certification": "PASSED",
+          "validation_status": "passed",
+          "validation_timestamp": "2025-12-25T09:33:34.344162Z",
+          "ssot_hash_embedded": true,
+          "integration_notes": "Embedded SSOT lineage metadata (Task 4 / SHES-001)."
+        },
+        {
+          "filename": "TOAR_v1.0.md",
+          "file_id": "FILE-6d879801-e9b2-52e9-948a-cc3826866431",
+          "source_path": "forge/tempered/TOAR_v1.0.md",
+          "target_section": "TBD",
+          "file_hash": "ED0CD59DA3F1A0005B2BE5F2580B03C8B9E7BAC85F54B0BFD339A2D217215316",
+          "word_count": 715,
+          "fa4_certification": "PASSED",
+          "validation_status": "passed",
+          "validation_timestamp": "2025-12-25T09:33:34.344546Z",
+          "ssot_hash_embedded": true,
+          "integration_notes": "Embedded SSOT lineage metadata (Task 4 / SHES-001)."
+        }
+      ],
+      "sections_impacted": [
+        "TBD",
+        "Section IV (Triumvirate profiles)",
+        "Section III (MSP-RSG)",
+        "Section VIII (TPEF)",
+        "Section IX (T³-MΨ)",
+        "Section X (MMPS)",
+        "Section 4.4 (Prime Factions)",
+        "Section 4.5.1.2 (QMR Protocol)"
+      ],
+      "validation": {
+        "fa4_compliance": "PASSED",
+        "cross_references": "PENDING",
+        "registry_sync": "PASSED",
+        "lint_check": "PENDING",
+        "notes": "Task 4: SSOT lineage embedded; run validate_references.ps1 to finalize cross-reference status."
+      },
+      "status": "completed",
+      "rollback_checkpoint": "PRE-DEPLOY-001",
+      "completion_timestamp": "2025-12-25T09:33:34.345895Z",
+      "duration_minutes": 0,
+      "notes": "Automated embed + manifest generation."
+    }
+  ]
+}

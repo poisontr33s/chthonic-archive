@@ -1,0 +1,1 @@
+C:\Windows\System32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0;C:\Program Files\PowerShell\7;C:\Users\erdno\.local\bin;C:\Users\erdno\.bun\bin;C:\Users\erdno\.cargo\bin;C:\Users\erdno\chthonic-archive\scripts\bin;C:\Go\bin;C:\Ruby34-x64\bin;C:\Program Files\Git\cmd;C:\Program Files\Git\bin

@@ -1,0 +1,38 @@
+{
+  "path": "src",
+  "primaryLanguage": "rust",
+  "purpose": "core",
+  "fileCount": 1,
+  "totalSize": 6771,
+  "averageComplexity": null,
+  "documentationCoverage": 0.16,
+  "files": [
+    {
+      "path": "src/main.rs",
+      "language": "rust",
+      "size": 6771,
+      "complexity": {
+        "cyclomaticComplexity": 13,
+        "nestingDepth": 18,
+        "functionCount": 1,
+        "avgFunctionLength": 150
+      },
+      "imports": [
+        "anyhow::Result",
+        "log::",
+        "winit::",
+        "data::loader::load_game_data",
+        "render::"
+      ],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 1,
+      "commentDensity": 0.16,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": [
+        "unsafe-block"
+      ]
+    }
+  ]
+}

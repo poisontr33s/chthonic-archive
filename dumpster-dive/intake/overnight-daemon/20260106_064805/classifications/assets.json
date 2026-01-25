@@ -1,0 +1,30 @@
+{
+  "path": "assets",
+  "primaryLanguage": "json",
+  "purpose": "resources",
+  "fileCount": 1,
+  "totalSize": 20723,
+  "averageComplexity": null,
+  "documentationCoverage": 0,
+  "files": [
+    {
+      "path": "assets/data.json",
+      "language": "json",
+      "size": 20723,
+      "complexity": {
+        "cyclomaticComplexity": 1,
+        "nestingDepth": 5,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    }
+  ]
+}

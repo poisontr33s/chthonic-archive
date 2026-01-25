@@ -1,0 +1,201 @@
+{
+  "path": "docs",
+  "primaryLanguage": "markdown",
+  "purpose": "documentation",
+  "fileCount": 10,
+  "totalSize": 76006,
+  "averageComplexity": null,
+  "documentationCoverage": 0,
+  "files": [
+    {
+      "path": "docs/CLAUDE_CODE_REGISTRATION.md",
+      "language": "markdown",
+      "size": 2765,
+      "complexity": {
+        "cyclomaticComplexity": 1,
+        "nestingDepth": 2,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "docs/CLI_EDITING_POLICY.md",
+      "language": "markdown",
+      "size": 2986,
+      "complexity": {
+        "cyclomaticComplexity": 1,
+        "nestingDepth": 2,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "docs/COPILOT_SESSION_PERSISTENCE.md",
+      "language": "markdown",
+      "size": 6187,
+      "complexity": {
+        "cyclomaticComplexity": 1,
+        "nestingDepth": 1,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "docs/EXECUTION_CONTRACT.md",
+      "language": "markdown",
+      "size": 1159,
+      "complexity": {
+        "cyclomaticComplexity": 1,
+        "nestingDepth": 0,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "docs/MCP_AUTONOMOUS_PREREQUISITES.md",
+      "language": "markdown",
+      "size": 6558,
+      "complexity": {
+        "cyclomaticComplexity": 1,
+        "nestingDepth": 2,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "docs/MCP_SERVER_TEMPLATE.md",
+      "language": "markdown",
+      "size": 17183,
+      "complexity": {
+        "cyclomaticComplexity": 1,
+        "nestingDepth": 10,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "docs/MCP_USER_WORKFLOWS.md",
+      "language": "markdown",
+      "size": 13024,
+      "complexity": {
+        "cyclomaticComplexity": 1,
+        "nestingDepth": 1,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "docs/PROBE_CONTRACT.md",
+      "language": "markdown",
+      "size": 1603,
+      "complexity": {
+        "cyclomaticComplexity": 1,
+        "nestingDepth": 1,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "docs/PWSH_RULES.md",
+      "language": "markdown",
+      "size": 11000,
+      "complexity": {
+        "cyclomaticComplexity": 1,
+        "nestingDepth": 2,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "docs/SESSION_BOOTSTRAP_SPEC.md",
+      "language": "markdown",
+      "size": 13541,
+      "complexity": {
+        "cyclomaticComplexity": 1,
+        "nestingDepth": 3,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    }
+  ]
+}

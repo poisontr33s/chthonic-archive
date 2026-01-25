@@ -1,0 +1,182 @@
+{
+  "path": "mas_mcp/frontend/pages",
+  "primaryLanguage": "typescript",
+  "purpose": "general",
+  "fileCount": 7,
+  "totalSize": 29376,
+  "averageComplexity": null,
+  "documentationCoverage": 0.01,
+  "files": [
+    {
+      "path": "mas_mcp/frontend/pages/cycles.tsx",
+      "language": "typescript",
+      "size": 2999,
+      "complexity": {
+        "cyclomaticComplexity": 3,
+        "nestingDepth": 5,
+        "functionCount": 3,
+        "avgFunctionLength": 30
+      },
+      "imports": [
+        "react",
+        "next/dynamic"
+      ],
+      "exports": [
+        "CyclesPage"
+      ],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0.021739130434782608,
+      "patterns": [
+        "async-patterns"
+      ],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "mas_mcp/frontend/pages/digest.tsx",
+      "language": "typescript",
+      "size": 14504,
+      "complexity": {
+        "cyclomaticComplexity": 12,
+        "nestingDepth": 12,
+        "functionCount": 3,
+        "avgFunctionLength": 114
+      },
+      "imports": [
+        "react",
+        "next/dynamic"
+      ],
+      "exports": [
+        "DigestPage"
+      ],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0.03206997084548105,
+      "patterns": [
+        "async-patterns"
+      ],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "mas_mcp/frontend/pages/entities.tsx",
+      "language": "typescript",
+      "size": 4016,
+      "complexity": {
+        "cyclomaticComplexity": 5,
+        "nestingDepth": 6,
+        "functionCount": 2,
+        "avgFunctionLength": 61
+      },
+      "imports": [
+        "react",
+        "next/dynamic"
+      ],
+      "exports": [
+        "EntitiesPage"
+      ],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0.024390243902439025,
+      "patterns": [
+        "async-patterns"
+      ],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "mas_mcp/frontend/pages/index.tsx",
+      "language": "typescript",
+      "size": 6222,
+      "complexity": {
+        "cyclomaticComplexity": 7,
+        "nestingDepth": 7,
+        "functionCount": 2,
+        "avgFunctionLength": 101
+      },
+      "imports": [
+        "react",
+        "next/dynamic"
+      ],
+      "exports": [
+        "Dashboard"
+      ],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0.01485148514851485,
+      "patterns": [
+        "async-patterns"
+      ],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "mas_mcp/frontend/pages/_app.tsx",
+      "language": "typescript",
+      "size": 188,
+      "complexity": {
+        "cyclomaticComplexity": 1,
+        "nestingDepth": 1,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [
+        "next/app"
+      ],
+      "exports": [
+        "App"
+      ],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "mas_mcp/frontend/pages/_document.tsx",
+      "language": "typescript",
+      "size": 496,
+      "complexity": {
+        "cyclomaticComplexity": 1,
+        "nestingDepth": 4,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [
+        "next/document"
+      ],
+      "exports": [
+        "Document"
+      ],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "mas_mcp/frontend/pages/_error.tsx",
+      "language": "typescript",
+      "size": 951,
+      "complexity": {
+        "cyclomaticComplexity": 1,
+        "nestingDepth": 6,
+        "functionCount": 1,
+        "avgFunctionLength": 36
+      },
+      "imports": [
+        "next"
+      ],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    }
+  ]
+}

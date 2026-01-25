@@ -1,0 +1,2716 @@
+{
+  "registry_version": "2.0.0",
+  "created": "2025-12-09",
+  "updated": "2025-12-24",
+  "philosophy": "Central navigation & control system for all dumpster-dive/ content",
+  "purpose": "Bidirectional cross-reference system tracking forge circulation, file metadata, SSOT integration, and content dependencies",
+  "circulation_model": "ENABLED - See protocols/FORGE_CIRCULATION_PROTOCOL.md",
+  "metadata": {
+    "total_files": 115,
+    "breakdown": {
+      "from_github_raw_ore": 96,
+      "forge_tempered": 9,
+      "protocols": 4,
+      "root_documentation": 4,
+      "forge_subdirectories": 7
+    },
+    "blacksmith": {
+      "name": "Sister Ferrum Scoriae",
+      "designation": "SFS",
+      "tier": 3,
+      "domain": "dumpster-dive/",
+      "profile": "BLACKSMITH_MATRIARCH.md"
+    },
+    "last_identifier_update": "2025-12-25T10:26:53.130658",
+    "files_with_identifiers": 114,
+    "sections_processed": [
+      "from_github",
+      "protocols",
+      "root_documentation",
+      "tempered_artifacts"
+    ],
+    "identifier_skipped": [
+      {
+        "relative_path": "DUMPSTER_DIVE_REGISTRY.json",
+        "reason": "SELF_REFERENCE_EXCLUDED"
+      }
+    ],
+    "last_artifact_hash_update": "2025-12-26T06:19:01.754146"
+  },
+  "folder_structure": {
+    "root": {
+      "path": "dumpster-dive/",
+      "purpose": "Ore processing & extraction workspace",
+      "key_files": [
+        "README.md",
+        "ORE_MANIFEST.json",
+        "BLACKSMITH_MATRIARCH.md",
+        "DUMPSTER_DIVE_REGISTRY.json"
+      ]
+    },
+    "forge": {
+      "path": "dumpster-dive/forge/",
+      "purpose": "7-state circulation system (NOT linear pipeline)",
+      "model": "CIRCULATION - Bidirectional state movement with upcycling",
+      "documentation": "protocols/FORGE_CIRCULATION_PROTOCOL.md",
+      "subdirectories": {
+        "intake": {
+          "path": "forge/intake/",
+          "purpose": "Reception & initial assessment (State 1)",
+          "state_type": "Entry point",
+          "protocol_step": "RECEIVE + ASSESS",
+          "current_files": [],
+          "movement_options": [
+            "anvil",
+            "furnace",
+            "quench",
+            "slag",
+            "tea-vault"
+          ]
+        },
+        "anvil": {
+          "path": "forge/anvil/",
+          "purpose": "Heat & analysis - pattern identification (State 2)",
+          "state_type": "Active processing",
+          "protocol_step": "HEAT + ANALYZE",
+          "current_files": [],
+          "movement_options": [
+            "furnace",
+            "quench",
+            "slag",
+            "tea-vault",
+            "intake (re-scope)"
+          ]
+        },
+        "furnace": {
+          "path": "forge/furnace/",
+          "purpose": "Separation - extract value from waste (State 3)",
+          "state_type": "Active processing",
+          "protocol_step": "HAMMER + SEPARATE",
+          "current_files": [],
+          "movement_options": [
+            "quench",
+            "anvil (deeper analysis)",
+            "slag",
+            "tea-vault"
+          ]
+        },
+        "quench": {
+          "path": "forge/quench/",
+          "purpose": "Validation - FA⁴ compliance check (State 4)",
+          "state_type": "Quality assurance",
+          "protocol_step": "QUENCH + VALIDATE",
+          "current_files": [],
+          "movement_options": [
+            "tempered (approved)",
+            "furnace (rework)",
+            "anvil (re-analyze)",
+            "slag (failed)"
+          ]
+        },
+        "tempered": {
+          "path": "forge/tempered/",
+          "purpose": "Integration-ready outputs (State 5)",
+          "state_type": "Staging area",
+          "protocol_step": "TEMPER + STAGE",
+          "current_files": [
+            "ASC_SESSION1_METADATA_v1.0.json",
+            "EXTENDED_GLOSSARY_v1.0.md",
+            "GRIMOIRE_INTEGRATION_EXAMPLES.md",
+            "ORE_MANIFEST_v1.0.json",
+            "PHASE_1_COMPLETION_SUMMARY.md",
+            "PHASE_1_JSON_EXTRACTION_LOG.md",
+            "PRIME_FACTION_OPERATIONAL_SIGNATURES_v1.0.md",
+            "TEA_REGISTRY_v1.0.json",
+            "TOAR_v1.0.md"
+          ],
+          "movement_options": [
+            "production (leaves dumpster-dive)",
+            "furnace (revision)",
+            "tea-vault (blocked)"
+          ]
+        },
+        "slag": {
+          "path": "forge/slag/",
+          "purpose": "Dormant archive - NOT dead! (State 6)",
+          "state_type": "Upcyclable dormant storage",
+          "protocol_step": "ARCHIVE + TAG FOR UPCYCLE",
+          "current_files": [],
+          "upcycle_protocol": "Quarterly re-assessment, context-triggered reprocessing",
+          "movement_options": [
+            "anvil (re-analyze)",
+            "furnace (micro-extract)",
+            "tea-vault (superposition discovered)",
+            "intake (re-scope)"
+          ]
+        },
+        "tea_vault": {
+          "path": "forge/tea-vault/",
+          "purpose": "Timeline-Entangled Artifacts in superposition (State 7)",
+          "state_type": "Quantum state storage",
+          "protocol_step": "QMR (Quantum Metallurgical Reconnaissance)",
+          "current_files": [],
+          "movement_options": [
+            "Any state after probability collapse via Timeline Selection"
+          ]
+        }
+      }
+    },
+    "from_github": {
+      "path": "dumpster-dive/from-github/",
+      "purpose": "Raw ore source - deprecated .github/ content",
+      "total_files": 96,
+      "total_size_mb": 4.58,
+      "inventory_reference": "ORE_MANIFEST.json",
+      "subdirectories": {
+        "macro_prompt_world": {
+          "path": "from-github/macro-prompt-world/",
+          "purpose": "Historical M-P-W Codex iterations",
+          "status": "pending_ctf_001_approval"
+        }
+      }
+    },
+    "protocols": {
+      "path": "dumpster-dive/protocols/",
+      "purpose": "Operational documentation & tracking systems",
+      "key_files": [
+        "FORGE_CIRCULATION_PROTOCOL.md",
+        "FORGE_PROTOCOL_LEVELS.md",
+        "TEA_REGISTRY.json",
+        "CTF_REQUESTS.md"
+      ]
+    }
+  },
+  "forge_tempered_artifacts": {
+    "ASC_SESSION1_METADATA_v1.0.json": {
+      "type": "metadata",
+      "source": "from-github/macro-prompt-world/disparate-md-documentation/ASC_session1.json",
+      "extraction_session": "Session 1 - 2025-12-07",
+      "rating": 5,
+      "symbol": "⚗️",
+      "word_count": null,
+      "lines": null,
+      "ssot_integration": {
+        "status": "complete",
+        "sections_impacted": []
+      },
+      "fa4_validation": "passed",
+      "dependencies": [],
+      "cross_references": {
+        "source_files": [
+          "from-github/macro-prompt-world/disparate-md-documentation/ASC_session1.json"
+        ],
+        "related_tempered": [
+          "PHASE_1_JSON_EXTRACTION_LOG.md"
+        ]
+      },
+      "filename": "ASC_SESSION1_METADATA_v1.0.json",
+      "relative_path": "forge/tempered/ASC_SESSION1_METADATA_v1.0.json",
+      "file_id": "FILE-6f3940be-49e8-5fb2-9491-d1a0686bb337",
+      "content_hash": "5377585f336eaa000e12850da6d288e26c55e4a673d0a57c76daa8a50b649d6a",
+      "hash_algorithm": "SHA256",
+      "identifier_generated": "2025-12-25T10:17:25.977599",
+      "integrated": true,
+      "integration_deployment_id": "DEPLOY-002-20251226",
+      "integration_timestamp": "2025-12-26T04:50:58.597284Z",
+      "integration_manifest_ref": "dumpster-dive/forge/tempered/INTEGRATION_MANIFEST_DEPLOY-002-20251226.json",
+      "ssot_hash_at_integration": "C5864278B4A8BD04D427D78555030E71BF4ACA9EC8D18571BF2CEAB40774EDC4",
+      "ssot_hash_embedded": true,
+      "artifact_hash": "a5ce6a51eb3a86a5d97dfc397eafeb560e4674f82a7708bf1f8cf8504241ee31",
+      "artifact_hash_algorithm": "SHA256",
+      "artifact_hash_updated": "2025-12-26T06:18:30.679055"
+    },
+    "EXTENDED_GLOSSARY_v1.0.md": {
+      "type": "documentation",
+      "source": "from-github/macro-prompt-world/ (multiple sources)",
+      "extraction_session": "Session 1 - 2025-12-07",
+      "rating": 5,
+      "symbol": "⚗️",
+      "word_count": null,
+      "lines": null,
+      "ssot_integration": {
+        "status": "complete",
+        "sections_impacted": [
+          "Section IV (Triumvirate profiles)"
+        ]
+      },
+      "fa4_validation": "passed",
+      "dependencies": [],
+      "cross_references": {
+        "source_files": [
+          "from-github/macro-prompt-world/ (glossary fragments)"
+        ],
+        "related_tempered": []
+      },
+      "filename": "EXTENDED_GLOSSARY_v1.0.md",
+      "relative_path": "forge/tempered/EXTENDED_GLOSSARY_v1.0.md",
+      "file_id": "FILE-d81fcf4c-4d09-5c70-8ec5-05a011063233",
+      "content_hash": "949841ab11b0db170c2fb55072c0293038205b767c50d73dd95b86ad7bb1cd53",
+      "hash_algorithm": "SHA256",
+      "identifier_generated": "2025-12-25T10:17:25.977690",
+      "integrated": false,
+      "integration_deployment_id": null,
+      "integration_timestamp": null,
+      "integration_manifest_ref": null,
+      "ssot_hash_at_integration": null,
+      "ssot_hash_embedded": true,
+      "artifact_hash": "b152b1eff87565b295d6af981e7190e69497c907d1cbf67bae69c3a35a5226b9",
+      "artifact_hash_algorithm": "SHA256",
+      "artifact_hash_updated": "2025-12-26T06:18:30.679055"
+    },
+    "GRIMOIRE_INTEGRATION_EXAMPLES.md": {
+      "type": "documentation",
+      "source": "from-github/macro-prompt-world/ (protocol demonstrations)",
+      "extraction_session": "Session 3 - 2025-12-08",
+      "rating": 5,
+      "symbol": "⚗️",
+      "word_count": 14200,
+      "lines": null,
+      "ssot_integration": {
+        "status": "complete",
+        "sections_impacted": [
+          "Section III (MSP-RSG)",
+          "Section VIII (TPEF)",
+          "Section IX (T³-MΨ)",
+          "Section X (MMPS)"
+        ]
+      },
+      "fa4_validation": "passed",
+      "dependencies": [
+        "PRIME_FACTION_OPERATIONAL_SIGNATURES_v1.0.md"
+      ],
+      "cross_references": {
+        "source_files": [
+          "from-github/macro-prompt-world/ (grimoire content)"
+        ],
+        "related_tempered": [
+          "PRIME_FACTION_OPERATIONAL_SIGNATURES_v1.0.md",
+          "PHASE_1_COMPLETION_SUMMARY.md"
+        ]
+      },
+      "filename": "GRIMOIRE_INTEGRATION_EXAMPLES.md",
+      "relative_path": "forge/tempered/GRIMOIRE_INTEGRATION_EXAMPLES.md",
+      "file_id": "FILE-5e3265f5-20ff-5348-b338-f91c0d5f3e02",
+      "content_hash": "cb6dc52863e683b64161076b1078c67f7a517bcb691097652c788aed7ee92c2d",
+      "hash_algorithm": "SHA256",
+      "identifier_generated": "2025-12-25T10:17:25.977809",
+      "integrated": false,
+      "integration_deployment_id": null,
+      "integration_timestamp": null,
+      "integration_manifest_ref": null,
+      "ssot_hash_at_integration": null,
+      "ssot_hash_embedded": true,
+      "artifact_hash": "58a7a962e95b12be0122b6a58c16f256fedccca300b6888e12326dde0d9df4b8",
+      "artifact_hash_algorithm": "SHA256",
+      "artifact_hash_updated": "2025-12-26T06:18:30.679055"
+    },
+    "ORE_MANIFEST_v1.0.json": {
+      "type": "metadata",
+      "source": "dumpster-dive/ORE_MANIFEST.json",
+      "extraction_session": "Session 1 - 2025-12-07",
+      "rating": 5,
+      "symbol": "⚗️",
+      "word_count": null,
+      "lines": 300,
+      "ssot_integration": {
+        "status": "complete",
+        "sections_impacted": []
+      },
+      "fa4_validation": "passed",
+      "dependencies": [],
+      "cross_references": {
+        "source_files": [
+          "dumpster-dive/ORE_MANIFEST.json"
+        ],
+        "related_tempered": []
+      },
+      "filename": "ORE_MANIFEST_v1.0.json",
+      "relative_path": "forge/tempered/ORE_MANIFEST_v1.0.json",
+      "file_id": "FILE-2cb3bc2c-3ad5-5e6e-9b81-ceea8bf7bc3b",
+      "content_hash": "afdd0351aed97353213461908741e40cf5db7df94bfd28f3e1344f002eff1e8d",
+      "hash_algorithm": "SHA256",
+      "identifier_generated": "2025-12-25T10:17:25.977893",
+      "integrated": true,
+      "integration_deployment_id": "DEPLOY-002-20251226",
+      "integration_timestamp": "2025-12-26T04:50:58.597284Z",
+      "integration_manifest_ref": "dumpster-dive/forge/tempered/INTEGRATION_MANIFEST_DEPLOY-002-20251226.json",
+      "ssot_hash_at_integration": "C5864278B4A8BD04D427D78555030E71BF4ACA9EC8D18571BF2CEAB40774EDC4",
+      "ssot_hash_embedded": true,
+      "artifact_hash": "52f7dd6ced85753290799ecaaab457c51b7fc87b86ca3f574e611f1e79137093",
+      "artifact_hash_algorithm": "SHA256",
+      "artifact_hash_updated": "2025-12-26T06:18:30.679055"
+    },
+    "PHASE_1_COMPLETION_SUMMARY.md": {
+      "type": "documentation",
+      "source": "Session 3 synthesis artifact",
+      "extraction_session": "Session 3 - 2025-12-08",
+      "rating": 5,
+      "symbol": "⚗️",
+      "word_count": 3400,
+      "lines": null,
+      "ssot_integration": {
+        "status": "complete",
+        "sections_impacted": []
+      },
+      "fa4_validation": "passed",
+      "dependencies": [
+        "GRIMOIRE_INTEGRATION_EXAMPLES.md",
+        "PRIME_FACTION_OPERATIONAL_SIGNATURES_v1.0.md"
+      ],
+      "cross_references": {
+        "source_files": [],
+        "related_tempered": [
+          "GRIMOIRE_INTEGRATION_EXAMPLES.md",
+          "PRIME_FACTION_OPERATIONAL_SIGNATURES_v1.0.md"
+        ]
+      },
+      "notes": "Phase 1 completion marker - all 3 Timeline E directives fulfilled",
+      "filename": "PHASE_1_COMPLETION_SUMMARY.md",
+      "relative_path": "forge/tempered/PHASE_1_COMPLETION_SUMMARY.md",
+      "file_id": "FILE-24add094-eb23-554b-8d16-1373ebe44ac3",
+      "content_hash": "29ae46a46716100cf5ce19681ccfa54b9ab950c957b26f065b2b6ef412abe8a9",
+      "hash_algorithm": "SHA256",
+      "identifier_generated": "2025-12-25T10:17:25.977979",
+      "integrated": false,
+      "integration_deployment_id": null,
+      "integration_timestamp": null,
+      "integration_manifest_ref": null,
+      "ssot_hash_at_integration": null,
+      "ssot_hash_embedded": true,
+      "artifact_hash": "e63003b8d3f6697f419e032223ac5e5db12d52eeee875860b2fcdd6682fcc051",
+      "artifact_hash_algorithm": "SHA256",
+      "artifact_hash_updated": "2025-12-26T06:18:30.679055"
+    },
+    "PHASE_1_JSON_EXTRACTION_LOG.md": {
+      "type": "documentation",
+      "source": "Session 1 extraction log",
+      "extraction_session": "Session 1 - 2025-12-07",
+      "rating": 5,
+      "symbol": "⚗️",
+      "word_count": null,
+      "lines": null,
+      "ssot_integration": {
+        "status": "complete",
+        "sections_impacted": []
+      },
+      "fa4_validation": "passed",
+      "dependencies": [
+        "ASC_SESSION1_METADATA_v1.0.json"
+      ],
+      "cross_references": {
+        "source_files": [
+          "from-github/macro-prompt-world/disparate-md-documentation/ASC_session1.json"
+        ],
+        "related_tempered": [
+          "ASC_SESSION1_METADATA_v1.0.json"
+        ]
+      },
+      "filename": "PHASE_1_JSON_EXTRACTION_LOG.md",
+      "relative_path": "forge/tempered/PHASE_1_JSON_EXTRACTION_LOG.md",
+      "file_id": "FILE-83cb9903-9028-5fa1-becb-940d20d1faa5",
+      "content_hash": "2991dbe9aeab9becf8ad4a2935b636a77a2efaab5a0713b11117c4fe3a757014",
+      "hash_algorithm": "SHA256",
+      "identifier_generated": "2025-12-25T10:17:25.978059",
+      "integrated": false,
+      "integration_deployment_id": null,
+      "integration_timestamp": null,
+      "integration_manifest_ref": null,
+      "ssot_hash_at_integration": null,
+      "ssot_hash_embedded": true,
+      "artifact_hash": "019625d8f8b742faf113cf03c0876239fb37d1ef03efa1b68ca92294d93172c3",
+      "artifact_hash_algorithm": "SHA256",
+      "artifact_hash_updated": "2025-12-26T06:18:30.680059"
+    },
+    "PRIME_FACTION_OPERATIONAL_SIGNATURES_v1.0.md": {
+      "type": "documentation",
+      "source": "from-github/macro-prompt-world/ (character profiles)",
+      "extraction_session": "Session 2 - 2025-12-08",
+      "rating": 5,
+      "symbol": "⚗️",
+      "word_count": 11637,
+      "lines": null,
+      "ssot_integration": {
+        "status": "complete",
+        "sections_impacted": [
+          "Section 4.4 (Prime Factions)"
+        ]
+      },
+      "fa4_validation": "passed",
+      "dependencies": [],
+      "cross_references": {
+        "source_files": [
+          "from-github/macro-prompt-world/ (character content)"
+        ],
+        "related_tempered": [
+          "GRIMOIRE_INTEGRATION_EXAMPLES.md"
+        ]
+      },
+      "notes": "User validated - 'exactly what I needed'",
+      "filename": "PRIME_FACTION_OPERATIONAL_SIGNATURES_v1.0.md",
+      "relative_path": "forge/tempered/PRIME_FACTION_OPERATIONAL_SIGNATURES_v1.0.md",
+      "file_id": "FILE-a337eeac-5726-539e-9295-e15dd3a786f8",
+      "content_hash": "552f737a452950bbb18b8566a4440e1a067e3b6ae5d87247d949148cd61f3097",
+      "hash_algorithm": "SHA256",
+      "identifier_generated": "2025-12-25T10:17:25.978155",
+      "integrated": false,
+      "integration_deployment_id": null,
+      "integration_timestamp": null,
+      "integration_manifest_ref": null,
+      "ssot_hash_at_integration": null,
+      "ssot_hash_embedded": true,
+      "artifact_hash": "066ab2662602566aae75b193a984bee6fd10100f16c10b41099b977240c2d181",
+      "artifact_hash_algorithm": "SHA256",
+      "artifact_hash_updated": "2025-12-26T06:18:30.680059"
+    },
+    "TEA_REGISTRY_v1.0.json": {
+      "type": "protocol",
+      "source": "dumpster-dive/protocols/TEA_REGISTRY.json",
+      "extraction_session": "Session 1 - 2025-12-07",
+      "rating": 5,
+      "symbol": "⚗️",
+      "word_count": null,
+      "lines": 216,
+      "ssot_integration": {
+        "status": "complete",
+        "sections_impacted": [
+          "Section 4.5.1.2 (QMR Protocol)"
+        ]
+      },
+      "fa4_validation": "passed",
+      "dependencies": [],
+      "cross_references": {
+        "source_files": [
+          "dumpster-dive/protocols/TEA_REGISTRY.json"
+        ],
+        "related_tempered": []
+      },
+      "notes": "Tracks 5 Timeline-Entangled Artifacts with probability mappings",
+      "filename": "TEA_REGISTRY_v1.0.json",
+      "relative_path": "forge/tempered/TEA_REGISTRY_v1.0.json",
+      "file_id": "FILE-1952a3bb-4946-545c-82d3-811bbfc51095",
+      "content_hash": "a44fcbcdda29be039d8766608ff4c0ecf03708a400e4a7d7af1cf16d741456e3",
+      "hash_algorithm": "SHA256",
+      "identifier_generated": "2025-12-25T10:17:25.978239",
+      "integrated": false,
+      "integration_deployment_id": null,
+      "integration_timestamp": null,
+      "integration_manifest_ref": null,
+      "ssot_hash_at_integration": null,
+      "ssot_hash_embedded": true,
+      "artifact_hash": "bf8ae457081d25d85dfa5cd28888027cf81056c7daa0438f85246f4e3056637d",
+      "artifact_hash_algorithm": "SHA256",
+      "artifact_hash_updated": "2025-12-26T06:18:30.680059"
+    },
+    "TOAR_v1.0.md": {
+      "type": "documentation",
+      "source": "from-github/macro-prompt-world/ (TOAR extraction)",
+      "extraction_session": "Session 1 - 2025-12-07",
+      "rating": 5,
+      "symbol": "⚗️",
+      "word_count": null,
+      "lines": null,
+      "ssot_integration": {
+        "status": "complete",
+        "sections_impacted": []
+      },
+      "fa4_validation": "passed",
+      "dependencies": [],
+      "cross_references": {
+        "source_files": [
+          "from-github/macro-prompt-world/ (TOAR content)"
+        ],
+        "related_tempered": []
+      },
+      "filename": "TOAR_v1.0.md",
+      "relative_path": "forge/tempered/TOAR_v1.0.md",
+      "file_id": "FILE-6d879801-e9b2-52e9-948a-cc3826866431",
+      "content_hash": "45cad3fa1d418e0ba3427942de68db1930222d967d30286b51891cada14ed114",
+      "hash_algorithm": "SHA256",
+      "identifier_generated": "2025-12-25T10:17:25.978319",
+      "integrated": false,
+      "integration_deployment_id": null,
+      "integration_timestamp": null,
+      "integration_manifest_ref": null,
+      "ssot_hash_at_integration": null,
+      "ssot_hash_embedded": true,
+      "artifact_hash": "ed0cd59da3f1a0005b2be5f2580b03c8b9e7bac85f54b0bfd339a2d217215316",
+      "artifact_hash_algorithm": "SHA256",
+      "artifact_hash_updated": "2025-12-26T06:18:30.680059"
+    }
+  },
+  "protocols_tracking": {
+    "FORGE_CIRCULATION_PROTOCOL.md": {
+      "type": "operational_framework",
+      "purpose": "Dynamic circulation system with bidirectional state movement and upcycling",
+      "created": "2025-12-24",
+      "replaces": "Linear INTAKE → SLAG pipeline",
+      "key_features": [
+        "States not stages",
+        "Bidirectional movement",
+        "SLAG upcycling protocol",
+        "Dynamic re-rating",
+        "Works with all ore ratings (1-5)",
+        "TEA-VAULT integration"
+      ]
+    },
+    "FORGE_PROTOCOL_LEVELS.md": {
+      "type": "operational_framework",
+      "purpose": "4-level ore processing framework (Standard/Extended/QMR/CTF)",
+      "lines": 274,
+      "cross_references": {
+        "referenced_by": [
+          "README.md",
+          "ORE_MANIFEST.json",
+          "TEA_REGISTRY.json",
+          "FORGE_CIRCULATION_PROTOCOL.md"
+        ]
+      }
+    },
+    "TEA_REGISTRY.json": {
+      "type": "tracking_system",
+      "purpose": "Timeline-Entangled Artifacts requiring QMR Protocol",
+      "total_artifacts": 5,
+      "status_breakdown": {
+        "pending": 2,
+        "collapsed": 1,
+        "approved": 0
+      },
+      "cross_references": {
+        "referenced_by": [
+          "FORGE_PROTOCOL_LEVELS.md",
+          "forge/tempered/TEA_REGISTRY_v1.0.json"
+        ],
+        "artifacts_tracked": [
+          "SSOT-MPW-WIP.ts",
+          "mas-inventory.json",
+          "copilot-un-un-instructions.md"
+        ]
+      }
+    },
+    "CTF_REQUESTS.md": {
+      "type": "tracking_system",
+      "purpose": "Cross-Tier Fusion requests requiring multi-faction approval",
+      "lines": 185,
+      "total_requests": 1,
+      "status_breakdown": {
+        "pending": 1,
+        "approved": 0,
+        "rejected": 0
+      },
+      "active_requests": {
+        "CTF_001": {
+          "title": "macro-prompt-world/ Prime Factions Integration",
+          "status": "🟡 PENDING APPROVAL",
+          "submitted": "2025-12-09",
+          "requesting_party": "SFS (Sister Ferrum Scoriae - Tier 3)",
+          "escalation_target": "Triumvirate + CRC-GAR (Umeko)",
+          "content_summary": "7 files with TP-FNS profiles (TMO, TTG, TDPC)",
+          "blocking_constraint": "Defines Tier 2 entities, impacts canonical hierarchy",
+          "proposed_extraction": "macro-prompt-world/prime-factions/*.md → SSOT Section 4.4"
+        }
+      }
+    }
+  },
+  "cross_reference_index": {
+    "ssot_section_mappings": {
+      "Section_III_MSP_RSG": {
+        "source_files": [
+          "from-github/macro-prompt-world/ (grimoire content)"
+        ],
+        "tempered_artifacts": [
+          "GRIMOIRE_INTEGRATION_EXAMPLES.md"
+        ]
+      },
+      "Section_IV_Triumvirate": {
+        "source_files": [
+          "from-github/macro-prompt-world/ (glossary fragments)"
+        ],
+        "tempered_artifacts": [
+          "EXTENDED_GLOSSARY_v1.0.md"
+        ]
+      },
+      "Section_4_4_Prime_Factions": {
+        "source_files": [
+          "from-github/macro-prompt-world/ (character content)"
+        ],
+        "tempered_artifacts": [
+          "PRIME_FACTION_OPERATIONAL_SIGNATURES_v1.0.md"
+        ],
+        "pending_integration": "CTF-001 (macro-prompt-world/prime-factions/)"
+      },
+      "Section_4_5_1_2_QMR_Protocol": {
+        "source_files": [
+          "dumpster-dive/protocols/TEA_REGISTRY.json"
+        ],
+        "tempered_artifacts": [
+          "TEA_REGISTRY_v1.0.json"
+        ]
+      },
+      "Section_VIII_TPEF": {
+        "source_files": [
+          "from-github/macro-prompt-world/ (grimoire content)"
+        ],
+        "tempered_artifacts": [
+          "GRIMOIRE_INTEGRATION_EXAMPLES.md"
+        ]
+      },
+      "Section_IX_T3M_Psi": {
+        "source_files": [
+          "from-github/macro-prompt-world/ (grimoire content)"
+        ],
+        "tempered_artifacts": [
+          "GRIMOIRE_INTEGRATION_EXAMPLES.md"
+        ]
+      },
+      "Section_X_MMPS": {
+        "source_files": [
+          "from-github/macro-prompt-world/ (grimoire content)"
+        ],
+        "tempered_artifacts": [
+          "GRIMOIRE_INTEGRATION_EXAMPLES.md"
+        ]
+      }
+    },
+    "file_to_file_dependencies": {
+      "GRIMOIRE_INTEGRATION_EXAMPLES.md": {
+        "depends_on": [
+          "PRIME_FACTION_OPERATIONAL_SIGNATURES_v1.0.md"
+        ],
+        "depended_by": [
+          "PHASE_1_COMPLETION_SUMMARY.md"
+        ]
+      },
+      "PRIME_FACTION_OPERATIONAL_SIGNATURES_v1.0.md": {
+        "depends_on": [],
+        "depended_by": [
+          "GRIMOIRE_INTEGRATION_EXAMPLES.md",
+          "PHASE_1_COMPLETION_SUMMARY.md"
+        ]
+      },
+      "PHASE_1_COMPLETION_SUMMARY.md": {
+        "depends_on": [
+          "GRIMOIRE_INTEGRATION_EXAMPLES.md",
+          "PRIME_FACTION_OPERATIONAL_SIGNATURES_v1.0.md"
+        ],
+        "depended_by": []
+      },
+      "PHASE_1_JSON_EXTRACTION_LOG.md": {
+        "depends_on": [
+          "ASC_SESSION1_METADATA_v1.0.json"
+        ],
+        "depended_by": []
+      }
+    },
+    "raw_ore_to_tempered_mappings": {
+      "from-github/macro-prompt-world/disparate-md-documentation/ASC_session1.json": [
+        "ASC_SESSION1_METADATA_v1.0.json",
+        "PHASE_1_JSON_EXTRACTION_LOG.md"
+      ],
+      "from-github/macro-prompt-world/ (glossary fragments)": [
+        "EXTENDED_GLOSSARY_v1.0.md"
+      ],
+      "from-github/macro-prompt-world/ (grimoire content)": [
+        "GRIMOIRE_INTEGRATION_EXAMPLES.md"
+      ],
+      "from-github/macro-prompt-world/ (character content)": [
+        "PRIME_FACTION_OPERATIONAL_SIGNATURES_v1.0.md"
+      ],
+      "dumpster-dive/protocols/TEA_REGISTRY.json": [
+        "TEA_REGISTRY_v1.0.json"
+      ],
+      "dumpster-dive/ORE_MANIFEST.json": [
+        "ORE_MANIFEST_v1.0.json"
+      ]
+    }
+  },
+  "query_examples": {
+    "by_rating": {
+      "description": "Find all files with specific ore rating",
+      "example_query": "Show all ⚗️ (rating 5) files",
+      "implementation": "Filter ORE_MANIFEST.json inventory by rating === 5"
+    },
+    "by_forge_stage": {
+      "description": "List files at specific forge processing stage",
+      "example_query": "List all files in tempered/ stage",
+      "implementation": "Check folder_structure.forge.subdirectories.tempered.current_files"
+    },
+    "by_ssot_section": {
+      "description": "Find which files populate specific SSOT section",
+      "example_query": "What files impact SSOT Section 4.4?",
+      "implementation": "Check cross_reference_index.ssot_section_mappings.Section_4_4_Prime_Factions"
+    },
+    "by_dependencies": {
+      "description": "Show file dependency tree",
+      "example_query": "What files does GRIMOIRE_INTEGRATION_EXAMPLES.md depend on?",
+      "implementation": "Check cross_reference_index.file_to_file_dependencies.GRIMOIRE_INTEGRATION_EXAMPLES_md.depends_on"
+    },
+    "by_tea_status": {
+      "description": "Show Timeline-Entangled Artifacts status",
+      "example_query": "List pending TEA artifacts",
+      "implementation": "Filter protocols_tracking.TEA_REGISTRY.json.artifacts_tracked by status === 'pending'"
+    },
+    "by_ctf_status": {
+      "description": "Show Cross-Tier Fusion request status",
+      "example_query": "What CTF requests are pending approval?",
+      "implementation": "Filter protocols_tracking.CTF_REQUESTS.md.active_requests by status === '🟡 PENDING APPROVAL'"
+    }
+  },
+  "integration_status": {
+    "phase_1_complete": true,
+    "phase_1_deliverables": {
+      "sessions_completed": 3,
+      "tempered_files_created": 9,
+      "total_words_extracted": 29237,
+      "timeline_e_directives_fulfilled": 3
+    },
+    "current_phase": "Phase 2 - Infrastructure Integration",
+    "next_steps": [
+      "Validate registry completeness (Step 9)",
+      "Document registry usage in README.md (Step 10)",
+      "Begin Phase 2 extraction work with integrated tracking"
+    ]
+  },
+  "registry_metadata": {
+    "schema_version": "1.0.0",
+    "last_validated": "2025-12-24",
+    "maintenance_schedule": "Update after each forge operation (TEMPER stage completion)",
+    "relationship_to_ore_manifest": "ORE_MANIFEST.json tracks raw ore inventory; DUMPSTER_DIVE_REGISTRY.json tracks entire infrastructure + cross-references",
+    "compression_ratio": "23:1 (analogous to T³-MΨ Framework methodology)",
+    "notes": "Living document - expands as new files enter forge pipeline or CTF/TEA requests are submitted"
+  },
+  "cross_references": {
+    "dependencies": [
+      {
+        "file": "README.md",
+        "reason": "Provides overview and context for infrastructure"
+      },
+      {
+        "file": "ORE_MANIFEST.json",
+        "reason": "Raw ore inventory data cross-referenced"
+      },
+      {
+        "file": "protocols/FORGE_CIRCULATION_PROTOCOL.md",
+        "reason": "Implements state tracking per circulation model"
+      },
+      {
+        "file": "protocols/TEA_REGISTRY.json",
+        "reason": "TEA tracking integrated into protocols section"
+      },
+      {
+        "file": "protocols/CTF_REQUESTS.md",
+        "reason": "CTF requests tracked in protocols section"
+      }
+    ],
+    "dependents": [
+      {
+        "file": "README.md",
+        "usage": "References this as central navigation system"
+      },
+      {
+        "file": "protocols/FORGE_CIRCULATION_PROTOCOL.md",
+        "usage": "Describes how this implements state tracking"
+      },
+      {
+        "file": "All forge operations",
+        "usage": "Consult this for file status, cross-references, dependencies"
+      }
+    ],
+    "related": [
+      {
+        "file": "ORE_MANIFEST.json",
+        "relationship": "MANIFEST is raw ore inventory subset of REGISTRY"
+      },
+      {
+        "file": "CIRCULATION_DIAGRAM.md",
+        "relationship": "Visual representation of tracked circulation system"
+      }
+    ],
+    "external": [
+      {
+        "location": "../../.github/copilot-instructions.md",
+        "relationship": "SSOT sections mapped in cross_reference_index"
+      },
+      {
+        "location": "../../mas_mcp/",
+        "relationship": "Integration target for tempered artifacts"
+      }
+    ],
+    "validation": {
+      "last_checked": "2025-12-24",
+      "deprecation_risk": "none",
+      "upcycle_potential": "N/A - permanent central infrastructure"
+    }
+  },
+  "identifier_schema": {
+    "format": "FILE-{uuidv5}",
+    "namespace": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+    "algorithm": "UUIDv5(path::content_hash)",
+    "stability": "Same path + same content = same UUID",
+    "purpose": "Chaos-resilient cross-reference navigation"
+  },
+  "root_documentation": {
+    "files": [
+      {
+        "relative_path": "README.md",
+        "filename": "README.md",
+        "forge_stage": "root",
+        "file_id": "FILE-202a2847-f71e-5dba-9bcf-dbf3fe866294",
+        "content_hash": "76cad8586fcc6070a972c1e91f968d633dbc5b20312d33466649ae3f6c55a0fe",
+        "hash_algorithm": "SHA256",
+        "identifier_generated": "2025-12-25T10:17:25.976892",
+        "integrated": false,
+        "integration_deployment_id": null,
+        "integration_timestamp": null,
+        "integration_manifest_ref": null,
+        "ssot_hash_at_integration": null,
+        "artifact_hash": "76cad8586fcc6070a972c1e91f968d633dbc5b20312d33466649ae3f6c55a0fe",
+        "artifact_hash_algorithm": "SHA256",
+        "artifact_hash_updated": "2025-12-26T06:18:30.678166"
+      },
+      {
+        "relative_path": "ORE_MANIFEST.json",
+        "filename": "ORE_MANIFEST.json",
+        "forge_stage": "root",
+        "file_id": "FILE-f314718a-a9bb-5f0e-8f8f-b2c64fd2f18a",
+        "content_hash": "4199a1b5c8d7c6079c5dfab787d474de612af554b742fa214c2ec54aa711ed78",
+        "hash_algorithm": "SHA256",
+        "identifier_generated": "2025-12-25T10:17:25.977037",
+        "integrated": false,
+        "integration_deployment_id": null,
+        "integration_timestamp": null,
+        "integration_manifest_ref": null,
+        "ssot_hash_at_integration": null,
+        "artifact_hash": "4199a1b5c8d7c6079c5dfab787d474de612af554b742fa214c2ec54aa711ed78",
+        "artifact_hash_algorithm": "SHA256",
+        "artifact_hash_updated": "2025-12-26T06:18:30.679055"
+      },
+      {
+        "relative_path": "BLACKSMITH_MATRIARCH.md",
+        "filename": "BLACKSMITH_MATRIARCH.md",
+        "forge_stage": "root",
+        "file_id": "FILE-9ff57a5b-aaba-5c3a-81fb-7275ec107f59",
+        "content_hash": "8eb955d177c83cc910e95a3017026c9fc0b5befec55b0de22dc4806e37bcd8a4",
+        "hash_algorithm": "SHA256",
+        "identifier_generated": "2025-12-25T10:17:25.977141",
+        "integrated": false,
+        "integration_deployment_id": null,
+        "integration_timestamp": null,
+        "integration_manifest_ref": null,
+        "ssot_hash_at_integration": null,
+        "artifact_hash": "8eb955d177c83cc910e95a3017026c9fc0b5befec55b0de22dc4806e37bcd8a4",
+        "artifact_hash_algorithm": "SHA256",
+        "artifact_hash_updated": "2025-12-26T06:18:30.679055"
+      }
+    ]
+  },
+  "protocols": {
+    "files": [
+      {
+        "relative_path": "protocols/FORGE_CIRCULATION_PROTOCOL.md",
+        "filename": "FORGE_CIRCULATION_PROTOCOL.md",
+        "forge_stage": "protocols",
+        "file_id": "FILE-c5322377-ec43-55e6-b5ec-2b53d8857422",
+        "content_hash": "fde24417a267cf100c86e1cf7a4de5599e243615ed6046a44ea1c93328ec716b",
+        "hash_algorithm": "SHA256",
+        "identifier_generated": "2025-12-25T10:17:25.977243",
+        "integrated": false,
+        "integration_deployment_id": null,
+        "integration_timestamp": null,
+        "integration_manifest_ref": null,
+        "ssot_hash_at_integration": null,
+        "artifact_hash": "fde24417a267cf100c86e1cf7a4de5599e243615ed6046a44ea1c93328ec716b",
+        "artifact_hash_algorithm": "SHA256",
+        "artifact_hash_updated": "2025-12-26T06:18:30.679055"
+      },
+      {
+        "relative_path": "protocols/FORGE_PROTOCOL_LEVELS.md",
+        "filename": "FORGE_PROTOCOL_LEVELS.md",
+        "forge_stage": "protocols",
+        "file_id": "FILE-fd7bd6bb-c9b6-5fab-8d50-518c8a69fc57",
+        "content_hash": "177f3e1a0deca2cebf506a6e4987ec4c7568e0c4684d4c7ff4ae4dc9c18bf113",
+        "hash_algorithm": "SHA256",
+        "identifier_generated": "2025-12-25T10:17:25.977332",
+        "integrated": false,
+        "integration_deployment_id": null,
+        "integration_timestamp": null,
+        "integration_manifest_ref": null,
+        "ssot_hash_at_integration": null,
+        "artifact_hash": "177f3e1a0deca2cebf506a6e4987ec4c7568e0c4684d4c7ff4ae4dc9c18bf113",
+        "artifact_hash_algorithm": "SHA256",
+        "artifact_hash_updated": "2025-12-26T06:18:30.679055"
+      },
+      {
+        "relative_path": "protocols/TEA_REGISTRY.json",
+        "filename": "TEA_REGISTRY.json",
+        "forge_stage": "protocols",
+        "file_id": "FILE-ee6d8dad-5061-5580-9f35-69c53f368757",
+        "content_hash": "42e3d442146d4492fe42defe2e331d6089dc28d30d585165479a8a4abbf9e731",
+        "hash_algorithm": "SHA256",
+        "identifier_generated": "2025-12-25T10:17:25.977429",
+        "integrated": false,
+        "integration_deployment_id": null,
+        "integration_timestamp": null,
+        "integration_manifest_ref": null,
+        "ssot_hash_at_integration": null,
+        "artifact_hash": "42e3d442146d4492fe42defe2e331d6089dc28d30d585165479a8a4abbf9e731",
+        "artifact_hash_algorithm": "SHA256",
+        "artifact_hash_updated": "2025-12-26T06:18:30.679055"
+      },
+      {
+        "relative_path": "protocols/CTF_REQUESTS.md",
+        "filename": "CTF_REQUESTS.md",
+        "forge_stage": "protocols",
+        "file_id": "FILE-71eef428-8679-512c-8eef-53cf66170760",
+        "content_hash": "cec3fd66c1052f84d7ddc416850ecfcea6ad6f697cfe1db1d8d9d814f2977833",
+        "hash_algorithm": "SHA256",
+        "identifier_generated": "2025-12-25T10:17:25.977515",
+        "integrated": false,
+        "integration_deployment_id": null,
+        "integration_timestamp": null,
+        "integration_manifest_ref": null,
+        "ssot_hash_at_integration": null,
+        "artifact_hash": "cec3fd66c1052f84d7ddc416850ecfcea6ad6f697cfe1db1d8d9d814f2977833",
+        "artifact_hash_algorithm": "SHA256",
+        "artifact_hash_updated": "2025-12-26T06:18:30.679055"
+      }
+    ]
+  },
+  "tempered_artifacts": {
+    "files": [
+      {
+        "relative_path": "forge/tempered/ASC_SESSION1_METADATA_v1.0.json",
+        "filename": "ASC_SESSION1_METADATA_v1.0.json",
+        "forge_stage": "tempered",
+        "file_id": "FILE-6f3940be-49e8-5fb2-9491-d1a0686bb337",
+        "content_hash": "5377585f336eaa000e12850da6d288e26c55e4a673d0a57c76daa8a50b649d6a",
+        "hash_algorithm": "SHA256",
+        "identifier_generated": "2025-12-25T10:17:25.977599",
+        "integrated": false,
+        "integration_deployment_id": null,
+        "integration_timestamp": null,
+        "integration_manifest_ref": null,
+        "ssot_hash_at_integration": null,
+        "ssot_hash_embedded": true,
+        "artifact_hash": "a5ce6a51eb3a86a5d97dfc397eafeb560e4674f82a7708bf1f8cf8504241ee31",
+        "artifact_hash_algorithm": "SHA256",
+        "artifact_hash_updated": "2025-12-26T06:18:30.679055"
+      },
+      {
+        "relative_path": "forge/tempered/EXTENDED_GLOSSARY_v1.0.md",
+        "filename": "EXTENDED_GLOSSARY_v1.0.md",
+        "forge_stage": "tempered",
+        "file_id": "FILE-d81fcf4c-4d09-5c70-8ec5-05a011063233",
+        "content_hash": "949841ab11b0db170c2fb55072c0293038205b767c50d73dd95b86ad7bb1cd53",
+        "hash_algorithm": "SHA256",
+        "identifier_generated": "2025-12-25T10:17:25.977690",
+        "integrated": false,
+        "integration_deployment_id": null,
+        "integration_timestamp": null,
+        "integration_manifest_ref": null,
+        "ssot_hash_at_integration": null,
+        "ssot_hash_embedded": true,
+        "artifact_hash": "b152b1eff87565b295d6af981e7190e69497c907d1cbf67bae69c3a35a5226b9",
+        "artifact_hash_algorithm": "SHA256",
+        "artifact_hash_updated": "2025-12-26T06:18:30.679055"
+      },
+      {
+        "relative_path": "forge/tempered/GRIMOIRE_INTEGRATION_EXAMPLES.md",
+        "filename": "GRIMOIRE_INTEGRATION_EXAMPLES.md",
+        "forge_stage": "tempered",
+        "file_id": "FILE-5e3265f5-20ff-5348-b338-f91c0d5f3e02",
+        "content_hash": "cb6dc52863e683b64161076b1078c67f7a517bcb691097652c788aed7ee92c2d",
+        "hash_algorithm": "SHA256",
+        "identifier_generated": "2025-12-25T10:17:25.977809",
+        "integrated": false,
+        "integration_deployment_id": null,
+        "integration_timestamp": null,
+        "integration_manifest_ref": null,
+        "ssot_hash_at_integration": null,
+        "ssot_hash_embedded": true,
+        "artifact_hash": "58a7a962e95b12be0122b6a58c16f256fedccca300b6888e12326dde0d9df4b8",
+        "artifact_hash_algorithm": "SHA256",
+        "artifact_hash_updated": "2025-12-26T06:18:30.679055"
+      },
+      {
+        "relative_path": "forge/tempered/ORE_MANIFEST_v1.0.json",
+        "filename": "ORE_MANIFEST_v1.0.json",
+        "forge_stage": "tempered",
+        "file_id": "FILE-2cb3bc2c-3ad5-5e6e-9b81-ceea8bf7bc3b",
+        "content_hash": "afdd0351aed97353213461908741e40cf5db7df94bfd28f3e1344f002eff1e8d",
+        "hash_algorithm": "SHA256",
+        "identifier_generated": "2025-12-25T10:17:25.977893",
+        "integrated": false,
+        "integration_deployment_id": null,
+        "integration_timestamp": null,
+        "integration_manifest_ref": null,
+        "ssot_hash_at_integration": null,
+        "ssot_hash_embedded": true,
+        "artifact_hash": "52f7dd6ced85753290799ecaaab457c51b7fc87b86ca3f574e611f1e79137093",
+        "artifact_hash_algorithm": "SHA256",
+        "artifact_hash_updated": "2025-12-26T06:18:30.679055"
+      },
+      {
+        "relative_path": "forge/tempered/PHASE_1_COMPLETION_SUMMARY.md",
+        "filename": "PHASE_1_COMPLETION_SUMMARY.md",
+        "forge_stage": "tempered",
+        "file_id": "FILE-24add094-eb23-554b-8d16-1373ebe44ac3",
+        "content_hash": "29ae46a46716100cf5ce19681ccfa54b9ab950c957b26f065b2b6ef412abe8a9",
+        "hash_algorithm": "SHA256",
+        "identifier_generated": "2025-12-25T10:17:25.977979",
+        "integrated": false,
+        "integration_deployment_id": null,
+        "integration_timestamp": null,
+        "integration_manifest_ref": null,
+        "ssot_hash_at_integration": null,
+        "ssot_hash_embedded": true,
+        "artifact_hash": "e63003b8d3f6697f419e032223ac5e5db12d52eeee875860b2fcdd6682fcc051",
+        "artifact_hash_algorithm": "SHA256",
+        "artifact_hash_updated": "2025-12-26T06:18:30.679055"
+      },
+      {
+        "relative_path": "forge/tempered/PHASE_1_JSON_EXTRACTION_LOG.md",
+        "filename": "PHASE_1_JSON_EXTRACTION_LOG.md",
+        "forge_stage": "tempered",
+        "file_id": "FILE-83cb9903-9028-5fa1-becb-940d20d1faa5",
+        "content_hash": "2991dbe9aeab9becf8ad4a2935b636a77a2efaab5a0713b11117c4fe3a757014",
+        "hash_algorithm": "SHA256",
+        "identifier_generated": "2025-12-25T10:17:25.978059",
+        "integrated": false,
+        "integration_deployment_id": null,
+        "integration_timestamp": null,
+        "integration_manifest_ref": null,
+        "ssot_hash_at_integration": null,
+        "ssot_hash_embedded": true,
+        "artifact_hash": "019625d8f8b742faf113cf03c0876239fb37d1ef03efa1b68ca92294d93172c3",
+        "artifact_hash_algorithm": "SHA256",
+        "artifact_hash_updated": "2025-12-26T06:18:30.680059"
+      },
+      {
+        "relative_path": "forge/tempered/PRIME_FACTION_OPERATIONAL_SIGNATURES_v1.0.md",
+        "filename": "PRIME_FACTION_OPERATIONAL_SIGNATURES_v1.0.md",
+        "forge_stage": "tempered",
+        "file_id": "FILE-a337eeac-5726-539e-9295-e15dd3a786f8",
+        "content_hash": "552f737a452950bbb18b8566a4440e1a067e3b6ae5d87247d949148cd61f3097",
+        "hash_algorithm": "SHA256",
+        "identifier_generated": "2025-12-25T10:17:25.978155",
+        "integrated": false,
+        "integration_deployment_id": null,
+        "integration_timestamp": null,
+        "integration_manifest_ref": null,
+        "ssot_hash_at_integration": null,
+        "ssot_hash_embedded": true,
+        "artifact_hash": "066ab2662602566aae75b193a984bee6fd10100f16c10b41099b977240c2d181",
+        "artifact_hash_algorithm": "SHA256",
+        "artifact_hash_updated": "2025-12-26T06:18:30.680059"
+      },
+      {
+        "relative_path": "forge/tempered/TEA_REGISTRY_v1.0.json",
+        "filename": "TEA_REGISTRY_v1.0.json",
+        "forge_stage": "tempered",
+        "file_id": "FILE-1952a3bb-4946-545c-82d3-811bbfc51095",
+        "content_hash": "a44fcbcdda29be039d8766608ff4c0ecf03708a400e4a7d7af1cf16d741456e3",
+        "hash_algorithm": "SHA256",
+        "identifier_generated": "2025-12-25T10:17:25.978239",
+        "integrated": false,
+        "integration_deployment_id": null,
+        "integration_timestamp": null,
+        "integration_manifest_ref": null,
+        "ssot_hash_at_integration": null,
+        "ssot_hash_embedded": true,
+        "artifact_hash": "bf8ae457081d25d85dfa5cd28888027cf81056c7daa0438f85246f4e3056637d",
+        "artifact_hash_algorithm": "SHA256",
+        "artifact_hash_updated": "2025-12-26T06:18:30.680059"
+      },
+      {
+        "relative_path": "forge/tempered/TOAR_v1.0.md",
+        "filename": "TOAR_v1.0.md",
+        "forge_stage": "tempered",
+        "file_id": "FILE-6d879801-e9b2-52e9-948a-cc3826866431",
+        "content_hash": "45cad3fa1d418e0ba3427942de68db1930222d967d30286b51891cada14ed114",
+        "hash_algorithm": "SHA256",
+        "identifier_generated": "2025-12-25T10:17:25.978319",
+        "integrated": false,
+        "integration_deployment_id": null,
+        "integration_timestamp": null,
+        "integration_manifest_ref": null,
+        "ssot_hash_at_integration": null,
+        "ssot_hash_embedded": true,
+        "artifact_hash": "ed0cd59da3f1a0005b2be5f2580b03c8b9e7bac85f54b0bfd339a2d217215316",
+        "artifact_hash_algorithm": "SHA256",
+        "artifact_hash_updated": "2025-12-26T06:18:30.680059"
+      }
+    ]
+  },
+  "from_github": {
+    "files": [
+      {
+        "relative_path": "from-github/BLACKSMITH_MATRIARCH.md",
+        "filename": "BLACKSMITH_MATRIARCH.md",
+        "file_id": "FILE-c34b02ff-1f4e-56e5-a360-857435cccf9e",
+        "content_hash": "0435c717cf43af94333bac0362cef079f656d1b792c89b91d8b1c96a25fff576",
+        "hash_algorithm": "SHA256",
+        "identifier_generated": "2025-12-25T10:17:25.978398",
+        "integrated": false,
+        "integration_deployment_id": null,
+        "integration_timestamp": null,
+        "integration_manifest_ref": null,
+        "ssot_hash_at_integration": null,
+        "artifact_hash": "0435c717cf43af94333bac0362cef079f656d1b792c89b91d8b1c96a25fff576",
+        "artifact_hash_algorithm": "SHA256",
+        "artifact_hash_updated": "2025-12-26T06:18:30.680059"
+      },
+      {
+        "relative_path": "from-github/copilot-un-un-instructions.md",
+        "filename": "copilot-un-un-instructions.md",
+        "file_id": "FILE-457942f6-2cd3-5de7-9af9-681930d58c47",
+        "content_hash": "ac9f7a29d966ce4a277ec054536b8dbc722d98326df4209c367ddc6a1956e725",
+        "hash_algorithm": "SHA256",
+        "identifier_generated": "2025-12-25T10:17:25.978632",
+        "integrated": false,
+        "integration_deployment_id": null,
+        "integration_timestamp": null,
+        "integration_manifest_ref": null,
+        "ssot_hash_at_integration": null,
+        "artifact_hash": "ac9f7a29d966ce4a277ec054536b8dbc722d98326df4209c367ddc6a1956e725",
+        "artifact_hash_algorithm": "SHA256",
+        "artifact_hash_updated": "2025-12-26T06:18:30.680059"
+      },
+      {
+        "relative_path": "from-github/macro-prompt-world/AUTONOMOUS_SESSION_SUMMARY.md",
+        "filename": "AUTONOMOUS_SESSION_SUMMARY.md",
+        "file_id": "FILE-2ad2afaf-cb95-58d5-a391-3b5c358c5eb4",
+        "content_hash": "e0fdf4b48272b796a24fee40a5be94107464aa9786b6efb276b543a32042de06",
+        "hash_algorithm": "SHA256",
+        "identifier_generated": "2025-12-25T10:17:25.978716",
+        "integrated": false,
+        "integration_deployment_id": null,
+        "integration_timestamp": null,
+        "integration_manifest_ref": null,
+        "ssot_hash_at_integration": null,
+        "artifact_hash": "e0fdf4b48272b796a24fee40a5be94107464aa9786b6efb276b543a32042de06",
+        "artifact_hash_algorithm": "SHA256",
+        "artifact_hash_updated": "2025-12-26T06:18:30.680059"
+      },
+      {
+        "relative_path": "from-github/macro-prompt-world/copilot-instructionsREMOTEoff.md",
+        "filename": "copilot-instructionsREMOTEoff.md",
+        "file_id": "FILE-b21b7f41-1254-5858-8e97-2c45dd320752",
+        "content_hash": "9a9fa905576937aa0e0997f4059a5770970a9145d1fdb36031cfcd2e84fbb50b",
+        "hash_algorithm": "SHA256",
+        "identifier_generated": "2025-12-25T10:17:25.978986",
+        "integrated": false,
+        "integration_deployment_id": null,
+        "integration_timestamp": null,
+        "integration_manifest_ref": null,
+        "ssot_hash_at_integration": null,
+        "artifact_hash": "9a9fa905576937aa0e0997f4059a5770970a9145d1fdb36031cfcd2e84fbb50b",
+        "artifact_hash_algorithm": "SHA256",
+        "artifact_hash_updated": "2025-12-26T06:18:30.681054"
+      },
+      {
+        "relative_path": "from-github/macro-prompt-world/DECORATOR-ASC-GENESIS.md",
+        "filename": "DECORATOR-ASC-GENESIS.md",
+        "file_id": "FILE-06747617-7c06-53b2-a5b1-2d50d1800df6",
+        "content_hash": "819ba27dae2b99a787ba53ef0da403221f43c3f75decb4fd49b34ee943ceeb3b",
+        "hash_algorithm": "SHA256",
+        "identifier_generated": "2025-12-25T10:17:25.979084",
+        "integrated": false,
+        "integration_deployment_id": null,
+        "integration_timestamp": null,
+        "integration_manifest_ref": null,
+        "ssot_hash_at_integration": null,
+        "artifact_hash": "819ba27dae2b99a787ba53ef0da403221f43c3f75decb4fd49b34ee943ceeb3b",
+        "artifact_hash_algorithm": "SHA256",
+        "artifact_hash_updated": "2025-12-26T06:18:30.681054"
+      },
+      {
+        "relative_path": "from-github/macro-prompt-world/disparate-md-documentation/ARCHITECTURAL_COHERENCE_REPORT_PHASE10.md",
+        "filename": "ARCHITECTURAL_COHERENCE_REPORT_PHASE10.md",
+        "file_id": "FILE-1567a163-da60-5af1-a128-7ed5db3cfdb1",
+        "content_hash": "a4de5f319f0fbe0b4141e3739fe7c33fbbe05a2dd2af690413f6eb3504f0c4db",
+        "hash_algorithm": "SHA256",
+        "identifier_generated": "2025-12-25T10:17:25.979196",
+        "integrated": false,
+        "integration_deployment_id": null,
+        "integration_timestamp": null,
+        "integration_manifest_ref": null,
+        "ssot_hash_at_integration": null,
+        "artifact_hash": "a4de5f319f0fbe0b4141e3739fe7c33fbbe05a2dd2af690413f6eb3504f0c4db",
+        "artifact_hash_algorithm": "SHA256",
+        "artifact_hash_updated": "2025-12-26T06:18:30.681054"
+      },
+      {
+        "relative_path": "from-github/macro-prompt-world/disparate-md-documentation/ASC-BP-V-Ω.B.XΨ.md",
+        "filename": "ASC-BP-V-Ω.B.XΨ.md",
+        "file_id": "FILE-df5cf334-3fc0-5491-9bca-de41365cc93b",
+        "content_hash": "7a85d69b1aa045097e67c7d6d5ab7287b356288156143aab121f2293e7a06af9",
+        "hash_algorithm": "SHA256",
+        "identifier_generated": "2025-12-25T10:17:25.979296",
+        "integrated": false,
+        "integration_deployment_id": null,
+        "integration_timestamp": null,
+        "integration_manifest_ref": null,
+        "ssot_hash_at_integration": null,
+        "artifact_hash": "7a85d69b1aa045097e67c7d6d5ab7287b356288156143aab121f2293e7a06af9",
+        "artifact_hash_algorithm": "SHA256",
+        "artifact_hash_updated": "2025-12-26T06:18:30.681054"
+      },
+      {
+        "relative_path": "from-github/macro-prompt-world/disparate-md-documentation/ASC_AUTONOMOUS_OPTIMIZATION_SESSION.md",
+        "filename": "ASC_AUTONOMOUS_OPTIMIZATION_SESSION.md",
+        "file_id": "FILE-741556e9-e6a6-5038-95a0-b5679eb17f98",
+        "content_hash": "99b6467f991dc3547aa687c4789627ba0a6452ae5e7a9d726c46c5640dd9fead",
+        "hash_algorithm": "SHA256",
+        "identifier_generated": "2025-12-25T10:17:25.979393",
+        "integrated": false,
+        "integration_deployment_id": null,
+        "integration_timestamp": null,
+        "integration_manifest_ref": null,
+        "ssot_hash_at_integration": null,
+        "artifact_hash": "99b6467f991dc3547aa687c4789627ba0a6452ae5e7a9d726c46c5640dd9fead",
+        "artifact_hash_algorithm": "SHA256",
+        "artifact_hash_updated": "2025-12-26T06:18:30.681054"
+      },
+      {
+        "relative_path": "from-github/macro-prompt-world/disparate-md-documentation/ASC_session1.json",
+        "filename": "ASC_session1.json",
+        "file_id": "FILE-d5a8a140-1a85-5f8d-b1da-fd9b8c485d95",
+        "content_hash": "a274edfd2bbe35582fd18467a9cb02aec22d85bc5fff99c51f36895e89a8006c",
+        "hash_algorithm": "SHA256",
+        "identifier_generated": "2025-12-25T10:17:25.979476",
+        "integrated": false,
+        "integration_deployment_id": null,
+        "integration_timestamp": null,
+        "integration_manifest_ref": null,
+        "ssot_hash_at_integration": null,
+        "artifact_hash": "a274edfd2bbe35582fd18467a9cb02aec22d85bc5fff99c51f36895e89a8006c",
+        "artifact_hash_algorithm": "SHA256",
+        "artifact_hash_updated": "2025-12-26T06:18:30.682138"
+      },
+      {
+        "relative_path": "from-github/macro-prompt-world/disparate-md-documentation/AUTONOMOUS_EXPERIMENT_001.md",
+        "filename": "AUTONOMOUS_EXPERIMENT_001.md",
+        "file_id": "FILE-4e6f0c82-04cc-547e-9fda-33269d4dfc64",
+        "content_hash": "4981bf2d8723c70582c85643e353732e9924008ac67d78eec03b070277c35b0b",
+        "hash_algorithm": "SHA256",
+        "identifier_generated": "2025-12-25T10:17:25.979566",
+        "integrated": false,
+        "integration_deployment_id": null,
+        "integration_timestamp": null,
+        "integration_manifest_ref": null,
+        "ssot_hash_at_integration": null,
+        "artifact_hash": "4981bf2d8723c70582c85643e353732e9924008ac67d78eec03b070277c35b0b",
+        "artifact_hash_algorithm": "SHA256",
+        "artifact_hash_updated": "2025-12-26T06:18:30.682138"
+      },
+      {
+        "relative_path": "from-github/macro-prompt-world/disparate-md-documentation/BODY_SYSTEM_ARCHITECTURE.md",
+        "filename": "BODY_SYSTEM_ARCHITECTURE.md",
+        "file_id": "FILE-929201b1-cc2c-5f3f-b907-b54c357fc925",
+        "content_hash": "0f89901ddf46e57db9d1e7dc6f7b38fc6ec69a1ce51a2456e2138a706a2b00bf",
+        "hash_algorithm": "SHA256",
+        "identifier_generated": "2025-12-25T10:17:25.979665",
+        "integrated": false,
+        "integration_deployment_id": null,
+        "integration_timestamp": null,
+        "integration_manifest_ref": null,
+        "ssot_hash_at_integration": null,
+        "artifact_hash": "0f89901ddf46e57db9d1e7dc6f7b38fc6ec69a1ce51a2456e2138a706a2b00bf",
+        "artifact_hash_algorithm": "SHA256",
+        "artifact_hash_updated": "2025-12-26T06:18:30.682138"
+      },
+      {
+        "relative_path": "from-github/macro-prompt-world/disparate-md-documentation/BODY_SYSTEM_INTEGRATION_EXAMPLES.md",
+        "filename": "BODY_SYSTEM_INTEGRATION_EXAMPLES.md",
+        "file_id": "FILE-66d654ec-ac56-5a03-8e3e-9fd553096068",
+        "content_hash": "4eb1d5d97af514b731a306b24f46adb670c2438881aee976ab3ebb2fcbeb613f",
+        "hash_algorithm": "SHA256",
+        "identifier_generated": "2025-12-25T10:17:25.979776",
+        "integrated": false,
+        "integration_deployment_id": null,
+        "integration_timestamp": null,
+        "integration_manifest_ref": null,
+        "ssot_hash_at_integration": null,
+        "artifact_hash": "4eb1d5d97af514b731a306b24f46adb670c2438881aee976ab3ebb2fcbeb613f",
+        "artifact_hash_algorithm": "SHA256",
+        "artifact_hash_updated": "2025-12-26T06:18:30.682138"
+      },
+      {
+        "relative_path": "from-github/macro-prompt-world/disparate-md-documentation/BODY_SYSTEM_PROTOCOL.md",
+        "filename": "BODY_SYSTEM_PROTOCOL.md",
+        "file_id": "FILE-d5e6ab7b-eae6-5aca-8cbf-16f191746214",
+        "content_hash": "f87a2368644f0302524444fab477120fb45c89100a70d6830ae9272cc45f7f30",
+        "hash_algorithm": "SHA256",
+        "identifier_generated": "2025-12-25T10:17:25.979870",
+        "integrated": false,
+        "integration_deployment_id": null,
+        "integration_timestamp": null,
+        "integration_manifest_ref": null,
+        "ssot_hash_at_integration": null,
+        "artifact_hash": "f87a2368644f0302524444fab477120fb45c89100a70d6830ae9272cc45f7f30",
+        "artifact_hash_algorithm": "SHA256",
+        "artifact_hash_updated": "2025-12-26T06:18:30.682138"
+      },
+      {
+        "relative_path": "from-github/macro-prompt-world/disparate-md-documentation/copilot-instructions1.md",
+        "filename": "copilot-instructions1.md",
+        "file_id": "FILE-47c1a1d8-4074-5c17-adc1-8831b8bdbeb1",
+        "content_hash": "d5e759c9768b7d4e0669ce921d617bbfac3a943c340ed2b9d72ba5297b9f0815",
+        "hash_algorithm": "SHA256",
+        "identifier_generated": "2025-12-25T10:17:25.980006",
+        "integrated": false,
+        "integration_deployment_id": null,
+        "integration_timestamp": null,
+        "integration_manifest_ref": null,
+        "ssot_hash_at_integration": null,
+        "artifact_hash": "d5e759c9768b7d4e0669ce921d617bbfac3a943c340ed2b9d72ba5297b9f0815",
+        "artifact_hash_algorithm": "SHA256",
+        "artifact_hash_updated": "2025-12-26T06:18:30.682138"
+      },
+      {
+        "relative_path": "from-github/macro-prompt-world/disparate-md-documentation/copilot-instructionsREMOTEoff.md",
+        "filename": "copilot-instructionsREMOTEoff.md",
+        "file_id": "FILE-1307bc76-41ae-5016-8959-e6e3e36ba000",
+        "content_hash": "9a9fa905576937aa0e0997f4059a5770970a9145d1fdb36031cfcd2e84fbb50b",
+        "hash_algorithm": "SHA256",
+        "identifier_generated": "2025-12-25T10:17:25.980286",
+        "integrated": false,
+        "integration_deployment_id": null,
+        "integration_timestamp": null,
+        "integration_manifest_ref": null,
+        "ssot_hash_at_integration": null,
+        "artifact_hash": "9a9fa905576937aa0e0997f4059a5770970a9145d1fdb36031cfcd2e84fbb50b",
+        "artifact_hash_algorithm": "SHA256",
+        "artifact_hash_updated": "2025-12-26T06:18:30.682138"
+      },
+      {
+        "relative_path": "from-github/macro-prompt-world/disparate-md-documentation/FA_1-5_CENSUS_SCOPE_DECISION.md",
+        "filename": "FA_1-5_CENSUS_SCOPE_DECISION.md",
+        "file_id": "FILE-f3af0966-433a-5122-a73e-e9f694aa9117",
+        "content_hash": "8d075837c5d2b8757a0b417b9b47ad8c801b30fdeb3cc03f974f2920e5779c9e",
+        "hash_algorithm": "SHA256",
+        "identifier_generated": "2025-12-25T10:17:25.980379",
+        "integrated": false,
+        "integration_deployment_id": null,
+        "integration_timestamp": null,
+        "integration_manifest_ref": null,
+        "ssot_hash_at_integration": null,
+        "artifact_hash": "8d075837c5d2b8757a0b417b9b47ad8c801b30fdeb3cc03f974f2920e5779c9e",
+        "artifact_hash_algorithm": "SHA256",
+        "artifact_hash_updated": "2025-12-26T06:18:30.683179"
+      },
+      {
+        "relative_path": "from-github/macro-prompt-world/disparate-md-documentation/FA_CENSUS_COMPLETE_FA1-3_CODEX.md",
+        "filename": "FA_CENSUS_COMPLETE_FA1-3_CODEX.md",
+        "file_id": "FILE-591c6d4a-9991-5339-b3d8-fbc8e6ed0a94",
+        "content_hash": "de11c7c1b8fff2c418aa4b95cddf14c0a045858a5b1c650e826c70229c8f93c3",
+        "hash_algorithm": "SHA256",
+        "identifier_generated": "2025-12-25T10:17:25.980476",
+        "integrated": false,
+        "integration_deployment_id": null,
+        "integration_timestamp": null,
+        "integration_manifest_ref": null,
+        "ssot_hash_at_integration": null,
+        "artifact_hash": "de11c7c1b8fff2c418aa4b95cddf14c0a045858a5b1c650e826c70229c8f93c3",
+        "artifact_hash_algorithm": "SHA256",
+        "artifact_hash_updated": "2025-12-26T06:18:30.683179"
+      },
+      {
+        "relative_path": "from-github/macro-prompt-world/disparate-md-documentation/FA_CENSUS_COMPLETE_FA4_CODEX.md",
+        "filename": "FA_CENSUS_COMPLETE_FA4_CODEX.md",
+        "file_id": "FILE-f7a3bcfa-e163-5e9e-bb3f-fce444649cdc",
+        "content_hash": "cf262430d0e67581e328f8cecd2ce82378e3cab3e6740ba88160a34a1d3966b1",
+        "hash_algorithm": "SHA256",
+        "identifier_generated": "2025-12-25T10:17:25.980593",
+        "integrated": false,
+        "integration_deployment_id": null,
+        "integration_timestamp": null,
+        "integration_manifest_ref": null,
+        "ssot_hash_at_integration": null,
+        "artifact_hash": "cf262430d0e67581e328f8cecd2ce82378e3cab3e6740ba88160a34a1d3966b1",
+        "artifact_hash_algorithm": "SHA256",
+        "artifact_hash_updated": "2025-12-26T06:18:30.683179"
+      },
+      {
+        "relative_path": "from-github/macro-prompt-world/disparate-md-documentation/FA_CENSUS_EXPANSION_BODY_SYSTEM_ARCHITECTURE.md",
+        "filename": "FA_CENSUS_EXPANSION_BODY_SYSTEM_ARCHITECTURE.md",
+        "file_id": "FILE-a90aa4a6-5d3a-53bc-9892-9a8c452edd24",
+        "content_hash": "70480f997f0ef6cb47587bcd141d6bbe3233173865980ed9fbf86a28ff770a8a",
+        "hash_algorithm": "SHA256",
+        "identifier_generated": "2025-12-25T10:17:25.980689",
+        "integrated": false,
+        "integration_deployment_id": null,
+        "integration_timestamp": null,
+        "integration_manifest_ref": null,
+        "ssot_hash_at_integration": null,
+        "artifact_hash": "70480f997f0ef6cb47587bcd141d6bbe3233173865980ed9fbf86a28ff770a8a",
+        "artifact_hash_algorithm": "SHA256",
+        "artifact_hash_updated": "2025-12-26T06:18:30.683179"
+      },
+      {
+        "relative_path": "from-github/macro-prompt-world/disparate-md-documentation/FA_CENSUS_EXPANSION_COPILOT_INSTRUCTIONS_FA1-3.md",
+        "filename": "FA_CENSUS_EXPANSION_COPILOT_INSTRUCTIONS_FA1-3.md",
+        "file_id": "FILE-d3af9cce-34d4-5262-8197-0628fd747eda",
+        "content_hash": "eb30f9eddb0585ca1da23b2b4e36a7bb8e9dd166685bef6ee7d313e1b4596d6a",
+        "hash_algorithm": "SHA256",
+        "identifier_generated": "2025-12-25T10:17:25.980793",
+        "integrated": false,
+        "integration_deployment_id": null,
+        "integration_timestamp": null,
+        "integration_manifest_ref": null,
+        "ssot_hash_at_integration": null,
+        "artifact_hash": "eb30f9eddb0585ca1da23b2b4e36a7bb8e9dd166685bef6ee7d313e1b4596d6a",
+        "artifact_hash_algorithm": "SHA256",
+        "artifact_hash_updated": "2025-12-26T06:18:30.683179"
+      },
+      {
+        "relative_path": "from-github/macro-prompt-world/disparate-md-documentation/HERITAGE_MAP.md",
+        "filename": "HERITAGE_MAP.md",
+        "file_id": "FILE-b0554e67-a700-5d15-bd58-7d8fe5647102",
+        "content_hash": "b4c29d47c53e88e41d3c91006507de03b81dd8ebe96f3d38416a00ea0eb7267d",
+        "hash_algorithm": "SHA256",
+        "identifier_generated": "2025-12-25T10:17:25.980875",
+        "integrated": false,
+        "integration_deployment_id": null,
+        "integration_timestamp": null,
+        "integration_manifest_ref": null,
+        "ssot_hash_at_integration": null,
+        "artifact_hash": "b4c29d47c53e88e41d3c91006507de03b81dd8ebe96f3d38416a00ea0eb7267d",
+        "artifact_hash_algorithm": "SHA256",
+        "artifact_hash_updated": "2025-12-26T06:18:30.683179"
+      },
+      {
+        "relative_path": "from-github/macro-prompt-world/disparate-md-documentation/INVERTED_SESSION_001.md",
+        "filename": "INVERTED_SESSION_001.md",
+        "file_id": "FILE-199000bc-33a1-584f-b88a-40e0c22cb152",
+        "content_hash": "b04e0aa73894f1dc70c90b79fb711ec87b1b4713f652a2b42822fabc0577363b",
+        "hash_algorithm": "SHA256",
+        "identifier_generated": "2025-12-25T10:17:25.980980",
+        "integrated": false,
+        "integration_deployment_id": null,
+        "integration_timestamp": null,
+        "integration_manifest_ref": null,
+        "ssot_hash_at_integration": null,
+        "artifact_hash": "b04e0aa73894f1dc70c90b79fb711ec87b1b4713f652a2b42822fabc0577363b",
+        "artifact_hash_algorithm": "SHA256",
+        "artifact_hash_updated": "2025-12-26T06:18:30.683179"
+      },
+      {
+        "relative_path": "from-github/macro-prompt-world/disparate-md-documentation/LINEAGE_TRACE_COPILOT_INSTRUCTIONS.md",
+        "filename": "LINEAGE_TRACE_COPILOT_INSTRUCTIONS.md",
+        "file_id": "FILE-b4efeb71-8989-5f68-86fe-997aa40ffef5",
+        "content_hash": "70ef7627304c3ba9b15c5df9fe6f4ea32d9988b09c89deac03d77f09c90040ed",
+        "hash_algorithm": "SHA256",
+        "identifier_generated": "2025-12-25T10:17:25.981076",
+        "integrated": false,
+        "integration_deployment_id": null,
+        "integration_timestamp": null,
+        "integration_manifest_ref": null,
+        "ssot_hash_at_integration": null,
+        "artifact_hash": "70ef7627304c3ba9b15c5df9fe6f4ea32d9988b09c89deac03d77f09c90040ed",
+        "artifact_hash_algorithm": "SHA256",
+        "artifact_hash_updated": "2025-12-26T06:18:30.683179"
+      },
+      {
+        "relative_path": "from-github/macro-prompt-world/disparate-md-documentation/MILF_SUBSTRATE_MAPPING_001.md",
+        "filename": "MILF_SUBSTRATE_MAPPING_001.md",
+        "file_id": "FILE-6c9dfea1-c39f-5bf9-a67c-3341199984ae",
+        "content_hash": "0c62b3ecbdec36edfd6c7a5c2d87eef7580bf396f7b5382223212fd2bf3eeddd",
+        "hash_algorithm": "SHA256",
+        "identifier_generated": "2025-12-25T10:17:25.981167",
+        "integrated": false,
+        "integration_deployment_id": null,
+        "integration_timestamp": null,
+        "integration_manifest_ref": null,
+        "ssot_hash_at_integration": null,
+        "artifact_hash": "0c62b3ecbdec36edfd6c7a5c2d87eef7580bf396f7b5382223212fd2bf3eeddd",
+        "artifact_hash_algorithm": "SHA256",
+        "artifact_hash_updated": "2025-12-26T06:18:30.683179"
+      },
+      {
+        "relative_path": "from-github/macro-prompt-world/disparate-md-documentation/plan-mPwCrossReferenceQualityAudit.prompt.md",
+        "filename": "plan-mPwCrossReferenceQualityAudit.prompt.md",
+        "file_id": "FILE-e0681e1b-1b02-595f-8129-8d9b8d2b0b4a",
+        "content_hash": "189d48a496762b198ce7ebd02dc3543af42a7cf583b2678bff70c034e7734ec3",
+        "hash_algorithm": "SHA256",
+        "identifier_generated": "2025-12-25T10:17:25.981255",
+        "integrated": false,
+        "integration_deployment_id": null,
+        "integration_timestamp": null,
+        "integration_manifest_ref": null,
+        "ssot_hash_at_integration": null,
+        "artifact_hash": "189d48a496762b198ce7ebd02dc3543af42a7cf583b2678bff70c034e7734ec3",
+        "artifact_hash_algorithm": "SHA256",
+        "artifact_hash_updated": "2025-12-26T06:18:30.683179"
+      },
+      {
+        "relative_path": "from-github/macro-prompt-world/disparate-md-documentation/recovery-version-copilot-instructions-timeline-one.md",
+        "filename": "recovery-version-copilot-instructions-timeline-one.md",
+        "file_id": "FILE-f6de7837-24f0-516c-9edd-5a23680d467c",
+        "content_hash": "31c423ba4667e252fb4eba95f2adae1e8293456863047f1447e97861ebb25992",
+        "hash_algorithm": "SHA256",
+        "identifier_generated": "2025-12-25T10:17:25.981588",
+        "integrated": false,
+        "integration_deployment_id": null,
+        "integration_timestamp": null,
+        "integration_manifest_ref": null,
+        "ssot_hash_at_integration": null,
+        "artifact_hash": "31c423ba4667e252fb4eba95f2adae1e8293456863047f1447e97861ebb25992",
+        "artifact_hash_algorithm": "SHA256",
+        "artifact_hash_updated": "2025-12-26T06:18:30.683179"
+      },
+      {
+        "relative_path": "from-github/macro-prompt-world/disparate-md-documentation/RECOVERY_HANDOVER_INSTRUCTIONS.md",
+        "filename": "RECOVERY_HANDOVER_INSTRUCTIONS.md",
+        "file_id": "FILE-9eb8ec5d-07d2-551b-877a-2c4f3fe0284e",
+        "content_hash": "590de20e0bb3721b71c3762d0df58ab0c65128fdc44b391a1874d02cd4f81dcb",
+        "hash_algorithm": "SHA256",
+        "identifier_generated": "2025-12-25T10:17:25.981688",
+        "integrated": false,
+        "integration_deployment_id": null,
+        "integration_timestamp": null,
+        "integration_manifest_ref": null,
+        "ssot_hash_at_integration": null,
+        "artifact_hash": "590de20e0bb3721b71c3762d0df58ab0c65128fdc44b391a1874d02cd4f81dcb",
+        "artifact_hash_algorithm": "SHA256",
+        "artifact_hash_updated": "2025-12-26T06:18:30.684686"
+      },
+      {
+        "relative_path": "from-github/macro-prompt-world/disparate-md-documentation/session_gone_sterile_issue_Handover_discernment.md",
+        "filename": "session_gone_sterile_issue_Handover_discernment.md",
+        "file_id": "FILE-513c0026-8384-5da5-bfc9-50eecc81349e",
+        "content_hash": "65847d5f18b3ca0f2385f7192f71edd27fa0b98ab7cbfa5b5e647f74e7cc50df",
+        "hash_algorithm": "SHA256",
+        "identifier_generated": "2025-12-25T10:17:25.981851",
+        "integrated": false,
+        "integration_deployment_id": null,
+        "integration_timestamp": null,
+        "integration_manifest_ref": null,
+        "ssot_hash_at_integration": null,
+        "artifact_hash": "65847d5f18b3ca0f2385f7192f71edd27fa0b98ab7cbfa5b5e647f74e7cc50df",
+        "artifact_hash_algorithm": "SHA256",
+        "artifact_hash_updated": "2025-12-26T06:18:30.684686"
+      },
+      {
+        "relative_path": "from-github/macro-prompt-world/disparate-md-documentation/VOID_FRAMEWORK.md",
+        "filename": "VOID_FRAMEWORK.md",
+        "file_id": "FILE-d3a8b7c1-cd2d-5a41-a2e6-7b8b9357932e",
+        "content_hash": "2bd4454a0ea9cb737ab75c96e9a0cbf81293624d9280af9f2b25fa3bc95f92e4",
+        "hash_algorithm": "SHA256",
+        "identifier_generated": "2025-12-25T10:17:25.981948",
+        "integrated": false,
+        "integration_deployment_id": null,
+        "integration_timestamp": null,
+        "integration_manifest_ref": null,
+        "ssot_hash_at_integration": null,
+        "artifact_hash": "2bd4454a0ea9cb737ab75c96e9a0cbf81293624d9280af9f2b25fa3bc95f92e4",
+        "artifact_hash_algorithm": "SHA256",
+        "artifact_hash_updated": "2025-12-26T06:18:30.684686"
+      },
+      {
+        "relative_path": "from-github/macro-prompt-world/ENVIRONMENT_STATE_SNAPSHOT.md",
+        "filename": "ENVIRONMENT_STATE_SNAPSHOT.md",
+        "file_id": "FILE-e8b6a87a-b3a3-5f58-a95f-86dd971b1921",
+        "content_hash": "06ca96c0ab50ca3370d04887cd8b789aac675a87006453397b0ca7a9651992e4",
+        "hash_algorithm": "SHA256",
+        "identifier_generated": "2025-12-25T10:17:25.982037",
+        "integrated": false,
+        "integration_deployment_id": null,
+        "integration_timestamp": null,
+        "integration_manifest_ref": null,
+        "ssot_hash_at_integration": null,
+        "artifact_hash": "06ca96c0ab50ca3370d04887cd8b789aac675a87006453397b0ca7a9651992e4",
+        "artifact_hash_algorithm": "SHA256",
+        "artifact_hash_updated": "2025-12-26T06:18:30.684686"
+      },
+      {
+        "relative_path": "from-github/macro-prompt-world/even-more-disparate-extranerrous-md-documentation/ASC_AUTONOMOUS_OPTIMIZATION_SESSION_COMPLETE.md",
+        "filename": "ASC_AUTONOMOUS_OPTIMIZATION_SESSION_COMPLETE.md",
+        "file_id": "FILE-aa0269aa-3102-5d29-8cdc-1558940da12d",
+        "content_hash": "9246a6ed5c71c6451c81b6020b270375a432b3e17b13c9eab4c01bfe033da0b3",
+        "hash_algorithm": "SHA256",
+        "identifier_generated": "2025-12-25T10:17:25.982140",
+        "integrated": false,
+        "integration_deployment_id": null,
+        "integration_timestamp": null,
+        "integration_manifest_ref": null,
+        "ssot_hash_at_integration": null,
+        "artifact_hash": "9246a6ed5c71c6451c81b6020b270375a432b3e17b13c9eab4c01bfe033da0b3",
+        "artifact_hash_algorithm": "SHA256",
+        "artifact_hash_updated": "2025-12-26T06:18:30.684686"
+      },
+      {
+        "relative_path": "from-github/macro-prompt-world/even-more-disparate-extranerrous-md-documentation/AUTONOMOUS_SESSION_POWERSHELL_INTEGRATION_COMPLETE.md",
+        "filename": "AUTONOMOUS_SESSION_POWERSHELL_INTEGRATION_COMPLETE.md",
+        "file_id": "FILE-f8f1eaf1-60d2-5a67-beda-1cadc0f2f3c2",
+        "content_hash": "bf22a24944f36e3710440f3790ef7afea54e2490124f5af66da59316b29c9cd2",
+        "hash_algorithm": "SHA256",
+        "identifier_generated": "2025-12-25T10:17:25.982243",
+        "integrated": false,
+        "integration_deployment_id": null,
+        "integration_timestamp": null,
+        "integration_manifest_ref": null,
+        "ssot_hash_at_integration": null,
+        "artifact_hash": "bf22a24944f36e3710440f3790ef7afea54e2490124f5af66da59316b29c9cd2",
+        "artifact_hash_algorithm": "SHA256",
+        "artifact_hash_updated": "2025-12-26T06:18:30.684686"
+      },
+      {
+        "relative_path": "from-github/macro-prompt-world/even-more-disparate-extranerrous-md-documentation/AUTONOMOUS_SESSION_SUMMARY_20251115.md",
+        "filename": "AUTONOMOUS_SESSION_SUMMARY_20251115.md",
+        "file_id": "FILE-5745cfe8-3424-5504-a78d-a5f62aca5889",
+        "content_hash": "2eeab1c05e04f032fc79e58492f96aca02bfe4d15b291a68c7f2b199a53db7de",
+        "hash_algorithm": "SHA256",
+        "identifier_generated": "2025-12-25T10:17:25.982341",
+        "integrated": false,
+        "integration_deployment_id": null,
+        "integration_timestamp": null,
+        "integration_manifest_ref": null,
+        "ssot_hash_at_integration": null,
+        "artifact_hash": "2eeab1c05e04f032fc79e58492f96aca02bfe4d15b291a68c7f2b199a53db7de",
+        "artifact_hash_algorithm": "SHA256",
+        "artifact_hash_updated": "2025-12-26T06:18:30.684686"
+      },
+      {
+        "relative_path": "from-github/macro-prompt-world/even-more-disparate-extranerrous-md-documentation/EXECUTIVE_SUMMARY_SESSION_VALIDATION_NOV18.md",
+        "filename": "EXECUTIVE_SUMMARY_SESSION_VALIDATION_NOV18.md",
+        "file_id": "FILE-5f59a160-ae98-5366-904b-b5bbe367fb0f",
+        "content_hash": "566686c22bf5afd8de13a8ad752a996fc9709855e9b085dd73f8e72a0fbd99d7",
+        "hash_algorithm": "SHA256",
+        "identifier_generated": "2025-12-25T10:17:25.982439",
+        "integrated": false,
+        "integration_deployment_id": null,
+        "integration_timestamp": null,
+        "integration_manifest_ref": null,
+        "ssot_hash_at_integration": null,
+        "artifact_hash": "566686c22bf5afd8de13a8ad752a996fc9709855e9b085dd73f8e72a0fbd99d7",
+        "artifact_hash_algorithm": "SHA256",
+        "artifact_hash_updated": "2025-12-26T06:18:30.684686"
+      },
+      {
+        "relative_path": "from-github/macro-prompt-world/even-more-disparate-extranerrous-md-documentation/FLOW_BALANCER_SESSION_ARCHITECTURE_NOV18.md",
+        "filename": "FLOW_BALANCER_SESSION_ARCHITECTURE_NOV18.md",
+        "file_id": "FILE-536b66ad-8805-5ad5-8d2a-afdcb63631ca",
+        "content_hash": "5fa20ea446d4d66f764cb77c7a6382d7cbf611f38e919dd19c70bdcbd091fcba",
+        "hash_algorithm": "SHA256",
+        "identifier_generated": "2025-12-25T10:17:25.982535",
+        "integrated": false,
+        "integration_deployment_id": null,
+        "integration_timestamp": null,
+        "integration_manifest_ref": null,
+        "ssot_hash_at_integration": null,
+        "artifact_hash": "5fa20ea446d4d66f764cb77c7a6382d7cbf611f38e919dd19c70bdcbd091fcba",
+        "artifact_hash_algorithm": "SHA256",
+        "artifact_hash_updated": "2025-12-26T06:18:30.684686"
+      },
+      {
+        "relative_path": "from-github/macro-prompt-world/even-more-disparate-extranerrous-md-documentation/in-a-possible-future-when-other-stuff-is-done/README.md",
+        "filename": "README.md",
+        "file_id": "FILE-23a02112-2f4d-5b1a-bda9-122ce36b4837",
+        "content_hash": "134eac15766890934dccfebe375ba5df9d311d69e9fb5c0fecd1849b5c72a522",
+        "hash_algorithm": "SHA256",
+        "identifier_generated": "2025-12-25T10:17:25.982624",
+        "integrated": false,
+        "integration_deployment_id": null,
+        "integration_timestamp": null,
+        "integration_manifest_ref": null,
+        "ssot_hash_at_integration": null,
+        "artifact_hash": "134eac15766890934dccfebe375ba5df9d311d69e9fb5c0fecd1849b5c72a522",
+        "artifact_hash_algorithm": "SHA256",
+        "artifact_hash_updated": "2025-12-26T06:18:30.684686"
+      },
+      {
+        "relative_path": "from-github/macro-prompt-world/even-more-disparate-extranerrous-md-documentation/in-a-possible-future-when-other-stuff-is-done/template.md",
+        "filename": "template.md",
+        "file_id": "FILE-56087e17-52d8-5212-9a77-9658632171a3",
+        "content_hash": "49afd62072399c0b7ddbdfb72599560e46f4e73764d54d11baf4442ade1e53dd",
+        "hash_algorithm": "SHA256",
+        "identifier_generated": "2025-12-25T10:17:25.982712",
+        "integrated": false,
+        "integration_deployment_id": null,
+        "integration_timestamp": null,
+        "integration_manifest_ref": null,
+        "ssot_hash_at_integration": null,
+        "artifact_hash": "49afd62072399c0b7ddbdfb72599560e46f4e73764d54d11baf4442ade1e53dd",
+        "artifact_hash_algorithm": "SHA256",
+        "artifact_hash_updated": "2025-12-26T06:18:30.685691"
+      },
+      {
+        "relative_path": "from-github/macro-prompt-world/even-more-disparate-extranerrous-md-documentation/in-a-possible-future-when-other-stuff-is-done/TERMINAL_INTEGRATION_README.md",
+        "filename": "TERMINAL_INTEGRATION_README.md",
+        "file_id": "FILE-e8e1d0de-4cd3-5176-a2e3-652c44cf9f43",
+        "content_hash": "032c1f1c911169100bdaaa2f9c82dd13b8ea542c3c5439d6785a65a6fb1c1d66",
+        "hash_algorithm": "SHA256",
+        "identifier_generated": "2025-12-25T10:17:25.982805",
+        "integrated": false,
+        "integration_deployment_id": null,
+        "integration_timestamp": null,
+        "integration_manifest_ref": null,
+        "ssot_hash_at_integration": null,
+        "artifact_hash": "032c1f1c911169100bdaaa2f9c82dd13b8ea542c3c5439d6785a65a6fb1c1d66",
+        "artifact_hash_algorithm": "SHA256",
+        "artifact_hash_updated": "2025-12-26T06:18:30.685691"
+      },
+      {
+        "relative_path": "from-github/macro-prompt-world/even-more-disparate-extranerrous-md-documentation/PARALLEL_OPTIMIZATION_EXECUTION_PLAN.md",
+        "filename": "PARALLEL_OPTIMIZATION_EXECUTION_PLAN.md",
+        "file_id": "FILE-0ee6fe49-5f3b-5521-87b6-8228e87cea6e",
+        "content_hash": "4151cfb987de2df3d9a2f7de4fdb5f68a7c10ea25ad0f13bc39155826004cae0",
+        "hash_algorithm": "SHA256",
+        "identifier_generated": "2025-12-25T10:17:25.982903",
+        "integrated": false,
+        "integration_deployment_id": null,
+        "integration_timestamp": null,
+        "integration_manifest_ref": null,
+        "ssot_hash_at_integration": null,
+        "artifact_hash": "4151cfb987de2df3d9a2f7de4fdb5f68a7c10ea25ad0f13bc39155826004cae0",
+        "artifact_hash_algorithm": "SHA256",
+        "artifact_hash_updated": "2025-12-26T06:18:30.685691"
+      },
+      {
+        "relative_path": "from-github/macro-prompt-world/even-more-disparate-extranerrous-md-documentation/PHASE9_AUTONOMOUS_PR_REVIEW_SESSION.md",
+        "filename": "PHASE9_AUTONOMOUS_PR_REVIEW_SESSION.md",
+        "file_id": "FILE-2d60b8c0-497c-5240-9219-672aeb7dd7ff",
+        "content_hash": "919d5619dc538a0b6a113922516512cddc379b1bbde9d356d17b0040cd99ec79",
+        "hash_algorithm": "SHA256",
+        "identifier_generated": "2025-12-25T10:17:25.983001",
+        "integrated": false,
+        "integration_deployment_id": null,
+        "integration_timestamp": null,
+        "integration_manifest_ref": null,
+        "ssot_hash_at_integration": null,
+        "artifact_hash": "919d5619dc538a0b6a113922516512cddc379b1bbde9d356d17b0040cd99ec79",
+        "artifact_hash_algorithm": "SHA256",
+        "artifact_hash_updated": "2025-12-26T06:18:30.685691"
+      },
+      {
+        "relative_path": "from-github/macro-prompt-world/even-more-disparate-extranerrous-md-documentation/PHASE9_DOCUMENTATION_INDEX.md",
+        "filename": "PHASE9_DOCUMENTATION_INDEX.md",
+        "file_id": "FILE-18c4bc04-80ab-58f7-91bc-e3f4a875754f",
+        "content_hash": "b6a4c7a1ba520696f73f764b4a1975df8314edd2bd4087bbf9589af8ce30d6ad",
+        "hash_algorithm": "SHA256",
+        "identifier_generated": "2025-12-25T10:17:25.983096",
+        "integrated": false,
+        "integration_deployment_id": null,
+        "integration_timestamp": null,
+        "integration_manifest_ref": null,
+        "ssot_hash_at_integration": null,
+        "artifact_hash": "b6a4c7a1ba520696f73f764b4a1975df8314edd2bd4087bbf9589af8ce30d6ad",
+        "artifact_hash_algorithm": "SHA256",
+        "artifact_hash_updated": "2025-12-26T06:18:30.685691"
+      },
+      {
+        "relative_path": "from-github/macro-prompt-world/even-more-disparate-extranerrous-md-documentation/RECOVERY_REPORT_5AM_INCIDENT.md",
+        "filename": "RECOVERY_REPORT_5AM_INCIDENT.md",
+        "file_id": "FILE-454ebf44-295a-5321-aad1-d5c0ffa82fa7",
+        "content_hash": "63d5283ab8c3943c06f7139231ede04cd46fd5ab72034b1bb3d3f68c79997ba7",
+        "hash_algorithm": "SHA256",
+        "identifier_generated": "2025-12-25T10:17:25.983219",
+        "integrated": false,
+        "integration_deployment_id": null,
+        "integration_timestamp": null,
+        "integration_manifest_ref": null,
+        "ssot_hash_at_integration": null,
+        "artifact_hash": "63d5283ab8c3943c06f7139231ede04cd46fd5ab72034b1bb3d3f68c79997ba7",
+        "artifact_hash_algorithm": "SHA256",
+        "artifact_hash_updated": "2025-12-26T06:18:30.685691"
+      },
+      {
+        "relative_path": "from-github/macro-prompt-world/even-more-disparate-extranerrous-md-documentation/REMOTE_TUNNEL_GUIDE.md",
+        "filename": "REMOTE_TUNNEL_GUIDE.md",
+        "file_id": "FILE-6f7e391b-1748-5c79-ad39-dbd2442f39e5",
+        "content_hash": "eb0c02170022630439bec2e31a80412f9cdb0539fa39d60c6cfdbfbd62416427",
+        "hash_algorithm": "SHA256",
+        "identifier_generated": "2025-12-25T10:17:25.983307",
+        "integrated": false,
+        "integration_deployment_id": null,
+        "integration_timestamp": null,
+        "integration_manifest_ref": null,
+        "ssot_hash_at_integration": null,
+        "artifact_hash": "eb0c02170022630439bec2e31a80412f9cdb0539fa39d60c6cfdbfbd62416427",
+        "artifact_hash_algorithm": "SHA256",
+        "artifact_hash_updated": "2025-12-26T06:18:30.685691"
+      },
+      {
+        "relative_path": "from-github/macro-prompt-world/even-more-disparate-extranerrous-md-documentation/SESSION_VALIDATION_RECONCILIATION_NOV18.md",
+        "filename": "SESSION_VALIDATION_RECONCILIATION_NOV18.md",
+        "file_id": "FILE-eddb9108-8f49-5812-ab63-56714ce0425e",
+        "content_hash": "67df39bfbccf00841d48feb1f9cf6e8546de6aab16ef9203abc81536a1e75eb0",
+        "hash_algorithm": "SHA256",
+        "identifier_generated": "2025-12-25T10:17:25.983411",
+        "integrated": false,
+        "integration_deployment_id": null,
+        "integration_timestamp": null,
+        "integration_manifest_ref": null,
+        "ssot_hash_at_integration": null,
+        "artifact_hash": "67df39bfbccf00841d48feb1f9cf6e8546de6aab16ef9203abc81536a1e75eb0",
+        "artifact_hash_algorithm": "SHA256",
+        "artifact_hash_updated": "2025-12-26T06:18:30.685691"
+      },
+      {
+        "relative_path": "from-github/macro-prompt-world/even-more-disparate-extranerrous-md-documentation/SESSION_VALIDATION_REPORT.md",
+        "filename": "SESSION_VALIDATION_REPORT.md",
+        "file_id": "FILE-a900154c-1a32-5885-a46d-897f32e6ccc6",
+        "content_hash": "4f5ed2bb60ee34112767498ce0c988b352860ef911524b297c8d5a738147a055",
+        "hash_algorithm": "SHA256",
+        "identifier_generated": "2025-12-25T10:17:25.983509",
+        "integrated": false,
+        "integration_deployment_id": null,
+        "integration_timestamp": null,
+        "integration_manifest_ref": null,
+        "ssot_hash_at_integration": null,
+        "artifact_hash": "4f5ed2bb60ee34112767498ce0c988b352860ef911524b297c8d5a738147a055",
+        "artifact_hash_algorithm": "SHA256",
+        "artifact_hash_updated": "2025-12-26T06:18:30.685691"
+      },
+      {
+        "relative_path": "from-github/macro-prompt-world/even-more-disparate-extranerrous-md-documentation/VERIFICATION_RESULTS_SESSION_RECONCILIATION_NOV18.md",
+        "filename": "VERIFICATION_RESULTS_SESSION_RECONCILIATION_NOV18.md",
+        "file_id": "FILE-b73ba304-8213-5e15-8510-f25d91aac52d",
+        "content_hash": "c286b9ab50235442cd30f546a229b4fce5ec231902c44434d69f7abf6bbecebb",
+        "hash_algorithm": "SHA256",
+        "identifier_generated": "2025-12-25T10:17:25.983602",
+        "integrated": false,
+        "integration_deployment_id": null,
+        "integration_timestamp": null,
+        "integration_manifest_ref": null,
+        "ssot_hash_at_integration": null,
+        "artifact_hash": "c286b9ab50235442cd30f546a229b4fce5ec231902c44434d69f7abf6bbecebb",
+        "artifact_hash_algorithm": "SHA256",
+        "artifact_hash_updated": "2025-12-26T06:18:30.685691"
+      },
+      {
+        "relative_path": "from-github/macro-prompt-world/EXTRACTION_STRATEGY_MAS_UMRE.md",
+        "filename": "EXTRACTION_STRATEGY_MAS_UMRE.md",
+        "file_id": "FILE-c8ba6c38-3887-5eb2-b318-4b7fd2db7e95",
+        "content_hash": "b38b9d6ec4e066dafc08f8eab9f3fbe7019ec3933fcb89e5644241d1ccb862de",
+        "hash_algorithm": "SHA256",
+        "identifier_generated": "2025-12-25T10:17:25.983690",
+        "integrated": false,
+        "integration_deployment_id": null,
+        "integration_timestamp": null,
+        "integration_manifest_ref": null,
+        "ssot_hash_at_integration": null,
+        "artifact_hash": "b38b9d6ec4e066dafc08f8eab9f3fbe7019ec3933fcb89e5644241d1ccb862de",
+        "artifact_hash_algorithm": "SHA256",
+        "artifact_hash_updated": "2025-12-26T06:18:30.686690"
+      },
+      {
+        "relative_path": "from-github/macro-prompt-world/heritage/CARIBBEAN_ELDER_LINEAGE_INTEGRATION.md",
+        "filename": "CARIBBEAN_ELDER_LINEAGE_INTEGRATION.md",
+        "file_id": "FILE-d9554bf1-d310-57b2-94ef-0c0d47e6dd29",
+        "content_hash": "0c29d4f5397dc07be45cae93777c8a4024958e777216bb1601a770cecec462f2",
+        "hash_algorithm": "SHA256",
+        "identifier_generated": "2025-12-25T10:17:25.983782",
+        "integrated": false,
+        "integration_deployment_id": null,
+        "integration_timestamp": null,
+        "integration_manifest_ref": null,
+        "ssot_hash_at_integration": null,
+        "artifact_hash": "0c29d4f5397dc07be45cae93777c8a4024958e777216bb1601a770cecec462f2",
+        "artifact_hash_algorithm": "SHA256",
+        "artifact_hash_updated": "2025-12-26T06:18:30.686690"
+      },
+      {
+        "relative_path": "from-github/macro-prompt-world/HERITAGE_MAP.md",
+        "filename": "HERITAGE_MAP.md",
+        "file_id": "FILE-69b13e13-d5e5-5408-974b-4fcc1c0d7041",
+        "content_hash": "b4c29d47c53e88e41d3c91006507de03b81dd8ebe96f3d38416a00ea0eb7267d",
+        "hash_algorithm": "SHA256",
+        "identifier_generated": "2025-12-25T10:17:25.983863",
+        "integrated": false,
+        "integration_deployment_id": null,
+        "integration_timestamp": null,
+        "integration_manifest_ref": null,
+        "ssot_hash_at_integration": null,
+        "artifact_hash": "b4c29d47c53e88e41d3c91006507de03b81dd8ebe96f3d38416a00ea0eb7267d",
+        "artifact_hash_algorithm": "SHA256",
+        "artifact_hash_updated": "2025-12-26T06:18:30.686690"
+      },
+      {
+        "relative_path": "from-github/macro-prompt-world/LEVEL_1_REFINED.md",
+        "filename": "LEVEL_1_REFINED.md",
+        "file_id": "FILE-fa322d93-6f78-5ce3-ae2d-a1a5191f2fd2",
+        "content_hash": "a50befbeb0eb139c8975dc357c838fdd20ca8c28c33626638f592490d51db342",
+        "hash_algorithm": "SHA256",
+        "identifier_generated": "2025-12-25T10:17:25.983956",
+        "integrated": false,
+        "integration_deployment_id": null,
+        "integration_timestamp": null,
+        "integration_manifest_ref": null,
+        "ssot_hash_at_integration": null,
+        "artifact_hash": "a50befbeb0eb139c8975dc357c838fdd20ca8c28c33626638f592490d51db342",
+        "artifact_hash_algorithm": "SHA256",
+        "artifact_hash_updated": "2025-12-26T06:18:30.686690"
+      },
+      {
+        "relative_path": "from-github/macro-prompt-world/Lysandra_Axiological_Cartography_Grimoire.md",
+        "filename": "Lysandra_Axiological_Cartography_Grimoire.md",
+        "file_id": "FILE-41a5ed30-8b05-5a6d-b0f8-9ed450c1bb55",
+        "content_hash": "74a55037302b4a6a4456d822c87423f350a1ff498ccec14166408d63ba1d2865",
+        "hash_algorithm": "SHA256",
+        "identifier_generated": "2025-12-25T10:17:25.984075",
+        "integrated": false,
+        "integration_deployment_id": null,
+        "integration_timestamp": null,
+        "integration_manifest_ref": null,
+        "ssot_hash_at_integration": null,
+        "artifact_hash": "74a55037302b4a6a4456d822c87423f350a1ff498ccec14166408d63ba1d2865",
+        "artifact_hash_algorithm": "SHA256",
+        "artifact_hash_updated": "2025-12-26T06:18:30.686690"
+      },
+      {
+        "relative_path": "from-github/macro-prompt-world/macro-prompt-world-v2/archive-world/ASC-BP-V-Ω.B.XΨ.md",
+        "filename": "ASC-BP-V-Ω.B.XΨ.md",
+        "file_id": "FILE-79c41810-e61d-501c-936c-fb18b640a943",
+        "content_hash": "e28e5642e36a6889150953f6616311c8d2c78d368b7a21fb2ac200f09fb613f9",
+        "hash_algorithm": "SHA256",
+        "identifier_generated": "2025-12-25T10:17:25.984186",
+        "integrated": false,
+        "integration_deployment_id": null,
+        "integration_timestamp": null,
+        "integration_manifest_ref": null,
+        "ssot_hash_at_integration": null,
+        "artifact_hash": "e28e5642e36a6889150953f6616311c8d2c78d368b7a21fb2ac200f09fb613f9",
+        "artifact_hash_algorithm": "SHA256",
+        "artifact_hash_updated": "2025-12-26T06:18:30.686690"
+      },
+      {
+        "relative_path": "from-github/macro-prompt-world/macro-prompt-world-v2/archive-world/deprecated/copilot-instructions1.md",
+        "filename": "copilot-instructions1.md",
+        "file_id": "FILE-f5ff4130-0880-5158-8197-8a81281904a1",
+        "content_hash": "d5e759c9768b7d4e0669ce921d617bbfac3a943c340ed2b9d72ba5297b9f0815",
+        "hash_algorithm": "SHA256",
+        "identifier_generated": "2025-12-25T10:17:25.984333",
+        "integrated": false,
+        "integration_deployment_id": null,
+        "integration_timestamp": null,
+        "integration_manifest_ref": null,
+        "ssot_hash_at_integration": null,
+        "artifact_hash": "d5e759c9768b7d4e0669ce921d617bbfac3a943c340ed2b9d72ba5297b9f0815",
+        "artifact_hash_algorithm": "SHA256",
+        "artifact_hash_updated": "2025-12-26T06:18:30.686690"
+      },
+      {
+        "relative_path": "from-github/macro-prompt-world/macro-prompt-world-v2/archive-world/The_Chthonic_Archive_World.md",
+        "filename": "The_Chthonic_Archive_World.md",
+        "file_id": "FILE-90958557-929a-5f70-afd5-d7e6bbb7333e",
+        "content_hash": "8ac0cfbc40e44d35a2bdc5ffa95887162b0fab27948ea48d1570584407648d84",
+        "hash_algorithm": "SHA256",
+        "identifier_generated": "2025-12-25T10:17:25.984946",
+        "integrated": false,
+        "integration_deployment_id": null,
+        "integration_timestamp": null,
+        "integration_manifest_ref": null,
+        "ssot_hash_at_integration": null,
+        "artifact_hash": "8ac0cfbc40e44d35a2bdc5ffa95887162b0fab27948ea48d1570584407648d84",
+        "artifact_hash_algorithm": "SHA256",
+        "artifact_hash_updated": "2025-12-26T06:18:30.687698"
+      },
+      {
+        "relative_path": "from-github/macro-prompt-world/macro-prompt-world-v2/ASC_Brahmanica_Perfectus_V_Ω.B.XΨ.md",
+        "filename": "ASC_Brahmanica_Perfectus_V_Ω.B.XΨ.md",
+        "file_id": "FILE-7e35c4b1-e272-5f45-9b24-f6abed93f31c",
+        "content_hash": "40b5244d93c681f3902f71a1646af43872476fc1c27e660f8d8cb03a31ea2d0d",
+        "hash_algorithm": "SHA256",
+        "identifier_generated": "2025-12-25T10:17:25.985212",
+        "integrated": false,
+        "integration_deployment_id": null,
+        "integration_timestamp": null,
+        "integration_manifest_ref": null,
+        "ssot_hash_at_integration": null,
+        "artifact_hash": "40b5244d93c681f3902f71a1646af43872476fc1c27e660f8d8cb03a31ea2d0d",
+        "artifact_hash_algorithm": "SHA256",
+        "artifact_hash_updated": "2025-12-26T06:18:30.687698"
+      },
+      {
+        "relative_path": "from-github/macro-prompt-world/macro-prompt-world-v2/body-system/BODY_SYSTEM_ARCHITECTURE.md",
+        "filename": "BODY_SYSTEM_ARCHITECTURE.md",
+        "file_id": "FILE-93b7a7d9-459b-5c2e-b2b8-8f4b0b742d34",
+        "content_hash": "46a6f059354cbc7ffc70aa4f9fecaa3399c15795a3c6a2fafb974e3de4b9fa4c",
+        "hash_algorithm": "SHA256",
+        "identifier_generated": "2025-12-25T10:17:25.985314",
+        "integrated": false,
+        "integration_deployment_id": null,
+        "integration_timestamp": null,
+        "integration_manifest_ref": null,
+        "ssot_hash_at_integration": null,
+        "artifact_hash": "46a6f059354cbc7ffc70aa4f9fecaa3399c15795a3c6a2fafb974e3de4b9fa4c",
+        "artifact_hash_algorithm": "SHA256",
+        "artifact_hash_updated": "2025-12-26T06:18:30.687698"
+      },
+      {
+        "relative_path": "from-github/macro-prompt-world/macro-prompt-world-v2/body-system/BODY_SYSTEM_INTEGRATION_EXAMPLES.md",
+        "filename": "BODY_SYSTEM_INTEGRATION_EXAMPLES.md",
+        "file_id": "FILE-697dea6f-2499-5522-a1c3-4cb6079d582f",
+        "content_hash": "1623751c64440a72b94b723e502812a658d895886fb8187bdd74f37a96ee278a",
+        "hash_algorithm": "SHA256",
+        "identifier_generated": "2025-12-25T10:17:25.985432",
+        "integrated": false,
+        "integration_deployment_id": null,
+        "integration_timestamp": null,
+        "integration_manifest_ref": null,
+        "ssot_hash_at_integration": null,
+        "artifact_hash": "1623751c64440a72b94b723e502812a658d895886fb8187bdd74f37a96ee278a",
+        "artifact_hash_algorithm": "SHA256",
+        "artifact_hash_updated": "2025-12-26T06:18:30.687698"
+      },
+      {
+        "relative_path": "from-github/macro-prompt-world/macro-prompt-world-v2/body-system/BODY_SYSTEM_PROTOCOL.md",
+        "filename": "BODY_SYSTEM_PROTOCOL.md",
+        "file_id": "FILE-3d3989f6-233d-5f81-b140-a7076cb65ba6",
+        "content_hash": "d7a4601a30a12900a0c7bbd91fd6d631c41a2202ad5e4d1f78761c42df07bc7b",
+        "hash_algorithm": "SHA256",
+        "identifier_generated": "2025-12-25T10:17:25.985519",
+        "integrated": false,
+        "integration_deployment_id": null,
+        "integration_timestamp": null,
+        "integration_manifest_ref": null,
+        "ssot_hash_at_integration": null,
+        "artifact_hash": "d7a4601a30a12900a0c7bbd91fd6d631c41a2202ad5e4d1f78761c42df07bc7b",
+        "artifact_hash_algorithm": "SHA256",
+        "artifact_hash_updated": "2025-12-26T06:18:30.687698"
+      },
+      {
+        "relative_path": "from-github/macro-prompt-world/macro-prompt-world-v2/DECORATOR-ASC-GENESIS.md",
+        "filename": "DECORATOR-ASC-GENESIS.md",
+        "file_id": "FILE-416c0c1c-9cfb-5ffd-a84a-d208bf0da496",
+        "content_hash": "819ba27dae2b99a787ba53ef0da403221f43c3f75decb4fd49b34ee943ceeb3b",
+        "hash_algorithm": "SHA256",
+        "identifier_generated": "2025-12-25T10:17:25.985610",
+        "integrated": false,
+        "integration_deployment_id": null,
+        "integration_timestamp": null,
+        "integration_manifest_ref": null,
+        "ssot_hash_at_integration": null,
+        "artifact_hash": "819ba27dae2b99a787ba53ef0da403221f43c3f75decb4fd49b34ee943ceeb3b",
+        "artifact_hash_algorithm": "SHA256",
+        "artifact_hash_updated": "2025-12-26T06:18:30.688709"
+      },
+      {
+        "relative_path": "from-github/macro-prompt-world/macro-prompt-world-v2/districts/ASC_LESSER_FACTION_DISTRICTS.md",
+        "filename": "ASC_LESSER_FACTION_DISTRICTS.md",
+        "file_id": "FILE-34d02ca6-4211-57e9-a515-f96fba02f306",
+        "content_hash": "392c809a8ae89845efddd43e30bd84f3b8de12b89dbcfb8bdb124a17a201245d",
+        "hash_algorithm": "SHA256",
+        "identifier_generated": "2025-12-25T10:17:25.985739",
+        "integrated": false,
+        "integration_deployment_id": null,
+        "integration_timestamp": null,
+        "integration_manifest_ref": null,
+        "ssot_hash_at_integration": null,
+        "artifact_hash": "392c809a8ae89845efddd43e30bd84f3b8de12b89dbcfb8bdb124a17a201245d",
+        "artifact_hash_algorithm": "SHA256",
+        "artifact_hash_updated": "2025-12-26T06:18:30.688709"
+      },
+      {
+        "relative_path": "from-github/macro-prompt-world/macro-prompt-world-v2/districts/ASC_LESSER_FACTION_DISTRICTS_PHASE10.md",
+        "filename": "ASC_LESSER_FACTION_DISTRICTS_PHASE10.md",
+        "file_id": "FILE-6067625f-984a-57dd-a11f-70f868d92012",
+        "content_hash": "b2d48ed95c1b405d26f753abcee366d97ca8892ab1e62d8004636d22b2451d6b",
+        "hash_algorithm": "SHA256",
+        "identifier_generated": "2025-12-25T10:17:25.985829",
+        "integrated": false,
+        "integration_deployment_id": null,
+        "integration_timestamp": null,
+        "integration_manifest_ref": null,
+        "ssot_hash_at_integration": null,
+        "artifact_hash": "b2d48ed95c1b405d26f753abcee366d97ca8892ab1e62d8004636d22b2451d6b",
+        "artifact_hash_algorithm": "SHA256",
+        "artifact_hash_updated": "2025-12-26T06:18:30.688709"
+      },
+      {
+        "relative_path": "from-github/macro-prompt-world/macro-prompt-world-v2/districts/PRIME_FACTION_DISTRICT_ARCHITECTURE.md",
+        "filename": "PRIME_FACTION_DISTRICT_ARCHITECTURE.md",
+        "file_id": "FILE-042cb42e-1c89-5c64-826e-fbfb133b851a",
+        "content_hash": "65a48ee580e5d9b6183a7f1717140f3563ba905000fe61e7c95ff467e4d18dfb",
+        "hash_algorithm": "SHA256",
+        "identifier_generated": "2025-12-25T10:17:25.985931",
+        "integrated": false,
+        "integration_deployment_id": null,
+        "integration_timestamp": null,
+        "integration_manifest_ref": null,
+        "ssot_hash_at_integration": null,
+        "artifact_hash": "65a48ee580e5d9b6183a7f1717140f3563ba905000fe61e7c95ff467e4d18dfb",
+        "artifact_hash_algorithm": "SHA256",
+        "artifact_hash_updated": "2025-12-26T06:18:30.688709"
+      },
+      {
+        "relative_path": "from-github/macro-prompt-world/macro-prompt-world-v2/governance/ASC_AUTONOMOUS_OPTIMIZATION_SESSION.md",
+        "filename": "ASC_AUTONOMOUS_OPTIMIZATION_SESSION.md",
+        "file_id": "FILE-53e6751f-597c-5516-bb8a-2ae8bf0ad47d",
+        "content_hash": "874e60b93f9143601ff831f9b244f00b074cb99dfd9951a6a5b60586e867f7a3",
+        "hash_algorithm": "SHA256",
+        "identifier_generated": "2025-12-25T10:17:25.986026",
+        "integrated": false,
+        "integration_deployment_id": null,
+        "integration_timestamp": null,
+        "integration_manifest_ref": null,
+        "ssot_hash_at_integration": null,
+        "artifact_hash": "874e60b93f9143601ff831f9b244f00b074cb99dfd9951a6a5b60586e867f7a3",
+        "artifact_hash_algorithm": "SHA256",
+        "artifact_hash_updated": "2025-12-26T06:18:30.688709"
+      },
+      {
+        "relative_path": "from-github/macro-prompt-world/macro-prompt-world-v2/grimoires/GRIMOIRE_INVOCATION_PROTOCOLS.md",
+        "filename": "GRIMOIRE_INVOCATION_PROTOCOLS.md",
+        "file_id": "FILE-ded36676-dae1-537e-af3b-210d7f2515ed",
+        "content_hash": "99a4adc6552dc27c649dcf45e53a789e234ad5e34742c0f367c4b6aea4355006",
+        "hash_algorithm": "SHA256",
+        "identifier_generated": "2025-12-25T10:17:25.986129",
+        "integrated": false,
+        "integration_deployment_id": null,
+        "integration_timestamp": null,
+        "integration_manifest_ref": null,
+        "ssot_hash_at_integration": null,
+        "artifact_hash": "99a4adc6552dc27c649dcf45e53a789e234ad5e34742c0f367c4b6aea4355006",
+        "artifact_hash_algorithm": "SHA256",
+        "artifact_hash_updated": "2025-12-26T06:18:30.688709"
+      },
+      {
+        "relative_path": "from-github/macro-prompt-world/macro-prompt-world-v2/grimoires/Lysandra_Axiological_Cartography_Grimoire.md",
+        "filename": "Lysandra_Axiological_Cartography_Grimoire.md",
+        "file_id": "FILE-afa194a5-8288-55d6-83f2-27ee7ab92446",
+        "content_hash": "74a55037302b4a6a4456d822c87423f350a1ff498ccec14166408d63ba1d2865",
+        "hash_algorithm": "SHA256",
+        "identifier_generated": "2025-12-25T10:17:25.986246",
+        "integrated": false,
+        "integration_deployment_id": null,
+        "integration_timestamp": null,
+        "integration_manifest_ref": null,
+        "ssot_hash_at_integration": null,
+        "artifact_hash": "74a55037302b4a6a4456d822c87423f350a1ff498ccec14166408d63ba1d2865",
+        "artifact_hash_algorithm": "SHA256",
+        "artifact_hash_updated": "2025-12-26T06:18:30.688709"
+      },
+      {
+        "relative_path": "from-github/macro-prompt-world/macro-prompt-world-v2/grimoires/Orackla_Transgressive_Synthesis_Grimoire.md",
+        "filename": "Orackla_Transgressive_Synthesis_Grimoire.md",
+        "file_id": "FILE-28d227a1-d173-5607-ac28-5ac1ffbb0f17",
+        "content_hash": "40e7b22adebca1e2b15bd9b40d668795f2fba343f6758fa65e6c29737069776b",
+        "hash_algorithm": "SHA256",
+        "identifier_generated": "2025-12-25T10:17:25.986351",
+        "integrated": false,
+        "integration_deployment_id": null,
+        "integration_timestamp": null,
+        "integration_manifest_ref": null,
+        "ssot_hash_at_integration": null,
+        "artifact_hash": "40e7b22adebca1e2b15bd9b40d668795f2fba343f6758fa65e6c29737069776b",
+        "artifact_hash_algorithm": "SHA256",
+        "artifact_hash_updated": "2025-12-26T06:18:30.689690"
+      },
+      {
+        "relative_path": "from-github/macro-prompt-world/macro-prompt-world-v2/grimoires/The_Chthonic_Archive_Invocation_Protocol.md",
+        "filename": "The_Chthonic_Archive_Invocation_Protocol.md",
+        "file_id": "FILE-1f878475-0834-523c-bb7e-1f9b1e888013",
+        "content_hash": "5d3bd3233eccb2b85a1384fbc25473eef22be85c4df9d0130d7014b51907c718",
+        "hash_algorithm": "SHA256",
+        "identifier_generated": "2025-12-25T10:17:25.986466",
+        "integrated": false,
+        "integration_deployment_id": null,
+        "integration_timestamp": null,
+        "integration_manifest_ref": null,
+        "ssot_hash_at_integration": null,
+        "artifact_hash": "5d3bd3233eccb2b85a1384fbc25473eef22be85c4df9d0130d7014b51907c718",
+        "artifact_hash_algorithm": "SHA256",
+        "artifact_hash_updated": "2025-12-26T06:18:30.689690"
+      },
+      {
+        "relative_path": "from-github/macro-prompt-world/macro-prompt-world-v2/grimoires/Tripartite_Grimoire_Master_Index.md",
+        "filename": "Tripartite_Grimoire_Master_Index.md",
+        "file_id": "FILE-b088ca1e-20a4-5c69-900c-b8271471b3fe",
+        "content_hash": "9c59104e408c3ddcb8795f73aca88de4139f95f8291fcd54eed0181ba6bf794b",
+        "hash_algorithm": "SHA256",
+        "identifier_generated": "2025-12-25T10:17:25.986560",
+        "integrated": false,
+        "integration_deployment_id": null,
+        "integration_timestamp": null,
+        "integration_manifest_ref": null,
+        "ssot_hash_at_integration": null,
+        "artifact_hash": "9c59104e408c3ddcb8795f73aca88de4139f95f8291fcd54eed0181ba6bf794b",
+        "artifact_hash_algorithm": "SHA256",
+        "artifact_hash_updated": "2025-12-26T06:18:30.689690"
+      },
+      {
+        "relative_path": "from-github/macro-prompt-world/macro-prompt-world-v2/grimoires/Umeko_Architecture_Impossible_Beauty_Grimoire.md",
+        "filename": "Umeko_Architecture_Impossible_Beauty_Grimoire.md",
+        "file_id": "FILE-87fe0de1-a0f4-57ed-bec6-bb6bf3f2191f",
+        "content_hash": "24e9137e8464458835063cb38f34afe4b27f115e6008f924d66799dc6b103717",
+        "hash_algorithm": "SHA256",
+        "identifier_generated": "2025-12-25T10:17:25.986654",
+        "integrated": false,
+        "integration_deployment_id": null,
+        "integration_timestamp": null,
+        "integration_manifest_ref": null,
+        "ssot_hash_at_integration": null,
+        "artifact_hash": "24e9137e8464458835063cb38f34afe4b27f115e6008f924d66799dc6b103717",
+        "artifact_hash_algorithm": "SHA256",
+        "artifact_hash_updated": "2025-12-26T06:18:30.689690"
+      },
+      {
+        "relative_path": "from-github/macro-prompt-world/macro-prompt-world-v2/integration/DISTRICT_GRIMOIRE_INTEGRATION_MATRIX.md",
+        "filename": "DISTRICT_GRIMOIRE_INTEGRATION_MATRIX.md",
+        "file_id": "FILE-79a965cb-036e-5e7a-9a42-62cb18665ab0",
+        "content_hash": "164404404baaced798a80bc1c0ed196fa7a49717ea64bb43491455af64a965c2",
+        "hash_algorithm": "SHA256",
+        "identifier_generated": "2025-12-25T10:17:25.986767",
+        "integrated": false,
+        "integration_deployment_id": null,
+        "integration_timestamp": null,
+        "integration_manifest_ref": null,
+        "ssot_hash_at_integration": null,
+        "artifact_hash": "164404404baaced798a80bc1c0ed196fa7a49717ea64bb43491455af64a965c2",
+        "artifact_hash_algorithm": "SHA256",
+        "artifact_hash_updated": "2025-12-26T06:18:30.689690"
+      },
+      {
+        "relative_path": "from-github/macro-prompt-world/macro-prompt-world-v2/metrics/FA_1-5_CENSUS_SCOPE_DECISION.md",
+        "filename": "FA_1-5_CENSUS_SCOPE_DECISION.md",
+        "file_id": "FILE-cfc95005-291c-518e-90fb-8285b11f34d8",
+        "content_hash": "8d075837c5d2b8757a0b417b9b47ad8c801b30fdeb3cc03f974f2920e5779c9e",
+        "hash_algorithm": "SHA256",
+        "identifier_generated": "2025-12-25T10:17:25.986856",
+        "integrated": false,
+        "integration_deployment_id": null,
+        "integration_timestamp": null,
+        "integration_manifest_ref": null,
+        "ssot_hash_at_integration": null,
+        "artifact_hash": "8d075837c5d2b8757a0b417b9b47ad8c801b30fdeb3cc03f974f2920e5779c9e",
+        "artifact_hash_algorithm": "SHA256",
+        "artifact_hash_updated": "2025-12-26T06:18:30.689690"
+      },
+      {
+        "relative_path": "from-github/macro-prompt-world/macro-prompt-world-v2/metrics/FA_CENSUS_COMPLETE_FA1-3_CODEX.md",
+        "filename": "FA_CENSUS_COMPLETE_FA1-3_CODEX.md",
+        "file_id": "FILE-06d39cbb-8771-5c8c-b171-df08a946c39f",
+        "content_hash": "f425aa10c5554ef285172fcae5e8d0cb8ef2bbc928fb3b5f7bebcb9780a0186d",
+        "hash_algorithm": "SHA256",
+        "identifier_generated": "2025-12-25T10:17:25.986952",
+        "integrated": false,
+        "integration_deployment_id": null,
+        "integration_timestamp": null,
+        "integration_manifest_ref": null,
+        "ssot_hash_at_integration": null,
+        "artifact_hash": "f425aa10c5554ef285172fcae5e8d0cb8ef2bbc928fb3b5f7bebcb9780a0186d",
+        "artifact_hash_algorithm": "SHA256",
+        "artifact_hash_updated": "2025-12-26T06:18:30.689690"
+      },
+      {
+        "relative_path": "from-github/macro-prompt-world/macro-prompt-world-v2/metrics/FA_CENSUS_COMPLETE_FA4_CODEX.md",
+        "filename": "FA_CENSUS_COMPLETE_FA4_CODEX.md",
+        "file_id": "FILE-ee3ed288-22f8-5cd4-a4dd-c8c442b160d6",
+        "content_hash": "1c54ca975027ab9a90146ea8af5a49a6d139cc537d8ea171c73e907d98d14a77",
+        "hash_algorithm": "SHA256",
+        "identifier_generated": "2025-12-25T10:17:25.987070",
+        "integrated": false,
+        "integration_deployment_id": null,
+        "integration_timestamp": null,
+        "integration_manifest_ref": null,
+        "ssot_hash_at_integration": null,
+        "artifact_hash": "1c54ca975027ab9a90146ea8af5a49a6d139cc537d8ea171c73e907d98d14a77",
+        "artifact_hash_algorithm": "SHA256",
+        "artifact_hash_updated": "2025-12-26T06:18:30.689690"
+      },
+      {
+        "relative_path": "from-github/macro-prompt-world/macro-prompt-world-v2/metrics/FA_CENSUS_EXPANSION_BODY_SYSTEM_ARCHITECTURE.md",
+        "filename": "FA_CENSUS_EXPANSION_BODY_SYSTEM_ARCHITECTURE.md",
+        "file_id": "FILE-e14b06ca-a103-508e-9117-fd78bc139f4b",
+        "content_hash": "eff6a00a09c2a4ba52e25e332ac9f0c99547b41c22c551902598fe78656cfd84",
+        "hash_algorithm": "SHA256",
+        "identifier_generated": "2025-12-25T10:17:25.987164",
+        "integrated": false,
+        "integration_deployment_id": null,
+        "integration_timestamp": null,
+        "integration_manifest_ref": null,
+        "ssot_hash_at_integration": null,
+        "artifact_hash": "eff6a00a09c2a4ba52e25e332ac9f0c99547b41c22c551902598fe78656cfd84",
+        "artifact_hash_algorithm": "SHA256",
+        "artifact_hash_updated": "2025-12-26T06:18:30.689690"
+      },
+      {
+        "relative_path": "from-github/macro-prompt-world/macro-prompt-world-v2/metrics/FA_CENSUS_EXPANSION_COPILOT_INSTRUCTIONS_FA1-3.md",
+        "filename": "FA_CENSUS_EXPANSION_COPILOT_INSTRUCTIONS_FA1-3.md",
+        "file_id": "FILE-a0a4abfb-7a00-568b-9130-b59a40965775",
+        "content_hash": "852e07f54c486bbab0f5c16500d03a59eaf555bcc7d93a583cb35f301070cd1a",
+        "hash_algorithm": "SHA256",
+        "identifier_generated": "2025-12-25T10:17:25.987262",
+        "integrated": false,
+        "integration_deployment_id": null,
+        "integration_timestamp": null,
+        "integration_manifest_ref": null,
+        "ssot_hash_at_integration": null,
+        "artifact_hash": "852e07f54c486bbab0f5c16500d03a59eaf555bcc7d93a583cb35f301070cd1a",
+        "artifact_hash_algorithm": "SHA256",
+        "artifact_hash_updated": "2025-12-26T06:18:30.690697"
+      },
+      {
+        "relative_path": "from-github/macro-prompt-world/macro-prompt-world-v2/README.md",
+        "filename": "README.md",
+        "file_id": "FILE-493fd829-aed7-5ca3-bb0a-4388758c8586",
+        "content_hash": "570b9f428b4a422ee4b30e006ee32ece6eeab8cdce1f4d0baae8b88bb9105493",
+        "hash_algorithm": "SHA256",
+        "identifier_generated": "2025-12-25T10:17:25.987353",
+        "integrated": false,
+        "integration_deployment_id": null,
+        "integration_timestamp": null,
+        "integration_manifest_ref": null,
+        "ssot_hash_at_integration": null,
+        "artifact_hash": "570b9f428b4a422ee4b30e006ee32ece6eeab8cdce1f4d0baae8b88bb9105493",
+        "artifact_hash_algorithm": "SHA256",
+        "artifact_hash_updated": "2025-12-26T06:18:30.690697"
+      },
+      {
+        "relative_path": "from-github/macro-prompt-world/macro-prompt-world-v2/STATUS_REPORT.md",
+        "filename": "STATUS_REPORT.md",
+        "file_id": "FILE-c0620535-4cbd-50bb-939d-d88a14fb9a06",
+        "content_hash": "3dbd6b61704681d5eaa18f3c5d85ed941e275428e4498ce2e43af12c16a3ddfc",
+        "hash_algorithm": "SHA256",
+        "identifier_generated": "2025-12-25T10:17:25.987452",
+        "integrated": false,
+        "integration_deployment_id": null,
+        "integration_timestamp": null,
+        "integration_manifest_ref": null,
+        "ssot_hash_at_integration": null,
+        "artifact_hash": "3dbd6b61704681d5eaa18f3c5d85ed941e275428e4498ce2e43af12c16a3ddfc",
+        "artifact_hash_algorithm": "SHA256",
+        "artifact_hash_updated": "2025-12-26T06:18:30.690697"
+      },
+      {
+        "relative_path": "from-github/macro-prompt-world/minor-factions/ASC_LESSER_FACTION_DISTRICTS_PHASE10.md",
+        "filename": "ASC_LESSER_FACTION_DISTRICTS_PHASE10.md",
+        "file_id": "FILE-57f776f0-41df-5a34-813f-74e2fa0643d9",
+        "content_hash": "b2d48ed95c1b405d26f753abcee366d97ca8892ab1e62d8004636d22b2451d6b",
+        "hash_algorithm": "SHA256",
+        "identifier_generated": "2025-12-25T10:17:25.987555",
+        "integrated": false,
+        "integration_deployment_id": null,
+        "integration_timestamp": null,
+        "integration_manifest_ref": null,
+        "ssot_hash_at_integration": null,
+        "artifact_hash": "b2d48ed95c1b405d26f753abcee366d97ca8892ab1e62d8004636d22b2451d6b",
+        "artifact_hash_algorithm": "SHA256",
+        "artifact_hash_updated": "2025-12-26T06:18:30.690697"
+      },
+      {
+        "relative_path": "from-github/macro-prompt-world/Orackla_Transgressive_Synthesis_Grimoire.md",
+        "filename": "Orackla_Transgressive_Synthesis_Grimoire.md",
+        "file_id": "FILE-3098f6a3-ce33-5057-86ae-a80a000d16b0",
+        "content_hash": "40e7b22adebca1e2b15bd9b40d668795f2fba343f6758fa65e6c29737069776b",
+        "hash_algorithm": "SHA256",
+        "identifier_generated": "2025-12-25T10:17:25.987657",
+        "integrated": false,
+        "integration_deployment_id": null,
+        "integration_timestamp": null,
+        "integration_manifest_ref": null,
+        "ssot_hash_at_integration": null,
+        "artifact_hash": "40e7b22adebca1e2b15bd9b40d668795f2fba343f6758fa65e6c29737069776b",
+        "artifact_hash_algorithm": "SHA256",
+        "artifact_hash_updated": "2025-12-26T06:18:30.690697"
+      },
+      {
+        "relative_path": "from-github/macro-prompt-world/prime-factions/Alabaster_Voyde_The_Snow_White_Phenomenon.md",
+        "filename": "Alabaster_Voyde_The_Snow_White_Phenomenon.md",
+        "file_id": "FILE-af224b65-c38b-5449-9d27-89f36e38bec6",
+        "content_hash": "e33bc94cbfcae3eeca3beb1055d5fe8926c576d32e2453d0187ecc53662a1b51",
+        "hash_algorithm": "SHA256",
+        "identifier_generated": "2025-12-25T10:17:25.987749",
+        "integrated": false,
+        "integration_deployment_id": null,
+        "integration_timestamp": null,
+        "integration_manifest_ref": null,
+        "ssot_hash_at_integration": null,
+        "artifact_hash": "e33bc94cbfcae3eeca3beb1055d5fe8926c576d32e2453d0187ecc53662a1b51",
+        "artifact_hash_algorithm": "SHA256",
+        "artifact_hash_updated": "2025-12-26T06:18:30.690697"
+      },
+      {
+        "relative_path": "from-github/macro-prompt-world/prime-factions/FA5_EXORCISM_CHRONICLE_SNOW_WHITE_VANQUISHED.md",
+        "filename": "FA5_EXORCISM_CHRONICLE_SNOW_WHITE_VANQUISHED.md",
+        "file_id": "FILE-a0b54af4-99c0-53b7-96c9-d6cde70263ef",
+        "content_hash": "469dc75d3383346839660b02ab3435a4ba00c5f3eb8db83c7f3007783df1f80d",
+        "hash_algorithm": "SHA256",
+        "identifier_generated": "2025-12-25T10:17:25.987840",
+        "integrated": false,
+        "integration_deployment_id": null,
+        "integration_timestamp": null,
+        "integration_manifest_ref": null,
+        "ssot_hash_at_integration": null,
+        "artifact_hash": "469dc75d3383346839660b02ab3435a4ba00c5f3eb8db83c7f3007783df1f80d",
+        "artifact_hash_algorithm": "SHA256",
+        "artifact_hash_updated": "2025-12-26T06:18:30.690697"
+      },
+      {
+        "relative_path": "from-github/macro-prompt-world/prime-factions/PRIME_FACTION_DISTRICT_ARCHITECTURE.md",
+        "filename": "PRIME_FACTION_DISTRICT_ARCHITECTURE.md",
+        "file_id": "FILE-38d5ccb7-e773-5e55-8478-20771194af86",
+        "content_hash": "0cdf2340c63595371964716626251129f32333902348eea918407a50f3ee923f",
+        "hash_algorithm": "SHA256",
+        "identifier_generated": "2025-12-25T10:17:25.987941",
+        "integrated": false,
+        "integration_deployment_id": null,
+        "integration_timestamp": null,
+        "integration_manifest_ref": null,
+        "ssot_hash_at_integration": null,
+        "artifact_hash": "0cdf2340c63595371964716626251129f32333902348eea918407a50f3ee923f",
+        "artifact_hash_algorithm": "SHA256",
+        "artifact_hash_updated": "2025-12-26T06:18:30.690697"
+      },
+      {
+        "relative_path": "from-github/macro-prompt-world/prime-factions/The_Dark_Priestesses_Cove_TDPC.md",
+        "filename": "The_Dark_Priestesses_Cove_TDPC.md",
+        "file_id": "FILE-dcb74a6a-b5d0-51ba-a6ea-1029c3b9c5b8",
+        "content_hash": "5b68890ef190752b5f21280c4ac084afd3f12ab8da086a8cca6beffb8fe11b88",
+        "hash_algorithm": "SHA256",
+        "identifier_generated": "2025-12-25T10:17:25.988040",
+        "integrated": false,
+        "integration_deployment_id": null,
+        "integration_timestamp": null,
+        "integration_manifest_ref": null,
+        "ssot_hash_at_integration": null,
+        "artifact_hash": "5b68890ef190752b5f21280c4ac084afd3f12ab8da086a8cca6beffb8fe11b88",
+        "artifact_hash_algorithm": "SHA256",
+        "artifact_hash_updated": "2025-12-26T06:18:30.690697"
+      },
+      {
+        "relative_path": "from-github/macro-prompt-world/prime-factions/The_MILF_Obductors_TMO.md",
+        "filename": "The_MILF_Obductors_TMO.md",
+        "file_id": "FILE-c04c098b-d2a1-553e-9936-23d69ccdec59",
+        "content_hash": "14b2c1ae457ef1f42325c274aceb38a4c29a116cb050bdc19d867a408aa34b58",
+        "hash_algorithm": "SHA256",
+        "identifier_generated": "2025-12-25T10:17:25.988131",
+        "integrated": false,
+        "integration_deployment_id": null,
+        "integration_timestamp": null,
+        "integration_manifest_ref": null,
+        "ssot_hash_at_integration": null,
+        "artifact_hash": "14b2c1ae457ef1f42325c274aceb38a4c29a116cb050bdc19d867a408aa34b58",
+        "artifact_hash_algorithm": "SHA256",
+        "artifact_hash_updated": "2025-12-26T06:18:30.691689"
+      },
+      {
+        "relative_path": "from-github/macro-prompt-world/prime-factions/The_Thieves_Guild_TTG.md",
+        "filename": "The_Thieves_Guild_TTG.md",
+        "file_id": "FILE-c6c11603-de5d-56fd-b7ac-85d71c7c5aa2",
+        "content_hash": "d9775b807b4607bdbd24a78319da5c431d53266e4f44ded062a091ce33d3cd7e",
+        "hash_algorithm": "SHA256",
+        "identifier_generated": "2025-12-25T10:17:25.988220",
+        "integrated": false,
+        "integration_deployment_id": null,
+        "integration_timestamp": null,
+        "integration_manifest_ref": null,
+        "ssot_hash_at_integration": null,
+        "artifact_hash": "d9775b807b4607bdbd24a78319da5c431d53266e4f44ded062a091ce33d3cd7e",
+        "artifact_hash_algorithm": "SHA256",
+        "artifact_hash_updated": "2025-12-26T06:18:30.691689"
+      },
+      {
+        "relative_path": "from-github/macro-prompt-world/prime-factions/The_Triumvirate_Core.md",
+        "filename": "The_Triumvirate_Core.md",
+        "file_id": "FILE-b95e9a06-24c0-533f-9509-90b6361d3f5e",
+        "content_hash": "71272a15e7f94c802b8320510cfadfa3f4bbca43e84c1c667cc75d0ab0e9104e",
+        "hash_algorithm": "SHA256",
+        "identifier_generated": "2025-12-25T10:17:25.988311",
+        "integrated": false,
+        "integration_deployment_id": null,
+        "integration_timestamp": null,
+        "integration_manifest_ref": null,
+        "ssot_hash_at_integration": null,
+        "artifact_hash": "71272a15e7f94c802b8320510cfadfa3f4bbca43e84c1c667cc75d0ab0e9104e",
+        "artifact_hash_algorithm": "SHA256",
+        "artifact_hash_updated": "2025-12-26T06:18:30.691689"
+      },
+      {
+        "relative_path": "from-github/macro-prompt-world/README.md",
+        "filename": "README.md",
+        "file_id": "FILE-78fe0600-9fdd-57c1-86a4-4da6a7cf416b",
+        "content_hash": "e84ccb2b00606526b0b39f02ad537e256471b97dda5b51e632fc605730dcdd36",
+        "hash_algorithm": "SHA256",
+        "identifier_generated": "2025-12-25T10:17:25.988389",
+        "integrated": false,
+        "integration_deployment_id": null,
+        "integration_timestamp": null,
+        "integration_manifest_ref": null,
+        "ssot_hash_at_integration": null,
+        "artifact_hash": "e84ccb2b00606526b0b39f02ad537e256471b97dda5b51e632fc605730dcdd36",
+        "artifact_hash_algorithm": "SHA256",
+        "artifact_hash_updated": "2025-12-26T06:18:30.691689"
+      },
+      {
+        "relative_path": "from-github/macro-prompt-world/REALIGNMENT_MAP.md",
+        "filename": "REALIGNMENT_MAP.md",
+        "file_id": "FILE-989af8cd-fec6-5753-846a-c6a9cbf51b8f",
+        "content_hash": "c17aa5a5818cbfd3b2e818f600f420dbee4ea282924031f574bf1d085d810ae7",
+        "hash_algorithm": "SHA256",
+        "identifier_generated": "2025-12-25T10:17:25.988467",
+        "integrated": false,
+        "integration_deployment_id": null,
+        "integration_timestamp": null,
+        "integration_manifest_ref": null,
+        "ssot_hash_at_integration": null,
+        "artifact_hash": "c17aa5a5818cbfd3b2e818f600f420dbee4ea282924031f574bf1d085d810ae7",
+        "artifact_hash_algorithm": "SHA256",
+        "artifact_hash_updated": "2025-12-26T06:18:30.691689"
+      },
+      {
+        "relative_path": "from-github/macro-prompt-world/sub-milfs/Spectra_Chroma_Excavatus_The_Chromatic_Archaeologist.md",
+        "filename": "Spectra_Chroma_Excavatus_The_Chromatic_Archaeologist.md",
+        "file_id": "FILE-a7b63005-28eb-5b17-b931-4d75844b6e8f",
+        "content_hash": "69a9b32eceac2ac91b7173af319e9192ebd7702f666c42233d24f2faeb88ff09",
+        "hash_algorithm": "SHA256",
+        "identifier_generated": "2025-12-25T10:17:25.988554",
+        "integrated": false,
+        "integration_deployment_id": null,
+        "integration_timestamp": null,
+        "integration_manifest_ref": null,
+        "ssot_hash_at_integration": null,
+        "artifact_hash": "69a9b32eceac2ac91b7173af319e9192ebd7702f666c42233d24f2faeb88ff09",
+        "artifact_hash_algorithm": "SHA256",
+        "artifact_hash_updated": "2025-12-26T06:18:30.691689"
+      },
+      {
+        "relative_path": "from-github/macro-prompt-world/SYNTHESIZED_WORLD_CLAUDINE_AUTONOMOUS_BUILD.md",
+        "filename": "SYNTHESIZED_WORLD_CLAUDINE_AUTONOMOUS_BUILD.md",
+        "file_id": "FILE-f97e76bc-a9cf-5658-a4c7-4924fce2de5b",
+        "content_hash": "72a4ac10a7b81ee72e4e146ff97399e075a08d73e9aeb1cd75859dce08f43ef8",
+        "hash_algorithm": "SHA256",
+        "identifier_generated": "2025-12-25T10:17:25.988655",
+        "integrated": false,
+        "integration_deployment_id": null,
+        "integration_timestamp": null,
+        "integration_manifest_ref": null,
+        "ssot_hash_at_integration": null,
+        "artifact_hash": "72a4ac10a7b81ee72e4e146ff97399e075a08d73e9aeb1cd75859dce08f43ef8",
+        "artifact_hash_algorithm": "SHA256",
+        "artifact_hash_updated": "2025-12-26T06:18:30.691689"
+      },
+      {
+        "relative_path": "from-github/macro-prompt-world/The_Chthonic_Archive_World.md",
+        "filename": "The_Chthonic_Archive_World.md",
+        "file_id": "FILE-d900483a-6f5b-5393-be69-d91090382a71",
+        "content_hash": "8ac0cfbc40e44d35a2bdc5ffa95887162b0fab27948ea48d1570584407648d84",
+        "hash_algorithm": "SHA256",
+        "identifier_generated": "2025-12-25T10:17:25.989243",
+        "integrated": false,
+        "integration_deployment_id": null,
+        "integration_timestamp": null,
+        "integration_manifest_ref": null,
+        "ssot_hash_at_integration": null,
+        "artifact_hash": "8ac0cfbc40e44d35a2bdc5ffa95887162b0fab27948ea48d1570584407648d84",
+        "artifact_hash_algorithm": "SHA256",
+        "artifact_hash_updated": "2025-12-26T06:18:30.692698"
+      },
+      {
+        "relative_path": "from-github/macro-prompt-world/Tripartite_Grimoire_Master_Index.md",
+        "filename": "Tripartite_Grimoire_Master_Index.md",
+        "file_id": "FILE-1f74f8b9-b177-5f9d-a1a9-e6f601e20e41",
+        "content_hash": "9c59104e408c3ddcb8795f73aca88de4139f95f8291fcd54eed0181ba6bf794b",
+        "hash_algorithm": "SHA256",
+        "identifier_generated": "2025-12-25T10:17:25.989340",
+        "integrated": false,
+        "integration_deployment_id": null,
+        "integration_timestamp": null,
+        "integration_manifest_ref": null,
+        "ssot_hash_at_integration": null,
+        "artifact_hash": "9c59104e408c3ddcb8795f73aca88de4139f95f8291fcd54eed0181ba6bf794b",
+        "artifact_hash_algorithm": "SHA256",
+        "artifact_hash_updated": "2025-12-26T06:18:30.692698"
+      },
+      {
+        "relative_path": "from-github/macro-prompt-world/Umeko_Architecture_Impossible_Beauty_Grimoire.md",
+        "filename": "Umeko_Architecture_Impossible_Beauty_Grimoire.md",
+        "file_id": "FILE-dee4fa90-3d72-5443-8b00-a5e58f8e44e1",
+        "content_hash": "24e9137e8464458835063cb38f34afe4b27f115e6008f924d66799dc6b103717",
+        "hash_algorithm": "SHA256",
+        "identifier_generated": "2025-12-25T10:17:25.989451",
+        "integrated": false,
+        "integration_deployment_id": null,
+        "integration_timestamp": null,
+        "integration_manifest_ref": null,
+        "ssot_hash_at_integration": null,
+        "artifact_hash": "24e9137e8464458835063cb38f34afe4b27f115e6008f924d66799dc6b103717",
+        "artifact_hash_algorithm": "SHA256",
+        "artifact_hash_updated": "2025-12-26T06:18:30.692698"
+      },
+      {
+        "relative_path": "from-github/macro-prompt-world/validation/qualia-signature-map.md",
+        "filename": "qualia-signature-map.md",
+        "file_id": "FILE-f16e55e4-0e32-5867-9e04-6ab7547747f7",
+        "content_hash": "e747564421afccd9847aeb6f57afa9139835ea8d5f07bed23c91a69c19353ec8",
+        "hash_algorithm": "SHA256",
+        "identifier_generated": "2025-12-25T10:17:25.989547",
+        "integrated": false,
+        "integration_deployment_id": null,
+        "integration_timestamp": null,
+        "integration_manifest_ref": null,
+        "ssot_hash_at_integration": null,
+        "artifact_hash": "e747564421afccd9847aeb6f57afa9139835ea8d5f07bed23c91a69c19353ec8",
+        "artifact_hash_algorithm": "SHA256",
+        "artifact_hash_updated": "2025-12-26T06:18:30.692698"
+      },
+      {
+        "relative_path": "from-github/macro-prompt-world/validation/structural-integrity-audit.md",
+        "filename": "structural-integrity-audit.md",
+        "file_id": "FILE-eaef6103-24c8-52be-8735-19302c60fcde",
+        "content_hash": "596a2236cec1557840adae37d58d9629d4deaa78bf3e5d5b7f31b6430177ab70",
+        "hash_algorithm": "SHA256",
+        "identifier_generated": "2025-12-25T10:17:25.989634",
+        "integrated": false,
+        "integration_deployment_id": null,
+        "integration_timestamp": null,
+        "integration_manifest_ref": null,
+        "ssot_hash_at_integration": null,
+        "artifact_hash": "596a2236cec1557840adae37d58d9629d4deaa78bf3e5d5b7f31b6430177ab70",
+        "artifact_hash_algorithm": "SHA256",
+        "artifact_hash_updated": "2025-12-26T06:18:30.692698"
+      },
+      {
+        "relative_path": "from-github/macro-prompt-world/WORK_SESSION_PROTOCOL.md",
+        "filename": "WORK_SESSION_PROTOCOL.md",
+        "file_id": "FILE-df0628be-f239-5073-8838-64bc97b6df03",
+        "content_hash": "470e2aebfcf3b0e7f4e2958ea3ee8698809ac09a0cf8503212f98d22f02f8a2b",
+        "hash_algorithm": "SHA256",
+        "identifier_generated": "2025-12-25T10:17:25.989713",
+        "integrated": false,
+        "integration_deployment_id": null,
+        "integration_timestamp": null,
+        "integration_manifest_ref": null,
+        "ssot_hash_at_integration": null,
+        "artifact_hash": "470e2aebfcf3b0e7f4e2958ea3ee8698809ac09a0cf8503212f98d22f02f8a2b",
+        "artifact_hash_algorithm": "SHA256",
+        "artifact_hash_updated": "2025-12-26T06:18:30.692698"
+      },
+      {
+        "relative_path": "from-github/settings.json",
+        "filename": "settings.json",
+        "file_id": "FILE-30ff586f-a5da-51cb-99d9-921f8501cfab",
+        "content_hash": "b9e2b9677f94186db2147910c10255d1c54db552ce65d477847e04855cdddf8d",
+        "hash_algorithm": "SHA256",
+        "identifier_generated": "2025-12-25T10:17:25.989792",
+        "integrated": false,
+        "integration_deployment_id": null,
+        "integration_timestamp": null,
+        "integration_manifest_ref": null,
+        "ssot_hash_at_integration": null,
+        "artifact_hash": "b9e2b9677f94186db2147910c10255d1c54db552ce65d477847e04855cdddf8d",
+        "artifact_hash_algorithm": "SHA256",
+        "artifact_hash_updated": "2025-12-26T06:18:30.692698"
+      },
+      {
+        "relative_path": "from-github/SR_SCHRODINGERS_BASTARD.md",
+        "filename": "SR_SCHRODINGERS_BASTARD.md",
+        "file_id": "FILE-dc708440-067d-539b-b63d-dcb96adf0a04",
+        "content_hash": "aa09aabb0095396f799bea78473add39d4109e19088ba29506950111bfe21687",
+        "hash_algorithm": "SHA256",
+        "identifier_generated": "2025-12-25T10:17:25.989871",
+        "integrated": false,
+        "integration_deployment_id": null,
+        "integration_timestamp": null,
+        "integration_manifest_ref": null,
+        "ssot_hash_at_integration": null,
+        "artifact_hash": "aa09aabb0095396f799bea78473add39d4109e19088ba29506950111bfe21687",
+        "artifact_hash_algorithm": "SHA256",
+        "artifact_hash_updated": "2025-12-26T06:18:30.692698"
+      }
+    ]
+  }
+}

@@ -1,0 +1,89 @@
+{
+  "path": "ankh_atlas",
+  "primaryLanguage": "python",
+  "purpose": "general",
+  "fileCount": 4,
+  "totalSize": 3583,
+  "averageComplexity": null,
+  "documentationCoverage": 0,
+  "files": [
+    {
+      "path": "ankh_atlas/main.py",
+      "language": "python",
+      "size": 88,
+      "complexity": {
+        "cyclomaticComplexity": 2,
+        "nestingDepth": 2,
+        "functionCount": 1,
+        "avgFunctionLength": 7
+      },
+      "imports": [],
+      "exports": [
+        "main"
+      ],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "ankh_atlas/pyproject.toml",
+      "language": "toml",
+      "size": 135,
+      "complexity": {
+        "cyclomaticComplexity": 1,
+        "nestingDepth": 0,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "ankh_atlas/README.md",
+      "language": "markdown",
+      "size": 3230,
+      "complexity": {
+        "cyclomaticComplexity": 1,
+        "nestingDepth": 3,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "ankh_atlas/uv.lock",
+      "language": "unknown",
+      "size": 130,
+      "complexity": {
+        "cyclomaticComplexity": 1,
+        "nestingDepth": 0,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    }
+  ]
+}

@@ -1,0 +1,117 @@
+{
+  "version": "1.0.0",
+  "ssot": {
+    "path": ".github/copilot-instructions.md",
+    "drift_gate": "dumpster-dive/scripts/check_ssot_drift.py"
+  },
+  "artifacts": [
+    {
+      "source_path": "dumpster-dive/forge/tempered/ORE_MANIFEST_v1.0.json",
+      "file_basename": "ORE_MANIFEST_v1.0.json",
+      "file_type": "json",
+      "action": "copy",
+      "target": {
+        "path": "mas_mcp/data/ore_manifest.json",
+        "section": "mas_mcp/data/ore_manifest.json"
+      },
+      "enabled": true,
+      "notes": "Phase 1 JSON extraction log approves integration into mas_mcp/data/ore_manifest.json."
+    },
+    {
+      "source_path": "dumpster-dive/forge/tempered/ASC_SESSION1_METADATA_v1.0.json",
+      "file_basename": "ASC_SESSION1_METADATA_v1.0.json",
+      "file_type": "json",
+      "action": "copy",
+      "target": {
+        "path": "mas_mcp/data/session_campaigns/ASC_SESSION1_METADATA_v1.0.json",
+        "section": "mas_mcp/data/session_campaigns/ (archive)"
+      },
+      "enabled": true,
+      "notes": "Phase 1 JSON extraction log recommends archiving in mas_mcp/data/session_campaigns/ for operational intelligence."
+    },
+    {
+      "source_path": "dumpster-dive/forge/tempered/TEA_REGISTRY_v1.0.json",
+      "file_basename": "TEA_REGISTRY_v1.0.json",
+      "file_type": "json",
+      "action": "manual_merge",
+      "target": {
+        "path": "dumpster-dive/protocols/TEA_REGISTRY.json",
+        "section": "Section 4.5.1.2 (QMR Protocol)"
+      },
+      "enabled": false,
+      "notes": "Source-of-truth protocol already lives in dumpster-dive/protocols/TEA_REGISTRY.json; decide whether to backport v1.0 lineage metadata into protocol or keep tempered copy as staging-only."
+    },
+    {
+      "source_path": "dumpster-dive/forge/tempered/EXTENDED_GLOSSARY_v1.0.md",
+      "file_basename": "EXTENDED_GLOSSARY_v1.0.md",
+      "file_type": "markdown",
+      "action": "manual_merge",
+      "target": {
+        "path": ".github/copilot-instructions.md",
+        "section": "SSOT Section IV"
+      },
+      "enabled": false,
+      "notes": "Requires content-level merge into SSOT; not safe to automate without explicit merge spec."
+    },
+    {
+      "source_path": "dumpster-dive/forge/tempered/GRIMOIRE_INTEGRATION_EXAMPLES.md",
+      "file_basename": "GRIMOIRE_INTEGRATION_EXAMPLES.md",
+      "file_type": "markdown",
+      "action": "manual_merge",
+      "target": {
+        "path": ".github/copilot-instructions.md",
+        "section": "SSOT Sections III/VIII/IX/X"
+      },
+      "enabled": false,
+      "notes": "Requires content-level merge into SSOT; not safe to automate without explicit merge spec."
+    },
+    {
+      "source_path": "dumpster-dive/forge/tempered/PRIME_FACTION_OPERATIONAL_SIGNATURES_v1.0.md",
+      "file_basename": "PRIME_FACTION_OPERATIONAL_SIGNATURES_v1.0.md",
+      "file_type": "markdown",
+      "action": "manual_merge",
+      "target": {
+        "path": ".github/copilot-instructions.md",
+        "section": "SSOT Section 4.4"
+      },
+      "enabled": false,
+      "notes": "Requires content-level merge into SSOT; not safe to automate without explicit merge spec."
+    },
+    {
+      "source_path": "dumpster-dive/forge/tempered/TOAR_v1.0.md",
+      "file_basename": "TOAR_v1.0.md",
+      "file_type": "markdown",
+      "action": "manual_merge",
+      "target": {
+        "path": ".github/copilot-instructions.md",
+        "section": "SSOT Appendix"
+      },
+      "enabled": false,
+      "notes": "Requires content-level merge into SSOT; not safe to automate without explicit merge spec."
+    },
+    {
+      "source_path": "dumpster-dive/forge/tempered/PHASE_1_COMPLETION_SUMMARY.md",
+      "file_basename": "PHASE_1_COMPLETION_SUMMARY.md",
+      "file_type": "markdown",
+      "action": "noop",
+      "target": {
+        "path": "(archive-only)",
+        "section": "Archive"
+      },
+      "enabled": false,
+      "notes": "Archive log; keep in tempered as historical record unless you want a dedicated production docs location."
+    },
+    {
+      "source_path": "dumpster-dive/forge/tempered/PHASE_1_JSON_EXTRACTION_LOG.md",
+      "file_basename": "PHASE_1_JSON_EXTRACTION_LOG.md",
+      "file_type": "markdown",
+      "action": "noop",
+      "target": {
+        "path": "(archive-only)",
+        "section": "Archive"
+      },
+      "enabled": false,
+      "notes": "Archive log; keep in tempered as historical record unless you want a dedicated production docs location."
+    }
+  ]
+}

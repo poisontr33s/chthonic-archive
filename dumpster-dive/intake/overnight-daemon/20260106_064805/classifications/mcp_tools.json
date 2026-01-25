@@ -1,0 +1,164 @@
+{
+  "path": "mcp/tools",
+  "primaryLanguage": "typescript",
+  "purpose": "general",
+  "fileCount": 7,
+  "totalSize": 19722,
+  "averageComplexity": null,
+  "documentationCoverage": 0.03,
+  "files": [
+    {
+      "path": "mcp/tools/ExecutionContext.schema.json",
+      "language": "json",
+      "size": 2183,
+      "complexity": {
+        "cyclomaticComplexity": 1,
+        "nestingDepth": 4,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "mcp/tools/ExecutionContextSchema.json",
+      "language": "json",
+      "size": 4269,
+      "complexity": {
+        "cyclomaticComplexity": 1,
+        "nestingDepth": 5,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "mcp/tools/preflightExecutionContext.test.json",
+      "language": "json",
+      "size": 2018,
+      "complexity": {
+        "cyclomaticComplexity": 1,
+        "nestingDepth": 7,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "mcp/tools/preflightExecutionContext.ts",
+      "language": "typescript",
+      "size": 4686,
+      "complexity": {
+        "cyclomaticComplexity": 14,
+        "nestingDepth": 3,
+        "functionCount": 6,
+        "avgFunctionLength": 27
+      },
+      "imports": [
+        "bun:os",
+        "bun:process"
+      ],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 4,
+      "commentDensity": 0.10179640718562874,
+      "patterns": [
+        "async-patterns"
+      ],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "mcp/tools/queryDependencyGraph.ts",
+      "language": "typescript",
+      "size": 4407,
+      "complexity": {
+        "cyclomaticComplexity": 5,
+        "nestingDepth": 6,
+        "functionCount": 1,
+        "avgFunctionLength": 141
+      },
+      "imports": [
+        "path"
+      ],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 1,
+      "commentDensity": 0.02127659574468085,
+      "patterns": [
+        "async-patterns"
+      ],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "mcp/tools/scanRepository.ts",
+      "language": "typescript",
+      "size": 936,
+      "complexity": {
+        "cyclomaticComplexity": 5,
+        "nestingDepth": 4,
+        "functionCount": 2,
+        "avgFunctionLength": 17
+      },
+      "imports": [
+        "node:fs/promises",
+        "node:path"
+      ],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0.029411764705882353,
+      "patterns": [
+        "async-patterns"
+      ],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "mcp/tools/validateSSOT.ts",
+      "language": "typescript",
+      "size": 1223,
+      "complexity": {
+        "cyclomaticComplexity": 1,
+        "nestingDepth": 3,
+        "functionCount": 2,
+        "avgFunctionLength": 23
+      },
+      "imports": [
+        "node:path"
+      ],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 1,
+      "commentDensity": 0.06382978723404255,
+      "patterns": [
+        "async-patterns"
+      ],
+      "antiPatterns": [
+        "any-type-usage"
+      ],
+      "securityFlags": []
+    }
+  ]
+}

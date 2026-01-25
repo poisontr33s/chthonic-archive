@@ -1,0 +1,30 @@
+{
+  "path": "mas_mcp/frontend/styles",
+  "primaryLanguage": "unknown",
+  "purpose": "general",
+  "fileCount": 1,
+  "totalSize": 1083,
+  "averageComplexity": null,
+  "documentationCoverage": 0,
+  "files": [
+    {
+      "path": "mas_mcp/frontend/styles/globals.css",
+      "language": "unknown",
+      "size": 1083,
+      "complexity": {
+        "cyclomaticComplexity": 1,
+        "nestingDepth": 1,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    }
+  ]
+}

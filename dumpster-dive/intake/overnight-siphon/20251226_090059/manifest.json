@@ -1,0 +1,62 @@
+﻿[
+    {
+        "relPath":  ".github/instructions/00_conceptual-resonance-core.instructions.md",
+        "sha256":  "9DF0AFE1D236321A16679FF2755EF831C9AF54236AC1D201DE1E3B8B61C9AC08",
+        "length":  2325
+    },
+    {
+        "relPath":  ".github/instructions/10_markdown-formatting.instructions.md",
+        "sha256":  "B68196F636769FAA1CBB6570DBA44E1F14AD0AE801405ABE068E112DC50B2D8C",
+        "length":  667
+    },
+    {
+        "relPath":  ".github/instructions/20_rust.instructions.md",
+        "sha256":  "DC6894FE02CF3DA5917424D0C20C758124EC392B81269277877EB0170C201F96",
+        "length":  829
+    },
+    {
+        "relPath":  ".github/instructions/30_powershell-uv-lanes.instructions.md",
+        "sha256":  "4AC186E7E5448290D736823AA26573129F2957DFEF88557A2B33664CAA9E75AC",
+        "length":  942
+    },
+    {
+        "relPath":  ".github/instructions/chthonic-archive.instructions.md",
+        "sha256":  "B4FB6161F66B2BD116AC04F14017BE88894A7594128C7165F08377E8A1C31E0D",
+        "length":  3067
+    },
+    {
+        "relPath":  ".github/tools/indexing_commit.ps1",
+        "sha256":  "808C2DBB4D7A57677F2E5E480215BE3350E71B3010E86FBE6FD9FD2F0DDF1CE7",
+        "length":  4887
+    },
+    {
+        "relPath":  ".vscode/settings.json",
+        "sha256":  "314DEF1CB01CF68C08819423908798F13993C512016A8BC28971701FE4A6E401",
+        "length":  7037
+    },
+    {
+        "relPath":  "build.rs",
+        "sha256":  "15C8D6B8063868073F4358F43246A080B6BAACDFFE5F2F332A69ACA52F7FDBA8",
+        "length":  3219
+    },
+    {
+        "relPath":  "Cargo.toml",
+        "sha256":  "15DAA8755C417FCCB9C8C95FF8BDA0B1DE7D61175C46251FBAB04D864F502BCC",
+        "length":  3190
+    },
+    {
+        "relPath":  "scripts/harvest_claudines.ps1",
+        "sha256":  "2CAE08FF91D625E33715BA4DA5AC2B432D249F574A8A786A6298B677450A6A44",
+        "length":  15548
+    },
+    {
+        "relPath":  "scripts/siphon_to_dumpster_dive.ps1",
+        "sha256":  "B18F03A12F1CFBC0BE1F65AE09C25486A473AEC4D127A891ED609760F1E2035D",
+        "length":  4948
+    },
+    {
+        "relPath":  "src/main.rs",
+        "sha256":  "17A075A891385DDA6B5E9BACF967FDBF92CBE3BCFFDBC230672D19333449EC7C",
+        "length":  6771
+    }
+]

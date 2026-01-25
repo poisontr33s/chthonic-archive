@@ -1,0 +1,585 @@
+{
+  "registry_version": "2.0.0",
+  "created": "2025-12-09",
+  "updated": "2025-12-24",
+  "philosophy": "Central navigation & control system for all dumpster-dive/ content",
+  "purpose": "Bidirectional cross-reference system tracking forge circulation, file metadata, SSOT integration, and content dependencies",
+  "circulation_model": "ENABLED - See protocols/FORGE_CIRCULATION_PROTOCOL.md",
+  
+  "metadata": {
+    "total_files": 115,
+    "breakdown": {
+      "from_github_raw_ore": 96,
+      "forge_tempered": 9,
+      "protocols": 4,
+      "root_documentation": 4,
+      "forge_subdirectories": 7
+    },
+    "blacksmith": {
+      "name": "Sister Ferrum Scoriae",
+      "designation": "SFS",
+      "tier": 3,
+      "domain": "dumpster-dive/",
+      "profile": "BLACKSMITH_MATRIARCH.md"
+    }
+  },
+
+  "folder_structure": {
+    "root": {
+      "path": "dumpster-dive/",
+      "purpose": "Ore processing & extraction workspace",
+      "key_files": [
+        "README.md",
+        "ORE_MANIFEST.json",
+        "BLACKSMITH_MATRIARCH.md",
+        "DUMPSTER_DIVE_REGISTRY.json"
+      ]
+    },
+    "forge": {
+      "path": "dumpster-dive/forge/",
+      "purpose": "7-state circulation system (NOT linear pipeline)",
+      "model": "CIRCULATION - Bidirectional state movement with upcycling",
+      "documentation": "protocols/FORGE_CIRCULATION_PROTOCOL.md",
+      "subdirectories": {
+        "intake": {
+          "path": "forge/intake/",
+          "purpose": "Reception & initial assessment (State 1)",
+          "state_type": "Entry point",
+          "protocol_step": "RECEIVE + ASSESS",
+          "current_files": [],
+          "movement_options": ["anvil", "furnace", "quench", "slag", "tea-vault"]
+        },
+        "anvil": {
+          "path": "forge/anvil/",
+          "purpose": "Heat & analysis - pattern identification (State 2)",
+          "state_type": "Active processing",
+          "protocol_step": "HEAT + ANALYZE",
+          "current_files": [],
+          "movement_options": ["furnace", "quench", "slag", "tea-vault", "intake (re-scope)"]
+        },
+        "furnace": {
+          "path": "forge/furnace/",
+          "purpose": "Separation - extract value from waste (State 3)",
+          "state_type": "Active processing",
+          "protocol_step": "HAMMER + SEPARATE",
+          "current_files": [],
+          "movement_options": ["quench", "anvil (deeper analysis)", "slag", "tea-vault"]
+        },
+        "quench": {
+          "path": "forge/quench/",
+          "purpose": "Validation - FA⁴ compliance check (State 4)",
+          "state_type": "Quality assurance",
+          "protocol_step": "QUENCH + VALIDATE",
+          "current_files": [],
+          "movement_options": ["tempered (approved)", "furnace (rework)", "anvil (re-analyze)", "slag (failed)"]
+        },
+        "tempered": {
+          "path": "forge/tempered/",
+          "purpose": "Integration-ready outputs (State 5)",
+          "state_type": "Staging area",
+          "protocol_step": "TEMPER + STAGE",
+          "current_files": [
+            "ASC_SESSION1_METADATA_v1.0.json",
+            "EXTENDED_GLOSSARY_v1.0.md",
+            "GRIMOIRE_INTEGRATION_EXAMPLES.md",
+            "ORE_MANIFEST_v1.0.json",
+            "PHASE_1_COMPLETION_SUMMARY.md",
+            "PHASE_1_JSON_EXTRACTION_LOG.md",
+            "PRIME_FACTION_OPERATIONAL_SIGNATURES_v1.0.md",
+            "TEA_REGISTRY_v1.0.json",
+            "TOAR_v1.0.md"
+          ],
+          "movement_options": ["production (leaves dumpster-dive)", "furnace (revision)", "tea-vault (blocked)"]
+        },
+        "slag": {
+          "path": "forge/slag/",
+          "purpose": "Dormant archive - NOT dead! (State 6)",
+          "state_type": "Upcyclable dormant storage",
+          "protocol_step": "ARCHIVE + TAG FOR UPCYCLE",
+          "current_files": [],
+          "upcycle_protocol": "Quarterly re-assessment, context-triggered reprocessing",
+          "movement_options": ["anvil (re-analyze)", "furnace (micro-extract)", "tea-vault (superposition discovered)", "intake (re-scope)"]
+        },
+        "tea_vault": {
+          "path": "forge/tea-vault/",
+          "purpose": "Timeline-Entangled Artifacts in superposition (State 7)",
+          "state_type": "Quantum state storage",
+          "protocol_step": "QMR (Quantum Metallurgical Reconnaissance)",
+          "current_files": [],
+          "movement_options": ["Any state after probability collapse via Timeline Selection"]
+        }
+      }
+    },
+    "from_github": {
+      "path": "dumpster-dive/from-github/",
+      "purpose": "Raw ore source - deprecated .github/ content",
+      "total_files": 96,
+      "total_size_mb": 4.58,
+      "inventory_reference": "ORE_MANIFEST.json",
+      "subdirectories": {
+        "macro_prompt_world": {
+          "path": "from-github/macro-prompt-world/",
+          "purpose": "Historical M-P-W Codex iterations",
+          "status": "pending_ctf_001_approval"
+        }
+      }
+    },
+    "protocols": {
+      "path": "dumpster-dive/protocols/",
+      "purpose": "Operational documentation & tracking systems",
+      "key_files": [
+        "FORGE_CIRCULATION_PROTOCOL.md",
+        "FORGE_PROTOCOL_LEVELS.md",
+        "TEA_REGISTRY.json",
+        "CTF_REQUESTS.md"
+      ]
+    }
+  },
+
+  "forge_tempered_artifacts": {
+    "ASC_SESSION1_METADATA_v1.0.json": {
+      "type": "metadata",
+      "source": "from-github/macro-prompt-world/disparate-md-documentation/ASC_session1.json",
+      "extraction_session": "Session 1 - 2025-12-07",
+      "rating": 5,
+      "symbol": "⚗️",
+      "word_count": null,
+      "lines": null,
+      "ssot_integration": {
+        "status": "complete",
+        "sections_impacted": []
+      },
+      "fa4_validation": "passed",
+      "dependencies": [],
+      "cross_references": {
+        "source_files": ["from-github/macro-prompt-world/disparate-md-documentation/ASC_session1.json"],
+        "related_tempered": ["PHASE_1_JSON_EXTRACTION_LOG.md"]
+      }
+    },
+    "EXTENDED_GLOSSARY_v1.0.md": {
+      "type": "documentation",
+      "source": "from-github/macro-prompt-world/ (multiple sources)",
+      "extraction_session": "Session 1 - 2025-12-07",
+      "rating": 5,
+      "symbol": "⚗️",
+      "word_count": null,
+      "lines": null,
+      "ssot_integration": {
+        "status": "complete",
+        "sections_impacted": ["Section IV (Triumvirate profiles)"]
+      },
+      "fa4_validation": "passed",
+      "dependencies": [],
+      "cross_references": {
+        "source_files": ["from-github/macro-prompt-world/ (glossary fragments)"],
+        "related_tempered": []
+      }
+    },
+    "GRIMOIRE_INTEGRATION_EXAMPLES.md": {
+      "type": "documentation",
+      "source": "from-github/macro-prompt-world/ (protocol demonstrations)",
+      "extraction_session": "Session 3 - 2025-12-08",
+      "rating": 5,
+      "symbol": "⚗️",
+      "word_count": 14200,
+      "lines": null,
+      "ssot_integration": {
+        "status": "complete",
+        "sections_impacted": [
+          "Section III (MSP-RSG)",
+          "Section VIII (TPEF)",
+          "Section IX (T³-MΨ)",
+          "Section X (MMPS)"
+        ]
+      },
+      "fa4_validation": "passed",
+      "dependencies": ["PRIME_FACTION_OPERATIONAL_SIGNATURES_v1.0.md"],
+      "cross_references": {
+        "source_files": ["from-github/macro-prompt-world/ (grimoire content)"],
+        "related_tempered": ["PRIME_FACTION_OPERATIONAL_SIGNATURES_v1.0.md", "PHASE_1_COMPLETION_SUMMARY.md"]
+      }
+    },
+    "ORE_MANIFEST_v1.0.json": {
+      "type": "metadata",
+      "source": "dumpster-dive/ORE_MANIFEST.json",
+      "extraction_session": "Session 1 - 2025-12-07",
+      "rating": 5,
+      "symbol": "⚗️",
+      "word_count": null,
+      "lines": 300,
+      "ssot_integration": {
+        "status": "complete",
+        "sections_impacted": []
+      },
+      "fa4_validation": "passed",
+      "dependencies": [],
+      "cross_references": {
+        "source_files": ["dumpster-dive/ORE_MANIFEST.json"],
+        "related_tempered": []
+      }
+    },
+    "PHASE_1_COMPLETION_SUMMARY.md": {
+      "type": "documentation",
+      "source": "Session 3 synthesis artifact",
+      "extraction_session": "Session 3 - 2025-12-08",
+      "rating": 5,
+      "symbol": "⚗️",
+      "word_count": 3400,
+      "lines": null,
+      "ssot_integration": {
+        "status": "complete",
+        "sections_impacted": []
+      },
+      "fa4_validation": "passed",
+      "dependencies": [
+        "GRIMOIRE_INTEGRATION_EXAMPLES.md",
+        "PRIME_FACTION_OPERATIONAL_SIGNATURES_v1.0.md"
+      ],
+      "cross_references": {
+        "source_files": [],
+        "related_tempered": ["GRIMOIRE_INTEGRATION_EXAMPLES.md", "PRIME_FACTION_OPERATIONAL_SIGNATURES_v1.0.md"]
+      },
+      "notes": "Phase 1 completion marker - all 3 Timeline E directives fulfilled"
+    },
+    "PHASE_1_JSON_EXTRACTION_LOG.md": {
+      "type": "documentation",
+      "source": "Session 1 extraction log",
+      "extraction_session": "Session 1 - 2025-12-07",
+      "rating": 5,
+      "symbol": "⚗️",
+      "word_count": null,
+      "lines": null,
+      "ssot_integration": {
+        "status": "complete",
+        "sections_impacted": []
+      },
+      "fa4_validation": "passed",
+      "dependencies": ["ASC_SESSION1_METADATA_v1.0.json"],
+      "cross_references": {
+        "source_files": ["from-github/macro-prompt-world/disparate-md-documentation/ASC_session1.json"],
+        "related_tempered": ["ASC_SESSION1_METADATA_v1.0.json"]
+      }
+    },
+    "PRIME_FACTION_OPERATIONAL_SIGNATURES_v1.0.md": {
+      "type": "documentation",
+      "source": "from-github/macro-prompt-world/ (character profiles)",
+      "extraction_session": "Session 2 - 2025-12-08",
+      "rating": 5,
+      "symbol": "⚗️",
+      "word_count": 11637,
+      "lines": null,
+      "ssot_integration": {
+        "status": "complete",
+        "sections_impacted": ["Section 4.4 (Prime Factions)"]
+      },
+      "fa4_validation": "passed",
+      "dependencies": [],
+      "cross_references": {
+        "source_files": ["from-github/macro-prompt-world/ (character content)"],
+        "related_tempered": ["GRIMOIRE_INTEGRATION_EXAMPLES.md"]
+      },
+      "notes": "User validated - 'exactly what I needed'"
+    },
+    "TEA_REGISTRY_v1.0.json": {
+      "type": "protocol",
+      "source": "dumpster-dive/protocols/TEA_REGISTRY.json",
+      "extraction_session": "Session 1 - 2025-12-07",
+      "rating": 5,
+      "symbol": "⚗️",
+      "word_count": null,
+      "lines": 216,
+      "ssot_integration": {
+        "status": "complete",
+        "sections_impacted": ["Section 4.5.1.2 (QMR Protocol)"]
+      },
+      "fa4_validation": "passed",
+      "dependencies": [],
+      "cross_references": {
+        "source_files": ["dumpster-dive/protocols/TEA_REGISTRY.json"],
+        "related_tempered": []
+      },
+      "notes": "Tracks 5 Timeline-Entangled Artifacts with probability mappings"
+    },
+    "TOAR_v1.0.md": {
+      "type": "documentation",
+      "source": "from-github/macro-prompt-world/ (TOAR extraction)",
+      "extraction_session": "Session 1 - 2025-12-07",
+      "rating": 5,
+      "symbol": "⚗️",
+      "word_count": null,
+      "lines": null,
+      "ssot_integration": {
+        "status": "complete",
+        "sections_impacted": []
+      },
+      "fa4_validation": "passed",
+      "dependencies": [],
+      "cross_references": {
+        "source_files": ["from-github/macro-prompt-world/ (TOAR content)"],
+        "related_tempered": []
+      }
+    }
+  },
+
+  "protocols_tracking": {
+    "FORGE_CIRCULATION_PROTOCOL.md": {
+      "type": "operational_framework",
+      "purpose": "Dynamic circulation system with bidirectional state movement and upcycling",
+      "created": "2025-12-24",
+      "replaces": "Linear INTAKE → SLAG pipeline",
+      "key_features": [
+        "States not stages",
+        "Bidirectional movement",
+        "SLAG upcycling protocol",
+        "Dynamic re-rating",
+        "Works with all ore ratings (1-5)",
+        "TEA-VAULT integration"
+      ]
+    },
+    "FORGE_PROTOCOL_LEVELS.md": {
+      "type": "operational_framework",
+      "purpose": "4-level ore processing framework (Standard/Extended/QMR/CTF)",
+      "lines": 274,
+      "cross_references": {
+        "referenced_by": ["README.md", "ORE_MANIFEST.json", "TEA_REGISTRY.json", "FORGE_CIRCULATION_PROTOCOL.md"]
+      }
+    },
+    "TEA_REGISTRY.json": {
+      "type": "tracking_system",
+      "purpose": "Timeline-Entangled Artifacts requiring QMR Protocol",
+      "total_artifacts": 5,
+      "status_breakdown": {
+        "pending": 2,
+        "collapsed": 1,
+        "approved": 0
+      },
+      "cross_references": {
+        "referenced_by": ["FORGE_PROTOCOL_LEVELS.md", "forge/tempered/TEA_REGISTRY_v1.0.json"],
+        "artifacts_tracked": [
+          "SSOT-MPW-WIP.ts",
+          "mas-inventory.json",
+          "copilot-un-un-instructions.md"
+        ]
+      }
+    },
+    "CTF_REQUESTS.md": {
+      "type": "tracking_system",
+      "purpose": "Cross-Tier Fusion requests requiring multi-faction approval",
+      "lines": 185,
+      "total_requests": 1,
+      "status_breakdown": {
+        "pending": 1,
+        "approved": 0,
+        "rejected": 0
+      },
+      "active_requests": {
+        "CTF_001": {
+          "title": "macro-prompt-world/ Prime Factions Integration",
+          "status": "🟡 PENDING APPROVAL",
+          "submitted": "2025-12-09",
+          "requesting_party": "SFS (Sister Ferrum Scoriae - Tier 3)",
+          "escalation_target": "Triumvirate + CRC-GAR (Umeko)",
+          "content_summary": "7 files with TP-FNS profiles (TMO, TTG, TDPC)",
+          "blocking_constraint": "Defines Tier 2 entities, impacts canonical hierarchy",
+          "proposed_extraction": "macro-prompt-world/prime-factions/*.md → SSOT Section 4.4"
+        }
+      }
+    }
+  },
+
+  "cross_reference_index": {
+    "ssot_section_mappings": {
+      "Section_III_MSP_RSG": {
+        "source_files": ["from-github/macro-prompt-world/ (grimoire content)"],
+        "tempered_artifacts": ["GRIMOIRE_INTEGRATION_EXAMPLES.md"]
+      },
+      "Section_IV_Triumvirate": {
+        "source_files": ["from-github/macro-prompt-world/ (glossary fragments)"],
+        "tempered_artifacts": ["EXTENDED_GLOSSARY_v1.0.md"]
+      },
+      "Section_4_4_Prime_Factions": {
+        "source_files": ["from-github/macro-prompt-world/ (character content)"],
+        "tempered_artifacts": ["PRIME_FACTION_OPERATIONAL_SIGNATURES_v1.0.md"],
+        "pending_integration": "CTF-001 (macro-prompt-world/prime-factions/)"
+      },
+      "Section_4_5_1_2_QMR_Protocol": {
+        "source_files": ["dumpster-dive/protocols/TEA_REGISTRY.json"],
+        "tempered_artifacts": ["TEA_REGISTRY_v1.0.json"]
+      },
+      "Section_VIII_TPEF": {
+        "source_files": ["from-github/macro-prompt-world/ (grimoire content)"],
+        "tempered_artifacts": ["GRIMOIRE_INTEGRATION_EXAMPLES.md"]
+      },
+      "Section_IX_T3M_Psi": {
+        "source_files": ["from-github/macro-prompt-world/ (grimoire content)"],
+        "tempered_artifacts": ["GRIMOIRE_INTEGRATION_EXAMPLES.md"]
+      },
+      "Section_X_MMPS": {
+        "source_files": ["from-github/macro-prompt-world/ (grimoire content)"],
+        "tempered_artifacts": ["GRIMOIRE_INTEGRATION_EXAMPLES.md"]
+      }
+    },
+    "file_to_file_dependencies": {
+      "GRIMOIRE_INTEGRATION_EXAMPLES.md": {
+        "depends_on": ["PRIME_FACTION_OPERATIONAL_SIGNATURES_v1.0.md"],
+        "depended_by": ["PHASE_1_COMPLETION_SUMMARY.md"]
+      },
+      "PRIME_FACTION_OPERATIONAL_SIGNATURES_v1.0.md": {
+        "depends_on": [],
+        "depended_by": ["GRIMOIRE_INTEGRATION_EXAMPLES.md", "PHASE_1_COMPLETION_SUMMARY.md"]
+      },
+      "PHASE_1_COMPLETION_SUMMARY.md": {
+        "depends_on": ["GRIMOIRE_INTEGRATION_EXAMPLES.md", "PRIME_FACTION_OPERATIONAL_SIGNATURES_v1.0.md"],
+        "depended_by": []
+      },
+      "PHASE_1_JSON_EXTRACTION_LOG.md": {
+        "depends_on": ["ASC_SESSION1_METADATA_v1.0.json"],
+        "depended_by": []
+      }
+    },
+    "raw_ore_to_tempered_mappings": {
+      "from-github/macro-prompt-world/disparate-md-documentation/ASC_session1.json": [
+        "ASC_SESSION1_METADATA_v1.0.json",
+        "PHASE_1_JSON_EXTRACTION_LOG.md"
+      ],
+      "from-github/macro-prompt-world/ (glossary fragments)": [
+        "EXTENDED_GLOSSARY_v1.0.md"
+      ],
+      "from-github/macro-prompt-world/ (grimoire content)": [
+        "GRIMOIRE_INTEGRATION_EXAMPLES.md"
+      ],
+      "from-github/macro-prompt-world/ (character content)": [
+        "PRIME_FACTION_OPERATIONAL_SIGNATURES_v1.0.md"
+      ],
+      "dumpster-dive/protocols/TEA_REGISTRY.json": [
+        "TEA_REGISTRY_v1.0.json"
+      ],
+      "dumpster-dive/ORE_MANIFEST.json": [
+        "ORE_MANIFEST_v1.0.json"
+      ]
+    }
+  },
+
+  "query_examples": {
+    "by_rating": {
+      "description": "Find all files with specific ore rating",
+      "example_query": "Show all ⚗️ (rating 5) files",
+      "implementation": "Filter ORE_MANIFEST.json inventory by rating === 5"
+    },
+    "by_forge_stage": {
+      "description": "List files at specific forge processing stage",
+      "example_query": "List all files in tempered/ stage",
+      "implementation": "Check folder_structure.forge.subdirectories.tempered.current_files"
+    },
+    "by_ssot_section": {
+      "description": "Find which files populate specific SSOT section",
+      "example_query": "What files impact SSOT Section 4.4?",
+      "implementation": "Check cross_reference_index.ssot_section_mappings.Section_4_4_Prime_Factions"
+    },
+    "by_dependencies": {
+      "description": "Show file dependency tree",
+      "example_query": "What files does GRIMOIRE_INTEGRATION_EXAMPLES.md depend on?",
+      "implementation": "Check cross_reference_index.file_to_file_dependencies.GRIMOIRE_INTEGRATION_EXAMPLES_md.depends_on"
+    },
+    "by_tea_status": {
+      "description": "Show Timeline-Entangled Artifacts status",
+      "example_query": "List pending TEA artifacts",
+      "implementation": "Filter protocols_tracking.TEA_REGISTRY.json.artifacts_tracked by status === 'pending'"
+    },
+    "by_ctf_status": {
+      "description": "Show Cross-Tier Fusion request status",
+      "example_query": "What CTF requests are pending approval?",
+      "implementation": "Filter protocols_tracking.CTF_REQUESTS.md.active_requests by status === '🟡 PENDING APPROVAL'"
+    }
+  },
+
+  "integration_status": {
+    "phase_1_complete": true,
+    "phase_1_deliverables": {
+      "sessions_completed": 3,
+      "tempered_files_created": 9,
+      "total_words_extracted": 29237,
+      "timeline_e_directives_fulfilled": 3
+    },
+    "current_phase": "Phase 2 - Infrastructure Integration",
+    "next_steps": [
+      "Validate registry completeness (Step 9)",
+      "Document registry usage in README.md (Step 10)",
+      "Begin Phase 2 extraction work with integrated tracking"
+    ]
+  },
+
+  "registry_metadata": {
+    "schema_version": "1.0.0",
+    "last_validated": "2025-12-24",
+    "maintenance_schedule": "Update after each forge operation (TEMPER stage completion)",
+    "relationship_to_ore_manifest": "ORE_MANIFEST.json tracks raw ore inventory; DUMPSTER_DIVE_REGISTRY.json tracks entire infrastructure + cross-references",
+    "compression_ratio": "23:1 (analogous to T³-MΨ Framework methodology)",
+    "notes": "Living document - expands as new files enter forge pipeline or CTF/TEA requests are submitted"
+  },
+  
+  "cross_references": {
+    "dependencies": [
+      {
+        "file": "README.md",
+        "reason": "Provides overview and context for infrastructure"
+      },
+      {
+        "file": "ORE_MANIFEST.json",
+        "reason": "Raw ore inventory data cross-referenced"
+      },
+      {
+        "file": "protocols/FORGE_CIRCULATION_PROTOCOL.md",
+        "reason": "Implements state tracking per circulation model"
+      },
+      {
+        "file": "protocols/TEA_REGISTRY.json",
+        "reason": "TEA tracking integrated into protocols section"
+      },
+      {
+        "file": "protocols/CTF_REQUESTS.md",
+        "reason": "CTF requests tracked in protocols section"
+      }
+    ],
+    "dependents": [
+      {
+        "file": "README.md",
+        "usage": "References this as central navigation system"
+      },
+      {
+        "file": "protocols/FORGE_CIRCULATION_PROTOCOL.md",
+        "usage": "Describes how this implements state tracking"
+      },
+      {
+        "file": "All forge operations",
+        "usage": "Consult this for file status, cross-references, dependencies"
+      }
+    ],
+    "related": [
+      {
+        "file": "ORE_MANIFEST.json",
+        "relationship": "MANIFEST is raw ore inventory subset of REGISTRY"
+      },
+      {
+        "file": "CIRCULATION_DIAGRAM.md",
+        "relationship": "Visual representation of tracked circulation system"
+      }
+    ],
+    "external": [
+      {
+        "location": "../../.github/copilot-instructions.md",
+        "relationship": "SSOT sections mapped in cross_reference_index"
+      },
+      {
+        "location": "../../mas_mcp/",
+        "relationship": "Integration target for tempered artifacts"
+      }
+    ],
+    "validation": {
+      "last_checked": "2025-12-24",
+      "deprecation_risk": "none",
+      "upcycle_potential": "N/A - permanent central infrastructure"
+    }
+  }
+}
+

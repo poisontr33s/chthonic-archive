@@ -1,0 +1,65 @@
+{
+  "manifest_version": "1.0.0",
+  "created": "2025-12-26T04:50:58.597284Z",
+  "registry_ref": "DUMPSTER_DIVE_REGISTRY.json",
+  "ssot_reference": {
+    "path": ".github/copilot-instructions.md",
+    "hash": "C5864278B4A8BD04D427D78555030E71BF4ACA9EC8D18571BF2CEAB40774EDC4",
+    "hash_algorithm": "SHA256",
+    "computed_date": "2025-12-26"
+  },
+  "deployments": [
+    {
+      "deployment_id": "DEPLOY-002-20251226",
+      "deployment_type": "staged-partial",
+      "phase": "Timeline A Integration",
+      "timestamp": "2025-12-26T04:50:58.597284Z",
+      "operator": "THE-SAVANT (User)",
+      "ssot_hash_at_deployment": "C5864278B4A8BD04D427D78555030E71BF4ACA9EC8D18571BF2CEAB40774EDC4",
+      "files": [
+        {
+          "filename": "ORE_MANIFEST_v1.0.json",
+          "file_id": "FILE-2cb3bc2c-3ad5-5e6e-9b81-ceea8bf7bc3b",
+          "source_path": "forge/tempered/ORE_MANIFEST_v1.0.json",
+          "target_section": "mas_mcp/data/ore_manifest.json",
+          "file_hash": "52F7DD6CED85753290799ECAAAB457C51B7FC87B86CA3F574E611F1E79137093",
+          "word_count": 837,
+          "fa4_certification": "PASSED",
+          "validation_status": "passed",
+          "validation_timestamp": "2025-12-26T04:50:58.597284Z",
+          "ssot_hash_embedded": true,
+          "integration_notes": "copy → mas_mcp/data/ore_manifest.json; wrote. Phase 1 JSON extraction log approves integration into mas_mcp/data/ore_manifest.json."
+        },
+        {
+          "filename": "ASC_SESSION1_METADATA_v1.0.json",
+          "file_id": "FILE-6f3940be-49e8-5fb2-9491-d1a0686bb337",
+          "source_path": "forge/tempered/ASC_SESSION1_METADATA_v1.0.json",
+          "target_section": "mas_mcp/data/session_campaigns/ (archive)",
+          "file_hash": "A5CE6A51EB3A86A5D97DFC397EAFEB560E4674F82A7708BF1F8CF8504241EE31",
+          "word_count": 795,
+          "fa4_certification": "PASSED",
+          "validation_status": "passed",
+          "validation_timestamp": "2025-12-26T04:50:58.597284Z",
+          "ssot_hash_embedded": true,
+          "integration_notes": "copy → mas_mcp/data/session_campaigns/ASC_SESSION1_METADATA_v1.0.json; wrote. Phase 1 JSON extraction log recommends archiving in mas_mcp/data/session_campaigns/ for operational intelligence."
+        }
+      ],
+      "sections_impacted": [
+        "mas_mcp/data/ore_manifest.json",
+        "mas_mcp/data/session_campaigns/ (archive)"
+      ],
+      "validation": {
+        "fa4_compliance": "PASSED",
+        "cross_references": "PENDING",
+        "registry_sync": "PENDING",
+        "lint_check": "PENDING",
+        "notes": "Gate: drift check passed. Schema: dumpster-dive/protocols/INTEGRATION_MANIFEST_SCHEMA.json"
+      },
+      "status": "completed",
+      "rollback_checkpoint": "PRE-DEPLOY-001",
+      "completion_timestamp": "2025-12-26T04:50:58.597284Z",
+      "duration_minutes": 0,
+      "notes": "Automated Timeline A integration (file-copy subset)."
+    }
+  ]
+}

@@ -14,9 +14,32 @@
 
 # Allow MCP autonomous prerequisites (immutable)
 !docs/
+!docs/**
 !docs/MCP_*.md
 !docs/CLI_EDITING_POLICY.md
 !docs/CLAUDE_CODE_REGISTRATION.md
+
+# Allow migrated session/framework/handoff docs (Stage 1 repurposing)
+!docs/sessions/
+!docs/sessions/**
+!docs/frameworks/
+!docs/frameworks/**
+!docs/handoffs/
+!docs/handoffs/**
+!docs/DCRP_SYNTHESIS.md
+!docs/STAGE_1_MIGRATION_PLAN.md
+!docs/SSOTIFICATION_METHODOLOGY.md
+!docs/protocols/
+!docs/protocols/**
+
+# Allow SSOT Hub and Indices
+!.ankhrc
+!ankh_index.json
+!sid_index.json
+
+# Allow dumpster-dive consolidated archives
+!dumpster-dive/
+!dumpster-dive/**
 
 # Allow MCP server implementation
 !mcp/

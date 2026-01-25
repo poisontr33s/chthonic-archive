@@ -1,0 +1,59 @@
+{
+  "path": "chthonic-vscode-extension/dist",
+  "primaryLanguage": "javascript",
+  "purpose": "general",
+  "fileCount": 2,
+  "totalSize": 986569,
+  "averageComplexity": null,
+  "documentationCoverage": 0,
+  "files": [
+    {
+      "path": "chthonic-vscode-extension/dist/extension.js",
+      "language": "javascript",
+      "size": 9065,
+      "complexity": {
+        "cyclomaticComplexity": 13,
+        "nestingDepth": 5,
+        "functionCount": 4,
+        "avgFunctionLength": 64
+      },
+      "imports": [
+        "vscode",
+        "path",
+        "fs/promises"
+      ],
+      "exports": [],
+      "todoCount": 1,
+      "docstringCount": 0,
+      "commentDensity": 0.003875968992248062,
+      "patterns": [
+        "async-patterns"
+      ],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "chthonic-vscode-extension/dist/index.js",
+      "language": "javascript",
+      "size": 977504,
+      "complexity": {
+        "cyclomaticComplexity": 1886,
+        "nestingDepth": 16,
+        "functionCount": 812,
+        "avgFunctionLength": 21
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0.0013948622573520864,
+      "patterns": [
+        "async-patterns"
+      ],
+      "antiPatterns": [],
+      "securityFlags": [
+        "dangerous-html"
+      ]
+    }
+  ]
+}

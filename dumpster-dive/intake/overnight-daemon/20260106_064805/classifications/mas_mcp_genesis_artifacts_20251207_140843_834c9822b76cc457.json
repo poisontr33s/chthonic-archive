@@ -1,0 +1,87 @@
+{
+  "path": "mas_mcp/genesis_artifacts/20251207_140843/834c9822b76cc457",
+  "primaryLanguage": "json",
+  "purpose": "general",
+  "fileCount": 4,
+  "totalSize": 2130,
+  "averageComplexity": null,
+  "documentationCoverage": 0,
+  "files": [
+    {
+      "path": "mas_mcp/genesis_artifacts/20251207_140843/834c9822b76cc457/entity.json",
+      "language": "json",
+      "size": 874,
+      "complexity": {
+        "cyclomaticComplexity": 1,
+        "nestingDepth": 2,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "mas_mcp/genesis_artifacts/20251207_140843/834c9822b76cc457/environment.json",
+      "language": "json",
+      "size": 321,
+      "complexity": {
+        "cyclomaticComplexity": 1,
+        "nestingDepth": 2,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "mas_mcp/genesis_artifacts/20251207_140843/834c9822b76cc457/index.json",
+      "language": "json",
+      "size": 688,
+      "complexity": {
+        "cyclomaticComplexity": 1,
+        "nestingDepth": 2,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "mas_mcp/genesis_artifacts/20251207_140843/834c9822b76cc457/validation.json",
+      "language": "json",
+      "size": 247,
+      "complexity": {
+        "cyclomaticComplexity": 1,
+        "nestingDepth": 1,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    }
+  ]
+}

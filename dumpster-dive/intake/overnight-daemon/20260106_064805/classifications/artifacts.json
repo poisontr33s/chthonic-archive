@@ -1,0 +1,353 @@
+{
+  "path": "artifacts",
+  "primaryLanguage": "json",
+  "purpose": "general",
+  "fileCount": 18,
+  "totalSize": 32048,
+  "averageComplexity": null,
+  "documentationCoverage": 0,
+  "files": [
+    {
+      "path": "artifacts/mcp_run_audit_2026-01-05T00-42-49-176Z.json",
+      "language": "json",
+      "size": 2542,
+      "complexity": {
+        "cyclomaticComplexity": 1,
+        "nestingDepth": 5,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "artifacts/mcp_run_audit_2026-01-05T00-43-12-981Z.json",
+      "language": "json",
+      "size": 2542,
+      "complexity": {
+        "cyclomaticComplexity": 1,
+        "nestingDepth": 5,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "artifacts/mcp_run_audit_2026-01-05T00-43-47-483Z.json",
+      "language": "json",
+      "size": 2542,
+      "complexity": {
+        "cyclomaticComplexity": 1,
+        "nestingDepth": 5,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "artifacts/mcp_run_curriculum_2026-01-05T00-42-49-176Z.json",
+      "language": "json",
+      "size": 4396,
+      "complexity": {
+        "cyclomaticComplexity": 1,
+        "nestingDepth": 5,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "artifacts/mcp_run_curriculum_2026-01-05T00-43-12-981Z.json",
+      "language": "json",
+      "size": 4396,
+      "complexity": {
+        "cyclomaticComplexity": 1,
+        "nestingDepth": 5,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "artifacts/mcp_run_curriculum_2026-01-05T00-43-47-483Z.json",
+      "language": "json",
+      "size": 4396,
+      "complexity": {
+        "cyclomaticComplexity": 1,
+        "nestingDepth": 5,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "artifacts/mcp_run_discovery_2026-01-05T00-42-49-176Z.json",
+      "language": "json",
+      "size": 392,
+      "complexity": {
+        "cyclomaticComplexity": 1,
+        "nestingDepth": 2,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "artifacts/mcp_run_discovery_2026-01-05T00-43-12-981Z.json",
+      "language": "json",
+      "size": 392,
+      "complexity": {
+        "cyclomaticComplexity": 1,
+        "nestingDepth": 2,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "artifacts/mcp_run_discovery_2026-01-05T00-43-47-483Z.json",
+      "language": "json",
+      "size": 1435,
+      "complexity": {
+        "cyclomaticComplexity": 1,
+        "nestingDepth": 4,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "artifacts/mcp_run_impact_2026-01-05T00-42-49-176Z.json",
+      "language": "json",
+      "size": 1830,
+      "complexity": {
+        "cyclomaticComplexity": 1,
+        "nestingDepth": 4,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "artifacts/mcp_run_impact_2026-01-05T00-43-12-981Z.json",
+      "language": "json",
+      "size": 1830,
+      "complexity": {
+        "cyclomaticComplexity": 1,
+        "nestingDepth": 4,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "artifacts/mcp_run_impact_2026-01-05T00-43-47-483Z.json",
+      "language": "json",
+      "size": 1830,
+      "complexity": {
+        "cyclomaticComplexity": 1,
+        "nestingDepth": 4,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "artifacts/mcp_run_spectral_2026-01-05T00-42-49-176Z.json",
+      "language": "json",
+      "size": 598,
+      "complexity": {
+        "cyclomaticComplexity": 1,
+        "nestingDepth": 3,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "artifacts/mcp_run_spectral_2026-01-05T00-43-12-981Z.json",
+      "language": "json",
+      "size": 598,
+      "complexity": {
+        "cyclomaticComplexity": 1,
+        "nestingDepth": 3,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "artifacts/mcp_run_spectral_2026-01-05T00-43-47-483Z.json",
+      "language": "json",
+      "size": 598,
+      "complexity": {
+        "cyclomaticComplexity": 1,
+        "nestingDepth": 3,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "artifacts/mcp_run_trace_2026-01-05T00-42-49-176Z.json",
+      "language": "json",
+      "size": 577,
+      "complexity": {
+        "cyclomaticComplexity": 1,
+        "nestingDepth": 3,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "artifacts/mcp_run_trace_2026-01-05T00-43-12-981Z.json",
+      "language": "json",
+      "size": 577,
+      "complexity": {
+        "cyclomaticComplexity": 1,
+        "nestingDepth": 3,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "artifacts/mcp_run_trace_2026-01-05T00-43-47-483Z.json",
+      "language": "json",
+      "size": 577,
+      "complexity": {
+        "cyclomaticComplexity": 1,
+        "nestingDepth": 3,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    }
+  ]
+}

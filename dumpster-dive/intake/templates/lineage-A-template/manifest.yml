@@ -1,0 +1,8 @@
+# Lineage A Manifest
+
+name: infrastructure-validation
+lineage_id: A
+submitter: Lineage A (Orackla Nocticula)
+phase: "⚓"
+entry_point: main.md
+notes: "Pattern excavation + template infrastructure + validation tooling"

@@ -1,0 +1,15 @@
+
+name       source                                   type
+----       ------                                   ----
+where.exe  C:\Windows\System32\where.exe            Application
+bun        C:\Users\erdno\.bun\bin\bun.exe          Application
+uv         C:\Users\erdno\.local\bin\uv.exe         Application
+python3.13 C:\Users\erdno\.local\bin\python3.13.exe Application
+cargo      C:\Users\erdno\.cargo\bin\cargo.exe      Application
+rustc      C:\Users\erdno\.cargo\bin\rustc.exe      Application
+go         C:\Go\bin\go.exe                         Application
+ruby       C:\Ruby34-x64\bin\ruby.exe               Application
+bash       C:\Windows\System32\bash.exe             Application
+git        C:\Program Files\Git\cmd\git.exe         Application
+
+

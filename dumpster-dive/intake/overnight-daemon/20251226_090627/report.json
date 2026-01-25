@@ -1,0 +1,215 @@
+{
+  "generatedAt": "2025-12-26T08:06:27.705Z",
+  "repoRoot": "C:\\Users\\erdno\\chthonic-archive",
+  "config": {
+    "topN": 15,
+    "maxTodoHits": 60,
+    "enableSiphon": false
+  },
+  "summary": {
+    "filesScanned": 447,
+    "todoHits": 3,
+    "topCandidates": 15
+  },
+  "topCandidates": [
+    {
+      "relPath": "scripts/harvest_claudines.ps1",
+      "size": 15548,
+      "mtimeMs": 1766734374269,
+      "score": 58,
+      "reasons": [
+        "repo tooling",
+        "powershell tooling",
+        "freshness(+10)"
+      ],
+      "todoHits": 0
+    },
+    {
+      "relPath": "scripts/siphon_to_dumpster_dive.ps1",
+      "size": 4948,
+      "mtimeMs": 1766736053392,
+      "score": 58,
+      "reasons": [
+        "repo tooling",
+        "powershell tooling",
+        "freshness(+10)"
+      ],
+      "todoHits": 0
+    },
+    {
+      "relPath": "src/data/faction_types.rs",
+      "size": 15873,
+      "mtimeMs": 1765078930011,
+      "score": 45,
+      "reasons": [
+        "product code",
+        "rust code",
+        "freshness(+0)"
+      ],
+      "todoHits": 0
+    },
+    {
+      "relPath": "src/data/factions.rs",
+      "size": 25279,
+      "mtimeMs": 1765078931628,
+      "score": 45,
+      "reasons": [
+        "product code",
+        "rust code",
+        "freshness(+0)"
+      ],
+      "todoHits": 0
+    },
+    {
+      "relPath": "src/data/loader.rs",
+      "size": 4828,
+      "mtimeMs": 1765250593320,
+      "score": 45,
+      "reasons": [
+        "product code",
+        "rust code",
+        "freshness(+0)"
+      ],
+      "todoHits": 0
+    },
+    {
+      "relPath": "src/data/mod.rs",
+      "size": 299,
+      "mtimeMs": 1765250593321,
+      "score": 45,
+      "reasons": [
+        "product code",
+        "rust code",
+        "freshness(+0)"
+      ],
+      "todoHits": 0
+    },
+    {
+      "relPath": "src/data/types.rs",
+      "size": 2930,
+      "mtimeMs": 1765250593321,
+      "score": 45,
+      "reasons": [
+        "product code",
+        "rust code",
+        "freshness(+0)"
+      ],
+      "todoHits": 0
+    },
+    {
+      "relPath": "src/main.rs",
+      "size": 6771,
+      "mtimeMs": 1765250593322,
+      "score": 45,
+      "reasons": [
+        "product code",
+        "rust code",
+        "freshness(+0)"
+      ],
+      "todoHits": 0
+    },
+    {
+      "relPath": "src/render/camera.rs",
+      "size": 7265,
+      "mtimeMs": 1765250593323,
+      "score": 45,
+      "reasons": [
+        "product code",
+        "rust code",
+        "freshness(+0)"
+      ],
+      "todoHits": 0
+    },
+    {
+      "relPath": "src/render/mod.rs",
+      "size": 726,
+      "mtimeMs": 1765250593323,
+      "score": 45,
+      "reasons": [
+        "product code",
+        "rust code",
+        "freshness(+0)"
+      ],
+      "todoHits": 0
+    },
+    {
+      "relPath": "src/render/pipeline.rs",
+      "size": 11923,
+      "mtimeMs": 1765250593324,
+      "score": 45,
+      "reasons": [
+        "product code",
+        "rust code",
+        "freshness(+0)"
+      ],
+      "todoHits": 0
+    },
+    {
+      "relPath": "src/render/renderer.rs",
+      "size": 15943,
+      "mtimeMs": 1764528535644,
+      "score": 45,
+      "reasons": [
+        "product code",
+        "rust code",
+        "freshness(+0)"
+      ],
+      "todoHits": 0
+    },
+    {
+      "relPath": "src/render/swapchain.rs",
+      "size": 24606,
+      "mtimeMs": 1765250593325,
+      "score": 45,
+      "reasons": [
+        "product code",
+        "rust code",
+        "freshness(+0)"
+      ],
+      "todoHits": 0
+    },
+    {
+      "relPath": "src/render/vulkan.rs",
+      "size": 18601,
+      "mtimeMs": 1765250593325,
+      "score": 45,
+      "reasons": [
+        "product code",
+        "rust code",
+        "freshness(+0)"
+      ],
+      "todoHits": 0
+    },
+    {
+      "relPath": "scripts/overnight_daemon.ts",
+      "size": 11221,
+      "mtimeMs": 1766736360248,
+      "score": 40,
+      "reasons": [
+        "repo tooling",
+        "freshness(+10)"
+      ],
+      "todoHits": 0
+    }
+  ],
+  "todoHits": [
+    {
+      "file": "dev/overnight_refactor_mode.md",
+      "line": 29,
+      "kind": "TODO",
+      "text": "/ FIXME (if none exist where they should, create them), code smells, determinism issues, hygiene issues, missing tests, unclear naming, duplicated logic, brittle patterns. |"
+    },
+    {
+      "file": "dev/overnight_refactor_mode.md",
+      "line": 81,
+      "kind": "TODO",
+      "text": "/FIXME, obvious smells, missing tests, brittle logic, unclear naming |"
+    },
+    {
+      "file": "dev/overnight_refactor_mode.md",
+      "line": 82,
+      "kind": "TODO",
+      "text": "Roulette | `dev/overnight_todo.md` (if present) |"
+    }
+  ]
+}

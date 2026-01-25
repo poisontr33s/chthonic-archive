@@ -1,0 +1,185 @@
+{
+  "path": "src/data",
+  "primaryLanguage": "rust",
+  "purpose": "general",
+  "fileCount": 5,
+  "totalSize": 49209,
+  "averageComplexity": null,
+  "documentationCoverage": 0.24,
+  "files": [
+    {
+      "path": "src/data/factions.rs",
+      "language": "rust",
+      "size": 25279,
+      "complexity": {
+        "cyclomaticComplexity": 19,
+        "nestingDepth": 10,
+        "functionCount": 18,
+        "avgFunctionLength": 33
+      },
+      "imports": [
+        "std::collections::HashMap",
+        "super::faction_types::"
+      ],
+      "exports": [
+        "FactionRegistry",
+        "new",
+        "initialize",
+        "activate_tsrp",
+        "deactivate_tsrp",
+        "initiate_tpef",
+        "advance_tpef",
+        "can_invoke_district",
+        "get_supervisor",
+        "create_handoff",
+        "process_handoffs",
+        "FactionRegistryResource",
+        "update_faction_system"
+      ],
+      "todoCount": 0,
+      "docstringCount": 26,
+      "commentDensity": 0.08401976935749589,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "src/data/faction_types.rs",
+      "language": "rust",
+      "size": 15873,
+      "complexity": {
+        "cyclomaticComplexity": 18,
+        "nestingDepth": 4,
+        "functionCount": 1,
+        "avgFunctionLength": 519
+      },
+      "imports": [
+        "serde::",
+        "EULP_AA",
+        "pub"
+      ],
+      "exports": [
+        "FactionCode",
+        "CRCType",
+        "LinguisticMode",
+        "FoundationalAxiom",
+        "DAFPMode",
+        "FactionTier",
+        "can_command",
+        "Faction",
+        "District",
+        "ArchitecturalStyle",
+        "DistrictDimensions",
+        "DistrictVisual",
+        "ShaderVariant",
+        "SensorySig",
+        "Matriarch",
+        "SignatureTechnique",
+        "DistrictState",
+        "TSRPState",
+        "TSRPRole",
+        "SupportContribution",
+        "TPEFState",
+        "PathState",
+        "TargetMode",
+        "FactionAbility",
+        "AbilityEffect",
+        "DamageType",
+        "StatusEffect",
+        "HandoffProtocol",
+        "HandoffTrigger",
+        "MMPSLend",
+        "LendDuration",
+        "MMPSSiphon",
+        "SiphonForce"
+      ],
+      "todoCount": 0,
+      "docstringCount": 189,
+      "commentDensity": 0.3988439306358382,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "src/data/loader.rs",
+      "language": "rust",
+      "size": 4828,
+      "complexity": {
+        "cyclomaticComplexity": 8,
+        "nestingDepth": 8,
+        "functionCount": 4,
+        "avgFunctionLength": 27
+      },
+      "imports": [
+        "anyhow::",
+        "log::",
+        "std::fs",
+        "std::path::Path",
+        "super::types::GameData",
+        "super::"
+      ],
+      "exports": [
+        "load_game_data"
+      ],
+      "todoCount": 0,
+      "docstringCount": 4,
+      "commentDensity": 0.10091743119266056,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "src/data/mod.rs",
+      "language": "rust",
+      "size": 299,
+      "complexity": {
+        "cyclomaticComplexity": 1,
+        "nestingDepth": 0,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [
+        "types",
+        "loader"
+      ],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0.5555555555555556,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "src/data/types.rs",
+      "language": "rust",
+      "size": 2930,
+      "complexity": {
+        "cyclomaticComplexity": 4,
+        "nestingDepth": 6,
+        "functionCount": 1,
+        "avgFunctionLength": 108
+      },
+      "imports": [
+        "serde::"
+      ],
+      "exports": [
+        "GameData",
+        "MetaData",
+        "Entity",
+        "PhysicsData",
+        "GameStats",
+        "LoreData",
+        "WorldData",
+        "WorldLayer",
+        "LinguisticMode"
+      ],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0.037037037037037035,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    }
+  ]
+}

@@ -1,0 +1,49 @@
+{
+  "path": "assets/concept-art",
+  "primaryLanguage": "unknown",
+  "purpose": "general",
+  "fileCount": 2,
+  "totalSize": 2583624,
+  "averageComplexity": null,
+  "documentationCoverage": 0,
+  "files": [
+    {
+      "path": "assets/concept-art/MILF_TIER_0.1_Concept_The_Null_Matriarch_Entity_0dot1.png",
+      "language": "unknown",
+      "size": 1250579,
+      "complexity": {
+        "cyclomaticComplexity": 1,
+        "nestingDepth": 1,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "assets/concept-art/MILF_TIER_UNKNOWN_Concept_Snow_White_Passive_Antithesis.png",
+      "language": "unknown",
+      "size": 1333045,
+      "complexity": {
+        "cyclomaticComplexity": 1,
+        "nestingDepth": 1,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    }
+  ]
+}

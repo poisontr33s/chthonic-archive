@@ -1,0 +1,1602 @@
+{
+  "path": "_root",
+  "primaryLanguage": "markdown",
+  "purpose": "general",
+  "fileCount": 75,
+  "totalSize": 3305098,
+  "averageComplexity": null,
+  "documentationCoverage": 0.02,
+  "files": [
+    {
+      "path": "ALGORITHMIC_EMERGENCE_CATALOG.md",
+      "language": "markdown",
+      "size": 14373,
+      "complexity": {
+        "cyclomaticComplexity": 1,
+        "nestingDepth": 14,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "ankh.md",
+      "language": "markdown",
+      "size": 13135,
+      "complexity": {
+        "cyclomaticComplexity": 1,
+        "nestingDepth": 2,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "ANKHOLOGY.md",
+      "language": "markdown",
+      "size": 9445,
+      "complexity": {
+        "cyclomaticComplexity": 1,
+        "nestingDepth": 1,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "ANKH_README.md",
+      "language": "markdown",
+      "size": 3686,
+      "complexity": {
+        "cyclomaticComplexity": 1,
+        "nestingDepth": 2,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "autonomous_coordinator.py",
+      "language": "python",
+      "size": 5937,
+      "complexity": {
+        "cyclomaticComplexity": 14,
+        "nestingDepth": 8,
+        "functionCount": 9,
+        "avgFunctionLength": 18
+      },
+      "imports": [
+        "subprocess",
+        "json",
+        "datetime",
+        "sys",
+        "pathlib",
+        "typing",
+        "scripts.github_voice",
+        "scripts.pleasure_protocol",
+        "scripts.sensory_cortex"
+      ],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 6,
+      "commentDensity": 0.0963855421686747,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "AUTONOMOUS_COORDINATOR_QUICKREF.md",
+      "language": "markdown",
+      "size": 6080,
+      "complexity": {
+        "cyclomaticComplexity": 1,
+        "nestingDepth": 2,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "AUTONOMOUS_ORCHESTRATION_FRAMEWORK.md",
+      "language": "markdown",
+      "size": 18578,
+      "complexity": {
+        "cyclomaticComplexity": 1,
+        "nestingDepth": 13,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 2,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "AUTONOMOUS_SESSION_2026-01-01.md",
+      "language": "markdown",
+      "size": 7371,
+      "complexity": {
+        "cyclomaticComplexity": 1,
+        "nestingDepth": 2,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "AUTONOMOUS_SESSION_2_COMPLETE.md",
+      "language": "markdown",
+      "size": 8686,
+      "complexity": {
+        "cyclomaticComplexity": 1,
+        "nestingDepth": 2,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "AUTONOMOUS_SESSION_3_COMPLETE.md",
+      "language": "markdown",
+      "size": 19446,
+      "complexity": {
+        "cyclomaticComplexity": 1,
+        "nestingDepth": 6,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "AUTONOMOUS_SESSION_3_DEEP_DIVE_SYNTHESIS.md",
+      "language": "markdown",
+      "size": 14700,
+      "complexity": {
+        "cyclomaticComplexity": 1,
+        "nestingDepth": 4,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "AUTONOMOUS_SESSION_3_DEEP_RESEARCH.md",
+      "language": "markdown",
+      "size": 20293,
+      "complexity": {
+        "cyclomaticComplexity": 1,
+        "nestingDepth": 17,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "AUTONOMOUS_SESSION_3_EXECUTION_COMPLETE.md",
+      "language": "markdown",
+      "size": 5337,
+      "complexity": {
+        "cyclomaticComplexity": 1,
+        "nestingDepth": 1,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "AUTONOMOUS_SESSION_3_MISSION_COMPLETE.md",
+      "language": "markdown",
+      "size": 4638,
+      "complexity": {
+        "cyclomaticComplexity": 1,
+        "nestingDepth": 0,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "AUTONOMOUS_SESSION_3_MISSION_REPORT.md",
+      "language": "markdown",
+      "size": 16578,
+      "complexity": {
+        "cyclomaticComplexity": 1,
+        "nestingDepth": 6,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "AUTONOMOUS_SESSION_4_COMPLETE.md",
+      "language": "markdown",
+      "size": 1370,
+      "complexity": {
+        "cyclomaticComplexity": 1,
+        "nestingDepth": 2,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "AUTONOMOUS_SESSION_5_COMPLETE.md",
+      "language": "markdown",
+      "size": 944,
+      "complexity": {
+        "cyclomaticComplexity": 1,
+        "nestingDepth": 0,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "AUTONOMOUS_SESSION_5_MISSION_REPORT.md",
+      "language": "markdown",
+      "size": 6861,
+      "complexity": {
+        "cyclomaticComplexity": 1,
+        "nestingDepth": 2,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "AUTONOMOUS_SESSION_7_COMPLETE.md",
+      "language": "markdown",
+      "size": 10932,
+      "complexity": {
+        "cyclomaticComplexity": 1,
+        "nestingDepth": 3,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "AUTONOMOUS_SESSION_STATUS.md",
+      "language": "markdown",
+      "size": 4541,
+      "complexity": {
+        "cyclomaticComplexity": 1,
+        "nestingDepth": 0,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "build.rs",
+      "language": "rust",
+      "size": 3219,
+      "complexity": {
+        "cyclomaticComplexity": 3,
+        "nestingDepth": 6,
+        "functionCount": 2,
+        "avgFunctionLength": 41
+      },
+      "imports": [
+        "std::env",
+        "std::fs",
+        "std::path::PathBuf"
+      ],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0.14457831325301204,
+      "patterns": [],
+      "antiPatterns": [
+        "unwrap-usage"
+      ],
+      "securityFlags": []
+    },
+    {
+      "path": "bun.lock",
+      "language": "unknown",
+      "size": 385042,
+      "complexity": {
+        "cyclomaticComplexity": 1,
+        "nestingDepth": 4,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "BUN_COMPLIANCE_COMPLETE.md",
+      "language": "markdown",
+      "size": 7033,
+      "complexity": {
+        "cyclomaticComplexity": 1,
+        "nestingDepth": 3,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "Cargo.lock",
+      "language": "unknown",
+      "size": 62059,
+      "complexity": {
+        "cyclomaticComplexity": 1,
+        "nestingDepth": 0,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "Cargo.toml",
+      "language": "toml",
+      "size": 3190,
+      "complexity": {
+        "cyclomaticComplexity": 1,
+        "nestingDepth": 0,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "CLAUDE.md",
+      "language": "markdown",
+      "size": 1017,
+      "complexity": {
+        "cyclomaticComplexity": 1,
+        "nestingDepth": 0,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "CLAUDE_CODE_INTEGRATION_SUMMARY.md",
+      "language": "markdown",
+      "size": 11876,
+      "complexity": {
+        "cyclomaticComplexity": 1,
+        "nestingDepth": 4,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "CROSS_REFERENCE_TRIPTYCH.md",
+      "language": "markdown",
+      "size": 953351,
+      "complexity": {
+        "cyclomaticComplexity": 1,
+        "nestingDepth": 0,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "curriculum_core_v1.json",
+      "language": "json",
+      "size": 9719,
+      "complexity": {
+        "cyclomaticComplexity": 1,
+        "nestingDepth": 3,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "CURRICULUM_CORE_V1.md",
+      "language": "markdown",
+      "size": 8584,
+      "complexity": {
+        "cyclomaticComplexity": 1,
+        "nestingDepth": 1,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "DAEMON_CLASSIFICATION_ENHANCEMENTS.md",
+      "language": "markdown",
+      "size": 17538,
+      "complexity": {
+        "cyclomaticComplexity": 1,
+        "nestingDepth": 5,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 1,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": [
+        "potential-secret"
+      ]
+    },
+    {
+      "path": "DCRP_DEPLOYMENT_SUMMARY.md",
+      "language": "markdown",
+      "size": 6958,
+      "complexity": {
+        "cyclomaticComplexity": 1,
+        "nestingDepth": 2,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "DCRP_ENHANCED_ANALYSIS.md",
+      "language": "markdown",
+      "size": 7057,
+      "complexity": {
+        "cyclomaticComplexity": 1,
+        "nestingDepth": 1,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "DCRP_FINAL_STATUS.md",
+      "language": "markdown",
+      "size": 7740,
+      "complexity": {
+        "cyclomaticComplexity": 1,
+        "nestingDepth": 2,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "DCRP_MERGE_REPORT.txt",
+      "language": "unknown",
+      "size": 1718,
+      "complexity": {
+        "cyclomaticComplexity": 1,
+        "nestingDepth": 1,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "DCRP_OBSERVABILITY_UPGRADE.md",
+      "language": "markdown",
+      "size": 9295,
+      "complexity": {
+        "cyclomaticComplexity": 1,
+        "nestingDepth": 13,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "DCRP_OBSERVABILITY_VALIDATION_COMPLETE.md",
+      "language": "markdown",
+      "size": 9157,
+      "complexity": {
+        "cyclomaticComplexity": 1,
+        "nestingDepth": 14,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "DCRP_PRODUCTION_ANALYSIS.md",
+      "language": "markdown",
+      "size": 3257,
+      "complexity": {
+        "cyclomaticComplexity": 1,
+        "nestingDepth": 0,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "DCRP_REFACTORING_SESSION_SUMMARY.md",
+      "language": "markdown",
+      "size": 14089,
+      "complexity": {
+        "cyclomaticComplexity": 1,
+        "nestingDepth": 4,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "DCRP_REFACTOR_COMPLETE.md",
+      "language": "markdown",
+      "size": 8377,
+      "complexity": {
+        "cyclomaticComplexity": 1,
+        "nestingDepth": 2,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "DCRP_UNIFIED_REFACTOR.md",
+      "language": "markdown",
+      "size": 5271,
+      "complexity": {
+        "cyclomaticComplexity": 1,
+        "nestingDepth": 4,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "decorator_cross_ref_enhanced.py",
+      "language": "python",
+      "size": 39060,
+      "complexity": {
+        "cyclomaticComplexity": 138,
+        "nestingDepth": 14,
+        "functionCount": 17,
+        "avgFunctionLength": 51
+      },
+      "imports": [
+        "json",
+        "re",
+        "ast",
+        "pathlib",
+        "typing",
+        "dataclasses",
+        "collections",
+        "networkx",
+        ".",
+        "statement",
+        "level",
+        "try"
+      ],
+      "exports": [
+        "build_enhanced_dependency_graph",
+        "generate_enhanced_analysis_report",
+        "main"
+      ],
+      "todoCount": 0,
+      "docstringCount": 24,
+      "commentDensity": 0.11187214611872145,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "decorator_cross_ref_maximum.py",
+      "language": "python",
+      "size": 65041,
+      "complexity": {
+        "cyclomaticComplexity": 220,
+        "nestingDepth": 14,
+        "functionCount": 27,
+        "avgFunctionLength": 49
+      },
+      "imports": [
+        "ast",
+        "json",
+        "re",
+        "sys",
+        "hashlib",
+        "pathlib",
+        "typing",
+        "dataclasses",
+        "collections",
+        "networkx",
+        ".",
+        "statement",
+        "try",
+        "io"
+      ],
+      "exports": [
+        "scan_repository",
+        "build_dependency_graph",
+        "detect_circular_dependencies",
+        "resolve_circular_dependency",
+        "assign_topological_layers",
+        "compute_file_hash",
+        "load_previous_state",
+        "save_current_state",
+        "detect_new_and_changed_files",
+        "generate_cross_reference_header",
+        "generate_master_index",
+        "main"
+      ],
+      "todoCount": 0,
+      "docstringCount": 44,
+      "commentDensity": 0.1164021164021164,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "decorator_cross_ref_production.py",
+      "language": "python",
+      "size": 62928,
+      "complexity": {
+        "cyclomaticComplexity": 195,
+        "nestingDepth": 18,
+        "functionCount": 37,
+        "avgFunctionLength": 36
+      },
+      "imports": [
+        "detection",
+        "argparse",
+        "hashlib",
+        "json",
+        "re",
+        "ast",
+        "sys",
+        "time",
+        "pathlib",
+        "typing",
+        "dataclasses",
+        "collections",
+        "datetime",
+        "networkx",
+        "typescript_dependency_resolver",
+        "to",
+        "dependencies."
+      ],
+      "exports": [
+        "main"
+      ],
+      "todoCount": 0,
+      "docstringCount": 52,
+      "commentDensity": 0.10387710314557425,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "DELIVERABLES_20251230.md",
+      "language": "markdown",
+      "size": 4588,
+      "complexity": {
+        "cyclomaticComplexity": 1,
+        "nestingDepth": 1,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "dependency_graph_enhanced.json",
+      "language": "json",
+      "size": 937363,
+      "complexity": {
+        "cyclomaticComplexity": 1,
+        "nestingDepth": 4,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 12,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": [
+        "potential-secret"
+      ]
+    },
+    {
+      "path": "dependency_graph_production.json",
+      "language": "json",
+      "size": 301384,
+      "complexity": {
+        "cyclomaticComplexity": 1,
+        "nestingDepth": 5,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "deploy_dcrp_headers.py",
+      "language": "python",
+      "size": 9870,
+      "complexity": {
+        "cyclomaticComplexity": 41,
+        "nestingDepth": 10,
+        "functionCount": 5,
+        "avgFunctionLength": 57
+      },
+      "imports": [
+        "json",
+        "re",
+        "pathlib",
+        "dataclasses",
+        "typing",
+        "shutil",
+        "datetime",
+        "sys"
+      ],
+      "exports": [
+        "load_graph_data",
+        "is_injectable",
+        "generate_header",
+        "inject_header",
+        "main"
+      ],
+      "todoCount": 0,
+      "docstringCount": 8,
+      "commentDensity": 0.08771929824561403,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "DEVELOPMENT_STATE.md",
+      "language": "markdown",
+      "size": 15655,
+      "complexity": {
+        "cyclomaticComplexity": 1,
+        "nestingDepth": 4,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "epistemograph_custody_v1.1.1.md",
+      "language": "markdown",
+      "size": 1001,
+      "complexity": {
+        "cyclomaticComplexity": 1,
+        "nestingDepth": 0,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "EPISTEMOGRAPH_TO_CURRICULUM_SUMMARY.md",
+      "language": "markdown",
+      "size": 5326,
+      "complexity": {
+        "cyclomaticComplexity": 1,
+        "nestingDepth": 1,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "GEMINI_HANDOFF_CACHE.md",
+      "language": "markdown",
+      "size": 1346,
+      "complexity": {
+        "cyclomaticComplexity": 1,
+        "nestingDepth": 1,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "GEMINI_HANDOFF_PHASE_11_5.md",
+      "language": "markdown",
+      "size": 5392,
+      "complexity": {
+        "cyclomaticComplexity": 1,
+        "nestingDepth": 4,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "health_report.py",
+      "language": "python",
+      "size": 11363,
+      "complexity": {
+        "cyclomaticComplexity": 23,
+        "nestingDepth": 8,
+        "functionCount": 8,
+        "avgFunctionLength": 35
+      },
+      "imports": [
+        "__future__",
+        "pathlib",
+        "datetime",
+        "json",
+        "subprocess",
+        "typing"
+      ],
+      "exports": [
+        "get_current_commit",
+        "get_current_branch",
+        "summarize_topology",
+        "summarize_dcrp",
+        "check_ssot_status",
+        "check_lane_population",
+        "generate_health_report",
+        "main"
+      ],
+      "todoCount": 0,
+      "docstringCount": 10,
+      "commentDensity": 0.06713780918727916,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "INDEXING_BEACON.md",
+      "language": "markdown",
+      "size": 398,
+      "complexity": {
+        "cyclomaticComplexity": 1,
+        "nestingDepth": 0,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "latest-stable-policy.md",
+      "language": "markdown",
+      "size": 1427,
+      "complexity": {
+        "cyclomaticComplexity": 1,
+        "nestingDepth": 1,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "nul",
+      "language": "unknown",
+      "size": 0,
+      "complexity": {
+        "cyclomaticComplexity": 1,
+        "nestingDepth": 0,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "package.json",
+      "language": "json",
+      "size": 300,
+      "complexity": {
+        "cyclomaticComplexity": 1,
+        "nestingDepth": 2,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "PR_SUGGESTION.md",
+      "language": "markdown",
+      "size": 910,
+      "complexity": {
+        "cyclomaticComplexity": 1,
+        "nestingDepth": 0,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "pyproject.toml",
+      "language": "toml",
+      "size": 418,
+      "complexity": {
+        "cyclomaticComplexity": 1,
+        "nestingDepth": 2,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "run_mcp_validation.ts",
+      "language": "typescript",
+      "size": 12338,
+      "complexity": {
+        "cyclomaticComplexity": 25,
+        "nestingDepth": 6,
+        "functionCount": 2,
+        "avgFunctionLength": 171
+      },
+      "imports": [
+        "child_process"
+      ],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 1,
+      "commentDensity": 0.05830903790087463,
+      "patterns": [],
+      "antiPatterns": [
+        "any-type-usage"
+      ],
+      "securityFlags": []
+    },
+    {
+      "path": "scanner_freeze_v1.1.1.md",
+      "language": "markdown",
+      "size": 1869,
+      "complexity": {
+        "cyclomaticComplexity": 1,
+        "nestingDepth": 1,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "SESSION_2026_01_04_EPISTEMOGRAPH_COMPLETE.md",
+      "language": "markdown",
+      "size": 5577,
+      "complexity": {
+        "cyclomaticComplexity": 1,
+        "nestingDepth": 1,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "SESSION_3_ORCHESTRATION_QUICKREF.md",
+      "language": "markdown",
+      "size": 9214,
+      "complexity": {
+        "cyclomaticComplexity": 1,
+        "nestingDepth": 2,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "SESSION_3_TYPESCRIPT_QUICKREF.md",
+      "language": "markdown",
+      "size": 4185,
+      "complexity": {
+        "cyclomaticComplexity": 1,
+        "nestingDepth": 2,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "session_resumption_chthonic_progress.md",
+      "language": "markdown",
+      "size": 7340,
+      "complexity": {
+        "cyclomaticComplexity": 1,
+        "nestingDepth": 0,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "ssot_immunity.py",
+      "language": "python",
+      "size": 7904,
+      "complexity": {
+        "cyclomaticComplexity": 18,
+        "nestingDepth": 8,
+        "functionCount": 5,
+        "avgFunctionLength": 36
+      },
+      "imports": [
+        "ssot_immunity",
+        "__future__",
+        "pathlib",
+        "hashlib",
+        "json",
+        "datetime",
+        "typing"
+      ],
+      "exports": [
+        "compute_hash",
+        "load_state",
+        "save_state",
+        "check_ssot_drift",
+        "main"
+      ],
+      "todoCount": 0,
+      "docstringCount": 9,
+      "commentDensity": 0.12777777777777777,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "TEST_FILE_DOCUMENTATION_RESTORED.md",
+      "language": "markdown",
+      "size": 4803,
+      "complexity": {
+        "cyclomaticComplexity": 1,
+        "nestingDepth": 4,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "THE_DECORATOR_AUTONOMOUS_SYNTHESIS.md",
+      "language": "markdown",
+      "size": 10957,
+      "complexity": {
+        "cyclomaticComplexity": 1,
+        "nestingDepth": 3,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "topology_map.md",
+      "language": "markdown",
+      "size": 5601,
+      "complexity": {
+        "cyclomaticComplexity": 1,
+        "nestingDepth": 1,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "topology_summary.md",
+      "language": "markdown",
+      "size": 779,
+      "complexity": {
+        "cyclomaticComplexity": 1,
+        "nestingDepth": 0,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "typescript_dependency_resolver.py",
+      "language": "python",
+      "size": 7757,
+      "complexity": {
+        "cyclomaticComplexity": 21,
+        "nestingDepth": 12,
+        "functionCount": 4,
+        "avgFunctionLength": 58
+      },
+      "imports": [
+        "extraction",
+        "re",
+        "pathlib",
+        "typing",
+        "statements",
+        "Default",
+        "type",
+        "paths",
+        "path",
+        "repo_root",
+        "sys"
+      ],
+      "exports": [
+        "test_extractor"
+      ],
+      "todoCount": 0,
+      "docstringCount": 11,
+      "commentDensity": 0.1336206896551724,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "TYPESCRIPT_INTELLIGENCE_ENHANCEMENT.md",
+      "language": "markdown",
+      "size": 15280,
+      "complexity": {
+        "cyclomaticComplexity": 1,
+        "nestingDepth": 18,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "unified_topology.py",
+      "language": "python",
+      "size": 18279,
+      "complexity": {
+        "cyclomaticComplexity": 62,
+        "nestingDepth": 14,
+        "functionCount": 14,
+        "avgFunctionLength": 32
+      },
+      "imports": [
+        "__future__",
+        "dataclasses",
+        "pathlib",
+        "typing",
+        "json",
+        "re",
+        "networkx",
+        "datetime",
+        "collections"
+      ],
+      "exports": [
+        "classify_lane",
+        "classify_language",
+        "infer_tier",
+        "export_json",
+        "export_mermaid",
+        "export_summary",
+        "main"
+      ],
+      "todoCount": 0,
+      "docstringCount": 18,
+      "commentDensity": 0.07929515418502203,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "uv.lock",
+      "language": "unknown",
+      "size": 967,
+      "complexity": {
+        "cyclomaticComplexity": 1,
+        "nestingDepth": 2,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    }
+  ]
+}

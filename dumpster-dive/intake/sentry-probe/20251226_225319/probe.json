@@ -1,0 +1,24 @@
+{
+  "generatedAt": "2025-12-26T21:53:19.124Z",
+  "baseUrl": "https://wwwesbbrcom.sentry.io",
+  "ok": false,
+  "tokenPresent": true,
+  "requests": [
+    {
+      "name": "api_0_root",
+      "url": "https://wwwesbbrcom.sentry.io/api/0/",
+      "method": "GET",
+      "status": 200,
+      "contentType": "application/json",
+      "bodyFile": "C:/Users/erdno/chthonic-archive/dumpster-dive/intake/sentry-probe/20251226_225319/api_0_root.body.txt"
+    },
+    {
+      "name": "issue",
+      "url": "https://wwwesbbrcom.sentry.io/api/0/issues/85188706/",
+      "method": "GET",
+      "status": 404,
+      "contentType": "application/json",
+      "bodyFile": "C:/Users/erdno/chthonic-archive/dumpster-dive/intake/sentry-probe/20251226_225319/issue.body.txt"
+    }
+  ]
+}

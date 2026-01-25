@@ -1,0 +1,113 @@
+// ╔════════════════════════════════════════════════════════════════════════════╗
+// ║  THE DECORATOR'S BLESSING: doctor.ts                                     ║
+// ║  TypeScript module: frontend utility                                        ║
+// ╠════════════════════════════════════════════════════════════════════════════╣
+// ║  Spectral Frequency: ORANGE                                                 ║
+// ║  Architectural Role: 🔭 THE OBSERVATORY                                      ║
+// ║  Purpose: * System health check - human-facing diagnostic output
+ * Run with: bu ║
+// ╠════════════════════════════════════════════════════════════════════════════╣
+// ║  Cross-References (Bidirectional):                                      ║
+// ║    (Standalone file - no detected dependencies)                          ║
+// ╚════════════════════════════════════════════════════════════════════════════╝
+
+#!/usr/bin/env bun
+/**
+ * System health check - human-facing diagnostic output
+ * Run with: bun run doctor
+ */
+
+import { execSync } from "child_process";
+import { existsSync, statSync, readFileSync } from "fs";
+import { join } from "path";
+
+console.log("🔍 Chthonic Extension System Health Check\n");
+
+// Bundle sizes
+console.log("📦 Bundle Sizes");
+const statusbarSize = statSync("extensions/chthonic-statusbar/dist/extension.js").size;
+const mandalaSize = statSync("extensions/chthonic-mandala/dist/extension.js").size;
+console.log(`  StatusBar: ${(statusbarSize / 1024).toFixed(1)} KB`);
+console.log(`  Mandala:   ${(mandalaSize / 1024).toFixed(1)} KB`);
+console.log(`  Combined:  ${((statusbarSize + mandalaSize) / 1024).toFixed(1)} KB`);
+
+const statusbarHealth = statusbarSize < 10 * 1024 ? "✓" : "⚠️";
+const mandalaHealth = mandalaSize < 18 * 1024 ? "✓" : "⚠️";
+console.log(`  Status:    ${statusbarHealth} StatusBar, ${mandalaHealth} Mandala\n`);
+
+// Python detection
+console.log("🐍 Python Detection");
+try {
+  process.env.PYTHONIOENCODING = "utf-8";
+  const output = execSync("uv run python --version", { encoding: "utf-8", timeout: 5000 }).trim();
+  const match = output.match(/Python\s+(\d+\.\d+(?:\.\d+)?)/);
+  console.log(`  Version:   ${match ? match[1] : "FAILED"}`);
+  console.log(`  Status:    ${match ? "✓" : "❌"}\n`);
+} catch (error: any) {
+  console.log(`  Status:    ❌ ${error.message}\n`);
+}
+
+// GPU stats
+console.log("🎮 GPU Status");
+try {
+  const output = execSync(
+    "nvidia-smi --query-gpu=memory.used,memory.total --format=csv,noheader,nounits",
+    { encoding: "utf-8", timeout: 3000 }
+  ).trim();
+  const [used, total] = output.split(",").map((s) => parseInt(s.trim()));
+  const percent = ((used / total) * 100).toFixed(0);
+  console.log(`  VRAM:      ${(used / 1024).toFixed(1)} GB / ${(total / 1024).toFixed(1)} GB (${percent}%)`);
+  console.log(`  Status:    ✓\n`);
+} catch {
+  console.log(`  Status:    ⚠️  nvidia-smi not available\n`);
+}
+
+// Deployment
+console.log("📍 Deployment Status");
+const extDir = join(process.env.USERPROFILE || "", ".vscode-insiders", "extensions");
+const statusbarDeployed = existsSync(join(extDir, "chthonic-statusbar", "dist", "extension.js"));
+const mandalaDeployed = existsSync(join(extDir, "chthonic-mandala", "dist", "extension.js"));
+const themeDeployed = existsSync(join(extDir, "chthonic-mandala", "themes", "chthonic-mandala-color-theme.json"));
+
+console.log(`  StatusBar: ${statusbarDeployed ? "✓" : "❌"}`);
+console.log(`  Mandala:   ${mandalaDeployed ? "✓" : "❌"}`);
+console.log(`  Theme:     ${themeDeployed ? "✓" : "❌"}\n`);
+
+// Production config
+console.log("⚙️  Build Configuration");
+const statusbarPkg = JSON.parse(readFileSync("extensions/chthonic-statusbar/package.json", "utf-8"));
+const mandalaPkg = JSON.parse(readFileSync("extensions/chthonic-mandala/package.json", "utf-8"));
+
+console.log(`  Tree-shaking:  ${statusbarPkg.bun?.treeShaking ? "✓" : "❌"}`);
+console.log(`  Minification:  ${statusbarPkg.bun?.minify ? "✓" : "❌"}`);
+console.log(`  SideEffects:   ${statusbarPkg.sideEffects === false ? "✓" : "❌"}`);
+console.log(`  NODE_ENV:      ${statusbarPkg.bun?.define?.["process.env.NODE_ENV"] || "not set"}\n`);
+
+// Source code checks
+console.log("🔬 Source Code Health");
+const extensionSrc = readFileSync("extensions/chthonic-statusbar/src/extension.ts", "utf-8");
+const hasUtf8 = extensionSrc.includes("PYTHONIOENCODING");
+const hasBrokenRegex = extensionSrc.includes("/Python\\\\s+");
+const hasDeadImport = extensionSrc.includes("hedonisticValidation");
+
+console.log(`  UTF-8 enforcement:     ${hasUtf8 ? "✓" : "❌"}`);
+console.log(`  Regex fixed:           ${!hasBrokenRegex ? "✓" : "❌"}`);
+console.log(`  Dead imports removed:  ${!hasDeadImport ? "✓" : "❌"}\n`);
+
+// Summary
+console.log("═".repeat(60));
+const allHealthy =
+  statusbarSize < 10 * 1024 &&
+  mandalaSize < 18 * 1024 &&
+  statusbarDeployed &&
+  mandalaDeployed &&
+  hasUtf8 &&
+  !hasBrokenRegex &&
+  !hasDeadImport;
+
+if (allHealthy) {
+  console.log("✅ System is healthy - all critical invariants satisfied");
+} else {
+  console.log("⚠️  System has issues - run `bun test` for details");
+}
+console.log("═".repeat(60));

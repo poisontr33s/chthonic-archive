@@ -1,0 +1,9 @@
+# Lineage Submission Manifest
+# Fill all required fields before submission
+
+name: shortname                 # Short identifier (no spaces)
+lineage_id: A                   # A, B, or C
+submitter: Your Name            # Submitter name or handle
+phase: "🌀"                     # "🌀" (Anti-ANKH/generative) OR "⚓" (ANKH evaluation)
+entry_point: path/to/main.md    # Primary file for lineage entry
+notes: ""                       # Optional short note (leave empty if none)

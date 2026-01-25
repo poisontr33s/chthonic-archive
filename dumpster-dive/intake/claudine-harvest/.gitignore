@@ -1,0 +1,13 @@
+# Claudine harvest intake is for local forensics/upcycling.
+# Avoid the git anti-pattern of tracking huge piles of harvested scripts.
+
+# Ignore harvested source and machine-local manifests
+*.ps1
+*.psm1
+*.psd1
+manifest.json
+
+# Keep human-authored notes
+!REPORT.md
+!TRIAGE.md
+!.gitignore

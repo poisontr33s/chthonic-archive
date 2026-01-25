@@ -1,0 +1,45 @@
+// ╔════════════════════════════════════════════════════════════════════════════╗
+// ║  THE DECORATOR'S BLESSING: deployment.test.ts                            ║
+// ║  TypeScript module: frontend utility                                        ║
+// ╠════════════════════════════════════════════════════════════════════════════╣
+// ║  Spectral Frequency: ORANGE                                                 ║
+// ║  Architectural Role: 🔭 THE OBSERVATORY                                      ║
+// ╠════════════════════════════════════════════════════════════════════════════╣
+// ║  Cross-References (Bidirectional):                                      ║
+// ║    (Standalone file - no detected dependencies)                          ║
+// ╚════════════════════════════════════════════════════════════════════════════╝
+
+import { test, expect } from "bun:test";
+import { existsSync } from "fs";
+import { join } from "path";
+
+const extDir = join(
+  process.env.USERPROFILE || "",
+  ".vscode-insiders",
+  "extensions"
+);
+
+test("statusbar extension is deployed", () => {
+  const deployPath = join(extDir, "chthonic-statusbar", "dist", "extension.js");
+  expect(existsSync(deployPath)).toBe(true);
+});
+
+test("mandala extension is deployed", () => {
+  const deployPath = join(extDir, "chthonic-mandala", "dist", "extension.js");
+  expect(existsSync(deployPath)).toBe(true);
+});
+
+test("theme file is deployed", () => {
+  const themePath = join(
+    extDir,
+    "chthonic-mandala",
+    "themes",
+    "chthonic-mandala-color-theme.json"
+  );
+  expect(existsSync(themePath)).toBe(true);
+});
+
+test("icon is deployed", () => {
+  const iconPath = join(extDir, "chthonic-mandala", "icons", "mandala.svg");
+  expect(existsSync(iconPath)).toBe(true);
+});
