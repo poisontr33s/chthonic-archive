@@ -1,0 +1,314 @@
+[
+  {
+    "timestamp": "2026-01-01T08:09:34.729422",
+    "total_files": 928,
+    "total_dependencies": 163,
+    "circular_cycles": 84,
+    "cache_hit_rate": 99.56896551724138,
+    "spectral_distribution": {
+      "BLUE": 412,
+      "VIOLET": 30,
+      "GOLD": 294,
+      "RED": 15,
+      "WHITE": 75,
+      "ORANGE": 100,
+      "INDIGO": 2
+    },
+    "top_dependencies": [
+      [
+        "dumpster-dive\\DUMPSTER_DIVE_REGISTRY.json",
+        11
+      ],
+      [
+        "dumpster-dive\\protocols\\FORGE_CIRCULATION_PROTOCOL.md",
+        11
+      ],
+      [
+        "dumpster-dive\\BLACKSMITH_MATRIARCH.md",
+        10
+      ],
+      [
+        "dumpster-dive\\ORE_MANIFEST.json",
+        8
+      ],
+      [
+        "dumpster-dive\\protocols\\FORGE_PROTOCOL_LEVELS.md",
+        8
+      ]
+    ],
+    "largest_cluster_size": 5
+  },
+  {
+    "timestamp": "2026-01-01T08:10:02.394155",
+    "total_files": 929,
+    "total_dependencies": 163,
+    "circular_cycles": 84,
+    "cache_hit_rate": 99.56942949407966,
+    "spectral_distribution": {
+      "BLUE": 413,
+      "VIOLET": 30,
+      "GOLD": 294,
+      "RED": 15,
+      "WHITE": 75,
+      "ORANGE": 100,
+      "INDIGO": 2
+    },
+    "top_dependencies": [
+      [
+        "dumpster-dive\\DUMPSTER_DIVE_REGISTRY.json",
+        11
+      ],
+      [
+        "dumpster-dive\\protocols\\FORGE_CIRCULATION_PROTOCOL.md",
+        11
+      ],
+      [
+        "dumpster-dive\\BLACKSMITH_MATRIARCH.md",
+        10
+      ],
+      [
+        "dumpster-dive\\ORE_MANIFEST.json",
+        8
+      ],
+      [
+        "dumpster-dive\\protocols\\FORGE_PROTOCOL_LEVELS.md",
+        8
+      ]
+    ],
+    "largest_cluster_size": 5
+  },
+  {
+    "timestamp": "2026-01-01T08:14:13.970988",
+    "total_files": 930,
+    "total_dependencies": 163,
+    "circular_cycles": 84,
+    "cache_hit_rate": 99.46236559139786,
+    "spectral_distribution": {
+      "BLUE": 413,
+      "VIOLET": 30,
+      "GOLD": 295,
+      "RED": 15,
+      "WHITE": 75,
+      "ORANGE": 100,
+      "INDIGO": 2
+    },
+    "top_dependencies": [
+      [
+        "dumpster-dive\\DUMPSTER_DIVE_REGISTRY.json",
+        11
+      ],
+      [
+        "dumpster-dive\\protocols\\FORGE_CIRCULATION_PROTOCOL.md",
+        11
+      ],
+      [
+        "dumpster-dive\\BLACKSMITH_MATRIARCH.md",
+        10
+      ],
+      [
+        "dumpster-dive\\ORE_MANIFEST.json",
+        8
+      ],
+      [
+        "dumpster-dive\\protocols\\FORGE_PROTOCOL_LEVELS.md",
+        8
+      ]
+    ],
+    "largest_cluster_size": 5
+  },
+  {
+    "timestamp": "2026-01-01T08:15:35.746523",
+    "total_files": 930,
+    "total_dependencies": 163,
+    "circular_cycles": 84,
+    "cache_hit_rate": 99.46236559139786,
+    "spectral_distribution": {
+      "BLUE": 413,
+      "VIOLET": 30,
+      "GOLD": 295,
+      "RED": 15,
+      "WHITE": 75,
+      "ORANGE": 100,
+      "INDIGO": 2
+    },
+    "top_dependencies": [
+      [
+        "dumpster-dive\\DUMPSTER_DIVE_REGISTRY.json",
+        11
+      ],
+      [
+        "dumpster-dive\\protocols\\FORGE_CIRCULATION_PROTOCOL.md",
+        11
+      ],
+      [
+        "dumpster-dive\\BLACKSMITH_MATRIARCH.md",
+        10
+      ],
+      [
+        "dumpster-dive\\ORE_MANIFEST.json",
+        8
+      ],
+      [
+        "dumpster-dive\\protocols\\FORGE_PROTOCOL_LEVELS.md",
+        8
+      ]
+    ],
+    "largest_cluster_size": 5
+  },
+  {
+    "timestamp": "2026-01-01T08:55:45.427799",
+    "total_files": 935,
+    "total_dependencies": 163,
+    "circular_cycles": 84,
+    "cache_hit_rate": 98.71657754010695,
+    "spectral_distribution": {
+      "BLUE": 413,
+      "VIOLET": 30,
+      "GOLD": 300,
+      "RED": 15,
+      "WHITE": 75,
+      "ORANGE": 100,
+      "INDIGO": 2
+    },
+    "top_dependencies": [
+      [
+        "dumpster-dive\\DUMPSTER_DIVE_REGISTRY.json",
+        11
+      ],
+      [
+        "dumpster-dive\\protocols\\FORGE_CIRCULATION_PROTOCOL.md",
+        11
+      ],
+      [
+        "dumpster-dive\\BLACKSMITH_MATRIARCH.md",
+        10
+      ],
+      [
+        "dumpster-dive\\ORE_MANIFEST.json",
+        8
+      ],
+      [
+        "dumpster-dive\\protocols\\FORGE_PROTOCOL_LEVELS.md",
+        8
+      ]
+    ],
+    "largest_cluster_size": 5
+  },
+  {
+    "timestamp": "2026-01-01T09:01:32.393883",
+    "total_files": 938,
+    "total_dependencies": 186,
+    "circular_cycles": 84,
+    "cache_hit_rate": 99.14712153518124,
+    "spectral_distribution": {
+      "BLUE": 413,
+      "VIOLET": 30,
+      "GOLD": 302,
+      "RED": 15,
+      "WHITE": 76,
+      "ORANGE": 100,
+      "INDIGO": 2
+    },
+    "top_dependencies": [
+      [
+        "dumpster-dive\\DUMPSTER_DIVE_REGISTRY.json",
+        11
+      ],
+      [
+        "dumpster-dive\\protocols\\FORGE_CIRCULATION_PROTOCOL.md",
+        11
+      ],
+      [
+        "dumpster-dive\\BLACKSMITH_MATRIARCH.md",
+        10
+      ],
+      [
+        "dumpster-dive\\ORE_MANIFEST.json",
+        8
+      ],
+      [
+        "dumpster-dive\\protocols\\FORGE_PROTOCOL_LEVELS.md",
+        8
+      ]
+    ],
+    "largest_cluster_size": 5
+  },
+  {
+    "timestamp": "2026-01-01T09:17:33.494030",
+    "total_files": 946,
+    "total_dependencies": 187,
+    "circular_cycles": 84,
+    "cache_hit_rate": 98.62579281183932,
+    "spectral_distribution": {
+      "BLUE": 414,
+      "VIOLET": 30,
+      "GOLD": 305,
+      "WHITE": 80,
+      "RED": 15,
+      "ORANGE": 100,
+      "INDIGO": 2
+    },
+    "top_dependencies": [
+      [
+        "dumpster-dive\\DUMPSTER_DIVE_REGISTRY.json",
+        11
+      ],
+      [
+        "dumpster-dive\\protocols\\FORGE_CIRCULATION_PROTOCOL.md",
+        11
+      ],
+      [
+        "dumpster-dive\\BLACKSMITH_MATRIARCH.md",
+        10
+      ],
+      [
+        "dumpster-dive\\ORE_MANIFEST.json",
+        8
+      ],
+      [
+        "dumpster-dive\\protocols\\FORGE_PROTOCOL_LEVELS.md",
+        8
+      ]
+    ],
+    "largest_cluster_size": 5
+  },
+  {
+    "timestamp": "2026-01-01T09:47:40.099799",
+    "total_files": 949,
+    "total_dependencies": 187,
+    "circular_cycles": 84,
+    "cache_hit_rate": 99.05163329820864,
+    "spectral_distribution": {
+      "BLUE": 414,
+      "VIOLET": 30,
+      "GOLD": 308,
+      "WHITE": 80,
+      "RED": 15,
+      "ORANGE": 100,
+      "INDIGO": 2
+    },
+    "top_dependencies": [
+      [
+        "dumpster-dive\\DUMPSTER_DIVE_REGISTRY.json",
+        11
+      ],
+      [
+        "dumpster-dive\\protocols\\FORGE_CIRCULATION_PROTOCOL.md",
+        11
+      ],
+      [
+        "dumpster-dive\\BLACKSMITH_MATRIARCH.md",
+        10
+      ],
+      [
+        "dumpster-dive\\ORE_MANIFEST.json",
+        8
+      ],
+      [
+        "dumpster-dive\\protocols\\FORGE_PROTOCOL_LEVELS.md",
+        8
+      ]
+    ],
+    "largest_cluster_size": 5
+  }
+]

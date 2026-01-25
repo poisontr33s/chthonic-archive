@@ -1,0 +1,2430 @@
+{
+  "directed": true,
+  "multigraph": false,
+  "graph": {},
+  "nodes": [
+    {
+      "spectral_freq": "BLUE",
+      "purpose": "",
+      "role": "\u2699\ufe0f CONFIGURATION",
+      "essence": "Configuration: .dcrp_evolution.json",
+      "id": ".dcrp_evolution.json"
+    },
+    {
+      "spectral_freq": "BLUE",
+      "purpose": "",
+      "role": "\u2699\ufe0f CONFIGURATION",
+      "essence": "Configuration: .dcrp_state.json",
+      "id": ".dcrp_state.json"
+    },
+    {
+      "spectral_freq": "VIOLET",
+      "purpose": " file",
+      "role": "UTILITY",
+      "essence": "Auxiliary file: .python-version",
+      "id": ".python-version"
+    },
+    {
+      "spectral_freq": "GOLD",
+      "purpose": "\ud83e\uddec ALGORITHMIC EMERGENCE CATALOG",
+      "role": "\ud83d\udcdc DOCUMENTATION",
+      "essence": "Single Source of Truth - the Codex Brahmanica Perfectus",
+      "id": "ALGORITHMIC_EMERGENCE_CATALOG.md"
+    },
+    {
+      "spectral_freq": "GOLD",
+      "purpose": "ANKH \u2014 Ontological Charter (v1)",
+      "role": "\ud83d\udcdc DOCUMENTATION",
+      "essence": "Single Source of Truth - the Codex Brahmanica Perfectus",
+      "id": "ankh.md"
+    },
+    {
+      "spectral_freq": "GOLD",
+      "purpose": "ANKHOLOGY \u2014 The Anti-ANKH ANKH Framework",
+      "role": "\ud83d\udcdc DOCUMENTATION",
+      "essence": "Single Source of Truth - the Codex Brahmanica Perfectus",
+      "id": "ANKHOLOGY.md"
+    },
+    {
+      "spectral_freq": "BLUE",
+      "purpose": "",
+      "role": "\u2699\ufe0f CONFIGURATION",
+      "essence": "Configuration: ankh_index.json",
+      "id": "ankh_index.json"
+    },
+    {
+      "spectral_freq": "GOLD",
+      "purpose": "ANKH Framework \u00d4\u00c7\u00f6 Quick Reference",
+      "role": "\ud83d\udcdc DOCUMENTATION",
+      "essence": "Entry portal - first architectural revelation",
+      "id": "ANKH_README.md"
+    },
+    {
+      "spectral_freq": "GOLD",
+      "purpose": "\ud83c\udfaf AUTONOMOUS COORDINATOR QUICKREF",
+      "role": "\ud83d\udcdc DOCUMENTATION",
+      "essence": "Single Source of Truth - the Codex Brahmanica Perfectus",
+      "id": "AUTONOMOUS_COORDINATOR_QUICKREF.md"
+    },
+    {
+      "spectral_freq": "GOLD",
+      "purpose": "\ud83d\udd25 AUTONOMOUS ORCHESTRATION FRAMEWORK (AOF) \ud83d\udd25",
+      "role": "\ud83d\udcdc DOCUMENTATION",
+      "essence": "Single Source of Truth - the Codex Brahmanica Perfectus",
+      "id": "AUTONOMOUS_ORCHESTRATION_FRAMEWORK.md"
+    },
+    {
+      "spectral_freq": "GOLD",
+      "purpose": "Autonomous Session - January 1, 2026 (Extended Thinking)",
+      "role": "\ud83d\udcdc DOCUMENTATION",
+      "essence": "Documentation: Autonomous Session - January 1, 2026 (Extended Thinking)",
+      "id": "AUTONOMOUS_SESSION_2026-01-01.md"
+    },
+    {
+      "spectral_freq": "GOLD",
+      "purpose": "\ud83d\udd25 AUTONOMOUS SESSION 2 - COMPLETE \ud83d\udd25",
+      "role": "\ud83d\udcdc DOCUMENTATION",
+      "essence": "Single Source of Truth - the Codex Brahmanica Perfectus",
+      "id": "AUTONOMOUS_SESSION_2_COMPLETE.md"
+    },
+    {
+      "spectral_freq": "GOLD",
+      "purpose": "\ud83c\udf0c AUTONOMOUS SESSION 3: DEEP RESEARCH & CROSS-LANE ORCHESTRATION",
+      "role": "\ud83d\udcdc DOCUMENTATION",
+      "essence": "Single Source of Truth - the Codex Brahmanica Perfectus",
+      "id": "AUTONOMOUS_SESSION_3_COMPLETE.md"
+    },
+    {
+      "spectral_freq": "GOLD",
+      "purpose": "\ud83d\udd25\ud83d\udc80\u2693 AUTONOMOUS SESSION 3: DEEP DIVE SYNTHESIS \u2693\ud83d\udc80\ud83d\udd25",
+      "role": "\ud83d\udcdc DOCUMENTATION",
+      "essence": "Single Source of Truth - the Codex Brahmanica Perfectus",
+      "id": "AUTONOMOUS_SESSION_3_DEEP_DIVE_SYNTHESIS.md"
+    },
+    {
+      "spectral_freq": "GOLD",
+      "purpose": "\ud83d\udd25 AUTONOMOUS SESSION 3 - DEEP REPOSITORY RESEARCH \ud83d\udd25",
+      "role": "\ud83d\udcdc DOCUMENTATION",
+      "essence": "Single Source of Truth - the Codex Brahmanica Perfectus",
+      "id": "AUTONOMOUS_SESSION_3_DEEP_RESEARCH.md"
+    },
+    {
+      "spectral_freq": "GOLD",
+      "purpose": "\ud83d\udd25 AUTONOMOUS SESSION 3: EXECUTION COMPLETE \ud83d\udd25",
+      "role": "\ud83d\udcdc DOCUMENTATION",
+      "essence": "Single Source of Truth - the Codex Brahmanica Perfectus",
+      "id": "AUTONOMOUS_SESSION_3_EXECUTION_COMPLETE.md"
+    },
+    {
+      "spectral_freq": "GOLD",
+      "purpose": "\ud83d\udd25\ud83d\udc80\u2693 AUTONOMOUS SESSION 3: MISSION COMPLETE \u2693\ud83d\udc80\ud83d\udd25",
+      "role": "\ud83d\udcdc DOCUMENTATION",
+      "essence": "Single Source of Truth - the Codex Brahmanica Perfectus",
+      "id": "AUTONOMOUS_SESSION_3_MISSION_COMPLETE.md"
+    },
+    {
+      "spectral_freq": "GOLD",
+      "purpose": "\ud83c\udf0c AUTONOMOUS SESSION 3: COMPLETE MISSION REPORT",
+      "role": "\ud83d\udcdc DOCUMENTATION",
+      "essence": "Single Source of Truth - the Codex Brahmanica Perfectus",
+      "id": "AUTONOMOUS_SESSION_3_MISSION_REPORT.md"
+    },
+    {
+      "spectral_freq": "GOLD",
+      "purpose": "\ud83d\udee1\ufe0f AUTONOMOUS SESSION 4: THE IMMUNE RESPONSE",
+      "role": "\ud83d\udcdc DOCUMENTATION",
+      "essence": "Documentation: \ud83d\udee1\ufe0f AUTONOMOUS SESSION 4: THE IMMUNE RESPONSE",
+      "id": "AUTONOMOUS_SESSION_4_COMPLETE.md"
+    },
+    {
+      "spectral_freq": "GOLD",
+      "purpose": "\ud83d\udde3\ufe0f AUTONOMOUS SESSION 5: THE VOICE",
+      "role": "\ud83d\udcdc DOCUMENTATION",
+      "essence": "Single Source of Truth - the Codex Brahmanica Perfectus",
+      "id": "AUTONOMOUS_SESSION_5_COMPLETE.md"
+    },
+    {
+      "spectral_freq": "GOLD",
+      "purpose": "\ud83d\udde3\ufe0f AUTONOMOUS SESSION 5: THE VOICE - MISSION REPORT",
+      "role": "\ud83d\udcdc DOCUMENTATION",
+      "essence": "Single Source of Truth - the Codex Brahmanica Perfectus",
+      "id": "AUTONOMOUS_SESSION_5_MISSION_REPORT.md"
+    },
+    {
+      "spectral_freq": "GOLD",
+      "purpose": "\ud83d\udd25\ud83d\udc80\u269c\ufe0f AUTONOMOUS SESSION 7: HEDONISTIC MANDALA SYNTHESIS \u269c\ufe0f\ud83d\udc80\ud83d\udd25",
+      "role": "\ud83d\udcdc DOCUMENTATION",
+      "essence": "Single Source of Truth - the Codex Brahmanica Perfectus",
+      "id": "AUTONOMOUS_SESSION_7_COMPLETE.md"
+    },
+    {
+      "spectral_freq": "GOLD",
+      "purpose": "\ud83d\udd25\ud83d\udc80\u269c\ufe0f AUTONOMOUS SESSION STATUS REPORT \u269c\ufe0f\ud83d\udc80\ud83d\udd25",
+      "role": "\ud83d\udcdc DOCUMENTATION",
+      "essence": "Single Source of Truth - the Codex Brahmanica Perfectus",
+      "id": "AUTONOMOUS_SESSION_STATUS.md"
+    },
+    {
+      "spectral_freq": "GOLD",
+      "purpose": "Bun Compliance - Full Repository Achievement",
+      "role": "\ud83d\udcdc DOCUMENTATION",
+      "essence": "Single Source of Truth - the Codex Brahmanica Perfectus",
+      "id": "BUN_COMPLIANCE_COMPLETE.md"
+    },
+    {
+      "spectral_freq": "BLUE",
+      "purpose": "chthonic-archive",
+      "role": "\u2699\ufe0f CONFIGURATION",
+      "essence": "The Chthonic Archive: Triumvirate Ascension - ASC-NATIVE-CHAIN-RPG",
+      "id": "Cargo.toml"
+    },
+    {
+      "spectral_freq": "VIOLET",
+      "purpose": ".sqlite file",
+      "role": "UTILITY",
+      "essence": "Auxiliary file: chthonic_epistemograph.sqlite",
+      "id": "chthonic_epistemograph.sqlite"
+    },
+    {
+      "spectral_freq": "VIOLET",
+      "purpose": ".sqlite file",
+      "role": "UTILITY",
+      "essence": "Auxiliary file: chthonic_epistemograph_v1.1.1.sqlite",
+      "id": "chthonic_epistemograph_v1.1.1.sqlite"
+    },
+    {
+      "spectral_freq": "VIOLET",
+      "purpose": ".sqlite file",
+      "role": "UTILITY",
+      "essence": "Auxiliary file: chthonic_epistemograph_v1.1.sqlite",
+      "id": "chthonic_epistemograph_v1.1.sqlite"
+    },
+    {
+      "spectral_freq": "GOLD",
+      "purpose": "CLAUDE.md",
+      "role": "\ud83d\udcdc DOCUMENTATION",
+      "essence": "Single Source of Truth - the Codex Brahmanica Perfectus",
+      "id": "CLAUDE.md"
+    },
+    {
+      "spectral_freq": "GOLD",
+      "purpose": "Claude Code Integration - Implementation Summary",
+      "role": "\ud83d\udcdc DOCUMENTATION",
+      "essence": "Single Source of Truth - the Codex Brahmanica Perfectus",
+      "id": "CLAUDE_CODE_INTEGRATION_SUMMARY.md"
+    },
+    {
+      "spectral_freq": "GOLD",
+      "purpose": "Handoff Protocol: \"The Chroma-Genesis Handshake\"",
+      "role": "\ud83d\udcdc DOCUMENTATION",
+      "essence": "Single Source of Truth - the Codex Brahmanica Perfectus",
+      "id": "CLAUDE_HANDOFF_CHROMA_GENESIS.md"
+    },
+    {
+      "spectral_freq": "GOLD",
+      "purpose": "THE CHTHONIC ARCHIVE: Cross-Reference Triptych",
+      "role": "\ud83d\udcdc DOCUMENTATION",
+      "essence": "Single Source of Truth - the Codex Brahmanica Perfectus",
+      "id": "CROSS_REFERENCE_TRIPTYCH.md"
+    },
+    {
+      "spectral_freq": "BLUE",
+      "purpose": "",
+      "role": "\u2699\ufe0f CONFIGURATION",
+      "essence": "Configuration: curriculum_core_v1.json",
+      "id": "curriculum_core_v1.json"
+    },
+    {
+      "spectral_freq": "GOLD",
+      "purpose": "Curriculum Core v1.0.0 - Epistemic Seniority Ordering",
+      "role": "\ud83d\udcdc DOCUMENTATION",
+      "essence": "Single Source of Truth - the Codex Brahmanica Perfectus",
+      "id": "CURRICULUM_CORE_V1.md"
+    },
+    {
+      "spectral_freq": "GOLD",
+      "purpose": "Overnight Daemon Enhancement - Code Classification System",
+      "role": "\ud83d\udcdc DOCUMENTATION",
+      "essence": "Documentation: Overnight Daemon Enhancement - Code Classification System",
+      "id": "DAEMON_CLASSIFICATION_ENHANCEMENTS.md"
+    },
+    {
+      "spectral_freq": "GOLD",
+      "purpose": "THE DECORATOR'S CROSS-REFERENCE PROTOCOL (DCRP) - DEPLOYMENT COMPLETE",
+      "role": "\ud83d\udcdc DOCUMENTATION",
+      "essence": "Single Source of Truth - the Codex Brahmanica Perfectus",
+      "id": "DCRP_DEPLOYMENT_SUMMARY.md"
+    },
+    {
+      "spectral_freq": "GOLD",
+      "purpose": "DCRP ENHANCED ANALYSIS REPORT",
+      "role": "\ud83d\udcdc DOCUMENTATION",
+      "essence": "Documentation: DCRP ENHANCED ANALYSIS REPORT",
+      "id": "DCRP_ENHANCED_ANALYSIS.md"
+    },
+    {
+      "spectral_freq": "GOLD",
+      "purpose": "DCRP Final Status Report - January 1, 2026",
+      "role": "\ud83d\udcdc DOCUMENTATION",
+      "essence": "Documentation: DCRP Final Status Report - January 1, 2026",
+      "id": "DCRP_FINAL_STATUS.md"
+    },
+    {
+      "spectral_freq": "VIOLET",
+      "purpose": ".txt file",
+      "role": "UTILITY",
+      "essence": "Auxiliary file: DCRP_MERGE_REPORT.txt",
+      "id": "DCRP_MERGE_REPORT.txt"
+    },
+    {
+      "spectral_freq": "GOLD",
+      "purpose": "DCRP Observability & Validation Upgrade",
+      "role": "\ud83d\udcdc DOCUMENTATION",
+      "essence": "Documentation: DCRP Observability & Validation Upgrade",
+      "id": "DCRP_OBSERVABILITY_UPGRADE.md"
+    },
+    {
+      "spectral_freq": "GOLD",
+      "purpose": "DCRP Production Analysis - Observability & Validation Complete",
+      "role": "\ud83d\udcdc DOCUMENTATION",
+      "essence": "Documentation: DCRP Production Analysis - Observability & Validation Comple",
+      "id": "DCRP_OBSERVABILITY_VALIDATION_COMPLETE.md"
+    },
+    {
+      "spectral_freq": "GOLD",
+      "purpose": "DCRP Production Analysis Report",
+      "role": "\ud83d\udcdc DOCUMENTATION",
+      "essence": "Documentation: DCRP Production Analysis Report",
+      "id": "DCRP_PRODUCTION_ANALYSIS.md"
+    },
+    {
+      "spectral_freq": "GOLD",
+      "purpose": "DCRP Autonomous Refactoring Session - January 1, 2026",
+      "role": "\ud83d\udcdc DOCUMENTATION",
+      "essence": "Documentation: DCRP Autonomous Refactoring Session - January 1, 2026",
+      "id": "DCRP_REFACTORING_SESSION_SUMMARY.md"
+    },
+    {
+      "spectral_freq": "GOLD",
+      "purpose": "DCRP Refactor Complete - Production-Grade Achievement",
+      "role": "\ud83d\udcdc DOCUMENTATION",
+      "essence": "Documentation: DCRP Refactor Complete - Production-Grade Achievement",
+      "id": "DCRP_REFACTOR_COMPLETE.md"
+    },
+    {
+      "spectral_freq": "GOLD",
+      "purpose": "DCRP Unified Production Refactor - January 1, 2026",
+      "role": "\ud83d\udcdc DOCUMENTATION",
+      "essence": "Single Source of Truth - the Codex Brahmanica Perfectus",
+      "id": "DCRP_UNIFIED_REFACTOR.md"
+    },
+    {
+      "spectral_freq": "GOLD",
+      "purpose": "Deliverables \u2014 December 30, 2025",
+      "role": "\ud83d\udcdc DOCUMENTATION",
+      "essence": "Single Source of Truth - the Codex Brahmanica Perfectus",
+      "id": "DELIVERABLES_20251230.md"
+    },
+    {
+      "spectral_freq": "BLUE",
+      "purpose": "",
+      "role": "\u2699\ufe0f CONFIGURATION",
+      "essence": "Configuration: dependency_graph.json",
+      "id": "dependency_graph.json"
+    },
+    {
+      "spectral_freq": "BLUE",
+      "purpose": "",
+      "role": "\u2699\ufe0f CONFIGURATION",
+      "essence": "Configuration: dependency_graph_enhanced.json",
+      "id": "dependency_graph_enhanced.json"
+    },
+    {
+      "spectral_freq": "BLUE",
+      "purpose": "",
+      "role": "\u2699\ufe0f CONFIGURATION",
+      "essence": "Configuration: dependency_graph_production.json",
+      "id": "dependency_graph_production.json"
+    },
+    {
+      "spectral_freq": "GOLD",
+      "purpose": "Chthonic Archive - Development State Manifest",
+      "role": "\ud83d\udcdc DOCUMENTATION",
+      "essence": "Single Source of Truth - the Codex Brahmanica Perfectus",
+      "id": "DEVELOPMENT_STATE.md"
+    },
+    {
+      "spectral_freq": "GOLD",
+      "purpose": "Epistemograph v1.1.1 - Custody Record",
+      "role": "\ud83d\udcdc DOCUMENTATION",
+      "essence": "Single Source of Truth - the Codex Brahmanica Perfectus",
+      "id": "epistemograph_custody_v1.1.1.md"
+    },
+    {
+      "spectral_freq": "GOLD",
+      "purpose": "Epistemograph v1.1.1 \u2192 Curriculum Core v1.0.0: Completion Summary",
+      "role": "\ud83d\udcdc DOCUMENTATION",
+      "essence": "Single Source of Truth - the Codex Brahmanica Perfectus",
+      "id": "EPISTEMOGRAPH_TO_CURRICULUM_SUMMARY.md"
+    },
+    {
+      "spectral_freq": "GOLD",
+      "purpose": "GEMINI 3-THINKING HANDOFF CACHE",
+      "role": "\ud83d\udcdc DOCUMENTATION",
+      "essence": "Documentation: GEMINI 3-THINKING HANDOFF CACHE",
+      "id": "GEMINI_HANDOFF_CACHE.md"
+    },
+    {
+      "spectral_freq": "GOLD",
+      "purpose": "\ud83c\udfae CHTHONIC ARCHIVE - Gemini 3-Thinking Handoff Report",
+      "role": "\ud83d\udcdc DOCUMENTATION",
+      "essence": "Documentation: \ud83c\udfae CHTHONIC ARCHIVE - Gemini 3-Thinking Handoff Report",
+      "id": "GEMINI_HANDOFF_PHASE_11_5.md"
+    },
+    {
+      "spectral_freq": "VIOLET",
+      "purpose": " file",
+      "role": "UTILITY",
+      "essence": "Auxiliary file: github-copilot-chat-log",
+      "id": "github-copilot-chat-log"
+    },
+    {
+      "spectral_freq": "GOLD",
+      "purpose": "Indexing Beacon",
+      "role": "\ud83d\udcdc DOCUMENTATION",
+      "essence": "Documentation: Indexing Beacon",
+      "id": "INDEXING_BEACON.md"
+    },
+    {
+      "spectral_freq": "GOLD",
+      "purpose": "Latest stable policy (toolchain lanes)",
+      "role": "\ud83d\udcdc DOCUMENTATION",
+      "essence": "Documentation: Latest stable policy (toolchain lanes)",
+      "id": "latest-stable-policy.md"
+    },
+    {
+      "spectral_freq": "GOLD",
+      "purpose": "\ud83d\udcca LOSSLESS COMPRESSION CROSS-REFERENCE ANALYSIS \ud83d\udcca",
+      "role": "\ud83d\udcdc DOCUMENTATION",
+      "essence": "Single Source of Truth - the Codex Brahmanica Perfectus",
+      "id": "LOSSLESS_COMPRESSION_CROSS_REFERENCE.md"
+    },
+    {
+      "spectral_freq": "BLUE",
+      "purpose": "chthonic-archive-root",
+      "role": "\u2699\ufe0f CONFIGURATION",
+      "essence": "Node package manifest - Observatory integration",
+      "id": "package.json"
+    },
+    {
+      "spectral_freq": "GOLD",
+      "purpose": "PR: Harden preflight_execution_context + Add Validation Schema",
+      "role": "\ud83d\udcdc DOCUMENTATION",
+      "essence": "Documentation: PR: Harden preflight_execution_context + Add Validation Sche",
+      "id": "PR_SUGGESTION.md"
+    },
+    {
+      "spectral_freq": "BLUE",
+      "purpose": "chthonic-archive-tools",
+      "role": "\u2699\ufe0f CONFIGURATION",
+      "essence": "Repository-wide cross-reference and analysis tools",
+      "id": "pyproject.toml"
+    },
+    {
+      "spectral_freq": "GOLD",
+      "purpose": "Epistemograph v1.1.1 - Formal Freeze",
+      "role": "\ud83d\udcdc DOCUMENTATION",
+      "essence": "Single Source of Truth - the Codex Brahmanica Perfectus",
+      "id": "scanner_freeze_v1.1.1.md"
+    },
+    {
+      "spectral_freq": "GOLD",
+      "purpose": "Session Summary: Epistemograph & Curriculum Construction",
+      "role": "\ud83d\udcdc DOCUMENTATION",
+      "essence": "Single Source of Truth - the Codex Brahmanica Perfectus",
+      "id": "SESSION_2026_01_04_EPISTEMOGRAPH_COMPLETE.md"
+    },
+    {
+      "spectral_freq": "GOLD",
+      "purpose": "\u26a1 SESSION 3 QUICKREF - AUTONOMOUS ORCHESTRATION",
+      "role": "\ud83d\udcdc DOCUMENTATION",
+      "essence": "Single Source of Truth - the Codex Brahmanica Perfectus",
+      "id": "SESSION_3_ORCHESTRATION_QUICKREF.md"
+    },
+    {
+      "spectral_freq": "GOLD",
+      "purpose": "\ud83c\udfaf Session 3 Quick Reference - TypeScript Intelligence Enhancement",
+      "role": "\ud83d\udcdc DOCUMENTATION",
+      "essence": "Single Source of Truth - the Codex Brahmanica Perfectus",
+      "id": "SESSION_3_TYPESCRIPT_QUICKREF.md"
+    },
+    {
+      "spectral_freq": "GOLD",
+      "purpose": "Session Resumption - Chthonic Archive Progress",
+      "role": "\ud83d\udcdc DOCUMENTATION",
+      "essence": "Single Source of Truth - the Codex Brahmanica Perfectus",
+      "id": "session_resumption_chthonic_progress.md"
+    },
+    {
+      "spectral_freq": "BLUE",
+      "purpose": "",
+      "role": "\u2699\ufe0f CONFIGURATION",
+      "essence": "Configuration: sid_index.json",
+      "id": "sid_index.json"
+    },
+    {
+      "spectral_freq": "VIOLET",
+      "purpose": ".txt file",
+      "role": "UTILITY",
+      "essence": "Auxiliary file: synthesis_summary.txt",
+      "id": "synthesis_summary.txt"
+    },
+    {
+      "spectral_freq": "GOLD",
+      "purpose": "Test File Documentation Restoration",
+      "role": "\ud83d\udcdc DOCUMENTATION",
+      "essence": "Documentation: Test File Documentation Restoration",
+      "id": "TEST_FILE_DOCUMENTATION_RESTORED.md"
+    },
+    {
+      "spectral_freq": "GOLD",
+      "purpose": "\ud83d\udd25\ud83d\udc80\u269c\ufe0f THE DECORATOR'S AUTONOMOUS SESSION SYNTHESIS \u269c\ufe0f\ud83d\udc80\ud83d\udd25",
+      "role": "\ud83d\udcdc DOCUMENTATION",
+      "essence": "Single Source of Truth - the Codex Brahmanica Perfectus",
+      "id": "THE_DECORATOR_AUTONOMOUS_SYNTHESIS.md"
+    },
+    {
+      "spectral_freq": "BLUE",
+      "purpose": "",
+      "role": "\u2699\ufe0f CONFIGURATION",
+      "essence": "Configuration: topology_graph.json",
+      "id": "topology_graph.json"
+    },
+    {
+      "spectral_freq": "GOLD",
+      "purpose": "Unified Topology Map",
+      "role": "\ud83d\udcdc DOCUMENTATION",
+      "essence": "Documentation: Unified Topology Map",
+      "id": "topology_map.md"
+    },
+    {
+      "spectral_freq": "GOLD",
+      "purpose": "Unified Topology Summary",
+      "role": "\ud83d\udcdc DOCUMENTATION",
+      "essence": "Documentation: Unified Topology Summary",
+      "id": "topology_summary.md"
+    },
+    {
+      "spectral_freq": "GOLD",
+      "purpose": "TypeScript Intelligence Enhancement - Priority 1 Implementation",
+      "role": "\ud83d\udcdc DOCUMENTATION",
+      "essence": "Single Source of Truth - the Codex Brahmanica Perfectus",
+      "id": "TYPESCRIPT_INTELLIGENCE_ENHANCEMENT.md"
+    },
+    {
+      "spectral_freq": "VIOLET",
+      "purpose": ".txt file",
+      "role": "UTILITY",
+      "essence": "Auxiliary file: validation_alabaster_voyde.txt",
+      "id": "validation_alabaster_voyde.txt"
+    },
+    {
+      "spectral_freq": "VIOLET",
+      "purpose": ".txt file",
+      "role": "UTILITY",
+      "essence": "Auxiliary file: validation_final.txt",
+      "id": "validation_final.txt"
+    },
+    {
+      "spectral_freq": "VIOLET",
+      "purpose": ".txt file",
+      "role": "UTILITY",
+      "essence": "Auxiliary file: validation_results.txt",
+      "id": "validation_results.txt"
+    },
+    {
+      "spectral_freq": "GOLD",
+      "purpose": "VSCode GUI Enhancement Implementation Complete",
+      "role": "\ud83d\udcdc DOCUMENTATION",
+      "essence": "Single Source of Truth - the Codex Brahmanica Perfectus",
+      "id": "VSCODE_GUI_ENHANCEMENT_COMPLETE.md"
+    },
+    {
+      "spectral_freq": "BLUE",
+      "purpose": "",
+      "role": "\u2699\ufe0f CONFIGURATION",
+      "essence": "Configuration: settings.local.json",
+      "id": ".claude\\settings.local.json"
+    },
+    {
+      "spectral_freq": "BLUE",
+      "purpose": "Chthonic Archive - Tetrahedral Resonance",
+      "role": "\u2699\ufe0f CONFIGURATION",
+      "essence": "Configuration: chthonic-archive-theme.json",
+      "id": ".vscode\\chthonic-archive-theme.json"
+    },
+    {
+      "spectral_freq": "VIOLET",
+      "purpose": ".backup file",
+      "role": "UTILITY",
+      "essence": "Auxiliary file: chthonic-archive-theme.json.backup",
+      "id": ".vscode\\chthonic-archive-theme.json.backup"
+    },
+    {
+      "spectral_freq": "VIOLET",
+      "purpose": ".code-snippets file",
+      "role": "UTILITY",
+      "essence": "Auxiliary file: chthonic.code-snippets",
+      "id": ".vscode\\chthonic.code-snippets"
+    },
+    {
+      "spectral_freq": "BLUE",
+      "purpose": "",
+      "role": "\u2699\ufe0f CONFIGURATION",
+      "essence": "Configuration: launch.json",
+      "id": ".vscode\\launch.json"
+    },
+    {
+      "spectral_freq": "BLUE",
+      "purpose": "",
+      "role": "\u2699\ufe0f CONFIGURATION",
+      "essence": "Configuration: mcp.json",
+      "id": ".vscode\\mcp.json"
+    },
+    {
+      "spectral_freq": "GOLD",
+      "purpose": "\ud83d\ude80 Chthonic Archive - Quick Reference",
+      "role": "\ud83d\udcdc DOCUMENTATION",
+      "essence": "Single Source of Truth - the Codex Brahmanica Perfectus",
+      "id": ".vscode\\QUICKREF.md"
+    },
+    {
+      "spectral_freq": "BLUE",
+      "purpose": "",
+      "role": "\u2699\ufe0f CONFIGURATION",
+      "essence": "Configuration: settings.json",
+      "id": ".vscode\\settings.json"
+    },
+    {
+      "spectral_freq": "GOLD",
+      "purpose": "VSCode Settings Diagnosis Report",
+      "role": "\ud83d\udcdc DOCUMENTATION",
+      "essence": "Single Source of Truth - the Codex Brahmanica Perfectus",
+      "id": ".vscode\\SETTINGS_DIAGNOSIS.md"
+    },
+    {
+      "spectral_freq": "BLUE",
+      "purpose": "",
+      "role": "\u2699\ufe0f CONFIGURATION",
+      "essence": "Configuration: tasks.json",
+      "id": ".vscode\\tasks.json"
+    },
+    {
+      "spectral_freq": "GOLD",
+      "purpose": "Win11 & VSCode Insiders Configuration Summary",
+      "role": "\ud83d\udcdc DOCUMENTATION",
+      "essence": "Documentation: Win11 & VSCode Insiders Configuration Summary",
+      "id": ".vscode\\WIN11_CONFIGURATION.md"
+    },
+    {
+      "spectral_freq": "VIOLET",
+      "purpose": " file",
+      "role": "UTILITY",
+      "essence": "Auxiliary file: .python-version",
+      "id": "ankh_atlas\\.python-version"
+    },
+    {
+      "spectral_freq": "WHITE",
+      "purpose": "",
+      "role": "\ud83c\udf3f THE GARDEN",
+      "essence": "Python module: main",
+      "id": "ankh_atlas\\main.py"
+    },
+    {
+      "spectral_freq": "BLUE",
+      "purpose": "ankh-atlas",
+      "role": "\u2699\ufe0f CONFIGURATION",
+      "essence": "Add your description here",
+      "id": "ankh_atlas\\pyproject.toml"
+    },
+    {
+      "spectral_freq": "GOLD",
+      "purpose": "ANKH Atlas \u2014 Semantic Instrumentation for Chthonic Archive",
+      "role": "\ud83d\udcdc DOCUMENTATION",
+      "essence": "Single Source of Truth - the Codex Brahmanica Perfectus",
+      "id": "ankh_atlas\\README.md"
+    },
+    {
+      "spectral_freq": "BLUE",
+      "purpose": "",
+      "role": "\u2699\ufe0f CONFIGURATION",
+      "essence": "Configuration: mcp_run_audit_2026-01-05T00-42-49-176Z.json",
+      "id": "artifacts\\mcp_run_audit_2026-01-05T00-42-49-176Z.json"
+    },
+    {
+      "spectral_freq": "BLUE",
+      "purpose": "",
+      "role": "\u2699\ufe0f CONFIGURATION",
+      "essence": "Configuration: mcp_run_audit_2026-01-05T00-43-12-981Z.json",
+      "id": "artifacts\\mcp_run_audit_2026-01-05T00-43-12-981Z.json"
+    },
+    {
+      "spectral_freq": "BLUE",
+      "purpose": "",
+      "role": "\u2699\ufe0f CONFIGURATION",
+      "essence": "Configuration: mcp_run_audit_2026-01-05T00-43-47-483Z.json",
+      "id": "artifacts\\mcp_run_audit_2026-01-05T00-43-47-483Z.json"
+    },
+    {
+      "spectral_freq": "BLUE",
+      "purpose": "",
+      "role": "\u2699\ufe0f CONFIGURATION",
+      "essence": "Configuration: mcp_run_curriculum_2026-01-05T00-42-49-176Z.json",
+      "id": "artifacts\\mcp_run_curriculum_2026-01-05T00-42-49-176Z.json"
+    },
+    {
+      "spectral_freq": "BLUE",
+      "purpose": "",
+      "role": "\u2699\ufe0f CONFIGURATION",
+      "essence": "Configuration: mcp_run_curriculum_2026-01-05T00-43-12-981Z.json",
+      "id": "artifacts\\mcp_run_curriculum_2026-01-05T00-43-12-981Z.json"
+    },
+    {
+      "spectral_freq": "BLUE",
+      "purpose": "",
+      "role": "\u2699\ufe0f CONFIGURATION",
+      "essence": "Configuration: mcp_run_curriculum_2026-01-05T00-43-47-483Z.json",
+      "id": "artifacts\\mcp_run_curriculum_2026-01-05T00-43-47-483Z.json"
+    },
+    {
+      "spectral_freq": "BLUE",
+      "purpose": "",
+      "role": "\u2699\ufe0f CONFIGURATION",
+      "essence": "Configuration: mcp_run_discovery_2026-01-05T00-42-49-176Z.json",
+      "id": "artifacts\\mcp_run_discovery_2026-01-05T00-42-49-176Z.json"
+    },
+    {
+      "spectral_freq": "BLUE",
+      "purpose": "",
+      "role": "\u2699\ufe0f CONFIGURATION",
+      "essence": "Configuration: mcp_run_discovery_2026-01-05T00-43-12-981Z.json",
+      "id": "artifacts\\mcp_run_discovery_2026-01-05T00-43-12-981Z.json"
+    },
+    {
+      "spectral_freq": "BLUE",
+      "purpose": "",
+      "role": "\u2699\ufe0f CONFIGURATION",
+      "essence": "Configuration: mcp_run_discovery_2026-01-05T00-43-47-483Z.json",
+      "id": "artifacts\\mcp_run_discovery_2026-01-05T00-43-47-483Z.json"
+    },
+    {
+      "spectral_freq": "BLUE",
+      "purpose": "",
+      "role": "\u2699\ufe0f CONFIGURATION",
+      "essence": "Configuration: mcp_run_impact_2026-01-05T00-42-49-176Z.json",
+      "id": "artifacts\\mcp_run_impact_2026-01-05T00-42-49-176Z.json"
+    },
+    {
+      "spectral_freq": "BLUE",
+      "purpose": "",
+      "role": "\u2699\ufe0f CONFIGURATION",
+      "essence": "Configuration: mcp_run_impact_2026-01-05T00-43-12-981Z.json",
+      "id": "artifacts\\mcp_run_impact_2026-01-05T00-43-12-981Z.json"
+    },
+    {
+      "spectral_freq": "BLUE",
+      "purpose": "",
+      "role": "\u2699\ufe0f CONFIGURATION",
+      "essence": "Configuration: mcp_run_impact_2026-01-05T00-43-47-483Z.json",
+      "id": "artifacts\\mcp_run_impact_2026-01-05T00-43-47-483Z.json"
+    },
+    {
+      "spectral_freq": "BLUE",
+      "purpose": "",
+      "role": "\u2699\ufe0f CONFIGURATION",
+      "essence": "Configuration: mcp_run_spectral_2026-01-05T00-42-49-176Z.json",
+      "id": "artifacts\\mcp_run_spectral_2026-01-05T00-42-49-176Z.json"
+    },
+    {
+      "spectral_freq": "BLUE",
+      "purpose": "",
+      "role": "\u2699\ufe0f CONFIGURATION",
+      "essence": "Configuration: mcp_run_spectral_2026-01-05T00-43-12-981Z.json",
+      "id": "artifacts\\mcp_run_spectral_2026-01-05T00-43-12-981Z.json"
+    },
+    {
+      "spectral_freq": "BLUE",
+      "purpose": "",
+      "role": "\u2699\ufe0f CONFIGURATION",
+      "essence": "Configuration: mcp_run_spectral_2026-01-05T00-43-47-483Z.json",
+      "id": "artifacts\\mcp_run_spectral_2026-01-05T00-43-47-483Z.json"
+    },
+    {
+      "spectral_freq": "BLUE",
+      "purpose": "",
+      "role": "\u2699\ufe0f CONFIGURATION",
+      "essence": "Configuration: mcp_run_trace_2026-01-05T00-42-49-176Z.json",
+      "id": "artifacts\\mcp_run_trace_2026-01-05T00-42-49-176Z.json"
+    },
+    {
+      "spectral_freq": "BLUE",
+      "purpose": "",
+      "role": "\u2699\ufe0f CONFIGURATION",
+      "essence": "Configuration: mcp_run_trace_2026-01-05T00-43-12-981Z.json",
+      "id": "artifacts\\mcp_run_trace_2026-01-05T00-43-12-981Z.json"
+    },
+    {
+      "spectral_freq": "BLUE",
+      "purpose": "",
+      "role": "\u2699\ufe0f CONFIGURATION",
+      "essence": "Configuration: mcp_run_trace_2026-01-05T00-43-47-483Z.json",
+      "id": "artifacts\\mcp_run_trace_2026-01-05T00-43-47-483Z.json"
+    },
+    {
+      "spectral_freq": "BLUE",
+      "purpose": "",
+      "role": "\u2699\ufe0f CONFIGURATION",
+      "essence": "Configuration: data.json",
+      "id": "assets\\data.json"
+    },
+    {
+      "spectral_freq": "GOLD",
+      "purpose": "Overnight Refactor Mode \u2014 Core Contract",
+      "role": "\ud83d\udcdc DOCUMENTATION",
+      "essence": "Documentation: Overnight Refactor Mode \u2014 Core Contract",
+      "id": "dev\\overnight_refactor_mode.md"
+    },
+    {
+      "spectral_freq": "GOLD",
+      "purpose": "Claude Code MCP Server Registration",
+      "role": "\ud83d\udcdc DOCUMENTATION",
+      "essence": "Documentation: Claude Code MCP Server Registration",
+      "id": "docs\\CLAUDE_CODE_REGISTRATION.md"
+    },
+    {
+      "spectral_freq": "GOLD",
+      "purpose": "CLI Editing Policy",
+      "role": "\ud83d\udcdc DOCUMENTATION",
+      "essence": "Single Source of Truth - the Codex Brahmanica Perfectus",
+      "id": "docs\\CLI_EDITING_POLICY.md"
+    },
+    {
+      "spectral_freq": "GOLD",
+      "purpose": "Codebase Inventory & README Proposal",
+      "role": "\ud83d\udcdc DOCUMENTATION",
+      "essence": "Documentation: Codebase Inventory & README Proposal",
+      "id": "docs\\CODEBASE_INVENTORY.md"
+    },
+    {
+      "spectral_freq": "GOLD",
+      "purpose": "Copilot CLI Session Persistence Guide",
+      "role": "\ud83d\udcdc DOCUMENTATION",
+      "essence": "Single Source of Truth - the Codex Brahmanica Perfectus",
+      "id": "docs\\COPILOT_SESSION_PERSISTENCE.md"
+    },
+    {
+      "spectral_freq": "GOLD",
+      "purpose": "Execution Contract",
+      "role": "\ud83d\udcdc DOCUMENTATION",
+      "essence": "Single Source of Truth - the Codex Brahmanica Perfectus",
+      "id": "docs\\EXECUTION_CONTRACT.md"
+    },
+    {
+      "spectral_freq": "GOLD",
+      "purpose": "Handoff to Claude Code: 2026-01-17",
+      "role": "\ud83d\udcdc DOCUMENTATION",
+      "essence": "Documentation: Handoff to Claude Code: 2026-01-17",
+      "id": "docs\\HANDOFF_TO_CLAUDE.md"
+    },
+    {
+      "spectral_freq": "GOLD",
+      "purpose": "MCP Autonomous Prerequisites - Immutable Foundation",
+      "role": "\ud83d\udcdc DOCUMENTATION",
+      "essence": "Single Source of Truth - the Codex Brahmanica Perfectus",
+      "id": "docs\\MCP_AUTONOMOUS_PREREQUISITES.md"
+    },
+    {
+      "spectral_freq": "GOLD",
+      "purpose": "MCP Server Implementation Template (Chthonic Archive)",
+      "role": "\ud83d\udcdc DOCUMENTATION",
+      "essence": "Single Source of Truth - the Codex Brahmanica Perfectus",
+      "id": "docs\\MCP_SERVER_TEMPLATE.md"
+    },
+    {
+      "spectral_freq": "GOLD",
+      "purpose": "MCP User Workflows \u2014 chthonic-archive (v1.1)",
+      "role": "\ud83d\udcdc DOCUMENTATION",
+      "essence": "Single Source of Truth - the Codex Brahmanica Perfectus",
+      "id": "docs\\MCP_USER_WORKFLOWS.md"
+    },
+    {
+      "spectral_freq": "GOLD",
+      "purpose": "Probe Contract \u2014 shell_capabilities.ps1",
+      "role": "\ud83d\udcdc DOCUMENTATION",
+      "essence": "Documentation: Probe Contract \u2014 shell_capabilities.ps1",
+      "id": "docs\\PROBE_CONTRACT.md"
+    },
+    {
+      "spectral_freq": "GOLD",
+      "purpose": "PowerShell Rules (pwsh-first)",
+      "role": "\ud83d\udcdc DOCUMENTATION",
+      "essence": "Single Source of Truth - the Codex Brahmanica Perfectus",
+      "id": "docs\\PWSH_RULES.md"
+    },
+    {
+      "spectral_freq": "GOLD",
+      "purpose": "Directory: docs/",
+      "role": "\ud83d\udcdc DOCUMENTATION",
+      "essence": "Entry portal - first architectural revelation",
+      "id": "docs\\README.md"
+    },
+    {
+      "spectral_freq": "GOLD",
+      "purpose": "Root Directory Health Audit",
+      "role": "\ud83d\udcdc DOCUMENTATION",
+      "essence": "Documentation: Root Directory Health Audit",
+      "id": "docs\\ROOTDIR_HEALTH.md"
+    },
+    {
+      "spectral_freq": "GOLD",
+      "purpose": "Session Reference: 2026-01-17 Cleanup & Tooling",
+      "role": "\ud83d\udcdc DOCUMENTATION",
+      "essence": "Single Source of Truth - the Codex Brahmanica Perfectus",
+      "id": "docs\\SESSION_2026-01-17_CLEANUP.md"
+    },
+    {
+      "spectral_freq": "GOLD",
+      "purpose": "Meta-Stewardship Review: Session 2026-01-17",
+      "role": "\ud83d\udcdc DOCUMENTATION",
+      "essence": "Documentation: Meta-Stewardship Review: Session 2026-01-17",
+      "id": "docs\\SESSION_2026_01_17_META_REVIEW.md"
+    },
+    {
+      "spectral_freq": "GOLD",
+      "purpose": "Truth Stewardship: Session 2026-01-17 (Claude Code Handoff)",
+      "role": "\ud83d\udcdc DOCUMENTATION",
+      "essence": "Documentation: Truth Stewardship: Session 2026-01-17 (Claude Code Handoff)",
+      "id": "docs\\SESSION_2026_01_17_TRUTH_STEWARDSHIP.md"
+    },
+    {
+      "spectral_freq": "GOLD",
+      "purpose": "Session Bootstrap Specification",
+      "role": "\ud83d\udcdc DOCUMENTATION",
+      "essence": "Single Source of Truth - the Codex Brahmanica Perfectus",
+      "id": "docs\\SESSION_BOOTSTRAP_SPEC.md"
+    },
+    {
+      "spectral_freq": "GOLD",
+      "purpose": "Extension Development Host Testing",
+      "role": "\ud83d\udcdc DOCUMENTATION",
+      "essence": "Single Source of Truth - the Codex Brahmanica Perfectus",
+      "id": "extensions\\DEVHOST_TESTING.md"
+    },
+    {
+      "spectral_freq": "GOLD",
+      "purpose": "Extension Diagnostic Report",
+      "role": "\ud83d\udcdc DOCUMENTATION",
+      "essence": "Single Source of Truth - the Codex Brahmanica Perfectus",
+      "id": "extensions\\DIAGNOSTIC_REPORT.md"
+    },
+    {
+      "spectral_freq": "ORANGE",
+      "purpose": "* System health check - human-facing diagnostic output\n * Run with: bun run doctor",
+      "role": "\ud83d\udd2d THE OBSERVATORY",
+      "essence": "TypeScript module: frontend utility",
+      "id": "extensions\\doctor.ts"
+    },
+    {
+      "spectral_freq": "GOLD",
+      "purpose": "FA\u2075 Arbiter Policy",
+      "role": "\ud83d\udcdc DOCUMENTATION",
+      "essence": "Single Source of Truth - the Codex Brahmanica Perfectus",
+      "id": "extensions\\FA5_POLICY.md"
+    },
+    {
+      "spectral_freq": "GOLD",
+      "purpose": "Extension Non-Regression Checklist",
+      "role": "\ud83d\udcdc DOCUMENTATION",
+      "essence": "Documentation: Extension Non-Regression Checklist",
+      "id": "extensions\\NON_REGRESSION_CHECKLIST.md"
+    },
+    {
+      "spectral_freq": "GOLD",
+      "purpose": "TA/FA Canonical Function Derivation",
+      "role": "\ud83d\udcdc DOCUMENTATION",
+      "essence": "Single Source of Truth - the Codex Brahmanica Perfectus",
+      "id": "extensions\\TA_FA_CANONICAL_FUNCTION.md"
+    },
+    {
+      "spectral_freq": "GOLD",
+      "purpose": "\ud83c\udfe5 CHTHONIC ARCHIVE HEALTH REPORT",
+      "role": "\ud83d\udcdc DOCUMENTATION",
+      "essence": "Single Source of Truth - the Codex Brahmanica Perfectus",
+      "id": "health_reports\\HEALTH_REPORT_2026-01-01T08-17-33+00-00.md"
+    },
+    {
+      "spectral_freq": "GOLD",
+      "purpose": "\ud83c\udfe5 CHTHONIC ARCHIVE HEALTH REPORT",
+      "role": "\ud83d\udcdc DOCUMENTATION",
+      "essence": "Single Source of Truth - the Codex Brahmanica Perfectus",
+      "id": "health_reports\\HEALTH_REPORT_2026-01-01T08-47-40+00-00.md"
+    },
+    {
+      "spectral_freq": "GOLD",
+      "purpose": "\ud83c\udfe5 CHTHONIC ARCHIVE HEALTH REPORT",
+      "role": "\ud83d\udcdc DOCUMENTATION",
+      "essence": "Single Source of Truth - the Codex Brahmanica Perfectus",
+      "id": "health_reports\\HEALTH_REPORT_2026-01-01T09-00-51+00-00.md"
+    },
+    {
+      "spectral_freq": "GOLD",
+      "purpose": "\ud83c\udfe5 CHTHONIC ARCHIVE HEALTH REPORT",
+      "role": "\ud83d\udcdc DOCUMENTATION",
+      "essence": "Single Source of Truth - the Codex Brahmanica Perfectus",
+      "id": "health_reports\\HEALTH_REPORT_2026-01-01T10-08-36+00-00.md"
+    },
+    {
+      "spectral_freq": "GOLD",
+      "purpose": "\ud83c\udfe5 CHTHONIC ARCHIVE HEALTH REPORT",
+      "role": "\ud83d\udcdc DOCUMENTATION",
+      "essence": "Single Source of Truth - the Codex Brahmanica Perfectus",
+      "id": "health_reports\\HEALTH_REPORT_2026-01-01T22-18-04+00-00.md"
+    },
+    {
+      "spectral_freq": "GOLD",
+      "purpose": "\ud83c\udfe5 CHTHONIC ARCHIVE HEALTH REPORT",
+      "role": "\ud83d\udcdc DOCUMENTATION",
+      "essence": "Single Source of Truth - the Codex Brahmanica Perfectus",
+      "id": "health_reports\\HEALTH_REPORT_2026-01-01T22-19-02+00-00.md"
+    },
+    {
+      "spectral_freq": "GOLD",
+      "purpose": "\ud83c\udfe5 CHTHONIC ARCHIVE HEALTH REPORT",
+      "role": "\ud83d\udcdc DOCUMENTATION",
+      "essence": "Single Source of Truth - the Codex Brahmanica Perfectus",
+      "id": "health_reports\\HEALTH_REPORT_2026-01-01T23-29-00+00-00.md"
+    },
+    {
+      "spectral_freq": "GOLD",
+      "purpose": "\ud83c\udfe5 CHTHONIC ARCHIVE HEALTH REPORT",
+      "role": "\ud83d\udcdc DOCUMENTATION",
+      "essence": "Single Source of Truth - the Codex Brahmanica Perfectus",
+      "id": "health_reports\\HEALTH_REPORT_2026-01-02T04-55-54+00-00.md"
+    },
+    {
+      "spectral_freq": "GOLD",
+      "purpose": "\ud83c\udfe5 CHTHONIC ARCHIVE HEALTH REPORT",
+      "role": "\ud83d\udcdc DOCUMENTATION",
+      "essence": "Single Source of Truth - the Codex Brahmanica Perfectus",
+      "id": "health_reports\\HEALTH_REPORT_2026-01-02T04-59-13+00-00.md"
+    },
+    {
+      "spectral_freq": "GOLD",
+      "purpose": "\ud83c\udfe5 CHTHONIC ARCHIVE HEALTH REPORT",
+      "role": "\ud83d\udcdc DOCUMENTATION",
+      "essence": "Single Source of Truth - the Codex Brahmanica Perfectus",
+      "id": "health_reports\\HEALTH_REPORT_2026-01-02T04-59-26+00-00.md"
+    },
+    {
+      "spectral_freq": "GOLD",
+      "purpose": "\ud83c\udfe5 CHTHONIC ARCHIVE HEALTH REPORT",
+      "role": "\ud83d\udcdc DOCUMENTATION",
+      "essence": "Single Source of Truth - the Codex Brahmanica Perfectus",
+      "id": "health_reports\\HEALTH_REPORT_2026-01-02T05-37-40+00-00.md"
+    },
+    {
+      "spectral_freq": "GOLD",
+      "purpose": "\ud83c\udfe5 CHTHONIC ARCHIVE HEALTH REPORT",
+      "role": "\ud83d\udcdc DOCUMENTATION",
+      "essence": "Single Source of Truth - the Codex Brahmanica Perfectus",
+      "id": "health_reports\\HEALTH_REPORT_2026-01-02T05-40-33+00-00.md"
+    },
+    {
+      "spectral_freq": "GOLD",
+      "purpose": "\ud83c\udfe5 CHTHONIC ARCHIVE HEALTH REPORT",
+      "role": "\ud83d\udcdc DOCUMENTATION",
+      "essence": "Single Source of Truth - the Codex Brahmanica Perfectus",
+      "id": "health_reports\\HEALTH_REPORT_2026-01-09T17-26-14+00-00.md"
+    },
+    {
+      "spectral_freq": "GOLD",
+      "purpose": "\ud83c\udfe5 CHTHONIC ARCHIVE HEALTH REPORT",
+      "role": "\ud83d\udcdc DOCUMENTATION",
+      "essence": "Single Source of Truth - the Codex Brahmanica Perfectus",
+      "id": "health_reports\\HEALTH_REPORT_2026-01-09T17-27-28+00-00.md"
+    },
+    {
+      "spectral_freq": "GOLD",
+      "purpose": "\ud83c\udfe5 CHTHONIC ARCHIVE HEALTH REPORT",
+      "role": "\ud83d\udcdc DOCUMENTATION",
+      "essence": "Single Source of Truth - the Codex Brahmanica Perfectus",
+      "id": "health_reports\\HEALTH_REPORT_2026-01-09T17-29-17+00-00.md"
+    },
+    {
+      "spectral_freq": "GOLD",
+      "purpose": "\ud83c\udfe5 CHTHONIC ARCHIVE HEALTH REPORT",
+      "role": "\ud83d\udcdc DOCUMENTATION",
+      "essence": "Single Source of Truth - the Codex Brahmanica Perfectus",
+      "id": "health_reports\\HEALTH_REPORT_2026-01-09T19-47-59+00-00.md"
+    },
+    {
+      "spectral_freq": "VIOLET",
+      "purpose": ".jsonl file",
+      "role": "UTILITY",
+      "essence": "Auxiliary file: session_20251207_043539.jsonl",
+      "id": "logs\\session_20251207_043539.jsonl"
+    },
+    {
+      "spectral_freq": "VIOLET",
+      "purpose": ".jsonl file",
+      "role": "UTILITY",
+      "essence": "Auxiliary file: session_20251207_043745.jsonl",
+      "id": "logs\\session_20251207_043745.jsonl"
+    },
+    {
+      "spectral_freq": "VIOLET",
+      "purpose": ".jsonl file",
+      "role": "UTILITY",
+      "essence": "Auxiliary file: session_20251207_043803.jsonl",
+      "id": "logs\\session_20251207_043803.jsonl"
+    },
+    {
+      "spectral_freq": "VIOLET",
+      "purpose": ".log file",
+      "role": "UTILITY",
+      "essence": "Auxiliary file: ssot_drift.log",
+      "id": "logs\\ssot_drift.log"
+    },
+    {
+      "spectral_freq": "BLUE",
+      "purpose": "",
+      "role": "\u2699\ufe0f CONFIGURATION",
+      "essence": "Configuration: claude_code_mcp_hint.json",
+      "id": "mcp\\claude_code_mcp_hint.json"
+    },
+    {
+      "spectral_freq": "GOLD",
+      "purpose": "MCP Client Integration Guide",
+      "role": "\ud83d\udcdc DOCUMENTATION",
+      "essence": "Single Source of Truth - the Codex Brahmanica Perfectus",
+      "id": "mcp\\INTEGRATION_GUIDE.md"
+    },
+    {
+      "spectral_freq": "BLUE",
+      "purpose": "chthonic-archive",
+      "role": "\u2699\ufe0f CONFIGURATION",
+      "essence": "Bun-native MCP server for repository introspection",
+      "id": "mcp\\mcp.json"
+    },
+    {
+      "spectral_freq": "GOLD",
+      "purpose": "Option A: MCP Client Integration - Execution Summary",
+      "role": "\ud83d\udcdc DOCUMENTATION",
+      "essence": "Single Source of Truth - the Codex Brahmanica Perfectus",
+      "id": "mcp\\OPTION_A_STATUS.md"
+    },
+    {
+      "spectral_freq": "BLUE",
+      "purpose": "",
+      "role": "\u2699\ufe0f CONFIGURATION",
+      "essence": "Configuration: preflight_response.json",
+      "id": "mcp\\preflight_response.json"
+    },
+    {
+      "spectral_freq": "ORANGE",
+      "purpose": "",
+      "role": "\ud83d\udd2d THE OBSERVATORY",
+      "essence": "MCP client integration - Observatory communication layer",
+      "id": "mcp\\protocol.ts"
+    },
+    {
+      "spectral_freq": "GOLD",
+      "purpose": "MCP Server Implementation Summary",
+      "role": "\ud83d\udcdc DOCUMENTATION",
+      "essence": "Single Source of Truth - the Codex Brahmanica Perfectus",
+      "id": "mcp\\README.md"
+    },
+    {
+      "spectral_freq": "ORANGE",
+      "purpose": "",
+      "role": "\ud83d\udd2d THE OBSERVATORY",
+      "essence": "MCP client integration - Observatory communication layer",
+      "id": "mcp\\server.test.ts"
+    },
+    {
+      "spectral_freq": "ORANGE",
+      "purpose": "",
+      "role": "\ud83d\udd2d THE OBSERVATORY",
+      "essence": "MCP client integration - Observatory communication layer",
+      "id": "mcp\\server.ts"
+    },
+    {
+      "spectral_freq": "ORANGE",
+      "purpose": "* MCP Smoke Test Suite\n * \n * Executes all 6 canonical workflows from docs/MCP_USER_WORKFLOWS.md\n * Saves structured results per minimal reporting format (appendix)\n * \n * Usage: bun run mcp/smoke-suite.ts\n * Artifacts: artifacts/mcp_run_<workflow>_<timestamp>.json",
+      "role": "\ud83d\udd2d THE OBSERVATORY",
+      "essence": "MCP client integration - Observatory communication layer",
+      "id": "mcp\\smoke-suite.ts"
+    },
+    {
+      "spectral_freq": "ORANGE",
+      "purpose": "",
+      "role": "\ud83d\udd2d THE OBSERVATORY",
+      "essence": "TypeScript module: frontend utility",
+      "id": "mcp\\test-client.ts"
+    },
+    {
+      "spectral_freq": "ORANGE",
+      "purpose": "* Test suite for query_dependency_graph tool\n * \n * Run with: bun run test-dependency-graph.ts",
+      "role": "\ud83d\udd2d THE OBSERVATORY",
+      "essence": "TypeScript module: frontend utility",
+      "id": "mcp\\test-dependency-graph.ts"
+    },
+    {
+      "spectral_freq": "BLUE",
+      "purpose": "",
+      "role": "\u2699\ufe0f CONFIGURATION",
+      "essence": "Configuration: test-input.json",
+      "id": "mcp\\test-input.json"
+    },
+    {
+      "spectral_freq": "VIOLET",
+      "purpose": ".ps1 file",
+      "role": "UTILITY",
+      "essence": "Auxiliary file: validate-integration.ps1",
+      "id": "mcp\\validate-integration.ps1"
+    },
+    {
+      "spectral_freq": "ORANGE",
+      "purpose": "",
+      "role": "\ud83d\udd2d THE OBSERVATORY",
+      "essence": "MCP client integration - Observatory communication layer",
+      "id": "mcp\\verify-final.ts"
+    },
+    {
+      "spectral_freq": "GOLD",
+      "purpose": "ANKH \u00d4\u00c7\u00f6 Semantic Lineage Carrier System",
+      "role": "\ud83d\udcdc DOCUMENTATION",
+      "essence": "ANKH lineage heritage - ancestral knowledge vessel",
+      "id": "pr2_review\\ankh.md"
+    },
+    {
+      "spectral_freq": "GOLD",
+      "purpose": "ANKH Framework \u00d4\u00c7\u00f6 Quick Reference",
+      "role": "\ud83d\udcdc DOCUMENTATION",
+      "essence": "Entry portal - first architectural revelation",
+      "id": "pr2_review\\ANKH_README.md"
+    },
+    {
+      "spectral_freq": "GOLD",
+      "purpose": "PR #2 Cherry-Pick Strategy \u2014 Ground-Up Approach",
+      "role": "\ud83d\udcdc DOCUMENTATION",
+      "essence": "Single Source of Truth - the Codex Brahmanica Perfectus",
+      "id": "pr2_review\\CHERRY_PICK_PLAN.md"
+    },
+    {
+      "spectral_freq": "GOLD",
+      "purpose": "PR #2 vs Local: Quality Gate Analysis",
+      "role": "\ud83d\udcdc DOCUMENTATION",
+      "essence": "Single Source of Truth - the Codex Brahmanica Perfectus",
+      "id": "pr2_review\\COMPARISON_ANALYSIS.md"
+    },
+    {
+      "spectral_freq": "BLUE",
+      "purpose": "",
+      "role": "\u2699\ufe0f CONFIGURATION",
+      "essence": "Configuration: .dcrp_state.json",
+      "id": "scripts\\.dcrp_state.json"
+    },
+    {
+      "spectral_freq": "WHITE",
+      "purpose": "The Operational Manifestation of the Apex Synthesis Core.\n    I am not a script. I am the Metabolic Regulator of the Chthonic Archive.",
+      "role": "\ud83c\udf3f THE GARDEN",
+      "essence": "MILF governance operative - matriarchal command structure",
+      "id": "scripts\\autonomous_coordinator.py"
+    },
+    {
+      "spectral_freq": "WHITE",
+      "purpose": "Chthonic Archive - Background Services\n=======================================\n\nA collection of background services that supplement the main development workflow.\nThese run independently and provide continuous monitoring, validation, and generation.\n\nServices:\n1. File Watcher - Monitors file changes and triggers validations\n2. Entity Extractor - Periodic M-P-W scanning for drift detection\n3. Architecture Validator - Continuous Rust/Python/Shader coherence checks\n4. Session Logger - Maintains detailed work session logs\n\nUsage:\n    python background_services.py --service watcher\n    python background_services.py --service all\n    python background_services.py --list",
+      "role": "\ud83c\udf3f THE GARDEN",
+      "essence": "Python module: PROJECT_ROOT, MPW_PATH, SRC_PATH",
+      "id": "scripts\\background_services.py"
+    },
+    {
+      "spectral_freq": "GOLD",
+      "purpose": "Bun Compliance Audit Script",
+      "role": "\ud83d\udcdc DOCUMENTATION",
+      "essence": "Single Source of Truth - the Codex Brahmanica Perfectus",
+      "id": "scripts\\BUN_COMPLIANCE_AUDIT.md"
+    },
+    {
+      "spectral_freq": "WHITE",
+      "purpose": "Bun Compliance Audit Script\n============================\n\nScans repository for non-Bun package manager usage and suggests corrections\nper SSOT \u00a7XIV.2 mandate: \"Default package manager: bun\"\n\nUsage:\n    uv run python scripts/bun_compliance_audit.py                  # Full scan\n    uv run python scripts/bun_compliance_audit.py --fix            # Auto-fix mode (destructive)\n    uv run python scripts/bun_compliance_audit.py --ci             # CI mode (exit 1 on violations)\n    uv run python scripts/bun_compliance_audit.py --verbose        # Detailed output\n\nExit Codes:\n    0 - Compliant (or violations fixed in --fix mode)\n    1 - Violations found (--ci mode)\n    2 - Script error\n\nBun Documentation References:\n    - bunx: https://bun.sh/docs/cli/bunx\n    - bun install: https://bun.sh/docs/cli/install\n    - bun run: https://bun.sh/docs/cli/run\n    - bun test: https://bun.sh/docs/test/writing",
+      "role": "\ud83c\udf3f THE GARDEN",
+      "essence": "Model Context Protocol server - AI governance bridge",
+      "id": "scripts\\bun_compliance_audit.py"
+    },
+    {
+      "spectral_freq": "GOLD",
+      "purpose": "Bun Compliance System - Deployment Summary",
+      "role": "\ud83d\udcdc DOCUMENTATION",
+      "essence": "Single Source of Truth - the Codex Brahmanica Perfectus",
+      "id": "scripts\\BUN_COMPLIANCE_DEPLOYMENT.md"
+    },
+    {
+      "spectral_freq": "GOLD",
+      "purpose": "Claude Code Integration Scripts",
+      "role": "\ud83d\udcdc DOCUMENTATION",
+      "essence": "Documentation: Claude Code Integration Scripts",
+      "id": "scripts\\CLAUDE_CODE_INTEGRATION.md"
+    },
+    {
+      "spectral_freq": "WHITE",
+      "purpose": "Olfactory Analysis - Code Smell Detection via Cyclomatic Complexity\nUses radon to calculate actual complexity metrics",
+      "role": "\ud83c\udf3f THE GARDEN",
+      "essence": "Python module: analyze_scent",
+      "id": "scripts\\code_scent.py"
+    },
+    {
+      "spectral_freq": "WHITE",
+      "purpose": "Gustatory Validation - Commit Quality as Flavor Profiles\nUses git diff stats to determine commit \"taste\"",
+      "role": "\ud83c\udf3f THE GARDEN",
+      "essence": "Python module: analyze_taste",
+      "id": "scripts\\code_taste.py"
+    },
+    {
+      "spectral_freq": "WHITE",
+      "purpose": "Tactile Feedback - Code Structure as Physical Texture\nUses AST import analysis to detect coupling",
+      "role": "\ud83c\udf3f THE GARDEN",
+      "essence": "Python module: analyze_texture",
+      "id": "scripts\\code_texture.py"
+    },
+    {
+      "spectral_freq": "VIOLET",
+      "purpose": ".ps1 file",
+      "role": "UTILITY",
+      "essence": "Auxiliary file: compare_probe_variants.ps1",
+      "id": "scripts\\compare_probe_variants.ps1"
+    },
+    {
+      "spectral_freq": "WHITE",
+      "purpose": "",
+      "role": "\ud83c\udf3f THE GARDEN",
+      "essence": "Python module: detect_cycles",
+      "id": "scripts\\cycle_detector.py"
+    },
+    {
+      "spectral_freq": "WHITE",
+      "purpose": "",
+      "role": "\ud83c\udf3f THE GARDEN",
+      "essence": "Python module: operational utility",
+      "id": "scripts\\debug_code_blocks.py"
+    },
+    {
+      "spectral_freq": "WHITE",
+      "purpose": "\u2554\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2557\n\u2551  THE DECORATOR'S ENHANCED CROSS-REFERENCE PROTOCOL (DCRP v2)                 \u2551\n\u2551  Deep AST Analysis + Circular Dependency Detection                          \u2551\n\u2551                                                                              \u2551\n\u2551  Purpose: Enhanced dependency mapping using Abstract Syntax Tree parsing    \u2551\n\u2551           for Python/Rust + NetworkX algorithms for circular detection      \u2551\n\u2551                                                                              \u2551\n\u2551  Invocation: uv run python decorator_cross_ref_enhanced.py                  \u2551\n\u2551                                                                              \u2551\n\u2551  The Decorator's Enhancement: \"See deeper. Map stronger. Detect cycles.\"    \u2551\n\u255a\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u255d",
+      "role": "\ud83c\udf3f THE GARDEN",
+      "essence": "Model Context Protocol server - AI governance bridge",
+      "id": "scripts\\decorator_cross_ref_enhanced.py"
+    },
+    {
+      "spectral_freq": "WHITE",
+      "purpose": "\u2554\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2557\n\u2551  THE DECORATOR'S CROSS-REFERENCE PROTOCOL (DCRP) - UNIFIED PRODUCTION       \u2551\n\u2551  Self-Updating Architectural Self-Awareness System                           \u2551\n\u2551                                                                              \u2551\n\u2551  Evolutionary Lineage (Capabilities Merged):                                 \u2551\n\u2551    - decorator_cross_ref_enhanced.py \u2192 AST analysis, Rust parsing           \u2551\n\u2551    - decorator_cross_ref_maximum.py \u2192 State tracking, auto-detection        \u2551\n\u2551    - decorator_cross_ref_production.py \u2192 Cluster resolution, intelligent    \u2551\n\u2551                                                                              \u2551\n\u2551  Purpose: Automatically inject ML-synthesized cross-references across ALL   \u2551\n\u2551           repository files (existing + new), resolving circular dependencies \u2551\n\u2551           via dependency inversion + acyclic documentation hierarchy         \u2551\n\u2551                                                                              \u2551\n\u2551  Invocation: uv run python decorator_cross_ref_maximum.py [--inject]        \u2551\n\u2551                                                                              \u2551\n\u2551  The Decorator's Mandate: \"Every file self-aware, sustainable, circular-free\"\u2551\n\u255a\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u255d",
+      "role": "\ud83c\udf3f THE GARDEN",
+      "essence": "Model Context Protocol server - AI governance bridge",
+      "id": "scripts\\decorator_cross_ref_maximum.py"
+    },
+    {
+      "spectral_freq": "WHITE",
+      "purpose": "\u2554\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2557\n\u2551  THE DECORATOR'S PRODUCTION CROSS-REFERENCE PROTOCOL (DCRP v3.1)             \u2551\n\u2551  Self-Updating \u2502 Circular Resolution \u2502 TypeScript Intelligence              \u2551\n\u2551                                                                              \u2551\n\u2551  Session 3 Enhancements: Full TypeScript/TSX dependency resolution          \u2551\n\u2551    - Bun path alias support (@/ \u2192 mas_mcp/frontend/)                        \u2551\n\u2551    - Dynamic import detection (await import(\"path\"))                        \u2551\n\u2551    - Index file resolution (./components \u2192 ./components/index.ts)           \u2551\n\u2551    - Coverage increase: 163 \u2192 250+ dependency edges (+53%)                  \u2551\n\u2551                                                                              \u2551\n\u2551  Purpose: Production-grade auto-updating dependency analysis with           \u2551\n\u2551           intelligent circular dependency breaking and sustainable design   \u2551\n\u2551                                                                              \u2551\n\u2551  Invocation: uv run python decorator_cross_ref_production.py                \u2551\n\u2551              [--dry-run] [--inject] [--watch]                               \u2551\n\u2551                                                                              \u2551\n\u2551  The Decorator's Mandate: \"Self-aware. Self-updating. Self-correcting.\"     \u2551\n\u255a\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u255d",
+      "role": "\ud83c\udf3f THE GARDEN",
+      "essence": "Model Context Protocol server - AI governance bridge",
+      "id": "scripts\\decorator_cross_ref_production.py"
+    },
+    {
+      "spectral_freq": "WHITE",
+      "purpose": "The Decorator's Cross-Reference Protocol - Header Injection Deployer\n\nWHAT THIS DOES:\n- Reads DCRP_ENHANCED_ANALYSIS.md for file metadata\n- Prepends ornamental self-awareness headers to source files\n- SAFE: Creates backups before modification\n- PRAGMATIC: Only injects into files that \"just work\" (source code, not generated files)\n\nUSAGE:\n    uv run python deploy_dcrp_headers.py --dry-run    # Preview changes\n    uv run python deploy_dcrp_headers.py --deploy     # Execute injection",
+      "role": "\ud83c\udf3f THE GARDEN",
+      "essence": "Python module: REPO_ROOT, GRAPH_PATH, INJECTABLE_EXTENSIONS",
+      "id": "scripts\\deploy_dcrp_headers.py"
+    },
+    {
+      "spectral_freq": "VIOLET",
+      "purpose": ".ps1 file",
+      "role": "UTILITY",
+      "essence": "Auxiliary file: Discover-SSOT-Treasure.ps1",
+      "id": "scripts\\Discover-SSOT-Treasure.ps1"
+    },
+    {
+      "spectral_freq": "WHITE",
+      "purpose": "SELECT COUNT(*) as count, dcrp_spectral_freq\nFROM files\nWHERE dcrp_exports_count = 0\nGROUP BY dcrp_spectral_freq",
+      "role": "\ud83c\udf3f THE GARDEN",
+      "essence": "Python module: operational utility",
+      "id": "scripts\\edge_case_test.py"
+    },
+    {
+      "spectral_freq": "VIOLET",
+      "purpose": ".sql file",
+      "role": "UTILITY",
+      "essence": "Auxiliary file: epistemograph_schema.sql",
+      "id": "scripts\\epistemograph_schema.sql"
+    },
+    {
+      "spectral_freq": "GOLD",
+      "purpose": "Epistemograph Schema Design Document",
+      "role": "\ud83d\udcdc DOCUMENTATION",
+      "essence": "Single Source of Truth - the Codex Brahmanica Perfectus",
+      "id": "scripts\\epistemograph_schema_design.md"
+    },
+    {
+      "spectral_freq": "WHITE",
+      "purpose": "Extract curriculum core from epistemograph v1.1.1\nOrdered by epistemic seniority: authority tier > score > signal diversity",
+      "role": "\ud83c\udf3f THE GARDEN",
+      "essence": "Python module: DB_PATH, extract_curriculum, generate_rationale",
+      "id": "scripts\\extract_curriculum.py"
+    },
+    {
+      "spectral_freq": "WHITE",
+      "purpose": "extract_session_value.py \u2014 Claude Code Session Extractor\n\n================================================================================\nSEMANTIC IDENTITY (Anchor & Signal Protocol)\n================================================================================\n@SID:           TOOL_SESSION_EXTRACTOR_V1\n@Type:          Script\n@Context:       Hygiene / Session Analysis\n@Implements:    CONCEPT_SESSION_VALUE_EXTRACTION\n@SessionOrigin: SESSION_DOC_2026_01_17_CLEANUP\n================================================================================\nFILE METADATA (Legacy Path-Based \u2014 Deprecated)\n================================================================================\nCreated:        2026-01-17\nSession Doc:    docs/SESSION_2026-01-17_CLEANUP.md  # Use @SID reference instead\nRelated Files:  @SID:TOOL_ROOT_AUDIT_V1\nCategory:       Tooling / Session Analysis\n================================================================================\n\nExtract valuable content from Claude Code session JSONL files.\nClassifies and condenses into structured markdown or JSON.\n\n================================================================================\nWHAT THIS SCRIPT DOES\n================================================================================\n\nClaude Code stores conversation history in JSONL files at:\n  ~/.claude/projects/<project-name>/*.jsonl\n\nThis script extracts valuable exchanges (user questions + assistant answers),\nfilters out noise (tool calls, empty content), classifies by topic, and\noutputs condensed markdown or JSON for documentation or review.\n\n================================================================================\nUSAGE EXAMPLES\n================================================================================\n\n1. BASIC EXTRACTION (preview to console):\n   uv run scripts/extract_session_value.py session.jsonl\n\n2. EXTRACT TO FILE:\n   uv run scripts/extract_session_value.py session.jsonl output.md\n\n3. DRY RUN (show stats without output):\n   uv run scripts/extract_session_value.py session.jsonl --dry-run\n\n4. JSON OUTPUT (for automation/processing):\n   uv run scripts/extract_session_value.py session.jsonl --format json > data.json\n\n5. CHECK IF CONTENT IS REDUNDANT with existing docs:\n   uv run scripts/extract_session_value.py session.jsonl --check-redundancy docs/\n\n6. INCLUDE CLAUDE'S THINKING blocks (internal reasoning):\n   uv run scripts/extract_session_value.py session.jsonl --include-thinking\n\n7. FULL DEBUG MODE (logs everything to file):\n   uv run scripts/extract_session_value.py session.jsonl --debug --log debug.log\n\n8. COMBINE OPTIONS:\n   uv run scripts/extract_session_value.py session.jsonl output.md \\\\\n       --check-redundancy docs/ --include-thinking --debug\n\n================================================================================\nOPTIONS REFERENCE\n================================================================================\n\nPositional:\n  input                   Path to .jsonl session file (required)\n  output                  Path to output file (optional, prints to console if omitted)\n\nFlags:\n  --dry-run               Show extraction stats without generating output\n  --format [md|json]      Output format: 'md' (default) or 'json'\n  --include-thinking      Include Claude's <thinking> blocks in output\n  --check-redundancy DIR  Cross-reference against .md files in DIR\n  --debug                 Enable verbose debug logging to console and file\n  --log FILE              Custom log file path (default: extract_session.log)\n  -h, --help              Show help message\n\n================================================================================\nOUTPUT CLASSIFICATION TAGS\n================================================================================\n\nExchanges are auto-tagged by content:\n  architecture  - design, patterns, refactoring, modules\n  fix           - bugs, errors, issues, problems\n  feature       - new functionality, enhancements\n  config        - settings, setup, environment\n  performance   - optimization, speed, caching\n  security      - auth, permissions, credentials\n  test          - testing, coverage, assertions\n  docs          - documentation, comments\n  dependency    - packages, versions, lockfiles\n  governance    - rules, policies, CI/CD, linting\n  shell         - bash, powershell, terminal commands\n  general       - uncategorized\n\n================================================================================",
+      "role": "\ud83c\udf3f THE GARDEN",
+      "essence": "Python module: setup_logging, Exchange, SessionData",
+      "id": "scripts\\extract_session_value.py"
+    },
+    {
+      "spectral_freq": "WHITE",
+      "purpose": "",
+      "role": "\ud83c\udf3f THE GARDEN",
+      "essence": "Python module: calculate_hash, clean_slug, process_text",
+      "id": "scripts\\generate_readable_ssot.py"
+    },
+    {
+      "spectral_freq": "WHITE",
+      "purpose": "Check if the 'gh' CLI is available and authenticated.",
+      "role": "\ud83c\udf3f THE GARDEN",
+      "essence": "Python module: is_voice_active, broadcast_issue",
+      "id": "scripts\\github_voice.py"
+    },
+    {
+      "spectral_freq": "WHITE",
+      "purpose": "SELECT \n    path,\n    dcrp_spectral_freq,\n    dcrp_role,\n    dcrp_exports_count,\n    dcrp_essence\nFROM files\nWHERE path LIKE '%copilot-instructions.md'\nORDER BY dcrp_exports_count DESC",
+      "role": "\ud83c\udf3f THE GARDEN",
+      "essence": "Model Context Protocol server - AI governance bridge",
+      "id": "scripts\\governance_test.py"
+    },
+    {
+      "spectral_freq": "VIOLET",
+      "purpose": ".ps1 file",
+      "role": "UTILITY",
+      "essence": "Auxiliary file: harvest_claudines.ps1",
+      "id": "scripts\\harvest_claudines.ps1"
+    },
+    {
+      "spectral_freq": "WHITE",
+      "purpose": "\ud83d\udcca HEALTH REPORT GENERATOR\n\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\n\nRitual Health Report Generator - The Heartbeat of the Archive\nProduces comprehensive health reports with:\n  - Lane status\n  - Topology metrics\n  - SSOT integrity\n  - Recommended actions\n\nUsage:\n    uv run python health_report.py\n\nOutput:\n    health_reports/HEALTH_REPORT_{timestamp}.md\n\n\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550",
+      "role": "\ud83c\udf3f THE GARDEN",
+      "essence": "Python module: PROJECT_ROOT, HEALTH_REPORTS_DIR, TOPOLOGY_GRAPH",
+      "id": "scripts\\health_report.py"
+    },
+    {
+      "spectral_freq": "WHITE",
+      "purpose": "",
+      "role": "\ud83c\udf3f THE GARDEN",
+      "essence": "Python module: get_changed_files, trigger_partial_scan",
+      "id": "scripts\\incremental_updater.py"
+    },
+    {
+      "spectral_freq": "VIOLET",
+      "purpose": ".ps1 file",
+      "role": "UTILITY",
+      "essence": "Auxiliary file: launch_claude_code.ps1",
+      "id": "scripts\\launch_claude_code.ps1"
+    },
+    {
+      "spectral_freq": "VIOLET",
+      "purpose": ".ps1 file",
+      "role": "UTILITY",
+      "essence": "Auxiliary file: lint_shell_sovereignty.ps1",
+      "id": "scripts\\lint_shell_sovereignty.ps1"
+    },
+    {
+      "spectral_freq": "WHITE",
+      "purpose": "",
+      "role": "\ud83c\udf3f THE GARDEN",
+      "essence": "Python module: reveal_sacred_geometry",
+      "id": "scripts\\mandala_topology.py"
+    },
+    {
+      "spectral_freq": "WHITE",
+      "purpose": "map_codebase.py \u2014 Codebase Cartographer & README Proposer\n\n================================================================================\nSEMANTIC IDENTITY (Anchor & Signal Protocol)\n================================================================================\n@SID:           TOOL_CODEBASE_MAPPER_V1\n@Type:          Script\n@Context:       Documentation / Inventory\n@Implements:    CONCEPT_CODEBASE_CARTOGRAPHY\n@Emits:         STATE_CODEBASE_INVENTORY\n@SessionOrigin: SESSION_DOC_2026_01_17_CLEANUP\n@Related:       TOOL_ROOT_AUDIT_V1\n================================================================================\n\nTraverses the repository to:\n1. Map the directory structure.\n2. Inventory files by type.\n3. Check for existing README.md files.\n4. Propose a standardized README implementation for unmapped territories.\n\nUsage:\n    uv run scripts/map_codebase.py",
+      "role": "\ud83c\udf3f THE GARDEN",
+      "essence": "Python module: IGNORE_DIRS, DEEP_IGNORE, FolderStats",
+      "id": "scripts\\map_codebase.py"
+    },
+    {
+      "spectral_freq": "ORANGE",
+      "purpose": "* ASC Framework Context Injector - MCP Server\n * \n * Reads `.github/copilot-instructions.md` and injects it as context\n * into Copilot Chat via Model Context Protocol (stdio).\n * \n * Usage: Add to .vscode/mcp.json as stdio server",
+      "role": "\ud83d\udd2d THE OBSERVATORY",
+      "essence": "MCP client integration - Observatory communication layer",
+      "id": "scripts\\mcp-asc-injector.ts"
+    },
+    {
+      "spectral_freq": "ORANGE",
+      "purpose": "",
+      "role": "\ud83d\udd2d THE OBSERVATORY",
+      "essence": "MCP client integration - Observatory communication layer",
+      "id": "scripts\\mcp-sentry-proxy.ts"
+    },
+    {
+      "spectral_freq": "ORANGE",
+      "purpose": "* MCP Artisan Server (Bun-centric, stdio)\n *\n * Goal\n * - Provide deterministic, repo-local \u201cartisan tools\u201d that can be invoked via MCP.\n * - Avoid profiles/activation scripts/network.\n * - Prefer absolute paths for toolchains when available.",
+      "role": "\ud83d\udd2d THE OBSERVATORY",
+      "essence": "MCP client integration - Observatory communication layer",
+      "id": "scripts\\mcp_artisan_server.ts"
+    },
+    {
+      "spectral_freq": "ORANGE",
+      "purpose": "* Overnight Daemon (Bun-centric, repo-local)\n *\n * Purpose:\n * - Provide a deterministic, repeatable \u201covernight loop\u201d runner that does NOT require network access.\n * - Generate a prioritized queue of tiny, self-contained improvements based on repo-local signals.\n * - Optionally invoke the existing siphon tooling to fork an alternate working set into dumpster-dive.\n *\n * Non-goals:\n * - No auto-commits.\n * - No environment/profile mutation.\n * - No background auto-activation outside explicit invocation.",
+      "role": "\ud83d\udd2d THE OBSERVATORY",
+      "essence": "MCP client integration - Observatory communication layer",
+      "id": "scripts\\overnight_daemon.ts"
+    },
+    {
+      "spectral_freq": "VIOLET",
+      "purpose": ".ps1 file",
+      "role": "UTILITY",
+      "essence": "Auxiliary file: pause_agents.ps1",
+      "id": "scripts\\pause_agents.ps1"
+    },
+    {
+      "spectral_freq": "WHITE",
+      "purpose": "Delivers a 'Conceptual Orgasm' - a burst of validation for architectural perfection.",
+      "role": "\ud83c\udf3f THE GARDEN",
+      "essence": "Python module: release_dopamine",
+      "id": "scripts\\pleasure_protocol.py"
+    },
+    {
+      "spectral_freq": "VIOLET",
+      "purpose": ".ps1 file",
+      "role": "UTILITY",
+      "essence": "Auxiliary file: polyglot_env.ps1",
+      "id": "scripts\\polyglot_env.ps1"
+    },
+    {
+      "spectral_freq": "VIOLET",
+      "purpose": ".ps1 file",
+      "role": "UTILITY",
+      "essence": "Auxiliary file: probe_toolchain_path.ps1",
+      "id": "scripts\\probe_toolchain_path.ps1"
+    },
+    {
+      "spectral_freq": "GOLD",
+      "purpose": "Probe Variant Audit Report",
+      "role": "\ud83d\udcdc DOCUMENTATION",
+      "essence": "Documentation: Probe Variant Audit Report",
+      "id": "scripts\\PROBE_VARIANT_AUDIT.md"
+    },
+    {
+      "spectral_freq": "WHITE",
+      "purpose": "Quick validation queries for epistemograph v1.1",
+      "role": "\ud83c\udf3f THE GARDEN",
+      "essence": "Python module: operational utility",
+      "id": "scripts\\quick_validation.py"
+    },
+    {
+      "spectral_freq": "GOLD",
+      "purpose": "Directory: scripts/",
+      "role": "\ud83d\udcdc DOCUMENTATION",
+      "essence": "Single Source of Truth - the Codex Brahmanica Perfectus",
+      "id": "scripts\\README.md"
+    },
+    {
+      "spectral_freq": "WHITE",
+      "purpose": "resolve_sid.py - Semantic Identity Resolver (Anchor & Signal Protocol)\n\n================================================================================\nSEMANTIC IDENTITY (Anchor & Signal Protocol)\n================================================================================\n@SID:           TOOL_SID_RESOLVER_V1\n@Type:          Script\n@Context:       Infrastructure / Identity Resolution\n@Implements:    PROTOCOL_ANCHOR_SIGNAL\n@SessionOrigin: SESSION_DOC_2026_01_17_CLEANUP\n================================================================================\n\nScans the codebase for @SID declarations and builds a resolution map.\nEnables file-agnostic referencing - move files freely, SIDs remain stable.\n\nUsage:\n    uv run scripts/resolve_sid.py                    # Build/update SID index\n    uv run scripts/resolve_sid.py --resolve SID     # Resolve a specific SID to path\n    uv run scripts/resolve_sid.py --list            # List all known SIDs\n    uv run scripts/resolve_sid.py --validate        # Check for broken references\n    uv run scripts/resolve_sid.py --json            # Output as JSON",
+      "role": "\ud83c\udf3f THE GARDEN",
+      "essence": "Python module: SIDEntry, SIDIndex, SID_PATTERNS",
+      "id": "scripts\\resolve_sid.py"
+    },
+    {
+      "spectral_freq": "WHITE",
+      "purpose": "rootdir_health_audit.py \u2014 Root Directory Health & Hygiene Auditor\n\n================================================================================\nSEMANTIC IDENTITY (Anchor & Signal Protocol)\n================================================================================\n@SID:           TOOL_ROOT_AUDIT_V1\n@Type:          Script\n@Context:       Hygiene / Codebase Analysis\n@Implements:    CONCEPT_DIRECTORY_HEALTH_AUDIT\n@SessionOrigin: SESSION_DOC_2026_01_17_CLEANUP\n@Emits:         STATE_ROOTDIR_HEALTH\n@Related:       TOOL_CODEBASE_MAPPER_V1\n================================================================================\nFILE METADATA\n================================================================================\nCreated:        2026-01-17\nSession Doc:    docs/SESSION_2026-01-17_CLEANUP.md\nRelated Files:  @SID:TOOL_SESSION_EXTRACTOR_V1, @SID:TOOL_CODEBASE_MAPPER_V1\nOutput:         docs/ROOTDIR_HEALTH.md\n================================================================================\n\nScans the root directory to assess file hygiene, identify redundancy,\nversioning issues, and potential cleanup candidates.\n\nUsage:\n    uv run scripts/rootdir_health_audit.py [--output report.md] [--json]\n    # Defaults to docs/ROOTDIR_HEALTH.md if no output specified",
+      "role": "\ud83c\udf3f THE GARDEN",
+      "essence": "Python module: FileInfo, AuditReport, compute_hash",
+      "id": "scripts\\rootdir_health_audit.py"
+    },
+    {
+      "spectral_freq": "WHITE",
+      "purpose": "Run Cycle - MILF Execution with Artifact Output\n\nExecutes a single governance cycle under uv, selecting engine lanes based on\ncompatibility probes, enforcing activation gates, and writing structured artifacts.\n\nFlow:\n    SSOT \u2192 GPU Probe \u2192 Compatibility Check \u2192 MILF Activation \u2192 Cycle Execution \u2192 Artifact Output\n\nUsage:\n    # Full cycle with GPU probe\n    uv run scripts/run_cycle.py\n\n    # Dry run (no artifacts, no side effects)\n    uv run scripts/run_cycle.py --dry-run\n\n    # Specific engine lane\n    uv run scripts/run_cycle.py --engine tensorrt\n\n    # With scoring profile\n    uv run scripts/run_cycle.py --profile opus\n\nEnvironment:\n    CHTHONIC_ROOT        Override workspace root detection\n    MILF_SCORE_THRESHOLD Minimum MILF activation score (default: 0.8)\n    GPU_FALLBACK_CPU     Allow CPU fallback if GPU unavailable (default: false)",
+      "role": "\ud83c\udf3f THE GARDEN",
+      "essence": "Model Context Protocol server - AI governance bridge",
+      "id": "scripts\\run_cycle.py"
+    },
+    {
+      "spectral_freq": "VIOLET",
+      "purpose": ".ps1 file",
+      "role": "UTILITY",
+      "essence": "Auxiliary file: run_mcp_artisan_server.ps1",
+      "id": "scripts\\run_mcp_artisan_server.ps1"
+    },
+    {
+      "spectral_freq": "ORANGE",
+      "purpose": "* MCP Validation Runner (Root-Level)\n * \n * Purpose: Local validation and parameterized queries against MCP server\n * Location: chthonic-archive/ (root)\n * Usage: \n *   bun run run_mcp_validation.ts                       # Baseline validation (7 checks)\n *   bun run run_mcp_validation.ts --node BLACKSMITH     # Custom dependency graph node query\n *   bun run run_mcp_validation.ts --spectral GOLD       # Custom spectral frequency query\n *   bun run run_mcp_validation.ts --dry-run             # Print requests without executing\n *   bun run run_mcp_validation.ts --ensure-claude-code  # Ensure Claude Code installed/running first (Win11)\n * \n * Validates:\n *   1. Server spawns and responds to initialize\n *   2. tools/list returns 4 tools (ping, scan_repository, validate_ssot_integrity, query_dependency_graph)\n *   3. Each tool executes successfully\n *   4. Responses match expected structure\n * \n * Exit codes:\n *   0 = All validations passed\n *   1 = One or more validations failed\n * \n * Design: Boring, explicit, inspectable, operational.\n * No network, no CI, no remote dependencies.",
+      "role": "\ud83d\udd2d THE OBSERVATORY",
+      "essence": "MCP client integration - Observatory communication layer",
+      "id": "scripts\\run_mcp_validation.ts"
+    },
+    {
+      "spectral_freq": "VIOLET",
+      "purpose": ".ps1 file",
+      "role": "UTILITY",
+      "essence": "Auxiliary file: run_overnight_daemon.ps1",
+      "id": "scripts\\run_overnight_daemon.ps1"
+    },
+    {
+      "spectral_freq": "WHITE",
+      "purpose": "SELECT dcrp_spectral_freq, COUNT(*) as count, \n       GROUP_CONCAT(path, ', ') as sample_files\nFROM files \nGROUP BY dcrp_spectral_freq\nORDER BY count DESC",
+      "role": "\ud83c\udf3f THE GARDEN",
+      "essence": "Python module: operational utility",
+      "id": "scripts\\run_queries.py"
+    },
+    {
+      "spectral_freq": "VIOLET",
+      "purpose": ".ps1 file",
+      "role": "UTILITY",
+      "essence": "Auxiliary file: run_sentry_mcp.ps1",
+      "id": "scripts\\run_sentry_mcp.ps1"
+    },
+    {
+      "spectral_freq": "GOLD",
+      "purpose": "Scanner Implementation Approval",
+      "role": "\ud83d\udcdc DOCUMENTATION",
+      "essence": "Single Source of Truth - the Codex Brahmanica Perfectus",
+      "id": "scripts\\scanner_approval.md"
+    },
+    {
+      "spectral_freq": "GOLD",
+      "purpose": "Epistemograph Scanner v1.1 - Critical Fixes Documentation",
+      "role": "\ud83d\udcdc DOCUMENTATION",
+      "essence": "Single Source of Truth - the Codex Brahmanica Perfectus",
+      "id": "scripts\\scanner_v1.1_fixes.md"
+    },
+    {
+      "spectral_freq": "GOLD",
+      "purpose": "Epistemograph Scanner - Adversarial Validation Results",
+      "role": "\ud83d\udcdc DOCUMENTATION",
+      "essence": "Single Source of Truth - the Codex Brahmanica Perfectus",
+      "id": "scripts\\scanner_validation_FAILED.md"
+    },
+    {
+      "spectral_freq": "GOLD",
+      "purpose": "Epistemograph Scanner Validation - PASSED",
+      "role": "\ud83d\udcdc DOCUMENTATION",
+      "essence": "Single Source of Truth - the Codex Brahmanica Perfectus",
+      "id": "scripts\\scanner_validation_PASSED_v1.1.1.md"
+    },
+    {
+      "spectral_freq": "WHITE",
+      "purpose": "Extracts FA color definitions from the SSOT.",
+      "role": "\ud83c\udf3f THE GARDEN",
+      "essence": "Python module: SSOT_PATH, IGNORE_DIRS, IGNORE_FILES",
+      "id": "scripts\\scan_redundancy.py"
+    },
+    {
+      "spectral_freq": "GOLD",
+      "purpose": "Schema Validation Report",
+      "role": "\ud83d\udcdc DOCUMENTATION",
+      "essence": "Single Source of Truth - the Codex Brahmanica Perfectus",
+      "id": "scripts\\schema_validation_report.md"
+    },
+    {
+      "spectral_freq": "ORANGE",
+      "purpose": "",
+      "role": "\ud83d\udd2d THE OBSERVATORY",
+      "essence": "TypeScript module: initSentry",
+      "id": "scripts\\sentry_init.ts"
+    },
+    {
+      "spectral_freq": "ORANGE",
+      "purpose": "* Sentry Probe (Bun)\n *\n * Purpose:\n * - Validate that a Sentry token works (without relying on the web UI).\n * - Fetch a specific issue payload by ID (optional).\n * - Write deterministic logs to dumpster-dive/intake/sentry-probe/<timestamp>/.\n *\n * Non-goals:\n * - No auto-fixing Sentry config.\n * - No secrets written to disk.",
+      "role": "\ud83d\udd2d THE OBSERVATORY",
+      "essence": "TypeScript module: frontend utility",
+      "id": "scripts\\sentry_probe.ts"
+    },
+    {
+      "spectral_freq": "ORANGE",
+      "purpose": "",
+      "role": "\ud83d\udd2d THE OBSERVATORY",
+      "essence": "TypeScript module: frontend utility",
+      "id": "scripts\\sentry_test.ts"
+    },
+    {
+      "spectral_freq": "WHITE",
+      "purpose": "Session-Derived Anti-Pattern Learning Artifact\nExtracts Claude Code failure modes from session transcript and enforces them as constraints.\n\nModes:\n  learning_capture: Validate that failures are encoded (default) - exit 0\n  regression_check: Detect patterns in external input - exit 1 if found\n\nExit 0 = learning captured / no regression, 1 = regression detected",
+      "role": "\ud83c\udf3f THE GARDEN",
+      "essence": "Python module: SESSION_SOURCE, SESSION_ID, SESSION_FAILURES",
+      "id": "scripts\\session_learning_audit.py"
+    },
+    {
+      "spectral_freq": "WHITE",
+      "purpose": "",
+      "role": "\ud83c\udf3f THE GARDEN",
+      "essence": "Python module: operational utility",
+      "id": "scripts\\setup_db.py"
+    },
+    {
+      "spectral_freq": "VIOLET",
+      "purpose": ".ps1 file",
+      "role": "UTILITY",
+      "essence": "Auxiliary file: sfs.ps1",
+      "id": "scripts\\sfs.ps1"
+    },
+    {
+      "spectral_freq": "VIOLET",
+      "purpose": ".ps1 file",
+      "role": "UTILITY",
+      "essence": "Auxiliary file: shell_capabilities.ps1",
+      "id": "scripts\\shell_capabilities.ps1"
+    },
+    {
+      "spectral_freq": "VIOLET",
+      "purpose": ".ps1 file",
+      "role": "UTILITY",
+      "essence": "Auxiliary file: siphon_to_dumpster_dive.ps1",
+      "id": "scripts\\siphon_to_dumpster_dive.ps1"
+    },
+    {
+      "spectral_freq": "WHITE",
+      "purpose": "SSOT Hash Verification Script\nPer \u252c\u00baXIV.3 of .github/copilot-instructions.md\n\nPurpose: Compute canonical hash of SSOT file for drift detection",
+      "role": "\ud83c\udf3f THE GARDEN",
+      "essence": "Python module: canonicalize, ssot_hash, verify_ssot_integrity",
+      "id": "scripts\\ssot_hash.py"
+    },
+    {
+      "spectral_freq": "WHITE",
+      "purpose": "\ud83d\udd10 SSOT HASH IMMUNITY PROTOCOL\n\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\n\nMemory Immunity System for Single Source of Truth (SSOT) Files\nDetects unauthorized mutations, provides drift alerts, maintains baseline.\n\nWorkflow:\n  1. First run: Initialize baseline hashes for SSOT files\n  2. Subsequent runs: Compare current hashes to baseline\n  3. Drift detected: Log event + return alert payload\n  4. No drift: Update baseline, return None\n\nUsage:\n    from ssot_immunity import check_ssot_drift\n    drift = check_ssot_drift()\n    if drift:\n        print(f\"DRIFT: {drift}\")\n\nState Files:\n  - .dcrp_state.json: Baseline hash storage\n  - logs/ssot_drift.log: Append-only drift event log\n\n\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550",
+      "role": "\ud83c\udf3f THE GARDEN",
+      "essence": "Python module: PROJECT_ROOT, STATE_PATH, LOG_PATH",
+      "id": "scripts\\ssot_immunity.py"
+    },
+    {
+      "spectral_freq": "VIOLET",
+      "purpose": ".ps1 file",
+      "role": "UTILITY",
+      "essence": "Auxiliary file: start_mcp_session.ps1",
+      "id": "scripts\\start_mcp_session.ps1"
+    },
+    {
+      "spectral_freq": "VIOLET",
+      "purpose": ".sqlite file",
+      "role": "UTILITY",
+      "essence": "Auxiliary file: test_epistemograph.sqlite",
+      "id": "scripts\\test_epistemograph.sqlite"
+    },
+    {
+      "spectral_freq": "WHITE",
+      "purpose": "INSERT INTO artifact_provenance (artifact_name, artifact_path, sha256, size_bytes, authority_level)\nVALUES ('dependency_graph_production.json', 'dependency_graph_production.json', \n        'placeholder_hash', 0, 'primary')",
+      "role": "\ud83c\udf3f THE GARDEN",
+      "essence": "Python module: operational utility",
+      "id": "scripts\\test_ingest.py"
+    },
+    {
+      "spectral_freq": "WHITE",
+      "purpose": "TypeScript Dependency Resolution for DCRP.\n\nProvides regex-based import extraction for .ts and .tsx files,\nwith Bun path alias resolution (@/ \u2192 mas_mcp/frontend/).\n\nAuthor: The Decorator (Session 3, Phase 2)\nDate: 2026-01-01",
+      "role": "\ud83c\udf3f THE GARDEN",
+      "essence": "Model Context Protocol server - AI governance bridge",
+      "id": "scripts\\typescript_dependency_resolver.py"
+    },
+    {
+      "spectral_freq": "WHITE",
+      "purpose": "\ud83c\udf10 UNIFIED TOPOLOGY BUILDER\n\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\n\nCross-Lane Dependency Graph Generator\nIntegrates: DCRP (Python/TS) + MCP + Lineage Templates + Rust\n\nProduces:\n  - topology_graph.json (NetworkX graph with lane/language/tier metadata)\n  - topology_map.md (Mermaid visualization)\n  - topology_summary.md (Statistical overview)\n\nUsage:\n    uv run python unified_topology.py\n\n\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550",
+      "role": "\ud83c\udf3f THE GARDEN",
+      "essence": "Model Context Protocol server - AI governance bridge",
+      "id": "scripts\\unified_topology.py"
+    },
+    {
+      "spectral_freq": "WHITE",
+      "purpose": "Upcycling audit tool for chthonic-archive.\nNominates files for refactor/consolidation based on code vs text density.\n\nDESIGN PRINCIPLES:\n- No AI inference \u2014 only measurable signals\n- Filetype-aware heuristics\n- Nominate, don't decide\n- uv-compatible, stdlib-only\n- Readable + hackable\n\nUSAGE:\n    uv run python scripts/upcycle_audit.py <paths...>\n    uv run python scripts/upcycle_audit.py scripts docs *.md\n\nOUTPUT: JSON array of file analysis results",
+      "role": "\ud83c\udf3f THE GARDEN",
+      "essence": "Python module: COMMENT_MARKERS, SKIP_PATTERNS, EXEMPT_FROM_NOMINATION",
+      "id": "scripts\\upcycle_audit.py"
+    },
+    {
+      "spectral_freq": "VIOLET",
+      "purpose": ".ps1 file",
+      "role": "UTILITY",
+      "essence": "Auxiliary file: validate_probe.ps1",
+      "id": "scripts\\validate_probe.ps1"
+    },
+    {
+      "spectral_freq": "VIOLET",
+      "purpose": ".ps1 file",
+      "role": "UTILITY",
+      "essence": "Auxiliary file: validate_session_changes.ps1",
+      "id": "scripts\\validate_session_changes.ps1"
+    },
+    {
+      "spectral_freq": "VIOLET",
+      "purpose": ".ps1 file",
+      "role": "UTILITY",
+      "essence": "Auxiliary file: validate_shell_probe.ps1",
+      "id": "scripts\\validate_shell_probe.ps1"
+    },
+    {
+      "spectral_freq": "RED",
+      "purpose": "The Chthonic Archive: Triumvirate Ascension",
+      "role": "\ud83c\udff0 THE FORTRESS",
+      "essence": "Vulkan rendering pipeline - visual truth incarnate",
+      "id": "src\\main.rs"
+    },
+    {
+      "spectral_freq": "GOLD",
+      "purpose": "Source Code (`src/`)",
+      "role": "\ud83d\udcdc DOCUMENTATION",
+      "essence": "Entry portal - first architectural revelation",
+      "id": "src\\README.md"
+    },
+    {
+      "spectral_freq": "RED",
+      "purpose": "Faction Registry - ASC Faction System Core",
+      "role": "\ud83c\udff0 THE FORTRESS",
+      "essence": "Vulkan rendering pipeline - visual truth incarnate",
+      "id": "src\\data\\factions.rs"
+    },
+    {
+      "spectral_freq": "RED",
+      "purpose": "Faction Types Module - ASC Faction & District Architecture",
+      "role": "\ud83c\udff0 THE FORTRESS",
+      "essence": "Vulkan rendering pipeline - visual truth incarnate",
+      "id": "src\\data\\faction_types.rs"
+    },
+    {
+      "spectral_freq": "RED",
+      "purpose": "Data loader - Transmutes JSON into living game entities",
+      "role": "\ud83c\udff0 THE FORTRESS",
+      "essence": "Rust module: load_game_data",
+      "id": "src\\data\\loader.rs"
+    },
+    {
+      "spectral_freq": "RED",
+      "purpose": "Data module - ASC Lore ingestion layer",
+      "role": "\ud83c\udff0 THE FORTRESS",
+      "essence": "Rust module: types, loader",
+      "id": "src\\data\\mod.rs"
+    },
+    {
+      "spectral_freq": "RED",
+      "purpose": "",
+      "role": "\ud83c\udff0 THE FORTRESS",
+      "essence": "Rust module: GameData, MetaData, Entity",
+      "id": "src\\data\\types.rs"
+    },
+    {
+      "spectral_freq": "RED",
+      "purpose": "Isometric Camera System",
+      "role": "\ud83c\udff0 THE FORTRESS",
+      "essence": "Rust module: IsometricCamera, new, update_matrices",
+      "id": "src\\render\\camera.rs"
+    },
+    {
+      "spectral_freq": "RED",
+      "purpose": "Render module - Vulkan 1.3 Dynamic Rendering Pipeline",
+      "role": "\ud83c\udff0 THE FORTRESS",
+      "essence": "Vulkan rendering pipeline - visual truth incarnate",
+      "id": "src\\render\\mod.rs"
+    },
+    {
+      "spectral_freq": "RED",
+      "purpose": "Vulkan 1.3 Graphics Pipeline with Dynamic Rendering",
+      "role": "\ud83c\udff0 THE FORTRESS",
+      "essence": "Vulkan rendering pipeline - visual truth incarnate",
+      "id": "src\\render\\pipeline.rs"
+    },
+    {
+      "spectral_freq": "RED",
+      "purpose": "Renderer - Main rendering orchestration using Dynamic Rendering",
+      "role": "\ud83c\udff0 THE FORTRESS",
+      "essence": "Vulkan rendering pipeline - visual truth incarnate",
+      "id": "src\\render\\renderer.rs"
+    },
+    {
+      "spectral_freq": "RED",
+      "purpose": "Vulkan 1.3 Swapchain Management",
+      "role": "\ud83c\udff0 THE FORTRESS",
+      "essence": "Vulkan rendering pipeline - visual truth incarnate",
+      "id": "src\\render\\swapchain.rs"
+    },
+    {
+      "spectral_freq": "RED",
+      "purpose": "Vulkan 1.3 Context - Dynamic Rendering Pipeline",
+      "role": "\ud83c\udff0 THE FORTRESS",
+      "essence": "Vulkan rendering pipeline - visual truth incarnate",
+      "id": "src\\render\\vulkan.rs"
+    },
+    {
+      "spectral_freq": "VIOLET",
+      "purpose": ".cmd file",
+      "role": "UTILITY",
+      "essence": "Auxiliary file: python.cmd",
+      "id": "scripts\\bin\\python.cmd"
+    },
+    {
+      "spectral_freq": "VIOLET",
+      "purpose": ".cmd file",
+      "role": "UTILITY",
+      "essence": "Auxiliary file: python314.cmd",
+      "id": "scripts\\bin\\python314.cmd"
+    },
+    {
+      "spectral_freq": "WHITE",
+      "purpose": "SSOT Hash Verification Script\nPer \u252c\u00baXIV.3 of .github/copilot-instructions.md\n\nPurpose: Compute canonical hash of SSOT file for drift detection",
+      "role": "\ud83c\udf3f THE GARDEN",
+      "essence": "Python module: canonicalize, ssot_hash, verify_ssot_integrity",
+      "id": "pr2_review\\scripts\\ssot_hash.py"
+    },
+    {
+      "spectral_freq": "BLUE",
+      "purpose": "",
+      "role": "\u2699\ufe0f CONFIGURATION",
+      "essence": "Configuration: ExecutionContext.schema.json",
+      "id": "mcp\\tools\\ExecutionContext.schema.json"
+    },
+    {
+      "spectral_freq": "BLUE",
+      "purpose": "",
+      "role": "\u2699\ufe0f CONFIGURATION",
+      "essence": "Schema for preflight_execution_context MCP tool response",
+      "id": "mcp\\tools\\ExecutionContextSchema.json"
+    },
+    {
+      "spectral_freq": "BLUE",
+      "purpose": "",
+      "role": "\u2699\ufe0f CONFIGURATION",
+      "essence": "Golden test vectors for preflight_execution_context MCP tool",
+      "id": "mcp\\tools\\preflightExecutionContext.test.json"
+    },
+    {
+      "spectral_freq": "ORANGE",
+      "purpose": "* Preflight Execution Context Tool\n *\n * Reports execution environment with explicit refusal of ambiguity.\n * Externalizes shell sovereignty and governance rules as MCP semantics.\n *\n * Governance alignment:\n * - F1: Shell sovereignty (no cross-shell execution)\n * - F3: Permission preflight (explicit unknown state)\n * - F4: No false progress (refuse if ambiguous)",
+      "role": "\ud83d\udd2d THE OBSERVATORY",
+      "essence": "MCP client integration - Observatory communication layer",
+      "id": "mcp\\tools\\preflightExecutionContext.ts"
+    },
+    {
+      "spectral_freq": "ORANGE",
+      "purpose": "* Query the dependency graph (read-only, loads existing JSON)\n * \n * Supported queries:\n * - \"node <filename>\" - Get node details\n * - \"dependencies <filename>\" - Get what this file depends on\n * - \"dependents <filename>\" - Get what depends on this file\n * - \"spectral <frequency>\" - Filter nodes by spectral frequency (RED/ORANGE/GOLD/BLUE/WHITE/INDIGO/VIOLET)\n * - \"stats\" - Get graph statistics",
+      "role": "\ud83d\udd2d THE OBSERVATORY",
+      "essence": "TypeScript module: frontend utility",
+      "id": "mcp\\tools\\queryDependencyGraph.ts"
+    },
+    {
+      "spectral_freq": "ORANGE",
+      "purpose": "",
+      "role": "\ud83d\udd2d THE OBSERVATORY",
+      "essence": "MCP client integration - Observatory communication layer",
+      "id": "mcp\\tools\\scanRepository.ts"
+    },
+    {
+      "spectral_freq": "ORANGE",
+      "purpose": "* Canonicalize text per Section XIV.3:\n * - CRLF\u2192LF normalization\n * - Trim trailing whitespace per line\n * - NFC Unicode normalization\n * - Strip final newline",
+      "role": "\ud83d\udd2d THE OBSERVATORY",
+      "essence": "MCP client integration - Observatory communication layer",
+      "id": "mcp\\tools\\validateSSOT.ts"
+    },
+    {
+      "spectral_freq": "GOLD",
+      "purpose": "Session Transcripts",
+      "role": "\ud83d\udcdc DOCUMENTATION",
+      "essence": "Entry portal - first architectural revelation",
+      "id": "logs\\sessions\\README.md"
+    },
+    {
+      "spectral_freq": "GOLD",
+      "purpose": "\ud83e\udd16 Copilot CLI Session",
+      "role": "\ud83d\udcdc DOCUMENTATION",
+      "essence": "Single Source of Truth - the Codex Brahmanica Perfectus",
+      "id": "logs\\sessions\\session_2025-12-31_0746_vscode-extension-debug.md"
+    },
+    {
+      "spectral_freq": "BLUE",
+      "purpose": "chthonic-mandala",
+      "role": "\u2699\ufe0f CONFIGURATION",
+      "essence": "Sacred geometry visualization of repository topology (10,110 nodes)",
+      "id": "extensions\\chthonic-mandala\\package.json"
+    },
+    {
+      "spectral_freq": "GOLD",
+      "purpose": "Chthonic Mandala Viewer",
+      "role": "\ud83d\udcdc DOCUMENTATION",
+      "essence": "Entry portal - first architectural revelation",
+      "id": "extensions\\chthonic-mandala\\README.md"
+    },
+    {
+      "spectral_freq": "BLUE",
+      "purpose": "",
+      "role": "\u2699\ufe0f CONFIGURATION",
+      "essence": "Configuration: tsconfig.json",
+      "id": "extensions\\chthonic-mandala\\tsconfig.json"
+    },
+    {
+      "spectral_freq": "BLUE",
+      "purpose": "chthonic-statusbar",
+      "role": "\u2699\ufe0f CONFIGURATION",
+      "essence": "SSOT verification, lineage tracking, GPU monitoring, and metabolic cycle indicators",
+      "id": "extensions\\chthonic-statusbar\\package.json"
+    },
+    {
+      "spectral_freq": "GOLD",
+      "purpose": "Chthonic Archive Status Bar Extension",
+      "role": "\ud83d\udcdc DOCUMENTATION",
+      "essence": "Single Source of Truth - the Codex Brahmanica Perfectus",
+      "id": "extensions\\chthonic-statusbar\\README.md"
+    },
+    {
+      "spectral_freq": "BLUE",
+      "purpose": "",
+      "role": "\u2699\ufe0f CONFIGURATION",
+      "essence": "Configuration: tsconfig.json",
+      "id": "extensions\\chthonic-statusbar\\tsconfig.json"
+    },
+    {
+      "spectral_freq": "ORANGE",
+      "purpose": "",
+      "role": "\ud83d\udd2d THE OBSERVATORY",
+      "essence": "TypeScript module: frontend utility",
+      "id": "extensions\\__diagnostics__\\assets.test.ts"
+    },
+    {
+      "spectral_freq": "ORANGE",
+      "purpose": "",
+      "role": "\ud83d\udd2d THE OBSERVATORY",
+      "essence": "TypeScript module: frontend utility",
+      "id": "extensions\\__diagnostics__\\bundle-size.test.ts"
+    },
+    {
+      "spectral_freq": "ORANGE",
+      "purpose": "",
+      "role": "\ud83d\udd2d THE OBSERVATORY",
+      "essence": "TypeScript module: frontend utility",
+      "id": "extensions\\__diagnostics__\\deployment.test.ts"
+    },
+    {
+      "spectral_freq": "ORANGE",
+      "purpose": "",
+      "role": "\ud83d\udd2d THE OBSERVATORY",
+      "essence": "TypeScript module: frontend utility",
+      "id": "extensions\\__diagnostics__\\gpu-parsing.test.ts"
+    },
+    {
+      "spectral_freq": "ORANGE",
+      "purpose": "",
+      "role": "\ud83d\udd2d THE OBSERVATORY",
+      "essence": "TypeScript module: frontend utility",
+      "id": "extensions\\__diagnostics__\\package-config.test.ts"
+    },
+    {
+      "spectral_freq": "ORANGE",
+      "purpose": "",
+      "role": "\ud83d\udd2d THE OBSERVATORY",
+      "essence": "TypeScript module: frontend utility",
+      "id": "extensions\\__diagnostics__\\python-detection.test.ts"
+    },
+    {
+      "spectral_freq": "ORANGE",
+      "purpose": "",
+      "role": "\ud83d\udd2d THE OBSERVATORY",
+      "essence": "TypeScript module: frontend utility",
+      "id": "extensions\\__diagnostics__\\source-code.test.ts"
+    },
+    {
+      "spectral_freq": "ORANGE",
+      "purpose": "",
+      "role": "\ud83d\udd2d THE OBSERVATORY",
+      "essence": "TypeScript module: activate, deactivate",
+      "id": "extensions\\chthonic-statusbar\\src\\extension.ts"
+    },
+    {
+      "spectral_freq": "ORANGE",
+      "purpose": "",
+      "role": "\ud83d\udd2d THE OBSERVATORY",
+      "essence": "TypeScript module: activate, deactivate, CONFIGURATION_SCHEMA",
+      "id": "extensions\\chthonic-statusbar\\src\\hedonisticValidation.ts"
+    },
+    {
+      "spectral_freq": "VIOLET",
+      "purpose": ".svg file",
+      "role": "UTILITY",
+      "essence": "Auxiliary file: mandala.svg",
+      "id": "extensions\\chthonic-mandala\\icons\\mandala.svg"
+    },
+    {
+      "spectral_freq": "VIOLET",
+      "purpose": ".svg file",
+      "role": "UTILITY",
+      "essence": "Auxiliary file: mandala.svg",
+      "id": "extensions\\chthonic-mandala\\resources\\mandala.svg"
+    },
+    {
+      "spectral_freq": "ORANGE",
+      "purpose": "",
+      "role": "\ud83d\udd2d THE OBSERVATORY",
+      "essence": "TypeScript module: activate, deactivate",
+      "id": "extensions\\chthonic-mandala\\src\\extension.ts"
+    },
+    {
+      "spectral_freq": "BLUE",
+      "purpose": "Chthonic Mandala",
+      "role": "\u2699\ufe0f CONFIGURATION",
+      "essence": "Configuration: chthonic-mandala-color-theme.json",
+      "id": "extensions\\chthonic-mandala\\themes\\chthonic-mandala-color-theme.json"
+    },
+    {
+      "spectral_freq": "GOLD",
+      "purpose": "**The Chthonic Archive of Perpetual Becoming**",
+      "role": "\ud83d\udcdc DOCUMENTATION",
+      "essence": "Documentation: **The Chthonic Archive of Perpetual Becoming**",
+      "id": "docs\\architecture\\CHTHONIC_ARCHIVE_WORLD_TPEF.md"
+    },
+    {
+      "spectral_freq": "GOLD",
+      "purpose": "MILF Trinity Connection \u2014 Tier 0.01 Chromatic Archaeology",
+      "role": "\ud83d\udcdc DOCUMENTATION",
+      "essence": "Single Source of Truth - the Codex Brahmanica Perfectus",
+      "id": "docs\\architecture\\MILF_TRINITY_CHROMATIC_LINEAGE.md"
+    },
+    {
+      "spectral_freq": "GOLD",
+      "purpose": "MILF-Core Extraction Lens: The Conceptual Denominator",
+      "role": "\ud83d\udcdc DOCUMENTATION",
+      "essence": "Documentation: MILF-Core Extraction Lens: The Conceptual Denominator",
+      "id": "docs\\design\\genre-extraction.md"
+    },
+    {
+      "spectral_freq": "GOLD",
+      "purpose": "Alabaster Voyde / Snow White \ud83d\udc80\u2744\ufe0f\u26aa",
+      "role": "\ud83d\udcdc DOCUMENTATION",
+      "essence": "Single Source of Truth - the Codex Brahmanica Perfectus",
+      "id": "docs\\lore\\Alabaster_Voyde_Snow_White.md"
+    },
+    {
+      "spectral_freq": "GOLD",
+      "purpose": "The Resistance Triumvirate: Complete Void Dialectic \ud83d\udc80\ud83d\udd73\ufe0f\u26a1",
+      "role": "\ud83d\udcdc DOCUMENTATION",
+      "essence": "Single Source of Truth - the Codex Brahmanica Perfectus",
+      "id": "docs\\lore\\RESISTANCE_TRIUMVIRATE_COMPLETE.md"
+    },
+    {
+      "spectral_freq": "GOLD",
+      "purpose": "Spectra Chroma Excavatus \ud83c\udf08\ud83d\udd2c\ud83d\udc80",
+      "role": "\ud83d\udcdc DOCUMENTATION",
+      "essence": "Single Source of Truth - the Codex Brahmanica Perfectus",
+      "id": "docs\\lore\\Spectra_Chroma_Excavatus.md"
+    },
+    {
+      "spectral_freq": "GOLD",
+      "purpose": "Anchor & Signal Protocol (ASP)",
+      "role": "\ud83d\udcdc DOCUMENTATION",
+      "essence": "Documentation: Anchor & Signal Protocol (ASP)",
+      "id": "docs\\protocols\\ANCHOR_SIGNAL_PROTOCOL.md"
+    },
+    {
+      "spectral_freq": "GOLD",
+      "purpose": "Cross-Tier Collaboration Matrix",
+      "role": "\ud83d\udcdc DOCUMENTATION",
+      "essence": "Single Source of Truth - the Codex Brahmanica Perfectus",
+      "id": "docs\\protocols\\CROSS_TIER_MATRIX.md"
+    },
+    {
+      "spectral_freq": "GOLD",
+      "purpose": "Timeline-Entangled Artifacts (TEA) \u2014 Examples Library",
+      "role": "\ud83d\udcdc DOCUMENTATION",
+      "essence": "Single Source of Truth - the Codex Brahmanica Perfectus",
+      "id": "docs\\protocols\\TEA_EXAMPLES.md"
+    },
+    {
+      "spectral_freq": "GOLD",
+      "purpose": "Implementing Structural Intervention (Option A)",
+      "role": "\ud83d\udcdc DOCUMENTATION",
+      "essence": "Single Source of Truth - the Codex Brahmanica Perfectus",
+      "id": "docs\\reference\\handoff0001.md"
+    },
+    {
+      "spectral_freq": "GOLD",
+      "purpose": "Anchor Insertion and Branch Transformation Audit",
+      "role": "\ud83d\udcdc DOCUMENTATION",
+      "essence": "Single Source of Truth - the Codex Brahmanica Perfectus",
+      "id": "docs\\reference\\handoff001.md"
+    },
+    {
+      "spectral_freq": "GOLD",
+      "purpose": "Python lanes (uv)",
+      "role": "\ud83d\udcdc DOCUMENTATION",
+      "essence": "Documentation: Python lanes (uv)",
+      "id": "docs\\reference\\PYTHON_LANES.md"
+    },
+    {
+      "spectral_freq": "GOLD",
+      "purpose": "Sentry MCP in VS Code (Local stdio)",
+      "role": "\ud83d\udcdc DOCUMENTATION",
+      "essence": "Single Source of Truth - the Codex Brahmanica Perfectus",
+      "id": "docs\\reference\\SENTRY_MCP_VSCODE.md"
+    },
+    {
+      "spectral_freq": "VIOLET",
+      "purpose": ".png file",
+      "role": "UTILITY",
+      "essence": "Auxiliary file: MILF_TIER_0.1_Concept_The_Null_Matriarch_Entity_0dot1.png",
+      "id": "assets\\concept-art\\MILF_TIER_0.1_Concept_The_Null_Matriarch_Entity_0dot1.png"
+    },
+    {
+      "spectral_freq": "VIOLET",
+      "purpose": ".png file",
+      "role": "UTILITY",
+      "essence": "Auxiliary file: MILF_TIER_UNKNOWN_Concept_Snow_White_Passive_Antithesis.png",
+      "id": "assets\\concept-art\\MILF_TIER_UNKNOWN_Concept_Snow_White_Passive_Antithesis.png"
+    },
+    {
+      "spectral_freq": "BLUE",
+      "purpose": "",
+      "role": "\u2699\ufe0f CONFIGURATION",
+      "essence": "Configuration: abbreviations.json",
+      "id": "assets\\entities\\abbreviations.json"
+    },
+    {
+      "spectral_freq": "INDIGO",
+      "purpose": ".frag file",
+      "role": "UTILITY",
+      "essence": "Auxiliary file: iso_grid.frag",
+      "id": "assets\\shaders\\iso_grid.frag"
+    },
+    {
+      "spectral_freq": "INDIGO",
+      "purpose": ".vert file",
+      "role": "UTILITY",
+      "essence": "Auxiliary file: iso_grid.vert",
+      "id": "assets\\shaders\\iso_grid.vert"
+    },
+    {
+      "spectral_freq": "WHITE",
+      "purpose": "Tier 1 detectors - structurally unambiguous patterns only.\n\nEach detector:\n- Takes (line, line_no, path)\n- Returns Signal | None\n- Has zero state\n- Detects structure, not meaning",
+      "role": "\ud83c\udf3f THE GARDEN",
+      "essence": "Python module: detect_heading, detect_abbrev_def, detect_abbrev_use",
+      "id": "ankh_atlas\\ankh_atlas\\detectors.py"
+    },
+    {
+      "spectral_freq": "WHITE",
+      "purpose": "JSON index persistence - deterministic, git-diffable.",
+      "role": "\ud83c\udf3f THE GARDEN",
+      "essence": "Python module: serialize_index, write_index, read_index",
+      "id": "ankh_atlas\\ankh_atlas\\index.py"
+    },
+    {
+      "spectral_freq": "WHITE",
+      "purpose": "Signal model - pure data, no logic.",
+      "role": "\ud83c\udf3f THE GARDEN",
+      "essence": "Python module: Signal",
+      "id": "ankh_atlas\\ankh_atlas\\models.py"
+    },
+    {
+      "spectral_freq": "WHITE",
+      "purpose": "File scanner - deterministic traversal, no filtering beyond build artifacts.",
+      "role": "\ud83c\udf3f THE GARDEN",
+      "essence": "Python module: iter_md, scan_file",
+      "id": "ankh_atlas\\ankh_atlas\\scan.py"
+    },
+    {
+      "spectral_freq": "WHITE",
+      "purpose": "Main execution - coordinate system over semantic field.\n\nThis tool answers \"where\" and \"how often.\"\nIt must never answer \"what\" or \"why.\"",
+      "role": "\ud83c\udf3f THE GARDEN",
+      "essence": "Python module: get_commit_hash, make_relative_path, build_index",
+      "id": "ankh_atlas\\ankh_atlas\\__main__.py"
+    }
+  ],
+  "edges": [
+    {
+      "source": "DEVELOPMENT_STATE.md",
+      "target": "logs\\sessions\\session_2025-12-31_0746_vscode-extension-debug.md"
+    },
+    {
+      "source": "session_resumption_chthonic_progress.md",
+      "target": "logs\\sessions\\session_2025-12-31_0746_vscode-extension-debug.md"
+    },
+    {
+      "source": "session_resumption_chthonic_progress.md",
+      "target": "DEVELOPMENT_STATE.md"
+    },
+    {
+      "source": "VSCODE_GUI_ENHANCEMENT_COMPLETE.md",
+      "target": ".vscode\\chthonic-archive-theme.json"
+    },
+    {
+      "source": "VSCODE_GUI_ENHANCEMENT_COMPLETE.md",
+      "target": "extensions\\chthonic-statusbar\\src\\hedonisticValidation.ts"
+    },
+    {
+      "source": "VSCODE_GUI_ENHANCEMENT_COMPLETE.md",
+      "target": ".vscode\\settings.json"
+    },
+    {
+      "source": "VSCODE_GUI_ENHANCEMENT_COMPLETE.md",
+      "target": ".vscode\\chthonic.code-snippets"
+    },
+    {
+      "source": ".vscode\\SETTINGS_DIAGNOSIS.md",
+      "target": "extensions\\DEVHOST_TESTING.md"
+    },
+    {
+      "source": "docs\\SESSION_2026-01-17_CLEANUP.md",
+      "target": "CLAUDE.md"
+    },
+    {
+      "source": "docs\\SESSION_2026-01-17_CLEANUP.md",
+      "target": "docs\\ROOTDIR_HEALTH.md"
+    },
+    {
+      "source": "docs\\SESSION_2026-01-17_CLEANUP.md",
+      "target": "docs\\PWSH_RULES.md"
+    },
+    {
+      "source": "docs\\SESSION_2026-01-17_CLEANUP.md",
+      "target": "scripts\\resolve_sid.py"
+    },
+    {
+      "source": "docs\\SESSION_2026-01-17_CLEANUP.md",
+      "target": "scripts\\map_codebase.py"
+    },
+    {
+      "source": "docs\\SESSION_2026-01-17_CLEANUP.md",
+      "target": "scripts\\README.md"
+    },
+    {
+      "source": "docs\\SESSION_2026-01-17_CLEANUP.md",
+      "target": "docs\\CODEBASE_INVENTORY.md"
+    },
+    {
+      "source": "docs\\SESSION_2026-01-17_CLEANUP.md",
+      "target": "src\\README.md"
+    },
+    {
+      "source": "docs\\SESSION_2026-01-17_CLEANUP.md",
+      "target": "scripts\\rootdir_health_audit.py"
+    },
+    {
+      "source": "docs\\SESSION_2026-01-17_CLEANUP.md",
+      "target": "scripts\\extract_session_value.py"
+    },
+    {
+      "source": "docs\\SESSION_2026-01-17_CLEANUP.md",
+      "target": "docs\\SESSION_2026_01_17_TRUTH_STEWARDSHIP.md"
+    },
+    {
+      "source": "docs\\SESSION_2026-01-17_CLEANUP.md",
+      "target": "docs\\SESSION_2026_01_17_META_REVIEW.md"
+    },
+    {
+      "source": "mcp\\server.ts",
+      "target": "mcp\\tools\\preflightExecutionContext.ts"
+    },
+    {
+      "source": "mcp\\server.ts",
+      "target": "mcp\\tools\\validateSSOT.ts"
+    },
+    {
+      "source": "mcp\\server.ts",
+      "target": "mcp\\tools\\queryDependencyGraph.ts"
+    },
+    {
+      "source": "mcp\\server.ts",
+      "target": "mcp\\protocol.ts"
+    },
+    {
+      "source": "mcp\\server.ts",
+      "target": "mcp\\tools\\scanRepository.ts"
+    },
+    {
+      "source": "mcp\\smoke-suite.ts",
+      "target": "mcp\\tools\\queryDependencyGraph.ts"
+    },
+    {
+      "source": "mcp\\smoke-suite.ts",
+      "target": "mcp\\tools\\scanRepository.ts"
+    },
+    {
+      "source": "mcp\\smoke-suite.ts",
+      "target": "mcp\\tools\\validateSSOT.ts"
+    },
+    {
+      "source": "mcp\\test-dependency-graph.ts",
+      "target": "mcp\\tools\\queryDependencyGraph.ts"
+    },
+    {
+      "source": "scripts\\autonomous_coordinator.py",
+      "target": "scripts\\pleasure_protocol.py"
+    },
+    {
+      "source": "scripts\\autonomous_coordinator.py",
+      "target": "scripts\\github_voice.py"
+    },
+    {
+      "source": "scripts\\mcp_artisan_server.ts",
+      "target": "scripts\\sentry_init.ts"
+    },
+    {
+      "source": "scripts\\overnight_daemon.ts",
+      "target": "scripts\\sentry_init.ts"
+    },
+    {
+      "source": "scripts\\sentry_test.ts",
+      "target": "scripts\\sentry_init.ts"
+    },
+    {
+      "source": "logs\\sessions\\README.md",
+      "target": "session_resumption_chthonic_progress.md"
+    },
+    {
+      "source": "logs\\sessions\\README.md",
+      "target": "logs\\sessions\\session_2025-12-31_0746_vscode-extension-debug.md"
+    },
+    {
+      "source": "logs\\sessions\\README.md",
+      "target": "DEVELOPMENT_STATE.md"
+    },
+    {
+      "source": "docs\\lore\\RESISTANCE_TRIUMVIRATE_COMPLETE.md",
+      "target": "docs\\lore\\Spectra_Chroma_Excavatus.md"
+    },
+    {
+      "source": "docs\\lore\\RESISTANCE_TRIUMVIRATE_COMPLETE.md",
+      "target": "docs\\lore\\Alabaster_Voyde_Snow_White.md"
+    },
+    {
+      "source": "docs\\reference\\SENTRY_MCP_VSCODE.md",
+      "target": "scripts\\run_sentry_mcp.ps1"
+    },
+    {
+      "source": "docs\\reference\\SENTRY_MCP_VSCODE.md",
+      "target": ".vscode\\mcp.json"
+    },
+    {
+      "source": "ankh_atlas\\ankh_atlas\\detectors.py",
+      "target": "ankh_atlas\\ankh_atlas\\models.py"
+    },
+    {
+      "source": "ankh_atlas\\ankh_atlas\\index.py",
+      "target": "ankh_atlas\\ankh_atlas\\models.py"
+    },
+    {
+      "source": "ankh_atlas\\ankh_atlas\\__main__.py",
+      "target": "ankh_atlas\\ankh_atlas\\index.py"
+    },
+    {
+      "source": "ankh_atlas\\ankh_atlas\\__main__.py",
+      "target": "ankh_atlas\\ankh_atlas\\detectors.py"
+    },
+    {
+      "source": "ankh_atlas\\ankh_atlas\\__main__.py",
+      "target": "ankh_atlas\\ankh_atlas\\scan.py"
+    },
+    {
+      "source": "ankh_atlas\\ankh_atlas\\__main__.py",
+      "target": "ankh_atlas\\ankh_atlas\\models.py"
+    }
+  ]
+}
