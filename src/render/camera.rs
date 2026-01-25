@@ -125,18 +125,21 @@ impl IsometricCamera {
 
     /// Get the view matrix
     #[inline]
+    #[allow(dead_code)]
     pub fn view_matrix(&self) -> Mat4 {
         self.view
     }
 
     /// Get the projection matrix
     #[inline]
+    #[allow(dead_code)]
     pub fn projection_matrix(&self) -> Mat4 {
         self.projection
     }
 
     /// Get combined view-projection matrix
     #[inline]
+    #[allow(dead_code)]
     pub fn view_projection(&self) -> Mat4 {
         self.projection * self.view
     }
@@ -152,6 +155,7 @@ impl IsometricCamera {
     }
 
     /// Set camera distance from target (zoom)
+    #[allow(dead_code)]
     pub fn set_distance(&mut self, distance: f32, aspect_ratio: f32) {
         const ISO_X_ANGLE: f32 = 0.6154797;
         const ISO_Y_ANGLE: f32 = std::f32::consts::FRAC_PI_4;
@@ -172,6 +176,7 @@ impl IsometricCamera {
     }
 
     /// Move camera target (pan)
+    #[allow(dead_code)]
     pub fn set_target(&mut self, target: Vec3, aspect_ratio: f32) {
         let offset = self.position - self.target;
         self.target = target;

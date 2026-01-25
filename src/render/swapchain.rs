@@ -25,7 +25,7 @@
 
 use anyhow::{anyhow, Context, Result};
 use ash::{khr, vk, Device, Instance};
-use log::{debug, info, warn};
+use log::{debug, info};
 
 /// Swapchain configuration and state
 /// 
@@ -446,7 +446,7 @@ impl VulkanSwapchain {
     /// Recreate swapchain (for window resize)
     pub unsafe fn recreate(
         &mut self,
-        instance: &Instance,
+        _instance: &Instance,
         device: &Device,
         physical_device: vk::PhysicalDevice,
         surface_loader: &khr::surface::Instance,

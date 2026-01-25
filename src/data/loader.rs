@@ -17,7 +17,7 @@
 //! — Orackla Nocticula
 
 use anyhow::{Context, Result};
-use log::{info, warn, error};
+use log::info;
 use std::fs;
 use std::path::Path;
 

@@ -31,16 +31,19 @@ use winit::raw_window_handle::{HasDisplayHandle, HasWindowHandle};
 
 /// The Vulkan rendering context - heart of the graphics engine
 pub struct VulkanContext {
+    #[allow(dead_code)]
     pub entry: Entry,
     pub instance: Instance,
     pub debug_utils: Option<DebugContext>,
     pub surface_loader: khr::surface::Instance,
     pub surface: vk::SurfaceKHR,
     pub physical_device: vk::PhysicalDevice,
+    #[allow(dead_code)]
     pub physical_device_properties: vk::PhysicalDeviceProperties,
     pub device: Device,
     pub queue_family_index: u32,
     pub graphics_queue: vk::Queue,
+    #[allow(dead_code)]
     pub present_queue: vk::Queue,
 }
 

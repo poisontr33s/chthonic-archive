@@ -177,6 +177,34 @@
 			"label": "Test NetworkIdle",
 			"type": "shell",
 			"command": "cd bun-playwright-poc && bun run test-networkidle.ts"
+		},
+		{
+			"label": "Fix and Test",
+			"type": "shell",
+			"command": "bun install; bun test; ridk version > ridk_info.txt; Get-Command ridk | Out-File ridk_path.txt",
+			"isBackground": false,
+			"group": "test"
+		},
+		{
+			"label": "Bun Verify",
+			"type": "shell",
+			"command": "bun install; bun test",
+			"isBackground": false,
+			"group": "test"
+		},
+		{
+			"label": "Final Verify",
+			"type": "shell",
+			"command": "cargo build; bun install; ridk exec pacman -Syu --noconfirm",
+			"isBackground": false,
+			"group": "build"
+		},
+		{
+			"label": "Bun Add Vega",
+			"type": "shell",
+			"command": "bun add vega-design-system@latest",
+			"isBackground": false,
+			"group": "build"
 		}
 	]
 }

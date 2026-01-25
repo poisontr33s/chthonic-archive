@@ -29,7 +29,4 @@ pub mod renderer;
 pub mod camera;
 
 pub use vulkan::VulkanContext;
-pub use swapchain::VulkanSwapchain;
-pub use pipeline::{VulkanPipeline, PushConstants, Vertex, triangle_vertices};
 pub use renderer::Renderer;
-pub use camera::IsometricCamera;

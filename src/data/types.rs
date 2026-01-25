@@ -92,28 +92,29 @@ pub struct WorldLayer {
 
 // Linguistic Mode Enum (for dialogue system)
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Serialize, Deserialize)]
+#[allow(dead_code)]
 pub enum LinguisticMode {
-    EULP_AA,   // Orackla - Explicit/Transgressive
-    LIPAA,     // Umeko - Precise/Commanding
-    LUPLR,     // Lysandra - Analytical/Revelatory
-    VISUAL,    // Decorator - Aesthetic/Overwhelming
-    META,      // Savant - Player/God
-    MIXED,     // Prime Factions
-    FACTION,   // Lesser Factions
-    DYNAMIC,   // Context-dependent
+    EulpAa,   // Orackla - Explicit/Transgressive
+    Lipaa,     // Umeko - Precise/Commanding
+    Luplr,     // Lysandra - Analytical/Revelatory
+    Visual,    // Decorator - Aesthetic/Overwhelming
+    Meta,      // Savant - Player/God
+    Mixed,     // Prime Factions
+    Faction,   // Lesser Factions
+    Dynamic,   // Context-dependent
 }
 
 impl From<&str> for LinguisticMode {
     fn from(s: &str) -> Self {
         match s {
-            "EULP_AA" => LinguisticMode::EULP_AA,
-            "LIPAA" => LinguisticMode::LIPAA,
-            "LUPLR" => LinguisticMode::LUPLR,
-            "VISUAL" => LinguisticMode::VISUAL,
-            "META" => LinguisticMode::META,
-            "MIXED" => LinguisticMode::MIXED,
-            "FACTION" => LinguisticMode::FACTION,
-            _ => LinguisticMode::DYNAMIC,
+            "EULP_AA" => LinguisticMode::EulpAa,
+            "LIPAA" => LinguisticMode::Lipaa,
+            "LUPLR" => LinguisticMode::Luplr,
+            "VISUAL" => LinguisticMode::Visual,
+            "META" => LinguisticMode::Meta,
+            "MIXED" => LinguisticMode::Mixed,
+            "FACTION" => LinguisticMode::Faction,
+            _ => LinguisticMode::Dynamic,
         }
     }
 }
