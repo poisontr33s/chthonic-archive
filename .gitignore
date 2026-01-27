@@ -100,6 +100,12 @@ extensions/*/bun.lock
 !scripts/pause_agents.ps1
 !scripts/validate_session_changes.ps1
 
+# mdBook build output (generated artifact)
+book/
+
+# Allow mdBook config
+!book.toml
+
 # Allow SSOT and governance
 !.github/
 !.github/**

@@ -1,5 +1,14 @@
 # MCP User Workflows — chthonic-archive (v1.1)
 
+<!--
+@SID:           DOC_MCP_USER_WORKFLOWS
+@Type:          Workflow Guide
+@Context:       MCP / User Operations
+@SessionOrigin: SESSION_DOC_2026_01_05_MCP_WORKFLOWS
+@References:    SPEC_SESSION_BOOTSTRAP, DOC_MCP_AUTONOMOUS_PREREQUISITES
+@Validates:     6 Workflow Patterns via Smoke Suite
+-->
+
 **Purpose.** This document codifies canonical, repeatable user workflows for interacting with the `chthonic-archive` MCP server via the GitHub Copilot CLI. Each workflow composes the existing, **read-only** tool surface: `scan_repository`, `validate_ssot_integrity`, `query_dependency_graph`, and `ping`. No code changes. No new tools.
 
 **Audience.** Developers/operators using GitHub Copilot CLI to inspect, reason about, and plan work against the repository.

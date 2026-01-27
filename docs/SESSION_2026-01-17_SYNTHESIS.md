@@ -77,8 +77,8 @@
 - **Impact:** Medium (left cleanup debt)
 
 ### 3. **Temp Files Left Behind**
-- `_tmp_freq.py` created but not completed
-- `sid_index.json` created in root (should be `.github/` or `config/`)
+- `../scripts/_tmp_freq.py` created but not completed
+- `../data/indices/sid_index.json` created in root (should be `.github/` or `config/`)
 - **Could have:** Cleaned up temp artifacts before session end
 - **Impact:** Low (cosmetic clutter)
 
@@ -102,9 +102,9 @@
 **Original Implementation:**
 ```markdown
 scripts/extract_session_value.py
-  └─► Header: "Session Doc: docs/SESSION_2026-01-17_CLEANUP.md"
+  └─► Header: "Session Doc: docs/docs/SESSION_2026-01-17_CLEANUP.md"
 
-docs/SESSION_2026-01-17_CLEANUP.md
+docs/docs/SESSION_2026-01-17_CLEANUP.md
   └─► Table: scripts/extract_session_value.py
 ```
 
@@ -178,7 +178,7 @@ docs/SESSION_2026-01-17_CLEANUP.md
 | extract_session_value.py | ✓ Created | scripts/ |
 | rootdir_health_audit.py | ✓ Created | scripts/ |
 | resolve_sid.py | ✓ Created | scripts/ |
-| SESSION_2026-01-17_CLEANUP.md | ✓ Created | docs/ |
+| docs/SESSION_2026-01-17_CLEANUP.md | ✓ Created | docs/ |
 | ROOTDIR_HEALTH_2026-01-17.md | ✓ Created → Renamed | docs/ROOTDIR_HEALTH.md |
 | _tmp_freq.py | ⚠️ Incomplete | scripts/ (boundary marker) |
 | sid_index.json | ✓ Created | root (should relocate) |
@@ -188,7 +188,7 @@ docs/SESSION_2026-01-17_CLEANUP.md
 | File | Purpose |
 |------|---------|
 | map_codebase.py | Inventory tool |
-| HANDOFF_TO_CLAUDE.md | Clean briefing doc |
+| docs/HANDOFF_TO_CLAUDE.md | Clean briefing doc |
 | compact_md.py | Markdown compactor |
 | CODEBASE_INVENTORY.md | State File |
 | src/README.md | Directory index |
@@ -213,18 +213,18 @@ docs/SESSION_2026-01-17_CLEANUP.md
 **Original Weaknesses → Resolved:**
 - ✅ Encoding bugs repeated → UTF-8 fix templated across all scripts
 - ✅ Migration deferred → All 9 .py files relocated to scripts/
-- ✅ Temp files at root → `sid_index.json` path corrected, root clean
+- ✅ Temp files at root → `../data/indices/sid_index.json` path corrected, root clean
 - ✅ State File pattern late → Established and documented
 - ✅ Settings bloat (bonus) → 76→28, 35→28 lines optimized
 
 **Remaining Gaps to 100%:**
 - ⏳ Tool proliferation → [Consolidation roadmap created](TOOL_CONSOLIDATION_ROADMAP.md)
-- ⏳ `_tmp_freq.py` undocumented → Will evolve into `chthonic analyze`
+- ⏳ `../scripts/_tmp_freq.py` undocumented → Will evolve into `chthonic analyze`
 - ⏳ No Jan 27 session doc → Combined with synthesis + roadmap
 
 **Strengths (Amplified):**
 - Adaptive architecture (SID protocol) + cross-reference validation
-- Comprehensive auditing + `compact_md.py` addition
+- Comprehensive auditing + `../scripts/compact_md.py` addition
 - Convention establishment + settings optimization
 - Tool chain design + consolidation roadmap
 
@@ -234,8 +234,8 @@ See [Tool Consolidation Roadmap](TOOL_CONSOLIDATION_ROADMAP.md) for detailed imp
 **Recommended Next Actions:**
 1. Approve consolidation approach (Hybrid Option 3)
 2. Create `scripts/lib/shared.py` with common utilities
-3. Build router (`chthonic` + `chthonic.ps1`)
-4. Evolve `_tmp_freq.py` → `chthonic analyze`
+3. Build router (`chthonic` + `../scripts/chthonic.ps1`)
+4. Evolve `../scripts/_tmp_freq.py` → `chthonic analyze`
 5. Refactor remaining tools into lib/
 
 ---

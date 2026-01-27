@@ -1,5 +1,13 @@
 # SSOT-ification Methodology
 
+<!--
+@SID:           DOC_SSOTIFICATION_METHODOLOGY
+@Type:          Methodology
+@Context:       Architecture / Knowledge Management
+@SessionOrigin: SESSION_DOC_2026_01_25_SSOTIFICATION
+@References:    DOC_CLI_EDITING_POLICY, PLAN_STAGE_1_MIGRATION
+-->
+
 > **Session Origin**: `SESSION_DOC_2026_01_25_SSOTIFICATION`  
 > **Purpose**: Document the abstraction patterns applied during SSOT-ification so future sessions can reproduce and extend without hidden context.
 
@@ -33,22 +41,22 @@ AFTER:
 
 ## 2. Type Taxonomy Applied
 
-Files are categorized by **type** (from `sid_index.json` schema):
+Files are categorized by **type** (from `../data/indices/sid_index.json` schema):
 
 | Type | Description | Example |
 |------|-------------|---------|
 | `SessionDoc` | Records a session's outputs and decisions | `STAGE_1_MIGRATION_PLAN.md` |
 | `State` | Runtime/persistent state artifacts | `.dcrp_state.json`, `.ankhrc` |
-| `Script` | Executable tools that implement concepts | `ssot_extractor.py` |
-| `Module` | Importable code with public API | `milf_genesis_v2.py` |
+| `Script` | Executable tools that implement concepts | `../mas_mcp/ssot_extractor.py` |
+| `Module` | Importable code with public API | `../mas_mcp/milf_genesis_v2.py` |
 | `Documentation` | Explanatory content | This file |
 | `Report` | Analysis/validation outputs | `DCRP_SYNTHESIS.md` |
 | `Protocol` | Governance/architectural rules | `ANCHOR_SIGNAL_PROTOCOL.md` |
-| `Handoff` | Cross-agent coordination docs | `HANDOFF_TO_CLAUDE.md` |
+| `Handoff` | Cross-agent coordination docs | `docs/HANDOFF_TO_CLAUDE.md` |
 
 ### SID (Signal ID) Schema
 
-Every tracked artifact gets a SID in `sid_index.json`:
+Every tracked artifact gets a SID in `../data/indices/sid_index.json`:
 
 ```json
 {
@@ -151,7 +159,7 @@ def get_ssot_constants() -> dict:
 ### Phase 4: Register in Tracking Systems
 
 1. Add to `.ankhrc[ssot_ified]`
-2. Create SID entry in `sid_index.json`
+2. Create SID entry in `../data/indices/sid_index.json`
 3. Update `[migration_status]` as appropriate
 
 ---
@@ -190,7 +198,7 @@ Direct:      Decorator → Spectra (bypasses Triumvirate)
 ### DO:
 - Always check SSOT before hardcoding any entity/constant data
 - Use `$ANCHOR` syntax in documentation instead of raw paths
-- Register new artifacts in both `.ankhrc` AND `sid_index.json`
+- Register new artifacts in both `.ankhrc` AND `../data/indices/sid_index.json`
 - Include `session_origin` when creating SID entries
 
 ### DON'T:

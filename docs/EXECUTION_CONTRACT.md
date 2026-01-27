@@ -1,5 +1,14 @@
 # Execution Contract
 
+<!--
+@SID:           CONTRACT_EXECUTION_INVARIANTS
+@Type:          Contract Document
+@Context:       Governance / Environment Constraints
+@SessionOrigin: SESSION_DOC_2026_01_05_SSOTIFICATION
+@References:    CONTRACT_PROBE_ABI, DOC_PWSH_RULES
+@ReferencedBy:  DOC_CLAUDE_MD_ROOT
+-->
+
 This repository uses explicit execution contracts.
 
 **Invariants:**

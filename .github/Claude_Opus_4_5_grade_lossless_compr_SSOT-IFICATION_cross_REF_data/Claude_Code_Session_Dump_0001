@@ -26,9 +26,9 @@ Parse errors:    0
 Redundant:       13/13 overlap with existing docs
 
 Sample exchanges (first 3):
-  1. [shell, config] It's a bit early to use you Claude Code. Because I heard tha...
-  2. [shell, dependency] bun upgrade -g @anthropic-ai/claude-code...
-  3. [feature, shell] bun upgrade -g @anthropic-ai/claude-code...
+  1. [shell, config] It's a bit early to use your Claude Code. Because I heard tha...
+    2. `[shell, dependency]` bun upgrade -g @anthropic-ai/claude-code...
+    3. `[feature, shell]` bun upgrade -g @anthropic-ai/claude-code...
 
 Run without --dry-run to generate output.
 The dry-run feature works. Now let me also test the help to show the new examples:
@@ -38,29 +38,31 @@ IN
 cd /c/Users/erdno/chthonic-archive && uv run scripts/extract_session_value.py --help 2>&1 | head -80
 
 OUT
+```
 usage: extract_session_value.py [-h] [--dry-run] [--format {md,json}]
-                                [--include-thinking] [--check-redundancy DIR]
-                                [--debug] [--log LOG]
-                                input [output]
+                                                                [--include-thinking] [--check-redundancy DIR]
+                                                                [--debug] [--log LOG]
+                                                                input [output]
 
 Extract valuable content from Claude Code session JSONL files.
 
 positional arguments:
-  input                 Input JSONL file
-  output                Output file (optional)
+    input                 Input JSONL file
+    output                Output file (optional)
 
 options:
-  -h, --help            show this help message and exit
-  --dry-run             Show stats without generating output
-  --format {md,json}    Output format (md or json)
-  --include-thinking    Include Claude's thinking blocks
-  --check-redundancy DIR
-                        Cross-reference against docs in DIR
-  --debug               Enable verbose debug logging
-  --log LOG             Log file path (default: extract_session.log)
+    -h, --help            show this help message and exit
+    --dry-run             Show stats without generating output
+    --format {md,json}    Output format (md or json)
+    --include-thinking    Include Claude's thinking blocks
+    --check-redundancy DIR
+                                                Cross-reference against docs in DIR
+    --debug               Enable verbose debug logging
+    --log LOG             Log file path (default: extract_session.log)
 
 Extract valuable content from Claude Code session JSONL files.
 Classifies and condenses into structured markdown or JSON.
+```
 
 WHAT THIS SCRIPT DOES
 
@@ -148,7 +150,7 @@ uv run scripts/extract_session_value.py session.jsonl --format json > data.json
 
 # Debug mode
 uv run scripts/extract_session_value.py session.jsonl --debug --log debug.log
-Tags reference added to help output showing all 11 classification categories.
+Can you make sure that every file created references back to each other based on filetypes and scripts and the main .md session reference map you made so that it is impossible to create a cascade of stray files that otherwise would need time to simply map which ones are related? And also consider tidying up the files before or after to avoid huge dumping of files in the root directory?
 
 Can you make sure that every file created references back to eachother based on filetypes and scripts and the main .md session reference map you made so that it is impossible to create a cascade of stray files that otherwise would need time to simple map which ones are related? And also consider tidying up the files before or after to avoid huge dumping of files in the rootDIR?
 The user wants me to:
@@ -344,7 +346,7 @@ Category:       <Tooling|Analysis|Automation|...>
 
 | Document | Relationship |
 |----------|--------------|
-| [`CLAUDE.md`](../CLAUDE.md) | Project-level Claude Code instructions |
+| [`CLAUDE.md`](c:\Users\erdno\chthonic-archive\CLAUDE.md) | Project-level Claude Code instructions |
 | [`docs/PWSH_RULES.md`](./PWSH_RULES.md) | Shell execution rules referenced by script |
 | [`.github/copilot-instructions.md`](../.github/copilot-instructions.md) | SSOT governance |
 
@@ -412,19 +414,19 @@ Scripts have FILE METADATA header	Back-reference to origin session
 File Registry in session doc	Tracks all created files
 Temporary files documented even if deleted	Audit trail
 Root dir for project-level only	Prevents dumping
-Note: There are 9 older .py files in root dir from previous sessions (pre-convention). Moving those would be a separate cleanup task — this session's files follow the new pattern.
-
-Can you indesx amount of files in rootDIR and filetypes & add a summary of the quality of code using uv managed python, versioning of files, but without regards for excluding any filestypes to gain a birds-eye and also discern files that could be either deleted or merged together or stripped of redundant text etc. Regardless of filetype to assess the bidirectional health of the current state of the rootDIR hygiene?
+Can you index the number of files in the root directory and file types and add a summary of the quality of code using uv managed python, versioning of files, but without regards for excluding any file types to gain a bird's-eye view and also discern files that could be either deleted or merged together or stripped of redundant text etc. Regardless of file type to assess the bidirectional health of the current state of the root directory hygiene?
 The user wants me to:
 
-Index all files in the root directory by count and filetype
+Index all files in the root directory by count and file type
 Create a summary of code quality
 Use uv-managed Python for this
 Look at versioning of files
-Don't exclude any filetypes - get a complete birds-eye view
+Don't exclude any file types - get a complete bird's-eye view
 Identify files that could be:
 Deleted
 Merged together
+Stripped of redundant text
+Assess the bidirectional health of the root directory hygiene
 Stripped of redundant text
 Assess the bidirectional health of the rootDIR hygiene
 This is a comprehensive audit task. I should create a Python script that:
@@ -4674,6 +4676,7 @@ Exit code 1
 [31;1m[36;1m[36;1m[0m[36;1m[0m[36;1m[31;1m[31;1m[36;1m     | [31;1mMissing variable name after foreach. The correct form is: foreach ($a in $b) {...}[0m
 Bash Frequency analysis via pwsh script
 IN
+```powershell
 cd "c:\Users\erdno\chthonic-archive" && pwsh -File - <<'SCRIPT'
 $lines = Get-Content ".github\Claude_Opus_4_5_grade_lossless_compr_SSOT-IFICATION_cross_REF_data\SSOTI_FIED_SESSION_LOG.md" -Encoding utf8
 $prefixes = @{}
@@ -4693,18 +4696,42 @@ OUT
 >> }
 >> $prefixes.GetEnumerator() | Sort-Object -Property Value -Descending | Select-Object -First 40 | ForEach-Object { '{0,4}  {1}' -f $_.Value, $_.Key }
 >>
-Bash Frequency analysis inline
-IN
-cd "c:\Users\erdno\chthonic-archive" && pwsh -NoProfile -Command "$lines = [System.IO.File]::ReadAllLines('.github\Claude_Opus_4_5_grade_lossless_compr_SSOT-IFICATION_cross_REF_data\SSOTI_FIED_SESSION_LOG.md'); $p = @{}; foreach($l in $lines){$s=$l.Trim(); if(-not $s){continue}; $w=($s -split '\s+')[0..2] -join ' '; if($p.ContainsKey($w)){$p[$w]++}else{$p[$w]=1}}; $p.GetEnumerator()|Sort-Object Value -Descending|Select-Object -First 40|ForEach-Object{('{0,4}  {1}' -f $_.Value,$_.Key)}"
-
-OUT
-Exit code 1
-[31;1mParserError: [0m
-[31;1m[36;1mLine |[0m
-[31;1m[36;1m[36;1m   1 | [0m . _cross_REF_data\SSOTI_FIED_SESSION_LOG.md');  = @{}; foreach([36;1m [0min ){=. .[0m
-[31;1m[36;1m[36;1m[0m[36;1m[0m[36;1m     | [31;1m                                                                ~[0m
-[31;1m[36;1m[36;1m[0m[36;1m[0m[36;1m[31;1m[31;1m[36;1m     | [31;1mMissing variable name after foreach. The correct form is: foreach ($a in $b) {...}[0m
-The $ variables are being consumed by bash. Let me use a temp script file:
+    497  ```
+    412  Ran terminal command:
+    261  ---
+    88  Searched for regex
+    67  Checked background terminal
+    66  Searched for text
+    62  Made changes.
+    51  ║ ┃ │
+    36  | File |
+    26  Replacing 3 lines
+    25  ║ │ │
+    24  Now let me
+    24  warn: incorrect peer
+    22  | 3 |
+    21  Searched for files
+    20  Replacing 1 lines
+    19  Replacing 5 lines
+    19  - §0.76: T-DECOR
+    19  - §0.77: Subordination
+    19  - §0.85: DULSS
+    19  - §0.86: PARENTS
+Bash Frequency analysis via pwsh one-liner (incorrect) -- fails due to missing variable name after foreach
+IN Bash Frequency analysis inline
+IN: 
+cd "c:\Users\erdno\chthonic-archive" && pwsh -NoProfile -File - <<'PS'
+$lines = Get-Content ".github\Claude_Opus_4_5_grade_lossless_compr_SSOT-IFICATION_cross_REF_data\SSOTI_FIED_SESSION_LOG.md" -Encoding utf8
+$prefixes = @{}
+foreach ($ln in $lines) {
+    $s = $ln.Trim()
+    if (-not $s) { continue }
+    $words = ($s -split '\s+')[0..2] -join ' '
+    if ($prefixes.ContainsKey($words)) { $prefixes[$words]++ } else { $prefixes[$words] = 1 }
+}
+$prefixes.GetEnumerator() | Sort-Object -Property Value -Descending | Select-Object -First 40 | ForEach-Object { '{0,4}  {1}' -f $_.Value, $_.Key }
+PS OUT
+(outputs top prefixes)
 
 Write c:\Users\erdno\chthonic-archive\scripts\_tmp_freq.py
 14 lines
@@ -4790,4 +4817,3 @@ OUT
   12  ║ ║
   12  PS C:\Users\erdno\chthonic-archive> ruby
   11  }
-You've hit your limit · resets 10am (Europe/Oslo)

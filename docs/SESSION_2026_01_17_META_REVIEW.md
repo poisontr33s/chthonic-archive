@@ -31,7 +31,7 @@ I have performed a secondary "meta-review" of the artifacts generated in the pre
 ## 2. Truth-Check Findings
 
 ### A. Semantic Identity System
-**Claim:** "`resolve_sid.py` is clean and functional; indexes 4 core SIDs."
+**Claim:** "`../scripts/resolve_sid.py` is clean and functional; indexes 4 core SIDs."
 **Verification:** Executed `uv run scripts/resolve_sid.py --list`.
 **Result:**
 ```text

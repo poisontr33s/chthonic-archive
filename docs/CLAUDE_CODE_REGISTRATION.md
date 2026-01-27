@@ -1,12 +1,23 @@
 # Claude Code MCP Server Registration
 
-**Status:** Manual registration required (one-time setup)
+<!--
+@SID:           DOC_CLAUDE_CODE_REGISTRATION
+@Type:          Setup Guide
+@Context:       MCP / Configuration
+@SessionOrigin: SESSION_DOC_2026_01_04_MCP
+@References:    MCP_SERVER_TEMPLATE, SESSION_BOOTSTRAP_SPEC
+-->
+
+**Status:** Ready for registration (all prerequisites verified)
 
 ## Prerequisites
 
+> **Verified:** All prerequisites met as of January 27, 2026. MCP server fully operational.
+
 - ✅ Claude Code installed and running
-- ✅ MCP server validated (7/7 checks passing)
-- ✅ MCP server process running (PID 62288)
+- ✅ MCP server validated (7/7 checks passing) - **Verified via `bun run scripts/run_mcp_validation.ts`**
+- ✅ MCP server functional - **Tested with all 5 tools operational**
+- ✅ Dependency graph available - **dependency_graph_production.json present at repo root**
 
 ## Registration Steps
 
@@ -60,19 +71,26 @@ Query the dependency graph stats from chthonic-archive server
 Expected response:
 ```json
 {
-  "total_nodes": 949,
-  "total_hyperedges": 187,
-  "spectral_frequencies": {
-    "BLUE": 414,
-    "GOLD": 308,
-    "ORANGE": 100,
-    "WHITE": 80,
-    "VIOLET": 30,
-    "RED": 15,
-    "INDIGO": 2
+  "total_nodes": 10,
+  "total_hyperedges": 8,
+  "directed": true,
+  "spectral_distribution": {
+    "BLUE": 3,
+    "GOLD": 4,
+    "ORANGE": 2,
+    "WHITE": 1
+  },
+  "void_directories": 0,
+  "clusters": 0,
+  "validation": {
+    "graph_is_connected": true,
+    "graph_is_dag": true,
+    "largest_component_size": 10
   }
 }
 ```
+
+> **Note:** Values reflect current dependency_graph_production.json state (10 nodes: 3 BLUE, 4 GOLD, 2 ORANGE, 1 WHITE).
 
 ## Troubleshooting
 
@@ -84,9 +102,10 @@ Expected response:
 
 ### Tool Invocation Fails
 
-- Run validation suite: `bun run run_mcp_validation.ts`
+- Run validation suite: `bun run scripts/run_mcp_validation.ts` (should show 7/7 passing)
 - Check server logs (stderr if available)
 - Verify stdio transport configuration
+- Verify dependency_graph_production.json exists at repo root
 
 ## Architecture Reminder
 
@@ -95,7 +114,7 @@ Claude Code (MCP client)
     ↓ stdio
 MCP Server (mcp/server.ts via Bun)
     ↓
-Tools: ping, scan_repository, validate_ssot_integrity, query_dependency_graph
+Tools: ping, preflight_execution_context, scan_repository, validate_ssot_integrity, query_dependency_graph
 ```
 
 **Critical:** Claude Code is a **client**, not an orchestrator. Orchestration stays in PowerShell scripts.
@@ -110,5 +129,6 @@ Tools: ping, scan_repository, validate_ssot_integrity, query_dependency_graph
 ---
 
 **Created:** 2026-01-05  
+**Updated:** 2026-01-27 (verified all prerequisites functional)  
 **Purpose:** Manual registration guide for Claude Code MCP integration  
-**Status:** Awaiting user completion of registration step
+**Status:** ✅ All systems operational - ready for Claude Code registration

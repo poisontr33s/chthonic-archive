@@ -1,5 +1,13 @@
 # CLI Editing Policy
 
+<!--
+@SID:           DOC_CLI_EDITING_POLICY
+@Type:          Policy Document
+@Context:       Governance / Automation Safety
+@SessionOrigin: SESSION_DOC_2026_01_05_SSOTIFICATION
+@References:    DOC_SSOTIFICATION_METHODOLOGY
+-->
+
 **Purpose.** This file defines the single, enforced rule set for any automated or assistant-driven edits performed via the GitHub Copilot CLI, local scripts, or any other non-human actor. The policy preserves provenance, avoids silent editorialization, and treats the SSOT (single source of truth) as verifiable truth — never as content to be hidden.
 
 ---

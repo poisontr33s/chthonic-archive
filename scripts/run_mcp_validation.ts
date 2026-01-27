@@ -10,7 +10,6 @@
 // ║    (Standalone file - no detected dependencies)                          ║
 // ╚════════════════════════════════════════════════════════════════════════════╝
 
-#!/usr/bin/env bun
 /**
  * MCP Validation Runner (Root-Level)
  * 
@@ -40,8 +39,8 @@
 import { spawnSync } from "child_process";
 
 const TIMEOUT_MS = 5000;
-const EXPECTED_TOOL_COUNT = 4;
-const EXPECTED_TOOLS = ["ping", "scan_repository", "validate_ssot_integrity", "query_dependency_graph"];
+const EXPECTED_TOOL_COUNT = 5;
+const EXPECTED_TOOLS = ["ping", "preflight_execution_context", "scan_repository", "validate_ssot_integrity", "query_dependency_graph"];
 
 // Parse CLI arguments
 const args = process.argv.slice(2);
@@ -150,7 +149,7 @@ if (dryRun) {
 }
 
 // Spawn MCP server
-const server = Bun.spawn(["bun", "run", "./mcp/server.ts"], {
+const server = Bun.spawn(["bun", "run", "../mcp/server.ts"], {
   stdin: "pipe",
   stdout: "pipe",
   stderr: "inherit",

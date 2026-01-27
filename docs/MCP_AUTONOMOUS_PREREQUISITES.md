@@ -1,5 +1,13 @@
 # MCP Autonomous Prerequisites - Immutable Foundation
 
+<!--
+@SID:           DOC_MCP_AUTONOMOUS_PREREQUISITES
+@Type:          Knowledge Base
+@Context:       MCP / Architecture Foundation
+@SessionOrigin: SESSION_DOC_2026_01_04_MCP
+@References:    TEMPLATE_MCP_SERVER, DOC_MCP_USER_WORKFLOWS
+-->
+
 **Status:** FROZEN  
 **Date Established:** 2026-01-04  
 **Purpose:** Prerequisite knowledge base for autonomous MCP operations  

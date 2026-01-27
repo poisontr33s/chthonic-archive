@@ -1,0 +1,1094 @@
+[
+  {
+    "Doc": "CLAUDE_CODE_REGISTRATION.md",
+    "Type": "Missing File",
+    "Reference": "bun run run_mcp_validation.ts",
+    "Details": "File does not exist"
+  },
+  {
+    "Doc": "CLAUDE_CODE_REGISTRATION.md",
+    "Type": "Missing File",
+    "Reference": "mcp/claude_code_mcp_hint.js",
+    "Details": "File does not exist"
+  },
+  {
+    "Doc": "CLI_EDITING_POLICY.md",
+    "Type": "Missing File",
+    "Reference": "old/path.ext",
+    "Details": "File does not exist"
+  },
+  {
+    "Doc": "CLI_EDITING_POLICY.md",
+    "Type": "Missing File",
+    "Reference": "new/path.ext",
+    "Details": "File does not exist"
+  },
+  {
+    "Doc": "COMPLETION_SUMMARY_TOOL_CONSOLIDATION.md",
+    "Type": "Missing File",
+    "Reference": ".chthonic.toml",
+    "Details": "File does not exist"
+  },
+  {
+    "Doc": "COMPLETION_SUMMARY_TOOL_CONSOLIDATION.md",
+    "Type": "Missing File",
+    "Reference": "../scripts/lib/analyze.py",
+    "Details": "File does not exist"
+  },
+  {
+    "Doc": "COMPLETION_SUMMARY_TOOL_CONSOLIDATION.md",
+    "Type": "Missing File",
+    "Reference": "../scripts/_tmp_freq.py",
+    "Details": "File does not exist"
+  },
+  {
+    "Doc": "COPILOT_SESSION_PERSISTENCE.md",
+    "Type": "Missing File",
+    "Reference": "../session_resumption_chthonic_progress.md",
+    "Details": "File does not exist"
+  },
+  {
+    "Doc": "COPILOT_SESSION_PERSISTENCE.md",
+    "Type": "Missing File",
+    "Reference": "../DEVELOPMENT_STATE.md",
+    "Details": "File does not exist"
+  },
+  {
+    "Doc": "COPILOT_SESSION_PERSISTENCE.md",
+    "Type": "Missing File",
+    "Reference": "src/extension.ts",
+    "Details": "File does not exist"
+  },
+  {
+    "Doc": "DCRP_SYNTHESIS.md",
+    "Type": "Missing File",
+    "Reference": "../CROSS_REFERENCE_TRIPTYCH.md",
+    "Details": "File does not exist"
+  },
+  {
+    "Doc": "DCRP_SYNTHESIS.md",
+    "Type": "Missing File",
+    "Reference": "../dependency_graph.json",
+    "Details": "File does not exist"
+  },
+  {
+    "Doc": "DCRP_SYNTHESIS.md",
+    "Type": "Missing File",
+    "Reference": "decorator_cross_ref_enhanced.py",
+    "Details": "File does not exist"
+  },
+  {
+    "Doc": "DCRP_SYNTHESIS.md",
+    "Type": "Missing File",
+    "Reference": "decorator_cross_ref_maximum.py",
+    "Details": "File does not exist"
+  },
+  {
+    "Doc": "DCRP_SYNTHESIS.md",
+    "Type": "Missing File",
+    "Reference": "decorator_cross_ref_production.py",
+    "Details": "File does not exist"
+  },
+  {
+    "Doc": "DCRP_SYNTHESIS.md",
+    "Type": "Missing File",
+    "Reference": ".dcrp_state.json",
+    "Details": "File does not exist"
+  },
+  {
+    "Doc": "DCRP_SYNTHESIS.md",
+    "Type": "Missing File",
+    "Reference": ".dcrp_evolution.json",
+    "Details": "File does not exist"
+  },
+  {
+    "Doc": "DCRP_SYNTHESIS.md",
+    "Type": "Missing File",
+    "Reference": "../DCRP_DEPLOYMENT_SUMMARY.md",
+    "Details": "File does not exist"
+  },
+  {
+    "Doc": "DCRP_SYNTHESIS.md",
+    "Type": "Missing File",
+    "Reference": "../DCRP_ENHANCED_ANALYSIS.md",
+    "Details": "File does not exist"
+  },
+  {
+    "Doc": "DCRP_SYNTHESIS.md",
+    "Type": "Missing File",
+    "Reference": "../DCRP_FINAL_STATUS.md",
+    "Details": "File does not exist"
+  },
+  {
+    "Doc": "DCRP_SYNTHESIS.md",
+    "Type": "Missing File",
+    "Reference": "../DCRP_OBSERVABILITY_UPGRADE.md",
+    "Details": "File does not exist"
+  },
+  {
+    "Doc": "DCRP_SYNTHESIS.md",
+    "Type": "Missing File",
+    "Reference": "../DCRP_OBSERVABILITY_VALIDATION_COMPLETE.md",
+    "Details": "File does not exist"
+  },
+  {
+    "Doc": "DCRP_SYNTHESIS.md",
+    "Type": "Missing File",
+    "Reference": "../DCRP_PRODUCTION_ANALYSIS.md",
+    "Details": "File does not exist"
+  },
+  {
+    "Doc": "DCRP_SYNTHESIS.md",
+    "Type": "Missing File",
+    "Reference": "../DCRP_REFACTOR_COMPLETE.md",
+    "Details": "File does not exist"
+  },
+  {
+    "Doc": "DCRP_SYNTHESIS.md",
+    "Type": "Missing File",
+    "Reference": "../DCRP_REFACTORING_SESSION_SUMMARY.md",
+    "Details": "File does not exist"
+  },
+  {
+    "Doc": "DCRP_SYNTHESIS.md",
+    "Type": "Missing File",
+    "Reference": "../DCRP_UNIFIED_REFACTOR.md",
+    "Details": "File does not exist"
+  },
+  {
+    "Doc": "DCRP_SYNTHESIS.md",
+    "Type": "Missing File",
+    "Reference": "../DCRP_MERGE_REPORT.txt",
+    "Details": "File does not exist"
+  },
+  {
+    "Doc": "DEVELOPMENT_STATE.md",
+    "Type": "Missing File",
+    "Reference": "../DEVELOPMENT_STATE.md",
+    "Details": "File does not exist"
+  },
+  {
+    "Doc": "DEVELOPMENT_STATE.md",
+    "Type": "Missing File",
+    "Reference": "src/extension.ts",
+    "Details": "File does not exist"
+  },
+  {
+    "Doc": "DEVELOPMENT_STATE.md",
+    "Type": "Missing File",
+    "Reference": "webview/index.tsx",
+    "Details": "File does not exist"
+  },
+  {
+    "Doc": "DEVELOPMENT_STATE.md",
+    "Type": "Missing File",
+    "Reference": "dist/extension.js",
+    "Details": "File does not exist"
+  },
+  {
+    "Doc": "DEVELOPMENT_STATE.md",
+    "Type": "Missing File",
+    "Reference": "dist/index.js",
+    "Details": "File does not exist"
+  },
+  {
+    "Doc": "DEVELOPMENT_STATE.md",
+    "Type": "Missing File",
+    "Reference": "COPILOT_API.md",
+    "Details": "File does not exist"
+  },
+  {
+    "Doc": "DEVELOPMENT_STATE.md",
+    "Type": "Missing File",
+    "Reference": "INSTALL.md",
+    "Details": "File does not exist"
+  },
+  {
+    "Doc": "DEVELOPMENT_STATE.md",
+    "Type": "Missing File",
+    "Reference": "server.py",
+    "Details": "File does not exist"
+  },
+  {
+    "Doc": "DEVELOPMENT_STATE.md",
+    "Type": "Missing File",
+    "Reference": "pages/index.tsx",
+    "Details": "File does not exist"
+  },
+  {
+    "Doc": "DEVELOPMENT_STATE.md",
+    "Type": "Missing File",
+    "Reference": "components/*.tsx",
+    "Details": "File does not exist"
+  },
+  {
+    "Doc": "DEVELOPMENT_STATE.md",
+    "Type": "Missing File",
+    "Reference": "next.config.js",
+    "Details": "File does not exist"
+  },
+  {
+    "Doc": "DEVELOPMENT_STATE.md",
+    "Type": "Missing File",
+    "Reference": "vscode.lm",
+    "Details": "File does not exist"
+  },
+  {
+    "Doc": "DEVELOPMENT_STATE.md",
+    "Type": "Missing File",
+    "Reference": "../session_resumption_chthonic_progress.md",
+    "Details": "File does not exist"
+  },
+  {
+    "Doc": "DEVELOPMENT_STATE.md",
+    "Type": "Missing File",
+    "Reference": "git log --all --full-history -- DEVELOPMENT_STATE.md",
+    "Details": "File does not exist"
+  },
+  {
+    "Doc": "DEVELOPMENT_STATE.md",
+    "Type": "Missing File",
+    "Reference": "mas_mcp/frontend/package.js",
+    "Details": "File does not exist"
+  },
+  {
+    "Doc": "HANDOFF_TO_CLAUDE.md",
+    "Type": "Missing File",
+    "Reference": "logs/audit_20260117.md",
+    "Details": "File does not exist"
+  },
+  {
+    "Doc": "HANDOFF_TO_CLAUDE.md",
+    "Type": "Missing File",
+    "Reference": "docs/inventory_v2.md",
+    "Details": "File does not exist"
+  },
+  {
+    "Doc": "HANDOFF_TO_CLAUDE.md",
+    "Type": "Missing File",
+    "Reference": "README.md",
+    "Details": "File does not exist"
+  },
+  {
+    "Doc": "HANDOFF_TO_CLAUDE.md",
+    "Type": "Missing File",
+    "Reference": "parent.parent",
+    "Details": "File does not exist"
+  },
+  {
+    "Doc": "HANDOFF_TO_CLAUDE.md",
+    "Type": "Missing File",
+    "Reference": "theme.json",
+    "Details": "File does not exist"
+  },
+  {
+    "Doc": "HANDOFF_TO_CLAUDE.md",
+    "Type": "Missing File",
+    "Reference": "chthonic-archive-theme.json",
+    "Details": "File does not exist"
+  },
+  {
+    "Doc": "MCP_SERVER_TEMPLATE.md",
+    "Type": "Missing File",
+    "Reference": "server.ts",
+    "Details": "File does not exist"
+  },
+  {
+    "Doc": "MCP_SERVER_TEMPLATE.md",
+    "Type": "Missing File",
+    "Reference": "~/Library/Application Support/Claude/claude_desktop_config.json",
+    "Details": "File does not exist"
+  },
+  {
+    "Doc": "MCP_SERVER_TEMPLATE.md",
+    "Type": "Missing File",
+    "Reference": "tsconfig.json",
+    "Details": "File does not exist"
+  },
+  {
+    "Doc": "MCP_SERVER_TEMPLATE.md",
+    "Type": "Missing File",
+    "Reference": "tools/repository.ts",
+    "Details": "File does not exist"
+  },
+  {
+    "Doc": "MCP_SERVER_TEMPLATE.md",
+    "Type": "Missing File",
+    "Reference": "tools/epistemograph.ts",
+    "Details": "File does not exist"
+  },
+  {
+    "Doc": "MCP_SERVER_TEMPLATE.md",
+    "Type": "Missing File",
+    "Reference": "tools/validation.ts",
+    "Details": "File does not exist"
+  },
+  {
+    "Doc": "MCP_USER_WORKFLOWS.md",
+    "Type": "Missing File",
+    "Reference": "src/lib/blacksmith.ts",
+    "Details": "File does not exist"
+  },
+  {
+    "Doc": "MIGRATION_GUIDE_CHTHONIC_CLI.md",
+    "Type": "Missing File",
+    "Reference": "uv run scripts/resolve_sid.py",
+    "Details": "File does not exist"
+  },
+  {
+    "Doc": "MIGRATION_GUIDE_CHTHONIC_CLI.md",
+    "Type": "Missing File",
+    "Reference": "uv run scripts/extract_session_value.py FILE.jsonl",
+    "Details": "File does not exist"
+  },
+  {
+    "Doc": "MIGRATION_GUIDE_CHTHONIC_CLI.md",
+    "Type": "Missing File",
+    "Reference": "chthonic extract FILE.jsonl",
+    "Details": "File does not exist"
+  },
+  {
+    "Doc": "MIGRATION_GUIDE_CHTHONIC_CLI.md",
+    "Type": "Missing File",
+    "Reference": "uv run scripts/compact_md.py FILE.md",
+    "Details": "File does not exist"
+  },
+  {
+    "Doc": "MIGRATION_GUIDE_CHTHONIC_CLI.md",
+    "Type": "Missing File",
+    "Reference": "chthonic compact FILE.md",
+    "Details": "File does not exist"
+  },
+  {
+    "Doc": "MIGRATION_GUIDE_CHTHONIC_CLI.md",
+    "Type": "Missing File",
+    "Reference": "uv run scripts/rootdir_health_audit.py",
+    "Details": "File does not exist"
+  },
+  {
+    "Doc": "MIGRATION_GUIDE_CHTHONIC_CLI.md",
+    "Type": "Missing File",
+    "Reference": "uv run scripts/map_codebase.py",
+    "Details": "File does not exist"
+  },
+  {
+    "Doc": "MIGRATION_GUIDE_CHTHONIC_CLI.md",
+    "Type": "Missing File",
+    "Reference": "uv run scripts/_tmp_freq.py",
+    "Details": "File does not exist"
+  },
+  {
+    "Doc": "MIGRATION_GUIDE_CHTHONIC_CLI.md",
+    "Type": "Missing File",
+    "Reference": "chthonic analyze FILE.md",
+    "Details": "File does not exist"
+  },
+  {
+    "Doc": "MIGRATION_GUIDE_CHTHONIC_CLI.md",
+    "Type": "Missing File",
+    "Reference": "../scripts/_tmp_freq.py",
+    "Details": "File does not exist"
+  },
+  {
+    "Doc": "MIGRATION_GUIDE_CHTHONIC_CLI.md",
+    "Type": "Missing File",
+    "Reference": "../scripts/lib/compact.py",
+    "Details": "File does not exist"
+  },
+  {
+    "Doc": "MIGRATION_GUIDE_CHTHONIC_CLI.md",
+    "Type": "Missing File",
+    "Reference": ".chthonic.toml",
+    "Details": "File does not exist"
+  },
+  {
+    "Doc": "MIGRATION_GUIDE_CHTHONIC_CLI.md",
+    "Type": "Missing File",
+    "Reference": "scripts/README.md](scripts/README.md",
+    "Details": "File does not exist"
+  },
+  {
+    "Doc": "MIGRATION_GUIDE_CHTHONIC_CLI.md",
+    "Type": "Missing File",
+    "Reference": "docs/PHASE_3_TEST_REPORT.md](docs/PHASE_3_TEST_REPORT.md",
+    "Details": "File does not exist"
+  },
+  {
+    "Doc": "MIGRATION_GUIDE_CHTHONIC_CLI.md",
+    "Type": "Missing File",
+    "Reference": "docs/TOOL_CONSOLIDATION_ROADMAP.md](docs/TOOL_CONSOLIDATION_ROADMAP.md",
+    "Details": "File does not exist"
+  },
+  {
+    "Doc": "PROBE_CONTRACT.md",
+    "Type": "Missing File",
+    "Reference": "validate_shell_probe.ps1",
+    "Details": "File does not exist"
+  },
+  {
+    "Doc": "PWSH_RULES.md",
+    "Type": "Missing File",
+    "Reference": "pwsh.exe",
+    "Details": "File does not exist"
+  },
+  {
+    "Doc": "PWSH_RULES.md",
+    "Type": "Missing File",
+    "Reference": ".\\scripts\\bin\\tool.exe",
+    "Details": "File does not exist"
+  },
+  {
+    "Doc": "PWSH_RULES.md",
+    "Type": "Missing File",
+    "Reference": "cat file.txt",
+    "Details": "File does not exist"
+  },
+  {
+    "Doc": "PWSH_RULES.md",
+    "Type": "Missing File",
+    "Reference": "Get-Content -LiteralPath file.txt",
+    "Details": "File does not exist"
+  },
+  {
+    "Doc": "PWSH_RULES.md",
+    "Type": "Missing File",
+    "Reference": "chmod +x script.sh",
+    "Details": "File does not exist"
+  },
+  {
+    "Doc": "PWSH_RULES.md",
+    "Type": "Missing File",
+    "Reference": "ARBITRAGE-BRIDGE.md",
+    "Details": "File does not exist"
+  },
+  {
+    "Doc": "PWSH_RULES.md",
+    "Type": "Missing File",
+    "Reference": "New-Object -ComObject Shell.Application",
+    "Details": "File does not exist"
+  },
+  {
+    "Doc": "README.md",
+    "Type": "Missing File",
+    "Reference": "SESSION_*-CLEANUP.md",
+    "Details": "File does not exist"
+  },
+  {
+    "Doc": "README.md",
+    "Type": "Missing File",
+    "Reference": "PWSH_RULES.md",
+    "Details": "File does not exist"
+  },
+  {
+    "Doc": "README.md",
+    "Type": "Missing File",
+    "Reference": "MCP_*.md",
+    "Details": "File does not exist"
+  },
+  {
+    "Doc": "SESSION_2026_01_17_META_REVIEW.md",
+    "Type": "Missing File",
+    "Reference": "docs/CODEBASE_MAP_2026_01_17.md",
+    "Details": "File does not exist"
+  },
+  {
+    "Doc": "SESSION_2026_01_17_META_REVIEW.md",
+    "Type": "Missing File",
+    "Reference": "../scripts/resolve_sid.py",
+    "Details": "File does not exist"
+  },
+  {
+    "Doc": "SESSION_2026_01_17_META_REVIEW.md",
+    "Type": "Missing File",
+    "Reference": "README.md",
+    "Details": "File does not exist"
+  },
+  {
+    "Doc": "SESSION_2026_01_17_TRUTH_STEWARDSHIP.md",
+    "Type": "Missing File",
+    "Reference": "docs/ROOTDIR_HEALTH_2026-01-17.md",
+    "Details": "File does not exist"
+  },
+  {
+    "Doc": "SESSION_2026_01_17_TRUTH_STEWARDSHIP.md",
+    "Type": "Missing File",
+    "Reference": "../scripts/resolve_sid.py",
+    "Details": "File does not exist"
+  },
+  {
+    "Doc": "SESSION_2026_01_17_TRUTH_STEWARDSHIP.md",
+    "Type": "Missing File",
+    "Reference": "../scripts/foo.py",
+    "Details": "File does not exist"
+  },
+  {
+    "Doc": "SESSION_2026_01_17_TRUTH_STEWARDSHIP.md",
+    "Type": "Missing File",
+    "Reference": "../data/indices/sid_index.json",
+    "Details": "File does not exist"
+  },
+  {
+    "Doc": "SESSION_2026_01_17_TRUTH_STEWARDSHIP.md",
+    "Type": "Missing File",
+    "Reference": "scripts/foo.py",
+    "Details": "File does not exist"
+  },
+  {
+    "Doc": "SESSION_2026-01-17_CLEANUP.md",
+    "Type": "Missing File",
+    "Reference": "uv run scripts/resolve_sid.py",
+    "Details": "File does not exist"
+  },
+  {
+    "Doc": "SESSION_2026-01-17_CLEANUP.md",
+    "Type": "Missing File",
+    "Reference": "../data/indices/sid_index.json",
+    "Details": "File does not exist"
+  },
+  {
+    "Doc": "SESSION_2026-01-17_CLEANUP.md",
+    "Type": "Missing File",
+    "Reference": "../ankh_index.json",
+    "Details": "File does not exist"
+  },
+  {
+    "Doc": "SESSION_2026-01-17_CLEANUP.md",
+    "Type": "Missing File",
+    "Reference": "chthonic-archive-theme.json",
+    "Details": "File does not exist"
+  },
+  {
+    "Doc": "SESSION_2026-01-17_CLEANUP.md",
+    "Type": "Missing File",
+    "Reference": "../scripts/map_codebase.py",
+    "Details": "File does not exist"
+  },
+  {
+    "Doc": "SESSION_2026-01-17_CLEANUP.md",
+    "Type": "Missing File",
+    "Reference": "../scripts/rootdir_health_audit.py",
+    "Details": "File does not exist"
+  },
+  {
+    "Doc": "SESSION_2026-01-17_CLEANUP.md",
+    "Type": "Missing File",
+    "Reference": "~/.claude/projects/c--Users-erdno-chthonic-archive/*.jsonl",
+    "Details": "File does not exist"
+  },
+  {
+    "Doc": "SESSION_2026-01-17_CLEANUP.md",
+    "Type": "Missing File",
+    "Reference": "~/.claude/todos/*.json",
+    "Details": "File does not exist"
+  },
+  {
+    "Doc": "SESSION_2026-01-17_CLEANUP.md",
+    "Type": "Missing File",
+    "Reference": "session-archive-85edc6a3.jsonl",
+    "Details": "File does not exist"
+  },
+  {
+    "Doc": "SESSION_2026-01-17_CLEANUP.md",
+    "Type": "Missing File",
+    "Reference": "session-extracted.md",
+    "Details": "File does not exist"
+  },
+  {
+    "Doc": "SESSION_2026-01-17_CLEANUP.md",
+    "Type": "Missing File",
+    "Reference": "~/.local/bin/claude.exe",
+    "Details": "File does not exist"
+  },
+  {
+    "Doc": "SESSION_2026-01-17_CLEANUP.md",
+    "Type": "Missing File",
+    "Reference": "../CLAUDE.md",
+    "Details": "File does not exist"
+  },
+  {
+    "Doc": "SESSION_2026-01-17_CLEANUP.md",
+    "Type": "Missing File",
+    "Reference": "../.github/copilot-instructions.md",
+    "Details": "File does not exist"
+  },
+  {
+    "Doc": "SESSION_2026-01-17_CLEANUP.md",
+    "Type": "Missing File",
+    "Reference": "../scripts/extract_session_value.py",
+    "Details": "File does not exist"
+  },
+  {
+    "Doc": "SESSION_2026-01-17_CLEANUP.md",
+    "Type": "Missing File",
+    "Reference": "../scripts/resolve_sid.py",
+    "Details": "File does not exist"
+  },
+  {
+    "Doc": "SESSION_2026-01-17_CLEANUP.md",
+    "Type": "Missing File",
+    "Reference": "./SESSION_2026-01-17_CLEANUP.md",
+    "Details": "File does not exist"
+  },
+  {
+    "Doc": "SESSION_2026-01-17_CLEANUP.md",
+    "Type": "Missing File",
+    "Reference": "./ROOTDIR_HEALTH.md",
+    "Details": "File does not exist"
+  },
+  {
+    "Doc": "SESSION_2026-01-17_CLEANUP.md",
+    "Type": "Missing File",
+    "Reference": "./SESSION_2026_01_17_TRUTH_STEWARDSHIP.md",
+    "Details": "File does not exist"
+  },
+  {
+    "Doc": "SESSION_2026-01-17_CLEANUP.md",
+    "Type": "Missing File",
+    "Reference": "./CODEBASE_INVENTORY.md",
+    "Details": "File does not exist"
+  },
+  {
+    "Doc": "SESSION_2026-01-17_CLEANUP.md",
+    "Type": "Missing File",
+    "Reference": "../src/README.md",
+    "Details": "File does not exist"
+  },
+  {
+    "Doc": "SESSION_2026-01-17_CLEANUP.md",
+    "Type": "Missing File",
+    "Reference": "../scripts/README.md",
+    "Details": "File does not exist"
+  },
+  {
+    "Doc": "SESSION_2026-01-17_CLEANUP.md",
+    "Type": "Missing File",
+    "Reference": "./SESSION_2026_01_17_META_REVIEW.md",
+    "Details": "File does not exist"
+  },
+  {
+    "Doc": "SESSION_2026-01-17_CLEANUP.md",
+    "Type": "Missing File",
+    "Reference": "./PWSH_RULES.md",
+    "Details": "File does not exist"
+  },
+  {
+    "Doc": "SESSION_2026-01-17_SYNTHESIS.md",
+    "Type": "Missing File",
+    "Reference": "../scripts/_tmp_freq.py",
+    "Details": "File does not exist"
+  },
+  {
+    "Doc": "SESSION_2026-01-17_SYNTHESIS.md",
+    "Type": "Missing File",
+    "Reference": "../data/indices/sid_index.json",
+    "Details": "File does not exist"
+  },
+  {
+    "Doc": "SESSION_2026-01-17_SYNTHESIS.md",
+    "Type": "Missing File",
+    "Reference": "../scripts/compact_md.py",
+    "Details": "File does not exist"
+  },
+  {
+    "Doc": "SESSION_2026-01-17_SYNTHESIS.md",
+    "Type": "Missing File",
+    "Reference": "../scripts/chthonic.ps1",
+    "Details": "File does not exist"
+  },
+  {
+    "Doc": "SESSION_2026-01-17_SYNTHESIS.md",
+    "Type": "Missing File",
+    "Reference": "../.github/copilot-instructions.md",
+    "Details": "File does not exist"
+  },
+  {
+    "Doc": "SESSION_2026-01-17_SYNTHESIS.md",
+    "Type": "Missing File",
+    "Reference": "docs/docs/SESSION_2026-01-17_CLEANUP.md",
+    "Details": "File does not exist"
+  },
+  {
+    "Doc": "SESSION_BOOTSTRAP_SPEC.md",
+    "Type": "Missing File",
+    "Reference": "%APPDATA%\\Claude\\claude_desktop_config.json",
+    "Details": "File does not exist"
+  },
+  {
+    "Doc": "SESSION_BOOTSTRAP_SPEC.md",
+    "Type": "Missing File",
+    "Reference": "claude_desktop_config.json",
+    "Details": "File does not exist"
+  },
+  {
+    "Doc": "SESSION_BOOTSTRAP_SPEC.md",
+    "Type": "Missing File",
+    "Reference": "bun run mcp/server.ts",
+    "Details": "File does not exist"
+  },
+  {
+    "Doc": "SESSION_BOOTSTRAP_SPEC.md",
+    "Type": "Missing File",
+    "Reference": "import.meta.dir",
+    "Details": "File does not exist"
+  },
+  {
+    "Doc": "SESSION_BOOTSTRAP_SPEC.md",
+    "Type": "Missing File",
+    "Reference": "git diff .github/copilot-instructions.md",
+    "Details": "File does not exist"
+  },
+  {
+    "Doc": "SESSION_BOOTSTRAP_SPEC.md",
+    "Type": "Missing File",
+    "Reference": "mcp/tools/newTool.ts",
+    "Details": "File does not exist"
+  },
+  {
+    "Doc": "SSOTIFICATION_METHODOLOGY.md",
+    "Type": "Missing File",
+    "Reference": "../data/indices/sid_index.json",
+    "Details": "File does not exist"
+  },
+  {
+    "Doc": "SSOTIFICATION_METHODOLOGY.md",
+    "Type": "Missing File",
+    "Reference": "STAGE_1_MIGRATION_PLAN.md",
+    "Details": "File does not exist"
+  },
+  {
+    "Doc": "SSOTIFICATION_METHODOLOGY.md",
+    "Type": "Missing File",
+    "Reference": ".dcrp_state.json",
+    "Details": "File does not exist"
+  },
+  {
+    "Doc": "SSOTIFICATION_METHODOLOGY.md",
+    "Type": "Missing File",
+    "Reference": "../mas_mcp/ssot_extractor.py",
+    "Details": "File does not exist"
+  },
+  {
+    "Doc": "SSOTIFICATION_METHODOLOGY.md",
+    "Type": "Missing File",
+    "Reference": "../mas_mcp/milf_genesis_v2.py",
+    "Details": "File does not exist"
+  },
+  {
+    "Doc": "SSOTIFICATION_METHODOLOGY.md",
+    "Type": "Missing File",
+    "Reference": "DCRP_SYNTHESIS.md",
+    "Details": "File does not exist"
+  },
+  {
+    "Doc": "SSOTIFICATION_METHODOLOGY.md",
+    "Type": "Missing File",
+    "Reference": "ANCHOR_SIGNAL_PROTOCOL.md",
+    "Details": "File does not exist"
+  },
+  {
+    "Doc": "STAGE_1_MIGRATION_PLAN.md",
+    "Type": "Missing File",
+    "Reference": "../AUTONOMOUS_SESSION_2026-01-01.md",
+    "Details": "File does not exist"
+  },
+  {
+    "Doc": "STAGE_1_MIGRATION_PLAN.md",
+    "Type": "Missing File",
+    "Reference": "../AUTONOMOUS_SESSION_2_COMPLETE.md",
+    "Details": "File does not exist"
+  },
+  {
+    "Doc": "STAGE_1_MIGRATION_PLAN.md",
+    "Type": "Missing File",
+    "Reference": "../AUTONOMOUS_SESSION_3_COMPLETE.md",
+    "Details": "File does not exist"
+  },
+  {
+    "Doc": "STAGE_1_MIGRATION_PLAN.md",
+    "Type": "Missing File",
+    "Reference": "../AUTONOMOUS_SESSION_3_DEEP_DIVE_SYNTHESIS.md",
+    "Details": "File does not exist"
+  },
+  {
+    "Doc": "STAGE_1_MIGRATION_PLAN.md",
+    "Type": "Missing File",
+    "Reference": "../AUTONOMOUS_SESSION_3_DEEP_RESEARCH.md",
+    "Details": "File does not exist"
+  },
+  {
+    "Doc": "STAGE_1_MIGRATION_PLAN.md",
+    "Type": "Missing File",
+    "Reference": "../AUTONOMOUS_SESSION_3_EXECUTION_COMPLETE.md",
+    "Details": "File does not exist"
+  },
+  {
+    "Doc": "STAGE_1_MIGRATION_PLAN.md",
+    "Type": "Missing File",
+    "Reference": "../AUTONOMOUS_SESSION_3_MISSION_COMPLETE.md",
+    "Details": "File does not exist"
+  },
+  {
+    "Doc": "STAGE_1_MIGRATION_PLAN.md",
+    "Type": "Missing File",
+    "Reference": "../AUTONOMOUS_SESSION_3_MISSION_REPORT.md",
+    "Details": "File does not exist"
+  },
+  {
+    "Doc": "STAGE_1_MIGRATION_PLAN.md",
+    "Type": "Missing File",
+    "Reference": "../AUTONOMOUS_SESSION_4_COMPLETE.md",
+    "Details": "File does not exist"
+  },
+  {
+    "Doc": "STAGE_1_MIGRATION_PLAN.md",
+    "Type": "Missing File",
+    "Reference": "../AUTONOMOUS_SESSION_5_COMPLETE.md",
+    "Details": "File does not exist"
+  },
+  {
+    "Doc": "STAGE_1_MIGRATION_PLAN.md",
+    "Type": "Missing File",
+    "Reference": "../AUTONOMOUS_SESSION_5_MISSION_REPORT.md",
+    "Details": "File does not exist"
+  },
+  {
+    "Doc": "STAGE_1_MIGRATION_PLAN.md",
+    "Type": "Missing File",
+    "Reference": "../AUTONOMOUS_SESSION_7_COMPLETE.md",
+    "Details": "File does not exist"
+  },
+  {
+    "Doc": "STAGE_1_MIGRATION_PLAN.md",
+    "Type": "Missing File",
+    "Reference": "../AUTONOMOUS_SESSION_STATUS.md",
+    "Details": "File does not exist"
+  },
+  {
+    "Doc": "STAGE_1_MIGRATION_PLAN.md",
+    "Type": "Missing File",
+    "Reference": "../SESSION_2026_01_04_EPISTEMOGRAPH_COMPLETE.md",
+    "Details": "File does not exist"
+  },
+  {
+    "Doc": "STAGE_1_MIGRATION_PLAN.md",
+    "Type": "Missing File",
+    "Reference": "../session_resumption_chthonic_progress.md",
+    "Details": "File does not exist"
+  },
+  {
+    "Doc": "STAGE_1_MIGRATION_PLAN.md",
+    "Type": "Missing File",
+    "Reference": "../DCRP_DEPLOYMENT_SUMMARY.md",
+    "Details": "File does not exist"
+  },
+  {
+    "Doc": "STAGE_1_MIGRATION_PLAN.md",
+    "Type": "Missing File",
+    "Reference": "DCRP_SYNTHESIS.md",
+    "Details": "File does not exist"
+  },
+  {
+    "Doc": "STAGE_1_MIGRATION_PLAN.md",
+    "Type": "Missing File",
+    "Reference": "../DCRP_ENHANCED_ANALYSIS.md",
+    "Details": "File does not exist"
+  },
+  {
+    "Doc": "STAGE_1_MIGRATION_PLAN.md",
+    "Type": "Missing File",
+    "Reference": "../DCRP_FINAL_STATUS.md",
+    "Details": "File does not exist"
+  },
+  {
+    "Doc": "STAGE_1_MIGRATION_PLAN.md",
+    "Type": "Missing File",
+    "Reference": "../DCRP_MERGE_REPORT.txt",
+    "Details": "File does not exist"
+  },
+  {
+    "Doc": "STAGE_1_MIGRATION_PLAN.md",
+    "Type": "Missing File",
+    "Reference": "../DCRP_OBSERVABILITY_UPGRADE.md",
+    "Details": "File does not exist"
+  },
+  {
+    "Doc": "STAGE_1_MIGRATION_PLAN.md",
+    "Type": "Missing File",
+    "Reference": "../DCRP_OBSERVABILITY_VALIDATION_COMPLETE.md",
+    "Details": "File does not exist"
+  },
+  {
+    "Doc": "STAGE_1_MIGRATION_PLAN.md",
+    "Type": "Missing File",
+    "Reference": "../DCRP_PRODUCTION_ANALYSIS.md",
+    "Details": "File does not exist"
+  },
+  {
+    "Doc": "STAGE_1_MIGRATION_PLAN.md",
+    "Type": "Missing File",
+    "Reference": "../DCRP_REFACTOR_COMPLETE.md",
+    "Details": "File does not exist"
+  },
+  {
+    "Doc": "STAGE_1_MIGRATION_PLAN.md",
+    "Type": "Missing File",
+    "Reference": "../DCRP_REFACTORING_SESSION_SUMMARY.md",
+    "Details": "File does not exist"
+  },
+  {
+    "Doc": "STAGE_1_MIGRATION_PLAN.md",
+    "Type": "Missing File",
+    "Reference": "../DCRP_UNIFIED_REFACTOR.md",
+    "Details": "File does not exist"
+  },
+  {
+    "Doc": "STAGE_1_MIGRATION_PLAN.md",
+    "Type": "Missing File",
+    "Reference": "../ankh_index.json",
+    "Details": "File does not exist"
+  },
+  {
+    "Doc": "STAGE_1_MIGRATION_PLAN.md",
+    "Type": "Missing File",
+    "Reference": "../data/indices/sid_index.json",
+    "Details": "File does not exist"
+  },
+  {
+    "Doc": "STAGE_1_MIGRATION_PLAN.md",
+    "Type": "Missing File",
+    "Reference": "../ankh.md",
+    "Details": "File does not exist"
+  },
+  {
+    "Doc": "STAGE_1_MIGRATION_PLAN.md",
+    "Type": "Missing File",
+    "Reference": "../ANKHOLOGY.md",
+    "Details": "File does not exist"
+  },
+  {
+    "Doc": "STAGE_1_MIGRATION_PLAN.md",
+    "Type": "Missing File",
+    "Reference": "dumpster-dive/.../milf_genesis_v1_deprecated.py",
+    "Details": "File does not exist"
+  },
+  {
+    "Doc": "STAGE_1_MIGRATION_PLAN.md",
+    "Type": "Missing File",
+    "Reference": "scripts/session_extractor.py",
+    "Details": "File does not exist"
+  },
+  {
+    "Doc": "TOOL_CONSOLIDATION_ROADMAP.md",
+    "Type": "Missing File",
+    "Reference": "../scripts/_tmp_freq.py",
+    "Details": "File does not exist"
+  },
+  {
+    "Doc": "TOOL_CONSOLIDATION_ROADMAP.md",
+    "Type": "Missing File",
+    "Reference": ".chthonic.toml",
+    "Details": "File does not exist"
+  },
+  {
+    "Doc": "TOOL_CONSOLIDATION_ROADMAP.md",
+    "Type": "Missing File",
+    "Reference": "../scripts/chthonic.ps1",
+    "Details": "File does not exist"
+  },
+  {
+    "Doc": "TOOL_CONSOLIDATION_ROADMAP.md",
+    "Type": "Missing File",
+    "Reference": "../scripts/resolve_sid.py",
+    "Details": "File does not exist"
+  },
+  {
+    "Doc": "TOOL_CONSOLIDATION_ROADMAP.md",
+    "Type": "Missing File",
+    "Reference": "lib/resolve.py",
+    "Details": "File does not exist"
+  },
+  {
+    "Doc": "TOOL_CONSOLIDATION_ROADMAP.md",
+    "Type": "Missing File",
+    "Reference": "../scripts/extract_session_value.py",
+    "Details": "File does not exist"
+  },
+  {
+    "Doc": "TOOL_CONSOLIDATION_ROADMAP.md",
+    "Type": "Missing File",
+    "Reference": "lib/extract.py",
+    "Details": "File does not exist"
+  },
+  {
+    "Doc": "TOOL_CONSOLIDATION_ROADMAP.md",
+    "Type": "Missing File",
+    "Reference": "lib/analyze.py",
+    "Details": "File does not exist"
+  },
+  {
+    "Doc": "TOOL_CONSOLIDATION_ROADMAP.md",
+    "Type": "Missing File",
+    "Reference": "../scripts/compact_md.py",
+    "Details": "File does not exist"
+  },
+  {
+    "Doc": "TOOL_CONSOLIDATION_ROADMAP.md",
+    "Type": "Missing File",
+    "Reference": "lib/compact.py",
+    "Details": "File does not exist"
+  },
+  {
+    "Doc": "TOOL_CONSOLIDATION_ROADMAP.md",
+    "Type": "Missing File",
+    "Reference": "../scripts/rootdir_health_audit.py",
+    "Details": "File does not exist"
+  },
+  {
+    "Doc": "TOOL_CONSOLIDATION_ROADMAP.md",
+    "Type": "Missing File",
+    "Reference": "lib/audit.py",
+    "Details": "File does not exist"
+  },
+  {
+    "Doc": "TOOL_CONSOLIDATION_ROADMAP.md",
+    "Type": "Missing File",
+    "Reference": "../scripts/map_codebase.py",
+    "Details": "File does not exist"
+  },
+  {
+    "Doc": "TOOL_CONSOLIDATION_ROADMAP.md",
+    "Type": "Missing File",
+    "Reference": "lib/map.py",
+    "Details": "File does not exist"
+  },
+  {
+    "Doc": "TOOL_CONSOLIDATION_ROADMAP.md",
+    "Type": "Missing File",
+    "Reference": "../scripts/lib/shared.py",
+    "Details": "File does not exist"
+  },
+  {
+    "Doc": "TOOL_CONSOLIDATION_ROADMAP.md",
+    "Type": "Missing File",
+    "Reference": "../scripts/lib/audit.py",
+    "Details": "File does not exist"
+  },
+  {
+    "Doc": "TOOL_CONSOLIDATION_ROADMAP.md",
+    "Type": "Missing File",
+    "Reference": "../scripts/lib/map.py",
+    "Details": "File does not exist"
+  },
+  {
+    "Doc": "TOOL_CONSOLIDATION_ROADMAP.md",
+    "Type": "Missing File",
+    "Reference": "SESSION_2026-01-17_SYNTHESIS.md",
+    "Details": "File does not exist"
+  },
+  {
+    "Doc": "TOOL_CONSOLIDATION_ROADMAP.md",
+    "Type": "Missing File",
+    "Reference": "../CLAUDE.md",
+    "Details": "File does not exist"
+  }
+]

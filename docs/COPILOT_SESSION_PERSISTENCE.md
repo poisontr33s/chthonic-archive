@@ -1,5 +1,13 @@
 # Copilot CLI Session Persistence Guide
 
+<!--
+@SID:           DOC_COPILOT_SESSION_PERSISTENCE
+@Type:          User Guide
+@Context:       Workflow / Session Management
+@SessionOrigin: SESSION_DOC_2026_01_17_CLEANUP
+@References:    SESSION_BOOTSTRAP_SPEC
+-->
+
 **Immaculate session saving using built-in Copilot CLI commands**
 
 ---
@@ -99,8 +107,8 @@ session_2025-12-31_1415_frontend-dashboard.md
    ```
 
 3. **Update session docs** (manual):
-   - Add summary to `session_resumption_chthonic_progress.md`
-   - Update `DEVELOPMENT_STATE.md` with changes
+   - Add summary to `../session_resumption_chthonic_progress.md`
+   - Update `../DEVELOPMENT_STATE.md` with changes
    - Commit to git
 
 ---
@@ -152,7 +160,7 @@ chthonic-archive/
 
 4. **Copilot loads context** from:
    - Your message
-   - `session_resumption_chthonic_progress.md` (if mentioned)
+   - `../session_resumption_chthonic_progress.md` (if mentioned)
    - `.github/copilot-instructions.md` (auto-loaded as SSOT)
 
 ---
@@ -236,9 +244,9 @@ Previous session: logs/sessions/session_2025-12-30_final.md
 - `/usage` - Token usage stats
 
 **Tier 2: Human-maintained (Our docs)**
-- `session_resumption_chthonic_progress.md` - Navigation hub
+- `../session_resumption_chthonic_progress.md` - Navigation hub
 - `.github/SESSION_RESUME.md` - Point-blank recovery
-- `DEVELOPMENT_STATE.md` - Full context
+- `../DEVELOPMENT_STATE.md` - Full context
 
 **Tier 3: Version Control (Git)**
 - Commit saved sessions to `logs/sessions/`

@@ -1,5 +1,13 @@
 # MCP Server Implementation Template (Chthonic Archive)
 
+<!--
+@SID:           TEMPLATE_MCP_SERVER
+@Type:          Reference Template
+@Context:       MCP / Implementation Guide
+@SessionOrigin: SESSION_DOC_2026_01_04_MCP
+@References:    DOC_MCP_AUTONOMOUS_PREREQUISITES, SPEC_SESSION_BOOTSTRAP
+-->
+
 **Status:** REFERENCE TEMPLATE  
 **Date:** 2026-01-04  
 **Purpose:** Boilerplate for custom MCP server creation  

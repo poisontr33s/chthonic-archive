@@ -1,5 +1,13 @@
 # Probe Contract — shell_capabilities.ps1
 
+<!--
+@SID:           CONTRACT_PROBE_ABI
+@Type:          Contract Document
+@Context:       Governance / Environment Probing
+@SessionOrigin: SESSION_DOC_2026_01_05_SSOTIFICATION
+@References:    CONTRACT_EXECUTION_INVARIANTS, DOC_PWSH_RULES
+-->
+
 This document defines the **ABI contract** for the canonical environment probe:
 
 ```

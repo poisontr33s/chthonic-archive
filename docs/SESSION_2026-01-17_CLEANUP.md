@@ -56,9 +56,9 @@ SESSION_DOC_2026_01_17_CLEANUP
   └─► emitted: REPORT_META_REVIEW_2026_01_17
 ```
 
-**Resolution:** Run `uv run scripts/resolve_sid.py` to rebuild `sid_index.json`
+**Resolution:** Run `uv run scripts/resolve_sid.py` to rebuild `../data/indices/sid_index.json`
 
-**Protocol:** Files reference by `@SID`, not path. Paths are resolvable via `ankh_index.json` or future `ankh://` URI scheme.
+**Protocol:** Files reference by `@SID`, not path. Paths are resolvable via `../ankh_index.json` or future `ankh://` URI scheme.
 
 **Invariant:** Every `@SID` declared MUST resolve to exactly one file. Moving files updates the resolver, not the references.
 
@@ -71,7 +71,7 @@ SESSION_DOC_2026_01_17_CLEANUP
 - [x] **Architecture Shift:** Implemented Anchor & Signal Protocol (`@SID`) to decouple reference from location
 - [x] **Tool Stabilization:** Refactored audit/mapping tools to use **State Files** instead of logs
 - [x] **Inventory Cleanup:** Created standardized `docs/README.md` and indexed valid files
-- [x] **Tool Robustness:** Updated `map_codebase.py` and `rootdir_health_audit.py` with `--dry-run` and error handling
+- [x] **Tool Robustness:** Updated `../scripts/map_codebase.py` and `../scripts/rootdir_health_audit.py` with `--dry-run` and error handling
 - [x] **Migration:** Moved 9 root Python files and 1 TypeScript file to `scripts/` to clean the root directory.
 
 ## Next Steps

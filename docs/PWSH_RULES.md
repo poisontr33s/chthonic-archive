@@ -1,5 +1,14 @@
 # PowerShell Rules (pwsh-first)
 
+<!--
+@SID:           DOC_PWSH_RULES
+@Type:          Policy Document
+@Context:       Governance / Shell Environment
+@SessionOrigin: SESSION_DOC_2026_01_05_SSOTIFICATION
+@References:    CONTRACT_EXECUTION_INVARIANTS, CONTRACT_PROBE_ABI
+@ReferencedBy:  DOC_CLAUDE_MD_ROOT
+-->
+
 **Version:** 1.0
 **Status:** VERIFIED
 **Validation Date:** 2026-01-05
@@ -355,4 +364,4 @@ if (Get-Module -ListAvailable ModuleName) {
 
 **Maintained by:** Repository governance framework
 **SSOT Reference:** `.github/copilot-instructions.md` hash `49ef091b...`
-**Related:** `SESSION_BOOTSTRAP_SPEC.md` v1.1, `CLI_EDITING_POLICY.md`
+**Related:** `docs/SESSION_BOOTSTRAP_SPEC.md` v1.1, `docs/CLI_EDITING_POLICY.md`

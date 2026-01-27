@@ -266,4 +266,7 @@
     "task.notifyWindowOnTaskCompletion": -1,
     "chat.agent.maxRequests": 9999999,
     "diffEditor.maxComputationTime": 0,
+    "markdown.validate.ignoredLinks": [
+        "CLAUDE.md"
+    ],
 }

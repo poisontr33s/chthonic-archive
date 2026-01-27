@@ -1,4 +1,13 @@
 # Chthonic Archive - Development State Manifest
+
+<!--
+@SID:           STATE_DEVELOPMENT_MANIFEST
+@Type:          State Document
+@Context:       Project State / Session Continuity
+@SessionOrigin: SESSION_2025_12_31_VSCODE_EXTENSION
+@References:    SESSION_BOOTSTRAP_SPEC, CONTRACT_EXECUTION_INVARIANTS
+-->
+
 **Session Continuity Document - SSOT for Development Context**
 
 **Last Updated**: 2025-12-31T06:34:58Z  
@@ -22,7 +31,7 @@
 
 ### SSOT Governance
 - **Primary SSOT**: `.github/copilot-instructions.md` (Codex Brahmanica Perfectus - 146K words, 89K lines)
-- **This Document**: `DEVELOPMENT_STATE.md` (you are here - session continuity anchor)
+- **This Document**: `docs/DEVELOPMENT_STATE.md` (you are here - session continuity anchor)
 - **Session Logs**: `logs/` (diagnostic outputs, cycle runs)
 
 ### Active Development Areas
@@ -161,7 +170,7 @@ chthonic-archive/
 **Files Modified This Session**:
 - `chthonic-vscode-extension/src/extension.ts` (lines 106-178) - Enhanced error handling
 - `chthonic-vscode-extension/INSTALL.md` (created) - Installation guide
-- `DEVELOPMENT_STATE.md` (created) - This file
+- `../DEVELOPMENT_STATE.md` (created) - This file
 
 ---
 
@@ -285,7 +294,7 @@ git diff --name-status HEAD
 
 **📋 FULL SESSION RECOVERY (2-MINUTE DEEP DIVE):**
 
-1. **Read this file first**: `DEVELOPMENT_STATE.md` (you are here)
+1. **Read this file first**: `../DEVELOPMENT_STATE.md` (you are here)
 2. **Load SSOT**: `.github/copilot-instructions.md` (Codex Brahmanica Perfectus)
 3. **Check active issue**: See "Known Issues & Blockers" above
 4. **Verify SSOT integrity**:
@@ -351,8 +360,8 @@ git diff --name-status HEAD
 **Files Created/Modified**:
 - `chthonic-vscode-extension/src/extension.ts` (lines 106-178)
 - `chthonic-vscode-extension/INSTALL.md`
-- `DEVELOPMENT_STATE.md` (this file)
-- `session_resumption_chthonic_progress.md`
+- `../DEVELOPMENT_STATE.md` (this file)
+- `../session_resumption_chthonic_progress.md`
 - `.github/SESSION_RESUME.md`
 - `docs/COPILOT_SESSION_PERSISTENCE.md`
 - `logs/sessions/session_2025-12-31_0746_vscode-extension-debug.md` (transcript)
@@ -386,7 +395,7 @@ git diff --name-status HEAD
 
 **Critical Files for Backup**:
 1. `.github/copilot-instructions.md` (SSOT - 89K lines)
-2. `DEVELOPMENT_STATE.md` (this file - session anchor)
+2. `../DEVELOPMENT_STATE.md` (this file - session anchor)
 3. `chthonic-vscode-extension/src/extension.ts` (active development)
 4. `mas_mcp/pyproject.toml` + `uv.lock` (Python environment)
 5. `mas_mcp/frontend/package.json` + `bun.lock` (Frontend dependencies)

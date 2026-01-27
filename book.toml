@@ -1,0 +1,14 @@
+[book]
+title = "The Chthonic Archive"
+authors = ["The Savant"]
+language = "en"
+src = "docs"
+description = "Documentation, protocols, session records, and lore of the Chthonic Archive"
+
+[build]
+build-dir = "book"
+
+[output.html]
+git-repository-url = "https://github.com/poisontr33s/chthonic-archive"
+default-theme = "navy"
+preferred-dark-theme = "navy"

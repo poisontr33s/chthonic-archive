@@ -1,5 +1,14 @@
 # Session Bootstrap Specification
 
+<!--
+@SID:           SPEC_SESSION_BOOTSTRAP
+@Type:          Specification
+@Context:       MCP / Session Initialization
+@SessionOrigin: SESSION_DOC_2026_01_04_MCP
+@References:    DOC_MCP_AUTONOMOUS_PREREQUISITES, TEMPLATE_MCP_SERVER
+@Validates:     System Requirements, Repository Layout, SSOT Verification
+-->
+
 **Version:** 1.1  
 **Date:** 2026-01-05  
 **Status:** VERIFIED (Initial validation 2026-01-04, smoke suite validation 2026-01-05)
