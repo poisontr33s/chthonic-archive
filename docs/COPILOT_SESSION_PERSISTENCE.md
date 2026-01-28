@@ -8,13 +8,13 @@
 @References:    SESSION_BOOTSTRAP_SPEC
 -->
 
-**Immaculate session saving using built-in Copilot CLI commands**
+Concise guidance for saving and resuming Copilot CLI sessions.
 
 ---
 
-## 🎯 Built-In Session Commands
+## Built-In Session Commands
 
-The GitHub Copilot CLI has **native session persistence**:
+The Copilot CLI has native session persistence:
 
 ### `/share` - Save Session to File or GitHub Gist
 
@@ -34,7 +34,7 @@ The GitHub Copilot CLI has **native session persistence**:
 
 ---
 
-## 📋 Session Commands
+## Session Commands
 
 ### `/session` - Show Current Session Info
 
@@ -73,16 +73,16 @@ The GitHub Copilot CLI has **native session persistence**:
 
 ---
 
-## 🔥 Recommended Session Workflow
+## Recommended Session Workflow
 
 ### During Active Session
 
-**Every major milestone** (e.g., after fixing a bug, completing a feature):
+**At major milestones** (e.g., after fixing a bug, completing a feature):
 ```bash
 /share file C:\Users\erdno\chthonic-archive\logs\sessions\session_2025-12-31_0642_vscode-extension.md
 ```
 
-**Naming Convention**:
+**Naming convention**:
 ```
 session_YYYY-MM-DD_HHMM_<topic>.md
 ```
@@ -106,16 +106,15 @@ session_2025-12-31_1415_frontend-dashboard.md
    /usage
    ```
 
-3. **Update session docs** (manual):
+3. **Update session docs**:
    - Add summary to `../session_resumption_chthonic_progress.md`
    - Update `../DEVELOPMENT_STATE.md` with changes
    - Commit to git
 
 ---
 
-## 🗂️ Session Archive Structure
+## Session Archive Structure
 
-**Create in project**:
 ```
 chthonic-archive/
 ├── logs/
@@ -125,16 +124,16 @@ chthonic-archive/
 │       └── session_FINAL_2025-12-31.md
 ```
 
-**Each saved session contains**:
-- Full conversation history
-- Code snippets generated
-- File modifications discussed
+Each saved session typically contains:
+- Conversation history
+- Code snippets discussed
+- File modifications referenced
 - Commands executed (if mentioned)
 - Timestamps
 
 ---
 
-## 🔄 Session Recovery Workflow
+## Session Recovery Workflow
 
 ### Starting New Session
 
@@ -148,24 +147,24 @@ chthonic-archive/
    cat logs/sessions/session_FINAL_<date>.md
    ```
 
-3. **Tell Copilot** (in chat):
+3. **Provide context in chat** (example):
    ```
    I'm resuming from a previous session. Key context:
    - Last working on: VSCode extension Copilot API
    - Last file modified: chthonic-vscode-extension/src/extension.ts
    - Next step: Test diagnostic build
-   
+
    See session_resumption_chthonic_progress.md for full context.
    ```
 
-4. **Copilot loads context** from:
+4. **Context sources Copilot can use**:
    - Your message
    - `../session_resumption_chthonic_progress.md` (if mentioned)
    - `.github/copilot-instructions.md` (auto-loaded as SSOT)
 
 ---
 
-## 💡 Advanced: GitHub Gist Integration
+## GitHub Gist Integration
 
 **Share to public/private gist**:
 ```bash
@@ -178,11 +177,9 @@ chthonic-archive/
 - Accessible from anywhere
 - Can be referenced in GitHub issues/PRs
 
-**Use Case**: Share debugging session with collaborators
-
 ---
 
-## 🛠️ Session Metadata Best Practices
+## Session Metadata Best Practices
 
 **At session start** (first message):
 ```
@@ -209,9 +206,9 @@ Previous session: logs/sessions/session_2025-12-30_final.md
 
 ---
 
-## 📊 Integration with Existing Docs
+## Integration with Existing Docs
 
-**Update workflow** after session save:
+After saving a session:
 
 1. **Save Copilot session**:
    ```bash
@@ -235,29 +232,23 @@ Previous session: logs/sessions/session_2025-12-30_final.md
 
 ---
 
-## 🎓 Complete Session Persistence Stack
+## Session Persistence Stack (Summary)
 
-**Tier 1: Real-time (Copilot CLI built-in)**
+**Tier 1: Copilot CLI**
 - `/share` - Save conversation transcript
 - `/session` - Current session metadata
 - `/context` - Live context window
 - `/usage` - Token usage stats
 
-**Tier 2: Human-maintained (Our docs)**
+**Tier 2: Local docs**
 - `../session_resumption_chthonic_progress.md` - Navigation hub
 - `.github/SESSION_RESUME.md` - Point-blank recovery
 - `../DEVELOPMENT_STATE.md` - Full context
 
-**Tier 3: Version Control (Git)**
+**Tier 3: Version control**
 - Commit saved sessions to `logs/sessions/`
 - Track file modifications
 - Preserve history
-
-**Result**: Triple-redundant session recovery with zero data loss
-
----
-
-## 🚀 Try It Now
 
 **Save current session**:
 ```bash
