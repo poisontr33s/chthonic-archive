@@ -1,21 +1,23 @@
 # ╔════════════════════════════════════════════════════════════════════════════╗
-# ║  THE DECORATOR'S BLESSING: code_texture.py                               ║
-# ║  Python module: analyze_texture                                             ║
+# ║  THE DECORATOR'S BLESSING: code_texture.py                                 ║
+# ║  Python module: analyze_texture                                            ║
 # ╠════════════════════════════════════════════════════════════════════════════╣
-# ║  Spectral Frequency: WHITE                                                  ║
-# ║  Architectural Role: 🌿 THE GARDEN                                           ║
-# ║  Purpose: Tactile Feedback - Code Structure as Physical Texture
-Uses AST import  ║
-# ║  Exports: analyze_texture                                                   ║
+# ║  Spectral Frequency: WHITE                                                 ║
+# ║  Architectural Role: 🌿 THE GARDEN                                         ║
+# ║  Purpose: Tactile Feedback - Code Structure as Physical Texture            ║
+# ║  Uses AST import analysis to detect coupling                               ║
+# ║  Exports: analyze_texture                                                  ║
 # ╠════════════════════════════════════════════════════════════════════════════╣
-# ║  Cross-References (Bidirectional):                                      ║
-# ║    (Standalone file - no detected dependencies)                          ║
+# ║  Cross-References (Bidirectional):                                         ║
+# ║    (Standalone file - no detected dependencies)                            ║
 # ╚════════════════════════════════════════════════════════════════════════════╝
 
+#!/usr/bin/env python3
 """
 Tactile Feedback - Code Structure as Physical Texture
 Uses AST import analysis to detect coupling
 """
+
 import sys
 import ast
 from pathlib import Path
