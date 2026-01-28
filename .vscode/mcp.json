@@ -41,16 +41,12 @@
       "cwd": "C:\\Users\\erdno\\chthonic-archive"
     },
 
-    "artisan": {
-      "type": "stdio",
-      "command": "bun",
-      "args": [
-        "run",
-        "scripts/mcp_artisan_server.ts"
-      ],
-      "cwd": "C:\\Users\\erdno\\chthonic-archive"
-    },
-
+    // artisan: MERGED into chthonic server v3.0.0
+    // Unified polyglot MCP: 19 tools (10 polyglot + 7 archive + 2 meta)
+    // Polyglot: cargo, uv, bun_run, gcc, gpp, go_run, ruby, git, bash, make
+    // Archive: chthonic_status, chthonic_resolve, chthonic_audit, chthonic_map, chthonic_analyze, chthonic_compact, chthonic_book
+    // Meta: polyglot_versions, claudine_env
+    
     "asc-injector": {
       "type": "stdio",
       "command": "bun",
@@ -61,6 +57,19 @@
       "cwd": "C:\\Users\\erdno\\chthonic-archive",
       "env": {
         "SSOT_PATH": ".github/copilot-instructions.md"
+      }
+    },
+
+    "chthonic": {
+      "type": "stdio",
+      "command": "bun",
+      "args": [
+        "run",
+        "scripts/mcp-chthonic-server.ts"
+      ],
+      "cwd": "C:\\Users\\erdno\\chthonic-archive",
+      "env": {
+        "CHTHONIC_ROOT": "C:\\Users\\erdno\\chthonic-archive"
       }
     }
   }

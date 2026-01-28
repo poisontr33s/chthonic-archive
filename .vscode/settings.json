@@ -65,26 +65,27 @@
     },
 
     // === TERMINAL ===
-    // Crude mode: no profiles, no aliases, no wrapper functions, no activation scripts.
-    // Terminals start with `-NoProfile` and get a deterministic PATH prefix via terminal.integrated.env.windows.
+    // Polyglot mode: profile loads chthonic env automatically
+    // Profile: Microsoft.PowerShell_profile.ps1 handles auto-activation
     // Shell integration enabled for command detection, working directory tracking, and decorations.
     "terminal.integrated.profiles.windows": {
-        "Pwsh (Chthonic)": {
+        "Pwsh 7.5 (Chthonic)": {
+            "path": "C:\\Program Files\\PowerShell\\7\\pwsh.exe",
+            "args": [
+                "-NoLogo"
+            ],
+            "icon": "terminal-powershell"
+        },
+        "Pwsh (No Profile)": {
             "path": "C:\\Program Files\\PowerShell\\7\\pwsh.exe",
             "args": [
                 "-NoProfile",
-                "-NoExit"
-            ]
-        },
-        "PowerShell (Chthonic)": {
-            "source": "PowerShell",
-            "args": [
-                "-NoProfile",
-                "-NoExit"
-            ]
+                "-NoLogo"
+            ],
+            "icon": "terminal"
         }
     },
-    "terminal.integrated.defaultProfile.windows": "Pwsh (Chthonic)",
+    "terminal.integrated.defaultProfile.windows": "Pwsh 7.5 (Chthonic)",
 
     // Shell Integration Configuration (VSCode Insiders + PowerShell 7.5.4)
     // Shell integration script: c:\Users\${env:USERNAME}\AppData\Local\Programs\Microsoft VS Code Insiders\7c62052af6\resources\app\out\vs\workbench\contrib\terminal\common\scripts\shellIntegration.ps1

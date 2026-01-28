@@ -4,10 +4,8 @@
 # ╠════════════════════════════════════════════════════════════════════════════╣
 # ║  Spectral Frequency: WHITE                                                  ║
 # ║  Architectural Role: 🌿 THE GARDEN                                           ║
-# ║  Purpose: Bun Compliance Audit Script
-============================
-
-Scans reposi ║
+# ║  Purpose: Bun Compliance Audit Script                                      ║
+# ║  Description: Scans repository for non-Bun package manager usage and        ║
 # ║  Exports: Severity, Violation, BunComplianceScanner, safe_print, main       ║
 # ╠════════════════════════════════════════════════════════════════════════════╣
 # ║  Cross-References (Bidirectional):                                      ║
