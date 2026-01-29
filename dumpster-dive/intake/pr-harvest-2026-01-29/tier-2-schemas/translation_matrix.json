@@ -1,0 +1,99 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "translation-matrix",
+  "title": "Translation Matrix Schema",
+  "description": "Extracted from PR #2 ankh.md - defines what survives/decays/prohibited in translations",
+  "source": {
+    "pr": 2,
+    "file": "ankh.md",
+    "sections": ["IV", "V", "VI"]
+  },
+  "invariants": {
+    "description": "What must survive translation",
+    "items": [
+      {
+        "type": "breath",
+        "definition": "temporal_embodiment",
+        "must_preserve": "breathing rhythm as temporal grounding",
+        "may_vary": "specific breath duration",
+        "must_not_invent": "breath patterns without acoustic justification"
+      },
+      {
+        "type": "vessel",
+        "definition": "interface_substrate",
+        "must_preserve": "substrate constraints (memory safety, acoustic physics)",
+        "may_vary": "implementation details within constraints",
+        "must_not_invent": "capabilities beyond vessel physical reality"
+      },
+      {
+        "type": "inheritance",
+        "definition": "continuity_of_meaning",
+        "must_preserve": "original intent, mythic significance",
+        "may_vary": "surface syntax, optimization strategy",
+        "must_not_invent": "new intent not present in source lineage"
+      },
+      {
+        "type": "mirror",
+        "definition": "reversible_translation",
+        "must_preserve": "ability to reconstruct source from target",
+        "may_vary": "intermediate representations",
+        "must_not_invent": "lossy one-way transformations without decay marking"
+      }
+    ]
+  },
+  "acceptable_decay": {
+    "description": "What may be lost in translation",
+    "items": [
+      {
+        "context": "prose_to_code",
+        "acceptable_loss": "narrative flourish, metaphor",
+        "justification": "code demands precision over poetry"
+      },
+      {
+        "context": "audio_to_text",
+        "acceptable_loss": "tonal nuance, breath texture",
+        "justification": "text is discrete; audio is continuous"
+      },
+      {
+        "context": "design_to_implementation",
+        "acceptable_loss": "exploratory alternatives not chosen",
+        "justification": "ship what survives validation"
+      },
+      {
+        "context": "human_to_ai",
+        "acceptable_loss": "unstated assumptions, cultural context",
+        "justification": "AI lacks full human embedding"
+      }
+    ]
+  },
+  "prohibited_synthesis": {
+    "description": "What must never be invented",
+    "items": [
+      {
+        "prohibition": "inventing_user_intent",
+        "rationale": "only creator defines purpose",
+        "example_violation": "AI improving design without asking"
+      },
+      {
+        "prohibition": "creating_false_lineage",
+        "rationale": "lineage = truth; fabrication = corruption",
+        "example_violation": "claiming feature was always intended when it wasn't"
+      },
+      {
+        "prohibition": "bypassing_silence",
+        "rationale": "silence carries meaning; filling voids destroys it",
+        "example_violation": "generating content for undefined entities"
+      },
+      {
+        "prohibition": "violating_structural_integrity",
+        "rationale": "architectonic integrity non-negotiable",
+        "example_violation": "creative shortcuts breaking type safety"
+      },
+      {
+        "prohibition": "ignoring_vessel_constraints",
+        "rationale": "physical reality trumps desire",
+        "example_violation": "promising features unavailable in hardware"
+      }
+    ]
+  }
+}

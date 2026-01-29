@@ -1,0 +1,67 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "tier-hierarchy",
+  "title": "Tier Hierarchy Schema",
+  "description": "Extracted from PR #5 SSOT_Canon.md - hierarchical permission/authority model",
+  "source": {
+    "pr": 5,
+    "file": "SSOT_Canon.md",
+    "lines": "62-75"
+  },
+  "tiers": [
+    {
+      "tier": 0.5,
+      "name": "supreme",
+      "description": "Absolute authority - defines all lower tiers",
+      "capabilities": ["define_policy", "override_all", "create_entities", "modify_hierarchy"],
+      "body_system_analog": "nervous_system"
+    },
+    {
+      "tier": 0,
+      "name": "void",
+      "description": "Boundary layer - advisory through absence",
+      "capabilities": ["advise_through_silence", "define_limits"],
+      "body_system_analog": "interstitial_lymphatic"
+    },
+    {
+      "tier": 1,
+      "name": "core_operations",
+      "description": "Life-sustaining operations - primary command layer",
+      "capabilities": ["execute_operations", "manage_tier_2", "interpret_policy"],
+      "body_system_analog": "cardiovascular_respiratory_digestive"
+    },
+    {
+      "tier": 2,
+      "name": "tactical_response",
+      "description": "Specialized intervention - domain-specific operations",
+      "capabilities": ["domain_operations", "tactical_execution", "specialized_processing"],
+      "body_system_analog": "immune_endocrine_muscular"
+    },
+    {
+      "tier": 3,
+      "name": "support_systems",
+      "description": "Maintenance and protection",
+      "capabilities": ["maintenance", "protection", "waste_processing"],
+      "body_system_analog": "support_systems"
+    },
+    {
+      "tier": 4,
+      "name": "granular_entities",
+      "description": "Emergent phenomena and granular operations",
+      "capabilities": ["emergent_behavior", "granular_tasks"],
+      "body_system_analog": "cellular"
+    }
+  ],
+  "authority_flow": "cascading_downward",
+  "override_rules": {
+    "higher_overrides_lower": true,
+    "skip_tier_permitted": false,
+    "lateral_communication": "through_shared_parent"
+  },
+  "potential_uses": [
+    "RBAC permission model",
+    "microservice hierarchy",
+    "agent orchestration levels",
+    "priority queue tiers"
+  ]
+}

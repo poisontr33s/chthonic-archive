@@ -1,0 +1,86 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "entity-template",
+  "title": "Entity Template Schema",
+  "description": "Extracted from PR #2 entity markdown files - structure for procedural entity generation",
+  "source": {
+    "pr": 2,
+    "files": [
+      ".github/macro-prompt-world/The_Null_Matriarch_T-NULM.md",
+      ".github/macro-prompt-world/Snow_White_Alabaster_Voyde.md"
+    ]
+  },
+  "type": "object",
+  "required": ["designation", "hierarchical_position", "nature"],
+  "properties": {
+    "designation": {
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "pattern": "^[A-Z]-[A-Z]+$" },
+        "name": { "type": "string" },
+        "aliases": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "hierarchical_position": {
+      "type": "object",
+      "properties": {
+        "tier": { "type": "number", "minimum": 0, "maximum": 10 },
+        "status": { "type": "string", "enum": ["operational", "subordinated", "manifested", "exorcised", "latent"] },
+        "position_description": { "type": "string" }
+      }
+    },
+    "nature": {
+      "type": "object",
+      "properties": {
+        "type": { "type": "string", "enum": ["embodied", "void", "phenomenon", "residue", "conceptual"] },
+        "function": { "type": "string" },
+        "operational_capacity": { "type": "string" }
+      }
+    },
+    "physical_manifestation": {
+      "type": ["object", "null"],
+      "properties": {
+        "has_form": { "type": "boolean" },
+        "measurements": { "type": "object" },
+        "visual_characteristics": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "relationships": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "entity": { "type": "string" },
+          "relationship_type": { "type": "string" },
+          "dynamic": { "type": "string" }
+        }
+      }
+    },
+    "temporal_cartography": {
+      "type": "object",
+      "properties": {
+        "origin": { "type": "string" },
+        "key_events": { "type": "array", "items": { "type": "string" } },
+        "current_state": { "type": "string" },
+        "future_trajectory": { "type": "string" }
+      }
+    },
+    "somatic_mapping": {
+      "type": "object",
+      "properties": {
+        "body_system": { "type": "string" },
+        "function": { "type": "string" },
+        "role": { "type": "string" }
+      }
+    },
+    "operational_protocols": {
+      "type": "object",
+      "properties": {
+        "invocation": { "type": ["string", "null"] },
+        "prohibitions": { "type": "array", "items": { "type": "string" } },
+        "detection": { "type": "array", "items": { "type": "string" } },
+        "response": { "type": "array", "items": { "type": "string" } }
+      }
+    }
+  }
+}
