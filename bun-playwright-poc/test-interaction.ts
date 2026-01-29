@@ -1,3 +1,15 @@
+// ╔════════════════════════════════════════════════════════════════════════════╗
+// ║  THE DECORATOR'S BLESSING: test-interaction.ts                           ║
+// ║  TypeScript module: frontend utility                                        ║
+// ╠════════════════════════════════════════════════════════════════════════════╣
+// ║  Spectral Frequency: ORANGE                                                 ║
+// ║  Architectural Role: 🔭 THE OBSERVATORY                                      ║
+// ║  Purpose: * BunCDP Interaction Test - Validates click, type, fill operations ║
+// ╠════════════════════════════════════════════════════════════════════════════╣
+// ║  Cross-References (Bidirectional):                                      ║
+// ║    (Standalone file - no detected dependencies)                          ║
+// ╚════════════════════════════════════════════════════════════════════════════╝
+
 #!/usr/bin/env bun
 /**
  * BunCDP Interaction Test - Validates click, type, fill operations

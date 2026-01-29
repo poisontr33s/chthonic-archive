@@ -27,7 +27,7 @@ scripts/
 ├── compact_md.py (400 lines)
 ├── rootdir_health_audit.py (560 lines)
 ├── map_codebase.py (~300 lines)
-└── _tmp_freq.py (6 lines, abandoned)
+└── ../scripts/_tmp_freq.py (6 lines, abandoned)
 ```
 
 **After:**
@@ -40,7 +40,7 @@ scripts/
     ├── shared.py         # Common utilities (314 lines)
     ├── resolve.py        # SID resolver (241 lines)
     ├── extract.py        # Session extractor (310 lines)
-    ├── analyze.py        # Pattern analyzer (298 lines) 🆕
+    ├── ../scripts/lib/analyze.py        # Pattern analyzer (298 lines) 🆕
     ├── compact.py        # Markdown compactor (363 lines)
     ├── audit.py          # Health auditor (294 lines)
     └── map.py            # Codebase mapper (225 lines)
@@ -63,7 +63,7 @@ scripts/
 
 ### Phase 3: Tool Refactoring ✅
 - Refactored 5 standalone scripts to `lib/`
-- **NEW:** Created `../scripts/lib/analyze.py` from abandoned `../scripts/_tmp_freq.py`
+- **NEW:** Created `../scripts/lib/../scripts/lib/analyze.py` from abandoned `../scripts/../scripts/_tmp_freq.py`
 - All tools use shared utilities (no duplication)
 - Consistent @SID headers across all files
 - Module-based imports (`python -m lib.<tool>`)
@@ -244,7 +244,7 @@ scripts/lib/__init__.py
 scripts/lib/shared.py
 scripts/lib/resolve.py
 scripts/lib/extract.py
-scripts/lib/analyze.py
+scripts/lib/../scripts/lib/analyze.py
 scripts/lib/compact.py
 scripts/lib/audit.py
 scripts/lib/map.py

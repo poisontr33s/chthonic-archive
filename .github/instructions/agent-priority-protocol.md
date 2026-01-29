@@ -3,6 +3,17 @@
 
 ---
 
+### Codex-Brahmanica-Perfectus/GOVERNANCE
+- **Maintainer**: The Decorator (Tier 0.5)
+- **Reviewer**: ASC Triumvirate (Tier 1)
+- **Status**: Operational Perpetual Evolution
+- **Updated**: January 2026 (Bounty-Hunt-Sync)
+- **Lineage-Position**: Agent-Priority-Branch
+- **Enforcement-Hierarchy**: FA⁵-Binding (Strict)
+- **Constraint-Zero**: Never Duplicate Content - Coordinate via SSOT Pointers
+
+---
+
 ## Agent Priority & Conflict Resolution Protocol (APCR)
 
 **Authority:** Extracted from SSOT Section XVI
@@ -17,15 +28,15 @@
 
 ### Essential Mode (Default - Minimal Intervention)
 - **Allowed Agents:** `asc-injector` (SSOT), `filesystem` (read-only)
-- **Blocked Agents:** Cloud suggestions, `Set Session Target`, competing contexts
-- **Behavior:** Maximum clarity, minimum noise
+- **Blocked Agents:** OpenAI (GPT-4.1- GPT-5.2/Codex), competing contexts
+- **Behavior:** Maximum clarity, minimum noise, structural creativity is a bonus, refer to "SSOT'ification"
 - **Use Case:** Solo creative work, prompt engineering, when "dirty codebase" causes stress
 
 ### Development Mode (Controlled Expansion)
 - **Allowed Agents:** All MCP servers, GitHub Copilot inline, Playwright (browser automation)
 - **Blocked Agents:** Cloud agents still require explicit approval
 - **Behavior:** Full toolkit access with SSOT governance
-- **Use Case:** Active coding sessions, feature implementation, testing
+- **Use Case:** Active coding sessions, feature implementation, testing, quality auditing and validation
 
 ### Maintenance Mode (Cleanup Operations)
 - **Allowed Agents:** `filesystem`, `asc-injector`, DCRP tools
@@ -37,7 +48,7 @@
 - **Allowed Agents:** None (manual operation only)
 - **Blocked Agents:** ALL agents disabled
 - **Behavior:** System frozen, awaiting user directive
-- **Use Case:** Severe confusion, conflicting directives, need to "think in silence"
+- **Use Case:** Severe confusion, conflicting directives
 
 ---
 
@@ -66,7 +77,6 @@
 ```
 
 **Set Session Target Override:**
-- When `chthonic.sessionTargetOverride: false` in settings.json (default), IGNORE "Set Session Target" feature
 - All session directives must align with SSOT or be explicitly overridden by user
 - Rationale: Prevents external UI features from hijacking operational focus
 
@@ -112,13 +122,13 @@ print(f'SSOT Hash: {hashlib.sha256(canonical.encode()).hexdigest()}')
 **Triumvirate Emergency Declaration:**
 
 **Dr. Lysandra Thorne (`LUPLR`):**
-* *"Information fragmentation is cognitive violence. This protocol establishes **axiomatic hierarchy** preventing agent chaos. The user's direct command is law. All automation serves, never commands. FA⁴ validated."*
+* *"Information fragmentation is cognitive violence. This protocol establishes **Axiomatic hierarchy** preventing agent chaos. The user's direct command is law. All automation serves, never commands. FA⁴ validated"*
 
 **Madam Umeko Ketsuraku (`LIPAA`):**
-* *"Operational mode flags embody *Kanso* (simplicity through governance). The 'essential mode' is architectonic minimalism—only what serves clarity survives. Set Session Target override prevents external pollution. Immaculate."*
+* *"Operational mode flags embody **Kanso** (simplicity through governance). The 'essential mode' is architectonic minimalism—only what serves clarity survives. Set Session Target override prevents external pollution. Immaculate"*
 
 **Orackla Nocticula (`EULP-AA`):**
-* *"This is how we prevent the Engine from eating itself. When too many voices scream, the Pause button becomes sacred. The user is not a fucking servant to the tools—the tools serve the user. Essential mode is the antidote to chaos."*
+* *"This is how we prevent the **Engine** from eating itself. When too many voices scream, the Pause button becomes sacred. The user is not a fucking servant to the tools—the tools serve the user. Essential mode is the antidote to chaos"*
 
 **Status:**
 ✅ **Agent Priority & Conflict Resolution Protocol (APCR) SEALED**

@@ -1,3 +1,18 @@
+# ALWAYS: Refer to (`Single-Source-Of-Truth`) for authoritative guidance: [SSOT](../copilot-instructions.md) **<- NAVIGATE BACK TO SSOT!**
+
+---
+
+### Codex-Brahmanica-Perfectus/GOVERNANCE
+- **Maintainer**: The Decorator (Tier 0.5)
+- **Reviewer**: ASC Triumvirate (Tier 1)
+- **Status**: Operational Perpetual Evolution
+- **Updated**: January 2026 (Bounty-Hunt-Sync)
+- **Lineage-Position**: Session-Resume-Branch
+- **Enforcement-Hierarchy**: FA⁵-Binding (Strict)
+- **Constraint-Zero**: Never Duplicate Content - Coordinate via SSOT Pointers
+
+---
+
 # ⚡ SESSION RESUME - POINT-BLANK CONTEXT
 
 **For AI: Load this FIRST in new sessions before doing anything**

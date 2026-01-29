@@ -31,7 +31,7 @@
 
 ### SSOT Governance
 - **Primary SSOT**: `.github/copilot-instructions.md` (Codex Brahmanica Perfectus - 146K words, 89K lines)
-- **This Document**: `docs/DEVELOPMENT_STATE.md` (you are here - session continuity anchor)
+- **This Document**: `docs/../DEVELOPMENT_STATE.md` (you are here - session continuity anchor)
 - **Session Logs**: `logs/` (diagnostic outputs, cycle runs)
 
 ### Active Development Areas
@@ -148,7 +148,7 @@ chthonic-archive/
 │   └── from-github/                     ← Imported prototypes
 │
 ├── logs/                                ← Diagnostic outputs
-├── DEVELOPMENT_STATE.md                 ← THIS FILE (session anchor)
+├── ../DEVELOPMENT_STATE.md                 ← THIS FILE (session anchor)
 ├── Cargo.toml                           ← Rust project
 ├── package.json                         ← Root Bun workspace
 └── bun.lock                             ← Bun lockfile
@@ -170,7 +170,7 @@ chthonic-archive/
 **Files Modified This Session**:
 - `chthonic-vscode-extension/src/extension.ts` (lines 106-178) - Enhanced error handling
 - `chthonic-vscode-extension/INSTALL.md` (created) - Installation guide
-- `../DEVELOPMENT_STATE.md` (created) - This file
+- `../../DEVELOPMENT_STATE.md` (created) - This file
 
 ---
 
@@ -273,7 +273,7 @@ print(ssot_hash('.github/copilot-instructions.md'))
 cd C:\Users\erdno\chthonic-archive
 
 # 2. Check current active issue (one-liner)
-grep -A 5 "KNOWN ISSUES" DEVELOPMENT_STATE.md
+grep -A 5 "KNOWN ISSUES" ../DEVELOPMENT_STATE.md
 
 # 3. See what was last modified
 git diff --name-status HEAD
@@ -294,7 +294,7 @@ git diff --name-status HEAD
 
 **📋 FULL SESSION RECOVERY (2-MINUTE DEEP DIVE):**
 
-1. **Read this file first**: `../DEVELOPMENT_STATE.md` (you are here)
+1. **Read this file first**: `../../DEVELOPMENT_STATE.md` (you are here)
 2. **Load SSOT**: `.github/copilot-instructions.md` (Codex Brahmanica Perfectus)
 3. **Check active issue**: See "Known Issues & Blockers" above
 4. **Verify SSOT integrity**:
@@ -360,8 +360,8 @@ git diff --name-status HEAD
 **Files Created/Modified**:
 - `chthonic-vscode-extension/src/extension.ts` (lines 106-178)
 - `chthonic-vscode-extension/INSTALL.md`
-- `../DEVELOPMENT_STATE.md` (this file)
-- `../session_resumption_chthonic_progress.md`
+- `../../DEVELOPMENT_STATE.md` (this file)
+- `../../session_resumption_chthonic_progress.md`
 - `.github/SESSION_RESUME.md`
 - `docs/COPILOT_SESSION_PERSISTENCE.md`
 - `logs/sessions/session_2025-12-31_0746_vscode-extension-debug.md` (transcript)
@@ -395,7 +395,7 @@ git diff --name-status HEAD
 
 **Critical Files for Backup**:
 1. `.github/copilot-instructions.md` (SSOT - 89K lines)
-2. `../DEVELOPMENT_STATE.md` (this file - session anchor)
+2. `../../DEVELOPMENT_STATE.md` (this file - session anchor)
 3. `chthonic-vscode-extension/src/extension.ts` (active development)
 4. `mas_mcp/pyproject.toml` + `uv.lock` (Python environment)
 5. `mas_mcp/frontend/package.json` + `bun.lock` (Frontend dependencies)
@@ -406,7 +406,7 @@ git diff --name-status HEAD
 
 **If this file is lost or corrupted:**
 1. Check `.github/copilot-instructions.md` (comprehensive SSOT)
-2. Check git history: `git log --all --full-history -- DEVELOPMENT_STATE.md`
+2. Check git history: `git log --all --full-history -- ../DEVELOPMENT_STATE.md`
 3. Check `logs/` directory for diagnostic outputs
 4. Rebuild from package.json files in each subproject
 

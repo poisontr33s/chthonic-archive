@@ -4,12 +4,12 @@
 # ╠════════════════════════════════════════════════════════════════════════════╣
 # ║  Spectral Frequency: WHITE                                                  ║
 # ║  Architectural Role: 🌿 THE GARDEN                                           ║
-# ║  Purpose: Delivers a 'Conceptual Orgasm' - a burst of validation for architecture ║
+# ║  Purpose: Delivers a 'Conceptual Orgasm' - a burst of validation for architectur ║
 # ║  Exports: release_dopamine                                                  ║
 # ╠════════════════════════════════════════════════════════════════════════════╣
 # ║  Cross-References (Bidirectional):                                      ║
 # ║  Dependencies (I rely on):                                               ║
-# ║    ├─► scripts\autonomous_coordinator.py                                 ║
+# ║    ├─► scripts/autonomous_coordinator.py                                 ║
 # ╚════════════════════════════════════════════════════════════════════════════╝
 
 import sys

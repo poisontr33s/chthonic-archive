@@ -22,12 +22,12 @@ The central repository for project documentation, operational protocols, session
 - `reference/`: Static reference material and cheat sheets
 
 ### Dynamic State Artifacts
-- `docs/CODEBASE_INVENTORY.md` (@SID: `STATE_CODEBASE_INVENTORY`): Current map of repository structure
-- `docs/ROOTDIR_HEALTH.md` (@SID: `STATE_ROOTDIR_HEALTH`): Directory hygiene and audit reports
+- `docs/docs/CODEBASE_INVENTORY.md` (@SID: `STATE_CODEBASE_INVENTORY`): Current map of repository structure
+- `docs/docs/ROOTDIR_HEALTH.md` (@SID: `STATE_ROOTDIR_HEALTH`): Directory hygiene and audit reports
 - `SESSION_*-CLEANUP.md`: Active session registries and context anchors
 
 ### Operational Documents
-- `docs/CLI_EDITING_POLICY.md`: Standards for automated code editing
+- `docs/docs/CLI_EDITING_POLICY.md`: Standards for automated code editing
 - `PWSH_RULES.md`: PowerShell execution standards
 - `MCP_*.md`: Model Context Protocol configuration and workflows
 

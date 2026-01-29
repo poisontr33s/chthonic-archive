@@ -1,0 +1,91 @@
+{
+  "run_id": "2026-01-29T18-59-32-890Z",
+  "workflow": "audit",
+  "inputs": {},
+  "outputs": {
+    "scan": {
+      "count": 43448,
+      "largest": [
+        {
+          "path": "C:\\Users\\erdno\\chthonic-archive\\.ankh.debug.health.log",
+          "size": 1414
+        },
+        {
+          "path": "C:\\Users\\erdno\\chthonic-archive\\.ankhrc",
+          "size": 10958
+        },
+        {
+          "path": "C:\\Users\\erdno\\chthonic-archive\\.cargo\\config.toml",
+          "size": 1204
+        },
+        {
+          "path": "C:\\Users\\erdno\\chthonic-archive\\.claude\\settings.local.json",
+          "size": 83
+        },
+        {
+          "path": "C:\\Users\\erdno\\chthonic-archive\\.dcrp_state.json",
+          "size": 54768
+        },
+        {
+          "path": "C:\\Users\\erdno\\chthonic-archive\\.gemini\\settings.json",
+          "size": 82
+        },
+        {
+          "path": "C:\\Users\\erdno\\chthonic-archive\\.github\\Claude_Opus_4_5_grade_lossless_compr_SSOT-IFICATION_cross_REF_data\\Claude_Code_Session_Dump_0001",
+          "size": 215859
+        },
+        {
+          "path": "C:\\Users\\erdno\\chthonic-archive\\.github\\Claude_Opus_4_5_grade_lossless_compr_SSOT-IFICATION_cross_REF_data\\SESSION_CACHE_STRUCTURED.md",
+          "size": 6139
+        },
+        {
+          "path": "C:\\Users\\erdno\\chthonic-archive\\.github\\Claude_Opus_4_5_grade_lossless_compr_SSOT-IFICATION_cross_REF_data\\SESSION_PROTOCOL.md",
+          "size": 9412
+        },
+        {
+          "path": "C:\\Users\\erdno\\chthonic-archive\\.github\\Claude_Opus_4_5_grade_lossless_compr_SSOT-IFICATION_cross_REF_data\\SSOTI_FIED_SESSION_LOG.md",
+          "size": 771417
+        }
+      ]
+    },
+    "ssot": {
+      "path": "C:\\Users\\erdno\\chthonic-archive\\.github\\copilot-instructions.md",
+      "size": 553448,
+      "sha256": "67da837ba118c501482ba3bf48e6b22e9898eb70077d20fcdff55362f7d2f1e8"
+    },
+    "graph_summary": {
+      "top_by_degree": [
+        {
+          "id": "docs/SUMMARY.md",
+          "degree": 95
+        },
+        {
+          "id": "docs/SESSION_2026-01-17_CLEANUP.md",
+          "degree": 14
+        },
+        {
+          "id": "scripts/lib/shared.py",
+          "degree": 6
+        },
+        {
+          "id": "bun-playwright-poc/src/bun-cdp-page.ts",
+          "degree": 6
+        },
+        {
+          "id": "mcp/server.ts",
+          "degree": 5
+        }
+      ],
+      "total_nodes": 489,
+      "total_edges": 170
+    }
+  },
+  "elapsed_ms": 2450,
+  "tool_versions": {
+    "server_commit": "5c666b2",
+    "bootstrap_spec": "1752952",
+    "workflows_doc": "622e57f"
+  },
+  "notes": "smoke suite validation run",
+  "success": true
+}

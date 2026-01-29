@@ -208,3 +208,7 @@ SSOT = "KEEP"
 SID_INDEX = "KEEP"
 CARGO_TOML = "KEEP"
 ANKHRC = "KEEP"
+
+# OUTPUT (logs)
+
+TERMINAL = ".ankh.debug.health.log"

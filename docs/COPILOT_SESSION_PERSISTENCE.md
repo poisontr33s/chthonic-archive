@@ -107,8 +107,8 @@ session_2025-12-31_1415_frontend-dashboard.md
    ```
 
 3. **Update session docs** (manual):
-   - Add summary to `../session_resumption_chthonic_progress.md`
-   - Update `../DEVELOPMENT_STATE.md` with changes
+   - Add summary to `../../session_resumption_chthonic_progress.md`
+   - Update `../../DEVELOPMENT_STATE.md` with changes
    - Commit to git
 
 ---
@@ -140,7 +140,7 @@ chthonic-archive/
 
 1. **Load session resumption hub**:
    ```bash
-   cat session_resumption_chthonic_progress.md
+   cat ../session_resumption_chthonic_progress.md
    ```
 
 2. **Load previous session transcript** (if exists):
@@ -155,12 +155,12 @@ chthonic-archive/
    - Last file modified: chthonic-vscode-extension/src/extension.ts
    - Next step: Test diagnostic build
    
-   See session_resumption_chthonic_progress.md for full context.
+   See ../session_resumption_chthonic_progress.md for full context.
    ```
 
 4. **Copilot loads context** from:
    - Your message
-   - `../session_resumption_chthonic_progress.md` (if mentioned)
+   - `../../session_resumption_chthonic_progress.md` (if mentioned)
    - `.github/copilot-instructions.md` (auto-loaded as SSOT)
 
 ---
@@ -188,7 +188,7 @@ chthonic-archive/
 ```
 Session Start: 2025-12-31 06:42
 Focus: VSCode Extension - Copilot API Integration
-Context loaded from: session_resumption_chthonic_progress.md
+Context loaded from: ../session_resumption_chthonic_progress.md
 Previous session: logs/sessions/session_2025-12-30_final.md
 ```
 
@@ -218,18 +218,18 @@ Previous session: logs/sessions/session_2025-12-30_final.md
    /share file logs/sessions/session_2025-12-31_0642.md
    ```
 
-2. **Update DEVELOPMENT_STATE.md**:
+2. **Update ../DEVELOPMENT_STATE.md**:
    - Add session to change log
    - Update "Files Modified This Session"
    - Update "Last Updated" timestamp
 
-3. **Update session_resumption_chthonic_progress.md**:
+3. **Update ../session_resumption_chthonic_progress.md**:
    - Add session to "Session History"
    - Update "Last Modified" date
 
 4. **Commit to git**:
    ```bash
-   git add logs/sessions/ DEVELOPMENT_STATE.md session_resumption_chthonic_progress.md
+   git add logs/sessions/ ../DEVELOPMENT_STATE.md ../session_resumption_chthonic_progress.md
    git commit -m "Session checkpoint: VSCode extension Copilot API fix"
    ```
 
@@ -244,9 +244,9 @@ Previous session: logs/sessions/session_2025-12-30_final.md
 - `/usage` - Token usage stats
 
 **Tier 2: Human-maintained (Our docs)**
-- `../session_resumption_chthonic_progress.md` - Navigation hub
+- `../../session_resumption_chthonic_progress.md` - Navigation hub
 - `.github/SESSION_RESUME.md` - Point-blank recovery
-- `../DEVELOPMENT_STATE.md` - Full context
+- `../../DEVELOPMENT_STATE.md` - Full context
 
 **Tier 3: Version Control (Git)**
 - Commit saved sessions to `logs/sessions/`

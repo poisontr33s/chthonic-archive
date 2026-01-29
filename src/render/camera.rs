@@ -58,7 +58,7 @@ impl IsometricCamera {
         // Isometric angles from Gemini specification:
         // Y-axis rotation: 45° (diagonal view)
         // X-axis rotation: ~35.264° = arctan(1/√2) ≈ 0.6154797 radians
-        const ISO_X_ANGLE: f32 = 0.6154797; // arctan(1/√2)
+        const ISO_X_ANGLE: f32 = 0.615_479_7; // arctan(1/√2)
         const ISO_Y_ANGLE: f32 = std::f32::consts::FRAC_PI_4; // 45° = π/4
         
         // Calculate camera position from target using isometric angles
@@ -80,10 +80,10 @@ impl IsometricCamera {
         info!("╔══════════════════════════════════════════════════════════════╗");
         info!("║   ISOMETRIC CAMERA INITIALIZED                              ║");
         info!("╠══════════════════════════════════════════════════════════════╣");
-        info!("║   Position: ({:.2}, {:.2}, {:.2})", position.x, position.y, position.z);
-        info!("║   Target:   ({:.2}, {:.2}, {:.2})", target.x, target.y, target.z);
-        info!("║   Distance: {:.2}", distance);
-        info!("║   Ortho Size: {:.2}", ortho_size);
+        info!("║   Position: ({x:.2}, {y:.2}, {z:.2})", x = position.x, y = position.y, z = position.z);
+        info!("║   Target:   ({tx:.2}, {ty:.2}, {tz:.2})", tx = target.x, ty = target.y, tz = target.z);
+        info!("║   Distance: {distance:.2}");
+        info!("║   Ortho Size: {ortho_size:.2}");
         info!("╚══════════════════════════════════════════════════════════════╝");
 
         let mut camera = Self {
@@ -157,7 +157,7 @@ impl IsometricCamera {
     /// Set camera distance from target (zoom)
     #[allow(dead_code)]
     pub fn set_distance(&mut self, distance: f32, aspect_ratio: f32) {
-        const ISO_X_ANGLE: f32 = 0.6154797;
+        const ISO_X_ANGLE: f32 = 0.615_479_7;
         const ISO_Y_ANGLE: f32 = std::f32::consts::FRAC_PI_4;
         
         let cos_x = ISO_X_ANGLE.cos();

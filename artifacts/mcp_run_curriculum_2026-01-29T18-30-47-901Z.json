@@ -1,0 +1,143 @@
+{
+  "run_id": "2026-01-29T18-30-47-901Z",
+  "workflow": "curriculum",
+  "inputs": {
+    "spectral_frequency": "GOLD"
+  },
+  "outputs": {
+    "frequency": "GOLD",
+    "ordered_nodes": [
+      {
+        "node": {
+          "spectral_freq": "GOLD",
+          "purpose": "🔥💀⚓ Bridge Complete - Claude Code & Chthonic Now Connected",
+          "role": "📜 DOCUMENTATION",
+          "essence": "Documentation: 🔥💀⚓ Bridge Complete - Claude Code & Chthonic Now Connected",
+          "id": "BRIDGE_COMPLETE_SUMMARY.md"
+        },
+        "in_degree": 0,
+        "dependencies": [],
+        "rationale": "Referenced by 0 nodes - specialized component"
+      },
+      {
+        "node": {
+          "spectral_freq": "GOLD",
+          "purpose": "🔥💀⚓ Chthonic v3.0.0 - Meta-CLI Refactoring Complete",
+          "role": "📜 DOCUMENTATION",
+          "essence": "Documentation: 🔥💀⚓ Chthonic v3.0.0 - Meta-CLI Refactoring Complete",
+          "id": "CHTHONIC_V3_META_CLI_COMPLETE.md"
+        },
+        "in_degree": 0,
+        "dependencies": [],
+        "rationale": "Referenced by 0 nodes - specialized component"
+      },
+      {
+        "node": {
+          "spectral_freq": "GOLD",
+          "purpose": "CLAUDE.md",
+          "role": "📜 DOCUMENTATION",
+          "essence": "Single Source of Truth - the Codex Brahmanica Perfectus",
+          "id": "CLAUDE.md"
+        },
+        "in_degree": 0,
+        "dependencies": [],
+        "rationale": "Referenced by 0 nodes - specialized component"
+      },
+      {
+        "node": {
+          "spectral_freq": "GOLD",
+          "purpose": "🔥💀⚓ Claude Code ↔ Chthonic Bridge",
+          "role": "📜 DOCUMENTATION",
+          "essence": "Documentation: 🔥💀⚓ Claude Code ↔ Chthonic Bridge",
+          "id": "CLAUDE_CODE_BRIDGE_ARCHITECTURE.md"
+        },
+        "in_degree": 0,
+        "dependencies": [],
+        "rationale": "Referenced by 0 nodes - specialized component"
+      },
+      {
+        "node": {
+          "spectral_freq": "GOLD",
+          "purpose": "🔥💀⚓ Claude Code ↔ Chthonic Bridge - Complete Integration Guide",
+          "role": "📜 DOCUMENTATION",
+          "essence": "Documentation: 🔥💀⚓ Claude Code ↔ Chthonic Bridge - Complete Integration Gui",
+          "id": "CLAUDE_CODE_BRIDGE_INTEGRATION.md"
+        },
+        "in_degree": 0,
+        "dependencies": [],
+        "rationale": "Referenced by 0 nodes - specialized component"
+      },
+      {
+        "node": {
+          "spectral_freq": "GOLD",
+          "purpose": "🔥💀⚓ Claude Code IDE Setup - Integrated with Chthonic",
+          "role": "📜 DOCUMENTATION",
+          "essence": "Documentation: 🔥💀⚓ Claude Code IDE Setup - Integrated with Chthonic",
+          "id": "CLAUDE_CODE_IDE_SETUP.md"
+        },
+        "in_degree": 0,
+        "dependencies": [],
+        "rationale": "Referenced by 0 nodes - specialized component"
+      },
+      {
+        "node": {
+          "spectral_freq": "GOLD",
+          "purpose": "THE CHTHONIC ARCHIVE: Cross-Reference Triptych",
+          "role": "📜 DOCUMENTATION",
+          "essence": "Single Source of Truth - the Codex Brahmanica Perfectus",
+          "id": "CROSS_REFERENCE_TRIPTYCH.md"
+        },
+        "in_degree": 0,
+        "dependencies": [],
+        "rationale": "Referenced by 0 nodes - specialized component"
+      },
+      {
+        "node": {
+          "spectral_freq": "GOLD",
+          "purpose": "🔧 Claude Code IDE Detection Fix - Extension Activation",
+          "role": "📜 DOCUMENTATION",
+          "essence": "Documentation: 🔧 Claude Code IDE Detection Fix - Extension Activation",
+          "id": "IDE_DETECTION_EXTENSION_ACTIVATION.md"
+        },
+        "in_degree": 0,
+        "dependencies": [],
+        "rationale": "Referenced by 0 nodes - specialized component"
+      },
+      {
+        "node": {
+          "spectral_freq": "GOLD",
+          "purpose": "🚀 Chthonic Archive - Quick Reference",
+          "role": "📜 DOCUMENTATION",
+          "essence": "Single Source of Truth - the Codex Brahmanica Perfectus",
+          "id": ".vscode\\QUICKREF.md"
+        },
+        "in_degree": 0,
+        "dependencies": [],
+        "rationale": "Referenced by 0 nodes - specialized component"
+      },
+      {
+        "node": {
+          "spectral_freq": "GOLD",
+          "purpose": "VS Code Configuration Notes",
+          "role": "📜 DOCUMENTATION",
+          "essence": "Entry portal - first architectural revelation",
+          "id": ".vscode\\README.md"
+        },
+        "in_degree": 0,
+        "dependencies": [],
+        "rationale": "Referenced by 0 nodes - specialized component"
+      }
+    ],
+    "stats": {
+      "gold_percentage": "NaN"
+    }
+  },
+  "elapsed_ms": 2,
+  "tool_versions": {
+    "server_commit": "5c666b2",
+    "bootstrap_spec": "1752952",
+    "workflows_doc": "622e57f"
+  },
+  "notes": "smoke suite validation run",
+  "success": true
+}

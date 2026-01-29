@@ -1,0 +1,26 @@
+{
+  "run_id": "2026-01-29T18-52-46-564Z",
+  "workflow": "impact",
+  "inputs": {
+    "component": "src/main.rs"
+  },
+  "outputs": {
+    "node": "src/main.rs",
+    "dependencies": [],
+    "dependents": [],
+    "impact_summary": {
+      "dependents_count": 0,
+      "dependencies_count": 0,
+      "high_risk": []
+    },
+    "recommendation": "Low coupling - safe to modify with caution"
+  },
+  "elapsed_ms": 3,
+  "tool_versions": {
+    "server_commit": "5c666b2",
+    "bootstrap_spec": "1752952",
+    "workflows_doc": "622e57f"
+  },
+  "notes": "smoke suite validation run",
+  "success": true
+}

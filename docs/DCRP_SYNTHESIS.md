@@ -6,7 +6,7 @@
 @Context:       Architecture / Dependency Analysis
 @SessionOrigin: SESSION_DOC_2026_01_25_SSOTIFICATION
 @References:    PROTOCOL_ANCHOR_SIGNAL
-@Emits:         CROSS_REFERENCE_TRIPTYCH.md, dependency_graph.json
+@Emits:         ../CROSS_REFERENCE_TRIPTYCH.md, ../dependency_graph.json
 -->
 
 > **Consolidated From**: 9 DCRP analysis files (71KB → single reference)  
@@ -22,7 +22,7 @@ The **Decorator's Cross-Reference Protocol (DCRP)** is a repository intelligence
 1. **Dependency Analysis** — AST-based parsing for Python/Rust, regex for Markdown/TypeScript
 2. **Circular Dependency Resolution** — Distinguishes intentional doc meshes from code import cycles  
 3. **Evolution Tracking** — Historical snapshots for trend analysis
-4. **Cross-Reference Generation** — Produces `../CROSS_REFERENCE_TRIPTYCH.md` and `../dependency_graph.json`
+4. **Cross-Reference Generation** — Produces `../../CROSS_REFERENCE_TRIPTYCH.md` and `../../dependency_graph.json`
 
 **Status**: PRODUCTION-READY (as of 2026-01-01)
 
@@ -77,8 +77,8 @@ AFTER:  ℹ️ 1 documentation mesh detected and PRESERVED
 |------|---------|------|
 | `.dcrp_state.json` | Incremental processing state | State |
 | `.dcrp_evolution.json` | Historical snapshots | State |
-| `../dependency_graph.json` | NetworkX-compatible graph | Output |
-| `../CROSS_REFERENCE_TRIPTYCH.md` | Human-readable index | Output |
+| `../../dependency_graph.json` | NetworkX-compatible graph | Output |
+| `../../CROSS_REFERENCE_TRIPTYCH.md` | Human-readable index | Output |
 
 ---
 
@@ -123,8 +123,8 @@ Added 2026-01-01:
 python scripts/decorator_cross_ref_maximum.py
 
 # Outputs:
-# - CROSS_REFERENCE_TRIPTYCH.md (updated)
-# - dependency_graph.json (updated)
+# - ../CROSS_REFERENCE_TRIPTYCH.md (updated)
+# - ../dependency_graph.json (updated)
 # - .dcrp_state.json (state preserved)
 ```
 
@@ -136,16 +136,16 @@ The following files were consolidated into this synthesis and archived to `dumps
 
 | Original File | Key Content |
 |---------------|-------------|
-| `../DCRP_DEPLOYMENT_SUMMARY.md` | Initial deployment notes |
-| `../DCRP_ENHANCED_ANALYSIS.md` | AST integration analysis |
-| `../DCRP_FINAL_STATUS.md` | Production-ready declaration |
-| `../DCRP_OBSERVABILITY_UPGRADE.md` | Logging/monitoring additions |
-| `../DCRP_OBSERVABILITY_VALIDATION_COMPLETE.md` | Observability testing |
-| `../DCRP_PRODUCTION_ANALYSIS.md` | Production readiness assessment |
-| `../DCRP_REFACTOR_COMPLETE.md` | Refactoring completion report |
-| `../DCRP_REFACTORING_SESSION_SUMMARY.md` | Detailed refactoring log |
-| `../DCRP_UNIFIED_REFACTOR.md` | Script unification process |
-| `../DCRP_MERGE_REPORT.txt` | Merge verification |
+| `../../DCRP_DEPLOYMENT_SUMMARY.md` | Initial deployment notes |
+| `../../DCRP_ENHANCED_ANALYSIS.md` | AST integration analysis |
+| `../../DCRP_FINAL_STATUS.md` | Production-ready declaration |
+| `../../DCRP_OBSERVABILITY_UPGRADE.md` | Logging/monitoring additions |
+| `../../DCRP_OBSERVABILITY_VALIDATION_COMPLETE.md` | Observability testing |
+| `../../DCRP_PRODUCTION_ANALYSIS.md` | Production readiness assessment |
+| `../../DCRP_REFACTOR_COMPLETE.md` | Refactoring completion report |
+| `../../DCRP_REFACTORING_SESSION_SUMMARY.md` | Detailed refactoring log |
+| `../../DCRP_UNIFIED_REFACTOR.md` | Script unification process |
+| `../../DCRP_MERGE_REPORT.txt` | Merge verification |
 
 ---
 

@@ -1,0 +1,31 @@
+{
+  "run_id": "2026-01-29T18-52-46-564Z",
+  "workflow": "discovery",
+  "inputs": {
+    "search_term": "main"
+  },
+  "outputs": {
+    "matches": [
+      "ankh_atlas/main.py",
+      "src/main.rs",
+      "ankh_atlas/ankh_atlas/__main__.py"
+    ],
+    "node_details": {
+      "path": "ankh_atlas/main.py",
+      "spectral": "WHITE",
+      "role": "🌿 THE GARDEN",
+      "essence": "Python module: main",
+      "dependencies": [],
+      "dependents": []
+    },
+    "summary": "🌿 THE GARDEN: Python module: main. Depends on 0 components, referenced by 0."
+  },
+  "elapsed_ms": 3,
+  "tool_versions": {
+    "server_commit": "5c666b2",
+    "bootstrap_spec": "1752952",
+    "workflows_doc": "622e57f"
+  },
+  "notes": "smoke suite validation run",
+  "success": true
+}

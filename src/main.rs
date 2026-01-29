@@ -31,7 +31,10 @@ use winit::{
     dpi::LogicalSize,
 };
 
-use data::loader::load_game_data;
+// use data::loader::load_game_data;
+use data::persistence::{load_game_state, save_game_state};
+use data::factions::FactionRegistry;
+use data::verifier::AxiomVerifier;
 use render::{VulkanContext, Renderer};
 
 /// Entry point - The Gate to the Chthonic Archive
@@ -46,10 +49,36 @@ fn main() -> Result<()> {
     info!("║   Classification: ASC-NATIVE-CHAIN-RPG                          ║");
     info!("║   Engine: Rust/Vulkan 1.3 Native | Blockchain: Solana (Pending) ║");
     info!("╚══════════════════════════════════════════════════════════════════╝");
+
+    // === PHASE 14: AXIOMATIC VERIFICATION ===
+    info!("⚖️ Verifying Axiomatic Integrity (SSOT)...");
+    let verifier = AxiomVerifier::new(
+        ".github/copilot-instructions.md", 
+        "23658c449f09f3b2ad4d5cb7b94f2ecdcc4c64ae4a5de2d852872eef7f153b22"
+    );
+    if let Err(e) = verifier.verify_integrity() {
+        error!("❌ AXIOMATIC FAILURE: {}", e);
+        // In a production build, we might terminate here.
+        // For development, we log and proceed with caution.
+    }
     
-    // === PHASE 1: LOAD GAME DATA ===
-    info!("📥 Loading game data from assets/data.json...");
-    let game_data = load_game_data("assets/data.json")?;
+    // === PHASE 1: LOAD GAME DATA (Level 1.5 Entity Persistence) ===
+    info!("📥 Loading game data and persistent state...");
+    let save_path = "assets/save_state.json";
+    let default_path = "assets/data.json";
+    
+    let game_data = load_game_state(save_path, default_path)?;
+    
+    // === PHASE 12: WORLD MANIFESTATION ===
+    info!("🌍 Manifesting world into Faction Registry...");
+    let mut faction_registry = FactionRegistry::new();
+    faction_registry.initialize(&game_data);
+    
+    faction_registry.log_invocation("AIP-FA1: World Manifestation Initialized");
+    
+    info!("✅ World manifestation complete. {} matriarchs active. {} world layers manifested.", 
+          faction_registry.matriarchs.len(),
+          faction_registry.districts.len());
     
     info!("✅ Data ingestion complete. {} entities ready for manifestation.", 
           game_data.entities.len());
@@ -85,12 +114,19 @@ fn main() -> Result<()> {
     info!("═══════════════════════════════════════════════════════════════════");
     
     // === PHASE 4: RUN EVENT LOOP ===
+    let mut frame_count: u64 = 0;
+
     event_loop.run(move |event, elwt| {
         match event {
             Event::WindowEvent { event, .. } => match event {
                 WindowEvent::CloseRequested => {
                     info!("👋 Window close requested. Terminating Archive.");
                     
+                    // === PHASE 12: PERSISTENCE (Save on Exit) ===
+                    if let Err(e) = save_game_state(save_path, &game_data) {
+                        error!("❌ Failed to save game state: {}", e);
+                    }
+
                     // Clean up renderer before exit
                     unsafe {
                         renderer.cleanup(&vulkan_context.device);
@@ -124,18 +160,34 @@ fn main() -> Result<()> {
                                     return;
                                 }
                                 Err(e) => {
-                                    error!("❌ Resize failed: {:?}", e);
+                                    error!("❌ Resize failed: {e:?}");
                                     return;
                                 }
                             }
-                        } else {
-                            // Window minimized, skip rendering
-                            return;
                         }
+                        // Window minimized, skip rendering
+                        return;
+                    }
+
+                    // PHASE 15: SPATIAL ACTUALIZATION
+                    // Cycle through world layers colors every 120 frames
+                    frame_count += 1;
+                    let layer_num = ((frame_count / 120) % 6) + 1;
+                    let layer_code = format!("LAYER-{}", layer_num);
+                    
+                    let layer_color = faction_registry.districts.get(&layer_code)
+                        .map(|d| d.visual.primary_color)
+                        .unwrap_or([0.69, 0.0, 0.96]); // Fallback Purple
+
+                    let final_color = [layer_color[0], layer_color[1], layer_color[2], 1.0];
+
+                    if frame_count % 120 == 0 {
+                        info!("🎨 Manifesting Spectral Frequency for {}: [{}, {}, {}]", 
+                              layer_code, layer_color[0], layer_color[1], layer_color[2]);
                     }
 
                     // RENDER THE FRAME! 🔺
-                    match unsafe { renderer.render_frame(&vulkan_context) } {
+                    match unsafe { renderer.render_frame(&vulkan_context, final_color) } {
                         Ok(needs_resize) => {
                             if needs_resize {
                                 renderer.needs_resize = true;
@@ -144,7 +196,7 @@ fn main() -> Result<()> {
                             }
                         }
                         Err(e) => {
-                            error!("❌ Render failed: {:?}", e);
+                            error!("❌ Render failed: {e:?}");
                         }
                     }
                 }

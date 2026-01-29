@@ -1,19 +1,19 @@
 #!/usr/bin/env python3
 """
 ╔══════════════════════════════════════════════════════════════════════════════╗
-║  THE DECORATOR'S CROSS-REFERENCE PROTOCOL (DCRP) - UNIFIED PRODUCTION       ║
+║  THE DECORATOR'S CROSS-REFERENCE PROTOCOL (DCRP) - UNIFIED PRODUCTION        ║
 ║  Self-Updating Architectural Self-Awareness System                           ║
 ║                                                                              ║
 ║  Evolutionary Lineage (Capabilities Merged):                                 ║
-║    - decorator_cross_ref_enhanced.py → AST analysis, Rust parsing           ║
-║    - decorator_cross_ref_maximum.py → State tracking, auto-detection        ║
-║    - decorator_cross_ref_production.py → Cluster resolution, intelligent    ║
+║    - decorator_cross_ref_enhanced.py → AST analysis, Rust parsing            ║
+║    - decorator_cross_ref_maximum.py → State tracking, auto-detection         ║
+║    - decorator_cross_ref_production.py → Cluster resolution, intelligent     ║
 ║                                                                              ║
-║  Purpose: Automatically inject ML-synthesized cross-references across ALL   ║
+║  Purpose: Automatically inject ML-synthesized cross-references across ALL    ║
 ║           repository files (existing + new), resolving circular dependencies ║
 ║           via dependency inversion + acyclic documentation hierarchy         ║
 ║                                                                              ║
-║  Invocation: uv run python decorator_cross_ref_maximum.py [--inject]        ║
+║  Invocation: uv run python decorator_cross_ref_maximum.py [--inject]         ║
 ║                                                                              ║
 ║  The Decorator's Mandate: "Every file self-aware, sustainable, circular-free"║
 ╚══════════════════════════════════════════════════════════════════════════════╝
@@ -93,6 +93,7 @@ class FileIdentity:
     theatrical_essence: str = ""  # The Decorator's synthesis
     circular_layer: int = 0  # Topological layer (0 = no dependencies, higher = more deps)
     is_interface: bool = False  # True if this file breaks circular dependency via abstraction
+    sid: str = ""  # Semantic ID (@SID)
 
 @dataclass
 class CircularDependency:
@@ -553,24 +554,31 @@ class MLSynthesizer:
         suffix = path.suffix.lower()
         
         if suffix == '.rs':
-            return self.synthesize_rust_identity(path, content)
+            identity = self.synthesize_rust_identity(path, content)
         elif suffix == '.py':
-            return self.synthesize_python_identity(path, content)
+            identity = self.synthesize_python_identity(path, content)
         elif suffix == '.md':
-            return self.synthesize_markdown_identity(path, content)
+            identity = self.synthesize_markdown_identity(path, content)
         elif suffix in ['.toml', '.json', '.yaml', '.yml']:
-            return self.synthesize_config_identity(path, content)
+            identity = self.synthesize_config_identity(path, content)
         elif suffix in ['.ts', '.tsx', '.js', '.jsx']:
-            return self.synthesize_typescript_identity(path, content)
+            identity = self.synthesize_typescript_identity(path, content)
         else:
             # Generic handler
-            return FileIdentity(
+            identity = FileIdentity(
                 path=path,
                 spectral_freq=SPECTRAL_MAP.get(suffix, "VIOLET"),
                 primary_purpose=f"{suffix} file",
                 architectural_role="UTILITY",
                 theatrical_essence=f"Auxiliary file: {path.name}"
             )
+
+        # ═══ EXTRACT SID (@SID) ═══
+        sid_match = re.search(r'@SID:\s+([\w<>_ \-]+)', content)
+        if sid_match:
+            identity.sid = sid_match.group(1).strip()
+            
+        return identity
 
 # ═══════════════════════════════════════════════════════════════════════════
 #  REPOSITORY SCANNER
@@ -632,7 +640,7 @@ def build_dependency_graph(identities: List[FileIdentity]) -> nx.DiGraph:
     
     # Add nodes
     for identity in identities:
-        rel_path = str(identity.path.relative_to(REPO_ROOT))
+        rel_path = identity.path.relative_to(REPO_ROOT).as_posix()
         G.add_node(
             rel_path,
             spectral_freq=identity.spectral_freq,
@@ -643,10 +651,10 @@ def build_dependency_graph(identities: List[FileIdentity]) -> nx.DiGraph:
     
     # Add edges (dependencies)
     for identity in identities:
-        source = str(identity.path.relative_to(REPO_ROOT))
+        source = identity.path.relative_to(REPO_ROOT).as_posix()
         for dep in identity.dependencies:
             try:
-                target = str(dep.relative_to(REPO_ROOT))
+                target = dep.relative_to(REPO_ROOT).as_posix()
                 if G.has_node(target):
                     G.add_edge(source, target)
             except:
@@ -811,7 +819,7 @@ def assign_topological_layers(identities: List[FileIdentity], graph: nx.DiGraph)
     Layer 0 = no dependencies, Layer N = max(dependency layers) + 1
     Handles remaining cycles gracefully via iterative layer assignment.
     """
-    identity_map = {str(id.path.relative_to(REPO_ROOT)): id for id in identities}
+    identity_map = {id.path.relative_to(REPO_ROOT).as_posix(): id for id in identities}
     
     # Try topological sort first (works if truly acyclic)
     try:
@@ -823,7 +831,7 @@ def assign_topological_layers(identities: List[FileIdentity], graph: nx.DiGraph)
             if not predecessors:
                 layers[node] = 0
             else:
-                layers[node] = max(layers.get(p, 0) for p in predecessors) + 1
+                layers[node] = max((layers.get(p, 0) for p in predecessors), default=0) + 1
         
         for node, layer in layers.items():
             if node in identity_map:
@@ -853,16 +861,18 @@ def assign_topological_layers(identities: List[FileIdentity], graph: nx.DiGraph)
                 
                 predecessors = list(graph.predecessors(node))
                 if predecessors:
-                    max_pred_layer = max(
-                        identity_map.get(p, type('obj', (object,), {'circular_layer': 0})).circular_layer
-                        for p in predecessors
-                        if p in identity_map
-                    )
-                    new_layer = max_pred_layer + 1
-                    
-                    if new_layer != identity_map[node].circular_layer:
-                        identity_map[node].circular_layer = new_layer
-                        changed = True
+                    # Filter predecessors to only those in identity_map
+                    map_predecessors = [p for p in predecessors if p in identity_map]
+                    if map_predecessors:
+                        max_pred_layer = max(
+                            identity_map[p].circular_layer
+                            for p in map_predecessors
+                        )
+                        new_layer = max_pred_layer + 1
+                        
+                        if new_layer != identity_map[node].circular_layer:
+                            identity_map[node].circular_layer = new_layer
+                            changed = True
         
         print(f"   ✅ Iterative layering completed in {iteration} iterations")
 
@@ -892,7 +902,7 @@ def save_current_state(identities: List[FileIdentity]) -> None:
     """Save current file hashes to state cache for next run."""
     state = {}
     for identity in identities:
-        rel_path = str(identity.path.relative_to(REPO_ROOT))
+        rel_path = identity.path.relative_to(REPO_ROOT).as_posix()
         state[rel_path] = identity.content_hash
     
     with open(STATE_CACHE, 'w') as f:
@@ -909,7 +919,7 @@ def detect_new_and_changed_files(identities: List[FileIdentity]) -> Tuple[List[F
     changed_files = []
     
     for identity in identities:
-        rel_path = str(identity.path.relative_to(REPO_ROOT))
+        rel_path = identity.path.relative_to(REPO_ROOT).as_posix()
         current_hash = compute_file_hash(identity.path)
         identity.content_hash = current_hash
         
@@ -926,7 +936,7 @@ def detect_new_and_changed_files(identities: List[FileIdentity]) -> Tuple[List[F
 
 def generate_cross_reference_header(identity: FileIdentity, graph: nx.DiGraph) -> str:
     """Generate ornamental header comment for file injection."""
-    rel_path = str(identity.path.relative_to(REPO_ROOT))
+    rel_path = identity.path.relative_to(REPO_ROOT).as_posix()
     
     # Get predecessors (what this file depends on)
     predecessors = list(graph.predecessors(rel_path))
@@ -947,21 +957,42 @@ def generate_cross_reference_header(identity: FileIdentity, graph: nx.DiGraph) -
         comment_start = "#"
         box_char = "═"
     
+    # Format exports for the "Python module: ..." line
+    exports_line = ', '.join(identity.key_exports[:6])
+    if len(identity.key_exports) > 6:
+        exports_line += "..."
+
     lines = []
     lines.append(f"{comment_start} ╔{box_char * 76}╗")
     lines.append(f"{comment_start} ║  THE DECORATOR'S BLESSING: {identity.path.name:<45} ║")
-    lines.append(f"{comment_start} ║  {identity.theatrical_essence:<74} ║")
+    
+    if identity.path.suffix == '.py':
+        lines.append(f"{comment_start} ║  Python module: {exports_line:<59} ║")
+    elif identity.path.suffix == '.rs':
+        lines.append(f"{comment_start} ║  Rust module: {exports_line:<61} ║")
+    else:
+        lines.append(f"{comment_start} ║  {identity.theatrical_essence:<74} ║")
+        
     lines.append(f"{comment_start} ╠{box_char * 76}╣")
     lines.append(f"{comment_start} ║  Spectral Frequency: {identity.spectral_freq:<54} ║")
     lines.append(f"{comment_start} ║  Architectural Role: {identity.architectural_role:<54} ║")
     
+    # Use Semantic ID if present
+    if identity.sid:
+        lines.append(f"{comment_start} ║  Semantic ID: {identity.sid:<61} ║")
+
     if identity.primary_purpose:
-        purpose_wrapped = identity.primary_purpose[:70]
+        # Take only the first line of the purpose to avoid header corruption
+        purpose_line = identity.primary_purpose.split('\n')[0].strip()
+        purpose_wrapped = purpose_line[:70]
         lines.append(f"{comment_start} ║  Purpose: {purpose_wrapped:<65} ║")
     
     if identity.key_exports:
-        exports_str = ', '.join(identity.key_exports[:5])[:68]
-        lines.append(f"{comment_start} ║  Exports: {exports_str:<65} ║")
+        exports_str = ', '.join(identity.key_exports[:8])
+        if len(identity.key_exports) > 8:
+            exports_str += "..."
+        exports_wrapped = exports_str[:68]
+        lines.append(f"{comment_start} ║  Exports: {exports_wrapped:<65} ║")
     
     lines.append(f"{comment_start} ╠{box_char * 76}╣")
     lines.append(f"{comment_start} ║  Cross-References (Bidirectional):                                      ║")
@@ -1162,7 +1193,7 @@ def main():
     
     # Calculate reverse dependencies (successors)
     for identity in file_identities:
-        rel_path = str(identity.path.relative_to(REPO_ROOT))
+        rel_path = identity.path.relative_to(REPO_ROOT).as_posix()
         if graph.has_node(rel_path):
             identity.dependents = set(
                 REPO_ROOT / p for p in graph.successors(rel_path)
@@ -1217,7 +1248,9 @@ def main():
     print("═" * 76)
     master_index = generate_master_index(file_identities, dir_identities, graph)
     
-    output_path = REPO_ROOT / "CROSS_REFERENCE_TRIPTYCH.md"
+    output_path = REPO_ROOT / "docs" / "protocols" / "CROSS_REFERENCE_TRIPTYCH.md"
+    # Ensure directory exists
+    output_path.parent.mkdir(parents=True, exist_ok=True)
     output_path.write_text(master_index, encoding='utf-8')
     print(f"✅ Master index written to: {output_path}")
     
@@ -1228,7 +1261,9 @@ def main():
     print("STEP 7: Dependency Graph Export")
     print("═" * 76)
     graph_data = nx.node_link_data(graph)
-    graph_json_path = REPO_ROOT / "dependency_graph.json"
+    graph_json_path = REPO_ROOT / "data" / "graphs" / "dependency_graph.json"
+    # Ensure directory exists
+    graph_json_path.parent.mkdir(parents=True, exist_ok=True)
     with open(graph_json_path, 'w', encoding='utf-8') as f:
         json.dump(graph_data, f, indent=2)
     print(f"✅ Graph JSON written to: {graph_json_path}")

@@ -529,3 +529,43 @@ pub enum SiphonForce {
     /// Brutal extraction (faster, more resistance)
     Brutal,
 }
+
+// =============================================================================
+// PHASE 13: PROCEDURAL GENERATION TYPES
+// =============================================================================
+
+/// MMPS Procedural Generation Template (Tier 3)
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct SubMILFTemplate {
+    pub base_archetype: u32, // Matriarch entity ID
+    pub specialization: String,
+    pub generated_title: String,
+    pub trait_overlaps: Vec<String>,
+}
+
+/// Tier 4 Interloper/Agent Template
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct AgentTemplate {
+    pub id: u32,
+    pub name: String,
+    pub faction: FactionCode,
+    pub chaos_utility: f32,
+    pub governance_cost: f32,
+}
+
+/// World Layer identification in the 6-layer architecture
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, Serialize, Deserialize)]
+pub enum WorldLayer {
+    /// Layer 1: Resonance Gate
+    ResonanceGate,
+    /// Layer 2: Temporal Nexus
+    TemporalNexus,
+    /// Layer 3: Conceptual Atrium
+    ConceptualAtrium,
+    /// Layer 4: Synthesis Forge
+    SynthesisForge,
+    /// Layer 5: Strategic Observatory
+    StrategicObservatory,
+    /// Layer 6: Abyssal Archive
+    AbyssalArchive,
+}

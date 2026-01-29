@@ -17,7 +17,7 @@
 //! — Dr. Lysandra Thorne
 //!
 //! This pipeline implementation:
-//! - Uses VkPipelineRenderingCreateInfo (no VkRenderPass)
+//! - Uses `VkPipelineRenderingCreateInfo` (no `VkRenderPass`)
 //! - Loads SPIR-V shaders compiled at build time
 //! - Configures triangle rendering with push constants for MVP
 //! - Prepares for isometric grid rendering
@@ -25,7 +25,6 @@
 use anyhow::{Context, Result};
 use ash::{vk, Device};
 use log::{debug, info};
-use std::ffi::CStr;
 
 /// Graphics pipeline for rendering
 pub struct VulkanPipeline {
@@ -35,13 +34,14 @@ pub struct VulkanPipeline {
     pub fragment_shader: vk::ShaderModule,
 }
 
-/// Push constants for MVP transformation (192 bytes = 3 mat4)
+/// Push constants for MVP transformation + Layer Color (208 bytes)
 #[repr(C)]
 #[derive(Clone, Copy, Debug)]
 pub struct PushConstants {
     pub model: [[f32; 4]; 4],
     pub view: [[f32; 4]; 4],
     pub projection: [[f32; 4]; 4],
+    pub layer_color: [f32; 4],
 }
 
 impl Default for PushConstants {
@@ -50,6 +50,7 @@ impl Default for PushConstants {
             model: identity_matrix(),
             view: identity_matrix(),
             projection: identity_matrix(),
+            layer_color: [1.0, 1.0, 1.0, 1.0],
         }
     }
 }
@@ -77,7 +78,7 @@ impl Vertex {
     pub fn binding_description() -> vk::VertexInputBindingDescription {
         vk::VertexInputBindingDescription::default()
             .binding(0)
-            .stride(std::mem::size_of::<Self>() as u32)
+            .stride(u32::try_from(std::mem::size_of::<Self>()).expect("Vertex size too large"))
             .input_rate(vk::VertexInputRate::VERTEX)
     }
 
@@ -95,7 +96,7 @@ impl Vertex {
                 .binding(0)
                 .location(1)
                 .format(vk::Format::R32G32B32_SFLOAT)
-                .offset(12), // 3 * sizeof(f32)
+                .offset(u32::try_from(std::mem::size_of::<[f32; 3]>()).unwrap()),
         ]
     }
 }
@@ -125,7 +126,7 @@ impl VulkanPipeline {
         info!("✅ Shader modules created");
 
         // Shader stages
-        let entry_point = CStr::from_bytes_with_nul_unchecked(b"main\0");
+        let entry_point = c"main";
         
         let vertex_stage = vk::PipelineShaderStageCreateInfo::default()
             .stage(vk::ShaderStageFlags::VERTEX)
@@ -195,11 +196,11 @@ impl VulkanPipeline {
             .logic_op_enable(false)
             .attachments(&color_blend_attachments);
 
-        // Push constant range (MVP matrices = 192 bytes)
+        // Push constant range (matrices + color = 208 bytes)
         let push_constant_range = vk::PushConstantRange::default()
-            .stage_flags(vk::ShaderStageFlags::VERTEX)
+            .stage_flags(vk::ShaderStageFlags::VERTEX | vk::ShaderStageFlags::FRAGMENT)
             .offset(0)
-            .size(std::mem::size_of::<PushConstants>() as u32);
+            .size(u32::try_from(std::mem::size_of::<PushConstants>()).expect("Push constants size too large"));
 
         let push_constant_ranges = [push_constant_range];
         let pipeline_layout_info = vk::PipelineLayoutCreateInfo::default()
@@ -209,7 +210,7 @@ impl VulkanPipeline {
             .create_pipeline_layout(&pipeline_layout_info, None)
             .context("Failed to create pipeline layout")?;
 
-        info!("✅ Pipeline layout created (192 bytes push constants)");
+        info!("✅ Pipeline layout created (208 bytes push constants)");
 
         // === DYNAMIC RENDERING (Vulkan 1.3) ===
         // No VkRenderPass! Use VkPipelineRenderingCreateInfo instead
@@ -255,7 +256,7 @@ impl VulkanPipeline {
     /// Create a shader module from SPIR-V bytecode
     unsafe fn create_shader_module(device: &Device, code: &[u8]) -> Result<vk::ShaderModule> {
         // SPIR-V code must be aligned to 4 bytes
-        assert!(code.len() % 4 == 0, "SPIR-V code must be 4-byte aligned");
+        assert!(code.len().is_multiple_of(4), "SPIR-V code must be 4-byte aligned");
 
         let code_u32: Vec<u32> = code
             .chunks_exact(4)
@@ -281,7 +282,7 @@ impl VulkanPipeline {
 }
 
 /// Triangle vertices in WORLD SPACE for isometric camera testing
-/// The isometric camera looks at origin with ortho_size=5, so vertices
+/// The isometric camera looks at origin with `ortho_size=5`, so vertices
 /// should be within ~5 units of origin to be visible
 pub fn triangle_vertices() -> Vec<Vertex> {
     vec![

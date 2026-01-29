@@ -55,7 +55,7 @@ mcp/
 
 ### 3. query_dependency_graph
 - Stub accepting query parameter
-- **TODO:** Query dependency_graph_production.json
+- **TODO:** Query dependency_graph.json
 
 ## Testing
 
@@ -93,7 +93,7 @@ bun test mcp/server.test.ts
 1. **~~Implement SSOT hashing~~** ✅ COMPLETE (Bun-native SHA-256)
 
 2. **Implement dependency graph queries:**
-   - Load dependency_graph_production.json
+   - Load dependency_graph.json
    - Support queries: "find dependencies of X", "find dependents of X", "spectral frequency X"
    - Return filtered subgraphs
 
@@ -108,4 +108,4 @@ bun test mcp/server.test.ts
 - Prerequisites: `docs/MCP_AUTONOMOUS_PREREQUISITES.md` (FROZEN)
 - Template: `docs/MCP_SERVER_TEMPLATE.md`
 - SSOT: `.github/copilot-instructions.md` Section XIV.3
-- DCRP: Section XV (dependency_graph_production.json)
+- DCRP: Section XV (dependency_graph.json)

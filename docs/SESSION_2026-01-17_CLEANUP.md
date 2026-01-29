@@ -24,9 +24,9 @@ SEMANTIC IDENTITY (Anchor & Signal Protocol)
 | @SID | Type | Path (Current) | Purpose |
 |------|------|----------------|---------|
 | `TOOL_SESSION_EXTRACTOR_V1` | Script | [`scripts/extract_session_value.py`](../scripts/extract_session_value.py) | Session JSONL extractor |
-| `TOOL_ROOT_AUDIT_V1` | Script | [`scripts/rootdir_health_audit.py`](../scripts/rootdir_health_audit.py) | Root directory auditor |
+| `TOOL_ROOT_AUDIT_V1` | Script | [`scripts/../scripts/rootdir_health_audit.py`](../scripts/../scripts/rootdir_health_audit.py) | Root directory auditor |
 | `TOOL_SID_RESOLVER_V1` | Script | [`scripts/resolve_sid.py`](../scripts/resolve_sid.py) | Semantic ID resolver |
-| `TOOL_CODEBASE_MAPPER_V1` | Script | [`scripts/map_codebase.py`](../scripts/map_codebase.py) | Cartography tool |
+| `TOOL_CODEBASE_MAPPER_V1` | Script | [`scripts/../scripts/map_codebase.py`](../scripts/../scripts/map_codebase.py) | Cartography tool |
 | `SESSION_DOC_2026_01_17_CLEANUP` | SessionDoc | [`docs/SESSION_2026-01-17_CLEANUP.md`](./SESSION_2026-01-17_CLEANUP.md) | This session map |
 | `STATE_ROOTDIR_HEALTH` | State | [`docs/ROOTDIR_HEALTH.md`](./ROOTDIR_HEALTH.md) | Health audit output |
 | `REPORT_TRUTH_STEWARDSHIP_2026_01_17` | Report | [`docs/SESSION_2026_01_17_TRUTH_STEWARDSHIP.md`](./SESSION_2026_01_17_TRUTH_STEWARDSHIP.md) | Truth validation log |
@@ -56,9 +56,9 @@ SESSION_DOC_2026_01_17_CLEANUP
   └─► emitted: REPORT_META_REVIEW_2026_01_17
 ```
 
-**Resolution:** Run `uv run scripts/resolve_sid.py` to rebuild `../data/indices/sid_index.json`
+**Resolution:** Run `uv run scripts/resolve_sid.py` to rebuild `../data/indices/../data/indices/sid_index.json`
 
-**Protocol:** Files reference by `@SID`, not path. Paths are resolvable via `../ankh_index.json` or future `ankh://` URI scheme.
+**Protocol:** Files reference by `@SID`, not path. Paths are resolvable via `../../ankh_index.json` or future `ankh://` URI scheme.
 
 **Invariant:** Every `@SID` declared MUST resolve to exactly one file. Moving files updates the resolver, not the references.
 
@@ -71,7 +71,7 @@ SESSION_DOC_2026_01_17_CLEANUP
 - [x] **Architecture Shift:** Implemented Anchor & Signal Protocol (`@SID`) to decouple reference from location
 - [x] **Tool Stabilization:** Refactored audit/mapping tools to use **State Files** instead of logs
 - [x] **Inventory Cleanup:** Created standardized `docs/README.md` and indexed valid files
-- [x] **Tool Robustness:** Updated `../scripts/map_codebase.py` and `../scripts/rootdir_health_audit.py` with `--dry-run` and error handling
+- [x] **Tool Robustness:** Updated `../scripts/../scripts/map_codebase.py` and `../scripts/../scripts/rootdir_health_audit.py` with `--dry-run` and error handling
 - [x] **Migration:** Moved 9 root Python files and 1 TypeScript file to `scripts/` to clean the root directory.
 
 ## Next Steps

@@ -1,3 +1,17 @@
+// ╔════════════════════════════════════════════════════════════════════════════╗
+// ║  THE DECORATOR'S BLESSING: chthonic-crawler.ts                           ║
+// ║  TypeScript module: frontend utility                                        ║
+// ╠════════════════════════════════════════════════════════════════════════════╣
+// ║  Spectral Frequency: ORANGE                                                 ║
+// ║  Architectural Role: 🔭 THE OBSERVATORY                                      ║
+// ║  Purpose: * Chthonic Crawler - Agentic Web Explorer
+ * 
+ * Uses bun-cdp to auton ║
+// ╠════════════════════════════════════════════════════════════════════════════╣
+// ║  Cross-References (Bidirectional):                                      ║
+// ║    (Standalone file - no detected dependencies)                          ║
+// ╚════════════════════════════════════════════════════════════════════════════╝
+
 #!/usr/bin/env bun
 /**
  * Chthonic Crawler - Agentic Web Explorer

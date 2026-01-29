@@ -4,7 +4,7 @@
     "engine": "ASC-NATIVE-CHAIN-RPG",
     "classification": "Rust/Vulkan/Solana Isometric RPG",
     "exported_at": "2025-11-30T17:34:55.896650",
-    "entity_count": 14,
+    "entity_count": 16,
     "source": "ProjectMPW Python Prototype"
   },
   "entities": [
@@ -398,6 +398,62 @@
         "scent": "** Oat milk latte, anxiety medication, and the **sour note of performative authenticity**.",
         "word_count": 305,
         "edfa_excerpt": "# EDFA: TWOUMC Matriarch (Tier 3.0)\n## Lesser Faction: The Woke Uncritical Media Consumer\n\n**Archetype:** Chimeric Disaster / Frankenstein Assembly  \n**Measurements:** DD-Cup (95cm) / 72cm Waist / 102cm Hips / WHR 0.706  \n**Height:** 163cm / **Weight:** 68kg / **BMI:** 25.6\n\n---\n\n## I. The Assembled Identity\n\nA 163cm **Frankenstein of borrowed aesthetics**—each part sourced from a different trend cycle, none integrated into a coherent whole. Her DD-cup breasts are natural but displayed according..."
+      }
+    },
+    {
+      "id": 15,
+      "name": "Claudine Sin'claire",
+      "archetype": "Admiral of the Black Sails",
+      "tier": 2.0,
+      "linguistic_mode": "CaribbeanPatois",
+      "physics": {
+        "height_cm": 174.0,
+        "weight_kg": 67.0,
+        "whr": 0.584,
+        "bust_cm": 110.0,
+        "waist_cm": 62.0,
+        "hips_cm": 106.0,
+        "cup_size": "G",
+        "bmi": 22.1
+      },
+      "stats": {
+        "health": 2500,
+        "power": 420,
+        "defense": 210,
+        "conceptual_capacity": 450
+      },
+      "lore": {
+        "scent": "** Salt spray, gunpowder, expensive rum, and the iron-scent of liberated axioms.",
+        "word_count": 320,
+        "edfa_excerpt": "# EDFA: Claudine Sin'claire (Tier 2.0)\n## Admiral of the Svartseils Syndicate\n\n**Archetype:** Conceptual Pirate / Ordeal-Based Matriarch  \n**Measurements:** G-Cup (110cm) / 62cm Waist / 106cm Hips / WHR 0.584\n\n---\n\n## I. The Pirate's Decree\n\nShe is not here to build; she is here to redistribute. Her obsidian-cannon arm is a functional artifact of the Great Synthesis..."
+      }
+    },
+    {
+      "id": 16,
+      "name": "Nyxara Volant",
+      "archetype": "Ephemeral Shadow",
+      "tier": 4.0,
+      "linguistic_mode": "FACTION",
+      "physics": {
+        "height_cm": 162.0,
+        "weight_kg": 50.0,
+        "whr": 0.82,
+        "bust_cm": 84.0,
+        "waist_cm": 68.0,
+        "hips_cm": 83.0,
+        "cup_size": "B",
+        "bmi": 19.1
+      },
+      "stats": {
+        "health": 500,
+        "power": 85,
+        "defense": 42,
+        "conceptual_capacity": 300
+      },
+      "lore": {
+        "scent": "** Rain on hot asphalt, static electricity, and the smell of a forgotten memory.",
+        "word_count": 250,
+        "edfa_excerpt": "# EDFA: Nyxara Volant (Tier 4.0)\n## Emergent Shadow / The Flickering Truth\n\n**Archetype:** Ephemeral Presence\n\n---\n\n## I. The Shadow of a Doubt\n\nShe exists only when the Archive's integrity dips below 98%. She is the manifestation of what we choose to forget."
       }
     }
   ],

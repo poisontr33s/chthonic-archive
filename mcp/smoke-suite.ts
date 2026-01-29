@@ -99,7 +99,9 @@ async function workflow1_Audit(): Promise<WorkflowResult> {
     const graphData = JSON.parse(graphStats);
     
     // Extract top 5 nodes by degree (dependencies + dependents count)
-    const graph = await import("../dependency_graph_production.json");
+    const graphRaw = await Bun.file(resolve(import.meta.dir, "../data/graphs/dependency_graph.json")).text();
+    const graph = JSON.parse(graphRaw);
+    
     const nodeDegrees = graph.nodes.map((node: any) => {
       const deps = graph.edges.filter((e: any) => e.source === node.id).length;
       const dependents = graph.edges.filter((e: any) => e.target === node.id).length;
@@ -123,8 +125,8 @@ async function workflow1_Audit(): Promise<WorkflowResult> {
       },
       graph_summary: {
         top_by_degree: topNodes,
-        total_nodes: graphData.nodes,
-        total_edges: graphData.edges,
+        total_nodes: graphData.total_nodes,
+        total_edges: graphData.total_edges,
       },
     };
   });
@@ -133,22 +135,24 @@ async function workflow1_Audit(): Promise<WorkflowResult> {
 async function workflow2_ChangeImpact(): Promise<WorkflowResult> {
   console.log("\n--- Workflow 2: Change Impact (node → dependents → spectral) ---");
   
-  return runWorkflow("impact", { component: "BLACKSMITH" }, async () => {
-    const node = await queryDependencyGraph("node BLACKSMITH");
+  return runWorkflow("impact", { component: "src/main.rs" }, async () => {
+    const node = await queryDependencyGraph("node src/main.rs");
     const nodeData = JSON.parse(node);
     
     if (nodeData.error) {
       throw new Error(`Node not found: ${nodeData.error}`);
     }
     
-    const deps = await queryDependencyGraph("dependencies BLACKSMITH");
+    const deps = await queryDependencyGraph("dependencies src/main.rs");
     const depsData = JSON.parse(deps);
     
-    const dependents = await queryDependencyGraph("dependents BLACKSMITH");
+    const dependents = await queryDependencyGraph("dependents src/main.rs");
     const dependentsData = JSON.parse(dependents);
     
     // Get spectral tags for dependents
-    const graph = await import("../dependency_graph_production.json");
+    const graphRaw = await Bun.file(resolve(import.meta.dir, "../data/graphs/dependency_graph.json")).text();
+    const graph = JSON.parse(graphRaw);
+    
     const dependentsWithSpectral = dependentsData.dependents.slice(0, 5).map((dep: string) => {
       const depNode = graph.nodes.find((n: any) => n.id === dep);
       return { path: dep, spectral: depNode?.spectral_freq || "UNKNOWN" };
@@ -179,10 +183,15 @@ async function workflow3_CurriculumOrdering(): Promise<WorkflowResult> {
     const spectral = await queryDependencyGraph("spectral GOLD");
     const spectralData = JSON.parse(spectral);
     
+    if (spectralData.error) {
+      throw new Error(`Spectral query failed: ${spectralData.error}`);
+    }
+
     const stats = await queryDependencyGraph("stats");
     const statsData = JSON.parse(stats);
     
-    const graph = await import("../dependency_graph_production.json");
+    const graphRaw = await Bun.file(resolve(import.meta.dir, "../data/graphs/dependency_graph.json")).text();
+    const graph = JSON.parse(graphRaw);
     
     // Calculate in-degree for GOLD nodes
     const goldNodes = spectralData.nodes.slice(0, 10).map((nodeId: string) => {
@@ -209,9 +218,9 @@ async function workflow3_CurriculumOrdering(): Promise<WorkflowResult> {
       frequency: "GOLD",
       ordered_nodes: goldNodes,
       stats: {
-        total_gold: spectralData.count,
-        total_nodes: statsData.nodes,
-        gold_percentage: ((spectralData.count / statsData.nodes) * 100).toFixed(1),
+        total_gold: spectralData.total_count,
+        total_nodes: statsData.total_nodes,
+        gold_percentage: ((spectralData.total_count / statsData.total_nodes) * 100).toFixed(1),
       },
     };
   });
@@ -221,7 +230,8 @@ async function workflow4_DependencyTrace(): Promise<WorkflowResult> {
   console.log("\n--- Workflow 4: Dependency Trace (dependencies → dependents → graph analysis) ---");
   
   return runWorkflow("trace", { component: "README.md", max_depth: 3 }, async () => {
-    const graph = await import("../dependency_graph_production.json");
+    const graphRaw = await Bun.file(resolve(import.meta.dir, "../data/graphs/dependency_graph.json")).text();
+    const graph = JSON.parse(graphRaw);
     
     // Find README.md node
     const rootNode = graph.nodes.find((n: any) => 
@@ -269,8 +279,12 @@ async function workflow5_SpectralHealth(): Promise<WorkflowResult> {
     const stats = await queryDependencyGraph("stats");
     const statsData = JSON.parse(stats);
     
+    if (statsData.error) {
+       throw new Error(`Stats query failed: ${statsData.error}`);
+    }
+
     const distribution = statsData.spectral_distribution;
-    const totalNodes = statsData.nodes;
+    const totalNodes = statsData.total_nodes;
     
     const flags: any[] = [];
     const representatives: Record<string, string[]> = {};
@@ -308,17 +322,18 @@ async function workflow5_SpectralHealth(): Promise<WorkflowResult> {
 async function workflow6_NodeDiscovery(): Promise<WorkflowResult> {
   console.log("\n--- Workflow 6: Node Discovery (scan → node lookup → context) ---");
   
-  return runWorkflow("discovery", { search_term: "Blacksmith" }, async () => {
+  return runWorkflow("discovery", { search_term: "main" }, async () => {
     // Use graph directly for discovery since scan returns limited results
-    const graph = await import("../dependency_graph_production.json");
+    const graphRaw = await Bun.file(resolve(import.meta.dir, "../data/graphs/dependency_graph.json")).text();
+    const graph = JSON.parse(graphRaw);
     
     const matches = graph.nodes
-      .filter((n: any) => n.id.toUpperCase().includes("BLACKSMITH"))
+      .filter((n: any) => n.id.toUpperCase().includes("MAIN"))
       .slice(0, 5)
       .map((n: any) => n.id);
     
     if (matches.length === 0) {
-      throw new Error("No matches found for 'Blacksmith'");
+      throw new Error("No matches found for 'main'");
     }
     
     const node = await queryDependencyGraph(`node ${matches[0]}`);

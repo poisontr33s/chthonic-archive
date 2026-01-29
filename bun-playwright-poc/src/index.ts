@@ -1,3 +1,21 @@
+// ╔════════════════════════════════════════════════════════════════════════════╗
+// ║  THE DECORATOR'S BLESSING: index.ts                                      ║
+// ║  TypeScript module: frontend utility                                        ║
+// ╠════════════════════════════════════════════════════════════════════════════╣
+// ║  Spectral Frequency: ORANGE                                                 ║
+// ║  Architectural Role: 🔭 THE OBSERVATORY                                      ║
+// ║  Purpose: * BunCDP - Bun-native Chrome automation library
+ * 
+ * Bypasses Playwr ║
+// ╠════════════════════════════════════════════════════════════════════════════╣
+// ║  Cross-References (Bidirectional):                                      ║
+// ║  Dependents (Rely on me):                                                ║
+// ║    └─◄ bun-playwright-poc\src\bun-cdp-element.ts                         ║
+// ║    └─◄ bun-playwright-poc\src\bun-cdp.ts                                 ║
+// ║    └─◄ bun-playwright-poc\src\bun-cdp-frame.ts                           ║
+// ║    └─◄ bun-playwright-poc\src\bun-cdp-page.ts                            ║
+// ╚════════════════════════════════════════════════════════════════════════════╝
+
 /**
  * BunCDP - Bun-native Chrome automation library
  * 

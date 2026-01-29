@@ -277,8 +277,8 @@ bash -lc "command here"
 **Authority Hierarchy (top-down):**
 1. **Runtime Reality:** OS + shell behavior (Win11 + pwsh)
 2. **Repository Doctrine:** `.github/copilot-instructions.md` (SSOT - 313KB)
-3. **Session Bootstrap:** `docs/SESSION_BOOTSTRAP_SPEC.md` v1.1
-4. **Editing Policy:** `docs/CLI_EDITING_POLICY.md` (mechanical edits only)
+3. **Session Bootstrap:** `docs/docs/SESSION_BOOTSTRAP_SPEC.md` v1.1
+4. **Editing Policy:** `docs/docs/CLI_EDITING_POLICY.md` (mechanical edits only)
 5. **This Document:** `docs/PWSH_RULES.md` v1.0
 
 **Multi-Agent Coordination:** See `ARBITRAGE-BRIDGE.md` for shell preference negotiation between Claude Code, GPT-5/Copilot, and Gemini CLI.
@@ -449,4 +449,4 @@ if (Get-Module -ListAvailable ModuleName) {
 
 **Maintained by:** Repository governance framework
 **SSOT Reference:** `.github/copilot-instructions.md` hash `49ef091b...`
-**Related:** `docs/SESSION_BOOTSTRAP_SPEC.md` v1.1, `docs/CLI_EDITING_POLICY.md`
+**Related:** `docs/docs/SESSION_BOOTSTRAP_SPEC.md` v1.1, `docs/docs/CLI_EDITING_POLICY.md`

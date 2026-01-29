@@ -31,15 +31,15 @@ I have performed a secondary "meta-review" of the artifacts generated in the pre
 ## 2. Truth-Check Findings
 
 ### A. Semantic Identity System
-**Claim:** "`../scripts/resolve_sid.py` is clean and functional; indexes 4 core SIDs."
-**Verification:** Executed `uv run scripts/resolve_sid.py --list`.
+**Claim:** "`../scripts/../scripts/resolve_sid.py` is clean and functional; indexes 4 core SIDs."
+**Verification:** Executed `uv run scripts/../scripts/resolve_sid.py --list`.
 **Result:**
 ```text
 Known SIDs (4):
   SESSION_DOC_2026_01_17_CLEANUP -> docs\SESSION_2026-01-17_CLEANUP.md
   TOOL_ROOT_AUDIT_V1            -> scripts\rootdir_health_audit.py
   TOOL_SESSION_EXTRACTOR_V1     -> scripts\extract_session_value.py
-  TOOL_SID_RESOLVER_V1          -> scripts\resolve_sid.py
+  TOOL_SID_RESOLVER_V1          -> scripts\../scripts/resolve_sid.py
 ```
 **Conclusion:** The Reference System is **Active and Healthy**.
 

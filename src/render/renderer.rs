@@ -19,7 +19,7 @@
 //!
 //! This module:
 //! - Orchestrates swapchain, pipeline, and command buffer management
-//! - Implements render_frame using cmd_begin_rendering/cmd_end_rendering (Vulkan 1.3)
+//! - Implements `render_frame` using `cmd_begin_rendering/cmd_end_rendering` (Vulkan 1.3)
 //! - Manages vertex buffers and memory
 //! - Integrates isometric camera system
 
@@ -83,13 +83,13 @@ impl Renderer {
         let alloc_info = vk::CommandBufferAllocateInfo::default()
             .command_pool(command_pool)
             .level(vk::CommandBufferLevel::PRIMARY)
-            .command_buffer_count(swapchain.frames_in_flight as u32);
+            .command_buffer_count(u32::try_from(swapchain.frames_in_flight).unwrap());
 
         let command_buffers = ctx.device
             .allocate_command_buffers(&alloc_info)
             .context("Failed to allocate command buffers")?;
 
-        info!("✅ Allocated {} command buffers", command_buffers.len());
+        info!("✅ Allocated {0} command buffers", command_buffers.len());
 
         // Create vertex buffer with triangle data
         let vertices = triangle_vertices();
@@ -98,6 +98,7 @@ impl Renderer {
 
         // Initialize isometric camera
         // Looking at origin from isometric angle, 10 units away, ortho size 5
+        #[allow(clippy::cast_precision_loss)]
         let aspect_ratio = window_size.0 as f32 / window_size.1 as f32;
         let mut camera = IsometricCamera::new(Vec3::ZERO, 10.0, 5.0);
         camera.update_matrices(aspect_ratio);
@@ -114,7 +115,7 @@ impl Renderer {
             command_buffers,
             vertex_buffer,
             vertex_buffer_memory,
-            vertex_count: vertices.len() as u32,
+            vertex_count: u32::try_from(vertices.len()).unwrap(),
             needs_resize: false,
             camera,
         })
@@ -125,7 +126,7 @@ impl Renderer {
         ctx: &VulkanContext,
         vertices: &[Vertex],
     ) -> Result<(vk::Buffer, vk::DeviceMemory)> {
-        let buffer_size = (std::mem::size_of::<Vertex>() * vertices.len()) as vk::DeviceSize;
+        let buffer_size = u64::try_from(std::mem::size_of_val(vertices)).unwrap();
 
         // Create buffer
         let buffer_info = vk::BufferCreateInfo::default()
@@ -164,14 +165,14 @@ impl Renderer {
             .map_memory(memory, 0, buffer_size, vk::MemoryMapFlags::empty())?;
         
         std::ptr::copy_nonoverlapping(
-            vertices.as_ptr() as *const u8,
-            data_ptr as *mut u8,
-            buffer_size as usize,
+            vertices.as_ptr().cast::<u8>(),
+            data_ptr.cast::<u8>(),
+            usize::try_from(buffer_size).unwrap(),
         );
         
         ctx.device.unmap_memory(memory);
 
-        info!("✅ Vertex buffer created: {} bytes, {} vertices", 
+        info!("✅ Vertex buffer created: {0} bytes, {1} vertices", 
               buffer_size, vertices.len());
 
         Ok((buffer, memory))
@@ -203,7 +204,8 @@ impl Renderer {
     ///
     /// # Safety
     /// Requires valid Vulkan handles and properly synchronized operations
-    pub unsafe fn render_frame(&mut self, ctx: &VulkanContext) -> Result<bool> {
+    #[allow(clippy::too_many_lines)]
+    pub unsafe fn render_frame(&mut self, ctx: &VulkanContext, layer_color: [f32; 4]) -> Result<bool> {
         // Acquire next swapchain image
         let (image_index, needs_resize) = self.swapchain.acquire_next_image(&ctx.device)?;
         
@@ -276,6 +278,7 @@ impl Renderer {
         ctx.device.cmd_begin_rendering(cmd, &rendering_info);
 
         // Set viewport and scissor
+        #[allow(clippy::cast_precision_loss)]
         let viewport = vk::Viewport {
             x: 0.0,
             y: 0.0,
@@ -295,20 +298,21 @@ impl Renderer {
         // Bind pipeline
         ctx.device.cmd_bind_pipeline(cmd, vk::PipelineBindPoint::GRAPHICS, self.pipeline.pipeline);
 
-        // Push constants with isometric camera matrices
+        // Push constants with isometric camera matrices and layer color
         let push_constants = PushConstants {
             model: Mat4::IDENTITY.to_cols_array_2d(),
             view: self.camera.view_as_array(),
             projection: self.camera.projection_as_array(),
+            layer_color,
         };
         let push_data = std::slice::from_raw_parts(
-            &push_constants as *const PushConstants as *const u8,
-            std::mem::size_of::<PushConstants>(),
+            (&raw const push_constants).cast::<u8>(),
+            std::mem::size_of_val(&push_constants),
         );
         ctx.device.cmd_push_constants(
             cmd,
             self.pipeline.pipeline_layout,
-            vk::ShaderStageFlags::VERTEX,
+            vk::ShaderStageFlags::VERTEX | vk::ShaderStageFlags::FRAGMENT,
             0,
             push_data,
         );
@@ -373,7 +377,7 @@ impl Renderer {
 
     /// Handle window resize
     pub unsafe fn handle_resize(&mut self, ctx: &VulkanContext, new_size: (u32, u32)) -> Result<()> {
-        info!("🔄 Handling resize to {}x{}", new_size.0, new_size.1);
+        info!("🔄 Handling resize to {0}x{1}", new_size.0, new_size.1);
         
         ctx.device.device_wait_idle()?;
 
@@ -388,9 +392,10 @@ impl Renderer {
         )?;
 
         // Update camera aspect ratio for new window dimensions
+        #[allow(clippy::cast_precision_loss)]
         let aspect_ratio = new_size.0 as f32 / new_size.1.max(1) as f32;
         self.camera.update_matrices(aspect_ratio);
-        debug!("📐 Camera aspect ratio updated: {:.3}", aspect_ratio);
+        debug!("📐 Camera aspect ratio updated: {aspect_ratio:.3}");
 
         self.needs_resize = false;
         Ok(())

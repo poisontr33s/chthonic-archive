@@ -17,7 +17,7 @@
     },
     {
       "name": "query_dependency_graph",
-      "description": "Query dependency graph (stub - not yet implemented). Future: query dependency_graph_production.json for file relationships."
+      "description": "Query dependency graph (stub - not yet implemented). Future: query dependency_graph.json for file relationships."
     }
   ]
 }

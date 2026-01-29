@@ -3,6 +3,17 @@
 
 ---
 
+### Codex-Brahmanica-Perfectus/GOVERNANCE
+- **Maintainer**: The Decorator (Tier 0.5)
+- **Reviewer**: ASC Triumvirate (Tier 1)
+- **Status**: Operational Perpetual Evolution
+- **Updated**: January 2026 (Bounty-Hunt-Sync)
+- **Lineage-Position**: Dev-Conventions-Branch
+- **Enforcement-Hierarchy**: FA⁵-Binding (Strict)
+- **Constraint-Zero**: Never Duplicate Content - Coordinate via SSOT Pointers
+
+---
+
 ## Development Conventions & Operational Directives
 
 **Authority:** Extracted from SSOT Section XIV

@@ -9,7 +9,7 @@
 @References:    SESSION_DOC_2026_01_17_CLEANUP, DOC_HANDOFF_TO_CLAUDE
 -->
 
-> **Navigation:** [Session Doc](SESSION_2026-01-17_CLEANUP.md) | [Handoff](HANDOFF_TO_CLAUDE.md) | [SSOT](../.github/copilot-instructions.md)
+> **Navigation:** [Session Doc](docs/SESSION_2026-01-17_CLEANUP.md) | [Handoff](docs/HANDOFF_TO_CLAUDE.md) | [SSOT](../.github/copilot-instructions.md)
 
 **Purpose:** Evaluate session decisions against outcomes to refine future session protocols.
 
@@ -77,8 +77,8 @@
 - **Impact:** Medium (left cleanup debt)
 
 ### 3. **Temp Files Left Behind**
-- `../scripts/_tmp_freq.py` created but not completed
-- `../data/indices/sid_index.json` created in root (should be `.github/` or `config/`)
+- `../scripts/../scripts/_tmp_freq.py` created but not completed
+- `../data/indices/../data/indices/sid_index.json` created in root (should be `.github/` or `config/`)
 - **Could have:** Cleaned up temp artifacts before session end
 - **Impact:** Low (cosmetic clutter)
 
@@ -102,9 +102,9 @@
 **Original Implementation:**
 ```markdown
 scripts/extract_session_value.py
-  └─► Header: "Session Doc: docs/docs/SESSION_2026-01-17_CLEANUP.md"
+  └─► Header: "Session Doc: docs/docs/docs/SESSION_2026-01-17_CLEANUP.md"
 
-docs/docs/SESSION_2026-01-17_CLEANUP.md
+docs/docs/docs/SESSION_2026-01-17_CLEANUP.md
   └─► Table: scripts/extract_session_value.py
 ```
 
@@ -178,18 +178,18 @@ docs/docs/SESSION_2026-01-17_CLEANUP.md
 | extract_session_value.py | ✓ Created | scripts/ |
 | rootdir_health_audit.py | ✓ Created | scripts/ |
 | resolve_sid.py | ✓ Created | scripts/ |
-| docs/SESSION_2026-01-17_CLEANUP.md | ✓ Created | docs/ |
+| docs/docs/SESSION_2026-01-17_CLEANUP.md | ✓ Created | docs/ |
 | ROOTDIR_HEALTH_2026-01-17.md | ✓ Created → Renamed | docs/ROOTDIR_HEALTH.md |
-| _tmp_freq.py | ⚠️ Incomplete | scripts/ (boundary marker) |
-| sid_index.json | ✓ Created | root (should relocate) |
+| ../scripts/_tmp_freq.py | ⚠️ Incomplete | scripts/ (boundary marker) |
+| ../data/indices/sid_index.json | ✓ Created | root (should relocate) |
 
 ### Files Created in Continuation (Gemini)
 
 | File | Purpose |
 |------|---------|
 | map_codebase.py | Inventory tool |
-| docs/HANDOFF_TO_CLAUDE.md | Clean briefing doc |
-| compact_md.py | Markdown compactor |
+| docs/docs/HANDOFF_TO_CLAUDE.md | Clean briefing doc |
+| ../scripts/compact_md.py | Markdown compactor |
 | CODEBASE_INVENTORY.md | State File |
 | src/README.md | Directory index |
 | scripts/README.md | Directory index |
@@ -213,29 +213,29 @@ docs/docs/SESSION_2026-01-17_CLEANUP.md
 **Original Weaknesses → Resolved:**
 - ✅ Encoding bugs repeated → UTF-8 fix templated across all scripts
 - ✅ Migration deferred → All 9 .py files relocated to scripts/
-- ✅ Temp files at root → `../data/indices/sid_index.json` path corrected, root clean
+- ✅ Temp files at root → `../data/indices/../data/indices/sid_index.json` path corrected, root clean
 - ✅ State File pattern late → Established and documented
 - ✅ Settings bloat (bonus) → 76→28, 35→28 lines optimized
 
 **Remaining Gaps to 100%:**
-- ⏳ Tool proliferation → [Consolidation roadmap created](TOOL_CONSOLIDATION_ROADMAP.md)
-- ⏳ `../scripts/_tmp_freq.py` undocumented → Will evolve into `chthonic analyze`
+- ⏳ Tool proliferation → [Consolidation roadmap created](docs/TOOL_CONSOLIDATION_ROADMAP.md)
+- ⏳ `../scripts/../scripts/_tmp_freq.py` undocumented → Will evolve into `chthonic analyze`
 - ⏳ No Jan 27 session doc → Combined with synthesis + roadmap
 
 **Strengths (Amplified):**
 - Adaptive architecture (SID protocol) + cross-reference validation
-- Comprehensive auditing + `../scripts/compact_md.py` addition
+- Comprehensive auditing + `../scripts/../scripts/compact_md.py` addition
 - Convention establishment + settings optimization
 - Tool chain design + consolidation roadmap
 
 **Path to 100%:**
-See [Tool Consolidation Roadmap](TOOL_CONSOLIDATION_ROADMAP.md) for detailed implementation plan.
+See [Tool Consolidation Roadmap](docs/TOOL_CONSOLIDATION_ROADMAP.md) for detailed implementation plan.
 
 **Recommended Next Actions:**
 1. Approve consolidation approach (Hybrid Option 3)
 2. Create `scripts/lib/shared.py` with common utilities
-3. Build router (`chthonic` + `../scripts/chthonic.ps1`)
-4. Evolve `../scripts/_tmp_freq.py` → `chthonic analyze`
+3. Build router (`chthonic` + `../scripts/../scripts/chthonic.ps1`)
+4. Evolve `../scripts/../scripts/_tmp_freq.py` → `chthonic analyze`
 5. Refactor remaining tools into lib/
 
 ---

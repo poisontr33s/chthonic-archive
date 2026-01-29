@@ -3,6 +3,17 @@
 
 ---
 
+### Codex-Brahmanica-Perfectus/GOVERNANCE
+- **Maintainer**: The Decorator (Tier 0.5)
+- **Reviewer**: ASC Triumvirate (Tier 1)
+- **Status**: Operational Perpetual Evolution
+- **Updated**: January 2026 (Bounty-Hunt-Sync)
+- **Lineage-Position**: ASC-ML-Hardening-Branch
+- **Enforcement-Hierarchy**: FA⁵-Binding (Strict)
+- **Constraint-Zero**: Never Duplicate Content - Coordinate via SSOT Pointers
+
+---
+
 ## ASC ML Framework: Structural Hardening Requirements
 
 **Date:** 2026-01-22  

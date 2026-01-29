@@ -1,11 +1,10 @@
 # ╔════════════════════════════════════════════════════════════════════════════╗
 # ║  THE DECORATOR'S BLESSING: upcycle_audit.py                              ║
-# ║  Python module: COMMENT_MARKERS, SKIP_PATTERNS, EXEMPT_FROM_NOMINATION      ║
+# ║  Python module: COMMENT_MARKERS, SKIP_PATTERNS, EXEMPT_FROM_NOMINATION, should_skip, analyze_file, scan_paths... ║
 # ╠════════════════════════════════════════════════════════════════════════════╣
 # ║  Spectral Frequency: WHITE                                                  ║
 # ║  Architectural Role: 🌿 THE GARDEN                                           ║
-# ║  Purpose: Upcycling audit tool for chthonic-archive.
-Nominates files for refacto ║
+# ║  Purpose: Upcycling audit tool for chthonic-archive.                        ║
 # ║  Exports: COMMENT_MARKERS, SKIP_PATTERNS, EXEMPT_FROM_NOMINATION, should_skip, ║
 # ╠════════════════════════════════════════════════════════════════════════════╣
 # ║  Cross-References (Bidirectional):                                      ║

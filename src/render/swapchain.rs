@@ -18,7 +18,7 @@
 //! — Madam Umeko Ketsuraku
 //!
 //! This swapchain implementation:
-//! - Targets optimal format (BGRA8_SRGB preferred)
+//! - Targets optimal format (`BGRA8_SRGB` preferred)
 //! - Uses FIFO present mode (V-Sync for stability)
 //! - Handles window resize gracefully
 //! - Prepares images for Dynamic Rendering
@@ -30,9 +30,9 @@ use log::{debug, info};
 /// Swapchain configuration and state
 /// 
 /// HYBRID SYNC STRATEGY (Per Vulkan Swapchain Semaphore Reuse Guide):
-/// - image_available_semaphores: Index by FRAME (we control acquisition timing)
-/// - render_finished_semaphores: Index by IMAGE (swapchain controls which image)
-/// - in_flight_fences: Index by FRAME (we control frame submission)
+/// - `image_available_semaphores`: Index by FRAME (we control acquisition timing)
+/// - `render_finished_semaphores`: Index by IMAGE (swapchain controls which image)
+/// - `in_flight_fences`: Index by FRAME (we control frame submission)
 pub struct VulkanSwapchain {
     pub loader: khr::swapchain::Device,
     pub swapchain: vk::SwapchainKHR,
@@ -100,10 +100,10 @@ impl VulkanSwapchain {
         let present_mode = Self::select_present_mode(&support.present_modes);
         let extent = Self::select_extent(&support.capabilities, window_size);
 
-        info!("   Format: {:?}", format.format);
-        info!("   Color Space: {:?}", format.color_space);
-        info!("   Present Mode: {:?}", present_mode);
-        info!("   Extent: {}x{}", extent.width, extent.height);
+        info!("   Format: {0:?}", format.format);
+        info!("   Color Space: {0:?}", format.color_space);
+        info!("   Present Mode: {present_mode:?}");
+        info!("   Extent: {0}x{1}", extent.width, extent.height);
 
         // Calculate image count (prefer triple buffering)
         let image_count = {
@@ -115,7 +115,7 @@ impl VulkanSwapchain {
             };
             (min + 1).min(max)
         };
-        info!("   Image Count: {}", image_count);
+        info!("   Image Count: {image_count}");
 
         // Create swapchain
         let queue_family_indices = [queue_family_index];
@@ -145,7 +145,7 @@ impl VulkanSwapchain {
         // Get swapchain images
         let images = loader.get_swapchain_images(swapchain)?;
         let image_count = images.len();
-        info!("   Retrieved {} swapchain images", image_count);
+        info!("   Retrieved {image_count} swapchain images");
 
         // Create image views for each swapchain image
         let image_views = Self::create_image_views(device, &images, format.format)?;
@@ -160,7 +160,7 @@ impl VulkanSwapchain {
         let images_in_flight = vec![vk::Fence::null(); image_count];
 
         info!("═══════════════════════════════════════════════════════════════");
-        info!("🔥 SWAPCHAIN READY: {} frames in flight, {} images", frames_in_flight, image_count);
+        info!("🔥 SWAPCHAIN READY: {frames_in_flight} frames in flight, {image_count} images");
         info!("═══════════════════════════════════════════════════════════════");
 
         Ok(Self {
@@ -218,12 +218,12 @@ impl VulkanSwapchain {
                 f.format == vk::Format::B8G8R8A8_SRGB
                     && f.color_space == vk::ColorSpaceKHR::SRGB_NONLINEAR
             })
-            .cloned()
+            .copied()
             .or_else(|| {
                 // Fallback: any SRGB format
                 formats.iter().find(|f| {
                     f.color_space == vk::ColorSpaceKHR::SRGB_NONLINEAR
-                }).cloned()
+                }).copied()
             })
             .unwrap_or(formats[0])
     }
@@ -295,7 +295,7 @@ impl VulkanSwapchain {
 
                 device
                     .create_image_view(&create_info, None)
-                    .with_context(|| format!("Failed to create image view {}", i))
+                    .with_context(|| format!("Failed to create image view {i}"))
             })
             .collect()
     }
@@ -303,9 +303,9 @@ impl VulkanSwapchain {
     /// Create synchronization primitives with HYBRID indexing strategy
     /// 
     /// Per Vulkan Swapchain Semaphore Reuse Guide:
-    /// - image_available: FRAME-indexed (we control acquire timing)
-    /// - render_finished: IMAGE-indexed (must match swapchain image)
-    /// - in_flight_fences: FRAME-indexed (CPU-GPU sync)
+    /// - `image_available`: FRAME-indexed (we control acquire timing)
+    /// - `render_finished`: IMAGE-indexed (must match swapchain image)
+    /// - `in_flight_fences`: FRAME-indexed (CPU-GPU sync)
     unsafe fn create_sync_objects_hybrid(
         device: &Device,
         frames_in_flight: usize,
@@ -320,7 +320,7 @@ impl VulkanSwapchain {
         for i in 0..frames_in_flight {
             image_available.push(
                 device.create_semaphore(&semaphore_info, None)
-                    .with_context(|| format!("Failed to create image_available semaphore {}", i))?
+                    .with_context(|| format!("Failed to create image_available semaphore {i}"))?
             );
         }
         
@@ -331,7 +331,7 @@ impl VulkanSwapchain {
         for i in 0..image_count {
             render_finished.push(
                 device.create_semaphore(&semaphore_info, None)
-                    .with_context(|| format!("Failed to create render_finished semaphore for image {}", i))?
+                    .with_context(|| format!("Failed to create render_finished semaphore for image {i}"))?
             );
         }
         
@@ -340,23 +340,23 @@ impl VulkanSwapchain {
         for i in 0..frames_in_flight {
             in_flight.push(
                 device.create_fence(&fence_info, None)
-                    .with_context(|| format!("Failed to create in_flight fence {}", i))?
+                    .with_context(|| format!("Failed to create in_flight fence {i}"))?
             );
         }
 
-        info!("✅ Created {} image_available semaphores (frame-indexed)", frames_in_flight);
-        info!("✅ Created {} render_finished semaphores (IMAGE-indexed)", image_count);
-        info!("✅ Created {} in_flight fences (frame-indexed)", frames_in_flight);
+        info!("✅ Created {frames_in_flight} image_available semaphores (frame-indexed)");
+        info!("✅ Created {image_count} render_finished semaphores (IMAGE-indexed)");
+        info!("✅ Created {frames_in_flight} in_flight fences (frame-indexed)");
         Ok((image_available, render_finished, in_flight))
     }
 
     /// Acquire next swapchain image for rendering
     ///
-    /// Returns (image_index, needs_resize)
+    /// Returns (`image_index`, `needs_resize`)
     /// Acquire next swapchain image for rendering
     ///
-    /// Returns (image_index, needs_resize)
-    /// HYBRID strategy: FRAME-indexed acquire semaphore, stores image_index for present
+    /// Returns (`image_index`, `needs_resize`)
+    /// HYBRID strategy: FRAME-indexed acquire semaphore, stores `image_index` for present
     pub unsafe fn acquire_next_image(&mut self, device: &Device) -> Result<(u32, bool)> {
         // Wait for this frame slot's fence to be signaled
         // (i.e., wait for the GPU to finish with the frame that was using this slot)
@@ -399,14 +399,14 @@ impl VulkanSwapchain {
                 info!("🔄 Swapchain out of date - recreating");
                 Ok((0, true))
             }
-            Err(e) => Err(anyhow!("Failed to acquire swapchain image: {:?}", e)),
+            Err(e) => Err(anyhow!("Failed to acquire swapchain image: {e:?}")),
         }
     }
 
     /// Present rendered image to screen
     ///
     /// Returns true if resize is needed
-    /// HYBRID strategy: Uses IMAGE-indexed render_finished semaphore
+    /// HYBRID strategy: Uses IMAGE-indexed `render_finished` semaphore
     pub unsafe fn present(
         &mut self,
         queue: vk::Queue,
@@ -439,11 +439,12 @@ impl VulkanSwapchain {
                 info!("🔄 Present out of date - recreating swapchain");
                 Ok(true)
             }
-            Err(e) => Err(anyhow!("Failed to present: {:?}", e)),
+            Err(e) => Err(anyhow!("Failed to present: {e:?}")),
         }
     }
 
     /// Recreate swapchain (for window resize)
+    #[allow(clippy::too_many_arguments)]
     pub unsafe fn recreate(
         &mut self,
         _instance: &Instance,
@@ -454,7 +455,7 @@ impl VulkanSwapchain {
         queue_family_index: u32,
         window_size: (u32, u32),
     ) -> Result<()> {
-        info!("🔄 Recreating swapchain for new size: {}x{}", window_size.0, window_size.1);
+        info!("🔄 Recreating swapchain for new size: {0}x{1}", window_size.0, window_size.1);
 
         // Wait for device to be idle
         device.device_wait_idle()?;
@@ -529,10 +530,10 @@ impl VulkanSwapchain {
             for i in 0..new_image_count {
                 self.render_finished_semaphores.push(
                     device.create_semaphore(&semaphore_info, None)
-                        .with_context(|| format!("Failed to recreate render_finished semaphore {}", i))?
+                        .with_context(|| format!("Failed to recreate render_finished semaphore {i}"))?
                 );
             }
-            debug!("🔄 Recreated {} render_finished semaphores for new image count", new_image_count);
+            debug!("🔄 Recreated {new_image_count} render_finished semaphores for new image count");
         }
         
         // Reset image tracking
@@ -542,7 +543,7 @@ impl VulkanSwapchain {
         self.current_frame = 0;
         self.current_image_index = 0;
 
-        info!("✅ Swapchain recreated: {}x{}", extent.width, extent.height);
+        info!("✅ Swapchain recreated: {0}x{1}", extent.width, extent.height);
         Ok(())
     }
 
@@ -583,10 +584,10 @@ impl VulkanSwapchain {
 
     /// Get current sync objects for rendering (HYBRID indexing)
     /// 
-    /// Returns (image_available_semaphore, render_finished_semaphore, fence)
-    /// - image_available: FRAME-indexed (for acquire)
-    /// - render_finished: IMAGE-indexed (for present - must be called after acquire!)
-    /// - fence: FRAME-indexed (for CPU-GPU sync)
+    /// Returns (`image_available_semaphore`, `render_finished_semaphore`, `fence`)
+    /// - `image_available`: FRAME-indexed (for acquire)
+    /// - `render_finished`: IMAGE-indexed (for present - must be called after acquire!)
+    /// - `fence`: FRAME-indexed (for CPU-GPU sync)
     pub fn current_sync(&self) -> (vk::Semaphore, vk::Semaphore, vk::Fence) {
         (
             self.image_available_semaphores[self.current_frame],

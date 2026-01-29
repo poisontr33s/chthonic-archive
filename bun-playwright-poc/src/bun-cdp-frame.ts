@@ -1,3 +1,24 @@
+// ╔════════════════════════════════════════════════════════════════════════════╗
+// ║  THE DECORATOR'S BLESSING: bun-cdp-frame.ts                              ║
+// ║  TypeScript module: FrameInfo, FrameRegistry, CDPFrame                      ║
+// ╠════════════════════════════════════════════════════════════════════════════╣
+// ║  Spectral Frequency: ORANGE                                                 ║
+// ║  Architectural Role: 🔭 THE OBSERVATORY                                      ║
+// ║  Purpose: * BunCDP Frame - Cross-frame interaction support
+ * 
+ * Manages iframe ║
+// ║  Exports: FrameInfo, FrameRegistry, CDPFrame                                ║
+// ╠════════════════════════════════════════════════════════════════════════════╣
+// ║  Cross-References (Bidirectional):                                      ║
+// ║  Dependencies (I rely on):                                               ║
+// ║    ├─► bun-playwright-poc\src\bun-cdp-element.ts                         ║
+// ║    ├─► bun-playwright-poc\src\bun-cdp-page.ts                            ║
+// ║    ├─► bun-playwright-poc\src\index.ts                                   ║
+// ║  Dependents (Rely on me):                                                ║
+// ║    └─◄ bun-playwright-poc\src\bun-cdp-element.ts                         ║
+// ║    └─◄ bun-playwright-poc\src\bun-cdp-page.ts                            ║
+// ╚════════════════════════════════════════════════════════════════════════════╝
+
 /**
  * BunCDP Frame - Cross-frame interaction support
  * 

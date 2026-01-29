@@ -26,17 +26,8 @@ interface GraphNode {
 interface DependencyGraph {
   directed: boolean;
   nodes: GraphNode[];
-  edges: string[][]; // Hyperedges: arrays of node IDs
-  metadata: {
-    hyperedges: string[][];
-    clusters: Array<{ members: string; break_edges: string; strategy: string }>;
-    void_dirs: string[];
-    validation: {
-      graph_is_connected: boolean;
-      graph_is_dag: boolean;
-      largest_component_size: number;
-    };
-  };
+  edges: Array<{ source: string; target: string }>;
+  graph: any;
 }
 
 /**
@@ -51,13 +42,13 @@ interface DependencyGraph {
  */
 export async function queryDependencyGraph(query: string): Promise<string> {
   const repoRoot = resolve(import.meta.dir, "..", "..");
-  const graphPath = resolve(repoRoot, "dependency_graph_production.json");
+  const graphPath = resolve(repoRoot, "data", "graphs", "dependency_graph.json");
 
   try {
     const file = Bun.file(graphPath);
     if (!(await file.exists())) {
       return JSON.stringify({
-        error: "dependency_graph_production.json not found",
+        error: "dependency_graph.json not found",
         path: graphPath,
       });
     }
@@ -77,10 +68,10 @@ export async function queryDependencyGraph(query: string): Promise<string> {
       }
 
       case "dependencies": {
-        // Find edges where this file is the source (what it points to)
+        // Find links where this file is the source (what it points to)
         const deps = graph.edges
-          .filter((edge) => edge.source.toLowerCase().includes(arg.toLowerCase()))
-          .map((edge) => edge.target);
+          .filter((link) => link.source.toLowerCase().includes(arg.toLowerCase()))
+          .map((link) => link.target);
         
         const uniqueDeps = [...new Set(deps)];
         return JSON.stringify({
@@ -91,10 +82,10 @@ export async function queryDependencyGraph(query: string): Promise<string> {
       }
 
       case "dependents": {
-        // Find edges where this file is the target (what points to it)
+        // Find links where this file is the target (what points to it)
         const dependents = graph.edges
-          .filter((edge) => edge.target.toLowerCase().includes(arg.toLowerCase()))
-          .map((edge) => edge.source);
+          .filter((link) => link.target.toLowerCase().includes(arg.toLowerCase()))
+          .map((link) => link.source);
         
         const uniqueDependents = [...new Set(dependents)];
         return JSON.stringify({
@@ -109,7 +100,7 @@ export async function queryDependencyGraph(query: string): Promise<string> {
         const filtered = graph.nodes.filter((n) => n.spectral_freq === freq);
         return JSON.stringify({
           frequency: freq,
-          nodes: filtered.slice(0, 50), // Limit to 50 for readability
+          nodes: filtered.slice(0, 50).map(n => n.id), 
           total_count: filtered.length,
           truncated: filtered.length > 50,
         }, null, 2);
@@ -123,12 +114,9 @@ export async function queryDependencyGraph(query: string): Promise<string> {
 
         return JSON.stringify({
           total_nodes: graph.nodes.length,
-          total_hyperedges: graph.edges.length,
+          total_edges: graph.edges.length,
           directed: graph.directed,
           spectral_distribution: freqCounts,
-          void_directories: graph.metadata.void_dirs.length,
-          clusters: graph.metadata.clusters.length,
-          validation: graph.metadata.validation,
         }, null, 2);
       }
 

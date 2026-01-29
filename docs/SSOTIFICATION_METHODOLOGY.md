@@ -31,7 +31,7 @@ BEFORE:
   
 AFTER:
   SSOT: §0.77 defines "Sister Ferrum Scoriae" as canonical
-  ssot_extractor.py: extracts from SSOT → {"ferrum": "Sister Ferrum Scoriae"}
+  ../mas_mcp/ssot_extractor.py: extracts from SSOT → {"ferrum": "Sister Ferrum Scoriae"}
   file_a.py: from ssot_extractor import get_entity_name  # Derives from SSOT
   file_b.py: from ssot_extractor import get_entity_name  # Same source
   file_c.json: updated manually or via script to match SSOT
@@ -41,27 +41,27 @@ AFTER:
 
 ## 2. Type Taxonomy Applied
 
-Files are categorized by **type** (from `../data/indices/sid_index.json` schema):
+Files are categorized by **type** (from `../data/indices/../data/indices/sid_index.json` schema):
 
 | Type | Description | Example |
 |------|-------------|---------|
 | `SessionDoc` | Records a session's outputs and decisions | `STAGE_1_MIGRATION_PLAN.md` |
 | `State` | Runtime/persistent state artifacts | `.dcrp_state.json`, `.ankhrc` |
-| `Script` | Executable tools that implement concepts | `../mas_mcp/ssot_extractor.py` |
-| `Module` | Importable code with public API | `../mas_mcp/milf_genesis_v2.py` |
+| `Script` | Executable tools that implement concepts | `../mas_mcp/../mas_mcp/ssot_extractor.py` |
+| `Module` | Importable code with public API | `../mas_mcp/../mas_mcp/milf_genesis_v2.py` |
 | `Documentation` | Explanatory content | This file |
 | `Report` | Analysis/validation outputs | `DCRP_SYNTHESIS.md` |
 | `Protocol` | Governance/architectural rules | `ANCHOR_SIGNAL_PROTOCOL.md` |
-| `Handoff` | Cross-agent coordination docs | `docs/HANDOFF_TO_CLAUDE.md` |
+| `Handoff` | Cross-agent coordination docs | `docs/docs/HANDOFF_TO_CLAUDE.md` |
 
 ### SID (Signal ID) Schema
 
-Every tracked artifact gets a SID in `../data/indices/sid_index.json`:
+Every tracked artifact gets a SID in `../data/indices/../data/indices/sid_index.json`:
 
 ```json
 {
   "sid": "TOOL_SSOT_EXTRACTOR_V1",
-  "path": "mas_mcp\\ssot_extractor.py",
+  "path": "mas_mcp\\../mas_mcp/ssot_extractor.py",
   "type": "Script",
   "context": "SSOT / Constant Extraction",
   "implements": "CONCEPT_SSOT_SINGLE_SOURCE",
@@ -94,7 +94,7 @@ The `.ankhrc` file is the **bidirectional SSOT hub**—it maps symbolic names to
 | Section | Purpose | Example Entry |
 |---------|---------|---------------|
 | `[paths]` | Core file mappings | `SSOT = ".github/copilot-instructions.md"` |
-| `[ssot_ified]` | Files that now derive from SSOT | `SSOT_EXTRACTOR = "mas_mcp/ssot_extractor.py"` |
+| `[ssot_ified]` | Files that now derive from SSOT | `SSOT_EXTRACTOR = "mas_mcp/../mas_mcp/ssot_extractor.py"` |
 | `[state_files]` | Runtime state artifacts | `DCRP_STATE = ".dcrp_state.json"` |
 | `[databases]` | SQLite/persistent stores | `EPISTEMOGRAPH_DB_CURRENT = "...v1.1.1.sqlite"` |
 | `[session_reports]` | Legacy session docs (ARCHIVE candidates) | `SESSION_2_COMPLETE = "AUTONOMOUS_SESSION_2_COMPLETE.md"` |
@@ -126,7 +126,7 @@ The `.ankhrc` file is the **bidirectional SSOT hub**—it maps symbolic names to
 ### Phase 2: Create Extractor
 
 ```python
-# mas_mcp/ssot_extractor.py pattern
+# mas_mcp/../mas_mcp/ssot_extractor.py pattern
 class SSOTExtractor:
     def __init__(self, ssot_path: str):
         self.content = Path(ssot_path).read_text()
@@ -159,7 +159,7 @@ def get_ssot_constants() -> dict:
 ### Phase 4: Register in Tracking Systems
 
 1. Add to `.ankhrc[ssot_ified]`
-2. Create SID entry in `../data/indices/sid_index.json`
+2. Create SID entry in `../data/indices/../data/indices/sid_index.json`
 3. Update `[migration_status]` as appropriate
 
 ---
@@ -198,7 +198,7 @@ Direct:      Decorator → Spectra (bypasses Triumvirate)
 ### DO:
 - Always check SSOT before hardcoding any entity/constant data
 - Use `$ANCHOR` syntax in documentation instead of raw paths
-- Register new artifacts in both `.ankhrc` AND `../data/indices/sid_index.json`
+- Register new artifacts in both `.ankhrc` AND `../data/indices/../data/indices/sid_index.json`
 - Include `session_origin` when creating SID entries
 
 ### DON'T:
@@ -227,7 +227,7 @@ grep -r "hardcoded_value" --include="*.py" --include="*.json"
 echo 'NEW_FILE = "path/to/file.py"' >> .ankhrc  # under [ssot_ified]
 
 # 5. Add SID entry
-# Update sid_index.json with appropriate type and session_origin
+# Update ../data/indices/sid_index.json with appropriate type and session_origin
 ```
 
 ---

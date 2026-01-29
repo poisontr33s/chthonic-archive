@@ -136,7 +136,10 @@
 				"reveal": "always",
 				"panel": "new",
 				"focus": true
-			}
+			},
+			"problemMatcher": [
+				"$nvcc"
+			]
 		},
 		{
 			"label": "Run Inline Page Test",

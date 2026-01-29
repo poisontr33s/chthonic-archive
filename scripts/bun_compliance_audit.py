@@ -1,11 +1,10 @@
 # ╔════════════════════════════════════════════════════════════════════════════╗
 # ║  THE DECORATOR'S BLESSING: bun_compliance_audit.py                       ║
-# ║  Model Context Protocol server - AI governance bridge                       ║
+# ║  Python module: Severity, Violation, BunComplianceScanner, safe_print, main ║
 # ╠════════════════════════════════════════════════════════════════════════════╣
 # ║  Spectral Frequency: WHITE                                                  ║
 # ║  Architectural Role: 🌿 THE GARDEN                                           ║
-# ║  Purpose: Bun Compliance Audit Script                                      ║
-# ║  Description: Scans repository for non-Bun package manager usage and        ║
+# ║  Purpose: Bun Compliance Audit Script                                       ║
 # ║  Exports: Severity, Violation, BunComplianceScanner, safe_print, main       ║
 # ╠════════════════════════════════════════════════════════════════════════════╣
 # ║  Cross-References (Bidirectional):                                      ║

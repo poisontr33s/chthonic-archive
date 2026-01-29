@@ -304,12 +304,12 @@ function getDependencyGraphHTML(context: vscode.ExtensionContext, webview: vscod
         return '<html><body><h1>No workspace folder found</h1></body></html>';
     }
 
-    const depGraphPath = path.join(workspaceFolder.uri.fsPath, 'dependency_graph_production.json');
+    const depGraphPath = path.join(workspaceFolder.uri.fsPath, 'dependency_graph.json');
 
     if (!fs.existsSync(depGraphPath)) {
         return `<html><body>
             <h1>Dependency Graph Not Found</h1>
-            <p>dependency_graph_production.json not available</p>
+            <p>dependency_graph.json not available</p>
         </body></html>`;
     }
 

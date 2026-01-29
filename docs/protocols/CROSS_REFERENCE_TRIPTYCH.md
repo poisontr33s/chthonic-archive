@@ -34,13 +34,18 @@ identity analysis and PRISM spectral frequency mapping.
 | File | Spectral Freq | Theatrical Essence |
 |------|---------------|-------------------|
 | `ankh_atlas\main.py` | WHITE | Python module: main |
+| `scripts\apply_doc_fixes.py` | WHITE | Python module: operational utility |
+| `scripts\asc_entity_generator.py` | WHITE | MILF governance operative - matriarchal command structure |
 | `scripts\autonomous_coordinator.py` | WHITE | MILF governance operative - matriarchal command structure |
 | `scripts\background_services.py` | WHITE | Python module: PROJECT_ROOT, MPW_PATH, SRC_PATH |
 | `scripts\bun_compliance_audit.py` | WHITE | Model Context Protocol server - AI governance bridge |
+| `scripts\chthonic.py` | WHITE | Python module: VERSION, SCRIPT_DIR, LIB_DIR |
 | `scripts\code_scent.py` | WHITE | Python module: analyze_scent |
 | `scripts\code_taste.py` | WHITE | Python module: analyze_taste |
 | `scripts\code_texture.py` | WHITE | Python module: analyze_texture |
+| `scripts\compact_md.py` | WHITE | Python module: CompactStats, is_noise, is_keep |
 | `scripts\cycle_detector.py` | WHITE | Python module: detect_cycles |
+| `scripts\data_rewiring.py` | WHITE | Python module: iter_files |
 | `scripts\debug_code_blocks.py` | WHITE | Python module: operational utility |
 | `scripts\decorator_cross_ref_enhanced.py` | WHITE | Model Context Protocol server - AI governance bridge |
 | `scripts\decorator_cross_ref_maximum.py` | WHITE | Model Context Protocol server - AI governance bridge |
@@ -49,13 +54,15 @@ identity analysis and PRISM spectral frequency mapping.
 | `scripts\edge_case_test.py` | WHITE | Python module: operational utility |
 | `scripts\extract_curriculum.py` | WHITE | Python module: DB_PATH, extract_curriculum, generate_rationale |
 | `scripts\extract_session_value.py` | WHITE | Python module: setup_logging, Exchange, SessionData |
+| `scripts\fix_doc_references.py` | WHITE | Model Context Protocol server - AI governance bridge |
 | `scripts\generate_readable_ssot.py` | WHITE | Python module: calculate_hash, clean_slug, process_text |
 | `scripts\github_voice.py` | WHITE | Python module: is_voice_active, broadcast_issue |
 | `scripts\governance_test.py` | WHITE | Model Context Protocol server - AI governance bridge |
 | `scripts\health_report.py` | WHITE | Python module: PROJECT_ROOT, HEALTH_REPORTS_DIR, TOPOLOGY_GRAPH |
 | `scripts\incremental_updater.py` | WHITE | Python module: get_changed_files, trigger_partial_scan |
-| `scripts\mandala_topology.py` | WHITE | Python module: reveal_sacred_geometry |
+| `scripts\mandala_topology.py` | WHITE | Python module: _load_graph, _top_centrality, _build_report |
 | `scripts\map_codebase.py` | WHITE | Python module: IGNORE_DIRS, DEEP_IGNORE, FolderStats |
+| `scripts\patch_utf8.py` | WHITE | Python module: UTF8_FIX, patch_python_file, main |
 | `scripts\pleasure_protocol.py` | WHITE | Python module: release_dopamine |
 | `scripts\quick_validation.py` | WHITE | Python module: operational utility |
 | `scripts\resolve_sid.py` | WHITE | Python module: SIDEntry, SIDIndex, SID_PATTERNS |
@@ -67,10 +74,21 @@ identity analysis and PRISM spectral frequency mapping.
 | `scripts\setup_db.py` | WHITE | Python module: operational utility |
 | `scripts\ssot_hash.py` | WHITE | Python module: canonicalize, ssot_hash, verify_ssot_integrity |
 | `scripts\ssot_immunity.py` | WHITE | Python module: PROJECT_ROOT, STATE_PATH, LOG_PATH |
+| `scripts\strip_broken_headers.py` | WHITE | Python module: strip_blessing, main |
 | `scripts\test_ingest.py` | WHITE | Python module: operational utility |
 | `scripts\typescript_dependency_resolver.py` | WHITE | Model Context Protocol server - AI governance bridge |
 | `scripts\unified_topology.py` | WHITE | Model Context Protocol server - AI governance bridge |
 | `scripts\upcycle_audit.py` | WHITE | Python module: COMMENT_MARKERS, SKIP_PATTERNS, EXEMPT_FROM_NOMINATION |
+| `scripts\validate_script_headers.py` | WHITE | Python module: REQUIRED_FIELDS, SHEBANG_PYTHON, _has_required_fields |
+| `scripts\_tmp_freq.py` | WHITE | Python module: operational utility |
+| `scripts\lib\analyze.py` | WHITE | Python module: PatternStats, normalize_line, extract_patterns |
+| `scripts\lib\audit.py` | WHITE | Python module: FileInfo, AuditReport, compute_hash |
+| `scripts\lib\compact.py` | WHITE | Python module: CompactStats, is_noise, is_keep |
+| `scripts\lib\extract.py` | WHITE | Python module: Exchange, SessionData, sanitize_unicode |
+| `scripts\lib\map.py` | WHITE | Python module: IGNORE_DIRS, FolderStats, CodebaseMap |
+| `scripts\lib\resolve.py` | WHITE | Python module: SIDEntry, SIDIndex, SID_PATTERNS |
+| `scripts\lib\shared.py` | WHITE | Python module: find_repo_root, configure_utf8_output, setup_logging |
+| `scripts\lib\__init__.py` | WHITE | Python module: operational utility |
 | `pr2_review\scripts\ssot_hash.py` | WHITE | Python module: canonicalize, ssot_hash, verify_ssot_integrity |
 | `ankh_atlas\ankh_atlas\detectors.py` | WHITE | Python module: detect_heading, detect_abbrev_def, detect_abbrev_use |
 | `ankh_atlas\ankh_atlas\index.py` | WHITE | Python module: serialize_index, write_index, read_index |
@@ -84,124 +102,129 @@ identity analysis and PRISM spectral frequency mapping.
 
 | File | Spectral Freq | Theatrical Essence |
 |------|---------------|-------------------|
-| `extensions\doctor.ts` | ORANGE | TypeScript module: frontend utility |
+| `bun-playwright-poc\bun-launcher.ts` | ORANGE | TypeScript module: frontend utility |
+| `bun-playwright-poc\chthonic-crawler.ts` | ORANGE | TypeScript module: frontend utility |
+| `bun-playwright-poc\correct-chromium-test.ts` | ORANGE | TypeScript module: frontend utility |
+| `bun-playwright-poc\direct-launch-test.ts` | ORANGE | TypeScript module: frontend utility |
+| `bun-playwright-poc\example-buncdp.ts` | ORANGE | TypeScript module: frontend utility |
+| `bun-playwright-poc\headed-mode-test.ts` | ORANGE | TypeScript module: frontend utility |
+| `bun-playwright-poc\inline-page-test.ts` | ORANGE | TypeScript module: frontend utility |
+| `bun-playwright-poc\minimal-cdp-debug.ts` | ORANGE | TypeScript module: frontend utility |
+| `bun-playwright-poc\playwright.config.ts` | ORANGE | TypeScript module: frontend utility |
+| `bun-playwright-poc\raw-cdp-test.ts` | ORANGE | TypeScript module: frontend utility |
+| `bun-playwright-poc\self-log-cdp-test.ts` | ORANGE | TypeScript module: frontend utility |
+| `bun-playwright-poc\simple-cdp-test.ts` | ORANGE | TypeScript module: frontend utility |
+| `bun-playwright-poc\test-iframe.ts` | ORANGE | TypeScript module: frontend utility |
+| `bun-playwright-poc\test-integration.ts` | ORANGE | TypeScript module: frontend utility |
+| `bun-playwright-poc\test-interaction.ts` | ORANGE | TypeScript module: frontend utility |
+| `bun-playwright-poc\test-networkidle.ts` | ORANGE | TypeScript module: frontend utility |
+| `bun-playwright-poc\test-safety.ts` | ORANGE | TypeScript module: frontend utility |
+| `bun-playwright-poc\ultra-defensive-test.ts` | ORANGE | TypeScript module: frontend utility |
+| `bun-playwright-poc\websocket-mode-test.ts` | ORANGE | TypeScript module: frontend utility |
+| `bun-playwright-poc\win11-diagnostic.ts` | ORANGE | TypeScript module: frontend utility |
+| `bun-playwright-poc\win11-launch-fix.ts` | ORANGE | TypeScript module: frontend utility |
+| `bun-playwright-poc\win11-pipe-test.ts` | ORANGE | TypeScript module: frontend utility |
+| `bun-playwright-poc\win11-solution-test.playwright.ts` | ORANGE | TypeScript module: frontend utility |
+| `bun-playwright-poc\win11-working-solution.ts` | ORANGE | TypeScript module: frontend utility |
+| `bun-playwright-poc\ws-connect-test.ts` | ORANGE | TypeScript module: frontend utility |
 | `mcp\protocol.ts` | ORANGE | MCP client integration - Observatory communication layer |
 | `mcp\server.test.ts` | ORANGE | MCP client integration - Observatory communication layer |
 | `mcp\server.ts` | ORANGE | MCP client integration - Observatory communication layer |
 | `mcp\smoke-suite.ts` | ORANGE | MCP client integration - Observatory communication layer |
 | `mcp\test-client.ts` | ORANGE | TypeScript module: frontend utility |
-| `mcp\test-dependency-graph.ts` | ORANGE | TypeScript module: frontend utility |
+| `mcp\test-dependency-graph.ts` | ORANGE | MCP client integration - Observatory communication layer |
 | `mcp\verify-final.ts` | ORANGE | MCP client integration - Observatory communication layer |
+| `scripts\bridge-server.ts` | ORANGE | MCP client integration - Observatory communication layer |
+| `scripts\claude-chthonic-bridge.ts` | ORANGE | MCP client integration - Observatory communication layer |
+| `scripts\claude-chthonic-plugin.ts` | ORANGE | TypeScript module: frontend utility |
+| `scripts\claude-ide-e2e-check.ts` | ORANGE | MCP client integration - Observatory communication layer |
 | `scripts\mcp-asc-injector.ts` | ORANGE | MCP client integration - Observatory communication layer |
+| `scripts\mcp-chthonic-server.ts` | ORANGE | MCP client integration - Observatory communication layer |
 | `scripts\mcp-sentry-proxy.ts` | ORANGE | MCP client integration - Observatory communication layer |
 | `scripts\mcp_artisan_server.ts` | ORANGE | MCP client integration - Observatory communication layer |
+| `scripts\milfographic-calculator.ts` | ORANGE | TypeScript module: frontend utility |
 | `scripts\overnight_daemon.ts` | ORANGE | MCP client integration - Observatory communication layer |
 | `scripts\run_mcp_validation.ts` | ORANGE | MCP client integration - Observatory communication layer |
-| `scripts\sentry_init.ts` | ORANGE | TypeScript module: initSentry |
+| `scripts\sentry_init.ts` | ORANGE | MCP client integration - Observatory communication layer |
 | `scripts\sentry_probe.ts` | ORANGE | TypeScript module: frontend utility |
 | `scripts\sentry_test.ts` | ORANGE | TypeScript module: frontend utility |
+| `scripts\setup-gemini-claude.ts` | ORANGE | MCP client integration - Observatory communication layer |
 | `mcp\tools\preflightExecutionContext.ts` | ORANGE | MCP client integration - Observatory communication layer |
-| `mcp\tools\queryDependencyGraph.ts` | ORANGE | TypeScript module: frontend utility |
+| `mcp\tools\queryDependencyGraph.ts` | ORANGE | MCP client integration - Observatory communication layer |
 | `mcp\tools\scanRepository.ts` | ORANGE | MCP client integration - Observatory communication layer |
 | `mcp\tools\validateSSOT.ts` | ORANGE | MCP client integration - Observatory communication layer |
-| `extensions\__diagnostics__\assets.test.ts` | ORANGE | TypeScript module: frontend utility |
-| `extensions\__diagnostics__\bundle-size.test.ts` | ORANGE | TypeScript module: frontend utility |
-| `extensions\__diagnostics__\deployment.test.ts` | ORANGE | TypeScript module: frontend utility |
-| `extensions\__diagnostics__\gpu-parsing.test.ts` | ORANGE | TypeScript module: frontend utility |
-| `extensions\__diagnostics__\package-config.test.ts` | ORANGE | TypeScript module: frontend utility |
-| `extensions\__diagnostics__\python-detection.test.ts` | ORANGE | TypeScript module: frontend utility |
-| `extensions\__diagnostics__\source-code.test.ts` | ORANGE | TypeScript module: frontend utility |
 | `extensions\chthonic-statusbar\src\extension.ts` | ORANGE | TypeScript module: activate, deactivate |
 | `extensions\chthonic-statusbar\src\hedonisticValidation.ts` | ORANGE | TypeScript module: activate, deactivate, CONFIGURATION_SCHEMA |
 | `extensions\chthonic-mandala\src\extension.ts` | ORANGE | TypeScript module: activate, deactivate |
+| `bun-playwright-poc\scripts\install.ts` | ORANGE | TypeScript module: frontend utility |
+| `bun-playwright-poc\scripts\test.ts` | ORANGE | TypeScript module: frontend utility |
+| `bun-playwright-poc\scripts\validate.ts` | ORANGE | TypeScript module: frontend utility |
+| `bun-playwright-poc\src\bun-cdp-element.ts` | ORANGE | TypeScript module: BoxModel, ElementHandle |
+| `bun-playwright-poc\src\bun-cdp-frame.ts` | ORANGE | TypeScript module: FrameInfo, FrameRegistry, CDPFrame |
+| `bun-playwright-poc\src\bun-cdp-page.ts` | ORANGE | TypeScript module: PageOptions, DialogInfo, CDPPage |
+| `bun-playwright-poc\src\bun-cdp.ts` | ORANGE | TypeScript module: CDPResponse, CDPEvent, BrowserVersion |
+| `bun-playwright-poc\src\index.ts` | ORANGE | TypeScript module: frontend utility |
+| `bun-playwright-poc\tests\example.playwright.ts` | ORANGE | TypeScript module: frontend utility |
 
 ## 📜 DOCUMENTATION
 
 | File | Spectral Freq | Theatrical Essence |
 |------|---------------|-------------------|
-| `ALGORITHMIC_EMERGENCE_CATALOG.md` | GOLD | Single Source of Truth - the Codex Brahmanica Perfectus |
-| `ankh.md` | GOLD | Single Source of Truth - the Codex Brahmanica Perfectus |
-| `ANKHOLOGY.md` | GOLD | Single Source of Truth - the Codex Brahmanica Perfectus |
-| `ANKH_README.md` | GOLD | Entry portal - first architectural revelation |
-| `AUTONOMOUS_COORDINATOR_QUICKREF.md` | GOLD | Single Source of Truth - the Codex Brahmanica Perfectus |
-| `AUTONOMOUS_ORCHESTRATION_FRAMEWORK.md` | GOLD | Single Source of Truth - the Codex Brahmanica Perfectus |
-| `AUTONOMOUS_SESSION_2026-01-01.md` | GOLD | Documentation: Autonomous Session - January 1, 2026 (Extended Thinking) |
-| `AUTONOMOUS_SESSION_2_COMPLETE.md` | GOLD | Single Source of Truth - the Codex Brahmanica Perfectus |
-| `AUTONOMOUS_SESSION_3_COMPLETE.md` | GOLD | Single Source of Truth - the Codex Brahmanica Perfectus |
-| `AUTONOMOUS_SESSION_3_DEEP_DIVE_SYNTHESIS.md` | GOLD | Single Source of Truth - the Codex Brahmanica Perfectus |
-| `AUTONOMOUS_SESSION_3_DEEP_RESEARCH.md` | GOLD | Single Source of Truth - the Codex Brahmanica Perfectus |
-| `AUTONOMOUS_SESSION_3_EXECUTION_COMPLETE.md` | GOLD | Single Source of Truth - the Codex Brahmanica Perfectus |
-| `AUTONOMOUS_SESSION_3_MISSION_COMPLETE.md` | GOLD | Single Source of Truth - the Codex Brahmanica Perfectus |
-| `AUTONOMOUS_SESSION_3_MISSION_REPORT.md` | GOLD | Single Source of Truth - the Codex Brahmanica Perfectus |
-| `AUTONOMOUS_SESSION_4_COMPLETE.md` | GOLD | Documentation: 🛡️ AUTONOMOUS SESSION 4: THE IMMUNE RESPONSE |
-| `AUTONOMOUS_SESSION_5_COMPLETE.md` | GOLD | Single Source of Truth - the Codex Brahmanica Perfectus |
-| `AUTONOMOUS_SESSION_5_MISSION_REPORT.md` | GOLD | Single Source of Truth - the Codex Brahmanica Perfectus |
-| `AUTONOMOUS_SESSION_7_COMPLETE.md` | GOLD | Single Source of Truth - the Codex Brahmanica Perfectus |
-| `AUTONOMOUS_SESSION_STATUS.md` | GOLD | Single Source of Truth - the Codex Brahmanica Perfectus |
-| `BUN_COMPLIANCE_COMPLETE.md` | GOLD | Single Source of Truth - the Codex Brahmanica Perfectus |
+| `BRIDGE_COMPLETE_SUMMARY.md` | GOLD | Documentation: 🔥💀⚓ Bridge Complete - Claude Code & Chthonic Now Connected |
+| `CHTHONIC_V3_META_CLI_COMPLETE.md` | GOLD | Documentation: 🔥💀⚓ Chthonic v3.0.0 - Meta-CLI Refactoring Complete |
 | `CLAUDE.md` | GOLD | Single Source of Truth - the Codex Brahmanica Perfectus |
-| `CLAUDE_CODE_INTEGRATION_SUMMARY.md` | GOLD | Single Source of Truth - the Codex Brahmanica Perfectus |
-| `CLAUDE_HANDOFF_CHROMA_GENESIS.md` | GOLD | Single Source of Truth - the Codex Brahmanica Perfectus |
-| `CROSS_REFERENCE_TRIPTYCH.md` | GOLD | Single Source of Truth - the Codex Brahmanica Perfectus |
-| `CURRICULUM_CORE_V1.md` | GOLD | Single Source of Truth - the Codex Brahmanica Perfectus |
-| `DAEMON_CLASSIFICATION_ENHANCEMENTS.md` | GOLD | Documentation: Overnight Daemon Enhancement - Code Classification System |
-| `DCRP_DEPLOYMENT_SUMMARY.md` | GOLD | Single Source of Truth - the Codex Brahmanica Perfectus |
-| `DCRP_ENHANCED_ANALYSIS.md` | GOLD | Documentation: DCRP ENHANCED ANALYSIS REPORT |
-| `DCRP_FINAL_STATUS.md` | GOLD | Documentation: DCRP Final Status Report - January 1, 2026 |
-| `DCRP_OBSERVABILITY_UPGRADE.md` | GOLD | Documentation: DCRP Observability & Validation Upgrade |
-| `DCRP_OBSERVABILITY_VALIDATION_COMPLETE.md` | GOLD | Documentation: DCRP Production Analysis - Observability & Validation Comple |
-| `DCRP_PRODUCTION_ANALYSIS.md` | GOLD | Documentation: DCRP Production Analysis Report |
-| `DCRP_REFACTORING_SESSION_SUMMARY.md` | GOLD | Documentation: DCRP Autonomous Refactoring Session - January 1, 2026 |
-| `DCRP_REFACTOR_COMPLETE.md` | GOLD | Documentation: DCRP Refactor Complete - Production-Grade Achievement |
-| `DCRP_UNIFIED_REFACTOR.md` | GOLD | Single Source of Truth - the Codex Brahmanica Perfectus |
-| `DELIVERABLES_20251230.md` | GOLD | Single Source of Truth - the Codex Brahmanica Perfectus |
-| `DEVELOPMENT_STATE.md` | GOLD | Single Source of Truth - the Codex Brahmanica Perfectus |
-| `epistemograph_custody_v1.1.1.md` | GOLD | Single Source of Truth - the Codex Brahmanica Perfectus |
-| `EPISTEMOGRAPH_TO_CURRICULUM_SUMMARY.md` | GOLD | Single Source of Truth - the Codex Brahmanica Perfectus |
-| `GEMINI_HANDOFF_CACHE.md` | GOLD | Documentation: GEMINI 3-THINKING HANDOFF CACHE |
-| `GEMINI_HANDOFF_PHASE_11_5.md` | GOLD | Documentation: 🎮 CHTHONIC ARCHIVE - Gemini 3-Thinking Handoff Report |
-| `INDEXING_BEACON.md` | GOLD | Documentation: Indexing Beacon |
-| `latest-stable-policy.md` | GOLD | Documentation: Latest stable policy (toolchain lanes) |
-| `LOSSLESS_COMPRESSION_CROSS_REFERENCE.md` | GOLD | Single Source of Truth - the Codex Brahmanica Perfectus |
-| `PR_SUGGESTION.md` | GOLD | Documentation: PR: Harden preflight_execution_context + Add Validation Sche |
-| `scanner_freeze_v1.1.1.md` | GOLD | Single Source of Truth - the Codex Brahmanica Perfectus |
-| `SESSION_2026_01_04_EPISTEMOGRAPH_COMPLETE.md` | GOLD | Single Source of Truth - the Codex Brahmanica Perfectus |
-| `SESSION_3_ORCHESTRATION_QUICKREF.md` | GOLD | Single Source of Truth - the Codex Brahmanica Perfectus |
-| `SESSION_3_TYPESCRIPT_QUICKREF.md` | GOLD | Single Source of Truth - the Codex Brahmanica Perfectus |
-| `session_resumption_chthonic_progress.md` | GOLD | Single Source of Truth - the Codex Brahmanica Perfectus |
-| `TEST_FILE_DOCUMENTATION_RESTORED.md` | GOLD | Documentation: Test File Documentation Restoration |
-| `THE_DECORATOR_AUTONOMOUS_SYNTHESIS.md` | GOLD | Single Source of Truth - the Codex Brahmanica Perfectus |
-| `topology_map.md` | GOLD | Documentation: Unified Topology Map |
-| `topology_summary.md` | GOLD | Documentation: Unified Topology Summary |
-| `TYPESCRIPT_INTELLIGENCE_ENHANCEMENT.md` | GOLD | Single Source of Truth - the Codex Brahmanica Perfectus |
-| `VSCODE_GUI_ENHANCEMENT_COMPLETE.md` | GOLD | Single Source of Truth - the Codex Brahmanica Perfectus |
+| `CLAUDE_CODE_BRIDGE_ARCHITECTURE.md` | GOLD | Documentation: 🔥💀⚓ Claude Code ↔ Chthonic Bridge |
+| `CLAUDE_CODE_BRIDGE_INTEGRATION.md` | GOLD | Documentation: 🔥💀⚓ Claude Code ↔ Chthonic Bridge - Complete Integration Gui |
+| `CLAUDE_CODE_IDE_SETUP.md` | GOLD | Documentation: 🔥💀⚓ Claude Code IDE Setup - Integrated with Chthonic |
+| `IDE_DETECTION_EXTENSION_ACTIVATION.md` | GOLD | Documentation: 🔧 Claude Code IDE Detection Fix - Extension Activation |
 | `.vscode\QUICKREF.md` | GOLD | Single Source of Truth - the Codex Brahmanica Perfectus |
+| `.vscode\README.md` | GOLD | Entry portal - first architectural revelation |
 | `.vscode\SETTINGS_DIAGNOSIS.md` | GOLD | Single Source of Truth - the Codex Brahmanica Perfectus |
 | `.vscode\WIN11_CONFIGURATION.md` | GOLD | Documentation: Win11 & VSCode Insiders Configuration Summary |
 | `ankh_atlas\README.md` | GOLD | Single Source of Truth - the Codex Brahmanica Perfectus |
+| `bun-playwright-poc\BUNCDP_SUCCESS.md` | GOLD | Documentation: BunCDP - Working Bun + Chrome Automation |
+| `bun-playwright-poc\README.md` | GOLD | Entry portal - first architectural revelation |
+| `bun-playwright-poc\VALIDATION_COMPLETE.md` | GOLD | Documentation: BunCDP Validation Report |
+| `claude\README.md` | GOLD | Entry portal - first architectural revelation |
+| `claude\SESSION_HANDOFF_2026_01_29.md` | GOLD | Documentation: Session Handoff — 2026-01-29 |
+| `claude\WET_PAPER_TO_GOLD_METHODOLOGY.md` | GOLD | Documentation: Wet-Paper-to-Gold Methodology |
+| `debugging_data\codex_5.1_sabotage_trick.md` | GOLD | Single Source of Truth - the Codex Brahmanica Perfectus |
 | `dev\overnight_refactor_mode.md` | GOLD | Documentation: Overnight Refactor Mode — Core Contract |
+| `docs\CLASSIFICATION_STATE.md` | GOLD | Single Source of Truth - the Codex Brahmanica Perfectus |
 | `docs\CLAUDE_CODE_REGISTRATION.md` | GOLD | Documentation: Claude Code MCP Server Registration |
+| `docs\CLAUDE_CODE_REGISTRATION_VERIFICATION_PROOF.md` | GOLD | Documentation: CLAUDE_CODE_REGISTRATION.md Verification Proof |
 | `docs\CLI_EDITING_POLICY.md` | GOLD | Single Source of Truth - the Codex Brahmanica Perfectus |
-| `docs\CODEBASE_INVENTORY.md` | GOLD | Documentation: Codebase Inventory & README Proposal |
+| `docs\CODEBASE_INVENTORY.md` | GOLD | Documentation: Codebase Inventory |
+| `docs\COMPLETION_SUMMARY_TOOL_CONSOLIDATION.md` | GOLD | Documentation: Tool Consolidation: Phase 2-5 Complete ✅ |
 | `docs\COPILOT_SESSION_PERSISTENCE.md` | GOLD | Single Source of Truth - the Codex Brahmanica Perfectus |
+| `docs\CROSS_REFERENCE_VALIDATION_SUMMARY.md` | GOLD | Documentation: Cross-Reference Validation: Complete ✅ |
+| `docs\DCRP_SYNTHESIS.md` | GOLD | Single Source of Truth - the Codex Brahmanica Perfectus |
+| `docs\DEVELOPMENT_STATE.md` | GOLD | Single Source of Truth - the Codex Brahmanica Perfectus |
+| `docs\DOCS_METADATA_COMPLIANCE_REPORT.md` | GOLD | Single Source of Truth - the Codex Brahmanica Perfectus |
+| `docs\DOC_CONTENT_VALIDATION_FINAL_REPORT.md` | GOLD | Single Source of Truth - the Codex Brahmanica Perfectus |
 | `docs\EXECUTION_CONTRACT.md` | GOLD | Single Source of Truth - the Codex Brahmanica Perfectus |
 | `docs\HANDOFF_TO_CLAUDE.md` | GOLD | Documentation: Handoff to Claude Code: 2026-01-17 |
 | `docs\MCP_AUTONOMOUS_PREREQUISITES.md` | GOLD | Single Source of Truth - the Codex Brahmanica Perfectus |
 | `docs\MCP_SERVER_TEMPLATE.md` | GOLD | Single Source of Truth - the Codex Brahmanica Perfectus |
 | `docs\MCP_USER_WORKFLOWS.md` | GOLD | Single Source of Truth - the Codex Brahmanica Perfectus |
-| `docs\PROBE_CONTRACT.md` | GOLD | Documentation: Probe Contract — shell_capabilities.ps1 |
+| `docs\METADATA_VALIDATION_REPORT.md` | GOLD | Documentation: Metadata Validation Report: Tool Consolidation Files |
+| `docs\MIGRATION_GUIDE_CHTHONIC_CLI.md` | GOLD | Documentation: Migration Guide: Standalone Scripts → Chthonic CLI |
+| `docs\PHASE_3_TEST_REPORT.md` | GOLD | Documentation: Phase 3: Tool Consolidation Test Report |
+| `docs\PROBE_CONTRACT.md` | GOLD | Single Source of Truth - the Codex Brahmanica Perfectus |
 | `docs\PWSH_RULES.md` | GOLD | Single Source of Truth - the Codex Brahmanica Perfectus |
 | `docs\README.md` | GOLD | Entry portal - first architectural revelation |
 | `docs\ROOTDIR_HEALTH.md` | GOLD | Documentation: Root Directory Health Audit |
 | `docs\SESSION_2026-01-17_CLEANUP.md` | GOLD | Single Source of Truth - the Codex Brahmanica Perfectus |
+| `docs\SESSION_2026-01-17_SYNTHESIS.md` | GOLD | Single Source of Truth - the Codex Brahmanica Perfectus |
 | `docs\SESSION_2026_01_17_META_REVIEW.md` | GOLD | Documentation: Meta-Stewardship Review: Session 2026-01-17 |
 | `docs\SESSION_2026_01_17_TRUTH_STEWARDSHIP.md` | GOLD | Documentation: Truth Stewardship: Session 2026-01-17 (Claude Code Handoff) |
 | `docs\SESSION_BOOTSTRAP_SPEC.md` | GOLD | Single Source of Truth - the Codex Brahmanica Perfectus |
-| `extensions\DEVHOST_TESTING.md` | GOLD | Single Source of Truth - the Codex Brahmanica Perfectus |
-| `extensions\DIAGNOSTIC_REPORT.md` | GOLD | Single Source of Truth - the Codex Brahmanica Perfectus |
-| `extensions\FA5_POLICY.md` | GOLD | Single Source of Truth - the Codex Brahmanica Perfectus |
-| `extensions\NON_REGRESSION_CHECKLIST.md` | GOLD | Documentation: Extension Non-Regression Checklist |
-| `extensions\TA_FA_CANONICAL_FUNCTION.md` | GOLD | Single Source of Truth - the Codex Brahmanica Perfectus |
+| `docs\SSOTIFICATION_METHODOLOGY.md` | GOLD | Single Source of Truth - the Codex Brahmanica Perfectus |
+| `docs\STAGE_1_MIGRATION_PLAN.md` | GOLD | Single Source of Truth - the Codex Brahmanica Perfectus |
+| `docs\SUMMARY.md` | GOLD | Single Source of Truth - the Codex Brahmanica Perfectus |
+| `docs\TOOL_CONSOLIDATION_ROADMAP.md` | GOLD | Single Source of Truth - the Codex Brahmanica Perfectus |
+| `docs\TRUE_MISSING_FILES_REVIEW.md` | GOLD | Single Source of Truth - the Codex Brahmanica Perfectus |
+| `docs\VALIDATION_COMPLETION_REPORT.md` | GOLD | Documentation: Documentation Content Validation - Completion Report |
 | `health_reports\HEALTH_REPORT_2026-01-01T08-17-33+00-00.md` | GOLD | Single Source of Truth - the Codex Brahmanica Perfectus |
 | `health_reports\HEALTH_REPORT_2026-01-01T08-47-40+00-00.md` | GOLD | Single Source of Truth - the Codex Brahmanica Perfectus |
 | `health_reports\HEALTH_REPORT_2026-01-01T09-00-51+00-00.md` | GOLD | Single Source of Truth - the Codex Brahmanica Perfectus |
@@ -225,6 +248,7 @@ identity analysis and PRISM spectral frequency mapping.
 | `pr2_review\ANKH_README.md` | GOLD | Entry portal - first architectural revelation |
 | `pr2_review\CHERRY_PICK_PLAN.md` | GOLD | Single Source of Truth - the Codex Brahmanica Perfectus |
 | `pr2_review\COMPARISON_ANALYSIS.md` | GOLD | Single Source of Truth - the Codex Brahmanica Perfectus |
+| `pr2_review\SNOW_POWDERED_WHITE_MYTHOLOGY_DRAFT.md` | GOLD | Single Source of Truth - the Codex Brahmanica Perfectus |
 | `scripts\BUN_COMPLIANCE_AUDIT.md` | GOLD | Single Source of Truth - the Codex Brahmanica Perfectus |
 | `scripts\BUN_COMPLIANCE_DEPLOYMENT.md` | GOLD | Single Source of Truth - the Codex Brahmanica Perfectus |
 | `scripts\CLAUDE_CODE_INTEGRATION.md` | GOLD | Documentation: Claude Code Integration Scripts |
@@ -243,35 +267,80 @@ identity analysis and PRISM spectral frequency mapping.
 | `extensions\chthonic-statusbar\README.md` | GOLD | Single Source of Truth - the Codex Brahmanica Perfectus |
 | `docs\architecture\CHTHONIC_ARCHIVE_WORLD_TPEF.md` | GOLD | Documentation: **The Chthonic Archive of Perpetual Becoming** |
 | `docs\architecture\MILF_TRINITY_CHROMATIC_LINEAGE.md` | GOLD | Single Source of Truth - the Codex Brahmanica Perfectus |
+| `docs\architecture\topology_map.md` | GOLD | Documentation: Unified Topology Map |
+| `docs\architecture\topology_summary.md` | GOLD | Documentation: Unified Topology Summary |
 | `docs\design\genre-extraction.md` | GOLD | Documentation: MILF-Core Extraction Lens: The Conceptual Denominator |
+| `docs\frameworks\AUTONOMOUS_COORDINATOR_QUICKREF.md` | GOLD | Single Source of Truth - the Codex Brahmanica Perfectus |
+| `docs\frameworks\AUTONOMOUS_ORCHESTRATION_FRAMEWORK.md` | GOLD | Single Source of Truth - the Codex Brahmanica Perfectus |
+| `docs\frameworks\SESSION_3_ORCHESTRATION_QUICKREF.md` | GOLD | Single Source of Truth - the Codex Brahmanica Perfectus |
+| `docs\frameworks\SESSION_3_TYPESCRIPT_QUICKREF.md` | GOLD | Single Source of Truth - the Codex Brahmanica Perfectus |
+| `docs\handoffs\CLAUDE_HANDOFF_CHROMA_GENESIS.md` | GOLD | Single Source of Truth - the Codex Brahmanica Perfectus |
+| `docs\handoffs\GEMINI_HANDOFF_CACHE.md` | GOLD | Documentation: GEMINI 3-THINKING HANDOFF CACHE |
+| `docs\handoffs\GEMINI_HANDOFF_PHASE_11_5.md` | GOLD | Documentation: 🎮 CHTHONIC ARCHIVE - Gemini 3-Thinking Handoff Report |
 | `docs\lore\Alabaster_Voyde_Snow_White.md` | GOLD | Single Source of Truth - the Codex Brahmanica Perfectus |
 | `docs\lore\RESISTANCE_TRIUMVIRATE_COMPLETE.md` | GOLD | Single Source of Truth - the Codex Brahmanica Perfectus |
 | `docs\lore\Spectra_Chroma_Excavatus.md` | GOLD | Single Source of Truth - the Codex Brahmanica Perfectus |
 | `docs\protocols\ANCHOR_SIGNAL_PROTOCOL.md` | GOLD | Documentation: Anchor & Signal Protocol (ASP) |
+| `docs\protocols\CROSS_REFERENCE_TRIPTYCH.md` | GOLD | Single Source of Truth - the Codex Brahmanica Perfectus |
 | `docs\protocols\CROSS_TIER_MATRIX.md` | GOLD | Single Source of Truth - the Codex Brahmanica Perfectus |
+| `docs\protocols\latest-stable-policy.md` | GOLD | Documentation: Latest stable policy (toolchain lanes) |
 | `docs\protocols\TEA_EXAMPLES.md` | GOLD | Single Source of Truth - the Codex Brahmanica Perfectus |
+| `docs\reference\CLAUDE_CODE_INTEGRATION_SUMMARY.md` | GOLD | Single Source of Truth - the Codex Brahmanica Perfectus |
+| `docs\reference\CURRICULUM_CORE_V1.md` | GOLD | Single Source of Truth - the Codex Brahmanica Perfectus |
+| `docs\reference\DAEMON_CLASSIFICATION_ENHANCEMENTS.md` | GOLD | Documentation: Overnight Daemon Enhancement - Code Classification System |
 | `docs\reference\handoff0001.md` | GOLD | Single Source of Truth - the Codex Brahmanica Perfectus |
 | `docs\reference\handoff001.md` | GOLD | Single Source of Truth - the Codex Brahmanica Perfectus |
+| `docs\reference\LOSSLESS_COMPRESSION_CROSS_REFERENCE.md` | GOLD | Single Source of Truth - the Codex Brahmanica Perfectus |
+| `docs\reference\PR_SUGGESTION.md` | GOLD | Documentation: PR: Harden preflight_execution_context + Add Validation Sche |
 | `docs\reference\PYTHON_LANES.md` | GOLD | Documentation: Python lanes (uv) |
 | `docs\reference\SENTRY_MCP_VSCODE.md` | GOLD | Single Source of Truth - the Codex Brahmanica Perfectus |
+| `docs\reference\TEST_FILE_DOCUMENTATION_RESTORED.md` | GOLD | Documentation: Test File Documentation Restoration |
+| `docs\reference\TYPESCRIPT_INTELLIGENCE_ENHANCEMENT.md` | GOLD | Single Source of Truth - the Codex Brahmanica Perfectus |
+| `docs\reference\VSCODE_GUI_ENHANCEMENT_COMPLETE.md` | GOLD | Single Source of Truth - the Codex Brahmanica Perfectus |
+| `docs\sessions\ALGORITHMIC_EMERGENCE_CATALOG.md` | GOLD | Single Source of Truth - the Codex Brahmanica Perfectus |
+| `docs\sessions\AUTONOMOUS_SESSION_2026-01-01.md` | GOLD | Documentation: Autonomous Session - January 1, 2026 (Extended Thinking) |
+| `docs\sessions\AUTONOMOUS_SESSION_2_COMPLETE.md` | GOLD | Single Source of Truth - the Codex Brahmanica Perfectus |
+| `docs\sessions\AUTONOMOUS_SESSION_3_COMPLETE.md` | GOLD | Single Source of Truth - the Codex Brahmanica Perfectus |
+| `docs\sessions\AUTONOMOUS_SESSION_3_DEEP_DIVE_SYNTHESIS.md` | GOLD | Single Source of Truth - the Codex Brahmanica Perfectus |
+| `docs\sessions\AUTONOMOUS_SESSION_3_DEEP_RESEARCH.md` | GOLD | Single Source of Truth - the Codex Brahmanica Perfectus |
+| `docs\sessions\AUTONOMOUS_SESSION_3_EXECUTION_COMPLETE.md` | GOLD | Single Source of Truth - the Codex Brahmanica Perfectus |
+| `docs\sessions\AUTONOMOUS_SESSION_3_MISSION_COMPLETE.md` | GOLD | Single Source of Truth - the Codex Brahmanica Perfectus |
+| `docs\sessions\AUTONOMOUS_SESSION_3_MISSION_REPORT.md` | GOLD | Single Source of Truth - the Codex Brahmanica Perfectus |
+| `docs\sessions\AUTONOMOUS_SESSION_4_COMPLETE.md` | GOLD | Documentation: 🛡️ AUTONOMOUS SESSION 4: THE IMMUNE RESPONSE |
+| `docs\sessions\AUTONOMOUS_SESSION_5_COMPLETE.md` | GOLD | Single Source of Truth - the Codex Brahmanica Perfectus |
+| `docs\sessions\AUTONOMOUS_SESSION_5_MISSION_REPORT.md` | GOLD | Single Source of Truth - the Codex Brahmanica Perfectus |
+| `docs\sessions\AUTONOMOUS_SESSION_7_COMPLETE.md` | GOLD | Single Source of Truth - the Codex Brahmanica Perfectus |
+| `docs\sessions\AUTONOMOUS_SESSION_STATUS.md` | GOLD | Single Source of Truth - the Codex Brahmanica Perfectus |
+| `docs\sessions\DELIVERABLES_20251230.md` | GOLD | Single Source of Truth - the Codex Brahmanica Perfectus |
+| `docs\sessions\SESSION_2026_01_04_EPISTEMOGRAPH_COMPLETE.md` | GOLD | Single Source of Truth - the Codex Brahmanica Perfectus |
+| `docs\sessions\session_resumption_chthonic_progress.md` | GOLD | Single Source of Truth - the Codex Brahmanica Perfectus |
+| `docs\sessions\THE_DECORATOR_AUTONOMOUS_SYNTHESIS.md` | GOLD | Single Source of Truth - the Codex Brahmanica Perfectus |
+| `docs\reference\bun-playwright\AGENT_COORDINATION_WIN11.md` | GOLD | Documentation: Agent Coordination Protocol: Win11 Bun-Playwright |
+| `docs\reference\bun-playwright\BUN_COMPLIANCE_COMPLETE.md` | GOLD | Single Source of Truth - the Codex Brahmanica Perfectus |
+| `docs\reference\bun-playwright\BUN_PLAYWRIGHT_IT_SUMMARY.md` | GOLD | Documentation: Bun-Playwright Validation: IT-Safe Summary |
+| `docs\reference\bun-playwright\BUN_PLAYWRIGHT_VALIDATION.md` | GOLD | Documentation: Bun-First Playwright Extension Validation Study |
+| `docs\reference\bun-playwright\WIN11_BUN_PLAYWRIGHT_TRAJECTORY.md` | GOLD | Documentation: Windows 11 Bun-Playwright Trajectory Analysis |
+| `docs\reference\epistemograph\epistemograph_custody_v1.1.1.md` | GOLD | Single Source of Truth - the Codex Brahmanica Perfectus |
+| `docs\reference\epistemograph\EPISTEMOGRAPH_TO_CURRICULUM_SUMMARY.md` | GOLD | Single Source of Truth - the Codex Brahmanica Perfectus |
+| `docs\reference\epistemograph\scanner_freeze_v1.1.1.md` | GOLD | Single Source of Truth - the Codex Brahmanica Perfectus |
+| `docs\frameworks\ankh\ankh.md` | GOLD | Single Source of Truth - the Codex Brahmanica Perfectus |
+| `docs\frameworks\ankh\ANKHOLOGY.md` | GOLD | Single Source of Truth - the Codex Brahmanica Perfectus |
+| `docs\frameworks\ankh\ANKH_README.md` | GOLD | Entry portal - first architectural revelation |
+| `docs\frameworks\ankh\INDEXING_BEACON.md` | GOLD | Documentation: Indexing Beacon |
+| `bun-playwright-poc\crawl-output\CRAWL_SUMMARY.md` | GOLD | Documentation: Chthonic Crawl: "--dry-run" |
 
 ## ⚙️ CONFIGURATION
 
 | File | Spectral Freq | Theatrical Essence |
 |------|---------------|-------------------|
-| `.dcrp_evolution.json` | BLUE | Configuration: .dcrp_evolution.json |
 | `.dcrp_state.json` | BLUE | Configuration: .dcrp_state.json |
-| `ankh_index.json` | BLUE | Configuration: ankh_index.json |
+| `book.toml` | BLUE | Documentation, protocols, session records, and lore of the Chthonic Archive |
+| `bunfig.toml` | BLUE | Configuration: bunfig.toml |
 | `Cargo.toml` | BLUE | The Chthonic Archive: Triumvirate Ascension - ASC-NATIVE-CHAIN-RPG |
-| `curriculum_core_v1.json` | BLUE | Configuration: curriculum_core_v1.json |
-| `dependency_graph.json` | BLUE | Configuration: dependency_graph.json |
-| `dependency_graph_enhanced.json` | BLUE | Configuration: dependency_graph_enhanced.json |
-| `dependency_graph_production.json` | BLUE | Configuration: dependency_graph_production.json |
 | `package.json` | BLUE | Node package manifest - Observatory integration |
 | `pyproject.toml` | BLUE | Repository-wide cross-reference and analysis tools |
-| `sid_index.json` | BLUE | Configuration: sid_index.json |
-| `topology_graph.json` | BLUE | Configuration: topology_graph.json |
 | `.claude\settings.local.json` | BLUE | Configuration: settings.local.json |
+| `.gemini\settings.json` | BLUE | Configuration: settings.json |
 | `.vscode\chthonic-archive-theme.json` | BLUE | Configuration: chthonic-archive-theme.json |
 | `.vscode\launch.json` | BLUE | Configuration: launch.json |
 | `.vscode\mcp.json` | BLUE | Configuration: mcp.json |
@@ -281,27 +350,80 @@ identity analysis and PRISM spectral frequency mapping.
 | `artifacts\mcp_run_audit_2026-01-05T00-42-49-176Z.json` | BLUE | Configuration: mcp_run_audit_2026-01-05T00-42-49-176Z.json |
 | `artifacts\mcp_run_audit_2026-01-05T00-43-12-981Z.json` | BLUE | Configuration: mcp_run_audit_2026-01-05T00-43-12-981Z.json |
 | `artifacts\mcp_run_audit_2026-01-05T00-43-47-483Z.json` | BLUE | Configuration: mcp_run_audit_2026-01-05T00-43-47-483Z.json |
+| `artifacts\mcp_run_audit_2026-01-29T18-30-47-901Z.json` | BLUE | Configuration: mcp_run_audit_2026-01-29T18-30-47-901Z.json |
+| `artifacts\mcp_run_audit_2026-01-29T18-31-55-941Z.json` | BLUE | Configuration: mcp_run_audit_2026-01-29T18-31-55-941Z.json |
+| `artifacts\mcp_run_audit_2026-01-29T18-35-18-246Z.json` | BLUE | Configuration: mcp_run_audit_2026-01-29T18-35-18-246Z.json |
+| `artifacts\mcp_run_audit_2026-01-29T18-36-11-723Z.json` | BLUE | Configuration: mcp_run_audit_2026-01-29T18-36-11-723Z.json |
+| `artifacts\mcp_run_audit_2026-01-29T18-36-43-813Z.json` | BLUE | Configuration: mcp_run_audit_2026-01-29T18-36-43-813Z.json |
+| `artifacts\mcp_run_audit_2026-01-29T18-52-46-564Z.json` | BLUE | Configuration: mcp_run_audit_2026-01-29T18-52-46-564Z.json |
+| `artifacts\mcp_run_audit_2026-01-29T18-53-31-593Z.json` | BLUE | Configuration: mcp_run_audit_2026-01-29T18-53-31-593Z.json |
+| `artifacts\mcp_run_audit_2026-01-29T18-59-32-890Z.json` | BLUE | Configuration: mcp_run_audit_2026-01-29T18-59-32-890Z.json |
 | `artifacts\mcp_run_curriculum_2026-01-05T00-42-49-176Z.json` | BLUE | Configuration: mcp_run_curriculum_2026-01-05T00-42-49-176Z.json |
 | `artifacts\mcp_run_curriculum_2026-01-05T00-43-12-981Z.json` | BLUE | Configuration: mcp_run_curriculum_2026-01-05T00-43-12-981Z.json |
 | `artifacts\mcp_run_curriculum_2026-01-05T00-43-47-483Z.json` | BLUE | Configuration: mcp_run_curriculum_2026-01-05T00-43-47-483Z.json |
+| `artifacts\mcp_run_curriculum_2026-01-29T18-30-47-901Z.json` | BLUE | Configuration: mcp_run_curriculum_2026-01-29T18-30-47-901Z.json |
+| `artifacts\mcp_run_curriculum_2026-01-29T18-31-55-941Z.json` | BLUE | Configuration: mcp_run_curriculum_2026-01-29T18-31-55-941Z.json |
+| `artifacts\mcp_run_curriculum_2026-01-29T18-35-18-246Z.json` | BLUE | Configuration: mcp_run_curriculum_2026-01-29T18-35-18-246Z.json |
+| `artifacts\mcp_run_curriculum_2026-01-29T18-36-11-723Z.json` | BLUE | Configuration: mcp_run_curriculum_2026-01-29T18-36-11-723Z.json |
+| `artifacts\mcp_run_curriculum_2026-01-29T18-36-43-813Z.json` | BLUE | Configuration: mcp_run_curriculum_2026-01-29T18-36-43-813Z.json |
+| `artifacts\mcp_run_curriculum_2026-01-29T18-52-46-564Z.json` | BLUE | Configuration: mcp_run_curriculum_2026-01-29T18-52-46-564Z.json |
+| `artifacts\mcp_run_curriculum_2026-01-29T18-53-31-593Z.json` | BLUE | Configuration: mcp_run_curriculum_2026-01-29T18-53-31-593Z.json |
+| `artifacts\mcp_run_curriculum_2026-01-29T18-59-32-890Z.json` | BLUE | Configuration: mcp_run_curriculum_2026-01-29T18-59-32-890Z.json |
 | `artifacts\mcp_run_discovery_2026-01-05T00-42-49-176Z.json` | BLUE | Configuration: mcp_run_discovery_2026-01-05T00-42-49-176Z.json |
 | `artifacts\mcp_run_discovery_2026-01-05T00-43-12-981Z.json` | BLUE | Configuration: mcp_run_discovery_2026-01-05T00-43-12-981Z.json |
 | `artifacts\mcp_run_discovery_2026-01-05T00-43-47-483Z.json` | BLUE | Configuration: mcp_run_discovery_2026-01-05T00-43-47-483Z.json |
+| `artifacts\mcp_run_discovery_2026-01-29T18-30-47-901Z.json` | BLUE | Configuration: mcp_run_discovery_2026-01-29T18-30-47-901Z.json |
+| `artifacts\mcp_run_discovery_2026-01-29T18-31-55-941Z.json` | BLUE | Configuration: mcp_run_discovery_2026-01-29T18-31-55-941Z.json |
+| `artifacts\mcp_run_discovery_2026-01-29T18-35-18-246Z.json` | BLUE | Configuration: mcp_run_discovery_2026-01-29T18-35-18-246Z.json |
+| `artifacts\mcp_run_discovery_2026-01-29T18-36-11-723Z.json` | BLUE | Configuration: mcp_run_discovery_2026-01-29T18-36-11-723Z.json |
+| `artifacts\mcp_run_discovery_2026-01-29T18-36-43-813Z.json` | BLUE | Configuration: mcp_run_discovery_2026-01-29T18-36-43-813Z.json |
+| `artifacts\mcp_run_discovery_2026-01-29T18-52-46-564Z.json` | BLUE | Configuration: mcp_run_discovery_2026-01-29T18-52-46-564Z.json |
+| `artifacts\mcp_run_discovery_2026-01-29T18-53-31-593Z.json` | BLUE | Configuration: mcp_run_discovery_2026-01-29T18-53-31-593Z.json |
+| `artifacts\mcp_run_discovery_2026-01-29T18-59-32-890Z.json` | BLUE | Configuration: mcp_run_discovery_2026-01-29T18-59-32-890Z.json |
 | `artifacts\mcp_run_impact_2026-01-05T00-42-49-176Z.json` | BLUE | Configuration: mcp_run_impact_2026-01-05T00-42-49-176Z.json |
 | `artifacts\mcp_run_impact_2026-01-05T00-43-12-981Z.json` | BLUE | Configuration: mcp_run_impact_2026-01-05T00-43-12-981Z.json |
 | `artifacts\mcp_run_impact_2026-01-05T00-43-47-483Z.json` | BLUE | Configuration: mcp_run_impact_2026-01-05T00-43-47-483Z.json |
+| `artifacts\mcp_run_impact_2026-01-29T18-30-47-901Z.json` | BLUE | Configuration: mcp_run_impact_2026-01-29T18-30-47-901Z.json |
+| `artifacts\mcp_run_impact_2026-01-29T18-31-55-941Z.json` | BLUE | Configuration: mcp_run_impact_2026-01-29T18-31-55-941Z.json |
+| `artifacts\mcp_run_impact_2026-01-29T18-35-18-246Z.json` | BLUE | Configuration: mcp_run_impact_2026-01-29T18-35-18-246Z.json |
+| `artifacts\mcp_run_impact_2026-01-29T18-36-11-723Z.json` | BLUE | Configuration: mcp_run_impact_2026-01-29T18-36-11-723Z.json |
+| `artifacts\mcp_run_impact_2026-01-29T18-36-43-813Z.json` | BLUE | Configuration: mcp_run_impact_2026-01-29T18-36-43-813Z.json |
+| `artifacts\mcp_run_impact_2026-01-29T18-52-46-564Z.json` | BLUE | Configuration: mcp_run_impact_2026-01-29T18-52-46-564Z.json |
+| `artifacts\mcp_run_impact_2026-01-29T18-53-31-593Z.json` | BLUE | Configuration: mcp_run_impact_2026-01-29T18-53-31-593Z.json |
+| `artifacts\mcp_run_impact_2026-01-29T18-59-32-890Z.json` | BLUE | Configuration: mcp_run_impact_2026-01-29T18-59-32-890Z.json |
 | `artifacts\mcp_run_spectral_2026-01-05T00-42-49-176Z.json` | BLUE | Configuration: mcp_run_spectral_2026-01-05T00-42-49-176Z.json |
 | `artifacts\mcp_run_spectral_2026-01-05T00-43-12-981Z.json` | BLUE | Configuration: mcp_run_spectral_2026-01-05T00-43-12-981Z.json |
 | `artifacts\mcp_run_spectral_2026-01-05T00-43-47-483Z.json` | BLUE | Configuration: mcp_run_spectral_2026-01-05T00-43-47-483Z.json |
+| `artifacts\mcp_run_spectral_2026-01-29T18-30-47-901Z.json` | BLUE | Configuration: mcp_run_spectral_2026-01-29T18-30-47-901Z.json |
+| `artifacts\mcp_run_spectral_2026-01-29T18-31-55-941Z.json` | BLUE | Configuration: mcp_run_spectral_2026-01-29T18-31-55-941Z.json |
+| `artifacts\mcp_run_spectral_2026-01-29T18-35-18-246Z.json` | BLUE | Configuration: mcp_run_spectral_2026-01-29T18-35-18-246Z.json |
+| `artifacts\mcp_run_spectral_2026-01-29T18-36-11-723Z.json` | BLUE | Configuration: mcp_run_spectral_2026-01-29T18-36-11-723Z.json |
+| `artifacts\mcp_run_spectral_2026-01-29T18-36-43-813Z.json` | BLUE | Configuration: mcp_run_spectral_2026-01-29T18-36-43-813Z.json |
+| `artifacts\mcp_run_spectral_2026-01-29T18-52-46-564Z.json` | BLUE | Configuration: mcp_run_spectral_2026-01-29T18-52-46-564Z.json |
+| `artifacts\mcp_run_spectral_2026-01-29T18-53-31-593Z.json` | BLUE | Configuration: mcp_run_spectral_2026-01-29T18-53-31-593Z.json |
+| `artifacts\mcp_run_spectral_2026-01-29T18-59-32-890Z.json` | BLUE | Configuration: mcp_run_spectral_2026-01-29T18-59-32-890Z.json |
 | `artifacts\mcp_run_trace_2026-01-05T00-42-49-176Z.json` | BLUE | Configuration: mcp_run_trace_2026-01-05T00-42-49-176Z.json |
 | `artifacts\mcp_run_trace_2026-01-05T00-43-12-981Z.json` | BLUE | Configuration: mcp_run_trace_2026-01-05T00-43-12-981Z.json |
 | `artifacts\mcp_run_trace_2026-01-05T00-43-47-483Z.json` | BLUE | Configuration: mcp_run_trace_2026-01-05T00-43-47-483Z.json |
+| `artifacts\mcp_run_trace_2026-01-29T18-30-47-901Z.json` | BLUE | Configuration: mcp_run_trace_2026-01-29T18-30-47-901Z.json |
+| `artifacts\mcp_run_trace_2026-01-29T18-31-55-941Z.json` | BLUE | Configuration: mcp_run_trace_2026-01-29T18-31-55-941Z.json |
+| `artifacts\mcp_run_trace_2026-01-29T18-35-18-246Z.json` | BLUE | Configuration: mcp_run_trace_2026-01-29T18-35-18-246Z.json |
+| `artifacts\mcp_run_trace_2026-01-29T18-36-11-723Z.json` | BLUE | Configuration: mcp_run_trace_2026-01-29T18-36-11-723Z.json |
+| `artifacts\mcp_run_trace_2026-01-29T18-36-43-813Z.json` | BLUE | Configuration: mcp_run_trace_2026-01-29T18-36-43-813Z.json |
+| `artifacts\mcp_run_trace_2026-01-29T18-52-46-564Z.json` | BLUE | Configuration: mcp_run_trace_2026-01-29T18-52-46-564Z.json |
+| `artifacts\mcp_run_trace_2026-01-29T18-53-31-593Z.json` | BLUE | Configuration: mcp_run_trace_2026-01-29T18-53-31-593Z.json |
+| `artifacts\mcp_run_trace_2026-01-29T18-59-32-890Z.json` | BLUE | Configuration: mcp_run_trace_2026-01-29T18-59-32-890Z.json |
 | `assets\data.json` | BLUE | Configuration: data.json |
+| `bun-playwright-poc\package.json` | BLUE | Lightweight CDP (Chrome DevTools Protocol) driver for Bun - bypasses Playwright IPC incompatibility |
+| `data\curriculum_core_v1.json` | BLUE | Configuration: curriculum_core_v1.json |
+| `docs\VALIDATION_CATEGORIZED.json` | BLUE | Configuration: VALIDATION_CATEGORIZED.json |
+| `docs\VALIDATION_ISSUES.json` | BLUE | Configuration: VALIDATION_ISSUES.json |
 | `mcp\claude_code_mcp_hint.json` | BLUE | Configuration: claude_code_mcp_hint.json |
 | `mcp\mcp.json` | BLUE | Bun-native MCP server for repository introspection |
 | `mcp\preflight_response.json` | BLUE | Configuration: preflight_response.json |
 | `mcp\test-input.json` | BLUE | Configuration: test-input.json |
 | `scripts\.dcrp_state.json` | BLUE | Configuration: .dcrp_state.json |
+| `scripts\data\indices\sid_index.json` | BLUE | Configuration: sid_index.json |
 | `mcp\tools\ExecutionContext.schema.json` | BLUE | Configuration: ExecutionContext.schema.json |
 | `mcp\tools\ExecutionContextSchema.json` | BLUE | Schema for preflight_execution_context MCP tool response |
 | `mcp\tools\preflightExecutionContext.test.json` | BLUE | Golden test vectors for preflight_execution_context MCP tool |
@@ -310,25 +432,35 @@ identity analysis and PRISM spectral frequency mapping.
 | `extensions\chthonic-statusbar\package.json` | BLUE | SSOT verification, lineage tracking, GPU monitoring, and metabolic cycle indicators |
 | `extensions\chthonic-statusbar\tsconfig.json` | BLUE | Configuration: tsconfig.json |
 | `extensions\chthonic-mandala\themes\chthonic-mandala-color-theme.json` | BLUE | Configuration: chthonic-mandala-color-theme.json |
+| `data\graphs\dependency_graph.json` | BLUE | Configuration: dependency_graph.json |
+| `data\graphs\dependency_graph_enhanced.json` | BLUE | Configuration: dependency_graph_enhanced.json |
+| `data\graphs\dependency_graph_production.json` | BLUE | Configuration: dependency_graph_production.json |
+| `data\graphs\topology_graph.json` | BLUE | Configuration: topology_graph.json |
+| `data\indices\ankh_index.json` | BLUE | Configuration: ankh_index.json |
+| `data\indices\sid_index.json` | BLUE | Configuration: sid_index.json |
+| `data\state\.dcrp_evolution.json` | BLUE | Configuration: .dcrp_evolution.json |
+| `data\state\.dcrp_state.json` | BLUE | Configuration: .dcrp_state.json |
+| `bun-playwright-poc\.vscode\tasks.json` | BLUE | Configuration: tasks.json |
+| `bun-playwright-poc\crawl-output\knowledge-graph.json` | BLUE | Configuration: knowledge-graph.json |
 | `assets\entities\abbreviations.json` | BLUE | Configuration: abbreviations.json |
 
 ## 📊 DEPENDENCY GRAPH STATISTICS
 
-- **Total Files:** 319
-- **Total Edges (Dependencies):** 47
-- **Void Directories:** 1
+- **Total Files:** 498
+- **Total Edges (Dependencies):** 168
+- **Void Directories:** 2
 
 ### Most Depended-Upon Files (Top 10)
 
 | File | Dependents |
 |------|-----------|
-| `scripts\sentry_init.ts` | 3 |
-| `mcp\tools\queryDependencyGraph.ts` | 3 |
-| `logs\sessions\session_2025-12-31_0746_vscode-extension-debug.md` | 3 |
-| `ankh_atlas\ankh_atlas\models.py` | 3 |
-| `DEVELOPMENT_STATE.md` | 2 |
-| `mcp\tools\scanRepository.ts` | 2 |
-| `mcp\tools\validateSSOT.ts` | 2 |
-| `CLAUDE.md` | 1 |
-| `session_resumption_chthonic_progress.md` | 1 |
-| `.vscode\chthonic-archive-theme.json` | 1 |
+| `scripts/lib/shared.py` | 6 |
+| `docs/PWSH_RULES.md` | 4 |
+| `docs/PHASE_3_TEST_REPORT.md` | 3 |
+| `scripts/README.md` | 3 |
+| `scripts/sentry_init.ts` | 3 |
+| `mcp/tools/queryDependencyGraph.ts` | 3 |
+| `bun-playwright-poc/src/bun-cdp-page.ts` | 3 |
+| `ankh_atlas/ankh_atlas/models.py` | 3 |
+| `CLAUDE.md` | 2 |
+| `claude/sessionDUMP0001.txt` | 2 |

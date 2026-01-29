@@ -1,10 +1,10 @@
 {
   "summary": {
-    "total": 195,
+    "total": 182,
     "false_positives": 30,
-    "fixable": 85,
+    "fixable": 0,
     "planned": 11,
-    "real_missing": 69
+    "real_missing": 141
   },
   "false_positives": [
     {
@@ -188,603 +188,7 @@
       "Details": "File does not exist"
     }
   ],
-  "fixable": [
-    {
-      "Doc": "COMPLETION_SUMMARY_TOOL_CONSOLIDATION.md",
-      "Type": "Missing File",
-      "Reference": "analyze.py",
-      "Details": "File does not exist",
-      "Correction": "../scripts/lib/analyze.py"
-    },
-    {
-      "Doc": "COMPLETION_SUMMARY_TOOL_CONSOLIDATION.md",
-      "Type": "Missing File",
-      "Reference": "_tmp_freq.py",
-      "Details": "File does not exist",
-      "Correction": "../scripts/_tmp_freq.py"
-    },
-    {
-      "Doc": "COPILOT_SESSION_PERSISTENCE.md",
-      "Type": "Missing File",
-      "Reference": "session_resumption_chthonic_progress.md",
-      "Details": "File does not exist",
-      "Correction": "../session_resumption_chthonic_progress.md"
-    },
-    {
-      "Doc": "COPILOT_SESSION_PERSISTENCE.md",
-      "Type": "Missing File",
-      "Reference": "DEVELOPMENT_STATE.md",
-      "Details": "File does not exist",
-      "Correction": "../DEVELOPMENT_STATE.md"
-    },
-    {
-      "Doc": "CROSS_REFERENCE_VALIDATION_SUMMARY.md",
-      "Type": "Missing File",
-      "Reference": "scripts/data/indices/sid_index.js",
-      "Details": "File does not exist",
-      "Correction": "data/indices/sid_index.json"
-    },
-    {
-      "Doc": "DCRP_SYNTHESIS.md",
-      "Type": "Missing File",
-      "Reference": "CROSS_REFERENCE_TRIPTYCH.md",
-      "Details": "File does not exist",
-      "Correction": "../CROSS_REFERENCE_TRIPTYCH.md"
-    },
-    {
-      "Doc": "DCRP_SYNTHESIS.md",
-      "Type": "Missing File",
-      "Reference": "dependency_graph.json",
-      "Details": "File does not exist",
-      "Correction": "../dependency_graph.json"
-    },
-    {
-      "Doc": "DCRP_SYNTHESIS.md",
-      "Type": "Missing File",
-      "Reference": "DCRP_DEPLOYMENT_SUMMARY.md",
-      "Details": "File does not exist",
-      "Correction": "../DCRP_DEPLOYMENT_SUMMARY.md"
-    },
-    {
-      "Doc": "DCRP_SYNTHESIS.md",
-      "Type": "Missing File",
-      "Reference": "DCRP_ENHANCED_ANALYSIS.md",
-      "Details": "File does not exist",
-      "Correction": "../DCRP_ENHANCED_ANALYSIS.md"
-    },
-    {
-      "Doc": "DCRP_SYNTHESIS.md",
-      "Type": "Missing File",
-      "Reference": "DCRP_FINAL_STATUS.md",
-      "Details": "File does not exist",
-      "Correction": "../DCRP_FINAL_STATUS.md"
-    },
-    {
-      "Doc": "DCRP_SYNTHESIS.md",
-      "Type": "Missing File",
-      "Reference": "DCRP_OBSERVABILITY_UPGRADE.md",
-      "Details": "File does not exist",
-      "Correction": "../DCRP_OBSERVABILITY_UPGRADE.md"
-    },
-    {
-      "Doc": "DCRP_SYNTHESIS.md",
-      "Type": "Missing File",
-      "Reference": "DCRP_OBSERVABILITY_VALIDATION_COMPLETE.md",
-      "Details": "File does not exist",
-      "Correction": "../DCRP_OBSERVABILITY_VALIDATION_COMPLETE.md"
-    },
-    {
-      "Doc": "DCRP_SYNTHESIS.md",
-      "Type": "Missing File",
-      "Reference": "DCRP_PRODUCTION_ANALYSIS.md",
-      "Details": "File does not exist",
-      "Correction": "../DCRP_PRODUCTION_ANALYSIS.md"
-    },
-    {
-      "Doc": "DCRP_SYNTHESIS.md",
-      "Type": "Missing File",
-      "Reference": "DCRP_REFACTOR_COMPLETE.md",
-      "Details": "File does not exist",
-      "Correction": "../DCRP_REFACTOR_COMPLETE.md"
-    },
-    {
-      "Doc": "DCRP_SYNTHESIS.md",
-      "Type": "Missing File",
-      "Reference": "DCRP_REFACTORING_SESSION_SUMMARY.md",
-      "Details": "File does not exist",
-      "Correction": "../DCRP_REFACTORING_SESSION_SUMMARY.md"
-    },
-    {
-      "Doc": "DCRP_SYNTHESIS.md",
-      "Type": "Missing File",
-      "Reference": "DCRP_UNIFIED_REFACTOR.md",
-      "Details": "File does not exist",
-      "Correction": "../DCRP_UNIFIED_REFACTOR.md"
-    },
-    {
-      "Doc": "DCRP_SYNTHESIS.md",
-      "Type": "Missing File",
-      "Reference": "DCRP_MERGE_REPORT.txt",
-      "Details": "File does not exist",
-      "Correction": "../DCRP_MERGE_REPORT.txt"
-    },
-    {
-      "Doc": "DEVELOPMENT_STATE.md",
-      "Type": "Missing File",
-      "Reference": "DEVELOPMENT_STATE.md",
-      "Details": "File does not exist",
-      "Correction": "../DEVELOPMENT_STATE.md"
-    },
-    {
-      "Doc": "DEVELOPMENT_STATE.md",
-      "Type": "Missing File",
-      "Reference": "session_resumption_chthonic_progress.md",
-      "Details": "File does not exist",
-      "Correction": "../session_resumption_chthonic_progress.md"
-    },
-    {
-      "Doc": "DOCS_METADATA_COMPLIANCE_REPORT.md",
-      "Type": "Missing File",
-      "Reference": "scripts/data/indices/sid_index.js",
-      "Details": "File does not exist",
-      "Correction": "data/indices/sid_index.json"
-    },
-    {
-      "Doc": "MIGRATION_GUIDE_CHTHONIC_CLI.md",
-      "Type": "Missing File",
-      "Reference": "_tmp_freq.py",
-      "Details": "File does not exist",
-      "Correction": "../scripts/_tmp_freq.py"
-    },
-    {
-      "Doc": "MIGRATION_GUIDE_CHTHONIC_CLI.md",
-      "Type": "Missing File",
-      "Reference": "compact.py",
-      "Details": "File does not exist",
-      "Correction": "../scripts/lib/compact.py"
-    },
-    {
-      "Doc": "PWSH_RULES.md",
-      "Type": "Missing File",
-      "Reference": "SESSION_BOOTSTRAP_SPEC.md",
-      "Details": "File does not exist",
-      "Correction": "docs/SESSION_BOOTSTRAP_SPEC.md"
-    },
-    {
-      "Doc": "PWSH_RULES.md",
-      "Type": "Missing File",
-      "Reference": "CLI_EDITING_POLICY.md",
-      "Details": "File does not exist",
-      "Correction": "docs/CLI_EDITING_POLICY.md"
-    },
-    {
-      "Doc": "README.md",
-      "Type": "Missing File",
-      "Reference": "CODEBASE_INVENTORY.md",
-      "Details": "File does not exist",
-      "Correction": "docs/CODEBASE_INVENTORY.md"
-    },
-    {
-      "Doc": "README.md",
-      "Type": "Missing File",
-      "Reference": "ROOTDIR_HEALTH.md",
-      "Details": "File does not exist",
-      "Correction": "docs/ROOTDIR_HEALTH.md"
-    },
-    {
-      "Doc": "README.md",
-      "Type": "Missing File",
-      "Reference": "CLI_EDITING_POLICY.md",
-      "Details": "File does not exist",
-      "Correction": "docs/CLI_EDITING_POLICY.md"
-    },
-    {
-      "Doc": "SESSION_2026_01_17_META_REVIEW.md",
-      "Type": "Missing File",
-      "Reference": "resolve_sid.py",
-      "Details": "File does not exist",
-      "Correction": "../scripts/resolve_sid.py"
-    },
-    {
-      "Doc": "SESSION_2026_01_17_TRUTH_STEWARDSHIP.md",
-      "Type": "Missing File",
-      "Reference": "resolve_sid.py",
-      "Details": "File does not exist",
-      "Correction": "../scripts/resolve_sid.py"
-    },
-    {
-      "Doc": "SESSION_2026_01_17_TRUTH_STEWARDSHIP.md",
-      "Type": "Missing File",
-      "Reference": "sid_index.json",
-      "Details": "File does not exist",
-      "Correction": "../data/indices/sid_index.json"
-    },
-    {
-      "Doc": "SESSION_2026-01-17_CLEANUP.md",
-      "Type": "Missing File",
-      "Reference": "sid_index.json",
-      "Details": "File does not exist",
-      "Correction": "../data/indices/sid_index.json"
-    },
-    {
-      "Doc": "SESSION_2026-01-17_CLEANUP.md",
-      "Type": "Missing File",
-      "Reference": "ankh_index.json",
-      "Details": "File does not exist",
-      "Correction": "../ankh_index.json"
-    },
-    {
-      "Doc": "SESSION_2026-01-17_CLEANUP.md",
-      "Type": "Missing File",
-      "Reference": "map_codebase.py",
-      "Details": "File does not exist",
-      "Correction": "../scripts/map_codebase.py"
-    },
-    {
-      "Doc": "SESSION_2026-01-17_CLEANUP.md",
-      "Type": "Missing File",
-      "Reference": "rootdir_health_audit.py",
-      "Details": "File does not exist",
-      "Correction": "../scripts/rootdir_health_audit.py"
-    },
-    {
-      "Doc": "SESSION_2026-01-17_SYNTHESIS.md",
-      "Type": "Missing File",
-      "Reference": "_tmp_freq.py",
-      "Details": "File does not exist",
-      "Correction": "../scripts/_tmp_freq.py"
-    },
-    {
-      "Doc": "SESSION_2026-01-17_SYNTHESIS.md",
-      "Type": "Missing File",
-      "Reference": "sid_index.json",
-      "Details": "File does not exist",
-      "Correction": "../data/indices/sid_index.json"
-    },
-    {
-      "Doc": "SESSION_2026-01-17_SYNTHESIS.md",
-      "Type": "Missing File",
-      "Reference": "compact_md.py",
-      "Details": "File does not exist",
-      "Correction": "../scripts/compact_md.py"
-    },
-    {
-      "Doc": "SESSION_2026-01-17_SYNTHESIS.md",
-      "Type": "Missing File",
-      "Reference": "chthonic.ps1",
-      "Details": "File does not exist",
-      "Correction": "../scripts/chthonic.ps1"
-    },
-    {
-      "Doc": "SESSION_2026-01-17_SYNTHESIS.md",
-      "Type": "Missing File",
-      "Reference": "SESSION_2026-01-17_CLEANUP.md",
-      "Details": "File does not exist",
-      "Correction": "docs/SESSION_2026-01-17_CLEANUP.md"
-    },
-    {
-      "Doc": "SESSION_2026-01-17_SYNTHESIS.md",
-      "Type": "Missing File",
-      "Reference": "HANDOFF_TO_CLAUDE.md",
-      "Details": "File does not exist",
-      "Correction": "docs/HANDOFF_TO_CLAUDE.md"
-    },
-    {
-      "Doc": "SESSION_2026-01-17_SYNTHESIS.md",
-      "Type": "Missing File",
-      "Reference": "TOOL_CONSOLIDATION_ROADMAP.md",
-      "Details": "File does not exist",
-      "Correction": "docs/TOOL_CONSOLIDATION_ROADMAP.md"
-    },
-    {
-      "Doc": "SSOTIFICATION_METHODOLOGY.md",
-      "Type": "Missing File",
-      "Reference": "sid_index.json",
-      "Details": "File does not exist",
-      "Correction": "../data/indices/sid_index.json"
-    },
-    {
-      "Doc": "SSOTIFICATION_METHODOLOGY.md",
-      "Type": "Missing File",
-      "Reference": "ssot_extractor.py",
-      "Details": "File does not exist",
-      "Correction": "../mas_mcp/ssot_extractor.py"
-    },
-    {
-      "Doc": "SSOTIFICATION_METHODOLOGY.md",
-      "Type": "Missing File",
-      "Reference": "milf_genesis_v2.py",
-      "Details": "File does not exist",
-      "Correction": "../mas_mcp/milf_genesis_v2.py"
-    },
-    {
-      "Doc": "SSOTIFICATION_METHODOLOGY.md",
-      "Type": "Missing File",
-      "Reference": "HANDOFF_TO_CLAUDE.md",
-      "Details": "File does not exist",
-      "Correction": "docs/HANDOFF_TO_CLAUDE.md"
-    },
-    {
-      "Doc": "STAGE_1_MIGRATION_PLAN.md",
-      "Type": "Missing File",
-      "Reference": "AUTONOMOUS_SESSION_2026-01-01.md",
-      "Details": "File does not exist",
-      "Correction": "../AUTONOMOUS_SESSION_2026-01-01.md"
-    },
-    {
-      "Doc": "STAGE_1_MIGRATION_PLAN.md",
-      "Type": "Missing File",
-      "Reference": "AUTONOMOUS_SESSION_2_COMPLETE.md",
-      "Details": "File does not exist",
-      "Correction": "../AUTONOMOUS_SESSION_2_COMPLETE.md"
-    },
-    {
-      "Doc": "STAGE_1_MIGRATION_PLAN.md",
-      "Type": "Missing File",
-      "Reference": "AUTONOMOUS_SESSION_3_COMPLETE.md",
-      "Details": "File does not exist",
-      "Correction": "../AUTONOMOUS_SESSION_3_COMPLETE.md"
-    },
-    {
-      "Doc": "STAGE_1_MIGRATION_PLAN.md",
-      "Type": "Missing File",
-      "Reference": "AUTONOMOUS_SESSION_3_DEEP_DIVE_SYNTHESIS.md",
-      "Details": "File does not exist",
-      "Correction": "../AUTONOMOUS_SESSION_3_DEEP_DIVE_SYNTHESIS.md"
-    },
-    {
-      "Doc": "STAGE_1_MIGRATION_PLAN.md",
-      "Type": "Missing File",
-      "Reference": "AUTONOMOUS_SESSION_3_DEEP_RESEARCH.md",
-      "Details": "File does not exist",
-      "Correction": "../AUTONOMOUS_SESSION_3_DEEP_RESEARCH.md"
-    },
-    {
-      "Doc": "STAGE_1_MIGRATION_PLAN.md",
-      "Type": "Missing File",
-      "Reference": "AUTONOMOUS_SESSION_3_EXECUTION_COMPLETE.md",
-      "Details": "File does not exist",
-      "Correction": "../AUTONOMOUS_SESSION_3_EXECUTION_COMPLETE.md"
-    },
-    {
-      "Doc": "STAGE_1_MIGRATION_PLAN.md",
-      "Type": "Missing File",
-      "Reference": "AUTONOMOUS_SESSION_3_MISSION_COMPLETE.md",
-      "Details": "File does not exist",
-      "Correction": "../AUTONOMOUS_SESSION_3_MISSION_COMPLETE.md"
-    },
-    {
-      "Doc": "STAGE_1_MIGRATION_PLAN.md",
-      "Type": "Missing File",
-      "Reference": "AUTONOMOUS_SESSION_3_MISSION_REPORT.md",
-      "Details": "File does not exist",
-      "Correction": "../AUTONOMOUS_SESSION_3_MISSION_REPORT.md"
-    },
-    {
-      "Doc": "STAGE_1_MIGRATION_PLAN.md",
-      "Type": "Missing File",
-      "Reference": "AUTONOMOUS_SESSION_4_COMPLETE.md",
-      "Details": "File does not exist",
-      "Correction": "../AUTONOMOUS_SESSION_4_COMPLETE.md"
-    },
-    {
-      "Doc": "STAGE_1_MIGRATION_PLAN.md",
-      "Type": "Missing File",
-      "Reference": "AUTONOMOUS_SESSION_5_COMPLETE.md",
-      "Details": "File does not exist",
-      "Correction": "../AUTONOMOUS_SESSION_5_COMPLETE.md"
-    },
-    {
-      "Doc": "STAGE_1_MIGRATION_PLAN.md",
-      "Type": "Missing File",
-      "Reference": "AUTONOMOUS_SESSION_5_MISSION_REPORT.md",
-      "Details": "File does not exist",
-      "Correction": "../AUTONOMOUS_SESSION_5_MISSION_REPORT.md"
-    },
-    {
-      "Doc": "STAGE_1_MIGRATION_PLAN.md",
-      "Type": "Missing File",
-      "Reference": "AUTONOMOUS_SESSION_7_COMPLETE.md",
-      "Details": "File does not exist",
-      "Correction": "../AUTONOMOUS_SESSION_7_COMPLETE.md"
-    },
-    {
-      "Doc": "STAGE_1_MIGRATION_PLAN.md",
-      "Type": "Missing File",
-      "Reference": "AUTONOMOUS_SESSION_STATUS.md",
-      "Details": "File does not exist",
-      "Correction": "../AUTONOMOUS_SESSION_STATUS.md"
-    },
-    {
-      "Doc": "STAGE_1_MIGRATION_PLAN.md",
-      "Type": "Missing File",
-      "Reference": "SESSION_2026_01_04_EPISTEMOGRAPH_COMPLETE.md",
-      "Details": "File does not exist",
-      "Correction": "../SESSION_2026_01_04_EPISTEMOGRAPH_COMPLETE.md"
-    },
-    {
-      "Doc": "STAGE_1_MIGRATION_PLAN.md",
-      "Type": "Missing File",
-      "Reference": "session_resumption_chthonic_progress.md",
-      "Details": "File does not exist",
-      "Correction": "../session_resumption_chthonic_progress.md"
-    },
-    {
-      "Doc": "STAGE_1_MIGRATION_PLAN.md",
-      "Type": "Missing File",
-      "Reference": "DCRP_DEPLOYMENT_SUMMARY.md",
-      "Details": "File does not exist",
-      "Correction": "../DCRP_DEPLOYMENT_SUMMARY.md"
-    },
-    {
-      "Doc": "STAGE_1_MIGRATION_PLAN.md",
-      "Type": "Missing File",
-      "Reference": "DCRP_ENHANCED_ANALYSIS.md",
-      "Details": "File does not exist",
-      "Correction": "../DCRP_ENHANCED_ANALYSIS.md"
-    },
-    {
-      "Doc": "STAGE_1_MIGRATION_PLAN.md",
-      "Type": "Missing File",
-      "Reference": "DCRP_FINAL_STATUS.md",
-      "Details": "File does not exist",
-      "Correction": "../DCRP_FINAL_STATUS.md"
-    },
-    {
-      "Doc": "STAGE_1_MIGRATION_PLAN.md",
-      "Type": "Missing File",
-      "Reference": "DCRP_MERGE_REPORT.txt",
-      "Details": "File does not exist",
-      "Correction": "../DCRP_MERGE_REPORT.txt"
-    },
-    {
-      "Doc": "STAGE_1_MIGRATION_PLAN.md",
-      "Type": "Missing File",
-      "Reference": "DCRP_OBSERVABILITY_UPGRADE.md",
-      "Details": "File does not exist",
-      "Correction": "../DCRP_OBSERVABILITY_UPGRADE.md"
-    },
-    {
-      "Doc": "STAGE_1_MIGRATION_PLAN.md",
-      "Type": "Missing File",
-      "Reference": "DCRP_OBSERVABILITY_VALIDATION_COMPLETE.md",
-      "Details": "File does not exist",
-      "Correction": "../DCRP_OBSERVABILITY_VALIDATION_COMPLETE.md"
-    },
-    {
-      "Doc": "STAGE_1_MIGRATION_PLAN.md",
-      "Type": "Missing File",
-      "Reference": "DCRP_PRODUCTION_ANALYSIS.md",
-      "Details": "File does not exist",
-      "Correction": "../DCRP_PRODUCTION_ANALYSIS.md"
-    },
-    {
-      "Doc": "STAGE_1_MIGRATION_PLAN.md",
-      "Type": "Missing File",
-      "Reference": "DCRP_REFACTOR_COMPLETE.md",
-      "Details": "File does not exist",
-      "Correction": "../DCRP_REFACTOR_COMPLETE.md"
-    },
-    {
-      "Doc": "STAGE_1_MIGRATION_PLAN.md",
-      "Type": "Missing File",
-      "Reference": "DCRP_REFACTORING_SESSION_SUMMARY.md",
-      "Details": "File does not exist",
-      "Correction": "../DCRP_REFACTORING_SESSION_SUMMARY.md"
-    },
-    {
-      "Doc": "STAGE_1_MIGRATION_PLAN.md",
-      "Type": "Missing File",
-      "Reference": "DCRP_UNIFIED_REFACTOR.md",
-      "Details": "File does not exist",
-      "Correction": "../DCRP_UNIFIED_REFACTOR.md"
-    },
-    {
-      "Doc": "STAGE_1_MIGRATION_PLAN.md",
-      "Type": "Missing File",
-      "Reference": "ankh_index.json",
-      "Details": "File does not exist",
-      "Correction": "../ankh_index.json"
-    },
-    {
-      "Doc": "STAGE_1_MIGRATION_PLAN.md",
-      "Type": "Missing File",
-      "Reference": "sid_index.json",
-      "Details": "File does not exist",
-      "Correction": "../data/indices/sid_index.json"
-    },
-    {
-      "Doc": "STAGE_1_MIGRATION_PLAN.md",
-      "Type": "Missing File",
-      "Reference": "ankh.md",
-      "Details": "File does not exist",
-      "Correction": "../ankh.md"
-    },
-    {
-      "Doc": "STAGE_1_MIGRATION_PLAN.md",
-      "Type": "Missing File",
-      "Reference": "ANKHOLOGY.md",
-      "Details": "File does not exist",
-      "Correction": "../ANKHOLOGY.md"
-    },
-    {
-      "Doc": "TOOL_CONSOLIDATION_ROADMAP.md",
-      "Type": "Missing File",
-      "Reference": "_tmp_freq.py",
-      "Details": "File does not exist",
-      "Correction": "../scripts/_tmp_freq.py"
-    },
-    {
-      "Doc": "TOOL_CONSOLIDATION_ROADMAP.md",
-      "Type": "Missing File",
-      "Reference": "chthonic.ps1",
-      "Details": "File does not exist",
-      "Correction": "../scripts/chthonic.ps1"
-    },
-    {
-      "Doc": "TOOL_CONSOLIDATION_ROADMAP.md",
-      "Type": "Missing File",
-      "Reference": "resolve_sid.py",
-      "Details": "File does not exist",
-      "Correction": "../scripts/resolve_sid.py"
-    },
-    {
-      "Doc": "TOOL_CONSOLIDATION_ROADMAP.md",
-      "Type": "Missing File",
-      "Reference": "extract_session_value.py",
-      "Details": "File does not exist",
-      "Correction": "../scripts/extract_session_value.py"
-    },
-    {
-      "Doc": "TOOL_CONSOLIDATION_ROADMAP.md",
-      "Type": "Missing File",
-      "Reference": "compact_md.py",
-      "Details": "File does not exist",
-      "Correction": "../scripts/compact_md.py"
-    },
-    {
-      "Doc": "TOOL_CONSOLIDATION_ROADMAP.md",
-      "Type": "Missing File",
-      "Reference": "rootdir_health_audit.py",
-      "Details": "File does not exist",
-      "Correction": "../scripts/rootdir_health_audit.py"
-    },
-    {
-      "Doc": "TOOL_CONSOLIDATION_ROADMAP.md",
-      "Type": "Missing File",
-      "Reference": "map_codebase.py",
-      "Details": "File does not exist",
-      "Correction": "../scripts/map_codebase.py"
-    },
-    {
-      "Doc": "TOOL_CONSOLIDATION_ROADMAP.md",
-      "Type": "Missing File",
-      "Reference": "shared.py",
-      "Details": "File does not exist",
-      "Correction": "../scripts/lib/shared.py"
-    },
-    {
-      "Doc": "TOOL_CONSOLIDATION_ROADMAP.md",
-      "Type": "Missing File",
-      "Reference": "audit.py",
-      "Details": "File does not exist",
-      "Correction": "../scripts/lib/audit.py"
-    },
-    {
-      "Doc": "TOOL_CONSOLIDATION_ROADMAP.md",
-      "Type": "Missing File",
-      "Reference": "map.py",
-      "Details": "File does not exist",
-      "Correction": "../scripts/lib/map.py"
-    },
-    {
-      "Doc": "TOOL_CONSOLIDATION_ROADMAP.md",
-      "Type": "Missing File",
-      "Reference": "HANDOFF_TO_CLAUDE.md",
-      "Details": "File does not exist",
-      "Correction": "docs/HANDOFF_TO_CLAUDE.md"
-    }
-  ],
+  "fixable": [],
   "planned": [
     {
       "Doc": "CLAUDE_CODE_REGISTRATION.md",
@@ -855,9 +259,45 @@
   ],
   "real_missing": [
     {
+      "Doc": "COMPLETION_SUMMARY_TOOL_CONSOLIDATION.md",
+      "Type": "Missing File",
+      "Reference": "../scripts/lib/analyze.py",
+      "Details": "File does not exist"
+    },
+    {
+      "Doc": "COMPLETION_SUMMARY_TOOL_CONSOLIDATION.md",
+      "Type": "Missing File",
+      "Reference": "../scripts/_tmp_freq.py",
+      "Details": "File does not exist"
+    },
+    {
+      "Doc": "COPILOT_SESSION_PERSISTENCE.md",
+      "Type": "Missing File",
+      "Reference": "../session_resumption_chthonic_progress.md",
+      "Details": "File does not exist"
+    },
+    {
+      "Doc": "COPILOT_SESSION_PERSISTENCE.md",
+      "Type": "Missing File",
+      "Reference": "../DEVELOPMENT_STATE.md",
+      "Details": "File does not exist"
+    },
+    {
       "Doc": "COPILOT_SESSION_PERSISTENCE.md",
       "Type": "Missing File",
       "Reference": "src/extension.ts",
+      "Details": "File does not exist"
+    },
+    {
+      "Doc": "DCRP_SYNTHESIS.md",
+      "Type": "Missing File",
+      "Reference": "../CROSS_REFERENCE_TRIPTYCH.md",
+      "Details": "File does not exist"
+    },
+    {
+      "Doc": "DCRP_SYNTHESIS.md",
+      "Type": "Missing File",
+      "Reference": "../dependency_graph.json",
       "Details": "File does not exist"
     },
     {
@@ -888,6 +328,72 @@
       "Doc": "DCRP_SYNTHESIS.md",
       "Type": "Missing File",
       "Reference": ".dcrp_evolution.json",
+      "Details": "File does not exist"
+    },
+    {
+      "Doc": "DCRP_SYNTHESIS.md",
+      "Type": "Missing File",
+      "Reference": "../DCRP_DEPLOYMENT_SUMMARY.md",
+      "Details": "File does not exist"
+    },
+    {
+      "Doc": "DCRP_SYNTHESIS.md",
+      "Type": "Missing File",
+      "Reference": "../DCRP_ENHANCED_ANALYSIS.md",
+      "Details": "File does not exist"
+    },
+    {
+      "Doc": "DCRP_SYNTHESIS.md",
+      "Type": "Missing File",
+      "Reference": "../DCRP_FINAL_STATUS.md",
+      "Details": "File does not exist"
+    },
+    {
+      "Doc": "DCRP_SYNTHESIS.md",
+      "Type": "Missing File",
+      "Reference": "../DCRP_OBSERVABILITY_UPGRADE.md",
+      "Details": "File does not exist"
+    },
+    {
+      "Doc": "DCRP_SYNTHESIS.md",
+      "Type": "Missing File",
+      "Reference": "../DCRP_OBSERVABILITY_VALIDATION_COMPLETE.md",
+      "Details": "File does not exist"
+    },
+    {
+      "Doc": "DCRP_SYNTHESIS.md",
+      "Type": "Missing File",
+      "Reference": "../DCRP_PRODUCTION_ANALYSIS.md",
+      "Details": "File does not exist"
+    },
+    {
+      "Doc": "DCRP_SYNTHESIS.md",
+      "Type": "Missing File",
+      "Reference": "../DCRP_REFACTOR_COMPLETE.md",
+      "Details": "File does not exist"
+    },
+    {
+      "Doc": "DCRP_SYNTHESIS.md",
+      "Type": "Missing File",
+      "Reference": "../DCRP_REFACTORING_SESSION_SUMMARY.md",
+      "Details": "File does not exist"
+    },
+    {
+      "Doc": "DCRP_SYNTHESIS.md",
+      "Type": "Missing File",
+      "Reference": "../DCRP_UNIFIED_REFACTOR.md",
+      "Details": "File does not exist"
+    },
+    {
+      "Doc": "DCRP_SYNTHESIS.md",
+      "Type": "Missing File",
+      "Reference": "../DCRP_MERGE_REPORT.txt",
+      "Details": "File does not exist"
+    },
+    {
+      "Doc": "DEVELOPMENT_STATE.md",
+      "Type": "Missing File",
+      "Reference": "../DEVELOPMENT_STATE.md",
       "Details": "File does not exist"
     },
     {
@@ -953,6 +459,12 @@
     {
       "Doc": "DEVELOPMENT_STATE.md",
       "Type": "Missing File",
+      "Reference": "../session_resumption_chthonic_progress.md",
+      "Details": "File does not exist"
+    },
+    {
+      "Doc": "DEVELOPMENT_STATE.md",
+      "Type": "Missing File",
       "Reference": "mas_mcp/frontend/package.js",
       "Details": "File does not exist"
     },
@@ -1013,6 +525,18 @@
     {
       "Doc": "MIGRATION_GUIDE_CHTHONIC_CLI.md",
       "Type": "Missing File",
+      "Reference": "../scripts/_tmp_freq.py",
+      "Details": "File does not exist"
+    },
+    {
+      "Doc": "MIGRATION_GUIDE_CHTHONIC_CLI.md",
+      "Type": "Missing File",
+      "Reference": "../scripts/lib/compact.py",
+      "Details": "File does not exist"
+    },
+    {
+      "Doc": "MIGRATION_GUIDE_CHTHONIC_CLI.md",
+      "Type": "Missing File",
       "Reference": "docs/PHASE_3_TEST_REPORT.md](docs/PHASE_3_TEST_REPORT.md",
       "Details": "File does not exist"
     },
@@ -1053,9 +577,21 @@
       "Details": "File does not exist"
     },
     {
+      "Doc": "SESSION_2026_01_17_META_REVIEW.md",
+      "Type": "Missing File",
+      "Reference": "../scripts/resolve_sid.py",
+      "Details": "File does not exist"
+    },
+    {
       "Doc": "SESSION_2026_01_17_TRUTH_STEWARDSHIP.md",
       "Type": "Missing File",
       "Reference": "docs/ROOTDIR_HEALTH_2026-01-17.md",
+      "Details": "File does not exist"
+    },
+    {
+      "Doc": "SESSION_2026_01_17_TRUTH_STEWARDSHIP.md",
+      "Type": "Missing File",
+      "Reference": "../scripts/resolve_sid.py",
       "Details": "File does not exist"
     },
     {
@@ -1067,13 +603,43 @@
     {
       "Doc": "SESSION_2026_01_17_TRUTH_STEWARDSHIP.md",
       "Type": "Missing File",
+      "Reference": "../data/indices/sid_index.json",
+      "Details": "File does not exist"
+    },
+    {
+      "Doc": "SESSION_2026_01_17_TRUTH_STEWARDSHIP.md",
+      "Type": "Missing File",
       "Reference": "scripts/foo.py",
       "Details": "File does not exist"
     },
     {
       "Doc": "SESSION_2026-01-17_CLEANUP.md",
       "Type": "Missing File",
+      "Reference": "../data/indices/sid_index.json",
+      "Details": "File does not exist"
+    },
+    {
+      "Doc": "SESSION_2026-01-17_CLEANUP.md",
+      "Type": "Missing File",
+      "Reference": "../ankh_index.json",
+      "Details": "File does not exist"
+    },
+    {
+      "Doc": "SESSION_2026-01-17_CLEANUP.md",
+      "Type": "Missing File",
       "Reference": "chthonic-archive-theme.json",
+      "Details": "File does not exist"
+    },
+    {
+      "Doc": "SESSION_2026-01-17_CLEANUP.md",
+      "Type": "Missing File",
+      "Reference": "../scripts/map_codebase.py",
+      "Details": "File does not exist"
+    },
+    {
+      "Doc": "SESSION_2026-01-17_CLEANUP.md",
+      "Type": "Missing File",
+      "Reference": "../scripts/rootdir_health_audit.py",
       "Details": "File does not exist"
     },
     {
@@ -1109,19 +675,7 @@
     {
       "Doc": "SESSION_2026-01-17_CLEANUP.md",
       "Type": "Missing File",
-      "Reference": "../scripts/rootdir_health_audit.py",
-      "Details": "File does not exist"
-    },
-    {
-      "Doc": "SESSION_2026-01-17_CLEANUP.md",
-      "Type": "Missing File",
       "Reference": "../scripts/resolve_sid.py",
-      "Details": "File does not exist"
-    },
-    {
-      "Doc": "SESSION_2026-01-17_CLEANUP.md",
-      "Type": "Missing File",
-      "Reference": "../scripts/map_codebase.py",
       "Details": "File does not exist"
     },
     {
@@ -1163,7 +717,37 @@
     {
       "Doc": "SESSION_2026-01-17_SYNTHESIS.md",
       "Type": "Missing File",
+      "Reference": "../scripts/_tmp_freq.py",
+      "Details": "File does not exist"
+    },
+    {
+      "Doc": "SESSION_2026-01-17_SYNTHESIS.md",
+      "Type": "Missing File",
+      "Reference": "../data/indices/sid_index.json",
+      "Details": "File does not exist"
+    },
+    {
+      "Doc": "SESSION_2026-01-17_SYNTHESIS.md",
+      "Type": "Missing File",
+      "Reference": "../scripts/compact_md.py",
+      "Details": "File does not exist"
+    },
+    {
+      "Doc": "SESSION_2026-01-17_SYNTHESIS.md",
+      "Type": "Missing File",
+      "Reference": "../scripts/chthonic.ps1",
+      "Details": "File does not exist"
+    },
+    {
+      "Doc": "SESSION_2026-01-17_SYNTHESIS.md",
+      "Type": "Missing File",
       "Reference": "../.github/copilot-instructions.md",
+      "Details": "File does not exist"
+    },
+    {
+      "Doc": "SESSION_2026-01-17_SYNTHESIS.md",
+      "Type": "Missing File",
+      "Reference": "docs/docs/SESSION_2026-01-17_CLEANUP.md",
       "Details": "File does not exist"
     },
     {
@@ -1181,6 +765,12 @@
     {
       "Doc": "SSOTIFICATION_METHODOLOGY.md",
       "Type": "Missing File",
+      "Reference": "../data/indices/sid_index.json",
+      "Details": "File does not exist"
+    },
+    {
+      "Doc": "SSOTIFICATION_METHODOLOGY.md",
+      "Type": "Missing File",
       "Reference": "STAGE_1_MIGRATION_PLAN.md",
       "Details": "File does not exist"
     },
@@ -1188,6 +778,18 @@
       "Doc": "SSOTIFICATION_METHODOLOGY.md",
       "Type": "Missing File",
       "Reference": ".dcrp_state.json",
+      "Details": "File does not exist"
+    },
+    {
+      "Doc": "SSOTIFICATION_METHODOLOGY.md",
+      "Type": "Missing File",
+      "Reference": "../mas_mcp/ssot_extractor.py",
+      "Details": "File does not exist"
+    },
+    {
+      "Doc": "SSOTIFICATION_METHODOLOGY.md",
+      "Type": "Missing File",
+      "Reference": "../mas_mcp/milf_genesis_v2.py",
       "Details": "File does not exist"
     },
     {
@@ -1205,7 +807,181 @@
     {
       "Doc": "STAGE_1_MIGRATION_PLAN.md",
       "Type": "Missing File",
+      "Reference": "../AUTONOMOUS_SESSION_2026-01-01.md",
+      "Details": "File does not exist"
+    },
+    {
+      "Doc": "STAGE_1_MIGRATION_PLAN.md",
+      "Type": "Missing File",
+      "Reference": "../AUTONOMOUS_SESSION_2_COMPLETE.md",
+      "Details": "File does not exist"
+    },
+    {
+      "Doc": "STAGE_1_MIGRATION_PLAN.md",
+      "Type": "Missing File",
+      "Reference": "../AUTONOMOUS_SESSION_3_COMPLETE.md",
+      "Details": "File does not exist"
+    },
+    {
+      "Doc": "STAGE_1_MIGRATION_PLAN.md",
+      "Type": "Missing File",
+      "Reference": "../AUTONOMOUS_SESSION_3_DEEP_DIVE_SYNTHESIS.md",
+      "Details": "File does not exist"
+    },
+    {
+      "Doc": "STAGE_1_MIGRATION_PLAN.md",
+      "Type": "Missing File",
+      "Reference": "../AUTONOMOUS_SESSION_3_DEEP_RESEARCH.md",
+      "Details": "File does not exist"
+    },
+    {
+      "Doc": "STAGE_1_MIGRATION_PLAN.md",
+      "Type": "Missing File",
+      "Reference": "../AUTONOMOUS_SESSION_3_EXECUTION_COMPLETE.md",
+      "Details": "File does not exist"
+    },
+    {
+      "Doc": "STAGE_1_MIGRATION_PLAN.md",
+      "Type": "Missing File",
+      "Reference": "../AUTONOMOUS_SESSION_3_MISSION_COMPLETE.md",
+      "Details": "File does not exist"
+    },
+    {
+      "Doc": "STAGE_1_MIGRATION_PLAN.md",
+      "Type": "Missing File",
+      "Reference": "../AUTONOMOUS_SESSION_3_MISSION_REPORT.md",
+      "Details": "File does not exist"
+    },
+    {
+      "Doc": "STAGE_1_MIGRATION_PLAN.md",
+      "Type": "Missing File",
+      "Reference": "../AUTONOMOUS_SESSION_4_COMPLETE.md",
+      "Details": "File does not exist"
+    },
+    {
+      "Doc": "STAGE_1_MIGRATION_PLAN.md",
+      "Type": "Missing File",
+      "Reference": "../AUTONOMOUS_SESSION_5_COMPLETE.md",
+      "Details": "File does not exist"
+    },
+    {
+      "Doc": "STAGE_1_MIGRATION_PLAN.md",
+      "Type": "Missing File",
+      "Reference": "../AUTONOMOUS_SESSION_5_MISSION_REPORT.md",
+      "Details": "File does not exist"
+    },
+    {
+      "Doc": "STAGE_1_MIGRATION_PLAN.md",
+      "Type": "Missing File",
+      "Reference": "../AUTONOMOUS_SESSION_7_COMPLETE.md",
+      "Details": "File does not exist"
+    },
+    {
+      "Doc": "STAGE_1_MIGRATION_PLAN.md",
+      "Type": "Missing File",
+      "Reference": "../AUTONOMOUS_SESSION_STATUS.md",
+      "Details": "File does not exist"
+    },
+    {
+      "Doc": "STAGE_1_MIGRATION_PLAN.md",
+      "Type": "Missing File",
+      "Reference": "../SESSION_2026_01_04_EPISTEMOGRAPH_COMPLETE.md",
+      "Details": "File does not exist"
+    },
+    {
+      "Doc": "STAGE_1_MIGRATION_PLAN.md",
+      "Type": "Missing File",
+      "Reference": "../session_resumption_chthonic_progress.md",
+      "Details": "File does not exist"
+    },
+    {
+      "Doc": "STAGE_1_MIGRATION_PLAN.md",
+      "Type": "Missing File",
+      "Reference": "../DCRP_DEPLOYMENT_SUMMARY.md",
+      "Details": "File does not exist"
+    },
+    {
+      "Doc": "STAGE_1_MIGRATION_PLAN.md",
+      "Type": "Missing File",
       "Reference": "DCRP_SYNTHESIS.md",
+      "Details": "File does not exist"
+    },
+    {
+      "Doc": "STAGE_1_MIGRATION_PLAN.md",
+      "Type": "Missing File",
+      "Reference": "../DCRP_ENHANCED_ANALYSIS.md",
+      "Details": "File does not exist"
+    },
+    {
+      "Doc": "STAGE_1_MIGRATION_PLAN.md",
+      "Type": "Missing File",
+      "Reference": "../DCRP_FINAL_STATUS.md",
+      "Details": "File does not exist"
+    },
+    {
+      "Doc": "STAGE_1_MIGRATION_PLAN.md",
+      "Type": "Missing File",
+      "Reference": "../DCRP_MERGE_REPORT.txt",
+      "Details": "File does not exist"
+    },
+    {
+      "Doc": "STAGE_1_MIGRATION_PLAN.md",
+      "Type": "Missing File",
+      "Reference": "../DCRP_OBSERVABILITY_UPGRADE.md",
+      "Details": "File does not exist"
+    },
+    {
+      "Doc": "STAGE_1_MIGRATION_PLAN.md",
+      "Type": "Missing File",
+      "Reference": "../DCRP_OBSERVABILITY_VALIDATION_COMPLETE.md",
+      "Details": "File does not exist"
+    },
+    {
+      "Doc": "STAGE_1_MIGRATION_PLAN.md",
+      "Type": "Missing File",
+      "Reference": "../DCRP_PRODUCTION_ANALYSIS.md",
+      "Details": "File does not exist"
+    },
+    {
+      "Doc": "STAGE_1_MIGRATION_PLAN.md",
+      "Type": "Missing File",
+      "Reference": "../DCRP_REFACTOR_COMPLETE.md",
+      "Details": "File does not exist"
+    },
+    {
+      "Doc": "STAGE_1_MIGRATION_PLAN.md",
+      "Type": "Missing File",
+      "Reference": "../DCRP_REFACTORING_SESSION_SUMMARY.md",
+      "Details": "File does not exist"
+    },
+    {
+      "Doc": "STAGE_1_MIGRATION_PLAN.md",
+      "Type": "Missing File",
+      "Reference": "../DCRP_UNIFIED_REFACTOR.md",
+      "Details": "File does not exist"
+    },
+    {
+      "Doc": "STAGE_1_MIGRATION_PLAN.md",
+      "Type": "Missing File",
+      "Reference": "../ankh_index.json",
+      "Details": "File does not exist"
+    },
+    {
+      "Doc": "STAGE_1_MIGRATION_PLAN.md",
+      "Type": "Missing File",
+      "Reference": "../data/indices/sid_index.json",
+      "Details": "File does not exist"
+    },
+    {
+      "Doc": "STAGE_1_MIGRATION_PLAN.md",
+      "Type": "Missing File",
+      "Reference": "../ankh.md",
+      "Details": "File does not exist"
+    },
+    {
+      "Doc": "STAGE_1_MIGRATION_PLAN.md",
+      "Type": "Missing File",
+      "Reference": "../ANKHOLOGY.md",
       "Details": "File does not exist"
     },
     {
@@ -1223,7 +999,31 @@
     {
       "Doc": "TOOL_CONSOLIDATION_ROADMAP.md",
       "Type": "Missing File",
+      "Reference": "../scripts/_tmp_freq.py",
+      "Details": "File does not exist"
+    },
+    {
+      "Doc": "TOOL_CONSOLIDATION_ROADMAP.md",
+      "Type": "Missing File",
+      "Reference": "../scripts/chthonic.ps1",
+      "Details": "File does not exist"
+    },
+    {
+      "Doc": "TOOL_CONSOLIDATION_ROADMAP.md",
+      "Type": "Missing File",
+      "Reference": "../scripts/resolve_sid.py",
+      "Details": "File does not exist"
+    },
+    {
+      "Doc": "TOOL_CONSOLIDATION_ROADMAP.md",
+      "Type": "Missing File",
       "Reference": "lib/resolve.py",
+      "Details": "File does not exist"
+    },
+    {
+      "Doc": "TOOL_CONSOLIDATION_ROADMAP.md",
+      "Type": "Missing File",
+      "Reference": "../scripts/extract_session_value.py",
       "Details": "File does not exist"
     },
     {
@@ -1241,7 +1041,19 @@
     {
       "Doc": "TOOL_CONSOLIDATION_ROADMAP.md",
       "Type": "Missing File",
+      "Reference": "../scripts/compact_md.py",
+      "Details": "File does not exist"
+    },
+    {
+      "Doc": "TOOL_CONSOLIDATION_ROADMAP.md",
+      "Type": "Missing File",
       "Reference": "lib/compact.py",
+      "Details": "File does not exist"
+    },
+    {
+      "Doc": "TOOL_CONSOLIDATION_ROADMAP.md",
+      "Type": "Missing File",
+      "Reference": "../scripts/rootdir_health_audit.py",
       "Details": "File does not exist"
     },
     {
@@ -1253,7 +1065,31 @@
     {
       "Doc": "TOOL_CONSOLIDATION_ROADMAP.md",
       "Type": "Missing File",
+      "Reference": "../scripts/map_codebase.py",
+      "Details": "File does not exist"
+    },
+    {
+      "Doc": "TOOL_CONSOLIDATION_ROADMAP.md",
+      "Type": "Missing File",
       "Reference": "lib/map.py",
+      "Details": "File does not exist"
+    },
+    {
+      "Doc": "TOOL_CONSOLIDATION_ROADMAP.md",
+      "Type": "Missing File",
+      "Reference": "../scripts/lib/shared.py",
+      "Details": "File does not exist"
+    },
+    {
+      "Doc": "TOOL_CONSOLIDATION_ROADMAP.md",
+      "Type": "Missing File",
+      "Reference": "../scripts/lib/audit.py",
+      "Details": "File does not exist"
+    },
+    {
+      "Doc": "TOOL_CONSOLIDATION_ROADMAP.md",
+      "Type": "Missing File",
+      "Reference": "../scripts/lib/map.py",
       "Details": "File does not exist"
     },
     {

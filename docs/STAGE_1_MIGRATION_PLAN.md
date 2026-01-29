@@ -39,21 +39,21 @@ New-Item -ItemType Directory -Force -Path "docs/sessions"
 
 # Move session reports
 $sessions = @(
-    "AUTONOMOUS_SESSION_2026-01-01.md",
-    "AUTONOMOUS_SESSION_2_COMPLETE.md",
-    "AUTONOMOUS_SESSION_3_COMPLETE.md",
-    "AUTONOMOUS_SESSION_3_DEEP_DIVE_SYNTHESIS.md",
-    "AUTONOMOUS_SESSION_3_DEEP_RESEARCH.md",
-    "AUTONOMOUS_SESSION_3_EXECUTION_COMPLETE.md",
-    "AUTONOMOUS_SESSION_3_MISSION_COMPLETE.md",
-    "AUTONOMOUS_SESSION_3_MISSION_REPORT.md",
-    "AUTONOMOUS_SESSION_4_COMPLETE.md",
-    "AUTONOMOUS_SESSION_5_COMPLETE.md",
-    "AUTONOMOUS_SESSION_5_MISSION_REPORT.md",
-    "AUTONOMOUS_SESSION_7_COMPLETE.md",
-    "AUTONOMOUS_SESSION_STATUS.md",
-    "SESSION_2026_01_04_EPISTEMOGRAPH_COMPLETE.md",
-    "session_resumption_chthonic_progress.md"
+    "../AUTONOMOUS_SESSION_2026-01-01.md",
+    "../AUTONOMOUS_SESSION_2_COMPLETE.md",
+    "../AUTONOMOUS_SESSION_3_COMPLETE.md",
+    "../AUTONOMOUS_SESSION_3_DEEP_DIVE_SYNTHESIS.md",
+    "../AUTONOMOUS_SESSION_3_DEEP_RESEARCH.md",
+    "../AUTONOMOUS_SESSION_3_EXECUTION_COMPLETE.md",
+    "../AUTONOMOUS_SESSION_3_MISSION_COMPLETE.md",
+    "../AUTONOMOUS_SESSION_3_MISSION_REPORT.md",
+    "../AUTONOMOUS_SESSION_4_COMPLETE.md",
+    "../AUTONOMOUS_SESSION_5_COMPLETE.md",
+    "../AUTONOMOUS_SESSION_5_MISSION_REPORT.md",
+    "../AUTONOMOUS_SESSION_7_COMPLETE.md",
+    "../AUTONOMOUS_SESSION_STATUS.md",
+    "../SESSION_2026_01_04_EPISTEMOGRAPH_COMPLETE.md",
+    "../session_resumption_chthonic_progress.md"
 )
 
 foreach ($f in $sessions) {
@@ -63,21 +63,21 @@ foreach ($f in $sessions) {
 
 | File | Current Location | Target | Status |
 |------|------------------|--------|--------|
-| `../AUTONOMOUS_SESSION_2026-01-01.md` | root | `docs/sessions/` | PENDING |
-| `../AUTONOMOUS_SESSION_2_COMPLETE.md` | root | `docs/sessions/` | PENDING |
-| `../AUTONOMOUS_SESSION_3_COMPLETE.md` | root | `docs/sessions/` | PENDING |
-| `../AUTONOMOUS_SESSION_3_DEEP_DIVE_SYNTHESIS.md` | root | `docs/sessions/` | PENDING |
-| `../AUTONOMOUS_SESSION_3_DEEP_RESEARCH.md` | root | `docs/sessions/` | PENDING |
-| `../AUTONOMOUS_SESSION_3_EXECUTION_COMPLETE.md` | root | `docs/sessions/` | PENDING |
-| `../AUTONOMOUS_SESSION_3_MISSION_COMPLETE.md` | root | `docs/sessions/` | PENDING |
-| `../AUTONOMOUS_SESSION_3_MISSION_REPORT.md` | root | `docs/sessions/` | PENDING |
-| `../AUTONOMOUS_SESSION_4_COMPLETE.md` | root | `docs/sessions/` | PENDING |
-| `../AUTONOMOUS_SESSION_5_COMPLETE.md` | root | `docs/sessions/` | PENDING |
-| `../AUTONOMOUS_SESSION_5_MISSION_REPORT.md` | root | `docs/sessions/` | PENDING |
-| `../AUTONOMOUS_SESSION_7_COMPLETE.md` | root | `docs/sessions/` | PENDING |
-| `../AUTONOMOUS_SESSION_STATUS.md` | root | `docs/sessions/` | PENDING |
-| `../SESSION_2026_01_04_EPISTEMOGRAPH_COMPLETE.md` | root | `docs/sessions/` | PENDING |
-| `../session_resumption_chthonic_progress.md` | root | `docs/sessions/` | PENDING |
+| `../../AUTONOMOUS_SESSION_2026-01-01.md` | root | `docs/sessions/` | PENDING |
+| `../../AUTONOMOUS_SESSION_2_COMPLETE.md` | root | `docs/sessions/` | PENDING |
+| `../../AUTONOMOUS_SESSION_3_COMPLETE.md` | root | `docs/sessions/` | PENDING |
+| `../../AUTONOMOUS_SESSION_3_DEEP_DIVE_SYNTHESIS.md` | root | `docs/sessions/` | PENDING |
+| `../../AUTONOMOUS_SESSION_3_DEEP_RESEARCH.md` | root | `docs/sessions/` | PENDING |
+| `../../AUTONOMOUS_SESSION_3_EXECUTION_COMPLETE.md` | root | `docs/sessions/` | PENDING |
+| `../../AUTONOMOUS_SESSION_3_MISSION_COMPLETE.md` | root | `docs/sessions/` | PENDING |
+| `../../AUTONOMOUS_SESSION_3_MISSION_REPORT.md` | root | `docs/sessions/` | PENDING |
+| `../../AUTONOMOUS_SESSION_4_COMPLETE.md` | root | `docs/sessions/` | PENDING |
+| `../../AUTONOMOUS_SESSION_5_COMPLETE.md` | root | `docs/sessions/` | PENDING |
+| `../../AUTONOMOUS_SESSION_5_MISSION_REPORT.md` | root | `docs/sessions/` | PENDING |
+| `../../AUTONOMOUS_SESSION_7_COMPLETE.md` | root | `docs/sessions/` | PENDING |
+| `../../AUTONOMOUS_SESSION_STATUS.md` | root | `docs/sessions/` | PENDING |
+| `../../SESSION_2026_01_04_EPISTEMOGRAPH_COMPLETE.md` | root | `docs/sessions/` | PENDING |
+| `../../session_resumption_chthonic_progress.md` | root | `docs/sessions/` | PENDING |
 
 ### 1.2 Quickref/Framework Files → `docs/frameworks/`
 
@@ -106,16 +106,16 @@ foreach ($f in $frameworks) {
 
 | File | Type | Consolidate Into |
 |------|------|------------------|
-| `../DCRP_DEPLOYMENT_SUMMARY.md` | Summary | `DCRP_SYNTHESIS.md` |
-| `../DCRP_ENHANCED_ANALYSIS.md` | Analysis | `DCRP_SYNTHESIS.md` |
-| `../DCRP_FINAL_STATUS.md` | Status | `DCRP_SYNTHESIS.md` |
-| `../DCRP_MERGE_REPORT.txt` | Report | `DCRP_SYNTHESIS.md` |
-| `../DCRP_OBSERVABILITY_UPGRADE.md` | Upgrade | `DCRP_SYNTHESIS.md` |
-| `../DCRP_OBSERVABILITY_VALIDATION_COMPLETE.md` | Validation | `DCRP_SYNTHESIS.md` |
-| `../DCRP_PRODUCTION_ANALYSIS.md` | Analysis | `DCRP_SYNTHESIS.md` |
-| `../DCRP_REFACTOR_COMPLETE.md` | Complete | `DCRP_SYNTHESIS.md` |
-| `../DCRP_REFACTORING_SESSION_SUMMARY.md` | Summary | `DCRP_SYNTHESIS.md` |
-| `../DCRP_UNIFIED_REFACTOR.md` | Unified | `DCRP_SYNTHESIS.md` |
+| `../../DCRP_DEPLOYMENT_SUMMARY.md` | Summary | `DCRP_SYNTHESIS.md` |
+| `../../DCRP_ENHANCED_ANALYSIS.md` | Analysis | `DCRP_SYNTHESIS.md` |
+| `../../DCRP_FINAL_STATUS.md` | Status | `DCRP_SYNTHESIS.md` |
+| `../../DCRP_MERGE_REPORT.txt` | Report | `DCRP_SYNTHESIS.md` |
+| `../../DCRP_OBSERVABILITY_UPGRADE.md` | Upgrade | `DCRP_SYNTHESIS.md` |
+| `../../DCRP_OBSERVABILITY_VALIDATION_COMPLETE.md` | Validation | `DCRP_SYNTHESIS.md` |
+| `../../DCRP_PRODUCTION_ANALYSIS.md` | Analysis | `DCRP_SYNTHESIS.md` |
+| `../../DCRP_REFACTOR_COMPLETE.md` | Complete | `DCRP_SYNTHESIS.md` |
+| `../../DCRP_REFACTORING_SESSION_SUMMARY.md` | Summary | `DCRP_SYNTHESIS.md` |
+| `../../DCRP_UNIFIED_REFACTOR.md` | Unified | `DCRP_SYNTHESIS.md` |
 
 **Action**: Extract key insights from each, create unified `docs/DCRP_SYNTHESIS.md`, then archive originals to `dumpster-dive/consolidated/dcrp/`.
 
@@ -144,8 +144,8 @@ These files **MUST remain at root**:
 | File | Reason |
 |------|--------|
 | `.ankhrc` | **Bidirectional SSOT hub** |
-| `../ankh_index.json` | Signal index (SSOT-referenced) |
-| `../data/indices/sid_index.json` | Session ID tracking |
+| `../../ankh_index.json` | Signal index (SSOT-referenced) |
+| `../data/indices/../data/indices/sid_index.json` | Session ID tracking |
 | `Cargo.toml` | Rust build manifest |
 | `Cargo.lock` | Dependency lock |
 | `build.rs` | Build script |
@@ -153,8 +153,8 @@ These files **MUST remain at root**:
 | `package.json` | Node/Bun config |
 | `.gitignore` | Git exclusions |
 | `CLAUDE.md` | Claude agent configuration |
-| `../ankh.md` | Core ankh documentation |
-| `../ANKHOLOGY.md` | Ankh reference |
+| `../../ankh.md` | Core ankh documentation |
+| `../../ANKHOLOGY.md` | Ankh reference |
 
 ---
 

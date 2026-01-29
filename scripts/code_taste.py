@@ -7,8 +7,8 @@
 # ║  Purpose: Gustatory Validation - Commit Quality as Flavor Profiles          ║
 # ║  Exports: analyze_taste                                                     ║
 # ╠════════════════════════════════════════════════════════════════════════════╣
-# ║  Cross-References (Bidirectional):                                         ║
-# ║    (Standalone file - no detected dependencies)                            ║
+# ║  Cross-References (Bidirectional):                                      ║
+# ║    (Standalone file - no detected dependencies)                          ║
 # ╚════════════════════════════════════════════════════════════════════════════╝
 
 #!/usr/bin/env python3

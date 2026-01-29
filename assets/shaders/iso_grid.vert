@@ -15,6 +15,7 @@ layout(push_constant) uniform PushConstants {
     mat4 model;
     mat4 view;
     mat4 projection;
+    vec4 layer_color;
 } pc;
 
 // === OUTPUTS TO FRAGMENT SHADER ===

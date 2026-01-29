@@ -17,7 +17,7 @@
 //! — Gemini 3 Pro Thinking (Architect)
 //!
 //! This module implements the Vulkan 1.3 graphics backend with:
-//! - Dynamic Rendering (no legacy VkRenderPass)
+//! - Dynamic Rendering (no legacy `VkRenderPass`)
 //! - RTX 4090 optimization path
 //! - Isometric Camera System
 //! - Ray Tracing Pipeline preparation (Phase 13)

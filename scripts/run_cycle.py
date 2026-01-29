@@ -1,12 +1,10 @@
 # ╔════════════════════════════════════════════════════════════════════════════╗
 # ║  THE DECORATOR'S BLESSING: run_cycle.py                                  ║
-# ║  Model Context Protocol server - AI governance bridge                       ║
+# ║  Python module: find_workspace_root, WORKSPACE_ROOT, MAS_MCP_ROOT, ARTIFACTS_DIR, GOVERNANCE_DIR, COMPATIBILITY_DIR... ║
 # ╠════════════════════════════════════════════════════════════════════════════╣
 # ║  Spectral Frequency: WHITE                                                  ║
 # ║  Architectural Role: 🌿 THE GARDEN                                           ║
-# ║  Purpose: Run Cycle - MILF Execution with Artifact Output
-
-Executes a single gov ║
+# ║  Purpose: Run Cycle - MILF Execution with Artifact Output                   ║
 # ║  Exports: find_workspace_root, WORKSPACE_ROOT, MAS_MCP_ROOT, ARTIFACTS_DIR, GO ║
 # ╠════════════════════════════════════════════════════════════════════════════╣
 # ║  Cross-References (Bidirectional):                                      ║

@@ -1,11 +1,10 @@
 # ╔════════════════════════════════════════════════════════════════════════════╗
 # ║  THE DECORATOR'S BLESSING: ssot_hash.py                                  ║
-# ║  Python module: canonicalize, ssot_hash, verify_ssot_integrity              ║
+# ║  Python module: canonicalize, ssot_hash, verify_ssot_integrity, main        ║
 # ╠════════════════════════════════════════════════════════════════════════════╣
 # ║  Spectral Frequency: WHITE                                                  ║
 # ║  Architectural Role: 🌿 THE GARDEN                                           ║
-# ║  Purpose: SSOT Hash Verification Script
-Per ┬ºXIV.3 of .github/copilot-instructi ║
+# ║  Purpose: SSOT Hash Verification Script                                     ║
 # ║  Exports: canonicalize, ssot_hash, verify_ssot_integrity, main              ║
 # ╠════════════════════════════════════════════════════════════════════════════╣
 # ║  Cross-References (Bidirectional):                                      ║

@@ -54,9 +54,7 @@ pub struct DebugContext {
 }
 
 /// Validation layer name
-const VALIDATION_LAYER: &CStr = unsafe { 
-    CStr::from_bytes_with_nul_unchecked(b"VK_LAYER_KHRONOS_validation\0") 
-};
+const VALIDATION_LAYER: &CStr = c"VK_LAYER_KHRONOS_validation";
 
 impl VulkanContext {
     /// Create a new Vulkan context with Dynamic Rendering enabled
@@ -72,20 +70,16 @@ impl VulkanContext {
         let entry = Entry::load().context("Failed to load Vulkan library")?;
         
         // Verify Vulkan 1.3 support
-        let api_version = match entry.try_enumerate_instance_version()? {
-            Some(version) => version,
-            None => vk::API_VERSION_1_0,
-        };
+        let api_version = entry.try_enumerate_instance_version()?.unwrap_or(vk::API_VERSION_1_0);
         
         let major = vk::api_version_major(api_version);
         let minor = vk::api_version_minor(api_version);
         let patch = vk::api_version_patch(api_version);
-        info!("📦 Vulkan Instance Version: {}.{}.{}", major, minor, patch);
+        info!("📦 Vulkan Instance Version: {major}.{minor}.{patch}");
         
         if api_version < vk::API_VERSION_1_3 {
             return Err(anyhow!(
-                "Vulkan 1.3 required for Dynamic Rendering. Found: {}.{}.{}",
-                major, minor, patch
+                "Vulkan 1.3 required for Dynamic Rendering. Found: {major}.{minor}.{patch}"
             ));
         }
 
@@ -123,7 +117,7 @@ impl VulkanContext {
         
         info!("═══════════════════════════════════════════════════════════════");
         info!("🔥 VULKAN CONTEXT INITIALIZED: 4090 READY 🔥");
-        info!("   Device: {}", 
+        info!("   Device: {0}", 
             CStr::from_ptr(physical_device_properties.device_name.as_ptr())
                 .to_string_lossy()
         );
@@ -282,22 +276,19 @@ impl VulkanContext {
                 .find_map(|(index, info)| {
                     let supports_graphics = info.queue_flags.contains(vk::QueueFlags::GRAPHICS);
                     let supports_present = surface_loader
-                        .get_physical_device_surface_support(pdevice, index as u32, surface)
+                        .get_physical_device_surface_support(pdevice, u32::try_from(index).unwrap_or(0), surface)
                         .unwrap_or(false);
                     
                     if supports_graphics && supports_present {
-                        Some(index as u32)
+                        Some(u32::try_from(index).unwrap_or(0))
                     } else {
                         None
                     }
                 });
 
-            let queue_family_index = match queue_family_index {
-                Some(idx) => idx,
-                None => {
-                    debug!("   ❌ {} - No suitable queue family", device_name);
-                    continue;
-                }
+            let Some(queue_family_index) = queue_family_index else {
+                debug!("   ❌ {device_name} - No suitable queue family");
+                continue;
             };
 
             // Check Dynamic Rendering support
@@ -307,7 +298,7 @@ impl VulkanContext {
             instance.get_physical_device_features2(pdevice, &mut features2);
             
             if dynamic_rendering_features.dynamic_rendering == vk::FALSE {
-                debug!("   ❌ {} - No Dynamic Rendering support", device_name);
+                debug!("   ❌ {device_name} - No Dynamic Rendering support");
                 continue;
             }
 
@@ -338,12 +329,9 @@ impl VulkanContext {
                 _ => "Other",
             };
             
+            let vram_mb = vram / (1024 * 1024);
             info!(
-                "   📊 {} ({}) - VRAM: {} MB, Score: {}",
-                device_name,
-                device_type_str,
-                vram / (1024 * 1024),
-                score
+                "   📊 {device_name} ({device_type_str}) - VRAM: {vram_mb} MB, Score: {score}"
             );
 
             // Track best device
@@ -356,7 +344,7 @@ impl VulkanContext {
             .ok_or_else(|| anyhow!("No suitable GPU found with Dynamic Rendering support"))?;
         
         let device_name = CStr::from_ptr(properties.device_name.as_ptr()).to_string_lossy();
-        info!("✅ Selected GPU: {}", device_name);
+        info!("✅ Selected GPU: {device_name}");
         
         Ok((pdevice, properties, queue_family_index))
     }
@@ -456,16 +444,16 @@ unsafe extern "system" fn debug_callback(
 
     match message_severity {
         vk::DebugUtilsMessageSeverityFlagsEXT::ERROR => {
-            log::error!("[VK:{}] {}", type_str, message);
+            log::error!("[VK:{type_str}] {message}");
         }
         vk::DebugUtilsMessageSeverityFlagsEXT::WARNING => {
-            warn!("[VK:{}] {}", type_str, message);
+            warn!("[VK:{type_str}] {message}");
         }
         vk::DebugUtilsMessageSeverityFlagsEXT::INFO => {
-            info!("[VK:{}] {}", type_str, message);
+            info!("[VK:{type_str}] {message}");
         }
         _ => {
-            debug!("[VK:{}] {}", type_str, message);
+            debug!("[VK:{type_str}] {message}");
         }
     }
 

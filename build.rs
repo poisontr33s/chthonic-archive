@@ -52,31 +52,32 @@ fn main() {
 fn compile_shader(
     compiler: &shaderc::Compiler,
     options: &shaderc::CompileOptions,
-    source_path: &PathBuf,
+    source_path: &std::path::Path,
     kind: shaderc::ShaderKind,
-    out_dir: &PathBuf,
+    out_dir: &std::path::Path,
 ) {
     let source = fs::read_to_string(source_path)
-        .expect(&format!("Failed to read shader: {:?}", source_path));
+        .unwrap_or_else(|_| panic!("Failed to read shader: {0}", source_path.display()));
     
     let file_name = source_path.file_name().unwrap().to_str().unwrap();
     
     let artifact = compiler
         .compile_into_spirv(&source, kind, file_name, "main", Some(options))
-        .expect(&format!(
-            "🔥 SHADER COMPILATION FAILED: {} - Submit to the architecture!",
-            file_name
-        ));
+        .unwrap_or_else(|_| {
+            panic!(
+                "🔥 SHADER COMPILATION FAILED: {file_name} - Submit to the architecture!"
+            )
+        });
     
     // Warn about any shader warnings
     if artifact.get_num_warnings() > 0 {
-        println!("cargo:warning=⚠️ Shader {} has {} warnings", file_name, artifact.get_num_warnings());
+        println!("cargo:warning=⚠️ Shader {file_name} has {0} warnings", artifact.get_num_warnings());
     }
     
     // Write SPIR-V to output directory
-    let out_path = out_dir.join(format!("{}.spv", file_name));
+    let out_path = out_dir.join(format!("{file_name}.spv"));
     fs::write(&out_path, artifact.as_binary_u8())
-        .expect(&format!("Failed to write SPIR-V: {:?}", out_path));
+        .unwrap_or_else(|_| panic!("Failed to write SPIR-V: {0}", out_path.display()));
     
-    println!("cargo:warning=✅ Compiled {} → {:?}", file_name, out_path);
+    println!("cargo:warning=✅ Compiled {file_name} → {0}", out_path.display());
 }

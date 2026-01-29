@@ -8,7 +8,7 @@
 @References:    ANALYSIS_SESSION_2026_01_17_SYNTHESIS
 -->
 
-> **Navigation:** [Synthesis](SESSION_2026-01-17_SYNTHESIS.md) | [Handoff](HANDOFF_TO_CLAUDE.md) | [CLAUDE.md](../CLAUDE.md)
+> **Navigation:** [Synthesis](SESSION_2026-01-17_SYNTHESIS.md) | [Handoff](docs/HANDOFF_TO_CLAUDE.md) | [CLAUDE.md](../CLAUDE.md)
 
 **Goal:** Consolidate 5+ standalone scripts into unified `chthonic` CLI tool  
 **Impact:** +3 points on session grade (92% → 95% → **100%**)  
@@ -152,7 +152,7 @@ chthonic audit --root .
 
 ---
 
-## `_tmp_freq.py` Evolution
+## `../scripts/_tmp_freq.py` Evolution
 
 ### Current State
 ```python
@@ -309,7 +309,7 @@ For each tool:
 **Next Steps:**
 1. Get user approval on approach
 2. Create `scripts/lib/shared.py` with common utilities
-3. Create router (`scripts/chthonic` + `chthonic.ps1`)
+3. Create router (`scripts/chthonic` + `../scripts/chthonic.ps1`)
 4. Refactor tools one-by-one
 5. Test, document, celebrate 100%
 
@@ -334,12 +334,12 @@ For each tool:
 - Created `scripts/lib/__init__.py` (package init)
 
 **Phase 3 Deliverables (2026-01-27):**
-- Refactored `resolve_sid.py` → `lib/resolve.py` (@SID: TOOL_SID_RESOLVER_V1)
-- Refactored `extract_session_value.py` → `lib/extract.py` (@SID: TOOL_SESSION_EXTRACTOR_V1)
-- **NEW** `lib/analyze.py` from `_tmp_freq.py` (@SID: TOOL_PATTERN_ANALYZER_V1)
-- Refactored `compact_md.py` → `lib/compact.py` (@SID: TOOL_COMPACT_MD_V1)
-- Streamlined `rootdir_health_audit.py` → `lib/audit.py` (@SID: TOOL_ROOT_AUDIT_V1)
-- Streamlined `map_codebase.py` → `lib/map.py` (@SID: TOOL_CODEBASE_MAPPER_V1)
+- Refactored `../scripts/resolve_sid.py` → `lib/resolve.py` (@SID: TOOL_SID_RESOLVER_V1)
+- Refactored `../scripts/extract_session_value.py` → `lib/extract.py` (@SID: TOOL_SESSION_EXTRACTOR_V1)
+- **NEW** `lib/analyze.py` from `../scripts/_tmp_freq.py` (@SID: TOOL_PATTERN_ANALYZER_V1)
+- Refactored `../scripts/compact_md.py` → `lib/compact.py` (@SID: TOOL_COMPACT_MD_V1)
+- Streamlined `../scripts/rootdir_health_audit.py` → `lib/audit.py` (@SID: TOOL_ROOT_AUDIT_V1)
+- Streamlined `../scripts/map_codebase.py` → `lib/map.py` (@SID: TOOL_CODEBASE_MAPPER_V1)
 - Fixed router import issue (added `python -m lib.<tool>` pattern)
 - Tested all 6 commands via PowerShell router
 
@@ -355,9 +355,9 @@ For each tool:
 
 **Phase 5 Deliverables (2026-01-27):**
 - **Fixed Issue #2** (relative path resolution):
-  - Added `find_repo_root()` to `shared.py` (walks up to find .git/Cargo.toml)
-  - Updated `audit.py` to use repo root for default output paths
-  - Updated `map.py` to use repo root for default output paths
+  - Added `find_repo_root()` to `../scripts/lib/shared.py` (walks up to find .git/Cargo.toml)
+  - Updated `../scripts/lib/audit.py` to use repo root for default output paths
+  - Updated `../scripts/lib/map.py` to use repo root for default output paths
   - Tested: Both tools now correctly write to `docs/` at repo root
 - Updated `scripts/README.md` with "Chthonic CLI" section (comprehensive guide)
 - Updated `CLAUDE.md` Key References with new `chthonic` commands

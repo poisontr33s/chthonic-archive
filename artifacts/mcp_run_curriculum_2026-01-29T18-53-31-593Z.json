@@ -1,0 +1,91 @@
+{
+  "run_id": "2026-01-29T18-53-31-593Z",
+  "workflow": "curriculum",
+  "inputs": {
+    "spectral_frequency": "GOLD"
+  },
+  "outputs": {
+    "frequency": "GOLD",
+    "ordered_nodes": [
+      {
+        "node": "CLAUDE.md",
+        "in_degree": 2,
+        "dependencies": [
+          "docs/PWSH_RULES.md",
+          "scripts/README.md"
+        ],
+        "rationale": "Referenced by 2 nodes - specialized component"
+      },
+      {
+        "node": "IDE_DETECTION_EXTENSION_ACTIVATION.md",
+        "in_degree": 1,
+        "dependencies": [],
+        "rationale": "Referenced by 1 nodes - specialized component"
+      },
+      {
+        "node": "BRIDGE_COMPLETE_SUMMARY.md",
+        "in_degree": 0,
+        "dependencies": [],
+        "rationale": "Referenced by 0 nodes - specialized component"
+      },
+      {
+        "node": "CHTHONIC_V3_META_CLI_COMPLETE.md",
+        "in_degree": 0,
+        "dependencies": [],
+        "rationale": "Referenced by 0 nodes - specialized component"
+      },
+      {
+        "node": "CLAUDE_CODE_BRIDGE_ARCHITECTURE.md",
+        "in_degree": 0,
+        "dependencies": [],
+        "rationale": "Referenced by 0 nodes - specialized component"
+      },
+      {
+        "node": "CLAUDE_CODE_BRIDGE_INTEGRATION.md",
+        "in_degree": 0,
+        "dependencies": [],
+        "rationale": "Referenced by 0 nodes - specialized component"
+      },
+      {
+        "node": "CLAUDE_CODE_IDE_SETUP.md",
+        "in_degree": 0,
+        "dependencies": [
+          "scripts/chthonic.ps1",
+          "scripts/mcp-chthonic-server.ts"
+        ],
+        "rationale": "Referenced by 0 nodes - specialized component"
+      },
+      {
+        "node": "CROSS_REFERENCE_TRIPTYCH.md",
+        "in_degree": 0,
+        "dependencies": [],
+        "rationale": "Referenced by 0 nodes - specialized component"
+      },
+      {
+        "node": ".vscode/QUICKREF.md",
+        "in_degree": 0,
+        "dependencies": [],
+        "rationale": "Referenced by 0 nodes - specialized component"
+      },
+      {
+        "node": ".vscode/README.md",
+        "in_degree": 0,
+        "dependencies": [],
+        "rationale": "Referenced by 0 nodes - specialized component"
+      }
+    ],
+    "stats": {
+      "total_gold": 159,
+      "total_nodes": 484,
+      "gold_percentage": "32.9"
+    }
+  },
+  "elapsed_ms": 3,
+  "tool_versions": {
+    "server_commit": "5c666b2",
+    "bootstrap_spec": "1752952",
+    "workflows_doc": "622e57f"
+  },
+  "notes": "smoke suite validation run",
+  "success": true
+}

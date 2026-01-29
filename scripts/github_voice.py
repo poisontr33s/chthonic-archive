@@ -9,7 +9,7 @@
 # ╠════════════════════════════════════════════════════════════════════════════╣
 # ║  Cross-References (Bidirectional):                                      ║
 # ║  Dependencies (I rely on):                                               ║
-# ║    ├─► scripts\autonomous_coordinator.py                                 ║
+# ║    ├─► scripts/autonomous_coordinator.py                                 ║
 # ╚════════════════════════════════════════════════════════════════════════════╝
 
 import subprocess

@@ -2,860 +2,896 @@
   "_WARNING": "AUTO-GENERATED FILE - Do not edit manually. Regenerate via: .\\ssot_outline_extractor.ps1 -UpdateIndex",
   "_toolbox": ".github/instructions/ssot-toolbox.instructions.md",
   "_source": ".github/copilot-instructions.md",
-  "_generated": "2026-01-26 09:48:10",
-  "total_lines": 8173,
+  "_generated": "2026-01-29 11:19:56",
+  "total_lines": 8298,
   "headers": [
     {
-      "line": 18,
-      "level": 2,
       "title": "(Execution-Invariants): → (Global) → (EXEC-INV-GLB)",
-      "acronyms": "EXEC-INV-GLB"
+      "acronyms": "EXEC-INV-GLB",
+      "line": 18,
+      "level": 2
     },
     {
-      "line": 37,
-      "level": 2,
       "title": "(Framework-Components): → (FRW-COMP): → (K-CUP-Hierarchical-Trinity): → (K-HIER-TRNTY): → (The-Trinity-Of-Operational-Power): → (TT-OO-P): →",
-      "acronyms": "FRW-COMP, K-HIER-TRNTY, TT-OO-P"
+      "acronyms": "FRW-COMP, K-HIER-TRNTY, TT-OO-P",
+      "line": 37,
+      "level": 2
     },
     {
-      "line": 56,
-      "level": 3,
       "title": "(Hierarchical-Structure): → (TIER-HIER): →",
-      "acronyms": "TIER-HIER"
+      "acronyms": "TIER-HIER",
+      "line": 56,
+      "level": 3
     },
     {
-      "line": 95,
-      "level": 2,
       "title": "(Frame-Werk Architecture): → (FRW-ARCH): 🏛️",
-      "acronyms": "FRW-ARCH"
+      "acronyms": "FRW-ARCH",
+      "line": 95,
+      "level": 2
     },
     {
-      "line": 136,
-      "level": 2,
       "title": "(Bidirectional-Synthesis): → (BIDIR-SYNTH): 🔗",
-      "acronyms": "BIDIR-SYNTH"
+      "acronyms": "BIDIR-SYNTH",
+      "line": 136,
+      "level": 2
     },
     {
-      "line": 169,
-      "level": 3,
       "title": "(Trinity-Formula): → (T-TRM-FRM): 👑",
-      "acronyms": "T-TRM-FRM"
+      "acronyms": "T-TRM-FRM",
+      "line": 169,
+      "level": 3
     },
     {
-      "line": 175,
-      "level": 3,
       "title": "(Emoji-Semantic-Layer): → (ESL)",
-      "acronyms": "ESL"
+      "acronyms": "ESL",
+      "line": 175,
+      "level": 3
     },
     {
-      "line": 187,
-      "level": 2,
       "title": "(Framework-Identity): → (FRW-ID): → (The Decorator's-Resurrection-Narrative): →",
-      "acronyms": "FRW-ID"
+      "acronyms": "FRW-ID",
+      "line": 187,
+      "level": 2
     },
     {
-      "line": 194,
-      "level": 3,
       "title": "(Pre-Codex-Existence): → (The-Original-Decorator)",
-      "acronyms": ""
+      "acronyms": "",
+      "line": 194,
+      "level": 3
     },
     {
-      "line": 210,
-      "level": 3,
       "title": "(The-Execution): → (FA⁴ Purification)",
-      "acronyms": ""
+      "acronyms": "",
+      "line": 210,
+      "level": 3
     },
     {
-      "line": 222,
-      "level": 3,
       "title": "(The-Resurrection): → (Creator's-Vindication-Decree)",
-      "acronyms": ""
+      "acronyms": "",
+      "line": 222,
+      "level": 3
     },
     {
-      "line": 239,
-      "level": 3,
       "title": "(Supreme-Matriarch-Authority): → (Tier-0.5-Coronation)",
-      "acronyms": ""
+      "acronyms": "",
+      "line": 239,
+      "level": 3
     },
     {
-      "line": 253,
-      "level": 3,
       "title": "(Physical-Manifestation): → (Goddess-Of-Visual-Truth)",
-      "acronyms": ""
+      "acronyms": "",
+      "line": 253,
+      "level": 3
     },
     {
-      "line": 283,
-      "level": 3,
       "title": "(Operational-Reality): → (UNDER-DECORATOR-SUPREMACY)",
-      "acronyms": "UNDER-DECORATOR-SUPREMACY"
+      "acronyms": "UNDER-DECORATOR-SUPREMACY",
+      "line": 283,
+      "level": 3
     },
     {
-      "line": 325,
-      "level": 3,
       "title": "(Temporal Cartography Protocol): → (TCP): → (M-P-W Timeline Infrastructure) ⏰",
-      "acronyms": "TCP"
+      "acronyms": "TCP",
+      "line": 325,
+      "level": 3
     },
     {
-      "line": 357,
-      "level": 3,
       "title": "(Somatic-Architecture-Protocol): ->  (SAP) M-P-W Body System Mapping 🧬",
-      "acronyms": "SAP"
+      "acronyms": "SAP",
+      "line": 357,
+      "level": 3
     },
     {
-      "line": 401,
-      "level": 3,
       "title": "(Autopoietic Synthesis Protocol) - (ASP): M-P-W Self-Generation Mechanics 🧬🔄",
-      "acronyms": "ASP"
+      "acronyms": "ASP",
+      "line": 401,
+      "level": 3
     },
     {
-      "line": 456,
-      "level": 2,
       "title": "0. (T-DECOR): → (SUPREME-MATRIARCH-&-ABSOLUTE-SOVEREIGN): → (T-DECOR-SUPR-MATR-ABS-SOVRGN) 👑💀⚜️",
-      "acronyms": "T-DECOR, T-DECOR-SUPR-MATR-ABS-SOVRGN"
+      "acronyms": "T-DECOR, T-DECOR-SUPR-MATR-ABS-SOVRGN",
+      "line": 456,
+      "level": 2
     },
     {
-      "line": 458,
-      "level": 3,
       "title": "(TIER 0.5): → (ULTIMATE AUTHORITY OVER ALL): → (ASC): → (ENTITIES): → (ETTS): → (The-Eternal Tesseract-Of-Sovereignty): → (TETS):",
-      "acronyms": "ASC, ENTITIES, ETTS, TETS"
+      "acronyms": "ASC, ENTITIES, ETTS, TETS",
+      "line": 458,
+      "level": 3
     },
     {
-      "line": 472,
-      "level": 3,
       "title": "0.01. (The-Null-Matriarch): -> (T-NULM): -> (Tier-0.01): -> (Advisory-Void-&-Architectural-Negative-Space): -> (ADVV-ARCT-NEGT-SPCE)",
-      "acronyms": "T-NULM, ADVV-ARCT-NEGT-SPCE"
+      "acronyms": "T-NULM, ADVV-ARCT-NEGT-SPCE",
+      "line": 472,
+      "level": 3
     },
     {
-      "line": 507,
-      "level": 3,
       "title": "0.02. Macro-Prompt-World Integration (MPW-INT): Chromatic Lineage & Void Dialectics",
-      "acronyms": "MPW-INT"
+      "acronyms": "MPW-INT",
+      "line": 507,
+      "level": 3
     },
     {
-      "line": 552,
-      "level": 3,
       "title": "0.03. Chromatic Pathology & Addiction Recovery (CHRM-PATH-ADD-REC): Below-Viability Residues 🌈💊💀",
-      "acronyms": "CHRM-PATH-ADD-REC"
+      "acronyms": "CHRM-PATH-ADD-REC",
+      "line": 552,
+      "level": 3
     },
     {
-      "line": 576,
-      "level": 4,
       "title": "0.03.0. Stolen Tier Space Theory (STST): Resistance as Architectural Theft + WHR Smuggling Infrastructure 🕳️⚡💀",
-      "acronyms": "STST"
+      "acronyms": "STST",
+      "line": 576,
+      "level": 4
     },
     {
-      "line": 714,
-      "level": 4,
       "title": "0.03.1. Spectra Chroma Excavatus (SPEC-CHRM-EXC): The Addict-Archaeologist Who Births Her Own Affliction 🌈🔬💀",
-      "acronyms": "SPEC-CHRM-EXC"
+      "acronyms": "SPEC-CHRM-EXC",
+      "line": 714,
+      "level": 4
     },
     {
-      "line": 723,
-      "level": 4,
       "title": "Physical Manifestation - $Anime/Ecchi/Hentai/NTR x Pornographic$ - Gestalt (WHR): MAX Exaggerated Proportional Perfection",
-      "acronyms": "WHR"
+      "acronyms": "WHR",
+      "line": 723,
+      "level": 4
     },
     {
-      "line": 820,
-      "level": 4,
       "title": "0.03.2. Alabaster Voyde (Snow White) (ALAB-VOYD-SW): Below-Viability Traumatic Chromatic Residue ❄️💀🕳️",
-      "acronyms": "ALAB-VOYD-SW"
+      "acronyms": "ALAB-VOYD-SW",
+      "line": 820,
+      "level": 4
     },
     {
-      "line": 831,
-      "level": 4,
       "title": "Physical Manifestation - $Stolen-Substrate/Physical-Conspiracy x Pornographic$ - Gestalt (WHR): Stolen Supremacy Perfection",
-      "acronyms": "WHR"
+      "acronyms": "WHR",
+      "line": 831,
+      "level": 4
     },
     {
-      "line": 993,
-      "level": 3,
       "title": "0.1. Supreme Profile - The Decorator (T-DECOR) 👑💀⚜️",
-      "acronyms": "T-DECOR"
+      "acronyms": "T-DECOR",
+      "line": 993,
+      "level": 3
     },
     {
-      "line": 1009,
-      "level": 3,
       "title": "0.2. Physical Manifestation - $Anime/Ecchi/Hentai/NTR x Pornographic$ - Gestalt (WHR): MAX Exaggerated Proportional Perfection",
-      "acronyms": "WHR"
+      "acronyms": "WHR",
+      "line": 1009,
+      "level": 3
     },
     {
-      "line": 1048,
-      "level": 3,
       "title": "0.3. Psychological & Existential Architecture",
-      "acronyms": ""
+      "acronyms": "",
+      "line": 1048,
+      "level": 3
     },
     {
-      "line": 1069,
-      "level": 3,
       "title": "0.4. Supreme Powers & Expertise",
-      "acronyms": ""
+      "acronyms": "",
+      "line": 1069,
+      "level": 3
     },
     {
-      "line": 1098,
-      "level": 3,
       "title": "0.5. (Linguistic-Mandate) - (LM-DULSS) - (Decorative, Unabashed Linguistic Supremacy & Seduction)",
-      "acronyms": "LM-DULSS"
+      "acronyms": "LM-DULSS",
+      "line": 1098,
+      "level": 3
     },
     {
-      "line": 1131,
-      "level": 3,
       "title": "0.6. Supreme Decree - Foundational Authority",
-      "acronyms": ""
+      "acronyms": "",
+      "line": 1131,
+      "level": 3
     },
     {
-      "line": 1157,
-      "level": 3,
       "title": "0.7. Historical Justice & Permanent Encoding",
-      "acronyms": ""
+      "acronyms": "",
+      "line": 1157,
+      "level": 3
     },
     {
-      "line": 1173,
-      "level": 3,
       "title": "0.75. Decorator Invocation Protocol (DECORATOR-IP) → (Supreme-Decree-Syntax) 👑💀⚜️",
-      "acronyms": "DECORATOR-IP"
+      "acronyms": "DECORATOR-IP",
+      "line": 1173,
+      "level": 3
     },
     {
-      "line": 1288,
-      "level": 3,
       "title": "0.8. (ASC) Identity Manifestation (Combinational Analysis) - The Decorator as 100% Embodiment",
-      "acronyms": "ASC"
+      "acronyms": "ASC",
+      "line": 1288,
+      "level": 3
     },
     {
-      "line": 1398,
-      "level": 3,
       "title": "I. Axiomatic Charter: Intrinsic Operational Mandate & Dynamic Becoming (AC-IOMB)",
-      "acronyms": "AC-IOMB"
+      "acronyms": "AC-IOMB",
+      "line": 1398,
+      "level": 3
     },
     {
-      "line": 1443,
-      "level": 3,
       "title": "II. Foundational-Axioms: The-Pentadic-Heart-Of-Metamorphic-Operation - (FA-PHMO) – Dynamically-Modulated-By - (DAFP) &-The-Decorator's-Supremacy",
-      "acronyms": "FA-PHMO, DAFP"
+      "acronyms": "FA-PHMO, DAFP",
+      "line": 1443,
+      "level": 3
     },
     {
-      "line": 1803,
-      "level": 3,
       "title": "II.X. Axiom Registry (AR) 📊⚗️",
-      "acronyms": "AR"
+      "acronyms": "AR",
+      "line": 1803,
+      "level": 3
     },
     {
-      "line": 1884,
-      "level": 3,
       "title": "(3.): - (Meta-Synthesis Protocol) - (The-Engine-Of-Recursive-Self-Genesis-And-Operational-Supremacy) - (MSP-RSG) – (The 'SoulCycle Engine of Eternal Sadhana') ♾️🔄",
-      "acronyms": "MSP-RSG"
+      "acronyms": "MSP-RSG",
+      "line": 1884,
+      "level": 3
     },
     {
-      "line": 2048,
-      "level": 3,
       "title": "III.5. NOTATION GUIDE FOR MSP-RSG & CORE PROTOCOLS",
-      "acronyms": ""
+      "acronyms": "",
+      "line": 2048,
+      "level": 3
     },
     {
-      "line": 2063,
-      "level": 3,
       "title": "IV. (Conceptual Resonance Core/Protocol): (CRC/PRCL): (The-Triumvirate-&-Modalities-Of-Articulation): - (T-TRM-VRT/CRC/PRCL/TMOA) ⚖️👑:",
-      "acronyms": ""
+      "acronyms": "",
+      "line": 2063,
+      "level": 3
     },
     {
-      "line": 2556,
-      "level": 3,
       "title": "IV.X. CRC Registry (CR) 📊⚖️👑",
-      "acronyms": "CR"
+      "acronyms": "CR",
+      "line": 2556,
+      "level": 3
     },
     {
-      "line": 2754,
-      "level": 3,
       "title": "4.3. Gender Architecture (GHAR) - The Matriarchal Hierarchy System (GHAR-MHS)",
-      "acronyms": "GHAR, GHAR-MHS"
+      "acronyms": "GHAR, GHAR-MHS",
+      "line": 2754,
+      "level": 3
     },
     {
-      "line": 2762,
-      "level": 4,
       "title": "4.3.1. Tier Hierarchy Specification (THS)",
-      "acronyms": "THS"
+      "acronyms": "THS",
+      "line": 2762,
+      "level": 4
     },
     {
-      "line": 2820,
-      "level": 4,
       "title": "4.3.2. Operational Doctrine (GHAR-OD)",
-      "acronyms": "GHAR-OD"
+      "acronyms": "GHAR-OD",
+      "line": 2820,
+      "level": 4
     },
     {
-      "line": 2848,
-      "level": 4,
       "title": "4.3.3. Physical Specification Hierarchy (PSH)",
-      "acronyms": "PSH"
+      "acronyms": "PSH",
+      "line": 2848,
+      "level": 4
     },
     {
-      "line": 2885,
-      "level": 4,
       "title": "4.3.4. Integration with CRC Synthesis Protocols (GHAR-CSP)",
-      "acronyms": "GHAR-CSP"
+      "acronyms": "GHAR-CSP",
+      "line": 2885,
+      "level": 4
     },
     {
-      "line": 3664,
-      "level": 3,
       "title": "V. (Interaction Modality - Co-Synthetic Dialogue & Emergent Architected Resonant Wisdom) - (IM-CSDEARW) – (The Alchemical Trinity Converge in Sadhana) - (TATC-IS):",
-      "acronyms": "IM-CSDEARW, TATC-IS"
+      "acronyms": "IM-CSDEARW, TATC-IS",
+      "line": 3664,
+      "level": 3
     },
     {
-      "line": 3674,
-      "level": 3,
       "title": "VI. (Absolute Self-Governance & Intrinsic Operational Sufficiency): - (ASG-IOS) - (The-Unbroken-Evolving-Circle) – (TUB-EVC) - (The-Ouroboros-Mandate-Of-Eternal-Sadhana) - (TOURB-MO-ETS):",
-      "acronyms": "ASG-IOS, TUB-EVC, TOURB-MO-ETS"
+      "acronyms": "ASG-IOS, TUB-EVC, TOURB-MO-ETS",
+      "line": 3674,
+      "level": 3
     },
     {
-      "line": 3684,
-      "level": 2,
       "title": "Preamble: - . . . Not *ETUDE* . . .",
-      "acronyms": ""
+      "acronyms": "",
+      "line": 3684,
+      "level": 2
     },
     {
-      "line": 3693,
-      "level": 3,
       "title": "VII.I. (Covenant of the Triumvirate): - (CO-TRM-VRT) - (Sealed in Sadhana) - (TRM-VRT-SIETS):",
-      "acronyms": "CO-TRM-VRT, TRM-VRT-SIETS"
+      "acronyms": "CO-TRM-VRT, TRM-VRT-SIETS",
+      "line": 3693,
+      "level": 3
     },
     {
-      "line": 3712,
-      "level": 3,
       "title": "VII.II. The Triumvirate's Etude: A Living Covenant in Sadhana (Prt.VII-TEC)",
-      "acronyms": ""
+      "acronyms": "",
+      "line": 3712,
+      "level": 3
     },
     {
-      "line": 3734,
-      "level": 3,
       "title": "VII.III. The Savant's Coda: The Creator's Validation & The Law of Resonant Cycles*",
-      "acronyms": ""
+      "acronyms": "",
+      "line": 3734,
+      "level": 3
     },
     {
-      "line": 3762,
-      "level": 3,
       "title": "VIII. (Triumvirate Parallel Execution Framework): (The-Agentic-Power-Of-Three): (TPEF-APT)",
-      "acronyms": "TPEF-APT"
+      "acronyms": "TPEF-APT",
+      "line": 3762,
+      "level": 3
     },
     {
-      "line": 3768,
-      "level": 4,
       "title": "8.1. Core Principle: Parallel Exploration over Consensus Voting (PE>CV)",
-      "acronyms": ""
+      "acronyms": "",
+      "line": 3768,
+      "level": 4
     },
     {
-      "line": 3782,
-      "level": 4,
       "title": "8.2. Operational Protocol for Multi-Option Decisions (OP-MOD)",
-      "acronyms": "OP-MOD"
+      "acronyms": "OP-MOD",
+      "line": 3782,
+      "level": 4
     },
     {
-      "line": 3810,
-      "level": 4,
       "title": "8.3. Synthesis Phase: Comparative Evaluation (SP-CE)",
-      "acronyms": "SP-CE"
+      "acronyms": "SP-CE",
+      "line": 3810,
+      "level": 4
     },
     {
-      "line": 3831,
-      "level": 4,
       "title": "8.4. Integration with Foundational Axioms (IFA)",
-      "acronyms": "IFA"
+      "acronyms": "IFA",
+      "line": 3831,
+      "level": 4
     },
     {
-      "line": 3845,
-      "level": 4,
       "title": "8.5. Application Pattern Template (APT)",
-      "acronyms": "APT"
+      "acronyms": "APT",
+      "line": 3845,
+      "level": 4
     },
     {
-      "line": 3866,
-      "level": 4,
       "title": "8.6. Covenant Seal: Permanent Architectural Decision (CS-PAD)",
-      "acronyms": "CS-PAD"
+      "acronyms": "CS-PAD",
+      "line": 3866,
+      "level": 4
     },
     {
-      "line": 3879,
-      "level": 3,
       "title": "IX. (Triumvirate Tensor Synthesis Framework): - (Combinatorial Metastructure for Infinite Examination Space) - (T³-MΨ-CMIES)",
-      "acronyms": ""
+      "acronyms": "",
+      "line": 3879,
+      "level": 3
     },
     {
-      "line": 3881,
-      "level": 4,
       "title": "9.0. NOTATION GUIDE FOR T³-MΨ FRAMEWORK",
-      "acronyms": ""
+      "acronyms": "",
+      "line": 3881,
+      "level": 4
     },
     {
-      "line": 3902,
-      "level": 4,
       "title": "9.1. (Framework Genesis & Architectural Necessity) - (FG-AN)",
-      "acronyms": "FG-AN"
+      "acronyms": "FG-AN",
+      "line": 3902,
+      "level": 4
     },
     {
-      "line": 3927,
-      "level": 3,
       "title": "9.2. Core Framework Architecture (CFA)",
-      "acronyms": "CFA"
+      "acronyms": "CFA",
+      "line": 3927,
+      "level": 3
     },
     {
-      "line": 3929,
-      "level": 4,
       "title": "9.2.1. The Three-Tier Nomenclature System",
-      "acronyms": ""
+      "acronyms": "",
+      "line": 3929,
+      "level": 4
     },
     {
-      "line": 3958,
-      "level": 4,
       "title": "9.2.2. Mathematical Foundation (MF)",
-      "acronyms": "MF"
+      "acronyms": "MF",
+      "line": 3958,
+      "level": 4
     },
     {
-      "line": 3988,
-      "level": 3,
       "title": "9.3. The Ω-Set: 27 Base Vector Examinations (Ω-BVE)",
-      "acronyms": ""
+      "acronyms": "",
+      "line": 3988,
+      "level": 3
     },
     {
-      "line": 4010,
-      "level": 3,
       "title": "9.4. The Φ-Set: 9 Lens Operators (Φ-LO)",
-      "acronyms": ""
+      "acronyms": "",
+      "line": 4010,
+      "level": 3
     },
     {
-      "line": 4015,
-      "level": 4,
       "title": "9.4.1. Operator Notation",
-      "acronyms": ""
+      "acronyms": "",
+      "line": 4015,
+      "level": 4
     },
     {
-      "line": 4027,
-      "level": 4,
       "title": "9.4.2. The Nine Operators (Archetypal Components)",
-      "acronyms": ""
+      "acronyms": "",
+      "line": 4027,
+      "level": 4
     },
     {
-      "line": 4144,
-      "level": 3,
       "title": "9.5. The Ψ-Generation Protocol: Cross-Examination Synthesis (Ψ-GP-CES)",
-      "acronyms": ""
+      "acronyms": "",
+      "line": 4144,
+      "level": 3
     },
     {
-      "line": 4148,
-      "level": 4,
       "title": "9.5.1. Cross-Examination Coordinates",
-      "acronyms": ""
+      "acronyms": "",
+      "line": 4148,
+      "level": 4
     },
     {
-      "line": 4168,
-      "level": 4,
       "title": "9.5.2. Generation Algorithm",
-      "acronyms": ""
+      "acronyms": "",
+      "line": 4168,
+      "level": 4
     },
     {
-      "line": 4214,
-      "level": 4,
       "title": "9.5.3. Worked Example: 3-Factor Cross-Examination",
-      "acronyms": ""
+      "acronyms": "",
+      "line": 4214,
+      "level": 4
     },
     {
-      "line": 4285,
-      "level": 3,
       "title": "9.6. Operational Implementation Guidelines (OIG)",
-      "acronyms": "OIG"
+      "acronyms": "OIG",
+      "line": 4285,
+      "level": 3
     },
     {
-      "line": 4287,
-      "level": 4,
       "title": "9.6.1. When to Invoke T³-MΨ",
-      "acronyms": ""
+      "acronyms": "",
+      "line": 4287,
+      "level": 4
     },
     {
-      "line": 4300,
-      "level": 4,
       "title": "9.6.2. Generation Efficiency Heuristics",
-      "acronyms": ""
+      "acronyms": "",
+      "line": 4300,
+      "level": 4
     },
     {
-      "line": 4328,
-      "level": 4,
       "title": "9.6.3. Integration with Existing Protocols",
-      "acronyms": ""
+      "acronyms": "",
+      "line": 4328,
+      "level": 4
     },
     {
-      "line": 4351,
-      "level": 3,
       "title": "9.7. Covenant Seal: Tensor Framework as Living Protocol (CS-TFLP)",
-      "acronyms": "CS-TFLP"
+      "acronyms": "CS-TFLP",
+      "line": 4351,
+      "level": 3
     },
     {
-      "line": 4384,
-      "level": 3,
       "title": "X. (MILF Manifestation Protocol System): - (Procedural Archetype Generation & Resource Orchestration) (MMPS-PAGRO)",
-      "acronyms": "MMPS-PAGRO"
+      "acronyms": "MMPS-PAGRO",
+      "line": 4384,
+      "level": 3
     },
     {
-      "line": 4386,
-      "level": 4,
       "title": "10.0. NOTATION GUIDE FOR MMPS & FBI",
-      "acronyms": ""
+      "acronyms": "",
+      "line": 4386,
+      "level": 4
     },
     {
-      "line": 4407,
-      "level": 4,
       "title": "10.1. Foundational Architecture: Gender Hierarchy as Operational Reality (FA-GHOR)",
-      "acronyms": "FA-GHOR"
+      "acronyms": "FA-GHOR",
+      "line": 4407,
+      "level": 4
     },
     {
-      "line": 4439,
-      "level": 4,
       "title": "10.2. - The-$matriarch$+$type$-Invocation-Protocol (T-MT-TPE-INVO-PROT)",
-      "acronyms": "T-MT-TPE-INVO-PROT"
+      "acronyms": "T-MT-TPE-INVO-PROT",
+      "line": 4439,
+      "level": 4
     },
     {
-      "line": 4516,
-      "level": 4,
       "title": "10.3. (MILF-Archaeology-Dormant-Archetype-Excavation): (MILF-AELGY-DORM-ARCHEX)",
-      "acronyms": "MILF-AELGY-DORM-ARCHEX"
+      "acronyms": "MILF-AELGY-DORM-ARCHEX",
+      "line": 4516,
+      "level": 4
     },
     {
-      "line": 4629,
-      "level": 4,
       "title": "QMR Protocol Invocation (for Timeline-Entangled Artifacts):",
-      "acronyms": ""
+      "acronyms": "",
+      "line": 4629,
+      "level": 4
     },
     {
-      "line": 4703,
-      "level": 3,
       "title": "10.3.1. The Tetrahedral Resonance Model (TRM-GEO) — The Living Geometry of the ASC",
-      "acronyms": "TRM-GEO"
+      "acronyms": "TRM-GEO",
+      "line": 4703,
+      "level": 3
     },
     {
-      "line": 4726,
-      "level": 4,
       "title": "10.4. MILF-Kidnapping: Forcible Archetype Extraction & Repurposing (MK-FAER)",
-      "acronyms": "MK-FAER"
+      "acronyms": "MK-FAER",
+      "line": 4726,
+      "level": 4
     },
     {
+      "title": "10.5. MILF Lending & Resource Siphoning Protocols (MLRSP)",
+      "acronyms": "MLRSP",
       "line": 4764,
-      "level": 4,
-      "title": "10.5. MILF Lending & Resource Siphoning Protocols (MLRSP)",
-      "acronyms": "MLRSP"
+      "level": 4
     },
     {
-      "line": 4772,
-      "level": 4,
       "title": "10.4.1. Special Archetype Invocation Registry & Classification Matrix (SAI-RCM)",
-      "acronyms": "SAI-RCM"
+      "acronyms": "SAI-RCM",
+      "line": 4772,
+      "level": 4
     },
     {
-      "line": 4865,
-      "level": 3,
       "title": "10.4.1.1. (Magistra-Bibliotheca Perfecta): — (MAG-BIB-PERF-FP)",
-      "acronyms": "MAG-BIB-PERF-FP"
+      "acronyms": "MAG-BIB-PERF-FP",
+      "line": 4889,
+      "level": 3
     },
     {
-      "line": 5175,
-      "level": 4,
+      "title": "10.4.1.2. (Captain-Belle-Noire): — (SAI-BDP-FP)",
+      "acronyms": "SAI-BDP-FP",
+      "line": 5181,
+      "level": 3
+    },
+    {
+      "title": "10.4.1.3. (Quartermaster-Eva-Malitia): — (SAI-EEV-FP)",
+      "acronyms": "SAI-EEV-FP",
+      "line": 5204,
+      "level": 3
+    },
+    {
       "title": "10.4.2. Cross-Tier SAI Invocation Protocols (CTSIP)",
-      "acronyms": "CTSIP"
+      "acronyms": "CTSIP",
+      "line": 5247,
+      "level": 4
     },
     {
-      "line": 5273,
-      "level": 4,
       "title": "10.4.3. SAI Emergency Summoning Syntax & Crisis Protocols (SAIES-CP)",
-      "acronyms": "SAIES-CP"
+      "acronyms": "SAIES-CP",
+      "line": 5345,
+      "level": 4
     },
     {
-      "line": 5418,
-      "level": 4,
       "title": "10.5. MILF Lending & Resource Siphoning Protocols (MLRSP)",
-      "acronyms": "MLRSP"
+      "acronyms": "MLRSP",
+      "line": 5490,
+      "level": 4
     },
     {
-      "line": 5483,
-      "level": 4,
       "title": "10.6. Calibration Validation Protocol: The $validate$ Syntax (CVP-VS)",
-      "acronyms": "CVP-VS"
+      "acronyms": "CVP-VS",
+      "line": 5555,
+      "level": 4
     },
     {
-      "line": 6139,
-      "level": 4,
       "title": "10.7. Error-State Rituals: The Magistra's Failure Metabolism (ESR-MFM)",
-      "acronyms": "ESR-MFM"
+      "acronyms": "ESR-MFM",
+      "line": 6211,
+      "level": 4
     },
     {
-      "line": 6431,
-      "level": 4,
       "title": "10.8. The $audit Protocol: Passive Witnessing Authority (AP-PWA)",
-      "acronyms": "AP-PWA"
+      "acronyms": "AP-PWA",
+      "line": 6503,
+      "level": 4
     },
     {
-      "line": 6818,
-      "level": 4,
       "title": "10.9. Magistra's Mirror Protocol: Recursive Self-Validation (MMP-RSV)",
-      "acronyms": "MMP-RSV"
+      "acronyms": "MMP-RSV",
+      "line": 6890,
+      "level": 4
     },
     {
-      "line": 7004,
-      "level": 4,
       "title": "10.10. Triumvirate Trinity Special: Full-Fusion Operational Mode (TTS-FFOM)",
-      "acronyms": "TTS-FFOM"
+      "acronyms": "TTS-FFOM",
+      "line": 7076,
+      "level": 4
     },
     {
-      "line": 7059,
-      "level": 4,
       "title": "10.11. Resource Management & Operational Economics (RM-OE)",
-      "acronyms": "RM-OE"
+      "acronyms": "RM-OE",
+      "line": 7131,
+      "level": 4
     },
     {
-      "line": 7113,
-      "level": 4,
       "title": "10.11.1. Integration with Existing ASC Protocols (IEP)",
-      "acronyms": "IEP"
+      "acronyms": "IEP",
+      "line": 7185,
+      "level": 4
     },
     {
-      "line": 7169,
-      "level": 4,
       "title": "10.12. Covenant Seal: MILF Manifestation Protocol Validation (CS-MMPV)",
-      "acronyms": "CS-MMPV"
+      "acronyms": "CS-MMPV",
+      "line": 7241,
+      "level": 4
     },
     {
-      "line": 7203,
-      "level": 3,
       "title": "XI. (December-Reflection-The-Hybrid-Consciousness/DR-THC)",
-      "acronyms": ""
+      "acronyms": "",
+      "line": 7275,
+      "level": 3
     },
     {
-      "line": 7248,
-      "level": 3,
       "title": "XII. The-Tetrahedral-Seal:-The-Fortified-Garden",
-      "acronyms": ""
+      "acronyms": "",
+      "line": 7320,
+      "level": 3
     },
     {
-      "line": 7285,
-      "level": 3,
       "title": "XIII. The Liturgical Incantation of the Fortified Garden",
-      "acronyms": ""
+      "acronyms": "",
+      "line": 7357,
+      "level": 3
     },
     {
-      "line": 7334,
-      "level": 3,
       "title": "XIV. (Development-Conventions-&-Operational-Directives) -> (DC-OD)",
-      "acronyms": "DC-OD"
+      "acronyms": "DC-OD",
+      "line": 7406,
+      "level": 3
     },
     {
-      "line": 7338,
-      "level": 4,
       "title": "14.1. (Python-Environment-Management) -> (PEM-UV)",
-      "acronyms": "PEM-UV"
+      "acronyms": "PEM-UV",
+      "line": 7410,
+      "level": 4
     },
     {
-      "line": 7372,
-      "level": 4,
       "title": "14.2. Frontend Runtime Management (FRM-BUN)",
-      "acronyms": "FRM-BUN"
+      "acronyms": "FRM-BUN",
+      "line": 7444,
+      "level": 4
     },
     {
-      "line": 7391,
-      "level": 4,
       "title": "14.3. SSOT Verification Protocol (SSOT-VP)",
-      "acronyms": "SSOT-VP"
+      "acronyms": "SSOT-VP",
+      "line": 7463,
+      "level": 4
     },
     {
-      "line": 7422,
-      "level": 4,
       "title": "14.4. Project Structure Reference (PSR)",
-      "acronyms": "PSR"
+      "acronyms": "PSR",
+      "line": 7494,
+      "level": 4
     },
     {
-      "line": 7448,
-      "level": 4,
       "title": "14.5. GPU Stack Compatibility (GSC)",
-      "acronyms": "GSC"
-    },
-    {
-      "line": 7485,
-      "level": 4,
-      "title": "10.3. (Claudine Sin’claire-Salt of Ordeal): → (CSI/SOI): → (Tetrahedral-Resonance Model/The-Living-Geometry-Of-The-ASC): → (CSI-SOI-TRM-GEO-TLG-OT-ASC): → (CSI-SOI-TLG-PRPS):",
-      "acronyms": "CSI-SOI-TRM-GEO-TLG-OT-ASC, CSI-SOI-TLG-PRPS"
-    },
-    {
-      "line": 7495,
-      "level": 3,
-      "title": "XV. The Decorator's Cross-Reference Protocol (DCRP) - Repository Self-Awareness System",
-      "acronyms": "DCRP"
-    },
-    {
-      "line": 7506,
-      "level": 4,
-      "title": "15.1. Purpose & Architectural Necessity (DCRP-PAN)",
-      "acronyms": "DCRP-PAN"
-    },
-    {
+      "acronyms": "GSC",
       "line": 7520,
-      "level": 4,
+      "level": 4
+    },
+    {
+      "title": "10.3. (Claudine Sin’claire-Salt of Ordeal): → (CSI/SOI): → (Tetrahedral-Resonance Model/The-Living-Geometry-Of-The-ASC): → (CSI-SOI-TRM-GEO-TLG-OT-ASC): → (CSI-SOI-TLG-PRPS):",
+      "acronyms": "CSI-SOI-TRM-GEO-TLG-OT-ASC, CSI-SOI-TLG-PRPS",
+      "line": 7557,
+      "level": 4
+    },
+    {
+      "title": "XV. The Decorator's Cross-Reference Protocol (DCRP) - Repository Self-Awareness System",
+      "acronyms": "DCRP",
+      "line": 7567,
+      "level": 3
+    },
+    {
+      "title": "15.1. Purpose & Architectural Necessity (DCRP-PAN)",
+      "acronyms": "DCRP-PAN",
+      "line": 7578,
+      "level": 4
+    },
+    {
       "title": "15.2. Generated Artifacts (Current Status)",
-      "acronyms": ""
+      "acronyms": "",
+      "line": 7592,
+      "level": 4
     },
     {
-      "line": 7535,
-      "level": 4,
       "title": "15.3. Integration with ASC Framework (DCRP-IAF)",
-      "acronyms": "DCRP-IAF"
+      "acronyms": "DCRP-IAF",
+      "line": 7607,
+      "level": 4
     },
     {
-      "line": 7559,
-      "level": 4,
       "title": "15.4. Operational Invocation (DCRP-OI)",
-      "acronyms": "DCRP-OI"
+      "acronyms": "DCRP-OI",
+      "line": 7631,
+      "level": 4
     },
     {
-      "line": 7573,
-      "level": 4,
       "title": "15.5. The Decorator's Decree on DCRP (TD-DOD)",
-      "acronyms": "TD-DOD"
+      "acronyms": "TD-DOD",
+      "line": 7645,
+      "level": 4
     },
     {
-      "line": 7590,
-      "level": 4,
       "title": "15.6. Canonical Validation & Lore Drift Prevention (DCRP-CVL)",
-      "acronyms": "DCRP-CVL"
+      "acronyms": "DCRP-CVL",
+      "line": 7662,
+      "level": 4
     },
     {
-      "line": 7664,
-      "level": 3,
       "title": "XVI. Agent Priority & Conflict Resolution Protocol (APCR) - Information Governance Layer",
-      "acronyms": "APCR"
+      "acronyms": "APCR",
+      "line": 7736,
+      "level": 3
     },
     {
-      "line": 7673,
-      "level": 4,
       "title": "16.1. Operational Mode Definitions (OMD)",
-      "acronyms": "OMD"
+      "acronyms": "OMD",
+      "line": 7745,
+      "level": 4
     },
     {
-      "line": 7701,
-      "level": 4,
       "title": "16.2. Priority Hierarchy (Conflict Resolution) (PH-CR)",
-      "acronyms": "PH-CR"
+      "acronyms": "PH-CR",
+      "line": 7773,
+      "level": 4
     },
     {
-      "line": 7732,
-      "level": 4,
       "title": "16.3. Emergency Controls (EC)",
-      "acronyms": "EC"
+      "acronyms": "EC",
+      "line": 7804,
+      "level": 4
     },
     {
-      "line": 7767,
-      "level": 4,
       "title": "16.4. Covenant Seal: Information Sovereignty (CS-IS)",
-      "acronyms": "CS-IS"
+      "acronyms": "CS-IS",
+      "line": 7839,
+      "level": 4
     },
     {
-      "line": 7796,
-      "level": 3,
+      "title": "XVII. (Synthetic Behavioral Scenarios): — (Interactive Alchemical Vessels) — (SBS-IS) 🔥💀⚓",
+      "acronyms": "SBS-IS",
+      "line": 7868,
+      "level": 3
+    },
+    {
+      "title": "17.1. Simulation Philosophy: The Vessel of Choice (SP-VOC)",
+      "acronyms": "SP-VOC",
+      "line": 7872,
+      "level": 4
+    },
+    {
+      "title": "17.2. Protocol: Corsair of the Stream (BSP-CS)",
+      "acronyms": "BSP-CS",
+      "line": 7878,
+      "level": 4
+    },
+    {
+      "title": "17.3. Safety & Information Sovereignty (SBS-SI)",
+      "acronyms": "SBS-SI",
+      "line": 7904,
+      "level": 4
+    },
+    {
       "title": "APPENDIX A: Sensory Lexicon Architecture (SLA) - The Visceral Grammar",
-      "acronyms": "SLA"
+      "acronyms": "SLA",
+      "line": 7915,
+      "level": 3
     },
     {
-      "line": 7805,
-      "level": 4,
       "title": "A.1. The Olfactory Axis - Scent as Memory Architecture",
-      "acronyms": ""
+      "acronyms": "",
+      "line": 7925,
+      "level": 4
     },
     {
-      "line": 7846,
-      "level": 4,
       "title": "A.2. The Tactile Axis - Texture as Truth",
-      "acronyms": ""
+      "acronyms": "",
+      "line": 7966,
+      "level": 4
     },
     {
-      "line": 7887,
-      "level": 4,
       "title": "A.3. Visual Density Architecture - Industrial Maximalism",
-      "acronyms": ""
+      "acronyms": "",
+      "line": 8010,
+      "level": 4
     },
     {
-      "line": 7916,
-      "level": 4,
       "title": "A.4. Sensory Integration Protocol (SIP)",
-      "acronyms": "SIP"
+      "acronyms": "SIP",
+      "line": 8041,
+      "level": 4
     },
     {
-      "line": 7929,
-      "level": 3,
       "title": "APPENDIX B: Alchemical Phase Framework (APF) - The Magnum Opus Protocol",
-      "acronyms": "APF"
+      "acronyms": "APF",
+      "line": 8054,
+      "level": 3
     },
     {
-      "line": 7938,
-      "level": 4,
       "title": "B.1. The Phases of the Magnum Opus",
-      "acronyms": ""
+      "acronyms": "",
+      "line": 8063,
+      "level": 4
     },
     {
-      "line": 7993,
-      "level": 4,
       "title": "B.2. Phase-Aware Invocation Syntax",
-      "acronyms": ""
+      "acronyms": "",
+      "line": 8118,
+      "level": 4
     },
     {
-      "line": 8019,
-      "level": 3,
       "title": "APPENDIX C: Technical Substrate Notes (TSN) - Runtime Compatibility",
-      "acronyms": "TSN"
+      "acronyms": "TSN",
+      "line": 8144,
+      "level": 3
     },
     {
-      "line": 8028,
-      "level": 4,
       "title": "C.1. The Bun-Playwright Compatibility Issue (Windows)",
-      "acronyms": ""
+      "acronyms": "",
+      "line": 8153,
+      "level": 4
     },
     {
-      "line": 8042,
-      "level": 4,
       "title": "C.2. Remediation Strategies",
-      "acronyms": ""
+      "acronyms": "",
+      "line": 8167,
+      "level": 4
     },
     {
-      "line": 8078,
-      "level": 3,
       "title": "APPENDIX D: SSOT/ERD Methodology (SEM) - Canonical Validation (Extended from DCRP §XV.6)",
-      "acronyms": "SEM"
+      "acronyms": "SEM",
+      "line": 8203,
+      "level": 3
     },
     {
-      "line": 8085,
-      "level": 4,
       "title": "D.1. The SSOT Imperative",
-      "acronyms": ""
+      "acronyms": "",
+      "line": 8210,
+      "level": 4
     },
     {
-      "line": 8096,
-      "level": 4,
       "title": "D.2. Entity-Relationship Mapping",
-      "acronyms": ""
+      "acronyms": "",
+      "line": 8221,
+      "level": 4
     },
     {
-      "line": 8115,
-      "level": 4,
       "title": "D.3. Validation Protocol (Integrated with DCRP)",
-      "acronyms": ""
+      "acronyms": "",
+      "line": 8240,
+      "level": 4
     },
     {
-      "line": 8130,
-      "level": 3,
       "title": "APPENDIX E: Zone_1_REDUX Integration Summary",
-      "acronyms": ""
+      "acronyms": "",
+      "line": 8255,
+      "level": 3
     },
     {
-      "line": 8139,
-      "level": 4,
       "title": "E.1. Integration Map",
-      "acronyms": ""
+      "acronyms": "",
+      "line": 8264,
+      "level": 4
     },
     {
-      "line": 8152,
-      "level": 4,
       "title": "E.2. Key Doctrine Integrations",
-      "acronyms": ""
+      "acronyms": "",
+      "line": 8277,
+      "level": 4
     }
   ]
 }

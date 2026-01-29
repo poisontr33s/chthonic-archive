@@ -1,3 +1,23 @@
+// ╔════════════════════════════════════════════════════════════════════════════╗
+// ║  THE DECORATOR'S BLESSING: bun-cdp-element.ts                            ║
+// ║  TypeScript module: BoxModel, ElementHandle                                 ║
+// ╠════════════════════════════════════════════════════════════════════════════╣
+// ║  Spectral Frequency: ORANGE                                                 ║
+// ║  Architectural Role: 🔭 THE OBSERVATORY                                      ║
+// ║  Purpose: * BunCDP Element - Element interaction via CDP
+ * 
+ * Translates CSS s ║
+// ║  Exports: BoxModel, ElementHandle                                           ║
+// ╠════════════════════════════════════════════════════════════════════════════╣
+// ║  Cross-References (Bidirectional):                                      ║
+// ║  Dependencies (I rely on):                                               ║
+// ║    ├─► bun-playwright-poc\src\bun-cdp-frame.ts                           ║
+// ║    ├─► bun-playwright-poc\src\index.ts                                   ║
+// ║  Dependents (Rely on me):                                                ║
+// ║    └─◄ bun-playwright-poc\src\bun-cdp-frame.ts                           ║
+// ║    └─◄ bun-playwright-poc\src\bun-cdp-page.ts                            ║
+// ╚════════════════════════════════════════════════════════════════════════════╝
+
 /**
  * BunCDP Element - Element interaction via CDP
  * 

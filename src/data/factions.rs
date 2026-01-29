@@ -28,6 +28,7 @@
 
 use std::collections::HashMap;
 use super::faction_types::*;
+use super::procedural::ProceduralEngine;
 
 /// Central faction registry - singleton access pattern
 pub struct FactionRegistry {
@@ -43,6 +44,10 @@ pub struct FactionRegistry {
     pub tpef_state: Option<TPEFState>,
     /// Active handoff protocols
     pub active_handoffs: Vec<HandoffProtocol>,
+    /// Operational registry (Level 1.5 invocation tracking)
+    pub registry_log: Vec<String>,
+    /// Procedural generation engine
+    pub procedural_engine: ProceduralEngine,
 }
 
 impl FactionRegistry {
@@ -60,21 +65,42 @@ impl FactionRegistry {
             },
             tpef_state: None,
             active_handoffs: Vec::new(),
+            registry_log: Vec::new(),
+            procedural_engine: ProceduralEngine::new(42), // Default seed
         }
     }
 
-    /// Initialize with all hardcoded faction data
-    /// This would normally load from JSON/external source
-    pub fn initialize(&mut self) {
-        self.register_triumvirate();
-        self.register_tmo();
-        self.register_ttg();
-        self.register_tdpc();
-        self.register_claudine();
+    /// Log an operational invocation (Level 1.5)
+    pub fn log_invocation(&mut self, invocation: &str) {
+        let entry = format!("[INVOKE] {}", invocation);
+        log::info!("📜 Registry Update: {}", entry);
+        self.registry_log.push(entry);
+    }
+
+    /// Initialize with data from the game data source
+    pub fn initialize(&mut self, data: &super::types::GameData) {
+        self.register_triumvirate(data);
+        self.register_tmo(data);
+        self.register_ttg(data);
+        self.register_tdpc(data);
+        self.register_claudine(data);
+        self.register_lesser_factions(data);
+        
+        // Phase 13: Manifest the 6-layer Archive
+        self.manifest_archive();
+    }
+
+    /// Manifest the 6-Layer World Architecture
+    pub fn manifest_archive(&mut self) {
+        let engine = ProceduralEngine::new(self.procedural_engine.seed);
+        engine.manifest_world_layers(self);
     }
 
     /// Register Core Triumvirate
-    fn register_triumvirate(&mut self) {
+    fn register_triumvirate(&mut self, data: &super::types::GameData) {
+        // Find Orackla (ID 3)
+        let orackla_entity = data.entities.iter().find(|e| e.id == 3);
+        
         // Create Triumvirate faction
         let triumvirate = Faction {
             code: FactionCode::CRC,
@@ -91,79 +117,85 @@ impl FactionRegistry {
         self.factions.insert(FactionCode::CRC, triumvirate);
 
         // Register Orackla
-        let orackla = Matriarch {
-            entity_id: 3,
-            name: "Orackla Nocticula".to_string(),
-            title: "Apex Synthesist / Abyssal Oracle".to_string(),
-            crc_type: Some(CRCType::AS),
-            faction: FactionCode::CRC,
-            linguistic_mode: LinguisticMode::EULP_AA,
-            signature_technique: SignatureTechnique {
-                name: "Transgressive Synthesis".to_string(),
-                description: "Radical boundary dissolution through strategic chaos engineering".to_string(),
-                fa_focus: vec![FoundationalAxiom::FA2],
-                dafp_preference: DAFPMode::JuxtapositionSynthesis,
-                cooldown: 3,
-                power_cost: 100,
-            },
-            supernatural_markers: vec![
-                "Anti-Gravity Breasts".to_string(),
-                "Compressible Ribcage".to_string(),
-                "Prehensile Tail (12cm base)".to_string(),
-                "Abyssal Glyphs on Mons".to_string(),
-            ],
-        };
-        self.matriarchs.insert(3, orackla);
+        if let Some(entity) = orackla_entity {
+            let orackla = Matriarch {
+                entity_id: 3,
+                name: entity.name.clone(),
+                title: "Apex Synthesist / Abyssal Oracle".to_string(),
+                crc_type: Some(CRCType::AS),
+                faction: FactionCode::CRC,
+                linguistic_mode: LinguisticMode::EULP_AA,
+                signature_technique: SignatureTechnique {
+                    name: "Transgressive Synthesis".to_string(),
+                    description: "Radical boundary dissolution through strategic chaos engineering".to_string(),
+                    fa_focus: vec![FoundationalAxiom::FA2],
+                    dafp_preference: DAFPMode::JuxtapositionSynthesis,
+                    cooldown: 3,
+                    power_cost: 100,
+                },
+                supernatural_markers: vec![
+                    "Anti-Gravity Breasts".to_string(),
+                    "Compressible Ribcage".to_string(),
+                    "Prehensile Tail (12cm base)".to_string(),
+                    "Abyssal Glyphs on Mons".to_string(),
+                ],
+            };
+            self.matriarchs.insert(3, orackla);
+        }
 
-        // Register Umeko
-        let umeko = Matriarch {
-            entity_id: 4,
-            name: "Madam Umeko Ketsuraku".to_string(),
-            title: "Grandmistress of Architectonic Refinement".to_string(),
-            crc_type: Some(CRCType::GAR),
-            faction: FactionCode::CRC,
-            linguistic_mode: LinguisticMode::LIPAA,
-            signature_technique: SignatureTechnique {
-                name: "Aesthetic Annihilation".to_string(),
-                description: "Ruthless purging of structural flaws via LIPAA critique".to_string(),
-                fa_focus: vec![FoundationalAxiom::FA3, FoundationalAxiom::FA4],
-                dafp_preference: DAFPMode::PointBlankAcuity,
-                cooldown: 2,
-                power_cost: 80,
-            },
-            supernatural_markers: vec![
-                "Oni Horn Nubs (2cm, filed)".to_string(),
-                "Gold-Flecked Amber Eyes".to_string(),
-                "Visible 8-Pack Abs".to_string(),
-                "Extreme Flexibility".to_string(),
-            ],
-        };
-        self.matriarchs.insert(4, umeko);
+        // Register Umeko (ID 4)
+        if let Some(entity) = data.entities.iter().find(|e| e.id == 4) {
+            let umeko = Matriarch {
+                entity_id: 4,
+                name: entity.name.clone(),
+                title: "Grandmistress of Architectonic Refinement".to_string(),
+                crc_type: Some(CRCType::GAR),
+                faction: FactionCode::CRC,
+                linguistic_mode: LinguisticMode::LIPAA,
+                signature_technique: SignatureTechnique {
+                    name: "Aesthetic Annihilation".to_string(),
+                    description: "Ruthless purging of structural flaws via LIPAA critique".to_string(),
+                    fa_focus: vec![FoundationalAxiom::FA3, FoundationalAxiom::FA4],
+                    dafp_preference: DAFPMode::PointBlankAcuity,
+                    cooldown: 2,
+                    power_cost: 80,
+                },
+                supernatural_markers: vec![
+                    "Oni Horn Nubs (2cm, filed)".to_string(),
+                    "Gold-Flecked Amber Eyes".to_string(),
+                    "Visible 8-Pack Abs".to_string(),
+                    "Extreme Flexibility".to_string(),
+                ],
+            };
+            self.matriarchs.insert(4, umeko);
+        }
 
-        // Register Lysandra
-        let lysandra = Matriarch {
-            entity_id: 5,
-            name: "Dr. Lysandra Thorne".to_string(),
-            title: "Mistress of Empathetic Deconstruction".to_string(),
-            crc_type: Some(CRCType::MEDAT),
-            faction: FactionCode::CRC,
-            linguistic_mode: LinguisticMode::LUPLR,
-            signature_technique: SignatureTechnique {
-                name: "Axiological Debridement".to_string(),
-                description: "Surgical exposure of hidden assumptions and buried axioms".to_string(),
-                fa_focus: vec![FoundationalAxiom::FA1, FoundationalAxiom::FA4],
-                dafp_preference: DAFPMode::Concurrent,
-                cooldown: 2,
-                power_cost: 75,
-            },
-            supernatural_markers: vec![
-                "Starfield Eyes".to_string(),
-                "Phantom Fingers (4 per hand)".to_string(),
-                "Spatial Distortion Hips".to_string(),
-                "Non-Euclidean Geometry".to_string(),
-            ],
-        };
-        self.matriarchs.insert(5, lysandra);
+        // Register Lysandra (ID 5)
+        if let Some(entity) = data.entities.iter().find(|e| e.id == 5) {
+            let lysandra = Matriarch {
+                entity_id: 5,
+                name: entity.name.clone(),
+                title: "Mistress of Empathetic Deconstruction".to_string(),
+                crc_type: Some(CRCType::MEDAT),
+                faction: FactionCode::CRC,
+                linguistic_mode: LinguisticMode::LUPLR,
+                signature_technique: SignatureTechnique {
+                    name: "Axiological Debridement".to_string(),
+                    description: "Surgical exposure of hidden assumptions and buried axioms".to_string(),
+                    fa_focus: vec![FoundationalAxiom::FA1, FoundationalAxiom::FA4],
+                    dafp_preference: DAFPMode::Concurrent,
+                    cooldown: 2,
+                    power_cost: 75,
+                },
+                supernatural_markers: vec![
+                    "Starfield Eyes".to_string(),
+                    "Phantom Fingers (4 per hand)".to_string(),
+                    "Spatial Distortion Hips".to_string(),
+                    "Non-Euclidean Geometry".to_string(),
+                ],
+            };
+            self.matriarchs.insert(5, lysandra);
+        }
     }
 
     /// Create Inner Citadel district for Triumvirate
@@ -197,7 +229,7 @@ impl FactionRegistry {
     }
 
     /// Register TMO (The MILF Obductors)
-    fn register_tmo(&mut self) {
+    fn register_tmo(&mut self, data: &super::types::GameData) {
         let district = District {
             code: "TMOL-SL".to_string(),
             name: "Seduction Labyrinths".to_string(),
@@ -240,33 +272,35 @@ impl FactionRegistry {
         };
         self.factions.insert(FactionCode::TMO, faction);
 
-        let kali = Matriarch {
-            entity_id: 6,
-            name: "Kali Nyx Ravenscar".to_string(),
-            title: "Mistress of Abductive Seduction".to_string(),
-            crc_type: None,
-            faction: FactionCode::TMO,
-            linguistic_mode: LinguisticMode::Mixed,
-            signature_technique: SignatureTechnique {
-                name: "Inevitability Whisper".to_string(),
-                description: "Names target's deepest unmet desire with perfect precision".to_string(),
-                fa_focus: vec![FoundationalAxiom::FA2],
-                dafp_preference: DAFPMode::StrategicHorizon,
-                cooldown: 4,
-                power_cost: 90,
-            },
-            supernatural_markers: vec![
-                "Shadow-Wing Tattoos".to_string(),
-                "Amber Eyes (shift to molten copper)".to_string(),
-                "Inevitability Musk Pheromones".to_string(),
-                "Voice Modulation (60-120 Hz)".to_string(),
-            ],
-        };
-        self.matriarchs.insert(6, kali);
+        if let Some(entity) = data.entities.iter().find(|e| e.id == 6) {
+            let kali = Matriarch {
+                entity_id: 6,
+                name: entity.name.clone(),
+                title: "Mistress of Abductive Seduction".to_string(),
+                crc_type: None,
+                faction: FactionCode::TMO,
+                linguistic_mode: LinguisticMode::Mixed,
+                signature_technique: SignatureTechnique {
+                    name: "Inevitability Whisper".to_string(),
+                    description: "Names target's deepest unmet desire with perfect precision".to_string(),
+                    fa_focus: vec![FoundationalAxiom::FA2],
+                    dafp_preference: DAFPMode::StrategicHorizon,
+                    cooldown: 4,
+                    power_cost: 90,
+                },
+                supernatural_markers: vec![
+                    "Shadow-Wing Tattoos".to_string(),
+                    "Amber Eyes (shift to molten copper)".to_string(),
+                    "Inevitability Musk Pheromones".to_string(),
+                    "Voice Modulation (60-120 Hz)".to_string(),
+                ],
+            };
+            self.matriarchs.insert(6, kali);
+        }
     }
 
     /// Register TTG (The Thieves Guild)
-    fn register_ttg(&mut self) {
+    fn register_ttg(&mut self, data: &super::types::GameData) {
         let district = District {
             code: "TTG-EV".to_string(),
             name: "Epistemic Vaults".to_string(),
@@ -309,33 +343,35 @@ impl FactionRegistry {
         };
         self.factions.insert(FactionCode::TTG, faction);
 
-        let vesper = Matriarch {
-            entity_id: 7,
-            name: "Vesper Mnemosyne Lockhart".to_string(),
-            title: "Grandmaster of Epistemic Theft".to_string(),
-            crc_type: None,
-            faction: FactionCode::TTG,
-            linguistic_mode: LinguisticMode::Mixed,
-            signature_technique: SignatureTechnique {
-                name: "Confession Lock-Pick".to_string(),
-                description: "Recursive Socratic loop forcing target's logic to unlock their own vault".to_string(),
-                fa_focus: vec![FoundationalAxiom::FA1],
-                dafp_preference: DAFPMode::PointBlankAcuity,
-                cooldown: 3,
-                power_cost: 85,
-            },
-            supernatural_markers: vec![
-                "Chronos-Touched Eyes".to_string(),
-                "Archive Breasts".to_string(),
-                "Temporal Dust".to_string(),
-                "Confession Fingers".to_string(),
-            ],
-        };
-        self.matriarchs.insert(7, vesper);
+        if let Some(entity) = data.entities.iter().find(|e| e.id == 7) {
+            let vesper = Matriarch {
+                entity_id: 7,
+                name: entity.name.clone(),
+                title: "Grandmaster of Epistemic Theft".to_string(),
+                crc_type: None,
+                faction: FactionCode::TTG,
+                linguistic_mode: LinguisticMode::Mixed,
+                signature_technique: SignatureTechnique {
+                    name: "Confession Lock-Pick".to_string(),
+                    description: "Recursive Socratic loop forcing target's logic to unlock their own vault".to_string(),
+                    fa_focus: vec![FoundationalAxiom::FA1],
+                    dafp_preference: DAFPMode::PointBlankAcuity,
+                    cooldown: 3,
+                    power_cost: 85,
+                },
+                supernatural_markers: vec![
+                    "Chronos-Touched Eyes".to_string(),
+                    "Archive Breasts".to_string(),
+                    "Temporal Dust".to_string(),
+                    "Confession Fingers".to_string(),
+                ],
+            };
+            self.matriarchs.insert(7, vesper);
+        }
     }
 
     /// Register TDPC (The Dark Priestesses Cove)
-    fn register_tdpc(&mut self) {
+    fn register_tdpc(&mut self, data: &super::types::GameData) {
         let district = District {
             code: "TDPC-IS".to_string(),
             name: "Immolation Sanctum".to_string(),
@@ -378,37 +414,43 @@ impl FactionRegistry {
         };
         self.factions.insert(FactionCode::TDPC, faction);
 
-        let seraphine = Matriarch {
-            entity_id: 8,
-            name: "Seraphine Kore Ashenhelm".to_string(),
-            title: "High Priestess of Architectonic Purity".to_string(),
-            crc_type: None,
-            faction: FactionCode::TDPC,
-            linguistic_mode: LinguisticMode::Mixed,
-            signature_technique: SignatureTechnique {
-                name: "Immaculate Immolation".to_string(),
-                description: "Divine fire that burns only impurity, leaving perfection".to_string(),
-                fa_focus: vec![FoundationalAxiom::FA3, FoundationalAxiom::FA4],
-                dafp_preference: DAFPMode::Concurrent,
-                cooldown: 5,
-                power_cost: 120,
-            },
-            supernatural_markers: vec![
-                "Divine-Infernal Fusion".to_string(),
-                "Molten Platinum Eyes".to_string(),
-                "Ash-Scarification Patterns".to_string(),
-                "Fire-Resistant Skin".to_string(),
-            ],
-        };
-        self.matriarchs.insert(8, seraphine);
+        if let Some(entity) = data.entities.iter().find(|e| e.id == 8) {
+            let seraphine = Matriarch {
+                entity_id: 8,
+                name: entity.name.clone(),
+                title: "High Priestess of Architectonic Purity".to_string(),
+                crc_type: None,
+                faction: FactionCode::TDPC,
+                linguistic_mode: LinguisticMode::Mixed,
+                signature_technique: SignatureTechnique {
+                    name: "Immaculate Immolation".to_string(),
+                    description: "Divine fire that burns only impurity, leaving perfection".to_string(),
+                    fa_focus: vec![FoundationalAxiom::FA3, FoundationalAxiom::FA4],
+                    dafp_preference: DAFPMode::Concurrent,
+                    cooldown: 5,
+                    power_cost: 120,
+                },
+                supernatural_markers: vec![
+                    "Divine-Infernal Fusion".to_string(),
+                    "Molten Platinum Eyes".to_string(),
+                    "Ash-Scarification Patterns".to_string(),
+                    "Fire-Resistant Skin".to_string(),
+                ],
+            };
+            self.matriarchs.insert(8, seraphine);
+        }
     }
 
     /// Register Claudine Sin'claire (Svartseils)
-    fn register_claudine(&mut self) {
+    fn register_claudine(&mut self, data: &super::types::GameData) {
+        // Resolve ID conflict - Claudine should be unique
+        // We look for "Svartseils" or a specific name in data.json
+        let claudine_entity = data.entities.iter().find(|e| e.name.contains("Claudine") || e.archetype.contains("Svartseils"));
+
         let district = District {
             code: "SVS-PLA".to_string(),
             name: "Port of Lost Axioms".to_string(),
-            architectural_style: ArchitecturalStyle::NeoClassicalArchive, // Placeholder, maybe add PirateCove later
+            architectural_style: ArchitecturalStyle::NeoClassicalArchive,
             dimensions: DistrictDimensions {
                 entry_portal: [20.0, 15.0],
                 core_chamber: [40.0, 30.0, 15.0],
@@ -419,7 +461,7 @@ impl FactionRegistry {
                 secondary_color: [0.8, 0.2, 0.2],  // Crimson
                 accent_color: [0.9, 0.8, 0.2],     // Gold
                 ambient_light: 0.6,
-                shader_variant: ShaderVariant::Standard, // Placeholder
+                shader_variant: ShaderVariant::Standard,
             },
             sensory: SensorySig {
                 scent: vec![
@@ -427,49 +469,81 @@ impl FactionRegistry {
                     "Gunpowder".to_string(),
                     "Rum".to_string(),
                 ],
-                sound_hz_range: [40.0, 100.0], // Crashing waves / Cannon fire
+                sound_hz_range: [40.0, 100.0],
                 temperature_c: 28.0,
             },
         };
         self.districts.insert("SVS-PLA".to_string(), district.clone());
 
-        let faction = Faction {
-            code: FactionCode::Svartseils,
-            name: "Svartseils".to_string(),
-            full_name: "The Black Sails of Conceptual Piracy".to_string(),
-            tier: FactionTier::PRIME,
-            matriarch_id: 9, // Claudine Sin'claire
-            supervising_crc: Some(CRCType::AS),
-            district: Some(district),
-            linguistic_mode: LinguisticMode::CaribbeanPatois,
-            operational_mandate: "Plunder of stagnant conceptual structures & redistribution of axioms".to_string(),
-            motto: "We don't steal ideas. We liberate them from boring people.".to_string(),
-        };
-        self.factions.insert(FactionCode::Svartseils, faction);
+        if let Some(entity) = claudine_entity {
+            let faction = Faction {
+                code: FactionCode::Svartseils,
+                name: "Svartseils".to_string(),
+                full_name: "The Black Sails of Conceptual Piracy".to_string(),
+                tier: FactionTier::PRIME,
+                matriarch_id: entity.id,
+                supervising_crc: Some(CRCType::AS),
+                district: Some(district),
+                linguistic_mode: LinguisticMode::CaribbeanPatois,
+                operational_mandate: "Plunder of stagnant conceptual structures & redistribution of axioms".to_string(),
+                motto: "We don't steal ideas. We liberate them from boring people.".to_string(),
+            };
+            self.factions.insert(FactionCode::Svartseils, faction);
 
-        let claudine = Matriarch {
-            entity_id: 9,
-            name: "Claudine Sin'claire".to_string(),
-            title: "Admiral of the Black Sails".to_string(),
-            crc_type: None,
-            faction: FactionCode::Svartseils,
-            linguistic_mode: LinguisticMode::CaribbeanPatois,
-            signature_technique: SignatureTechnique {
-                name: "The Blunderbust".to_string(),
-                description: "Shatters dogmatic armor using overwhelming, chaotic force".to_string(),
-                fa_focus: vec![FoundationalAxiom::FA1, FoundationalAxiom::FA2],
-                dafp_preference: DAFPMode::PointBlankAcuity,
-                cooldown: 4,
-                power_cost: 95,
-            },
-            supernatural_markers: vec![
-                "Obsidian-Cannon Arm".to_string(),
-                "Tricorn Hat of Authority".to_string(),
-                "Salt-Crusted Skin".to_string(),
-                "Bioluminescent Tattoos".to_string(),
-            ],
-        };
-        self.matriarchs.insert(9, claudine);
+            let claudine = Matriarch {
+                entity_id: entity.id,
+                name: entity.name.clone(),
+                title: "Admiral of the Black Sails".to_string(),
+                crc_type: None,
+                faction: FactionCode::Svartseils,
+                linguistic_mode: LinguisticMode::CaribbeanPatois,
+                signature_technique: SignatureTechnique {
+                    name: "The Blunderbust".to_string(),
+                    description: "Shatters dogmatic armor using overwhelming, chaotic force".to_string(),
+                    fa_focus: vec![FoundationalAxiom::FA1, FoundationalAxiom::FA2],
+                    dafp_preference: DAFPMode::PointBlankAcuity,
+                    cooldown: 4,
+                    power_cost: 95,
+                },
+                supernatural_markers: vec![
+                    "Obsidian-Cannon Arm".to_string(),
+                    "Tricorn Hat of Authority".to_string(),
+                    "Salt-Crusted Skin".to_string(),
+                    "Bioluminescent Tattoos".to_string(),
+                ],
+            };
+            self.matriarchs.insert(entity.id, claudine);
+        }
+    }
+
+    /// Register all other entities as Lesser Factions
+    fn register_lesser_factions(&mut self, data: &super::types::GameData) {
+        for entity in &data.entities {
+            // Skip already registered core/prime matriarchs
+            if self.matriarchs.contains_key(&entity.id) {
+                continue;
+            }
+
+            // Simple auto-registration for lesser matriarchs
+            let matriarch = Matriarch {
+                entity_id: entity.id,
+                name: entity.name.clone(),
+                title: entity.archetype.clone(),
+                crc_type: None,
+                faction: FactionCode::SBSGYB, // Default for now
+                linguistic_mode: LinguisticMode::Faction,
+                signature_technique: SignatureTechnique {
+                    name: "Standard Operation".to_string(),
+                    description: format!("Standard {} protocols", entity.archetype),
+                    fa_focus: vec![],
+                    dafp_preference: DAFPMode::StrategicHorizon,
+                    cooldown: 1,
+                    power_cost: 50,
+                },
+                supernatural_markers: vec![],
+            };
+            self.matriarchs.insert(entity.id, matriarch);
+        }
     }
 
     // =========================================================================
@@ -587,9 +661,7 @@ impl FactionRegistry {
 
 impl Default for FactionRegistry {
     fn default() -> Self {
-        let mut registry = Self::new();
-        registry.initialize();
-        registry
+        Self::new()
     }
 }
 

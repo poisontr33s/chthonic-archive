@@ -26,14 +26,14 @@ This document stewards the truth of the "Claude Code" session where the **Anchor
 
 | Claimed Action | Target Artifact | Verification | Status |
 |----------------|-----------------|--------------|--------|
-| **Tool Creation** | `scripts/resolve_sid.py` | Exists, syntax fixed, executable via `uv` | ✅ Verified |
+| **Tool Creation** | `scripts/../scripts/resolve_sid.py` | Exists, syntax fixed, executable via `uv` | ✅ Verified |
 | **Header Injection** | `scripts/extract_session_value.py` | Contains `@SID: TOOL_SESSION_EXTRACTOR_V1` | ✅ Verified |
 | **Header Injection** | `scripts/rootdir_health_audit.py` | Contains `@SID: TOOL_ROOT_AUDIT_V1` | ✅ Verified |
 | **Registry Update** | `docs/SESSION_2026-01-17_CLEANUP.md` | Contains SID Mapping Table | ✅ Verified |
 | **Audit Report** | `docs/ROOTDIR_HEALTH_2026-01-17.md` | Exists, confirms 81/100 Health Score | ✅ Verified |
 
 **Discrepancies Resolved:**
-- The original `../scripts/resolve_sid.py` contained a syntax error (Em Dash `—` in docstring). This was identified and repaired by the Steward (Copilot CLI) to match the *intent* of the log while ensuring *functional* reality.
+- The original `../scripts/../scripts/resolve_sid.py` contained a syntax error (Em Dash `—` in docstring). This was identified and repaired by the Steward (Copilot CLI) to match the *intent* of the log while ensuring *functional* reality.
 
 ## 3. Structural History (Compressed)
 
@@ -50,7 +50,7 @@ This document stewards the truth of the "Claude Code" session where the **Anchor
 ### Phase III: Anchor & Signal Protocol Deployment
 **Implementation:**
 1. **Defined Protocol:** Files declare `@SID: UNIQUE_ID` in comments/docstrings.
-2. **Built Resolver:** `scripts/resolve_sid.py` scans repo to build `../data/indices/sid_index.json`.
+2. **Built Resolver:** `scripts/../scripts/resolve_sid.py` scans repo to build `../data/indices/../data/indices/sid_index.json`.
 3. **Refactored Registry:** Session docs now link SIDs, not just paths.
 
 ## 4. Achieved State
@@ -58,7 +58,7 @@ This document stewards the truth of the "Claude Code" session where the **Anchor
 The codebase now possesses a **Self-Healing Reference System**.
 - **Anchor:** The file itself declares "I am `@SID: TOOL_X`".
 - **Signal:** Documentation references "See `@SID: TOOL_X`".
-- **Resolution:** `../scripts/resolve_sid.py` bridges the two, regardless of where the file lives.
+- **Resolution:** `../scripts/../scripts/resolve_sid.py` bridges the two, regardless of where the file lives.
 
 ## 5. Metadata Standards (Established)
 

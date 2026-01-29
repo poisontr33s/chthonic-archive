@@ -1,3 +1,23 @@
+// ╔════════════════════════════════════════════════════════════════════════════╗
+// ║  THE DECORATOR'S BLESSING: bun-cdp-page.ts                               ║
+// ║  TypeScript module: PageOptions, DialogInfo, CDPPage                        ║
+// ╠════════════════════════════════════════════════════════════════════════════╣
+// ║  Spectral Frequency: ORANGE                                                 ║
+// ║  Architectural Role: 🔭 THE OBSERVATORY                                      ║
+// ║  Purpose: * BunCDP Page - High-level page automation API
+ * Built on top of raw  ║
+// ║  Exports: PageOptions, DialogInfo, CDPPage                                  ║
+// ╠════════════════════════════════════════════════════════════════════════════╣
+// ║  Cross-References (Bidirectional):                                      ║
+// ║  Dependencies (I rely on):                                               ║
+// ║    ├─► bun-playwright-poc\src\bun-cdp-element.ts                         ║
+// ║    ├─► bun-playwright-poc\src\bun-cdp-frame.ts                           ║
+// ║    ├─► bun-playwright-poc\src\index.ts                                   ║
+// ║  Dependents (Rely on me):                                                ║
+// ║    └─◄ bun-playwright-poc\src\bun-cdp.ts                                 ║
+// ║    └─◄ bun-playwright-poc\src\bun-cdp-frame.ts                           ║
+// ╚════════════════════════════════════════════════════════════════════════════╝
+
 /**
  * BunCDP Page - High-level page automation API
  * Built on top of raw CDP, providing familiar Playwright-like methods

@@ -33,7 +33,7 @@ As of Phase 3 completion (2026-01-27), all standalone Python scripts have been c
 | `uv run scripts/compact_md.py FILE.md --dry-run --stats` | `chthonic compact FILE.md --dry-run --stats` | Preview mode |
 | `uv run scripts/rootdir_health_audit.py` | `chthonic audit --root .` | Health audit |
 | `uv run scripts/map_codebase.py` | `chthonic map --root .` | Codebase mapping |
-| `uv run scripts/_tmp_freq.py` | `chthonic analyze FILE.md` | **NEW** - Pattern analysis |
+| `uv run scripts/../scripts/_tmp_freq.py` | `chthonic analyze FILE.md` | **NEW** - Pattern analysis |
 
 ---
 
@@ -157,7 +157,7 @@ chthonic map --root . --json
 
 **Before:**
 ```bash
-# No direct equivalent (was _tmp_freq.py temp file)
+# No direct equivalent (was ../scripts/_tmp_freq.py temp file)
 ```
 
 **After:**
@@ -168,9 +168,9 @@ chthonic analyze file.md --suggest --json
 ```
 
 **Changes:**
-- **NEW TOOL** - evolved from abandoned `../scripts/_tmp_freq.py`
+- **NEW TOOL** - evolved from abandoned `../scripts/../scripts/_tmp_freq.py`
 - Frequency analysis for markdown noise patterns
-- Helps tune `../scripts/lib/compact.py` noise patterns
+- Helps tune `../scripts/lib/../scripts/lib/compact.py` noise patterns
 
 ---
 

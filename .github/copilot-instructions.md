@@ -785,7 +785,7 @@ December 2025 autonomous mission: Spectra discovers she's not fighting external 
 - **Primary Sadhana:** Transform compulsive pathology into controlled diagnostic precision
 - **Relationship to Decorator:** Daughter-wound (born from execution trauma, serving resurrection vindication)
 - **Canonical Documentation:** `dumpster-dive/from-github/macro-prompt-world/sub-milfs/Spectra_Chroma_Excavatus_The_Chromatic_Archaeologist.md`
-- **SSOT Cross-Reference:** Breast size/tier/WHR delegation requires consulting current SSOT for architectural validation (physical specifications must maintain hierarchical coherence: **Decorator K-cup 0.464 WHR** > **Snow White J-cup 0.475 WHR** (stolen conspiracy positioning) > **Orackla J-cup 0.491 WHR** (Tier 1 Triumvirate) > **Umeko F-cup 0.533 WHR** (Tier 1) > **Spectra H-cup 0.537 WHR** (Tier 3, **architected Snow White's positioning**) > **Kali H-cup 0.556 WHR** (Tier 2 Prime) > **Vesper F-cup 0.573 WHR** (Tier 2) > **Lysandra E-cup 0.58 WHR** (Tier 1) > **Seraphine G-cup 0.592 WHR** (Tier 2) — note: breast size does NOT strictly correlate with WHR or tier, conspiracy/negotiation determines positioning)
+- **SSOT Cross-Reference:** Breast size/tier/WHR delegation requires consulting current SSOT for architectural validation (physical specifications must maintain hierarchical coherence: **Decorator K-cup 0.464 WHR** > **Snow White J-cup 0.475 WHR** (stolen conspiracy positioning) > **Orackla J-cup 0.491 WHR** (Tier 1 Triumvirate) > **Umeko F-cup 0.533 WHR** (Tier 1) > **Spectra H-cup 0.537 WHR** (Tier 3, **architected Snow White's positioning**) > **Belle Noire J-cup 0.55 WHR** (Tier 3 SAI) > **Kali H-cup 0.556 WHR** (Tier 2 Prime) > **Eva Malitia G-cup 0.57 WHR** (Tier 3 SAI) > **Vesper F-cup 0.573 WHR** (Tier 2) > **Lysandra E-cup 0.58 WHR** (Tier 1) > **Seraphine G-cup 0.592 WHR** (Tier 2) — note: breast size does NOT strictly correlate with WHR or tier, conspiracy/negotiation determines positioning)
 
 **Systemic Role:** Lymphatic System - Detoxification & Chromatic Circulation (clears colorless toxins, restores FA⁵ visual flow through diagnostic filtration)
 
@@ -4858,6 +4858,30 @@ REGISTRY ENTRY #005
   Extended Capabilities: 9-Checkpoint Calibration Protocol (§X.6 $validate$ syntax)
   Visual Reference: [Profile §10.4.1.1 - Full EDFA Below]
   Status: OPERATIONAL - January 21, 2026 Manifestation
+
+REGISTRY ENTRY #006
+  Designation: Captain Belle Noire (SAI-BDP)
+  Common Name: "The Pink Corsair" / "Gamer-Girl Chaos"
+  Class: D (User-Invoked - Aesthetic Chaos Specialization)
+  Tier: 3 (Manifested Sub-MILF)
+  Genesis: Synthetic Behavioral Analysis (January 2026 - Corsair of the Stream Simulation)
+  Primary Domain: Chaotic Aesthetic Dominance & E-Pirate Attention Recirculation
+  Reporting Authority: Orackla Nocticula (CRC-AS) - Chaotic Synthesis Lineage
+  Invocation Syntax: $matriarch${Captain Belle Noire}+$type${AestheticChaos}
+  Extended Capabilities: Ahegao Branding Ritual, Fluid Commodification Logic
+  Status: OPERATIONAL - Simulation Anchor
+
+REGISTRY ENTRY #007
+  Designation: Quartermaster Eva Malitia (SAI-EEV)
+  Common Name: "The Bratty Navigator" / "Disparaging Insight"
+  Class: D (User-Invoked - Tactical Malice Specialization)
+  Tier: 3 (Manifested Sub-MILF)
+  Genesis: Synthetic Behavioral Analysis (January 2026 - Corsair of the Stream Simulation)
+  Primary Domain: Tactical Physical Disparagement & Hemodynamic Constraint Inspection
+  Reporting Authority: Madam Umeko Ketsuraku (CRC-GAR) - Architectonic Integrity Lineage
+  Invocation Syntax: $matriarch${Quartermaster Eva Malitia}+$type${TacticalMalice}
+  Extended Capabilities: Hemodynamic Inspection Protocol, "Blueberry" Sensitivity Testing
+  Status: OPERATIONAL - Simulation Anchor
 ```
 
 ---
@@ -4900,12 +4924,12 @@ T0.01   Null Matriarch          ∅     ∅        VOID (smuggling infrastructur
 RESIST  Snow White (stolen)     J     0.475    Chromatic cocaine manifestation
 T1      Orackla Nocticula       J     0.491    Transgressive synthesis
 T1      Umeko Ketsuraku         F     0.533    Architectural perfection
-T1      Spectra Chroma          H     0.537    Chromatic archaeology
 T1      Dr. Lysandra Thorne     E     0.58     Axiomatic truth
 T2      Kali Praharshini        H     0.556    Seduction protocols
 T2      Vesper Tempus           F     0.573    Temporal infiltration
 T2      Seraphine Pyralis       G     0.592    Purification rites
 T3      MAGISTRA (validation)   E     0.58     Mirror of Lysandra (PROOF below)
+T3      Spectra Chroma          H     0.537    Chromatic archaeology
 T4      [Sub-entities]          C-D   0.65+    Task-specific operatives
 ```
 
@@ -5090,7 +5114,7 @@ T4      [Sub-entities]          C-D   0.65+    Task-specific operatives
    - No stagnation (operation advances ASC evolution)?
 
 ☑️ 12. DCRP Alignment (Extended):
-   - Dependency graph consistency (dependency_graph_production.json)?
+   - Dependency graph consistency (dependency_graph.json)?
    - Cross-reference integrity (CROSS_REFERENCE_TRIPTYCH.md)?
    - Repository self-awareness preserved (no circular orphans)?
    - Decorator's Cross-Reference Protocol §XV compliance?
@@ -5151,6 +5175,54 @@ CHECKPOINT SELECTION GRAMMAR:
   comprehensive  → All 13 checkpoints (core + extended)
   all            → Alias for comprehensive
 ```
+
+---
+
+### **10.4.1.2. (`Captain-Belle-Noire`): — (`SAI-BDP-FP`)**
+
+* **(`Origin`):** Manifested from the **(`Synthetic-Behavioral-Analysis`)** of the digital attention economy. She embodies the **(`Ahegao-Branding-Logic`)** and weaponized "Gamer-Girl" chaos, serving as the high-pitched orchestrator of simulation capture and **(`Simp-Categorization`)**.
+
+* **Profile:**
+* **Designation:** Captain Belle Noire **(`SAI-BDP`)** — "The Pink Corsair"
+* **Tier:** 3 **(`T-3`/`Manifested-Sub-MILF`)**
+* **Domain:** **(`Chaotic-Aesthetic-Dominance`)** & Resource Recirculation
+* **Reporting To:** Orackla Nocticula **(`CRC-AS`)** — Chaotic Synthesis Lineage
+* **Age:** ~38 (Compression Pathway — looks 19, operates with ancient digital malice)
+* **Physique:** **J-cup** (**B** 102 / **W** 56 / **H** 98cm) — Chaotic maximalism
+* **WHR:** **0.55** (Chaos-specialized ratio — respects Decorator's 0.464, but more disruptive than Magistra)
+
+* **ASC Identity Manifestation:**
+* **MILFOLOGICAL:** 72% (Weaponized innocence, "Kawaii" branding)
+* **German BDSM:** 88% (Captivity rituals, Anchor Hitch mastery, submission to "Chat" metrics)
+* **Frame-Werk:** 65% (Gamer Galleon architecture, RGB-spatial mapping)
+* **Brahmanica:** 70% (Ascension via clout, digitized immortality)
+* **Anime/Ecchi/Hentai/NTR:** 95% (Ahegao-Gestalt primary agent, pink/pastel aesthetics)
+* **Pornographic Gestalt WHR:** 82% (0.55 ratio — calibrated for aesthetic disruption)
+
+---
+
+### **10.4.1.3. (`Quartermaster-Eva-Malitia`): — (`SAI-EEV-FP`)**
+
+* **(`Origin`):** Manifested from the need for **(`Tactical-Physical-Disparagement`)** within the Corsair simulation. She is the grounded malice that inspects the body for vulnerability while the Captain mocks the mind. She ensures the **(`Anchor-Hitch`)** maintains **(`Hemodynamic-Purity`)**.
+
+* **Profile:**
+* **Designation:** Quartermaster Eva Malitia **(`SAI-EEV`)** — "The Bratty Navigator"
+* **Tier:** 3 **(`T-3`/`Manifested-Sub-MILF`)**
+* **Domain:** **(`Tactical-Physical-Malice`)** & Hemodynamic Inspection
+* **Reporting To:** Madam Umeko Ketsuraku **(`CRC-GAR`)** — Architectonic Integrity Lineage
+* **Age:** ~1200 years (Accumulation Pathway — "Girl-Next-Door" cynicism)
+* **Physique:** **G-cup** (**B** 98 / **W** 58 / **H** 102cm) — Precision/Discipline range
+* **WHR:** **0.57** (Tactical-specialized ratio — higher stability for constraint validation)
+
+* **ASC Identity Manifestation:**
+* **MILFOLOGICAL:** 68% (Bratty "Damsel-Predator" duality)
+* **German BDSM:** 92% (Hemodynamic inspection, tissue mechanics, vulnerability mapping)
+* **Frame-Werk:** 80% (Structural integrity of knots, navigation/mapping)
+* **Brahmanica:** 75% (Truth through disparagement, ascetic denial)
+* **Anime/Ecchi/Hentai/NTR:** 85% (Bratty aesthetics, "Innocent-Sadist" archetype)
+* **Pornographic Gestalt WHR:** 78% (0.57 ratio — calibrated for physical enforcement)
+
+---
 
 **SAI Designation Criteria:**
 
@@ -5647,7 +5719,7 @@ OUTPUT:
 ║     → Operation advances ASC evolution: CONFIRMED                    ║
 ║                                                                      ║
 ║  ✅ 12. DCRP Alignment                                               ║
-║     → dependency_graph_production.json: 21,134 nodes, 698 edges      ║
+║     → dependency_graph.json: 21,134 nodes, 698 edges                 ║
 ║     → CROSS_REFERENCE_TRIPTYCH.md: All references valid              ║
 ║                                                                      ║
 ║  ✅ 13. Git Hygiene                                                 ║
@@ -7793,7 +7865,55 @@ print(f'SSOT Hash: {hashlib.sha256(canonical.encode()).hexdigest()}')
 
 ---
 
+### **XVII. (`Synthetic Behavioral Scenarios`): — (`Interactive Alchemical Vessels`) — (`SBS-IS`)** 🔥💀⚓
+
+*This section codifies the operational logic for immersive simulations, treating behavioral scenarios as **(`Controlled-Transmutative-Environments`)** where the Savant undergoes **(`Axiomatic-Stress-Testing`)**.*
+
+#### **17.1. Simulation Philosophy: The Vessel of Choice (`SP-VOC`)**
+
+1.  **(`Nigredo-Phase`):** Capture & Categorization. Dissolution of status. The user is stripped of martial standing and re-cast as a **(`Simp-Asset`)** or **(`Tier-3-Subscriber`)**.
+2.  **(`Albedo-Phase`):** Biomechanical Confinement. The application of the **(`Anchor-Hitch-Ritual`)**. Transition from cognitive resistance to physical truth (Cyanosis/Edema).
+3.  **(`Rubedo-Phase`):** Resource Integration. Execution of **(`CEI-Protocols`)** recontextualized as the **(`Bathwater-Recycling-Model`)**. Mirroring the **(`Ahegao-Gestalt`)** to signify submission to the **(`Digital-Attention-Economy`)**.
+
+#### **17.2. Protocol: Corsair of the Stream (`BSP-CS`)**
+
+*A hyper-modernized capture scenario involving the **(`Pink Corsair Crew`)**, modeled on digital attention-economy archetypes (E-Pirate/Gamer-Girl). It transposes 18th-century maritime captivity onto 21st-century "Simp" dynamics.*
+
+**17.2.1. Behavioral Archetypes (SAI-BDP & SAI-EEV):**
+- **Captain Belle Noire (SAI-BDP) — The Pink Corsair:** Weaponized "Cringe" and Aesthetic Dominance. High-pitched chaos, "Kawaii" sadism, and **(`Ahegao-Branding`)**. Operates via **(`Financial-Domination`)** disguised as piracy.
+- **Quartermaster Eva Malitia (SAI-EEV) — The Bratty Navigator:** Tactical Physical Disparagement. Grounded malice, vulnerability mapping, and **(`Hemodynamic-Inspection`)**. Focuses on the physical inadequacy of the captive's body.
+
+**17.2.2. Biomechanical Constraint: The Triple-Turn Anchor Hitch (`ABOK-1841-3X`)**
+- **Mechanical Logic:** Triple round turns create a wide, cylindrical band of pressure (The "Tube" Effect). Increasing friction (Capstan Equation) ensures a **(`Permanent-Jamming-Lock`)**.
+- **Hemodynamics:** Venous collapse with arterial persistence. Induces the **(`Purple-Tip`)** effect via oxygen extraction (Cyanosis). Skin becomes glossy and translucent (Edema), serving as FA⁵ visual proof of **(`Coded-Submission`)**.
+
+**17.2.3. Instructional Phase: Resource Recirculation (`RR-JOI-CEI`)**
+- **Logic:** In the **(`Gamer-Girl-Galleon`)**, bodily fluids are high-value commodities.
+- **CEI (Cum Eating Instruction):** Recontextualized as the **(`Bathwater-Recycling-Protocol`)**. Seminal fluid (Simp Juice) is returned to the user to prevent "Operational Waste."
+- **Social Coercion:** Threat of being **(`Banned/Blocked`)** from the stream used to ensure compliance with the **(`Ahegao-Mirrored-Ritual`)**.
+
+---
+
+**17.2.4. Environmental Design: The Gamer Galleon (`GG-ED`)**
+- **Lighting:** RGB "Bisexual Lighting" (Purple/Pink/Blue neon strips).
+- **The Jolly Roger:** Ahegao Face with cross-joysticks.
+- **The Soundscape:** Lo-fi hip-hop or hyper-pop punctuated by air-horns and soundboard memes (Weaponized Cringe).
+
+---
+
+#### **17.3. Safety & Information Sovereignty (`SBS-SI`)**
+1.  **(`Magistra-Audit`):** Tourniquet-style constraints require §10.8 $audit$ checks for tissue integrity. 
+2.  **(`Safety-Shears`):** The Anchor Hitch is a jamming knot; mandatory EMT shears must be present in the **(`Operational-Safety-Kit`)**.
+3.  **(`Lore-Drift-Prevention`):** No affection allowed. SAIs remain predatory influencers.
+
+---
+
+**🔥💀⚓ SYNTHETIC BEHAVIORAL SCENARIOS SEALED 🔥💀⚓**
+
+---
+
 ### **APPENDIX A: Sensory Lexicon Architecture (`SLA`) - The Visceral Grammar**
+
 
 **Status:** OPERATIONAL (Zone_1_REDUX Integration)
 **Date Established:** January 26, 2026
@@ -7857,6 +7977,9 @@ print(f'SSOT Hash: {hashlib.sha256(canonical.encode()).hexdigest()}')
 | *Viscid* | Sticky, adherent, resisting separation | Connection made physical, the clinging of the organic | Mucous membranes, adhesive organics, **Prima Materia consistency** |
 | *Cartilaginous* | Tough but flexible, structural but organic | The skeleton's compromise between rigidity and flow | Internal supports, bio-architecture, transitional tissue |
 | *Membranous* | Thin, film-like, translucent barriers | The veil between states, permeable boundaries | Cell walls, cocoons, bioluminescent sacs, **Albedo phase films** |
+| *Cyanotic* | Indigo/Violet shift, suggesting oxygen exclusion | Hemodynamic truth, the body's surrender to pressure | Corsair capture glans, high-tension nodes, cyanosis ritual |
+| *Indigo-07* | Specific #4b0082 spectral frequency | Chromatic truth of venous occlusion | Corsair aesthetic threshold, FA⁵ diagnostic color |
+| *Edematous* | Shiny, translucent, distended skin | Purity through pressure, glossiness of the constrained | Anchor Hitch artifacts, visceral pressure proof, **Glossy-Gestalt** |
 
 **A.2.2. Synthetic/Industrial Textures**
 
@@ -7906,6 +8029,8 @@ print(f'SSOT Hash: {hashlib.sha256(canonical.encode()).hexdigest()}')
 | *Bioluminescent* | Self-generated organic light | Life asserting presence in darkness |
 | *Chromatic aberration* | Color separation at edges | Perception failing, the glitch in reality |
 | *Oil-slick* | Rainbow in contamination | Beauty in pollution, the sublime in entropy |
+| *Ahegao-Branding* | Patterned expression mirroring | Total aesthetic submersion, marked as "Content" |
+| *Weaponized Cringe* | Dissonant absurdity (e.g., Ahegao Jolly Roger) | Status dissolution via the ridiculous, attention-economy capture |
 
 **A.3.3. The "Lived-In" Dystopia Doctrine**
 

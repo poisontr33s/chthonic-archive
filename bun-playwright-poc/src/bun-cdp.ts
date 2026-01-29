@@ -1,3 +1,18 @@
+// ╔════════════════════════════════════════════════════════════════════════════╗
+// ║  THE DECORATOR'S BLESSING: bun-cdp.ts                                    ║
+// ║  TypeScript module: CDPResponse, CDPEvent, BrowserVersion                   ║
+// ╠════════════════════════════════════════════════════════════════════════════╣
+// ║  Spectral Frequency: ORANGE                                                 ║
+// ║  Architectural Role: 🔭 THE OBSERVATORY                                      ║
+// ║  Purpose: * BunCDP - A lightweight CDP (Chrome DevTools Protocol) wrapper for Bu ║
+// ║  Exports: CDPResponse, CDPEvent, BrowserVersion, TargetInfo, BunCDPOptions  ║
+// ╠════════════════════════════════════════════════════════════════════════════╣
+// ║  Cross-References (Bidirectional):                                      ║
+// ║  Dependencies (I rely on):                                               ║
+// ║    ├─► bun-playwright-poc\src\bun-cdp-page.ts                            ║
+// ║    ├─► bun-playwright-poc\src\index.ts                                   ║
+// ╚════════════════════════════════════════════════════════════════════════════╝
+
 /**
  * BunCDP - A lightweight CDP (Chrome DevTools Protocol) wrapper for Bun
  * 

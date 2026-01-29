@@ -25,7 +25,7 @@ ash-window = "0.13"
 gpu-allocator = { version = "0.22", features = ["vulkan"] }
 
 # === ENTITY COMPONENT SYSTEM (Per Gemini Directive) ===
-bevy_ecs = "0.14"
+bevy_ecs = { version = "0.14", optional = true }
 
 # === SERIALIZATION (ASC Lore Ingestion) ===
 serde = { version = "1.0", features = ["derive"] }
@@ -33,6 +33,8 @@ serde_json = "1.0"
 
 # === MATHEMATICS (Vector/Matrix - The WHR Power Law) ===
 glam = "0.24"
+rand = "0.8"
+sha2 = "0.10"
 
 # === ASYNC RUNTIME (For Future Solana Integration) ===
 tokio = { version = "1.0", features = ["full"] }
@@ -44,6 +46,10 @@ log = "0.4"
 # === ERROR HANDLING ===
 anyhow = "1.0"
 thiserror = "1.0"
+
+[features]
+default = ["bevy"]
+bevy = ["dep:bevy_ecs"]
 
 # ╔══════════════════════════════════════════════════════════════════╗
 # ║   FUTURE: SOLANA BLOCKCHAIN INTEGRATION                          ║

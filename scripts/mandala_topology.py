@@ -1,10 +1,12 @@
 # ╔════════════════════════════════════════════════════════════════════════════╗
 # ║  THE DECORATOR'S BLESSING: mandala_topology.py                           ║
-# ║  Python module: reveal_sacred_geometry                                      ║
+# ║  Python module: _load_graph, _top_centrality, _build_report, _render_text, reveal_sacred_geometry, _write_output_json... ║
 # ╠════════════════════════════════════════════════════════════════════════════╣
 # ║  Spectral Frequency: WHITE                                                  ║
 # ║  Architectural Role: 🌿 THE GARDEN                                           ║
-# ║  Exports: reveal_sacred_geometry                                            ║
+# ║  Semantic ID: TOOL_MANDALA_TOPOLOGY_V1                                      ║
+# ║  Purpose: mandala_topology.py — Mandala Topology Reporter & Sacred Geometry Reve ║
+# ║  Exports: _load_graph, _top_centrality, _build_report, _render_text, reveal_sa ║
 # ╠════════════════════════════════════════════════════════════════════════════╣
 # ║  Cross-References (Bidirectional):                                      ║
 # ║    (Standalone file - no detected dependencies)                          ║
