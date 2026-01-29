@@ -190,6 +190,7 @@ Every file here represents **work done**. Even failures teach. The forge doesn't
 - [Forge States](#the-forge-7-states-not-stages) — Circulation system overview
 - [Processing Levels](#processing-levels) — 4-level framework
 - [Central Registry](DUMPSTER_DIVE_REGISTRY.json) — Complete navigation & tracking system
+- [Harvest Registry](HARVEST_REGISTRY.md) — PR/session harvest tracking
 
 ### Operational Protocols
 - [Circulation Protocol](protocols/FORGE_CIRCULATION_PROTOCOL.md) — **Primary reference** for state movement
@@ -219,6 +220,8 @@ Every file here represents **work done**. Even failures teach. The forge doesn't
 ### Related Documentation
 - [DUMPSTER_DIVE_REGISTRY.json](DUMPSTER_DIVE_REGISTRY.json) — Programmatic tracking system
 - [CIRCULATION_DIAGRAM.md](CIRCULATION_DIAGRAM.md) — Visual reference
+- [HARVEST_REGISTRY.md](HARVEST_REGISTRY.md) — Completed harvest tracking
+- [WET_PAPER_TO_GOLD_METHODOLOGY.md](../claude/WET_PAPER_TO_GOLD_METHODOLOGY.md) — Harvest methodology (Claude Code)
 
 ### External References
 - SSOT: Multiple sections (see individual protocol docs)

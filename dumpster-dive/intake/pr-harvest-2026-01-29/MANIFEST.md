@@ -126,7 +126,7 @@ Mythology residue: Sanitized
 
 ### Error Pattern Corrections
 
-See `SESSION_ERROR_LEARNINGS.md` for detailed analysis.
+See [SESSION_ERROR_LEARNINGS.md](./SESSION_ERROR_LEARNINGS.md) for detailed analysis.
 
 | Error Type | Root Cause | Correction |
 |------------|------------|------------|
@@ -134,7 +134,7 @@ See `SESSION_ERROR_LEARNINGS.md` for detailed analysis.
 | String formatting | Bash brace expansion | Write to .ps1 file first |
 | find/ls usage | Bash-first habit | Use Get-ChildItem |
 
-**PWSH_RULES.md Lines Violated:** 35, 38, 154
+**[PWSH_RULES.md](../../../docs/PWSH_RULES.md) Lines Violated:** 35, 38, 154
 
 ### Sub-Agent Delegation Patterns (Emerging)
 

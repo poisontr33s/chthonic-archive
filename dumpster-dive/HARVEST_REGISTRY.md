@@ -16,7 +16,7 @@ Tracking completed data harvests from PRs, sessions, and other sources.
 
 ### pr-harvest-2026-01-29
 
-**Location:** `intake/pr-harvest-2026-01-29/`
+**Location:** [intake/pr-harvest-2026-01-29/](./intake/pr-harvest-2026-01-29/)
 
 **Sources:**
 - PR #1: Copilot Pro VS Code Setup Research (closed, never merged)
@@ -27,18 +27,18 @@ Tracking completed data harvests from PRs, sessions, and other sources.
 
 | Tier | Artifact | Description |
 |------|----------|-------------|
-| 1 | `ssot_hash.py` | SHA-256 hash verification utility |
-| 1 | `COPILOT_PRO_VSCODE_SETUP_REPORT.md` | Copilot research doc |
-| 2 | `translation_matrix.json` | What survives/decays in translations |
-| 2 | `entity_template.json` | Procedural generation scaffold |
-| 2 | `tier_hierarchy.json` | RBAC/permission model |
-| 2 | `copilot_settings_patch.json` | VS Code settings config |
-| 3 | `body_system_metaphor.md` | Architecture documentation pattern |
-| 3 | `emoji_vocabulary.md` | Status indicator vocabulary |
+| 1 | [ssot_hash.py](./intake/pr-harvest-2026-01-29/tier-1-direct/ssot_hash.py) | SHA-256 hash verification utility |
+| 1 | [COPILOT_PRO_VSCODE_SETUP_REPORT.md](./intake/pr-harvest-2026-01-29/pr1-copilot-research/tier-1-direct/COPILOT_PRO_VSCODE_SETUP_REPORT.md) | Copilot research doc |
+| 2 | [translation_matrix.json](./intake/pr-harvest-2026-01-29/tier-2-schemas/translation_matrix.json) | What survives/decays in translations |
+| 2 | [entity_template.json](./intake/pr-harvest-2026-01-29/tier-2-schemas/entity_template.json) | Procedural generation scaffold |
+| 2 | [tier_hierarchy.json](./intake/pr-harvest-2026-01-29/tier-2-schemas/tier_hierarchy.json) | RBAC/permission model |
+| 2 | [copilot_settings_patch.json](./intake/pr-harvest-2026-01-29/pr1-copilot-research/tier-2-configs/copilot_settings_patch.json) | VS Code settings config |
+| 3 | [body_system_metaphor.md](./intake/pr-harvest-2026-01-29/tier-3-conceptual/body_system_metaphor.md) | Architecture documentation pattern |
+| 3 | [emoji_vocabulary.md](./intake/pr-harvest-2026-01-29/tier-3-conceptual/emoji_vocabulary.md) | Status indicator vocabulary |
 
 **Disposition:** PRs closed with harvest references
 
-**Methodology:** See `claude/WET_PAPER_TO_GOLD_METHODOLOGY.md`
+**Methodology:** [WET_PAPER_TO_GOLD_METHODOLOGY.md](../claude/WET_PAPER_TO_GOLD_METHODOLOGY.md)
 
 ---
 
@@ -46,7 +46,7 @@ Tracking completed data harvests from PRs, sessions, and other sources.
 
 | Source | Status | Notes |
 |--------|--------|-------|
-| `claude/sessionDUMP0001.txt` | Analyzed | IDE patch patterns, third patch location open |
+| [sessionDUMP0001.txt](../claude/sessionDUMP0001.txt) | Analyzed | IDE patch patterns, third patch location open |
 
 ---
 
