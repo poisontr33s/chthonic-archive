@@ -1,0 +1,66 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "copilot-settings-patch",
+  "title": "Copilot Pro Settings Patch",
+  "description": "Settings to add to .vscode/settings.json for optimal Copilot Pro experience",
+  "source": {
+    "pr": 1,
+    "file": ".vscode/settings.json",
+    "status": "closed_not_merged"
+  },
+  "settings": {
+    "github.copilot.enable": {
+      "*": true,
+      "plaintext": true,
+      "markdown": true,
+      "scminput": false
+    },
+    "github.copilot.editor.enableCodeActions": true,
+    "github.copilot.renameSuggestions.triggerAutomatically": true,
+    "editor.inlineSuggest.enabled": true,
+    "editor.inlineSuggest.showToolbar": "always",
+    "github.copilot.nextEditSuggestions.enabled": true,
+    "github.copilot.chat.localeOverride": "auto",
+    "github.copilot.chat.useProjectTemplates": true,
+    "github.copilot.chat.scopeSelection": true,
+    "github.copilot.chat.terminalChatLocation": "chatView",
+    "github.copilot.chat.codesearch.enabled": true,
+    "github.copilot.chat.editor.temporalContext.enabled": true,
+    "chat.editRequests": "inline",
+    "chat.editing.autoAcceptDelay": 0,
+    "chat.editing.confirmEditRequestRemoval": true,
+    "chat.editing.confirmEditRequestRetry": true,
+    "chat.checkpoints.enabled": true,
+    "chat.checkpoints.showFileChanges": true,
+    "chat.emptyState.history.enabled": true,
+    "chat.editor.wordWrap": "on",
+    "chat.editor.fontSize": 14,
+    "chat.detectParticipant.enabled": true,
+    "chat.math.enabled": true,
+    "inlineChat.finishOnType": false,
+    "inlineChat.holdToSpeech": true,
+    "github.copilot.chat.codeGeneration.useInstructionFiles": true,
+    "chat.tools.terminal.autoReplyToPrompts": true
+  },
+  "yolo_mode": {
+    "warning": "SANDBOX ONLY - Never use in production",
+    "settings": {
+      "chat.tools.autoApprove": true,
+      "chat.tools.terminal.autoApprove": {
+        "/^git\\s+(status|diff|log|show)\\b/": true,
+        "/^npm\\s+(test|run\\s+lint)\\b/": true,
+        "/^cargo\\s+(check|test|clippy)\\b/": true,
+        "rm": false,
+        "rmdir": false,
+        "del": false,
+        "/^git\\s+(push|reset|revert|clean)\\b/": false
+      }
+    }
+  },
+  "extensions_recommended": [
+    "GitHub.copilot",
+    "GitHub.copilot-chat",
+    "GitHub.copilot-workspace",
+    "GitHub.vscode-pull-request-github"
+  ]
+}

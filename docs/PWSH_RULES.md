@@ -9,9 +9,9 @@
 @ReferencedBy:  DOC_CLAUDE_MD_ROOT
 -->
 
-**Version:** 1.0
+**Version:** 1.1
 **Status:** VERIFIED
-**Validation Date:** 2026-01-05
+**Validation Date:** 2026-01-29
 **Authority:** `.github/copilot-instructions.md` (SSOT)
 
 ---
@@ -152,6 +152,90 @@ try {
 | `chmod +x script.sh` | `Set-ExecutionPolicy` | Windows uses execution policy |
 | `export VAR=value` | `$env:VAR = "value"` | Session-scoped by default |
 | `find . -name "*.txt"` | `Get-ChildItem -Recurse -Filter "*.txt"` | Structured filtering |
+
+---
+
+## Common Error Patterns & Corrections
+
+**Source:** Session learnings (2026-01-29) — Claude Code + PWSH interactions
+
+### Error 1: Shell Nesting (Bash→PowerShell pipe)
+
+**Anti-pattern:**
+```bash
+gh api ... | pwsh -Command "$input | Select-Object ..."
+```
+
+**Error:** `ParserError: An empty pipe element is not allowed.`
+
+**Root Cause:** Piping from Bash into `pwsh -Command` with `$input` creates race conditions. The PowerShell parser sees an empty pipe before stdin arrives.
+
+**Violation:** Line 35 — "NEVER nest shells"
+
+**Correct Patterns:**
+```powershell
+# Option A: Pure PowerShell (preferred)
+$result = gh api repos/owner/repo/pulls/N/files | ConvertFrom-Json
+$result | ForEach-Object { $_.filename }
+
+# Option B: Write to file, then process
+gh api ... > temp.json
+$data = Get-Content temp.json | ConvertFrom-Json
+
+# Option C: Pure gh with jq (if simple extraction)
+gh api ... --jq '.[] | .filename'
+```
+
+### Error 2: String Formatting Escape Issues
+
+**Anti-pattern:**
+```bash
+pwsh -Command "... | ForEach-Object { '{0,-60} {1,8}' -f ... }"
+```
+
+**Error:** `ParserError: You must provide a value expression following the '-f' operator.`
+
+**Root Cause:** Bash interprets `{0}` and `{1}` as brace expansion. The format operator never receives arguments.
+
+**Violation:** Line 38 — "Complex PowerShell content MUST be written to a `.ps1` file before execution."
+
+**Correct Pattern:**
+```powershell
+# Write to .ps1 file first
+$scriptContent = @'
+Get-ChildItem -Recurse | ForEach-Object {
+    '{0,-60} {1,8}' -f $_.Name, $_.Length
+}
+'@
+$scriptContent | Set-Content temp.ps1
+pwsh -NoProfile -File temp.ps1
+```
+
+### Error 3: Bash-First File Operations
+
+**Anti-pattern:**
+```bash
+find /path -type f -exec ls -la {} \;
+```
+
+**Problem:** Works, but violates pwsh-first policy and loses structured output.
+
+**Correct Pattern:**
+```powershell
+Get-ChildItem -Path $path -Recurse -File |
+    Select-Object FullName, Length, LastWriteTime |
+    Format-Table -AutoSize
+```
+
+### Quick Reference Table
+
+| Situation | Correct | Avoid |
+|-----------|---------|-------|
+| GitHub API | `gh api ... \| ConvertFrom-Json` | `gh ... \| pwsh -Command` |
+| String formatting | Write to `.ps1` file | Inline with Bash escapes |
+| File operations | `Get-ChildItem` | `find`, `ls` |
+| JSON processing | `ConvertFrom-Json` | `jq` piped to pwsh |
+| Multi-step logic | Discrete pwsh commands | Long Bash→pwsh chains |
 
 ---
 
@@ -358,6 +442,7 @@ if (Get-Module -ListAvailable ModuleName) {
 
 | Version | Date | Changes |
 |---------|------|---------|
+| 1.1 | 2026-01-29 | Added "Common Error Patterns & Corrections" section from session learnings |
 | 1.0 | 2026-01-05 | Initial pwsh-first contract |
 
 ---

@@ -4,14 +4,36 @@
 
 | PR | Title | Status | Lines | Origin |
 |----|-------|--------|-------|--------|
+| #1 | Copilot Pro VS Code Setup Research | Closed | +444 | copilot-swe-agent |
 | #2 | ANKH semantic lineage framework | Draft | +1,227 | copilot-swe-agent |
 | #5 | SSOT_Canon.md governance document | Open | +8,380 | GPT-5.2 posturing |
 
 ## Context
 
-Both PRs encoded a fundamental misunderstanding: treating "ANKH" (intended as Egyptological ☥ symbol) as an acronym for a governance framework. Rather than discard, we transmute.
+PRs #2 and #5 encoded a fundamental misunderstanding: treating "ANKH" (intended as Egyptological ☥ symbol) as an acronym for a governance framework. PR #1 contains valuable Copilot research that was closed without merge. Rather than discard, we transmute.
 
 **Wet-Paper-to-Gold Principle:** Nothing is waste if you see the extractable value.
+
+---
+
+## PR #1 Harvest (Copilot Research)
+
+High-value research that was closed without merge. **Tier-1 directly usable.**
+
+### Extracted Files
+
+| File | Description | Target |
+|------|-------------|--------|
+| `COPILOT_PRO_VSCODE_SETUP_REPORT.md` | Full research report | Reference documentation |
+| `copilot_settings_patch.json` | Optimal settings + YOLO mode | `.vscode/settings.json` integration |
+
+### Key Value
+
+- Multi-model support matrix (Claude, Gemini, GPT)
+- YOLO mode configuration (auto-approve patterns)
+- Tier comparison (Free/Pro/Pro+/Business/Enterprise)
+- Extension recommendations
+- Agent (@workspace, @terminal, @vscode) documentation
 
 ---
 
@@ -98,6 +120,37 @@ Mythology residue: Sanitized
 
 ---
 
+---
+
+## Session Meta-Learning
+
+### Error Pattern Corrections
+
+See `SESSION_ERROR_LEARNINGS.md` for detailed analysis.
+
+| Error Type | Root Cause | Correction |
+|------------|------------|------------|
+| Shell nesting | Bash→pwsh pipe | Use pure pwsh or pure gh |
+| String formatting | Bash brace expansion | Write to .ps1 file first |
+| find/ls usage | Bash-first habit | Use Get-ChildItem |
+
+**PWSH_RULES.md Lines Violated:** 35, 38, 154
+
+### Sub-Agent Delegation Patterns (Emerging)
+
+Based on this session, patterns for effective sub-agent use:
+
+| Task Type | Agent | Notes |
+|-----------|-------|-------|
+| Codebase exploration | `Explore` | Use for open-ended searches |
+| File operations | Direct tools | Glob, Read, Write — avoid Task overhead |
+| GitHub API | Direct `gh` | Don't pipe to pwsh |
+| Complex extraction | `.ps1` script | Write script, then execute |
+
+**Iterative Refinement:** Each session should capture error patterns and update learnings for future use.
+
+---
+
 **Harvested:** 2026-01-29
 **Harvester:** Claude Opus 4.5 + The Savant
-**Methodology:** Wet-paper-to-gold selective uptake
+**Methodology:** Wet-paper-to-gold selective uptake + error pattern learning
