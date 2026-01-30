@@ -1,9 +1,13 @@
+#!/usr/bin/env python3
+# /// script
+# requires-python = ">=3.13"
+# dependencies = []
+# ///
 """
-GPU Capability Probing with Output Suppression
-===============================================
-
-Safe, quiet GPU capability detection that suppresses stderr/stdout noise
-from CUDA/cuDNN initialization. Essential for production MCP tools where
+@SID: LIB_GPU_PROBE_V1
+@Type: Library (Infrastructure)
+@Context: GPU Capability Probing with Output Suppression
+"""
 spurious GPU warnings would pollute JSON responses.
 
 Key Features:

@@ -1,0 +1,17 @@
+{
+  "runStamp": "20260130_063128",
+  "repoRoot": "C:/Users/erdno/chthonic-archive",
+  "config": {
+    "topN": 5,
+    "maxTodoHits": 10,
+    "enableSiphon": false
+  },
+  "cycles": [
+    {
+      "cycleIndex": 1,
+      "outDir": "C:/Users/erdno/chthonic-archive/dumpster-dive/intake/overnight-daemon/20260130_063128",
+      "report": "C:/Users/erdno/chthonic-archive/dumpster-dive/intake/overnight-daemon/20260130_063128/report.json",
+      "top": "scripts/bridge-diagnostic.ps1"
+    }
+  ]
+}

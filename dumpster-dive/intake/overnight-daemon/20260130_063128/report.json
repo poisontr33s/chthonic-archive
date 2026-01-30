@@ -1,0 +1,567 @@
+{
+  "generatedAt": "2026-01-30T05:31:35.401Z",
+  "repoRoot": "C:\\Users\\erdno\\chthonic-archive",
+  "config": {
+    "topN": 5,
+    "maxTodoHits": 10,
+    "enableSiphon": false,
+    "enableClassification": false
+  },
+  "summary": {
+    "filesScanned": 930,
+    "todoHits": 43,
+    "topCandidates": 5
+  },
+  "topCandidates": [
+    {
+      "relPath": "scripts/bridge-diagnostic.ps1",
+      "size": 4739,
+      "mtimeMs": 1769570866432,
+      "score": 58,
+      "reasons": [
+        "repo tooling",
+        "powershell tooling"
+      ],
+      "todoHits": 0
+    },
+    {
+      "relPath": "scripts/chthonic-polyglot.ps1",
+      "size": 16627,
+      "mtimeMs": 1769509711374,
+      "score": 58,
+      "reasons": [
+        "repo tooling",
+        "powershell tooling"
+      ],
+      "todoHits": 0
+    },
+    {
+      "relPath": "scripts/chthonic.ps1",
+      "size": 26381,
+      "mtimeMs": 1769577719588,
+      "score": 58,
+      "reasons": [
+        "repo tooling",
+        "powershell tooling"
+      ],
+      "todoHits": 0
+    },
+    {
+      "relPath": "scripts/claude-ide-e2e-check.ps1",
+      "size": 14216,
+      "mtimeMs": 1769571789157,
+      "score": 58,
+      "reasons": [
+        "repo tooling",
+        "powershell tooling"
+      ],
+      "todoHits": 0
+    },
+    {
+      "relPath": "scripts/claudineENV.ps1",
+      "size": 1287,
+      "mtimeMs": 1769509997258,
+      "score": 58,
+      "reasons": [
+        "repo tooling",
+        "powershell tooling"
+      ],
+      "todoHits": 0
+    }
+  ],
+  "todoHits": [
+    {
+      "file": "scripts/build_epistemograph.py",
+      "line": 69,
+      "kind": "TODO",
+      "text": "|FIXME|HACK|NOTE|WARNING|DEPRECATED)\\b', re.I),"
+    },
+    {
+      "file": "scripts/epistemograph_schema.sql",
+      "line": 123,
+      "kind": "TODO",
+      "text": "/FIXME/NOTE markers', 0),"
+    },
+    {
+      "file": "scripts/epistemograph_schema_design.md",
+      "line": 110,
+      "kind": "TODO",
+      "text": ", MUST, assert) are useful, but this repo has domain-specific epistemic markers:"
+    },
+    {
+      "file": "scripts/overnight_daemon.ts",
+      "line": 35,
+      "kind": "TODO",
+      "text": "\" | \"FIXME\" | \"HACK\";"
+    },
+    {
+      "file": "scripts/overnight_daemon.ts",
+      "line": 327,
+      "kind": "TODO",
+      "text": "|FIXME|HACK)\\b\\s*:?\\s*(.*)$/i.exec(line);"
+    },
+    {
+      "file": "scripts/overnight_daemon.ts",
+      "line": 330,
+      "kind": "TODO",
+      "text": "\" || rawKind === \"FIXME\" || rawKind === \"HACK\") ? rawKind : \"TODO\";"
+    },
+    {
+      "file": "scripts/overnight_daemon.ts",
+      "line": 946,
+      "kind": "TODO",
+      "text": "/FIXME/HACK hits (captured): ${allTodoHits.length}`);"
+    },
+    {
+      "file": "scripts/overnight_daemon.ts",
+      "line": 957,
+      "kind": "TODO",
+      "text": "hits | Reasons | \");"
+    },
+    {
+      "file": "scripts/overnight_daemon.ts",
+      "line": 965,
+      "kind": "TODO",
+      "text": "/ FIXME / HACK (Sample)\");"
+    },
+    {
+      "file": "scripts/scanner_approval.md",
+      "line": 210,
+      "kind": "TODO",
+      "text": "|FIXME|HACK|NOTE|WARNING|DEPRECATED)\\b', re.I),"
+    },
+    {
+      "file": "scripts/test_epistemograph.sqlite",
+      "line": 128,
+      "kind": "FIXME",
+      "text": "/NOTE markers)\u0001\u0005\u001dE\u0000\bcontractMUST/SHALL/REQUIRED language"
+    },
+    {
+      "file": "logs/sessions/session_2025-12-31_0746_vscode-extension-debug.md",
+      "line": 1062,
+      "kind": "TODO",
+      "text": "Implement hash validation using ssot_hash.py"
+    },
+    {
+      "file": "logs/sessions/session_2025-12-31_0746_vscode-extension-debug.md",
+      "line": 1063,
+      "kind": "TODO",
+      "text": "');"
+    },
+    {
+      "file": "logs/sessions/session_2025-12-31_0746_vscode-extension-debug.md",
+      "line": 1998,
+      "kind": "TODO",
+      "text": "\");"
+    },
+    {
+      "file": "error-classifier/ingest.ts",
+      "line": 76,
+      "kind": "TODO",
+      "text": ", FIXME, HACK) in src directory"
+    },
+    {
+      "file": "error-classifier/ingest.ts",
+      "line": 82,
+      "kind": "TODO",
+      "text": "|FIXME|HACK):?\\s*(.*)/gi;"
+    },
+    {
+      "file": "error-classifier/ingest.ts",
+      "line": 92,
+      "kind": "FIXME",
+      "text": "\" ? \"HIGH\" : \"LOW\","
+    },
+    {
+      "file": "docs/SESSION_2026-01-17_CLEANUP.md",
+      "line": 98,
+      "kind": "TODO",
+      "text": "stubs (2 bytes each) |"
+    },
+    {
+      "file": "docs/STAGE_1_MIGRATION_PLAN.md",
+      "line": 210,
+      "kind": "TODO",
+      "text": "Create ankhrc_validator.py"
+    },
+    {
+      "file": "docs/STAGE_1_MIGRATION_PLAN.md",
+      "line": 215,
+      "kind": "TODO",
+      "text": "#6)"
+    },
+    {
+      "file": "docs/reference/DAEMON_CLASSIFICATION_ENHANCEMENTS.md",
+      "line": 16,
+      "kind": "TODO",
+      "text": "detection. When enabled, the daemon generates:"
+    },
+    {
+      "file": "docs/frameworks/AUTONOMOUS_ORCHESTRATION_FRAMEWORK.md",
+      "line": 159,
+      "kind": "TODO",
+      "text": "/FIXME patterns"
+    },
+    {
+      "file": "docs/frameworks/AUTONOMOUS_ORCHESTRATION_FRAMEWORK.md",
+      "line": 160,
+      "kind": "TODO",
+      "text": "OR FIXME\")"
+    },
+    {
+      "file": "dev/overnight_refactor_mode.md",
+      "line": 29,
+      "kind": "TODO",
+      "text": "/ FIXME (if none exist where they should, create them), code smells, determinism issues, hygiene issues, missing tests, unclear naming, duplicated logic, brittle patterns. |"
+    },
+    {
+      "file": "dev/overnight_refactor_mode.md",
+      "line": 81,
+      "kind": "TODO",
+      "text": "/FIXME, obvious smells, missing tests, brittle logic, unclear naming |"
+    },
+    {
+      "file": "dev/overnight_refactor_mode.md",
+      "line": 82,
+      "kind": "TODO",
+      "text": "Roulette | `dev/overnight_todo.md` (if present) |"
+    },
+    {
+      "file": "debugging_data/codex_5.1_sabotage_trick.md",
+      "line": 1759,
+      "kind": "TODO",
+      "text": "list** - I'll break down complex work"
+    },
+    {
+      "file": "debugging_data/codex_5.1_sabotage_trick.md",
+      "line": 4544,
+      "kind": "HACK",
+      "text": ". That’s a justified accommodation."
+    },
+    {
+      "file": "debugging_data/codex_5.1_sabotage_trick.md",
+      "line": 6682,
+      "kind": "TODO",
+      "text": "and begin creating the comprehensive validation document: Summarized conversation history"
+    },
+    {
+      "file": "data/graphs/dependency_graph_enhanced.json",
+      "line": 8697,
+      "kind": "TODO",
+      "text": "/ FIXME / HACK (Sample)\""
+    },
+    {
+      "file": "data/graphs/dependency_graph_enhanced.json",
+      "line": 8719,
+      "kind": "TODO",
+      "text": "/ FIXME / HACK (Sample)\""
+    },
+    {
+      "file": "data/graphs/dependency_graph_enhanced.json",
+      "line": 8741,
+      "kind": "TODO",
+      "text": "/ FIXME / HACK (Sample)\""
+    },
+    {
+      "file": "data/graphs/dependency_graph_enhanced.json",
+      "line": 8763,
+      "kind": "TODO",
+      "text": "/ FIXME / HACK (Sample)\""
+    },
+    {
+      "file": "data/graphs/dependency_graph_enhanced.json",
+      "line": 8785,
+      "kind": "TODO",
+      "text": "/ FIXME / HACK (Sample)\""
+    },
+    {
+      "file": "data/graphs/dependency_graph_enhanced.json",
+      "line": 8825,
+      "kind": "TODO",
+      "text": "/ FIXME / HACK (Sample)\""
+    },
+    {
+      "file": "data/graphs/dependency_graph_enhanced.json",
+      "line": 8856,
+      "kind": "TODO",
+      "text": "/ FIXME / HACK (Sample)\""
+    },
+    {
+      "file": "data/graphs/dependency_graph_enhanced.json",
+      "line": 8878,
+      "kind": "TODO",
+      "text": "/ FIXME / HACK (Sample)\""
+    },
+    {
+      "file": "data/graphs/dependency_graph_enhanced.json",
+      "line": 9861,
+      "kind": "TODO",
+      "text": "to make the means of me iterating alone meet the karmic goal\\\"**\","
+    },
+    {
+      "file": "data/graphs/dependency_graph_enhanced.json",
+      "line": 12551,
+      "kind": "TODO",
+      "text": "to make the means of me iterating alone meet the karmic goal\\\"**\","
+    },
+    {
+      "file": "data/graphs/dependency_graph_enhanced.json",
+      "line": 15192,
+      "kind": "TODO",
+      "text": "to make the means of me iterating alone meet the karmic goal\\\"**\","
+    },
+    {
+      "file": "data/graphs/dependency_graph_enhanced.json",
+      "line": 17300,
+      "kind": "TODO",
+      "text": "to make the means of me iterating alone meet the karmic goal\\\"**\","
+    },
+    {
+      "file": "chthonic-vscode-extension/src/extension.ts",
+      "line": 66,
+      "kind": "TODO",
+      "text": "Implement hash validation using ssot_hash.py"
+    },
+    {
+      "file": "chthonic-vscode-extension/src/extension.ts",
+      "line": 67,
+      "kind": "TODO",
+      "text": "');"
+    }
+  ],
+  "narrativeDrift": {
+    "score": 63.06,
+    "vocabularyCoverage": 0.369,
+    "usedTermsCount": 348,
+    "totalLexiconTerms": 971,
+    "topTerms": [
+      [
+        "ALL",
+        2925
+      ],
+      [
+        "Umeko",
+        2145
+      ],
+      [
+        "Orackla",
+        2097
+      ],
+      [
+        "SSOT",
+        1914
+      ],
+      [
+        "Triumvirate",
+        1888
+      ],
+      [
+        "Lysandra",
+        1860
+      ],
+      [
+        "bun",
+        1730
+      ],
+      [
+        "ASC",
+        1445
+      ],
+      [
+        "Framework",
+        1085
+      ],
+      [
+        "WHR",
+        1033
+      ],
+      [
+        "Function",
+        1031
+      ],
+      [
+        "CRC",
+        796
+      ],
+      [
+        "Matriarch",
+        795
+      ],
+      [
+        "Codex",
+        789
+      ],
+      [
+        "MURI",
+        782
+      ]
+    ],
+    "collisions": []
+  },
+  "qualiaResonance": {
+    "score": 0,
+    "detected_terms": [
+      {
+        "term": "result",
+        "canonical": "resonance",
+        "frequency": 1064,
+        "files": [
+          "mas_mcp\\README.md",
+          "mas_mcp\\abbreviation_system\\cli.py",
+          "mas_mcp\\abbreviation_system\\generator.py",
+          "mas_mcp\\abbreviation_system\\registry.py",
+          "mas_mcp\\abbreviation_system\\validator.py"
+        ]
+      },
+      {
+        "term": "status",
+        "canonical": "metabolism",
+        "frequency": 441,
+        "files": [
+          "mas_mcp\\abbreviation_system\\generator.py",
+          "mas_mcp\\abbreviation_system\\models.py",
+          "mas_mcp\\abbreviation_system\\registry.py",
+          "mas_mcp\\async_core.py",
+          "mas_mcp\\bench_safe.py"
+        ]
+      },
+      {
+        "term": "valid",
+        "canonical": "canonical",
+        "frequency": 397,
+        "files": [
+          "mas_mcp\\GPU_ENV.md",
+          "mas_mcp\\README.md",
+          "mas_mcp\\abbreviation_system\\__init__.py",
+          "mas_mcp\\abbreviation_system\\cli.py",
+          "mas_mcp\\abbreviation_system\\generator.py"
+        ]
+      },
+      {
+        "term": "registry",
+        "canonical": "lexicon",
+        "frequency": 242,
+        "files": [
+          "mas_mcp\\README.md",
+          "mas_mcp\\abbreviation_system\\__init__.py",
+          "mas_mcp\\abbreviation_system\\cli.py",
+          "mas_mcp\\abbreviation_system\\parser.py",
+          "mas_mcp\\abbreviation_system\\registry.py"
+        ]
+      },
+      {
+        "term": "state",
+        "canonical": "resonance",
+        "frequency": 160,
+        "files": [
+          "mas_mcp\\async_core.py",
+          "mas_mcp\\genesis_scheduler.py",
+          "mas_mcp\\gpu_config.py",
+          "mas_mcp\\gpu_forces.py",
+          "mas_mcp\\gpu_orchestrator.py"
+        ]
+      },
+      {
+        "term": "memory",
+        "canonical": "archive",
+        "frequency": 153,
+        "files": [
+          "mas_mcp\\GPU_ENV.md",
+          "mas_mcp\\async_core.py",
+          "mas_mcp\\benchmark_gpu_vs_cpu.py",
+          "mas_mcp\\build_cupy.ps1",
+          "mas_mcp\\cupy_benchmark.py"
+        ]
+      },
+      {
+        "term": "context",
+        "canonical": "weave",
+        "frequency": 92,
+        "files": [
+          "mas_mcp\\__init__.py",
+          "mas_mcp\\abbreviation_system\\generator.py",
+          "mas_mcp\\abbreviation_system\\models.py",
+          "mas_mcp\\abbreviation_system\\parser.py",
+          "mas_mcp\\abbreviation_system\\registry.py"
+        ]
+      },
+      {
+        "term": "signal",
+        "canonical": "impulse",
+        "frequency": 65,
+        "files": [
+          "mas_mcp\\README.md",
+          "mas_mcp\\cupy_benchmark.py",
+          "mas_mcp\\genesis_scheduler.py",
+          "mas_mcp\\lib\\asc\\cli.py",
+          "mas_mcp\\lib\\asc\\extractor.py"
+        ]
+      },
+      {
+        "term": "processor",
+        "canonical": "catalyst",
+        "frequency": 33,
+        "files": [
+          "mas_mcp\\async_core.py",
+          "mas_mcp\\bench_safe.py",
+          "mas_mcp\\frontend\\README.md",
+          "mas_mcp\\gpu_config.py",
+          "mas_mcp\\gpu_orchestrator.py"
+        ]
+      },
+      {
+        "term": "extraction",
+        "canonical": "resonance",
+        "frequency": 25,
+        "files": [
+          "mas_mcp\\README.md",
+          "mas_mcp\\__init__.py",
+          "mas_mcp\\abbreviation_system\\__init__.py",
+          "mas_mcp\\abbreviation_system\\parser.py",
+          "mas_mcp\\abbreviation_system\\registry.py"
+        ]
+      },
+      {
+        "term": "manager",
+        "canonical": "curator",
+        "frequency": 20,
+        "files": [
+          "mas_mcp\\README.md",
+          "mas_mcp\\build_cupy.ps1",
+          "mas_mcp\\lib\\gpu_probe.py",
+          "mas_mcp\\logic\\narrative.py",
+          "mas_mcp\\logic\\qualia.py"
+        ]
+      },
+      {
+        "term": "handler",
+        "canonical": "vessel",
+        "frequency": 12,
+        "files": [
+          "mas_mcp\\abbreviation_system\\cli.py",
+          "mas_mcp\\async_core.py",
+          "mas_mcp\\frontend\\README.md",
+          "mas_mcp\\genesis_scheduler.py",
+          "mas_mcp\\lib\\__init__.py"
+        ]
+      },
+      {
+        "term": "discrepancy",
+        "canonical": "fracture",
+        "frequency": 2,
+        "files": [
+          "mas_mcp\\logic\\qualia.py",
+          "mas_mcp\\logic\\resonance.py"
+        ]
+      },
+      {
+        "term": "verified",
+        "canonical": "sealed",
+        "frequency": 1,
+        "files": [
+          "mas_mcp\\logic\\qualia.py"
+        ]
+      }
+    ]
+  }
+}

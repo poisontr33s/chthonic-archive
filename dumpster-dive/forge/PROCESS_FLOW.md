@@ -20,10 +20,10 @@ The forge operates as a **directional acyclic graph** with multiple entry/exit p
                │
        ┌───────┴────────┬──────────────┬──────────────┐
        ▼                ▼              ▼              ▼
-  ┌─────────┐     ┌─────────┐   ┌──────────┐   ┌──────────┐
-  │  ANVIL  │     │ FURNACE │   │  QUENCH  │   │   SLAG   │
-  │ (Analyze│     │ (Heat)  │   │  (Lock)  │   │ (Discard)│
-  └────┬────┘     └────┬────┘   └────┬─────┘   └──────────┘
+  ┌──────────┐    ┌─────────┐   ┌──────────┐   ┌──────────┐
+  │  ANVIL   │    │ FURNACE │   │  QUENCH  │   │   SLAG   │
+  │ (Analyze)│    │ (Heat)  │   │  (Lock)  │   │ (Discard)│
+  └────┬─────┘    └────┬────┘   └────┬─────┘   └──────────┘
        │               │             │
        └───────┬───────┘             │
                ▼                     │

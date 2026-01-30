@@ -43,6 +43,34 @@
 ❌ INCORRECT:     python -m pip install     <-<same   issue>
 ```
 
+**Metabolic Standard v2 (Script Headers):**
+All standalone scripts MUST adhere to the **(`Metabolic-Standard-v2`)**. This ensures **(`Autonomic-Execution`)** via `uv` while maintaining **(`Structural-Alignment`)** with the Archive.
+
+1. **Shebang**: `#!/usr/bin/env python3`
+2. **Inline Metadata (PEP 723)**: A `/// script` block defining `requires-python` (standard is `>=3.13`) and `dependencies`.
+3. **Semantic Docstring**: Must include `@SID` (Semantic ID) and `@Type`.
+
+**Rationale: The "Snail Shell" Philosophy**
+Scripts are like snails—they carry their entire environment definition (the shell) on their back. This **(`Autonomy`)** allows them to be executed anywhere (via `uv run`) WITHOUT requiring a pre-existing project-wide venv, yet they remain **(`Repo-local`)** by following the Archive's liturgical conventions and utilizing shared libraries.
+
+**Example Standard Header:**
+```python
+#!/usr/bin/env python3
+# /// script
+# requires-python = ">=3.13"
+# dependencies = [
+#     "pathlib",
+# ]
+# ///
+
+"""
+Script Description...
+
+@SID:           TOOL_EXAMPLE_V1
+@Type:          Utility
+"""
+```
+
 **Rationale:**
 - Global Python is 3.14 bleeding edge, incompatible with all of the TensorRT/CUDA stack
 - `mas_mcp/.venv` contains **Python 3.13.10** (latest stable, TensorRT-compatible)

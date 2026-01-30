@@ -1,8 +1,13 @@
+#!/usr/bin/env python3
+# /// script
+# requires-python = ">=3.13"
+# dependencies = []
+# ///
 """
-SSOT Handler: Cryptographic Binding to Single Source of Truth
-==============================================================
-
-Implements Section XIV.3 of the Codex Brahmanica Perfectus.
+@SID: LIB_SSOT_HANDLER_V1
+@Type: Library (EPFA)
+@Context: SSOT Handler: Cryptographic Binding to Single Source of Truth
+"""
 
 The SSOT (Single Source of Truth) is `.github/copilot-instructions.md`.
 This module provides cryptographic verification that the ASC Framework

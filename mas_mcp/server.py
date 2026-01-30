@@ -1,13 +1,15 @@
-#!/usr/bin/env -S uv run
+#!/usr/bin/env python3
 # /// script
-# requires-python = ">=3.12"
+# requires-python = ">=3.13"
 # dependencies = [
 #     "fastmcp",
 #     "pydantic",
 # ]
 # ///
 """
-M-P-W Router Server (Modularized)
+@SID: SERVER_MPW_ROUTER_V1
+@Type: Core Gateway
+@Context: M-P-W Router Server (Modularized)
 """
 
 import logging
@@ -17,7 +19,7 @@ from fastmcp import FastMCP
 from mas_mcp.logic.resonance import ArchiveVault, LexiconFilter
 from mas_mcp.logic.tools import (
     mas_scan_logic, mas_entity_deep_logic, mas_pulse_logic,
-    mas_narrative_scan_logic
+    mas_narrative_scan_logic, mas_qualia_check_logic
 )
 from mas_mcp.lib.ssot_handler import compute_ssot_hash, get_ssot_path, verify_bookend
 from mas_mcp.lib.gpu_probe import probe_gpu_capabilities
@@ -43,6 +45,11 @@ def mas_ssot_hash():
 def mas_narrative_scan(target: str = "."):
     """Calculates Cultural Drift against the SSOT Lexicon."""
     return mas_narrative_scan_logic(target, PROJECT_ROOT, SSOT_PATH)
+
+@mcp.tool()
+def mas_qualia_check(target: str):
+    """Vets a text block or directory for canonical alignment (Phase 3 Gate)."""
+    return mas_qualia_check_logic(target, PROJECT_ROOT)
 
 @mcp.tool()
 def mas_scan(target: str = "."):
