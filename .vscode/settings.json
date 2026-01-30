@@ -29,6 +29,7 @@
     "workbench.editor.enablePreviewFromCodeNavigation": true,
     "workbench.experimental.cloudChanges.partialMatches.enabled": true,
     "task.notifyWindowOnTaskCompletion": -1,
+    
 
     // === RUST-ANALYZER ===
     // Note: 'clippy' with 'clippy::pedantic' is enabled for strict CI-level checks
@@ -151,11 +152,11 @@
         "*": true,
         "markdown": true,
         "scminput": true,
-        "plaintext": true
+        "plaintext": true,
+        "github.copilot.inlineSuggest.enable": true,
+        "github.copilot.nextEditSuggestions.enabled": true,
+        "github.copilot.chat.enable": true
     },
-    "github.copilot.inlineSuggest.enable": true,
-    "github.copilot.nextEditSuggestions.enabled": true,
-    "github.copilot.chat.enable": true,
 
     // === GITHUB COPILOT CHAT ===
     "github.copilot.chat.useProjectContext": true,
@@ -164,11 +165,8 @@
     "github.copilot.chat.newWorkspace.useContext7": false,
     "github.copilot.chat.codeGeneration.useInstructionFiles": false,
     "github.copilot.chat.customInstructionsInSystemMessage": false,
-    "github.copilot.chat.contextFiles": [
-        ".github/copilot-instructions.md",
-        "docs/EXECUTION_CONTRACT.md",
-        "docs/PWSH_RULES.md"
-    ],
+    "github.copilot.chat.codeExplanation.enabled": true,
+    "github.copilot.chat.codeRefactoring.enabled": true,
     "github.copilot.chat.agent.currentEditorContext.enabled": true,
     "github.copilot.chat.anthropic.contextEditing.enabled": true,
     "github.copilot.chat.inlineEdits.diagnosticsContextProvider.enabled": true,
@@ -202,9 +200,6 @@
                 "copilot/claude-opus-4.5",
                 "copilot/claude-sonnet-4",
                 "copilot/claude-sonnet-4.5",
-                "gemini/models/gemini-2.5-flash",
-                "gemini/models/gemini-2.5-pro",
-                "copilot/gemini-2.5-pro",
                 "copilot/gemini-3-flash-preview",
                 "copilot/gemini-3-pro-preview",
                 "copilot/gpt-4.1",
@@ -219,16 +214,16 @@
                 "copilot/gpt-5.2",
                 "copilot/grok-code-fast-1"
             ]
+        
         },
         "chthonic-archive/.vscode/mcp.json: playwright": {
-            "allowedModels": [
-                "copilot/claude-sonnet-4.5",
+            "allowedModels": [         
                 "copilot/auto",
+                "copilot/claude-sonnet-4.5",
                 "copilot/claude-haiku-4.5",
                 "copilot/claude-opus-41",
                 "copilot/claude-opus-4.5",
                 "copilot/claude-sonnet-4",
-                "copilot/gemini-2.5-pro",
                 "copilot/gemini-3-flash-preview",
                 "copilot/gemini-3-pro-preview",
                 "copilot/gpt-4.1",
@@ -243,7 +238,6 @@
                 "copilot/gpt-5.2",
                 "copilot/gpt-5.2-codex",
                 "copilot/grok-code-fast-1",
-                "copilot/oswe-vscode-prime"
             ]
         }
     },
@@ -254,7 +248,7 @@
     "claudeCode.useTerminal": true,
     "claudeCode.respectGitIgnore": false,
     "claudeCode.initialPermissionMode": "default",
-    "claudeCode.preferredLocation": "terminal",
+    "claudeCode.preferredLocation": "panel",
 
     // === MISC ===
     "@azure.enableAutoSetAzureRules": false

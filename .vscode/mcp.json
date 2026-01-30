@@ -60,7 +60,7 @@
       }
     },
 
-    "chthonic": {
+    "chthonic-v3": {
       "type": "stdio",
       "command": "bun",
       "args": [
