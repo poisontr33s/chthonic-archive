@@ -1,0 +1,30 @@
+{
+  "path": "extensions/chthonic-mandala/dist",
+  "primaryLanguage": "javascript",
+  "purpose": "general",
+  "fileCount": 1,
+  "totalSize": 14121,
+  "averageComplexity": null,
+  "documentationCoverage": 0.02,
+  "files": [
+    {
+      "path": "extensions/chthonic-mandala/dist/extension.js",
+      "language": "javascript",
+      "size": 14121,
+      "complexity": {
+        "cyclomaticComplexity": 9,
+        "nestingDepth": 12,
+        "functionCount": 2,
+        "avgFunctionLength": 150
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0.023255813953488372,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    }
+  ]
+}

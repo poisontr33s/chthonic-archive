@@ -1,0 +1,30 @@
+{
+  "path": "data",
+  "primaryLanguage": "json",
+  "purpose": "general",
+  "fileCount": 1,
+  "totalSize": 9719,
+  "averageComplexity": null,
+  "documentationCoverage": 0,
+  "files": [
+    {
+      "path": "data/curriculum_core_v1.json",
+      "language": "json",
+      "size": 9719,
+      "complexity": {
+        "cyclomaticComplexity": 1,
+        "nestingDepth": 3,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    }
+  ]
+}

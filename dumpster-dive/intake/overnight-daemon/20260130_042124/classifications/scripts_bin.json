@@ -1,0 +1,49 @@
+{
+  "path": "scripts/bin",
+  "primaryLanguage": "unknown",
+  "purpose": "general",
+  "fileCount": 2,
+  "totalSize": 114,
+  "averageComplexity": null,
+  "documentationCoverage": 0,
+  "files": [
+    {
+      "path": "scripts/bin/python.cmd",
+      "language": "unknown",
+      "size": 57,
+      "complexity": {
+        "cyclomaticComplexity": 1,
+        "nestingDepth": 0,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "scripts/bin/python314.cmd",
+      "language": "unknown",
+      "size": 57,
+      "complexity": {
+        "cyclomaticComplexity": 1,
+        "nestingDepth": 0,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    }
+  ]
+}

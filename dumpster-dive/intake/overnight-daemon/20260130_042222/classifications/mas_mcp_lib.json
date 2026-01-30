@@ -1,0 +1,181 @@
+{
+  "path": "mas_mcp/lib",
+  "primaryLanguage": "python",
+  "purpose": "core",
+  "fileCount": 4,
+  "totalSize": 195713,
+  "averageComplexity": 127,
+  "documentationCoverage": 0.08,
+  "files": [
+    {
+      "path": "mas_mcp/lib/asc_toolchain.py",
+      "language": "python",
+      "size": 170333,
+      "complexity": {
+        "cyclomatic": 436,
+        "nestingDepth": 16,
+        "functionCount": 68,
+        "avgFunctionLength": 60
+      },
+      "imports": [
+        "json",
+        "re",
+        "sys",
+        "datetime",
+        "pathlib",
+        "typing",
+        "dataclasses",
+        "typer",
+        "pydantic",
+        "rich.console",
+        "rich.panel",
+        "rich.table",
+        "rich.tree",
+        "rich.syntax",
+        "rich.progress",
+        "rich.markdown",
+        "csv",
+        "collections"
+      ],
+      "exports": [
+        "validate",
+        "stats",
+        "world",
+        "purify",
+        "sync_types",
+        "generate",
+        "triumvirate",
+        "shader_check",
+        "export_csv",
+        "build_check",
+        "lore",
+        "lore_entity",
+        "lore_factions",
+        "lore_sync",
+        "lore_search",
+        "disciplines",
+        "operators",
+        "arsenals",
+        "factions",
+        "cosmology",
+        "milfcore_export",
+        "synthesis",
+        "extraction_lens",
+        "genre",
+        "abbr_functions",
+        "whr_capacity",
+        "abbr_extract",
+        "abbr_lookup",
+        "abbr_validate",
+        "abbr_coverage",
+        "mas_scan",
+        "mas_entities"
+      ],
+      "todoCount": 1,
+      "docstringCount": 128,
+      "commentDensity": 0.06000489835904972,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "mas_mcp/lib/gpu_probe.py",
+      "language": "python",
+      "size": 17902,
+      "complexity": {
+        "cyclomatic": 50,
+        "nestingDepth": 10,
+        "functionCount": 14,
+        "avgFunctionLength": 33
+      },
+      "imports": [
+        "mas_mcp.lib.gpu_probe",
+        "__future__",
+        "contextlib",
+        "io",
+        "os",
+        "sys",
+        "time",
+        "dataclasses",
+        "enum",
+        "functools",
+        "pathlib",
+        "typing",
+        "cupy",
+        "onnxruntime",
+        "subprocess",
+        "numba",
+        "datetime",
+        "json"
+      ],
+      "exports": [
+        "suppress_gpu_output",
+        "probe_gpu_capabilities",
+        "clear_probe_cache",
+        "main"
+      ],
+      "todoCount": 0,
+      "docstringCount": 20,
+      "commentDensity": 0.06437768240343347,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "mas_mcp/lib/ssot_handler.py",
+      "language": "python",
+      "size": 6756,
+      "complexity": {
+        "cyclomatic": 20,
+        "nestingDepth": 9,
+        "functionCount": 5,
+        "avgFunctionLength": 41
+      },
+      "imports": [
+        "mas_mcp.lib",
+        "__future__",
+        "hashlib",
+        "os",
+        "unicodedata",
+        "pathlib",
+        "typing",
+        "sys"
+      ],
+      "exports": [
+        "get_ssot_path",
+        "canonicalize_text",
+        "compute_ssot_hash",
+        "verify_bookend",
+        "main"
+      ],
+      "todoCount": 0,
+      "docstringCount": 11,
+      "commentDensity": 0.07692307692307693,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "mas_mcp/lib/__init__.py",
+      "language": "python",
+      "size": 722,
+      "complexity": {
+        "cyclomatic": 2,
+        "nestingDepth": 2,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [
+        ".ssot_handler",
+        ".gpu_probe"
+      ],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0.1111111111111111,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    }
+  ]
+}

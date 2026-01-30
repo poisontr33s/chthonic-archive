@@ -1,0 +1,144 @@
+{
+  "path": "scripts/lib/__pycache__",
+  "primaryLanguage": "unknown",
+  "purpose": "general",
+  "fileCount": 7,
+  "totalSize": 77592,
+  "averageComplexity": null,
+  "documentationCoverage": 0,
+  "files": [
+    {
+      "path": "scripts/lib/__pycache__/analyze.cpython-313.pyc",
+      "language": "unknown",
+      "size": 10651,
+      "complexity": {
+        "cyclomaticComplexity": 1,
+        "nestingDepth": 2,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "scripts/lib/__pycache__/audit.cpython-313.pyc",
+      "language": "unknown",
+      "size": 12483,
+      "complexity": {
+        "cyclomaticComplexity": 1,
+        "nestingDepth": 2,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "scripts/lib/__pycache__/compact.cpython-313.pyc",
+      "language": "unknown",
+      "size": 19582,
+      "complexity": {
+        "cyclomaticComplexity": 1,
+        "nestingDepth": 2,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "scripts/lib/__pycache__/map.cpython-313.pyc",
+      "language": "unknown",
+      "size": 9762,
+      "complexity": {
+        "cyclomaticComplexity": 1,
+        "nestingDepth": 2,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "scripts/lib/__pycache__/resolve.cpython-313.pyc",
+      "language": "unknown",
+      "size": 13031,
+      "complexity": {
+        "cyclomaticComplexity": 1,
+        "nestingDepth": 2,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "scripts/lib/__pycache__/shared.cpython-313.pyc",
+      "language": "unknown",
+      "size": 11676,
+      "complexity": {
+        "cyclomaticComplexity": 1,
+        "nestingDepth": 4,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "scripts/lib/__pycache__/__init__.cpython-313.pyc",
+      "language": "unknown",
+      "size": 407,
+      "complexity": {
+        "cyclomaticComplexity": 1,
+        "nestingDepth": 0,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    }
+  ]
+}

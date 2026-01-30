@@ -1,0 +1,167 @@
+{
+  "path": "error-classifier",
+  "primaryLanguage": "typescript",
+  "purpose": "general",
+  "fileCount": 7,
+  "totalSize": 105396,
+  "averageComplexity": 5,
+  "documentationCoverage": 0.03,
+  "files": [
+    {
+      "path": "error-classifier/bun.lock",
+      "language": "unknown",
+      "size": 3212,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 4,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "error-classifier/database.ts",
+      "language": "typescript",
+      "size": 1858,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 2,
+        "functionCount": 3,
+        "avgFunctionLength": 21
+      },
+      "imports": [
+        "bun:sqlite",
+        "path"
+      ],
+      "exports": [
+        "insertEntry",
+        "getAllEntries",
+        "getEntriesForPhase"
+      ],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0.015625,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "error-classifier/errors.db",
+      "language": "unknown",
+      "size": 90112,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 2,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "error-classifier/ingest.ts",
+      "language": "typescript",
+      "size": 5864,
+      "complexity": {
+        "cyclomatic": 15,
+        "nestingDepth": 5,
+        "functionCount": 1,
+        "avgFunctionLength": 155
+      },
+      "imports": [
+        "bun",
+        "fs",
+        "path",
+        "./database"
+      ],
+      "exports": [],
+      "todoCount": 3,
+      "docstringCount": 0,
+      "commentDensity": 0.04516129032258064,
+      "patterns": [
+        "async-patterns"
+      ],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "error-classifier/memory.ts",
+      "language": "typescript",
+      "size": 2278,
+      "complexity": {
+        "cyclomatic": 12,
+        "nestingDepth": 4,
+        "functionCount": 1,
+        "avgFunctionLength": 47
+      },
+      "imports": [
+        "bun:sqlite",
+        "path"
+      ],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0.1276595744680851,
+      "patterns": [
+        "async-patterns"
+      ],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "error-classifier/package.json",
+      "language": "json",
+      "size": 326,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 2,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "error-classifier/research.ts",
+      "language": "typescript",
+      "size": 1746,
+      "complexity": {
+        "cyclomatic": 7,
+        "nestingDepth": 1,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [
+        "./database"
+      ],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [
+        "any-type-usage"
+      ],
+      "securityFlags": []
+    }
+  ]
+}

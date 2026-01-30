@@ -1,0 +1,80 @@
+{
+  "path": "bun-playwright-poc/scripts",
+  "primaryLanguage": "typescript",
+  "purpose": "automation",
+  "fileCount": 3,
+  "totalSize": 11911,
+  "averageComplexity": null,
+  "documentationCoverage": 0.2,
+  "files": [
+    {
+      "path": "bun-playwright-poc/scripts/install.ts",
+      "language": "typescript",
+      "size": 2605,
+      "complexity": {
+        "cyclomaticComplexity": 2,
+        "nestingDepth": 3,
+        "functionCount": 2,
+        "avgFunctionLength": 25
+      },
+      "imports": [
+        "bun"
+      ],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 1,
+      "commentDensity": 0.29411764705882354,
+      "patterns": [
+        "async-patterns"
+      ],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "bun-playwright-poc/scripts/test.ts",
+      "language": "typescript",
+      "size": 2993,
+      "complexity": {
+        "cyclomaticComplexity": 3,
+        "nestingDepth": 4,
+        "functionCount": 2,
+        "avgFunctionLength": 34
+      },
+      "imports": [
+        "bun"
+      ],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 1,
+      "commentDensity": 0.20588235294117646,
+      "patterns": [
+        "async-patterns"
+      ],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "bun-playwright-poc/scripts/validate.ts",
+      "language": "typescript",
+      "size": 6313,
+      "complexity": {
+        "cyclomaticComplexity": 8,
+        "nestingDepth": 4,
+        "functionCount": 1,
+        "avgFunctionLength": 141
+      },
+      "imports": [
+        "bun"
+      ],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 1,
+      "commentDensity": 0.11347517730496454,
+      "patterns": [
+        "async-patterns"
+      ],
+      "antiPatterns": [],
+      "securityFlags": []
+    }
+  ]
+}

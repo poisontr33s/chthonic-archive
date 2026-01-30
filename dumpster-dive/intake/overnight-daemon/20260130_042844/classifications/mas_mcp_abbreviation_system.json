@@ -1,0 +1,222 @@
+{
+  "path": "mas_mcp/abbreviation_system",
+  "primaryLanguage": "python",
+  "purpose": "general",
+  "fileCount": 8,
+  "totalSize": 92959,
+  "averageComplexity": 39,
+  "documentationCoverage": 0.05,
+  "files": [
+    {
+      "path": "mas_mcp/abbreviation_system/cli.py",
+      "language": "python",
+      "size": 10890,
+      "complexity": {
+        "cyclomatic": 48,
+        "nestingDepth": 6,
+        "functionCount": 9,
+        "avgFunctionLength": 37
+      },
+      "imports": [
+        "argparse",
+        "sys",
+        "pathlib",
+        ".generator",
+        ".models",
+        ".parser",
+        ".registry",
+        ".reporter",
+        ".validator",
+        "hashlib",
+        "unicodedata"
+      ],
+      "exports": [
+        "cmd_parse",
+        "cmd_validate",
+        "cmd_report",
+        "cmd_glossary",
+        "cmd_lookup",
+        "cmd_suggest",
+        "cmd_export",
+        "cmd_hash",
+        "main"
+      ],
+      "todoCount": 0,
+      "docstringCount": 12,
+      "commentDensity": 0.05325443786982249,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "mas_mcp/abbreviation_system/generator.py",
+      "language": "python",
+      "size": 10870,
+      "complexity": {
+        "cyclomatic": 52,
+        "nestingDepth": 10,
+        "functionCount": 12,
+        "avgFunctionLength": 27
+      },
+      "imports": [
+        "re",
+        ".models"
+      ],
+      "exports": [
+        "create_abbreviation_entry"
+      ],
+      "todoCount": 0,
+      "docstringCount": 19,
+      "commentDensity": 0.07076923076923076,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "mas_mcp/abbreviation_system/models.py",
+      "language": "python",
+      "size": 6677,
+      "complexity": {
+        "cyclomatic": 14,
+        "nestingDepth": 6,
+        "functionCount": 7,
+        "avgFunctionLength": 24
+      },
+      "imports": [
+        "dataclasses",
+        "datetime",
+        "enum"
+      ],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 10,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "mas_mcp/abbreviation_system/parser.py",
+      "language": "python",
+      "size": 14030,
+      "complexity": {
+        "cyclomatic": 27,
+        "nestingDepth": 14,
+        "functionCount": 6,
+        "avgFunctionLength": 54
+      },
+      "imports": [
+        "re",
+        "collections.abc",
+        "pathlib",
+        ".models"
+      ],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 9,
+      "commentDensity": 0.0856269113149847,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "mas_mcp/abbreviation_system/registry.py",
+      "language": "python",
+      "size": 16594,
+      "complexity": {
+        "cyclomatic": 35,
+        "nestingDepth": 8,
+        "functionCount": 17,
+        "avgFunctionLength": 19
+      },
+      "imports": [
+        "collections",
+        ".models"
+      ],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 25,
+      "commentDensity": 0.08641975308641975,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "mas_mcp/abbreviation_system/reporter.py",
+      "language": "python",
+      "size": 16692,
+      "complexity": {
+        "cyclomatic": 63,
+        "nestingDepth": 10,
+        "functionCount": 13,
+        "avgFunctionLength": 37
+      },
+      "imports": [
+        "datetime",
+        "pathlib",
+        ".models",
+        ".parser",
+        ".registry",
+        ".validator",
+        "hashlib"
+      ],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 23,
+      "commentDensity": 0.028925619834710745,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "mas_mcp/abbreviation_system/validator.py",
+      "language": "python",
+      "size": 16054,
+      "complexity": {
+        "cyclomatic": 72,
+        "nestingDepth": 20,
+        "functionCount": 16,
+        "avgFunctionLength": 24
+      },
+      "imports": [
+        "re",
+        "collections",
+        "difflib",
+        ".models",
+        ".registry"
+      ],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 21,
+      "commentDensity": 0.06201550387596899,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "mas_mcp/abbreviation_system/__init__.py",
+      "language": "python",
+      "size": 1152,
+      "complexity": {
+        "cyclomatic": 2,
+        "nestingDepth": 2,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [
+        ".models",
+        ".parser",
+        ".registry",
+        ".reporter",
+        ".validator"
+      ],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 2,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    }
+  ]
+}

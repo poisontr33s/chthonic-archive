@@ -1,0 +1,49 @@
+{
+  "path": "mas_mcp/tests",
+  "primaryLanguage": "python",
+  "purpose": "testing",
+  "fileCount": 1,
+  "totalSize": 7422,
+  "averageComplexity": null,
+  "documentationCoverage": 0.01,
+  "files": [
+    {
+      "path": "mas_mcp/tests/test_gpu_integration.py",
+      "language": "python",
+      "size": 7422,
+      "complexity": {
+        "cyclomaticComplexity": 21,
+        "nestingDepth": 8,
+        "functionCount": 8,
+        "avgFunctionLength": 29
+      },
+      "imports": [
+        "__future__",
+        "os",
+        "sys",
+        "time",
+        "pathlib",
+        "pytest",
+        "the",
+        "server",
+        "random",
+        "traceback"
+      ],
+      "exports": [
+        "gpu_status",
+        "test_gpu_status",
+        "test_single_score",
+        "test_batch_score",
+        "test_large_batch",
+        "test_pulse",
+        "test_scan"
+      ],
+      "todoCount": 0,
+      "docstringCount": 11,
+      "commentDensity": 0.012711864406779662,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    }
+  ]
+}

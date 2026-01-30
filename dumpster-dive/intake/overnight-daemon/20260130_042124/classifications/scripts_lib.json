@@ -1,0 +1,299 @@
+{
+  "path": "scripts/lib",
+  "primaryLanguage": "python",
+  "purpose": "core",
+  "fileCount": 8,
+  "totalSize": 93833,
+  "averageComplexity": null,
+  "documentationCoverage": 0.12,
+  "files": [
+    {
+      "path": "scripts/lib/analyze.py",
+      "language": "python",
+      "size": 10455,
+      "complexity": {
+        "cyclomaticComplexity": 39,
+        "nestingDepth": 10,
+        "functionCount": 5,
+        "avgFunctionLength": 56
+      },
+      "imports": [
+        "sys",
+        "io",
+        "__future__",
+        "argparse",
+        "re",
+        "collections",
+        "dataclasses",
+        "pathlib",
+        ".shared",
+        "json"
+      ],
+      "exports": [
+        "normalize_line",
+        "extract_patterns",
+        "suggest_regex",
+        "analyze_file",
+        "main"
+      ],
+      "todoCount": 0,
+      "docstringCount": 7,
+      "commentDensity": 0.11971830985915492,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "scripts/lib/audit.py",
+      "language": "python",
+      "size": 11018,
+      "complexity": {
+        "cyclomaticComplexity": 28,
+        "nestingDepth": 10,
+        "functionCount": 6,
+        "avgFunctionLength": 51
+      },
+      "imports": [
+        "sys",
+        "io",
+        "__future__",
+        "argparse",
+        "hashlib",
+        "re",
+        "collections",
+        "dataclasses",
+        "datetime",
+        "pathlib",
+        ".shared",
+        "json"
+      ],
+      "exports": [
+        "compute_hash",
+        "detect_version_pattern",
+        "scan_directory",
+        "analyze_files",
+        "generate_markdown_report",
+        "main"
+      ],
+      "todoCount": 0,
+      "docstringCount": 9,
+      "commentDensity": 0.07142857142857142,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "scripts/lib/compact.py",
+      "language": "python",
+      "size": 15357,
+      "complexity": {
+        "cyclomaticComplexity": 41,
+        "nestingDepth": 12,
+        "functionCount": 6,
+        "avgFunctionLength": 67
+      },
+      "imports": [
+        "sys",
+        "io",
+        "__future__",
+        "argparse",
+        "re",
+        "dataclasses",
+        "pathlib",
+        ".shared"
+      ],
+      "exports": [
+        "is_noise",
+        "is_keep",
+        "compact_lines",
+        "compact_file",
+        "main"
+      ],
+      "todoCount": 0,
+      "docstringCount": 4,
+      "commentDensity": 0.05970149253731343,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "scripts/lib/extract.py",
+      "language": "python",
+      "size": 23017,
+      "complexity": {
+        "cyclomaticComplexity": 98,
+        "nestingDepth": 14,
+        "functionCount": 12,
+        "avgFunctionLength": 49
+      },
+      "imports": [
+        "__future__",
+        "argparse",
+        "hashlib",
+        "json",
+        "logging",
+        "re",
+        "sys",
+        "traceback",
+        "collections",
+        "dataclasses",
+        "pathlib",
+        "typing",
+        ".shared"
+      ],
+      "exports": [
+        "sanitize_unicode",
+        "smart_truncate",
+        "classify_content",
+        "is_noise",
+        "extract_text_content",
+        "compute_similarity_hash",
+        "deduplicate_exchanges",
+        "check_redundancy",
+        "process_session",
+        "generate_markdown",
+        "main"
+      ],
+      "todoCount": 0,
+      "docstringCount": 14,
+      "commentDensity": 0.030508474576271188,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "scripts/lib/map.py",
+      "language": "python",
+      "size": 9070,
+      "complexity": {
+        "cyclomaticComplexity": 22,
+        "nestingDepth": 10,
+        "functionCount": 3,
+        "avgFunctionLength": 82
+      },
+      "imports": [
+        "sys",
+        "io",
+        "__future__",
+        "argparse",
+        "os",
+        "collections",
+        "dataclasses",
+        "pathlib",
+        ".shared",
+        "json"
+      ],
+      "exports": [
+        "scan_tree",
+        "generate_markdown_map",
+        "main"
+      ],
+      "todoCount": 0,
+      "docstringCount": 6,
+      "commentDensity": 0.08064516129032258,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "scripts/lib/resolve.py",
+      "language": "python",
+      "size": 11327,
+      "complexity": {
+        "cyclomaticComplexity": 41,
+        "nestingDepth": 10,
+        "functionCount": 5,
+        "avgFunctionLength": 63
+      },
+      "imports": [
+        "sys",
+        "io",
+        "__future__",
+        "argparse",
+        "json",
+        "re",
+        "dataclasses",
+        "datetime",
+        "pathlib",
+        "typing",
+        ".shared"
+      ],
+      "exports": [
+        "extract_sid_metadata",
+        "scan_directory",
+        "load_index",
+        "save_index",
+        "main"
+      ],
+      "todoCount": 0,
+      "docstringCount": 8,
+      "commentDensity": 0.08253968253968254,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "scripts/lib/shared.py",
+      "language": "python",
+      "size": 11499,
+      "complexity": {
+        "cyclomaticComplexity": 29,
+        "nestingDepth": 8,
+        "functionCount": 12,
+        "avgFunctionLength": 26
+      },
+      "imports": [
+        "__future__",
+        "argparse",
+        "json",
+        "logging",
+        "os",
+        "sys",
+        "dataclasses",
+        "pathlib",
+        "typing",
+        "subprocess",
+        "tomllib",
+        "tomli"
+      ],
+      "exports": [
+        "find_repo_root",
+        "configure_utf8_output",
+        "setup_logging",
+        "add_common_args",
+        "add_output_arg",
+        "print_json",
+        "print_table",
+        "handle_errors"
+      ],
+      "todoCount": 0,
+      "docstringCount": 22,
+      "commentDensity": 0.14556962025316456,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "scripts/lib/__init__.py",
+      "language": "python",
+      "size": 2090,
+      "complexity": {
+        "cyclomaticComplexity": 4,
+        "nestingDepth": 2,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [
+        "sys",
+        "io"
+      ],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 2,
+      "commentDensity": 0.3870967741935484,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    }
+  ]
+}

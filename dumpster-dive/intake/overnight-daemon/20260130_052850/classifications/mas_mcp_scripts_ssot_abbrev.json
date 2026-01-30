@@ -1,0 +1,152 @@
+{
+  "path": "mas_mcp/scripts/ssot_abbrev",
+  "primaryLanguage": "python",
+  "purpose": "general",
+  "fileCount": 5,
+  "totalSize": 41272,
+  "averageComplexity": 25,
+  "documentationCoverage": 0.03,
+  "files": [
+    {
+      "path": "mas_mcp/scripts/ssot_abbrev/cli.py",
+      "language": "python",
+      "size": 8312,
+      "complexity": {
+        "cyclomatic": 23,
+        "nestingDepth": 15,
+        "functionCount": 7,
+        "avgFunctionLength": 39
+      },
+      "imports": [
+        "argparse",
+        "sys",
+        "datetime",
+        "pathlib",
+        "shutil",
+        ".parser",
+        ".registry",
+        ".reporter",
+        ".validator",
+        ".generator"
+      ],
+      "exports": [
+        "get_ssot_path",
+        "cmd_audit",
+        "cmd_glossary",
+        "cmd_validate",
+        "cmd_backup",
+        "cmd_report",
+        "main"
+      ],
+      "todoCount": 0,
+      "docstringCount": 9,
+      "commentDensity": 0.05860805860805861,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "mas_mcp/scripts/ssot_abbrev/generator.py",
+      "language": "python",
+      "size": 9616,
+      "complexity": {
+        "cyclomatic": 23,
+        "nestingDepth": 10,
+        "functionCount": 5,
+        "avgFunctionLength": 58
+      },
+      "imports": [
+        "collections",
+        "datetime",
+        "pathlib",
+        ".models",
+        ".registry",
+        "json"
+      ],
+      "exports": [
+        "generate_markdown_glossary",
+        "generate_json_glossary",
+        "generate_section_coverage_report",
+        "generate_validation_report",
+        "save_glossary_files"
+      ],
+      "todoCount": 0,
+      "docstringCount": 7,
+      "commentDensity": 0.040955631399317405,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "mas_mcp/scripts/ssot_abbrev/models.py",
+      "language": "python",
+      "size": 6615,
+      "complexity": {
+        "cyclomatic": 14,
+        "nestingDepth": 6,
+        "functionCount": 7,
+        "avgFunctionLength": 24
+      },
+      "imports": [
+        "dataclasses",
+        "datetime",
+        "enum"
+      ],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 10,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "mas_mcp/scripts/ssot_abbrev/reporter.py",
+      "language": "python",
+      "size": 16525,
+      "complexity": {
+        "cyclomatic": 63,
+        "nestingDepth": 10,
+        "functionCount": 13,
+        "avgFunctionLength": 36
+      },
+      "imports": [
+        "datetime",
+        "pathlib",
+        ".models",
+        ".parser",
+        ".registry",
+        ".validator",
+        "hashlib"
+      ],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 23,
+      "commentDensity": 0.027083333333333334,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "mas_mcp/scripts/ssot_abbrev/__main__.py",
+      "language": "python",
+      "size": 204,
+      "complexity": {
+        "cyclomatic": 2,
+        "nestingDepth": 2,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [
+        ".cli"
+      ],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 2,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    }
+  ]
+}

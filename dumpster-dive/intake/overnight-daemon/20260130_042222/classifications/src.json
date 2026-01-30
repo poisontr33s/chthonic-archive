@@ -1,0 +1,60 @@
+{
+  "path": "src",
+  "primaryLanguage": "rust",
+  "purpose": "core",
+  "fileCount": 2,
+  "totalSize": 12132,
+  "averageComplexity": 9,
+  "documentationCoverage": 0.1,
+  "files": [
+    {
+      "path": "src/main.rs",
+      "language": "rust",
+      "size": 10772,
+      "complexity": {
+        "cyclomatic": 17,
+        "nestingDepth": 18,
+        "functionCount": 1,
+        "avgFunctionLength": 214
+      },
+      "imports": [
+        "anyhow::Result",
+        "log::",
+        "winit::",
+        "data::loader::load_game_data",
+        "data::persistence::",
+        "data::factions::FactionRegistry",
+        "data::verifier::AxiomVerifier",
+        "render::"
+      ],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 1,
+      "commentDensity": 0.20093457943925233,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": [
+        "unsafe-block"
+      ]
+    },
+    {
+      "path": "src/README.md",
+      "language": "markdown",
+      "size": 1360,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 0,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    }
+  ]
+}

@@ -1,0 +1,129 @@
+{
+  "path": "mas_mcp/logic",
+  "primaryLanguage": "python",
+  "purpose": "general",
+  "fileCount": 4,
+  "totalSize": 28297,
+  "averageComplexity": 20,
+  "documentationCoverage": 0.01,
+  "files": [
+    {
+      "path": "mas_mcp/logic/governance.py",
+      "language": "python",
+      "size": 5129,
+      "complexity": {
+        "cyclomatic": 11,
+        "nestingDepth": 6,
+        "functionCount": 3,
+        "avgFunctionLength": 42
+      },
+      "imports": [
+        "re",
+        "hashlib",
+        "datetime"
+      ],
+      "exports": [
+        "policy_check_logic",
+        "record_promotion_logic",
+        "add_to_grace_queue_logic"
+      ],
+      "todoCount": 0,
+      "docstringCount": 3,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "mas_mcp/logic/reflections.py",
+      "language": "python",
+      "size": 3072,
+      "complexity": {
+        "cyclomatic": 8,
+        "nestingDepth": 10,
+        "functionCount": 4,
+        "avgFunctionLength": 17
+      },
+      "imports": [
+        "json",
+        "hashlib",
+        "datetime",
+        "pathlib",
+        ".scanner"
+      ],
+      "exports": [
+        "compute_file_hash",
+        "compute_directory_fingerprint",
+        "generate_arc_metaphor",
+        "generate_arc_recommendation"
+      ],
+      "todoCount": 0,
+      "docstringCount": 4,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "mas_mcp/logic/scanner.py",
+      "language": "python",
+      "size": 9403,
+      "complexity": {
+        "cyclomatic": 45,
+        "nestingDepth": 12,
+        "functionCount": 6,
+        "avgFunctionLength": 36
+      },
+      "imports": [
+        "re",
+        "logging",
+        "datetime",
+        "pathlib",
+        "typing",
+        ".state"
+      ],
+      "exports": [
+        "should_skip_path",
+        "extract_signals_from_line",
+        "scan_file",
+        "proximity_extract",
+        "get_mpw_fingerprint",
+        "quick_entity_extract"
+      ],
+      "todoCount": 0,
+      "docstringCount": 6,
+      "commentDensity": 0.013636363636363636,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "mas_mcp/logic/state.py",
+      "language": "python",
+      "size": 10693,
+      "complexity": {
+        "cyclomatic": 17,
+        "nestingDepth": 10,
+        "functionCount": 17,
+        "avgFunctionLength": 14
+      },
+      "imports": [
+        "json",
+        "re",
+        "logging",
+        "dataclasses",
+        "datetime",
+        "pathlib",
+        "typing",
+        "collections"
+      ],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 20,
+      "commentDensity": 0.00816326530612245,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    }
+  ]
+}

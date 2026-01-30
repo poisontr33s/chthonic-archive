@@ -1,0 +1,281 @@
+{
+  "path": "src/data",
+  "primaryLanguage": "rust",
+  "purpose": "general",
+  "fileCount": 8,
+  "totalSize": 80438,
+  "averageComplexity": 9,
+  "documentationCoverage": 0.25,
+  "files": [
+    {
+      "path": "src/data/factions.rs",
+      "language": "rust",
+      "size": 30691,
+      "complexity": {
+        "cyclomatic": 31,
+        "nestingDepth": 10,
+        "functionCount": 21,
+        "avgFunctionLength": 32
+      },
+      "imports": [
+        "std::collections::HashMap",
+        "super::faction_types::",
+        "super::procedural::ProceduralEngine"
+      ],
+      "exports": [
+        "FactionRegistry",
+        "new",
+        "log_invocation",
+        "initialize",
+        "manifest_archive",
+        "activate_tsrp",
+        "deactivate_tsrp",
+        "initiate_tpef",
+        "advance_tpef",
+        "can_invoke_district",
+        "get_supervisor",
+        "create_handoff",
+        "process_handoffs",
+        "FactionRegistryResource",
+        "update_faction_system"
+      ],
+      "todoCount": 0,
+      "docstringCount": 30,
+      "commentDensity": 0.10549132947976879,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "src/data/faction_types.rs",
+      "language": "rust",
+      "size": 18786,
+      "complexity": {
+        "cyclomatic": 18,
+        "nestingDepth": 4,
+        "functionCount": 1,
+        "avgFunctionLength": 572
+      },
+      "imports": [
+        "serde::",
+        "EULP_AA",
+        "pub"
+      ],
+      "exports": [
+        "FactionCode",
+        "CRCType",
+        "LinguisticMode",
+        "FoundationalAxiom",
+        "DAFPMode",
+        "FactionTier",
+        "can_command",
+        "Faction",
+        "District",
+        "ArchitecturalStyle",
+        "DistrictDimensions",
+        "DistrictVisual",
+        "ShaderVariant",
+        "SensorySig",
+        "Matriarch",
+        "SignatureTechnique",
+        "DistrictState",
+        "TSRPState",
+        "TSRPRole",
+        "SupportContribution",
+        "TPEFState",
+        "PathState",
+        "TargetMode",
+        "FactionAbility",
+        "AbilityEffect",
+        "DamageType",
+        "StatusEffect",
+        "HandoffProtocol",
+        "HandoffTrigger",
+        "MMPSLend",
+        "LendDuration",
+        "MMPSSiphon",
+        "SiphonForce",
+        "SubMILFTemplate",
+        "AgentTemplate",
+        "WorldLayer"
+      ],
+      "todoCount": 0,
+      "docstringCount": 198,
+      "commentDensity": 0.40384615384615385,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "src/data/loader.rs",
+      "language": "rust",
+      "size": 6539,
+      "complexity": {
+        "cyclomatic": 8,
+        "nestingDepth": 8,
+        "functionCount": 4,
+        "avgFunctionLength": 30
+      },
+      "imports": [
+        "anyhow::",
+        "log::info",
+        "std::fs",
+        "std::path::Path",
+        "super::types::GameData",
+        "super::"
+      ],
+      "exports": [
+        "load_game_data"
+      ],
+      "todoCount": 0,
+      "docstringCount": 4,
+      "commentDensity": 0.18699186991869918,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "src/data/mod.rs",
+      "language": "rust",
+      "size": 2059,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 0,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [
+        "types",
+        "loader",
+        "persistence",
+        "faction_types",
+        "factions",
+        "procedural",
+        "verifier"
+      ],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0.6296296296296297,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "src/data/persistence.rs",
+      "language": "rust",
+      "size": 3333,
+      "complexity": {
+        "cyclomatic": 2,
+        "nestingDepth": 6,
+        "functionCount": 2,
+        "avgFunctionLength": 30
+      },
+      "imports": [
+        "anyhow::",
+        "log::info",
+        "std::fs",
+        "std::path::Path",
+        "super::types::GameData"
+      ],
+      "exports": [
+        "save_game_state",
+        "load_game_state"
+      ],
+      "todoCount": 0,
+      "docstringCount": 2,
+      "commentDensity": 0.3,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "src/data/procedural.rs",
+      "language": "rust",
+      "size": 11912,
+      "complexity": {
+        "cyclomatic": 2,
+        "nestingDepth": 8,
+        "functionCount": 11,
+        "avgFunctionLength": 24
+      },
+      "imports": [
+        "rand::Rng",
+        "super::faction_types::",
+        "super::factions::FactionRegistry"
+      ],
+      "exports": [
+        "ProceduralEngine",
+        "new",
+        "generate_sub_milf",
+        "generate_agent",
+        "manifest_world_layers"
+      ],
+      "todoCount": 0,
+      "docstringCount": 6,
+      "commentDensity": 0.07462686567164178,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "src/data/types.rs",
+      "language": "rust",
+      "size": 4516,
+      "complexity": {
+        "cyclomatic": 4,
+        "nestingDepth": 6,
+        "functionCount": 1,
+        "avgFunctionLength": 121
+      },
+      "imports": [
+        "serde::"
+      ],
+      "exports": [
+        "GameData",
+        "MetaData",
+        "Entity",
+        "PhysicsData",
+        "GameStats",
+        "LoreData",
+        "WorldData",
+        "WorldLayer",
+        "LinguisticMode"
+      ],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0.12396694214876033,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "src/data/verifier.rs",
+      "language": "rust",
+      "size": 2602,
+      "complexity": {
+        "cyclomatic": 4,
+        "nestingDepth": 6,
+        "functionCount": 2,
+        "avgFunctionLength": 26
+      },
+      "imports": [
+        "std::fs",
+        "std::path::Path",
+        "sha2::",
+        "anyhow::"
+      ],
+      "exports": [
+        "AxiomVerifier",
+        "new",
+        "verify_integrity"
+      ],
+      "todoCount": 0,
+      "docstringCount": 2,
+      "commentDensity": 0.19230769230769232,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    }
+  ]
+}

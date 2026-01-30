@@ -1,0 +1,87 @@
+{
+  "path": "docs/frameworks",
+  "primaryLanguage": "markdown",
+  "purpose": "general",
+  "fileCount": 4,
+  "totalSize": 38057,
+  "averageComplexity": null,
+  "documentationCoverage": 0,
+  "files": [
+    {
+      "path": "docs/frameworks/AUTONOMOUS_COORDINATOR_QUICKREF.md",
+      "language": "markdown",
+      "size": 6080,
+      "complexity": {
+        "cyclomaticComplexity": 1,
+        "nestingDepth": 2,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "docs/frameworks/AUTONOMOUS_ORCHESTRATION_FRAMEWORK.md",
+      "language": "markdown",
+      "size": 18578,
+      "complexity": {
+        "cyclomaticComplexity": 1,
+        "nestingDepth": 13,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 2,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "docs/frameworks/SESSION_3_ORCHESTRATION_QUICKREF.md",
+      "language": "markdown",
+      "size": 9214,
+      "complexity": {
+        "cyclomaticComplexity": 1,
+        "nestingDepth": 2,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "docs/frameworks/SESSION_3_TYPESCRIPT_QUICKREF.md",
+      "language": "markdown",
+      "size": 4185,
+      "complexity": {
+        "cyclomaticComplexity": 1,
+        "nestingDepth": 2,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    }
+  ]
+}

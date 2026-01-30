@@ -1,0 +1,106 @@
+{
+  "path": "claude",
+  "primaryLanguage": "markdown",
+  "purpose": "general",
+  "fileCount": 5,
+  "totalSize": 43272,
+  "averageComplexity": 1,
+  "documentationCoverage": 0,
+  "files": [
+    {
+      "path": "claude/2026-01-28-local-chthonic-archive-session-01-setup_for_codebase-w.txt",
+      "language": "unknown",
+      "size": 23709,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 5,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "claude/README.md",
+      "language": "markdown",
+      "size": 3357,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 0,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "claude/sessionDUMP0001.txt",
+      "language": "unknown",
+      "size": 10687,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 48,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "claude/SESSION_HANDOFF_2026_01_29.md",
+      "language": "markdown",
+      "size": 1291,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 0,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "claude/WET_PAPER_TO_GOLD_METHODOLOGY.md",
+      "language": "markdown",
+      "size": 4228,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 0,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    }
+  ]
+}

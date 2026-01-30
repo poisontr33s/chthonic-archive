@@ -1,0 +1,108 @@
+{
+  "path": "docs/reference/bun-playwright",
+  "primaryLanguage": "markdown",
+  "purpose": "general",
+  "fileCount": 5,
+  "totalSize": 69815,
+  "averageComplexity": null,
+  "documentationCoverage": 0,
+  "files": [
+    {
+      "path": "docs/reference/bun-playwright/AGENT_COORDINATION_WIN11.md",
+      "language": "markdown",
+      "size": 3558,
+      "complexity": {
+        "cyclomaticComplexity": 1,
+        "nestingDepth": 0,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "docs/reference/bun-playwright/BUN_COMPLIANCE_COMPLETE.md",
+      "language": "markdown",
+      "size": 7033,
+      "complexity": {
+        "cyclomaticComplexity": 1,
+        "nestingDepth": 3,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "docs/reference/bun-playwright/BUN_PLAYWRIGHT_IT_SUMMARY.md",
+      "language": "markdown",
+      "size": 4698,
+      "complexity": {
+        "cyclomaticComplexity": 1,
+        "nestingDepth": 3,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "docs/reference/bun-playwright/BUN_PLAYWRIGHT_VALIDATION.md",
+      "language": "markdown",
+      "size": 43008,
+      "complexity": {
+        "cyclomaticComplexity": 1,
+        "nestingDepth": 17,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": [
+        "potential-secret"
+      ]
+    },
+    {
+      "path": "docs/reference/bun-playwright/WIN11_BUN_PLAYWRIGHT_TRAJECTORY.md",
+      "language": "markdown",
+      "size": 11518,
+      "complexity": {
+        "cyclomaticComplexity": 1,
+        "nestingDepth": 15,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    }
+  ]
+}
