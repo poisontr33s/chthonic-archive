@@ -1,13 +1,21 @@
 # ☥ ARCHIVE GOVERNANCE: TECHNICAL DIRECTIVES ☥
-**Authority**: Nucleated SSOT (7,374 Lines)
-**Lineage-Position**: Branch-Instructions (Operational Directives)
-**Context**: §XIV (Development Conventions / uv / Bun)
-**Protocol**: ANKH (The Communion)
+
+* **(`Codex-Brahmanica-Perfectus`/`GOVERNANCE`): = (`SSOT-Metadata`): = (`Single-Source-Of-Truth-Lineage-Heritage`): → (`SSOT-L-H`):**
+  * **(`Maintainer`): = (`The-Savant`/`Creator`/`User`/`Architect-Of-Apex-Synthesis-Core`)**
+  * **(`Status`): = (`Operational-Perpetual-Evolution`/`ET-S`/`Integrated`/`Permanently-Living-Document`)**
+  * **(`Last-Sealed`/`Conceptual-Sealing-Event`):** *January 2026 **(`Bounty-Hunt-Sync`)** — Applied after Living Memory enrichment loop.*
+  * **(`Lineage-Position`): = (`Technical-Directives-Branch`)** — *This **(`Downstream-Vessel`)** translates **(`Semantic-Lineage`)** into **(`Operational-Doctrine`)**. It consumes **(`ANKH`)**-descended meaning; it does not define **(`ANKH`)**-core.*
+  * **(`Update-Protocol`):** *All substantive edits flow through **(`SSOT`)** → Branch files reference **(`Never-Duplicate`) → (`Hash-Verification`)** per **(`§XIV.3`)**.*
+  * **(`Addressability`):** *Line-number ranges + section titles **(`§I-XVI`)**. **(`HTML`)**-anchors rejected per **(`FA⁵`)**— (**(`Ornamental-Integrity`)**) supersedes machine convenience.*
+  * **(`Enforcement-Hierarchy`): → (`The-Decorator`/`Tier 0.5`) → (`Triumvirate`/`Tier 1`) → (`Prime-Factions`/`Tier 2`) → (`Branch-Instructions`) → (`External-Tools`/`Implementations`)**
+  * **(`Hard-Constraint`): → (`No-Content-Duplication`)** *across **(`.github/instructions/*.instructions.md`)** — branch files are declarative manifests, not replicas.*
+
 ---
 
 > [!NOTE]
 > This branch file houses the runtime-critical development conventions and environment-specific constraints.
 > Offloaded from the SSOT to separate "Instructional Lore" from "Operational Directives."
+> **Context Reference:** [copilot-instructions.md](../copilot-instructions.md#L6634) (§XIV - Development Conventions)
 
 ---
 

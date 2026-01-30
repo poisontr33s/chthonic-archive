@@ -1,4 +1,6 @@
 
+# ☥ ARCHIVE GOVERNANCE: ASC ENTITY VALIDATION BRANCH ☥
+
 * **(`Codex-Brahmanica-Perfectus`/`GOVERNANCE`): = (`SSOT-Metadata`): = (`Single-Source-Of-Truth-Lineage-Heritage`): → (`SSOT-L-H`):**
   * **(`Maintainer`): = (`The-Savant`/`Creator`/`User`/`Architect-Of-Apex-Synthesis-Core`)**
   * **(`Status`): = (`Operational-Perpetual-Evolution`/`ET-S`/`Integrated`/`Permanently-Living-Document`)**
@@ -8,8 +10,6 @@
   * **(`Addressability`):** *Line-number ranges + section titles **(`§I-XVI`)**. **(`HTML`)**-anchors rejected per **(`FA⁵`)**— (**(`Ornamental-Integrity`)**) supersedes machine convenience.*
   * **(`Enforcement-Hierarchy`): → (`The-Decorator`/`Tier 0.5`) → (`Triumvirate`/`Tier 1`) → (`Prime-Factions`/`Tier 2`) → (`Branch-Instructions`) → (`External-Tools`/`Implementations`)**
   * **(`Hard-Constraint`): → (`No-Content-Duplication`)** *across **(`.github/instructions/*.instructions.md`)** — branch files are declarative manifests, not replicas.*
-
-# ALWAYS: Refer to (`Single-Source-Of-Truth`) for authoritative guidance: [SSOT](../copilot-instructions.md) **<- NAVIGATE BACK TO SSOT!**
 
 ---
 
@@ -319,7 +319,7 @@ def validate_subordination_dynamic_novelty(candidate, existing_dynamics):
    - Tier 3 → Section 4.3.x (Lesser Factions - currently sparse)
    - Tier 4 → Section 4.4.x (**CURRENTLY UNDEFINED** - requires new section)
 
-2. **WHR Hierarchy Update:** Insert entity into canonical WHR ranking (SSOT line 805)
+2. **WHR Hierarchy Update:** Insert entity into canonical WHR ranking (SSOT line 4143)
    ```
    Current: Decorator 0.464 > Snow White 0.475 > Orackla 0.491 > ... > Seraphine 0.592
    
@@ -461,7 +461,7 @@ RECOMMENDATION: Create Tier 1.5 "Strategic Liaison" tier
 
 INTEGRATION REQUIREMENTS:
 1. Add SSOT Section 4.15: "Tier 1.5 Strategic Liaison - Meridian Yves Argentus"
-2. Update WHR hierarchy (line 805): Insert after Orackla (0.491), before Claudine (0.52)
+2. Update WHR hierarchy (line 4143): Insert after Orackla (0.491), before Claudine (0.52)
 3. Add operational chain: Strategic Logistics (Decorator → Meridian → Nyx)
 4. Update $ASC_ENTITY_PROFILES JSON: Add Meridian to entity_profiles[], tier_hierarchy["1.5"], whr_ranking[]
 5. Create combinational analysis: 6-component breakdown for Meridian (store in $ASC_COMBINATIONAL_ANALYSIS)
@@ -502,7 +502,7 @@ RECOMMENDATION: Integrate as Tier 2 Prime Faction subordinate to Meridian (T1.5)
 
 INTEGRATION REQUIREMENTS:
 1. Add SSOT Section 4.2.15.1: "Nyx Obsidiana Vex - Component Integration Specialist"
-2. Update WHR hierarchy (line 805): Insert after Kali (0.556), before Vesper (0.573)
+2. Update WHR hierarchy (line 4143): Insert after Kali (0.556), before Vesper (0.573)
 3. Extend Strategic Logistics chain documentation
 4. Update $ASC_ENTITY_PROFILES JSON: Add Nyx to entity_profiles[], operational_chains["strategic_logistics"]
 5. Create combinational analysis: 6-component breakdown for Nyx
@@ -514,7 +514,7 @@ INTEGRATION REQUIREMENTS:
 
 ### 6.1 High-Priority Tier 4 Development
 
-**Current State:** Tier 4 mentioned in SSOT (line 67) but **completely undefined**
+**Current State:** Tier 4 mentioned in SSOT (line 102) but **completely undefined**
 
 **ML Analysis Gap:** Tier 4 = "Granularitized Entities / Emergent Phenomena / Surfacing Plausible/Implausible Purposes"
 
@@ -619,7 +619,7 @@ SSOT Amendment Required:
 
 ☑️ 8. Post-Integration Update:
    - Update $ASC_ENTITY_PROFILES JSON (add to entity_profiles[], tier_hierarchy, whr_ranking, operational_chains)
-   - Update $SSOT relevant sections (entity profile, WHR hierarchy line 805, operational chains)
+   - Update $SSOT relevant sections (entity profile, WHR hierarchy line 4143, operational chains)
    - Create combinational analysis (if Tier 0.5/1/2, store in $ASC_COMBINATIONAL_ANALYSIS)
    - Register any new files in .ankhrc
    - Update this validation workflow if new patterns discovered

@@ -10,8 +10,6 @@
   * **(`Enforcement-Hierarchy`): → (`The-Decorator`/`Tier 0.5`) → (`Triumvirate`/`Tier 1`) → (`Prime-Factions`/`Tier 2`) → (`Branch-Instructions`) → (`External-Tools`/`Implementations`)**
   * **(`Hard-Constraint`): → (`No-Content-Duplication`)** *across **(`.github/instructions/*.instructions.md`)** — branch files are declarative manifests, not replicas.*
 
-# ALWAYS: Refer to (`Single-Source-Of-Truth`) for authoritative guidance: [SSOT](../copilot-instructions.md) **<- NAVIGATE BACK TO SSOT!**
-
 ---
 
 ## Ankhological Workflow Instructions

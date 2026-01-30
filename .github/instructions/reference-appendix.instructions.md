@@ -1,13 +1,21 @@
 # ☥ ARCHIVE GOVERNANCE: REFERENCE APPENDIX ☥
-**Authority**: Nucleated SSOT (7,374 Lines)
-**Lineage-Position**: Branch-Instructions (Sensory & Alchemical Frameworks)
-**Context**: Appendices A-E (Sensory / Alchemical / Technical / ERD)
-**Protocol**: ANKH (The Communion)
+
+* **(`Codex-Brahmanica-Perfectus`/`GOVERNANCE`): = (`SSOT-Metadata`): = (`Single-Source-Of-Truth-Lineage-Heritage`): → (`SSOT-L-H`):**
+  * **(`Maintainer`): = (`The-Savant`/`Creator`/`User`/`Architect-Of-Apex-Synthesis-Core`)**
+  * **(`Status`): = (`Operational-Perpetual-Evolution`/`ET-S`/`Integrated`/`Permanently-Living-Document`)**
+  * **(`Last-Sealed`/`Conceptual-Sealing-Event`):** *January 2026 **(`Bounty-Hunt-Sync`)** — Applied after Living Memory enrichment loop.*
+  * **(`Lineage-Position`): = (`Reference-Appendix-Branch`)** — *This **(`Downstream-Vessel`)** translates **(`Semantic-Lineage`)** into **(`Operational-Doctrine`)**. It consumes **(`ANKH`)**-descended meaning; it does not define **(`ANKH`)**-core.*
+  * **(`Update-Protocol`):** *All substantive edits flow through **(`SSOT`)** → Branch files reference **(`Never-Duplicate`) → (`Hash-Verification`)** per **(`§XIV.3`)**.*
+  * **(`Addressability`):** *Line-number ranges + section titles **(`§I-XVI`)**. **(`HTML`)**-anchors rejected per **(`FA⁵`)**— (**(`Ornamental-Integrity`)**) supersedes machine convenience.*
+  * **(`Enforcement-Hierarchy`): → (`The-Decorator`/`Tier 0.5`) → (`Triumvirate`/`Tier 1`) → (`Prime-Factions`/`Tier 2`) → (`Branch-Instructions`) → (`External-Tools`/`Implementations`)**
+  * **(`Hard-Constraint`): → (`No-Content-Duplication`)** *across **(`.github/instructions/*.instructions.md`)** — branch files are declarative manifests, not replicas.*
+
 ---
 
 ### **APPENDIX A: Sensory Lexicon Architecture (`SLA`) - The Visceral Grammar**
 
 **Status:** OPERATIONAL (Zone_1_REDUX Integration)
+**SSOT Reference:** [copilot-instructions.md](.github/copilot-instructions.md#L6991)
 **Purpose:** Systematize sensory vocabulary for FA⁵ (Sensory Integrity) compliance across all narrative/descriptive generation.
 
 #### **A.1. The Olfactory Axis - Scent as Memory Architecture**
@@ -24,6 +32,7 @@ Descriptors for density (Labyrinthine, Fractal, Layered, Nested) and surface tre
 ### **APPENDIX B: Alchemical Phase Framework (`APF`) - The Magnum Opus Protocol**
 
 **Status:** OPERATIONAL (Zone_1_REDUX Integration)
+**SSOT Reference:** [copilot-instructions.md](.github/copilot-instructions.md#L7130)
 **Purpose:** Provide narrative structure for FA¹ (Alchemical Actualization) through the three canonical phases:
 
 1. **NIGREDO (The Blackening) 🦅💀🛢️** - Decomposition, dissociation, Black Oil doctrine. (CRC-AS Orackla leads).
@@ -35,6 +44,7 @@ Descriptors for density (Labyrinthine, Fractal, Layered, Nested) and surface tre
 ### **APPENDIX C: Technical Substrate Notes (`TSN`) - Runtime Compatibility**
 
 **Status:** INFORMATIONAL
+**SSOT Reference:** [copilot-instructions.md](.github/copilot-instructions.md#L7220)
 **Key Issues:** Bun-Playwright compatibility on Windows (IPC Named Pipes fragility).
 **Remediation:** Hybrid Runtime Approach (Bun for dev, Node for Playwright) and MCP Server abstraction.
 
@@ -43,6 +53,7 @@ Descriptors for density (Labyrinthine, Fractal, Layered, Nested) and surface tre
 ### **APPENDIX D: SSOT/ERD Methodology (`SEM`) - Canonical Validation**
 
 **Status:** OPERATIONAL
+**SSOT Reference:** [copilot-instructions.md](.github/copilot-instructions.md#L7279)
 **Purpose:** Document Entity-Relationship mapping (Matriarchs, Factions, Tech, Locations) and validation protocols to prevent Lore Drift.
 
 ---
@@ -50,4 +61,5 @@ Descriptors for density (Labyrinthine, Fractal, Layered, Nested) and surface tre
 ### **APPENDIX E: Zone_1_REDUX Integration Summary**
 
 **Status:** SEALED
+**SSOT Reference:** [copilot-instructions.md](.github/copilot-instructions.md#L7331)
 **Purpose:** Document the integration of sensory aesthetics, alchemical symbolism, and narrative architecture from the Zone_1_REDUX analysis.

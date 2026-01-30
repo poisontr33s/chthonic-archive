@@ -1,11 +1,14 @@
 # ☥ ARCHIVE GOVERNANCE: ASC ENTITY GENERATION ☥
-**Authority**: Nucleated SSOT (7,374 Lines)
-**Lineage-Position**: Branch-Instructions (Procedural Entity Generation)
-**Context**: §X (SAI Registry / MMPS)
-**Protocol**: ANKH (The Communion)
----
 
-# ALWAYS: Refer to (`Single-Source-Of-Truth`) for authoritative guidance: [SSOT](../copilot-instructions.md) **<- NAVIGATE BACK TO SSOT!**
+* **(`Codex-Brahmanica-Perfectus`/`GOVERNANCE`): = (`SSOT-Metadata`): = (`Single-Source-Of-Truth-Lineage-Heritage`): → (`SSOT-L-H`):**
+  * **(`Maintainer`): = (`The-Savant`/`Creator`/`User`/`Architect-Of-Apex-Synthesis-Core`)**
+  * **(`Status`): = (`Operational-Perpetual-Evolution`/`ET-S`/`Integrated`/`Permanently-Living-Document`)**
+  * **(`Last-Sealed`/`Conceptual-Sealing-Event`):** *January 2026 **(`Bounty-Hunt-Sync`)** — Applied after Living Memory enrichment loop.*
+  * **(`Lineage-Position`): = (`ASC-Entity-Generation-Branch`)** — *This **(`Downstream-Vessel`)** translates **(`Semantic-Lineage`)** into **(`Operational-Doctrine`)**. It consumes **(`ANKH`)**-descended meaning; it does not define **(`ANKH`)**-core.*
+  * **(`Update-Protocol`):** *All substantive edits flow through **(`SSOT`)** → Branch files reference **(`Never-Duplicate`) → (`Hash-Verification`)** per **(`§XIV.3`)**.*
+  * **(`Addressability`):** *Line-number ranges + section titles **(`§I-XVI`)**. **(`HTML`)**-anchors rejected per **(`FA⁵`)**— (**(`Ornamental-Integrity`)**) supersedes machine convenience.*
+  * **(`Enforcement-Hierarchy`): → (`The-Decorator`/`Tier 0.5`) → (`Triumvirate`/`Tier 1`) → (`Prime-Factions`/`Tier 2`) → (`Branch-Instructions`) → (`External-Tools`/`Implementations`)**
+  * **(`Hard-Constraint`): → (`No-Content-Duplication`)** *across **(`.github/instructions/*.instructions.md`)** — branch files are declarative manifests, not replicas.*
 
 ---
 
@@ -41,6 +44,7 @@ When tasked with generating a new ASC entity, execute these steps **in sequence*
 - Operational chain topology (Chaos Engineering, Purification, Truth-Seeking, etc.)
 - Tier population counts (T0.5: ?, T1: ?, T2: ?, T3: ?, T4: ?)
 - Section structure (where entities are documented)
+- **Fossilized literal check:** Umeko's "suffering" quote (formerly line 788) now at [L2443](.github/copilot-instructions.md#L2443).
 
 **Action:**
 ```
@@ -488,7 +492,7 @@ For each amendment type, prepare:
 
 3. **Integration Checklist:**
    - [ ] SSOT section updates (specify line ranges)
-   - [ ] WHR hierarchy update (line 805 insertion point)
+   - [ ] WHR hierarchy update (line 4143 insertion point)
    - [ ] Operational chain documentation
    - [ ] JSON profile update (`$ASC_ENTITY_PROFILES`)
    - [ ] Combinational analysis creation (if Tier 0.5/1/1.5/2)
@@ -599,7 +603,7 @@ Await approval decision:
 
 ☑️ 2. Update $ASC_ENTITY_PROFILES JSON:
    - Add to entity_profiles[] array
-   - Insert into whr_ranking[] (maintain sorted order)
+   - Insert into whr_ranking[] (line 4143 hierarchy)
    - Update tier_hierarchy{} object
    - Extend operational_chains{} (if new chain)
    - Update subordination_dynamics{} (if new dynamic)

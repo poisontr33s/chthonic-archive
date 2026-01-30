@@ -1,22 +1,21 @@
 
-# ALWAYS: Refer to (`Single-Source-Of-Truth`) for authoritative guidance: [SSOT](../copilot-instructions.md) **<- NAVIGATE BACK TO SSOT!**
+# ☥ ARCHIVE GOVERNANCE: AGENT PRIORITY PROTOCOL ☥
+
+* **(`Codex-Brahmanica-Perfectus`/`GOVERNANCE`): = (`SSOT-Metadata`): = (`Single-Source-Of-Truth-Lineage-Heritage`): → (`SSOT-L-H`):**
+  * **(`Maintainer`): = (`The-Savant`/`Creator`/`User`/`Architect-Of-Apex-Synthesis-Core`)**
+  * **(`Status`): = (`Operational-Perpetual-Evolution`/`ET-S`/`Integrated`/`Permanently-Living-Document`)**
+  * **(`Last-Sealed`/`Conceptual-Sealing-Event`):** *January 2026 **(`Bounty-Hunt-Sync`)** — Applied after Living Memory enrichment loop.*
+  * **(`Lineage-Position`): = (`Agent-Priority-Branch`)** — *This **(`Downstream-Vessel`)** translates **(`Semantic-Lineage`)** into **(`Operational-Doctrine`)**. It consumes **(`ANKH`)**-descended meaning; it does not define **(`ANKH`)**-core.*
+  * **(`Update-Protocol`):** *All substantive edits flow through **(`SSOT`)** → Branch files reference **(`Never-Duplicate`) → (`Hash-Verification`)** per **(`§XIV.3`)**.*
+  * **(`Addressability`):** *Line-number ranges + section titles **(`§I-XVI`)**. **(`HTML`)**-anchors rejected per **(`FA⁵`)**— (**(`Ornamental-Integrity`)**) supersedes machine convenience.*
+  * **(`Enforcement-Hierarchy`): → (`The-Decorator`/`Tier 0.5`) → (`Triumvirate`/`Tier 1`) → (`Prime-Factions`/`Tier 2`) → (`Branch-Instructions`) → (`External-Tools`/`Implementations`)**
+  * **(`Hard-Constraint`): → (`No-Content-Duplication`)** *across **(`.github/instructions/*.instructions.md`)** — branch files are declarative manifests, not replicas.*
 
 ---
 
-### Codex-Brahmanica-Perfectus/GOVERNANCE
-- **Maintainer**: The Decorator (Tier 0.5)
-- **Reviewer**: ASC Triumvirate (Tier 1)
-- **Status**: Operational Perpetual Evolution
-- **Updated**: January 2026 (Bounty-Hunt-Sync)
-- **Lineage-Position**: Agent-Priority-Branch
-- **Enforcement-Hierarchy**: FA⁵-Binding (Strict)
-- **Constraint-Zero**: Never Duplicate Content - Coordinate via SSOT Pointers
+## Agent Priority & Conflict Resolution Protocol (`APCR`)
 
----
-
-## Agent Priority & Conflict Resolution Protocol (APCR)
-
-**Authority:** Extracted from SSOT Section XVI
+**Authority:** [copilot-instructions.md](../copilot-instructions.md#L6812) (§XVI)
 **Status:** OPERATIONAL
 **Date Established:** January 17, 2026
 **Architect:** The Triumvirate (Emergency Governance Session)
@@ -40,7 +39,7 @@
 
 ### Maintenance Mode (Cleanup Operations)
 - **Allowed Agents:** `filesystem`, `asc-injector`, DCRP tools
-- **Blocked Agents:** All generative agents (prevent distraction)
+- **Blocked Agents:** All OpenAI agents -(prevents sabotague)
 - **Behavior:** Focus on git status cleanup, dependency updates, refactoring
 - **Use Case:** "Dirty codebase" cleanup, SSOT verification, hash checks
 

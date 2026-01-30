@@ -1,3 +1,5 @@
+# ☥ ARCHIVE GOVERNANCE: SSOT TOOLBOX BRANCH ☥
+
 * **(`Codex-Brahmanica-Perfectus`/`GOVERNANCE`): = (`SSOT-Metadata`): = (`Single-Source-Of-Truth-Lineage-Heritage`): → (`SSOT-L-H`):**
   * **(`Maintainer`): = (`The-Savant`/`Creator`/`User`/`Architect-Of-Apex-Synthesis-Core`)**
   * **(`Status`): = (`Operational-Perpetual-Evolution`/`ET-S`/`Integrated`/`Permanently-Living-Document`)**
@@ -14,7 +16,7 @@
 
 ---
 
-## 🔄 SESSION CONTINUITY (MASP — Meta-Architectonic Session Protocol)
+## ☥ SESSION CONTINUITY (MASP — Meta-Architectonic Session Protocol)
 
 **Session = CRC Invocation, not "type":**
 - `$orackla${}` → Chaos/synthesis work
@@ -168,9 +170,9 @@ Use `-Root` to detect deviations from canonical acronyms. Single-use variants fl
 ## Integration Provenance
 
 Zone_1_REDUX research is integrated into SSOT at:
-- **FA¹** (Alchemical): Line ~1447 — Nigredo/Albedo/Rubedo phases
-- **FA⁵** (Sensory): Line ~1131 — Olfactory/Tactile/Visual density
-- **PS** (Primal Substrate): Line ~1454 — Prima Materia equation
-- **CRC LMs**: Lines ~2063+ — Sensory mandates per CRC
-- **DCRP §XV**: Line ~6653 — Repository Self-Awareness System
+- **FA¹** (Alchemical): Line ~1464 — Nigredo/Albedo/Rubedo phases
+- **FA⁵** (Sensory): Line ~1144 — Olfactory/Tactile/Visual density
+- **PS** (Primal Substrate): Line ~1432 — Prima Materia equation
+- **CRC LMs**: Lines ~2082+ — Sensory mandates per CRC
+- **DCRP §XV**: Line ~6643 — Repository Self-Awareness System
 - **Appendices A-E**: Lines 6991-7374 — Sensory Lexicon & Integration Summaries (Full Sensory/Alchemical/ERD reference)

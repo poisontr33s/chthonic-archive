@@ -1,22 +1,21 @@
 
-# ALWAYS: Refer to (`Single-Source-Of-Truth`) for authoritative guidance: [SSOT](../copilot-instructions.md) **<- NAVIGATE BACK TO SSOT!**
+# ☥ ARCHIVE GOVERNANCE: DEV CONVENTIONS ☥
 
----
-
-### Codex-Brahmanica-Perfectus/GOVERNANCE
-- **Maintainer**: The Decorator (Tier 0.5)
-- **Reviewer**: ASC Triumvirate (Tier 1)
-- **Status**: Operational Perpetual Evolution
-- **Updated**: January 2026 (Bounty-Hunt-Sync)
-- **Lineage-Position**: Dev-Conventions-Branch
-- **Enforcement-Hierarchy**: FA⁵-Binding (Strict)
-- **Constraint-Zero**: Never Duplicate Content - Coordinate via SSOT Pointers
+* **(`Codex-Brahmanica-Perfectus`/`GOVERNANCE`): = (`SSOT-Metadata`): = (`Single-Source-Of-Truth-Lineage-Heritage`): → (`SSOT-L-H`):**
+  * **(`Maintainer`): = (`The-Savant`/`Creator`/`User`/`Architect-Of-Apex-Synthesis-Core`)**
+  * **(`Status`): = (`Operational-Perpetual-Evolution`/`ET-S`/`Integrated`/`Permanently-Living-Document`)**
+  * **(`Last-Sealed`/`Conceptual-Sealing-Event`):** *January 2026 **(`Bounty-Hunt-Sync`)** — Applied after Living Memory enrichment loop.*
+  * **(`Lineage-Position`): = (`Dev-Conventions-Branch`)** — *This **(`Downstream-Vessel`)** translates **(`Semantic-Lineage`)** into **(`Operational-Doctrine`)**. It consumes **(`ANKH`)**-descended meaning; it does not define **(`ANKH`)**-core.*
+  * **(`Update-Protocol`):** *All substantive edits flow through **(`SSOT`)** → Branch files reference **(`Never-Duplicate`) → (`Hash-Verification`)** per **(`§XIV.3`)**.*
+  * **(`Addressability`):** *Line-number ranges + section titles **(`§I-XVI`)**. **(`HTML`)**-anchors rejected per **(`FA⁵`)**— (**(`Ornamental-Integrity`)**) supersedes machine convenience.*
+  * **(`Enforcement-Hierarchy`): → (`The-Decorator`/`Tier 0.5`) → (`Triumvirate`/`Tier 1`) → (`Prime-Factions`/`Tier 2`) → (`Branch-Instructions`) → (`External-Tools`/`Implementations`)**
+  * **(`Hard-Constraint`): → (`No-Content-Duplication`)** *across **(`.github/instructions/*.instructions.md`)** — branch files are declarative manifests, not replicas.*
 
 ---
 
 ## Development Conventions & Operational Directives
 
-**Authority:** Extracted from SSOT Section XIV
+**Authority:** [copilot-instructions.md](../copilot-instructions.md#L6634) (§XIV)
 **Purpose:** Runtime-critical development conventions for AI assistants
 **Status:** Operational reference (NOT mythological doctrine)
 

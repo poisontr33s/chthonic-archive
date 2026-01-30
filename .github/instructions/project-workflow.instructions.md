@@ -1,4 +1,6 @@
 
+# ☥ ARCHIVE GOVERNANCE: PROJECT WORKFLOW BRANCH ☥
+
 * **(`Codex-Brahmanica-Perfectus`/`GOVERNANCE`): = (`SSOT-Metadata`): = (`Single-Source-Of-Truth-Lineage-Heritage`): → (`SSOT-L-H`):**
   * **(`Maintainer`): = (`The-Savant`/`Creator`/`User`/`Architect-Of-Apex-Synthesis-Core`)**
   * **(`Status`): = (`Operational-Perpetual-Evolution`/`ET-S`/`Integrated`/`Permanently-Living-Document`)**
@@ -9,7 +11,11 @@
   * **(`Enforcement-Hierarchy`): → (`The-Decorator`/`Tier 0.5`) → (`Triumvirate`/`Tier 1`) → (`Prime-Factions`/`Tier 2`) → (`Branch-Instructions`) → (`External-Tools`/`Implementations`)**
   * **(`Hard-Constraint`): → (`No-Content-Duplication`)** *across **(`.github/instructions/*.instructions.md`)** — branch files are declarative manifests, not replicas.*
 
-# ALWAYS: Refer to (`Single-Source-Of-Truth`) for authoritative guidance: [SSOT](../copilot-instructions.md) **<- NAVIGATE BACK TO SSOT!**
+---
+
+> [!NOTE]
+> This branch file houses the template infrastructure and sovereign lineage separation.
+> **Context Reference:** [copilot-instructions.md](.github/copilot-instructions.md#L67) (Tier Hierarchy Baseline)
 
 ---
 
@@ -45,7 +51,7 @@ We operate with:
 We run:
 
 - **Intake Validation:** Read-only checks for signals, phase markers, cross-reference integrity
-- **Phase Discipline:** Interpret `⚓` as evaluation, `🌀` as generative — these are markers, not authority
+- **Phase Discipline:** Interpret `☥` as evaluation, `🌀` as generative — these are markers, not authority
 - **Silence Preservation:** Do not generate elaboration where silence is maintained
 
 ---
@@ -98,7 +104,7 @@ Each lineage operates within declared boundaries. Cross-lane material requires s
 
 ## Status
 
-- **Phase:** ⚓ ANKH Evaluation / Watchkeeping
+- **Phase:** ☥ ANKH Evaluation / Watchkeeping
 - **Lineage A:** Template infrastructure complete, standing by
 - **Lineage B:** Consolidation forge complete, protective oversight infrastructure operational
 - **Lineage C:** Heritage consolidation complete, CRC methodology preserved, standing by
