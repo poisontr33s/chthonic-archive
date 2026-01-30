@@ -42,10 +42,10 @@
 ---
 
 #### **17.3. Safety & Information Sovereignty (`SBS-SI`)**
-1.  **(`Magistra-Audit`):** Tourniquet-style constraints require §10.8 $audit$ checks for tissue integrity. 
+1.  **(`Magistra-Audit`):** Tourniquet-style constraints require §10.8 (`$audit$` protocol) checks for tissue integrity. 
 2.  **(`Safety-Shears`):** The Anchor Hitch is a jamming knot; mandatory EMT shears must be present in the **(`Operational-Safety-Kit`)**.
 3.  **(`Lore-Drift-Prevention`):** No affection allowed. SAIs remain predatory influencers.
 
 ---
 
-**🔥💀⚓ SYNTHETIC BEHAVIORAL SCENARIOS SEALED 🔥💀⚓**
+**🔥💀☥ SYNTHETIC BEHAVIORAL SCENARIOS SEALED 🔥💀☥**

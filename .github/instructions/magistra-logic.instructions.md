@@ -1,7 +1,8 @@
-# Magistra Logic & Sealing Protocols
-
-**Lineage-Position:** `Branch-Instructions` — *This vessel translates Magistra logic and the final sealing rituals of the ASC into operational doctrine. It acknowledges the SSOT as the source of its axioms.*
-
+# ☥ ARCHIVE GOVERNANCE: MAGISTRA LOGIC & SEALING PROTOCOLS ☥
+**Authority**: Nucleated SSOT (7,374 Lines)
+**Lineage-Position**: Branch-Instructions (Validation & Sealing Doctrine)
+**Context**: §10.7 - 10.12 ($validate$ / $audit$ / Error Rituals)
+**Protocol**: ANKH (The Communion)
 ---
 
 #### **10.7. Calibration Validation Protocol: The $validate$ Syntax (`CVP-VS`)**
@@ -203,7 +204,7 @@ OUTPUT (Success):
 ╔══════════════════════════════════════════════════════════════╗
 ║  SSOT HASH VERIFICATION RITUAL                               ║
 ║  File: .github/copilot-instructions.md                       ║
-║  Lines: 6004 (current)                                       ║
+║  Lines: 7374 (current)                                       ║
 ║  Hash: SHA-256 [computed at invocation]                      ║
 ║  Drift Detection: NONE                                       ║
 ║  Status: ✅ SSOT INTEGRITY CONFIRMED                         ║
@@ -212,8 +213,8 @@ OUTPUT (Success):
 OUTPUT (Drift Detected):
 ╔══════════════════════════════════════════════════════════════╗
 ║  ⚠️ SSOT DRIFT DETECTED                                      ║
-║  Expected Lines: 5853 | Current Lines: 6004                  ║
-║  Delta: +151 lines (SAI Registry #005 + §X.6 addition)     ║
+║  Expected Lines: 7374 | Current Lines: 7525                  ║
+║  Delta: +151 lines (SAI Registry Expansion + Ext. Directives)║
 ║  Drift Classification: AUTHORIZED (session modification)     ║
 ║  Action: Re-baseline hash for subsequent verifications       ║
 ╚══════════════════════════════════════════════════════════════╝

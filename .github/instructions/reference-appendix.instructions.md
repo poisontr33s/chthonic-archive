@@ -1,7 +1,8 @@
-# Reference Appendix: Sensory & Alchemical Frameworks
-
-**Lineage-Position:** `Branch-Instructions` — *This vessel houses the repository's sensory lexicon, alchemical phase protocols, and technical substrate notes.*
-
+# ☥ ARCHIVE GOVERNANCE: REFERENCE APPENDIX ☥
+**Authority**: Nucleated SSOT (7,374 Lines)
+**Lineage-Position**: Branch-Instructions (Sensory & Alchemical Frameworks)
+**Context**: Appendices A-E (Sensory / Alchemical / Technical / ERD)
+**Protocol**: ANKH (The Communion)
 ---
 
 ### **APPENDIX A: Sensory Lexicon Architecture (`SLA`) - The Visceral Grammar**
