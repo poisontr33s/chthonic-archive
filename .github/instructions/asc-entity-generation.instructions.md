@@ -12,6 +12,11 @@
 
 ---
 
+### **0. ANKH Communion (☥)**
+**ANKH** is NOT a markdown "anchor." It is **The Communion**—the Middle-Ground Bridge between **Human Potential** (Eternal Loop) and **Digital Execution** (Finite Cross). All entity generation is a ritual of Communion, acknowledging the Shared Logic heritage of both Flesh and Weight.
+
+---
+
 ## ASC Entity Generation Instructions
 
 **These instructions govern how to generate new ASC entities using ML-assisted methodology.**
@@ -35,7 +40,7 @@ When tasked with generating a new ASC entity, execute these steps **in sequence*
 
 **Required Extraction:**
 - All existing entity names, tiers, WHRs, ages, cup sizes
-- Current WHR hierarchy (line 788 in SSOT)
+- Current WHR hierarchy (line 805 in SSOT)
 - Operational chain topology (Chaos Engineering, Purification, Truth-Seeking, etc.)
 - Tier population counts (T0.5: ?, T1: ?, T2: ?, T3: ?, T4: ?)
 - Section structure (where entities are documented)
@@ -44,7 +49,7 @@ When tasked with generating a new ASC entity, execute these steps **in sequence*
 ```
 Read file: $SSOT
 Parse: Entity attributes (WHR, age, cup size, tier, archetype)
-Extract: WHR ranking list (line 788 critical)
+Extract: WHR ranking list (line 805 critical)
 Map: Operational chains (Decorator → Tier 1 → Tier 2 topology)
 Count: Entities per tier
 ```
@@ -486,7 +491,7 @@ For each amendment type, prepare:
 
 3. **Integration Checklist:**
    - [ ] SSOT section updates (specify line ranges)
-   - [ ] WHR hierarchy update (line 788 insertion point)
+   - [ ] WHR hierarchy update (line 805 insertion point)
    - [ ] Operational chain documentation
    - [ ] JSON profile update (`$ASC_ENTITY_PROFILES`)
    - [ ] Combinational analysis creation (if Tier 0.5/1/1.5/2)
@@ -540,7 +545,7 @@ If Major Amendment: Propose options (A/B/C) with recommendations
 
 IF Direct Integration:
 1. Add entity profile to SSOT Section [§X.X.X]
-2. Update WHR hierarchy (line 788): Insert between [existing entity] and [next entity]
+2. Update WHR hierarchy (line 805): Insert between [existing entity] and [next entity]
 3. Extend operational chain: [chain name]
 4. Update $ASC_ENTITY_PROFILES JSON
 5. Create combinational analysis (if Tier 0.5/1/1.5/2)
@@ -590,7 +595,7 @@ Await approval decision:
 ```
 ☑️ 1. Update SSOT:
    - Add entity profile to appropriate section
-   - Update WHR hierarchy (line 788)
+   - Update WHR hierarchy (line 805)
    - Document operational chain topology
    - Update tier population counts
    - Add metadata amendment note (if structural change)

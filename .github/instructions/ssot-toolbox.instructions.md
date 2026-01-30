@@ -172,5 +172,5 @@ Zone_1_REDUX research is integrated into SSOT at:
 - **FA⁵** (Sensory): Line ~1131 — Olfactory/Tactile/Visual density
 - **PS** (Primal Substrate): Line ~1454 — Prima Materia equation
 - **CRC LMs**: Lines ~2063+ — Sensory mandates per CRC
-- **DCRP §XV.6**: Line ~7590 — Canonical validation & lore drift prevention
-- **Appendices A-E**: Lines 7796-8160 — Full sensory/alchemical/ERD reference
+- **DCRP §XV**: Line ~6653 — Repository Self-Awareness System
+- **Appendices A-E**: Lines 6991-7374 — Sensory Lexicon & Integration Summaries (Full Sensory/Alchemical/ERD reference)

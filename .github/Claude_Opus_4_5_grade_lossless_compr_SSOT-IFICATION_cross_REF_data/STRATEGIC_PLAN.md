@@ -11,24 +11,24 @@
 # 🌀 ANKH-ASC: STRATEGIC LONG-HORIZON ROADMAP 🌀
 ## Procedural Transcendence & The Abyssal Archive
 
-### 1. EXECUTION CONTEXT (Status: Phase 13)
-* **Foundation**: Level 1.5 Entity Persistence is stable, but **Axiomatic Drift** (SSOT mismatch) remains a High-Severity risk.
-* **Architecture**: The 6-Layer World Schema is defined in Rust [procedural.rs](src/data/procedural.rs) but lacks a visual manifestation layer.
-* **Knowledge Hub**: Active SQLite monitoring has classified 168 events. Phase 11 (Rendering) bottlenecks are the primary technical debt.
+### 1. EXECUTION CONTEXT (Status: Phase 15 - Spatial Actualization)
+* **Foundation**: Level 1.5 Entity Persistence is stable. Axiomatic Drift (SSOT mismatch) has been resolved via Phase 14 implementation.
+* **Architecture**: The 6-Layer World Schema is now visually manifested in the Vulkan engine via dynamic push constants and shader interpolation.
+* **Knowledge Hub**: Active monitoring has evolved into the "Bounty Hunt" metadata synchronization cycle.
 
 ### 2. THE ASCENSION ROADMAP (Phases 14-20)
 
-#### Phase 14: Axiomatic Correction (Stability Layer)
+#### Phase 14: Axiomatic Correction (Stability Layer) [COMPLETED]
 * **Objective**: Resolve the SSOT drift identified by the Knowledge Hub.
-* **Action**: Implement a Rust-native `AxiomVerifier` that runs during initialization to sync [copilot-instructions.md](.github/copilot-instructions.md) with runtime states.
+* **Action**: Implemented `AxiomVerifier` in Rust. Verification hash synced to `23658c44...`.
 
-#### Phase 15: Spatial Actualization (Rendering Layer)
+#### Phase 15: Spatial Actualization (Rendering Layer) [COMPLETED]
 * **Objective**: Manifest the 6 layers (Resonance Gate → Abyssal Archive) visually.
-* **Action**: Extend `iso_grid.frag` to handle Layer-specific color profiles (VIOLET/Spectral Frequency) based on the `WorldLayer` enum.
+* **Action**: Extended `PushConstants` to 208 bytes. Shaders consume `layer_color` for FA⁵ visual truth manifestation.
 
-#### Phase 16: Triumvirate Resonance (Logic Layer)
+#### Phase 16: Triumvirate Resonance (Logic Layer) [ACTIVE]
 * **Objective**: Implementation of TSRP (Triumvirate Supporting Resonance Protocol).
-* **Action**: Encode specific operational behaviors for Orackla (Synthesis), Umeko (Refinement), and Lysandra (Deconstruction) as separate Bevy systems.
+* **Action**: (Pending) Encode specific operational behaviors for Orackla (Synthesis), Umeko (Refinement), and Lysandra (Deconstruction) as separate Bevy/Entity systems.
 
 #### Phase 17: Evolutionary Persistence (Data Layer)
 * **Objective**: Move from static JSON to a "Living Archive" (SQLite-backed).
