@@ -4,8 +4,8 @@
 // ╠════════════════════════════════════════════════════════════════════════════╣
 // ║  Spectral Frequency: ORANGE                                                 ║
 // ║  Architectural Role: 🔭 THE OBSERVATORY                                      ║
-// ║  Purpose: * BunCDP Page - High-level page automation API
- * Built on top of raw  ║
+// ║  Purpose: * BunCDP Page - High-level page automation API                   ║
+// ║           * Built on top of raw CDP                                        ║
 // ║  Exports: PageOptions, DialogInfo, CDPPage                                  ║
 // ╠════════════════════════════════════════════════════════════════════════════╣
 // ║  Cross-References (Bidirectional):                                      ║
@@ -391,11 +391,56 @@ export class CDPPage {
   }
 
   /**
+   * THE DECORATOR'S OBSERVATORY: Visual Stability Protocol (2026 Edition)
+   * 
+   * Succeeds networkIdle by observing DOM mutations directly.
+   * Crucial for RSC (React Server Components) and streaming SSR where
+   * network connections remain open "forever".
+   * 
+   * @param stabilityDuration - Time (ms) DOM must stay static. Default 500ms.
+   * @param timeout - Max time to wait. Default 30000ms.
+   */
+  async waitForVisualStability(options?: { stabilityDuration?: number; timeout?: number }): Promise<void> {
+    const stabilityDuration = options?.stabilityDuration ?? 500;
+    const timeout = options?.timeout ?? 30000;
+
+    await this.evaluate(`
+      new Promise((resolve, reject) => {
+        let timer;
+        const observer = new MutationObserver(() => {
+          if (timer) clearTimeout(timer);
+          timer = setTimeout(() => {
+            observer.disconnect();
+            resolve();
+          }, ${stabilityDuration});
+        });
+
+        observer.observe(document.body, {
+          attributes: true,
+          childList: true,
+          subtree: true,
+          characterData: true
+        });
+
+        setTimeout(() => {
+          observer.disconnect();
+          reject(new Error("Visual stability not reached within ${timeout}ms"));
+        }, ${timeout});
+
+        timer = setTimeout(() => {
+          observer.disconnect();
+          resolve();
+        }, ${stabilityDuration});
+      })
+    `);
+  }
+
+  /**
    * Navigate to a URL and wait for load
    */
   async goto(url: string, options?: { 
     timeout?: number; 
-    waitUntil?: 'load' | 'domcontentloaded' | 'networkidle' 
+    waitUntil?: 'load' | 'domcontentloaded' | 'networkidle' | 'visual-stability'
   }): Promise<void> {
     const timeout = options?.timeout || this.options.timeout || 30000;
     const waitUntil = options?.waitUntil || 'load';
@@ -409,12 +454,23 @@ export class CDPPage {
     }
     
     // Set up the wait BEFORE navigating to avoid race condition
-    const loadPromise = waitUntil === 'networkidle'
-      ? this.waitForNetworkIdle({ timeout })
-      : this.waitForEvent('Page.loadEventFired', undefined, timeout);
+    let loadPromise: Promise<any>;
+    
+    if (waitUntil === 'networkidle') {
+      loadPromise = this.waitForNetworkIdle({ timeout });
+    } else if (waitUntil === 'visual-stability') {
+      // For visual stability, we wait for 'load' first THEN stability
+      loadPromise = this.waitForEvent('Page.loadEventFired', undefined, timeout)
+        .then(() => this.waitForVisualStability({ timeout }));
+    } else {
+      loadPromise = this.waitForEvent('Page.loadEventFired', undefined, timeout);
+    }
     
     // Navigate
-    await this.sendToTarget('Page.navigate', { url });
+    const { errorText } = await this.sendToTarget('Page.navigate', { url });
+    if (errorText && errorText !== 'net::ERR_ABORTED') {
+      throw new Error(`Navigation failed: ${errorText}`);
+    }
     
     // Wait for completion
     await loadPromise;

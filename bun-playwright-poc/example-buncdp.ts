@@ -10,7 +10,6 @@
 // ║    (Standalone file - no detected dependencies)                          ║
 // ╚════════════════════════════════════════════════════════════════════════════╝
 
-#!/usr/bin/env bun
 /**
  * BunCDP Usage Example - Demonstrates working Bun + Chrome automation
  */

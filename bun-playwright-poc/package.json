@@ -16,9 +16,10 @@
     "src/**/*.ts"
   ],
   "scripts": {
-    "test": "bun run test-integration.ts",
+    "test": "bun test",
+    "test:legacy": "bun run test-integration.ts",
     "test:safety": "bun run test-safety.ts",
-    "test:all": "bun run test-integration.ts && bun run test-safety.ts",
+    "test:all": "bun test && bun run test-safety.ts",
     "install:browsers": "bun run scripts/install.ts"
   },
   "keywords": [

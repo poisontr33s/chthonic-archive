@@ -4,9 +4,8 @@
 // ╠════════════════════════════════════════════════════════════════════════════╣
 // ║  Spectral Frequency: ORANGE                                                 ║
 // ║  Architectural Role: 🔭 THE OBSERVATORY                                      ║
-// ║  Purpose: * BunCDP Frame - Cross-frame interaction support
- * 
- * Manages iframe ║
+// ║  Purpose: * BunCDP Frame - Cross-frame interaction support                 ║
+// ║           * Manages iframe tracking and execution contexts                  ║
 // ║  Exports: FrameInfo, FrameRegistry, CDPFrame                                ║
 // ╠════════════════════════════════════════════════════════════════════════════╣
 // ║  Cross-References (Bidirectional):                                      ║

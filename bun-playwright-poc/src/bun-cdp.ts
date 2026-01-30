@@ -4,7 +4,7 @@
 // ╠════════════════════════════════════════════════════════════════════════════╣
 // ║  Spectral Frequency: ORANGE                                                 ║
 // ║  Architectural Role: 🔭 THE OBSERVATORY                                      ║
-// ║  Purpose: * BunCDP - A lightweight CDP (Chrome DevTools Protocol) wrapper for Bu ║
+// ║  Purpose: * BunCDP - A lightweight CDP wrapper for Bun                      ║
 // ║  Exports: CDPResponse, CDPEvent, BrowserVersion, TargetInfo, BunCDPOptions  ║
 // ╠════════════════════════════════════════════════════════════════════════════╣
 // ║  Cross-References (Bidirectional):                                      ║

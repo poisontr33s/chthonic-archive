@@ -4,9 +4,8 @@
 // ╠════════════════════════════════════════════════════════════════════════════╣
 // ║  Spectral Frequency: ORANGE                                                 ║
 // ║  Architectural Role: 🔭 THE OBSERVATORY                                      ║
-// ║  Purpose: * BunCDP - Bun-native Chrome automation library
- * 
- * Bypasses Playwr ║
+// ║  Purpose: * BunCDP - Bun-native Chrome automation library                  ║
+// ║           * Bypasses Playwright incompatibilities                          ║
 // ╠════════════════════════════════════════════════════════════════════════════╣
 // ║  Cross-References (Bidirectional):                                      ║
 // ║  Dependents (Rely on me):                                                ║
@@ -29,6 +28,16 @@ export { CDPPage, createPage, type PageOptions, type ElementHandle, type FrameIn
 
 // Frame support
 export { FrameRegistry, CDPFrame } from './bun-cdp-frame';
+
+// Crawler
+export { 
+  ChthonicCrawler, 
+  createKeywordHeuristic, 
+  createGitHubHeuristic,
+  type CrawlConfig, 
+  type CrawlNode, 
+  type KnowledgeGraph 
+} from './bun-cdp-crawler';
 
 // Element utilities (for advanced usage)
 export {

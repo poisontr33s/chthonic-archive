@@ -4,9 +4,8 @@
 // ╠════════════════════════════════════════════════════════════════════════════╣
 // ║  Spectral Frequency: ORANGE                                                 ║
 // ║  Architectural Role: 🔭 THE OBSERVATORY                                      ║
-// ║  Purpose: * BunCDP Element - Element interaction via CDP
- * 
- * Translates CSS s ║
+// ║  Purpose: * BunCDP Element - Element interaction via CDP                  ║
+// ║           * Translates CSS selectors to CDP NodeIds                        ║
 // ║  Exports: BoxModel, ElementHandle                                           ║
 // ╠════════════════════════════════════════════════════════════════════════════╣
 // ║  Cross-References (Bidirectional):                                      ║
