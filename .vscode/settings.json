@@ -251,5 +251,7 @@
     "claudeCode.preferredLocation": "panel",
 
     // === MISC ===
-    "@azure.enableAutoSetAzureRules": false
+    "@azure.enableAutoSetAzureRules": false,
+    "chatgpt.commentCodeLensEnabled": true,
+    "chatgpt.openOnStartup": true
 }
