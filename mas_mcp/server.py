@@ -1,11 +1,5 @@
 #!/usr/bin/env python3
-# /// script
-# requires-python = ">=3.13"
-# dependencies = [
-#     "fastmcp",
-#     "pydantic",
-# ]
-# ///
+
 """
 @SID: SERVER_MPW_ROUTER_V1
 @Type: Core Gateway
