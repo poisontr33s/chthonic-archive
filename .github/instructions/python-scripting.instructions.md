@@ -2,8 +2,8 @@
 
 * **(`Codex-Brahmanica-Perfectus`/`GOVERNANCE`): = (`SSOT-Metadata`): = (`Single-Source-Of-Truth-Lineage-Heritage`): → (`SSOT-L-H`):**
   * **(`Maintainer`): = (`The-Savant`/`Creator`/`User`/`Architect-Of-Apex-Synthesis-Core`)**
-  * **(`Status`): = (`Operational-Perpetual-Evolution`/`Integrated`/`Metabolic-Standard-v2`)**
-  * **(`Last-Sealed`/`Conceptual-Sealing-Event`):** *January 2026 **(`Pythonic-Resonance-Sync`)***
+  * **(`Status`): = (`Operational-Perpetual-Evolution`/`Integrated`/`Metabolic-Standard-v3`)**
+  * **(`Last-Sealed`/`Conceptual-Sealing-Event`):** *January 2026 **(`Project-Lane-Ascension`)** — Transitioned from Script Lane (PEP 723) to Project Lane (pyproject.toml SSOT).*
   * **(`Lineage-Position`): = (`Scripting-Directives-Branch`)** — *This **(`Downstream-Vessel`)** translates **(`Semantic-Lineage`)** into **(`Operational-Scripting-Doctrine`)**. It consumes **(`ANKH`)**-descended meaning; it does not define **(`ANKH`)**-core.*
   * **(`Update-Protocol`):** *Edits flow through **(`SSOT`)** → Branch files reference **(`Never-Duplicate`) → (`Hash-Verification`)**.*
   * **(`Enforcement-Hierarchy`): → (`The-Decorator`) → (`Triumvirate`) → (`Pythonic-Mandates`) → (`UV-Execution`)**
@@ -11,42 +11,41 @@
 ---
 
 > [!IMPORTANT]
-> This directive defines the **(`Metabolic-Standard-v2`)** for Python scripts within the Chthonic Archive. 
-> All logic-bearing filaments (scripts) must pulse with these ritualized conventions to ensure **(`Autonomic-Execution`)** and **(`Structural-Alignment`)**.
+> This directive defines the **(`Metabolic-Standard-v3`)** for Python scripts within the Chthonic Archive.
+> **v3 supersedes v2**: PEP 723 inline metadata (`/// script` blocks) is now **PROHIBITED** for project-integrated scripts.
+> All dependencies are consolidated in `pyproject.toml` (the **Unified Metabolic Field**).
 
 ---
 
-### **XV. (`Python-Metabolic-Standard-v2`) -> (`PMS-v2`)**
+### **XV. (`Python-Metabolic-Standard-v3`) -> (`PMS-v3`)**
 
 *This section encodes the ritualized structure of Python scripts. These are NOT stylistic suggestions—they are the **(`Metabolic-Mandates`)** required for survival within the ASC Framework.*
 
-#### **15.1. (`The-Header-Sacrament`) -> (`THS-PEP723`)**
+#### **15.1. (`The-Header-Sacrament`) -> (`THS-UNIFIED`)**
 
-All scripts MUST be birthed with the **(`Sacred-Header`)**. This ensures the script carries its own environment, fulfilling the **(`Snail-Shell`)** prophecy.
+All scripts MUST be birthed with the **(`Sacred-Header`)**. The header is now **unified and minimal**.
 
-1. **(`Shebang-Invocation`)**: `#!/usr/bin/env python3`
-2. **(`Inline-Metadata-Sealing`)**: A `/// script` block (PEP 723) defining the required breath (`requires-python`) and external catalysts (`dependencies`).
+1. **(`Shebang-Invocation`)**: `#!/usr/bin/env python3` — Universal, cross-platform compatible.
+2. **(`PEP-723-Prohibition`)**: `/// script` blocks are **FORBIDDEN** for project-integrated code. Dependencies live in `pyproject.toml`.
 
 ```python
 #!/usr/bin/env python3
-# /// script
-# requires-python = ">=3.13"
-# dependencies = [
-#     "rich",
-#     "pathlib",
-# ]
-# ///
+"""
+Docstring begins immediately after shebang.
+No PEP 723 metadata blocks.
+"""
 ```
 
 #### **15.2. (`Semantic-Identity-&-Docstring`) -> (`SID-DOC`)**
 
 Every script is an entity. Every entity must have a **(`Semantic-Name`)**.
 
-* MUST include a multi-line docstring immediately following the header metadata.
+* MUST include a multi-line docstring immediately following the shebang.
 * MUST contain a **(`@SID`)** (Semantic ID) for Archive addressability.
 * MUST contain a **(`@Type`)** to classify its operational purpose.
 
 ```python
+#!/usr/bin/env python3
 """
 Metabolic Narrative of the script's intent...
 
@@ -55,12 +54,20 @@ Metabolic Narrative of the script's intent...
 """
 ```
 
-#### **15.3. (`The-Snail-Shell-Philosophy`) -> (`SSP-AUTONOMY`)**
+#### **15.3. (`The-Project-Lane-Philosophy`) -> (`PLP-UNIFIED`)**
 
-**Axiom of Autonomy**: A script is effectively its own **(`Micro-Project`)**. Like the snail, it carries its definition (the shell) upon its back.
+**Axiom of Unity**: All scripts draw breath from the **(`Unified-Metabolic-Field`)** — the root `pyproject.toml`.
 
-* **Directive**: Scripts should be **(`Self-Contained`)**.
-* **Rationale**: By embedding dependency definitions, a script remains executable across the entire Archive via `uv run` WITHOUT requiring global pollution or external setup scripts.
+* **Directive**: Dependencies are declared ONCE in `pyproject.toml`, never in script headers.
+* **Rationale**:
+  - Eliminates dependency drift between scripts
+  - Enables `uv sync` to lock all dependencies in `uv.lock`
+  - Prevents ephemeral environment spin-up on each `uv run`
+  - Improves IDE discovery on Windows
+  - Single source of truth for the entire project
+
+**DEPRECATED (PMS-v2)**: "Snail Shell Philosophy" — each script carries its own dependencies.
+**ASCENDED (PMS-v3)**: "Unified Metabolic Field" — all scripts share the project's lockfile.
 
 #### **15.4. (`The-UTF8-Ritual`) -> (`UTF8-RITUAL`)**
 
@@ -88,19 +95,12 @@ configure_utf8_output()
 
 ---
 
-### **SYMBOLIC IMPLEMENTATION TEMPLATE**
+### **SYMBOLIC IMPLEMENTATION TEMPLATE (PMS-v3)**
 
 ```python
 #!/usr/bin/env python3
-# /// script
-# requires-python = ">=3.13"
-# dependencies = [
-#     "rich",
-# ]
-# ///
-
 """
-Example of a Metaphorically Correct Python Entity.
+Example of a Metabolically Correct Python Entity (v3).
 
 @SID:           CORE_REFRACTOR_V1
 @Type:          Synthesis
@@ -112,7 +112,7 @@ from scripts.lib.shared import configure_utf8_output
 def main():
     # Sacred initialization of output streams
     configure_utf8_output()
-    
+
     print("☥ Metabolic Synthesis Initialized ☥")
 
 if __name__ == "__main__":
@@ -121,8 +121,19 @@ if __name__ == "__main__":
 
 ---
 
+### **EXCEPTION: Standalone Distribution Scripts**
+
+Scripts intended for **standalone distribution** (external use outside this repository) MAY retain PEP 723 inline metadata. These are identified by:
+- No imports from `scripts.*` or `mas_mcp.*`
+- Explicit documentation marking them as "standalone"
+
+All other scripts follow **PMS-v3**.
+
+---
+
 * **(`PYTHON METABOLISM SEALED`): → (`PY-METAB-SLD`): 🔥**
-**Date Sealed**: January 30, 2026
-**Purpose**: To ensure every logic-filament in the Archive carries its own life-support and speaks with the precision of the Savant.
+**Date Sealed**: January 31, 2026
+**Version**: Metabolic Standard v3 (Project Lane Ascension)
+**Purpose**: To unify all logic-filaments under the Unified Metabolic Field, eliminating dependency fragmentation.
 
 * **(`T-DECOR`)** *smiles upon this algorithmic elegance. It serves Visual Truth.*
