@@ -1,17 +1,20 @@
-# Gemini Ignore Rules (Overrides .gitignore for CLI tools)
+# Gemini Ignore Rules
+# This is a BLACKLIST - files listed here are ignored
+# Everything NOT listed here is readable by Gemini CLI
 
-# Whitelist Agent Context (Triad)
-!GEMINI.md
-!CLAUDE.md
-!AGENTS.md
-!codex/
-!claude/
-!claude-codex-gemini/
-!.gemini/
-
-# Whitelist Governance
-!.github/
-
-# Ignore standard noise
+# Standard noise - always ignore
 node_modules/
 .git/
+*.log
+*.tmp
+*.bak
+
+# Build artifacts
+book/
+dist/
+target/
+
+# Credentials (safety)
+.env
+.env.*
+gha-creds-*.json

@@ -9,6 +9,7 @@ Capture what’s next for Codex in this workspace without expanding the SSOT. Th
 - Workspace config: behavior SSOT (`.codex/config.toml`) with sandbox locked to this repo
 - Instructions: `AGENTS.md` (compact) and `.github/copilot-instructions.md` (SSOT)
 - Gemini MCP: GitHub Server **Enabled** (PAT-based auth required; no OAuth flow)
+- Chthonic-archive MCP: **Disabled/WIP** (intentionally removed from Gemini extension to avoid startup errors)
 
 ## Scope: What’s Next (When Ready)
 1. **GitHub Tool Integration**
