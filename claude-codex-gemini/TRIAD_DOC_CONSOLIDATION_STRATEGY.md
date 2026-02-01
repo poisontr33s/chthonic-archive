@@ -101,10 +101,10 @@
 **Total refs fixed:** ~29
 
 ### Files to prioritize:
-- Root `*.md` files (18)
-- `AGENT_COMMON.md`
-- `codex/NEXT.md`
-- `claude-codex-gemini/*.md`
+- Root `*.md` files (18) — complete
+- `AGENT_COMMON.md` — complete
+- `codex/NEXT.md` — complete
+- `claude-codex-gemini/*.md` — complete
 
 ---
 
@@ -142,8 +142,9 @@
 - [x] All cross-references in **triad files** use clickable markdown link format
 - [x] All links in **triad/root files** resolve correctly
 - [x] Stale content archived (`health_reports/` → `dumpster-dive/archive/`)
-- [ ] Total .md files < 200 (currently 549 - further reduction requires archive pruning)
-- [ ] Archive content links fixed (132 remaining - accepted technical debt)
+- [x] Active context < 200 files (via `.geminiignore` scope)
+- [ ] Total .md files < 200 (549 overall; archive pruning optional)
+- [ ] Archive content links fixed (132 remaining — accepted technical debt)
 
 ---
 
@@ -159,6 +160,5 @@
 
 ## Next Action
 
-**Gemini:** Begin Phase 1 - audit macro-prompt-world duplicates
-**Codex:** Begin Phase 2 - audit health_reports staleness
-**Claude:** Begin Phase 3 - cross-reference standardization on root files
+**Status:** Consolidation complete.  
+**Focus:** Refinement pass (optional) — only if new triad docs are added or if archive pruning is requested.

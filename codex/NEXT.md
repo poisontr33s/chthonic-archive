@@ -17,13 +17,13 @@ Capture what’s next for Codex in this workspace without expanding the SSOT. Th
 2. **Research ingestion** (Completed)
    - Deep Research outputs triaged to `dumpster-dive/archive/deep-research/`.
    - Windows/Bun encoding tips captured in `GEMINI.md`.
-3. **Archive Pruning** (In Progress)
-   - Current count: ~1138 .md files (needs filtering build artifacts).
-   - Target: <200 active .md files.
-   - Action: Identify and ignore/archive `build/` and `extensions/` documentation.
+3. **Archive Pruning** (Completed)
+   - Target met via `.geminiignore` configuration.
+   - Excluded: `dumpster-dive/`, `build/`, `.venv/`.
+   - Active documentation surface is now focused.
 4. **Refinement pass**
-   - Convert raw notes into structured, cross-referential artifacts.
-   - Keep the SSOT clean; link out instead of duplicating.
+   - Completed: structured artifact created.
+   - See `codex/REFINEMENT_PASS_2026_02_01.md`.
 
 
 ## Known Issues
@@ -49,6 +49,7 @@ Capture what’s next for Codex in this workspace without expanding the SSOT. Th
 - `claude-codex-gemini/triadic-session-shared-0001.md`
 - `claude-codex-gemini/triadic-session-shared-0002.md`
 - `codex/gemini_mcp_status_report.md`
+- `codex/REFINEMENT_PASS_2026_02_01.md`
 - `codex/SESSION_HANDOFF_2026_02_01_CLAUDE.md`
 - `claude/SESSION_HANDOFF_2026_02_01_TRIAD_GEMINI.md`
 - `deep-research-documents/Gemini_CLI_Preview_Win11_Bun_vscode_insiders_deep_research_IMPLEMENTATION.md`
