@@ -41,7 +41,7 @@ Raw Session → [Parse] → [Extract Artifacts] → [Compress] → [Beautify] �
 - Full formatted conversation
 
 **Prompt output** (`*.prompt.md`):
-- VS Code-compatible format
+- VS Code-insiders-compatible format
 - Generalized with placeholders
 - Tool requirements specified
 
