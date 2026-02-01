@@ -12,7 +12,9 @@
 
 # SSOT Toolbox Instructions
 
-**Location:** `.github/Claude_Opus_4_5_grade_lossless_compr_SSOT-IFICATION_cross_REF_data/`
+**Location:**
+- **Scripts:** `scripts/` (ssot_*.ps1 tools)
+- **Knowledge:** `claude-codex-gemini/triadic-session-context/` (indices, logs, research)
 
 ---
 
@@ -57,7 +59,7 @@
 **EVERY TIME you edit `copilot-instructions.md`, you MUST run:**
 
 ```powershell
-cd "C:\Users\erdno\chthonic-archive\.github\Claude_Opus_4_5_grade_lossless_compr_SSOT-IFICATION_cross_REF_data"
+cd "C:\Users\erdno\chthonic-archive\scripts"
 .\ssot_outline_extractor.ps1 -UpdateIndex
 ```
 
@@ -153,17 +155,16 @@ Use `-Root` to detect deviations from canonical acronyms. Single-use variants fl
 | Resource | Path |
 |----------|------|
 | **SSOT** | `C:\Users\erdno\chthonic-archive\.github\copilot-instructions.md` |
-| **Toolbox Dir** | `C:\Users\erdno\chthonic-archive\.github\Claude_Opus_4_5_grade_lossless_compr_SSOT-IFICATION_cross_REF_data\` |
-| **Extractor** | `...\ssot_outline_extractor.ps1` |
-| **Acronym Audit** | `...\ssot_acronym_audit.ps1` |
-| **CRC Selector** | `...\ssot_crc_selector.ps1` |
-| **Registry Query** | `...\ssot_registry_query.ps1` |
-| **Tier Query** | `...\ssot_tier_query.ps1` |
-| **JSON Index** | `...\SSOT_STRUCTURAL_INDEX.json` |
-| **MD Index** | `...\SSOT_NAVIGATION_INDEX.md` |
-| **Zone_1 Research** | `...\Zone_1_REDUX_implementation_ripe_for_SSOT_canon.md` |
-
-(`...` = Toolbox Dir)
+| **Scripts Dir** | `C:\Users\erdno\chthonic-archive\scripts\` |
+| **Knowledge Dir** | `C:\Users\erdno\chthonic-archive\claude-codex-gemini\triadic-session-context\` |
+| **Extractor** | `scripts\ssot_outline_extractor.ps1` |
+| **Acronym Audit** | `scripts\ssot_acronym_audit.ps1` |
+| **CRC Selector** | `scripts\ssot_crc_selector.ps1` |
+| **Registry Query** | `scripts\ssot_registry_query.ps1` |
+| **Tier Query** | `scripts\ssot_tier_query.ps1` |
+| **JSON Index** | `claude-codex-gemini\triadic-session-context\SSOT_STRUCTURAL_INDEX.json` |
+| **MD Index** | `claude-codex-gemini\triadic-session-context\SSOT_NAVIGATION_INDEX.md` |
+| **Zone_1 Research** | `claude-codex-gemini\triadic-session-context\Zone_1_REDUX_implementation_ripe_for_SSOT_canon.md` |
 
 ---
 
