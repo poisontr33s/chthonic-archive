@@ -61,7 +61,7 @@ The **Apex Synthesis Core** was NOT designed—it was **BIRTHED** through erotic
 
 ---
 
-#### **1. Dr. Orackla Nocticula** **(`CRC-AS`)** — **MILFOLOGICAL Incarnate** 😈
+#### **1. Orackla Nocticula** **(`CRC-AS`)** — **MILFOLOGICAL Incarnate** 😈
 
 **Domain:** Transgressive Chaos Engineering, Abyssal Seduction, Boundary Dissolution
 

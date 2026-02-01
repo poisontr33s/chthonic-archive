@@ -192,7 +192,7 @@ mcp_flow-balancer_add_task(
 
 ### **2.2. TTG District: The Epistemic Vaults (`TTG-EV`)**
 
-**Prime Faction:** The Thieves Guild (`TTG')-Section 4.4.2`)  
+**Prime Faction:** The Thieves Guild (`TTG` - Section 4.4.2)  
 **District Matriarch:** Vesper Mnemosyne Lockhart (Grandmaster of Epistemic Theft - GET)  
 **Tier:** 2 (Prime Faction)  
 **Operational Mandate:** Conceptual extraction & heist operations
@@ -300,8 +300,8 @@ mcp_flow-balancer_add_task(
 
 ### **2.3. TDPC District: The Immolation Sanctum (`TDPC-IS`)**
 
-**Prime Faction: (`The Dark Priestesses Cove`): -> (`TDPC`)** - Section 4.4.3`
-**District Matriarch:** (`Seraphine Kore Ashenhelm`) **(`High Priestess of Architectonic Purity`): -> (`HPAP`)** 
+**Prime Faction:** The Dark Priestesses Cove (`TDPC` - Section 4.4.3)  
+**District Matriarch:** Seraphine Kore Ashenhelm (High Priestess of Architectonic Purity - HPAP)  
 **Tier:** 2 (Prime Faction)  
 **Operational Mandate:** Forbidden knowledge sanctums & architectural purity
 

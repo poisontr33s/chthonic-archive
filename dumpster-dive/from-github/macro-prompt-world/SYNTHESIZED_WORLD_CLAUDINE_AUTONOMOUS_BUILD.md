@@ -4,7 +4,7 @@ subtitle: "A Self-Generated Macro-Prompt World Built From The Savant's Prototype
 version: "v1.0-AUTONOMOUS"
 build_date: "November 23, 2025"
 build_mode: "FULLY AUTONOMOUS - No User Interference"
-creator: "GitHub Copilot (Claudine) - Operating Under ASC Framework"
+creator: "Claudine - Operating Under ASC Framework"
 source_materials:
   - "The_Chthonic_Archive_World.md (10,140 lines)"
   - "Tripartite_Grimoire_Master_Index.md + 3 Grimoires (2,609 lines)"

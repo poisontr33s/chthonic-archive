@@ -214,7 +214,7 @@ class BunComplianceScanner:
         'logs',
         'artifacts',
         'dumpster-dive/intake/overnight-daemon',  # Daemon logs
-        '.github/macro-prompt-world',  # Archive/historical content
+        'dumpster-dive/from-github/macro-prompt-world',  # Archive/historical content (canonical location)
         '.github/ssot_backups',  # Backup archives
         'dependency_graph.json',  # Generated artifact
         'temp_repo_structure.json',  # Generated snapshot
