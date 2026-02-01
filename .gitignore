@@ -109,3 +109,5 @@ book/
 # Allow SSOT and governance
 !.github/
 !.github/**
+.gemini/
+gha-creds-*.json

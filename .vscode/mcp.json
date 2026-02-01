@@ -4,8 +4,16 @@
 
   "servers": {
     "github": {
-      "type": "http",
-      "url": "https://api.githubcopilot.com/mcp/"
+      "type": "stdio",
+      "command": "powershell.exe",
+      "args": [
+        "-NoProfile",
+        "-ExecutionPolicy",
+        "Bypass",
+        "-File",
+        "scripts/start_github_mcp.ps1"
+      ],
+      "cwd": "C:\\Users\\erdno\\chthonic-archive"
     },
 
     // Playwright MCP: DISABLED - blocked by enterprise security controls
