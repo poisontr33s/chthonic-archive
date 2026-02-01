@@ -178,7 +178,7 @@ External sessions do NOT upstream into SSOT directly.
 | Axiomatic Drift | `AxiomVerifier` implemented in Rust | Core integrity checked on boot |
 | Hash Mismatch | Recalculated SHA256 of `copilot-instructions.md` | Verification passes (`23658c44...`) |
 
-**File:** [src/data/verifier.rs](src/data/verifier.rs)
+**File:** [src/data/verifier.rs](../../src/data/verifier.rs)
 
 ### Phase 15: Spatial Actualization
 
@@ -188,9 +188,9 @@ External sessions do NOT upstream into SSOT directly.
 
 **Changes:**
 1. **Pipeline Evolution:** `PushConstants` expanded to 208 bytes (MVP + Layer Color).
-2. **Shader Alchemy:** [iso_grid.frag](assets/shaders/iso_grid.frag) and [iso_grid.vert](assets/shaders/iso_grid.vert) updated to interpolate `layer_color`.
+2. **Shader Alchemy:** [iso_grid.frag](../../assets/shaders/iso_grid.frag) and [iso_grid.vert](../../assets/shaders/iso_grid.vert) updated to interpolate `layer_color`.
 3. **World Manifestation:** `ProceduralEngine` now populates 6 `District` entities with canonical colors (Obsidian/Hinoki, Starfield, etc.).
-4. **Main Loop Ritual:** [src/main.rs](src/main.rs) now cycles through spectral frequencies of the 6 layers every 120 frames.
+4. **Main Loop Ritual:** [src/main.rs](../../src/main.rs) now cycles through spectral frequencies of the 6 layers every 120 frames.
 
 **Status:**
 - [x] Rust Engine stable

@@ -30,3 +30,15 @@ If Gemini can't read files due to `.gitignore` patterns:
 1. Check `.gemini/settings.json` has `"respectGitIgnore": false`
 2. Check `.geminiignore` is a blacklist (not broken whitelist)
 3. Restart Gemini CLI to clear cache
+
+## Windows & Encoding
+
+To prevent "Mojibake" (garbled text) in PowerShell on Windows 11:
+1. Ensure your `$PROFILE` forces UTF-8:
+   ```powershell
+   [Console]::InputEncoding = [Console]::OutputEncoding = $OutputEncoding = [System.Text.Encoding]::UTF8
+   ```
+2. In VS Code settings:
+   - `terminal.integrated.detectLocale`: "off"
+   - `terminal.integrated.gpuAcceleration`: "on"
+

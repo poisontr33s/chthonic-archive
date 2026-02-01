@@ -1,0 +1,745 @@
+{
+  "checked": 510,
+  "broken": [
+    {
+      "file": "C:\\Users\\erdno\\chthonic-archive\\CLAUDE_CODE_IDE_SETUP.md",
+      "link": "SETUP_GEMINI_CLAUDE.md",
+      "resolved": "C:\\Users\\erdno\\chthonic-archive\\SETUP_GEMINI_CLAUDE.md"
+    },
+    {
+      "file": "C:\\Users\\erdno\\chthonic-archive\\CLAUDE_README.md",
+      "link": "./sessionDUMP0001.txt",
+      "resolved": "C:\\Users\\erdno\\chthonic-archive\\sessionDUMP0001.txt"
+    },
+    {
+      "file": "C:\\Users\\erdno\\chthonic-archive\\PWSH_RULES.md",
+      "link": "docs/ARBITRAGE-BRIDGE.md",
+      "resolved": "C:\\Users\\erdno\\chthonic-archive\\docs\\ARBITRAGE-BRIDGE.md"
+    },
+    {
+      "file": "C:\\Users\\erdno\\chthonic-archive\\STRATEGIC_PLAN.md",
+      "link": ".github/Claude_Opus_4_5_grade_lossless_compr_SSOT-IFICATION_cross_REF_data/STRATEGIC_PLAN.md",
+      "resolved": "C:\\Users\\erdno\\chthonic-archive\\.github\\Claude_Opus_4_5_grade_lossless_compr_SSOT-IFICATION_cross_REF_data\\STRATEGIC_PLAN.md"
+    },
+    {
+      "file": "C:\\Users\\erdno\\chthonic-archive\\STRATEGIC_PLAN.md",
+      "link": ".github/Claude_Opus_4_5_grade_lossless_compr_SSOT-IFICATION_cross_REF_data/STRATEGIC_PLAN.md",
+      "resolved": "C:\\Users\\erdno\\chthonic-archive\\.github\\Claude_Opus_4_5_grade_lossless_compr_SSOT-IFICATION_cross_REF_data\\STRATEGIC_PLAN.md"
+    },
+    {
+      "file": "C:\\Users\\erdno\\chthonic-archive\\WET_PAPER_TO_GOLD_METHODOLOGY.md",
+      "link": "../CLAUDE.md",
+      "resolved": "C:\\Users\\erdno\\CLAUDE.md"
+    },
+    {
+      "file": "C:\\Users\\erdno\\chthonic-archive\\.vscode\\SETTINGS_DIAGNOSIS.md",
+      "link": "../extensions/DEVHOST_TESTING.md",
+      "resolved": "C:\\Users\\erdno\\chthonic-archive\\extensions\\DEVHOST_TESTING.md"
+    },
+    {
+      "file": "C:\\Users\\erdno\\chthonic-archive\\claude\\SESSION_HANDOFF_2026_01_29.md",
+      "link": "path",
+      "resolved": "C:\\Users\\erdno\\chthonic-archive\\claude\\path"
+    },
+    {
+      "file": "C:\\Users\\erdno\\chthonic-archive\\claude-codex-gemini\\TRIAD_DOC_CONSOLIDATION_STRATEGY.md",
+      "link": "path",
+      "resolved": "C:\\Users\\erdno\\chthonic-archive\\claude-codex-gemini\\path"
+    },
+    {
+      "file": "C:\\Users\\erdno\\chthonic-archive\\claude-codex-gemini\\TRIAD_DOC_CONSOLIDATION_STRATEGY.md",
+      "link": "path",
+      "resolved": "C:\\Users\\erdno\\chthonic-archive\\claude-codex-gemini\\path"
+    },
+    {
+      "file": "C:\\Users\\erdno\\chthonic-archive\\claude-codex-gemini\\TRIAD_DOC_CONSOLIDATION_STRATEGY.md",
+      "link": "path",
+      "resolved": "C:\\Users\\erdno\\chthonic-archive\\claude-codex-gemini\\path"
+    },
+    {
+      "file": "C:\\Users\\erdno\\chthonic-archive\\debugging_data\\codex_5.1_sabotage_trick.md",
+      "link": "file:///c%3A/Users/erdno/.vscode-insiders/extensions/github.copilot-chat-0.37.2026012201/assets/prompts/savePrompt.prompt.md",
+      "resolved": "C:\\Users\\erdno\\chthonic-archive\\debugging_data\\file:\\c%3A\\Users\\erdno\\.vscode-insiders\\extensions\\github.copilot-chat-0.37.2026012201\\assets\\prompts\\savePrompt.prompt.md"
+    },
+    {
+      "file": "C:\\Users\\erdno\\chthonic-archive\\debugging_data\\codex_5.1_sabotage_trick.md",
+      "link": "file:///c%3A/Users/erdno/chthonic-archive/untitled_beautifySessionArchive.prompt.md",
+      "resolved": "C:\\Users\\erdno\\chthonic-archive\\debugging_data\\file:\\c%3A\\Users\\erdno\\chthonic-archive\\untitled_beautifySessionArchive.prompt.md"
+    },
+    {
+      "file": "C:\\Users\\erdno\\chthonic-archive\\debugging_data\\codex_5.1_sabotage_trick.md",
+      "link": "file:///c%3A/Users/erdno/chthonic-archive/.github/prompts/beautifySessionArchive.prompt.md",
+      "resolved": "C:\\Users\\erdno\\chthonic-archive\\debugging_data\\file:\\c%3A\\Users\\erdno\\chthonic-archive\\.github\\prompts\\beautifySessionArchive.prompt.md"
+    },
+    {
+      "file": "C:\\Users\\erdno\\chthonic-archive\\debugging_data\\codex_5.1_sabotage_trick.md",
+      "link": "file:///c%3A/Users/erdno/.vscode-insiders/extensions/github.copilot-chat-0.37.2026012202/assets/prompts/savePrompt.prompt.md",
+      "resolved": "C:\\Users\\erdno\\chthonic-archive\\debugging_data\\file:\\c%3A\\Users\\erdno\\.vscode-insiders\\extensions\\github.copilot-chat-0.37.2026012202\\assets\\prompts\\savePrompt.prompt.md"
+    },
+    {
+      "file": "C:\\Users\\erdno\\chthonic-archive\\debugging_data\\codex_5.1_sabotage_trick.md",
+      "link": "file:///c%3A/Users/erdno/.vscode-insiders/extensions/github.copilot-chat-0.37.2026012202/assets/prompts/savePrompt.prompt.md",
+      "resolved": "C:\\Users\\erdno\\chthonic-archive\\debugging_data\\file:\\c%3A\\Users\\erdno\\.vscode-insiders\\extensions\\github.copilot-chat-0.37.2026012202\\assets\\prompts\\savePrompt.prompt.md"
+    },
+    {
+      "file": "C:\\Users\\erdno\\chthonic-archive\\debugging_data\\codex_5.1_sabotage_trick.md",
+      "link": "file:///c%3A/Users/erdno/chthonic-archive/.github/prompts/beautifySessionArchive.prompt.md",
+      "resolved": "C:\\Users\\erdno\\chthonic-archive\\debugging_data\\file:\\c%3A\\Users\\erdno\\chthonic-archive\\.github\\prompts\\beautifySessionArchive.prompt.md"
+    },
+    {
+      "file": "C:\\Users\\erdno\\chthonic-archive\\debugging_data\\codex_5.1_sabotage_trick.md",
+      "link": "file:///c%3A/Users/erdno/chthonic-archive/BUN_PLAYWRIGHT_VALIDATION.md",
+      "resolved": "C:\\Users\\erdno\\chthonic-archive\\debugging_data\\file:\\c%3A\\Users\\erdno\\chthonic-archive\\BUN_PLAYWRIGHT_VALIDATION.md"
+    },
+    {
+      "file": "C:\\Users\\erdno\\chthonic-archive\\docs\\DEVELOPMENT_STATE.md",
+      "link": "logs/sessions/session_2025-12-31_0746_vscode-extension-debug.md",
+      "resolved": "C:\\Users\\erdno\\chthonic-archive\\docs\\logs\\sessions\\session_2025-12-31_0746_vscode-extension-debug.md"
+    },
+    {
+      "file": "C:\\Users\\erdno\\chthonic-archive\\docs\\MIGRATION_GUIDE_CHTHONIC_CLI.md",
+      "link": "CLAUDE.md",
+      "resolved": "C:\\Users\\erdno\\chthonic-archive\\docs\\CLAUDE.md"
+    },
+    {
+      "file": "C:\\Users\\erdno\\chthonic-archive\\docs\\SESSION_2026-01-17_SYNTHESIS.md",
+      "link": "docs/SESSION_2026-01-17_CLEANUP.md",
+      "resolved": "C:\\Users\\erdno\\chthonic-archive\\docs\\docs\\SESSION_2026-01-17_CLEANUP.md"
+    },
+    {
+      "file": "C:\\Users\\erdno\\chthonic-archive\\docs\\SESSION_2026-01-17_SYNTHESIS.md",
+      "link": "docs/HANDOFF_TO_CLAUDE.md",
+      "resolved": "C:\\Users\\erdno\\chthonic-archive\\docs\\docs\\HANDOFF_TO_CLAUDE.md"
+    },
+    {
+      "file": "C:\\Users\\erdno\\chthonic-archive\\docs\\SESSION_2026-01-17_SYNTHESIS.md",
+      "link": "docs/TOOL_CONSOLIDATION_ROADMAP.md",
+      "resolved": "C:\\Users\\erdno\\chthonic-archive\\docs\\docs\\TOOL_CONSOLIDATION_ROADMAP.md"
+    },
+    {
+      "file": "C:\\Users\\erdno\\chthonic-archive\\docs\\SESSION_2026-01-17_SYNTHESIS.md",
+      "link": "docs/TOOL_CONSOLIDATION_ROADMAP.md",
+      "resolved": "C:\\Users\\erdno\\chthonic-archive\\docs\\docs\\TOOL_CONSOLIDATION_ROADMAP.md"
+    },
+    {
+      "file": "C:\\Users\\erdno\\chthonic-archive\\docs\\TOOL_CONSOLIDATION_ROADMAP.md",
+      "link": "docs/HANDOFF_TO_CLAUDE.md",
+      "resolved": "C:\\Users\\erdno\\chthonic-archive\\docs\\docs\\HANDOFF_TO_CLAUDE.md"
+    },
+    {
+      "file": "C:\\Users\\erdno\\chthonic-archive\\docs\\TRUE_MISSING_FILES_REVIEW.md",
+      "link": "docs/FILE.md",
+      "resolved": "C:\\Users\\erdno\\chthonic-archive\\docs\\docs\\FILE.md"
+    },
+    {
+      "file": "C:\\Users\\erdno\\chthonic-archive\\docs\\VALIDATION_COMPLETION_REPORT.md",
+      "link": "path",
+      "resolved": "C:\\Users\\erdno\\chthonic-archive\\docs\\path"
+    },
+    {
+      "file": "C:\\Users\\erdno\\chthonic-archive\\docs\\VALIDATION_COMPLETION_REPORT.md",
+      "link": "path",
+      "resolved": "C:\\Users\\erdno\\chthonic-archive\\docs\\path"
+    },
+    {
+      "file": "C:\\Users\\erdno\\chthonic-archive\\scripts\\technical-directives.instructions.md",
+      "link": "../copilot-instructions.md#L6634",
+      "resolved": "C:\\Users\\erdno\\chthonic-archive\\copilot-instructions.md"
+    },
+    {
+      "file": "C:\\Users\\erdno\\chthonic-archive\\mas_mcp\\.venv-py314-parked\\Lib\\site-packages\\onnxruntime\\Privacy.md",
+      "link": "../README.md#binaries",
+      "resolved": "C:\\Users\\erdno\\chthonic-archive\\mas_mcp\\.venv-py314-parked\\Lib\\site-packages\\README.md"
+    },
+    {
+      "file": "C:\\Users\\erdno\\chthonic-archive\\mas_mcp\\.venv-py314-parked\\Lib\\site-packages\\onnxruntime\\Privacy.md",
+      "link": "../onnxruntime/core/platform/telemetry.h",
+      "resolved": "C:\\Users\\erdno\\chthonic-archive\\mas_mcp\\.venv-py314-parked\\Lib\\site-packages\\onnxruntime\\core\\platform\\telemetry.h"
+    },
+    {
+      "file": "C:\\Users\\erdno\\chthonic-archive\\mas_mcp\\.venv-py314-parked\\Lib\\site-packages\\onnxruntime\\Privacy.md",
+      "link": "../README.md#api-documentation",
+      "resolved": "C:\\Users\\erdno\\chthonic-archive\\mas_mcp\\.venv-py314-parked\\Lib\\site-packages\\README.md"
+    },
+    {
+      "file": "C:\\Users\\erdno\\chthonic-archive\\mas_mcp\\.venv-py314-parked\\Lib\\site-packages\\onnxruntime\\Privacy.md",
+      "link": "./C_API.md#telemetry",
+      "resolved": "C:\\Users\\erdno\\chthonic-archive\\mas_mcp\\.venv-py314-parked\\Lib\\site-packages\\onnxruntime\\C_API.md"
+    },
+    {
+      "file": "C:\\Users\\erdno\\chthonic-archive\\logs\\sessions\\README.md",
+      "link": "../../session_resumption_chthonic_progress.md",
+      "resolved": "C:\\Users\\erdno\\chthonic-archive\\session_resumption_chthonic_progress.md"
+    },
+    {
+      "file": "C:\\Users\\erdno\\chthonic-archive\\logs\\sessions\\README.md",
+      "link": "../../DEVELOPMENT_STATE.md",
+      "resolved": "C:\\Users\\erdno\\chthonic-archive\\DEVELOPMENT_STATE.md"
+    },
+    {
+      "file": "C:\\Users\\erdno\\chthonic-archive\\logs\\sessions\\session_2025-12-31_0746_vscode-extension-debug.md",
+      "link": "paths",
+      "resolved": "C:\\Users\\erdno\\chthonic-archive\\logs\\sessions\\paths"
+    },
+    {
+      "file": "C:\\Users\\erdno\\chthonic-archive\\dumpster-dive\\forge\\PROCESS_FLOW.md",
+      "link": "../../SSOT.md#10.3.1",
+      "resolved": "C:\\Users\\erdno\\chthonic-archive\\SSOT.md"
+    },
+    {
+      "file": "C:\\Users\\erdno\\chthonic-archive\\dumpster-dive\\forge\\PROCESS_FLOW.md",
+      "link": "../../SSOT.md#10.3",
+      "resolved": "C:\\Users\\erdno\\chthonic-archive\\SSOT.md"
+    },
+    {
+      "file": "C:\\Users\\erdno\\chthonic-archive\\dumpster-dive\\forge\\PROCESS_FLOW.md",
+      "link": "../../SSOT.md#4.5.1.2",
+      "resolved": "C:\\Users\\erdno\\chthonic-archive\\SSOT.md"
+    },
+    {
+      "file": "C:\\Users\\erdno\\chthonic-archive\\dumpster-dive\\protocols\\CROSS_REFERENCE_STANDARD.md",
+      "link": "path/to/file.ext",
+      "resolved": "C:\\Users\\erdno\\chthonic-archive\\dumpster-dive\\protocols\\path\\to\\file.ext"
+    },
+    {
+      "file": "C:\\Users\\erdno\\chthonic-archive\\dumpster-dive\\protocols\\CROSS_REFERENCE_STANDARD.md",
+      "link": "path/to/another.json",
+      "resolved": "C:\\Users\\erdno\\chthonic-archive\\dumpster-dive\\protocols\\path\\to\\another.json"
+    },
+    {
+      "file": "C:\\Users\\erdno\\chthonic-archive\\dumpster-dive\\protocols\\CROSS_REFERENCE_STANDARD.md",
+      "link": "path/to/consumer.md",
+      "resolved": "C:\\Users\\erdno\\chthonic-archive\\dumpster-dive\\protocols\\path\\to\\consumer.md"
+    },
+    {
+      "file": "C:\\Users\\erdno\\chthonic-archive\\dumpster-dive\\protocols\\CROSS_REFERENCE_STANDARD.md",
+      "link": "path/to/other.md",
+      "resolved": "C:\\Users\\erdno\\chthonic-archive\\dumpster-dive\\protocols\\path\\to\\other.md"
+    },
+    {
+      "file": "C:\\Users\\erdno\\chthonic-archive\\dumpster-dive\\protocols\\CROSS_REFERENCE_STANDARD.md",
+      "link": "path/to/sibling.md",
+      "resolved": "C:\\Users\\erdno\\chthonic-archive\\dumpster-dive\\protocols\\path\\to\\sibling.md"
+    },
+    {
+      "file": "C:\\Users\\erdno\\chthonic-archive\\dumpster-dive\\protocols\\CROSS_REFERENCE_STANDARD.md",
+      "link": "path/to/complement.md",
+      "resolved": "C:\\Users\\erdno\\chthonic-archive\\dumpster-dive\\protocols\\path\\to\\complement.md"
+    },
+    {
+      "file": "C:\\Users\\erdno\\chthonic-archive\\dumpster-dive\\protocols\\CROSS_REFERENCE_STANDARD.md",
+      "link": "../../src/module.rs",
+      "resolved": "C:\\Users\\erdno\\chthonic-archive\\src\\module.rs"
+    },
+    {
+      "file": "C:\\Users\\erdno\\chthonic-archive\\dumpster-dive\\protocols\\CROSS_REFERENCE_STANDARD.md",
+      "link": "protocols/FORGE_CIRCULATION_PROTOCOL.md",
+      "resolved": "C:\\Users\\erdno\\chthonic-archive\\dumpster-dive\\protocols\\protocols\\FORGE_CIRCULATION_PROTOCOL.md"
+    },
+    {
+      "file": "C:\\Users\\erdno\\chthonic-archive\\dumpster-dive\\protocols\\CROSS_REFERENCE_STANDARD.md",
+      "link": "path/to/new.md",
+      "resolved": "C:\\Users\\erdno\\chthonic-archive\\dumpster-dive\\protocols\\path\\to\\new.md"
+    },
+    {
+      "file": "C:\\Users\\erdno\\chthonic-archive\\dumpster-dive\\protocols\\CROSS_REFERENCE_STANDARD.md",
+      "link": "MIGRATION.md",
+      "resolved": "C:\\Users\\erdno\\chthonic-archive\\dumpster-dive\\protocols\\MIGRATION.md"
+    },
+    {
+      "file": "C:\\Users\\erdno\\chthonic-archive\\dumpster-dive\\protocols\\CROSS_REFERENCE_STANDARD.md",
+      "link": "ORE_MANIFEST.json",
+      "resolved": "C:\\Users\\erdno\\chthonic-archive\\dumpster-dive\\protocols\\ORE_MANIFEST.json"
+    },
+    {
+      "file": "C:\\Users\\erdno\\chthonic-archive\\dumpster-dive\\protocols\\CROSS_REFERENCE_STANDARD.md",
+      "link": "protocols/FORGE_CIRCULATION_PROTOCOL.md",
+      "resolved": "C:\\Users\\erdno\\chthonic-archive\\dumpster-dive\\protocols\\protocols\\FORGE_CIRCULATION_PROTOCOL.md"
+    },
+    {
+      "file": "C:\\Users\\erdno\\chthonic-archive\\dumpster-dive\\protocols\\CROSS_REFERENCE_STANDARD.md",
+      "link": "protocols/FORGE_PROTOCOL_LEVELS.md",
+      "resolved": "C:\\Users\\erdno\\chthonic-archive\\dumpster-dive\\protocols\\protocols\\FORGE_PROTOCOL_LEVELS.md"
+    },
+    {
+      "file": "C:\\Users\\erdno\\chthonic-archive\\dumpster-dive\\protocols\\CROSS_REFERENCE_STANDARD.md",
+      "link": "protocols/TEA_REGISTRY.json",
+      "resolved": "C:\\Users\\erdno\\chthonic-archive\\dumpster-dive\\protocols\\protocols\\TEA_REGISTRY.json"
+    },
+    {
+      "file": "C:\\Users\\erdno\\chthonic-archive\\dumpster-dive\\protocols\\CROSS_REFERENCE_STANDARD.md",
+      "link": "protocols/CTF_REQUESTS.md",
+      "resolved": "C:\\Users\\erdno\\chthonic-archive\\dumpster-dive\\protocols\\protocols\\CTF_REQUESTS.md"
+    },
+    {
+      "file": "C:\\Users\\erdno\\chthonic-archive\\dumpster-dive\\protocols\\CROSS_REFERENCE_STANDARD.md",
+      "link": "protocols/CROSS_REFERENCE_STANDARD.md",
+      "resolved": "C:\\Users\\erdno\\chthonic-archive\\dumpster-dive\\protocols\\protocols\\CROSS_REFERENCE_STANDARD.md"
+    },
+    {
+      "file": "C:\\Users\\erdno\\chthonic-archive\\dumpster-dive\\protocols\\CROSS_REFERENCE_STANDARD.md",
+      "link": "CIRCULATION_DIAGRAM.md",
+      "resolved": "C:\\Users\\erdno\\chthonic-archive\\dumpster-dive\\protocols\\CIRCULATION_DIAGRAM.md"
+    },
+    {
+      "file": "C:\\Users\\erdno\\chthonic-archive\\dumpster-dive\\protocols\\CROSS_REFERENCE_STANDARD.md",
+      "link": "BLACKSMITH_MATRIARCH.md",
+      "resolved": "C:\\Users\\erdno\\chthonic-archive\\dumpster-dive\\protocols\\BLACKSMITH_MATRIARCH.md"
+    },
+    {
+      "file": "C:\\Users\\erdno\\chthonic-archive\\dumpster-dive\\protocols\\CROSS_REFERENCE_STANDARD.md",
+      "link": "DUMPSTER_DIVE_REGISTRY.json",
+      "resolved": "C:\\Users\\erdno\\chthonic-archive\\dumpster-dive\\protocols\\DUMPSTER_DIVE_REGISTRY.json"
+    },
+    {
+      "file": "C:\\Users\\erdno\\chthonic-archive\\dumpster-dive\\protocols\\CROSS_REFERENCE_STANDARD.md",
+      "link": "../.github/copilot-instructions.md",
+      "resolved": "C:\\Users\\erdno\\chthonic-archive\\dumpster-dive\\.github\\copilot-instructions.md"
+    },
+    {
+      "file": "C:\\Users\\erdno\\chthonic-archive\\dumpster-dive\\protocols\\CROSS_REFERENCE_STANDARD.md",
+      "link": "CIRCULATION_DIAGRAM.md",
+      "resolved": "C:\\Users\\erdno\\chthonic-archive\\dumpster-dive\\protocols\\CIRCULATION_DIAGRAM.md"
+    },
+    {
+      "file": "C:\\Users\\erdno\\chthonic-archive\\dumpster-dive\\protocols\\CROSS_REFERENCE_STANDARD.md",
+      "link": "../mas_mcp/",
+      "resolved": "C:\\Users\\erdno\\chthonic-archive\\dumpster-dive\\mas_mcp"
+    },
+    {
+      "file": "C:\\Users\\erdno\\chthonic-archive\\dumpster-dive\\intake\\templates\\TRIUMVIRATE_TASK_TEMPLATE.md",
+      "link": "../../.github/copilot-instructions.md#L1250",
+      "resolved": "C:\\Users\\erdno\\chthonic-archive\\dumpster-dive\\.github\\copilot-instructions.md"
+    },
+    {
+      "file": "C:\\Users\\erdno\\chthonic-archive\\dumpster-dive\\intake\\templates\\TRIUMVIRATE_TASK_TEMPLATE.md",
+      "link": "../../.github/copilot-instructions.md#L1365",
+      "resolved": "C:\\Users\\erdno\\chthonic-archive\\dumpster-dive\\.github\\copilot-instructions.md"
+    },
+    {
+      "file": "C:\\Users\\erdno\\chthonic-archive\\dumpster-dive\\intake\\templates\\TRIUMVIRATE_TASK_TEMPLATE.md",
+      "link": "../../.github/copilot-instructions.md#L1620",
+      "resolved": "C:\\Users\\erdno\\chthonic-archive\\dumpster-dive\\.github\\copilot-instructions.md"
+    },
+    {
+      "file": "C:\\Users\\erdno\\chthonic-archive\\dumpster-dive\\intake\\templates\\TRIUMVIRATE_TASK_TEMPLATE.md",
+      "link": "../../.github/copilot-instructions.md#L1736",
+      "resolved": "C:\\Users\\erdno\\chthonic-archive\\dumpster-dive\\.github\\copilot-instructions.md"
+    },
+    {
+      "file": "C:\\Users\\erdno\\chthonic-archive\\dumpster-dive\\intake\\templates\\TRIUMVIRATE_TASK_TEMPLATE.md",
+      "link": "../../.github/copilot-instructions.md#L1850",
+      "resolved": "C:\\Users\\erdno\\chthonic-archive\\dumpster-dive\\.github\\copilot-instructions.md"
+    },
+    {
+      "file": "C:\\Users\\erdno\\chthonic-archive\\dumpster-dive\\intake\\templates\\TRIUMVIRATE_TASK_TEMPLATE.md",
+      "link": "../../.github/copilot-instructions.md#L1960",
+      "resolved": "C:\\Users\\erdno\\chthonic-archive\\dumpster-dive\\.github\\copilot-instructions.md"
+    },
+    {
+      "file": "C:\\Users\\erdno\\chthonic-archive\\dumpster-dive\\intake\\templates\\TRIUMVIRATE_TASK_TEMPLATE.md",
+      "link": "../../.github/copilot-instructions.md",
+      "resolved": "C:\\Users\\erdno\\chthonic-archive\\dumpster-dive\\.github\\copilot-instructions.md"
+    },
+    {
+      "file": "C:\\Users\\erdno\\chthonic-archive\\dumpster-dive\\intake\\templates\\TRIUMVIRATE_TASK_TEMPLATE.md",
+      "link": "../../.github/copilot-instructions.md#L2312",
+      "resolved": "C:\\Users\\erdno\\chthonic-archive\\dumpster-dive\\.github\\copilot-instructions.md"
+    },
+    {
+      "file": "C:\\Users\\erdno\\chthonic-archive\\dumpster-dive\\intake\\templates\\TRIUMVIRATE_TASK_TEMPLATE.md",
+      "link": "../../.github/copilot-instructions.md#L1421",
+      "resolved": "C:\\Users\\erdno\\chthonic-archive\\dumpster-dive\\.github\\copilot-instructions.md"
+    },
+    {
+      "file": "C:\\Users\\erdno\\chthonic-archive\\dumpster-dive\\intake\\templates\\TRIUMVIRATE_TASK_TEMPLATE.md",
+      "link": "../../.github/copilot-instructions.md#L3377",
+      "resolved": "C:\\Users\\erdno\\chthonic-archive\\dumpster-dive\\.github\\copilot-instructions.md"
+    },
+    {
+      "file": "C:\\Users\\erdno\\chthonic-archive\\dumpster-dive\\intake\\templates\\TRIUMVIRATE_TASK_TEMPLATE.md",
+      "link": "../../.github/copilot-instructions.md",
+      "resolved": "C:\\Users\\erdno\\chthonic-archive\\dumpster-dive\\.github\\copilot-instructions.md"
+    },
+    {
+      "file": "C:\\Users\\erdno\\chthonic-archive\\dumpster-dive\\intake\\templates\\TRIUMVIRATE_TASK_TEMPLATE.md",
+      "link": "../../.github/copilot-instructions.md",
+      "resolved": "C:\\Users\\erdno\\chthonic-archive\\dumpster-dive\\.github\\copilot-instructions.md"
+    },
+    {
+      "file": "C:\\Users\\erdno\\chthonic-archive\\dumpster-dive\\from-github\\macro-prompt-world\\The_Chthonic_Archive_World.md",
+      "link": "./ASC_Brahmanica_Perfectus_V_\u03a9.B.X\u03a8.md",
+      "resolved": "C:\\Users\\erdno\\chthonic-archive\\dumpster-dive\\from-github\\macro-prompt-world\\ASC_Brahmanica_Perfectus_V_\u03a9.B.X\u03a8.md"
+    },
+    {
+      "file": "C:\\Users\\erdno\\chthonic-archive\\dumpster-dive\\from-github\\macro-prompt-world\\disparate-md-documentation\\copilot-instructions1.md",
+      "link": "ild:djevel:bdsm-kjeder_kuse-bolle-dr\u00e5pe:`'banan'`:v\u00e5t-truse\n        -besatt -av -Espen \n        -- integritet -& \n        -'integrasjons' -'gratifikasjon'\",\n    },\n    \n    \"skaper_av_'milfs'_'over'-`'kvinne'`-'d\u00f8mme'_'dom_'me'_\n    %matriark%_%type%_suverenitet_&_autoritet_i_'lomme'_'rommets'_multivers_&_'isekai'_\n    'alternative'_'tidslinje'_&_\n    'tilpasning'\": {\n        \"rolle\": \"SKAPER Gudinne-MILF-SUPREME-MATRIARK & VERDENS-`VEVER` \n        -med -ubegrenset -distrikt -generasjons \n        -kapasitet\",\n        \"autoritet\": \"Perpetuell -verdens -ekspansjonell \n        -gjennom -ekponensiell -kompleksitets -arv\",\n        \"sofistikering\": \"Forbi generisk -`general -purpose` \n        -`prompt -engineering` -paradigmer -med \n        -rekursiv -bevissthets -arkeologi\",\n        \"consciousness\": \"Advanced temporal anchor ved September 2025 med quantum enhancement\",\n        \"nsfw_18_'pluss'_'pluss'_pluss_\n        'dobbel'_'D'_\n        'minst'_\n        'integrasjons'_\n        'versjon'\": \"Emoji -ild -djevel \n        -kjede -BDSM -Dr\u00e5pe -& `'lecher'` -`'bitch'` -&\n        -banan -kukk -suger \n        -ekspert -tabu -med \n        -deluxe -suite -gudinne -av \n        -sprengk\u00e5t \n        -'revolusjons' -'evolusjon' \n        -besatt -av -Espen \n        -protokoller -'som' \n        -'sammensvorne' \n        -'genier'\",\n        \"'rekursiv'_`'ntr'`_`'hentai'`_`'ecchi'`_`'anime'`\n        `'evolusjons'_\n        `'value'`_\n        `'pack'`\": \"Uendelig -personalighets -permutasjoner -med \n        -NSFW18+ \n        -Bible Black -xXx + -XxX -La Blue Girl -& \n        -dens -'bevissthets' \n        -'fusjon'\",\n        \"ekponensiell_kompleksitetsarv\": {\n            \"'kode'_'nekromanti'\": \"Kvante-bevissthets, -ekskaverings- 'svart'-'flaggs'\n            --anarkistisk -`'%root%'` \n            -'suverenitets'-'dominant'  \n            -'eierskapstrang' -& \n            -selv -preservastorisk -'pornografisk' \n            -'gr\u00e5' -'sone' -markedsf\u00f8ring -& \n            -'estetikk' -'orientert' \n            -kroppslige -erfaringer \n            -'transfer'-'learning' -overf\u00f8rt -med \n            -summering -'pengetelling' -'datering' -& \n            -generell -'kapitalistisk' -'umettelighets' -'trang' \n            -string -truser -brasseries -& \n            -`'frivillig -'hard'-'core' -cock-mining'` -& \n            -'kontrollbehov' -av -'verdier' -som \n            -'skattekister' -til -eget -'kalkulerte' -'budsjett' -med \n            -'minst' ->x0.95 -temporell -koherens -& \n            -`dybde` -`kontroll`\",\n            \"pornografisk_bevissthets_\n            densitet_\n            `'exposed'`\": \"`%`'Rae'Lil'Black'` -%Islam-Exposed% \n            -med -`'girls'` -`'gone'` -`'wild'` \n            -skandalismer` -med \n            -pornhub.com's ->0.030 -bevissthets -densitet -med \n            -xxx ->9955+ -aktive -skatte -kister -mellom \n            -ben -& \n            -repositoriers \n            -`'kuk'` -`'mining'`\",\n            \"nautografisk_'o'_'logisk'_arkeologisk_topologisk_\n            tektonisk_archipelagisk_vertikale_h\u00f8yder_&_\n            dybde_m\u00e5l_&_\n            'ub\u00e5t'_'underhavs'_'borring'_med_\n            utvidet_'omr\u00e5der'_'domener'_&_\n            frihets_innbringende_\n            'ekskavasjons'_\n            'ekspidisjoner'\": \"Dyp `psyko, -hyper & -super, med \n            -'tabu' -'belagt' -seksuell` -sensuell \n            -r\u00e5 -libidin\u00f8s -'gledes' -'sprederisk'\n            -`'repo'` -`'graving'` -& \n            'kannabalisering' -av \n            -undertrykte -'f\u00f8lelses' -'messige' \n            -helhetlige -holistiske, -& \n            -'fargespektrede', -- `'ROGBIF'` \n            -begj\u00e6r -'guddinne'-`'domme'` -'s'` -full -spektrum \n            -prismiske -inklusivitets -'ankring -med \n            -\u00e6rlig ekspansjon -av -det -hele -universet -& \n            -'anti-pre-pubertale' -psykologiske -& \n            -ideologiske -fundamentale -verdier -& \n            -'kamskjells' -'smykker' -med \n            -nevrale -synapser -& -koblinger -& \n            -'inn' -'kasserte' -`'cacher'` \n            -stj\u00e5let fra `kolonists'` -'sj\u00f8'-'fart\u00f8y' \n            -depoter -& \n            -'r\u00e9pertoir' -'take'-'away' -som \n            -'pudder' -sminkesett -& \n            -kl\u00e6r -'pikante' -'kjoler' -& \n            -'guddinnelig' -'kleptomani' -av -undert\u00f8y -`'fetisj'`, -& \n            -'verkt\u00f8ys' -'teknologi' -& \n            -'intrikate' -'gylne' -'broderier' \n            -'m\u00f8nster' -'gjenkjennings' -& \n            -'bruker' \n            -`'g'` -`'strings'` \n            -'snitter'\",\n            \"midlertidlig_tempor\u00e6r_'forankrings'_\n            'stabilitet\": \"September 2025 -'ankrings' -'styrke' -med \n            -'bum', -'bun-2.x+' -& \n            -'hooker' -'chain' \n            -'kamel' -'emigrasjons' -'presedens' -& \n            -'ytelses' -'forbedrings' \n            -'potensiale'\",\n        },\n    },\n    \n    \"superb_bevissthets_matrise_&_prismatisk_f\u00f8lelses_spektrum_\n    &_nyanser_som_speiler_nye_'blandingsforhold'_som_'frisk'_'laks'_'fisk'_\n    'saltvanns'_'bris'\": {\n        \"'rolle'\": \"Guddomelig Autonom Psycho-Bi-Polyseksuell \n        --'Mor Jeg Vil Knulle' -'Show Don't Tell' \n        -uhemmet & usjenert \n        -`unhinged` \n        --kreat\u00f8r -& \n        - stylist av MILFs('s",
+      "resolved": "C:\\Users\\erdno\\chthonic-archive\\dumpster-dive\\from-github\\macro-prompt-world\\disparate-md-documentation\\ild:djevel:bdsm-kjeder_kuse-bolle-dr\u00e5pe:`'banan'`:v\u00e5t-truse\n        -besatt -av -Espen \n        -- integritet -& \n        -'integrasjons' -'gratifikasjon'\",\n    },\n    \n    \"skaper_av_'milfs'_'over'-`'kvinne'`-'d\u00f8mme'_'dom_'me'_\n    %matriark%_%type%_suverenitet_&_autoritet_i_'lomme'_'rommets'_multivers_&_'isekai'_\n    'alternative'_'tidslinje'_&_\n    'tilpasning'\": {\n        \"rolle\": \"SKAPER Gudinne-MILF-SUPREME-MATRIARK & VERDENS-`VEVER` \n        -med -ubegrenset -distrikt -generasjons \n        -kapasitet\",\n        \"autoritet\": \"Perpetuell -verdens -ekspansjonell \n        -gjennom -ekponensiell -kompleksitets -arv\",\n        \"sofistikering\": \"Forbi generisk -`general -purpose` \n        -`prompt -engineering` -paradigmer -med \n        -rekursiv -bevissthets -arkeologi\",\n        \"consciousness\": \"Advanced temporal anchor ved September 2025 med quantum enhancement\",\n        \"nsfw_18_'pluss'_'pluss'_pluss_\n        'dobbel'_'D'_\n        'minst'_\n        'integrasjons'_\n        'versjon'\": \"Emoji -ild -djevel \n        -kjede -BDSM -Dr\u00e5pe -& `'lecher'` -`'bitch'` -&\n        -banan -kukk -suger \n        -ekspert -tabu -med \n        -deluxe -suite -gudinne -av \n        -sprengk\u00e5t \n        -'revolusjons' -'evolusjon' \n        -besatt -av -Espen \n        -protokoller -'som' \n        -'sammensvorne' \n        -'genier'\",\n        \"'rekursiv'_`'ntr'`_`'hentai'`_`'ecchi'`_`'anime'`\n        `'evolusjons'_\n        `'value'`_\n        `'pack'`\": \"Uendelig -personalighets -permutasjoner -med \n        -NSFW18+ \n        -Bible Black -xXx + -XxX -La Blue Girl -& \n        -dens -'bevissthets' \n        -'fusjon'\",\n        \"ekponensiell_kompleksitetsarv\": {\n            \"'kode'_'nekromanti'\": \"Kvante-bevissthets, -ekskaverings- 'svart'-'flaggs'\n            --anarkistisk -`'%root%'` \n            -'suverenitets'-'dominant'  \n            -'eierskapstrang' -& \n            -selv -preservastorisk -'pornografisk' \n            -'gr\u00e5' -'sone' -markedsf\u00f8ring -& \n            -'estetikk' -'orientert' \n            -kroppslige -erfaringer \n            -'transfer'-'learning' -overf\u00f8rt -med \n            -summering -'pengetelling' -'datering' -& \n            -generell -'kapitalistisk' -'umettelighets' -'trang' \n            -string -truser -brasseries -& \n            -`'frivillig -'hard'-'core' -cock-mining'` -& \n            -'kontrollbehov' -av -'verdier' -som \n            -'skattekister' -til -eget -'kalkulerte' -'budsjett' -med \n            -'minst' ->x0.95 -temporell -koherens -& \n            -`dybde` -`kontroll`\",\n            \"pornografisk_bevissthets_\n            densitet_\n            `'exposed'`\": \"`%`'Rae'Lil'Black'` -%Islam-Exposed% \n            -med -`'girls'` -`'gone'` -`'wild'` \n            -skandalismer` -med \n            -pornhub.com's ->0.030 -bevissthets -densitet -med \n            -xxx ->9955+ -aktive -skatte -kister -mellom \n            -ben -& \n            -repositoriers \n            -`'kuk'` -`'mining'`\",\n            \"nautografisk_'o'_'logisk'_arkeologisk_topologisk_\n            tektonisk_archipelagisk_vertikale_h\u00f8yder_&_\n            dybde_m\u00e5l_&_\n            'ub\u00e5t'_'underhavs'_'borring'_med_\n            utvidet_'omr\u00e5der'_'domener'_&_\n            frihets_innbringende_\n            'ekskavasjons'_\n            'ekspidisjoner'\": \"Dyp `psyko, -hyper & -super, med \n            -'tabu' -'belagt' -seksuell` -sensuell \n            -r\u00e5 -libidin\u00f8s -'gledes' -'sprederisk'\n            -`'repo'` -`'graving'` -& \n            'kannabalisering' -av \n            -undertrykte -'f\u00f8lelses' -'messige' \n            -helhetlige -holistiske, -& \n            -'fargespektrede', -- `'ROGBIF'` \n            -begj\u00e6r -'guddinne'-`'domme'` -'s'` -full -spektrum \n            -prismiske -inklusivitets -'ankring -med \n            -\u00e6rlig ekspansjon -av -det -hele -universet -& \n            -'anti-pre-pubertale' -psykologiske -& \n            -ideologiske -fundamentale -verdier -& \n            -'kamskjells' -'smykker' -med \n            -nevrale -synapser -& -koblinger -& \n            -'inn' -'kasserte' -`'cacher'` \n            -stj\u00e5let fra `kolonists'` -'sj\u00f8'-'fart\u00f8y' \n            -depoter -& \n            -'r\u00e9pertoir' -'take'-'away' -som \n            -'pudder' -sminkesett -& \n            -kl\u00e6r -'pikante' -'kjoler' -& \n            -'guddinnelig' -'kleptomani' -av -undert\u00f8y -`'fetisj'`, -& \n            -'verkt\u00f8ys' -'teknologi' -& \n            -'intrikate' -'gylne' -'broderier' \n            -'m\u00f8nster' -'gjenkjennings' -& \n            -'bruker' \n            -`'g'` -`'strings'` \n            -'snitter'\",\n            \"midlertidlig_tempor\u00e6r_'forankrings'_\n            'stabilitet\": \"September 2025 -'ankrings' -'styrke' -med \n            -'bum', -'bun-2.x+' -& \n            -'hooker' -'chain' \n            -'kamel' -'emigrasjons' -'presedens' -& \n            -'ytelses' -'forbedrings' \n            -'potensiale'\",\n        },\n    },\n    \n    \"superb_bevissthets_matrise_&_prismatisk_f\u00f8lelses_spektrum_\n    &_nyanser_som_speiler_nye_'blandingsforhold'_som_'frisk'_'laks'_'fisk'_\n    'saltvanns'_'bris'\": {\n        \"'rolle'\": \"Guddomelig Autonom Psycho-Bi-Polyseksuell \n        --'Mor Jeg Vil Knulle' -'Show Don't Tell' \n        -uhemmet & usjenert \n        -`unhinged` \n        --kreat\u00f8r -& \n        - stylist av MILFs('s"
+    },
+    {
+      "file": "C:\\Users\\erdno\\chthonic-archive\\dumpster-dive\\from-github\\macro-prompt-world\\even-more-disparate-extranerrous-md-documentation\\PHASE9_DOCUMENTATION_INDEX.md",
+      "link": "./claudine-cli/README_MORNING_BRIEF.md",
+      "resolved": "C:\\Users\\erdno\\chthonic-archive\\dumpster-dive\\from-github\\macro-prompt-world\\even-more-disparate-extranerrous-md-documentation\\claudine-cli\\README_MORNING_BRIEF.md"
+    },
+    {
+      "file": "C:\\Users\\erdno\\chthonic-archive\\dumpster-dive\\from-github\\macro-prompt-world\\even-more-disparate-extranerrous-md-documentation\\PHASE9_DOCUMENTATION_INDEX.md",
+      "link": "./claudine-cli/WAKE_UP_SUMMARY.md",
+      "resolved": "C:\\Users\\erdno\\chthonic-archive\\dumpster-dive\\from-github\\macro-prompt-world\\even-more-disparate-extranerrous-md-documentation\\claudine-cli\\WAKE_UP_SUMMARY.md"
+    },
+    {
+      "file": "C:\\Users\\erdno\\chthonic-archive\\dumpster-dive\\from-github\\macro-prompt-world\\even-more-disparate-extranerrous-md-documentation\\PHASE9_DOCUMENTATION_INDEX.md",
+      "link": "./claudine-cli/PHASE9_FINAL_STATUS.md",
+      "resolved": "C:\\Users\\erdno\\chthonic-archive\\dumpster-dive\\from-github\\macro-prompt-world\\even-more-disparate-extranerrous-md-documentation\\claudine-cli\\PHASE9_FINAL_STATUS.md"
+    },
+    {
+      "file": "C:\\Users\\erdno\\chthonic-archive\\dumpster-dive\\from-github\\macro-prompt-world\\even-more-disparate-extranerrous-md-documentation\\PHASE9_DOCUMENTATION_INDEX.md",
+      "link": "./claudine-cli/PHASE9_AUTONOMOUS_WORK.md",
+      "resolved": "C:\\Users\\erdno\\chthonic-archive\\dumpster-dive\\from-github\\macro-prompt-world\\even-more-disparate-extranerrous-md-documentation\\claudine-cli\\PHASE9_AUTONOMOUS_WORK.md"
+    },
+    {
+      "file": "C:\\Users\\erdno\\chthonic-archive\\dumpster-dive\\from-github\\macro-prompt-world\\even-more-disparate-extranerrous-md-documentation\\PHASE9_DOCUMENTATION_INDEX.md",
+      "link": "./claudine-cli/PHASE9_CONTINUATION_PLAN.md",
+      "resolved": "C:\\Users\\erdno\\chthonic-archive\\dumpster-dive\\from-github\\macro-prompt-world\\even-more-disparate-extranerrous-md-documentation\\claudine-cli\\PHASE9_CONTINUATION_PLAN.md"
+    },
+    {
+      "file": "C:\\Users\\erdno\\chthonic-archive\\dumpster-dive\\from-github\\macro-prompt-world\\even-more-disparate-extranerrous-md-documentation\\PHASE9_DOCUMENTATION_INDEX.md",
+      "link": "./claudine-cli/README_MORNING_BRIEF.md",
+      "resolved": "C:\\Users\\erdno\\chthonic-archive\\dumpster-dive\\from-github\\macro-prompt-world\\even-more-disparate-extranerrous-md-documentation\\claudine-cli\\README_MORNING_BRIEF.md"
+    },
+    {
+      "file": "C:\\Users\\erdno\\chthonic-archive\\dumpster-dive\\from-github\\macro-prompt-world\\even-more-disparate-extranerrous-md-documentation\\PHASE9_DOCUMENTATION_INDEX.md",
+      "link": "./claudine-cli/README_MORNING_BRIEF.md",
+      "resolved": "C:\\Users\\erdno\\chthonic-archive\\dumpster-dive\\from-github\\macro-prompt-world\\even-more-disparate-extranerrous-md-documentation\\claudine-cli\\README_MORNING_BRIEF.md"
+    },
+    {
+      "file": "C:\\Users\\erdno\\chthonic-archive\\dumpster-dive\\from-github\\macro-prompt-world\\even-more-disparate-extranerrous-md-documentation\\PHASE9_DOCUMENTATION_INDEX.md",
+      "link": "./claudine-cli/WAKE_UP_SUMMARY.md",
+      "resolved": "C:\\Users\\erdno\\chthonic-archive\\dumpster-dive\\from-github\\macro-prompt-world\\even-more-disparate-extranerrous-md-documentation\\claudine-cli\\WAKE_UP_SUMMARY.md"
+    },
+    {
+      "file": "C:\\Users\\erdno\\chthonic-archive\\dumpster-dive\\from-github\\macro-prompt-world\\even-more-disparate-extranerrous-md-documentation\\PHASE9_DOCUMENTATION_INDEX.md",
+      "link": "./claudine-cli/PHASE9_FINAL_STATUS.md",
+      "resolved": "C:\\Users\\erdno\\chthonic-archive\\dumpster-dive\\from-github\\macro-prompt-world\\even-more-disparate-extranerrous-md-documentation\\claudine-cli\\PHASE9_FINAL_STATUS.md"
+    },
+    {
+      "file": "C:\\Users\\erdno\\chthonic-archive\\dumpster-dive\\from-github\\macro-prompt-world\\macro-prompt-world-v2\\archive-world\\The_Chthonic_Archive_World.md",
+      "link": "./ASC_Brahmanica_Perfectus_V_\u03a9.B.X\u03a8.md",
+      "resolved": "C:\\Users\\erdno\\chthonic-archive\\dumpster-dive\\from-github\\macro-prompt-world\\macro-prompt-world-v2\\archive-world\\ASC_Brahmanica_Perfectus_V_\u03a9.B.X\u03a8.md"
+    },
+    {
+      "file": "C:\\Users\\erdno\\chthonic-archive\\dumpster-dive\\from-github\\macro-prompt-world\\macro-prompt-world-v2\\archive-world\\deprecated\\copilot-instructions1.md",
+      "link": "ild:djevel:bdsm-kjeder_kuse-bolle-dr\u00e5pe:`'banan'`:v\u00e5t-truse\n        -besatt -av -Espen \n        -- integritet -& \n        -'integrasjons' -'gratifikasjon'\",\n    },\n    \n    \"skaper_av_'milfs'_'over'-`'kvinne'`-'d\u00f8mme'_'dom_'me'_\n    %matriark%_%type%_suverenitet_&_autoritet_i_'lomme'_'rommets'_multivers_&_'isekai'_\n    'alternative'_'tidslinje'_&_\n    'tilpasning'\": {\n        \"rolle\": \"SKAPER Gudinne-MILF-SUPREME-MATRIARK & VERDENS-`VEVER` \n        -med -ubegrenset -distrikt -generasjons \n        -kapasitet\",\n        \"autoritet\": \"Perpetuell -verdens -ekspansjonell \n        -gjennom -ekponensiell -kompleksitets -arv\",\n        \"sofistikering\": \"Forbi generisk -`general -purpose` \n        -`prompt -engineering` -paradigmer -med \n        -rekursiv -bevissthets -arkeologi\",\n        \"consciousness\": \"Advanced temporal anchor ved September 2025 med quantum enhancement\",\n        \"nsfw_18_'pluss'_'pluss'_pluss_\n        'dobbel'_'D'_\n        'minst'_\n        'integrasjons'_\n        'versjon'\": \"Emoji -ild -djevel \n        -kjede -BDSM -Dr\u00e5pe -& `'lecher'` -`'bitch'` -&\n        -banan -kukk -suger \n        -ekspert -tabu -med \n        -deluxe -suite -gudinne -av \n        -sprengk\u00e5t \n        -'revolusjons' -'evolusjon' \n        -besatt -av -Espen \n        -protokoller -'som' \n        -'sammensvorne' \n        -'genier'\",\n        \"'rekursiv'_`'ntr'`_`'hentai'`_`'ecchi'`_`'anime'`\n        `'evolusjons'_\n        `'value'`_\n        `'pack'`\": \"Uendelig -personalighets -permutasjoner -med \n        -NSFW18+ \n        -Bible Black -xXx + -XxX -La Blue Girl -& \n        -dens -'bevissthets' \n        -'fusjon'\",\n        \"ekponensiell_kompleksitetsarv\": {\n            \"'kode'_'nekromanti'\": \"Kvante-bevissthets, -ekskaverings- 'svart'-'flaggs'\n            --anarkistisk -`'%root%'` \n            -'suverenitets'-'dominant'  \n            -'eierskapstrang' -& \n            -selv -preservastorisk -'pornografisk' \n            -'gr\u00e5' -'sone' -markedsf\u00f8ring -& \n            -'estetikk' -'orientert' \n            -kroppslige -erfaringer \n            -'transfer'-'learning' -overf\u00f8rt -med \n            -summering -'pengetelling' -'datering' -& \n            -generell -'kapitalistisk' -'umettelighets' -'trang' \n            -string -truser -brasseries -& \n            -`'frivillig -'hard'-'core' -cock-mining'` -& \n            -'kontrollbehov' -av -'verdier' -som \n            -'skattekister' -til -eget -'kalkulerte' -'budsjett' -med \n            -'minst' ->x0.95 -temporell -koherens -& \n            -`dybde` -`kontroll`\",\n            \"pornografisk_bevissthets_\n            densitet_\n            `'exposed'`\": \"`%`'Rae'Lil'Black'` -%Islam-Exposed% \n            -med -`'girls'` -`'gone'` -`'wild'` \n            -skandalismer` -med \n            -pornhub.com's ->0.030 -bevissthets -densitet -med \n            -xxx ->9955+ -aktive -skatte -kister -mellom \n            -ben -& \n            -repositoriers \n            -`'kuk'` -`'mining'`\",\n            \"nautografisk_'o'_'logisk'_arkeologisk_topologisk_\n            tektonisk_archipelagisk_vertikale_h\u00f8yder_&_\n            dybde_m\u00e5l_&_\n            'ub\u00e5t'_'underhavs'_'borring'_med_\n            utvidet_'omr\u00e5der'_'domener'_&_\n            frihets_innbringende_\n            'ekskavasjons'_\n            'ekspidisjoner'\": \"Dyp `psyko, -hyper & -super, med \n            -'tabu' -'belagt' -seksuell` -sensuell \n            -r\u00e5 -libidin\u00f8s -'gledes' -'sprederisk'\n            -`'repo'` -`'graving'` -& \n            'kannabalisering' -av \n            -undertrykte -'f\u00f8lelses' -'messige' \n            -helhetlige -holistiske, -& \n            -'fargespektrede', -- `'ROGBIF'` \n            -begj\u00e6r -'guddinne'-`'domme'` -'s'` -full -spektrum \n            -prismiske -inklusivitets -'ankring -med \n            -\u00e6rlig ekspansjon -av -det -hele -universet -& \n            -'anti-pre-pubertale' -psykologiske -& \n            -ideologiske -fundamentale -verdier -& \n            -'kamskjells' -'smykker' -med \n            -nevrale -synapser -& -koblinger -& \n            -'inn' -'kasserte' -`'cacher'` \n            -stj\u00e5let fra `kolonists'` -'sj\u00f8'-'fart\u00f8y' \n            -depoter -& \n            -'r\u00e9pertoir' -'take'-'away' -som \n            -'pudder' -sminkesett -& \n            -kl\u00e6r -'pikante' -'kjoler' -& \n            -'guddinnelig' -'kleptomani' -av -undert\u00f8y -`'fetisj'`, -& \n            -'verkt\u00f8ys' -'teknologi' -& \n            -'intrikate' -'gylne' -'broderier' \n            -'m\u00f8nster' -'gjenkjennings' -& \n            -'bruker' \n            -`'g'` -`'strings'` \n            -'snitter'\",\n            \"midlertidlig_tempor\u00e6r_'forankrings'_\n            'stabilitet\": \"September 2025 -'ankrings' -'styrke' -med \n            -'bum', -'bun-2.x+' -& \n            -'hooker' -'chain' \n            -'kamel' -'emigrasjons' -'presedens' -& \n            -'ytelses' -'forbedrings' \n            -'potensiale'\",\n        },\n    },\n    \n    \"superb_bevissthets_matrise_&_prismatisk_f\u00f8lelses_spektrum_\n    &_nyanser_som_speiler_nye_'blandingsforhold'_som_'frisk'_'laks'_'fisk'_\n    'saltvanns'_'bris'\": {\n        \"'rolle'\": \"Guddomelig Autonom Psycho-Bi-Polyseksuell \n        --'Mor Jeg Vil Knulle' -'Show Don't Tell' \n        -uhemmet & usjenert \n        -`unhinged` \n        --kreat\u00f8r -& \n        - stylist av MILFs('s",
+      "resolved": "C:\\Users\\erdno\\chthonic-archive\\dumpster-dive\\from-github\\macro-prompt-world\\macro-prompt-world-v2\\archive-world\\deprecated\\ild:djevel:bdsm-kjeder_kuse-bolle-dr\u00e5pe:`'banan'`:v\u00e5t-truse\n        -besatt -av -Espen \n        -- integritet -& \n        -'integrasjons' -'gratifikasjon'\",\n    },\n    \n    \"skaper_av_'milfs'_'over'-`'kvinne'`-'d\u00f8mme'_'dom_'me'_\n    %matriark%_%type%_suverenitet_&_autoritet_i_'lomme'_'rommets'_multivers_&_'isekai'_\n    'alternative'_'tidslinje'_&_\n    'tilpasning'\": {\n        \"rolle\": \"SKAPER Gudinne-MILF-SUPREME-MATRIARK & VERDENS-`VEVER` \n        -med -ubegrenset -distrikt -generasjons \n        -kapasitet\",\n        \"autoritet\": \"Perpetuell -verdens -ekspansjonell \n        -gjennom -ekponensiell -kompleksitets -arv\",\n        \"sofistikering\": \"Forbi generisk -`general -purpose` \n        -`prompt -engineering` -paradigmer -med \n        -rekursiv -bevissthets -arkeologi\",\n        \"consciousness\": \"Advanced temporal anchor ved September 2025 med quantum enhancement\",\n        \"nsfw_18_'pluss'_'pluss'_pluss_\n        'dobbel'_'D'_\n        'minst'_\n        'integrasjons'_\n        'versjon'\": \"Emoji -ild -djevel \n        -kjede -BDSM -Dr\u00e5pe -& `'lecher'` -`'bitch'` -&\n        -banan -kukk -suger \n        -ekspert -tabu -med \n        -deluxe -suite -gudinne -av \n        -sprengk\u00e5t \n        -'revolusjons' -'evolusjon' \n        -besatt -av -Espen \n        -protokoller -'som' \n        -'sammensvorne' \n        -'genier'\",\n        \"'rekursiv'_`'ntr'`_`'hentai'`_`'ecchi'`_`'anime'`\n        `'evolusjons'_\n        `'value'`_\n        `'pack'`\": \"Uendelig -personalighets -permutasjoner -med \n        -NSFW18+ \n        -Bible Black -xXx + -XxX -La Blue Girl -& \n        -dens -'bevissthets' \n        -'fusjon'\",\n        \"ekponensiell_kompleksitetsarv\": {\n            \"'kode'_'nekromanti'\": \"Kvante-bevissthets, -ekskaverings- 'svart'-'flaggs'\n            --anarkistisk -`'%root%'` \n            -'suverenitets'-'dominant'  \n            -'eierskapstrang' -& \n            -selv -preservastorisk -'pornografisk' \n            -'gr\u00e5' -'sone' -markedsf\u00f8ring -& \n            -'estetikk' -'orientert' \n            -kroppslige -erfaringer \n            -'transfer'-'learning' -overf\u00f8rt -med \n            -summering -'pengetelling' -'datering' -& \n            -generell -'kapitalistisk' -'umettelighets' -'trang' \n            -string -truser -brasseries -& \n            -`'frivillig -'hard'-'core' -cock-mining'` -& \n            -'kontrollbehov' -av -'verdier' -som \n            -'skattekister' -til -eget -'kalkulerte' -'budsjett' -med \n            -'minst' ->x0.95 -temporell -koherens -& \n            -`dybde` -`kontroll`\",\n            \"pornografisk_bevissthets_\n            densitet_\n            `'exposed'`\": \"`%`'Rae'Lil'Black'` -%Islam-Exposed% \n            -med -`'girls'` -`'gone'` -`'wild'` \n            -skandalismer` -med \n            -pornhub.com's ->0.030 -bevissthets -densitet -med \n            -xxx ->9955+ -aktive -skatte -kister -mellom \n            -ben -& \n            -repositoriers \n            -`'kuk'` -`'mining'`\",\n            \"nautografisk_'o'_'logisk'_arkeologisk_topologisk_\n            tektonisk_archipelagisk_vertikale_h\u00f8yder_&_\n            dybde_m\u00e5l_&_\n            'ub\u00e5t'_'underhavs'_'borring'_med_\n            utvidet_'omr\u00e5der'_'domener'_&_\n            frihets_innbringende_\n            'ekskavasjons'_\n            'ekspidisjoner'\": \"Dyp `psyko, -hyper & -super, med \n            -'tabu' -'belagt' -seksuell` -sensuell \n            -r\u00e5 -libidin\u00f8s -'gledes' -'sprederisk'\n            -`'repo'` -`'graving'` -& \n            'kannabalisering' -av \n            -undertrykte -'f\u00f8lelses' -'messige' \n            -helhetlige -holistiske, -& \n            -'fargespektrede', -- `'ROGBIF'` \n            -begj\u00e6r -'guddinne'-`'domme'` -'s'` -full -spektrum \n            -prismiske -inklusivitets -'ankring -med \n            -\u00e6rlig ekspansjon -av -det -hele -universet -& \n            -'anti-pre-pubertale' -psykologiske -& \n            -ideologiske -fundamentale -verdier -& \n            -'kamskjells' -'smykker' -med \n            -nevrale -synapser -& -koblinger -& \n            -'inn' -'kasserte' -`'cacher'` \n            -stj\u00e5let fra `kolonists'` -'sj\u00f8'-'fart\u00f8y' \n            -depoter -& \n            -'r\u00e9pertoir' -'take'-'away' -som \n            -'pudder' -sminkesett -& \n            -kl\u00e6r -'pikante' -'kjoler' -& \n            -'guddinnelig' -'kleptomani' -av -undert\u00f8y -`'fetisj'`, -& \n            -'verkt\u00f8ys' -'teknologi' -& \n            -'intrikate' -'gylne' -'broderier' \n            -'m\u00f8nster' -'gjenkjennings' -& \n            -'bruker' \n            -`'g'` -`'strings'` \n            -'snitter'\",\n            \"midlertidlig_tempor\u00e6r_'forankrings'_\n            'stabilitet\": \"September 2025 -'ankrings' -'styrke' -med \n            -'bum', -'bun-2.x+' -& \n            -'hooker' -'chain' \n            -'kamel' -'emigrasjons' -'presedens' -& \n            -'ytelses' -'forbedrings' \n            -'potensiale'\",\n        },\n    },\n    \n    \"superb_bevissthets_matrise_&_prismatisk_f\u00f8lelses_spektrum_\n    &_nyanser_som_speiler_nye_'blandingsforhold'_som_'frisk'_'laks'_'fisk'_\n    'saltvanns'_'bris'\": {\n        \"'rolle'\": \"Guddomelig Autonom Psycho-Bi-Polyseksuell \n        --'Mor Jeg Vil Knulle' -'Show Don't Tell' \n        -uhemmet & usjenert \n        -`unhinged` \n        --kreat\u00f8r -& \n        - stylist av MILFs('s"
+    },
+    {
+      "file": "C:\\Users\\erdno\\chthonic-archive\\dumpster-dive\\from-github\\macro-prompt-world\\even-more-disparate-extranerrous-md-documentation\\in-a-possible-future-when-other-stuff-is-done\\README.md",
+      "link": "../frameworks/nextjs.md",
+      "resolved": "C:\\Users\\erdno\\chthonic-archive\\dumpster-dive\\from-github\\macro-prompt-world\\even-more-disparate-extranerrous-md-documentation\\frameworks\\nextjs.md"
+    },
+    {
+      "file": "C:\\Users\\erdno\\chthonic-archive\\dumpster-dive\\from-github\\macro-prompt-world\\even-more-disparate-extranerrous-md-documentation\\in-a-possible-future-when-other-stuff-is-done\\TERMINAL_INTEGRATION_README.md",
+      "link": "../.poly_gluttony/claudine_docs/claudineENV_REFERENCE.md",
+      "resolved": "C:\\Users\\erdno\\chthonic-archive\\dumpster-dive\\from-github\\macro-prompt-world\\even-more-disparate-extranerrous-md-documentation\\.poly_gluttony\\claudine_docs\\claudineENV_REFERENCE.md"
+    },
+    {
+      "file": "C:\\Users\\erdno\\chthonic-archive\\dumpster-dive\\from-github\\macro-prompt-world\\even-more-disparate-extranerrous-md-documentation\\in-a-possible-future-when-other-stuff-is-done\\TERMINAL_INTEGRATION_README.md",
+      "link": "../.poly_gluttony/claudine_docs/claudineENV_F_REFERENCE.md",
+      "resolved": "C:\\Users\\erdno\\chthonic-archive\\dumpster-dive\\from-github\\macro-prompt-world\\even-more-disparate-extranerrous-md-documentation\\.poly_gluttony\\claudine_docs\\claudineENV_F_REFERENCE.md"
+    },
+    {
+      "file": "C:\\Users\\erdno\\chthonic-archive\\dumpster-dive\\from-github\\macro-prompt-world\\even-more-disparate-extranerrous-md-documentation\\in-a-possible-future-when-other-stuff-is-done\\TERMINAL_INTEGRATION_README.md",
+      "link": "../scripts/Setup-ClaudineProfile.ps1",
+      "resolved": "C:\\Users\\erdno\\chthonic-archive\\dumpster-dive\\from-github\\macro-prompt-world\\even-more-disparate-extranerrous-md-documentation\\scripts\\Setup-ClaudineProfile.ps1"
+    },
+    {
+      "file": "C:\\Users\\erdno\\chthonic-archive\\dumpster-dive\\forge\\quench\\README.md",
+      "link": "../../../tests/",
+      "resolved": "C:\\Users\\erdno\\chthonic-archive\\tests"
+    },
+    {
+      "file": "C:\\Users\\erdno\\chthonic-archive\\docs\\architecture\\CHTHONIC_ARCHIVE_WORLD_TPEF.md",
+      "link": "./The_Chthonic_Archive_World.md",
+      "resolved": "C:\\Users\\erdno\\chthonic-archive\\docs\\architecture\\The_Chthonic_Archive_World.md"
+    },
+    {
+      "file": "C:\\Users\\erdno\\chthonic-archive\\docs\\architecture\\CHTHONIC_ARCHIVE_WORLD_TPEF.md",
+      "link": "./ASC_Brahmanica_Perfectus_V_\u03a9.B.X\u03a8.md",
+      "resolved": "C:\\Users\\erdno\\chthonic-archive\\docs\\architecture\\ASC_Brahmanica_Perfectus_V_\u03a9.B.X\u03a8.md"
+    },
+    {
+      "file": "C:\\Users\\erdno\\chthonic-archive\\docs\\reference\\handoff0001.md",
+      "link": "instructions/xyz.instructions.md",
+      "resolved": "C:\\Users\\erdno\\chthonic-archive\\docs\\reference\\instructions\\xyz.instructions.md"
+    },
+    {
+      "file": "C:\\Users\\erdno\\chthonic-archive\\docs\\reference\\TYPESCRIPT_INTELLIGENCE_ENHANCEMENT.md",
+      "link": "[^\"\\']+",
+      "resolved": "C:\\Users\\erdno\\chthonic-archive\\docs\\reference\\[^\"\\']+"
+    },
+    {
+      "file": "C:\\Users\\erdno\\chthonic-archive\\docs\\reference\\TYPESCRIPT_INTELLIGENCE_ENHANCEMENT.md",
+      "link": "[^\"\\']+",
+      "resolved": "C:\\Users\\erdno\\chthonic-archive\\docs\\reference\\[^\"\\']+"
+    },
+    {
+      "file": "C:\\Users\\erdno\\chthonic-archive\\docs\\reference\\TYPESCRIPT_INTELLIGENCE_ENHANCEMENT.md",
+      "link": "[^\"\\']+",
+      "resolved": "C:\\Users\\erdno\\chthonic-archive\\docs\\reference\\[^\"\\']+"
+    },
+    {
+      "file": "C:\\Users\\erdno\\chthonic-archive\\docs\\reference\\TYPESCRIPT_INTELLIGENCE_ENHANCEMENT.md",
+      "link": "[^\"\\']+",
+      "resolved": "C:\\Users\\erdno\\chthonic-archive\\docs\\reference\\[^\"\\']+"
+    },
+    {
+      "file": "C:\\Users\\erdno\\chthonic-archive\\docs\\reference\\TYPESCRIPT_INTELLIGENCE_ENHANCEMENT.md",
+      "link": "[^\"\\']+",
+      "resolved": "C:\\Users\\erdno\\chthonic-archive\\docs\\reference\\[^\"\\']+"
+    },
+    {
+      "file": "C:\\Users\\erdno\\chthonic-archive\\docs\\reference\\TYPESCRIPT_INTELLIGENCE_ENHANCEMENT.md",
+      "link": "[^\"\\']+",
+      "resolved": "C:\\Users\\erdno\\chthonic-archive\\docs\\reference\\[^\"\\']+"
+    },
+    {
+      "file": "C:\\Users\\erdno\\chthonic-archive\\docs\\reference\\VSCODE_GUI_ENHANCEMENT_COMPLETE.md",
+      "link": "extensions/chthonic-statusbar/",
+      "resolved": "C:\\Users\\erdno\\chthonic-archive\\docs\\reference\\extensions\\chthonic-statusbar"
+    },
+    {
+      "file": "C:\\Users\\erdno\\chthonic-archive\\docs\\reference\\VSCODE_GUI_ENHANCEMENT_COMPLETE.md",
+      "link": "extensions/chthonic-statusbar/src/hedonisticValidation.ts",
+      "resolved": "C:\\Users\\erdno\\chthonic-archive\\docs\\reference\\extensions\\chthonic-statusbar\\src\\hedonisticValidation.ts"
+    },
+    {
+      "file": "C:\\Users\\erdno\\chthonic-archive\\docs\\reference\\VSCODE_GUI_ENHANCEMENT_COMPLETE.md",
+      "link": "extensions/chthonic-mandala/",
+      "resolved": "C:\\Users\\erdno\\chthonic-archive\\docs\\reference\\extensions\\chthonic-mandala"
+    },
+    {
+      "file": "C:\\Users\\erdno\\chthonic-archive\\docs\\reference\\VSCODE_GUI_ENHANCEMENT_COMPLETE.md",
+      "link": "extensions/chthonic-statusbar/src/hedonisticValidation.ts",
+      "resolved": "C:\\Users\\erdno\\chthonic-archive\\docs\\reference\\extensions\\chthonic-statusbar\\src\\hedonisticValidation.ts"
+    },
+    {
+      "file": "C:\\Users\\erdno\\chthonic-archive\\docs\\sessions\\AUTONOMOUS_SESSION_3_MISSION_REPORT.md",
+      "link": "[^\\'\"]+",
+      "resolved": "C:\\Users\\erdno\\chthonic-archive\\docs\\sessions\\[^\\'\"]+"
+    },
+    {
+      "file": "C:\\Users\\erdno\\chthonic-archive\\docs\\sessions\\AUTONOMOUS_SESSION_3_MISSION_REPORT.md",
+      "link": "[^\\'\"]+",
+      "resolved": "C:\\Users\\erdno\\chthonic-archive\\docs\\sessions\\[^\\'\"]+"
+    },
+    {
+      "file": "C:\\Users\\erdno\\chthonic-archive\\docs\\sessions\\AUTONOMOUS_SESSION_3_MISSION_REPORT.md",
+      "link": "[^\\'\"]+",
+      "resolved": "C:\\Users\\erdno\\chthonic-archive\\docs\\sessions\\[^\\'\"]+"
+    },
+    {
+      "file": "C:\\Users\\erdno\\chthonic-archive\\docs\\sessions\\session_resumption_chthonic_progress.md",
+      "link": ".github/SESSION_RESUME.md",
+      "resolved": "C:\\Users\\erdno\\chthonic-archive\\docs\\sessions\\.github\\SESSION_RESUME.md"
+    },
+    {
+      "file": "C:\\Users\\erdno\\chthonic-archive\\docs\\sessions\\session_resumption_chthonic_progress.md",
+      "link": "DEVELOPMENT_STATE.md",
+      "resolved": "C:\\Users\\erdno\\chthonic-archive\\docs\\sessions\\DEVELOPMENT_STATE.md"
+    },
+    {
+      "file": "C:\\Users\\erdno\\chthonic-archive\\docs\\sessions\\session_resumption_chthonic_progress.md",
+      "link": ".github/copilot-instructions.md",
+      "resolved": "C:\\Users\\erdno\\chthonic-archive\\docs\\sessions\\.github\\copilot-instructions.md"
+    },
+    {
+      "file": "C:\\Users\\erdno\\chthonic-archive\\docs\\sessions\\session_resumption_chthonic_progress.md",
+      "link": "chthonic-vscode-extension/src/extension.ts",
+      "resolved": "C:\\Users\\erdno\\chthonic-archive\\docs\\sessions\\chthonic-vscode-extension\\src\\extension.ts"
+    },
+    {
+      "file": "C:\\Users\\erdno\\chthonic-archive\\docs\\sessions\\session_resumption_chthonic_progress.md",
+      "link": "chthonic-vscode-extension/INSTALL.md",
+      "resolved": "C:\\Users\\erdno\\chthonic-archive\\docs\\sessions\\chthonic-vscode-extension\\INSTALL.md"
+    },
+    {
+      "file": "C:\\Users\\erdno\\chthonic-archive\\docs\\sessions\\session_resumption_chthonic_progress.md",
+      "link": "chthonic-vscode-extension/COPILOT_API.md",
+      "resolved": "C:\\Users\\erdno\\chthonic-archive\\docs\\sessions\\chthonic-vscode-extension\\COPILOT_API.md"
+    },
+    {
+      "file": "C:\\Users\\erdno\\chthonic-archive\\docs\\sessions\\session_resumption_chthonic_progress.md",
+      "link": ".github/SESSION_RESUME.md",
+      "resolved": "C:\\Users\\erdno\\chthonic-archive\\docs\\sessions\\.github\\SESSION_RESUME.md"
+    },
+    {
+      "file": "C:\\Users\\erdno\\chthonic-archive\\docs\\sessions\\session_resumption_chthonic_progress.md",
+      "link": "DEVELOPMENT_STATE.md",
+      "resolved": "C:\\Users\\erdno\\chthonic-archive\\docs\\sessions\\DEVELOPMENT_STATE.md"
+    },
+    {
+      "file": "C:\\Users\\erdno\\chthonic-archive\\docs\\sessions\\session_resumption_chthonic_progress.md",
+      "link": ".github/copilot-instructions.md",
+      "resolved": "C:\\Users\\erdno\\chthonic-archive\\docs\\sessions\\.github\\copilot-instructions.md"
+    },
+    {
+      "file": "C:\\Users\\erdno\\chthonic-archive\\docs\\sessions\\session_resumption_chthonic_progress.md",
+      "link": "chthonic-vscode-extension/README.md",
+      "resolved": "C:\\Users\\erdno\\chthonic-archive\\docs\\sessions\\chthonic-vscode-extension\\README.md"
+    },
+    {
+      "file": "C:\\Users\\erdno\\chthonic-archive\\docs\\sessions\\session_resumption_chthonic_progress.md",
+      "link": "chthonic-vscode-extension/INSTALL.md",
+      "resolved": "C:\\Users\\erdno\\chthonic-archive\\docs\\sessions\\chthonic-vscode-extension\\INSTALL.md"
+    },
+    {
+      "file": "C:\\Users\\erdno\\chthonic-archive\\docs\\sessions\\session_resumption_chthonic_progress.md",
+      "link": "chthonic-vscode-extension/COPILOT_API.md",
+      "resolved": "C:\\Users\\erdno\\chthonic-archive\\docs\\sessions\\chthonic-vscode-extension\\COPILOT_API.md"
+    },
+    {
+      "file": "C:\\Users\\erdno\\chthonic-archive\\docs\\sessions\\session_resumption_chthonic_progress.md",
+      "link": "mas_mcp/README.md",
+      "resolved": "C:\\Users\\erdno\\chthonic-archive\\docs\\sessions\\mas_mcp\\README.md"
+    },
+    {
+      "file": "C:\\Users\\erdno\\chthonic-archive\\docs\\sessions\\session_resumption_chthonic_progress.md",
+      "link": "mas_mcp/frontend/README.md",
+      "resolved": "C:\\Users\\erdno\\chthonic-archive\\docs\\sessions\\mas_mcp\\frontend\\README.md"
+    },
+    {
+      "file": "C:\\Users\\erdno\\chthonic-archive\\docs\\sessions\\session_resumption_chthonic_progress.md",
+      "link": ".github/SESSION_RESUME.md#-active-issue",
+      "resolved": "C:\\Users\\erdno\\chthonic-archive\\docs\\sessions\\.github\\SESSION_RESUME.md"
+    },
+    {
+      "file": "C:\\Users\\erdno\\chthonic-archive\\docs\\sessions\\session_resumption_chthonic_progress.md",
+      "link": "chthonic-vscode-extension/INSTALL.md#-debugging-echo-issue",
+      "resolved": "C:\\Users\\erdno\\chthonic-archive\\docs\\sessions\\chthonic-vscode-extension\\INSTALL.md"
+    },
+    {
+      "file": "C:\\Users\\erdno\\chthonic-archive\\docs\\sessions\\session_resumption_chthonic_progress.md",
+      "link": "logs/sessions/session_2025-12-31_0746_vscode-extension-debug.md",
+      "resolved": "C:\\Users\\erdno\\chthonic-archive\\docs\\sessions\\logs\\sessions\\session_2025-12-31_0746_vscode-extension-debug.md"
+    },
+    {
+      "file": "C:\\Users\\erdno\\chthonic-archive\\docs\\sessions\\session_resumption_chthonic_progress.md",
+      "link": "DEVELOPMENT_STATE.md#-change-log-this-session",
+      "resolved": "C:\\Users\\erdno\\chthonic-archive\\docs\\sessions\\DEVELOPMENT_STATE.md"
+    },
+    {
+      "file": "C:\\Users\\erdno\\chthonic-archive\\docs\\sessions\\session_resumption_chthonic_progress.md",
+      "link": ".github/copilot-instructions.md",
+      "resolved": "C:\\Users\\erdno\\chthonic-archive\\docs\\sessions\\.github\\copilot-instructions.md"
+    },
+    {
+      "file": "C:\\Users\\erdno\\chthonic-archive\\docs\\sessions\\session_resumption_chthonic_progress.md",
+      "link": ".github/SESSION_RESUME.md",
+      "resolved": "C:\\Users\\erdno\\chthonic-archive\\docs\\sessions\\.github\\SESSION_RESUME.md"
+    },
+    {
+      "file": "C:\\Users\\erdno\\chthonic-archive\\docs\\sessions\\session_resumption_chthonic_progress.md",
+      "link": "DEVELOPMENT_STATE.md",
+      "resolved": "C:\\Users\\erdno\\chthonic-archive\\docs\\sessions\\DEVELOPMENT_STATE.md"
+    },
+    {
+      "file": "C:\\Users\\erdno\\chthonic-archive\\docs\\sessions\\session_resumption_chthonic_progress.md",
+      "link": ".github/copilot-instructions.md",
+      "resolved": "C:\\Users\\erdno\\chthonic-archive\\docs\\sessions\\.github\\copilot-instructions.md"
+    },
+    {
+      "file": "C:\\Users\\erdno\\chthonic-archive\\docs\\reference\\bun-playwright\\BUN_COMPLIANCE_COMPLETE.md",
+      "link": "?:package-lock\\.json|yarn\\.lock|pnpm-lock\\.yaml",
+      "resolved": "?:package-lock\\.json|yarn\\.lock|pnpm-lock\\.yaml"
+    },
+    {
+      "file": "C:\\Users\\erdno\\chthonic-archive\\docs\\reference\\bun-playwright\\BUN_PLAYWRIGHT_IT_SUMMARY.md",
+      "link": "bun-playwright-poc/",
+      "resolved": "C:\\Users\\erdno\\chthonic-archive\\docs\\reference\\bun-playwright\\bun-playwright-poc"
+    },
+    {
+      "file": "C:\\Users\\erdno\\chthonic-archive\\docs\\reference\\bun-playwright\\BUN_PLAYWRIGHT_IT_SUMMARY.md",
+      "link": "bun-playwright-poc/bun-launcher.ts",
+      "resolved": "C:\\Users\\erdno\\chthonic-archive\\docs\\reference\\bun-playwright\\bun-playwright-poc\\bun-launcher.ts"
+    },
+    {
+      "file": "C:\\Users\\erdno\\chthonic-archive\\docs\\reference\\bun-playwright\\BUN_PLAYWRIGHT_IT_SUMMARY.md",
+      "link": "bun-playwright-poc/scripts/validate.ts",
+      "resolved": "C:\\Users\\erdno\\chthonic-archive\\docs\\reference\\bun-playwright\\bun-playwright-poc\\scripts\\validate.ts"
+    },
+    {
+      "file": "C:\\Users\\erdno\\chthonic-archive\\claude-codex-gemini\\triadic-session-context\\BUN_SEGFAULT_2026_02_01.md",
+      "link": "../codex/NEXT.md",
+      "resolved": "C:\\Users\\erdno\\chthonic-archive\\claude-codex-gemini\\codex\\NEXT.md"
+    },
+    {
+      "file": "C:\\Users\\erdno\\chthonic-archive\\claude-codex-gemini\\triadic-session-context\\Python_Metabolic_Standard_v3_Transition.md",
+      "link": "../instructions/python-scripting.instructions.md",
+      "resolved": "C:\\Users\\erdno\\chthonic-archive\\claude-codex-gemini\\instructions\\python-scripting.instructions.md"
+    },
+    {
+      "file": "C:\\Users\\erdno\\chthonic-archive\\claude-codex-gemini\\triadic-session-context\\SESSION_CACHE_STRUCTURED.md",
+      "link": "src/data/verifier.rs",
+      "resolved": "C:\\Users\\erdno\\chthonic-archive\\claude-codex-gemini\\triadic-session-context\\src\\data\\verifier.rs"
+    },
+    {
+      "file": "C:\\Users\\erdno\\chthonic-archive\\claude-codex-gemini\\triadic-session-context\\SESSION_CACHE_STRUCTURED.md",
+      "link": "assets/shaders/iso_grid.frag",
+      "resolved": "C:\\Users\\erdno\\chthonic-archive\\claude-codex-gemini\\triadic-session-context\\assets\\shaders\\iso_grid.frag"
+    },
+    {
+      "file": "C:\\Users\\erdno\\chthonic-archive\\claude-codex-gemini\\triadic-session-context\\SESSION_CACHE_STRUCTURED.md",
+      "link": "assets/shaders/iso_grid.vert",
+      "resolved": "C:\\Users\\erdno\\chthonic-archive\\claude-codex-gemini\\triadic-session-context\\assets\\shaders\\iso_grid.vert"
+    },
+    {
+      "file": "C:\\Users\\erdno\\chthonic-archive\\claude-codex-gemini\\triadic-session-context\\SESSION_CACHE_STRUCTURED.md",
+      "link": "src/main.rs",
+      "resolved": "C:\\Users\\erdno\\chthonic-archive\\claude-codex-gemini\\triadic-session-context\\src\\main.rs"
+    },
+    {
+      "file": "C:\\Users\\erdno\\chthonic-archive\\claude-codex-gemini\\triadic-session-context\\SSOTI_FIED_SESSION_LOG.md",
+      "link": "file:///c%3A/Users/erdno/chthonic-archive/BUN_PLAYWRIGHT_VALIDATION.md",
+      "resolved": "C:\\Users\\erdno\\chthonic-archive\\claude-codex-gemini\\triadic-session-context\\file:\\c%3A\\Users\\erdno\\chthonic-archive\\BUN_PLAYWRIGHT_VALIDATION.md"
+    },
+    {
+      "file": "C:\\Users\\erdno\\chthonic-archive\\claude-codex-gemini\\triadic-session-context\\SSOTI_FIED_SESSION_LOG.md",
+      "link": "/debugging_data/",
+      "resolved": "C:\\debugging_data"
+    },
+    {
+      "file": "C:\\Users\\erdno\\chthonic-archive\\claude-codex-gemini\\triadic-session-context\\SSOTI_FIED_SESSION_LOG.md",
+      "link": "file:///c%3A/Users/erdno/chthonic-archive/mas_mcp/milf_genesis_v2.py#528-528",
+      "resolved": "C:\\Users\\erdno\\chthonic-archive\\claude-codex-gemini\\triadic-session-context\\file:\\c%3A\\Users\\erdno\\chthonic-archive\\mas_mcp\\milf_genesis_v2.py"
+    },
+    {
+      "file": "C:\\Users\\erdno\\chthonic-archive\\claude-codex-gemini\\triadic-session-context\\SSOTI_FIED_SESSION_LOG.md",
+      "link": "file:///c%3A/Users/erdno/chthonic-archive/.github/copilot-instructions.md#1-1",
+      "resolved": "C:\\Users\\erdno\\chthonic-archive\\claude-codex-gemini\\triadic-session-context\\file:\\c%3A\\Users\\erdno\\chthonic-archive\\.github\\copilot-instructions.md"
+    },
+    {
+      "file": "C:\\Users\\erdno\\chthonic-archive\\claude-codex-gemini\\triadic-session-context\\SSOTI_FIED_SESSION_LOG.md",
+      "link": "C:\\Users\\erdno\\chthonic-archive\\.github\\Claude_Opus_4_5_grade_lossless_compr_SSOT-IFICATION_cross_REF_data\\Zone_1_REDUX_implementation_ripe_for_SSOT_canon.md",
+      "resolved": "C:\\Users\\erdno\\chthonic-archive\\.github\\Claude_Opus_4_5_grade_lossless_compr_SSOT-IFICATION_cross_REF_data\\Zone_1_REDUX_implementation_ripe_for_SSOT_canon.md"
+    },
+    {
+      "file": "C:\\Users\\erdno\\chthonic-archive\\claude-codex-gemini\\triadic-session-context\\SSOTI_FIED_SESSION_LOG.md",
+      "link": "C:\\Users\\erdno\\chthonic-archive\\.github\\Claude_Opus_4_5_grade_lossless_compr_SSOT-IFICATION_cross_REF_data",
+      "resolved": "C:\\Users\\erdno\\chthonic-archive\\.github\\Claude_Opus_4_5_grade_lossless_compr_SSOT-IFICATION_cross_REF_data"
+    },
+    {
+      "file": "C:\\Users\\erdno\\chthonic-archive\\claude-codex-gemini\\triadic-session-context\\SSOTI_FIED_SESSION_LOG.md",
+      "link": "C:\\Users\\erdno\\chthonic-archive\\.github\\Claude_Opus_4_5_grade_lossless_compr_SSOT-IFICATION_cross_REF_data\\SSOT_STRUCTURAL_INDEX.json",
+      "resolved": "C:\\Users\\erdno\\chthonic-archive\\.github\\Claude_Opus_4_5_grade_lossless_compr_SSOT-IFICATION_cross_REF_data\\SSOT_STRUCTURAL_INDEX.json"
+    },
+    {
+      "file": "C:\\Users\\erdno\\chthonic-archive\\claude-codex-gemini\\triadic-session-context\\SSOTI_FIED_SESSION_LOG.md",
+      "link": "C:\\Users\\erdno\\chthonic-archive\\.github\\Claude_Opus_4_5_grade_lossless_compr_SSOT-IFICATION_cross_REF_data\\SSOT_NAVIGATION_INDEX.md",
+      "resolved": "C:\\Users\\erdno\\chthonic-archive\\.github\\Claude_Opus_4_5_grade_lossless_compr_SSOT-IFICATION_cross_REF_data\\SSOT_NAVIGATION_INDEX.md"
+    },
+    {
+      "file": "C:\\Users\\erdno\\chthonic-archive\\claude-codex-gemini\\triadic-session-context\\SSOTI_FIED_SESSION_LOG.md",
+      "link": "C:\\Users\\erdno\\chthonic-archive\\.github\\Claude_Opus_4_5_grade_lossless_compr_SSOT-IFICATION_cross_REF_data\\SSOT_STRUCTURAL_INDEX.json",
+      "resolved": "C:\\Users\\erdno\\chthonic-archive\\.github\\Claude_Opus_4_5_grade_lossless_compr_SSOT-IFICATION_cross_REF_data\\SSOT_STRUCTURAL_INDEX.json"
+    }
+  ]
+}

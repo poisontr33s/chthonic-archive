@@ -12,17 +12,19 @@ Capture what’s next for Codex in this workspace without expanding the SSOT. Th
 - Chthonic-archive MCP: **Disabled/WIP** (intentionally removed from Gemini extension to avoid startup errors)
 
 ## Scope: What’s Next (When Ready)
-1. **GitHub Tool Integration**
-   - Confirm `GITHUB_MCP_PAT` in user env and verify via `/mcp list`.
-   - Then leverage GitHub MCP for PR reviews and issue triage.
-2. **Research ingestion**
-   - Triage Gemini Deep Research outputs.
-   - Decide target destination: `claude-codex-gemini/triadic-session-context/` or `deep-research-documents/`.
-3. **Refinement pass**
+1. **GitHub Tool Integration** (Completed)
+   - `GITHUB_MCP_PAT` confirmed and MCP verified operational.
+2. **Research ingestion** (Completed)
+   - Deep Research outputs triaged to `dumpster-dive/archive/deep-research/`.
+   - Windows/Bun encoding tips captured in `GEMINI.md`.
+3. **Archive Pruning** (In Progress)
+   - Current count: ~1138 .md files (needs filtering build artifacts).
+   - Target: <200 active .md files.
+   - Action: Identify and ignore/archive `build/` and `extensions/` documentation.
+4. **Refinement pass**
    - Convert raw notes into structured, cross-referential artifacts.
    - Keep the SSOT clean; link out instead of duplicating.
-4. **Selective automation**
-   - Only after the content direction is settled, add scripts or workflows to reduce manual overhead.
+
 
 ## Known Issues
 

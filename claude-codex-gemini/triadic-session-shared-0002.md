@@ -13,7 +13,7 @@ Shared, raw continuity log for Codex + Claude + Gemini. This entry captures the 
    - Goal: Authenticate Gemini CLI with GitHub Copilot via MCP using a Personal Access Token (PAT), since OAuth is not supported for GitHub MCP in Gemini CLI.
 3) **Canonical Artifacts**
    - Triadic index:
-     - `codex-claude-gemini-triad-sessions/triadic-session-shared-0002.md`
+     - `claude-codex-gemini/triadic-session-shared-0002.md`
 4) **Files Created/Modified (Authoritative)**
    - Global Gemini Settings:
      - `C:\Users\erdno\.gemini\settings.json`

@@ -19,7 +19,7 @@ Shared, raw continuity log for Codex + Claude + Gemini. The structured index bel
    - Waypoint:
      - `codex/NEXT.md`
    - Triadic index:
-     - `codex-claude-gemini-triad-sessions/triadic-session-shared-0001.md`
+     - `claude-codex-gemini/triadic-session-shared-0001.md`
 4) **Files Created/Modified (Authoritative)**
    - Workspace behavior SSOT:
      - `.codex/config.toml`

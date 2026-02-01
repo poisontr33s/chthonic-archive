@@ -9,8 +9,8 @@
 
 ## Files Already Updated
 - `codex/NEXT.md`
-- `codex-claude-gemini-triad-sessions/triadic-session-shared-0001.md`
-- `codex-claude-gemini-triad-sessions/triadic-session-shared-0002.md`
+- `claude-codex-gemini/triadic-session-shared-0001.md`
+- `claude-codex-gemini/triadic-session-shared-0002.md`
 - `.gemini/extensions/_sources/github-mcp-server` trimmed to `gemini-extension.json`
 - `.gemini/extensions/chthonic-archive-sync/gemini-extension.json` (removed `mas-mcp` WIP)
 

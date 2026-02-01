@@ -14,8 +14,8 @@ This handoff corrects a previously generated file that contained incorrect claim
 
 ## Files Modified
 - `codex/NEXT.md`
-- `codex-claude-gemini-triad-sessions/triadic-session-shared-0001.md`
-- `codex-claude-gemini-triad-sessions/triadic-session-shared-0002.md`
+- `claude-codex-gemini/triadic-session-shared-0001.md`
+- `claude-codex-gemini/triadic-session-shared-0002.md`
 - `.gemini/extensions/chthonic-archive-sync/gemini-extension.json`
 - `C:\Users\erdno\.gemini\extensions/extension-enablement.json`
 
