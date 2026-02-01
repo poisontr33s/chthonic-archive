@@ -24,6 +24,15 @@ Capture what’s next for Codex in this workspace without expanding the SSOT. Th
 4. **Selective automation**
    - Only after the content direction is settled, add scripts or workflows to reduce manual overhead.
 
+## Known Issues
+
+### Bun Segfault with Gemini CLI (2026-02-01)
+- **Symptom:** Segfault at address `0x8` after ~39 min session, 1M+ page faults
+- **Bun version:** 1.3.7 (crash), upgraded to 1.3.8
+- **Mitigation applied:** `.gemini/settings.json` now has `discoveryMaxDirs: 50`
+- **Status:** Monitoring post-upgrade
+- **Bug report URL:** `https://bun.report/1.3.7/wa1ba42621ijGukogCq+uq9C_____0ixgjDirp5iD66p5iDw81zjD2xy5iDgulgjD6i9m9C01iilD0r/u/C42uzvC+oyzsCghzxrCg+22sCy6o03BA2AQ`
+
 ## Guardrails
 - Do not alter working auth or sandbox configs without explicit instruction.
 - Keep AGENTS.md compact; reference SSOT instead of copying it.

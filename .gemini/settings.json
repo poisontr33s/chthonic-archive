@@ -13,6 +13,8 @@
     "fileFiltering": {
       "respectGitIgnore": false,
       "respectGeminiIgnore": true
-    }
+    },
+    "discoveryMaxDirs": 50,
+    "enableRecursiveFileSearch": true
   }
 }
