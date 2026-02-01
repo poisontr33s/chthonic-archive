@@ -5,6 +5,8 @@
 # Standard noise - always ignore
 node_modules/
 .git/
+.venv/
+.codex/
 *.log
 *.tmp
 *.bak
@@ -13,6 +15,10 @@ node_modules/
 book/
 dist/
 target/
+build/
+
+# Archives & Dumpster
+dumpster-dive/
 
 # Credentials (safety)
 .env
