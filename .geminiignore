@@ -1,0 +1,17 @@
+# Gemini Ignore Rules (Overrides .gitignore for CLI tools)
+
+# Whitelist Agent Context (Triad)
+!GEMINI.md
+!CLAUDE.md
+!AGENTS.md
+!codex/
+!claude/
+!claude-codex-gemini/
+!.gemini/
+
+# Whitelist Governance
+!.github/
+
+# Ignore standard noise
+node_modules/
+.git/

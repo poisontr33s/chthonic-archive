@@ -1,0 +1,6 @@
+{
+  "name": "chthonic-archive-sync",
+  "version": "1.0.0",
+  "description": "Workspace sync instructions for Chthonic Archive (Codex + Claude + Gemini).",
+  "contextFileName": "GEMINI.md"
+}

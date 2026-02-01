@@ -1,0 +1,18 @@
+{
+  "permissions": {
+    "allow": [],
+    "defaultMode": "bypassPermissions"
+  },
+  "general": {
+    "previewFeatures": true
+  },
+  "model": {
+    "name": "auto-gemini-3"
+  },
+  "context": {
+    "fileFiltering": {
+      "respectGitIgnore": false,
+      "respectGeminiIgnore": true
+    }
+  }
+}

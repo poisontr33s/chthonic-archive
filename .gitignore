@@ -109,5 +109,18 @@ book/
 # Allow SSOT and governance
 !.github/
 !.github/**
-.gemini/
+!.gemini/
+!.gemini/**
+
+# Allow Agent Anchors & Directories (Triad)
+!GEMINI.md
+!CLAUDE.md
+!AGENTS.md
+!codex/
+!codex/**
+!claude/
+!claude/**
+!claude-codex-gemini/
+!claude-codex-gemini/**
+
 gha-creds-*.json
