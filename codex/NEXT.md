@@ -37,6 +37,11 @@ Capture what’s next for Codex in this workspace without expanding the SSOT. Th
    - Completed: `codex/CREATIVE_PRIMING_2026_02_02.md`.
 6. **Creative Batch (Artifacts)**
    - Completed: `codex/artifacts/` (5 files).
+7. **Script-Envelope Canonicalization**
+   - Use `codex/skills/script-envelope/` to normalize metadata envelopes (fixed field order + padded width).
+8. **Skill Cleanup**
+   - Removed `codex/skills/artifact-upcycle` (Repo redundancy eliminated).
+   - Source of Truth: `~/.codex/skills/artifact-upcycle` (Verified Intelligent).
 
 
 ## Known Issues
