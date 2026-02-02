@@ -1,3 +1,12 @@
+---
+type: handoff
+category: session
+created: 2026-02-01
+from: claude
+to: codex
+description: MCP lane clarification and Gemini enablement handoff
+---
+
 # Session Handoff 2026-02-01 (Claude → Codex)
 
 ## Session Summary

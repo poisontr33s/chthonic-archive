@@ -1,7 +1,16 @@
+---
+type: report
+category: creative
+created: 2026-02-02
+author: codex
+repo: poisontr33s/chthonic-archive
+description: GitHub MCP-driven repository analysis and creative synthesis
+---
+
 # Creative Priming Report — Temple of Eternal Sadhana
 
-**Date:** 2026-02-02  
-**Repo:** `poisontr33s/chthonic-archive`  
+**Date:** 2026-02-02
+**Repo:** `poisontr33s/chthonic-archive`
 **Identity:** *The Temple of Eternal Sadhana*  
 **Description (GitHub):** Rust/Vulkan Isometric RPG Engine - The Temple of Eternal Sadhana
 

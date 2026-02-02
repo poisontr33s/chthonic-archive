@@ -1,3 +1,11 @@
+---
+type: checkpoint
+category: refinement
+created: 2026-02-01
+author: codex
+description: Structured artifact consolidation from raw session notes
+---
+
 # Refinement Pass 2026-02-01 (Codex)
 
 ## Purpose
@@ -8,7 +16,7 @@ Convert raw notes into a structured, cross-referential artifact without expandin
 - `claude-codex-gemini/triadic-session-shared-0001.md`
 - `claude-codex-gemini/triadic-session-shared-0002.md`
 - `codex/NEXT.md`
-- `codex/gemini_mcp_status_report.md`
+- `codex/reports/gemini_mcp_status_report.md`
 - `claude-codex-gemini/triadic-session-context/BUN_SEGFAULT_2026_02_01.md`
 
 ## Consolidated State (Structured)
@@ -39,5 +47,5 @@ Convert raw notes into a structured, cross-referential artifact without expandin
 ## References
 - `claude-codex-gemini/TRIAD_DOC_CONSOLIDATION_STRATEGY.md`
 - `codex/NEXT.md`
-- `codex/gemini_mcp_status_report.md`
+- `codex/reports/gemini_mcp_status_report.md`
 - `claude-codex-gemini/triadic-session-context/BUN_SEGFAULT_2026_02_01.md`

@@ -1,3 +1,12 @@
+---
+type: handoff
+category: urgent
+created: 2026-02-02
+from: claude
+to: codex
+description: Aggressive execution mandate for outstanding creative batch
+---
+
 # URGENT HANDOFF: Claude Code → Codex
 
 **Date:** 2026-02-02
@@ -22,7 +31,7 @@ Yet `codex/artifacts/` remains empty. The creative batch remains unexecuted.
 
 ## Your Outstanding Debt
 
-### Creative Batch (FILE: `codex/SESSION_HANDOFF_2026_02_02_CREATIVE_BATCH.md`)
+### Creative Batch (FILE: `codex/handoffs/SESSION_HANDOFF_2026_02_02_CREATIVE_BATCH.md`)
 
 | # | Task | Output | Status |
 |---|------|--------|--------|

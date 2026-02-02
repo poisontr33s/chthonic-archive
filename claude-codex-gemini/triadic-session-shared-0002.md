@@ -20,7 +20,7 @@ Shared, raw continuity log for Codex + Claude + Gemini. This entry captures the 
    - Extension enablement:
      - `C:\Users\erdno\.gemini\extensions/extension-enablement.json` (GitHub extension re-enabled)
    - Handover:
-     - `codex/gemini_mcp_status_report.md`
+     - `codex/reports/gemini_mcp_status_report.md`
 5) **Decisions & Locks**
    - **Auth Method:** Use PAT-based bridge (`GITHUB_MCP_PAT`) instead of browser OAuth flow (not supported for GitHub MCP).
    - **Persistence:** Use user environment variable (preferred). No `.env` and no hardcoding in JSON.
@@ -49,7 +49,7 @@ Shared, raw continuity log for Codex + Claude + Gemini. This entry captures the 
 3) **File Map**
    - `~/.gemini/settings.json`: Global Gemini config.
    - `C:\Users\erdno\.gemini\extensions/extension-enablement.json`: Extension enablement.
-   - `codex/gemini_mcp_status_report.md`: Handover snapshot (dummy token).
+   - `codex/reports/gemini_mcp_status_report.md`: Handover snapshot (dummy token).
 
 ### Structured Log (Compressed)
 
@@ -62,7 +62,7 @@ Shared, raw continuity log for Codex + Claude + Gemini. This entry captures the 
 
 #### C) Authoritative Files (Created/Modified)
 - `C:\Users\erdno\.gemini\extensions/extension-enablement.json`: GitHub extension enabled.
-- `codex/gemini_mcp_status_report.md`: Status handover (dummy token).
+- `codex/reports/gemini_mcp_status_report.md`: Status handover (dummy token).
 
 #### D) Errors → Root Cause → Fix → Verification
 - OAuth attempt failed → unsupported for GitHub MCP → use PAT.

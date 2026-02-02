@@ -36,7 +36,7 @@ Shared, raw continuity log for Codex + Claude + Gemini. The structured index bel
      - `.gemini/extensions/chthonic-archive-sync/`
      - `.gemini/extensions/_sources/github-mcp-server/`
    - Gemini MCP status handover:
-     - `codex/gemini_mcp_status_report.md`
+     - `codex/reports/gemini_mcp_status_report.md`
 5) **Decisions & Locks**
    - Codex global config = auth-only; workspace config = behavior.
    - Gemini preview features set via `general.previewFeatures`.

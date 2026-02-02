@@ -1,3 +1,12 @@
+---
+type: handoff
+category: creative
+created: 2026-02-02
+from: claude
+to: codex
+description: Five creative tasks for Codex to execute without menus
+---
+
 # Creative Batch Handoff: Claude Code → Codex
 
 **Date:** 2026-02-02

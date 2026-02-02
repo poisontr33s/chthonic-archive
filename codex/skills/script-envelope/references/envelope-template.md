@@ -1,3 +1,10 @@
+---
+type: template
+category: skill
+skill: script-envelope
+description: Canonical metadata envelope format with field order and width rules
+---
+
 # Script Envelope Template (Canonical)
 
 # Rules:

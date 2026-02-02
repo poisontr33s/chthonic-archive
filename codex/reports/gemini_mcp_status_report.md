@@ -1,3 +1,11 @@
+---
+type: report
+category: mcp
+created: 2026-02-01
+author: codex
+description: Gemini CLI GitHub MCP onboarding success report with PAT resolution
+---
+
 # Gemini CLI MCP Onboarding: Success Report
 
 ## Hierarchical Context (Symbiotic Achievement)

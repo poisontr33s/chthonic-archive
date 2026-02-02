@@ -1,3 +1,11 @@
+---
+type: checkpoint
+category: session
+created: 2026-02-01
+author: claude
+description: Full session summary for triad coordination and context offload
+---
+
 # Session Checkpoint 2026-02-01
 
 **Agent:** Claude Code (Opus 4.5)
@@ -134,7 +142,7 @@ User indicated Claude Code is "next up for hooking it up" with GitHub Copilot Pr
 - `C:\Users\erdno\.config\powershell\profile.ps1`
 - `scripts/profile-diag.ps1`
 - `scripts/check-profiles.ps1`
-- `codex/SESSION_HANDOFF_2026_02_01_CLAUDE.md` (earlier in session)
+- `codex/handoffs/SESSION_HANDOFF_2026_02_01_CLAUDE.md` (earlier in session)
 
 ### Modified
 - `claude-codex-gemini/TRIAD_DOC_CONSOLIDATION_STRATEGY.md` (broken link fix)
@@ -147,8 +155,8 @@ User indicated Claude Code is "next up for hooking it up" with GitHub Copilot Pr
 
 - Triad Strategy: [TRIAD_DOC_CONSOLIDATION_STRATEGY.md](../claude-codex-gemini/TRIAD_DOC_CONSOLIDATION_STRATEGY.md)
 - Gemini Sync: [TRIAD_SYNC_2026_02_01.md](../.gemini/TRIAD_SYNC_2026_02_01.md)
-- MCP Handoff: [SESSION_HANDOFF_2026_02_01_CLAUDE.md](SESSION_HANDOFF_2026_02_01_CLAUDE.md)
-- Session Waypoint: [NEXT.md](NEXT.md)
+- MCP Handoff: [SESSION_HANDOFF_2026_02_01_CLAUDE.md](../handoffs/SESSION_HANDOFF_2026_02_01_CLAUDE.md)
+- Session Waypoint: [NEXT.md](../NEXT.md)
 
 ---
 

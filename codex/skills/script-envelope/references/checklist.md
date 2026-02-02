@@ -1,3 +1,10 @@
+---
+type: reference
+category: skill
+skill: script-envelope
+description: Step-by-step checklist for script envelope standardization
+---
+
 # Script-Envelope Checklist
 
 1. Confirm target exists and is within repo.

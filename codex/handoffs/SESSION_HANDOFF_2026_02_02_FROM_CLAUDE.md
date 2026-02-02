@@ -1,3 +1,12 @@
+---
+type: handoff
+category: task
+created: 2026-02-02
+from: claude
+to: codex
+description: GitHub MCP creative priming task delegation
+---
+
 # Session Handoff: Claude Code → Codex
 
 **Date:** 2026-02-02
@@ -24,7 +33,7 @@
    - The soul of the project ("Temple of Eternal Sadhana")
    - Evolution trajectory (what direction is the repo heading?)
    - Triadic coordination potential (how can the three agents leverage this?)
-4. **Output:** Write your synthesis to `codex/CREATIVE_PRIMING_2026_02_02.md`
+4. **Output:** Write your synthesis to `codex/reports/CREATIVE_PRIMING_2026_02_02.md`
 
 **Constraints:**
 - NO menu mode. Execute the lookups directly.

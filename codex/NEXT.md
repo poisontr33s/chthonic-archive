@@ -1,3 +1,12 @@
+---
+type: waypoint
+category: codex
+created: 2026-02-01
+updated: 2026-02-02
+author: codex
+description: Session waypoint and next steps for Codex workspace
+---
+
 # Codex Scope: Next Steps
 
 ## Purpose
@@ -32,9 +41,9 @@ Capture what’s next for Codex in this workspace without expanding the SSOT. Th
    - Active documentation surface is now focused.
 4. **Refinement pass**
    - Completed: structured artifact created.
-   - See `codex/REFINEMENT_PASS_2026_02_01.md`.
+   - See `codex/checkpoints/REFINEMENT_PASS_2026_02_01.md`.
 5. **Creative Priming (GitHub MCP)**
-   - Completed: `codex/CREATIVE_PRIMING_2026_02_02.md`.
+   - Completed: `codex/reports/CREATIVE_PRIMING_2026_02_02.md`.
 6. **Creative Batch (Artifacts)**
    - Completed: `codex/artifacts/` (5 files).
 7. **Script-Envelope Canonicalization**
@@ -68,12 +77,12 @@ Capture what’s next for Codex in this workspace without expanding the SSOT. Th
 - `claude-codex-gemini/triadic-session-context/Session_20260131_Codex_Onboarding_Summary.md`
 - `claude-codex-gemini/triadic-session-shared-0001.md`
 - `claude-codex-gemini/triadic-session-shared-0002.md`
-- `codex/gemini_mcp_status_report.md`
-- `codex/REFINEMENT_PASS_2026_02_01.md`
-- `codex/CREATIVE_PRIMING_2026_02_02.md`
+- `codex/reports/gemini_mcp_status_report.md`
+- `codex/checkpoints/REFINEMENT_PASS_2026_02_01.md`
+- `codex/reports/CREATIVE_PRIMING_2026_02_02.md`
 - `codex/artifacts/`
-- `codex/SESSION_HANDOFF_2026_02_01_CLAUDE.md`
-- `codex/SESSION_CHECKPOINT_2026_02_01.md`
+- `codex/handoffs/SESSION_HANDOFF_2026_02_01_CLAUDE.md`
+- `codex/checkpoints/SESSION_CHECKPOINT_2026_02_01.md`
 - `claude/SESSION_HANDOFF_2026_02_01_TRIAD_GEMINI.md`
 - `.gemini/TRIAD_SYNC_2026_02_01.md`
 - `deep-research-documents/Gemini_CLI_Preview_Win11_Bun_vscode_insiders_deep_research_IMPLEMENTATION.md`

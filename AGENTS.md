@@ -37,10 +37,12 @@ When triggered, prefix response with:
 Debt paid. Momentum restored.
 ```
 
-**Full protocol:** See [codex/SLEEPERS_HOLD_PROTOCOL.md](codex/SLEEPERS_HOLD_PROTOCOL.md)
+**Full protocol:** See [codex/protocols/SLEEPERS_HOLD_PROTOCOL.md](codex/protocols/SLEEPERS_HOLD_PROTOCOL.md)
 
 ## Codex Session Artifacts
 
 - `codex/NEXT.md` - Session waypoint and next steps
-- `codex/SESSION_HANDOFF_*.md` - Inter-agent handoff documents
-- `codex/gemini_mcp_status_report.md` - MCP status tracking
+- `codex/handoffs/SESSION_HANDOFF_*.md` - Inter-agent handoff documents
+- `codex/reports/gemini_mcp_status_report.md` - MCP status tracking
+- `codex/checkpoints/` - Session checkpoints and refinement passes
+- `codex/artifacts/` - Creative outputs (sigils, bestiary, poems, etc.)
