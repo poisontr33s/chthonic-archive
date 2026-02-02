@@ -13,6 +13,13 @@ Capture what’s next for Codex in this workspace without expanding the SSOT. Th
 - PowerShell Profile: **Optimized** (OneDrive stub pattern, 65ms load time)
 - UTF-8 Encoding: **Enabled** in profile (prevents Mojibake)
 
+## Immediate Priority: Creative Priming (Execute Now)
+**Objective:** Validate your GitHub MCP "superpowers" and align with Gemini's creative synthesis.
+**Task:**
+1.  **Connect:** Use GitHub MCP to inspect `poisontr33s/chthonic-archive`.
+2.  **Synthesize:** Generate a "Creative Priming" report summarizing the repo's Identity ("Temple of Eternal Sadhana"), Core Stats (Languages), and Recent Evolution (Commits).
+3.  **Constraint:** **DO NOT** offer options (1, 2, 3). **DO NOT** split into divergences. **JUST EXECUTE** the lookups and present the influx.
+
 ## Scope: What’s Next (When Ready)
 1. **GitHub Tool Integration** (Completed)
    - `GITHUB_MCP_PAT` confirmed and MCP verified operational.
@@ -26,6 +33,10 @@ Capture what’s next for Codex in this workspace without expanding the SSOT. Th
 4. **Refinement pass**
    - Completed: structured artifact created.
    - See `codex/REFINEMENT_PASS_2026_02_01.md`.
+5. **Creative Priming (GitHub MCP)**
+   - Completed: `codex/CREATIVE_PRIMING_2026_02_02.md`.
+6. **Creative Batch (Artifacts)**
+   - Completed: `codex/artifacts/` (5 files).
 
 
 ## Known Issues
@@ -43,7 +54,9 @@ Capture what’s next for Codex in this workspace without expanding the SSOT. Th
 - Prefer PowerShell commands; avoid bash syntax on Windows.
 
 ## References
-- `AGENTS.md`
+- `claude/SESSION_COMPRESSION_2026_02_01.md` (High-level summary)
+- `claude/MCP_CONFIGURATION_LOG_2026_02_01.md` (Auth details)
+- `AGENTS.md` (Updated with `gh-mcp-autonomy`)
 - `.codex/config.toml`
 - `.github/copilot-instructions.md`
 - `claude-codex-gemini/triadic-session-context/OpenAI_Codex_Win11_Keyring_Auth_Resolution.md`
@@ -52,6 +65,8 @@ Capture what’s next for Codex in this workspace without expanding the SSOT. Th
 - `claude-codex-gemini/triadic-session-shared-0002.md`
 - `codex/gemini_mcp_status_report.md`
 - `codex/REFINEMENT_PASS_2026_02_01.md`
+- `codex/CREATIVE_PRIMING_2026_02_02.md`
+- `codex/artifacts/`
 - `codex/SESSION_HANDOFF_2026_02_01_CLAUDE.md`
 - `codex/SESSION_CHECKPOINT_2026_02_01.md`
 - `claude/SESSION_HANDOFF_2026_02_01_TRIAD_GEMINI.md`
