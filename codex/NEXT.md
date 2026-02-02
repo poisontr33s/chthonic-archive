@@ -10,6 +10,8 @@ Capture what’s next for Codex in this workspace without expanding the SSOT. Th
 - Instructions: `AGENTS.md` (compact) and `.github/copilot-instructions.md` (SSOT)
 - Gemini MCP: GitHub Server **Enabled** (PAT-based auth required; no OAuth flow)
 - Chthonic-archive MCP: **Disabled/WIP** (intentionally removed from Gemini extension to avoid startup errors)
+- PowerShell Profile: **Optimized** (OneDrive stub pattern, 65ms load time)
+- UTF-8 Encoding: **Enabled** in profile (prevents Mojibake)
 
 ## Scope: What’s Next (When Ready)
 1. **GitHub Tool Integration** (Completed)
@@ -51,5 +53,7 @@ Capture what’s next for Codex in this workspace without expanding the SSOT. Th
 - `codex/gemini_mcp_status_report.md`
 - `codex/REFINEMENT_PASS_2026_02_01.md`
 - `codex/SESSION_HANDOFF_2026_02_01_CLAUDE.md`
+- `codex/SESSION_CHECKPOINT_2026_02_01.md`
 - `claude/SESSION_HANDOFF_2026_02_01_TRIAD_GEMINI.md`
+- `.gemini/TRIAD_SYNC_2026_02_01.md`
 - `deep-research-documents/Gemini_CLI_Preview_Win11_Bun_vscode_insiders_deep_research_IMPLEMENTATION.md`
