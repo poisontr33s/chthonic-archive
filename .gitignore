@@ -124,3 +124,4 @@ book/
 !claude-codex-gemini/**
 
 gha-creds-*.json
+claude/SESSION_HANDOFF_2026_02_01_TO_CLAUDE.md
