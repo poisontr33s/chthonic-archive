@@ -1,3 +1,16 @@
+# ╔════════════════════════════════════════════════════════════════════════════╗
+# ║ THE DECORATOR'S BLESSING: validate_probe.ps1                              ║
+# ║ Module: Probe validation wrapper                                          ║
+# ╠════════════════════════════════════════════════════════════════════════════╣
+# ║ Spectral Frequency: WHITE                                                 ║
+# ║ Architectural Role: VALIDATION                                            ║
+# ║ Semantic ID: SCRIPT_VALIDATE_PROBE_V1                                      ║
+# ║ Purpose: Run ABI validation plus advisory probe checks                     ║
+# ║ Exports: (none)                                                           ║
+# ║ Flags/Modes: -ProbePath                                                    ║
+# ║ Cross-References: scripts/validate_shell_probe.ps1                         ║
+# ╚════════════════════════════════════════════════════════════════════════════╝
+
 # scripts/validate_probe.ps1
 # Wrapper for probe validation with advisory style checks
 # CRITICAL: ABI enforcement delegated to validate_shell_probe.ps1

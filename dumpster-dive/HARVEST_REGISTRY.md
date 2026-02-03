@@ -9,6 +9,13 @@ Tracking completed data harvests from PRs, sessions, and other sources.
 | ID | Date | Source | Input | Output | Compression | Status |
 |----|------|--------|-------|--------|-------------|--------|
 | `pr-harvest-2026-01-29` | 2026-01-29 | PRs #1, #2, #5 | ~10,000 lines | ~500 lines | 20:1 | Complete |
+| `overnight-daemon` | 2026-02-03 | Local intake | daemon scripts | curated files | n/a | Complete |
+| `sentry-probe` | 2026-02-03 | Local intake | probe scripts | curated files | n/a | Complete |
+| `toolchain-probe` | 2026-02-03 | Local intake | probe scripts | curated files | n/a | Complete |
+| `claudine-harvest` | 2026-02-03 | Local intake | external scripts | curated files | n/a | Complete |
+| `protocols` | 2026-02-03 | Local intake | protocol docs | curated files | n/a | Complete |
+| `templates` | 2026-02-03 | Local intake | templates | curated files | n/a | Complete |
+| `ore-batch-2025-12-30` | 2025-12-30 | Local intake | ore batch | curated file | n/a | Complete |
 
 ---
 
@@ -39,6 +46,104 @@ Tracking completed data harvests from PRs, sessions, and other sources.
 **Disposition:** PRs closed with harvest references
 
 **Methodology:** [WET_PAPER_TO_GOLD_METHODOLOGY.md](../claude/WET_PAPER_TO_GOLD_METHODOLOGY.md)
+
+---
+
+### overnight-daemon
+
+**Location:** [intake/overnight-daemon/](./intake/overnight-daemon/)
+
+**Sources:**
+- Local intake (daemon scripts)
+
+**Extracted Artifacts:**
+- Intake folder contents (see location)
+
+**Disposition:** Archived to intake for review
+
+---
+
+### sentry-probe
+
+**Location:** [intake/sentry-probe/](./intake/sentry-probe/)
+
+**Sources:**
+- Local intake (probe scripts)
+
+**Extracted Artifacts:**
+- Intake folder contents (see location)
+
+**Disposition:** Archived to intake for review
+
+---
+
+### toolchain-probe
+
+**Location:** [intake/toolchain-probe/](./intake/toolchain-probe/)
+
+**Sources:**
+- Local intake (probe scripts)
+
+**Extracted Artifacts:**
+- Intake folder contents (see location)
+
+**Disposition:** Archived to intake for review
+
+---
+
+### claudine-harvest
+
+**Location:** [intake/claudine-harvest/](./intake/claudine-harvest/)
+
+**Sources:**
+- Local intake (external Claudine scripts)
+
+**Extracted Artifacts:**
+- Intake folder contents (see location)
+
+**Disposition:** Archived to intake for review
+
+---
+
+### protocols
+
+**Location:** [protocols/](./protocols/)
+
+**Sources:**
+- Local intake (protocol docs)
+
+**Extracted Artifacts:**
+- Protocol directory contents (see location)
+
+**Disposition:** Archived to dumpster-dive/protocols
+
+---
+
+### templates
+
+**Location:** [intake/templates/](./intake/templates/)
+
+**Sources:**
+- Local intake (templates)
+
+**Extracted Artifacts:**
+- Intake folder contents (see location)
+
+**Disposition:** Archived to intake for review
+
+---
+
+### ore-batch-2025-12-30
+
+**Location:** [intake/INSTRUCTIONS_ORE_BATCH_20251230.md](./intake/INSTRUCTIONS_ORE_BATCH_20251230.md)
+
+**Sources:**
+- Local intake (ore batch instructions)
+
+**Extracted Artifacts:**
+- INSTRUCTIONS_ORE_BATCH_20251230.md
+
+**Disposition:** Archived to intake for review
 
 ---
 

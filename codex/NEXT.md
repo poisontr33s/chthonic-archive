@@ -12,17 +12,15 @@ description: Session waypoint and next steps for Codex workspace
 ## Purpose
 Capture what's next for Codex in this workspace without expanding the SSOT. This is a lightweight waypoint for future sessions.
 
-## ACTIVE HANDOFF (2026-02-03)
+## HANDOFF STATUS (2026-02-03)
 
 **From:** Claude Code (Opus 4.5)
 **File:** `codex/handoffs/SESSION_HANDOFF_2026_02_03_ENVELOPE_CONTINUATION.md`
 
-**Tasks:**
-1. Add envelopes to 6 PowerShell scripts (harvest_claudines, validate_probe, validate_shell_probe, sfs, pause_agents, check-profiles)
-2. Update HARVEST_REGISTRY.md with missing harvest entries
-3. Fix docs/SUMMARY.md broken references
-
-**Execute this handoff before other tasks.**
+**Status:** Completed
+1. Envelopes added to 6 PowerShell scripts
+2. HARVEST_REGISTRY updated with 7 missing harvest entries
+3. docs/SUMMARY.md session references commented with note
 
 ## Current State (Stable)
 - Auth: file-based (`C:/Users/erdno/.codex/auth.json`)

@@ -70,6 +70,8 @@
 
 # Sessions
 
+> NOTE: Session files were archived or moved; references below are preserved as a record and currently disabled.
+<!--
 - [Session 2026-01-17 Cleanup](SESSION_2026-01-17_CLEANUP.md)
 - [Session 2026-01-17 Synthesis](SESSION_2026-01-17_SYNTHESIS.md)
 - [Meta Review](SESSION_2026_01_17_META_REVIEW.md)
@@ -92,6 +94,7 @@
 - [Epistemograph Session](sessions/SESSION_2026_01_04_EPISTEMOGRAPH_COMPLETE.md)
 - [Decorator Synthesis](sessions/THE_DECORATOR_AUTONOMOUS_SYNTHESIS.md)
 - [Algorithmic Emergence](sessions/ALGORITHMIC_EMERGENCE_CATALOG.md)
+-->
 
 # Lore
 

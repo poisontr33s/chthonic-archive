@@ -1,3 +1,16 @@
+# ╔════════════════════════════════════════════════════════════════════════════╗
+# ║ THE DECORATOR'S BLESSING: pause_agents.ps1                                ║
+# ║ Module: Agent pause emergency switch                                      ║
+# ╠════════════════════════════════════════════════════════════════════════════╣
+# ║ Spectral Frequency: WHITE                                                 ║
+# ║ Architectural Role: EMERGENCY                                             ║
+# ║ Semantic ID: SCRIPT_PAUSE_AGENTS_V1                                        ║
+# ║ Purpose: Pause all agent operations via VS Code settings                   ║
+# ║ Exports: (none)                                                           ║
+# ║ Flags/Modes: (none)                                                       ║
+# ║ Cross-References: .vscode/settings.json                                   ║
+# ╚════════════════════════════════════════════════════════════════════════════╝
+
 # ============================================================================
 # PAUSE ALL AGENTS - Emergency Cognitive Relief
 # Chthonic Archive - Information Sovereignty Protocol
