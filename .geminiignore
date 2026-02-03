@@ -6,10 +6,21 @@
 node_modules/
 .git/
 .venv/
-.codex/
 *.log
 *.tmp
 *.bak
+
+# Codex directories (local and global) - NEVER read these in bulk
+.codex/
+../.codex/
+**/sessions/
+**/auth.json
+**/models_cache.json
+
+# Large binary/generated content
+*.jsonl
+*.pyc
+__pycache__/
 
 # Build artifacts
 book/

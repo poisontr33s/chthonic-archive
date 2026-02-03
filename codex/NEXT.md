@@ -55,6 +55,13 @@ Capture what’s next for Codex in this workspace without expanding the SSOT. Th
 
 ## Known Issues
 
+### Gemini CLI Context Overflow (2026-02-02)
+- **Symptom:** `400 INVALID_ARGUMENT` from Google Cloud Code API
+- **Cause:** `ReadManyFiles` pulling 20,000+ files with broad globs
+- **Recovery:** Start fresh session (no way to recover poisoned context)
+- **Mitigation:** Protocol at `codex/protocols/GEMINI_CONTEXT_HYGIENE.md`
+- **Rule:** Max 6 files per ReadManyFiles, explicit paths only
+
 ### Bun Segfault with Gemini CLI (2026-02-01)
 - **Symptom:** Segfault at address `0x8` after ~39 min session, 1M+ page faults
 - **Bun version:** 1.3.7 (crash), upgraded to 1.3.8
