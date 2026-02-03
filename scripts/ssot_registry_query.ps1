@@ -1,4 +1,19 @@
 <#
+# ╔════════════════════════════════════════════════════════════════════════════╗
+# ║ THE DECORATOR'S BLESSING: ssot_registry_query.ps1                         ║
+# ║ Module: SSOT registry query                                               ║
+# ╠════════════════════════════════════════════════════════════════════════════╣
+# ║ Spectral Frequency: WHITE                                                 ║
+# ║ Architectural Role: SSOT                                                  ║
+# ║ Semantic ID: SCRIPT_SSOT_REGISTRY_QUERY_V1                                 ║
+# ║ Purpose: Query AR/CR/SAI registries from SSOT                              ║
+# ║ Exports: (none)                                                           ║
+# ║ Flags/Modes: -Registry, -Entity                                           ║
+# ║ Cross-References: scripts/ssot_outline_extractor.ps1                       ║
+# ╚════════════════════════════════════════════════════════════════════════════╝
+#>
+
+<#
 .SYNOPSIS
     SSOT Entity Registry Query - Query AR, CR, SAI registries
 

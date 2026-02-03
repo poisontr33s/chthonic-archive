@@ -245,6 +245,30 @@ After Tasks 1-3, the envelope canonicalization stands at:
 
 ---
 
+## Task 4 Execution Report (Completed)
+
+Canonical envelopes added/upgraded for the 15 scripts:
+- `scripts/chthonic.ps1` (upgraded legacy @SID header)
+- `scripts/patch-claude-insiders.ps1`
+- `scripts/update-claude-code.ps1`
+- `scripts/gemini-cli-wrapper.ps1`
+- `scripts/fortify_terminal.ps1` (replaced non-canonical header)
+- `scripts/ssot_registry_query.ps1`
+- `scripts/ssot_registry_query_v2.ps1`
+- `scripts/ssot_outline_extractor.ps1`
+- `scripts/ssot_tier_query.ps1`
+- `scripts/ssot_crc_selector.ps1`
+- `scripts/ssot_acronym_audit.ps1`
+- `scripts/probe_toolchain_path.ps1`
+- `scripts/profile-diag.ps1`
+- `scripts/compare_probe_variants.ps1`
+- `scripts/bridge-diagnostic.ps1`
+
+Notes:
+- `scripts/probe_toolchain_path.ps1` envelope inserted without duplicating CmdletBinding.
+- `scripts/fortify_terminal.ps1` legacy envelope replaced with canonical format.
+
+
 ## Meta: Handoff Ownership Challenge
 
 **To Codex:**

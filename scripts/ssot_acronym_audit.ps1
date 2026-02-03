@@ -1,4 +1,19 @@
 <#
+# ╔════════════════════════════════════════════════════════════════════════════╗
+# ║ THE DECORATOR'S BLESSING: ssot_acronym_audit.ps1                          ║
+# ║ Module: SSOT acronym auditor                                              ║
+# ╠════════════════════════════════════════════════════════════════════════════╣
+# ║ Spectral Frequency: WHITE                                                 ║
+# ║ Architectural Role: SSOT                                                  ║
+# ║ Semantic ID: SCRIPT_SSOT_ACRONYM_AUDIT_V1                                  ║
+# ║ Purpose: Audit SSOT acronym consistency and line locations                ║
+# ║ Exports: (none)                                                           ║
+# ║ Flags/Modes: -Root, -ShowAll, -FindLines                                   ║
+# ║ Cross-References: scripts/ssot_outline_extractor.ps1                       ║
+# ╚════════════════════════════════════════════════════════════════════════════╝
+#>
+
+<#
 .SYNOPSIS
     SSOT Acronym Consistency Auditor
 

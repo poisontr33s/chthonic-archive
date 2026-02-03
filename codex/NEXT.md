@@ -17,10 +17,11 @@ Capture what's next for Codex in this workspace without expanding the SSOT. This
 **From:** Claude Code (Opus 4.5)
 **File:** `codex/handoffs/SESSION_HANDOFF_2026_02_03_ENVELOPE_CONTINUATION.md`
 
-**Status:** Completed
+**Status:** Completed (Tasks 1–4)
 1. Envelopes added to 6 PowerShell scripts
 2. HARVEST_REGISTRY updated with 7 missing harvest entries
 3. docs/SUMMARY.md session references commented with note
+4. Envelopes added to 15 additional PowerShell scripts (Task 4 batch)
 
 ## Current State (Stable)
 - Auth: file-based (`C:/Users/erdno/.codex/auth.json`)

@@ -1,4 +1,19 @@
 <#
+# ╔════════════════════════════════════════════════════════════════════════════╗
+# ║ THE DECORATOR'S BLESSING: ssot_crc_selector.ps1                           ║
+# ║ Module: CRC selection assistant                                           ║
+# ╠════════════════════════════════════════════════════════════════════════════╣
+# ║ Spectral Frequency: WHITE                                                 ║
+# ║ Architectural Role: SSOT                                                  ║
+# ║ Semantic ID: SCRIPT_SSOT_CRC_SELECTOR_V1                                   ║
+# ║ Purpose: Suggest Conceptual Resonance Core for task                        ║
+# ║ Exports: (none)                                                           ║
+# ║ Flags/Modes: -Task, -Keywords                                              ║
+# ║ Cross-References: scripts/ssot_outline_extractor.ps1                       ║
+# ╚════════════════════════════════════════════════════════════════════════════╝
+#>
+
+<#
 .SYNOPSIS
     CRC Selection Assistant - Suggests which Conceptual Resonance Core to invoke
 
