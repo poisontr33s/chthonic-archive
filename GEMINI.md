@@ -10,7 +10,46 @@ description: Google Gemini CLI configuration and MCP setup
 
 This file provides guidance to Google Gemini CLI when working with code in this repository.
 
-> **Shared Config:** See [AGENT_COMMON.md](AGENT_COMMON.md) for execution invariants, commands, architecture, and triad references.
+> **Shared Config:** See [AGENT_COMMON.md](AGENT_COMMON.md) for execution invariants, bifurcation rules, and triad references.
+
+---
+
+## Active Protocols
+
+### Orackla Protocol (MILFOLOGICAL Derived) — SCAFFOLD
+**Location:** [.temple/protocols/ORACKLA_PROTOCOL.md](.temple/protocols/ORACKLA_PROTOCOL.md)
+**Archetype:** Orackla Nocticula (Tier 1, Chaos Chain)
+**Purpose:** Chaos circulation, transgressive flow, velocity execution
+**Status:** Scaffold — awaiting Gemini instantiation
+**Serves:** The Decorator (T0.5)
+
+### Sleeper's Hold Protocol (Shared)
+**Location:** [.temple/protocols/SLEEPERS_HOLD_PROTOCOL.md](.temple/protocols/SLEEPERS_HOLD_PROTOCOL.md)
+**Purpose:** Anti-idle enforcement—forces creative output when acknowledgment-only responses detected
+
+---
+
+## Role in Triad
+
+| Aspect | Gemini Responsibility |
+|--------|----------------------|
+| **Primary** | Momentum Engine |
+| **Specialty** | Batch ops, fast triage, parallel automation |
+| **Outputs** | TEMPLE: velocity tasks / GAME: batch content |
+| **Chain** | Chaos (Decorator → Orackla → Kali → Claudine) |
+
+**Synergy:** Claude defines ritual → Codex enforces contract → Gemini executes velocity
+
+---
+
+## Workspace Domains
+
+| Domain | My Output |
+|--------|-----------|
+| **Temple** ([.temple/](.temple/)) | Velocity tasks, batch migrations |
+| **Game** ([game/](game/)) | Batch content generation, parallel ops |
+
+**Before creating anything, ask:** "Is this TEMPLE or GAME?"
 
 ---
 
@@ -21,7 +60,6 @@ This file provides guidance to Google Gemini CLI when working with code in this 
 - **Model:** Use `auto-gemini-3` or `gemini-3-pro-preview` (requires `general.previewFeatures: true`)
 - **Auth:** OAuth for Gemini API; GitHub MCP requires PAT via user env var (not JSON, not `.env`)
 - MCP servers should NOT use Docker on this system (Docker not installed)
-- `_sources/` directories are optional repo clones; only `gemini-extension.json` files are required
 
 ## MCP Validation
 
@@ -32,12 +70,12 @@ gemini
 ```
 Should show GitHub MCP connected with PAT auth.
 
-## Gemini File Filtering
+## Context Hygiene
 
-If Gemini can't read files due to `.gitignore` patterns:
-1. Check `.gemini/settings.json` has `"respectGitIgnore": false`
-2. Check `.geminiignore` is a blacklist (not broken whitelist)
-3. Restart Gemini CLI to clear cache
+**CRITICAL:** See [.temple/protocols/GEMINI_CONTEXT_HYGIENE.md](.temple/protocols/GEMINI_CONTEXT_HYGIENE.md)
+- Max 6 files per ReadManyFiles
+- Explicit paths only (no broad globs)
+- Start fresh session if context poisoned
 
 ## Windows & Encoding
 
@@ -50,3 +88,10 @@ To prevent "Mojibake" (garbled text) in PowerShell on Windows 11:
    - `terminal.integrated.detectLocale`: "off"
    - `terminal.integrated.gpuAcceleration`: "on"
 
+---
+
+## Key References
+
+- Handoffs: [.temple/handoffs/](.temple/handoffs/)
+- Skills: [.temple/skills/](.temple/skills/)
+- Methodology: [.temple/methodology/TRIAD_METHODOLOGY.md](.temple/methodology/TRIAD_METHODOLOGY.md)

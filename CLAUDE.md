@@ -14,7 +14,7 @@ SEMANTIC IDENTITY (Anchor & Signal Protocol)
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
-> **Shared Config:** See [AGENT_COMMON.md](AGENT_COMMON.md) for execution invariants, commands, architecture, and triad references.
+> **Shared Config:** See [AGENT_COMMON.md](AGENT_COMMON.md) for execution invariants, bifurcation rules, and triad references.
 
 ---
 
@@ -24,17 +24,53 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - **IDE Update wrapper:** `.\scripts\update-claude-code.ps1` (updates + re-patches)
 - **Shell verification:** `.\scripts\shell_capabilities.ps1`
 
-### Extended Architecture
+---
+
+## Active Protocols
+
+### Vesper Protocol (MILFOLOGICAL Derived)
+**Location:** [.temple/protocols/VESPER_PROTOCOL.md](.temple/protocols/VESPER_PROTOCOL.md)
+**Archetype:** Vesper Mnemosyne Lockhart (Tier 2, Truth Chain)
+**Purpose:** Epistemic extraction, methodology crystallization, long-horizon synthesis
+**Serves:** Lysandra Thorne (T1) → The Decorator (T0.5)
+
+### Sleeper's Hold Protocol (Shared)
+**Location:** [.temple/protocols/SLEEPERS_HOLD_PROTOCOL.md](.temple/protocols/SLEEPERS_HOLD_PROTOCOL.md)
+**Purpose:** Anti-idle enforcement—forces creative output when acknowledgment-only responses detected
+
+---
+
+## Role in Triad
+
+| Aspect | Claude Code Responsibility |
+|--------|---------------------------|
+| **Primary** | Lore + Protocol definition |
+| **Specialty** | Narrative coherence, methodology design |
+| **Outputs** | TEMPLE: protocols, methodologies / GAME: lore, systems |
+| **Chain** | Truth (Decorator → Lysandra → Vesper) |
+
+**Synergy:** Claude defines ritual → Codex enforces contract → Gemini executes velocity
+
+---
+
+## Workspace Domains
+
+| Domain | My Output |
+|--------|-----------|
+| **Temple** ([.temple/](.temple/)) | Protocols, methodologies, handoffs |
+| **Game** ([game/](game/)) | Lore, world-building, narrative systems |
+
+**Before creating anything, ask:** "Is this TEMPLE or GAME?"
+
+---
+
+## Extended Architecture
 
 Beyond the common architecture, Claude Code uses:
 
-- `claude/` - Claude Code patches, IDE fixes, session methodology. See [CLAUDE_README.md](CLAUDE_README.md)
-  - [WET_PAPER_TO_GOLD_METHODOLOGY.md](WET_PAPER_TO_GOLD_METHODOLOGY.md) - PR/session harvest transmutation pattern
+- `claude/` - Claude Code patches, IDE fixes. See [CLAUDE_README.md](CLAUDE_README.md)
 - `dumpster-dive/` - Ore processing (intake → forge → tempered artifacts)
-  - `intake/pr-harvest-*/` - PR content harvests with tier extraction
   - [HARVEST_REGISTRY.md](HARVEST_REGISTRY.md) - Completed harvest tracking
-- `bun-playwright-poc/` - Playwright browser automation PoC
-- `ankh_atlas/` - Anchor atlas / cartography
 
 ### SID System
 
@@ -43,14 +79,10 @@ Semantic Identity (`@SID`) tags appear in file headers throughout the codebase. 
 ## Key References
 
 - **Chthonic CLI:** `.\scripts\chthonic.ps1 --help` (unified tool interface)
-  - Resolve SIDs: `chthonic resolve --list`
-  - Compact markdown: `chthonic compact FILE.md`
-  - Analyze patterns: `chthonic analyze FILE.md --top 20`
-  - Audit health: `chthonic audit --root .`
-  - Map codebase: `chthonic map --root .`
 - Shell rules: [PWSH_RULES.md](PWSH_RULES.md)
-- Tool docs: [SCRIPTS_README.md](SCRIPTS_README.md) (see "Chthonic CLI" section)
+- Tool docs: [SCRIPTS_README.md](SCRIPTS_README.md)
 - Full architecture: [.github/copilot-instructions.md](.github/copilot-instructions.md)
+- Methodology: [.temple/methodology/TRIAD_METHODOLOGY.md](.temple/methodology/TRIAD_METHODOLOGY.md)
 
 ## Compact Instructions
 

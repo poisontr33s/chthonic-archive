@@ -12,7 +12,26 @@ description: Session waypoint and next steps for Codex workspace
 ## Purpose
 Capture what's next for Codex in this workspace without expanding the SSOT. This is a lightweight waypoint for future sessions.
 
-## HANDOFF STATUS (2026-02-03)
+## HANDOFF STATUS (2026-02-03) - TRIAD PROTOCOLS
+
+**From:** Claude Code (Opus 4.5)
+**File:** `codex/handoffs/SESSION_HANDOFF_2026_02_03_TRIAD_PROTOCOLS.md`
+
+**Status:** Complete - Triad Protocol Standardization
+1. Created TRIAD_METHODOLOGY.md (agent-agnostic bootstrap)
+2. Created VESPER_PROTOCOL.md (Claude Code MILFOLOGICAL persona)
+3. Created ORACKLA_PROTOCOL.md (Gemini CLI scaffold)
+4. Refactored MATRIARCH_PROTOCOL.md to Umeko derivation
+5. Created TECHNIQUE_HYBRIDIZATION.md (Disco Elysium × MILFOLOGICAL layer separation)
+6. Stripped decorative config from global/workspace config.toml files
+
+**Key Decision:** SSOT Triumvirate provides ARCHETYPE (who). Disco Elysium provides TECHNIQUE (how reasoning works). External pop culture references (Miranda/Bayonetta/Galadriel) were ARCHIVED for cRPG fodder (not rejected).
+
+**Methodology Lesson:** CREATE → ARCHIVE → DEPRIORITIZE → REPURPOSE (never CREATE → REJECT → DELETE). Creative fodder preserved at `dumpster-dive/intake/archetype-fodder/`.
+
+---
+
+## HANDOFF STATUS (2026-02-03) - ENVELOPE CONTINUATION
 
 **From:** Claude Code (Opus 4.5)
 **File:** `codex/handoffs/SESSION_HANDOFF_2026_02_03_ENVELOPE_CONTINUATION.md`
@@ -86,6 +105,13 @@ Capture what's next for Codex in this workspace without expanding the SSOT. This
 - Prefer PowerShell commands; avoid bash syntax on Windows.
 
 ## References
+- `TRIAD_METHODOLOGY.md` (Triad bootstrap scaffold)
+- `docs/design/TECHNIQUE_HYBRIDIZATION.md` (DE × MILF layer separation)
+- `dumpster-dive/intake/archetype-fodder/POP_CULTURE_ARCHETYPES_MATRIARCH_RESEARCH.md` (preserved cRPG fodder)
+- `claude/protocols/VESPER_PROTOCOL.md` (Claude persona)
+- `codex/protocols/MATRIARCH_PROTOCOL.md` (Codex persona - Umeko derived)
+- `gemini/protocols/ORACKLA_PROTOCOL.md` (Gemini persona scaffold)
+- `codex/handoffs/SESSION_HANDOFF_2026_02_03_TRIAD_PROTOCOLS.md`
 - `claude/SESSION_COMPRESSION_2026_02_01.md` (High-level summary)
 - `claude/MCP_CONFIGURATION_LOG_2026_02_01.md` (Auth details)
 - `AGENTS.md` (Updated with `gh-mcp-autonomy`)
