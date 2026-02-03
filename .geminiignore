@@ -10,9 +10,12 @@ node_modules/
 *.tmp
 *.bak
 
-# Codex directories (local and global) - NEVER read these in bulk
-.codex/
+# Codex directories (local and global)
+# .codex/ # Allow traversal for skills
 ../.codex/
+.codex/sessions/
+.codex/auth.json
+.codex/models_cache.json
 **/sessions/
 **/auth.json
 **/models_cache.json

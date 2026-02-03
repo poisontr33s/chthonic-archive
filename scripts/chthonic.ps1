@@ -78,8 +78,8 @@ function Get-PolyglotPaths {
 }
 
 function Show-Help {
-    @"
-🔥💀⚓ chthonic v$VERSION - Meta CLI for Polyglot Development (Win11 pwsh 7.5.x)
+@"
+CHTHONIC v$VERSION - Meta CLI for Polyglot Development (Win11 pwsh 7.5.x)
 
 Usage: chthonic [--version] [--help] <domain> [<action>] [<args>]
 
@@ -532,7 +532,7 @@ switch ($Domain) {
                 exit 0
             }
             default {
-                Write-Host "chthonic ide <action>"
+                Write-Host 'chthonic ide <action>'
                 Write-Host "  launch [path]    - Launch Claude Code IDE"
                 Write-Host "  detect           - Check IDE status"
                 Write-Host "  reset            - Reset IDE configuration"
@@ -565,7 +565,7 @@ switch ($Domain) {
                 exit 0
             }
             default {
-                Write-Host "chthonic mcp <action>"
+                Write-Host 'chthonic mcp <action>'
                 Write-Host "  start      - Start MCP services"
                 Write-Host "  stop       - Stop MCP services"
                 Write-Host "  status     - Check service status"
@@ -605,17 +605,17 @@ switch ($Domain) {
             "set" {
                 # chthonic config set <key> <value>
                 if ($RemainingArgs.Count -lt 2) {
-                    Write-Host "Usage: chthonic config set <key> <value>" -ForegroundColor Yellow
+                    Write-Host 'Usage: chthonic config set <key> <value>' -ForegroundColor Yellow
                     exit 1
                 }
                 Write-Host "⚙️  Set config: $($RemainingArgs[0]) = $($RemainingArgs[1])" -ForegroundColor Cyan
                 exit 0
             }
             default {
-                Write-Host "chthonic config <action>"
+                Write-Host 'chthonic config <action>'
                 Write-Host "  init       - Initialize configuration"
                 Write-Host "  show       - Display configuration"
-                Write-Host "  set <k> <v> - Set configuration value"
+                Write-Host '  set <k> <v> - Set configuration value'
                 exit 0
             }
         }
@@ -660,7 +660,7 @@ switch ($Domain) {
     
     # Unknown command
     default {
-        if ($Domain -and -not ($Domain -match "^-")) {
+        if ($Domain -and -not ($Domain -match '^-')) {
             # Try as archive command
             $exitCode = Invoke-ArchiveCommand -Cmd $Domain -CmdArgs @($Action) + $RemainingArgs
             exit $exitCode

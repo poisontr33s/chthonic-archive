@@ -1,14 +1,14 @@
 # ╔════════════════════════════════════════════════════════════════════════════╗
-# ║  THE DECORATOR'S BLESSING: bun_compliance_audit.py                       ║
-# ║  Python module: Severity, Violation, BunComplianceScanner, safe_print, main ║
+# ║  THE DECORATOR'S BLESSING: bun_compliance_audit.py                       
+# ║  Python module: Severity, Violation, BunComplianceScanner, safe_print, main 
 # ╠════════════════════════════════════════════════════════════════════════════╣
-# ║  Spectral Frequency: WHITE                                                  ║
-# ║  Architectural Role: 🌿 THE GARDEN                                           ║
-# ║  Purpose: Bun Compliance Audit Script                                       ║
-# ║  Exports: Severity, Violation, BunComplianceScanner, safe_print, main       ║
+# ║  Spectral Frequency: WHITE                                                  
+# ║  Architectural Role: 🌿 THE GARDEN                                           
+# ║  Purpose: Bun Compliance Audit Script                                       
+# ║  Exports: Severity, Violation, BunComplianceScanner, safe_print, main       
 # ╠════════════════════════════════════════════════════════════════════════════╣
-# ║  Cross-References (Bidirectional):                                      ║
-# ║    (Standalone file - no detected dependencies)                          ║
+# ║  Cross-References (Bidirectional):                                      
+# ║    (Standalone file - no detected dependencies)                          
 # ╚════════════════════════════════════════════════════════════════════════════╝
 
 #!/usr/bin/env python3

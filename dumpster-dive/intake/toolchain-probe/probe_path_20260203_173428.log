@@ -1,0 +1,16 @@
+2026-02-03 17:34:28 Starting Toolchain PATH Probe...
+2026-02-03 17:34:28 Repo Root: C:\Users\erdno\chthonic-archive
+2026-02-03 17:34:28 Loading polyglot paths...
+2026-02-03 17:34:28   + Added: C:\Users\erdno\.bun\bin
+2026-02-03 17:34:28   + Added: C:\Users\erdno\.cargo\bin
+2026-02-03 17:34:28   + Added: C:\Go\bin
+2026-02-03 17:34:28   - Skipped (missing): C:\Users\erdno\go\bin
+2026-02-03 17:34:28   + Added: C:\Users\erdno\.local\bin
+2026-02-03 17:34:28   + Added: C:\Ruby34-x64\bin
+2026-02-03 17:34:28   + Added: C:\Ruby34-x64\msys64\ucrt64\bin
+2026-02-03 17:34:28   + Added: C:\Ruby34-x64\msys64\usr\bin
+2026-02-03 17:34:28   + Added: C:\Program Files\Git\cmd
+2026-02-03 17:34:28 Constructed PATH with 22 entries.
+2026-02-03 17:34:28 Wrote probed PATH to: C:\Users\erdno\chthonic-archive\dumpster-dive\intake\toolchain-probe\probed_path_20260203_173428.txt
+2026-02-03 17:34:28 Wrote VS Code snippet to: C:\Users\erdno\chthonic-archive\dumpster-dive\intake\toolchain-probe\vscode_settings_20260203_173428.json
+2026-02-03 17:34:28 Probe complete.
