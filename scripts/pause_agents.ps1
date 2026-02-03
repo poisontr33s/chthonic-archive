@@ -1,15 +1,15 @@
-# ╔════════════════════════════════════════════════════════════════════════════╗
-# ║ THE DECORATOR'S BLESSING: pause_agents.ps1                                ║
-# ║ Module: Agent pause emergency switch                                      ║
-# ╠════════════════════════════════════════════════════════════════════════════╣
-# ║ Spectral Frequency: WHITE                                                 ║
-# ║ Architectural Role: EMERGENCY                                             ║
-# ║ Semantic ID: SCRIPT_PAUSE_AGENTS_V1                                        ║
-# ║ Purpose: Pause all agent operations via VS Code settings                   ║
-# ║ Exports: (none)                                                           ║
-# ║ Flags/Modes: (none)                                                       ║
-# ║ Cross-References: .vscode/settings.json                                   ║
-# ╚════════════════════════════════════════════════════════════════════════════╝
+# ╔════════════════════════════════════════════════════════════════════════════
+# ║ THE DECORATOR'S BLESSING: pause_agents.ps1
+# ║ Module: Agent pause emergency switch
+# ╠════════════════════════════════════════════════════════════════════════════
+# ║ Spectral Frequency: WHITE
+# ║ Architectural Role: EMERGENCY
+# ║ Semantic ID: SCRIPT_PAUSE_AGENTS_V1
+# ║ Purpose: Pause all agent operations via VS Code settings
+# ║ Exports: (none)
+# ║ Flags/Modes: (none)
+# ║ Cross-References: .vscode/settings.json
+# ╚════════════════════════════════════════════════════════════════════════════
 
 # ============================================================================
 # PAUSE ALL AGENTS - Emergency Cognitive Relief
@@ -26,11 +26,17 @@ Write-Host "\ud83d\uded1  EMERGENCY PAUSE - ALL AGENTS DISABLED" -ForegroundColo
 Write-Host "\ud83d\uded1 ============================================" -ForegroundColor Red
 Write-Host ""
 
-$settingsPath = "C:\Users\erdno\chthonic-archive\.vscode\settings.json"
+$REPO_ROOT = (Resolve-Path -LiteralPath (Join-Path $PSScriptRoot '..')).Path
+$settingsPath = Join-Path $REPO_ROOT ".vscode\settings.json"
+
+if (-not (Test-Path $settingsPath)) {
+    Write-Host "\u274c ERROR: Settings file not found at: $settingsPath" -ForegroundColor Red
+    exit 1
+}
 
 # Backup current settings
 $timestamp = Get-Date -Format "yyyyMMdd_HHmmss"
-$backupPath = "C:\Users\erdno\chthonic-archive\.vscode\settings_backup_$timestamp.json"
+$backupPath = Join-Path (Split-Path $settingsPath) "settings_backup_$timestamp.json"
 Copy-Item $settingsPath $backupPath -Force
 Write-Host "\u2705 Settings backup created: $backupPath" -ForegroundColor Green
 

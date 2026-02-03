@@ -99,6 +99,9 @@ extensions/*/bun.lock
 !scripts/ssot_hash.py
 !scripts/pause_agents.ps1
 !scripts/validate_session_changes.ps1
+!scripts/probe_toolchain_path.ps1
+!scripts/gemini-cli-wrapper.ps1
+!scripts/chthonic.ps1
 
 # mdBook build output (generated artifact)
 book/
