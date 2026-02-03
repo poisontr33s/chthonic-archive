@@ -1,5 +1,16 @@
-# scripts/shell_capabilities.ps1
-# Purpose: minimal, deterministic shell/environment probe for automation agents
+# ╔════════════════════════════════════════════════════════════════════════════╗
+# ║ THE DECORATOR'S BLESSING: shell_capabilities.ps1                          ║
+# ║ Module: Shell Environment Probe                                           ║
+# ╠════════════════════════════════════════════════════════════════════════════╣
+# ║ Spectral Frequency: diagnostic/passive                                    ║
+# ║ Architectural Role: Environment introspection for automation agents       ║
+# ║ Semantic ID: SCRIPT_SHELL_CAPABILITIES_V1                                 ║
+# ║ Purpose: Minimal, deterministic shell/environment probe (ABI-stable)      ║
+# ║ Exports: JSON report { os, pwsh_version, bash, bun, cargo, uv, git,       ║
+# ║          claude, path[] }                                                 ║
+# ║ Flags/Modes: None (pure read-only probe)                                  ║
+# ║ Cross-References: polyglot_env.ps1, probe_toolchain_path.ps1              ║
+# ╚════════════════════════════════════════════════════════════════════════════╝
 # ABI-stable: do not add logic/branching/validation/side-effects
 
 $report = [ordered]@{}

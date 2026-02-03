@@ -1,3 +1,11 @@
+---
+type: agent-guidance
+category: configuration
+created: 2026-01-31
+agent: codex
+description: OpenAI Codex behavioral configuration and execution discipline
+---
+
 # AGENTS.md
 
 This file provides guidance to OpenAI Codex when working with code in this repository.

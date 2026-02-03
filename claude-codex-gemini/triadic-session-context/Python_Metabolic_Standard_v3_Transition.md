@@ -130,7 +130,7 @@ This is **not** part of PMS-v3. It's a parallel governance track.
 
 ## Cross-References
 
-- **Governance:** [python-scripting.instructions.md](../instructions/python-scripting.instructions.md)
+- **Governance:** [python-scripting.instructions.md](../../.github/instructions/python-scripting.instructions.md)
 - **Research:** [Accurate_PEP_Standards_Win11_Uv_Python.md](./Accurate_PEP_Standards_Win11_Uv_Python.md)
 - **Manifest:** [pyproject.toml](../../pyproject.toml)
 - **Ankh Atlas:** `ankh_atlas/` (pending transition)

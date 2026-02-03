@@ -63,5 +63,5 @@ https://bun.report/1.3.7/wa1ba42621ijGukogCq+uq9C_____0ixgjDirp5iD66p5iDw81zjD2x
 
 ## References
 
-- [codex/NEXT.md](../codex/NEXT.md) - Known Issues section
+- [codex/NEXT.md](../../codex/NEXT.md) - Known Issues section
 - [Bun Issue Tracker](https://github.com/oven-sh/bun/issues)
