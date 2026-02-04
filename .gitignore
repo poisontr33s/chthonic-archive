@@ -3,6 +3,7 @@
 
 # Allow git metadata
 !.gitignore
+!.copilotignore
 
 # Allow PR/patch suggestions
 !PR_SUGGESTION.md

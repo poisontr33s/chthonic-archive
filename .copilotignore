@@ -1,0 +1,46 @@
+# Copilot Context Ignore File
+# Exclude large, generated, or irrelevant directories to prevent context window overflow (128k limit)
+
+# Build Artifacts
+target/
+build/
+dist/
+out/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.dll
+*.exe
+*.so
+*.dylib
+
+# Dependencies
+node_modules/
+.venv/
+venv/
+.cargo/
+
+# Large Data & Models
+mas_mcp/
+error-classifier/
+data/
+assets/
+models/
+debugging_data/
+
+# Archives & Logs
+dumpster-dive/
+logs/
+artifacts/
+.cache/
+
+# Documentation Generators
+book/
+ankh_atlas/
+
+# IDE & Tooling
+.vscode/
+.idea/
+.git/
+.github/
