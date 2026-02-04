@@ -2,7 +2,10 @@
 name: crossReferenceSSOT
 description: Cross-reference SSOT patterns with a feature to identify upcycling opportunities
 argument-hint: Specify the feature, tool, or workflow to cross-reference against SSOT
-tools: [ 'read_file', 'search', 'edit' ]
+tools:
+  - read_file
+  - search
+  - edit
 mode: agent
 ---
 

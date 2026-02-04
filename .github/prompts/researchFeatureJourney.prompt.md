@@ -2,7 +2,11 @@
 name: researchFeatureJourney
 description: Deep-research a feature and document the learning journey with upcycling opportunities
 argument-hint: Specify the VS Code/Copilot feature or tool to research (e.g., /savePrompt, MCP, agents)
-tools: [ 'read_file', 'search', 'edit', 'run_in_terminal' ]
+tools: 
+  - read_file
+  - search
+  - edit
+  - run_in_terminal
 mode: agent
 ---
 

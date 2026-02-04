@@ -2,7 +2,10 @@
 name: refactorCode
 description: Improve code structure while preserving behavior
 argument-hint: Select the code to refactor
-tools: [ 'edit', 'search', 'read_file' ]
+tools: 
+  - edit
+  - search
+  - read_file
 mode: agent
 ---
 

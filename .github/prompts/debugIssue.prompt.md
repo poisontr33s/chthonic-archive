@@ -2,7 +2,11 @@
 name: debugIssue
 description: Identify and fix issues in the codebase
 argument-hint: Describe the bug or select error location
-tools: [ 'edit', 'search', 'run_in_terminal', 'get_errors' ]
+tools:
+  - edit
+  - search
+  - run_in_terminal
+  - get_errors
 mode: agent
 ---
 

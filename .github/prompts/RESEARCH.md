@@ -14,7 +14,9 @@
 name: commandName        # camelCase → invoked as /commandName
 description: Brief desc  # ≤15 words, shown in picker
 argument-hint: Hint      # Placeholder text after /command
-tools: [ 'edit', ... ]   # Requested permissions
+tools:                   # Requested permissions
+  - edit
+  - ...
 mode: agent|ask|edit     # Execution mode
 ---
 

@@ -39,7 +39,10 @@ Prompts work standalone **and** benefit from SSOT context when loaded:
 name: commandName        # camelCase → /commandName
 description: Brief desc  # Shown in picker
 argument-hint: Hint      # Placeholder after /command
-tools: [ 'edit', ... ]   # Required permissions
+tools:                   # Requested permissions
+  - edit
+  - ...
+  - etc
 mode: agent|ask|edit     # Execution mode
 ---
 

@@ -2,7 +2,9 @@
 name: explainCode
 description: Provide clear explanations of code or concepts
 argument-hint: Select code or name concept to explain
-tools: [ 'search', 'read_file' ]
+tools:
+  - search
+  - read_file
 mode: ask
 ---
 

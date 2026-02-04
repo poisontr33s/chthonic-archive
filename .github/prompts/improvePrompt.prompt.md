@@ -2,7 +2,10 @@
 name: improvePrompt
 description: Apply savePrompt research to enhance existing prompts
 argument-hint: Select the .prompt.md file to improve
-tools: [ 'edit', 'read_file', 'search' ]
+tools:
+  - edit
+  - read_file
+  - search
 mode: agent
 ---
 

@@ -2,7 +2,10 @@
 name: analyzeCode
 description: Review code for issues and improvements
 argument-hint: Select code or file to analyze
-tools: [ 'search', 'read_file', 'get_errors' ]
+tools:
+  - search
+  - read_file
+  - get_errors
 mode: ask
 ---
 

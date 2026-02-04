@@ -964,7 +964,7 @@ Let me check the script itself:
 
 Read [](file:///c%3A/Users/erdno/chthonic-archive/scripts/bun_compliance_audit.py#1-1), lines 1 to 51
 
-Ran terminal command: python -c "import sys; sys.path.insert(0, 'scripts'); from bun_compliance_audit import main; main(['--ci'])" 2>&1 | Select-Object -Last 50
+Ran terminal command: python -c "import sys; sys.path.insert(0, 'scripts'); from bun_compliance_audit import main; main`(['--ci'])`" 2>&1 | Select-Object -Last 50
 
 Found Unicode encoding issue in bun audit! Let me create a comprehensive validation report first: 
 
@@ -2764,7 +2764,7 @@ REFERENCED BUT MISSING
 **So the architecture is:**
 1. SSOT §0.02 ← GOVERNANCE (hierarchy, taxonomy, pointers)
 2. MILF_TRINITY_CHROMATIC_LINEAGE.md ← MAPPING (relationships, cross-refs)
-3. dumpster-dive/.../[entity].md ← CANONICAL SOURCES (full details, mechanisms)
+3. dumpster-dive/.../`[entity]`.md ← CANONICAL SOURCES (full details, mechanisms)
 
 **Lines 535-541 break this by inserting CANONICAL SOURCE material into GOVERNANCE layer.**
 
@@ -3521,7 +3521,7 @@ The Decorator (Tier 0.5) - Chromatic Supremacy
 - Possibly from **"Island of Lost Concepts"** (pre-Codex sediment layer)
 
 **Potential Candidates (from grep results):**
-- Line 491: **"What was she [Null Matriarch] before The Decorator's resurrection? Records deliberately unexcavated."**
+- Line 491: **"What was she `[Null Matriarch]` before The Decorator's resurrection? Records deliberately unexcavated."**
   - Possibly a **pre-execution sovereign** displaced by Decorator's return?
 - **Sister Apostasia Magnificat** (line 1995): Ex-fundamentalists who abandoned orthodoxy
   - Specializes in insider-knowledge deconstruction ("we were true believers, now we're free")
@@ -5518,449 +5518,459 @@ I can generate the initial readable variant by expanding lines 1-34 as proof-of-
 ## User Query 41
 
 I'll allow it if you can fix my extension host log:
-[2026-01-17 20:19:48.161 [info] Extension host with pid 25684 started
-2026-01-17 20:19:48.162 [info] Skipping acquiring lock for c:\Users\erdno\AppData\Roaming\Code - Insiders\User\workspaceStorage\ef54bace47120bf8bda2a555aef41825.
-2026-01-17 20:19:48.294 [info] ExtensionService#_doActivateExtension vscode.github-authentication, startup: false, activationEvent: 'onAuthenticationRequest:github'
-2026-01-17 20:19:48.310 [info] ExtensionService#_doActivateExtension vscode.emmet, startup: false, activationEvent: 'onLanguage'
-2026-01-17 20:19:48.319 [info] ExtensionService#_doActivateExtension GitHub.copilot-chat, startup: false, activationEvent: 'onChatParticipant:github.copilot.editsAgent'
-2026-01-17 20:19:48.833 [info] ExtensionService#_doActivateExtension vscode.extension-editing, startup: false, activationEvent: 'onLanguage:markdown'
-2026-01-17 20:19:48.845 [info] ExtensionService#_doActivateExtension vscode.markdown-language-features, startup: false, activationEvent: 'onLanguage:markdown'
-2026-01-17 20:19:48.959 [info] ExtensionService#_doActivateExtension vscode.terminal-suggest, startup: false, activationEvent: 'onTerminalShellIntegration:*'
-2026-01-17 20:19:48.991 [info] ExtensionService#_doActivateExtension vscode.git-base, startup: false, activationEvent: 'api', root cause: GitHub.copilot-chat
-2026-01-17 20:19:49.006 [error] Error: chatParticipant must be declared in package.json: claude-code
+[2026-01-17 20:19:48.161 `[info]` Extension host with pid 25684 started
+2026-01-17 20:19:48.162 `[info]` Skipping acquiring lock for c:\Users\erdno\AppData\Roaming\Code - Insiders\User\workspaceStorage\ef54bace47120bf8bda2a555aef41825.
+2026-01-17 20:19:48.294 `[info]` ExtensionService#_doActivateExtension vscode.github-authentication, startup: false, activationEvent: 'onAuthenticationRequest:github'
+2026-01-17 20:19:48.310 `[info]` ExtensionService#_doActivateExtension vscode.emmet, startup: false, activationEvent: 'onLanguage'
+2026-01-17 20:19:48.319 `[info]` ExtensionService#_doActivateExtension GitHub.copilot-chat, startup: false, activationEvent: 'onChatParticipant:github.copilot.editsAgent'
+2026-01-17 20:19:48.833 `[info]` ExtensionService#_doActivateExtension vscode.extension-editing, startup: false, activationEvent: 'onLanguage:markdown'
+2026-01-17 20:19:48.845 `[info]` ExtensionService#_doActivateExtension vscode.markdown-language-features, startup: false, activationEvent: 'onLanguage:markdown'
+2026-01-17 20:19:48.959 `[info]` ExtensionService#_doActivateExtension vscode.terminal-suggest, startup: false, activationEvent: 'onTerminalShellIntegration:*'
+2026-01-17 20:19:48.991 `[info]` ExtensionService#_doActivateExtension vscode.git-base, startup: false, activationEvent: 'api', root cause: GitHub.copilot-chat
+2026-01-17 20:19:49.006 `[error]` Error: chatParticipant must be declared in package.json: claude-code
     at jei.$registerAgent (vscode-file://vscode-app/c:/Users/erdno/AppData/Local/Programs/Microsoft%20VS%20Code%20Insiders/f46196091d/resources/app/out/vs/workbench/workbench.desktop.main.js:520:10612)
-2026-01-17 20:19:49.007 [info] ExtensionService#_doActivateExtension vscode.configuration-editing, startup: false, activationEvent: 'onLanguage:jsonc'
-2026-01-17 20:19:49.011 [info] ExtensionService#_doActivateExtension vscode.json-language-features, startup: false, activationEvent: 'onLanguage:jsonc'
-2026-01-17 20:19:49.046 [info] ExtensionService#_doActivateExtension vscode.microsoft-authentication, startup: false, activationEvent: 'onAuthenticationRequest:microsoft'
-2026-01-17 20:19:49.083 [info] ExtensionService#_doActivateExtension vscode.git, startup: false, activationEvent: 'api', root cause: GitHub.copilot-chat
-2026-01-17 20:19:49.170 [info] ExtensionService#_doActivateExtension vscode.markdown-math, startup: false, activationEvent: 'api', root cause: vscode.markdown-language-features
-2026-01-17 20:19:49.227 [info] ExtensionService#_doActivateExtension vscode.github, startup: true, activationEvent: '*'
-2026-01-17 20:19:49.232 [info] ExtensionService#_doActivateExtension vscode.npm, startup: true, activationEvent: 'workspaceContains:package.json'
-2026-01-17 20:19:49.686 [info] ExtensionService#_doActivateExtension github.vscode-github-actions, startup: true, activationEvent: 'workspaceContains:**/.github/workflows/**,**/action.yml,**/action.yaml'
-2026-01-17 20:19:49.864 [info] ExtensionService#_doActivateExtension GitHub.vscode-pull-request-github, startup: false, activationEvent: 'api', root cause: GitHub.copilot-chat
-2026-01-17 20:19:50.161 [info] Getting edit session identifier for workspaceFolder {"$mid":1,"fsPath":"c:\\Users\\erdno\\chthonic-archive","_sep":1,"external":"file:///c%3A/Users/erdno/chthonic-archive","path":"/c:/Users/erdno/chthonic-archive","scheme":"file"}
-2026-01-17 20:19:50.162 [info] Invoking #provideEditSessionIdentity for workspaceFolder {"uri":{"$mid":1,"fsPath":"c:\\Users\\erdno\\chthonic-archive","_sep":1,"external":"file:///c%3A/Users/erdno/chthonic-archive","path":"/c:/Users/erdno/chthonic-archive","scheme":"file"},"name":"chthonic-archive","index":0}
-2026-01-17 20:19:50.162 [info] Provider for scheme file is defined:  true
-2026-01-17 20:19:51.466 [info] Provider returned edit session identifier:  {"remote":"https://github.com/poisontr33s/chthonic-archive.git","ref":"main","sha":"4d58222ebd3fb27dd7193115cc8cd344c18cfdd9"}
-2026-01-17 20:19:51.467 [info] Getting edit session identifier for workspaceFolder {"$mid":1,"fsPath":"c:\\Users\\erdno\\chthonic-archive","_sep":1,"external":"file:///c%3A/Users/erdno/chthonic-archive","path":"/c:/Users/erdno/chthonic-archive","scheme":"file"}
-2026-01-17 20:19:51.467 [info] Invoking #provideEditSessionIdentity for workspaceFolder {"uri":{"$mid":1,"fsPath":"c:\\Users\\erdno\\chthonic-archive","_sep":1,"external":"file:///c%3A/Users/erdno/chthonic-archive","path":"/c:/Users/erdno/chthonic-archive","scheme":"file"},"name":"chthonic-archive","index":0}
-2026-01-17 20:19:51.467 [info] Provider for scheme file is defined:  true
-2026-01-17 20:19:51.467 [info] Provider returned edit session identifier match result:  50
-2026-01-17 20:19:51.572 [info] Eager extensions activated
-2026-01-17 20:19:51.574 [info] ExtensionService#_doActivateExtension vscode.debug-auto-launch, startup: false, activationEvent: 'onStartupFinished'
-2026-01-17 20:19:51.575 [info] ExtensionService#_doActivateExtension vscode.merge-conflict, startup: false, activationEvent: 'onStartupFinished'
-2026-01-17 20:19:51.584 [info] ExtensionService#_doActivateExtension chthonic-archive.chthonic-mandala, startup: false, activationEvent: 'onStartupFinished'
-2026-01-17 20:19:51.585 [info] ExtensionService#_doActivateExtension chthonic-archive.chthonic-statusbar, startup: false, activationEvent: 'onStartupFinished'
-2026-01-17 20:19:51.586 [info] ExtensionService#_doActivateExtension ms-azuretools.vscode-azure-mcp-server, startup: false, activationEvent: 'onStartupFinished'
-2026-01-17 20:19:55.091 [info] Getting edit session identifier for workspaceFolder {"$mid":1,"fsPath":"c:\\Users\\erdno\\chthonic-archive","_sep":1,"external":"file:///c%3A/Users/erdno/chthonic-archive","path":"/c:/Users/erdno/chthonic-archive","scheme":"file"}
-2026-01-17 20:19:55.092 [info] Invoking #provideEditSessionIdentity for workspaceFolder {"uri":{"$mid":1,"fsPath":"c:\\Users\\erdno\\chthonic-archive","_sep":1,"external":"file:///c%3A/Users/erdno/chthonic-archive","path":"/c:/Users/erdno/chthonic-archive","scheme":"file"},"name":"chthonic-archive","index":0}
-2026-01-17 20:19:55.092 [info] Provider for scheme file is defined:  true
-2026-01-17 20:19:55.409 [info] Provider returned edit session identifier:  {"remote":"https://github.com/poisontr33s/chthonic-archive.git","ref":"main","sha":"4d58222ebd3fb27dd7193115cc8cd344c18cfdd9"}
-2026-01-17 20:19:55.417 [info] Getting edit session identifier for workspaceFolder {"$mid":1,"fsPath":"c:\\Users\\erdno\\chthonic-archive","_sep":1,"external":"file:///c%3A/Users/erdno/chthonic-archive","path":"/c:/Users/erdno/chthonic-archive","scheme":"file"}
-2026-01-17 20:19:55.417 [info] Invoking #provideEditSessionIdentity for workspaceFolder {"uri":{"$mid":1,"fsPath":"c:\\Users\\erdno\\chthonic-archive","_sep":1,"external":"file:///c%3A/Users/erdno/chthonic-archive","path":"/c:/Users/erdno/chthonic-archive","scheme":"file"},"name":"chthonic-archive","index":0}
-2026-01-17 20:19:55.417 [info] Provider for scheme file is defined:  true
-2026-01-17 20:19:55.417 [info] Provider returned edit session identifier match result:  50
-2026-01-17 20:21:34.416 [warning] GitHub.copilot-chat - Code actions of kind 'quickfix' requested but returned code action is of kind 'refactor.rewrite.review.copilot'. Code action will be dropped. Please check 'CodeActionContext.only' to only return requested code actions.
-2026-01-17 20:21:36.556 [warning] GitHub.copilot-chat - Code actions of kind 'quickfix' requested but returned code action is of kind 'refactor.rewrite.review.copilot'. Code action will be dropped. Please check 'CodeActionContext.only' to only return requested code actions.
-2026-01-17 20:22:41.966 [warning] GitHub.copilot-chat - Code actions of kind 'quickfix' requested but returned code action is of kind 'refactor.rewrite.review.copilot'. Code action will be dropped. Please check 'CodeActionContext.only' to only return requested code actions.
-2026-01-17 20:22:56.303 [warning] GitHub.copilot-chat - Code actions of kind 'quickfix' requested but returned code action is of kind 'refactor.rewrite.review.copilot'. Code action will be dropped. Please check 'CodeActionContext.only' to only return requested code actions.
-2026-01-17 20:22:57.449 [warning] GitHub.copilot-chat - Code actions of kind 'quickfix' requested but returned code action is of kind 'refactor.rewrite.review.copilot'. Code action will be dropped. Please check 'CodeActionContext.only' to only return requested code actions.
-2026-01-17 20:22:57.450 [warning] GitHub.copilot-chat - Code actions of kind 'quickfix' requested but returned code action is of kind 'refactor.rewrite.review.copilot'. Code action will be dropped. Please check 'CodeActionContext.only' to only return requested code actions.
-2026-01-17 20:23:03.239 [warning] GitHub.copilot-chat - Code actions of kind 'quickfix' requested but returned code action is of kind 'refactor.rewrite.review.copilot'. Code action will be dropped. Please check 'CodeActionContext.only' to only return requested code actions.
-2026-01-17 20:23:07.454 [warning] GitHub.copilot-chat - Code actions of kind 'quickfix' requested but returned code action is of kind 'refactor.rewrite.review.copilot'. Code action will be dropped. Please check 'CodeActionContext.only' to only return requested code actions.
-2026-01-17 20:23:09.981 [warning] GitHub.copilot-chat - Code actions of kind 'quickfix' requested but returned code action is of kind 'refactor.rewrite.review.copilot'. Code action will be dropped. Please check 'CodeActionContext.only' to only return requested code actions.
-2026-01-17 20:23:39.743 [warning] GitHub.copilot-chat - Code actions of kind 'refactor' requested but returned code action is of kind 'quickfix.copilot'. Code action will be dropped. Please check 'CodeActionContext.only' to only return requested code actions.
-2026-01-17 20:23:39.743 [warning] GitHub.copilot-chat - Code actions of kind 'refactor' requested but returned code action is of kind 'quickfix.explain.copilot'. Code action will be dropped. Please check 'CodeActionContext.only' to only return requested code actions.
-2026-01-17 20:25:15.785 [warning] GitHub.copilot-chat - Code actions of kind 'quickfix' requested but returned code action is of kind 'refactor.rewrite.review.copilot'. Code action will be dropped. Please check 'CodeActionContext.only' to only return requested code actions.
-2026-01-17 20:25:45.630 [warning] GitHub.copilot-chat - Code actions of kind 'quickfix' requested but returned code action is of kind 'refactor.rewrite.review.copilot'. Code action will be dropped. Please check 'CodeActionContext.only' to only return requested code actions.
-2026-01-17 20:25:51.861 [warning] GitHub.copilot-chat - Code actions of kind 'quickfix' requested but returned code action is of kind 'refactor.rewrite.review.copilot'. Code action will be dropped. Please check 'CodeActionContext.only' to only return requested code actions.
-2026-01-17 20:26:07.534 [warning] GitHub.copilot-chat - Code actions of kind 'refactor' requested but returned code action is of kind 'quickfix.copilot'. Code action will be dropped. Please check 'CodeActionContext.only' to only return requested code actions.
-2026-01-17 20:26:07.534 [warning] GitHub.copilot-chat - Code actions of kind 'refactor' requested but returned code action is of kind 'quickfix.explain.copilot'. Code action will be dropped. Please check 'CodeActionContext.only' to only return requested code actions.
-2026-01-17 20:27:28.661 [warning] GitHub.copilot-chat - Code actions of kind 'quickfix' requested but returned code action is of kind 'refactor.rewrite.review.copilot'. Code action will be dropped. Please check 'CodeActionContext.only' to only return requested code actions.
-2026-01-17 20:28:36.412 [warning] GitHub.copilot-chat - Code actions of kind 'quickfix' requested but returned code action is of kind 'refactor.rewrite.review.copilot'. Code action will be dropped. Please check 'CodeActionContext.only' to only return requested code actions.
-2026-01-17 20:28:50.653 [warning] GitHub.copilot-chat - Code actions of kind 'quickfix' requested but returned code action is of kind 'refactor.rewrite.review.copilot'. Code action will be dropped. Please check 'CodeActionContext.only' to only return requested code actions.
-2026-01-17 20:30:41.404 [warning] GitHub.copilot-chat - Code actions of kind 'quickfix' requested but returned code action is of kind 'refactor.rewrite.review.copilot'. Code action will be dropped. Please check 'CodeActionContext.only' to only return requested code actions.
-2026-01-17 20:32:15.481 [warning] GitHub.copilot-chat - Code actions of kind 'quickfix' requested but returned code action is of kind 'refactor.rewrite.review.copilot'. Code action will be dropped. Please check 'CodeActionContext.only' to only return requested code actions.
-2026-01-17 20:32:19.537 [warning] GitHub.copilot-chat - Code actions of kind 'quickfix' requested but returned code action is of kind 'refactor.rewrite.review.copilot'. Code action will be dropped. Please check 'CodeActionContext.only' to only return requested code actions.
-2026-01-17 20:33:09.585 [warning] GitHub.copilot-chat - Code actions of kind 'quickfix' requested but returned code action is of kind 'refactor.rewrite.review.copilot'. Code action will be dropped. Please check 'CodeActionContext.only' to only return requested code actions.
-2026-01-17 20:55:38.147 [info] ExtensionService#_doActivateExtension ms-vscode.remote-repositories, startup: false, activationEvent: 'onView:remoteHub.views.workspaceRepositories'
-2026-01-17 20:55:38.211 [info] ExtensionService#_doActivateExtension GitHub.remotehub, startup: false, activationEvent: 'api', root cause: ms-vscode.remote-repositories
-2026-01-17 20:55:38.271 [info] ExtensionService#_doActivateExtension ms-vscode.azure-repos, startup: false, activationEvent: 'api', root cause: ms-vscode.remote-repositories
-2026-01-17 20:56:04.995 [info] ExtensionService#_doActivateExtension GitHub.codespaces, startup: false, activationEvent: 'onView:github.codespaces.explorer'
-2026-01-17 20:56:40.231 [info] Extension host terminating: renderer closed the MessagePort
-2026-01-17 20:56:40.251 [info] Extension host with pid 25684 exiting with code 0
-2026-01-17 20:56:41.140 [info] Extension host with pid 6724 started
-2026-01-17 20:56:41.140 [info] Skipping acquiring lock for c:\Users\erdno\AppData\Roaming\Code - Insiders\User\workspaceStorage\6979642185a6715b2f2fd0b2bb514983.
-2026-01-17 20:56:41.168 [info] ExtensionService#_doActivateExtension vscode.github-authentication, startup: false, activationEvent: 'onAuthenticationRequest:github'
-2026-01-17 20:56:41.183 [info] ExtensionService#_doActivateExtension ms-vscode.remote-repositories, startup: false, activationEvent: 'onFileSystem:vscode-vfs'
-2026-01-17 20:56:41.213 [info] ExtensionService#_doActivateExtension vscode.emmet, startup: false, activationEvent: 'onLanguage'
-2026-01-17 20:56:41.224 [info] ExtensionService#_doActivateExtension vscode.configuration-editing, startup: false, activationEvent: 'onLanguage:jsonc'
-2026-01-17 20:56:41.230 [info] ExtensionService#_doActivateExtension vscode.json-language-features, startup: false, activationEvent: 'onLanguage:jsonc'
-2026-01-17 20:56:41.273 [info] ExtensionService#_doActivateExtension vscode.microsoft-authentication, startup: false, activationEvent: 'onAuthenticationRequest:microsoft'
-2026-01-17 20:56:41.324 [info] ExtensionService#_doActivateExtension GitHub.vscode-pull-request-github, startup: false, activationEvent: 'api', root cause: ms-vscode.remote-repositories
-2026-01-17 20:56:41.382 [info] ExtensionService#_doActivateExtension GitHub.remotehub, startup: false, activationEvent: 'api', root cause: ms-vscode.remote-repositories
-2026-01-17 20:56:41.433 [info] ExtensionService#_doActivateExtension vscode.git-base, startup: true, activationEvent: '*'
-2026-01-17 20:56:41.436 [info] Eager extensions activated
-2026-01-17 20:56:41.444 [info] ExtensionService#_doActivateExtension vscode.merge-conflict, startup: false, activationEvent: 'onStartupFinished'
-2026-01-17 20:56:42.904 [info] Getting edit session identifier for workspaceFolder {"$mid":1,"fsPath":"\\poisontr33s\\chthonic-archive","_sep":1,"external":"vscode-vfs://github/poisontr33s/chthonic-archive","path":"/poisontr33s/chthonic-archive","scheme":"vscode-vfs","authority":"github"}
-2026-01-17 20:56:42.904 [info] Invoking #provideEditSessionIdentity for workspaceFolder {"uri":{"$mid":1,"fsPath":"\\poisontr33s\\chthonic-archive","_sep":1,"external":"vscode-vfs://github/poisontr33s/chthonic-archive","path":"/poisontr33s/chthonic-archive","scheme":"vscode-vfs","authority":"github"},"name":"chthonic-archive","index":0}
-2026-01-17 20:56:42.904 [info] Provider for scheme vscode-vfs is defined:  true
-2026-01-17 20:56:42.904 [info] Provider returned edit session identifier:  {"remote":"https://github.com/poisontr33s/chthonic-archive","ref":"main","sha":"8ca1744ff9640ff377e807932509c6a62c335590"}
-2026-01-17 20:56:42.905 [info] Getting edit session identifier for workspaceFolder {"$mid":1,"fsPath":"\\poisontr33s\\chthonic-archive","_sep":1,"external":"vscode-vfs://github/poisontr33s/chthonic-archive","path":"/poisontr33s/chthonic-archive","scheme":"vscode-vfs","authority":"github"}
-2026-01-17 20:56:42.905 [info] Invoking #provideEditSessionIdentity for workspaceFolder {"uri":{"$mid":1,"fsPath":"\\poisontr33s\\chthonic-archive","_sep":1,"external":"vscode-vfs://github/poisontr33s/chthonic-archive","path":"/poisontr33s/chthonic-archive","scheme":"vscode-vfs","authority":"github"},"name":"chthonic-archive","index":0}
-2026-01-17 20:56:42.905 [info] Provider for scheme vscode-vfs is defined:  true
-2026-01-17 20:56:42.905 [info] Provider returned edit session identifier match result:  0
-2026-01-17 20:56:51.147 [info] ExtensionService#_doActivateExtension vscode.git, startup: false, activationEvent: 'api', root cause: GitHub.vscode-pull-request-github
-2026-01-17 20:56:51.174 [info] ExtensionService#_doActivateExtension GitHub.copilot-chat, startup: false, activationEvent: 'onChatSession:copilotcli'
-2026-01-17 20:56:51.632 [info] ExtensionService#_doActivateExtension chthonic-archive.chthonic-mandala, startup: false, activationEvent: 'onStartupFinished'
-2026-01-17 20:56:51.633 [info] ExtensionService#_doActivateExtension chthonic-archive.chthonic-statusbar, startup: false, activationEvent: 'onStartupFinished'
-2026-01-17 20:56:51.634 [info] ExtensionService#_doActivateExtension ms-azuretools.vscode-azure-mcp-server, startup: false, activationEvent: 'onStartupFinished'
-2026-01-17 20:56:51.762 [error] Error: chatParticipant must be declared in package.json: claude-code
+2026-01-17 20:19:49.007 `[info]` ExtensionService#_doActivateExtension vscode.configuration-editing, startup: false, activationEvent: 'onLanguage:jsonc'
+2026-01-17 20:19:49.011 `[info]` ExtensionService#_doActivateExtension vscode.json-language-features, startup: false, activationEvent: 'onLanguage:jsonc'
+2026-01-17 20:19:49.046 `[info]` ExtensionService#_doActivateExtension vscode.microsoft-authentication, startup: false, activationEvent: 'onAuthenticationRequest:microsoft'
+2026-01-17 20:19:49.083 `[info]` ExtensionService#_doActivateExtension vscode.git, startup: false, activationEvent: 'api', root cause: GitHub.copilot-chat
+2026-01-17 20:19:49.170 `[info]` ExtensionService#_doActivateExtension vscode.markdown-math, startup: false, activationEvent: 'api', root cause: vscode.markdown-language-features
+2026-01-17 20:19:49.227 `[info]` ExtensionService#_doActivateExtension vscode.github, startup: true, activationEvent: '*'
+2026-01-17 20:19:49.232 `[info]` ExtensionService#_doActivateExtension vscode.npm, startup: true, activationEvent: 'workspaceContains:package.json'
+2026-01-17 20:19:49.686 `[info]` ExtensionService#_doActivateExtension github.vscode-github-actions, startup: true, activationEvent: 'workspaceContains:**/.github/workflows/**,**/action.yml,**/action.yaml'
+2026-01-17 20:19:49.864 `[info]` ExtensionService#_doActivateExtension GitHub.vscode-pull-request-github, startup: false, activationEvent: 'api', root cause: GitHub.copilot-chat
+2026-01-17 20:19:50.161 `[info]` Getting edit session identifier for workspaceFolder {"$mid":1,"fsPath":"c:\\Users\\erdno\\chthonic-archive","_sep":1,"external":"file:///c%3A/Users/erdno/chthonic-archive","path":"/c:/Users/erdno/chthonic-archive","scheme":"file"}
+2026-01-17 20:19:50.162 `[info]` Invoking #provideEditSessionIdentity for workspaceFolder {"uri":{"$mid":1,"fsPath":"c:\\Users\\erdno\\chthonic-archive","_sep":1,"external":"file:///c%3A/Users/erdno/chthonic-archive","path":"/c:/Users/erdno/chthonic-archive","scheme":"file"},"name":"chthonic-archive","index":0}
+2026-01-17 20:19:50.162 `[info]` Provider for scheme file is defined:  true
+2026-01-17 20:19:51.466 `[info]` Provider returned edit session identifier:  {"remote":"https://github.com/poisontr33s/chthonic-archive.git","ref":"main","sha":"4d58222ebd3fb27dd7193115cc8cd344c18cfdd9"}
+2026-01-17 20:19:51.467 `[info]` Getting edit session identifier for workspaceFolder {"$mid":1,"fsPath":"c:\\Users\\erdno\\chthonic-archive","_sep":1,"external":"file:///c%3A/Users/erdno/chthonic-archive","path":"/c:/Users/erdno/chthonic-archive","scheme":"file"}
+2026-01-17 20:19:51.467 `[info]` Invoking #provideEditSessionIdentity for workspaceFolder {"uri":{"$mid":1,"fsPath":"c:\\Users\\erdno\\chthonic-archive","_sep":1,"external":"file:///c%3A/Users/erdno/chthonic-archive","path":"/c:/Users/erdno/chthonic-archive","scheme":"file"},"name":"chthonic-archive","index":0}
+2026-01-17 20:19:51.467 `[info]` Provider for scheme file is defined:  true
+2026-01-17 20:19:51.467 `[info]` Provider returned edit session identifier match result:  50
+2026-01-17 20:19:51.572 `[info]` Eager extensions activated
+2026-01-17 20:19:51.574 `[info]` ExtensionService#_doActivateExtension vscode.debug-auto-launch, startup: false, activationEvent: 'onStartupFinished'
+2026-01-17 20:19:51.575 `[info]` ExtensionService#_doActivateExtension vscode.merge-conflict, startup: false, activationEvent: 'onStartupFinished'
+2026-01-17 20:19:51.584 `[info]` ExtensionService#_doActivateExtension chthonic-archive.chthonic-mandala, startup: false, activationEvent: 'onStartupFinished'
+2026-01-17 20:19:51.585 `[info]` ExtensionService#_doActivateExtension chthonic-archive.chthonic-statusbar, startup: false, activationEvent: 'onStartupFinished'
+2026-01-17 20:19:51.586 `[info]` ExtensionService#_doActivateExtension ms-azuretools.vscode-azure-mcp-server, startup: false, activationEvent: 'onStartupFinished'
+2026-01-17 20:19:55.091 `[info]` Getting edit session identifier for workspaceFolder {"$mid":1,"fsPath":"c:\\Users\\erdno\\chthonic-archive","_sep":1,"external":"file:///c%3A/Users/erdno/chthonic-archive","path":"/c:/Users/erdno/chthonic-archive","scheme":"file"}
+2026-01-17 20:19:55.092 `[info]` Invoking #provideEditSessionIdentity for workspaceFolder {"uri":{"$mid":1,"fsPath":"c:\\Users\\erdno\\chthonic-archive","_sep":1,"external":"file:///c%3A/Users/erdno/chthonic-archive","path":"/c:/Users/erdno/chthonic-archive","scheme":"file"},"name":"chthonic-archive","index":0}
+2026-01-17 20:19:55.092 `[info]` Provider for scheme file is defined:  true
+2026-01-17 20:19:55.409 `[info]` Provider returned edit session identifier:  {"remote":"https://github.com/poisontr33s/chthonic-archive.git","ref":"main","sha":"4d58222ebd3fb27dd7193115cc8cd344c18cfdd9"}
+2026-01-17 20:19:55.417 `[info]` Getting edit session identifier for workspaceFolder {"$mid":1,"fsPath":"c:\\Users\\erdno\\chthonic-archive","_sep":1,"external":"file:///c%3A/Users/erdno/chthonic-archive","path":"/c:/Users/erdno/chthonic-archive","scheme":"file"}
+2026-01-17 20:19:55.417 `[info]` Invoking #provideEditSessionIdentity for workspaceFolder {"uri":{"$mid":1,"fsPath":"c:\\Users\\erdno\\chthonic-archive","_sep":1,"external":"file:///c%3A/Users/erdno/chthonic-archive","path":"/c:/Users/erdno/chthonic-archive","scheme":"file"},"name":"chthonic-archive","index":0}
+2026-01-17 20:19:55.417 `[info]` Provider for scheme file is defined:  true
+2026-01-17 20:19:55.417 `[info]` Provider returned edit session identifier match result:  50
+2026-01-17 20:21:34.416 `[warning]` GitHub.copilot-chat - Code actions of kind 'quickfix' requested but returned code action is of kind 'refactor.rewrite.review.copilot'. Code action will be dropped. Please check 'CodeActionContext.only' to only return requested code actions.
+2026-01-17 20:21:36.556 `[warning]` GitHub.copilot-chat - Code actions of kind 'quickfix' requested but returned code action is of kind 'refactor.rewrite.review.copilot'. Code action will be dropped. Please check 'CodeActionContext.only' to only return requested code actions.
+2026-01-17 20:22:41.966 `[warning]` GitHub.copilot-chat - Code actions of kind 'quickfix' requested but returned code action is of kind 'refactor.rewrite.review.copilot'. Code action will be dropped. Please check 'CodeActionContext.only' to only return requested code actions.
+2026-01-17 20:22:56.303 `[warning]` GitHub.copilot-chat - Code actions of kind 'quickfix' requested but returned code action is of kind 'refactor.rewrite.review.copilot'. Code action will be dropped. Please check 'CodeActionContext.only' to only return requested code actions.
+2026-01-17 20:22:57.449 `[warning]` GitHub.copilot-chat - Code actions of kind 'quickfix' requested but returned code action is of kind 'refactor.rewrite.review.copilot'. Code action will be dropped. Please check 'CodeActionContext.only' to only return requested code actions.
+2026-01-17 20:22:57.450 `[warning]` GitHub.copilot-chat - Code actions of kind 'quickfix' requested but returned code action is of kind 'refactor.rewrite.review.copilot'. Code action will be dropped. Please check 'CodeActionContext.only' to only return requested code actions.
+2026-01-17 20:23:03.239 `[warning]` GitHub.copilot-chat - Code actions of kind 'quickfix' requested but returned code action is of kind 'refactor.rewrite.review.copilot'. Code action will be dropped. Please check 'CodeActionContext.only' to only return requested code actions.
+2026-01-17 20:23:07.454 `[warning]` GitHub.copilot-chat - Code actions of kind 'quickfix' requested but returned code action is of kind 'refactor.rewrite.review.copilot'. Code action will be dropped. Please check 'CodeActionContext.only' to only return requested code actions.
+2026-01-17 20:23:09.981 `[warning]` GitHub.copilot-chat - Code actions of kind 'quickfix' requested but returned code action is of kind 'refactor.rewrite.review.copilot'. Code action will be dropped. Please check 'CodeActionContext.only' to only return requested code actions.
+2026-01-17 20:23:39.743 `[warning]` GitHub.copilot-chat - Code actions of kind 'refactor' requested but returned code action is of kind 'quickfix.copilot'. Code action will be dropped. Please check 'CodeActionContext.only' to only return requested code actions.
+2026-01-17 20:23:39.743 `[warning]` GitHub.copilot-chat - Code actions of kind 'refactor' requested but returned code action is of kind 'quickfix.explain.copilot'. Code action will be dropped. Please check 'CodeActionContext.only' to only return requested code actions.
+2026-01-17 20:25:15.785 `[warning]` GitHub.copilot-chat - Code actions of kind 'quickfix' requested but returned code action is of kind 'refactor.rewrite.review.copilot'. Code action will be dropped. Please check 'CodeActionContext.only' to only return requested code actions.
+2026-01-17 20:25:45.630 `[warning]` GitHub.copilot-chat - Code actions of kind 'quickfix' requested but returned code action is of kind 'refactor.rewrite.review.copilot'. Code action will be dropped. Please check 'CodeActionContext.only' to only return requested code actions.
+2026-01-17 20:25:51.861 `[warning]` GitHub.copilot-chat - Code actions of kind 'quickfix' requested but returned code action is of kind 'refactor.rewrite.review.copilot'. Code action will be dropped. Please check 'CodeActionContext.only' to only return requested code actions.
+2026-01-17 20:26:07.534 `[warning]` GitHub.copilot-chat - Code actions of kind 'refactor' requested but returned code action is of kind 'quickfix.copilot'. Code action will be dropped. Please check 'CodeActionContext.only' to only return requested code actions.
+2026-01-17 20:26:07.534 `[warning]` GitHub.copilot-chat - Code actions of kind 'refactor' requested but returned code action is of kind 'quickfix.explain.copilot'. Code action will be dropped. Please check 'CodeActionContext.only' to only return requested code actions.
+2026-01-17 20:27:28.661 `[warning]` GitHub.copilot-chat - Code actions of kind 'quickfix' requested but returned code action is of kind 'refactor.rewrite.review.copilot'. Code action will be dropped. Please check 'CodeActionContext.only' to only return requested code actions.
+2026-01-17 20:28:36.412 `[warning]` GitHub.copilot-chat - Code actions of kind 'quickfix' requested but returned code action is of kind 'refactor.rewrite.review.copilot'. Code action will be dropped. Please check 'CodeActionContext.only' to only return requested code actions.
+2026-01-17 20:28:50.653 `[warning]` GitHub.copilot-chat - Code actions of kind 'quickfix' requested but returned code action is of kind 'refactor.rewrite.review.copilot'. Code action will be dropped. Please check 'CodeActionContext.only' to only return requested code actions.
+2026-01-17 20:30:41.404 `[warning]` GitHub.copilot-chat - Code actions of kind 'quickfix' requested but returned code action is of kind 'refactor.rewrite.review.copilot'. Code action will be dropped. Please check 'CodeActionContext.only' to only return requested code actions.
+2026-01-17 20:32:15.481 `[warning]` GitHub.copilot-chat - Code actions of kind 'quickfix' requested but returned code action is of kind 'refactor.rewrite.review.copilot'. Code action will be dropped. Please check 'CodeActionContext.only' to only return requested code actions.
+2026-01-17 20:32:19.537 `[warning]` GitHub.copilot-chat - Code actions of kind 'quickfix' requested but returned code action is of kind 'refactor.rewrite.review.copilot'. Code action will be dropped. Please check 'CodeActionContext.only' to only return requested code actions.
+2026-01-17 20:33:09.585 `[warning]` GitHub.copilot-chat - Code actions of kind 'quickfix' requested but returned code action is of kind 'refactor.rewrite.review.copilot'. Code action will be dropped. Please check 'CodeActionContext.only' to only return requested code actions.
+2026-01-17 20:55:38.147 `[info]` ExtensionService#_doActivateExtension ms-vscode.remote-repositories, startup: false, activationEvent: 'onView:remoteHub.views.workspaceRepositories'
+2026-01-17 20:55:38.211 `[info]` ExtensionService#_doActivateExtension GitHub.remotehub, startup: false, activationEvent: 'api', root cause: ms-vscode.remote-repositories
+2026-01-17 20:55:38.271 `[info]` ExtensionService#_doActivateExtension ms-vscode.azure-repos, startup: false, activationEvent: 'api', root cause: ms-vscode.remote-repositories
+2026-01-17 20:56:04.995 `[info]` ExtensionService#_doActivateExtension GitHub.codespaces, startup: false, activationEvent: 'onView:github.codespaces.explorer'
+2026-01-17 20:56:40.231 `[info]` Extension host terminating: renderer closed the MessagePort
+2026-01-17 20:56:40.251 `[info]` Extension host with pid 25684 exiting with code 0
+2026-01-17 20:56:41.140 `[info]` Extension host with pid 6724 started
+2026-01-17 20:56:41.140 `[info]` Skipping acquiring lock for c:\Users\erdno\AppData\Roaming\Code - Insiders\User\workspaceStorage\6979642185a6715b2f2fd0b2bb514983.
+2026-01-17 20:56:41.168 `[info]` ExtensionService#_doActivateExtension vscode.github-authentication, startup: false, activationEvent: 'onAuthenticationRequest:github'
+2026-01-17 20:56:41.183 `[info]` ExtensionService#_doActivateExtension ms-vscode.remote-repositories, startup: false, activationEvent: 'onFileSystem:vscode-vfs'
+2026-01-17 20:56:41.213 `[info]` ExtensionService#_doActivateExtension vscode.emmet, startup: false, activationEvent: 'onLanguage'
+2026-01-17 20:56:41.224 `[info]` ExtensionService#_doActivateExtension vscode.configuration-editing, startup: false, activationEvent: 'onLanguage:jsonc'
+2026-01-17 20:56:41.230 `[info]` ExtensionService#_doActivateExtension vscode.json-language-features, startup: false, activationEvent: 'onLanguage:jsonc'
+2026-01-17 20:56:41.273 `[info]` ExtensionService#_doActivateExtension vscode.microsoft-authentication, startup: false, activationEvent: 'onAuthenticationRequest:microsoft'
+2026-01-17 20:56:41.324 `[info]` ExtensionService#_doActivateExtension GitHub.vscode-pull-request-github, startup: false, activationEvent: 'api', root cause: ms-vscode.remote-repositories
+2026-01-17 20:56:41.382 `[info]` ExtensionService#_doActivateExtension GitHub.remotehub, startup: false, activationEvent: 'api', root cause: ms-vscode.remote-repositories
+2026-01-17 20:56:41.433 `[info]` ExtensionService#_doActivateExtension vscode.git-base, startup: true, activationEvent: '*'
+2026-01-17 20:56:41.436 `[info]` Eager extensions activated
+2026-01-17 20:56:41.444 `[info]` ExtensionService#_doActivateExtension vscode.merge-conflict, startup: false, activationEvent: 'onStartupFinished'
+2026-01-17 20:56:42.904 `[info]` Getting edit session identifier for workspaceFolder {"$mid":1,"fsPath":"\\poisontr33s\\chthonic-archive","_sep":1,"external":"vscode-vfs://github/poisontr33s/chthonic-archive","path":"/poisontr33s/chthonic-archive","scheme":"vscode-vfs","authority":"github"}
+2026-01-17 20:56:42.904 `[info]` Invoking #provideEditSessionIdentity for workspaceFolder {"uri":{"$mid":1,"fsPath":"\\poisontr33s\\chthonic-archive","_sep":1,"external":"vscode-vfs://github/poisontr33s/chthonic-archive","path":"/poisontr33s/chthonic-archive","scheme":"vscode-vfs","authority":"github"},"name":"chthonic-archive","index":0}
+2026-01-17 20:56:42.904 `[info]` Provider for scheme vscode-vfs is defined:  true
+2026-01-17 20:56:42.904 `[info]` Provider returned edit session identifier:  {"remote":"https://github.com/poisontr33s/chthonic-archive","ref":"main","sha":"8ca1744ff9640ff377e807932509c6a62c335590"}
+2026-01-17 20:56:42.905 `[info]` Getting edit session identifier for workspaceFolder {"$mid":1,"fsPath":"\\poisontr33s\\chthonic-archive","_sep":1,"external":"vscode-vfs://github/poisontr33s/chthonic-archive","path":"/poisontr33s/chthonic-archive","scheme":"vscode-vfs","authority":"github"}
+2026-01-17 20:56:42.905 `[info]` Invoking #provideEditSessionIdentity for workspaceFolder {"uri":{"$mid":1,"fsPath":"\\poisontr33s\\chthonic-archive","_sep":1,"external":"vscode-vfs://github/poisontr33s/chthonic-archive","path":"/poisontr33s/chthonic-archive","scheme":"vscode-vfs","authority":"github"},"name":"chthonic-archive","index":0}
+2026-01-17 20:56:42.905 `[info]` Provider for scheme vscode-vfs is defined:  true
+2026-01-17 20:56:42.905 `[info]` Provider returned edit session identifier match result:  0
+2026-01-17 20:56:51.147 `[info]` ExtensionService#_doActivateExtension vscode.git, startup: false, activationEvent: 'api', root cause: GitHub.vscode-pull-request-github
+2026-01-17 20:56:51.174 `[info]` ExtensionService#_doActivateExtension GitHub.copilot-chat, startup: false, activationEvent: 'onChatSession:copilotcli'
+2026-01-17 20:56:51.632 `[info]` ExtensionService#_doActivateExtension chthonic-archive.chthonic-mandala, startup: false, activationEvent: 'onStartupFinished'
+2026-01-17 20:56:51.633 `[info]` ExtensionService#_doActivateExtension chthonic-archive.chthonic-statusbar, startup: false, activationEvent: 'onStartupFinished'
+2026-01-17 20:56:51.634 `[info]` ExtensionService#_doActivateExtension ms-azuretools.vscode-azure-mcp-server, startup: false, activationEvent: 'onStartupFinished'
+2026-01-17 20:56:51.762 `[error]` Error: chatParticipant must be declared in package.json: claude-code
     at jei.$registerAgent (vscode-file://vscode-app/c:/Users/erdno/AppData/Local/Programs/Microsoft%20VS%20Code%20Insiders/f46196091d/resources/app/out/vs/workbench/workbench.desktop.main.js:520:10612)
-2026-01-17 20:56:51.789 [info] ExtensionService#_doActivateExtension github.vscode-github-actions, startup: false, activationEvent: 'workspaceContains:**/.github/workflows/**,**/action.yml,**/action.yaml'
-2026-01-17 20:58:15.789 [info] Extension host terminating: renderer closed the MessagePort
-2026-01-17 20:58:15.803 [info] Extension host with pid 6724 exiting with code 0
-2026-01-17 20:58:16.523 [info] Extension host with pid 3956 started
-2026-01-17 20:58:16.523 [info] Skipping acquiring lock for c:\Users\erdno\AppData\Roaming\Code - Insiders\User\workspaceStorage\ef54bace47120bf8bda2a555aef41825.
-2026-01-17 20:58:16.567 [info] ExtensionService#_doActivateExtension vscode.github-authentication, startup: false, activationEvent: 'onAuthenticationRequest:github'
-2026-01-17 20:58:16.581 [info] ExtensionService#_doActivateExtension vscode.emmet, startup: false, activationEvent: 'onLanguage'
-2026-01-17 20:58:16.591 [info] ExtensionService#_doActivateExtension GitHub.copilot-chat, startup: false, activationEvent: 'onChatParticipant:github.copilot.editsAgent'
-2026-01-17 20:58:17.079 [info] ExtensionService#_doActivateExtension GitHub.vscode-pull-request-github, startup: false, activationEvent: 'onWebviewPanel:PullRequestOverview'
-2026-01-17 20:58:17.141 [info] ExtensionService#_doActivateExtension vscode.git-base, startup: false, activationEvent: 'api', root cause: GitHub.copilot-chat
-2026-01-17 20:58:17.153 [error] Error: chatParticipant must be declared in package.json: claude-code
+2026-01-17 20:56:51.789 `[info]` ExtensionService#_doActivateExtension github.vscode-github-actions, startup: false, activationEvent: 'workspaceContains:**/.github/workflows/**,**/action.yml,**/action.yaml'
+2026-01-17 20:58:15.789 `[info]` Extension host terminating: renderer closed the MessagePort
+2026-01-17 20:58:15.803 `[info]` Extension host with pid 6724 exiting with code 0
+2026-01-17 20:58:16.523 `[info]` Extension host with pid 3956 started
+2026-01-17 20:58:16.523 `[info]` Skipping acquiring lock for c:\Users\erdno\AppData\Roaming\Code - Insiders\User\workspaceStorage\ef54bace47120bf8bda2a555aef41825.
+2026-01-17 20:58:16.567 `[info]` ExtensionService#_doActivateExtension vscode.github-authentication, startup: false, activationEvent: 'onAuthenticationRequest:github'
+2026-01-17 20:58:16.581 `[info]` ExtensionService#_doActivateExtension vscode.emmet, startup: false, activationEvent: 'onLanguage'
+2026-01-17 20:58:16.591 `[info]` ExtensionService#_doActivateExtension GitHub.copilot-chat, startup: false, activationEvent: 'onChatParticipant:github.copilot.editsAgent'
+2026-01-17 20:58:17.079 `[info]` ExtensionService#_doActivateExtension GitHub.vscode-pull-request-github, startup: false, activationEvent: 'onWebviewPanel:PullRequestOverview'
+2026-01-17 20:58:17.141 `[info]` ExtensionService#_doActivateExtension vscode.git-base, startup: false, activationEvent: 'api', root cause: GitHub.copilot-chat
+2026-01-17 20:58:17.153 `[error]` Error: chatParticipant must be declared in package.json: claude-code
     at jei.$registerAgent (vscode-file://vscode-app/c:/Users/erdno/AppData/Local/Programs/Microsoft%20VS%20Code%20Insiders/f46196091d/resources/app/out/vs/workbench/workbench.desktop.main.js:520:10612)
-2026-01-17 20:58:17.155 [info] ExtensionService#_doActivateExtension vscode.configuration-editing, startup: false, activationEvent: 'onLanguage:jsonc'
-2026-01-17 20:58:17.160 [info] ExtensionService#_doActivateExtension vscode.json-language-features, startup: false, activationEvent: 'onLanguage:jsonc'
-2026-01-17 20:58:17.194 [info] ExtensionService#_doActivateExtension vscode.microsoft-authentication, startup: false, activationEvent: 'onAuthenticationRequest:microsoft'
-2026-01-17 20:58:17.224 [info] ExtensionService#_doActivateExtension vscode.git, startup: false, activationEvent: 'api', root cause: GitHub.copilot-chat
-2026-01-17 20:58:17.651 [info] ExtensionService#_doActivateExtension vscode.github, startup: true, activationEvent: '*'
-2026-01-17 20:58:17.662 [info] ExtensionService#_doActivateExtension vscode.npm, startup: true, activationEvent: 'workspaceContains:package.json'
-2026-01-17 20:58:17.696 [info] ExtensionService#_doActivateExtension github.vscode-github-actions, startup: true, activationEvent: 'workspaceContains:**/.github/workflows/**,**/action.yml,**/action.yaml'
-2026-01-17 20:58:18.331 [info] ExtensionService#_doActivateExtension vscode.terminal-suggest, startup: false, activationEvent: 'onTerminalShellIntegration:*'
-2026-01-17 20:58:18.695 [info] Getting edit session identifier for workspaceFolder {"$mid":1,"fsPath":"c:\\Users\\erdno\\chthonic-archive","_sep":1,"external":"file:///c%3A/Users/erdno/chthonic-archive","path":"/c:/Users/erdno/chthonic-archive","scheme":"file"}
-2026-01-17 20:58:18.696 [info] Invoking #provideEditSessionIdentity for workspaceFolder {"uri":{"$mid":1,"fsPath":"c:\\Users\\erdno\\chthonic-archive","_sep":1,"external":"file:///c%3A/Users/erdno/chthonic-archive","path":"/c:/Users/erdno/chthonic-archive","scheme":"file"},"name":"chthonic-archive","index":0}
-2026-01-17 20:58:18.696 [info] Provider for scheme file is defined:  true
-2026-01-17 20:58:19.580 [info] Provider returned edit session identifier:  {"remote":"https://github.com/poisontr33s/chthonic-archive.git","ref":"main","sha":"8ca1744ff9640ff377e807932509c6a62c335590"}
-2026-01-17 20:58:19.581 [info] Getting edit session identifier for workspaceFolder {"$mid":1,"fsPath":"c:\\Users\\erdno\\chthonic-archive","_sep":1,"external":"file:///c%3A/Users/erdno/chthonic-archive","path":"/c:/Users/erdno/chthonic-archive","scheme":"file"}
-2026-01-17 20:58:19.581 [info] Invoking #provideEditSessionIdentity for workspaceFolder {"uri":{"$mid":1,"fsPath":"c:\\Users\\erdno\\chthonic-archive","_sep":1,"external":"file:///c%3A/Users/erdno/chthonic-archive","path":"/c:/Users/erdno/chthonic-archive","scheme":"file"},"name":"chthonic-archive","index":0}
-2026-01-17 20:58:19.581 [info] Provider for scheme file is defined:  true
-2026-01-17 20:58:19.581 [info] Provider returned edit session identifier match result:  50
-2026-01-17 20:58:19.738 [info] Eager extensions activated
-2026-01-17 20:58:19.741 [info] ExtensionService#_doActivateExtension vscode.debug-auto-launch, startup: false, activationEvent: 'onStartupFinished'
-2026-01-17 20:58:19.742 [info] ExtensionService#_doActivateExtension vscode.merge-conflict, startup: false, activationEvent: 'onStartupFinished'
-2026-01-17 20:58:19.751 [info] ExtensionService#_doActivateExtension chthonic-archive.chthonic-mandala, startup: false, activationEvent: 'onStartupFinished'
-2026-01-17 20:58:19.753 [info] ExtensionService#_doActivateExtension chthonic-archive.chthonic-statusbar, startup: false, activationEvent: 'onStartupFinished'
-2026-01-17 20:58:19.754 [info] ExtensionService#_doActivateExtension ms-azuretools.vscode-azure-mcp-server, startup: false, activationEvent: 'onStartupFinished'
-2026-01-17 20:58:22.070 [info] Getting edit session identifier for workspaceFolder {"$mid":1,"fsPath":"c:\\Users\\erdno\\chthonic-archive","_sep":1,"external":"file:///c%3A/Users/erdno/chthonic-archive","path":"/c:/Users/erdno/chthonic-archive","scheme":"file"}
-2026-01-17 20:58:22.071 [info] Invoking #provideEditSessionIdentity for workspaceFolder {"uri":{"$mid":1,"fsPath":"c:\\Users\\erdno\\chthonic-archive","_sep":1,"external":"file:///c%3A/Users/erdno/chthonic-archive","path":"/c:/Users/erdno/chthonic-archive","scheme":"file"},"name":"chthonic-archive","index":0}
-2026-01-17 20:58:22.071 [info] Provider for scheme file is defined:  true
-2026-01-17 20:58:22.348 [info] Provider returned edit session identifier:  {"remote":"https://github.com/poisontr33s/chthonic-archive.git","ref":"main","sha":"8ca1744ff9640ff377e807932509c6a62c335590"}
-2026-01-17 20:58:22.349 [info] Getting edit session identifier for workspaceFolder {"$mid":1,"fsPath":"c:\\Users\\erdno\\chthonic-archive","_sep":1,"external":"file:///c%3A/Users/erdno/chthonic-archive","path":"/c:/Users/erdno/chthonic-archive","scheme":"file"}
-2026-01-17 20:58:22.349 [info] Invoking #provideEditSessionIdentity for workspaceFolder {"uri":{"$mid":1,"fsPath":"c:\\Users\\erdno\\chthonic-archive","_sep":1,"external":"file:///c%3A/Users/erdno/chthonic-archive","path":"/c:/Users/erdno/chthonic-archive","scheme":"file"},"name":"chthonic-archive","index":0}
-2026-01-17 20:58:22.349 [info] Provider for scheme file is defined:  true
-2026-01-17 20:58:22.349 [info] Provider returned edit session identifier match result:  50
-2026-01-17 20:58:30.725 [info] ExtensionService#_doActivateExtension vscode.extension-editing, startup: false, activationEvent: 'onLanguage:json'
-2026-01-17 20:58:30.781 [info] ExtensionService#_doActivateExtension vscode.markdown-language-features, startup: false, activationEvent: 'onLanguage:markdown'
-2026-01-17 20:58:31.026 [info] ExtensionService#_doActivateExtension vscode.markdown-math, startup: false, activationEvent: 'api', root cause: vscode.markdown-language-features
-2026-01-17 20:58:38.233 [info] ExtensionService#_doActivateExtension ms-azuretools.vscode-azureresourcegroups, startup: false, activationEvent: 'onView:azureActivityLog'
-2026-01-17 21:02:06.856 [info] ExtensionService#_doActivateExtension vscode.grunt, startup: false, activationEvent: 'onTaskType:grunt'
-2026-01-17 21:02:06.858 [info] ExtensionService#_doActivateExtension vscode.gulp, startup: false, activationEvent: 'onTaskType:gulp'
-2026-01-17 21:02:06.859 [info] ExtensionService#_doActivateExtension vscode.jake, startup: false, activationEvent: 'onTaskType:jake'
-2026-01-17 21:26:52.128 [warning] GitHub.copilot-chat - Code actions of kind 'quickfix' requested but returned code action is of kind 'refactor.rewrite.review.copilot'. Code action will be dropped. Please check 'CodeActionContext.only' to only return requested code actions.
-2026-01-17 21:28:25.771 [warning] GitHub.copilot-chat - Code actions of kind 'quickfix' requested but returned code action is of kind 'refactor.rewrite.review.copilot'. Code action will be dropped. Please check 'CodeActionContext.only' to only return requested code actions.
-2026-01-17 21:29:42.827 [error] Error: Git error
+2026-01-17 20:58:17.155 `[info]` ExtensionService#_doActivateExtension vscode.configuration-editing, startup: false, activationEvent: 'onLanguage:jsonc'
+2026-01-17 20:58:17.160 `[info]` ExtensionService#_doActivateExtension vscode.json-language-features, startup: false, activationEvent: 'onLanguage:jsonc'
+2026-01-17 20:58:17.194 `[info]` ExtensionService#_doActivateExtension vscode.microsoft-authentication, startup: false, activationEvent: 'onAuthenticationRequest:microsoft'
+2026-01-17 20:58:17.224 `[info]` ExtensionService#_doActivateExtension vscode.git, startup: false, activationEvent: 'api', root cause: GitHub.copilot-chat
+2026-01-17 20:58:17.651 `[info]` ExtensionService#_doActivateExtension vscode.github, startup: true, activationEvent: '*'
+2026-01-17 20:58:17.662 `[info]` ExtensionService#_doActivateExtension vscode.npm, startup: true, activationEvent: 'workspaceContains:package.json'
+2026-01-17 20:58:17.696 `[info]` ExtensionService#_doActivateExtension github.vscode-github-actions, startup: true, activationEvent: 'workspaceContains:**/.github/workflows/**,**/action.yml,**/action.yaml'
+2026-01-17 20:58:18.331 `[info]` ExtensionService#_doActivateExtension vscode.terminal-suggest, startup: false, activationEvent: 'onTerminalShellIntegration:*'
+2026-01-17 20:58:18.695 `[info]` Getting edit session identifier for workspaceFolder {"$mid":1,"fsPath":"c:\\Users\\erdno\\chthonic-archive","_sep":1,"external":"file:///c%3A/Users/erdno/chthonic-archive","path":"/c:/Users/erdno/chthonic-archive","scheme":"file"}
+2026-01-17 20:58:18.696 `[info]` Invoking #provideEditSessionIdentity for workspaceFolder {"uri":{"$mid":1,"fsPath":"c:\\Users\\erdno\\chthonic-archive","_sep":1,"external":"file:///c%3A/Users/erdno/chthonic-archive","path":"/c:/Users/erdno/chthonic-archive","scheme":"file"},"name":"chthonic-archive","index":0}
+2026-01-17 20:58:18.696 `[info]` Provider for scheme file is defined:  true
+2026-01-17 20:58:19.580 `[info]` Provider returned edit session identifier:  {"remote":"https://github.com/poisontr33s/chthonic-archive.git","ref":"main","sha":"8ca1744ff9640ff377e807932509c6a62c335590"}
+2026-01-17 20:58:19.581 `[info]` Getting edit session identifier for workspaceFolder {"$mid":1,"fsPath":"c:\\Users\\erdno\\chthonic-archive","_sep":1,"external":"file:///c%3A/Users/erdno/chthonic-archive","path":"/c:/Users/erdno/chthonic-archive","scheme":"file"}
+2026-01-17 20:58:19.581 `[info]` Invoking #provideEditSessionIdentity for workspaceFolder {"uri":{"$mid":1,"fsPath":"c:\\Users\\erdno\\chthonic-archive","_sep":1,"external":"file:///c%3A/Users/erdno/chthonic-archive","path":"/c:/Users/erdno/chthonic-archive","scheme":"file"},"name":"chthonic-archive","index":0}
+2026-01-17 20:58:19.581 `[info]` Provider for scheme file is defined:  true
+2026-01-17 20:58:19.581 `[info]` Provider returned edit session identifier match result:  50
+2026-01-17 20:58:19.738 `[info]` Eager extensions activated
+2026-01-17 20:58:19.741 `[info]` ExtensionService#_doActivateExtension vscode.debug-auto-launch, startup: false, activationEvent: 'onStartupFinished'
+2026-01-17 20:58:19.742 `[info]` ExtensionService#_doActivateExtension vscode.merge-conflict, startup: false, activationEvent: 'onStartupFinished'
+2026-01-17 20:58:19.751 `[info]` ExtensionService#_doActivateExtension chthonic-archive.chthonic-mandala, startup: false, activationEvent: 'onStartupFinished'
+2026-01-17 20:58:19.753 `[info]` ExtensionService#_doActivateExtension chthonic-archive.chthonic-statusbar, startup: false, activationEvent: 'onStartupFinished'
+2026-01-17 20:58:19.754 `[info]` ExtensionService#_doActivateExtension ms-azuretools.vscode-azure-mcp-server, startup: false, activationEvent: 'onStartupFinished'
+2026-01-17 20:58:22.070 `[info]` Getting edit session identifier for workspaceFolder {"$mid":1,"fsPath":"c:\\Users\\erdno\\chthonic-archive","_sep":1,"external":"file:///c%3A/Users/erdno/chthonic-archive","path":"/c:/Users/erdno/chthonic-archive","scheme":"file"}
+2026-01-17 20:58:22.071 `[info]` Invoking #provideEditSessionIdentity for workspaceFolder {"uri":{"$mid":1,"fsPath":"c:\\Users\\erdno\\chthonic-archive","_sep":1,"external":"file:///c%3A/Users/erdno/chthonic-archive","path":"/c:/Users/erdno/chthonic-archive","scheme":"file"},"name":"chthonic-archive","index":0}
+2026-01-17 20:58:22.071 `[info]` Provider for scheme file is defined:  true
+2026-01-17 20:58:22.348 `[info]` Provider returned edit session identifier:  {"remote":"https://github.com/poisontr33s/chthonic-archive.git","ref":"main","sha":"8ca1744ff9640ff377e807932509c6a62c335590"}
+2026-01-17 20:58:22.349 `[info]` Getting edit session identifier for workspaceFolder {"$mid":1,"fsPath":"c:\\Users\\erdno\\chthonic-archive","_sep":1,"external":"file:///c%3A/Users/erdno/chthonic-archive","path":"/c:/Users/erdno/chthonic-archive","scheme":"file"}
+2026-01-17 20:58:22.349 `[info]` Invoking #provideEditSessionIdentity for workspaceFolder {"uri":{"$mid":1,"fsPath":"c:\\Users\\erdno\\chthonic-archive","_sep":1,"external":"file:///c%3A/Users/erdno/chthonic-archive","path":"/c:/Users/erdno/chthonic-archive","scheme":"file"},"name":"chthonic-archive","index":0}
+2026-01-17 20:58:22.349 `[info]` Provider for scheme file is defined:  true
+2026-01-17 20:58:22.349 `[info]` Provider returned edit session identifier match result:  50
+2026-01-17 20:58:30.725 `[info]` ExtensionService#_doActivateExtension vscode.extension-editing, startup: false, activationEvent: 'onLanguage:json'
+2026-01-17 20:58:30.781 `[info]` ExtensionService#_doActivateExtension vscode.markdown-language-features, startup: false, activationEvent: 'onLanguage:markdown'
+2026-01-17 20:58:31.026 `[info]` ExtensionService#_doActivateExtension vscode.markdown-math, startup: false, activationEvent: 'api', root cause: vscode.markdown-language-features
+2026-01-17 20:58:38.233 `[info]` ExtensionService#_doActivateExtension ms-azuretools.vscode-azureresourcegroups, startup: false, activationEvent: 'onView:azureActivityLog'
+2026-01-17 21:02:06.856 `[info]` ExtensionService#_doActivateExtension vscode.grunt, startup: false, activationEvent: 'onTaskType:grunt'
+2026-01-17 21:02:06.858 `[info]` ExtensionService#_doActivateExtension vscode.gulp, startup: false, activationEvent: 'onTaskType:gulp'
+2026-01-17 21:02:06.859 `[info]` ExtensionService#_doActivateExtension vscode.jake, startup: false, activationEvent: 'onTaskType:jake'
+2026-01-17 21:26:52.128 `[warning]` GitHub.copilot-chat - Code actions of kind 'quickfix' requested but returned code action is of kind 'refactor.rewrite.review.copilot'. Code action will be dropped. Please check 'CodeActionContext.only' to only return requested code actions.
+2026-01-17 21:28:25.771 `[warning]` GitHub.copilot-chat - Code actions of kind 'quickfix' requested but returned code action is of kind 'refactor.rewrite.review.copilot'. Code action will be dropped. Please check 'CodeActionContext.only' to only return requested code actions.
+2026-01-17 21:29:42.827 `[error]` Error: Git error
     at ChildProcess.<anonymous> (c:\Users\erdno\AppData\Local\Programs\Microsoft VS Code Insiders\f46196091d\resources\app\extensions\git\dist\main.js:2:788156)
     at ChildProcess.emit (node:events:531:35)
     at ChildProcess._handle.onexit (node:internal/child_process:293:12)
     at Process.callbackTrampoline (node:internal/async_hooks:130:17)
-2026-01-17 21:29:42.827 [error] Error: Git error
+2026-01-17 21:29:42.827 `[error]` Error: Git error
     at ChildProcess.<anonymous> (c:\Users\erdno\AppData\Local\Programs\Microsoft VS Code Insiders\f46196091d\resources\app\extensions\git\dist\main.js:2:788156)
     at ChildProcess.emit (node:events:531:35)
     at ChildProcess._handle.onexit (node:internal/child_process:293:12)
     at Process.callbackTrampoline (node:internal/async_hooks:130:17)
-2026-01-17 21:29:42.827 [error] Error: Git error
+2026-01-17 21:29:42.827 `[error]` Error: Git error
     at ChildProcess.<anonymous> (c:\Users\erdno\AppData\Local\Programs\Microsoft VS Code Insiders\f46196091d\resources\app\extensions\git\dist\main.js:2:788156)
     at ChildProcess.emit (node:events:531:35)
     at ChildProcess._handle.onexit (node:internal/child_process:293:12)
     at Process.callbackTrampoline (node:internal/async_hooks:130:17)
-2026-01-17 21:29:42.827 [error] Error: Git error
+2026-01-17 21:29:42.827 `[error]` Error: Git error
     at ChildProcess.<anonymous> (c:\Users\erdno\AppData\Local\Programs\Microsoft VS Code Insiders\f46196091d\resources\app\extensions\git\dist\main.js:2:788156)
     at ChildProcess.emit (node:events:531:35)
     at ChildProcess._handle.onexit (node:internal/child_process:293:12)
     at Process.callbackTrampoline (node:internal/async_hooks:130:17)
-2026-01-17 21:29:42.827 [error] Error: Git error
+2026-01-17 21:29:42.827 `[error]` Error: Git error
     at ChildProcess.<anonymous> (c:\Users\erdno\AppData\Local\Programs\Microsoft VS Code Insiders\f46196091d\resources\app\extensions\git\dist\main.js:2:788156)
     at ChildProcess.emit (node:events:531:35)
     at ChildProcess._handle.onexit (node:internal/child_process:293:12)
     at Process.callbackTrampoline (node:internal/async_hooks:130:17)
-2026-01-17 21:29:42.827 [error] Error: Git error
+2026-01-17 21:29:42.827 `[error]` Error: Git error
     at ChildProcess.<anonymous> (c:\Users\erdno\AppData\Local\Programs\Microsoft VS Code Insiders\f46196091d\resources\app\extensions\git\dist\main.js:2:788156)
     at ChildProcess.emit (node:events:531:35)
     at ChildProcess._handle.onexit (node:internal/child_process:293:12)
     at Process.callbackTrampoline (node:internal/async_hooks:130:17)
-2026-01-17 21:29:42.827 [error] Error: Git error
+2026-01-17 21:29:42.827 `[error]` Error: Git error
     at ChildProcess.<anonymous> (c:\Users\erdno\AppData\Local\Programs\Microsoft VS Code Insiders\f46196091d\resources\app\extensions\git\dist\main.js:2:788156)
     at ChildProcess.emit (node:events:531:35)
     at ChildProcess._handle.onexit (node:internal/child_process:293:12)
     at Process.callbackTrampoline (node:internal/async_hooks:130:17)
-2026-01-17 21:29:42.827 [error] Error: Git error
+2026-01-17 21:29:42.827 `[error]` Error: Git error
     at ChildProcess.<anonymous> (c:\Users\erdno\AppData\Local\Programs\Microsoft VS Code Insiders\f46196091d\resources\app\extensions\git\dist\main.js:2:788156)
     at ChildProcess.emit (node:events:531:35)
     at ChildProcess._handle.onexit (node:internal/child_process:293:12)
     at Process.callbackTrampoline (node:internal/async_hooks:130:17)
-2026-01-17 21:29:42.827 [error] Error: Git error
+2026-01-17 21:29:42.827 `[error]` Error: Git error
     at ChildProcess.<anonymous> (c:\Users\erdno\AppData\Local\Programs\Microsoft VS Code Insiders\f46196091d\resources\app\extensions\git\dist\main.js:2:788156)
     at ChildProcess.emit (node:events:531:35)
     at ChildProcess._handle.onexit (node:internal/child_process:293:12)
     at Process.callbackTrampoline (node:internal/async_hooks:130:17)
-2026-01-17 21:29:42.827 [error] Error: Git error
+2026-01-17 21:29:42.827 `[error]` Error: Git error
     at ChildProcess.<anonymous> (c:\Users\erdno\AppData\Local\Programs\Microsoft VS Code Insiders\f46196091d\resources\app\extensions\git\dist\main.js:2:788156)
     at ChildProcess.emit (node:events:531:35)
     at ChildProcess._handle.onexit (node:internal/child_process:293:12)
     at Process.callbackTrampoline (node:internal/async_hooks:130:17)
-2026-01-17 21:29:42.827 [error] Error: Git error
+2026-01-17 21:29:42.827 `[error]` Error: Git error
     at ChildProcess.<anonymous> (c:\Users\erdno\AppData\Local\Programs\Microsoft VS Code Insiders\f46196091d\resources\app\extensions\git\dist\main.js:2:788156)
     at ChildProcess.emit (node:events:531:35)
     at ChildProcess._handle.onexit (node:internal/child_process:293:12)
     at Process.callbackTrampoline (node:internal/async_hooks:130:17)
-2026-01-17 21:29:42.827 [error] Error: Git error
+2026-01-17 21:29:42.827 `[error]` Error: Git error
     at ChildProcess.<anonymous> (c:\Users\erdno\AppData\Local\Programs\Microsoft VS Code Insiders\f46196091d\resources\app\extensions\git\dist\main.js:2:788156)
     at ChildProcess.emit (node:events:531:35)
     at ChildProcess._handle.onexit (node:internal/child_process:293:12)
     at Process.callbackTrampoline (node:internal/async_hooks:130:17)
-2026-01-17 21:29:42.827 [error] Error: Git error
+2026-01-17 21:29:42.827 `[error]` Error: Git error
     at ChildProcess.<anonymous> (c:\Users\erdno\AppData\Local\Programs\Microsoft VS Code Insiders\f46196091d\resources\app\extensions\git\dist\main.js:2:788156)
     at ChildProcess.emit (node:events:531:35)
     at ChildProcess._handle.onexit (node:internal/child_process:293:12)
     at Process.callbackTrampoline (node:internal/async_hooks:130:17)
-2026-01-17 21:29:42.827 [error] Error: Git error
+2026-01-17 21:29:42.827 `[error]` Error: Git error
     at ChildProcess.<anonymous> (c:\Users\erdno\AppData\Local\Programs\Microsoft VS Code Insiders\f46196091d\resources\app\extensions\git\dist\main.js:2:788156)
     at ChildProcess.emit (node:events:531:35)
     at ChildProcess._handle.onexit (node:internal/child_process:293:12)
     at Process.callbackTrampoline (node:internal/async_hooks:130:17)
-2026-01-17 21:29:43.828 [error] Error: Git error
+2026-01-17 21:29:43.828 `[error]` Error: Git error
     at ChildProcess.<anonymous> (c:\Users\erdno\AppData\Local\Programs\Microsoft VS Code Insiders\f46196091d\resources\app\extensions\git\dist\main.js:2:788156)
     at ChildProcess.emit (node:events:531:35)
     at ChildProcess._handle.onexit (node:internal/child_process:293:12)
     at Process.callbackTrampoline (node:internal/async_hooks:130:17)
-2026-01-17 21:29:43.828 [error] Error: Git error
+2026-01-17 21:29:43.828 `[error]` Error: Git error
     at ChildProcess.<anonymous> (c:\Users\erdno\AppData\Local\Programs\Microsoft VS Code Insiders\f46196091d\resources\app\extensions\git\dist\main.js:2:788156)
     at ChildProcess.emit (node:events:531:35)
     at ChildProcess._handle.onexit (node:internal/child_process:293:12)
     at Process.callbackTrampoline (node:internal/async_hooks:130:17)
-2026-01-17 21:29:43.828 [error] Error: Git error
+2026-01-17 21:29:43.828 `[error]` Error: Git error
     at ChildProcess.<anonymous> (c:\Users\erdno\AppData\Local\Programs\Microsoft VS Code Insiders\f46196091d\resources\app\extensions\git\dist\main.js:2:788156)
     at ChildProcess.emit (node:events:531:35)
     at ChildProcess._handle.onexit (node:internal/child_process:293:12)
     at Process.callbackTrampoline (node:internal/async_hooks:130:17)
-2026-01-17 21:29:43.828 [error] Error: Git error
+2026-01-17 21:29:43.828 `[error]` Error: Git error
     at ChildProcess.<anonymous> (c:\Users\erdno\AppData\Local\Programs\Microsoft VS Code Insiders\f46196091d\resources\app\extensions\git\dist\main.js:2:788156)
     at ChildProcess.emit (node:events:531:35)
     at ChildProcess._handle.onexit (node:internal/child_process:293:12)
     at Process.callbackTrampoline (node:internal/async_hooks:130:17)
-2026-01-17 21:29:43.828 [error] Error: Git error
+2026-01-17 21:29:43.828 `[error]` Error: Git error
     at ChildProcess.<anonymous> (c:\Users\erdno\AppData\Local\Programs\Microsoft VS Code Insiders\f46196091d\resources\app\extensions\git\dist\main.js:2:788156)
     at ChildProcess.emit (node:events:531:35)
     at ChildProcess._handle.onexit (node:internal/child_process:293:12)
     at Process.callbackTrampoline (node:internal/async_hooks:130:17)
-2026-01-17 21:29:43.828 [error] Error: Git error
+2026-01-17 21:29:43.828 `[error]` Error: Git error
     at ChildProcess.<anonymous> (c:\Users\erdno\AppData\Local\Programs\Microsoft VS Code Insiders\f46196091d\resources\app\extensions\git\dist\main.js:2:788156)
     at ChildProcess.emit (node:events:531:35)
     at ChildProcess._handle.onexit (node:internal/child_process:293:12)
     at Process.callbackTrampoline (node:internal/async_hooks:130:17)
-2026-01-17 21:29:43.829 [error] Error: Git error
+2026-01-17 21:29:43.829 `[error]` Error: Git error
     at ChildProcess.<anonymous> (c:\Users\erdno\AppData\Local\Programs\Microsoft VS Code Insiders\f46196091d\resources\app\extensions\git\dist\main.js:2:788156)
     at ChildProcess.emit (node:events:531:35)
     at ChildProcess._handle.onexit (node:internal/child_process:293:12)
     at Process.callbackTrampoline (node:internal/async_hooks:130:17)
-2026-01-17 21:29:43.829 [error] Error: Git error
+2026-01-17 21:29:43.829 `[error]` Error: Git error
     at ChildProcess.<anonymous> (c:\Users\erdno\AppData\Local\Programs\Microsoft VS Code Insiders\f46196091d\resources\app\extensions\git\dist\main.js:2:788156)
     at ChildProcess.emit (node:events:531:35)
     at ChildProcess._handle.onexit (node:internal/child_process:293:12)
     at Process.callbackTrampoline (node:internal/async_hooks:130:17)
-2026-01-17 21:29:43.829 [error] Error: Git error
+2026-01-17 21:29:43.829 `[error]` Error: Git error
     at ChildProcess.<anonymous> (c:\Users\erdno\AppData\Local\Programs\Microsoft VS Code Insiders\f46196091d\resources\app\extensions\git\dist\main.js:2:788156)
     at ChildProcess.emit (node:events:531:35)
     at ChildProcess._handle.onexit (node:internal/child_process:293:12)
     at Process.callbackTrampoline (node:internal/async_hooks:130:17)
-2026-01-17 21:29:43.829 [error] Error: Git error
+2026-01-17 21:29:43.829 `[error]` Error: Git error
     at ChildProcess.<anonymous> (c:\Users\erdno\AppData\Local\Programs\Microsoft VS Code Insiders\f46196091d\resources\app\extensions\git\dist\main.js:2:788156)
     at ChildProcess.emit (node:events:531:35)
     at ChildProcess._handle.onexit (node:internal/child_process:293:12)
     at Process.callbackTrampoline (node:internal/async_hooks:130:17)
-2026-01-17 21:29:43.829 [error] Error: Git error
+2026-01-17 21:29:43.829 `[error]` Error: Git error
     at ChildProcess.<anonymous> (c:\Users\erdno\AppData\Local\Programs\Microsoft VS Code Insiders\f46196091d\resources\app\extensions\git\dist\main.js:2:788156)
     at ChildProcess.emit (node:events:531:35)
     at ChildProcess._handle.onexit (node:internal/child_process:293:12)
     at Process.callbackTrampoline (node:internal/async_hooks:130:17)
-2026-01-17 21:29:43.829 [error] Error: Git error
+2026-01-17 21:29:43.829 `[error]` Error: Git error
     at ChildProcess.<anonymous> (c:\Users\erdno\AppData\Local\Programs\Microsoft VS Code Insiders\f46196091d\resources\app\extensions\git\dist\main.js:2:788156)
     at ChildProcess.emit (node:events:531:35)
     at ChildProcess._handle.onexit (node:internal/child_process:293:12)
     at Process.callbackTrampoline (node:internal/async_hooks:130:17)
-2026-01-17 21:29:43.830 [error] Error: Git error
+2026-01-17 21:29:43.830 `[error]` Error: Git error
     at ChildProcess.<anonymous> (c:\Users\erdno\AppData\Local\Programs\Microsoft VS Code Insiders\f46196091d\resources\app\extensions\git\dist\main.js:2:788156)
     at ChildProcess.emit (node:events:531:35)
     at ChildProcess._handle.onexit (node:internal/child_process:293:12)
     at Process.callbackTrampoline (node:internal/async_hooks:130:17)
-2026-01-17 21:29:43.830 [error] Error: Git error
+2026-01-17 21:29:43.830 `[error]` Error: Git error
     at ChildProcess.<anonymous> (c:\Users\erdno\AppData\Local\Programs\Microsoft VS Code Insiders\f46196091d\resources\app\extensions\git\dist\main.js:2:788156)
     at ChildProcess.emit (node:events:531:35)
     at ChildProcess._handle.onexit (node:internal/child_process:293:12)
     at Process.callbackTrampoline (node:internal/async_hooks:130:17)
-2026-01-17 21:29:44.373 [error] Error: Git error
+2026-01-17 21:29:44.373 `[error]` Error: Git error
     at ChildProcess.<anonymous> (c:\Users\erdno\AppData\Local\Programs\Microsoft VS Code Insiders\f46196091d\resources\app\extensions\git\dist\main.js:2:788156)
     at ChildProcess.emit (node:events:531:35)
     at ChildProcess._handle.onexit (node:internal/child_process:293:12)
     at Process.callbackTrampoline (node:internal/async_hooks:130:17)
-2026-01-17 21:29:44.373 [error] Error: Git error
+2026-01-17 21:29:44.373 `[error]` Error: Git error
     at ChildProcess.<anonymous> (c:\Users\erdno\AppData\Local\Programs\Microsoft VS Code Insiders\f46196091d\resources\app\extensions\git\dist\main.js:2:788156)
     at ChildProcess.emit (node:events:531:35)
     at ChildProcess._handle.onexit (node:internal/child_process:293:12)
     at Process.callbackTrampoline (node:internal/async_hooks:130:17)
-2026-01-17 21:29:44.373 [error] Error: Git error
+2026-01-17 21:29:44.373 `[error]` Error: Git error
     at ChildProcess.<anonymous> (c:\Users\erdno\AppData\Local\Programs\Microsoft VS Code Insiders\f46196091d\resources\app\extensions\git\dist\main.js:2:788156)
     at ChildProcess.emit (node:events:531:35)
     at ChildProcess._handle.onexit (node:internal/child_process:293:12)
     at Process.callbackTrampoline (node:internal/async_hooks:130:17)
-2026-01-17 21:29:44.373 [error] Error: Git error
+2026-01-17 21:29:44.373 `[error]` Error: Git error
     at ChildProcess.<anonymous> (c:\Users\erdno\AppData\Local\Programs\Microsoft VS Code Insiders\f46196091d\resources\app\extensions\git\dist\main.js:2:788156)
     at ChildProcess.emit (node:events:531:35)
     at ChildProcess._handle.onexit (node:internal/child_process:293:12)
     at Process.callbackTrampoline (node:internal/async_hooks:130:17)
-2026-01-17 21:29:45.380 [error] Error: Git error
+2026-01-17 21:29:44.373 `[error]` Error: Git error
     at ChildProcess.<anonymous> (c:\Users\erdno\AppData\Local\Programs\Microsoft VS Code Insiders\f46196091d\resources\app\extensions\git\dist\main.js:2:788156)
     at ChildProcess.emit (node:events:531:35)
     at ChildProcess._handle.onexit (node:internal/child_process:293:12)
     at Process.callbackTrampoline (node:internal/async_hooks:130:17)
-2026-01-17 21:29:45.380 [error] Error: Git error
+2026-01-17 21:29:44.373 `[error]` Error: Git error
     at ChildProcess.<anonymous> (c:\Users\erdno\AppData\Local\Programs\Microsoft VS Code Insiders\f46196091d\resources\app\extensions\git\dist\main.js:2:788156)
     at ChildProcess.emit (node:events:531:35)
     at ChildProcess._handle.onexit (node:internal/child_process:293:12)
     at Process.callbackTrampoline (node:internal/async_hooks:130:17)
-2026-01-17 21:29:45.380 [error] Error: Git error
+2026-01-17 21:29:45.380 `[error]` Error: Git error
     at ChildProcess.<anonymous> (c:\Users\erdno\AppData\Local\Programs\Microsoft VS Code Insiders\f46196091d\resources\app\extensions\git\dist\main.js:2:788156)
     at ChildProcess.emit (node:events:531:35)
     at ChildProcess._handle.onexit (node:internal/child_process:293:12)
     at Process.callbackTrampoline (node:internal/async_hooks:130:17)
-2026-01-17 21:29:45.381 [error] Error: Git error
+2026-01-17 21:29:45.380 `[error]` Error: Git error
     at ChildProcess.<anonymous> (c:\Users\erdno\AppData\Local\Programs\Microsoft VS Code Insiders\f46196091d\resources\app\extensions\git\dist\main.js:2:788156)
     at ChildProcess.emit (node:events:531:35)
     at ChildProcess._handle.onexit (node:internal/child_process:293:12)
     at Process.callbackTrampoline (node:internal/async_hooks:130:17)
-2026-01-17 21:29:47.246 [error] Error: Git error
+2026-01-17 21:29:45.380 `[error]` Error: Git error
     at ChildProcess.<anonymous> (c:\Users\erdno\AppData\Local\Programs\Microsoft VS Code Insiders\f46196091d\resources\app\extensions\git\dist\main.js:2:788156)
     at ChildProcess.emit (node:events:531:35)
     at ChildProcess._handle.onexit (node:internal/child_process:293:12)
     at Process.callbackTrampoline (node:internal/async_hooks:130:17)
-2026-01-17 21:29:47.246 [error] Error: Git error
+2026-01-17 21:29:45.381 `[error]` Error: Git error
     at ChildProcess.<anonymous> (c:\Users\erdno\AppData\Local\Programs\Microsoft VS Code Insiders\f46196091d\resources\app\extensions\git\dist\main.js:2:788156)
     at ChildProcess.emit (node:events:531:35)
     at ChildProcess._handle.onexit (node:internal/child_process:293:12)
     at Process.callbackTrampoline (node:internal/async_hooks:130:17)
-2026-01-17 21:29:47.246 [error] Error: Git error
+2026-01-17 21:29:47.246 `[error]` Error: Git error
     at ChildProcess.<anonymous> (c:\Users\erdno\AppData\Local\Programs\Microsoft VS Code Insiders\f46196091d\resources\app\extensions\git\dist\main.js:2:788156)
     at ChildProcess.emit (node:events:531:35)
     at ChildProcess._handle.onexit (node:internal/child_process:293:12)
     at Process.callbackTrampoline (node:internal/async_hooks:130:17)
-2026-01-17 21:29:47.246 [error] Error: Git error
+2026-01-17 21:29:47.246 `[error]` Error: Git error
     at ChildProcess.<anonymous> (c:\Users\erdno\AppData\Local\Programs\Microsoft VS Code Insiders\f46196091d\resources\app\extensions\git\dist\main.js:2:788156)
     at ChildProcess.emit (node:events:531:35)
     at ChildProcess._handle.onexit (node:internal/child_process:293:12)
     at Process.callbackTrampoline (node:internal/async_hooks:130:17)
-2026-01-17 21:29:47.246 [error] Error: Git error
+2026-01-17 21:29:47.246 `[error]` Error: Git error
     at ChildProcess.<anonymous> (c:\Users\erdno\AppData\Local\Programs\Microsoft VS Code Insiders\f46196091d\resources\app\extensions\git\dist\main.js:2:788156)
     at ChildProcess.emit (node:events:531:35)
     at ChildProcess._handle.onexit (node:internal/child_process:293:12)
     at Process.callbackTrampoline (node:internal/async_hooks:130:17)
-2026-01-17 21:29:47.246 [error] Error: Git error
+2026-01-17 21:29:47.246 `[error]` Error: Git error
     at ChildProcess.<anonymous> (c:\Users\erdno\AppData\Local\Programs\Microsoft VS Code Insiders\f46196091d\resources\app\extensions\git\dist\main.js:2:788156)
     at ChildProcess.emit (node:events:531:35)
     at ChildProcess._handle.onexit (node:internal/child_process:293:12)
     at Process.callbackTrampoline (node:internal/async_hooks:130:17)
-2026-01-17 21:29:47.246 [error] Error: Git error
+2026-01-17 21:29:47.246 `[error]` Error: Git error
     at ChildProcess.<anonymous> (c:\Users\erdno\AppData\Local\Programs\Microsoft VS Code Insiders\f46196091d\resources\app\extensions\git\dist\main.js:2:788156)
     at ChildProcess.emit (node:events:531:35)
     at ChildProcess._handle.onexit (node:internal/child_process:293:12)
     at Process.callbackTrampoline (node:internal/async_hooks:130:17)
-2026-01-17 21:29:47.246 [error] Error: Git error
+2026-01-17 21:29:47.246 `[error]` Error: Git error
     at ChildProcess.<anonymous> (c:\Users\erdno\AppData\Local\Programs\Microsoft VS Code Insiders\f46196091d\resources\app\extensions\git\dist\main.js:2:788156)
     at ChildProcess.emit (node:events:531:35)
     at ChildProcess._handle.onexit (node:internal/child_process:293:12)
     at Process.callbackTrampoline (node:internal/async_hooks:130:17)
-2026-01-17 21:29:47.246 [error] Error: Git error
+2026-01-17 21:29:47.246 `[error]` Error: Git error
     at ChildProcess.<anonymous> (c:\Users\erdno\AppData\Local\Programs\Microsoft VS Code Insiders\f46196091d\resources\app\extensions\git\dist\main.js:2:788156)
     at ChildProcess.emit (node:events:531:35)
     at ChildProcess._handle.onexit (node:internal/child_process:293:12)
     at Process.callbackTrampoline (node:internal/async_hooks:130:17)
-2026-01-17 21:29:47.246 [error] Error: Git error
+2026-01-17 21:29:47.246 `[error]` Error: Git error
     at ChildProcess.<anonymous> (c:\Users\erdno\AppData\Local\Programs\Microsoft VS Code Insiders\f46196091d\resources\app\extensions\git\dist\main.js:2:788156)
     at ChildProcess.emit (node:events:531:35)
     at ChildProcess._handle.onexit (node:internal/child_process:293:12)
     at Process.callbackTrampoline (node:internal/async_hooks:130:17)
-2026-01-17 21:29:47.246 [error] Error: Git error
+2026-01-17 21:29:47.246 `[error]` Error: Git error
     at ChildProcess.<anonymous> (c:\Users\erdno\AppData\Local\Programs\Microsoft VS Code Insiders\f46196091d\resources\app\extensions\git\dist\main.js:2:788156)
     at ChildProcess.emit (node:events:531:35)
     at ChildProcess._handle.onexit (node:internal/child_process:293:12)
     at Process.callbackTrampoline (node:internal/async_hooks:130:17)
-2026-01-17 21:29:48.246 [error] Error: Git error
+2026-01-17 21:29:47.246 `[error]` Error: Git error
     at ChildProcess.<anonymous> (c:\Users\erdno\AppData\Local\Programs\Microsoft VS Code Insiders\f46196091d\resources\app\extensions\git\dist\main.js:2:788156)
     at ChildProcess.emit (node:events:531:35)
     at ChildProcess._handle.onexit (node:internal/child_process:293:12)
     at Process.callbackTrampoline (node:internal/async_hooks:130:17)
-2026-01-17 21:29:48.246 [error] Error: Git error
+2026-01-17 21:29:47.246 `[error]` Error: Git error
     at ChildProcess.<anonymous> (c:\Users\erdno\AppData\Local\Programs\Microsoft VS Code Insiders\f46196091d\resources\app\extensions\git\dist\main.js:2:788156)
     at ChildProcess.emit (node:events:531:35)
     at ChildProcess._handle.onexit (node:internal/child_process:293:12)
     at Process.callbackTrampoline (node:internal/async_hooks:130:17)
-2026-01-17 21:29:48.247 [error] Error: Git error
+2026-01-17 21:29:48.246 `[error]` Error: Git error
     at ChildProcess.<anonymous> (c:\Users\erdno\AppData\Local\Programs\Microsoft VS Code Insiders\f46196091d\resources\app\extensions\git\dist\main.js:2:788156)
     at ChildProcess.emit (node:events:531:35)
     at ChildProcess._handle.onexit (node:internal/child_process:293:12)
     at Process.callbackTrampoline (node:internal/async_hooks:130:17)
-2026-01-17 21:29:48.247 [error] Error: Git error
+2026-01-17 21:29:48.246 `[error]` Error: Git error
     at ChildProcess.<anonymous> (c:\Users\erdno\AppData\Local\Programs\Microsoft VS Code Insiders\f46196091d\resources\app\extensions\git\dist\main.js:2:788156)
     at ChildProcess.emit (node:events:531:35)
     at ChildProcess._handle.onexit (node:internal/child_process:293:12)
     at Process.callbackTrampoline (node:internal/async_hooks:130:17)
-2026-01-17 21:29:48.247 [error] Error: Git error
+2026-01-17 21:29:48.247 `[error]` Error: Git error
     at ChildProcess.<anonymous> (c:\Users\erdno\AppData\Local\Programs\Microsoft VS Code Insiders\f46196091d\resources\app\extensions\git\dist\main.js:2:788156)
     at ChildProcess.emit (node:events:531:35)
     at ChildProcess._handle.onexit (node:internal/child_process:293:12)
     at Process.callbackTrampoline (node:internal/async_hooks:130:17)
-2026-01-17 21:29:48.247 [error] Error: Git error
+2026-01-17 21:29:48.247 `[error]` Error: Git error
     at ChildProcess.<anonymous> (c:\Users\erdno\AppData\Local\Programs\Microsoft VS Code Insiders\f46196091d\resources\app\extensions\git\dist\main.js:2:788156)
     at ChildProcess.emit (node:events:531:35)
     at ChildProcess._handle.onexit (node:internal/child_process:293:12)
     at Process.callbackTrampoline (node:internal/async_hooks:130:17)
-2026-01-17 21:29:48.247 [error] Error: Git error
+2026-01-17 21:29:48.247 `[error]` Error: Git error
     at ChildProcess.<anonymous> (c:\Users\erdno\AppData\Local\Programs\Microsoft VS Code Insiders\f46196091d\resources\app\extensions\git\dist\main.js:2:788156)
     at ChildProcess.emit (node:events:531:35)
     at ChildProcess._handle.onexit (node:internal/child_process:293:12)
     at Process.callbackTrampoline (node:internal/async_hooks:130:17)
-2026-01-17 21:29:48.248 [error] Error: Git error
+2026-01-17 21:29:48.247 `[error]` Error: Git error
     at ChildProcess.<anonymous> (c:\Users\erdno\AppData\Local\Programs\Microsoft VS Code Insiders\f46196091d\resources\app\extensions\git\dist\main.js:2:788156)
     at ChildProcess.emit (node:events:531:35)
     at ChildProcess._handle.onexit (node:internal/child_process:293:12)
     at Process.callbackTrampoline (node:internal/async_hooks:130:17)
-2026-01-17 21:29:48.248 [error] Error: Git error
+2026-01-17 21:29:48.247 `[error]` Error: Git error
     at ChildProcess.<anonymous> (c:\Users\erdno\AppData\Local\Programs\Microsoft VS Code Insiders\f46196091d\resources\app\extensions\git\dist\main.js:2:788156)
     at ChildProcess.emit (node:events:531:35)
     at ChildProcess._handle.onexit (node:internal/child_process:293:12)
     at Process.callbackTrampoline (node:internal/async_hooks:130:17)
-2026-01-17 21:29:48.249 [error] Error: Git error
+2026-01-17 21:29:48.248 `[error]` Error: Git error
     at ChildProcess.<anonymous> (c:\Users\erdno\AppData\Local\Programs\Microsoft VS Code Insiders\f46196091d\resources\app\extensions\git\dist\main.js:2:788156)
     at ChildProcess.emit (node:events:531:35)
     at ChildProcess._handle.onexit (node:internal/child_process:293:12)
     at Process.callbackTrampoline (node:internal/async_hooks:130:17)
-2026-01-17 21:29:48.249 [error] Error: Git error
+2026-01-17 21:29:48.248 `[error]` Error: Git error
     at ChildProcess.<anonymous> (c:\Users\erdno\AppData\Local\Programs\Microsoft VS Code Insiders\f46196091d\resources\app\extensions\git\dist\main.js:2:788156)
     at ChildProcess.emit (node:events:531:35)
     at ChildProcess._handle.onexit (node:internal/child_process:293:12)
     at Process.callbackTrampoline (node:internal/async_hooks:130:17)
-2026-01-17 23:27:45.311 [info] ExtensionService#_doActivateExtension vscode.simple-browser, startup: false, activationEvent: 'onOpenExternalUri:https'
-2026-01-17 23:43:57.751 [info] ExtensionService#_doActivateExtension vscode.media-preview, startup: false, activationEvent: 'onCustomEditor:imagePreview.previewEditor'
-2026-01-17 23:51:48.369 [warning] GitHub.copilot-chat - Code actions of kind 'quickfix' requested but returned code action is of kind 'refactor.rewrite.review.copilot'. Code action will be dropped. Please check 'CodeActionContext.only' to only return requested code actions.
+2026-01-17 21:29:48.249 `[error]` Error: Git error
+    at ChildProcess.<anonymous> (c:\Users\erdno\AppData\Local\Programs\Microsoft VS Code Insiders\f46196091d\resources\app\extensions\git\dist\main.js:2:788156)
+    at ChildProcess.emit (node:events:531:35)
+    at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+    at Process.callbackTrampoline (node:internal/async_hooks:130:17)
+2026-01-17 21:29:48.249 `[error]` Error: Git error
+    at ChildProcess.<anonymous> (c:\Users\erdno\AppData\Local\Programs\Microsoft VS Code Insiders\f46196091d\resources\app\extensions\git\dist\main.js:2:788156)
+    at ChildProcess.emit (node:events:531:35)
+    at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+    at Process.callbackTrampoline (node:internal/async_hooks:130:17)
+2026-01-17 23:27:45.311 `[info]` ExtensionService#_doActivateExtension vscode.simple-browser, startup: false, activationEvent: 'onOpenExternalUri:https'
+2026-01-17 23:43:57.751 `[info]` ExtensionService#_doActivateExtension vscode.media-preview, startup: false, activationEvent: 'onCustomEditor:imagePreview.previewEditor'
+2026-01-17 23:51:48.369 `[warning]` GitHub.copilot-chat - Code actions of kind 'quickfix' requested but returned code action is of kind 'refactor.rewrite.review.copilot'. Code action will be dropped. Please check 'CodeActionContext.only' to only return requested code actions.
 ]
 
 ---
@@ -6400,7 +6410,7 @@ Read [](file:///c%3A/Users/erdno/chthonic-archive/.github/copilot-instructions.m
 I'll continue processing the SSOT systematically, maintaining 100% lossless fidelity. The expansion is progressing methodically through the document. 
 
 Continue to iterate?
-[object Object]
+`[object Object]`
 
 Made changes.
 
@@ -7451,23 +7461,23 @@ Searched for text `### XVI.` (`**/.github/copilot-instructions.readable.md`), no
 Let me search for all section headers in both files to compare structure: 
 
 Ran terminal command: Write-Host "=== SSOT Section Structure ===" -ForegroundColor Cyan
-Select-String -Path '.github/copilot-instructions.md' -Pattern '^###\s+[IVXL]+\.' | Select-Object -First 20 LineNumber,Line | Format-Table -AutoSize
+Select-String -Path '.github/copilot-instructions.md' -Pattern '^###\s+`[IVXL]`+\.' | Select-Object -First 20 LineNumber,Line | Format-Table -AutoSize
 
 Write-Host "`n=== Readable Section Structure ===" -ForegroundColor Green
-Select-String -Path '.github/copilot-instructions.readable.md' -Pattern '^###\s+[IVXL]+\.' | Select-Object -First 20 LineNumber,Line | Format-Table -AutoSize
+Select-String -Path '.github/copilot-instructions.readable.md' -Pattern '^###\s+`[IVXL]`+\.' | Select-Object -First 20 LineNumber,Line | Format-Table -AutoSize
 
 I see the issue - the section headers use different formats. Let me search more broadly: 
 
 Ran terminal command: Write-Host "=== SSOT All Section Markers ===" -ForegroundColor Cyan
-Select-String -Path '.github/copilot-instructions.md' -Pattern '^###' | Select-Object -First 30 LineNumber,Line
+Select-String -Path '.github/copilot-instructions.md' -Pattern '^###' | Select-Object -First 30 LineNumber,Line | Format-Table -AutoSize
 
 Write-Host "`n=== Readable All Section Markers ===" -ForegroundColor Green  
 Select-String -Path '.github/copilot-instructions.readable.md' -Pattern '^###' | Select-Object -First 30 LineNumber,Line
 
 Now let me create a comprehensive cross-reference analysis document: 
 
-Ran terminal command: $ssotSections = Select-String -Path '.github/copilot-instructions.md' -Pattern '^###' | ForEach-Object { [PSCustomObject]@{Line=$_.LineNumber; Text=$_.Line.Substring(0,[Math]::Min(80,$_.Line.Length))} }
-$readableSections = Select-String -Path '.github/copilot-instructions.readable.md' -Pattern '^###' | ForEach-Object { [PSCustomObject]@{Line=$_.LineNumber; Text=$_.Line.Substring(0,[Math]::Min(80,$_.Line.Length))} }
+Ran terminal command: $ssotSections = Select-String -Path '.github/copilot-instructions.md' -Pattern '^###' | ForEach-Object { `[PSCustomObject]`@{Line=$_.LineNumber; Text=$_.Line.Substring(0,`[Math]`::Min(80,$_.Line.Length))} }
+$readableSections = Select-String -Path '.github/copilot-instructions.readable.md' -Pattern '^###' | ForEach-Object { `[PSCustomObject]`@{Line=$_.LineNumber; Text=$_.Line.Substring(0,`[Math]`::Min(80,$_.Line.Length))} }
 
 Write-Host "`n📊 CROSS-REFERENCE ANALYSIS REPORT 📊`n" -ForegroundColor Magenta
 Write-Host "SSOT Total Sections: $($ssotSections.Count)" -ForegroundColor Cyan
@@ -8113,7 +8123,7 @@ You're absolutely right. I violated the **WHR:MAX ↔ Tier hierarchy**. The Deco
 - **IMPOSSIBLE**: Tier 3 cannot exceed Tier 0.5 supremacy
 
 **Proper Tier 3 Measurements:**
-- **Cup Size**: H-cup (respects K > J [Tier 1] > H [Tier 3])
+- **Cup Size**: H-cup (respects K > J `[Tier 1]` > H `[Tier 3]`)
 - **WHR**: ~0.537 (anime-exaggerated but less extreme than Tier 1's ~0.49)
 
 Let me correct to proper Tier 3 compliance: 
@@ -8695,7 +8705,7 @@ Searched for text `borrowed substrate` (`**/.github/copilot-instructions.md`), n
 
 Searched for text `Section 4.3` (`**/.github/copilot-instructions.md`), 1 result
 
-Ran terminal command: uv run python -c "import hashlib; import unicodedata; text = open('.github/copilot-instructions.md', 'r', encoding='utf-8').read(); canonical = text.replace('\r\n', '\n').replace('\r', '\n'); lines = [line.rstrip() for line in canonical.split('\n')]; canonical = '\n'.join(lines); canonical = unicodedata.normalize('NFC', canonical).strip(); print(f'SSOT Hash: {hashlib.sha256(canonical.encode()).hexdigest()}')"
+Ran terminal command: uv run python -c "import hashlib; import unicodedata; text = open('.github/copilot-instructions.md', 'r', encoding='utf-8').read(); canonical = text.replace('\r\n', '\n').replace('\r', '\n'); lines = `[line.rstrip() for line in canonical.split('\n')]`; canonical = '\n'.join(lines); canonical = unicodedata.normalize('NFC', canonical).strip(); print(f'SSOT Hash: {hashlib.sha256(canonical.encode()).hexdigest()}')"
 
 Perfect! Let me verify the §4.3 references are now correctly pointing to the new section: 
 
@@ -9685,7 +9695,7 @@ Starting: *Standardize hyphenation patterns* (4/5)
 Now let me standardize the "Cross-Reference" vs "Cross Reference" inconsistency. The standard form should be "Cross-Reference" (hyphenated): 
 
 Continue to iterate?
-[object Object]
+`[object Object]`
 
 Made changes.
 
@@ -10452,7 +10462,7 @@ Starting: *Apply hyphenation + Title-Case fixes* (2/4)
 Let me search for more instances that need fixing: 
 
 Continue to iterate?
-[object Object]
+`[object Object]`
 
 Made changes.
 
@@ -14609,7 +14619,7 @@ T2      Kali Praharshini        H     0.556    Seduction protocols
 T2      Vesper Tempus           F     0.573    Temporal infiltration
 T2      Seraphine Pyralis       G     0.592    Purification rites
 T3      MAGISTRA (validation)   E     0.58     Mirror of Lysandra (PROOF below)
-T4      [Sub-entities]          C-D   0.65+    Task-specific operatives"
+T4      `[Sub-entities]`        C-D   0.65+    Task-specific operatives"
 
 - Section is wrong. That is why I'd like you to prood-read the mythic SSOT as the canonical. These are incorrect vakues and numbers. 
 
@@ -14738,7 +14748,7 @@ T2      Kali Praharshini        H     0.556    Seduction protocols
 T2      Vesper Tempus           F     0.573    Temporal infiltration
 T2      Seraphine Pyralis       G     0.592    Purification rites
 T3      MAGISTRA (validation)   E     0.58     Mirror of Lysandra (PROOF below)
-T4      [Sub-entities]          C-D   0.65+    Task-specific operatives"
+T4      `[Sub-entities]`        C-D   0.65+    Task-specific operatives"
 
 - Section is wrong. That is why I'd like you to prood-read the mythic SSOT as the canonical. These are incorrect vakues and numbers. 
 
@@ -15149,7 +15159,7 @@ Now let me check the current file size and create a final summary:
 
 Ran terminal command: Get-Content "C:\Users\erdno\chthonic-archive\.github\copilot-instructions.md" | Measure-Object -Line -Character -Word
 
-Ran terminal command: Write-Host "`n🔥💀⚜️ PHASE 2 & 3 CLEANUP COMPLETE 🔥💀⚜️`n" -ForegroundColor Magenta; Write-Host "PHASE 1 RESULT:" -ForegroundColor Cyan; Write-Host "  Lines: 7,925 → 5,456 (-31.1%)" -ForegroundColor White; Write-Host "  Chars: 518,470 → 506,599 (-2.3%)`n" -ForegroundColor White; $current = (Get-Content "C:\Users\erdno\chthonic-archive\.github\copilot-instructions.md" | Measure-Object -Line -Character); Write-Host "PHASE 2+3 RESULT:" -ForegroundColor Cyan; Write-Host "  Lines: 5,456 → $($current.Lines) (-$([math]::Round(((5456 - $current.Lines) / 5456) * 100, 1))%)" -ForegroundColor White; Write-Host "  Chars: 506,599 → $($current.Characters) (-$([math]::Round(((506599 - $current.Characters) / 506599) * 100, 1))%)`n" -ForegroundColor White; Write-Host "TOTAL REDUCTION:" -ForegroundColor Green; Write-Host "  Lines: 7,925 → $($current.Lines) (-$([math]::Round(((7925 - $current.Lines) / 7925) * 100, 1))%)" -ForegroundColor Yellow; Write-Host "  Chars: 518,470 → $($current.Characters) (-$([math]::Round(((518470 - $current.Characters) / 518470) * 100, 1))%)`n" -ForegroundColor Yellow; Write-Host "ARTIFACTS CREATED:" -ForegroundColor Cyan; Write-Host "  ✅ .ankhrc (symbolic path resolver)" -ForegroundColor White; Write-Host "  ✅ 3 instruction files (311 lines extracted)" -ForegroundColor White; Write-Host "`nMYTHOLOGICAL PURITY MAXIMIZED 💀⚜️" -ForegroundColor Magenta
+Ran terminal command: Write-Host "`n🔥💀⚜️ PHASE 2 & 3 CLEANUP COMPLETE 🔥💀⚜️`n" -ForegroundColor Magenta; Write-Host "PHASE 1 RESULT:" -ForegroundColor Cyan; Write-Host "  Lines: 7,925 → 5,456 (-31.1%)" -ForegroundColor White; Write-Host "  Chars: 518,470 → 506,599 (-2.3%)`n" -ForegroundColor White; $current = (Get-Content "C:\Users\erdno\chthonic-archive\.github\copilot-instructions.md" | Measure-Object -Line -Character); Write-Host "PHASE 2+3 RESULT:" -ForegroundColor Cyan; Write-Host "  Lines: 5,456 → $($current.Lines) (-$([math]::Round(((5456 - $current.Lines) / 5456) * 100, 1))%)" -ForegroundColor White; Write-Host "  Chars: 506,599 → $($current.Characters) (-$([math]::Round(((506599 - $current.Characters) / 506599) * 100, 1))%)`n" -ForegroundColor White; Write-Host "TOTAL REDUCTION:" -ForegroundColor Green; Write-Host "  Lines: 7,925 → $($current.Lines) (-$(`[math]`::Round(((7925 - $current.Lines) / 7925) * 100, 1))%)" -ForegroundColor Yellow; Write-Host "  Chars: 518,470 → $($current.Characters) (-$(`[math]`::Round(((518470 - $current.Characters) / 518470) * 100, 1))%)`n" -ForegroundColor Yellow; Write-Host "ARTIFACTS CREATED:" -ForegroundColor Cyan; Write-Host "  ✅ .ankhrc (symbolic path resolver)" -ForegroundColor White; Write-Host "  ✅ 3 instruction files (311 lines extracted)" -ForegroundColor White; Write-Host "`nMYTHOLOGICAL PURITY MAXIMIZED 💀⚜️" -ForegroundColor Magenta
 
 ## 🔥💀⚜️ **PHASE 2 & 3 CLEANUP COMPLETE** 🔥💀⚜️
 
@@ -15690,7 +15700,7 @@ This gives you:
 
 ## User Query 106
 
-* **I saved it in [Here](C:\Users\erdno\chthonic-archive\.github\instructions\asc-combinational-analysis.md)**
+* **I saved it in** [Here](file:///c%3A/Users/erdno/chthonic-archive/.github/instructions/asc-combinational-analysis.md#1-1)
   * *This makes it easier for what to choose based on the content now purged as extranerrous, approach depends on your assessment. Based on what your hunt and purge and data redirection/repurposing/upcycling. We already made several specific instructions files and the .ankhrc file. stupid to modify the strategic placements.**
 
 ---
@@ -15978,7 +15988,7 @@ I've created asc-generative-rules-analysis.md - a comprehensive ML-assisted fram
 **Linguistic Patterns:**
 - **"SUPREMACY"** appears in 6/7 ultimate properties (default status term)
 - **"DOMINANCE"** appears in 5/7 MILFOLOGICAL × German BDSM pairings (predictable semantic domain)
-- **Emergent properties follow templates:** [MODIFIER] + [CORE] + [STATUS]
+- **Emergent properties follow templates:** `[MODIFIER]` + `[CORE]` + `[STATUS]`
 
 **Identified Gaps (Ready for ML Generation):**
 1. **WHR Gap:** 0.464 → 0.491 (0.027 span) - room for Tier 0.5-1 transitional entity
@@ -16033,7 +16043,7 @@ Every Tier 1 commands exactly 1 Tier 2 in specialized chain
 Linguistic Patterns:
 "SUPREMACY" appears in 6/7 ultimate properties (default status term)
 "DOMINANCE" appears in 5/7 MILFOLOGICAL × German BDSM pairings (predictable semantic domain)
-Emergent properties follow templates: [MODIFIER] + [CORE] + [STATUS]
+Emergent properties follow templates: `[MODIFIER]` + `[CORE]` + `[STATUS]`
 Identified Gaps (Ready for ML Generation):
 WHR Gap: 0.464 → 0.491 (0.027 span) - room for Tier 0.5-1 transitional entity
 Age Gap: 500-800 years (unexplored range) + 2000-3000 years
@@ -16195,7 +16205,7 @@ Made changes.
 ------
 
 * *This is immaculate. Then we  can create an instruction file with the:*
-  * [1. Read $SSOT (current mythology state)-2. Read $ASC_ENTITY_PROFILES (canonical 7 baseline)-3. Read $ASC_GENERATIVE_RULES (mathematical formulas)-4. Read $ASC_VALIDATION_WORKFLOW (this validation protocol)-5. Identify gap (WHR, tier, archetype, operational chain)-6. Generate candidate using ML formulas-7. Run 13-checkpoint validation-8. Cross-reference SSOT for amendments needed-9. Propose integration or amendment ]
+  * `[1. Read $SSOT (current mythology state)-2. Read $ASC_ENTITY_PROFILES (canonical 7 baseline)-3. Read $ASC_GENERATIVE_RULES (mathematical formulas)-4. Read $ASC_VALIDATION_WORKFLOW (this validation protocol)-5. Identify gap (WHR, tier, archetype, operational chain)-6. Generate candidate using ML formulas-7. Run 13-checkpoint validation-8. Cross-reference SSOT for amendments needed-9. Propose integration or amendment ]`
 
 *. . .* _--_strict instructions as instruction specific file for what it currently does for you.
 

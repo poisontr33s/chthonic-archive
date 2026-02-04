@@ -2,7 +2,10 @@
 name: generateTests
 description: Generate comprehensive test coverage
 argument-hint: Select function or class to test
-tools: [ 'edit', 'search', 'run_in_terminal' ]
+tools:
+  - edit
+  - search
+  - run_in_terminal
 mode: agent
 ---
 

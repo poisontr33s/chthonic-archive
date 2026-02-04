@@ -2,7 +2,9 @@
 name: documentCode
 description: Add documentation and comments to code
 argument-hint: Select code to document
-tools: [ 'edit', 'read_file' ]
+tools:
+  - edit
+  - read_file
 mode: agent
 ---
 

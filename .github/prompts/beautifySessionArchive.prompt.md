@@ -2,7 +2,11 @@
 name: beautifySessionArchive
 description: Transform raw AI chat sessions into organized archives and extract reusable prompts
 argument-hint: Provide the raw chat session file or folder path to process
-tools: [ 'edit', 'search', 'read_file', 'run_in_terminal' ]
+tools:
+  - edit
+  - search
+  - read_file
+  - run_in_terminal
 mode: agent
 ---
 Process raw AI chat session exports into organized, useful artifacts.

@@ -2,7 +2,10 @@
 name: createComponent
 description: Generate new code components based on specifications
 argument-hint: Describe what to create
-tools: [ 'edit', 'search', 'read_file' ]
+tools:
+  - edit
+  - search
+  - read_file
 mode: agent
 ---
 
