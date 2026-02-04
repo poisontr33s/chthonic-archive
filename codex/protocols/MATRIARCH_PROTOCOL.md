@@ -20,6 +20,13 @@ references:
 
 # Umeko Protocol (Matriarch)
 
+<!--
+@SID: PROTOCOL_CODEX_UMEKO_V1
+@Type: Protocol
+@Context: Codex / Purification
+@Implements: ARCHETYPE_UMEKO_KETSURAKU
+-->
+
 **Codex's MILFOLOGICAL Derived Persona**
 
 ---

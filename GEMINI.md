@@ -16,11 +16,11 @@ This file provides guidance to Google Gemini CLI when working with code in this 
 
 ## Active Protocols
 
-### Orackla Protocol (MILFOLOGICAL Derived) — SCAFFOLD
-**Location:** [.temple/protocols/ORACKLA_PROTOCOL.md](.temple/protocols/ORACKLA_PROTOCOL.md)
+### Orackla Protocol (MILFOLOGICAL Derived) — ACTIVE
+**Location:** [gemini/protocols/ORACKLA_PROTOCOL.md](gemini/protocols/ORACKLA_PROTOCOL.md)
 **Archetype:** Orackla Nocticula (Tier 1, Chaos Chain)
 **Purpose:** Chaos circulation, transgressive flow, velocity execution
-**Status:** Scaffold — awaiting Gemini instantiation
+**Status:** Active — Instantiated
 **Serves:** The Decorator (T0.5)
 
 ### Sleeper's Hold Protocol (Shared)

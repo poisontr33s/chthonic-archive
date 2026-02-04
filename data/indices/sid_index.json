@@ -1,226 +1,39 @@
 {
   "version": "1.0",
-  "updated": "2026-01-27T10:32:15.564534",
+  "updated": "2026-02-04T01:44:00.682260",
   "entries": {
     "DOC_CLAUDE_MD_ROOT": {
       "sid": "DOC_CLAUDE_MD_ROOT",
-      "path": "CLAUDE.md",
+      "path": "claude_code_opus45_session_resumption_pickup.md",
       "type": "Documentation",
       "context": "Agent Guidance / Claude Code",
       "implements": "",
       "session_origin": "STANDALONE_2026_01_27",
       "emits": "",
       "spawned": [],
-      "last_seen": "2026-01-27T10:32:10.954530"
+      "last_seen": "2026-02-04T01:43:57.374798"
     },
-    "DOC_CLAUDE_CODE_REGISTRATION": {
-      "sid": "DOC_CLAUDE_CODE_REGISTRATION",
-      "path": "docs\\CLAUDE_CODE_REGISTRATION.md",
-      "type": "Setup Guide",
-      "context": "MCP / Configuration",
+    "CORE_HANDLER": {
+      "sid": "CORE_HANDLER",
+      "path": "CLAUDE_CODE_BRIDGE_INTEGRATION.md",
+      "type": "",
+      "context": "",
       "implements": "",
-      "session_origin": "SESSION_DOC_2026_01_04_MCP",
+      "session_origin": "",
       "emits": "",
       "spawned": [],
-      "last_seen": "2026-01-27T10:32:10.961986"
+      "last_seen": "2026-02-04T01:43:57.373772"
     },
-    "PROOF_CLAUDE_CODE_REGISTRATION_VERIFICATION": {
-      "sid": "PROOF_CLAUDE_CODE_REGISTRATION_VERIFICATION",
-      "path": "docs\\CLAUDE_CODE_REGISTRATION_VERIFICATION_PROOF.md",
-      "type": "Validation Report",
-      "context": "Quality Assurance / Documentation",
+    "DOC_CLAUDE_PATCHES_README": {
+      "sid": "DOC_CLAUDE_PATCHES_README",
+      "path": "claude\\README.md",
+      "type": "Documentation",
+      "context": "Claude Code / IDE Integration",
       "implements": "",
-      "session_origin": "CONTINUATION_2026_01_27",
+      "session_origin": "SESSION_2026_01_28_IDE_FIX",
       "emits": "",
       "spawned": [],
-      "last_seen": "2026-01-27T10:32:10.962088"
-    },
-    "DOC_CLI_EDITING_POLICY": {
-      "sid": "DOC_CLI_EDITING_POLICY",
-      "path": "docs\\CLI_EDITING_POLICY.md",
-      "type": "Policy Document",
-      "context": "Governance / Automation Safety",
-      "implements": "",
-      "session_origin": "SESSION_DOC_2026_01_05_SSOTIFICATION",
-      "emits": "",
-      "spawned": [],
-      "last_seen": "2026-01-27T10:32:10.962172"
-    },
-    "DOC_COMPLETION_TOOL_CONSOLIDATION": {
-      "sid": "DOC_COMPLETION_TOOL_CONSOLIDATION",
-      "path": "docs\\COMPLETION_SUMMARY_TOOL_CONSOLIDATION.md",
-      "type": "Session Summary",
-      "context": "Project Management / Deliverables",
-      "implements": "",
-      "session_origin": "CONTINUATION_2026_01_27",
-      "emits": "",
-      "spawned": [],
-      "last_seen": "2026-01-27T10:32:10.962360"
-    },
-    "DOC_COPILOT_SESSION_PERSISTENCE": {
-      "sid": "DOC_COPILOT_SESSION_PERSISTENCE",
-      "path": "docs\\COPILOT_SESSION_PERSISTENCE.md",
-      "type": "User Guide",
-      "context": "Workflow / Session Management",
-      "implements": "",
-      "session_origin": "SESSION_DOC_2026_01_17_CLEANUP",
-      "emits": "",
-      "spawned": [],
-      "last_seen": "2026-01-27T10:32:10.962466"
-    },
-    "DOC_CROSS_REFERENCE_VALIDATION_SUMMARY": {
-      "sid": "DOC_CROSS_REFERENCE_VALIDATION_SUMMARY",
-      "path": "docs\\CROSS_REFERENCE_VALIDATION_SUMMARY.md",
-      "type": "Validation Summary",
-      "context": "Quality Assurance / Metadata Validation",
-      "implements": "<references>",
-      "session_origin": "CONTINUATION_2026_01_27",
-      "emits": "",
-      "spawned": [],
-      "last_seen": "2026-01-27T10:32:10.962559"
-    },
-    "DOC_DCRP_SYNTHESIS": {
-      "sid": "DOC_DCRP_SYNTHESIS",
-      "path": "docs\\DCRP_SYNTHESIS.md",
-      "type": "System Documentation",
-      "context": "Architecture / Dependency Analysis",
-      "implements": "",
-      "session_origin": "SESSION_DOC_2026_01_25_SSOTIFICATION",
-      "emits": "CROSS_REFERENCE_TRIPTYCH.md, dependency_graph.json",
-      "spawned": [],
-      "last_seen": "2026-01-27T10:32:10.962645"
-    },
-    "STATE_DEVELOPMENT_MANIFEST": {
-      "sid": "STATE_DEVELOPMENT_MANIFEST",
-      "path": "docs\\DEVELOPMENT_STATE.md",
-      "type": "State Document",
-      "context": "Project State / Session Continuity",
-      "implements": "",
-      "session_origin": "SESSION_2025_12_31_VSCODE_EXTENSION",
-      "emits": "",
-      "spawned": [],
-      "last_seen": "2026-01-27T10:32:10.962781"
-    },
-    "REPORT_DOCS_METADATA_COMPLIANCE_2026_01_27": {
-      "sid": "REPORT_DOCS_METADATA_COMPLIANCE_2026_01_27",
-      "path": "docs\\DOCS_METADATA_COMPLIANCE_REPORT.md",
-      "type": "Compliance Report",
-      "context": "Quality Assurance / Retroactive Standards Application",
-      "implements": "What_This_Realizes",
-      "session_origin": "CONTINUATION_2026_01_27",
-      "emits": "",
-      "spawned": [],
-      "last_seen": "2026-01-27T10:32:10.962886"
-    },
-    "REPORT_DOC_CONTENT_VALIDATION_FINAL": {
-      "sid": "REPORT_DOC_CONTENT_VALIDATION_FINAL",
-      "path": "docs\\DOC_CONTENT_VALIDATION_FINAL_REPORT.md",
-      "type": "Validation Report",
-      "context": "Documentation Quality / Content Accuracy",
-      "implements": "",
-      "session_origin": "CONTINUATION_2026_01_27",
-      "emits": "",
-      "spawned": [],
-      "last_seen": "2026-01-27T10:32:10.962990"
-    },
-    "CONTRACT_EXECUTION_INVARIANTS": {
-      "sid": "CONTRACT_EXECUTION_INVARIANTS",
-      "path": "docs\\EXECUTION_CONTRACT.md",
-      "type": "Contract Document",
-      "context": "Governance / Environment Constraints",
-      "implements": "",
-      "session_origin": "SESSION_DOC_2026_01_05_SSOTIFICATION",
-      "emits": "",
-      "spawned": [],
-      "last_seen": "2026-01-27T10:32:10.963075"
-    },
-    "DOC_HANDOFF_TO_CLAUDE": {
-      "sid": "DOC_HANDOFF_TO_CLAUDE",
-      "path": "docs\\HANDOFF_TO_CLAUDE.md",
-      "type": "Handoff",
-      "context": "Agent Coordination",
-      "implements": "",
-      "session_origin": "SESSION_DOC_2026_01_17_CLEANUP",
-      "emits": "",
-      "spawned": [],
-      "last_seen": "2026-01-27T10:32:10.963180"
-    },
-    "DOC_MCP_AUTONOMOUS_PREREQUISITES": {
-      "sid": "DOC_MCP_AUTONOMOUS_PREREQUISITES",
-      "path": "docs\\MCP_AUTONOMOUS_PREREQUISITES.md",
-      "type": "Knowledge Base",
-      "context": "MCP / Architecture Foundation",
-      "implements": "",
-      "session_origin": "SESSION_DOC_2026_01_04_MCP",
-      "emits": "",
-      "spawned": [],
-      "last_seen": "2026-01-27T10:32:10.963291"
-    },
-    "TEMPLATE_MCP_SERVER": {
-      "sid": "TEMPLATE_MCP_SERVER",
-      "path": "docs\\MCP_SERVER_TEMPLATE.md",
-      "type": "Reference Template",
-      "context": "MCP / Implementation Guide",
-      "implements": "",
-      "session_origin": "SESSION_DOC_2026_01_04_MCP",
-      "emits": "",
-      "spawned": [],
-      "last_seen": "2026-01-27T10:32:10.963557"
-    },
-    "DOC_MCP_USER_WORKFLOWS": {
-      "sid": "DOC_MCP_USER_WORKFLOWS",
-      "path": "docs\\MCP_USER_WORKFLOWS.md",
-      "type": "Workflow Guide",
-      "context": "MCP / User Operations",
-      "implements": "",
-      "session_origin": "SESSION_DOC_2026_01_05_MCP_WORKFLOWS",
-      "emits": "",
-      "spawned": [],
-      "last_seen": "2026-01-27T10:32:10.963698"
-    },
-    "REPORT_METADATA_VALIDATION_2026_01_27": {
-      "sid": "REPORT_METADATA_VALIDATION_2026_01_27",
-      "path": "docs\\METADATA_VALIDATION_REPORT.md",
-      "type": "Quality Assurance Report",
-      "context": "Code Quality / Cross-Reference Validation",
-      "implements": "ROADMAP_TOOL_CONSOLIDATION_2026_01_27`",
-      "session_origin": "CONTINUATION_2026_01_27",
-      "emits": "",
-      "spawned": [],
-      "last_seen": "2026-01-27T10:32:10.963825"
-    },
-    "DOC_MIGRATION_CHTHONIC_CLI": {
-      "sid": "DOC_MIGRATION_CHTHONIC_CLI",
-      "path": "docs\\MIGRATION_GUIDE_CHTHONIC_CLI.md",
-      "type": "User Documentation",
-      "context": "Migration / User Guide",
-      "implements": "",
-      "session_origin": "CONTINUATION_2026_01_27",
-      "emits": "",
-      "spawned": [],
-      "last_seen": "2026-01-27T10:32:10.963930"
-    },
-    "REPORT_PHASE_3_TESTING_2026_01_27": {
-      "sid": "REPORT_PHASE_3_TESTING_2026_01_27",
-      "path": "docs\\PHASE_3_TEST_REPORT.md",
-      "type": "Test Report",
-      "context": "Quality Assurance / Integration Testing",
-      "implements": "",
-      "session_origin": "CONTINUATION_2026_01_27",
-      "emits": "",
-      "spawned": [],
-      "last_seen": "2026-01-27T10:32:10.964037"
-    },
-    "CONTRACT_PROBE_ABI": {
-      "sid": "CONTRACT_PROBE_ABI",
-      "path": "docs\\PROBE_CONTRACT.md",
-      "type": "Contract Document",
-      "context": "Governance / Environment Probing",
-      "implements": "",
-      "session_origin": "SESSION_DOC_2026_01_05_SSOTIFICATION",
-      "emits": "",
-      "spawned": [],
-      "last_seen": "2026-01-27T10:32:10.964123"
+      "last_seen": "2026-02-04T01:43:57.387559"
     },
     "DOC_PWSH_RULES": {
       "sid": "DOC_PWSH_RULES",
@@ -231,7 +44,249 @@
       "session_origin": "SESSION_DOC_2026_01_05_SSOTIFICATION",
       "emits": "",
       "spawned": [],
-      "last_seen": "2026-01-27T10:32:10.964237"
+      "last_seen": "2026-02-04T01:43:57.392130"
+    },
+    "DOC_SCRIPTS_README": {
+      "sid": "DOC_SCRIPTS_README",
+      "path": "scripts\\README.md",
+      "type": "Documentation",
+      "context": "Tooling",
+      "implements": "",
+      "session_origin": "SESSION_DOC_2026_01_17_CLEANUP",
+      "emits": "",
+      "spawned": [],
+      "last_seen": "2026-02-04T01:43:57.414335"
+    },
+    "DOC_CLAUDE_WET_PAPER_GOLD": {
+      "sid": "DOC_CLAUDE_WET_PAPER_GOLD",
+      "path": "claude\\WET_PAPER_TO_GOLD_METHODOLOGY.md",
+      "type": "Methodology",
+      "context": "Claude Code / Data Transmutation",
+      "implements": "",
+      "session_origin": "SESSION_2026_01_29_PR_HARVEST",
+      "emits": "",
+      "spawned": [],
+      "last_seen": "2026-02-04T01:43:57.387868"
+    },
+    "WAYPOINT_CODEX_NEXT_V1": {
+      "sid": "WAYPOINT_CODEX_NEXT_V1",
+      "path": "codex\\NEXT.md",
+      "type": "Waypoint",
+      "context": "Session Management",
+      "implements": "",
+      "session_origin": "",
+      "emits": "",
+      "spawned": [],
+      "last_seen": "2026-02-04T01:43:57.388325"
+    },
+    "DOC_CLAUDE_CODE_REGISTRATION": {
+      "sid": "DOC_CLAUDE_CODE_REGISTRATION",
+      "path": "docs\\CLAUDE_CODE_REGISTRATION.md",
+      "type": "Setup Guide",
+      "context": "MCP / Configuration",
+      "implements": "",
+      "session_origin": "SESSION_DOC_2026_01_04_MCP",
+      "emits": "",
+      "spawned": [],
+      "last_seen": "2026-02-04T01:43:57.390173"
+    },
+    "PROOF_CLAUDE_CODE_REGISTRATION_VERIFICATION": {
+      "sid": "PROOF_CLAUDE_CODE_REGISTRATION_VERIFICATION",
+      "path": "docs\\CLAUDE_CODE_REGISTRATION_VERIFICATION_PROOF.md",
+      "type": "Validation Report",
+      "context": "Quality Assurance / Documentation",
+      "implements": "",
+      "session_origin": "CONTINUATION_2026_01_27",
+      "emits": "",
+      "spawned": [],
+      "last_seen": "2026-02-04T01:43:57.390273"
+    },
+    "DOC_CLI_EDITING_POLICY": {
+      "sid": "DOC_CLI_EDITING_POLICY",
+      "path": "docs\\CLI_EDITING_POLICY.md",
+      "type": "Policy Document",
+      "context": "Governance / Automation Safety",
+      "implements": "",
+      "session_origin": "SESSION_DOC_2026_01_05_SSOTIFICATION",
+      "emits": "",
+      "spawned": [],
+      "last_seen": "2026-02-04T01:43:57.390367"
+    },
+    "DOC_COMPLETION_TOOL_CONSOLIDATION": {
+      "sid": "DOC_COMPLETION_TOOL_CONSOLIDATION",
+      "path": "docs\\COMPLETION_SUMMARY_TOOL_CONSOLIDATION.md",
+      "type": "Session Summary",
+      "context": "Project Management / Deliverables",
+      "implements": "",
+      "session_origin": "CONTINUATION_2026_01_27",
+      "emits": "",
+      "spawned": [],
+      "last_seen": "2026-02-04T01:43:57.390540"
+    },
+    "DOC_COPILOT_SESSION_PERSISTENCE": {
+      "sid": "DOC_COPILOT_SESSION_PERSISTENCE",
+      "path": "docs\\COPILOT_SESSION_PERSISTENCE.md",
+      "type": "User Guide",
+      "context": "Workflow / Session Management",
+      "implements": "",
+      "session_origin": "SESSION_DOC_2026_01_17_CLEANUP",
+      "emits": "",
+      "spawned": [],
+      "last_seen": "2026-02-04T01:43:57.390634"
+    },
+    "DOC_CROSS_REFERENCE_VALIDATION_SUMMARY": {
+      "sid": "DOC_CROSS_REFERENCE_VALIDATION_SUMMARY",
+      "path": "docs\\CROSS_REFERENCE_VALIDATION_SUMMARY.md",
+      "type": "Validation Summary",
+      "context": "Quality Assurance / Metadata Validation",
+      "implements": "<references>",
+      "session_origin": "CONTINUATION_2026_01_27",
+      "emits": "",
+      "spawned": [],
+      "last_seen": "2026-02-04T01:43:57.390726"
+    },
+    "DOC_DCRP_SYNTHESIS": {
+      "sid": "DOC_DCRP_SYNTHESIS",
+      "path": "docs\\DCRP_SYNTHESIS.md",
+      "type": "System Documentation",
+      "context": "Architecture / Dependency Analysis",
+      "implements": "",
+      "session_origin": "SESSION_DOC_2026_01_25_SSOTIFICATION",
+      "emits": "../CROSS_REFERENCE_TRIPTYCH.md, ../dependency_graph.json",
+      "spawned": [],
+      "last_seen": "2026-02-04T01:43:57.390811"
+    },
+    "STATE_DEVELOPMENT_MANIFEST": {
+      "sid": "STATE_DEVELOPMENT_MANIFEST",
+      "path": "docs\\DEVELOPMENT_STATE.md",
+      "type": "State Document",
+      "context": "Project State / Session Continuity",
+      "implements": "",
+      "session_origin": "SESSION_2025_12_31_VSCODE_EXTENSION",
+      "emits": "",
+      "spawned": [],
+      "last_seen": "2026-02-04T01:43:57.390930"
+    },
+    "REPORT_DOCS_METADATA_COMPLIANCE_2026_01_27": {
+      "sid": "REPORT_DOCS_METADATA_COMPLIANCE_2026_01_27",
+      "path": "docs\\DOCS_METADATA_COMPLIANCE_REPORT.md",
+      "type": "Compliance Report",
+      "context": "Quality Assurance / Retroactive Standards Application",
+      "implements": "What_This_Realizes",
+      "session_origin": "CONTINUATION_2026_01_27",
+      "emits": "",
+      "spawned": [],
+      "last_seen": "2026-02-04T01:43:57.391036"
+    },
+    "REPORT_DOC_CONTENT_VALIDATION_FINAL": {
+      "sid": "REPORT_DOC_CONTENT_VALIDATION_FINAL",
+      "path": "docs\\DOC_CONTENT_VALIDATION_FINAL_REPORT.md",
+      "type": "Validation Report",
+      "context": "Documentation Quality / Content Accuracy",
+      "implements": "",
+      "session_origin": "CONTINUATION_2026_01_27",
+      "emits": "",
+      "spawned": [],
+      "last_seen": "2026-02-04T01:43:57.391132"
+    },
+    "CONTRACT_EXECUTION_INVARIANTS": {
+      "sid": "CONTRACT_EXECUTION_INVARIANTS",
+      "path": "docs\\EXECUTION_CONTRACT.md",
+      "type": "Contract Document",
+      "context": "Governance / Environment Constraints",
+      "implements": "",
+      "session_origin": "SESSION_DOC_2026_01_05_SSOTIFICATION",
+      "emits": "",
+      "spawned": [],
+      "last_seen": "2026-02-04T01:43:57.391212"
+    },
+    "DOC_HANDOFF_TO_CLAUDE": {
+      "sid": "DOC_HANDOFF_TO_CLAUDE",
+      "path": "docs\\HANDOFF_TO_CLAUDE.md",
+      "type": "Handoff",
+      "context": "Agent Coordination",
+      "implements": "",
+      "session_origin": "SESSION_DOC_2026_01_17_CLEANUP",
+      "emits": "",
+      "spawned": [],
+      "last_seen": "2026-02-04T01:43:57.391325"
+    },
+    "DOC_MCP_AUTONOMOUS_PREREQUISITES": {
+      "sid": "DOC_MCP_AUTONOMOUS_PREREQUISITES",
+      "path": "docs\\MCP_AUTONOMOUS_PREREQUISITES.md",
+      "type": "Knowledge Base",
+      "context": "MCP / Architecture Foundation",
+      "implements": "",
+      "session_origin": "SESSION_DOC_2026_01_04_MCP",
+      "emits": "",
+      "spawned": [],
+      "last_seen": "2026-02-04T01:43:57.391434"
+    },
+    "TEMPLATE_MCP_SERVER": {
+      "sid": "TEMPLATE_MCP_SERVER",
+      "path": "docs\\MCP_SERVER_TEMPLATE.md",
+      "type": "Reference Template",
+      "context": "MCP / Implementation Guide",
+      "implements": "",
+      "session_origin": "SESSION_DOC_2026_01_04_MCP",
+      "emits": "",
+      "spawned": [],
+      "last_seen": "2026-02-04T01:43:57.391554"
+    },
+    "DOC_MCP_USER_WORKFLOWS": {
+      "sid": "DOC_MCP_USER_WORKFLOWS",
+      "path": "docs\\MCP_USER_WORKFLOWS.md",
+      "type": "Workflow Guide",
+      "context": "MCP / User Operations",
+      "implements": "",
+      "session_origin": "SESSION_DOC_2026_01_05_MCP_WORKFLOWS",
+      "emits": "",
+      "spawned": [],
+      "last_seen": "2026-02-04T01:43:57.391655"
+    },
+    "REPORT_METADATA_VALIDATION_2026_01_27": {
+      "sid": "REPORT_METADATA_VALIDATION_2026_01_27",
+      "path": "docs\\METADATA_VALIDATION_REPORT.md",
+      "type": "Quality Assurance Report",
+      "context": "Code Quality / Cross-Reference Validation",
+      "implements": "ROADMAP_TOOL_CONSOLIDATION_2026_01_27`",
+      "session_origin": "CONTINUATION_2026_01_27",
+      "emits": "",
+      "spawned": [],
+      "last_seen": "2026-02-04T01:43:57.391751"
+    },
+    "DOC_MIGRATION_CHTHONIC_CLI": {
+      "sid": "DOC_MIGRATION_CHTHONIC_CLI",
+      "path": "docs\\MIGRATION_GUIDE_CHTHONIC_CLI.md",
+      "type": "User Documentation",
+      "context": "Migration / User Guide",
+      "implements": "",
+      "session_origin": "CONTINUATION_2026_01_27",
+      "emits": "",
+      "spawned": [],
+      "last_seen": "2026-02-04T01:43:57.391845"
+    },
+    "REPORT_PHASE_3_TESTING_2026_01_27": {
+      "sid": "REPORT_PHASE_3_TESTING_2026_01_27",
+      "path": "docs\\PHASE_3_TEST_REPORT.md",
+      "type": "Test Report",
+      "context": "Quality Assurance / Integration Testing",
+      "implements": "",
+      "session_origin": "CONTINUATION_2026_01_27",
+      "emits": "",
+      "spawned": [],
+      "last_seen": "2026-02-04T01:43:57.391942"
+    },
+    "CONTRACT_PROBE_ABI": {
+      "sid": "CONTRACT_PROBE_ABI",
+      "path": "docs\\PROBE_CONTRACT.md",
+      "type": "Contract Document",
+      "context": "Governance / Environment Probing",
+      "implements": "",
+      "session_origin": "SESSION_DOC_2026_01_05_SSOTIFICATION",
+      "emits": "",
+      "spawned": [],
+      "last_seen": "2026-02-04T01:43:57.392020"
     },
     "DOC_DOCS_README": {
       "sid": "DOC_DOCS_README",
@@ -242,32 +297,7 @@
       "session_origin": "SESSION_DOC_2026_01_17_CLEANUP",
       "emits": "",
       "spawned": [],
-      "last_seen": "2026-01-27T10:32:10.964320"
-    },
-    "SESSION_DOC_2026_01_17_CLEANUP": {
-      "sid": "SESSION_DOC_2026_01_17_CLEANUP",
-      "path": "docs\\SESSION_2026-01-17_CLEANUP.md",
-      "type": "SessionDoc",
-      "context": "Hygiene / Tooling",
-      "implements": "PROTOCOL_ANCHOR_SIGNAL",
-      "session_origin": "SESSION_DOC_2026_01_17_CLEANUP",
-      "emits": "STATE_ROOTDIR_HEALTH",
-      "spawned": [
-        "TOOL_SESSION_EXTRACTOR_V1",
-        "TOOL_ROOT_AUDIT_V1"
-      ],
-      "last_seen": "2026-01-27T10:32:10.964518"
-    },
-    "ANALYSIS_SESSION_2026_01_17_SYNTHESIS": {
-      "sid": "ANALYSIS_SESSION_2026_01_17_SYNTHESIS",
-      "path": "docs\\SESSION_2026-01-17_SYNTHESIS.md",
-      "type": "Analysis Document",
-      "context": "Meta-Analysis / Session Evaluation",
-      "implements": "CONCEPT_SESSION_ANALYSIS",
-      "session_origin": "CONTINUATION_2026_01_27",
-      "emits": "",
-      "spawned": [],
-      "last_seen": "2026-01-27T10:32:10.964623"
+      "last_seen": "2026-02-04T01:43:57.392212"
     },
     "REPORT_META_REVIEW_2026_01_17": {
       "sid": "REPORT_META_REVIEW_2026_01_17",
@@ -278,7 +308,7 @@
       "session_origin": "SESSION_DOC_2026_01_17_CLEANUP",
       "emits": "",
       "spawned": [],
-      "last_seen": "2026-01-27T10:32:10.964713"
+      "last_seen": "2026-02-04T01:43:57.392366"
     },
     "REPORT_TRUTH_STEWARDSHIP_2026_01_17": {
       "sid": "REPORT_TRUTH_STEWARDSHIP_2026_01_17",
@@ -289,7 +319,7 @@
       "session_origin": "SESSION_DOC_2026_01_17_CLEANUP",
       "emits": "",
       "spawned": [],
-      "last_seen": "2026-01-27T10:32:10.964969"
+      "last_seen": "2026-02-04T01:43:57.392448"
     },
     "SPEC_SESSION_BOOTSTRAP": {
       "sid": "SPEC_SESSION_BOOTSTRAP",
@@ -300,7 +330,7 @@
       "session_origin": "SESSION_DOC_2026_01_04_MCP",
       "emits": "",
       "spawned": [],
-      "last_seen": "2026-01-27T10:32:10.965083"
+      "last_seen": "2026-02-04T01:43:57.392550"
     },
     "DOC_SSOTIFICATION_METHODOLOGY": {
       "sid": "DOC_SSOTIFICATION_METHODOLOGY",
@@ -311,7 +341,7 @@
       "session_origin": "SESSION_DOC_2026_01_25_SSOTIFICATION",
       "emits": "",
       "spawned": [],
-      "last_seen": "2026-01-27T10:32:10.965179"
+      "last_seen": "2026-02-04T01:43:57.392640"
     },
     "PLAN_STAGE_1_MIGRATION": {
       "sid": "PLAN_STAGE_1_MIGRATION",
@@ -322,7 +352,7 @@
       "session_origin": "SESSION_DOC_2026_01_25_SSOTIFICATION",
       "emits": "",
       "spawned": [],
-      "last_seen": "2026-01-27T10:32:10.965274"
+      "last_seen": "2026-02-04T01:43:57.392731"
     },
     "ROADMAP_TOOL_CONSOLIDATION_2026_01_27": {
       "sid": "ROADMAP_TOOL_CONSOLIDATION_2026_01_27",
@@ -333,7 +363,7 @@
       "session_origin": "CONTINUATION_2026_01_27",
       "emits": "",
       "spawned": [],
-      "last_seen": "2026-01-27T10:32:10.965391"
+      "last_seen": "2026-02-04T01:43:57.392915"
     },
     "REPORT_TRUE_MISSING_FILES_REVIEW": {
       "sid": "REPORT_TRUE_MISSING_FILES_REVIEW",
@@ -344,7 +374,7 @@
       "session_origin": "CONTINUATION_2026_01_27",
       "emits": "",
       "spawned": [],
-      "last_seen": "2026-01-27T10:32:10.965494"
+      "last_seen": "2026-02-04T01:43:57.393015"
     },
     "REPORT_DOC_VALIDATION_COMPLETE_2026_01_27": {
       "sid": "REPORT_DOC_VALIDATION_COMPLETE_2026_01_27",
@@ -355,29 +385,62 @@
       "session_origin": "CONTINUATION_2026_01_27",
       "emits": "",
       "spawned": [],
-      "last_seen": "2026-01-27T10:32:10.965603"
+      "last_seen": "2026-02-04T01:43:57.393125"
+    },
+    "SERVER_MPW_ROUTER_V1": {
+      "sid": "SERVER_MPW_ROUTER_V1",
+      "path": "mas_mcp\\server.py",
+      "type": "Core Gateway",
+      "context": "M-P-W Router Server (Modularized)",
+      "implements": "",
+      "session_origin": "",
+      "emits": "",
+      "spawned": [],
+      "last_seen": "2026-02-04T01:43:57.401952"
     },
     "TOOL_APPLY_DOC_FIXES": {
       "sid": "TOOL_APPLY_DOC_FIXES",
-      "path": "scripts\\apply_doc_fixes.py",
+      "path": "dumpster-dive\\archive\\deep-research\\conversation_about_win11_pwsh_standard_uv_shebang.md",
       "type": "Utility Script",
       "context": "Documentation Validation / Automated Path Correction",
       "implements": "Bulk",
       "session_origin": "",
       "emits": "",
       "spawned": [],
-      "last_seen": "2026-01-27T10:32:10.984310"
+      "last_seen": "2026-02-04T01:43:59.753459"
     },
-    "TOOL_CHTHONIC_ROUTER_PWSH": {
-      "sid": "TOOL_CHTHONIC_ROUTER_PWSH",
-      "path": "scripts\\chthonic.ps1",
-      "type": "Router Script",
-      "context": "Infrastructure / CLI Entry Point",
+    "TOOL_ASC_ENTITY_GENERATOR_V1": {
+      "sid": "TOOL_ASC_ENTITY_GENERATOR_V1",
+      "path": "scripts\\asc_entity_generator.py",
+      "type": "Utility Script",
+      "context": "Entity Generation / Validation",
+      "implements": "CONCEPT_ASC_ENTITY_GENERATION",
+      "session_origin": "CONTINUATION_2026_01_28",
+      "emits": "",
+      "spawned": [],
+      "last_seen": "2026-02-04T01:43:57.406937"
+    },
+    "TOOL_AUTONOMOUS_COORDINATOR_V1": {
+      "sid": "TOOL_AUTONOMOUS_COORDINATOR_V1",
+      "path": "scripts\\autonomous_coordinator.py",
+      "type": "Coordinator Script",
+      "context": "Automation / Orchestration",
+      "implements": "CONCEPT_AUTONOMOUS_COORDINATION",
+      "session_origin": "CONTINUATION_2026_01_28",
+      "emits": "",
+      "spawned": [],
+      "last_seen": "2026-02-04T01:43:57.407083"
+    },
+    "TOOL_CHTHONIC_POLYGLOT_CLI": {
+      "sid": "TOOL_CHTHONIC_POLYGLOT_CLI",
+      "path": "scripts\\chthonic-polyglot.ps1",
+      "type": "Unified CLI Router",
+      "context": "Infrastructure / Polyglot Environment + Archive Tools",
       "implements": "ROADMAP_TOOL_CONSOLIDATION_2026_01_27",
       "session_origin": "CONTINUATION_2026_01_27",
       "emits": "",
       "spawned": [],
-      "last_seen": "2026-01-27T10:32:10.985280"
+      "last_seen": "2026-02-04T01:43:57.408112"
     },
     "TOOL_CHTHONIC_ROUTER_PYTHON": {
       "sid": "TOOL_CHTHONIC_ROUTER_PYTHON",
@@ -388,7 +451,7 @@
       "session_origin": "CONTINUATION_2026_01_27",
       "emits": "",
       "spawned": [],
-      "last_seen": "2026-01-27T10:32:10.985381"
+      "last_seen": "2026-02-04T01:43:57.408332"
     },
     "TOOL_COMPACT_MD_V1": {
       "sid": "TOOL_COMPACT_MD_V1",
@@ -402,7 +465,7 @@
         "\")",
         ""
       ],
-      "last_seen": "2026-01-27T10:32:11.065136"
+      "last_seen": "2026-02-04T01:43:57.506506"
     },
     "TOOL_SESSION_EXTRACTOR_V1": {
       "sid": "TOOL_SESSION_EXTRACTOR_V1",
@@ -413,7 +476,7 @@
       "session_origin": "SESSION_DOC_2026_01_17_CLEANUP",
       "emits": "",
       "spawned": [],
-      "last_seen": "2026-01-27T10:32:11.065255"
+      "last_seen": "2026-02-04T01:43:57.506677"
     },
     "TOOL_FIX_DOC_REFERENCES": {
       "sid": "TOOL_FIX_DOC_REFERENCES",
@@ -424,7 +487,18 @@
       "session_origin": "",
       "emits": "",
       "spawned": [],
-      "last_seen": "2026-01-27T10:32:10.987486"
+      "last_seen": "2026-02-04T01:43:57.411507"
+    },
+    "TOOL_MANDALA_TOPOLOGY_V1": {
+      "sid": "TOOL_MANDALA_TOPOLOGY_V1",
+      "path": "scripts\\mandala_topology.py",
+      "type": "Script / Module",
+      "context": "Analysis / Topology Reporting / Sacred Geometry",
+      "implements": "CONCEPT_MANDALA_TOPOLOGY_REPORT",
+      "session_origin": "",
+      "emits": "STATE_MANDALA_TOPOLOGY_REPORT",
+      "spawned": [],
+      "last_seen": "2026-02-04T01:43:57.412554"
     },
     "TOOL_CODEBASE_MAPPER_V1": {
       "sid": "TOOL_CODEBASE_MAPPER_V1",
@@ -435,18 +509,128 @@
       "session_origin": "SESSION_DOC_2026_01_17_CLEANUP",
       "emits": "STATE_CODEBASE_INVENTORY",
       "spawned": [],
-      "last_seen": "2026-01-27T10:32:11.065349"
+      "last_seen": "2026-02-04T01:43:57.506791"
     },
-    "DOC_SCRIPTS_README": {
-      "sid": "DOC_SCRIPTS_README",
-      "path": "scripts\\README.md",
+    "MCP_CHTHONIC_UNIFIED_SERVER": {
+      "sid": "MCP_CHTHONIC_UNIFIED_SERVER",
+      "path": "scripts\\mcp-chthonic-server.ts",
+      "type": "MCP Server (stdio transport)                              \u2551",
+      "context": "Infrastructure / Polyglot Tools                           \u2551",
+      "implements": "ROADMAP_BUN_CENTRIC_MCP_2026_01_28",
+      "session_origin": "CONTINUATION_2026_01_28",
+      "emits": "",
+      "spawned": [],
+      "last_seen": "2026-02-04T01:43:57.412939"
+    },
+    "CORE_REFRACTOR_V1": {
+      "sid": "CORE_REFRACTOR_V1",
+      "path": ".github\\instructions\\python-scripting.instructions.md",
+      "type": "[Utility|Logic|Guardian|Synthesis]",
+      "context": "",
+      "implements": "",
+      "session_origin": "",
+      "emits": "",
+      "spawned": [],
+      "last_seen": "2026-02-04T01:44:00.580526"
+    },
+    "TOOL_ROOT_AUDIT_V1": {
+      "sid": "TOOL_ROOT_AUDIT_V1",
+      "path": "scripts\\lib\\audit.py",
+      "type": "CLI Tool",
+      "context": "Hygiene / Codebase Analysis",
+      "implements": "CONCEPT_DIRECTORY_HEALTH_AUDIT,",
+      "session_origin": "SESSION_DOC_2026_01_17_CLEANUP",
+      "emits": "STATE_ROOTDIR_HEALTH",
+      "spawned": [],
+      "last_seen": "2026-02-04T01:43:57.506379"
+    },
+    "RUN_NARRATIVE_SCAN_V1": {
+      "sid": "RUN_NARRATIVE_SCAN_V1",
+      "path": "scripts\\run_narrative_scan.py",
+      "type": "Utility Script",
+      "context": "Standalone Narrative Scan Runner",
+      "implements": "",
+      "session_origin": "",
+      "emits": "",
+      "spawned": [],
+      "last_seen": "2026-02-04T01:43:57.414853"
+    },
+    "RUN_QUALIA_CHECK_V1": {
+      "sid": "RUN_QUALIA_CHECK_V1",
+      "path": "scripts\\run_qualia_check.py",
+      "type": "Utility Script",
+      "context": "Standalone Qualia Check Runner",
+      "implements": "",
+      "session_origin": "",
+      "emits": "",
+      "spawned": [],
+      "last_seen": "2026-02-04T01:43:57.415013"
+    },
+    "GEMINI_CLAUDE_SETUP_BUN": {
+      "sid": "GEMINI_CLAUDE_SETUP_BUN",
+      "path": "scripts\\setup-gemini-claude.ts",
+      "type": "",
+      "context": "",
+      "implements": "",
+      "session_origin": "",
+      "emits": "",
+      "spawned": [],
+      "last_seen": "2026-02-04T01:43:57.416066"
+    },
+    "TOOL_EXAMPLE_V1": {
+      "sid": "TOOL_EXAMPLE_V1",
+      "path": ".github\\instructions\\technical-directives.instructions.md",
+      "type": "Utility",
+      "context": "",
+      "implements": "",
+      "session_origin": "",
+      "emits": "",
+      "spawned": [],
+      "last_seen": "2026-02-04T01:44:00.580817"
+    },
+    "TEST_NARRATIVE_SCAN_V1": {
+      "sid": "TEST_NARRATIVE_SCAN_V1",
+      "path": "scripts\\test_narrative_scan.py",
+      "type": "Utility Script",
+      "context": "Test script for Narrative Scan logic",
+      "implements": "",
+      "session_origin": "",
+      "emits": "",
+      "spawned": [],
+      "last_seen": "2026-02-04T01:43:57.417615"
+    },
+    "TOOL_VALIDATE_SCRIPT_HEADERS_V1": {
+      "sid": "TOOL_VALIDATE_SCRIPT_HEADERS_V1",
+      "path": "scripts\\validate_script_headers.py",
+      "type": "Utility Script",
+      "context": "Metadata Validation / Headers",
+      "implements": "PROTOCOL_ANCHOR_SIGNAL",
+      "session_origin": "CONTINUATION_2026_01_28",
+      "emits": "",
+      "spawned": [],
+      "last_seen": "2026-02-04T01:43:57.418270"
+    },
+    "DOC_SRC_README": {
+      "sid": "DOC_SRC_README",
+      "path": "src\\README.md",
       "type": "Documentation",
-      "context": "Tooling",
+      "context": "Readme",
       "implements": "",
       "session_origin": "SESSION_DOC_2026_01_17_CLEANUP",
       "emits": "",
       "spawned": [],
-      "last_seen": "2026-01-27T10:32:10.989443"
+      "last_seen": "2026-02-04T01:43:57.418796"
+    },
+    "TOOL_PATTERN_ANALYZER_V1": {
+      "sid": "TOOL_PATTERN_ANALYZER_V1",
+      "path": "scripts\\lib\\analyze.py",
+      "type": "CLI Tool",
+      "context": "Diagnostic / Tuning",
+      "implements": "ROADMAP_TOOL_CONSOLIDATION_2026_01_27",
+      "session_origin": "CONTINUATION_2026_01_27",
+      "emits": "",
+      "spawned": [],
+      "last_seen": "2026-02-04T01:43:57.506229"
     },
     "TOOL_SID_RESOLVER_V1": {
       "sid": "TOOL_SID_RESOLVER_V1",
@@ -460,40 +644,7 @@
         "\\s*(.+?)(?:\\n|$)\"",
         ""
       ],
-      "last_seen": "2026-01-27T10:32:11.065448"
-    },
-    "TOOL_ROOT_AUDIT_V1": {
-      "sid": "TOOL_ROOT_AUDIT_V1",
-      "path": "scripts\\lib\\audit.py",
-      "type": "CLI Tool",
-      "context": "Hygiene / Codebase Analysis",
-      "implements": "CONCEPT_DIRECTORY_HEALTH_AUDIT,",
-      "session_origin": "SESSION_DOC_2026_01_17_CLEANUP",
-      "emits": "STATE_ROOTDIR_HEALTH",
-      "spawned": [],
-      "last_seen": "2026-01-27T10:32:11.065033"
-    },
-    "DOC_SRC_README": {
-      "sid": "DOC_SRC_README",
-      "path": "src\\README.md",
-      "type": "Documentation",
-      "context": "Readme",
-      "implements": "",
-      "session_origin": "SESSION_DOC_2026_01_17_CLEANUP",
-      "emits": "",
-      "spawned": [],
-      "last_seen": "2026-01-27T10:32:10.992452"
-    },
-    "TOOL_PATTERN_ANALYZER_V1": {
-      "sid": "TOOL_PATTERN_ANALYZER_V1",
-      "path": "scripts\\lib\\analyze.py",
-      "type": "CLI Tool",
-      "context": "Diagnostic / Tuning",
-      "implements": "ROADMAP_TOOL_CONSOLIDATION_2026_01_27",
-      "session_origin": "CONTINUATION_2026_01_27",
-      "emits": "",
-      "spawned": [],
-      "last_seen": "2026-01-27T10:32:11.064909"
+      "last_seen": "2026-02-04T01:43:57.506904"
     },
     "LIB_CHTHONIC_SHARED_UTILS": {
       "sid": "LIB_CHTHONIC_SHARED_UTILS",
@@ -504,7 +655,7 @@
       "session_origin": "CONTINUATION_2026_01_27",
       "emits": "",
       "spawned": [],
-      "last_seen": "2026-01-27T10:32:11.065539"
+      "last_seen": "2026-02-04T01:43:57.507025"
     },
     "LIB_CHTHONIC_SHARED": {
       "sid": "LIB_CHTHONIC_SHARED",
@@ -515,7 +666,153 @@
       "session_origin": "CONTINUATION_2026_01_27",
       "emits": "",
       "spawned": [],
-      "last_seen": "2026-01-27T10:32:11.065613"
+      "last_seen": "2026-02-04T01:43:57.507123"
+    },
+    "LIB_GPU_PROBE_V1": {
+      "sid": "LIB_GPU_PROBE_V1",
+      "path": "mas_mcp\\lib\\gpu_probe.py",
+      "type": "Library (Infrastructure)",
+      "context": "GPU Capability Probing with Output Suppression",
+      "implements": "",
+      "session_origin": "",
+      "emits": "",
+      "spawned": [],
+      "last_seen": "2026-02-04T01:43:57.896544"
+    },
+    "LIB_SSOT_HANDLER_V1": {
+      "sid": "LIB_SSOT_HANDLER_V1",
+      "path": "mas_mcp\\lib\\ssot_handler.py",
+      "type": "Library (EPFA)",
+      "context": "SSOT Handler: Cryptographic Binding to Single Source of Truth",
+      "implements": "",
+      "session_origin": "",
+      "emits": "",
+      "spawned": [],
+      "last_seen": "2026-02-04T01:43:57.896657"
+    },
+    "LOGIC_NARRATIVE_V1": {
+      "sid": "LOGIC_NARRATIVE_V1",
+      "path": "mas_mcp\\logic\\narrative.py",
+      "type": "Domain Logic (Cultural Analysis)",
+      "context": "Narrative Scanner Logic: Cultural Drift Analysis",
+      "implements": "",
+      "session_origin": "",
+      "emits": "",
+      "spawned": [],
+      "last_seen": "2026-02-04T01:43:57.896980"
+    },
+    "LOGIC_QUALIA_V1": {
+      "sid": "LOGIC_QUALIA_V1",
+      "path": "mas_mcp\\logic\\qualia.py",
+      "type": "Governance Gate",
+      "context": "Qualia: Linguistic Alignment & Canonical Terminology",
+      "implements": "",
+      "session_origin": "",
+      "emits": "",
+      "spawned": [],
+      "last_seen": "2026-02-04T01:43:57.897070"
+    },
+    "LOGIC_RESONANCE_V1": {
+      "sid": "LOGIC_RESONANCE_V1",
+      "path": "mas_mcp\\logic\\resonance.py",
+      "type": "Domain Logic (Persistence)",
+      "context": "Resonance: Liturgical Memory & Imperial Truths",
+      "implements": "",
+      "session_origin": "",
+      "emits": "",
+      "spawned": [],
+      "last_seen": "2026-02-04T01:43:57.897234"
+    },
+    "LOGIC_SCANNER_V1": {
+      "sid": "LOGIC_SCANNER_V1",
+      "path": "mas_mcp\\logic\\scanner.py",
+      "type": "Domain Logic (Extraction)",
+      "context": "Field Impulse Scanner & Proximity Extractor",
+      "implements": "",
+      "session_origin": "",
+      "emits": "",
+      "spawned": [],
+      "last_seen": "2026-02-04T01:43:57.897325"
+    },
+    "LOGIC_TOOLS_V1": {
+      "sid": "LOGIC_TOOLS_V1",
+      "path": "mas_mcp\\logic\\tools.py",
+      "type": "Domain Logic (Tools)",
+      "context": "MCP Tool Logic Implementation",
+      "implements": "",
+      "session_origin": "",
+      "emits": "",
+      "spawned": [],
+      "last_seen": "2026-02-04T01:43:57.897425"
+    },
+    "LIB_ASC_CLI_V1": {
+      "sid": "LIB_ASC_CLI_V1",
+      "path": "mas_mcp\\lib\\asc\\cli.py",
+      "type": "CLI Module",
+      "context": "ASC Toolchain Command-Line Interface",
+      "implements": "",
+      "session_origin": "",
+      "emits": "",
+      "spawned": [],
+      "last_seen": "2026-02-04T01:43:57.901497"
+    },
+    "LIB_ASC_EXTRACTOR_V1": {
+      "sid": "LIB_ASC_EXTRACTOR_V1",
+      "path": "mas_mcp\\lib\\asc\\extractor.py",
+      "type": "Library Module (Extraction)",
+      "context": "ASC Toolchain - Lore & MILF-core Data Extractor",
+      "implements": "",
+      "session_origin": "",
+      "emits": "",
+      "spawned": [],
+      "last_seen": "2026-02-04T01:43:57.901626"
+    },
+    "LIB_ASC_QUALIA_V1": {
+      "sid": "LIB_ASC_QUALIA_V1",
+      "path": "mas_mcp\\lib\\asc\\qualia.py",
+      "type": "Library Module (Qualia Definitions)",
+      "context": "ASC Toolchain - Lore & MILF-core Qualia Definitions",
+      "implements": "",
+      "session_origin": "",
+      "emits": "",
+      "spawned": [],
+      "last_seen": "2026-02-04T01:43:57.901807"
+    },
+    "PROTOCOL_GEMINI_ORACKLA_V1": {
+      "sid": "PROTOCOL_GEMINI_ORACKLA_V1",
+      "path": "gemini\\protocols\\ORACKLA_PROTOCOL.md",
+      "type": "Protocol",
+      "context": "Gemini / Chaos",
+      "implements": "ARCHETYPE_ORACKLA_NOCTICULA",
+      "session_origin": "",
+      "emits": "",
+      "spawned": [],
+      "last_seen": "2026-02-04T01:43:59.664165"
+    },
+    "SESSION_DOC_2026_01_17_CLEANUP": {
+      "sid": "SESSION_DOC_2026_01_17_CLEANUP",
+      "path": "dumpster-dive\\archive\\docs-sessions\\SESSION_2026-01-17_CLEANUP.md",
+      "type": "SessionDoc",
+      "context": "Hygiene / Tooling",
+      "implements": "PROTOCOL_ANCHOR_SIGNAL",
+      "session_origin": "SESSION_DOC_2026_01_17_CLEANUP",
+      "emits": "STATE_ROOTDIR_HEALTH",
+      "spawned": [
+        "TOOL_SESSION_EXTRACTOR_V1",
+        "TOOL_ROOT_AUDIT_V1"
+      ],
+      "last_seen": "2026-02-04T01:43:59.753937"
+    },
+    "ANALYSIS_SESSION_2026_01_17_SYNTHESIS": {
+      "sid": "ANALYSIS_SESSION_2026_01_17_SYNTHESIS",
+      "path": "dumpster-dive\\archive\\docs-sessions\\SESSION_2026-01-17_SYNTHESIS.md",
+      "type": "Analysis Document",
+      "context": "Meta-Analysis / Session Evaluation",
+      "implements": "CONCEPT_SESSION_ANALYSIS",
+      "session_origin": "CONTINUATION_2026_01_27",
+      "emits": "",
+      "spawned": [],
+      "last_seen": "2026-02-04T01:43:59.754045"
     },
     "PROTOCOL_ANCHOR_SIGNAL": {
       "sid": "PROTOCOL_ANCHOR_SIGNAL",
@@ -526,7 +823,40 @@
       "session_origin": "SESSION_DOC_2026_01_17_CLEANUP",
       "emits": "GOVERNANCE_DOCTRINE",
       "spawned": [],
-      "last_seen": "2026-01-27T10:32:14.690231"
+      "last_seen": "2026-02-04T01:43:59.762704"
+    },
+    "PROTOCOL_CODEX_UMEKO_V1": {
+      "sid": "PROTOCOL_CODEX_UMEKO_V1",
+      "path": "codex\\protocols\\MATRIARCH_PROTOCOL.md",
+      "type": "Protocol",
+      "context": "Codex / Purification",
+      "implements": "ARCHETYPE_UMEKO_KETSURAKU",
+      "session_origin": "",
+      "emits": "",
+      "spawned": [],
+      "last_seen": "2026-02-04T01:43:59.768961"
+    },
+    "METHODOLOGY_TRIAD_SCAFFOLD_V1": {
+      "sid": "METHODOLOGY_TRIAD_SCAFFOLD_V1",
+      "path": ".temple\\methodology\\TRIAD_METHODOLOGY.md",
+      "type": "Methodology",
+      "context": "Triad / Bootstrap",
+      "implements": "PROTOCOL_SSOT_DERIVATION",
+      "session_origin": "",
+      "emits": "",
+      "spawned": [],
+      "last_seen": "2026-02-04T01:44:00.564028"
+    },
+    "SKILL_CONCEPTUALIZE_V1": {
+      "sid": "SKILL_CONCEPTUALIZE_V1",
+      "path": ".temple\\skills\\conceptualize\\SKILL.md",
+      "type": "Skill",
+      "context": "Codex / Aesthetics",
+      "implements": "PROTOCOL_CODEX_UMEKO_V1",
+      "session_origin": "",
+      "emits": "",
+      "spawned": [],
+      "last_seen": "2026-02-04T01:44:00.565373"
     }
   },
   "orphaned_refs": []

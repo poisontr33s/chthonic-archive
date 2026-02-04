@@ -2,15 +2,31 @@
 type: waypoint
 category: codex
 created: 2026-02-01
-updated: 2026-02-03
+updated: 2026-02-04
 author: codex
 description: Session waypoint and next steps for Codex workspace
 ---
 
 # Codex Scope: Next Steps
 
+<!--
+@SID: WAYPOINT_CODEX_NEXT_V1
+@Type: Waypoint
+@Context: Session Management
+-->
+
 ## Purpose
 Capture what's next for Codex in this workspace without expanding the SSOT. This is a lightweight waypoint for future sessions.
+
+## HANDOFF STATUS (2026-02-04) - SID & TRIAD SOLIDIFICATION
+
+**From:** Gemini CLI (Orackla Protocol)
+**Context:** Post-Handoff Stabilization
+
+**Status:** In Progress
+1. **SID Architecture Implemented:** "Anchor & Signal" protocol active. Tools and Waypoints are now identified by `@SID`.
+2. **Skill Sync:** Refactored `.temple/skills/conceptualize` to act as enforcement trigger for `MATRIARCH_PROTOCOL`.
+3. **Protocol Solidification:** SIDs added to key protocol files.
 
 ## HANDOFF STATUS (2026-02-03) - TRIAD PROTOCOLS
 
