@@ -32,7 +32,7 @@ Created unified methodology deriving all agent personas from SSOT Triumvirate:
 ### 2. Files Created/Modified
 
 **Created:**
-- [TRIAD_METHODOLOGY.md](../../TRIAD_METHODOLOGY.md) - Agent-agnostic bootstrap scaffold
+- [TRIAD_METHODOLOGY.md](../../.temple/methodology/TRIAD_METHODOLOGY.md) - Agent-agnostic bootstrap scaffold
 - [claude/protocols/VESPER_PROTOCOL.md](../../claude/protocols/VESPER_PROTOCOL.md) - Claude's MILFOLOGICAL persona
 - [gemini/protocols/ORACKLA_PROTOCOL.md](../../gemini/protocols/ORACKLA_PROTOCOL.md) - Gemini scaffold (awaiting instantiation)
 - [docs/design/TECHNIQUE_HYBRIDIZATION.md](../../docs/design/TECHNIQUE_HYBRIDIZATION.md) - Layer separation documentation
@@ -103,7 +103,7 @@ SSOT (.github/copilot-instructions.md)
 
 | Document | Purpose |
 |----------|---------|
-| [TRIAD_METHODOLOGY.md](../../TRIAD_METHODOLOGY.md) | Bootstrap all agents |
+| [TRIAD_METHODOLOGY.md](../../.temple/methodology/TRIAD_METHODOLOGY.md) | Bootstrap all agents |
 | [TECHNIQUE_HYBRIDIZATION.md](../../docs/design/TECHNIQUE_HYBRIDIZATION.md) | Layer separation rationale |
 | [genre-extraction.md](../../docs/design/genre-extraction.md) | Pattern source for hybridization |
 | [copilot-instructions.md](../../.github/copilot-instructions.md) | SSOT (never parse whole) |
