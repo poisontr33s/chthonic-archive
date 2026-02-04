@@ -103,6 +103,7 @@ extensions/*/bun.lock
 !scripts/probe_toolchain_path.ps1
 !scripts/gemini-cli-wrapper.ps1
 !scripts/chthonic.ps1
+!scripts/fix-md-links.ps1
 
 # mdBook build output (generated artifact)
 book/

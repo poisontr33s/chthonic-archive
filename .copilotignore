@@ -1,5 +1,5 @@
 # Copilot Context Ignore File
-# Exclude large, generated, or irrelevant directories to prevent context window overflow (128k limit)
+# Exclude large, generated, or irrelevant directories to prevent context window overflow.
 
 # Build Artifacts
 target/
@@ -21,18 +21,14 @@ node_modules/
 venv/
 .cargo/
 
-# Large Data & Models
+# Large Data & Models (keep SSOT directories available)
 mas_mcp/
 error-classifier/
-data/
-assets/
 models/
 debugging_data/
 
 # Archives & Logs
-dumpster-dive/
 logs/
-artifacts/
 .cache/
 
 # Documentation Generators
@@ -43,4 +39,3 @@ ankh_atlas/
 .vscode/
 .idea/
 .git/
-.github/
