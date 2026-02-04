@@ -1,17 +1,6 @@
 name: Validate Shell Probe
 
 on:
-  push:
-    paths:
-      - 'scripts/shell_capabilities.ps1'
-      - 'scripts/validate_probe.ps1'
-      - 'scripts/validate_shell_probe.ps1'
-      - 'scripts/lint_shell_sovereignty.ps1'
-      - 'scripts/bun_compliance_audit.py'
-      - 'mcp/tools/preflightExecutionContext.ts'
-      - 'mcp/tools/ExecutionContext.schema.json'
-      - 'mcp/server.ts'
-      - '.github/workflows/validate-probe.yml'
   pull_request:
     paths:
       - 'scripts/shell_capabilities.ps1'
