@@ -7,7 +7,7 @@
     "previewFeatures": true
   },
   "model": {
-    "name": "auto-gemini-3"
+    "name": "gemini-3-pro-preview"
   },
   "context": {
     "fileFiltering": {
