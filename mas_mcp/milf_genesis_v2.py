@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 """
 ╔══════════════════════════════════════════════════════════════════════════════╗
 ║  MILF GENESIS ENGINE v2 - Constitutional GPU-Accelerated Synthesis            ║

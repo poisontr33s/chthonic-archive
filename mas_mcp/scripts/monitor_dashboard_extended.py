@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 """
 MAS-MCP Genesis Dashboard — Extended Monitor with CSV Logging
 Usage: python monitor_dashboard_extended.py [BASE_URL] [--csv PATH] [--summary]

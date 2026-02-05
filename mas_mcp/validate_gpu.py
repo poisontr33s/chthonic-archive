@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 """GPU Integration Validation Script for MAS-MCP"""
 
 def main():

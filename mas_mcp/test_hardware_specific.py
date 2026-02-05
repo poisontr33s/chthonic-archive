@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 """
 Hardware-Specific GPU Testing Suite for Predator Helios
 ========================================================

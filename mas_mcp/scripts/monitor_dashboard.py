@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 """
 MAS-MCP Genesis Dashboard — Post-Deployment Monitor
 Usage: python monitor_dashboard.py [BASE_URL]

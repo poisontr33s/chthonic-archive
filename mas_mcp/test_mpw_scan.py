@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 """Test MAS-MCP scanning on M-P-W Codex and GPU integration."""
 
 import sys

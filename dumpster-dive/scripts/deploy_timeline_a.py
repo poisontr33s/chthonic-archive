@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 """Gated Timeline A integration deploy (dry-run/apply).
 
 This script is intentionally conservative:

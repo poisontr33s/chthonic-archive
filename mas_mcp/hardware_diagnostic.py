@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 """
 Hardware Diagnostic for Predator Helios + RTX 4090 Laptop GPU + i9-14900
 =========================================================================

@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 """RTX 4090 Laptop GPU - Full CuPy Benchmark Suite"""
 
 import os

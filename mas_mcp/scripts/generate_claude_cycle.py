@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 """
 MAS-MCP Claude Cycle Report Generator
 Usage: python generate_claude_cycle.py --model claude-3.5-sonnet --intent code_generation --accepted true

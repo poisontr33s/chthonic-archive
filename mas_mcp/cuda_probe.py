@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 """
 CUDA-only probe for MAS-MCP GPU readiness.
 

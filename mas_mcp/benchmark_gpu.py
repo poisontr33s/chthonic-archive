@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 """
 GPU ACCELERATION BENCHMARK
 TensorRT vs CUDA vs CPU execution providers

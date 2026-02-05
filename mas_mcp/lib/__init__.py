@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 # MAS-MCP Library Modules
 # Contains infrastructure utilities for the ASC Framework
 

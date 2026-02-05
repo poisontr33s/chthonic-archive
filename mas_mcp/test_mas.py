@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 """Quick test of MAS-MCP functionality."""
 
 from server import mas_scan, mas_entity_deep, mas_discover_unknown, mas_validate_entity

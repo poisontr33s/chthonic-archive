@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 """
 ⚡ GPU-Accelerated Scoring for Novelty, Redundancy, and Safety
 

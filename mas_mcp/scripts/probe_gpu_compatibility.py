@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 """
 MAS-MCP GPU Compatibility Probe
 Validates Windows GPU environment against compatibility matrix.

@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 """SSOT Hash Embed + Integration Manifest (Task 4 / SHES-001)
 
 Embeds SSOT lineage metadata into the 9 tempered artifacts listed in:

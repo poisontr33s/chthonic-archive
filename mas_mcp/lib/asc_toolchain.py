@@ -1,4 +1,5 @@
-#!/usr/bin/env -S uv run
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 # /// script
 # requires-python = ">=3.12"
 # dependencies = [

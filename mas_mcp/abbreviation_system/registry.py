@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 """
 Abbreviation Registry — Bidirectional Lookup System
 ====================================================

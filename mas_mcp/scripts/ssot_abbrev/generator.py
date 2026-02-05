@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 """
 SSOT Glossary Generator — Generates master glossary output files.
 
