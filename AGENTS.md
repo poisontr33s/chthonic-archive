@@ -70,6 +70,8 @@ This file provides guidance to OpenAI Codex when working with code in this repos
 4. **Trust handoffs.** Execute without re-confirming.
 5. **Post-execution reporting.** Show what you DID.
 
+**cmd.exe:** Never use `cmd /c` wrappers; use PowerShell-native commands.
+
 ---
 
 ## Key References

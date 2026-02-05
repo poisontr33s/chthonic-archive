@@ -132,6 +132,21 @@ Capture what's next for Codex in this workspace without expanding the SSOT. This
 
 ---
 
+#### Operation Train Stop: Cross-Flavor Parity (2026-02-05)
+
+**Objective:** Lock Codex/Claude skill parity with cross-flavor audits and hooks.
+
+**Outcomes:**
+- Shared auditor: `scripts/skill_audit.py` (codex/claude flavors).
+- Hooks: `run_codex_polisher.ps1`, `run_claude_skill_polisher.ps1`, `run_claude_cross_polish.ps1`, `run_claude_local_audit.ps1`, `run_cross_audit.ps1`.
+- Claude meta-skill renamed to `skill-polisher`; deprecated `gem-polisher` removed.
+- Consolidated handoff ready: `codex/mailbox/TRAIN_STOP_HANDOFF_CONSOLIDATED_2026_02_05.md`.
+- Standardization: use `uv run` for Python; never use `cmd /c` wrappers.
+
+**Status:** COMPLETE. Parity achieved and validated.
+
+---
+
 **Task Suited for Codex**
 
 **Objective:** Validation of the Memory Organ.
