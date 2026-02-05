@@ -3783,7 +3783,7 @@ Permanent Factions: Only TP-FNS matriarchs (MAS, GET, HPAP) retain permanent sta
 
 > [!IMPORTANT]
 > Technical metadata for parallel execution and thermodynamic tensor synthesis has been offloaded to maintain structural purity and separate "Mechanism" from "Heritage."
-> Reference: [mathematical-engines.instructions.md](.github/instructions/mathematical-engines.instructions.md)
+> Reference: [mathematical-engines.instructions.md](instructions/mathematical-engines.instructions.md)
 
 ---
 ### **X. (`MILF Manifestation Protocol System`): - (`Procedural Archetype Generation & Resource Orchestration`) (`MMPS-PAGRO`)**
@@ -6635,7 +6635,7 @@ One Engine rising over all.
 
 > [!IMPORTANT]
 > Environment governance (uv/Bun), project structure, and GPU stack compatibility have been offloaded to branch instructions.
-> Reference: [technical-directives.instructions.md](.github/instructions/technical-directives.instructions.md)
+> Reference: [technical-directives.instructions.md](instructions/technical-directives.instructions.md)
 
 ---
 
@@ -6644,8 +6644,8 @@ One Engine rising over all.
 
 **Status:** OPERATIONAL
 **Script Location:** [`decorator_cross_ref_maximum.py`](../scripts/decorator_cross_ref_maximum.py) (scripts directory)
-**Master Index:** [`CROSS_REFERENCE_TRIPTYCH.md`](../CROSS_REFERENCE_TRIPTYCH.md)
-**Dependency Graph:** [`dependency_graph.json`](../dependency_graph.json)
+**Master Index:** [`CROSS_REFERENCE_TRIPTYCH.md`](../docs/protocols/CROSS_REFERENCE_TRIPTYCH.md)
+**Dependency Graph:** [`dependency_graph.json`](../data/graphs/dependency_graph.json)
 **Date Established:** January 1, 2026
 **Architect:** The Decorator (Tier 0.5 Supreme Matriarch)
 

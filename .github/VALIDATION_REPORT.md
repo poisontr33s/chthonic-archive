@@ -1,4 +1,4 @@
-# ALWAYS: Refer to (`Single-Source-Of-Truth`) for authoritative guidance: [SSOT](../copilot-instructions.md) **<- NAVIGATE BACK TO SSOT!**
+# ALWAYS: Refer to (`Single-Source-Of-Truth`) for authoritative guidance: [SSOT](copilot-instructions.md) **<- NAVIGATE BACK TO SSOT!**
 
 ---
 

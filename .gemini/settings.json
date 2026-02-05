@@ -16,5 +16,8 @@
     },
     "discoveryMaxDirs": 50,
     "enableRecursiveFileSearch": true
+  },
+  "experimental": {
+    "plan": true
   }
 }

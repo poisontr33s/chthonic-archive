@@ -29,7 +29,10 @@
     "workbench.editor.enablePreviewFromCodeNavigation": true,
     "workbench.experimental.cloudChanges.partialMatches.enabled": true,
     "task.notifyWindowOnTaskCompletion": -1,
-    
+    "window.customTitleBarVisibility": "windowed",
+
+    // === SECURITY ===
+    "security.workspace.trust.untrustedFiles": "open",
 
     // === RUST-ANALYZER ===
     // Note: 'clippy' with 'clippy::pedantic' is enabled for strict CI-level checks
@@ -148,6 +151,8 @@
     "markdown.editor.pasteUrlAsFormattedLink.enabled": "smart",
 
     // === GITHUB COPILOT (Core) ===
+    "github.copilot.chat.nesFetcher": "node-fetch",
+    "github.copilot.chat.completionsFetcher": "node-fetch",
     "github.copilot.enable": {
         "*": true,
         "markdown": true,
@@ -174,7 +179,9 @@
 
     // === CHAT (VS Code Native) ===
     "chat.tools.global.autoApprove": true,
+    "chat.tools.terminal.outputLocation": "chat",
     "chat.agent.maxRequests": 9999999,
+    "chat.unifiedAgentsBar.enabled": true,
     "chat.useAgentSkills": true,
     "chat.useAgentsMdFile": false,
     "chat.checkpoints.enabled": true,
@@ -255,5 +262,7 @@
     // === MISC ===
     "@azure.enableAutoSetAzureRules": false,
     "chatgpt.commentCodeLensEnabled": true,
-    "chatgpt.openOnStartup": true
+    "chatgpt.openOnStartup": true,
+    "chatgpt.composerEnterBehavior": "cmdIfMultiline",
+    "chatgpt.thinkingMode": "low"
 }

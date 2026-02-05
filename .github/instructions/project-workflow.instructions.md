@@ -15,7 +15,7 @@
 
 > [!NOTE]
 > This branch file houses the template infrastructure and sovereign lineage separation.
-> **Context Reference:** [copilot-instructions.md](.github/copilot-instructions.md#L67) (Tier Hierarchy Baseline)
+> **Context Reference:** [copilot-instructions.md](../copilot-instructions.md#L67) (Tier Hierarchy Baseline)
 
 ---
 

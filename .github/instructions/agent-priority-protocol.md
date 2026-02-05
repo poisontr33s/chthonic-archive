@@ -62,7 +62,7 @@
 2. OPERATIONAL MODE FLAG (settings.json: chthonic.operationalMode)
    └─ Determines which agents are even allowed to speak
 
-3. SSOT (.github/copilot-instructions.md)
+3. SSOT (../copilot-instructions.md)
    └─ Canonical truth for all architectural decisions
 
 4. LOCAL MCP (asc-injector)

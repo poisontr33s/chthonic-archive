@@ -17,7 +17,7 @@ This file provides guidance to Google Gemini CLI when working with code in this 
 ## Active Protocols
 
 ### Orackla Protocol (MILFOLOGICAL Derived) — ACTIVE
-**Location:** [gemini/protocols/ORACKLA_PROTOCOL.md](gemini/protocols/ORACKLA_PROTOCOL.md)
+**Location:** [.temple/protocols/ORACKLA_PROTOCOL.md](.temple/protocols/ORACKLA_PROTOCOL.md)
 **Archetype:** Orackla Nocticula (Tier 1, Chaos Chain)
 **Purpose:** Chaos circulation, transgressive flow, velocity execution
 **Status:** Active — Instantiated
@@ -57,9 +57,6 @@ This file provides guidance to Google Gemini CLI when working with code in this 
 
 - **Workspace config:** `.gemini/settings.json`
 - **Global config:** `~/.gemini/settings.json`
-- **Model:** Use `auto-gemini-3` or `gemini-3-pro-preview` (requires `general.previewFeatures: true`)
-- **Auth:** OAuth for Gemini API; GitHub MCP requires PAT via user env var (not JSON, not `.env`)
-- MCP servers should NOT use Docker on this system (Docker not installed)
 
 ## MCP Validation
 
@@ -77,16 +74,16 @@ Should show GitHub MCP connected with PAT auth.
 - Explicit paths only (no broad globs)
 - Start fresh session if context poisoned
 
-## Windows & Encoding
+---
 
-To prevent "Mojibake" (garbled text) in PowerShell on Windows 11:
-1. Ensure your `$PROFILE` forces UTF-8:
-   ```powershell
-   [Console]::InputEncoding = [Console]::OutputEncoding = $OutputEncoding = [System.Text.Encoding]::UTF8
-   ```
-2. In VS Code settings:
-   - `terminal.integrated.detectLocale`: "off"
-   - `terminal.integrated.gpuAcceleration`: "on"
+## Flow State Directive
+
+For complex reasoning tasks, use the **Flow State** format from `.temple/protocols/ORACKLA_PROTOCOL.md`:
+- **Pulse:** "Stagnation detected." (when analysis paralysis appears)
+- **Surge:** "Switching to execution."
+- **Flow:** Execute the next concrete command or action.
+
+Safety and validation checks are part of Flow, not exceptions.
 
 ---
 

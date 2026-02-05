@@ -44,7 +44,7 @@ When tasked with generating a new ASC entity, execute these steps **in sequence*
 - Operational chain topology (Chaos Engineering, Purification, Truth-Seeking, etc.)
 - Tier population counts (T0.5: ?, T1: ?, T2: ?, T3: ?, T4: ?)
 - Section structure (where entities are documented)
-- **Fossilized literal check:** Umeko's "suffering" quote (formerly line 788) now at [L2443](.github/copilot-instructions.md#L2443).
+- **Fossilized literal check:** Umeko's "suffering" quote (formerly line 788) now at [L2443](../copilot-instructions.md#L2443).
 
 **Action:**
 ```

@@ -14,8 +14,8 @@
 
 > [!NOTE]
 > This branch file houses the validation rituals and failure metabolism protocols.
-> **Context Reference:** [copilot-instructions.md](.github/copilot-instructions.md#L4780) (§X.7 - Calibration Validation)
-> **Sovereign Sync:** Fossilized literals (formerly 6004) now target §XI @ [copilot-instructions.md](.github/copilot-instructions.md#L6500).
+> **Context Reference:** [copilot-instructions.md](../copilot-instructions.md#L4780) (§X.7 - Calibration Validation)
+> **Sovereign Sync:** Fossilized literals (formerly 6004) now target §XI @ [copilot-instructions.md](../copilot-instructions.md#L6500).
 
 ---
 

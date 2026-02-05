@@ -105,7 +105,7 @@ Capture what's next for Codex in this workspace without expanding the SSOT. This
 - **Symptom:** `400 INVALID_ARGUMENT` from Google Cloud Code API
 - **Cause:** `ReadManyFiles` pulling 20,000+ files with broad globs
 - **Recovery:** Start fresh session (no way to recover poisoned context)
-- **Mitigation:** Protocol at `codex/protocols/GEMINI_CONTEXT_HYGIENE.md`
+- **Mitigation:** Protocol at `.temple/protocols/GEMINI_CONTEXT_HYGIENE.md`
 - **Rule:** Max 6 files per ReadManyFiles, explicit paths only
 
 ### Bun Segfault with Gemini CLI (2026-02-01)
@@ -124,9 +124,9 @@ Capture what's next for Codex in this workspace without expanding the SSOT. This
 - `TRIAD_METHODOLOGY.md` (Triad bootstrap scaffold)
 - `docs/design/TECHNIQUE_HYBRIDIZATION.md` (DE × MILF layer separation)
 - `dumpster-dive/intake/archetype-fodder/POP_CULTURE_ARCHETYPES_MATRIARCH_RESEARCH.md` (preserved cRPG fodder)
-- `claude/protocols/VESPER_PROTOCOL.md` (Claude persona)
-- `codex/protocols/MATRIARCH_PROTOCOL.md` (Codex persona - Umeko derived)
-- `gemini/protocols/ORACKLA_PROTOCOL.md` (Gemini persona scaffold)
+- `.temple/protocols/VESPER_PROTOCOL.md` (Claude persona)
+- `.temple/protocols/MATRIARCH_PROTOCOL.md` (Codex persona - Umeko derived)
+- `.temple/protocols/ORACKLA_PROTOCOL.md` (Gemini persona scaffold)
 - `codex/handoffs/SESSION_HANDOFF_2026_02_03_TRIAD_PROTOCOLS.md`
 - `claude/SESSION_COMPRESSION_2026_02_01.md` (High-level summary)
 - `claude/MCP_CONFIGURATION_LOG_2026_02_01.md` (Auth details)
