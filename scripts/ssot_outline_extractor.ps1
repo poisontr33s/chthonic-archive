@@ -157,3 +157,4 @@ if ($UpdateIndex) {
     $indexData | ConvertTo-Json -Depth 4 | Set-Content $IndexPath -Encoding UTF8
     Write-Host "Index updated at: $IndexPath" -ForegroundColor Green
 }
+

@@ -138,9 +138,9 @@ Test-Section "SSOT Hash Tool Accuracy" {
     Write-Host "Testing hash computation determinism..."
 
     # Compute hash twice - should be identical
-    $hash1 = uv run python scripts/ssot_hash.py
+    $hash1 = uv run scripts/ssot_hash.py
     Start-Sleep -Milliseconds 100
-    $hash2 = uv run python scripts/ssot_hash.py
+    $hash2 = uv run scripts/ssot_hash.py
 
     if ($hash1 -ne $hash2) {
         throw "Hash non-deterministic: $hash1 vs $hash2"
@@ -151,7 +151,7 @@ Test-Section "SSOT Hash Tool Accuracy" {
     # Test verification mode (should detect mismatch)
     Write-Host "  Testing verification mode..."
     $fakeHash = "0000000000000000000000000000000000000000000000000000000000000000"
-    $verifyResult = uv run python scripts/ssot_hash.py --verify $fakeHash 2>&1
+    $verifyResult = uv run scripts/ssot_hash.py --verify $fakeHash 2>&1
 
     if ($LASTEXITCODE -eq 0) {
         throw "Verification should fail with fake hash but passed"
@@ -167,7 +167,7 @@ Test-Section "Bun Compliance Audit" {
     Write-Host "Testing bun compliance audit (dry-run)..."
 
     # Run audit in CI mode (strict)
-    uv run python scripts/bun_compliance_audit.py --ci *>&1 | Out-Null
+    uv run scripts/bun_compliance_audit.py --ci *>&1 | Out-Null
 
     if ($LASTEXITCODE -ne 0) {
         throw "Bun compliance violations detected (exit code: $LASTEXITCODE)"
@@ -258,7 +258,7 @@ Test-Section "Resource Overhead Analysis" {
     $scriptTimes['shell_capabilities'] = $measure.TotalMilliseconds
 
     $measure = Measure-Command {
-        uv run python scripts/ssot_hash.py | Out-Null
+        uv run scripts/ssot_hash.py | Out-Null
     }
     $scriptTimes['ssot_hash'] = $measure.TotalMilliseconds
 
@@ -297,7 +297,7 @@ Test-Section "GitHub Actions Workflow Simulation" {
     if ($LASTEXITCODE -ne 0) { throw "Sovereignty gate would fail" }
 
     Write-Host "  [3/3] Bun compliance audit..."
-    uv run python scripts/bun_compliance_audit.py --ci *>&1 | Out-Null
+    uv run scripts/bun_compliance_audit.py --ci *>&1 | Out-Null
     if ($LASTEXITCODE -ne 0) { throw "Bun compliance gate would fail" }
 
     Write-Host "  ✓ All 3 hard gates pass locally" -ForegroundColor DarkGray
@@ -361,3 +361,4 @@ if ($results.Failed.Count -eq 0) {
     Write-Host "Session changes require remediation before deployment." -ForegroundColor Red
     exit 1
 }
+

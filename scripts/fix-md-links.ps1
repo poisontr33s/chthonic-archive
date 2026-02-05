@@ -146,3 +146,4 @@ if ($Fix) {
 } else {
     Write-Host "`nℹ️  Dry run complete. Found $totalFixes fixable links. Use --fix to apply." -ForegroundColor Yellow
 }
+

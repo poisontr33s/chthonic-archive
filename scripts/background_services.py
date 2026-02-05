@@ -1,3 +1,5 @@
+#!/usr/bin/python3
+# -*- coding: utf-8 -*-
 # ╔════════════════════════════════════════════════════════════════════════════╗
 # ║  THE DECORATOR'S BLESSING: background_services.py                        ║
 # ║  Python module: PROJECT_ROOT, MPW_PATH, SRC_PATH, ASSETS_PATH, LOGS_PATH, CACHE_PATH... ║

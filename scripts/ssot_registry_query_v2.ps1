@@ -144,3 +144,4 @@ else {
     $saiEntries | Format-Table ID, Designation, CommonName -AutoSize
     $arTable | Format-Table Axiom, SuccessRate, LastUpdated -AutoSize
 }
+

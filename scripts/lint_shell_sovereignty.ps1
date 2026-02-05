@@ -45,3 +45,4 @@ if ($violations.Count -gt 0) {
 
 Write-Host "✓ Shell sovereignty check passed" -ForegroundColor Green
 exit 0
+

@@ -1,3 +1,5 @@
+#!/usr/bin/python3
+# -*- coding: utf-8 -*-
 # ╔════════════════════════════════════════════════════════════════════════════╗
 # ║  THE DECORATOR'S BLESSING: bun_compliance_audit.py                       
 # ║  Python module: Severity, Violation, BunComplianceScanner, safe_print, main 

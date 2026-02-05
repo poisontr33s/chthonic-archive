@@ -130,3 +130,4 @@ elseif ($Registry -eq 'ALL') {
 else {
     Show-Registry -Key $Registry
 }
+

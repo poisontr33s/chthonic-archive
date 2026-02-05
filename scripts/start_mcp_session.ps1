@@ -47,3 +47,4 @@ Get-Process -Name "Claude" -ErrorAction SilentlyContinue | Select-Object Name,Id
 Write-Output "MCP server should be running as a process started by Start-Job. Use bun ps / check logs if needed."
 
 Log "Session bootstrap complete. Add local server manifest in Claude Code (see claude_code_mcp_hint.json)."
+

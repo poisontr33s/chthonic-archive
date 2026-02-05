@@ -75,7 +75,7 @@ try {
 # Advisory Check 3: Upcycle audit (if available)
 Write-Host "  Upcycle audit scan..." -NoNewline
 try {
-    $auditResult = uv run python scripts\upcycle_audit.py $ProbePath --candidates-only 2>$null | ConvertFrom-Json
+    $auditResult = uv run scripts\upcycle_audit.py $ProbePath --candidates-only 2>$null | ConvertFrom-Json
     if ($auditResult.results.Count -eq 0) {
         Write-Host " clean" -ForegroundColor Green
     } else {
@@ -96,3 +96,4 @@ Write-Host "  Canonical hash: 6D6782ED8FFC4BF434D2A7108A0F3BACF13C3B40CC5C8F00F5
 Write-Host "  Advisory checks completed (non-blocking)" -ForegroundColor DarkGray
 
 exit 0
+

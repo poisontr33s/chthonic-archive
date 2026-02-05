@@ -46,3 +46,4 @@ if ($nonComment -match $keywords) {
 
 Write-Host "OK: Probe exists, hash matches, no-logic invariant satisfied."
 exit 0
+

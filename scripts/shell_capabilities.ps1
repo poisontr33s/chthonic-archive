@@ -32,3 +32,4 @@ $report.path = [Environment]::GetEnvironmentVariable("PATH", "Process") -split '
 
 # Emit JSON only
 $report | ConvertTo-Json -Depth 4
+

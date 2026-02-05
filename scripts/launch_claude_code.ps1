@@ -66,3 +66,4 @@ if (-not (ClaudeRunning)) {
 # If we get here, Claude is running
 Log "Claude detected and running."
 exit 0
+

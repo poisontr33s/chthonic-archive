@@ -1,3 +1,5 @@
+#!/usr/bin/python3
+# -*- coding: utf-8 -*-
 # ╔════════════════════════════════════════════════════════════════════════════   ╗
 # ║  THE DECORATOR'S BLESSING: code_scent.py                                      ║
 # ║  Python module: analyze_scent                                                 ║

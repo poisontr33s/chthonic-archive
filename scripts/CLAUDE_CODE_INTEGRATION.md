@@ -192,3 +192,4 @@ bun run run_mcp_validation.ts --ensure-claude-code
 - `docs/SESSION_BOOTSTRAP_SPEC.md` - MCP session provisioning contract
 - `mcp/mcp.json` - MCP server manifest (4 tools)
 - `run_mcp_validation.ts` - Local validation runner (7 checks)
+
