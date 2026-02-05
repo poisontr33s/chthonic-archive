@@ -71,7 +71,7 @@ This file provides guidance to OpenAI Codex when working with code in this repos
 5. **Post-execution reporting.** Show what you DID.
 
 **cmd.exe:** Never use `cmd /c` wrappers; use PowerShell-native commands.
-**Python:** Use `uv run python` — never raw `python` or `pip`.
+**Python:** Use `uv run <script.py>` by default; `uv run python <script.py>` only when explicitly required. Never raw `python` or `pip`.
 
 ---
 
