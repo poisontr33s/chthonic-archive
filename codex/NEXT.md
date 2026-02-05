@@ -119,6 +119,19 @@ Capture what's next for Codex in this workspace without expanding the SSOT. This
 
 ---
 
+#### Operation Train Stop: Integrity Sweep (2026-02-05)
+
+**Objective:** Verify all skills for manifest/icon drift and stale logic.
+
+**Status:** COMPLETE. All skills are pure; non-fixable linguistic warnings recorded.
+
+**Queue (Next):**
+- Operation Train Stop: Envelope Canon
+- Operation Train Stop: Decision Razor Hardening
+- Operation Train Stop: Artifact Upcycle Pass
+
+---
+
 **Task Suited for Codex**
 
 **Objective:** Validation of the Memory Organ.
