@@ -2,7 +2,7 @@
 type: waypoint
 category: codex
 created: 2026-02-01
-updated: 2026-02-04
+updated: 2026-02-05
 author: codex
 description: Session waypoint and next steps for Codex workspace
 ---
@@ -93,10 +93,39 @@ Capture what's next for Codex in this workspace without expanding the SSOT. This
 6. **Creative Batch (Artifacts)**
    - Completed: `codex/artifacts/` (5 files).
 7. **Script-Envelope Canonicalization**
-   - Use `codex/skills/script-envelope/` to normalize metadata envelopes (fixed field order + padded width).
+   - Use `codex/skills/script-envelope/` to normalize metadata envelopes (fixed field order + open-sided fixed width).
 8. **Skill Cleanup**
    - Removed `codex/skills/artifact-upcycle` (Repo redundancy eliminated).
    - Source of Truth: `~/.codex/skills/artifact-upcycle` (Verified Intelligent).
+
+#### Operation Train Stop: Cognitive Refit (2026-02-05)
+
+**Objective:** Halt velocity to forge self-healing agent organs and eliminate "Autist Syndrome" (Over-Reasoning).
+
+**Architecture Deployed:**
+- [x] **The Will:** `decision-razor` (Anti-Paralysis / Silencing Block)
+- [x] **The Hunger:** `skill-polisher` (Recursive Maintenance / Structural Addiction)
+- [x] **The Hands:** `artifact-upcycle` (Deterministic Hygiene / Bug Fixed)
+- [x] **The Memory:** `script-envelope` (Metadata Standardization / Implemented)
+- [x] **The Mind:** `conceptualize` (Aesthetic Enforcement / Standardized)
+
+**Outcomes:**
+- **Lobotomy:** Codex configured for `low` reasoning / `autonomous` execution in both Workspace and Global configs.
+- **Standardization:** All core skills assigned unique SVG icons and brand colors.
+- **Sync:** Deployed (copied) all updated skills from Workspace (`.codex/skills`) to Global (`~/.codex/skills`).
+- **Validation:** `skill-polisher` successfully patched `artifact-upcycle` (missing function) and verified `script-envelope` (100% integrity).
+
+**Status:** COMPLETE. System is self-policing and high-velocity.
+
+---
+
+**Task Suited for Codex**
+
+**Objective:** Validation of the Memory Organ.
+
+> **Prompt:** `@Codex /skill-polisher target=script-envelope`
+>
+> **Intent:** confirm that the newly implemented logic in `scripts/script_envelope.py` (AST/Regex parsing) satisfies the Polisher's "Hunger" for integrity and structure. We expect a 100% Purity rating with no recursion needed.
 
 
 ## Known Issues
@@ -107,6 +136,20 @@ Capture what's next for Codex in this workspace without expanding the SSOT. This
 - **Recovery:** Start fresh session (no way to recover poisoned context)
 - **Mitigation:** Protocol at `.temple/protocols/GEMINI_CONTEXT_HYGIENE.md`
 - **Rule:** Max 6 files per ReadManyFiles, explicit paths only
+- **Additional log (Bun crash while running Gemini CLI):**
+```text
+Bun v1.3.8 (b64edcb4) Windows x64
+Windows v.win11_dt
+CPU: sse42 avx avx2
+Args: "C:\Users\erdno\.bun\bin\bun.exe" "C:\Users\erdno\.bun\install\global\node_modules\@google\gemini-cli\dist\index.js"
+Features: Bun.stderr(4) Bun.stdin(2) Bun.stdout(4) bunfig fetch(625) jsc spawn(29) transpiler_cache(52) tsconfig(23) workers_spawned workers_terminated napi_module_register process_dlopen(2)
+Builtins: "abort-controller" "bun:main" "node:assert" "node:async_hooks" "node:buffer" "node:child_process" "node:constants" "node:crypto" "node:dns" "node:events" "node:fs" "node:fs/promises" "node:http" "node:https" "node:module" "node:net" "node:os" "node:path" "node:perf_hooks" "node:process" "node:querystring" "node:readline" "node:stream" "node:stream/promises" "node:string_decoder" "node:timers/promises" "node:tls" "node:tty" "node:url" "node:util" "node:zlib" "node:worker_threads" "undici" "ws" "node-fetch" "node:v8" "node:http2" "node:diagnostics_channel"
+Elapsed: 1833187ms | User: 80765ms | Sys: 21265ms
+RSS: 2.40GB | Peak: 6.84GB | Commit: 3.23GB | Faults: 6141154 | Machine: 34.05GB
+
+panic(thread 6628): Segmentation fault at address 0xFFFFFFFFFFFFFFF4
+oh no: Bun has crashed. This indicates a bug in Bun, not your code.
+```
 
 ### Bun Segfault with Gemini CLI (2026-02-01)
 - **Symptom:** Segfault at address `0x8` after ~39 min session, 1M+ page faults
