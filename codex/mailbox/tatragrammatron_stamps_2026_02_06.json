@@ -1,0 +1,28 @@
+{
+  "generated_at": "2026-02-06T19:29:54.656788+00:00",
+  "count": 2,
+  "records": [
+    {
+      "skill": "artifact-upcycle",
+      "stamp": "#TBD",
+      "severity": "INFO",
+      "domain": "maintainability",
+      "file": "SKILL.md",
+      "line": null,
+      "message": "Debt markers detected (FIXME:3, TODO:30).",
+      "remedy": "Review markers and convert unresolved debt into tracked action items.",
+      "confidence": 0.9
+    },
+    {
+      "skill": "skill-polisher",
+      "stamp": "#TBD",
+      "severity": "INFO",
+      "domain": "maintainability",
+      "file": "SKILL.md",
+      "line": null,
+      "message": "Debt markers detected (FIXME:9, TBD:4, TODO:7, XXX:3).",
+      "remedy": "Review markers and convert unresolved debt into tracked action items.",
+      "confidence": 0.9
+    }
+  ]
+}

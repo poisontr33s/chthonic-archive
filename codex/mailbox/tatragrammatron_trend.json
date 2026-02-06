@@ -1,0 +1,25 @@
+{
+  "history": [
+    {
+      "generated_at": "2026-02-06T19:14:35.739901Z",
+      "mode": "verify",
+      "skills": 16,
+      "avg_score": 100.0,
+      "failed": 0
+    },
+    {
+      "generated_at": "2026-02-06T19:14:53.993963+00:00",
+      "mode": "verify",
+      "skills": 16,
+      "avg_score": 100.0,
+      "failed": 0
+    },
+    {
+      "generated_at": "2026-02-06T19:29:54.657999+00:00",
+      "mode": "verify",
+      "skills": 16,
+      "avg_score": 100.0,
+      "failed": 0
+    }
+  ]
+}
