@@ -81,3 +81,11 @@ This file provides guidance to OpenAI Codex when working with code in this repos
 - Handoffs: [.temple/handoffs/](.temple/handoffs/)
 - Skills: [.temple/skills/](.temple/skills/)
 - Methodology: [.temple/methodology/TRIAD_METHODOLOGY.md](.temple/methodology/TRIAD_METHODOLOGY.md)
+
+## Canonical Paths
+
+- Codex skills: `.codex/skills`
+- Claude skills: `.claude/skills`
+- Codex mailbox: `codex/mailbox`
+- Claude mailbox: `claude/mailbox`
+- Non-canonical hidden mailboxes (`.codex/mailbox`, `.claude/mailbox`) must remain empty except optional `.gitkeep`.

@@ -1,0 +1,168 @@
+{
+  "generated_at": "2026-02-06T19:25:13",
+  "codex_skill_count": 16,
+  "claude_skill_count": 16,
+  "shared_skill_count": 16,
+  "records": [
+    {
+      "skill": "artifact-upcycle",
+      "skillmd_equal": false,
+      "codex_has_agents": true,
+      "claude_has_agents": false,
+      "codex_script_count": 1,
+      "claude_script_count": 0,
+      "codex_ref_count": 4,
+      "claude_ref_count": 0
+    },
+    {
+      "skill": "claude-skill-bridge",
+      "skillmd_equal": false,
+      "codex_has_agents": true,
+      "claude_has_agents": false,
+      "codex_script_count": 0,
+      "claude_script_count": 0,
+      "codex_ref_count": 0,
+      "claude_ref_count": 0
+    },
+    {
+      "skill": "codex-skill-bridge",
+      "skillmd_equal": false,
+      "codex_has_agents": true,
+      "claude_has_agents": false,
+      "codex_script_count": 0,
+      "claude_script_count": 0,
+      "codex_ref_count": 0,
+      "claude_ref_count": 0
+    },
+    {
+      "skill": "conceptualize",
+      "skillmd_equal": false,
+      "codex_has_agents": true,
+      "claude_has_agents": false,
+      "codex_script_count": 0,
+      "claude_script_count": 0,
+      "codex_ref_count": 1,
+      "claude_ref_count": 0
+    },
+    {
+      "skill": "decision-razor",
+      "skillmd_equal": false,
+      "codex_has_agents": true,
+      "claude_has_agents": false,
+      "codex_script_count": 0,
+      "claude_script_count": 0,
+      "codex_ref_count": 0,
+      "claude_ref_count": 0
+    },
+    {
+      "skill": "gh-address-comments",
+      "skillmd_equal": false,
+      "codex_has_agents": true,
+      "claude_has_agents": false,
+      "codex_script_count": 1,
+      "claude_script_count": 0,
+      "codex_ref_count": 0,
+      "claude_ref_count": 0
+    },
+    {
+      "skill": "gh-fix-ci",
+      "skillmd_equal": false,
+      "codex_has_agents": true,
+      "claude_has_agents": false,
+      "codex_script_count": 1,
+      "claude_script_count": 0,
+      "codex_ref_count": 0,
+      "claude_ref_count": 0
+    },
+    {
+      "skill": "gh-mcp-autonomy",
+      "skillmd_equal": false,
+      "codex_has_agents": true,
+      "claude_has_agents": false,
+      "codex_script_count": 0,
+      "claude_script_count": 0,
+      "codex_ref_count": 0,
+      "claude_ref_count": 0
+    },
+    {
+      "skill": "imagegen",
+      "skillmd_equal": false,
+      "codex_has_agents": true,
+      "claude_has_agents": false,
+      "codex_script_count": 1,
+      "claude_script_count": 0,
+      "codex_ref_count": 5,
+      "claude_ref_count": 0
+    },
+    {
+      "skill": "mailbox-handoff",
+      "skillmd_equal": false,
+      "codex_has_agents": true,
+      "claude_has_agents": false,
+      "codex_script_count": 0,
+      "claude_script_count": 0,
+      "codex_ref_count": 0,
+      "claude_ref_count": 0
+    },
+    {
+      "skill": "meta-polisher-validator",
+      "skillmd_equal": false,
+      "codex_has_agents": true,
+      "claude_has_agents": false,
+      "codex_script_count": 0,
+      "claude_script_count": 0,
+      "codex_ref_count": 0,
+      "claude_ref_count": 0
+    },
+    {
+      "skill": "openai-docs",
+      "skillmd_equal": false,
+      "codex_has_agents": true,
+      "claude_has_agents": false,
+      "codex_script_count": 0,
+      "claude_script_count": 0,
+      "codex_ref_count": 0,
+      "claude_ref_count": 0
+    },
+    {
+      "skill": "python-header-canon",
+      "skillmd_equal": false,
+      "codex_has_agents": true,
+      "claude_has_agents": false,
+      "codex_script_count": 1,
+      "claude_script_count": 0,
+      "codex_ref_count": 0,
+      "claude_ref_count": 0
+    },
+    {
+      "skill": "script-envelope",
+      "skillmd_equal": false,
+      "codex_has_agents": true,
+      "claude_has_agents": false,
+      "codex_script_count": 1,
+      "claude_script_count": 0,
+      "codex_ref_count": 2,
+      "claude_ref_count": 0
+    },
+    {
+      "skill": "skill-polisher",
+      "skillmd_equal": false,
+      "codex_has_agents": true,
+      "claude_has_agents": false,
+      "codex_script_count": 1,
+      "claude_script_count": 0,
+      "codex_ref_count": 0,
+      "claude_ref_count": 0
+    },
+    {
+      "skill": "sora",
+      "skillmd_equal": false,
+      "codex_has_agents": true,
+      "claude_has_agents": false,
+      "codex_script_count": 1,
+      "claude_script_count": 0,
+      "codex_ref_count": 8,
+      "claude_ref_count": 0
+    }
+  ]
+}

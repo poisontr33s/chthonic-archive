@@ -1,0 +1,24 @@
+{
+  "mailbox": "claude/mailbox",
+  "generated_on": "2026-02-06T19:40:22",
+  "active": {
+    "md": [
+      "KISS_PARITY_BRIEF_2026_02_06.md",
+      "SKILLS_PARITY_DISCREPANCY_2026_02_06.md"
+    ],
+    "json": [
+      "CLAUDE_META_VALIDATION_SUMMARY.json",
+      "e2e_matrix_claude_on_claude.json",
+      "e2e_matrix_claude_on_codex.json",
+      "e2e_matrix_codex_on_claude.json",
+      "e2e_matrix_codex_on_codex.json",
+      "skills_parity_map_2026_02_06.json"
+    ]
+  },
+  "archive_count": 3,
+  "archive_files": [
+    "SESSION_HANDOFF_2026_02_05_MAILBOX_SKILL_UPDATE.md",
+    "SESSION_HANDOFF_2026_02_05_OPERATION_TRAIN_STOP.md",
+    "SESSION_HANDOFF_2026_02_05_PARITY_DELTA.md"
+  ]
+}

@@ -1,0 +1,223 @@
+{
+  "ok": true,
+  "compared": 4,
+  "mismatches": {},
+  "summary": {
+    "e2e_matrix_codex_on_codex.json": {
+      "ok": true,
+      "codex": {
+        "flavor": "codex",
+        "root": ".codex\\skills",
+        "count": 16,
+        "all_clean": true,
+        "score_map": {
+          "artifact-upcycle": 100,
+          "claude-skill-bridge": 100,
+          "codex-skill-bridge": 100,
+          "conceptualize": 100,
+          "decision-razor": 100,
+          "gh-address-comments": 100,
+          "gh-fix-ci": 100,
+          "gh-mcp-autonomy": 100,
+          "imagegen": 100,
+          "mailbox-handoff": 100,
+          "meta-polisher-validator": 100,
+          "openai-docs": 100,
+          "python-header-canon": 100,
+          "script-envelope": 100,
+          "skill-polisher": 100,
+          "sora": 100
+        },
+        "issue_count": 0
+      },
+      "claude": {
+        "flavor": "codex",
+        "root": ".codex\\skills",
+        "count": 16,
+        "all_clean": true,
+        "score_map": {
+          "artifact-upcycle": 100,
+          "claude-skill-bridge": 100,
+          "codex-skill-bridge": 100,
+          "conceptualize": 100,
+          "decision-razor": 100,
+          "gh-address-comments": 100,
+          "gh-fix-ci": 100,
+          "gh-mcp-autonomy": 100,
+          "imagegen": 100,
+          "mailbox-handoff": 100,
+          "meta-polisher-validator": 100,
+          "openai-docs": 100,
+          "python-header-canon": 100,
+          "script-envelope": 100,
+          "skill-polisher": 100,
+          "sora": 100
+        },
+        "issue_count": 0
+      },
+      "issues": []
+    },
+    "e2e_matrix_codex_on_claude.json": {
+      "ok": true,
+      "codex": {
+        "flavor": "codex",
+        "root": ".claude\\skills",
+        "count": 16,
+        "all_clean": true,
+        "score_map": {
+          "artifact-upcycle": 100,
+          "claude-skill-bridge": 100,
+          "codex-skill-bridge": 100,
+          "conceptualize": 100,
+          "decision-razor": 100,
+          "gh-address-comments": 100,
+          "gh-fix-ci": 100,
+          "gh-mcp-autonomy": 100,
+          "imagegen": 100,
+          "mailbox-handoff": 100,
+          "meta-polisher-validator": 100,
+          "openai-docs": 100,
+          "python-header-canon": 100,
+          "script-envelope": 100,
+          "skill-polisher": 100,
+          "sora": 100
+        },
+        "issue_count": 0
+      },
+      "claude": {
+        "flavor": "codex",
+        "root": ".claude\\skills",
+        "count": 16,
+        "all_clean": true,
+        "score_map": {
+          "artifact-upcycle": 100,
+          "claude-skill-bridge": 100,
+          "codex-skill-bridge": 100,
+          "conceptualize": 100,
+          "decision-razor": 100,
+          "gh-address-comments": 100,
+          "gh-fix-ci": 100,
+          "gh-mcp-autonomy": 100,
+          "imagegen": 100,
+          "mailbox-handoff": 100,
+          "meta-polisher-validator": 100,
+          "openai-docs": 100,
+          "python-header-canon": 100,
+          "script-envelope": 100,
+          "skill-polisher": 100,
+          "sora": 100
+        },
+        "issue_count": 0
+      },
+      "issues": []
+    },
+    "e2e_matrix_claude_on_codex.json": {
+      "ok": true,
+      "codex": {
+        "flavor": "claude",
+        "root": ".codex\\skills",
+        "count": 16,
+        "all_clean": true,
+        "score_map": {
+          "artifact-upcycle": 100,
+          "claude-skill-bridge": 100,
+          "codex-skill-bridge": 100,
+          "conceptualize": 100,
+          "decision-razor": 100,
+          "gh-address-comments": 100,
+          "gh-fix-ci": 100,
+          "gh-mcp-autonomy": 100,
+          "imagegen": 100,
+          "mailbox-handoff": 100,
+          "meta-polisher-validator": 100,
+          "openai-docs": 100,
+          "python-header-canon": 100,
+          "script-envelope": 100,
+          "skill-polisher": 100,
+          "sora": 100
+        },
+        "issue_count": 0
+      },
+      "claude": {
+        "flavor": "claude",
+        "root": ".codex\\skills",
+        "count": 16,
+        "all_clean": true,
+        "score_map": {
+          "artifact-upcycle": 100,
+          "claude-skill-bridge": 100,
+          "codex-skill-bridge": 100,
+          "conceptualize": 100,
+          "decision-razor": 100,
+          "gh-address-comments": 100,
+          "gh-fix-ci": 100,
+          "gh-mcp-autonomy": 100,
+          "imagegen": 100,
+          "mailbox-handoff": 100,
+          "meta-polisher-validator": 100,
+          "openai-docs": 100,
+          "python-header-canon": 100,
+          "script-envelope": 100,
+          "skill-polisher": 100,
+          "sora": 100
+        },
+        "issue_count": 0
+      },
+      "issues": []
+    },
+    "e2e_matrix_claude_on_claude.json": {
+      "ok": true,
+      "codex": {
+        "flavor": "claude",
+        "root": ".claude\\skills",
+        "count": 16,
+        "all_clean": true,
+        "score_map": {
+          "artifact-upcycle": 100,
+          "claude-skill-bridge": 100,
+          "codex-skill-bridge": 100,
+          "conceptualize": 100,
+          "decision-razor": 100,
+          "gh-address-comments": 100,
+          "gh-fix-ci": 100,
+          "gh-mcp-autonomy": 100,
+          "imagegen": 100,
+          "mailbox-handoff": 100,
+          "meta-polisher-validator": 100,
+          "openai-docs": 100,
+          "python-header-canon": 100,
+          "script-envelope": 100,
+          "skill-polisher": 100,
+          "sora": 100
+        },
+        "issue_count": 0
+      },
+      "claude": {
+        "flavor": "claude",
+        "root": ".claude\\skills",
+        "count": 16,
+        "all_clean": true,
+        "score_map": {
+          "artifact-upcycle": 100,
+          "claude-skill-bridge": 100,
+          "codex-skill-bridge": 100,
+          "conceptualize": 100,
+          "decision-razor": 100,
+          "gh-address-comments": 100,
+          "gh-fix-ci": 100,
+          "gh-mcp-autonomy": 100,
+          "imagegen": 100,
+          "mailbox-handoff": 100,
+          "meta-polisher-validator": 100,
+          "openai-docs": 100,
+          "python-header-canon": 100,
+          "script-envelope": 100,
+          "skill-polisher": 100,
+          "sora": 100
+        },
+        "issue_count": 0
+      },
+      "issues": []
+    }
+  }
+}

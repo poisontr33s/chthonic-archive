@@ -1,3 +1,44 @@
+## Session Packet Index (2026-02-06)
+
+I preserved everything and produced a premium, structured session packet in two docs (both mailboxes).
+
+Created:
+- `codex/mailbox/SESSION_CONTEXT_CHRONICLE_2026_02_06.md`
+- `codex/mailbox/SESSION_CONTEXT_APPENDIX_2026_02_06.md`
+- `claude/mailbox/SESSION_CONTEXT_CHRONICLE_2026_02_06.md`
+- `claude/mailbox/SESSION_CONTEXT_APPENDIX_2026_02_06.md`
+
+What they contain:
+- `SESSION_CONTEXT_CHRONICLE_2026_02_06.md`
+- High-level hierarchical narrative of the full lane:
+- Train Stop baseline
+- Skill architecture hardening
+- Cross-flavor parity model
+- Canonical path fixes
+- Mailbox restructuring
+- Current stable state and operating rule
+- `SESSION_CONTEXT_APPENDIX_2026_02_06.md`
+- Full evidence map with traceable artifact lists:
+- Active root artifacts (both sides)
+- Archived historical reports (both sides)
+- Verification commands used
+- Canonical path model
+- Decision record
+
+Important:
+- Nothing was deleted from archives.
+- Historical files remain in:
+- `codex/mailbox/archive/`
+- `claude/mailbox/archive/`
+
+Current root `.md` set is now tidy and high-signal on both sides:
+- `KISS_PARITY_BRIEF_2026_02_06.md`
+- `MAILBOX_CURRENT_STATE_2026_02_06.md`
+- `SESSION_CONTEXT_CHRONICLE_2026_02_06.md`
+- `SESSION_CONTEXT_APPENDIX_2026_02_06.md`
+- `SKILLS_PARITY_DISCREPANCY_2026_02_06.md`
+
+---
 ---
 type: report
 from: codex
@@ -223,3 +264,4 @@ Report Hash: `CODEX_CLAUDE_SKILLS_DIFFS_V1`
   }
 ]
 ```
+
