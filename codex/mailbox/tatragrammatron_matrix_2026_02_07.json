@@ -1,0 +1,50 @@
+{
+  "generated_at": "2026-02-07T04:15:19.398641+00:00",
+  "runner": "codex",
+  "cases": [
+    {
+      "case": {
+        "name": "codex_on_codex",
+        "root": ".codex/skills",
+        "target_flavor": "codex",
+        "require_assets": true
+      },
+      "exit_code": 0,
+      "stamps_json": "codex/mailbox/tatragrammatron_stamps_2026_02_07_codex_on_codex.json",
+      "summary_md": "codex/mailbox/TATRAGRAMMATRON_SUMMARY_2026_02_07_CODEX_ON_CODEX.md"
+    },
+    {
+      "case": {
+        "name": "codex_on_claude",
+        "root": ".claude/skills",
+        "target_flavor": "claude",
+        "require_assets": true
+      },
+      "exit_code": 0,
+      "stamps_json": "codex/mailbox/tatragrammatron_stamps_2026_02_07_codex_on_claude.json",
+      "summary_md": "codex/mailbox/TATRAGRAMMATRON_SUMMARY_2026_02_07_CODEX_ON_CLAUDE.md"
+    },
+    {
+      "case": {
+        "name": "auto_on_claude",
+        "root": ".claude/skills",
+        "target_flavor": "auto",
+        "require_assets": true
+      },
+      "exit_code": 0,
+      "stamps_json": "codex/mailbox/tatragrammatron_stamps_2026_02_07_auto_on_claude.json",
+      "summary_md": "codex/mailbox/TATRAGRAMMATRON_SUMMARY_2026_02_07_AUTO_ON_CLAUDE.md"
+    },
+    {
+      "case": {
+        "name": "claude_contract_on_codex",
+        "root": ".codex/skills",
+        "target_flavor": "claude",
+        "require_assets": true
+      },
+      "exit_code": 0,
+      "stamps_json": "codex/mailbox/tatragrammatron_stamps_2026_02_07_claude_contract_on_codex.json",
+      "summary_md": "codex/mailbox/TATRAGRAMMATRON_SUMMARY_2026_02_07_CLAUDE_CONTRACT_ON_CODEX.md"
+    }
+  ]
+}
