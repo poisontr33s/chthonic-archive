@@ -1,6 +1,6 @@
 {
   "mailbox": "codex/mailbox",
-  "generated_on": "2026-02-07T03:40:27.040509+00:00",
+  "generated_on": "2026-02-07T03:55:57.294804+00:00",
   "active": {
     "md": [
       "HF_GEMMA_PROBE.md",
@@ -12,12 +12,15 @@
       "SKILLS_PARITY_DISCREPANCY_2026_02_06.md",
       "TATRAGRAMMATRON_SUMMARY_2026_02_06.md",
       "TATRAGRAMMATRON_SUMMARY_2026_02_07.md",
+      "TATRAGRAMMATRON_SUMMARY_2026_02_07_CLAUDE.md",
+      "TATRAGRAMMATRON_SUMMARY_2026_02_07_CODEX.md",
       "TATRAGRAMMATRON_SUMMARY_2026_02_07_V2.md",
       "TETRAGRAMMATON_PACKET.md",
       "TETRAGRAMMATON_PROGRESS_2026_02_06.md"
     ],
     "json": [
       "META_POLISHER_VALIDATION_SUMMARY.json",
+      "claude_skill_audit_2026_02_07.json",
       "e2e_matrix_claude_on_claude.json",
       "e2e_matrix_claude_on_codex.json",
       "e2e_matrix_codex_on_claude.json",
@@ -28,6 +31,8 @@
       "skills_parity_map_2026_02_06.json",
       "tatragrammatron_stamps_2026_02_06.json",
       "tatragrammatron_stamps_2026_02_07.json",
+      "tatragrammatron_stamps_2026_02_07_claude.json",
+      "tatragrammatron_stamps_2026_02_07_codex.json",
       "tatragrammatron_stamps_2026_02_07_v2.json",
       "tatragrammatron_trend.json"
     ]

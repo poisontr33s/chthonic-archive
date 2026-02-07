@@ -1,6 +1,6 @@
 ---
 type: mailbox-state
-updated: 2026-02-07T03:40:27.041557+00:00
+updated: 2026-02-07T03:55:57.295891+00:00
 mailbox: codex/mailbox
 ---
 
@@ -17,9 +17,12 @@ mailbox: codex/mailbox
 - `SKILLS_PARITY_DISCREPANCY_2026_02_06.md`
 - `TATRAGRAMMATRON_SUMMARY_2026_02_06.md`
 - `TATRAGRAMMATRON_SUMMARY_2026_02_07.md`
+- `TATRAGRAMMATRON_SUMMARY_2026_02_07_CLAUDE.md`
+- `TATRAGRAMMATRON_SUMMARY_2026_02_07_CODEX.md`
 - `TATRAGRAMMATRON_SUMMARY_2026_02_07_V2.md`
 - `TETRAGRAMMATON_PACKET.md`
 - `TETRAGRAMMATON_PROGRESS_2026_02_06.md`
+- `claude_skill_audit_2026_02_07.json`
 - `e2e_matrix_claude_on_claude.json`
 - `e2e_matrix_claude_on_codex.json`
 - `e2e_matrix_codex_on_claude.json`
@@ -30,6 +33,8 @@ mailbox: codex/mailbox
 - `skills_parity_map_2026_02_06.json`
 - `tatragrammatron_stamps_2026_02_06.json`
 - `tatragrammatron_stamps_2026_02_07.json`
+- `tatragrammatron_stamps_2026_02_07_claude.json`
+- `tatragrammatron_stamps_2026_02_07_codex.json`
 - `tatragrammatron_stamps_2026_02_07_v2.json`
 - `tatragrammatron_trend.json`
 

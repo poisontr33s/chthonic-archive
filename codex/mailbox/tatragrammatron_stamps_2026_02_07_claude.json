@@ -1,0 +1,307 @@
+{
+  "generated_at": "2026-02-07T03:55:47.323229+00:00",
+  "count": 17,
+  "records": [
+    {
+      "skill": "artifact-upcycle",
+      "stamp": "#TBD",
+      "severity": "INFO",
+      "domain": "maintainability",
+      "file": "SKILL.md",
+      "line": null,
+      "message": "Debt markers detected (TODO:2).",
+      "remedy": "Review markers and convert unresolved debt into tracked action items.",
+      "confidence": 0.9
+    },
+    {
+      "skill": "artifact-upcycle",
+      "stamp": "#PURE",
+      "severity": "INFO",
+      "domain": "structure",
+      "file": "SKILL.md",
+      "line": null,
+      "message": "TASTE: PURE (Clean) and no blocking entropy detected.",
+      "remedy": "None (record only).",
+      "confidence": 1.0
+    },
+    {
+      "skill": "claude-skill-bridge",
+      "stamp": "#PURE",
+      "severity": "INFO",
+      "domain": "structure",
+      "file": "SKILL.md",
+      "line": null,
+      "message": "TASTE: PURE (Clean) and no blocking entropy detected.",
+      "remedy": "None (record only).",
+      "confidence": 1.0
+    },
+    {
+      "skill": "codex-skill-bridge",
+      "stamp": "#PURE",
+      "severity": "INFO",
+      "domain": "structure",
+      "file": "SKILL.md",
+      "line": null,
+      "message": "TASTE: PURE (Clean) and no blocking entropy detected.",
+      "remedy": "None (record only).",
+      "confidence": 1.0
+    },
+    {
+      "skill": "conceptualize",
+      "stamp": "#PURE",
+      "severity": "INFO",
+      "domain": "structure",
+      "file": "SKILL.md",
+      "line": null,
+      "message": "TASTE: PURE (Clean) and no blocking entropy detected.",
+      "remedy": "None (record only).",
+      "confidence": 1.0
+    },
+    {
+      "skill": "decision-razor",
+      "stamp": "#PURE",
+      "severity": "INFO",
+      "domain": "structure",
+      "file": "SKILL.md",
+      "line": null,
+      "message": "TASTE: PURE (Clean) and no blocking entropy detected.",
+      "remedy": "None (record only).",
+      "confidence": 1.0
+    },
+    {
+      "skill": "gh-address-comments",
+      "stamp": "#PURE",
+      "severity": "INFO",
+      "domain": "structure",
+      "file": "SKILL.md",
+      "line": null,
+      "message": "TASTE: PURE (Clean) and no blocking entropy detected.",
+      "remedy": "None (record only).",
+      "confidence": 1.0
+    },
+    {
+      "skill": "gh-fix-ci",
+      "stamp": "#PURE",
+      "severity": "INFO",
+      "domain": "structure",
+      "file": "SKILL.md",
+      "line": null,
+      "message": "TASTE: PURE (Clean) and no blocking entropy detected.",
+      "remedy": "None (record only).",
+      "confidence": 1.0
+    },
+    {
+      "skill": "gh-mcp-autonomy",
+      "stamp": "#PURE",
+      "severity": "INFO",
+      "domain": "structure",
+      "file": "SKILL.md",
+      "line": null,
+      "message": "TASTE: PURE (Clean) and no blocking entropy detected.",
+      "remedy": "None (record only).",
+      "confidence": 1.0
+    },
+    {
+      "skill": "imagegen",
+      "stamp": "#PURE",
+      "severity": "INFO",
+      "domain": "structure",
+      "file": "SKILL.md",
+      "line": null,
+      "message": "TASTE: PURE (Clean) and no blocking entropy detected.",
+      "remedy": "None (record only).",
+      "confidence": 1.0
+    },
+    {
+      "skill": "mailbox-handoff",
+      "stamp": "#PURE",
+      "severity": "INFO",
+      "domain": "structure",
+      "file": "SKILL.md",
+      "line": null,
+      "message": "TASTE: PURE (Clean) and no blocking entropy detected.",
+      "remedy": "None (record only).",
+      "confidence": 1.0
+    },
+    {
+      "skill": "meta-polisher-validator",
+      "stamp": "#PURE",
+      "severity": "INFO",
+      "domain": "structure",
+      "file": "SKILL.md",
+      "line": null,
+      "message": "TASTE: PURE (Clean) and no blocking entropy detected.",
+      "remedy": "None (record only).",
+      "confidence": 1.0
+    },
+    {
+      "skill": "openai-docs",
+      "stamp": "#PURE",
+      "severity": "INFO",
+      "domain": "structure",
+      "file": "SKILL.md",
+      "line": null,
+      "message": "TASTE: PURE (Clean) and no blocking entropy detected.",
+      "remedy": "None (record only).",
+      "confidence": 1.0
+    },
+    {
+      "skill": "python-header-canon",
+      "stamp": "#PURE",
+      "severity": "INFO",
+      "domain": "structure",
+      "file": "SKILL.md",
+      "line": null,
+      "message": "TASTE: PURE (Clean) and no blocking entropy detected.",
+      "remedy": "None (record only).",
+      "confidence": 1.0
+    },
+    {
+      "skill": "script-envelope",
+      "stamp": "#PURE",
+      "severity": "INFO",
+      "domain": "structure",
+      "file": "SKILL.md",
+      "line": null,
+      "message": "TASTE: PURE (Clean) and no blocking entropy detected.",
+      "remedy": "None (record only).",
+      "confidence": 1.0
+    },
+    {
+      "skill": "skill-polisher",
+      "stamp": "#PURE",
+      "severity": "INFO",
+      "domain": "structure",
+      "file": "SKILL.md",
+      "line": null,
+      "message": "TASTE: PURE (Clean) and no blocking entropy detected.",
+      "remedy": "None (record only).",
+      "confidence": 1.0
+    },
+    {
+      "skill": "sora",
+      "stamp": "#PURE",
+      "severity": "INFO",
+      "domain": "structure",
+      "file": "SKILL.md",
+      "line": null,
+      "message": "TASTE: PURE (Clean) and no blocking entropy detected.",
+      "remedy": "None (record only).",
+      "confidence": 1.0
+    }
+  ],
+  "skills": [
+    {
+      "skill": "artifact-upcycle",
+      "exit_code": 0,
+      "score": 100,
+      "pure": true,
+      "applied_fixes": []
+    },
+    {
+      "skill": "claude-skill-bridge",
+      "exit_code": 0,
+      "score": 100,
+      "pure": true,
+      "applied_fixes": []
+    },
+    {
+      "skill": "codex-skill-bridge",
+      "exit_code": 0,
+      "score": 100,
+      "pure": true,
+      "applied_fixes": []
+    },
+    {
+      "skill": "conceptualize",
+      "exit_code": 0,
+      "score": 100,
+      "pure": true,
+      "applied_fixes": []
+    },
+    {
+      "skill": "decision-razor",
+      "exit_code": 0,
+      "score": 100,
+      "pure": true,
+      "applied_fixes": []
+    },
+    {
+      "skill": "gh-address-comments",
+      "exit_code": 0,
+      "score": 100,
+      "pure": true,
+      "applied_fixes": []
+    },
+    {
+      "skill": "gh-fix-ci",
+      "exit_code": 0,
+      "score": 100,
+      "pure": true,
+      "applied_fixes": []
+    },
+    {
+      "skill": "gh-mcp-autonomy",
+      "exit_code": 0,
+      "score": 100,
+      "pure": true,
+      "applied_fixes": []
+    },
+    {
+      "skill": "imagegen",
+      "exit_code": 0,
+      "score": 100,
+      "pure": true,
+      "applied_fixes": []
+    },
+    {
+      "skill": "mailbox-handoff",
+      "exit_code": 0,
+      "score": 100,
+      "pure": true,
+      "applied_fixes": []
+    },
+    {
+      "skill": "meta-polisher-validator",
+      "exit_code": 0,
+      "score": 100,
+      "pure": true,
+      "applied_fixes": []
+    },
+    {
+      "skill": "openai-docs",
+      "exit_code": 0,
+      "score": 100,
+      "pure": true,
+      "applied_fixes": []
+    },
+    {
+      "skill": "python-header-canon",
+      "exit_code": 0,
+      "score": 100,
+      "pure": true,
+      "applied_fixes": []
+    },
+    {
+      "skill": "script-envelope",
+      "exit_code": 0,
+      "score": 100,
+      "pure": true,
+      "applied_fixes": []
+    },
+    {
+      "skill": "skill-polisher",
+      "exit_code": 0,
+      "score": 100,
+      "pure": true,
+      "applied_fixes": []
+    },
+    {
+      "skill": "sora",
+      "exit_code": 0,
+      "score": 100,
+      "pure": true,
+      "applied_fixes": []
+    }
+  ]
+}
