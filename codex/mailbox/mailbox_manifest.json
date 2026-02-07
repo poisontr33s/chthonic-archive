@@ -1,10 +1,11 @@
 {
   "mailbox": "codex/mailbox",
-  "generated_on": "2026-02-06T20:13:06.595599+00:00",
+  "generated_on": "2026-02-06T20:21:36.309647+00:00",
   "active": {
     "md": [
       "HF_GEMMA_PROBE.md",
       "KISS_PARITY_BRIEF_2026_02_06.md",
+      "MAILBOX_CURRENT_STATE.md",
       "MAILBOX_CURRENT_STATE_2026_02_06.md",
       "SESSION_CONTEXT_APPENDIX_2026_02_06.md",
       "SESSION_CONTEXT_CHRONICLE_2026_02_06.md",

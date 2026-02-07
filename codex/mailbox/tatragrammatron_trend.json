@@ -20,6 +20,13 @@
       "skills": 16,
       "avg_score": 100.0,
       "failed": 0
+    },
+    {
+      "generated_at": "2026-02-06T20:21:36.594165+00:00",
+      "mode": "verify",
+      "skills": 16,
+      "avg_score": 100.0,
+      "failed": 0
     }
   ]
 }

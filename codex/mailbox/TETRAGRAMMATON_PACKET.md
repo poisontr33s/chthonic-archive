@@ -1,11 +1,16 @@
 ---
 type: packet
 created: 2026-02-06T20:13:06.593150+00:00
+updated: 2026-02-06T20:21:36.307795+00:00
 mailbox: codex/mailbox
 codename: TETRAGRAMMATON
+sources_hash: df1b9350a76e43190a764e596e0fb0a2ca3add015053ed5dc6e7188747c921f9
+sources_count: 9
 ---
 
 # TETRAGRAMMATON Packet
+
+<!-- @SCRIBED: 2026-02-06T20:21:36.307800+00:00 -->
 
 ## Index
 - `SESSION_CONTEXT_CHRONICLE_2026_02_06.md`
@@ -19,7 +24,8 @@ codename: TETRAGRAMMATON
 - `tatragrammatron_trend.json`
 
 ## Snapshot
-- Generated: `2026-02-06T20:13:06.593168+00:00`
+- Generated: `2026-02-06T20:21:36.307795+00:00`
+- Sources hash: `df1b9350a76e43190a764e596e0fb0a2ca3add015053ed5dc6e7188747c921f9`
 
 ## Content
 
@@ -356,10 +362,10 @@ Path: `C:/Users/erdno/chthonic-archive/codex/mailbox/HF_GEMMA_PROBE.md`
 ```md
 # HF Gemma Probe
 
-- Generated: `2026-02-06T19:59:52.962308+00:00`
+- Generated: `2026-02-06T20:21:36.149910+00:00`
 - Search: `gemma-3`
-- Total fetched: `25`
-- Top emitted: `10`
+- Total fetched: `200`
+- Top emitted: `25`
 
 ## Top Candidates
 
@@ -375,6 +381,21 @@ Path: `C:/Users/erdno/chthonic-archive/codex/mailbox/HF_GEMMA_PROBE.md`
 | `google/gemma-3n-E2B-it` | `53.17` | `305510` | `267` | `manual` | `False` | `2025-07-14 13:55:52+00:00` | `transformers, safetensors, gemma3n, image-to-text, automatic-speech-recognition, automatic-speech-translation, audio-text-to-text, video-text-to-text` |
 | `MaziyarPanahi/gemma-3-12b-it-GGUF` | `51.017` | `177075` | `15` | `False` | `False` | `2025-03-12 20:43:42+00:00` | `gguf, mistral, quantized, 2-bit, 3-bit, 4-bit, 5-bit, 6-bit` |
 | `MaziyarPanahi/gemma-3-1b-it-GGUF` | `50.633` | `176185` | `11` | `False` | `False` | `2025-03-12 20:06:29+00:00` | `gguf, mistral, quantized, 2-bit, 3-bit, 4-bit, 5-bit, 6-bit` |
+| `google/gemma-3n-E4B-it` | `50.25` | `164386` | `865` | `manual` | `False` | `2025-07-14 13:56:17+00:00` | `transformers, safetensors, gemma3n, image-to-text, automatic-speech-recognition, automatic-speech-translation, audio-text-to-text, video-text-to-text` |
+| `MaziyarPanahi/gemma-3-27b-it-GGUF` | `50.158` | `174252` | `8` | `False` | `False` | `2025-03-16 21:49:31+00:00` | `gguf, quantized, 2-bit, 3-bit, 4-bit, 5-bit, 6-bit, 8-bit` |
+| `mlabonne/gemma-3-27b-it-abliterated` | `49.714` | `132111` | `280` | `False` | `False` | `2025-03-21 16:10:45+00:00` | `transformers, safetensors, gemma3, image-to-text, image-text-to-text, conversational, base_model:google/gemma-3-27b-it, base_model:finetune:google/gemma-3-27b-it` |
+| `abhishekchohan/gemma-3-12b-it-quantized-W4A16` | `49.175` | `183634` | `7` | `False` | `False` | `2025-03-17 20:13:37+00:00` | `transformers, safetensors, gemma3, image-to-text, image-text-to-text, conversational, base_model:google/gemma-3-12b-it, base_model:quantized:google/gemma-3-12b-it` |
+| `unsloth/gemma-3-12b-it-GGUF` | `48.519` | `125862` | `146` | `False` | `False` | `2025-08-14 19:58:38+00:00` | `transformers, gguf, gemma3, image-to-text, unsloth, gemma, google, en` |
+| `unsloth/gemma-3-27b-it-bnb-4bit` | `47.824` | `165671` | `18` | `False` | `False` | `2025-05-12 08:08:43+00:00` | `transformers, safetensors, gemma3, image-to-text, unsloth, gemma, google, en` |
+| `unsloth/gemma-3-27b-it-GGUF` | `46.991` | `110401` | `183` | `False` | `False` | `2025-08-14 19:58:58+00:00` | `transformers, gguf, gemma3, image-to-text, unsloth, gemma, google, en` |
+| `leon-se/gemma-3-27b-it-qat-W4A16-G128` | `46.249` | `153564` | `17` | `False` | `False` | `2025-04-27 20:09:06+00:00` | `safetensors, gemma3, image-text-to-text, conversational, base_model:google/gemma-3-27b-it-qat-q4_0-unquantized, base_model:quantized:google/gemma-3-27b-it-qat-q4_0-unquantized, license:gemma, compressed-tensors` |
+| `google/gemma-3-4b-pt` | `46.021` | `300728` | `145` | `manual` | `False` | `2025-03-21 16:13:41+00:00` | `transformers, safetensors, gemma3, image-to-text, image-text-to-text, arxiv:1905.07830, arxiv:1905.10044, arxiv:1911.11641` |
+| `mlx-community/gemma-3-4b-it-qat-4bit` | `43.715` | `181448` | `5` | `False` | `False` | `2025-04-21 20:31:00+00:00` | `transformers, safetensors, gemma3, image-to-text, internvl, custom_code, mlx, image-text-to-text` |
+| `google/gemma-3-270m-it` | `42.644` | `129166` | `548` | `manual` | `False` | `2025-08-14 07:35:07+00:00` | `transformers, safetensors, gemma3_text, text-generation, gemma3, gemma, google, conversational` |
+| `pytorch/gemma-3-27b-it-AWQ-INT4` | `41.511` | `128192` | `2` | `False` | `False` | `2025-10-11 01:51:54+00:00` | `transformers, pytorch, gemma3, image-to-text, torchao, en, arxiv:2507.16099, base_model:google/gemma-3-27b-it` |
+| `lmstudio-community/gemma-3-4b-it-GGUF` | `40.88` | `97853` | `27` | `False` | `False` | `2025-03-12 18:32:41+00:00` | `gguf, image-text-to-text, base_model:google/gemma-3-4b-it, base_model:quantized:google/gemma-3-4b-it, license:gemma, endpoints_compatible, region:us, conversational` |
+| `google/gemma-3-270m` | `38.433` | `107667` | `976` | `manual` | `False` | `2025-08-14 07:35:01+00:00` | `transformers, safetensors, gemma3_text, text-generation, gemma3, gemma, google, arxiv:2503.19786` |
+| `lmstudio-community/gemma-3n-E4B-it-MLX-4bit` | `36.49` | `96040` | `1` | `False` | `False` | `2025-07-21 15:52:20+00:00` | `transformers, safetensors, gemma3n, image-to-text, automatic-speech-recognition, automatic-speech-translation, audio-text-to-text, video-text-to-text` |
 
 ## Notes
 
@@ -388,9 +409,9 @@ Path: `C:/Users/erdno/chthonic-archive/codex/mailbox/hf_gemma_probe.json`
 
 ```json
 {
-  "generated_at": "2026-02-06T19:59:52.962308+00:00",
+  "generated_at": "2026-02-06T20:21:36.149910+00:00",
   "search": "gemma-3",
-  "fetched": 25,
+  "fetched": 200,
   "top": [
     {
       "repo_id": "google/gemma-3-27b-it",
@@ -530,7 +551,7 @@ Path: `C:/Users/erdno/chthonic-archive/codex/mailbox/hf_gemma_probe.json`
       "author": "google",
       "likes": 831,
       "downloads": 1573932,
-   
+  
 ...(truncated)...
 ```
 
@@ -632,3 +653,8 @@ Path: `C:/Users/erdno/chthonic-archive/codex/mailbox/tatragrammatron_trend.json`
   ]
 }
 ```
+
+## Scribe Log
+
+- 2026-02-06T20:19:32.082083+00:00: sources changed
+- 2026-02-06T20:21:36.307795+00:00: sources changed
