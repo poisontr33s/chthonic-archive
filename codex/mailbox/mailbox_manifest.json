@@ -1,6 +1,8 @@
 {
+  "schema_version": 2,
   "mailbox": "codex/mailbox",
-  "generated_on": "2026-02-07T18:07:03.587388+00:00",
+  "generated_on": "2026-02-07T19:37:14.830162+00:00",
+  "manifest_file": "mailbox_manifest.json",
   "active": {
     "md": [
       "CLAUDE_RUNBOOK_MATRIX.md",
@@ -23,7 +25,6 @@
       "META_POLISHER_VALIDATION_SUMMARY.json",
       "claude_skill_audit_2026_02_07.json",
       "hf_gemma_probe.json",
-      "mailbox_manifest.json",
       "skills_parity_map_2026_02_06.json",
       "tatragrammatron_matrix_2026_02_07.json",
       "tatragrammatron_stamps_latest_codex.json",

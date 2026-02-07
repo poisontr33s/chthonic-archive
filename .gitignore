@@ -4,6 +4,7 @@
 # Allow git metadata
 !.gitignore
 !.copilotignore
+!.gitattributes
 
 # Allow PR/patch suggestions
 !PR_SUGGESTION.md
@@ -90,6 +91,15 @@ extensions/*/bun.lock
 !scripts/start_mcp_session.ps1
 !scripts/CLAUDE_CODE_INTEGRATION.md
 !CLAUDE_CODE_INTEGRATION_SUMMARY.md
+
+# Allow mailbox + audit tooling
+!scripts/mailbox_scribe.py
+!scripts/mailbox_polisher.py
+!scripts/normalize_e2e_archives.py
+!scripts/normalize_eol.py
+!scripts/check_mailbox_manifest.py
+!scripts/hf_probe.py
+!scripts/api_pool.ps1
 
 # Allow Shell Sovereignty & Validation (§XIV.2 canonical probe)
 !scripts/shell_capabilities.ps1

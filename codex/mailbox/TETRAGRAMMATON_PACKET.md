@@ -1,16 +1,21 @@
 ---
 type: packet
 created: 2026-02-06T20:13:06.593150+00:00
-updated: 2026-02-07T18:07:03.583010+00:00
+updated: 2026-02-07T19:37:14.838263+00:00
 mailbox: codex/mailbox
 codename: TETRAGRAMMATON
-sources_hash: 1ef5ea170a90694c14526e4c3aa8b9fb6aa26117ece06d120014ad0661ddc26a
+sources_hash: 6c32e55a3befc398c70efc9e5ef3e7f043af53f12e14caffd8595a7fc0d11e9f
 sources_count: 14
 ---
 
 # TETRAGRAMMATON Packet
 
-<!-- @SCRIBED: 2026-02-07T18:07:03.583017+00:00 -->
+<!-- @SCRIBED: 2026-02-07T19:37:14.838268+00:00 -->
+
+## Packet Rules
+- Paths are repo-relative (portable; no local usernames).
+- Large JSON files may be embedded as a valid JSON stub with `_truncated: true`.
+- Stub fields: `relative_path`, `bytes`, `sha256`.
 
 ## Index
 - `SESSION_CONTEXT_CHRONICLE_2026_02_06.md`
@@ -29,13 +34,13 @@ sources_count: 14
 - `mailbox_manifest.json`
 
 ## Snapshot
-- Generated: `2026-02-07T18:07:03.583010+00:00`
-- Sources hash: `1ef5ea170a90694c14526e4c3aa8b9fb6aa26117ece06d120014ad0661ddc26a`
+- Generated: `2026-02-07T19:37:14.838263+00:00`
+- Sources hash: `6c32e55a3befc398c70efc9e5ef3e7f043af53f12e14caffd8595a7fc0d11e9f`
 
 ## Content
 
 ### SESSION_CONTEXT_CHRONICLE_2026_02_06.md
-Path: `C:/Users/erdno/chthonic-archive/codex/mailbox/SESSION_CONTEXT_CHRONICLE_2026_02_06.md`
+Path: `codex/mailbox/SESSION_CONTEXT_CHRONICLE_2026_02_06.md`
 
 ```md
 ---
@@ -109,7 +114,7 @@ Preserve full historical value of the session while converting scattered mailbox
 ```
 
 ### SESSION_CONTEXT_APPENDIX_2026_02_06.md
-Path: `C:/Users/erdno/chthonic-archive/codex/mailbox/SESSION_CONTEXT_APPENDIX_2026_02_06.md`
+Path: `codex/mailbox/SESSION_CONTEXT_APPENDIX_2026_02_06.md`
 
 ```md
 ---
@@ -184,7 +189,7 @@ status: active
 ```
 
 ### SKILLS_PARITY_DISCREPANCY_2026_02_06.md
-Path: `C:/Users/erdno/chthonic-archive/codex/mailbox/SKILLS_PARITY_DISCREPANCY_2026_02_06.md`
+Path: `codex/mailbox/SKILLS_PARITY_DISCREPANCY_2026_02_06.md`
 
 ```md
 ---
@@ -273,7 +278,7 @@ scope: codex-vs-claude-skills
 ```
 
 ### KISS_PARITY_BRIEF_2026_02_06.md
-Path: `C:/Users/erdno/chthonic-archive/codex/mailbox/KISS_PARITY_BRIEF_2026_02_06.md`
+Path: `codex/mailbox/KISS_PARITY_BRIEF_2026_02_06.md`
 
 ```md
 ---
@@ -362,7 +367,7 @@ Report Hash: `KISS_PARITY_BRIEF_2026_02_06`
 ```
 
 ### HF_GEMMA_PROBE.md
-Path: `C:/Users/erdno/chthonic-archive/codex/mailbox/HF_GEMMA_PROBE.md`
+Path: `codex/mailbox/HF_GEMMA_PROBE.md`
 
 ```md
 # HF Gemma Probe
@@ -410,158 +415,21 @@ Path: `C:/Users/erdno/chthonic-archive/codex/mailbox/HF_GEMMA_PROBE.md`
 ```
 
 ### hf_gemma_probe.json
-Path: `C:/Users/erdno/chthonic-archive/codex/mailbox/hf_gemma_probe.json`
+Path: `codex/mailbox/hf_gemma_probe.json`
 
 ```json
 {
-  "generated_at": "2026-02-06T20:21:36.149910+00:00",
-  "search": "gemma-3",
-  "fetched": 200,
-  "top": [
-    {
-      "repo_id": "google/gemma-3-27b-it",
-      "author": "google",
-      "likes": 1856,
-      "downloads": 1622506,
-      "gated": "manual",
-      "private": false,
-      "last_modified": "2025-03-21 20:29:02+00:00",
-      "pipeline_tag": "image-text-to-text",
-      "library_name": "transformers",
-      "tags": [
-        "transformers",
-        "safetensors",
-        "gemma3",
-        "image-to-text",
-        "image-text-to-text",
-        "conversational",
-        "arxiv:1905.07830",
-        "arxiv:1905.10044",
-        "arxiv:1911.11641",
-        "arxiv:1904.09728",
-        "arxiv:1705.03551",
-        "arxiv:1911.01547",
-        "arxiv:1907.10641",
-        "arxiv:1903.00161",
-        "arxiv:2009.03300",
-        "arxiv:2304.06364",
-        "arxiv:2103.03874",
-        "arxiv:2110.14168",
-        "arxiv:2311.12022",
-        "arxiv:2108.07732",
-        "arxiv:2107.03374",
-        "arxiv:2210.03057",
-        "arxiv:2106.03193",
-        "arxiv:1910.11856",
-        "arxiv:2502.12404",
-        "arxiv:2502.21228",
-        "arxiv:2404.16816",
-        "arxiv:2104.12756",
-        "arxiv:2311.16502",
-        "arxiv:2203.10244",
-        "arxiv:2404.12390",
-        "arxiv:1810.12440",
-        "arxiv:1908.02660",
-        "arxiv:2312.11805",
-        "base_model:google/gemma-3-27b-pt",
-        "base_model:finetune:google/gemma-3-27b-pt",
-        "license:gemma",
-        "text-generation-inference",
-        "endpoints_compatible",
-        "region:us"
-      ],
-      "inference": null,
-      "inference_provider_mapping": [
-        {
-          "provider": "featherless-ai",
-          "hf_model_id": "google/gemma-3-27b-it",
-          "provider_id": "google/gemma-3-27b-it",
-          "status": "live",
-          "task": "conversational",
-          "adapter": null,
-          "adapter_weights_path": null,
-          "type": "single-model"
-        },
-        {
-          "provider": "scaleway",
-          "hf_model_id": "google/gemma-3-27b-it",
-          "provider_id": "gemma-3-27b-it",
-          "status": "live",
-          "task": "conversational",
-          "adapter": null,
-          "adapter_weights_path": null,
-          "type": "single-model"
-        }
-      ],
-      "score": 65.0
-    },
-    {
-      "repo_id": "google/gemma-3-4b-it",
-      "author": "google",
-      "likes": 1157,
-      "downloads": 996075,
-      "gated": "manual",
-      "private": false,
-      "last_modified": "2025-03-21 20:20:53+00:00",
-      "pipeline_tag": "image-text-to-text",
-      "library_name": "transformers",
-      "tags": [
-        "transformers",
-        "safetensors",
-        "gemma3",
-        "image-to-text",
-        "image-text-to-text",
-        "conversational",
-        "arxiv:1905.07830",
-        "arxiv:1905.10044",
-        "arxiv:1911.11641",
-        "arxiv:1904.09728",
-        "arxiv:1705.03551",
-        "arxiv:1911.01547",
-        "arxiv:1907.10641",
-        "arxiv:1903.00161",
-        "arxiv:2009.03300",
-        "arxiv:2304.06364",
-        "arxiv:2103.03874",
-        "arxiv:2110.14168",
-        "arxiv:2311.12022",
-        "arxiv:2108.07732",
-        "arxiv:2107.03374",
-        "arxiv:2210.03057",
-        "arxiv:2106.03193",
-        "arxiv:1910.11856",
-        "arxiv:2502.12404",
-        "arxiv:2502.21228",
-        "arxiv:2404.16816",
-        "arxiv:2104.12756",
-        "arxiv:2311.16502",
-        "arxiv:2203.10244",
-        "arxiv:2404.12390",
-        "arxiv:1810.12440",
-        "arxiv:1908.02660",
-        "arxiv:2312.11805",
-        "base_model:google/gemma-3-4b-pt",
-        "base_model:finetune:google/gemma-3-4b-pt",
-        "license:gemma",
-        "text-generation-inference",
-        "endpoints_compatible",
-        "region:us"
-      ],
-      "inference": null,
-      "inference_provider_mapping": [],
-      "score": 62.007
-    },
-    {
-      "repo_id": "google/gemma-3-1b-it",
-      "author": "google",
-      "likes": 831,
-      "downloads": 1573932,
-  
-...(truncated)...
+  "_truncated": true,
+  "note": "Full JSON omitted from packet; see relative_path in the repo.",
+  "name": "hf_gemma_probe.json",
+  "relative_path": "codex/mailbox/hf_gemma_probe.json",
+  "bytes": 33153,
+  "sha256": "71836b7ae75ab8e6dacbfc4be7d9c5831ebee52a0e751df07ad843ec1ca1489a"
+}
 ```
 
 ### CLAUDE_RUNBOOK_MATRIX.md
-Path: `C:/Users/erdno/chthonic-archive/codex/mailbox/CLAUDE_RUNBOOK_MATRIX.md`
+Path: `codex/mailbox/CLAUDE_RUNBOOK_MATRIX.md`
 
 ```md
 # Claude Runbook: Polisher Matrix (Codex-generated)
@@ -601,7 +469,7 @@ uv run scripts/skill_audit.py --flavor claude --root .claude/skills --json --jso
 ```
 
 ### QUEUE_2026_02_07.md
-Path: `C:/Users/erdno/chthonic-archive/codex/mailbox/QUEUE_2026_02_07.md`
+Path: `codex/mailbox/QUEUE_2026_02_07.md`
 
 ```md
 # Tatragrammatron Queue (2026-02-07)
@@ -641,12 +509,12 @@ This queue captures the next iteration tranche for cross-flavor, poly-directiona
 ```
 
 ### MAILBOX_CURRENT_STATE.md
-Path: `C:/Users/erdno/chthonic-archive/codex/mailbox/MAILBOX_CURRENT_STATE.md`
+Path: `codex/mailbox/MAILBOX_CURRENT_STATE.md`
 
 ```md
 ---
 type: mailbox-state
-updated: 2026-02-07T17:56:28.055079+00:00
+updated: 2026-02-07T19:37:14.832139+00:00
 mailbox: codex/mailbox
 ---
 
@@ -665,6 +533,10 @@ mailbox: codex/mailbox
 - `TATRAGRAMMATRON_SUMMARY_LATEST_CODEX.md`
 - `TETRAGRAMMATON_PACKET.md`
 - `TETRAGRAMMATON_PROGRESS_2026_02_06.md`
+- `TOOLCHAIN_DOCTOR_LATEST.md`
+- `TOOLCHAIN_DOCTOR_REPORT_2026_02_07_174714.md`
+- `TOOLCHAIN_DOCTOR_REPORT_2026_02_07_180524.md`
+- `TOOLCHAIN_DOCTOR_REPORT_2026_02_07_180604.md`
 - `claude_skill_audit_2026_02_07.json`
 - `hf_gemma_probe.json`
 - `mailbox_manifest.json`
@@ -684,7 +556,7 @@ mailbox: codex/mailbox
 ```
 
 ### tatragrammatron_matrix_2026_02_07.json
-Path: `C:/Users/erdno/chthonic-archive/codex/mailbox/tatragrammatron_matrix_2026_02_07.json`
+Path: `codex/mailbox/tatragrammatron_matrix_2026_02_07.json`
 
 ```json
 {
@@ -740,7 +612,7 @@ Path: `C:/Users/erdno/chthonic-archive/codex/mailbox/tatragrammatron_matrix_2026
 ```
 
 ### TATRAGRAMMATRON_SUMMARY_LATEST_CODEX.md
-Path: `C:/Users/erdno/chthonic-archive/codex/mailbox/TATRAGRAMMATRON_SUMMARY_LATEST_CODEX.md`
+Path: `codex/mailbox/TATRAGRAMMATRON_SUMMARY_LATEST_CODEX.md`
 
 ```md
 # Skill Polisher Summary
@@ -776,157 +648,21 @@ Path: `C:/Users/erdno/chthonic-archive/codex/mailbox/TATRAGRAMMATRON_SUMMARY_LAT
 ```
 
 ### tatragrammatron_stamps_latest_codex.json
-Path: `C:/Users/erdno/chthonic-archive/codex/mailbox/tatragrammatron_stamps_latest_codex.json`
+Path: `codex/mailbox/tatragrammatron_stamps_latest_codex.json`
 
 ```json
 {
-  "generated_at": "2026-02-07T17:54:20.190897+00:00",
-  "count": 19,
-  "records": [
-    {
-      "skill": "artifact-upcycle",
-      "stamp": "#TBD",
-      "severity": "INFO",
-      "domain": "maintainability",
-      "file": "SKILL.md",
-      "line": null,
-      "message": "Debt markers detected (FIXME:3, TODO:30).",
-      "remedy": "Review markers and convert unresolved debt into tracked action items.",
-      "confidence": 0.9
-    },
-    {
-      "skill": "artifact-upcycle",
-      "stamp": "#PURE",
-      "severity": "INFO",
-      "domain": "structure",
-      "file": "SKILL.md",
-      "line": null,
-      "message": "TASTE: PURE (Clean) and no blocking entropy detected.",
-      "remedy": "None (record only).",
-      "confidence": 1.0
-    },
-    {
-      "skill": "claude-skill-bridge",
-      "stamp": "#PURE",
-      "severity": "INFO",
-      "domain": "structure",
-      "file": "SKILL.md",
-      "line": null,
-      "message": "TASTE: PURE (Clean) and no blocking entropy detected.",
-      "remedy": "None (record only).",
-      "confidence": 1.0
-    },
-    {
-      "skill": "codex-skill-bridge",
-      "stamp": "#PURE",
-      "severity": "INFO",
-      "domain": "structure",
-      "file": "SKILL.md",
-      "line": null,
-      "message": "TASTE: PURE (Clean) and no blocking entropy detected.",
-      "remedy": "None (record only).",
-      "confidence": 1.0
-    },
-    {
-      "skill": "conceptualize",
-      "stamp": "#PURE",
-      "severity": "INFO",
-      "domain": "structure",
-      "file": "SKILL.md",
-      "line": null,
-      "message": "TASTE: PURE (Clean) and no blocking entropy detected.",
-      "remedy": "None (record only).",
-      "confidence": 1.0
-    },
-    {
-      "skill": "decision-razor",
-      "stamp": "#PURE",
-      "severity": "INFO",
-      "domain": "structure",
-      "file": "SKILL.md",
-      "line": null,
-      "message": "TASTE: PURE (Clean) and no blocking entropy detected.",
-      "remedy": "None (record only).",
-      "confidence": 1.0
-    },
-    {
-      "skill": "gh-address-comments",
-      "stamp": "#PURE",
-      "severity": "INFO",
-      "domain": "structure",
-      "file": "SKILL.md",
-      "line": null,
-      "message": "TASTE: PURE (Clean) and no blocking entropy detected.",
-      "remedy": "None (record only).",
-      "confidence": 1.0
-    },
-    {
-      "skill": "gh-fix-ci",
-      "stamp": "#PURE",
-      "severity": "INFO",
-      "domain": "structure",
-      "file": "SKILL.md",
-      "line": null,
-      "message": "TASTE: PURE (Clean) and no blocking entropy detected.",
-      "remedy": "None (record only).",
-      "confidence": 1.0
-    },
-    {
-      "skill": "gh-mcp-autonomy",
-      "stamp": "#PURE",
-      "severity": "INFO",
-      "domain": "structure",
-      "file": "SKILL.md",
-      "line": null,
-      "message": "TASTE: PURE (Clean) and no blocking entropy detected.",
-      "remedy": "None (record only).",
-      "confidence": 1.0
-    },
-    {
-      "skill": "imagegen",
-      "stamp": "#PURE",
-      "severity": "INFO",
-      "domain": "structure",
-      "file": "SKILL.md",
-      "line": null,
-      "message": "TASTE: PURE (Clean) and no blocking entropy detected.",
-      "remedy": "None (record only).",
-      "confidence": 1.0
-    },
-    {
-      "skill": "mailbox-handoff",
-      "stamp": "#PURE",
-      "severity": "INFO",
-      "domain": "structure",
-      "file": "SKILL.md",
-      "line": null,
-      "message": "TASTE: PURE (Clean) and no blocking entropy detected.",
-      "remedy": "None (record only).",
-      "confidence": 1.0
-    },
-    {
-      "skill": "meta-polisher-validator",
-      "stamp": "#PURE",
-      "severity": "INFO",
-      "domain": "structure",
-      "file": "SKILL.md",
-      "line": null,
-      "message": "TASTE: PURE (Clean) and no blocking entropy detected.",
-      "remedy": "None (record only).",
-      "confidence": 1.0
-    },
-    {
-      "skill": "openai-docs",
-      "stamp": "#PURE",
-      "severity": "INFO",
-      "domain": "structure",
-      "file": "SKILL.md",
-      "line": nul
-...(truncated)...
+  "_truncated": true,
+  "note": "Full JSON omitted from packet; see relative_path in the repo.",
+  "name": "tatragrammatron_stamps_latest_codex.json",
+  "relative_path": "codex/mailbox/tatragrammatron_stamps_latest_codex.json",
+  "bytes": 8696,
+  "sha256": "aa35b493fd52afc92f57e57233bc74a39e8364d820a922de1eb8a859a198fbe4"
+}
 ```
 
 ### tatragrammatron_trend.json
-Path: `C:/Users/erdno/chthonic-archive/codex/mailbox/tatragrammatron_trend.json`
+Path: `codex/mailbox/tatragrammatron_trend.json`
 
 ```json
 {
@@ -1006,12 +742,14 @@ Path: `C:/Users/erdno/chthonic-archive/codex/mailbox/tatragrammatron_trend.json`
 ```
 
 ### mailbox_manifest.json
-Path: `C:/Users/erdno/chthonic-archive/codex/mailbox/mailbox_manifest.json`
+Path: `codex/mailbox/mailbox_manifest.json`
 
 ```json
 {
+  "schema_version": 2,
   "mailbox": "codex/mailbox",
-  "generated_on": "2026-02-07T17:56:28.053499+00:00",
+  "generated_on": "2026-02-07T19:37:14.830162+00:00",
+  "manifest_file": "mailbox_manifest.json",
   "active": {
     "md": [
       "CLAUDE_RUNBOOK_MATRIX.md",
@@ -1024,13 +762,16 @@ Path: `C:/Users/erdno/chthonic-archive/codex/mailbox/mailbox_manifest.json`
       "SKILLS_PARITY_DISCREPANCY_2026_02_06.md",
       "TATRAGRAMMATRON_SUMMARY_LATEST_CODEX.md",
       "TETRAGRAMMATON_PACKET.md",
-      "TETRAGRAMMATON_PROGRESS_2026_02_06.md"
+      "TETRAGRAMMATON_PROGRESS_2026_02_06.md",
+      "TOOLCHAIN_DOCTOR_LATEST.md",
+      "TOOLCHAIN_DOCTOR_REPORT_2026_02_07_174714.md",
+      "TOOLCHAIN_DOCTOR_REPORT_2026_02_07_180524.md",
+      "TOOLCHAIN_DOCTOR_REPORT_2026_02_07_180604.md"
     ],
     "json": [
       "META_POLISHER_VALIDATION_SUMMARY.json",
       "claude_skill_audit_2026_02_07.json",
       "hf_gemma_probe.json",
-      "mailbox_manifest.json",
       "skills_parity_map_2026_02_06.json",
       "tatragrammatron_matrix_2026_02_07.json",
       "tatragrammatron_stamps_latest_codex.json",
@@ -1095,3 +836,9 @@ Path: `C:/Users/erdno/chthonic-archive/codex/mailbox/mailbox_manifest.json`
 - 2026-02-07T17:56:02.140779+00:00: sources changed
 - 2026-02-07T17:56:28.049419+00:00: sources changed
 - 2026-02-07T18:07:03.583010+00:00: sources changed
+- 2026-02-07T18:39:35.471327+00:00: sources changed
+- 2026-02-07T18:48:48.548357+00:00: sources changed
+- 2026-02-07T18:57:47.867973+00:00: sources changed
+- 2026-02-07T19:04:47.955130+00:00: sources changed
+- 2026-02-07T19:08:12.903738+00:00: sources changed
+- 2026-02-07T19:37:14.838263+00:00: sources changed

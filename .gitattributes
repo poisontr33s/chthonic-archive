@@ -1,0 +1,42 @@
+* text=auto eol=lf
+
+# Known binary (never normalize or treat as text)
+*.png -text
+*.jpg -text
+*.jpeg -text
+*.gif -text
+*.webp -text
+*.ico -text
+*.pdf -text
+*.zip -text
+*.7z -text
+*.gz -text
+*.tar -text
+*.bz2 -text
+*.xz -text
+*.mp4 -text
+*.mov -text
+*.mp3 -text
+*.wav -text
+*.ttf -text
+*.otf -text
+*.woff -text
+*.woff2 -text
+*.exe -text
+*.dll -text
+*.pyd -text
+*.so -text
+*.dylib -text
+*.bin -text
+*.safetensors -text
+*.gguf -text
+
+*.md text eol=lf
+*.json text eol=lf
+*.py text eol=lf
+*.ps1 text eol=lf
+*.toml text eol=lf
+*.ts text eol=lf
+*.tsx text eol=lf
+*.yaml text eol=lf
+*.yml text eol=lf

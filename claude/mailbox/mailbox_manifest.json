@@ -1,22 +1,29 @@
 {
+  "schema_version": 2,
   "mailbox": "claude/mailbox",
-  "generated_on": "2026-02-06T19:40:22",
+  "generated_on": "2026-02-07T19:37:14.843965+00:00",
+  "manifest_file": "mailbox_manifest.json",
   "active": {
     "md": [
       "KISS_PARITY_BRIEF_2026_02_06.md",
-      "SKILLS_PARITY_DISCREPANCY_2026_02_06.md"
+      "MAILBOX_CURRENT_STATE.md",
+      "SESSION_CONTEXT_APPENDIX_2026_02_06.md",
+      "SESSION_CONTEXT_CHRONICLE_2026_02_06.md",
+      "SKILLS_PARITY_DISCREPANCY_2026_02_06.md",
+      "TETRAGRAMMATON_PACKET.md"
     ],
     "json": [
       "CLAUDE_META_VALIDATION_SUMMARY.json",
-      "e2e_matrix_claude_on_claude.json",
-      "e2e_matrix_claude_on_codex.json",
-      "e2e_matrix_codex_on_claude.json",
-      "e2e_matrix_codex_on_codex.json",
       "skills_parity_map_2026_02_06.json"
     ]
   },
-  "archive_count": 3,
+  "archive_count": 8,
   "archive_files": [
+    "2026_02_07/e2e_matrix_claude_on_claude.json",
+    "2026_02_07/e2e_matrix_claude_on_codex.json",
+    "2026_02_07/e2e_matrix_codex_on_claude.json",
+    "2026_02_07/e2e_matrix_codex_on_codex.json",
+    "2026_02_07/MAILBOX_CURRENT_STATE_2026_02_06.md",
     "SESSION_HANDOFF_2026_02_05_MAILBOX_SKILL_UPDATE.md",
     "SESSION_HANDOFF_2026_02_05_OPERATION_TRAIN_STOP.md",
     "SESSION_HANDOFF_2026_02_05_PARITY_DELTA.md"

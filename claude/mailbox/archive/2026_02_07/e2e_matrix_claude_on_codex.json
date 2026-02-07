@@ -1,6 +1,8 @@
 {
-  "flavor": "codex",
-  "root": ".claude\\skills",
+  "schema_version": 1,
+  "flavor": "claude",
+  "root": ".codex/skills",
+  "root_native": ".codex\\skills",
   "results": [
     {
       "name": "artifact-upcycle",

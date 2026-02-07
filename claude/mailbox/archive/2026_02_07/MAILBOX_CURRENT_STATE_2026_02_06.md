@@ -17,7 +17,7 @@ mailbox: claude/mailbox
 - `skills_parity_map_2026_02_06.json`
 
 ## Archive
-- Path: `claude\mailbox\archive`
+- Path: `claude/mailbox/archive`
 - Count: 3
 
 ## Policy
