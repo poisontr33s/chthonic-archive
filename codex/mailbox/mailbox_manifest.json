@@ -1,6 +1,6 @@
 {
   "mailbox": "codex/mailbox",
-  "generated_on": "2026-02-06T20:21:36.309647+00:00",
+  "generated_on": "2026-02-07T03:40:27.040509+00:00",
   "active": {
     "md": [
       "HF_GEMMA_PROBE.md",
@@ -11,7 +11,10 @@
       "SESSION_CONTEXT_CHRONICLE_2026_02_06.md",
       "SKILLS_PARITY_DISCREPANCY_2026_02_06.md",
       "TATRAGRAMMATRON_SUMMARY_2026_02_06.md",
-      "TETRAGRAMMATON_PACKET.md"
+      "TATRAGRAMMATRON_SUMMARY_2026_02_07.md",
+      "TATRAGRAMMATRON_SUMMARY_2026_02_07_V2.md",
+      "TETRAGRAMMATON_PACKET.md",
+      "TETRAGRAMMATON_PROGRESS_2026_02_06.md"
     ],
     "json": [
       "META_POLISHER_VALIDATION_SUMMARY.json",
@@ -24,6 +27,8 @@
       "mailbox_manifest.json",
       "skills_parity_map_2026_02_06.json",
       "tatragrammatron_stamps_2026_02_06.json",
+      "tatragrammatron_stamps_2026_02_07.json",
+      "tatragrammatron_stamps_2026_02_07_v2.json",
       "tatragrammatron_trend.json"
     ]
   },
