@@ -1,16 +1,16 @@
 ---
 type: packet
 created: 2026-02-06T20:13:06.593150+00:00
-updated: 2026-02-07T04:04:20.101320+00:00
+updated: 2026-02-07T18:07:03.583010+00:00
 mailbox: codex/mailbox
 codename: TETRAGRAMMATON
-sources_hash: dc5968df0e2272f42f024c434c3c9706c45d0a3b5c3ae7a6eaf6ac98a5d63585
-sources_count: 9
+sources_hash: 1ef5ea170a90694c14526e4c3aa8b9fb6aa26117ece06d120014ad0661ddc26a
+sources_count: 14
 ---
 
 # TETRAGRAMMATON Packet
 
-<!-- @SCRIBED: 2026-02-07T04:15:37.832450+00:00 -->
+<!-- @SCRIBED: 2026-02-07T18:07:03.583017+00:00 -->
 
 ## Index
 - `SESSION_CONTEXT_CHRONICLE_2026_02_06.md`
@@ -19,13 +19,18 @@ sources_count: 9
 - `KISS_PARITY_BRIEF_2026_02_06.md`
 - `HF_GEMMA_PROBE.md`
 - `hf_gemma_probe.json`
-- `TATRAGRAMMATRON_SUMMARY_2026_02_06.md`
-- `tatragrammatron_stamps_2026_02_06.json`
+- `CLAUDE_RUNBOOK_MATRIX.md`
+- `QUEUE_2026_02_07.md`
+- `MAILBOX_CURRENT_STATE.md`
+- `tatragrammatron_matrix_2026_02_07.json`
+- `TATRAGRAMMATRON_SUMMARY_LATEST_CODEX.md`
+- `tatragrammatron_stamps_latest_codex.json`
 - `tatragrammatron_trend.json`
+- `mailbox_manifest.json`
 
 ## Snapshot
-- Generated: `2026-02-07T04:04:20.101320+00:00`
-- Sources hash: `dc5968df0e2272f42f024c434c3c9706c45d0a3b5c3ae7a6eaf6ac98a5d63585`
+- Generated: `2026-02-07T18:07:03.583010+00:00`
+- Sources hash: `1ef5ea170a90694c14526e4c3aa8b9fb6aa26117ece06d120014ad0661ddc26a`
 
 ## Content
 
@@ -555,47 +560,228 @@ Path: `C:/Users/erdno/chthonic-archive/codex/mailbox/hf_gemma_probe.json`
 ...(truncated)...
 ```
 
-### TATRAGRAMMATRON_SUMMARY_2026_02_06.md
-Path: `C:/Users/erdno/chthonic-archive/codex/mailbox/TATRAGRAMMATRON_SUMMARY_2026_02_06.md`
+### CLAUDE_RUNBOOK_MATRIX.md
+Path: `C:/Users/erdno/chthonic-archive/codex/mailbox/CLAUDE_RUNBOOK_MATRIX.md`
+
+```md
+# Claude Runbook: Polisher Matrix (Codex-generated)
+
+Goal: reproduce the same matrix runs from Claude Code.
+
+All commands are PowerShell and follow repo policy: `uv run <script.py>`.
+
+## 1. Codex contract on Codex skills
+```powershell
+uv run .codex/skills/skill-polisher/scripts/polish_skill.py .codex/skills --all --mode verify --subprocess-fix --target-flavor codex --emit-stamps-json codex/mailbox/tatragrammatron_stamps_2026_02_07_codex_on_codex.json --emit-summary-md codex/mailbox/TATRAGRAMMATRON_SUMMARY_2026_02_07_CODEX_ON_CODEX.md
+```
+
+## 2. Claude contract on Claude skills
+```powershell
+uv run .codex/skills/skill-polisher/scripts/polish_skill.py .claude/skills --all --mode verify --subprocess-fix --target-flavor claude --emit-stamps-json codex/mailbox/tatragrammatron_stamps_2026_02_07_codex_on_claude.json --emit-summary-md codex/mailbox/TATRAGRAMMATRON_SUMMARY_2026_02_07_CODEX_ON_CLAUDE.md
+```
+
+## 3. Auto detection on Claude skills
+```powershell
+uv run .codex/skills/skill-polisher/scripts/polish_skill.py .claude/skills --all --mode verify --subprocess-fix --target-flavor auto --emit-stamps-json codex/mailbox/tatragrammatron_stamps_2026_02_07_auto_on_claude.json --emit-summary-md codex/mailbox/TATRAGRAMMATRON_SUMMARY_2026_02_07_AUTO_ON_CLAUDE.md
+```
+
+## 4. Cross-flavor auditor (independent check)
+```powershell
+uv run scripts/skill_audit.py --flavor codex --root .codex/skills --json --json-path codex/mailbox/codex_skill_audit_2026_02_07.json
+uv run scripts/skill_audit.py --flavor claude --root .claude/skills --json --json-path codex/mailbox/claude_skill_audit_2026_02_07.json
+```
+
+## Expected artifacts
+- `codex/mailbox/tatragrammatron_matrix_2026_02_07.json`
+- stamps JSONs + summaries as above
+
+## Notes
+- If a run creates new icons/yaml scaffolds, that is expected under `--subprocess-fix`.
+- Re-run `scripts/mailbox_scribe.py` after matrix runs to refresh the packet.
+```
+
+### QUEUE_2026_02_07.md
+Path: `C:/Users/erdno/chthonic-archive/codex/mailbox/QUEUE_2026_02_07.md`
+
+```md
+# Tatragrammatron Queue (2026-02-07)
+
+This queue captures the next iteration tranche for cross-flavor, poly-directional meta-skill capability.
+
+## 1. Polisher Matrix Runner
+- Goal: single command runs Codex-side matrix and emits one matrix JSON plus standard artifacts.
+- Deliverables:
+  - `scripts/run_polisher_matrix.py`
+  - `codex/mailbox/tatragrammatron_matrix_YYYY_MM_DD.json`
+
+## 2. Claude Toolchain Parity Hook (Proxy)
+- Goal: provide Claude Code runbook to reproduce matrix from Claude side.
+- Deliverables:
+  - `codex/mailbox/CLAUDE_RUNBOOK_MATRIX.md`
+
+## 3. FIXTURE_EVAL_V1 Expansion
+- Add fixtures:
+  - `claude_missing_description`
+  - `codex_missing_assets_dir`
+  - `codex_missing_agents_yaml`
+
+## 4. Remediation Safety Gate
+- Add flags:
+  - `--dry-run-apply`
+  - Ensure `--subprocess-fix` respects `--max-fix-per-skill` default
+
+## 5. Skill Identity Normalization
+- Add WARN checks:
+  - Claude: frontmatter `name:` matches folder name
+  - Codex: `agents/openai.yaml` name matches folder name
+
+## 6. E2E Verification Sweep
+- Run codex->codex, codex->claude, auto.
+- Emit artifacts and refresh packet.
+```
+
+### MAILBOX_CURRENT_STATE.md
+Path: `C:/Users/erdno/chthonic-archive/codex/mailbox/MAILBOX_CURRENT_STATE.md`
+
+```md
+---
+type: mailbox-state
+updated: 2026-02-07T17:56:28.055079+00:00
+mailbox: codex/mailbox
+---
+
+# Mailbox Current State
+
+## Active Files
+- `CLAUDE_RUNBOOK_MATRIX.md`
+- `HF_GEMMA_PROBE.md`
+- `KISS_PARITY_BRIEF_2026_02_06.md`
+- `MAILBOX_CURRENT_STATE.md`
+- `META_POLISHER_VALIDATION_SUMMARY.json`
+- `QUEUE_2026_02_07.md`
+- `SESSION_CONTEXT_APPENDIX_2026_02_06.md`
+- `SESSION_CONTEXT_CHRONICLE_2026_02_06.md`
+- `SKILLS_PARITY_DISCREPANCY_2026_02_06.md`
+- `TATRAGRAMMATRON_SUMMARY_LATEST_CODEX.md`
+- `TETRAGRAMMATON_PACKET.md`
+- `TETRAGRAMMATON_PROGRESS_2026_02_06.md`
+- `claude_skill_audit_2026_02_07.json`
+- `hf_gemma_probe.json`
+- `mailbox_manifest.json`
+- `skills_parity_map_2026_02_06.json`
+- `tatragrammatron_matrix_2026_02_07.json`
+- `tatragrammatron_stamps_latest_codex.json`
+- `tatragrammatron_trend.json`
+
+## Archive
+- Path: `codex/mailbox/archive`
+- Count: 40
+
+## Policy
+- Root mailbox keeps only current-cycle files.
+- Historical files may remain in `archive/`.
+- Hidden dot mailboxes stay sentinel-only (`.gitkeep`).
+```
+
+### tatragrammatron_matrix_2026_02_07.json
+Path: `C:/Users/erdno/chthonic-archive/codex/mailbox/tatragrammatron_matrix_2026_02_07.json`
+
+```json
+{
+  "generated_at": "2026-02-07T04:15:19.398641+00:00",
+  "runner": "codex",
+  "cases": [
+    {
+      "case": {
+        "name": "codex_on_codex",
+        "root": ".codex/skills",
+        "target_flavor": "codex",
+        "require_assets": true
+      },
+      "exit_code": 0,
+      "stamps_json": "codex/mailbox/tatragrammatron_stamps_2026_02_07_codex_on_codex.json",
+      "summary_md": "codex/mailbox/TATRAGRAMMATRON_SUMMARY_2026_02_07_CODEX_ON_CODEX.md"
+    },
+    {
+      "case": {
+        "name": "codex_on_claude",
+        "root": ".claude/skills",
+        "target_flavor": "claude",
+        "require_assets": true
+      },
+      "exit_code": 0,
+      "stamps_json": "codex/mailbox/tatragrammatron_stamps_2026_02_07_codex_on_claude.json",
+      "summary_md": "codex/mailbox/TATRAGRAMMATRON_SUMMARY_2026_02_07_CODEX_ON_CLAUDE.md"
+    },
+    {
+      "case": {
+        "name": "auto_on_claude",
+        "root": ".claude/skills",
+        "target_flavor": "auto",
+        "require_assets": true
+      },
+      "exit_code": 0,
+      "stamps_json": "codex/mailbox/tatragrammatron_stamps_2026_02_07_auto_on_claude.json",
+      "summary_md": "codex/mailbox/TATRAGRAMMATRON_SUMMARY_2026_02_07_AUTO_ON_CLAUDE.md"
+    },
+    {
+      "case": {
+        "name": "claude_contract_on_codex",
+        "root": ".codex/skills",
+        "target_flavor": "claude",
+        "require_assets": true
+      },
+      "exit_code": 0,
+      "stamps_json": "codex/mailbox/tatragrammatron_stamps_2026_02_07_claude_contract_on_codex.json",
+      "summary_md": "codex/mailbox/TATRAGRAMMATRON_SUMMARY_2026_02_07_CLAUDE_CONTRACT_ON_CODEX.md"
+    }
+  ]
+}
+```
+
+### TATRAGRAMMATRON_SUMMARY_LATEST_CODEX.md
+Path: `C:/Users/erdno/chthonic-archive/codex/mailbox/TATRAGRAMMATRON_SUMMARY_LATEST_CODEX.md`
 
 ```md
 # Skill Polisher Summary
 
-- Generated: `2026-02-07T03:22:08.971882+00:00`
+- Generated: `2026-02-07T17:54:20.191681+00:00`
 - Mode: `verify`
-- Total skills: `16`
-- Passed: `16`
+- Total skills: `17`
+- Passed: `17`
 - Failed: `0`
+- Pure: `17`
 
 ## Scores
 
-| Skill | Exit | Total | Structure | Policy | Semantics | Maintainability | Issues |
-|---|---:|---:|---:|---:|---:|---:|---:|
-| `artifact-upcycle` | `0` | `100` | `100` | `100` | `100` | `100` | `1` |
-| `claude-skill-bridge` | `0` | `100` | `100` | `100` | `100` | `100` | `0` |
-| `codex-skill-bridge` | `0` | `100` | `100` | `100` | `100` | `100` | `0` |
-| `conceptualize` | `0` | `100` | `100` | `100` | `100` | `100` | `0` |
-| `decision-razor` | `0` | `100` | `100` | `100` | `100` | `100` | `0` |
-| `gh-address-comments` | `0` | `100` | `100` | `100` | `100` | `100` | `0` |
-| `gh-fix-ci` | `0` | `100` | `100` | `100` | `100` | `100` | `0` |
-| `gh-mcp-autonomy` | `0` | `100` | `100` | `100` | `100` | `100` | `0` |
-| `imagegen` | `0` | `100` | `100` | `100` | `100` | `100` | `0` |
-| `mailbox-handoff` | `0` | `100` | `100` | `100` | `100` | `100` | `0` |
-| `meta-polisher-validator` | `0` | `100` | `100` | `100` | `100` | `100` | `0` |
-| `openai-docs` | `0` | `100` | `100` | `100` | `100` | `100` | `0` |
-| `python-header-canon` | `0` | `100` | `100` | `100` | `100` | `100` | `0` |
-| `script-envelope` | `0` | `100` | `100` | `100` | `100` | `100` | `0` |
-| `skill-polisher` | `0` | `100` | `100` | `100` | `100` | `100` | `1` |
-| `sora` | `0` | `100` | `100` | `100` | `100` | `100` | `0` |
+| Skill | Exit | Total | Structure | Policy | Semantics | Maintainability | Issues | Fixes |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|
+| `artifact-upcycle` | `0` | `100` | `100` | `100` | `100` | `100` | `1` | `0` |
+| `claude-skill-bridge` | `0` | `100` | `100` | `100` | `100` | `100` | `0` | `0` |
+| `codex-skill-bridge` | `0` | `100` | `100` | `100` | `100` | `100` | `0` | `0` |
+| `conceptualize` | `0` | `100` | `100` | `100` | `100` | `100` | `0` | `0` |
+| `decision-razor` | `0` | `100` | `100` | `100` | `100` | `100` | `0` | `0` |
+| `gh-address-comments` | `0` | `100` | `100` | `100` | `100` | `100` | `0` | `0` |
+| `gh-fix-ci` | `0` | `100` | `100` | `100` | `100` | `100` | `0` | `0` |
+| `gh-mcp-autonomy` | `0` | `100` | `100` | `100` | `100` | `100` | `0` | `0` |
+| `imagegen` | `0` | `100` | `100` | `100` | `100` | `100` | `0` | `0` |
+| `mailbox-handoff` | `0` | `100` | `100` | `100` | `100` | `100` | `0` | `0` |
+| `meta-polisher-validator` | `0` | `100` | `100` | `100` | `100` | `100` | `0` | `0` |
+| `openai-docs` | `0` | `100` | `100` | `100` | `100` | `100` | `0` | `0` |
+| `python-header-canon` | `0` | `100` | `100` | `100` | `100` | `100` | `0` | `0` |
+| `script-envelope` | `0` | `100` | `100` | `100` | `100` | `100` | `0` | `0` |
+| `skill-polisher` | `0` | `100` | `100` | `100` | `100` | `100` | `1` | `0` |
+| `sora` | `0` | `100` | `100` | `100` | `100` | `100` | `0` | `0` |
+| `toolchain-doctor` | `0` | `100` | `100` | `100` | `100` | `100` | `0` | `0` |
 ```
 
-### tatragrammatron_stamps_2026_02_06.json
-Path: `C:/Users/erdno/chthonic-archive/codex/mailbox/tatragrammatron_stamps_2026_02_06.json`
+### tatragrammatron_stamps_latest_codex.json
+Path: `C:/Users/erdno/chthonic-archive/codex/mailbox/tatragrammatron_stamps_latest_codex.json`
 
 ```json
 {
-  "generated_at": "2026-02-07T03:22:08.970826+00:00",
-  "count": 2,
+  "generated_at": "2026-02-07T17:54:20.190897+00:00",
+  "count": 19,
   "records": [
     {
       "skill": "artifact-upcycle",
@@ -609,18 +795,134 @@ Path: `C:/Users/erdno/chthonic-archive/codex/mailbox/tatragrammatron_stamps_2026
       "confidence": 0.9
     },
     {
-      "skill": "skill-polisher",
-      "stamp": "#TBD",
+      "skill": "artifact-upcycle",
+      "stamp": "#PURE",
       "severity": "INFO",
-      "domain": "maintainability",
+      "domain": "structure",
       "file": "SKILL.md",
       "line": null,
-      "message": "Debt markers detected (FIXME:9, TBD:4, TODO:7, XXX:3).",
-      "remedy": "Review markers and convert unresolved debt into tracked action items.",
-      "confidence": 0.9
-    }
-  ]
-}
+      "message": "TASTE: PURE (Clean) and no blocking entropy detected.",
+      "remedy": "None (record only).",
+      "confidence": 1.0
+    },
+    {
+      "skill": "claude-skill-bridge",
+      "stamp": "#PURE",
+      "severity": "INFO",
+      "domain": "structure",
+      "file": "SKILL.md",
+      "line": null,
+      "message": "TASTE: PURE (Clean) and no blocking entropy detected.",
+      "remedy": "None (record only).",
+      "confidence": 1.0
+    },
+    {
+      "skill": "codex-skill-bridge",
+      "stamp": "#PURE",
+      "severity": "INFO",
+      "domain": "structure",
+      "file": "SKILL.md",
+      "line": null,
+      "message": "TASTE: PURE (Clean) and no blocking entropy detected.",
+      "remedy": "None (record only).",
+      "confidence": 1.0
+    },
+    {
+      "skill": "conceptualize",
+      "stamp": "#PURE",
+      "severity": "INFO",
+      "domain": "structure",
+      "file": "SKILL.md",
+      "line": null,
+      "message": "TASTE: PURE (Clean) and no blocking entropy detected.",
+      "remedy": "None (record only).",
+      "confidence": 1.0
+    },
+    {
+      "skill": "decision-razor",
+      "stamp": "#PURE",
+      "severity": "INFO",
+      "domain": "structure",
+      "file": "SKILL.md",
+      "line": null,
+      "message": "TASTE: PURE (Clean) and no blocking entropy detected.",
+      "remedy": "None (record only).",
+      "confidence": 1.0
+    },
+    {
+      "skill": "gh-address-comments",
+      "stamp": "#PURE",
+      "severity": "INFO",
+      "domain": "structure",
+      "file": "SKILL.md",
+      "line": null,
+      "message": "TASTE: PURE (Clean) and no blocking entropy detected.",
+      "remedy": "None (record only).",
+      "confidence": 1.0
+    },
+    {
+      "skill": "gh-fix-ci",
+      "stamp": "#PURE",
+      "severity": "INFO",
+      "domain": "structure",
+      "file": "SKILL.md",
+      "line": null,
+      "message": "TASTE: PURE (Clean) and no blocking entropy detected.",
+      "remedy": "None (record only).",
+      "confidence": 1.0
+    },
+    {
+      "skill": "gh-mcp-autonomy",
+      "stamp": "#PURE",
+      "severity": "INFO",
+      "domain": "structure",
+      "file": "SKILL.md",
+      "line": null,
+      "message": "TASTE: PURE (Clean) and no blocking entropy detected.",
+      "remedy": "None (record only).",
+      "confidence": 1.0
+    },
+    {
+      "skill": "imagegen",
+      "stamp": "#PURE",
+      "severity": "INFO",
+      "domain": "structure",
+      "file": "SKILL.md",
+      "line": null,
+      "message": "TASTE: PURE (Clean) and no blocking entropy detected.",
+      "remedy": "None (record only).",
+      "confidence": 1.0
+    },
+    {
+      "skill": "mailbox-handoff",
+      "stamp": "#PURE",
+      "severity": "INFO",
+      "domain": "structure",
+      "file": "SKILL.md",
+      "line": null,
+      "message": "TASTE: PURE (Clean) and no blocking entropy detected.",
+      "remedy": "None (record only).",
+      "confidence": 1.0
+    },
+    {
+      "skill": "meta-polisher-validator",
+      "stamp": "#PURE",
+      "severity": "INFO",
+      "domain": "structure",
+      "file": "SKILL.md",
+      "line": null,
+      "message": "TASTE: PURE (Clean) and no blocking entropy detected.",
+      "remedy": "None (record only).",
+      "confidence": 1.0
+    },
+    {
+      "skill": "openai-docs",
+      "stamp": "#PURE",
+      "severity": "INFO",
+      "domain": "structure",
+      "file": "SKILL.md",
+      "line": nul
+...(truncated)...
 ```
 
 ### tatragrammatron_trend.json
@@ -691,7 +993,92 @@ Path: `C:/Users/erdno/chthonic-archive/codex/mailbox/tatragrammatron_trend.json`
       "skills": 16,
       "avg_score": 100.0,
       "failed": 0
+    },
+    {
+      "generated_at": "2026-02-07T17:49:12.920005+00:00",
+      "mode": "verify",
+      "skills": 17,
+      "avg_score": 100.0,
+      "failed": 0
     }
+  ]
+}
+```
+
+### mailbox_manifest.json
+Path: `C:/Users/erdno/chthonic-archive/codex/mailbox/mailbox_manifest.json`
+
+```json
+{
+  "mailbox": "codex/mailbox",
+  "generated_on": "2026-02-07T17:56:28.053499+00:00",
+  "active": {
+    "md": [
+      "CLAUDE_RUNBOOK_MATRIX.md",
+      "HF_GEMMA_PROBE.md",
+      "KISS_PARITY_BRIEF_2026_02_06.md",
+      "MAILBOX_CURRENT_STATE.md",
+      "QUEUE_2026_02_07.md",
+      "SESSION_CONTEXT_APPENDIX_2026_02_06.md",
+      "SESSION_CONTEXT_CHRONICLE_2026_02_06.md",
+      "SKILLS_PARITY_DISCREPANCY_2026_02_06.md",
+      "TATRAGRAMMATRON_SUMMARY_LATEST_CODEX.md",
+      "TETRAGRAMMATON_PACKET.md",
+      "TETRAGRAMMATON_PROGRESS_2026_02_06.md"
+    ],
+    "json": [
+      "META_POLISHER_VALIDATION_SUMMARY.json",
+      "claude_skill_audit_2026_02_07.json",
+      "hf_gemma_probe.json",
+      "mailbox_manifest.json",
+      "skills_parity_map_2026_02_06.json",
+      "tatragrammatron_matrix_2026_02_07.json",
+      "tatragrammatron_stamps_latest_codex.json",
+      "tatragrammatron_trend.json"
+    ]
+  },
+  "archive_count": 40,
+  "archive_files": [
+    "2026_02_07/e2e_matrix_claude_on_claude.json",
+    "2026_02_07/e2e_matrix_claude_on_codex.json",
+    "2026_02_07/e2e_matrix_codex_on_claude.json",
+    "2026_02_07/e2e_matrix_codex_on_codex.json",
+    "2026_02_07/e2e_matrix_compare_summary.json",
+    "2026_02_07/MAILBOX_CURRENT_STATE_2026_02_06.md",
+    "2026_02_07/tatragrammatron_stamps_2026_02_06.json",
+    "2026_02_07/tatragrammatron_stamps_2026_02_07.json",
+    "2026_02_07/tatragrammatron_stamps_2026_02_07_auto_on_claude.json",
+    "2026_02_07/tatragrammatron_stamps_2026_02_07_claude.json",
+    "2026_02_07/tatragrammatron_stamps_2026_02_07_claude_contract_on_codex.json",
+    "2026_02_07/tatragrammatron_stamps_2026_02_07_claude_v2.json",
+    "2026_02_07/tatragrammatron_stamps_2026_02_07_codex.json",
+    "2026_02_07/tatragrammatron_stamps_2026_02_07_codex_on_claude.json",
+    "2026_02_07/tatragrammatron_stamps_2026_02_07_codex_on_codex.json",
+    "2026_02_07/tatragrammatron_stamps_2026_02_07_codex_v3.json",
+    "2026_02_07/tatragrammatron_stamps_2026_02_07_full_codex.json",
+    "2026_02_07/tatragrammatron_stamps_2026_02_07_v2.json",
+    "2026_02_07/TATRAGRAMMATRON_SUMMARY_2026_02_06.md",
+    "2026_02_07/TATRAGRAMMATRON_SUMMARY_2026_02_07.md",
+    "2026_02_07/TATRAGRAMMATRON_SUMMARY_2026_02_07_AUTO_ON_CLAUDE.md",
+    "2026_02_07/TATRAGRAMMATRON_SUMMARY_2026_02_07_CLAUDE.md",
+    "2026_02_07/TATRAGRAMMATRON_SUMMARY_2026_02_07_CLAUDE_CONTRACT_ON_CODEX.md",
+    "2026_02_07/TATRAGRAMMATRON_SUMMARY_2026_02_07_CLAUDE_V2.md",
+    "2026_02_07/TATRAGRAMMATRON_SUMMARY_2026_02_07_CODEX.md",
+    "2026_02_07/TATRAGRAMMATRON_SUMMARY_2026_02_07_CODEX_ON_CLAUDE.md",
+    "2026_02_07/TATRAGRAMMATRON_SUMMARY_2026_02_07_CODEX_ON_CODEX.md",
+    "2026_02_07/TATRAGRAMMATRON_SUMMARY_2026_02_07_CODEX_V3.md",
+    "2026_02_07/TATRAGRAMMATRON_SUMMARY_2026_02_07_FULL_CODEX.md",
+    "2026_02_07/TATRAGRAMMATRON_SUMMARY_2026_02_07_V2.md",
+    "CLAUDE_RESPONSE_TRAIN_STOP_2026_02_05.md",
+    "CLAUDE_SKILLS_SPEC_VALIDATION_2026_02_05.md",
+    "EXECUTION_ORDER_RECAP_2026_02_05.md",
+    "MAILBOX_CMD_POLICY_2026_02_05.md",
+    "MAILBOX_CONSOLIDATED_2026_02_05.md",
+    "SESSION_HANDOFF_2026_02_05_PARITY_DELTA.md",
+    "skill_audit_claude_2026_02_05.json",
+    "skill_audit_codex_2026_02_05.json",
+    "TRAIN_STOP_AUDIT_PRE_SEND_2026_02_05.md",
+    "TRAIN_STOP_HANDOFF_CONSOLIDATED_2026_02_05.md"
   ]
 }
 ```
@@ -704,3 +1091,7 @@ Path: `C:/Users/erdno/chthonic-archive/codex/mailbox/tatragrammatron_trend.json`
 - 2026-02-07T03:40:27.038476+00:00: sources changed
 - 2026-02-07T03:51:34.782705+00:00: sources changed
 - 2026-02-07T04:04:20.101320+00:00: sources changed
+- 2026-02-07T17:49:20.147955+00:00: sources changed
+- 2026-02-07T17:56:02.140779+00:00: sources changed
+- 2026-02-07T17:56:28.049419+00:00: sources changed
+- 2026-02-07T18:07:03.583010+00:00: sources changed
