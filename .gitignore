@@ -100,6 +100,7 @@ extensions/*/bun.lock
 !scripts/check_mailbox_manifest.py
 !scripts/hf_probe.py
 !scripts/api_pool.ps1
+!scripts/structure_session_log.py
 
 # Allow Shell Sovereignty & Validation (§XIV.2 canonical probe)
 !scripts/shell_capabilities.ps1

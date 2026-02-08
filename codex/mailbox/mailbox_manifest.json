@@ -1,7 +1,7 @@
 {
   "schema_version": 2,
   "mailbox": "codex/mailbox",
-  "generated_on": "2026-02-07T19:37:14.830162+00:00",
+  "generated_on": "2026-02-07T20:19:58.510423+00:00",
   "manifest_file": "mailbox_manifest.json",
   "active": {
     "md": [
@@ -10,6 +10,7 @@
       "KISS_PARITY_BRIEF_2026_02_06.md",
       "MAILBOX_CURRENT_STATE.md",
       "QUEUE_2026_02_07.md",
+      "SESSION_CHRONICLE_2026_02_07.md",
       "SESSION_CONTEXT_APPENDIX_2026_02_06.md",
       "SESSION_CONTEXT_CHRONICLE_2026_02_06.md",
       "SKILLS_PARITY_DISCREPANCY_2026_02_06.md",
@@ -19,7 +20,8 @@
       "TOOLCHAIN_DOCTOR_LATEST.md",
       "TOOLCHAIN_DOCTOR_REPORT_2026_02_07_174714.md",
       "TOOLCHAIN_DOCTOR_REPORT_2026_02_07_180524.md",
-      "TOOLCHAIN_DOCTOR_REPORT_2026_02_07_180604.md"
+      "TOOLCHAIN_DOCTOR_REPORT_2026_02_07_180604.md",
+      "TOOLCHAIN_DOCTOR_REPORT_2026_02_07_194657.md"
     ],
     "json": [
       "META_POLISHER_VALIDATION_SUMMARY.json",

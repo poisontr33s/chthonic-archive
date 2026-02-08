@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-02-07T17:54:20.190897+00:00",
-  "count": 19,
+  "generated_at": "2026-02-07T19:46:58.352694+00:00",
+  "count": 20,
   "records": [
     {
       "skill": "artifact-upcycle",
@@ -210,6 +210,17 @@
       "message": "TASTE: PURE (Clean) and no blocking entropy detected.",
       "remedy": "None (record only).",
       "confidence": 1.0
+    },
+    {
+      "skill": "trainstop-orchestrator",
+      "stamp": "#PURE",
+      "severity": "INFO",
+      "domain": "structure",
+      "file": "SKILL.md",
+      "line": null,
+      "message": "TASTE: PURE (Clean) and no blocking entropy detected.",
+      "remedy": "None (record only).",
+      "confidence": 1.0
     }
   ],
   "skills": [
@@ -327,6 +338,13 @@
     },
     {
       "skill": "toolchain-doctor",
+      "exit_code": 0,
+      "score": 100,
+      "pure": true,
+      "applied_fixes": []
+    },
+    {
+      "skill": "trainstop-orchestrator",
       "exit_code": 0,
       "score": 100,
       "pure": true,

@@ -6,7 +6,7 @@ created: 2026-02-07
 
 # Line Endings (LF Policy)
 
-This repo standardizes on LF for text files via `.gitattributes`.
+This repo standardizes on LF for all files Git classifies as text via `.gitattributes` (`* text=auto eol=lf`).
 
 ## One-Time Normalization
 After adding or changing `.gitattributes`, run:

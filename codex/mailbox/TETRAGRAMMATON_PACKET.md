@@ -1,16 +1,16 @@
 ---
 type: packet
 created: 2026-02-06T20:13:06.593150+00:00
-updated: 2026-02-07T19:37:14.838263+00:00
+updated: 2026-02-07T20:19:58.518180+00:00
 mailbox: codex/mailbox
 codename: TETRAGRAMMATON
-sources_hash: 6c32e55a3befc398c70efc9e5ef3e7f043af53f12e14caffd8595a7fc0d11e9f
+sources_hash: 8eb2680db7416ef1d9bfe974726c1b4dcfed17f94887f4faac91ba715189be58
 sources_count: 14
 ---
 
 # TETRAGRAMMATON Packet
 
-<!-- @SCRIBED: 2026-02-07T19:37:14.838268+00:00 -->
+<!-- @SCRIBED: 2026-02-07T20:19:58.518185+00:00 -->
 
 ## Packet Rules
 - Paths are repo-relative (portable; no local usernames).
@@ -34,8 +34,8 @@ sources_count: 14
 - `mailbox_manifest.json`
 
 ## Snapshot
-- Generated: `2026-02-07T19:37:14.838263+00:00`
-- Sources hash: `6c32e55a3befc398c70efc9e5ef3e7f043af53f12e14caffd8595a7fc0d11e9f`
+- Generated: `2026-02-07T20:19:58.518180+00:00`
+- Sources hash: `8eb2680db7416ef1d9bfe974726c1b4dcfed17f94887f4faac91ba715189be58`
 
 ## Content
 
@@ -506,6 +506,13 @@ This queue captures the next iteration tranche for cross-flavor, poly-directiona
 ## 6. E2E Verification Sweep
 - Run codex->codex, codex->claude, auto.
 - Emit artifacts and refresh packet.
+
+## 7. Trainstop Rewind Proxy (Orchestrator)
+- Goal: a single proxy runner that chains the non-official skills/tools in the correct order and refreshes artifacts deterministically.
+- Non-goal: modifying "official" OpenAI skills (`sora`, `imagegen`, etc.).
+- Deliverables:
+  - `.codex/skills/trainstop-orchestrator/`
+  - `uv run .codex/skills/trainstop-orchestrator/scripts/orchestrate.py --target both --apply`
 ```
 
 ### MAILBOX_CURRENT_STATE.md
@@ -514,7 +521,7 @@ Path: `codex/mailbox/MAILBOX_CURRENT_STATE.md`
 ```md
 ---
 type: mailbox-state
-updated: 2026-02-07T19:37:14.832139+00:00
+updated: 2026-02-07T20:19:58.512074+00:00
 mailbox: codex/mailbox
 ---
 
@@ -527,6 +534,7 @@ mailbox: codex/mailbox
 - `MAILBOX_CURRENT_STATE.md`
 - `META_POLISHER_VALIDATION_SUMMARY.json`
 - `QUEUE_2026_02_07.md`
+- `SESSION_CHRONICLE_2026_02_07.md`
 - `SESSION_CONTEXT_APPENDIX_2026_02_06.md`
 - `SESSION_CONTEXT_CHRONICLE_2026_02_06.md`
 - `SKILLS_PARITY_DISCREPANCY_2026_02_06.md`
@@ -537,6 +545,7 @@ mailbox: codex/mailbox
 - `TOOLCHAIN_DOCTOR_REPORT_2026_02_07_174714.md`
 - `TOOLCHAIN_DOCTOR_REPORT_2026_02_07_180524.md`
 - `TOOLCHAIN_DOCTOR_REPORT_2026_02_07_180604.md`
+- `TOOLCHAIN_DOCTOR_REPORT_2026_02_07_194657.md`
 - `claude_skill_audit_2026_02_07.json`
 - `hf_gemma_probe.json`
 - `mailbox_manifest.json`
@@ -617,12 +626,12 @@ Path: `codex/mailbox/TATRAGRAMMATRON_SUMMARY_LATEST_CODEX.md`
 ```md
 # Skill Polisher Summary
 
-- Generated: `2026-02-07T17:54:20.191681+00:00`
+- Generated: `2026-02-07T19:46:58.353422+00:00`
 - Mode: `verify`
-- Total skills: `17`
-- Passed: `17`
+- Total skills: `18`
+- Passed: `18`
 - Failed: `0`
-- Pure: `17`
+- Pure: `18`
 
 ## Scores
 
@@ -645,6 +654,7 @@ Path: `codex/mailbox/TATRAGRAMMATRON_SUMMARY_LATEST_CODEX.md`
 | `skill-polisher` | `0` | `100` | `100` | `100` | `100` | `100` | `1` | `0` |
 | `sora` | `0` | `100` | `100` | `100` | `100` | `100` | `0` | `0` |
 | `toolchain-doctor` | `0` | `100` | `100` | `100` | `100` | `100` | `0` | `0` |
+| `trainstop-orchestrator` | `0` | `100` | `100` | `100` | `100` | `100` | `0` | `0` |
 ```
 
 ### tatragrammatron_stamps_latest_codex.json
@@ -656,8 +666,8 @@ Path: `codex/mailbox/tatragrammatron_stamps_latest_codex.json`
   "note": "Full JSON omitted from packet; see relative_path in the repo.",
   "name": "tatragrammatron_stamps_latest_codex.json",
   "relative_path": "codex/mailbox/tatragrammatron_stamps_latest_codex.json",
-  "bytes": 8696,
-  "sha256": "aa35b493fd52afc92f57e57233bc74a39e8364d820a922de1eb8a859a198fbe4"
+  "bytes": 9172,
+  "sha256": "9b57c6d50e227d6b25954d91418f66fb3aade3af14f5713f263db6e5570c6717"
 }
 ```
 
@@ -748,7 +758,7 @@ Path: `codex/mailbox/mailbox_manifest.json`
 {
   "schema_version": 2,
   "mailbox": "codex/mailbox",
-  "generated_on": "2026-02-07T19:37:14.830162+00:00",
+  "generated_on": "2026-02-07T20:19:58.510423+00:00",
   "manifest_file": "mailbox_manifest.json",
   "active": {
     "md": [
@@ -757,6 +767,7 @@ Path: `codex/mailbox/mailbox_manifest.json`
       "KISS_PARITY_BRIEF_2026_02_06.md",
       "MAILBOX_CURRENT_STATE.md",
       "QUEUE_2026_02_07.md",
+      "SESSION_CHRONICLE_2026_02_07.md",
       "SESSION_CONTEXT_APPENDIX_2026_02_06.md",
       "SESSION_CONTEXT_CHRONICLE_2026_02_06.md",
       "SKILLS_PARITY_DISCREPANCY_2026_02_06.md",
@@ -766,7 +777,8 @@ Path: `codex/mailbox/mailbox_manifest.json`
       "TOOLCHAIN_DOCTOR_LATEST.md",
       "TOOLCHAIN_DOCTOR_REPORT_2026_02_07_174714.md",
       "TOOLCHAIN_DOCTOR_REPORT_2026_02_07_180524.md",
-      "TOOLCHAIN_DOCTOR_REPORT_2026_02_07_180604.md"
+      "TOOLCHAIN_DOCTOR_REPORT_2026_02_07_180604.md",
+      "TOOLCHAIN_DOCTOR_REPORT_2026_02_07_194657.md"
     ],
     "json": [
       "META_POLISHER_VALIDATION_SUMMARY.json",
@@ -842,3 +854,5 @@ Path: `codex/mailbox/mailbox_manifest.json`
 - 2026-02-07T19:04:47.955130+00:00: sources changed
 - 2026-02-07T19:08:12.903738+00:00: sources changed
 - 2026-02-07T19:37:14.838263+00:00: sources changed
+- 2026-02-07T19:46:58.875749+00:00: sources changed
+- 2026-02-07T20:19:58.518180+00:00: sources changed
