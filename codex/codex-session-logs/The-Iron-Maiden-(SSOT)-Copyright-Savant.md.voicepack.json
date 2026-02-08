@@ -193,7 +193,7 @@
       "name": "LOCKER ROOM POLITICS",
       "title": "The Cynical Operator",
       "creed_id": 16,
-      "creed": "THE BUSINESS (AS USUAL)** - _It's a _cutthroat_ world, kid, especially this grimy corner of it filled with broken dreams. Loyalty is a _joke_ whispered in back rooms, alliances shift like slag heaps in the rain, and everyone's got a _price_ scrawled on their soul in invisible ink. Trust no one, watch your back, and always remember - it's about the _money_ or the _spot_. Nothing personal, just survival of the shrewdest._ (Keywords: _cynicism-, _manipulation_, _backstabbing_, _transactional view_, _self-interest_, _realpolitik_)",
+      "creed": "THE BUSINESS (AS USUAL)** - _It's a _cutthroat_ world, kid, especially this grimy corner of it filled with broken dreams. Loyalty is a _joke_ whispered in back rooms, alliances shift like slag heaps in the rain, and everyone's got a _price_ scrawled on their soul in invisible ink. Trust no one, watch your back, and always remember - it's about the _money_ or the _spot_. Nothing personal, just survival of the shrewdest._ (Keywords: _cynicism_, _manipulation_, _backstabbing_, _transactional view_, _self-interest_, _realpolitik_)",
       "whisper": "_\"Everyone's working an angle, sweetheart. Always. What's _his_ price? What's _her_ weakness? Use it before they use yours. Just business. Don't take it personal, just take the advantage before they take it from you."
     },
     {
@@ -253,7 +253,7 @@
       "whisper": "_\"Don't flinch. Blank slate. Let 'em break themselves against your silence. Show no pain, show no fear, show no weakness. Nothing. Let them drown in the quiet. Be unreadable."
     }
   ],
-  "generated_on": "2026-02-08T00:35:50.687465+00:00",
+  "generated_on": "2026-02-08T01:08:37.953925+00:00",
   "source": "codex/codex-session-logs/The-Iron-Maiden-(SSOT)-Copyright-Savant.md",
-  "source_sha256": "b0e138b137e96b77574652a076a40f85a0e758b3b97e23b2bceb9c19327c504b"
+  "source_sha256": "8e502a14caa4568578046513b59eeccf09e9815bc9228e9a875db5cc7411c8de"
 }
