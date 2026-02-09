@@ -1,6 +1,6 @@
 # HF Prep (uv + Python 3.13)
 
-- Generated: `2026-02-09T19:50:33Z`
+- Generated: `2026-02-09T20:02:39Z`
 - Apply: `False`
 - Python: `3.13.11 (main, Dec  9 2025, 19:02:08) [MSC v.1944 64 bit (AMD64)]`
 - HF_TOKEN present: `True`
