@@ -19,7 +19,7 @@ Important: `.mcp.json` is not intended to be committed.
 
 Create a local `.mcp.json` in the repo root (this file is ignored by default due to the repo's whitelist `.gitignore`).
 
-Example:
+Example (Copilot-hosted MCP proxy, optional):
 ```json
 {
   "mcpServers": {
@@ -35,6 +35,20 @@ Example:
 ```
 
 Restart VS Code after editing so the host reloads MCP config.
+
+## GitHub MCP vs Copilot MCP (Do Not Confuse)
+
+There are two different ways people end up with a "GitHub-ish" MCP server:
+
+1. Official GitHub MCP server (recommended)
+  - A stdio MCP server that talks directly to GitHub APIs using a GitHub PAT.
+  - Usually configured via Docker (`ghcr.io/github/github-mcp-server`) or a locally-built binary.
+
+2. Copilot MCP proxy (optional fallback)
+  - An HTTP MCP endpoint hosted by Copilot, configured as `https://api.githubcopilot.com/mcp/`.
+  - This is not "the GitHub API MCP server".
+
+This repo's default path is to generate `.mcp.json` via `scripts/mcp_write_local.ps1` so you do not hand-edit secret-bearing JSON.
 
 ## Scopes / Permissions
 
@@ -55,4 +69,3 @@ Prefer least privilege:
 - The GitHub MCP endpoint used here supports reading file contents via `repo://.../contents/<path>`.
 - Directory reads such as `repo://.../contents/` can fail with `directories are not supported`.
   This is a server/endpoint limitation, not a token scope issue.
-
