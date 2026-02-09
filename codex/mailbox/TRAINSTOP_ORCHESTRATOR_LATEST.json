@@ -1,32 +1,18 @@
 {
   "schema_version": 1,
-  "generated_on": "2026-02-09T17:36:23Z",
+  "generated_on": "2026-02-09T19:38:03Z",
   "results": [
     {
-      "name": "CFG:codex_mcp_list",
+      "name": "CFG:hf_mcp_client_emitter",
       "rc": 0,
-      "seconds": 0.162,
-      "cmd": [
-        "codex",
-        "mcp",
-        "list"
-      ],
-      "stdout_tail": "Name           Url                                 Bearer Token Env Var  Status   Auth        \ngithub         https://api.githubcopilot.com/mcp/  GITHUB_MCP_PAT        enabled  Bearer token\nhf-mcp-server  https://huggingface.co/mcp?login    -                     enabled  OAuth       ",
-      "stderr_tail": "",
-      "missing_artifacts": [],
-      "notes": []
-    },
-    {
-      "name": "CFG:hf_probe_api_pool",
-      "rc": 0,
-      "seconds": 0.847,
+      "seconds": 1.65,
       "cmd": [
         "pwsh",
         "-NoProfile",
         "-Command",
-        ".\\scripts\\api_pool.ps1 -Load | Out-Null; uv run scripts/hf_probe.py"
+        ".\\scripts\\api_pool.ps1 -Load | Out-Null; uv run scripts/mcp_client_emitter.py --url https://huggingface.co/mcp --min-despair 0"
       ],
-      "stdout_tail": "Loaded 3 env var(s) into this shell process.\nok: esabbr",
+      "stdout_tail": "Loaded 3 env var(s) into this shell process.\nWrote: C:/Users/erdno/chthonic-archive/artifacts/hf_mcp_tools_2026-02-09T19-38-02-929Z.json\nWrote: C:/Users/erdno/chthonic-archive/codex/mailbox/HF_MCP_TOOLS_LATEST.json",
       "stderr_tail": "",
       "missing_artifacts": [],
       "notes": []
