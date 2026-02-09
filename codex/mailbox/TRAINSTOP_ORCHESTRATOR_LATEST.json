@@ -1,18 +1,18 @@
 {
   "schema_version": 1,
-  "generated_on": "2026-02-09T19:38:03Z",
+  "generated_on": "2026-02-09T19:50:33Z",
   "results": [
     {
-      "name": "CFG:hf_mcp_client_emitter",
+      "name": "CFG:hf_prep_verify",
       "rc": 0,
-      "seconds": 1.65,
+      "seconds": 0.953,
       "cmd": [
         "pwsh",
         "-NoProfile",
         "-Command",
-        ".\\scripts\\api_pool.ps1 -Load | Out-Null; uv run scripts/mcp_client_emitter.py --url https://huggingface.co/mcp --min-despair 0"
+        ".\\scripts\\api_pool.ps1 -Load | Out-Null; uv run scripts/hf_prep.py --with transformers,datasets,accelerate"
       ],
-      "stdout_tail": "Loaded 3 env var(s) into this shell process.\nWrote: C:/Users/erdno/chthonic-archive/artifacts/hf_mcp_tools_2026-02-09T19-38-02-929Z.json\nWrote: C:/Users/erdno/chthonic-archive/codex/mailbox/HF_MCP_TOOLS_LATEST.json",
+      "stdout_tail": "Loaded 3 env var(s) into this shell process.",
       "stderr_tail": "",
       "missing_artifacts": [],
       "notes": []
