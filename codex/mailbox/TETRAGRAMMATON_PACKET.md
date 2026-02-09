@@ -1,16 +1,16 @@
 ---
 type: packet
 created: 2026-02-06T20:13:06.593150+00:00
-updated: 2026-02-09T17:01:56.831258+00:00
+updated: 2026-02-09T22:02:40.326968+00:00
 mailbox: codex/mailbox
 codename: TETRAGRAMMATON
-sources_hash: abf9b984ce3b68019a52425ac347fceb2a275afa2a2f20bcea724f06bf179ba3
+sources_hash: 1839538454120c30beb22c5907b60c68ee65afa21c311d4de15ed79533e581fb
 sources_count: 14
 ---
 
 # TETRAGRAMMATON Packet
 
-<!-- @SCRIBED: 2026-02-09T17:01:56.831264+00:00 -->
+<!-- @SCRIBED: 2026-02-09T22:02:40.326972+00:00 -->
 
 ## Packet Rules
 - Paths are repo-relative (portable; no local usernames).
@@ -34,8 +34,8 @@ sources_count: 14
 - `mailbox_manifest.json`
 
 ## Snapshot
-- Generated: `2026-02-09T17:01:56.831258+00:00`
-- Sources hash: `abf9b984ce3b68019a52425ac347fceb2a275afa2a2f20bcea724f06bf179ba3`
+- Generated: `2026-02-09T22:02:40.326968+00:00`
+- Sources hash: `1839538454120c30beb22c5907b60c68ee65afa21c311d4de15ed79533e581fb`
 
 ## Content
 
@@ -521,7 +521,7 @@ Path: `codex/mailbox/MAILBOX_CURRENT_STATE.md`
 ```md
 ---
 type: mailbox-state
-updated: 2026-02-09T17:01:56.814663+00:00
+updated: 2026-02-09T22:02:40.318580+00:00
 mailbox: codex/mailbox
 ---
 
@@ -530,6 +530,9 @@ mailbox: codex/mailbox
 ## Active Files
 - `CLAUDE_RUNBOOK_MATRIX.md`
 - `HF_GEMMA_PROBE.md`
+- `HF_MCP_TOOLS_LATEST.json`
+- `HF_PREP_LATEST.json`
+- `HF_PREP_LATEST.md`
 - `KISS_PARITY_BRIEF_2026_02_06.md`
 - `MAILBOX_CURRENT_STATE.md`
 - `META_POLISHER_VALIDATION_SUMMARY.json`
@@ -537,6 +540,9 @@ mailbox: codex/mailbox
 - `SESSION_CHRONICLE_2026_02_07.md`
 - `SESSION_CONTEXT_APPENDIX_2026_02_06.md`
 - `SESSION_CONTEXT_CHRONICLE_2026_02_06.md`
+- `SESSION_HANDOFF_2026_02_09_CROSS_SKILL_AUDIT.md`
+- `SESSION_HANDOFF_2026_02_09_RESPONSE.md`
+- `SESSION_HANDOFF_2026_1_9_CROSS_AUDIT.md`
 - `SKILLS_PARITY_DISCREPANCY_2026_02_06.md`
 - `TATRAGRAMMATRON_SUMMARY_LATEST_CODEX.md`
 - `TETRAGRAMMATON_PACKET.md`
@@ -547,9 +553,15 @@ mailbox: codex/mailbox
 - `TOOLCHAIN_DOCTOR_REPORT_2026_02_07_180604.md`
 - `TOOLCHAIN_DOCTOR_REPORT_2026_02_07_194657.md`
 - `TOOLCHAIN_DOCTOR_REPORT_2026_02_09_170154.md`
+- `TRAINSTOP_ORCHESTRATOR_LATEST.json`
 - `claude_skill_audit_2026_02_07.json`
+- `cross_audit_2026-02-09T22-01-52Z.json`
 - `hf_gemma_probe.json`
 - `mailbox_manifest.json`
+- `skill_audit_claude_2026-02-09T22-01-52Z.json`
+- `skill_audit_claude_2026-02-09T22-02-38Z.json`
+- `skill_audit_codex_2026-02-09T22-01-52Z.json`
+- `skill_audit_codex_2026-02-09T22-02-38Z.json`
 - `skills_parity_map_2026_02_06.json`
 - `tatragrammatron_matrix_2026_02_07.json`
 - `tatragrammatron_stamps_latest_codex.json`
@@ -761,84 +773,12 @@ Path: `codex/mailbox/mailbox_manifest.json`
 
 ```json
 {
-  "schema_version": 2,
-  "mailbox": "codex/mailbox",
-  "generated_on": "2026-02-09T17:01:56.809251+00:00",
-  "manifest_file": "mailbox_manifest.json",
-  "active": {
-    "md": [
-      "CLAUDE_RUNBOOK_MATRIX.md",
-      "HF_GEMMA_PROBE.md",
-      "KISS_PARITY_BRIEF_2026_02_06.md",
-      "MAILBOX_CURRENT_STATE.md",
-      "QUEUE_2026_02_07.md",
-      "SESSION_CHRONICLE_2026_02_07.md",
-      "SESSION_CONTEXT_APPENDIX_2026_02_06.md",
-      "SESSION_CONTEXT_CHRONICLE_2026_02_06.md",
-      "SKILLS_PARITY_DISCREPANCY_2026_02_06.md",
-      "TATRAGRAMMATRON_SUMMARY_LATEST_CODEX.md",
-      "TETRAGRAMMATON_PACKET.md",
-      "TETRAGRAMMATON_PROGRESS_2026_02_06.md",
-      "TOOLCHAIN_DOCTOR_LATEST.md",
-      "TOOLCHAIN_DOCTOR_REPORT_2026_02_07_174714.md",
-      "TOOLCHAIN_DOCTOR_REPORT_2026_02_07_180524.md",
-      "TOOLCHAIN_DOCTOR_REPORT_2026_02_07_180604.md",
-      "TOOLCHAIN_DOCTOR_REPORT_2026_02_07_194657.md",
-      "TOOLCHAIN_DOCTOR_REPORT_2026_02_09_170154.md"
-    ],
-    "json": [
-      "META_POLISHER_VALIDATION_SUMMARY.json",
-      "claude_skill_audit_2026_02_07.json",
-      "hf_gemma_probe.json",
-      "skills_parity_map_2026_02_06.json",
-      "tatragrammatron_matrix_2026_02_07.json",
-      "tatragrammatron_stamps_latest_codex.json",
-      "tatragrammatron_trend.json"
-    ]
-  },
-  "archive_count": 40,
-  "archive_files": [
-    "2026_02_07/e2e_matrix_claude_on_claude.json",
-    "2026_02_07/e2e_matrix_claude_on_codex.json",
-    "2026_02_07/e2e_matrix_codex_on_claude.json",
-    "2026_02_07/e2e_matrix_codex_on_codex.json",
-    "2026_02_07/e2e_matrix_compare_summary.json",
-    "2026_02_07/MAILBOX_CURRENT_STATE_2026_02_06.md",
-    "2026_02_07/tatragrammatron_stamps_2026_02_06.json",
-    "2026_02_07/tatragrammatron_stamps_2026_02_07.json",
-    "2026_02_07/tatragrammatron_stamps_2026_02_07_auto_on_claude.json",
-    "2026_02_07/tatragrammatron_stamps_2026_02_07_claude.json",
-    "2026_02_07/tatragrammatron_stamps_2026_02_07_claude_contract_on_codex.json",
-    "2026_02_07/tatragrammatron_stamps_2026_02_07_claude_v2.json",
-    "2026_02_07/tatragrammatron_stamps_2026_02_07_codex.json",
-    "2026_02_07/tatragrammatron_stamps_2026_02_07_codex_on_claude.json",
-    "2026_02_07/tatragrammatron_stamps_2026_02_07_codex_on_codex.json",
-    "2026_02_07/tatragrammatron_stamps_2026_02_07_codex_v3.json",
-    "2026_02_07/tatragrammatron_stamps_2026_02_07_full_codex.json",
-    "2026_02_07/tatragrammatron_stamps_2026_02_07_v2.json",
-    "2026_02_07/TATRAGRAMMATRON_SUMMARY_2026_02_06.md",
-    "2026_02_07/TATRAGRAMMATRON_SUMMARY_2026_02_07.md",
-    "2026_02_07/TATRAGRAMMATRON_SUMMARY_2026_02_07_AUTO_ON_CLAUDE.md",
-    "2026_02_07/TATRAGRAMMATRON_SUMMARY_2026_02_07_CLAUDE.md",
-    "2026_02_07/TATRAGRAMMATRON_SUMMARY_2026_02_07_CLAUDE_CONTRACT_ON_CODEX.md",
-    "2026_02_07/TATRAGRAMMATRON_SUMMARY_2026_02_07_CLAUDE_V2.md",
-    "2026_02_07/TATRAGRAMMATRON_SUMMARY_2026_02_07_CODEX.md",
-    "2026_02_07/TATRAGRAMMATRON_SUMMARY_2026_02_07_CODEX_ON_CLAUDE.md",
-    "2026_02_07/TATRAGRAMMATRON_SUMMARY_2026_02_07_CODEX_ON_CODEX.md",
-    "2026_02_07/TATRAGRAMMATRON_SUMMARY_2026_02_07_CODEX_V3.md",
-    "2026_02_07/TATRAGRAMMATRON_SUMMARY_2026_02_07_FULL_CODEX.md",
-    "2026_02_07/TATRAGRAMMATRON_SUMMARY_2026_02_07_V2.md",
-    "CLAUDE_RESPONSE_TRAIN_STOP_2026_02_05.md",
-    "CLAUDE_SKILLS_SPEC_VALIDATION_2026_02_05.md",
-    "EXECUTION_ORDER_RECAP_2026_02_05.md",
-    "MAILBOX_CMD_POLICY_2026_02_05.md",
-    "MAILBOX_CONSOLIDATED_2026_02_05.md",
-    "SESSION_HANDOFF_2026_02_05_PARITY_DELTA.md",
-    "skill_audit_claude_2026_02_05.json",
-    "skill_audit_codex_2026_02_05.json",
-    "TRAIN_STOP_AUDIT_PRE_SEND_2026_02_05.md",
-    "TRAIN_STOP_HANDOFF_CONSOLIDATED_2026_02_05.md"
-  ]
+  "_truncated": true,
+  "note": "Full JSON omitted from packet; see relative_path in the repo.",
+  "name": "mailbox_manifest.json",
+  "relative_path": "codex/mailbox/mailbox_manifest.json",
+  "bytes": 4333,
+  "sha256": "de9ded16353e4e603d80b9b048d68e50afac777f2964093173e02cd6c74a0455"
 }
 ```
 
@@ -863,3 +803,5 @@ Path: `codex/mailbox/mailbox_manifest.json`
 - 2026-02-07T19:46:58.875749+00:00: sources changed
 - 2026-02-07T20:19:58.518180+00:00: sources changed
 - 2026-02-09T17:01:56.831258+00:00: sources changed
+- 2026-02-09T22:01:56.547280+00:00: sources changed
+- 2026-02-09T22:02:40.326968+00:00: sources changed

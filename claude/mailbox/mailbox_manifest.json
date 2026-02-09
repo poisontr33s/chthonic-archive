@@ -1,23 +1,28 @@
 {
   "schema_version": 2,
   "mailbox": "claude/mailbox",
-  "generated_on": "2026-02-10T02:40:00.000000+00:00",
+  "generated_on": "2026-02-09T22:01:53.504239+00:00",
   "manifest_file": "mailbox_manifest.json",
   "active": {
     "md": [
-      "CLAUDE_CODE_HIERARCHICAL_RESEARCH_2026_02_09.md",
       "CLAUDE_CODE_CENTRIC_SETUP_2026_02_09.md",
+      "CLAUDE_CODE_HIERARCHICAL_RESEARCH_2026_02_09.md",
       "CLAUDE_TASK_SESSION_SYNC_2026_02_09.md",
       "KISS_PARITY_BRIEF_2026_02_06.md",
       "MAILBOX_CURRENT_STATE.md",
-      "SESSION_HANDOFF_2026_02_10_CLAUDE_CODE_OPUS_SETUP.md",
       "SESSION_CONTEXT_APPENDIX_2026_02_06.md",
       "SESSION_CONTEXT_CHRONICLE_2026_02_06.md",
+      "SESSION_CONTEXT_CHRONICLE_2026_02_09.md",
+      "SESSION_HANDOFF_2026_02_10_CLAUDE_CODE_OPUS_SETUP.md",
+      "SESSION_HANDOFF_2026_1_9_CLAUDE_SKILL_AUDIT.md",
+      "SESSION_SYNC_PACKET_2026_02_09.md",
       "SKILLS_PARITY_DISCREPANCY_2026_02_06.md",
       "TETRAGRAMMATON_PACKET.md"
     ],
     "json": [
       "CLAUDE_META_VALIDATION_SUMMARY.json",
+      "SESSION_SYNC_INDEX_2026_02_09.json",
+      "skill_audit_claude_2026-02-09T22-01-52Z.json",
       "skills_parity_map_2026_02_06.json"
     ]
   },

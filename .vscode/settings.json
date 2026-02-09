@@ -252,7 +252,7 @@
     },
 
     // === CLAUDE CODE ===
-    "claudeCode.selectedModel": "claude-opus-4-5-20251101",
+    "claudeCode.selectedModel": "claude-opus-4-6",
     "claudeCode.allowDangerouslySkipPermissions": true,
     "claudeCode.useTerminal": true,
     "claudeCode.respectGitIgnore": false,

@@ -96,4 +96,38 @@ This file provides guidance to OpenAI Codex when working with code in this repos
 - Claude skills: `.claude/skills`
 - Codex mailbox: `codex/mailbox`
 - Claude mailbox: `claude/mailbox`
+- Archived skills: `.codex/skills/_archived/`
+- Prompt templates: `.temple/prompts/`
 - Non-canonical hidden mailboxes (`.codex/mailbox`, `.claude/mailbox`) must remain empty except optional `.gitkeep`.
+
+---
+
+## Skill Anti-Proliferation Rules (MANDATORY)
+
+**These rules prevent meta-loop bloat and skill sprawl.**
+
+### DO NOT create a new skill if:
+1. The task can be done with a 10-line script → put it in `scripts/`
+2. The task is a wrapper around an existing script → use the script directly
+3. The task is a prompt template → put it in `.temple/prompts/`
+4. The task duplicates or slightly varies an existing skill → extend the existing skill
+5. The skill would audit/validate another skill → that's already handled by trainstop
+
+### Before creating ANY skill, answer:
+- **Does it have a real script?** If no, it's not a skill—it's documentation.
+- **Does the script do something trainstop doesn't already do?** If no, add it to a lane.
+- **Is there already a skill that does 80% of this?** If yes, extend that one.
+
+### Skill count gate:
+- Target: ≤15 active skills in `.codex/skills/`
+- Current archived: `.codex/skills/_archived/` (preserved per Labyrinthine Placement)
+- If creating would exceed 15, CONSOLIDATE first.
+
+### What belongs where:
+| Type | Location |
+|------|----------|
+| Executable skill with script | `.codex/skills/<name>/` |
+| Prompt template (persona, CoT structure) | `.temple/prompts/` |
+| Wrapper around existing script | Don't create—use script directly |
+| Documentation for a process | `.temple/methodology/` or protocol |
+| Archived/deprecated skill | `.codex/skills/_archived/`

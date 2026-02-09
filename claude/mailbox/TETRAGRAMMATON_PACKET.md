@@ -1,16 +1,16 @@
 ---
 type: packet
 created: 2026-02-07T18:08:22.695770+00:00
-updated: 2026-02-07T19:46:59.007637+00:00
+updated: 2026-02-09T22:01:53.509316+00:00
 mailbox: claude/mailbox
 codename: TETRAGRAMMATON
-sources_hash: 3f15eafa66eaaa45c52d283215c4cf2e34df9247cdca6378606b20d9d7ebe851
+sources_hash: 1903a25c140e1a4b6223317f2be2e2e2afa20e7f485badb10e14931d698b79ac
 sources_count: 6
 ---
 
 # TETRAGRAMMATON Packet
 
-<!-- @SCRIBED: 2026-02-07T19:46:59.007649+00:00 -->
+<!-- @SCRIBED: 2026-02-09T22:01:53.509319+00:00 -->
 
 ## Packet Rules
 - Paths are repo-relative (portable; no local usernames).
@@ -26,8 +26,8 @@ sources_count: 6
 - `mailbox_manifest.json`
 
 ## Snapshot
-- Generated: `2026-02-07T19:46:59.007637+00:00`
-- Sources hash: `3f15eafa66eaaa45c52d283215c4cf2e34df9247cdca6378606b20d9d7ebe851`
+- Generated: `2026-02-09T22:01:53.509316+00:00`
+- Sources hash: `1903a25c140e1a4b6223317f2be2e2e2afa20e7f485badb10e14931d698b79ac`
 
 ## Content
 
@@ -364,21 +364,30 @@ Path: `claude/mailbox/MAILBOX_CURRENT_STATE.md`
 ```md
 ---
 type: mailbox-state
-updated: 2026-02-07T19:46:59.004717+00:00
+updated: 2026-02-09T22:01:53.505325+00:00
 mailbox: claude/mailbox
 ---
 
 # Mailbox Current State
 
 ## Active Files
+- `CLAUDE_CODE_CENTRIC_SETUP_2026_02_09.md`
+- `CLAUDE_CODE_HIERARCHICAL_RESEARCH_2026_02_09.md`
 - `CLAUDE_META_VALIDATION_SUMMARY.json`
+- `CLAUDE_TASK_SESSION_SYNC_2026_02_09.md`
 - `KISS_PARITY_BRIEF_2026_02_06.md`
 - `MAILBOX_CURRENT_STATE.md`
 - `SESSION_CONTEXT_APPENDIX_2026_02_06.md`
 - `SESSION_CONTEXT_CHRONICLE_2026_02_06.md`
+- `SESSION_CONTEXT_CHRONICLE_2026_02_09.md`
+- `SESSION_HANDOFF_2026_02_10_CLAUDE_CODE_OPUS_SETUP.md`
+- `SESSION_HANDOFF_2026_1_9_CLAUDE_SKILL_AUDIT.md`
+- `SESSION_SYNC_INDEX_2026_02_09.json`
+- `SESSION_SYNC_PACKET_2026_02_09.md`
 - `SKILLS_PARITY_DISCREPANCY_2026_02_06.md`
 - `TETRAGRAMMATON_PACKET.md`
 - `mailbox_manifest.json`
+- `skill_audit_claude_2026-02-09T22-01-52Z.json`
 - `skills_parity_map_2026_02_06.json`
 
 ## Archive
@@ -398,19 +407,28 @@ Path: `claude/mailbox/mailbox_manifest.json`
 {
   "schema_version": 2,
   "mailbox": "claude/mailbox",
-  "generated_on": "2026-02-07T19:46:59.003655+00:00",
+  "generated_on": "2026-02-09T22:01:53.504239+00:00",
   "manifest_file": "mailbox_manifest.json",
   "active": {
     "md": [
+      "CLAUDE_CODE_CENTRIC_SETUP_2026_02_09.md",
+      "CLAUDE_CODE_HIERARCHICAL_RESEARCH_2026_02_09.md",
+      "CLAUDE_TASK_SESSION_SYNC_2026_02_09.md",
       "KISS_PARITY_BRIEF_2026_02_06.md",
       "MAILBOX_CURRENT_STATE.md",
       "SESSION_CONTEXT_APPENDIX_2026_02_06.md",
       "SESSION_CONTEXT_CHRONICLE_2026_02_06.md",
+      "SESSION_CONTEXT_CHRONICLE_2026_02_09.md",
+      "SESSION_HANDOFF_2026_02_10_CLAUDE_CODE_OPUS_SETUP.md",
+      "SESSION_HANDOFF_2026_1_9_CLAUDE_SKILL_AUDIT.md",
+      "SESSION_SYNC_PACKET_2026_02_09.md",
       "SKILLS_PARITY_DISCREPANCY_2026_02_06.md",
       "TETRAGRAMMATON_PACKET.md"
     ],
     "json": [
       "CLAUDE_META_VALIDATION_SUMMARY.json",
+      "SESSION_SYNC_INDEX_2026_02_09.json",
+      "skill_audit_claude_2026-02-09T22-01-52Z.json",
       "skills_parity_map_2026_02_06.json"
     ]
   },
@@ -438,3 +456,4 @@ Path: `claude/mailbox/mailbox_manifest.json`
 - 2026-02-07T19:08:12.919323+00:00: sources changed
 - 2026-02-07T19:37:14.848881+00:00: sources changed
 - 2026-02-07T19:46:59.007637+00:00: sources changed
+- 2026-02-09T22:01:53.509316+00:00: sources changed
