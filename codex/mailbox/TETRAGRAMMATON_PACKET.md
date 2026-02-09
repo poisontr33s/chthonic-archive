@@ -1,16 +1,16 @@
 ---
 type: packet
 created: 2026-02-06T20:13:06.593150+00:00
-updated: 2026-02-07T20:19:58.518180+00:00
+updated: 2026-02-09T17:01:56.831258+00:00
 mailbox: codex/mailbox
 codename: TETRAGRAMMATON
-sources_hash: 8eb2680db7416ef1d9bfe974726c1b4dcfed17f94887f4faac91ba715189be58
+sources_hash: abf9b984ce3b68019a52425ac347fceb2a275afa2a2f20bcea724f06bf179ba3
 sources_count: 14
 ---
 
 # TETRAGRAMMATON Packet
 
-<!-- @SCRIBED: 2026-02-07T20:19:58.518185+00:00 -->
+<!-- @SCRIBED: 2026-02-09T17:01:56.831264+00:00 -->
 
 ## Packet Rules
 - Paths are repo-relative (portable; no local usernames).
@@ -34,8 +34,8 @@ sources_count: 14
 - `mailbox_manifest.json`
 
 ## Snapshot
-- Generated: `2026-02-07T20:19:58.518180+00:00`
-- Sources hash: `8eb2680db7416ef1d9bfe974726c1b4dcfed17f94887f4faac91ba715189be58`
+- Generated: `2026-02-09T17:01:56.831258+00:00`
+- Sources hash: `abf9b984ce3b68019a52425ac347fceb2a275afa2a2f20bcea724f06bf179ba3`
 
 ## Content
 
@@ -521,7 +521,7 @@ Path: `codex/mailbox/MAILBOX_CURRENT_STATE.md`
 ```md
 ---
 type: mailbox-state
-updated: 2026-02-07T20:19:58.512074+00:00
+updated: 2026-02-09T17:01:56.814663+00:00
 mailbox: codex/mailbox
 ---
 
@@ -546,6 +546,7 @@ mailbox: codex/mailbox
 - `TOOLCHAIN_DOCTOR_REPORT_2026_02_07_180524.md`
 - `TOOLCHAIN_DOCTOR_REPORT_2026_02_07_180604.md`
 - `TOOLCHAIN_DOCTOR_REPORT_2026_02_07_194657.md`
+- `TOOLCHAIN_DOCTOR_REPORT_2026_02_09_170154.md`
 - `claude_skill_audit_2026_02_07.json`
 - `hf_gemma_probe.json`
 - `mailbox_manifest.json`
@@ -626,31 +627,35 @@ Path: `codex/mailbox/TATRAGRAMMATRON_SUMMARY_LATEST_CODEX.md`
 ```md
 # Skill Polisher Summary
 
-- Generated: `2026-02-07T19:46:58.353422+00:00`
+- Generated: `2026-02-09T17:01:56.035084+00:00`
 - Mode: `verify`
-- Total skills: `18`
-- Passed: `18`
+- Total skills: `22`
+- Passed: `22`
 - Failed: `0`
-- Pure: `18`
+- Pure: `22`
 
 ## Scores
 
 | Skill | Exit | Total | Structure | Policy | Semantics | Maintainability | Issues | Fixes |
 |---|---:|---:|---:|---:|---:|---:|---:|---:|
+| `api-manager` | `0` | `100` | `100` | `100` | `100` | `100` | `0` | `0` |
 | `artifact-upcycle` | `0` | `100` | `100` | `100` | `100` | `100` | `1` | `0` |
 | `claude-skill-bridge` | `0` | `100` | `100` | `100` | `100` | `100` | `0` | `0` |
 | `codex-skill-bridge` | `0` | `100` | `100` | `100` | `100` | `100` | `0` | `0` |
 | `conceptualize` | `0` | `100` | `100` | `100` | `100` | `100` | `0` | `0` |
 | `decision-razor` | `0` | `100` | `100` | `100` | `100` | `100` | `0` | `0` |
+| `dumpster-upcycler` | `0` | `100` | `100` | `100` | `100` | `100` | `0` | `0` |
 | `gh-address-comments` | `0` | `100` | `100` | `100` | `100` | `100` | `0` | `0` |
 | `gh-fix-ci` | `0` | `100` | `100` | `100` | `100` | `100` | `0` | `0` |
 | `gh-mcp-autonomy` | `0` | `100` | `100` | `100` | `100` | `100` | `0` | `0` |
 | `imagegen` | `0` | `100` | `100` | `100` | `100` | `100` | `0` | `0` |
+| `iron-maiden-runtime` | `0` | `100` | `100` | `100` | `100` | `100` | `0` | `0` |
 | `mailbox-handoff` | `0` | `100` | `100` | `100` | `100` | `100` | `0` | `0` |
 | `meta-polisher-validator` | `0` | `100` | `100` | `100` | `100` | `100` | `0` | `0` |
 | `openai-docs` | `0` | `100` | `100` | `100` | `100` | `100` | `0` | `0` |
 | `python-header-canon` | `0` | `100` | `100` | `100` | `100` | `100` | `0` | `0` |
 | `script-envelope` | `0` | `100` | `100` | `100` | `100` | `100` | `0` | `0` |
+| `session-resumer` | `0` | `100` | `100` | `100` | `100` | `100` | `0` | `0` |
 | `skill-polisher` | `0` | `100` | `100` | `100` | `100` | `100` | `1` | `0` |
 | `sora` | `0` | `100` | `100` | `100` | `100` | `100` | `0` | `0` |
 | `toolchain-doctor` | `0` | `100` | `100` | `100` | `100` | `100` | `0` | `0` |
@@ -666,8 +671,8 @@ Path: `codex/mailbox/tatragrammatron_stamps_latest_codex.json`
   "note": "Full JSON omitted from packet; see relative_path in the repo.",
   "name": "tatragrammatron_stamps_latest_codex.json",
   "relative_path": "codex/mailbox/tatragrammatron_stamps_latest_codex.json",
-  "bytes": 9172,
-  "sha256": "9b57c6d50e227d6b25954d91418f66fb3aade3af14f5713f263db6e5570c6717"
+  "bytes": 11024,
+  "sha256": "910d8239dd62debd2def3f4db72118fda5c03b084019b1727db1a9d23ca3ca0d"
 }
 ```
 
@@ -758,7 +763,7 @@ Path: `codex/mailbox/mailbox_manifest.json`
 {
   "schema_version": 2,
   "mailbox": "codex/mailbox",
-  "generated_on": "2026-02-07T20:19:58.510423+00:00",
+  "generated_on": "2026-02-09T17:01:56.809251+00:00",
   "manifest_file": "mailbox_manifest.json",
   "active": {
     "md": [
@@ -778,7 +783,8 @@ Path: `codex/mailbox/mailbox_manifest.json`
       "TOOLCHAIN_DOCTOR_REPORT_2026_02_07_174714.md",
       "TOOLCHAIN_DOCTOR_REPORT_2026_02_07_180524.md",
       "TOOLCHAIN_DOCTOR_REPORT_2026_02_07_180604.md",
-      "TOOLCHAIN_DOCTOR_REPORT_2026_02_07_194657.md"
+      "TOOLCHAIN_DOCTOR_REPORT_2026_02_07_194657.md",
+      "TOOLCHAIN_DOCTOR_REPORT_2026_02_09_170154.md"
     ],
     "json": [
       "META_POLISHER_VALIDATION_SUMMARY.json",
@@ -856,3 +862,4 @@ Path: `codex/mailbox/mailbox_manifest.json`
 - 2026-02-07T19:37:14.838263+00:00: sources changed
 - 2026-02-07T19:46:58.875749+00:00: sources changed
 - 2026-02-07T20:19:58.518180+00:00: sources changed
+- 2026-02-09T17:01:56.831258+00:00: sources changed

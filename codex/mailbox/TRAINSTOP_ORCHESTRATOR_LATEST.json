@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "generated_on": "2026-02-09T17:33:28Z",
+  "results": [
+    {
+      "name": "CFG:codex_mcp_list",
+      "rc": 0,
+      "seconds": 0.186,
+      "cmd": [
+        "codex",
+        "mcp",
+        "list"
+      ],
+      "stdout_tail": "Name           Url                                 Bearer Token Env Var  Status   Auth        \ngithub         https://api.githubcopilot.com/mcp/  GITHUB_MCP_PAT        enabled  Bearer token\nhf-mcp-server  https://huggingface.co/mcp?login    -                     enabled  OAuth       ",
+      "stderr_tail": ""
+    },
+    {
+      "name": "CFG:hf_probe_api_pool",
+      "rc": 0,
+      "seconds": 0.827,
+      "cmd": [
+        "pwsh",
+        "-NoProfile",
+        "-Command",
+        ".\\scripts\\api_pool.ps1 -Load | Out-Null; uv run scripts/hf_probe.py"
+      ],
+      "stdout_tail": "Loaded 3 env var(s) into this shell process.\nok: esabbr",
+      "stderr_tail": ""
+    }
+  ]
+}

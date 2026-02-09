@@ -1,6 +1,6 @@
 ---
 type: mailbox-state
-updated: 2026-02-07T20:19:58.512074+00:00
+updated: 2026-02-09T17:01:56.814663+00:00
 mailbox: codex/mailbox
 ---
 
@@ -25,6 +25,7 @@ mailbox: codex/mailbox
 - `TOOLCHAIN_DOCTOR_REPORT_2026_02_07_180524.md`
 - `TOOLCHAIN_DOCTOR_REPORT_2026_02_07_180604.md`
 - `TOOLCHAIN_DOCTOR_REPORT_2026_02_07_194657.md`
+- `TOOLCHAIN_DOCTOR_REPORT_2026_02_09_170154.md`
 - `claude_skill_audit_2026_02_07.json`
 - `hf_gemma_probe.json`
 - `mailbox_manifest.json`

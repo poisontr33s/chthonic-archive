@@ -31,6 +31,12 @@ function Get-ApiPoolPath {
   return @{ Dir = $dir; Path = $path }
 }
 
+function Has-EnvVar {
+  param([Parameter(Mandatory=$true)][string]$Name)
+  $v = [System.Environment]::GetEnvironmentVariable($Name, "Process")
+  return -not [string]::IsNullOrWhiteSpace([string]$v)
+}
+
 if (-not $Load) {
   Write-Host "Usage: .\\scripts\\api_pool.ps1 -Load"
   exit 2
@@ -67,5 +73,17 @@ foreach ($k in $json.env.PSObject.Properties.Name) {
   $count++
 }
 
-Write-Host "Loaded $count env var(s) into this shell process."
+# Compatibility: some libraries/tools read `HF_TOKEN` only.
+# If the pool provides `HUGGINGFACE_HUB_TOKEN`, map/override `HF_TOKEN` for this process.
+if (Has-EnvVar -Name "HUGGINGFACE_HUB_TOKEN") {
+  $v = [System.Environment]::GetEnvironmentVariable("HUGGINGFACE_HUB_TOKEN", "Process")
+  if (-not [string]::IsNullOrWhiteSpace($v)) {
+    $prior = [System.Environment]::GetEnvironmentVariable("HF_TOKEN", "Process")
+    if ($prior -ne $v) {
+      [System.Environment]::SetEnvironmentVariable("HF_TOKEN", $v, "Process")
+      $count++
+    }
+  }
+}
 
+Write-Host "Loaded $count env var(s) into this shell process."

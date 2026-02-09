@@ -37,6 +37,16 @@ RE_INLINE_UV = re.compile(r"(uv run\\s+[^\\n]+)")
 RE_INLINE_BUN = re.compile(r"(bun\\s+(?:audit|update|install)\\b[^\\n]*)")
 RE_INLINE_GIT = re.compile(r"(git\\s+(?:add|status|diff|config)\\b[^\\n]*)")
 RE_BUN_OUTPUT_VERSION = re.compile(r"^bun\\s+\\w+\\s+v\\d+")
+RE_OUTPUTISH = re.compile(
+    r"\\b("
+    r"is supported|supported and valid|"
+    r"now shows|shows the expected|"
+    r"confirmed|passed clean|passed|failed|"
+    r"exit\\s+\\d+|"
+    r"usage:"
+    r")\\b",
+    re.IGNORECASE,
+)
 
 
 def _strip_leading_noise(s: str) -> str:
@@ -71,6 +81,10 @@ def is_cmd_line(line: str) -> bool:
     # Canonical invocations.
     starters = ("uv run ", "bun ", "git ", "node ", "python ", "cargo ", "rg ", "pwsh ")
     if s.startswith(starters):
+        # Demote common "looks like a command but is actually prose/output" lines.
+        # Example: "uv run script.py is supported and valid ..." (explanatory sentence).
+        if RE_OUTPUTISH.search(s) and not s.strip().endswith((".py", ".ps1", ".ts", ".js", ".exe")):
+            return False
         # Demote tool "banner" output lines that look like versions, not invocations.
         if RE_BUN_OUTPUT_VERSION.match(s):
             return False
@@ -115,6 +129,7 @@ def extract_events(lines: list[str]) -> list[Event]:
     events: list[Event] = []
     cur: Event | None = None
     capture_payload_for_action = False
+    capture_payload_kind: str | None = None
 
     def flush() -> None:
         nonlocal cur
@@ -130,6 +145,7 @@ def extract_events(lines: list[str]) -> list[Event]:
         if t in ("blank", "div"):
             flush()
             capture_payload_for_action = False
+            capture_payload_kind = None
             continue
         kind = "text"
         if t == "cmd":
@@ -138,9 +154,27 @@ def extract_events(lines: list[str]) -> list[Event]:
             kind = "action"
 
         if kind == "text" and capture_payload_for_action and cur and cur.kind == "action":
-            # Attach filenames/lists that follow action headers like "Edited file" / "Review".
-            cur.lines.append(ln.rstrip())
-            continue
+            # Attach filenames/lists that follow action headers like "Edited file".
+            # Guardrail: do not accidentally swallow prose into the ACTION block.
+            s = ln.strip()
+            looks_like_path = (
+                ("/" in s or "\\" in s)
+                or s.startswith(".")
+                or bool(re.search(r"\\.[A-Za-z0-9]{1,6}$", s))
+            )
+            if capture_payload_kind == "edited_file":
+                if looks_like_path:
+                    cur.lines.append(ln.rstrip())
+                    continue
+            elif capture_payload_kind == "review":
+                # Review payloads are usually bullets or paths; keep them but stop on long prose.
+                if looks_like_path or s.startswith(("-", "*")) or len(s) < 120:
+                    cur.lines.append(ln.rstrip())
+                    continue
+
+            # Break out: treat this as normal text, not action payload.
+            capture_payload_for_action = False
+            capture_payload_kind = None
 
         if kind == "text":
             # Promote inline command substrings inside prose to CMD events.
@@ -179,6 +213,7 @@ def extract_events(lines: list[str]) -> list[Event]:
             head = ln.strip().lower()
             if head in ("edited file", "review") or head.startswith("edited file"):
                 capture_payload_for_action = True
+                capture_payload_kind = "edited_file" if head.startswith("edited file") else "review"
     flush()
     return events
 

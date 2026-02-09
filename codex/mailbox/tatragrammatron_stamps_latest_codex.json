@@ -1,7 +1,18 @@
 {
-  "generated_at": "2026-02-07T19:46:58.352694+00:00",
-  "count": 20,
+  "generated_at": "2026-02-09T17:01:56.033865+00:00",
+  "count": 24,
   "records": [
+    {
+      "skill": "api-manager",
+      "stamp": "#PURE",
+      "severity": "INFO",
+      "domain": "structure",
+      "file": "SKILL.md",
+      "line": null,
+      "message": "TASTE: PURE (Clean) and no blocking entropy detected.",
+      "remedy": "None (record only).",
+      "confidence": 1.0
+    },
     {
       "skill": "artifact-upcycle",
       "stamp": "#TBD",
@@ -69,6 +80,17 @@
       "confidence": 1.0
     },
     {
+      "skill": "dumpster-upcycler",
+      "stamp": "#PURE",
+      "severity": "INFO",
+      "domain": "structure",
+      "file": "SKILL.md",
+      "line": null,
+      "message": "TASTE: PURE (Clean) and no blocking entropy detected.",
+      "remedy": "None (record only).",
+      "confidence": 1.0
+    },
+    {
       "skill": "gh-address-comments",
       "stamp": "#PURE",
       "severity": "INFO",
@@ -103,6 +125,17 @@
     },
     {
       "skill": "imagegen",
+      "stamp": "#PURE",
+      "severity": "INFO",
+      "domain": "structure",
+      "file": "SKILL.md",
+      "line": null,
+      "message": "TASTE: PURE (Clean) and no blocking entropy detected.",
+      "remedy": "None (record only).",
+      "confidence": 1.0
+    },
+    {
+      "skill": "iron-maiden-runtime",
       "stamp": "#PURE",
       "severity": "INFO",
       "domain": "structure",
@@ -158,6 +191,17 @@
     },
     {
       "skill": "script-envelope",
+      "stamp": "#PURE",
+      "severity": "INFO",
+      "domain": "structure",
+      "file": "SKILL.md",
+      "line": null,
+      "message": "TASTE: PURE (Clean) and no blocking entropy detected.",
+      "remedy": "None (record only).",
+      "confidence": 1.0
+    },
+    {
+      "skill": "session-resumer",
       "stamp": "#PURE",
       "severity": "INFO",
       "domain": "structure",
@@ -225,6 +269,13 @@
   ],
   "skills": [
     {
+      "skill": "api-manager",
+      "exit_code": 0,
+      "score": 100,
+      "pure": true,
+      "applied_fixes": []
+    },
+    {
       "skill": "artifact-upcycle",
       "exit_code": 0,
       "score": 100,
@@ -260,6 +311,13 @@
       "applied_fixes": []
     },
     {
+      "skill": "dumpster-upcycler",
+      "exit_code": 0,
+      "score": 100,
+      "pure": true,
+      "applied_fixes": []
+    },
+    {
       "skill": "gh-address-comments",
       "exit_code": 0,
       "score": 100,
@@ -282,6 +340,13 @@
     },
     {
       "skill": "imagegen",
+      "exit_code": 0,
+      "score": 100,
+      "pure": true,
+      "applied_fixes": []
+    },
+    {
+      "skill": "iron-maiden-runtime",
       "exit_code": 0,
       "score": 100,
       "pure": true,
@@ -317,6 +382,13 @@
     },
     {
       "skill": "script-envelope",
+      "exit_code": 0,
+      "score": 100,
+      "pure": true,
+      "applied_fixes": []
+    },
+    {
+      "skill": "session-resumer",
       "exit_code": 0,
       "score": 100,
       "pure": true,

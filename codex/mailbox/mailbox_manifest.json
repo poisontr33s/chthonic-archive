@@ -1,7 +1,7 @@
 {
   "schema_version": 2,
   "mailbox": "codex/mailbox",
-  "generated_on": "2026-02-07T20:19:58.510423+00:00",
+  "generated_on": "2026-02-09T17:01:56.809251+00:00",
   "manifest_file": "mailbox_manifest.json",
   "active": {
     "md": [
@@ -21,7 +21,8 @@
       "TOOLCHAIN_DOCTOR_REPORT_2026_02_07_174714.md",
       "TOOLCHAIN_DOCTOR_REPORT_2026_02_07_180524.md",
       "TOOLCHAIN_DOCTOR_REPORT_2026_02_07_180604.md",
-      "TOOLCHAIN_DOCTOR_REPORT_2026_02_07_194657.md"
+      "TOOLCHAIN_DOCTOR_REPORT_2026_02_07_194657.md",
+      "TOOLCHAIN_DOCTOR_REPORT_2026_02_09_170154.md"
     ],
     "json": [
       "META_POLISHER_VALIDATION_SUMMARY.json",

@@ -36,6 +36,10 @@ This file provides guidance to OpenAI Codex when working with code in this repos
 **Purpose:** Anti-idle enforcement—forces creative output when acknowledgment-only responses detected
 **Trigger phrases:** "ready", "standing by", "awaiting", "confirmed", "understood", "got it", "secured"
 
+### No Task Dumping Protocol (Local)
+**Location:** [.temple/protocols/NO_TASK_DUMPING_PROTOCOL.md](.temple/protocols/NO_TASK_DUMPING_PROTOCOL.md)
+**Purpose:** Prevent "homework mode" task offloading. Default to doing the work; require at most one minimal user action when secrets/UI consent are necessary.
+
 ---
 
 ## Role in Triad

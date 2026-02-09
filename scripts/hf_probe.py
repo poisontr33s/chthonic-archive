@@ -13,11 +13,20 @@ Invocation:
 
 from __future__ import annotations
 
+import os
+
 from huggingface_hub import HfApi
 
 
 def main() -> int:
-    api = HfApi()
+    # hf_hub auth precedence:
+    # - HF_TOKEN overrides other auth sources and can be stale.
+    # - Prefer HUGGINGFACE_HUB_TOKEN when present (API pool), and ignore HF_TOKEN for this probe.
+    if os.getenv("HUGGINGFACE_HUB_TOKEN") and os.getenv("HF_TOKEN"):
+        os.environ.pop("HF_TOKEN", None)
+
+    token = os.getenv("HF_TOKEN") or os.getenv("HUGGINGFACE_HUB_TOKEN") or None
+    api = HfApi(token=token)
     try:
         who = api.whoami()
         ident = who.get("name") or who.get("email") or "unknown"
@@ -30,4 +39,3 @@ def main() -> int:
 
 if __name__ == "__main__":
     raise SystemExit(main())
-
