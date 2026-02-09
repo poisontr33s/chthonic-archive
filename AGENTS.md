@@ -42,6 +42,10 @@ This file provides guidance to OpenAI Codex when working with code in this repos
 
 ---
 
+### Mailbox Protocol (Local)
+**Location:** [.temple/protocols/MAILBOX_PROTOCOL.md](.temple/protocols/MAILBOX_PROTOCOL.md)
+**Purpose:** Mailbox semantics: handoff notes for continuity, minimal payload references, no file-spam. “Check your mail” means continue from the latest handoff.
+
 ## Role in Triad
 
 | Aspect | Codex Responsibility |
