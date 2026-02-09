@@ -17,12 +17,12 @@ Claude Code Opus is expensive. This repo is structured so Claude Code can operat
 
 File: `.claude/settings.json`
 
-- Default model changed from `opus` to `sonnet`
+- Default model: `claude-opus-4-6`
 - `alwaysThinkingEnabled`: `false`
 - `effortLevel`: `medium`
 - Added hooks:
   - `SessionStart`: prints canonical path + command policy reminders
-  - `PreToolUse`: blocks edits to likely secret/auth files
+  - `PermissionRequest`: blocks edits to likely secret/auth files
   - `PostToolUse`: runs lightweight repo invariants after writes/edits
 
 ### 2) Hooks (PowerShell)
@@ -42,18 +42,18 @@ Directory: `.claude/hooks/`
 
 Directory: `.claude/agents/`
 
-- `.claude/agents/trainstop-runner.md` (model: `haiku`)
+- `.claude/agents/trainstop-runner.md`
   - Runs trainstop lanes and reports artifacts
-- `.claude/agents/mcp-auth-doctor.md` (model: `haiku`)
+- `.claude/agents/mcp-auth-doctor.md`
   - Validates MCP/auth readiness via existing lanes + artifacts
-- `.claude/agents/parity-auditor.md` (model: `sonnet`)
+- `.claude/agents/parity-auditor.md`
   - Runs cross-audits and fixes contract-level issues
 
-## “Claude-Centricity” Operating Pattern (Minimal Opus)
+## “Claude-Centricity” Operating Pattern (Opus Delegates)
 
 1. Prefer hooks + lanes for determinism and low token spend.
-2. Use `haiku` subagents for lane execution + summarization.
-3. Only use `opus` when a task requires deep synthesis beyond what artifacts provide.
+2. Opus delegates to subagents to keep work segmented (diagnostics/audits/resume).
+3. If token burn is too high for a run, temporarily switch model to Sonnet for “operator” tasks only (lane runs + artifact summaries), then switch back.
 
 ## Commands (Repo-Native)
 
@@ -81,4 +81,3 @@ uv run .codex/skills/trainstop-orchestrator/scripts/orchestrate.py --target code
 
 - Secret tokens remain SSOT in `C:\\Users\\erdno\\.chthonic\\api_pool.json` and should never be edited by agents.
 - This setup is meant to keep Claude Code in “operator mode” rather than “inventor mode”.
-
