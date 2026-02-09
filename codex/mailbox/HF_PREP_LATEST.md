@@ -1,7 +1,7 @@
 # HF Prep (uv + Python 3.13)
 
-- Generated: `2026-02-09T20:02:39Z`
-- Apply: `False`
+- Generated: `2026-02-09T20:21:58Z`
+- Apply: `True`
 - Python: `3.13.11 (main, Dec  9 2025, 19:02:08) [MSC v.1944 64 bit (AMD64)]`
 - HF_TOKEN present: `True`
 - HUGGINGFACE_HUB_TOKEN present: `True`
@@ -14,8 +14,8 @@
 - `OK` `dep:mcp`: mcp=1.26.0
 - `OK` `dep:pydantic-settings`: pydantic-settings=2.12.0
 - `OK` `dep:requests`: requests=2.32.5
-- `FAIL` `dep:transformers`: transformers (not installed)
-- `FAIL` `dep:tokenizers`: tokenizers (not installed)
-- `FAIL` `dep:safetensors`: safetensors (not installed)
-- `FAIL` `dep:datasets`: datasets (not installed)
-- `FAIL` `dep:accelerate`: accelerate (not installed)
+- `OK` `dep:transformers`: transformers=5.1.0
+- `OK` `dep:tokenizers`: tokenizers=0.22.2
+- `OK` `dep:safetensors`: safetensors=0.7.0
+- `OK` `dep:datasets`: datasets=4.5.0
+- `OK` `dep:accelerate`: accelerate=1.12.0

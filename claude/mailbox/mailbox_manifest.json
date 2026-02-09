@@ -1,10 +1,12 @@
 {
   "schema_version": 2,
   "mailbox": "claude/mailbox",
-  "generated_on": "2026-02-07T19:46:59.003655+00:00",
+  "generated_on": "2026-02-10T02:20:00.000000+00:00",
   "manifest_file": "mailbox_manifest.json",
   "active": {
     "md": [
+      "CLAUDE_CODE_CENTRIC_SETUP_2026_02_09.md",
+      "CLAUDE_TASK_SESSION_SYNC_2026_02_09.md",
       "KISS_PARITY_BRIEF_2026_02_06.md",
       "MAILBOX_CURRENT_STATE.md",
       "SESSION_CONTEXT_APPENDIX_2026_02_06.md",
