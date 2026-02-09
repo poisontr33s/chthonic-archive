@@ -14,6 +14,7 @@
 # {
 #   "env": {
 #     "HUGGINGFACE_HUB_TOKEN": "hf_...",
+#     "GITHUB_TOKEN": "ghp_...",
 #     "OPENAI_API_KEY": "sk-..."
 #   }
 # }
@@ -49,6 +50,7 @@ if (-not (Test-Path -LiteralPath $p.Path)) {
 {
   "env": {
     "HUGGINGFACE_HUB_TOKEN": "",
+    "GITHUB_TOKEN": "",
     "OPENAI_API_KEY": ""
   }
 }
