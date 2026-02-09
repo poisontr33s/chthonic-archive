@@ -1,7 +1,7 @@
 {
   "schema_version": 2,
   "mailbox": "claude/mailbox",
-  "generated_on": "2026-02-10T02:32:00.000000+00:00",
+  "generated_on": "2026-02-10T02:40:00.000000+00:00",
   "manifest_file": "mailbox_manifest.json",
   "active": {
     "md": [
@@ -10,6 +10,7 @@
       "CLAUDE_TASK_SESSION_SYNC_2026_02_09.md",
       "KISS_PARITY_BRIEF_2026_02_06.md",
       "MAILBOX_CURRENT_STATE.md",
+      "SESSION_HANDOFF_2026_02_10_CLAUDE_CODE_OPUS_SETUP.md",
       "SESSION_CONTEXT_APPENDIX_2026_02_06.md",
       "SESSION_CONTEXT_CHRONICLE_2026_02_06.md",
       "SKILLS_PARITY_DISCREPANCY_2026_02_06.md",
