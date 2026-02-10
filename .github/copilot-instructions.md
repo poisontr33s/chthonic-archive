@@ -12,7 +12,7 @@ This file is intentionally small. It exists to prevent "context explosion" from 
 
 > **Do NOT** load this whole file automatically.
 >
-> **SSOT Archive:** [.github/copilot-instructions.archive.md](copilot-instructions.archive.md)
+> **chthonic-archive SSOT:** [.github/copilot-instructions.archive.md](copilot-instructions.archive.md) or the **PROTO-SSOT** [.github/copilot-instructions-copy.md](copilot-instructions-copy.md) (for reference only, not auto-loaded).
 
 ## First Stop: Path Index (Bridge)
 
