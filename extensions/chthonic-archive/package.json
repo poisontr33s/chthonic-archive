@@ -1,0 +1,104 @@
+{
+  "name": "chthonic-archive",
+  "displayName": "Chthonic Archive",
+  "description": "VS Code workspace extension for the Chthonic Archive — themes, status bar, sidebar, and SSOT tools.",
+  "version": "0.2.0",
+  "publisher": "chthonic-archive",
+  "icon": "icons/mandala.svg",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/chthonic-archive/chthonic-archive"
+  },
+  "engines": {
+    "vscode": "^1.90.0"
+  },
+  "categories": [
+    "Themes",
+    "Visualization",
+    "Other"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "themes": [
+      {
+        "label": "Chthonic Mandala - Flesh & Earth",
+        "uiTheme": "vs-dark",
+        "path": "./themes/chthonic-mandala-color-theme.json"
+      },
+      {
+        "label": "Chthonic Mandala - ROGBIV",
+        "uiTheme": "vs-dark",
+        "path": "./themes/chthonic-rogbiv-color-theme.json"
+      }
+    ],
+    "commands": [
+      {
+        "command": "chthonic.switchTheme",
+        "title": "Chthonic: Switch Theme",
+        "icon": "$(paintcan)"
+      },
+      {
+        "command": "chthonic.refreshStatus",
+        "title": "Chthonic: Refresh Status Bar"
+      },
+      {
+        "command": "chthonic.verifySSOT",
+        "title": "Chthonic: Verify SSOT Hash"
+      }
+    ],
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "chthonic-archive",
+          "title": "Chthonic Archive",
+          "icon": "resources/mandala.svg"
+        }
+      ]
+    },
+    "views": {
+      "chthonic-archive": [
+        {
+          "id": "chthonic.themeView",
+          "name": "Themes"
+        },
+        {
+          "id": "chthonic.statusView",
+          "name": "Status"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "Chthonic Archive",
+      "properties": {
+        "chthonic.ssotPath": {
+          "type": "string",
+          "default": ".github/copilot-instructions.md",
+          "description": "Path to the SSOT file (relative to workspace root)."
+        },
+        "chthonic.showSSOTHash": {
+          "type": "boolean",
+          "default": true,
+          "description": "Show SSOT hash in status bar."
+        },
+        "chthonic.showLineage": {
+          "type": "boolean",
+          "default": true,
+          "description": "Show active lineage indicator in status bar."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "bun run compile",
+    "compile": "bun build src/extension.ts --outdir dist --target node --format cjs --external vscode --minify",
+    "watch": "bun build src/extension.ts --outdir dist --target node --format cjs --external vscode --watch"
+  },
+  "devDependencies": {
+    "@types/node": "^20.x",
+    "@types/vscode": "^1.90.0",
+    "typescript": "^5.x"
+  }
+}
