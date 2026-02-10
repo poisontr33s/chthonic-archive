@@ -1,0 +1,62 @@
+{
+  "schema_version": 1,
+  "generated_on": "2026-02-09T22:01:56.4193825Z",
+  "codex_root": ".codex/skills",
+  "claude_root": ".claude/skills",
+  "results": [
+    {
+      "label": "skill_audit_codex",
+      "rc": 0,
+      "seconds": 1.034,
+      "cmd": [
+        "uv",
+        "run",
+        "scripts/skill_audit.py",
+        "--flavor",
+        "codex",
+        "--root",
+        ".codex/skills",
+        "--json",
+        "--json-path",
+        "codex/mailbox/skill_audit_codex_2026-02-09T22-01-52Z.json"
+      ]
+    },
+    {
+      "label": "skill_audit_claude",
+      "rc": 0,
+      "seconds": 1.005,
+      "cmd": [
+        "uv",
+        "run",
+        "scripts/skill_audit.py",
+        "--flavor",
+        "claude",
+        "--root",
+        ".claude/skills",
+        "--json",
+        "--json-path",
+        "codex/mailbox/skill_audit_claude_2026-02-09T22-01-52Z.json"
+      ]
+    },
+    {
+      "label": "check_python_policy",
+      "rc": 0,
+      "seconds": 1.014,
+      "cmd": [
+        "uv",
+        "run",
+        "scripts/check_python_policy.py"
+      ]
+    },
+    {
+      "label": "check_mailbox_layout",
+      "rc": 0,
+      "seconds": 1.013,
+      "cmd": [
+        "uv",
+        "run",
+        "scripts/check_mailbox_layout.py"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "artifact_type": "external-provider-export",
+  "provider": "google-ai-studio",
+  "export_type": "python",
+  "source_file": "codex/codex-session-logs/default-session-code-gemini.py",
+  "notes": [
+    "This is a Python export copied from Google AI Studio and was previously saved with a .json extension.",
+    "Keep this JSON as the machine-readable index/metadata; the runnable code lives in source_file."
+  ]
+}
+

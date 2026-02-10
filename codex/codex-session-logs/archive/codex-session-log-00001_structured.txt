@@ -1,0 +1,281 @@
+[0001] CMD
+node "C:\Users\erdno\.bun\install\global\node_modules\@google\gemini-cli\dist\index.js"
+
+[0002] CMD
+python .codex/skills/skill-polisher/scripts/polish_skill.py .codex/skills --all
+
+[0003] CMD
+python .codex/skills/skill-polisher/scripts/polish_skill.py .codex/skills --train-stop envelope-canon
+
+[0004] CMD
+python .codex/skills/skill-polisher/scripts/polish_skill.py .codex/skills --train-stop decision-razor-hardening
+
+[0005] CMD
+python .codex/skills/skill-polisher/scripts/polish_skill.py .codex/skills --train-stop artifact-upcycle-pass
+
+[0006] CMD
+python .codex/skills/skill-polisher/scripts/polish_skill.py .codex/skills --all
+
+[0007] CMD
+python .codex/skills/skill-polisher/scripts/polish_skill.py .claude/skills --all
+
+[0008] CMD
+python scripts/skill_audit.py --flavor codex --root .codex/skills
+
+[0009] CMD
+python scripts/skill_audit.py --flavor claude --root .claude/skills
+
+[0010] CMD
+python scripts/skill_audit.py --flavor codex --root .codex/skills
+
+[0011] CMD
+uv run python scripts/skill_audit.py --flavor claude --root .claude/skills
+
+[0012] CMD
+uv run python scripts/skill_audit.py --flavor codex --root .codex/skills
+
+[0013] CMD
+uv run python scripts/skill_audit.py --flavor codex --root .codex/skills
+
+[0014] CMD
+uv run python scripts/skill_audit.py --flavor claude --root .claude/skills
+
+[0015] CMD
+uv run python scripts/skill_audit.py --flavor claude --root .codex/skills
+
+[0016] CMD
+uv run python .codex/skills/python-header-canon/scripts/python_header_canon.py .codex/skills/python-header-canon
+
+[0017] CMD
+uv run scripts/skill_audit.py --flavor codex --root .codex/skills
+
+[0018] CMD
+uv run python .codex/skills/python-header-canon/scripts/python_header_canon.py scripts/ .codex/skills .claude/skills
+
+[0019] CMD
+uv run .codex/skills/python-header-canon/scripts/python_header_canon.py scripts/ .codex/skills .claude/skills
+
+[0020] CMD
+uv run scripts/skill_audit.py --flavor codex --root .codex/skills
+
+[0021] CMD
+uv run scripts/skill_audit.py --flavor codex --root .codex/skills
+
+[0022] CMD
+uv run scripts/envelope_sync.py --root scripts --root app --root .codex/skills
+
+[0023] CMD
+uv run script.py is supported and valid (including shebang workflows in uv docs).
+
+[0024] CMD
+uv run scripts/skill_audit.py --flavor codex --root .codex/skills
+
+[0025] CMD
+uv run scripts/skill_audit.py --flavor claude --root .claude/skills
+
+[0026] CMD
+uv run scripts/skill_audit.py --flavor codex --root .codex/skills
+
+[0027] CMD
+uv run scripts/envelope_sync.py scripts/ .codex/skills .claude/skills
+
+[0028] CMD
+uv run scripts/envelope_sync.py scripts/ .codex/skills .claude/skills --inject
+
+[0029] CMD
+uv run scripts/envelope_sync.py scripts/ .codex/skills .claude/skills --check
+
+[0030] CMD
+uv run scripts/check_python_policy.py
+
+[0031] CMD
+uv run scripts/skill_audit.py --flavor codex --root .codex/skills
+
+[0032] CMD
+python policy
+
+[0033] CMD
+uv run .codex/skills/python-header-canon/scripts/python_header_canon.py ...
+
+[0034] CMD
+uv run .codex/skills/skill-polisher/scripts/polish_skill.py .codex/skills/skill-polisher passed clean.
+
+[0035] CMD
+uv run .codex/skills/skill-polisher/scripts/polish_skill.py .codex/skills --all
+
+[0036] CMD
+uv run execution model, no cmd /c, no raw python/pip drift inside skill operations.
+
+[0037] CMD
+uv run .codex/skills/skill-polisher/scripts/polish_skill.py .codex/skills --all
+
+[0038] CMD
+uv run .codex/skills/skill-polisher/scripts/polish_skill.py .codex/skills/skill-polisher --mode apply
+
+[0039] CMD
+uv run .codex/skills/skill-polisher/scripts/polish_skill.py .codex/skills --all --mode apply
+
+[0040] CMD
+uv run .codex/skills/skill-polisher/scripts/polish_skill.py .codex/skills --all (same as apply)
+
+[0041] CMD
+uv run .codex/skills/skill-polisher/scripts/polish_skill.py .codex/skills --all --mode verify --emit-stamps-json codex/mailbox/tatragrammatron_stamps_2026_02_06.json --emit-summary-md codex/mailbox/TATRAGRAMMATRON_SUMMARY_2026_02_06.md --emit-trend-json codex/mailbox/tatragrammatron_trend.json
+
+[0042] CMD
+uv run python -c "...tomllib..."
+
+[0043] CMD
+uv run scripts/skill_audit.py --flavor codex --root .codex/skills
+
+[0044] CMD
+uv run .codex/skills/skill-polisher/scripts/polish_skill.py .codex/skills --all --mode verify --emit-stamps-json ... --emit-summary-md ... --emit-trend-json ...
+
+[0045] CMD
+uv run scripts/skill_audit.py --flavor codex --root .codex/skills
+
+[0046] CMD
+$env:HF_TOKEN="hf_xxx_your_token"
+
+[0047] CMD
+uv run python -c "import os; print('HF_TOKEN set:', bool(os.getenv('HF_TOKEN')))"
+
+[0048] CMD
+uv run python -c "from huggingface_hub import HfApi; api=HfApi(token=None); ms=list(api.list_models(search='gemma-3', limit=10)); print(len(ms), 'models visible')"
+
+[0049] CMD
+uv run scripts/hf_gemma_probe.py --search gemma-3 --limit 25 --top 10 ...
+
+[0050] CMD
+uv run .codex/skills/skill-polisher/scripts/polish_skill.py .codex/skills --all --mode verify
+
+[0051] CMD
+uv run .codex/skills/skill-polisher/scripts/polish_skill.py .codex/skills --all --mode verify --subprocess-fix now exits 0 once it has remediated any fixable WARN/CRITICAL and re-verified.
+
+[0052] CMD
+uv run .codex/skills/skill-polisher/scripts/polish_skill.py .codex/skills/skill-polisher --fixture-eval .codex/skills/skill-polisher/fixtures
+
+[0053] CMD
+uv run .codex/skills/skill-polisher/scripts/polish_skill.py .codex/skills --all --mode verify --subprocess-fix ... (PASS)
+
+[0054] CMD
+uv run .codex/skills/skill-polisher/scripts/polish_skill.py .codex/skills --all --mode verify --subprocess-fix ...
+
+[0055] CMD
+uv run scripts/skill_audit.py --flavor claude --root .claude/skills --json ...
+
+[0056] CMD
+uv run .codex/skills/skill-polisher/scripts/polish_skill.py .claude/skills --all --mode verify --subprocess-fix --emit-stamps-json ... --emit-summary-md ...
+
+[0057] CMD
+uv run .codex/skills/skill-polisher/scripts/polish_skill.py .codex/skills/skill-polisher --fixture-eval .codex/skills/skill-polisher/fixtures
+
+[0058] CMD
+bun 1.3.8
+
+[0059] CMD
+uv run python is 3.13.11
+
+[0060] CMD
+bun install (or a specific bun run ...)
+
+[0061] CMD
+bun sync is not a Bun command (so error: Script not found "sync" is expected).
+
+[0062] CMD
+bun updated is not a Bun command (it looks like you meant bun outdated or bun update).
+
+[0063] CMD
+bun pm untrusted is clean now (0 blocked scripts).
+
+[0064] CMD
+bun outdated
+
+[0065] CMD
+bun update @modelcontextprotocol/sdk @modelcontextprotocol/server-filesystem @modelcontextprotocol/server-github
+
+[0066] CMD
+bun audit
+
+[0067] CMD
+bun update --latest
+
+[0068] CMD
+bun audit
+
+[0069] CMD
+uv run scripts/check_python_policy.py
+
+[0070] CMD
+bun update v1.3.8 (b64edcb4)
+
+[0071] CMD
+bun audit v1.3.8 (b64edcb4)
+
+[0072] CMD
+  bun update
+
+[0073] CMD
+  bun update --latest
+
+[0074] CMD
+uv run .codex/skills/toolchain-doctor/scripts/toolchain_doctor.py --bun --uv
+
+[0075] CMD
+uv run .codex/skills/toolchain-doctor/scripts/toolchain_doctor.py --bun --apply
+
+[0076] CMD
+uv run .codex/skills/skill-polisher/scripts/polish_skill.py .codex/skills/toolchain-doctor --mode verify passes (100%).
+
+[0077] CMD
+uv run .codex/skills/skill-polisher/scripts/polish_skill.py .codex/skills --all --mode verify --subprocess-fix --target-flavor codex ...
+
+[0078] CMD
+bun audit is clean now: No vulnerabilities found (Bun 1.3.8).
+
+[0079] CMD
+uv run .codex/skills/skill-polisher/scripts/polish_skill.py .codex/skills --all --mode verify --target-flavor codex --subprocess-fix --emit-stamps-json codex/mailbox/tatragrammatron_stamps_latest_codex.json --emit-summary-md codex/mailbox/TATRAGRAMMATRON_SUMMARY_LATEST_CODEX.md
+
+[0080] CMD
+git add -A
+
+[0081] CMD
+git add --renormalize .
+
+[0082] CMD
+git status --porcelain now shows the expected renormalized/staged changes including .gitattributes, manifest/doc edits, and the mailbox archive moves.
+
+[0083] CMD
+uv run .codex/skills/skill-polisher/scripts/polish_skill.py .codex/skills/trainstop-orchestrator --mode verify --target-flavor codex
+
+[0084] CMD
+uv run .codex/skills/skill-polisher/scripts/polish_skill.py .codex/skills/dumpster-upcycler --mode verify --target-flavor codex (passes 100%)
+
+[0085] CMD
+uv run .codex/skills/dumpster-upcycler/scripts/dumpster_upcycler.py codex/codex-session-logs/codex-session-log-00001 (upcycled 1 file)
+
+[0086] CMD
+uv run ... / bun ... / git ... / node ... command lines
+
+[0087] ACTION
+Command detection stays conservative (avoids “bun has crashed” false CMDs), but correctly captures real invocations.
+
+[0088] ACTION
+Current output stats for the same raw log:
+
+[0089] CMD
+uv run scripts/structure_session_log.py codex/codex-session-logs/codex-session-log-00001 overwrote in place (no dupes).
+
+[0090] CMD
+uv run .codex/skills/dumpster-upcycler/scripts/dumpster_upcycler.py codex/codex-session-logs --glob 'codex-session-log-*' upcycled 1 file and printed repo-relative Wrote: lines.
+
+[0091] CMD
+uv run .codex/skills/skill-polisher/scripts/polish_skill.py .codex/skills/dumpster-upcycler --mode verify --target-flavor codex still passes 100%.
+
+[0092] CMD
+uv run scripts/extract_voicepack.py 'codex/codex-session-logs/The-Iron-Maiden-(SSOT)-Copyright-Savant.md' --canonical-target OPERATOR
+
+[0093] CMD
+uv run .codex/skills/iron-maiden-runtime/scripts/render_scene.py `
+
+[0094] CMD
+uv run .codex/skills/iron-maiden-runtime/scripts/render_scene.py ... works as before.
