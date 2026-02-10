@@ -1,98 +1,7 @@
-var __create = Object.create;
-var __getProtoOf = Object.getPrototypeOf;
-var __defProp = Object.defineProperty;
-var __getOwnPropNames = Object.getOwnPropertyNames;
-var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
-var __hasOwnProp = Object.prototype.hasOwnProperty;
-var __toESM = (mod, isNodeMode, target) => {
-  target = mod != null ? __create(__getProtoOf(mod)) : {};
-  const to = isNodeMode || !mod || !mod.__esModule ? __defProp(target, "default", { value: mod, enumerable: true }) : target;
-  for (let key of __getOwnPropNames(mod))
-    if (!__hasOwnProp.call(to, key))
-      __defProp(to, key, {
-        get: () => mod[key],
-        enumerable: true
-      });
-  return to;
-};
-var __moduleCache = /* @__PURE__ */ new WeakMap;
-var __toCommonJS = (from) => {
-  var entry = __moduleCache.get(from), desc;
-  if (entry)
-    return entry;
-  entry = __defProp({}, "__esModule", { value: true });
-  if (from && typeof from === "object" || typeof from === "function")
-    __getOwnPropNames(from).map((key) => !__hasOwnProp.call(entry, key) && __defProp(entry, key, {
-      get: () => from[key],
-      enumerable: !(desc = __getOwnPropDesc(from, key)) || desc.enumerable
-    }));
-  __moduleCache.set(from, entry);
-  return entry;
-};
-var __export = (target, all) => {
-  for (var name in all)
-    __defProp(target, name, {
-      get: all[name],
-      enumerable: true,
-      configurable: true,
-      set: (newValue) => all[name] = () => newValue
-    });
-};
-
-// src/extension.ts
-var exports_extension = {};
-__export(exports_extension, {
-  deactivate: () => deactivate,
-  activate: () => activate
-});
-module.exports = __toCommonJS(exports_extension);
-var fs = __toESM(require("fs"));
-var path = __toESM(require("path"));
-var vscode = __toESM(require("vscode"));
-function activate(context) {
-  console.log("\uD83C\uDF00 Chthonic Mandala Viewer activated");
-  context.subscriptions.push(vscode.commands.registerCommand("chthonic.openMandala", () => {
-    const panel = vscode.window.createWebviewPanel("chthonic.mandala", "\uD83C\uDF00 Sacred Mandala - Repository Topology", vscode.ViewColumn.One, {
-      enableScripts: true,
-      localResourceRoots: [vscode.Uri.file(path.join(context.extensionPath, "media"))]
-    });
-    panel.webview.html = getMandalaHTML(context, panel.webview);
-  }));
-  context.subscriptions.push(vscode.commands.registerCommand("chthonic.openDependencyGraph", () => {
-    const panel = vscode.window.createWebviewPanel("chthonic.dependencyGraph", "\uD83D\uDD17 Dependency Graph", vscode.ViewColumn.One, {
-      enableScripts: true,
-      localResourceRoots: [vscode.Uri.file(path.join(context.extensionPath, "media"))]
-    });
-    panel.webview.html = getDependencyGraphHTML(context, panel.webview);
-  }));
-  context.subscriptions.push(vscode.commands.registerCommand("chthonic.openHealthReport", () => {
-    const panel = vscode.window.createWebviewPanel("chthonic.healthReport", "\uD83D\uDC8E Health Report", vscode.ViewColumn.One, {
-      enableScripts: true
-    });
-    panel.webview.html = getHealthReportHTML();
-  }));
-  const mandalaProvider = new MandalaTreeProvider;
-  vscode.window.registerTreeDataProvider("chthonic.mandalaView", mandalaProvider);
-  const dependencyProvider = new DependencyTreeProvider;
-  vscode.window.registerTreeDataProvider("chthonic.dependencyView", dependencyProvider);
-  const healthProvider = new HealthTreeProvider;
-  vscode.window.registerTreeDataProvider("chthonic.healthView", healthProvider);
-}
-function deactivate() {}
-function getMandalaHTML(context, webview) {
-  const workspaceFolder = vscode.workspace.workspaceFolders?.[0];
-  if (!workspaceFolder) {
-    return "<html><body><h1>No workspace folder found</h1></body></html>";
-  }
-  const topologyPath = path.join(workspaceFolder.uri.fsPath, "topology_graph.json");
-  if (!fs.existsSync(topologyPath)) {
-    return `<html><body>
+var D=Object.create;var{getPrototypeOf:G,defineProperty:Q,getOwnPropertyNames:Z,getOwnPropertyDescriptor:L}=Object,_=Object.prototype.hasOwnProperty;var W=(j,E,z)=>{z=j!=null?D(G(j)):{};let A=E||!j||!j.__esModule?Q(z,"default",{value:j,enumerable:!0}):z;for(let J of Z(j))if(!_.call(A,J))Q(A,J,{get:()=>j[J],enumerable:!0});return A},Y=new WeakMap,w=(j)=>{var E=Y.get(j),z;if(E)return E;if(E=Q({},"__esModule",{value:!0}),j&&typeof j==="object"||typeof j==="function")Z(j).map((A)=>!_.call(E,A)&&Q(E,A,{get:()=>j[A],enumerable:!(z=L(j,A))||z.enumerable}));return Y.set(j,E),E};var F=(j,E)=>{for(var z in E)Q(j,z,{get:E[z],enumerable:!0,configurable:!0,set:(A)=>E[z]=()=>A})};var g={};F(g,{deactivate:()=>H,activate:()=>C});module.exports=w(g);var N=W(require("fs")),S=W(require("path")),q=W(require("vscode"));function C(j){console.log("\uD83C\uDF00 Chthonic Mandala Viewer activated"),j.subscriptions.push(q.commands.registerCommand("chthonic.openMandala",()=>{let K=q.window.createWebviewPanel("chthonic.mandala","\uD83C\uDF00 Sacred Mandala - Repository Topology",q.ViewColumn.One,{enableScripts:!0,localResourceRoots:[q.Uri.file(S.join(j.extensionPath,"media"))]});K.webview.html=k(j,K.webview)})),j.subscriptions.push(q.commands.registerCommand("chthonic.openDependencyGraph",()=>{let K=q.window.createWebviewPanel("chthonic.dependencyGraph","\uD83D\uDD17 Dependency Graph",q.ViewColumn.One,{enableScripts:!0,localResourceRoots:[q.Uri.file(S.join(j.extensionPath,"media"))]});K.webview.html=I(j,K.webview)})),j.subscriptions.push(q.commands.registerCommand("chthonic.openHealthReport",()=>{let K=q.window.createWebviewPanel("chthonic.healthReport","\uD83D\uDC8E Health Report",q.ViewColumn.One,{enableScripts:!0});K.webview.html=y()}));let E=new $;q.window.registerTreeDataProvider("chthonic.mandalaView",E);let z=new B;q.window.registerTreeDataProvider("chthonic.dependencyView",z);let A=new R;q.window.registerTreeDataProvider("chthonic.healthView",A);let J=new f;q.window.registerTreeDataProvider("chthonic.themeView",J),j.subscriptions.push(q.commands.registerCommand("chthonic.switchTheme",async()=>{let K=[{label:"$(paintcan) Flesh & Earth",description:"Warm earthy tones — The Decorator's distribution palette",id:"Chthonic Mandala - Flesh & Earth"},{label:"$(zap) ROGBIV",description:"SSOT spectral frequencies — FA¹⁻⁵ canonical hexes",id:"Chthonic Mandala - ROGBIV"}],O=q.workspace.getConfiguration("workbench").get("colorTheme"),V=await q.window.showQuickPick(K.map((X)=>({...X,picked:O===X.id})),{placeHolder:`Current: ${O}`});if(V)await q.workspace.getConfiguration("workbench").update("colorTheme",V.id,q.ConfigurationTarget.Workspace),q.window.showInformationMessage(`Theme: ${V.id}`),J.refresh()}))}function H(){}function k(j,E){let z=q.workspace.workspaceFolders?.[0];if(!z)return"<html><body><h1>No workspace folder found</h1></body></html>";let A=S.join(z.uri.fsPath,"topology_graph.json");if(!N.existsSync(A))return`<html><body>
             <h1>Sacred Mandala - Topology Not Found</h1>
             <p>Run <code>uv run python scripts/mandala_topology.py</code> to generate topology_graph.json</p>
-        </body></html>`;
-  }
-  const topology = JSON.parse(fs.readFileSync(topologyPath, "utf-8"));
-  return `<!DOCTYPE html>
+        </body></html>`;let J=JSON.parse(N.readFileSync(A,"utf-8"));return`<!DOCTYPE html>
     <html lang="en">
     <head>
         <meta charset="UTF-8">
@@ -177,21 +86,21 @@ function getMandalaHTML(context, webview) {
         <div class="metadata">
             <div class="metric">
                 <div class="metric-label">Nodes</div>
-                <div class="metric-value">${topology.metadata.nodes_count.toLocaleString()}</div>
+                <div class="metric-value">${J.metadata.nodes_count.toLocaleString()}</div>
             </div>
             <div class="metric">
                 <div class="metric-label">Edges</div>
-                <div class="metric-value">${topology.metadata.edges_count.toLocaleString()}</div>
+                <div class="metric-value">${J.metadata.edges_count.toLocaleString()}</div>
             </div>
             <div class="metric">
                 <div class="metric-label">Generated</div>
-                <div class="metric-value">${new Date(topology.metadata.generated).toLocaleDateString()}</div>
+                <div class="metric-value">${new Date(J.metadata.generated).toLocaleDateString()}</div>
             </div>
         </div>
 
         <div class="prism-bands">
             <h2 style="color: #E066FF;">PRISM Band Distribution</h2>
-            ${generatePrismBands(topology.nodes)}
+            ${u(J.nodes)}
         </div>
 
         <div class="visualization">
@@ -201,7 +110,7 @@ function getMandalaHTML(context, webview) {
         </div>
 
         <script>
-            const topology = ${JSON.stringify(topology)};
+            const topology = ${JSON.stringify(J)};
 
             // Simple canvas visualization
             const canvas = document.getElementById('mandalaCanvas');
@@ -272,38 +181,18 @@ function getMandalaHTML(context, webview) {
             drawMandala();
         </script>
     </body>
-    </html>`;
-}
-function generatePrismBands(nodes) {
-  const bands = ["RED", "ORANGE", "GOLD", "BLUE", "WHITE"];
-  const bandCounts = {};
-  bands.forEach((band) => {
-    bandCounts[band] = nodes.filter((n) => n.prism_band === band);
-  });
-  return bands.map((band) => `
-        <div class="band band-${band}">
-            <div class="band-header">${band} (${bandCounts[band].length} nodes)</div>
+    </html>`}function u(j){let E=["RED","ORANGE","GOLD","BLUE","WHITE"],z={};return E.forEach((A)=>{z[A]=j.filter((J)=>J.prism_band===A)}),E.map((A)=>`
+        <div class="band band-${A}">
+            <div class="band-header">${A} (${z[A].length} nodes)</div>
             <div class="node-list">
-                ${bandCounts[band].slice(0, 20).map((n) => `<div>• ${n.path}</div>`).join("")}
-                ${bandCounts[band].length > 20 ? `<div>... and ${bandCounts[band].length - 20} more</div>` : ""}
+                ${z[A].slice(0,20).map((J)=>`<div>• ${J.path}</div>`).join("")}
+                ${z[A].length>20?`<div>... and ${z[A].length-20} more</div>`:""}
             </div>
         </div>
-    `).join("");
-}
-function getDependencyGraphHTML(context, webview) {
-  const workspaceFolder = vscode.workspace.workspaceFolders?.[0];
-  if (!workspaceFolder) {
-    return "<html><body><h1>No workspace folder found</h1></body></html>";
-  }
-  const depGraphPath = path.join(workspaceFolder.uri.fsPath, "dependency_graph.json");
-  if (!fs.existsSync(depGraphPath)) {
-    return `<html><body>
+    `).join("")}function I(j,E){let z=q.workspace.workspaceFolders?.[0];if(!z)return"<html><body><h1>No workspace folder found</h1></body></html>";let A=S.join(z.uri.fsPath,"dependency_graph.json");if(!N.existsSync(A))return`<html><body>
             <h1>Dependency Graph Not Found</h1>
             <p>dependency_graph.json not available</p>
-        </body></html>`;
-  }
-  const graph = JSON.parse(fs.readFileSync(depGraphPath, "utf-8"));
-  return `<!DOCTYPE html>
+        </body></html>`;let J=JSON.parse(N.readFileSync(A,"utf-8"));return`<!DOCTYPE html>
     <html lang="en">
     <head>
         <meta charset="UTF-8">
@@ -346,24 +235,17 @@ function getDependencyGraphHTML(context, webview) {
         <p style="color: #B8B8CC;">Repository file dependencies</p>
 
         <div class="node-list">
-            ${Object.entries(graph).slice(0, 50).map(([path2, deps]) => `
+            ${Object.entries(J).slice(0,50).map(([K,O])=>`
                 <div class="node">
-                    <div class="node-path">${path2}</div>
+                    <div class="node-path">${K}</div>
                     <div class="dependencies">
-                        ${Array.isArray(deps) ? deps.length : 0} dependencies
+                        ${Array.isArray(O)?O.length:0} dependencies
                     </div>
                 </div>
             `).join("")}
         </div>
     </body>
-    </html>`;
-}
-function getHealthReportHTML() {
-  const workspaceFolder = vscode.workspace.workspaceFolders?.[0];
-  if (!workspaceFolder) {
-    return "<html><body><h1>No workspace folder found</h1></body></html>";
-  }
-  return `<!DOCTYPE html>
+    </html>`}function y(){if(!q.workspace.workspaceFolders?.[0])return"<html><body><h1>No workspace folder found</h1></body></html>";return`<!DOCTYPE html>
     <html lang="en">
     <head>
         <meta charset="UTF-8">
@@ -415,67 +297,7 @@ function getHealthReportHTML() {
             }
         </script>
     </body>
-    </html>`;
-}
+    </html>`}class ${getTreeItem(j){return j}getChildren(j){if(!j)return Promise.resolve([new U("Sacred Geometry","View mandala visualization","chthonic.openMandala"),new U("Topology Stats","View repository metrics","")]);return Promise.resolve([])}}class B{getTreeItem(j){return j}getChildren(j){if(!j)return Promise.resolve([new U("View Graph","Open dependency graph","chthonic.openDependencyGraph")]);return Promise.resolve([])}}class R{getTreeItem(j){return j}getChildren(j){if(!j)return Promise.resolve([new U("View Report","Open health report","chthonic.openHealthReport")]);return Promise.resolve([])}}class U extends q.TreeItem{label;tooltip;command;constructor(j,E,z){super(j,q.TreeItemCollapsibleState.None);this.label=j;this.tooltip=E;this.command=z;if(this.tooltip=E,z)this.command={command:z,title:j}}}class f{_onDidChangeTreeData=new q.EventEmitter;onDidChangeTreeData=this._onDidChangeTreeData.event;refresh(){this._onDidChangeTreeData.fire()}getTreeItem(j){return j}getChildren(){let j=q.workspace.getConfiguration("workbench").get("colorTheme")||"";return Promise.resolve([{name:"Chthonic Mandala - Flesh & Earth",icon:"\uD83C\uDF0D",desc:"Warm earth · WCAG AA · Distribution"},{name:"Chthonic Mandala - ROGBIV",icon:"\uD83C\uDF08",desc:"SSOT spectral · FA¹⁻⁵ canonical"}].map((z)=>{let A=j===z.name,J=new q.TreeItem(`${A?"◉":"○"} ${z.icon} ${z.name.replace("Chthonic Mandala - ","")}`,q.TreeItemCollapsibleState.None);return J.tooltip=`${z.name}
+${z.desc}${A?`
 
-class MandalaTreeProvider {
-  getTreeItem(element) {
-    return element;
-  }
-  getChildren(element) {
-    if (!element) {
-      return Promise.resolve([
-        new MandalaItem("Sacred Geometry", "View mandala visualization", "chthonic.openMandala"),
-        new MandalaItem("Topology Stats", "View repository metrics", "")
-      ]);
-    }
-    return Promise.resolve([]);
-  }
-}
-
-class DependencyTreeProvider {
-  getTreeItem(element) {
-    return element;
-  }
-  getChildren(element) {
-    if (!element) {
-      return Promise.resolve([
-        new MandalaItem("View Graph", "Open dependency graph", "chthonic.openDependencyGraph")
-      ]);
-    }
-    return Promise.resolve([]);
-  }
-}
-
-class HealthTreeProvider {
-  getTreeItem(element) {
-    return element;
-  }
-  getChildren(element) {
-    if (!element) {
-      return Promise.resolve([
-        new MandalaItem("View Report", "Open health report", "chthonic.openHealthReport")
-      ]);
-    }
-    return Promise.resolve([]);
-  }
-}
-
-class MandalaItem extends vscode.TreeItem {
-  label;
-  tooltip;
-  command;
-  constructor(label, tooltip, command) {
-    super(label, vscode.TreeItemCollapsibleState.None);
-    this.label = label;
-    this.tooltip = tooltip;
-    this.command = command;
-    this.tooltip = tooltip;
-    if (command) {
-      this.command = {
-        command,
-        title: label
-      };
-    }
-  }
-}
+✅ ACTIVE`:""}`,J.description=A?"active":"",J.command={command:"chthonic.switchTheme",title:"Switch Theme"},J}))}}

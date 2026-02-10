@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-label="Chthonic Mandala">
+  <!-- Outer ring - FA¹ RED -->
+  <circle cx="32" cy="32" r="28" stroke="#FF6B6B" stroke-width="2" fill="none" opacity="0.8"/>
+
+  <!-- Second ring - FA² ORANGE -->
+  <circle cx="32" cy="32" r="22" stroke="#FFB84D" stroke-width="1.8" fill="none" opacity="0.7"/>
+
+  <!-- Third ring - FA³ GOLD -->
+  <circle cx="32" cy="32" r="16" stroke="#FFD700" stroke-width="1.6" fill="none" opacity="0.9"/>
+
+  <!-- Fourth ring - FA⁴ BLUE -->
+  <circle cx="32" cy="32" r="10" stroke="#4ECDC4" stroke-width="1.4" fill="none"/>
+
+  <!-- Center - FA⁵ WHITE (uses currentColor for theme adaptation) -->
+  <circle cx="32" cy="32" r="4" fill="currentColor"/>
+
+  <!-- Sacred geometry cross (tetrahedral points) -->
+  <g stroke="currentColor" stroke-width="1.2" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity="0.6">
+    <path d="M32 8 L32 56"/>
+    <path d="M8 32 L56 32"/>
+    <path d="M14 14 L50 50"/>
+    <path d="M50 14 L14 50"/>
+  </g>
+
+  <!-- Golden ratio spiral hints -->
+  <g stroke="#FFD700" stroke-width="0.8" fill="none" opacity="0.4">
+    <path d="M32 32 Q38 28 42 32 T46 42"/>
+    <path d="M32 32 Q28 26 22 22 T12 18"/>
+  </g>
+</svg>

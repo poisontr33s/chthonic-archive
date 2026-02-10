@@ -6,6 +6,7 @@
     // ╚══════════════════════════════════════════════════════════════════╝
     "version": "0.2.0",
     "configurations": [
+    
         {
             // Quick run with full Rust backtraces - no external debugger needed
             "name": "▶️ Run Debug (Console)",

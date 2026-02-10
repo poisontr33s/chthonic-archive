@@ -8,7 +8,7 @@
   "engines": {
     "vscode": "^1.90.0"
   },
-  "categories": ["Visualization"],
+  "categories": ["Visualization", "Themes"],
   "activationEvents": [
     "onStartupFinished",
     "onCommand:chthonic.openMandala",
@@ -27,9 +27,14 @@
   "contributes": {
     "themes": [
       {
-        "label": "Chthonic Mandala - Decorator's Flesh & Earth",
+        "label": "Chthonic Mandala - Flesh & Earth",
         "uiTheme": "vs-dark",
         "path": "./themes/chthonic-mandala-color-theme.json"
+      },
+      {
+        "label": "Chthonic Mandala - ROGBIV",
+        "uiTheme": "vs-dark",
+        "path": "./themes/chthonic-rogbiv-color-theme.json"
       }
     ],
     "commands": [
@@ -45,6 +50,11 @@
       {
         "command": "chthonic.openHealthReport",
         "title": "Chthonic: Open Health Report"
+      },
+      {
+        "command": "chthonic.switchTheme",
+        "title": "Chthonic: Switch Theme",
+        "icon": "$(paintcan)"
       }
     ],
     "viewsContainers": {
@@ -72,6 +82,11 @@
         {
           "id": "chthonic.healthView",
           "name": "Health Report",
+          "icon": "resources/mandala.svg"
+        },
+        {
+          "id": "chthonic.themeView",
+          "name": "Themes",
           "icon": "resources/mandala.svg"
         }
       ]

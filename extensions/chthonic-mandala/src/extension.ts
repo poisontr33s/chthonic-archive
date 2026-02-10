@@ -76,6 +76,29 @@ export function activate(context: vscode.ExtensionContext) {
 
     const healthProvider = new HealthTreeProvider();
     vscode.window.registerTreeDataProvider('chthonic.healthView', healthProvider);
+
+    // Theme switcher
+    const themeProvider = new ThemeTreeProvider();
+    vscode.window.registerTreeDataProvider('chthonic.themeView', themeProvider);
+
+    context.subscriptions.push(
+        vscode.commands.registerCommand('chthonic.switchTheme', async () => {
+            const themes = [
+                { label: '$(paintcan) Flesh & Earth', description: 'Warm earthy tones — The Decorator\'s distribution palette', id: 'Chthonic Mandala - Flesh & Earth' },
+                { label: '$(zap) ROGBIV', description: 'SSOT spectral frequencies — FA¹⁻⁵ canonical hexes', id: 'Chthonic Mandala - ROGBIV' },
+            ];
+            const current = vscode.workspace.getConfiguration('workbench').get<string>('colorTheme');
+            const pick = await vscode.window.showQuickPick(themes.map(t => ({
+                ...t,
+                picked: current === t.id
+            })), { placeHolder: `Current: ${current}` });
+            if (pick) {
+                await vscode.workspace.getConfiguration('workbench').update('colorTheme', pick.id, vscode.ConfigurationTarget.Workspace);
+                vscode.window.showInformationMessage(`Theme: ${pick.id}`);
+                themeProvider.refresh();
+            }
+        })
+    );
 }
 
 export function deactivate() {}
@@ -493,5 +516,36 @@ class MandalaItem extends vscode.TreeItem {
                 title: label
             };
         }
+    }
+}
+
+class ThemeTreeProvider implements vscode.TreeDataProvider<vscode.TreeItem> {
+    private _onDidChangeTreeData = new vscode.EventEmitter<void>();
+    readonly onDidChangeTreeData = this._onDidChangeTreeData.event;
+
+    refresh(): void { this._onDidChangeTreeData.fire(); }
+
+    getTreeItem(element: vscode.TreeItem): vscode.TreeItem { return element; }
+
+    getChildren(): Thenable<vscode.TreeItem[]> {
+        const current = vscode.workspace.getConfiguration('workbench').get<string>('colorTheme') || '';
+        const themes = [
+            { name: 'Chthonic Mandala - Flesh & Earth', icon: '🌍', desc: 'Warm earth · WCAG AA · Distribution' },
+            { name: 'Chthonic Mandala - ROGBIV', icon: '🌈', desc: 'SSOT spectral · FA¹⁻⁵ canonical' },
+        ];
+        return Promise.resolve(themes.map(t => {
+            const active = current === t.name;
+            const item = new vscode.TreeItem(
+                `${active ? '◉' : '○'} ${t.icon} ${t.name.replace('Chthonic Mandala - ', '')}`,
+                vscode.TreeItemCollapsibleState.None
+            );
+            item.tooltip = `${t.name}\n${t.desc}${active ? '\n\n✅ ACTIVE' : ''}`;
+            item.description = active ? 'active' : '';
+            item.command = {
+                command: 'chthonic.switchTheme',
+                title: 'Switch Theme'
+            };
+            return item;
+        }));
     }
 }
