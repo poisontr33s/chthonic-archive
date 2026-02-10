@@ -12,13 +12,13 @@ This file is intentionally small. It exists to prevent "context explosion" from 
 
 > **Do NOT** load this whole file automatically.
 >
-> **SSOT Archive:** [.github/copilot-instructions.archive.md](.github/copilot-instructions.archive.md)
+> **SSOT Archive:** [.github/copilot-instructions.archive.md](copilot-instructions.archive.md)
 
 ## First Stop: Path Index (Bridge)
 
 Before reading any large file, consult the path index and only open the minimum needed reference(s):
 
-- **Path Index:** [.github/pathstofiles.md](.github/pathstofiles.md)
+- **Path Index:** [.github/pathstofiles.md](pathstofiles.md)
 
 ## Core Directive: Protocol Of Reference
 
