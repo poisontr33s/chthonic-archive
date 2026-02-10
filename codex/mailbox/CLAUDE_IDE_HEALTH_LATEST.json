@@ -1,50 +1,50 @@
 {
+  "schema_version": 1,
+  "repo_root": "C:\\Users\\erdno\\chthonic-archive",
   "invariants": {
     "mcp_json": {
       "exists": true,
       "path": ".mcp.json"
     },
     "env": {
-      "HF_TOKEN_present": true,
+      "HUGGINGFACE_HUB_TOKEN_present": true,
       "GITHUB_PERSONAL_ACCESS_TOKEN_present": true,
-      "HUGGINGFACE_HUB_TOKEN_present": true
+      "HF_TOKEN_present": true
     }
   },
-  "generated_at_utc": "2026-02-10T20:21:44.283Z",
+  "generated_at_utc": "2026-02-10T20:44:39.670Z",
   "checks": [
     {
       "detail": {
         "exists": true,
-        "hasGithub": true,
-        "hasHuggingface": true
+        "hasHuggingface": true,
+        "hasGithub": true
       },
-      "label": "parse .mcp.json",
       "error": null,
+      "label": "parse .mcp.json",
       "ok": true,
-      "ms": 4
+      "ms": 5
     },
     {
       "detail": {
         "head": "Checking MCP server health...\n\nplugin:github:github: https://api.githubcopilot.com/mcp/ (HTTP) - Ô£ô Connected\ngithub: https://api.githubcopilot.com/mcp/ (HTTP) - Ô£ô Connected\nhuggingface: https://huggingface.co/mcp (HTTP) - Ô£ô Connected"
       },
-      "label": "claude mcp list",
       "error": null,
+      "label": "claude mcp list",
       "ok": true,
-      "ms": 1414
+      "ms": 1547
     },
     {
       "detail": {
-        "count": 10,
         "hasChthonicTools": true,
-        "hasGithubPlugin": true
+        "hasGithubPlugin": true,
+        "count": 10
       },
-      "label": "claude plugin list --json",
       "error": null,
+      "label": "claude plugin list --json",
       "ok": true,
-      "ms": 665
+      "ms": 729
     }
   ],
-  "repo_root": "C:\\Users\\erdno\\chthonic-archive",
-  "ok": true,
-  "schema_version": 1
+  "ok": true
 }
