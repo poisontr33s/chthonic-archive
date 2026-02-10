@@ -14,15 +14,26 @@ This index exists to keep instruction-loading surgical. Use it to select the sma
 - **SSOT archive (large, never auto-load):** `.github/copilot-instructions.archive.md`
 - **GitHub Actions + VS Code mapping:** `.github/INTEGRATION_MAP.md`
 
-## Task-Scoped Instruction Satellites
+## Tier 1 — Auto-Loaded Instruction Satellites
 
-All of these are intended for selective lookup (do not bulk-ingest):
+These `.instructions.md` files are auto-loaded by Copilot in every session (~33K chars):
 
 - **Project workflow + lineage discipline:** `.github/instructions/project-workflow.instructions.md`
 - **Python scripting (uv lanes, headers, policy):** `.github/instructions/python-scripting.instructions.md`
 - **Technical directives (platform/toolchain rules):** `.github/instructions/technical-directives.instructions.md`
 - **SSOT toolbox (navigation, hashing, drift checks):** `.github/instructions/ssot-toolbox.instructions.md`
-- **Reference appendix (glossary-like):** `.github/instructions/reference-appendix.instructions.md`
+- **ANKH workflow (procedural basics):** `.github/instructions/ankh-workflow.instructions.md`
+- **Autopsy protocol (debt decomposition):** `.github/instructions/autopsy-protocol.instructions.md`
+
+## Tier 2 — On-Demand Reference Files
+
+These `.reference.md` files are NOT auto-loaded. Open only when the task requires them:
+
+- **Mathematical engines (T³-MΨ, §VIII-IX):** `.github/instructions/mathematical-engines.reference.md`
+- **Magistra logic (validation ceremonies, §X):** `.github/instructions/magistra-logic.reference.md`
+- **Entity generation (9-step protocol):** `.github/instructions/asc-entity-generation.reference.md`
+- **Behavioral scenarios (SBS, §XVII):** `.github/instructions/behavioral-scenarios.reference.md`
+- **Reference appendix (glossary, appendices A-E):** `.github/instructions/reference-appendix.reference.md`
 
 ## IDE / Agent Configuration
 
@@ -31,6 +42,7 @@ All of these are intended for selective lookup (do not bulk-ingest):
 - **Project MCP servers (Claude/Codex):** `.mcp.json`
 
 - **Claude project config:** `.claude/`
+- **Claude project agents (also discovered by Copilot CLI):** `.claude/agents/`
 - **Codex project config:** `.codex/config.toml`
 
 User-scoped (do not commit secrets; treat as local state):
@@ -55,5 +67,6 @@ Terminal Copilot lanes (vendored under the structured tree when present):
 
 - **Claude VS Code wrapper:** `scripts/claude_process_wrapper.ps1`
 - **Claude IDE overlay generator:** `scripts/claude_ide_settings_generate.ps1`
+- **Copilot CLI launcher profile (opt-out switches for agents/MCP/instructions):** `scripts/copilot_clean.ps1`
 - **GitHub MCP server binary:** `scripts/bin/github-mcp-server.exe`
 - **Repo scripts index:** `SCRIPTS_README.md`
