@@ -115,6 +115,7 @@ extensions/*/bun.lock
 !scripts/gemini-cli-wrapper.ps1
 !scripts/chthonic.ps1
 !scripts/fix-md-links.ps1
+!scripts/copilot_clean.ps1
 
 # mdBook build output (generated artifact)
 book/
