@@ -16,19 +16,18 @@
       "cwd": "C:\\Users\\erdno\\chthonic-archive"
     },
 
-    // Playwright MCP: DISABLED - blocked by enterprise security controls
-    // WebSocket handshakes rejected even with Admin privileges
-    // Tested: Chromium (timeout), Edge (101 error), Firefox (policy hardening)
-    // Conclusion: Incompatible with this machine's security posture
-    // Status: 6 of 7 MCP servers operational
-    /*
-    "playwright": {
+    // Browser automation: bun-cdp (replaces Playwright)
+    // Playwright's IPC layer crashes Bun — raw CDP over WebSocket works.
+    // See bun-playwright-poc/VALIDATION_COMPLETE.md for proof.
+    "browser": {
       "type": "stdio",
-      "command": "node_modules/.bin/mcp-server-playwright",
-      "args": ["--browser", "chromium"],
+      "command": "bun",
+      "args": [
+        "run",
+        "scripts/mcp-browser.ts"
+      ],
       "cwd": "C:\\Users\\erdno\\chthonic-archive"
     },
-    */
 
     "bun-docs": {
       "type": "http",
@@ -64,7 +63,7 @@
       ],
       "cwd": "C:\\Users\\erdno\\chthonic-archive",
       "env": {
-        "SSOT_PATH": ".github/copilot-instructions.md"
+        "SSOT_PATH": ".github/copilot-instructions-archive.md"
       }
     },
 
