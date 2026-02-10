@@ -254,6 +254,10 @@
     // === CLAUDE CODE ===
     "claudeCode.selectedModel": "claude-opus-4-6",
     "claudeCode.allowDangerouslySkipPermissions": true,
+    // Wrapper to make IDE-launched Claude resilient to Insiders churn + env inheritance.
+    // NOTE: The Claude Code extension currently treats this setting as a literal filesystem path
+    // (it does not expand VS Code variables like ${workspaceFolder}). Use an absolute path.
+    "claudeCode.claudeProcessWrapper": "C:\\\\Users\\\\erdno\\\\chthonic-archive\\\\scripts\\\\bin\\\\claude_process_wrapper.exe",
     "claudeCode.useTerminal": true,
     "claudeCode.respectGitIgnore": false,
     "claudeCode.initialPermissionMode": "default",

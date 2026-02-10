@@ -16,6 +16,7 @@ Tracking completed data harvests from PRs, sessions, and other sources.
 | `protocols` | 2026-02-03 | Local intake | protocol docs | curated files | n/a | Complete |
 | `templates` | 2026-02-03 | Local intake | templates | curated files | n/a | Complete |
 | `ore-batch-2025-12-30` | 2025-12-30 | Local intake | ore batch | curated file | n/a | Complete |
+| `claude-ide-harden-2026-02-10` | 2026-02-10 | Local intake | patch cascade | canonical entrypoint | n/a | Complete |
 
 ---
 
@@ -44,6 +45,29 @@ Tracking completed data harvests from PRs, sessions, and other sources.
 | 3 | [emoji_vocabulary.md](./intake/pr-harvest-2026-01-29/tier-3-conceptual/emoji_vocabulary.md) | Status indicator vocabulary |
 
 **Disposition:** PRs closed with harvest references
+
+**Methodology:** [WET_PAPER_TO_GOLD_METHODOLOGY.md](../claude/WET_PAPER_TO_GOLD_METHODOLOGY.md)
+
+---
+
+### claude-ide-harden-2026-02-10
+
+**Location:** [intake/claude-ide-harden-2026-02-10/](./intake/claude-ide-harden-2026-02-10/)
+
+**Sources:**
+- Local intake (VS Code Insiders + Claude Code + MCP hardening scripts and logs)
+
+**Extracted Artifacts:**
+
+| Tier | Artifact | Description |
+|------|----------|-------------|
+| 1 | `tier-1-direct/scripts/claude_ide.ps1` | Canonical Claude IDE entrypoint (`heal|health|write-mcp|persist-env|crossover`) |
+| 1 | `tier-1-direct/scripts/claude_process_wrapper.ps1` | VS Code wrapper (loads tokens + heal + healthcheck before spawning) |
+| 1 | `tier-1-direct/scripts/claude_process_wrapper.bat` | Wrapper shim for VS Code setting |
+| 1 | `tier-1-direct/scripts/claude_healthcheck.ps1` | Writes `codex/mailbox/CLAUDE_IDE_HEALTH_LATEST.json` |
+| Raw | `raw/scripts/patch-claude-insiders.ps1` | Historical patch logic kept for mining |
+
+**Disposition:** Canonical path remains in `scripts/` (operational). Historical sources copied here for audit/mining.
 
 **Methodology:** [WET_PAPER_TO_GOLD_METHODOLOGY.md](../claude/WET_PAPER_TO_GOLD_METHODOLOGY.md)
 

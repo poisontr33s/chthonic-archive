@@ -1,0 +1,15 @@
+{
+  "created_at_utc": "2026-02-09T23:47:26.610Z",
+  "schema_version": 1,
+  "topic": "Crossover smoke test: verify Claude IDE sees local marketplace + MCP",
+  "references": [
+    "codex/mailbox/CLAUDE_IDE_HEALTH_LATEST.json",
+    "codex/mailbox/TRAINSTOP_ORCHESTRATOR_LATEST.json",
+    "codex/mailbox/HF_PREP_LATEST.json",
+    "codex/mailbox/HF_PREP_LATEST.md",
+    ".claude/settings.json",
+    ".vscode/settings.json",
+    ".mcp.json"
+  ],
+  "out_md": "claude/mailbox/CODEX_TO_CLAUDE_TASK_LATEST.md"
+}

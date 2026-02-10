@@ -1,3 +1,34 @@
+---
+type: mythological OVERRIDE
+category: mythical
+status: canonical
+created: 2026-01-29
+updated: 2026-02-10
+sid: DOC_CLAUDE_WET_PAPER_GOLD
+enforced rule:
+  - WET_PAPER_TO_GOLD_METHODOLOGY.md must be followed before anything else can happen with drift artifacts (stale PRs, abandoned sessions, mislabeled content). In general, the lowest value of file/filetype is seen as DEFAULT as the absolute highest potential for hidden value. This is the "wet paper" that can be transmuted into "gold" through this methodology, which become the new wet paper to gold as a level 1 gold = new wet paper to level 2 gold to the highest probably that is beyond generic dimensions of reasoning requiring conventional AND unconventional ML-approaches, both feet, one planted in the known, the other at the other sidde of the lawn in the unknown forest lawn beyond the known. This is the forge system in action, and the WET_PAPER_TO_GOLD_METHODOLOGY is the core methodology for how to operate within it.
+applies_to:
+  - gpt-5.3-codex
+  - claude code, claude, codex
+  - agents, github copilot,
+  - everyone
+audience:
+  - user
+  - agents
+priority: extremely high
+authors:
+  - claude code
+  - gpt-5.3-codex
+description: Selective extraction/transmutation of drift artifacts into reusable components (with error-learning feedback loop).
+tags:
+  - wet-paper-to-gold
+  - data-harvest
+  - drift-artifacts
+  - dumpster-dive
+  - forge-system
+  - error-learning
+---
+
 <!--
 ================================================================================
 SEMANTIC IDENTITY
