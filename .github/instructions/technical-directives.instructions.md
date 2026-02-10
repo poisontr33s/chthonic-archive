@@ -135,21 +135,6 @@ def ssot_hash(filepath: str) -> str:
 
 ---
 
-#### **14.3a. SSOT Verification Relationship Matrix (Condensed)**
-
-Core governance constraints (historically carried by `.github/instructions/dev-conventions.md`):
-
-1. **SSOT is SOURCE, never TARGET:** validation tools READ SSOT; no external artifact may alter SSOT content.
-2. **Derivatives are downstream-only:** generated JSON/schemas/reports are derivative; if SSOT changes, derivatives are obsolete.
-3. **Bookend discipline:** compute `hash_start` at session start and `hash_end` at session end; mismatch triggers **GOVERNANCE_DRIFT_DETECTED**.
-4. **Frozen probes:** scripts designated FROZEN must not be modified without explicit unfreezing authorization (example: `scripts/Discover-SSOT-Treasure.ps1`).
-5. **External tool governance (examples):**
-   - `mas_mcp/schemas/*.json` (if present): deprecated downstream artifacts
-   - `ankh_index.json`: coordinate map artifact (read-only)
-   - `curriculum_core_v1.json`: legacy artifact (no longer authoritative)
-
----
-
 #### **14.4. Project Structure Reference (`PSR`)**
 
 ```
