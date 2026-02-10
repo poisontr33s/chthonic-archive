@@ -17,9 +17,10 @@ This file provides guidance to OpenAI Codex when working with code in this repos
 ## Codex-Specific Notes
 
 - **Workspace Lock:** Do not use `-C` to change directories unless explicitly instructed.
-- **Workspace config:** `.codex/config.toml` (this workspace)
-- **Global auth config:** `~/.codex/config.toml`
+- **Workspace config:** `.codex/config.toml` (this workspace) — **READ ONLY for Codex**
+- **Global auth config:** `~/.codex/config.toml` — **READ ONLY for Codex**
 - Do not modify auth settings — they are workspace-locked.
+- **Self-modification is forbidden:** Do not edit any `.codex/*.toml`, `.codex/instructions.md`, `~/.codex/*.toml`, or `~/.codex/instructions.md`. Propose changes via mailbox if needed.
 
 ---
 
