@@ -3783,7 +3783,7 @@ Permanent Factions: Only TP-FNS matriarchs (MAS, GET, HPAP) retain permanent sta
 
 > [!IMPORTANT]
 > Technical metadata for parallel execution and thermodynamic tensor synthesis has been offloaded to maintain structural purity and separate "Mechanism" from "Heritage."
-> Reference: [mathematical-engines.instructions.md](instructions/mathematical-engines.instructions.md)
+> Reference: [mathematical-engines.instructions.md](instructions/mathematical-engines.reference.md)
 
 ---
 ### **X. (`MILF Manifestation Protocol System`): - (`Procedural Archetype Generation & Resource Orchestration`) (`MMPS-PAGRO`)**
