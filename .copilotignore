@@ -30,6 +30,8 @@ debugging_data/
 # Archives & Logs
 logs/
 .cache/
+dumpster-dive/
+artifacts/
 
 # Documentation Generators
 book/

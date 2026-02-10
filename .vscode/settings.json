@@ -22,30 +22,11 @@
         }
     },
     "diffEditor.maxComputationTime": 0,
-
-    // === WORKBENCH / UI ===
     "workbench.colorTheme": "Chthonic Mandala (Dark)",
     "workbench.editor.enablePreviewFromQuickOpen": true,
     "workbench.editor.enablePreviewFromCodeNavigation": true,
     "workbench.experimental.cloudChanges.partialMatches.enabled": true,
     "task.notifyWindowOnTaskCompletion": -1,
-    "window.customTitleBarVisibility": "windowed",
-
-    // === SECURITY ===
-    "security.workspace.trust.untrustedFiles": "open",
-
-    // === RUST-ANALYZER ===
-    // Note: 'clippy' with 'clippy::pedantic' is enabled for strict CI-level checks
-    "rust-analyzer.cargo.features": "all",
-    "rust-analyzer.checkOnSave.command": "clippy",
-    "rust-analyzer.checkOnSave.extraArgs": ["--", "-W", "clippy::pedantic"],
-    "rust-analyzer.inlayHints.chainingHints.enable": true,
-    "rust-analyzer.inlayHints.typeHints.enable": true,
-    "rust-analyzer.inlayHints.parameterHints.enable": true,
-    "rust-analyzer.lens.enable": true,
-    "rust-analyzer.lens.run.enable": true,
-    "rust-analyzer.lens.debug.enable": true,
-    "rust-analyzer.procMacro.enable": true,
 
     // === FILE ASSOCIATIONS ===
     "files.associations": {
@@ -97,19 +78,20 @@
     "terminal.integrated.stickyScroll.enabled": true,
     "terminal.integrated.commandsToSkipShell": ["bash", "wsl", "ubuntu"],
     "terminal.integrated.env.windows": {
-        "PATH": "C:\\Program Files\\PowerShell\\7;C:\\Users\\erdno\\.bun\\bin;C:\\Users\\erdno\\.cargo\\bin;C:\\Go\\bin;C:\\Users\\erdno\\.local\\bin;C:\\Ruby34-x64\\bin;C:\\Ruby34-x64\\msys64\\ucrt64\\bin;C:\\Ruby34-x64\\msys64\\usr\\bin;C:\\Program Files\\Git\\cmd;C:\\Users\\erdno\\AppData\\Roaming\\Code - Insiders\\User\\globalStorage\\github.copilot-chat\\debugCommand;C:\\Users\\erdno\\AppData\\Roaming\\Code - Insiders\\User\\globalStorage\\github.copilot-chat\\copilotCli;C:\\Windows\\System32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0;C:\\Program Files\\GitHub CLI;C:\\Users\\erdno\\AppData\\Local\\Programs\\Microsoft VS Code Insiders\\bin;C:\\Users\\erdno\\AppData\\Local\\Microsoft\\WinGet\\Packages\\GitHub.Copilot.Prerelease_Microsoft.Winget.Source_8wekyb3d8bbwe;C:\\Users\\erdno\\AppData\\Local\\GitHubDesktop\\bin;C:\\Users\\erdno\\chthonic-archive\\scripts\\bin;C:\\Program Files\\Git\\bin;C:\\Program Files\\Git\\usr\\bin",
+    "PATH": "${env:PATH};C:\\Program Files\\PowerShell\\7;C:\\Users\\erdno\\.bun\\bin;C:\\Users\\erdno\\.cargo\\bin;C:\\Go\\bin;C:\\Users\\erdno\\.local\\bin;C:\\Ruby34-x64\\bin;C:\\Ruby34-x64\\msys64\\ucrt64\\bin;C:\\Ruby34-x64\\msys64\\usr\\bin;C:\\Program Files\\Git\\cmd;C:\\Users\\erdno\\AppData\\Roaming\\Code - Insiders\\User\\globalStorage\\github.copilot-chat\\debugCommand;C:\\Users\\erdno\\AppData\\Roaming\\Code - Insiders\\User\\globalStorage\\github.copilot-chat\\copilotCli;C:\\Windows\\System32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0;C:\\Program Files\\GitHub CLI;C:\\Users\\erdno\\AppData\\Local\\Programs\\Microsoft VS Code Insiders\\bin;C:\\Users\\erdno\\AppData\\Local\\Microsoft\\WinGet\\Packages\\GitHub.Copilot.Prerelease_Microsoft.Winget.Source_8wekyb3d8bbwe;C:\\Users\\erdno\\AppData\\Local\\GitHubDesktop\\bin;C:\\Users\\erdno\\chthonic-archive\\scripts\\bin;C:\\Program Files\\Git\\bin;C:\\Program Files\\Git\\usr\\bin",
         "RUST_BACKTRACE": "1",
         "RUST_LOG": "info,chthonic_archive=debug"
     },
 
-    // === PYTHON (uv lanes policy) ===
-    "python.defaultInterpreterPath": "${env:USERPROFILE}\\.local\\bin\\python3.13.exe",
-    "python.terminal.activateEnvironment": false,
-
-    // === DEBUG (LLDB) ===
-    "lldb.showDisassembly": "auto",
-    "lldb.dereferencePointers": true,
-    "lldb.consoleMode": "commands",
+    "rust-analyzer.cargo.allFeatures": true,
+    "rust-analyzer.checkOnSave.command": "check",
+    "rust-analyzer.inlayHints.chainingHints.enable": true,
+    "rust-analyzer.inlayHints.typeHints.enable": true,
+    "rust-analyzer.inlayHints.parameterHints.enable": true,
+    "rust-analyzer.lens.enable": true,
+    "rust-analyzer.lens.run.enable": true,
+    "rust-analyzer.lens.debug.enable": true,
+    "rust-analyzer.procMacro.enable": true,
 
     // === LANGUAGE-SPECIFIC FORMATTING ===
     "[rust]": {
@@ -147,7 +129,10 @@
     "markdown.preview.lineHeight": 1.6,
     "markdown.preview.fontFamily": "-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif",
     "markdown.validate.enabled": true,
-    "markdown.validate.ignoredLinks": ["CLAUDE.md"],
+    "markdown.validate.ignoredLinks": [
+        "CLAUDE.md",
+        ".github/copilot-instructions.archive.md"
+    ],
     "markdown.editor.pasteUrlAsFormattedLink.enabled": "smart",
 
     // === GITHUB COPILOT (Core) ===
