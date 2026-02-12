@@ -40,7 +40,7 @@ $defaultPolyglotPaths = @(
     # Native user binaries (Claude native installer, uv tools)
     "$env:USERPROFILE\.local\bin",
 
-    # Bun 1.3.6 (JS/TS runtime + Biome 2.3.8)
+    # Bun 1.3.9 (JS/TS runtime + Biome 2.3.8)
     "$env:USERPROFILE\.bun\bin",
     
     # Rust 1.93.0 (rustup managed) + Cargo tools
