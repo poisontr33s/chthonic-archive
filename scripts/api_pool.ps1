@@ -20,7 +20,8 @@
 # }
 
 param(
-  [switch]$Load
+  [switch]$Load,
+  [switch]$Quiet
 )
 
 Set-StrictMode -Version Latest
@@ -59,6 +60,7 @@ function Normalize-Token {
 }
 
 if (-not $Load) {
+  if ($Quiet) { exit 2 }
   Write-Host "Usage: .\\scripts\\api_pool.ps1 -Load"
   exit 2
 }
@@ -76,8 +78,10 @@ if (-not (Test-Path -LiteralPath $p.Path)) {
 }
 '@
   $template | Out-File -FilePath $p.Path -Encoding utf8 -NoNewline
-  Write-Host "Created template: $($p.Path)"
-  Write-Host "Fill values locally; never commit. Then re-run with -Load."
+  if (-not $Quiet) {
+    Write-Host "Created template: $($p.Path)"
+    Write-Host "Fill values locally; never commit. Then re-run with -Load."
+  }
   exit 3
 }
 
@@ -124,4 +128,6 @@ if (Has-EnvVar -Name "GITHUB_TOKEN") {
   }
 }
 
-Write-Host "Loaded $count env var(s) into this shell process."
+if (-not $Quiet) {
+  Write-Host "Loaded $count env var(s) into this shell process."
+}

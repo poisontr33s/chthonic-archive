@@ -37,6 +37,9 @@ $SERVICES_FILE = Join-Path $STATE_DIR "services.json"
 
 # Default polyglot paths (fallback when config.json is missing)
 $defaultPolyglotPaths = @(
+    # Native user binaries (Claude native installer, uv tools)
+    "$env:USERPROFILE\.local\bin",
+
     # Bun 1.3.6 (JS/TS runtime + Biome 2.3.8)
     "$env:USERPROFILE\.bun\bin",
     
@@ -46,9 +49,6 @@ $defaultPolyglotPaths = @(
     # Go 1.24.3
     "C:\Go\bin",
     "$env:USERPROFILE\go\bin",
-    
-    # Python 3.13 + uv 0.9.26 + Ruff 0.14.13
-    "$env:USERPROFILE\.local\bin",
     
     # Ruby 3.4.7 + DevKit (GCC 15.2.0, make, pkg-config)
     "C:\Ruby34-x64\bin",
