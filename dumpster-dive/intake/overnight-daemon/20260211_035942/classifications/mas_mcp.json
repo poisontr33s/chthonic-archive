@@ -1,0 +1,1225 @@
+{
+  "path": "mas_mcp",
+  "primaryLanguage": "python",
+  "purpose": "general",
+  "fileCount": 40,
+  "totalSize": 829760,
+  "averageComplexity": 31,
+  "documentationCoverage": 0.09,
+  "files": [
+    {
+      "path": "mas_mcp/async_core.py",
+      "language": "python",
+      "size": 26116,
+      "complexity": {
+        "cyclomatic": 45,
+        "nestingDepth": 12,
+        "functionCount": 34,
+        "avgFunctionLength": 19
+      },
+      "imports": [
+        "asyncio",
+        "logging",
+        "time",
+        "abc",
+        "dataclasses",
+        "enum",
+        "typing",
+        "collections",
+        "concurrent.futures",
+        "threading",
+        "uuid",
+        "server"
+      ],
+      "exports": [
+        "get_executor",
+        "run_async",
+        "create_scan_task",
+        "create_entity_task",
+        "module_status"
+      ],
+      "todoCount": 0,
+      "docstringCount": 44,
+      "commentDensity": 0.0847457627118644,
+      "patterns": [
+        "async-patterns"
+      ],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "mas_mcp/benchmark_gpu.py",
+      "language": "python",
+      "size": 8686,
+      "complexity": {
+        "cyclomatic": 30,
+        "nestingDepth": 8,
+        "functionCount": 4,
+        "avgFunctionLength": 56
+      },
+      "imports": [
+        "sys",
+        "time",
+        "numpy",
+        "onnxruntime",
+        "pathlib",
+        "onnx"
+      ],
+      "exports": [
+        "create_dummy_model",
+        "benchmark_provider",
+        "print_results",
+        "main"
+      ],
+      "todoCount": 0,
+      "docstringCount": 5,
+      "commentDensity": 0.08849557522123894,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "mas_mcp/benchmark_gpu_vs_cpu.py",
+      "language": "python",
+      "size": 2381,
+      "complexity": {
+        "cyclomatic": 9,
+        "nestingDepth": 6,
+        "functionCount": 1,
+        "avgFunctionLength": 74
+      },
+      "imports": [
+        "sys",
+        "time",
+        "numpy",
+        "gpu_scores"
+      ],
+      "exports": [
+        "benchmark"
+      ],
+      "todoCount": 0,
+      "docstringCount": 1,
+      "commentDensity": 0.08108108108108109,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "mas_mcp/bench_safe.py",
+      "language": "python",
+      "size": 9126,
+      "complexity": {
+        "cyclomatic": 29,
+        "nestingDepth": 4,
+        "functionCount": 10,
+        "avgFunctionLength": 28
+      },
+      "imports": [
+        "json",
+        "time",
+        "sys",
+        "numpy",
+        "gpu_orchestrator",
+        "traceback"
+      ],
+      "exports": [
+        "banner",
+        "test_gpu_status",
+        "test_small_batch",
+        "test_medium_batch",
+        "test_large_batch",
+        "test_small_hierarchy",
+        "test_medium_hierarchy",
+        "test_large_hierarchy",
+        "test_determinism",
+        "main"
+      ],
+      "todoCount": 0,
+      "docstringCount": 12,
+      "commentDensity": 0.028070175438596492,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "mas_mcp/build_cupy.ps1",
+      "language": "powershell",
+      "size": 22183,
+      "complexity": {
+        "cyclomatic": 50,
+        "nestingDepth": 37,
+        "functionCount": 4,
+        "avgFunctionLength": 115
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 64,
+      "commentDensity": 0.13665943600867678,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "mas_mcp/cuda_probe.py",
+      "language": "python",
+      "size": 8448,
+      "complexity": {
+        "cyclomatic": 27,
+        "nestingDepth": 6,
+        "functionCount": 4,
+        "avgFunctionLength": 63
+      },
+      "imports": [
+        "sys",
+        "os",
+        "time",
+        "typing",
+        "onnxruntime",
+        "numpy",
+        "onnx"
+      ],
+      "exports": [
+        "check_cudnn_dlls",
+        "test_onnx_cuda_only",
+        "print_status",
+        "main"
+      ],
+      "todoCount": 0,
+      "docstringCount": 7,
+      "commentDensity": 0.08695652173913043,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "mas_mcp/cupy_benchmark.py",
+      "language": "python",
+      "size": 4929,
+      "complexity": {
+        "cyclomatic": 8,
+        "nestingDepth": 4,
+        "functionCount": 1,
+        "avgFunctionLength": 159
+      },
+      "imports": [
+        "os",
+        "numpy",
+        "cupy",
+        "time"
+      ],
+      "exports": [
+        "main"
+      ],
+      "todoCount": 0,
+      "docstringCount": 1,
+      "commentDensity": 0.08176100628930817,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "mas_mcp/genesis_output.json",
+      "language": "json",
+      "size": 11529,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 4,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "mas_mcp/genesis_scheduler.py",
+      "language": "python",
+      "size": 48201,
+      "complexity": {
+        "cyclomatic": 118,
+        "nestingDepth": 14,
+        "functionCount": 48,
+        "avgFunctionLength": 24
+      },
+      "imports": [
+        "__future__",
+        "argparse",
+        "atexit",
+        "datetime",
+        "gzip",
+        "hashlib",
+        "json",
+        "os",
+        "shutil",
+        "signal",
+        "smtplib",
+        "socket",
+        "ssl",
+        "statistics",
+        "sys",
+        "threading",
+        "time",
+        "traceback",
+        "dataclasses",
+        "email.mime.multipart",
+        "email.mime.text",
+        "pathlib",
+        "typing",
+        "milf_genesis_v2",
+        "cupy"
+      ],
+      "exports": [
+        "generate_daily_digest",
+        "check_gpu_available",
+        "check_vram_usage",
+        "should_degrade",
+        "prune_old_files",
+        "send_email",
+        "parse_args",
+        "main"
+      ],
+      "todoCount": 0,
+      "docstringCount": 36,
+      "commentDensity": 0.07724601175482787,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "mas_mcp/gpu_config.py",
+      "language": "python",
+      "size": 10416,
+      "complexity": {
+        "cyclomatic": 22,
+        "nestingDepth": 8,
+        "functionCount": 13,
+        "avgFunctionLength": 25
+      },
+      "imports": [
+        "os",
+        "sys",
+        "logging",
+        "dataclasses",
+        "enum",
+        "typing",
+        "pathlib",
+        "cupy",
+        "numba"
+      ],
+      "exports": [
+        "detect_gpu_capabilities",
+        "get_config",
+        "get_capabilities",
+        "gpu_available",
+        "with_gpu_fallback",
+        "get_current_mode",
+        "set_mode",
+        "list_modes",
+        "apply_preset"
+      ],
+      "todoCount": 0,
+      "docstringCount": 18,
+      "commentDensity": 0.07076923076923076,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "mas_mcp/GPU_ENV.md",
+      "language": "markdown",
+      "size": 4682,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 6,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "mas_mcp/gpu_forces.py",
+      "language": "python",
+      "size": 26063,
+      "complexity": {
+        "cyclomatic": 76,
+        "nestingDepth": 12,
+        "functionCount": 14,
+        "avgFunctionLength": 54
+      },
+      "imports": [
+        "numpy",
+        "typing",
+        "dataclasses",
+        "logging",
+        "math",
+        "gpu_config",
+        "CuPy.",
+        "cupy"
+      ],
+      "exports": [
+        "whr_to_inertia",
+        "cpu_layout_step",
+        "gpu_layout_step",
+        "layout_step",
+        "initialize_layout",
+        "run_layout"
+      ],
+      "todoCount": 0,
+      "docstringCount": 31,
+      "commentDensity": 0.11443433029908973,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "mas_mcp/gpu_orchestrator.py",
+      "language": "python",
+      "size": 39344,
+      "complexity": {
+        "cyclomatic": 108,
+        "nestingDepth": 16,
+        "functionCount": 27,
+        "avgFunctionLength": 40
+      },
+      "imports": [
+        "os",
+        "sys",
+        "logging",
+        "dataclasses",
+        "enum",
+        "typing",
+        "pathlib",
+        "cupy",
+        "numba",
+        "onnxruntime",
+        "numpy",
+        "subprocess",
+        "time",
+        "gpu_scores",
+        "gpu_forces"
+      ],
+      "exports": [
+        "detect_gpu_capabilities",
+        "get_config",
+        "get_capabilities",
+        "gpu_available",
+        "with_gpu_fallback",
+        "apply_preset",
+        "get_score_tiler",
+        "get_hierarchy_tiler",
+        "mas_gpu_score",
+        "mas_gpu_batch_score",
+        "mas_gpu_status",
+        "mas_gpu_hierarchy"
+      ],
+      "todoCount": 0,
+      "docstringCount": 36,
+      "commentDensity": 0.07314814814814814,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "mas_mcp/gpu_scores.py",
+      "language": "python",
+      "size": 15649,
+      "complexity": {
+        "cyclomatic": 30,
+        "nestingDepth": 8,
+        "functionCount": 11,
+        "avgFunctionLength": 40
+      },
+      "imports": [
+        "numpy",
+        "typing",
+        "dataclasses",
+        "logging",
+        "gpu_config",
+        "0.3",
+        "time",
+        "CuPy",
+        "os",
+        "sys",
+        "cupy"
+      ],
+      "exports": [
+        "cpu_batch_score",
+        "gpu_batch_score",
+        "batch_score",
+        "validate_gpu_cpu_parity"
+      ],
+      "todoCount": 0,
+      "docstringCount": 22,
+      "commentDensity": 0.08333333333333333,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "mas_mcp/gpu_status.py",
+      "language": "python",
+      "size": 9867,
+      "complexity": {
+        "cyclomatic": 43,
+        "nestingDepth": 10,
+        "functionCount": 7,
+        "avgFunctionLength": 38
+      },
+      "imports": [
+        "sys",
+        "subprocess",
+        "os",
+        "onnxruntime",
+        "onnx",
+        "numpy",
+        "cupy"
+      ],
+      "exports": [
+        "run_cmd",
+        "check_nvidia_driver",
+        "check_cuda_toolkit",
+        "check_cudnn",
+        "check_onnx_runtime",
+        "check_cupy",
+        "main"
+      ],
+      "todoCount": 0,
+      "docstringCount": 8,
+      "commentDensity": 0.06343283582089553,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "mas_mcp/gpu_validation_test.py",
+      "language": "python",
+      "size": 11264,
+      "complexity": {
+        "cyclomatic": 33,
+        "nestingDepth": 10,
+        "functionCount": 5,
+        "avgFunctionLength": 65
+      },
+      "imports": [
+        "time",
+        "numpy",
+        "sys",
+        "onnxruntime",
+        "onnx",
+        "subprocess"
+      ],
+      "exports": [
+        "format_time",
+        "test_numpy_baseline",
+        "test_onnx_cpu",
+        "test_onnx_gpu",
+        "run_comparison"
+      ],
+      "todoCount": 0,
+      "docstringCount": 7,
+      "commentDensity": 0.11280487804878049,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "mas_mcp/hardware_diagnostic.py",
+      "language": "python",
+      "size": 25429,
+      "complexity": {
+        "cyclomatic": 59,
+        "nestingDepth": 18,
+        "functionCount": 8,
+        "avgFunctionLength": 89
+      },
+      "imports": [
+        "json",
+        "time",
+        "sys",
+        "os",
+        "platform",
+        "dataclasses",
+        "typing",
+        "from",
+        "psutil",
+        "cupy",
+        "numba",
+        "numpy"
+      ],
+      "exports": [
+        "detect_hardware",
+        "print_hardware_profile",
+        "test_tdr_safety",
+        "test_barnes_hut_comparison",
+        "test_cpu_vs_gpu",
+        "test_memory_stability",
+        "generate_recommendations",
+        "main"
+      ],
+      "todoCount": 0,
+      "docstringCount": 15,
+      "commentDensity": 0.08848314606741572,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "mas_mcp/install_tensorrt.ps1",
+      "language": "powershell",
+      "size": 15720,
+      "complexity": {
+        "cyclomatic": 43,
+        "nestingDepth": 35,
+        "functionCount": 7,
+        "avgFunctionLength": 54
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 37,
+      "commentDensity": 0.09399477806788512,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "mas_mcp/mas_diagnostics.py",
+      "language": "python",
+      "size": 31503,
+      "complexity": {
+        "cyclomatic": 57,
+        "nestingDepth": 14,
+        "functionCount": 16,
+        "avgFunctionLength": 51
+      },
+      "imports": [
+        "json",
+        "time",
+        "sys",
+        "os",
+        "platform",
+        "subprocess",
+        "typing",
+        "dataclasses",
+        "contextlib",
+        "datetime",
+        "numpy",
+        "cupy",
+        "numba",
+        "onnxruntime",
+        "gpu_forces",
+        "gpu_orchestrator",
+        "server"
+      ],
+      "exports": [
+        "banner",
+        "sub_banner",
+        "timer",
+        "get_uv_version",
+        "get_hardware_info",
+        "test_uv_environment",
+        "test_gpu_detection",
+        "test_spatial_grid_correctness",
+        "test_spatial_grid_performance",
+        "test_tdr_safe_scoring",
+        "test_mas_mcp_integration",
+        "run_diagnostics",
+        "main"
+      ],
+      "todoCount": 0,
+      "docstringCount": 26,
+      "commentDensity": 0.06004901960784314,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "mas_mcp/mas_diagnostic_report.json",
+      "language": "json",
+      "size": 3597,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 5,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "mas_mcp/mas_mcp_testing.py",
+      "language": "python",
+      "size": 33818,
+      "complexity": {
+        "cyclomatic": 68,
+        "nestingDepth": 10,
+        "functionCount": 15,
+        "avgFunctionLength": 65
+      },
+      "imports": [
+        "json",
+        "time",
+        "sys",
+        "os",
+        "gc",
+        "typing",
+        "dataclasses",
+        "contextlib",
+        "from",
+        "GPU",
+        "numpy",
+        "gpu_orchestrator",
+        "cupy",
+        "numba",
+        "with",
+        "gpu_forces",
+        "of",
+        "required"
+      ],
+      "exports": [
+        "banner",
+        "timer",
+        "safe_import_gpu_modules",
+        "test_environment",
+        "test_gpu_detection",
+        "test_cpu_fallback",
+        "test_gpu_warmup",
+        "test_incremental_batches",
+        "test_hierarchy_layout",
+        "test_backend_switching",
+        "test_barnes_hut_comparison",
+        "test_determinism",
+        "main"
+      ],
+      "todoCount": 0,
+      "docstringCount": 18,
+      "commentDensity": 0.08478038815117467,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "mas_mcp/mas_memory.json",
+      "language": "json",
+      "size": 9497,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 4,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "mas_mcp/milf_genesis_v2.py",
+      "language": "python",
+      "size": 53577,
+      "complexity": {
+        "cyclomatic": 132,
+        "nestingDepth": 11,
+        "functionCount": 68,
+        "avgFunctionLength": 19
+      },
+      "imports": [
+        "json",
+        "hashlib",
+        "random",
+        "os",
+        "time",
+        "pathlib",
+        "dataclasses",
+        "typing",
+        "datetime",
+        "threading",
+        "sys",
+        "ssot_extractor",
+        "cupy",
+        "numba",
+        "onnxruntime",
+        "numpy"
+      ],
+      "exports": [
+        "TIER_HIERARCHY",
+        "WHR_BY_TIER",
+        "CUP_BY_TIER",
+        "ARCHETYPES",
+        "LINGUISTIC_MANDATES",
+        "SCENT_COMPONENTS",
+        "get_tier_hierarchy",
+        "get_whr_by_tier",
+        "get_cup_by_tier",
+        "get_canonical_entities_dict",
+        "get_archetypes",
+        "get_linguistic_mandates",
+        "get_scent_components",
+        "get_constitutional_bounds",
+        "sha256_text",
+        "sha256_file",
+        "schema_crc",
+        "load_canonical_bank_vectors"
+      ],
+      "todoCount": 0,
+      "docstringCount": 65,
+      "commentDensity": 0.07885040530582167,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "mas_mcp/prebuild_check.ps1",
+      "language": "powershell",
+      "size": 9633,
+      "complexity": {
+        "cyclomatic": 22,
+        "nestingDepth": 6,
+        "functionCount": 1,
+        "avgFunctionLength": 170
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 21,
+      "commentDensity": 0.11764705882352941,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "mas_mcp/pyproject.toml",
+      "language": "toml",
+      "size": 3761,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 2,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "mas_mcp/README.md",
+      "language": "markdown",
+      "size": 5505,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 3,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "mas_mcp/server.py",
+      "language": "python",
+      "size": 1953,
+      "complexity": {
+        "cyclomatic": 3,
+        "nestingDepth": 2,
+        "functionCount": 7,
+        "avgFunctionLength": 9
+      },
+      "imports": [
+        "logging",
+        "pathlib",
+        "fastmcp",
+        "mas_mcp.logic.resonance",
+        "mas_mcp.logic.tools",
+        "mas_mcp.lib.ssot_handler",
+        "mas_mcp.lib.gpu_probe"
+      ],
+      "exports": [
+        "mas_ssot_hash",
+        "mas_narrative_scan",
+        "mas_qualia_check",
+        "mas_scan",
+        "mas_pulse",
+        "mas_gpu_probe",
+        "main"
+      ],
+      "todoCount": 0,
+      "docstringCount": 4,
+      "commentDensity": 0.058823529411764705,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "mas_mcp/setup_gpu_path.ps1",
+      "language": "powershell",
+      "size": 2301,
+      "complexity": {
+        "cyclomatic": 9,
+        "nestingDepth": 4,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 8,
+      "commentDensity": 0.0958904109589041,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "mas_mcp/setup_scheduled_task.ps1",
+      "language": "powershell",
+      "size": 5380,
+      "complexity": {
+        "cyclomatic": 11,
+        "nestingDepth": 4,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 12,
+      "commentDensity": 0.06918238993710692,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "mas_mcp/ssot_extractor.py",
+      "language": "python",
+      "size": 29487,
+      "complexity": {
+        "cyclomatic": 34,
+        "nestingDepth": 8,
+        "functionCount": 18,
+        "avgFunctionLength": 37
+      },
+      "imports": [
+        "ssot_extractor",
+        "re",
+        "hashlib",
+        "pathlib",
+        "dataclasses",
+        "typing",
+        "functools"
+      ],
+      "exports": [
+        "get_ssot_constants",
+        "get_canonical_entity_vectors",
+        "validate_entity_tier"
+      ],
+      "todoCount": 0,
+      "docstringCount": 29,
+      "commentDensity": 0.11834319526627218,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "mas_mcp/test_gpu_scores.py",
+      "language": "python",
+      "size": 2441,
+      "complexity": {
+        "cyclomatic": 4,
+        "nestingDepth": 6,
+        "functionCount": 1,
+        "avgFunctionLength": 65
+      },
+      "imports": [
+        "sys",
+        "gpu_scores",
+        "numpy"
+      ],
+      "exports": [
+        "main"
+      ],
+      "todoCount": 0,
+      "docstringCount": 1,
+      "commentDensity": 0.07692307692307693,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "mas_mcp/test_hardware_specific.py",
+      "language": "python",
+      "size": 29929,
+      "complexity": {
+        "cyclomatic": 78,
+        "nestingDepth": 12,
+        "functionCount": 19,
+        "avgFunctionLength": 46
+      },
+      "imports": [
+        "json",
+        "time",
+        "sys",
+        "os",
+        "gc",
+        "typing",
+        "dataclasses",
+        "contextlib",
+        "numpy",
+        "try",
+        "cupy",
+        "numba",
+        "gpu_orchestrator",
+        "traceback"
+      ],
+      "exports": [
+        "banner",
+        "sub_banner",
+        "timer",
+        "test_gpu_import_stability",
+        "test_cpu_fallback_basic",
+        "test_barnes_hut_vs_naive",
+        "test_gpu_memory_safety",
+        "test_backend_switch_stability",
+        "test_tdr_safe_workload",
+        "test_determinism",
+        "test_orchestrator_integration",
+        "main"
+      ],
+      "todoCount": 0,
+      "docstringCount": 29,
+      "commentDensity": 0.05365296803652968,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "mas_mcp/test_helios.py",
+      "language": "python",
+      "size": 24578,
+      "complexity": {
+        "cyclomatic": 64,
+        "nestingDepth": 16,
+        "functionCount": 12,
+        "avgFunctionLength": 50
+      },
+      "imports": [
+        "sys",
+        "os",
+        "time",
+        "platform",
+        "typing",
+        "numpy",
+        "subprocess",
+        "and",
+        "importlib.util",
+        "cupy",
+        "failed",
+        "numba",
+        "gpu_orchestrator"
+      ],
+      "exports": [
+        "print_banner",
+        "diagnose_system",
+        "diagnose_nvidia_smi",
+        "diagnose_cupy",
+        "diagnose_numba",
+        "repulsion_exact_o_n2",
+        "repulsion_barnes_hut",
+        "benchmark_repulsion_algorithms",
+        "test_hierarchy_safe_scale",
+        "test_batch_scoring",
+        "print_recommendations",
+        "main"
+      ],
+      "todoCount": 0,
+      "docstringCount": 21,
+      "commentDensity": 0.07920792079207921,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "mas_mcp/test_mas.py",
+      "language": "python",
+      "size": 1915,
+      "complexity": {
+        "cyclomatic": 4,
+        "nestingDepth": 4,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [
+        "server",
+        "json"
+      ],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 1,
+      "commentDensity": 0.12,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "mas_mcp/test_mcp_gpu.py",
+      "language": "python",
+      "size": 1677,
+      "complexity": {
+        "cyclomatic": 2,
+        "nestingDepth": 2,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [
+        "sys",
+        "server"
+      ],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 1,
+      "commentDensity": 0.10638297872340426,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "mas_mcp/test_mpw_scan.py",
+      "language": "python",
+      "size": 2270,
+      "complexity": {
+        "cyclomatic": 6,
+        "nestingDepth": 4,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [
+        "sys",
+        "pathlib",
+        "server"
+      ],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 1,
+      "commentDensity": 0.09210526315789473,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "mas_mcp/uv.lock",
+      "language": "unknown",
+      "size": 272977,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 2,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "mas_mcp/validate_gpu.py",
+      "language": "python",
+      "size": 3363,
+      "complexity": {
+        "cyclomatic": 11,
+        "nestingDepth": 6,
+        "functionCount": 1,
+        "avgFunctionLength": 97
+      },
+      "imports": [
+        "server",
+        "numpy",
+        "gpu_config"
+      ],
+      "exports": [
+        "main"
+      ],
+      "todoCount": 0,
+      "docstringCount": 1,
+      "commentDensity": 0.09278350515463918,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "mas_mcp/__init__.py",
+      "language": "python",
+      "size": 186,
+      "complexity": {
+        "cyclomatic": 2,
+        "nestingDepth": 0,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0.8,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "mas_mcp/__main__.py",
+      "language": "python",
+      "size": 379,
+      "complexity": {
+        "cyclomatic": 4,
+        "nestingDepth": 2,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [
+        ".server"
+      ],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 2,
+      "commentDensity": 0.14285714285714285,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+[2026-02-11T02:17:23.835Z] ☥ Overnight Intelligence Daemon starting
+[2026-02-11T02:17:23.835Z]   Model: claude-haiku-4.5
+[2026-02-11T02:17:23.835Z]   Output: C:\Users\erdno\chthonic-archive\dumpster-dive\intake\overnight-intelligence\2026-02-11T02-17-23
+[2026-02-11T02:17:23.836Z]   Dry run: false
+[2026-02-11T02:17:23.836Z]   Max duration: 7h
+[2026-02-11T02:17:23.836Z]   Tasks: file-census, sdk-architecture, extension-health, dep-freshness, meta-review
+[2026-02-11T02:17:24.339Z]   Auth: poisontr33s (token: gho_****)
+[2026-02-11T02:17:24.340Z] 
+━━━ Task 1/5: File Census & Complexity Map ━━━
+[2026-02-11T02:17:24.663Z]   ✅ file-census complete (0.3s): 1075 files scanned, 5 languages
+[2026-02-11T02:17:26.680Z] 
+━━━ Task 2/5: SDK Type Surface Analysis ━━━
+[2026-02-11T02:17:39.486Z]   ✅ sdk-architecture complete (12.8s): SDK types analyzed (10 events, ? tokens)
+[2026-02-11T02:17:41.499Z] 
+━━━ Task 3/5: Extension Source Health ━━━
+[2026-02-11T02:18:11.172Z]   ✅ extension-health complete (29.7s): 8 extension files analyzed
+[2026-02-11T02:18:13.187Z] 
+━━━ Task 4/5: Dependency Freshness Audit ━━━
+[2026-02-11T02:18:31.836Z]   ✅ dep-freshness complete (18.6s): 7 manifests analyzed
+[2026-02-11T02:18:33.837Z] 
+━━━ Task 5/5: Previous Daemon Reports Digest ━━━
+[2026-02-11T02:18:46.505Z]   ✅ meta-review complete (12.7s): 5 previous runs digested
+[2026-02-11T02:18:46.508Z] 
+☥ Daemon complete. 5/5 tasks. 1.4 min.
+[2026-02-11T02:18:46.508Z]   Report: C:\Users\erdno\chthonic-archive\dumpster-dive\intake\overnight-intelligence\2026-02-11T02-17-23\report.md

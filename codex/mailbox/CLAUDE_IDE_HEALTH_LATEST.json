@@ -1,50 +1,50 @@
 {
-  "ok": true,
-  "generated_at_utc": "2026-02-10T22:39:13.204Z",
   "repo_root": "C:\\Users\\erdno\\chthonic-archive",
+  "schema_version": 1,
+  "invariants": {
+    "env": {
+      "HF_TOKEN_present": true,
+      "HUGGINGFACE_HUB_TOKEN_present": true,
+      "GITHUB_PERSONAL_ACCESS_TOKEN_present": true
+    },
+    "mcp_json": {
+      "exists": true,
+      "path": ".mcp.json"
+    }
+  },
+  "generated_at_utc": "2026-02-10T23:55:15.472Z",
+  "ok": true,
   "checks": [
     {
       "ok": true,
-      "detail": {
-        "hasHuggingface": true,
-        "hasGithub": true,
-        "exists": true
-      },
+      "error": null,
       "label": "parse .mcp.json",
-      "error": null,
-      "ms": 5
-    },
-    {
-      "ok": true,
       "detail": {
-        "head": "Checking MCP server health...\n\nplugin:github:github: https://api.githubcopilot.com/mcp/ (HTTP) - Ô£ô Connected\ngithub: https://api.githubcopilot.com/mcp/ (HTTP) - Ô£ô Connected\nhuggingface: https://huggingface.co/mcp (HTTP) - Ô£ô Connected"
+        "exists": true,
+        "hasGithub": true,
+        "hasHuggingface": true
       },
-      "label": "claude mcp list",
-      "error": null,
-      "ms": 1429
+      "ms": 8
     },
     {
       "ok": true,
+      "error": null,
+      "label": "claude mcp list",
+      "detail": {
+        "head": "Checking MCP server health...\n\nplugin:github:github: https://api.githubcopilot.com/mcp/ (HTTP) - Ô£ô Connected\nhuggingface: https://huggingface.co/mcp (HTTP) - Ô£ô Connected\ngithub: https://api.githubcopilot.com/mcp/ (HTTP) - Ô£ô Connected"
+      },
+      "ms": 1446
+    },
+    {
+      "ok": true,
+      "error": null,
+      "label": "claude plugin list --json",
       "detail": {
         "hasGithubPlugin": true,
         "count": 10,
         "hasChthonicTools": true
       },
-      "label": "claude plugin list --json",
-      "error": null,
-      "ms": 658
+      "ms": 691
     }
-  ],
-  "schema_version": 1,
-  "invariants": {
-    "mcp_json": {
-      "path": ".mcp.json",
-      "exists": true
-    },
-    "env": {
-      "HUGGINGFACE_HUB_TOKEN_present": true,
-      "HF_TOKEN_present": true,
-      "GITHUB_PERSONAL_ACCESS_TOKEN_present": true
-    }
-  }
+  ]
 }

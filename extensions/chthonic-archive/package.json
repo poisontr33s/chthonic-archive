@@ -61,12 +61,20 @@
     "views": {
       "chthonic-archive": [
         {
+          "id": "chthonic.chatView",
+          "type": "webview",
+          "name": "Agent Chat",
+          "icon": "$(comment-discussion)"
+        },
+        {
           "id": "chthonic.themeView",
-          "name": "Themes"
+          "name": "Themes",
+          "icon": "$(paintcan)"
         },
         {
           "id": "chthonic.statusView",
-          "name": "Status"
+          "name": "Status",
+          "icon": "$(pulse)"
         }
       ]
     },
@@ -100,5 +108,6 @@
     "@types/node": "^20.x",
     "@types/vscode": "^1.90.0",
     "typescript": "^5.x"
-  }
+  },
+  "dependencies": {}
 }

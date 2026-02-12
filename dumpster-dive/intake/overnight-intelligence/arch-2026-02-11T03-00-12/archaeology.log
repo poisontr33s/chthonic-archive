@@ -1,0 +1,13 @@
+[2026-02-11T03:00:12.635Z] ☥ Overnight Archaeology Refinery starting
+[2026-02-11T03:00:12.636Z]   Loop 1 (scavenge): YES
+[2026-02-11T03:00:12.636Z]   Loop 2 (refine):   SKIP
+[2026-02-11T03:00:12.637Z]   Output: C:\Users\erdno\chthonic-archive\dumpster-dive\intake\overnight-intelligence\arch-2026-02-11T03-00-12
+[2026-02-11T03:00:12.637Z]   Dry run: false
+[2026-02-11T03:00:12.638Z] 
+━━━ LOOP 1: SCAVENGE ━━━
+[2026-02-11T03:00:13.507Z]   Scavenged 8558 files
+[2026-02-11T03:00:13.507Z]   By category: docs:858, code:5861, data:1806, sentinel:33
+[2026-02-11T03:00:13.507Z]   By tier: T1:5861, T2:1806, T3:891
+[2026-02-11T03:00:13.509Z]   Files with name signals: 519
+[2026-02-11T03:00:13.510Z] 
+☥ Archaeology complete. 0.0 min.

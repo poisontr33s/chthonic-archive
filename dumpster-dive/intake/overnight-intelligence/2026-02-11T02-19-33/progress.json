@@ -1,0 +1,32 @@
+{
+  "started": "2026-02-11T02:19:34.097Z",
+  "tasks": [
+    {
+      "id": "file-census",
+      "status": "done",
+      "durationMs": 299
+    },
+    {
+      "id": "sdk-architecture",
+      "status": "done",
+      "durationMs": 11857
+    },
+    {
+      "id": "extension-health",
+      "status": "done",
+      "durationMs": 26342
+    },
+    {
+      "id": "dep-freshness",
+      "status": "done",
+      "durationMs": 15958
+    },
+    {
+      "id": "meta-review",
+      "status": "done",
+      "durationMs": 12990
+    }
+  ],
+  "totalQueries": 5,
+  "lastAuthRefresh": 0
+}

@@ -1,0 +1,49 @@
+{
+  "path": "codex/codex-session-logs/archive/2026_02_08",
+  "primaryLanguage": "markdown",
+  "purpose": "general",
+  "fileCount": 2,
+  "totalSize": 274840,
+  "averageComplexity": 1,
+  "documentationCoverage": 0,
+  "files": [
+    {
+      "path": "codex/codex-session-logs/archive/2026_02_08/The-Iron-Maiden-(SSOT)-Copyright-Savant.md",
+      "language": "markdown",
+      "size": 140976,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 2,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "codex/codex-session-logs/archive/2026_02_08/The-Iron-Maiden-(SSOT)-Copyright-Savant.refined-pre.md",
+      "language": "markdown",
+      "size": 133864,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 2,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    }
+  ]
+}

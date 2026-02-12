@@ -1,0 +1,30 @@
+{
+  "path": "meta-ide/copilot-cli-0.0.406/schemas",
+  "primaryLanguage": "json",
+  "purpose": "general",
+  "fileCount": 1,
+  "totalSize": 143223,
+  "averageComplexity": 1,
+  "documentationCoverage": 0,
+  "files": [
+    {
+      "path": "meta-ide/copilot-cli-0.0.406/schemas/session-events.schema.json",
+      "language": "json",
+      "size": 143223,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 26,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    }
+  ]
+}

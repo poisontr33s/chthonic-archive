@@ -249,10 +249,14 @@
     "claudeCode.initialPermissionMode": "default",
     "claudeCode.preferredLocation": "panel",
 
+    // === ACP: Third-party acp-client config REMOVED ===
+    // Our ACP client is built into extensions/chthonic-archive/ (ChthonicChatProvider)
+    // The copilot.exe --acp binary path is hardcoded in src/acp/connection.ts
+
     // === MISC ===
     "@azure.enableAutoSetAzureRules": false,
     "chatgpt.commentCodeLensEnabled": true,
     "chatgpt.openOnStartup": true,
     "chatgpt.composerEnterBehavior": "cmdIfMultiline",
-    "chatgpt.thinkingMode": "low"
+    "chatgpt.thinkingMode": "high",
 }

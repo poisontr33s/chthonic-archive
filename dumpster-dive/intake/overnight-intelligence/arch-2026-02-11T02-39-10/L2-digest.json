@@ -1,0 +1,442 @@
+{
+  "timestamp": "2026-02-11T02-39-10",
+  "findings": [
+    {
+      "category": "mas_mcp",
+      "items": [
+        {
+          "path": "mas_mcp\\.venv",
+          "verdict": "FLAG: py314-parked\\ — Parked/backup venv should be excluded from nightly crawler; vendor code noise",
+          "tier": 1
+        }
+      ]
+    },
+    {
+      "category": "dumpster-dive",
+      "items": [
+        {
+          "path": "`dumpster",
+          "verdict": "PROMOTE: dive\\archive\\deep-research\\Gemini_CLI_Preview_Win11_Bun_vscode_insiders_deep_research_IMPLEMENTATION.md` — Compressed actionable extract; ready-to-use MCP/CLI patterns for current stack.",
+          "tier": 2
+        },
+        {
+          "path": "`dumpster",
+          "verdict": "FLAG: dive\\archive\\health_reports_2026-01\\` (entire directory) — Stale monitoring artifacts (40+ days old); no active health monitoring since Jan-02. Archive or delete.",
+          "tier": 1
+        },
+        {
+          "path": "`dumpster",
+          "verdict": "FLAG: dive\\archive\\deep-research\\Bun_Native_CDP_Playwright_Win11_25_2026.md` — Incomplete research stub (29L); unclear conclusion. Orphaned or unfinished?",
+          "tier": 1
+        }
+      ]
+    },
+    {
+      "category": "artifacts",
+      "items": [
+        {
+          "path": "artifacts\\claude",
+          "verdict": "PROMOTE: code.cli.2.1.38.frozen.2026-02-10T15-28-36.cli.js — Frozen CLI reference (tier:1), version-locked executable snapshot",
+          "tier": 2
+        },
+        {
+          "path": "artifacts\\hf_mcp_service_registry.generated.py",
+          "verdict": "PROMOTE: Source generator for HF MCP registries; 6 JSON snapshots redundant without this logic",
+          "tier": 2
+        },
+        {
+          "path": "artifacts\\copilot",
+          "verdict": "PROMOTE: cli.changelog.2026-02-10T15-52-07.md — Documents Claude Opus 4.6 Fast support in v0.0.406; actionable governance change",
+          "tier": 2
+        },
+        {
+          "path": "artifacts\\hf_mcp_service_registry.generated.*.json (7 files, 1d)",
+          "verdict": "FLAG: Proliferation: 6 identical-schema snapshots from 2026-02-09 18:29–19:24. Keep latest only, archive rest",
+          "tier": 1
+        },
+        {
+          "path": "artifacts\\hf_mcp_tools_*.json (8 files, 1d)",
+          "verdict": "FLAG: Schema version drift (v1→v2 mid-run 2026-02-09 19:36+). Consolidate to canonical version, document migration",
+          "tier": 1
+        },
+        {
+          "path": "artifacts\\mcp_run_audit_2026",
+          "verdict": "FLAG: 01-29T*.json (7 files, 12d) + (3 files, 37d) — Stale audit snapshots; 3 show null outputs (failed runs). Archive to dumpster-dive/archive/",
+          "tier": 1
+        },
+        {
+          "path": "artifacts\\mcp_run_curriculum_2026",
+          "verdict": "FLAG: 01-05T*.json (3 files, 37d) — Stale curriculum runs (37d). Archive; no refresh signal detected",
+          "tier": 1
+        }
+      ]
+    },
+    {
+      "category": ".",
+      "items": [
+        {
+          "path": "**claude_test.py**",
+          "verdict": "PROMOTE: Fresh Bedrock integration test (0d); signals new AWS/ML capability expansion path",
+          "tier": 2
+        },
+        {
+          "path": "**pyproject.toml**",
+          "verdict": "PROMOTE: Fresh Python config (1d); critical for environment coherence validation",
+          "tier": 2
+        },
+        {
+          "path": "**package.json**",
+          "verdict": "PROMOTE: Recent churn (3d); active frontend/build iteration visible",
+          "tier": 2
+        },
+        {
+          "path": "**bun.lock**",
+          "verdict": "PROMOTE: Fresh lockfile (3d); dependency management actively maintained",
+          "tier": 2
+        },
+        {
+          "path": "**broken",
+          "verdict": "FLAG: refs.json** — Active broken reference list (6d); unresolved documentation debt accumulating",
+          "tier": 1
+        },
+        {
+          "path": "**build.rs**",
+          "verdict": "FLAG: Rust subsystem dormant (12d); assess if compilation/Vulkan layer abandoned",
+          "tier": 1
+        },
+        {
+          "path": "**Cargo.toml**",
+          "verdict": "FLAG: Rust project config untouched (12d); dormancy indicator",
+          "tier": 1
+        },
+        {
+          "path": "**get_hash.py**",
+          "verdict": "FLAG: SSOT hash utility (5d); validate canonical hash algorithm matches current SSOT state",
+          "tier": 1
+        },
+        {
+          "path": "**purify_ssot.py**",
+          "verdict": "FLAG: SSOT cleanup script (5d); validate output doesn't corrupt canonical state",
+          "tier": 1
+        },
+        {
+          "path": "**strip_ssot.py, strip_post_ssot.py**",
+          "verdict": "FLAG: SSOT transformation cluster (5d); validate mutual coherence and prevent data loss",
+          "tier": 1
+        },
+        {
+          "path": "**bunfig.toml**",
+          "verdict": "FLAG: Bun config stale (16d); Playwright test exclusion rules may diverge from actual setup",
+          "tier": 1
+        },
+        {
+          "path": "**book.toml**",
+          "verdict": "FLAG: mdBook config stale (14d); no active publishing signal detected",
+          "tier": 1
+        }
+      ]
+    },
+    {
+      "category": "meta-ide",
+      "items": [
+        {
+          "path": "meta",
+          "verdict": "PROMOTE: ide\\copilot-sdk\\overnight-archaeology.ts — New gold extractor (Two-Loop SCAVENGE+REFINE pattern, 0d)",
+          "tier": 2
+        },
+        {
+          "path": "meta",
+          "verdict": "PROMOTE: ide\\copilot-sdk\\overnight-intelligence.ts — Fresh daemon implementing scavenger loop, 0d",
+          "tier": 2
+        },
+        {
+          "path": "meta",
+          "verdict": "PROMOTE: ide\\copilot-sdk\\oracle.ts — Pure reasoning companion; part of fresh SDK trio, 0d",
+          "tier": 2
+        },
+        {
+          "path": "meta",
+          "verdict": "PROMOTE: ide\\copilot-sdk\\companion.ts — CLI delegate via SDK; fresh architectural layer, 0d",
+          "tier": 2
+        },
+        {
+          "path": "meta",
+          "verdict": "PROMOTE: ide\\copilot-sdk\\harness.ts — Bun sidecar for VS Code; fresh integration pattern, 0d",
+          "tier": 2
+        },
+        {
+          "path": "meta",
+          "verdict": "PROMOTE: ide\\copilot-sdk\\shims\\ (node-sqlite.ts, preload.ts, sqlite.js) — Node-to-Bun bridge infrastructure, 0d",
+          "tier": 2
+        },
+        {
+          "path": "meta",
+          "verdict": "PROMOTE: ide\\copilot-sdk\\self-dialogue.ts — Fresh Claude-Claude reasoning capture, 0d",
+          "tier": 2
+        },
+        {
+          "path": "meta",
+          "verdict": "PROMOTE: ide\\copilot-sdk\\self-dialogue-response.md — Architecture snapshot documenting IDE decision logic, 0d",
+          "tier": 2
+        },
+        {
+          "path": "meta",
+          "verdict": "FLAG: ide\\copilot-cli-0.0.406\\ — Entire directory 14717d stale; copilot-sdk/ has fresher definitions. Potential orphaned reference copy.",
+          "tier": 1
+        }
+      ]
+    },
+    {
+      "category": "claude",
+      "items": [
+        {
+          "path": "claude/mailbox/ARCHAEOLOGY_DIGEST_2026_02_11.md",
+          "verdict": "PROMOTE: Fresh daily digest (0d); surfaces current findings. Read first.",
+          "tier": 2
+        },
+        {
+          "path": "claude/mailbox/CLAUDE_CODE_HIERARCHICAL_RESEARCH_2026_02_09.md",
+          "verdict": "PROMOTE: Active research on Claude-code parity (agents, hooks, MCP); fresh direction signal.",
+          "tier": 2
+        },
+        {
+          "path": "claude/mailbox/SESSION_HANDOFF_2026_02_10_CLAUDE_CODE_OPUS_SETUP.md",
+          "verdict": "PROMOTE: Latest handoff; Claude-code posture + cost decisions (1d, priority:high).",
+          "tier": 2
+        },
+        {
+          "path": "claude/mailbox/CLAUDE_TASK_SESSION_SYNC_2026_02_09.md",
+          "verdict": "PROMOTE: Active session-sync challenge task; operational continuity signal.",
+          "tier": 2
+        },
+        {
+          "path": "claude/mailbox/SESSION_SYNC_PACKET_2026_02_09.md",
+          "verdict": "PROMOTE: Operational checklist; machine-readable runbook for system execution (1d).",
+          "tier": 2
+        },
+        {
+          "path": "claude/mailbox/MAILBOX_CURRENT_STATE.md",
+          "verdict": "PROMOTE: Fresh mailbox snapshot (1d); current active files index.",
+          "tier": 2
+        },
+        {
+          "path": "claude/mailbox/mailbox_manifest.json",
+          "verdict": "PROMOTE: Schema v2 manifest (1d); machine-readable state.",
+          "tier": 2
+        },
+        {
+          "path": "claude/mailbox/skill_audit_claude_2026",
+          "verdict": "PROMOTE: 02-09T22-01-52Z.json — Latest skill audit data (1d); reflects current Claude skill state.",
+          "tier": 2
+        },
+        {
+          "path": "claude/mailbox/TETRAGRAMMATON_PACKET.md",
+          "verdict": "PROMOTE: Governance packet; recently updated (1d touch), active.",
+          "tier": 2
+        },
+        {
+          "path": "claude/WET_PAPER_TO_GOLD_METHODOLOGY.md",
+          "verdict": "PROMOTE: Canonical methodology; updated 1d ago (2026-02-10). Gold-tier preservation signal.",
+          "tier": 2
+        },
+        {
+          "path": "claude/mailbox/KISS_PARITY_BRIEF_2026_02_06.md",
+          "verdict": "FLAG: Parity guidance stale (4d); likely superseded by Feb 9-10 research.",
+          "tier": 1
+        },
+        {
+          "path": "claude/mailbox/SKILLS_PARITY_DISCREPANCY_2026_02_06.md",
+          "verdict": "FLAG: Parity report (4d); recommend refresh against Feb 9-10 audit.",
+          "tier": 1
+        },
+        {
+          "path": "claude/mailbox/skills_parity_map_2026_02_06.json",
+          "verdict": "FLAG: Parity snapshot (4d); data may drift; check against latest audit.",
+          "tier": 1
+        },
+        {
+          "path": "claude/mailbox/MAILBOX_CURRENT_STATE_2026_02_06.md",
+          "verdict": "FLAG: Obsolete state snapshot (5d); superseded by Feb 9-10 current state.",
+          "tier": 1
+        }
+      ]
+    },
+    {
+      "category": "extensions",
+      "items": [
+        {
+          "path": "extensions\\chthonic",
+          "verdict": "PROMOTE: archive\\src\\acp\\* + extensions\\chthonic-archive\\src\\sdk\\* — Both ACP and SDK connections present, both 0d fresh; clarify migration/parallel status",
+          "tier": 2
+        },
+        {
+          "path": "extensions\\chthonic",
+          "verdict": "FLAG: statusbar\\ — Lockfile/config 32-33d stale; extension.ts/hedonisticValidation.ts only 16-17d. Dependency drift detected",
+          "tier": 1
+        },
+        {
+          "path": "extensions\\chthonic",
+          "verdict": "FLAG: mandala\\README.md — Age 12d with UPPERCASE semantic signals; docs aging relative to 0d code refresh",
+          "tier": 1
+        },
+        {
+          "path": "extensions\\chthonic",
+          "verdict": "PROMOTE: archive\\themes\\* + extensions\\chthonic-mandala\\themes\\* — Fresh theme configs (0d) align with Flesh & Earth / ROGBIV palette spec; validate against current color mandate",
+          "tier": 2
+        }
+      ]
+    },
+    {
+      "category": "chthonic-vscode-extension",
+      "items": [
+        {
+          "path": "package.json",
+          "verdict": "PROMOTE: Fresh (age:0d). Verify what changed today; signals active intent.",
+          "tier": 2
+        },
+        {
+          "path": "src/extension.ts",
+          "verdict": "PROMOTE: Active code (age:13d). Recent development momentum; reference for pattern validation.",
+          "tier": 2
+        },
+        {
+          "path": "bun.lock",
+          "verdict": "FLAG: Stale (age:41d). Lockfile unrefreshed; dependencies may be outdated. Recommend `bun install` sync.",
+          "tier": 1
+        },
+        {
+          "path": "Documentation cluster (COPILOT_API.md, DEBUG_GUIDE.md, INSTALL.md, README.md, REVERSE_ENGINEERING.md)",
+          "verdict": "FLAG: All age:41d while extension.ts changed 13d ago. Documentation debt signal; docs may be out-of-sync with code.",
+          "tier": 1
+        }
+      ]
+    },
+    {
+      "category": "ankh_atlas",
+      "items": [
+        {
+          "path": "ankh_atlas\\pyproject.toml",
+          "verdict": "FLAG: placeholder description \"Add your description here\" unfilled after 42d; config drift signal",
+          "tier": 1
+        },
+        {
+          "path": "ankh_atlas\\ module (detectors.py, index.py, models.py, scan.py, __main__.py, main.py)",
+          "verdict": "PROMOTE: synchronized 5d refresh across all tier:1 code; suggests recent activation; worth audit for integration readiness",
+          "tier": 2
+        }
+      ]
+    },
+    {
+      "category": "data",
+      "items": [
+        {
+          "path": "data\\curriculum_core_v1.json",
+          "verdict": "FLAG: Stale v1.0.0 (37d), tied to old epistemograph db extraction (2026-01-04); orphan signal",
+          "tier": 1
+        },
+        {
+          "path": "data\\graphs\\dependency_graph.json",
+          "verdict": "FLAG: Naming conflict: three versions (VIOLET/12d, GOLD-enhanced/8d, BLUE-production/40d); ownership unclear",
+          "tier": 1
+        },
+        {
+          "path": "data\\graphs\\dependency_graph_production.json",
+          "verdict": "FLAG: Stale (40d); newer \"enhanced\" version (8d) exists; authoritative source unknown",
+          "tier": 1
+        },
+        {
+          "path": "data\\graphs\\topology_graph.json",
+          "verdict": "FLAG: Massive frozen snapshot (10110 nodes, 40d); untouched since 2026-01-01; verify intentional stasis or refresh needed",
+          "tier": 1
+        },
+        {
+          "path": "data\\state\\.dcrp_evolution.json",
+          "verdict": "FLAG: Time series frozen at Jan 1 (40d); no refresh signal; baseline or orphan?",
+          "tier": 1
+        },
+        {
+          "path": "data\\state\\.dcrp_state.json",
+          "verdict": "FLAG: Sparse state tracker (41L, 20d); verify active usage or archive candidate",
+          "tier": 1
+        }
+      ]
+    },
+    {
+      "category": "pr2_review",
+      "items": [
+        {
+          "path": "pr2_review\\scripts\\ssot_hash.py",
+          "verdict": "PROMOTE: Recent (5d), tier-1 code; active SSOT governance infrastructure utility",
+          "tier": 2
+        },
+        {
+          "path": "pr2_review\\CHERRY_PICK_PLAN.md",
+          "verdict": "FLAG: Status \"PENDING USER APPROVAL\" (44d stale); decision gate abandoned",
+          "tier": 1
+        },
+        {
+          "path": "pr2_review\\SNOW_POWDERED_WHITE_MYTHOLOGY_DRAFT.md",
+          "verdict": "FLAG: Draft status (6d); completion/archival decision pending",
+          "tier": 1
+        },
+        {
+          "path": "pr2_review\\validation_alabaster_voyde.txt",
+          "verdict": "FLAG: Orphan validation artifact (16d); paired to draft, staleness unknown",
+          "tier": 1
+        }
+      ]
+    },
+    {
+      "category": "assets",
+      "items": [
+        {
+          "path": "assets\\data.json",
+          "verdict": "PROMOTE: Fresh game engine structure (12d), ASC-NATIVE-CHAIN-RPG canonical—audit version lock",
+          "tier": 2
+        },
+        {
+          "path": "assets\\save_state.json",
+          "verdict": "PROMOTE: Fresh game state snapshot (12d), mirrors data.json schema—drift risk if diverged",
+          "tier": 2
+        }
+      ]
+    },
+    {
+      "category": "dev",
+      "items": [
+        {
+          "path": "dev\\overnight_refactor_mode.md",
+          "verdict": "FLAG: 46d stale, references \"GPT-5.2\" (agent mismatch); drift candidate",
+          "tier": 1
+        },
+        {
+          "path": "dev\\copilot",
+          "verdict": "FLAG: cli\\{changelog,LICENSE,README}.md — 0d fresh reference copies; check for duplication against upstream/vendor sources",
+          "tier": 1
+        }
+      ]
+    },
+    {
+      "category": "plugins",
+      "items": [
+        {
+          "path": "plugins\\chthonic",
+          "verdict": "PROMOTE: tools\\.claude-plugin\\plugin.json — Declares plugin identity and \"IDE self-heal + mailbox continuity\" integration layer. Tier-2 structural anchor, fresh (1d).",
+          "tier": 2
+        },
+        {
+          "path": "plugins\\chthonic",
+          "verdict": "PROMOTE: tools\\commands\\postman.md — Documents \"Response: <topic>\" mailbox handoff skeleton command. Implements critical Codex agent coordination pattern, properly tiered (tier 3).",
+          "tier": 2
+        },
+        {
+          "path": "plugins\\chthonic",
+          "verdict": "PROMOTE: tools\\commands\\selfheal.md — Documents VS Code Insiders self-heal automation (.mcp.json refresh, plugin refresh). Aligns with IDE patching governance (CLAUDE.md); operationally critical, fresh.",
+          "tier": 2
+        }
+      ]
+    }
+  ],
+  "domainCount": 14,
+  "priorDate": "2026-02-11"
+}

@@ -1,0 +1,41 @@
+{
+  "path": "extensions/chthonic-mandala/src",
+  "primaryLanguage": "typescript",
+  "purpose": "core",
+  "fileCount": 1,
+  "totalSize": 21428,
+  "averageComplexity": 17,
+  "documentationCoverage": 0.04,
+  "files": [
+    {
+      "path": "extensions/chthonic-mandala/src/extension.ts",
+      "language": "typescript",
+      "size": 21428,
+      "complexity": {
+        "cyclomatic": 17,
+        "nestingDepth": 12,
+        "functionCount": 8,
+        "avgFunctionLength": 69
+      },
+      "imports": [
+        "fs",
+        "path",
+        "vscode"
+      ],
+      "exports": [
+        "activate",
+        "deactivate"
+      ],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0.043478260869565216,
+      "patterns": [
+        "async-patterns"
+      ],
+      "antiPatterns": [
+        "any-type-usage"
+      ],
+      "securityFlags": []
+    }
+  ]
+}

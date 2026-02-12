@@ -1,0 +1,51 @@
+{
+  "path": "logs/sessions",
+  "primaryLanguage": "markdown",
+  "purpose": "general",
+  "fileCount": 2,
+  "totalSize": 86859,
+  "averageComplexity": 1,
+  "documentationCoverage": 0,
+  "files": [
+    {
+      "path": "logs/sessions/README.md",
+      "language": "markdown",
+      "size": 407,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 0,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "logs/sessions/session_2025-12-31_0746_vscode-extension-debug.md",
+      "language": "markdown",
+      "size": 86452,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 6,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 3,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": [
+        "potential-secret"
+      ]
+    }
+  ]
+}

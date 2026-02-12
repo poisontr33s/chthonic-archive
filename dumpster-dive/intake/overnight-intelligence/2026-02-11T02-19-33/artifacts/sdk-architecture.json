@@ -1,0 +1,9 @@
+{
+  "task": "sdk-architecture",
+  "timestamp": "2026-02-11T02-19-33",
+  "result": {
+    "events": 10,
+    "model": "claude-haiku-4.5"
+  },
+  "summary": "SDK types analyzed (10 events, ? tokens)"
+}

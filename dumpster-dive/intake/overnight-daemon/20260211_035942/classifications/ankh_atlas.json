@@ -1,0 +1,89 @@
+{
+  "path": "ankh_atlas",
+  "primaryLanguage": "python",
+  "purpose": "general",
+  "fileCount": 4,
+  "totalSize": 5194,
+  "averageComplexity": 1,
+  "documentationCoverage": 0.15,
+  "files": [
+    {
+      "path": "ankh_atlas/main.py",
+      "language": "python",
+      "size": 1699,
+      "complexity": {
+        "cyclomatic": 2,
+        "nestingDepth": 2,
+        "functionCount": 1,
+        "avgFunctionLength": 21
+      },
+      "imports": [],
+      "exports": [
+        "main"
+      ],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0.6190476190476191,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "ankh_atlas/pyproject.toml",
+      "language": "toml",
+      "size": 135,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 0,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "ankh_atlas/README.md",
+      "language": "markdown",
+      "size": 3230,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 3,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "ankh_atlas/uv.lock",
+      "language": "unknown",
+      "size": 130,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 0,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    }
+  ]
+}

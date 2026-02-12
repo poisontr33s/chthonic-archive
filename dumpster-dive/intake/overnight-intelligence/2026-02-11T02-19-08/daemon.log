@@ -1,0 +1,13 @@
+[2026-02-11T02:19:09.165Z] ☥ Overnight Intelligence Daemon starting
+[2026-02-11T02:19:09.165Z]   Model: claude-haiku-4.5
+[2026-02-11T02:19:09.166Z]   Output: C:\Users\erdno\chthonic-archive\dumpster-dive\intake\overnight-intelligence\2026-02-11T02-19-08
+[2026-02-11T02:19:09.166Z]   Dry run: false
+[2026-02-11T02:19:09.167Z]   Max duration: 7h
+[2026-02-11T02:19:09.167Z]   Tasks: sdk-architecture
+[2026-02-11T02:19:09.649Z]   Auth: poisontr33s (token: gho_****)
+[2026-02-11T02:19:09.650Z] 
+━━━ Task 1/1: SDK Type Surface Analysis ━━━
+[2026-02-11T02:19:21.024Z]   ✅ sdk-architecture complete (11.4s): SDK types analyzed (10 events, ? tokens)
+[2026-02-11T02:19:21.027Z] 
+☥ Daemon complete. 1/1 tasks. 0.2 min.
+[2026-02-11T02:19:21.027Z]   Report: C:\Users\erdno\chthonic-archive\dumpster-dive\intake\overnight-intelligence\2026-02-11T02-19-08\report.md

@@ -1,0 +1,48 @@
+{
+  "path": "meta-ide/copilot-cli-0.0.406/sdk",
+  "primaryLanguage": "typescript",
+  "purpose": "general",
+  "fileCount": 1,
+  "totalSize": 545739,
+  "averageComplexity": 423,
+  "documentationCoverage": 0.05,
+  "files": [
+    {
+      "path": "meta-ide/copilot-cli-0.0.406/sdk/index.d.ts",
+      "language": "typescript",
+      "size": 545739,
+      "complexity": {
+        "cyclomatic": 423,
+        "nestingDepth": 12,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [
+        "openai/resources/chat/completions",
+        "openai/resources",
+        "@modelcontextprotocol/sdk/client/index.js",
+        "@modelcontextprotocol/sdk/types.js",
+        "@modelcontextprotocol/sdk/server/mcp.js",
+        "@modelcontextprotocol/sdk/client/auth.js",
+        "openai/index.mjs",
+        "@modelcontextprotocol/sdk/client/sse.js",
+        "@modelcontextprotocol/sdk/client/stdio.js",
+        "@modelcontextprotocol/sdk/client/streamableHttp.js",
+        "@modelcontextprotocol/sdk/shared/transport.js",
+        "stream",
+        "zod"
+      ],
+      "exports": [],
+      "todoCount": 4,
+      "docstringCount": 779,
+      "commentDensity": 0.050339256865912764,
+      "patterns": [],
+      "antiPatterns": [
+        "any-type-usage"
+      ],
+      "securityFlags": [
+        "potential-secret"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "started": "2026-02-11T02:19:02.992Z",
+  "tasks": [
+    {
+      "id": "file-census",
+      "status": "done",
+      "durationMs": 312
+    }
+  ],
+  "totalQueries": 1,
+  "lastAuthRefresh": 0
+}
