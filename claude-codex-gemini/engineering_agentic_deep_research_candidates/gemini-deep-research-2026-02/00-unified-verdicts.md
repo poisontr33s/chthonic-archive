@@ -12,15 +12,17 @@ status: structured
 
 ---
 
-## Research Outputs (5 Documents)
+## Research Outputs (7 Documents)
 
-| # | File | Topic | Lines in Source | Priority |
-|---|------|-------|----------------|----------|
-| 1 | `01-local-llm-inference-stack.md` | ExLlamaV2 vs TensorRT-LLM vs llama.cpp vs vLLM | 1–872 | HIGH |
-| 2 | `02-rustified-polyglot-daemon.md` | Elixir+Rust daemon, mailbox pattern, mistral.rs, Qdrant, MCP bundles | 875–1084 | HIGH |
-| 3 | `03-api-gateways-and-vector-dbs.md` | TensorZero/Bifrost (Rust/Go gateways), GPT-OSS 20B deep dive, Qdrant benchmarks | 1088–1315 | MEDIUM |
-| 4 | `04-ruby-4-and-oxidized-toolchains.md` | Ruby 4.0.1, ZJIT, rv (Rust Ruby manager), brush shell, uutils | 1319–1538 | LOW |
-| 5 | `00-unified-verdicts.md` | Consolidated verdicts & trajectory alignment (THIS FILE UPDATED) | — | — |
+| # | File | Topic | Source | Priority |
+|---|------|-------|--------|----------|
+| 1 | `01-local-llm-inference-stack.md` | ExLlamaV2 vs TensorRT-LLM vs llama.cpp vs vLLM | Gemini session | HIGH |
+| 2 | `02-rustified-polyglot-daemon.md` | Elixir+Rust daemon, mailbox pattern, mistral.rs, Qdrant, MCP bundles | Gemini session | HIGH |
+| 3 | `03-api-gateways-and-vector-dbs.md` | TensorZero/Bifrost (Rust/Go gateways), GPT-OSS 20B deep dive, Qdrant benchmarks | Gemini session | MEDIUM |
+| 4 | `04-ruby-4-and-oxidized-toolchains.md` | Ruby 4.0.1, ZJIT, rv (Rust Ruby manager), brush shell, uutils | Gemini session | LOW |
+| 5 | `05-batch-classification-infrastructure.md` | Full Win11 RTX 4090 batch classification architecture (321 lines) | Gemini research-dump002 | HIGH |
+| 6 | `06-field-tested-corrections-and-frontier.md` | **Research vs reality corrections**, LocalAI/Dola.ai analysis, upgrade path | Claude live testing | **CRITICAL** |
+| 7 | `00-unified-verdicts.md` | Consolidated verdicts & trajectory alignment (THIS FILE) | — | — |
 
 ---
 
