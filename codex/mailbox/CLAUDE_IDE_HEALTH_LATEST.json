@@ -1,50 +1,50 @@
 {
-  "repo_root": "C:\\Users\\erdno\\chthonic-archive",
+  "schema_version": 1,
+  "ok": true,
   "checks": [
     {
+      "ms": 5,
       "label": "parse .mcp.json",
       "ok": true,
-      "ms": 5,
-      "error": null,
       "detail": {
         "exists": true,
         "hasHuggingface": true,
         "hasGithub": true
-      }
+      },
+      "error": null
     },
     {
+      "ms": 2118,
       "label": "claude mcp list",
       "ok": true,
-      "ms": 2051,
-      "error": null,
       "detail": {
-        "head": "Checking MCP server health...\n\nclaude.ai Hugging Face: https://huggingface.co/mcp?login&gradio=none - Ô£ô Connected\ngithub: https://api.githubcopilot.com/mcp/ (HTTP) - Ô£ô Connected\nhuggingface: https://huggingface.co/mcp (HTTP) - Ô£ô Connected"
-      }
+        "head": "Checking MCP server health...\n\nclaude.ai Hugging Face: https://huggingface.co/mcp?login&gradio=none - Ô£ô Connected\nhuggingface: https://huggingface.co/mcp (HTTP) - Ô£ô Connected\ngithub: https://api.githubcopilot.com/mcp/ (HTTP) - Ô£ô Connected"
+      },
+      "error": null
     },
     {
+      "ms": 309,
       "label": "claude plugin list --json",
       "ok": true,
-      "ms": 311,
-      "error": null,
       "detail": {
-        "hasGithubPlugin": true,
         "hasChthonicTools": true,
+        "hasGithubPlugin": true,
         "count": 10
-      }
+      },
+      "error": null
     }
   ],
-  "ok": true,
+  "generated_at_utc": "2026-02-14T20:48:38.646Z",
+  "repo_root": "C:\\Users\\erdno\\chthonic-archive",
   "invariants": {
     "env": {
-      "HUGGINGFACE_HUB_TOKEN_present": true,
+      "GITHUB_PERSONAL_ACCESS_TOKEN_present": true,
       "HF_TOKEN_present": true,
-      "GITHUB_PERSONAL_ACCESS_TOKEN_present": true
+      "HUGGINGFACE_HUB_TOKEN_present": true
     },
     "mcp_json": {
-      "path": ".mcp.json",
-      "exists": true
+      "exists": true,
+      "path": ".mcp.json"
     }
-  },
-  "schema_version": 1,
-  "generated_at_utc": "2026-02-14T20:46:06.532Z"
+  }
 }
