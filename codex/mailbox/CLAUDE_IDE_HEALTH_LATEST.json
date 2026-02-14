@@ -1,25 +1,11 @@
 {
-  "generated_at_utc": "2026-02-14T20:43:48.148Z",
-  "schema_version": 1,
-  "invariants": {
-    "mcp_json": {
-      "exists": true,
-      "path": ".mcp.json"
-    },
-    "env": {
-      "HUGGINGFACE_HUB_TOKEN_present": true,
-      "GITHUB_PERSONAL_ACCESS_TOKEN_present": true,
-      "HF_TOKEN_present": true
-    }
-  },
-  "ok": true,
   "repo_root": "C:\\Users\\erdno\\chthonic-archive",
   "checks": [
     {
       "label": "parse .mcp.json",
-      "error": null,
-      "ms": 5,
       "ok": true,
+      "ms": 5,
+      "error": null,
       "detail": {
         "exists": true,
         "hasHuggingface": true,
@@ -28,23 +14,37 @@
     },
     {
       "label": "claude mcp list",
-      "error": null,
-      "ms": 1796,
       "ok": true,
+      "ms": 2051,
+      "error": null,
       "detail": {
-        "head": "Checking MCP server health...\n\nclaude.ai Hugging Face: https://huggingface.co/mcp?login&gradio=none - Ô£ô Connected\nhuggingface: https://huggingface.co/mcp (HTTP) - Ô£ô Connected\ngithub: https://api.githubcopilot.com/mcp/ (HTTP) - Ô£ô Connected"
+        "head": "Checking MCP server health...\n\nclaude.ai Hugging Face: https://huggingface.co/mcp?login&gradio=none - Ô£ô Connected\ngithub: https://api.githubcopilot.com/mcp/ (HTTP) - Ô£ô Connected\nhuggingface: https://huggingface.co/mcp (HTTP) - Ô£ô Connected"
       }
     },
     {
       "label": "claude plugin list --json",
-      "error": null,
-      "ms": 397,
       "ok": true,
+      "ms": 311,
+      "error": null,
       "detail": {
-        "count": 10,
+        "hasGithubPlugin": true,
         "hasChthonicTools": true,
-        "hasGithubPlugin": true
+        "count": 10
       }
     }
-  ]
+  ],
+  "ok": true,
+  "invariants": {
+    "env": {
+      "HUGGINGFACE_HUB_TOKEN_present": true,
+      "HF_TOKEN_present": true,
+      "GITHUB_PERSONAL_ACCESS_TOKEN_present": true
+    },
+    "mcp_json": {
+      "path": ".mcp.json",
+      "exists": true
+    }
+  },
+  "schema_version": 1,
+  "generated_at_utc": "2026-02-14T20:46:06.532Z"
 }

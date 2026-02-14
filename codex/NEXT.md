@@ -1,6 +1,6 @@
 ---
 type: waypoint
-category: codex
+category: codex, claude
 updated: 2026-02-10
 ---
 
