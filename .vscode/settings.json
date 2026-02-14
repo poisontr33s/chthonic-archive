@@ -63,6 +63,8 @@
     "terminal.integrated.gpuAcceleration": "on",
     // Kill the yellow "wants to contribute" env warning banner
     "terminal.integrated.environmentChangesIndicator": "off",
+    // Auto-apply extension env changes without the "relaunch" nag
+    "terminal.integrated.environmentChangesRelaunch": false,
     // Polyglot mode: profile loads chthonic env automatically
     "terminal.integrated.profiles.windows": {
         "Pwsh 7.5 (Chthonic)": {
