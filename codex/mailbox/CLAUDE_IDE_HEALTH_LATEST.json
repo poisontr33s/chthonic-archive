@@ -1,50 +1,50 @@
 {
+  "repo_root": "C:\\Users\\erdno\\chthonic-archive",
   "invariants": {
     "mcp_json": {
       "path": ".mcp.json",
       "exists": true
     },
     "env": {
-      "GITHUB_PERSONAL_ACCESS_TOKEN_present": true,
       "HF_TOKEN_present": true,
-      "HUGGINGFACE_HUB_TOKEN_present": true
+      "HUGGINGFACE_HUB_TOKEN_present": true,
+      "GITHUB_PERSONAL_ACCESS_TOKEN_present": true
     }
   },
   "schema_version": 1,
-  "repo_root": "C:\\Users\\erdno\\chthonic-archive",
-  "generated_at_utc": "2026-02-14T20:50:38.438Z",
   "ok": true,
+  "generated_at_utc": "2026-02-14T20:51:28.167Z",
   "checks": [
     {
       "ok": true,
-      "ms": 5,
-      "error": null,
       "label": "parse .mcp.json",
       "detail": {
-        "hasHuggingface": true,
         "exists": true,
+        "hasHuggingface": true,
         "hasGithub": true
-      }
+      },
+      "ms": 5,
+      "error": null
     },
     {
       "ok": true,
-      "ms": 1653,
-      "error": null,
       "label": "claude mcp list",
       "detail": {
-        "head": "Checking MCP server health...\n\nclaude.ai Hugging Face: https://huggingface.co/mcp?login&gradio=none - Ô£ô Connected\ngithub: https://api.githubcopilot.com/mcp/ (HTTP) - Ô£ô Connected\nhuggingface: https://huggingface.co/mcp (HTTP) - Ô£ô Connected"
-      }
+        "head": "Checking MCP server health...\n\nclaude.ai Hugging Face: https://huggingface.co/mcp?login&gradio=none - Ô£ô Connected\nhuggingface: https://huggingface.co/mcp (HTTP) - Ô£ô Connected\ngithub: https://api.githubcopilot.com/mcp/ (HTTP) - Ô£ô Connected"
+      },
+      "ms": 1577,
+      "error": null
     },
     {
       "ok": true,
-      "ms": 314,
-      "error": null,
       "label": "claude plugin list --json",
       "detail": {
+        "hasGithubPlugin": true,
         "hasChthonicTools": true,
-        "count": 10,
-        "hasGithubPlugin": true
-      }
+        "count": 10
+      },
+      "ms": 310,
+      "error": null
     }
   ]
 }
