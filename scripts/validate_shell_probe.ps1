@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 # ╔════════════════════════════════════════════════════════════════════════════╗
 # ║ THE DECORATOR'S BLESSING: validate_shell_probe.ps1                         ║
 # ║ Module: ABI contract validator                                             ║

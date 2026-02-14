@@ -1,50 +1,50 @@
 {
-  "repo_root": "C:\\Users\\erdno\\chthonic-archive",
   "invariants": {
     "mcp_json": {
-      "path": ".mcp.json",
-      "exists": true
+      "exists": true,
+      "path": ".mcp.json"
     },
     "env": {
-      "HF_TOKEN_present": true,
       "HUGGINGFACE_HUB_TOKEN_present": true,
-      "GITHUB_PERSONAL_ACCESS_TOKEN_present": true
+      "GITHUB_PERSONAL_ACCESS_TOKEN_present": true,
+      "HF_TOKEN_present": true
     }
   },
-  "schema_version": 1,
-  "ok": true,
-  "generated_at_utc": "2026-02-14T20:51:28.167Z",
   "checks": [
     {
-      "ok": true,
-      "label": "parse .mcp.json",
       "detail": {
-        "exists": true,
         "hasHuggingface": true,
-        "hasGithub": true
+        "hasGithub": true,
+        "exists": true
       },
-      "ms": 5,
-      "error": null
+      "error": null,
+      "ms": 4,
+      "ok": true,
+      "label": "parse .mcp.json"
     },
     {
-      "ok": true,
-      "label": "claude mcp list",
       "detail": {
-        "head": "Checking MCP server health...\n\nclaude.ai Hugging Face: https://huggingface.co/mcp?login&gradio=none - Ô£ô Connected\nhuggingface: https://huggingface.co/mcp (HTTP) - Ô£ô Connected\ngithub: https://api.githubcopilot.com/mcp/ (HTTP) - Ô£ô Connected"
+        "head": "Checking MCP server health...\n\nclaude.ai Hugging Face: https://huggingface.co/mcp?login&gradio=none - ✓ Connected\ngithub: https://api.githubcopilot.com/mcp/ (HTTP) - ✓ Connected\nhuggingface: https://huggingface.co/mcp (HTTP) - ✓ Connected"
       },
-      "ms": 1577,
-      "error": null
+      "error": null,
+      "ms": 1298,
+      "ok": true,
+      "label": "claude mcp list"
     },
     {
-      "ok": true,
-      "label": "claude plugin list --json",
       "detail": {
-        "hasGithubPlugin": true,
         "hasChthonicTools": true,
-        "count": 10
+        "count": 10,
+        "hasGithubPlugin": true
       },
-      "ms": 310,
-      "error": null
+      "error": null,
+      "ms": 320,
+      "ok": true,
+      "label": "claude plugin list --json"
     }
-  ]
+  ],
+  "repo_root": "C:\\Users\\erdno\\chthonic-archive",
+  "generated_at_utc": "2026-02-14T21:13:31.630Z",
+  "ok": true,
+  "schema_version": 1
 }
