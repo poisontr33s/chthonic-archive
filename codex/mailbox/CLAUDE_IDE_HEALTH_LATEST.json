@@ -1,50 +1,50 @@
 {
+  "generated_at_utc": "2026-02-14T20:43:48.148Z",
   "schema_version": 1,
   "invariants": {
     "mcp_json": {
-      "path": ".mcp.json",
-      "exists": true
+      "exists": true,
+      "path": ".mcp.json"
     },
     "env": {
+      "HUGGINGFACE_HUB_TOKEN_present": true,
       "GITHUB_PERSONAL_ACCESS_TOKEN_present": true,
-      "HF_TOKEN_present": true,
-      "HUGGINGFACE_HUB_TOKEN_present": true
+      "HF_TOKEN_present": true
     }
   },
   "ok": true,
-  "generated_at_utc": "2026-02-14T19:08:56.209Z",
+  "repo_root": "C:\\Users\\erdno\\chthonic-archive",
   "checks": [
     {
       "label": "parse .mcp.json",
+      "error": null,
+      "ms": 5,
+      "ok": true,
       "detail": {
         "exists": true,
         "hasHuggingface": true,
         "hasGithub": true
-      },
-      "ms": 5,
-      "ok": true,
-      "error": null
+      }
     },
     {
       "label": "claude mcp list",
-      "detail": {
-        "head": "Checking MCP server health...\n\nplugin:github:github: https://api.githubcopilot.com/mcp/ (HTTP) - Ô£ô Connected\nhuggingface: https://huggingface.co/mcp (HTTP) - Ô£ô Connected\ngithub: https://api.githubcopilot.com/mcp/ (HTTP) - Ô£ô Connected"
-      },
-      "ms": 1260,
+      "error": null,
+      "ms": 1796,
       "ok": true,
-      "error": null
+      "detail": {
+        "head": "Checking MCP server health...\n\nclaude.ai Hugging Face: https://huggingface.co/mcp?login&gradio=none - Ô£ô Connected\nhuggingface: https://huggingface.co/mcp (HTTP) - Ô£ô Connected\ngithub: https://api.githubcopilot.com/mcp/ (HTTP) - Ô£ô Connected"
+      }
     },
     {
       "label": "claude plugin list --json",
-      "detail": {
-        "hasGithubPlugin": true,
-        "hasChthonicTools": true,
-        "count": 10
-      },
-      "ms": 328,
+      "error": null,
+      "ms": 397,
       "ok": true,
-      "error": null
+      "detail": {
+        "count": 10,
+        "hasChthonicTools": true,
+        "hasGithubPlugin": true
+      }
     }
-  ],
-  "repo_root": "C:\\Users\\erdno\\chthonic-archive"
+  ]
 }
