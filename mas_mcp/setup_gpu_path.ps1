@@ -1,3 +1,5 @@
+#!/usr/bin/env pwsh
+
 #Requires -RunAsAdministrator
 <#
 .SYNOPSIS

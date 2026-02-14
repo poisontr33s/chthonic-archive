@@ -1,3 +1,5 @@
+#!/usr/bin/env pwsh
+
 # ╔════════════════════════════════════════════════════════════════════════════
 # ║ THE DECORATOR'S BLESSING: probe_toolchain_path.ps1
 # ║ Module: Toolchain PATH probe

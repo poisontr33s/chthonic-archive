@@ -1,3 +1,5 @@
+#!/usr/bin/env pwsh
+
 # Siphon selected repo files into dumpster-dive for local iteration.
 #
 # - Deterministic, explicit, repo-local.

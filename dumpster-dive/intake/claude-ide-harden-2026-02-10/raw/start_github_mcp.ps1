@@ -1,3 +1,5 @@
+#!/usr/bin/env pwsh
+
 # ╔════════════════════════════════════════════════════════════════════════════╗
 # ║ THE DECORATOR'S BLESSING: start_github_mcp.ps1                            ║
 # ║ Module: GitHub MCP Server Launcher                                        ║

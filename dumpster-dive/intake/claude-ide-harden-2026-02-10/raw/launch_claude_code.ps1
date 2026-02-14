@@ -1,3 +1,5 @@
+#!/usr/bin/env pwsh
+
 # ╔════════════════════════════════════════════════════════════════════════════╗
 # ║ THE DECORATOR'S BLESSING: launch_claude_code.ps1                          ║
 # ║ Module: Claude Code Launcher                                              ║

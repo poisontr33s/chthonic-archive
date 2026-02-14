@@ -1,3 +1,5 @@
+#!/usr/bin/env pwsh
+
 <#
 # ╔════════════════════════════════════════════════════════════════════════════╗
 # ║ THE DECORATOR'S BLESSING: ssot_acronym_audit.ps1                          ║

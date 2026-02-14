@@ -55,6 +55,14 @@
     },
 
     // === TERMINAL ===
+    // Force UTF-8 in VS Code terminal (matches system-wide registry setting)
+    "terminal.integrated.defaultEncoding": "utf8",
+    // Unicode 11 width tables — correct emoji/CJK column widths
+    "terminal.integrated.unicodeVersion": "11",
+    // GPU rendering for smooth scrolling and glyph rendering
+    "terminal.integrated.gpuAcceleration": "on",
+    // Kill the yellow "wants to contribute" env warning banner
+    "terminal.integrated.environmentChangesIndicator": "off",
     // Polyglot mode: profile loads chthonic env automatically
     "terminal.integrated.profiles.windows": {
         "Pwsh 7.5 (Chthonic)": {

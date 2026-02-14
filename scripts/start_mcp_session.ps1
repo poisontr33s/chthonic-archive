@@ -1,3 +1,5 @@
+#!/usr/bin/env pwsh
+
 # ╔════════════════════════════════════════════════════════════════════════════╗
 # ║ THE DECORATOR'S BLESSING: start_mcp_session.ps1                           ║
 # ║ Module: MCP Session Bootstrap                                             ║

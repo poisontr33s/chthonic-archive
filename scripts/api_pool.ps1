@@ -1,3 +1,5 @@
+#!/usr/bin/env pwsh
+
 # API Pool helper (local only).
 #
 # Purpose:

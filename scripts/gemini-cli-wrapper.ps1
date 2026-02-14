@@ -1,3 +1,5 @@
+#!/usr/bin/env pwsh
+
 # ╔════════════════════════════════════════════════════════════════════════════
 # ║ THE DECORATOR'S BLESSING: gemini-cli-wrapper.ps1
 # ║ Module: Gemini CLI wrapper

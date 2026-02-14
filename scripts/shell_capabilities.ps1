@@ -1,3 +1,5 @@
+#!/usr/bin/env pwsh
+
 # ╔════════════════════════════════════════════════════════════════════════════╗
 # ║ THE DECORATOR'S BLESSING: shell_capabilities.ps1                          ║
 # ║ Module: Shell Environment Probe                                           ║

@@ -1,3 +1,5 @@
+#!/usr/bin/env pwsh
+
 <# 
 # ╔════════════════════════════════════════════════════════════════════════════╗
 # ║ THE DECORATOR'S BLESSING: patch-claude-insiders.ps1                       ║

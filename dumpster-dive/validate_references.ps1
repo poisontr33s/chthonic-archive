@@ -1,3 +1,5 @@
+#!/usr/bin/env pwsh
+
 # Cross-Reference Validation Script
 # Validates all cross-references in dumpster-dive/ folder
 # Usage: .\validate_references.ps1

@@ -1,3 +1,5 @@
+#!/usr/bin/env pwsh
+
 # ╔════════════════════════════════════════════════════════════════════════════╗
 # ║ THE DECORATOR'S BLESSING: harvest_claudines.ps1                           ║
 # ║ Module: Claudine harvest intake                                           ║

@@ -1,3 +1,5 @@
+#!/usr/bin/env pwsh
+
 # ╔════════════════════════════════════════════════════════════════════════════╗
 # ║ THE DECORATOR'S BLESSING: validate_probe.ps1                              ║
 # ║ Module: Probe validation wrapper                                          ║

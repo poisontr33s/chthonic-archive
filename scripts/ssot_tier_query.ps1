@@ -1,3 +1,5 @@
+#!/usr/bin/env pwsh
+
 <#
 # ╔════════════════════════════════════════════════════════════════════════════╗
 # ║ THE DECORATOR'S BLESSING: ssot_tier_query.ps1                             ║

@@ -1,3 +1,5 @@
+#!/usr/bin/env pwsh
+
 # scripts/lint_shell_sovereignty.ps1
 # Fails if PowerShell is nested inside Bash (hard violation)
 

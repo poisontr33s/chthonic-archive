@@ -1,3 +1,5 @@
+#!/usr/bin/env pwsh
+
 [CmdletBinding()]
 param(
     # Glob patterns (repo-relative) that are allowed to be staged/committed.

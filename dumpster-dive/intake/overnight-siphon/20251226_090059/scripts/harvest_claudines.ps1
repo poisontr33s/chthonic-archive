@@ -1,3 +1,5 @@
+#!/usr/bin/env pwsh
+
 # Harvest “outside” Claudine scripts into this repo for inspection/upcycling.
 #
 # This is explicit, opt-in tooling (no background auto-activation).
