@@ -33,16 +33,55 @@ $ErrorActionPreference = 'Stop'
 $STATE_DIR = Join-Path $env:USERPROFILE ".chthonic"
 $CONFIG_FILE = Join-Path $STATE_DIR "config.json"
 
+# Resolve the best available RubyInstaller+DevKit root (prefer newest lane).
+function Get-RubyDevKitRoot {
+  $rubyRoots = @(
+    "C:\Ruby40-x64",
+    "D:\Ruby40-x64",
+    "C:\Ruby35-x64",
+    "D:\Ruby35-x64",
+    "C:\Ruby34-x64",
+    "D:\Ruby34-x64",
+    "C:\Ruby33-x64",
+    "D:\Ruby33-x64",
+    "C:\Ruby32-x64",
+    "D:\Ruby32-x64",
+    "C:\Ruby31-x64",
+    "D:\Ruby31-x64"
+  )
+
+  foreach ($root in $rubyRoots) {
+    if (Test-Path (Join-Path $root "bin\ruby.exe")) {
+      return $root
+    }
+  }
+
+  return $null
+}
+
+function Get-RubyDevKitPaths {
+  $root = Get-RubyDevKitRoot
+  if (-not $root) {
+    return @()
+  }
+
+  return @(
+    (Join-Path $root "bin"),
+    (Join-Path $root "msys64\ucrt64\bin"),
+    (Join-Path $root "msys64\usr\bin")
+  )
+}
+
+$rubyDevkitPaths = Get-RubyDevKitPaths
+
 # Default fallback paths (Sync with chthonic.ps1)
 $defaultPolyglotPaths = @(
     "$env:USERPROFILE\.bun\bin",
     "$env:USERPROFILE\.cargo\bin",
     "C:\Go\bin",
     "$env:USERPROFILE\go\bin",
-    "$env:USERPROFILE\.local\bin",
-    "C:\Ruby34-x64\bin",
-    "C:\Ruby34-x64\msys64\ucrt64\bin",
-    "C:\Ruby34-x64\msys64\usr\bin",
+    "$env:USERPROFILE\.local\bin"
+) + $rubyDevkitPaths + @(
     "C:\Program Files\Git\cmd"
 )
 

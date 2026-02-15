@@ -13,7 +13,8 @@ use solana_sdk::instruction::{AccountMeta, Instruction};
 use solana_sdk::pubkey::Pubkey;
 use solana_sdk::signature::{read_keypair_file, Keypair, Signature};
 use solana_sdk::signer::Signer;
-use solana_sdk::{commitment_config::CommitmentConfig, system_program};
+use solana_sdk::commitment_config::CommitmentConfig;
+use solana_system_interface::program as system_program;
 
 #[derive(Parser, Debug)]
 #[command(name = "entropy-ledger-host")]

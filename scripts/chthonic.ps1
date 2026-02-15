@@ -36,6 +36,47 @@ $SERVICES_FILE = Join-Path $STATE_DIR "services.json"
 # POLYGLOT PATHS - ALL GLOBAL NATIVE INSTALLATIONS (Win11)
 # ═══════════════════════════════════════════════════════════════════════════════
 
+# Resolve the best available RubyInstaller+DevKit root (prefer newest lane).
+function Get-RubyDevKitRoot {
+    $rubyRoots = @(
+        "C:\Ruby40-x64",
+        "D:\Ruby40-x64",
+        "C:\Ruby35-x64",
+        "D:\Ruby35-x64",
+        "C:\Ruby34-x64",
+        "D:\Ruby34-x64",
+        "C:\Ruby33-x64",
+        "D:\Ruby33-x64",
+        "C:\Ruby32-x64",
+        "D:\Ruby32-x64",
+        "C:\Ruby31-x64",
+        "D:\Ruby31-x64"
+    )
+
+    foreach ($root in $rubyRoots) {
+        if (Test-Path (Join-Path $root "bin\ruby.exe")) {
+            return $root
+        }
+    }
+
+    return $null
+}
+
+function Get-RubyDevKitPaths {
+    $root = Get-RubyDevKitRoot
+    if (-not $root) {
+        return @()
+    }
+
+    return @(
+        (Join-Path $root "bin"),
+        (Join-Path $root "msys64\ucrt64\bin"),
+        (Join-Path $root "msys64\usr\bin")
+    )
+}
+
+$rubyDevkitPaths = Get-RubyDevKitPaths
+
 # Default polyglot paths (fallback when config.json is missing)
 $defaultPolyglotPaths = @(
     # Native user binaries (Claude native installer, uv tools)
@@ -49,13 +90,8 @@ $defaultPolyglotPaths = @(
     
     # Go 1.24.3
     "C:\Go\bin",
-    "$env:USERPROFILE\go\bin",
-    
-    # Ruby 3.4.7 + DevKit (GCC 15.2.0, make, pkg-config)
-    "C:\Ruby34-x64\bin",
-    "C:\Ruby34-x64\msys64\ucrt64\bin",
-    "C:\Ruby34-x64\msys64\usr\bin",
-    
+    "$env:USERPROFILE\go\bin"
+) + $rubyDevkitPaths + @(
     # Git 2.52.0
     "C:\Program Files\Git\cmd"
 )
@@ -378,7 +414,13 @@ function Invoke-PolyglotActivation {
     $env:GOPATH = "$env:USERPROFILE\go"
     
     # Ruby DevKit
-    $env:RIDK_PREFIX = "C:\Ruby34-x64\msys64"
+    $rubyRoot = Get-RubyDevKitRoot
+    if ($rubyRoot) {
+        $ridkPrefix = Join-Path $rubyRoot "msys64"
+        if (Test-Path $ridkPrefix) {
+            $env:RIDK_PREFIX = $ridkPrefix
+        }
+    }
     
     # Mark as activated
     $env:CLAUDINE_ACTIVATED = "1"

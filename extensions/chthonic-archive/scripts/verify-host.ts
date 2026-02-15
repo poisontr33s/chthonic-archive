@@ -85,10 +85,14 @@ function rubyInstallRoot(): string | null {
 function findDevKitPerl(): string | null {
     const roots = [
         rubyInstallRoot(),
+        'C:\\Ruby40-x64',
+        'C:\\Ruby35-x64',
         'C:\\Ruby34-x64',
         'C:\\Ruby33-x64',
         'C:\\Ruby32-x64',
         'C:\\Ruby31-x64',
+        'D:\\Ruby40-x64',
+        'D:\\Ruby35-x64',
         'D:\\Ruby34-x64',
         'D:\\Ruby33-x64',
         'D:\\Ruby32-x64',

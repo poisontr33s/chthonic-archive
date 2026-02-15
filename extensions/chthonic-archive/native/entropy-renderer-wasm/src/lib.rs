@@ -92,11 +92,11 @@ fn draw_graph(state: &mut RendererState, payload: &GraphPayload) -> Result<(), J
     state.canvas.set_width(width as u32);
     state.canvas.set_height(height as u32);
 
-    state.context_2d.set_fill_style(&JsValue::from_str(if state.webgpu_ready {
+    state.context_2d.set_fill_style_str(if state.webgpu_ready {
         "#130f0c"
     } else {
         "#181311"
-    }));
+    });
     state.context_2d.fill_rect(0.0, 0.0, width, height);
 
     let center_x = width / 2.0;
@@ -109,7 +109,9 @@ fn draw_graph(state: &mut RendererState, payload: &GraphPayload) -> Result<(), J
     }
 
     state.context_2d.begin_path();
-    state.context_2d.set_stroke_style(&JsValue::from_str("rgba(140,120,92,0.28)"));
+    state
+        .context_2d
+        .set_stroke_style_str("rgba(140,120,92,0.28)");
     state.context_2d.set_line_width(if state.webgpu_ready { 1.2 } else { 1.0 });
     for edge in &payload.edges {
         let Some(source) = node_index.get(edge.source.as_str()) else {
@@ -134,7 +136,7 @@ fn draw_graph(state: &mut RendererState, payload: &GraphPayload) -> Result<(), J
         let (r, g, b) = entropy_rgb(node.entropy);
         state
             .context_2d
-            .set_fill_style(&JsValue::from_str(&format!("rgba({r},{g},{b},0.95)")));
+            .set_fill_style_str(&format!("rgba({r},{g},{b},0.95)"));
         state.context_2d.begin_path();
         state.context_2d.arc(
             center_x + (f64::from(node.x) * scale),

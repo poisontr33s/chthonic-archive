@@ -46,8 +46,10 @@ function ensureWindowsPerl(env: Record<string, string>): void {
     env.PATH = prependPath(perlDir, env.PATH ?? '');
     env.PERL = devkitPerl;
 
-    const probe = runCapture('perl', ['--version'], env);
-    if (!probe.ok || isCygwinPerl(probe.stdout, probe.stderr)) {
+    // Probe the exact DevKit perl path we resolved. MSYS2 perl can report
+    // cygwin lineage in the banner but is still the correct tool for vendored OpenSSL builds.
+    const probe = runCapture(devkitPerl, ['--version'], env);
+    if (!probe.ok) {
         throw new Error(`failed to activate Ruby DevKit perl at ${devkitPerl}`);
     }
 
