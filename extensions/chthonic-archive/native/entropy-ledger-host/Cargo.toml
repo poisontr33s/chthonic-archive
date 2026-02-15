@@ -9,6 +9,7 @@ description = "Native Rust ledger sidecar for Chthonic entropy settlements"
 anyhow.workspace = true
 anchor-client.workspace = true
 anchor-lang.workspace = true
+borsh.workspace = true
 clap.workspace = true
 hex.workspace = true
 openssl = { version = "0.10", features = ["vendored"] }

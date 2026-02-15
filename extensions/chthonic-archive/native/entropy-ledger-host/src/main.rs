@@ -5,7 +5,7 @@ use std::str::FromStr;
 
 use anchor_client::{Client, Cluster, Program};
 use anchor_lang::AnchorSerialize;
-use anyhow::{Context, Result};
+use anyhow::{anyhow, Context, Result};
 use clap::Parser;
 use serde::{Deserialize, Serialize};
 use sha2::{Digest, Sha256};
@@ -93,7 +93,8 @@ struct RecordDecayArgs {
 
 fn main() -> Result<()> {
     let opts = Opts::parse();
-    let wallet = read_keypair_file(&opts.wallet).context("wallet not found or unreadable")?;
+    let wallet = read_keypair_file(&opts.wallet)
+        .map_err(|error| anyhow!("wallet not found or unreadable: {error}"))?;
     let authority = wallet.pubkey();
     let payer = Rc::new(wallet);
 
