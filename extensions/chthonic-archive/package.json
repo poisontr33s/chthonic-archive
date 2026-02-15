@@ -47,6 +47,11 @@
       {
         "command": "chthonic.verifySSOT",
         "title": "Chthonic: Verify SSOT Hash"
+      },
+      {
+        "command": "chthonic.entropyRefresh",
+        "title": "Chthonic: Refresh Entropy Overlay",
+        "icon": "$(pulse)"
       }
     ],
     "viewsContainers": {
@@ -65,6 +70,12 @@
           "type": "webview",
           "name": "Agent Chat",
           "icon": "$(comment-discussion)"
+        },
+        {
+          "id": "chthonic.abyssalView",
+          "type": "webview",
+          "name": "Abyssal Pane",
+          "icon": "resources/mandala.svg"
         },
         {
           "id": "chthonic.themeView",
@@ -95,14 +106,44 @@
           "type": "boolean",
           "default": true,
           "description": "Show active lineage indicator in status bar."
+        },
+        "chthonic.entropy.enabled": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable dynamic entropy analysis and explorer decay decoration overlay."
+        },
+        "chthonic.entropy.maxFiles": {
+          "type": "number",
+          "default": 10000,
+          "minimum": 200,
+          "description": "Maximum number of files scanned by the entropy worker."
+        },
+        "chthonic.entropy.scanIntervalMs": {
+          "type": "number",
+          "default": 20000,
+          "minimum": 5000,
+          "description": "Background entropy rescan interval in milliseconds."
+        },
+        "chthonic.entropy.decorationDebounceMs": {
+          "type": "number",
+          "default": 120,
+          "minimum": 30,
+          "description": "Debounce interval for FileDecorationProvider updates."
+        },
+        "chthonic.entropy.decorationBatchSize": {
+          "type": "number",
+          "default": 240,
+          "minimum": 64,
+          "description": "Maximum URI updates emitted per FileDecorationProvider flush."
         }
       }
     }
   },
   "scripts": {
     "vscode:prepublish": "bun run compile",
-    "compile": "bun build src/extension.ts --outdir dist --target node --format cjs --external vscode --minify",
-    "watch": "bun build src/extension.ts --outdir dist --target node --format cjs --external vscode --watch"
+    "compile": "bun build src/extension.ts --outdir dist --target node --format cjs --external vscode --minify && bun build src/entropy/entropyWorker.ts --outfile dist/entropy-worker.js --target node --format cjs --minify",
+    "watch": "bun build src/extension.ts --outdir dist --target node --format cjs --external vscode --watch",
+    "watch:worker": "bun build src/entropy/entropyWorker.ts --outfile dist/entropy-worker.js --target node --format cjs --watch"
   },
   "devDependencies": {
     "@types/node": "^20.x",

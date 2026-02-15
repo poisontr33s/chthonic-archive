@@ -76,7 +76,7 @@
     "commandCenter.activeForeground": "#FFB84D",
     "commandCenter.border": "#2A2840",
 
-    "editorGroup.background": "#0D0B12",
+    "editorGroup.emptyBackground": "#0D0B12",
     "editorGroup.border": "#13111E",
     "editorGroup.dropBackground": "#FFD70026",
     "editorGroupHeader.tabsBackground": "#09080E",

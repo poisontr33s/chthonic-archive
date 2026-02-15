@@ -64,6 +64,8 @@
 !extensions/*/*.md
 !extensions/*/src/
 !extensions/*/src/*.ts
+!extensions/*/src/entropy/
+!extensions/*/src/entropy/*.ts
 !extensions/*/dist/
 !extensions/*/dist/*.js
 !extensions/*/themes/

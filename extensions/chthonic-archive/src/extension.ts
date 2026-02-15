@@ -3,14 +3,18 @@ import * as crypto from 'crypto';
 import * as fs from 'fs';
 import * as path from 'path';
 import { ChthonicChatProvider } from './sdk/webview';
+import { EntropyWorkerClient } from './entropy/entropyWorkerClient';
+import { EntropyDecorationProvider } from './entropy/entropyDecorations';
+import { AbyssalPaneProvider } from './entropy/archiveAbyssalView';
 
 export function activate(context: vscode.ExtensionContext) {
     console.log('☥ Chthonic Archive extension activated');
 
     // --- SDK Chat Panel ---
     const outputChannel = vscode.window.createOutputChannel('Chthonic SDK');
+    const workspaceRoot = vscode.workspace.workspaceFolders?.[0]?.uri.fsPath || null;
     const harnessPath = path.join(
-        vscode.workspace.workspaceFolders?.[0]?.uri.fsPath || '',
+        workspaceRoot || '',
         'meta-ide', 'copilot-sdk', 'harness.ts',
     );
     const chatProvider = new ChthonicChatProvider(
@@ -20,6 +24,49 @@ export function activate(context: vscode.ExtensionContext) {
     );
     context.subscriptions.push(
         vscode.window.registerWebviewViewProvider(ChthonicChatProvider.viewType, chatProvider),
+    );
+
+    // --- Entropy Engine (worker + decorations + webview) ---
+    const entropyConfig = vscode.workspace.getConfiguration('chthonic');
+    const entropyEnabled = entropyConfig.get<boolean>('entropy.enabled', true);
+    const entropyMaxFiles = entropyConfig.get<number>('entropy.maxFiles', 10000);
+    const entropyScanIntervalMs = entropyConfig.get<number>('entropy.scanIntervalMs', 20000);
+    const entropyDecorationDebounceMs = entropyConfig.get<number>('entropy.decorationDebounceMs', 120);
+    const entropyDecorationBatch = entropyConfig.get<number>('entropy.decorationBatchSize', 240);
+
+    const entropyClient = new EntropyWorkerClient(context, outputChannel);
+    const entropyDecorations = new EntropyDecorationProvider(
+        entropyClient,
+        entropyDecorationDebounceMs,
+        entropyDecorationBatch,
+    );
+    const abyssalProvider = new AbyssalPaneProvider(context.extensionUri, entropyClient);
+    abyssalProvider.setRootPath(workspaceRoot);
+
+    context.subscriptions.push(
+        entropyClient,
+        entropyDecorations,
+        abyssalProvider,
+        vscode.window.registerFileDecorationProvider(entropyDecorations),
+        vscode.window.registerWebviewViewProvider(AbyssalPaneProvider.viewType, abyssalProvider),
+    );
+
+    if (workspaceRoot && entropyEnabled) {
+        entropyClient.start(workspaceRoot, entropyMaxFiles, entropyScanIntervalMs);
+    }
+
+    context.subscriptions.push(
+        vscode.workspace.onDidSaveTextDocument((document) => {
+            entropyClient.refreshFile(document.uri);
+        }),
+    );
+
+    context.subscriptions.push(
+        vscode.commands.registerCommand('chthonic.entropyRefresh', () => {
+            entropyClient.rescanNow();
+            entropyClient.requestGraph(260);
+            vscode.window.showInformationMessage('Chthonic entropy scan requested');
+        }),
     );
 
     // --- Theme Switcher ---
@@ -94,6 +141,8 @@ export function activate(context: vscode.ExtensionContext) {
         vscode.commands.registerCommand('chthonic.refreshStatus', () => {
             statusProvider.refresh();
             themeProvider.refresh();
+            entropyClient.rescanNow();
+            entropyClient.requestGraph(260);
         })
     );
 }
