@@ -8,6 +8,8 @@ import { EntropyDecorationProvider } from './entropy/entropyDecorations';
 import { AbyssalPaneProvider } from './entropy/archiveAbyssalView';
 import { PolyglotEntropyOrchestrator } from './polyglot/polyglotEntropyOrchestrator';
 import type { LedgerMode } from './polyglot/ledgerBroker';
+import { AnnoClient } from './reactor/annoClient';
+import { CockpitLayout } from './reactor/cockpitLayout';
 
 export function activate(context: vscode.ExtensionContext) {
     console.log('☥ Chthonic Archive extension activated');
@@ -100,6 +102,52 @@ export function activate(context: vscode.ExtensionContext) {
             entropyClient.requestGraph(260);
             polyglotOrchestrator.requestManualScan();
             vscode.window.showInformationMessage('Chthonic entropy scan requested');
+        }),
+    );
+
+    // --- ANNO / Entropy Reactor ---
+    const reactorEnabled = entropyConfig.get<boolean>('reactor.enabled', true);
+    const reactorHeadlessVulkan = entropyConfig.get<boolean>('reactor.headlessVulkan', true);
+    const reactorCockpitAutoLayout = entropyConfig.get<boolean>('reactor.cockpitAutoLayout', false);
+    const reactorDaemonBinaryPath = asOptionalPath(entropyConfig.get<string>('reactor.daemonBinaryPath', ''));
+
+    const annoClient = new AnnoClient(outputChannel, reactorHeadlessVulkan, reactorDaemonBinaryPath);
+    const cockpitLayout = new CockpitLayout(outputChannel, context.environmentVariableCollection);
+
+    context.subscriptions.push(annoClient, cockpitLayout);
+
+    context.subscriptions.push(
+        annoClient.onDidReceiveEnv((envReport) => {
+            cockpitLayout.applyTerminalEnv(envReport);
+        }),
+    );
+
+    if (workspaceRoot && reactorEnabled) {
+        annoClient.start(workspaceRoot);
+        if (reactorCockpitAutoLayout) {
+            void cockpitLayout.activate();
+        }
+    }
+
+    context.subscriptions.push(
+        vscode.commands.registerCommand('chthonic.activateCockpit', () => {
+            void cockpitLayout.activate();
+        }),
+        vscode.commands.registerCommand('chthonic.annoDetect', () => {
+            if (workspaceRoot) {
+                annoClient.start(workspaceRoot);
+            }
+            vscode.window.showInformationMessage('ANNO project detection triggered');
+        }),
+        vscode.commands.registerCommand('chthonic.reactorSediment', async () => {
+            try {
+                const result = await annoClient.requestSediment(10, 500);
+                vscode.window.showInformationMessage(
+                    `Sediment computed: ${result.file_count} files, ${result.layer_count} layers (${result.backend}, ${result.compute_time_ms}ms)`,
+                );
+            } catch (err) {
+                vscode.window.showErrorMessage(`Sediment computation failed: ${err}`);
+            }
         }),
     );
 

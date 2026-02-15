@@ -1,0 +1,23 @@
+[package]
+name = "chthonic-daemon"
+description = "ANNO policy engine and Vulkan compute reactor for Chthonic Archive"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[dependencies]
+anyhow.workspace = true
+ash.workspace = true
+clap.workspace = true
+gix.workspace = true
+serde.workspace = true
+serde_json.workspace = true
+sha2.workspace = true
+shaderc.workspace = true
+toml.workspace = true
+
+[target.'cfg(windows)'.dependencies]
+windows-sys = { version = "0.59", features = [
+    "Win32_System_LibraryLoader",
+    "Win32_Foundation",
+] }

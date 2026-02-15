@@ -1,0 +1,42 @@
+# Hermetic mise configuration for Chthonic Archive
+#
+# IMPORTANT: Python is NOT listed here. uv is the exclusive Python owner.
+# See anno-manifest.toml for the authoritative policy.
+# Adding python to [tools] creates a shim race with uv.
+
+[tools]
+ruby = "4.0"
+go   = "1.24"
+uv   = "latest"  # mise installs uv; uv's own shims own python/pip
+
+[tools.solana-cli]
+version = "2.3"
+
+[settings]
+# Ensure mise never shims Python binaries (uv owns them exclusively)
+disable_tools = ["python"]
+
+# ─────────────────────────────────────────────────────────────
+# Environment
+# ─────────────────────────────────────────────────────────────
+# Ruby DevKit injection for Windows. These variables are required
+# for native gem compilation (e.g., nokogiri, prism, ffi).
+#
+# The ANNO daemon detects MSYS2_HOME automatically from:
+#   1. RubyInstaller's bundled msys64/
+#   2. C:\msys64 (standalone MSYS2)
+#
+# These templates are resolved at activation time.
+
+[env]
+_.path = [
+    "{{env.MSYS2_HOME}}/ucrt64/bin",
+    "{{env.MSYS2_HOME}}/usr/bin",
+]
+
+# Windows-specific env vars for native compilation
+# (ignored on non-Windows platforms by mise)
+[env."windows"]
+CC         = "gcc"
+CXX        = "g++"
+RI_DEVKIT  = "{{env.MSYS2_HOME}}"

@@ -52,6 +52,21 @@
         "command": "chthonic.entropyRefresh",
         "title": "Chthonic: Refresh Entropy Overlay",
         "icon": "$(pulse)"
+      },
+      {
+        "command": "chthonic.activateCockpit",
+        "title": "Chthonic: Activate Cockpit Layout",
+        "icon": "$(layout)"
+      },
+      {
+        "command": "chthonic.annoDetect",
+        "title": "Chthonic: Detect Project Tooling (ANNO)",
+        "icon": "$(tools)"
+      },
+      {
+        "command": "chthonic.reactorSediment",
+        "title": "Chthonic: Compute Sediment Layers",
+        "icon": "$(layers)"
       }
     ],
     "viewsContainers": {
@@ -186,6 +201,26 @@
           "type": "string",
           "default": "",
           "description": "Optional absolute path to the Anchor IDL consumed by the Rust ledger host."
+        },
+        "chthonic.reactor.enabled": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable the Entropy Reactor (ANNO + Vulkan compute daemon)."
+        },
+        "chthonic.reactor.headlessVulkan": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable headless Vulkan compute for sediment layer calculation. Falls back to CPU if unavailable."
+        },
+        "chthonic.reactor.daemonBinaryPath": {
+          "type": "string",
+          "default": "",
+          "description": "Optional absolute path to the chthonic-daemon binary."
+        },
+        "chthonic.reactor.cockpitAutoLayout": {
+          "type": "boolean",
+          "default": false,
+          "description": "Automatically apply Cockpit layout (terminal right, editor center) on activation."
         }
       }
     }
@@ -197,6 +232,8 @@
     "vscode:prepublish": "bun run compile",
     "build:ledger": "bun run scripts/verify-host.ts && bun run scripts/build-ledger.ts",
     "build:wasm": "bun run scripts/verify-host.ts && bun run scripts/build-wasm.ts",
+    "build:daemon": "bun run scripts/verify-host.ts && bun run scripts/build-daemon.ts",
+    "build:all": "bun run build:ledger && bun run build:wasm && bun run build:daemon && bun run compile",
     "compile": "bun build src/extension.ts --outdir dist --target node --format cjs --external vscode --minify && bun build src/entropy/entropyWorker.ts --outfile dist/entropy-worker.js --target node --format cjs --minify",
     "watch": "bun build src/extension.ts --outdir dist --target node --format cjs --external vscode --watch",
     "watch:worker": "bun build src/entropy/entropyWorker.ts --outfile dist/entropy-worker.js --target node --format cjs --watch"
