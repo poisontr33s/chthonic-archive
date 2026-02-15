@@ -6,6 +6,9 @@ const extensionRoot = process.cwd();
 const chthonicRoot = path.join(extensionRoot, '.chthonic');
 const pythonProjectPath = path.join(chthonicRoot, 'python');
 const venvPath = path.join(chthonicRoot, 'venv');
+const rubyProjectPath = path.join(chthonicRoot, 'ruby');
+const rubyGemfilePath = path.join(rubyProjectPath, 'Gemfile');
+const rubyBundlePath = path.join(rubyProjectPath, 'vendor', 'bundle');
 const isWin = process.platform === 'win32';
 const pythonBinary = path.join(venvPath, isWin ? 'Scripts/python.exe' : 'bin/python');
 
@@ -42,6 +45,18 @@ async function main(): Promise<void> {
     });
 
     console.log('[bootstrap] .chthonic/venv synced from pyproject via uv');
+
+    if (fs.existsSync(rubyGemfilePath)) {
+        try {
+            await run('bundle', ['install', '--gemfile', rubyGemfilePath], {
+                BUNDLE_GEMFILE: rubyGemfilePath,
+                BUNDLE_PATH: rubyBundlePath,
+            });
+            console.log('[bootstrap] Ruby gems installed from .chthonic/ruby/Gemfile');
+        } catch (error) {
+            console.warn(`[bootstrap] ruby bundle install skipped: ${stringifyError(error)}`);
+        }
+    }
 }
 
 function run(command: string, args: string[], env: Record<string, string> = {}): Promise<void> {

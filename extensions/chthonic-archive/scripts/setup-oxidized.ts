@@ -5,6 +5,9 @@ const extensionRoot = process.cwd();
 const chthonicRoot = path.join(extensionRoot, '.chthonic');
 const pythonProjectPath = path.join(chthonicRoot, 'python');
 const pythonVenvPath = path.join(chthonicRoot, 'venv');
+const rubyProjectPath = path.join(chthonicRoot, 'ruby');
+const rubyGemfilePath = path.join(rubyProjectPath, 'Gemfile');
+const rubyBundlePath = path.join(rubyProjectPath, 'vendor', 'bundle');
 const isWin = process.platform === 'win32';
 const pythonExecutable = path.join(pythonVenvPath, isWin ? 'Scripts/python.exe' : 'bin/python');
 const ruffExecutable = path.join(pythonVenvPath, isWin ? 'Scripts/ruff.exe' : 'bin/ruff');
@@ -27,8 +30,21 @@ async function main(): Promise<void> {
         throw new Error(`ruff missing at ${ruffExecutable}`);
     }
 
+    if (!fs.existsSync(rubyGemfilePath)) {
+        throw new Error(`missing ruby gemfile: ${rubyGemfilePath}`);
+    }
+
+    await run(
+        ['bundle', 'install', '--gemfile', rubyGemfilePath],
+        {
+            BUNDLE_GEMFILE: rubyGemfilePath,
+            BUNDLE_PATH: rubyBundlePath,
+        },
+    );
+
     console.log(`[oxidized] Python runtime ready: ${pythonExecutable}`);
     console.log(`[oxidized] Ruff binary ready: ${ruffExecutable}`);
+    console.log(`[oxidized] Ruby gems ready: ${rubyGemfilePath}`);
 }
 
 async function run(cmd: string[], extraEnv: Record<string, string> = {}): Promise<void> {

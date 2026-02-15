@@ -1,0 +1,19 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    json (2.18.1)
+    prettier_print (1.2.1)
+    prism (1.9.0)
+    syntax_tree (6.3.0)
+      prettier_print (>= 1.2.0)
+
+PLATFORMS
+  x64-mingw-ucrt
+
+DEPENDENCIES
+  json
+  prism
+  syntax_tree
+
+BUNDLED WITH
+   2.7.2
