@@ -206,16 +206,25 @@ fn compute_sediment_cpu(
 ) -> Result<types::SedimentResult> {
     let start = std::time::Instant::now();
 
-    // Use reactor's git metrics gathering
-    let inputs = reactor::gather_git_metrics(workspace, params)?;
-    let vertices = reactor::cpu_fallback(&inputs, params);
-
-    let layer_count = inputs.iter().map(|i| i.layer_depth).max().unwrap_or(0) + 1;
+    let metrics = reactor::gather_git_metrics(workspace, params)?;
+    let settled = reactor::cpu_simulate(metrics.nodes);
 
     Ok(types::SedimentResult {
-        file_count: inputs.len() as u32,
-        layer_count,
-        vertices,
+        file_count: settled.len() as u32,
+        layer_count: metrics.layer_count,
+        vertices: settled
+            .iter()
+            .map(|n| types::SedimentVertex {
+                x: n.pos_x,
+                y: n.pos_y,
+                z: n.pos_z,
+                radius: 2.0 + n.entropy * 5.0 + n.mass * 1.5,
+                r: n.r,
+                g: n.g,
+                b: n.b,
+                alpha: n.a,
+            })
+            .collect(),
         compute_time_ms: start.elapsed().as_millis() as u64,
         backend: "cpu-only",
     })

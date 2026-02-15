@@ -4,28 +4,62 @@ use anyhow::{Context, Result};
 
 use crate::types::{SedimentRequest, SedimentResult, SedimentVertex};
 
+// ---------------------------------------------------------------------------
+// GPU-mirrored data structures (must match sediment.comp layout exactly)
+// ---------------------------------------------------------------------------
+
+/// A single node in the force-directed sediment graph.
+/// Layout matches the GLSL `Node` struct: 3 × vec4 = 48 bytes.
+///
+/// - `position`: xyz = spatial position, w = mass (1.0 = old/heavy, 0.1 = new/light)
+/// - `velocity`: xyz = velocity vector,  w = entropy (0.0 to 1.0)
+/// - `color`:    rgba output for the renderer
 #[repr(C)]
 #[derive(Debug, Clone, Copy)]
-pub struct SedimentInput {
+pub struct Node {
+    // vec4 position
+    pub pos_x: f32,
+    pub pos_y: f32,
+    pub pos_z: f32,
+    pub mass: f32,
+    // vec4 velocity
+    pub vel_x: f32,
+    pub vel_y: f32,
+    pub vel_z: f32,
     pub entropy: f32,
-    pub change_frequency: f32,
-    pub recency: f32,
-    pub author_diversity: f32,
-    pub file_index: u32,
-    pub layer_depth: u32,
-    pub complexity: f32,
-    pub _padding: f32,
+    // vec4 color
+    pub r: f32,
+    pub g: f32,
+    pub b: f32,
+    pub a: f32,
 }
 
 /// Push constants for the compute shader.
 #[repr(C)]
 #[derive(Debug, Clone, Copy)]
 struct PushConstants {
-    total_files: u32,
-    time_scale: f32,
-    entropy_scale: f32,
-    layer_gap: f32,
+    delta_time: f32,
+    total_time: f32,
+    node_count: u32,
+    gravity_str: f32,
+    repel_str: f32,
 }
+
+// ---------------------------------------------------------------------------
+// Simulation constants
+// ---------------------------------------------------------------------------
+
+const SIM_STEPS: u32 = 200;
+const DELTA_TIME: f32 = 0.016; // ~60 fps equivalent
+const GOLDEN_ANGLE: f32 = 2.399_963_2;
+const DECAY: f32 = 0.98;
+const GRAVITY: f32 = -4.9;
+const SPRING_K: f32 = 2.0;
+const REPEL_STR: f32 = 1.0;
+
+// ---------------------------------------------------------------------------
+// VulkanReactor
+// ---------------------------------------------------------------------------
 
 /// The Vulkan reactor. Holds all GPU resources for headless compute.
 pub struct VulkanReactor {
@@ -42,20 +76,20 @@ pub struct VulkanReactor {
 }
 
 impl VulkanReactor {
-    /// Compute sediment layers from git history.
+    /// Compute sediment layers from git history via force-directed simulation.
     ///
     /// Walks the repository's commit graph via `gix`, extracts per-file
-    /// metrics, dispatches the GPU compute shader, reads back vertex data.
-    /// Falls back to CPU if any GPU step fails.
+    /// metrics, initializes node state, runs the force-directed simulation
+    /// (GPU or CPU fallback), and returns settled vertex data.
     pub fn compute_sediment(
         &self,
         workspace: &str,
         request: &SedimentRequest,
     ) -> Result<SedimentResult> {
         let start = Instant::now();
-        let inputs = gather_git_metrics(workspace, request)?;
+        let metrics = gather_git_metrics(workspace, request)?;
 
-        if inputs.is_empty() {
+        if metrics.nodes.is_empty() {
             return Ok(SedimentResult {
                 vertices: Vec::new(),
                 layer_count: 0,
@@ -66,21 +100,21 @@ impl VulkanReactor {
         }
 
         // Try GPU dispatch; fall back to CPU on any error
-        match self.gpu_dispatch(&inputs, request) {
-            Ok(vertices) => Ok(SedimentResult {
-                layer_count: inputs.iter().map(|i| i.layer_depth).max().unwrap_or(0) + 1,
-                file_count: inputs.len() as u32,
-                vertices,
+        match self.gpu_dispatch(&metrics.nodes) {
+            Ok(settled) => Ok(SedimentResult {
+                layer_count: metrics.layer_count,
+                file_count: settled.len() as u32,
+                vertices: nodes_to_vertices(&settled),
                 compute_time_ms: start.elapsed().as_millis() as u64,
                 backend: "vulkan",
             }),
             Err(err) => {
                 eprintln!("[reactor] GPU dispatch failed, falling back to CPU: {err}");
-                let vertices = cpu_fallback(&inputs, request);
+                let settled = cpu_simulate(metrics.nodes);
                 Ok(SedimentResult {
-                    layer_count: inputs.iter().map(|i| i.layer_depth).max().unwrap_or(0) + 1,
-                    file_count: inputs.len() as u32,
-                    vertices,
+                    layer_count: metrics.layer_count,
+                    file_count: settled.len() as u32,
+                    vertices: nodes_to_vertices(&settled),
                     compute_time_ms: start.elapsed().as_millis() as u64,
                     backend: "cpu-fallback",
                 })
@@ -91,25 +125,21 @@ impl VulkanReactor {
     /// Dispatch the compute shader on the GPU.
     fn gpu_dispatch(
         &self,
-        _inputs: &[SedimentInput],
-        _request: &SedimentRequest,
-    ) -> Result<Vec<SedimentVertex>> {
-        // Full Vulkan dispatch: create buffers, write descriptors, record
-        // command buffer, submit, fence wait, read back.
+        _nodes: &[Node],
+    ) -> Result<Vec<Node>> {
+        // Full Vulkan dispatch for the force-directed simulation:
         //
-        // This is a placeholder for the full implementation. The key steps:
+        // 1. Allocate a single read/write storage buffer (Node[])
+        // 2. Upload initial node state
+        // 3. For each simulation step:
+        //    a. Update push constants (delta_time, total_time, node_count, ...)
+        //    b. Record command buffer: bind pipeline, bind descriptors,
+        //       push constants, dispatch(ceil(N/256), 1, 1)
+        //    c. Pipeline barrier (compute -> compute)
+        //    d. Submit to compute queue with fence, wait
+        // 4. Map buffer, read back settled Node[]
         //
-        // 1. Allocate input storage buffer (VK_BUFFER_USAGE_STORAGE_BUFFER_BIT)
-        // 2. Allocate output storage buffer
-        // 3. Map input buffer, memcpy SedimentInput array
-        // 4. Update descriptor set (binding 0 = input, binding 1 = output)
-        // 5. Record command buffer: bind pipeline, bind descriptors, push
-        //    constants, dispatch(ceil(N/256), 1, 1)
-        // 6. Submit to compute queue with fence
-        // 7. Wait on fence
-        // 8. Map output buffer, read SedimentVertex array
-        //
-        // For now, delegate to CPU fallback until buffer management is wired.
+        // For now, delegate to CPU until buffer management is wired.
         anyhow::bail!("GPU buffer management not yet wired; using CPU fallback")
     }
 }
@@ -129,6 +159,10 @@ impl Drop for VulkanReactor {
     }
 }
 
+// ---------------------------------------------------------------------------
+// Vulkan initialization
+// ---------------------------------------------------------------------------
+
 /// Initialize the Vulkan reactor: load entry, create instance, select
 /// compute device, compile shader, build pipeline.
 ///
@@ -143,7 +177,7 @@ pub fn initialize() -> Result<Option<VulkanReactor>> {
         }
     };
 
-    // 3. Create instance (headless -- no surface extensions)
+    // 2. Create instance (headless -- no surface extensions)
     let app_info = ash::vk::ApplicationInfo::default()
         .application_name(c"chthonic-daemon")
         .application_version(ash::vk::make_api_version(0, 0, 1, 0))
@@ -153,11 +187,11 @@ pub fn initialize() -> Result<Option<VulkanReactor>> {
     let instance = unsafe { entry.create_instance(&create_info, None) }
         .context("failed to create Vulkan instance")?;
 
-    // 4. Select physical device with compute queue
+    // 3. Select physical device with compute queue
     let (physical_device, compute_family_index) =
         select_compute_device(&instance)?;
 
-    // 5. Create logical device
+    // 4. Create logical device
     let queue_priorities = [1.0_f32];
     let queue_info = ash::vk::DeviceQueueCreateInfo::default()
         .queue_family_index(compute_family_index)
@@ -171,18 +205,13 @@ pub fn initialize() -> Result<Option<VulkanReactor>> {
 
     let compute_queue = unsafe { device.get_device_queue(compute_family_index, 0) };
 
-    // 6. Compile GLSL compute shader via shaderc
+    // 5. Compile GLSL compute shader via shaderc
     let spirv = compile_sediment_shader()?;
 
-    // 7. Create descriptor set layout (2 storage buffers)
+    // 6. Create descriptor set layout (single read/write storage buffer)
     let bindings = [
         ash::vk::DescriptorSetLayoutBinding::default()
             .binding(0)
-            .descriptor_type(ash::vk::DescriptorType::STORAGE_BUFFER)
-            .descriptor_count(1)
-            .stage_flags(ash::vk::ShaderStageFlags::COMPUTE),
-        ash::vk::DescriptorSetLayoutBinding::default()
-            .binding(1)
             .descriptor_type(ash::vk::DescriptorType::STORAGE_BUFFER)
             .descriptor_count(1)
             .stage_flags(ash::vk::ShaderStageFlags::COMPUTE),
@@ -193,7 +222,7 @@ pub fn initialize() -> Result<Option<VulkanReactor>> {
         unsafe { device.create_descriptor_set_layout(&layout_info, None) }
             .context("failed to create descriptor set layout")?;
 
-    // 8. Create pipeline layout (with push constants)
+    // 7. Create pipeline layout (with push constants)
     let push_range = ash::vk::PushConstantRange::default()
         .stage_flags(ash::vk::ShaderStageFlags::COMPUTE)
         .offset(0)
@@ -206,12 +235,12 @@ pub fn initialize() -> Result<Option<VulkanReactor>> {
     let pipeline_layout = unsafe { device.create_pipeline_layout(&pipeline_layout_info, None) }
         .context("failed to create pipeline layout")?;
 
-    // 9. Create shader module
+    // 8. Create shader module
     let shader_info = ash::vk::ShaderModuleCreateInfo::default().code(&spirv);
     let shader_module = unsafe { device.create_shader_module(&shader_info, None) }
         .context("failed to create shader module")?;
 
-    // 10. Create compute pipeline
+    // 9. Create compute pipeline
     let stage = ash::vk::PipelineShaderStageCreateInfo::default()
         .stage(ash::vk::ShaderStageFlags::COMPUTE)
         .module(shader_module)
@@ -234,7 +263,7 @@ pub fn initialize() -> Result<Option<VulkanReactor>> {
     // Shader module can be destroyed after pipeline creation
     unsafe { device.destroy_shader_module(shader_module, None) };
 
-    // 11. Create command pool
+    // 10. Create command pool
     let pool_info = ash::vk::CommandPoolCreateInfo::default()
         .queue_family_index(compute_family_index)
         .flags(ash::vk::CommandPoolCreateFlags::RESET_COMMAND_BUFFER);
@@ -364,10 +393,23 @@ fn compile_sediment_shader() -> Result<Vec<u32>> {
 // Git metrics extraction via gix
 // ---------------------------------------------------------------------------
 
+/// Result of git history analysis: nodes with initial state + metadata.
+pub struct GitMetricsResult {
+    pub nodes: Vec<Node>,
+    pub layer_count: u32,
+}
+
+/// Walk git history and produce initial Node state for force-directed simulation.
+///
+/// Each file in the repository becomes a Node. Properties:
+/// - `mass`: derived from age (old files are heavy, sink)
+/// - `entropy`: path-based heuristic + change frequency
+/// - `position`: starts at origin (simulation moves via spring forces)
+/// - `velocity`: starts at zero
 pub fn gather_git_metrics(
     workspace: &str,
     request: &SedimentRequest,
-) -> Result<Vec<SedimentInput>> {
+) -> Result<GitMetricsResult> {
     let repo = gix::open(workspace).context("failed to open git repository")?;
     let head = repo
         .head_commit()
@@ -377,7 +419,7 @@ pub fn gather_git_metrics(
         std::collections::HashMap::new();
 
     let mut total_commits: u32 = 0;
-    let max_walk = request.max_layers * 100; // walk more commits than layers
+    let max_walk = request.max_layers * 100;
 
     // Walk commit history
     let mut ancestors = head.ancestors().all().context("failed to walk ancestors")?;
@@ -394,11 +436,9 @@ pub fn gather_git_metrics(
             .map(|a| a.name.to_string())
             .unwrap_or_default();
 
-        // Assign this commit to a layer based on depth
         let layer = (total_commits / (max_walk / request.max_layers.max(1)))
             .min(request.max_layers - 1);
 
-        // Get the tree to list files (simplified: just the root tree)
         if let Ok(tree) = commit.tree() {
             let mut recorder = gix::traverse::tree::Recorder::default();
             if tree.traverse().breadthfirst(&mut recorder).is_ok() {
@@ -417,10 +457,12 @@ pub fn gather_git_metrics(
     }
 
     if total_commits == 0 {
-        return Ok(Vec::new());
+        return Ok(GitMetricsResult {
+            nodes: Vec::new(),
+            layer_count: 0,
+        });
     }
 
-    // Convert to SedimentInput array
     let total_f = total_commits as f32;
     let max_authors = file_metrics
         .values()
@@ -428,31 +470,54 @@ pub fn gather_git_metrics(
         .max()
         .unwrap_or(1) as f32;
 
-    let mut inputs: Vec<SedimentInput> = file_metrics
+    let max_layer_seen = file_metrics
+        .values()
+        .map(|m| m.latest_layer)
+        .filter(|&l| l != u32::MAX)
+        .max()
+        .unwrap_or(0);
+
+    // Convert to Node initial state
+    let nodes: Vec<Node> = file_metrics
         .into_iter()
         .enumerate()
         .take(request.max_files as usize)
-        .map(|(idx, (path, m))| {
+        .map(|(_idx, (path, m))| {
             let change_freq = (m.commit_count as f32) / total_f;
             let recency = 1.0 - (m.latest_layer as f32 / request.max_layers as f32);
-            let diversity = (m.authors.len() as f32) / max_authors;
+            let _diversity = (m.authors.len() as f32) / max_authors;
             let entropy = compute_path_entropy(&path);
 
-            SedimentInput {
-                entropy,
-                change_frequency: change_freq.min(1.0),
-                recency,
-                author_diversity: diversity,
-                file_index: idx as u32,
-                layer_depth: m.latest_layer,
-                complexity: change_freq * entropy,
-                _padding: 0.0,
+            // Mass: old files are heavy (sink). New files are light (float).
+            let mass = (1.0 - recency).max(0.1);
+
+            // Entropy blended with change frequency for richer signal
+            let blended_entropy = (entropy * 0.6 + change_freq * 0.4).min(1.0);
+
+            Node {
+                // Initial position at origin; simulation moves via spring forces
+                pos_x: 0.0,
+                pos_y: 0.0,
+                pos_z: 0.0,
+                mass,
+                // Velocity starts at zero
+                vel_x: 0.0,
+                vel_y: 0.0,
+                vel_z: 0.0,
+                entropy: blended_entropy,
+                // Color starts black; simulation paints via entropy mapping
+                r: 0.0,
+                g: 0.0,
+                b: 0.0,
+                a: 1.0,
             }
         })
         .collect();
 
-    inputs.sort_by_key(|i| i.file_index);
-    Ok(inputs)
+    Ok(GitMetricsResult {
+        nodes,
+        layer_count: max_layer_seen + 1,
+    })
 }
 
 struct FileMetrics {
@@ -482,62 +547,104 @@ pub fn compute_path_entropy(path: &str) -> f32 {
         _ => 0.2,
     };
     let base = (depth * 0.08 + ext_weight).min(1.0);
-    // Add some hash-based variation so files at the same depth differ
     let hash = path.bytes().fold(0u32, |acc, b| acc.wrapping_mul(31).wrapping_add(b as u32));
     let noise = ((hash % 100) as f32) / 500.0;
     (base + noise).min(1.0)
 }
 
 // ---------------------------------------------------------------------------
-// CPU fallback: same math as the GLSL shader, in pure Rust
+// CPU fallback: force-directed simulation matching sediment.comp
 // ---------------------------------------------------------------------------
 
-/// CPU fallback when Vulkan is not available. Same algorithm as sediment.comp.
-pub fn cpu_fallback(inputs: &[SedimentInput], _request: &SedimentRequest) -> Vec<SedimentVertex> {
-    let total = inputs.len() as u32;
-    inputs
-        .iter()
-        .map(|inp| {
-            let (x, y) = sunflower_position(inp.file_index, total);
-            let spread = 0.3 + 0.7 * inp.recency;
-            let sx = x * spread * 400.0;
-            let sy = y * spread * 400.0;
+/// Run the force-directed simulation on the CPU.
+/// Same algorithm as `sediment.comp`: spring force to golden spiral target,
+/// Brownian motion for high-entropy nodes, Euler integration with damping.
+///
+/// Returns the settled node state after `SIM_STEPS` iterations.
+pub fn cpu_simulate(mut nodes: Vec<Node>) -> Vec<Node> {
+    let node_count = nodes.len() as u32;
+    let mut total_time: f32 = 0.0;
 
-            let z = -(inp.layer_depth as f32) * 50.0
-                + inp.entropy * 30.0
-                + inp.change_frequency * 20.0;
+    for _step in 0..SIM_STEPS {
+        for idx in 0..node_count {
+            let i = idx as usize;
+            let entropy = nodes[i].entropy;
+            let mass = nodes[i].mass;
 
-            let radius = 2.0 + inp.complexity * 3.0 + inp.change_frequency * 2.0;
-            let (r, g, b) = entropy_color(inp.entropy);
-            let alpha = 0.4 + 0.6 * inp.author_diversity;
+            // Target position: golden spiral
+            let r = (idx as f32).sqrt() * 0.5;
+            let theta = (idx as f32) * GOLDEN_ANGLE + (total_time * 0.05 * entropy);
+            let target_x = r * theta.cos();
+            let target_z = r * theta.sin();
+            let target_y = (-mass * 50.0) + (entropy * 20.0 * (total_time + idx as f32).sin());
 
-            SedimentVertex {
-                x: sx,
-                y: sy,
-                z,
-                radius,
-                r,
-                g,
-                b,
-                alpha,
+            // Spring force to target
+            let mut fx = (target_x - nodes[i].pos_x) * SPRING_K;
+            let mut fy = (target_y - nodes[i].pos_y) * SPRING_K;
+            let mut fz = (target_z - nodes[i].pos_z) * SPRING_K;
+
+            // Brownian motion for high-entropy nodes
+            if entropy > 0.8 {
+                let jx = gpu_hash(idx.wrapping_add(total_time as u32)) - 0.5;
+                let jy = gpu_hash(idx.wrapping_add(1).wrapping_add(total_time as u32)) - 0.5;
+                let jz = gpu_hash(idx.wrapping_add(2).wrapping_add(total_time as u32)) - 0.5;
+                fx += jx * REPEL_STR * 5.0;
+                fy += jy * REPEL_STR * 5.0;
+                fz += jz * REPEL_STR * 5.0;
             }
+
+            // Gravity
+            fy += GRAVITY * mass;
+
+            // Euler integration
+            nodes[i].vel_x = (nodes[i].vel_x + fx * DELTA_TIME) * DECAY;
+            nodes[i].vel_y = (nodes[i].vel_y + fy * DELTA_TIME) * DECAY;
+            nodes[i].vel_z = (nodes[i].vel_z + fz * DELTA_TIME) * DECAY;
+
+            nodes[i].pos_x += nodes[i].vel_x * DELTA_TIME;
+            nodes[i].pos_y += nodes[i].vel_y * DELTA_TIME;
+            nodes[i].pos_z += nodes[i].vel_z * DELTA_TIME;
+
+            // Color: entropy -> void/gold bioluminescence
+            let pulse = 0.8 + 0.2 * (total_time * 3.0 + idx as f32).sin();
+            nodes[i].r = lerp(0.05, 0.96, entropy) * pulse;
+            nodes[i].g = lerp(0.05, 0.77, entropy) * pulse;
+            nodes[i].b = lerp(0.05, 0.19, entropy) * pulse;
+            nodes[i].a = 1.0;
+        }
+        total_time += DELTA_TIME;
+    }
+
+    nodes
+}
+
+/// Convert settled Node state to the SedimentVertex wire format.
+fn nodes_to_vertices(nodes: &[Node]) -> Vec<SedimentVertex> {
+    nodes
+        .iter()
+        .map(|n| SedimentVertex {
+            x: n.pos_x,
+            y: n.pos_y,
+            z: n.pos_z,
+            radius: 2.0 + n.entropy * 5.0 + n.mass * 1.5,
+            r: n.r,
+            g: n.g,
+            b: n.b,
+            alpha: n.a,
         })
         .collect()
 }
 
-fn sunflower_position(index: u32, total: u32) -> (f32, f32) {
-    let golden_angle: f32 = 2.399_963_2;
-    let r = ((index as f32) / (total.max(1) as f32)).sqrt();
-    let theta = (index as f32) * golden_angle;
-    (r * theta.cos(), r * theta.sin())
+/// Matches the GLSL `hash()` function for deterministic Brownian motion.
+fn gpu_hash(n: u32) -> f32 {
+    let mut n = n;
+    n = (n << 13) ^ n;
+    n = n
+        .wrapping_mul(n.wrapping_mul(n).wrapping_mul(15731).wrapping_add(789221))
+        .wrapping_add(1376312589);
+    (n & 0x7fffffff) as f32 / 0x7fffffff_u32 as f32
 }
 
-fn entropy_color(entropy: f32) -> (f32, f32, f32) {
-    if entropy >= 0.78 {
-        (0.541, 0.298, 0.165) // brown #8a4c2a
-    } else if entropy >= 0.48 {
-        (0.788, 0.663, 0.384) // gold #c9a962
-    } else {
-        (0.486, 0.682, 0.404) // green #7cae67
-    }
+fn lerp(a: f32, b: f32, t: f32) -> f32 {
+    a + (b - a) * t
 }
