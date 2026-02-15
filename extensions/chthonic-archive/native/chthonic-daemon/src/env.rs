@@ -81,57 +81,6 @@ pub fn provision(manifest: &AnnoManifest, _workspace: &str) -> Result<EnvReport>
     Ok(report)
 }
 
-/// Verify that `vulkan-1.dll` was loaded from System32, not a rogue PATH entry.
-///
-/// On Windows, `ash::Entry::load()` calls `LoadLibraryA("vulkan-1.dll")`, which
-/// follows the standard DLL search order. System32 is checked before PATH
-/// directories. This function validates the loaded module's actual path.
-#[cfg(windows)]
-pub fn verify_vulkan_dll_origin() -> Result<()> {
-    use windows_sys::Win32::Foundation::MAX_PATH;
-    use windows_sys::Win32::System::LibraryLoader::{GetModuleFileNameW, GetModuleHandleW};
-
-    let module_name: Vec<u16> = "vulkan-1.dll\0".encode_utf16().collect();
-    let handle = unsafe { GetModuleHandleW(module_name.as_ptr()) };
-
-    if handle.is_null() {
-        anyhow::bail!("vulkan-1.dll is not loaded");
-    }
-
-    let mut path_buf = [0u16; MAX_PATH as usize];
-    let len =
-        unsafe { GetModuleFileNameW(handle, path_buf.as_mut_ptr(), path_buf.len() as u32) };
-
-    if len == 0 {
-        anyhow::bail!("GetModuleFileNameW failed for vulkan-1.dll");
-    }
-
-    let dll_path = String::from_utf16_lossy(&path_buf[..len as usize]);
-
-    let system_root =
-        std::env::var("SystemRoot").unwrap_or_else(|_| r"C:\Windows".to_string());
-    let expected_prefix = format!(r"{}\System32\", system_root);
-
-    if !dll_path
-        .to_lowercase()
-        .starts_with(&expected_prefix.to_lowercase())
-    {
-        anyhow::bail!(
-            "vulkan-1.dll loaded from unexpected location: {dll_path}. \
-             Expected {expected_prefix}. A rogue DLL may be on PATH."
-        );
-    }
-
-    Ok(())
-}
-
-#[cfg(not(windows))]
-pub fn verify_vulkan_dll_origin() -> Result<()> {
-    // On Linux/macOS, libvulkan.so/.dylib is loaded from standard paths.
-    // Verification is less critical but we could check LD_LIBRARY_PATH.
-    Ok(())
-}
-
 // ---------------------------------------------------------------------------
 // Tool directory locators
 // ---------------------------------------------------------------------------
@@ -206,14 +155,14 @@ fn locate_bun_dir() -> Option<String> {
 fn detect_msys2_devkit() -> Result<Option<DevKitReport>> {
     let search_roots: Vec<PathBuf> = [
         ruby_install_root(),
-        Some(PathBuf::from(r"C:\Ruby40-x64")),
-        Some(PathBuf::from(r"C:\Ruby35-x64")),
-        Some(PathBuf::from(r"C:\Ruby34-x64")),
         Some(PathBuf::from(r"C:\Ruby33-x64")),
+        Some(PathBuf::from(r"C:\Ruby34-x64")),
+        Some(PathBuf::from(r"C:\Ruby35-x64")),
+        Some(PathBuf::from(r"C:\Ruby40-x64")),
         Some(PathBuf::from(r"C:\Ruby32-x64")),
-        Some(PathBuf::from(r"D:\Ruby40-x64")),
-        Some(PathBuf::from(r"D:\Ruby35-x64")),
+        Some(PathBuf::from(r"D:\Ruby33-x64")),
         Some(PathBuf::from(r"D:\Ruby34-x64")),
+        Some(PathBuf::from(r"D:\Ruby35-x64")),
     ]
     .into_iter()
     .flatten()

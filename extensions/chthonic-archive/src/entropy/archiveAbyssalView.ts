@@ -3,6 +3,7 @@ import * as vscode from 'vscode';
 import type { EntropyGraphPayload } from './types';
 import type { EntropySnapshot } from './entropyWorkerClient';
 import { EntropyWorkerClient } from './entropyWorkerClient';
+import type { SedimentResult } from '../reactor/types';
 
 export class AbyssalPaneProvider implements vscode.WebviewViewProvider, vscode.Disposable {
     static readonly viewType = 'chthonic.abyssalView';
@@ -10,6 +11,7 @@ export class AbyssalPaneProvider implements vscode.WebviewViewProvider, vscode.D
     private readonly disposables: vscode.Disposable[] = [];
     private view: vscode.WebviewView | null = null;
     private rootPath: string | null = null;
+    private sedimentRequestCallback: (() => void) | null = null;
 
     constructor(
         private readonly extensionUri: vscode.Uri,
@@ -23,6 +25,21 @@ export class AbyssalPaneProvider implements vscode.WebviewViewProvider, vscode.D
 
     setRootPath(rootPath: string | null): void {
         this.rootPath = rootPath;
+    }
+
+    /**
+     * Register a callback invoked when the webview requests sediment computation.
+     */
+    onRequestSediment(callback: () => void): void {
+        this.sedimentRequestCallback = callback;
+    }
+
+    /**
+     * Forward sediment computation results from the Vulkan/CPU reactor
+     * to the Abyssal Pane webview for 3D visualization.
+     */
+    postSedimentData(result: SedimentResult): void {
+        this.postMessage({ type: 'sediment', sediment: result });
     }
 
     dispose(): void {
@@ -67,6 +84,11 @@ export class AbyssalPaneProvider implements vscode.WebviewViewProvider, vscode.D
             return;
         }
 
+        if (payload.type === 'requestSediment') {
+            this.sedimentRequestCallback?.();
+            return;
+        }
+
         if (payload.type === 'openFile' && payload.path && this.rootPath) {
             const normalizedRelative = path.normalize(payload.path);
             if (normalizedRelative.startsWith('..') || path.isAbsolute(normalizedRelative)) {
@@ -82,7 +104,7 @@ export class AbyssalPaneProvider implements vscode.WebviewViewProvider, vscode.D
         }
     }
 
-    private postMessage(message: { type: string; graph?: EntropyGraphPayload; snapshot?: EntropySnapshot }): void {
+    private postMessage(message: { type: string; graph?: EntropyGraphPayload; snapshot?: EntropySnapshot; sediment?: SedimentResult }): void {
         if (!this.view) {
             return;
         }

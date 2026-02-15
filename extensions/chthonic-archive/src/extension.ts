@@ -120,7 +120,17 @@ export function activate(context: vscode.ExtensionContext) {
         annoClient.onDidReceiveEnv((envReport) => {
             cockpitLayout.applyTerminalEnv(envReport);
         }),
+        annoClient.onDidReceiveSediment((sediment) => {
+            abyssalProvider.postSedimentData(sediment);
+        }),
     );
+
+    // Allow the Abyssal Pane webview to trigger sediment computation
+    abyssalProvider.onRequestSediment(() => {
+        annoClient.requestSediment(10, 500).catch((err) => {
+            outputChannel.appendLine(`[reactor] sediment request from webview failed: ${err}`);
+        });
+    });
 
     if (workspaceRoot && reactorEnabled) {
         annoClient.start(workspaceRoot);

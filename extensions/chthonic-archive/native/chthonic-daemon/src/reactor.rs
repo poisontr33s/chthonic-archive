@@ -134,18 +134,14 @@ impl Drop for VulkanReactor {
 ///
 /// Returns `None` if no Vulkan device is available (graceful degradation).
 pub fn initialize() -> Result<Option<VulkanReactor>> {
-    // 1. Load Vulkan runtime
-    let entry = match unsafe { ash::Entry::load() } {
+    // 1. Load Vulkan runtime (hardened: System32-only on Windows)
+    let entry = match unsafe { load_vulkan_secure() } {
         Ok(e) => e,
         Err(err) => {
             eprintln!("[reactor] Vulkan not available: {err}");
             return Ok(None);
         }
     };
-
-    // 2. Verify DLL origin on Windows
-    crate::env::verify_vulkan_dll_origin()
-        .context("Vulkan DLL verification failed")?;
 
     // 3. Create instance (headless -- no surface extensions)
     let app_info = ash::vk::ApplicationInfo::default()
@@ -285,6 +281,60 @@ fn select_compute_device(
     }
 
     anyhow::bail!("no Vulkan device with compute queue found")
+}
+
+// ---------------------------------------------------------------------------
+// Secure Vulkan loader
+// ---------------------------------------------------------------------------
+
+/// Load vulkan-1.dll exclusively from System32 via `LoadLibraryExA` with
+/// `LOAD_LIBRARY_SEARCH_SYSTEM32`. This prevents a rogue vulkan-1.dll on
+/// PATH from being loaded by the standard DLL search order.
+///
+/// The DLL handle is intentionally leaked: vulkan-1.dll must remain loaded
+/// for the entire process lifetime, and `ash::Entry::from_static_fn` does
+/// not own the library.
+#[cfg(windows)]
+unsafe fn load_vulkan_secure() -> Result<ash::Entry> {
+    use windows_sys::Win32::System::LibraryLoader::{
+        GetProcAddress, LoadLibraryExA, LOAD_LIBRARY_SEARCH_SYSTEM32,
+    };
+
+    let handle = LoadLibraryExA(
+        b"vulkan-1.dll\0".as_ptr(),
+        std::ptr::null_mut(), // hFile: must be NULL
+        LOAD_LIBRARY_SEARCH_SYSTEM32,
+    );
+
+    if handle.is_null() {
+        anyhow::bail!(
+            "Failed to load vulkan-1.dll from System32. \
+             Ensure the Vulkan runtime is installed."
+        );
+    }
+
+    let proc = GetProcAddress(handle, b"vkGetInstanceProcAddr\0".as_ptr());
+    let Some(proc) = proc else {
+        anyhow::bail!("vkGetInstanceProcAddr not exported by vulkan-1.dll");
+    };
+
+    // SAFETY: vkGetInstanceProcAddr has a well-known C ABI. We transmute the
+    // FARPROC (extern "system" fn() -> isize) to the Vulkan function pointer type.
+    let get_instance_proc_addr: ash::vk::PFN_vkGetInstanceProcAddr =
+        std::mem::transmute(proc);
+
+    let static_fn = ash::StaticFn {
+        get_instance_proc_addr,
+    };
+
+    Ok(ash::Entry::from_static_fn(static_fn))
+}
+
+/// On non-Windows platforms, use the standard `ash::Entry::load()`.
+/// libvulkan.so/.dylib is loaded from standard system paths by the linker.
+#[cfg(not(windows))]
+unsafe fn load_vulkan_secure() -> Result<ash::Entry> {
+    ash::Entry::load().map_err(|e| anyhow::anyhow!("Vulkan not available: {e}"))
 }
 
 fn compile_sediment_shader() -> Result<Vec<u32>> {

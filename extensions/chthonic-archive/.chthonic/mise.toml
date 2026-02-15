@@ -5,7 +5,7 @@
 # Adding python to [tools] creates a shim race with uv.
 
 [tools]
-ruby = "4.0"
+ruby = "3.3"
 go   = "1.24"
 uv   = "latest"  # mise installs uv; uv's own shims own python/pip
 
