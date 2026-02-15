@@ -193,9 +193,10 @@
   "scripts": {
     "postinstall": "bun run scripts/bootstrap-env.ts",
     "setup:oxidized": "bun run scripts/setup-oxidized.ts",
+    "precompile": "bun run scripts/verify-host.ts",
     "vscode:prepublish": "bun run compile",
-    "build:ledger": "cargo build --manifest-path native/Cargo.toml -p entropy-ledger-host --release",
-    "build:wasm": "bun run scripts/build-wasm.ts",
+    "build:ledger": "bun run scripts/verify-host.ts && cargo build --manifest-path native/Cargo.toml -p entropy-ledger-host --release",
+    "build:wasm": "bun run scripts/verify-host.ts && bun run scripts/build-wasm.ts",
     "compile": "bun build src/extension.ts --outdir dist --target node --format cjs --external vscode --minify && bun build src/entropy/entropyWorker.ts --outfile dist/entropy-worker.js --target node --format cjs --minify",
     "watch": "bun build src/extension.ts --outdir dist --target node --format cjs --external vscode --watch",
     "watch:worker": "bun build src/entropy/entropyWorker.ts --outfile dist/entropy-worker.js --target node --format cjs --watch"
