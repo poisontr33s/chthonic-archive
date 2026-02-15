@@ -1,4 +1,5 @@
 #!/usr/bin/env pwsh
+
 # ╔════════════════════════════════════════════════════════════════════════════
 # ║ THE DECORATOR'S BLESSING: chthonic.ps1
 # ║ Module: Unified polyglot CLI router

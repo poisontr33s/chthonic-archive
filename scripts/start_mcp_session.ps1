@@ -12,9 +12,11 @@
 # ║ Flags/Modes: -EnsureClaude, -McpCmd <string>                              ║
 # ║ Cross-References: launch_claude_code.ps1, mcp/server.ts                   ║
 # ╚════════════════════════════════════════════════════════════════════════════╝
+
 <#
  Usage:
- pwsh -NoProfile -ExecutionPolicy Bypass -File .\scripts\start_mcp_session.ps1 [-EnsureClaude] [-McpCmd "bun run mcp/server.ts"]
+ pwsh -NoProfile -ExecutionPolicy Bypass -File 
+ .\scripts\start_mcp_session.ps1 [-EnsureClaude] [-McpCmd "bun run mcp/server.ts"]
 #>
 
 param(

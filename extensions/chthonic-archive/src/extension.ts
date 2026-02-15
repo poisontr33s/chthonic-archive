@@ -6,6 +6,8 @@ import { ChthonicChatProvider } from './sdk/webview';
 import { EntropyWorkerClient } from './entropy/entropyWorkerClient';
 import { EntropyDecorationProvider } from './entropy/entropyDecorations';
 import { AbyssalPaneProvider } from './entropy/archiveAbyssalView';
+import { PolyglotEntropyOrchestrator } from './polyglot/polyglotEntropyOrchestrator';
+import type { LedgerMode } from './polyglot/ledgerBroker';
 
 export function activate(context: vscode.ExtensionContext) {
     console.log('☥ Chthonic Archive extension activated');
@@ -33,12 +35,40 @@ export function activate(context: vscode.ExtensionContext) {
     const entropyScanIntervalMs = entropyConfig.get<number>('entropy.scanIntervalMs', 20000);
     const entropyDecorationDebounceMs = entropyConfig.get<number>('entropy.decorationDebounceMs', 120);
     const entropyDecorationBatch = entropyConfig.get<number>('entropy.decorationBatchSize', 240);
+    const entropyPolyglotEnabled = entropyConfig.get<boolean>('entropy.polyglotEnabled', true);
+    const entropyPythonScanIntervalMs = entropyConfig.get<number>('entropy.pythonScanIntervalMs', 30000);
+    const entropyLedgerSettleDebounceMs = entropyConfig.get<number>('entropy.ledgerSettleDebounceMs', 1400);
+    const entropyLedgerMode = entropyConfig.get<LedgerMode>('entropy.ledgerMode', 'validator');
+    const entropySolanaRpcUrl = entropyConfig.get<string>('entropy.solanaRpcUrl', 'http://127.0.0.1:8899');
+    const entropySolanaAutostartValidator = entropyConfig.get<boolean>('entropy.solanaAutostartValidator', false);
+    const entropySolanaLedgerHostBinaryPath = asOptionalPath(entropyConfig.get<string>('entropy.solanaLedgerHostBinaryPath', ''));
+    const entropySolanaWalletPath = asOptionalPath(entropyConfig.get<string>('entropy.solanaWalletPath', ''));
+    const entropySolanaIdlPath = asOptionalPath(entropyConfig.get<string>('entropy.solanaIdlPath', ''));
 
     const entropyClient = new EntropyWorkerClient(context, outputChannel);
-    const entropyDecorations = new EntropyDecorationProvider(
+    let entropyDecorations: EntropyDecorationProvider | undefined;
+    const polyglotOrchestrator = new PolyglotEntropyOrchestrator(
+        outputChannel,
+        entropyClient,
+        {
+            enabled: entropyPolyglotEnabled,
+            pythonScanIntervalMs: entropyPythonScanIntervalMs,
+            settleDebounceMs: entropyLedgerSettleDebounceMs,
+            ledgerMode: entropyLedgerMode,
+            solanaRpcUrl: entropySolanaRpcUrl,
+            solanaAutostartValidator: entropySolanaAutostartValidator,
+            solanaLedgerHostBinaryPath: entropySolanaLedgerHostBinaryPath,
+            solanaWalletPath: entropySolanaWalletPath,
+            solanaIdlPath: entropySolanaIdlPath,
+        },
+        (uris) => entropyDecorations?.enqueueExternalUpdates(uris),
+    );
+
+    entropyDecorations = new EntropyDecorationProvider(
         entropyClient,
         entropyDecorationDebounceMs,
         entropyDecorationBatch,
+        (uri) => polyglotOrchestrator.getTooltipFragments(uri),
     );
     const abyssalProvider = new AbyssalPaneProvider(context.extensionUri, entropyClient);
     abyssalProvider.setRootPath(workspaceRoot);
@@ -47,17 +77,20 @@ export function activate(context: vscode.ExtensionContext) {
         entropyClient,
         entropyDecorations,
         abyssalProvider,
+        polyglotOrchestrator,
         vscode.window.registerFileDecorationProvider(entropyDecorations),
         vscode.window.registerWebviewViewProvider(AbyssalPaneProvider.viewType, abyssalProvider),
     );
 
     if (workspaceRoot && entropyEnabled) {
         entropyClient.start(workspaceRoot, entropyMaxFiles, entropyScanIntervalMs);
+        void polyglotOrchestrator.start(workspaceRoot);
     }
 
     context.subscriptions.push(
         vscode.workspace.onDidSaveTextDocument((document) => {
             entropyClient.refreshFile(document.uri);
+            polyglotOrchestrator.onDidSaveDocument(document);
         }),
     );
 
@@ -65,6 +98,7 @@ export function activate(context: vscode.ExtensionContext) {
         vscode.commands.registerCommand('chthonic.entropyRefresh', () => {
             entropyClient.rescanNow();
             entropyClient.requestGraph(260);
+            polyglotOrchestrator.requestManualScan();
             vscode.window.showInformationMessage('Chthonic entropy scan requested');
         }),
     );
@@ -143,6 +177,7 @@ export function activate(context: vscode.ExtensionContext) {
             themeProvider.refresh();
             entropyClient.rescanNow();
             entropyClient.requestGraph(260);
+            polyglotOrchestrator.requestManualScan();
         })
     );
 }
@@ -171,6 +206,11 @@ function updateSSOTHash(item: vscode.StatusBarItem) {
         item.text = '$(shield) SSOT ??';
         item.show();
     }
+}
+
+function asOptionalPath(value: string): string | undefined {
+    const trimmed = value.trim();
+    return trimmed.length > 0 ? trimmed : undefined;
 }
 
 // --- Theme Tree ---

@@ -1,0 +1,16 @@
+[project]
+name = "chthonic-entropy-python"
+version = "0.1.0"
+description = "uv-managed free-threaded entropy scanner"
+requires-python = ">=3.14"
+dependencies = [
+    "ruff>=0.15.1,<0.16.0",
+]
+
+[project.optional-dependencies]
+ledger = [
+    "solana>=0.36.0,<0.37.0",
+]
+
+[tool.ruff]
+line-length = 120

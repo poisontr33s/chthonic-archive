@@ -1,13 +1,13 @@
 // ╔════════════════════════════════════════════════════════════════════════════╗
-// ║  THE DECORATOR'S BLESSING: main.rs                                       ║
-// ║  Vulkan rendering pipeline - visual truth incarnate                         ║
+// ║  THE DECORATOR'S BLESSING: main.rs
+// ║  Vulkan rendering pipeline - visual truth incarnate
 // ╠════════════════════════════════════════════════════════════════════════════╣
-// ║  Spectral Frequency: RED                                                    ║
-// ║  Architectural Role: 🏰 THE FORTRESS                                         ║
-// ║  Purpose: The Chthonic Archive: Triumvirate Ascension                       ║
+// ║  Spectral Frequency: RED                                                    
+// ║  Architectural Role: 🏰 THE FORTRESS                                         
+// ║  Purpose: The Chthonic Archive: Triumvirate Ascension
 // ╠════════════════════════════════════════════════════════════════════════════╣
-// ║  Cross-References (Bidirectional):                                      ║
-// ║    (Standalone file - no detected dependencies)                          ║
+// ║  Cross-References (Bidirectional):
+// ║    (Standalone file - no detected dependencies)
 // ╚════════════════════════════════════════════════════════════════════════════╝
 
 //! The Chthonic Archive: Triumvirate Ascension

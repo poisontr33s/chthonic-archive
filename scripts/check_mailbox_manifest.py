@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
+#-*- coding: utf-8 -*-
+
 """
 Mailbox manifest contract checks.
 
 KISS: fail fast on regressions that break consumers.
-
 Checks (schema v2+):
 - manifest_file present and equals mailbox_manifest.json
 - active.json list does NOT include mailbox_manifest.json (avoid self-loop)

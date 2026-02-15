@@ -1,44 +1,77 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
+#-*- coding: utf-8 -*-
+
 # ╔════════════════════════════════════════════════════════════════════════════╗
 # ║  THE DECORATOR'S BLESSING: bun_compliance_audit.py                       
 # ║  Python module: Severity, Violation, BunComplianceScanner, safe_print, main 
 # ╠════════════════════════════════════════════════════════════════════════════╣
 # ║  Spectral Frequency: WHITE                                                  
 # ║  Architectural Role: 🌿 THE GARDEN                                           
-# ║  Purpose: Bun Compliance Audit Script                                       
-# ║  Exports: Severity, Violation, BunComplianceScanner, safe_print, main       
+# ║  Purpose: Bun Compliance Audit Script.                                    
+# ║  Exports: Severity, Violation, BunComplianceScanner, safe_print, main.
 # ╠════════════════════════════════════════════════════════════════════════════╣
 # ║  Cross-References (Bidirectional):                                      
-# ║    (Standalone file - no detected dependencies)                          
-# ╚════════════════════════════════════════════════════════════════════════════╝
+# ║  (Standalone file - no detected dependencies)                          
+# ║  Bun Compliance Audit Script
+# ╠════════════════════════════════════════════════════════════════════════════╣
+# ║     @SID: TOOL_BUN_COMPLIANCE_AUDIT
+# ║     @Type: Compliance Audit Script
+# ║     @Context: Package Manager Standardization / SSOT Enforcement
+# ║     @SessionOrigin: CONTINUATION_2026_01_30
+# ║     @Implements: CONCEPT_BUN_COMPLIANCE_AUDIT
+# ╚═════════════════════════════════════════════════════════════════════════════╝
 
-#!/usr/bin/env python3
 """
 Bun Compliance Audit Script
-============================
-
+This script scans the repository for any usage of non-Bun package managers (npm, npx, yarn, pnpm) and reports violations with severity levels. It is designed to enforce the SSOT mandate of using Bun as the default package manager for JavaScript/TypeScript projects.
 Scans repository for non-Bun package manager usage and suggests corrections
 per SSOT §XIV.2 mandate: "Default package manager: bun"
-
 Usage:
     uv run python scripts/bun_compliance_audit.py                  # Full scan
     uv run python scripts/bun_compliance_audit.py --fix            # Auto-fix mode (destructive)
     uv run python scripts/bun_compliance_audit.py --ci             # CI mode (exit 1 on violations)
     uv run python scripts/bun_compliance_audit.py --verbose        # Detailed output
-
 Exit Codes:
     0 - Compliant (or violations fixed in --fix mode)
     1 - Violations found (--ci mode)
     2 - Script error
-
-Bun Documentation References:
+Violation Patterns:
+    - npx (except for documented MCP Inspector usage)
+    - yarn dlx
+    - pnpm dlx
+    - npm install / npm i
+    - yarn add
+    - pnpm add
+    - npm run
+    - yarn run
+    - pnpm run
+    - npm test / yarn test
+    - References to package-lock.json, yarn.lock, pnpm-lock.yaml
+    - Direct usage of 'node' for script execution (context-dependent)
+Exclusions:
+    - Documented exceptions (e.g., MCP Inspector)
+    - Documentation of what NOT to do (migration guides, changelogs)
+    - Educational documentation files (migration guides, historical setup)
+    - Package registry mentions (neutral context)
+    - This script's own violation patterns (meta-reference)
+    - Documentation showing equivalence or detection patterns
+    - Lockfile documentation (showing what the scanner detects)
+    - Example output in documentation (showing what violations look like)
+    - Neutral lockfile mentions (ignore lists, file enumerations)
+    - node_modules internals (vendor code)
+Notes:
+    - The script is designed to be conservative and avoid false positives by using exclusion patterns.
+    - Auto-fix mode is a placeholder and requires careful implementation to avoid unintended changes.
+    - CI mode is intended for integration into pipelines to enforce compliance on pull requests.
+    - Verbose mode provides detailed output for debugging and remediation.
+Documentation References:
     - bunx: https://bun.sh/docs/cli/bunx
     - bun install: https://bun.sh/docs/cli/install
     - bun run: https://bun.sh/docs/cli/run
     - bun test: https://bun.sh/docs/test/writing
-"""
+    """
 
+from __future__ import annotations
 import re
 import sys
 from pathlib import Path

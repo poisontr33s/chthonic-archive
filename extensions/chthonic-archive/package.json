@@ -135,12 +135,67 @@
           "default": 240,
           "minimum": 64,
           "description": "Maximum URI updates emitted per FileDecorationProvider flush."
+        },
+        "chthonic.entropy.polyglotEnabled": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable uv/Ruby sidecars, Merkle accumulation, and Solana settlement scaffolding."
+        },
+        "chthonic.entropy.pythonScanIntervalMs": {
+          "type": "number",
+          "default": 30000,
+          "minimum": 10000,
+          "description": "Interval for uv-managed ruff sidecar scans."
+        },
+        "chthonic.entropy.ledgerSettleDebounceMs": {
+          "type": "number",
+          "default": 1400,
+          "minimum": 300,
+          "description": "Debounce window for Merkle settlement writes triggered by save/commit."
+        },
+        "chthonic.entropy.ledgerMode": {
+          "type": "string",
+          "enum": [
+            "validator",
+            "bankrun"
+          ],
+          "default": "validator",
+          "description": "Ledger backend mode. 'validator' uses the Rust sidecar host; 'bankrun' uses in-memory simulation."
+        },
+        "chthonic.entropy.solanaRpcUrl": {
+          "type": "string",
+          "default": "http://127.0.0.1:8899",
+          "description": "RPC URL for local Solana validator settlement probes."
+        },
+        "chthonic.entropy.solanaAutostartValidator": {
+          "type": "boolean",
+          "default": false,
+          "description": "Attempt to autostart solana-test-validator in the workspace."
+        },
+        "chthonic.entropy.solanaLedgerHostBinaryPath": {
+          "type": "string",
+          "default": "",
+          "description": "Optional absolute path to the Rust entropy-ledger-host binary."
+        },
+        "chthonic.entropy.solanaWalletPath": {
+          "type": "string",
+          "default": "",
+          "description": "Optional absolute path to payer keypair JSON for the Rust ledger host."
+        },
+        "chthonic.entropy.solanaIdlPath": {
+          "type": "string",
+          "default": "",
+          "description": "Optional absolute path to the Anchor IDL consumed by the Rust ledger host."
         }
       }
     }
   },
   "scripts": {
+    "postinstall": "bun run scripts/bootstrap-env.ts",
+    "setup:oxidized": "bun run scripts/setup-oxidized.ts",
     "vscode:prepublish": "bun run compile",
+    "build:ledger": "cargo build --manifest-path native/Cargo.toml -p entropy-ledger-host --release",
+    "build:wasm": "bun run scripts/build-wasm.ts",
     "compile": "bun build src/extension.ts --outdir dist --target node --format cjs --external vscode --minify && bun build src/entropy/entropyWorker.ts --outfile dist/entropy-worker.js --target node --format cjs --minify",
     "watch": "bun build src/extension.ts --outdir dist --target node --format cjs --external vscode --watch",
     "watch:worker": "bun build src/entropy/entropyWorker.ts --outfile dist/entropy-worker.js --target node --format cjs --watch"

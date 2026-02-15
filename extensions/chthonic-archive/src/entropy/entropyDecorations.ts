@@ -13,6 +13,7 @@ export class EntropyDecorationProvider implements vscode.FileDecorationProvider,
         private readonly workerClient: EntropyWorkerClient,
         private debounceMs: number,
         private maxPerFlush: number,
+        private readonly tooltipAugmentProvider?: (uri: vscode.Uri) => string[],
     ) {
         this.workerClient.onDidUpdateRecords((uris) => this.enqueueUpdates(uris));
     }
@@ -40,18 +41,26 @@ export class EntropyDecorationProvider implements vscode.FileDecorationProvider,
         }
 
         const color = entropyColor(record);
-        const tooltip = [
+        const tooltipFragments = [
             `Entropy ${(record.entropy * 100).toFixed(0)}%`,
             `Complexity ${record.complexity}`,
             `Debt ${record.debt}`,
             `Freshness ${(record.freshness * 100).toFixed(0)}%`,
-        ].join(' • ');
+        ];
+
+        if (this.tooltipAugmentProvider) {
+            tooltipFragments.push(...this.tooltipAugmentProvider(uri));
+        }
 
         return {
             color,
-            tooltip,
+            tooltip: tooltipFragments.join('\n'),
             propagate: false,
         };
+    }
+
+    enqueueExternalUpdates(uris: vscode.Uri[]): void {
+        this.enqueueUpdates(uris);
     }
 
     private enqueueUpdates(uris: vscode.Uri[]): void {

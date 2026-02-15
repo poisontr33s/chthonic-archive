@@ -1,0 +1,361 @@
+import * as fs from 'fs/promises';
+import * as path from 'path';
+import * as vscode from 'vscode';
+import { EntropyMerkleAccumulator } from './merkleAccumulator';
+import { PolyglotBroker } from './polyglotBroker';
+import { LedgerBroker, type LedgerMode } from './ledgerBroker';
+import type {
+    LoreEvent,
+    PolyglotScanReason,
+    RuffFileSummary,
+} from './types';
+import { EntropyWorkerClient } from '../entropy/entropyWorkerClient';
+
+interface PolyglotEntropyOrchestratorOptions {
+    enabled: boolean;
+    pythonScanIntervalMs: number;
+    settleDebounceMs: number;
+    ledgerMode: LedgerMode;
+    solanaRpcUrl: string;
+    solanaAutostartValidator: boolean;
+    solanaLedgerHostBinaryPath?: string;
+    solanaWalletPath?: string;
+    solanaIdlPath?: string;
+}
+
+interface TooltipAugment {
+    ruffViolations: number;
+    loreLine?: string;
+}
+
+type DecorationRefreshFn = (uris: vscode.Uri[]) => void;
+
+export class PolyglotEntropyOrchestrator implements vscode.Disposable {
+    private readonly broker: PolyglotBroker;
+    private readonly merkle = new EntropyMerkleAccumulator();
+    private readonly ledger: LedgerBroker;
+    private readonly tooltipAugments = new Map<string, TooltipAugment>();
+
+    private rootPath: string | null = null;
+    private scanTimer: NodeJS.Timeout | null = null;
+    private settleTimer: NodeJS.Timeout | null = null;
+    private gitPollTimer: NodeJS.Timeout | null = null;
+    private gitHeadSnapshot: string | null = null;
+    private pendingSettleReason: PolyglotScanReason | null = null;
+    private readonly disposables: vscode.Disposable[] = [];
+
+    constructor(
+        private readonly output: vscode.OutputChannel,
+        private readonly workerClient: EntropyWorkerClient,
+        private readonly options: PolyglotEntropyOrchestratorOptions,
+        private readonly requestDecorationRefresh: DecorationRefreshFn,
+    ) {
+        this.broker = new PolyglotBroker(output);
+        this.ledger = new LedgerBroker(output, {
+            mode: this.options.ledgerMode,
+            rpcUrl: this.options.solanaRpcUrl,
+            autostartValidator: this.options.solanaAutostartValidator,
+            hostBinaryPath: this.options.solanaLedgerHostBinaryPath,
+            walletPath: this.options.solanaWalletPath,
+            idlPath: this.options.solanaIdlPath,
+        });
+
+        this.disposables.push(
+            this.broker.onDidReceiveRuff((event) => this.applyRuffSummary(event.files)),
+            this.broker.onDidReceiveLore((event) => this.applyLore(event)),
+            this.workerClient.onDidUpdateRecords((uris) => this.captureEntropyLeaves(uris)),
+        );
+    }
+
+    async start(rootPath: string): Promise<void> {
+        this.rootPath = rootPath;
+        if (!this.options.enabled) {
+            return;
+        }
+
+        this.broker.start(rootPath);
+        await this.ledger.start(rootPath);
+        this.broker.requestScan({
+            type: 'scan',
+            reason: 'manual',
+            root: rootPath,
+        });
+        this.startScanLoop();
+        this.startGitWatcher();
+    }
+
+    onDidSaveDocument(document: vscode.TextDocument): void {
+        if (!this.rootPath || !this.options.enabled || document.uri.scheme !== 'file') {
+            return;
+        }
+        const relative = toRelativePath(this.rootPath, document.uri.fsPath);
+        if (!relative) {
+            return;
+        }
+        this.broker.requestScan({
+            type: 'scan',
+            reason: 'save',
+            root: this.rootPath,
+            files: [relative],
+        });
+        this.scheduleSettlement('save');
+    }
+
+    requestManualScan(): void {
+        if (!this.rootPath || !this.options.enabled) {
+            return;
+        }
+        this.broker.requestScan({
+            type: 'scan',
+            reason: 'manual',
+            root: this.rootPath,
+        });
+    }
+
+    getTooltipFragments(uri: vscode.Uri): string[] {
+        if (!this.rootPath || uri.scheme !== 'file') {
+            return [];
+        }
+        const relative = toRelativePath(this.rootPath, uri.fsPath);
+        if (!relative) {
+            return [];
+        }
+
+        const augment = this.tooltipAugments.get(relative);
+        if (!augment) {
+            return [];
+        }
+        const output: string[] = [];
+        if (augment.ruffViolations > 0) {
+            output.push(`Ruff ${augment.ruffViolations} violation${augment.ruffViolations === 1 ? '' : 's'}`);
+        }
+        if (augment.loreLine) {
+            output.push(augment.loreLine);
+        }
+        return output;
+    }
+
+    dispose(): void {
+        if (this.scanTimer) {
+            clearInterval(this.scanTimer);
+            this.scanTimer = null;
+        }
+        if (this.settleTimer) {
+            clearTimeout(this.settleTimer);
+            this.settleTimer = null;
+        }
+        if (this.gitPollTimer) {
+            clearInterval(this.gitPollTimer);
+            this.gitPollTimer = null;
+        }
+        this.broker.dispose();
+        this.ledger.dispose();
+        this.disposables.forEach((entry) => entry.dispose());
+        this.disposables.length = 0;
+    }
+
+    private captureEntropyLeaves(uris: vscode.Uri[]): void {
+        if (!this.options.enabled) {
+            return;
+        }
+        for (const uri of uris) {
+            const record = this.workerClient.getRecord(uri);
+            if (!record) {
+                continue;
+            }
+            const augment = this.tooltipAugments.get(record.path);
+            this.merkle.upsert({
+                path: record.path,
+                entropy: record.entropy,
+                complexity: record.complexity,
+                debt: record.debt,
+                freshness: record.freshness,
+                ruffViolations: augment?.ruffViolations ?? 0,
+                updatedAt: Date.now(),
+            });
+        }
+    }
+
+    private applyRuffSummary(files: RuffFileSummary[]): void {
+        if (!this.rootPath || !this.options.enabled) {
+            return;
+        }
+        const changedUris: vscode.Uri[] = [];
+        for (const summary of files) {
+            const existing = this.tooltipAugments.get(summary.path);
+            const next: TooltipAugment = {
+                ruffViolations: summary.violations,
+                loreLine: existing?.loreLine,
+            };
+            this.tooltipAugments.set(summary.path, next);
+
+            const uri = vscode.Uri.file(path.join(this.rootPath, summary.path));
+            changedUris.push(uri);
+
+            const record = this.workerClient.getRecord(uri);
+            if (record) {
+                this.merkle.upsert({
+                    path: record.path,
+                    entropy: record.entropy,
+                    complexity: record.complexity,
+                    debt: record.debt,
+                    freshness: record.freshness,
+                    ruffViolations: summary.violations,
+                    updatedAt: Date.now(),
+                });
+
+                if (record.entropy >= 0.45 || summary.violations > 0) {
+                    this.broker.requestLore({
+                        type: 'lore-request',
+                        root: this.rootPath,
+                        path: summary.path,
+                        entropy: record.entropy,
+                        violations: summary.violations,
+                    });
+                }
+            }
+        }
+        if (changedUris.length > 0) {
+            this.requestDecorationRefresh(changedUris);
+        }
+    }
+
+    private applyLore(event: LoreEvent): void {
+        if (!this.rootPath || !this.options.enabled) {
+            return;
+        }
+        if (event.root !== this.rootPath) {
+            return;
+        }
+        const existing = this.tooltipAugments.get(event.path);
+        this.tooltipAugments.set(event.path, {
+            ruffViolations: existing?.ruffViolations ?? event.violations,
+            loreLine: event.line,
+        });
+        this.requestDecorationRefresh([
+            vscode.Uri.file(path.join(this.rootPath, event.path)),
+        ]);
+    }
+
+    private startScanLoop(): void {
+        if (this.scanTimer || !this.rootPath) {
+            return;
+        }
+        const interval = Math.max(this.options.pythonScanIntervalMs, 10_000);
+        this.scanTimer = setInterval(() => {
+            if (!this.rootPath) {
+                return;
+            }
+            this.broker.requestScan({
+                type: 'scan',
+                reason: 'interval',
+                root: this.rootPath,
+            });
+        }, interval);
+    }
+
+    private startGitWatcher(): void {
+        if (!this.rootPath || this.gitPollTimer) {
+            return;
+        }
+        this.gitHeadSnapshot = null;
+        this.gitPollTimer = setInterval(async () => {
+            if (!this.rootPath) {
+                return;
+            }
+            const next = await readGitHead(this.rootPath);
+            if (!next) {
+                return;
+            }
+            if (!this.gitHeadSnapshot) {
+                this.gitHeadSnapshot = next;
+                return;
+            }
+            if (next !== this.gitHeadSnapshot) {
+                this.gitHeadSnapshot = next;
+                this.output.appendLine('[polyglot] git HEAD changed, scheduling Merkle settlement.');
+                if (this.rootPath) {
+                    this.broker.requestScan({
+                        type: 'scan',
+                        reason: 'commit',
+                        root: this.rootPath,
+                    });
+                }
+                this.scheduleSettlement('commit');
+            }
+        }, 6_000);
+    }
+
+    private scheduleSettlement(reason: PolyglotScanReason): void {
+        if (!this.options.enabled) {
+            return;
+        }
+        this.pendingSettleReason = reason === 'commit'
+            ? 'commit'
+            : (this.pendingSettleReason ?? reason);
+        if (this.settleTimer) {
+            clearTimeout(this.settleTimer);
+        }
+        this.settleTimer = setTimeout(() => {
+            this.settleTimer = null;
+            void this.flushSettlement();
+        }, Math.max(this.options.settleDebounceMs, 300));
+    }
+
+    private async flushSettlement(): Promise<void> {
+        const reason = this.pendingSettleReason ?? 'manual';
+        this.pendingSettleReason = null;
+
+        const settlement = this.merkle.settle(reason);
+        if (!settlement) {
+            return;
+        }
+
+        const receipt = await this.ledger.commitEntropy(settlement);
+        const message = [
+            `[polyglot] settled Merkle root ${settlement.rootHash.slice(0, 16)}...`,
+            `leaves=${settlement.leafCount}`,
+            `mode=${receipt.mode}`,
+        ];
+        if (receipt.txSignature) {
+            message.push(`tx=${receipt.txSignature}`);
+        }
+        message.push(`detail=${receipt.detail}`);
+        this.output.appendLine(message.join(' '));
+    }
+}
+
+async function readGitHead(rootPath: string): Promise<string | null> {
+    const gitDir = path.join(rootPath, '.git');
+    const headPath = path.join(gitDir, 'HEAD');
+    let head = '';
+    try {
+        head = await fs.readFile(headPath, 'utf8');
+    } catch {
+        return null;
+    }
+    const trimmed = head.trim();
+    if (!trimmed) {
+        return null;
+    }
+    if (!trimmed.startsWith('ref:')) {
+        return trimmed;
+    }
+
+    const refPath = trimmed.slice(4).trim();
+    const absoluteRef = path.join(gitDir, refPath);
+    try {
+        const refValue = await fs.readFile(absoluteRef, 'utf8');
+        return `ref:${refPath}:${refValue.trim()}`;
+    } catch {
+        return `ref:${refPath}:missing`;
+    }
+}
+
+function toRelativePath(rootPath: string, absolutePath: string): string | null {
+    const relative = path.relative(rootPath, absolutePath);
+    if (!relative || relative.startsWith('..') || path.isAbsolute(relative)) {
+        return null;
+    }
+    return relative.replace(/\\/g, '/');
+}

@@ -91,12 +91,28 @@ export class AbyssalPaneProvider implements vscode.WebviewViewProvider, vscode.D
 
     private getHtml(webview: vscode.Webview): string {
         const nonce = createNonce();
+        const rendererScriptUri = webview.asWebviewUri(
+            vscode.Uri.joinPath(this.extensionUri, 'media', 'abyssalPane.js'),
+        );
+        const wasmModuleUri = webview.asWebviewUri(
+            vscode.Uri.joinPath(this.extensionUri, 'media', 'wasm', 'pkg', 'entropy_renderer_wasm.js'),
+        );
+        const wasmBinaryUri = webview.asWebviewUri(
+            vscode.Uri.joinPath(this.extensionUri, 'media', 'wasm', 'pkg', 'entropy_renderer_wasm_bg.wasm'),
+        );
+
         const csp = [
             "default-src 'none'",
-            `img-src ${webview.cspSource} data: https:`,
+            `img-src ${webview.cspSource} data:`,
             `style-src ${webview.cspSource} 'unsafe-inline'`,
-            `script-src 'nonce-${nonce}' https://cdn.jsdelivr.net`,
+            `script-src 'nonce-${nonce}' ${webview.cspSource}`,
+            `connect-src ${webview.cspSource}`,
         ].join('; ');
+
+        const bootstrap = JSON.stringify({
+            wasmModuleUri: wasmModuleUri.toString(),
+            wasmBinaryUri: wasmBinaryUri.toString(),
+        });
 
         return `<!DOCTYPE html>
 <html lang="en">
@@ -171,7 +187,7 @@ export class AbyssalPaneProvider implements vscode.WebviewViewProvider, vscode.D
         }
         .stat-value {
             margin-top: 4px;
-            font-size: 16px;
+            font-size: 14px;
             color: var(--abyss-fg);
         }
         .canvas-shell {
@@ -181,7 +197,7 @@ export class AbyssalPaneProvider implements vscode.WebviewViewProvider, vscode.D
             overflow: hidden;
             background: linear-gradient(160deg, rgba(0, 0, 0, 0.14), rgba(0, 0, 0, 0.04));
         }
-        #graph {
+        #graph-canvas {
             width: 100%;
             height: 100%;
             min-height: 360px;
@@ -214,7 +230,7 @@ export class AbyssalPaneProvider implements vscode.WebviewViewProvider, vscode.D
 <body>
     <section class="header">
         <h1 class="title">Abyssal Pane · Root System</h1>
-        <p class="subtitle">Layout computed off-main-thread, rendered with D3 in webview.</p>
+        <p class="subtitle">Rust/WASM bridge to WebGPU, canvas fallback when binaries are absent.</p>
     </section>
     <section class="stats">
         <article class="stat">
@@ -226,12 +242,12 @@ export class AbyssalPaneProvider implements vscode.WebviewViewProvider, vscode.D
             <div id="stat-entropy" class="stat-value">0%</div>
         </article>
         <article class="stat">
-            <div class="stat-label">Last Scan</div>
-            <div id="stat-scan" class="stat-value">n/a</div>
+            <div class="stat-label">Render Mode</div>
+            <div id="stat-renderer" class="stat-value">booting</div>
         </article>
     </section>
     <section class="canvas-shell">
-        <svg id="graph" role="img" aria-label="Abyssal dependency graph"></svg>
+        <canvas id="graph-canvas" aria-label="Abyssal dependency graph"></canvas>
         <div class="legend">
             <div class="legend-row"><span class="legend-dot" style="background:#7cae67"></span>low entropy</div>
             <div class="legend-row"><span class="legend-dot" style="background:#c9a962"></span>medium entropy</div>
@@ -239,189 +255,10 @@ export class AbyssalPaneProvider implements vscode.WebviewViewProvider, vscode.D
         </div>
     </section>
 
-    <script nonce="${nonce}" src="https://cdn.jsdelivr.net/npm/d3@7/dist/d3.min.js"></script>
     <script nonce="${nonce}">
-        const vscode = acquireVsCodeApi();
-        let latestGraph = null;
-
-        const statFiles = document.getElementById('stat-files');
-        const statEntropy = document.getElementById('stat-entropy');
-        const statScan = document.getElementById('stat-scan');
-
-        function clamp01(value) {
-            return Math.max(0, Math.min(1, value));
-        }
-
-        function parseCssColor(value) {
-            if (!value) return null;
-            const raw = value.trim();
-            if (raw.startsWith('#')) {
-                let hex = raw.slice(1);
-                if (hex.length === 3) {
-                    hex = hex.split('').map((ch) => ch + ch).join('');
-                }
-                if (hex.length < 6) return null;
-                return [
-                    parseInt(hex.slice(0, 2), 16),
-                    parseInt(hex.slice(2, 4), 16),
-                    parseInt(hex.slice(4, 6), 16),
-                ];
-            }
-            const rgbMatch = raw.match(/rgba?\\((\\d+),\\s*(\\d+),\\s*(\\d+)/i);
-            if (rgbMatch) {
-                return [Number(rgbMatch[1]), Number(rgbMatch[2]), Number(rgbMatch[3])];
-            }
-            return null;
-        }
-
-        function mix(a, b, t) {
-            return Math.round((a * (1 - t)) + (b * t));
-        }
-
-        function toCss(rgb) {
-            return 'rgb(' + rgb[0] + ', ' + rgb[1] + ', ' + rgb[2] + ')';
-        }
-
-        function sepiaShift(rgb, darkness) {
-            const sepia = [112, 93, 68];
-            const factor = clamp01((darkness * 0.55) + 0.15);
-            return [
-                mix(rgb[0], sepia[0], factor),
-                mix(rgb[1], sepia[1], factor),
-                mix(rgb[2], sepia[2], factor),
-            ];
-        }
-
-        function darken(rgb, darkness) {
-            const factor = 1 - (darkness * 0.28);
-            return rgb.map((channel) => Math.round(channel * factor));
-        }
-
-        function computeDarkness() {
-            const now = new Date();
-            const hour = now.getHours() + (now.getMinutes() / 60);
-            const daylight = (Math.cos(((hour - 12) / 12) * Math.PI) + 1) / 2;
-            return clamp01(1 - daylight);
-        }
-
-        function applyCircadianTheme() {
-            const css = getComputedStyle(document.documentElement);
-            const baseBg = parseCssColor(css.getPropertyValue('--vscode-editor-background')) || [19, 15, 12];
-            const basePanel = parseCssColor(css.getPropertyValue('--vscode-editorWidget-background')) || [30, 24, 20];
-            const baseFg = parseCssColor(css.getPropertyValue('--vscode-editor-foreground')) || [226, 215, 205];
-
-            const darkness = computeDarkness();
-            const shiftedBg = darken(sepiaShift(baseBg, darkness), darkness);
-            const shiftedPanel = darken(sepiaShift(basePanel, darkness), darkness * 0.85);
-            const shiftedFg = sepiaShift(baseFg, darkness * 0.25);
-            const accent = sepiaShift([201, 169, 98], darkness * 0.45);
-
-            document.documentElement.style.setProperty('--abyss-bg', toCss(shiftedBg));
-            document.documentElement.style.setProperty('--abyss-panel', toCss(shiftedPanel));
-            document.documentElement.style.setProperty('--abyss-fg', toCss(shiftedFg));
-            document.documentElement.style.setProperty('--abyss-accent', toCss(accent));
-        }
-
-        function entropyColor(entropy) {
-            if (entropy >= 0.78) return '#8a4c2a';
-            if (entropy >= 0.48) return '#c9a962';
-            return '#7cae67';
-        }
-
-        function renderGraph(graph) {
-            if (!graph || !Array.isArray(graph.nodes)) {
-                return;
-            }
-            if (!window.d3) {
-                return;
-            }
-
-            latestGraph = graph;
-            const svg = d3.select('#graph');
-            const width = Math.max(320, svg.node().clientWidth);
-            const height = Math.max(240, svg.node().clientHeight);
-            svg.attr('viewBox', [0, 0, width, height]);
-            svg.selectAll('*').remove();
-
-            const centerX = width / 2;
-            const centerY = height / 2;
-            const scale = Math.min(width, height) / 980;
-
-            const nodeById = new Map(graph.nodes.map((node) => [node.id, node]));
-            const links = graph.edges
-                .map((edge) => {
-                    const source = nodeById.get(edge.source);
-                    const target = nodeById.get(edge.target);
-                    if (!source || !target) return null;
-                    return { source, target, weight: edge.weight || 1 };
-                })
-                .filter(Boolean);
-
-            const root = svg.append('g');
-            const linkLayer = root.append('g').attr('stroke-linecap', 'round');
-            linkLayer.selectAll('line')
-                .data(links)
-                .enter()
-                .append('line')
-                .attr('x1', (entry) => centerX + (entry.source.x * scale))
-                .attr('y1', (entry) => centerY + (entry.source.y * scale))
-                .attr('x2', (entry) => centerX + (entry.target.x * scale))
-                .attr('y2', (entry) => centerY + (entry.target.y * scale))
-                .attr('stroke', 'var(--abyss-border)')
-                .attr('stroke-opacity', 0.35)
-                .attr('stroke-width', (entry) => 0.8 + (entry.weight * 0.4));
-
-            const nodes = root.append('g').selectAll('circle')
-                .data(graph.nodes)
-                .enter()
-                .append('circle')
-                .attr('cx', (node) => centerX + (node.x * scale))
-                .attr('cy', (node) => centerY + (node.y * scale))
-                .attr('r', (node) => 2.8 + Math.min(5, node.degree * 0.3))
-                .attr('fill', (node) => entropyColor(node.entropy))
-                .attr('fill-opacity', 0.92)
-                .attr('stroke', 'rgba(0, 0, 0, 0.35)')
-                .attr('stroke-width', 0.6)
-                .style('cursor', 'pointer');
-
-            nodes.append('title')
-                .text((node) => node.label + ' • entropy ' + Math.round(node.entropy * 100) + '%');
-
-            nodes.on('dblclick', (_, node) => {
-                vscode.postMessage({ type: 'openFile', path: node.id });
-            });
-        }
-
-        window.addEventListener('resize', () => {
-            if (latestGraph) {
-                renderGraph(latestGraph);
-            }
-        });
-
-        window.addEventListener('message', (event) => {
-            const message = event.data;
-            if (!message || !message.type) {
-                return;
-            }
-            if (message.type === 'graph') {
-                renderGraph(message.graph);
-                return;
-            }
-            if (message.type === 'snapshot' && message.snapshot) {
-                const snapshot = message.snapshot;
-                statFiles.textContent = String(snapshot.totalFiles || 0);
-                statEntropy.textContent = Math.round((snapshot.averageEntropy || 0) * 100) + '%';
-                const last = snapshot.lastScanDurationMs
-                    ? (snapshot.lastScanDurationMs + 'ms')
-                    : 'n/a';
-                statScan.textContent = last;
-            }
-        });
-
-        applyCircadianTheme();
-        setInterval(applyCircadianTheme, 60_000);
-        vscode.postMessage({ type: 'ready' });
+        window.__CHTHONIC_ABYSSAL__ = ${bootstrap};
     </script>
+    <script nonce="${nonce}" type="module" src="${rendererScriptUri}"></script>
 </body>
 </html>`;
     }

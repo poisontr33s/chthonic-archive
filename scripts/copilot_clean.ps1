@@ -1,4 +1,5 @@
 #!/usr/bin/env pwsh
+
 # ╔════════════════════════════════════════════════════════════════════════════
 # ║ THE DECORATOR'S BLESSING: copilot_clean.ps1
 # ║ Module: Copilot CLI launcher profile

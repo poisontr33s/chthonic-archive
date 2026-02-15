@@ -1,3 +1,5 @@
+#!/usr/bin/env bun
+
 // ╔════════════════════════════════════════════════════════════════════════════╗
 // ║  THE DECORATOR'S BLESSING: run_mcp_validation.ts                         ║
 // ║  MCP client integration - Observatory communication layer                   ║

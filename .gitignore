@@ -66,6 +66,8 @@
 !extensions/*/src/*.ts
 !extensions/*/src/entropy/
 !extensions/*/src/entropy/*.ts
+!extensions/*/src/polyglot/
+!extensions/*/src/polyglot/*.ts
 !extensions/*/dist/
 !extensions/*/dist/*.js
 !extensions/*/themes/
@@ -74,6 +76,20 @@
 !extensions/*/icons/*.svg
 !extensions/*/resources/
 !extensions/*/resources/*.svg
+!extensions/*/media/
+!extensions/*/media/**
+!extensions/*/native/
+!extensions/*/native/**
+!extensions/*/scripts/
+!extensions/*/scripts/*.ts
+!extensions/*/.chthonic/
+!extensions/*/.chthonic/**
+extensions/*/.chthonic/venv/
+extensions/*/.chthonic/python/.venv/
+extensions/*/.chthonic/python/uv.lock
+extensions/*/.chthonic/rust-target/
+extensions/*/native/target/
+extensions/*/media/wasm/pkg/
 extensions/*/node_modules/
 extensions/*/bun.lock
 

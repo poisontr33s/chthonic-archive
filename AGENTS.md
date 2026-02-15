@@ -10,6 +10,12 @@ description: OpenAI Codex behavioral configuration and execution discipline
 
 This file provides guidance to OpenAI Codex when working with code in this repository.
 
+## Mandatories
+
+- **File governance (WPTG):** [WET_PAPER_TO_GOLD_METHODOLOGY.md](WET_PAPER_TO_GOLD_METHODOLOGY.md) — every file is gold. Agents propose; user decides.
+
+
+
 > **Shared Config:** See [AGENT_COMMON.md](AGENT_COMMON.md) for execution invariants, bifurcation rules, and triad references.
 
 ---
