@@ -24,7 +24,7 @@ param(
     [switch]$Json
 )
 
-$VERSION = "3.1.0"
+$VERSION = "3.2.0"
 $SCRIPT_DIR = Split-Path -Parent $MyInvocation.MyCommand.Path
 $REPO_ROOT = Split-Path -Parent $SCRIPT_DIR
 $LIB_DIR = Join-Path $SCRIPT_DIR "lib"
