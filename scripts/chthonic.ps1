@@ -24,7 +24,7 @@ param(
     [switch]$Json
 )
 
-$VERSION = "3.0.0"
+$VERSION = "3.1.0"
 $SCRIPT_DIR = Split-Path -Parent $MyInvocation.MyCommand.Path
 $REPO_ROOT = Split-Path -Parent $SCRIPT_DIR
 $LIB_DIR = Join-Path $SCRIPT_DIR "lib"
@@ -199,6 +199,7 @@ Usage: chthonic [--version] [--help] <domain> [<action>] [<args>]
   env [--quiet]           Activate polyglot environment
   status [--json]         Show all tool versions (verbose)
   doctor [--fix] [--json] Check versions + EOL via endoflife.date; --fix upgrades
+  doctor --origins        Show install methodology per tool (path + origin)
   detect                  Detect IDE and environment context
 
   ide launch|detect|reset IDE management
@@ -709,9 +710,9 @@ function Show-Origins {
         @{ Path = "C:\Go\bin\";      Label = "system Go (MSI from go.dev)" },
         @{ Path = "%APPDATA%\rv\";   Label = "rv-managed Ruby versions" }
     )
-    foreach ($d in $dirs) {
-        Write-Host "  $($d.Path.PadRight(20))" -NoNewline -ForegroundColor $C
-        Write-Host $d.Label -ForegroundColor $D
+    foreach ($dir in $dirs) {
+        Write-Host "  $($dir.Path.PadRight(20))" -NoNewline -ForegroundColor $C
+        Write-Host $dir.Label -ForegroundColor $D
     }
     Write-Host ("="*72) -ForegroundColor $D
     Write-Host ""
@@ -940,7 +941,8 @@ switch ($Domain) {
     "doctor" {
         $fixFlag = $Action -eq "--fix" -or $Action -eq "-f"
         $jsonFlag = $Json -or $Action -eq "--json"
-        Invoke-Doctor -Json:$jsonFlag -Fix:$fixFlag
+        $originsFlag = $Action -eq "--origins"
+        Invoke-Doctor -Json:$jsonFlag -Fix:$fixFlag -Origins:$originsFlag
         exit 0
     }
     "detect" {
