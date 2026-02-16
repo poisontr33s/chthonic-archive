@@ -176,9 +176,11 @@ function Show-StatusBanner {
     if ($mdbookVer) { Write-Host "  mdbook $mdbookVer" -NoNewline -ForegroundColor $D }
     Write-Host ""
 
-    # Go
-    $goVer = ver { go version }; if ($goVer -match 'go(\d+\.\d+\.\d+)') { $goVer = $matches[1] } else { $goVer = $null }
-    Write-Host "  go    " -NoNewline -ForegroundColor $C
+    # Go (try PATH, then goup)
+    $goVer = ver { go version }
+    if (-not $goVer) { $goupGo = Join-Path $env:USERPROFILE ".goup\current\bin\go.exe"; if (Test-Path $goupGo) { $goVer = ver { & $goupGo version } } }
+    if ($goVer -match 'go(\d+\.\d+\.\d+)') { $goVer = $matches[1] } else { $goVer = $null }
+    Write-Host "  go      " -NoNewline -ForegroundColor $C
     if ($goVer) { Write-Host "go $goVer" -ForegroundColor $W } else { Write-Host "go ?" -ForegroundColor $R }
 
     # Infra line
@@ -591,7 +593,15 @@ function Get-InstalledVersion {
             "python"     { return (uv run python -c "import sys; print(f'{sys.version_info.major}.{sys.version_info.minor}.{sys.version_info.micro}')" 2>$null) }
             "bun"        { return (bun --version 2>$null) }
             "rust"       { $v = rustc -V 2>$null; if ($v -match '(\d+\.\d+\.\d+)') { return $matches[1] }; return $null }
-            "go"         { $v = go version 2>$null; if ($v -match 'go(\d+\.\d+\.\d+)') { return $matches[1] }; return $null }
+            "go"         {
+                # Try PATH first, then goup-managed Go
+                $v = try { go version 2>$null } catch { $null }
+                if (-not $v) {
+                    $goupGo = Join-Path $env:USERPROFILE ".goup\current\bin\go.exe"
+                    if (Test-Path $goupGo) { $v = & $goupGo version 2>$null }
+                }
+                if ($v -match 'go(\d+\.\d+\.\d+)') { return $matches[1] }; return $null
+            }
             "nodejs"     { $v = node --version 2>$null; if ($v -match '(\d+\.\d+\.\d+)') { return $matches[1] }; return $null }
             "postgresql" {
                 $v = psql --version 2>$null; if ($v -match '(\d+\.\d+)') { return $matches[1] }; return $null
@@ -618,6 +628,9 @@ function Compare-Versions {
 
 # Fix command map: tool -> { Upgrade (tool present), Install (tool missing) }
 # All vectors use native installers — zero winget dependency.
+# Pin policy: install + pin in one atomic operation where supported.
+#   Ruby/Python: explicit pin (rvw ruby pin / uv python pin)
+#   Go/Rust/Bun: implicit pin (goup install auto-defaults, rustup stays stable, bun is single binary)
 $global:DoctorFixMap = @{
     ruby   = @{
         Upgrade = { param($ver) rvw ruby install $ver; rvw ruby pin $ver }; UpgradeDesc = "rvw ruby install && pin"
@@ -686,6 +699,11 @@ function Show-Origins {
     foreach ($section in @(@{ Label = "CORE"; Items = $tools }, @{ Label = "TOOLS"; Items = $secondary })) {
         foreach ($t in $section.Items) {
             $path = try { (Get-Command $t.Cmd -ErrorAction Stop).Source } catch { $null }
+            # Fallback: goup-managed Go when not in PATH
+            if (-not $path -and $t.Name -eq "go") {
+                $goupGo = Join-Path $env:USERPROFILE ".goup\current\bin\go.exe"
+                if (Test-Path $goupGo) { $path = $goupGo }
+            }
             $short = if ($path) {
                 $path -replace [regex]::Escape($env:USERPROFILE), '~' -replace [regex]::Escape($env:APPDATA), '%APPDATA%'
             } else { "(not found)" }
