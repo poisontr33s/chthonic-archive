@@ -620,12 +620,23 @@ function Compare-Versions {
 # All vectors use native installers — zero winget dependency.
 $global:DoctorFixMap = @{
     ruby   = @{
-        Upgrade = { param($ver) rvw install $ver }; UpgradeDesc = "rvw install"
-        Install = { param($ver) cargo install rv; rvw install $ver }; InstallDesc = "cargo install rv && rvw install"
+        Upgrade = { param($ver) rvw ruby install $ver; rvw ruby pin $ver }; UpgradeDesc = "rvw ruby install && pin"
+        Install = { param($ver) cargo install rv; rvw ruby install $ver; rvw ruby pin $ver }; InstallDesc = "cargo install rv && rvw ruby install && pin"
     }
     python = @{
-        Upgrade = { param($ver) uv python install $ver }; UpgradeDesc = "uv python install"
-        Install = { irm https://astral.sh/uv/install.ps1 | iex }; InstallDesc = "irm astral.sh/uv/install.ps1 | iex"
+        Upgrade = {
+            param($ver)
+            uv python install $ver
+            uv python pin $ver
+        }; UpgradeDesc = "uv python install && uv python pin"
+        Install = {
+            param($ver)
+            if (-not (Get-Command uv -ErrorAction SilentlyContinue)) {
+                irm https://astral.sh/uv/install.ps1 | iex
+            }
+            uv python install $ver
+            uv python pin $ver
+        }; InstallDesc = "install uv (if missing) && uv python install && uv python pin"
     }
     bun    = @{
         Upgrade = { bun upgrade }; UpgradeDesc = "bun upgrade"
@@ -655,7 +666,7 @@ function Show-Origins {
         @{ Name = "ruby";    Cmd = "ruby";    Method = "rv (cargo install rv)";     Ecosystem = "cargo" },
         @{ Name = "python";  Cmd = "uv";      Method = "irm astral.sh/uv";          Ecosystem = "uv" },
         @{ Name = "bun";     Cmd = "bun";     Method = "irm bun.sh";                Ecosystem = "bun" },
-        @{ Name = "rust";    Cmd = "rustc";   Method = "rustup (winget bootstrap)";  Ecosystem = "cargo" },
+        @{ Name = "rust";    Cmd = "rustc";   Method = "rustup (irm rustup.rs)";     Ecosystem = "cargo" },
         @{ Name = "go";      Cmd = "go";      Method = "goup (cargo install goup-rs)"; Ecosystem = "cargo" }
     )
 
