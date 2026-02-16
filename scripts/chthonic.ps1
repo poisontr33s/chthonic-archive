@@ -426,7 +426,7 @@ function Invoke-MCPStatus {
     
     if ($Json) {
         Write-Output (ConvertTo-Json @{'bridge_server' = $status.Bridge} -Compress)
-        return 0
+        return
     }
     
     Write-Host "`nService Status" -ForegroundColor Cyan
@@ -920,6 +920,11 @@ function Invoke-Doctor {
 $Domain = $Command
 $Action = if ($CmdArgs.Count -gt 0) { $CmdArgs[0] } else { $null }
 $RemainingArgs = if ($CmdArgs.Count -gt 1) { $CmdArgs[1..($CmdArgs.Count-1)] } else { @() }
+$AllArgs = @()
+if ($Action) { $AllArgs += $Action }
+if ($RemainingArgs) { $AllArgs += $RemainingArgs }
+$HasJsonFlag = $Json -or ($AllArgs -contains "--json")
+$HasQuietFlag = $Quiet -or ($AllArgs -contains "--quiet") -or ($AllArgs -contains "-q")
 
 # Top-level commands (backward compatible)
 switch ($Domain) {
@@ -939,26 +944,29 @@ switch ($Domain) {
     
     # Environment Domain
     "env" {
-        $quietFlag = $Quiet -or ($Action -eq "--quiet") -or ($Action -eq "-q")
+        $quietFlag = $HasQuietFlag
         Invoke-PolyglotActivation -Quiet:$quietFlag
         exit 0
     }
     "status" {
-        Show-PolyglotStatus -Json:$Json
+        Show-PolyglotStatus -Json:$HasJsonFlag
         exit 0
     }
     "doctor" {
-        $fixFlag = $Action -eq "--fix" -or $Action -eq "-f"
-        $dryRunFlag = $Action -eq "--dry-run" -or ($RemainingArgs -contains "--dry-run")
-        $jsonFlag = $Json -or $Action -eq "--json"
-        $originsFlag = $Action -eq "--origins"
+        $fixFlag = ($AllArgs -contains "--fix") -or ($AllArgs -contains "-f")
+        $dryRunFlag = $AllArgs -contains "--dry-run"
+        $jsonFlag = $HasJsonFlag
+        $originsFlag = $AllArgs -contains "--origins"
         Invoke-Doctor -Json:$jsonFlag -Fix:$fixFlag -DryRun:$dryRunFlag -Origins:$originsFlag
         exit 0
     }
     "detect" {
-        $context = Get-EnvironmentContext
-        Invoke-IDEDetect -Json:$Json
-        exit 0
+        if ($HasJsonFlag) {
+            Invoke-IDEDetect -Json:$true
+            exit 0
+        }
+        $exitCode = Invoke-IDEDetect -Json:$false
+        exit $exitCode
     }
     
     # IDE Domain (nested commands)
@@ -970,7 +978,11 @@ switch ($Domain) {
                 exit $exitCode
             }
             "detect" {
-                $exitCode = Invoke-IDEDetect -Json:$Json
+                if ($HasJsonFlag) {
+                    Invoke-IDEDetect -Json:$true
+                    exit 0
+                }
+                $exitCode = Invoke-IDEDetect -Json:$false
                 exit $exitCode
             }
             "reset" {
@@ -1001,7 +1013,11 @@ switch ($Domain) {
                 exit $exitCode
             }
             "status" {
-                $exitCode = Invoke-MCPStatus -Json:$Json
+                if ($HasJsonFlag) {
+                    Invoke-MCPStatus -Json:$true
+                    exit 0
+                }
+                $exitCode = Invoke-MCPStatus -Json:$false
                 exit $exitCode
             }
             "logs" {
