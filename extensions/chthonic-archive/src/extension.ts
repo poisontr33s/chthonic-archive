@@ -137,6 +137,30 @@ export function activate(context: vscode.ExtensionContext) {
         if (reactorCockpitAutoLayout) {
             void cockpitLayout.activate();
         }
+
+        // Live loop: watch .git/HEAD for branch switches and new commits
+        const gitHeadPath = path.join(workspaceRoot, '.git', 'HEAD');
+        if (fs.existsSync(gitHeadPath)) {
+            let liveLoopTimer: ReturnType<typeof setTimeout> | null = null;
+            const gitWatcher = fs.watch(
+                path.join(workspaceRoot, '.git'),
+                { persistent: false },
+                (_event, filename) => {
+                    // HEAD changes on checkout; refs change on commit
+                    if (filename === 'HEAD' || filename?.startsWith('refs')) {
+                        // Debounce: wait 800ms for git to settle
+                        if (liveLoopTimer) clearTimeout(liveLoopTimer);
+                        liveLoopTimer = setTimeout(() => {
+                            outputChannel.appendLine('[reactor] git change detected, recomputing sediment');
+                            annoClient.requestSediment(10, 500).catch((err) => {
+                                outputChannel.appendLine(`[reactor] live-loop sediment failed: ${err}`);
+                            });
+                        }, 800);
+                    }
+                },
+            );
+            context.subscriptions.push({ dispose: () => gitWatcher.close() });
+        }
     }
 
     context.subscriptions.push(

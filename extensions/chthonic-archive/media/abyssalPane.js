@@ -8,7 +8,9 @@ const statRenderer = document.getElementById('stat-renderer');
 
 let wasmRenderGraph = null;
 let latestGraph = null;
+let latestSediment = null;
 let projectedNodes = [];
+let sedimentMode = false;
 
 function clamp01(value) {
     return Math.max(0, Math.min(1, value));
@@ -161,6 +163,107 @@ function renderCanvasFallback(graph) {
     projectedNodes = projection.points;
 }
 
+// ---------------------------------------------------------------------------
+// Sediment renderer — 3D particle field projected to Canvas 2D
+// ---------------------------------------------------------------------------
+
+function renderSediment(sediment) {
+    latestSediment = sediment;
+    sedimentMode = true;
+    const vertices = sediment?.vertices;
+    if (!vertices || !vertices.length) return;
+
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+
+    const w = Math.max(320, canvas.clientWidth);
+    const h = Math.max(220, canvas.clientHeight);
+    canvas.width = w;
+    canvas.height = h;
+
+    // Void background
+    const bg = getComputedStyle(document.documentElement).getPropertyValue('--abyss-bg') || '#0a0908';
+    ctx.fillStyle = bg;
+    ctx.fillRect(0, 0, w, h);
+
+    // Perspective projection parameters
+    const fov = 600;          // focal length (pixels)
+    const camY = -30;         // camera lifted above the field
+    const camZ = -80;         // camera pulled back
+    const cx = w / 2;
+    const cy = h / 2;
+
+    // Project each vertex to screen space, store for z-sort
+    const projected = vertices.map((v) => {
+        // Camera-relative position
+        const rz = v.z - camZ;
+        const ry = v.y - camY;
+        const depth = Math.max(rz, 1); // prevent division by zero
+        const scale = fov / depth;
+
+        return {
+            sx: cx + v.x * scale,
+            sy: cy + ry * scale,
+            sr: Math.max(1, v.radius * scale * 0.5),
+            r: v.r,
+            g: v.g,
+            b: v.b,
+            alpha: v.alpha,
+            depth,
+        };
+    });
+
+    // Z-sort: farthest first (painter's algorithm)
+    projected.sort((a, b) => b.depth - a.depth);
+
+    // Draw particles
+    for (const p of projected) {
+        const r = Math.round(clamp01(p.r) * 255);
+        const g = Math.round(clamp01(p.g) * 255);
+        const b = Math.round(clamp01(p.b) * 255);
+        const a = clamp01(p.alpha);
+
+        // Depth-fade: distant particles become more transparent
+        const depthFade = clamp01(1 - (p.depth - 1) / 300);
+        const finalAlpha = a * depthFade;
+
+        if (finalAlpha < 0.01 || p.sx < -50 || p.sx > w + 50 || p.sy < -50 || p.sy > h + 50) {
+            continue; // cull offscreen / invisible
+        }
+
+        // Glow halo for bright particles
+        if (finalAlpha > 0.4 && p.sr > 2) {
+            const grad = ctx.createRadialGradient(p.sx, p.sy, p.sr * 0.3, p.sx, p.sy, p.sr * 2.5);
+            grad.addColorStop(0, `rgba(${r}, ${g}, ${b}, ${finalAlpha * 0.3})`);
+            grad.addColorStop(1, `rgba(${r}, ${g}, ${b}, 0)`);
+            ctx.fillStyle = grad;
+            ctx.fillRect(p.sx - p.sr * 2.5, p.sy - p.sr * 2.5, p.sr * 5, p.sr * 5);
+        }
+
+        // Core particle
+        ctx.beginPath();
+        ctx.arc(p.sx, p.sy, p.sr, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(${r}, ${g}, ${b}, ${finalAlpha})`;
+        ctx.fill();
+    }
+
+    // Update stats
+    statFiles.textContent = String(sediment.file_count || vertices.length);
+    statEntropy.textContent = sediment.backend || 'cpu';
+    statRenderer.textContent = `${sediment.compute_time_ms || '?'}ms`;
+
+    // Store projected nodes for click interaction
+    projectedNodes = projected.map((p) => ({
+        x: p.sx,
+        y: p.sy,
+        radius: p.sr,
+        id: null,
+        label: null,
+        entropy: 0,
+        degree: 0,
+    }));
+}
+
 function renderGraph(graph) {
     latestGraph = graph;
     if (!graph || !Array.isArray(graph.nodes)) {
@@ -242,7 +345,9 @@ canvas.addEventListener('dblclick', (event) => {
 });
 
 window.addEventListener('resize', () => {
-    if (latestGraph) {
+    if (sedimentMode && latestSediment) {
+        renderSediment(latestSediment);
+    } else if (latestGraph) {
         renderGraph(latestGraph);
     }
 });
@@ -252,7 +357,12 @@ window.addEventListener('message', (event) => {
     if (!message || !message.type) {
         return;
     }
+    if (message.type === 'sediment' && message.sediment) {
+        renderSediment(message.sediment);
+        return;
+    }
     if (message.type === 'graph') {
+        sedimentMode = false;
         renderGraph(message.graph);
         return;
     }
@@ -267,3 +377,4 @@ applyCircadianTheme();
 setInterval(applyCircadianTheme, 60_000);
 void bootstrapRenderer();
 vscode.postMessage({ type: 'ready' });
+vscode.postMessage({ type: 'requestSediment' });

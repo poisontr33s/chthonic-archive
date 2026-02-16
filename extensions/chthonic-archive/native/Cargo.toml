@@ -3,8 +3,17 @@ members = [
     "entropy-ledger-host",
     "entropy-renderer-wasm",
     "chthonic-daemon",
+    "xtask",
 ]
 resolver = "2"
+
+# Host-only crates build by default; WASM crate requires explicit
+# `cargo build -p entropy_renderer_wasm --target wasm32-unknown-unknown`.
+default-members = [
+    "entropy-ledger-host",
+    "chthonic-daemon",
+    "xtask",
+]
 
 [workspace.package]
 edition = "2021"

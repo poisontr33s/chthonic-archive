@@ -99,10 +99,33 @@ function findDevKitPerl(): string | null {
         'D:\\Ruby31-x64',
     ].filter((value): value is string => Boolean(value));
 
+    const perlRelPaths = [
+        path.join('msys64', 'ucrt64', 'bin', 'perl.exe'),
+        path.join('msys64', 'mingw64', 'bin', 'perl.exe'),
+        path.join('msys64', 'usr', 'bin', 'perl.exe'),
+    ];
+
+    // First pass: prefer Windows-native perl builds (MSWin32) for OpenSSL VC toolchains.
     for (const root of roots) {
-        const candidate = path.join(root, 'msys64', 'usr', 'bin', 'perl.exe');
-        if (existsSync(candidate)) {
-            return candidate;
+        for (const relPath of perlRelPaths) {
+            const candidate = path.join(root, relPath);
+            if (!existsSync(candidate)) {
+                continue;
+            }
+            const probe = runSync([candidate, '--version']);
+            if (probe.exitCode === 0 && !isCygwinPerl(probe.stdout, probe.stderr)) {
+                return candidate;
+            }
+        }
+    }
+
+    // Fallback pass: return the first perl we can find.
+    for (const root of roots) {
+        for (const relPath of perlRelPaths) {
+            const candidate = path.join(root, relPath);
+            if (existsSync(candidate)) {
+                return candidate;
+            }
         }
     }
     return null;
@@ -157,6 +180,16 @@ const checks: HostCheck[] = [
         fix: 'Install Rust via rustup: https://rustup.rs',
     },
     {
+        name: 'Rust Package Manager (cargo)',
+        cmd: ['cargo', '--version'],
+        fix: 'Install Cargo via rustup: https://rustup.rs',
+    },
+    {
+        name: 'Rustup',
+        cmd: ['rustup', '--version'],
+        fix: 'Install rustup: https://rustup.rs',
+    },
+    {
         name: 'WASM Target',
         cmd: ['rustup', 'target', 'list', '--installed'],
         check: (stdout) => stdout.includes('wasm32-unknown-unknown'),
@@ -179,14 +212,26 @@ const checks: HostCheck[] = [
         name: 'MAKEFLAGS (MSVC OpenSSL compatibility)',
         cmd: ['rustc', '--version'],
         manualCheck: () => {
-            const value = envOverrides.MAKEFLAGS ?? process.env.MAKEFLAGS;
-            if (!value || value.trim().length === 0) {
-                return { ok: true };
+            const makeFlags = envOverrides.MAKEFLAGS ?? process.env.MAKEFLAGS;
+            const mflags = envOverrides.MFLAGS ?? process.env.MFLAGS;
+            const hasMakeFlags = Boolean(makeFlags && makeFlags.trim().length > 0);
+            const hasMflags = Boolean(mflags && mflags.trim().length > 0);
+            if (!hasMakeFlags && !hasMflags) {
+                return { ok: true, note: 'clean (no MAKEFLAGS/MFLAGS)' };
             }
-            return { ok: false, note: `MAKEFLAGS=${value}` };
+            // Mirror build-ledger.ts behavior: sanitize locally instead of mutating
+            // global shell state.
+            envOverrides.MAKEFLAGS = '';
+            envOverrides.MFLAGS = '';
+            const details: string[] = [];
+            if (hasMakeFlags) details.push(`MAKEFLAGS=${makeFlags}`);
+            if (hasMflags) details.push(`MFLAGS=${mflags}`);
+            return {
+                ok: true,
+                note: `sanitized for this run (${details.join(', ')})`,
+            };
         },
-        warnOnly: true,
-        fix: 'Unset MAKEFLAGS for MSVC OpenSSL builds. The ledger wrapper script strips it automatically.',
+        fix: 'No action required. Build wrappers sanitize MAKEFLAGS/MFLAGS per process.',
     },
     {
         name: 'Solana CLI',

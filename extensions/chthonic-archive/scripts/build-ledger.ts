@@ -73,10 +73,33 @@ function findDevKitPerl(env: Record<string, string>): string | null {
         'D:\\Ruby31-x64',
     ].filter((value): value is string => Boolean(value));
 
+    const perlRelPaths = [
+        path.join('msys64', 'ucrt64', 'bin', 'perl.exe'),
+        path.join('msys64', 'mingw64', 'bin', 'perl.exe'),
+        path.join('msys64', 'usr', 'bin', 'perl.exe'),
+    ];
+
+    // First pass: prefer Windows-native perl builds (MSWin32) for OpenSSL VC toolchains.
     for (const root of roots) {
-        const candidate = path.join(root, 'msys64', 'usr', 'bin', 'perl.exe');
-        if (existsSync(candidate)) {
-            return candidate;
+        for (const relPath of perlRelPaths) {
+            const candidate = path.join(root, relPath);
+            if (!existsSync(candidate)) {
+                continue;
+            }
+            const probe = runCapture(candidate, ['--version'], env);
+            if (probe.ok && !isCygwinPerl(probe.stdout, probe.stderr)) {
+                return candidate;
+            }
+        }
+    }
+
+    // Fallback pass: return the first perl we can find.
+    for (const root of roots) {
+        for (const relPath of perlRelPaths) {
+            const candidate = path.join(root, relPath);
+            if (existsSync(candidate)) {
+                return candidate;
+            }
         }
     }
     return null;
