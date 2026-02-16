@@ -98,6 +98,7 @@ pub struct LanguagePolicy {
 #[serde(rename_all = "lowercase")]
 pub enum ToolOwner {
     Uv,
+    Rv,
     Mise,
     Bun,
     Volta,

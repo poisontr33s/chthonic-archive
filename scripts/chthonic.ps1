@@ -36,25 +36,33 @@ $SERVICES_FILE = Join-Path $STATE_DIR "services.json"
 # POLYGLOT PATHS - ALL GLOBAL NATIVE INSTALLATIONS (Win11)
 # ═══════════════════════════════════════════════════════════════════════════════
 
-# Resolve the best available RubyInstaller+DevKit root (prefer newest lane).
+# Resolve rv-managed Ruby bin directory (highest installed version).
+function Get-RvRubyBinDir {
+    $rvRubies = Join-Path $env:APPDATA "rv\rubies"
+    if (-not (Test-Path $rvRubies)) { return $null }
+
+    $latest = Get-ChildItem $rvRubies -Directory |
+        Sort-Object Name -Descending |
+        Select-Object -First 1
+    if ($latest) {
+        $bin = Join-Path $latest.FullName "bin"
+        if (Test-Path $bin) { return $bin }
+    }
+    return $null
+}
+
+# Resolve the best available RubyInstaller DevKit root (for MSYS2/UCRT64 toolchain).
+# Note: rv manages Ruby versions; RubyInstaller provides the DevKit (gcc, make, etc.).
 function Get-RubyDevKitRoot {
-    $rubyRoots = @(
+    $devkitRoots = @(
         "C:\Ruby40-x64",
         "D:\Ruby40-x64",
         "C:\Ruby35-x64",
-        "D:\Ruby35-x64",
-        "C:\Ruby34-x64",
-        "D:\Ruby34-x64",
-        "C:\Ruby33-x64",
-        "D:\Ruby33-x64",
-        "C:\Ruby32-x64",
-        "D:\Ruby32-x64",
-        "C:\Ruby31-x64",
-        "D:\Ruby31-x64"
+        "D:\Ruby35-x64"
     )
 
-    foreach ($root in $rubyRoots) {
-        if (Test-Path (Join-Path $root "bin\ruby.exe")) {
+    foreach ($root in $devkitRoots) {
+        if (Test-Path (Join-Path $root "msys64\ucrt64\bin\gcc.exe")) {
             return $root
         }
     }
@@ -62,37 +70,45 @@ function Get-RubyDevKitRoot {
     return $null
 }
 
-function Get-RubyDevKitPaths {
+function Get-DevKitPaths {
     $root = Get-RubyDevKitRoot
-    if (-not $root) {
-        return @()
-    }
+    if (-not $root) { return @() }
 
     return @(
-        (Join-Path $root "bin"),
         (Join-Path $root "msys64\ucrt64\bin"),
         (Join-Path $root "msys64\usr\bin")
     )
 }
 
-$rubyDevkitPaths = Get-RubyDevKitPaths
+$rvRubyBin = Get-RvRubyBinDir
+$devkitPaths = Get-DevKitPaths
 
 # Default polyglot paths (fallback when config.json is missing)
 $defaultPolyglotPaths = @(
     # Native user binaries (Claude native installer, uv tools)
     "$env:USERPROFILE\.local\bin",
 
-    # Bun 1.3.9 (JS/TS runtime + Biome 2.3.8)
+    # Bun (JS/TS runtime + Biome)
     "$env:USERPROFILE\.bun\bin",
-    
-    # Rust 1.93.0 (rustup managed) + Cargo tools
+
+    # Rust (rustup managed) + Cargo tools (includes rv, rvw)
     "$env:USERPROFILE\.cargo\bin",
-    
-    # Go 1.24.3
+
+    # Go
     "C:\Go\bin",
     "$env:USERPROFILE\go\bin"
-) + $rubyDevkitPaths + @(
-    # Git 2.52.0
+)
+
+# rv-managed Ruby (exclusive ownership per ANNO manifest)
+if ($rvRubyBin) {
+    $defaultPolyglotPaths += $rvRubyBin
+}
+
+# DevKit toolchain (gcc, make) from RubyInstaller's MSYS2
+$defaultPolyglotPaths += $devkitPaths
+
+# Git
+$defaultPolyglotPaths += @(
     "C:\Program Files\Git\cmd"
 )
 
@@ -413,12 +429,14 @@ function Invoke-PolyglotActivation {
     $env:GOROOT = "C:\Go"
     $env:GOPATH = "$env:USERPROFILE\go"
     
-    # Ruby DevKit
-    $rubyRoot = Get-RubyDevKitRoot
-    if ($rubyRoot) {
-        $ridkPrefix = Join-Path $rubyRoot "msys64"
-        if (Test-Path $ridkPrefix) {
-            $env:RIDK_PREFIX = $ridkPrefix
+    # Ruby DevKit (MSYS2 toolchain from RubyInstaller, used by rv's Ruby for native gems)
+    $devkitRoot = Get-RubyDevKitRoot
+    if ($devkitRoot) {
+        $msys2Root = Join-Path $devkitRoot "msys64"
+        if (Test-Path $msys2Root) {
+            $env:RI_DEVKIT = $msys2Root
+            $env:RIDK_PREFIX = $msys2Root
+            $env:MSYS2_HOME = $msys2Root
         }
     }
     

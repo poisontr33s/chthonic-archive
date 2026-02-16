@@ -44,6 +44,20 @@ pub fn provision(manifest: &AnnoManifest, _workspace: &str) -> Result<EnvReport>
         }
     }
 
+    if manifest.has_language("ruby") {
+        if let Some(rv_dir) = locate_rv_shim_dir() {
+            segments.push(PathSegment {
+                path: rv_dir,
+                owner: "rv".to_string(),
+                priority: 1,
+            });
+        } else {
+            report
+                .warnings
+                .push("rv shim directory not found; Ruby resolution may fail".to_string());
+        }
+    }
+
     if manifest.has_language("javascript") || manifest.has_language("typescript") {
         if let Some(bun_dir) = locate_bun_dir() {
             segments.push(PathSegment {
@@ -69,7 +83,7 @@ pub fn provision(manifest: &AnnoManifest, _workspace: &str) -> Result<EnvReport>
             Ok(None) => report.warnings.push(
                 "Ruby detected but MSYS2/UCRT64 DevKit not found. \
                  Native gems will fail to compile. \
-                 Install RubyInstaller with DevKit and run `ridk install 3`."
+                 Install RubyInstaller DevKit or place MSYS2 at C:\\DevKit\\msys64."
                     .to_string(),
             ),
             Err(err) => report
@@ -104,6 +118,55 @@ fn locate_uv_shim_dir() -> Option<String> {
         let dir = PathBuf::from(&home).join(".local").join("bin");
         if dir.exists() {
             return Some(dir.to_string_lossy().into_owned());
+        }
+    }
+    None
+}
+
+fn locate_rv_shim_dir() -> Option<String> {
+    // rv installs to ~/.cargo/bin (rv.exe, rvw.exe) but the managed Ruby
+    // lives at %APPDATA%/rv/rubies/<version>/bin on Windows,
+    // or ~/.local/share/rv/rubies/<version>/bin on Unix.
+    //
+    // We find the active Ruby's bin/ directory by looking for rv's rubies.
+    if cfg!(windows) {
+        let appdata = std::env::var("APPDATA").ok()?;
+        let rubies_dir = PathBuf::from(&appdata).join("rv").join("rubies");
+        if rubies_dir.exists() {
+            // Find the first (or latest) installed Ruby
+            let mut entries: Vec<_> = std::fs::read_dir(&rubies_dir)
+                .ok()?
+                .filter_map(|e| e.ok())
+                .filter(|e| e.file_type().ok().is_some_and(|ft| ft.is_dir()))
+                .collect();
+            entries.sort_by(|a, b| b.file_name().cmp(&a.file_name())); // newest first
+            if let Some(latest) = entries.first() {
+                let bin = latest.path().join("bin");
+                if bin.exists() {
+                    return Some(bin.to_string_lossy().into_owned());
+                }
+            }
+        }
+    } else {
+        let home = std::env::var("HOME").ok()?;
+        let rubies_dir = PathBuf::from(&home)
+            .join(".local")
+            .join("share")
+            .join("rv")
+            .join("rubies");
+        if rubies_dir.exists() {
+            let mut entries: Vec<_> = std::fs::read_dir(&rubies_dir)
+                .ok()?
+                .filter_map(|e| e.ok())
+                .filter(|e| e.file_type().ok().is_some_and(|ft| ft.is_dir()))
+                .collect();
+            entries.sort_by(|a, b| b.file_name().cmp(&a.file_name()));
+            if let Some(latest) = entries.first() {
+                let bin = latest.path().join("bin");
+                if bin.exists() {
+                    return Some(bin.to_string_lossy().into_owned());
+                }
+            }
         }
     }
     None
@@ -155,14 +218,16 @@ fn locate_bun_dir() -> Option<String> {
 fn detect_msys2_devkit() -> Result<Option<DevKitReport>> {
     let search_roots: Vec<PathBuf> = [
         ruby_install_root(),
-        Some(PathBuf::from(r"C:\Ruby33-x64")),
-        Some(PathBuf::from(r"C:\Ruby34-x64")),
-        Some(PathBuf::from(r"C:\Ruby35-x64")),
+        // RubyInstaller DevKit locations (primary source for UCRT64 toolchain)
         Some(PathBuf::from(r"C:\Ruby40-x64")),
+        Some(PathBuf::from(r"C:\Ruby35-x64")),
+        Some(PathBuf::from(r"C:\Ruby34-x64")),
+        Some(PathBuf::from(r"C:\Ruby33-x64")),
         Some(PathBuf::from(r"C:\Ruby32-x64")),
-        Some(PathBuf::from(r"D:\Ruby33-x64")),
-        Some(PathBuf::from(r"D:\Ruby34-x64")),
-        Some(PathBuf::from(r"D:\Ruby35-x64")),
+        // Standalone MSYS2 (if DevKit extracted separately)
+        // C:\DevKit\msys64 or C:\msys64 (root = C:\)
+        Some(PathBuf::from(r"C:\DevKit")),
+        Some(PathBuf::from(r"C:\")),
     ]
     .into_iter()
     .flatten()

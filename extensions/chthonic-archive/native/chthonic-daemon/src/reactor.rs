@@ -65,8 +65,9 @@ const REPEL_STR: f32 = 1.0;
 pub struct VulkanReactor {
     _entry: ash::Entry,
     instance: ash::Instance,
+    physical_device: ash::vk::PhysicalDevice,
     device: ash::Device,
-    _compute_queue: ash::vk::Queue,
+    compute_queue: ash::vk::Queue,
     _compute_family_index: u32,
     descriptor_set_layout: ash::vk::DescriptorSetLayout,
     pipeline_layout: ash::vk::PipelineLayout,
@@ -123,24 +124,233 @@ impl VulkanReactor {
     }
 
     /// Dispatch the compute shader on the GPU.
-    fn gpu_dispatch(
-        &self,
-        _nodes: &[Node],
-    ) -> Result<Vec<Node>> {
-        // Full Vulkan dispatch for the force-directed simulation:
-        //
-        // 1. Allocate a single read/write storage buffer (Node[])
-        // 2. Upload initial node state
-        // 3. For each simulation step:
-        //    a. Update push constants (delta_time, total_time, node_count, ...)
-        //    b. Record command buffer: bind pipeline, bind descriptors,
-        //       push constants, dispatch(ceil(N/256), 1, 1)
-        //    c. Pipeline barrier (compute -> compute)
-        //    d. Submit to compute queue with fence, wait
-        // 4. Map buffer, read back settled Node[]
-        //
-        // For now, delegate to CPU until buffer management is wired.
-        anyhow::bail!("GPU buffer management not yet wired; using CPU fallback")
+    ///
+    /// Allocates a host-visible storage buffer, uploads initial node state,
+    /// runs SIM_STEPS iterations of the force-directed simulation via the
+    /// compute pipeline, reads back the settled nodes, and cleans up.
+    fn gpu_dispatch(&self, nodes: &[Node]) -> Result<Vec<Node>> {
+        use ash::vk;
+
+        let node_count = nodes.len();
+        let buffer_size = (node_count * std::mem::size_of::<Node>()) as u64;
+
+        unsafe {
+            // --- 1. Create storage buffer ---
+            let buffer_info = vk::BufferCreateInfo::default()
+                .size(buffer_size)
+                .usage(vk::BufferUsageFlags::STORAGE_BUFFER)
+                .sharing_mode(vk::SharingMode::EXCLUSIVE);
+
+            let buffer = self
+                .device
+                .create_buffer(&buffer_info, None)
+                .context("failed to create storage buffer")?;
+
+            let mem_reqs = self.device.get_buffer_memory_requirements(buffer);
+
+            // Find HOST_VISIBLE | HOST_COHERENT memory type
+            let mem_props = self
+                .instance
+                .get_physical_device_memory_properties(self.physical_device);
+
+            let required = vk::MemoryPropertyFlags::HOST_VISIBLE
+                | vk::MemoryPropertyFlags::HOST_COHERENT;
+
+            let memory_type_index = (0..mem_props.memory_type_count)
+                .find(|&i| {
+                    let suitable = (mem_reqs.memory_type_bits & (1 << i)) != 0;
+                    let props = mem_props.memory_types[i as usize].property_flags;
+                    suitable && props.contains(required)
+                })
+                .ok_or_else(|| {
+                    anyhow::anyhow!("no HOST_VISIBLE | HOST_COHERENT memory type available")
+                })?;
+
+            let alloc_info = vk::MemoryAllocateInfo::default()
+                .allocation_size(mem_reqs.size)
+                .memory_type_index(memory_type_index);
+
+            let memory = self
+                .device
+                .allocate_memory(&alloc_info, None)
+                .context("failed to allocate buffer memory")?;
+
+            self.device
+                .bind_buffer_memory(buffer, memory, 0)
+                .context("failed to bind buffer memory")?;
+
+            // --- 2. Upload initial node data ---
+            let ptr = self
+                .device
+                .map_memory(memory, 0, buffer_size, vk::MemoryMapFlags::empty())
+                .context("failed to map buffer memory")? as *mut Node;
+
+            std::ptr::copy_nonoverlapping(nodes.as_ptr(), ptr, node_count);
+
+            // --- 3. Create descriptor pool + descriptor set ---
+            let pool_sizes = [vk::DescriptorPoolSize {
+                ty: vk::DescriptorType::STORAGE_BUFFER,
+                descriptor_count: 1,
+            }];
+
+            let pool_info = vk::DescriptorPoolCreateInfo::default()
+                .max_sets(1)
+                .pool_sizes(&pool_sizes);
+
+            let descriptor_pool = self
+                .device
+                .create_descriptor_pool(&pool_info, None)
+                .context("failed to create descriptor pool")?;
+
+            let set_layouts = [self.descriptor_set_layout];
+            let set_alloc_info = vk::DescriptorSetAllocateInfo::default()
+                .descriptor_pool(descriptor_pool)
+                .set_layouts(&set_layouts);
+
+            let descriptor_sets = self
+                .device
+                .allocate_descriptor_sets(&set_alloc_info)
+                .context("failed to allocate descriptor set")?;
+
+            let descriptor_set = descriptor_sets[0];
+
+            // Write buffer descriptor
+            let buffer_descriptor = vk::DescriptorBufferInfo {
+                buffer,
+                offset: 0,
+                range: buffer_size,
+            };
+
+            let write = vk::WriteDescriptorSet::default()
+                .dst_set(descriptor_set)
+                .dst_binding(0)
+                .descriptor_type(vk::DescriptorType::STORAGE_BUFFER)
+                .buffer_info(std::slice::from_ref(&buffer_descriptor));
+
+            self.device
+                .update_descriptor_sets(std::slice::from_ref(&write), &[]);
+
+            // --- 4. Allocate command buffer ---
+            let cmd_alloc_info = vk::CommandBufferAllocateInfo::default()
+                .command_pool(self.command_pool)
+                .level(vk::CommandBufferLevel::PRIMARY)
+                .command_buffer_count(1);
+
+            let cmd_buffers = self
+                .device
+                .allocate_command_buffers(&cmd_alloc_info)
+                .context("failed to allocate command buffer")?;
+
+            let cmd = cmd_buffers[0];
+
+            // --- 5. Create fence for synchronization ---
+            let fence = self
+                .device
+                .create_fence(&vk::FenceCreateInfo::default(), None)
+                .context("failed to create fence")?;
+
+            // --- 6. Simulation loop ---
+            let workgroup_count = ((node_count as u32) + 255) / 256;
+            let mut total_time: f32 = 0.0;
+
+            for _step in 0..SIM_STEPS {
+                let push = PushConstants {
+                    delta_time: DELTA_TIME,
+                    total_time,
+                    node_count: node_count as u32,
+                    gravity_str: GRAVITY,
+                    repel_str: REPEL_STR,
+                };
+
+                // Record command buffer
+                self.device
+                    .begin_command_buffer(
+                        cmd,
+                        &vk::CommandBufferBeginInfo::default()
+                            .flags(vk::CommandBufferUsageFlags::ONE_TIME_SUBMIT),
+                    )
+                    .context("failed to begin command buffer")?;
+
+                self.device
+                    .cmd_bind_pipeline(cmd, vk::PipelineBindPoint::COMPUTE, self.pipeline);
+
+                self.device.cmd_bind_descriptor_sets(
+                    cmd,
+                    vk::PipelineBindPoint::COMPUTE,
+                    self.pipeline_layout,
+                    0,
+                    &[descriptor_set],
+                    &[],
+                );
+
+                let push_bytes: &[u8] = std::slice::from_raw_parts(
+                    &push as *const PushConstants as *const u8,
+                    std::mem::size_of::<PushConstants>(),
+                );
+
+                self.device.cmd_push_constants(
+                    cmd,
+                    self.pipeline_layout,
+                    vk::ShaderStageFlags::COMPUTE,
+                    0,
+                    push_bytes,
+                );
+
+                self.device.cmd_dispatch(cmd, workgroup_count, 1, 1);
+
+                // Barrier: compute write -> compute read (next step reads previous output)
+                let barrier = vk::MemoryBarrier::default()
+                    .src_access_mask(vk::AccessFlags::SHADER_WRITE)
+                    .dst_access_mask(vk::AccessFlags::SHADER_READ);
+
+                self.device.cmd_pipeline_barrier(
+                    cmd,
+                    vk::PipelineStageFlags::COMPUTE_SHADER,
+                    vk::PipelineStageFlags::COMPUTE_SHADER,
+                    vk::DependencyFlags::empty(),
+                    std::slice::from_ref(&barrier),
+                    &[],
+                    &[],
+                );
+
+                self.device
+                    .end_command_buffer(cmd)
+                    .context("failed to end command buffer")?;
+
+                // Submit and wait
+                let submit_info =
+                    vk::SubmitInfo::default().command_buffers(std::slice::from_ref(&cmd));
+
+                self.device
+                    .queue_submit(self.compute_queue, &[submit_info], fence)
+                    .context("queue submit failed")?;
+
+                self.device
+                    .wait_for_fences(&[fence], true, u64::MAX)
+                    .context("fence wait failed")?;
+
+                self.device.reset_fences(&[fence]).context("fence reset failed")?;
+
+                self.device
+                    .reset_command_buffer(cmd, vk::CommandBufferResetFlags::empty())
+                    .context("command buffer reset failed")?;
+
+                total_time += DELTA_TIME;
+            }
+
+            // --- 7. Read back settled nodes ---
+            let result: Vec<Node> = std::slice::from_raw_parts(ptr, node_count).to_vec();
+
+            // --- 8. Cleanup ---
+            self.device.unmap_memory(memory);
+            self.device.destroy_fence(fence, None);
+            self.device.free_command_buffers(self.command_pool, &[cmd]);
+            self.device.destroy_descriptor_pool(descriptor_pool, None);
+            self.device.destroy_buffer(buffer, None);
+            self.device.free_memory(memory, None);
+
+            Ok(result)
+        }
     }
 }
 
@@ -274,8 +484,9 @@ pub fn initialize() -> Result<Option<VulkanReactor>> {
     Ok(Some(VulkanReactor {
         _entry: entry,
         instance,
+        physical_device,
         device,
-        _compute_queue: compute_queue,
+        compute_queue,
         _compute_family_index: compute_family_index,
         descriptor_set_layout,
         pipeline_layout,

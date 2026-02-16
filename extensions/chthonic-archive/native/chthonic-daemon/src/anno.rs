@@ -126,7 +126,7 @@ pub fn detect_project(workspace: &str) -> Result<AnnoManifest> {
 fn default_tool_for_language(lang: &str) -> (ToolOwner, u8) {
     match lang {
         "python" => (ToolOwner::Uv, 0),
-        "ruby" => (ToolOwner::Mise, 10),
+        "ruby" => (ToolOwner::Rv, 1),
         "javascript" | "typescript" => (ToolOwner::Bun, 5),
         "rust" => (ToolOwner::Rustup, 20),
         "go" | "solana" | "java" => (ToolOwner::Mise, 10),
@@ -147,7 +147,7 @@ fn binaries_for_language(lang: &str) -> &[&str] {
     }
 }
 
-/// Enforce the shim-race invariant: uv owns Python exclusively.
+/// Enforce shim-race invariants: uv owns Python, rv owns Ruby.
 fn resolve_shim_conflicts(languages: &mut Vec<LanguagePolicy>, warnings: &mut Vec<String>) {
     for policy in languages.iter_mut() {
         if policy.language == "python" && policy.tool != ToolOwner::Uv {
@@ -157,6 +157,14 @@ fn resolve_shim_conflicts(languages: &mut Vec<LanguagePolicy>, warnings: &mut Ve
             ));
             policy.tool = ToolOwner::Uv;
             policy.shim_priority = 0;
+        }
+        if policy.language == "ruby" && policy.tool != ToolOwner::Rv {
+            warnings.push(format!(
+                "shim-race guard: overriding ruby tool from {:?} to rv (exclusive ownership)",
+                policy.tool,
+            ));
+            policy.tool = ToolOwner::Rv;
+            policy.shim_priority = 1;
         }
     }
 }
@@ -202,6 +210,7 @@ fn apply_manifest_overrides(
         let tool_str = tool_val.as_str().unwrap_or("system");
         let tool = match tool_str {
             "uv" => ToolOwner::Uv,
+            "rv" => ToolOwner::Rv,
             "mise" => ToolOwner::Mise,
             "bun" => ToolOwner::Bun,
             "volta" => ToolOwner::Volta,
