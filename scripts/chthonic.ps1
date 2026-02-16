@@ -94,8 +94,8 @@ $defaultPolyglotPaths = @(
     # Rust (rustup managed) + Cargo tools (includes rv, rvw)
     "$env:USERPROFILE\.cargo\bin",
 
-    # Go
-    "C:\Go\bin",
+    # Go (goup-managed, user-space)
+    "$env:USERPROFILE\.goup\current\bin",
     "$env:USERPROFILE\go\bin"
 )
 
@@ -458,8 +458,9 @@ function Invoke-PolyglotActivation {
     # Set PATH with polyglot tools first
     $env:Path = ($activePaths + $existingPath | Select-Object -Unique) -join ';'
     
-    # Go environment
-    $env:GOROOT = "C:\Go"
+    # Go environment (goup-managed)
+    $goupCurrent = Join-Path $env:USERPROFILE ".goup\current"
+    if (Test-Path $goupCurrent) { $env:GOROOT = $goupCurrent }
     $env:GOPATH = "$env:USERPROFILE\go"
     
     # Ruby DevKit (MSYS2 toolchain from RubyInstaller, used by rv's Ruby for native gems)
@@ -635,20 +636,8 @@ $global:DoctorFixMap = @{
         Install = { irm https://sh.rustup.rs -useb | iex }; InstallDesc = "irm rustup.rs | iex"
     }
     go     = @{
-        Upgrade = { param($ver)
-            $msi = Join-Path $env:TEMP "go${ver}.windows-amd64.msi"
-            Write-Host "    Downloading go${ver} MSI from go.dev..." -ForegroundColor DarkGray
-            Invoke-WebRequest -Uri "https://go.dev/dl/go${ver}.windows-amd64.msi" -OutFile $msi
-            Start-Process msiexec -ArgumentList "/i","`"$msi`"","/quiet","/norestart" -Wait -Verb RunAs
-            Remove-Item $msi -ErrorAction SilentlyContinue
-        }; UpgradeDesc = "go.dev MSI"
-        Install = { param($ver)
-            $msi = Join-Path $env:TEMP "go${ver}.windows-amd64.msi"
-            Write-Host "    Downloading go${ver} MSI from go.dev..." -ForegroundColor DarkGray
-            Invoke-WebRequest -Uri "https://go.dev/dl/go${ver}.windows-amd64.msi" -OutFile $msi
-            Start-Process msiexec -ArgumentList "/i","`"$msi`"","/quiet","/norestart" -Wait -Verb RunAs
-            Remove-Item $msi -ErrorAction SilentlyContinue
-        }; InstallDesc = "go.dev MSI"
+        Upgrade = { param($ver) goup install "=$ver" }; UpgradeDesc = "goup install"
+        Install = { goup install stable }; InstallDesc = "goup install stable"
     }
 }
 
@@ -667,11 +656,12 @@ function Show-Origins {
         @{ Name = "python";  Cmd = "uv";      Method = "irm astral.sh/uv";          Ecosystem = "uv" },
         @{ Name = "bun";     Cmd = "bun";     Method = "irm bun.sh";                Ecosystem = "bun" },
         @{ Name = "rust";    Cmd = "rustc";   Method = "rustup (winget bootstrap)";  Ecosystem = "cargo" },
-        @{ Name = "go";      Cmd = "go";      Method = "MSI (go.dev)";              Ecosystem = "system" }
+        @{ Name = "go";      Cmd = "go";      Method = "goup (cargo install goup-rs)"; Ecosystem = "cargo" }
     )
 
     # Secondary tools
     $secondary = @(
+        @{ Name = "goup";    Cmd = "goup";    Method = "GH release binary"; Ecosystem = "cargo" },
         @{ Name = "biome";   Cmd = "biome";   Method = "bun add -g";    Ecosystem = "bun" },
         @{ Name = "ruff";    Cmd = "ruff";    Method = "uv tool";       Ecosystem = "uv" },
         @{ Name = "mdbook";  Cmd = "mdbook";  Method = "cargo install"; Ecosystem = "cargo" },
@@ -711,8 +701,8 @@ function Show-Origins {
     $dirs = @(
         @{ Path = "~/.local/bin/";   Label = "uv ecosystem (uv, ruff, claude, python shims)" },
         @{ Path = "~/.bun/bin/";     Label = "bun ecosystem (bun, biome, codex, gemini)" },
-        @{ Path = "~/.cargo/bin/";   Label = "cargo ecosystem (rustc, rustup, mdbook, rv)" },
-        @{ Path = "C:\Go\bin\";      Label = "system Go (MSI from go.dev)" },
+        @{ Path = "~/.cargo/bin/";   Label = "cargo ecosystem (rustc, rustup, mdbook, rv, goup)" },
+        @{ Path = "~/.goup/";        Label = "goup-managed Go versions (go.dev source)" },
         @{ Path = "%APPDATA%\rv\";   Label = "rv-managed Ruby versions" }
     )
     foreach ($dir in $dirs) {
@@ -734,7 +724,7 @@ function Invoke-Doctor {
         @{ Name = "python";     Product = "python";     Manager = "uv" },
         @{ Name = "bun";        Product = "bun";        Manager = "bun" },
         @{ Name = "rust";       Product = "rust";       Manager = "rustup" },
-        @{ Name = "go";         Product = "go";         Manager = "go" },
+        @{ Name = "go";         Product = "go";         Manager = "goup" },
         @{ Name = "nodejs";     Product = "nodejs";     Manager = "bun"; Optional = $true },
         @{ Name = "postgresql";  Product = "postgresql"; Manager = "system"; Optional = $true },
         @{ Name = "dotnet";     Product = "dotnet";     Manager = "system"; Optional = $true }
