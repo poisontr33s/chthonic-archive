@@ -7,10 +7,10 @@
 # ║ Spectral Frequency: WHITE
 # ║ Architectural Role: INFRASTRUCTURE
 # ║ Semantic ID: SCRIPT_CHTHONIC_V1
-# ║ Purpose: Unified CLI for polyglot tooling and repo operations
+# ║ Purpose: Unified META-CLI for polyglot tooling and repo operations
 # ║ Exports: (none)
 # ║ Flags/Modes: -Command, -CmdArgs, -Quiet, -Json
-# ║ Cross-References: scripts/claudineENV.ps1
+# ║ Cross-References: (none)
 # ╚════════════════════════════════════════════════════════════════════════════
 
 param(
@@ -130,56 +130,87 @@ function Get-PolyglotPaths {
     return $defaultPolyglotPaths
 }
 
+function Show-StatusBanner {
+    # Compact one-liner version probes grouped by manager
+    $W = "White"; $C = "Cyan"; $D = "DarkGray"; $R = "Red"
+    function ver($cmd) { try { $v = (& $cmd 2>$null); if ($v) { return ($v -split "`n")[0] } } catch {}; return $null }
+
+    Write-Host "CHTHONIC v$VERSION" -ForegroundColor $C -NoNewline
+    Write-Host " | " -ForegroundColor $D -NoNewline
+    Write-Host "$REPO_ROOT" -ForegroundColor $W
+    Write-Host ("="*72) -ForegroundColor $D
+
+    # rv -> Ruby
+    $rubyVer = ver { ruby -e "print RUBY_VERSION" }
+    Write-Host "  rv    " -NoNewline -ForegroundColor $C
+    if ($rubyVer) { Write-Host "ruby $rubyVer" -NoNewline -ForegroundColor $W } else { Write-Host "ruby ?" -NoNewline -ForegroundColor $R }
+
+    # DevKit (gcc)
+    $gccVer = ver { gcc -dumpfullversion }
+    if ($gccVer) { Write-Host "  gcc $gccVer" -NoNewline -ForegroundColor $D }
+    Write-Host ""
+
+    # uv -> Python
+    $pyVer = ver { uv run python -c "import sys; print(f'{sys.version_info.major}.{sys.version_info.minor}.{sys.version_info.micro}')" }
+    $uvVer = ver { uv --version }; if ($uvVer -match '(\d+\.\d+\.\d+)') { $uvVer = $matches[1] } else { $uvVer = $null }
+    $ruffVer = ver { ruff --version }; if ($ruffVer -match '(\d+\.\d+\.\d+)') { $ruffVer = $matches[1] } else { $ruffVer = $null }
+    Write-Host "  uv    " -NoNewline -ForegroundColor $C
+    if ($pyVer) { Write-Host "python $pyVer" -NoNewline -ForegroundColor $W } else { Write-Host "python ?" -NoNewline -ForegroundColor $R }
+    if ($uvVer) { Write-Host "  uv $uvVer" -NoNewline -ForegroundColor $D }
+    if ($ruffVer) { Write-Host "  ruff $ruffVer" -NoNewline -ForegroundColor $D }
+    Write-Host ""
+
+    # bun -> JS/TS
+    $bunVer = ver { bun --version }
+    $biomeVer = ver { biome --version }; if ($biomeVer) { $biomeVer = $biomeVer -replace 'Version:\s*','' }
+    Write-Host "  bun   " -NoNewline -ForegroundColor $C
+    if ($bunVer) { Write-Host "bun $bunVer" -NoNewline -ForegroundColor $W } else { Write-Host "bun ?" -NoNewline -ForegroundColor $R }
+    if ($biomeVer) { Write-Host "  biome $biomeVer" -NoNewline -ForegroundColor $D }
+    Write-Host "  (sql, react, test, bundle built-in)" -ForegroundColor $D
+
+    # rustup -> Rust
+    $rustVer = ver { rustc -V }; if ($rustVer) { $rustVer = ($rustVer -split ' ')[1] }
+    Write-Host "  rust  " -NoNewline -ForegroundColor $C
+    if ($rustVer) { Write-Host "rustc $rustVer" -NoNewline -ForegroundColor $W } else { Write-Host "rustc ?" -NoNewline -ForegroundColor $R }
+    $mdbookVer = ver { mdbook --version }; if ($mdbookVer -match '(\d+\.\d+\.\d+)') { $mdbookVer = $matches[1] } else { $mdbookVer = $null }
+    if ($mdbookVer) { Write-Host "  mdbook $mdbookVer" -NoNewline -ForegroundColor $D }
+    Write-Host ""
+
+    # Go
+    $goVer = ver { go version }; if ($goVer -match 'go(\d+\.\d+\.\d+)') { $goVer = $matches[1] } else { $goVer = $null }
+    Write-Host "  go    " -NoNewline -ForegroundColor $C
+    if ($goVer) { Write-Host "go $goVer" -ForegroundColor $W } else { Write-Host "go ?" -ForegroundColor $R }
+
+    # Infra line
+    $gitVer = ver { git --version }; if ($gitVer) { $gitVer = ($gitVer -replace 'git version\s*','') -replace '\.windows.*','' }
+    $vulkanVer = if ($env:VULKAN_SDK -match '(\d+\.\d+\.\d+)') { $matches[1] } else { $null }
+    Write-Host "  sys   " -NoNewline -ForegroundColor $C
+    Write-Host "git $gitVer" -NoNewline -ForegroundColor $D
+    if ($vulkanVer) { Write-Host "  vulkan $vulkanVer" -NoNewline -ForegroundColor $D }
+    Write-Host ""
+    Write-Host ("="*72) -ForegroundColor $D
+}
+
 function Show-Help {
 @"
-CHTHONIC v$VERSION - Meta CLI for Polyglot Development (Win11 pwsh 7.5.x)
 
 Usage: chthonic [--version] [--help] <domain> [<action>] [<args>]
 
-DOMAINS & ACTIONS:
-
-Environment:
   env [--quiet]           Activate polyglot environment
-  status                  Show all tool versions
+  status [--json]         Show all tool versions (verbose)
+  doctor [--fix] [--json] Check versions + EOL via endoflife.date; --fix upgrades
   detect                  Detect IDE and environment context
 
-IDE Management:
-  ide launch [path]       Launch Claude Code IDE (defaults to current workspace)
-  ide detect              Check IDE availability and extensions
-  ide reset               Reset IDE configuration
+  ide launch|detect|reset IDE management
+  mcp start|stop|status   MCP + bridge services
+  config init|show|set    Configuration (~/.chthonic/)
 
-Service Management (MCP + Bridges):
-  mcp start               Start MCP server + bridge (auto if needed)
-  mcp stop                Stop all MCP services  
-  mcp status              Check service status
-  mcp logs                Tail service logs
-
-Configuration:
-  config init             Initialize ~/.chthonic config (first run)
-  config show             Display current configuration
-  config set <key> <val>  Set configuration value
-
-Archive Tools:
-  audit [path]            Analyze directory health
-  compact [path]          Condense markdown files
-  extract [path]          Extract session data
-  resolve [--list]        Resolve Semantic IDs (@SID)
-  map                     Generate dependency graph
-  analyze [path]          Frequency analysis
+  audit|compact|extract|resolve|map|analyze  Archive tools (uv run)
   book [serve|build]      mdBook documentation
 
-Options:
   --version               Show version
-  --help                  Show this help
+  --help                  Show this help (without status banner)
   --quiet                 Suppress output
-
-Examples:
-  chthonic status               # Show all tool versions
-  chthonic env                  # Activate polyglot environment
-  chthonic detect               # Check IDE setup
-  chthonic ide launch .         # Launch IDE in current directory
-  chthonic mcp start            # Start services
-  chthonic config init          # First-time setup
 
 "@
 }
@@ -539,6 +570,339 @@ function Invoke-ArchiveCommand {
 }
 
 # ═══════════════════════════════════════════════════════════════════════════════
+# DOCTOR - endoflife.date API integration
+# ═══════════════════════════════════════════════════════════════════════════════
+
+function Get-EndOfLifeData {
+    param([string]$Product)
+    try {
+        return Invoke-RestMethod -Uri "https://endoflife.date/api/$Product.json" -TimeoutSec 5 -ErrorAction Stop
+    } catch { return $null }
+}
+
+function Get-InstalledVersion {
+    param([string]$Tool)
+    try {
+        switch ($Tool) {
+            "ruby"       { $v = ruby -e "print RUBY_VERSION" 2>$null; return $v }
+            "python"     { return (uv run python -c "import sys; print(f'{sys.version_info.major}.{sys.version_info.minor}.{sys.version_info.micro}')" 2>$null) }
+            "bun"        { return (bun --version 2>$null) }
+            "rust"       { $v = rustc -V 2>$null; if ($v -match '(\d+\.\d+\.\d+)') { return $matches[1] }; return $null }
+            "go"         { $v = go version 2>$null; if ($v -match 'go(\d+\.\d+\.\d+)') { return $matches[1] }; return $null }
+            "nodejs"     { $v = node --version 2>$null; if ($v -match '(\d+\.\d+\.\d+)') { return $matches[1] }; return $null }
+            "postgresql" {
+                $v = psql --version 2>$null; if ($v -match '(\d+\.\d+)') { return $matches[1] }; return $null
+            }
+            "dotnet"     { $v = dotnet --version 2>$null; return $v }
+            "windows"    {
+                $build = [System.Environment]::OSVersion.Version
+                return "$($build.Major).$($build.Minor).$($build.Build)"
+            }
+            default      { return $null }
+        }
+    } catch { return $null }
+}
+
+function Compare-Versions {
+    param([string]$Installed, [string]$Latest)
+    if (-not $Installed -or -not $Latest) { return $null }
+    try {
+        $i = [version]$Installed
+        $l = [version]$Latest
+        return $i.CompareTo($l)
+    } catch { return $null }
+}
+
+# Fix command map: tool -> { Upgrade (tool present), Install (tool missing) }
+# All vectors use native installers — zero winget dependency.
+$global:DoctorFixMap = @{
+    ruby   = @{
+        Upgrade = { param($ver) rvw install $ver }; UpgradeDesc = "rvw install"
+        Install = { cargo install rv }; InstallDesc = "cargo install rv"
+    }
+    python = @{
+        Upgrade = { param($ver) uv python install $ver }; UpgradeDesc = "uv python install"
+        Install = { irm https://astral.sh/uv/install.ps1 | iex }; InstallDesc = "irm astral.sh/uv/install.ps1 | iex"
+    }
+    bun    = @{
+        Upgrade = { bun upgrade }; UpgradeDesc = "bun upgrade"
+        Install = { irm bun.sh/install.ps1 | iex }; InstallDesc = "irm bun.sh/install.ps1 | iex"
+    }
+    rust   = @{
+        Upgrade = { rustup update stable }; UpgradeDesc = "rustup update stable"
+        Install = { irm https://sh.rustup.rs -useb | iex }; InstallDesc = "irm rustup.rs | iex"
+    }
+    go     = @{
+        Upgrade = { param($ver)
+            $msi = "$env:TEMP\go${ver}.windows-amd64.msi"
+            Invoke-WebRequest -Uri "https://go.dev/dl/go${ver}.windows-amd64.msi" -OutFile $msi
+            Start-Process msiexec -ArgumentList "/i","`"$msi`"","/passive" -Wait -Verb RunAs
+        }; UpgradeDesc = "go.dev MSI"
+        Install = { param($ver)
+            $msi = "$env:TEMP\go${ver}.windows-amd64.msi"
+            Invoke-WebRequest -Uri "https://go.dev/dl/go${ver}.windows-amd64.msi" -OutFile $msi
+            Start-Process msiexec -ArgumentList "/i","`"$msi`"","/passive" -Wait -Verb RunAs
+        }; InstallDesc = "go.dev MSI"
+    }
+}
+
+# Origin map: where each tool actually lives and how it was installed.
+# Resolved dynamically from Get-Command to stay accurate.
+function Show-Origins {
+    $W = "White"; $C = "Cyan"; $D = "DarkGray"; $R = "Red"; $G = "Green"
+
+    Write-Host ""
+    Write-Host "CHTHONIC ORIGINS v$VERSION" -ForegroundColor $C
+    Write-Host ("="*72) -ForegroundColor $D
+
+    # Core ANNO-managed tools
+    $tools = @(
+        @{ Name = "ruby";    Cmd = "ruby";    Method = "rv (cargo install rv)";     Ecosystem = "cargo" },
+        @{ Name = "python";  Cmd = "uv";      Method = "irm astral.sh/uv";          Ecosystem = "uv" },
+        @{ Name = "bun";     Cmd = "bun";     Method = "irm bun.sh";                Ecosystem = "bun" },
+        @{ Name = "rust";    Cmd = "rustc";   Method = "rustup (winget bootstrap)";  Ecosystem = "cargo" },
+        @{ Name = "go";      Cmd = "go";      Method = "MSI (go.dev)";              Ecosystem = "system" }
+    )
+
+    # Secondary tools
+    $secondary = @(
+        @{ Name = "biome";   Cmd = "biome";   Method = "bun add -g";    Ecosystem = "bun" },
+        @{ Name = "ruff";    Cmd = "ruff";    Method = "uv tool";       Ecosystem = "uv" },
+        @{ Name = "mdbook";  Cmd = "mdbook";  Method = "cargo install"; Ecosystem = "cargo" },
+        @{ Name = "git";     Cmd = "git";     Method = "native installer"; Ecosystem = "system" },
+        @{ Name = "gcc";     Cmd = "gcc";     Method = "MSYS2 (RubyInstaller)"; Ecosystem = "system" },
+        @{ Name = "claude";  Cmd = "claude";  Method = "standalone";    Ecosystem = "uv" }
+    )
+
+    $ecoColors = @{ "uv" = "Magenta"; "bun" = "Yellow"; "cargo" = "Red"; "system" = "DarkGray" }
+
+    foreach ($section in @(@{ Label = "CORE"; Items = $tools }, @{ Label = "TOOLS"; Items = $secondary })) {
+        foreach ($t in $section.Items) {
+            $path = try { (Get-Command $t.Cmd -ErrorAction Stop).Source } catch { $null }
+            $short = if ($path) {
+                $path -replace [regex]::Escape($env:USERPROFILE), '~' -replace [regex]::Escape($env:APPDATA), '%APPDATA%'
+            } else { "(not found)" }
+
+            $nameStr = $t.Name.PadRight(10)
+            $pathStr = $short.PadRight(44)
+            $ecoColor = if ($ecoColors[$t.Ecosystem]) { $ecoColors[$t.Ecosystem] } else { $D }
+
+            Write-Host "  $nameStr" -NoNewline -ForegroundColor $W
+            if ($path) {
+                Write-Host "$pathStr" -NoNewline -ForegroundColor $D
+            } else {
+                Write-Host "$pathStr" -NoNewline -ForegroundColor $R
+            }
+            Write-Host " $($t.Method)" -ForegroundColor $ecoColor
+        }
+        if ($section.Label -eq "CORE") {
+            Write-Host "  $("-"*68)" -ForegroundColor $D
+        }
+    }
+
+    # Directory taxonomy
+    Write-Host ("="*72) -ForegroundColor $D
+    $dirs = @(
+        @{ Path = "~/.local/bin/";   Label = "uv ecosystem (uv, ruff, claude, python shims)" },
+        @{ Path = "~/.bun/bin/";     Label = "bun ecosystem (bun, biome, codex, gemini)" },
+        @{ Path = "~/.cargo/bin/";   Label = "cargo ecosystem (rustc, rustup, mdbook, rv)" },
+        @{ Path = "C:\Go\bin\";      Label = "system Go (MSI from go.dev)" },
+        @{ Path = "%APPDATA%\rv\";   Label = "rv-managed Ruby versions" }
+    )
+    foreach ($d in $dirs) {
+        Write-Host "  $($d.Path.PadRight(20))" -NoNewline -ForegroundColor $C
+        Write-Host $d.Label -ForegroundColor $D
+    }
+    Write-Host ("="*72) -ForegroundColor $D
+    Write-Host ""
+}
+
+function Invoke-Doctor {
+    param([switch]$Json, [switch]$Fix, [switch]$Origins)
+
+    if ($Origins) { Show-Origins; return }
+
+    # Tools: [display, endoflife.date product, ANNO manager, optional=skips if not installed]
+    $checks = @(
+        @{ Name = "ruby";       Product = "ruby";       Manager = "rv" },
+        @{ Name = "python";     Product = "python";     Manager = "uv" },
+        @{ Name = "bun";        Product = "bun";        Manager = "bun" },
+        @{ Name = "rust";       Product = "rust";       Manager = "rustup" },
+        @{ Name = "go";         Product = "go";         Manager = "go" },
+        @{ Name = "nodejs";     Product = "nodejs";     Manager = "bun"; Optional = $true },
+        @{ Name = "postgresql";  Product = "postgresql"; Manager = "system"; Optional = $true },
+        @{ Name = "dotnet";     Product = "dotnet";     Manager = "system"; Optional = $true }
+    )
+
+    $results = @()
+    $fixable = @()
+
+    Write-Host ""
+    Write-Host "CHTHONIC DOCTOR v$VERSION" -ForegroundColor Cyan -NoNewline
+    Write-Host " | endoflife.date" -ForegroundColor DarkGray
+    Write-Host ("="*72) -ForegroundColor DarkGray
+
+    foreach ($check in $checks) {
+        $installed = Get-InstalledVersion $check.Name
+
+        # Skip optional tools that aren't installed
+        if ($check.Optional -and -not $installed) { continue }
+
+        $eolData = Get-EndOfLifeData $check.Product
+
+        $latest = $null
+        $eolDate = $null
+        $badge = ""
+        $fixTarget = $null
+
+        if ($eolData -and $eolData.Count -gt 0) {
+            $installedCycle = $null
+            $latestCycle = $eolData[0]
+
+            if ($installed -match '^(\d+\.\d+)') {
+                $installedMajorMinor = $matches[1]
+                $installedCycle = $eolData | Where-Object {
+                    $installed -like "$($_.cycle)*" -or $installedMajorMinor -eq $_.cycle
+                } | Select-Object -First 1
+            }
+
+            $latest = $latestCycle.latest
+            $latestCycleVer = $latestCycle.cycle
+
+            if (-not $installedCycle) { $installedCycle = $latestCycle }
+
+            # EOL check
+            $eolDate = $installedCycle.eol
+            $isEol = $false
+            $daysLeft = $null
+            if ($eolDate -and $eolDate -ne $false -and $eolDate -is [string]) {
+                try {
+                    $eolParsed = [datetime]::Parse($eolDate)
+                    $isEol = $eolParsed -lt (Get-Date)
+                    $daysLeft = ($eolParsed - (Get-Date)).Days
+                } catch {}
+            }
+
+            $cmp = Compare-Versions $installed $installedCycle.latest
+            $cmpGlobal = Compare-Versions $installed $latest
+
+            if ($isEol) {
+                $badge = "EOL"
+                $fixTarget = $latest
+            } elseif ($daysLeft -and $daysLeft -lt 180) {
+                $badge = "EOL in ${daysLeft}d"
+                $fixTarget = $latest
+            } elseif ($cmpGlobal -and $cmpGlobal -lt 0) {
+                if ($installed -and $installedMajorMinor -ne $latestCycleVer) {
+                    $badge = "upgrade $latestCycleVer"
+                    $fixTarget = $latest
+                } elseif ($cmp -and $cmp -lt 0) {
+                    $badge = "patch $($installedCycle.latest)"
+                    $fixTarget = $installedCycle.latest
+                } else {
+                    $badge = "current"
+                }
+            } else {
+                $badge = "current"
+            }
+        } else {
+            $badge = "no API data"
+        }
+
+        # Display line
+        $mgr = $check.Manager.PadRight(6)
+        $name = $check.Name.PadRight(10)
+        $instStr = if ($installed) { $installed.PadRight(12) } else { "(missing)".PadRight(12) }
+
+        Write-Host "  $mgr " -NoNewline -ForegroundColor Cyan
+        Write-Host "$name " -NoNewline -ForegroundColor White
+        Write-Host "$instStr " -NoNewline -ForegroundColor White
+
+        switch -Wildcard ($badge) {
+            "current"   { Write-Host $badge -ForegroundColor Green }
+            "EOL"       { Write-Host "$badge  (eol: $eolDate)" -NoNewline -ForegroundColor Red }
+            "EOL in*"   { Write-Host "$badge  (eol: $eolDate)" -NoNewline -ForegroundColor Yellow }
+            "patch*"    { Write-Host $badge -NoNewline -ForegroundColor Yellow }
+            "upgrade*"  { Write-Host "$badge available (latest: $latest)" -NoNewline -ForegroundColor Yellow }
+            default     { Write-Host $badge -ForegroundColor DarkGray }
+        }
+
+        # Show fix/install command hint
+        $fixInfo = $global:DoctorFixMap[$check.Name]
+        $isMissing = -not $installed
+        if ($isMissing -and $fixInfo -and $fixInfo.InstallDesc) {
+            Write-Host "  -> $($fixInfo.InstallDesc)" -ForegroundColor DarkGray
+            $fixable += @{ Tool = $check.Name; Target = $null; Mode = "install"; FixInfo = $fixInfo }
+        } elseif ($fixTarget -and $fixInfo) {
+            Write-Host "  -> $($fixInfo.UpgradeDesc) $fixTarget" -ForegroundColor DarkGray
+            $fixable += @{ Tool = $check.Name; Target = $fixTarget; Mode = "upgrade"; FixInfo = $fixInfo }
+        } elseif ($badge -ne "current" -and $badge -ne "no API data") {
+            Write-Host ""
+        }
+    }
+
+    Write-Host ("="*72) -ForegroundColor DarkGray
+    $currentCount = ($results.Count -gt 0) ? ($results | Where-Object { $_.status -eq "current" }).Count : (($checks | ForEach-Object { $_.Name }) | Where-Object { $_ -notin ($fixable.Tool) }).Count
+    $checkedCount = $checks.Count - ($checks | Where-Object { $_.Optional -and -not (Get-InstalledVersion $_.Name) }).Count
+    $fixCount = $fixable.Count
+    $okCount = $checkedCount - $fixCount
+    Write-Host "  $okCount/$checkedCount current" -NoNewline -ForegroundColor $(if ($fixCount -eq 0) { "Green" } else { "Yellow" })
+    if ($fixCount -gt 0) {
+        Write-Host "  |  $fixCount fixable" -NoNewline -ForegroundColor Yellow
+        Write-Host "  (run: chthonic doctor --fix)" -NoNewline -ForegroundColor DarkGray
+    }
+    Write-Host "  | endoflife.date" -ForegroundColor DarkGray
+    Write-Host ""
+
+    # --fix mode: execute upgrades and installs
+    if ($Fix -and $fixable.Count -gt 0) {
+        Write-Host "APPLYING FIXES" -ForegroundColor Cyan
+        Write-Host ("="*72) -ForegroundColor DarkGray
+        foreach ($f in $fixable) {
+            if ($f.Mode -eq "install") {
+                Write-Host "  $($f.Tool): $($f.FixInfo.InstallDesc)" -ForegroundColor Yellow
+                try {
+                    & $f.FixInfo.Install
+                    if ($LASTEXITCODE -eq 0 -or $null -eq $LASTEXITCODE) {
+                        Write-Host "  -> installed" -ForegroundColor Green
+                    } else {
+                        Write-Host "  -> failed (exit $LASTEXITCODE)" -ForegroundColor Red
+                    }
+                } catch {
+                    Write-Host "  -> error: $_" -ForegroundColor Red
+                }
+            } else {
+                Write-Host "  $($f.Tool): $($f.FixInfo.UpgradeDesc) $($f.Target)" -ForegroundColor Yellow
+                try {
+                    & $f.FixInfo.Upgrade $f.Target
+                    if ($LASTEXITCODE -eq 0 -or $null -eq $LASTEXITCODE) {
+                        Write-Host "  -> done" -ForegroundColor Green
+                    } else {
+                        Write-Host "  -> failed (exit $LASTEXITCODE)" -ForegroundColor Red
+                    }
+                } catch {
+                    Write-Host "  -> error: $_" -ForegroundColor Red
+                }
+            }
+        }
+        Write-Host ("="*72) -ForegroundColor DarkGray
+        Write-Host ""
+    } elseif ($Fix) {
+        Write-Host "Nothing to fix — all current." -ForegroundColor Green
+        Write-Host ""
+    }
+
+    if ($Json) {
+        $jsonResults = $checks | ForEach-Object {
+            $inst = Get-InstalledVersion $_.Name
+            if ($_.Optional -and -not $inst) { return }
+            @{ tool = $_.Name; manager = $_.Manager; installed = $inst }
+        }
+        Write-Output (ConvertTo-Json $jsonResults -Depth 5)
+    }
+}
+
+# ═══════════════════════════════════════════════════════════════════════════════
 # MAIN DISPATCH - Meta CLI (Domain/Action Model)
 # ═══════════════════════════════════════════════════════════════════════════════
 
@@ -553,7 +917,12 @@ switch ($Domain) {
         Write-Host "chthonic v$VERSION"
         exit 0
     }
-    { $_ -in "--help", "-h", "help", $null, "" } {
+    { $_ -in "--help", "-h", "help" } {
+        Show-Help
+        exit 0
+    }
+    { $_ -in $null, "" } {
+        Show-StatusBanner
         Show-Help
         exit 0
     }
@@ -566,6 +935,12 @@ switch ($Domain) {
     }
     "status" {
         Show-PolyglotStatus -Json:$Json
+        exit 0
+    }
+    "doctor" {
+        $fixFlag = $Action -eq "--fix" -or $Action -eq "-f"
+        $jsonFlag = $Json -or $Action -eq "--json"
+        Invoke-Doctor -Json:$jsonFlag -Fix:$fixFlag
         exit 0
     }
     "detect" {
