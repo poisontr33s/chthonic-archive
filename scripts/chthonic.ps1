@@ -199,6 +199,7 @@ Usage: chthonic [--version] [--help] <domain> [<action>] [<args>]
   env [--quiet]           Activate polyglot environment
   status [--json]         Show all tool versions (verbose)
   doctor [--fix] [--json] Check versions + EOL via endoflife.date; --fix upgrades
+  doctor --dry-run        Simulate --fix without executing anything
   doctor --origins        Show install methodology per tool (path + origin)
   detect                  Detect IDE and environment context
 
@@ -619,7 +620,7 @@ function Compare-Versions {
 $global:DoctorFixMap = @{
     ruby   = @{
         Upgrade = { param($ver) rvw install $ver }; UpgradeDesc = "rvw install"
-        Install = { cargo install rv }; InstallDesc = "cargo install rv"
+        Install = { param($ver) cargo install rv; rvw install $ver }; InstallDesc = "cargo install rv && rvw install"
     }
     python = @{
         Upgrade = { param($ver) uv python install $ver }; UpgradeDesc = "uv python install"
@@ -635,14 +636,18 @@ $global:DoctorFixMap = @{
     }
     go     = @{
         Upgrade = { param($ver)
-            $msi = "$env:TEMP\go${ver}.windows-amd64.msi"
+            $msi = Join-Path $env:TEMP "go${ver}.windows-amd64.msi"
+            Write-Host "    Downloading go${ver} MSI from go.dev..." -ForegroundColor DarkGray
             Invoke-WebRequest -Uri "https://go.dev/dl/go${ver}.windows-amd64.msi" -OutFile $msi
-            Start-Process msiexec -ArgumentList "/i","`"$msi`"","/passive" -Wait -Verb RunAs
+            Start-Process msiexec -ArgumentList "/i","`"$msi`"","/quiet","/norestart" -Wait -Verb RunAs
+            Remove-Item $msi -ErrorAction SilentlyContinue
         }; UpgradeDesc = "go.dev MSI"
         Install = { param($ver)
-            $msi = "$env:TEMP\go${ver}.windows-amd64.msi"
+            $msi = Join-Path $env:TEMP "go${ver}.windows-amd64.msi"
+            Write-Host "    Downloading go${ver} MSI from go.dev..." -ForegroundColor DarkGray
             Invoke-WebRequest -Uri "https://go.dev/dl/go${ver}.windows-amd64.msi" -OutFile $msi
-            Start-Process msiexec -ArgumentList "/i","`"$msi`"","/passive" -Wait -Verb RunAs
+            Start-Process msiexec -ArgumentList "/i","`"$msi`"","/quiet","/norestart" -Wait -Verb RunAs
+            Remove-Item $msi -ErrorAction SilentlyContinue
         }; InstallDesc = "go.dev MSI"
     }
 }
@@ -719,7 +724,7 @@ function Show-Origins {
 }
 
 function Invoke-Doctor {
-    param([switch]$Json, [switch]$Fix, [switch]$Origins)
+    param([switch]$Json, [switch]$Fix, [switch]$DryRun, [switch]$Origins)
 
     if ($Origins) { Show-Origins; return }
 
@@ -833,7 +838,7 @@ function Invoke-Doctor {
         $isMissing = -not $installed
         if ($isMissing -and $fixInfo -and $fixInfo.InstallDesc) {
             Write-Host "  -> $($fixInfo.InstallDesc)" -ForegroundColor DarkGray
-            $fixable += @{ Tool = $check.Name; Target = $null; Mode = "install"; FixInfo = $fixInfo }
+            $fixable += @{ Tool = $check.Name; Target = $latest; Mode = "install"; FixInfo = $fixInfo }
         } elseif ($fixTarget -and $fixInfo) {
             Write-Host "  -> $($fixInfo.UpgradeDesc) $fixTarget" -ForegroundColor DarkGray
             $fixable += @{ Tool = $check.Name; Target = $fixTarget; Mode = "upgrade"; FixInfo = $fixInfo }
@@ -850,45 +855,59 @@ function Invoke-Doctor {
     Write-Host "  $okCount/$checkedCount current" -NoNewline -ForegroundColor $(if ($fixCount -eq 0) { "Green" } else { "Yellow" })
     if ($fixCount -gt 0) {
         Write-Host "  |  $fixCount fixable" -NoNewline -ForegroundColor Yellow
-        Write-Host "  (run: chthonic doctor --fix)" -NoNewline -ForegroundColor DarkGray
+        Write-Host "  (--dry-run | --fix)" -NoNewline -ForegroundColor DarkGray
     }
     Write-Host "  | endoflife.date" -ForegroundColor DarkGray
     Write-Host ""
 
-    # --fix mode: execute upgrades and installs
-    if ($Fix -and $fixable.Count -gt 0) {
-        Write-Host "APPLYING FIXES" -ForegroundColor Cyan
+    # --fix / --dry-run mode: execute or simulate upgrades and installs
+    if (($Fix -or $DryRun) -and $fixable.Count -gt 0) {
+        if ($DryRun) {
+            Write-Host "DRY RUN — no changes will be made" -ForegroundColor Magenta
+        } else {
+            Write-Host "APPLYING FIXES" -ForegroundColor Cyan
+        }
         Write-Host ("="*72) -ForegroundColor DarkGray
         foreach ($f in $fixable) {
             if ($f.Mode -eq "install") {
-                Write-Host "  $($f.Tool): $($f.FixInfo.InstallDesc)" -ForegroundColor Yellow
-                try {
-                    & $f.FixInfo.Install
-                    if ($LASTEXITCODE -eq 0 -or $null -eq $LASTEXITCODE) {
-                        Write-Host "  -> installed" -ForegroundColor Green
-                    } else {
-                        Write-Host "  -> failed (exit $LASTEXITCODE)" -ForegroundColor Red
+                $desc = "$($f.FixInfo.InstallDesc) $($f.Target)"
+                Write-Host "  $($f.Tool): $desc" -ForegroundColor Yellow
+                if ($DryRun) {
+                    Write-Host "  -> would install (skipped)" -ForegroundColor Magenta
+                } else {
+                    try {
+                        & $f.FixInfo.Install $f.Target
+                        if ($LASTEXITCODE -eq 0 -or $null -eq $LASTEXITCODE) {
+                            Write-Host "  -> installed" -ForegroundColor Green
+                        } else {
+                            Write-Host "  -> failed (exit $LASTEXITCODE)" -ForegroundColor Red
+                        }
+                    } catch {
+                        Write-Host "  -> error: $_" -ForegroundColor Red
                     }
-                } catch {
-                    Write-Host "  -> error: $_" -ForegroundColor Red
                 }
             } else {
-                Write-Host "  $($f.Tool): $($f.FixInfo.UpgradeDesc) $($f.Target)" -ForegroundColor Yellow
-                try {
-                    & $f.FixInfo.Upgrade $f.Target
-                    if ($LASTEXITCODE -eq 0 -or $null -eq $LASTEXITCODE) {
-                        Write-Host "  -> done" -ForegroundColor Green
-                    } else {
-                        Write-Host "  -> failed (exit $LASTEXITCODE)" -ForegroundColor Red
+                $desc = "$($f.FixInfo.UpgradeDesc) $($f.Target)"
+                Write-Host "  $($f.Tool): $desc" -ForegroundColor Yellow
+                if ($DryRun) {
+                    Write-Host "  -> would upgrade (skipped)" -ForegroundColor Magenta
+                } else {
+                    try {
+                        & $f.FixInfo.Upgrade $f.Target
+                        if ($LASTEXITCODE -eq 0 -or $null -eq $LASTEXITCODE) {
+                            Write-Host "  -> done" -ForegroundColor Green
+                        } else {
+                            Write-Host "  -> failed (exit $LASTEXITCODE)" -ForegroundColor Red
+                        }
+                    } catch {
+                        Write-Host "  -> error: $_" -ForegroundColor Red
                     }
-                } catch {
-                    Write-Host "  -> error: $_" -ForegroundColor Red
                 }
             }
         }
         Write-Host ("="*72) -ForegroundColor DarkGray
         Write-Host ""
-    } elseif ($Fix) {
+    } elseif ($Fix -or $DryRun) {
         Write-Host "Nothing to fix — all current." -ForegroundColor Green
         Write-Host ""
     }
@@ -940,9 +959,10 @@ switch ($Domain) {
     }
     "doctor" {
         $fixFlag = $Action -eq "--fix" -or $Action -eq "-f"
+        $dryRunFlag = $Action -eq "--dry-run" -or ($RemainingArgs -contains "--dry-run")
         $jsonFlag = $Json -or $Action -eq "--json"
         $originsFlag = $Action -eq "--origins"
-        Invoke-Doctor -Json:$jsonFlag -Fix:$fixFlag -Origins:$originsFlag
+        Invoke-Doctor -Json:$jsonFlag -Fix:$fixFlag -DryRun:$dryRunFlag -Origins:$originsFlag
         exit 0
     }
     "detect" {
