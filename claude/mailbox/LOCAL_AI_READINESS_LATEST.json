@@ -1,0 +1,108 @@
+{
+  "schema_version": 1,
+  "generated_on": "2026-02-17T02:26:34Z",
+  "repo_root": "C:/Users/erdno/chthonic-archive",
+  "platform": {
+    "system": "Windows",
+    "release": "11",
+    "python": "3.13.11 (main, Dec  9 2025, 19:02:08) [MSC v.1944 64 bit (AMD64)]"
+  },
+  "paths": {
+    "latest_daemon_run": "C:/Users/erdno/chthonic-archive/dumpster-dive/intake/overnight-daemon/20260217_030002",
+    "latest_daemon_log": "C:/Users/erdno/chthonic-archive/dumpster-dive/intake/overnight-daemon/nightly-scheduled-2026-02-17_030002.log",
+    "latest_arch_run": "C:/Users/erdno/chthonic-archive/dumpster-dive/intake/overnight-intelligence/arch-2026-02-17T02-00-04",
+    "latest_digest": "C:/Users/erdno/chthonic-archive/claude/mailbox/ARCHAEOLOGY_DIGEST_2026_02_13.md"
+  },
+  "summary": {
+    "runtime_ready": true,
+    "local_refiner_ready": false,
+    "overnight_data_ready": true,
+    "scheduler_log_clean": false,
+    "ready_for_skill_integration": false
+  },
+  "checks": [
+    {
+      "name": "runtime:uv",
+      "ok": true,
+      "detail": "C:\\Users\\erdno\\.local\\bin\\uv.EXE",
+      "notes": []
+    },
+    {
+      "name": "runtime:python",
+      "ok": true,
+      "detail": "3.13.11 (main, Dec  9 2025, 19:02:08) [MSC v.1944 64 bit (AMD64)]",
+      "notes": []
+    },
+    {
+      "name": "module:llama_cpp",
+      "ok": false,
+      "detail": "missing module llama_cpp",
+      "notes": [
+        "Install hint: uv add --dev llama-cpp-python"
+      ]
+    },
+    {
+      "name": "module:pydantic",
+      "ok": true,
+      "detail": "import ok",
+      "notes": []
+    },
+    {
+      "name": "model:qwen_14b",
+      "ok": true,
+      "detail": "3 gguf file(s) in C:/Users/erdno/chthonic-archive/models/Qwen2.5-14B-Instruct-GGUF",
+      "notes": []
+    },
+    {
+      "name": "model:gpt_oss_20b",
+      "ok": true,
+      "detail": "1 gguf file(s) in C:/Users/erdno/chthonic-archive/models/GPT-OSS-20B-NEOPlus-Uncensored",
+      "notes": []
+    },
+    {
+      "name": "artifact:daemon_report_json",
+      "ok": true,
+      "detail": "C:/Users/erdno/chthonic-archive/dumpster-dive/intake/overnight-daemon/20260217_030002/report.json",
+      "notes": []
+    },
+    {
+      "name": "artifact:daemon_report_md",
+      "ok": true,
+      "detail": "C:/Users/erdno/chthonic-archive/dumpster-dive/intake/overnight-daemon/20260217_030002/report.md",
+      "notes": []
+    },
+    {
+      "name": "artifact:l1_ore",
+      "ok": true,
+      "detail": "C:/Users/erdno/chthonic-archive/dumpster-dive/intake/overnight-intelligence/arch-2026-02-17T02-00-04/L1-ore.json",
+      "notes": []
+    },
+    {
+      "name": "artifact:l1_summary",
+      "ok": true,
+      "detail": "C:/Users/erdno/chthonic-archive/dumpster-dive/intake/overnight-intelligence/arch-2026-02-17T02-00-04/L1-summary.md",
+      "notes": []
+    },
+    {
+      "name": "artifact:latest_digest",
+      "ok": true,
+      "detail": "C:/Users/erdno/chthonic-archive/claude/mailbox/ARCHAEOLOGY_DIGEST_2026_02_13.md",
+      "notes": [
+        "Digest absence is acceptable for L1-only runs."
+      ]
+    },
+    {
+      "name": "log:scheduler",
+      "ok": false,
+      "detail": "C:/Users/erdno/chthonic-archive/dumpster-dive/intake/overnight-daemon/nightly-scheduled-2026-02-17_030002.log",
+      "notes": [
+        "Python traceback detected in scheduler log.",
+        "ModuleNotFoundError detected in scheduler log."
+      ]
+    }
+  ],
+  "recommendations": [
+    "Install local refiner deps and verify Qwen GGUF model directory before skill-side automation.",
+    "Fix scheduler/runtime errors first; treat latest run as informational only."
+  ]
+}
