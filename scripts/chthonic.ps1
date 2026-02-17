@@ -680,6 +680,61 @@ function Show-PolyglotStatus {
     try { $tools['make'] = (make --version 2>$null | Select-Object -First 1) -replace 'GNU Make\s*','' } catch { $tools['make'] = 'not found' }
     try { $tools['git'] = (git --version 2>$null) -replace 'git version\s*','' } catch { $tools['git'] = 'not found' }
     try { $tools['mdbook'] = (mdbook --version 2>$null) -replace 'mdbook\s*v?','' } catch { $tools['mdbook'] = 'not found' }
+    try { $tools['az'] = (az version --query '"azure-cli"' -o tsv 2>$null) } catch { $tools['az'] = 'not found' }
+    try { $tools['code-insiders'] = ((code-insiders --version 2>$null) -split '\n')[0] } catch { $tools['code-insiders'] = 'not found' }
+
+    $clExe = Get-VSClExePath
+    if ($clExe) {
+        try {
+            $clOut = & $clExe /Bv 2>$null
+            if ($clOut -match 'Compiler Version ([0-9\.]+)') {
+                $tools['msvc_cl'] = $matches[1]
+            } else {
+                $tools['msvc_cl'] = (Split-Path -Parent $clExe)
+            }
+        } catch {
+            $tools['msvc_cl'] = (Split-Path -Parent $clExe)
+        }
+    } else {
+        $tools['msvc_cl'] = 'not found'
+    }
+
+    $msbuildExe = Get-VSMsBuildExePath
+    if ($msbuildExe) {
+        try {
+            $msbuildOut = & $msbuildExe -version -nologo 2>$null
+            if ($msbuildOut) {
+                $tools['msbuild'] = (($msbuildOut | Select-Object -Last 1).ToString().Trim())
+            } else {
+                $tools['msbuild'] = $msbuildExe
+            }
+        } catch {
+            $tools['msbuild'] = $msbuildExe
+        }
+    } else {
+        $tools['msbuild'] = 'not found'
+    }
+
+    $clangBin = Get-VSClangBinDir
+    if ($clangBin) {
+        try {
+            $clangOut = & (Join-Path $clangBin "clang.exe") --version 2>$null
+            if ($clangOut -and $clangOut[0] -match 'clang version ([0-9\.]+)') {
+                $tools['clang'] = $matches[1]
+            } else {
+                $tools['clang'] = $clangBin
+            }
+        } catch {
+            $tools['clang'] = $clangBin
+        }
+    } else {
+        $tools['clang'] = 'not found'
+    }
+
+    $ssmsVer = Get-SsmsVersion
+    $tools['ssms'] = if ($ssmsVer) { $ssmsVer } else { 'not found' }
+    $tools['vs_community'] = if (Get-VSInstallationPath -ProductId "Microsoft.VisualStudio.Product.Community") { "installed" } else { "not found" }
+    $tools['vs_buildtools'] = if (Get-VSInstallationPath -ProductId "Microsoft.VisualStudio.Product.BuildTools") { "installed" } else { "not found" }
     if ($env:VULKAN_SDK -match '(\d+\.\d+\.\d+\.\d+)') { $tools['vulkan'] = $matches[1] } else { $tools['vulkan'] = 'not found' }
     $tools['workspace'] = $REPO_ROOT
     
@@ -784,6 +839,22 @@ function Get-InstalledVersion {
                 $v = psql --version 2>$null; if ($v -match '(\d+\.\d+)') { return $matches[1] }; return $null
             }
             "dotnet"     { $v = dotnet --version 2>$null; return $v }
+            "azurecli"   {
+                $v = az version --query '"azure-cli"' -o tsv 2>$null
+                if ($v) { return $v.Trim() }
+                return $null
+            }
+            "visualstudio" {
+                $vswhere = Get-VSWhereExe
+                if (-not $vswhere) { return $null }
+                $v = & $vswhere -latest -prerelease -products * -property installationVersion 2>$null
+                $ver = ($v | Select-Object -First 1)
+                if ($ver) { return $ver.Trim() }
+                return $null
+            }
+            "ssms" {
+                return (Get-SsmsVersion)
+            }
             "windows"    {
                 $build = [System.Environment]::OSVersion.Version
                 return "$($build.Major).$($build.Minor).$($build.Build)"
@@ -870,7 +941,15 @@ function Show-Origins {
         @{ Name = "mdbook";  Cmd = "mdbook";  Method = "cargo install"; Ecosystem = "cargo" },
         @{ Name = "git";     Cmd = "git";     Method = "native installer"; Ecosystem = "system" },
         @{ Name = "gcc";     Cmd = "gcc";     Method = "MSYS2 (RubyInstaller)"; Ecosystem = "system" },
+        @{ Name = "az";      Cmd = "az";      Method = "Azure CLI MSI"; Ecosystem = "system" },
+        @{ Name = "cl";      Cmd = "cl";      Method = "Visual Studio 2026 C++ toolchain"; Ecosystem = "system"; Resolver = { Get-VSClExePath } },
+        @{ Name = "msbuild"; Cmd = "msbuild"; Method = "Visual Studio 2026 Build Tools"; Ecosystem = "system"; Resolver = { Get-VSMsBuildExePath } },
+        @{ Name = "clang";   Cmd = "clang";   Method = "Visual Studio 2026 LLVM toolset"; Ecosystem = "system"; Resolver = {
+            $bin = Get-VSClangBinDir
+            if ($bin) { Join-Path $bin "clang.exe" } else { $null }
+        } },
         @{ Name = "glslc";   Cmd = "glslc";   Method = "Vulkan SDK";    Ecosystem = "system" },
+        @{ Name = "ssms";    Cmd = $null;     Method = "SSMS (Visual Studio Installer)"; Ecosystem = "system"; Resolver = { Get-SsmsInstallationPath } },
         @{ Name = "claude";  Cmd = "claude";  Method = "standalone";    Ecosystem = "uv" }
     )
 
@@ -878,11 +957,21 @@ function Show-Origins {
 
     foreach ($section in @(@{ Label = "CORE"; Items = $tools }, @{ Label = "TOOLS"; Items = $secondary })) {
         foreach ($t in $section.Items) {
-            $path = try { (Get-Command $t.Cmd -ErrorAction Stop).Source } catch { $null }
+            $path = $null
+            if ($t.ContainsKey("Resolver") -and $t.Resolver) {
+                try { $path = & $t.Resolver } catch {}
+            }
+            if (-not $path -and $t.Cmd) {
+                $path = try { (Get-Command $t.Cmd -ErrorAction Stop).Source } catch { $null }
+            }
             # Fallback: goup-managed Go when not in PATH
             if (-not $path -and $t.Name -eq "go") {
                 $goupGo = Join-Path $env:USERPROFILE ".goup\current\bin\go.exe"
                 if (Test-Path $goupGo) { $path = $goupGo }
+            }
+            if (-not $path -and $t.Name -eq "az") {
+                $azBin = Get-AzureCliBinDir
+                if ($azBin) { $path = Join-Path $azBin "az.cmd" }
             }
             $short = if ($path) {
                 $path -replace [regex]::Escape($env:USERPROFILE), '~' -replace [regex]::Escape($env:APPDATA), '%APPDATA%'
@@ -914,6 +1003,22 @@ function Show-Origins {
         @{ Path = "~/.goup/";        Label = "goup-managed Go versions (go.dev source)" },
         @{ Path = "%APPDATA%\rv\";   Label = "rv-managed Ruby versions" }
     )
+
+    $azBinDir = Get-AzureCliBinDir
+    if ($azBinDir) {
+        $dirs += @{ Path = $azBinDir; Label = "Azure CLI (az)" }
+    }
+
+    $vsBuild = Get-VSInstallationPath -ProductId "Microsoft.VisualStudio.Product.BuildTools"
+    if ($vsBuild) {
+        $dirs += @{ Path = $vsBuild; Label = "Visual Studio Build Tools 2026 (Insiders)" }
+    }
+
+    $vsCommunity = Get-VSInstallationPath -ProductId "Microsoft.VisualStudio.Product.Community"
+    if ($vsCommunity) {
+        $dirs += @{ Path = $vsCommunity; Label = "Visual Studio Community 2026 (Insiders)" }
+    }
+
     foreach ($dir in $dirs) {
         Write-Host "  $($dir.Path.PadRight(20))" -NoNewline -ForegroundColor $C
         Write-Host $dir.Label -ForegroundColor $D
