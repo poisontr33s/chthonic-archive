@@ -1039,6 +1039,7 @@ function Invoke-Doctor {
         @{ Name = "bun";        Product = "bun";        Manager = "bun" },
         @{ Name = "rust";       Product = "rust";       Manager = "rustup" },
         @{ Name = "go";         Product = "go";         Manager = "goup" },
+        @{ Name = "visualstudio"; Product = "visual-studio"; Manager = "vs"; Optional = $true },
         @{ Name = "nodejs";     Product = "nodejs";     Manager = "bun"; Optional = $true },
         @{ Name = "postgresql";  Product = "postgresql"; Manager = "system"; Optional = $true },
         @{ Name = "dotnet";     Product = "dotnet";     Manager = "system"; Optional = $true }
