@@ -940,15 +940,36 @@ function Show-PolyglotStatus {
     
     # Collect tool versions
     $tools = @{}
-    try { $tools['rv'] = ((rv --version 2>$null) -replace 'rv\s*','') } catch { $tools['rv'] = 'not found' }
-    try { $tools['rvw'] = ((rvw --version 2>$null) -replace 'rvw\s*','') } catch { $tools['rvw'] = 'not found' }
+    try {
+        $rvOut = (rv --version 2>$null)
+        if (($rvOut -join "`n") -match '(\d+\.\d+\.\d+)') {
+            $tools['rv'] = $matches[1]
+        } else {
+            $tools['rv'] = (($rvOut | Select-Object -First 1).ToString().Trim())
+        }
+    } catch { $tools['rv'] = 'not found' }
+    try {
+        $rvwOut = (rvw --version 2>$null)
+        if (($rvwOut -join "`n") -match '(\d+\.\d+\.\d+)') {
+            $tools['rvw'] = $matches[1]
+        } else {
+            $tools['rvw'] = (($rvwOut | Select-Object -First 1).ToString().Trim())
+        }
+    } catch { $tools['rvw'] = 'not found' }
     try { $tools['bun'] = (bun --version 2>$null) -replace 'Bun\s+','' -split ' ' | Select-Object -First 1 } catch { $tools['bun'] = 'not found' }
     try { $tools['biome'] = ((biome --version 2>$null) -split '\n')[0] -replace 'Version:\s*','' } catch { $tools['biome'] = 'not found' }
     try { $tools['cargo'] = ((cargo --version 2>$null) -split ' ')[1] } catch { $tools['cargo'] = 'not found' }
     try { $tools['rust'] = (rustc --version 2>$null) -replace 'rustc\s*','' } catch { $tools['rust'] = 'not found' }
     try { $tools['rustup'] = ((rustup --version 2>$null) -split ' ')[1] } catch { $tools['rustup'] = 'not found' }
     try { $tools['go'] = (go version 2>$null) -replace 'go version go','' } catch { $tools['go'] = 'not found' }
-    try { $tools['goup'] = ((goup --version 2>$null) -replace 'goup\s*','') } catch { $tools['goup'] = 'not found' }
+    try {
+        $goupOut = (goup --version 2>$null)
+        if (($goupOut -join "`n") -match '(\d+\.\d+\.\d+)') {
+            $tools['goup'] = $matches[1]
+        } else {
+            $tools['goup'] = (($goupOut | Select-Object -First 1).ToString().Trim())
+        }
+    } catch { $tools['goup'] = 'not found' }
     try { $tools['python'] = (uv run python --version 2>&1) -replace 'Python\s*','' } catch { $tools['python'] = 'not found' }
     if ($tools['go'] -eq 'not found') {
         $goupGo = Join-Path $env:USERPROFILE ".goup\current\bin\go.exe"
