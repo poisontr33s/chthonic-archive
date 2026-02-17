@@ -115,9 +115,21 @@ function Get-VSProductVersion {
     return $null
 }
 
+function Get-VSIdeProductIds {
+    return @(
+        "Microsoft.VisualStudio.Product.Professional",
+        "Microsoft.VisualStudio.Product.Community",
+        "Microsoft.VisualStudio.Product.Enterprise"
+    )
+}
+
 function Get-VisualStudioVersion {
     $versions = @()
-    foreach ($product in @("Microsoft.VisualStudio.Product.Community", "Microsoft.VisualStudio.Product.BuildTools")) {
+    $products = @()
+    $products += Get-VSIdeProductIds
+    $products += "Microsoft.VisualStudio.Product.BuildTools"
+
+    foreach ($product in $products) {
         $v = Get-VSProductVersion -ProductId $product
         if ($v) { $versions += $v }
     }
@@ -152,7 +164,11 @@ function Get-AzureCliVersion {
 
 function Get-VSInstallationRoots {
     $roots = @()
-    foreach ($product in @("Microsoft.VisualStudio.Product.Community", "Microsoft.VisualStudio.Product.BuildTools")) {
+    $products = @()
+    $products += Get-VSIdeProductIds
+    $products += "Microsoft.VisualStudio.Product.BuildTools"
+
+    foreach ($product in $products) {
         $root = Get-VSInstallationPath -ProductId $product
         if ($root) { $roots += $root }
     }
@@ -931,9 +947,18 @@ function Show-PolyglotStatus {
 
     $ssmsVer = Get-SsmsVersion
     $tools['ssms'] = if ($ssmsVer) { $ssmsVer } else { 'not found' }
+    $vsProfessionalVer = Get-VSProductVersion -ProductId "Microsoft.VisualStudio.Product.Professional"
     $vsCommunityVer = Get-VSProductVersion -ProductId "Microsoft.VisualStudio.Product.Community"
+    $vsEnterpriseVer = Get-VSProductVersion -ProductId "Microsoft.VisualStudio.Product.Enterprise"
     $vsBuildToolsVer = Get-VSProductVersion -ProductId "Microsoft.VisualStudio.Product.BuildTools"
+    $vsIdeVer = $null
+    foreach ($candidate in @($vsProfessionalVer, $vsCommunityVer, $vsEnterpriseVer)) {
+        if ($candidate) { $vsIdeVer = $candidate; break }
+    }
+    $tools['vs_ide'] = if ($vsIdeVer) { $vsIdeVer } else { "not found" }
+    $tools['vs_professional'] = if ($vsProfessionalVer) { $vsProfessionalVer } else { "not found" }
     $tools['vs_community'] = if ($vsCommunityVer) { $vsCommunityVer } else { "not found" }
+    $tools['vs_enterprise'] = if ($vsEnterpriseVer) { $vsEnterpriseVer } else { "not found" }
     $tools['vs_buildtools'] = if ($vsBuildToolsVer) { $vsBuildToolsVer } else { "not found" }
     if ($env:VULKAN_SDK -match '(\d+\.\d+\.\d+\.\d+)') { $tools['vulkan'] = $matches[1] } else { $tools['vulkan'] = 'not found' }
     $tools['workspace'] = $REPO_ROOT
@@ -1221,9 +1246,19 @@ function Show-Origins {
         $dirs += @{ Path = $vsBuild; Label = "Visual Studio Build Tools 2026 (Insiders)" }
     }
 
+    $vsProfessional = Get-VSInstallationPath -ProductId "Microsoft.VisualStudio.Product.Professional"
+    if ($vsProfessional) {
+        $dirs += @{ Path = $vsProfessional; Label = "Visual Studio Professional 2026 (Insiders)" }
+    }
+
     $vsCommunity = Get-VSInstallationPath -ProductId "Microsoft.VisualStudio.Product.Community"
     if ($vsCommunity) {
         $dirs += @{ Path = $vsCommunity; Label = "Visual Studio Community 2026 (Insiders)" }
+    }
+
+    $vsEnterprise = Get-VSInstallationPath -ProductId "Microsoft.VisualStudio.Product.Enterprise"
+    if ($vsEnterprise) {
+        $dirs += @{ Path = $vsEnterprise; Label = "Visual Studio Enterprise 2026 (Insiders)" }
     }
 
     foreach ($dir in $dirs) {

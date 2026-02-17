@@ -1,20 +1,20 @@
 # VS2026 Elevated Validation (Latest)
 
-- Timestamp: 2026-02-17T05:42:18
+- Timestamp: 2026-02-18T00:11:06
 - Elevated User: LAPTOP-DRAQGN8A\eld
 - Skip Modify: False
-- Log: "C:\Users\erdno\chthonic-archive\codex\mailbox\VS2026_ELEVATED_VALIDATE_20260217_054157.log"
+- Log: "C:\Users\erdno\chthonic-archive\codex\mailbox\VS2026_ELEVATED_VALIDATE_20260218_001043.log"
 
 ## Lane Results
 
-- [ok] community_insiders: pre_missing=0, post_missing=0, exit_code=0
+- [ok] professional_insiders: pre_missing=0, post_missing=0, exit_code=0
 - [ok] buildtools_insiders: pre_missing=0, post_missing=0, exit_code=0
 - [ok] ssms22: pre_missing=0, post_missing=0, exit_code=0
 
 ## chthonic status --json
 
 ```json
-{"clang":"20.1.8","ssms":"22.3.11505.172","python":"3.13.11","sqlcmd":"1.9.0","ruff":"0.15.0","git":"2.52.0.windows.1","bun":"1.3.9","make":"4.4.1","msvc_cl":"C:\\Program Files\\Microsoft Visual Studio\\18\\Insiders\\VC\\Tools\\MSVC\\14.50.35717\\bin\\Hostx64\\x64","biome":"2.4.1","sqlpackage":"170.3.93.6","uv":"0.10.3","az":"2.83.0","vulkan":"1.4.341.1","vs_community":"18.4.11506.43","vs_buildtools":"18.4.11506.43","workspace":"C:\\Users\\erdno\\chthonic-archive","ruby":"4.0.1 (2026-01-13 revision e04267a14b) +PRISM [x64-mingw-ucrt]","msbuild":"18.4.0.7901","go":"not found","rust":"1.93.1 (01f6ddf75 2026-02-11)","mdbook":"0.5.2","gcc":"15.2.0","code-insiders":"1.110.0-insider","bicep":"0.40.2"}
+{"sqlpackage":"170.3.93.6","mdbook":"0.5.2","az":"2.83.0","vs_ide":"18.4.11506.43","ssms":"22.3.11505.172","msvc_cl":"C:\\Program Files\\Microsoft Visual Studio\\18\\Insiders\\VC\\Tools\\MSVC\\14.50.35717\\bin\\Hostx64\\x64","biome":"2.4.1","uv":"0.10.3","bun":"1.3.9","make":"4.4.1","clang":"20.1.8","vulkan":"1.4.341.1","ruby":"4.0.1 (2026-01-13 revision e04267a14b) +PRISM [x64-mingw-ucrt]","msbuild":"18.4.0.7901","vs_professional":"18.4.11506.43","code-insiders":"1.110.0-insider","sqlcmd":"1.9.0","python":"3.13.11","workspace":"C:\\Users\\erdno\\chthonic-archive","vs_enterprise":"not found","vs_buildtools":"18.4.11506.43","bicep":"0.40.2","rust":"1.93.1 (01f6ddf75 2026-02-11)","go":"1.26.0 windows/amd64","git":"2.52.0.windows.1","vs_community":"not found","gcc":"15.2.0","ruff":"0.15.0"}
 ```
 
 ## chthonic doctor --origins
@@ -58,6 +58,6 @@ CHTHONIC ORIGINS v3.2.0
   C:\Program Files\SqlCmd  Sqlcmd Tools (winget)
   C:\Users\erdno\AppData\Local\Microsoft\WinGet\Packages\Microsoft.SqlPackage_Microsoft.Winget.Source_8wekyb3d8bbwe  SqlPackage (winget)
   C:\Program Files (x86)\Microsoft Visual Studio\18\Insiders  Visual Studio Build Tools 2026 (Insiders)
-  C:\Program Files\Microsoft Visual Studio\18\Insiders  Visual Studio Community 2026 (Insiders)
+  C:\Program Files\Microsoft Visual Studio\18\Insiders  Visual Studio Professional 2026 (Insiders)
 ========================================================================
 ```

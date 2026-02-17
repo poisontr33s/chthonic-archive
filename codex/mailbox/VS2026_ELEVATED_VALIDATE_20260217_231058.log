@@ -1,0 +1,22 @@
+[2026-02-17 23:10:58] Starting elevated VS/SSMS validation.
+[2026-02-17 23:10:58] SkipModify=False
+[2026-02-17 23:10:58] Lane start: professional_insiders
+[2026-02-17 23:10:58] Pre-check missing count: 0
+[2026-02-17 23:10:58] Running setup.exe modify --installPath C:\Program Files\Microsoft Visual Studio\18\Insiders --config C:\Users\erdno\chthonic-archive\.codex\visualStudioInstaller2006\visualStudio2026Insiders_11506.43\.vsconfig --installWhileDownloading --passive --norestart
+[2026-02-17 23:10:58] setup.exe exit code: 0
+[2026-02-17 23:11:04] Post-check missing count: 0
+[2026-02-17 23:11:04] Lane done: professional_insiders
+[2026-02-17 23:11:04] Lane start: buildtools_insiders
+[2026-02-17 23:11:04] Instance missing for Microsoft.VisualStudio.Product.BuildTools; installing lane first.
+[2026-02-17 23:11:04] Running setup.exe install --installPath C:\Program Files (x86)\Microsoft Visual Studio\18\Insiders --channelId VisualStudio.18.Preview --productId Microsoft.VisualStudio.Product.BuildTools --config C:\Users\erdno\chthonic-archive\.codex\visualStudioInstaller2006\visualStudio2026InsidersBuildtools_11506.43\.vsconfig --installWhileDownloading --passive --norestart
+[2026-02-17 23:11:04] setup.exe install exit code: 0
+[2026-02-17 23:13:11] Pre-check missing count: 0
+[2026-02-17 23:13:11] Running setup.exe modify --installPath C:\Program Files (x86)\Microsoft Visual Studio\18\Insiders --config C:\Users\erdno\chthonic-archive\.codex\visualStudioInstaller2006\visualStudio2026InsidersBuildtools_11506.43\.vsconfig --installWhileDownloading --passive --norestart
+[2026-02-17 23:13:11] setup.exe exit code: 0
+[2026-02-17 23:13:17] Post-check missing count: 0
+[2026-02-17 23:13:17] Lane done: buildtools_insiders
+[2026-02-17 23:13:17] Lane start: ssms22
+[2026-02-17 23:13:17] State missing for product: Microsoft.VisualStudio.Product.Ssms
+[2026-02-17 23:13:22] Wrote JSON: C:\Users\erdno\chthonic-archive\codex\mailbox\VS2026_ELEVATED_VALIDATION_LATEST.json
+[2026-02-17 23:13:22] Wrote MD: C:\Users\erdno\chthonic-archive\codex\mailbox\VS2026_ELEVATED_VALIDATION_LATEST.md
+[2026-02-17 23:13:22] Validation complete.

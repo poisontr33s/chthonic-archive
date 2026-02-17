@@ -1,0 +1,23 @@
+[2026-02-17 23:56:53] Starting elevated VS/SSMS validation.
+[2026-02-17 23:56:53] SkipModify=False
+[2026-02-17 23:56:53] Lane start: professional_insiders
+[2026-02-17 23:56:53] Pre-check missing count: 0
+[2026-02-17 23:56:53] Running setup.exe modify --installPath C:\Program Files\Microsoft Visual Studio\18\Insiders --config C:\Users\erdno\chthonic-archive\.codex\visualStudioInstaller2006\visualStudio2026InsidersProfessional_11506.43\.vsconfig --installWhileDownloading --passive --norestart
+[2026-02-17 23:56:53] setup.exe exit code: 0
+[2026-02-17 23:56:59] Post-check missing count: 0
+[2026-02-17 23:56:59] Lane done: professional_insiders
+[2026-02-17 23:56:59] Lane start: buildtools_insiders
+[2026-02-17 23:56:59] Pre-check missing count: 0
+[2026-02-17 23:56:59] Running setup.exe modify --installPath C:\Program Files (x86)\Microsoft Visual Studio\18\Insiders --config C:\Users\erdno\chthonic-archive\.codex\visualStudioInstaller2006\visualStudio2026InsidersBuildtools_11506.43\.vsconfig --installWhileDownloading --passive --norestart
+[2026-02-17 23:56:59] setup.exe exit code: 0
+[2026-02-17 23:57:05] Post-check missing count: 0
+[2026-02-17 23:57:05] Lane done: buildtools_insiders
+[2026-02-17 23:57:05] Lane start: ssms22
+[2026-02-17 23:57:06] Pre-check missing count: 16
+[2026-02-17 23:57:06] Running setup.exe modify --installPath C:\Program Files\Microsoft SQL Server Management Studio 22\Release --config C:\Users\erdno\chthonic-archive\.codex\visualStudioInstaller2006\SQLServerManagementStudio22_23.3.0\.vsconfig --installWhileDownloading --passive --norestart
+[2026-02-17 23:57:06] setup.exe exit code: 0
+[2026-02-17 23:57:12] Post-check missing count: 16
+[2026-02-17 23:57:12] Lane done: ssms22
+[2026-02-17 23:57:15] Wrote JSON: C:\Users\erdno\chthonic-archive\codex\mailbox\VS2026_ELEVATED_VALIDATION_LATEST.json
+[2026-02-17 23:57:15] Wrote MD: C:\Users\erdno\chthonic-archive\codex\mailbox\VS2026_ELEVATED_VALIDATION_LATEST.md
+[2026-02-17 23:57:15] Validation complete.

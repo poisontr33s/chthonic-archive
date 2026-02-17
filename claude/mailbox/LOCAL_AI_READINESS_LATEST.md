@@ -1,6 +1,6 @@
 # Local AI Readiness (Latest)
 
-- Generated: `2026-02-17T04:32:58Z`
+- Generated: `2026-02-17T22:58:13Z`
 - Runtime ready: `True`
 - C++/Vulkan toolchain ready: `True`
 - Local refiner ready: `True`

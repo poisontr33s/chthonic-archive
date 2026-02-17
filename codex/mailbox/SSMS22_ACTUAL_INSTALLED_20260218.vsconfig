@@ -1,0 +1,10 @@
+{
+  "version": "1.0",
+  "components": [
+    "Microsoft.SSMS.Component.Core",
+    "Microsoft.VisualStudio.Component.CoreEditor",
+    "Microsoft.VisualStudio.Product.Ssms",
+    "Microsoft.VisualStudio.Workload.SSMSCore"
+  ],
+  "extensions": []
+}
