@@ -208,6 +208,95 @@ function Get-AzureCliBinDir {
     return $null
 }
 
+function Find-WinGetPackageExePath {
+    param(
+        [string]$PackagePrefix,
+        [string]$ExeName
+    )
+
+    $wgRoot = Join-Path $env:LOCALAPPDATA "Microsoft\WinGet\Packages"
+    if (-not (Test-Path $wgRoot)) { return $null }
+
+    $pkg = Get-ChildItem $wgRoot -Directory -ErrorAction SilentlyContinue |
+        Where-Object { $_.Name -like "$PackagePrefix*" } |
+        Sort-Object LastWriteTime -Descending |
+        Select-Object -First 1
+    if (-not $pkg) { return $null }
+
+    $exe = Get-ChildItem $pkg.FullName -Recurse -File -Filter $ExeName -ErrorAction SilentlyContinue |
+        Sort-Object LastWriteTime -Descending |
+        Select-Object -First 1
+    if ($exe) { return $exe.FullName }
+
+    return $null
+}
+
+function Get-BicepExePath {
+    try {
+        $path = (Get-Command bicep -ErrorAction Stop).Source
+        if ($path -and (Test-Path $path)) { return $path }
+    } catch {}
+
+    foreach ($candidate in @(
+        "C:\Program Files\Bicep CLI\bicep.exe",
+        "C:\Program Files\Microsoft\Bicep CLI\bicep.exe",
+        (Find-WinGetPackageExePath -PackagePrefix "Microsoft.Bicep_" -ExeName "bicep.exe")
+    )) {
+        if ($candidate -and (Test-Path $candidate)) { return $candidate }
+    }
+    return $null
+}
+
+function Get-SqlCmdExePath {
+    try {
+        $path = (Get-Command sqlcmd -ErrorAction Stop).Source
+        if ($path -and (Test-Path $path)) { return $path }
+    } catch {}
+
+    foreach ($candidate in @(
+        "C:\Program Files\sqlcmd\sqlcmd.exe",
+        "C:\Program Files\sqlcmd\bin\sqlcmd.exe",
+        (Find-WinGetPackageExePath -PackagePrefix "Microsoft.Sqlcmd_" -ExeName "sqlcmd.exe")
+    )) {
+        if ($candidate -and (Test-Path $candidate)) { return $candidate }
+    }
+    return $null
+}
+
+function Get-SqlPackageExePath {
+    try {
+        $path = (Get-Command sqlpackage -ErrorAction Stop).Source
+        if ($path -and (Test-Path $path)) { return $path }
+    } catch {}
+
+    foreach ($candidate in @(
+        "C:\Program Files\Microsoft SQL Server\170\DAC\bin\SqlPackage.exe",
+        "C:\Program Files\Microsoft SQL Server\160\DAC\bin\SqlPackage.exe",
+        (Find-WinGetPackageExePath -PackagePrefix "Microsoft.SqlPackage_" -ExeName "SqlPackage.exe")
+    )) {
+        if ($candidate -and (Test-Path $candidate)) { return $candidate }
+    }
+    return $null
+}
+
+function Get-BicepBinDir {
+    $exe = Get-BicepExePath
+    if ($exe) { return (Split-Path -Parent $exe) }
+    return $null
+}
+
+function Get-SqlCmdBinDir {
+    $exe = Get-SqlCmdExePath
+    if ($exe) { return (Split-Path -Parent $exe) }
+    return $null
+}
+
+function Get-SqlPackageBinDir {
+    $exe = Get-SqlPackageExePath
+    if ($exe) { return (Split-Path -Parent $exe) }
+    return $null
+}
+
 function Get-VulkanBinDir {
     if (-not $env:VULKAN_SDK) { return $null }
     $bin = Join-Path $env:VULKAN_SDK "Bin"
@@ -245,6 +334,15 @@ function Get-SystemRegistrationPaths {
 
     $azBin = Get-AzureCliBinDir
     if ($azBin) { $paths += $azBin }
+
+    $bicepBin = Get-BicepBinDir
+    if ($bicepBin) { $paths += $bicepBin }
+
+    $sqlcmdBin = Get-SqlCmdBinDir
+    if ($sqlcmdBin) { $paths += $sqlcmdBin }
+
+    $sqlpackageBin = Get-SqlPackageBinDir
+    if ($sqlpackageBin) { $paths += $sqlpackageBin }
 
     $vulkanBin = Get-VulkanBinDir
     if ($vulkanBin) { $paths += $vulkanBin }
@@ -730,6 +828,56 @@ function Show-PolyglotStatus {
     try { $tools['mdbook'] = (mdbook --version 2>$null) -replace 'mdbook\s*v?','' } catch { $tools['mdbook'] = 'not found' }
     $azVer = Get-AzureCliVersion
     $tools['az'] = if ($azVer) { $azVer } else { 'not found' }
+
+    $bicepExe = Get-BicepExePath
+    if ($bicepExe) {
+        try {
+            $bicepOut = & $bicepExe --version 2>$null
+            if (($bicepOut -join "`n") -match '(\d+\.\d+\.\d+)') {
+                $tools['bicep'] = $matches[1]
+            } else {
+                $tools['bicep'] = $bicepExe
+            }
+        } catch {
+            $tools['bicep'] = $bicepExe
+        }
+    } else {
+        $tools['bicep'] = 'not found'
+    }
+
+    $sqlcmdExe = Get-SqlCmdExePath
+    if ($sqlcmdExe) {
+        try {
+            $sqlcmdOut = & $sqlcmdExe --version 2>$null
+            if (-not $sqlcmdOut) { $sqlcmdOut = & $sqlcmdExe -? 2>$null }
+            if (($sqlcmdOut -join "`n") -match '(\d+\.\d+\.\d+)') {
+                $tools['sqlcmd'] = $matches[1]
+            } else {
+                $tools['sqlcmd'] = $sqlcmdExe
+            }
+        } catch {
+            $tools['sqlcmd'] = $sqlcmdExe
+        }
+    } else {
+        $tools['sqlcmd'] = 'not found'
+    }
+
+    $sqlpackageExe = Get-SqlPackageExePath
+    if ($sqlpackageExe) {
+        try {
+            $sqlpackageOut = & $sqlpackageExe /Version 2>$null
+            if (($sqlpackageOut -join "`n") -match '(\d+\.\d+\.\d+(\.\d+)?)') {
+                $tools['sqlpackage'] = $matches[1]
+            } else {
+                $tools['sqlpackage'] = $sqlpackageExe
+            }
+        } catch {
+            $tools['sqlpackage'] = $sqlpackageExe
+        }
+    } else {
+        $tools['sqlpackage'] = 'not found'
+    }
+
     try { $tools['code-insiders'] = ((code-insiders --version 2>$null) -split '\n')[0] } catch { $tools['code-insiders'] = 'not found' }
     if (-not $tools['code-insiders']) { $tools['code-insiders'] = 'not found' }
 
@@ -983,6 +1131,9 @@ function Show-Origins {
         @{ Name = "git";     Cmd = "git";     Method = "native installer"; Ecosystem = "system" },
         @{ Name = "gcc";     Cmd = "gcc";     Method = "MSYS2 (RubyInstaller)"; Ecosystem = "system" },
         @{ Name = "az";      Cmd = "az";      Method = "Azure CLI MSI"; Ecosystem = "system" },
+        @{ Name = "bicep";   Cmd = "bicep";   Method = "winget (Microsoft.Bicep)"; Ecosystem = "system"; Resolver = { Get-BicepExePath } },
+        @{ Name = "sqlcmd";  Cmd = "sqlcmd";  Method = "winget (Microsoft.Sqlcmd)"; Ecosystem = "system"; Resolver = { Get-SqlCmdExePath } },
+        @{ Name = "sqlpackage"; Cmd = "sqlpackage"; Method = "winget (Microsoft.SqlPackage)"; Ecosystem = "system"; Resolver = { Get-SqlPackageExePath } },
         @{ Name = "cl";      Cmd = "cl";      Method = "Visual Studio 2026 C++ toolchain"; Ecosystem = "system"; Resolver = { Get-VSClExePath } },
         @{ Name = "msbuild"; Cmd = "msbuild"; Method = "Visual Studio 2026 Build Tools"; Ecosystem = "system"; Resolver = { Get-VSMsBuildExePath } },
         @{ Name = "clang";   Cmd = "clang";   Method = "Visual Studio 2026 LLVM toolset"; Ecosystem = "system"; Resolver = {
@@ -1048,6 +1199,21 @@ function Show-Origins {
     $azBinDir = Get-AzureCliBinDir
     if ($azBinDir) {
         $dirs += @{ Path = $azBinDir; Label = "Azure CLI (az)" }
+    }
+
+    $bicepBinDir = Get-BicepBinDir
+    if ($bicepBinDir) {
+        $dirs += @{ Path = $bicepBinDir; Label = "Bicep CLI (winget)" }
+    }
+
+    $sqlcmdBinDir = Get-SqlCmdBinDir
+    if ($sqlcmdBinDir) {
+        $dirs += @{ Path = $sqlcmdBinDir; Label = "Sqlcmd Tools (winget)" }
+    }
+
+    $sqlpackageBinDir = Get-SqlPackageBinDir
+    if ($sqlpackageBinDir) {
+        $dirs += @{ Path = $sqlpackageBinDir; Label = "SqlPackage (winget)" }
     }
 
     $vsBuild = Get-VSInstallationPath -ProductId "Microsoft.VisualStudio.Product.BuildTools"
