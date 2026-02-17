@@ -8,7 +8,7 @@ updated: 2026-02-10
 
 ## Current State (2026-02-10)
 
-- **Reasoning:** `high` (workspace + global)
+- **Reasoning:** `extra high` (workspace + global)
 - **Self-modification:** Denied (config, instructions, AGENTS.md all locked)
 - **Git:** Read-only (no commit/add/push)
 - **Skills:** 24 active in `.codex/skills/` (cap is 15 — consolidation needed)
@@ -25,4 +25,4 @@ updated: 2026-02-10
 - Check `codex/mailbox/MAILBOX_CURRENT_STATE.md` for task priority
 - Execute tasks from `ACTUAL-WORKING-HANDOFFS/` as written
 - Do not self-document, self-audit, or generate meta-reports unprompted
-- The Copilot CLI (Claude Sonnet) is the current steward
+- The Copilot CLI **Claude Opus 4.6** the "engineer", and **Claude Code's IDE** - *variant* - as **Claude Opus 4.6** - current *steward*, **GPT-5.3-Codex** as the *shepherd* of the workspace/codebase itself.
