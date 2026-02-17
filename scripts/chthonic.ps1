@@ -24,7 +24,7 @@ param(
     [switch]$Json
 )
 
-$VERSION = "3.2.0"
+$VERSION = "3.3.0"
 $SCRIPT_DIR = Split-Path -Parent $MyInvocation.MyCommand.Path
 $REPO_ROOT = Split-Path -Parent $SCRIPT_DIR
 $LIB_DIR = Join-Path $SCRIPT_DIR "lib"
@@ -342,6 +342,80 @@ function Get-SsmsVersion {
     return $null
 }
 
+# Resolve a command in a way that is robust to aliases/functions.
+function Get-CommandResolution {
+    param([Parameter(Mandatory = $true)][string]$Name)
+
+    $cmd = Get-Command $Name -ErrorAction SilentlyContinue
+    if (-not $cmd) { return $null }
+
+    $type = [string]$cmd.CommandType
+    $path = $null
+    $display = $null
+
+    switch ($type) {
+        "Alias" {
+            $resolved = $cmd.ResolvedCommand
+            if ($resolved) {
+                if ($resolved.Source -and (Test-Path $resolved.Source)) {
+                    $path = $resolved.Source
+                } elseif ($resolved.Definition -and (Test-Path $resolved.Definition)) {
+                    $path = $resolved.Definition
+                }
+            }
+            if (-not $path -and $cmd.Definition -and (Test-Path $cmd.Definition)) {
+                $path = $cmd.Definition
+            }
+            if (-not $path) {
+                $target = if ($cmd.Definition) { $cmd.Definition } else { "(unresolved)" }
+                $display = "alias -> $target"
+            }
+        }
+        "Function" {
+            $snippet = ($cmd.Definition -replace '\s+', ' ').Trim()
+            if ($snippet.Length -gt 84) { $snippet = $snippet.Substring(0, 84) + "..." }
+            $display = "function -> $snippet"
+        }
+        default {
+            if ($cmd.Source -and (Test-Path $cmd.Source)) {
+                $path = $cmd.Source
+            } elseif ($cmd.Definition -and (Test-Path $cmd.Definition)) {
+                $path = $cmd.Definition
+            } elseif ($cmd.Definition) {
+                $display = "$type -> $($cmd.Definition)"
+            } else {
+                $display = $type
+            }
+        }
+    }
+
+    if (-not $display) {
+        $display = if ($path) { $path } else { $type }
+    }
+
+    return [pscustomobject]@{
+        Name = $Name
+        Type = $type
+        Path = $path
+        Display = $display
+    }
+}
+
+function Get-CommandPathFlexible {
+    param([Parameter(Mandatory = $true)][string]$Name)
+    $meta = Get-CommandResolution -Name $Name
+    if ($meta -and $meta.Path) { return $meta.Path }
+    return $null
+}
+
+function Get-CommandDisplayFlexible {
+    param([Parameter(Mandatory = $true)][string]$Name)
+    $meta = Get-CommandResolution -Name $Name
+    if (-not $meta) { return $null }
+    if ($meta.Path) { return $meta.Path }
+    return $meta.Display
+}
+
 function Get-SystemRegistrationPaths {
     $paths = @()
 
@@ -381,7 +455,7 @@ $systemRegistrationPaths = Get-SystemRegistrationPaths
 
 # Default polyglot paths (fallback when config.json is missing)
 $defaultPolyglotPaths = @(
-    # Native user binaries (Claude native installer, uv tools)
+    # Native user binaries (uv + standalone CLIs like claude)
     "$env:USERPROFILE\.local\bin",
 
     # Bun (JS/TS runtime + Biome)
@@ -445,8 +519,12 @@ function Show-StatusBanner {
 
     # rv -> Ruby
     $rubyVer = ver { ruby -e "print RUBY_VERSION" }
+    $rvVer = ver { rv --version }; if ($rvVer -match '(\d+\.\d+\.\d+)') { $rvVer = $matches[1] } else { $rvVer = $null }
+    $rvwVer = ver { rvw --version }; if ($rvwVer -match '(\d+\.\d+\.\d+)') { $rvwVer = $matches[1] } else { $rvwVer = $null }
     Write-Host "  rv    " -NoNewline -ForegroundColor $C
     if ($rubyVer) { Write-Host "ruby $rubyVer" -NoNewline -ForegroundColor $W } else { Write-Host "ruby ?" -NoNewline -ForegroundColor $R }
+    if ($rvVer) { Write-Host "  rv $rvVer" -NoNewline -ForegroundColor $D }
+    if ($rvwVer) { Write-Host "  rvw $rvwVer" -NoNewline -ForegroundColor $D }
 
     # DevKit (gcc)
     $gccVer = ver { gcc -dumpfullversion }
@@ -455,6 +533,10 @@ function Show-StatusBanner {
 
     # uv -> Python
     $pyVer = ver { uv run python -c "import sys; print(f'{sys.version_info.major}.{sys.version_info.minor}.{sys.version_info.micro}')" }
+    if (-not $pyVer) {
+        $pyVerRaw = ver { python --version }
+        if ($pyVerRaw -match 'Python\s+(\d+\.\d+\.\d+)') { $pyVer = $matches[1] }
+    }
     $uvVer = ver { uv --version }; if ($uvVer -match '(\d+\.\d+\.\d+)') { $uvVer = $matches[1] } else { $uvVer = $null }
     $ruffVer = ver { ruff --version }; if ($ruffVer -match '(\d+\.\d+\.\d+)') { $ruffVer = $matches[1] } else { $ruffVer = $null }
     Write-Host "  uv    " -NoNewline -ForegroundColor $C
@@ -473,8 +555,12 @@ function Show-StatusBanner {
 
     # rustup -> Rust
     $rustVer = ver { rustc -V }; if ($rustVer) { $rustVer = ($rustVer -split ' ')[1] }
+    $rustupVer = ver { rustup --version }; if ($rustupVer -match '(\d+\.\d+\.\d+)') { $rustupVer = $matches[1] } else { $rustupVer = $null }
+    $cargoVer = ver { cargo --version }; if ($cargoVer -match '(\d+\.\d+\.\d+)') { $cargoVer = $matches[1] } else { $cargoVer = $null }
     Write-Host "  rust  " -NoNewline -ForegroundColor $C
     if ($rustVer) { Write-Host "rustc $rustVer" -NoNewline -ForegroundColor $W } else { Write-Host "rustc ?" -NoNewline -ForegroundColor $R }
+    if ($rustupVer) { Write-Host "  rustup $rustupVer" -NoNewline -ForegroundColor $D }
+    if ($cargoVer) { Write-Host "  cargo $cargoVer" -NoNewline -ForegroundColor $D }
     $mdbookVer = ver { mdbook --version }; if ($mdbookVer -match '(\d+\.\d+\.\d+)') { $mdbookVer = $matches[1] } else { $mdbookVer = $null }
     if ($mdbookVer) { Write-Host "  mdbook $mdbookVer" -NoNewline -ForegroundColor $D }
     Write-Host ""
@@ -483,8 +569,31 @@ function Show-StatusBanner {
     $goVer = ver { go version }
     if (-not $goVer) { $goupGo = Join-Path $env:USERPROFILE ".goup\current\bin\go.exe"; if (Test-Path $goupGo) { $goVer = ver { & $goupGo version } } }
     if ($goVer -match 'go(\d+\.\d+\.\d+)') { $goVer = $matches[1] } else { $goVer = $null }
-    Write-Host "  go      " -NoNewline -ForegroundColor $C
-    if ($goVer) { Write-Host "go $goVer" -ForegroundColor $W } else { Write-Host "go ?" -ForegroundColor $R }
+    $goupVer = ver { goup --version }; if ($goupVer -match '(\d+\.\d+\.\d+)') { $goupVer = $matches[1] } else { $goupVer = $null }
+    Write-Host "  go    " -NoNewline -ForegroundColor $C
+    if ($goVer) { Write-Host "go $goVer" -NoNewline -ForegroundColor $W } else { Write-Host "go ?" -NoNewline -ForegroundColor $R }
+    if ($goupVer) { Write-Host "  goup $goupVer" -NoNewline -ForegroundColor $D }
+    Write-Host ""
+
+    # AI CLI lane (standalone + shell wrappers)
+    $claudeMeta = Get-CommandResolution -Name "claude"
+    $claudineMeta = Get-CommandResolution -Name "claudine"
+    $claudeVer = ver { claude --version }
+    if ($claudeVer -match '(\d+\.\d+\.\d+)') { $claudeVer = $matches[1] }
+    Write-Host "  ai    " -NoNewline -ForegroundColor $C
+    if ($claudeMeta) {
+        if ($claudeVer) {
+            Write-Host "claude $claudeVer" -NoNewline -ForegroundColor $W
+        } else {
+            Write-Host "claude" -NoNewline -ForegroundColor $W
+        }
+    } else {
+        Write-Host "claude ?" -NoNewline -ForegroundColor $R
+    }
+    if ($claudineMeta) {
+        Write-Host "  claudine $($claudineMeta.Type.ToLower())" -NoNewline -ForegroundColor $D
+    }
+    Write-Host ""
 
     # Cloud + data tooling
     $azVer = Get-AzureCliVersion
@@ -538,10 +647,11 @@ function Show-Help {
 Usage: chthonic [--version] [--help] <domain> [<action>] [<args>]
 
   env [--quiet]           Activate polyglot environment
-  status [--json]         Show all tool versions (verbose)
+  claudine [--quiet]      Alias to env (shell compatibility lane)
+  status [--json]         Show tool + manager versions (verbose)
   doctor [--fix] [--json] Check versions + EOL via endoflife.date; --fix upgrades
   doctor --dry-run        Simulate --fix without executing anything
-  doctor --origins        Show install methodology per tool (path + origin)
+  doctor --origins        Show install methodology per tool (path + origin + wrappers)
   detect                  Detect IDE and environment context
 
   ide launch|detect|reset IDE management
@@ -830,11 +940,28 @@ function Show-PolyglotStatus {
     
     # Collect tool versions
     $tools = @{}
+    try { $tools['rv'] = ((rv --version 2>$null) -replace 'rv\s*','') } catch { $tools['rv'] = 'not found' }
+    try { $tools['rvw'] = ((rvw --version 2>$null) -replace 'rvw\s*','') } catch { $tools['rvw'] = 'not found' }
     try { $tools['bun'] = (bun --version 2>$null) -replace 'Bun\s+','' -split ' ' | Select-Object -First 1 } catch { $tools['bun'] = 'not found' }
     try { $tools['biome'] = ((biome --version 2>$null) -split '\n')[0] -replace 'Version:\s*','' } catch { $tools['biome'] = 'not found' }
+    try { $tools['cargo'] = ((cargo --version 2>$null) -split ' ')[1] } catch { $tools['cargo'] = 'not found' }
     try { $tools['rust'] = (rustc --version 2>$null) -replace 'rustc\s*','' } catch { $tools['rust'] = 'not found' }
+    try { $tools['rustup'] = ((rustup --version 2>$null) -split ' ')[1] } catch { $tools['rustup'] = 'not found' }
     try { $tools['go'] = (go version 2>$null) -replace 'go version go','' } catch { $tools['go'] = 'not found' }
+    try { $tools['goup'] = ((goup --version 2>$null) -replace 'goup\s*','') } catch { $tools['goup'] = 'not found' }
     try { $tools['python'] = (uv run python --version 2>&1) -replace 'Python\s*','' } catch { $tools['python'] = 'not found' }
+    if ($tools['go'] -eq 'not found') {
+        $goupGo = Join-Path $env:USERPROFILE ".goup\current\bin\go.exe"
+        if (Test-Path $goupGo) {
+            try { $tools['go'] = (& $goupGo version 2>$null) -replace 'go version go','' } catch {}
+        }
+    }
+    if ($tools['python'] -eq 'not found') {
+        try {
+            $pyRaw = (python --version 2>&1)
+            if ($pyRaw) { $tools['python'] = ($pyRaw -replace 'Python\s*','') }
+        } catch {}
+    }
     try { $tools['ruff'] = (ruff --version 2>$null) -replace 'ruff\s*','' } catch { $tools['ruff'] = 'not found' }
     try { $tools['uv'] = ((uv --version 2>$null) -split ' ')[1] } catch { $tools['uv'] = 'not found' }
     try { $tools['ruby'] = (ruby --version 2>$null) -replace 'ruby\s*','' } catch { $tools['ruby'] = 'not found' }
@@ -896,6 +1023,32 @@ function Show-PolyglotStatus {
 
     try { $tools['code-insiders'] = ((code-insiders --version 2>$null) -split '\n')[0] } catch { $tools['code-insiders'] = 'not found' }
     if (-not $tools['code-insiders']) { $tools['code-insiders'] = 'not found' }
+    try {
+        $claudeOut = (& claude --version 2>$null)
+        if (($claudeOut -join "`n") -match '(\d+\.\d+\.\d+)') {
+            $tools['claude'] = $matches[1]
+        } elseif ($claudeOut) {
+            $tools['claude'] = ($claudeOut | Select-Object -First 1).ToString().Trim()
+        } else {
+            $tools['claude'] = 'not found'
+        }
+    } catch {
+        $tools['claude'] = 'not found'
+    }
+
+    $claudeMeta = Get-CommandResolution -Name "claude"
+    if ($claudeMeta) {
+        $tools['claude_cmd'] = if ($claudeMeta.Path) { $claudeMeta.Path } else { $claudeMeta.Display }
+    } else {
+        $tools['claude_cmd'] = 'not found'
+    }
+
+    $claudineMeta = Get-CommandResolution -Name "claudine"
+    if ($claudineMeta) {
+        $tools['claudine_cmd'] = if ($claudineMeta.Path) { $claudineMeta.Path } else { $claudineMeta.Display }
+    } else {
+        $tools['claudine_cmd'] = 'not found'
+    }
 
     $clExe = Get-VSClExePath
     if ($clExe) {
@@ -1147,7 +1300,10 @@ function Show-Origins {
 
     # Secondary tools
     $secondary = @(
+        @{ Name = "rvw";     Cmd = "rvw";     Method = "rv wrapper (ruby lane)"; Ecosystem = "cargo" },
         @{ Name = "goup";    Cmd = "goup";    Method = "GH release binary"; Ecosystem = "cargo" },
+        @{ Name = "cargo";   Cmd = "cargo";   Method = "rustup toolchain"; Ecosystem = "cargo" },
+        @{ Name = "rustup";  Cmd = "rustup";  Method = "rustup manager"; Ecosystem = "cargo" },
         @{ Name = "biome";   Cmd = "biome";   Method = "bun add -g";    Ecosystem = "bun" },
         @{ Name = "ruff";    Cmd = "ruff";    Method = "uv tool";       Ecosystem = "uv" },
         @{ Name = "cmake";   Cmd = "cmake";   Method = "uv tool";       Ecosystem = "uv" },
@@ -1167,10 +1323,11 @@ function Show-Origins {
         } },
         @{ Name = "glslc";   Cmd = "glslc";   Method = "Vulkan SDK";    Ecosystem = "system" },
         @{ Name = "ssms";    Cmd = $null;     Method = "SSMS (Visual Studio Installer)"; Ecosystem = "system"; Resolver = { Get-SsmsInstallationPath } },
-        @{ Name = "claude";  Cmd = "claude";  Method = "standalone";    Ecosystem = "uv" }
+        @{ Name = "claude";  Cmd = $null;     Method = "standalone CLI"; Ecosystem = "local"; Resolver = { Get-CommandDisplayFlexible -Name "claude" } },
+        @{ Name = "claudine"; Cmd = $null;    Method = "shell wrapper (chthonic env)"; Ecosystem = "local"; Resolver = { Get-CommandDisplayFlexible -Name "claudine" } }
     )
 
-    $ecoColors = @{ "uv" = "Magenta"; "bun" = "Yellow"; "cargo" = "Red"; "system" = "DarkGray" }
+    $ecoColors = @{ "uv" = "Magenta"; "bun" = "Yellow"; "cargo" = "Red"; "system" = "DarkGray"; "local" = "Green" }
 
     foreach ($section in @(@{ Label = "CORE"; Items = $tools }, @{ Label = "TOOLS"; Items = $secondary })) {
         foreach ($t in $section.Items) {
@@ -1179,7 +1336,7 @@ function Show-Origins {
                 try { $path = & $t.Resolver } catch {}
             }
             if (-not $path -and $t.Cmd) {
-                $path = try { (Get-Command $t.Cmd -ErrorAction Stop).Source } catch { $null }
+                $path = Get-CommandPathFlexible -Name $t.Cmd
             }
             # Fallback: goup-managed Go when not in PATH
             if (-not $path -and $t.Name -eq "go") {
@@ -1214,12 +1371,17 @@ function Show-Origins {
     # Directory taxonomy
     Write-Host ("="*72) -ForegroundColor $D
     $dirs = @(
-        @{ Path = "~/.local/bin/";   Label = "uv ecosystem (uv, ruff, cmake, ninja, claude)" },
+        @{ Path = "~/.local/bin/";   Label = "user local bin (uv + standalone CLIs)" },
         @{ Path = "~/.bun/bin/";     Label = "bun ecosystem (bun, biome, codex, gemini)" },
         @{ Path = "~/.cargo/bin/";   Label = "cargo ecosystem (rustc, rustup, mdbook, rv, goup)" },
         @{ Path = "~/.goup/";        Label = "goup-managed Go versions (go.dev source)" },
         @{ Path = "%APPDATA%\rv\";   Label = "rv-managed Ruby versions" }
     )
+
+    $profileDir = Split-Path -Parent $PROFILE
+    if ($profileDir) {
+        $dirs += @{ Path = $profileDir; Label = "PowerShell profile wrappers (e.g., claudine function)" }
+    }
 
     $azBinDir = Get-AzureCliBinDir
     if ($azBinDir) {
@@ -1501,6 +1663,12 @@ switch ($Domain) {
     
     # Environment Domain
     "env" {
+        $quietFlag = $HasQuietFlag
+        Invoke-PolyglotActivation -Quiet:$quietFlag
+        exit 0
+    }
+    "claudine" {
+        # Compatibility alias for existing shell/profile wrappers.
         $quietFlag = $HasQuietFlag
         Invoke-PolyglotActivation -Quiet:$quietFlag
         exit 0
