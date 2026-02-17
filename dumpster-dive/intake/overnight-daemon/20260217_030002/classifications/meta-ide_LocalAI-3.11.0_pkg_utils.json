@@ -1,0 +1,201 @@
+{
+  "path": "meta-ide/LocalAI-3.11.0/pkg/utils",
+  "primaryLanguage": "unknown",
+  "purpose": "general",
+  "fileCount": 10,
+  "totalSize": 9464,
+  "averageComplexity": 1,
+  "documentationCoverage": 0,
+  "files": [
+    {
+      "path": "meta-ide/LocalAI-3.11.0/pkg/utils/base64.go",
+      "language": "unknown",
+      "size": 1276,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 1,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "meta-ide/LocalAI-3.11.0/pkg/utils/base64_test.go",
+      "language": "unknown",
+      "size": 1606,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 1,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "meta-ide/LocalAI-3.11.0/pkg/utils/ffmpeg.go",
+      "language": "unknown",
+      "size": 1856,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 1,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 2,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "meta-ide/LocalAI-3.11.0/pkg/utils/hash.go",
+      "language": "unknown",
+      "size": 124,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 0,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "meta-ide/LocalAI-3.11.0/pkg/utils/json.go",
+      "language": "unknown",
+      "size": 318,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 1,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "meta-ide/LocalAI-3.11.0/pkg/utils/logging.go",
+      "language": "unknown",
+      "size": 869,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 1,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "meta-ide/LocalAI-3.11.0/pkg/utils/path.go",
+      "language": "unknown",
+      "size": 1358,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 1,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "meta-ide/LocalAI-3.11.0/pkg/utils/strings.go",
+      "language": "unknown",
+      "size": 562,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 1,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "meta-ide/LocalAI-3.11.0/pkg/utils/untar.go",
+      "language": "unknown",
+      "size": 1299,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 1,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "meta-ide/LocalAI-3.11.0/pkg/utils/utils_suite_test.go",
+      "language": "unknown",
+      "size": 196,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 0,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    }
+  ]
+}

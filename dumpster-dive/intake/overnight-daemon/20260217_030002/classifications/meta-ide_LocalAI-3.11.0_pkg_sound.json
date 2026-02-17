@@ -1,0 +1,49 @@
+{
+  "path": "meta-ide/LocalAI-3.11.0/pkg/sound",
+  "primaryLanguage": "unknown",
+  "purpose": "general",
+  "fileCount": 2,
+  "totalSize": 2584,
+  "averageComplexity": 1,
+  "documentationCoverage": 0,
+  "files": [
+    {
+      "path": "meta-ide/LocalAI-3.11.0/pkg/sound/float32.go",
+      "language": "unknown",
+      "size": 192,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 0,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "meta-ide/LocalAI-3.11.0/pkg/sound/int16.go",
+      "language": "unknown",
+      "size": 2392,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 1,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    }
+  ]
+}

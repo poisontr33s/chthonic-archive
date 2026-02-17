@@ -1,0 +1,342 @@
+{
+  "path": "meta-ide/LocalAI-3.11.0/backend/python/pocket-tts",
+  "primaryLanguage": "unknown",
+  "purpose": "general",
+  "fileCount": 16,
+  "totalSize": 17210,
+  "averageComplexity": 3,
+  "documentationCoverage": 0.01,
+  "files": [
+    {
+      "path": "meta-ide/LocalAI-3.11.0/backend/python/pocket-tts/backend.py",
+      "language": "python",
+      "size": 9370,
+      "complexity": {
+        "cyclomatic": 37,
+        "nestingDepth": 10,
+        "functionCount": 8,
+        "avgFunctionLength": 32
+      },
+      "imports": [
+        "concurrent",
+        "time",
+        "argparse",
+        "signal",
+        "sys",
+        "os",
+        "traceback",
+        "scipy.io.wavfile",
+        "backend_pb2",
+        "backend_pb2_grpc",
+        "torch",
+        "pocket_tts",
+        "grpc"
+      ],
+      "exports": [
+        "is_float",
+        "is_int",
+        "serve"
+      ],
+      "todoCount": 0,
+      "docstringCount": 8,
+      "commentDensity": 0.109375,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "meta-ide/LocalAI-3.11.0/backend/python/pocket-tts/install.sh",
+      "language": "unknown",
+      "size": 1055,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 2,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "meta-ide/LocalAI-3.11.0/backend/python/pocket-tts/Makefile",
+      "language": "unknown",
+      "size": 394,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 0,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "meta-ide/LocalAI-3.11.0/backend/python/pocket-tts/protogen.sh",
+      "language": "unknown",
+      "size": 275,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 2,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "meta-ide/LocalAI-3.11.0/backend/python/pocket-tts/requirements-cpu.txt",
+      "language": "unknown",
+      "size": 78,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 0,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "meta-ide/LocalAI-3.11.0/backend/python/pocket-tts/requirements-cublas12.txt",
+      "language": "unknown",
+      "size": 80,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 0,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "meta-ide/LocalAI-3.11.0/backend/python/pocket-tts/requirements-cublas13.txt",
+      "language": "unknown",
+      "size": 80,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 0,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "meta-ide/LocalAI-3.11.0/backend/python/pocket-tts/requirements-hipblas.txt",
+      "language": "unknown",
+      "size": 97,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 0,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "meta-ide/LocalAI-3.11.0/backend/python/pocket-tts/requirements-intel.txt",
+      "language": "unknown",
+      "size": 77,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 0,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "meta-ide/LocalAI-3.11.0/backend/python/pocket-tts/requirements-l4t12.txt",
+      "language": "unknown",
+      "size": 82,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 0,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "meta-ide/LocalAI-3.11.0/backend/python/pocket-tts/requirements-l4t13.txt",
+      "language": "unknown",
+      "size": 79,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 0,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "meta-ide/LocalAI-3.11.0/backend/python/pocket-tts/requirements-mps.txt",
+      "language": "unknown",
+      "size": 50,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 0,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "meta-ide/LocalAI-3.11.0/backend/python/pocket-tts/requirements.txt",
+      "language": "unknown",
+      "size": 48,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 0,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "meta-ide/LocalAI-3.11.0/backend/python/pocket-tts/run.sh",
+      "language": "unknown",
+      "size": 192,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 2,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "meta-ide/LocalAI-3.11.0/backend/python/pocket-tts/test.py",
+      "language": "python",
+      "size": 5056,
+      "complexity": {
+        "cyclomatic": 3,
+        "nestingDepth": 10,
+        "functionCount": 6,
+        "avgFunctionLength": 23
+      },
+      "imports": [
+        "unittest",
+        "subprocess",
+        "time",
+        "os",
+        "tempfile",
+        "backend_pb2",
+        "backend_pb2_grpc",
+        "grpc"
+      ],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 16,
+      "commentDensity": 0.07042253521126761,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "meta-ide/LocalAI-3.11.0/backend/python/pocket-tts/test.sh",
+      "language": "unknown",
+      "size": 197,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 2,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    }
+  ]
+}

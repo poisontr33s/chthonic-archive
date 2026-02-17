@@ -1,0 +1,1248 @@
+{
+  "path": "meta-ide/LocalAI-3.11.0/gallery",
+  "primaryLanguage": "yaml",
+  "purpose": "general",
+  "fileCount": 65,
+  "totalSize": 1104197,
+  "averageComplexity": 1,
+  "documentationCoverage": 0,
+  "files": [
+    {
+      "path": "meta-ide/LocalAI-3.11.0/gallery/alpaca.yaml",
+      "language": "yaml",
+      "size": 347,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 4,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "meta-ide/LocalAI-3.11.0/gallery/arch-function.yaml",
+      "language": "yaml",
+      "size": 1766,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 4,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "meta-ide/LocalAI-3.11.0/gallery/cerbero.yaml",
+      "language": "yaml",
+      "size": 380,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 2,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "meta-ide/LocalAI-3.11.0/gallery/chatml-hercules.yaml",
+      "language": "yaml",
+      "size": 2016,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 3,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "meta-ide/LocalAI-3.11.0/gallery/chatml.yaml",
+      "language": "yaml",
+      "size": 1241,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 3,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "meta-ide/LocalAI-3.11.0/gallery/codellama.yaml",
+      "language": "yaml",
+      "size": 105,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 1,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "meta-ide/LocalAI-3.11.0/gallery/command-r.yaml",
+      "language": "yaml",
+      "size": 2526,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 3,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": [
+        "potential-secret"
+      ]
+    },
+    {
+      "path": "meta-ide/LocalAI-3.11.0/gallery/deephermes.yaml",
+      "language": "yaml",
+      "size": 2000,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 4,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "meta-ide/LocalAI-3.11.0/gallery/deepseek-r1.yaml",
+      "language": "yaml",
+      "size": 597,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 3,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "meta-ide/LocalAI-3.11.0/gallery/deepseek.yaml",
+      "language": "yaml",
+      "size": 582,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 3,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "meta-ide/LocalAI-3.11.0/gallery/dreamshaper.yaml",
+      "language": "yaml",
+      "size": 250,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 2,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "meta-ide/LocalAI-3.11.0/gallery/falcon3.yaml",
+      "language": "yaml",
+      "size": 1242,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 3,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "meta-ide/LocalAI-3.11.0/gallery/flux-ggml.yaml",
+      "language": "yaml",
+      "size": 275,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 2,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "meta-ide/LocalAI-3.11.0/gallery/flux.yaml",
+      "language": "yaml",
+      "size": 214,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 2,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "meta-ide/LocalAI-3.11.0/gallery/gemma.yaml",
+      "language": "yaml",
+      "size": 1200,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 3,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "meta-ide/LocalAI-3.11.0/gallery/granite.yaml",
+      "language": "yaml",
+      "size": 1172,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 3,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "meta-ide/LocalAI-3.11.0/gallery/granite3-2.yaml",
+      "language": "yaml",
+      "size": 1670,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 3,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "meta-ide/LocalAI-3.11.0/gallery/granite4.yaml",
+      "language": "yaml",
+      "size": 1759,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 3,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "meta-ide/LocalAI-3.11.0/gallery/harmony.yaml",
+      "language": "yaml",
+      "size": 2430,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 4,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "meta-ide/LocalAI-3.11.0/gallery/hermes-2-pro-mistral.yaml",
+      "language": "yaml",
+      "size": 2468,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 4,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "meta-ide/LocalAI-3.11.0/gallery/hermes-vllm.yaml",
+      "language": "yaml",
+      "size": 3381,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 5,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "meta-ide/LocalAI-3.11.0/gallery/index.yaml",
+      "language": "yaml",
+      "size": 1034060,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 6,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "meta-ide/LocalAI-3.11.0/gallery/jamba.yaml",
+      "language": "yaml",
+      "size": 1519,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 3,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "meta-ide/LocalAI-3.11.0/gallery/lfm.yaml",
+      "language": "yaml",
+      "size": 1283,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 3,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "meta-ide/LocalAI-3.11.0/gallery/llama3-instruct.yaml",
+      "language": "yaml",
+      "size": 1740,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 3,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "meta-ide/LocalAI-3.11.0/gallery/llama3.1-instruct-grammar.yaml",
+      "language": "yaml",
+      "size": 2040,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 3,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "meta-ide/LocalAI-3.11.0/gallery/llama3.1-instruct.yaml",
+      "language": "yaml",
+      "size": 1934,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 3,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "meta-ide/LocalAI-3.11.0/gallery/llama3.1-reflective.yaml",
+      "language": "yaml",
+      "size": 1986,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 3,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "meta-ide/LocalAI-3.11.0/gallery/llama3.2-fcall.yaml",
+      "language": "yaml",
+      "size": 1640,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 4,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "meta-ide/LocalAI-3.11.0/gallery/llama3.2-quantized.yaml",
+      "language": "yaml",
+      "size": 2303,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 3,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "meta-ide/LocalAI-3.11.0/gallery/llava.yaml",
+      "language": "yaml",
+      "size": 401,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 3,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "meta-ide/LocalAI-3.11.0/gallery/mathstral.yaml",
+      "language": "yaml",
+      "size": 2018,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 3,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "meta-ide/LocalAI-3.11.0/gallery/mistral-0.3.yaml",
+      "language": "yaml",
+      "size": 2055,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 3,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "meta-ide/LocalAI-3.11.0/gallery/moondream.yaml",
+      "language": "yaml",
+      "size": 374,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 4,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "meta-ide/LocalAI-3.11.0/gallery/mudler.yaml",
+      "language": "yaml",
+      "size": 1576,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 4,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "meta-ide/LocalAI-3.11.0/gallery/noromaid.yaml",
+      "language": "yaml",
+      "size": 2057,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 3,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "meta-ide/LocalAI-3.11.0/gallery/openvino.yaml",
+      "language": "yaml",
+      "size": 152,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 2,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "meta-ide/LocalAI-3.11.0/gallery/parler-tts.yaml",
+      "language": "yaml",
+      "size": 41,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 1,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "meta-ide/LocalAI-3.11.0/gallery/phi-2-chat.yaml",
+      "language": "yaml",
+      "size": 325,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 3,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "meta-ide/LocalAI-3.11.0/gallery/phi-2-orange.yaml",
+      "language": "yaml",
+      "size": 470,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 3,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "meta-ide/LocalAI-3.11.0/gallery/phi-3-chat.yaml",
+      "language": "yaml",
+      "size": 319,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 3,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "meta-ide/LocalAI-3.11.0/gallery/phi-3-vision.yaml",
+      "language": "yaml",
+      "size": 594,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 4,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "meta-ide/LocalAI-3.11.0/gallery/phi-4-chat-fcall.yaml",
+      "language": "yaml",
+      "size": 1000,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 4,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "meta-ide/LocalAI-3.11.0/gallery/phi-4-chat.yaml",
+      "language": "yaml",
+      "size": 373,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 3,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "meta-ide/LocalAI-3.11.0/gallery/piper.yaml",
+      "language": "yaml",
+      "size": 36,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 1,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "meta-ide/LocalAI-3.11.0/gallery/pocket-tts.yaml",
+      "language": "yaml",
+      "size": 1246,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 3,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "meta-ide/LocalAI-3.11.0/gallery/qwen-fcall.yaml",
+      "language": "yaml",
+      "size": 1266,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 4,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "meta-ide/LocalAI-3.11.0/gallery/qwen-image.yaml",
+      "language": "yaml",
+      "size": 372,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 3,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "meta-ide/LocalAI-3.11.0/gallery/qwen3-deepresearch.yaml",
+      "language": "yaml",
+      "size": 1340,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 3,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "meta-ide/LocalAI-3.11.0/gallery/qwen3-openbuddy.yaml",
+      "language": "yaml",
+      "size": 1228,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 3,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "meta-ide/LocalAI-3.11.0/gallery/qwen3.yaml",
+      "language": "yaml",
+      "size": 1405,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 3,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "meta-ide/LocalAI-3.11.0/gallery/rerankers.yaml",
+      "language": "yaml",
+      "size": 40,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 1,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "meta-ide/LocalAI-3.11.0/gallery/rwkv.yaml",
+      "language": "yaml",
+      "size": 404,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 4,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "meta-ide/LocalAI-3.11.0/gallery/sd-ggml.yaml",
+      "language": "yaml",
+      "size": 250,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 2,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "meta-ide/LocalAI-3.11.0/gallery/sentencetransformers.yaml",
+      "language": "yaml",
+      "size": 81,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 1,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "meta-ide/LocalAI-3.11.0/gallery/smolvlm.yaml",
+      "language": "yaml",
+      "size": 553,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 4,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "meta-ide/LocalAI-3.11.0/gallery/stablediffusion3.yaml",
+      "language": "yaml",
+      "size": 309,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 2,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "meta-ide/LocalAI-3.11.0/gallery/tuluv2.yaml",
+      "language": "yaml",
+      "size": 907,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 3,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "meta-ide/LocalAI-3.11.0/gallery/vibevoice.yaml",
+      "language": "yaml",
+      "size": 4053,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 3,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "meta-ide/LocalAI-3.11.0/gallery/vicuna-chat.yaml",
+      "language": "yaml",
+      "size": 442,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 5,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "meta-ide/LocalAI-3.11.0/gallery/virtual.yaml",
+      "language": "yaml",
+      "size": 80,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 2,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "meta-ide/LocalAI-3.11.0/gallery/vllm.yaml",
+      "language": "yaml",
+      "size": 1534,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 4,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "meta-ide/LocalAI-3.11.0/gallery/whisper-base.yaml",
+      "language": "yaml",
+      "size": 60,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 1,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "meta-ide/LocalAI-3.11.0/gallery/wizardlm2.yaml",
+      "language": "yaml",
+      "size": 399,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 3,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "meta-ide/LocalAI-3.11.0/gallery/z-image-ggml.yaml",
+      "language": "yaml",
+      "size": 311,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 3,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    }
+  ]
+}

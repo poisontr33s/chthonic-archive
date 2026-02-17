@@ -1,0 +1,68 @@
+{
+  "path": "meta-ide/LocalAI-3.11.0/pkg/concurrency",
+  "primaryLanguage": "unknown",
+  "purpose": "general",
+  "fileCount": 3,
+  "totalSize": 5006,
+  "averageComplexity": 1,
+  "documentationCoverage": 0,
+  "files": [
+    {
+      "path": "meta-ide/LocalAI-3.11.0/pkg/concurrency/concurrency_suite_test.go",
+      "language": "unknown",
+      "size": 209,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 0,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "meta-ide/LocalAI-3.11.0/pkg/concurrency/jobresult.go",
+      "language": "unknown",
+      "size": 2529,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 1,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "meta-ide/LocalAI-3.11.0/pkg/concurrency/jobresult_test.go",
+      "language": "unknown",
+      "size": 2268,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 1,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    }
+  ]
+}

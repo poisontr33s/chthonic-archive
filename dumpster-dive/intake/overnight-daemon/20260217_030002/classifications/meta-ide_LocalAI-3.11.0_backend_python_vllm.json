@@ -1,0 +1,326 @@
+{
+  "path": "meta-ide/LocalAI-3.11.0/backend/python/vllm",
+  "primaryLanguage": "unknown",
+  "purpose": "general",
+  "fileCount": 15,
+  "totalSize": 22878,
+  "averageComplexity": 4,
+  "documentationCoverage": 0.01,
+  "files": [
+    {
+      "path": "meta-ide/LocalAI-3.11.0/backend/python/vllm/backend.py",
+      "language": "python",
+      "size": 13758,
+      "complexity": {
+        "cyclomatic": 37,
+        "nestingDepth": 10,
+        "functionCount": 10,
+        "avgFunctionLength": 36
+      },
+      "imports": [
+        "asyncio",
+        "concurrent",
+        "argparse",
+        "signal",
+        "sys",
+        "os",
+        "typing",
+        "PIL",
+        "backend_pb2",
+        "backend_pb2_grpc",
+        "grpc",
+        "vllm.engine.arg_utils",
+        "vllm.engine.async_llm_engine",
+        "vllm.sampling_params",
+        "vllm.utils",
+        "vllm.transformers_utils.tokenizer",
+        "vllm.multimodal.utils",
+        "vllm.assets.video",
+        "base64",
+        "io"
+      ],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 18,
+      "commentDensity": 0.06521739130434782,
+      "patterns": [
+        "async-patterns"
+      ],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "meta-ide/LocalAI-3.11.0/backend/python/vllm/install.sh",
+      "language": "unknown",
+      "size": 2078,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 6,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "meta-ide/LocalAI-3.11.0/backend/python/vllm/Makefile",
+      "language": "unknown",
+      "size": 345,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 0,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "meta-ide/LocalAI-3.11.0/backend/python/vllm/README.md",
+      "language": "markdown",
+      "size": 73,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 0,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "meta-ide/LocalAI-3.11.0/backend/python/vllm/requirements-after.txt",
+      "language": "unknown",
+      "size": 4,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 0,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "meta-ide/LocalAI-3.11.0/backend/python/vllm/requirements-cpu.txt",
+      "language": "unknown",
+      "size": 36,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 0,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "meta-ide/LocalAI-3.11.0/backend/python/vllm/requirements-cublas12-after.txt",
+      "language": "unknown",
+      "size": 141,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 0,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "meta-ide/LocalAI-3.11.0/backend/python/vllm/requirements-cublas12.txt",
+      "language": "unknown",
+      "size": 49,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 0,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "meta-ide/LocalAI-3.11.0/backend/python/vllm/requirements-hipblas.txt",
+      "language": "unknown",
+      "size": 109,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 0,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "meta-ide/LocalAI-3.11.0/backend/python/vllm/requirements-install.txt",
+      "language": "unknown",
+      "size": 275,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 0,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "meta-ide/LocalAI-3.11.0/backend/python/vllm/requirements-intel.txt",
+      "language": "unknown",
+      "size": 126,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 0,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "meta-ide/LocalAI-3.11.0/backend/python/vllm/requirements.txt",
+      "language": "unknown",
+      "size": 42,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 0,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "meta-ide/LocalAI-3.11.0/backend/python/vllm/run.sh",
+      "language": "unknown",
+      "size": 193,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 2,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "meta-ide/LocalAI-3.11.0/backend/python/vllm/test.py",
+      "language": "python",
+      "size": 5451,
+      "complexity": {
+        "cyclomatic": 6,
+        "nestingDepth": 10,
+        "functionCount": 7,
+        "avgFunctionLength": 20
+      },
+      "imports": [
+        "unittest",
+        "subprocess",
+        "time",
+        "backend_pb2",
+        "backend_pb2_grpc",
+        "grpc"
+      ],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 10,
+      "commentDensity": 0.0136986301369863,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "meta-ide/LocalAI-3.11.0/backend/python/vllm/test.sh",
+      "language": "unknown",
+      "size": 198,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 2,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    }
+  ]
+}

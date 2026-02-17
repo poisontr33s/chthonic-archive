@@ -1,0 +1,676 @@
+{
+  "path": "docs",
+  "primaryLanguage": "markdown",
+  "purpose": "documentation",
+  "fileCount": 35,
+  "totalSize": 338352,
+  "averageComplexity": 1,
+  "documentationCoverage": 0,
+  "files": [
+    {
+      "path": "docs/CLASSIFICATION_STATE.md",
+      "language": "markdown",
+      "size": 32204,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 0,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "docs/CLAUDE_CODE_REGISTRATION.md",
+      "language": "markdown",
+      "size": 3732,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 2,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "docs/CLAUDE_CODE_REGISTRATION_VERIFICATION_PROOF.md",
+      "language": "markdown",
+      "size": 6761,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 6,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "docs/CLI_EDITING_POLICY.md",
+      "language": "markdown",
+      "size": 3221,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 2,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "docs/CODEBASE_INVENTORY.md",
+      "language": "markdown",
+      "size": 1838,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 0,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "docs/COMPLETION_SUMMARY_TOOL_CONSOLIDATION.md",
+      "language": "markdown",
+      "size": 10923,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 13,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "docs/COPILOT_SESSION_PERSISTENCE.md",
+      "language": "markdown",
+      "size": 6463,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 1,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "docs/CROSS_REFERENCE_VALIDATION_SUMMARY.md",
+      "language": "markdown",
+      "size": 6696,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 1,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "docs/DCRP_SYNTHESIS.md",
+      "language": "markdown",
+      "size": 5014,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 4,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "docs/DEVELOPMENT_STATE.md",
+      "language": "markdown",
+      "size": 15969,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 4,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "docs/DOCS_METADATA_COMPLIANCE_REPORT.md",
+      "language": "markdown",
+      "size": 12978,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 4,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "docs/DOC_CONTENT_VALIDATION_FINAL_REPORT.md",
+      "language": "markdown",
+      "size": 9075,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 1,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "docs/EXECUTION_CONTRACT.md",
+      "language": "markdown",
+      "size": 1450,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 0,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "docs/HANDOFF_TO_CLAUDE.md",
+      "language": "markdown",
+      "size": 4403,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 1,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "docs/MCP_AUTONOMOUS_PREREQUISITES.md",
+      "language": "markdown",
+      "size": 6805,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 2,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "docs/MCP_SERVER_TEMPLATE.md",
+      "language": "markdown",
+      "size": 17431,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 10,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "docs/MCP_USER_WORKFLOWS.md",
+      "language": "markdown",
+      "size": 13329,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 1,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "docs/METADATA_VALIDATION_REPORT.md",
+      "language": "markdown",
+      "size": 9503,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 2,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "docs/MIGRATION_GUIDE_CHTHONIC_CLI.md",
+      "language": "markdown",
+      "size": 10192,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 0,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "docs/PHASE_3_TEST_REPORT.md",
+      "language": "markdown",
+      "size": 9803,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 3,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "docs/PROBE_CONTRACT.md",
+      "language": "markdown",
+      "size": 1854,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 1,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "docs/PWSH_RULES.md",
+      "language": "markdown",
+      "size": 8733,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 2,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "docs/README.md",
+      "language": "markdown",
+      "size": 1889,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 0,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "docs/ROOTDIR_HEALTH.md",
+      "language": "markdown",
+      "size": 365,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 0,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "docs/SESSION_2026_01_17_META_REVIEW.md",
+      "language": "markdown",
+      "size": 2637,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 1,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "docs/SESSION_2026_01_17_TRUTH_STEWARDSHIP.md",
+      "language": "markdown",
+      "size": 3665,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 0,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "docs/SESSION_BOOTSTRAP_SPEC.md",
+      "language": "markdown",
+      "size": 13861,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 3,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "docs/SSOTIFICATION_METHODOLOGY.md",
+      "language": "markdown",
+      "size": 8606,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 4,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "docs/STAGE_1_MIGRATION_PLAN.md",
+      "language": "markdown",
+      "size": 8682,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 2,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 2,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "docs/SUMMARY.md",
+      "language": "markdown",
+      "size": 6357,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 0,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "docs/TOOL_CONSOLIDATION_ROADMAP.md",
+      "language": "markdown",
+      "size": 13249,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 2,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "docs/TRUE_MISSING_FILES_REVIEW.md",
+      "language": "markdown",
+      "size": 10129,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 0,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "docs/VALIDATION_CATEGORIZED.json",
+      "language": "json",
+      "size": 32901,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 3,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "docs/VALIDATION_COMPLETION_REPORT.md",
+      "language": "markdown",
+      "size": 7142,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 0,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "docs/VALIDATION_ISSUES.json",
+      "language": "json",
+      "size": 30492,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 2,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    }
+  ]
+}

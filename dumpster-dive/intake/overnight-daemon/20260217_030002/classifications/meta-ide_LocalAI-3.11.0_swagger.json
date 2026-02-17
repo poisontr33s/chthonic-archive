@@ -1,0 +1,68 @@
+{
+  "path": "meta-ide/LocalAI-3.11.0/swagger",
+  "primaryLanguage": "unknown",
+  "purpose": "general",
+  "fileCount": 3,
+  "totalSize": 315448,
+  "averageComplexity": 1,
+  "documentationCoverage": 0,
+  "files": [
+    {
+      "path": "meta-ide/LocalAI-3.11.0/swagger/docs.go",
+      "language": "unknown",
+      "size": 126669,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 16,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "meta-ide/LocalAI-3.11.0/swagger/swagger.json",
+      "language": "json",
+      "size": 125940,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 16,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "meta-ide/LocalAI-3.11.0/swagger/swagger.yaml",
+      "language": "yaml",
+      "size": 62839,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 7,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    }
+  ]
+}

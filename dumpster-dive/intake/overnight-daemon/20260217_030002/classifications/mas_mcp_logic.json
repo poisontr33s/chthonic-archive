@@ -1,0 +1,218 @@
+{
+  "path": "mas_mcp/logic",
+  "primaryLanguage": "python",
+  "purpose": "general",
+  "fileCount": 7,
+  "totalSize": 49301,
+  "averageComplexity": 26,
+  "documentationCoverage": 0.04,
+  "files": [
+    {
+      "path": "mas_mcp/logic/governance.py",
+      "language": "python",
+      "size": 5180,
+      "complexity": {
+        "cyclomatic": 11,
+        "nestingDepth": 6,
+        "functionCount": 3,
+        "avgFunctionLength": 43
+      },
+      "imports": [
+        "re",
+        "hashlib",
+        "datetime"
+      ],
+      "exports": [
+        "policy_check_logic",
+        "seal_promotion_in_lineage",
+        "queue_for_liturgical_grace"
+      ],
+      "todoCount": 0,
+      "docstringCount": 3,
+      "commentDensity": 0.015384615384615385,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "mas_mcp/logic/narrative.py",
+      "language": "python",
+      "size": 6576,
+      "complexity": {
+        "cyclomatic": 31,
+        "nestingDepth": 18,
+        "functionCount": 4,
+        "avgFunctionLength": 34
+      },
+      "imports": [
+        "re",
+        "pathlib",
+        "typing"
+      ],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 6,
+      "commentDensity": 0.1510791366906475,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "mas_mcp/logic/qualia.py",
+      "language": "python",
+      "size": 3786,
+      "complexity": {
+        "cyclomatic": 15,
+        "nestingDepth": 14,
+        "functionCount": 2,
+        "avgFunctionLength": 57
+      },
+      "imports": [
+        "mas_mcp.logic.scanner",
+        "sys"
+      ],
+      "exports": [
+        "check_qualia_drift",
+        "scan_target_qualia"
+      ],
+      "todoCount": 0,
+      "docstringCount": 6,
+      "commentDensity": 0.043478260869565216,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "mas_mcp/logic/reflections.py",
+      "language": "python",
+      "size": 3121,
+      "complexity": {
+        "cyclomatic": 8,
+        "nestingDepth": 10,
+        "functionCount": 4,
+        "avgFunctionLength": 18
+      },
+      "imports": [
+        "json",
+        "hashlib",
+        "datetime",
+        "pathlib",
+        ".scanner"
+      ],
+      "exports": [
+        "compute_file_hash",
+        "compute_directory_fingerprint",
+        "generate_arc_metaphor",
+        "generate_arc_recommendation"
+      ],
+      "todoCount": 0,
+      "docstringCount": 4,
+      "commentDensity": 0.027777777777777776,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "mas_mcp/logic/resonance.py",
+      "language": "python",
+      "size": 10822,
+      "complexity": {
+        "cyclomatic": 16,
+        "nestingDepth": 10,
+        "functionCount": 17,
+        "avgFunctionLength": 14
+      },
+      "imports": [
+        "json",
+        "re",
+        "logging",
+        "dataclasses",
+        "datetime",
+        "pathlib",
+        "typing",
+        "collections"
+      ],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 22,
+      "commentDensity": 0.015873015873015872,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "mas_mcp/logic/scanner.py",
+      "language": "python",
+      "size": 9652,
+      "complexity": {
+        "cyclomatic": 45,
+        "nestingDepth": 12,
+        "functionCount": 6,
+        "avgFunctionLength": 38
+      },
+      "imports": [
+        "re",
+        "logging",
+        "datetime",
+        "pathlib",
+        "typing",
+        ".resonance"
+      ],
+      "exports": [
+        "should_skip_path",
+        "extract_impulses_from_line",
+        "scan_file_for_impulses",
+        "proximity_extract",
+        "get_mpw_fingerprint",
+        "quick_entity_extract"
+      ],
+      "todoCount": 0,
+      "docstringCount": 8,
+      "commentDensity": 0.021739130434782608,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "mas_mcp/logic/tools.py",
+      "language": "python",
+      "size": 10164,
+      "complexity": {
+        "cyclomatic": 54,
+        "nestingDepth": 12,
+        "functionCount": 6,
+        "avgFunctionLength": 43
+      },
+      "imports": [
+        "re",
+        "logging",
+        "hashlib",
+        "datetime",
+        "pathlib",
+        "typing",
+        "collections",
+        "dataclasses",
+        "mas_mcp.logic.resonance",
+        "mas_mcp.logic.scanner",
+        "mas_mcp.logic.governance",
+        "mas_mcp.logic.reflections",
+        "mas_mcp.logic.narrative",
+        "mas_mcp.logic.qualia"
+      ],
+      "exports": [
+        "mas_qualia_check_logic",
+        "mas_narrative_scan_logic",
+        "mas_scan_logic",
+        "mas_entity_deep_logic",
+        "mas_validate_entity_logic",
+        "mas_pulse_logic"
+      ],
+      "todoCount": 0,
+      "docstringCount": 8,
+      "commentDensity": 0.038314176245210725,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    }
+  ]
+}

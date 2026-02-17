@@ -1,0 +1,68 @@
+{
+  "path": "meta-ide/LocalAI-3.11.0/docs/layouts/partials/docs",
+  "primaryLanguage": "unknown",
+  "purpose": "documentation",
+  "fileCount": 3,
+  "totalSize": 25999,
+  "averageComplexity": 1,
+  "documentationCoverage": 0,
+  "files": [
+    {
+      "path": "meta-ide/LocalAI-3.11.0/docs/layouts/partials/docs/gitinfo.html",
+      "language": "unknown",
+      "size": 2623,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 10,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "meta-ide/LocalAI-3.11.0/docs/layouts/partials/docs/sidebar.html",
+      "language": "unknown",
+      "size": 10340,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 50,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "meta-ide/LocalAI-3.11.0/docs/layouts/partials/docs/top-header.html",
+      "language": "unknown",
+      "size": 13036,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 18,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    }
+  ]
+}

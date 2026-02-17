@@ -1,0 +1,172 @@
+{
+  "path": "extensions/chthonic-archive/native/chthonic-daemon/src",
+  "primaryLanguage": "rust",
+  "purpose": "core",
+  "fileCount": 5,
+  "totalSize": 64733,
+  "averageComplexity": 25,
+  "documentationCoverage": 0.1,
+  "files": [
+    {
+      "path": "extensions/chthonic-archive/native/chthonic-daemon/src/anno.rs",
+      "language": "rust",
+      "size": 8802,
+      "complexity": {
+        "cyclomatic": 35,
+        "nestingDepth": 8,
+        "functionCount": 6,
+        "avgFunctionLength": 39
+      },
+      "imports": [
+        "std::collections::HashMap",
+        "std::path::Path",
+        "anyhow::Result",
+        "crate::types::",
+        "a"
+      ],
+      "exports": [
+        "detect_project"
+      ],
+      "todoCount": 0,
+      "docstringCount": 10,
+      "commentDensity": 0.12133891213389121,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "extensions/chthonic-archive/native/chthonic-daemon/src/env.rs",
+      "language": "rust",
+      "size": 10385,
+      "complexity": {
+        "cyclomatic": 36,
+        "nestingDepth": 10,
+        "functionCount": 7,
+        "avgFunctionLength": 41
+      },
+      "imports": [
+        "std::path::PathBuf",
+        "anyhow::Result",
+        "crate::types::",
+        "crate::types::DevKitReport"
+      ],
+      "exports": [
+        "provision"
+      ],
+      "todoCount": 0,
+      "docstringCount": 5,
+      "commentDensity": 0.10416666666666667,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "extensions/chthonic-archive/native/chthonic-daemon/src/main.rs",
+      "language": "rust",
+      "size": 7871,
+      "complexity": {
+        "cyclomatic": 16,
+        "nestingDepth": 12,
+        "functionCount": 3,
+        "avgFunctionLength": 80
+      },
+      "imports": [
+        "std::io::",
+        "anyhow::",
+        "clap::Parser",
+        "serde::Serialize",
+        "types::"
+      ],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 4,
+      "commentDensity": 0.06639004149377593,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "extensions/chthonic-archive/native/chthonic-daemon/src/reactor.rs",
+      "language": "rust",
+      "size": 32201,
+      "complexity": {
+        "cyclomatic": 35,
+        "nestingDepth": 14,
+        "functionCount": 13,
+        "avgFunctionLength": 66
+      },
+      "imports": [
+        "std::time::Instant",
+        "anyhow::",
+        "crate::types::",
+        "ash::vk",
+        "windows_sys::Win32::System::LibraryLoader::",
+        "the"
+      ],
+      "exports": [
+        "Node",
+        "VulkanReactor",
+        "compute_sediment",
+        "initialize",
+        "GitMetricsResult",
+        "gather_git_metrics",
+        "compute_path_entropy",
+        "cpu_simulate"
+      ],
+      "todoCount": 0,
+      "docstringCount": 48,
+      "commentDensity": 0.12993039443155452,
+      "patterns": [
+        "error-handling:Result"
+      ],
+      "antiPatterns": [],
+      "securityFlags": [
+        "unsafe-block"
+      ]
+    },
+    {
+      "path": "extensions/chthonic-archive/native/chthonic-daemon/src/types.rs",
+      "language": "rust",
+      "size": 5474,
+      "complexity": {
+        "cyclomatic": 2,
+        "nestingDepth": 8,
+        "functionCount": 8,
+        "avgFunctionLength": 27
+      },
+      "imports": [
+        "serde::",
+        "std::collections::HashMap"
+      ],
+      "exports": [
+        "JsonRpcRequest",
+        "JsonRpcNotification",
+        "JsonRpcSuccess",
+        "JsonRpcError",
+        "ErrorPayload",
+        "parse_error",
+        "method_not_found",
+        "internal",
+        "AnnoManifest",
+        "LanguagePolicy",
+        "ToolOwner",
+        "DetectedMarker",
+        "MarkerKind",
+        "has_language",
+        "needs_mise",
+        "EnvReport",
+        "PathSegment",
+        "DevKitReport",
+        "SedimentRequest",
+        "SedimentResult",
+        "SedimentVertex"
+      ],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0.05454545454545454,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    }
+  ]
+}

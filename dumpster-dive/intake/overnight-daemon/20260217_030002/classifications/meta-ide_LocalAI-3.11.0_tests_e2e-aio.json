@@ -1,0 +1,51 @@
+{
+  "path": "meta-ide/LocalAI-3.11.0/tests/e2e-aio",
+  "primaryLanguage": "unknown",
+  "purpose": "general",
+  "fileCount": 2,
+  "totalSize": 18403,
+  "averageComplexity": 1,
+  "documentationCoverage": 0,
+  "files": [
+    {
+      "path": "meta-ide/LocalAI-3.11.0/tests/e2e-aio/e2e_suite_test.go",
+      "language": "unknown",
+      "size": 3500,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 2,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 1,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": [
+        "potential-secret"
+      ]
+    },
+    {
+      "path": "meta-ide/LocalAI-3.11.0/tests/e2e-aio/e2e_test.go",
+      "language": "unknown",
+      "size": 14903,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 7,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 10,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    }
+  ]
+}

@@ -1,0 +1,344 @@
+{
+  "path": "meta-ide/LocalAI-3.11.0/backend/python/chatterbox",
+  "primaryLanguage": "unknown",
+  "purpose": "general",
+  "fileCount": 16,
+  "totalSize": 15803,
+  "averageComplexity": 4,
+  "documentationCoverage": 0.01,
+  "files": [
+    {
+      "path": "meta-ide/LocalAI-3.11.0/backend/python/chatterbox/backend.py",
+      "language": "python",
+      "size": 9177,
+      "complexity": {
+        "cyclomatic": 45,
+        "nestingDepth": 10,
+        "functionCount": 9,
+        "avgFunctionLength": 28
+      },
+      "imports": [
+        "concurrent",
+        "time",
+        "argparse",
+        "signal",
+        "sys",
+        "os",
+        "backend_pb2",
+        "backend_pb2_grpc",
+        "torch",
+        "torchaudio",
+        "chatterbox.tts",
+        "chatterbox.mtl_tts",
+        "grpc",
+        "tempfile",
+        "shutil"
+      ],
+      "exports": [
+        "is_float",
+        "is_int",
+        "split_text_at_word_boundary",
+        "merge_audio_files",
+        "serve"
+      ],
+      "todoCount": 0,
+      "docstringCount": 10,
+      "commentDensity": 0.1511627906976744,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "meta-ide/LocalAI-3.11.0/backend/python/chatterbox/install.sh",
+      "language": "unknown",
+      "size": 955,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 2,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "meta-ide/LocalAI-3.11.0/backend/python/chatterbox/Makefile",
+      "language": "unknown",
+      "size": 373,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 0,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "meta-ide/LocalAI-3.11.0/backend/python/chatterbox/requirements-cpu.txt",
+      "language": "unknown",
+      "size": 281,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 0,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "meta-ide/LocalAI-3.11.0/backend/python/chatterbox/requirements-cublas12.txt",
+      "language": "unknown",
+      "size": 204,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 0,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "meta-ide/LocalAI-3.11.0/backend/python/chatterbox/requirements-cublas13.txt",
+      "language": "unknown",
+      "size": 261,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 0,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "meta-ide/LocalAI-3.11.0/backend/python/chatterbox/requirements-hipblas.txt",
+      "language": "unknown",
+      "size": 293,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 0,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "meta-ide/LocalAI-3.11.0/backend/python/chatterbox/requirements-install.txt",
+      "language": "unknown",
+      "size": 192,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 0,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "meta-ide/LocalAI-3.11.0/backend/python/chatterbox/requirements-intel.txt",
+      "language": "unknown",
+      "size": 315,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 0,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "meta-ide/LocalAI-3.11.0/backend/python/chatterbox/requirements-l4t12.txt",
+      "language": "unknown",
+      "size": 193,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 0,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "meta-ide/LocalAI-3.11.0/backend/python/chatterbox/requirements-l4t13.txt",
+      "language": "unknown",
+      "size": 191,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 0,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "meta-ide/LocalAI-3.11.0/backend/python/chatterbox/requirements-mps.txt",
+      "language": "unknown",
+      "size": 203,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 0,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "meta-ide/LocalAI-3.11.0/backend/python/chatterbox/requirements.txt",
+      "language": "unknown",
+      "size": 59,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 0,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "meta-ide/LocalAI-3.11.0/backend/python/chatterbox/run.sh",
+      "language": "unknown",
+      "size": 191,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 2,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "meta-ide/LocalAI-3.11.0/backend/python/chatterbox/test.py",
+      "language": "python",
+      "size": 2718,
+      "complexity": {
+        "cyclomatic": 5,
+        "nestingDepth": 8,
+        "functionCount": 5,
+        "avgFunctionLength": 16
+      },
+      "imports": [
+        "unittest",
+        "subprocess",
+        "time",
+        "backend_pb2",
+        "backend_pb2_grpc",
+        "grpc"
+      ],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 14,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "meta-ide/LocalAI-3.11.0/backend/python/chatterbox/test.sh",
+      "language": "unknown",
+      "size": 197,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 2,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    }
+  ]
+}

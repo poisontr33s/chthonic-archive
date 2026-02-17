@@ -1,0 +1,30 @@
+{
+  "path": "meta-ide/LocalAI-3.11.0/pkg/store",
+  "primaryLanguage": "unknown",
+  "purpose": "general",
+  "fileCount": 1,
+  "totalSize": 3943,
+  "averageComplexity": 1,
+  "documentationCoverage": 0,
+  "files": [
+    {
+      "path": "meta-ide/LocalAI-3.11.0/pkg/store/client.go",
+      "language": "unknown",
+      "size": 3943,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 1,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    }
+  ]
+}

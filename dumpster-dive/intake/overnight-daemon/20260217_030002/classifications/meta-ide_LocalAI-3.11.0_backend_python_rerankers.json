@@ -1,0 +1,297 @@
+{
+  "path": "meta-ide/LocalAI-3.11.0/backend/python/rerankers",
+  "primaryLanguage": "unknown",
+  "purpose": "general",
+  "fileCount": 14,
+  "totalSize": 12608,
+  "averageComplexity": 2,
+  "documentationCoverage": 0.01,
+  "files": [
+    {
+      "path": "meta-ide/LocalAI-3.11.0/backend/python/rerankers/backend.py",
+      "language": "python",
+      "size": 4706,
+      "complexity": {
+        "cyclomatic": 14,
+        "nestingDepth": 8,
+        "functionCount": 5,
+        "avgFunctionLength": 26
+      },
+      "imports": [
+        "concurrent",
+        "argparse",
+        "signal",
+        "sys",
+        "os",
+        "time",
+        "backend_pb2",
+        "backend_pb2_grpc",
+        "grpc",
+        "rerankers"
+      ],
+      "exports": [
+        "serve"
+      ],
+      "todoCount": 1,
+      "docstringCount": 8,
+      "commentDensity": 0.07692307692307693,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "meta-ide/LocalAI-3.11.0/backend/python/rerankers/install.sh",
+      "language": "unknown",
+      "size": 840,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 2,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "meta-ide/LocalAI-3.11.0/backend/python/rerankers/Makefile",
+      "language": "unknown",
+      "size": 470,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 0,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "meta-ide/LocalAI-3.11.0/backend/python/rerankers/README.md",
+      "language": "markdown",
+      "size": 81,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 0,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "meta-ide/LocalAI-3.11.0/backend/python/rerankers/requirements-cpu.txt",
+      "language": "unknown",
+      "size": 60,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 0,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "meta-ide/LocalAI-3.11.0/backend/python/rerankers/requirements-cublas12.txt",
+      "language": "unknown",
+      "size": 60,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 0,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "meta-ide/LocalAI-3.11.0/backend/python/rerankers/requirements-cublas13.txt",
+      "language": "unknown",
+      "size": 117,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 0,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "meta-ide/LocalAI-3.11.0/backend/python/rerankers/requirements-hipblas.txt",
+      "language": "unknown",
+      "size": 127,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 0,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "meta-ide/LocalAI-3.11.0/backend/python/rerankers/requirements-intel.txt",
+      "language": "unknown",
+      "size": 137,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 0,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "meta-ide/LocalAI-3.11.0/backend/python/rerankers/requirements-mps.txt",
+      "language": "unknown",
+      "size": 61,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 0,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "meta-ide/LocalAI-3.11.0/backend/python/rerankers/requirements.txt",
+      "language": "unknown",
+      "size": 31,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 0,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "meta-ide/LocalAI-3.11.0/backend/python/rerankers/run.sh",
+      "language": "unknown",
+      "size": 192,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 2,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "meta-ide/LocalAI-3.11.0/backend/python/rerankers/test.py",
+      "language": "python",
+      "size": 5529,
+      "complexity": {
+        "cyclomatic": 5,
+        "nestingDepth": 10,
+        "functionCount": 7,
+        "avgFunctionLength": 21
+      },
+      "imports": [
+        "unittest",
+        "subprocess",
+        "time",
+        "backend_pb2",
+        "backend_pb2_grpc",
+        "grpc"
+      ],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 18,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "meta-ide/LocalAI-3.11.0/backend/python/rerankers/test.sh",
+      "language": "unknown",
+      "size": 197,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 2,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    }
+  ]
+}

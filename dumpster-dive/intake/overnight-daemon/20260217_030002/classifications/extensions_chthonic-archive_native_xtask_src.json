@@ -1,0 +1,34 @@
+{
+  "path": "extensions/chthonic-archive/native/xtask/src",
+  "primaryLanguage": "rust",
+  "purpose": "core",
+  "fileCount": 1,
+  "totalSize": 14149,
+  "averageComplexity": 57,
+  "documentationCoverage": 0.1,
+  "files": [
+    {
+      "path": "extensions/chthonic-archive/native/xtask/src/main.rs",
+      "language": "rust",
+      "size": 14149,
+      "complexity": {
+        "cyclomatic": 57,
+        "nestingDepth": 14,
+        "functionCount": 13,
+        "avgFunctionLength": 29
+      },
+      "imports": [
+        "std::env",
+        "std::path::",
+        "std::process::"
+      ],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 9,
+      "commentDensity": 0.10025706940874037,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    }
+  ]
+}

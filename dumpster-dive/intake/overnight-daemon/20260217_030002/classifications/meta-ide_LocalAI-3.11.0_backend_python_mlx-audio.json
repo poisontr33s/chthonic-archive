@@ -1,0 +1,289 @@
+{
+  "path": "meta-ide/LocalAI-3.11.0/backend/python/mlx-audio",
+  "primaryLanguage": "unknown",
+  "purpose": "general",
+  "fileCount": 13,
+  "totalSize": 25373,
+  "averageComplexity": 6,
+  "documentationCoverage": 0.01,
+  "files": [
+    {
+      "path": "meta-ide/LocalAI-3.11.0/backend/python/mlx-audio/backend.py",
+      "language": "python",
+      "size": 18696,
+      "complexity": {
+        "cyclomatic": 65,
+        "nestingDepth": 14,
+        "functionCount": 10,
+        "avgFunctionLength": 46
+      },
+      "imports": [
+        "asyncio",
+        "concurrent",
+        "argparse",
+        "signal",
+        "sys",
+        "os",
+        "shutil",
+        "glob",
+        "typing",
+        "time",
+        "tempfile",
+        "backend_pb2",
+        "backend_pb2_grpc",
+        "grpc",
+        "mlx_audio.tts.utils",
+        "soundfile",
+        "numpy",
+        "uuid"
+      ],
+      "exports": [
+        "is_float",
+        "is_int"
+      ],
+      "todoCount": 0,
+      "docstringCount": 18,
+      "commentDensity": 0.1223175965665236,
+      "patterns": [
+        "async-patterns"
+      ],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "meta-ide/LocalAI-3.11.0/backend/python/mlx-audio/install.sh",
+      "language": "unknown",
+      "size": 219,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 2,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "meta-ide/LocalAI-3.11.0/backend/python/mlx-audio/Makefile",
+      "language": "unknown",
+      "size": 373,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 0,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "meta-ide/LocalAI-3.11.0/backend/python/mlx-audio/requirements-cpu.txt",
+      "language": "unknown",
+      "size": 49,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 0,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "meta-ide/LocalAI-3.11.0/backend/python/mlx-audio/requirements-cublas12.txt",
+      "language": "unknown",
+      "size": 52,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 0,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "meta-ide/LocalAI-3.11.0/backend/python/mlx-audio/requirements-cublas13.txt",
+      "language": "unknown",
+      "size": 52,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 0,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "meta-ide/LocalAI-3.11.0/backend/python/mlx-audio/requirements-l4t12.txt",
+      "language": "unknown",
+      "size": 52,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 0,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "meta-ide/LocalAI-3.11.0/backend/python/mlx-audio/requirements-l4t13.txt",
+      "language": "unknown",
+      "size": 52,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 0,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "meta-ide/LocalAI-3.11.0/backend/python/mlx-audio/requirements-mps.txt",
+      "language": "unknown",
+      "size": 40,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 0,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "meta-ide/LocalAI-3.11.0/backend/python/mlx-audio/requirements.txt",
+      "language": "unknown",
+      "size": 68,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 0,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "meta-ide/LocalAI-3.11.0/backend/python/mlx-audio/run.sh",
+      "language": "unknown",
+      "size": 193,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 2,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "meta-ide/LocalAI-3.11.0/backend/python/mlx-audio/test.py",
+      "language": "python",
+      "size": 5329,
+      "complexity": {
+        "cyclomatic": 5,
+        "nestingDepth": 10,
+        "functionCount": 7,
+        "avgFunctionLength": 20
+      },
+      "imports": [
+        "unittest",
+        "subprocess",
+        "time",
+        "backend_pb2",
+        "backend_pb2_grpc",
+        "grpc"
+      ],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 10,
+      "commentDensity": 0.02112676056338028,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "meta-ide/LocalAI-3.11.0/backend/python/mlx-audio/test.sh",
+      "language": "unknown",
+      "size": 198,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 2,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    }
+  ]
+}

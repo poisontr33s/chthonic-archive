@@ -1,0 +1,30 @@
+{
+  "path": "codex",
+  "primaryLanguage": "markdown",
+  "purpose": "general",
+  "fileCount": 1,
+  "totalSize": 971,
+  "averageComplexity": 1,
+  "documentationCoverage": 0,
+  "files": [
+    {
+      "path": "codex/NEXT.md",
+      "language": "markdown",
+      "size": 971,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 0,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    }
+  ]
+}

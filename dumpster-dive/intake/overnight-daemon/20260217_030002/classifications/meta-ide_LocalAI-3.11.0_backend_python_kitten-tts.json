@@ -1,0 +1,185 @@
+{
+  "path": "meta-ide/LocalAI-3.11.0/backend/python/kitten-tts",
+  "primaryLanguage": "unknown",
+  "purpose": "general",
+  "fileCount": 8,
+  "totalSize": 8900,
+  "averageComplexity": 3,
+  "documentationCoverage": 0.02,
+  "files": [
+    {
+      "path": "meta-ide/LocalAI-3.11.0/backend/python/kitten-tts/backend.py",
+      "language": "python",
+      "size": 4219,
+      "complexity": {
+        "cyclomatic": 11,
+        "nestingDepth": 6,
+        "functionCount": 5,
+        "avgFunctionLength": 22
+      },
+      "imports": [
+        "concurrent",
+        "time",
+        "argparse",
+        "signal",
+        "sys",
+        "os",
+        "backend_pb2",
+        "backend_pb2_grpc",
+        "torch",
+        "kittentts",
+        "soundfile",
+        "grpc"
+      ],
+      "exports": [
+        "serve"
+      ],
+      "todoCount": 0,
+      "docstringCount": 4,
+      "commentDensity": 0.13636363636363635,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "meta-ide/LocalAI-3.11.0/backend/python/kitten-tts/install.sh",
+      "language": "unknown",
+      "size": 839,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 2,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "meta-ide/LocalAI-3.11.0/backend/python/kitten-tts/Makefile",
+      "language": "unknown",
+      "size": 393,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 0,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "meta-ide/LocalAI-3.11.0/backend/python/kitten-tts/requirements-mps.txt",
+      "language": "unknown",
+      "size": 141,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 0,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "meta-ide/LocalAI-3.11.0/backend/python/kitten-tts/requirements.txt",
+      "language": "unknown",
+      "size": 140,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 0,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "meta-ide/LocalAI-3.11.0/backend/python/kitten-tts/run.sh",
+      "language": "unknown",
+      "size": 191,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 2,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "meta-ide/LocalAI-3.11.0/backend/python/kitten-tts/test.py",
+      "language": "python",
+      "size": 2780,
+      "complexity": {
+        "cyclomatic": 5,
+        "nestingDepth": 8,
+        "functionCount": 5,
+        "avgFunctionLength": 16
+      },
+      "imports": [
+        "unittest",
+        "subprocess",
+        "time",
+        "backend_pb2",
+        "backend_pb2_grpc",
+        "grpc"
+      ],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 14,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "meta-ide/LocalAI-3.11.0/backend/python/kitten-tts/test.sh",
+      "language": "unknown",
+      "size": 197,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 2,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    }
+  ]
+}

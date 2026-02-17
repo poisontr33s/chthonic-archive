@@ -1,0 +1,106 @@
+{
+  "path": "meta-ide/LocalAI-3.11.0/core/http/views/partials",
+  "primaryLanguage": "unknown",
+  "purpose": "general",
+  "fileCount": 5,
+  "totalSize": 37580,
+  "averageComplexity": 1,
+  "documentationCoverage": 0,
+  "files": [
+    {
+      "path": "meta-ide/LocalAI-3.11.0/core/http/views/partials/footer.html",
+      "language": "unknown",
+      "size": 2374,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 6,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "meta-ide/LocalAI-3.11.0/core/http/views/partials/head.html",
+      "language": "unknown",
+      "size": 3438,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 5,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "meta-ide/LocalAI-3.11.0/core/http/views/partials/inprogress.html",
+      "language": "unknown",
+      "size": 11266,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 23,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "meta-ide/LocalAI-3.11.0/core/http/views/partials/navbar.html",
+      "language": "unknown",
+      "size": 16187,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 14,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "meta-ide/LocalAI-3.11.0/core/http/views/partials/navbar_explorer.html",
+      "language": "unknown",
+      "size": 4315,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 12,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    }
+  ]
+}

@@ -1,0 +1,222 @@
+{
+  "path": "claude-codex-gemini/engineering_agentic_deep_research_candidates/gemini-deep-research-2026-02",
+  "primaryLanguage": "markdown",
+  "purpose": "general",
+  "fileCount": 11,
+  "totalSize": 268057,
+  "averageComplexity": 1,
+  "documentationCoverage": 0,
+  "files": [
+    {
+      "path": "claude-codex-gemini/engineering_agentic_deep_research_candidates/gemini-deep-research-2026-02/00-unified-verdicts.md",
+      "language": "markdown",
+      "size": 6790,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 0,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "claude-codex-gemini/engineering_agentic_deep_research_candidates/gemini-deep-research-2026-02/01-local-llm-inference-stack.md",
+      "language": "markdown",
+      "size": 3929,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 0,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "claude-codex-gemini/engineering_agentic_deep_research_candidates/gemini-deep-research-2026-02/02-rustified-polyglot-daemon.md",
+      "language": "markdown",
+      "size": 4036,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 0,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "claude-codex-gemini/engineering_agentic_deep_research_candidates/gemini-deep-research-2026-02/03-api-gateways-and-vector-dbs.md",
+      "language": "markdown",
+      "size": 4305,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 0,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "claude-codex-gemini/engineering_agentic_deep_research_candidates/gemini-deep-research-2026-02/04-ruby-4-and-oxidized-toolchains.md",
+      "language": "markdown",
+      "size": 4257,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 0,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "claude-codex-gemini/engineering_agentic_deep_research_candidates/gemini-deep-research-2026-02/05-batch-classification-infrastructure.md",
+      "language": "markdown",
+      "size": 40012,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 7,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "claude-codex-gemini/engineering_agentic_deep_research_candidates/gemini-deep-research-2026-02/06-field-tested-corrections-and-frontier.md",
+      "language": "markdown",
+      "size": 15154,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 1,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "claude-codex-gemini/engineering_agentic_deep_research_candidates/gemini-deep-research-2026-02/07-phase-learning-research-questions.md",
+      "language": "markdown",
+      "size": 7042,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 0,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "claude-codex-gemini/engineering_agentic_deep_research_candidates/gemini-deep-research-2026-02/08-phase-learning-verdicts.md",
+      "language": "markdown",
+      "size": 7593,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 0,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 2,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "claude-codex-gemini/engineering_agentic_deep_research_candidates/gemini-deep-research-2026-02/09-session-trail-and-learnings.md",
+      "language": "markdown",
+      "size": 9369,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 0,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": [
+        "potential-secret"
+      ]
+    },
+    {
+      "path": "claude-codex-gemini/engineering_agentic_deep_research_candidates/gemini-deep-research-2026-02/hf.html",
+      "language": "unknown",
+      "size": 165570,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 4,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    }
+  ]
+}

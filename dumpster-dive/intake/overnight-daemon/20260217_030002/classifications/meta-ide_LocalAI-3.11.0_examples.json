@@ -1,0 +1,30 @@
+{
+  "path": "meta-ide/LocalAI-3.11.0/examples",
+  "primaryLanguage": "markdown",
+  "purpose": "general",
+  "fileCount": 1,
+  "totalSize": 118,
+  "averageComplexity": 1,
+  "documentationCoverage": 0,
+  "files": [
+    {
+      "path": "meta-ide/LocalAI-3.11.0/examples/README.md",
+      "language": "markdown",
+      "size": 118,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 0,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    }
+  ]
+}

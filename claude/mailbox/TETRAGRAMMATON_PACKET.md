@@ -1,16 +1,16 @@
 ---
 type: packet
 created: 2026-02-07T18:08:22.695770+00:00
-updated: 2026-02-09T22:01:53.509316+00:00
+updated: 2026-02-17T01:56:19.143263+00:00
 mailbox: claude/mailbox
 codename: TETRAGRAMMATON
-sources_hash: 1903a25c140e1a4b6223317f2be2e2e2afa20e7f485badb10e14931d698b79ac
+sources_hash: e97b147f477aaadfc5392266067a7636016ca6dacc19f11a7b4d536daffbb762
 sources_count: 6
 ---
 
 # TETRAGRAMMATON Packet
 
-<!-- @SCRIBED: 2026-02-09T22:01:53.509319+00:00 -->
+<!-- @SCRIBED: 2026-02-17T01:56:19.143267+00:00 -->
 
 ## Packet Rules
 - Paths are repo-relative (portable; no local usernames).
@@ -26,8 +26,8 @@ sources_count: 6
 - `mailbox_manifest.json`
 
 ## Snapshot
-- Generated: `2026-02-09T22:01:53.509316+00:00`
-- Sources hash: `1903a25c140e1a4b6223317f2be2e2e2afa20e7f485badb10e14931d698b79ac`
+- Generated: `2026-02-17T01:56:19.143263+00:00`
+- Sources hash: `e97b147f477aaadfc5392266067a7636016ca6dacc19f11a7b4d536daffbb762`
 
 ## Content
 
@@ -364,17 +364,21 @@ Path: `claude/mailbox/MAILBOX_CURRENT_STATE.md`
 ```md
 ---
 type: mailbox-state
-updated: 2026-02-09T22:01:53.505325+00:00
+updated: 2026-02-17T01:56:19.138637+00:00
 mailbox: claude/mailbox
 ---
 
 # Mailbox Current State
 
 ## Active Files
+- `ARCHAEOLOGY_DIGEST_2026_02_11.md`
+- `ARCHAEOLOGY_DIGEST_2026_02_13.md`
 - `CLAUDE_CODE_CENTRIC_SETUP_2026_02_09.md`
 - `CLAUDE_CODE_HIERARCHICAL_RESEARCH_2026_02_09.md`
 - `CLAUDE_META_VALIDATION_SUMMARY.json`
 - `CLAUDE_TASK_SESSION_SYNC_2026_02_09.md`
+- `CODEX_TO_CLAUDE_TASK_LATEST.md`
+- `GEMINI_DEEP_RESEARCH_SOLANA.md`
 - `KISS_PARITY_BRIEF_2026_02_06.md`
 - `MAILBOX_CURRENT_STATE.md`
 - `SESSION_CONTEXT_APPENDIX_2026_02_06.md`
@@ -407,13 +411,17 @@ Path: `claude/mailbox/mailbox_manifest.json`
 {
   "schema_version": 2,
   "mailbox": "claude/mailbox",
-  "generated_on": "2026-02-09T22:01:53.504239+00:00",
+  "generated_on": "2026-02-17T01:56:19.137544+00:00",
   "manifest_file": "mailbox_manifest.json",
   "active": {
     "md": [
+      "ARCHAEOLOGY_DIGEST_2026_02_11.md",
+      "ARCHAEOLOGY_DIGEST_2026_02_13.md",
       "CLAUDE_CODE_CENTRIC_SETUP_2026_02_09.md",
       "CLAUDE_CODE_HIERARCHICAL_RESEARCH_2026_02_09.md",
       "CLAUDE_TASK_SESSION_SYNC_2026_02_09.md",
+      "CODEX_TO_CLAUDE_TASK_LATEST.md",
+      "GEMINI_DEEP_RESEARCH_SOLANA.md",
       "KISS_PARITY_BRIEF_2026_02_06.md",
       "MAILBOX_CURRENT_STATE.md",
       "SESSION_CONTEXT_APPENDIX_2026_02_06.md",
@@ -457,3 +465,4 @@ Path: `claude/mailbox/mailbox_manifest.json`
 - 2026-02-07T19:37:14.848881+00:00: sources changed
 - 2026-02-07T19:46:59.007637+00:00: sources changed
 - 2026-02-09T22:01:53.509316+00:00: sources changed
+- 2026-02-17T01:56:19.143263+00:00: sources changed

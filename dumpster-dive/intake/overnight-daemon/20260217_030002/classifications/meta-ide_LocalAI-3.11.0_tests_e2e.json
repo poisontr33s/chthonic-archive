@@ -1,0 +1,68 @@
+{
+  "path": "meta-ide/LocalAI-3.11.0/tests/e2e",
+  "primaryLanguage": "unknown",
+  "purpose": "general",
+  "fileCount": 3,
+  "totalSize": 24911,
+  "averageComplexity": 1,
+  "documentationCoverage": 0,
+  "files": [
+    {
+      "path": "meta-ide/LocalAI-3.11.0/tests/e2e/e2e_anthropic_test.go",
+      "language": "unknown",
+      "size": 12924,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 5,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 10,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "meta-ide/LocalAI-3.11.0/tests/e2e/e2e_suite_test.go",
+      "language": "unknown",
+      "size": 4726,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 1,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 1,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "meta-ide/LocalAI-3.11.0/tests/e2e/mock_backend_test.go",
+      "language": "unknown",
+      "size": 7261,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 3,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 3,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    }
+  ]
+}

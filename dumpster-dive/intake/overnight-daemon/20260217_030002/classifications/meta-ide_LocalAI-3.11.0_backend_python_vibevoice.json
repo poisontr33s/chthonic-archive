@@ -1,0 +1,331 @@
+{
+  "path": "meta-ide/LocalAI-3.11.0/backend/python/vibevoice",
+  "primaryLanguage": "unknown",
+  "purpose": "general",
+  "fileCount": 15,
+  "totalSize": 50359,
+  "averageComplexity": 12,
+  "documentationCoverage": 0.02,
+  "files": [
+    {
+      "path": "meta-ide/LocalAI-3.11.0/backend/python/vibevoice/backend.py",
+      "language": "python",
+      "size": 34461,
+      "complexity": {
+        "cyclomatic": 145,
+        "nestingDepth": 14,
+        "functionCount": 12,
+        "avgFunctionLength": 63
+      },
+      "imports": [
+        "concurrent",
+        "time",
+        "argparse",
+        "signal",
+        "sys",
+        "os",
+        "copy",
+        "traceback",
+        "pathlib",
+        "backend_pb2",
+        "backend_pb2_grpc",
+        "torch",
+        "vibevoice.modular.modeling_vibevoice_streaming_inference",
+        "vibevoice.processor.vibevoice_streaming_processor",
+        "vibevoice.modular.modeling_vibevoice_asr",
+        "vibevoice.processor.vibevoice_asr_processor",
+        "grpc"
+      ],
+      "exports": [
+        "is_float",
+        "is_int",
+        "serve"
+      ],
+      "todoCount": 0,
+      "docstringCount": 11,
+      "commentDensity": 0.13606340819022458,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": [
+        "eval-usage"
+      ]
+    },
+    {
+      "path": "meta-ide/LocalAI-3.11.0/backend/python/vibevoice/install.sh",
+      "language": "unknown",
+      "size": 1325,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 4,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "meta-ide/LocalAI-3.11.0/backend/python/vibevoice/Makefile",
+      "language": "unknown",
+      "size": 2806,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 1,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "meta-ide/LocalAI-3.11.0/backend/python/vibevoice/requirements-cpu.txt",
+      "language": "unknown",
+      "size": 320,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 0,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "meta-ide/LocalAI-3.11.0/backend/python/vibevoice/requirements-cublas12.txt",
+      "language": "unknown",
+      "size": 307,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 0,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "meta-ide/LocalAI-3.11.0/backend/python/vibevoice/requirements-cublas13.txt",
+      "language": "unknown",
+      "size": 307,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 0,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "meta-ide/LocalAI-3.11.0/backend/python/vibevoice/requirements-hipblas.txt",
+      "language": "unknown",
+      "size": 340,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 0,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "meta-ide/LocalAI-3.11.0/backend/python/vibevoice/requirements-intel.txt",
+      "language": "unknown",
+      "size": 334,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 0,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "meta-ide/LocalAI-3.11.0/backend/python/vibevoice/requirements-l4t12.txt",
+      "language": "unknown",
+      "size": 303,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 0,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "meta-ide/LocalAI-3.11.0/backend/python/vibevoice/requirements-l4t13.txt",
+      "language": "unknown",
+      "size": 301,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 0,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "meta-ide/LocalAI-3.11.0/backend/python/vibevoice/requirements-mps.txt",
+      "language": "unknown",
+      "size": 265,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 0,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "meta-ide/LocalAI-3.11.0/backend/python/vibevoice/requirements.txt",
+      "language": "unknown",
+      "size": 48,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 0,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "meta-ide/LocalAI-3.11.0/backend/python/vibevoice/run.sh",
+      "language": "unknown",
+      "size": 191,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 2,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "meta-ide/LocalAI-3.11.0/backend/python/vibevoice/test.py",
+      "language": "python",
+      "size": 8854,
+      "complexity": {
+        "cyclomatic": 22,
+        "nestingDepth": 10,
+        "functionCount": 7,
+        "avgFunctionLength": 30
+      },
+      "imports": [
+        "unittest",
+        "subprocess",
+        "time",
+        "os",
+        "tempfile",
+        "shutil",
+        "backend_pb2",
+        "backend_pb2_grpc",
+        "grpc",
+        "traceback"
+      ],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 18,
+      "commentDensity": 0.1,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "meta-ide/LocalAI-3.11.0/backend/python/vibevoice/test.sh",
+      "language": "unknown",
+      "size": 197,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 2,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    }
+  ]
+}

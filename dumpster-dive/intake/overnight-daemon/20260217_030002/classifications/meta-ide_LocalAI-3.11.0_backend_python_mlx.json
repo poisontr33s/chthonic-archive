@@ -1,0 +1,342 @@
+{
+  "path": "meta-ide/LocalAI-3.11.0/backend/python/mlx",
+  "primaryLanguage": "unknown",
+  "purpose": "general",
+  "fileCount": 15,
+  "totalSize": 55030,
+  "averageComplexity": 11,
+  "documentationCoverage": 0.02,
+  "files": [
+    {
+      "path": "meta-ide/LocalAI-3.11.0/backend/python/mlx/backend.py",
+      "language": "python",
+      "size": 16865,
+      "complexity": {
+        "cyclomatic": 54,
+        "nestingDepth": 10,
+        "functionCount": 11,
+        "avgFunctionLength": 41
+      },
+      "imports": [
+        "asyncio",
+        "concurrent",
+        "argparse",
+        "signal",
+        "sys",
+        "os",
+        "typing",
+        "time",
+        "backend_pb2",
+        "backend_pb2_grpc",
+        "grpc",
+        "mlx_lm",
+        "mlx_lm.sample_utils",
+        "mlx_lm.models.cache",
+        "mlx.core",
+        "base64",
+        "io",
+        "mlx_cache"
+      ],
+      "exports": [
+        "is_float",
+        "is_int"
+      ],
+      "todoCount": 0,
+      "docstringCount": 20,
+      "commentDensity": 0.09977827050997783,
+      "patterns": [
+        "async-patterns"
+      ],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "meta-ide/LocalAI-3.11.0/backend/python/mlx/install.sh",
+      "language": "unknown",
+      "size": 237,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 2,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "meta-ide/LocalAI-3.11.0/backend/python/mlx/Makefile",
+      "language": "unknown",
+      "size": 329,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 0,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "meta-ide/LocalAI-3.11.0/backend/python/mlx/mlx_cache.py",
+      "language": "python",
+      "size": 9354,
+      "complexity": {
+        "cyclomatic": 50,
+        "nestingDepth": 12,
+        "functionCount": 9,
+        "avgFunctionLength": 29
+      },
+      "imports": [
+        "mlx_cache",
+        "copy",
+        "threading",
+        "collections",
+        "dataclasses",
+        "typing"
+      ],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 18,
+      "commentDensity": 0.08239700374531835,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "meta-ide/LocalAI-3.11.0/backend/python/mlx/requirements-cpu.txt",
+      "language": "unknown",
+      "size": 15,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 0,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "meta-ide/LocalAI-3.11.0/backend/python/mlx/requirements-cublas12.txt",
+      "language": "unknown",
+      "size": 18,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 0,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "meta-ide/LocalAI-3.11.0/backend/python/mlx/requirements-cublas13.txt",
+      "language": "unknown",
+      "size": 18,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 0,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "meta-ide/LocalAI-3.11.0/backend/python/mlx/requirements-l4t12.txt",
+      "language": "unknown",
+      "size": 18,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 0,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "meta-ide/LocalAI-3.11.0/backend/python/mlx/requirements-l4t13.txt",
+      "language": "unknown",
+      "size": 18,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 0,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "meta-ide/LocalAI-3.11.0/backend/python/mlx/requirements-mps.txt",
+      "language": "unknown",
+      "size": 6,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 0,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "meta-ide/LocalAI-3.11.0/backend/python/mlx/requirements.txt",
+      "language": "unknown",
+      "size": 42,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 0,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "meta-ide/LocalAI-3.11.0/backend/python/mlx/run.sh",
+      "language": "unknown",
+      "size": 193,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 2,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "meta-ide/LocalAI-3.11.0/backend/python/mlx/test.py",
+      "language": "python",
+      "size": 9577,
+      "complexity": {
+        "cyclomatic": 12,
+        "nestingDepth": 10,
+        "functionCount": 11,
+        "avgFunctionLength": 21
+      },
+      "imports": [
+        "unittest",
+        "subprocess",
+        "time",
+        "grpc",
+        "backend_pb2",
+        "backend_pb2_grpc",
+        "concurrent.futures"
+      ],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 16,
+      "commentDensity": 0.038461538461538464,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "meta-ide/LocalAI-3.11.0/backend/python/mlx/test.sh",
+      "language": "unknown",
+      "size": 198,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 2,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "meta-ide/LocalAI-3.11.0/backend/python/mlx/test_mlx_cache.py",
+      "language": "python",
+      "size": 18142,
+      "complexity": {
+        "cyclomatic": 42,
+        "nestingDepth": 16,
+        "functionCount": 36,
+        "avgFunctionLength": 13
+      },
+      "imports": [
+        "unittest",
+        "concurrent.futures",
+        "threading",
+        "copy",
+        "mlx_cache",
+        "random"
+      ],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 35,
+      "commentDensity": 0.07484407484407485,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    }
+  ]
+}

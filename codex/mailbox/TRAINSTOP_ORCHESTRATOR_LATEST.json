@@ -1,18 +1,167 @@
 {
   "schema_version": 1,
-  "generated_on": "2026-02-09T20:22:05Z",
+  "generated_on": "2026-02-17T01:56:19Z",
   "results": [
     {
-      "name": "CFG:hf_mcp_client_emitter",
+      "name": "API Manager (Doctor)",
       "rc": 0,
-      "seconds": 1.884,
+      "seconds": 0.267,
       "cmd": [
         "pwsh",
         "-NoProfile",
-        "-Command",
-        ".\\scripts\\api_pool.ps1 -Load | Out-Null; uv run scripts/mcp_client_emitter.py --url https://huggingface.co/mcp --min-despair 0"
+        "-File",
+        ".codex/skills/api-manager/scripts/api_manager.ps1",
+        "-Doctor"
       ],
-      "stdout_tail": "Loaded 3 env var(s) into this shell process.\nWrote: C:/Users/erdno/chthonic-archive/artifacts/hf_mcp_tools_2026-02-09T20-22-05-320Z.json\nWrote: C:/Users/erdno/chthonic-archive/codex/mailbox/HF_MCP_TOOLS_LATEST.json",
+      "stdout_tail": "Auth signals (process env, no secrets):\n- HF_TOKEN: True\n- HUGGINGFACE_HUB_TOKEN: True\n- OPENAI_API_KEY: False\n- GEMINI_API_KEY: False\n\nHF note: HF_TOKEN is set and takes precedence over hf CLI login; stale HF_TOKEN breaks HF auth.\nSuggested: run -FixHF (clears HF_TOKEN in current shell).\n",
+      "stderr_tail": "",
+      "missing_artifacts": [],
+      "notes": []
+    },
+    {
+      "name": "Toolchain Doctor",
+      "rc": 0,
+      "seconds": 2.343,
+      "cmd": [
+        "uv",
+        "run",
+        ".codex/skills/toolchain-doctor/scripts/toolchain_doctor.py",
+        "--bun",
+        "--uv",
+        "--apply"
+      ],
+      "stdout_tail": "Wrote: C:\\Users\\erdno\\chthonic-archive\\codex\\mailbox\\TOOLCHAIN_DOCTOR_REPORT_2026_02_17_015616.md",
+      "stderr_tail": "",
+      "missing_artifacts": [],
+      "notes": []
+    },
+    {
+      "name": "Skill Polisher (Codex on Codex)",
+      "rc": 0,
+      "seconds": 0.209,
+      "cmd": [
+        "uv",
+        "run",
+        ".codex/skills/skill-polisher/scripts/polish_skill.py",
+        ".codex/skills",
+        "--all",
+        "--mode",
+        "apply",
+        "--target-flavor",
+        "codex",
+        "--subprocess-fix",
+        "--emit-stamps-json",
+        "codex/mailbox/tatragrammatron_stamps_latest_codex.json",
+        "--emit-summary-md",
+        "codex/mailbox/TATRAGRAMMATRON_SUMMARY_LATEST_CODEX.md"
+      ],
+      "stdout_tail": "NUTRITION LEVEL: 100%\n\nDOMAIN SCORES:\n  - structure: 100%\n  - policy: 100%\n  - semantics: 100%\n  - maintainability: 100%\n\nSystem Satisfied. No entropy found.\n\n>>> HIGH ACHIEVED. DOPAMINE RELEASED. <<<\n\n=== POLISHING: trainstop-orchestrator ===\n\n>>> BINGE CYCLE 1/3 <<<\n\u2554\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2557\n\u2551                    FEEDING REPORT: trainstop-orchestrator           \u2551\n\u255a\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u255d\nTASTE: PURE (Clean)\nNUTRITION LEVEL: 100%\n\nDOMAIN SCORES:\n  - structure: 100%\n  - policy: 100%\n  - semantics: 100%\n  - maintainability: 100%\n\nSystem Satisfied. No entropy found.\n\n>>> HIGH ACHIEVED. DOPAMINE RELEASED. <<<",
+      "stderr_tail": "",
+      "missing_artifacts": [],
+      "notes": []
+    },
+    {
+      "name": "Skill Polisher (Claude contract on Claude skills)",
+      "rc": 0,
+      "seconds": 0.131,
+      "cmd": [
+        "uv",
+        "run",
+        ".codex/skills/skill-polisher/scripts/polish_skill.py",
+        ".claude/skills",
+        "--all",
+        "--mode",
+        "verify",
+        "--target-flavor",
+        "claude",
+        "--subprocess-fix",
+        "--no-require-assets"
+      ],
+      "stdout_tail": "\u255a\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u255d\nTASTE: PURE (Clean)\nNUTRITION LEVEL: 100%\n\nDOMAIN SCORES:\n  - structure: 100%\n  - policy: 100%\n  - semantics: 100%\n  - maintainability: 100%\n\nSystem Satisfied. No entropy found.\n\n>>> VERIFY: PASSED (no blocking findings). <<<\n\n=== POLISHING: theme-system ===\n\u2554\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2557\n\u2551                    FEEDING REPORT: theme-system                 \u2551\n\u255a\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u255d\nTASTE: PURE (Clean)\nNUTRITION LEVEL: 100%\n\nDOMAIN SCORES:\n  - structure: 100%\n  - policy: 100%\n  - semantics: 100%\n  - maintainability: 100%\n\nSystem Satisfied. No entropy found.\n\n>>> VERIFY: PASSED (no blocking findings). <<<",
+      "stderr_tail": "",
+      "missing_artifacts": [],
+      "notes": []
+    },
+    {
+      "name": "Mailbox Polisher (codex)",
+      "rc": 0,
+      "seconds": 0.104,
+      "cmd": [
+        "uv",
+        "run",
+        "scripts/mailbox_polisher.py",
+        "--target",
+        "codex",
+        "--apply"
+      ],
+      "stdout_tail": "No archivable churn artifacts found.",
+      "stderr_tail": "",
+      "missing_artifacts": [],
+      "notes": []
+    },
+    {
+      "name": "Mailbox Polisher (claude)",
+      "rc": 0,
+      "seconds": 0.098,
+      "cmd": [
+        "uv",
+        "run",
+        "scripts/mailbox_polisher.py",
+        "--target",
+        "claude",
+        "--apply"
+      ],
+      "stdout_tail": "No archivable churn artifacts found.",
+      "stderr_tail": "",
+      "missing_artifacts": [],
+      "notes": []
+    },
+    {
+      "name": "Mailbox Scribe (codex)",
+      "rc": 0,
+      "seconds": 0.137,
+      "cmd": [
+        "uv",
+        "run",
+        "scripts/mailbox_scribe.py",
+        "--target",
+        "codex",
+        "--packet",
+        "codex/mailbox/TETRAGRAMMATON_PACKET.md"
+      ],
+      "stdout_tail": "Wrote: codex/mailbox/TETRAGRAMMATON_PACKET.md",
+      "stderr_tail": "",
+      "missing_artifacts": [],
+      "notes": []
+    },
+    {
+      "name": "Mailbox Scribe (claude)",
+      "rc": 0,
+      "seconds": 0.115,
+      "cmd": [
+        "uv",
+        "run",
+        "scripts/mailbox_scribe.py",
+        "--target",
+        "claude",
+        "--packet",
+        "claude/mailbox/TETRAGRAMMATON_PACKET.md"
+      ],
+      "stdout_tail": "Wrote: claude/mailbox/TETRAGRAMMATON_PACKET.md",
+      "stderr_tail": "",
+      "missing_artifacts": [],
+      "notes": []
+    },
+    {
+      "name": "Mailbox Manifest Check",
+      "rc": 0,
+      "seconds": 0.085,
+      "cmd": [
+        "uv",
+        "run",
+        "scripts/check_mailbox_manifest.py"
+      ],
+      "stdout_tail": "ok",
       "stderr_tail": "",
       "missing_artifacts": [],
       "notes": []

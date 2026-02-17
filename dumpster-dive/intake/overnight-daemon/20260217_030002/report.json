@@ -1,0 +1,2135 @@
+{
+  "generatedAt": "2026-02-17T02:00:04.704Z",
+  "repoRoot": "C:\\Users\\erdno\\chthonic-archive",
+  "config": {
+    "topN": 20,
+    "maxTodoHits": 80,
+    "enableSiphon": false,
+    "enableClassification": true
+  },
+  "summary": {
+    "filesScanned": 2424,
+    "todoHits": 302,
+    "topCandidates": 20
+  },
+  "topCandidates": [
+    {
+      "relPath": "meta-ide/copilot-cli-0.0.406/sdk/index.d.ts",
+      "size": 545739,
+      "mtimeMs": 499162500000,
+      "score": 2402,
+      "reasons": [
+        "🚨 Critical Complexity: Giant file detected",
+        "Documentation Debt: 1902 (rel to complexity: 423, density: 0.05)",
+        "todos: 4"
+      ],
+      "todoHits": 4
+    },
+    {
+      "relPath": "meta-ide/copilot-sdk/sdk/index.d.ts",
+      "size": 545739,
+      "mtimeMs": 499162500000,
+      "score": 2402,
+      "reasons": [
+        "🚨 Critical Complexity: Giant file detected",
+        "Documentation Debt: 1902 (rel to complexity: 423, density: 0.05)",
+        "todos: 4"
+      ],
+      "todoHits": 4
+    },
+    {
+      "relPath": "meta-ide/LocalAI-3.11.0/core/http/static/chat.js",
+      "size": 103385,
+      "mtimeMs": 1770499338000,
+      "score": 2268,
+      "reasons": [
+        "🚨 Critical Complexity: Giant file detected",
+        "Documentation Debt: 1759 (rel to complexity: 471, density: 0.13)"
+      ],
+      "todoHits": 0
+    },
+    {
+      "relPath": "codex/codex-session-logs/archive/default-session-code-gemini.py",
+      "size": 1180608,
+      "mtimeMs": 1771105681868,
+      "score": 2182,
+      "reasons": [
+        "🚨 Critical Complexity: Giant file detected",
+        "Documentation Debt: 1672 (rel to complexity: 350, density: 0.02)"
+      ],
+      "todoHits": 0
+    },
+    {
+      "relPath": "scripts/decorator_cross_ref_maximum.py",
+      "size": 66923,
+      "mtimeMs": 1770319481817,
+      "score": 1415,
+      "reasons": [
+        "🚨 Critical Complexity: Giant file detected",
+        "Documentation Debt: 876 (rel to complexity: 230, density: 0.12)",
+        "repo tooling"
+      ],
+      "todoHits": 0
+    },
+    {
+      "relPath": "scripts/decorator_cross_ref_production.py",
+      "size": 65234,
+      "mtimeMs": 1771177421010,
+      "score": 1040,
+      "reasons": [
+        "⚠️ High Complexity: Needs decomposition",
+        "Documentation Debt: 750 (rel to complexity: 197, density: 0.12)",
+        "repo tooling"
+      ],
+      "todoHits": 0
+    },
+    {
+      "relPath": "scripts/chthonic.ps1",
+      "size": 48951,
+      "mtimeMs": 1771286636755,
+      "score": 916,
+      "reasons": [
+        "⚠️ High Complexity: Needs decomposition",
+        "Documentation Debt: 608 (rel to complexity: 150, density: 0.09)",
+        "repo tooling",
+        "powershell tooling"
+      ],
+      "todoHits": 0
+    },
+    {
+      "relPath": "scripts/ingest_research.py",
+      "size": 26161,
+      "mtimeMs": 1771292613650,
+      "score": 897,
+      "reasons": [
+        "⚠️ High Complexity: Needs decomposition",
+        "Documentation Debt: 607 (rel to complexity: 122, density: 0.00)",
+        "repo tooling"
+      ],
+      "todoHits": 0
+    },
+    {
+      "relPath": "scripts/overnight_daemon.ts",
+      "size": 41664,
+      "mtimeMs": 1771183350268,
+      "score": 885,
+      "reasons": [
+        "⚠️ High Complexity: Needs decomposition",
+        "Documentation Debt: 595 (rel to complexity: 135, density: 0.06)",
+        "repo tooling",
+        "todos: 6"
+      ],
+      "todoHits": 6
+    },
+    {
+      "relPath": "meta-ide/LocalAI-3.11.0/backend/python/diffusers/backend.py",
+      "size": 42240,
+      "mtimeMs": 1770499338000,
+      "score": 884,
+      "reasons": [
+        "⚠️ High Complexity: Needs decomposition",
+        "Documentation Debt: 625 (rel to complexity: 165, density: 0.12)",
+        "todos: 1"
+      ],
+      "todoHits": 1
+    },
+    {
+      "relPath": "meta-ide/LocalAI-3.11.0/backend/python/vllm-omni/backend.py",
+      "size": 30335,
+      "mtimeMs": 1770499338000,
+      "score": 825,
+      "reasons": [
+        "⚠️ High Complexity: Needs decomposition",
+        "Documentation Debt: 566 (rel to complexity: 143, density: 0.10)",
+        "todos: 1"
+      ],
+      "todoHits": 1
+    },
+    {
+      "relPath": "mas_mcp/milf_genesis_v2.py",
+      "size": 53577,
+      "mtimeMs": 1770319469182,
+      "score": 815,
+      "reasons": [
+        "⚠️ High Complexity: Needs decomposition",
+        "Documentation Debt: 556 (rel to complexity: 132, density: 0.08)"
+      ],
+      "todoHits": 0
+    },
+    {
+      "relPath": "scripts/decorator_cross_ref_enhanced.py",
+      "size": 40710,
+      "mtimeMs": 1770323742799,
+      "score": 812,
+      "reasons": [
+        "⚠️ High Complexity: Needs decomposition",
+        "Documentation Debt: 523 (rel to complexity: 139, density: 0.12)",
+        "repo tooling"
+      ],
+      "todoHits": 0
+    },
+    {
+      "relPath": "meta-ide/LocalAI-3.11.0/backend/python/vibevoice/backend.py",
+      "size": 34461,
+      "mtimeMs": 1770499338000,
+      "score": 787,
+      "reasons": [
+        "⚠️ High Complexity: Needs decomposition",
+        "Documentation Debt: 528 (rel to complexity: 145, density: 0.14)"
+      ],
+      "todoHits": 0
+    },
+    {
+      "relPath": "meta-ide/LocalAI-3.11.0/core/http/static/assets/highlightjs.js",
+      "size": 121107,
+      "mtimeMs": 1770499338000,
+      "score": 778,
+      "reasons": [
+        "⚠️ High Complexity: Needs decomposition",
+        "Documentation Debt: 519 (rel to complexity: 104, density: 0.00)",
+        "todos: 2"
+      ],
+      "todoHits": 2
+    },
+    {
+      "relPath": "scripts/extract_session_value.py",
+      "size": 30692,
+      "mtimeMs": 1770319481827,
+      "score": 771,
+      "reasons": [
+        "⚠️ High Complexity: Needs decomposition",
+        "Documentation Debt: 482 (rel to complexity: 113, density: 0.07)",
+        "repo tooling"
+      ],
+      "todoHits": 0
+    },
+    {
+      "relPath": "mas_mcp/genesis_scheduler.py",
+      "size": 48201,
+      "mtimeMs": 1770319469152,
+      "score": 758,
+      "reasons": [
+        "⚠️ High Complexity: Needs decomposition",
+        "Documentation Debt: 499 (rel to complexity: 118, density: 0.08)"
+      ],
+      "todoHits": 0
+    },
+    {
+      "relPath": "mas_mcp/gpu_orchestrator.py",
+      "size": 39344,
+      "mtimeMs": 1770319469160,
+      "score": 720,
+      "reasons": [
+        "⚠️ High Complexity: Needs decomposition",
+        "Documentation Debt: 461 (rel to complexity: 108, density: 0.07)"
+      ],
+      "todoHits": 0
+    },
+    {
+      "relPath": "scripts/lib/extract.py",
+      "size": 22691,
+      "mtimeMs": 1770319481892,
+      "score": 596,
+      "reasons": [
+        "Moderate Complexity",
+        "Documentation Debt: 457 (rel to complexity: 98, density: 0.03)",
+        "repo tooling"
+      ],
+      "todoHits": 0
+    },
+    {
+      "relPath": "scripts/envelope_sync.py",
+      "size": 15523,
+      "mtimeMs": 1770323712859,
+      "score": 584,
+      "reasons": [
+        "Moderate Complexity",
+        "Documentation Debt: 445 (rel to complexity: 91, density: 0.01)",
+        "repo tooling"
+      ],
+      "todoHits": 0
+    }
+  ],
+  "todoHits": [
+    {
+      "file": "src/data/procedural.rs",
+      "line": 35,
+      "kind": "TODO",
+      "text": "Hook into the runtime Tier 3 manifestation flow."
+    },
+    {
+      "file": "src/data/procedural.rs",
+      "line": 70,
+      "kind": "TODO",
+      "text": "Hook into dynamic faction encounter generation."
+    },
+    {
+      "file": "scripts/build_epistemograph.py",
+      "line": 71,
+      "kind": "TODO",
+      "text": "|FIXME|HACK|NOTE|WARNING|DEPRECATED)\\b', re.I),"
+    },
+    {
+      "file": "scripts/epistemograph_schema.sql",
+      "line": 123,
+      "kind": "TODO",
+      "text": "/FIXME/NOTE markers', 0),"
+    },
+    {
+      "file": "scripts/epistemograph_schema_design.md",
+      "line": 110,
+      "kind": "TODO",
+      "text": ", MUST, assert) are useful, but this repo has domain-specific epistemic markers:"
+    },
+    {
+      "file": "scripts/overnight_daemon.ts",
+      "line": 35,
+      "kind": "TODO",
+      "text": "\" | \"FIXME\" | \"HACK\";"
+    },
+    {
+      "file": "scripts/overnight_daemon.ts",
+      "line": 327,
+      "kind": "TODO",
+      "text": "|FIXME|HACK)\\b\\s*:?\\s*(.*)$/i.exec(line);"
+    },
+    {
+      "file": "scripts/overnight_daemon.ts",
+      "line": 330,
+      "kind": "TODO",
+      "text": "\" || rawKind === \"FIXME\" || rawKind === \"HACK\") ? rawKind : \"TODO\";"
+    },
+    {
+      "file": "scripts/overnight_daemon.ts",
+      "line": 966,
+      "kind": "TODO",
+      "text": "/FIXME/HACK hits (captured): ${allTodoHits.length}`);"
+    },
+    {
+      "file": "scripts/overnight_daemon.ts",
+      "line": 977,
+      "kind": "TODO",
+      "text": "hits | Reasons | \");"
+    },
+    {
+      "file": "scripts/overnight_daemon.ts",
+      "line": 985,
+      "kind": "TODO",
+      "text": "/ FIXME / HACK (Sample)\");"
+    },
+    {
+      "file": "scripts/run_archaeology.ps1",
+      "line": 25,
+      "kind": "TODO",
+      "text": "hits for daemon"
+    },
+    {
+      "file": "scripts/scanner_approval.md",
+      "line": 210,
+      "kind": "TODO",
+      "text": "|FIXME|HACK|NOTE|WARNING|DEPRECATED)\\b', re.I),"
+    },
+    {
+      "file": "scripts/test_epistemograph.sqlite",
+      "line": 128,
+      "kind": "FIXME",
+      "text": "/NOTE markers)\u0001\u0005\u001dE\u0000\bcontractMUST/SHALL/REQUIRED language"
+    },
+    {
+      "file": "meta-ide/LocalAI-3.11.0/go.mod",
+      "line": 107,
+      "kind": "HACK",
+      "text": "-pad/go-indexeddb v0.3.2 // indirect"
+    },
+    {
+      "file": "meta-ide/LocalAI-3.11.0/go.mod",
+      "line": 108,
+      "kind": "HACK",
+      "text": "-pad/safejs v0.1.0 // indirect"
+    },
+    {
+      "file": "meta-ide/LocalAI-3.11.0/go.sum",
+      "line": 304,
+      "kind": "HACK",
+      "text": "-pad/go-indexeddb v0.3.2 h1:DTqeJJYc1usa45Q5r52t01KhvlSN02+Oq+tQbSBI91A="
+    },
+    {
+      "file": "meta-ide/LocalAI-3.11.0/go.sum",
+      "line": 305,
+      "kind": "HACK",
+      "text": "-pad/go-indexeddb v0.3.2/go.mod h1:QvfTevpDVlkfomY498LhstjwbPW6QC4VC/lxYb0Kom0="
+    },
+    {
+      "file": "meta-ide/LocalAI-3.11.0/go.sum",
+      "line": 306,
+      "kind": "HACK",
+      "text": "-pad/safejs v0.1.0 h1:qPS6vjreAqh2amUqj4WNG1zIw7qlRQJ9K10eDKMCnE8="
+    },
+    {
+      "file": "meta-ide/LocalAI-3.11.0/go.sum",
+      "line": 307,
+      "kind": "HACK",
+      "text": "-pad/safejs v0.1.0/go.mod h1:HdS+bKF1NrE72VoXZeWzxFOVQVUSqZJAG0xNCnb+Tio="
+    },
+    {
+      "file": "meta-ide/LocalAI-3.11.0/tests/e2e-aio/e2e_suite_test.go",
+      "line": 56,
+      "kind": "TODO",
+      "text": "())"
+    },
+    {
+      "file": "meta-ide/LocalAI-3.11.0/tests/e2e-aio/e2e_test.go",
+      "line": 33,
+      "kind": "TODO",
+      "text": "(),"
+    },
+    {
+      "file": "meta-ide/LocalAI-3.11.0/tests/e2e-aio/e2e_test.go",
+      "line": 73,
+      "kind": "TODO",
+      "text": "(),"
+    },
+    {
+      "file": "meta-ide/LocalAI-3.11.0/tests/e2e-aio/e2e_test.go",
+      "line": 94,
+      "kind": "TODO",
+      "text": "(),"
+    },
+    {
+      "file": "meta-ide/LocalAI-3.11.0/tests/e2e-aio/e2e_test.go",
+      "line": 118,
+      "kind": "TODO",
+      "text": "(),"
+    },
+    {
+      "file": "meta-ide/LocalAI-3.11.0/tests/e2e-aio/e2e_test.go",
+      "line": 129,
+      "kind": "TODO",
+      "text": "(),"
+    },
+    {
+      "file": "meta-ide/LocalAI-3.11.0/tests/e2e-aio/e2e_test.go",
+      "line": 142,
+      "kind": "TODO",
+      "text": "(),"
+    },
+    {
+      "file": "meta-ide/LocalAI-3.11.0/tests/e2e-aio/e2e_test.go",
+      "line": 157,
+      "kind": "TODO",
+      "text": "(),"
+    },
+    {
+      "file": "meta-ide/LocalAI-3.11.0/tests/e2e-aio/e2e_test.go",
+      "line": 169,
+      "kind": "TODO",
+      "text": "(),"
+    },
+    {
+      "file": "meta-ide/LocalAI-3.11.0/tests/e2e-aio/e2e_test.go",
+      "line": 182,
+      "kind": "TODO",
+      "text": "(),"
+    },
+    {
+      "file": "meta-ide/LocalAI-3.11.0/tests/e2e-aio/e2e_test.go",
+      "line": 202,
+      "kind": "TODO",
+      "text": "(),"
+    },
+    {
+      "file": "meta-ide/LocalAI-3.11.0/tests/e2e/e2e_anthropic_test.go",
+      "line": 27,
+      "kind": "TODO",
+      "text": "(), anthropic.MessageNewParams{"
+    },
+    {
+      "file": "meta-ide/LocalAI-3.11.0/tests/e2e/e2e_anthropic_test.go",
+      "line": 47,
+      "kind": "TODO",
+      "text": "(), anthropic.MessageNewParams{"
+    },
+    {
+      "file": "meta-ide/LocalAI-3.11.0/tests/e2e/e2e_anthropic_test.go",
+      "line": 63,
+      "kind": "TODO",
+      "text": "(), anthropic.MessageNewParams{"
+    },
+    {
+      "file": "meta-ide/LocalAI-3.11.0/tests/e2e/e2e_anthropic_test.go",
+      "line": 78,
+      "kind": "TODO",
+      "text": "(), anthropic.MessageNewParams{"
+    },
+    {
+      "file": "meta-ide/LocalAI-3.11.0/tests/e2e/e2e_anthropic_test.go",
+      "line": 114,
+      "kind": "TODO",
+      "text": "(), anthropic.MessageNewParams{"
+    },
+    {
+      "file": "meta-ide/LocalAI-3.11.0/tests/e2e/e2e_anthropic_test.go",
+      "line": 139,
+      "kind": "TODO",
+      "text": "(), anthropic.MessageNewParams{"
+    },
+    {
+      "file": "meta-ide/LocalAI-3.11.0/tests/e2e/e2e_anthropic_test.go",
+      "line": 190,
+      "kind": "TODO",
+      "text": "(), anthropic.MessageNewParams{"
+    },
+    {
+      "file": "meta-ide/LocalAI-3.11.0/tests/e2e/e2e_anthropic_test.go",
+      "line": 225,
+      "kind": "TODO",
+      "text": "(), anthropic.MessageNewParams{"
+    },
+    {
+      "file": "meta-ide/LocalAI-3.11.0/tests/e2e/e2e_anthropic_test.go",
+      "line": 279,
+      "kind": "TODO",
+      "text": "(), anthropic.MessageNewParams{"
+    },
+    {
+      "file": "meta-ide/LocalAI-3.11.0/tests/e2e/e2e_anthropic_test.go",
+      "line": 310,
+      "kind": "TODO",
+      "text": "(), anthropic.MessageNewParams{"
+    },
+    {
+      "file": "meta-ide/LocalAI-3.11.0/tests/e2e/e2e_suite_test.go",
+      "line": 149,
+      "kind": "TODO",
+      "text": "())"
+    },
+    {
+      "file": "meta-ide/LocalAI-3.11.0/tests/e2e/mock_backend_test.go",
+      "line": 20,
+      "kind": "TODO",
+      "text": "(),"
+    },
+    {
+      "file": "meta-ide/LocalAI-3.11.0/tests/e2e/mock_backend_test.go",
+      "line": 37,
+      "kind": "TODO",
+      "text": "(),"
+    },
+    {
+      "file": "meta-ide/LocalAI-3.11.0/tests/e2e/mock_backend_test.go",
+      "line": 61,
+      "kind": "TODO",
+      "text": "(),"
+    },
+    {
+      "file": "meta-ide/LocalAI-3.11.0/pkg/utils/ffmpeg.go",
+      "line": 20,
+      "kind": "TODO",
+      "text": "use https://github.com/mccoyst/ogg?"
+    },
+    {
+      "file": "meta-ide/LocalAI-3.11.0/pkg/utils/ffmpeg.go",
+      "line": 46,
+      "kind": "TODO",
+      "text": "handle pcm to have 100% parity of supported format from OpenAI"
+    },
+    {
+      "file": "meta-ide/LocalAI-3.11.0/pkg/oci/blob_test.go",
+      "line": 18,
+      "kind": "TODO",
+      "text": "(), \"registry.ollama.ai/library/gemma\", \"sha256:c1864a5eb19305c40519da12cc543519e48a0697ecd30e15d5ac228644957d12\", f.Name(), nil)"
+    },
+    {
+      "file": "meta-ide/LocalAI-3.11.0/pkg/oci/image_test.go",
+      "line": 34,
+      "kind": "TODO",
+      "text": "(), img, imageName, dir, nil)"
+    },
+    {
+      "file": "meta-ide/LocalAI-3.11.0/pkg/oci/ollama_test.go",
+      "line": 18,
+      "kind": "TODO",
+      "text": "(), \"gemma:2b\", f.Name(), nil)"
+    },
+    {
+      "file": "meta-ide/LocalAI-3.11.0/pkg/model/loader.go",
+      "line": 21,
+      "kind": "TODO",
+      "text": "Split ModelLoader and TemplateLoader? Just to keep things more organized. Left together to share a mutex until I look into that. Would split if we separate directories for .bin/.yaml and .tmpl"
+    },
+    {
+      "file": "meta-ide/LocalAI-3.11.0/pkg/functions/iterative_parser.go",
+      "line": 1198,
+      "kind": "TODO",
+      "text": "support thinking_forced_open from syntax"
+    },
+    {
+      "file": "meta-ide/LocalAI-3.11.0/pkg/functions/iterative_parser.go",
+      "line": 1247,
+      "kind": "TODO",
+      "text": "Handle reasoning_format and reasoning_in_content from syntax"
+    },
+    {
+      "file": "meta-ide/LocalAI-3.11.0/pkg/functions/iterative_parser.go",
+      "line": 1282,
+      "kind": "TODO",
+      "text": "Handle reasoning_format and reasoning_in_content"
+    },
+    {
+      "file": "meta-ide/LocalAI-3.11.0/pkg/functions/iterative_parser.go",
+      "line": 1308,
+      "kind": "TODO",
+      "text": "Handle reasoning_format"
+    },
+    {
+      "file": "meta-ide/LocalAI-3.11.0/pkg/functions/iterative_parser.go",
+      "line": 1315,
+      "kind": "TODO",
+      "text": "Handle reasoning_format for multiple content blocks"
+    },
+    {
+      "file": "meta-ide/LocalAI-3.11.0/pkg/functions/parse.go",
+      "line": 1667,
+      "kind": "TODO",
+      "text": "there might be responses where an object as a value is expected/required. This is currently not handled."
+    },
+    {
+      "file": "meta-ide/LocalAI-3.11.0/pkg/functions/grammars/bnf_rules.go",
+      "line": 17,
+      "kind": "TODO",
+      "text": "we shouldn't forbid \\\" and \\\\ or all unicode and have this branch here,"
+    },
+    {
+      "file": "meta-ide/LocalAI-3.11.0/core/templates/evaluator.go",
+      "line": 140,
+      "kind": "TODO",
+      "text": "This continue is here intentionally to skip over the line `mess = append(mess, content)` below, and to prevent the sprintf"
+    },
+    {
+      "file": "meta-ide/LocalAI-3.11.0/core/startup/model_preload.go",
+      "line": 40,
+      "kind": "TODO",
+      "text": "we should just use the discoverModelConfig here and default to this."
+    },
+    {
+      "file": "meta-ide/LocalAI-3.11.0/core/services/backend_monitor.go",
+      "line": 93,
+      "kind": "TODO",
+      "text": "())"
+    },
+    {
+      "file": "meta-ide/LocalAI-3.11.0/core/services/metrics.go",
+      "line": 48,
+      "kind": "TODO",
+      "text": "Not sure how to actually do this:"
+    },
+    {
+      "file": "meta-ide/LocalAI-3.11.0/core/schema/request.go",
+      "line": 11,
+      "kind": "TODO",
+      "text": "Should this also include the following fields from the OpenAI side of the world?"
+    },
+    {
+      "file": "meta-ide/LocalAI-3.11.0/core/p2p/p2p.go",
+      "line": 181,
+      "kind": "TODO",
+      "text": "discoveryTunnels should return all the nodes that are available?"
+    },
+    {
+      "file": "meta-ide/LocalAI-3.11.0/core/p2p/p2p.go",
+      "line": 213,
+      "kind": "TODO",
+      "text": ""
+    },
+    {
+      "file": "meta-ide/LocalAI-3.11.0/core/p2p/p2p.go",
+      "line": 380,
+      "kind": "TODO",
+      "text": "move this up, expose more config options when creating a node"
+    },
+    {
+      "file": "meta-ide/LocalAI-3.11.0/core/http/app_test.go",
+      "line": 89,
+      "kind": "TODO",
+      "text": "No tests currently seem to exercise file:// urls. Fix?"
+    },
+    {
+      "file": "meta-ide/LocalAI-3.11.0/core/http/app_test.go",
+      "line": 90,
+      "kind": "TODO",
+      "text": "(), \"\", bearerKey, func(url string, i []byte) error {"
+    },
+    {
+      "file": "meta-ide/LocalAI-3.11.0/core/http/app_test.go",
+      "line": 394,
+      "kind": "TODO",
+      "text": "())"
+    },
+    {
+      "file": "meta-ide/LocalAI-3.11.0/core/http/app_test.go",
+      "line": 726,
+      "kind": "TODO",
+      "text": "())"
+    },
+    {
+      "file": "meta-ide/LocalAI-3.11.0/core/http/app_test.go",
+      "line": 765,
+      "kind": "TODO",
+      "text": "(), openai.ChatCompletionRequest{Model: modelName, Messages: []openai.ChatCompletionMessage{"
+    },
+    {
+      "file": "meta-ide/LocalAI-3.11.0/core/http/app_test.go",
+      "line": 777,
+      "kind": "TODO",
+      "text": "(),"
+    },
+    {
+      "file": "meta-ide/LocalAI-3.11.0/core/http/app_test.go",
+      "line": 940,
+      "kind": "TODO",
+      "text": "())"
+    },
+    {
+      "file": "meta-ide/LocalAI-3.11.0/core/http/app_test.go",
+      "line": 954,
+      "kind": "TODO",
+      "text": "())"
+    },
+    {
+      "file": "meta-ide/LocalAI-3.11.0/core/http/app_test.go",
+      "line": 962,
+      "kind": "TODO",
+      "text": "(), openai.CompletionRequest{Model: \"testmodel.ggml\", Prompt: testPrompt})"
+    },
+    {
+      "file": "meta-ide/LocalAI-3.11.0/core/http/app_test.go",
+      "line": 972,
+      "kind": "TODO",
+      "text": "(), openai.ChatCompletionRequest{Model: \"testmodel.ggml\", Messages: []openai.ChatCompletionMessage{openai.ChatCompletionMessage{Role: \"user\", Content: testPrompt}}})"
+    },
+    {
+      "file": "meta-ide/LocalAI-3.11.0/core/http/app_test.go",
+      "line": 983,
+      "kind": "TODO",
+      "text": "(), openai.ChatCompletionRequest{"
+    },
+    {
+      "file": "meta-ide/LocalAI-3.11.0/core/http/app_test.go",
+      "line": 1047,
+      "kind": "TODO",
+      "text": "(), openai.ChatCompletionRequest{"
+    },
+    {
+      "file": "meta-ide/LocalAI-3.11.0/core/http/app_test.go",
+      "line": 1062,
+      "kind": "TODO",
+      "text": "(), openai.CompletionRequest{Model: \"foomodel\", Prompt: testPrompt})"
+    },
+    {
+      "file": "meta-ide/LocalAI-3.11.0/core/http/app_test.go",
+      "line": 1419,
+      "kind": "TODO",
+      "text": "())"
+    },
+    {
+      "file": "meta-ide/LocalAI-3.11.0/core/http/app_test.go",
+      "line": 1433,
+      "kind": "TODO",
+      "text": "(), openai.ChatCompletionRequest{Model: \"list1\", Messages: []openai.ChatCompletionMessage{{Role: \"user\", Content: testPrompt}}})"
+    },
+    {
+      "file": "meta-ide/LocalAI-3.11.0/core/http/app_test.go",
+      "line": 1439,
+      "kind": "TODO",
+      "text": "(), openai.ChatCompletionRequest{Model: \"list2\", Messages: []openai.ChatCompletionMessage{{Role: \"user\", Content: testPrompt}}})"
+    },
+    {
+      "file": "meta-ide/LocalAI-3.11.0/core/http/static/assets/codemirror.min.css",
+      "line": 1,
+      "kind": "HACK",
+      "text": "after{content:''}span.CodeMirror-selectedtext{background:0 0}"
+    },
+    {
+      "file": "meta-ide/LocalAI-3.11.0/core/http/static/assets/codemirror.min.js",
+      "line": 1,
+      "kind": "HACK",
+      "text": "\")),O(e,\"renderLine\",e,t.line,r.pre),r.pre.className&&(r.textClass=oe(r.pre.className,r.textClass||\"\")),r}function dn(e){var t=M(\"span\",\"•\",\"cm-invalidchar\");return t.title=\"\\\\u\"+e.charCodeAt(0).toString(16),t.setAttribute(\"aria-label\",t.ti"
+    },
+    {
+      "file": "meta-ide/LocalAI-3.11.0/core/http/static/assets/highlightjs.js",
+      "line": 62,
+      "kind": "TODO",
+      "text": "|FIXME|NOTE|BUG|OPTIMIZE|HACK|XXX):)\","
+    },
+    {
+      "file": "meta-ide/LocalAI-3.11.0/core/http/static/assets/highlightjs.js",
+      "line": 63,
+      "kind": "TODO",
+      "text": "|FIXME|NOTE|BUG|OPTIMIZE|HACK|XXX):/,excludeBegin:!0,relevance:0})"
+    },
+    {
+      "file": "meta-ide/LocalAI-3.11.0/core/http/static/assets/pdf.min.js",
+      "line": 22,
+      "kind": "TODO",
+      "text": "Support non-isolated groups.\");t.knockout&&(0,s.warn)(\"Knockout groups not supported.\");const i=(0,n.getCurrentTransform)(e);t.matrix&&e.transform(...t.matrix);if(!t.bbox)throw new Error(\"Bounding box is required.\");let a=s.Util.getAxialAli"
+    },
+    {
+      "file": "meta-ide/LocalAI-3.11.0/core/http/static/assets/tailwindcss.js",
+      "line": 36,
+      "kind": "HACK",
+      "text": "(e){return this.hacks||(this.hacks={}),e.names.map(t=>(this.hacks[t]=e,this.hacks[t]))}static load(e,t,i){let n=this.hacks&&this.hacks[e];return n?new n(e,t,i):new this(e,t,i)}static clone(e,t){let i=el(e);for(let n in t)i[n]=t[n];return i}"
+    },
+    {
+      "file": "meta-ide/LocalAI-3.11.0/core/http/static/assets/tailwindcss.js",
+      "line": 44,
+      "kind": "HACK",
+      "text": "(f4);ar.hack(c4);ar.hack(p4);ar.hack(d4);R.hack(h4);R.hack(m4);R.hack(g4);R.hack(y4);R.hack(b4);R.hack(w4);R.hack(x4);R.hack(v4);R.hack(k4);R.hack(S4);R.hack(C4);R.hack(A4);R.hack(O4);R.hack(E4);R.hack(_4);R.hack(T4);R.hack(P4);R.hack(D4);R"
+    },
+    {
+      "file": "meta-ide/LocalAI-3.11.0/core/http/routes/localai.go",
+      "line": 113,
+      "kind": "TODO",
+      "text": "Should these use standard middlewares? Refactor later, they are extremely simple."
+    },
+    {
+      "file": "meta-ide/LocalAI-3.11.0/core/http/routes/openai.go",
+      "line": 20,
+      "kind": "TODO",
+      "text": "Modify/disable the API key middleware for this endpoint to allow ephemeral keys created by sessions"
+    },
+    {
+      "file": "meta-ide/LocalAI-3.11.0/core/http/middleware/request.go",
+      "line": 46,
+      "kind": "TODO",
+      "text": "Refactor to not return error if unchanged"
+    },
+    {
+      "file": "meta-ide/LocalAI-3.11.0/core/http/middleware/request.go",
+      "line": 121,
+      "kind": "TODO",
+      "text": "If context and cancel above belong on all methods, move that part of above into here!"
+    },
+    {
+      "file": "meta-ide/LocalAI-3.11.0/core/http/middleware/request.go",
+      "line": 336,
+      "kind": "TODO",
+      "text": "make sure that we only return base64 stuff"
+    },
+    {
+      "file": "meta-ide/LocalAI-3.11.0/core/http/middleware/request.go",
+      "line": 346,
+      "kind": "TODO",
+      "text": "make sure that we only return base64 stuff"
+    },
+    {
+      "file": "meta-ide/LocalAI-3.11.0/core/http/middleware/request.go",
+      "line": 350,
+      "kind": "TODO",
+      "text": "make sure that we only return base64 stuff"
+    },
+    {
+      "file": "meta-ide/LocalAI-3.11.0/core/http/middleware/request.go",
+      "line": 362,
+      "kind": "TODO",
+      "text": "make sure that we only return base64 stuff"
+    },
+    {
+      "file": "meta-ide/LocalAI-3.11.0/core/http/endpoints/openai/chat.go",
+      "line": 643,
+      "kind": "TODO",
+      "text": "this should be the parsed jinja template. But for now this is the best we can do."
+    },
+    {
+      "file": "meta-ide/LocalAI-3.11.0/core/http/endpoints/openai/list.go",
+      "line": 26,
+      "kind": "TODO",
+      "text": "give more options to the user?"
+    },
+    {
+      "file": "meta-ide/LocalAI-3.11.0/core/http/endpoints/openai/realtime.go",
+      "line": 135,
+      "kind": "TODO",
+      "text": "Implement ephemeral keys to allow these endpoints to be used"
+    },
+    {
+      "file": "meta-ide/LocalAI-3.11.0/core/http/endpoints/openai/realtime.go",
+      "line": 170,
+      "kind": "TODO",
+      "text": "Allow any-to-any model to be specified"
+    },
+    {
+      "file": "meta-ide/LocalAI-3.11.0/core/http/endpoints/openai/realtime.go",
+      "line": 213,
+      "kind": "TODO",
+      "text": "We need to truncate the conversation items when a new item is added and we have run out of space. There are multiple places where items"
+    },
+    {
+      "file": "meta-ide/LocalAI-3.11.0/core/http/endpoints/openai/realtime.go",
+      "line": 370,
+      "kind": "TODO",
+      "text": "At the least need to check locking and timer state in the VAD Go routine before allowing this"
+    },
+    {
+      "file": "meta-ide/LocalAI-3.11.0/core/http/endpoints/openai/realtime.go",
+      "line": 382,
+      "kind": "TODO",
+      "text": "(), allAudio, session, conversation, c)"
+    },
+    {
+      "file": "meta-ide/LocalAI-3.11.0/core/http/endpoints/openai/realtime.go",
+      "line": 651,
+      "kind": "TODO",
+      "text": "When resetting the buffer we should retain a small postfix"
+    },
+    {
+      "file": "meta-ide/LocalAI-3.11.0/core/http/endpoints/openai/realtime.go",
+      "line": 652,
+      "kind": "TODO",
+      "text": "The OpenAI documentation seems to suggest that only the client decides when to clear the buffer"
+    },
+    {
+      "file": "meta-ide/LocalAI-3.11.0/core/http/endpoints/openai/realtime.go",
+      "line": 705,
+      "kind": "TODO",
+      "text": "\","
+    },
+    {
+      "file": "meta-ide/LocalAI-3.11.0/core/http/endpoints/openai/realtime.go",
+      "line": 709,
+      "kind": "TODO",
+      "text": "Remove prefix silence that is is over TurnDetectionParams.PrefixPaddingMs"
+    },
+    {
+      "file": "meta-ide/LocalAI-3.11.0/core/http/endpoints/openai/realtime.go",
+      "line": 743,
+      "kind": "TODO",
+      "text": "If we have a real any-to-any model then transcription is optional"
+    },
+    {
+      "file": "meta-ide/LocalAI-3.11.0/core/http/endpoints/openai/realtime.go",
+      "line": 887,
+      "kind": "TODO",
+      "text": "(), conversationHistory, nil, nil, nil, nil, session.Tools, session.ToolChoice, nil, nil, nil)"
+    },
+    {
+      "file": "meta-ide/LocalAI-3.11.0/core/http/endpoints/openai/realtime.go",
+      "line": 990,
+      "kind": "TODO",
+      "text": "(), finalSpeech, session.Voice, session.InputAudioTranscription.Language)"
+    },
+    {
+      "file": "meta-ide/LocalAI-3.11.0/core/http/endpoints/openai/realtime_model.go",
+      "line": 263,
+      "kind": "TODO",
+      "text": "Do we always need a transcription model? It can be disabled. Note that any-to-any instruction following models don't transcribe as such, so if transcription is required it is a separate process"
+    },
+    {
+      "file": "meta-ide/LocalAI-3.11.0/core/http/endpoints/openai/realtime_model.go",
+      "line": 274,
+      "kind": "TODO",
+      "text": "Decide when we have a real any-to-any model"
+    },
+    {
+      "file": "meta-ide/LocalAI-3.11.0/core/http/endpoints/openai/types/server_events.go",
+      "line": 1367,
+      "kind": "TODO",
+      "text": "optimize"
+    },
+    {
+      "file": "meta-ide/LocalAI-3.11.0/core/http/endpoints/localai/get_token_metrics.go",
+      "line": 14,
+      "kind": "TODO",
+      "text": "This is not yet in use. Needs middleware rework, since it is not referenced."
+    },
+    {
+      "file": "meta-ide/LocalAI-3.11.0/core/http/endpoints/localai/mcp.go",
+      "line": 120,
+      "kind": "TODO",
+      "text": "instead of connecting to the API, we should just wire this internally"
+    },
+    {
+      "file": "meta-ide/LocalAI-3.11.0/core/http/endpoints/localai/video.go",
+      "line": 159,
+      "kind": "TODO",
+      "text": "use mime type to determine the extension"
+    },
+    {
+      "file": "meta-ide/LocalAI-3.11.0/core/http/endpoints/explorer/dashboard.go",
+      "line": 91,
+      "kind": "TODO",
+      "text": "check if token is valid, otherwise reject"
+    },
+    {
+      "file": "meta-ide/LocalAI-3.11.0/core/gallery/backends_test.go",
+      "line": 120,
+      "kind": "TODO",
+      "text": "(), galleries, systemState, ml, \"non-existent\", nil, true)"
+    },
+    {
+      "file": "meta-ide/LocalAI-3.11.0/core/gallery/backends_test.go",
+      "line": 126,
+      "kind": "TODO",
+      "text": "(), galleries, systemState, ml, \"test-backend\", nil, true)"
+    },
+    {
+      "file": "meta-ide/LocalAI-3.11.0/core/gallery/backends_test.go",
+      "line": 548,
+      "kind": "TODO",
+      "text": "(), []config.Gallery{gallery}, nvidiaSystemState, ml, \"meta-backend\", nil, true)"
+    },
+    {
+      "file": "meta-ide/LocalAI-3.11.0/core/gallery/backends_test.go",
+      "line": 628,
+      "kind": "TODO",
+      "text": "(), []config.Gallery{gallery}, nvidiaSystemState, ml, \"meta-backend\", nil, true)"
+    },
+    {
+      "file": "meta-ide/LocalAI-3.11.0/core/gallery/backends_test.go",
+      "line": 712,
+      "kind": "TODO",
+      "text": "(), []config.Gallery{gallery}, nvidiaSystemState, ml, \"meta-backend\", nil, true)"
+    },
+    {
+      "file": "meta-ide/LocalAI-3.11.0/core/gallery/backends_test.go",
+      "line": 811,
+      "kind": "TODO",
+      "text": "(), systemState, ml, &backend, nil)"
+    },
+    {
+      "file": "meta-ide/LocalAI-3.11.0/core/gallery/backends_test.go",
+      "line": 843,
+      "kind": "TODO",
+      "text": "(), systemState, ml, &backend, nil)"
+    },
+    {
+      "file": "meta-ide/LocalAI-3.11.0/core/gallery/backends_test.go",
+      "line": 876,
+      "kind": "TODO",
+      "text": "(), systemState, ml, &backend, nil)"
+    },
+    {
+      "file": "meta-ide/LocalAI-3.11.0/core/gallery/backends_test.go",
+      "line": 897,
+      "kind": "TODO",
+      "text": "(), systemState, ml, &backend, nil)"
+    },
+    {
+      "file": "meta-ide/LocalAI-3.11.0/core/gallery/models.go",
+      "line": 96,
+      "kind": "TODO",
+      "text": "is this worse than using the override method with a blank cfg yaml?"
+    },
+    {
+      "file": "meta-ide/LocalAI-3.11.0/core/gallery/models.go",
+      "line": 125,
+      "kind": "TODO",
+      "text": "model.Overrides could be merged with user overrides (not defined yet)"
+    },
+    {
+      "file": "meta-ide/LocalAI-3.11.0/core/gallery/models_test.go",
+      "line": 38,
+      "kind": "TODO",
+      "text": "(), systemState, \"\", c, map[string]interface{}{}, func(string, string, string, float64) {}, true)"
+    },
+    {
+      "file": "meta-ide/LocalAI-3.11.0/core/gallery/models_test.go",
+      "line": 92,
+      "kind": "TODO",
+      "text": "(), galleries, []config.Gallery{}, systemState, nil, \"test@bert\", GalleryModel{}, func(s1, s2, s3 string, f float64) {}, true, true)"
+    },
+    {
+      "file": "meta-ide/LocalAI-3.11.0/core/gallery/models_test.go",
+      "line": 133,
+      "kind": "TODO",
+      "text": "(), systemState, \"foo\", c, map[string]interface{}{}, func(string, string, string, float64) {}, true)"
+    },
+    {
+      "file": "meta-ide/LocalAI-3.11.0/core/gallery/models_test.go",
+      "line": 153,
+      "kind": "TODO",
+      "text": "(), systemState, \"foo\", c, map[string]interface{}{\"backend\": \"foo\"}, func(string, string, string, float64) {}, true)"
+    },
+    {
+      "file": "meta-ide/LocalAI-3.11.0/core/gallery/models_test.go",
+      "line": 183,
+      "kind": "TODO",
+      "text": "(), systemState, \"../../../foo\", c, map[string]interface{}{}, func(string, string, string, float64) {}, true)"
+    },
+    {
+      "file": "meta-ide/LocalAI-3.11.0/core/gallery/models_test.go",
+      "line": 198,
+      "kind": "TODO",
+      "text": "(), systemState, \"test-model\", c, nil, func(string, string, string, float64) {}, true)"
+    },
+    {
+      "file": "meta-ide/LocalAI-3.11.0/core/gallery/importers/importers.go",
+      "line": 54,
+      "kind": "TODO",
+      "text": "maybe we can check if the URI is a valid HF repository"
+    },
+    {
+      "file": "meta-ide/LocalAI-3.11.0/core/config/model_config_filter.go",
+      "line": 31,
+      "kind": "TODO",
+      "text": "Potentially make this a param, for now, no known usecase to include"
+    },
+    {
+      "file": "meta-ide/LocalAI-3.11.0/core/config/model_config_loader.go",
+      "line": 79,
+      "kind": "TODO",
+      "text": "either in the next PR or the next commit, I want to merge these down into a single function that looks at the first few characters of the file to determine if we need to deserialize to []BackendConfig or BackendConfig"
+    },
+    {
+      "file": "meta-ide/LocalAI-3.11.0/core/config/model_config_loader.go",
+      "line": 238,
+      "kind": "TODO",
+      "text": "I don't think this one needs to Sort on name... but we'll see what breaks."
+    },
+    {
+      "file": "meta-ide/LocalAI-3.11.0/core/cli/run.go",
+      "line": 144,
+      "kind": "TODO",
+      "text": "this is very specific to llama.cpp, we should have a more generic way to set the environment variable"
+    },
+    {
+      "file": "meta-ide/LocalAI-3.11.0/core/backend/llm.go",
+      "line": 186,
+      "kind": "TODO",
+      "text": "Is the chicken bit the only way to get here? is that acceptable?"
+    },
+    {
+      "file": "meta-ide/LocalAI-3.11.0/core/backend/tts.go",
+      "line": 51,
+      "kind": "TODO",
+      "text": "we should actually first check if the modelFile is looking like"
+    },
+    {
+      "file": "meta-ide/LocalAI-3.11.0/core/backend/tts.go",
+      "line": 106,
+      "kind": "TODO",
+      "text": "we should actually first check if the modelFile is looking like"
+    },
+    {
+      "file": "meta-ide/LocalAI-3.11.0/core/application/config_file_watcher.go",
+      "line": 27,
+      "kind": "TODO",
+      "text": "This should be a singleton eventually so other parts of the code can register config file handlers,"
+    },
+    {
+      "file": "meta-ide/LocalAI-3.11.0/core/application/config_file_watcher.go",
+      "line": 131,
+      "kind": "TODO",
+      "text": "When we institute graceful shutdown, this should be called"
+    },
+    {
+      "file": "meta-ide/LocalAI-3.11.0/backend/Dockerfile.llama-cpp",
+      "line": 9,
+      "kind": "HACK",
+      "text": ", but it's required in order to be able to effectively cache this layer in CI"
+    },
+    {
+      "file": "meta-ide/LocalAI-3.11.0/backend/python/vllm-omni/backend.py",
+      "line": 573,
+      "kind": "TODO",
+      "text": "for now vllm-omni supports only qwen3-tts, so we hardcode it, however, we want to support other models in the future."
+    },
+    {
+      "file": "meta-ide/LocalAI-3.11.0/backend/python/transformers/backend.py",
+      "line": 463,
+      "kind": "TODO",
+      "text": "SECURITY CODE GOES HERE LOL"
+    },
+    {
+      "file": "meta-ide/LocalAI-3.11.0/backend/python/rerankers/backend.py",
+      "line": 88,
+      "kind": "TODO",
+      "text": "Implement the usage calculation with reranker"
+    },
+    {
+      "file": "meta-ide/LocalAI-3.11.0/backend/python/diffusers/backend.py",
+      "line": 531,
+      "kind": "TODO",
+      "text": "this needs to be customized"
+    },
+    {
+      "file": "meta-ide/LocalAI-3.11.0/backend/go/stablediffusion-ggml/gosd.cpp",
+      "line": 731,
+      "kind": "TODO",
+      "text": "Clean up allocated memory"
+    },
+    {
+      "file": "meta-ide/LocalAI-3.11.0/backend/go/stablediffusion-ggml/gosd.go",
+      "line": 40,
+      "kind": "TODO",
+      "text": "We should upstream sending []string"
+    },
+    {
+      "file": "meta-ide/LocalAI-3.11.0/backend/go/local-store/store.go",
+      "line": 27,
+      "kind": "TODO",
+      "text": "Should we normalize incoming keys if they are not instead?"
+    },
+    {
+      "file": "meta-ide/LocalAI-3.11.0/backend/go/local-store/store.go",
+      "line": 33,
+      "kind": "TODO",
+      "text": "Only used for sorting using Go's builtin implementation. The interfaces are columnar because"
+    },
+    {
+      "file": "meta-ide/LocalAI-3.11.0/backend/go/local-store/store.go",
+      "line": 330,
+      "kind": "TODO",
+      "text": "This we could replace with handwritten SIMD code"
+    },
+    {
+      "file": "meta-ide/LocalAI-3.11.0/backend/cpp/llama-cpp/grpc-server.cpp",
+      "line": 48,
+      "kind": "TODO",
+      "text": "add a mutex for this, but happens only once loading the model"
+    },
+    {
+      "file": "meta-ide/LocalAI-3.11.0/backend/cpp/llama-cpp/grpc-server.cpp",
+      "line": 97,
+      "kind": "TODO",
+      "text": "refactor in common/console"
+    },
+    {
+      "file": "meta-ide/LocalAI-3.11.0/backend/cpp/llama-cpp/grpc-server.cpp",
+      "line": 270,
+      "kind": "TODO",
+      "text": "images,"
+    },
+    {
+      "file": "meta-ide/LocalAI-3.11.0/backend/cpp/llama-cpp/grpc-server.cpp",
+      "line": 605,
+      "kind": "TODO",
+      "text": "Add yarn"
+    },
+    {
+      "file": "meta-ide/LocalAI-3.11.0/backend/cpp/llama-cpp/grpc-server.cpp",
+      "line": 1358,
+      "kind": "TODO",
+      "text": "this log can become very long, put it behind a flag or think about a more compact format"
+    },
+    {
+      "file": "meta-ide/LocalAI-3.11.0/backend/cpp/llama-cpp/grpc-server.cpp",
+      "line": 2089,
+      "kind": "TODO",
+      "text": "this log can become very long, put it behind a flag or think about a more compact format"
+    },
+    {
+      "file": "meta-ide/LocalAI-3.11.0/backend/cpp/llama-cpp/grpc-server.cpp",
+      "line": 2467,
+      "kind": "TODO",
+      "text": "get rid of this dynamic_cast"
+    },
+    {
+      "file": "meta-ide/copilot-sdk/sdk/index.d.ts",
+      "line": 3258,
+      "kind": "TODO",
+      "text": "content (called when update_todo tool is used)."
+    },
+    {
+      "file": "meta-ide/copilot-sdk/sdk/index.d.ts",
+      "line": 3263,
+      "kind": "TODO",
+      "text": "content."
+    },
+    {
+      "file": "meta-ide/copilot-sdk/sdk/index.d.ts",
+      "line": 3392,
+      "kind": "TODO",
+      "text": "(queueing-improvements)"
+    },
+    {
+      "file": "meta-ide/copilot-sdk/sdk/index.d.ts",
+      "line": 12985,
+      "kind": "TODO",
+      "text": "restrictedProperties are currently not sent anywhere."
+    },
+    {
+      "file": "meta-ide/copilot-cli-0.0.406/sdk/index.d.ts",
+      "line": 3258,
+      "kind": "TODO",
+      "text": "content (called when update_todo tool is used)."
+    },
+    {
+      "file": "meta-ide/copilot-cli-0.0.406/sdk/index.d.ts",
+      "line": 3263,
+      "kind": "TODO",
+      "text": "content."
+    },
+    {
+      "file": "meta-ide/copilot-cli-0.0.406/sdk/index.d.ts",
+      "line": 3392,
+      "kind": "TODO",
+      "text": "(queueing-improvements)"
+    },
+    {
+      "file": "meta-ide/copilot-cli-0.0.406/sdk/index.d.ts",
+      "line": 12985,
+      "kind": "TODO",
+      "text": "restrictedProperties are currently not sent anywhere."
+    },
+    {
+      "file": "logs/sessions/session_2025-12-31_0746_vscode-extension-debug.md",
+      "line": 1062,
+      "kind": "TODO",
+      "text": "Implement hash validation using ssot_hash.py"
+    },
+    {
+      "file": "logs/sessions/session_2025-12-31_0746_vscode-extension-debug.md",
+      "line": 1063,
+      "kind": "TODO",
+      "text": "');"
+    },
+    {
+      "file": "logs/sessions/session_2025-12-31_0746_vscode-extension-debug.md",
+      "line": 1998,
+      "kind": "TODO",
+      "text": "\");"
+    },
+    {
+      "file": "extensions/chthonic-archive/src/entropy/entropyWorker.ts",
+      "line": 200,
+      "kind": "TODO",
+      "text": "|FIXME|HACK|XXX|BUG)\\b/gi);"
+    },
+    {
+      "file": "extensions/chthonic-archive/media/wasm/pkg/entropy_renderer_wasm.js",
+      "line": 437,
+      "kind": "TODO",
+      "text": "we could test for more things here, like `Set`s and `Map`s."
+    },
+    {
+      "file": "error-classifier/ingest.ts",
+      "line": 76,
+      "kind": "TODO",
+      "text": ", FIXME, HACK) in src directory"
+    },
+    {
+      "file": "error-classifier/ingest.ts",
+      "line": 82,
+      "kind": "TODO",
+      "text": "|FIXME|HACK):?\\s*(.*)/gi;"
+    },
+    {
+      "file": "error-classifier/ingest.ts",
+      "line": 92,
+      "kind": "FIXME",
+      "text": "\" ? \"HIGH\" : \"LOW\","
+    },
+    {
+      "file": "docs/STAGE_1_MIGRATION_PLAN.md",
+      "line": 210,
+      "kind": "TODO",
+      "text": "Create ankhrc_validator.py"
+    },
+    {
+      "file": "docs/STAGE_1_MIGRATION_PLAN.md",
+      "line": 215,
+      "kind": "TODO",
+      "text": "#6)"
+    },
+    {
+      "file": "docs/reference/DAEMON_CLASSIFICATION_ENHANCEMENTS.md",
+      "line": 16,
+      "kind": "TODO",
+      "text": "detection. When enabled, the daemon generates:"
+    },
+    {
+      "file": "docs/frameworks/AUTONOMOUS_ORCHESTRATION_FRAMEWORK.md",
+      "line": 159,
+      "kind": "TODO",
+      "text": "/FIXME patterns"
+    },
+    {
+      "file": "docs/frameworks/AUTONOMOUS_ORCHESTRATION_FRAMEWORK.md",
+      "line": 160,
+      "kind": "TODO",
+      "text": "OR FIXME\")"
+    },
+    {
+      "file": "dev/overnight_refactor_mode.md",
+      "line": 29,
+      "kind": "TODO",
+      "text": "/ FIXME (if none exist where they should, create them), code smells, determinism issues, hygiene issues, missing tests, unclear naming, duplicated logic, brittle patterns. |"
+    },
+    {
+      "file": "dev/overnight_refactor_mode.md",
+      "line": 81,
+      "kind": "TODO",
+      "text": "/FIXME, obvious smells, missing tests, brittle logic, unclear naming |"
+    },
+    {
+      "file": "dev/overnight_refactor_mode.md",
+      "line": 82,
+      "kind": "TODO",
+      "text": "Roulette | `dev/overnight_todo.md` (if present) |"
+    },
+    {
+      "file": "debugging_data/codex_5.1_sabotage_trick.md",
+      "line": 1759,
+      "kind": "TODO",
+      "text": "list** - I'll break down complex work"
+    },
+    {
+      "file": "debugging_data/codex_5.1_sabotage_trick.md",
+      "line": 4544,
+      "kind": "HACK",
+      "text": ". That’s a justified accommodation."
+    },
+    {
+      "file": "debugging_data/codex_5.1_sabotage_trick.md",
+      "line": 6682,
+      "kind": "TODO",
+      "text": "and begin creating the comprehensive validation document: Summarized conversation history"
+    },
+    {
+      "file": "data/graphs/dependency_graph_enhanced.json",
+      "line": 8697,
+      "kind": "TODO",
+      "text": "/ FIXME / HACK (Sample)\""
+    },
+    {
+      "file": "data/graphs/dependency_graph_enhanced.json",
+      "line": 8719,
+      "kind": "TODO",
+      "text": "/ FIXME / HACK (Sample)\""
+    },
+    {
+      "file": "data/graphs/dependency_graph_enhanced.json",
+      "line": 8741,
+      "kind": "TODO",
+      "text": "/ FIXME / HACK (Sample)\""
+    },
+    {
+      "file": "data/graphs/dependency_graph_enhanced.json",
+      "line": 8763,
+      "kind": "TODO",
+      "text": "/ FIXME / HACK (Sample)\""
+    },
+    {
+      "file": "data/graphs/dependency_graph_enhanced.json",
+      "line": 8785,
+      "kind": "TODO",
+      "text": "/ FIXME / HACK (Sample)\""
+    },
+    {
+      "file": "data/graphs/dependency_graph_enhanced.json",
+      "line": 8825,
+      "kind": "TODO",
+      "text": "/ FIXME / HACK (Sample)\""
+    },
+    {
+      "file": "data/graphs/dependency_graph_enhanced.json",
+      "line": 8856,
+      "kind": "TODO",
+      "text": "/ FIXME / HACK (Sample)\""
+    },
+    {
+      "file": "data/graphs/dependency_graph_enhanced.json",
+      "line": 8878,
+      "kind": "TODO",
+      "text": "/ FIXME / HACK (Sample)\""
+    },
+    {
+      "file": "data/graphs/dependency_graph_enhanced.json",
+      "line": 9861,
+      "kind": "TODO",
+      "text": "to make the means of me iterating alone meet the karmic goal\\\"**\","
+    },
+    {
+      "file": "data/graphs/dependency_graph_enhanced.json",
+      "line": 12551,
+      "kind": "TODO",
+      "text": "to make the means of me iterating alone meet the karmic goal\\\"**\","
+    },
+    {
+      "file": "data/graphs/dependency_graph_enhanced.json",
+      "line": 15192,
+      "kind": "TODO",
+      "text": "to make the means of me iterating alone meet the karmic goal\\\"**\","
+    },
+    {
+      "file": "data/graphs/dependency_graph_enhanced.json",
+      "line": 17300,
+      "kind": "TODO",
+      "text": "to make the means of me iterating alone meet the karmic goal\\\"**\","
+    },
+    {
+      "file": "codex/mailbox/FIX_DEAD_CODE_WARNINGS.md",
+      "line": 34,
+      "kind": "TODO",
+      "text": "` comment explaining the planned usage"
+    },
+    {
+      "file": "codex/mailbox/tatragrammatron_stamps_latest_codex.json",
+      "line": 23,
+      "kind": "FIXME",
+      "text": "3, TODO:30).\","
+    },
+    {
+      "file": "codex/mailbox/tatragrammatron_stamps_latest_codex.json",
+      "line": 243,
+      "kind": "FIXME",
+      "text": "16, TBD:5, TODO:10, XXX:3).\","
+    },
+    {
+      "file": "codex/mailbox/archive/2026_02_10_meta_cleanup/tatragrammatron_stamps_latest_codex.json",
+      "line": 23,
+      "kind": "FIXME",
+      "text": "3, TODO:30).\","
+    },
+    {
+      "file": "codex/mailbox/archive/2026_02_10_meta_cleanup/tatragrammatron_stamps_latest_codex.json",
+      "line": 221,
+      "kind": "FIXME",
+      "text": "16, TBD:5, TODO:10, XXX:3).\","
+    },
+    {
+      "file": "codex/mailbox/archive/2026_02_07/tatragrammatron_stamps_2026_02_06.json",
+      "line": 12,
+      "kind": "FIXME",
+      "text": "3, TODO:30).\","
+    },
+    {
+      "file": "codex/mailbox/archive/2026_02_07/tatragrammatron_stamps_2026_02_06.json",
+      "line": 23,
+      "kind": "FIXME",
+      "text": "9, TBD:4, TODO:7, XXX:3).\","
+    },
+    {
+      "file": "codex/mailbox/archive/2026_02_07/tatragrammatron_stamps_2026_02_07.json",
+      "line": 12,
+      "kind": "FIXME",
+      "text": "3, TODO:30).\","
+    },
+    {
+      "file": "codex/mailbox/archive/2026_02_07/tatragrammatron_stamps_2026_02_07.json",
+      "line": 23,
+      "kind": "FIXME",
+      "text": "9, TBD:4, TODO:7, XXX:3).\","
+    },
+    {
+      "file": "codex/mailbox/archive/2026_02_07/tatragrammatron_stamps_2026_02_07_auto_on_claude.json",
+      "line": 12,
+      "kind": "TODO",
+      "text": "2).\","
+    },
+    {
+      "file": "codex/mailbox/archive/2026_02_07/tatragrammatron_stamps_2026_02_07_claude.json",
+      "line": 12,
+      "kind": "TODO",
+      "text": "2).\","
+    },
+    {
+      "file": "codex/mailbox/archive/2026_02_07/tatragrammatron_stamps_2026_02_07_claude_contract_on_codex.json",
+      "line": 12,
+      "kind": "FIXME",
+      "text": "3, TODO:30).\","
+    },
+    {
+      "file": "codex/mailbox/archive/2026_02_07/tatragrammatron_stamps_2026_02_07_claude_contract_on_codex.json",
+      "line": 177,
+      "kind": "FIXME",
+      "text": "16, TBD:5, TODO:10, XXX:3).\","
+    },
+    {
+      "file": "codex/mailbox/archive/2026_02_07/tatragrammatron_stamps_2026_02_07_claude_v2.json",
+      "line": 12,
+      "kind": "TODO",
+      "text": "2).\","
+    },
+    {
+      "file": "codex/mailbox/archive/2026_02_07/tatragrammatron_stamps_2026_02_07_codex.json",
+      "line": 12,
+      "kind": "FIXME",
+      "text": "3, TODO:30).\","
+    },
+    {
+      "file": "codex/mailbox/archive/2026_02_07/tatragrammatron_stamps_2026_02_07_codex.json",
+      "line": 177,
+      "kind": "FIXME",
+      "text": "10, TBD:5, TODO:9, XXX:3).\","
+    },
+    {
+      "file": "codex/mailbox/archive/2026_02_07/tatragrammatron_stamps_2026_02_07_codex_on_claude.json",
+      "line": 12,
+      "kind": "TODO",
+      "text": "2).\","
+    },
+    {
+      "file": "codex/mailbox/archive/2026_02_07/tatragrammatron_stamps_2026_02_07_codex_on_codex.json",
+      "line": 12,
+      "kind": "FIXME",
+      "text": "3, TODO:30).\","
+    },
+    {
+      "file": "codex/mailbox/archive/2026_02_07/tatragrammatron_stamps_2026_02_07_codex_on_codex.json",
+      "line": 177,
+      "kind": "FIXME",
+      "text": "16, TBD:5, TODO:10, XXX:3).\","
+    },
+    {
+      "file": "codex/mailbox/archive/2026_02_07/tatragrammatron_stamps_2026_02_07_codex_v3.json",
+      "line": 12,
+      "kind": "FIXME",
+      "text": "3, TODO:30).\","
+    },
+    {
+      "file": "codex/mailbox/archive/2026_02_07/tatragrammatron_stamps_2026_02_07_codex_v3.json",
+      "line": 177,
+      "kind": "FIXME",
+      "text": "14, TBD:5, TODO:9, XXX:3).\","
+    },
+    {
+      "file": "codex/mailbox/archive/2026_02_07/tatragrammatron_stamps_2026_02_07_full_codex.json",
+      "line": 12,
+      "kind": "FIXME",
+      "text": "3, TODO:30).\","
+    },
+    {
+      "file": "codex/mailbox/archive/2026_02_07/tatragrammatron_stamps_2026_02_07_full_codex.json",
+      "line": 177,
+      "kind": "FIXME",
+      "text": "16, TBD:5, TODO:10, XXX:3).\","
+    },
+    {
+      "file": "codex/mailbox/archive/2026_02_07/tatragrammatron_stamps_2026_02_07_v2.json",
+      "line": 12,
+      "kind": "FIXME",
+      "text": "3, TODO:30).\","
+    },
+    {
+      "file": "codex/mailbox/archive/2026_02_07/tatragrammatron_stamps_2026_02_07_v2.json",
+      "line": 177,
+      "kind": "FIXME",
+      "text": "10, TBD:5, TODO:9, XXX:3).\","
+    },
+    {
+      "file": "codex/codex-session-logs/archive/codex-session-log-00001",
+      "line": 3900,
+      "kind": "TODO",
+      "text": "/FIXME, missing SKILL.md, missing openai.yaml) including .system so remaining work is objective."
+    },
+    {
+      "file": "codex/codex-session-logs/archive/codex-session-log-00001",
+      "line": 3923,
+      "kind": "TODO",
+      "text": "/FIXME/XXX/TBD markers found in .codex/skills."
+    },
+    {
+      "file": "codex/codex-session-logs/archive/codex-session-log-00001",
+      "line": 3931,
+      "kind": "TODO",
+      "text": "/FIXME/XXX/TBD & other hashtags, that are generally respected similarly to agents_common.md agents.md next.md claude.md, stamps and and with these stamps a equivalent comment that suits the skill-polisher. Based on its current structural in"
+    },
+    {
+      "file": "codex/codex-session-logs/archive/codex-session-log-00001",
+      "line": 3935,
+      "kind": "FIXME",
+      "text": "/#TODO/#XXX/#TBD/...) plus a remediation line, so the output becomes reusable as a structured action queue."
+    },
+    {
+      "file": "codex/codex-session-logs/archive/codex-session-log-00001",
+      "line": 3948,
+      "kind": "FIXME",
+      "text": "for missing required files and syntax failures"
+    },
+    {
+      "file": "codex/codex-session-logs/archive/codex-session-log-00001",
+      "line": 3949,
+      "kind": "TODO",
+      "text": "for assets/icon and weak-language cleanup"
+    },
+    {
+      "file": "codex/codex-session-logs/archive/codex-session-log-00001",
+      "line": 3959,
+      "kind": "FIXME",
+      "text": "(line 1)"
+    },
+    {
+      "file": "codex/codex-session-logs/archive/codex-session-log-00001",
+      "line": 3992,
+      "kind": "FIXME",
+      "text": ", #TODO, #XXX, #TBD"
+    },
+    {
+      "file": "codex/codex-session-logs/archive/codex-session-log-00001",
+      "line": 3996,
+      "kind": "TODO",
+      "text": "/FIXME/XXX/TBD) as INFO intelligence signal"
+    },
+    {
+      "file": "codex/codex-session-logs/archive/codex-session-log-00001",
+      "line": 5397,
+      "kind": "FIXME",
+      "text": "under codex target."
+    },
+    {
+      "file": "codex/codex-session-logs/archive/codex-session-log-00001",
+      "line": 5398,
+      "kind": "FIXME",
+      "text": "under claude target."
+    },
+    {
+      "file": "codex/codex-session-logs/archive/codex-session-log-00001",
+      "line": 5399,
+      "kind": "TODO",
+      "text": "when --require-assets."
+    },
+    {
+      "file": "codex/codex-session-logs/archive/codex-session-log-00001_structured.json",
+      "line": 9502,
+      "kind": "TODO",
+      "text": "/FIXME, missing SKILL.md, missing openai.yaml) including .system so remaining work is objective.\""
+    },
+    {
+      "file": "codex/codex-session-logs/archive/codex-session-log-00001_structured.json",
+      "line": 9554,
+      "kind": "TODO",
+      "text": "/FIXME/XXX/TBD & other hashtags, that are generally respected similarly to agents_common.md agents.md next.md claude.md, stamps and and with these stamps a equivalent comment that suits the skill-polisher. Based on its current structural in"
+    },
+    {
+      "file": "codex/codex-session-logs/archive/codex-session-log-00001_structured.json",
+      "line": 9568,
+      "kind": "FIXME",
+      "text": "/#TODO/#XXX/#TBD/...) plus a remediation line, so the output becomes reusable as a structured action queue.\""
+    },
+    {
+      "file": "codex/codex-session-logs/archive/codex-session-log-00001_structured.json",
+      "line": 9606,
+      "kind": "FIXME",
+      "text": "for missing required files and syntax failures\","
+    },
+    {
+      "file": "codex/codex-session-logs/archive/codex-session-log-00001_structured.json",
+      "line": 9607,
+      "kind": "TODO",
+      "text": "for assets/icon and weak-language cleanup\","
+    },
+    {
+      "file": "codex/codex-session-logs/archive/codex-session-log-00001_structured.json",
+      "line": 9628,
+      "kind": "FIXME",
+      "text": "(line 1)\","
+    },
+    {
+      "file": "codex/codex-session-logs/archive/codex-session-log-00001_structured.json",
+      "line": 9724,
+      "kind": "FIXME",
+      "text": ", #TODO, #XXX, #TBD\","
+    },
+    {
+      "file": "codex/codex-session-logs/archive/codex-session-log-00001_structured.json",
+      "line": 9728,
+      "kind": "TODO",
+      "text": "/FIXME/XXX/TBD) as INFO intelligence signal\","
+    },
+    {
+      "file": "claude-codex-gemini/hotswapresearch.md",
+      "line": 21,
+      "kind": "HACK",
+      "text": "\" Era and the Instruction Tuning Divergence**"
+    },
+    {
+      "file": "claude-codex-gemini/hotswapresearch.md",
+      "line": 23,
+      "kind": "HACK",
+      "text": "\" era. Models were no longer just completing text; they were trained to follow instructions formatted in highly specific ways. The lack of a unified standard led to a proliferation of incompatible formats, often referred to as the \"Cambrian"
+    },
+    {
+      "file": "claude-codex-gemini/hotswapresearch.md",
+      "line": 29,
+      "kind": "HACK",
+      "text": "\" became a standard, albeit despised, design pattern, where massive if-else blocks in the client code determined how to stringify a JSON object based on the target model name.6"
+    },
+    {
+      "file": "claude-codex-gemini/hotswapresearch.md",
+      "line": 39,
+      "kind": "HACK",
+      "text": "\" obsolete.10"
+    },
+    {
+      "file": "claude-codex-gemini/research_GPTOSS_HF.md",
+      "line": 270,
+      "kind": "HACK",
+      "text": "**"
+    },
+    {
+      "file": "claude-codex-gemini/research_GPTOSS_HF.md",
+      "line": 391,
+      "kind": "HACK",
+      "text": "**. By disguising the data extraction task as a function call, we leverage the model's highly disciplined \"Tool Use\" mode."
+    },
+    {
+      "file": "claude-codex-gemini/triadic-session-context/Claude_Code_Session_Dump_0001",
+      "line": 266,
+      "kind": "TODO",
+      "text": "stubs (2 bytes each) |"
+    },
+    {
+      "file": "claude-codex-gemini/triadic-session-context/Claude_Code_Session_Dump_0001",
+      "line": 2579,
+      "kind": "TODO",
+      "text": "files, orphan project folder"
+    },
+    {
+      "file": "claude-codex-gemini/triadic-session-context/gemini-cli-session-fix-too-large.md",
+      "line": 4,
+      "kind": "TODO",
+      "text": "\" in content or \"FIXME\" in content:"
+    },
+    {
+      "file": "claude-codex-gemini/triadic-session-context/gemini-cli-session-fix-too-large.md",
+      "line": 57,
+      "kind": "TODO",
+      "text": "\" in"
+    },
+    {
+      "file": "claude-codex-gemini/triadic-session-context/gemini-cli-session-fix-too-large.md",
+      "line": 58,
+      "kind": "FIXME",
+      "text": "\" in line]"
+    },
+    {
+      "file": "claude-codex-gemini/triadic-session-context/gemini-cli-session-fix-too-large.md",
+      "line": 63,
+      "kind": "TODO",
+      "text": ".md"
+    },
+    {
+      "file": "claude-codex-gemini/triadic-session-context/gemini-cli-session-fix-too-large.md",
+      "line": 133,
+      "kind": "TODO",
+      "text": ".md"
+    },
+    {
+      "file": "claude-codex-gemini/triadic-session-context/gemini-cli-session-fix-too-large.md",
+      "line": 284,
+      "kind": "TODO",
+      "text": "\" in content or \"FIXME\" in content:"
+    },
+    {
+      "file": "claude-codex-gemini/triadic-session-context/gemini-cli-session-fix-too-large.md",
+      "line": 298,
+      "kind": "TODO",
+      "text": "\" in content or \"FIXME\""
+    },
+    {
+      "file": "claude-codex-gemini/triadic-session-context/gemini-cli-session-fix-too-large.md",
+      "line": 322,
+      "kind": "TODO",
+      "text": "‑trekk skjer bare i relevante filtyper."
+    },
+    {
+      "file": "claude-codex-gemini/triadic-session-context/gemini-cli-session-fix-too-large.md",
+      "line": 328,
+      "kind": "TODO",
+      "text": ".md"
+    },
+    {
+      "file": "claude-codex-gemini/triadic-session-context/gemini-cli-session-fix-too-large.md",
+      "line": 473,
+      "kind": "TODO",
+      "text": "\"   │"
+    },
+    {
+      "file": "claude-codex-gemini/triadic-session-context/gemini-cli-session-fix-too-large.md",
+      "line": 474,
+      "kind": "FIXME",
+      "text": "\" in line]                                            │"
+    },
+    {
+      "file": "claude-codex-gemini/triadic-session-context/gemini-cli-session-fix-too-large.md",
+      "line": 491,
+      "kind": "TODO",
+      "text": ".md                                                                 │"
+    },
+    {
+      "file": "claude-codex-gemini/triadic-session-context/gemini-cli-session-fix-too-large.md",
+      "line": 510,
+      "kind": "TODO",
+      "text": "\" items. Then, I will run the upcycle script on"
+    },
+    {
+      "file": "claude-codex-gemini/triadic-session-context/gemini-cli-session-fix-too-large.md",
+      "line": 517,
+      "kind": "TODO",
+      "text": "Fix this\" | Out-File test_todo.md -Encoding utf8 [current … │"
+    },
+    {
+      "file": "claude-codex-gemini/triadic-session-context/gemini-cli-session-fix-too-large.md",
+      "line": 617,
+      "kind": "TODO",
+      "text": "."
+    },
+    {
+      "file": "claude-codex-gemini/triadic-session-context/SSOTI_FIED_SESSION_LOG.md",
+      "line": 61,
+      "kind": "TODO",
+      "text": "and begin creating the comprehensive validation document: Summarized conversation history"
+    },
+    {
+      "file": "claude-codex-gemini/triadic-session-context/SSOTI_FIED_SESSION_LOG.md",
+      "line": 4377,
+      "kind": "TODO",
+      "text": "list"
+    },
+    {
+      "file": "claude-codex-gemini/triadic-session-context/SSOTI_FIED_SESSION_LOG.md",
+      "line": 4389,
+      "kind": "TODO",
+      "text": "list and proceed to the next item:"
+    },
+    {
+      "file": "claude-codex-gemini/triadic-session-context/SSOTI_FIED_SESSION_LOG.md",
+      "line": 4430,
+      "kind": "TODO",
+      "text": "3 - T-DECOR Operational Protocols. Let me read the current DECORATOR-IP section to expand it:"
+    },
+    {
+      "file": "claude-codex-gemini/triadic-session-context/SSOTI_FIED_SESSION_LOG.md",
+      "line": 4452,
+      "kind": "TODO",
+      "text": "4 - FA⁵ Enforcement Apparatus. Let me find the existing FA⁵ definitions to expand:"
+    },
+    {
+      "file": "claude-codex-gemini/triadic-session-context/SSOTI_FIED_SESSION_LOG.md",
+      "line": 4504,
+      "kind": "TODO",
+      "text": "List Status:**"
+    },
+    {
+      "file": "claude-codex-gemini/triadic-session-context/SSOTI_FIED_SESSION_LOG.md",
+      "line": 4532,
+      "kind": "TODO",
+      "text": "6 Context:**"
+    },
+    {
+      "file": "claude-codex-gemini/triadic-session-context/SSOTI_FIED_SESSION_LOG.md",
+      "line": 4551,
+      "kind": "TODO",
+      "text": "6: Mandala/Nascent Birth Framework**"
+    },
+    {
+      "file": "claude-codex-gemini/triadic-session-context/SSOTI_FIED_SESSION_LOG.md",
+      "line": 4553,
+      "kind": "TODO",
+      "text": "6:**"
+    },
+    {
+      "file": "claude-codex-gemini/triadic-session-context/SSOTI_FIED_SESSION_LOG.md",
+      "line": 4579,
+      "kind": "TODO",
+      "text": "6 - searching for ASP/entity generation context:"
+    },
+    {
+      "file": "claude-codex-gemini/triadic-session-context/SSOTI_FIED_SESSION_LOG.md",
+      "line": 4583,
+      "kind": "TODO",
+      "text": "6 CRITICAL INFO:**"
+    },
+    {
+      "file": "claude-codex-gemini/triadic-session-context/SSOTI_FIED_SESSION_LOG.md",
+      "line": 4595,
+      "kind": "TODO",
+      "text": "6 Context (Mandala/Nascent Birth):**"
+    },
+    {
+      "file": "claude-codex-gemini/triadic-session-context/SSOTI_FIED_SESSION_LOG.md",
+      "line": 4632,
+      "kind": "TODO",
+      "text": "6 Context:**"
+    },
+    {
+      "file": "claude-codex-gemini/triadic-session-context/SSOTI_FIED_SESSION_LOG.md",
+      "line": 4897,
+      "kind": "TODO",
+      "text": "; `$(flame)` codicon invalid |"
+    },
+    {
+      "file": "claude-codex-gemini/triadic-session-context/SSOTI_FIED_SESSION_LOG.md",
+      "line": 5014,
+      "kind": "TODO",
+      "text": "Status:"
+    },
+    {
+      "file": "claude-codex-gemini/triadic-session-context/SSOTI_FIED_SESSION_LOG.md",
+      "line": 5487,
+      "kind": "TODO",
+      "text": "stubs |"
+    },
+    {
+      "file": "claude-codex-gemini/triadic-session-context/SSOTI_FIED_SESSION_LOG.md",
+      "line": 5505,
+      "kind": "TODO",
+      "text": "stubs that do nothing"
+    },
+    {
+      "file": "claude-codex-gemini/triadic-session-context/SSOTI_FIED_SESSION_LOG.md",
+      "line": 6116,
+      "kind": "TODO",
+      "text": "STATUS:"
+    },
+    {
+      "file": "claude-codex-gemini/triadic-session-context/SSOTI_FIED_SESSION_LOG.md",
+      "line": 6951,
+      "kind": "TODO",
+      "text": "STATUS:"
+    },
+    {
+      "file": "claude-codex-gemini/triadic-session-context/SSOTI_FIED_SESSION_LOG.md",
+      "line": 7063,
+      "kind": "TODO",
+      "text": ""
+    },
+    {
+      "file": "claude-codex-gemini/triadic-session-context/SSOTI_FIED_SESSION_LOG.md",
+      "line": 7390,
+      "kind": "TODO",
+      "text": ""
+    },
+    {
+      "file": "claude-codex-gemini/triadic-session-context/SSOTI_FIED_SESSION_LOG.md",
+      "line": 7653,
+      "kind": "TODO",
+      "text": "list"
+    },
+    {
+      "file": "claude-codex-gemini/triadic-session-context/SSOTI_FIED_SESSION_LOG.md",
+      "line": 9344,
+      "kind": "TODO",
+      "text": "list"
+    },
+    {
+      "file": "claude-codex-gemini/triadic-session-context/SSOTI_FIED_SESSION_LOG.md",
+      "line": 12579,
+      "kind": "TODO",
+      "text": "roulette. For enhancing quality/substance of my ideas here. It requires your capacity to explore that deep. Without me layering tasks rather nurturing you for higher influx."
+    },
+    {
+      "file": "claude-codex-gemini/triadic-session-context/SSOTI_FIED_SESSION_LOG.md",
+      "line": 12669,
+      "kind": "TODO",
+      "text": "STATUS"
+    },
+    {
+      "file": "claude-codex-gemini/triadic-session-context/SSOTI_FIED_SESSION_LOG.md",
+      "line": 14154,
+      "kind": "TODO",
+      "text": "roulette to enhance its current SSOT state MPW.)"
+    },
+    {
+      "file": "claude-codex-gemini/triadic-session-context/SSOTI_FIED_SESSION_LOG.md",
+      "line": 14178,
+      "kind": "TODO",
+      "text": "roulette to enhance its current SSOT state MPW.)"
+    },
+    {
+      "file": "claude-codex-gemini/triadic-session-context/SSOTI_FIED_SESSION_LOG.md",
+      "line": 14243,
+      "kind": "TODO",
+      "text": "list and begin implementation:"
+    },
+    {
+      "file": "claude-codex-gemini/triadic-session-context/STRATEGIC_PLAN.md",
+      "line": 59,
+      "kind": "TODO",
+      "text": "**: Test dynamic `#bun-docs` integration with Knowledge Hub. Validate that `mcp_bun-docs_SearchBun` can fetch real-time resolutions for categorized errors before Phase 15 spatial implementation."
+    },
+    {
+      "file": "claude-codex-gemini/engineering_agentic_deep_research_candidates/gemini-deep-research-2026-02/08-phase-learning-verdicts.md",
+      "line": 15,
+      "kind": "TODO",
+      "text": "— the research says disabling HAGS actually reduces GPU feature set for no stability gain on 16GB cards"
+    },
+    {
+      "file": "claude-codex-gemini/engineering_agentic_deep_research_candidates/gemini-deep-research-2026-02/08-phase-learning-verdicts.md",
+      "line": 29,
+      "kind": "HACK",
+      "text": "\" — disguise JSON extraction as a function call, which triggers the model's disciplined tool-use mode"
+    },
+    {
+      "file": "chthonic-vscode-extension/src/extension.ts",
+      "line": 66,
+      "kind": "TODO",
+      "text": "Implement hash validation using ssot_hash.py"
+    },
+    {
+      "file": "chthonic-vscode-extension/src/extension.ts",
+      "line": 67,
+      "kind": "TODO",
+      "text": "');"
+    }
+  ],
+  "languageMetrics": {
+    "byLanguage": {
+      "markdown": 363,
+      "toml": 16,
+      "json": 507,
+      "rust": 24,
+      "unknown": 910,
+      "python": 241,
+      "powershell": 76,
+      "typescript": 141,
+      "yaml": 110,
+      "javascript": 34,
+      "glsl": 2
+    },
+    "totalFiles": 2424
+  },
+  "complexityMetrics": {
+    "averageComplexity": 6,
+    "maxComplexity": 471,
+    "maxComplexityFile": "meta-ide/LocalAI-3.11.0/core/http/static/chat.js",
+    "highComplexityFiles": [
+      {
+        "path": "meta-ide/LocalAI-3.11.0/core/http/static/chat.js",
+        "complexity": 471
+      },
+      {
+        "path": "meta-ide/copilot-sdk/sdk/index.d.ts",
+        "complexity": 423
+      },
+      {
+        "path": "meta-ide/copilot-cli-0.0.406/sdk/index.d.ts",
+        "complexity": 423
+      },
+      {
+        "path": "codex/codex-session-logs/archive/default-session-code-gemini.py",
+        "complexity": 350
+      },
+      {
+        "path": "scripts/decorator_cross_ref_maximum.py",
+        "complexity": 230
+      },
+      {
+        "path": "scripts/decorator_cross_ref_production.py",
+        "complexity": 197
+      },
+      {
+        "path": "meta-ide/LocalAI-3.11.0/backend/python/diffusers/backend.py",
+        "complexity": 165
+      },
+      {
+        "path": "scripts/chthonic.ps1",
+        "complexity": 150
+      },
+      {
+        "path": "meta-ide/LocalAI-3.11.0/backend/python/vibevoice/backend.py",
+        "complexity": 145
+      },
+      {
+        "path": "meta-ide/LocalAI-3.11.0/backend/python/vllm-omni/backend.py",
+        "complexity": 143
+      }
+    ]
+  },
+  "classification": {
+    "enabled": true,
+    "filesClassified": 2424,
+    "foldersAnalyzed": 350
+  }
+}

@@ -1,0 +1,41 @@
+
+╔══════════════════════════════════════════════════════╗
+║  ☥ NIGHTLY DAEMON — Local Computation, Zero API     ║
+╚══════════════════════════════════════════════════════╝
+
+  ☥ Daemon: debt scoring + complexity analysis...
+report: C:/Users/erdno/chthonic-archive/dumpster-dive/intake/overnight-daemon/20260217_030002/report.json
+top: meta-ide/copilot-cli-0.0.406/sdk/index.d.ts
+  ☥ Archaeology: scavenge only (Loop 1, zero API)
+[2026-02-17T02:00:04.914Z] ☥ Overnight Archaeology Refinery starting
+[2026-02-17T02:00:04.917Z]   Loop 1 (scavenge): YES
+[2026-02-17T02:00:04.918Z]   Loop 2 (refine):   SKIP
+[2026-02-17T02:00:04.918Z]   Output: C:\Users\erdno\chthonic-archive\dumpster-dive\intake\overnight-intelligence\arch-2026-02-17T02-00-04
+[2026-02-17T02:00:04.918Z]   Dry run: false
+[2026-02-17T02:00:04.918Z] 
+━━━ LOOP 1: SCAVENGE ━━━
+[2026-02-17T02:00:05.979Z]   Scavenged 9474 files
+[2026-02-17T02:00:05.980Z]   By category: docs:1128, code:5982, data:2309, sentinel:55
+[2026-02-17T02:00:05.980Z]   By tier: T1:5982, T2:2309, T3:1183
+[2026-02-17T02:00:05.982Z]   Files with name signals: 538
+[2026-02-17T02:00:05.984Z] 
+☥ Archaeology complete. 0.0 min.
+  ☥ Local Refiner: v2 (llama-cpp-python + Qwen 14B, structured JSON) (zero network, zero cost)
+☥ Local Archaeology Refiner v2 (llama-cpp + structured JSON)
+  Model dir: C:\Users\erdno\chthonic-archive\models\Qwen2.5-14B-Instruct-GGUF
+  Ore: C:\Users\erdno\chthonic-archive\dumpster-dive\intake\overnight-intelligence\arch-2026-02-17T02-00-04\L1-ore.json
+  Ore entries: 9474
+  L0 newsfeed: 2026-02-13 (15P/15F)
+Traceback (most recent call last):
+  File "C:\Users\erdno\chthonic-archive\scripts\local_refiner_v2.py", line 428, in <module>
+    main()
+    ~~~~^^
+  File "C:\Users\erdno\chthonic-archive\scripts\local_refiner_v2.py", line 407, in main
+    llm = load_model(model_dir)
+  File "C:\Users\erdno\chthonic-archive\scripts\local_refiner_v2.py", line 88, in load_model
+    from llama_cpp import Llama
+ModuleNotFoundError: No module named 'llama_cpp'
+
+  ────────────────────────────────────────────────────
+  ☥ Nightly run complete.
+
