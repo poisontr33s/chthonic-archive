@@ -390,6 +390,7 @@ function Show-StatusBanner {
             $clOut = & $clExe /Bv 2>$null
             if ($clOut -match 'Compiler Version ([0-9\.]+)') { $clVer = $matches[1] }
         } catch {}
+        if (-not $clVer) { $clVer = "ready" }
     }
     $msbuildExe = Get-VSMsBuildExePath
     $msbuildVer = $null

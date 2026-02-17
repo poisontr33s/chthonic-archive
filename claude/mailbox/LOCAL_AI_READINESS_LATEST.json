@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_on": "2026-02-17T03:08:29Z",
+  "generated_on": "2026-02-17T03:25:04Z",
   "repo_root": "C:/Users/erdno/chthonic-archive",
   "platform": {
     "system": "Windows",
@@ -12,18 +12,20 @@
     "python": "3.13.11 (main, Dec  9 2025, 19:02:08) [MSC v.1944 64 bit (AMD64)]",
     "rv": "rv 0.5.0",
     "ruby": "ruby 4.0.1 (2026-01-13 revision e04267a14b) +PRISM [x64-mingw-ucrt]",
+    "az": "2.83.0",
     "bun": "1.3.9",
     "pwsh": "7.5.4",
     "rustc": "rustc 1.93.1 (01f6ddf75 2026-02-11)",
     "cargo": "cargo 1.93.1 (083ac5135 2025-12-15)",
-    "msvc_cl": "C:\\Program Files\\Microsoft Visual Studio\\18\\Insiders\\VC\\Tools\\MSVC\\14.50.35717\\bin\\Hostx64\\x64\\cl.exe",
+    "msvc_cl": "C/C++ COMPILER OPTIONS",
     "cmake": "cmake version 4.2.1",
     "ninja": "1.13.0.git.kitware.jobserver-pipe-1",
-    "msbuild": "C:\\Program Files\\Microsoft Visual Studio\\18\\Insiders\\MSBuild\\Current\\Bin\\MSBuild.exe",
+    "msbuild": "18.4.0.7901",
     "glslc": "shaderc v2026.1 v2026.1",
     "vulkan_sdk": "C:\\VulkanSDK\\1.4.341.1",
     "vs_build_tools": "inferred_from_cl=C:/Program Files/Microsoft Visual Studio/18/Insiders/VC/Tools/MSVC/14.50.35717/bin/Hostx64/x64",
-    "vs_any_instance": "SQL Server Management Studio 22 (22.3.11505.172)"
+    "vs_any_instance": "SQL Server Management Studio 22 (22.3.11505.172)",
+    "ssms": "22.3.11505.172"
   },
   "paths": {
     "latest_daemon_run": "C:/Users/erdno/chthonic-archive/dumpster-dive/intake/overnight-daemon/20260217_030002",
@@ -217,9 +219,17 @@
       ]
     },
     {
+      "name": "runtime:az",
+      "ok": true,
+      "detail": "2.83.0",
+      "notes": [
+        "Azure CLI is optional but useful for model artifact storage and cloud deployment lanes."
+      ]
+    },
+    {
       "name": "runtime:msvc_cl",
       "ok": true,
-      "detail": "found on disk (not on PATH): C:/Program Files/Microsoft Visual Studio/18/Insiders/VC/Tools/MSVC/14.50.35717/bin/Hostx64/x64/cl.exe",
+      "detail": "C/C++ COMPILER OPTIONS",
       "notes": [
         "Core C++ compiler for native extension and tooling builds.",
         "If only found on disk, launch Developer PowerShell or run vcvarsall to activate PATH."
@@ -244,7 +254,7 @@
     {
       "name": "runtime:msbuild",
       "ok": true,
-      "detail": "found on disk (not on PATH): C:/Program Files/Microsoft Visual Studio/18/Insiders/MSBuild/Current/Bin/MSBuild.exe",
+      "detail": "18.4.0.7901",
       "notes": [
         "Needed for some Visual Studio and native extension workflows.",
         "If only found on disk, launch Developer PowerShell to expose msbuild on PATH."
@@ -273,6 +283,14 @@
       "notes": [
         "Uses vswhere for discovery.",
         "Detected Visual Studio-family instance: SQL Server Management Studio 22 (22.3.11505.172)"
+      ]
+    },
+    {
+      "name": "runtime:ssms",
+      "ok": true,
+      "detail": "22.3.11505.172",
+      "notes": [
+        "SQL Server Management Studio detection via vswhere product Microsoft.VisualStudio.Product.Ssms."
       ]
     },
     {

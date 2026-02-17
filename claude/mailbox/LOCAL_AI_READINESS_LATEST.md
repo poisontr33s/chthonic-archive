@@ -1,6 +1,6 @@
 # Local AI Readiness (Latest)
 
-- Generated: `2026-02-17T03:08:29Z`
+- Generated: `2026-02-17T03:25:04Z`
 - Runtime ready: `True`
 - C++/Vulkan toolchain ready: `True`
 - Local refiner ready: `True`
@@ -14,18 +14,20 @@
 - `python`: `3.13.11 (main, Dec  9 2025, 19:02:08) [MSC v.1944 64 bit (AMD64)]`
 - `rv`: `rv 0.5.0`
 - `ruby`: `ruby 4.0.1 (2026-01-13 revision e04267a14b) +PRISM [x64-mingw-ucrt]`
+- `az`: `2.83.0`
 - `bun`: `1.3.9`
 - `pwsh`: `7.5.4`
 - `rustc`: `rustc 1.93.1 (01f6ddf75 2026-02-11)`
 - `cargo`: `cargo 1.93.1 (083ac5135 2025-12-15)`
-- `msvc_cl`: `C:\Program Files\Microsoft Visual Studio\18\Insiders\VC\Tools\MSVC\14.50.35717\bin\Hostx64\x64\cl.exe`
+- `msvc_cl`: `C/C++ COMPILER OPTIONS`
 - `cmake`: `cmake version 4.2.1`
 - `ninja`: `1.13.0.git.kitware.jobserver-pipe-1`
-- `msbuild`: `C:\Program Files\Microsoft Visual Studio\18\Insiders\MSBuild\Current\Bin\MSBuild.exe`
+- `msbuild`: `18.4.0.7901`
 - `glslc`: `shaderc v2026.1 v2026.1`
 - `vulkan_sdk`: `C:\VulkanSDK\1.4.341.1`
 - `vs_build_tools`: `inferred_from_cl=C:/Program Files/Microsoft Visual Studio/18/Insiders/VC/Tools/MSVC/14.50.35717/bin/Hostx64/x64`
 - `vs_any_instance`: `SQL Server Management Studio 22 (22.3.11505.172)`
+- `ssms`: `22.3.11505.172`
 
 ## Paths
 - Latest daemon run: `C:/Users/erdno/chthonic-archive/dumpster-dive/intake/overnight-daemon/20260217_030002`
@@ -79,14 +81,16 @@
   - Ruby manager lane in your polyglot toolchain.
 - `OK` `runtime:ruby`: ruby 4.0.1 (2026-01-13 revision e04267a14b) +PRISM [x64-mingw-ucrt]
   - Optional for local-AI flows; useful for broader polyglot automation.
-- `OK` `runtime:msvc_cl`: found on disk (not on PATH): C:/Program Files/Microsoft Visual Studio/18/Insiders/VC/Tools/MSVC/14.50.35717/bin/Hostx64/x64/cl.exe
+- `OK` `runtime:az`: 2.83.0
+  - Azure CLI is optional but useful for model artifact storage and cloud deployment lanes.
+- `OK` `runtime:msvc_cl`: C/C++ COMPILER OPTIONS
   - Core C++ compiler for native extension and tooling builds.
   - If only found on disk, launch Developer PowerShell or run vcvarsall to activate PATH.
 - `OK` `runtime:cmake`: cmake version 4.2.1
   - Required by many C++/CUDA projects and local model runtimes.
 - `OK` `runtime:ninja`: 1.13.0.git.kitware.jobserver-pipe-1
   - Recommended high-speed build backend for CMake projects.
-- `OK` `runtime:msbuild`: found on disk (not on PATH): C:/Program Files/Microsoft Visual Studio/18/Insiders/MSBuild/Current/Bin/MSBuild.exe
+- `OK` `runtime:msbuild`: 18.4.0.7901
   - Needed for some Visual Studio and native extension workflows.
   - If only found on disk, launch Developer PowerShell to expose msbuild on PATH.
 - `OK` `runtime:glslc`: shaderc v2026.1 v2026.1
@@ -96,6 +100,8 @@
 - `OK` `runtime:vs_build_tools`: inferred_from_cl=C:/Program Files/Microsoft Visual Studio/18/Insiders/VC/Tools/MSVC/14.50.35717/bin/Hostx64/x64
   - Uses vswhere for discovery.
   - Detected Visual Studio-family instance: SQL Server Management Studio 22 (22.3.11505.172)
+- `OK` `runtime:ssms`: 22.3.11505.172
+  - SQL Server Management Studio detection via vswhere product Microsoft.VisualStudio.Product.Ssms.
 - `OK` `module:llama_cpp`: import ok
 - `OK` `module:pydantic`: import ok
 - `OK` `module:numpy`: import ok
