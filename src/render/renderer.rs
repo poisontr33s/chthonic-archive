@@ -68,7 +68,11 @@ impl Renderer {
         )?;
 
         // Create pipeline
-        let pipeline = VulkanPipeline::new(&ctx.device, swapchain.format)?;
+        let pipeline = VulkanPipeline::new(
+            &ctx.device,
+            &ctx.physical_device_properties,
+            swapchain.format,
+        )?;
 
         // Create command pool
         let pool_info = vk::CommandPoolCreateInfo::default()

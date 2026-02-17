@@ -24,7 +24,11 @@
 
 use anyhow::{Context, Result};
 use ash::{vk, Device};
-use log::{debug, info};
+use log::{debug, info, warn};
+use std::fs;
+use std::io::ErrorKind;
+use std::path::{Path, PathBuf};
+use std::time::Instant;
 
 /// Graphics pipeline for rendering
 pub struct VulkanPipeline {
@@ -32,7 +36,27 @@ pub struct VulkanPipeline {
     pub pipeline_layout: vk::PipelineLayout,
     pub vertex_shader: vk::ShaderModule,
     pub fragment_shader: vk::ShaderModule,
+    pub pipeline_cache: vk::PipelineCache,
 }
+
+#[derive(Clone, Copy, Debug)]
+enum PipelineCacheState {
+    ColdStart,
+    WarmStart,
+    RebuiltFromInvalidData,
+}
+
+impl PipelineCacheState {
+    fn as_str(self) -> &'static str {
+        match self {
+            Self::ColdStart => "cold",
+            Self::WarmStart => "warm",
+            Self::RebuiltFromInvalidData => "rebuild",
+        }
+    }
+}
+
+const PIPELINE_CACHE_SCHEMA_VERSION: u32 = 1;
 
 /// Push constants for MVP transformation + Layer Color (208 bytes)
 #[repr(C)]
@@ -108,11 +132,13 @@ impl VulkanPipeline {
     /// Requires valid Vulkan device handle
     pub unsafe fn new(
         device: &Device,
+        physical_device_properties: &vk::PhysicalDeviceProperties,
         color_format: vk::Format,
     ) -> Result<Self> {
         info!("╔══════════════════════════════════════════════════════════════╗");
         info!("║   GRAPHICS PIPELINE - Dynamic Rendering Mode                 ║");
         info!("╚══════════════════════════════════════════════════════════════╝");
+        let pipeline_start = Instant::now();
 
         // Load SPIR-V shaders (compiled at build time)
         let vertex_spv = include_bytes!(concat!(env!("OUT_DIR"), "/iso_grid.vert.spv"));
@@ -120,6 +146,16 @@ impl VulkanPipeline {
 
         info!("   Vertex shader: {} bytes", vertex_spv.len());
         info!("   Fragment shader: {} bytes", fragment_spv.len());
+
+        let shader_signature = Self::shader_signature(vertex_spv, fragment_spv);
+        let cache_path =
+            Self::pipeline_cache_path(physical_device_properties, color_format, shader_signature);
+        let (pipeline_cache, cache_state) = Self::create_pipeline_cache(device, &cache_path)?;
+        info!(
+            "   Pipeline cache: {} ({})",
+            cache_state.as_str(),
+            cache_path.display()
+        );
 
         let vertex_shader = Self::create_shader_module(device, vertex_spv)?;
         let fragment_shader = Self::create_shader_module(device, fragment_spv)?;
@@ -235,14 +271,19 @@ impl VulkanPipeline {
             .subpass(0);
 
         let pipelines = device
-            .create_graphics_pipelines(vk::PipelineCache::null(), &[pipeline_info], None)
+            .create_graphics_pipelines(pipeline_cache, &[pipeline_info], None)
             .map_err(|(_, e)| e)
             .context("Failed to create graphics pipeline")?;
 
         let pipeline = pipelines[0];
+        Self::persist_pipeline_cache(device, pipeline_cache, &cache_path);
 
         info!("═══════════════════════════════════════════════════════════════");
         info!("🔥 GRAPHICS PIPELINE CREATED - Dynamic Rendering Active!");
+        info!(
+            "   Pipeline build time: {} ms",
+            pipeline_start.elapsed().as_millis()
+        );
         info!("═══════════════════════════════════════════════════════════════");
 
         Ok(Self {
@@ -250,7 +291,181 @@ impl VulkanPipeline {
             pipeline_layout,
             vertex_shader,
             fragment_shader,
+            pipeline_cache,
         })
+    }
+
+    fn shader_signature(vertex_spv: &[u8], fragment_spv: &[u8]) -> u64 {
+        const FNV_OFFSET: u64 = 0xcbf2_9ce4_8422_2325;
+        const FNV_PRIME: u64 = 0x0000_0100_0000_01b3;
+
+        fn hash_bytes(mut hash: u64, bytes: &[u8], prime: u64) -> u64 {
+            for &byte in bytes {
+                hash ^= u64::from(byte);
+                hash = hash.wrapping_mul(prime);
+            }
+            hash
+        }
+
+        let mut hash = FNV_OFFSET;
+        hash = hash_bytes(hash, vertex_spv, FNV_PRIME);
+        hash = hash_bytes(hash, &[0xff], FNV_PRIME);
+        hash = hash_bytes(hash, fragment_spv, FNV_PRIME);
+        hash
+    }
+
+    fn pipeline_cache_path(
+        physical_device_properties: &vk::PhysicalDeviceProperties,
+        color_format: vk::Format,
+        shader_signature: u64,
+    ) -> PathBuf {
+        let filename = format!(
+            "iso_grid_v{PIPELINE_CACHE_SCHEMA_VERSION}_ven{:04x}_dev{:04x}_drv{:08x}_fmt{}_sig{shader_signature:016x}.bin",
+            physical_device_properties.vendor_id,
+            physical_device_properties.device_id,
+            physical_device_properties.driver_version,
+            color_format.as_raw(),
+        );
+        Self::default_cache_directory().join(filename)
+    }
+
+    fn default_cache_directory() -> PathBuf {
+        if let Some(dir) = std::env::var_os("CHTHONIC_PIPELINE_CACHE_DIR") {
+            return PathBuf::from(dir);
+        }
+
+        if let Some(dir) = std::env::var_os("LOCALAPPDATA") {
+            return PathBuf::from(dir)
+                .join("chthonic-archive")
+                .join("vulkan-cache");
+        }
+
+        if cfg!(target_os = "macos") {
+            if let Some(home) = std::env::var_os("HOME") {
+                return PathBuf::from(home)
+                    .join("Library")
+                    .join("Caches")
+                    .join("chthonic-archive")
+                    .join("vulkan");
+            }
+        }
+
+        if let Some(dir) = std::env::var_os("XDG_CACHE_HOME") {
+            return PathBuf::from(dir).join("chthonic-archive").join("vulkan");
+        }
+
+        if let Some(home) = std::env::var_os("HOME") {
+            return PathBuf::from(home)
+                .join(".cache")
+                .join("chthonic-archive")
+                .join("vulkan");
+        }
+
+        PathBuf::from("target").join("pipeline-cache")
+    }
+
+    unsafe fn create_pipeline_cache(
+        device: &Device,
+        cache_path: &Path,
+    ) -> Result<(vk::PipelineCache, PipelineCacheState)> {
+        let initial_data = match fs::read(cache_path) {
+            Ok(bytes) => bytes,
+            Err(err) if err.kind() == ErrorKind::NotFound => Vec::new(),
+            Err(err) => {
+                warn!(
+                    "⚠️ Failed to read pipeline cache {}: {}",
+                    cache_path.display(),
+                    err
+                );
+                Vec::new()
+            }
+        };
+
+        if initial_data.is_empty() {
+            let create_info = vk::PipelineCacheCreateInfo::default();
+            let cache = device
+                .create_pipeline_cache(&create_info, None)
+                .context("Failed to create empty pipeline cache")?;
+            return Ok((cache, PipelineCacheState::ColdStart));
+        }
+
+        let create_info = vk::PipelineCacheCreateInfo::default().initial_data(&initial_data);
+        match device.create_pipeline_cache(&create_info, None) {
+            Ok(cache) => Ok((cache, PipelineCacheState::WarmStart)),
+            Err(err) => {
+                warn!(
+                    "⚠️ Pipeline cache invalid at {}: {err:?}. Rebuilding cache.",
+                    cache_path.display()
+                );
+                let fallback_create_info = vk::PipelineCacheCreateInfo::default();
+                let cache = device
+                    .create_pipeline_cache(&fallback_create_info, None)
+                    .context("Failed to recreate pipeline cache after invalid data")?;
+                Ok((cache, PipelineCacheState::RebuiltFromInvalidData))
+            }
+        }
+    }
+
+    unsafe fn persist_pipeline_cache(
+        device: &Device,
+        pipeline_cache: vk::PipelineCache,
+        cache_path: &Path,
+    ) {
+        let cache_data = match device.get_pipeline_cache_data(pipeline_cache) {
+            Ok(data) => data,
+            Err(err) => {
+                warn!("⚠️ Failed to extract pipeline cache data: {err:?}");
+                return;
+            }
+        };
+
+        if cache_data.is_empty() {
+            return;
+        }
+
+        if let Some(parent) = cache_path.parent() {
+            if let Err(err) = fs::create_dir_all(parent) {
+                warn!(
+                    "⚠️ Failed to create pipeline cache directory {}: {}",
+                    parent.display(),
+                    err
+                );
+                return;
+            }
+        }
+
+        let temp_path = cache_path.with_extension("tmp");
+        if let Err(err) = fs::write(&temp_path, &cache_data) {
+            warn!(
+                "⚠️ Failed writing temporary pipeline cache {}: {}",
+                temp_path.display(),
+                err
+            );
+            return;
+        }
+
+        if cache_path.exists() && fs::remove_file(cache_path).is_err() {
+            warn!(
+                "⚠️ Failed to replace existing pipeline cache {}",
+                cache_path.display()
+            );
+        }
+
+        if let Err(err) = fs::rename(&temp_path, cache_path) {
+            warn!(
+                "⚠️ Failed to finalize pipeline cache {}: {}",
+                cache_path.display(),
+                err
+            );
+            let _ = fs::remove_file(&temp_path);
+            return;
+        }
+
+        debug!(
+            "💾 Pipeline cache saved: {} bytes -> {}",
+            cache_data.len(),
+            cache_path.display()
+        );
     }
 
     /// Create a shader module from SPIR-V bytecode
@@ -277,6 +492,7 @@ impl VulkanPipeline {
         device.destroy_pipeline_layout(self.pipeline_layout, None);
         device.destroy_shader_module(self.vertex_shader, None);
         device.destroy_shader_module(self.fragment_shader, None);
+        device.destroy_pipeline_cache(self.pipeline_cache, None);
         debug!("✅ Graphics pipeline cleaned up");
     }
 }

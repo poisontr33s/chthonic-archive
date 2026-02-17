@@ -11,6 +11,7 @@ use std::path::PathBuf;
 
 fn main() {
     println!("cargo:rerun-if-changed=assets/shaders/");
+    println!("cargo:rerun-if-changed=build.rs");
     
     let shader_dir = PathBuf::from("assets/shaders");
     let out_dir = PathBuf::from(env::var("OUT_DIR").unwrap());
@@ -45,8 +46,6 @@ fn main() {
         shaderc::ShaderKind::Fragment,
         &out_dir,
     );
-    
-    println!("cargo:warning=🔥 SHADERS COMPILED TO SPIR-V - The Alchemy Complete!");
 }
 
 fn compile_shader(
@@ -78,6 +77,4 @@ fn compile_shader(
     let out_path = out_dir.join(format!("{file_name}.spv"));
     fs::write(&out_path, artifact.as_binary_u8())
         .unwrap_or_else(|_| panic!("Failed to write SPIR-V: {0}", out_path.display()));
-    
-    println!("cargo:warning=✅ Compiled {file_name} → {0}", out_path.display());
 }
