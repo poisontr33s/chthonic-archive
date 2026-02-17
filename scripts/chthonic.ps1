@@ -519,8 +519,14 @@ function Show-StatusBanner {
 
     # rv -> Ruby
     $rubyVer = ver { ruby -e "print RUBY_VERSION" }
-    $rvVer = ver { rv --version }; if ($rvVer -match '(\d+\.\d+\.\d+)') { $rvVer = $matches[1] } else { $rvVer = $null }
     $rvwVer = ver { rvw --version }; if ($rvwVer -match '(\d+\.\d+\.\d+)') { $rvwVer = $matches[1] } else { $rvwVer = $null }
+    $rvMeta = Get-CommandResolution -Name "rv"
+    $rvVer = $null
+    if ($rvMeta -and $rvMeta.Type -ne "Alias") {
+        $rvProbe = ver { rv --version }
+        if ($rvProbe -match '(\d+\.\d+\.\d+)') { $rvVer = $matches[1] }
+    }
+    if (-not $rvVer -and $rvwVer) { $rvVer = $rvwVer }
     Write-Host "  rv    " -NoNewline -ForegroundColor $C
     if ($rubyVer) { Write-Host "ruby $rubyVer" -NoNewline -ForegroundColor $W } else { Write-Host "ruby ?" -NoNewline -ForegroundColor $R }
     if ($rvVer) { Write-Host "  rv $rvVer" -NoNewline -ForegroundColor $D }
@@ -940,14 +946,18 @@ function Show-PolyglotStatus {
     
     # Collect tool versions
     $tools = @{}
-    try {
-        $rvOut = (rv --version 2>$null)
-        if (($rvOut -join "`n") -match '(\d+\.\d+\.\d+)') {
-            $tools['rv'] = $matches[1]
-        } else {
-            $tools['rv'] = (($rvOut | Select-Object -First 1).ToString().Trim())
-        }
-    } catch { $tools['rv'] = 'not found' }
+    $tools['rv'] = 'not found'
+    $rvMetaStatus = Get-CommandResolution -Name "rv"
+    if ($rvMetaStatus -and $rvMetaStatus.Type -ne "Alias") {
+        try {
+            $rvOut = (rv --version 2>$null)
+            if (($rvOut -join "`n") -match '(\d+\.\d+\.\d+)') {
+                $tools['rv'] = $matches[1]
+            } else {
+                $tools['rv'] = (($rvOut | Select-Object -First 1).ToString().Trim())
+            }
+        } catch {}
+    }
     try {
         $rvwOut = (rvw --version 2>$null)
         if (($rvwOut -join "`n") -match '(\d+\.\d+\.\d+)') {
@@ -956,6 +966,14 @@ function Show-PolyglotStatus {
             $tools['rvw'] = (($rvwOut | Select-Object -First 1).ToString().Trim())
         }
     } catch { $tools['rvw'] = 'not found' }
+    if ($tools['rv'] -eq 'not found' -and $tools['rvw'] -ne 'not found') {
+        $tools['rv'] = $tools['rvw']
+    }
+    if ($rvMetaStatus) {
+        $tools['rv_cmd'] = if ($rvMetaStatus.Path) { $rvMetaStatus.Path } else { $rvMetaStatus.Display }
+    } else {
+        $tools['rv_cmd'] = 'not found'
+    }
     try { $tools['bun'] = (bun --version 2>$null) -replace 'Bun\s+','' -split ' ' | Select-Object -First 1 } catch { $tools['bun'] = 'not found' }
     try { $tools['biome'] = ((biome --version 2>$null) -split '\n')[0] -replace 'Version:\s*','' } catch { $tools['biome'] = 'not found' }
     try { $tools['cargo'] = ((cargo --version 2>$null) -split ' ')[1] } catch { $tools['cargo'] = 'not found' }
@@ -1318,7 +1336,7 @@ function Show-Origins {
 
     # Core ANNO-managed tools
     $tools = @(
-        @{ Name = "ruby";    Cmd = "ruby";    Method = "rv (cargo install rv)";     Ecosystem = "cargo" },
+        @{ Name = "ruby";    Cmd = "ruby";    Method = "rvw (cargo install rv)";    Ecosystem = "cargo" },
         @{ Name = "python";  Cmd = "uv";      Method = "irm astral.sh/uv";          Ecosystem = "uv" },
         @{ Name = "bun";     Cmd = "bun";     Method = "irm bun.sh";                Ecosystem = "bun" },
         @{ Name = "rust";    Cmd = "rustc";   Method = "rustup (irm rustup.rs)";     Ecosystem = "cargo" },
