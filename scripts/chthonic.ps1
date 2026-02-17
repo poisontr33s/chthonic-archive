@@ -80,8 +80,143 @@ function Get-DevKitPaths {
     )
 }
 
+function Get-VSWhereExe {
+    $candidates = @(
+        "C:\Program Files (x86)\Microsoft Visual Studio\Installer\vswhere.exe",
+        "C:\Program Files\Microsoft Visual Studio\Installer\vswhere.exe"
+    )
+    foreach ($c in $candidates) {
+        if (Test-Path $c) { return $c }
+    }
+    return $null
+}
+
+function Get-VSInstallationPath {
+    param([string]$ProductId = "*")
+    $vswhere = Get-VSWhereExe
+    if (-not $vswhere) { return $null }
+    try {
+        $out = & $vswhere -latest -prerelease -products $ProductId -property installationPath 2>$null
+        $path = ($out | Select-Object -First 1)
+        if ($path -and (Test-Path $path)) { return $path }
+    } catch {}
+    return $null
+}
+
+function Get-VSInstallationRoots {
+    $roots = @()
+    foreach ($product in @("Microsoft.VisualStudio.Product.Community", "Microsoft.VisualStudio.Product.BuildTools")) {
+        $root = Get-VSInstallationPath -ProductId $product
+        if ($root) { $roots += $root }
+    }
+
+    # Fallbacks for 2026 Insiders layouts if vswhere metadata is stale.
+    foreach ($fallback in @(
+        "C:\Program Files\Microsoft Visual Studio\18\Insiders",
+        "C:\Program Files (x86)\Microsoft Visual Studio\18\Insiders"
+    )) {
+        if (Test-Path $fallback) { $roots += $fallback }
+    }
+
+    return $roots | Select-Object -Unique
+}
+
+function Get-VSClExePath {
+    foreach ($root in (Get-VSInstallationRoots)) {
+        $msvcRoot = Join-Path $root "VC\Tools\MSVC"
+        if (-not (Test-Path $msvcRoot)) { continue }
+
+        $versions = Get-ChildItem $msvcRoot -Directory -ErrorAction SilentlyContinue | Sort-Object Name -Descending
+        foreach ($v in $versions) {
+            $cl = Join-Path $v.FullName "bin\Hostx64\x64\cl.exe"
+            if (Test-Path $cl) { return $cl }
+        }
+    }
+    return $null
+}
+
+function Get-VSMsBuildExePath {
+    foreach ($root in (Get-VSInstallationRoots)) {
+        $msbuild = Join-Path $root "MSBuild\Current\Bin\MSBuild.exe"
+        if (Test-Path $msbuild) { return $msbuild }
+    }
+    return $null
+}
+
+function Get-VSClangBinDir {
+    foreach ($root in (Get-VSInstallationRoots)) {
+        $clang = Join-Path $root "VC\Tools\Llvm\bin\clang.exe"
+        if (Test-Path $clang) { return (Split-Path -Parent $clang) }
+    }
+    return $null
+}
+
+function Get-AzureCliBinDir {
+    foreach ($candidate in @(
+        "C:\Program Files\Microsoft SDKs\Azure\CLI2\wbin",
+        "C:\Program Files (x86)\Microsoft SDKs\Azure\CLI2\wbin"
+    )) {
+        if (Test-Path (Join-Path $candidate "az.cmd")) { return $candidate }
+    }
+    return $null
+}
+
+function Get-VulkanBinDir {
+    if (-not $env:VULKAN_SDK) { return $null }
+    $bin = Join-Path $env:VULKAN_SDK "Bin"
+    if (Test-Path $bin) { return $bin }
+    return $null
+}
+
+function Get-SsmsInstallationPath {
+    $vswhere = Get-VSWhereExe
+    if (-not $vswhere) { return $null }
+    try {
+        $out = & $vswhere -latest -products Microsoft.VisualStudio.Product.Ssms -property installationPath 2>$null
+        $path = ($out | Select-Object -First 1)
+        if ($path -and (Test-Path $path)) { return $path }
+    } catch {}
+    return $null
+}
+
+function Get-SsmsVersion {
+    $vswhere = Get-VSWhereExe
+    if (-not $vswhere) { return $null }
+    try {
+        $out = & $vswhere -latest -products Microsoft.VisualStudio.Product.Ssms -property installationVersion 2>$null
+        $ver = ($out | Select-Object -First 1)
+        if ($ver) { return $ver.Trim() }
+    } catch {}
+    return $null
+}
+
+function Get-SystemRegistrationPaths {
+    $paths = @()
+
+    # Git remains a required system baseline for repo operations.
+    $paths += "C:\Program Files\Git\cmd"
+
+    $azBin = Get-AzureCliBinDir
+    if ($azBin) { $paths += $azBin }
+
+    $vulkanBin = Get-VulkanBinDir
+    if ($vulkanBin) { $paths += $vulkanBin }
+
+    $clExe = Get-VSClExePath
+    if ($clExe) { $paths += (Split-Path -Parent $clExe) }
+
+    $msbuildExe = Get-VSMsBuildExePath
+    if ($msbuildExe) { $paths += (Split-Path -Parent $msbuildExe) }
+
+    $clangBin = Get-VSClangBinDir
+    if ($clangBin) { $paths += $clangBin }
+
+    return $paths | Where-Object { $_ } | Select-Object -Unique
+}
+
 $rvRubyBin = Get-RvRubyBinDir
 $devkitPaths = Get-DevKitPaths
+$systemRegistrationPaths = Get-SystemRegistrationPaths
 
 # Default polyglot paths (fallback when config.json is missing)
 $defaultPolyglotPaths = @(
@@ -107,27 +242,34 @@ if ($rvRubyBin) {
 # DevKit toolchain (gcc, make) from RubyInstaller's MSYS2
 $defaultPolyglotPaths += $devkitPaths
 
-# Git
-$defaultPolyglotPaths += @(
-    "C:\Program Files\Git\cmd"
-)
+# System registrations (Git, Azure CLI, Vulkan, VS native toolchain)
+$defaultPolyglotPaths += $systemRegistrationPaths
 
 # ═══════════════════════════════════════════════════════════════════════════════
 # FUNCTIONS
 # ═══════════════════════════════════════════════════════════════════════════════
 
 function Get-PolyglotPaths {
+    $basePaths = $null
+
     if (Test-Path $CONFIG_FILE) {
         try {
             $cfg = Get-Content $CONFIG_FILE -Raw | ConvertFrom-Json
             if ($cfg.PolyglotPaths -and $cfg.PolyglotPaths.Count -gt 0) {
-                return $cfg.PolyglotPaths
+                $basePaths = @($cfg.PolyglotPaths)
             }
         } catch {
             # Fall back to defaults if config is unreadable
         }
     }
-    return $defaultPolyglotPaths
+
+    if (-not $basePaths) {
+        $basePaths = @($defaultPolyglotPaths)
+    }
+
+    # Always append live system registrations (VS/Azure/Vulkan/Git), even with custom config.
+    $merged = @($basePaths + $systemRegistrationPaths) | Where-Object { $_ }
+    return $merged | Select-Object -Unique
 }
 
 function Show-StatusBanner {
@@ -183,12 +325,47 @@ function Show-StatusBanner {
     Write-Host "  go      " -NoNewline -ForegroundColor $C
     if ($goVer) { Write-Host "go $goVer" -ForegroundColor $W } else { Write-Host "go ?" -ForegroundColor $R }
 
+    # Cloud + data tooling
+    $azVer = ver { az version --query '"azure-cli"' -o tsv }
+    $ssmsVer = Get-SsmsVersion
+    Write-Host "  cloud " -NoNewline -ForegroundColor $C
+    if ($azVer) { Write-Host "az $azVer" -NoNewline -ForegroundColor $W } else { Write-Host "az ?" -NoNewline -ForegroundColor $R }
+    if ($ssmsVer) { Write-Host "  ssms $ssmsVer" -NoNewline -ForegroundColor $D }
+    Write-Host ""
+
     # Infra line
     $gitVer = ver { git --version }; if ($gitVer) { $gitVer = ($gitVer -replace 'git version\s*','') -replace '\.windows.*','' }
     $vulkanVer = if ($env:VULKAN_SDK -match '(\d+\.\d+\.\d+)') { $matches[1] } else { $null }
+    $clExe = Get-VSClExePath
+    $clVer = $null
+    if ($clExe) {
+        try {
+            $clOut = & $clExe /Bv 2>$null
+            if ($clOut -match 'Compiler Version ([0-9\.]+)') { $clVer = $matches[1] }
+        } catch {}
+    }
+    $msbuildExe = Get-VSMsBuildExePath
+    $msbuildVer = $null
+    if ($msbuildExe) {
+        try {
+            $msbuildOut = & $msbuildExe -version -nologo 2>$null
+            if ($msbuildOut) { $msbuildVer = (($msbuildOut | Select-Object -Last 1).ToString().Trim()) }
+        } catch {}
+    }
+    $clangBin = Get-VSClangBinDir
+    $clangVer = $null
+    if ($clangBin) {
+        try {
+            $clangOut = & (Join-Path $clangBin "clang.exe") --version 2>$null
+            if ($clangOut -and $clangOut[0] -match 'clang version ([0-9\.]+)') { $clangVer = $matches[1] }
+        } catch {}
+    }
     Write-Host "  sys   " -NoNewline -ForegroundColor $C
     Write-Host "git $gitVer" -NoNewline -ForegroundColor $D
     if ($vulkanVer) { Write-Host "  vulkan $vulkanVer" -NoNewline -ForegroundColor $D }
+    if ($clVer) { Write-Host "  cl $clVer" -NoNewline -ForegroundColor $D }
+    if ($msbuildVer) { Write-Host "  msbuild $msbuildVer" -NoNewline -ForegroundColor $D }
+    if ($clangVer) { Write-Host "  clang $clangVer" -NoNewline -ForegroundColor $D }
     Write-Host ""
     Write-Host ("="*72) -ForegroundColor $D
 }
