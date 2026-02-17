@@ -1200,7 +1200,13 @@ function Get-InstalledVersion {
     try {
         switch ($Tool) {
             "ruby"       { $v = ruby -e "print RUBY_VERSION" 2>$null; return $v }
-            "python"     { return (uv run python -c "import sys; print(f'{sys.version_info.major}.{sys.version_info.minor}.{sys.version_info.micro}')" 2>$null) }
+            "python"     {
+                $v = try { uv run python -c "import sys; print(f'{sys.version_info.major}.{sys.version_info.minor}.{sys.version_info.micro}')" 2>$null } catch { $null }
+                if ($v) { return $v }
+                $py = try { python --version 2>$null } catch { $null }
+                if ($py -match 'Python\s+(\d+\.\d+\.\d+)') { return $matches[1] }
+                return $null
+            }
             "bun"        { return (bun --version 2>$null) }
             "rust"       { $v = rustc -V 2>$null; if ($v -match '(\d+\.\d+\.\d+)') { return $matches[1] }; return $null }
             "go"         {
