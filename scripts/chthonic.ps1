@@ -688,9 +688,12 @@ function Show-Origins {
         @{ Name = "goup";    Cmd = "goup";    Method = "GH release binary"; Ecosystem = "cargo" },
         @{ Name = "biome";   Cmd = "biome";   Method = "bun add -g";    Ecosystem = "bun" },
         @{ Name = "ruff";    Cmd = "ruff";    Method = "uv tool";       Ecosystem = "uv" },
+        @{ Name = "cmake";   Cmd = "cmake";   Method = "uv tool";       Ecosystem = "uv" },
+        @{ Name = "ninja";   Cmd = "ninja";   Method = "uv tool";       Ecosystem = "uv" },
         @{ Name = "mdbook";  Cmd = "mdbook";  Method = "cargo install"; Ecosystem = "cargo" },
         @{ Name = "git";     Cmd = "git";     Method = "native installer"; Ecosystem = "system" },
         @{ Name = "gcc";     Cmd = "gcc";     Method = "MSYS2 (RubyInstaller)"; Ecosystem = "system" },
+        @{ Name = "glslc";   Cmd = "glslc";   Method = "Vulkan SDK";    Ecosystem = "system" },
         @{ Name = "claude";  Cmd = "claude";  Method = "standalone";    Ecosystem = "uv" }
     )
 
@@ -728,7 +731,7 @@ function Show-Origins {
     # Directory taxonomy
     Write-Host ("="*72) -ForegroundColor $D
     $dirs = @(
-        @{ Path = "~/.local/bin/";   Label = "uv ecosystem (uv, ruff, claude, python shims)" },
+        @{ Path = "~/.local/bin/";   Label = "uv ecosystem (uv, ruff, cmake, ninja, claude)" },
         @{ Path = "~/.bun/bin/";     Label = "bun ecosystem (bun, biome, codex, gemini)" },
         @{ Path = "~/.cargo/bin/";   Label = "cargo ecosystem (rustc, rustup, mdbook, rv, goup)" },
         @{ Path = "~/.goup/";        Label = "goup-managed Go versions (go.dev source)" },
