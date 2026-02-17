@@ -103,6 +103,53 @@ function Get-VSInstallationPath {
     return $null
 }
 
+function Get-VSProductVersion {
+    param([string]$ProductId = "*")
+    $vswhere = Get-VSWhereExe
+    if (-not $vswhere) { return $null }
+    try {
+        $out = & $vswhere -latest -prerelease -products $ProductId -property installationVersion 2>$null
+        $ver = ($out | Select-Object -First 1)
+        if ($ver) { return $ver.Trim() }
+    } catch {}
+    return $null
+}
+
+function Get-VisualStudioVersion {
+    $versions = @()
+    foreach ($product in @("Microsoft.VisualStudio.Product.Community", "Microsoft.VisualStudio.Product.BuildTools")) {
+        $v = Get-VSProductVersion -ProductId $product
+        if ($v) { $versions += $v }
+    }
+    if (-not $versions) { return $null }
+
+    $parsed = @()
+    foreach ($v in $versions) {
+        try {
+            $parsed += [pscustomobject]@{ Raw = $v; Sem = [version]$v }
+        } catch {
+            $parsed += [pscustomobject]@{ Raw = $v; Sem = $null }
+        }
+    }
+
+    $withSem = $parsed | Where-Object { $_.Sem }
+    if ($withSem) {
+        return ($withSem | Sort-Object Sem -Descending | Select-Object -First 1).Raw
+    }
+    return ($versions | Sort-Object -Descending | Select-Object -First 1)
+}
+
+function Get-AzureCliVersion {
+    try {
+        $raw = az version --output json 2>$null
+        if (-not $raw) { return $null }
+        $obj = $raw | ConvertFrom-Json
+        $ver = $obj.'azure-cli'
+        if ($ver) { return "$ver".Trim() }
+    } catch {}
+    return $null
+}
+
 function Get-VSInstallationRoots {
     $roots = @()
     foreach ($product in @("Microsoft.VisualStudio.Product.Community", "Microsoft.VisualStudio.Product.BuildTools")) {
@@ -326,7 +373,7 @@ function Show-StatusBanner {
     if ($goVer) { Write-Host "go $goVer" -ForegroundColor $W } else { Write-Host "go ?" -ForegroundColor $R }
 
     # Cloud + data tooling
-    $azVer = ver { az version --query '"azure-cli"' -o tsv }
+    $azVer = Get-AzureCliVersion
     $ssmsVer = Get-SsmsVersion
     Write-Host "  cloud " -NoNewline -ForegroundColor $C
     if ($azVer) { Write-Host "az $azVer" -NoNewline -ForegroundColor $W } else { Write-Host "az ?" -NoNewline -ForegroundColor $R }
@@ -680,8 +727,10 @@ function Show-PolyglotStatus {
     try { $tools['make'] = (make --version 2>$null | Select-Object -First 1) -replace 'GNU Make\s*','' } catch { $tools['make'] = 'not found' }
     try { $tools['git'] = (git --version 2>$null) -replace 'git version\s*','' } catch { $tools['git'] = 'not found' }
     try { $tools['mdbook'] = (mdbook --version 2>$null) -replace 'mdbook\s*v?','' } catch { $tools['mdbook'] = 'not found' }
-    try { $tools['az'] = (az version --query '"azure-cli"' -o tsv 2>$null) } catch { $tools['az'] = 'not found' }
+    $azVer = Get-AzureCliVersion
+    $tools['az'] = if ($azVer) { $azVer } else { 'not found' }
     try { $tools['code-insiders'] = ((code-insiders --version 2>$null) -split '\n')[0] } catch { $tools['code-insiders'] = 'not found' }
+    if (-not $tools['code-insiders']) { $tools['code-insiders'] = 'not found' }
 
     $clExe = Get-VSClExePath
     if ($clExe) {
@@ -733,8 +782,10 @@ function Show-PolyglotStatus {
 
     $ssmsVer = Get-SsmsVersion
     $tools['ssms'] = if ($ssmsVer) { $ssmsVer } else { 'not found' }
-    $tools['vs_community'] = if (Get-VSInstallationPath -ProductId "Microsoft.VisualStudio.Product.Community") { "installed" } else { "not found" }
-    $tools['vs_buildtools'] = if (Get-VSInstallationPath -ProductId "Microsoft.VisualStudio.Product.BuildTools") { "installed" } else { "not found" }
+    $vsCommunityVer = Get-VSProductVersion -ProductId "Microsoft.VisualStudio.Product.Community"
+    $vsBuildToolsVer = Get-VSProductVersion -ProductId "Microsoft.VisualStudio.Product.BuildTools"
+    $tools['vs_community'] = if ($vsCommunityVer) { $vsCommunityVer } else { "not found" }
+    $tools['vs_buildtools'] = if ($vsBuildToolsVer) { $vsBuildToolsVer } else { "not found" }
     if ($env:VULKAN_SDK -match '(\d+\.\d+\.\d+\.\d+)') { $tools['vulkan'] = $matches[1] } else { $tools['vulkan'] = 'not found' }
     $tools['workspace'] = $REPO_ROOT
     
@@ -839,19 +890,8 @@ function Get-InstalledVersion {
                 $v = psql --version 2>$null; if ($v -match '(\d+\.\d+)') { return $matches[1] }; return $null
             }
             "dotnet"     { $v = dotnet --version 2>$null; return $v }
-            "azurecli"   {
-                $v = az version --query '"azure-cli"' -o tsv 2>$null
-                if ($v) { return $v.Trim() }
-                return $null
-            }
-            "visualstudio" {
-                $vswhere = Get-VSWhereExe
-                if (-not $vswhere) { return $null }
-                $v = & $vswhere -latest -prerelease -products * -property installationVersion 2>$null
-                $ver = ($v | Select-Object -First 1)
-                if ($ver) { return $ver.Trim() }
-                return $null
-            }
+            "azurecli"   { return (Get-AzureCliVersion) }
+            "visualstudio" { return (Get-VisualStudioVersion) }
             "ssms" {
                 return (Get-SsmsVersion)
             }
@@ -1020,8 +1060,8 @@ function Show-Origins {
     }
 
     foreach ($dir in $dirs) {
-        Write-Host "  $($dir.Path.PadRight(20))" -NoNewline -ForegroundColor $C
-        Write-Host $dir.Label -ForegroundColor $D
+        Write-Host "  $($dir.Path)" -NoNewline -ForegroundColor $C
+        Write-Host "  $($dir.Label)" -ForegroundColor $D
     }
     Write-Host ("="*72) -ForegroundColor $D
     Write-Host ""
