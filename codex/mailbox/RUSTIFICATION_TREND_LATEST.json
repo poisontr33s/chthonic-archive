@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-02-18T03:59:31.506757+00:00",
+  "generated_at_utc": "2026-02-18T03:59:56.556968+00:00",
   "stamp_minute_day_month_year": "59.18.02.2026",
   "window_days": 30,
   "github_pages": 2,
@@ -20,7 +20,7 @@
     {
       "language": "TypeScript",
       "repos": 56,
-      "stars": 79376,
+      "stars": 79377,
       "score": 56489.97,
       "lane": "javascript",
       "lane_present": true,
@@ -59,7 +59,7 @@
     {
       "language": "Rust",
       "repos": 16,
-      "stars": 27037,
+      "stars": 27038,
       "score": 16443.2,
       "lane": "rust",
       "lane_present": true,
@@ -177,7 +177,7 @@
   "rustification_finder": [
     "Missing trend lanes detected: C, C++, HTML, Nushell, PowerShell, Shell, Swift",
     "Elixir watchlist tracked; no sampled trend hits this window and no handler coverage yet.",
-    "Watchlist languages missing handler coverage: Elixir, PowerShell, Swift"
+    "Watchlist languages missing handler coverage: Elixir, PowerShell"
   ],
   "watchlist": [
     {
@@ -205,19 +205,6 @@
       "eol_latest": "7.5.4",
       "eol_cycle": "7.5",
       "eol_state": "maintained"
-    },
-    {
-      "language": "Swift",
-      "repos": 5,
-      "stars": 6048,
-      "score": 5378.17,
-      "lane": "swift",
-      "lane_present": false,
-      "runtime_present": false,
-      "eol_slug": null,
-      "eol_latest": null,
-      "eol_cycle": null,
-      "eol_state": "unmapped"
     }
   ]
 }
