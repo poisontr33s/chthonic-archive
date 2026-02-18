@@ -15,6 +15,8 @@ const ruffExecutable = path.join(pythonVenvPath, isWin ? 'Scripts/ruff.exe' : 'b
 async function main(): Promise<void> {
     fs.mkdirSync(chthonicRoot, { recursive: true });
 
+    await run(['bun', 'run', 'scripts/toolpool-scan.ts', '--write-env', '--quiet']);
+
     if (!fs.existsSync(path.join(pythonProjectPath, 'pyproject.toml'))) {
         throw new Error(`missing pyproject: ${path.join(pythonProjectPath, 'pyproject.toml')}`);
     }

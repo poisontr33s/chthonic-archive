@@ -20,6 +20,8 @@ agave = "2.3.1"
 cargo-binstall = "latest"
 cmake = "latest"
 ninja = "latest"
+terraform = "latest"
+kubectl = "latest"
 
 [settings]
 disable_tools = ["python", "ruby"]
@@ -33,6 +35,8 @@ CHTHONIC_SOLANA_RUNTIME = "agave"
 CHTHONIC_SOLANA_INSTALLER = "solana-install"
 CHTHONIC_FIREDANCER_ARTIFACT_DIR = "{{cwd}}/.chthonic/firedancer/artifacts"
 CHTHONIC_REACTOR_TRANSPORT = "auto" # set to "jsonl" for Safe Mode fallback
+CHTHONIC_TOOLPOOL_REPORT = "{{cwd}}/.chthonic/cache/toolpool.json"
+CHTHONIC_TOOLPOOL_ENV = "{{cwd}}/.chthonic/cache/toolpool.env"
 
 # VISUAL STUDIO 2026 INSIDERS LSL PATHING
 # Resolved from local VS 2026 Insiders installation lane.
@@ -40,7 +44,9 @@ VSINSTALLDIR = 'C:\Program Files\Microsoft Visual Studio\18\Insiders'
 VCINSTALLDIR = 'C:\Program Files\Microsoft Visual Studio\18\Insiders\VC'
 
 # FORCE RUST TO USE THE VS 2026 INSIDERS LINKER LANE
-RUSTFLAGS = "-C linker=lld-link -L native='C:/Program Files/Microsoft Visual Studio/18/Insiders/VC/Tools/MSVC/14.50.35717/lib/x64'"
+# Keep this version-agnostic; concrete MSVC roots are emitted by toolpool-scan.
+RUSTFLAGS = "-C linker=lld-link"
+CARGO_TARGET_X86_64_PC_WINDOWS_MSVC_LINKER = "lld-link"
 
 # SQL DEV KIT 22 SYNERGY (resolved from VS 2026 Insiders SQLDB extension)
 SQL_DEV_KIT_PATH = 'C:\Program Files\Microsoft Visual Studio\18\Insiders\Common7\IDE\Extensions\Microsoft\SQLDB\DAC'
@@ -49,15 +55,19 @@ _.path = [
     "{{env.USERPROFILE}}/.local/bin",
     "{{env.USERPROFILE}}/.cargo/bin",
     "{{env.USERPROFILE}}/.goup/current/bin",
+    "C:\\Program Files\\Microsoft Visual Studio\\18\\Insiders\\VC\\Tools\\Llvm\\x64\\bin",
+    "C:\\Program Files\\Microsoft Visual Studio\\18\\Insiders\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\Ninja",
     "{{env.MSYS2_HOME}}/ucrt64/bin",
     "{{env.MSYS2_HOME}}/usr/bin",
 ]
 
 [env."windows"]
-CC = "gcc"
-CXX = "g++"
+CC = "clang-cl"
+CXX = "clang-cl"
+CMAKE_GENERATOR = "Ninja"
 RI_DEVKIT = "{{env.MSYS2_HOME}}"
 RUBY_MIGRATION_MODE = "in_memory_devkit_injection"
+CHTHONIC_WINDOWS_NATIVE_LANE = "vs2026_insiders"
 
 [tasks.agave-sync]
 description = "Sync Agave/Solana toolchain lane"
@@ -66,3 +76,58 @@ run = "solana-install init stable"
 [tasks.firedancer-artifacts]
 description = "Prepare Frankendancer artifact directory for native bridge"
 run = "pwsh -NoProfile -Command \"New-Item -ItemType Directory -Force -Path .chthonic/firedancer/artifacts | Out-Null\""
+
+[tasks.toolpool-scan]
+description = "Scan and cache tool-pool lanes (VS2026, SQL, infra CLIs, polyglot managers)"
+run = "bun run scripts/toolpool-scan.ts"
+alias = "scan-pool"
+
+[tasks.toolpool-wire]
+description = "Generate tool-pool report + env overlay for downstream tasks"
+run = "bun run scripts/toolpool-scan.ts --write-env"
+alias = "wire-pool"
+
+[tasks.toolpool-report]
+description = "Show latest cached tool-pool report"
+run = "pwsh -NoProfile -Command \"if (Test-Path .chthonic/cache/toolpool.json) { Get-Content .chthonic/cache/toolpool.json } else { Write-Error 'Missing .chthonic/cache/toolpool.json (run mise run toolpool-scan first)' }\""
+alias = "pool-report"
+
+[tasks.vs2026-audit]
+description = "Audit VS 2026 Insiders components and critical binaries against local .vsconfig baselines"
+run = "pwsh -NoProfile -File ./scripts/vs2026_audit.ps1"
+alias = "audit-vs"
+
+[tasks.native-fast]
+description = "Fast native build lane (MSVC target + lld-link pathing from slab env)"
+run = "pwsh -NoProfile -Command \"Set-Location native; cargo daemon-fast; cargo synapse-fast\""
+
+[tasks.native-prod]
+description = "Release native lane for daemon + ledger host"
+run = "pwsh -NoProfile -Command \"Set-Location native; cargo daemon-prod; cargo ledger-prod\""
+
+[tasks.native-hardened]
+description = "Strict audit gate + release native build lane"
+run = "pwsh -NoProfile -Command \"./scripts/vs2026_audit.ps1 -Strict; Set-Location native; cargo daemon-prod; cargo ledger-prod\""
+alias = "hardened"
+
+[tasks.sql-version]
+description = "Print SqlPackage version from VS 2026 SQLDB DAC lane"
+run = "pwsh -NoProfile -File ./scripts/sqlpackage_task.ps1 -Mode version"
+
+[tasks.sql-drift]
+description = "Generate DACPAC drift report (requires SQL_DACPAC_PATH + SQL_TARGET_CONNECTION env vars)"
+run = "pwsh -NoProfile -File ./scripts/sqlpackage_task.ps1 -Mode drift"
+
+[tasks.sql-publish]
+description = "Publish DACPAC to target (requires SQL_DACPAC_PATH + SQL_TARGET_CONNECTION env vars)"
+run = "pwsh -NoProfile -File ./scripts/sqlpackage_task.ps1 -Mode publish"
+
+[tasks.infra-bicep-bootstrap]
+description = "Bootstrap Bicep via Azure CLI if available (safe no-op when az is missing)"
+run = "pwsh -NoProfile -Command \"if (Get-Command az -ErrorAction SilentlyContinue) { az bicep install | Out-Null; az bicep upgrade | Out-Null; az bicep version } elseif (Get-Command bicep -ErrorAction SilentlyContinue) { bicep --version } else { Write-Warning 'Azure CLI and Bicep are not installed yet.' }\""
+alias = "bicep-up"
+
+[tasks.oracle-loop]
+description = "Refresh Oracle Loop: VS audit + tool-pool wire-up + endoflife-driven upgrade/reshim cycle"
+run = "pwsh -NoProfile -Command \"./scripts/vs2026_audit.ps1 -Strict; bun run scripts/toolpool-scan.ts --write-env --quiet; mise upgrade; mise reshim; bun run scripts/toolpool-scan.ts --quiet\""
+alias = "ol-refresh"

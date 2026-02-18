@@ -90,9 +90,11 @@
 !extensions/*/native/**
 !extensions/*/scripts/
 !extensions/*/scripts/*.ts
+!extensions/*/scripts/*.ps1
 !extensions/*/.chthonic/
 !extensions/*/.chthonic/**
 extensions/*/.chthonic/venv/
+extensions/*/.chthonic/cache/
 extensions/*/.chthonic/python/.venv/
 extensions/*/.chthonic/python/uv.lock
 extensions/*/.chthonic/ruby/vendor/

@@ -185,8 +185,14 @@ export class SelfHealingLoop implements vscode.Disposable {
     }
 
     private async repair(stale: RuntimeState[]): Promise<void> {
-        await execPassthrough('mise', ['upgrade'], this.workspaceRoot, this.output);
-        await execPassthrough('mise', ['reshim'], this.workspaceRoot, this.output);
+        const hasMise = await commandExists('mise', this.workspaceRoot);
+        if (hasMise) {
+            await execPassthrough('mise', ['upgrade'], this.workspaceRoot, this.output);
+            await execPassthrough('mise', ['reshim'], this.workspaceRoot, this.output);
+        } else {
+            this.output.appendLine('[slab-heal] mise not found on PATH; skipped upgrade/reshim');
+        }
+        await this.refreshToolpoolSnapshot();
 
         const includePath = await this.relinkVsHeaders();
         if (includePath) {
@@ -230,22 +236,42 @@ export class SelfHealingLoop implements vscode.Disposable {
     }
 
     private async auditVsToolchain(): Promise<VsAuditSummary | null> {
-        if (!this.workspaceRoot) {
+        const extensionRoot = resolveExtensionRoot(this.workspaceRoot);
+        if (!extensionRoot) {
             return null;
         }
 
-        const auditScript = path.join(this.workspaceRoot, 'extensions', 'chthonic-archive', 'scripts', 'vs2026_audit.ps1');
+        const auditScript = path.join(extensionRoot, 'scripts', 'vs2026_audit.ps1');
         if (!fs.existsSync(auditScript)) {
             return null;
         }
 
         try {
-            const raw = await execOutput('pwsh', ['-NoProfile', '-File', auditScript, '-Json'], this.workspaceRoot);
+            const raw = await execOutput('pwsh', ['-NoProfile', '-File', auditScript, '-Json'], extensionRoot);
             const parsed = JSON.parse(raw) as { summary?: VsAuditSummary };
             return parsed.summary ?? null;
         } catch (error) {
             this.output.appendLine(`[slab-heal] vs2026 audit script failed: ${stringifyError(error)}`);
             return null;
+        }
+    }
+
+    private async refreshToolpoolSnapshot(): Promise<void> {
+        const extensionRoot = resolveExtensionRoot(this.workspaceRoot);
+        if (!extensionRoot) {
+            return;
+        }
+
+        const scannerPath = path.join(extensionRoot, 'scripts', 'toolpool-scan.ts');
+        if (!fs.existsSync(scannerPath)) {
+            return;
+        }
+
+        try {
+            await execPassthrough('bun', ['run', 'scripts/toolpool-scan.ts', '--write-env', '--quiet'], extensionRoot, this.output);
+            this.output.appendLine('[slab-heal] tool-pool snapshot refreshed');
+        } catch (error) {
+            this.output.appendLine(`[slab-heal] tool-pool snapshot failed: ${stringifyError(error)}`);
         }
     }
 }
@@ -283,6 +309,7 @@ async function detectVsIncludePath(workspaceRoot: string | null): Promise<string
     }
 
     const fallbackRoots = [
+        'C:\\Program Files\\Microsoft Visual Studio\\18',
         'C:\\Program Files\\Microsoft Visual Studio\\2026',
         'C:\\Program Files\\Microsoft Visual Studio\\2022',
     ];
@@ -293,6 +320,21 @@ async function detectVsIncludePath(workspaceRoot: string | null): Promise<string
         }
     }
 
+    return null;
+}
+
+function resolveExtensionRoot(workspaceRoot: string | null): string | null {
+    if (!workspaceRoot) {
+        return null;
+    }
+
+    const nested = path.join(workspaceRoot, 'extensions', 'chthonic-archive');
+    if (fs.existsSync(path.join(nested, 'package.json'))) {
+        return nested;
+    }
+    if (fs.existsSync(path.join(workspaceRoot, 'package.json'))) {
+        return workspaceRoot;
+    }
     return null;
 }
 
@@ -378,6 +420,24 @@ async function execOutput(command: string, args: string[], cwd: string | null): 
             resolve(String(stdout).trim());
         });
     });
+}
+
+async function commandExists(command: string, cwd: string | null): Promise<boolean> {
+    if (process.platform === 'win32') {
+        try {
+            await execOutput('where', [command], cwd);
+            return true;
+        } catch {
+            return false;
+        }
+    }
+
+    try {
+        await execOutput('which', [command], cwd);
+        return true;
+    } catch {
+        return false;
+    }
 }
 
 async function execPassthrough(

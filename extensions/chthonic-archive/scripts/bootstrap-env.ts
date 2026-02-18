@@ -16,6 +16,12 @@ async function main(): Promise<void> {
     fs.mkdirSync(chthonicRoot, { recursive: true });
     const pyprojectPath = path.join(pythonProjectPath, 'pyproject.toml');
 
+    try {
+        await run('bun', ['run', 'scripts/toolpool-scan.ts', '--write-env', '--quiet']);
+    } catch (error) {
+        console.warn(`[bootstrap] tool-pool scan skipped: ${stringifyError(error)}`);
+    }
+
     if (!fs.existsSync(pyprojectPath)) {
         console.warn(`[bootstrap] missing ${pyprojectPath}; skipping Python setup.`);
         return;

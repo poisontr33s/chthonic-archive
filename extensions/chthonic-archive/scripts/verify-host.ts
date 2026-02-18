@@ -1,5 +1,5 @@
 import { spawnSync } from 'bun';
-import { existsSync } from 'fs';
+import { existsSync, readFileSync } from 'fs';
 import path from 'path';
 
 type HostCheck = {
@@ -15,6 +15,14 @@ type HostCheck = {
 type ManualCheckResult = {
     ok: boolean;
     note?: string;
+};
+
+type ToolpoolSnapshot = {
+    recommendedLanes?: {
+        native?: string;
+        sql?: string;
+        infra?: string;
+    };
 };
 
 const cyan = '\x1b[36m';
@@ -171,9 +179,48 @@ function ensurePerlFromRubyDevKit(): ManualCheckResult {
     };
 }
 
+function loadToolpoolSnapshot(): ToolpoolSnapshot | null {
+    const snapshotPath = path.join(process.cwd(), '.chthonic', 'cache', 'toolpool.json');
+    if (!existsSync(snapshotPath)) {
+        return null;
+    }
+
+    try {
+        const raw = readFileSync(snapshotPath, 'utf8');
+        return JSON.parse(raw) as ToolpoolSnapshot;
+    } catch {
+        return null;
+    }
+}
+
+function ensureToolpoolLane(): ManualCheckResult {
+    const snapshot = loadToolpoolSnapshot();
+    if (!snapshot || !snapshot.recommendedLanes) {
+        return {
+            ok: false,
+            note: 'missing .chthonic/cache/toolpool.json; run `bun run toolpool:scan` to map the installed VS/SQL/tool pool',
+        };
+    }
+
+    const nativeLane = snapshot.recommendedLanes.native ?? 'unknown';
+    const sqlLane = snapshot.recommendedLanes.sql ?? 'unknown';
+    const infraLane = snapshot.recommendedLanes.infra ?? 'unknown';
+    return {
+        ok: true,
+        note: `native=${nativeLane}, sql=${sqlLane}, infra=${infraLane}`,
+    };
+}
+
 console.log(`${cyan}[Chthonic] Running Preflight Host Verification...${reset}`);
 
 const checks: HostCheck[] = [
+    {
+        name: 'Tool Pool Snapshot',
+        cmd: ['pwsh', '--version'],
+        manualCheck: ensureToolpoolLane,
+        warnOnly: true,
+        fix: 'Run: bun run toolpool:scan',
+    },
     {
         name: 'Rust Toolchain',
         cmd: ['rustc', '--version'],
