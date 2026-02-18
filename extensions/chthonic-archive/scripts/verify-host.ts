@@ -95,9 +95,17 @@ function ensureToolpoolLane(): ManualCheckResult {
     const nativeLane = snapshot.recommendedLanes.native ?? 'unknown';
     const sqlLane = snapshot.recommendedLanes.sql ?? 'unknown';
     const infraLane = snapshot.recommendedLanes.infra ?? 'unknown';
+    const nativeOk = /^vs2026-.*insider(s)?$/i.test(nativeLane);
+    const sqlOk = sqlLane === 'vs-dacfx' || sqlLane === 'ssms-dacfx';
+    const infraOk = infraLane === 'az+bicep-ready';
+
     return {
-        ok: true,
-        note: `native=${nativeLane}, sql=${sqlLane}, infra=${infraLane}`,
+        ok: nativeOk && sqlOk && infraOk,
+        note: [
+            `native=${nativeLane} ${nativeOk ? 'OK' : 'WARN'}`,
+            `  |- sql=${sqlLane} ${sqlOk ? 'OK' : 'WARN'}`,
+            `  \\- infra=${infraLane} ${infraOk ? 'OK' : 'WARN'}`,
+        ].join('\n'),
     };
 }
 
@@ -250,7 +258,7 @@ const checks: HostCheck[] = [
         fix: 'Install goup (Rust-native Go manager): cargo install goup',
     },
     {
-        name: 'Node Manager Lane',
+        name: 'JavaScript Runtime Lane (bun)',
         cmd: ['bun', '--version'],
         manualCheck: ensureNodeManagerLane,
         warnOnly: true,
@@ -326,14 +334,14 @@ for (const check of checks) {
         if (manual.ok) {
             console.log(`${green}OK${reset}`);
             if (manual.note) {
-                console.log(`  ${manual.note}`);
+                printIndented(manual.note);
             }
             continue;
         }
         if (check.warnOnly) {
             console.log(`${yellow}WARN${reset}`);
             if (manual.note) {
-                console.log(`  ${manual.note}`);
+                printIndented(manual.note);
             }
             console.log(`  ${check.fix}`);
             continue;
@@ -341,14 +349,14 @@ for (const check of checks) {
         if (check.infoOnly) {
             console.log(`${cyan}INFO${reset}`);
             if (manual.note) {
-                console.log(`  ${manual.note}`);
+                printIndented(manual.note);
             }
             console.log(`  ${check.fix}`);
             continue;
         }
         console.log(`${red}FAILED${reset}`);
         if (manual.note) {
-            console.log(`  ${manual.note}`);
+            printIndented(manual.note);
         }
         console.log(`  ${check.fix}`);
         failed = true;
@@ -429,3 +437,9 @@ if (failed) {
 }
 
 console.log(`\n${green}[+] Host verification passed. Ready for Oxidation.${reset}`);
+
+function printIndented(text: string): void {
+    for (const line of text.split(/\r?\n/)) {
+        console.log(`  ${line}`);
+    }
+}

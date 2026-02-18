@@ -287,10 +287,10 @@ function determineNativeLane(binaries: BinaryProbe[], pro: VsInstance | null, bt
     const hasCmake = binaries.some((item) => item.name === 'cmake.exe' && item.exists);
     const hasNinja = binaries.some((item) => item.name === 'ninja.exe' && item.exists);
     if (hasCl && hasCmake && hasNinja && pro) {
-        return 'vs2026-professional-insiders';
+        return 'vs2026-professional-insider';
     }
     if (hasCl && hasCmake && hasNinja && bt) {
-        return 'vs2026-buildtools-insiders';
+        return 'vs2026-buildtools-insider';
     }
     return 'legacy-or-incomplete';
 }
@@ -450,7 +450,9 @@ function run(): void {
         console.log(`[toolpool] report: ${reportPath}`);
         console.log(`[toolpool] binaries: ${binaryFound}/${report.binaries.length} present`);
         console.log(`[toolpool] commands: ${commandFound}/${report.commands.length} present`);
-        console.log(`[toolpool] lanes: native=${report.recommendedLanes.native}, sql=${report.recommendedLanes.sql}, infra=${report.recommendedLanes.infra}`);
+        console.log(`[toolpool] lane: native=${report.recommendedLanes.native}`);
+        console.log(`[toolpool]   |- sql=${report.recommendedLanes.sql}`);
+        console.log(`[toolpool]   \\- infra=${report.recommendedLanes.infra}`);
         if (options.writeEnv) {
             console.log(`[toolpool] env: ${envPath}`);
         }

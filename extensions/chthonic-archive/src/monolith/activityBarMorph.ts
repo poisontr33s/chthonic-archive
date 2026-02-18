@@ -3,11 +3,9 @@ import type { RustificationReport, RustificationTier } from './rustificationScor
 import { iconFileForTier } from './rustificationScore';
 import type { EntropyState } from '../reactor/types';
 
-type ProposedApiFn = (containerId: string, iconPath: vscode.Uri) => Promise<void> | void;
-
 export class ActivityBarMorph implements vscode.Disposable {
     private readonly fallbackItem: vscode.StatusBarItem;
-    private proposalAvailable: boolean | null = null;
+    private fallbackNoticeEmitted = false;
     private latestRustification: RustificationReport | null = null;
     private latestEntropy: EntropyState | null = null;
 
@@ -41,15 +39,11 @@ export class ActivityBarMorph implements vscode.Disposable {
     }
 
     private async apply(): Promise<void> {
-        const iconFile = this.resolveIconFile();
-        const iconPath = vscode.Uri.joinPath(this.extensionUri, 'resources', iconFile);
-        const applied = await this.tryApplyProposedIcon(iconPath);
-        if (!applied) {
-            this.updateFallbackStatus();
-        } else {
-            this.fallbackItem.text = this.fallbackSummary();
-            this.fallbackItem.backgroundColor = undefined;
+        if (!this.fallbackNoticeEmitted) {
+            this.output.appendLine('[morph] dynamic Activity Bar icon updates are unavailable on stable API; using status lane fallback');
+            this.fallbackNoticeEmitted = true;
         }
+        this.updateFallbackStatus();
     }
 
     private resolveIconFile(): string {
@@ -66,38 +60,6 @@ export class ActivityBarMorph implements vscode.Disposable {
 
         const tier = this.latestRustification?.tier ?? 'gate';
         return iconFileForTier(tier);
-    }
-
-    private async tryApplyProposedIcon(iconPath: vscode.Uri): Promise<boolean> {
-        if (this.proposalAvailable === false) {
-            return false;
-        }
-
-        const windowAny = vscode.window as unknown as Record<string, unknown>;
-        const candidates: string[] = [
-            'setActivityBarIcon',
-            'updateActivityBarIcon',
-            'setViewContainerIcon',
-            'updateViewContainerIcon',
-        ];
-
-        for (const candidate of candidates) {
-            const maybeFn = windowAny[candidate];
-            if (typeof maybeFn !== 'function') {
-                continue;
-            }
-            try {
-                const fn = maybeFn as ProposedApiFn;
-                await fn(this.containerId, iconPath);
-                this.proposalAvailable = true;
-                return true;
-            } catch (error) {
-                this.output.appendLine(`[morph] ${candidate} failed: ${stringifyError(error)}`);
-            }
-        }
-
-        this.proposalAvailable = false;
-        return false;
     }
 
     private updateFallbackStatus(): void {
@@ -118,20 +80,13 @@ export class ActivityBarMorph implements vscode.Disposable {
         this.fallbackItem.tooltip = [
             `Rustification ${rust.score}% (${rust.tier})`,
             `Decay ${decayLabel}`,
+            `Glyph: ${this.resolveIconFile()}`,
             `Present: ${rust.present.join(', ') || 'none'}`,
             `Missing: ${rust.missing.join(', ') || 'none'}`,
             entropy && entropy.critical_tools.length > 0
                 ? `Critical tools: ${entropy.critical_tools.join(', ')}`
                 : undefined,
         ].filter(Boolean).join('\n');
-    }
-
-    private fallbackSummary(): string {
-        const rust = this.latestRustification;
-        const entropy = this.latestEntropy;
-        const rustScore = rust ? `${rust.score}%` : '?';
-        const decayScore = entropy ? `${Math.round(entropy.decay_score * 100)}%` : '?';
-        return `$(pulse) Slab ${rustScore} · Decay ${decayScore}`;
     }
 }
 
@@ -144,11 +99,4 @@ function tierLabel(tier: RustificationTier): string {
         default:
             return 'Gate';
     }
-}
-
-function stringifyError(error: unknown): string {
-    if (error instanceof Error) {
-        return `${error.name}: ${error.message}`;
-    }
-    return String(error);
 }

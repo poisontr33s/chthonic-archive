@@ -10,7 +10,7 @@
 // ║    (Standalone file - no detected dependencies)                          ║
 // ╚════════════════════════════════════════════════════════════════════════════╝
 
-import * as fs from 'fs';
+import { promises as fs } from 'fs';
 import * as path from 'path';
 import * as child_process from 'child_process';
 import * as vscode from 'vscode';
@@ -20,7 +20,7 @@ export function activate(context: vscode.ExtensionContext) {
 
     // Register Sacred Mandala viewer
     context.subscriptions.push(
-        vscode.commands.registerCommand('chthonic.openMandala', () => {
+        vscode.commands.registerCommand('chthonic.openMandala', async () => {
             const panel = vscode.window.createWebviewPanel(
                 'chthonic.mandala',
                 '🌀 Sacred Mandala - Repository Topology',
@@ -31,13 +31,13 @@ export function activate(context: vscode.ExtensionContext) {
                 }
             );
 
-            panel.webview.html = getMandalaHTML(context, panel.webview);
+            panel.webview.html = await getMandalaHTML(context, panel.webview);
         })
     );
 
     // Register Dependency Graph viewer
     context.subscriptions.push(
-        vscode.commands.registerCommand('chthonic.openDependencyGraph', () => {
+        vscode.commands.registerCommand('chthonic.openDependencyGraph', async () => {
             const panel = vscode.window.createWebviewPanel(
                 'chthonic.dependencyGraph',
                 '🔗 Dependency Graph',
@@ -48,7 +48,7 @@ export function activate(context: vscode.ExtensionContext) {
                 }
             );
 
-            panel.webview.html = getDependencyGraphHTML(context, panel.webview);
+            panel.webview.html = await getDependencyGraphHTML(context, panel.webview);
         })
     );
 
@@ -87,7 +87,7 @@ export function activate(context: vscode.ExtensionContext) {
                 panel.webview.postMessage({
                     type: 'healthStatus',
                     running: true,
-                    text: 'Running uv run scripts/health_report.py...'
+                    text: 'Running bun run scripts/health_report.py (uv fallback)...'
                 });
 
                 const result = await runHealthReportScript(workspaceFolder.uri.fsPath);
@@ -176,39 +176,51 @@ interface TopologyData {
 type DependencyGraph = Record<string, string[]>;
 
 async function runHealthReportScript(cwd: string): Promise<{ success: boolean; output: string }> {
-    return await new Promise((resolve) => {
-        child_process.execFile(
-            'uv',
-            ['run', 'scripts/health_report.py'],
-            { cwd, encoding: 'utf-8', maxBuffer: 10 * 1024 * 1024 },
-            (error, stdout, stderr) => {
-                const output = [stdout.trim(), stderr.trim()].filter(Boolean).join('\n\n');
-                if (error) {
-                    const detail = `Command failed: ${error.message}`;
-                    resolve({
-                        success: false,
-                        output: output ? `${output}\n\n${detail}` : detail
-                    });
-                    return;
-                }
+    const attempts: ReadonlyArray<{
+        command: string;
+        args: string[];
+        label: string;
+    }> = [
+        { command: 'bun', args: ['run', 'scripts/health_report.py'], label: 'bun run scripts/health_report.py' },
+        { command: 'uv', args: ['run', 'scripts/health_report.py'], label: 'uv run scripts/health_report.py' },
+    ];
 
-                resolve({
-                    success: true,
-                    output: output || 'Health report finished with no output.'
-                });
-            }
-        );
-    });
+    const errors: string[] = [];
+
+    for (const attempt of attempts) {
+        const result = await execFileCapture(attempt.command, attempt.args, cwd);
+        const output = [result.stdout.trim(), result.stderr.trim()].filter(Boolean).join('\n\n');
+
+        if (!result.error) {
+            return {
+                success: true,
+                output: output || `${attempt.label} finished with no output.`,
+            };
+        }
+
+        errors.push(`${attempt.label}: ${result.error.message}`);
+        if (result.error.code !== 'ENOENT') {
+            return {
+                success: false,
+                output: output ? `${output}\n\nCommand failed: ${result.error.message}` : `Command failed: ${result.error.message}`,
+            };
+        }
+    }
+
+    return {
+        success: false,
+        output: `No health command available.\n${errors.join('\n')}`,
+    };
 }
 
-function getMandalaHTML(_context: vscode.ExtensionContext, _webview: vscode.Webview): string {
+async function getMandalaHTML(_context: vscode.ExtensionContext, _webview: vscode.Webview): Promise<string> {
     const workspaceFolder = vscode.workspace.workspaceFolders?.[0];
     if (!workspaceFolder) {
         return `<html><body style="font-family: sans-serif; padding: 20px;"><h1>No workspace folder found</h1></body></html>`;
     }
 
     const topologyPath = path.join(workspaceFolder.uri.fsPath, 'topology_graph.json');
-    if (!fs.existsSync(topologyPath)) {
+    if (!await fileExists(topologyPath)) {
         return `<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -228,7 +240,7 @@ function getMandalaHTML(_context: vscode.ExtensionContext, _webview: vscode.Webv
 </html>`;
     }
 
-    const topology = loadTopologyData(topologyPath);
+    const topology = await loadTopologyData(topologyPath);
     const groupedBands = collectBandNodes(topology.nodes);
     const bandCounts = PRISM_BANDS.reduce((acc, band) => {
         acc[band] = groupedBands[band].length;
@@ -545,14 +557,14 @@ function generatePrismBands(nodes: TopologyNode[]): string {
     }).join('');
 }
 
-function getDependencyGraphHTML(_context: vscode.ExtensionContext, _webview: vscode.Webview): string {
+async function getDependencyGraphHTML(_context: vscode.ExtensionContext, _webview: vscode.Webview): Promise<string> {
     const workspaceFolder = vscode.workspace.workspaceFolders?.[0];
     if (!workspaceFolder) {
         return `<html><body style="font-family: sans-serif; padding: 20px;"><h1>No workspace folder found</h1></body></html>`;
     }
 
     const depGraphPath = path.join(workspaceFolder.uri.fsPath, 'dependency_graph.json');
-    if (!fs.existsSync(depGraphPath)) {
+    if (!await fileExists(depGraphPath)) {
         return `<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -569,7 +581,7 @@ function getDependencyGraphHTML(_context: vscode.ExtensionContext, _webview: vsc
 </html>`;
     }
 
-    const graph = loadDependencyGraph(depGraphPath);
+    const graph = await loadDependencyGraph(depGraphPath);
     const entries = Object.entries(graph).sort((a, b) => b[1].length - a[1].length);
     const totalEdges = entries.reduce((sum, [, deps]) => sum + deps.length, 0);
     const shownEntries = entries.slice(0, 120);
@@ -766,7 +778,7 @@ function getHealthReportHTML(): string {
 <body>
     <div class="shell">
         <h1>💎 Health Report</h1>
-        <p class="sub">Run repository diagnostics using <code>uv run scripts/health_report.py</code>.</p>
+        <p class="sub">Run repository diagnostics using <code>bun run scripts/health_report.py</code> (fallback: <code>uv run scripts/health_report.py</code>).</p>
         <div class="toolbar">
             <button id="runButton" type="button">Generate Health Report</button>
             <span id="status">Idle.</span>
@@ -851,8 +863,8 @@ function collectBandNodes(nodes: TopologyNode[]): Record<PrismBand, TopologyNode
     return grouped;
 }
 
-function loadTopologyData(topologyPath: string): TopologyData {
-    const raw = JSON.parse(fs.readFileSync(topologyPath, 'utf-8')) as {
+async function loadTopologyData(topologyPath: string): Promise<TopologyData> {
+    const raw = JSON.parse(await fs.readFile(topologyPath, 'utf-8')) as {
         metadata?: { nodes_count?: number; edges_count?: number; generated?: string };
         nodes?: Array<{ path?: unknown; prism_band?: unknown }>;
     };
@@ -870,8 +882,8 @@ function loadTopologyData(topologyPath: string): TopologyData {
     };
 }
 
-function loadDependencyGraph(depGraphPath: string): DependencyGraph {
-    const raw = JSON.parse(fs.readFileSync(depGraphPath, 'utf-8')) as Record<string, unknown>;
+async function loadDependencyGraph(depGraphPath: string): Promise<DependencyGraph> {
+    const raw = JSON.parse(await fs.readFile(depGraphPath, 'utf-8')) as Record<string, unknown>;
     const graph: DependencyGraph = {};
 
     for (const [filePath, deps] of Object.entries(raw)) {
@@ -881,6 +893,33 @@ function loadDependencyGraph(depGraphPath: string): DependencyGraph {
     }
 
     return graph;
+}
+
+function fileExists(filePath: string): Promise<boolean> {
+    return fs.access(filePath).then(() => true).catch(() => false);
+}
+
+type ExecCaptureResult = {
+    stdout: string;
+    stderr: string;
+    error: NodeJS.ErrnoException | null;
+};
+
+function execFileCapture(command: string, args: string[], cwd: string): Promise<ExecCaptureResult> {
+    return new Promise((resolve) => {
+        child_process.execFile(
+            command,
+            args,
+            { cwd, encoding: 'utf-8', maxBuffer: 10 * 1024 * 1024 },
+            (error, stdout, stderr) => {
+                resolve({
+                    stdout,
+                    stderr,
+                    error: error as NodeJS.ErrnoException | null,
+                });
+            }
+        );
+    });
 }
 
 function escapeHtml(value: string): string {
