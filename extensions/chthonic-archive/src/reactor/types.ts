@@ -105,6 +105,34 @@ export interface SedimentSynapseResult {
     transport: 'shared_memory' | 'jsonl';
 }
 
+export interface EntropyToolState {
+    tool: string;
+    manager: string;
+    requested: string;
+    cycle?: string | null;
+    latest_cycle?: string | null;
+    latest_stable: boolean;
+    eol: boolean;
+    near_eol: boolean;
+    days_until_eol?: number | null;
+    status: 'latest' | 'outdated' | 'near_eol' | 'eol' | 'unknown' | 'unmanaged';
+    note?: string | null;
+}
+
+export interface EntropyState {
+    status: 'pristine' | 'degraded' | 'critical' | 'stale';
+    decay_score: number;
+    stale: boolean;
+    critical: boolean;
+    checked_at_epoch_ms: number;
+    source_mise?: string | null;
+    auto_update: 'auto' | 'manual' | 'unknown';
+    auto_update_enabled: boolean;
+    critical_tools: string[];
+    tracked_tools: EntropyToolState[];
+    warning?: string | null;
+}
+
 // ---------------------------------------------------------------------------
 // Daemon JSON-RPC wire types
 // ---------------------------------------------------------------------------

@@ -5,6 +5,7 @@ use clap::Parser;
 use serde::Serialize;
 
 mod anno;
+mod entropy_monitor;
 mod env;
 mod reactor;
 mod synapse;
@@ -151,6 +152,23 @@ fn main() -> Result<()> {
             }
         }
     };
+
+    // -------------------------------------------------------------------
+    // Phase 3.75: Entropy monitor initialization
+    // -------------------------------------------------------------------
+
+    let entropy_monitor = entropy_monitor::EntropyMonitor::start(
+        entropy_monitor::EntropyMonitorOptions::from_env(opts.workspace.clone()),
+        |state| {
+            if let Err(error) = write_json(&JsonRpcNotification {
+                jsonrpc: "2.0",
+                method: "reactor/entropyState",
+                params: &state,
+            }) {
+                eprintln!("[daemon] failed to emit entropy state: {error:#}");
+            }
+        },
+    );
 
     // -------------------------------------------------------------------
     // Phase 4: stdin JSON-RPC event loop
@@ -308,6 +326,15 @@ fn main() -> Result<()> {
                     jsonrpc: "2.0",
                     id: request.id,
                     result: &serde_json::json!({ "status": status }),
+                })?;
+            }
+
+            "reactor/entropy_state" => {
+                let snapshot = entropy_monitor.snapshot();
+                write_json(&JsonRpcSuccess {
+                    jsonrpc: "2.0",
+                    id: request.id,
+                    result: &snapshot,
                 })?;
             }
 

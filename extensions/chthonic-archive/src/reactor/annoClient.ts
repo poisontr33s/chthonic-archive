@@ -4,6 +4,7 @@ import * as vscode from 'vscode';
 import { createJsonlDecoder } from '../polyglot/jsonl';
 import type {
     AnnoManifest,
+    EntropyState,
     EnvReport,
     SedimentSynapseResult,
     SedimentChunk,
@@ -47,10 +48,15 @@ export class AnnoClient implements vscode.Disposable {
     private readonly onDidReceiveSynapseEmitter = new vscode.EventEmitter<SynapseDescriptor>();
     readonly onDidReceiveSynapse = this.onDidReceiveSynapseEmitter.event;
 
+    private readonly onDidReceiveEntropyStateEmitter = new vscode.EventEmitter<EntropyState>();
+    readonly onDidReceiveEntropyState = this.onDidReceiveEntropyStateEmitter.event;
+
     constructor(
         private readonly output: vscode.OutputChannel,
         private readonly headlessVulkan: boolean,
         private readonly daemonBinaryOverride?: string,
+        private readonly eolApiBase = 'https://endoflife.date/api/v1',
+        private readonly entropyMonitorIntervalMs = 6 * 60 * 60 * 1_000,
     ) {}
 
     start(rootPath: string): void {
@@ -89,6 +95,10 @@ export class AnnoClient implements vscode.Disposable {
         return this.submitRequest<EnvReport>('anno/provision', {});
     }
 
+    async requestEntropyState(): Promise<EntropyState> {
+        return this.submitRequest<EntropyState>('reactor/entropy_state', {});
+    }
+
     dispose(): void {
         for (const [, pending] of this.pending) {
             pending.reject(new Error('AnnoClient disposed'));
@@ -101,6 +111,7 @@ export class AnnoClient implements vscode.Disposable {
         this.onDidReceiveSedimentEmitter.dispose();
         this.onDidReceiveSedimentChunkEmitter.dispose();
         this.onDidReceiveSynapseEmitter.dispose();
+        this.onDidReceiveEntropyStateEmitter.dispose();
     }
 
     private startDaemon(): void {
@@ -118,6 +129,11 @@ export class AnnoClient implements vscode.Disposable {
 
         this.daemonProcess = spawn(binaryPath, args, {
             cwd: this.rootPath,
+            env: {
+                ...process.env,
+                CHTHONIC_EOL_API_BASE: this.eolApiBase,
+                CHTHONIC_ENTROPY_MONITOR_INTERVAL_MS: String(Math.max(60_000, this.entropyMonitorIntervalMs)),
+            },
             stdio: ['pipe', 'pipe', 'pipe'],
         });
 
@@ -179,6 +195,10 @@ export class AnnoClient implements vscode.Disposable {
             case 'reactor/synapse':
                 this.onDidReceiveSynapseEmitter.fire(params as unknown as SynapseDescriptor);
                 this.output.appendLine(`[daemon] synapse status: ${(params as SynapseDescriptor).status} (${(params as SynapseDescriptor).mode})`);
+                break;
+            case 'reactor/entropyState':
+                this.onDidReceiveEntropyStateEmitter.fire(params as unknown as EntropyState);
+                this.output.appendLine(`[daemon] entropy state: ${(params as EntropyState).status} (${Math.round(((params as EntropyState).decay_score ?? 0) * 100)}%)`);
                 break;
             default:
                 this.output.appendLine(`[daemon] unknown notification: ${method}`);

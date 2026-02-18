@@ -83,6 +83,11 @@
         "icon": "$(target)"
       },
       {
+        "command": "chthonic.restoreOrder",
+        "title": "Chthonic: Restore Order Layout",
+        "icon": "$(list-tree)"
+      },
+      {
         "command": "chthonic.slabHeal",
         "title": "Chthonic: Self-Heal Slab",
         "icon": "$(wrench)"
@@ -123,7 +128,7 @@
         },
         {
           "id": "chthonic.statusView",
-          "name": "Status",
+          "name": "Lens",
           "icon": "$(pulse)"
         },
         {

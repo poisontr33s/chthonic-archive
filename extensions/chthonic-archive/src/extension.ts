@@ -13,9 +13,11 @@ import { CockpitLayout } from './reactor/cockpitLayout';
 import { SynapseBridge } from './reactor/synapseBridge';
 import { ActivityBarMorph } from './monolith/activityBarMorph';
 import { DeepFocusLayout } from './monolith/deepFocusLayout';
+import { RestoreOrderLayout } from './monolith/restoreOrderLayout';
 import { LoomViewProvider } from './monolith/loomView';
 import { SelfHealingLoop } from './monolith/selfHealingLoop';
 import { computeRustificationReport } from './monolith/rustificationScore';
+import type { EntropyState } from './reactor/types';
 
 export function activate(context: vscode.ExtensionContext) {
     console.log('☥ Chthonic Archive extension activated');
@@ -38,6 +40,7 @@ export function activate(context: vscode.ExtensionContext) {
 
     const activityBarMorph = new ActivityBarMorph(context.extensionUri, outputChannel);
     const deepFocusLayout = new DeepFocusLayout(outputChannel);
+    const restoreOrderLayout = new RestoreOrderLayout(outputChannel);
     const loomProvider = new LoomViewProvider();
     const selfHealingLoop = new SelfHealingLoop(
         outputChannel,
@@ -160,12 +163,52 @@ export function activate(context: vscode.ExtensionContext) {
     const slabSelfHealingEnabled = entropyConfig.get<boolean>('slab.selfHealingEnabled', true);
     const slabSelfHealingIntervalMs = entropyConfig.get<number>('slab.selfHealingIntervalMs', 21600000);
     const slabEolApiBase = entropyConfig.get<string>('slab.eolApiBase', 'https://endoflife.date/api');
+    const daemonEolApiBase = normalizeEolApiBase(slabEolApiBase);
+    const daemonEntropyIntervalMs = Math.max(60_000, Math.floor(slabSelfHealingIntervalMs / 2));
 
-    const annoClient = new AnnoClient(outputChannel, reactorHeadlessVulkan, reactorDaemonBinaryPath);
+    const annoClient = new AnnoClient(
+        outputChannel,
+        reactorHeadlessVulkan,
+        reactorDaemonBinaryPath,
+        daemonEolApiBase,
+        daemonEntropyIntervalMs,
+    );
     const cockpitLayout = new CockpitLayout(outputChannel, context.environmentVariableCollection);
     const synapseBridge = new SynapseBridge(outputChannel, context.extensionPath, reactorTransport);
+    let lastEntropyPromptFingerprint: string | null = null;
 
     context.subscriptions.push(annoClient, cockpitLayout, synapseBridge);
+
+    const handleEntropyState = (state: EntropyState): void => {
+        void activityBarMorph.updateEntropy(state);
+        outputChannel.appendLine(
+            `[lens] decay ${Math.round(state.decay_score * 100)}% (${state.status}) from ${state.source_mise ?? 'no-mise'}`,
+        );
+
+        if (!state.critical || !state.auto_update_enabled) {
+            lastEntropyPromptFingerprint = null;
+            return;
+        }
+
+        const fingerprint = `${state.status}:${state.auto_update}:${[...state.critical_tools].sort().join(',')}`;
+        if (fingerprint === lastEntropyPromptFingerprint) {
+            return;
+        }
+        lastEntropyPromptFingerprint = fingerprint;
+
+        const criticalTools = state.critical_tools.length > 0
+            ? state.critical_tools.join(', ')
+            : 'runtime toolchain';
+        void vscode.window.showWarningMessage(
+            `Chthonic decay is critical (${Math.round(state.decay_score * 100)}%). ${criticalTools} needs healing.`,
+            'Run mise upgrade',
+            'Later',
+        ).then((choice) => {
+            if (choice === 'Run mise upgrade') {
+                void selfHealingLoop.runNow('manual');
+            }
+        });
+    };
 
     context.subscriptions.push(
         annoClient.onDidReceiveEnv((envReport) => {
@@ -180,6 +223,9 @@ export function activate(context: vscode.ExtensionContext) {
         annoClient.onDidReceiveSynapse((descriptor) => {
             synapseBridge.updateDescriptor(descriptor);
         }),
+        annoClient.onDidReceiveEntropyState((state) => {
+            handleEntropyState(state);
+        }),
     );
 
     // Allow the Abyssal Pane webview to trigger sediment computation
@@ -189,6 +235,13 @@ export function activate(context: vscode.ExtensionContext) {
 
     if (workspaceRoot && reactorEnabled) {
         annoClient.start(workspaceRoot);
+        void annoClient.requestEntropyState()
+            .then((state) => {
+                handleEntropyState(state);
+            })
+            .catch((error) => {
+                outputChannel.appendLine(`[lens] initial entropy snapshot unavailable: ${error}`);
+            });
         if (reactorCockpitAutoLayout) {
             void cockpitLayout.activate();
         }
@@ -232,6 +285,9 @@ export function activate(context: vscode.ExtensionContext) {
         }),
         vscode.commands.registerCommand('chthonic.deepFocus', () => {
             void deepFocusLayout.activate();
+        }),
+        vscode.commands.registerCommand('chthonic.restoreOrder', () => {
+            void restoreOrderLayout.activate();
         }),
         vscode.commands.registerCommand('chthonic.slabHeal', () => {
             void selfHealingLoop.runNow('manual');
@@ -390,6 +446,14 @@ function updateSSOTHash(item: vscode.StatusBarItem) {
 function asOptionalPath(value: string): string | undefined {
     const trimmed = value.trim();
     return trimmed.length > 0 ? trimmed : undefined;
+}
+
+function normalizeEolApiBase(value: string): string {
+    const trimmed = value.trim().replace(/\/+$/, '');
+    if (trimmed.endsWith('/api')) {
+        return `${trimmed}/v1`;
+    }
+    return trimmed.length > 0 ? trimmed : 'https://endoflife.date/api/v1';
 }
 
 // --- Theme Tree ---

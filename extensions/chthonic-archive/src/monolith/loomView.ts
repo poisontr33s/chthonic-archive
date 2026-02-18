@@ -32,6 +32,9 @@ export class LoomViewProvider implements vscode.WebviewViewProvider, vscode.Disp
             if (payload.type === 'deepFocus') {
                 void vscode.commands.executeCommand('chthonic.deepFocus');
             }
+            if (payload.type === 'restoreOrder') {
+                void vscode.commands.executeCommand('chthonic.restoreOrder');
+            }
         });
 
         this.postState();
@@ -131,6 +134,7 @@ export class LoomViewProvider implements vscode.WebviewViewProvider, vscode.Disp
         <button id="refresh">Refresh</button>
         <button id="heal">Self-Heal</button>
         <button id="focus">Deep Focus</button>
+        <button id="restore">Restore Order</button>
     </div>
 
     <script nonce="${nonce}">
@@ -158,6 +162,7 @@ export class LoomViewProvider implements vscode.WebviewViewProvider, vscode.Disp
         document.getElementById('refresh').addEventListener('click', () => vscode.postMessage({ type: 'refresh' }));
         document.getElementById('heal').addEventListener('click', () => vscode.postMessage({ type: 'heal' }));
         document.getElementById('focus').addEventListener('click', () => vscode.postMessage({ type: 'deepFocus' }));
+        document.getElementById('restore').addEventListener('click', () => vscode.postMessage({ type: 'restoreOrder' }));
 
         window.addEventListener('message', (event) => {
             const message = event.data;
