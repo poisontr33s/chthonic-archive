@@ -33,6 +33,18 @@ CHTHONIC_SOLANA_RUNTIME = "agave"
 CHTHONIC_SOLANA_INSTALLER = "solana-install"
 CHTHONIC_FIREDANCER_ARTIFACT_DIR = "{{cwd}}/.chthonic/firedancer/artifacts"
 CHTHONIC_REACTOR_TRANSPORT = "auto" # set to "jsonl" for Safe Mode fallback
+
+# VISUAL STUDIO 2026 INSIDERS LSL PATHING
+# Resolved from local VS 2026 Insiders installation lane.
+VSINSTALLDIR = 'C:\Program Files\Microsoft Visual Studio\18\Insiders'
+VCINSTALLDIR = 'C:\Program Files\Microsoft Visual Studio\18\Insiders\VC'
+
+# FORCE RUST TO USE THE VS 2026 INSIDERS LINKER LANE
+RUSTFLAGS = "-C linker=lld-link -L native='C:/Program Files/Microsoft Visual Studio/18/Insiders/VC/Tools/MSVC/14.50.35717/lib/x64'"
+
+# SQL DEV KIT 22 SYNERGY
+SQL_DEV_KIT_PATH = 'C:\Program Files\Microsoft SQL Server\170\DAC\bin'
+
 _.path = [
     "{{env.USERPROFILE}}/.local/bin",
     "{{env.USERPROFILE}}/.cargo/bin",
