@@ -9,6 +9,8 @@ const statRenderer = document.getElementById('stat-renderer');
 let wasmRenderGraph = null;
 let latestGraph = null;
 let latestSediment = null;
+let sedimentStreamBuffer = [];
+let sedimentStreamMeta = null;
 let projectedNodes = [];
 let sedimentMode = false;
 
@@ -264,6 +266,31 @@ function renderSediment(sediment) {
     }));
 }
 
+function applySedimentChunk(chunk) {
+    if (!chunk || !Array.isArray(chunk.vertices)) {
+        return;
+    }
+
+    if (!sedimentStreamMeta || chunk.chunk_index === 0) {
+        sedimentStreamBuffer = [];
+        sedimentStreamMeta = {
+            total_chunks: chunk.total_chunks || 1,
+            layer_count: chunk.layer_count || 0,
+            file_count: chunk.file_count || 0,
+            backend: chunk.backend || 'stream',
+        };
+    }
+
+    sedimentStreamBuffer.push(...chunk.vertices);
+    renderSediment({
+        vertices: sedimentStreamBuffer,
+        layer_count: sedimentStreamMeta.layer_count,
+        file_count: sedimentStreamMeta.file_count,
+        compute_time_ms: chunk.chunk_index + 1,
+        backend: `${sedimentStreamMeta.backend} stream ${(chunk.chunk_index + 1)}/${sedimentStreamMeta.total_chunks}`,
+    });
+}
+
 function renderGraph(graph) {
     latestGraph = graph;
     if (!graph || !Array.isArray(graph.nodes)) {
@@ -358,7 +385,13 @@ window.addEventListener('message', (event) => {
         return;
     }
     if (message.type === 'sediment' && message.sediment) {
+        sedimentStreamBuffer = [];
+        sedimentStreamMeta = null;
         renderSediment(message.sediment);
+        return;
+    }
+    if (message.type === 'sedimentChunk' && message.chunk) {
+        applySedimentChunk(message.chunk);
         return;
     }
     if (message.type === 'graph') {

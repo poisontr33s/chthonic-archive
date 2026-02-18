@@ -64,6 +64,8 @@
 !extensions/*/*.md
 !extensions/*/src/
 !extensions/*/src/*.ts
+!extensions/*/src/monolith/
+!extensions/*/src/monolith/*.ts
 !extensions/*/src/entropy/
 !extensions/*/src/entropy/*.ts
 !extensions/*/src/polyglot/

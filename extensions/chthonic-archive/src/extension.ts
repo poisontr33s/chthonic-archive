@@ -10,6 +10,11 @@ import { PolyglotEntropyOrchestrator } from './polyglot/polyglotEntropyOrchestra
 import type { LedgerMode } from './polyglot/ledgerBroker';
 import { AnnoClient } from './reactor/annoClient';
 import { CockpitLayout } from './reactor/cockpitLayout';
+import { ActivityBarMorph } from './monolith/activityBarMorph';
+import { DeepFocusLayout } from './monolith/deepFocusLayout';
+import { LoomViewProvider } from './monolith/loomView';
+import { SelfHealingLoop } from './monolith/selfHealingLoop';
+import { computeRustificationReport } from './monolith/rustificationScore';
 
 export function activate(context: vscode.ExtensionContext) {
     console.log('☥ Chthonic Archive extension activated');
@@ -28,6 +33,22 @@ export function activate(context: vscode.ExtensionContext) {
     );
     context.subscriptions.push(
         vscode.window.registerWebviewViewProvider(ChthonicChatProvider.viewType, chatProvider),
+    );
+
+    const activityBarMorph = new ActivityBarMorph(context.extensionUri, outputChannel);
+    const deepFocusLayout = new DeepFocusLayout(outputChannel);
+    const loomProvider = new LoomViewProvider();
+    const selfHealingLoop = new SelfHealingLoop(
+        outputChannel,
+        context.environmentVariableCollection,
+        workspaceRoot,
+    );
+
+    context.subscriptions.push(
+        activityBarMorph,
+        loomProvider,
+        selfHealingLoop,
+        vscode.window.registerWebviewViewProvider(LoomViewProvider.viewType, loomProvider),
     );
 
     // --- Entropy Engine (worker + decorations + webview) ---
@@ -84,6 +105,30 @@ export function activate(context: vscode.ExtensionContext) {
         vscode.window.registerWebviewViewProvider(AbyssalPaneProvider.viewType, abyssalProvider),
     );
 
+    const refreshRustification = async (reason: string): Promise<void> => {
+        if (!workspaceRoot) {
+            return;
+        }
+        const report = await computeRustificationReport(workspaceRoot);
+        loomProvider.update(report);
+        await activityBarMorph.update(report);
+        outputChannel.appendLine(`[monolith] rustification ${report.score}% (${report.tier}) via ${reason}`);
+    };
+
+    if (workspaceRoot) {
+        void refreshRustification('startup');
+
+        const markerWatcher = vscode.workspace.createFileSystemWatcher(
+            new vscode.RelativePattern(workspaceRoot, '{uv.lock,Cargo.toml,mise.toml,.mise.toml,go.mod,.ruby-version}'),
+        );
+        context.subscriptions.push(
+            markerWatcher,
+            markerWatcher.onDidCreate(() => { void refreshRustification('marker-create'); }),
+            markerWatcher.onDidChange(() => { void refreshRustification('marker-change'); }),
+            markerWatcher.onDidDelete(() => { void refreshRustification('marker-delete'); }),
+        );
+    }
+
     if (workspaceRoot && entropyEnabled) {
         entropyClient.start(workspaceRoot, entropyMaxFiles, entropyScanIntervalMs);
         void polyglotOrchestrator.start(workspaceRoot);
@@ -110,6 +155,9 @@ export function activate(context: vscode.ExtensionContext) {
     const reactorHeadlessVulkan = entropyConfig.get<boolean>('reactor.headlessVulkan', true);
     const reactorCockpitAutoLayout = entropyConfig.get<boolean>('reactor.cockpitAutoLayout', false);
     const reactorDaemonBinaryPath = asOptionalPath(entropyConfig.get<string>('reactor.daemonBinaryPath', ''));
+    const slabSelfHealingEnabled = entropyConfig.get<boolean>('slab.selfHealingEnabled', true);
+    const slabSelfHealingIntervalMs = entropyConfig.get<number>('slab.selfHealingIntervalMs', 21600000);
+    const slabEolApiBase = entropyConfig.get<string>('slab.eolApiBase', 'https://endoflife.date/api');
 
     const annoClient = new AnnoClient(outputChannel, reactorHeadlessVulkan, reactorDaemonBinaryPath);
     const cockpitLayout = new CockpitLayout(outputChannel, context.environmentVariableCollection);
@@ -123,11 +171,14 @@ export function activate(context: vscode.ExtensionContext) {
         annoClient.onDidReceiveSediment((sediment) => {
             abyssalProvider.postSedimentData(sediment);
         }),
+        annoClient.onDidReceiveSedimentChunk((chunk) => {
+            abyssalProvider.postSedimentChunk(chunk);
+        }),
     );
 
     // Allow the Abyssal Pane webview to trigger sediment computation
     abyssalProvider.onRequestSediment(() => {
-        annoClient.requestSediment(10, 500).catch((err) => {
+        annoClient.requestSedimentStream(10, 500).catch((err) => {
             outputChannel.appendLine(`[reactor] sediment request from webview failed: ${err}`);
         });
     });
@@ -163,9 +214,26 @@ export function activate(context: vscode.ExtensionContext) {
         }
     }
 
+    if (workspaceRoot && slabSelfHealingEnabled) {
+        selfHealingLoop.start({
+            intervalMs: slabSelfHealingIntervalMs,
+            eolApiBase: slabEolApiBase,
+        });
+        void selfHealingLoop.runNow('interval');
+    }
+
     context.subscriptions.push(
         vscode.commands.registerCommand('chthonic.activateCockpit', () => {
             void cockpitLayout.activate();
+        }),
+        vscode.commands.registerCommand('chthonic.deepFocus', () => {
+            void deepFocusLayout.activate();
+        }),
+        vscode.commands.registerCommand('chthonic.slabHeal', () => {
+            void selfHealingLoop.runNow('manual');
+        }),
+        vscode.commands.registerCommand('chthonic.refreshRustification', () => {
+            void refreshRustification('manual-command');
         }),
         vscode.commands.registerCommand('chthonic.annoDetect', () => {
             if (workspaceRoot) {
@@ -260,6 +328,7 @@ export function activate(context: vscode.ExtensionContext) {
             entropyClient.rescanNow();
             entropyClient.requestGraph(260);
             polyglotOrchestrator.requestManualScan();
+            void refreshRustification('refresh-status');
         })
     );
 }

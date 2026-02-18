@@ -3,7 +3,7 @@ import * as vscode from 'vscode';
 import type { EntropyGraphPayload } from './types';
 import type { EntropySnapshot } from './entropyWorkerClient';
 import { EntropyWorkerClient } from './entropyWorkerClient';
-import type { SedimentResult } from '../reactor/types';
+import type { SedimentChunk, SedimentResult } from '../reactor/types';
 
 export class AbyssalPaneProvider implements vscode.WebviewViewProvider, vscode.Disposable {
     static readonly viewType = 'chthonic.abyssalView';
@@ -40,6 +40,10 @@ export class AbyssalPaneProvider implements vscode.WebviewViewProvider, vscode.D
      */
     postSedimentData(result: SedimentResult): void {
         this.postMessage({ type: 'sediment', sediment: result });
+    }
+
+    postSedimentChunk(chunk: SedimentChunk): void {
+        this.postMessage({ type: 'sedimentChunk', chunk });
     }
 
     dispose(): void {
@@ -104,7 +108,7 @@ export class AbyssalPaneProvider implements vscode.WebviewViewProvider, vscode.D
         }
     }
 
-    private postMessage(message: { type: string; graph?: EntropyGraphPayload; snapshot?: EntropySnapshot; sediment?: SedimentResult }): void {
+    private postMessage(message: { type: string; graph?: EntropyGraphPayload; snapshot?: EntropySnapshot; sediment?: SedimentResult; chunk?: SedimentChunk }): void {
         if (!this.view) {
             return;
         }

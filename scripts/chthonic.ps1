@@ -737,6 +737,7 @@ Usage: chthonic [--version] [--help] <domain> [<action>] [<args>]
   claudine [--quiet]      Alias to env (shell compatibility lane)
   status [--json]         Show tool + manager versions (verbose)
   trend [--json]          Rustification trend tracker (GitHub + endoflife cross-ref)
+  oversight [--json]      Hierarchical upcycle oversight stack (single LATEST output)
   doctor [--fix] [--json] Check versions + EOL via endoflife.date; --fix upgrades
   doctor --dry-run        Simulate --fix without executing anything
   doctor --origins        Show install methodology per tool (path + origin + wrappers)
@@ -1400,6 +1401,19 @@ function Invoke-RustificationTrend {
     }
 }
 
+function Invoke-OversightUpcycle {
+    param([string[]]$Args)
+
+    Push-Location $REPO_ROOT
+    try {
+        & uv run scripts/oversight_upcycle.py @Args
+        return $LASTEXITCODE
+    }
+    finally {
+        Pop-Location
+    }
+}
+
 # ═══════════════════════════════════════════════════════════════════════════════
 # DOCTOR - endoflife.date API integration
 # ═══════════════════════════════════════════════════════════════════════════════
@@ -1907,6 +1921,10 @@ switch ($Domain) {
     }
     "trend" {
         $exitCode = Invoke-RustificationTrend -Args $CmdArgs
+        exit $exitCode
+    }
+    "oversight" {
+        $exitCode = Invoke-OversightUpcycle -Args $CmdArgs
         exit $exitCode
     }
     "doctor" {

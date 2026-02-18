@@ -177,6 +177,32 @@ fn main() -> Result<()> {
                 }
             }
 
+            "reactor/sediment_stream" => {
+                let params: SedimentRequest =
+                    serde_json::from_value(request.params.clone())
+                        .unwrap_or_default();
+
+                let result = match &vulkan_reactor {
+                    Some(r) => r.compute_sediment(&opts.workspace, &params),
+                    None => compute_sediment_cpu(&opts.workspace, &params),
+                };
+
+                match result {
+                    Ok(r) => {
+                        stream_sediment_chunks(&r, params.chunk_size.max(1))?;
+                        write_json(&JsonRpcSuccess {
+                            jsonrpc: "2.0",
+                            id: request.id,
+                            result: &r,
+                        })?;
+                    }
+                    Err(err) => write_json(&JsonRpcError::internal(
+                        request.id,
+                        err,
+                    ))?,
+                }
+            }
+
             "reactor/status" => {
                 let status = if vulkan_reactor.is_some() {
                     "vulkan-ready"
@@ -228,6 +254,28 @@ fn compute_sediment_cpu(
         compute_time_ms: start.elapsed().as_millis() as u64,
         backend: "cpu-only",
     })
+}
+
+fn stream_sediment_chunks(result: &types::SedimentResult, chunk_size: u32) -> Result<()> {
+    let chunk_size = chunk_size.max(1) as usize;
+    let total_chunks = ((result.vertices.len() + chunk_size - 1) / chunk_size) as u32;
+
+    for (chunk_index, vertices) in result.vertices.chunks(chunk_size).enumerate() {
+        write_json(&JsonRpcNotification {
+            jsonrpc: "2.0",
+            method: "reactor/sedimentChunk",
+            params: &serde_json::json!({
+                "chunk_index": chunk_index,
+                "total_chunks": total_chunks,
+                "layer_count": result.layer_count,
+                "file_count": result.file_count,
+                "backend": result.backend,
+                "vertices": vertices,
+            }),
+        })?;
+    }
+
+    Ok(())
 }
 
 fn write_json<T: Serialize>(value: &T) -> Result<()> {

@@ -12,6 +12,10 @@
   "engines": {
     "vscode": "^1.90.0"
   },
+  "enabledApiProposals": [
+    "workbenchLayout",
+    "activityBar"
+  ],
   "categories": [
     "Themes",
     "Visualization",
@@ -32,6 +36,11 @@
         "label": "Chthonic Mandala - ROGBIV",
         "uiTheme": "vs-dark",
         "path": "./themes/chthonic-rogbiv-color-theme.json"
+      },
+      {
+        "label": "Chthonic Geological Core",
+        "uiTheme": "vs-dark",
+        "path": "./themes/chthonic-geology-color-theme.json"
       }
     ],
     "commands": [
@@ -67,6 +76,21 @@
         "command": "chthonic.reactorSediment",
         "title": "Chthonic: Compute Sediment Layers",
         "icon": "$(layers)"
+      },
+      {
+        "command": "chthonic.deepFocus",
+        "title": "Chthonic: Deep Focus Layout",
+        "icon": "$(target)"
+      },
+      {
+        "command": "chthonic.slabHeal",
+        "title": "Chthonic: Self-Heal Slab",
+        "icon": "$(wrench)"
+      },
+      {
+        "command": "chthonic.refreshRustification",
+        "title": "Chthonic: Refresh Rustification Score",
+        "icon": "$(pulse)"
       }
     ],
     "viewsContainers": {
@@ -101,6 +125,12 @@
           "id": "chthonic.statusView",
           "name": "Status",
           "icon": "$(pulse)"
+        },
+        {
+          "id": "chthonic.loomView",
+          "type": "webview",
+          "name": "The Loom",
+          "icon": "resources/loom.svg"
         }
       ]
     },
@@ -221,6 +251,22 @@
           "type": "boolean",
           "default": false,
           "description": "Automatically apply Cockpit layout (terminal right, editor center) on activation."
+        },
+        "chthonic.slab.selfHealingEnabled": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable periodic slab self-healing via endoflife.date checks and mise upgrade."
+        },
+        "chthonic.slab.selfHealingIntervalMs": {
+          "type": "number",
+          "default": 21600000,
+          "minimum": 60000,
+          "description": "Background slab self-healing interval in milliseconds."
+        },
+        "chthonic.slab.eolApiBase": {
+          "type": "string",
+          "default": "https://endoflife.date/api",
+          "description": "Base URL for endoflife lifecycle API used by slab self-healing."
         }
       }
     }

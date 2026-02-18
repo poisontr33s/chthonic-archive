@@ -1,0 +1,95 @@
+{
+  "name": "Chthonic Geological Core",
+  "type": "dark",
+  "semanticHighlighting": true,
+  "colors": {
+    "editor.background": "#050505",
+    "editor.foreground": "#E8E2D2",
+    "sideBar.background": "#050505",
+    "sideBar.foreground": "#D3C7A6",
+    "activityBar.background": "#050505",
+    "activityBar.foreground": "#F4C430",
+    "activityBar.activeBorder": "#F4C430",
+    "statusBar.background": "#050505",
+    "statusBar.foreground": "#F4C430",
+    "panel.background": "#090909",
+    "panel.border": "#2B2412",
+    "tab.activeBackground": "#080808",
+    "tab.activeForeground": "#F4C430",
+    "tab.inactiveBackground": "#050505",
+    "tab.inactiveForeground": "#847A63",
+    "editorLineNumber.activeForeground": "#F4C430",
+    "editorCursor.foreground": "#F4C430",
+    "editor.selectionBackground": "#F4C43033",
+    "list.activeSelectionBackground": "#2B2412",
+    "list.activeSelectionForeground": "#F4C430",
+    "button.background": "#F4C430",
+    "button.foreground": "#050505",
+    "button.hoverBackground": "#FFCF4A",
+    "terminal.background": "#050505",
+    "terminal.foreground": "#E8E2D2",
+    "terminalCursor.foreground": "#F4C430",
+    "terminal.ansiYellow": "#F4C430",
+    "terminal.ansiBrightYellow": "#FFCF4A",
+    "terminal.ansiBlack": "#050505"
+  },
+  "semanticTokenColors": {
+    "*.mutable": "#F4C430",
+    "*.slab": "#C7B58A",
+    "*.critical": "#FFB347"
+  },
+  "tokenColors": [
+    {
+      "name": "Keywords",
+      "scope": [
+        "keyword",
+        "storage.type",
+        "storage.modifier"
+      ],
+      "settings": {
+        "foreground": "#F4C430",
+        "fontStyle": "bold"
+      }
+    },
+    {
+      "name": "Functions",
+      "scope": [
+        "entity.name.function",
+        "support.function"
+      ],
+      "settings": {
+        "foreground": "#D7B562"
+      }
+    },
+    {
+      "name": "Types",
+      "scope": [
+        "entity.name.type",
+        "support.type",
+        "entity.name.class"
+      ],
+      "settings": {
+        "foreground": "#E6D5A1"
+      }
+    },
+    {
+      "name": "Strings",
+      "scope": [
+        "string"
+      ],
+      "settings": {
+        "foreground": "#B9A37A"
+      }
+    },
+    {
+      "name": "Comments",
+      "scope": [
+        "comment"
+      ],
+      "settings": {
+        "foreground": "#7A715D",
+        "fontStyle": "italic"
+      }
+    }
+  ]
+}

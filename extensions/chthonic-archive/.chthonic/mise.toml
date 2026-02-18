@@ -1,41 +1,44 @@
-# Hermetic mise configuration for Chthonic Archive
+# chthonic-archive Monolithic Slab (Windows 11 native kernel)
 #
-# IMPORTANT: Python is NOT listed here. uv is the exclusive Python owner.
-# IMPORTANT: Ruby is NOT listed here. rv is the exclusive Ruby owner.
-# See anno-manifest.toml for the authoritative policy.
+# Ownership model:
+# - mise is kernel + deterministic resolver
+# - uv owns Python runtime lifecycle
+# - rv owns Ruby runtime lifecycle
+# - goup owns system Go runtime lifecycle
+#
+# Constraint:
+# - no registry PATH writes; all PATH state is terminal-memory only.
 
 [tools]
-go   = "1.24"
-uv   = "latest"  # mise installs uv; uv's own shims own python/pip
+uv = "latest"
+rv = "latest"
+goup = "latest"
+go = "1.26.0"
+rust = "stable"
+cmake = "latest"
+ninja = "latest"
 
 [tools.solana-cli]
 version = "2.3"
 
 [settings]
-# Ensure mise never shims Python or Ruby binaries (owned by uv and rv)
 disable_tools = ["python", "ruby"]
 
-# ─────────────────────────────────────────────────────────────
-# Environment
-# ─────────────────────────────────────────────────────────────
-# Ruby DevKit injection for Windows. These variables are required
-# for native gem compilation (e.g., nokogiri, prism, ffi).
-#
-# The ANNO daemon detects MSYS2_HOME automatically from:
-#   1. RubyInstaller's bundled msys64/
-#   2. C:\msys64 (standalone MSYS2)
-#
-# These templates are resolved at activation time.
-
 [env]
+CHTHONIC_SLAB_MODE = "kernel"
+CHTHONIC_RUBY_MIGRATION_FROM = "3.3"
+CHTHONIC_RUBY_MIGRATION_TO = "3.4"
+CHTHONIC_GO_OWNER = "goup"
 _.path = [
+    "{{env.USERPROFILE}}/.local/bin",
+    "{{env.USERPROFILE}}/.cargo/bin",
+    "{{env.USERPROFILE}}/.goup/current/bin",
     "{{env.MSYS2_HOME}}/ucrt64/bin",
     "{{env.MSYS2_HOME}}/usr/bin",
 ]
 
-# Windows-specific env vars for native compilation
-# (ignored on non-Windows platforms by mise)
 [env."windows"]
-CC         = "gcc"
-CXX        = "g++"
-RI_DEVKIT  = "{{env.MSYS2_HOME}}"
+CC = "gcc"
+CXX = "g++"
+RI_DEVKIT = "{{env.MSYS2_HOME}}"
+RUBY_MIGRATION_MODE = "in_memory_devkit_injection"

@@ -179,6 +179,8 @@ pub struct SedimentRequest {
     pub max_layers: u32,
     #[serde(default = "default_max_files")]
     pub max_files: u32,
+    #[serde(default = "default_chunk_size")]
+    pub chunk_size: u32,
 }
 
 impl Default for SedimentRequest {
@@ -186,6 +188,7 @@ impl Default for SedimentRequest {
         Self {
             max_layers: default_max_layers(),
             max_files: default_max_files(),
+            chunk_size: default_chunk_size(),
         }
     }
 }
@@ -195,6 +198,9 @@ fn default_max_layers() -> u32 {
 }
 fn default_max_files() -> u32 {
     500
+}
+fn default_chunk_size() -> u32 {
+    220
 }
 
 #[derive(Debug, Clone, Serialize)]

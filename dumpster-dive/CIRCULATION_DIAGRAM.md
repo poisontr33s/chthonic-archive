@@ -340,7 +340,7 @@ Future upcycle: If Timeline A becomes viable, SLAG → ANVIL (full modernization
 - [DUMPSTER_DIVE_REGISTRY.json](DUMPSTER_DIVE_REGISTRY.json) — Programmatic state tracking
 
 ### External References
-- SSOT: [Section 4.5.1.2](../.github/copilot-instructions.md#section-4512) — QMR Protocol
+- SSOT: [Section 4.5.1.2](../.github/copilot-instructions.archive.md#L3370) **<—>** QMR Protocol **->** Reference for TEA-VAULT processing
 - None for production (infrastructure documentation only)
 
 ### Status
@@ -351,6 +351,7 @@ Future upcycle: If Timeline A becomes viable, SLAG → ANVIL (full modernization
 ---
 
 **Last Updated:** 2025-12-24  
-**Maintained By:** Sister Ferrum Scoriae (`SFS`)  
+**Maintained By:** Sister Ferrum Scoriae **(`SFS`)** 
 **Primary Reference:** [FORGE_CIRCULATION_PROTOCOL.md](protocols/FORGE_CIRCULATION_PROTOCOL.md)  
 **Standard:** [Cross-Reference Standard](protocols/CROSS_REFERENCE_STANDARD.md)
+
