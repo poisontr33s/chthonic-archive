@@ -1,6 +1,6 @@
 {
-  "generated_at_utc": "2026-02-18T03:57:41.637827+00:00",
-  "stamp_minute_day_month_year": "57.18.02.2026",
+  "generated_at_utc": "2026-02-18T03:59:31.506757+00:00",
+  "stamp_minute_day_month_year": "59.18.02.2026",
   "window_days": 30,
   "github_pages": 2,
   "github_per_page": 100,
@@ -20,7 +20,7 @@
     {
       "language": "TypeScript",
       "repos": 56,
-      "stars": 79373,
+      "stars": 79376,
       "score": 56489.97,
       "lane": "javascript",
       "lane_present": true,
@@ -33,7 +33,7 @@
     {
       "language": "Python",
       "repos": 42,
-      "stars": 74556,
+      "stars": 74558,
       "score": 42487.25,
       "lane": "python",
       "lane_present": true,
@@ -46,7 +46,7 @@
     {
       "language": "JavaScript",
       "repos": 17,
-      "stars": 16064,
+      "stars": 16065,
       "score": 17420.59,
       "lane": "javascript",
       "lane_present": true,
@@ -59,8 +59,8 @@
     {
       "language": "Rust",
       "repos": 16,
-      "stars": 27032,
-      "score": 16443.19,
+      "stars": 27037,
+      "score": 16443.2,
       "lane": "rust",
       "lane_present": true,
       "runtime_present": true,
@@ -72,8 +72,8 @@
     {
       "language": "Go",
       "repos": 10,
-      "stars": 22657,
-      "score": 10435.52,
+      "stars": 22663,
+      "score": 10435.53,
       "lane": "go",
       "lane_present": true,
       "runtime_present": true,
@@ -85,7 +85,7 @@
     {
       "language": "Shell",
       "repos": 10,
-      "stars": 12166,
+      "stars": 12167,
       "score": 10408.52,
       "lane": "shell",
       "lane_present": false,
@@ -98,8 +98,8 @@
     {
       "language": "Swift",
       "repos": 5,
-      "stars": 6047,
-      "score": 5378.16,
+      "stars": 6048,
+      "score": 5378.17,
       "lane": "swift",
       "lane_present": false,
       "runtime_present": false,
@@ -111,8 +111,8 @@
     {
       "language": "HTML",
       "repos": 5,
-      "stars": 4445,
-      "score": 5364.8,
+      "stars": 4446,
+      "score": 5364.81,
       "lane": "html",
       "lane_present": false,
       "runtime_present": false,
@@ -137,8 +137,8 @@
     {
       "language": "PowerShell",
       "repos": 2,
-      "stars": 4134,
-      "score": 2361.65,
+      "stars": 4135,
+      "score": 2361.66,
       "lane": "powershell",
       "lane_present": false,
       "runtime_present": false,
@@ -150,8 +150,8 @@
     {
       "language": "C",
       "repos": 2,
-      "stars": 3672,
-      "score": 2356.5,
+      "stars": 3673,
+      "score": 2356.51,
       "lane": "cpp",
       "lane_present": false,
       "runtime_present": true,
@@ -176,6 +176,48 @@
   ],
   "rustification_finder": [
     "Missing trend lanes detected: C, C++, HTML, Nushell, PowerShell, Shell, Swift",
-    "Elixir not present in current top trend window."
+    "Elixir watchlist tracked; no sampled trend hits this window and no handler coverage yet.",
+    "Watchlist languages missing handler coverage: Elixir, PowerShell, Swift"
+  ],
+  "watchlist": [
+    {
+      "language": "Elixir",
+      "repos": 0,
+      "stars": 0,
+      "score": 0.0,
+      "lane": "elixir",
+      "lane_present": false,
+      "runtime_present": false,
+      "eol_slug": "elixir",
+      "eol_latest": "1.19.5",
+      "eol_cycle": "1.19",
+      "eol_state": "maintained"
+    },
+    {
+      "language": "PowerShell",
+      "repos": 2,
+      "stars": 4135,
+      "score": 2361.66,
+      "lane": "powershell",
+      "lane_present": false,
+      "runtime_present": false,
+      "eol_slug": "powershell",
+      "eol_latest": "7.5.4",
+      "eol_cycle": "7.5",
+      "eol_state": "maintained"
+    },
+    {
+      "language": "Swift",
+      "repos": 5,
+      "stars": 6048,
+      "score": 5378.17,
+      "lane": "swift",
+      "lane_present": false,
+      "runtime_present": false,
+      "eol_slug": null,
+      "eol_latest": null,
+      "eol_cycle": null,
+      "eol_state": "unmapped"
+    }
   ]
 }
