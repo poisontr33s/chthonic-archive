@@ -439,7 +439,21 @@ if (failed) {
 
 console.log(`\n${green}[+] Host verification passed. Ready for Oxidation.${reset}`);
 
-function evaluateCheck(check: HostCheck): CheckResult {
+function evaluateNode(node: CheckTreeNode): EvaluatedNode {
+    if (node.check) {
+        return evaluateCheck(node.check);
+    }
+
+    const children = (node.children ?? []).map((child) => evaluateNode(child));
+    return {
+        name: node.name,
+        status: aggregateGroupStatus(children.map((child) => child.status)),
+        hardFail: children.some((child) => child.hardFail),
+        children,
+    };
+}
+
+function evaluateCheck(check: HostCheck): EvaluatedNode {
     if (check.manualCheck) {
         const manual = check.manualCheck();
         if (manual.ok) {
@@ -448,6 +462,7 @@ function evaluateCheck(check: HostCheck): CheckResult {
                 status: 'OK',
                 note: manual.note,
                 hardFail: false,
+                children: [],
             };
         }
         if (check.warnOnly) {
@@ -457,6 +472,7 @@ function evaluateCheck(check: HostCheck): CheckResult {
                 note: manual.note,
                 fix: check.fix,
                 hardFail: false,
+                children: [],
             };
         }
         if (check.infoOnly) {
@@ -466,6 +482,7 @@ function evaluateCheck(check: HostCheck): CheckResult {
                 note: manual.note,
                 fix: check.fix,
                 hardFail: false,
+                children: [],
             };
         }
         return {
@@ -474,6 +491,7 @@ function evaluateCheck(check: HostCheck): CheckResult {
             note: manual.note,
             fix: check.fix,
             hardFail: true,
+            children: [],
         };
     }
 
@@ -493,6 +511,7 @@ function evaluateCheck(check: HostCheck): CheckResult {
                     name: check.name,
                     status: 'FIXED',
                     hardFail: false,
+                    children: [],
                 };
             }
         }
@@ -503,6 +522,7 @@ function evaluateCheck(check: HostCheck): CheckResult {
                 status: 'WARN',
                 fix: check.fix,
                 hardFail: false,
+                children: [],
             };
         }
         if (check.infoOnly) {
@@ -511,6 +531,7 @@ function evaluateCheck(check: HostCheck): CheckResult {
                 status: 'INFO',
                 fix: check.fix,
                 hardFail: false,
+                children: [],
             };
         }
         return {
@@ -518,6 +539,7 @@ function evaluateCheck(check: HostCheck): CheckResult {
             status: 'MISSING',
             fix: check.fix,
             hardFail: true,
+            children: [],
         };
     }
 
@@ -533,6 +555,7 @@ function evaluateCheck(check: HostCheck): CheckResult {
                     name: check.name,
                     status: 'FIXED',
                     hardFail: false,
+                    children: [],
                 };
             }
         }
@@ -543,6 +566,7 @@ function evaluateCheck(check: HostCheck): CheckResult {
                 status: 'WARN',
                 fix: check.fix,
                 hardFail: false,
+                children: [],
             };
         }
         if (check.infoOnly) {
@@ -551,6 +575,7 @@ function evaluateCheck(check: HostCheck): CheckResult {
                 status: 'INFO',
                 fix: check.fix,
                 hardFail: false,
+                children: [],
             };
         }
 
@@ -559,6 +584,7 @@ function evaluateCheck(check: HostCheck): CheckResult {
             status: 'FAILED',
             fix: check.fix,
             hardFail: true,
+            children: [],
         };
     }
 
@@ -566,20 +592,47 @@ function evaluateCheck(check: HostCheck): CheckResult {
         name: check.name,
         status: 'OK',
         hardFail: false,
+        children: [],
     };
 }
 
-function aggregateGroupStatus(results: CheckResult[]): CheckStatus {
-    if (results.some((result) => result.status === 'FAILED' || result.status === 'MISSING')) {
+function renderTree(nodes: EvaluatedNode[]): void {
+    for (const node of nodes) {
+        console.log(`${node.name} ${colorizeStatus(node.status)}`);
+        renderChildren(node.children, '');
+    }
+}
+
+function renderChildren(children: EvaluatedNode[], prefix: string): void {
+    for (let i = 0; i < children.length; i += 1) {
+        const child = children[i];
+        const isLast = i === children.length - 1;
+        const branch = isLast ? '\\-' : '|-';
+        const childPrefix = `${prefix}${isLast ? '   ' : '|  '}`;
+        console.log(`${prefix}${branch} ${child.name} ${colorizeStatus(child.status)}`);
+        if (child.note) {
+            printIndented(child.note, childPrefix);
+        }
+        if (child.fix && child.status !== 'OK' && child.status !== 'FIXED') {
+            printIndented(child.fix, childPrefix);
+        }
+        if (child.children.length > 0) {
+            renderChildren(child.children, childPrefix);
+        }
+    }
+}
+
+function aggregateGroupStatus(statuses: CheckStatus[]): CheckStatus {
+    if (statuses.some((status) => status === 'FAILED' || status === 'MISSING')) {
         return 'FAILED';
     }
-    if (results.some((result) => result.status === 'WARN')) {
+    if (statuses.some((status) => status === 'WARN')) {
         return 'WARN';
     }
-    if (results.some((result) => result.status === 'INFO')) {
+    if (statuses.some((status) => status === 'INFO')) {
         return 'INFO';
     }
-    if (results.some((result) => result.status === 'FIXED')) {
+    if (statuses.some((status) => status === 'FIXED')) {
         return 'FIXED';
     }
     return 'OK';
