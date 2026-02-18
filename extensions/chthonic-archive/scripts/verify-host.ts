@@ -237,213 +237,158 @@ function safeReadText(filePath: string): string | null {
 
 console.log(`${cyan}[Chthonic] Running Preflight Host Verification...${reset}`);
 
-const checks: HostCheck[] = [
+const checkGroups: CheckGroup[] = [
     {
-        name: 'Tool Pool Snapshot',
-        cmd: ['pwsh', '--version'],
-        manualCheck: ensureToolpoolLane,
-        warnOnly: true,
-        fix: 'Run: bun run toolpool:scan (or mise run toolpool-scan)',
+        name: 'Host Lane Graph',
+        checks: [
+            {
+                name: 'Tool Pool Snapshot',
+                cmd: ['pwsh', '--version'],
+                manualCheck: ensureToolpoolLane,
+                warnOnly: true,
+                fix: 'Run: bun run toolpool:scan (or mise run toolpool-scan)',
+            },
+        ],
     },
     {
-        name: 'Rust Toolchain',
-        cmd: ['rustc', '--version'],
-        fix: 'Install Rust via rustup: https://rustup.rs',
+        name: 'Runtime Lanes',
+        checks: [
+            {
+                name: 'Rust Toolchain',
+                cmd: ['rustc', '--version'],
+                fix: 'Install Rust via rustup: https://rustup.rs',
+            },
+            {
+                name: 'Rust Package Manager (cargo)',
+                cmd: ['cargo', '--version'],
+                fix: 'Install Cargo via rustup: https://rustup.rs',
+            },
+            {
+                name: 'Rustup',
+                cmd: ['rustup', '--version'],
+                fix: 'Install rustup: https://rustup.rs',
+            },
+            {
+                name: 'Ruby Manager (rv)',
+                cmd: ['rv', '--version'],
+                warnOnly: true,
+                fix: 'Install rv (Rust-native Ruby manager): cargo install rv',
+            },
+            {
+                name: 'Go Manager (goup)',
+                cmd: ['goup', '--version'],
+                warnOnly: true,
+                fix: 'Install goup (Rust-native Go manager): cargo install goup',
+            },
+            {
+                name: 'JavaScript Runtime Lane (bun)',
+                cmd: ['bun', '--version'],
+                manualCheck: ensureNodeManagerLane,
+                warnOnly: true,
+                fix: 'Install bun: https://bun.sh/docs/installation',
+            },
+            {
+                name: 'Ruby Runtime',
+                cmd: ['ruby', '--version'],
+                check: (stdout) => /^ruby\s+4\./i.test(stdout.trim()),
+                warnOnly: true,
+                fix: 'Install Ruby 4.x lane via rv to align with Prism lane target.',
+            },
+        ],
     },
     {
-        name: 'Rust Package Manager (cargo)',
-        cmd: ['cargo', '--version'],
-        fix: 'Install Cargo via rustup: https://rustup.rs',
+        name: 'Solana Lanes',
+        checks: [
+            {
+                name: 'Solana Tool Suite Lane',
+                cmd: ['solana', '--version'],
+                manualCheck: ensureSolanaToolSuiteLane,
+                warnOnly: true,
+                fix: 'Install Solana Tool Suite (Agave): sh -c "$(curl -sSfL https://release.anza.xyz/stable/install)"',
+            },
+            {
+                name: 'Anchor Lane (anchor + avm)',
+                cmd: ['anchor', '--version'],
+                manualCheck: ensureAnchorLane,
+                warnOnly: true,
+                fix: 'Install AVM + Anchor CLI: cargo install --git https://github.com/solana-foundation/anchor avm --force && avm install latest && avm use latest',
+            },
+        ],
     },
     {
-        name: 'Rustup',
-        cmd: ['rustup', '--version'],
-        fix: 'Install rustup: https://rustup.rs',
+        name: 'WASM Lanes',
+        checks: [
+            {
+                name: 'WASM Target',
+                cmd: ['rustup', 'target', 'list', '--installed'],
+                check: (stdout) => stdout.includes('wasm32-unknown-unknown'),
+                autoFix: ['rustup', 'target', 'add', 'wasm32-unknown-unknown'],
+                fix: 'Run: rustup target add wasm32-unknown-unknown',
+            },
+            {
+                name: 'wasm-bindgen CLI',
+                cmd: ['wasm-bindgen', '--version'],
+                autoFix: ['cargo', 'install', 'wasm-bindgen-cli'],
+                fix: 'Install wasm-bindgen CLI: cargo install wasm-bindgen-cli',
+            },
+        ],
     },
     {
-        name: 'Ruby Manager (rv)',
-        cmd: ['rv', '--version'],
-        warnOnly: true,
-        fix: 'Install rv (Rust-native Ruby manager): cargo install rv',
-    },
-    {
-        name: 'Go Manager (goup)',
-        cmd: ['goup', '--version'],
-        warnOnly: true,
-        fix: 'Install goup (Rust-native Go manager): cargo install goup',
-    },
-    {
-        name: 'JavaScript Runtime Lane (bun)',
-        cmd: ['bun', '--version'],
-        manualCheck: ensureNodeManagerLane,
-        warnOnly: true,
-        fix: 'Install bun: https://bun.sh/docs/installation',
-    },
-    {
-        name: 'Solana Tool Suite Lane',
-        cmd: ['solana', '--version'],
-        manualCheck: ensureSolanaToolSuiteLane,
-        warnOnly: true,
-        fix: 'Install Solana Tool Suite (Agave): sh -c "$(curl -sSfL https://release.anza.xyz/stable/install)"',
-    },
-    {
-        name: 'Anchor Lane (anchor + avm)',
-        cmd: ['anchor', '--version'],
-        manualCheck: ensureAnchorLane,
-        warnOnly: true,
-        fix: 'Install AVM + Anchor CLI: cargo install --git https://github.com/solana-foundation/anchor avm --force && avm install latest && avm use latest',
-    },
-    {
-        name: 'WASM Target',
-        cmd: ['rustup', 'target', 'list', '--installed'],
-        check: (stdout) => stdout.includes('wasm32-unknown-unknown'),
-        autoFix: ['rustup', 'target', 'add', 'wasm32-unknown-unknown'],
-        fix: 'Run: rustup target add wasm32-unknown-unknown',
-    },
-    {
-        name: 'wasm-bindgen CLI',
-        cmd: ['wasm-bindgen', '--version'],
-        autoFix: ['cargo', 'install', 'wasm-bindgen-cli'],
-        fix: 'Install wasm-bindgen CLI: cargo install wasm-bindgen-cli',
-    },
-    {
-        name: 'MAKEFLAGS (MSVC hygiene)',
-        cmd: ['rustc', '--version'],
-        manualCheck: () => {
-            const makeFlags = envOverrides.MAKEFLAGS ?? process.env.MAKEFLAGS;
-            const mflags = envOverrides.MFLAGS ?? process.env.MFLAGS;
-            const hasMakeFlags = Boolean(makeFlags && makeFlags.trim().length > 0);
-            const hasMflags = Boolean(mflags && mflags.trim().length > 0);
-            if (!hasMakeFlags && !hasMflags) {
-                return { ok: true, note: 'clean (no MAKEFLAGS/MFLAGS)' };
-            }
-            // Mirror build-ledger.ts behavior: sanitize locally instead of mutating
-            // global shell state.
-            envOverrides.MAKEFLAGS = '';
-            envOverrides.MFLAGS = '';
-            const details: string[] = [];
-            if (hasMakeFlags) details.push(`MAKEFLAGS=${makeFlags}`);
-            if (hasMflags) details.push(`MFLAGS=${mflags}`);
-            return {
-                ok: true,
-                note: `sanitized for this run (${details.join(', ')})`,
-            };
-        },
-        fix: 'No action required. Build wrappers sanitize MAKEFLAGS/MFLAGS per process.',
-    },
-    {
-        name: 'Ruby Runtime',
-        cmd: ['ruby', '--version'],
-        check: (stdout) => /^ruby\s+4\./i.test(stdout.trim()),
-        warnOnly: true,
-        fix: 'Install Ruby 4.x lane via rv to align with Prism lane target.',
+        name: 'Build Hygiene',
+        checks: [
+            {
+                name: 'MAKEFLAGS (MSVC hygiene)',
+                cmd: ['rustc', '--version'],
+                manualCheck: () => {
+                    const makeFlags = envOverrides.MAKEFLAGS ?? process.env.MAKEFLAGS;
+                    const mflags = envOverrides.MFLAGS ?? process.env.MFLAGS;
+                    const hasMakeFlags = Boolean(makeFlags && makeFlags.trim().length > 0);
+                    const hasMflags = Boolean(mflags && mflags.trim().length > 0);
+                    if (!hasMakeFlags && !hasMflags) {
+                        return { ok: true, note: 'clean (no MAKEFLAGS/MFLAGS)' };
+                    }
+                    // Mirror build-ledger.ts behavior: sanitize locally instead of mutating
+                    // global shell state.
+                    envOverrides.MAKEFLAGS = '';
+                    envOverrides.MFLAGS = '';
+                    const details: string[] = [];
+                    if (hasMakeFlags) details.push(`MAKEFLAGS=${makeFlags}`);
+                    if (hasMflags) details.push(`MFLAGS=${mflags}`);
+                    return {
+                        ok: true,
+                        note: `sanitized for this run (${details.join(', ')})`,
+                    };
+                },
+                fix: 'No action required. Build wrappers sanitize MAKEFLAGS/MFLAGS per process.',
+            },
+        ],
     },
 ];
 
 let failed = false;
 
-for (const check of checks) {
-    process.stdout.write(`Checking ${check.name}... `);
-    if (check.manualCheck) {
-        const manual = check.manualCheck();
-        if (manual.ok) {
-            console.log(`${green}OK${reset}`);
-            if (manual.note) {
-                printIndented(manual.note);
-            }
-            continue;
+for (const group of checkGroups) {
+    const results = group.checks.map((check) => evaluateCheck(check));
+    const groupStatus = aggregateGroupStatus(results);
+    console.log(`${group.name} ${colorizeStatus(groupStatus)}`);
+
+    for (let i = 0; i < results.length; i += 1) {
+        const result = results[i];
+        const isLast = i === results.length - 1;
+        const branch = isLast ? '\\-' : '|-';
+        const childPad = isLast ? '   ' : '|  ';
+        console.log(`${branch} ${result.name} ${colorizeStatus(result.status)}`);
+        if (result.note) {
+            printIndented(result.note, childPad);
         }
-        if (check.warnOnly) {
-            console.log(`${yellow}WARN${reset}`);
-            if (manual.note) {
-                printIndented(manual.note);
-            }
-            console.log(`  ${check.fix}`);
-            continue;
+        if (result.fix && result.status !== 'OK' && result.status !== 'FIXED') {
+            printIndented(result.fix, childPad);
         }
-        if (check.infoOnly) {
-            console.log(`${cyan}INFO${reset}`);
-            if (manual.note) {
-                printIndented(manual.note);
-            }
-            console.log(`  ${check.fix}`);
-            continue;
-        }
-        console.log(`${red}FAILED${reset}`);
-        if (manual.note) {
-            printIndented(manual.note);
-        }
-        console.log(`  ${check.fix}`);
-        failed = true;
-        continue;
     }
 
-    const proc = runSync(check.cmd);
-    const stdout = proc.stdout;
-    const stderr = proc.stderr;
-
-    if (proc.threw || proc.exitCode !== 0) {
-        if (check.autoFix) {
-            process.stdout.write(`${yellow}FIXING...${reset} `);
-            const fixProc = spawnSync(check.autoFix, {
-                stdout: 'inherit',
-                stderr: 'inherit',
-                env: mergedEnv(),
-            });
-            if (fixProc.exitCode === 0) {
-                console.log(`${green}FIXED${reset}`);
-                continue;
-            }
-        }
-
-        if (check.warnOnly) {
-            console.log(`${yellow}WARN${reset}`);
-            console.log(`  ${check.fix}`);
-            continue;
-        }
-        if (check.infoOnly) {
-            console.log(`${cyan}INFO${reset}`);
-            console.log(`  ${check.fix}`);
-            continue;
-        }
-        console.log(`${red}MISSING${reset}`);
-        console.log(`  ${check.fix}`);
+    if (results.some((result) => result.hardFail)) {
         failed = true;
-        continue;
     }
-
-    if (check.check && !check.check(stdout, stderr)) {
-        if (check.autoFix) {
-            process.stdout.write(`${yellow}FIXING...${reset} `);
-            const fixProc = spawnSync(check.autoFix, {
-                stdout: 'inherit',
-                stderr: 'inherit',
-                env: mergedEnv(),
-            });
-            if (fixProc.exitCode === 0) {
-                console.log(`${green}FIXED${reset}`);
-                continue;
-            }
-        }
-
-        if (check.warnOnly) {
-            console.log(`${yellow}WARN${reset}`);
-            console.log(`  ${check.fix}`);
-            continue;
-        }
-        if (check.infoOnly) {
-            console.log(`${cyan}INFO${reset}`);
-            console.log(`  ${check.fix}`);
-            continue;
-        }
-
-        console.log(`${red}FAILED${reset}`);
-        console.log(`  ${check.fix}`);
-        failed = true;
-        continue;
-    }
-
-    console.log(`${green}OK${reset}`);
 }
 
 if (failed) {
@@ -453,8 +398,171 @@ if (failed) {
 
 console.log(`\n${green}[+] Host verification passed. Ready for Oxidation.${reset}`);
 
-function printIndented(text: string): void {
+function evaluateCheck(check: HostCheck): CheckResult {
+    if (check.manualCheck) {
+        const manual = check.manualCheck();
+        if (manual.ok) {
+            return {
+                name: check.name,
+                status: 'OK',
+                note: manual.note,
+                hardFail: false,
+            };
+        }
+        if (check.warnOnly) {
+            return {
+                name: check.name,
+                status: 'WARN',
+                note: manual.note,
+                fix: check.fix,
+                hardFail: false,
+            };
+        }
+        if (check.infoOnly) {
+            return {
+                name: check.name,
+                status: 'INFO',
+                note: manual.note,
+                fix: check.fix,
+                hardFail: false,
+            };
+        }
+        return {
+            name: check.name,
+            status: 'FAILED',
+            note: manual.note,
+            fix: check.fix,
+            hardFail: true,
+        };
+    }
+
+    const proc = runSync(check.cmd);
+    const stdout = proc.stdout;
+    const stderr = proc.stderr;
+
+    if (proc.threw || proc.exitCode !== 0) {
+        if (check.autoFix) {
+            const fixProc = spawnSync(check.autoFix, {
+                stdout: 'inherit',
+                stderr: 'inherit',
+                env: mergedEnv(),
+            });
+            if (fixProc.exitCode === 0) {
+                return {
+                    name: check.name,
+                    status: 'FIXED',
+                    hardFail: false,
+                };
+            }
+        }
+
+        if (check.warnOnly) {
+            return {
+                name: check.name,
+                status: 'WARN',
+                fix: check.fix,
+                hardFail: false,
+            };
+        }
+        if (check.infoOnly) {
+            return {
+                name: check.name,
+                status: 'INFO',
+                fix: check.fix,
+                hardFail: false,
+            };
+        }
+        return {
+            name: check.name,
+            status: 'MISSING',
+            fix: check.fix,
+            hardFail: true,
+        };
+    }
+
+    if (check.check && !check.check(stdout, stderr)) {
+        if (check.autoFix) {
+            const fixProc = spawnSync(check.autoFix, {
+                stdout: 'inherit',
+                stderr: 'inherit',
+                env: mergedEnv(),
+            });
+            if (fixProc.exitCode === 0) {
+                return {
+                    name: check.name,
+                    status: 'FIXED',
+                    hardFail: false,
+                };
+            }
+        }
+
+        if (check.warnOnly) {
+            return {
+                name: check.name,
+                status: 'WARN',
+                fix: check.fix,
+                hardFail: false,
+            };
+        }
+        if (check.infoOnly) {
+            return {
+                name: check.name,
+                status: 'INFO',
+                fix: check.fix,
+                hardFail: false,
+            };
+        }
+
+        return {
+            name: check.name,
+            status: 'FAILED',
+            fix: check.fix,
+            hardFail: true,
+        };
+    }
+
+    return {
+        name: check.name,
+        status: 'OK',
+        hardFail: false,
+    };
+}
+
+function aggregateGroupStatus(results: CheckResult[]): CheckStatus {
+    if (results.some((result) => result.status === 'FAILED' || result.status === 'MISSING')) {
+        return 'FAILED';
+    }
+    if (results.some((result) => result.status === 'WARN')) {
+        return 'WARN';
+    }
+    if (results.some((result) => result.status === 'INFO')) {
+        return 'INFO';
+    }
+    if (results.some((result) => result.status === 'FIXED')) {
+        return 'FIXED';
+    }
+    return 'OK';
+}
+
+function colorizeStatus(status: CheckStatus): string {
+    switch (status) {
+        case 'OK':
+            return `${green}OK${reset}`;
+        case 'WARN':
+            return `${yellow}WARN${reset}`;
+        case 'INFO':
+            return `${cyan}INFO${reset}`;
+        case 'FIXED':
+            return `${green}FIXED${reset}`;
+        case 'MISSING':
+            return `${red}MISSING${reset}`;
+        default:
+            return `${red}FAILED${reset}`;
+    }
+}
+
+function printIndented(text: string, prefix = '  '): void {
     for (const line of text.split(/\r?\n/)) {
-        console.log(`  ${line}`);
+        console.log(`${prefix}${line}`);
     }
 }
