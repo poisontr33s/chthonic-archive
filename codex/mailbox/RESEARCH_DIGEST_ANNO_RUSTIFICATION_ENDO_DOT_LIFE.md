@@ -39,7 +39,7 @@ topic: ANNO RUSTIFICATION ENDO DOT LIFE
 | Bun: The Zig-based JavaScript runtime bun replaces Node.js for tooling scripts. Its instant startup time aligns with the "Rustified" philosophy, making it the preferred runner for lightweight automation tasks within the mise ecosystem.8 | Yes / No | Needs explicit choice after review. |
 
 ## Actionable Items
-- [ ] [manual] Challenge: The AI must implement a ViewContainer provider that dynamically changes the icon of the container based on the active toolchain. (manual-review)
+- [ ] [manual] Challenge: Codex must implement a ViewContainer provider that dynamically changes the icon of the container based on the active toolchain. (manual-review)
 - [ ] [chthonic] Challenge: The "Chthonic Archive" must implement a "Context-Aware Layout Engine." (scripts/chthonic.ps1)
 - [ ] [codex] Validate: Query the local mise instance to verify that the active tools are the "Rustified" variants (uv instead of pip). (manual-review)
 - [ ] [manual] Heal: If the "Anno Live Time" policy is set to auto, the system utilizes mise to automatically update the mise.toml version pin and trigger a background install (mise install). (mise.toml)
