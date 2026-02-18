@@ -247,6 +247,16 @@
           "default": "",
           "description": "Optional absolute path to the chthonic-daemon binary."
         },
+        "chthonic.reactor.transport": {
+          "type": "string",
+          "enum": [
+            "auto",
+            "shared_memory",
+            "jsonl"
+          ],
+          "default": "auto",
+          "description": "Sediment transport mode. 'auto' prefers shared memory synapse and falls back to JSONL."
+        },
         "chthonic.reactor.cockpitAutoLayout": {
           "type": "boolean",
           "default": false,
@@ -279,7 +289,8 @@
     "build:ledger": "bun run scripts/verify-host.ts && bun run scripts/build-ledger.ts",
     "build:wasm": "bun run scripts/verify-host.ts && bun run scripts/build-wasm.ts",
     "build:daemon": "bun run scripts/verify-host.ts && bun run scripts/build-daemon.ts",
-    "build:all": "bun run build:ledger && bun run build:wasm && bun run build:daemon && bun run compile",
+    "build:synapse": "bun run scripts/verify-host.ts && bun run scripts/build-synapse.ts",
+    "build:all": "bun run build:ledger && bun run build:wasm && bun run build:daemon && bun run build:synapse && bun run compile",
     "compile": "bun build src/extension.ts --outdir dist --target node --format cjs --external vscode --minify && bun build src/entropy/entropyWorker.ts --outfile dist/entropy-worker.js --target node --format cjs --minify",
     "watch": "bun build src/extension.ts --outdir dist --target node --format cjs --external vscode --watch",
     "watch:worker": "bun build src/entropy/entropyWorker.ts --outfile dist/entropy-worker.js --target node --format cjs --watch"

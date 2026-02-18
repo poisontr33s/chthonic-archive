@@ -21,5 +21,6 @@ shared_memory.workspace = true
 windows-sys = { version = "0.59", features = [
     "Win32_System_LibraryLoader",
     "Win32_Foundation",
+    "Win32_Security",
     "Win32_System_Threading",
 ] }

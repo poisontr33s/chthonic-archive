@@ -10,6 +10,7 @@ import { PolyglotEntropyOrchestrator } from './polyglot/polyglotEntropyOrchestra
 import type { LedgerMode } from './polyglot/ledgerBroker';
 import { AnnoClient } from './reactor/annoClient';
 import { CockpitLayout } from './reactor/cockpitLayout';
+import { SynapseBridge } from './reactor/synapseBridge';
 import { ActivityBarMorph } from './monolith/activityBarMorph';
 import { DeepFocusLayout } from './monolith/deepFocusLayout';
 import { LoomViewProvider } from './monolith/loomView';
@@ -154,6 +155,7 @@ export function activate(context: vscode.ExtensionContext) {
     const reactorEnabled = entropyConfig.get<boolean>('reactor.enabled', true);
     const reactorHeadlessVulkan = entropyConfig.get<boolean>('reactor.headlessVulkan', true);
     const reactorCockpitAutoLayout = entropyConfig.get<boolean>('reactor.cockpitAutoLayout', false);
+    const reactorTransport = entropyConfig.get<string>('reactor.transport', 'auto');
     const reactorDaemonBinaryPath = asOptionalPath(entropyConfig.get<string>('reactor.daemonBinaryPath', ''));
     const slabSelfHealingEnabled = entropyConfig.get<boolean>('slab.selfHealingEnabled', true);
     const slabSelfHealingIntervalMs = entropyConfig.get<number>('slab.selfHealingIntervalMs', 21600000);
@@ -161,8 +163,9 @@ export function activate(context: vscode.ExtensionContext) {
 
     const annoClient = new AnnoClient(outputChannel, reactorHeadlessVulkan, reactorDaemonBinaryPath);
     const cockpitLayout = new CockpitLayout(outputChannel, context.environmentVariableCollection);
+    const synapseBridge = new SynapseBridge(outputChannel, context.extensionPath, reactorTransport);
 
-    context.subscriptions.push(annoClient, cockpitLayout);
+    context.subscriptions.push(annoClient, cockpitLayout, synapseBridge);
 
     context.subscriptions.push(
         annoClient.onDidReceiveEnv((envReport) => {
@@ -174,13 +177,14 @@ export function activate(context: vscode.ExtensionContext) {
         annoClient.onDidReceiveSedimentChunk((chunk) => {
             abyssalProvider.postSedimentChunk(chunk);
         }),
+        annoClient.onDidReceiveSynapse((descriptor) => {
+            synapseBridge.updateDescriptor(descriptor);
+        }),
     );
 
     // Allow the Abyssal Pane webview to trigger sediment computation
     abyssalProvider.onRequestSediment(() => {
-        annoClient.requestSedimentStream(10, 500).catch((err) => {
-            outputChannel.appendLine(`[reactor] sediment request from webview failed: ${err}`);
-        });
+        void requestSedimentForWebview(annoClient, abyssalProvider, synapseBridge, outputChannel);
     });
 
     if (workspaceRoot && reactorEnabled) {
@@ -334,6 +338,30 @@ export function activate(context: vscode.ExtensionContext) {
 }
 
 export function deactivate() {}
+
+async function requestSedimentForWebview(
+    annoClient: AnnoClient,
+    abyssalProvider: AbyssalPaneProvider,
+    synapseBridge: SynapseBridge,
+    outputChannel: vscode.OutputChannel,
+): Promise<void> {
+    try {
+        if (synapseBridge.isReady()) {
+            const result = await annoClient.requestSedimentSynapse(10, 500, 220);
+            if (result.transport === 'shared_memory') {
+                const drained = await synapseBridge.drain(result, (chunk) => {
+                    abyssalProvider.postSedimentBinary(chunk);
+                });
+                outputChannel.appendLine(`[reactor] synapse drain ${drained}/${result.chunks_written} chunks`);
+                return;
+            }
+        }
+
+        await annoClient.requestSedimentStream(10, 500);
+    } catch (error) {
+        outputChannel.appendLine(`[reactor] sediment request failed: ${error}`);
+    }
+}
 
 // --- SSOT Hash ---
 function computeSSOTHash(): string | null {

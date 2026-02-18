@@ -29,6 +29,7 @@ CHTHONIC_SLAB_MODE = "kernel"
 CHTHONIC_RUBY_MIGRATION_FROM = "3.3"
 CHTHONIC_RUBY_MIGRATION_TO = "3.4"
 CHTHONIC_GO_OWNER = "goup"
+CHTHONIC_REACTOR_TRANSPORT = "auto" # set to "jsonl" for Safe Mode fallback
 _.path = [
     "{{env.USERPROFILE}}/.local/bin",
     "{{env.USERPROFILE}}/.cargo/bin",

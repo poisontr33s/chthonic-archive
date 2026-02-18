@@ -13,6 +13,9 @@ let sedimentStreamBuffer = [];
 let sedimentStreamMeta = null;
 let projectedNodes = [];
 let sedimentMode = false;
+const SYNAPSE_FRAME_MAGIC = 0x53594E43; // "SYNC"
+const SYNAPSE_FRAME_HEADER_BYTES = 48;
+const SYNAPSE_VERTEX_STRIDE_BYTES = 32;
 
 function clamp01(value) {
     return Math.max(0, Math.min(1, value));
@@ -291,6 +294,67 @@ function applySedimentChunk(chunk) {
     });
 }
 
+function applySedimentBinary(payload) {
+    if (!(payload instanceof ArrayBuffer)) {
+        return;
+    }
+    if (payload.byteLength < SYNAPSE_FRAME_HEADER_BYTES) {
+        return;
+    }
+
+    const view = new DataView(payload);
+    const magic = view.getUint32(0, true);
+    if (magic !== SYNAPSE_FRAME_MAGIC) {
+        return;
+    }
+
+    const vertexCount = view.getUint32(8, true);
+    const layerCount = view.getUint32(12, true);
+    const fileCount = view.getUint32(16, true);
+    const chunkIndex = view.getUint32(20, true);
+    const totalChunks = view.getUint32(24, true);
+    const computeTimeMs = Number(view.getBigUint64(32, true));
+    const backendCode = view.getUint32(40, true);
+
+    const requiredBytes = SYNAPSE_FRAME_HEADER_BYTES + (vertexCount * SYNAPSE_VERTEX_STRIDE_BYTES);
+    if (payload.byteLength < requiredBytes) {
+        return;
+    }
+
+    if (!sedimentStreamMeta || chunkIndex === 0) {
+        sedimentStreamMeta = {
+            layer_count: layerCount,
+            file_count: fileCount,
+            total_chunks: totalChunks,
+            backend_code: backendCode,
+        };
+        sedimentStreamBuffer = [];
+    }
+
+    let offset = SYNAPSE_FRAME_HEADER_BYTES;
+    for (let i = 0; i < vertexCount; i += 1) {
+        const x = view.getFloat32(offset + 0, true);
+        const y = view.getFloat32(offset + 4, true);
+        const z = view.getFloat32(offset + 8, true);
+        const radius = view.getFloat32(offset + 12, true);
+        const r = view.getFloat32(offset + 16, true);
+        const g = view.getFloat32(offset + 20, true);
+        const b = view.getFloat32(offset + 24, true);
+        const alpha = view.getFloat32(offset + 28, true);
+        sedimentStreamBuffer.push({ x, y, z, radius, r, g, b, alpha });
+        offset += SYNAPSE_VERTEX_STRIDE_BYTES;
+    }
+
+    sedimentMode = true;
+    renderSediment({
+        vertices: sedimentStreamBuffer,
+        layer_count: sedimentStreamMeta.layer_count,
+        file_count: sedimentStreamMeta.file_count,
+        compute_time_ms: computeTimeMs,
+        backend: `synapse-${backendCode} ${chunkIndex + 1}/${totalChunks}`,
+    });
+}
+
 function renderGraph(graph) {
     latestGraph = graph;
     if (!graph || !Array.isArray(graph.nodes)) {
@@ -392,6 +456,10 @@ window.addEventListener('message', (event) => {
     }
     if (message.type === 'sedimentChunk' && message.chunk) {
         applySedimentChunk(message.chunk);
+        return;
+    }
+    if (message.type === 'sedimentBinary' && message.payload) {
+        applySedimentBinary(message.payload);
         return;
     }
     if (message.type === 'graph') {

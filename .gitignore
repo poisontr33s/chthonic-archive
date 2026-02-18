@@ -68,6 +68,10 @@
 !extensions/*/src/monolith/*.ts
 !extensions/*/src/entropy/
 !extensions/*/src/entropy/*.ts
+!extensions/*/src/reactor/
+!extensions/*/src/reactor/annoClient.ts
+!extensions/*/src/reactor/types.ts
+!extensions/*/src/reactor/synapseBridge.ts
 !extensions/*/src/polyglot/
 !extensions/*/src/polyglot/*.ts
 !extensions/*/dist/

@@ -74,7 +74,7 @@ impl Drop for ReaderState {
     fn drop(&mut self) {
         #[cfg(windows)]
         unsafe {
-            if self.event_handle != 0 {
+            if !self.event_handle.is_null() {
                 windows_sys::Win32::Foundation::CloseHandle(self.event_handle);
             }
         }
@@ -124,7 +124,7 @@ impl SynapseReader {
 
         #[cfg(windows)]
         {
-            if guard.event_handle != 0 {
+            if !guard.event_handle.is_null() {
                 let status = unsafe {
                     windows_sys::Win32::System::Threading::WaitForSingleObject(
                         guard.event_handle,
@@ -187,16 +187,16 @@ impl SynapseReader {
 
 #[cfg(windows)]
 fn open_signal_event(event_name: Option<&str>) -> Result<windows_sys::Win32::Foundation::HANDLE> {
-    use windows_sys::Win32::System::Threading::{OpenEventW, SYNCHRONIZE};
+    use windows_sys::Win32::System::Threading::{OpenEventW, SYNCHRONIZATION_SYNCHRONIZE};
     let Some(event_name) = event_name else {
-        return Ok(0);
+        return Ok(std::ptr::null_mut());
     };
 
     let mut wide: Vec<u16> = event_name.encode_utf16().collect();
     wide.push(0);
 
-    let handle = unsafe { OpenEventW(SYNCHRONIZE, 0, wide.as_ptr()) };
-    if handle == 0 {
+    let handle = unsafe { OpenEventW(SYNCHRONIZATION_SYNCHRONIZE, 0, wide.as_ptr()) };
+    if handle.is_null() {
         return Err(napi::Error::from_reason("failed to open synapse signal event"));
     }
     Ok(handle)

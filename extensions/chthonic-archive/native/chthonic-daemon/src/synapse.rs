@@ -91,9 +91,11 @@ impl SynapseWriter {
         let tag = unique_tag();
         let shm_id = format!("chthonic.synapse.{tag}");
 
-        let mut conf = ShmemConf::new();
-        conf.size(total_size).os_id(shm_id.clone());
-        let shmem = conf.create().context("failed to create shared memory segment")?;
+        let shmem = ShmemConf::new()
+            .size(total_size)
+            .os_id(shm_id.clone())
+            .create()
+            .context("failed to create shared memory segment")?;
 
         unsafe {
             std::ptr::write_bytes(shmem.as_ptr(), 0, total_size);
@@ -189,12 +191,11 @@ impl SynapseWriter {
         backend_code: u32,
         vertices: &[SedimentVertex],
     ) -> Result<bool> {
-        let header = self.header_ref();
-        let write = header.write_index.load(Ordering::Acquire);
-        let read = header.read_index.load(Ordering::Acquire);
+        let write = self.header_ref().write_index.load(Ordering::Acquire);
+        let read = self.header_ref().read_index.load(Ordering::Acquire);
 
         if write.saturating_sub(read) >= self.descriptor.slot_capacity as u64 {
-            header.dropped_frames.fetch_add(1, Ordering::AcqRel);
+            self.header_ref().dropped_frames.fetch_add(1, Ordering::AcqRel);
             return Ok(false);
         }
 
@@ -220,8 +221,8 @@ impl SynapseWriter {
         }
 
         fence(Ordering::Release);
-        header.write_index.store(write + 1, Ordering::Release);
-        header.notify_counter.fetch_add(1, Ordering::AcqRel);
+        self.header_ref().write_index.store(write + 1, Ordering::Release);
+        self.header_ref().notify_counter.fetch_add(1, Ordering::AcqRel);
 
         let depth = (write + 1).saturating_sub(read);
         if depth >= self.descriptor.high_water_mark as u64 {
@@ -290,7 +291,7 @@ impl Drop for SynapseWriter {
     fn drop(&mut self) {
         #[cfg(windows)]
         unsafe {
-            if self.event_handle != 0 {
+            if !self.event_handle.is_null() {
                 windows_sys::Win32::Foundation::CloseHandle(self.event_handle);
             }
         }
@@ -332,7 +333,7 @@ fn create_signal_event(tag: &str) -> Result<(Option<String>, windows_sys::Win32:
         )
     };
 
-    if handle == 0 {
+    if handle.is_null() {
         return Err(anyhow!("failed to create signal event"));
     }
 
