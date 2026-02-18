@@ -18,6 +18,21 @@ type ManualCheckResult = {
     note?: string;
 };
 
+type CheckStatus = 'OK' | 'WARN' | 'INFO' | 'FAILED' | 'MISSING' | 'FIXED';
+
+type CheckResult = {
+    name: string;
+    status: CheckStatus;
+    note?: string;
+    fix?: string;
+    hardFail: boolean;
+};
+
+type CheckGroup = {
+    name: string;
+    checks: HostCheck[];
+};
+
 type ToolpoolSnapshot = {
     recommendedLanes?: {
         native?: string;
