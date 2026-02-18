@@ -1041,6 +1041,10 @@ function Show-PolyglotStatus {
     
     # Collect tool versions
     $tools = @{}
+    $tools['orchestrator_ssot'] = 'chthonic'
+    $tools['orchestration_mode'] = 'polyglot_router'
+    $tools['research_ingest_role'] = 'supplemental_input'
+    $tools['unified_overlay_optional'] = 'mise'
     $tools['handler_ruby'] = 'rvw'
     $tools['handler_python'] = 'uv'
     $tools['handler_rust'] = 'rustup/cargo'
@@ -1115,6 +1119,14 @@ function Show-PolyglotStatus {
     try { $tools['make'] = (make --version 2>$null | Select-Object -First 1) -replace 'GNU Make\s*','' } catch { $tools['make'] = 'not found' }
     try { $tools['git'] = (git --version 2>$null) -replace 'git version\s*','' } catch { $tools['git'] = 'not found' }
     try { $tools['mdbook'] = (mdbook --version 2>$null) -replace 'mdbook\s*v?','' } catch { $tools['mdbook'] = 'not found' }
+    try {
+        $miseOut = (mise --version 2>$null)
+        if (($miseOut -join "`n") -match '(\d+\.\d+\.\d+)') {
+            $tools['mise'] = $matches[1]
+        } else {
+            $tools['mise'] = (($miseOut | Select-Object -First 1).ToString().Trim())
+        }
+    } catch { $tools['mise'] = 'not found' }
     $azVer = Get-AzureCliVersion
     $tools['az'] = if ($azVer) { $azVer } else { 'not found' }
 
@@ -1204,6 +1216,17 @@ function Show-PolyglotStatus {
         $tools['chthonic_cmd'] = $PSCommandPath
     } else {
         $tools['chthonic_cmd'] = 'not found'
+    }
+    $miseMeta = Get-CommandResolution -Name "mise"
+    if ($miseMeta) {
+        $tools['mise_cmd'] = if ($miseMeta.Path) { $miseMeta.Path } else { $miseMeta.Display }
+    } else {
+        $tools['mise_cmd'] = 'not found'
+    }
+    if ($tools['mise'] -eq 'not found') {
+        $tools['manager_model'] = 'explicit_managers(chthonic_ssot)'
+    } else {
+        $tools['manager_model'] = 'hybrid(chthonic_ssot+mise_overlay)'
     }
     $rvBindingState = "not set"
     $rvBindingReason = "not set"
@@ -1487,6 +1510,7 @@ function Show-Origins {
     $secondary = @(
         @{ Name = "rv";      Cmd = $null;     Method = "PowerShell binding (alias collision guard)"; Ecosystem = "local"; Resolver = { Get-CommandDisplayFlexible -Name "rv" } },
         @{ Name = "rvw";     Cmd = "rvw";     Method = "rv wrapper (ruby lane)"; Ecosystem = "cargo" },
+        @{ Name = "mise";    Cmd = "mise";    Method = "optional unified overlay (not SSOT)"; Ecosystem = "local" },
         @{ Name = "goup";    Cmd = "goup";    Method = "GH release binary"; Ecosystem = "cargo" },
         @{ Name = "cargo";   Cmd = "cargo";   Method = "rustup toolchain"; Ecosystem = "cargo" },
         @{ Name = "rustup";  Cmd = "rustup";  Method = "rustup manager"; Ecosystem = "cargo" },
