@@ -28,6 +28,7 @@ const SYNAPSE_BACKENDS = {
     2: 'cpu-fallback',
     3: 'cpu-only',
     4: 'empty',
+    5: 'firedancer-sim',
     255: 'unknown',
 };
 
@@ -283,8 +284,16 @@ function renderSediment(sediment) {
     }));
 }
 
-function updateSedimentStats(fileCount, backendCode, chunkIndex, totalChunks, computeTimeMs) {
+function updateSedimentStats(fileCount, backendCode, chunkIndex, totalChunks, computeTimeMs, telemetry = null) {
     const backend = SYNAPSE_BACKENDS[backendCode] || `backend-${backendCode}`;
+    if (backendCode === 5 && telemetry) {
+        const shredLabel = telemetry.shredClass === 1 ? 'coding' : 'data';
+        const surgeLabel = telemetry.surge ? ' SURGE' : '';
+        statFiles.textContent = String(telemetry.packetCount || fileCount || 0);
+        statEntropy.textContent = `fd slot ${telemetry.slot} ${shredLabel}${surgeLabel}`;
+        statRenderer.textContent = `${Number(telemetry.tps || 0).toLocaleString()} tps · v${telemetry.shredVersion} · leader+${telemetry.leaderDistance}`;
+        return;
+    }
     statFiles.textContent = String(fileCount || 0);
     statEntropy.textContent = `${backend} ${chunkIndex + 1}/${Math.max(1, totalChunks)}`;
     statRenderer.textContent = `loom ${computeTimeMs}ms`;
@@ -365,6 +374,7 @@ function applySedimentBinary(payload) {
         return;
     }
 
+    const flags = view.getUint16(6, true);
     const vertexCount = view.getUint32(8, true);
     const layerCount = view.getUint32(12, true);
     const fileCount = view.getUint32(16, true);
@@ -372,6 +382,16 @@ function applySedimentBinary(payload) {
     const totalChunks = view.getUint32(24, true);
     const computeTimeMs = Number(view.getBigUint64(32, true));
     const backendCode = view.getUint32(40, true);
+    const reserved = view.getUint32(44, true);
+    const telemetry = {
+        slot: layerCount,
+        packetCount: fileCount,
+        shredClass: reserved & 0xff,
+        leaderDistance: (reserved >>> 8) & 0xff,
+        shredVersion: (reserved >>> 16) & 0xffff,
+        surge: (flags & 0b10) !== 0,
+        tps: Math.max(0, Math.round((vertexCount * 950) + ((flags & 0b10) !== 0 ? 90_000 : 40_000))),
+    };
 
     const requiredBytes = SYNAPSE_FRAME_HEADER_BYTES + (vertexCount * SYNAPSE_VERTEX_STRIDE_BYTES);
     if (payload.byteLength < requiredBytes) {
@@ -394,7 +414,7 @@ function applySedimentBinary(payload) {
                 sedimentMode = true;
                 latestSediment = null;
                 startLoomRenderLoop();
-                updateSedimentStats(fileCount, backendCode, chunkIndex, totalChunks, computeTimeMs);
+                updateSedimentStats(fileCount, backendCode, chunkIndex, totalChunks, computeTimeMs, telemetry);
                 loomHandled = true;
             } catch (error) {
                 console.warn('[abyss] loom digest failed; falling back to JS sediment parser', error);

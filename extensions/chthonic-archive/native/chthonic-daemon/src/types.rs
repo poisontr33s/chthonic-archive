@@ -210,6 +210,19 @@ pub struct SedimentResult {
     pub file_count: u32,
     pub compute_time_ms: u64,
     pub backend: &'static str,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub telemetry: Option<FiredancerTelemetry>,
+}
+
+#[derive(Debug, Clone, Serialize)]
+pub struct FiredancerTelemetry {
+    pub slot: u64,
+    pub shred_count: u32,
+    pub packet_count: u32,
+    pub shred_version: u16,
+    pub leader_distance: u16,
+    pub simulated_tps: u32,
+    pub surge: bool,
 }
 
 #[derive(Debug, Clone, Copy, Serialize)]

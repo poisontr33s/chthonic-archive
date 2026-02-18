@@ -2,7 +2,7 @@ use std::time::Instant;
 
 use anyhow::{Context, Result};
 
-use crate::types::{SedimentRequest, SedimentResult, SedimentVertex};
+use crate::types::{FiredancerTelemetry, SedimentRequest, SedimentResult, SedimentVertex};
 
 // ---------------------------------------------------------------------------
 // GPU-mirrored data structures (must match sediment.comp layout exactly)
@@ -97,6 +97,7 @@ impl VulkanReactor {
                 file_count: 0,
                 compute_time_ms: start.elapsed().as_millis() as u64,
                 backend: "empty",
+                telemetry: None,
             });
         }
 
@@ -108,6 +109,7 @@ impl VulkanReactor {
                 vertices: nodes_to_vertices(&settled),
                 compute_time_ms: start.elapsed().as_millis() as u64,
                 backend: "vulkan",
+                telemetry: None,
             }),
             Err(err) => {
                 eprintln!("[reactor] GPU dispatch failed, falling back to CPU: {err}");
@@ -118,6 +120,7 @@ impl VulkanReactor {
                     vertices: nodes_to_vertices(&settled),
                     compute_time_ms: start.elapsed().as_millis() as u64,
                     backend: "cpu-fallback",
+                    telemetry: None,
                 })
             }
         }
@@ -858,4 +861,107 @@ fn gpu_hash(n: u32) -> f32 {
 
 fn lerp(a: f32, b: f32, t: f32) -> f32 {
     a + (b - a) * t
+}
+
+const FIREDANCER_SLOT_MS: u64 = 400;
+const FIREDANCER_SHRED_VERSION: u16 = 0xF1D0;
+
+pub fn simulate_firedancer_telemetry(
+    workspace: &str,
+    request: &SedimentRequest,
+) -> Result<SedimentResult> {
+    let start = Instant::now();
+    let now_ms = std::time::SystemTime::now()
+        .duration_since(std::time::UNIX_EPOCH)
+        .unwrap_or_default()
+        .as_millis() as u64;
+
+    let slot = now_ms / FIREDANCER_SLOT_MS;
+    let stream_seed = stream_seed(workspace, slot);
+    let shred_count = request.max_files.clamp(220, 1_800);
+    let packet_count = ((shred_count as f32) * 1.24) as u32;
+    let leader_distance = (slot % 32) as u16;
+    let simulated_tps = simulated_tps(shred_count, slot, stream_seed);
+    let surge = simulated_tps >= 235_000;
+
+    let vertices = synthesize_shred_vertices(shred_count, slot, stream_seed, surge);
+
+    Ok(SedimentResult {
+        vertices,
+        layer_count: slot as u32,
+        file_count: packet_count,
+        compute_time_ms: start.elapsed().as_millis() as u64,
+        backend: "firedancer-sim",
+        telemetry: Some(FiredancerTelemetry {
+            slot,
+            shred_count,
+            packet_count,
+            shred_version: FIREDANCER_SHRED_VERSION,
+            leader_distance,
+            simulated_tps,
+            surge,
+        }),
+    })
+}
+
+fn stream_seed(workspace: &str, slot: u64) -> u32 {
+    let mut hash = slot as u32;
+    for byte in workspace.as_bytes() {
+        hash = hash
+            .wrapping_mul(16_777_619)
+            .wrapping_add(*byte as u32)
+            .rotate_left(5);
+    }
+    hash
+}
+
+fn simulated_tps(shred_count: u32, slot: u64, seed: u32) -> u32 {
+    let base = 158_000u32 + (shred_count.saturating_mul(54));
+    let slot_wave = ((slot % 19) as u32) * 3_250;
+    let jitter = (seed % 6_500).saturating_sub(3_250);
+    base.saturating_add(slot_wave).saturating_add(jitter)
+}
+
+fn synthesize_shred_vertices(
+    shred_count: u32,
+    slot: u64,
+    seed: u32,
+    surge: bool,
+) -> Vec<SedimentVertex> {
+    let lane_count = 32.0_f32;
+    let pulse = if surge { 1.28 } else { 1.0 };
+    let phase_base = (slot as f32 * 0.07) + ((seed & 0xFF) as f32 * 0.003);
+
+    let mut vertices = Vec::with_capacity(shred_count as usize);
+    for idx in 0..shred_count {
+        let idx_f = idx as f32;
+        let lane = (idx % lane_count as u32) as f32;
+        let lane_bias = lane - (lane_count * 0.5);
+        let packet_phase = phase_base + (idx_f * 0.13);
+        let radius = 12.0 + (idx_f * 0.03);
+
+        let x = (packet_phase.cos() * radius + lane_bias * 1.8) * pulse;
+        let z = (packet_phase.sin() * radius + lane_bias * 0.9) * pulse;
+        let y = (lane_bias * 2.2) + ((idx_f * 0.25 + phase_base).sin() * 4.0);
+
+        let coding_shred = (idx + (slot as u32)) % 8 == 0;
+        let (r, g, b) = if coding_shred {
+            (0.95, 0.62, 0.19)
+        } else {
+            (0.23, 0.78, 0.93)
+        };
+
+        vertices.push(SedimentVertex {
+            x,
+            y,
+            z,
+            radius: if coding_shred { 2.0 } else { 2.9 },
+            r,
+            g,
+            b,
+            alpha: if surge { 0.92 } else { 0.78 },
+        });
+    }
+
+    vertices
 }

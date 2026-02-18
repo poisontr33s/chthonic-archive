@@ -6,6 +6,7 @@ import type {
     AnnoManifest,
     EntropyState,
     EnvReport,
+    FiredancerSurgeState,
     SedimentSynapseResult,
     SedimentChunk,
     SedimentResult,
@@ -50,6 +51,9 @@ export class AnnoClient implements vscode.Disposable {
 
     private readonly onDidReceiveEntropyStateEmitter = new vscode.EventEmitter<EntropyState>();
     readonly onDidReceiveEntropyState = this.onDidReceiveEntropyStateEmitter.event;
+
+    private readonly onDidReceiveFiredancerSurgeEmitter = new vscode.EventEmitter<FiredancerSurgeState>();
+    readonly onDidReceiveFiredancerSurge = this.onDidReceiveFiredancerSurgeEmitter.event;
 
     constructor(
         private readonly output: vscode.OutputChannel,
@@ -112,6 +116,7 @@ export class AnnoClient implements vscode.Disposable {
         this.onDidReceiveSedimentChunkEmitter.dispose();
         this.onDidReceiveSynapseEmitter.dispose();
         this.onDidReceiveEntropyStateEmitter.dispose();
+        this.onDidReceiveFiredancerSurgeEmitter.dispose();
     }
 
     private startDaemon(): void {
@@ -199,6 +204,12 @@ export class AnnoClient implements vscode.Disposable {
             case 'reactor/entropyState':
                 this.onDidReceiveEntropyStateEmitter.fire(params as unknown as EntropyState);
                 this.output.appendLine(`[daemon] entropy state: ${(params as EntropyState).status} (${Math.round(((params as EntropyState).decay_score ?? 0) * 100)}%)`);
+                break;
+            case 'reactor/firedancerSurge':
+                this.onDidReceiveFiredancerSurgeEmitter.fire(params as unknown as FiredancerSurgeState);
+                this.output.appendLine(
+                    `[daemon] firedancer slot ${(params as FiredancerSurgeState).slot} tps ${(params as FiredancerSurgeState).simulated_tps} (${(params as FiredancerSurgeState).surge ? 'surge' : 'flow'})`,
+                );
                 break;
             default:
                 this.output.appendLine(`[daemon] unknown notification: ${method}`);

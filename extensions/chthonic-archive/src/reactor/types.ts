@@ -124,6 +124,11 @@ export interface EntropyState {
     decay_score: number;
     stale: boolean;
     critical: boolean;
+    validator_active: boolean;
+    validator_source_mise: boolean;
+    validator_process?: string | null;
+    firedancer_surge: boolean;
+    simulated_tps: number;
     checked_at_epoch_ms: number;
     source_mise?: string | null;
     auto_update: 'auto' | 'manual' | 'unknown';
@@ -131,6 +136,14 @@ export interface EntropyState {
     critical_tools: string[];
     tracked_tools: EntropyToolState[];
     warning?: string | null;
+}
+
+export interface FiredancerSurgeState {
+    slot: number;
+    shred_count: number;
+    packet_count: number;
+    simulated_tps: number;
+    surge: boolean;
 }
 
 // ---------------------------------------------------------------------------

@@ -55,7 +55,7 @@ export class ActivityBarMorph implements vscode.Disposable {
     private resolveIconFile(): string {
         const entropy = this.latestEntropy;
         if (entropy) {
-            if (entropy.decay_score > 0.8 || entropy.status === 'critical') {
+            if (entropy.decay_score > 0.5 || entropy.status === 'critical') {
                 return 'hazard.svg';
             }
             if (entropy.decay_score < 0.2 && entropy.status === 'pristine') {

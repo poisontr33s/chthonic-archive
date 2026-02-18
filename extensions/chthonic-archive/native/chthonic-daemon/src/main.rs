@@ -275,10 +275,7 @@ fn main() -> Result<()> {
                     serde_json::from_value(request.params.clone())
                         .unwrap_or_default();
 
-                let result = match &vulkan_reactor {
-                    Some(r) => r.compute_sediment(&opts.workspace, &params),
-                    None => compute_sediment_cpu(&opts.workspace, &params),
-                };
+                let result = reactor::simulate_firedancer_telemetry(&opts.workspace, &params);
 
                 match result {
                     Ok(r) => {
@@ -308,6 +305,20 @@ fn main() -> Result<()> {
                                 "transport": if synapse_writer.is_some() { "shared_memory" } else { "jsonl" },
                             }),
                         })?;
+
+                        if let Some(telemetry) = &r.telemetry {
+                            write_json(&JsonRpcNotification {
+                                jsonrpc: "2.0",
+                                method: "reactor/firedancerSurge",
+                                params: &serde_json::json!({
+                                    "slot": telemetry.slot,
+                                    "shred_count": telemetry.shred_count,
+                                    "packet_count": telemetry.packet_count,
+                                    "simulated_tps": telemetry.simulated_tps,
+                                    "surge": telemetry.surge,
+                                }),
+                            })?;
+                        }
                     }
                     Err(err) => write_json(&JsonRpcError::internal(
                         request.id,
@@ -375,6 +386,7 @@ fn compute_sediment_cpu(
             .collect(),
         compute_time_ms: start.elapsed().as_millis() as u64,
         backend: "cpu-only",
+        telemetry: None,
     })
 }
 

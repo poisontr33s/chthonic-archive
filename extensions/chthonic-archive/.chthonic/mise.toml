@@ -15,11 +15,11 @@ rv = "latest"
 goup = "latest"
 go = "1.26.0"
 rust = "stable"
+solana-cli = "2.3.1"
+agave = "2.3.1"
+cargo-binstall = "latest"
 cmake = "latest"
 ninja = "latest"
-
-[tools.solana-cli]
-version = "2.3"
 
 [settings]
 disable_tools = ["python", "ruby"]
@@ -29,6 +29,9 @@ CHTHONIC_SLAB_MODE = "kernel"
 CHTHONIC_RUBY_MIGRATION_FROM = "3.3"
 CHTHONIC_RUBY_MIGRATION_TO = "3.4"
 CHTHONIC_GO_OWNER = "goup"
+CHTHONIC_SOLANA_RUNTIME = "agave"
+CHTHONIC_SOLANA_INSTALLER = "solana-install"
+CHTHONIC_FIREDANCER_ARTIFACT_DIR = "{{cwd}}/.chthonic/firedancer/artifacts"
 CHTHONIC_REACTOR_TRANSPORT = "auto" # set to "jsonl" for Safe Mode fallback
 _.path = [
     "{{env.USERPROFILE}}/.local/bin",
@@ -43,3 +46,11 @@ CC = "gcc"
 CXX = "g++"
 RI_DEVKIT = "{{env.MSYS2_HOME}}"
 RUBY_MIGRATION_MODE = "in_memory_devkit_injection"
+
+[tasks.agave-sync]
+description = "Sync Agave/Solana toolchain lane"
+run = "solana-install init stable"
+
+[tasks.firedancer-artifacts]
+description = "Prepare Frankendancer artifact directory for native bridge"
+run = "pwsh -NoProfile -Command \"New-Item -ItemType Directory -Force -Path .chthonic/firedancer/artifacts | Out-Null\""

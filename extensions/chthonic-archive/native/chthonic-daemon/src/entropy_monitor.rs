@@ -14,8 +14,7 @@ use serde::Serialize;
 
 const DEFAULT_API_BASE: &str = "https://endoflife.date/api/v1";
 const DEFAULT_INTERVAL_MS: u64 = 6 * 60 * 60 * 1_000;
-const TRACKED_TOOLS: [&str; 4] = ["python", "ruby", "go", "node"];
-const NODE_PRODUCTS: [&str; 2] = ["nodejs", "node"];
+const TRACKED_TOOLS: [&str; 4] = ["python", "go", "rust", "solana"];
 
 #[derive(Debug, Clone, Serialize)]
 pub struct EntropyState {
@@ -23,6 +22,11 @@ pub struct EntropyState {
     pub decay_score: f32,
     pub stale: bool,
     pub critical: bool,
+    pub validator_active: bool,
+    pub validator_source_mise: bool,
+    pub validator_process: Option<String>,
+    pub firedancer_surge: bool,
+    pub simulated_tps: u32,
     pub checked_at_epoch_ms: u64,
     pub source_mise: Option<String>,
     pub auto_update: String,
@@ -180,6 +184,11 @@ impl EntropyState {
             decay_score: 0.5,
             stale: true,
             critical: false,
+            validator_active: false,
+            validator_source_mise: false,
+            validator_process: None,
+            firedancer_surge: false,
+            simulated_tps: 0,
             checked_at_epoch_ms: now_epoch_ms(),
             source_mise,
             auto_update: auto_update.into(),
@@ -223,6 +232,11 @@ enum EolField {
 fn compute_entropy_state(options: &EntropyMonitorOptions, client: &Client) -> Result<EntropyState> {
     let mise = parse_mise_config(Path::new(&options.workspace))?;
     let source_mise = mise.source.as_ref().map(|path| path.display().to_string());
+    let validator_source_mise = has_solana_mise_pin(&mise.tools);
+    let validator_process = detect_validator_process();
+    let validator_active = validator_source_mise && validator_process.is_some();
+    let simulated_tps = simulated_tps_snapshot(validator_active);
+    let firedancer_surge = validator_active && simulated_tps >= 220_000;
 
     let mut tracked_tools = Vec::new();
     let mut warning: Option<String> = None;
@@ -331,6 +345,11 @@ fn compute_entropy_state(options: &EntropyMonitorOptions, client: &Client) -> Re
         decay_score,
         stale,
         critical,
+        validator_active,
+        validator_source_mise,
+        validator_process,
+        firedancer_surge,
+        simulated_tps,
         checked_at_epoch_ms: now_epoch_ms(),
         source_mise,
         auto_update: mise.auto_update,
@@ -529,9 +548,11 @@ fn extract_auto_mode(value: &toml::Value) -> Option<String> {
 
 fn resolve_tool_pin(tool: &str, versions: &HashMap<String, String>) -> Option<ToolPin> {
     let direct = match tool {
-        "node" => versions
-            .get("node")
-            .or_else(|| versions.get("nodejs")),
+        "solana" => versions
+            .get("solana-cli")
+            .or_else(|| versions.get("solana"))
+            .or_else(|| versions.get("agave"))
+            .or_else(|| versions.get("firedancer")),
         _ => versions.get(tool),
     };
 
@@ -544,7 +565,6 @@ fn resolve_tool_pin(tool: &str, versions: &HashMap<String, String>) -> Option<To
 
     let alias = match tool {
         "python" => versions.get("uv").map(|version| ("uv", version)),
-        "ruby" => versions.get("rv").map(|version| ("rv", version)),
         "go" => versions.get("goup").map(|version| ("goup", version)),
         _ => None,
     }?;
@@ -557,10 +577,10 @@ fn resolve_tool_pin(tool: &str, versions: &HashMap<String, String>) -> Option<To
 
 fn products_for_tool(tool: &str) -> &'static [&'static str] {
     match tool {
-        "node" => &NODE_PRODUCTS,
         "python" => &["python"],
-        "ruby" => &["ruby"],
         "go" => &["go"],
+        "rust" => &["rust"],
+        "solana" => &["solana", "agave", "solana-cli"],
         _ => &[],
     }
 }
@@ -621,7 +641,7 @@ fn find_cycle<'a>(tool: &str, target_cycle: &str, cycles: &'a [ApiCycle]) -> Opt
 }
 
 fn cycle_matches(tool: &str, expected: &str, candidate: &str) -> bool {
-    if tool == "node" {
+    if tool == "node" || tool == "solana" {
         let expected_major = parse_major(expected);
         let candidate_major = parse_major(candidate);
         return expected_major.is_some() && expected_major == candidate_major;
@@ -640,7 +660,7 @@ fn parse_requested_cycle(tool: &str, requested: &str) -> (Option<String>, bool) 
         return (None, false);
     }
 
-    let cycle = if tool == "node" {
+    let cycle = if tool == "node" || tool == "solana" {
         numbers.first().cloned()
     } else if numbers.len() >= 2 {
         Some(format!("{}.{}", numbers[0], numbers[1]))
@@ -786,6 +806,67 @@ fn now_epoch_ms() -> u64 {
         .duration_since(UNIX_EPOCH)
         .unwrap_or_default()
         .as_millis() as u64
+}
+
+fn has_solana_mise_pin(versions: &HashMap<String, String>) -> bool {
+    versions.contains_key("solana-cli")
+        || versions.contains_key("solana")
+        || versions.contains_key("agave")
+        || versions.contains_key("firedancer")
+}
+
+fn simulated_tps_snapshot(validator_active: bool) -> u32 {
+    if !validator_active {
+        return 0;
+    }
+    let tick = (now_epoch_ms() / 1_000) as u32;
+    let lane_wave = (tick % 17) * 3_700;
+    165_000u32.saturating_add(lane_wave)
+}
+
+fn detect_validator_process() -> Option<String> {
+    #[cfg(windows)]
+    {
+        use std::process::Command;
+        let output = Command::new("tasklist")
+            .args(["/fo", "csv", "/nh"])
+            .output()
+            .ok()?;
+        if !output.status.success() {
+            return None;
+        }
+
+        let lines = String::from_utf8_lossy(&output.stdout);
+        for line in lines.lines() {
+            let normalized = line.to_ascii_lowercase();
+            if normalized.contains("solana-test-validator.exe") {
+                return Some("solana-test-validator".to_string());
+            }
+            if normalized.contains("agave-validator.exe") {
+                return Some("agave-validator".to_string());
+            }
+            if normalized.contains("fdctl.exe") {
+                return Some("fdctl".to_string());
+            }
+        }
+        None
+    }
+
+    #[cfg(not(windows))]
+    {
+        use std::process::Command;
+        let candidates = ["solana-test-validator", "agave-validator", "fdctl"];
+        for candidate in candidates {
+            let status = Command::new("pgrep")
+                .args(["-f", candidate])
+                .status()
+                .ok()?;
+            if status.success() {
+                return Some(candidate.to_string());
+            }
+        }
+        None
+    }
 }
 
 fn wait_interval(interval: Duration, stop: &AtomicBool) {

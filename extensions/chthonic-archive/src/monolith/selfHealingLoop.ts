@@ -4,13 +4,13 @@ import * as childProcess from 'child_process';
 import * as vscode from 'vscode';
 
 interface RuntimeProbe {
-    language: 'python' | 'ruby' | 'go';
+    language: 'python' | 'ruby' | 'go' | 'rust' | 'solana';
     command: string;
     args: string[];
 }
 
 interface RuntimeState {
-    language: 'python' | 'ruby' | 'go';
+    language: 'python' | 'ruby' | 'go' | 'rust' | 'solana';
     version: string;
 }
 
@@ -98,6 +98,8 @@ export class SelfHealingLoop implements vscode.Disposable {
             { language: 'python', command: 'python', args: ['-c', 'import sys; print(f"{sys.version_info[0]}.{sys.version_info[1]}")'] },
             { language: 'ruby', command: 'ruby', args: ['-e', 'print RUBY_VERSION'] },
             { language: 'go', command: 'go', args: ['env', 'GOVERSION'] },
+            { language: 'rust', command: 'rustc', args: ['--version'] },
+            { language: 'solana', command: 'solana', args: ['--version'] },
         ];
 
         const states: RuntimeState[] = [];
@@ -117,15 +119,8 @@ export class SelfHealingLoop implements vscode.Disposable {
     }
 
     private async isEol(language: RuntimeState['language'], version: string): Promise<boolean> {
-        const response = await fetch(`${this.options.eolApiBase}/${language}.json`, {
-            headers: { accept: 'application/json' },
-        });
-        if (!response.ok) {
-            throw new Error(`endoflife query failed for ${language}: ${response.status}`);
-        }
-
-        const payload = await response.json();
-        if (!Array.isArray(payload)) {
+        const payload = await this.fetchCycles(language);
+        if (!payload || !Array.isArray(payload)) {
             return false;
         }
 
@@ -147,6 +142,24 @@ export class SelfHealingLoop implements vscode.Disposable {
             return false;
         }
         return eolDate <= Date.now();
+    }
+
+    private async fetchCycles(language: RuntimeState['language']): Promise<EolCycle[] | null> {
+        const productCandidates = productAliases(language);
+        for (const product of productCandidates) {
+            const response = await fetch(`${this.options.eolApiBase}/${product}.json`, {
+                headers: { accept: 'application/json' },
+            });
+            if (!response.ok) {
+                continue;
+            }
+            const payload = await response.json();
+            if (Array.isArray(payload)) {
+                return payload as EolCycle[];
+            }
+        }
+        this.output.appendLine(`[slab-heal] endoflife feed unavailable for ${language}; skipping lifecycle gate`);
+        return null;
     }
 
     private async repair(stale: RuntimeState[]): Promise<void> {
@@ -332,6 +345,10 @@ function normalizeVersion(raw: string, language: RuntimeState['language']): stri
     switch (language) {
         case 'go':
             return value.replace(/^go/i, '');
+        case 'rust':
+            return value.replace(/^rustc\s+/i, '').split(/\s+/)[0] ?? '';
+        case 'solana':
+            return value.replace(/^solana-cli\s+/i, '').split(/\s+/)[0] ?? '';
         default:
             return value;
     }
@@ -342,7 +359,19 @@ function cycleForVersion(language: RuntimeState['language'], version: string): s
     if (language === 'go') {
         return parts.slice(0, 2).join('.');
     }
+    if (language === 'solana') {
+        return parts.slice(0, 1).join('.');
+    }
     return parts.slice(0, 2).join('.');
+}
+
+function productAliases(language: RuntimeState['language']): string[] {
+    switch (language) {
+        case 'solana':
+            return ['solana', 'agave', 'solana-cli'];
+        default:
+            return [language];
+    }
 }
 
 function stringifyError(error: unknown): string {

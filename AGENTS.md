@@ -8,13 +8,20 @@ description: OpenAI Codex behavioral configuration and execution discipline
 
 # AGENTS.md
 
-This file provides guidance to OpenAI Codex when working with code in this repository.
+- This file provides guidance to OpenAI Codex when working with code in this repository.
+
+  - When tasked to check mailbox or deep-research files, prime for implementation, **not analysis**.
+
+  - When tasked to check TEMPLE files, prime for **structural analysis and enforcement**. When tasked to check GAME files, prime for **specification and mechanics validation**.
+
+- Always follow the "Execution Discipline" section below. 
 
 ## Mandatories
 
 - **File governance (WPTG):** [WET_PAPER_TO_GOLD_METHODOLOGY.md](WET_PAPER_TO_GOLD_METHODOLOGY.md) — every file is gold. Agents propose; user decides.
+- **Execution discipline:** See "Execution Discipline" section below.
 
-
+# AGENT_COMMON.md
 
 > **Shared Config:** See [AGENT_COMMON.md](AGENT_COMMON.md) for execution invariants, bifurcation rules, and triad references.
 

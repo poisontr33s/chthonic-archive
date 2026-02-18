@@ -17,7 +17,7 @@ import { RestoreOrderLayout } from './monolith/restoreOrderLayout';
 import { LoomViewProvider } from './monolith/loomView';
 import { SelfHealingLoop } from './monolith/selfHealingLoop';
 import { computeRustificationReport } from './monolith/rustificationScore';
-import type { EntropyState } from './reactor/types';
+import type { EntropyState, FiredancerSurgeState } from './reactor/types';
 
 export function activate(context: vscode.ExtensionContext) {
     console.log('☥ Chthonic Archive extension activated');
@@ -176,6 +176,20 @@ export function activate(context: vscode.ExtensionContext) {
     const cockpitLayout = new CockpitLayout(outputChannel, context.environmentVariableCollection);
     const synapseBridge = new SynapseBridge(outputChannel, context.extensionPath, reactorTransport);
     let lastEntropyPromptFingerprint: string | null = null;
+    let lastValidatorLayoutFingerprint: string | null = null;
+    let lastSurgeLayoutFingerprint: string | null = null;
+
+    const moveLoomToPanel = (reason: string, tps?: number): void => {
+        const lane = tps ? `${reason} (${tps.toLocaleString()} tps)` : reason;
+        outputChannel.appendLine(`[loom-reflex] panel lane ${lane}`);
+        void restoreOrderLayout.activate();
+    };
+
+    const focusLoomPrimary = (reason: string): void => {
+        outputChannel.appendLine(`[loom-reflex] primary lane ${reason}`);
+        void vscode.commands.executeCommand('workbench.view.extension.chthonic-archive');
+        void vscode.commands.executeCommand('chthonic.loomView.focus');
+    };
 
     context.subscriptions.push(annoClient, cockpitLayout, synapseBridge);
 
@@ -184,6 +198,26 @@ export function activate(context: vscode.ExtensionContext) {
         outputChannel.appendLine(
             `[lens] decay ${Math.round(state.decay_score * 100)}% (${state.status}) from ${state.source_mise ?? 'no-mise'}`,
         );
+
+        if (state.validator_active) {
+            const validatorFingerprint = `${state.validator_process ?? 'validator'}:${state.validator_source_mise}`;
+            if (validatorFingerprint !== lastValidatorLayoutFingerprint) {
+                lastValidatorLayoutFingerprint = validatorFingerprint;
+                focusLoomPrimary(`validator-online:${validatorFingerprint}`);
+            }
+        } else {
+            lastValidatorLayoutFingerprint = null;
+        }
+
+        if (state.firedancer_surge && state.validator_active) {
+            const surgeFingerprint = `${state.checked_at_epoch_ms}:${state.simulated_tps}`;
+            if (surgeFingerprint !== lastSurgeLayoutFingerprint) {
+                lastSurgeLayoutFingerprint = surgeFingerprint;
+                moveLoomToPanel('entropy-surge', state.simulated_tps);
+            }
+        } else {
+            lastSurgeLayoutFingerprint = null;
+        }
 
         if (!state.critical || !state.auto_update_enabled) {
             lastEntropyPromptFingerprint = null;
@@ -225,6 +259,15 @@ export function activate(context: vscode.ExtensionContext) {
         }),
         annoClient.onDidReceiveEntropyState((state) => {
             handleEntropyState(state);
+        }),
+        annoClient.onDidReceiveFiredancerSurge((state: FiredancerSurgeState) => {
+            if (state.surge) {
+                const surgeFingerprint = `${state.slot}:${state.simulated_tps}`;
+                if (surgeFingerprint !== lastSurgeLayoutFingerprint) {
+                    lastSurgeLayoutFingerprint = surgeFingerprint;
+                    moveLoomToPanel('daemon-surge', state.simulated_tps);
+                }
+            }
         }),
     );
 

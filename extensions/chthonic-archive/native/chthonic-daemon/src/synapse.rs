@@ -9,7 +9,7 @@ use chthonic_synapse_schema::{
 };
 use shared_memory::{Shmem, ShmemConf};
 
-use crate::types::{SedimentResult, SedimentVertex};
+use crate::types::{FiredancerTelemetry, SedimentResult, SedimentVertex};
 
 #[repr(C)]
 struct SynapseHeader {
@@ -132,6 +132,7 @@ impl SynapseWriter {
                 result.file_count,
                 result.compute_time_ms,
                 backend_code(result.backend),
+                result.telemetry.as_ref(),
                 chunk,
             )? {
                 chunks_written += 1;
@@ -160,6 +161,7 @@ impl SynapseWriter {
         file_count: u32,
         compute_time_ms: u64,
         backend_code: u32,
+        telemetry: Option<&FiredancerTelemetry>,
         vertices: &[SedimentVertex],
     ) -> Result<bool> {
         let write = self.header_ref().write_index.load(Ordering::Acquire);
@@ -171,22 +173,23 @@ impl SynapseWriter {
         }
 
         let slot_index = (write % self.descriptor.slot_capacity as u64) as u32;
+        let final_chunk = chunk_index + 1 == total_chunks;
+        let slot_header = build_slot_header(
+            chunk_index,
+            total_chunks,
+            layer_count,
+            file_count,
+            compute_time_ms,
+            backend_code,
+            vertices.len() as u32,
+            final_chunk,
+            telemetry,
+        );
+
         unsafe {
             self.write_slot(
                 slot_index,
-                SedimentSlotHeader {
-                    magic: SLOT_MAGIC,
-                    version: SLOT_VERSION,
-                    flags: if chunk_index + 1 == total_chunks { 1 } else { 0 },
-                    vertex_count: vertices.len() as u32,
-                    layer_count,
-                    file_count,
-                    chunk_index,
-                    total_chunks,
-                    compute_time_ms,
-                    backend_code,
-                    reserved: 0,
-                },
+                slot_header,
                 vertices,
             )?;
         }
@@ -275,7 +278,60 @@ fn backend_code(backend: &str) -> u32 {
         "cpu-fallback" => 2,
         "cpu-only" => 3,
         "empty" => 4,
+        "firedancer-sim" => 5,
         _ => 255,
+    }
+}
+
+fn build_slot_header(
+    chunk_index: u32,
+    total_chunks: u32,
+    layer_count: u32,
+    file_count: u32,
+    compute_time_ms: u64,
+    backend_code: u32,
+    vertex_count: u32,
+    final_chunk: bool,
+    telemetry: Option<&FiredancerTelemetry>,
+) -> SedimentSlotHeader {
+    let mut flags: u16 = if final_chunk { 0b1 } else { 0 };
+    let mut output_layer_count = layer_count;
+    let mut output_file_count = file_count;
+    let mut reserved = 0u32;
+
+    if let Some(telemetry) = telemetry {
+        if telemetry.surge {
+            flags |= 0b10;
+        }
+
+        // Reuse the fixed 48-byte slot header to carry shred metadata without
+        // changing the Windows shared-memory ABI:
+        // layer_count -> slot, file_count -> packet_count,
+        // reserved[7:0]=shred_class, [15:8]=leader_distance, [31:16]=shred_version.
+        output_layer_count = telemetry.slot as u32;
+        output_file_count = telemetry.packet_count;
+        let shred_class = if (chunk_index + telemetry.slot as u32) % 8 == 0 {
+            1u32
+        } else {
+            0u32
+        };
+        reserved = shred_class
+            | ((u32::from(telemetry.leader_distance)) << 8)
+            | ((u32::from(telemetry.shred_version)) << 16);
+    }
+
+    SedimentSlotHeader {
+        magic: SLOT_MAGIC,
+        version: SLOT_VERSION,
+        flags,
+        vertex_count,
+        layer_count: output_layer_count,
+        file_count: output_file_count,
+        chunk_index,
+        total_chunks,
+        compute_time_ms,
+        backend_code,
+        reserved,
     }
 }
 
