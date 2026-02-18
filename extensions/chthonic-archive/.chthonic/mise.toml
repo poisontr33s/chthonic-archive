@@ -42,8 +42,8 @@ VCINSTALLDIR = 'C:\Program Files\Microsoft Visual Studio\18\Insiders\VC'
 # FORCE RUST TO USE THE VS 2026 INSIDERS LINKER LANE
 RUSTFLAGS = "-C linker=lld-link -L native='C:/Program Files/Microsoft Visual Studio/18/Insiders/VC/Tools/MSVC/14.50.35717/lib/x64'"
 
-# SQL DEV KIT 22 SYNERGY
-SQL_DEV_KIT_PATH = 'C:\Program Files\Microsoft SQL Server\170\DAC\bin'
+# SQL DEV KIT 22 SYNERGY (resolved from VS 2026 Insiders SQLDB extension)
+SQL_DEV_KIT_PATH = 'C:\Program Files\Microsoft Visual Studio\18\Insiders\Common7\IDE\Extensions\Microsoft\SQLDB\DAC'
 
 _.path = [
     "{{env.USERPROFILE}}/.local/bin",
