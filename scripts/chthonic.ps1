@@ -736,6 +736,7 @@ Usage: chthonic [--version] [--help] <domain> [<action>] [<args>]
   env [--quiet]           Activate polyglot environment
   claudine [--quiet]      Alias to env (shell compatibility lane)
   status [--json]         Show tool + manager versions (verbose)
+  trend [--json]          Rustification trend tracker (GitHub + endoflife cross-ref)
   doctor [--fix] [--json] Check versions + EOL via endoflife.date; --fix upgrades
   doctor --dry-run        Simulate --fix without executing anything
   doctor --origins        Show install methodology per tool (path + origin + wrappers)
@@ -1386,6 +1387,19 @@ function Invoke-ArchiveCommand {
     }
 }
 
+function Invoke-RustificationTrend {
+    param([string[]]$Args)
+
+    Push-Location $REPO_ROOT
+    try {
+        & uv run scripts/rustification_trend_tracker.py @Args
+        return $LASTEXITCODE
+    }
+    finally {
+        Pop-Location
+    }
+}
+
 # ═══════════════════════════════════════════════════════════════════════════════
 # DOCTOR - endoflife.date API integration
 # ═══════════════════════════════════════════════════════════════════════════════
@@ -1890,6 +1904,10 @@ switch ($Domain) {
     "status" {
         Show-PolyglotStatus -Json:$HasJsonFlag
         exit 0
+    }
+    "trend" {
+        $exitCode = Invoke-RustificationTrend -Args $CmdArgs
+        exit $exitCode
     }
     "doctor" {
         $fixFlag = ($AllArgs -contains "--fix") -or ($AllArgs -contains "-f")

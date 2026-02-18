@@ -1,0 +1,181 @@
+{
+  "generated_at_utc": "2026-02-18T03:57:41.637827+00:00",
+  "stamp_minute_day_month_year": "57.18.02.2026",
+  "window_days": 30,
+  "github_pages": 2,
+  "github_per_page": 100,
+  "top_n": 12,
+  "chthonic_lanes": [
+    "go",
+    "javascript",
+    "python",
+    "ruby",
+    "rust"
+  ],
+  "coverage": {
+    "covered": 5,
+    "missing": 7
+  },
+  "trends": [
+    {
+      "language": "TypeScript",
+      "repos": 56,
+      "stars": 79373,
+      "score": 56489.97,
+      "lane": "javascript",
+      "lane_present": true,
+      "runtime_present": true,
+      "eol_slug": "nodejs",
+      "eol_latest": "25.6.1",
+      "eol_cycle": "25",
+      "eol_state": "maintained"
+    },
+    {
+      "language": "Python",
+      "repos": 42,
+      "stars": 74556,
+      "score": 42487.25,
+      "lane": "python",
+      "lane_present": true,
+      "runtime_present": true,
+      "eol_slug": "python",
+      "eol_latest": "3.14.3",
+      "eol_cycle": "3.14",
+      "eol_state": "maintained"
+    },
+    {
+      "language": "JavaScript",
+      "repos": 17,
+      "stars": 16064,
+      "score": 17420.59,
+      "lane": "javascript",
+      "lane_present": true,
+      "runtime_present": true,
+      "eol_slug": "nodejs",
+      "eol_latest": "25.6.1",
+      "eol_cycle": "25",
+      "eol_state": "maintained"
+    },
+    {
+      "language": "Rust",
+      "repos": 16,
+      "stars": 27032,
+      "score": 16443.19,
+      "lane": "rust",
+      "lane_present": true,
+      "runtime_present": true,
+      "eol_slug": "rust",
+      "eol_latest": "1.93.1",
+      "eol_cycle": "1.93",
+      "eol_state": "maintained"
+    },
+    {
+      "language": "Go",
+      "repos": 10,
+      "stars": 22657,
+      "score": 10435.52,
+      "lane": "go",
+      "lane_present": true,
+      "runtime_present": true,
+      "eol_slug": "go",
+      "eol_latest": "1.26.0",
+      "eol_cycle": "1.26",
+      "eol_state": "maintained"
+    },
+    {
+      "language": "Shell",
+      "repos": 10,
+      "stars": 12166,
+      "score": 10408.52,
+      "lane": "shell",
+      "lane_present": false,
+      "runtime_present": false,
+      "eol_slug": null,
+      "eol_latest": null,
+      "eol_cycle": null,
+      "eol_state": "unmapped"
+    },
+    {
+      "language": "Swift",
+      "repos": 5,
+      "stars": 6047,
+      "score": 5378.16,
+      "lane": "swift",
+      "lane_present": false,
+      "runtime_present": false,
+      "eol_slug": null,
+      "eol_latest": null,
+      "eol_cycle": null,
+      "eol_state": "unmapped"
+    },
+    {
+      "language": "HTML",
+      "repos": 5,
+      "stars": 4445,
+      "score": 5364.8,
+      "lane": "html",
+      "lane_present": false,
+      "runtime_present": false,
+      "eol_slug": null,
+      "eol_latest": null,
+      "eol_cycle": null,
+      "eol_state": "unmapped"
+    },
+    {
+      "language": "C++",
+      "repos": 3,
+      "stars": 2654,
+      "score": 3342.41,
+      "lane": "cpp",
+      "lane_present": false,
+      "runtime_present": true,
+      "eol_slug": null,
+      "eol_latest": null,
+      "eol_cycle": null,
+      "eol_state": "unmapped"
+    },
+    {
+      "language": "PowerShell",
+      "repos": 2,
+      "stars": 4134,
+      "score": 2361.65,
+      "lane": "powershell",
+      "lane_present": false,
+      "runtime_present": false,
+      "eol_slug": "powershell",
+      "eol_latest": "7.5.4",
+      "eol_cycle": "7.5",
+      "eol_state": "maintained"
+    },
+    {
+      "language": "C",
+      "repos": 2,
+      "stars": 3672,
+      "score": 2356.5,
+      "lane": "cpp",
+      "lane_present": false,
+      "runtime_present": true,
+      "eol_slug": null,
+      "eol_latest": null,
+      "eol_cycle": null,
+      "eol_state": "unmapped"
+    },
+    {
+      "language": "Nushell",
+      "repos": 1,
+      "stars": 3180,
+      "score": 1350.26,
+      "lane": "nushell",
+      "lane_present": false,
+      "runtime_present": false,
+      "eol_slug": null,
+      "eol_latest": null,
+      "eol_cycle": null,
+      "eol_state": "unmapped"
+    }
+  ],
+  "rustification_finder": [
+    "Missing trend lanes detected: C, C++, HTML, Nushell, PowerShell, Shell, Swift",
+    "Elixir not present in current top trend window."
+  ]
+}
