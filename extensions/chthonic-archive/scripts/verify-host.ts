@@ -215,19 +215,19 @@ function ensureToolpoolLane(): ManualCheckResult {
 function ensureNodeManagerLane(): ManualCheckResult {
     const checks = [
         {
+            tool: 'bun',
+            args: ['--version'],
+            note: 'using bun (runtime + package manager + bundler + test runner)',
+        },
+        {
             tool: 'fnm',
             args: ['--version'],
-            note: 'using fnm (Node runtime manager)',
+            note: 'bun missing; using fnm fallback lane',
         },
         {
             tool: 'volta',
             args: ['--version'],
-            note: 'using volta (Node runtime manager)',
-        },
-        {
-            tool: 'bun',
-            args: ['--version'],
-            note: 'using bun (JS/TS runtime lane); fnm/volta remain optional Node managers',
+            note: 'bun missing; using volta fallback lane',
         },
     ];
     for (const probe of checks) {
@@ -384,7 +384,7 @@ const checks: HostCheck[] = [
         cmd: ['bun', '--version'],
         manualCheck: ensureNodeManagerLane,
         warnOnly: true,
-        fix: 'Install at least one Node lane manager: fnm, volta, or bun',
+        fix: 'Install bun (preferred Node lane). Optional fallbacks: fnm or volta.',
     },
     {
         name: 'Solana Tool Suite Lane',
