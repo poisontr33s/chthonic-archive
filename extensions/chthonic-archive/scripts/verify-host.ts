@@ -103,8 +103,8 @@ function ensureToolpoolLane(): ManualCheckResult {
         ok: nativeOk && sqlOk && infraOk,
         note: [
             `native=${nativeLane} ${nativeOk ? 'OK' : 'WARN'}`,
-            `  |- sql=${sqlLane} ${sqlOk ? 'OK' : 'WARN'}`,
-            `  \\- infra=${infraLane} ${infraOk ? 'OK' : 'WARN'}`,
+            `|- sql=${sqlLane} ${sqlOk ? 'OK' : 'WARN'}`,
+            `\\- infra=${infraLane} ${infraOk ? 'OK' : 'WARN'}`,
         ].join('\n'),
     };
 }
