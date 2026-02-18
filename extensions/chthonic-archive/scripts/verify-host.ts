@@ -10,6 +10,7 @@ type HostCheck = {
     manualCheck?: () => ManualCheckResult;
     fix: string;
     warnOnly?: boolean;
+    infoOnly?: boolean;
 };
 
 type ManualCheckResult = {
@@ -213,14 +214,26 @@ function ensureToolpoolLane(): ManualCheckResult {
 
 function ensureNodeManagerLane(): ManualCheckResult {
     const checks = [
-        { tool: 'fnm', args: ['--version'] },
-        { tool: 'volta', args: ['--version'] },
-        { tool: 'bun', args: ['--version'] },
+        {
+            tool: 'fnm',
+            args: ['--version'],
+            note: 'using fnm (Node runtime manager)',
+        },
+        {
+            tool: 'volta',
+            args: ['--version'],
+            note: 'using volta (Node runtime manager)',
+        },
+        {
+            tool: 'bun',
+            args: ['--version'],
+            note: 'using bun (JS/TS runtime lane); fnm/volta remain optional Node managers',
+        },
     ];
     for (const probe of checks) {
         const result = runSync([probe.tool, ...probe.args]);
         if (!result.threw && result.exitCode === 0) {
-            return { ok: true, note: `using ${probe.tool}` };
+            return { ok: true, note: probe.note };
         }
     }
     return { ok: false };
@@ -317,8 +330,8 @@ const checks: HostCheck[] = [
     {
         name: 'Solana CLI',
         cmd: ['solana', '--version'],
-        warnOnly: true,
-        fix: 'Install Solana Tool Suite for local validator mode.',
+        infoOnly: true,
+        fix: 'Optional: install Solana Tool Suite if you are running validator/Anchor lanes.',
     },
     {
         name: 'Ruby Runtime',
@@ -344,6 +357,14 @@ for (const check of checks) {
         }
         if (check.warnOnly) {
             console.log(`${yellow}WARN${reset}`);
+            if (manual.note) {
+                console.log(`  ${manual.note}`);
+            }
+            console.log(`  ${check.fix}`);
+            continue;
+        }
+        if (check.infoOnly) {
+            console.log(`${cyan}INFO${reset}`);
             if (manual.note) {
                 console.log(`  ${manual.note}`);
             }
@@ -382,6 +403,11 @@ for (const check of checks) {
             console.log(`  ${check.fix}`);
             continue;
         }
+        if (check.infoOnly) {
+            console.log(`${cyan}INFO${reset}`);
+            console.log(`  ${check.fix}`);
+            continue;
+        }
         console.log(`${red}MISSING${reset}`);
         console.log(`  ${check.fix}`);
         failed = true;
@@ -404,6 +430,11 @@ for (const check of checks) {
 
         if (check.warnOnly) {
             console.log(`${yellow}WARN${reset}`);
+            console.log(`  ${check.fix}`);
+            continue;
+        }
+        if (check.infoOnly) {
+            console.log(`${cyan}INFO${reset}`);
             console.log(`  ${check.fix}`);
             continue;
         }
