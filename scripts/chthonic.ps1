@@ -456,9 +456,16 @@ function Ensure-RvCommandBinding {
         $result.rv_before = if ($rvBefore.Path) { $rvBefore.Path } else { $rvBefore.Display }
     }
 
+    $rvExeCmd = Get-CommandResolution -Name "rv.exe"
     $rvwCmd = Get-CommandResolution -Name "rvw"
-    if (-not $rvwCmd) {
-        $result.reason = "rvw not found"
+    $targetCommand = $null
+    if ($rvExeCmd) {
+        $targetCommand = "rv.exe"
+    } elseif ($rvwCmd) {
+        $targetCommand = "rvw"
+    }
+    if (-not $targetCommand) {
+        $result.reason = "rv.exe/rvw not found"
         return [pscustomobject]$result
     }
 
@@ -478,9 +485,9 @@ function Ensure-RvCommandBinding {
         if (-not (Get-Alias -Name rvar -ErrorAction SilentlyContinue)) {
             Set-Alias -Name rvar -Value Remove-Variable -Scope Global -Force
         }
-        Set-Alias -Name rv -Value rvw -Scope Global -Force
+        Set-Alias -Name rv -Value $targetCommand -Scope Global -Force
         $result.applied = $true
-        $result.reason = "rv alias redirected to rvw"
+        $result.reason = "rv alias redirected to $targetCommand"
     } catch {
         $result.reason = "failed to set alias: $($_.Exception.Message)"
     }
@@ -999,7 +1006,7 @@ function Invoke-PolyglotActivation {
     $env:Path = ($activePaths + $existingPath | Select-Object -Unique) -join ';'
 
     # Resolve `rv` collision with PowerShell's built-in Remove-Variable alias.
-    # Apply only when shadowed and rvw is available.
+    # Apply only when shadowed and a Ruby manager command is available.
     $rvBinding = Ensure-RvCommandBinding
     if ($rvBinding) {
         $env:CHTHONIC_RV_BINDING = if ($rvBinding.rv_after) { $rvBinding.rv_after } else { "unresolved" }
@@ -1047,7 +1054,7 @@ function Show-PolyglotStatus {
     $tools['orchestration_mode'] = 'polyglot_router'
     $tools['research_ingest_role'] = 'supplemental_input'
     $tools['unified_overlay_optional'] = 'mise'
-    $tools['handler_ruby'] = 'rvw'
+    $tools['handler_ruby'] = 'rv (rvw wrapper optional)'
     $tools['handler_python'] = 'uv'
     $tools['handler_rust'] = 'rustup/cargo'
     $tools['handler_go'] = 'goup'
@@ -1233,18 +1240,24 @@ function Show-PolyglotStatus {
     $rvBindingState = "not set"
     $rvBindingReason = "not set"
     if ($rvMetaStatus) {
-        if ($rvMetaStatus.Path -and (Split-Path -Leaf $rvMetaStatus.Path).ToLower() -eq "rvw.exe") {
+        if ($rvMetaStatus.Path -and (Split-Path -Leaf $rvMetaStatus.Path).ToLower() -eq "rv.exe") {
+            $rvBindingState = $rvMetaStatus.Path
+            $rvBindingReason = "rv mapped to rv.exe in current shell"
+        } elseif ($rvMetaStatus.Path -and (Split-Path -Leaf $rvMetaStatus.Path).ToLower() -eq "rvw.exe") {
             $rvBindingState = $rvMetaStatus.Path
             $rvBindingReason = "rv mapped to rvw in current shell"
+        } elseif ($rvMetaStatus.Display -eq "alias -> rv.exe") {
+            $rvBindingState = "alias -> rv.exe"
+            $rvBindingReason = "rv mapped to rv.exe in current shell"
         } elseif ($rvMetaStatus.Display -eq "alias -> rvw") {
             $rvBindingState = "alias -> rvw"
             $rvBindingReason = "rv mapped to rvw in current shell"
         } elseif ($rvMetaStatus.Display -eq "alias -> Remove-Variable") {
             $rvBindingState = "alias -> Remove-Variable"
-            if (Get-CommandResolution -Name "rvw") {
+            if ((Get-CommandResolution -Name "rv.exe") -or (Get-CommandResolution -Name "rvw")) {
                 $rvBindingReason = "not applied in current shell; run 'chthonic env' to apply collision guard"
             } else {
-                $rvBindingReason = "rvw unavailable; collision guard cannot be applied"
+                $rvBindingReason = "rv unavailable; collision guard cannot be applied"
             }
         } else {
             $rvBindingState = if ($rvMetaStatus.Path) { $rvMetaStatus.Path } else { $rvMetaStatus.Display }
