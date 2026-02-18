@@ -211,6 +211,21 @@ function ensureToolpoolLane(): ManualCheckResult {
     };
 }
 
+function ensureNodeManagerLane(): ManualCheckResult {
+    const checks = [
+        { tool: 'fnm', args: ['--version'] },
+        { tool: 'volta', args: ['--version'] },
+        { tool: 'bun', args: ['--version'] },
+    ];
+    for (const probe of checks) {
+        const result = runSync([probe.tool, ...probe.args]);
+        if (!result.threw && result.exitCode === 0) {
+            return { ok: true, note: `using ${probe.tool}` };
+        }
+    }
+    return { ok: false };
+}
+
 console.log(`${cyan}[Chthonic] Running Preflight Host Verification...${reset}`);
 
 const checks: HostCheck[] = [
@@ -235,6 +250,25 @@ const checks: HostCheck[] = [
         name: 'Rustup',
         cmd: ['rustup', '--version'],
         fix: 'Install rustup: https://rustup.rs',
+    },
+    {
+        name: 'Ruby Manager (rv)',
+        cmd: ['rv', '--version'],
+        warnOnly: true,
+        fix: 'Install rv (Rust-native Ruby manager): cargo install rv',
+    },
+    {
+        name: 'Go Manager (goup)',
+        cmd: ['goup', '--version'],
+        warnOnly: true,
+        fix: 'Install goup (Rust-native Go manager): cargo install goup',
+    },
+    {
+        name: 'Node Manager Lane',
+        cmd: ['bun', '--version'],
+        manualCheck: ensureNodeManagerLane,
+        warnOnly: true,
+        fix: 'Install at least one Node lane manager: fnm, volta, or bun',
     },
     {
         name: 'WASM Target',
