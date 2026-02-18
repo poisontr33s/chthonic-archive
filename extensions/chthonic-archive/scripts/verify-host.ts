@@ -239,6 +239,109 @@ function ensureNodeManagerLane(): ManualCheckResult {
     return { ok: false };
 }
 
+function workspaceNeedsSolanaLane(): boolean {
+    const root = process.cwd();
+    const markers = [
+        path.join(root, 'Anchor.toml'),
+        path.join(root, '.chthonic', 'mise.toml'),
+        path.join(root, 'mise.toml'),
+        path.join(root, '.mise.toml'),
+    ];
+
+    for (const marker of markers) {
+        if (!existsSync(marker)) {
+            continue;
+        }
+        const content = safeReadText(marker);
+        if (!content) {
+            continue;
+        }
+        if (/solana-cli|agave|anchor|solana-install|agave-install/i.test(content)) {
+            return true;
+        }
+    }
+
+    return false;
+}
+
+function ensureSolanaToolSuiteLane(): ManualCheckResult {
+    const needsLane = workspaceNeedsSolanaLane();
+    const solana = runSync(['solana', '--version']);
+    const agave = runSync(['agave-install', '--version']);
+
+    const hasSolana = !solana.threw && solana.exitCode === 0;
+    const hasAgaveInstall = !agave.threw && agave.exitCode === 0;
+
+    if (hasSolana && hasAgaveInstall) {
+        return { ok: true, note: 'solana + agave-install detected' };
+    }
+    if (!needsLane) {
+        return {
+            ok: true,
+            note: 'workspace does not currently declare Solana lane requirements',
+        };
+    }
+    if (hasSolana && !hasAgaveInstall) {
+        return {
+            ok: false,
+            note: 'solana detected but agave-install missing (update lane unavailable)',
+        };
+    }
+    if (!hasSolana && hasAgaveInstall) {
+        return {
+            ok: false,
+            note: 'agave-install detected but solana CLI missing on PATH',
+        };
+    }
+    return {
+        ok: false,
+        note: 'solana + agave-install are both missing for declared Solana lane',
+    };
+}
+
+function ensureAnchorLane(): ManualCheckResult {
+    const needsLane = workspaceNeedsSolanaLane();
+    const anchor = runSync(['anchor', '--version']);
+    const avm = runSync(['avm', '--version']);
+
+    const hasAnchor = !anchor.threw && anchor.exitCode === 0;
+    const hasAvm = !avm.threw && avm.exitCode === 0;
+
+    if (hasAnchor && hasAvm) {
+        return { ok: true, note: 'anchor + avm detected' };
+    }
+    if (!needsLane) {
+        return {
+            ok: true,
+            note: 'workspace does not currently declare Anchor lane requirements',
+        };
+    }
+    if (hasAnchor && !hasAvm) {
+        return {
+            ok: false,
+            note: 'anchor detected but avm missing (version management unavailable)',
+        };
+    }
+    if (!hasAnchor && hasAvm) {
+        return {
+            ok: false,
+            note: 'avm detected but anchor CLI not activated',
+        };
+    }
+    return {
+        ok: false,
+        note: 'anchor + avm are both missing for declared Solana lane',
+    };
+}
+
+function safeReadText(filePath: string): string | null {
+    try {
+        return readFileSync(filePath, 'utf8');
+    } catch {
+        return null;
+    }
+}
+
 console.log(`${cyan}[Chthonic] Running Preflight Host Verification...${reset}`);
 
 const checks: HostCheck[] = [
@@ -284,6 +387,20 @@ const checks: HostCheck[] = [
         fix: 'Install at least one Node lane manager: fnm, volta, or bun',
     },
     {
+        name: 'Solana Tool Suite Lane',
+        cmd: ['solana', '--version'],
+        manualCheck: ensureSolanaToolSuiteLane,
+        warnOnly: true,
+        fix: 'Install Solana Tool Suite (Agave): sh -c "$(curl -sSfL https://release.anza.xyz/stable/install)"',
+    },
+    {
+        name: 'Anchor Lane (anchor + avm)',
+        cmd: ['anchor', '--version'],
+        manualCheck: ensureAnchorLane,
+        warnOnly: true,
+        fix: 'Install AVM + Anchor CLI: cargo install --git https://github.com/solana-foundation/anchor avm --force && avm install latest && avm use latest',
+    },
+    {
         name: 'WASM Target',
         cmd: ['rustup', 'target', 'list', '--installed'],
         check: (stdout) => stdout.includes('wasm32-unknown-unknown'),
@@ -326,12 +443,6 @@ const checks: HostCheck[] = [
             };
         },
         fix: 'No action required. Build wrappers sanitize MAKEFLAGS/MFLAGS per process.',
-    },
-    {
-        name: 'Solana CLI',
-        cmd: ['solana', '--version'],
-        infoOnly: true,
-        fix: 'Optional: install Solana Tool Suite if you are running validator/Anchor lanes.',
     },
     {
         name: 'Ruby Runtime',
