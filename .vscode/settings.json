@@ -142,7 +142,8 @@
     "markdown.validate.ignoredLinks": [
         "CLAUDE.md",
         ".github/copilot-instructions.archive.md",
-        "../dumpster-dive/intake/templates/TRIUMVIRATE_TASK_TEMPLATE.md"
+        "../dumpster-dive/intake/templates/TRIUMVIRATE_TASK_TEMPLATE.md",
+        "./instructions/mathematical-engines.instructions.md"
     ],
     "markdown.editor.pasteUrlAsFormattedLink.enabled": "smart",
 

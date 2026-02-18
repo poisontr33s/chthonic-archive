@@ -1,0 +1,5014 @@
+{
+  "path": "scripts",
+  "primaryLanguage": "python",
+  "purpose": "automation",
+  "fileCount": 192,
+  "totalSize": 1625378,
+  "averageComplexity": 25,
+  "documentationCoverage": 0.13,
+  "files": [
+    {
+      "path": "scripts/api_pool.ps1",
+      "language": "powershell",
+      "size": 3851,
+      "complexity": {
+        "cyclomatic": 23,
+        "nestingDepth": 4,
+        "functionCount": 4,
+        "avgFunctionLength": 34
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 28,
+      "commentDensity": 0.20588235294117646,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": [
+        "potential-secret"
+      ]
+    },
+    {
+      "path": "scripts/api_pool_persist_user_env.ps1",
+      "language": "powershell",
+      "size": 3381,
+      "complexity": {
+        "cyclomatic": 20,
+        "nestingDepth": 2,
+        "functionCount": 4,
+        "avgFunctionLength": 30
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 8,
+      "commentDensity": 0.058333333333333334,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": [
+        "potential-secret"
+      ]
+    },
+    {
+      "path": "scripts/apply_doc_fixes.py",
+      "language": "python",
+      "size": 4692,
+      "complexity": {
+        "cyclomatic": 16,
+        "nestingDepth": 8,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [
+        "__future__",
+        "sys",
+        "pathlib",
+        "json",
+        "re"
+      ],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 2,
+      "commentDensity": 0.2,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "scripts/asciify_iron_maiden_ssot.py",
+      "language": "python",
+      "size": 2365,
+      "complexity": {
+        "cyclomatic": 5,
+        "nestingDepth": 4,
+        "functionCount": 2,
+        "avgFunctionLength": 30
+      },
+      "imports": [
+        "__future__",
+        "pathlib"
+      ],
+      "exports": [
+        "asciify_text",
+        "main"
+      ],
+      "todoCount": 0,
+      "docstringCount": 2,
+      "commentDensity": 0.22950819672131148,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "scripts/asc_entity_generator.py",
+      "language": "python",
+      "size": 44771,
+      "complexity": {
+        "cyclomatic": 73,
+        "nestingDepth": 18,
+        "functionCount": 18,
+        "avgFunctionLength": 58
+      },
+      "imports": [
+        "sys",
+        "io",
+        "argparse",
+        "json",
+        "os",
+        "typing",
+        "dataclasses"
+      ],
+      "exports": [
+        "main"
+      ],
+      "todoCount": 0,
+      "docstringCount": 33,
+      "commentDensity": 0.08,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "scripts/autonomous_coordinator.py",
+      "language": "python",
+      "size": 8954,
+      "complexity": {
+        "cyclomatic": 19,
+        "nestingDepth": 8,
+        "functionCount": 9,
+        "avgFunctionLength": 22
+      },
+      "imports": [
+        "subprocess",
+        "json",
+        "datetime",
+        "sys",
+        "pathlib",
+        "typing",
+        "scripts.lib.shared",
+        "scripts.github_voice",
+        "scripts.pleasure_protocol",
+        "scripts.sensory_cortex"
+      ],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 8,
+      "commentDensity": 0.16990291262135923,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "scripts/background_services.py",
+      "language": "python",
+      "size": 22303,
+      "complexity": {
+        "cyclomatic": 71,
+        "nestingDepth": 14,
+        "functionCount": 24,
+        "avgFunctionLength": 21
+      },
+      "imports": [
+        "__future__",
+        "argparse",
+        "asyncio",
+        "hashlib",
+        "json",
+        "logging",
+        "os",
+        "re",
+        "sys",
+        "time",
+        "datetime",
+        "pathlib",
+        "typing"
+      ],
+      "exports": [
+        "main"
+      ],
+      "todoCount": 0,
+      "docstringCount": 26,
+      "commentDensity": 0.06309751434034416,
+      "patterns": [
+        "async-patterns"
+      ],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "scripts/bridge-diagnostic.ps1",
+      "language": "powershell",
+      "size": 6233,
+      "complexity": {
+        "cyclomatic": 9,
+        "nestingDepth": 4,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 19,
+      "commentDensity": 0.15833333333333333,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "scripts/bridge-server.ts",
+      "language": "typescript",
+      "size": 9929,
+      "complexity": {
+        "cyclomatic": 14,
+        "nestingDepth": 9,
+        "functionCount": 2,
+        "avgFunctionLength": 137
+      },
+      "imports": [
+        "bun",
+        "child_process",
+        "crypto",
+        "path"
+      ],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 5,
+      "commentDensity": 0.11636363636363636,
+      "patterns": [
+        "async-patterns"
+      ],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "scripts/build_epistemograph.py",
+      "language": "python",
+      "size": 22905,
+      "complexity": {
+        "cyclomatic": 54,
+        "nestingDepth": 12,
+        "functionCount": 10,
+        "avgFunctionLength": 64
+      },
+      "imports": [
+        "os",
+        "sys",
+        "json",
+        "sqlite3",
+        "hashlib",
+        "re",
+        "time",
+        "argparse",
+        "pathlib",
+        "typing"
+      ],
+      "exports": [
+        "log",
+        "compute_sha256",
+        "sample_content",
+        "detect_signals",
+        "phase1_ingest_dcrp",
+        "phase2_detect_gaps",
+        "phase3_extract_signals",
+        "phase4_compute_topology",
+        "phase5_score_files",
+        "run_scanner"
+      ],
+      "todoCount": 0,
+      "docstringCount": 42,
+      "commentDensity": 0.11574074074074074,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "scripts/build_epistemograph_v1.1.py",
+      "language": "python",
+      "size": 28124,
+      "complexity": {
+        "cyclomatic": 76,
+        "nestingDepth": 13,
+        "functionCount": 11,
+        "avgFunctionLength": 67
+      },
+      "imports": [
+        "os",
+        "sys",
+        "json",
+        "sqlite3",
+        "hashlib",
+        "re",
+        "time",
+        "argparse",
+        "pathlib",
+        "typing",
+        "traceback"
+      ],
+      "exports": [
+        "log",
+        "compute_sha256",
+        "normalize_path",
+        "sample_content",
+        "detect_signals",
+        "phase1_ingest_dcrp",
+        "phase2_detect_gaps",
+        "phase3_extract_signals",
+        "phase4_compute_topology",
+        "phase5_score_files",
+        "run_scanner"
+      ],
+      "todoCount": 0,
+      "docstringCount": 41,
+      "commentDensity": 0.10618279569892473,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "scripts/build_skill_index.py",
+      "language": "python",
+      "size": 3452,
+      "complexity": {
+        "cyclomatic": 17,
+        "nestingDepth": 8,
+        "functionCount": 4,
+        "avgFunctionLength": 26
+      },
+      "imports": [
+        "__future__",
+        "argparse",
+        "hashlib",
+        "json",
+        "datetime",
+        "pathlib"
+      ],
+      "exports": [
+        "sha256_file",
+        "parse_frontmatter",
+        "build_index",
+        "main"
+      ],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0.018867924528301886,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "scripts/BUN_COMPLIANCE_AUDIT.md",
+      "language": "markdown",
+      "size": 4685,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 1,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "scripts/bun_compliance_audit.py",
+      "language": "python",
+      "size": 18188,
+      "complexity": {
+        "cyclomatic": 42,
+        "nestingDepth": 12,
+        "functionCount": 9,
+        "avgFunctionLength": 48
+      },
+      "imports": [
+        "__future__",
+        "re",
+        "sys",
+        "pathlib",
+        "typing",
+        "dataclasses",
+        "enum",
+        "argparse"
+      ],
+      "exports": [
+        "safe_print",
+        "main"
+      ],
+      "todoCount": 0,
+      "docstringCount": 12,
+      "commentDensity": 0.11724137931034483,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "scripts/BUN_COMPLIANCE_DEPLOYMENT.md",
+      "language": "markdown",
+      "size": 5953,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 3,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "scripts/canonize_iron_maiden_ssot.py",
+      "language": "python",
+      "size": 3914,
+      "complexity": {
+        "cyclomatic": 14,
+        "nestingDepth": 8,
+        "functionCount": 4,
+        "avgFunctionLength": 32
+      },
+      "imports": [
+        "__future__",
+        "argparse",
+        "hashlib",
+        "dataclasses",
+        "pathlib"
+      ],
+      "exports": [
+        "sha256_text",
+        "unescape_line",
+        "canonize_text",
+        "main"
+      ],
+      "todoCount": 0,
+      "docstringCount": 2,
+      "commentDensity": 0.0390625,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": [
+        "potential-secret"
+      ]
+    },
+    {
+      "path": "scripts/check-profiles.ps1",
+      "language": "powershell",
+      "size": 2580,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 0,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 14,
+      "commentDensity": 0.358974358974359,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "scripts/check_mailbox_layout.py",
+      "language": "python",
+      "size": 2093,
+      "complexity": {
+        "cyclomatic": 14,
+        "nestingDepth": 8,
+        "functionCount": 2,
+        "avgFunctionLength": 33
+      },
+      "imports": [
+        "__future__",
+        "argparse",
+        "pathlib"
+      ],
+      "exports": [
+        "list_files",
+        "main"
+      ],
+      "todoCount": 0,
+      "docstringCount": 2,
+      "commentDensity": 0.029850746268656716,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "scripts/check_mailbox_manifest.py",
+      "language": "python",
+      "size": 1572,
+      "complexity": {
+        "cyclomatic": 9,
+        "nestingDepth": 6,
+        "functionCount": 3,
+        "avgFunctionLength": 20
+      },
+      "imports": [
+        "__future__",
+        "json",
+        "pathlib"
+      ],
+      "exports": [
+        "load",
+        "check_one",
+        "main"
+      ],
+      "todoCount": 0,
+      "docstringCount": 2,
+      "commentDensity": 0.03225806451612903,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "scripts/check_python_policy.py",
+      "language": "python",
+      "size": 4784,
+      "complexity": {
+        "cyclomatic": 25,
+        "nestingDepth": 8,
+        "functionCount": 5,
+        "avgFunctionLength": 27
+      },
+      "imports": [
+        "__future__",
+        "argparse",
+        "re",
+        "pathlib"
+      ],
+      "exports": [
+        "should_skip",
+        "collect_targets",
+        "find_violations",
+        "find_proto_style_violations",
+        "main"
+      ],
+      "todoCount": 0,
+      "docstringCount": 2,
+      "commentDensity": 0.029411764705882353,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "scripts/chthonic",
+      "language": "unknown",
+      "size": 2251,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 6,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "scripts/chthonic.ps1",
+      "language": "powershell",
+      "size": 82288,
+      "complexity": {
+        "cyclomatic": 347,
+        "nestingDepth": 14,
+        "functionCount": 49,
+        "avgFunctionLength": 41
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 124,
+      "commentDensity": 0.06039941548952752,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "scripts/chthonic.py",
+      "language": "python",
+      "size": 4578,
+      "complexity": {
+        "cyclomatic": 12,
+        "nestingDepth": 4,
+        "functionCount": 1,
+        "avgFunctionLength": 112
+      },
+      "imports": [
+        "__future__",
+        "subprocess",
+        "sys",
+        "pathlib"
+      ],
+      "exports": [
+        "main"
+      ],
+      "todoCount": 0,
+      "docstringCount": 3,
+      "commentDensity": 0.14285714285714285,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "scripts/claude-chthonic-bridge.ts",
+      "language": "typescript",
+      "size": 13986,
+      "complexity": {
+        "cyclomatic": 12,
+        "nestingDepth": 8,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [
+        "bun",
+        "child_process"
+      ],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 5,
+      "commentDensity": 0.10455764075067024,
+      "patterns": [
+        "async-patterns"
+      ],
+      "antiPatterns": [
+        "any-type-usage"
+      ],
+      "securityFlags": []
+    },
+    {
+      "path": "scripts/claude-chthonic-plugin.ts",
+      "language": "typescript",
+      "size": 7625,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 6,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 1,
+      "commentDensity": 0.07547169811320754,
+      "patterns": [
+        "async-patterns"
+      ],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "scripts/claude-ide-e2e-check.ps1",
+      "language": "powershell",
+      "size": 14028,
+      "complexity": {
+        "cyclomatic": 22,
+        "nestingDepth": 4,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 28,
+      "commentDensity": 0.1261682242990654,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": [
+        "potential-secret"
+      ]
+    },
+    {
+      "path": "scripts/claude-ide-e2e-check.ts",
+      "language": "typescript",
+      "size": 10098,
+      "complexity": {
+        "cyclomatic": 14,
+        "nestingDepth": 3,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [
+        "fs",
+        "path",
+        "child_process"
+      ],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0.14356435643564355,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": [
+        "potential-secret"
+      ]
+    },
+    {
+      "path": "scripts/CLAUDE_CODE_INTEGRATION.md",
+      "language": "markdown",
+      "size": 6058,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 2,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "scripts/claude_crossover.ps1",
+      "language": "powershell",
+      "size": 4473,
+      "complexity": {
+        "cyclomatic": 14,
+        "nestingDepth": 3,
+        "functionCount": 2,
+        "avgFunctionLength": 69
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 5,
+      "commentDensity": 0.02877697841726619,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "scripts/claude_healthcheck.ps1",
+      "language": "powershell",
+      "size": 5875,
+      "complexity": {
+        "cyclomatic": 18,
+        "nestingDepth": 5,
+        "functionCount": 5,
+        "avgFunctionLength": 40
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 12,
+      "commentDensity": 0.055,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": [
+        "potential-secret"
+      ]
+    },
+    {
+      "path": "scripts/claude_ide.ps1",
+      "language": "powershell",
+      "size": 2339,
+      "complexity": {
+        "cyclomatic": 8,
+        "nestingDepth": 4,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 3,
+      "commentDensity": 0.02857142857142857,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "scripts/claude_ide_settings_generate.ps1",
+      "language": "powershell",
+      "size": 3824,
+      "complexity": {
+        "cyclomatic": 14,
+        "nestingDepth": 3,
+        "functionCount": 5,
+        "avgFunctionLength": 22
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 5,
+      "commentDensity": 0.03636363636363636,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": [
+        "potential-secret"
+      ]
+    },
+    {
+      "path": "scripts/claude_insiders_selfheal.ps1",
+      "language": "powershell",
+      "size": 2586,
+      "complexity": {
+        "cyclomatic": 4,
+        "nestingDepth": 2,
+        "functionCount": 1,
+        "avgFunctionLength": 85
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 12,
+      "commentDensity": 0.12941176470588237,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "scripts/claude_plugin_ensure.ps1",
+      "language": "powershell",
+      "size": 1623,
+      "complexity": {
+        "cyclomatic": 6,
+        "nestingDepth": 2,
+        "functionCount": 1,
+        "avgFunctionLength": 51
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 4,
+      "commentDensity": 0.058823529411764705,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "scripts/claude_profile.ps1",
+      "language": "powershell",
+      "size": 3670,
+      "complexity": {
+        "cyclomatic": 14,
+        "nestingDepth": 3,
+        "functionCount": 2,
+        "avgFunctionLength": 59
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 5,
+      "commentDensity": 0.03361344537815126,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "scripts/claudine.ps1",
+      "language": "powershell",
+      "size": 3192,
+      "complexity": {
+        "cyclomatic": 18,
+        "nestingDepth": 4,
+        "functionCount": 1,
+        "avgFunctionLength": 100
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 19,
+      "commentDensity": 0.19,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "scripts/codebase_crude_inventory.py",
+      "language": "python",
+      "size": 11561,
+      "complexity": {
+        "cyclomatic": 29,
+        "nestingDepth": 8,
+        "functionCount": 10,
+        "avgFunctionLength": 32
+      },
+      "imports": [
+        "__future__",
+        "sys",
+        "dataclasses",
+        "pathlib",
+        "typing",
+        "argparse"
+      ],
+      "exports": [
+        "safe_print",
+        "main"
+      ],
+      "todoCount": 0,
+      "docstringCount": 2,
+      "commentDensity": 0.06461538461538462,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "scripts/code_scent.py",
+      "language": "python",
+      "size": 3653,
+      "complexity": {
+        "cyclomatic": 11,
+        "nestingDepth": 6,
+        "functionCount": 1,
+        "avgFunctionLength": 76
+      },
+      "imports": [
+        "sys",
+        "pathlib",
+        "radon.complexity",
+        "radon.raw"
+      ],
+      "exports": [
+        "analyze_scent"
+      ],
+      "todoCount": 0,
+      "docstringCount": 3,
+      "commentDensity": 0.25,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "scripts/code_taste.py",
+      "language": "python",
+      "size": 4103,
+      "complexity": {
+        "cyclomatic": 15,
+        "nestingDepth": 10,
+        "functionCount": 1,
+        "avgFunctionLength": 90
+      },
+      "imports": [
+        "subprocess",
+        "sys"
+      ],
+      "exports": [
+        "analyze_taste"
+      ],
+      "todoCount": 0,
+      "docstringCount": 3,
+      "commentDensity": 0.2111111111111111,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "scripts/code_texture.py",
+      "language": "python",
+      "size": 3352,
+      "complexity": {
+        "cyclomatic": 11,
+        "nestingDepth": 8,
+        "functionCount": 1,
+        "avgFunctionLength": 75
+      },
+      "imports": [
+        "analysis",
+        "sys",
+        "ast",
+        "pathlib",
+        "coupling",
+        "count"
+      ],
+      "exports": [
+        "analyze_texture"
+      ],
+      "todoCount": 0,
+      "docstringCount": 3,
+      "commentDensity": 0.24,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "scripts/compact_md.py",
+      "language": "python",
+      "size": 17995,
+      "complexity": {
+        "cyclomatic": 44,
+        "nestingDepth": 12,
+        "functionCount": 6,
+        "avgFunctionLength": 69
+      },
+      "imports": [
+        "__future__",
+        "argparse",
+        "json",
+        "re",
+        "sys",
+        "dataclasses",
+        "pathlib"
+      ],
+      "exports": [
+        "is_noise",
+        "is_keep",
+        "compact_lines",
+        "compact_file",
+        "main"
+      ],
+      "todoCount": 0,
+      "docstringCount": 4,
+      "commentDensity": 0.0985576923076923,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "scripts/compare_e2e_matrices.py",
+      "language": "python",
+      "size": 4125,
+      "complexity": {
+        "cyclomatic": 19,
+        "nestingDepth": 8,
+        "functionCount": 4,
+        "avgFunctionLength": 28
+      },
+      "imports": [
+        "__future__",
+        "argparse",
+        "json",
+        "pathlib"
+      ],
+      "exports": [
+        "load_json",
+        "matrix_summary",
+        "compare_summaries",
+        "main"
+      ],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0.017699115044247787,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "scripts/compare_probe_variants.ps1",
+      "language": "powershell",
+      "size": 4526,
+      "complexity": {
+        "cyclomatic": 19,
+        "nestingDepth": 6,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 18,
+      "commentDensity": 0.17475728155339806,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "scripts/copilot_clean.ps1",
+      "language": "powershell",
+      "size": 2588,
+      "complexity": {
+        "cyclomatic": 12,
+        "nestingDepth": 3,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 15,
+      "commentDensity": 0.18666666666666668,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "scripts/cycle_detector.py",
+      "language": "python",
+      "size": 3309,
+      "complexity": {
+        "cyclomatic": 11,
+        "nestingDepth": 8,
+        "functionCount": 1,
+        "avgFunctionLength": 60
+      },
+      "imports": [
+        "json",
+        "networkx",
+        "pathlib",
+        "sys"
+      ],
+      "exports": [
+        "detect_cycles"
+      ],
+      "todoCount": 0,
+      "docstringCount": 2,
+      "commentDensity": 0.2833333333333333,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "scripts/data_rewiring.py",
+      "language": "python",
+      "size": 6154,
+      "complexity": {
+        "cyclomatic": 25,
+        "nestingDepth": 4,
+        "functionCount": 1,
+        "avgFunctionLength": 134
+      },
+      "imports": [
+        "sys",
+        "io",
+        "__future__",
+        "pathlib",
+        "re"
+      ],
+      "exports": [
+        "iter_files"
+      ],
+      "todoCount": 0,
+      "docstringCount": 2,
+      "commentDensity": 0.12686567164179105,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "scripts/deact_ref_iron_maiden_ssot.py",
+      "language": "python",
+      "size": 2313,
+      "complexity": {
+        "cyclomatic": 6,
+        "nestingDepth": 6,
+        "functionCount": 4,
+        "avgFunctionLength": 20
+      },
+      "imports": [
+        "__future__",
+        "re",
+        "pathlib"
+      ],
+      "exports": [
+        "rewrite_refs",
+        "main"
+      ],
+      "todoCount": 0,
+      "docstringCount": 2,
+      "commentDensity": 0.03614457831325301,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "scripts/debug_code_blocks.py",
+      "language": "python",
+      "size": 2471,
+      "complexity": {
+        "cyclomatic": 7,
+        "nestingDepth": 4,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [
+        "sys",
+        "io",
+        "pathlib"
+      ],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 2,
+      "commentDensity": 0.3333333333333333,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "scripts/decorator_cross_ref_enhanced.py",
+      "language": "python",
+      "size": 40710,
+      "complexity": {
+        "cyclomatic": 139,
+        "nestingDepth": 14,
+        "functionCount": 17,
+        "avgFunctionLength": 52
+      },
+      "imports": [
+        "sys",
+        "io",
+        "json",
+        "re",
+        "ast",
+        "pathlib",
+        "typing",
+        "dataclasses",
+        "collections",
+        "networkx",
+        ".",
+        "statement",
+        "level",
+        "try"
+      ],
+      "exports": [
+        "build_enhanced_dependency_graph",
+        "generate_enhanced_analysis_report",
+        "main"
+      ],
+      "todoCount": 0,
+      "docstringCount": 24,
+      "commentDensity": 0.12360801781737193,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "scripts/decorator_cross_ref_maximum.py",
+      "language": "python",
+      "size": 65563,
+      "complexity": {
+        "cyclomatic": 230,
+        "nestingDepth": 14,
+        "functionCount": 27,
+        "avgFunctionLength": 50
+      },
+      "imports": [
+        "ast",
+        "json",
+        "re",
+        "sys",
+        "hashlib",
+        "pathlib",
+        "typing",
+        "dataclasses",
+        "collections",
+        "networkx",
+        ".",
+        "statement",
+        "try",
+        "io"
+      ],
+      "exports": [
+        "scan_repository",
+        "build_dependency_graph",
+        "detect_circular_dependencies",
+        "resolve_circular_dependency",
+        "assign_topological_layers",
+        "compute_file_hash",
+        "load_previous_state",
+        "save_current_state",
+        "detect_new_and_changed_files",
+        "generate_cross_reference_header",
+        "generate_master_index",
+        "main"
+      ],
+      "todoCount": 0,
+      "docstringCount": 44,
+      "commentDensity": 0.11903012490815577,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "scripts/decorator_cross_ref_production.py",
+      "language": "python",
+      "size": 65234,
+      "complexity": {
+        "cyclomatic": 197,
+        "nestingDepth": 18,
+        "functionCount": 37,
+        "avgFunctionLength": 37
+      },
+      "imports": [
+        "detection",
+        "argparse",
+        "hashlib",
+        "json",
+        "re",
+        "ast",
+        "sys",
+        "time",
+        "pathlib",
+        "typing",
+        "dataclasses",
+        "collections",
+        "datetime",
+        "networkx",
+        "typescript_dependency_resolver",
+        "to",
+        "dependencies."
+      ],
+      "exports": [
+        "main"
+      ],
+      "todoCount": 0,
+      "docstringCount": 52,
+      "commentDensity": 0.1191672648959081,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "scripts/decorator_scanner.py",
+      "language": "python",
+      "size": 12146,
+      "complexity": {
+        "cyclomatic": 22,
+        "nestingDepth": 10,
+        "functionCount": 7,
+        "avgFunctionLength": 40
+      },
+      "imports": [
+        "json",
+        "re",
+        "sys",
+        "pathlib",
+        "scripts.lib.shared"
+      ],
+      "exports": [
+        "scan_codebase",
+        "vscode_default_comparison",
+        "main"
+      ],
+      "todoCount": 0,
+      "docstringCount": 4,
+      "commentDensity": 0.02857142857142857,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "scripts/deploy_dcrp_headers.py",
+      "language": "python",
+      "size": 11605,
+      "complexity": {
+        "cyclomatic": 41,
+        "nestingDepth": 10,
+        "functionCount": 5,
+        "avgFunctionLength": 60
+      },
+      "imports": [
+        "json",
+        "re",
+        "pathlib",
+        "dataclasses",
+        "typing",
+        "shutil",
+        "datetime",
+        "sys"
+      ],
+      "exports": [
+        "load_graph_data",
+        "is_injectable",
+        "generate_header",
+        "inject_header",
+        "main"
+      ],
+      "todoCount": 0,
+      "docstringCount": 8,
+      "commentDensity": 0.13,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "scripts/Discover-SSOT-Treasure.ps1",
+      "language": "powershell",
+      "size": 10489,
+      "complexity": {
+        "cyclomatic": 20,
+        "nestingDepth": 8,
+        "functionCount": 4,
+        "avgFunctionLength": 67
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 28,
+      "commentDensity": 0.1,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "scripts/edge_case_test.py",
+      "language": "python",
+      "size": 4036,
+      "complexity": {
+        "cyclomatic": 9,
+        "nestingDepth": 2,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [
+        "sys",
+        "io",
+        "sqlite3"
+      ],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 3,
+      "commentDensity": 0.18478260869565216,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "scripts/embed_ore.py",
+      "language": "python",
+      "size": 5030,
+      "complexity": {
+        "cyclomatic": 21,
+        "nestingDepth": 6,
+        "functionCount": 4,
+        "avgFunctionLength": 34
+      },
+      "imports": [
+        "__future__",
+        "json",
+        "sys",
+        "os",
+        "pathlib",
+        "sentence_transformers",
+        "numpy"
+      ],
+      "exports": [
+        "get_model",
+        "embed_texts",
+        "embed_ore",
+        "find_similar"
+      ],
+      "todoCount": 0,
+      "docstringCount": 7,
+      "commentDensity": 0.057971014492753624,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "scripts/envelope_sync.py",
+      "language": "python",
+      "size": 15523,
+      "complexity": {
+        "cyclomatic": 91,
+        "nestingDepth": 10,
+        "functionCount": 23,
+        "avgFunctionLength": 19
+      },
+      "imports": [
+        "__future__",
+        "argparse",
+        "ast",
+        "json",
+        "re",
+        "datetime",
+        "pathlib"
+      ],
+      "exports": [
+        "iter_source_files",
+        "detect_runtime",
+        "first_sentence",
+        "extract_labeled_purpose",
+        "extract_python",
+        "extract_ts_js",
+        "detect_invoke",
+        "merge_metadata",
+        "build_metadata",
+        "sidecar_path",
+        "write_sidecar",
+        "comparable",
+        "render_python_prologue",
+        "render_ts_js_banner",
+        "inject_python",
+        "inject_ts_js",
+        "inject_envelope",
+        "main"
+      ],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0.011111111111111112,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "scripts/epistemograph_schema.sql",
+      "language": "unknown",
+      "size": 11586,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 3,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "scripts/epistemograph_schema_design.md",
+      "language": "markdown",
+      "size": 9545,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 2,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 1,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "scripts/extract_curriculum.py",
+      "language": "python",
+      "size": 5652,
+      "complexity": {
+        "cyclomatic": 11,
+        "nestingDepth": 7,
+        "functionCount": 2,
+        "avgFunctionLength": 66
+      },
+      "imports": [
+        "sys",
+        "io",
+        "sqlite3",
+        "json",
+        "pathlib"
+      ],
+      "exports": [
+        "extract_curriculum",
+        "generate_rationale"
+      ],
+      "todoCount": 0,
+      "docstringCount": 4,
+      "commentDensity": 0.14393939393939395,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "scripts/extract_session_value.py",
+      "language": "python",
+      "size": 30692,
+      "complexity": {
+        "cyclomatic": 113,
+        "nestingDepth": 14,
+        "functionCount": 14,
+        "avgFunctionLength": 55
+      },
+      "imports": [
+        "__future__",
+        "argparse",
+        "hashlib",
+        "json",
+        "logging",
+        "re",
+        "sys",
+        "traceback",
+        "collections",
+        "dataclasses",
+        "datetime",
+        "pathlib",
+        "typing"
+      ],
+      "exports": [
+        "setup_logging",
+        "sanitize_unicode",
+        "smart_truncate",
+        "classify_content",
+        "is_noise",
+        "extract_text_content",
+        "compute_similarity_hash",
+        "deduplicate_exchanges",
+        "check_redundancy",
+        "process_session",
+        "generate_markdown",
+        "generate_json",
+        "main"
+      ],
+      "todoCount": 0,
+      "docstringCount": 18,
+      "commentDensity": 0.07364341085271318,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "scripts/extract_voicepack.py",
+      "language": "python",
+      "size": 9162,
+      "complexity": {
+        "cyclomatic": 46,
+        "nestingDepth": 10,
+        "functionCount": 12,
+        "avgFunctionLength": 23
+      },
+      "imports": [
+        "__future__",
+        "argparse",
+        "hashlib",
+        "json",
+        "re",
+        "datetime",
+        "pathlib"
+      ],
+      "exports": [
+        "utc_now_iso",
+        "sha256_text",
+        "find_repo_root",
+        "to_repo_rel",
+        "canonize_model_handle",
+        "extract",
+        "main"
+      ],
+      "todoCount": 0,
+      "docstringCount": 2,
+      "commentDensity": 0.04316546762589928,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "scripts/fix-md-links.ps1",
+      "language": "powershell",
+      "size": 5243,
+      "complexity": {
+        "cyclomatic": 20,
+        "nestingDepth": 8,
+        "functionCount": 5,
+        "avgFunctionLength": 30
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 14,
+      "commentDensity": 0.09333333333333334,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "scripts/fix_doc_references.py",
+      "language": "python",
+      "size": 9843,
+      "complexity": {
+        "cyclomatic": 19,
+        "nestingDepth": 6,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [
+        "sys",
+        "pathlib",
+        "json",
+        "re"
+      ],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 2,
+      "commentDensity": 0.14832535885167464,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "scripts/fix_headers.py",
+      "language": "python",
+      "size": 5367,
+      "complexity": {
+        "cyclomatic": 39,
+        "nestingDepth": 12,
+        "functionCount": 5,
+        "avgFunctionLength": 32
+      },
+      "imports": [
+        "argparse",
+        "sys",
+        "pathlib"
+      ],
+      "exports": [
+        "needs_fix",
+        "strip_wrong_header",
+        "fix_file",
+        "validate_file",
+        "main"
+      ],
+      "todoCount": 0,
+      "docstringCount": 6,
+      "commentDensity": 0.06748466257668712,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "scripts/fix_md_links.py",
+      "language": "python",
+      "size": 7441,
+      "complexity": {
+        "cyclomatic": 37,
+        "nestingDepth": 8,
+        "functionCount": 5,
+        "avgFunctionLength": 34
+      },
+      "imports": [
+        "os",
+        "re",
+        "sys",
+        "argparse",
+        "pathlib",
+        "collections"
+      ],
+      "exports": [
+        "build_file_index",
+        "resolve_link",
+        "process_file",
+        "main"
+      ],
+      "todoCount": 0,
+      "docstringCount": 8,
+      "commentDensity": 0.1676300578034682,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "scripts/fix_vscode_cli.ps1",
+      "language": "powershell",
+      "size": 3742,
+      "complexity": {
+        "cyclomatic": 20,
+        "nestingDepth": 2,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 11,
+      "commentDensity": 0.11827956989247312,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "scripts/fortify_terminal.ps1",
+      "language": "powershell",
+      "size": 2632,
+      "complexity": {
+        "cyclomatic": 5,
+        "nestingDepth": 4,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 18,
+      "commentDensity": 0.43902439024390244,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "scripts/gemini-cli-wrapper.ps1",
+      "language": "powershell",
+      "size": 1926,
+      "complexity": {
+        "cyclomatic": 2,
+        "nestingDepth": 2,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 20,
+      "commentDensity": 0.5,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "scripts/generate_readable_ssot.py",
+      "language": "python",
+      "size": 6720,
+      "complexity": {
+        "cyclomatic": 16,
+        "nestingDepth": 8,
+        "functionCount": 5,
+        "avgFunctionLength": 30
+      },
+      "imports": [
+        "re",
+        "hashlib",
+        "sys",
+        "pathlib"
+      ],
+      "exports": [
+        "calculate_hash",
+        "clean_slug",
+        "process_text",
+        "main"
+      ],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0.26490066225165565,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "scripts/github_voice.py",
+      "language": "python",
+      "size": 3163,
+      "complexity": {
+        "cyclomatic": 10,
+        "nestingDepth": 6,
+        "functionCount": 2,
+        "avgFunctionLength": 30
+      },
+      "imports": [
+        "subprocess",
+        "json",
+        "sys",
+        "shutil"
+      ],
+      "exports": [
+        "is_voice_active",
+        "broadcast_issue"
+      ],
+      "todoCount": 0,
+      "docstringCount": 3,
+      "commentDensity": 0.26666666666666666,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "scripts/gold_signal.py",
+      "language": "python",
+      "size": 11403,
+      "complexity": {
+        "cyclomatic": 46,
+        "nestingDepth": 12,
+        "functionCount": 8,
+        "avgFunctionLength": 43
+      },
+      "imports": [
+        "json",
+        "os",
+        "re",
+        "subprocess",
+        "sys",
+        "collections",
+        "pathlib",
+        "scripts.lib.shared"
+      ],
+      "exports": [
+        "classify_extension",
+        "classify_file",
+        "detect_naming_signals",
+        "get_ambulant_files",
+        "scan_repository",
+        "print_human_summary",
+        "print_ambulant_only",
+        "main"
+      ],
+      "todoCount": 0,
+      "docstringCount": 9,
+      "commentDensity": 0.05187319884726225,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "scripts/governance_test.py",
+      "language": "python",
+      "size": 3758,
+      "complexity": {
+        "cyclomatic": 5,
+        "nestingDepth": 4,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [
+        "sys",
+        "io",
+        "sqlite3"
+      ],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 2,
+      "commentDensity": 0.1511627906976744,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "scripts/harvest_claudines.ps1",
+      "language": "powershell",
+      "size": 16592,
+      "complexity": {
+        "cyclomatic": 82,
+        "nestingDepth": 12,
+        "functionCount": 3,
+        "avgFunctionLength": 155
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 57,
+      "commentDensity": 0.1223175965665236,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "scripts/health_report.py",
+      "language": "python",
+      "size": 13297,
+      "complexity": {
+        "cyclomatic": 24,
+        "nestingDepth": 8,
+        "functionCount": 8,
+        "avgFunctionLength": 38
+      },
+      "imports": [
+        "sys",
+        "io",
+        "__future__",
+        "pathlib",
+        "datetime",
+        "json",
+        "subprocess",
+        "typing"
+      ],
+      "exports": [
+        "get_current_commit",
+        "get_current_branch",
+        "summarize_topology",
+        "summarize_dcrp",
+        "check_ssot_status",
+        "check_lane_population",
+        "generate_health_report",
+        "main"
+      ],
+      "todoCount": 0,
+      "docstringCount": 10,
+      "commentDensity": 0.10819672131147541,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "scripts/hf_auth_doctor.ps1",
+      "language": "powershell",
+      "size": 2327,
+      "complexity": {
+        "cyclomatic": 9,
+        "nestingDepth": 1,
+        "functionCount": 1,
+        "avgFunctionLength": 67
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 15,
+      "commentDensity": 0.22388059701492538,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": [
+        "potential-secret"
+      ]
+    },
+    {
+      "path": "scripts/hf_discovery.py",
+      "language": "python",
+      "size": 5481,
+      "complexity": {
+        "cyclomatic": 22,
+        "nestingDepth": 6,
+        "functionCount": 5,
+        "avgFunctionLength": 32
+      },
+      "imports": [
+        "__future__",
+        "argparse",
+        "json",
+        "os",
+        "time",
+        "dataclasses",
+        "pathlib",
+        "typing",
+        "huggingface_hub"
+      ],
+      "exports": [
+        "write_artifacts",
+        "main"
+      ],
+      "todoCount": 0,
+      "docstringCount": 2,
+      "commentDensity": 0.037267080745341616,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": [
+        "potential-secret"
+      ]
+    },
+    {
+      "path": "scripts/hf_gemma_probe.py",
+      "language": "python",
+      "size": 6520,
+      "complexity": {
+        "cyclomatic": 18,
+        "nestingDepth": 6,
+        "functionCount": 8,
+        "avgFunctionLength": 23
+      },
+      "imports": [
+        "__future__",
+        "argparse",
+        "json",
+        "os",
+        "dataclasses",
+        "datetime",
+        "pathlib",
+        "typing",
+        "huggingface_hub"
+      ],
+      "exports": [
+        "utc_now_iso",
+        "safe_get",
+        "score_row",
+        "list_models",
+        "write_json",
+        "write_md",
+        "main"
+      ],
+      "todoCount": 0,
+      "docstringCount": 2,
+      "commentDensity": 0.03684210526315789,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": [
+        "potential-secret"
+      ]
+    },
+    {
+      "path": "scripts/hf_mcp_service_registry.py",
+      "language": "python",
+      "size": 21248,
+      "complexity": {
+        "cyclomatic": 68,
+        "nestingDepth": 8,
+        "functionCount": 17,
+        "avgFunctionLength": 31
+      },
+      "imports": [
+        "__future__",
+        "argparse",
+        "hashlib",
+        "json",
+        "os",
+        "random",
+        "re",
+        "sys",
+        "textwrap",
+        "time",
+        "dataclasses",
+        "pathlib",
+        "typing",
+        "requests",
+        "subprocess"
+      ],
+      "exports": [
+        "despair_filter",
+        "fetch_html",
+        "read_html",
+        "iter_links",
+        "normalize_url",
+        "classify_link",
+        "score_item",
+        "pick_creed_and_voice",
+        "trauma_echo_text",
+        "discover_items",
+        "emit_generated_registry",
+        "main"
+      ],
+      "todoCount": 0,
+      "docstringCount": 12,
+      "commentDensity": 0.03717472118959108,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": [
+        "potential-secret"
+      ]
+    },
+    {
+      "path": "scripts/hf_prep.py",
+      "language": "python",
+      "size": 6980,
+      "complexity": {
+        "cyclomatic": 21,
+        "nestingDepth": 8,
+        "functionCount": 7,
+        "avgFunctionLength": 32
+      },
+      "imports": [
+        "__future__",
+        "argparse",
+        "json",
+        "os",
+        "platform",
+        "shutil",
+        "subprocess",
+        "sys",
+        "time",
+        "dataclasses",
+        "importlib"
+      ],
+      "exports": [
+        "now_utc",
+        "run_cmd",
+        "has_env",
+        "get_version",
+        "is_importable",
+        "uv_install",
+        "main"
+      ],
+      "todoCount": 0,
+      "docstringCount": 2,
+      "commentDensity": 0.04888888888888889,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": [
+        "potential-secret"
+      ]
+    },
+    {
+      "path": "scripts/hf_probe.py",
+      "language": "python",
+      "size": 1070,
+      "complexity": {
+        "cyclomatic": 4,
+        "nestingDepth": 4,
+        "functionCount": 1,
+        "avgFunctionLength": 42
+      },
+      "imports": [
+        "__future__",
+        "os",
+        "huggingface_hub"
+      ],
+      "exports": [
+        "main"
+      ],
+      "todoCount": 0,
+      "docstringCount": 2,
+      "commentDensity": 0.11904761904761904,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": [
+        "potential-secret"
+      ]
+    },
+    {
+      "path": "scripts/hf_refiner.py",
+      "language": "python",
+      "size": 14751,
+      "complexity": {
+        "cyclomatic": 68,
+        "nestingDepth": 12,
+        "functionCount": 9,
+        "avgFunctionLength": 47
+      },
+      "imports": [
+        "json",
+        "os",
+        "re",
+        "sys",
+        "time",
+        "datetime",
+        "pathlib",
+        "urllib.request",
+        "urllib.error",
+        "argparse"
+      ],
+      "exports": [
+        "get_hf_token",
+        "find_latest_ore",
+        "load_ore",
+        "load_prior_digest",
+        "query_hf",
+        "build_domain_prompt",
+        "refine_ore",
+        "write_digest",
+        "main"
+      ],
+      "todoCount": 0,
+      "docstringCount": 10,
+      "commentDensity": 0.03488372093023256,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": [
+        "potential-secret"
+      ]
+    },
+    {
+      "path": "scripts/hf_token_policy.md",
+      "language": "markdown",
+      "size": 1448,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 0,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": [
+        "potential-secret"
+      ]
+    },
+    {
+      "path": "scripts/ide-polling-prototype.ts",
+      "language": "typescript",
+      "size": 1898,
+      "complexity": {
+        "cyclomatic": 3,
+        "nestingDepth": 4,
+        "functionCount": 1,
+        "avgFunctionLength": 39
+      },
+      "imports": [
+        "child_process"
+      ],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0.15384615384615385,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "scripts/incremental_updater.py",
+      "language": "python",
+      "size": 2665,
+      "complexity": {
+        "cyclomatic": 8,
+        "nestingDepth": 6,
+        "functionCount": 2,
+        "avgFunctionLength": 26
+      },
+      "imports": [
+        "__future__",
+        "subprocess",
+        "sys"
+      ],
+      "exports": [
+        "get_changed_files",
+        "trigger_partial_scan"
+      ],
+      "todoCount": 0,
+      "docstringCount": 2,
+      "commentDensity": 0.3018867924528302,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "scripts/ingest_research.py",
+      "language": "python",
+      "size": 26161,
+      "complexity": {
+        "cyclomatic": 122,
+        "nestingDepth": 10,
+        "functionCount": 41,
+        "avgFunctionLength": 19
+      },
+      "imports": [
+        "__future__",
+        "argparse",
+        "html",
+        "json",
+        "os",
+        "re",
+        "shutil",
+        "subprocess",
+        "sys",
+        "dataclasses",
+        "datetime",
+        "pathlib",
+        "typing"
+      ],
+      "exports": [
+        "find_repo_root",
+        "utc_now",
+        "utc_stamp",
+        "ensure_repo_path",
+        "rel_display",
+        "slugify_topic",
+        "detect_topic",
+        "read_clipboard_text",
+        "normalize_clipboard_markdown",
+        "normalize_source_name",
+        "create_clipboard_source",
+        "discover_latest_research_doc",
+        "read_pdf_text",
+        "read_source_text",
+        "is_request_brief",
+        "extract_urls",
+        "extract_bullets",
+        "extract_sentences",
+        "clean_line",
+        "dedupe_preserve_order",
+        "build_findings",
+        "parse_options",
+        "parse_recommendation",
+        "build_decisions",
+        "dedupe_decisions",
+        "route_tag",
+        "infer_component",
+        "build_actionables",
+        "build_dependencies",
+        "dedupe_dependencies",
+        "build_contradictions",
+        "digest_filename",
+        "handoff_filename",
+        "render_digest_markdown",
+        "escape_pipe",
+        "render_handoff_markdown",
+        "write_file",
+        "copy_source_into_mailbox",
+        "build_digest_data",
+        "parse_args",
+        "main"
+      ],
+      "todoCount": 0,
+      "docstringCount": 2,
+      "commentDensity": 0.0024752475247524753,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "scripts/launch_claude_code.ps1",
+      "language": "powershell",
+      "size": 3343,
+      "complexity": {
+        "cyclomatic": 16,
+        "nestingDepth": 2,
+        "functionCount": 2,
+        "avgFunctionLength": 36
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 20,
+      "commentDensity": 0.2638888888888889,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "scripts/lint_shell_sovereignty.ps1",
+      "language": "powershell",
+      "size": 1350,
+      "complexity": {
+        "cyclomatic": 8,
+        "nestingDepth": 6,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 5,
+      "commentDensity": 0.09803921568627451,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "scripts/local_refiner.py",
+      "language": "python",
+      "size": 12678,
+      "complexity": {
+        "cyclomatic": 39,
+        "nestingDepth": 12,
+        "functionCount": 7,
+        "avgFunctionLength": 51
+      },
+      "imports": [
+        "json",
+        "os",
+        "re",
+        "sys",
+        "time",
+        "warnings",
+        "datetime",
+        "pathlib",
+        "hf_refiner",
+        "exllamav2",
+        "exllamav2.generator",
+        "torch",
+        "argparse",
+        "scripts.lib.shared",
+        "huggingface_hub"
+      ],
+      "exports": [
+        "build_local_prompt",
+        "refine_ore_local",
+        "write_digest",
+        "main"
+      ],
+      "todoCount": 0,
+      "docstringCount": 8,
+      "commentDensity": 0.036211699164345405,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": [
+        "potential-secret"
+      ]
+    },
+    {
+      "path": "scripts/local_refiner_v2.py",
+      "language": "python",
+      "size": 14926,
+      "complexity": {
+        "cyclomatic": 44,
+        "nestingDepth": 12,
+        "functionCount": 9,
+        "avgFunctionLength": 47
+      },
+      "imports": [
+        "json",
+        "os",
+        "sys",
+        "time",
+        "warnings",
+        "datetime",
+        "pathlib",
+        "typing",
+        "pydantic",
+        "hf_refiner",
+        "llama_cpp",
+        "re",
+        "torch",
+        "argparse",
+        "scripts.lib.shared"
+      ],
+      "exports": [
+        "find_gguf_model",
+        "load_model",
+        "classify_domain",
+        "refine_ore",
+        "write_digest",
+        "vram_report",
+        "main"
+      ],
+      "todoCount": 0,
+      "docstringCount": 13,
+      "commentDensity": 0.04895104895104895,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": [
+        "potential-secret"
+      ]
+    },
+    {
+      "path": "scripts/mailbox_compactor.py",
+      "language": "python",
+      "size": 4640,
+      "complexity": {
+        "cyclomatic": 16,
+        "nestingDepth": 6,
+        "functionCount": 9,
+        "avgFunctionLength": 17
+      },
+      "imports": [
+        "__future__",
+        "argparse",
+        "json",
+        "re",
+        "dataclasses",
+        "datetime",
+        "pathlib",
+        "typing"
+      ],
+      "exports": [
+        "utc_now",
+        "read_text",
+        "list_artifacts",
+        "is_low_signal_duplicate",
+        "build_consolidated_md",
+        "build_evidence_json",
+        "update_manifest",
+        "main"
+      ],
+      "todoCount": 0,
+      "docstringCount": 2,
+      "commentDensity": 0.032679738562091505,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "scripts/mailbox_handoff.ps1",
+      "language": "powershell",
+      "size": 1315,
+      "complexity": {
+        "cyclomatic": 12,
+        "nestingDepth": 2,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 1,
+      "commentDensity": 0.021739130434782608,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "scripts/mailbox_polisher.py",
+      "language": "python",
+      "size": 6001,
+      "complexity": {
+        "cyclomatic": 29,
+        "nestingDepth": 10,
+        "functionCount": 9,
+        "avgFunctionLength": 19
+      },
+      "imports": [
+        "__future__",
+        "argparse",
+        "dataclasses",
+        "datetime",
+        "pathlib",
+        "typing"
+      ],
+      "exports": [
+        "utc_date_tag",
+        "mailbox_root",
+        "is_kept",
+        "iter_root_files",
+        "build_keep_set",
+        "should_archive",
+        "plan_moves",
+        "apply_moves",
+        "main"
+      ],
+      "todoCount": 0,
+      "docstringCount": 2,
+      "commentDensity": 0.046242774566473986,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "scripts/mailbox_scribe.py",
+      "language": "python",
+      "size": 10591,
+      "complexity": {
+        "cyclomatic": 49,
+        "nestingDepth": 10,
+        "functionCount": 13,
+        "avgFunctionLength": 25
+      },
+      "imports": [
+        "__future__",
+        "argparse",
+        "hashlib",
+        "json",
+        "dataclasses",
+        "datetime",
+        "pathlib",
+        "typing"
+      ],
+      "exports": [
+        "utc_now",
+        "sha256_text",
+        "read_json",
+        "list_files",
+        "write_manifest",
+        "write_current_state",
+        "pick_refs",
+        "read_md_excerpt",
+        "extract_frontmatter",
+        "build_sources_fingerprint",
+        "split_scribe_log",
+        "build_packet",
+        "main"
+      ],
+      "todoCount": 0,
+      "docstringCount": 2,
+      "commentDensity": 0.024615384615384615,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "scripts/mandala_topology.py",
+      "language": "python",
+      "size": 7998,
+      "complexity": {
+        "cyclomatic": 16,
+        "nestingDepth": 17,
+        "functionCount": 8,
+        "avgFunctionLength": 25
+      },
+      "imports": [
+        "__future__",
+        "argparse",
+        "json",
+        "pathlib",
+        "sys",
+        "typing",
+        "networkx"
+      ],
+      "exports": [
+        "reveal_sacred_geometry",
+        "main"
+      ],
+      "todoCount": 0,
+      "docstringCount": 2,
+      "commentDensity": 0.08,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "scripts/map_codebase.py",
+      "language": "python",
+      "size": 10149,
+      "complexity": {
+        "cyclomatic": 18,
+        "nestingDepth": 12,
+        "functionCount": 3,
+        "avgFunctionLength": 83
+      },
+      "imports": [
+        "__future__",
+        "os",
+        "collections",
+        "pathlib",
+        "typing",
+        "argparse",
+        "sys"
+      ],
+      "exports": [
+        "scan_tree",
+        "generate_proposal",
+        "main"
+      ],
+      "todoCount": 0,
+      "docstringCount": 3,
+      "commentDensity": 0.08764940239043825,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "scripts/mcp-asc-injector.ts",
+      "language": "typescript",
+      "size": 5454,
+      "complexity": {
+        "cyclomatic": 7,
+        "nestingDepth": 8,
+        "functionCount": 1,
+        "avgFunctionLength": 153
+      },
+      "imports": [
+        "@modelcontextprotocol/sdk/server/index.js",
+        "@modelcontextprotocol/sdk/server/stdio.js",
+        "fs/promises",
+        "path"
+      ],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0.09803921568627451,
+      "patterns": [
+        "async-patterns"
+      ],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "scripts/mcp-browser.ts",
+      "language": "typescript",
+      "size": 8622,
+      "complexity": {
+        "cyclomatic": 6,
+        "nestingDepth": 9,
+        "functionCount": 2,
+        "avgFunctionLength": 136
+      },
+      "imports": [
+        "@modelcontextprotocol/sdk/server/index.js",
+        "@modelcontextprotocol/sdk/server/stdio.js",
+        "path",
+        "fs/promises"
+      ],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 1,
+      "commentDensity": 0.040293040293040296,
+      "patterns": [
+        "async-patterns"
+      ],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "scripts/mcp-chthonic-server.ts",
+      "language": "typescript",
+      "size": 34544,
+      "complexity": {
+        "cyclomatic": 62,
+        "nestingDepth": 6,
+        "functionCount": 18,
+        "avgFunctionLength": 36
+      },
+      "imports": [
+        "path",
+        "fs",
+        "fs/promises",
+        "./sentry_init"
+      ],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0.09516616314199396,
+      "patterns": [
+        "async-patterns"
+      ],
+      "antiPatterns": [
+        "any-type-usage"
+      ],
+      "securityFlags": []
+    },
+    {
+      "path": "scripts/mcp-sentry-proxy.ts",
+      "language": "typescript",
+      "size": 3456,
+      "complexity": {
+        "cyclomatic": 8,
+        "nestingDepth": 6,
+        "functionCount": 2,
+        "avgFunctionLength": 56
+      },
+      "imports": [
+        "readline",
+        "fs"
+      ],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0.12389380530973451,
+      "patterns": [],
+      "antiPatterns": [
+        "any-type-usage"
+      ],
+      "securityFlags": []
+    },
+    {
+      "path": "scripts/mcp_client_emitter.py",
+      "language": "python",
+      "size": 7750,
+      "complexity": {
+        "cyclomatic": 22,
+        "nestingDepth": 10,
+        "functionCount": 10,
+        "avgFunctionLength": 25
+      },
+      "imports": [
+        "__future__",
+        "argparse",
+        "asyncio",
+        "json",
+        "os",
+        "re",
+        "time",
+        "dataclasses",
+        "pathlib",
+        "scripts.uv_autofix",
+        "huggingface_hub.inference._mcp.mcp_client",
+        "after"
+      ],
+      "exports": [
+        "pick_creed_and_voice",
+        "despair_filter",
+        "despair_score",
+        "wholesome_hits",
+        "write_artifacts",
+        "main"
+      ],
+      "todoCount": 0,
+      "docstringCount": 4,
+      "commentDensity": 0.0311284046692607,
+      "patterns": [
+        "async-patterns"
+      ],
+      "antiPatterns": [],
+      "securityFlags": [
+        "potential-secret"
+      ]
+    },
+    {
+      "path": "scripts/mcp_write_local.ps1",
+      "language": "powershell",
+      "size": 5032,
+      "complexity": {
+        "cyclomatic": 18,
+        "nestingDepth": 5,
+        "functionCount": 3,
+        "avgFunctionLength": 52
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 36,
+      "commentDensity": 0.22929936305732485,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": [
+        "potential-secret"
+      ]
+    },
+    {
+      "path": "scripts/milfographic-calculator.ts",
+      "language": "typescript",
+      "size": 18594,
+      "complexity": {
+        "cyclomatic": 29,
+        "nestingDepth": 4,
+        "functionCount": 13,
+        "avgFunctionLength": 29
+      },
+      "imports": [
+        "./milfographic-calculator"
+      ],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 1,
+      "commentDensity": 0.16883116883116883,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "scripts/nightly-scheduled.ps1",
+      "language": "powershell",
+      "size": 1566,
+      "complexity": {
+        "cyclomatic": 5,
+        "nestingDepth": 2,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 5,
+      "commentDensity": 0.08333333333333333,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "scripts/normalize_e2e_archives.py",
+      "language": "python",
+      "size": 1853,
+      "complexity": {
+        "cyclomatic": 12,
+        "nestingDepth": 8,
+        "functionCount": 2,
+        "avgFunctionLength": 34
+      },
+      "imports": [
+        "__future__",
+        "json",
+        "pathlib"
+      ],
+      "exports": [
+        "normalize_root",
+        "main"
+      ],
+      "todoCount": 0,
+      "docstringCount": 2,
+      "commentDensity": 0.07246376811594203,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "scripts/normalize_eol.py",
+      "language": "python",
+      "size": 1230,
+      "complexity": {
+        "cyclomatic": 8,
+        "nestingDepth": 6,
+        "functionCount": 2,
+        "avgFunctionLength": 25
+      },
+      "imports": [
+        "__future__",
+        "sys",
+        "pathlib"
+      ],
+      "exports": [
+        "normalize_one",
+        "main"
+      ],
+      "todoCount": 0,
+      "docstringCount": 2,
+      "commentDensity": 0.058823529411764705,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "scripts/overnight_daemon.ts",
+      "language": "typescript",
+      "size": 43403,
+      "complexity": {
+        "cyclomatic": 138,
+        "nestingDepth": 6,
+        "functionCount": 24,
+        "avgFunctionLength": 51
+      },
+      "imports": [
+        "path",
+        "fs/promises",
+        "./sentry_init"
+      ],
+      "exports": [],
+      "todoCount": 6,
+      "docstringCount": 1,
+      "commentDensity": 0.056179775280898875,
+      "patterns": [
+        "async-patterns"
+      ],
+      "antiPatterns": [
+        "any-type-usage",
+        "ts-ignore"
+      ],
+      "securityFlags": [
+        "dangerous-html",
+        "potential-secret"
+      ]
+    },
+    {
+      "path": "scripts/patch-claude-insiders.ps1",
+      "language": "powershell",
+      "size": 3847,
+      "complexity": {
+        "cyclomatic": 8,
+        "nestingDepth": 2,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 27,
+      "commentDensity": 0.25773195876288657,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "scripts/patch_utf8.py",
+      "language": "python",
+      "size": 3340,
+      "complexity": {
+        "cyclomatic": 11,
+        "nestingDepth": 8,
+        "functionCount": 2,
+        "avgFunctionLength": 31
+      },
+      "imports": [
+        "sys",
+        "os",
+        "re",
+        "pathlib",
+        "io"
+      ],
+      "exports": [
+        "patch_python_file",
+        "main"
+      ],
+      "todoCount": 0,
+      "docstringCount": 1,
+      "commentDensity": 0.30158730158730157,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "scripts/pause_agents.ps1",
+      "language": "powershell",
+      "size": 4383,
+      "complexity": {
+        "cyclomatic": 4,
+        "nestingDepth": 2,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 26,
+      "commentDensity": 0.3132530120481928,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "scripts/pleasure_protocol.py",
+      "language": "python",
+      "size": 2630,
+      "complexity": {
+        "cyclomatic": 5,
+        "nestingDepth": 4,
+        "functionCount": 1,
+        "avgFunctionLength": 43
+      },
+      "imports": [
+        "sys",
+        "random"
+      ],
+      "exports": [
+        "release_dopamine"
+      ],
+      "todoCount": 0,
+      "docstringCount": 2,
+      "commentDensity": 0.3488372093023256,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "scripts/polyglot_env.ps1",
+      "language": "powershell",
+      "size": 2757,
+      "complexity": {
+        "cyclomatic": 8,
+        "nestingDepth": 1,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 15,
+      "commentDensity": 0.25,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "scripts/probe_toolchain_path.ps1",
+      "language": "powershell",
+      "size": 6384,
+      "complexity": {
+        "cyclomatic": 22,
+        "nestingDepth": 4,
+        "functionCount": 7,
+        "avgFunctionLength": 31
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 28,
+      "commentDensity": 0.12727272727272726,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "scripts/PROBE_VARIANT_AUDIT.md",
+      "language": "markdown",
+      "size": 5418,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 2,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "scripts/profile-diag.ps1",
+      "language": "powershell",
+      "size": 2987,
+      "complexity": {
+        "cyclomatic": 5,
+        "nestingDepth": 2,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 15,
+      "commentDensity": 0.2777777777777778,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "scripts/purge-claude-bun.ps1",
+      "language": "powershell",
+      "size": 6219,
+      "complexity": {
+        "cyclomatic": 21,
+        "nestingDepth": 4,
+        "functionCount": 1,
+        "avgFunctionLength": 126
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 14,
+      "commentDensity": 0.1111111111111111,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "scripts/python313_compliance_audit.py",
+      "language": "python",
+      "size": 11131,
+      "complexity": {
+        "cyclomatic": 34,
+        "nestingDepth": 14,
+        "functionCount": 9,
+        "avgFunctionLength": 34
+      },
+      "imports": [
+        "__future__",
+        "re",
+        "sys",
+        "dataclasses",
+        "enum",
+        "pathlib",
+        "typing",
+        "argparse"
+      ],
+      "exports": [
+        "safe_print",
+        "main"
+      ],
+      "todoCount": 0,
+      "docstringCount": 5,
+      "commentDensity": 0.06818181818181818,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "scripts/python313_pattern_scan.py",
+      "language": "python",
+      "size": 5621,
+      "complexity": {
+        "cyclomatic": 16,
+        "nestingDepth": 10,
+        "functionCount": 7,
+        "avgFunctionLength": 24
+      },
+      "imports": [
+        "__future__",
+        "re",
+        "sys",
+        "dataclasses",
+        "pathlib",
+        "typing",
+        "argparse"
+      ],
+      "exports": [
+        "safe_print",
+        "main"
+      ],
+      "todoCount": 0,
+      "docstringCount": 2,
+      "commentDensity": 0.08139534883720931,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "scripts/quick_validation.py",
+      "language": "python",
+      "size": 3010,
+      "complexity": {
+        "cyclomatic": 7,
+        "nestingDepth": 2,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [
+        "sqlite3",
+        "sys"
+      ],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 4,
+      "commentDensity": 0.27692307692307694,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "scripts/README.md",
+      "language": "markdown",
+      "size": 12114,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 2,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "scripts/refine_iron_maiden_ssot.py",
+      "language": "python",
+      "size": 3633,
+      "complexity": {
+        "cyclomatic": 7,
+        "nestingDepth": 8,
+        "functionCount": 2,
+        "avgFunctionLength": 53
+      },
+      "imports": [
+        "__future__",
+        "argparse",
+        "re",
+        "dataclasses",
+        "pathlib"
+      ],
+      "exports": [
+        "refine_text",
+        "main"
+      ],
+      "todoCount": 0,
+      "docstringCount": 2,
+      "commentDensity": 0.09345794392523364,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "scripts/restructure-codex.ps1",
+      "language": "powershell",
+      "size": 1451,
+      "complexity": {
+        "cyclomatic": 7,
+        "nestingDepth": 2,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 6,
+      "commentDensity": 0.15,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "scripts/rootdir_health_audit.py",
+      "language": "python",
+      "size": 24279,
+      "complexity": {
+        "cyclomatic": 99,
+        "nestingDepth": 14,
+        "functionCount": 13,
+        "avgFunctionLength": 50
+      },
+      "imports": [
+        "sys",
+        "io",
+        "__future__",
+        "argparse",
+        "hashlib",
+        "json",
+        "os",
+        "re",
+        "collections",
+        "dataclasses",
+        "datetime",
+        "difflib",
+        "pathlib",
+        "typing"
+      ],
+      "exports": [
+        "compute_hash",
+        "get_first_lines",
+        "detect_version_pattern",
+        "has_metadata_header",
+        "compute_similarity",
+        "find_base_name",
+        "scan_directory",
+        "analyze_files",
+        "format_size",
+        "generate_markdown_report",
+        "generate_json_report",
+        "main"
+      ],
+      "todoCount": 0,
+      "docstringCount": 15,
+      "commentDensity": 0.07197549770290965,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "scripts/run_archaeology.ps1",
+      "language": "powershell",
+      "size": 11513,
+      "complexity": {
+        "cyclomatic": 40,
+        "nestingDepth": 6,
+        "functionCount": 2,
+        "avgFunctionLength": 138
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 1,
+      "docstringCount": 18,
+      "commentDensity": 0.06498194945848375,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "scripts/run_claude_cross_polish.ps1",
+      "language": "powershell",
+      "size": 2049,
+      "complexity": {
+        "cyclomatic": 3,
+        "nestingDepth": 2,
+        "functionCount": 2,
+        "avgFunctionLength": 36
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 1,
+      "commentDensity": 0.0136986301369863,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "scripts/run_claude_local_audit.ps1",
+      "language": "powershell",
+      "size": 223,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 1,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 1,
+      "commentDensity": 0.1,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "scripts/run_claude_skill_polisher.ps1",
+      "language": "powershell",
+      "size": 1866,
+      "complexity": {
+        "cyclomatic": 3,
+        "nestingDepth": 2,
+        "functionCount": 2,
+        "avgFunctionLength": 34
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 1,
+      "commentDensity": 0.014492753623188406,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "scripts/run_codex_polisher.ps1",
+      "language": "powershell",
+      "size": 2270,
+      "complexity": {
+        "cyclomatic": 2,
+        "nestingDepth": 2,
+        "functionCount": 2,
+        "avgFunctionLength": 44
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 1,
+      "commentDensity": 0.011235955056179775,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "scripts/run_cross_audit.ps1",
+      "language": "powershell",
+      "size": 2676,
+      "complexity": {
+        "cyclomatic": 3,
+        "nestingDepth": 2,
+        "functionCount": 2,
+        "avgFunctionLength": 42
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 2,
+      "commentDensity": 0.023529411764705882,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "scripts/run_cycle.py",
+      "language": "python",
+      "size": 26766,
+      "complexity": {
+        "cyclomatic": 54,
+        "nestingDepth": 10,
+        "functionCount": 13,
+        "avgFunctionLength": 55
+      },
+      "imports": [
+        "__future__",
+        "argparse",
+        "datetime",
+        "hashlib",
+        "json",
+        "os",
+        "subprocess",
+        "sys",
+        "time",
+        "dataclasses",
+        "pathlib",
+        "typing"
+      ],
+      "exports": [
+        "find_workspace_root",
+        "compute_ssot_hash",
+        "create_lineage_pointer",
+        "select_engine_lane",
+        "load_milf_registry",
+        "load_scoring_profile",
+        "check_milf_activation",
+        "run_cycle",
+        "parse_args",
+        "main"
+      ],
+      "todoCount": 0,
+      "docstringCount": 20,
+      "commentDensity": 0.08827586206896551,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "scripts/run_e2e_parity_gate.ps1",
+      "language": "powershell",
+      "size": 541,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 1,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 1,
+      "commentDensity": 0.058823529411764705,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "scripts/run_e2e_skill_matrix.ps1",
+      "language": "powershell",
+      "size": 1189,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 1,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 4,
+      "commentDensity": 0.13333333333333333,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "scripts/run_e2e_skill_matrix_claude.ps1",
+      "language": "powershell",
+      "size": 1296,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 1,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 4,
+      "commentDensity": 0.13333333333333333,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "scripts/run_gem_polisher.ps1",
+      "language": "powershell",
+      "size": 119,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 1,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 1,
+      "commentDensity": 0.1111111111111111,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "scripts/run_mcp_validation.ts",
+      "language": "typescript",
+      "size": 12673,
+      "complexity": {
+        "cyclomatic": 24,
+        "nestingDepth": 4,
+        "functionCount": 5,
+        "avgFunctionLength": 70
+      },
+      "imports": [
+        "child_process",
+        "fs"
+      ],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 1,
+      "commentDensity": 0.09401709401709402,
+      "patterns": [],
+      "antiPatterns": [
+        "any-type-usage"
+      ],
+      "securityFlags": []
+    },
+    {
+      "path": "scripts/run_narrative_scan.py",
+      "language": "python",
+      "size": 664,
+      "complexity": {
+        "cyclomatic": 2,
+        "nestingDepth": 2,
+        "functionCount": 1,
+        "avgFunctionLength": 27
+      },
+      "imports": [
+        "sys",
+        "json",
+        "pathlib",
+        "mas_mcp.logic.tools"
+      ],
+      "exports": [
+        "main"
+      ],
+      "todoCount": 0,
+      "docstringCount": 2,
+      "commentDensity": 0.14814814814814814,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "scripts/run_overnight_daemon.ps1",
+      "language": "powershell",
+      "size": 2179,
+      "complexity": {
+        "cyclomatic": 6,
+        "nestingDepth": 1,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 13,
+      "commentDensity": 0.2765957446808511,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "scripts/run_polisher_matrix.py",
+      "language": "python",
+      "size": 3158,
+      "complexity": {
+        "cyclomatic": 4,
+        "nestingDepth": 6,
+        "functionCount": 3,
+        "avgFunctionLength": 40
+      },
+      "imports": [
+        "__future__",
+        "json",
+        "subprocess",
+        "dataclasses",
+        "datetime",
+        "pathlib"
+      ],
+      "exports": [
+        "utc_now",
+        "run_case",
+        "main"
+      ],
+      "todoCount": 0,
+      "docstringCount": 2,
+      "commentDensity": 0.016666666666666666,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "scripts/run_qualia_check.py",
+      "language": "python",
+      "size": 617,
+      "complexity": {
+        "cyclomatic": 3,
+        "nestingDepth": 2,
+        "functionCount": 1,
+        "avgFunctionLength": 26
+      },
+      "imports": [
+        "sys",
+        "json",
+        "pathlib",
+        "mas_mcp.logic.tools"
+      ],
+      "exports": [
+        "main"
+      ],
+      "todoCount": 0,
+      "docstringCount": 2,
+      "commentDensity": 0.15384615384615385,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "scripts/run_queries.py",
+      "language": "python",
+      "size": 3912,
+      "complexity": {
+        "cyclomatic": 7,
+        "nestingDepth": 3,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [
+        "sys",
+        "io",
+        "sqlite3",
+        "json"
+      ],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 5,
+      "commentDensity": 0.12871287128712872,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "scripts/run_sentry_mcp.ps1",
+      "language": "powershell",
+      "size": 1303,
+      "complexity": {
+        "cyclomatic": 6,
+        "nestingDepth": 1,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 7,
+      "commentDensity": 0.16279069767441862,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": [
+        "potential-secret"
+      ]
+    },
+    {
+      "path": "scripts/scan-broken-refs.ps1",
+      "language": "powershell",
+      "size": 5925,
+      "complexity": {
+        "cyclomatic": 16,
+        "nestingDepth": 8,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 21,
+      "commentDensity": 0.16666666666666666,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "scripts/scanner_approval.md",
+      "language": "markdown",
+      "size": 12728,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 8,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 1,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "scripts/scanner_v1.1_fixes.md",
+      "language": "markdown",
+      "size": 6222,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 4,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "scripts/scanner_validation_FAILED.md",
+      "language": "markdown",
+      "size": 5782,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 4,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "scripts/scanner_validation_PASSED_v1.1.1.md",
+      "language": "markdown",
+      "size": 5300,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 1,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "scripts/scan_delete_language.py",
+      "language": "python",
+      "size": 13534,
+      "complexity": {
+        "cyclomatic": 57,
+        "nestingDepth": 12,
+        "functionCount": 5,
+        "avgFunctionLength": 74
+      },
+      "imports": [
+        "argparse",
+        "io",
+        "re",
+        "sys",
+        "pathlib",
+        "json"
+      ],
+      "exports": [
+        "is_exempted",
+        "scan_file",
+        "resolve_globs",
+        "resolve_codebase",
+        "main"
+      ],
+      "todoCount": 0,
+      "docstringCount": 8,
+      "commentDensity": 0.07219251336898395,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "scripts/scan_redundancy.py",
+      "language": "python",
+      "size": 5419,
+      "complexity": {
+        "cyclomatic": 22,
+        "nestingDepth": 12,
+        "functionCount": 3,
+        "avgFunctionLength": 39
+      },
+      "imports": [
+        "sys",
+        "io",
+        "os",
+        "re",
+        "pathlib"
+      ],
+      "exports": [
+        "extract_ssot_colors",
+        "scan_codebase",
+        "main"
+      ],
+      "todoCount": 0,
+      "docstringCount": 2,
+      "commentDensity": 0.17796610169491525,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "scripts/schema_validation_report.md",
+      "language": "markdown",
+      "size": 9676,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 1,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "scripts/sentry_init.ts",
+      "language": "typescript",
+      "size": 2944,
+      "complexity": {
+        "cyclomatic": 5,
+        "nestingDepth": 3,
+        "functionCount": 1,
+        "avgFunctionLength": 59
+      },
+      "imports": [
+        "@sentry/bun"
+      ],
+      "exports": [
+        "initSentry"
+      ],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0.288135593220339,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "scripts/sentry_probe.ts",
+      "language": "typescript",
+      "size": 7143,
+      "complexity": {
+        "cyclomatic": 14,
+        "nestingDepth": 4,
+        "functionCount": 12,
+        "avgFunctionLength": 16
+      },
+      "imports": [
+        "path",
+        "fs/promises"
+      ],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 1,
+      "commentDensity": 0.07881773399014778,
+      "patterns": [
+        "async-patterns"
+      ],
+      "antiPatterns": [],
+      "securityFlags": [
+        "potential-secret"
+      ]
+    },
+    {
+      "path": "scripts/sentry_test.ts",
+      "language": "typescript",
+      "size": 1950,
+      "complexity": {
+        "cyclomatic": 2,
+        "nestingDepth": 1,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [
+        "@sentry/bun",
+        "./sentry_init"
+      ],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0.4444444444444444,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "scripts/session_learning_audit.py",
+      "language": "python",
+      "size": 17391,
+      "complexity": {
+        "cyclomatic": 51,
+        "nestingDepth": 8,
+        "functionCount": 9,
+        "avgFunctionLength": 50
+      },
+      "imports": [
+        "__future__",
+        "argparse",
+        "json",
+        "re",
+        "sys",
+        "dataclasses",
+        "typing",
+        "datetime"
+      ],
+      "exports": [
+        "validate_model_refactors",
+        "permission_preflight_check",
+        "run_learning_capture",
+        "run_regression_check",
+        "main"
+      ],
+      "todoCount": 0,
+      "docstringCount": 17,
+      "commentDensity": 0.12087912087912088,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "scripts/setup-gemini-claude.ts",
+      "language": "typescript",
+      "size": 13301,
+      "complexity": {
+        "cyclomatic": 9,
+        "nestingDepth": 3,
+        "functionCount": 7,
+        "avgFunctionLength": 44
+      },
+      "imports": [
+        "path",
+        "fs",
+        "@google/generative-ai"
+      ],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 1,
+      "commentDensity": 0.08387096774193549,
+      "patterns": [
+        "async-patterns"
+      ],
+      "antiPatterns": [],
+      "securityFlags": [
+        "potential-secret"
+      ]
+    },
+    {
+      "path": "scripts/setup_db.py",
+      "language": "python",
+      "size": 2375,
+      "complexity": {
+        "cyclomatic": 3,
+        "nestingDepth": 2,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [
+        "sys",
+        "io",
+        "sqlite3"
+      ],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0.3333333333333333,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "scripts/sfs.ps1",
+      "language": "powershell",
+      "size": 3073,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 2,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 16,
+      "commentDensity": 0.42105263157894735,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "scripts/shell_capabilities.ps1",
+      "language": "powershell",
+      "size": 2507,
+      "complexity": {
+        "cyclomatic": 2,
+        "nestingDepth": 0,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 19,
+      "commentDensity": 0.5,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "scripts/siphon_to_dumpster_dive.ps1",
+      "language": "powershell",
+      "size": 4803,
+      "complexity": {
+        "cyclomatic": 27,
+        "nestingDepth": 10,
+        "functionCount": 3,
+        "avgFunctionLength": 57
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 14,
+      "commentDensity": 0.08187134502923976,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "scripts/skill_audit.py",
+      "language": "python",
+      "size": 6048,
+      "complexity": {
+        "cyclomatic": 34,
+        "nestingDepth": 6,
+        "functionCount": 8,
+        "avgFunctionLength": 24
+      },
+      "imports": [
+        "__future__",
+        "argparse",
+        "json",
+        "dataclasses",
+        "pathlib"
+      ],
+      "exports": [
+        "read_text",
+        "list_skills",
+        "check_frontmatter",
+        "audit_codex_skill",
+        "parse_allowed_tools",
+        "audit_claude_skill",
+        "print_report",
+        "main"
+      ],
+      "todoCount": 0,
+      "docstringCount": 2,
+      "commentDensity": 0.010416666666666666,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "scripts/ssot_acronym_audit.ps1",
+      "language": "powershell",
+      "size": 5601,
+      "complexity": {
+        "cyclomatic": 20,
+        "nestingDepth": 10,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 21,
+      "commentDensity": 0.1450381679389313,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "scripts/ssot_crc_selector.ps1",
+      "language": "powershell",
+      "size": 7041,
+      "complexity": {
+        "cyclomatic": 13,
+        "nestingDepth": 8,
+        "functionCount": 1,
+        "avgFunctionLength": 166
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 17,
+      "commentDensity": 0.09036144578313253,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "scripts/ssot_hash.py",
+      "language": "python",
+      "size": 6613,
+      "complexity": {
+        "cyclomatic": 19,
+        "nestingDepth": 10,
+        "functionCount": 4,
+        "avgFunctionLength": 49
+      },
+      "imports": [
+        "hashlib",
+        "unicodedata",
+        "pathlib",
+        "sys",
+        "argparse",
+        "traceback"
+      ],
+      "exports": [
+        "canonicalize",
+        "ssot_hash",
+        "verify_ssot_integrity",
+        "main"
+      ],
+      "todoCount": 0,
+      "docstringCount": 10,
+      "commentDensity": 0.14646464646464646,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "scripts/ssot_immunity.py",
+      "language": "python",
+      "size": 9818,
+      "complexity": {
+        "cyclomatic": 19,
+        "nestingDepth": 8,
+        "functionCount": 5,
+        "avgFunctionLength": 40
+      },
+      "imports": [
+        "ssot_immunity",
+        "sys",
+        "io",
+        "__future__",
+        "pathlib",
+        "hashlib",
+        "json",
+        "datetime",
+        "typing"
+      ],
+      "exports": [
+        "compute_hash",
+        "load_state",
+        "save_state",
+        "check_ssot_drift",
+        "main"
+      ],
+      "todoCount": 0,
+      "docstringCount": 9,
+      "commentDensity": 0.18316831683168316,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "scripts/ssot_outline_extractor.ps1",
+      "language": "powershell",
+      "size": 6702,
+      "complexity": {
+        "cyclomatic": 23,
+        "nestingDepth": 8,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 27,
+      "commentDensity": 0.15337423312883436,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "scripts/ssot_registry_query.ps1",
+      "language": "powershell",
+      "size": 6552,
+      "complexity": {
+        "cyclomatic": 16,
+        "nestingDepth": 8,
+        "functionCount": 1,
+        "avgFunctionLength": 136
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 18,
+      "commentDensity": 0.11764705882352941,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "scripts/ssot_registry_query_v2.ps1",
+      "language": "powershell",
+      "size": 6287,
+      "complexity": {
+        "cyclomatic": 19,
+        "nestingDepth": 8,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 27,
+      "commentDensity": 0.16666666666666666,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "scripts/ssot_tier_query.ps1",
+      "language": "powershell",
+      "size": 7236,
+      "complexity": {
+        "cyclomatic": 14,
+        "nestingDepth": 8,
+        "functionCount": 1,
+        "avgFunctionLength": 159
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 17,
+      "commentDensity": 0.09433962264150944,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "scripts/start_github_mcp.ps1",
+      "language": "powershell",
+      "size": 1951,
+      "complexity": {
+        "cyclomatic": 4,
+        "nestingDepth": 2,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 17,
+      "commentDensity": 0.5666666666666667,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": [
+        "potential-secret"
+      ]
+    },
+    {
+      "path": "scripts/start_mcp_session.ps1",
+      "language": "powershell",
+      "size": 2833,
+      "complexity": {
+        "cyclomatic": 5,
+        "nestingDepth": 1,
+        "functionCount": 1,
+        "avgFunctionLength": 55
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 18,
+      "commentDensity": 0.3090909090909091,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "scripts/strip_broken_headers.py",
+      "language": "python",
+      "size": 2520,
+      "complexity": {
+        "cyclomatic": 7,
+        "nestingDepth": 6,
+        "functionCount": 2,
+        "avgFunctionLength": 22
+      },
+      "imports": [
+        "sys",
+        "io",
+        "re",
+        "pathlib"
+      ],
+      "exports": [
+        "strip_blessing",
+        "main"
+      ],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0.3409090909090909,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "scripts/structure_session_log.py",
+      "language": "python",
+      "size": 15044,
+      "complexity": {
+        "cyclomatic": 84,
+        "nestingDepth": 10,
+        "functionCount": 17,
+        "avgFunctionLength": 26
+      },
+      "imports": [
+        "__future__",
+        "re",
+        "sys",
+        "json",
+        "hashlib",
+        "datetime",
+        "dataclasses",
+        "pathlib"
+      ],
+      "exports": [
+        "find_repo_root",
+        "is_cmd_line",
+        "slurp",
+        "sha256_text",
+        "utc_now_iso",
+        "classify",
+        "extract_events",
+        "compress_events",
+        "render_structured_txt",
+        "cmd_phase",
+        "build_structured_json",
+        "render_pretty_md",
+        "main"
+      ],
+      "todoCount": 0,
+      "docstringCount": 4,
+      "commentDensity": 0.05921052631578947,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "scripts/test-chthonic-mcp.ps1",
+      "language": "powershell",
+      "size": 2874,
+      "complexity": {
+        "cyclomatic": 5,
+        "nestingDepth": 2,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 7,
+      "commentDensity": 0.125,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "scripts/test-meta-cli.ps1",
+      "language": "powershell",
+      "size": 1584,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 1,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 7,
+      "commentDensity": 0.1346153846153846,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "scripts/test_ingest.py",
+      "language": "python",
+      "size": 4055,
+      "complexity": {
+        "cyclomatic": 8,
+        "nestingDepth": 6,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [
+        "sys",
+        "io",
+        "json"
+      ],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 3,
+      "commentDensity": 0.2236842105263158,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "scripts/test_narrative_scan.py",
+      "language": "python",
+      "size": 1314,
+      "complexity": {
+        "cyclomatic": 7,
+        "nestingDepth": 4,
+        "functionCount": 1,
+        "avgFunctionLength": 42
+      },
+      "imports": [
+        "sys",
+        "pathlib",
+        "mas_mcp.logic.tools"
+      ],
+      "exports": [
+        "test_narrative"
+      ],
+      "todoCount": 0,
+      "docstringCount": 2,
+      "commentDensity": 0.07142857142857142,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "scripts/theme-sync.ps1",
+      "language": "powershell",
+      "size": 1977,
+      "complexity": {
+        "cyclomatic": 9,
+        "nestingDepth": 2,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 7,
+      "commentDensity": 0.09523809523809523,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "scripts/theme_artcop.py",
+      "language": "python",
+      "size": 8439,
+      "complexity": {
+        "cyclomatic": 38,
+        "nestingDepth": 8,
+        "functionCount": 8,
+        "avgFunctionLength": 30
+      },
+      "imports": [
+        "json",
+        "math",
+        "sys",
+        "collections",
+        "pathlib"
+      ],
+      "exports": [
+        "hex_to_rgb",
+        "relative_luminance",
+        "contrast_ratio",
+        "color_temperature",
+        "audit_theme",
+        "print_report",
+        "main"
+      ],
+      "todoCount": 0,
+      "docstringCount": 8,
+      "commentDensity": 0.04065040650406504,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "scripts/typescript_dependency_resolver.py",
+      "language": "python",
+      "size": 9449,
+      "complexity": {
+        "cyclomatic": 22,
+        "nestingDepth": 12,
+        "functionCount": 4,
+        "avgFunctionLength": 61
+      },
+      "imports": [
+        "extraction",
+        "re",
+        "pathlib",
+        "typing",
+        "statements",
+        "Default",
+        "type",
+        "paths",
+        "path",
+        "repo_root",
+        "sys"
+      ],
+      "exports": [
+        "test_extractor"
+      ],
+      "todoCount": 0,
+      "docstringCount": 11,
+      "commentDensity": 0.18218623481781376,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "scripts/unified_topology.py",
+      "language": "python",
+      "size": 20206,
+      "complexity": {
+        "cyclomatic": 63,
+        "nestingDepth": 14,
+        "functionCount": 14,
+        "avgFunctionLength": 34
+      },
+      "imports": [
+        "sys",
+        "io",
+        "__future__",
+        "dataclasses",
+        "pathlib",
+        "typing",
+        "json",
+        "re",
+        "networkx",
+        "datetime",
+        "collections"
+      ],
+      "exports": [
+        "classify_lane",
+        "classify_language",
+        "infer_tier",
+        "export_json",
+        "export_mermaid",
+        "export_summary",
+        "main"
+      ],
+      "todoCount": 0,
+      "docstringCount": 18,
+      "commentDensity": 0.10504201680672269,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "scripts/upcycle_audit.py",
+      "language": "python",
+      "size": 12580,
+      "complexity": {
+        "cyclomatic": 63,
+        "nestingDepth": 12,
+        "functionCount": 5,
+        "avgFunctionLength": 79
+      },
+      "imports": [
+        "__future__",
+        "argparse",
+        "json",
+        "sys",
+        "pathlib",
+        "typing",
+        "datetime"
+      ],
+      "exports": [
+        "should_skip",
+        "analyze_file",
+        "scan_paths",
+        "prompt_mode_if_ambiguous",
+        "main"
+      ],
+      "todoCount": 0,
+      "docstringCount": 7,
+      "commentDensity": 0.11868686868686869,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "scripts/update-claude-code.ps1",
+      "language": "powershell",
+      "size": 2167,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 2,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 17,
+      "commentDensity": 0.38461538461538464,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "scripts/uv_autofix.py",
+      "language": "python",
+      "size": 1413,
+      "complexity": {
+        "cyclomatic": 6,
+        "nestingDepth": 6,
+        "functionCount": 3,
+        "avgFunctionLength": 18
+      },
+      "imports": [
+        "scripts.uv_autofix",
+        "__future__",
+        "os",
+        "subprocess",
+        "importlib"
+      ],
+      "exports": [
+        "ensure_deps"
+      ],
+      "todoCount": 0,
+      "docstringCount": 4,
+      "commentDensity": 0.037037037037037035,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "scripts/validate-triad-links.ps1",
+      "language": "powershell",
+      "size": 1889,
+      "complexity": {
+        "cyclomatic": 8,
+        "nestingDepth": 8,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 1,
+      "commentDensity": 0.014285714285714285,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "scripts/validate_claude_meta.py",
+      "language": "python",
+      "size": 1975,
+      "complexity": {
+        "cyclomatic": 8,
+        "nestingDepth": 4,
+        "functionCount": 3,
+        "avgFunctionLength": 21
+      },
+      "imports": [
+        "__future__",
+        "json",
+        "dataclasses",
+        "pathlib"
+      ],
+      "exports": [
+        "exists",
+        "read_text",
+        "main"
+      ],
+      "todoCount": 0,
+      "docstringCount": 2,
+      "commentDensity": 0.03125,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "scripts/validate_docs_content.ps1",
+      "language": "powershell",
+      "size": 5846,
+      "complexity": {
+        "cyclomatic": 22,
+        "nestingDepth": 12,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 21,
+      "commentDensity": 0.13043478260869565,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "scripts/validate_meta_polishers.py",
+      "language": "python",
+      "size": 3014,
+      "complexity": {
+        "cyclomatic": 12,
+        "nestingDepth": 4,
+        "functionCount": 3,
+        "avgFunctionLength": 30
+      },
+      "imports": [
+        "__future__",
+        "json",
+        "dataclasses",
+        "pathlib"
+      ],
+      "exports": [
+        "exists",
+        "read_text",
+        "main"
+      ],
+      "todoCount": 0,
+      "docstringCount": 2,
+      "commentDensity": 0.05555555555555555,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "scripts/validate_probe.ps1",
+      "language": "powershell",
+      "size": 5085,
+      "complexity": {
+        "cyclomatic": 9,
+        "nestingDepth": 4,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 28,
+      "commentDensity": 0.27450980392156865,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "scripts/validate_script_headers.py",
+      "language": "python",
+      "size": 6610,
+      "complexity": {
+        "cyclomatic": 27,
+        "nestingDepth": 8,
+        "functionCount": 6,
+        "avgFunctionLength": 29
+      },
+      "imports": [
+        "__future__",
+        "argparse",
+        "ast",
+        "json",
+        "re",
+        "pathlib",
+        "typing"
+      ],
+      "exports": [
+        "main"
+      ],
+      "todoCount": 0,
+      "docstringCount": 2,
+      "commentDensity": 0.08426966292134831,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "scripts/validate_session_changes.ps1",
+      "language": "powershell",
+      "size": 13752,
+      "complexity": {
+        "cyclomatic": 35,
+        "nestingDepth": 6,
+        "functionCount": 1,
+        "avgFunctionLength": 365
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 52,
+      "commentDensity": 0.13972602739726028,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "scripts/validate_shell_probe.ps1",
+      "language": "powershell",
+      "size": 2559,
+      "complexity": {
+        "cyclomatic": 7,
+        "nestingDepth": 1,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 19,
+      "commentDensity": 0.36538461538461536,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "scripts/validate_vs2026_elevated.ps1",
+      "language": "powershell",
+      "size": 12424,
+      "complexity": {
+        "cyclomatic": 40,
+        "nestingDepth": 8,
+        "functionCount": 9,
+        "avgFunctionLength": 45
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 2,
+      "commentDensity": 0.0049261083743842365,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "scripts/vector_db.py",
+      "language": "python",
+      "size": 5112,
+      "complexity": {
+        "cyclomatic": 20,
+        "nestingDepth": 8,
+        "functionCount": 5,
+        "avgFunctionLength": 30
+      },
+      "imports": [
+        "json",
+        "os",
+        "sys",
+        "datetime",
+        "pathlib",
+        "qdrant_client",
+        "qdrant_client.http.models",
+        "sentence_transformers"
+      ],
+      "exports": [
+        "get_client",
+        "init_collection",
+        "ingest_embeddings",
+        "search",
+        "stats"
+      ],
+      "todoCount": 0,
+      "docstringCount": 7,
+      "commentDensity": 0.04,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    }
+  ]
+}

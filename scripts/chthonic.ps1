@@ -372,9 +372,27 @@ function Get-CommandResolution {
             }
         }
         "Function" {
-            $snippet = ($cmd.Definition -replace '\s+', ' ').Trim()
-            if ($snippet.Length -gt 84) { $snippet = $snippet.Substring(0, 84) + "..." }
-            $display = "function -> $snippet"
+            $target = $null
+            # Common wrapper pattern used by this workspace profile:
+            #   & $global:CHTHONIC_SCRIPT [args...]
+            if ($cmd.Definition -match '\$global:CHTHONIC_SCRIPT') {
+                try {
+                    $scriptVar = Get-Variable -Name CHTHONIC_SCRIPT -Scope Global -ErrorAction Stop
+                    $scriptPath = [string]$scriptVar.Value
+                    if ($scriptPath -and (Test-Path $scriptPath)) {
+                        $target = $scriptPath
+                    }
+                } catch {}
+            }
+
+            if ($target) {
+                $path = $target
+                $display = "function wrapper -> $target"
+            } else {
+                $snippet = ($cmd.Definition -replace '\s+', ' ').Trim()
+                if ($snippet.Length -gt 84) { $snippet = $snippet.Substring(0, 84) + "..." }
+                $display = "function -> $snippet"
+            }
         }
         default {
             if ($cmd.Source -and (Test-Path $cmd.Source)) {
@@ -414,6 +432,69 @@ function Get-CommandDisplayFlexible {
     if (-not $meta) { return $null }
     if ($meta.Path) { return $meta.Path }
     return $meta.Display
+}
+
+function Get-ClaudineScriptPath {
+    $candidate = Join-Path $SCRIPT_DIR "claudine.ps1"
+    if (Test-Path $candidate) { return $candidate }
+    return $null
+}
+
+function Ensure-RvCommandBinding {
+    # PowerShell reserves `rv` as alias for Remove-Variable.
+    # In this workspace, `rv` should target Ruby version management when available.
+    $result = [ordered]@{
+        applied = $false
+        reason = $null
+        rv_before = $null
+        rv_after = $null
+        rvar_after = $null
+    }
+
+    $rvBefore = Get-CommandResolution -Name "rv"
+    if ($rvBefore) {
+        $result.rv_before = if ($rvBefore.Path) { $rvBefore.Path } else { $rvBefore.Display }
+    }
+
+    $rvwCmd = Get-CommandResolution -Name "rvw"
+    if (-not $rvwCmd) {
+        $result.reason = "rvw not found"
+        return [pscustomobject]$result
+    }
+
+    $isShadowedByRemoveVariable = $false
+    if ($rvBefore -and $rvBefore.Type -eq "Alias" -and $rvBefore.Display -eq "alias -> Remove-Variable") {
+        $isShadowedByRemoveVariable = $true
+    }
+
+    if (-not $isShadowedByRemoveVariable) {
+        $result.reason = "rv already bound to non-Remove-Variable command"
+        $rvAfter = Get-CommandResolution -Name "rv"
+        if ($rvAfter) { $result.rv_after = if ($rvAfter.Path) { $rvAfter.Path } else { $rvAfter.Display } }
+        return [pscustomobject]$result
+    }
+
+    try {
+        if (-not (Get-Alias -Name rvar -ErrorAction SilentlyContinue)) {
+            Set-Alias -Name rvar -Value Remove-Variable -Scope Global -Force
+        }
+        Set-Alias -Name rv -Value rvw -Scope Global -Force
+        $result.applied = $true
+        $result.reason = "rv alias redirected to rvw"
+    } catch {
+        $result.reason = "failed to set alias: $($_.Exception.Message)"
+    }
+
+    $rvAfter = Get-CommandResolution -Name "rv"
+    if ($rvAfter) {
+        $result.rv_after = if ($rvAfter.Path) { $rvAfter.Path } else { $rvAfter.Display }
+    }
+    $rvarAfter = Get-CommandResolution -Name "rvar"
+    if ($rvarAfter) {
+        $result.rvar_after = if ($rvarAfter.Path) { $rvarAfter.Path } else { $rvarAfter.Display }
+    }
+
+    return [pscustomobject]$result
 }
 
 function Get-SystemRegistrationPaths {
@@ -914,6 +995,14 @@ function Invoke-PolyglotActivation {
     
     # Set PATH with polyglot tools first
     $env:Path = ($activePaths + $existingPath | Select-Object -Unique) -join ';'
+
+    # Resolve `rv` collision with PowerShell's built-in Remove-Variable alias.
+    # Apply only when shadowed and rvw is available.
+    $rvBinding = Ensure-RvCommandBinding
+    if ($rvBinding) {
+        $env:CHTHONIC_RV_BINDING = if ($rvBinding.rv_after) { $rvBinding.rv_after } else { "unresolved" }
+        $env:CHTHONIC_RV_BINDING_REASON = if ($rvBinding.reason) { $rvBinding.reason } else { "" }
+    }
     
     # Go environment (goup-managed)
     $goupCurrent = Join-Path $env:USERPROFILE ".goup\current"
@@ -937,6 +1026,12 @@ function Invoke-PolyglotActivation {
     $env:CHTHONIC_REPO_ROOT = $REPO_ROOT
     
     if (-not $Quiet) {
+        if ($rvBinding -and $rvBinding.applied) {
+            Write-Host "  rv alias remapped: $($rvBinding.rv_before) -> $($rvBinding.rv_after)" -ForegroundColor DarkGray
+            if ($rvBinding.rvar_after) {
+                Write-Host "  Remove-Variable preserved via: $($rvBinding.rvar_after)" -ForegroundColor DarkGray
+            }
+        }
         Show-PolyglotStatus
     }
 }
@@ -946,6 +1041,12 @@ function Show-PolyglotStatus {
     
     # Collect tool versions
     $tools = @{}
+    $tools['handler_ruby'] = 'rvw'
+    $tools['handler_python'] = 'uv'
+    $tools['handler_rust'] = 'rustup/cargo'
+    $tools['handler_go'] = 'goup'
+    $tools['handler_js'] = 'bun'
+    $tools['uv_tool_lane'] = 'python,ruff,cmake,ninja'
     $tools['rv'] = 'not found'
     $rvMetaStatus = Get-CommandResolution -Name "rv"
     if ($rvMetaStatus -and $rvMetaStatus.Type -ne "Alias") {
@@ -973,6 +1074,12 @@ function Show-PolyglotStatus {
         $tools['rv_cmd'] = if ($rvMetaStatus.Path) { $rvMetaStatus.Path } else { $rvMetaStatus.Display }
     } else {
         $tools['rv_cmd'] = 'not found'
+    }
+    $rvarMetaStatus = Get-CommandResolution -Name "rvar"
+    if ($rvarMetaStatus) {
+        $tools['rvar_cmd'] = if ($rvarMetaStatus.Path) { $rvarMetaStatus.Path } else { $rvarMetaStatus.Display }
+    } else {
+        $tools['rvar_cmd'] = 'not found'
     }
     try { $tools['bun'] = (bun --version 2>$null) -replace 'Bun\s+','' -split ' ' | Select-Object -First 1 } catch { $tools['bun'] = 'not found' }
     try { $tools['biome'] = ((biome --version 2>$null) -split '\n')[0] -replace 'Version:\s*','' } catch { $tools['biome'] = 'not found' }
@@ -1085,9 +1192,42 @@ function Show-PolyglotStatus {
     $claudineMeta = Get-CommandResolution -Name "claudine"
     if ($claudineMeta) {
         $tools['claudine_cmd'] = if ($claudineMeta.Path) { $claudineMeta.Path } else { $claudineMeta.Display }
+    } elseif (Get-ClaudineScriptPath) {
+        $tools['claudine_cmd'] = (Get-ClaudineScriptPath)
     } else {
         $tools['claudine_cmd'] = 'not found'
     }
+    $chthonicMeta = Get-CommandResolution -Name "chthonic"
+    if ($chthonicMeta) {
+        $tools['chthonic_cmd'] = if ($chthonicMeta.Path) { $chthonicMeta.Path } else { $chthonicMeta.Display }
+    } elseif ($PSCommandPath -and (Test-Path $PSCommandPath)) {
+        $tools['chthonic_cmd'] = $PSCommandPath
+    } else {
+        $tools['chthonic_cmd'] = 'not found'
+    }
+    $rvBindingState = "not set"
+    $rvBindingReason = "not set"
+    if ($rvMetaStatus) {
+        if ($rvMetaStatus.Path -and (Split-Path -Leaf $rvMetaStatus.Path).ToLower() -eq "rvw.exe") {
+            $rvBindingState = $rvMetaStatus.Path
+            $rvBindingReason = "rv mapped to rvw in current shell"
+        } elseif ($rvMetaStatus.Display -eq "alias -> rvw") {
+            $rvBindingState = "alias -> rvw"
+            $rvBindingReason = "rv mapped to rvw in current shell"
+        } elseif ($rvMetaStatus.Display -eq "alias -> Remove-Variable") {
+            $rvBindingState = "alias -> Remove-Variable"
+            if (Get-CommandResolution -Name "rvw") {
+                $rvBindingReason = "not applied in current shell; run 'chthonic env' to apply collision guard"
+            } else {
+                $rvBindingReason = "rvw unavailable; collision guard cannot be applied"
+            }
+        } else {
+            $rvBindingState = if ($rvMetaStatus.Path) { $rvMetaStatus.Path } else { $rvMetaStatus.Display }
+            $rvBindingReason = "rv bound to non-default command"
+        }
+    }
+    $tools['rv_binding'] = $rvBindingState
+    $tools['rv_binding_reason'] = $rvBindingReason
 
     $clExe = Get-VSClExePath
     if ($clExe) {
@@ -1345,6 +1485,7 @@ function Show-Origins {
 
     # Secondary tools
     $secondary = @(
+        @{ Name = "rv";      Cmd = $null;     Method = "PowerShell binding (alias collision guard)"; Ecosystem = "local"; Resolver = { Get-CommandDisplayFlexible -Name "rv" } },
         @{ Name = "rvw";     Cmd = "rvw";     Method = "rv wrapper (ruby lane)"; Ecosystem = "cargo" },
         @{ Name = "goup";    Cmd = "goup";    Method = "GH release binary"; Ecosystem = "cargo" },
         @{ Name = "cargo";   Cmd = "cargo";   Method = "rustup toolchain"; Ecosystem = "cargo" },
@@ -1369,7 +1510,11 @@ function Show-Origins {
         @{ Name = "glslc";   Cmd = "glslc";   Method = "Vulkan SDK";    Ecosystem = "system" },
         @{ Name = "ssms";    Cmd = $null;     Method = "SSMS (Visual Studio Installer)"; Ecosystem = "system"; Resolver = { Get-SsmsInstallationPath } },
         @{ Name = "claude";  Cmd = $null;     Method = "standalone CLI"; Ecosystem = "local"; Resolver = { Get-CommandDisplayFlexible -Name "claude" } },
-        @{ Name = "claudine"; Cmd = $null;    Method = "shell wrapper (chthonic env)"; Ecosystem = "local"; Resolver = { Get-CommandDisplayFlexible -Name "claudine" } }
+        @{ Name = "claudine"; Cmd = $null;    Method = "shell wrapper (chthonic env)"; Ecosystem = "local"; Resolver = {
+            $resolved = Get-CommandDisplayFlexible -Name "claudine"
+            if ($resolved) { return $resolved }
+            return (Get-ClaudineScriptPath)
+        } }
     )
 
     $ecoColors = @{ "uv" = "Magenta"; "bun" = "Yellow"; "cargo" = "Red"; "system" = "DarkGray"; "local" = "Green" }

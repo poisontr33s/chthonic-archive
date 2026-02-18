@@ -1,0 +1,49 @@
+{
+  "path": "docs/design",
+  "primaryLanguage": "markdown",
+  "purpose": "general",
+  "fileCount": 2,
+  "totalSize": 31126,
+  "averageComplexity": 1,
+  "documentationCoverage": 0,
+  "files": [
+    {
+      "path": "docs/design/genre-extraction.md",
+      "language": "markdown",
+      "size": 19615,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 17,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "docs/design/TECHNIQUE_HYBRIDIZATION.md",
+      "language": "markdown",
+      "size": 11511,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 15,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    }
+  ]
+}

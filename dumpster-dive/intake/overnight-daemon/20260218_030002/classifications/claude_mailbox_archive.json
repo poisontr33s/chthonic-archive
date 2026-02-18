@@ -1,0 +1,68 @@
+{
+  "path": "claude/mailbox/archive",
+  "primaryLanguage": "markdown",
+  "purpose": "general",
+  "fileCount": 3,
+  "totalSize": 9104,
+  "averageComplexity": 1,
+  "documentationCoverage": 0,
+  "files": [
+    {
+      "path": "claude/mailbox/archive/SESSION_HANDOFF_2026_02_05_MAILBOX_SKILL_UPDATE.md",
+      "language": "markdown",
+      "size": 3913,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 1,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "claude/mailbox/archive/SESSION_HANDOFF_2026_02_05_OPERATION_TRAIN_STOP.md",
+      "language": "markdown",
+      "size": 2889,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 2,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "claude/mailbox/archive/SESSION_HANDOFF_2026_02_05_PARITY_DELTA.md",
+      "language": "markdown",
+      "size": 2302,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 0,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    }
+  ]
+}

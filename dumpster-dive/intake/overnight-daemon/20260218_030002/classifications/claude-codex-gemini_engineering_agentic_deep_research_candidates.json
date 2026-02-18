@@ -1,0 +1,70 @@
+{
+  "path": "claude-codex-gemini/engineering_agentic_deep_research_candidates",
+  "primaryLanguage": "markdown",
+  "purpose": "general",
+  "fileCount": 3,
+  "totalSize": 45467,
+  "averageComplexity": 1,
+  "documentationCoverage": 0,
+  "files": [
+    {
+      "path": "claude-codex-gemini/engineering_agentic_deep_research_candidates/codex52_medium_reasoning_candidate_persona.md",
+      "language": "markdown",
+      "size": 30221,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 0,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "claude-codex-gemini/engineering_agentic_deep_research_candidates/GEMINI_RESEARCH_DIGEST_2026_02_12.md",
+      "language": "markdown",
+      "size": 9286,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 0,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "claude-codex-gemini/engineering_agentic_deep_research_candidates/LOCAL_LLM_STACK_RESEARCH_BRIEF_2026_02_11.md",
+      "language": "markdown",
+      "size": 5960,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 0,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": [
+        "potential-secret"
+      ]
+    }
+  ]
+}

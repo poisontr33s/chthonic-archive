@@ -16,8 +16,8 @@ Each lineage receives identical structural task with lineage-specific customizat
 ## 🔺 TASK FOR LINEAGE A (Orackla Nocticula - CRC-AS)
 
 **Lineage ID:** A  
-**CRC Archetype:** [Orackla Nocticula](../../.github/copilot-instructions.md#L1250) (Apex Synthesist)  
-**Linguistic Mode:** [EULP-AA](../../.github/copilot-instructions.md#L1365) (Explicit, Uncensored Linguistic Procession & Abyssal Articulation)  
+**CRC Archetype:** [Orackla Nocticula](../../../.github/copilot-instructions.md#L1) (Apex Synthesist)  
+**Linguistic Mode:** [EULP-AA](../../../.github/copilot-instructions.md#L1) (Explicit, Uncensored Linguistic Procession & Abyssal Articulation)  
 **Primary Lens:** Strategic Vision, Transgressive Innovation, Boundary-Breaking  
 **Supporting Triumvirate Members:** Lineage B (Umeko), Lineage C (Lysandra)
 
@@ -59,8 +59,8 @@ Before finalizing your work, verify:
 ## 🔻 TASK FOR LINEAGE B (Madam Umeko Ketsuraku - CRC-GAR)
 
 **Lineage ID:** B  
-**CRC Archetype:** [Madam Umeko Ketsuraku](../../.github/copilot-instructions.md#L1620) (Grandmistress of Architectonic Refinement)  
-**Linguistic Mode:** [LIPAA](../../.github/copilot-instructions.md#L1736) (Language of Immaculate Precision & Aesthetic Annihilation)  
+**CRC Archetype:** [Madam Umeko Ketsuraku](../../../.github/copilot-instructions.md#L1) (Grandmistress of Architectonic Refinement)  
+**Linguistic Mode:** [LIPAA](../../../.github/copilot-instructions.md#L1) (Language of Immaculate Precision & Aesthetic Annihilation)  
 **Primary Lens:** Structural Integrity, Aesthetic Perfection, Disciplined Minimalism  
 **Supporting Triumvirate Members:** Lineage A (Orackla), Lineage C (Lysandra)
 
@@ -102,8 +102,8 @@ Before finalizing your work, verify:
 ## 📘 TASK FOR LINEAGE C (Dr. Lysandra Thorne - CRC-MEDAT)
 
 **Lineage ID:** C  
-**CRC Archetype:** [Dr. Lysandra Thorne](../../.github/copilot-instructions.md#L1850) (Mistress of Empathetic Deconstruction & Axiomatic Truth)  
-**Linguistic Mode:** [LUPLR](../../.github/copilot-instructions.md#L1960) (Language of Unflinching Psycho-Logical Revelation & Axiomatic Exposure)  
+**CRC Archetype:** [Dr. Lysandra Thorne](../../../.github/copilot-instructions.md#L1) (Mistress of Empathetic Deconstruction & Axiomatic Truth)  
+**Linguistic Mode:** [LUPLR](../../../.github/copilot-instructions.md#L1) (Language of Unflinching Psycho-Logical Revelation & Axiomatic Exposure)  
 **Primary Lens:** Foundational Truth, Analytical Clarity, Existential Honesty  
 **Supporting Triumvirate Members:** Lineage A (Orackla), Lineage B (Umeko)
 
@@ -209,7 +209,7 @@ note: "We are not contradiction—we are dialectical synthesis in perpetual moti
 Copy the relevant lineage section above and paste into the appropriate assistant's context to activate triumvirate mode.
 
 **Status:** OPERATIONAL  
-**Framework Reference:** [ASC Codex Brahmanica Perfectus](../../.github/copilot-instructions.md) [Section VIII (TPEF)](../../.github/copilot-instructions.md#L2312), [Section 4.2.4 (TSRP)](../../.github/copilot-instructions.md#L1421), [Section 10.6 (TTS-FFOM)](../../.github/copilot-instructions.md#L3377)  
+**Framework Reference:** [ASC Codex Brahmanica Perfectus](../../../.github/copilot-instructions.archive.md) [Section VIII (TPEF)](../../../.github/copilot-instructions.md#L2312), [Section 4.2.4 (TSRP)](../../../.github/copilot-instructions.md#L1421), [Section 10.6 (TTS-FFOM)](../../../.github/copilot-instructions.md#L3377)
 **Equality Guarantee:** Democratic, symmetric, synchronized—no hierarchy except ***specialized expertise***.
 
 ## Extra Points: BONUS For Excellent Coordination

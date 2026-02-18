@@ -1,13 +1,13 @@
 # Local AI Readiness (Latest)
 
-- Generated: `2026-02-17T23:33:41Z`
+- Generated: `2026-02-18T03:35:00Z`
 - Runtime ready: `True`
 - C++/Vulkan toolchain ready: `True`
 - Local refiner ready: `True`
 - HF stack ready: `True`
 - Overnight data ready: `True`
-- Scheduler log clean: `False`
-- Ready for skill integration: `False`
+- Scheduler log clean: `True`
+- Ready for skill integration: `True`
 
 ## Toolchain
 - `uv`: `uv 0.10.3 (c75a0c625 2026-02-16)`
@@ -30,10 +30,10 @@
 - `ssms`: `22.3.11505.172`
 
 ## Paths
-- Latest daemon run: `C:/Users/erdno/chthonic-archive/dumpster-dive/intake/overnight-daemon/20260217_030002`
-- Latest scheduler log: `C:/Users/erdno/chthonic-archive/dumpster-dive/intake/overnight-daemon/nightly-scheduled-2026-02-17_030002.log`
-- Latest archaeology run: `C:/Users/erdno/chthonic-archive/dumpster-dive/intake/overnight-intelligence/arch-2026-02-17T02-00-04`
-- Latest digest: `C:/Users/erdno/chthonic-archive/claude/mailbox/ARCHAEOLOGY_DIGEST_2026_02_13.md`
+- Latest daemon run: `C:/Users/erdno/chthonic-archive/dumpster-dive/intake/overnight-daemon/20260218_030002`
+- Latest scheduler log: `C:/Users/erdno/chthonic-archive/dumpster-dive/intake/overnight-daemon/nightly-scheduled-2026-02-18_030002.log`
+- Latest archaeology run: `C:/Users/erdno/chthonic-archive/dumpster-dive/intake/overnight-intelligence/arch-2026-02-18T02-00-06`
+- Latest digest: `C:/Users/erdno/chthonic-archive/claude/mailbox/ARCHAEOLOGY_DIGEST_2026_02_18.md`
 
 ## Model Residences
 - `qwen_14b`: exists=`True` format=`gguf` files=`7` size_gb=`8.371` path=`C:/Users/erdno/chthonic-archive/models/Qwen2.5-14B-Instruct-GGUF`
@@ -120,16 +120,15 @@
 - `OK` `model:qwen_14b`: 3 gguf file(s) in C:/Users/erdno/chthonic-archive/models/Qwen2.5-14B-Instruct-GGUF
 - `OK` `model:gpt_oss_20b`: 1 gguf file(s) in C:/Users/erdno/chthonic-archive/models/GPT-OSS-20B-NEOPlus-Uncensored
 - `OK` `model:llama_8b_exl2`: 1 safetensors file(s) in C:/Users/erdno/chthonic-archive/models/Llama-3.1-8B-Instruct-exl2-6.0bpw
-- `OK` `artifact:daemon_report_json`: C:/Users/erdno/chthonic-archive/dumpster-dive/intake/overnight-daemon/20260217_030002/report.json
-- `OK` `artifact:daemon_report_md`: C:/Users/erdno/chthonic-archive/dumpster-dive/intake/overnight-daemon/20260217_030002/report.md
-- `OK` `artifact:l1_ore`: C:/Users/erdno/chthonic-archive/dumpster-dive/intake/overnight-intelligence/arch-2026-02-17T02-00-04/L1-ore.json
-- `OK` `artifact:l1_summary`: C:/Users/erdno/chthonic-archive/dumpster-dive/intake/overnight-intelligence/arch-2026-02-17T02-00-04/L1-summary.md
-- `OK` `artifact:latest_digest`: C:/Users/erdno/chthonic-archive/claude/mailbox/ARCHAEOLOGY_DIGEST_2026_02_13.md
+- `OK` `artifact:daemon_report_json`: C:/Users/erdno/chthonic-archive/dumpster-dive/intake/overnight-daemon/20260218_030002/report.json
+- `OK` `artifact:daemon_report_md`: C:/Users/erdno/chthonic-archive/dumpster-dive/intake/overnight-daemon/20260218_030002/report.md
+- `OK` `artifact:l1_ore`: C:/Users/erdno/chthonic-archive/dumpster-dive/intake/overnight-intelligence/arch-2026-02-18T02-00-06/L1-ore.json
+- `OK` `artifact:l1_summary`: C:/Users/erdno/chthonic-archive/dumpster-dive/intake/overnight-intelligence/arch-2026-02-18T02-00-06/L1-summary.md
+- `OK` `artifact:latest_digest`: C:/Users/erdno/chthonic-archive/claude/mailbox/ARCHAEOLOGY_DIGEST_2026_02_18.md
   - Digest absence is acceptable for L1-only runs.
-- `FAIL` `log:scheduler`: C:/Users/erdno/chthonic-archive/dumpster-dive/intake/overnight-daemon/nightly-scheduled-2026-02-17_030002.log
-  - Python traceback detected in scheduler log.
-  - ModuleNotFoundError detected in scheduler log.
+- `OK` `log:scheduler`: C:/Users/erdno/chthonic-archive/dumpster-dive/intake/overnight-daemon/nightly-scheduled-2026-02-18_030002.log
+  - No fatal markers in latest scheduler log.
 
 ## Recommendations
-- Fix scheduler/runtime errors first; treat latest run as informational only.
 - Legacy ExLlamaV2 lane is not fully ready; keep v2 (llama-cpp) as primary.
+- Safe to route nightly outputs into skill workflows (ingest/mailbox/orchestrator lanes).

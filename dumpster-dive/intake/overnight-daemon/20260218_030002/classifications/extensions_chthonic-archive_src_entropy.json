@@ -1,0 +1,132 @@
+{
+  "path": "extensions/chthonic-archive/src/entropy",
+  "primaryLanguage": "typescript",
+  "purpose": "general",
+  "fileCount": 5,
+  "totalSize": 36017,
+  "averageComplexity": 20,
+  "documentationCoverage": 0,
+  "files": [
+    {
+      "path": "extensions/chthonic-archive/src/entropy/archiveAbyssalView.ts",
+      "language": "typescript",
+      "size": 10258,
+      "complexity": {
+        "cyclomatic": 11,
+        "nestingDepth": 8,
+        "functionCount": 1,
+        "avgFunctionLength": 297
+      },
+      "imports": [
+        "path",
+        "vscode",
+        "./types",
+        "./entropyWorkerClient",
+        "../reactor/types"
+      ],
+      "exports": [
+        "AbyssalPaneProvider"
+      ],
+      "todoCount": 0,
+      "docstringCount": 2,
+      "commentDensity": 0.006734006734006734,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "extensions/chthonic-archive/src/entropy/entropyDecorations.ts",
+      "language": "typescript",
+      "size": 4646,
+      "complexity": {
+        "cyclomatic": 19,
+        "nestingDepth": 6,
+        "functionCount": 7,
+        "avgFunctionLength": 21
+      },
+      "imports": [
+        "vscode",
+        "./types",
+        "./entropyWorkerClient"
+      ],
+      "exports": [
+        "EntropyDecorationProvider"
+      ],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0.006622516556291391,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "extensions/chthonic-archive/src/entropy/entropyWorker.ts",
+      "language": "typescript",
+      "size": 13086,
+      "complexity": {
+        "cyclomatic": 55,
+        "nestingDepth": 10,
+        "functionCount": 19,
+        "avgFunctionLength": 24
+      },
+      "imports": [
+        "fs/promises",
+        "path",
+        "worker_threads"
+      ],
+      "exports": [],
+      "todoCount": 1,
+      "docstringCount": 0,
+      "commentDensity": 0.0043859649122807015,
+      "patterns": [
+        "async-patterns"
+      ],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "extensions/chthonic-archive/src/entropy/entropyWorkerClient.ts",
+      "language": "typescript",
+      "size": 6723,
+      "complexity": {
+        "cyclomatic": 14,
+        "nestingDepth": 12,
+        "functionCount": 1,
+        "avgFunctionLength": 208
+      },
+      "imports": [
+        "path",
+        "vscode",
+        "worker_threads"
+      ],
+      "exports": [
+        "EntropyWorkerClient"
+      ],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0.004807692307692308,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "extensions/chthonic-archive/src/entropy/types.ts",
+      "language": "typescript",
+      "size": 1304,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 4,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    }
+  ]
+}

@@ -15,7 +15,7 @@
 > [!NOTE]
 > This branch file houses the technical metadata for parallel execution and thermodynamic tensor synthesis.
 > It has been offloaded from the SSOT to preserve "Lore vs. Mechanism" separation.
-> **Context Reference:** [copilot-instructions.md](../copilot-instructions.md#L3782) (§VIII & IX lead-in)
+> **Context Reference:** [copilot-instructions.md](../copilot-instructions.md#L1) (§VIII & IX lead-in)
 
 ---
 
@@ -635,7 +635,7 @@ Example: "Generate Ψ₁₃₆₂₀ but specifically in Lysandra's LUPLR voice"
 
 **🔥💀☥ TRIUMVIRATE TENSOR SYNTHESIS FRAMEWORK (T³-MΨ) - FINALIZED 🔥💀☥**
 
-**Date Sealed**: November 14, 2025
+**Date Sealed**: Novembre, 2025
 **Architects**: Dr. Lysandra Thorne (Axiomatic Foundation), Madam Umeko Ketsuraku (Structural Design), Orackla Nocticula (Strategic Weaponization)
 **Witnessed by**: The Savant (Creator/User)
 

@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_on": "2026-02-17T23:33:41Z",
+  "generated_on": "2026-02-18T03:35:00Z",
   "repo_root": "C:/Users/erdno/chthonic-archive",
   "platform": {
     "system": "Windows",
@@ -28,10 +28,10 @@
     "ssms": "22.3.11505.172"
   },
   "paths": {
-    "latest_daemon_run": "C:/Users/erdno/chthonic-archive/dumpster-dive/intake/overnight-daemon/20260217_030002",
-    "latest_daemon_log": "C:/Users/erdno/chthonic-archive/dumpster-dive/intake/overnight-daemon/nightly-scheduled-2026-02-17_030002.log",
-    "latest_arch_run": "C:/Users/erdno/chthonic-archive/dumpster-dive/intake/overnight-intelligence/arch-2026-02-17T02-00-04",
-    "latest_digest": "C:/Users/erdno/chthonic-archive/claude/mailbox/ARCHAEOLOGY_DIGEST_2026_02_13.md"
+    "latest_daemon_run": "C:/Users/erdno/chthonic-archive/dumpster-dive/intake/overnight-daemon/20260218_030002",
+    "latest_daemon_log": "C:/Users/erdno/chthonic-archive/dumpster-dive/intake/overnight-daemon/nightly-scheduled-2026-02-18_030002.log",
+    "latest_arch_run": "C:/Users/erdno/chthonic-archive/dumpster-dive/intake/overnight-intelligence/arch-2026-02-18T02-00-06",
+    "latest_digest": "C:/Users/erdno/chthonic-archive/claude/mailbox/ARCHAEOLOGY_DIGEST_2026_02_18.md"
   },
   "summary": {
     "runtime_ready": true,
@@ -39,8 +39,8 @@
     "local_refiner_ready": true,
     "hf_stack_ready": true,
     "overnight_data_ready": true,
-    "scheduler_log_clean": false,
-    "ready_for_skill_integration": false
+    "scheduler_log_clean": true,
+    "ready_for_skill_integration": true
   },
   "models": [
     {
@@ -400,47 +400,46 @@
     {
       "name": "artifact:daemon_report_json",
       "ok": true,
-      "detail": "C:/Users/erdno/chthonic-archive/dumpster-dive/intake/overnight-daemon/20260217_030002/report.json",
+      "detail": "C:/Users/erdno/chthonic-archive/dumpster-dive/intake/overnight-daemon/20260218_030002/report.json",
       "notes": []
     },
     {
       "name": "artifact:daemon_report_md",
       "ok": true,
-      "detail": "C:/Users/erdno/chthonic-archive/dumpster-dive/intake/overnight-daemon/20260217_030002/report.md",
+      "detail": "C:/Users/erdno/chthonic-archive/dumpster-dive/intake/overnight-daemon/20260218_030002/report.md",
       "notes": []
     },
     {
       "name": "artifact:l1_ore",
       "ok": true,
-      "detail": "C:/Users/erdno/chthonic-archive/dumpster-dive/intake/overnight-intelligence/arch-2026-02-17T02-00-04/L1-ore.json",
+      "detail": "C:/Users/erdno/chthonic-archive/dumpster-dive/intake/overnight-intelligence/arch-2026-02-18T02-00-06/L1-ore.json",
       "notes": []
     },
     {
       "name": "artifact:l1_summary",
       "ok": true,
-      "detail": "C:/Users/erdno/chthonic-archive/dumpster-dive/intake/overnight-intelligence/arch-2026-02-17T02-00-04/L1-summary.md",
+      "detail": "C:/Users/erdno/chthonic-archive/dumpster-dive/intake/overnight-intelligence/arch-2026-02-18T02-00-06/L1-summary.md",
       "notes": []
     },
     {
       "name": "artifact:latest_digest",
       "ok": true,
-      "detail": "C:/Users/erdno/chthonic-archive/claude/mailbox/ARCHAEOLOGY_DIGEST_2026_02_13.md",
+      "detail": "C:/Users/erdno/chthonic-archive/claude/mailbox/ARCHAEOLOGY_DIGEST_2026_02_18.md",
       "notes": [
         "Digest absence is acceptable for L1-only runs."
       ]
     },
     {
       "name": "log:scheduler",
-      "ok": false,
-      "detail": "C:/Users/erdno/chthonic-archive/dumpster-dive/intake/overnight-daemon/nightly-scheduled-2026-02-17_030002.log",
+      "ok": true,
+      "detail": "C:/Users/erdno/chthonic-archive/dumpster-dive/intake/overnight-daemon/nightly-scheduled-2026-02-18_030002.log",
       "notes": [
-        "Python traceback detected in scheduler log.",
-        "ModuleNotFoundError detected in scheduler log."
+        "No fatal markers in latest scheduler log."
       ]
     }
   ],
   "recommendations": [
-    "Fix scheduler/runtime errors first; treat latest run as informational only.",
-    "Legacy ExLlamaV2 lane is not fully ready; keep v2 (llama-cpp) as primary."
+    "Legacy ExLlamaV2 lane is not fully ready; keep v2 (llama-cpp) as primary.",
+    "Safe to route nightly outputs into skill workflows (ingest/mailbox/orchestrator lanes)."
   ]
 }

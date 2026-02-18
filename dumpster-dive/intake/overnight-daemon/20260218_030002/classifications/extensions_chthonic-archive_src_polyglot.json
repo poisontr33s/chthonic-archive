@@ -1,0 +1,185 @@
+{
+  "path": "extensions/chthonic-archive/src/polyglot",
+  "primaryLanguage": "typescript",
+  "purpose": "general",
+  "fileCount": 7,
+  "totalSize": 37562,
+  "averageComplexity": 12,
+  "documentationCoverage": 0,
+  "files": [
+    {
+      "path": "extensions/chthonic-archive/src/polyglot/jsonl.ts",
+      "language": "typescript",
+      "size": 1463,
+      "complexity": {
+        "cyclomatic": 6,
+        "nestingDepth": 10,
+        "functionCount": 2,
+        "avgFunctionLength": 25
+      },
+      "imports": [],
+      "exports": [
+        "createJsonlDecoder"
+      ],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "extensions/chthonic-archive/src/polyglot/ledgerBroker.ts",
+      "language": "typescript",
+      "size": 3088,
+      "complexity": {
+        "cyclomatic": 2,
+        "nestingDepth": 8,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [
+        "vscode",
+        "./types",
+        "./solanaLedger"
+      ],
+      "exports": [
+        "LedgerBroker"
+      ],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "extensions/chthonic-archive/src/polyglot/merkleAccumulator.ts",
+      "language": "typescript",
+      "size": 2169,
+      "complexity": {
+        "cyclomatic": 6,
+        "nestingDepth": 6,
+        "functionCount": 4,
+        "avgFunctionLength": 18
+      },
+      "imports": [
+        "crypto",
+        "./types"
+      ],
+      "exports": [
+        "EntropyMerkleAccumulator"
+      ],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "extensions/chthonic-archive/src/polyglot/polyglotBroker.ts",
+      "language": "typescript",
+      "size": 6974,
+      "complexity": {
+        "cyclomatic": 11,
+        "nestingDepth": 8,
+        "functionCount": 1,
+        "avgFunctionLength": 196
+      },
+      "imports": [
+        "path",
+        "child_process",
+        "vscode",
+        "./jsonl"
+      ],
+      "exports": [
+        "PolyglotBroker"
+      ],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "extensions/chthonic-archive/src/polyglot/polyglotEntropyOrchestrator.ts",
+      "language": "typescript",
+      "size": 11895,
+      "complexity": {
+        "cyclomatic": 38,
+        "nestingDepth": 12,
+        "functionCount": 2,
+        "avgFunctionLength": 181
+      },
+      "imports": [
+        "fs/promises",
+        "path",
+        "vscode",
+        "./merkleAccumulator",
+        "./polyglotBroker",
+        "./ledgerBroker",
+        "../entropy/entropyWorkerClient"
+      ],
+      "exports": [
+        "PolyglotEntropyOrchestrator"
+      ],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [
+        "async-patterns"
+      ],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "extensions/chthonic-archive/src/polyglot/solanaLedger.ts",
+      "language": "typescript",
+      "size": 9821,
+      "complexity": {
+        "cyclomatic": 17,
+        "nestingDepth": 10,
+        "functionCount": 4,
+        "avgFunctionLength": 72
+      },
+      "imports": [
+        "fs",
+        "fs/promises",
+        "path",
+        "child_process",
+        "vscode",
+        "./jsonl"
+      ],
+      "exports": [
+        "RustLedgerHostClient"
+      ],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "extensions/chthonic-archive/src/polyglot/types.ts",
+      "language": "typescript",
+      "size": 2152,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 4,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    }
+  ]
+}
