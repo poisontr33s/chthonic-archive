@@ -4,13 +4,13 @@ import * as childProcess from 'child_process';
 import * as vscode from 'vscode';
 
 interface RuntimeProbe {
-    language: 'python' | 'ruby' | 'go' | 'rust' | 'solana';
+    language: 'python' | 'ruby' | 'go' | 'rust' | 'solana' | 'visual-studio';
     command: string;
     args: string[];
 }
 
 interface RuntimeState {
-    language: 'python' | 'ruby' | 'go' | 'rust' | 'solana';
+    language: 'python' | 'ruby' | 'go' | 'rust' | 'solana' | 'visual-studio';
     version: string;
 }
 
@@ -22,6 +22,13 @@ interface EolCycle {
 interface SelfHealingOptions {
     intervalMs: number;
     eolApiBase: string;
+}
+
+interface VsAuditSummary {
+    allRequiredComponentsPresent: boolean;
+    allCriticalBinariesPresent: boolean;
+    missingComponentCount: number;
+    missingBinaryCount: number;
 }
 
 export class SelfHealingLoop implements vscode.Disposable {
@@ -54,6 +61,13 @@ export class SelfHealingLoop implements vscode.Disposable {
 
         this.running = true;
         try {
+            const vsAudit = await this.auditVsToolchain();
+            if (vsAudit && (!vsAudit.allRequiredComponentsPresent || !vsAudit.allCriticalBinariesPresent)) {
+                this.output.appendLine(
+                    `[slab-heal] vs2026 audit drift detected: components=${vsAudit.missingComponentCount}, binaries=${vsAudit.missingBinaryCount}`,
+                );
+            }
+
             const states = await this.collectRuntimeStates();
             if (states.length === 0) {
                 this.output.appendLine('[slab-heal] no runtime states detected; skipping');
@@ -115,6 +129,14 @@ export class SelfHealingLoop implements vscode.Disposable {
                 this.output.appendLine(`[slab-heal] probe ${probe.language} failed: ${stringifyError(error)}`);
             }
         }
+
+        const vsVersion = await detectVisualStudioVersion(this.workspaceRoot);
+        if (vsVersion) {
+            states.push({ language: 'visual-studio', version: vsVersion });
+        } else {
+            this.output.appendLine('[slab-heal] probe visual-studio failed: VS 2026 Insiders not detected');
+        }
+
         return states;
     }
 
@@ -206,6 +228,26 @@ export class SelfHealingLoop implements vscode.Disposable {
         this.envCollection.prepend('INCLUDE', `${includePath};`);
         return includePath;
     }
+
+    private async auditVsToolchain(): Promise<VsAuditSummary | null> {
+        if (!this.workspaceRoot) {
+            return null;
+        }
+
+        const auditScript = path.join(this.workspaceRoot, 'extensions', 'chthonic-archive', 'scripts', 'vs2026_audit.ps1');
+        if (!fs.existsSync(auditScript)) {
+            return null;
+        }
+
+        try {
+            const raw = await execOutput('pwsh', ['-NoProfile', '-File', auditScript, '-Json'], this.workspaceRoot);
+            const parsed = JSON.parse(raw) as { summary?: VsAuditSummary };
+            return parsed.summary ?? null;
+        } catch (error) {
+            this.output.appendLine(`[slab-heal] vs2026 audit script failed: ${stringifyError(error)}`);
+            return null;
+        }
+    }
 }
 
 async function detectVsIncludePath(workspaceRoot: string | null): Promise<string | null> {
@@ -248,6 +290,38 @@ async function detectVsIncludePath(workspaceRoot: string | null): Promise<string
         const include = resolveNewestMsvcInclude(root);
         if (include) {
             return include;
+        }
+    }
+
+    return null;
+}
+
+async function detectVisualStudioVersion(workspaceRoot: string | null): Promise<string | null> {
+    const vswhere = path.join(
+        process.env['ProgramFiles(x86)'] || 'C:\\Program Files (x86)',
+        'Microsoft Visual Studio',
+        'Installer',
+        'vswhere.exe',
+    );
+
+    if (!fs.existsSync(vswhere)) {
+        return null;
+    }
+
+    const laneQueries: string[][] = [
+        ['-prerelease', '-latest', '-products', 'Microsoft.VisualStudio.Product.Professional', '-property', 'installationVersion'],
+        ['-prerelease', '-latest', '-products', 'Microsoft.VisualStudio.Product.BuildTools', '-property', 'installationVersion'],
+    ];
+
+    for (const query of laneQueries) {
+        try {
+            const version = await execOutput(vswhere, query, workspaceRoot);
+            const trimmed = version.trim();
+            if (trimmed.length > 0) {
+                return trimmed;
+            }
+        } catch {
+            // no-op: probe next lane
         }
     }
 
@@ -349,6 +423,8 @@ function normalizeVersion(raw: string, language: RuntimeState['language']): stri
             return value.replace(/^rustc\s+/i, '').split(/\s+/)[0] ?? '';
         case 'solana':
             return value.replace(/^solana-cli\s+/i, '').split(/\s+/)[0] ?? '';
+        case 'visual-studio':
+            return value.split(/\s+/)[0] ?? '';
         default:
             return value;
     }
@@ -362,6 +438,9 @@ function cycleForVersion(language: RuntimeState['language'], version: string): s
     if (language === 'solana') {
         return parts.slice(0, 1).join('.');
     }
+    if (language === 'visual-studio') {
+        return parts.slice(0, 2).join('.');
+    }
     return parts.slice(0, 2).join('.');
 }
 
@@ -369,6 +448,8 @@ function productAliases(language: RuntimeState['language']): string[] {
     switch (language) {
         case 'solana':
             return ['solana', 'agave', 'solana-cli'];
+        case 'visual-studio':
+            return ['visual-studio'];
         default:
             return [language];
     }
