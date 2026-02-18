@@ -2,15 +2,16 @@ use std::path::PathBuf;
 
 use anyhow::Result;
 
-use crate::types::{AnnoManifest, EnvReport, PathSegment};
+use crate::types::{AnnoManifest, EnvReport, PathSegment, ToolOwner};
 
 #[cfg(windows)]
 use crate::types::DevKitReport;
 
 /// Build the environment provisioning report based on the ANNO manifest.
 ///
-/// This constructs the PATH mutation order (uv shims first, then mise, then
-/// system) and detects MSYS2/UCRT64 DevKit on Windows for Ruby.
+/// This constructs PATH mutation order for rustified owners (`uv`, `rv`,
+/// `goup`, `fnm`/`volta`, `mise`) and detects MSYS2/UCRT64 DevKit on Windows
+/// for Ruby native gems.
 pub fn provision(manifest: &AnnoManifest, _workspace: &str) -> Result<EnvReport> {
     let mut report = EnvReport::default();
 
@@ -34,16 +35,6 @@ pub fn provision(manifest: &AnnoManifest, _workspace: &str) -> Result<EnvReport>
         }
     }
 
-    if manifest.needs_mise() {
-        if let Some(mise_dir) = locate_mise_shim_dir() {
-            segments.push(PathSegment {
-                path: mise_dir,
-                owner: "mise".to_string(),
-                priority: 10,
-            });
-        }
-    }
-
     if manifest.has_language("ruby") {
         if let Some(rv_dir) = locate_rv_shim_dir() {
             segments.push(PathSegment {
@@ -58,12 +49,96 @@ pub fn provision(manifest: &AnnoManifest, _workspace: &str) -> Result<EnvReport>
         }
     }
 
+    if manifest.has_language("go") {
+        match preferred_owner_for_language(manifest, "go") {
+            Some(ToolOwner::Goup) => {
+                if let Some(goup_dir) = locate_goup_bin_dir() {
+                    segments.push(PathSegment {
+                        path: goup_dir,
+                        owner: "goup".to_string(),
+                        priority: 3,
+                    });
+                } else {
+                    report.warnings.push(
+                        "goup ownership selected but ~/.goup/current/bin was not found".to_string(),
+                    );
+                }
+            }
+            _ => {}
+        }
+    }
+
     if manifest.has_language("javascript") || manifest.has_language("typescript") {
-        if let Some(bun_dir) = locate_bun_dir() {
+        match preferred_js_owner(manifest) {
+            Some(ToolOwner::Fnm) => {
+                if let Some(fnm_dir) = locate_fnm_bin_dir() {
+                    segments.push(PathSegment {
+                        path: fnm_dir,
+                        owner: "fnm".to_string(),
+                        priority: 4,
+                    });
+                } else {
+                    report.warnings.push(
+                        "fnm ownership selected but fnm directory was not found".to_string(),
+                    );
+                }
+            }
+            Some(ToolOwner::Volta) => {
+                if let Some(volta_dir) = locate_volta_bin_dir() {
+                    segments.push(PathSegment {
+                        path: volta_dir,
+                        owner: "volta".to_string(),
+                        priority: 6,
+                    });
+                } else {
+                    report.warnings.push(
+                        "volta ownership selected but ~/.volta/bin was not found".to_string(),
+                    );
+                }
+            }
+            Some(ToolOwner::Bun) => {
+                if let Some(bun_dir) = locate_bun_dir() {
+                    segments.push(PathSegment {
+                        path: bun_dir,
+                        owner: "bun".to_string(),
+                        priority: 5,
+                    });
+                } else {
+                    report.warnings.push(
+                        "bun ownership selected but bun bin directory was not found".to_string(),
+                    );
+                }
+            }
+            _ => {
+                if let Some(fnm_dir) = locate_fnm_bin_dir() {
+                    segments.push(PathSegment {
+                        path: fnm_dir,
+                        owner: "fnm".to_string(),
+                        priority: 4,
+                    });
+                } else if let Some(volta_dir) = locate_volta_bin_dir() {
+                    segments.push(PathSegment {
+                        path: volta_dir,
+                        owner: "volta".to_string(),
+                        priority: 6,
+                    });
+                } else if let Some(bun_dir) = locate_bun_dir() {
+                    segments.push(PathSegment {
+                        path: bun_dir,
+                        owner: "bun".to_string(),
+                        priority: 5,
+                    });
+                }
+            }
+        }
+    }
+
+    if manifest.needs_mise() {
+        if let Some(mise_dir) = locate_mise_shim_dir() {
             segments.push(PathSegment {
-                path: bun_dir,
-                owner: "bun".to_string(),
-                priority: 5,
+                path: mise_dir,
+                owner: "mise".to_string(),
+                priority: 10,
             });
         }
     }
@@ -172,6 +247,23 @@ fn locate_rv_shim_dir() -> Option<String> {
     None
 }
 
+fn locate_goup_bin_dir() -> Option<String> {
+    if cfg!(windows) {
+        let home = std::env::var("USERPROFILE").ok()?;
+        let dir = PathBuf::from(&home).join(".goup").join("current").join("bin");
+        if dir.exists() {
+            return Some(dir.to_string_lossy().into_owned());
+        }
+    } else {
+        let home = std::env::var("HOME").ok()?;
+        let dir = PathBuf::from(&home).join(".goup").join("current").join("bin");
+        if dir.exists() {
+            return Some(dir.to_string_lossy().into_owned());
+        }
+    }
+    None
+}
+
 fn locate_mise_shim_dir() -> Option<String> {
     // mise shims live at ~/.local/share/mise/shims
     let data_dir = if cfg!(windows) {
@@ -208,6 +300,66 @@ fn locate_bun_dir() -> Option<String> {
         }
     }
     None
+}
+
+fn locate_volta_bin_dir() -> Option<String> {
+    if cfg!(windows) {
+        let home = std::env::var("USERPROFILE").ok()?;
+        let dir = PathBuf::from(&home).join(".volta").join("bin");
+        if dir.exists() {
+            return Some(dir.to_string_lossy().into_owned());
+        }
+    } else {
+        let home = std::env::var("HOME").ok()?;
+        let dir = PathBuf::from(&home).join(".volta").join("bin");
+        if dir.exists() {
+            return Some(dir.to_string_lossy().into_owned());
+        }
+    }
+    None
+}
+
+fn locate_fnm_bin_dir() -> Option<String> {
+    if cfg!(windows) {
+        let mut candidates: Vec<PathBuf> = Vec::new();
+        if let Ok(appdata) = std::env::var("APPDATA") {
+            candidates.push(PathBuf::from(&appdata).join("fnm"));
+        }
+        if let Ok(local_app) = std::env::var("LOCALAPPDATA") {
+            candidates.push(PathBuf::from(&local_app).join("fnm"));
+        }
+        if let Ok(home) = std::env::var("USERPROFILE") {
+            candidates.push(PathBuf::from(&home).join(".fnm"));
+        }
+        for candidate in candidates {
+            if candidate.exists() {
+                return Some(candidate.to_string_lossy().into_owned());
+            }
+        }
+    } else {
+        let home = std::env::var("HOME").ok()?;
+        let dir = PathBuf::from(&home).join(".fnm");
+        if dir.exists() {
+            return Some(dir.to_string_lossy().into_owned());
+        }
+    }
+    None
+}
+
+fn preferred_owner_for_language(manifest: &AnnoManifest, language: &str) -> Option<ToolOwner> {
+    manifest
+        .languages
+        .iter()
+        .find(|policy| policy.language == language)
+        .map(|policy| policy.tool)
+}
+
+fn preferred_js_owner(manifest: &AnnoManifest) -> Option<ToolOwner> {
+    manifest
+        .languages
+        .iter()
+        .find(|policy| policy.language == "javascript" || policy.language == "typescript")
+        .map(|policy| policy.tool)
 }
 
 // ---------------------------------------------------------------------------

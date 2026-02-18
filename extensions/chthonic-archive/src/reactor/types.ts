@@ -15,7 +15,16 @@ export interface LanguagePolicy {
     shim_priority: number;
 }
 
-export type ToolOwner = 'uv' | 'mise' | 'bun' | 'volta' | 'rustup' | 'system';
+export type ToolOwner =
+    | 'uv'
+    | 'rv'
+    | 'goup'
+    | 'mise'
+    | 'fnm'
+    | 'bun'
+    | 'volta'
+    | 'rustup'
+    | 'system';
 
 export interface DetectedMarker {
     path: string;

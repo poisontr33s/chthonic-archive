@@ -18,13 +18,20 @@ export interface RustificationReport {
 }
 
 const MARKERS: Array<Omit<RustificationMarker, 'present'>> = [
-    { file: 'uv.lock', weight: 25 },
-    { file: 'Cargo.toml', weight: 22 },
-    { file: 'mise.toml', weight: 18 },
-    { file: '.mise.toml', weight: 8 },
+    { file: 'mise.toml', weight: 16 },
+    { file: '.mise.toml', weight: 6 },
+    { file: 'Cargo.toml', weight: 20 },
+    { file: 'native/Cargo.toml', weight: 8 },
+    { file: 'anno-manifest.toml', weight: 8 },
+    { file: 'uv.lock', weight: 10 },
+    { file: '.python-version', weight: 5 },
     { file: '.ruby-version', weight: 10 },
+    { file: 'Gemfile', weight: 6 },
     { file: 'go.mod', weight: 10 },
-    { file: 'native/Cargo.toml', weight: 7 },
+    { file: '.node-version', weight: 4 },
+    { file: '.nvmrc', weight: 4 },
+    { file: 'package.json', weight: 5 },
+    { file: 'bun.lock', weight: 4 },
 ];
 
 export async function computeRustificationReport(rootPath: string): Promise<RustificationReport> {

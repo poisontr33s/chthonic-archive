@@ -123,7 +123,10 @@ export function activate(context: vscode.ExtensionContext) {
         void refreshRustification('startup');
 
         const markerWatcher = vscode.workspace.createFileSystemWatcher(
-            new vscode.RelativePattern(workspaceRoot, '{uv.lock,Cargo.toml,mise.toml,.mise.toml,go.mod,.ruby-version}'),
+            new vscode.RelativePattern(
+                workspaceRoot,
+                '{uv.lock,Cargo.toml,native/Cargo.toml,mise.toml,.mise.toml,anno-manifest.toml,go.mod,.ruby-version,Gemfile,.node-version,.nvmrc,package.json,bun.lock,.python-version}',
+            ),
         );
         context.subscriptions.push(
             markerWatcher,

@@ -198,7 +198,7 @@ function ensureToolpoolLane(): ManualCheckResult {
     if (!snapshot || !snapshot.recommendedLanes) {
         return {
             ok: false,
-            note: 'missing .chthonic/cache/toolpool.json; run `bun run toolpool:scan` to map the installed VS/SQL/tool pool',
+            note: 'missing .chthonic/cache/toolpool.json; run `bun run toolpool:scan` (or `mise run toolpool-scan`) to map the installed VS/SQL/tool pool',
         };
     }
 
@@ -219,7 +219,7 @@ const checks: HostCheck[] = [
         cmd: ['pwsh', '--version'],
         manualCheck: ensureToolpoolLane,
         warnOnly: true,
-        fix: 'Run: bun run toolpool:scan',
+        fix: 'Run: bun run toolpool:scan (or mise run toolpool-scan)',
     },
     {
         name: 'Rust Toolchain',

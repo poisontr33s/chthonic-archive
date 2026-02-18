@@ -99,7 +99,9 @@ pub struct LanguagePolicy {
 pub enum ToolOwner {
     Uv,
     Rv,
+    Goup,
     Mise,
+    Fnm,
     Bun,
     Volta,
     Rustup,

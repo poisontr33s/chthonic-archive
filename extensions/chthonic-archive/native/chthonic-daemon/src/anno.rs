@@ -9,9 +9,9 @@ use crate::types::{
 
 /// Scan `workspace` for project marker files and build the ANNO manifest.
 ///
-/// The manifest declares exclusive tool ownership per language. The critical
-/// invariant is the shim-race guard: `uv` is always the exclusive owner of
-/// `python`, `python3`, `pip`, and `pip3` — even if `mise.toml` lists Python.
+/// The manifest declares tool ownership per language. Python stays on `uv`
+/// to avoid shim races, while Ruby/Go/Node can use dedicated rustified lanes
+/// (`rv`, `goup`, `fnm`/`volta`) or `mise` according to local policy.
 pub fn detect_project(workspace: &str) -> Result<AnnoManifest> {
     let root = Path::new(workspace);
     let mut markers = Vec::new();
@@ -103,13 +103,13 @@ pub fn detect_project(workspace: &str) -> Result<AnnoManifest> {
     // Build tool_owners map (binary name -> owner)
     let mut tool_owners = HashMap::new();
     for policy in &languages {
-        let binaries = binaries_for_language(&policy.language);
+        let binaries = binaries_for_policy(policy);
         for bin in binaries {
             tool_owners.insert(bin.to_string(), policy.tool);
         }
     }
 
-    // Force Python binary ownership to uv regardless
+    // Force Python binary ownership to uv regardless (shim-race guard).
     for bin in &["python", "python3", "pip", "pip3", "uvx"] {
         tool_owners.insert((*bin).to_string(), ToolOwner::Uv);
     }
@@ -127,22 +127,29 @@ fn default_tool_for_language(lang: &str) -> (ToolOwner, u8) {
     match lang {
         "python" => (ToolOwner::Uv, 0),
         "ruby" => (ToolOwner::Rv, 1),
-        "javascript" | "typescript" => (ToolOwner::Bun, 5),
+        "go" => (ToolOwner::Goup, 3),
+        "javascript" | "typescript" => (ToolOwner::Fnm, 4),
         "rust" => (ToolOwner::Rustup, 20),
-        "go" | "solana" | "java" => (ToolOwner::Mise, 10),
+        "solana" | "java" => (ToolOwner::Mise, 10),
         _ => (ToolOwner::System, 99),
     }
 }
 
-/// Which binary names does a language claim?
-fn binaries_for_language(lang: &str) -> &[&str] {
-    match lang {
+/// Which binary names does a language claim for a given owner?
+fn binaries_for_policy(policy: &LanguagePolicy) -> &[&str] {
+    match policy.language.as_str() {
         "python" => &["python", "python3", "pip", "pip3"],
         "ruby" => &["ruby", "gem", "bundle", "bundler", "rake"],
-        "javascript" | "typescript" => &["bun", "bunx"],
+        "javascript" | "typescript" => match policy.tool {
+            ToolOwner::Bun => &["bun", "bunx"],
+            ToolOwner::Fnm | ToolOwner::Volta | ToolOwner::Mise => {
+                &["node", "npm", "npx", "corepack"]
+            }
+            _ => &["node", "npm", "npx"],
+        },
         "rust" => &["cargo", "rustc", "rustup"],
         "go" => &["go", "gofmt"],
-        "solana" => &["solana", "anchor"],
+        "solana" => &["solana", "anchor", "solana-test-validator"],
         _ => &[],
     }
 }
@@ -211,7 +218,9 @@ fn apply_manifest_overrides(
         let tool = match tool_str {
             "uv" => ToolOwner::Uv,
             "rv" => ToolOwner::Rv,
+            "goup" => ToolOwner::Goup,
             "mise" => ToolOwner::Mise,
+            "fnm" => ToolOwner::Fnm,
             "bun" => ToolOwner::Bun,
             "volta" => ToolOwner::Volta,
             "rustup" => ToolOwner::Rustup,
