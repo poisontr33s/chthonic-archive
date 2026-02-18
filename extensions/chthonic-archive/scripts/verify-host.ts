@@ -20,17 +20,19 @@ type ManualCheckResult = {
 
 type CheckStatus = 'OK' | 'WARN' | 'INFO' | 'FAILED' | 'MISSING' | 'FIXED';
 
-type CheckResult = {
+type EvaluatedNode = {
     name: string;
     status: CheckStatus;
     note?: string;
     fix?: string;
     hardFail: boolean;
+    children: EvaluatedNode[];
 };
 
-type CheckGroup = {
+type CheckTreeNode = {
     name: string;
-    checks: HostCheck[];
+    check?: HostCheck;
+    children?: CheckTreeNode[];
 };
 
 type ToolpoolSnapshot = {
@@ -237,129 +239,188 @@ function safeReadText(filePath: string): string | null {
 
 console.log(`${cyan}[Chthonic] Running Preflight Host Verification...${reset}`);
 
-const checkGroups: CheckGroup[] = [
+const checkTree: CheckTreeNode[] = [
     {
         name: 'Host Lane Graph',
-        checks: [
+        children: [
             {
                 name: 'Tool Pool Snapshot',
-                cmd: ['pwsh', '--version'],
-                manualCheck: ensureToolpoolLane,
-                warnOnly: true,
-                fix: 'Run: bun run toolpool:scan (or mise run toolpool-scan)',
+                check: {
+                    name: 'Tool Pool Snapshot',
+                    cmd: ['pwsh', '--version'],
+                    manualCheck: ensureToolpoolLane,
+                    warnOnly: true,
+                    fix: 'Run: bun run toolpool:scan (or mise run toolpool-scan)',
+                },
             },
         ],
     },
     {
         name: 'Runtime Lanes',
-        checks: [
+        children: [
             {
-                name: 'Rust Toolchain',
-                cmd: ['rustc', '--version'],
-                fix: 'Install Rust via rustup: https://rustup.rs',
+                name: 'Rust Lane',
+                children: [
+                    {
+                        name: 'Rust Toolchain',
+                        check: {
+                            name: 'Rust Toolchain',
+                            cmd: ['rustc', '--version'],
+                            fix: 'Install Rust via rustup: https://rustup.rs',
+                        },
+                    },
+                    {
+                        name: 'Rust Package Manager (cargo)',
+                        check: {
+                            name: 'Rust Package Manager (cargo)',
+                            cmd: ['cargo', '--version'],
+                            fix: 'Install Cargo via rustup: https://rustup.rs',
+                        },
+                    },
+                    {
+                        name: 'Rustup',
+                        check: {
+                            name: 'Rustup',
+                            cmd: ['rustup', '--version'],
+                            fix: 'Install rustup: https://rustup.rs',
+                        },
+                    },
+                ],
             },
             {
-                name: 'Rust Package Manager (cargo)',
-                cmd: ['cargo', '--version'],
-                fix: 'Install Cargo via rustup: https://rustup.rs',
+                name: 'Ruby Lane',
+                children: [
+                    {
+                        name: 'Ruby Manager (rv)',
+                        check: {
+                            name: 'Ruby Manager (rv)',
+                            cmd: ['rv', '--version'],
+                            warnOnly: true,
+                            fix: 'Install rv (Rust-native Ruby manager): cargo install rv',
+                        },
+                    },
+                    {
+                        name: 'Ruby Runtime',
+                        check: {
+                            name: 'Ruby Runtime',
+                            cmd: ['ruby', '--version'],
+                            check: (stdout) => /^ruby\s+4\./i.test(stdout.trim()),
+                            warnOnly: true,
+                            fix: 'Install Ruby 4.x lane via rv to align with Prism lane target.',
+                        },
+                    },
+                ],
             },
             {
-                name: 'Rustup',
-                cmd: ['rustup', '--version'],
-                fix: 'Install rustup: https://rustup.rs',
+                name: 'Go Lane',
+                children: [
+                    {
+                        name: 'Go Manager (goup)',
+                        check: {
+                            name: 'Go Manager (goup)',
+                            cmd: ['goup', '--version'],
+                            warnOnly: true,
+                            fix: 'Install goup (Rust-native Go manager): cargo install goup',
+                        },
+                    },
+                ],
             },
             {
-                name: 'Ruby Manager (rv)',
-                cmd: ['rv', '--version'],
-                warnOnly: true,
-                fix: 'Install rv (Rust-native Ruby manager): cargo install rv',
-            },
-            {
-                name: 'Go Manager (goup)',
-                cmd: ['goup', '--version'],
-                warnOnly: true,
-                fix: 'Install goup (Rust-native Go manager): cargo install goup',
-            },
-            {
-                name: 'JavaScript Runtime Lane (bun)',
-                cmd: ['bun', '--version'],
-                manualCheck: ensureNodeManagerLane,
-                warnOnly: true,
-                fix: 'Install bun: https://bun.sh/docs/installation',
-            },
-            {
-                name: 'Ruby Runtime',
-                cmd: ['ruby', '--version'],
-                check: (stdout) => /^ruby\s+4\./i.test(stdout.trim()),
-                warnOnly: true,
-                fix: 'Install Ruby 4.x lane via rv to align with Prism lane target.',
+                name: 'JavaScript Lane',
+                children: [
+                    {
+                        name: 'Runtime (bun)',
+                        check: {
+                            name: 'JavaScript Runtime Lane (bun)',
+                            cmd: ['bun', '--version'],
+                            manualCheck: ensureNodeManagerLane,
+                            warnOnly: true,
+                            fix: 'Install bun: https://bun.sh/docs/installation',
+                        },
+                    },
+                ],
             },
         ],
     },
     {
         name: 'Solana Lanes',
-        checks: [
+        children: [
             {
-                name: 'Solana Tool Suite Lane',
-                cmd: ['solana', '--version'],
-                manualCheck: ensureSolanaToolSuiteLane,
-                warnOnly: true,
-                fix: 'Install Solana Tool Suite (Agave): sh -c "$(curl -sSfL https://release.anza.xyz/stable/install)"',
+                name: 'Tool Suite',
+                check: {
+                    name: 'Solana Tool Suite Lane',
+                    cmd: ['solana', '--version'],
+                    manualCheck: ensureSolanaToolSuiteLane,
+                    warnOnly: true,
+                    fix: 'Install Solana Tool Suite (Agave): sh -c "$(curl -sSfL https://release.anza.xyz/stable/install)"',
+                },
             },
             {
-                name: 'Anchor Lane (anchor + avm)',
-                cmd: ['anchor', '--version'],
-                manualCheck: ensureAnchorLane,
-                warnOnly: true,
-                fix: 'Install AVM + Anchor CLI: cargo install --git https://github.com/solana-foundation/anchor avm --force && avm install latest && avm use latest',
+                name: 'Anchor Lane',
+                check: {
+                    name: 'Anchor Lane (anchor + avm)',
+                    cmd: ['anchor', '--version'],
+                    manualCheck: ensureAnchorLane,
+                    warnOnly: true,
+                    fix: 'Install AVM + Anchor CLI: cargo install --git https://github.com/solana-foundation/anchor avm --force && avm install latest && avm use latest',
+                },
             },
         ],
     },
     {
         name: 'WASM Lanes',
-        checks: [
+        children: [
             {
-                name: 'WASM Target',
-                cmd: ['rustup', 'target', 'list', '--installed'],
-                check: (stdout) => stdout.includes('wasm32-unknown-unknown'),
-                autoFix: ['rustup', 'target', 'add', 'wasm32-unknown-unknown'],
-                fix: 'Run: rustup target add wasm32-unknown-unknown',
+                name: 'Target',
+                check: {
+                    name: 'WASM Target',
+                    cmd: ['rustup', 'target', 'list', '--installed'],
+                    check: (stdout) => stdout.includes('wasm32-unknown-unknown'),
+                    autoFix: ['rustup', 'target', 'add', 'wasm32-unknown-unknown'],
+                    fix: 'Run: rustup target add wasm32-unknown-unknown',
+                },
             },
             {
-                name: 'wasm-bindgen CLI',
-                cmd: ['wasm-bindgen', '--version'],
-                autoFix: ['cargo', 'install', 'wasm-bindgen-cli'],
-                fix: 'Install wasm-bindgen CLI: cargo install wasm-bindgen-cli',
+                name: 'wasm-bindgen',
+                check: {
+                    name: 'wasm-bindgen CLI',
+                    cmd: ['wasm-bindgen', '--version'],
+                    autoFix: ['cargo', 'install', 'wasm-bindgen-cli'],
+                    fix: 'Install wasm-bindgen CLI: cargo install wasm-bindgen-cli',
+                },
             },
         ],
     },
     {
         name: 'Build Hygiene',
-        checks: [
+        children: [
             {
-                name: 'MAKEFLAGS (MSVC hygiene)',
-                cmd: ['rustc', '--version'],
-                manualCheck: () => {
-                    const makeFlags = envOverrides.MAKEFLAGS ?? process.env.MAKEFLAGS;
-                    const mflags = envOverrides.MFLAGS ?? process.env.MFLAGS;
-                    const hasMakeFlags = Boolean(makeFlags && makeFlags.trim().length > 0);
-                    const hasMflags = Boolean(mflags && mflags.trim().length > 0);
-                    if (!hasMakeFlags && !hasMflags) {
-                        return { ok: true, note: 'clean (no MAKEFLAGS/MFLAGS)' };
-                    }
-                    // Mirror build-ledger.ts behavior: sanitize locally instead of mutating
-                    // global shell state.
-                    envOverrides.MAKEFLAGS = '';
-                    envOverrides.MFLAGS = '';
-                    const details: string[] = [];
-                    if (hasMakeFlags) details.push(`MAKEFLAGS=${makeFlags}`);
-                    if (hasMflags) details.push(`MFLAGS=${mflags}`);
-                    return {
-                        ok: true,
-                        note: `sanitized for this run (${details.join(', ')})`,
-                    };
+                name: 'MAKEFLAGS',
+                check: {
+                    name: 'MAKEFLAGS (MSVC hygiene)',
+                    cmd: ['rustc', '--version'],
+                    manualCheck: () => {
+                        const makeFlags = envOverrides.MAKEFLAGS ?? process.env.MAKEFLAGS;
+                        const mflags = envOverrides.MFLAGS ?? process.env.MFLAGS;
+                        const hasMakeFlags = Boolean(makeFlags && makeFlags.trim().length > 0);
+                        const hasMflags = Boolean(mflags && mflags.trim().length > 0);
+                        if (!hasMakeFlags && !hasMflags) {
+                            return { ok: true, note: 'clean (no MAKEFLAGS/MFLAGS)' };
+                        }
+                        // Mirror build-ledger.ts behavior: sanitize locally instead of mutating
+                        // global shell state.
+                        envOverrides.MAKEFLAGS = '';
+                        envOverrides.MFLAGS = '';
+                        const details: string[] = [];
+                        if (hasMakeFlags) details.push(`MAKEFLAGS=${makeFlags}`);
+                        if (hasMflags) details.push(`MFLAGS=${mflags}`);
+                        return {
+                            ok: true,
+                            note: `sanitized for this run (${details.join(', ')})`,
+                        };
+                    },
+                    fix: 'No action required. Build wrappers sanitize MAKEFLAGS/MFLAGS per process.',
                 },
-                fix: 'No action required. Build wrappers sanitize MAKEFLAGS/MFLAGS per process.',
             },
         ],
     },
@@ -367,29 +428,9 @@ const checkGroups: CheckGroup[] = [
 
 let failed = false;
 
-for (const group of checkGroups) {
-    const results = group.checks.map((check) => evaluateCheck(check));
-    const groupStatus = aggregateGroupStatus(results);
-    console.log(`${group.name} ${colorizeStatus(groupStatus)}`);
-
-    for (let i = 0; i < results.length; i += 1) {
-        const result = results[i];
-        const isLast = i === results.length - 1;
-        const branch = isLast ? '\\-' : '|-';
-        const childPad = isLast ? '   ' : '|  ';
-        console.log(`${branch} ${result.name} ${colorizeStatus(result.status)}`);
-        if (result.note) {
-            printIndented(result.note, childPad);
-        }
-        if (result.fix && result.status !== 'OK' && result.status !== 'FIXED') {
-            printIndented(result.fix, childPad);
-        }
-    }
-
-    if (results.some((result) => result.hardFail)) {
-        failed = true;
-    }
-}
+const evaluatedTree = checkTree.map((node) => evaluateNode(node));
+renderTree(evaluatedTree);
+failed = evaluatedTree.some((node) => node.hardFail);
 
 if (failed) {
     console.log(`\n${red}[!] Host verification failed. Resolve the failing checks above.${reset}`);
