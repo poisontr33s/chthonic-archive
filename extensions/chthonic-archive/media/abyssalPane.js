@@ -7,6 +7,13 @@ const statEntropy = document.getElementById('stat-entropy');
 const statRenderer = document.getElementById('stat-renderer');
 
 let wasmRenderGraph = null;
+let loomDigestSediment = null;
+let loomRenderFrame = null;
+let loomAllocBuffer = null;
+let loomFreeBuffer = null;
+let loomMemory = null;
+let loomRenderLoopActive = false;
+let loomRenderHandle = null;
 let latestGraph = null;
 let latestSediment = null;
 let sedimentStreamBuffer = [];
@@ -16,6 +23,13 @@ let sedimentMode = false;
 const SYNAPSE_FRAME_MAGIC = 0x53594E43; // "SYNC"
 const SYNAPSE_FRAME_HEADER_BYTES = 48;
 const SYNAPSE_VERTEX_STRIDE_BYTES = 32;
+const SYNAPSE_BACKENDS = {
+    1: 'vulkan',
+    2: 'cpu-fallback',
+    3: 'cpu-only',
+    4: 'empty',
+    255: 'unknown',
+};
 
 function clamp01(value) {
     return Math.max(0, Math.min(1, value));
@@ -269,6 +283,49 @@ function renderSediment(sediment) {
     }));
 }
 
+function updateSedimentStats(fileCount, backendCode, chunkIndex, totalChunks, computeTimeMs) {
+    const backend = SYNAPSE_BACKENDS[backendCode] || `backend-${backendCode}`;
+    statFiles.textContent = String(fileCount || 0);
+    statEntropy.textContent = `${backend} ${chunkIndex + 1}/${Math.max(1, totalChunks)}`;
+    statRenderer.textContent = `loom ${computeTimeMs}ms`;
+}
+
+function stopLoomRenderLoop() {
+    loomRenderLoopActive = false;
+    if (loomRenderHandle !== null) {
+        cancelAnimationFrame(loomRenderHandle);
+        loomRenderHandle = null;
+    }
+}
+
+function startLoomRenderLoop() {
+    if (loomRenderLoopActive || typeof loomRenderFrame !== 'function') {
+        return;
+    }
+    loomRenderLoopActive = true;
+    const tick = () => {
+        if (!loomRenderLoopActive) {
+            return;
+        }
+        if (sedimentMode) {
+            try {
+                loomRenderFrame();
+            } catch (error) {
+                console.warn('[abyss] loom render failed; disabling loom loop', error);
+                stopLoomRenderLoop();
+                loomRenderFrame = null;
+                statRenderer.textContent = 'js-fallback';
+                if (latestSediment) {
+                    renderSediment(latestSediment);
+                }
+                return;
+            }
+        }
+        loomRenderHandle = requestAnimationFrame(tick);
+    };
+    loomRenderHandle = requestAnimationFrame(tick);
+}
+
 function applySedimentChunk(chunk) {
     if (!chunk || !Array.isArray(chunk.vertices)) {
         return;
@@ -318,6 +375,41 @@ function applySedimentBinary(payload) {
 
     const requiredBytes = SYNAPSE_FRAME_HEADER_BYTES + (vertexCount * SYNAPSE_VERTEX_STRIDE_BYTES);
     if (payload.byteLength < requiredBytes) {
+        return;
+    }
+
+    let loomHandled = false;
+    if (
+        typeof loomDigestSediment === 'function'
+        && typeof loomAllocBuffer === 'function'
+        && typeof loomFreeBuffer === 'function'
+        && loomMemory
+    ) {
+        const ptr = loomAllocBuffer(payload.byteLength);
+        if (ptr) {
+            try {
+                const target = new Uint8Array(loomMemory.buffer, ptr, payload.byteLength);
+                target.set(new Uint8Array(payload));
+                loomDigestSediment(ptr, payload.byteLength);
+                sedimentMode = true;
+                latestSediment = null;
+                startLoomRenderLoop();
+                updateSedimentStats(fileCount, backendCode, chunkIndex, totalChunks, computeTimeMs);
+                loomHandled = true;
+            } catch (error) {
+                console.warn('[abyss] loom digest failed; falling back to JS sediment parser', error);
+                loomDigestSediment = null;
+                loomRenderFrame = null;
+                loomMemory = null;
+                stopLoomRenderLoop();
+                statRenderer.textContent = 'js-fallback';
+            } finally {
+                loomFreeBuffer(ptr, payload.byteLength);
+            }
+        }
+    }
+
+    if (loomHandled) {
         return;
     }
 
@@ -427,6 +519,40 @@ async function bootstrapRenderer() {
     }
 }
 
+async function bootstrapLoom() {
+    if (!boot.loomWasmModuleUri) {
+        return;
+    }
+
+    try {
+        const module = await import(boot.loomWasmModuleUri);
+        if (typeof module.default === 'function') {
+            await module.default(boot.loomWasmBinaryUri);
+        }
+        if (typeof module.init_loom === 'function') {
+            await module.init_loom('graph-canvas');
+        }
+
+        loomDigestSediment = typeof module.digest_sediment === 'function' ? module.digest_sediment : null;
+        loomRenderFrame = typeof module.render_frame === 'function' ? module.render_frame : null;
+        loomAllocBuffer = typeof module.alloc_buffer === 'function' ? module.alloc_buffer : null;
+        loomFreeBuffer = typeof module.free_buffer === 'function' ? module.free_buffer : null;
+        loomMemory = module.memory instanceof WebAssembly.Memory ? module.memory : null;
+
+        if (
+            typeof loomDigestSediment === 'function'
+            && typeof loomRenderFrame === 'function'
+            && typeof loomAllocBuffer === 'function'
+            && typeof loomFreeBuffer === 'function'
+            && loomMemory
+        ) {
+            statRenderer.textContent = wasmRenderGraph ? 'rust-wasm+loom' : 'rust-loom-ready';
+        }
+    } catch (error) {
+        console.warn('[abyss] loom wasm unavailable, binary sediment stays on JS fallback', error);
+    }
+}
+
 canvas.addEventListener('dblclick', (event) => {
     const node = nearestNode(event.clientX, event.clientY);
     if (!node) {
@@ -436,7 +562,9 @@ canvas.addEventListener('dblclick', (event) => {
 });
 
 window.addEventListener('resize', () => {
-    if (sedimentMode && latestSediment) {
+    if (sedimentMode && typeof loomRenderFrame === 'function') {
+        loomRenderFrame();
+    } else if (sedimentMode && latestSediment) {
         renderSediment(latestSediment);
     } else if (latestGraph) {
         renderGraph(latestGraph);
@@ -449,12 +577,14 @@ window.addEventListener('message', (event) => {
         return;
     }
     if (message.type === 'sediment' && message.sediment) {
+        stopLoomRenderLoop();
         sedimentStreamBuffer = [];
         sedimentStreamMeta = null;
         renderSediment(message.sediment);
         return;
     }
     if (message.type === 'sedimentChunk' && message.chunk) {
+        stopLoomRenderLoop();
         applySedimentChunk(message.chunk);
         return;
     }
@@ -463,6 +593,7 @@ window.addEventListener('message', (event) => {
         return;
     }
     if (message.type === 'graph') {
+        stopLoomRenderLoop();
         sedimentMode = false;
         renderGraph(message.graph);
         return;
@@ -477,5 +608,6 @@ window.addEventListener('message', (event) => {
 applyCircadianTheme();
 setInterval(applyCircadianTheme, 60_000);
 void bootstrapRenderer();
+void bootstrapLoom();
 vscode.postMessage({ type: 'ready' });
 vscode.postMessage({ type: 'requestSediment' });

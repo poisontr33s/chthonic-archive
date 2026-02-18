@@ -6,12 +6,16 @@ const extensionRoot = process.cwd();
 const workspaceManifestPath = path.join(extensionRoot, 'native', 'Cargo.toml');
 const targetDir = path.join(extensionRoot, 'native', 'target');
 const wasmOutDir = path.join(extensionRoot, 'media', 'wasm', 'pkg');
-const artifactPath = path.join(
-    targetDir,
-    'wasm32-unknown-unknown',
-    'release',
-    'entropy_renderer_wasm.wasm',
-);
+const wasmTargets: readonly WasmTarget[] = [
+    {
+        packageName: 'entropy_renderer_wasm',
+        artifactName: 'entropy_renderer_wasm',
+    },
+    {
+        packageName: 'chthonic_loom',
+        artifactName: 'chthonic_loom',
+    },
+];
 
 async function main(): Promise<void> {
     if (!fs.existsSync(workspaceManifestPath)) {
@@ -24,27 +28,48 @@ async function main(): Promise<void> {
 
     fs.mkdirSync(wasmOutDir, { recursive: true });
 
-    await run('cargo', [
-        'build',
-        '--manifest-path',
-        workspaceManifestPath,
-        '-p',
-        'entropy_renderer_wasm',
-        '--target',
-        'wasm32-unknown-unknown',
-        '--release',
-    ]);
+    const wasmOptAvailable = await hasWasmOpt();
 
-    await run('wasm-bindgen', [
-        '--target',
-        'web',
-        '--out-dir',
-        wasmOutDir,
-        artifactPath,
-    ]);
+    for (const target of wasmTargets) {
+        const artifactPath = path.join(
+            targetDir,
+            'wasm32-unknown-unknown',
+            'release',
+            `${target.artifactName}.wasm`,
+        );
+
+        await run('cargo', [
+            'build',
+            '--manifest-path',
+            workspaceManifestPath,
+            '-p',
+            target.packageName,
+            '--target',
+            'wasm32-unknown-unknown',
+            '--release',
+        ]);
+
+        await run('wasm-bindgen', [
+            '--target',
+            'web',
+            '--out-dir',
+            wasmOutDir,
+            artifactPath,
+        ]);
+
+        if (wasmOptAvailable) {
+            const boundWasmPath = path.join(wasmOutDir, `${target.artifactName}_bg.wasm`);
+            await run('wasm-opt', ['-Oz', boundWasmPath, '-o', boundWasmPath]);
+        }
+    }
 
     console.log(`[wasm] generated bindings at ${wasmOutDir}`);
 }
+
+type WasmTarget = {
+    packageName: string;
+    artifactName: string;
+};
 
 function run(command: string, args: string[]): Promise<void> {
     return new Promise((resolve, reject) => {
@@ -69,6 +94,11 @@ async function isWasmTargetInstalled(): Promise<boolean> {
         return false;
     }
     return output.stdout.includes('wasm32-unknown-unknown');
+}
+
+async function hasWasmOpt(): Promise<boolean> {
+    const output = await runCapture('wasm-opt', ['--version']);
+    return output.ok;
 }
 
 function runCapture(command: string, args: string[]): Promise<{ ok: boolean; stdout: string; stderr: string }> {

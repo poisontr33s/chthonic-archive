@@ -3,13 +3,13 @@ use std::sync::atomic::{fence, AtomicU64, Ordering};
 use std::time::{SystemTime, UNIX_EPOCH};
 
 use anyhow::{anyhow, Context, Result};
+use chthonic_synapse_schema::{
+    slot_header_bytes, vertex_stride_bytes, PackedSedimentVertex, SedimentSlotHeader,
+    SLOT_MAGIC, SLOT_VERSION, SYNAPSE_MAGIC,
+};
 use shared_memory::{Shmem, ShmemConf};
 
 use crate::types::{SedimentResult, SedimentVertex};
-
-const SYNAPSE_MAGIC: [u8; 8] = *b"CHTSYN02";
-const SLOT_MAGIC: u32 = 0x5359_4E43; // "SYNC"
-const SLOT_VERSION: u16 = 1;
 
 #[repr(C)]
 struct SynapseHeader {
@@ -23,35 +23,6 @@ struct SynapseHeader {
     read_index: AtomicU64,
     dropped_frames: AtomicU64,
     notify_counter: AtomicU64,
-}
-
-#[repr(C)]
-#[derive(Clone, Copy)]
-struct SlotHeader {
-    magic: u32,
-    version: u16,
-    flags: u16,
-    vertex_count: u32,
-    layer_count: u32,
-    file_count: u32,
-    chunk_index: u32,
-    total_chunks: u32,
-    compute_time_ms: u64,
-    backend_code: u32,
-    reserved: u32,
-}
-
-#[repr(C)]
-#[derive(Clone, Copy)]
-struct PackedVertex {
-    x: f32,
-    y: f32,
-    z: f32,
-    radius: f32,
-    r: f32,
-    g: f32,
-    b: f32,
-    alpha: f32,
 }
 
 #[derive(Debug, Clone, serde::Serialize)]
@@ -85,7 +56,7 @@ impl SynapseWriter {
     pub fn create() -> Result<Self> {
         let slot_capacity: u32 = 64;
         let vertex_capacity: u32 = 384;
-        let slot_stride = (size_of::<SlotHeader>() + (vertex_capacity as usize * size_of::<PackedVertex>())) as u32;
+        let slot_stride = (slot_header_bytes() + (vertex_capacity as usize * vertex_stride_bytes())) as u32;
         let total_size = size_of::<SynapseHeader>() + (slot_capacity as usize * slot_stride as usize);
 
         let tag = unique_tag();
@@ -203,7 +174,7 @@ impl SynapseWriter {
         unsafe {
             self.write_slot(
                 slot_index,
-                SlotHeader {
+                SedimentSlotHeader {
                     magic: SLOT_MAGIC,
                     version: SLOT_VERSION,
                     flags: if chunk_index + 1 == total_chunks { 1 } else { 0 },
@@ -235,7 +206,7 @@ impl SynapseWriter {
     unsafe fn write_slot(
         &mut self,
         slot_index: u32,
-        slot_header: SlotHeader,
+        slot_header: SedimentSlotHeader,
         vertices: &[SedimentVertex],
     ) -> Result<()> {
         if vertices.len() > self.descriptor.vertex_capacity as usize {
@@ -247,14 +218,14 @@ impl SynapseWriter {
         }
 
         let slot_ptr = self.slot_ptr(slot_index);
-        let header_ptr = slot_ptr as *mut SlotHeader;
+        let header_ptr = slot_ptr as *mut SedimentSlotHeader;
         std::ptr::write(header_ptr, slot_header);
 
-        let vertex_ptr = slot_ptr.add(size_of::<SlotHeader>()) as *mut PackedVertex;
+        let vertex_ptr = slot_ptr.add(slot_header_bytes()) as *mut PackedSedimentVertex;
         for (idx, vertex) in vertices.iter().enumerate() {
             std::ptr::write(
                 vertex_ptr.add(idx),
-                PackedVertex {
+                PackedSedimentVertex {
                     x: vertex.x,
                     y: vertex.y,
                     z: vertex.z,

@@ -1,0 +1,8 @@
+[package]
+name = "chthonic-synapse-schema"
+description = "Shared binary schema and palette constants for Chthonic synapse transport"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[dependencies]

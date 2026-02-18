@@ -1,15 +1,17 @@
 [workspace]
 members = [
+    "chthonic-synapse-schema",
     "entropy-ledger-host",
     "entropy-renderer-wasm",
     "chthonic-daemon",
     "synapse-node",
+    "../wasm/chthonic-loom",
     "xtask",
 ]
 resolver = "2"
 
-# Host-only crates build by default; WASM crate requires explicit
-# `cargo build -p entropy_renderer_wasm --target wasm32-unknown-unknown`.
+# Host-only crates build by default; WASM crates require explicit
+# `cargo build -p <crate> --target wasm32-unknown-unknown`.
 default-members = [
     "entropy-ledger-host",
     "chthonic-daemon",

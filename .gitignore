@@ -84,6 +84,8 @@
 !extensions/*/resources/*.svg
 !extensions/*/media/
 !extensions/*/media/**
+!extensions/*/wasm/
+!extensions/*/wasm/**
 !extensions/*/native/
 !extensions/*/native/**
 !extensions/*/scripts/

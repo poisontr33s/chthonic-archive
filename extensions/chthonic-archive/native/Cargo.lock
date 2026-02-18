@@ -867,6 +867,7 @@ version = "0.1.0"
 dependencies = [
  "anyhow",
  "ash",
+ "chthonic-synapse-schema",
  "clap",
  "gix",
  "serde",
@@ -876,6 +877,21 @@ dependencies = [
  "shared_memory",
  "toml 0.8.23",
  "windows-sys 0.59.0",
+]
+
+[[package]]
+name = "chthonic-synapse-schema"
+version = "0.1.0"
+
+[[package]]
+name = "chthonic_loom"
+version = "0.1.0"
+dependencies = [
+ "chthonic-synapse-schema",
+ "console_error_panic_hook",
+ "js-sys",
+ "wasm-bindgen",
+ "web-sys",
 ]
 
 [[package]]
@@ -6147,6 +6163,7 @@ name = "synapse-node"
 version = "0.1.0"
 dependencies = [
  "anyhow",
+ "chthonic-synapse-schema",
  "napi",
  "napi-build",
  "napi-derive",

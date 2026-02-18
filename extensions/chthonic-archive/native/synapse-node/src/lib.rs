@@ -3,12 +3,12 @@ use std::sync::atomic::{AtomicU64, Ordering};
 use std::sync::Mutex;
 use std::time::{Duration, Instant};
 
+use chthonic_synapse_schema::{
+    slot_header_bytes, vertex_stride_bytes, SedimentSlotHeader, SLOT_MAGIC, SYNAPSE_MAGIC,
+};
 use napi::bindgen_prelude::{Buffer, Result};
 use napi_derive::napi;
 use shared_memory::{Shmem, ShmemConf};
-
-const SYNAPSE_MAGIC: [u8; 8] = *b"CHTSYN02";
-const SLOT_MAGIC: u32 = 0x5359_4E43; // "SYNC"
 
 #[repr(C)]
 struct SynapseHeader {
@@ -22,35 +22,6 @@ struct SynapseHeader {
     read_index: AtomicU64,
     dropped_frames: AtomicU64,
     notify_counter: AtomicU64,
-}
-
-#[repr(C)]
-#[derive(Clone, Copy)]
-struct SlotHeader {
-    magic: u32,
-    version: u16,
-    flags: u16,
-    vertex_count: u32,
-    layer_count: u32,
-    file_count: u32,
-    chunk_index: u32,
-    total_chunks: u32,
-    compute_time_ms: u64,
-    backend_code: u32,
-    reserved: u32,
-}
-
-#[repr(C)]
-#[derive(Clone, Copy)]
-struct PackedVertex {
-    x: f32,
-    y: f32,
-    z: f32,
-    radius: f32,
-    r: f32,
-    g: f32,
-    b: f32,
-    alpha: f32,
 }
 
 struct ReaderState {
@@ -168,14 +139,14 @@ impl SynapseReader {
         let slot_offset = size_of::<SynapseHeader>() + (slot_index * header.slot_stride as usize);
         let slot_ptr = unsafe { guard.shmem.as_ptr().add(slot_offset) };
 
-        let slot_header = unsafe { &*(slot_ptr as *const SlotHeader) };
+        let slot_header = unsafe { &*(slot_ptr as *const SedimentSlotHeader) };
         if slot_header.magic != SLOT_MAGIC {
             return Ok(None);
         }
 
         let max_vertices = header.vertex_capacity as usize;
         let vertex_count = (slot_header.vertex_count as usize).min(max_vertices);
-        let payload_bytes = size_of::<SlotHeader>() + (vertex_count * size_of::<PackedVertex>());
+        let payload_bytes = slot_header_bytes() + (vertex_count * vertex_stride_bytes());
 
         let src = unsafe { std::slice::from_raw_parts(slot_ptr as *const u8, payload_bytes) };
         let out = src.to_vec();

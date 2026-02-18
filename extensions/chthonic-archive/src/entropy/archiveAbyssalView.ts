@@ -131,6 +131,12 @@ export class AbyssalPaneProvider implements vscode.WebviewViewProvider, vscode.D
         const wasmBinaryUri = webview.asWebviewUri(
             vscode.Uri.joinPath(this.extensionUri, 'media', 'wasm', 'pkg', 'entropy_renderer_wasm_bg.wasm'),
         );
+        const loomWasmModuleUri = webview.asWebviewUri(
+            vscode.Uri.joinPath(this.extensionUri, 'media', 'wasm', 'pkg', 'chthonic_loom.js'),
+        );
+        const loomWasmBinaryUri = webview.asWebviewUri(
+            vscode.Uri.joinPath(this.extensionUri, 'media', 'wasm', 'pkg', 'chthonic_loom_bg.wasm'),
+        );
 
         const csp = [
             "default-src 'none'",
@@ -143,6 +149,8 @@ export class AbyssalPaneProvider implements vscode.WebviewViewProvider, vscode.D
         const bootstrap = JSON.stringify({
             wasmModuleUri: wasmModuleUri.toString(),
             wasmBinaryUri: wasmBinaryUri.toString(),
+            loomWasmModuleUri: loomWasmModuleUri.toString(),
+            loomWasmBinaryUri: loomWasmBinaryUri.toString(),
         });
 
         return `<!DOCTYPE html>
@@ -261,7 +269,7 @@ export class AbyssalPaneProvider implements vscode.WebviewViewProvider, vscode.D
 <body>
     <section class="header">
         <h1 class="title">Abyssal Pane · Root System</h1>
-        <p class="subtitle">Rust/WASM bridge to WebGPU, canvas fallback when binaries are absent.</p>
+        <p class="subtitle">Rust/WASM bridge to Loom + WebGPU, canvas fallback when binaries are absent.</p>
     </section>
     <section class="stats">
         <article class="stat">

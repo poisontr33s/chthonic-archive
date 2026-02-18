@@ -1,0 +1,27 @@
+[package]
+name = "chthonic_loom"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+workspace = "../../native"
+rust-version = "1.82"
+description = "WASM WebGL2 sediment visualizer for Chthonic Archive"
+
+[lib]
+crate-type = ["cdylib", "rlib"]
+
+[dependencies]
+chthonic-synapse-schema = { path = "../../native/chthonic-synapse-schema" }
+console_error_panic_hook = "0.1.7"
+js-sys = "0.3.82"
+wasm-bindgen = "0.2.105"
+web-sys = { version = "0.3.77", features = [
+    "Window",
+    "Document",
+    "HtmlCanvasElement",
+    "Event",
+    "WebGl2RenderingContext",
+    "WebGlBuffer",
+    "WebGlProgram",
+    "WebGlShader",
+] }

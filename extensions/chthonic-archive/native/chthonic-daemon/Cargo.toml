@@ -16,6 +16,7 @@ sha2.workspace = true
 shaderc.workspace = true
 toml.workspace = true
 shared_memory.workspace = true
+chthonic-synapse-schema = { path = "../chthonic-synapse-schema" }
 
 [target.'cfg(windows)'.dependencies]
 windows-sys = { version = "0.59", features = [
