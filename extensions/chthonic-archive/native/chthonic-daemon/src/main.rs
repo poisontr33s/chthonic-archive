@@ -7,12 +7,20 @@ use serde::Serialize;
 mod anno;
 mod env;
 mod reactor;
+mod synapse;
 mod types;
 
 use types::{
     JsonRpcError, JsonRpcNotification, JsonRpcRequest, JsonRpcSuccess,
     SedimentRequest,
 };
+
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+enum ReactorTransportMode {
+    Auto,
+    SharedMemory,
+    Jsonl,
+}
 
 #[derive(Parser, Debug)]
 #[command(name = "chthonic-daemon")]
@@ -29,6 +37,7 @@ struct Opts {
 
 fn main() -> Result<()> {
     let opts = Opts::parse();
+    let transport_mode = reactor_transport_mode();
 
     // -------------------------------------------------------------------
     // Phase 1: ANNO project detection
@@ -101,6 +110,46 @@ fn main() -> Result<()> {
             params: &serde_json::json!({ "status": "disabled" }),
         })?;
         None
+    };
+
+    // -------------------------------------------------------------------
+    // Phase 3.5: Shared memory synapse initialization
+    // -------------------------------------------------------------------
+
+    let mut synapse_writer = if transport_mode == ReactorTransportMode::Jsonl {
+        write_json(&JsonRpcNotification {
+            jsonrpc: "2.0",
+            method: "reactor/synapse",
+            params: &serde_json::json!({
+                "status": "disabled",
+                "mode": "jsonl",
+            }),
+        })?;
+        None
+    } else {
+        match synapse::SynapseWriter::create() {
+            Ok(writer) => {
+                write_json(&JsonRpcNotification {
+                    jsonrpc: "2.0",
+                    method: "reactor/synapse",
+                    params: writer.descriptor(),
+                })?;
+                Some(writer)
+            }
+            Err(err) => {
+                write_json(&JsonRpcNotification {
+                    jsonrpc: "2.0",
+                    method: "reactor/synapse",
+                    params: &serde_json::json!({
+                        "status": "unavailable",
+                        "mode": "jsonl",
+                        "reason": format!("{err:#}")
+                    }),
+                })?;
+                eprintln!("[daemon] shared memory synapse unavailable; falling back to JSONL: {err:#}");
+                None
+            }
+        }
     };
 
     // -------------------------------------------------------------------
@@ -203,6 +252,52 @@ fn main() -> Result<()> {
                 }
             }
 
+            "reactor/sediment_synapse" => {
+                let params: SedimentRequest =
+                    serde_json::from_value(request.params.clone())
+                        .unwrap_or_default();
+
+                let result = match &vulkan_reactor {
+                    Some(r) => r.compute_sediment(&opts.workspace, &params),
+                    None => compute_sediment_cpu(&opts.workspace, &params),
+                };
+
+                match result {
+                    Ok(r) => {
+                        let publish = if let Some(writer) = synapse_writer.as_mut() {
+                            writer.publish_result(&r, params.chunk_size.max(1))?
+                        } else {
+                            synapse::SynapsePublishSummary {
+                                total_chunks: 0,
+                                chunks_written: 0,
+                                dropped_chunks: 0,
+                                queue_depth: 0,
+                            }
+                        };
+
+                        write_json(&JsonRpcSuccess {
+                            jsonrpc: "2.0",
+                            id: request.id,
+                            result: &serde_json::json!({
+                                "backend": r.backend,
+                                "layer_count": r.layer_count,
+                                "file_count": r.file_count,
+                                "compute_time_ms": r.compute_time_ms,
+                                "total_chunks": publish.total_chunks,
+                                "chunks_written": publish.chunks_written,
+                                "dropped_chunks": publish.dropped_chunks,
+                                "queue_depth": publish.queue_depth,
+                                "transport": if synapse_writer.is_some() { "shared_memory" } else { "jsonl" },
+                            }),
+                        })?;
+                    }
+                    Err(err) => write_json(&JsonRpcError::internal(
+                        request.id,
+                        err,
+                    ))?,
+                }
+            }
+
             "reactor/status" => {
                 let status = if vulkan_reactor.is_some() {
                     "vulkan-ready"
@@ -285,4 +380,15 @@ fn write_json<T: Serialize>(value: &T) -> Result<()> {
     stdout.write_all(b"\n")?;
     stdout.flush()?;
     Ok(())
+}
+
+fn reactor_transport_mode() -> ReactorTransportMode {
+    match std::env::var("CHTHONIC_REACTOR_TRANSPORT") {
+        Ok(raw) => match raw.trim().to_ascii_lowercase().as_str() {
+            "shared_memory" | "shm" | "synapse" => ReactorTransportMode::SharedMemory,
+            "jsonl" | "safe" => ReactorTransportMode::Jsonl,
+            _ => ReactorTransportMode::Auto,
+        },
+        Err(_) => ReactorTransportMode::Auto,
+    }
 }

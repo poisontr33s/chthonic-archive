@@ -46,6 +46,11 @@ export class AbyssalPaneProvider implements vscode.WebviewViewProvider, vscode.D
         this.postMessage({ type: 'sedimentChunk', chunk });
     }
 
+    postSedimentBinary(payload: Uint8Array): void {
+        const copy = payload.buffer.slice(payload.byteOffset, payload.byteOffset + payload.byteLength);
+        this.postMessage({ type: 'sedimentBinary', payload: copy });
+    }
+
     dispose(): void {
         this.disposables.forEach((entry) => entry.dispose());
         this.disposables.length = 0;
@@ -108,7 +113,7 @@ export class AbyssalPaneProvider implements vscode.WebviewViewProvider, vscode.D
         }
     }
 
-    private postMessage(message: { type: string; graph?: EntropyGraphPayload; snapshot?: EntropySnapshot; sediment?: SedimentResult; chunk?: SedimentChunk }): void {
+    private postMessage(message: { type: string; graph?: EntropyGraphPayload; snapshot?: EntropySnapshot; sediment?: SedimentResult; chunk?: SedimentChunk; payload?: ArrayBuffer }): void {
         if (!this.view) {
             return;
         }
