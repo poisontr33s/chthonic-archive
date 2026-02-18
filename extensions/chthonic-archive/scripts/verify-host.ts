@@ -655,8 +655,14 @@ function colorizeStatus(status: CheckStatus): string {
     }
 }
 
+function colorizeInlineStatus(text: string): string {
+    return text.replace(/\b(OK|WARN|INFO|FAILED|MISSING|FIXED)\b/g, (token) => {
+        return colorizeStatus(token as CheckStatus);
+    });
+}
+
 function printIndented(text: string, prefix = '  '): void {
     for (const line of text.split(/\r?\n/)) {
-        console.log(`${prefix}${line}`);
+        console.log(`${prefix}${colorizeInlineStatus(line)}`);
     }
 }
