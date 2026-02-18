@@ -10,12 +10,8 @@
     "url": "https://github.com/chthonic-archive/chthonic-archive"
   },
   "engines": {
-    "vscode": "^1.90.0"
+    "vscode": "^1.109.0"
   },
-  "enabledApiProposals": [
-    "workbenchLayout",
-    "activityBar"
-  ],
   "categories": [
     "Themes",
     "Visualization",
@@ -304,11 +300,17 @@
     "sql:version": "pwsh -NoProfile -File scripts/sqlpackage_task.ps1 -Mode version",
     "compile": "bun build src/extension.ts --outdir dist --target node --format cjs --external vscode --minify && bun build src/entropy/entropyWorker.ts --outfile dist/entropy-worker.js --target node --format cjs --minify",
     "watch": "bun build src/extension.ts --outdir dist --target node --format cjs --external vscode --watch",
-    "watch:worker": "bun build src/entropy/entropyWorker.ts --outfile dist/entropy-worker.js --target node --format cjs --watch"
+    "watch:worker": "bun build src/entropy/entropyWorker.ts --outfile dist/entropy-worker.js --target node --format cjs --watch",
+    "insiders:run": "code-insiders --extensionDevelopmentPath=.",
+    "insiders:run:proposed": "code-insiders --enable-proposed-api chthonic-archive.chthonic-archive --extensionDevelopmentPath=.",
+    "insiders:dts:sync": "vscode-dts dev && vscode-dts main"
   },
   "devDependencies": {
     "@types/node": "^20.x",
-    "@types/vscode": "^1.90.0",
+    "@types/vscode": "^1.109.0",
+    "@vscode/dts": "^0.4.1",
+    "@vscode/test-cli": "^0.0.12",
+    "@vscode/test-electron": "^2.5.2",
     "typescript": "^5.x"
   },
   "dependencies": {}

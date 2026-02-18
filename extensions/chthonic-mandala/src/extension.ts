@@ -106,17 +106,25 @@ export function activate(context: vscode.ExtensionContext) {
 
     // Register tree data providers for sidebar views
     const mandalaProvider = new MandalaTreeProvider();
-    vscode.window.registerTreeDataProvider('chthonic.mandalaView', mandalaProvider);
+    context.subscriptions.push(
+        vscode.window.registerTreeDataProvider('chthonic.mandalaView', mandalaProvider),
+    );
 
     const dependencyProvider = new DependencyTreeProvider();
-    vscode.window.registerTreeDataProvider('chthonic.dependencyView', dependencyProvider);
+    context.subscriptions.push(
+        vscode.window.registerTreeDataProvider('chthonic.dependencyView', dependencyProvider),
+    );
 
     const healthProvider = new HealthTreeProvider();
-    vscode.window.registerTreeDataProvider('chthonic.healthView', healthProvider);
+    context.subscriptions.push(
+        vscode.window.registerTreeDataProvider('chthonic.healthView', healthProvider),
+    );
 
     // Theme switcher
     const themeProvider = new ThemeTreeProvider();
-    vscode.window.registerTreeDataProvider('chthonic.themeView', themeProvider);
+    context.subscriptions.push(
+        vscode.window.registerTreeDataProvider('chthonic.themeView', themeProvider),
+    );
 
     context.subscriptions.push(
         vscode.commands.registerCommand('chthonic.switchTheme', async () => {

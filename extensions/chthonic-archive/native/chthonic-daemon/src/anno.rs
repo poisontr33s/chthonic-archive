@@ -10,8 +10,8 @@ use crate::types::{
 /// Scan `workspace` for project marker files and build the ANNO manifest.
 ///
 /// The manifest declares tool ownership per language. Python stays on `uv`
-/// to avoid shim races, while Ruby/Go/Node can use dedicated rustified lanes
-/// (`rv`, `goup`, `fnm`/`volta`) or `mise` according to local policy.
+/// to avoid shim races, while Ruby/Go use dedicated rustified lanes
+/// (`rv`, `goup`) and the JS/TS lane defaults to `bun`.
 pub fn detect_project(workspace: &str) -> Result<AnnoManifest> {
     let root = Path::new(workspace);
     let mut markers = Vec::new();
@@ -128,7 +128,7 @@ fn default_tool_for_language(lang: &str) -> (ToolOwner, u8) {
         "python" => (ToolOwner::Uv, 0),
         "ruby" => (ToolOwner::Rv, 1),
         "go" => (ToolOwner::Goup, 3),
-        "javascript" | "typescript" => (ToolOwner::Fnm, 4),
+        "javascript" | "typescript" => (ToolOwner::Bun, 4),
         "rust" => (ToolOwner::Rustup, 20),
         "solana" | "java" => (ToolOwner::Mise, 10),
         _ => (ToolOwner::System, 99),
@@ -141,11 +141,9 @@ fn binaries_for_policy(policy: &LanguagePolicy) -> &[&str] {
         "python" => &["python", "python3", "pip", "pip3"],
         "ruby" => &["ruby", "gem", "bundle", "bundler", "rake"],
         "javascript" | "typescript" => match policy.tool {
-            ToolOwner::Bun => &["bun", "bunx"],
-            ToolOwner::Fnm | ToolOwner::Volta | ToolOwner::Mise => {
-                &["node", "npm", "npx", "corepack"]
-            }
-            _ => &["node", "npm", "npx"],
+            ToolOwner::Bun => &["bun", "bunx", "node", "npm", "npx", "corepack"],
+            ToolOwner::Mise => &["node", "npm", "npx", "corepack"],
+            _ => &["node", "npm", "npx", "corepack"],
         },
         "rust" => &["cargo", "rustc", "rustup"],
         "go" => &["go", "gofmt"],
@@ -220,9 +218,7 @@ fn apply_manifest_overrides(
             "rv" => ToolOwner::Rv,
             "goup" => ToolOwner::Goup,
             "mise" => ToolOwner::Mise,
-            "fnm" => ToolOwner::Fnm,
             "bun" => ToolOwner::Bun,
-            "volta" => ToolOwner::Volta,
             "rustup" => ToolOwner::Rustup,
             _ => {
                 warnings.push(format!("anno-manifest.toml: unknown tool '{tool_str}' for {lang}"));

@@ -282,16 +282,6 @@ function hasCommand(commands: CliProbe[], name: string): boolean {
     return commands.some((entry) => entry.name === name && entry.exists);
 }
 
-function firstExisting(commands: CliProbe[], names: string[]): string | null {
-    for (const name of names) {
-        const found = commands.find((entry) => entry.name === name && entry.exists);
-        if (found) {
-            return name;
-        }
-    }
-    return null;
-}
-
 function determineNativeLane(binaries: BinaryProbe[], pro: VsInstance | null, bt: VsInstance | null): string {
     const hasCl = binaries.some((item) => item.name === 'cl.exe' && item.exists);
     const hasCmake = binaries.some((item) => item.name === 'cmake.exe' && item.exists);
@@ -402,8 +392,6 @@ function run(): void {
         ['solana', ['--version']],
         ['solana-install', ['--version']],
         ['agave-install', ['--version']],
-        ['fnm', ['--version']],
-        ['volta', ['--version']],
         ['bun', ['--version']],
         ['az', ['version', '--query', '"azure-cli"', '--output', 'tsv']],
         ['bicep', ['--version']],
@@ -440,7 +428,7 @@ function run(): void {
             python: hasCommand(commands, 'uv') ? 'uv' : 'python-system',
             ruby: hasCommand(commands, 'rv') ? 'rv' : (hasCommand(commands, 'ruby') ? 'ruby-system' : 'ruby-missing'),
             go: hasCommand(commands, 'goup') ? 'goup' : (hasCommand(commands, 'go') ? 'go-system' : 'go-missing'),
-            node: firstExisting(commands, ['fnm', 'volta']) ?? (hasCommand(commands, 'bun') ? 'bun-only' : 'node-missing'),
+            node: hasCommand(commands, 'bun') ? 'bun' : 'node-missing',
             sql: sql.path ? (sql.source?.startsWith('ssms') ? 'ssms-dacfx' : 'vs-dacfx') : 'sqlpackage-missing',
             infra: determineInfraLane(commands),
         },

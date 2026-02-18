@@ -20,9 +20,7 @@ export type ToolOwner =
     | 'rv'
     | 'goup'
     | 'mise'
-    | 'fnm'
     | 'bun'
-    | 'volta'
     | 'rustup'
     | 'system';
 
@@ -37,7 +35,6 @@ export interface DetectedMarker {
 
 export interface EnvReport {
     path_mutations: PathSegment[];
-    dev_kit: DevKitReport | null;
     vulkan_status: string;
     warnings: string[];
 }
@@ -46,16 +43,6 @@ export interface PathSegment {
     path: string;
     owner: string;
     priority: number;
-}
-
-export interface DevKitReport {
-    msys2_home: string;
-    ucrt64_bin: string;
-    perl_path: string;
-    cc: string;
-    cxx: string;
-    env_vars: Array<[string, string]>;
-    path_prepend: string[];
 }
 
 // ---------------------------------------------------------------------------

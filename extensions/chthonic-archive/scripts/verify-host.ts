@@ -69,117 +69,6 @@ function runSync(cmd: string[]): {
     }
 }
 
-function prependPath(segment: string): void {
-    const delim = process.platform === 'win32' ? ';' : ':';
-    const current = envOverrides.PATH ?? process.env.PATH ?? '';
-    const parts = current.split(delim).filter(Boolean);
-    if (parts.some((part) => part.toLowerCase() === segment.toLowerCase())) {
-        return;
-    }
-    envOverrides.PATH = `${segment}${delim}${current}`;
-}
-
-function rubyInstallRoot(): string | null {
-    const ruby = runSync(['ruby', '-e', 'print RbConfig.ruby']);
-    if (ruby.exitCode !== 0) {
-        return null;
-    }
-    const rubyExe = ruby.stdout.trim();
-    if (!rubyExe) {
-        return null;
-    }
-    return path.dirname(path.dirname(rubyExe));
-}
-
-function findDevKitPerl(): string | null {
-    const roots = [
-        rubyInstallRoot(),
-        'C:\\Ruby40-x64',
-        'C:\\Ruby35-x64',
-        'C:\\Ruby34-x64',
-        'C:\\Ruby33-x64',
-        'C:\\Ruby32-x64',
-        'C:\\Ruby31-x64',
-        'D:\\Ruby40-x64',
-        'D:\\Ruby35-x64',
-        'D:\\Ruby34-x64',
-        'D:\\Ruby33-x64',
-        'D:\\Ruby32-x64',
-        'D:\\Ruby31-x64',
-    ].filter((value): value is string => Boolean(value));
-
-    const perlRelPaths = [
-        path.join('msys64', 'ucrt64', 'bin', 'perl.exe'),
-        path.join('msys64', 'mingw64', 'bin', 'perl.exe'),
-        path.join('msys64', 'usr', 'bin', 'perl.exe'),
-    ];
-
-    // First pass: prefer Windows-native perl builds (MSWin32) for OpenSSL VC toolchains.
-    for (const root of roots) {
-        for (const relPath of perlRelPaths) {
-            const candidate = path.join(root, relPath);
-            if (!existsSync(candidate)) {
-                continue;
-            }
-            const probe = runSync([candidate, '--version']);
-            if (probe.exitCode === 0 && !isCygwinPerl(probe.stdout, probe.stderr)) {
-                return candidate;
-            }
-        }
-    }
-
-    // Fallback pass: return the first perl we can find.
-    for (const root of roots) {
-        for (const relPath of perlRelPaths) {
-            const candidate = path.join(root, relPath);
-            if (existsSync(candidate)) {
-                return candidate;
-            }
-        }
-    }
-    return null;
-}
-
-function isCygwinPerl(stdout: string, stderr: string): boolean {
-    const combined = `${stdout}\n${stderr}`.toLowerCase();
-    return combined.includes('cygwin');
-}
-
-function ensurePerlFromRubyDevKit(): ManualCheckResult {
-    const perlInPath = runSync(['perl', '--version']);
-    if (perlInPath.exitCode === 0 && !isCygwinPerl(perlInPath.stdout, perlInPath.stderr)) {
-        return { ok: true, note: 'using perl from PATH' };
-    }
-
-    const devkitPerl = findDevKitPerl();
-    if (!devkitPerl) {
-        if (perlInPath.exitCode === 0 && isCygwinPerl(perlInPath.stdout, perlInPath.stderr)) {
-            return {
-                ok: false,
-                note: 'PATH perl is Cygwin-based; Ruby DevKit perl was not found',
-            };
-        }
-        return { ok: false };
-    }
-
-    const perlDir = path.dirname(devkitPerl);
-    prependPath(perlDir);
-    envOverrides.PERL = devkitPerl;
-    const probe = runSync(['perl', '--version']);
-
-    if (probe.exitCode === 0) {
-        return {
-            ok: true,
-            note: `using Ruby DevKit perl: ${devkitPerl}`,
-        };
-    }
-
-    return {
-        ok: false,
-        note: `found Ruby DevKit perl at ${devkitPerl}, but execution failed`,
-    };
-}
-
 function loadToolpoolSnapshot(): ToolpoolSnapshot | null {
     const snapshotPath = path.join(process.cwd(), '.chthonic', 'cache', 'toolpool.json');
     if (!existsSync(snapshotPath)) {
@@ -213,28 +102,9 @@ function ensureToolpoolLane(): ManualCheckResult {
 }
 
 function ensureNodeManagerLane(): ManualCheckResult {
-    const checks = [
-        {
-            tool: 'bun',
-            args: ['--version'],
-            note: 'using bun (runtime + package manager + bundler + test runner)',
-        },
-        {
-            tool: 'fnm',
-            args: ['--version'],
-            note: 'bun missing; using fnm fallback lane',
-        },
-        {
-            tool: 'volta',
-            args: ['--version'],
-            note: 'bun missing; using volta fallback lane',
-        },
-    ];
-    for (const probe of checks) {
-        const result = runSync([probe.tool, ...probe.args]);
-        if (!result.threw && result.exitCode === 0) {
-            return { ok: true, note: probe.note };
-        }
+    const result = runSync(['bun', '--version']);
+    if (!result.threw && result.exitCode === 0) {
+        return { ok: true, note: 'using bun (runtime + package manager + bundler + test runner)' };
     }
     return { ok: false };
 }
@@ -384,7 +254,7 @@ const checks: HostCheck[] = [
         cmd: ['bun', '--version'],
         manualCheck: ensureNodeManagerLane,
         warnOnly: true,
-        fix: 'Install bun (preferred Node lane). Optional fallbacks: fnm or volta.',
+        fix: 'Install bun: https://bun.sh/docs/installation',
     },
     {
         name: 'Solana Tool Suite Lane',
@@ -414,13 +284,7 @@ const checks: HostCheck[] = [
         fix: 'Install wasm-bindgen CLI: cargo install wasm-bindgen-cli',
     },
     {
-        name: 'Perl (OpenSSL build via Ruby DevKit)',
-        cmd: ['perl', '--version'],
-        manualCheck: ensurePerlFromRubyDevKit,
-        fix: 'Install RubyInstaller with DevKit and run `ridk install 3` so MSYS2 perl/toolchain is available.',
-    },
-    {
-        name: 'MAKEFLAGS (MSVC OpenSSL compatibility)',
+        name: 'MAKEFLAGS (MSVC hygiene)',
         cmd: ['rustc', '--version'],
         manualCheck: () => {
             const makeFlags = envOverrides.MAKEFLAGS ?? process.env.MAKEFLAGS;
@@ -449,7 +313,7 @@ const checks: HostCheck[] = [
         cmd: ['ruby', '--version'],
         check: (stdout) => /^ruby\s+4\./i.test(stdout.trim()),
         warnOnly: true,
-        fix: 'Install Ruby 4.x dev toolchain (RubyInstaller + ridk) to align with Prism lane target.',
+        fix: 'Install Ruby 4.x lane via rv to align with Prism lane target.',
     },
 ];
 

@@ -6,14 +6,18 @@
   "publisher": "chthonic-archive",
   "icon": "icons/mandala.svg",
   "engines": {
-    "vscode": "^1.90.0"
+    "vscode": "^1.109.0"
   },
   "categories": ["Visualization", "Themes"],
   "activationEvents": [
-    "onStartupFinished",
     "onCommand:chthonic.openMandala",
     "onCommand:chthonic.openDependencyGraph",
-    "onLanguage:python"
+    "onCommand:chthonic.openHealthReport",
+    "onCommand:chthonic.switchTheme",
+    "onView:chthonic.mandalaView",
+    "onView:chthonic.dependencyView",
+    "onView:chthonic.healthView",
+    "onView:chthonic.themeView"
   ],
   "main": "./dist/extension.js",
   "sideEffects": false,
@@ -95,11 +99,16 @@
   "scripts": {
     "vscode:prepublish": "bun run compile",
     "compile": "bun build src/extension.ts --outdir dist --target node --format cjs --external vscode --minify",
-    "watch": "bun build src/extension.ts --outdir dist --target node --format cjs --external vscode --watch"
+    "watch": "bun build src/extension.ts --outdir dist --target node --format cjs --external vscode --watch",
+    "insiders:run": "code-insiders --extensionDevelopmentPath=.",
+    "insiders:dts:sync": "vscode-dts main"
   },
   "devDependencies": {
     "@types/node": "^20.x",
-    "@types/vscode": "^1.90.0",
+    "@types/vscode": "^1.109.0",
+    "@vscode/dts": "^0.4.1",
+    "@vscode/test-cli": "^0.0.12",
+    "@vscode/test-electron": "^2.5.2",
     "typescript": "^5.x"
   }
 }

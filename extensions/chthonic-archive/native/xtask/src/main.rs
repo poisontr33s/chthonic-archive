@@ -134,29 +134,7 @@ fn verify_host() -> ExitCode {
         probe_cmd(&["wasm-bindgen", "--version"], None)
     }, "Install: cargo install wasm-bindgen-cli", false, &mut failed);
 
-    // 4. Perl (for OpenSSL build)
-    check("Perl (OpenSSL build)", || {
-        // First: check PATH perl
-        let path_perl = run_cmd(&["perl", "--version"]);
-        if path_perl.ok && !is_cygwin_perl(path_perl.note.as_deref().unwrap_or("")) {
-            return CheckResult { ok: true, note: Some("using perl from PATH".into()) };
-        }
-
-        // Second: hunt for Ruby DevKit perl
-        if let Some(devkit_perl) = find_devkit_perl() {
-            CheckResult {
-                ok: true,
-                note: Some(format!("using Ruby DevKit perl: {}", devkit_perl.display())),
-            }
-        } else if path_perl.ok {
-            // Cygwin perl is better than nothing
-            CheckResult { ok: true, note: Some("using Cygwin perl (may fail for OpenSSL)".into()) }
-        } else {
-            CheckResult { ok: false, note: None }
-        }
-    }, "Install RubyInstaller with DevKit and run `ridk install 3`.", false, &mut failed);
-
-    // 5. MAKEFLAGS hygiene
+    // 4. MAKEFLAGS hygiene
     check("MAKEFLAGS Hygiene", || {
         let makeflags = env::var("MAKEFLAGS").unwrap_or_default();
         let mflags = env::var("MFLAGS").unwrap_or_default();
@@ -172,12 +150,12 @@ fn verify_host() -> ExitCode {
         }
     }, "No action needed — xtask sanitizes MAKEFLAGS per process.", false, &mut failed);
 
-    // 6. Solana CLI (warn only)
+    // 5. Solana CLI (warn only)
     check("Solana CLI", || {
         probe_cmd(&["solana", "--version"], None)
     }, "Install Solana Tool Suite for local validator mode.", true, &mut failed);
 
-    // 7. Ruby Runtime (warn only)
+    // 6. Ruby Runtime (warn only)
     check("Ruby Runtime", || {
         let r = run_cmd(&["ruby", "--version"]);
         if r.ok {
@@ -185,9 +163,9 @@ fn verify_host() -> ExitCode {
         } else {
             CheckResult { ok: false, note: None }
         }
-    }, "Install Ruby dev toolchain (RubyInstaller + ridk).", true, &mut failed);
+    }, "Install Ruby 4.x lane (prefer rv).", true, &mut failed);
 
-    // 8. cmake (for shaderc) — check PATH first, then VS Build Tools / VS Community
+    // 7. cmake (for shaderc) — check PATH first, then VS Build Tools / VS Community
     check("cmake (shaderc build)", || {
         let path_cmake = run_cmd(&["cmake", "--version"]);
         if path_cmake.ok {
@@ -213,27 +191,8 @@ fn verify_host() -> ExitCode {
             }
         }
 
-        // Hunt in MSYS2
-        for root in ["C:\\Ruby34-x64", "C:\\Ruby33-x64", "C:\\Ruby35-x64"] {
-            let candidate = PathBuf::from(root)
-                .join("msys64").join("ucrt64").join("bin").join("cmake.exe");
-            if candidate.exists() {
-                let probe = run_cmd_path(&candidate, &["--version"]);
-                if probe.ok {
-                    return CheckResult {
-                        ok: true,
-                        note: Some(format!(
-                            "MSYS2: {} ({})",
-                            probe.note.unwrap_or_default(),
-                            candidate.display()
-                        )),
-                    };
-                }
-            }
-        }
-
         CheckResult { ok: false, note: None }
-    }, "Install cmake: VS Build Tools component, `winget install cmake`, or `pacman -S mingw-w64-ucrt-x86_64-cmake`.", false, &mut failed);
+    }, "Install cmake via VS Build Tools component or `winget install cmake`.", false, &mut failed);
 
     println!();
     if failed {
@@ -339,50 +298,5 @@ fn find_vs_cmake_dir() -> Option<PathBuf> {
             }
         }
     }
-    None
-}
-
-fn is_cygwin_perl(version_line: &str) -> bool {
-    version_line.to_lowercase().contains("cygwin")
-}
-
-/// Search Ruby DevKit install locations for a native (non-Cygwin) perl.
-fn find_devkit_perl() -> Option<PathBuf> {
-    let mut roots: Vec<PathBuf> = Vec::new();
-
-    // Dynamic: ask ruby for its install root
-    if let Ok(output) = Command::new("ruby").args(["-e", "print RbConfig.ruby"]).output() {
-        if output.status.success() {
-            let exe = String::from_utf8_lossy(&output.stdout).trim().to_string();
-            if let Some(root) = Path::new(&exe).parent().and_then(|p| p.parent()) {
-                roots.push(root.to_path_buf());
-            }
-        }
-    }
-
-    // Static search roots
-    for drive in ["C", "D"] {
-        for ver in ["40", "35", "34", "33", "32"] {
-            roots.push(PathBuf::from(format!("{drive}:\\Ruby{ver}-x64")));
-        }
-    }
-
-    let perl_rel = ["msys64/ucrt64/bin/perl.exe", "msys64/usr/bin/perl.exe"];
-
-    for root in &roots {
-        for rel in &perl_rel {
-            let candidate = root.join(rel);
-            if candidate.exists() {
-                // Verify it's not Cygwin
-                if let Ok(out) = Command::new(&candidate).arg("--version").output() {
-                    let version = String::from_utf8_lossy(&out.stdout);
-                    if !is_cygwin_perl(&version) {
-                        return Some(candidate);
-                    }
-                }
-            }
-        }
-    }
-
     None
 }

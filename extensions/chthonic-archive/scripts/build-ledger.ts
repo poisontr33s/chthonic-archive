@@ -14,146 +14,15 @@ async function main(): Promise<void> {
         ...process.env,
     };
 
-    // nmake (MSVC OpenSSL path) fails when GNU make flags leak into the environment.
+    // nmake fails when GNU make flags leak into the environment.
     delete env.MAKEFLAGS;
     delete env.MFLAGS;
-
-    if (process.platform === 'win32') {
-        ensureWindowsPerl(env);
-    }
 
     await run(
         ['cargo', 'build', '--manifest-path', workspaceManifestPath, '-p', 'entropy-ledger-host', '--release'],
         env,
     );
     console.log('[ledger] build completed');
-}
-
-function ensureWindowsPerl(env: Record<string, string>): void {
-    const current = runCapture('perl', ['--version'], env);
-    if (current.ok && !isCygwinPerl(current.stdout, current.stderr)) {
-        return;
-    }
-
-    const devkitPerl = findDevKitPerl(env);
-    if (!devkitPerl) {
-        throw new Error(
-            'Ruby DevKit perl not found. Install RubyInstaller with DevKit and run `ridk install 3` before building ledger host.',
-        );
-    }
-
-    const perlDir = path.dirname(devkitPerl);
-    env.PATH = prependPath(perlDir, env.PATH ?? '');
-    env.PERL = devkitPerl;
-
-    // Probe the exact DevKit perl path we resolved. MSYS2 perl can report
-    // cygwin lineage in the banner but is still the correct tool for vendored OpenSSL builds.
-    const probe = runCapture(devkitPerl, ['--version'], env);
-    if (!probe.ok) {
-        throw new Error(`failed to activate Ruby DevKit perl at ${devkitPerl}`);
-    }
-
-    console.log(`[ledger] using Ruby DevKit perl: ${devkitPerl}`);
-}
-
-function findDevKitPerl(env: Record<string, string>): string | null {
-    const roots = [
-        rubyInstallRoot(env),
-        'C:\\Ruby40-x64',
-        'C:\\Ruby35-x64',
-        'C:\\Ruby34-x64',
-        'C:\\Ruby33-x64',
-        'C:\\Ruby32-x64',
-        'C:\\Ruby31-x64',
-        'D:\\Ruby40-x64',
-        'D:\\Ruby35-x64',
-        'D:\\Ruby34-x64',
-        'D:\\Ruby33-x64',
-        'D:\\Ruby32-x64',
-        'D:\\Ruby31-x64',
-    ].filter((value): value is string => Boolean(value));
-
-    const perlRelPaths = [
-        path.join('msys64', 'ucrt64', 'bin', 'perl.exe'),
-        path.join('msys64', 'mingw64', 'bin', 'perl.exe'),
-        path.join('msys64', 'usr', 'bin', 'perl.exe'),
-    ];
-
-    // First pass: prefer Windows-native perl builds (MSWin32) for OpenSSL VC toolchains.
-    for (const root of roots) {
-        for (const relPath of perlRelPaths) {
-            const candidate = path.join(root, relPath);
-            if (!existsSync(candidate)) {
-                continue;
-            }
-            const probe = runCapture(candidate, ['--version'], env);
-            if (probe.ok && !isCygwinPerl(probe.stdout, probe.stderr)) {
-                return candidate;
-            }
-        }
-    }
-
-    // Fallback pass: return the first perl we can find.
-    for (const root of roots) {
-        for (const relPath of perlRelPaths) {
-            const candidate = path.join(root, relPath);
-            if (existsSync(candidate)) {
-                return candidate;
-            }
-        }
-    }
-    return null;
-}
-
-function rubyInstallRoot(env: Record<string, string>): string | null {
-    const ruby = runCapture('ruby', ['-e', 'print RbConfig.ruby'], env);
-    if (!ruby.ok) {
-        return null;
-    }
-    const rubyExe = ruby.stdout.trim();
-    if (!rubyExe) {
-        return null;
-    }
-    return path.dirname(path.dirname(rubyExe));
-}
-
-function isCygwinPerl(stdout: string, stderr: string): boolean {
-    const combined = `${stdout}\n${stderr}`.toLowerCase();
-    return combined.includes('cygwin');
-}
-
-function prependPath(segment: string, currentPath: string): string {
-    const delimiter = process.platform === 'win32' ? ';' : ':';
-    const parts = currentPath.split(delimiter).filter(Boolean);
-    if (parts.some((part) => part.toLowerCase() === segment.toLowerCase())) {
-        return currentPath;
-    }
-    return currentPath.length > 0 ? `${segment}${delimiter}${currentPath}` : segment;
-}
-
-function runCapture(command: string, args: string[], env: Record<string, string>): {
-    ok: boolean;
-    stdout: string;
-    stderr: string;
-} {
-    try {
-        const result = spawnSync(command, args, {
-            cwd: extensionRoot,
-            env,
-            encoding: 'utf8',
-        });
-        return {
-            ok: result.status === 0,
-            stdout: result.stdout ?? '',
-            stderr: result.stderr ?? '',
-        };
-    } catch {
-        return {
-            ok: false,
-            stdout: '',
-            stderr: '',
-        };
-    }
 }
 
 async function run(cmd: string[], env: Record<string, string>): Promise<void> {

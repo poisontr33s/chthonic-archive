@@ -14,16 +14,12 @@ async function main(): Promise<void> {
         ...process.env,
     };
 
-    // nmake (MSVC OpenSSL path) fails when GNU make flags leak.
+    // nmake fails when GNU make flags leak from parent shells.
     delete env.MAKEFLAGS;
     delete env.MFLAGS;
 
     // shaderc-sys requires cmake
     ensureCmake(env);
-
-    if (process.platform === 'win32') {
-        ensureWindowsPerl(env);
-    }
 
     await run(
         ['cargo', 'build', '--manifest-path', workspaceManifestPath, '-p', 'chthonic-daemon', '--release'],
@@ -41,72 +37,6 @@ function ensureCmake(env: Record<string, string>): void {
         );
     }
     console.log(`[daemon] cmake: ${result.stdout.split('\n')[0].trim()}`);
-}
-
-function ensureWindowsPerl(env: Record<string, string>): void {
-    const current = runCapture('perl', ['--version'], env);
-    if (current.ok && !isCygwinPerl(current.stdout, current.stderr)) {
-        return;
-    }
-
-    const devkitPerl = findDevKitPerl(env);
-    if (!devkitPerl) {
-        console.warn('[daemon] Ruby DevKit perl not found; vendored OpenSSL may fail to build.');
-        return;
-    }
-
-    const perlDir = path.dirname(devkitPerl);
-    env.PATH = prependPath(perlDir, env.PATH ?? '');
-    env.PERL = devkitPerl;
-    console.log(`[daemon] using Ruby DevKit perl: ${devkitPerl}`);
-}
-
-function findDevKitPerl(env: Record<string, string>): string | null {
-    const roots = [
-        rubyInstallRoot(env),
-        'C:\\Ruby40-x64',
-        'C:\\Ruby35-x64',
-        'C:\\Ruby34-x64',
-        'C:\\Ruby33-x64',
-        'C:\\Ruby32-x64',
-        'D:\\Ruby40-x64',
-        'D:\\Ruby35-x64',
-        'D:\\Ruby34-x64',
-    ].filter((value): value is string => Boolean(value));
-
-    for (const root of roots) {
-        const candidate = path.join(root, 'msys64', 'usr', 'bin', 'perl.exe');
-        if (existsSync(candidate)) {
-            return candidate;
-        }
-    }
-    return null;
-}
-
-function rubyInstallRoot(env: Record<string, string>): string | null {
-    const ruby = runCapture('ruby', ['-e', 'print RbConfig.ruby'], env);
-    if (!ruby.ok) {
-        return null;
-    }
-    const rubyExe = ruby.stdout.trim();
-    if (!rubyExe) {
-        return null;
-    }
-    return path.dirname(path.dirname(rubyExe));
-}
-
-function isCygwinPerl(stdout: string, stderr: string): boolean {
-    const combined = `${stdout}\n${stderr}`.toLowerCase();
-    return combined.includes('cygwin');
-}
-
-function prependPath(segment: string, currentPath: string): string {
-    const delimiter = process.platform === 'win32' ? ';' : ':';
-    const parts = currentPath.split(delimiter).filter(Boolean);
-    if (parts.some((part) => part.toLowerCase() === segment.toLowerCase())) {
-        return currentPath;
-    }
-    return currentPath.length > 0 ? `${segment}${delimiter}${currentPath}` : segment;
 }
 
 function runCapture(command: string, args: string[], env: Record<string, string>): {

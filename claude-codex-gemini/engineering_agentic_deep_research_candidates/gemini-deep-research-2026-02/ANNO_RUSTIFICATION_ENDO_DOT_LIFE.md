@@ -6,7 +6,7 @@
 
 ---
 
-***(1) Analyze the current landscape of Rust-based ("Rustified") version managers and toolchains for Windows 11, specifically looking for equivalents to 'uv' (Python), 'rv' or 'frum' (Ruby), 'goup' or alternatives (Go), and 'fnm'/'volta' (Node/Bun).*** 
+***(1) Analyze the current landscape of Rust-based ("Rustified") version managers and toolchains for Windows 11, specifically looking for equivalents to 'uv' (Python), 'rv' or 'frum' (Ruby), 'goup' or alternatives (Go), and Bun-native Node/Bun lanes.*** 
 
 ---
 

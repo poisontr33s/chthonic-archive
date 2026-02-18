@@ -42,13 +42,9 @@ status: source-validated
   - `moovweb/gvm`: 11,536 stars.
 - Practical conclusion: Go is the weakest Rustification lane if you require standalone per-language manager maturity.
 
-### Node/Bun (`fnm` / `volta` and Bun lane)
-- Node:
-  - `fnm`: 23,995 stars, active (2026-02-17), Rust, Windows support.
-  - `volta`: 12,783 stars, Rust, cross-platform including Windows.
-- Bun:
-  - No widely dominant dedicated Rust Bun-only manager equivalent to `fnm`.
-  - Practical option is unified management via `mise` Bun core plugin.
+### Node/Bun (Bun-first lane)
+- Bun is the default Node/JS lane in this workspace.
+- Practical option is unified management via `mise` Bun core plugin where required.
 
 ### Unified manager candidate
 - `mise` (`jdx/mise`) is the dominant Rust polyglot manager:
@@ -63,7 +59,7 @@ status: source-validated
 - Can still delegate best-in-class backends (for example Python with `uv`).
 - Strongest advantage in CI reproducibility and onboarding consistency.
 
-### Individual stack architecture (`uv` + `rv` + `goup-rs` + `fnm/volta`)
+### Individual stack architecture (`uv` + `rv` + `goup-rs` + `bun`)
 - Maximum per-language specialization.
 - Better when one ecosystem needs non-default behavior unavailable in unified abstraction.
 - Higher operational entropy:
@@ -86,7 +82,7 @@ status: source-validated
 - Delegate execution to best lane per ecosystem:
   - Python: `uv`
   - Ruby: `rv` (with fallback strategy)
-  - Node: `fnm` (or Volta where pinned toolchains are preferred)
+  - Node: `bun`
   - Go: `mise` core plugin first; `goup-rs` only if Go-only workflows prove better in your environment
 
 ## 3) GitHub trending + endoflife validation ("ANNO latest most trending used")
@@ -97,8 +93,7 @@ status: source-validated
 |---|---|---:|---|---|
 | uv | `astral-sh/uv` | 79,408 | 2026-02-18 | Very high |
 | mise | `jdx/mise` | 24,704 | 2026-02-18 | High |
-| fnm | `Schniz/fnm` | 23,995 | 2026-02-17 | High |
-| volta | `volta-cli/volta` | 12,783 | 2025-11-15 | Medium |
+| bun | `oven-sh/bun` | N/A | N/A | High |
 | rv | `spinel-coop/rv` | 1,604 | 2026-02-18 | Emerging, fast growth lane |
 | frum | `TaKO8Ki/frum` | 652 | 2022-05-13 | Low/currently stale |
 | goup-rs | `thinkgos/goup-rs` | 51 | 2026-02-12 | Experimental/niche |
@@ -132,7 +127,7 @@ status: source-validated
 - Python: `uv` (high confidence).
 - Ruby: `rv` for Rust-native momentum; keep compatibility path for `rbenv`/`ruby-build` ecosystems.
 - Go: no strong standalone Rust-native winner by usage; prefer `mise` unified lane unless you explicitly standardize on `goup-rs`.
-- Node: `fnm` and `volta` are both valid; `fnm` currently has higher activity.
+- Node: `bun` is the selected runtime lane.
 - Polyglot orchestration: `mise` is the strongest Rust-native unifier.
 
 ## 4) VS Code Insiders Proposed API capability check (for Chthonic Archive)
@@ -250,7 +245,7 @@ require_vs_msvc_for_native = true
 python = { eol_product = "python", manager = "uv" }
 ruby   = { eol_product = "ruby", manager = "rv" }
 go     = { eol_product = "go", manager = "mise" }
-node   = { eol_product = "nodejs", manager = "fnm" }
+node   = { eol_product = "nodejs", manager = "bun" }
 rust   = { eol_product = "rust", manager = "rustup" }
 vs     = { eol_product = "visual-studio", manager = "manual-gated" }
 ```
@@ -262,7 +257,7 @@ vs     = { eol_product = "visual-studio", manager = "manual-gated" }
 - Tier 2 (best lane engines):
   - Python: `uv`
   - Ruby: `rv`
-  - Node: `fnm` (or Volta if pinning model preferred)
+  - Node: `bun`
   - Bun: `mise` Bun plugin
   - Go: `mise` core plugin, optional `goup-rs` experiments
 - Tier 3 (native substrate): Rust + `ash`, validated against VS 2026 Build Tools lane
@@ -271,7 +266,7 @@ vs     = { eol_product = "visual-studio", manager = "manual-gated" }
 ### Key corrections vs prior narrative
 - "LSL" is not the official Visual Studio channel term in current docs; official framing is Stable, Insiders, and LTSC timing.
 - `vscode.proposed.workbenchLayout.d.ts` / `vscode.proposed.activityBar.d.ts` are not present in current public proposed d.ts inventory.
-- Strong adoption is clear for `uv`/`mise`/`fnm`; Rust-native Go manager adoption remains comparatively small.
+- Strong adoption is clear for `uv`/`mise`/`bun`; Rust-native Go manager adoption remains comparatively small.
 
 ---
 
@@ -289,8 +284,8 @@ vs     = { eol_product = "visual-studio", manager = "manual-gated" }
 11. https://raw.githubusercontent.com/spinel-coop/rv/main/docs/INSTALL_BENCHMARK.md
 12. https://github.com/TaKO8Ki/frum
 13. https://github.com/thinkgos/goup-rs
-14. https://github.com/Schniz/fnm
-15. https://github.com/volta-cli/volta
+14. https://github.com/oven-sh/bun
+15. https://bun.sh/docs
 16. https://github.com/trending
 17. https://github.com/trending/rust
 18. https://endoflife.date/api/v1/

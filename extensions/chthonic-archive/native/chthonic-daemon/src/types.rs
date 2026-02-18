@@ -101,9 +101,7 @@ pub enum ToolOwner {
     Rv,
     Goup,
     Mise,
-    Fnm,
     Bun,
-    Volta,
     Rustup,
     System,
 }
@@ -148,7 +146,6 @@ impl AnnoManifest {
 #[derive(Debug, Clone, Default, Serialize, Deserialize)]
 pub struct EnvReport {
     pub path_mutations: Vec<PathSegment>,
-    pub dev_kit: Option<DevKitReport>,
     pub vulkan_status: String,
     pub warnings: Vec<String>,
 }
@@ -158,17 +155,6 @@ pub struct PathSegment {
     pub path: String,
     pub owner: String,
     pub priority: u8,
-}
-
-#[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct DevKitReport {
-    pub msys2_home: String,
-    pub ucrt64_bin: String,
-    pub perl_path: String,
-    pub cc: String,
-    pub cxx: String,
-    pub env_vars: Vec<(String, String)>,
-    pub path_prepend: Vec<String>,
 }
 
 // ---------------------------------------------------------------------------
