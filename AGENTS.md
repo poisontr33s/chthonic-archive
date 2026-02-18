@@ -94,6 +94,7 @@ description: OpenAI Codex behavioral configuration and execution discipline
 
 **cmd.exe:** Never use `cmd /c` wrappers; use PowerShell-native commands.
 **Python:** Use `uv run <script.py>` by default; `uv run python <script.py>` only when explicitly required. Never raw `python` or `pip`.
+**Ruby/Go/Node ownership:** Prefer `rv` (Ruby), `goup` (Go), and `fnm`/`volta` (Node). Do not route non-Python tasks through Python wrappers by default.
 
 ---
 
