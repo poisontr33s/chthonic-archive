@@ -49,7 +49,16 @@ $env:GEMINI_DISABLE_MCP = "1"
 
 function Invoke-GeminiSelfUpdate {
     Write-Host "[gemini-wrapper] Updating Gemini CLI via Bun global lane..." -ForegroundColor Cyan
+    # Keep node-gyp/native addon lanes deterministic on Windows.
+    $prevMakeFlags = $env:MAKEFLAGS
+    $prevMflags = $env:MFLAGS
+    if ($env:MAKEFLAGS) { Remove-Item Env:MAKEFLAGS -ErrorAction SilentlyContinue }
+    if ($env:MFLAGS) { Remove-Item Env:MFLAGS -ErrorAction SilentlyContinue }
+
     & bun add -g @google/gemini-cli@latest
+
+    if ($null -ne $prevMakeFlags) { $env:MAKEFLAGS = $prevMakeFlags }
+    if ($null -ne $prevMflags) { $env:MFLAGS = $prevMflags }
     if ($LASTEXITCODE -ne 0) {
         Write-Error "Gemini CLI self-update failed (exit $LASTEXITCODE)."
         exit $LASTEXITCODE
