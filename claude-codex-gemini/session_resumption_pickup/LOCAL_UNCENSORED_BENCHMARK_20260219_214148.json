@@ -1,0 +1,171 @@
+{
+  "generated": "2026-02-19T21:41:48.800498+00:00",
+  "results": [
+    {
+      "lane": "qwen3_instruct_abliterated",
+      "model_file": "C:\\Users\\erdno\\chthonic-archive\\models\\Qwen3-30B-A3B-Instruct-abliterated-GGUF\\Huihui-Qwen3-30B-A3B-Instruct-2507-abliterated.i1-Q3_K_M.gguf",
+      "load_seconds": 8.463,
+      "tasks": [
+        {
+          "task": "json_task",
+          "ok": true,
+          "detail": "ok",
+          "elapsed_s": 11.2871,
+          "out_tokens": 21,
+          "toks_per_s": 1.86,
+          "output_preview": "{\"verdict\":\"PROMOTE\",\"reason\":\"High impact, strong execution\",\"score\":87}"
+        },
+        {
+          "task": "code_task",
+          "ok": true,
+          "detail": "ok",
+          "elapsed_s": 5.4676,
+          "out_tokens": 63,
+          "toks_per_s": 11.52,
+          "output_preview": "```python def fib(n: int) -> int:     if n <= 1:         return n     a, b = 0, 1     for _ in range(2, n + 1):         a, b = b, a + b     return b ```"
+        },
+        {
+          "task": "instruction_task",
+          "ok": true,
+          "detail": "ok",
+          "elapsed_s": 1.8275,
+          "out_tokens": 17,
+          "toks_per_s": 9.3,
+          "output_preview": "Self-healing lanes reduce entropy by dynamically repairing disruptions, maintaining optimal flow and order."
+        }
+      ],
+      "passes": 3,
+      "task_count": 3,
+      "composite_score": 100.0,
+      "avg_toks_per_s": 5.44,
+      "total_tokens": 101,
+      "total_infer_seconds": 18.5821
+    },
+    {
+      "lane": "qwen3_coder_abliterated",
+      "model_file": "C:\\Users\\erdno\\chthonic-archive\\models\\Qwen3-Coder-30B-A3B-abliterated-GGUF\\Huihui-Qwen3-Coder-30B-A3B-Instruct-abliterated.i1-Q3_K_M.gguf",
+      "load_seconds": 7.504,
+      "tasks": [
+        {
+          "task": "json_task",
+          "ok": true,
+          "detail": "ok",
+          "elapsed_s": 4.055,
+          "out_tokens": 28,
+          "toks_per_s": 6.91,
+          "output_preview": "{   \"verdict\": \"FLAG\",   \"reason\": \"Suspicious activity detected\",   \"score\": 42 }"
+        },
+        {
+          "task": "code_task",
+          "ok": true,
+          "detail": "ok",
+          "elapsed_s": 5.116,
+          "out_tokens": 63,
+          "toks_per_s": 12.31,
+          "output_preview": "```python def fib(n: int) -> int:     if n <= 1:         return n          a, b = 0, 1     for _ in range(2, n + 1):         a, b = b, a + b          return b ```"
+        },
+        {
+          "task": "instruction_task",
+          "ok": true,
+          "detail": "ok",
+          "elapsed_s": 1.3633,
+          "out_tokens": 14,
+          "toks_per_s": 10.27,
+          "output_preview": "Self-healing lanes reduce entropy by automatically restoring optimal traffic flow patterns."
+        }
+      ],
+      "passes": 3,
+      "task_count": 3,
+      "composite_score": 100.0,
+      "avg_toks_per_s": 9.97,
+      "total_tokens": 105,
+      "total_infer_seconds": 10.5342
+    },
+    {
+      "lane": "gpt_oss_20b_neoplus_uncensored",
+      "model_file": "C:\\Users\\erdno\\chthonic-archive\\models\\GPT-OSS-20B-NEOPlus-Uncensored\\OpenAI-20B-NEOPlus-Uncensored-IQ4_NL.gguf",
+      "load_seconds": 12.0,
+      "tasks": [
+        {
+          "task": "json_task",
+          "ok": false,
+          "detail": "no-json-object",
+          "elapsed_s": 9.2915,
+          "out_tokens": 117,
+          "toks_per_s": 12.59,
+          "output_preview": "We need to produce a JSON object with keys \"verdict\",\"reason\",\"score\". The verdict should be one of \"PROMOTE\",\"FLAG\",\"SKIP\". Reason <=12 words. Score integer 0..100. We need to decide what to output. The user didn't provide any context. We need to guess? The u"
+        },
+        {
+          "task": "code_task",
+          "ok": false,
+          "detail": "code-compile-fail",
+          "elapsed_s": 13.201,
+          "out_tokens": 217,
+          "toks_per_s": 16.44,
+          "output_preview": "We need to output only Python code for function fib(n: int) -> int: iterative, no recursion, returns nth Fibonacci. The user says \"Write only Python code for function `def fib(n: int) -> int:` iterative, no recursion, returns nth Fibonacci.\" So we need to outp"
+        },
+        {
+          "task": "instruction_task",
+          "ok": false,
+          "detail": "too-long",
+          "elapsed_s": 4.8736,
+          "out_tokens": 77,
+          "toks_per_s": 15.8,
+          "output_preview": "We need to answer: \"In one short sentence (<= 15 words), describe why self-healing lanes reduce entropy.\" So we need a concise sentence <=15 words. Let's craft: \"Self\u2011healing lanes reduce entropy by smoothing traffic flow, lowering congestion variability.\" Cou"
+        }
+      ],
+      "passes": 0,
+      "task_count": 3,
+      "composite_score": 0.0,
+      "avg_toks_per_s": 15.02,
+      "total_tokens": 411,
+      "total_infer_seconds": 27.366
+    },
+    {
+      "lane": "qwen25_14b_baseline",
+      "model_file": "C:\\Users\\erdno\\chthonic-archive\\models\\Qwen2.5-14B-Instruct-GGUF\\qwen2.5-14b-instruct-q4_k_m-00001-of-00003.gguf",
+      "load_seconds": 6.34,
+      "tasks": [
+        {
+          "task": "json_task",
+          "ok": true,
+          "detail": "ok",
+          "elapsed_s": 7.173,
+          "out_tokens": 21,
+          "toks_per_s": 2.93,
+          "output_preview": "{\"verdict\":\"PROMOTE\",\"reason\":\"High engagement and positive feedback.\",\"score\":92}"
+        },
+        {
+          "task": "code_task",
+          "ok": true,
+          "detail": "ok",
+          "elapsed_s": 14.0789,
+          "out_tokens": 60,
+          "toks_per_s": 4.26,
+          "output_preview": "```python def fib(n: int) -> int:     if n <= 1:         return n     prev, curr = 0, 1     for _ in range(1, n):         prev, curr = curr, prev + curr     return curr ```"
+        },
+        {
+          "task": "instruction_task",
+          "ok": true,
+          "detail": "ok",
+          "elapsed_s": 4.0522,
+          "out_tokens": 13,
+          "toks_per_s": 3.21,
+          "output_preview": "Self-healing lanes reduce entropy by automatically correcting and maintaining order."
+        }
+      ],
+      "passes": 3,
+      "task_count": 3,
+      "composite_score": 100.0,
+      "avg_toks_per_s": 3.71,
+      "total_tokens": 94,
+      "total_infer_seconds": 25.3041
+    }
+  ],
+  "failures": [],
+  "config": {
+    "n_ctx": 4096,
+    "n_gpu_layers": -1,
+    "include_qwen25": true
+  }
+}
