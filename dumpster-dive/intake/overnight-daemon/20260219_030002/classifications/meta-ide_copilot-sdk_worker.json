@@ -1,0 +1,35 @@
+{
+  "path": "meta-ide/copilot-sdk/worker",
+  "primaryLanguage": "javascript",
+  "purpose": "general",
+  "fileCount": 1,
+  "totalSize": 2433,
+  "averageComplexity": 6,
+  "documentationCoverage": 0.03,
+  "files": [
+    {
+      "path": "meta-ide/copilot-sdk/worker/conoutSocketWorker.js",
+      "language": "javascript",
+      "size": 2433,
+      "complexity": {
+        "cyclomatic": 6,
+        "nestingDepth": 4,
+        "functionCount": 2,
+        "avgFunctionLength": 18
+      },
+      "imports": [
+        "module",
+        "path",
+        "fs",
+        "url"
+      ],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0.02702702702702703,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    }
+  ]
+}

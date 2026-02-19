@@ -1,396 +1,171 @@
-// ╔════════════════════════════════════════════════════════════════════════════╗
-// ║  THE DECORATOR'S BLESSING: extension.ts                                  ║
-// ║  TypeScript module: activate, deactivate                                    ║
-// ╠════════════════════════════════════════════════════════════════════════════╣
-// ║  Spectral Frequency: ORANGE                                                 ║
-// ║  Architectural Role: 🔭 THE OBSERVATORY                                      ║
-// ║  Exports: activate, deactivate                                              ║
-// ╚════════════════════════════════════════════════════════════════════════════╝
-
-import * as vscode from 'vscode';
-import { execSync, execFile } from 'child_process';
-import * as path from 'path';
 import * as fs from 'fs';
+import * as path from 'path';
+import * as vscode from 'vscode';
 
-// Status bar items
-let ssotStatusItem: vscode.StatusBarItem;
-let lineageStatusItem: vscode.StatusBarItem;
-let pythonLaneStatusItem: vscode.StatusBarItem;
-let gpuStatusItem: vscode.StatusBarItem;
-let metabolicCycleStatusItem: vscode.StatusBarItem;
+let bridgeItem: vscode.StatusBarItem | undefined;
+let laneItem: vscode.StatusBarItem | undefined;
 
-// Refresh interval timer
-let refreshTimer: NodeJS.Timeout;
+type RouteSpec = {
+    from: string;
+    to: string;
+    title: string;
+};
 
-// Workspace root path
-let workspaceRoot: string | undefined;
+const ROUTES: RouteSpec[] = [
+    {
+        from: 'chthonic.verifySSO_T',
+        to: 'chthonic.verifySSOT',
+        title: 'Chthonic: Verify SSOT (Bridge)',
+    },
+    {
+        from: 'chthonic.runMetabolicCycle',
+        to: 'chthonic.slabHeal',
+        title: 'Chthonic: Run Self-Heal Loop (Bridge)',
+    },
+    {
+        from: 'chthonic.showGPUStats',
+        to: 'chthonic.reactorSediment',
+        title: 'Chthonic: Run Reactor Sediment (Bridge)',
+    },
+];
 
-export function activate(context: vscode.ExtensionContext) {
-    // Force UTF-8 for spawned Python processes (fixes emoji/cp1252 on Windows)
-    process.env.PYTHONIOENCODING = process.env.PYTHONIOENCODING || 'utf-8';
+export function activate(context: vscode.ExtensionContext): void {
+    const output = vscode.window.createOutputChannel('Chthonic Status Bridge');
+    context.subscriptions.push(output);
+    output.appendLine('[status-bridge] activated');
 
-    console.log('🔥 Chthonic Archive Status Bar extension activated');
+    bridgeItem = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Right, 120);
+    bridgeItem.name = 'Chthonic Status Bridge';
+    bridgeItem.command = 'chthonic.runHostVerify';
+    context.subscriptions.push(bridgeItem);
 
-    // Get workspace root
-    const workspaceFolders = vscode.workspace.workspaceFolders;
-    if (workspaceFolders && workspaceFolders.length > 0) {
-        workspaceRoot = workspaceFolders[0].uri.fsPath;
+    laneItem = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Right, 119);
+    laneItem.name = 'Chthonic Toolchain Lane';
+    laneItem.command = 'chthonic.runHostVerify';
+    context.subscriptions.push(laneItem);
+
+    for (const route of ROUTES) {
+        context.subscriptions.push(
+            vscode.commands.registerCommand(route.from, async () => {
+                await forwardCommand(route.to, route.title, output);
+                refreshItems(output);
+            }),
+        );
     }
 
-    // Create status bar items (right to left order)
-    metabolicCycleStatusItem = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Right, 100);
-    metabolicCycleStatusItem.command = 'chthonic.runMetabolicCycle';
-    metabolicCycleStatusItem.tooltip = 'Click to run metabolic cycle';
-    context.subscriptions.push(metabolicCycleStatusItem);
-
-    gpuStatusItem = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Right, 99);
-    gpuStatusItem.command = 'chthonic.showGPUStats';
-    gpuStatusItem.tooltip = 'GPU VRAM usage (click for details)';
-    context.subscriptions.push(gpuStatusItem);
-
-    pythonLaneStatusItem = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Right, 98);
-    pythonLaneStatusItem.tooltip = 'Python lane version (uv managed)';
-    context.subscriptions.push(pythonLaneStatusItem);
-
-    lineageStatusItem = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Right, 97);
-    lineageStatusItem.tooltip = 'Active lineage (A: Infrastructure, B: Consolidation, C: Heritage)';
-    context.subscriptions.push(lineageStatusItem);
-
-    ssotStatusItem = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Right, 96);
-    ssotStatusItem.command = 'chthonic.verifySSO_T';
-    ssotStatusItem.tooltip = 'SSOT integrity status (click to verify)';
-    context.subscriptions.push(ssotStatusItem);
-
-    // Register commands
     context.subscriptions.push(
-        vscode.commands.registerCommand('chthonic.refreshStatus', refreshAllStatus),
-        vscode.commands.registerCommand('chthonic.verifySSO_T', verifySSO_T),
-        vscode.commands.registerCommand('chthonic.runMetabolicCycle', runMetabolicCycle),
-        vscode.commands.registerCommand('chthonic.showGPUStats', showGPUStats)
+        vscode.commands.registerCommand('chthonic.runHostVerify', async () => {
+            await runArchiveTask('verify:host', output);
+            refreshItems(output);
+        }),
+        vscode.commands.registerCommand('chthonic.runVsAudit', async () => {
+            await runArchiveTask('audit:vs2026', output);
+            refreshItems(output);
+        }),
     );
 
-    // Initial status update
-    refreshAllStatus();
+    const interval = setInterval(() => refreshItems(output), 30_000);
+    context.subscriptions.push({ dispose: () => clearInterval(interval) });
 
-    // Set up periodic refresh
-    const config = vscode.workspace.getConfiguration('chthonic.statusBar');
-    const refreshInterval = config.get<number>('refreshInterval', 30000);
-    refreshTimer = setInterval(refreshAllStatus, refreshInterval);
-    context.subscriptions.push({ dispose: () => clearInterval(refreshTimer) });
-
-    // Watch for configuration changes
-    context.subscriptions.push(
-        vscode.workspace.onDidChangeConfiguration(e => {
-            if (e.affectsConfiguration('chthonic.statusBar')) {
-                refreshAllStatus();
-            }
-        })
-    );
+    refreshItems(output);
 }
 
-export function deactivate() {
-    if (refreshTimer) {
-        clearInterval(refreshTimer);
-    }
+export function deactivate(): void {
+    bridgeItem?.dispose();
+    laneItem?.dispose();
 }
 
-async function refreshAllStatus() {
-    const config = vscode.workspace.getConfiguration('chthonic.statusBar');
-
-    if (!config.get('enabled', true)) {
-        hideAllItems();
+async function forwardCommand(
+    target: string,
+    sourceTitle: string,
+    output: vscode.OutputChannel,
+): Promise<void> {
+    const available = await vscode.commands.getCommands(true);
+    if (!available.includes(target)) {
+        output.appendLine(`[status-bridge] missing target command: ${target}`);
+        void vscode.window.showWarningMessage(
+            `Bridge route unavailable for "${sourceTitle}". Activate chthonic-archive.`,
+        );
         return;
     }
 
-    if (config.get('ssotHashEnabled', true)) {
-        await updateSSO_TStatus();
-        ssotStatusItem.show();
-    } else {
-        ssotStatusItem.hide();
-    }
-
-    if (config.get('lineageEnabled', true)) {
-        await updateLineageStatus();
-        lineageStatusItem.show();
-    } else {
-        lineageStatusItem.hide();
-    }
-
-    if (config.get('pythonLaneEnabled', true)) {
-        await updatePythonLaneStatus();
-        pythonLaneStatusItem.show();
-    } else {
-        pythonLaneStatusItem.hide();
-    }
-
-    if (config.get('gpuEnabled', true)) {
-        await updateGPUStatus();
-        gpuStatusItem.show();
-    } else {
-        gpuStatusItem.hide();
-    }
-
-    if (config.get('metabolicCycleEnabled', true)) {
-        await updateMetabolicCycleStatus();
-        metabolicCycleStatusItem.show();
-    } else {
-        metabolicCycleStatusItem.hide();
-    }
-}
-
-function hideAllItems() {
-    ssotStatusItem.hide();
-    lineageStatusItem.hide();
-    pythonLaneStatusItem.hide();
-    gpuStatusItem.hide();
-    metabolicCycleStatusItem.hide();
-}
-
-async function updateSSO_TStatus() {
     try {
-        if (!workspaceRoot) {
-            ssotStatusItem.text = '$(error) SSOT: No workspace';
-            return;
-        }
-
-        // Check if ssot_immunity.py exists
-        const ssotPath = path.join(workspaceRoot, 'ssot_immunity.py');
-        if (!fs.existsSync(ssotPath)) {
-            ssotStatusItem.text = '$(question) SSOT';
-            ssotStatusItem.tooltip = 'SSOT verification script not found';
-            return;
-        }
-
-        // Run ssot_immunity.py to verify hash
-        const result = execSync('uv run python ssot_immunity.py --quiet', {
-            cwd: workspaceRoot,
-            encoding: 'utf-8',
-            timeout: 5000
-        }).trim();
-
-        if (result.includes('✅') || result.includes('VALID')) {
-            ssotStatusItem.text = '$(pass) SSOT';
-            ssotStatusItem.color = '#A8C686'; // FA⁵ sage green (Flesh & Earth)
-        } else if (result.includes('⚠️') || result.includes('DRIFT')) {
-            ssotStatusItem.text = '$(warning) SSOT';
-            ssotStatusItem.color = '#C9A55A'; // Warning warm gold
-        } else {
-            ssotStatusItem.text = '$(error) SSOT';
-            ssotStatusItem.color = '#B35050'; // Error earthy red
-        }
+        await vscode.commands.executeCommand(target);
     } catch (error) {
-        ssotStatusItem.text = '$(sync~spin) SSOT';
-        ssotStatusItem.tooltip = `SSOT check pending: ${error}`;
+        output.appendLine(`[status-bridge] command failed ${target}: ${formatError(error)}`);
+        void vscode.window.showErrorMessage(`Bridge command failed: ${target}`);
     }
 }
 
-async function updateLineageStatus() {
-    try {
-        if (!workspaceRoot) {
-            lineageStatusItem.text = '$(git-branch) ???';
-            return;
-        }
+function refreshItems(output: vscode.OutputChannel): void {
+    const archivePath = resolveArchiveExtensionPath();
+    const archiveReady = archivePath !== null;
 
-        // Detect active lineage by examining recent git activity or current branch
-        const branch = execSync('git branch --show-current', {
-            cwd: workspaceRoot,
-            encoding: 'utf-8'
-        }).trim();
+    if (bridgeItem) {
+        bridgeItem.text = archiveReady ? '$(plug) Chthonic Bridge' : '$(warning) Bridge Missing';
+        bridgeItem.tooltip = archiveReady
+            ? 'Legacy statusbar commands are routed to chthonic-archive.'
+            : 'chthonic-archive workspace not found. Open repository root.';
+        bridgeItem.color = archiveReady ? undefined : new vscode.ThemeColor('statusBarItem.warningForeground');
+        bridgeItem.show();
+    }
 
-        let lineage = '?';
-        let color = '#B8B8CC';
-
-        if (branch.includes('lineage-a') || branch.includes('infrastructure')) {
-            lineage = 'A';
-            color = '#C75D5D'; // FA¹ earthy red
-        } else if (branch.includes('lineage-b') || branch.includes('consolidation')) {
-            lineage = 'B';
-            color = '#6B9E94'; // FA⁴ sacred teal
-        } else if (branch.includes('lineage-c') || branch.includes('heritage')) {
-            lineage = 'C';
-            color = '#C9A55A'; // FA³ warm gold
-        } else {
-            // Check recent file modifications in lineage directories
-            const lineageAExists = fs.existsSync(path.join(workspaceRoot, 'dumpster-dive', 'intake', 'templates', 'lineage-A-template'));
-            const lineageBExists = fs.existsSync(path.join(workspaceRoot, 'dumpster-dive', 'intake', 'templates', 'lineage-B-template'));
-            const lineageCExists = fs.existsSync(path.join(workspaceRoot, 'dumpster-dive', 'intake', 'templates', 'lineage-C-template'));
-
-            // Default to main branch = general work
-            lineage = 'Ø';
-            color = '#E8DDD4';  // Warm cream foreground
-        }
-
-        lineageStatusItem.text = `$(git-branch) ${lineage}`;
-        lineageStatusItem.color = color;
-    } catch (error) {
-        lineageStatusItem.text = '$(git-branch) ?';
+    if (laneItem) {
+        laneItem.text = archiveReady ? '$(shield) Verify Host' : '$(circle-slash) Verify Host';
+        laneItem.tooltip = archiveReady
+            ? 'Run heavyweight host verification lane for chthonic-archive.'
+            : 'Cannot resolve extensions/chthonic-archive folder.';
+        laneItem.show();
     }
 }
 
-async function updatePythonLaneStatus() {
-    try {
-        // Get active Python version via uv
-        const result = execSync('uv run python --version', {
-            cwd: workspaceRoot,
-            encoding: 'utf-8',
-            timeout: 3000
-        }).trim();
-
-        // Extract version (e.g., "Python 3.13.10" -> "3.13")
-        const match = result.match(/Python\s+(\d+\.\d+(?:\.\d+)?)/);
-        if (match) {
-            const version = match[1];
-            pythonLaneStatusItem.text = `$(symbol-method) ${version}`;
-            pythonLaneStatusItem.color = '#6B9E94'; // FA⁴ sacred teal
-        } else {
-            pythonLaneStatusItem.text = '$(symbol-method) ???';
-        }
-    } catch (error) {
-        pythonLaneStatusItem.text = '$(symbol-method) err';
-        pythonLaneStatusItem.tooltip = `Python lane error: ${error}`;
+async function runArchiveTask(taskName: string, output: vscode.OutputChannel): Promise<void> {
+    const archivePath = resolveArchiveExtensionPath();
+    if (!archivePath) {
+        void vscode.window.showWarningMessage(
+            'Cannot resolve chthonic-archive workspace. Open repository root before running bridge tasks.',
+        );
+        return;
     }
+
+    const terminal = vscode.window.createTerminal({
+        name: `Chthonic ${taskName}`,
+        cwd: archivePath,
+    });
+    terminal.show();
+    terminal.sendText(`bun run ${taskName}`);
+    output.appendLine(`[status-bridge] task dispatched: bun run ${taskName} @ ${archivePath}`);
 }
 
-async function updateGPUStatus() {
-    try {
-        if (!workspaceRoot) {
-            gpuStatusItem.text = '$(device-desktop) ???';
-            return;
-        }
+function resolveArchiveExtensionPath(): string | null {
+    const root = vscode.workspace.workspaceFolders?.[0]?.uri.fsPath;
+    if (!root) {
+        return null;
+    }
 
-        // Try to get GPU VRAM via nvidia-smi or PyNVML
+    const directArchive = path.join(root, 'package.json');
+    if (fs.existsSync(directArchive)) {
         try {
-            const result = execSync('nvidia-smi --query-gpu=memory.used,memory.total --format=csv,noheader,nounits', {
-                encoding: 'utf-8',
-                timeout: 2000
-            }).trim();
-
-            const [used, total] = result.split(',').map(s => parseInt(s.trim()));
-            const usedGB = (used / 1024).toFixed(1);
-            const totalGB = (total / 1024).toFixed(1);
-            const percent = ((used / total) * 100).toFixed(0);
-
-            gpuStatusItem.text = `$(device-desktop) ${usedGB}/${totalGB}GB`;
-
-            // Color code by usage (Decorator's Flesh & Earth palette)
-            if (parseInt(percent) < 50) {
-                gpuStatusItem.color = '#A8C686'; // Low usage - sage green
-            } else if (parseInt(percent) < 80) {
-                gpuStatusItem.color = '#C9A55A'; // Medium usage - warm gold
-            } else {
-                gpuStatusItem.color = '#B35050'; // High usage - blood red
+            const parsed = JSON.parse(fs.readFileSync(directArchive, 'utf8')) as { name?: string };
+            if (parsed.name === 'chthonic-archive') {
+                return root;
             }
         } catch {
-            gpuStatusItem.text = '$(device-desktop) N/A';
-            gpuStatusItem.tooltip = 'GPU stats unavailable (nvidia-smi not found)';
+            // ignore malformed local package
         }
-    } catch (error) {
-        gpuStatusItem.text = '$(device-desktop) err';
     }
+
+    const nestedArchive = path.join(root, 'extensions', 'chthonic-archive', 'package.json');
+    if (fs.existsSync(nestedArchive)) {
+        return path.dirname(nestedArchive);
+    }
+
+    return null;
 }
 
-async function updateMetabolicCycleStatus() {
-    try {
-        if (!workspaceRoot) {
-            metabolicCycleStatusItem.text = '$(pulse) ???';
-            return;
-        }
-
-        // Check when autonomous_coordinator.py was last run by checking git log
-        const autonomousCoordinatorPath = path.join(workspaceRoot, 'autonomous_coordinator.py');
-        if (!fs.existsSync(autonomousCoordinatorPath)) {
-            metabolicCycleStatusItem.text = '$(pulse) N/A';
-            return;
-        }
-
-        // Check for recent session status file
-        const sessionStatusPath = path.join(workspaceRoot, 'AUTONOMOUS_SESSION_STATUS.md');
-        if (fs.existsSync(sessionStatusPath)) {
-            const stats = fs.statSync(sessionStatusPath);
-            const lastModified = stats.mtime;
-            const ageMs = Date.now() - lastModified.getTime();
-            const ageHours = Math.floor(ageMs / (1000 * 60 * 60));
-            const ageDays = Math.floor(ageHours / 24);
-
-            let displayAge = '';
-            let color = '#A8C686'; // Sage green (Decorator's Flesh & Earth)
-
-            if (ageDays > 0) {
-                displayAge = `${ageDays}d`;
-                color = ageDays > 7 ? '#B35050' : '#C9A55A'; // Blood red if > 7 days, warm gold if > 1 day
-            } else if (ageHours > 0) {
-                displayAge = `${ageHours}h`;
-                color = '#A8C686';  // Sage green
-            } else {
-                displayAge = 'now';
-                color = '#6B9E94'; // Sacred teal for very recent
-            }
-
-            metabolicCycleStatusItem.text = `$(pulse) ${displayAge}`;
-            metabolicCycleStatusItem.color = color;
-            metabolicCycleStatusItem.tooltip = `Last metabolic cycle: ${lastModified.toLocaleString()}`;
-        } else {
-            metabolicCycleStatusItem.text = '$(pulse) ???';
-            metabolicCycleStatusItem.tooltip = 'No metabolic cycle status found';
-        }
-    } catch (error) {
-        metabolicCycleStatusItem.text = '$(pulse) err';
+function formatError(error: unknown): string {
+    if (error instanceof Error) {
+        return `${error.name}: ${error.message}`;
     }
-}
-
-async function verifySSO_T() {
-    if (!workspaceRoot) {
-        vscode.window.showErrorMessage('No workspace folder found');
-        return;
-    }
-
-    const terminal = vscode.window.createTerminal({
-        name: 'SSOT Verification',
-        cwd: workspaceRoot
-    });
-
-    terminal.show();
-    terminal.sendText('uv run python ssot_immunity.py');
-
-    // Refresh status after a delay
-    setTimeout(() => updateSSO_TStatus(), 2000);
-}
-
-async function runMetabolicCycle() {
-    if (!workspaceRoot) {
-        vscode.window.showErrorMessage('No workspace folder found');
-        return;
-    }
-
-    const terminal = vscode.window.createTerminal({
-        name: 'Metabolic Cycle',
-        cwd: workspaceRoot
-    });
-
-    terminal.show();
-    terminal.sendText('uv run python autonomous_coordinator.py');
-
-    // Show notification
-    vscode.window.showInformationMessage('🔥 Metabolic cycle initiated by The Decorator 👑💀⚜️');
-
-    // Refresh status after execution
-    setTimeout(() => {
-        refreshAllStatus();
-        vscode.window.showInformationMessage('✅ Metabolic cycle complete');
-    }, 20000);
-}
-
-async function showGPUStats() {
-    if (!workspaceRoot) {
-        vscode.window.showErrorMessage('No workspace folder found');
-        return;
-    }
-
-    const terminal = vscode.window.createTerminal({
-        name: 'GPU Statistics',
-        cwd: workspaceRoot
-    });
-
-    terminal.show();
-    terminal.sendText('nvidia-smi');
+    return String(error);
 }

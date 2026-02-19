@@ -1,0 +1,39 @@
+{
+  "path": "extensions/chthonic-archive/native/entropy-renderer-wasm/src",
+  "primaryLanguage": "rust",
+  "purpose": "core",
+  "fileCount": 1,
+  "totalSize": 5660,
+  "averageComplexity": 8,
+  "documentationCoverage": 0,
+  "files": [
+    {
+      "path": "extensions/chthonic-archive/native/entropy-renderer-wasm/src/lib.rs",
+      "language": "rust",
+      "size": 5660,
+      "complexity": {
+        "cyclomatic": 8,
+        "nestingDepth": 6,
+        "functionCount": 5,
+        "avgFunctionLength": 38
+      },
+      "imports": [
+        "serde::Deserialize",
+        "wasm_bindgen::prelude::",
+        "wasm_bindgen::JsCast"
+      ],
+      "exports": [
+        "render_graph"
+      ],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [
+        "error-handling:Result",
+        "async-patterns"
+      ],
+      "antiPatterns": [],
+      "securityFlags": []
+    }
+  ]
+}

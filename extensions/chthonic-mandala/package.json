@@ -1,19 +1,19 @@
 {
   "name": "chthonic-mandala",
-  "displayName": "Chthonic Mandala Viewer",
-  "description": "Sacred geometry visualization of repository topology (10,110 nodes)",
+  "displayName": "Chthonic Mandala Bridge",
+  "description": "Compatibility bridge that maps legacy Mandala commands/views to Chthonic Archive lanes",
   "version": "0.1.0",
   "publisher": "chthonic-archive",
   "icon": "icons/mandala.svg",
   "engines": {
-    "vscode": "^1.109.0"
+    "vscode": "^1.110.0"
   },
-  "categories": ["Visualization", "Themes"],
+  "categories": ["Visualization", "Other"],
   "activationEvents": [
     "onCommand:chthonic.openMandala",
     "onCommand:chthonic.openDependencyGraph",
     "onCommand:chthonic.openHealthReport",
-    "onCommand:chthonic.switchTheme",
+    "onCommand:chthonic.mandalaBridge.switchTheme",
     "onView:chthonic.mandalaView",
     "onView:chthonic.dependencyView",
     "onView:chthonic.healthView",
@@ -29,35 +29,23 @@
     }
   },
   "contributes": {
-    "themes": [
-      {
-        "label": "Chthonic Mandala - Flesh & Earth",
-        "uiTheme": "vs-dark",
-        "path": "./themes/chthonic-mandala-color-theme.json"
-      },
-      {
-        "label": "Chthonic Mandala - ROGBIV",
-        "uiTheme": "vs-dark",
-        "path": "./themes/chthonic-rogbiv-color-theme.json"
-      }
-    ],
     "commands": [
       {
         "command": "chthonic.openMandala",
-        "title": "Chthonic: Open Sacred Mandala",
+        "title": "Chthonic: Open Loom (Mandala Bridge)",
         "icon": "$(symbol-misc)"
       },
       {
         "command": "chthonic.openDependencyGraph",
-        "title": "Chthonic: Open Dependency Graph"
+        "title": "Chthonic: Open Abyssal View (Bridge)"
       },
       {
         "command": "chthonic.openHealthReport",
-        "title": "Chthonic: Open Health Report"
+        "title": "Chthonic: Open Lens View (Bridge)"
       },
       {
-        "command": "chthonic.switchTheme",
-        "title": "Chthonic: Switch Theme",
+        "command": "chthonic.mandalaBridge.switchTheme",
+        "title": "Chthonic: Switch Theme (Mandala Bridge)",
         "icon": "$(paintcan)"
       }
     ],
@@ -74,23 +62,23 @@
       "chthonic-geometry": [
         {
           "id": "chthonic.mandalaView",
-          "name": "Sacred Mandala",
+          "name": "Loom Bridge",
           "icon": "resources/mandala.svg",
-          "contextualTitle": "Sacred Geometry"
+          "contextualTitle": "Chthonic Mandala Bridge"
         },
         {
           "id": "chthonic.dependencyView",
-          "name": "Dependency Graph",
+          "name": "Abyssal Bridge",
           "icon": "resources/mandala.svg"
         },
         {
           "id": "chthonic.healthView",
-          "name": "Health Report",
+          "name": "Lens Bridge",
           "icon": "resources/mandala.svg"
         },
         {
           "id": "chthonic.themeView",
-          "name": "Themes",
+          "name": "Theme Bridge",
           "icon": "resources/mandala.svg"
         }
       ]
@@ -101,11 +89,11 @@
     "compile": "bun build src/extension.ts --outdir dist --target node --format cjs --external vscode --minify",
     "watch": "bun build src/extension.ts --outdir dist --target node --format cjs --external vscode --watch",
     "insiders:run": "code-insiders --extensionDevelopmentPath=.",
-    "insiders:dts:sync": "vscode-dts main"
+    "insiders:dts:sync": "vscode-dts dev && vscode-dts main"
   },
   "devDependencies": {
     "@types/node": "^20.x",
-    "@types/vscode": "^1.109.0",
+    "@types/vscode": "^1.110.0",
     "@vscode/dts": "^0.4.1",
     "@vscode/test-cli": "^0.0.12",
     "@vscode/test-electron": "^2.5.2",

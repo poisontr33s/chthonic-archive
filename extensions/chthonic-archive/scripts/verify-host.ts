@@ -1,5 +1,5 @@
 import { spawnSync } from 'bun';
-import { existsSync, readFileSync } from 'fs';
+import { existsSync, readFileSync, readdirSync } from 'fs';
 import path from 'path';
 
 type HostCheck = {
@@ -43,6 +43,17 @@ type ToolpoolSnapshot = {
     };
 };
 
+type VerifyMode = {
+    codexOnly: boolean;
+};
+
+type CodexExtensionProbe = {
+    channel: 'insiders' | 'stable';
+    dirPath: string;
+    version: string;
+    vscodeEngine: string | null;
+};
+
 const cyan = '\x1b[36m';
 const green = '\x1b[32m';
 const yellow = '\x1b[33m';
@@ -50,6 +61,18 @@ const red = '\x1b[31m';
 const reset = '\x1b[0m';
 
 const envOverrides: Record<string, string> = {};
+const mode: VerifyMode = {
+    codexOnly: process.argv.includes('--codex-only'),
+};
+
+function resolveRepoRoot(): string | null {
+    const probe = runSync(['git', 'rev-parse', '--show-toplevel']);
+    if (probe.threw || probe.exitCode !== 0) {
+        return null;
+    }
+    const root = normalizeOutput(probe.stdout).split(/\r?\n/)[0]?.trim();
+    return root && root.length > 0 ? root : null;
+}
 
 function mergedEnv(): Record<string, string> {
     return {
@@ -84,6 +107,250 @@ function runSync(cmd: string[]): {
             threw: true,
         };
     }
+}
+
+function normalizeOutput(text: string): string {
+    return text.replace(/\u0000/g, '').trim();
+}
+
+function resolveCommandPath(command: string): string | null {
+    const probe = process.platform === 'win32'
+        ? runSync(['where', command])
+        : runSync(['which', command]);
+    if (probe.threw || probe.exitCode !== 0 || !probe.stdout.trim()) {
+        return null;
+    }
+    const line = normalizeOutput(probe.stdout).split(/\r?\n/).map((entry) => entry.trim()).find(Boolean);
+    return line ?? null;
+}
+
+function getCodexExtensionProbes(): CodexExtensionProbe[] {
+    const home = process.env.USERPROFILE ?? process.env.HOME ?? '';
+    if (!home) {
+        return [];
+    }
+
+    const roots: Array<{ channel: 'insiders' | 'stable'; dir: string }> = [
+        { channel: 'insiders', dir: path.join(home, '.vscode-insiders', 'extensions') },
+        { channel: 'stable', dir: path.join(home, '.vscode', 'extensions') },
+    ];
+
+    const probes: CodexExtensionProbe[] = [];
+    for (const root of roots) {
+        if (!existsSync(root.dir)) {
+            continue;
+        }
+        const dirs = readdirSync(root.dir, { withFileTypes: true })
+            .filter((entry) => entry.isDirectory() && entry.name.startsWith('openai.chatgpt-'))
+            .map((entry) => path.join(root.dir, entry.name));
+        for (const dirPath of dirs) {
+            const packagePath = path.join(dirPath, 'package.json');
+            const raw = safeReadText(packagePath);
+            if (!raw) {
+                continue;
+            }
+            try {
+                const parsed = JSON.parse(raw) as Record<string, unknown>;
+                const version = typeof parsed.version === 'string' ? parsed.version : 'unknown';
+                const engines = typeof parsed.engines === 'object' && parsed.engines ? parsed.engines as Record<string, unknown> : null;
+                const vscodeEngine = engines && typeof engines.vscode === 'string' ? engines.vscode : null;
+                probes.push({
+                    channel: root.channel,
+                    dirPath,
+                    version,
+                    vscodeEngine,
+                });
+            } catch {
+                continue;
+            }
+        }
+    }
+
+    return probes.sort((left, right) => right.version.localeCompare(left.version, undefined, { numeric: true, sensitivity: 'base' }));
+}
+
+function hasWorkspacePackage(depName: string): boolean {
+    const packagePath = path.join(process.cwd(), 'package.json');
+    const raw = safeReadText(packagePath);
+    if (!raw) {
+        return false;
+    }
+
+    try {
+        const parsed = JSON.parse(raw) as Record<string, unknown>;
+        const depKeys = ['dependencies', 'devDependencies', 'optionalDependencies', 'peerDependencies'];
+        for (const depKey of depKeys) {
+            const depTable = parsed[depKey];
+            if (!depTable || typeof depTable !== 'object') {
+                continue;
+            }
+            if (Object.prototype.hasOwnProperty.call(depTable, depName)) {
+                return true;
+            }
+        }
+    } catch {
+        return false;
+    }
+
+    return false;
+}
+
+function hasGlobalBunPackage(packagePath: string): boolean {
+    const home = process.env.USERPROFILE ?? process.env.HOME ?? '';
+    if (!home) {
+        return false;
+    }
+    return existsSync(path.join(home, '.bun', 'install', 'global', 'node_modules', packagePath));
+}
+
+function hasPythonAgentsPackage(): boolean {
+    const pythonPath = path.join(
+        process.cwd(),
+        '.chthonic',
+        'venv',
+        process.platform === 'win32' ? 'Scripts/python.exe' : 'bin/python',
+    );
+    if (!existsSync(pythonPath)) {
+        return false;
+    }
+    const probe = runSync([pythonPath, '-c', 'import agents']);
+    return !probe.threw && probe.exitCode === 0;
+}
+
+function ensureCodexCliLane(): ManualCheckResult {
+    const codex = runSync(['codex', '--version']);
+    if (codex.threw || codex.exitCode !== 0) {
+        return {
+            ok: false,
+            note: 'codex CLI not found on PATH',
+        };
+    }
+
+    const codexPath = resolveCommandPath('codex') ?? 'unknown';
+    const version = normalizeOutput(codex.stdout).split(/\r?\n/)[0] ?? 'unknown';
+    return {
+        ok: true,
+        note: `version=${version}\npath=${codexPath}`,
+    };
+}
+
+function ensureCodexSandboxLane(): ManualCheckResult {
+    const probe = runSync([
+        'codex',
+        'sandbox',
+        'windows',
+        '--full-auto',
+        'pwsh',
+        '-NoLogo',
+        '-NoProfile',
+        '-Command',
+        'Write-Output chthonic-sandbox-ok',
+    ]);
+    const output = normalizeOutput(probe.stdout);
+    if (!probe.threw && probe.exitCode === 0 && /chthonic-sandbox-ok/i.test(output)) {
+        return {
+            ok: true,
+            note: 'native Windows restricted-token sandbox is functional',
+        };
+    }
+    return {
+        ok: false,
+        note: 'native Codex Windows sandbox probe failed',
+    };
+}
+
+function ensureCodexExtensionLane(): ManualCheckResult {
+    const probes = getCodexExtensionProbes();
+    if (probes.length === 0) {
+        return {
+            ok: false,
+            note: 'openai.chatgpt extension not found in VS Code extension roots',
+        };
+    }
+
+    const active = probes[0];
+    const vscodeInsiders = runSync(['code-insiders', '--version']);
+    const insidersVersion = (!vscodeInsiders.threw && vscodeInsiders.exitCode === 0)
+        ? (normalizeOutput(vscodeInsiders.stdout).split(/\r?\n/)[0] ?? 'unknown')
+        : 'missing';
+
+    return {
+        ok: true,
+        note: [
+            `channel=${active.channel}`,
+            `version=${active.version}`,
+            `engines.vscode=${active.vscodeEngine ?? 'unknown'}`,
+            `code-insiders=${insidersVersion}`,
+        ].join('\n'),
+    };
+}
+
+function ensureOpenAiSdkLane(): ManualCheckResult {
+    const codexSdkWorkspace = hasWorkspacePackage('@openai/codex-sdk');
+    const agentsJsWorkspace = hasWorkspacePackage('@openai/agents');
+    const openaiJsWorkspace = hasWorkspacePackage('openai');
+
+    const codexSdkGlobal = hasGlobalBunPackage(path.join('@openai', 'codex-sdk'));
+    const agentsJsGlobal = hasGlobalBunPackage(path.join('@openai', 'agents'));
+    const openaiJsGlobal = hasGlobalBunPackage('openai');
+    const agentsPyInstalled = hasPythonAgentsPackage();
+
+    const codexSdkOk = codexSdkWorkspace || codexSdkGlobal;
+    const agentsJsOk = agentsJsWorkspace || agentsJsGlobal;
+    const openaiJsOk = openaiJsWorkspace || openaiJsGlobal;
+
+    const allPresent = codexSdkOk && agentsJsOk && openaiJsOk;
+    return {
+        ok: allPresent,
+        note: [
+            `@openai/codex-sdk=${codexSdkOk ? 'OK' : 'MISSING'}`,
+            `|- @openai/agents=${agentsJsOk ? 'OK' : 'MISSING'}`,
+            `|- openai(js)=${openaiJsOk ? 'OK' : 'MISSING'}`,
+            `\\- openai-agents(py package, optional)=${agentsPyInstalled ? 'present' : 'absent'}`,
+        ].join('\n'),
+    };
+}
+
+function ensureWetPaperNoDeleteGuard(): ManualCheckResult {
+    const repoRoot = resolveRepoRoot();
+    if (!repoRoot) {
+        return {
+            ok: true,
+            note: 'git repository root unresolved; skipping non-delete guard',
+        };
+    }
+
+    const status = runSync(['git', '-C', repoRoot, 'status', '--porcelain']);
+    if (status.threw || status.exitCode !== 0) {
+        return {
+            ok: true,
+            note: 'unable to read git status; skipping non-delete guard',
+        };
+    }
+
+    const deletionRows = normalizeOutput(status.stdout)
+        .split(/\r?\n/)
+        .map((line) => line.trimEnd())
+        .filter((line) => line.length >= 3)
+        .filter((line) => {
+            const xy = line.slice(0, 2);
+            return xy.includes('D');
+        });
+
+    if (deletionRows.length === 0) {
+        return {
+            ok: true,
+            note: 'no tracked deletions detected (WPTG compliant)',
+        };
+    }
+
+    const preview = deletionRows.slice(0, 8).map((line) => line.slice(3));
+    const remainder = deletionRows.length - preview.length;
+    const suffix = remainder > 0 ? `\n... +${remainder} more deletions` : '';
+    return {
+        ok: false,
+        note: `tracked deletions detected:\n${preview.join('\n')}${suffix}`,
+    };
 }
 
 function loadToolpoolSnapshot(): ToolpoolSnapshot | null {
@@ -239,192 +506,254 @@ function safeReadText(filePath: string): string | null {
 
 console.log(`${cyan}[Chthonic] Running Preflight Host Verification...${reset}`);
 
-const checkTree: CheckTreeNode[] = [
-    {
-        name: 'Host Lane Graph',
-        children: [
-            {
+const hostLaneNode: CheckTreeNode = {
+    name: 'Host Lane Graph',
+    children: [
+        {
+            name: 'Tool Pool Snapshot',
+            check: {
                 name: 'Tool Pool Snapshot',
-                check: {
-                    name: 'Tool Pool Snapshot',
-                    cmd: ['pwsh', '--version'],
-                    manualCheck: ensureToolpoolLane,
-                    warnOnly: true,
-                    fix: 'Run: bun run toolpool:scan (or mise run toolpool-scan)',
-                },
+                cmd: ['pwsh', '--version'],
+                manualCheck: ensureToolpoolLane,
+                warnOnly: true,
+                fix: 'Run: bun run toolpool:scan (or mise run toolpool-scan)',
             },
-        ],
-    },
-    {
-        name: 'Runtime Lanes',
-        children: [
-            {
-                name: 'Rust Lane',
-                children: [
-                    {
+        },
+    ],
+};
+
+const codexLaneNode: CheckTreeNode = {
+    name: 'Codex Agent Lanes',
+    children: [
+        {
+            name: 'WPTG Non-Delete Guard',
+            check: {
+                name: 'WPTG Non-Delete Guard',
+                cmd: ['git', '--version'],
+                manualCheck: ensureWetPaperNoDeleteGuard,
+                warnOnly: true,
+                fix: 'Avoid destructive deletes. Preserve legacy artifacts and propose upcycle paths before removal.',
+            },
+        },
+        {
+            name: 'Codex CLI',
+            check: {
+                name: 'Codex CLI',
+                cmd: ['codex', '--version'],
+                manualCheck: ensureCodexCliLane,
+                warnOnly: true,
+                fix: 'Install Codex CLI: bun add -g @openai/codex',
+            },
+        },
+        {
+            name: 'Codex VS Code Extension',
+            check: {
+                name: 'Codex VS Code Extension',
+                cmd: ['code-insiders', '--list-extensions'],
+                manualCheck: ensureCodexExtensionLane,
+                warnOnly: true,
+                fix: 'Install extension openai.chatgpt in VS Code Insiders.',
+            },
+        },
+        {
+            name: 'Native Sandbox (Windows)',
+            check: {
+                name: 'Codex Native Sandbox (Windows)',
+                cmd: ['codex', 'sandbox', 'windows', '--help'],
+                manualCheck: ensureCodexSandboxLane,
+                warnOnly: true,
+                fix: 'Upgrade Codex CLI and ensure sandbox support is available: codex sandbox windows --help',
+            },
+        },
+        {
+            name: 'OpenAI SDK/Agent Kits',
+            check: {
+                name: 'OpenAI SDK/Agent Kits',
+                cmd: ['bun', '--version'],
+                manualCheck: ensureOpenAiSdkLane,
+                warnOnly: true,
+                fix: 'Install JS SDKs: bun add -D @openai/codex-sdk @openai/agents openai; optional Python package lane: uv pip install --python .chthonic/venv/Scripts/python.exe openai-agents',
+            },
+        },
+    ],
+};
+
+const runtimeLaneNode: CheckTreeNode = {
+    name: 'Runtime Lanes',
+    children: [
+        {
+            name: 'Rust Lane',
+            children: [
+                {
+                    name: 'Rust Toolchain',
+                    check: {
                         name: 'Rust Toolchain',
-                        check: {
-                            name: 'Rust Toolchain',
-                            cmd: ['rustc', '--version'],
-                            fix: 'Install Rust via rustup: https://rustup.rs',
-                        },
+                        cmd: ['rustc', '--version'],
+                        fix: 'Install Rust via rustup: https://rustup.rs',
                     },
-                    {
+                },
+                {
+                    name: 'Rust Package Manager (cargo)',
+                    check: {
                         name: 'Rust Package Manager (cargo)',
-                        check: {
-                            name: 'Rust Package Manager (cargo)',
-                            cmd: ['cargo', '--version'],
-                            fix: 'Install Cargo via rustup: https://rustup.rs',
-                        },
+                        cmd: ['cargo', '--version'],
+                        fix: 'Install Cargo via rustup: https://rustup.rs',
                     },
-                    {
+                },
+                {
+                    name: 'Rustup',
+                    check: {
                         name: 'Rustup',
-                        check: {
-                            name: 'Rustup',
-                            cmd: ['rustup', '--version'],
-                            fix: 'Install rustup: https://rustup.rs',
-                        },
+                        cmd: ['rustup', '--version'],
+                        fix: 'Install rustup: https://rustup.rs',
                     },
-                ],
-            },
-            {
-                name: 'Ruby Lane',
-                children: [
-                    {
+                },
+            ],
+        },
+        {
+            name: 'Ruby Lane',
+            children: [
+                {
+                    name: 'Ruby Manager (rv)',
+                    check: {
                         name: 'Ruby Manager (rv)',
-                        check: {
-                            name: 'Ruby Manager (rv)',
-                            cmd: ['rv', '--version'],
-                            warnOnly: true,
-                            fix: 'Install rv (Rust-native Ruby manager): cargo install rv',
-                        },
+                        cmd: ['rv', '--version'],
+                        warnOnly: true,
+                        fix: 'Install rv (Rust-native Ruby manager): cargo install rv',
                     },
-                    {
+                },
+                {
+                    name: 'Ruby Runtime',
+                    check: {
                         name: 'Ruby Runtime',
-                        check: {
-                            name: 'Ruby Runtime',
-                            cmd: ['ruby', '--version'],
-                            check: (stdout) => /^ruby\s+4\./i.test(stdout.trim()),
-                            warnOnly: true,
-                            fix: 'Install Ruby 4.x lane via rv to align with Prism lane target.',
-                        },
+                        cmd: ['ruby', '--version'],
+                        check: (stdout) => /^ruby\s+4\./i.test(stdout.trim()),
+                        warnOnly: true,
+                        fix: 'Install Ruby 4.x lane via rv to align with Prism lane target.',
                     },
-                ],
-            },
-            {
-                name: 'Go Lane',
-                children: [
-                    {
+                },
+            ],
+        },
+        {
+            name: 'Go Lane',
+            children: [
+                {
+                    name: 'Go Manager (goup)',
+                    check: {
                         name: 'Go Manager (goup)',
-                        check: {
-                            name: 'Go Manager (goup)',
-                            cmd: ['goup', '--version'],
-                            warnOnly: true,
-                            fix: 'Install goup (Rust-native Go manager): cargo install goup',
-                        },
+                        cmd: ['goup', '--version'],
+                        warnOnly: true,
+                        fix: 'Install goup (Rust-native Go manager): cargo install goup',
                     },
-                ],
-            },
-            {
-                name: 'JavaScript Lane',
-                children: [
-                    {
-                        name: 'Runtime (bun)',
-                        check: {
-                            name: 'JavaScript Runtime Lane (bun)',
-                            cmd: ['bun', '--version'],
-                            manualCheck: ensureNodeManagerLane,
-                            warnOnly: true,
-                            fix: 'Install bun: https://bun.sh/docs/installation',
-                        },
+                },
+            ],
+        },
+        {
+            name: 'JavaScript Lane',
+            children: [
+                {
+                    name: 'Runtime (bun)',
+                    check: {
+                        name: 'JavaScript Runtime Lane (bun)',
+                        cmd: ['bun', '--version'],
+                        manualCheck: ensureNodeManagerLane,
+                        warnOnly: true,
+                        fix: 'Install bun: https://bun.sh/docs/installation',
                     },
-                ],
-            },
-        ],
-    },
-    {
-        name: 'Solana Lanes',
-        children: [
-            {
-                name: 'Tool Suite',
-                check: {
-                    name: 'Solana Tool Suite Lane',
-                    cmd: ['solana', '--version'],
-                    manualCheck: ensureSolanaToolSuiteLane,
-                    warnOnly: true,
-                    fix: 'Install Solana Tool Suite (Agave): sh -c "$(curl -sSfL https://release.anza.xyz/stable/install)"',
                 },
+            ],
+        },
+    ],
+};
+
+const solanaLaneNode: CheckTreeNode = {
+    name: 'Solana Lanes',
+    children: [
+        {
+            name: 'Tool Suite',
+            check: {
+                name: 'Solana Tool Suite Lane',
+                cmd: ['solana', '--version'],
+                manualCheck: ensureSolanaToolSuiteLane,
+                warnOnly: true,
+                fix: 'Install Solana Tool Suite (Agave): mise run agave-sync (or use the official Anza installer for your host shell).',
             },
-            {
-                name: 'Anchor Lane',
-                check: {
-                    name: 'Anchor Lane (anchor + avm)',
-                    cmd: ['anchor', '--version'],
-                    manualCheck: ensureAnchorLane,
-                    warnOnly: true,
-                    fix: 'Install AVM + Anchor CLI: cargo install --git https://github.com/solana-foundation/anchor avm --force && avm install latest && avm use latest',
+        },
+        {
+            name: 'Anchor Lane',
+            check: {
+                name: 'Anchor Lane (anchor + avm)',
+                cmd: ['anchor', '--version'],
+                manualCheck: ensureAnchorLane,
+                warnOnly: true,
+                fix: 'Install AVM + Anchor CLI: cargo install --git https://github.com/solana-foundation/anchor avm --force && avm install latest && avm use latest',
+            },
+        },
+    ],
+};
+
+const wasmLaneNode: CheckTreeNode = {
+    name: 'WASM Lanes',
+    children: [
+        {
+            name: 'Target',
+            check: {
+                name: 'WASM Target',
+                cmd: ['rustup', 'target', 'list', '--installed'],
+                check: (stdout) => stdout.includes('wasm32-unknown-unknown'),
+                autoFix: ['rustup', 'target', 'add', 'wasm32-unknown-unknown'],
+                fix: 'Run: rustup target add wasm32-unknown-unknown',
+            },
+        },
+        {
+            name: 'wasm-bindgen',
+            check: {
+                name: 'wasm-bindgen CLI',
+                cmd: ['wasm-bindgen', '--version'],
+                autoFix: ['cargo', 'install', 'wasm-bindgen-cli'],
+                fix: 'Install wasm-bindgen CLI: cargo install wasm-bindgen-cli',
+            },
+        },
+    ],
+};
+
+const hygieneNode: CheckTreeNode = {
+    name: 'Build Hygiene',
+    children: [
+        {
+            name: 'MAKEFLAGS',
+            check: {
+                name: 'MAKEFLAGS (MSVC hygiene)',
+                cmd: ['rustc', '--version'],
+                manualCheck: () => {
+                    const makeFlags = envOverrides.MAKEFLAGS ?? process.env.MAKEFLAGS;
+                    const mflags = envOverrides.MFLAGS ?? process.env.MFLAGS;
+                    const hasMakeFlags = Boolean(makeFlags && makeFlags.trim().length > 0);
+                    const hasMflags = Boolean(mflags && mflags.trim().length > 0);
+                    if (!hasMakeFlags && !hasMflags) {
+                        return { ok: true, note: 'clean (no MAKEFLAGS/MFLAGS)' };
+                    }
+                    // Mirror build-ledger.ts behavior: sanitize locally instead of mutating
+                    // global shell state.
+                    envOverrides.MAKEFLAGS = '';
+                    envOverrides.MFLAGS = '';
+                    const details: string[] = [];
+                    if (hasMakeFlags) details.push(`MAKEFLAGS=${makeFlags}`);
+                    if (hasMflags) details.push(`MFLAGS=${mflags}`);
+                    return {
+                        ok: true,
+                        note: `sanitized for this run (${details.join(', ')})`,
+                    };
                 },
+                fix: 'No action required. Build wrappers sanitize MAKEFLAGS/MFLAGS per process.',
             },
-        ],
-    },
-    {
-        name: 'WASM Lanes',
-        children: [
-            {
-                name: 'Target',
-                check: {
-                    name: 'WASM Target',
-                    cmd: ['rustup', 'target', 'list', '--installed'],
-                    check: (stdout) => stdout.includes('wasm32-unknown-unknown'),
-                    autoFix: ['rustup', 'target', 'add', 'wasm32-unknown-unknown'],
-                    fix: 'Run: rustup target add wasm32-unknown-unknown',
-                },
-            },
-            {
-                name: 'wasm-bindgen',
-                check: {
-                    name: 'wasm-bindgen CLI',
-                    cmd: ['wasm-bindgen', '--version'],
-                    autoFix: ['cargo', 'install', 'wasm-bindgen-cli'],
-                    fix: 'Install wasm-bindgen CLI: cargo install wasm-bindgen-cli',
-                },
-            },
-        ],
-    },
-    {
-        name: 'Build Hygiene',
-        children: [
-            {
-                name: 'MAKEFLAGS',
-                check: {
-                    name: 'MAKEFLAGS (MSVC hygiene)',
-                    cmd: ['rustc', '--version'],
-                    manualCheck: () => {
-                        const makeFlags = envOverrides.MAKEFLAGS ?? process.env.MAKEFLAGS;
-                        const mflags = envOverrides.MFLAGS ?? process.env.MFLAGS;
-                        const hasMakeFlags = Boolean(makeFlags && makeFlags.trim().length > 0);
-                        const hasMflags = Boolean(mflags && mflags.trim().length > 0);
-                        if (!hasMakeFlags && !hasMflags) {
-                            return { ok: true, note: 'clean (no MAKEFLAGS/MFLAGS)' };
-                        }
-                        // Mirror build-ledger.ts behavior: sanitize locally instead of mutating
-                        // global shell state.
-                        envOverrides.MAKEFLAGS = '';
-                        envOverrides.MFLAGS = '';
-                        const details: string[] = [];
-                        if (hasMakeFlags) details.push(`MAKEFLAGS=${makeFlags}`);
-                        if (hasMflags) details.push(`MFLAGS=${mflags}`);
-                        return {
-                            ok: true,
-                            note: `sanitized for this run (${details.join(', ')})`,
-                        };
-                    },
-                    fix: 'No action required. Build wrappers sanitize MAKEFLAGS/MFLAGS per process.',
-                },
-            },
-        ],
-    },
-];
+        },
+    ],
+};
+
+const checkTree: CheckTreeNode[] = mode.codexOnly
+    ? [codexLaneNode]
+    : [hostLaneNode, codexLaneNode, runtimeLaneNode, solanaLaneNode, wasmLaneNode, hygieneNode];
 
 let failed = false;
 
@@ -666,3 +995,4 @@ function printIndented(text: string, prefix = '  '): void {
         console.log(`${prefix}${colorizeInlineStatus(line)}`);
     }
 }
+

@@ -1,72 +1,28 @@
-# Chthonic Archive Status Bar Extension
+# Chthonic Status Bridge
 
-SSOT verification, lineage tracking, GPU monitoring, and metabolic cycle indicators for VSCode.
+This extension is a compatibility/status bridge for legacy statusbar lanes.
 
-## Features
+## Role
 
-### Status Bar Indicators (Right to Left)
+- Keeps legacy command IDs available.
+- Forwards commands to `chthonic-archive` runtime lanes.
+- Exposes quick task commands for heavyweight checks.
 
-1. **SSOT Hash Verification** (`$(pass) SSOT`)
-   - Green: SSOT integrity verified
-   - Yellow: Governance drift detected
-   - Red: Verification error
-   - Click to run `ssot_immunity.py`
+## Routed Legacy Commands
 
-2. **Active Lineage** (`$(git-branch) A/B/C`)
-   - A (Red): Infrastructure/Validation
-   - B (Blue): Consolidation/Archive
-   - C (Gold): Heritage/CRC
-   - Ø (White): Main branch (general work)
+- `chthonic.verifySSO_T` -> `chthonic.verifySSOT`
+- `chthonic.runMetabolicCycle` -> `chthonic.slabHeal`
+- `chthonic.showGPUStats` -> `chthonic.reactorSediment`
 
-3. **Python Lane Version** (`$(symbol-method) 3.13`)
-   - Shows active Python version via `uv run python --version`
-   - Validates lane management compliance
+## Added Task Commands
 
-4. **GPU VRAM** (`$(device-desktop) 2.4/16.0GB`)
-   - Shows used/total VRAM via `nvidia-smi`
-   - Green (<50%), Yellow (50-80%), Red (>80%)
-   - Click for full GPU stats
+- `chthonic.runHostVerify` -> runs `bun run verify:host` in `extensions/chthonic-archive`
+- `chthonic.runVsAudit` -> runs `bun run audit:vs2026` in `extensions/chthonic-archive`
 
-5. **Metabolic Cycle Heartbeat** (`$(pulse) 2h`)
-   - Shows time since last `autonomous_coordinator.py` run
-   - Green (<24h), Yellow (1-7d), Red (>7d)
-   - Click to run metabolic cycle
+## Notes
 
-## Commands
-
-- `Chthonic: Refresh All Status Indicators`
-- `Chthonic: Verify SSOT Integrity`
-- `Chthonic: Run Metabolic Cycle`
-- `Chthonic: Show GPU Statistics`
-
-## Configuration
-
-```jsonc
-{
-  "chthonic.statusBar.enabled": true,
-  "chthonic.statusBar.ssotHashEnabled": true,
-  "chthonic.statusBar.lineageEnabled": true,
-  "chthonic.statusBar.pythonLaneEnabled": true,
-  "chthonic.statusBar.gpuEnabled": true,
-  "chthonic.statusBar.metabolicCycleEnabled": true,
-  "chthonic.statusBar.refreshInterval": 30000 // ms
-}
-```
-
-## Installation
-
-1. Open this folder in VSCode
-2. Press `F5` to launch Extension Development Host
-3. Or: `bun install` → `bun run compile` → Install `.vsix`
-
-## Dependencies
-
-- `uv` (Python package manager)
-- `nvidia-smi` (optional, for GPU stats)
-- Python 3.13+ with `ssot_immunity.py` and `autonomous_coordinator.py`
-
-## Architecture
-
-- **FA⁴ Compliant**: Architectonic integrity via uv-only Python execution
-- **ANKHOLOGICAL**: File-first authority (no workflow inference)
-- **N-T-PAS**: The Decorator's visual sovereignty enforced
+- This bridge does not implement old UV/GPU/status logic directly.
+- `chthonic-archive` remains the authoritative extension lane.
+- Pre-bridge runtime is preserved at `src/statusbar_runtime_legacy.ts`.
+- Legacy validation module is preserved at `src/hedonisticValidation.ts`.
+- Snapshot metadata is preserved at `legacy.package.snapshot.json`.

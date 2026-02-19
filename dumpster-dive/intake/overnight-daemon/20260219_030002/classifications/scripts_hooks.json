@@ -1,0 +1,49 @@
+{
+  "path": "scripts/hooks",
+  "primaryLanguage": "powershell",
+  "purpose": "general",
+  "fileCount": 2,
+  "totalSize": 7020,
+  "averageComplexity": 9,
+  "documentationCoverage": 0.25,
+  "files": [
+    {
+      "path": "scripts/hooks/install-hooks.ps1",
+      "language": "powershell",
+      "size": 657,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 0,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 5,
+      "commentDensity": 0.2777777777777778,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "scripts/hooks/pre-commit-guardian.ps1",
+      "language": "powershell",
+      "size": 6363,
+      "complexity": {
+        "cyclomatic": 17,
+        "nestingDepth": 10,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 24,
+      "commentDensity": 0.21818181818181817,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    }
+  ]
+}

@@ -1,0 +1,76 @@
+{
+  "path": "mas_mcp/tests",
+  "primaryLanguage": "python",
+  "purpose": "testing",
+  "fileCount": 2,
+  "totalSize": 9632,
+  "averageComplexity": 14,
+  "documentationCoverage": 0.06,
+  "files": [
+    {
+      "path": "mas_mcp/tests/test_gpu_integration.py",
+      "language": "python",
+      "size": 7234,
+      "complexity": {
+        "cyclomatic": 21,
+        "nestingDepth": 8,
+        "functionCount": 8,
+        "avgFunctionLength": 29
+      },
+      "imports": [
+        "__future__",
+        "os",
+        "sys",
+        "time",
+        "pathlib",
+        "pytest",
+        "the",
+        "server",
+        "random",
+        "traceback"
+      ],
+      "exports": [
+        "gpu_status",
+        "test_gpu_status",
+        "test_single_score",
+        "test_batch_score",
+        "test_large_batch",
+        "test_pulse",
+        "test_scan"
+      ],
+      "todoCount": 0,
+      "docstringCount": 11,
+      "commentDensity": 0.02100840336134454,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "mas_mcp/tests/test_logic_qualia.py",
+      "language": "python",
+      "size": 2398,
+      "complexity": {
+        "cyclomatic": 7,
+        "nestingDepth": 6,
+        "functionCount": 5,
+        "avgFunctionLength": 13
+      },
+      "imports": [
+        "unittest",
+        "pathlib",
+        "sys",
+        "os",
+        "mas_mcp",
+        "logic.state",
+        "logic.scanner"
+      ],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 4,
+      "commentDensity": 0.10294117647058823,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    }
+  ]
+}

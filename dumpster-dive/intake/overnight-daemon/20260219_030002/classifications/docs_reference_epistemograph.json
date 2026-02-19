@@ -1,0 +1,68 @@
+{
+  "path": "docs/reference/epistemograph",
+  "primaryLanguage": "markdown",
+  "purpose": "general",
+  "fileCount": 3,
+  "totalSize": 8021,
+  "averageComplexity": 1,
+  "documentationCoverage": 0,
+  "files": [
+    {
+      "path": "docs/reference/epistemograph/epistemograph_custody_v1.1.1.md",
+      "language": "markdown",
+      "size": 1000,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 0,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "docs/reference/epistemograph/EPISTEMOGRAPH_TO_CURRICULUM_SUMMARY.md",
+      "language": "markdown",
+      "size": 5153,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 1,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "docs/reference/epistemograph/scanner_freeze_v1.1.1.md",
+      "language": "markdown",
+      "size": 1868,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 1,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    }
+  ]
+}

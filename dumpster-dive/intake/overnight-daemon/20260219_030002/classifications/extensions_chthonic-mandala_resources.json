@@ -1,0 +1,30 @@
+{
+  "path": "extensions/chthonic-mandala/resources",
+  "primaryLanguage": "unknown",
+  "purpose": "resources",
+  "fileCount": 1,
+  "totalSize": 2041,
+  "averageComplexity": 1,
+  "documentationCoverage": 0,
+  "files": [
+    {
+      "path": "extensions/chthonic-mandala/resources/mandala.svg",
+      "language": "unknown",
+      "size": 2041,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 4,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    }
+  ]
+}

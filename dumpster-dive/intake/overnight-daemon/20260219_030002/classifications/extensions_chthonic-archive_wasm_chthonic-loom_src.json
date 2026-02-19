@@ -1,0 +1,48 @@
+{
+  "path": "extensions/chthonic-archive/wasm/chthonic-loom/src",
+  "primaryLanguage": "rust",
+  "purpose": "core",
+  "fileCount": 1,
+  "totalSize": 9961,
+  "averageComplexity": 18,
+  "documentationCoverage": 0,
+  "files": [
+    {
+      "path": "extensions/chthonic-archive/wasm/chthonic-loom/src/lib.rs",
+      "language": "rust",
+      "size": 9961,
+      "complexity": {
+        "cyclomatic": 18,
+        "nestingDepth": 10,
+        "functionCount": 8,
+        "avgFunctionLength": 39
+      },
+      "imports": [
+        "std::alloc::",
+        "std::cell::RefCell",
+        "chthonic_synapse_schema::",
+        "wasm_bindgen::closure::Closure",
+        "wasm_bindgen::prelude::",
+        "wasm_bindgen::JsCast",
+        "web_sys::"
+      ],
+      "exports": [
+        "init_loom",
+        "alloc_buffer",
+        "free_buffer",
+        "digest_sediment",
+        "render_frame"
+      ],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0.0031847133757961785,
+      "patterns": [
+        "error-handling:Result"
+      ],
+      "antiPatterns": [],
+      "securityFlags": [
+        "unsafe-block"
+      ]
+    }
+  ]
+}

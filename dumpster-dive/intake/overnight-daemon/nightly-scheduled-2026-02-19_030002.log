@@ -1,0 +1,65 @@
+
+╔══════════════════════════════════════════════════════╗
+║  ☥ NIGHTLY DAEMON — Local Computation, Zero API     ║
+╚══════════════════════════════════════════════════════╝
+
+  ☥ Daemon: debt scoring + complexity analysis...
+report: C:/Users/erdno/chthonic-archive/dumpster-dive/intake/overnight-daemon/20260219_030002/report.json
+top: scripts/chthonic.ps1
+  ☥ Archaeology: scavenge only (Loop 1, zero API)
+[2026-02-19T02:00:05.579Z] ☥ Overnight Archaeology Refinery starting
+[2026-02-19T02:00:05.579Z]   Loop 1 (scavenge): YES
+[2026-02-19T02:00:05.579Z]   Loop 2 (refine):   SKIP
+[2026-02-19T02:00:05.579Z]   Output: C:\Users\erdno\chthonic-archive\dumpster-dive\intake\overnight-intelligence\arch-2026-02-19T02-00-05
+[2026-02-19T02:00:05.580Z]   Dry run: false
+[2026-02-19T02:00:05.580Z] 
+━━━ LOOP 1: SCAVENGE ━━━
+[2026-02-19T02:00:12.934Z]   Scavenged 9951 files
+[2026-02-19T02:00:12.934Z]   By category: docs:1150, code:6011, data:2731, sentinel:59
+[2026-02-19T02:00:12.934Z]   By tier: T1:6011, T2:2731, T3:1209
+[2026-02-19T02:00:12.936Z]   Files with name signals: 565
+[2026-02-19T02:00:12.939Z] 
+☥ Archaeology complete. 0.1 min.
+  ☥ Local Refiner: v2 (llama-cpp-python + Qwen 14B, structured JSON) (zero network, zero cost)
+llama_context: n_ctx_per_seq (4096) < n_ctx_train (131072) -- the full capacity of the model will not be utilized
+☥ Local Archaeology Refiner v2 (llama-cpp + structured JSON)
+  Model dir: C:\Users\erdno\chthonic-archive\models\Qwen2.5-14B-Instruct-GGUF
+  Ore: C:\Users\erdno\chthonic-archive\dumpster-dive\intake\overnight-intelligence\arch-2026-02-19T02-00-05\L1-ore.json
+  Ore entries: 9951
+  L0 newsfeed: 2026-02-18 (15P/15F)
+  Loading: qwen2.5-14b-instruct-q4_k_m-00001-of-00003.gguf
+  Loaded in 24.6s
+
+  L2: "mas_mcp" (5941 files)... 102.1s (5 actionable)
+  L2: "dumpster-dive" (2477 files)... 146.8s (7 actionable)
+  L2: "meta-ide" (517 files)... 235.8s (5 actionable)
+  L2: "scripts" (254 files)... 195.0s (17 actionable)
+  L2: "codex" (170 files)... 83.9s (3 actionable)
+  L2: "extensions" (129 files)... 233.5s (11 actionable)
+  L2: "artifacts" (97 files)... 272.1s (15 actionable)
+  L2: "docs" (86 files)... 107.5s (6 actionable)
+  L2: "bun-playwright-poc" (76 files)... 154.7s (11 actionable)
+  L2: "claude-codex-gemini" (45 files)... 246.5s (8 actionable)
+  L2: "claude" (38 files)... 173.6s (8 actionable)
+  L2: "." (33 files)... 93.4s (8 actionable)
+  L2: "src" (16 files)... 135.6s (4 actionable)
+  L2: "chthonic-vscode-extension" (11 files)... 124.1s (9 actionable)
+  L2: "data" (10 files)... 49.6s (4 actionable)
+  L2: "ankh_atlas" (9 files)... 91.5s (4 actionable)
+  L2: "models" (7 files)... 118.2s (2 actionable)
+  L2: "pr2_review" (7 files)... 71.0s (7 actionable)
+  L2: "error-classifier" (6 files)... 57.8s (5 actionable)
+  L2: "assets" (5 files)... 60.0s (2 actionable)
+  L2: "logs" (5 files)... 67.7s (2 actionable)
+  L2: "dev" (4 files)... 25.1s (2 actionable)
+  L2: "plugins" (3 files)... 31.4s (1 actionable)
+
+  L2 complete: 23 domains, 74 promotions, 72 flags
+  Total: 2877.0s (125.1s/domain)
+  ☥ Digest written: C:\Users\erdno\chthonic-archive\claude\mailbox\ARCHAEOLOGY_DIGEST_2026_02_19.md
+
+☥ Refinement complete (structured JSON, $0 cost).
+
+  ────────────────────────────────────────────────────
+  ☥ Nightly run complete.
+

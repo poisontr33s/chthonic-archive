@@ -1,0 +1,111 @@
+{
+  "path": "extensions/chthonic-archive/src/acp",
+  "primaryLanguage": "typescript",
+  "purpose": "general",
+  "fileCount": 4,
+  "totalSize": 23148,
+  "averageComplexity": 8,
+  "documentationCoverage": 0.04,
+  "files": [
+    {
+      "path": "extensions/chthonic-archive/src/acp/client.ts",
+      "language": "typescript",
+      "size": 3901,
+      "complexity": {
+        "cyclomatic": 3,
+        "nestingDepth": 6,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [
+        "vscode",
+        "node:events"
+      ],
+      "exports": [
+        "ChthonicAcpClient"
+      ],
+      "todoCount": 0,
+      "docstringCount": 1,
+      "commentDensity": 0.06896551724137931,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "extensions/chthonic-archive/src/acp/connection.ts",
+      "language": "typescript",
+      "size": 6461,
+      "complexity": {
+        "cyclomatic": 12,
+        "nestingDepth": 12,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [
+        "node:child_process",
+        "node:stream",
+        "@agentclientprotocol/sdk",
+        "./client"
+      ],
+      "exports": [
+        "AcpConnection"
+      ],
+      "todoCount": 0,
+      "docstringCount": 6,
+      "commentDensity": 0.0718232044198895,
+      "patterns": [],
+      "antiPatterns": [
+        "any-type-usage"
+      ],
+      "securityFlags": []
+    },
+    {
+      "path": "extensions/chthonic-archive/src/acp/index.ts",
+      "language": "typescript",
+      "size": 145,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 0,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "extensions/chthonic-archive/src/acp/webview.ts",
+      "language": "typescript",
+      "size": 12641,
+      "complexity": {
+        "cyclomatic": 15,
+        "nestingDepth": 10,
+        "functionCount": 5,
+        "avgFunctionLength": 78
+      },
+      "imports": [
+        "vscode",
+        "./connection",
+        "@agentclientprotocol/sdk"
+      ],
+      "exports": [
+        "ChthonicChatProvider"
+      ],
+      "todoCount": 0,
+      "docstringCount": 1,
+      "commentDensity": 0.012755102040816327,
+      "patterns": [
+        "async-patterns"
+      ],
+      "antiPatterns": [
+        "any-type-usage"
+      ],
+      "securityFlags": []
+    }
+  ]
+}

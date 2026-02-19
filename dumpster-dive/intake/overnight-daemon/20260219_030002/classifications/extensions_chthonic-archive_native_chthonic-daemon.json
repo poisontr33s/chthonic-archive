@@ -1,0 +1,30 @@
+{
+  "path": "extensions/chthonic-archive/native/chthonic-daemon",
+  "primaryLanguage": "toml",
+  "purpose": "general",
+  "fileCount": 1,
+  "totalSize": 817,
+  "averageComplexity": 1,
+  "documentationCoverage": 0,
+  "files": [
+    {
+      "path": "extensions/chthonic-archive/native/chthonic-daemon/Cargo.toml",
+      "language": "toml",
+      "size": 817,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 2,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    }
+  ]
+}

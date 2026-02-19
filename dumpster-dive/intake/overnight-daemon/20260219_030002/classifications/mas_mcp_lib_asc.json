@@ -1,0 +1,145 @@
+{
+  "path": "mas_mcp/lib/asc",
+  "primaryLanguage": "python",
+  "purpose": "general",
+  "fileCount": 5,
+  "totalSize": 31352,
+  "averageComplexity": 13,
+  "documentationCoverage": 0.1,
+  "files": [
+    {
+      "path": "mas_mcp/lib/asc/cli.py",
+      "language": "python",
+      "size": 2200,
+      "complexity": {
+        "cyclomatic": 5,
+        "nestingDepth": 4,
+        "functionCount": 4,
+        "avgFunctionLength": 17
+      },
+      "imports": [
+        "json",
+        "typer",
+        "pathlib",
+        "typing",
+        "rich.console",
+        "rich.panel",
+        "rich.table",
+        "rich.tree",
+        "rich.progress",
+        "datetime",
+        ".models",
+        ".extractor",
+        ".qualia"
+      ],
+      "exports": [
+        "validate",
+        "stats",
+        "mas_scan",
+        "main"
+      ],
+      "todoCount": 0,
+      "docstringCount": 5,
+      "commentDensity": 0.07352941176470588,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "mas_mcp/lib/asc/extractor.py",
+      "language": "python",
+      "size": 12835,
+      "complexity": {
+        "cyclomatic": 57,
+        "nestingDepth": 16,
+        "functionCount": 23,
+        "avgFunctionLength": 11
+      },
+      "imports": [
+        "json",
+        "re",
+        "pathlib",
+        "typing",
+        "datetime",
+        ".models",
+        ".qualia"
+      ],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 6,
+      "commentDensity": 0.007905138339920948,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "mas_mcp/lib/asc/models.py",
+      "language": "python",
+      "size": 9236,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 6,
+        "functionCount": 3,
+        "avgFunctionLength": 87
+      },
+      "imports": [
+        "dataclasses",
+        "typing",
+        "pydantic",
+        "pathlib"
+      ],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 18,
+      "commentDensity": 0.05343511450381679,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "mas_mcp/lib/asc/qualia.py",
+      "language": "python",
+      "size": 6938,
+      "complexity": {
+        "cyclomatic": 3,
+        "nestingDepth": 8,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [
+        "typing"
+      ],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 3,
+      "commentDensity": 0.072992700729927,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "mas_mcp/lib/asc/__init__.py",
+      "language": "python",
+      "size": 143,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 0,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [
+        ".models",
+        ".qualia",
+        ".extractor",
+        ".cli"
+      ],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0.2857142857142857,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    }
+  ]
+}

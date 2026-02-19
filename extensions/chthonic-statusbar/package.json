@@ -1,18 +1,22 @@
 {
   "name": "chthonic-statusbar",
-  "displayName": "Chthonic Archive Status Bar",
-  "description": "SSOT verification, lineage tracking, GPU monitoring, and metabolic cycle indicators",
-  "version": "0.1.0",
+  "displayName": "Chthonic Status Bridge",
+  "description": "Compatibility bridge that routes legacy statusbar commands into chthonic-archive runtime lanes",
+  "version": "0.2.0",
   "publisher": "chthonic-archive",
   "engines": {
-    "vscode": "^1.90.0"
+    "vscode": "^1.110.0"
   },
-  "categories": ["Other"],
+  "categories": [
+    "Other"
+  ],
   "activationEvents": [
     "onStartupFinished",
-    "onCommand:chthonic.refreshStatus",
     "onCommand:chthonic.verifySSO_T",
-    "onLanguage:python"
+    "onCommand:chthonic.runMetabolicCycle",
+    "onCommand:chthonic.showGPUStats",
+    "onCommand:chthonic.runHostVerify",
+    "onCommand:chthonic.runVsAudit"
   ],
   "main": "./dist/extension.js",
   "sideEffects": false,
@@ -26,91 +30,40 @@
   "contributes": {
     "commands": [
       {
-        "command": "chthonic.refreshStatus",
-        "title": "Chthonic: Refresh All Status Indicators"
-      },
-      {
         "command": "chthonic.verifySSO_T",
-        "title": "Chthonic: Verify SSOT Integrity"
+        "title": "Chthonic: Verify SSOT (Bridge)"
       },
       {
         "command": "chthonic.runMetabolicCycle",
-        "title": "Chthonic: Run Metabolic Cycle"
+        "title": "Chthonic: Run Self-Heal Loop (Bridge)"
       },
       {
         "command": "chthonic.showGPUStats",
-        "title": "Chthonic: Show GPU Statistics"
+        "title": "Chthonic: Run Reactor Sediment (Bridge)"
+      },
+      {
+        "command": "chthonic.runHostVerify",
+        "title": "Chthonic: Verify Host Lane (Bridge)"
+      },
+      {
+        "command": "chthonic.runVsAudit",
+        "title": "Chthonic: Run VS 2026 Audit (Bridge)"
       }
-    ],
-    "configuration": {
-      "title": "Chthonic Archive",
-      "properties": {
-        "chthonic.statusBar.enabled": {
-          "type": "boolean",
-          "default": true,
-          "description": "Enable Chthonic status bar indicators"
-        },
-        "chthonic.statusBar.ssotHashEnabled": {
-          "type": "boolean",
-          "default": true,
-          "description": "Show SSOT hash verification status"
-        },
-        "chthonic.statusBar.lineageEnabled": {
-          "type": "boolean",
-          "default": true,
-          "description": "Show active lineage (A/B/C)"
-        },
-        "chthonic.statusBar.pythonLaneEnabled": {
-          "type": "boolean",
-          "default": true,
-          "description": "Show Python lane version"
-        },
-        "chthonic.statusBar.gpuEnabled": {
-          "type": "boolean",
-          "default": true,
-          "description": "Show GPU VRAM usage"
-        },
-        "chthonic.statusBar.metabolicCycleEnabled": {
-          "type": "boolean",
-          "default": true,
-          "description": "Show metabolic cycle heartbeat"
-        },
-        "chthonic.statusBar.refreshInterval": {
-          "type": "number",
-          "default": 30000,
-          "description": "Refresh interval in milliseconds"
-        },
-        "chthonic.validation.enabled": {
-          "type": "boolean",
-          "default": true,
-          "description": "Enable hedonistic validation notifications"
-        },
-        "chthonic.validation.enableAutoValidation": {
-          "type": "boolean",
-          "default": true,
-          "description": "Automatically trigger validation on file saves and builds"
-        },
-        "chthonic.validation.celebrateCommits": {
-          "type": "boolean",
-          "default": true,
-          "description": "Show potent validation on git commits"
-        },
-        "chthonic.validation.transcendentThreshold": {
-          "type": "number",
-          "default": 3,
-          "description": "Number of potent validations before transcendent promotion"
-        }
-      }
-    }
+    ]
   },
   "scripts": {
     "vscode:prepublish": "bun run compile",
     "compile": "bun build src/extension.ts --outdir dist --target node --format cjs --external vscode --minify",
-    "watch": "bun build src/extension.ts --outdir dist --target node --format cjs --external vscode --watch"
+    "watch": "bun build src/extension.ts --outdir dist --target node --format cjs --external vscode --watch",
+    "insiders:run": "code-insiders --extensionDevelopmentPath=.",
+    "insiders:dts:sync": "vscode-dts dev && vscode-dts main"
   },
   "devDependencies": {
     "@types/node": "^20.x",
-    "@types/vscode": "^1.90.0",
+    "@types/vscode": "^1.110.0",
+    "@vscode/dts": "^0.4.1",
+    "@vscode/test-cli": "^0.0.12",
+    "@vscode/test-electron": "^2.5.2",
     "typescript": "^5.x"
   },
   "dependencies": {}

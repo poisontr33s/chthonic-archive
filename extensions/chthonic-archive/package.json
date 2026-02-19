@@ -10,7 +10,7 @@
     "url": "https://github.com/chthonic-archive/chthonic-archive"
   },
   "engines": {
-    "vscode": "^1.109.0"
+    "vscode": "^1.110.0"
   },
   "categories": [
     "Themes",
@@ -285,7 +285,9 @@
   "scripts": {
     "postinstall": "bun run scripts/bootstrap-env.ts",
     "setup:oxidized": "bun run scripts/setup-oxidized.ts",
-    "precompile": "bun run scripts/toolpool-scan.ts --quiet && bun run scripts/verify-host.ts",
+    "verify:host": "bun run scripts/toolpool-scan.ts --quiet && bun run scripts/verify-host.ts",
+    "verify:codex": "bun run scripts/verify-host.ts --codex-only",
+    "precompile": "bun run verify:host",
     "vscode:prepublish": "bun run compile",
     "build:ledger": "bun run scripts/verify-host.ts && bun run scripts/build-ledger.ts",
     "build:wasm": "bun run scripts/verify-host.ts && bun run scripts/build-wasm.ts",
@@ -305,11 +307,14 @@
     "insiders:dts:sync": "vscode-dts dev && vscode-dts main"
   },
   "devDependencies": {
+    "@openai/agents": "^0.4.12",
+    "@openai/codex-sdk": "^0.104.0",
     "@types/node": "^20.x",
-    "@types/vscode": "^1.109.0",
+    "@types/vscode": "^1.110.0",
     "@vscode/dts": "^0.4.1",
     "@vscode/test-cli": "^0.0.12",
     "@vscode/test-electron": "^2.5.2",
+    "openai": "^6.22.0",
     "typescript": "^5.x"
   },
   "dependencies": {}

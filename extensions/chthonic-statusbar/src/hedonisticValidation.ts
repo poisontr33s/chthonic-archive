@@ -1,3 +1,5 @@
+// Legacy preservation file: restored per WPTG non-delete policy.
+// Not imported by the active bridge lane, retained for upcycle continuity.
 // ╔════════════════════════════════════════════════════════════════════════════╗
 // ║  THE DECORATOR'S BLESSING: hedonisticValidation.ts                       ║
 // ║  TypeScript module: activate, deactivate, CONFIGURATION_SCHEMA              ║
