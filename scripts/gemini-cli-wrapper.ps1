@@ -47,6 +47,24 @@ param(
 # Disable MCP discovery to prevent Bun crash during startup
 $env:GEMINI_DISABLE_MCP = "1"
 
+function Resolve-GeminiExecutable {
+    $globalBunGemini = Join-Path $env:USERPROFILE ".bun\bin\gemini.exe"
+    if (Test-Path $globalBunGemini) {
+        return $globalBunGemini
+    }
+
+    $cmd = Get-Command gemini -ErrorAction SilentlyContinue
+    if ($cmd -and $cmd.Source) {
+        # Ignore stale/accidental local shim lane from legacy `gemini` package.
+        if ($cmd.Source -match '\\node_modules\\gemini\\bin\\gemini(\.cmd|\.exe)?$') {
+            return $null
+        }
+        return $cmd.Source
+    }
+
+    return $null
+}
+
 function Test-LegacyGeminiDependency {
     $pkgPath = Join-Path (Get-Location) "package.json"
     if (-not (Test-Path $pkgPath)) {
@@ -86,11 +104,15 @@ function Invoke-GeminiSelfUpdate {
         exit $LASTEXITCODE
     }
 
-    $updated = & gemini --version 2>$null
+    $geminiExe = Resolve-GeminiExecutable
+    $updated = $null
+    if ($geminiExe) {
+        $updated = & $geminiExe --version 2>$null
+    }
     if ($LASTEXITCODE -eq 0 -and $updated) {
         Write-Host "[gemini-wrapper] Updated Gemini CLI version: $updated" -ForegroundColor Green
     } else {
-        Write-Host "[gemini-wrapper] Update completed. Run `gemini --version` to confirm." -ForegroundColor Yellow
+        Write-Host "[gemini-wrapper] Update completed. Run `~/.bun/bin/gemini.exe --version` (or `gemini --version`) to confirm." -ForegroundColor Yellow
     }
 }
 
@@ -132,9 +154,9 @@ if ($SelfUpdate -or $positionalUpdate -or ($Arguments -and $Arguments.Count -gt 
 
 Test-LegacyGeminiDependency
 
-$geminiCmd = Get-Command gemini -ErrorAction SilentlyContinue
-if ($geminiCmd -and $geminiCmd.Source) {
-    & $geminiCmd.Source @cliArgs
+$geminiExe = Resolve-GeminiExecutable
+if ($geminiExe) {
+    & $geminiExe @cliArgs
     exit $LASTEXITCODE
 }
 
