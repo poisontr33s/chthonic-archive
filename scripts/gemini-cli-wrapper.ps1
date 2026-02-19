@@ -204,7 +204,13 @@ $positionalUpdate =
     -not $PSBoundParameters.ContainsKey("PromptInteractive") -and
     (-not $Arguments -or $Arguments.Count -eq 0)
 
-if ($CheckUpdate -or ($Arguments -and $Arguments.Count -gt 0 -and ($Arguments[0] -in @("check", "check-update", "--check-update")))) {
+$positionalCheck =
+    ($Model -eq "check" -or $Model -eq "check-update" -or $Model -eq "--check-update") -and
+    -not $PSBoundParameters.ContainsKey("Prompt") -and
+    -not $PSBoundParameters.ContainsKey("PromptInteractive") -and
+    (-not $Arguments -or $Arguments.Count -eq 0)
+
+if ($CheckUpdate -or $positionalCheck -or ($Arguments -and $Arguments.Count -gt 0 -and ($Arguments[0] -in @("check", "check-update", "--check-update")))) {
     Test-LegacyGeminiDependency
     Invoke-GeminiUpdateCheck
     exit 0
