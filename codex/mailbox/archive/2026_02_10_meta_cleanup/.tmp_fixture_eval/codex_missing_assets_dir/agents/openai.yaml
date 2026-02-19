@@ -2,6 +2,6 @@ version: 1
 name: codex-missing-assets-dir
 provider: openai
 models:
-  default: gpt-5
+  default: gpt-5.3
 policy:
   allowed_tools: []

@@ -96,5 +96,6 @@ Output format required:
 
 ```powershell
 $prompt = Get-Content -Raw "claude-codex-gemini/engineering_agentic_deep_research_candidates/gemini-deep-research-2026-02/10-anno-live-unanswered-questions-v2.md"
-pwsh -NoProfile -File "scripts/gemini-cli-wrapper.ps1" -m "gemini-3-pro" -p $prompt
+# If your account has Gemini 3 Pro aliasing in CLI, use it; otherwise run with current stable Pro lane.
+pwsh -NoProfile -File "scripts/gemini-cli-wrapper.ps1" -Arguments @("-m","gemini-2.5-pro","--prompt",$prompt)
 ```
