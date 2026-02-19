@@ -9,7 +9,7 @@
 # ║ Semantic ID: SCRIPT_GEMINI_CLI_WRAPPER_V1
 # ║ Purpose: Wrap Gemini CLI to disable MCP discovery during Bun startup
 # ║ Exports: (none)
-# ║ Flags/Modes: -Arguments
+# ║ Flags/Modes: -m/-p/-i/-u/-v/-h/-y and -Arguments passthrough
 # ║ Cross-References: (none)
 # ╚════════════════════════════════════════════════════════════════════════════
 
