@@ -37,12 +37,31 @@ param(
     [Alias("v")]
     [switch]$Version,
 
+    [Alias("u")]
+    [switch]$SelfUpdate,
+
     [Parameter(ValueFromRemainingArguments = $true)]
     [string[]]$Arguments
 )
 
 # Disable MCP discovery to prevent Bun crash during startup
 $env:GEMINI_DISABLE_MCP = "1"
+
+function Invoke-GeminiSelfUpdate {
+    Write-Host "[gemini-wrapper] Updating Gemini CLI via Bun global lane..." -ForegroundColor Cyan
+    & bun add -g @google/gemini-cli@latest
+    if ($LASTEXITCODE -ne 0) {
+        Write-Error "Gemini CLI self-update failed (exit $LASTEXITCODE)."
+        exit $LASTEXITCODE
+    }
+
+    $updated = & gemini --version 2>$null
+    if ($LASTEXITCODE -eq 0 -and $updated) {
+        Write-Host "[gemini-wrapper] Updated Gemini CLI version: $updated" -ForegroundColor Green
+    } else {
+        Write-Host "[gemini-wrapper] Update completed. Run `gemini --version` to confirm." -ForegroundColor Yellow
+    }
+}
 
 $cliArgs = @()
 
@@ -66,6 +85,11 @@ if ($Version) {
 }
 if ($Arguments) {
     $cliArgs += $Arguments
+}
+
+if ($SelfUpdate -or ($Arguments -and $Arguments.Count -gt 0 -and $Arguments[0] -eq "update")) {
+    Invoke-GeminiSelfUpdate
+    exit 0
 }
 
 $geminiCmd = Get-Command gemini -ErrorAction SilentlyContinue
