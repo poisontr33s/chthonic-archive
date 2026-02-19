@@ -19,21 +19,67 @@
 # Fix: Set GEMINI_DISABLE_MCP env var before execution
 
 param(
-    [Parameter(ValueFromRemainingArguments=$true)]
+    [Alias("m", "model")]
+    [string]$Model,
+
+    [Alias("p", "prompt")]
+    [string]$Prompt,
+
+    [Alias("i")]
+    [string]$PromptInteractive,
+
+    [Alias("y")]
+    [switch]$Yolo,
+
+    [Alias("h")]
+    [switch]$Help,
+
+    [Alias("v")]
+    [switch]$Version,
+
+    [Parameter(ValueFromRemainingArguments = $true)]
     [string[]]$Arguments
 )
 
 # Disable MCP discovery to prevent Bun crash during startup
 $env:GEMINI_DISABLE_MCP = "1"
 
-# Execute via Bun (drop-in Node replacement)
-# Use dynamic path relative to User Profile
-$geminiCliPath = Join-Path $env:USERPROFILE ".bun\install\global\node_modules\@google\gemini-cli\dist\index.js"
+$cliArgs = @()
 
+if ($PSBoundParameters.ContainsKey("Model")) {
+    $cliArgs += @("-m", $Model)
+}
+if ($PSBoundParameters.ContainsKey("Prompt")) {
+    $cliArgs += @("--prompt", $Prompt)
+}
+if ($PSBoundParameters.ContainsKey("PromptInteractive")) {
+    $cliArgs += @("--prompt-interactive", $PromptInteractive)
+}
+if ($Yolo) {
+    $cliArgs += "--yolo"
+}
+if ($Help) {
+    $cliArgs += "--help"
+}
+if ($Version) {
+    $cliArgs += "--version"
+}
+if ($Arguments) {
+    $cliArgs += $Arguments
+}
+
+$geminiCmd = Get-Command gemini -ErrorAction SilentlyContinue
+if ($geminiCmd -and $geminiCmd.Source) {
+    & $geminiCmd.Source @cliArgs
+    exit $LASTEXITCODE
+}
+
+# Fallback execution via Bun global package path.
+$geminiCliPath = Join-Path $env:USERPROFILE ".bun\install\global\node_modules\@google\gemini-cli\dist\index.js"
 if (-not (Test-Path $geminiCliPath)) {
-    Write-Error "Gemini CLI not found at: $geminiCliPath"
+    Write-Error "Gemini CLI not found. Checked: gemini.exe on PATH and $geminiCliPath"
     Write-Host "Reinstall with: bun install -g @google/gemini-cli" -ForegroundColor Yellow
     exit 1
 }
 
-& bun $geminiCliPath @Arguments
+& bun $geminiCliPath @cliArgs
