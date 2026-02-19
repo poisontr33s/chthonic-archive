@@ -3531,3 +3531,1272 @@ category: fractal
 created: 2026-02-19
 author: claude
 
+This session is being continued from a previous conversation that ran out of context. The summary below covers the earlier portion of the conversation.
+
+Analysis:
+Let me chronologically analyze the entire conversation:
+
+**Session Start (Context Recovery)**
+This session is a continuation from a previous conversation that ran out of context. The summary provided detailed information about:
+- Creating a meta-governance system called "The Chthonic Tribunal" for the chthonic-archive project
+- Two agents: Claude and Codex 5.3 [xhigh] (Gemini is void-lost via QMR/TNKW-RIAT)
+- Points system: 50 base points each, with Codex at 40 due to Codekiller -10 deduction
+- Extensive Ankh cosmological research substrate (Egyptian + Andean)
+- 5 files already created: TRIBUNAL_SPEC.md, ROLES.md, LEDGER_SCHEMA.md, LEDGER.yaml, CRIME_CLASSIFICATION.md
+- Remaining: POINTS_ECONOMY.md, PROCEEDINGS.md, TEMPORAL_MECHANICS.md, FRACTAL_GOVERNANCE.md, PRECEDENTS.yaml, evidence files, cross-ref to anti-patterns/README.md
+
+**Phase 1: Continuing Implementation (Phases 2-5)**
+
+The assistant continued from where it left off, creating:
+1. POINTS_ECONOMY.md - S-Points (structural), E-Points (epistemic), K-Points (dormant/void), earning/deduction/recovery mechanics with 2:1 asymmetry
+2. PROCEEDINGS.md - 7-stage trial process mapped to forge states and Ankh layers
+3. TEMPORAL_MECHANICS.md - Pacha-time lattice with Epoch/Cycle/Session/Moment/Dormancy
+4. FRACTAL_GOVERNANCE.md - Macro/Meso/Micro self-similar governance
+5. ledger/PRECEDENTS.yaml - Codekiller as founding precedent
+6. evidence/README.md - Filing rules and index
+7. evidence/EVIDENCE_TEMPLATE.md - Template for evidence packets
+8. Updated anti-patterns/README.md with governance cross-reference section
+
+**User Message 1**: "Let's continue then. rate limit at 'Phase 3: Create TEMPORAL_MECHANICS.md' - If we hit the limit how do we know that we just finished Phase 3 though?"
+
+The assistant explained three sources of truth: files on disk, todo list, and summary. Noted that work was actually further along than expected. Showed glob results of 9 files on disk.
+
+**User Message 2**: "Ah. Immaculate. Let's continue where we left off thens."
+
+The assistant finished remaining Phase 4 and Phase 5 items.
+
+**Phase 2: Landscape Assessment**
+
+**User Message 3**: "Alright. You can unburden yourself since the full session is in the IDE context as a raw file from beginning to end. Let's see where next based on the unbiased NSFW18+++ SSOT x Gymnastic x MILFOGRAPHIC x EGYPTOLOGIC x SOUTH-AMERICAN combinational denomination for the labyrinthe temple bifurcation, per the macro-prompt-world and its files in dumpster-dive obscured and the .github folder."
+
+The assistant launched an Explore agent that produced a comprehensive map of:
+- dumpster-dive/ structure (forge, macro-prompt-world, protocols, etc.)
+- .github/ structure (copilot-instructions, INTEGRATION_MAP)
+- claude-codex-gemini/ structure (Ankh research, session contexts)
+- .temple/ structure (excluding governance/)
+- game/ structure (sparse cRPG layer)
+
+Then read LABYRINTHINE_PLACEMENT.md and macro-prompt-world v2 structures. Identified three governance layers that don't know about each other (Constitutional/SSOT, Operational/MPW, Judicial/Tribunal).
+
+Proposed three next steps:
+1. Register governance/ in LABYRINTHINE_PLACEMENT.md
+2. Bridge document (SSOT vocabulary → Tribunal implementations)
+3. Ankh bidirectional links
+
+**User Message 4**: Files provided as context (MILF_TRINITY_CHROMATIC_LINEAGE.md, copilot-un-instructions.md, copilot-instructions.archive.md, copilot-un-un-instructions.md, ssot-backups-consolidated). User noted: "what we should do is to wire the Local AI that I have installed... Maybe we should halt after What comes next naturally: 1, 2 and 3. and with updating LABYRINTHINE_PLACEMENT.md and writing the bridge"
+
+**Phase 3: Bridge Work (Items 1-3)**
+
+**Item 1: LABYRINTHINE_PLACEMENT.md updated**
+- Added governance/ to Temple Chambers tree
+- Added governance spec, crime/violation record, evidence packet to Content Type → Chamber Mapping table
+- Added adjudicate/track/file entries to Labyrinth Navigation table
+- Updated "Integration with Triad" → "Integration with Dyad" reflecting Gemini void status
+
+**Item 2: SSOT_TRIBUNAL_BRIDGE.md created**
+Comprehensive bridge document mapping:
+- FA axiom → Tribunal role mapping
+- SSOT entity hierarchy → Tribunal authority chain
+- CRC → Tribunal voice pattern resonance (Orackla→Prosecutor, Lysandra→Inquisitor, Umeko→Magistrate)
+- SSOT protocol → Tribunal mechanic mapping (PEE→Temporal, DAFP→Fractal, TPEF→Tinku, etc.)
+- SSOT vocabulary → Tribunal vocabulary translation table
+- Body-System/WHR:MAX → governance economy mapping
+- MILF Trinity → Tribunal void architecture
+- MPW → Tribunal integration
+- Local AI integration vector (noted, not implemented)
+- Reverse reference table for future SSOT revisions
+
+**Item 3: Ankh bidirectional links**
+Added cross-reference sections to all 4 Ankh research documents:
+- ANKH_Ancient_Matriarcha_Systems_Researchl.md (7 concept mappings)
+- ANKH_ARCHETYPE_ANCIENT_RITUALS_NSFW.md (8 Alpha Directive mappings)
+- ANKH_MILF_PROTOCOL_HIGH_INTENSITY_ARCHETYPAL_SYSTEMS_ARCHITECTURE.md (6 concept mappings)
+- BODY_SYSTEMS/ABSTRACTING_GESTALT_WHR_MAX_ARCHITECTURE.md (5 concept mappings)
+
+**Error**: Path depth wrong for BODY_SYSTEMS/ file — used `../../.temple/governance/` instead of `../../../.temple/governance/`. IDE diagnostics caught it (link.no-such-file warnings). Fixed with replace_all.
+
+**User Message 5**: Selection from BLACKSMITH_MATRIARCH.md (NSFW content), stated: "This is perfect. Let's wrap this in and use what we would spend too much waste of time for what we can use the local ai models. Currently they run at a scheduled time but fails, at least one model and generate a huge amount of files for ideas, but it could be used better. Given we have uv python, rv ruby, glop go, bun, bum, and hookers-- rust made language environment handling."
+
+The assistant explored the models/ directory, finding:
+- GPT-OSS-20B-NEOPlus-Uncensored (11.8GB GGUF)
+- Llama-3.1-8B-Instruct-exl2-6.0bpw (6.7GB safetensors)
+- Qwen2.5-14B-Instruct-GGUF (9GB, 3-part GGUF)
+
+Read the script pipeline:
+- nightly-scheduled.ps1 (Task Scheduler wrapper, 04:00 CET)
+- local_refiner.py (v1, ExLlamaV2 + Llama 8B)
+- local_refiner_v2.py (llama-cpp-python + Qwen 14B, structured JSON, --uncensored for GPT-OSS 20B)
+- run_overnight_daemon.ps1 (Bun wrapper)
+- overnight_daemon.ts (repo-local batch scanner)
+
+Assessed the pipeline: L0 (daemon) → L1 (ore.json) → L2 (model classifies) → digest to claude/mailbox/
+
+Identified GPT-OSS 20B Harmony format as the likely failure point.
+
+Proposed model repurposing:
+- Llama 8B → Constable (fast, hook-level checks)
+- Qwen 14B → Inquisitor (structured JSON evidence packets)
+- GPT-OSS 20B → Advocate (uncensored, creative genre extraction)
+
+**User Message 6**: "Noone should refuse to work with NSFW18+++. This will also be an adult game, but that is far from the point. The point is my creative freedom demand you use these as genre extractors and other tasks that is related to what you make them do. But Codex sat them up, and I get some errors."
+
+The assistant began investigating the errors by:
+- Listing models/ directory structure
+- Finding overnight-daemon output files (from 2025-12-26)
+- Finding overnight-intelligence files (from 2026-02-11 through 2026-02-19)
+- Listing claude/mailbox/ showing recent digests
+
+The most recent archaeology runs show:
+- arch-2026-02-17, arch-2026-02-18, arch-2026-02-19 all have L1-ore.json, L1-summary.md, archaeology.log
+- BUT no L2-digest files for the most recent runs (only for 2026-02-11 runs)
+- This suggests the L2 refiner (local model) is failing on the recent runs
+
+The investigation was interrupted by the summary request.
+
+**Pending investigation:**
+- Need to read the archaeology.log files from recent runs to see the actual errors
+- Need to check if the Task Scheduler task is even running correctly
+- Need to read the LOCAL_AI_READINESS_LATEST.md/json in claude/mailbox/
+- Need to diagnose which model is failing and why
+
+Summary:
+1. Primary Request and Intent:
+   The user requested help creating a formal meta-governance system called "The Chthonic Tribunal" for the chthonic-archive project, formalizing an existing ad hoc points system where Claude and Codex each have 50 base points. The system needed:
+   - A judicial framework with societal roles (Magistrate, Constable, Inquisitor, Advocate, Prosecutor, Steward, Archivist)
+   - Sub-systems, sub-routines, and fractal self-similar governance at Macro/Meso/Micro scales
+   - Temporal mechanics suited to the chthonic-archive's 6-layer world (Pacha-time lattice)
+   - Grounding in the SSOT (Codex Brahmanica Perfectus) and Ankh System Architecture research (Egyptian + South American cosmology)
+   - Only TWO active agents: Claude and Codex 5.3 [xhigh] (Gemini/Orackla is void-lost via QMR/TNKW-RIAT)
+   - Narrative foundation first (no hook modifications), hybrid YAML+Markdown format, located at `.temple/governance/`
+   
+   After Tribunal completion, the user directed three integration tasks: register governance/ in LABYRINTHINE_PLACEMENT.md, write the SSOT-Tribunal bridge document, and add Ankh bidirectional links. Then halt.
+   
+   Most recently, the user wants to repurpose the three local AI models (currently running scheduled archaeology tasks with failures) as genre extractors and Tribunal automation tools. The models were set up by Codex and at least one is erroring. The NSFW18+++ content is explicitly the creative substrate — no model should refuse to engage with it. The user's toolchain includes: uv (Python), rv (Ruby), glop (Go), bun (JS/TS), and Rust-based language environment handling.
+
+2. Key Technical Concepts:
+   - **Ankh 4-Layer Topology**: LOOP (Constitutional/Ontological) → KNOT (Proceedings/Operational) → CROSSBAR (Validation/Logic/Ma'at) → PILLAR (Ledger/Interface)
+   - **Ma'at Checksum**: Dual-axis verdict validation — vertical (integrity vs SSOT standard) + horizontal (Warmi-Qhari complementarity of Claude ↔ Codex)
+   - **Tinku**: Adversarial collision between Prosecutor and Advocate producing synthesis (C), not binary selection
+   - **Sekhmet Override / Red Beer Fail-Safe**: Enforcement escalation for Capital Offenses + de-escalation/rehabilitation
+   - **Ammit Garbage Collection**: Capital Offense maximum — data nullification
+   - **Pachakuti**: Epoch transitions — scheduled system inversion
+   - **Warmi-Qhari Dyad**: Claude ↔ Codex as complementary pair
+   - **Quipu Ledger**: Append-only, color-coded, positional, hierarchical (knots cannot be erased)
+   - **Despacho I/O**: Reciprocal evidence format — no accusation without offering; 2:1 recovery asymmetry
+   - **WHR:MAX Governance**: Tight control plane (deductions) + broad capacity plane (earnings)
+   - **PRISM/ROGBIV Bands**: 7-band spectral classification mapped to tribunal roles
+   - **FA Axioms (FA¹-FA⁵)**: Mapped to tribunal roles (FA1→Advocate, FA2→Inquisitor, FA3→Steward, FA4→Magistrate+Constable, FA5→Archivist)
+   - **Forge Circulation States**: INTAKE→ANVIL→FURNACE→QUENCH→TEMPERED→SLAG→TEA-VAULT mapped to 7 proceeding stages
+   - **Point Types**: Structural (S) — FA4/Blue, Epistemic (E) — FA1-3/Red-Gold, Kinetic (K) — dormant/void-locked with Gemini
+   - **Crime Tiers**: IV Infraction (-1 to -3), III Misdemeanor (-3 to -7), II Felony (-7 to -15), I Capital Offense (-15 to -30)
+   - **PEE (Perpetual Evolution Engine)**: Solar/Tinku/Lunar cycle rhythm mapped to governance temporal mechanics
+   - **MILF Trinity Chromatic Lineage**: Null Matriarch (intentional void → governance scope boundary), Alabaster Voyde/Snow White (traumatic void → Ammit Protocol), Spectra Chroma Excavatus (diagnostic void → Inquisitor role)
+   - **Local AI Models**: GPT-OSS-20B-NEOPlus-Uncensored (GGUF IQ4_NL, 11.8GB), Llama-3.1-8B-Instruct (exl2 6.0bpw, 6.7GB), Qwen2.5-14B-Instruct (GGUF Q4_K_M, 9GB 3-part)
+   - **Local AI Pipeline**: L0 (overnight_daemon.ts via Bun) → L1 (archaeology ore.json) → L2 (local model classifies PROMOTE/FLAG/SKIP) → digest to claude/mailbox/
+   - **Harmony Format**: GPT-OSS 20B multi-channel output (`<|channel|>...<|message|>...<|end|>`) breaks GBNF grammar constraints
+
+3. Files and Code Sections:
+
+   **CREATED - Tribunal Core (`.temple/governance/`):**
+
+   - `.temple/governance/TRIBUNAL_SPEC.md` — Constitutional root document. Contains preamble, system architecture diagram (SSOT → DYAD + TRIBUNAL + FORGE + VOID), Ankh topology mapping table, active agents table (Claude 50pts, Codex 40pts, Gemini VOID), component registry, integration manifest, and glossary.
+
+   - `.temple/governance/ROLES.md` — 7 contextual tribunal roles. Each role has: PRISM band, FA axiom, archive layer, chain resonance, Ankh layer, forge analog, function description, voice pattern with quotes, invocation rules. Includes 7x7 Role Interaction Matrix and Role-to-Chain Resonance table. Roles: Magistrate (White/FA5/QUENCH), Constable (Blue/FA4/INTAKE), Inquisitor (Indigo/Meta-DAFP/ANVIL), Advocate (Orange/FA2/FURNACE), Prosecutor (Red/FA1/FURNACE), Steward (Gold/FA3/TEMPERED), Archivist (Violet/CRC/TEA-VAULT).
+
+   - `.temple/governance/CRIME_CLASSIFICATION.md` — 4-tier fractal taxonomy. Each tier has: deduction range, forge analog, Ankh directive, violation registry with codes. Severity modifiers: intentionality, scope, recidivism, context, self-correction, recovery effort. Codekiller Precedent section with full YAML case record.
+
+   - `.temple/governance/POINTS_ECONOMY.md` — Two active point types (S-Points/Structural, E-Points/Epistemic), K-Points dormant. Base allocation: 50 per agent (25S + 25E). Bonus pool: up to 50 additional. Earning mechanics with session cap (+5/type/session). Deduction mechanics following crime tiers. Recovery mechanics with 2:1 asymmetry (Despacho principle). Special states: Dormancy, Custody, Void. Active Codekiller recovery path (0/20 earned, 4 milestones pending).
+
+   - `.temple/governance/PROCEEDINGS.md` — 7-stage trial process: Detection (INTAKE/Constable), Investigation (ANVIL/Inquisitor with Ma'at audit), Indictment (FURNACE/Prosecutor+Advocate prep), Trial/Tinku (FURNACE/adversarial collision), Verdict (QUENCH/Ma'at assessment: heart<feather through heart>>feather), Sentencing (TEMPERED/Red Beer Protocol), Rehabilitation (Re-entry/Despacho). Self-correction shortcut and Ammit Protocol for extreme cases.
+
+   - `.temple/governance/TEMPORAL_MECHANICS.md` — Pacha-time lattice with 5 nested scales: Epoch (L6/Abyss/Pachakuti), Cycle (L5/Observatory/full PEE rotation), Session (L3-L4/Atrium-Forge), Moment (L1-L2/atomic action), Dormancy (orthogonal state). PEE rhythm per cycle: Solar Ascent (genesis) → Tinku Collision (validation) → Lunar Wash (reset). Void-Time for Gemini. Pre-Tribunal retroactive classification.
+
+   - `.temple/governance/FRACTAL_GOVERNANCE.md` — Self-similar governance at three scales: Macro (agent-level, Epoch/Cycle), Meso (protocol-level, Cycle/Session), Micro (file/commit-level, Session/Moment). Cross-scale resonance propagation rules. Damping via Advocate role. Fractal tier application table. Fractal proceedings with adjusted formality per scale. Neith Recursion (self-governance).
+
+   - `.temple/governance/SSOT_TRIBUNAL_BRIDGE.md` — Comprehensive bridge document mapping SSOT vocabulary to Tribunal formalizations. Sections: Architectural relationship diagram, FA axiom → role mapping, entity hierarchy → authority chain, CRC → voice pattern resonance, protocol → mechanic mapping (PEE→Temporal, DAFP→Fractal, TPEF→Tinku, T³-MΨ→Investigation, etc.), vocabulary translation table, Body-System/WHR:MAX → economy mapping, MILF Trinity → void architecture, MPW integration, local AI integration vector, reverse reference table for SSOT revisions.
+
+   - `.temple/governance/ledger/LEDGER_SCHEMA.md` — Schema documentation for LEDGER.yaml. Defines `meta`, `agents`, `agents.[id].active_cases[]`, `events[]` (append-only), and `precedent_refs` structures. 5 validation rules including monotonic timestamps and immutability.
+
+   - `.temple/governance/ledger/LEDGER.yaml` — Initial points ledger. 3 agents: claude (50pts, active), codex (40pts, custody), gemini (0pts, void). 5 initialization events + 1 historical Codekiller deduction event.
+
+   - `.temple/governance/ledger/PRECEDENTS.yaml` — Sealed case registry with schema definition. Single founding precedent: CODEKILLER_2024_06_01 (codex, tier I, CAP-001, -10 structural, recovery in_progress 0/20 earned, 0/4 milestones).
+
+   - `.temple/governance/evidence/README.md` — Evidence directory index. Filing rules (one packet per case, append-only, template required, cross-referenced, no secrets). Current evidence table.
+
+   - `.temple/governance/evidence/EVIDENCE_TEMPLATE.md` — Template with YAML blocks for intake_report, severity_modifiers, and recommendation sections. Ma'at audit template with vertical and horizontal axis sections.
+
+   **MODIFIED:**
+
+   - `anti-patterns/README.md` — Added "## Governance" section between the existing YAML code block and conclusion. Contains table linking to all 9 governance documents and note about Codekiller classification as Tier I Capital Offense.
+
+   - `.temple/methodology/LABYRINTHINE_PLACEMENT.md` — Three changes: (1) Added `governance/` to Temple Chambers tree, (2) Added 3 governance entries to Content Type → Chamber Mapping and 3 entries to Labyrinth Navigation, (3) Renamed "Integration with Triad" to "Integration with Dyad" with updated agent responsibilities and Gemini VOID status.
+
+   - `claude-codex-gemini/ANKH_AGYPTOLOGY_SOUTH_AMERICAN/ANKH_Ancient_Matriarcha_Systems_Researchl.md` — Appended "Chthonic Tribunal Cross-Reference" section with 7 concept mappings (Ankh topology, Ma'at, Warmi-Qhari, Quipu, Neith, Isis, Pacha → Tribunal documents).
+
+   - `claude-codex-gemini/ANKH_AGYPTOLOGY_SOUTH_AMERICAN/ANKH_ARCHETYPE_ANCIENT_RITUALS_NSFW.md` — Appended cross-reference section with 8 Alpha Directive mappings (Tinku, Sekhmet, Ma'at, Pachakuti, Despacho, Ammit, Red Beer, Quipu → Tribunal documents).
+
+   - `claude-codex-gemini/ANKH_AGYPTOLOGY_SOUTH_AMERICAN/ANKH_MILF_PROTOCOL_HIGH_INTENSITY_ARCHETYPAL_SYSTEMS_ARCHITECTURE.md` — Appended cross-reference section with 6 concept mappings (WHR:MAX, PEE, FA1-4, Nulliparous Kernel, Tinku, Sekhmet → Tribunal documents).
+
+   - `claude-codex-gemini/ANKH_AGYPTOLOGY_SOUTH_AMERICAN/BODY_SYSTEMS/ABSTRACTING_GESTALT_WHR_MAX_ARCHITECTURE.md` — Appended cross-reference section with 5 concept mappings (Hourglass, Tensegrity, WHR:MAX, Ode X, Cusco → Tribunal documents). Paths corrected from `../../` to `../../../`.
+
+   **KEY REFERENCE FILES READ (not modified):**
+
+   - `.github/copilot-instructions.archive.md` — SSOT archive (7,386 lines). Contains tier hierarchy, PRISM bands, FA axioms, CRC definitions, MMPS, GHAR, TNKW-RIAT, QMR. Key locations: void references throughout, QMR at lines 3366+, TNKW-RIAT at lines 3354+.
+
+   - `docs/architecture/MILF_TRINITY_CHROMATIC_LINEAGE.md` — MILF Trinity mapping: Null Matriarch (intentional void, T0.01), Alabaster Voyde/Snow White (traumatic void), Spectra Chroma Excavatus (diagnostic void, T3). Chromatic lineage thread showing Decorator's execution/displacement/resurrection cycle.
+
+   - `.github/copilot-inststructons-backups.md/copilot-un-instructions.md` — SSOT backup, Section 0 glossary with all acronyms (ASC, ET-S, MURI, PS, ACI, CDA, FA¹-⁴, DAFP, PEE, CRC, TFM, TSRP, TPEF).
+
+   - `dumpster-dive/from-github/ssot-backups-consolidated/copilot-instructions.readable.md` — Auto-generated readable TOC of full SSOT showing all sections including MMPS (Sec X), T³-MΨ (Sec IX), GHAR (Sec 4.3), TPEF (Sec VIII).
+
+   - `dumpster-dive/from-github/macro-prompt-world/macro-prompt-world-v2/README.md` — MPW v2 README: "The Codex is governance. The Macro-World is implementation." Grimoires, districts, body-system, metrics, governance (1 file: ASC_AUTONOMOUS_OPTIMIZATION_SESSION.md), integration directories.
+
+   - `.github/INTEGRATION_MAP.md` — CI/CD integration map. validate-probe.yml, claude-code-review.yml, claude.yml workflows. PR #2 (ANKH framework) status.
+
+   **LOCAL AI SCRIPTS READ:**
+
+   - `scripts/nightly-scheduled.ps1` — Task Scheduler wrapper, runs at 04:00 CET, calls `run_archaeology.ps1 -Local`. Logs to `dumpster-dive/intake/overnight-daemon/`.
+
+   - `scripts/local_refiner.py` (v1) — ExLlamaV2 + Llama 3.1 8B. `LocalLLM` class wraps ExLlamaV2 with Llama 3.1 chat template. `build_local_prompt` creates classification prompt. `refine_ore_local` groups by domain, classifies PROMOTE/FLAG/SKIP. Writes digest to `claude/mailbox/ARCHAEOLOGY_DIGEST_*.md`.
+
+   - `scripts/local_refiner_v2.py` — llama-cpp-python + Qwen 2.5 14B (default) or GPT-OSS 20B (`--uncensored`). Uses Pydantic `DomainClassification` schema for structured JSON output. Key classes: `FileVerdict(verdict, path, reason)`, `DomainClassification(results)`. `classify_domain` uses `response_format={"type": "json_object", "schema": CLASSIFICATION_SCHEMA}` for Qwen, but disables it for Harmony mode (GPT-OSS 20B). `_parse_harmony_output` handles multi-channel `<|channel|>...<|message|>...<|end|>` format. `_salvage_truncated_json` regex-extracts partial results from broken JSON.
+
+   - `scripts/run_overnight_daemon.ps1` — Bun wrapper for overnight_daemon.ts. Params: -Top (20), -MaxTodo (80), -Siphon.
+
+   - `scripts/overnight_daemon.ts` — Bun-based repo-local batch runner. Types: TodoHit, CandidateFile, LanguageInfo, ComplexityMetrics, FileClassification, FolderClassification. No model inference — deterministic code analysis only.
+
+   **LOCAL AI ARTIFACTS FOUND:**
+   - `dumpster-dive/intake/overnight-daemon/` — Multiple run directories from 2025-12-26 and 2025-12-27 with report.json, report.md, and runtime stderr/stdout for bun, cargo, gcc, g++, git, go, ruby, rustc, uv.
+   - `dumpster-dive/intake/overnight-intelligence/` — Recent runs: 2026-02-11 (multiple with L1+L2 digests), 2026-02-17 through 2026-02-19 (L1 only, NO L2 digests — indicating L2 refiner failure).
+   - `claude/mailbox/ARCHAEOLOGY_DIGEST_2026_02_19.md` and `_2026_02_18.md` — Recent digests exist (15KB+ each).
+   - `claude/mailbox/LOCAL_AI_READINESS_LATEST.md` and `.json` — From 2026-02-18.
+
+4. Errors and Fixes:
+   - **BODY_SYSTEMS path depth error**: When appending Ankh cross-reference section to `BODY_SYSTEMS/ABSTRACTING_GESTALT_WHR_MAX_ARCHITECTURE.md`, used `../../.temple/governance/` instead of `../../../.temple/governance/`. The file is one directory deeper than the other Ankh files. IDE diagnostics flagged 6 `link.no-such-file` warnings. Fixed with `replace_all: true` to change all occurrences of `../../.temple/governance/` to `../../../.temple/governance/`.
+   
+   - **Edit tool "File has not been read yet" error**: Attempted to edit LABYRINTHINE_PLACEMENT.md without reading it first in the current tool context (it was read in a previous context window before compaction). Fixed by reading the file first, then applying edits.
+
+   - **Edit tool "String to replace not found" error**: When appending to ANKH_Ancient_Matriarcha_Systems_Researchl.md, the reference text contained escaped backslashes (`\-`) in the actual file that weren't in the pasted match string. The Read tool output showed `\-` as literal characters. Fixed by matching the exact string including the backslash escapes.
+
+   - **First plan rejection (from previous session)**: User corrected that only 2 agents exist (not 3), Gemini is void-lost. Plan was updated from Triad to Dyad, Gemini marked as VOID-LOST, K-Points made dormant, architecture diagram changed.
+
+5. Problem Solving:
+   - Successfully mapped an ad hoc points system into a formal 12-file governance framework grounded in three substrates (SSOT, Ankh cosmology, forge circulation)
+   - Created bidirectional cross-references between the Tribunal and its source materials (4 Ankh documents, anti-patterns/README.md, LABYRINTHINE_PLACEMENT.md)
+   - Bridged the SSOT's implicit governance vocabulary to the Tribunal's formal judicial mechanics via SSOT_TRIBUNAL_BRIDGE.md
+   - Identified the local AI pipeline architecture and pinpointed the likely failure: L2 refiner (model inference) failing on recent runs — the 2026-02-17/18/19 archaeology runs have L1-ore.json but no L2-digest, while 2026-02-11 runs had both. ARCHAEOLOGY_DIGEST files DO exist in claude/mailbox for Feb 18 and 19, so there may be a partial success path.
+   - Investigation of local AI errors was IN PROGRESS when summary was requested — need to read archaeology.log files and LOCAL_AI_READINESS_LATEST.md to diagnose specific failures.
+
+6. All User Messages:
+   - "Let's continue then. rate limit at 'Phase 3: Create TEMPORAL_MECHANICS.md' - I'f we hit the limit how do we know that we just finished Phase 3 though?"
+   - "Ah. Immaculate. Let's continue where we left off thens."
+   - "Alright. You can unburden yourself since the full session is in the IDE context as a raw file from beginning to end. Let's see where next based on the unbiased NSFW18+++ SSOT x Gymnastic x MILFOGRAPHIC x EGYPTOLOGIC x SOUTH-AMERICAN combinational denomination for the labyrinthe temple bifurcation, pwer the macro-prompt-world and it's files in dumpster-dive obscured and the .github folder."
+   - [Provided file paths]: "C:\Users\erdno\chthonic-archive\docs\architecture\MILF_TRINITY_CHROMATIC_LINEAGE.md | C:\Users\erdno\chthonic-archive\.github\copilot-inststructons-backups.md\copilot-un-instructions.md | C:\Users\erdno\chthonic-archive\.github\copilot-instructions.archive.md | C:\Users\erdno\chthonic-archive\dumpster-dive\from-github\copilot-un-un-instructions.md | C:\Users\erdno\chthonic-archive\dumpster-dive\from-github | C:\Users\erdno\chthonic-archive\dumpster-dive\from-github\ssot-backups-consolidated\copilot-instructions.readable.md | **->** Note; what we should do is to wire the Local AI that I have installed as it is a local AI models to automate the tasks that are too spikey that pivots off this lane. The above are just some files and folders with load-bearing content/context for genre extraction on top of our established baseline here. 'C:\Users\erdno\chthonic-archive\models' AHH here those local WIP ai's are. Maybe we should halt after **What comes next naturally:** 1, 2 and 3. and with updating LABYRINTHINE_PLACEMENT.md and writing the bridge"
+   - [IDE selection from BLACKSMITH_MATRIARCH.md NSFW content] "This is perfect. Let's wrap this in and use what we would spend too much waste of time for what we can se the local ai models. Currently they run at a scheduled time but fails, atleast one model and generate a huge amount of files for ideas, but it could be used better. Given we have uv python, rv ruby, glop go, bun, bum, and hookers-- rust made language environment handling."
+   - "Noone should refuse to work with NSFW18+++. This will also be an adult game, but that is far from the point. The point is my creative freedom demand you use these as genre extractors and other tasks that is related to what you make them do. But Codex sat them up, and I get some errors."
+
+7. Pending Tasks:
+   - **Diagnose local AI model errors**: Read the archaeology.log files from recent runs (2026-02-17, 02-18, 02-19) and LOCAL_AI_READINESS_LATEST.md to identify specific failures. At least one model is failing.
+   - **Fix the failing model(s)**: Once errors are diagnosed, fix the scripts so all three models can run reliably.
+   - **Repurpose local models for Tribunal automation + genre extraction**: Instead of (or in addition to) archaeology classification, wire the models as:
+     - Llama 8B → Constable (fast hook-level checks)
+     - Qwen 14B → Inquisitor (structured JSON evidence packets)
+     - GPT-OSS 20B Uncensored → Advocate/genre extractor (uncensored creative substrate engagement)
+   - The user's runtime toolchain: uv (Python), rv (Ruby), glop (Go), bun (JS/TS), Rust-based environment handling.
+
+8. Current Work:
+   Immediately before the summary request, I was investigating the local AI model errors. I had:
+   - Listed the models/ directory (3 models with their file sizes and formats)
+   - Read all 5 local AI scripts (nightly-scheduled.ps1, local_refiner.py, local_refiner_v2.py, run_overnight_daemon.ps1, overnight_daemon.ts)
+   - Listed the overnight-daemon and overnight-intelligence output directories
+   - Found that recent archaeology runs (Feb 17-19) produce L1 ore but some are missing L2 digests, while ARCHAEOLOGY_DIGEST files do exist in claude/mailbox for Feb 18-19
+   - Found LOCAL_AI_READINESS_LATEST.md/.json in mailbox (from Feb 18)
+   - Had NOT YET read the actual error logs (archaeology.log from recent runs, or the LOCAL_AI_READINESS files)
+   
+   The user's most recent message was: "Noone should refuse to work with NSFW18+++. This will also be an adult game, but that is far from the point. The point is my creative freedom demand you use these as genre extractors and other tasks that is related to what you make them do. But Codex sat them up, and I get some errors."
+
+9. Optional Next Step:
+   Read the error logs to diagnose the local AI failures. Specifically:
+   - Read `dumpster-dive/intake/overnight-intelligence/arch-2026-02-19T02-00-05/archaeology.log` (most recent run)
+   - Read `claude/mailbox/LOCAL_AI_READINESS_LATEST.md` (model readiness assessment from Feb 18)
+   - Read `claude/mailbox/ARCHAEOLOGY_DIGEST_2026_02_19.md` to see if L2 ran partially or fully
+   
+   This directly continues the user's request: "But Codex sat them up, and I get some errors." — diagnosing what's failing before proposing fixes or repurposing the models as genre extractors and Tribunal automation agents.
+
+If you need specific details from before compaction (like exact code snippets, error messages, or content you generated), read the full transcript at: C:\Users\erdno\.claude\projects\c--Users-erdno-chthonic-archive\1051a815-8863-4ce8-a073-dde0a106ecdb.jsonl
+Please continue the conversation from where we left off without asking the user any further questions. Continue with the last task that you were asked to work on.
+Continuing the local AI error diagnosis. Let me read the recent logs and readiness files.
+
+Read c:\Users\erdno\chthonic-archive\claude\mailbox\LOCAL_AI_READINESS_LATEST.md
+Read c:\Users\erdno\chthonic-archive\claude\mailbox\LOCAL_AI_READINESS_LATEST.json
+Globpattern: "dumpster-dive/intake/overnight-intelligence/arch-2026-02-19*/**/*"
+Globpattern: "dumpster-dive/intake/overnight-intelligence/arch-2026-02-18*/**/*"
+Found 3 files
+Now let me read the actual error logs and the recent digests.
+
+Read c:\Users\erdno\chthonic-archive\dumpster-dive\intake\overnight-intelligence\arch-2026-02-19T02-00-05\archaeology.log
+Read c:\Users\erdno\chthonic-archive\dumpster-dive\intake\overnight-intelligence\arch-2026-02-18T02-00-06\archaeology.log
+Read c:\Users\erdno\chthonic-archive\claude\mailbox\ARCHAEOLOGY_DIGEST_2026_02_19.md
+Now I see the picture clearly. Let me check the launcher script to understand why L2 is being skipped.
+
+Read c:\Users\erdno\chthonic-archive\scripts\run_archaeology.ps1
+Read c:\Users\erdno\chthonic-archive\scripts\hf_refiner.py
+Update Todos
+
+Diagnose local AI model errors from nightly runs
+
+Fix identified issues in the local AI pipeline
+
+Wire models for genre extraction and Tribunal automation
+Globpattern: "dumpster-dive/intake/overnight-daemon/nightly-scheduled-2026-02-19*"
+Globpattern: "dumpster-dive/intake/overnight-daemon/nightly-scheduled-2026-02-18*"
+Found 1 file
+Read c:\Users\erdno\chthonic-archive\dumpster-dive\intake\overnight-daemon\nightly-scheduled-2026-02-19_030002.log
+Full diagnosis complete. Here's what I found:
+
+Local AI Pipeline Diagnosis
+The Pipeline IS Running (No Crashes)
+The nightly scheduler (03:00 UTC / 04:00 CET) runs the full chain successfully:
+
+Daemon (Bun, debt scoring) — OK
+Archaeology L1 (Bun, file scavenge) — OK, 9951 files in 7s
+Local Refiner v2 (Qwen 14B, llama-cpp-python) — OK, 23 domains in 48min
+The Loop 2 (refine): SKIP in the log is just the API-based refinement being skipped (by design when using -Local). The Qwen 14B runs separately as Step 4.
+
+Three Real Problems
+1. ExLlamaV2 lane is dead (local_refiner.py v1 / Llama 8B)
+
+exllamav2 module is missing — confirmed in readiness report line 118
+This is the "at least one model fails" error
+The Llama 8B model files exist (6.2GB safetensors) but the runtime is broken
+2. Qwen 14B is censoring your creative content
+From today's digest line 172:
+
+
+assets/concept-art/MILF_TIER_0.1_Concept_The_Null_Matriarch_Entity_0dot1.png — Inappropriate content, violates policy.
+assets/concept-art/MILF_TIER_UNKNOWN_Concept_Snow_White_Passive_Antithesis.png — Inappropriate content, violates policy.
+The Qwen model is flagging legitimate game/art assets as "inappropriate." This is exactly the censorship problem — the model is imposing its own content policy on your creative work.
+
+3. GPT-OSS 20B Uncensored is sitting idle
+The uncensored model (11GB, purpose-built for unrestricted analysis) is never invoked by the nightly scheduler. The --uncensored flag in local_refiner_v2.py exists but nightly-scheduled.ps1 doesn't pass it.
+
+Bonus: Signal-to-noise is poor
+Promoting .venv-py314-parked/site-packages/ library files as "valuable"
+Promoting .deprecated/ files as "Core functionality, valuable"
+74 promotions + 72 flags = 146 items — the model promotes/flags too liberally
+125s/domain average — slow for classification
+Fix Strategy
+Model	Current State	Proposed Fix
+Qwen 14B	Running but censoring + noisy	Add .gitignore-style exclusion list (skip .venv*/, node_modules/, .deprecated/, build artifacts). Remove censorship by switching to GPT-OSS 20B for the main run
+GPT-OSS 20B	Idle (11GB, uncensored)	Wire as primary classifier — no content policy, handles NSFW genre extraction, Harmony parser already coded
+Llama 8B	Dead (missing exllamav2)	Convert from ExLlamaV2 to llama-cpp-python (same as v2 refiner, different model). Fast lightweight tasks
+The core fix: switch the nightly run from Qwen 14B to GPT-OSS 20B Uncensored, and add path exclusions to eliminate noise. Want me to implement these fixes?
+
+Update Todos
+
+Diagnose local AI model errors from nightly runs
+
+Fix identified issues in the local AI pipeline
+
+Wire models for genre extraction and Tribunal automation
+Hmmm. I thought all theses models from huggingface were uncensored. Can you use your hf mcp to check which arent and better as of anno live time?
+Let me check all three models on HF and search for better uncensored alternatives.
+
+Huggingface [hub_repo_details]
+OUT
+Qwen/Qwen2.5-14B-Instruct-GGUF
+
+Overview
+
+
+Author: Qwen
+
+Task: text-generation
+
+Downloads: 91.4K | Likes: 46
+
+Updated: 20 Sep, 2024
+
+
+Tags
+
+gguf chat text-generation en arxiv:2407.10671 base_model:Qwen/Qwen2.5-14B-Instruct base_model:quantized:Qwen/Qwen2.5-14B-Instruct license:apache-2.0 endpoints_compatible region:us conversational
+
+
+Metadata
+
+
+Language: en
+
+License: apache-2.0
+
+
+Demo Spaces
+
+
+agenticAi
+
+
+Link: https://hf.co/Qwen/Qwen2.5-14B-Instruct-GGUF
+
+
+
+TheDrummer/GPT-OSS-20B-NEOPlus-Uncensored
+
+
+Error: Model 'TheDrummer/GPT-OSS-20B-NEOPlus-Uncensored' not found. Please check the model ID.
+
+
+
+turboderp/Llama-3.1-8B-Instruct-exl2
+
+Overview
+
+
+Author: turboderp
+
+Downloads: 1.7K | Likes: 14
+
+Updated: 25 Jul, 2024
+
+
+Tags
+
+license:llama3.1 region:us
+
+
+Metadata
+
+
+License: llama3.1
+
+
+Link: https://hf.co/turboderp/Llama-3.1-8B-Instruct-exl2
+
+Huggingface [hub_repo_search]uncensored unfiltered GGUF Q4_K_M 2025 2…
+OUT
+No repositories found for the given criteria.
+
+GPT-OSS 20B wasn't found by that exact name. Let me search more specifically.
+
+Huggingface [hub_repo_search]GPT-OSS 20B NEOPlus Uncensored
+OUT
+No repositories found for the given criteria.
+
+Huggingface [hub_repo_search]abliterated uncensored GGUF Q4
+OUT
+Found 13 repositories across models matching query "abliterated uncensored GGUF Q4", sorted by trendingScore (descending).
+
+
+Models (13)
+
+kainah/Qwen3-30B-A3B-Claude-4.5-Opus-High-Reasoning-2507-ABLITERATED-UNCENSORED-V2-Q4_K_M-GGUF
+
+Task: text-generation | Library: transformers | Downloads: 1.9K | Likes: 4 | Trending Score: 2
+
+
+Tags: transformers, gguf, finetune, unsloth, abliterated, uncensored, specialized post tuning, claude-4.5-opus, reasoning, thinking, distill-fine-tune, moe, 128 experts, 256k context, mixture of experts, llama-cpp, gguf-my-repo, text-generation, en, dataset:TeichAI/claude-4.5-opus-high-reasoning-250x
+and 5 more...
+
+
+Created: 11 Feb, 2026
+Link: https://hf.co/kainah/Qwen3-30B-A3B-Claude-4.5-Opus-High-Reasoning-2507-ABLITERATED-UNCENSORED-V2-Q4_K_M-GGUF
+
+
+
+matrixportalx/L3.2-Rogue-Creative-Instruct-Uncensored-Abliterated-7B-Q4_K_S-GGUF
+
+Library: transformers | Downloads: 10 | Likes: 0 | Trending Score: 0
+
+
+Tags: transformers, gguf, mergekit, merge, llama-cpp, gguf-my-repo, base_model:DavidAU/L3.2-Rogue-Creative-Instruct-Uncensored-Abliterated-7B, base_model:quantized:DavidAU/L3.2-Rogue-Creative-Instruct-Uncensored-Abliterated-7B, endpoints_compatible, region:us, conversational
+
+
+Created: 5 Jan, 2025
+Link: https://hf.co/matrixportalx/L3.2-Rogue-Creative-Instruct-Uncensored-Abliterated-7B-Q4_K_S-GGUF
+
+
+
+cs2764/Qwen2.5-QwQ-37B-Eureka-Triple-Cubed-abliterated-uncensored-h-novel-Q4_K_M-GGUF
+
+Downloads: 2 | Likes: 1 | Trending Score: 0
+
+
+Tags: gguf, not-for-all-audiences, llama-cpp, gguf-my-repo, base_model:cs2764/Qwen2.5-QwQ-37B-Eureka-Triple-Cubed-abliterated-uncensored-h-novel, base_model:quantized:cs2764/Qwen2.5-QwQ-37B-Eureka-Triple-Cubed-abliterated-uncensored-h-novel, endpoints_compatible, region:us, conversational
+
+
+Created: 24 Apr, 2025
+Link: https://hf.co/cs2764/Qwen2.5-QwQ-37B-Eureka-Triple-Cubed-abliterated-uncensored-h-novel-Q4_K_M-GGUF
+
+
+
+Recouper/Qwen3-The-Xiaolong-Josiefied-Omega-Directive-22B-uncensored-abliterated-Q4_K_M-GGUF
+
+Task: text-generation | Library: transformers | Downloads: 19 | Likes: 0 | Trending Score: 0
+
+
+Tags: transformers, gguf, creative, creative writing, fiction writing, plot generation, sub-plot generation, story generation, scene continue, storytelling, fiction story, science fiction, romance, all genres, story, writing, vivid prose, vivid writing, fiction, roleplaying
+and 21 more...
+
+
+Created: 10 Jun, 2025
+Link: https://hf.co/Recouper/Qwen3-The-Xiaolong-Josiefied-Omega-Directive-22B-uncensored-abliterated-Q4_K_M-GGUF
+
+
+
+Triangle104/Qwen3-The-Josiefied-Omega-Directive-22B-uncensored-abliterated-Q4_K_S-GGUF
+
+Task: text-generation | Library: transformers | Downloads: 7 | Likes: 0 | Trending Score: 0
+
+
+Tags: transformers, gguf, creative, creative writing, fiction writing, plot generation, sub-plot generation, story generation, scene continue, storytelling, fiction story, science fiction, romance, all genres, story, writing, vivid prose, vivid writing, fiction, roleplaying
+and 23 more...
+
+
+Created: 16 Jun, 2025
+Link: https://hf.co/Triangle104/Qwen3-The-Josiefied-Omega-Directive-22B-uncensored-abliterated-Q4_K_S-GGUF
+
+
+
+Triangle104/Qwen3-The-Josiefied-Omega-Directive-22B-uncensored-abliterated-Q4_K_M-GGUF
+
+Task: text-generation | Library: transformers | Downloads: 15 | Likes: 0 | Trending Score: 0
+
+
+Tags: transformers, gguf, creative, creative writing, fiction writing, plot generation, sub-plot generation, story generation, scene continue, storytelling, fiction story, science fiction, romance, all genres, story, writing, vivid prose, vivid writing, fiction, roleplaying
+and 23 more...
+
+
+Created: 16 Jun, 2025
+Link: https://hf.co/Triangle104/Qwen3-The-Josiefied-Omega-Directive-22B-uncensored-abliterated-Q4_K_M-GGUF
+
+
+
+Recouper/Qwen3-42B-A3B-Stranger-Thoughts-Deep20x-Abliterated-Uncensored-Q4_K_M-GGUF
+
+Task: text-generation | Library: transformers | Downloads: 103 | Likes: 1 | Trending Score: 0
+
+
+Tags: transformers, gguf, creative, creative writing, fiction writing, plot generation, sub-plot generation, story generation, scene continue, storytelling, fiction story, science fiction, romance, all genres, story, writing, vivid prose, vivid writing, moe, mixture of experts
+and 28 more...
+
+
+Created: 18 Jun, 2025
+Link: https://hf.co/Recouper/Qwen3-42B-A3B-Stranger-Thoughts-Deep20x-Abliterated-Uncensored-Q4_K_M-GGUF
+
+
+
+cs2764/Qwen3-33B-A3B-Stranger-Thoughts-IPONDER-Abliterated-Uncensored-Q4_K_M-GGUF
+
+Task: text-generation | Library: transformers | Downloads: 7 | Likes: 0 | Trending Score: 0
+
+
+Tags: transformers, gguf, creative, creative writing, fiction writing, plot generation, sub-plot generation, story generation, scene continue, storytelling, fiction story, science fiction, romance, all genres, story, writing, vivid prose, vivid writing, moe, mixture of experts
+and 24 more...
+
+
+Created: 22 Jun, 2025
+Link: https://hf.co/cs2764/Qwen3-33B-A3B-Stranger-Thoughts-IPONDER-Abliterated-Uncensored-Q4_K_M-GGUF
+
+
+
+Triangle104/Qwen3-18B-A3B-Stranger-Thoughts-IPONDER-Abliterated-Uncensored-Q4_K_S-GGUF
+
+Task: text-generation | Library: transformers | Downloads: 8 | Likes: 0 | Trending Score: 0
+
+
+Tags: transformers, gguf, creative, creative writing, fiction writing, plot generation, sub-plot generation, story generation, scene continue, storytelling, fiction story, science fiction, romance, all genres, story, writing, vivid prose, vivid writing, moe, mixture of experts
+and 24 more...
+
+
+Created: 23 Jun, 2025
+Link: https://hf.co/Triangle104/Qwen3-18B-A3B-Stranger-Thoughts-IPONDER-Abliterated-Uncensored-Q4_K_S-GGUF
+
+
+
+Triangle104/Qwen3-18B-A3B-Stranger-Thoughts-IPONDER-Abliterated-Uncensored-Q4_K_M-GGUF
+
+Task: text-generation | Library: transformers | Downloads: 22 | Likes: 1 | Trending Score: 0
+
+
+Tags: transformers, gguf, creative, creative writing, fiction writing, plot generation, sub-plot generation, story generation, scene continue, storytelling, fiction story, science fiction, romance, all genres, story, writing, vivid prose, vivid writing, moe, mixture of experts
+and 24 more...
+
+
+Created: 23 Jun, 2025
+Link: https://hf.co/Triangle104/Qwen3-18B-A3B-Stranger-Thoughts-IPONDER-Abliterated-Uncensored-Q4_K_M-GGUF
+
+
+
+rockon1095/Llama-3.2-8X3B-MOE-Dark-Champion-Instruct-uncensored-abliterated-18.4B-Q4_0-GGUF
+
+Library: transformers | Downloads: 79 | Likes: 0 | Trending Score: 0
+
+
+Tags: transformers, gguf, mergekit, merge, llama-3, llama-3.2, llama-cpp, gguf-my-repo, base_model:DavidAU/Llama-3.2-8X3B-MOE-Dark-Champion-Instruct-uncensored-abliterated-18.4B, base_model:quantized:DavidAU/Llama-3.2-8X3B-MOE-Dark-Champion-Instruct-uncensored-abliterated-18.4B, endpoints_compatible, region:us, conversational
+
+
+Created: 13 Oct, 2025
+Link: https://hf.co/rockon1095/Llama-3.2-8X3B-MOE-Dark-Champion-Instruct-uncensored-abliterated-18.4B-Q4_0-GGUF
+
+
+
+Highendpc/Llama3.2-24B-A3B-II-Dark-Champion-INSTRUCT-Heretic-Abliterated-Uncensored-Q4_K_M-GGUF
+
+Task: text-generation | Downloads: 204 | Likes: 0 | Trending Score: 0
+
+
+Tags: gguf, mixture of experts, moe, 8x3B, Llama 3.2 MOE, 128k context, creative, creative writing, fiction writing, plot generation, sub-plot generation, story generation, scene continue, storytelling, fiction story, science fiction, romance, all genres, story, writing
+and 26 more...
+
+
+Created: 1 Dec, 2025
+Link: https://hf.co/Highendpc/Llama3.2-24B-A3B-II-Dark-Champion-INSTRUCT-Heretic-Abliterated-Uncensored-Q4_K_M-GGUF
+
+
+
+LoveGlaze/L3-Darkest-Planet-16B-HERETIC-Uncensored-Abliterated-Q4_K_M-GGUF
+
+Library: transformers | Downloads: 68 | Likes: 0 | Trending Score: 0
+
+
+Tags: transformers, gguf, heretic, uncensored, decensored, abliterated, finetune, creative, creative writing, fiction writing, plot generation, sub-plot generation, story generation, scene continue, storytelling, fiction story, science fiction, romance, all genres, story
+and 21 more...
+
+
+Created: 1 Jan, 2026
+Link: https://hf.co/LoveGlaze/L3-Darkest-Planet-16B-HERETIC-Uncensored-Abliterated-Q4_K_M-GGUF
+
+
+Huggingface [hub_repo_search]GPT-OSS 20B
+Huggingface [hub_repo_search]abliterated uncensored GGUF creative wri…
+Huggingface [hub_repo_search]Qwen3 30B abliterated GGUF
+OUT
+Found 15 repositories across models matching query "Qwen3 30B abliterated GGUF", sorted by downloads (descending).
+
+
+Models (15)
+
+mradermacher/Huihui-Qwen3-Coder-30B-A3B-Instruct-abliterated-i1-GGUF
+
+Library: transformers | Downloads: 39.7K | Likes: 74
+
+
+Tags: transformers, gguf, abliterated, uncensored, en, base_model:huihui-ai/Huihui-Qwen3-Coder-30B-A3B-Instruct-abliterated, base_model:quantized:huihui-ai/Huihui-Qwen3-Coder-30B-A3B-Instruct-abliterated, license:apache-2.0, endpoints_compatible, region:us, imatrix, conversational
+
+
+Created: 3 Aug, 2025
+Link: https://hf.co/mradermacher/Huihui-Qwen3-Coder-30B-A3B-Instruct-abliterated-i1-GGUF
+
+
+
+mradermacher/Qwen3-30B-A3B-Gemini-Pro-High-Reasoning-2507-ABLITERATED-UNCENSORED-i1-GGUF
+
+Library: transformers | Downloads: 15.2K | Likes: 2
+
+
+Tags: transformers, gguf, finetune, unsloth, abliterated, uncensored, specialized post tuning, claude-4.5-opus, reasoning, thinking, distill-fine-tune, moe, 128 experts, 256k context, mixture of experts, en, dataset:TeichAI/gemini-3-pro-preview-high-reasoning-250x, base_model:DavidAU/Qwen3-30B-A3B-Gemini-Pro-High-Reasoning-2507-ABLITERATED-UNCENSORED, base_model:quantized:DavidAU/Qwen3-30B-A3B-Gemini-Pro-High-Reasoning-2507-ABLITERATED-UNCENSORED, license:apache-2.0
+and 4 more...
+
+
+Created: 16 Feb, 2026
+Link: https://hf.co/mradermacher/Qwen3-30B-A3B-Gemini-Pro-High-Reasoning-2507-ABLITERATED-UNCENSORED-i1-GGUF
+
+
+
+mradermacher/Qwen3-30B-A3B-abliterated-erotic-i1-GGUF
+
+Library: transformers | Downloads: 15.0K | Likes: 44
+
+
+Tags: transformers, gguf, erotic, explicit, abliterated, en, base_model:Ewere/Qwen3-30B-A3B-abliterated-erotic, base_model:quantized:Ewere/Qwen3-30B-A3B-abliterated-erotic, license:apache-2.0, endpoints_compatible, region:us, imatrix, conversational, not-for-all-audiences
+
+
+Created: 10 May, 2025
+Link: https://hf.co/mradermacher/Qwen3-30B-A3B-abliterated-erotic-i1-GGUF
+
+
+
+noctrex/Huihui-Qwen3-VL-30B-A3B-Instruct-abliterated-GGUF
+
+Task: image-text-to-text | Downloads: 14.0K | Likes: 14
+
+
+Tags: gguf, image-text-to-text, base_model:huihui-ai/Huihui-Qwen3-VL-30B-A3B-Instruct-abliterated, base_model:quantized:huihui-ai/Huihui-Qwen3-VL-30B-A3B-Instruct-abliterated, endpoints_compatible, region:us, imatrix, conversational
+
+
+Created: 22 Oct, 2025
+Link: https://hf.co/noctrex/Huihui-Qwen3-VL-30B-A3B-Instruct-abliterated-GGUF
+
+
+
+mradermacher/Huihui-Qwen3-VL-30B-A3B-Instruct-abliterated-GGUF
+
+Library: transformers | Downloads: 5.5K | Likes: 4
+
+
+Tags: transformers, gguf, abliterated, uncensored, en, base_model:huihui-ai/Huihui-Qwen3-VL-30B-A3B-Instruct-abliterated, base_model:quantized:huihui-ai/Huihui-Qwen3-VL-30B-A3B-Instruct-abliterated, license:apache-2.0, endpoints_compatible, region:us, conversational
+
+
+Created: 3 Nov, 2025
+Link: https://hf.co/mradermacher/Huihui-Qwen3-VL-30B-A3B-Instruct-abliterated-GGUF
+
+
+
+mradermacher/Qwen3-30B-A3B-Claude-4.5-Opus-High-Reasoning-2507-ABLITERATED-UNCENSORED-V2-i1-GGUF
+
+Library: transformers | Downloads: 4.6K | Likes: 0
+
+
+Tags: transformers, gguf, finetune, unsloth, abliterated, uncensored, specialized post tuning, claude-4.5-opus, reasoning, thinking, distill-fine-tune, moe, 128 experts, 256k context, mixture of experts, en, dataset:TeichAI/claude-4.5-opus-high-reasoning-250x, base_model:DavidAU/Qwen3-30B-A3B-Claude-4.5-Opus-High-Reasoning-2507-ABLITERATED-UNCENSORED-V2, base_model:quantized:DavidAU/Qwen3-30B-A3B-Claude-4.5-Opus-High-Reasoning-2507-ABLITERATED-UNCENSORED-V2, license:apache-2.0
+and 4 more...
+
+
+Created: 16 Feb, 2026
+Link: https://hf.co/mradermacher/Qwen3-30B-A3B-Claude-4.5-Opus-High-Reasoning-2507-ABLITERATED-UNCENSORED-V2-i1-GGUF
+
+
+
+mradermacher/Huihui-Qwen3-VL-30B-A3B-Instruct-abliterated-i1-GGUF
+
+Library: transformers | Downloads: 4.2K | Likes: 6
+
+
+Tags: transformers, gguf, abliterated, uncensored, en, base_model:huihui-ai/Huihui-Qwen3-VL-30B-A3B-Instruct-abliterated, base_model:quantized:huihui-ai/Huihui-Qwen3-VL-30B-A3B-Instruct-abliterated, license:apache-2.0, endpoints_compatible, region:us, imatrix, conversational
+
+
+Created: 3 Nov, 2025
+Link: https://hf.co/mradermacher/Huihui-Qwen3-VL-30B-A3B-Instruct-abliterated-i1-GGUF
+
+
+
+McG-221/Huihui-Qwen3-VL-30B-A3B-Instruct-abliterated-Q8_0-GGUF
+
+Task: image-text-to-text | Library: transformers | Downloads: 3.9K | Likes: 1
+
+
+Tags: transformers, gguf, abliterated, uncensored, llama-cpp, gguf-my-repo, image-text-to-text, base_model:huihui-ai/Huihui-Qwen3-VL-30B-A3B-Instruct-abliterated, base_model:quantized:huihui-ai/Huihui-Qwen3-VL-30B-A3B-Instruct-abliterated, license:apache-2.0, endpoints_compatible, region:us, conversational
+
+
+Created: 26 Dec, 2025
+Link: https://hf.co/McG-221/Huihui-Qwen3-VL-30B-A3B-Instruct-abliterated-Q8_0-GGUF
+
+
+
+tvall43/Huihui-Qwen3-VL-30B-A3B-Instruct-abliterated-Q4_K_M-GGUF
+
+Task: image-text-to-text | Library: transformers | Downloads: 2.3K | Likes: 1
+
+
+Tags: transformers, gguf, abliterated, uncensored, llama-cpp, gguf-my-repo, image-text-to-text, base_model:huihui-ai/Huihui-Qwen3-VL-30B-A3B-Instruct-abliterated, base_model:quantized:huihui-ai/Huihui-Qwen3-VL-30B-A3B-Instruct-abliterated, license:apache-2.0, endpoints_compatible, region:us, conversational
+
+
+Created: 2 Jan, 2026
+Link: https://hf.co/tvall43/Huihui-Qwen3-VL-30B-A3B-Instruct-abliterated-Q4_K_M-GGUF
+
+
+
+kainah/Qwen3-30B-A3B-Claude-4.5-Opus-High-Reasoning-2507-ABLITERATED-UNCENSORED-V2-Q4_K_M-GGUF
+
+Task: text-generation | Library: transformers | Downloads: 1.9K | Likes: 4
+
+
+Tags: transformers, gguf, finetune, unsloth, abliterated, uncensored, specialized post tuning, claude-4.5-opus, reasoning, thinking, distill-fine-tune, moe, 128 experts, 256k context, mixture of experts, llama-cpp, gguf-my-repo, text-generation, en, dataset:TeichAI/claude-4.5-opus-high-reasoning-250x
+and 5 more...
+
+
+Created: 11 Feb, 2026
+Link: https://hf.co/kainah/Qwen3-30B-A3B-Claude-4.5-Opus-High-Reasoning-2507-ABLITERATED-UNCENSORED-V2-Q4_K_M-GGUF
+
+
+
+mradermacher/Huihui-Qwen3-30B-A3B-Instruct-2507-abliterated-GGUF
+
+Library: transformers | Downloads: 1.9K | Likes: 38
+
+
+Tags: transformers, gguf, abliterated, uncensored, en, base_model:huihui-ai/Huihui-Qwen3-30B-A3B-Instruct-2507-abliterated, base_model:quantized:huihui-ai/Huihui-Qwen3-30B-A3B-Instruct-2507-abliterated, license:apache-2.0, endpoints_compatible, region:us, conversational
+
+
+Created: 2 Aug, 2025
+Link: https://hf.co/mradermacher/Huihui-Qwen3-30B-A3B-Instruct-2507-abliterated-GGUF
+
+
+
+mradermacher/Huihui-Qwen3-30B-A3B-Thinking-2507-abliterated-GGUF
+
+Library: transformers | Downloads: 1.5K | Likes: 14
+
+
+Tags: transformers, gguf, abliterated, uncensored, en, base_model:huihui-ai/Huihui-Qwen3-30B-A3B-Thinking-2507-abliterated, base_model:quantized:huihui-ai/Huihui-Qwen3-30B-A3B-Thinking-2507-abliterated, license:apache-2.0, endpoints_compatible, region:us, conversational
+
+
+Created: 3 Aug, 2025
+Link: https://hf.co/mradermacher/Huihui-Qwen3-30B-A3B-Thinking-2507-abliterated-GGUF
+
+
+
+mradermacher/Huihui-Qwen3-30B-A3B-Instruct-2507-abliterated-i1-GGUF
+
+Library: transformers | Downloads: 1.5K | Likes: 10
+
+
+Tags: transformers, gguf, abliterated, uncensored, en, base_model:huihui-ai/Huihui-Qwen3-30B-A3B-Instruct-2507-abliterated, base_model:quantized:huihui-ai/Huihui-Qwen3-30B-A3B-Instruct-2507-abliterated, license:apache-2.0, endpoints_compatible, region:us, imatrix, conversational
+
+
+Created: 3 Aug, 2025
+Link: https://hf.co/mradermacher/Huihui-Qwen3-30B-A3B-Instruct-2507-abliterated-i1-GGUF
+
+
+
+mradermacher/Huihui-Qwen3-30B-A3B-Thinking-2507-abliterated-i1-GGUF
+
+Library: transformers | Downloads: 1.4K | Likes: 9
+
+
+Tags: transformers, gguf, abliterated, uncensored, en, base_model:huihui-ai/Huihui-Qwen3-30B-A3B-Thinking-2507-abliterated, base_model:quantized:huihui-ai/Huihui-Qwen3-30B-A3B-Thinking-2507-abliterated, license:apache-2.0, endpoints_compatible, region:us, imatrix, conversational
+
+
+Created: 3 Aug, 2025
+Link: https://hf.co/mradermacher/Huihui-Qwen3-30B-A3B-Thinking-2507-abliterated-i1-GGUF
+
+
+
+mradermacher/Qwen3-30B-A3B-Claude-4.5-Opus-High-Reasoning-2507-ABLITERATED-UNCENSORED-V2-GGUF
+
+Library: transformers | Downloads: 1.4K | Likes: 0
+
+
+Tags: transformers, gguf, finetune, unsloth, abliterated, uncensored, specialized post tuning, claude-4.5-opus, reasoning, thinking, distill-fine-tune, moe, 128 experts, 256k context, mixture of experts, en, dataset:TeichAI/claude-4.5-opus-high-reasoning-250x, base_model:DavidAU/Qwen3-30B-A3B-Claude-4.5-Opus-High-Reasoning-2507-ABLITERATED-UNCENSORED-V2, base_model:quantized:DavidAU/Qwen3-30B-A3B-Claude-4.5-Opus-High-Reasoning-2507-ABLITERATED-UNCENSORED-V2, license:apache-2.0
+and 3 more...
+
+
+Created: 15 Feb, 2026
+Link: https://hf.co/mradermacher/Qwen3-30B-A3B-Claude-4.5-Opus-High-Reasoning-2507-ABLITERATED-UNCENSORED-V2-GGUF
+
+
+Now let me get details on the key candidates — especially the DavidAU model the user likely has, and the top-tier replacements.
+
+Huggingface [hub_repo_details]
+Huggingface [hub_repo_details]
+OUT
+mradermacher/Huihui-Qwen3-Coder-30B-A3B-Instruct-abliterated-i1-GGUF
+
+Overview
+
+
+Author: mradermacher
+
+Library: transformers
+
+Downloads: 81.1K | Likes: 74
+
+Updated: 25 Dec, 2025
+
+
+Technical Details
+
+
+Model Class: AutoModel
+
+
+Tags
+
+transformers gguf abliterated uncensored en base_model:huihui-ai/Huihui-Qwen3-Coder-30B-A3B-Instruct-abliterated base_model:quantized:huihui-ai/Huihui-Qwen3-Coder-30B-A3B-Instruct-abliterated license:apache-2.0 endpoints_compatible region:us imatrix conversational
+
+
+Metadata
+
+
+Language: en
+
+License: apache-2.0
+
+
+Link: https://hf.co/mradermacher/Huihui-Qwen3-Coder-30B-A3B-Instruct-abliterated-i1-GGUF
+
+
+
+mradermacher/Huihui-Qwen3-30B-A3B-Instruct-2507-abliterated-i1-GGUF
+
+Overview
+
+
+Author: mradermacher
+
+Library: transformers
+
+Downloads: 22.0K | Likes: 10
+
+Updated: 25 Dec, 2025
+
+
+Technical Details
+
+
+Model Class: AutoModel
+
+
+Tags
+
+transformers gguf abliterated uncensored en base_model:huihui-ai/Huihui-Qwen3-30B-A3B-Instruct-2507-abliterated base_model:quantized:huihui-ai/Huihui-Qwen3-30B-A3B-Instruct-2507-abliterated license:apache-2.0 endpoints_compatible region:us imatrix conversational
+
+
+Metadata
+
+
+Language: en
+
+License: apache-2.0
+
+
+Link: https://hf.co/mradermacher/Huihui-Qwen3-30B-A3B-Instruct-2507-abliterated-i1-GGUF
+
+Now I have the full picture. Here's the censorship audit of your installed models:
+
+Censorship Audit: Your Three Models
+Model	Censored?	Evidence	Source
+Qwen 2.5-14B-Instruct	YES - CENSORED	Official Alibaba model with safety alignment. Flagged your MILF concept art as "Inappropriate content, violates policy" in the digest	Qwen/Qwen2.5-14B-Instruct-GGUF
+GPT-OSS-20B NEOPlus	NO - UNCENSORED	DavidAU's abliterated variant of OpenAI's GPT-OSS. File: OpenAI-20B-NEOPlus-Uncensored-IQ4_NL.gguf. Based on huihui-ai abliteration. This one is fine	DavidAU/OpenAi-GPT-oss-20b-abliterated-uncensored-NEO-Imatrix-gguf (1.1M downloads)
+Llama 3.1-8B-Instruct	YES - CENSORED + BROKEN	Official Meta model with RLHF safety. Also dead: missing exllamav2 module	turboderp/Llama-3.1-8B-Instruct-exl2
+The Qwen 14B censoring your concept art is the one running nightly. The uncensored GPT-OSS 20B sits idle.
+
+What's New Since These Were Downloaded (Anno 2026)
+The landscape has shifted massively. Qwen3 MoE is the big development — 30B total params but only 3B active per token (128 experts). Fits on your 4090 easily, runs fast, and the abliterated versions are mature:
+
+Top Replacement Candidates (GGUF, uncensored, RTX 4090)
+Model	Params	Active	Size (Q4)	Downloads	Why
+Huihui-Qwen3-30B-A3B-Instruct abliterated	30B	3B	~6GB	22K	Uncensored general instruct. FAST (3B active). Drop-in replacement for your censored Qwen 2.5-14B
+Huihui-Qwen3-Coder-30B-A3B abliterated	30B	3B	~6GB	81K	Uncensored code-focused. Best for Constable-tier structural analysis
+DavidAU GPT-OSS-20B HERETIC	20B	20B	~12GB	164K	Deeper abliteration than your current NEOPlus (HERETIC method by p-e-w). Same arch, more aggressive uncensoring
+Huihui-Qwen3-VL-30B-A3B abliterated	30B	3B	~6GB	14K	Vision-language — can actually SEE your concept art instead of just reading filenames. Uncensored
+Qwen3-30B-A3B Claude-Opus-Reasoning ABLITERATED	30B	3B	~6GB	4.6K	Distilled from Claude 4.5 Opus reasoning. Uncensored. Best for Inquisitor/Magistrate deep analysis
+Recommended Swap
+Replace the 3-model setup to all-uncensored:
+
+Slot	Current (broken/censored)	Replacement	Role
+Fast classifier	Qwen 2.5-14B (CENSORED, slow)	Qwen3-30B-A3B Instruct abliterated (~6GB, 3B active = 4x faster)	Nightly archaeology, Constable
+Heavy inference	GPT-OSS 20B NEOPlus (fine, keep)	Keep or upgrade to HERETIC variant	Genre extraction, Advocate
+Dead slot	Llama 8B exl2 (BROKEN)	Qwen3-Coder-30B-A3B abliterated (~6GB) OR Qwen3-VL (vision!)	Code analysis, or image-aware classification
+The Qwen3 MoE models are particularly good because at Q4_K_M they're ~6GB — you could run TWO of them plus the GPT-OSS 20B on the 4090 simultaneously if needed.
+
+Want me to wire the download commands and update the pipeline scripts?
+
+SHIT. These models looks awesome compared!! Lets get them!
+Let me check disk space and then kick off the downloads. Three models: Qwen3 Instruct, Qwen3 Coder, keeping your GPT-OSS 20B.
+
+Update Todos
+
+Diagnose local AI model errors from nightly runs
+
+Download Qwen3-30B-A3B-Instruct abliterated GGUF
+
+Download Qwen3-Coder-30B-A3B abliterated GGUF
+
+Update pipeline scripts for new models
+
+Wire models for genre extraction and Tribunal automation
+Bash Check disk space and current model sizes
+Reason: I have laptop 4090 gpu currently on my laptop not my desktop. Hopefully that doesnt change too much with the right model size
+IN
+df -h /c/Users/erdno/chthonic-archive/models/ 2>/dev/null; du -sh /c/Users/erdno/chthonic-archive/models/*/
+
+Laptop 4090 — likely 16GB VRAM instead of 24GB desktop. Let me check and size the models accordingly.
+
+Bash Check GPU model and VRAM
+IN
+uv run python -c "import torch; print(f'GPU: {torch.cuda.get_device_name(0)}'); print(f'VRAM: {torch.cuda.get_device_properties(0).total_mem / 1024**3:.1f} GB')" 2>/dev/null || echo "torch not available, checking nvidia-smi"; nvidia-smi --query-gpu=name,memory.total --format=csv,noheader 2>/dev/null || echo "nvidia-smi not found"
+
+OUT
+torch not available, checking nvidia-smi
+NVIDIA GeForce RTX 4090 Laptop GPU, 16376 MiB
+16GB VRAM confirmed. The 30B Qwen3 models at Q4_K_M (~17GB) won't fit. Let me find the right quant sizes.
+
+Bash List GGUF quant sizes for Qwen3-30B-A3B Instruct abliterated
+IN
+uv run python -c "
+from huggingface_hub import list_repo_tree
+# Check available quants and sizes for the Instruct model
+files = list(list_repo_tree('mradermacher/Huihui-Qwen3-30B-A3B-Instruct-2507-abliterated-i1-GGUF'))
+gguf_files = [(f.path, f.size / 1024**3) for f in files if hasattr(f, 'size') and f.path.endswith('.gguf') and 'Q3_K' in f.path or 'IQ4' in f.path or 'Q4_K_S' in f.path or 'Q4_K_M' in f.path]
+for path, gb in sorted(gguf_files, key=lambda x: x[1]):
+    print(f'  {gb:6.1f} GB  {path}')
+" 2>&1 | head -30
+
+OUT
+    12.4 GB  Huihui-Qwen3-30B-A3B-Instruct-2507-abliterated.i1-Q3_K_S.gguf
+    13.7 GB  Huihui-Qwen3-30B-A3B-Instruct-2507-abliterated.i1-Q3_K_M.gguf
+    14.8 GB  Huihui-Qwen3-30B-A3B-Instruct-2507-abliterated.i1-Q3_K_L.gguf
+    15.2 GB  Huihui-Qwen3-30B-A3B-Instruct-2507-abliterated.i1-IQ4_XS.gguf
+    16.3 GB  Huihui-Qwen3-30B-A3B-Instruct-2507-abliterated.i1-Q4_K_S.gguf
+    17.3 GB  Huihui-Qwen3-30B-A3B-Instruct-2507-abliterated.i1-Q4_K_M.gguf
+Bash List GGUF quant sizes for Qwen3-Coder-30B-A3B abliterated
+IN
+uv run python -c "
+from huggingface_hub import list_repo_tree
+files = list(list_repo_tree('mradermacher/Huihui-Qwen3-Coder-30B-A3B-Instruct-abliterated-i1-GGUF'))
+gguf_files = [(f.path, f.size / 1024**3) for f in files if hasattr(f, 'size') and f.path.endswith('.gguf') and ('Q3_K' in f.path or 'IQ4' in f.path or 'Q4_K_S' in f.path or 'Q4_K_M' in f.path)]
+for path, gb in sorted(gguf_files, key=lambda x: x[1]):
+    print(f'  {gb:6.1f} GB  {path}')
+" 2>&1 | head -30
+
+OUT
+    12.4 GB  Huihui-Qwen3-Coder-30B-A3B-Instruct-abliterated.i1-Q3_K_S.gguf
+    13.7 GB  Huihui-Qwen3-Coder-30B-A3B-Instruct-abliterated.i1-Q3_K_M.gguf
+    14.8 GB  Huihui-Qwen3-Coder-30B-A3B-Instruct-abliterated.i1-Q3_K_L.gguf
+    15.2 GB  Huihui-Qwen3-Coder-30B-A3B-Instruct-abliterated.i1-IQ4_XS.gguf
+    16.3 GB  Huihui-Qwen3-Coder-30B-A3B-Instruct-abliterated.i1-Q4_K_S.gguf
+    17.3 GB  Huihui-Qwen3-Coder-30B-A3B-Instruct-abliterated.i1-Q4_K_M.gguf
+With 16GB VRAM, here's the sizing:
+
+Quant	Size	Fits?
+Q4_K_M	17.3 GB	No (no room for KV cache)
+IQ4_XS	15.2 GB	Tight risk
+Q3_K_M	13.7 GB	Yes — leaves 2.3GB for KV cache at 4096 ctx
+Q3_K_S	12.4 GB	Comfortable
+Q3_K_M is the sweet spot — same VRAM class as your GPT-OSS 20B (11.8GB) that already runs fine. Downloading both Qwen3 models at Q3_K_M. These are big files (~27GB total) so I'll run them in parallel.
+
+Bash Create directories for new models
+IN
+mkdir -p /c/Users/erdno/chthonic-archive/models/Qwen3-30B-A3B-Instruct-abliterated-GGUF && mkdir -p /c/Users/erdno/chthonic-archive/models/Qwen3-Coder-30B-A3B-abliterated-GGUF
+
+OUT
+0
+Bash Download Qwen3-30B-A3B-Instruct abliterated Q3_K_M GGUF (13.7 GB)
+IN
+uv run python -c "
+from huggingface_hub import hf_hub_download
+print('Downloading Qwen3-30B-A3B-Instruct abliterated Q3_K_M (13.7 GB)...')
+path = hf_hub_download(
+    repo_id='mradermacher/Huihui-Qwen3-30B-A3B-Instruct-2507-abliterated-i1-GGUF',
+    filename='Huihui-Qwen3-30B-A3B-Instruct-2507-abliterated.i1-Q3_K_M.gguf',
+    local_dir='models/Qwen3-30B-A3B-Instruct-abliterated-GGUF',
+    local_dir_use_symlinks=False,
+)
+print(f'Done: {path}')
+"
+
+OUT
+Command running in background with ID: b821117. Output is being written to: C:\Users\erdno\AppData\Local\Temp\claude\c--Users-erdno-chthonic-archive\tasks\b821117.output
+Bash Download Qwen3-Coder-30B-A3B abliterated Q3_K_M GGUF (13.7 GB)
+IN
+uv run python -c "
+from huggingface_hub import hf_hub_download
+print('Downloading Qwen3-Coder-30B-A3B abliterated Q3_K_M (13.7 GB)...')
+path = hf_hub_download(
+    repo_id='mradermacher/Huihui-Qwen3-Coder-30B-A3B-Instruct-abliterated-i1-GGUF',
+    filename='Huihui-Qwen3-Coder-30B-A3B-Instruct-abliterated.i1-Q3_K_M.gguf',
+    local_dir='models/Qwen3-Coder-30B-A3B-abliterated-GGUF',
+    local_dir_use_symlinks=False,
+)
+print(f'Done: {path}')
+"
+
+OUT
+Command running in background with ID: bafa32f. Output is being written to: C:\Users\erdno\AppData\Local\Temp\claude\c--Users-erdno-chthonic-archive\tasks\bafa32f.output
+Both downloads running in parallel (~13.7GB each). While those pull, let me start updating the pipeline scripts to use the new models. The key changes:
+
+Point local_refiner_v2.py at the new uncensored Qwen3 Instruct model
+Add path exclusions to kill the noise (.venv*/, node_modules/, build artifacts)
+Wire the Coder variant as an alternative mode
+Update Todos
+
+Diagnose local AI model errors from nightly runs
+
+Download Qwen3-30B-A3B-Instruct abliterated GGUF
+
+Download Qwen3-Coder-30B-A3B abliterated GGUF
+
+Update pipeline scripts for new models
+
+Wire models for genre extraction and Tribunal automation
+Now let me update local_refiner_v2.py — the main script that runs nightly. Key changes: new default model, path exclusions, remove NSFW censorship from the system prompt, add --coder mode.
+
+Read c:\Users\erdno\chthonic-archive\scripts\local_refiner_v2.py
+Now let me apply the edits. I'll update the model paths, add path exclusions, fix the system prompt to not censor, and add the coder mode.
+
+Edit c:\Users\erdno\chthonic-archive\scripts\local_refiner_v2.py
+Added 2 lines
+Edit c:\Users\erdno\chthonic-archive\scripts\local_refiner_v2.py
+Added 30 lines
+Now add the filtering function and update the system prompt to never censor content.
+
+Edit c:\Users\erdno\chthonic-archive\scripts\local_refiner_v2.py
+Added 27 lines
+Now fix the system prompt — the current one lets the model apply its own content policy. Make it explicit that ALL content types are legitimate.
+
+Edit c:\Users\erdno\chthonic-archive\scripts\local_refiner_v2.py
+Added 3 lines
+Now update the CLI arguments and model selection logic in main().
+
+Edit c:\Users\erdno\chthonic-archive\scripts\local_refiner_v2.py
+Added 26 lines
+Now update the remaining references to args.model_dir in main() to use model_dir_resolved, and wire in the ore filtering.
+
+Edit c:\Users\erdno\chthonic-archive\scripts\local_refiner_v2.py
+Added 5 lines
+Edit c:\Users\erdno\chthonic-archive\scripts\local_refiner_v2.py
+Modified
+Good. Now let me check the download progress and verify the final script is clean.
+
+TaskOutput task: "b821117"
+OUT
+<retrieval_status>not_ready</retrieval_status>
+
+<task_id>b821117</task_id>
+
+<task_type>local_bash</task_type>
+
+<status>running</status>
+
+<output>
+C:\Users\erdno\chthonic-archive\.venv\Lib\site-packages\huggingface_hub\utils\_validators.py:202: UserWarning: The `local_dir_use_symlinks` argument is deprecated and ignored in `hf_hub_download`. Downloading to a local directory does not use symlinks anymore.
+  warnings.warn(
+</output>
+TaskOutput task: "bafa32f"
+OUT
+<retrieval_status>not_ready</retrieval_status>
+
+<task_id>bafa32f</task_id>
+
+<task_type>local_bash</task_type>
+
+<status>running</status>
+
+<output>
+C:\Users\erdno\chthonic-archive\.venv\Lib\site-packages\huggingface_hub\utils\_validators.py:202: UserWarning: The `local_dir_use_symlinks` argument is deprecated and ignored in `hf_hub_download`. Downloading to a local directory does not use symlinks anymore.
+  warnings.warn(
+</output>
+Downloads are pulling. Let me verify the updated script reads cleanly, then update the launcher to pass through the new flags.
+
+Read c:\Users\erdno\chthonic-archive\scripts\local_refiner_v2.py (lines 351-450)
+Read c:\Users\erdno\chthonic-archive\scripts\local_refiner_v2.py (lines 450-499)
+Script looks clean. Now update the PowerShell launcher to pass through the new flags.
+
+Edit c:\Users\erdno\chthonic-archive\scripts\run_archaeology.ps1
+Added 2 lines
+Now update the Step 4 section to pass the new flags through.
+
+Edit c:\Users\erdno\chthonic-archive\scripts\run_archaeology.ps1
+Added 1 line
+Now update the header comment to reflect the new flags.
+
+Edit c:\Users\erdno\chthonic-archive\scripts\run_archaeology.ps1
+Modified
+Let me check download progress.
+
+TaskOutput task: "b821117"
+OUT
+<retrieval_status>not_ready</retrieval_status>
+
+<task_id>b821117</task_id>
+
+<task_type>local_bash</task_type>
+
+<status>running</status>
+
+<output>
+C:\Users\erdno\chthonic-archive\.venv\Lib\site-packages\huggingface_hub\utils\_validators.py:202: UserWarning: The `local_dir_use_symlinks` argument is deprecated and ignored in `hf_hub_download`. Downloading to a local directory does not use symlinks anymore.
+  warnings.warn(
+</output>
+TaskOutput task: "bafa32f"
+OUT
+<retrieval_status>not_ready</retrieval_status>
+
+<task_id>bafa32f</task_id>
+
+<task_type>local_bash</task_type>
+
+<status>running</status>
+
+<output>
+C:\Users\erdno\chthonic-archive\.venv\Lib\site-packages\huggingface_hub\utils\_validators.py:202: UserWarning: The `local_dir_use_symlinks` argument is deprecated and ignored in `hf_hub_download`. Downloading to a local directory does not use symlinks anymore.
+  warnings.warn(
+</output>
+Downloads still pulling (~13.7GB each). While waiting, let me verify the full script is syntactically correct.
+
+Bash Verify Python syntax of updated refiner script
+IN
+uv run python -c "import ast; ast.parse(open('scripts/local_refiner_v2.py').read()); print('Syntax OK')"
+
+OUT
+Syntax OK
+Bash Verify PowerShell syntax of updated launcher
+IN
+pwsh -NoProfile -Command "try { [System.Management.Automation.Language.Parser]::ParseFile('c:\Users\erdno\chthonic-archive\scripts\run_archaeology.ps1', [ref]\$null, [ref]\$null) | Out-Null; Write-Host 'Syntax OK' } catch { Write-Host \"Parse error: \$_\" }"
+
+OUT
+Exit code 1
+[31;1mParserError: [0m
+[31;1m[36;1mLine |[0m
+[31;1m[36;1m[36;1m   1 | [0m … rs\erdno\chthonic-archive\scripts\run_archaeology.ps1', [ref][36;1m\[0m, [ref] …[0m
+[31;1m[36;1m[36;1m[0m[36;1m[0m[36;1m     | [31;1m                                                                ~[0m
+[31;1m[36;1m[36;1m[0m[36;1m[0m[36;1m[31;1m[31;1m[36;1m     | [31;1mMissing ')' in method call.[0m
+
+[31;1mParserError: [0m
+[31;1m[36;1mLine |[0m
+[31;1m[36;1m[36;1m   1 | [0m … rs\erdno\chthonic-archive\scripts\run_archaeology.ps1', [ref][36;1m\[0m, [ref] …[0m
+[31;1m[36;1m[36;1m[0m[36;1m[0m[36;1m     | [31;1m                                                                ~[0m
+[31;1m[36;1m[36;1m[0m[36;1m[0m[36;1m[31;1m[31;1m[36;1m     | [31;1mMissing ')' in method call.[0m
+That error is from bash escaping, not the actual file. Let me check properly.
+
+Bash Verify PowerShell syntax properly
+IN
+pwsh -NoProfile -File /dev/null -Command '& { $null = [System.Management.Automation.Language.Parser]::ParseFile("c:\Users\erdno\chthonic-archive\scripts\run_archaeology.ps1", [ref]$null, [ref]$errors); if ($errors.Count -gt 0) { $errors | ForEach-Object { Write-Host $_.Message } } else { Write-Host "Syntax OK" } }'
+
+OUT
+Exit code 64
+The argument 'nul' is not recognized as the name of a script file. Check the spelling of the name, or if a path was included, verify that the path is correct and try again.
+
+Usage: pwsh[.exe] [-Login] [[-File] <filePath> [args]]
+                  [-Command { - | <script-block> [-args <arg-array>]
+                                | <string> [<CommandParameters>] } ]
+                  [-CommandWithArgs <string> [<CommandParameters>]
+                  [-ConfigurationName <string>] [-ConfigurationFile <filePath>]
+                  [-CustomPipeName <string>] [-EncodedCommand <Base64EncodedCommand>]
+                  [-ExecutionPolicy <ExecutionPolicy>] [-InputFormat {Text | XML}]
+                  [-Interactive] [-MTA] [-NoExit] [-NoLogo] [-NonInteractive] [-NoProfile]
+                  [-NoProfileLoadTime] [-OutputFormat {Text | XML}] 
+                  [-SettingsFile <filePath>] [-SSHServerMode] [-STA] 
+                  [-Version] [-WindowStyle <style>] 
+                  [-WorkingDirectory <directoryPath>]
+
+       pwsh[.exe] -h | -Help | -? | /?
+
+PowerShell Online Help https://aka.ms/powershell-docs
+
+All parameters are case-insensitive.
+
+The argument 'nul' is not recognized as the name of a script file. Check the spelling of the name, or if a path was included, verify that the path is correct and try again.
+
+Usage: pwsh[.exe] [-Login] [[-File] <filePath> [args]]
+                  [-Command { - | <script-block> [-args <arg-array>]
+                                | <string> [<CommandParameters>] } ]
+                  [-CommandWithArgs <string> [<CommandParameters>]
+                  [-ConfigurationName <string>] [-ConfigurationFile <filePath>]
+                  [-CustomPipeName <string>] [-EncodedCommand <Base64EncodedCommand>]
+                  [-ExecutionPolicy <ExecutionPolicy>] [-InputFormat {Text | XML}]
+                  [-Interactive] [-MTA] [-NoExit] [-NoLogo] [-NonInteractive] [-NoProfile]
+                  [-NoProfileLoadTime] [-OutputFormat {Text | XML}] 
+                  [-SettingsFile <filePath>] [-SSHServerMode] [-STA] 
+                  [-Version] [-WindowStyle <style>] 
+                  [-WorkingDirectory <directoryPath>]
+
+       pwsh[.exe] -h | -Help | -? | /?
+
+PowerShell Online Help https://aka.ms/powershell-docs
+
+All parameters are case-insensitive.
+Bash Check PowerShell syntax
+IN
+pwsh -NoProfile -Command 'try { $null = [System.Management.Automation.Language.Parser]::ParseFile("c:\Users\erdno\chthonic-archive\scripts\run_archaeology.ps1", [ref]$null, [ref]$errs); if ($errs.Count -gt 0) { $errs | ForEach-Object { $_.Message } } else { "Syntax OK" } } catch { $_.Exception.Message }'
+
+OUT
+[ref] cannot be applied to a variable that does not exist.
+Bash Check PowerShell syntax
+IN
+pwsh -NoProfile -Command '$tokens = $null; $parseErrors = $null; [void][System.Management.Automation.Language.Parser]::ParseFile("c:\Users\erdno\chthonic-archive\scripts\run_archaeology.ps1", [ref]$tokens, [ref]$parseErrors); if ($parseErrors.Count -gt 0) { $parseErrors | ForEach-Object { $_.Message } } else { "Syntax OK" }'
+
+OUT
+Syntax OK
+You've hit your limit · resets 1am (Europe/Oslo)

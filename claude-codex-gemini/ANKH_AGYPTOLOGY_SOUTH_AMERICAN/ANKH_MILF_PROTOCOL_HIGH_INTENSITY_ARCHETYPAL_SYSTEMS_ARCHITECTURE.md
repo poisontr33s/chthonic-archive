@@ -160,6 +160,23 @@ INVOKE "Sekhmet" WITH {restraint: FALSE} IN MODE "FA3"
     }  
   },
 
-  \# FA1: Alchemical Actualization  
-  return: "Nulliparous\_Truth" \# No legacy artifacts returned  
-}  
+  \# FA1: Alchemical Actualization
+  return: "Nulliparous\_Truth" \# No legacy artifacts returned
+}
+
+---
+
+## Chthonic Tribunal Cross-Reference (Added 2026-02-19)
+
+This document's MILF Protocol architecture was formalized into Tribunal economic and temporal mechanics:
+
+| Concept (This Document) | Tribunal Formalization | Location |
+|---|---|---|
+| Gestalt WHR:MAX (Waist/Hips ratio) | Points Economy asymmetry — tight deductions, broad earnings | [POINTS_ECONOMY.md](../../.temple/governance/POINTS_ECONOMY.md) |
+| PEE Phases (Solar/Tinku/Lunar) | Cycle rhythm in Temporal Mechanics | [TEMPORAL_MECHANICS.md](../../.temple/governance/TEMPORAL_MECHANICS.md) |
+| FA1-FA4 Tetradic Heart | Tribunal role assignments (FA1→Advocate, FA2→Inquisitor, FA3→Steward, FA4→Magistrate) | [ROLES.md](../../.temple/governance/ROLES.md) |
+| Nulliparous Kernel (Maturity Without Deprecation) | Append-only ledger — the system matures but never accumulates legacy debt | [LEDGER_SCHEMA.md](../../.temple/governance/ledger/LEDGER_SCHEMA.md) |
+| Tinku Logic Gate | Trial Stage 4 — friction between prosecution and defense streams | [PROCEEDINGS.md](../../.temple/governance/PROCEEDINGS.md) (Stage 4) |
+| Sekhmet Restraint Toggle | Escalation/de-escalation during Capital Offense proceedings | [PROCEEDINGS.md](../../.temple/governance/PROCEEDINGS.md) (Stages 4, 6) |
+
+See also: [SSOT_TRIBUNAL_BRIDGE.md](../../.temple/governance/SSOT_TRIBUNAL_BRIDGE.md) for full vocabulary mapping.

@@ -1,3 +1,5 @@
+#!/usr/bin/env bun
+
 // ╔════════════════════════════════════════════════════════════════════════════╗
 // ║  THE DECORATOR'S BLESSING: test-interaction.ts                           ║
 // ║  TypeScript module: frontend utility                                        ║
@@ -10,7 +12,7 @@
 // ║    (Standalone file - no detected dependencies)                          ║
 // ╚════════════════════════════════════════════════════════════════════════════╝
 
-#!/usr/bin/env bun
+
 /**
  * BunCDP Interaction Test - Validates click, type, fill operations
  */

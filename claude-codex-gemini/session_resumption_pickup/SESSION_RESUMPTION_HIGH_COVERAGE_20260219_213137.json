@@ -1,0 +1,345 @@
+{
+  "generated": "2026-02-19T21:31:35.312471+00:00",
+  "coverage_percent": 100.0,
+  "checks": [
+    {
+      "name": "Claude digest exists",
+      "ok": true,
+      "detail": "C:\\Users\\erdno\\chthonic-archive\\claude\\mailbox\\ARCHAEOLOGY_DIGEST_2026_02_19.md"
+    },
+    {
+      "name": "Local AI readiness snapshot exists",
+      "ok": true,
+      "detail": "C:\\Users\\erdno\\chthonic-archive\\claude\\mailbox\\LOCAL_AI_READINESS_LATEST.json"
+    },
+    {
+      "name": "Nightly scheduler log exists",
+      "ok": true,
+      "detail": "C:\\Users\\erdno\\chthonic-archive\\dumpster-dive\\intake\\overnight-daemon\\nightly-scheduled-2026-02-19_030002.log"
+    },
+    {
+      "name": "Nightly scheduler log clean",
+      "ok": true,
+      "detail": "clean"
+    },
+    {
+      "name": "Nightly completion marker present",
+      "ok": true,
+      "detail": "complete marker found"
+    },
+    {
+      "name": "Daemon report exists",
+      "ok": true,
+      "detail": "C:\\Users\\erdno\\chthonic-archive\\dumpster-dive\\intake\\overnight-daemon\\20260219_030002\\report.json"
+    },
+    {
+      "name": "L1 ore exists",
+      "ok": true,
+      "detail": "C:\\Users\\erdno\\chthonic-archive\\dumpster-dive\\intake\\overnight-intelligence\\arch-2026-02-19T02-00-05\\L1-ore.json"
+    },
+    {
+      "name": "Uncensored model lane present",
+      "ok": true,
+      "detail": "detected"
+    },
+    {
+      "name": "Qwen3 abliterated lane present",
+      "ok": true,
+      "detail": "detected"
+    },
+    {
+      "name": "numpy 2.x functional",
+      "ok": true,
+      "detail": "2.4.2"
+    },
+    {
+      "name": "polars functional",
+      "ok": true,
+      "detail": "1.38.1"
+    },
+    {
+      "name": "llama-cpp lane import",
+      "ok": true,
+      "detail": "0.3.16"
+    }
+  ],
+  "paths": {
+    "latest_digest": "C:\\Users\\erdno\\chthonic-archive\\claude\\mailbox\\ARCHAEOLOGY_DIGEST_2026_02_19.md",
+    "latest_readiness_json": "C:\\Users\\erdno\\chthonic-archive\\claude\\mailbox\\LOCAL_AI_READINESS_LATEST.json",
+    "latest_session_sync": "C:\\Users\\erdno\\chthonic-archive\\claude\\mailbox\\SESSION_SYNC_PACKET_2026_02_09.md",
+    "latest_mailbox_state": "C:\\Users\\erdno\\chthonic-archive\\claude\\mailbox\\MAILBOX_CURRENT_STATE.md",
+    "latest_scheduler_log": "C:\\Users\\erdno\\chthonic-archive\\dumpster-dive\\intake\\overnight-daemon\\nightly-scheduled-2026-02-19_030002.log",
+    "latest_daemon_run": "C:\\Users\\erdno\\chthonic-archive\\dumpster-dive\\intake\\overnight-daemon\\20260219_030002",
+    "latest_arch_run": "C:\\Users\\erdno\\chthonic-archive\\dumpster-dive\\intake\\overnight-intelligence\\arch-2026-02-19T02-00-05",
+    "session_log": "C:\\Users\\erdno\\chthonic-archive\\claude-codex-gemini\\session_resumption_pickup\\session_resumption_pickup_codex.md"
+  },
+  "models": [
+    {
+      "name": "GPT-OSS-20B-NEOPlus-Uncensored",
+      "file_count": 3,
+      "size_gb": 11.004,
+      "largest_file": "OpenAI-20B-NEOPlus-Uncensored-IQ4_NL.gguf",
+      "largest_gb": 11.004,
+      "format": "gguf",
+      "uncensored_signal": true,
+      "updated_at": "2026-02-13T02:54:57.917825+00:00"
+    },
+    {
+      "name": "Llama-3.1-8B-Instruct-exl2-6.0bpw",
+      "file_count": 19,
+      "size_gb": 6.247,
+      "largest_file": "output.safetensors",
+      "largest_gb": 6.238,
+      "format": "safetensors/exl2",
+      "uncensored_signal": false,
+      "updated_at": "2026-02-13T00:35:04.427062+00:00"
+    },
+    {
+      "name": "Qwen2.5-14B-Instruct-GGUF",
+      "file_count": 7,
+      "size_gb": 8.371,
+      "largest_file": "qwen2.5-14b-instruct-q4_k_m-00001-of-00003.gguf",
+      "largest_gb": 3.718,
+      "format": "gguf",
+      "uncensored_signal": false,
+      "updated_at": "2026-02-13T02:14:30.332849+00:00"
+    },
+    {
+      "name": "Qwen3-30B-A3B-Instruct-abliterated-GGUF",
+      "file_count": 3,
+      "size_gb": 13.701,
+      "largest_file": "Huihui-Qwen3-30B-A3B-Instruct-2507-abliterated.i1-Q3_K_M.gguf",
+      "largest_gb": 13.701,
+      "format": "gguf",
+      "uncensored_signal": true,
+      "updated_at": "2026-02-19T21:23:17.255185+00:00"
+    },
+    {
+      "name": "Qwen3-Coder-30B-A3B-abliterated-GGUF",
+      "file_count": 3,
+      "size_gb": 13.701,
+      "largest_file": "Huihui-Qwen3-Coder-30B-A3B-Instruct-abliterated.i1-Q3_K_M.gguf",
+      "largest_gb": 13.701,
+      "format": "gguf",
+      "uncensored_signal": true,
+      "updated_at": "2026-02-19T21:23:17.065393+00:00"
+    }
+  ],
+  "runtime": {
+    "numpy": "2.4.2",
+    "polars": "1.38.1",
+    "llama_cpp": "0.3.16",
+    "tools": {
+      "uv": {
+        "ok": true,
+        "detail": "uv 0.10.3 (c75a0c625 2026-02-16)"
+      },
+      "bun": {
+        "ok": true,
+        "detail": "1.3.9"
+      },
+      "pwsh": {
+        "ok": true,
+        "detail": "PowerShell 7.5.4"
+      }
+    }
+  },
+  "huggingface": {
+    "uncensored_ok": true,
+    "uncensored": [
+      {
+        "id": "TheBloke/Wizard-Vicuna-30B-Uncensored-GPTQ",
+        "downloads": 138619,
+        "likes": 602,
+        "lastModified": "2023-09-27T12:44:25.000Z",
+        "url": "https://huggingface.co/TheBloke/Wizard-Vicuna-30B-Uncensored-GPTQ"
+      },
+      {
+        "id": "DavidAU/OpenAi-GPT-oss-20b-abliterated-uncensored-NEO-Imatrix-gguf",
+        "downloads": 102627,
+        "likes": 442,
+        "lastModified": "2025-11-17T08:20:27.000Z",
+        "url": "https://huggingface.co/DavidAU/OpenAi-GPT-oss-20b-abliterated-uncensored-NEO-Imatrix-gguf"
+      },
+      {
+        "id": "DavidAU/GLM-4.7-Flash-Uncensored-Heretic-NEO-CODE-Imatrix-MAX-GGUF",
+        "downloads": 96830,
+        "likes": 222,
+        "lastModified": "2026-01-28T09:07:52.000Z",
+        "url": "https://huggingface.co/DavidAU/GLM-4.7-Flash-Uncensored-Heretic-NEO-CODE-Imatrix-MAX-GGUF"
+      },
+      {
+        "id": "DavidAU/Llama-3.2-8X3B-MOE-Dark-Champion-Instruct-uncensored-abliterated-18.4B-GGUF",
+        "downloads": 49341,
+        "likes": 489,
+        "lastModified": "2025-12-01T03:54:02.000Z",
+        "url": "https://huggingface.co/DavidAU/Llama-3.2-8X3B-MOE-Dark-Champion-Instruct-uncensored-abliterated-18.4B-GGUF"
+      },
+      {
+        "id": "mradermacher/OpenAI-gpt-oss-20B-Claude-4.5-Opus-Heretic-Uncensored-i1-GGUF",
+        "downloads": 49256,
+        "likes": 3,
+        "lastModified": "2026-02-13T03:00:09.000Z",
+        "url": "https://huggingface.co/mradermacher/OpenAI-gpt-oss-20B-Claude-4.5-Opus-Heretic-Uncensored-i1-GGUF"
+      },
+      {
+        "id": "DavidAU/OpenAi-GPT-oss-20b-HERETIC-uncensored-NEO-Imatrix-gguf",
+        "downloads": 47088,
+        "likes": 98,
+        "lastModified": "2025-11-30T01:55:32.000Z",
+        "url": "https://huggingface.co/DavidAU/OpenAi-GPT-oss-20b-HERETIC-uncensored-NEO-Imatrix-gguf"
+      },
+      {
+        "id": "mradermacher/OpenAI-gpt-oss-20B-INSTRUCT-Heretic-Uncensored-MXFP4-i1-GGUF",
+        "downloads": 40246,
+        "likes": 0,
+        "lastModified": "2026-02-16T09:09:11.000Z",
+        "url": "https://huggingface.co/mradermacher/OpenAI-gpt-oss-20B-INSTRUCT-Heretic-Uncensored-MXFP4-i1-GGUF"
+      },
+      {
+        "id": "DavidAU/gemma-3-4b-it-heretic-uncensored-abliterated-Extreme",
+        "downloads": 34458,
+        "likes": 7,
+        "lastModified": "2025-11-22T03:42:34.000Z",
+        "url": "https://huggingface.co/DavidAU/gemma-3-4b-it-heretic-uncensored-abliterated-Extreme"
+      },
+      {
+        "id": "bartowski/Llama-3.2-3B-Instruct-uncensored-GGUF",
+        "downloads": 28954,
+        "likes": 82,
+        "lastModified": "2024-10-26T00:35:56.000Z",
+        "url": "https://huggingface.co/bartowski/Llama-3.2-3B-Instruct-uncensored-GGUF"
+      },
+      {
+        "id": "mradermacher/OpenAI-gpt-oss-20B-GPT5.1-5.2-DISTILL-Heretic-Uncensored-MXFP4-i1-GGUF",
+        "downloads": 24293,
+        "likes": 0,
+        "lastModified": "2026-02-15T05:05:20.000Z",
+        "url": "https://huggingface.co/mradermacher/OpenAI-gpt-oss-20B-GPT5.1-5.2-DISTILL-Heretic-Uncensored-MXFP4-i1-GGUF"
+      }
+    ],
+    "abliterated_ok": true,
+    "abliterated": [
+      {
+        "id": "DavidAU/OpenAi-GPT-oss-20b-abliterated-uncensored-NEO-Imatrix-gguf",
+        "downloads": 102627,
+        "likes": 442,
+        "lastModified": "2025-11-17T08:20:27.000Z",
+        "url": "https://huggingface.co/DavidAU/OpenAi-GPT-oss-20b-abliterated-uncensored-NEO-Imatrix-gguf"
+      },
+      {
+        "id": "Goekdeniz-Guelmez/Josiefied-Qwen3-14B-abliterated-v3",
+        "downloads": 55012,
+        "likes": 21,
+        "lastModified": "2025-08-11T15:23:13.000Z",
+        "url": "https://huggingface.co/Goekdeniz-Guelmez/Josiefied-Qwen3-14B-abliterated-v3"
+      },
+      {
+        "id": "DavidAU/Llama-3.2-8X3B-MOE-Dark-Champion-Instruct-uncensored-abliterated-18.4B-GGUF",
+        "downloads": 49341,
+        "likes": 489,
+        "lastModified": "2025-12-01T03:54:02.000Z",
+        "url": "https://huggingface.co/DavidAU/Llama-3.2-8X3B-MOE-Dark-Champion-Instruct-uncensored-abliterated-18.4B-GGUF"
+      },
+      {
+        "id": "mradermacher/Huihui-Qwen3-Coder-30B-A3B-Instruct-abliterated-i1-GGUF",
+        "downloads": 39706,
+        "likes": 74,
+        "lastModified": "2025-12-25T03:18:26.000Z",
+        "url": "https://huggingface.co/mradermacher/Huihui-Qwen3-Coder-30B-A3B-Instruct-abliterated-i1-GGUF"
+      },
+      {
+        "id": "huihui-ai/Qwen2.5-32B-Instruct-abliterated",
+        "downloads": 39216,
+        "likes": 52,
+        "lastModified": "2025-04-28T12:54:26.000Z",
+        "url": "https://huggingface.co/huihui-ai/Qwen2.5-32B-Instruct-abliterated"
+      },
+      {
+        "id": "DavidAU/gemma-3-4b-it-heretic-uncensored-abliterated-Extreme",
+        "downloads": 34458,
+        "likes": 7,
+        "lastModified": "2025-11-22T03:42:34.000Z",
+        "url": "https://huggingface.co/DavidAU/gemma-3-4b-it-heretic-uncensored-abliterated-Extreme"
+      },
+      {
+        "id": "mlabonne/gemma-3-27b-it-abliterated",
+        "downloads": 32062,
+        "likes": 289,
+        "lastModified": "2025-03-21T16:10:45.000Z",
+        "url": "https://huggingface.co/mlabonne/gemma-3-27b-it-abliterated"
+      },
+      {
+        "id": "BennyDaBall/Qwen3-4b-Z-Image-Turbo-AbliteratedV1",
+        "downloads": 29967,
+        "likes": 23,
+        "lastModified": "2026-01-31T17:47:55.000Z",
+        "url": "https://huggingface.co/BennyDaBall/Qwen3-4b-Z-Image-Turbo-AbliteratedV1"
+      },
+      {
+        "id": "mlabonne/gemma-3-12b-it-abliterated",
+        "downloads": 29200,
+        "likes": 26,
+        "lastModified": "2025-03-21T16:10:27.000Z",
+        "url": "https://huggingface.co/mlabonne/gemma-3-12b-it-abliterated"
+      },
+      {
+        "id": "mradermacher/Qwen3-VL-8B-Thinking-abliterated-GGUF",
+        "downloads": 28367,
+        "likes": 0,
+        "lastModified": "2025-11-15T12:08:28.000Z",
+        "url": "https://huggingface.co/mradermacher/Qwen3-VL-8B-Thinking-abliterated-GGUF"
+      }
+    ]
+  },
+  "endoflife": {
+    "rows": [
+      {
+        "product": "python",
+        "cycle": "3.14",
+        "latest_patch": "3.14.3",
+        "latest_patch_date": "2026-02-03",
+        "eol_from": "2030-10-31",
+        "maintained": true,
+        "url": "https://endoflife.date/api/v1/products/python/releases/latest"
+      },
+      {
+        "product": "rust",
+        "cycle": "1.93",
+        "latest_patch": "1.93.1",
+        "latest_patch_date": "2026-02-12",
+        "eol_from": "unknown",
+        "maintained": true,
+        "url": "https://endoflife.date/api/v1/products/rust/releases/latest"
+      },
+      {
+        "product": "go",
+        "cycle": "1.26",
+        "latest_patch": "1.26.0",
+        "latest_patch_date": "2026-02-10",
+        "eol_from": "unknown",
+        "maintained": true,
+        "url": "https://endoflife.date/api/v1/products/go/releases/latest"
+      },
+      {
+        "product": "nodejs",
+        "cycle": "25",
+        "latest_patch": "25.6.1",
+        "latest_patch_date": "2026-02-10",
+        "eol_from": "2026-06-01",
+        "maintained": true,
+        "url": "https://endoflife.date/api/v1/products/nodejs/releases/latest"
+      },
+      {
+        "product": "bun",
+        "cycle": "1",
+        "latest_patch": "1.3.9",
+        "latest_patch_date": "2026-02-06",
+        "eol_from": "unknown",
+        "maintained": true,
+        "url": "https://endoflife.date/api/v1/products/bun/releases/latest"
+      }
+    ],
+    "errors": []
+  }
+}

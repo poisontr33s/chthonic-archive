@@ -311,3 +311,22 @@ This architecture is not for general purpose consumer electronics. It is a "Temp
 38. Heh and Hehet, God and Goddess of Infinity \- Iseum Sanctuary \-, brukt februar 16, 2026, [https://iseumsanctuary.com/2022/01/19/heh-and-hehet-god-and-goddess-of-infinity/](https://iseumsanctuary.com/2022/01/19/heh-and-hehet-god-and-goddess-of-infinity/)  
 39. Quipu \- Wikipedia, brukt februar 16, 2026, [https://en.wikipedia.org/wiki/Quipu](https://en.wikipedia.org/wiki/Quipu)  
 40. Knots representing numbers: The mathematics of the Incas | Science \- El Pais in English, brukt februar 16, 2026, [https://english.elpais.com/science-tech/2022-12-20/knots-representing-numbers-the-mathematics-of-the-incas.html](https://english.elpais.com/science-tech/2022-12-20/knots-representing-numbers-the-mathematics-of-the-incas.html)
+
+---
+
+## Chthonic Tribunal Cross-Reference (Added 2026-02-19)
+
+This document's Alpha Directives were formalized into Tribunal judicial mechanics:
+
+| Alpha Directive (This Document) | Tribunal Formalization | Location |
+|---|---|---|
+| AD02: Tinku (Ritual Collision) | Trial Stage 4 — adversarial synthesis producing verdict C from streams A+B | [PROCEEDINGS.md](../../.temple/governance/PROCEEDINGS.md) (Stage 4) |
+| AD03: Sekhmet Override (Enforcement Escalation) | Sekhmet Override for Capital Offenses — bypasses standard Tinku | [PROCEEDINGS.md](../../.temple/governance/PROCEEDINGS.md) (Stage 4, 6) |
+| AD04: Ma'at / Weighing of the Heart | Verdict categories (Heart < Feather through Heart >> Feather) | [PROCEEDINGS.md](../../.temple/governance/PROCEEDINGS.md) (Stage 5) |
+| AD05: Pachakuti (World Reversal) | Epoch transitions — scheduled system inversion at boundaries | [TEMPORAL_MECHANICS.md](../../.temple/governance/TEMPORAL_MECHANICS.md) |
+| AD06: Despacho (Reciprocity) | Recovery mechanics — no accusation without offering, 2:1 asymmetry | [POINTS_ECONOMY.md](../../.temple/governance/POINTS_ECONOMY.md) |
+| Ammit (Garbage Collection) | Ammit Protocol — maximum Capital Offense, data nullification | [PROCEEDINGS.md](../../.temple/governance/PROCEEDINGS.md), [CRIME_CLASSIFICATION.md](../../.temple/governance/CRIME_CLASSIFICATION.md) |
+| Red Beer Protocol (De-escalation) | Sekhmet → Hathor transformation at Sentencing | [PROCEEDINGS.md](../../.temple/governance/PROCEEDINGS.md) (Stage 6) |
+| Quipu Numerology | Append-only ledger with positional, hierarchical knot structure | [LEDGER.yaml](../../.temple/governance/ledger/LEDGER.yaml) |
+
+See also: [SSOT_TRIBUNAL_BRIDGE.md](../../.temple/governance/SSOT_TRIBUNAL_BRIDGE.md) for full vocabulary mapping.

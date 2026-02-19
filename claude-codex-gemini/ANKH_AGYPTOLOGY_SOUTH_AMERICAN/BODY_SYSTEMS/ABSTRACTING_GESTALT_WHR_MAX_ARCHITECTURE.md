@@ -304,3 +304,19 @@ The "Gymnastical" candidate, therefore, is the figure who inhabits the "Ode X." 
 [image1]: <data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAAYCAYAAAAs7gcTAAAAsUlEQVR4AeyQMQrCQBBFg4Kn8A5eQMHCwsoreAb1DmIvYqlgJYggqF1ImXOElAnkBIG8WbIQZqdJn/BfZnZ4LMuMoh7fIHeX5bcxZniEEiqDM7NI5AnNBxbwgC9kcG+5Ud/g5A3ND5awgz+cQHphT5+Ak180V6hBsuUXQxB5Rnc45TCDAoJoeYVhiszdM6R61jSyDUoYffMcJQUzWn5iXcCMlg9YOZjRsin54SD7TUhtAAAA//9pdRYgAAAABklEQVQDAOOpHDETqL4wAAAAAElFTkSuQmCC>
 
 [image2]: <data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABMAAAAXCAYAAADpwXTaAAAAx0lEQVR4AeySPQrCQBBGo6KXsPUCegGxsdFC8ASChRZWeggRBDst1Pt4AzsbD6CVjfl5s5DAkCY7BNIkfG92E3Yfw5BmUOJTy/yHWfnM2vS8gwaoWDr7Y5hBF1QsshjDEqagYpGJ4EkZQB+yWGUi2FAmMAfnkdLi5QhnT06cH8EFFhCILGSzhbUne86/oQc3cDJZLRy4tIIvuEhnbuNZhpy/ww+yWGQdbl/hASoWmfy0YywfULHIIgwvyMUiy0nSD7UsnUTxNQEAAP//FfqO9wAAAAZJREFUAwAA/SEvLDCjVwAAAABJRU5ErkJggg==>
+
+---
+
+## Chthonic Tribunal Cross-Reference (Added 2026-02-19)
+
+This document's tensegrity and hourglass architecture was formalized into Tribunal governance topology:
+
+| Concept (This Document) | Tribunal Formalization | Location |
+|---|---|---|
+| Hourglass Effect (broad inputs → narrow waist → broad outputs) | Fractal Governance — each scale maintains its own tension between constraint and capacity | [FRACTAL_GOVERNANCE.md](../../../.temple/governance/FRACTAL_GOVERNANCE.md) |
+| Tensegrity (compression + tension equilibrium) | Cross-scale resonance — scales connect through tension lines, not rigid hierarchy | [FRACTAL_GOVERNANCE.md](../../../.temple/governance/FRACTAL_GOVERNANCE.md) |
+| WHR:MAX (Control Plane / Capacity Plane) | Points Economy — tight deductions (waist), broad earnings (hips), 2:1 recovery asymmetry | [POINTS_ECONOMY.md](../../../.temple/governance/POINTS_ECONOMY.md) |
+| Ode X (supernormal structural abstraction) | The Tribunal itself as a "peak shift" of ad hoc points tracking — exaggerates the governance signal for clarity | [TRIBUNAL_SPEC.md](../../../.temple/governance/TRIBUNAL_SPEC.md) |
+| Cusco as Navel (seismic dampening through sacred geometry) | Fractal damping — the Advocate role dampens violation resonance from propagating across scales unnecessarily | [FRACTAL_GOVERNANCE.md](../../../.temple/governance/FRACTAL_GOVERNANCE.md) |
+
+See also: [SSOT_TRIBUNAL_BRIDGE.md](../../../.temple/governance/SSOT_TRIBUNAL_BRIDGE.md) for full vocabulary mapping.
