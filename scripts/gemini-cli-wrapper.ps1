@@ -47,6 +47,28 @@ param(
 # Disable MCP discovery to prevent Bun crash during startup
 $env:GEMINI_DISABLE_MCP = "1"
 
+function Test-LegacyGeminiDependency {
+    $pkgPath = Join-Path (Get-Location) "package.json"
+    if (-not (Test-Path $pkgPath)) {
+        return
+    }
+
+    try {
+        $pkg = Get-Content $pkgPath -Raw | ConvertFrom-Json
+    } catch {
+        return
+    }
+
+    $hasLegacyGemini =
+        ($pkg.dependencies -and $pkg.dependencies.PSObject.Properties.Name -contains "gemini") -or
+        ($pkg.devDependencies -and $pkg.devDependencies.PSObject.Properties.Name -contains "gemini")
+
+    if ($hasLegacyGemini) {
+        Write-Host "[gemini-wrapper] WARNING: Local package.json contains legacy npm package 'gemini' (not @google/gemini-cli)." -ForegroundColor Yellow
+        Write-Host "[gemini-wrapper] Run: bun remove gemini" -ForegroundColor Yellow
+    }
+}
+
 function Invoke-GeminiSelfUpdate {
     Write-Host "[gemini-wrapper] Updating Gemini CLI via Bun global lane..." -ForegroundColor Cyan
     # Keep node-gyp/native addon lanes deterministic on Windows.
@@ -103,9 +125,12 @@ $positionalUpdate =
     (-not $Arguments -or $Arguments.Count -eq 0)
 
 if ($SelfUpdate -or $positionalUpdate -or ($Arguments -and $Arguments.Count -gt 0 -and $Arguments[0] -eq "update")) {
+    Test-LegacyGeminiDependency
     Invoke-GeminiSelfUpdate
     exit 0
 }
+
+Test-LegacyGeminiDependency
 
 $geminiCmd = Get-Command gemini -ErrorAction SilentlyContinue
 if ($geminiCmd -and $geminiCmd.Source) {
