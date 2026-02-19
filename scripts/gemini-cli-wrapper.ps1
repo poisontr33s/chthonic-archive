@@ -87,7 +87,13 @@ if ($Arguments) {
     $cliArgs += $Arguments
 }
 
-if ($SelfUpdate -or ($Arguments -and $Arguments.Count -gt 0 -and $Arguments[0] -eq "update")) {
+$positionalUpdate =
+    ($Model -eq "update" -or $Model -eq "--update") -and
+    -not $PSBoundParameters.ContainsKey("Prompt") -and
+    -not $PSBoundParameters.ContainsKey("PromptInteractive") -and
+    (-not $Arguments -or $Arguments.Count -eq 0)
+
+if ($SelfUpdate -or $positionalUpdate -or ($Arguments -and $Arguments.Count -gt 0 -and $Arguments[0] -eq "update")) {
     Invoke-GeminiSelfUpdate
     exit 0
 }
