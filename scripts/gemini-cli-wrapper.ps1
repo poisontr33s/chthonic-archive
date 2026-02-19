@@ -9,7 +9,7 @@
 # ║ Semantic ID: SCRIPT_GEMINI_CLI_WRAPPER_V1
 # ║ Purpose: Wrap Gemini CLI to disable MCP discovery during Bun startup
 # ║ Exports: (none)
-# ║ Flags/Modes: -m/-p/-i/-u/-v/-h/-y and -Arguments passthrough
+# ║ Flags/Modes: -m/-p/-i/-u/-v/-h/-y/-c and -Arguments passthrough
 # ║ Cross-References: (none)
 # ╚════════════════════════════════════════════════════════════════════════════
 
@@ -39,6 +39,9 @@ param(
 
     [Alias("u")]
     [switch]$SelfUpdate,
+
+    [Alias("c")]
+    [switch]$CheckUpdate,
 
     [Parameter(ValueFromRemainingArguments = $true)]
     [string[]]$Arguments
@@ -116,6 +119,61 @@ function Invoke-GeminiSelfUpdate {
     }
 }
 
+function Get-GeminiCurrentVersion {
+    $geminiExe = Resolve-GeminiExecutable
+    if (-not $geminiExe) {
+        return $null
+    }
+    $raw = & $geminiExe --version 2>$null
+    if ($LASTEXITCODE -ne 0 -or -not $raw) {
+        return $null
+    }
+    return ($raw | Select-Object -First 1).Trim()
+}
+
+function Get-GeminiLatestVersion {
+    $raw = & bun pm view @google/gemini-cli version 2>$null
+    if ($LASTEXITCODE -ne 0 -or -not $raw) {
+        return $null
+    }
+    $line = ($raw | Select-Object -First 1).Trim()
+    if ($line -match '^\d+\.\d+\.\d+([\-+].*)?$') {
+        return $line
+    }
+    return $null
+}
+
+function Invoke-GeminiUpdateCheck {
+    $current = Get-GeminiCurrentVersion
+    $latest = Get-GeminiLatestVersion
+
+    if (-not $current) {
+        Write-Host "[gemini-wrapper] Gemini CLI not found locally." -ForegroundColor Red
+        Write-Host "[gemini-wrapper] Install: bun add -g @google/gemini-cli@latest" -ForegroundColor Yellow
+        exit 1
+    }
+    if (-not $latest) {
+        Write-Host "[gemini-wrapper] Could not query registry for latest version." -ForegroundColor Yellow
+        Write-Host "[gemini-wrapper] Current version: $current" -ForegroundColor Cyan
+        exit 0
+    }
+
+    $needsUpdate = $false
+    try {
+        $needsUpdate = ([version]$current -lt [version]$latest)
+    } catch {
+        # Non-standard SemVer labels: fallback to exact compare.
+        $needsUpdate = ($current -ne $latest)
+    }
+
+    if ($needsUpdate) {
+        Write-Host "[gemini-wrapper] Update available: $current -> $latest" -ForegroundColor Yellow
+        Write-Host "[gemini-wrapper] Run: pwsh -NoProfile -File scripts/gemini-cli-wrapper.ps1 -u" -ForegroundColor Yellow
+    } else {
+        Write-Host "[gemini-wrapper] Up to date: $current" -ForegroundColor Green
+    }
+}
+
 $cliArgs = @()
 
 if ($PSBoundParameters.ContainsKey("Model")) {
@@ -145,6 +203,12 @@ $positionalUpdate =
     -not $PSBoundParameters.ContainsKey("Prompt") -and
     -not $PSBoundParameters.ContainsKey("PromptInteractive") -and
     (-not $Arguments -or $Arguments.Count -eq 0)
+
+if ($CheckUpdate -or ($Arguments -and $Arguments.Count -gt 0 -and ($Arguments[0] -in @("check", "check-update", "--check-update")))) {
+    Test-LegacyGeminiDependency
+    Invoke-GeminiUpdateCheck
+    exit 0
+}
 
 if ($SelfUpdate -or $positionalUpdate -or ($Arguments -and $Arguments.Count -gt 0 -and $Arguments[0] -eq "update")) {
     Test-LegacyGeminiDependency
