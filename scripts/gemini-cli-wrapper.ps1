@@ -19,10 +19,10 @@
 # Fix: Set GEMINI_DISABLE_MCP env var before execution
 
 param(
-    [Alias("m", "model")]
+    [Alias("m")]
     [string]$Model,
 
-    [Alias("p", "prompt")]
+    [Alias("p")]
     [string]$Prompt,
 
     [Alias("i")]
