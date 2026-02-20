@@ -147,6 +147,14 @@ export function activate(context: vscode.ExtensionContext) {
 
     context.subscriptions.push(
         vscode.commands.registerCommand('chthonic.entropyRefresh', () => {
+            if (!workspaceRoot) {
+                void vscode.window.showWarningMessage('Workspace root is required to refresh workspace health.');
+                return;
+            }
+            if (!entropyEnabled) {
+                void vscode.window.showWarningMessage('Workspace health lane is disabled (chthonic.entropy.enabled=false).');
+                return;
+            }
             entropyClient.rescanNow();
             entropyClient.requestGraph(260);
             polyglotOrchestrator.requestManualScan();
@@ -160,6 +168,7 @@ export function activate(context: vscode.ExtensionContext) {
     const reactorCockpitAutoLayout = entropyConfig.get<boolean>('reactor.cockpitAutoLayout', false);
     const reactorTransport = entropyConfig.get<string>('reactor.transport', 'auto');
     const reactorDaemonBinaryPath = asOptionalPath(entropyConfig.get<string>('reactor.daemonBinaryPath', ''));
+    const reactorReadiness = assessReactorReadiness(workspaceRoot, reactorEnabled, reactorDaemonBinaryPath);
     const slabSelfHealingEnabled = entropyConfig.get<boolean>('slab.selfHealingEnabled', true);
     const slabSelfHealingIntervalMs = entropyConfig.get<number>('slab.selfHealingIntervalMs', 21600000);
     const slabEolApiBase = entropyConfig.get<string>('slab.eolApiBase', 'https://endoflife.date/api');
@@ -190,6 +199,10 @@ export function activate(context: vscode.ExtensionContext) {
         void vscode.commands.executeCommand('workbench.view.extension.chthonic-archive');
         void vscode.commands.executeCommand('chthonic.loomView.focus');
     };
+
+    if (!reactorReadiness.ready) {
+        outputChannel.appendLine(`[reactor] lane parked: ${reactorReadiness.reason}`);
+    }
 
     context.subscriptions.push(annoClient, cockpitLayout, synapseBridge);
 
@@ -265,7 +278,7 @@ export function activate(context: vscode.ExtensionContext) {
         }),
     );
 
-    if (workspaceRoot && reactorEnabled) {
+    if (reactorReadiness.ready && workspaceRoot && reactorEnabled) {
         annoClient.start(workspaceRoot);
         void annoClient.requestEntropyState()
             .then((state) => {
@@ -328,12 +341,27 @@ export function activate(context: vscode.ExtensionContext) {
             void refreshToolchainCompleteness('manual-command');
         }),
         vscode.commands.registerCommand('chthonic.annoDetect', () => {
+            if (!reactorReadiness.ready) {
+                void vscode.window.showWarningMessage(
+                    `ANNO lane unavailable: ${reactorReadiness.reason}. Using workspace-health fallback.`,
+                );
+                void vscode.commands.executeCommand('chthonic.entropyRefresh');
+                return;
+            }
             if (workspaceRoot) {
                 annoClient.start(workspaceRoot);
             }
             vscode.window.showInformationMessage('ANNO project detection triggered');
         }),
         vscode.commands.registerCommand('chthonic.reactorSediment', async () => {
+            if (!reactorReadiness.ready) {
+                entropyClient.rescanNow();
+                entropyClient.requestGraph(260);
+                vscode.window.showInformationMessage(
+                    `Reactor sediment lane unavailable (${reactorReadiness.reason}); refreshed workspace-health graph instead.`,
+                );
+                return;
+            }
             try {
                 const result = await annoClient.requestSediment(10, 500);
                 vscode.window.showInformationMessage(
@@ -606,6 +634,56 @@ function resolveWebCockpitUrl(config: vscode.WorkspaceConfiguration): string {
         return raw;
     }
     return `http://${raw}`;
+}
+
+interface ReactorReadiness {
+    ready: boolean;
+    reason: string;
+    daemonPath?: string;
+}
+
+function assessReactorReadiness(
+    workspaceRoot: string | null,
+    enabled: boolean,
+    daemonBinaryOverride?: string,
+): ReactorReadiness {
+    if (!enabled) {
+        return {
+            ready: false,
+            reason: 'disabled by chthonic.reactor.enabled=false',
+        };
+    }
+    if (!workspaceRoot) {
+        return {
+            ready: false,
+            reason: 'workspace root is unavailable',
+        };
+    }
+
+    const daemonPath = resolveDaemonBinaryPath(workspaceRoot, daemonBinaryOverride);
+    if (!fs.existsSync(daemonPath)) {
+        return {
+            ready: false,
+            reason: `daemon binary missing (${daemonPath})`,
+            daemonPath,
+        };
+    }
+
+    return {
+        ready: true,
+        reason: 'ready',
+        daemonPath,
+    };
+}
+
+function resolveDaemonBinaryPath(workspaceRoot: string, daemonBinaryOverride?: string): string {
+    if (daemonBinaryOverride) {
+        return path.isAbsolute(daemonBinaryOverride)
+            ? daemonBinaryOverride
+            : path.join(workspaceRoot, daemonBinaryOverride);
+    }
+    const binary = process.platform === 'win32' ? 'chthonic-daemon.exe' : 'chthonic-daemon';
+    return path.join(workspaceRoot, 'native', 'target', 'release', binary);
 }
 
 interface GitLineage {
