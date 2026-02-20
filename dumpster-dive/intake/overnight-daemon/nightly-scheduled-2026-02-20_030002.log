@@ -33,3 +33,9 @@ llama_context: n_ctx_per_seq (4096) < n_ctx_train (262144) -- the full capacity 
   Loading: Huihui-Qwen3-30B-A3B-Instruct-2507-abliterated.i1-Q3_K_M.gguf
   Loaded in 38.2s
 
+  L2: "dumpster-dive" (2690 files)... 207.9s (6 actionable)
+  L2: "meta-ide" (517 files)... 102.8s (8 actionable)
+  L2: "mas_mcp" (505 files)... 95.8s (16 actionable)
+  L2: "scripts" (259 files)... 95.2s (9 actionable)
+  L2: "codex" (170 files)... 113.9s (9 actionable)
+  L2: "extensions" (117 files)... 102.3s (8 actionable)
