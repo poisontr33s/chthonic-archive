@@ -630,4 +630,4 @@ setInterval(applyCircadianTheme, 60_000);
 void bootstrapRenderer();
 void bootstrapLoom();
 vscode.postMessage({ type: 'ready' });
-vscode.postMessage({ type: 'requestSediment' });
+vscode.postMessage({ type: 'requestScan' });
