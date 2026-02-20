@@ -58,10 +58,30 @@ const cacheDir = path.join(extensionRoot, '.chthonic', 'cache');
 const latestSnapshotPath = path.join(cacheDir, 'insiders-post-restart-verify-latest.json');
 const runStamp = new Date().toISOString().replace(/[.:]/g, '-');
 const stampedSnapshotPath = path.join(cacheDir, `insiders-post-restart-verify-${runStamp}.json`);
+
+function argValue(flag: string): string | null {
+    const direct = process.argv.find((value) => value.startsWith(`${flag}=`));
+    if (direct) {
+        return direct.slice(`${flag}=`.length);
+    }
+    const index = process.argv.indexOf(flag);
+    if (index >= 0 && process.argv[index + 1]) {
+        return process.argv[index + 1];
+    }
+    return null;
+}
+
 const mode = {
     gateOnly: process.argv.includes('--gate-only'),
     allowStale: process.argv.includes('--allow-stale'),
     force: process.argv.includes('--force'),
+    withAiLanes: process.argv.includes('--with-ai-lanes'),
+    artCopNoLlm: process.argv.includes('--artcop-no-llm'),
+    artCopImages: argValue('--artcop-images'),
+    artCopImagesDir: argValue('--artcop-images-dir'),
+    artCopMaxImages: argValue('--artcop-max-images'),
+    rankLimit: argValue('--rank-limit'),
+    rankVramGb: argValue('--rank-vram-gb'),
 };
 
 function runCommand(name: string, command: string[], cwd: string): StepResult {
@@ -100,6 +120,25 @@ function runCommand(name: string, command: string[], cwd: string): StepResult {
         stdout,
         stderr,
     };
+}
+
+function runOptionalCommand(name: string, command: string[], cwd: string): StepResult {
+    try {
+        return runCommand(name, command, cwd);
+    } catch (error) {
+        const message = error instanceof Error ? error.message : String(error);
+        console.warn(`\n[post-restart] optional step failed: ${name}`);
+        console.warn(`[post-restart] ${message}`);
+        return {
+            name: `${name} (optional-failed)`,
+            command,
+            cwd,
+            exitCode: 1,
+            durationMs: 0,
+            stdout: '',
+            stderr: message,
+        };
+    }
 }
 
 function parseExtensions(output: string): ExtensionVersion[] {
@@ -420,12 +459,65 @@ function run(): void {
         repoRoot,
     ));
 
+    if (mode.withAiLanes) {
+        const hfRankerPath = path.join(repoRoot, 'scripts', 'hf-model-ranker.ts');
+        if (existsSync(hfRankerPath)) {
+            const hfArgs = [
+                'bun',
+                'run',
+                'scripts/hf-model-ranker.ts',
+                '--limit',
+                mode.rankLimit ?? '80',
+            ];
+            if (mode.rankVramGb) {
+                hfArgs.push('--target-vram-gb', mode.rankVramGb);
+            }
+            stepResults.push(runOptionalCommand(
+                'HF model ranking refresh',
+                hfArgs,
+                repoRoot,
+            ));
+        } else {
+            console.warn('[post-restart] skipping HF ranking refresh (scripts/hf-model-ranker.ts missing)');
+        }
+
+        const artCopPath = path.join(repoRoot, 'scripts', 'vscode-art-cop.ts');
+        if (existsSync(artCopPath)) {
+            const artCopArgs = [
+                'bun',
+                'run',
+                'scripts/vscode-art-cop.ts',
+            ];
+            if (mode.artCopImages) {
+                artCopArgs.push('--images', mode.artCopImages);
+            } else {
+                artCopArgs.push(
+                    '--images-dir',
+                    mode.artCopImagesDir ?? 'bun-playwright-poc',
+                    '--max-images',
+                    mode.artCopMaxImages ?? '4',
+                );
+            }
+            if (mode.artCopNoLlm) {
+                artCopArgs.push('--no-llm');
+            }
+            stepResults.push(runOptionalCommand(
+                'ArtCop VS Code UI audit',
+                artCopArgs,
+                repoRoot,
+            ));
+        } else {
+            console.warn('[post-restart] skipping ArtCop audit (scripts/vscode-art-cop.ts missing)');
+        }
+    }
+
     const snapshot: Snapshot = {
         generatedAt: new Date().toISOString(),
         sequence: [
             'restart-insiders',
             'restart-extensions',
             'verify-after-restart',
+            ...(mode.withAiLanes ? ['ai-review-lanes'] : []),
         ],
         insidersVersion: parsedInsidersVersion,
         restartGate,

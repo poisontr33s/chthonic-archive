@@ -6,6 +6,7 @@
 
 import { mkdirSync, writeFileSync } from 'node:fs';
 import path from 'node:path';
+import { existsSync, readdirSync, statSync } from 'node:fs';
 
 type Finding = {
   severity: 'high' | 'medium' | 'low';
@@ -39,6 +40,12 @@ function argFlag(name: string): boolean {
   return process.argv.includes(`--${name}`);
 }
 
+function toInt(value: string | undefined, fallback: number): number {
+  if (!value) return fallback;
+  const parsed = Number.parseInt(value, 10);
+  return Number.isFinite(parsed) ? parsed : fallback;
+}
+
 function parseImages(): string[] {
   const csv = argValue('images') || '';
   const list = csv
@@ -54,6 +61,26 @@ function parseImages(): string[] {
   }
 
   return Array.from(new Set([...list, ...repeated]));
+}
+
+function collectLatestImages(imagesDir: string, maxImages: number): string[] {
+  const root = path.resolve(imagesDir);
+  if (!existsSync(root)) {
+    return [];
+  }
+  const entries = readdirSync(root, { withFileTypes: true })
+    .filter((entry) => entry.isFile())
+    .map((entry) => {
+      const fullPath = path.join(root, entry.name);
+      const ext = path.extname(entry.name).toLowerCase();
+      return { fullPath, ext, mtimeMs: statSync(fullPath).mtimeMs };
+    })
+    .filter((entry) => ['.png', '.jpg', '.jpeg', '.webp'].includes(entry.ext))
+    .sort((left, right) => right.mtimeMs - left.mtimeMs)
+    .slice(0, Math.max(1, maxImages))
+    .map((entry) => entry.fullPath);
+
+  return entries;
 }
 
 function mimeForPath(filePath: string): string {
@@ -118,17 +145,23 @@ function fallbackResult(error: string): ArtCopResult {
 }
 
 async function main() {
-  const images = parseImages();
+  let images = parseImages();
   const endpoint = argValue('endpoint') || process.env.ART_COP_ENDPOINT || 'http://127.0.0.1:5000/v1/chat/completions';
   const model = argValue('model') || process.env.ART_COP_MODEL || 'local-vlm';
   const mailboxDir = argValue('mailbox-dir') || path.join('codex', 'mailbox');
   const noLlm = argFlag('no-llm');
+  const imagesDir = argValue('images-dir');
+  const maxImages = toInt(argValue('max-images'), 4);
 
   mkdirSync(mailboxDir, { recursive: true });
   mkdirSync(path.join(mailboxDir, 'archive', 'art-cop'), { recursive: true });
 
+  if (images.length === 0 && imagesDir) {
+    images = collectLatestImages(imagesDir, maxImages);
+  }
+
   if (images.length === 0) {
-    throw new Error('no images provided. use --images a.png,b.png or repeated --image <path>');
+    throw new Error('no images provided. use --images a.png,b.png or --images-dir <path>');
   }
 
   const capturedAt = new Date().toISOString();
@@ -216,6 +249,9 @@ async function main() {
   lines.push(`- Endpoint: ${endpoint}`);
   lines.push(`- Model: ${model}`);
   lines.push(`- Note: ${transportNote}`);
+  if (imagesDir) {
+    lines.push(`- Images Directory: ${path.resolve(imagesDir)}`);
+  }
   lines.push('');
   lines.push('## Images');
   lines.push('');
