@@ -34,6 +34,7 @@ Practical verdict: keep BunCDP as the active automation lane and treat Playwrigh
 04:46:11 - bun run launch-diag                       🔴 HUNG AGAIN
 04:46:49 - Get-Process chrome|bun|playwright         ⚠️ Checking hung state
 04:47:22 - taskkill chrome.exe; taskkill bun.exe     🛑 Manual kill required
+15:40:34 - Bun-Playwright Validation Suite           ✅ Executed (See BUN_PLAYWRIGHT_VALIDATION.md)
 ```
 
 **Key Finding**: All install/verify commands succeed. Only browser-launching commands hang.
