@@ -3,6 +3,17 @@
 > **Purpose**: Data-driven analysis for solving Bun-Playwright on enterprise Windows 11
 > **Date**: 2026-01-23 | **Source**: debugging_data logs + validation attempts
 
+## 0. Runtime Reality Update (2026-02-20)
+
+Live re-validation in this workspace shows:
+
+- `bun-cdp` lane is healthy for launch + navigate + evaluate + screenshot.
+- Raw WebSocket CDP flow is healthy (`/json/version` and direct WS connect pass).
+- `playwright.connectOverCDP(...)` still times out under Bun in this environment.
+- Several historical scripts were stale due banner/comment corruption and were repaired locally.
+
+Practical verdict: keep BunCDP as the active automation lane and treat Playwright-under-Bun CDP bridge as experimental until upstream/runtime compatibility improves.
+
 ---
 
 ## 1. Execution Timeline (from Extension_Host_data.log)

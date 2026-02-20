@@ -21,6 +21,18 @@ This tool controls a web browser automatically. You write simple commands, it cl
 bun run chthonic-crawler.ts "Your Topic Here"
 ```
 
+### One-Liner with Local LLM Reranker (Optional)
+
+```bash
+bun run chthonic-crawler.ts "Your Topic Here" --local-llm
+```
+
+Optional endpoint/model overrides:
+
+```bash
+bun run chthonic-crawler.ts "Your Topic Here" --local-llm --llm-endpoint=http://127.0.0.1:5000/v1/chat/completions --llm-model=llama-3.1-8b
+```
+
 This will:
 1. Open a hidden Chrome browser
 2. Visit 4-5 web pages related to your topic  
@@ -76,6 +88,7 @@ const defaultSeeds = [
 - **SPA Support**: `NetworkIdle` wait for XHR/fetch completion  
 - **Iframe Support**: Cross-frame element interaction via `FrameRegistry`
 - **Safety Systems**: Auto-dismiss dialogs, detect popups/new tabs
+- **Optional Local LLM Rerank**: score pages via local OpenAI-compatible endpoint
 - **Zero Dependencies**: Pure Bun - no Node.js polyfills needed
 
 ## Installation
@@ -87,6 +100,12 @@ bunx playwright install chromium
 # Then import directly
 import { launchBrowser, createPage } from './src';
 ```
+
+## Bun-First Notes
+
+- Runtime and scripts are Bun-first (`bun run`, `bun test`, `bunx`).
+- The project depends on the `playwright` package for browser binaries/protocol tooling.
+- You do **not** need `npm`/`npx` for the normal workflow in this repo.
 
 ## Quick Start
 
