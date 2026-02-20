@@ -109,7 +109,7 @@ export class SelfHealingLoop implements vscode.Disposable {
 
     private async collectRuntimeStates(): Promise<RuntimeState[]> {
         const probes: RuntimeProbe[] = [
-            { language: 'python', command: 'python', args: ['-c', 'import sys; print(f"{sys.version_info[0]}.{sys.version_info[1]}")'] },
+            { language: 'python', command: process.platform === 'win32' ? 'python3' : 'python', args: ['-c', 'import sys; print(f"{sys.version_info[0]}.{sys.version_info[1]}")'] },
             { language: 'ruby', command: 'ruby', args: ['-e', 'print RUBY_VERSION'] },
             { language: 'go', command: 'go', args: ['env', 'GOVERSION'] },
             { language: 'rust', command: 'rustc', args: ['--version'] },

@@ -22,7 +22,7 @@
         }
     },
     "diffEditor.maxComputationTime": 0,
-    "workbench.colorTheme": "Chthonic Geological Core",
+    "workbench.colorTheme": "Default Dark Modern",
     "workbench.editor.enablePreviewFromQuickOpen": true,
     "workbench.editor.enablePreviewFromCodeNavigation": true,
     "workbench.experimental.cloudChanges.partialMatches.enabled": true,

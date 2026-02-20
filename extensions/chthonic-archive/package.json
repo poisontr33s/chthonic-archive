@@ -235,8 +235,8 @@
             "validator",
             "bankrun"
           ],
-          "default": "validator",
-          "description": "Ledger backend mode. 'validator' uses the Rust sidecar host; 'bankrun' uses in-memory simulation."
+          "default": "bankrun",
+          "description": "Ledger backend mode. 'bankrun' uses in-memory simulation; 'validator' uses the Rust sidecar host (requires native build)."
         },
         "chthonic.entropy.solanaRpcUrl": {
           "type": "string",

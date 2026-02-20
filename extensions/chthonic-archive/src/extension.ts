@@ -58,7 +58,7 @@ export function activate(context: vscode.ExtensionContext) {
     const entropyPolyglotEnabled = entropyConfig.get<boolean>('entropy.polyglotEnabled', true);
     const entropyPythonScanIntervalMs = entropyConfig.get<number>('entropy.pythonScanIntervalMs', 30000);
     const entropyLedgerSettleDebounceMs = entropyConfig.get<number>('entropy.ledgerSettleDebounceMs', 1400);
-    const entropyLedgerMode = entropyConfig.get<LedgerMode>('entropy.ledgerMode', 'validator');
+    const entropyLedgerMode = entropyConfig.get<LedgerMode>('entropy.ledgerMode', 'bankrun');
     const entropySolanaRpcUrl = entropyConfig.get<string>('entropy.solanaRpcUrl', 'http://127.0.0.1:8899');
     const entropySolanaAutostartValidator = entropyConfig.get<boolean>('entropy.solanaAutostartValidator', false);
     const entropySolanaLedgerHostBinaryPath = asOptionalPath(entropyConfig.get<string>('entropy.solanaLedgerHostBinaryPath', ''));
