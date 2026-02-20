@@ -107,7 +107,7 @@
     "insiders:kits:check": "bunx @vscode/vsce --version && bunx vscode-test-web --help",
     "insiders:package": "bunx @vscode/vsce package --pre-release --no-dependencies --out chthonic-mandala-insiders.vsix",
     "insiders:run": "code-insiders --extensionDevelopmentPath=.",
-    "insiders:dts:sync": "vscode-dts dev && vscode-dts main"
+    "insiders:dts:sync": "bunx @vscode/dts dev && bunx @vscode/dts main"
   },
   "devDependencies": {
     "@types/node": "^20.x",

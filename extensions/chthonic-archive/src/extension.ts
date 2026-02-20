@@ -406,6 +406,19 @@ export function activate(context: vscode.ExtensionContext) {
             }
             void vscode.env.openExternal(vscode.Uri.parse(pick.url));
         }),
+        vscode.commands.registerCommand('chthonic.postRestartVerify', () => {
+            if (!workspaceRoot) {
+                void vscode.window.showWarningMessage('Workspace root is required to run post-restart verification.');
+                return;
+            }
+            const terminal = vscode.window.createTerminal({
+                name: 'Chthonic Post-Restart Verify',
+                cwd: workspaceRoot,
+            });
+            terminal.show();
+            terminal.sendText('bun run --cwd extensions/chthonic-archive insiders:post-restart:verify');
+            outputChannel.appendLine('[insiders] post-restart verification lane started');
+        }),
     );
 
     if (workspaceRoot && chthonicConfig.get<boolean>('webCockpit.autoStart', false)) {

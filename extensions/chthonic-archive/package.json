@@ -107,6 +107,11 @@
         "command": "chthonic.openBunTrainingDocs",
         "title": "Chthonic: Open Bun Training Docs",
         "icon": "$(book)"
+      },
+      {
+        "command": "chthonic.postRestartVerify",
+        "title": "Chthonic: Post-Restart Verify",
+        "icon": "$(check)"
       }
     ],
     "viewsContainers": {
@@ -332,7 +337,8 @@
     "insiders:kits:check": "bunx @vscode/vsce --version && bunx vscode-test-web --help",
     "insiders:package": "bunx @vscode/vsce package --pre-release --no-dependencies --out chthonic-archive-insiders.vsix",
     "insiders:run": "code-insiders --extensionDevelopmentPath=.",
-    "insiders:dts:sync": "vscode-dts dev && vscode-dts main"
+    "insiders:dts:sync": "bunx @vscode/dts dev && bunx @vscode/dts main",
+    "insiders:post-restart:verify": "bun run scripts/insiders-post-restart-verify.ts"
   },
   "devDependencies": {
     "@openai/agents": "^0.4.12",

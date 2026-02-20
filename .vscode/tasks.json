@@ -227,6 +227,18 @@
 				"panel": "shared"
 			},
 			"problemMatcher": []
+		},
+		{
+			"label": "Chthonic: Post-Restart Verify (Insiders)",
+			"type": "shell",
+			"command": "bun run --cwd extensions/chthonic-archive insiders:post-restart:verify",
+			"group": "test",
+			"presentation": {
+				"reveal": "always",
+				"panel": "shared",
+				"focus": true
+			},
+			"problemMatcher": []
 		}
 	]
 }
