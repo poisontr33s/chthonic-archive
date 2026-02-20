@@ -9,6 +9,11 @@ interface RuntimeProbe {
     args: string[];
 }
 
+interface ProbeCandidate {
+    command: string;
+    args: string[];
+}
+
 interface RuntimeState {
     language: 'python' | 'ruby' | 'go' | 'rust' | 'solana' | 'visual-studio';
     version: string;
@@ -108,7 +113,7 @@ export class SelfHealingLoop implements vscode.Disposable {
     }
 
     private async collectRuntimeStates(): Promise<RuntimeState[]> {
-        const probes: RuntimeProbe[] = [
+        const probePlans: RuntimeProbe[] = [
             { language: 'python', command: process.platform === 'win32' ? 'python3' : 'python', args: ['-c', 'import sys; print(f"{sys.version_info[0]}.{sys.version_info[1]}")'] },
             { language: 'ruby', command: 'ruby', args: ['-e', 'print RUBY_VERSION'] },
             { language: 'go', command: 'go', args: ['env', 'GOVERSION'] },
@@ -117,17 +122,21 @@ export class SelfHealingLoop implements vscode.Disposable {
         ];
 
         const states: RuntimeState[] = [];
-        for (const probe of probes) {
-            try {
-                const version = await execOutput(probe.command, probe.args, this.workspaceRoot);
-                const cleaned = normalizeVersion(version, probe.language);
-                if (!cleaned) {
-                    continue;
-                }
-                states.push({ language: probe.language, version: cleaned });
-            } catch (error) {
-                this.output.appendLine(`[slab-heal] probe ${probe.language} failed: ${stringifyError(error)}`);
+        for (const probe of probePlans) {
+            const candidates = expandProbeCandidates(probe);
+            const result = await tryProbeCandidates(candidates, this.workspaceRoot);
+            if (!result.version) {
+                this.output.appendLine(
+                    `[slab-heal] probe ${probe.language} failed (${formatProbeCandidates(candidates)}): ${stringifyError(result.error)}`,
+                );
+                continue;
             }
+
+            const cleaned = normalizeVersion(result.version, probe.language);
+            if (!cleaned) {
+                continue;
+            }
+            states.push({ language: probe.language, version: cleaned });
         }
 
         const vsVersion = await detectVisualStudioVersion(this.workspaceRoot);
@@ -274,6 +283,51 @@ export class SelfHealingLoop implements vscode.Disposable {
             this.output.appendLine(`[slab-heal] tool-pool snapshot failed: ${stringifyError(error)}`);
         }
     }
+}
+
+function expandProbeCandidates(probe: RuntimeProbe): ProbeCandidate[] {
+    if (probe.language === 'python' && process.platform === 'win32') {
+        return [
+            { command: 'python3', args: probe.args },
+            { command: 'py', args: ['-3', ...probe.args] },
+            { command: 'python', args: probe.args },
+        ];
+    }
+
+    if (probe.language === 'go' && process.platform === 'win32') {
+        return [
+            { command: 'go', args: probe.args },
+            { command: 'goup', args: ['go', ...probe.args] },
+            { command: 'goup', args: ['current'] },
+        ];
+    }
+
+    return [{ command: probe.command, args: probe.args }];
+}
+
+function formatProbeCandidates(candidates: ProbeCandidate[]): string {
+    return candidates
+        .map((candidate) => `${candidate.command} ${candidate.args.join(' ')}`.trim())
+        .join(' | ');
+}
+
+async function tryProbeCandidates(
+    candidates: ProbeCandidate[],
+    cwd: string | null,
+): Promise<{ version: string | null; error: unknown }> {
+    let lastError: unknown = new Error('no probe candidates defined');
+    for (const candidate of candidates) {
+        try {
+            const version = await execOutput(candidate.command, candidate.args, cwd);
+            if (version.trim().length > 0) {
+                return { version, error: null };
+            }
+            lastError = new Error(`${candidate.command} returned empty output`);
+        } catch (error) {
+            lastError = error;
+        }
+    }
+    return { version: null, error: lastError };
 }
 
 async function detectVsIncludePath(workspaceRoot: string | null): Promise<string | null> {
