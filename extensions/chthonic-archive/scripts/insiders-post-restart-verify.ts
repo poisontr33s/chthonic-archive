@@ -44,6 +44,10 @@ type Snapshot = {
     insidersChangedSincePrevious: InsidersChangeRecord | null;
     installedExtensions: ExtensionVersion[];
     changedSincePrevious: ChangeRecord[];
+    verification: {
+        performed: boolean;
+        skippedReason: string | null;
+    };
     stepResults: StepResult[];
 };
 
@@ -57,6 +61,7 @@ const stampedSnapshotPath = path.join(cacheDir, `insiders-post-restart-verify-${
 const mode = {
     gateOnly: process.argv.includes('--gate-only'),
     allowStale: process.argv.includes('--allow-stale'),
+    force: process.argv.includes('--force'),
 };
 
 function runCommand(name: string, command: string[], cwd: string): StepResult {
@@ -309,6 +314,7 @@ function run(): void {
     const restartGate = computeRestartGate(parsedInsidersVersion);
     const insidersChangedSincePrevious = computeInsidersChange(previous, parsedInsidersVersion);
     const changedSincePrevious = computeChanges(previous, installedExtensions);
+    const hasUpdateDelta = Boolean(insidersChangedSincePrevious) || changedSincePrevious.length > 0;
 
     console.log(`[post-restart] restart required (pending updates): ${restartGate.required ? 'yes' : 'no'}`);
     if (restartGate.reasons.length > 0) {
@@ -318,6 +324,9 @@ function run(): void {
     }
 
     if (mode.gateOnly || (restartGate.required && !mode.allowStale)) {
+        const skippedReason = mode.gateOnly
+            ? 'gate-only mode'
+            : 'restart-required-before-verify';
         const snapshot: Snapshot = {
             generatedAt: new Date().toISOString(),
             sequence: mode.gateOnly
@@ -328,6 +337,10 @@ function run(): void {
             insidersChangedSincePrevious,
             installedExtensions,
             changedSincePrevious,
+            verification: {
+                performed: false,
+                skippedReason,
+            },
             stepResults,
         };
         writeSnapshot(snapshot);
@@ -340,6 +353,28 @@ function run(): void {
 
         console.log('[post-restart] deep verification skipped because restart is still required');
         console.log('[post-restart] apply update from cogwheel, restart VS Code Insiders, then rerun this lane');
+        console.log(`[post-restart] snapshot: ${stampedSnapshotPath}`);
+        return;
+    }
+
+    if (!hasUpdateDelta && !mode.force) {
+        const snapshot: Snapshot = {
+            generatedAt: new Date().toISOString(),
+            sequence: ['no-update-delta', 'verification-skipped'],
+            insidersVersion: parsedInsidersVersion,
+            restartGate,
+            insidersChangedSincePrevious,
+            installedExtensions,
+            changedSincePrevious,
+            verification: {
+                performed: false,
+                skippedReason: 'no-update-delta-since-previous-snapshot',
+            },
+            stepResults,
+        };
+        writeSnapshot(snapshot);
+        console.log('[post-restart] no update delta since previous snapshot; skipping deep verification');
+        console.log('[post-restart] use --force to run full verification anyway');
         console.log(`[post-restart] snapshot: ${stampedSnapshotPath}`);
         return;
     }
@@ -397,6 +432,10 @@ function run(): void {
         insidersChangedSincePrevious,
         installedExtensions,
         changedSincePrevious,
+        verification: {
+            performed: true,
+            skippedReason: null,
+        },
         stepResults,
     };
     writeSnapshot(snapshot);
