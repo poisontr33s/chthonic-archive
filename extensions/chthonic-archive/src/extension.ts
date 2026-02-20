@@ -521,8 +521,20 @@ export function activate(context: vscode.ExtensionContext) {
     // --- Status Bar: Lineage ---
     if (displayConfig.get<boolean>('showLineage', true)) {
         const lineageItem = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Left, 49);
-        lineageItem.text = '$(git-branch) ☥ main';
-        lineageItem.tooltip = 'Chthonic lineage';
+        lineageItem.command = 'workbench.view.scm';
+        const refreshLineage = () => {
+            const lineage = readGitLineage(workspaceRoot);
+            lineageItem.text = `$(git-branch) ${lineage.label}`;
+            lineageItem.tooltip = lineage.tooltip;
+            lineageItem.show();
+        };
+
+        refreshLineage();
+        const intervalHandle = setInterval(refreshLineage, 6_000);
+        context.subscriptions.push({
+            dispose: () => clearInterval(intervalHandle),
+        });
+
         lineageItem.show();
         context.subscriptions.push(lineageItem);
     }
@@ -625,6 +637,64 @@ function resolveWebCockpitUrl(config: vscode.WorkspaceConfiguration): string {
         return raw;
     }
     return `http://${raw}`;
+}
+
+interface GitLineage {
+    label: string;
+    tooltip: string;
+}
+
+function readGitLineage(workspaceRoot: string | null): GitLineage {
+    if (!workspaceRoot) {
+        return {
+            label: 'no-workspace',
+            tooltip: 'Chthonic lineage unavailable: no workspace root.',
+        };
+    }
+
+    const gitDir = path.join(workspaceRoot, '.git');
+    const headPath = path.join(gitDir, 'HEAD');
+    if (!fs.existsSync(headPath)) {
+        return {
+            label: 'no-git',
+            tooltip: 'Chthonic lineage unavailable: .git/HEAD not found.',
+        };
+    }
+
+    try {
+        const head = fs.readFileSync(headPath, 'utf8').trim();
+        if (!head) {
+            return {
+                label: 'detached',
+                tooltip: 'Chthonic lineage unavailable: empty git HEAD.',
+            };
+        }
+
+        if (!head.startsWith('ref:')) {
+            const detached = head.slice(0, 8);
+            return {
+                label: `detached@${detached}`,
+                tooltip: `Detached HEAD ${head}`,
+            };
+        }
+
+        const ref = head.slice(4).trim();
+        const branch = ref.split('/').pop() || ref;
+        const refPath = path.join(gitDir, ...ref.split('/'));
+        const hash = fs.existsSync(refPath)
+            ? fs.readFileSync(refPath, 'utf8').trim().slice(0, 8)
+            : 'unknown';
+
+        return {
+            label: `${branch}@${hash}`,
+            tooltip: `Chthonic lineage\n${ref}\n${hash}`,
+        };
+    } catch (error) {
+        return {
+            label: 'lineage-error',
+            tooltip: `Chthonic lineage read failed: ${String(error)}`,
+        };
+    }
 }
 
 class ParkedChatProvider implements vscode.WebviewViewProvider {
