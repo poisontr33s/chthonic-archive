@@ -1,0 +1,1176 @@
+{
+  "capturedAt": "2026-02-20T16:07:37.824Z",
+  "snapshotId": "2026-02-20T16-07-37-824Z",
+  "count": 221,
+  "top": [
+    {
+      "id": "Qwen/Qwen3.5-397B-A17B",
+      "score": 0.729374,
+      "downloads": 105189,
+      "likes": 759,
+      "trendingScore": 759,
+      "createdAt": "2026-02-16T04:55:12.000Z",
+      "pipelineTag": "image-text-to-text",
+      "libraryName": "transformers",
+      "tags": [
+        "transformers",
+        "safetensors",
+        "qwen3_5_moe",
+        "image-text-to-text",
+        "conversational",
+        "license:apache-2.0",
+        "eval-results",
+        "endpoints_compatible",
+        "region:us"
+      ],
+      "sources": [
+        "search_qwen"
+      ]
+    },
+    {
+      "id": "MiniMaxAI/MiniMax-M2.5",
+      "score": 0.689698,
+      "downloads": 123344,
+      "likes": 816,
+      "trendingScore": 657,
+      "createdAt": "2026-02-12T06:05:24.000Z",
+      "pipelineTag": "text-generation",
+      "libraryName": "transformers",
+      "tags": [
+        "transformers",
+        "safetensors",
+        "minimax_m2",
+        "text-generation",
+        "conversational",
+        "custom_code",
+        "license:other",
+        "eval-results",
+        "endpoints_compatible",
+        "fp8",
+        "region:us",
+        "deploy:azure"
+      ],
+      "sources": [
+        "trending_text_generation"
+      ]
+    },
+    {
+      "id": "zai-org/GLM-5",
+      "score": 0.632058,
+      "downloads": 173716,
+      "likes": 1411,
+      "trendingScore": 485,
+      "createdAt": "2026-02-11T04:55:46.000Z",
+      "pipelineTag": "text-generation",
+      "libraryName": "transformers",
+      "tags": [
+        "transformers",
+        "safetensors",
+        "glm_moe_dsa",
+        "text-generation",
+        "conversational",
+        "en",
+        "zh",
+        "license:mit",
+        "eval-results",
+        "endpoints_compatible",
+        "region:us"
+      ],
+      "sources": [
+        "trending_text_generation"
+      ]
+    },
+    {
+      "id": "Nanbeige/Nanbeige4.1-3B",
+      "score": 0.557414,
+      "downloads": 104051,
+      "likes": 619,
+      "trendingScore": 364,
+      "createdAt": "2026-02-10T03:45:56.000Z",
+      "pipelineTag": "text-generation",
+      "libraryName": "transformers",
+      "tags": [
+        "transformers",
+        "safetensors",
+        "llama",
+        "text-generation",
+        "llm",
+        "nanbeige",
+        "conversational",
+        "en",
+        "zh",
+        "arxiv:2602.13367",
+        "base_model:Nanbeige/Nanbeige4-3B-Base",
+        "base_model:finetune:Nanbeige/Nanbeige4-3B-Base",
+        "license:apache-2.0",
+        "eval-results",
+        "text-generation-inference",
+        "endpoints_compatible",
+        "region:us"
+      ],
+      "sources": [
+        "trending_text_generation"
+      ]
+    },
+    {
+      "id": "Qwen/Qwen3-TTS-12Hz-1.7B-CustomVoice",
+      "score": 0.507462,
+      "downloads": 877971,
+      "likes": 1103,
+      "trendingScore": 172,
+      "createdAt": "2026-01-21T08:56:49.000Z",
+      "pipelineTag": "text-to-speech",
+      "tags": [
+        "safetensors",
+        "qwen3_tts",
+        "text-to-speech",
+        "arxiv:2601.15621",
+        "license:apache-2.0",
+        "region:us"
+      ],
+      "sources": [
+        "search_qwen"
+      ]
+    },
+    {
+      "id": "Qwen/Qwen3-Coder-Next",
+      "score": 0.480448,
+      "downloads": 389713,
+      "likes": 933,
+      "trendingScore": 112,
+      "createdAt": "2026-01-30T15:08:18.000Z",
+      "pipelineTag": "text-generation",
+      "libraryName": "transformers",
+      "tags": [
+        "transformers",
+        "safetensors",
+        "qwen3_next",
+        "text-generation",
+        "conversational",
+        "license:apache-2.0",
+        "endpoints_compatible",
+        "deploy:azure",
+        "region:us"
+      ],
+      "sources": [
+        "trending_text_generation",
+        "search_qwen"
+      ]
+    },
+    {
+      "id": "openai/gpt-oss-20b",
+      "score": 0.471021,
+      "downloads": 5541163,
+      "likes": 4387,
+      "trendingScore": 40,
+      "createdAt": "2025-08-04T22:33:29.000Z",
+      "pipelineTag": "text-generation",
+      "libraryName": "transformers",
+      "tags": [
+        "transformers",
+        "safetensors",
+        "gpt_oss",
+        "text-generation",
+        "vllm",
+        "conversational",
+        "arxiv:2508.10925",
+        "license:apache-2.0",
+        "endpoints_compatible",
+        "8-bit",
+        "mxfp4",
+        "deploy:azure",
+        "region:us"
+      ],
+      "sources": [
+        "trending_text_generation",
+        "downloads_text_generation",
+        "likes_text_generation"
+      ]
+    },
+    {
+      "id": "openai/gpt-oss-120b",
+      "score": 0.4632,
+      "downloads": 3477982,
+      "likes": 4512,
+      "trendingScore": 36,
+      "createdAt": "2025-08-04T22:33:06.000Z",
+      "pipelineTag": "text-generation",
+      "libraryName": "transformers",
+      "tags": [
+        "transformers",
+        "safetensors",
+        "gpt_oss",
+        "text-generation",
+        "vllm",
+        "conversational",
+        "arxiv:2508.10925",
+        "license:apache-2.0",
+        "endpoints_compatible",
+        "8-bit",
+        "mxfp4",
+        "deploy:azure",
+        "region:us"
+      ],
+      "sources": [
+        "trending_text_generation",
+        "downloads_text_generation",
+        "likes_text_generation"
+      ]
+    },
+    {
+      "id": "zai-org/GLM-4.7-Flash",
+      "score": 0.44865,
+      "downloads": 1751035,
+      "likes": 1550,
+      "trendingScore": 42,
+      "createdAt": "2026-01-19T06:28:10.000Z",
+      "pipelineTag": "text-generation",
+      "libraryName": "transformers",
+      "tags": [
+        "transformers",
+        "safetensors",
+        "glm4_moe_lite",
+        "text-generation",
+        "conversational",
+        "en",
+        "zh",
+        "arxiv:2508.06471",
+        "license:mit",
+        "eval-results",
+        "endpoints_compatible",
+        "deploy:azure",
+        "region:us"
+      ],
+      "sources": [
+        "trending_text_generation"
+      ]
+    },
+    {
+      "id": "deepseek-ai/DeepSeek-OCR-2",
+      "score": 0.446507,
+      "downloads": 1351860,
+      "likes": 776,
+      "trendingScore": 30,
+      "createdAt": "2026-01-27T02:56:54.000Z",
+      "pipelineTag": "image-text-to-text",
+      "libraryName": "transformers",
+      "tags": [
+        "transformers",
+        "safetensors",
+        "deepseek_vl_v2",
+        "feature-extraction",
+        "deepseek",
+        "vision-language",
+        "ocr",
+        "custom_code",
+        "image-text-to-text",
+        "multilingual",
+        "arxiv:2601.20552",
+        "arxiv:2510.18234",
+        "license:apache-2.0",
+        "eval-results",
+        "region:us"
+      ],
+      "sources": [
+        "search_deepseek"
+      ]
+    },
+    {
+      "id": "unsloth/Qwen3-Coder-Next-GGUF",
+      "score": 0.446126,
+      "downloads": 447659,
+      "likes": 366,
+      "trendingScore": 69,
+      "createdAt": "2026-02-03T13:10:01.000Z",
+      "pipelineTag": "text-generation",
+      "libraryName": "transformers",
+      "tags": [
+        "transformers",
+        "gguf",
+        "qwen3_next",
+        "unsloth",
+        "qwen",
+        "qwen3",
+        "text-generation",
+        "base_model:Qwen/Qwen3-Coder-Next",
+        "base_model:quantized:Qwen/Qwen3-Coder-Next",
+        "license:apache-2.0",
+        "endpoints_compatible",
+        "region:us",
+        "imatrix",
+        "conversational"
+      ],
+      "sources": [
+        "trending_text_generation",
+        "search_qwen"
+      ]
+    },
+    {
+      "id": "unsloth/Qwen3.5-397B-A17B-GGUF",
+      "score": 0.438272,
+      "downloads": 66442,
+      "likes": 160,
+      "trendingScore": 160,
+      "createdAt": "2026-02-16T04:59:50.000Z",
+      "pipelineTag": "image-text-to-text",
+      "libraryName": "transformers",
+      "tags": [
+        "transformers",
+        "gguf",
+        "unsloth",
+        "qwen3_5_moe",
+        "image-text-to-text",
+        "base_model:Qwen/Qwen3.5-397B-A17B",
+        "base_model:quantized:Qwen/Qwen3.5-397B-A17B",
+        "license:apache-2.0",
+        "endpoints_compatible",
+        "region:us",
+        "imatrix",
+        "conversational"
+      ],
+      "sources": [
+        "search_qwen"
+      ]
+    },
+    {
+      "id": "deepseek-ai/DeepSeek-OCR",
+      "score": 0.435904,
+      "downloads": 3159045,
+      "likes": 3151,
+      "trendingScore": 7,
+      "createdAt": "2025-10-17T06:22:05.000Z",
+      "pipelineTag": "image-text-to-text",
+      "libraryName": "transformers",
+      "tags": [
+        "transformers",
+        "safetensors",
+        "deepseek_vl_v2",
+        "feature-extraction",
+        "deepseek",
+        "vision-language",
+        "ocr",
+        "custom_code",
+        "image-text-to-text",
+        "multilingual",
+        "arxiv:2510.18234",
+        "license:mit",
+        "eval-results",
+        "region:us"
+      ],
+      "sources": [
+        "search_deepseek"
+      ]
+    },
+    {
+      "id": "Qwen/Qwen3-0.6B",
+      "score": 0.433206,
+      "downloads": 10207719,
+      "likes": 1091,
+      "trendingScore": 25,
+      "createdAt": "2025-04-27T03:40:08.000Z",
+      "pipelineTag": "text-generation",
+      "libraryName": "transformers",
+      "tags": [
+        "transformers",
+        "safetensors",
+        "qwen3",
+        "text-generation",
+        "conversational",
+        "arxiv:2505.09388",
+        "base_model:Qwen/Qwen3-0.6B-Base",
+        "base_model:finetune:Qwen/Qwen3-0.6B-Base",
+        "license:apache-2.0",
+        "text-generation-inference",
+        "endpoints_compatible",
+        "deploy:azure",
+        "region:us"
+      ],
+      "sources": [
+        "downloads_text_generation",
+        "search_qwen"
+      ]
+    },
+    {
+      "id": "meta-llama/Llama-3.1-8B-Instruct",
+      "score": 0.430782,
+      "downloads": 5867664,
+      "likes": 5475,
+      "trendingScore": 0,
+      "createdAt": "2024-07-18T08:56:00.000Z",
+      "pipelineTag": "text-generation",
+      "libraryName": "transformers",
+      "tags": [
+        "transformers",
+        "safetensors",
+        "llama",
+        "text-generation",
+        "facebook",
+        "meta",
+        "pytorch",
+        "llama-3",
+        "conversational",
+        "en",
+        "de",
+        "fr",
+        "it",
+        "pt",
+        "hi",
+        "es",
+        "th",
+        "arxiv:2204.05149",
+        "base_model:meta-llama/Llama-3.1-8B",
+        "base_model:finetune:meta-llama/Llama-3.1-8B",
+        "license:llama3.1",
+        "eval-results",
+        "text-generation-inference",
+        "endpoints_compatible",
+        "region:us"
+      ],
+      "sources": [
+        "downloads_text_generation",
+        "likes_text_generation"
+      ]
+    },
+    {
+      "id": "Qwen/Qwen3-ASR-1.7B",
+      "score": 0.430371,
+      "downloads": 398586,
+      "likes": 512,
+      "trendingScore": 52,
+      "createdAt": "2026-01-28T03:22:40.000Z",
+      "pipelineTag": "automatic-speech-recognition",
+      "tags": [
+        "safetensors",
+        "qwen3_asr",
+        "automatic-speech-recognition",
+        "arxiv:2601.21337",
+        "license:apache-2.0",
+        "deploy:azure",
+        "region:us"
+      ],
+      "sources": [
+        "search_qwen"
+      ]
+    },
+    {
+      "id": "stepfun-ai/Step-3.5-Flash",
+      "score": 0.425197,
+      "downloads": 296084,
+      "likes": 636,
+      "trendingScore": 40,
+      "createdAt": "2026-02-01T08:03:45.000Z",
+      "pipelineTag": "text-generation",
+      "libraryName": "transformers",
+      "tags": [
+        "transformers",
+        "safetensors",
+        "step3p5",
+        "text-generation",
+        "conversational",
+        "custom_code",
+        "arxiv:2602.10604",
+        "arxiv:2601.05593",
+        "arxiv:2507.19427",
+        "license:apache-2.0",
+        "eval-results",
+        "region:us"
+      ],
+      "sources": [
+        "trending_text_generation"
+      ]
+    },
+    {
+      "id": "openai-community/gpt2",
+      "score": 0.424604,
+      "downloads": 8152695,
+      "likes": 3115,
+      "trendingScore": 0,
+      "createdAt": "2022-03-02T23:29:04.000Z",
+      "pipelineTag": "text-generation",
+      "libraryName": "transformers",
+      "tags": [
+        "transformers",
+        "pytorch",
+        "tf",
+        "jax",
+        "tflite",
+        "rust",
+        "onnx",
+        "safetensors",
+        "gpt2",
+        "text-generation",
+        "exbert",
+        "en",
+        "doi:10.57967/hf/0039",
+        "license:mit",
+        "text-generation-inference",
+        "endpoints_compatible",
+        "deploy:azure",
+        "region:us"
+      ],
+      "sources": [
+        "downloads_text_generation",
+        "likes_text_generation"
+      ]
+    },
+    {
+      "id": "mistralai/Mistral-7B-Instruct-v0.2",
+      "score": 0.422188,
+      "downloads": 2447878,
+      "likes": 3077,
+      "trendingScore": 4,
+      "createdAt": "2023-12-11T13:18:44.000Z",
+      "pipelineTag": "text-generation",
+      "libraryName": "transformers",
+      "tags": [
+        "transformers",
+        "pytorch",
+        "safetensors",
+        "mistral",
+        "text-generation",
+        "finetuned",
+        "mistral-common",
+        "conversational",
+        "arxiv:2310.06825",
+        "license:apache-2.0",
+        "text-generation-inference",
+        "deploy:azure",
+        "region:us"
+      ],
+      "sources": [
+        "downloads_text_generation",
+        "likes_text_generation",
+        "search_mistral"
+      ]
+    },
+    {
+      "id": "mistralai/Voxtral-Mini-4B-Realtime-2602",
+      "score": 0.421613,
+      "downloads": 63264,
+      "likes": 589,
+      "trendingScore": 87,
+      "createdAt": "2026-01-21T17:22:02.000Z",
+      "pipelineTag": "automatic-speech-recognition",
+      "libraryName": "vllm",
+      "tags": [
+        "vllm",
+        "safetensors",
+        "voxtral_realtime",
+        "mistral-common",
+        "automatic-speech-recognition",
+        "en",
+        "fr",
+        "es",
+        "de",
+        "ru",
+        "zh",
+        "ja",
+        "it",
+        "pt",
+        "nl",
+        "ar",
+        "hi",
+        "ko",
+        "arxiv:2602.11298",
+        "base_model:mistralai/Ministral-3-3B-Base-2512",
+        "base_model:finetune:mistralai/Ministral-3-3B-Base-2512",
+        "license:apache-2.0",
+        "region:us"
+      ],
+      "sources": [
+        "search_mistral"
+      ]
+    },
+    {
+      "id": "deepseek-ai/DeepSeek-R1",
+      "score": 0.420923,
+      "downloads": 604477,
+      "likes": 13012,
+      "trendingScore": 14,
+      "createdAt": "2025-01-20T03:46:07.000Z",
+      "pipelineTag": "text-generation",
+      "libraryName": "transformers",
+      "tags": [
+        "transformers",
+        "safetensors",
+        "deepseek_v3",
+        "text-generation",
+        "conversational",
+        "custom_code",
+        "arxiv:2501.12948",
+        "license:mit",
+        "eval-results",
+        "text-generation-inference",
+        "endpoints_compatible",
+        "fp8",
+        "region:us"
+      ],
+      "sources": [
+        "likes_text_generation",
+        "search_deepseek"
+      ]
+    },
+    {
+      "id": "unsloth/MiniMax-M2.5-GGUF",
+      "score": 0.42042,
+      "downloads": 59026,
+      "likes": 131,
+      "trendingScore": 131,
+      "createdAt": "2026-02-14T00:57:38.000Z",
+      "pipelineTag": "text-generation",
+      "libraryName": "transformers",
+      "tags": [
+        "transformers",
+        "gguf",
+        "unsloth",
+        "minimax_m2",
+        "text-generation",
+        "base_model:MiniMaxAI/MiniMax-M2.5",
+        "base_model:quantized:MiniMaxAI/MiniMax-M2.5",
+        "license:other",
+        "endpoints_compatible",
+        "region:us",
+        "imatrix",
+        "conversational"
+      ],
+      "sources": [
+        "trending_text_generation"
+      ]
+    },
+    {
+      "id": "Qwen/Qwen3-8B",
+      "score": 0.41809,
+      "downloads": 4856958,
+      "likes": 944,
+      "trendingScore": 21,
+      "createdAt": "2025-04-27T03:42:21.000Z",
+      "pipelineTag": "text-generation",
+      "libraryName": "transformers",
+      "tags": [
+        "transformers",
+        "safetensors",
+        "qwen3",
+        "text-generation",
+        "conversational",
+        "arxiv:2309.00071",
+        "arxiv:2505.09388",
+        "base_model:Qwen/Qwen3-8B-Base",
+        "base_model:finetune:Qwen/Qwen3-8B-Base",
+        "license:apache-2.0",
+        "text-generation-inference",
+        "endpoints_compatible",
+        "deploy:azure",
+        "region:us"
+      ],
+      "sources": [
+        "downloads_text_generation",
+        "search_qwen"
+      ]
+    },
+    {
+      "id": "deepseek-ai/DeepSeek-V3.2",
+      "score": 0.411316,
+      "downloads": 291957,
+      "likes": 1256,
+      "trendingScore": 24,
+      "createdAt": "2025-12-01T02:34:49.000Z",
+      "pipelineTag": "text-generation",
+      "libraryName": "transformers",
+      "tags": [
+        "transformers",
+        "safetensors",
+        "deepseek_v32",
+        "text-generation",
+        "conversational",
+        "base_model:deepseek-ai/DeepSeek-V3.2-Exp-Base",
+        "base_model:finetune:deepseek-ai/DeepSeek-V3.2-Exp-Base",
+        "license:mit",
+        "eval-results",
+        "endpoints_compatible",
+        "fp8",
+        "region:us"
+      ],
+      "sources": [
+        "search_deepseek"
+      ]
+    },
+    {
+      "id": "zai-org/GLM-5-FP8",
+      "score": 0.406901,
+      "downloads": 359828,
+      "likes": 113,
+      "trendingScore": 45,
+      "createdAt": "2026-02-11T04:05:41.000Z",
+      "pipelineTag": "text-generation",
+      "libraryName": "transformers",
+      "tags": [
+        "transformers",
+        "safetensors",
+        "glm_moe_dsa",
+        "text-generation",
+        "conversational",
+        "en",
+        "zh",
+        "license:mit",
+        "endpoints_compatible",
+        "fp8",
+        "region:us"
+      ],
+      "sources": [
+        "trending_text_generation"
+      ]
+    },
+    {
+      "id": "unsloth/GLM-4.7-Flash-GGUF",
+      "score": 0.406699,
+      "downloads": 395137,
+      "likes": 497,
+      "trendingScore": 45,
+      "createdAt": "2026-01-20T00:14:42.000Z",
+      "pipelineTag": "text-generation",
+      "libraryName": "transformers",
+      "tags": [
+        "transformers",
+        "gguf",
+        "unsloth",
+        "text-generation",
+        "en",
+        "zh",
+        "arxiv:2508.06471",
+        "base_model:zai-org/GLM-4.7-Flash",
+        "base_model:quantized:zai-org/GLM-4.7-Flash",
+        "license:mit",
+        "endpoints_compatible",
+        "deploy:azure",
+        "region:us",
+        "imatrix",
+        "conversational"
+      ],
+      "sources": [
+        "trending_text_generation"
+      ]
+    },
+    {
+      "id": "Qwen/Qwen3-4B-Instruct-2507",
+      "score": 0.405852,
+      "downloads": 3457329,
+      "likes": 735,
+      "trendingScore": 15,
+      "createdAt": "2025-08-05T10:58:03.000Z",
+      "pipelineTag": "text-generation",
+      "libraryName": "transformers",
+      "tags": [
+        "transformers",
+        "safetensors",
+        "qwen3",
+        "text-generation",
+        "conversational",
+        "arxiv:2505.09388",
+        "license:apache-2.0",
+        "eval-results",
+        "text-generation-inference",
+        "endpoints_compatible",
+        "deploy:azure",
+        "region:us"
+      ],
+      "sources": [
+        "downloads_text_generation",
+        "search_qwen"
+      ]
+    },
+    {
+      "id": "deepseek-ai/DeepSeek-V3",
+      "score": 0.404187,
+      "downloads": 1305252,
+      "likes": 4024,
+      "trendingScore": 2,
+      "createdAt": "2024-12-25T12:52:23.000Z",
+      "pipelineTag": "text-generation",
+      "libraryName": "transformers",
+      "tags": [
+        "transformers",
+        "safetensors",
+        "deepseek_v3",
+        "text-generation",
+        "conversational",
+        "custom_code",
+        "arxiv:2412.19437",
+        "eval-results",
+        "text-generation-inference",
+        "endpoints_compatible",
+        "fp8",
+        "region:us"
+      ],
+      "sources": [
+        "likes_text_generation",
+        "search_deepseek"
+      ]
+    },
+    {
+      "id": "meta-llama/Meta-Llama-3-8B",
+      "score": 0.403607,
+      "downloads": 1784578,
+      "likes": 6458,
+      "trendingScore": 0,
+      "createdAt": "2024-04-17T09:35:16.000Z",
+      "pipelineTag": "text-generation",
+      "libraryName": "transformers",
+      "tags": [
+        "transformers",
+        "safetensors",
+        "llama",
+        "text-generation",
+        "facebook",
+        "meta",
+        "pytorch",
+        "llama-3",
+        "en",
+        "license:llama3",
+        "text-generation-inference",
+        "endpoints_compatible",
+        "region:us"
+      ],
+      "sources": [
+        "likes_text_generation"
+      ]
+    },
+    {
+      "id": "Qwen/Qwen3-TTS-12Hz-1.7B-VoiceDesign",
+      "score": 0.401917,
+      "downloads": 399171,
+      "likes": 264,
+      "trendingScore": 15,
+      "createdAt": "2026-01-21T08:55:55.000Z",
+      "pipelineTag": "text-to-speech",
+      "libraryName": "qwen-tts",
+      "tags": [
+        "qwen-tts",
+        "safetensors",
+        "qwen3_tts",
+        "audio",
+        "tts",
+        "qwen",
+        "multilingual",
+        "text-to-speech",
+        "arxiv:2601.15621",
+        "license:apache-2.0",
+        "region:us"
+      ],
+      "sources": [
+        "search_qwen"
+      ]
+    },
+    {
+      "id": "deepseek-ai/DeepSeek-R1-0528",
+      "score": 0.400343,
+      "downloads": 701695,
+      "likes": 2401,
+      "trendingScore": 2,
+      "createdAt": "2025-05-28T09:46:42.000Z",
+      "pipelineTag": "text-generation",
+      "libraryName": "transformers",
+      "tags": [
+        "transformers",
+        "safetensors",
+        "deepseek_v3",
+        "text-generation",
+        "conversational",
+        "custom_code",
+        "arxiv:2501.12948",
+        "license:mit",
+        "eval-results",
+        "text-generation-inference",
+        "endpoints_compatible",
+        "fp8",
+        "region:us"
+      ],
+      "sources": [
+        "likes_text_generation",
+        "search_deepseek"
+      ]
+    },
+    {
+      "id": "Qwen/Qwen2.5-7B-Instruct",
+      "score": 0.399527,
+      "downloads": 14966457,
+      "likes": 1080,
+      "trendingScore": 0,
+      "createdAt": "2024-09-16T11:55:40.000Z",
+      "pipelineTag": "text-generation",
+      "libraryName": "transformers",
+      "tags": [
+        "transformers",
+        "safetensors",
+        "qwen2",
+        "text-generation",
+        "chat",
+        "conversational",
+        "en",
+        "arxiv:2309.00071",
+        "arxiv:2407.10671",
+        "base_model:Qwen/Qwen2.5-7B",
+        "base_model:finetune:Qwen/Qwen2.5-7B",
+        "license:apache-2.0",
+        "text-generation-inference",
+        "endpoints_compatible",
+        "deploy:azure",
+        "region:us"
+      ],
+      "sources": [
+        "downloads_text_generation"
+      ]
+    },
+    {
+      "id": "meta-llama/Meta-Llama-3-8B-Instruct",
+      "score": 0.392603,
+      "downloads": 1394471,
+      "likes": 4384,
+      "trendingScore": 0,
+      "createdAt": "2024-04-17T09:35:12.000Z",
+      "pipelineTag": "text-generation",
+      "libraryName": "transformers",
+      "tags": [
+        "transformers",
+        "safetensors",
+        "llama",
+        "text-generation",
+        "facebook",
+        "meta",
+        "pytorch",
+        "llama-3",
+        "conversational",
+        "en",
+        "license:llama3",
+        "text-generation-inference",
+        "endpoints_compatible",
+        "deploy:azure",
+        "region:us"
+      ],
+      "sources": [
+        "likes_text_generation"
+      ]
+    },
+    {
+      "id": "unsloth/GLM-5-GGUF",
+      "score": 0.391334,
+      "downloads": 46517,
+      "likes": 177,
+      "trendingScore": 57,
+      "createdAt": "2026-02-10T16:30:53.000Z",
+      "pipelineTag": "text-generation",
+      "libraryName": "transformers",
+      "tags": [
+        "transformers",
+        "gguf",
+        "unsloth",
+        "glm_moe_dsa",
+        "text-generation",
+        "en",
+        "zh",
+        "base_model:zai-org/GLM-5",
+        "base_model:quantized:zai-org/GLM-5",
+        "license:mit",
+        "endpoints_compatible",
+        "region:us",
+        "imatrix",
+        "conversational"
+      ],
+      "sources": [
+        "trending_text_generation"
+      ]
+    },
+    {
+      "id": "Qwen/Qwen3-Embedding-0.6B",
+      "score": 0.391057,
+      "downloads": 3818012,
+      "likes": 881,
+      "trendingScore": 0,
+      "createdAt": "2025-06-03T14:25:32.000Z",
+      "pipelineTag": "feature-extraction",
+      "libraryName": "sentence-transformers",
+      "tags": [
+        "sentence-transformers",
+        "safetensors",
+        "qwen3",
+        "text-generation",
+        "transformers",
+        "sentence-similarity",
+        "feature-extraction",
+        "text-embeddings-inference",
+        "arxiv:2506.05176",
+        "base_model:Qwen/Qwen3-0.6B-Base",
+        "base_model:finetune:Qwen/Qwen3-0.6B-Base",
+        "license:apache-2.0",
+        "endpoints_compatible",
+        "deploy:azure",
+        "region:us"
+      ],
+      "sources": [
+        "downloads_text_generation"
+      ]
+    },
+    {
+      "id": "microsoft/phi-2",
+      "score": 0.388328,
+      "downloads": 1442364,
+      "likes": 3426,
+      "trendingScore": 0,
+      "createdAt": "2023-12-13T21:19:59.000Z",
+      "pipelineTag": "text-generation",
+      "libraryName": "transformers",
+      "tags": [
+        "transformers",
+        "safetensors",
+        "phi",
+        "text-generation",
+        "nlp",
+        "code",
+        "en",
+        "license:mit",
+        "text-generation-inference",
+        "endpoints_compatible",
+        "deploy:azure",
+        "region:us"
+      ],
+      "sources": [
+        "likes_text_generation"
+      ]
+    },
+    {
+      "id": "Qwen/Qwen-Image-Edit-2511",
+      "score": 0.387353,
+      "downloads": 127561,
+      "likes": 817,
+      "trendingScore": 15,
+      "createdAt": "2025-12-17T05:55:58.000Z",
+      "pipelineTag": "image-to-image",
+      "libraryName": "diffusers",
+      "tags": [
+        "diffusers",
+        "safetensors",
+        "image-to-image",
+        "en",
+        "zh",
+        "arxiv:2508.02324",
+        "license:apache-2.0",
+        "diffusers:QwenImageEditPlusPipeline",
+        "region:us"
+      ],
+      "sources": [
+        "search_qwen"
+      ]
+    },
+    {
+      "id": "mistralai/Mistral-7B-Instruct-v0.3",
+      "score": 0.387076,
+      "downloads": 1197081,
+      "likes": 2426,
+      "trendingScore": 19,
+      "createdAt": "2024-05-22T09:57:04.000Z",
+      "libraryName": "vllm",
+      "tags": [
+        "vllm",
+        "safetensors",
+        "mistral",
+        "mistral-common",
+        "base_model:mistralai/Mistral-7B-v0.3",
+        "base_model:finetune:mistralai/Mistral-7B-v0.3",
+        "license:apache-2.0",
+        "region:us"
+      ],
+      "sources": [
+        "search_mistral"
+      ]
+    },
+    {
+      "id": "mistralai/Devstral-Small-2-24B-Instruct-2512",
+      "score": 0.3868,
+      "downloads": 285783,
+      "likes": 532,
+      "trendingScore": 6,
+      "createdAt": "2025-11-28T11:27:11.000Z",
+      "libraryName": "vllm",
+      "tags": [
+        "vllm",
+        "safetensors",
+        "mistral3",
+        "mistral-common",
+        "arxiv:2501.19399",
+        "base_model:mistralai/Mistral-Small-3.1-24B-Base-2503",
+        "base_model:quantized:mistralai/Mistral-Small-3.1-24B-Base-2503",
+        "license:apache-2.0",
+        "fp8",
+        "region:us"
+      ],
+      "sources": [
+        "search_mistral"
+      ]
+    },
+    {
+      "id": "fal/Qwen-Image-Edit-2511-Multiple-Angles-LoRA",
+      "score": 0.385829,
+      "downloads": 60488,
+      "likes": 1008,
+      "trendingScore": 27,
+      "createdAt": "2026-01-07T17:01:15.000Z",
+      "pipelineTag": "image-to-image",
+      "libraryName": "diffusers",
+      "tags": [
+        "diffusers",
+        "qwen",
+        "qwen-image-edit",
+        "qwen-image-edit-2511",
+        "lora",
+        "multi-angle",
+        "camera-angles",
+        "camera-control",
+        "image-editing",
+        "image-to-image",
+        "gaussian-splatting",
+        "fal",
+        "en",
+        "base_model:Qwen/Qwen-Image-Edit-2511",
+        "base_model:adapter:Qwen/Qwen-Image-Edit-2511",
+        "license:apache-2.0",
+        "region:us"
+      ],
+      "sources": [
+        "search_qwen"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "name": "trending_text_generation",
+      "url": "https://huggingface.co/api/models?filter=text-generation&sort=trendingScore&direction=-1&limit=30"
+    },
+    {
+      "name": "downloads_text_generation",
+      "url": "https://huggingface.co/api/models?filter=text-generation&sort=downloads&direction=-1&limit=30"
+    },
+    {
+      "name": "likes_text_generation",
+      "url": "https://huggingface.co/api/models?filter=text-generation&sort=likes&direction=-1&limit=30"
+    },
+    {
+      "name": "search_hermes",
+      "url": "https://huggingface.co/api/models?search=hermes&sort=trendingScore&direction=-1&limit=30"
+    },
+    {
+      "name": "search_gemma_3_uncensored",
+      "url": "https://huggingface.co/api/models?search=gemma%203%20uncensored&sort=trendingScore&direction=-1&limit=30"
+    },
+    {
+      "name": "search_qwen",
+      "url": "https://huggingface.co/api/models?search=qwen&sort=trendingScore&direction=-1&limit=30"
+    },
+    {
+      "name": "search_deepseek",
+      "url": "https://huggingface.co/api/models?search=deepseek&sort=trendingScore&direction=-1&limit=30"
+    },
+    {
+      "name": "search_mistral",
+      "url": "https://huggingface.co/api/models?search=mistral&sort=trendingScore&direction=-1&limit=30"
+    }
+  ]
+}

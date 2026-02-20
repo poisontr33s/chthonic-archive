@@ -152,6 +152,8 @@ extensions/*/bun.lock
 !scripts/chthonic.ps1
 !scripts/fix-md-links.ps1
 !scripts/copilot_clean.ps1
+!scripts/hf-model-ranker.ts
+!scripts/vscode-art-cop.ts
 
 # mdBook build output (generated artifact)
 book/
