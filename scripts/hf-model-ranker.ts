@@ -628,4 +628,24 @@ async function main() {
         config: {
           targetVramGb,
           benchmarkPath,
-          b
+          benchmarkEntries: benchmarkEntries.length,
+        },
+        top,
+        sources,
+      },
+      null,
+      2,
+    ) + '\n',
+    'utf8',
+  );
+
+  console.log(`[hf-ranker] wrote ${latestMd}`);
+  console.log(`[hf-ranker] wrote ${archiveMd}`);
+  console.log(`[hf-ranker] wrote ${latestJson}`);
+  console.log(`[hf-ranker] sqlite ${dbPath}`);
+}
+
+await main().catch((error) => {
+  console.error(`[hf-ranker] fatal: ${(error as Error).message}`);
+  process.exit(1);
+});
