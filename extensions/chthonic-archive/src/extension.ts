@@ -491,6 +491,29 @@ export function activate(context: vscode.ExtensionContext) {
             terminal.sendText('bun run --cwd extensions/chthonic-archive insiders:restart:gate');
             outputChannel.appendLine('[insiders] restart gate check lane started');
         }),
+        vscode.commands.registerCommand('chthonic.runtimeStatus', () => {
+            const rows = collectRuntimeStatusRows({
+                workspaceRoot,
+                entropyEnabled,
+                entropyPolyglotEnabled,
+                entropyLedgerMode,
+                reactorReadiness,
+                slabSelfHealingEnabled,
+            });
+
+            outputChannel.show(true);
+            outputChannel.appendLine('[runtime] component status');
+            for (const row of rows) {
+                outputChannel.appendLine(`[runtime] ${row}`);
+            }
+
+            const degraded = rows.some((row) => row.includes('DISABLED') || row.includes('PARKED') || row.includes('UNAVAILABLE'));
+            void vscode.window.showInformationMessage(
+                degraded
+                    ? 'Some runtime lanes are parked. See Chthonic Archive output for details.'
+                    : 'All runtime lanes are operational.',
+            );
+        }),
     );
 
     if (workspaceRoot && chthonicConfig.get<boolean>('webCockpit.autoStart', false)) {
@@ -684,6 +707,29 @@ function resolveDaemonBinaryPath(workspaceRoot: string, daemonBinaryOverride?: s
     }
     const binary = process.platform === 'win32' ? 'chthonic-daemon.exe' : 'chthonic-daemon';
     return path.join(workspaceRoot, 'native', 'target', 'release', binary);
+}
+
+interface RuntimeStatusInput {
+    workspaceRoot: string | null;
+    entropyEnabled: boolean;
+    entropyPolyglotEnabled: boolean;
+    entropyLedgerMode: LedgerMode;
+    reactorReadiness: ReactorReadiness;
+    slabSelfHealingEnabled: boolean;
+}
+
+function collectRuntimeStatusRows(input: RuntimeStatusInput): string[] {
+    const rows: string[] = [];
+    rows.push(`workspace=${input.workspaceRoot ? 'READY' : 'UNAVAILABLE'}`);
+    rows.push(`workspace-health=${input.entropyEnabled ? 'ENABLED' : 'DISABLED'}`);
+    rows.push(`polyglot-sidecars=${input.entropyPolyglotEnabled ? 'ENABLED' : 'DISABLED'}`);
+    rows.push(`ledger-mode=${input.entropyLedgerMode}`);
+    rows.push(`self-healing=${input.slabSelfHealingEnabled ? 'ENABLED' : 'DISABLED'}`);
+    rows.push(`reactor=${input.reactorReadiness.ready ? 'READY' : `PARKED (${input.reactorReadiness.reason})`}`);
+    if (input.reactorReadiness.daemonPath) {
+        rows.push(`reactor-daemon=${input.reactorReadiness.daemonPath}`);
+    }
+    return rows;
 }
 
 interface GitLineage {

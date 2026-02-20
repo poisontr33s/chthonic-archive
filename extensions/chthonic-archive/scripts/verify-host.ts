@@ -270,8 +270,15 @@ function ensureCodexExtensionLane(): ManualCheckResult {
 
     const active = probes[0];
     const vscodeInsiders = runSync(['code-insiders', '--version']);
-    const insidersVersion = (!vscodeInsiders.threw && vscodeInsiders.exitCode === 0)
+    const insidersAvailable = !vscodeInsiders.threw && vscodeInsiders.exitCode === 0;
+    const insidersVersion = insidersAvailable
         ? (normalizeOutput(vscodeInsiders.stdout).split(/\r?\n/)[0] ?? 'unknown')
+        : 'missing';
+
+    const vscodeStable = runSync(['code', '--version']);
+    const stableAvailable = !vscodeStable.threw && vscodeStable.exitCode === 0;
+    const stableVersion = stableAvailable
+        ? (normalizeOutput(vscodeStable.stdout).split(/\r?\n/)[0] ?? 'unknown')
         : 'missing';
 
     return {
@@ -281,6 +288,10 @@ function ensureCodexExtensionLane(): ManualCheckResult {
             `version=${active.version}`,
             `engines.vscode=${active.vscodeEngine ?? 'unknown'}`,
             `code-insiders=${insidersVersion}`,
+            `code-stable=${stableVersion}`,
+            insidersAvailable
+                ? 'insiders-cli=ready'
+                : 'insiders-cli=optional-missing (insiders:* scripts unavailable)',
         ].join('\n'),
     };
 }
