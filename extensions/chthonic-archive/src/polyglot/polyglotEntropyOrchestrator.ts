@@ -8,6 +8,7 @@ import type {
     LoreEvent,
     PolyglotScanReason,
     RuffFileSummary,
+    RuffSummaryEvent,
 } from './types';
 import { EntropyWorkerClient } from '../entropy/entropyWorkerClient';
 
@@ -25,6 +26,7 @@ interface PolyglotEntropyOrchestratorOptions {
 
 interface TooltipAugment {
     ruffViolations: number;
+    ruffCodeSummary?: string;
     loreLine?: string;
 }
 
@@ -61,7 +63,7 @@ export class PolyglotEntropyOrchestrator implements vscode.Disposable {
         });
 
         this.disposables.push(
-            this.broker.onDidReceiveRuff((event) => this.applyRuffSummary(event.files)),
+            this.broker.onDidReceiveRuff((event) => this.applyRuffSummary(event)),
             this.broker.onDidReceiveLore((event) => this.applyLore(event)),
             this.workerClient.onDidUpdateRecords((uris) => this.captureEntropyLeaves(uris)),
         );
@@ -128,6 +130,9 @@ export class PolyglotEntropyOrchestrator implements vscode.Disposable {
         const output: string[] = [];
         if (augment.ruffViolations > 0) {
             output.push(`Ruff ${augment.ruffViolations} violation${augment.ruffViolations === 1 ? '' : 's'}`);
+            if (augment.ruffCodeSummary) {
+                output.push(`Codes ${augment.ruffCodeSummary}`);
+            }
         }
         if (augment.loreLine) {
             output.push(augment.loreLine);
@@ -158,13 +163,14 @@ export class PolyglotEntropyOrchestrator implements vscode.Disposable {
         if (!this.options.enabled) {
             return;
         }
+        let changedLeafCount = 0;
         for (const uri of uris) {
             const record = this.workerClient.getRecord(uri);
             if (!record) {
                 continue;
             }
             const augment = this.tooltipAugments.get(record.path);
-            this.merkle.upsert({
+            const changed = this.merkle.upsert({
                 path: record.path,
                 entropy: record.entropy,
                 complexity: record.complexity,
@@ -173,18 +179,28 @@ export class PolyglotEntropyOrchestrator implements vscode.Disposable {
                 ruffViolations: augment?.ruffViolations ?? 0,
                 updatedAt: Date.now(),
             });
+            if (changed) {
+                changedLeafCount += 1;
+            }
+        }
+
+        if (changedLeafCount > 0) {
+            this.scheduleSettlement('interval');
         }
     }
 
-    private applyRuffSummary(files: RuffFileSummary[]): void {
+    private applyRuffSummary(event: RuffSummaryEvent): void {
         if (!this.rootPath || !this.options.enabled) {
             return;
         }
+        const files: RuffFileSummary[] = event.files;
         const changedUris: vscode.Uri[] = [];
+        let changedLeafCount = 0;
         for (const summary of files) {
             const existing = this.tooltipAugments.get(summary.path);
             const next: TooltipAugment = {
                 ruffViolations: summary.violations,
+                ruffCodeSummary: formatRuffCodeSummary(summary.byCode),
                 loreLine: existing?.loreLine,
             };
             this.tooltipAugments.set(summary.path, next);
@@ -194,7 +210,7 @@ export class PolyglotEntropyOrchestrator implements vscode.Disposable {
 
             const record = this.workerClient.getRecord(uri);
             if (record) {
-                this.merkle.upsert({
+                const changed = this.merkle.upsert({
                     path: record.path,
                     entropy: record.entropy,
                     complexity: record.complexity,
@@ -203,6 +219,9 @@ export class PolyglotEntropyOrchestrator implements vscode.Disposable {
                     ruffViolations: summary.violations,
                     updatedAt: Date.now(),
                 });
+                if (changed) {
+                    changedLeafCount += 1;
+                }
 
                 if (record.entropy >= 0.45 || summary.violations > 0) {
                     this.broker.requestLore({
@@ -218,6 +237,9 @@ export class PolyglotEntropyOrchestrator implements vscode.Disposable {
         if (changedUris.length > 0) {
             this.requestDecorationRefresh(changedUris);
         }
+        if (changedLeafCount > 0 || this.merkle.hasDirty()) {
+            this.scheduleSettlement(event.reason);
+        }
     }
 
     private applyLore(event: LoreEvent): void {
@@ -230,6 +252,7 @@ export class PolyglotEntropyOrchestrator implements vscode.Disposable {
         const existing = this.tooltipAugments.get(event.path);
         this.tooltipAugments.set(event.path, {
             ruffViolations: existing?.ruffViolations ?? event.violations,
+            ruffCodeSummary: existing?.ruffCodeSummary,
             loreLine: event.line,
         });
         this.requestDecorationRefresh([
@@ -290,9 +313,7 @@ export class PolyglotEntropyOrchestrator implements vscode.Disposable {
         if (!this.options.enabled) {
             return;
         }
-        this.pendingSettleReason = reason === 'commit'
-            ? 'commit'
-            : (this.pendingSettleReason ?? reason);
+        this.pendingSettleReason = nextSettlementReason(this.pendingSettleReason, reason);
         if (this.settleTimer) {
             clearTimeout(this.settleTimer);
         }
@@ -358,4 +379,38 @@ function toRelativePath(rootPath: string, absolutePath: string): string | null {
         return null;
     }
     return relative.replace(/\\/g, '/');
+}
+
+function formatRuffCodeSummary(byCode: Record<string, number>): string | undefined {
+    const entries = Object.entries(byCode)
+        .filter((entry) => entry[1] > 0)
+        .sort((left, right) => right[1] - left[1] || left[0].localeCompare(right[0]))
+        .slice(0, 3)
+        .map(([code, count]) => `${code}×${count}`);
+
+    return entries.length > 0 ? entries.join(', ') : undefined;
+}
+
+function nextSettlementReason(
+    current: PolyglotScanReason | null,
+    incoming: PolyglotScanReason,
+): PolyglotScanReason {
+    if (!current) {
+        return incoming;
+    }
+    return reasonWeight(incoming) >= reasonWeight(current) ? incoming : current;
+}
+
+function reasonWeight(reason: PolyglotScanReason): number {
+    switch (reason) {
+        case 'commit':
+            return 4;
+        case 'save':
+            return 3;
+        case 'manual':
+            return 2;
+        case 'interval':
+        default:
+            return 1;
+    }
 }

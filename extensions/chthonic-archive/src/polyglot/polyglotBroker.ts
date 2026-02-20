@@ -1,3 +1,4 @@
+import * as fs from 'fs';
 import * as path from 'path';
 import { spawn } from 'child_process';
 import * as vscode from 'vscode';
@@ -12,6 +13,7 @@ import type {
 
 export class PolyglotBroker implements vscode.Disposable {
     private rootPath: string | null = null;
+    private sidecarRootPath: string | null = null;
     private pythonSidecar: import('child_process').ChildProcess | null = null;
     private rubySidecar: import('child_process').ChildProcess | null = null;
 
@@ -30,6 +32,16 @@ export class PolyglotBroker implements vscode.Disposable {
 
     start(rootPath: string): void {
         this.rootPath = rootPath;
+        this.sidecarRootPath = resolveSidecarRoot(rootPath);
+        if (!this.sidecarRootPath) {
+            const searched = resolveSidecarCandidates(rootPath).join(', ');
+            const message = `sidecar scripts not found. checked: ${searched}`;
+            this.output.appendLine(`[polyglot] ${message}`);
+            this.fireSidecarError('python', message);
+            this.fireSidecarError('ruby', message);
+            return;
+        }
+        this.output.appendLine(`[polyglot] sidecar root: ${this.sidecarRootPath}`);
         this.startPythonSidecar();
         this.startRubySidecar();
     }
@@ -53,6 +65,7 @@ export class PolyglotBroker implements vscode.Disposable {
         this.rubySidecar?.kill();
         this.pythonSidecar = null;
         this.rubySidecar = null;
+        this.sidecarRootPath = null;
         this.onDidReceiveRuffEmitter.dispose();
         this.onDidReceiveLoreEmitter.dispose();
         this.onDidReceiveSidecarErrorEmitter.dispose();
@@ -62,23 +75,33 @@ export class PolyglotBroker implements vscode.Disposable {
         if (!this.rootPath || this.pythonSidecar) {
             return;
         }
-        const scriptPath = path.join(this.rootPath, '.chthonic', 'python', 'entropy_scan.py');
-        const venvPython = path.join(
-            this.rootPath,
-            '.chthonic',
-            'venv',
-            process.platform === 'win32' ? 'Scripts/python.exe' : 'bin/python',
-        );
+        if (!this.sidecarRootPath) {
+            this.fireSidecarError('python', 'sidecar root unresolved; python scan unavailable.');
+            return;
+        }
 
-        this.pythonSidecar = spawn('uv', [
-            'run',
-            '--python',
-            venvPython,
-            scriptPath,
-            '--stdio',
-        ], {
+        const scriptPath = path.join(this.sidecarRootPath, 'python', 'entropy_scan.py');
+        if (!fs.existsSync(scriptPath)) {
+            this.fireSidecarError('python', `python sidecar missing: ${scriptPath}`);
+            return;
+        }
+
+        const venvBinDir = path.join(this.sidecarRootPath, 'venv', process.platform === 'win32' ? 'Scripts' : 'bin');
+        const venvPython = path.join(venvBinDir, process.platform === 'win32' ? 'python.exe' : 'python');
+        const hasVenvPython = fs.existsSync(venvPython);
+        const pythonCommand = hasVenvPython ? venvPython : 'uv';
+        const pythonArgs = hasVenvPython
+            ? [scriptPath, '--stdio']
+            : ['run', scriptPath, '--stdio'];
+
+        if (!hasVenvPython) {
+            this.output.appendLine('[polyglot:python] .chthonic/venv not found, falling back to uv run.');
+        }
+
+        this.pythonSidecar = spawn(pythonCommand, pythonArgs, {
             cwd: this.rootPath,
             stdio: ['pipe', 'pipe', 'pipe'],
+            env: withPrependedPath(process.env, venvBinDir),
         });
 
         const decoder = createJsonlDecoder(
@@ -92,12 +115,7 @@ export class PolyglotBroker implements vscode.Disposable {
         });
 
         this.pythonSidecar.on('error', (error) => {
-            this.onDidReceiveSidecarErrorEmitter.fire({
-                type: 'error',
-                source: 'python',
-                message: error.message,
-            });
-            this.output.appendLine(`[polyglot:python] failed to spawn: ${error.message}`);
+            this.fireSidecarError('python', `failed to spawn: ${error.message}`);
             this.pythonSidecar = null;
         });
         this.pythonSidecar.on('exit', (code) => {
@@ -111,7 +129,15 @@ export class PolyglotBroker implements vscode.Disposable {
         if (!this.rootPath || this.rubySidecar) {
             return;
         }
-        const scriptPath = path.join(this.rootPath, '.chthonic', 'ruby', 'lore.rb');
+        if (!this.sidecarRootPath) {
+            this.fireSidecarError('ruby', 'sidecar root unresolved; lore unavailable.');
+            return;
+        }
+        const scriptPath = path.join(this.sidecarRootPath, 'ruby', 'lore.rb');
+        if (!fs.existsSync(scriptPath)) {
+            this.fireSidecarError('ruby', `ruby sidecar missing: ${scriptPath}`);
+            return;
+        }
         this.rubySidecar = spawn('ruby', [scriptPath], {
             cwd: this.rootPath,
             stdio: ['pipe', 'pipe', 'pipe'],
@@ -127,12 +153,7 @@ export class PolyglotBroker implements vscode.Disposable {
             this.output.appendLine(`[polyglot:ruby] ${chunk.toString().trimEnd()}`);
         });
         this.rubySidecar.on('error', (error) => {
-            this.onDidReceiveSidecarErrorEmitter.fire({
-                type: 'error',
-                source: 'ruby',
-                message: error.message,
-            });
-            this.output.appendLine(`[polyglot:ruby] failed to spawn: ${error.message}`);
+            this.fireSidecarError('ruby', `failed to spawn: ${error.message}`);
             this.rubySidecar = null;
         });
         this.rubySidecar.on('exit', (code) => {
@@ -151,6 +172,15 @@ export class PolyglotBroker implements vscode.Disposable {
         } catch (error) {
             this.output.appendLine(`[polyglot] sidecar write failed: ${stringifyError(error)}`);
         }
+    }
+
+    private fireSidecarError(source: 'python' | 'ruby', message: string): void {
+        this.onDidReceiveSidecarErrorEmitter.fire({
+            type: 'error',
+            source,
+            message,
+        });
+        this.output.appendLine(`[polyglot:${source}] ${message}`);
     }
 
     private handlePythonPayload(payload: Record<string, unknown>): void {
@@ -192,4 +222,42 @@ function stringifyError(error: unknown): string {
         return `${error.name}: ${error.message}`;
     }
     return String(error);
+}
+
+function resolveSidecarRoot(rootPath: string): string | null {
+    for (const candidate of resolveSidecarCandidates(rootPath)) {
+        if (
+            fs.existsSync(path.join(candidate, 'python', 'entropy_scan.py')) &&
+            fs.existsSync(path.join(candidate, 'ruby', 'lore.rb'))
+        ) {
+            return candidate;
+        }
+    }
+    return null;
+}
+
+function resolveSidecarCandidates(rootPath: string): string[] {
+    const candidates = [
+        path.join(rootPath, '.chthonic'),
+        path.join(rootPath, 'extensions', 'chthonic-archive', '.chthonic'),
+        path.resolve(__dirname, '..', '.chthonic'),
+    ];
+    return Array.from(new Set(candidates));
+}
+
+function withPrependedPath(
+    env: NodeJS.ProcessEnv,
+    candidatePath: string,
+): NodeJS.ProcessEnv {
+    if (!fs.existsSync(candidatePath)) {
+        return env;
+    }
+    const pathKey = process.platform === 'win32' ? 'Path' : 'PATH';
+    const existing = env[pathKey] ?? process.env[pathKey] ?? '';
+    return {
+        ...env,
+        [pathKey]: existing
+            ? `${candidatePath}${path.delimiter}${existing}`
+            : candidatePath,
+    };
 }

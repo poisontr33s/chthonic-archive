@@ -5,14 +5,16 @@ export class EntropyMerkleAccumulator {
     private readonly leaves = new Map<string, string>();
     private dirty = false;
 
-    upsert(leaf: EntropyMerkleLeaf): void {
+    upsert(leaf: EntropyMerkleLeaf): boolean {
         const normalizedPath = normalizePath(leaf.path);
         const digest = hashLeaf(normalizedPath, leaf);
         const previous = this.leaves.get(normalizedPath);
         if (previous !== digest) {
             this.leaves.set(normalizedPath, digest);
             this.dirty = true;
+            return true;
         }
+        return false;
     }
 
     hasDirty(): boolean {

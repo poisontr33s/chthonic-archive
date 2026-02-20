@@ -55,7 +55,7 @@
       },
       {
         "command": "chthonic.entropyRefresh",
-        "title": "Chthonic: Refresh Entropy Overlay",
+        "title": "Chthonic: Refresh Workspace Health Overlay",
         "icon": "$(pulse)"
       },
       {
@@ -90,7 +90,7 @@
       },
       {
         "command": "chthonic.refreshRustification",
-        "title": "Chthonic: Refresh Rustification Score",
+        "title": "Chthonic: Refresh Toolchain Completeness Score",
         "icon": "$(pulse)"
       },
       {
@@ -181,19 +181,19 @@
         "chthonic.entropy.enabled": {
           "type": "boolean",
           "default": true,
-          "description": "Enable dynamic entropy analysis and explorer decay decoration overlay."
+          "description": "Enable workspace health analysis and explorer health decoration overlay."
         },
         "chthonic.entropy.maxFiles": {
           "type": "number",
           "default": 1e4,
           "minimum": 200,
-          "description": "Maximum number of files scanned by the entropy worker."
+          "description": "Maximum number of files scanned by the workspace health worker."
         },
         "chthonic.entropy.scanIntervalMs": {
           "type": "number",
           "default": 20000,
           "minimum": 5000,
-          "description": "Background entropy rescan interval in milliseconds."
+          "description": "Background workspace health rescan interval in milliseconds."
         },
         "chthonic.entropy.decorationDebounceMs": {
           "type": "number",
@@ -210,19 +210,19 @@
         "chthonic.entropy.polyglotEnabled": {
           "type": "boolean",
           "default": true,
-          "description": "Enable uv/Ruby sidecars, Merkle accumulation, and Solana settlement scaffolding."
+          "description": "Enable uv/Ruby sidecars, Merkle accumulation, and Solana settlement workflows."
         },
         "chthonic.entropy.pythonScanIntervalMs": {
           "type": "number",
           "default": 30000,
           "minimum": 1e4,
-          "description": "Interval for uv-managed ruff sidecar scans."
+          "description": "Interval for uv-managed ruff workspace health scans."
         },
         "chthonic.entropy.ledgerSettleDebounceMs": {
           "type": "number",
           "default": 1400,
           "minimum": 300,
-          "description": "Debounce window for Merkle settlement writes triggered by save/commit."
+          "description": "Debounce window for Merkle settlement writes triggered by workspace save/commit."
         },
         "chthonic.entropy.ledgerMode": {
           "type": "string",
@@ -246,7 +246,7 @@
         "chthonic.entropy.solanaLedgerHostBinaryPath": {
           "type": "string",
           "default": "",
-          "description": "Optional absolute path to the Rust entropy-ledger-host binary."
+          "description": "Optional absolute path to the Rust ledger-host binary."
         },
         "chthonic.entropy.solanaWalletPath": {
           "type": "string",
@@ -261,7 +261,7 @@
         "chthonic.reactor.enabled": {
           "type": "boolean",
           "default": true,
-          "description": "Enable the Entropy Reactor (ANNO + Vulkan compute daemon)."
+          "description": "Enable the Workspace Health Reactor (ANNO + Vulkan compute daemon)."
         },
         "chthonic.reactor.headlessVulkan": {
           "type": "boolean",

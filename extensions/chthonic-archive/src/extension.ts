@@ -2,7 +2,6 @@ import * as vscode from 'vscode';
 import * as crypto from 'crypto';
 import * as fs from 'fs';
 import * as path from 'path';
-import { ChthonicChatProvider } from './sdk/webview';
 import { EntropyWorkerClient } from './entropy/entropyWorkerClient';
 import { EntropyDecorationProvider } from './entropy/entropyDecorations';
 import { AbyssalPaneProvider } from './entropy/archiveAbyssalView';
@@ -22,21 +21,14 @@ import type { EntropyState, FiredancerSurgeState } from './reactor/types';
 export function activate(context: vscode.ExtensionContext) {
     console.log('☥ Chthonic Archive extension activated');
 
-    // --- SDK Chat Panel ---
-    const outputChannel = vscode.window.createOutputChannel('Chthonic SDK');
+    // --- Core Runtime ---
+    const outputChannel = vscode.window.createOutputChannel('Chthonic Archive');
     const workspaceRoot = vscode.workspace.workspaceFolders?.[0]?.uri.fsPath || null;
     const chthonicConfig = vscode.workspace.getConfiguration('chthonic');
-    const harnessPath = path.join(
-        workspaceRoot || '',
-        'meta-ide', 'copilot-sdk', 'harness.ts',
-    );
-    const chatProvider = new ChthonicChatProvider(
-        context.extensionUri,
-        harnessPath,
-        (msg: string) => outputChannel.appendLine(`[${new Date().toISOString()}] ${msg}`),
-    );
+
     context.subscriptions.push(
-        vscode.window.registerWebviewViewProvider(ChthonicChatProvider.viewType, chatProvider),
+        outputChannel,
+        vscode.window.registerWebviewViewProvider('chthonic.chatView', new ParkedChatProvider()),
     );
 
     const activityBarMorph = new ActivityBarMorph(context.extensionUri, outputChannel);
@@ -110,18 +102,18 @@ export function activate(context: vscode.ExtensionContext) {
         vscode.window.registerWebviewViewProvider(AbyssalPaneProvider.viewType, abyssalProvider),
     );
 
-    const refreshRustification = async (reason: string): Promise<void> => {
+    const refreshToolchainCompleteness = async (reason: string): Promise<void> => {
         if (!workspaceRoot) {
             return;
         }
         const report = await computeRustificationReport(workspaceRoot);
         loomProvider.update(report);
         await activityBarMorph.update(report);
-        outputChannel.appendLine(`[monolith] rustification ${report.score}% (${report.tier}) via ${reason}`);
+        outputChannel.appendLine(`[monolith] toolchain completeness ${report.score}% (${report.tier}) via ${reason}`);
     };
 
     if (workspaceRoot) {
-        void refreshRustification('startup');
+        void refreshToolchainCompleteness('startup');
 
         const markerWatcher = vscode.workspace.createFileSystemWatcher(
             new vscode.RelativePattern(
@@ -131,9 +123,9 @@ export function activate(context: vscode.ExtensionContext) {
         );
         context.subscriptions.push(
             markerWatcher,
-            markerWatcher.onDidCreate(() => { void refreshRustification('marker-create'); }),
-            markerWatcher.onDidChange(() => { void refreshRustification('marker-change'); }),
-            markerWatcher.onDidDelete(() => { void refreshRustification('marker-delete'); }),
+            markerWatcher.onDidCreate(() => { void refreshToolchainCompleteness('marker-create'); }),
+            markerWatcher.onDidChange(() => { void refreshToolchainCompleteness('marker-change'); }),
+            markerWatcher.onDidDelete(() => { void refreshToolchainCompleteness('marker-delete'); }),
         );
     }
 
@@ -154,11 +146,11 @@ export function activate(context: vscode.ExtensionContext) {
             entropyClient.rescanNow();
             entropyClient.requestGraph(260);
             polyglotOrchestrator.requestManualScan();
-            vscode.window.showInformationMessage('Chthonic entropy scan requested');
+            vscode.window.showInformationMessage('Chthonic workspace health scan requested');
         }),
     );
 
-    // --- ANNO / Entropy Reactor ---
+    // --- ANNO / Workspace Health Reactor ---
     const reactorEnabled = entropyConfig.get<boolean>('reactor.enabled', true);
     const reactorHeadlessVulkan = entropyConfig.get<boolean>('reactor.headlessVulkan', true);
     const reactorCockpitAutoLayout = entropyConfig.get<boolean>('reactor.cockpitAutoLayout', false);
@@ -200,7 +192,7 @@ export function activate(context: vscode.ExtensionContext) {
     const handleEntropyState = (state: EntropyState): void => {
         void activityBarMorph.updateEntropy(state);
         outputChannel.appendLine(
-            `[lens] decay ${Math.round(state.decay_score * 100)}% (${state.status}) from ${state.source_mise ?? 'no-mise'}`,
+            `[workspace-health] score ${Math.round(state.decay_score * 100)}% (${state.status}) from ${state.source_mise ?? 'no-mise'}`,
         );
 
         if (state.validator_active) {
@@ -217,7 +209,7 @@ export function activate(context: vscode.ExtensionContext) {
             const surgeFingerprint = `${state.checked_at_epoch_ms}:${state.simulated_tps}`;
             if (surgeFingerprint !== lastSurgeLayoutFingerprint) {
                 lastSurgeLayoutFingerprint = surgeFingerprint;
-                moveLoomToPanel('entropy-surge', state.simulated_tps);
+                moveLoomToPanel('workspace-health-surge', state.simulated_tps);
             }
         } else {
             lastSurgeLayoutFingerprint = null;
@@ -238,7 +230,7 @@ export function activate(context: vscode.ExtensionContext) {
             ? state.critical_tools.join(', ')
             : 'runtime toolchain';
         void vscode.window.showWarningMessage(
-            `Chthonic decay is critical (${Math.round(state.decay_score * 100)}%). ${criticalTools} needs healing.`,
+            `Workspace health is critical (${Math.round(state.decay_score * 100)}%). ${criticalTools} needs healing.`,
             'Run mise upgrade',
             'Later',
         ).then((choice) => {
@@ -287,7 +279,7 @@ export function activate(context: vscode.ExtensionContext) {
                 handleEntropyState(state);
             })
             .catch((error) => {
-                outputChannel.appendLine(`[lens] initial entropy snapshot unavailable: ${error}`);
+                outputChannel.appendLine(`[workspace-health] initial snapshot unavailable: ${error}`);
             });
         if (reactorCockpitAutoLayout) {
             void cockpitLayout.activate();
@@ -340,7 +332,7 @@ export function activate(context: vscode.ExtensionContext) {
             void selfHealingLoop.runNow('manual');
         }),
         vscode.commands.registerCommand('chthonic.refreshRustification', () => {
-            void refreshRustification('manual-command');
+            void refreshToolchainCompleteness('manual-command');
         }),
         vscode.commands.registerCommand('chthonic.annoDetect', () => {
             if (workspaceRoot) {
@@ -559,7 +551,7 @@ export function activate(context: vscode.ExtensionContext) {
             entropyClient.rescanNow();
             entropyClient.requestGraph(260);
             polyglotOrchestrator.requestManualScan();
-            void refreshRustification('refresh-status');
+            void refreshToolchainCompleteness('refresh-status');
         })
     );
 }
@@ -633,6 +625,50 @@ function resolveWebCockpitUrl(config: vscode.WorkspaceConfiguration): string {
         return raw;
     }
     return `http://${raw}`;
+}
+
+class ParkedChatProvider implements vscode.WebviewViewProvider {
+    resolveWebviewView(
+        webviewView: vscode.WebviewView,
+        _context: vscode.WebviewViewResolveContext,
+        _token: vscode.CancellationToken,
+    ): void {
+        webviewView.webview.options = { enableScripts: false };
+        webviewView.webview.html = `
+            <!DOCTYPE html>
+            <html lang="en">
+            <head>
+                <meta charset="UTF-8" />
+                <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+                <style>
+                    body {
+                        margin: 0;
+                        padding: 16px;
+                        font-family: var(--vscode-font-family);
+                        color: var(--vscode-foreground);
+                        background: var(--vscode-editor-background);
+                    }
+                    h3 {
+                        margin: 0 0 8px 0;
+                        font-size: 14px;
+                    }
+                    p {
+                        margin: 0;
+                        line-height: 1.4;
+                        color: var(--vscode-descriptionForeground);
+                    }
+                </style>
+            </head>
+            <body>
+                <h3>Agent Chat Parked</h3>
+                <p>
+                    SDK/ACP chat integration is intentionally parked during runtime hardening.
+                    Existing SDK files remain in source for later reactivation.
+                </p>
+            </body>
+            </html>
+        `;
+    }
 }
 
 // --- Theme Tree ---
