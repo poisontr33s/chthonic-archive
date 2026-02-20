@@ -25,6 +25,7 @@ export function activate(context: vscode.ExtensionContext) {
     // --- SDK Chat Panel ---
     const outputChannel = vscode.window.createOutputChannel('Chthonic SDK');
     const workspaceRoot = vscode.workspace.workspaceFolders?.[0]?.uri.fsPath || null;
+    const chthonicConfig = vscode.workspace.getConfiguration('chthonic');
     const harnessPath = path.join(
         workspaceRoot || '',
         'meta-ide', 'copilot-sdk', 'harness.ts',
@@ -56,7 +57,7 @@ export function activate(context: vscode.ExtensionContext) {
     );
 
     // --- Entropy Engine (worker + decorations + webview) ---
-    const entropyConfig = vscode.workspace.getConfiguration('chthonic');
+    const entropyConfig = chthonicConfig;
     const entropyEnabled = entropyConfig.get<boolean>('entropy.enabled', true);
     const entropyMaxFiles = entropyConfig.get<number>('entropy.maxFiles', 10000);
     const entropyScanIntervalMs = entropyConfig.get<number>('entropy.scanIntervalMs', 20000);
@@ -357,7 +358,59 @@ export function activate(context: vscode.ExtensionContext) {
                 vscode.window.showErrorMessage(`Sediment computation failed: ${err}`);
             }
         }),
+        vscode.commands.registerCommand('chthonic.openWebCockpit', () => {
+            const cockpitUrl = resolveWebCockpitUrl(chthonicConfig);
+            void vscode.env.openExternal(vscode.Uri.parse(cockpitUrl));
+        }),
+        vscode.commands.registerCommand('chthonic.startWebCockpit', () => {
+            if (!workspaceRoot) {
+                void vscode.window.showWarningMessage('Workspace root is required to start the Bun/Next cockpit.');
+                return;
+            }
+            const terminal = vscode.window.createTerminal({
+                name: 'Chthonic Web Cockpit',
+                cwd: workspaceRoot,
+            });
+            terminal.show();
+            terminal.sendText('bun run web:dev');
+            outputChannel.appendLine('[web-cockpit] started via bun run web:dev');
+        }),
+        vscode.commands.registerCommand('chthonic.openBunTrainingDocs', async () => {
+            const docs = [
+                {
+                    label: 'Bun React Guide',
+                    description: 'Build a React app with Bun',
+                    url: 'https://bun.com/docs/guides/ecosystem/react#build-a-react-app-with-bun',
+                },
+                {
+                    label: 'Bun Next.js Guide',
+                    description: 'Build an app with Next.js and Bun',
+                    url: 'https://bun.com/docs/guides/ecosystem/nextjs#build-an-app-with-next-js-and-bun',
+                },
+                {
+                    label: 'Bun Tailwind (Fullstack Bundler)',
+                    description: 'Tailwind plugin lane for Bun fullstack',
+                    url: 'https://bun.com/docs/bundler/fullstack#tailwindcss-plugin',
+                },
+                {
+                    label: 'Bun SQLite API',
+                    description: 'Typed SQL training lane (bun:sqlite)',
+                    url: 'https://bun.com/docs/api/sqlite',
+                },
+            ];
+            const pick = await vscode.window.showQuickPick(docs, {
+                placeHolder: 'Open Bun training docs',
+            });
+            if (!pick) {
+                return;
+            }
+            void vscode.env.openExternal(vscode.Uri.parse(pick.url));
+        }),
     );
+
+    if (workspaceRoot && chthonicConfig.get<boolean>('webCockpit.autoStart', false)) {
+        void vscode.commands.executeCommand('chthonic.startWebCockpit');
+    }
 
     // --- Theme Switcher ---
     const themeProvider = new ThemeTreeProvider();
@@ -383,8 +436,8 @@ export function activate(context: vscode.ExtensionContext) {
     );
 
     // --- Status Bar: SSOT Hash ---
-    const config = vscode.workspace.getConfiguration('chthonic');
-    if (config.get<boolean>('showSSOTHash', true)) {
+    const displayConfig = chthonicConfig;
+    if (displayConfig.get<boolean>('showSSOTHash', true)) {
         const ssotItem = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Left, 50);
         ssotItem.command = 'chthonic.verifySSOT';
         ssotItem.tooltip = 'SSOT integrity hash — click to verify';
@@ -402,7 +455,7 @@ export function activate(context: vscode.ExtensionContext) {
     }
 
     // --- Status Bar: Lineage ---
-    if (config.get<boolean>('showLineage', true)) {
+    if (displayConfig.get<boolean>('showLineage', true)) {
         const lineageItem = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Left, 49);
         lineageItem.text = '$(git-branch) ☥ main';
         lineageItem.tooltip = 'Chthonic lineage';
@@ -500,6 +553,14 @@ function normalizeEolApiBase(value: string): string {
         return `${trimmed}/v1`;
     }
     return trimmed.length > 0 ? trimmed : 'https://endoflife.date/api/v1';
+}
+
+function resolveWebCockpitUrl(config: vscode.WorkspaceConfiguration): string {
+    const raw = config.get<string>('webCockpit.url', 'http://127.0.0.1:3000').trim();
+    if (/^https?:\/\//i.test(raw)) {
+        return raw;
+    }
+    return `http://${raw}`;
 }
 
 // --- Theme Tree ---

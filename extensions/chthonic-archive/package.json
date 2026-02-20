@@ -92,6 +92,21 @@
         "command": "chthonic.refreshRustification",
         "title": "Chthonic: Refresh Rustification Score",
         "icon": "$(pulse)"
+      },
+      {
+        "command": "chthonic.openWebCockpit",
+        "title": "Chthonic: Open Next Cockpit",
+        "icon": "$(globe)"
+      },
+      {
+        "command": "chthonic.startWebCockpit",
+        "title": "Chthonic: Start Next Cockpit (bun --bun next dev)",
+        "icon": "$(play)"
+      },
+      {
+        "command": "chthonic.openBunTrainingDocs",
+        "title": "Chthonic: Open Bun Training Docs",
+        "icon": "$(book)"
       }
     ],
     "viewsContainers": {
@@ -278,6 +293,16 @@
           "type": "string",
           "default": "https://endoflife.date/api",
           "description": "Base URL for endoflife lifecycle API used by slab self-healing."
+        },
+        "chthonic.webCockpit.url": {
+          "type": "string",
+          "default": "http://127.0.0.1:3000",
+          "description": "URL for the Bun/Next training cockpit opened from extension commands."
+        },
+        "chthonic.webCockpit.autoStart": {
+          "type": "boolean",
+          "default": false,
+          "description": "Auto-start the Bun/Next cockpit dev server when Chthonic Archive activates."
         }
       }
     }

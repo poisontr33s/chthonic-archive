@@ -183,7 +183,7 @@ export class AnnoClient implements vscode.Disposable {
         switch (method) {
             case 'anno/manifest':
                 this.onDidReceiveManifestEmitter.fire(params as unknown as AnnoManifest);
-                this.output.appendLine(`[daemon] ANNO manifest received (${(params as AnnoManifest).languages?.length ?? 0} languages)`);
+                this.output.appendLine(`[daemon] ANNO manifest received (${(params as unknown as AnnoManifest).languages?.length ?? 0} languages)`);
                 break;
             case 'anno/env':
                 this.onDidReceiveEnvEmitter.fire(params as unknown as EnvReport);
@@ -199,16 +199,16 @@ export class AnnoClient implements vscode.Disposable {
                 break;
             case 'reactor/synapse':
                 this.onDidReceiveSynapseEmitter.fire(params as unknown as SynapseDescriptor);
-                this.output.appendLine(`[daemon] synapse status: ${(params as SynapseDescriptor).status} (${(params as SynapseDescriptor).mode})`);
+                this.output.appendLine(`[daemon] synapse status: ${(params as unknown as SynapseDescriptor).status} (${(params as unknown as SynapseDescriptor).mode})`);
                 break;
             case 'reactor/entropyState':
                 this.onDidReceiveEntropyStateEmitter.fire(params as unknown as EntropyState);
-                this.output.appendLine(`[daemon] entropy state: ${(params as EntropyState).status} (${Math.round(((params as EntropyState).decay_score ?? 0) * 100)}%)`);
+                this.output.appendLine(`[daemon] entropy state: ${(params as unknown as EntropyState).status} (${Math.round(((params as unknown as EntropyState).decay_score ?? 0) * 100)}%)`);
                 break;
             case 'reactor/firedancerSurge':
                 this.onDidReceiveFiredancerSurgeEmitter.fire(params as unknown as FiredancerSurgeState);
                 this.output.appendLine(
-                    `[daemon] firedancer slot ${(params as FiredancerSurgeState).slot} tps ${(params as FiredancerSurgeState).simulated_tps} (${(params as FiredancerSurgeState).surge ? 'surge' : 'flow'})`,
+                    `[daemon] firedancer slot ${(params as unknown as FiredancerSurgeState).slot} tps ${(params as unknown as FiredancerSurgeState).simulated_tps} (${(params as unknown as FiredancerSurgeState).surge ? 'surge' : 'flow'})`,
                 );
                 break;
             default:

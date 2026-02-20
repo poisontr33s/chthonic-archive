@@ -47,8 +47,10 @@ export class AbyssalPaneProvider implements vscode.WebviewViewProvider, vscode.D
     }
 
     postSedimentBinary(payload: Uint8Array): void {
-        const copy = payload.buffer.slice(payload.byteOffset, payload.byteOffset + payload.byteLength);
-        this.postMessage({ type: 'sedimentBinary', payload: copy });
+        // Force a plain ArrayBuffer copy (webview messaging type is ArrayBuffer, not SharedArrayBuffer).
+        const copy = new Uint8Array(payload.byteLength);
+        copy.set(payload);
+        this.postMessage({ type: 'sedimentBinary', payload: copy.buffer });
     }
 
     dispose(): void {

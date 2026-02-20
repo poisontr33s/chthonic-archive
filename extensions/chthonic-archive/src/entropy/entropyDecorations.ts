@@ -91,60 +91,20 @@ export class EntropyDecorationProvider implements vscode.FileDecorationProvider,
     }
 }
 
-function entropyColor(record: EntropyFileRecord): string {
-    // Green for recently edited / low entropy, brown-red for stale / high entropy.
+function entropyColor(record: EntropyFileRecord): vscode.ThemeColor {
+    // FileDecoration.color expects ThemeColor in current vscode.d.ts; use semantic theme tokens.
     const decay = clamp01((record.entropy * 0.78) + ((1 - record.freshness) * 0.22));
-    const hue = lerp(118, 24, decay);
-    const saturation = lerp(36, 46, decay);
-    const lightness = lerp(58, 42, decay);
-    return hslToHex(hue, saturation, lightness);
-}
-
-function hslToHex(h: number, s: number, l: number): string {
-    const hue = h / 360;
-    const sat = s / 100;
-    const light = l / 100;
-
-    const hueToRgb = (p: number, q: number, t: number): number => {
-        let x = t;
-        if (x < 0) x += 1;
-        if (x > 1) x -= 1;
-        if (x < 1 / 6) return p + ((q - p) * 6 * x);
-        if (x < 1 / 2) return q;
-        if (x < 2 / 3) return p + ((q - p) * ((2 / 3) - x) * 6);
-        return p;
-    };
-
-    let r: number;
-    let g: number;
-    let b: number;
-
-    if (sat === 0) {
-        r = light;
-        g = light;
-        b = light;
-    } else {
-        const q = light < 0.5 ? light * (1 + sat) : light + sat - (light * sat);
-        const p = (2 * light) - q;
-        r = hueToRgb(p, q, hue + (1 / 3));
-        g = hueToRgb(p, q, hue);
-        b = hueToRgb(p, q, hue - (1 / 3));
+    if (decay >= 0.72) {
+        return new vscode.ThemeColor('problemsErrorIcon.foreground');
     }
-
-    const toHex = (value: number): string => {
-        const channel = Math.round(value * 255).toString(16).padStart(2, '0');
-        return channel;
-    };
-
-    return `#${toHex(r)}${toHex(g)}${toHex(b)}`;
+    if (decay >= 0.45) {
+        return new vscode.ThemeColor('charts.yellow');
+    }
+    return new vscode.ThemeColor('charts.green');
 }
 
 function clamp01(value: number): number {
     if (value < 0) return 0;
     if (value > 1) return 1;
     return value;
-}
-
-function lerp(from: number, to: number, ratio: number): number {
-    return from + ((to - from) * ratio);
 }
