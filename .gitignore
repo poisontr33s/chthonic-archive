@@ -80,6 +80,7 @@
 !extensions/*/themes/*.json
 !extensions/*/icons/
 !extensions/*/icons/*.svg
+!extensions/*/icons/*.png
 !extensions/*/resources/
 !extensions/*/resources/*.svg
 !extensions/*/media/
@@ -91,6 +92,8 @@
 !extensions/*/scripts/
 !extensions/*/scripts/*.ts
 !extensions/*/scripts/*.ps1
+!extensions/*/scripts/*.cjs
+!extensions/*/.vscodeignore
 !extensions/*/.chthonic/
 !extensions/*/.chthonic/**
 extensions/*/.chthonic/venv/

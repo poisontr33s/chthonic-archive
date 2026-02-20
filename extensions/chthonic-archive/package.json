@@ -4,7 +4,7 @@
   "description": "VS Code workspace extension for the Chthonic Archive — themes, status bar, sidebar, and SSOT tools.",
   "version": "0.2.0",
   "publisher": "chthonic-archive",
-  "icon": "icons/mandala.svg",
+  "icon": "icons/mandala.png",
   "repository": {
     "type": "git",
     "url": "https://github.com/chthonic-archive/chthonic-archive"
@@ -175,7 +175,7 @@
         },
         "chthonic.entropy.maxFiles": {
           "type": "number",
-          "default": 10000,
+          "default": 1e4,
           "minimum": 200,
           "description": "Maximum number of files scanned by the entropy worker."
         },
@@ -205,7 +205,7 @@
         "chthonic.entropy.pythonScanIntervalMs": {
           "type": "number",
           "default": 30000,
-          "minimum": 10000,
+          "minimum": 1e4,
           "description": "Interval for uv-managed ruff sidecar scans."
         },
         "chthonic.entropy.ledgerSettleDebounceMs": {
@@ -329,6 +329,8 @@
     "watch": "bun build src/extension.ts --outdir dist --target node --format cjs --external vscode --watch",
     "watch:worker": "bun build src/entropy/entropyWorker.ts --outfile dist/entropy-worker.js --target node --format cjs --watch",
     "test:e2e": "bun run scripts/e2e-extension-host.ts",
+    "insiders:kits:check": "bunx @vscode/vsce --version && bunx vscode-test-web --help",
+    "insiders:package": "bunx @vscode/vsce package --pre-release --no-dependencies --out chthonic-archive-insiders.vsix",
     "insiders:run": "code-insiders --extensionDevelopmentPath=.",
     "insiders:dts:sync": "vscode-dts dev && vscode-dts main"
   },
@@ -336,10 +338,12 @@
     "@openai/agents": "^0.4.12",
     "@openai/codex-sdk": "^0.104.0",
     "@types/node": "^20.x",
-    "@types/vscode": "^1.110.0",
+    "@types/vscode": "^1.109.0",
     "@vscode/dts": "^0.4.1",
     "@vscode/test-cli": "^0.0.12",
     "@vscode/test-electron": "^2.5.2",
+    "@vscode/test-web": "^0.0.79",
+    "@vscode/vsce": "^3.7.1",
     "openai": "^6.22.0",
     "typescript": "^5.x"
   },

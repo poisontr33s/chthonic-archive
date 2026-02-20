@@ -1,0 +1,6 @@
+**
+!dist/**
+!icons/**
+!resources/**
+!package.json
+!README.md

@@ -1,0 +1,7 @@
+**
+!dist/**
+!icons/**
+!media/**
+!resources/**
+!themes/**
+!package.json
