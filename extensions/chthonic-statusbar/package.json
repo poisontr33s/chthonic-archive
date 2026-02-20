@@ -16,6 +16,13 @@
   ],
   "activationEvents": [
     "onStartupFinished",
+    "onCommand:chthonic.bridge.verifySSOT",
+    "onCommand:chthonic.bridge.selfHeal",
+    "onCommand:chthonic.bridge.sediment",
+    "onCommand:chthonic.bridge.verifyHost",
+    "onCommand:chthonic.bridge.vsAudit",
+    "onCommand:chthonic.bridge.webCockpit",
+    "onCommand:chthonic.bridge.bunDocs",
     "onCommand:chthonic.verifySSO_T",
     "onCommand:chthonic.runMetabolicCycle",
     "onCommand:chthonic.showGPUStats",
@@ -36,32 +43,67 @@
   "contributes": {
     "commands": [
       {
+        "command": "chthonic.bridge.verifySSOT",
+        "title": "Chthonic Bridge: Verify SSOT",
+        "icon": "$(shield)"
+      },
+      {
+        "command": "chthonic.bridge.selfHeal",
+        "title": "Chthonic Bridge: Self-Heal",
+        "icon": "$(wrench)"
+      },
+      {
+        "command": "chthonic.bridge.sediment",
+        "title": "Chthonic Bridge: Sediment Layers",
+        "icon": "$(layers)"
+      },
+      {
+        "command": "chthonic.bridge.verifyHost",
+        "title": "Chthonic Bridge: Verify Host",
+        "icon": "$(check)"
+      },
+      {
+        "command": "chthonic.bridge.vsAudit",
+        "title": "Chthonic Bridge: VS 2026 Audit",
+        "icon": "$(tools)"
+      },
+      {
+        "command": "chthonic.bridge.webCockpit",
+        "title": "Chthonic Bridge: Web Cockpit",
+        "icon": "$(globe)"
+      },
+      {
+        "command": "chthonic.bridge.bunDocs",
+        "title": "Chthonic Bridge: Bun Docs",
+        "icon": "$(book)"
+      },
+      {
         "command": "chthonic.verifySSO_T",
-        "title": "Chthonic: Verify SSOT (Bridge)"
+        "title": "Chthonic: Verify SSOT (Legacy)"
       },
       {
         "command": "chthonic.runMetabolicCycle",
-        "title": "Chthonic: Run Self-Heal Loop (Bridge)"
+        "title": "Chthonic: Self-Heal (Legacy)"
       },
       {
         "command": "chthonic.showGPUStats",
-        "title": "Chthonic: Run Reactor Sediment (Bridge)"
+        "title": "Chthonic: Sediment (Legacy)"
       },
       {
         "command": "chthonic.runHostVerify",
-        "title": "Chthonic: Verify Host Lane (Bridge)"
+        "title": "Chthonic: Verify Host (Legacy)"
       },
       {
         "command": "chthonic.runVsAudit",
-        "title": "Chthonic: Run VS 2026 Audit (Bridge)"
+        "title": "Chthonic: VS Audit (Legacy)"
       },
       {
         "command": "chthonic.openWebCockpitBridge",
-        "title": "Chthonic: Open Web Cockpit (Bridge)"
+        "title": "Chthonic: Web Cockpit (Legacy)"
       },
       {
         "command": "chthonic.openBunTrainingDocsBridge",
-        "title": "Chthonic: Open Bun Training Docs (Bridge)"
+        "title": "Chthonic: Bun Docs (Legacy)"
       }
     ]
   },

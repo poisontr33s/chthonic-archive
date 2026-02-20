@@ -11,31 +11,62 @@ type RouteSpec = {
     title: string;
 };
 
+// Modern command names (chthonic.bridge.*) paired with archive targets.
 const ROUTES: RouteSpec[] = [
+    {
+        from: 'chthonic.bridge.verifySSOT',
+        to: 'chthonic.verifySSOT',
+        title: 'Chthonic Bridge: Verify SSOT',
+    },
+    {
+        from: 'chthonic.bridge.selfHeal',
+        to: 'chthonic.slabHeal',
+        title: 'Chthonic Bridge: Self-Heal',
+    },
+    {
+        from: 'chthonic.bridge.sediment',
+        to: 'chthonic.reactorSediment',
+        title: 'Chthonic Bridge: Sediment Layers',
+    },
+    {
+        from: 'chthonic.bridge.webCockpit',
+        to: 'chthonic.openWebCockpit',
+        title: 'Chthonic Bridge: Web Cockpit',
+    },
+    {
+        from: 'chthonic.bridge.bunDocs',
+        to: 'chthonic.openBunTrainingDocs',
+        title: 'Chthonic Bridge: Bun Docs',
+    },
+];
+
+// Legacy aliases that forward to the same archive targets.
+// Kept for backward compatibility with keybindings, tasks, and muscle memory.
+const LEGACY_ALIASES: RouteSpec[] = [
     {
         from: 'chthonic.verifySSO_T',
         to: 'chthonic.verifySSOT',
-        title: 'Chthonic: Verify SSOT (Bridge)',
+        title: 'Chthonic: Verify SSOT (Legacy)',
     },
     {
         from: 'chthonic.runMetabolicCycle',
         to: 'chthonic.slabHeal',
-        title: 'Chthonic: Run Self-Heal Loop (Bridge)',
+        title: 'Chthonic: Self-Heal (Legacy)',
     },
     {
         from: 'chthonic.showGPUStats',
         to: 'chthonic.reactorSediment',
-        title: 'Chthonic: Run Reactor Sediment (Bridge)',
+        title: 'Chthonic: Sediment (Legacy)',
     },
     {
         from: 'chthonic.openWebCockpitBridge',
         to: 'chthonic.openWebCockpit',
-        title: 'Chthonic: Open Web Cockpit (Bridge)',
+        title: 'Chthonic: Web Cockpit (Legacy)',
     },
     {
         from: 'chthonic.openBunTrainingDocsBridge',
         to: 'chthonic.openBunTrainingDocs',
-        title: 'Chthonic: Open Bun Training Docs (Bridge)',
+        title: 'Chthonic: Bun Docs (Legacy)',
     },
 ];
 
@@ -46,15 +77,16 @@ export function activate(context: vscode.ExtensionContext): void {
 
     bridgeItem = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Right, 120);
     bridgeItem.name = 'Chthonic Status Bridge';
-    bridgeItem.command = 'chthonic.runHostVerify';
+    bridgeItem.command = 'chthonic.bridge.verifyHost';
     context.subscriptions.push(bridgeItem);
 
     laneItem = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Right, 119);
     laneItem.name = 'Chthonic Toolchain Lane';
-    laneItem.command = 'chthonic.runHostVerify';
+    laneItem.command = 'chthonic.bridge.verifyHost';
     context.subscriptions.push(laneItem);
 
-    for (const route of ROUTES) {
+    // Register modern routes + legacy aliases with the same forwarding logic.
+    for (const route of [...ROUTES, ...LEGACY_ALIASES]) {
         context.subscriptions.push(
             vscode.commands.registerCommand(route.from, async () => {
                 await forwardCommand(route.to, route.title, output);
@@ -63,7 +95,17 @@ export function activate(context: vscode.ExtensionContext): void {
         );
     }
 
+    // Task-based commands (not simple forwards — they spawn terminals).
     context.subscriptions.push(
+        vscode.commands.registerCommand('chthonic.bridge.verifyHost', async () => {
+            await runArchiveTask('verify:host', output);
+            refreshItems(output);
+        }),
+        vscode.commands.registerCommand('chthonic.bridge.vsAudit', async () => {
+            await runArchiveTask('audit:vs2026', output);
+            refreshItems(output);
+        }),
+        // Legacy aliases for task commands.
         vscode.commands.registerCommand('chthonic.runHostVerify', async () => {
             await runArchiveTask('verify:host', output);
             refreshItems(output);
@@ -114,7 +156,7 @@ function refreshItems(output: vscode.OutputChannel): void {
     if (bridgeItem) {
         bridgeItem.text = archiveReady ? '$(plug) Chthonic Bridge' : '$(warning) Bridge Missing';
         bridgeItem.tooltip = archiveReady
-            ? 'Legacy statusbar commands are routed to chthonic-archive.'
+            ? 'Status bridge routes commands to chthonic-archive.'
             : 'chthonic-archive workspace not found. Open repository root.';
         bridgeItem.color = archiveReady ? undefined : new vscode.ThemeColor('statusBarItem.warningForeground');
         bridgeItem.show();
@@ -123,7 +165,7 @@ function refreshItems(output: vscode.OutputChannel): void {
     if (laneItem) {
         laneItem.text = archiveReady ? '$(shield) Verify Host' : '$(circle-slash) Verify Host';
         laneItem.tooltip = archiveReady
-            ? 'Run heavyweight host verification lane for chthonic-archive.'
+            ? 'Run host verification lane for chthonic-archive.'
             : 'Cannot resolve extensions/chthonic-archive folder.';
         laneItem.show();
     }

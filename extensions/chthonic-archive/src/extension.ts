@@ -463,7 +463,10 @@ export function activate(context: vscode.ExtensionContext) {
             terminal.sendText('bun run --cwd extensions/chthonic-archive insiders:restart:gate');
             outputChannel.appendLine('[insiders] restart gate check lane started');
         }),
-        vscode.commands.registerCommand('chthonic.runtimeStatus', () => {
+        vscode.commands.registerCommand('chthonic.runtimeStatus', async () => {
+            const cockpitUrl = resolveWebCockpitUrl(chthonicConfig);
+            const webCockpitReachable = await isWebCockpitReachable(cockpitUrl, 900);
+            const commandCatalog = new Set(await vscode.commands.getCommands(true));
             const rows = collectRuntimeStatusRows({
                 workspaceRoot,
                 entropyEnabled,
@@ -471,6 +474,10 @@ export function activate(context: vscode.ExtensionContext) {
                 entropyLedgerMode,
                 reactorReadiness,
                 slabSelfHealingEnabled,
+                extensionPath: context.extensionPath,
+                webCockpitUrl: cockpitUrl,
+                webCockpitReachable,
+                commandCatalog,
             });
 
             outputChannel.show(true);
@@ -479,7 +486,12 @@ export function activate(context: vscode.ExtensionContext) {
                 outputChannel.appendLine(`[runtime] ${row}`);
             }
 
-            const degraded = rows.some((row) => row.includes('DISABLED') || row.includes('PARKED') || row.includes('UNAVAILABLE'));
+            const degraded = rows.some((row) =>
+                row.includes('DISABLED')
+                || row.includes('PARKED')
+                || row.includes('UNAVAILABLE')
+                || row.includes('MISSING')
+                || row.includes('UNREACHABLE'));
             void vscode.window.showInformationMessage(
                 degraded
                     ? 'Some runtime lanes are parked. See Chthonic Archive output for details.'
@@ -874,16 +886,50 @@ interface RuntimeStatusInput {
     entropyLedgerMode: LedgerMode;
     reactorReadiness: ReactorReadiness;
     slabSelfHealingEnabled: boolean;
+    extensionPath: string;
+    webCockpitUrl: string;
+    webCockpitReachable: boolean;
+    commandCatalog: Set<string>;
 }
 
 function collectRuntimeStatusRows(input: RuntimeStatusInput): string[] {
     const rows: string[] = [];
+    const entropyWorkerPath = path.join(input.extensionPath, 'dist', 'entropy-worker.js');
+    const entropyWorkerReady = fs.existsSync(entropyWorkerPath);
+    const mandalaBridgeReady = input.commandCatalog.has('chthonic.mandalaBridge.switchTheme');
+    const statusBridgeReady = input.commandCatalog.has('chthonic.bridge.verifySSOT');
+
     rows.push(`workspace=${input.workspaceRoot ? 'READY' : 'UNAVAILABLE'}`);
     rows.push(`workspace-health=${input.entropyEnabled ? 'ENABLED' : 'DISABLED'}`);
-    rows.push(`polyglot-sidecars=${input.entropyPolyglotEnabled ? 'ENABLED' : 'DISABLED'}`);
-    rows.push(`ledger-mode=${input.entropyLedgerMode}`);
+    rows.push(
+        `polyglot-sidecars=${
+            input.entropyEnabled
+                ? (input.entropyPolyglotEnabled ? 'ENABLED' : 'DISABLED')
+                : 'PARKED (workspace-health disabled)'
+        }`,
+    );
+    rows.push(
+        `ledger-mode=${
+            input.entropyEnabled && input.entropyPolyglotEnabled
+                ? input.entropyLedgerMode
+                : `PARKED (${input.entropyLedgerMode}, polyglot disabled)`
+        }`,
+    );
     rows.push(`self-healing=${input.slabSelfHealingEnabled ? 'ENABLED' : 'DISABLED'}`);
     rows.push(`reactor=${input.reactorReadiness.ready ? 'READY' : `PARKED (${input.reactorReadiness.reason})`}`);
+    rows.push(`entropy-worker=${entropyWorkerReady ? 'READY' : 'MISSING'}`);
+    rows.push(
+        `abyssal-view=${
+            input.entropyEnabled
+                ? (entropyWorkerReady ? 'READY' : `PARKED (worker missing at ${entropyWorkerPath})`)
+                : 'PARKED (workspace-health disabled)'
+        }`,
+    );
+    rows.push(`loom-view=${input.workspaceRoot ? 'READY' : 'PARKED (workspace unavailable)'}`);
+    rows.push(`web-cockpit-url=${input.webCockpitUrl}`);
+    rows.push(`web-cockpit=${input.webCockpitReachable ? 'REACHABLE' : 'UNREACHABLE'}`);
+    rows.push(`bridge-mandala=${mandalaBridgeReady ? 'READY' : 'UNAVAILABLE'}`);
+    rows.push(`bridge-statusbar=${statusBridgeReady ? 'READY' : 'UNAVAILABLE'}`);
     if (input.reactorReadiness.daemonPath) {
         rows.push(`reactor-daemon=${input.reactorReadiness.daemonPath}`);
     }
