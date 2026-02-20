@@ -78,7 +78,7 @@ async function main(): Promise<void> {
             extensionDevelopmentPath: testCase.extensionDevelopmentPath,
             extensionTestsPath: runnerPath,
             launchArgs: [
-                repoRoot,
+                '--new-window',
                 '--disable-workspace-trust',
                 '--skip-welcome',
                 '--skip-release-notes',
