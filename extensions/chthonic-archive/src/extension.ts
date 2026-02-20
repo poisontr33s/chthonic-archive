@@ -371,55 +371,27 @@ export function activate(context: vscode.ExtensionContext) {
                 vscode.window.showErrorMessage(`Sediment computation failed: ${err}`);
             }
         }),
-        vscode.commands.registerCommand('chthonic.openWebCockpit', () => {
+        vscode.commands.registerCommand('chthonic.openWebCockpit', async () => {
             const cockpitUrl = resolveWebCockpitUrl(chthonicConfig);
+            const reachable = await isWebCockpitReachable(cockpitUrl, 1_200);
 
-            const panel = vscode.window.createWebviewPanel(
-                'chthonicWebCockpit',
-                'Chthonic Web Cockpit',
-                vscode.ViewColumn.Active, // Opens in a new active tab
-                {
-                    enableScripts: true, // Allow the webview to run scripts (essential for Next.js app)
-                    retainContextWhenHidden: true, // Keep the webview alive when not visible
+            if (!reachable) {
+                const choice = await vscode.window.showWarningMessage(
+                    `Web cockpit is not responding at ${cockpitUrl}.`,
+                    'Start and Open',
+                    'Open Anyway',
+                    'Cancel',
+                );
+                if (!choice || choice === 'Cancel') {
+                    return;
                 }
-            );
+                if (choice === 'Start and Open') {
+                    await vscode.commands.executeCommand('chthonic.startWebCockpit');
+                    await delay(1_800);
+                }
+            }
 
-            // Set the HTML content of the webview to load the Next.js app
-            panel.webview.html = `
-                <!DOCTYPE html>
-                <html lang="en">
-                <head>
-                    <meta charset="UTF-8">
-                    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                    <title>Chthonic Web Cockpit</title>
-                    <style>
-                        body, html { margin: 0; padding: 0; width: 100%; height: 100%; overflow: hidden; }
-                        iframe { border: none; width: 100%; height: 100%; }
-                    </style>
-                </head>
-                <body>
-                    <iframe src="${cockpitUrl}"></iframe>
-                </body>
-                </html>
-            `;
-
-            // Handle messages from the webview (for future bi-directional communication)
-            panel.webview.onDidReceiveMessage(
-                message => {
-                    outputChannel.appendLine(`[webview] Received message: ${JSON.stringify(message)}`);
-                },
-                undefined,
-                context.subscriptions
-            );
-
-            // Clean up when the panel is disposed
-            panel.onDidDispose(
-                () => {
-                    outputChannel.appendLine('[webview] Chthonic Web Cockpit panel disposed');
-                },
-                undefined,
-                context.subscriptions
-            );
+            openWebCockpitPanel(context, outputChannel, cockpitUrl);
         }),
         vscode.commands.registerCommand('chthonic.startWebCockpit', () => {
             if (!workspaceRoot) {
@@ -529,6 +501,7 @@ export function activate(context: vscode.ExtensionContext) {
             const themes = [
                 { label: '$(paintcan) Flesh & Earth', description: 'Warm earth · WCAG AA · Distribution palette', id: 'Chthonic Mandala - Flesh & Earth' },
                 { label: '$(zap) ROGBIV', description: 'SSOT spectral · FA¹⁻⁵ canonical hexes', id: 'Chthonic Mandala - ROGBIV' },
+                { label: '$(symbol-color) Geological Core', description: 'Mineral strata palette · deep earth lane', id: 'Chthonic Geological Core' },
             ];
             const current = vscode.workspace.getConfiguration('workbench').get<string>('colorTheme');
             const pick = await vscode.window.showQuickPick(themes.map(t => ({
@@ -657,6 +630,191 @@ function resolveWebCockpitUrl(config: vscode.WorkspaceConfiguration): string {
         return raw;
     }
     return `http://${raw}`;
+}
+
+function openWebCockpitPanel(
+    context: vscode.ExtensionContext,
+    outputChannel: vscode.OutputChannel,
+    cockpitUrl: string,
+): void {
+    const panel = vscode.window.createWebviewPanel(
+        'chthonicWebCockpit',
+        'Chthonic Web Cockpit',
+        vscode.ViewColumn.Active,
+        {
+            enableScripts: true,
+            retainContextWhenHidden: true,
+        },
+    );
+
+    panel.webview.html = buildWebCockpitHtml(cockpitUrl);
+
+    panel.webview.onDidReceiveMessage(
+        async (message: unknown) => {
+            if (!message || typeof message !== 'object') {
+                return;
+            }
+            const payload = message as { type?: string; url?: string };
+            if (payload.type === 'start') {
+                await vscode.commands.executeCommand('chthonic.startWebCockpit');
+                return;
+            }
+            if (payload.type === 'openExternal' && payload.url) {
+                await vscode.env.openExternal(vscode.Uri.parse(payload.url));
+                return;
+            }
+            outputChannel.appendLine(`[webview] Received message: ${JSON.stringify(message)}`);
+        },
+        undefined,
+        context.subscriptions,
+    );
+
+    panel.onDidDispose(
+        () => {
+            outputChannel.appendLine('[webview] Chthonic Web Cockpit panel disposed');
+        },
+        undefined,
+        context.subscriptions,
+    );
+}
+
+function buildWebCockpitHtml(cockpitUrl: string): string {
+    const nonce = createNonce();
+    const safeUrl = escapeHtml(cockpitUrl);
+    return `<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'none'; frame-src http: https:; style-src 'unsafe-inline'; script-src 'nonce-${nonce}';">
+    <title>Chthonic Web Cockpit</title>
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background: var(--vscode-editor-background);
+            color: var(--vscode-editor-foreground);
+            font-family: var(--vscode-font-family, Segoe UI, sans-serif);
+        }
+        .shell {
+            display: grid;
+            grid-template-rows: auto 1fr;
+            height: 100%;
+        }
+        .bar {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 10px;
+            border-bottom: 1px solid var(--vscode-panel-border);
+            background: var(--vscode-sideBar-background);
+            font-size: 12px;
+        }
+        .status {
+            flex: 1;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            color: var(--vscode-descriptionForeground);
+        }
+        .btn {
+            border: 1px solid var(--vscode-button-border, var(--vscode-panel-border));
+            background: var(--vscode-button-secondaryBackground);
+            color: var(--vscode-button-secondaryForeground);
+            border-radius: 6px;
+            padding: 4px 8px;
+            font-size: 11px;
+            cursor: pointer;
+        }
+        .btn:hover {
+            background: var(--vscode-button-secondaryHoverBackground);
+        }
+        iframe {
+            border: 0;
+            width: 100%;
+            height: 100%;
+            background: #0b0b0b;
+        }
+    </style>
+</head>
+<body>
+    <section class="shell">
+        <header class="bar">
+            <div id="status" class="status">Connecting to ${safeUrl}</div>
+            <button id="start" class="btn" type="button">Start Server</button>
+            <button id="external" class="btn" type="button">Open Browser</button>
+        </header>
+        <iframe id="cockpit" src="${safeUrl}" title="Chthonic Web Cockpit"></iframe>
+    </section>
+    <script nonce="${nonce}">
+        const vscode = acquireVsCodeApi();
+        const targetUrl = ${JSON.stringify(cockpitUrl)};
+        const statusNode = document.getElementById('status');
+        const iframe = document.getElementById('cockpit');
+        let loaded = false;
+
+        iframe.addEventListener('load', () => {
+            loaded = true;
+            statusNode.textContent = 'Connected: ' + targetUrl;
+        });
+
+        setTimeout(() => {
+            if (!loaded) {
+                statusNode.textContent = 'No response from ' + targetUrl + ' (try Start Server).';
+            }
+        }, 5000);
+
+        document.getElementById('start').addEventListener('click', () => {
+            vscode.postMessage({ type: 'start' });
+        });
+        document.getElementById('external').addEventListener('click', () => {
+            vscode.postMessage({ type: 'openExternal', url: targetUrl });
+        });
+    </script>
+</body>
+</html>`;
+}
+
+async function isWebCockpitReachable(url: string, timeoutMs = 1_200): Promise<boolean> {
+    const abort = new AbortController();
+    const timer = setTimeout(() => abort.abort(), Math.max(300, timeoutMs));
+    try {
+        const response = await fetch(url, {
+            method: 'GET',
+            redirect: 'follow',
+            signal: abort.signal,
+        });
+        return response.ok;
+    } catch {
+        return false;
+    } finally {
+        clearTimeout(timer);
+    }
+}
+
+function delay(ms: number): Promise<void> {
+    return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+function escapeHtml(value: string): string {
+    return value
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
+}
+
+function createNonce(): string {
+    const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    let nonce = '';
+    for (let i = 0; i < 24; i += 1) {
+        nonce += alphabet.charAt(Math.floor(Math.random() * alphabet.length));
+    }
+    return nonce;
 }
 
 interface ReactorReadiness {
@@ -847,6 +1005,7 @@ class ThemeTreeProvider implements vscode.TreeDataProvider<vscode.TreeItem> {
         const themes = [
             { name: 'Chthonic Mandala - Flesh & Earth', short: 'Flesh & Earth', icon: '🌍', desc: 'Warm earth · Distribution' },
             { name: 'Chthonic Mandala - ROGBIV', short: 'ROGBIV', icon: '🌈', desc: 'SSOT spectral · Research' },
+            { name: 'Chthonic Geological Core', short: 'Geological Core', icon: '🪨', desc: 'Mineral strata · Deep earth' },
         ];
         return themes.map(t => {
             const active = current === t.name;
