@@ -96,7 +96,7 @@ export class LoomViewProvider implements vscode.WebviewViewProvider, vscode.Disp
             color: var(--fg);
             font-family: var(--vscode-font-family, Segoe UI, sans-serif);
         }
-        body { padding: 10px; display: grid; grid-template-rows: auto auto 1fr auto; gap: 10px; }
+        body { padding: 10px; display: flex; flex-direction: column; gap: 10px; min-height: 100%; }
         .panel {
             border: 1px solid var(--border);
             border-radius: 10px;
@@ -106,9 +106,32 @@ export class LoomViewProvider implements vscode.WebviewViewProvider, vscode.Disp
         .title { margin: 0; font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); }
         .score { font-size: 28px; margin: 8px 0 0; }
         .meta { color: var(--muted); font-size: 11px; }
-        .list { margin: 8px 0 0; padding: 0; list-style: none; max-height: 180px; overflow: auto; }
+        .list { margin: 8px 0 0; padding: 0; list-style: none; max-height: 140px; overflow: auto; }
         .list li { font-size: 11px; color: var(--muted); padding: 2px 0; }
         .row { display: flex; gap: 8px; }
+        .row button { min-width: 0; }
+        .health-grid {
+            margin-top: 8px;
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 8px;
+        }
+        .health-cell {
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 8px;
+            background: color-mix(in srgb, var(--panel) 90%, transparent);
+        }
+        .health-label {
+            color: var(--muted);
+            font-size: 10px;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+        }
+        .health-value {
+            margin-top: 4px;
+            font-size: 13px;
+        }
         button {
             flex: 1;
             border: 1px solid var(--border);
@@ -132,6 +155,28 @@ export class LoomViewProvider implements vscode.WebviewViewProvider, vscode.Disp
     </section>
 
     <section class="panel">
+        <div class="title">Workspace Health Stream</div>
+        <div class="health-grid">
+            <div class="health-cell">
+                <div class="health-label">Tracked Files</div>
+                <div id="health-files" class="health-value">0</div>
+            </div>
+            <div class="health-cell">
+                <div class="health-label">Average Entropy</div>
+                <div id="health-entropy" class="health-value">0%</div>
+            </div>
+            <div class="health-cell">
+                <div class="health-label">Last Scan</div>
+                <div id="health-duration" class="health-value">0 ms</div>
+            </div>
+            <div class="health-cell">
+                <div class="health-label">Updated</div>
+                <div id="health-updated" class="health-value">n/a</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="panel">
         <div class="title">Markers Present</div>
         <ul id="present" class="list"></ul>
     </section>
@@ -142,7 +187,8 @@ export class LoomViewProvider implements vscode.WebviewViewProvider, vscode.Disp
     </section>
 
     <div class="row">
-        <button id="refresh">Refresh</button>
+        <button id="refresh">Refresh Toolchain</button>
+        <button id="rescan">Rescan Health</button>
         <button id="heal">Self-Heal</button>
         <button id="focus">Deep Focus</button>
         <button id="restore">Restore Order</button>
@@ -154,6 +200,10 @@ export class LoomViewProvider implements vscode.WebviewViewProvider, vscode.Disp
         const tier = document.getElementById('tier');
         const present = document.getElementById('present');
         const missing = document.getElementById('missing');
+        const healthFiles = document.getElementById('health-files');
+        const healthEntropy = document.getElementById('health-entropy');
+        const healthDuration = document.getElementById('health-duration');
+        const healthUpdated = document.getElementById('health-updated');
 
         function setList(element, values) {
             element.innerHTML = '';
@@ -170,21 +220,49 @@ export class LoomViewProvider implements vscode.WebviewViewProvider, vscode.Disp
             }
         }
 
+        function formatElapsed(epochMs) {
+            if (!epochMs || Number.isNaN(epochMs)) {
+                return 'n/a';
+            }
+            const elapsed = Math.max(0, Date.now() - epochMs);
+            if (elapsed < 1000) return 'just now';
+            const sec = Math.floor(elapsed / 1000);
+            if (sec < 60) return sec + 's ago';
+            const min = Math.floor(sec / 60);
+            if (min < 60) return min + 'm ago';
+            const hr = Math.floor(min / 60);
+            if (hr < 48) return hr + 'h ago';
+            const day = Math.floor(hr / 24);
+            return day + 'd ago';
+        }
+
         document.getElementById('refresh').addEventListener('click', () => vscode.postMessage({ type: 'refresh' }));
+        document.getElementById('rescan').addEventListener('click', () => vscode.postMessage({ type: 'rescan' }));
         document.getElementById('heal').addEventListener('click', () => vscode.postMessage({ type: 'heal' }));
         document.getElementById('focus').addEventListener('click', () => vscode.postMessage({ type: 'deepFocus' }));
         document.getElementById('restore').addEventListener('click', () => vscode.postMessage({ type: 'restoreOrder' }));
 
         window.addEventListener('message', (event) => {
             const message = event.data;
-            if (!message || message.type !== 'state' || !message.report) {
+            if (!message || message.type !== 'state') {
                 return;
             }
+
             const report = message.report;
-            score.textContent = report.score + '%';
-            tier.textContent = report.tier;
-            setList(present, report.present || []);
-            setList(missing, report.missing || []);
+            if (report) {
+                score.textContent = report.score + '%';
+                tier.textContent = report.tier;
+                setList(present, report.present || []);
+                setList(missing, report.missing || []);
+            }
+
+            const snapshot = message.snapshot;
+            if (snapshot) {
+                healthFiles.textContent = String(snapshot.totalFiles || 0);
+                healthEntropy.textContent = Math.round((snapshot.averageEntropy || 0) * 100) + '%';
+                healthDuration.textContent = String(snapshot.lastScanDurationMs || 0) + ' ms';
+                healthUpdated.textContent = formatElapsed(snapshot.lastScanAt || 0);
+            }
         });
     </script>
 </body>
