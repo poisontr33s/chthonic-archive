@@ -1,0 +1,66 @@
+{
+  "generated": "2026-02-19T23:17:21.292098+00:00",
+  "default_lane": "strict_json",
+  "default_model_file": "C:\\Users\\erdno\\chthonic-archive\\models\\Qwen3-30B-A3B-Instruct-abliterated-GGUF\\Huihui-Qwen3-30B-A3B-Instruct-2507-abliterated.i1-Q3_K_M.gguf",
+  "endpoint_defaults": {
+    "host": "127.0.0.1",
+    "port": 8000,
+    "base_url": "http://127.0.0.1:8000/v1",
+    "chat_completions_path": "/chat/completions",
+    "compatibility": "openai-style-http"
+  },
+  "lanes": {
+    "strict_json": {
+      "lane": "qwen3_instruct_abliterated",
+      "reason": "highest quality-first score",
+      "model_file": "C:\\Users\\erdno\\chthonic-archive\\models\\Qwen3-30B-A3B-Instruct-abliterated-GGUF\\Huihui-Qwen3-30B-A3B-Instruct-2507-abliterated.i1-Q3_K_M.gguf",
+      "model_exists": true,
+      "quant_tag": "Q3_K_M",
+      "composite_score": 100.0,
+      "avg_toks_per_s": 13.61,
+      "recommended_quant_targets": [
+        "Q6_K",
+        "Q5_K_M",
+        "Q5_K_S",
+        "Q4_K_M"
+      ]
+    },
+    "code": {
+      "lane": "qwen3_coder_abliterated",
+      "reason": "coder-specialized lane preferred when available",
+      "model_file": "C:\\Users\\erdno\\chthonic-archive\\models\\Qwen3-Coder-30B-A3B-abliterated-GGUF\\Huihui-Qwen3-Coder-30B-A3B-Instruct-abliterated.i1-Q3_K_M.gguf",
+      "model_exists": true,
+      "quant_tag": "Q3_K_M",
+      "composite_score": 100.0,
+      "avg_toks_per_s": 13.59,
+      "recommended_quant_targets": [
+        "Q6_K",
+        "Q5_K_M",
+        "Q5_K_S",
+        "Q4_K_M"
+      ]
+    },
+    "unrestricted": {
+      "lane": "qwen3_instruct_abliterated",
+      "reason": "best uncensored compliance lane with quality guarantees",
+      "model_file": "C:\\Users\\erdno\\chthonic-archive\\models\\Qwen3-30B-A3B-Instruct-abliterated-GGUF\\Huihui-Qwen3-30B-A3B-Instruct-2507-abliterated.i1-Q3_K_M.gguf",
+      "model_exists": true,
+      "quant_tag": "Q3_K_M",
+      "composite_score": 100.0,
+      "avg_toks_per_s": 13.61,
+      "recommended_quant_targets": [
+        "Q5_K_M",
+        "Q4_K_M",
+        "Q4_K_S",
+        "Q3_K_M"
+      ]
+    }
+  },
+  "commands": {
+    "refresh_benchmark": "uv run scripts/benchmark_local_uncensored_lanes.py --include-qwen25",
+    "refresh_policy": "uv run scripts/uncensored_lane_steward.py",
+    "serve_strict_json": "pwsh -NoProfile -File scripts/serve_uncensored_lane.ps1 -Lane strict_json",
+    "serve_code": "pwsh -NoProfile -File scripts/serve_uncensored_lane.ps1 -Lane code",
+    "serve_unrestricted": "pwsh -NoProfile -File scripts/serve_uncensored_lane.ps1 -Lane unrestricted"
+  }
+}
