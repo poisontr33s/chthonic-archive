@@ -1,11 +1,11 @@
 {
-  "capturedAt": "2026-02-20T16:23:24.670Z",
-  "snapshotId": "2026-02-20T16-23-24-670Z",
+  "capturedAt": "2026-02-20T16:24:11.610Z",
+  "snapshotId": "2026-02-20T16-24-11-610Z",
   "count": 286,
   "config": {
     "targetVramGb": 24,
-    "benchmarkPath": null,
-    "benchmarkEntries": 0
+    "benchmarkPath": "C:\\Users\\erdno\\chthonic-archive\\claude-codex-gemini\\session_resumption_pickup\\LOCAL_UNCENSORED_BENCHMARK_20260219_231719.json",
+    "benchmarkEntries": 4
   },
   "top": [
     {
@@ -54,7 +54,7 @@
     },
     {
       "id": "Qwen/Qwen3.5-397B-A17B",
-      "score": 0.629025,
+      "score": 0.64181,
       "downloads": 105189,
       "likes": 759,
       "trendingScore": 759,
@@ -82,8 +82,8 @@
         "recency": 1,
         "source": 0.16666666666666666,
         "hardwareFit": 0.004586,
-        "benchQuality": 0,
-        "benchSpeed": 0
+        "benchQuality": 1,
+        "benchSpeed": 0.554595
       },
       "hardware": {
         "paramsBillions": 397,
@@ -91,7 +91,13 @@
         "estimatedVramGb": 694.75,
         "fitScore": 0.004586
       },
-      "benchmark": null
+      "benchmark": {
+        "lane": "qwen3_instruct_abliterated",
+        "modelFile": "C:\\Users\\erdno\\chthonic-archive\\models\\Qwen3-30B-A3B-Instruct-abliterated-GGUF\\Huihui-Qwen3-30B-A3B-Instruct-2507-abliterated.i1-Q3_K_M.gguf",
+        "quality": 1,
+        "speed": 0.554595,
+        "matchConfidence": 0.205
+      }
     },
     {
       "id": "Nanbeige/Nanbeige4.1-3B",
@@ -186,45 +192,8 @@
       "benchmark": null
     },
     {
-      "id": "Qwen/Qwen3-TTS-12Hz-1.7B-CustomVoice",
-      "score": 0.560279,
-      "downloads": 877971,
-      "likes": 1103,
-      "trendingScore": 172,
-      "createdAt": "2026-01-21T08:56:49.000Z",
-      "pipelineTag": "text-to-speech",
-      "tags": [
-        "safetensors",
-        "qwen3_tts",
-        "text-to-speech",
-        "arxiv:2601.15621",
-        "license:apache-2.0",
-        "region:us"
-      ],
-      "sources": [
-        "search_qwen"
-      ],
-      "scoreBreakdown": {
-        "trend": 0.215,
-        "downloads": 0.6992330194996866,
-        "likes": 0.676215349642929,
-        "recency": 0.9,
-        "source": 0.16666666666666666,
-        "hardwareFit": 1,
-        "benchQuality": 0,
-        "benchSpeed": 0
-      },
-      "hardware": {
-        "paramsBillions": 1.7,
-        "quantHint": null,
-        "estimatedVramGb": 2.97,
-        "fitScore": 1
-      },
-      "benchmark": null
-    },
-    {
       "id": "meta-llama/Llama-3.1-8B-Instruct",
-      "score": 0.506193,
+      "score": 0.588916,
       "downloads": 5867664,
       "likes": 5475,
       "trendingScore": 28,
@@ -270,8 +239,8 @@
         "recency": 0.15,
         "source": 0.5,
         "hardwareFit": 1,
-        "benchQuality": 0,
-        "benchSpeed": 0
+        "benchQuality": 1,
+        "benchSpeed": 0.554595
       },
       "hardware": {
         "paramsBillions": 8,
@@ -279,11 +248,17 @@
         "estimatedVramGb": 14,
         "fitScore": 1
       },
-      "benchmark": null
+      "benchmark": {
+        "lane": "qwen3_instruct_abliterated",
+        "modelFile": "C:\\Users\\erdno\\chthonic-archive\\models\\Qwen3-30B-A3B-Instruct-abliterated-GGUF\\Huihui-Qwen3-30B-A3B-Instruct-2507-abliterated.i1-Q3_K_M.gguf",
+        "quality": 1,
+        "speed": 0.554595,
+        "matchConfidence": 0.205
+      }
     },
     {
       "id": "Qwen/Qwen3-0.6B",
-      "score": 0.501408,
+      "score": 0.584879,
       "downloads": 10207719,
       "likes": 1091,
       "trendingScore": 25,
@@ -317,8 +292,8 @@
         "recency": 0.3,
         "source": 0.5,
         "hardwareFit": 1,
-        "benchQuality": 0,
-        "benchSpeed": 0
+        "benchQuality": 1,
+        "benchSpeed": 0.554595
       },
       "hardware": {
         "paramsBillions": 0.6,
@@ -326,11 +301,17 @@
         "estimatedVramGb": 1.05,
         "fitScore": 1
       },
-      "benchmark": null
+      "benchmark": {
+        "lane": "qwen3_instruct_abliterated",
+        "modelFile": "C:\\Users\\erdno\\chthonic-archive\\models\\Qwen3-30B-A3B-Instruct-abliterated-GGUF\\Huihui-Qwen3-30B-A3B-Instruct-2507-abliterated.i1-Q3_K_M.gguf",
+        "quality": 1,
+        "speed": 0.554595,
+        "matchConfidence": 0.266667
+      }
     },
     {
       "id": "Qwen/Qwen3-ASR-1.7B",
-      "score": 0.490901,
+      "score": 0.578042,
       "downloads": 398586,
       "likes": 512,
       "trendingScore": 51,
@@ -355,6 +336,102 @@
         "recency": 0.9,
         "source": 0.16666666666666666,
         "hardwareFit": 1,
+        "benchQuality": 1,
+        "benchSpeed": 0.554595
+      },
+      "hardware": {
+        "paramsBillions": 1.7,
+        "quantHint": null,
+        "estimatedVramGb": 2.97,
+        "fitScore": 1
+      },
+      "benchmark": {
+        "lane": "qwen3_instruct_abliterated",
+        "modelFile": "C:\\Users\\erdno\\chthonic-archive\\models\\Qwen3-30B-A3B-Instruct-abliterated-GGUF\\Huihui-Qwen3-30B-A3B-Instruct-2507-abliterated.i1-Q3_K_M.gguf",
+        "quality": 1,
+        "speed": 0.554595,
+        "matchConfidence": 0.205
+      }
+    },
+    {
+      "id": "Qwen/Qwen3-8B",
+      "score": 0.563368,
+      "downloads": 4856958,
+      "likes": 944,
+      "trendingScore": 21,
+      "createdAt": "2025-04-27T03:42:21.000Z",
+      "pipelineTag": "text-generation",
+      "libraryName": "transformers",
+      "tags": [
+        "transformers",
+        "safetensors",
+        "qwen3",
+        "text-generation",
+        "conversational",
+        "arxiv:2309.00071",
+        "arxiv:2505.09388",
+        "base_model:Qwen/Qwen3-8B-Base",
+        "base_model:finetune:Qwen/Qwen3-8B-Base",
+        "license:apache-2.0",
+        "text-generation-inference",
+        "endpoints_compatible",
+        "deploy:azure",
+        "region:us"
+      ],
+      "sources": [
+        "downloads_text_generation",
+        "search_qwen"
+      ],
+      "scoreBreakdown": {
+        "trend": 0.02625,
+        "downloads": 0.7866311102815735,
+        "likes": 0.661207068557614,
+        "recency": 0.3,
+        "source": 0.3333333333333333,
+        "hardwareFit": 1,
+        "benchQuality": 1,
+        "benchSpeed": 0.554595
+      },
+      "hardware": {
+        "paramsBillions": 8,
+        "quantHint": null,
+        "estimatedVramGb": 14,
+        "fitScore": 1
+      },
+      "benchmark": {
+        "lane": "qwen3_instruct_abliterated",
+        "modelFile": "C:\\Users\\erdno\\chthonic-archive\\models\\Qwen3-30B-A3B-Instruct-abliterated-GGUF\\Huihui-Qwen3-30B-A3B-Instruct-2507-abliterated.i1-Q3_K_M.gguf",
+        "quality": 1,
+        "speed": 0.554595,
+        "matchConfidence": 0.266667
+      }
+    },
+    {
+      "id": "Qwen/Qwen3-TTS-12Hz-1.7B-CustomVoice",
+      "score": 0.560279,
+      "downloads": 877971,
+      "likes": 1103,
+      "trendingScore": 172,
+      "createdAt": "2026-01-21T08:56:49.000Z",
+      "pipelineTag": "text-to-speech",
+      "tags": [
+        "safetensors",
+        "qwen3_tts",
+        "text-to-speech",
+        "arxiv:2601.15621",
+        "license:apache-2.0",
+        "region:us"
+      ],
+      "sources": [
+        "search_qwen"
+      ],
+      "scoreBreakdown": {
+        "trend": 0.215,
+        "downloads": 0.6992330194996866,
+        "likes": 0.676215349642929,
+        "recency": 0.9,
+        "source": 0.16666666666666666,
+        "hardwareFit": 1,
         "benchQuality": 0,
         "benchSpeed": 0
       },
@@ -365,6 +442,1389 @@
         "fitScore": 1
       },
       "benchmark": null
+    },
+    {
+      "id": "Qwen/Qwen3-VL-2B-Instruct",
+      "score": 0.559483,
+      "downloads": 12451682,
+      "likes": 327,
+      "trendingScore": 9,
+      "createdAt": "2025-10-19T13:13:24.000Z",
+      "pipelineTag": "image-text-to-text",
+      "libraryName": "transformers",
+      "tags": [
+        "transformers",
+        "safetensors",
+        "qwen3_vl",
+        "image-text-to-text",
+        "conversational",
+        "arxiv:2505.09388",
+        "arxiv:2502.13923",
+        "arxiv:2409.12191",
+        "arxiv:2308.12966",
+        "license:apache-2.0",
+        "endpoints_compatible",
+        "deploy:azure",
+        "region:us"
+      ],
+      "sources": [
+        "search_qwen"
+      ],
+      "scoreBreakdown": {
+        "trend": 0.01125,
+        "downloads": 0.8347327124360016,
+        "likes": 0.5590830763803731,
+        "recency": 0.5,
+        "source": 0.16666666666666666,
+        "hardwareFit": 1,
+        "benchQuality": 1,
+        "benchSpeed": 0.554595
+      },
+      "hardware": {
+        "paramsBillions": 2,
+        "quantHint": null,
+        "estimatedVramGb": 3.5,
+        "fitScore": 1
+      },
+      "benchmark": {
+        "lane": "qwen3_instruct_abliterated",
+        "modelFile": "C:\\Users\\erdno\\chthonic-archive\\models\\Qwen3-30B-A3B-Instruct-abliterated-GGUF\\Huihui-Qwen3-30B-A3B-Instruct-2507-abliterated.i1-Q3_K_M.gguf",
+        "quality": 1,
+        "speed": 0.554595,
+        "matchConfidence": 0.334545
+      }
+    },
+    {
+      "id": "Qwen/Qwen3-VL-8B-Instruct",
+      "score": 0.559037,
+      "downloads": 3762779,
+      "likes": 760,
+      "trendingScore": 9,
+      "createdAt": "2025-10-11T07:23:39.000Z",
+      "pipelineTag": "image-text-to-text",
+      "libraryName": "transformers",
+      "tags": [
+        "transformers",
+        "safetensors",
+        "qwen3_vl",
+        "image-text-to-text",
+        "conversational",
+        "arxiv:2505.09388",
+        "arxiv:2502.13923",
+        "arxiv:2409.12191",
+        "arxiv:2308.12966",
+        "license:apache-2.0",
+        "endpoints_compatible",
+        "deploy:azure",
+        "region:us"
+      ],
+      "sources": [
+        "search_qwen"
+      ],
+      "scoreBreakdown": {
+        "trend": 0.01125,
+        "downloads": 0.7735892737633789,
+        "likes": 0.6403077015045717,
+        "recency": 0.5,
+        "source": 0.16666666666666666,
+        "hardwareFit": 1,
+        "benchQuality": 1,
+        "benchSpeed": 0.554595
+      },
+      "hardware": {
+        "paramsBillions": 8,
+        "quantHint": null,
+        "estimatedVramGb": 14,
+        "fitScore": 1
+      },
+      "benchmark": {
+        "lane": "qwen3_instruct_abliterated",
+        "modelFile": "C:\\Users\\erdno\\chthonic-archive\\models\\Qwen3-30B-A3B-Instruct-abliterated-GGUF\\Huihui-Qwen3-30B-A3B-Instruct-2507-abliterated.i1-Q3_K_M.gguf",
+        "quality": 1,
+        "speed": 0.554595,
+        "matchConfidence": 0.334545
+      }
+    },
+    {
+      "id": "Qwen/Qwen3-Embedding-0.6B",
+      "score": 0.556389,
+      "downloads": 3818012,
+      "likes": 881,
+      "trendingScore": 8,
+      "createdAt": "2025-06-03T14:25:32.000Z",
+      "pipelineTag": "feature-extraction",
+      "libraryName": "sentence-transformers",
+      "tags": [
+        "sentence-transformers",
+        "safetensors",
+        "qwen3",
+        "text-generation",
+        "transformers",
+        "sentence-similarity",
+        "feature-extraction",
+        "text-embeddings-inference",
+        "arxiv:2506.05176",
+        "base_model:Qwen/Qwen3-0.6B-Base",
+        "base_model:finetune:Qwen/Qwen3-0.6B-Base",
+        "license:apache-2.0",
+        "endpoints_compatible",
+        "deploy:azure",
+        "region:us"
+      ],
+      "sources": [
+        "downloads_text_generation",
+        "search_qwen"
+      ],
+      "scoreBreakdown": {
+        "trend": 0.01,
+        "downloads": 0.7743338120935123,
+        "likes": 0.6545485744737377,
+        "recency": 0.3,
+        "source": 0.3333333333333333,
+        "hardwareFit": 1,
+        "benchQuality": 1,
+        "benchSpeed": 0.554595
+      },
+      "hardware": {
+        "paramsBillions": 0.6,
+        "quantHint": null,
+        "estimatedVramGb": 1.05,
+        "fitScore": 1
+      },
+      "benchmark": {
+        "lane": "qwen3_instruct_abliterated",
+        "modelFile": "C:\\Users\\erdno\\chthonic-archive\\models\\Qwen3-30B-A3B-Instruct-abliterated-GGUF\\Huihui-Qwen3-30B-A3B-Instruct-2507-abliterated.i1-Q3_K_M.gguf",
+        "quality": 1,
+        "speed": 0.554595,
+        "matchConfidence": 0.205
+      }
+    },
+    {
+      "id": "Qwen/Qwen3-4B-Instruct-2507",
+      "score": 0.555306,
+      "downloads": 3457329,
+      "likes": 735,
+      "trendingScore": 15,
+      "createdAt": "2025-08-05T10:58:03.000Z",
+      "pipelineTag": "text-generation",
+      "libraryName": "transformers",
+      "tags": [
+        "transformers",
+        "safetensors",
+        "qwen3",
+        "text-generation",
+        "conversational",
+        "arxiv:2505.09388",
+        "license:apache-2.0",
+        "eval-results",
+        "text-generation-inference",
+        "endpoints_compatible",
+        "deploy:azure",
+        "region:us"
+      ],
+      "sources": [
+        "downloads_text_generation",
+        "search_qwen"
+      ],
+      "scoreBreakdown": {
+        "trend": 0.01875,
+        "downloads": 0.7692636276069745,
+        "likes": 0.6370839587416665,
+        "recency": 0.3,
+        "source": 0.3333333333333333,
+        "hardwareFit": 1,
+        "benchQuality": 1,
+        "benchSpeed": 0.554595
+      },
+      "hardware": {
+        "paramsBillions": 4,
+        "quantHint": null,
+        "estimatedVramGb": 7,
+        "fitScore": 1
+      },
+      "benchmark": {
+        "lane": "qwen3_instruct_abliterated",
+        "modelFile": "C:\\Users\\erdno\\chthonic-archive\\models\\Qwen3-30B-A3B-Instruct-abliterated-GGUF\\Huihui-Qwen3-30B-A3B-Instruct-2507-abliterated.i1-Q3_K_M.gguf",
+        "quality": 1,
+        "speed": 0.554595,
+        "matchConfidence": 0.501818
+      }
+    },
+    {
+      "id": "meta-llama/Meta-Llama-3-8B-Instruct",
+      "score": 0.552847,
+      "downloads": 1394471,
+      "likes": 4384,
+      "trendingScore": 0,
+      "createdAt": "2024-04-17T09:35:12.000Z",
+      "pipelineTag": "text-generation",
+      "libraryName": "transformers",
+      "tags": [
+        "transformers",
+        "safetensors",
+        "llama",
+        "text-generation",
+        "facebook",
+        "meta",
+        "pytorch",
+        "llama-3",
+        "conversational",
+        "en",
+        "license:llama3",
+        "text-generation-inference",
+        "endpoints_compatible",
+        "deploy:azure",
+        "region:us"
+      ],
+      "sources": [
+        "downloads_text_generation",
+        "likes_text_generation"
+      ],
+      "scoreBreakdown": {
+        "trend": 0,
+        "downloads": 0.722871740984372,
+        "likes": 0.8093265772671243,
+        "recency": 0.15,
+        "source": 0.3333333333333333,
+        "hardwareFit": 1,
+        "benchQuality": 1,
+        "benchSpeed": 0.554595
+      },
+      "hardware": {
+        "paramsBillions": 8,
+        "quantHint": null,
+        "estimatedVramGb": 14,
+        "fitScore": 1
+      },
+      "benchmark": {
+        "lane": "qwen3_instruct_abliterated",
+        "modelFile": "C:\\Users\\erdno\\chthonic-archive\\models\\Qwen3-30B-A3B-Instruct-abliterated-GGUF\\Huihui-Qwen3-30B-A3B-Instruct-2507-abliterated.i1-Q3_K_M.gguf",
+        "quality": 1,
+        "speed": 0.554595,
+        "matchConfidence": 0.205
+      }
+    },
+    {
+      "id": "Qwen/Qwen2.5-7B-Instruct",
+      "score": 0.551185,
+      "downloads": 14966457,
+      "likes": 1080,
+      "trendingScore": 10,
+      "createdAt": "2024-09-16T11:55:40.000Z",
+      "pipelineTag": "text-generation",
+      "libraryName": "transformers",
+      "tags": [
+        "transformers",
+        "safetensors",
+        "qwen2",
+        "text-generation",
+        "chat",
+        "conversational",
+        "en",
+        "arxiv:2309.00071",
+        "arxiv:2407.10671",
+        "base_model:Qwen/Qwen2.5-7B",
+        "base_model:finetune:Qwen/Qwen2.5-7B",
+        "license:apache-2.0",
+        "text-generation-inference",
+        "endpoints_compatible",
+        "deploy:azure",
+        "region:us"
+      ],
+      "sources": [
+        "downloads_text_generation",
+        "search_qwen"
+      ],
+      "scoreBreakdown": {
+        "trend": 0.0125,
+        "downloads": 0.8441316507373129,
+        "likes": 0.67418348754518,
+        "recency": 0.15,
+        "source": 0.3333333333333333,
+        "hardwareFit": 1,
+        "benchQuality": 1,
+        "benchSpeed": 0.331598
+      },
+      "hardware": {
+        "paramsBillions": 7,
+        "quantHint": null,
+        "estimatedVramGb": 12.25,
+        "fitScore": 1
+      },
+      "benchmark": {
+        "lane": "qwen25_14b_baseline",
+        "modelFile": "C:\\Users\\erdno\\chthonic-archive\\models\\Qwen2.5-14B-Instruct-GGUF\\qwen2.5-14b-instruct-q4_k_m-00001-of-00003.gguf",
+        "quality": 1,
+        "speed": 0.331598,
+        "matchConfidence": 0.41
+      }
+    },
+    {
+      "id": "meta-llama/Llama-3.2-3B-Instruct",
+      "score": 0.547042,
+      "downloads": 2178265,
+      "likes": 1990,
+      "trendingScore": 0,
+      "createdAt": "2024-09-18T15:19:20.000Z",
+      "pipelineTag": "text-generation",
+      "libraryName": "transformers",
+      "tags": [
+        "transformers",
+        "safetensors",
+        "llama",
+        "text-generation",
+        "facebook",
+        "meta",
+        "pytorch",
+        "llama-3",
+        "conversational",
+        "en",
+        "de",
+        "fr",
+        "it",
+        "pt",
+        "hi",
+        "es",
+        "th",
+        "arxiv:2204.05149",
+        "arxiv:2405.16406",
+        "license:llama3.2",
+        "text-generation-inference",
+        "endpoints_compatible",
+        "region:us"
+      ],
+      "sources": [
+        "downloads_text_generation",
+        "likes_text_generation"
+      ],
+      "scoreBreakdown": {
+        "trend": 0,
+        "downloads": 0.7456601073808996,
+        "likes": 0.7331269466727577,
+        "recency": 0.15,
+        "source": 0.3333333333333333,
+        "hardwareFit": 1,
+        "benchQuality": 1,
+        "benchSpeed": 0.554595
+      },
+      "hardware": {
+        "paramsBillions": 3,
+        "quantHint": null,
+        "estimatedVramGb": 5.25,
+        "fitScore": 1
+      },
+      "benchmark": {
+        "lane": "qwen3_instruct_abliterated",
+        "modelFile": "C:\\Users\\erdno\\chthonic-archive\\models\\Qwen3-30B-A3B-Instruct-abliterated-GGUF\\Huihui-Qwen3-30B-A3B-Instruct-2507-abliterated.i1-Q3_K_M.gguf",
+        "quality": 1,
+        "speed": 0.554595,
+        "matchConfidence": 0.205
+      }
+    },
+    {
+      "id": "Qwen/Qwen3-Embedding-8B",
+      "score": 0.545235,
+      "downloads": 1915271,
+      "likes": 586,
+      "trendingScore": 9,
+      "createdAt": "2025-06-03T14:39:10.000Z",
+      "pipelineTag": "feature-extraction",
+      "libraryName": "sentence-transformers",
+      "tags": [
+        "sentence-transformers",
+        "safetensors",
+        "qwen3",
+        "text-generation",
+        "transformers",
+        "sentence-similarity",
+        "feature-extraction",
+        "text-embeddings-inference",
+        "arxiv:2506.05176",
+        "base_model:Qwen/Qwen3-8B-Base",
+        "base_model:finetune:Qwen/Qwen3-8B-Base",
+        "license:apache-2.0",
+        "endpoints_compatible",
+        "deploy:azure",
+        "region:us"
+      ],
+      "sources": [
+        "downloads_text_generation",
+        "search_qwen"
+      ],
+      "scoreBreakdown": {
+        "trend": 0.01125,
+        "downloads": 0.7390859364253729,
+        "likes": 0.6152529113883588,
+        "recency": 0.3,
+        "source": 0.3333333333333333,
+        "hardwareFit": 1,
+        "benchQuality": 1,
+        "benchSpeed": 0.554595
+      },
+      "hardware": {
+        "paramsBillions": 8,
+        "quantHint": null,
+        "estimatedVramGb": 14,
+        "fitScore": 1
+      },
+      "benchmark": {
+        "lane": "qwen3_instruct_abliterated",
+        "modelFile": "C:\\Users\\erdno\\chthonic-archive\\models\\Qwen3-30B-A3B-Instruct-abliterated-GGUF\\Huihui-Qwen3-30B-A3B-Instruct-2507-abliterated.i1-Q3_K_M.gguf",
+        "quality": 1,
+        "speed": 0.554595,
+        "matchConfidence": 0.205
+      }
+    },
+    {
+      "id": "Qwen/Qwen3-ASR-0.6B",
+      "score": 0.543581,
+      "downloads": 100914,
+      "likes": 212,
+      "trendingScore": 15,
+      "createdAt": "2026-01-28T03:15:39.000Z",
+      "pipelineTag": "automatic-speech-recognition",
+      "tags": [
+        "safetensors",
+        "qwen3_asr",
+        "automatic-speech-recognition",
+        "arxiv:2601.21337",
+        "license:apache-2.0",
+        "deploy:azure",
+        "region:us"
+      ],
+      "sources": [
+        "search_qwen"
+      ],
+      "scoreBreakdown": {
+        "trend": 0.01875,
+        "downloads": 0.5887006734756107,
+        "likes": 0.5174176896530528,
+        "recency": 0.9,
+        "source": 0.16666666666666666,
+        "hardwareFit": 1,
+        "benchQuality": 1,
+        "benchSpeed": 0.554595
+      },
+      "hardware": {
+        "paramsBillions": 0.6,
+        "quantHint": null,
+        "estimatedVramGb": 1.05,
+        "fitScore": 1
+      },
+      "benchmark": {
+        "lane": "qwen3_instruct_abliterated",
+        "modelFile": "C:\\Users\\erdno\\chthonic-archive\\models\\Qwen3-30B-A3B-Instruct-abliterated-GGUF\\Huihui-Qwen3-30B-A3B-Instruct-2507-abliterated.i1-Q3_K_M.gguf",
+        "quality": 1,
+        "speed": 0.554595,
+        "matchConfidence": 0.205
+      }
+    },
+    {
+      "id": "Qwen/Qwen3-4B",
+      "score": 0.538695,
+      "downloads": 4841670,
+      "likes": 554,
+      "trendingScore": 0,
+      "createdAt": "2025-04-27T03:41:29.000Z",
+      "pipelineTag": "text-generation",
+      "libraryName": "transformers",
+      "tags": [
+        "transformers",
+        "safetensors",
+        "qwen3",
+        "text-generation",
+        "conversational",
+        "arxiv:2309.00071",
+        "arxiv:2505.09388",
+        "base_model:Qwen/Qwen3-4B-Base",
+        "base_model:finetune:Qwen/Qwen3-4B-Base",
+        "license:apache-2.0",
+        "text-generation-inference",
+        "endpoints_compatible",
+        "region:us"
+      ],
+      "sources": [
+        "downloads_text_generation"
+      ],
+      "scoreBreakdown": {
+        "trend": 0,
+        "downloads": 0.7864700323576271,
+        "likes": 0.6098428851383725,
+        "recency": 0.3,
+        "source": 0.16666666666666666,
+        "hardwareFit": 1,
+        "benchQuality": 1,
+        "benchSpeed": 0.554595
+      },
+      "hardware": {
+        "paramsBillions": 4,
+        "quantHint": null,
+        "estimatedVramGb": 7,
+        "fitScore": 1
+      },
+      "benchmark": {
+        "lane": "qwen3_instruct_abliterated",
+        "modelFile": "C:\\Users\\erdno\\chthonic-archive\\models\\Qwen3-30B-A3B-Instruct-abliterated-GGUF\\Huihui-Qwen3-30B-A3B-Instruct-2507-abliterated.i1-Q3_K_M.gguf",
+        "quality": 1,
+        "speed": 0.554595,
+        "matchConfidence": 0.266667
+      }
+    },
+    {
+      "id": "Qwen/Qwen3-1.7B",
+      "score": 0.534515,
+      "downloads": 4451561,
+      "likes": 422,
+      "trendingScore": 0,
+      "createdAt": "2025-04-27T03:41:05.000Z",
+      "pipelineTag": "text-generation",
+      "libraryName": "transformers",
+      "tags": [
+        "transformers",
+        "safetensors",
+        "qwen3",
+        "text-generation",
+        "conversational",
+        "arxiv:2505.09388",
+        "base_model:Qwen/Qwen3-1.7B-Base",
+        "base_model:finetune:Qwen/Qwen3-1.7B-Base",
+        "license:apache-2.0",
+        "text-generation-inference",
+        "endpoints_compatible",
+        "region:us"
+      ],
+      "sources": [
+        "downloads_text_generation"
+      ],
+      "scoreBreakdown": {
+        "trend": 0,
+        "downloads": 0.7821779325265391,
+        "likes": 0.5836311927500094,
+        "recency": 0.3,
+        "source": 0.16666666666666666,
+        "hardwareFit": 1,
+        "benchQuality": 1,
+        "benchSpeed": 0.554595
+      },
+      "hardware": {
+        "paramsBillions": 1.7,
+        "quantHint": null,
+        "estimatedVramGb": 2.97,
+        "fitScore": 1
+      },
+      "benchmark": {
+        "lane": "qwen3_instruct_abliterated",
+        "modelFile": "C:\\Users\\erdno\\chthonic-archive\\models\\Qwen3-30B-A3B-Instruct-abliterated-GGUF\\Huihui-Qwen3-30B-A3B-Instruct-2507-abliterated.i1-Q3_K_M.gguf",
+        "quality": 1,
+        "speed": 0.554595,
+        "matchConfidence": 0.266667
+      }
+    },
+    {
+      "id": "Qwen/Qwen2.5-Coder-7B-Instruct",
+      "score": 0.533143,
+      "downloads": 1397537,
+      "likes": 651,
+      "trendingScore": 14,
+      "createdAt": "2024-09-17T13:38:49.000Z",
+      "pipelineTag": "text-generation",
+      "libraryName": "transformers",
+      "tags": [
+        "transformers",
+        "safetensors",
+        "qwen2",
+        "text-generation",
+        "code",
+        "codeqwen",
+        "chat",
+        "qwen",
+        "qwen-coder",
+        "conversational",
+        "en",
+        "arxiv:2409.12186",
+        "arxiv:2309.00071",
+        "arxiv:2407.10671",
+        "base_model:Qwen/Qwen2.5-Coder-7B",
+        "base_model:finetune:Qwen/Qwen2.5-Coder-7B",
+        "license:apache-2.0",
+        "text-generation-inference",
+        "endpoints_compatible",
+        "deploy:azure",
+        "region:us"
+      ],
+      "sources": [
+        "downloads_text_generation",
+        "search_qwen"
+      ],
+      "scoreBreakdown": {
+        "trend": 0.0175,
+        "downloads": 0.722983955938663,
+        "likes": 0.6253883546070934,
+        "recency": 0.15,
+        "source": 0.3333333333333333,
+        "hardwareFit": 1,
+        "benchQuality": 1,
+        "benchSpeed": 0.554312
+      },
+      "hardware": {
+        "paramsBillions": 7,
+        "quantHint": null,
+        "estimatedVramGb": 12.25,
+        "fitScore": 1
+      },
+      "benchmark": {
+        "lane": "qwen3_coder_abliterated",
+        "modelFile": "C:\\Users\\erdno\\chthonic-archive\\models\\Qwen3-Coder-30B-A3B-abliterated-GGUF\\Huihui-Qwen3-Coder-30B-A3B-Instruct-abliterated.i1-Q3_K_M.gguf",
+        "quality": 1,
+        "speed": 0.554312,
+        "matchConfidence": 0.334545
+      }
+    },
+    {
+      "id": "meta-llama/Llama-3.2-1B-Instruct",
+      "score": 0.533001,
+      "downloads": 3025580,
+      "likes": 1294,
+      "trendingScore": 0,
+      "createdAt": "2024-09-18T15:12:47.000Z",
+      "pipelineTag": "text-generation",
+      "libraryName": "transformers",
+      "tags": [
+        "transformers",
+        "safetensors",
+        "llama",
+        "text-generation",
+        "facebook",
+        "meta",
+        "pytorch",
+        "llama-3",
+        "conversational",
+        "en",
+        "de",
+        "fr",
+        "it",
+        "pt",
+        "hi",
+        "es",
+        "th",
+        "arxiv:2204.05149",
+        "arxiv:2405.16406",
+        "license:llama3.2",
+        "text-generation-inference",
+        "endpoints_compatible",
+        "region:us"
+      ],
+      "sources": [
+        "downloads_text_generation"
+      ],
+      "scoreBreakdown": {
+        "trend": 0,
+        "downloads": 0.7624480922627405,
+        "likes": 0.6916155040927268,
+        "recency": 0.15,
+        "source": 0.16666666666666666,
+        "hardwareFit": 1,
+        "benchQuality": 1,
+        "benchSpeed": 0.554595
+      },
+      "hardware": {
+        "paramsBillions": 1,
+        "quantHint": null,
+        "estimatedVramGb": 1.75,
+        "fitScore": 1
+      },
+      "benchmark": {
+        "lane": "qwen3_instruct_abliterated",
+        "modelFile": "C:\\Users\\erdno\\chthonic-archive\\models\\Qwen3-30B-A3B-Instruct-abliterated-GGUF\\Huihui-Qwen3-30B-A3B-Instruct-2507-abliterated.i1-Q3_K_M.gguf",
+        "quality": 1,
+        "speed": 0.554595,
+        "matchConfidence": 0.205
+      }
+    },
+    {
+      "id": "Qwen/Qwen3-Coder-Next",
+      "score": 0.532508,
+      "downloads": 389713,
+      "likes": 933,
+      "trendingScore": 111,
+      "createdAt": "2026-01-30T15:08:18.000Z",
+      "pipelineTag": "text-generation",
+      "libraryName": "transformers",
+      "tags": [
+        "transformers",
+        "safetensors",
+        "qwen3_next",
+        "text-generation",
+        "conversational",
+        "license:apache-2.0",
+        "endpoints_compatible",
+        "deploy:azure",
+        "region:us"
+      ],
+      "sources": [
+        "trending_text_generation",
+        "search_qwen"
+      ],
+      "scoreBreakdown": {
+        "trend": 0.13875,
+        "downloads": 0.6577348244202769,
+        "likes": 0.6600770836066875,
+        "recency": 0.9,
+        "source": 0.3333333333333333,
+        "hardwareFit": 0.45,
+        "benchQuality": 1,
+        "benchSpeed": 0.554312
+      },
+      "hardware": {
+        "paramsBillions": null,
+        "quantHint": null,
+        "estimatedVramGb": null,
+        "fitScore": 0.45
+      },
+      "benchmark": {
+        "lane": "qwen3_coder_abliterated",
+        "modelFile": "C:\\Users\\erdno\\chthonic-archive\\models\\Qwen3-Coder-30B-A3B-abliterated-GGUF\\Huihui-Qwen3-Coder-30B-A3B-Instruct-abliterated.i1-Q3_K_M.gguf",
+        "quality": 1,
+        "speed": 0.554312,
+        "matchConfidence": 0.41
+      }
+    },
+    {
+      "id": "Qwen/Qwen2.5-1.5B-Instruct",
+      "score": 0.522045,
+      "downloads": 6651765,
+      "likes": 617,
+      "trendingScore": 0,
+      "createdAt": "2024-09-17T14:10:29.000Z",
+      "pipelineTag": "text-generation",
+      "libraryName": "transformers",
+      "tags": [
+        "transformers",
+        "safetensors",
+        "qwen2",
+        "text-generation",
+        "chat",
+        "conversational",
+        "en",
+        "arxiv:2407.10671",
+        "base_model:Qwen/Qwen2.5-1.5B",
+        "base_model:finetune:Qwen/Qwen2.5-1.5B",
+        "license:apache-2.0",
+        "text-generation-inference",
+        "endpoints_compatible",
+        "deploy:azure",
+        "region:us"
+      ],
+      "sources": [
+        "downloads_text_generation"
+      ],
+      "scoreBreakdown": {
+        "trend": 0,
+        "downloads": 0.8026984662273282,
+        "likes": 0.6202196611308479,
+        "recency": 0.15,
+        "source": 0.16666666666666666,
+        "hardwareFit": 1,
+        "benchQuality": 1,
+        "benchSpeed": 0.331598
+      },
+      "hardware": {
+        "paramsBillions": 1.5,
+        "quantHint": null,
+        "estimatedVramGb": 2.62,
+        "fitScore": 1
+      },
+      "benchmark": {
+        "lane": "qwen25_14b_baseline",
+        "modelFile": "C:\\Users\\erdno\\chthonic-archive\\models\\Qwen2.5-14B-Instruct-GGUF\\qwen2.5-14b-instruct-q4_k_m-00001-of-00003.gguf",
+        "quality": 1,
+        "speed": 0.331598,
+        "matchConfidence": 0.41
+      }
+    },
+    {
+      "id": "Qwen/Qwen2.5-0.5B-Instruct",
+      "score": 0.516579,
+      "downloads": 5427599,
+      "likes": 463,
+      "trendingScore": 0,
+      "createdAt": "2024-09-16T11:52:46.000Z",
+      "pipelineTag": "text-generation",
+      "libraryName": "transformers",
+      "tags": [
+        "transformers",
+        "safetensors",
+        "qwen2",
+        "text-generation",
+        "chat",
+        "conversational",
+        "en",
+        "arxiv:2407.10671",
+        "base_model:Qwen/Qwen2.5-0.5B",
+        "base_model:finetune:Qwen/Qwen2.5-0.5B",
+        "license:apache-2.0",
+        "text-generation-inference",
+        "endpoints_compatible",
+        "deploy:azure",
+        "region:us"
+      ],
+      "sources": [
+        "downloads_text_generation"
+      ],
+      "scoreBreakdown": {
+        "trend": 0,
+        "downloads": 0.792306803975711,
+        "likes": 0.592559551234418,
+        "recency": 0.15,
+        "source": 0.16666666666666666,
+        "hardwareFit": 1,
+        "benchQuality": 1,
+        "benchSpeed": 0.331598
+      },
+      "hardware": {
+        "paramsBillions": 0.5,
+        "quantHint": null,
+        "estimatedVramGb": 0.88,
+        "fitScore": 1
+      },
+      "benchmark": {
+        "lane": "qwen25_14b_baseline",
+        "modelFile": "C:\\Users\\erdno\\chthonic-archive\\models\\Qwen2.5-14B-Instruct-GGUF\\qwen2.5-14b-instruct-q4_k_m-00001-of-00003.gguf",
+        "quality": 1,
+        "speed": 0.331598,
+        "matchConfidence": 0.41
+      }
+    },
+    {
+      "id": "Qwen/Qwen2.5-3B-Instruct",
+      "score": 0.514589,
+      "downloads": 5245261,
+      "likes": 405,
+      "trendingScore": 0,
+      "createdAt": "2024-09-17T14:08:52.000Z",
+      "pipelineTag": "text-generation",
+      "libraryName": "transformers",
+      "tags": [
+        "transformers",
+        "safetensors",
+        "qwen2",
+        "text-generation",
+        "chat",
+        "conversational",
+        "en",
+        "arxiv:2407.10671",
+        "base_model:Qwen/Qwen2.5-3B",
+        "base_model:finetune:Qwen/Qwen2.5-3B",
+        "license:other",
+        "text-generation-inference",
+        "endpoints_compatible",
+        "deploy:azure",
+        "region:us"
+      ],
+      "sources": [
+        "downloads_text_generation"
+      ],
+      "scoreBreakdown": {
+        "trend": 0,
+        "downloads": 0.790560845413112,
+        "likes": 0.5796724519060432,
+        "recency": 0.15,
+        "source": 0.16666666666666666,
+        "hardwareFit": 1,
+        "benchQuality": 1,
+        "benchSpeed": 0.331598
+      },
+      "hardware": {
+        "paramsBillions": 3,
+        "quantHint": null,
+        "estimatedVramGb": 5.25,
+        "fitScore": 1
+      },
+      "benchmark": {
+        "lane": "qwen25_14b_baseline",
+        "modelFile": "C:\\Users\\erdno\\chthonic-archive\\models\\Qwen2.5-14B-Instruct-GGUF\\qwen2.5-14b-instruct-q4_k_m-00001-of-00003.gguf",
+        "quality": 1,
+        "speed": 0.331598,
+        "matchConfidence": 0.41
+      }
+    },
+    {
+      "id": "unsloth/Qwen3-Coder-Next-GGUF",
+      "score": 0.509797,
+      "downloads": 447659,
+      "likes": 367,
+      "trendingScore": 70,
+      "createdAt": "2026-02-03T13:10:01.000Z",
+      "pipelineTag": "text-generation",
+      "libraryName": "transformers",
+      "tags": [
+        "transformers",
+        "gguf",
+        "qwen3_next",
+        "unsloth",
+        "qwen",
+        "qwen3",
+        "text-generation",
+        "base_model:Qwen/Qwen3-Coder-Next",
+        "base_model:quantized:Qwen/Qwen3-Coder-Next",
+        "license:apache-2.0",
+        "endpoints_compatible",
+        "region:us",
+        "imatrix",
+        "conversational"
+      ],
+      "sources": [
+        "trending_text_generation",
+        "search_qwen"
+      ],
+      "scoreBreakdown": {
+        "trend": 0.0875,
+        "downloads": 0.6648174459262638,
+        "likes": 0.5701884041496705,
+        "recency": 0.9,
+        "source": 0.3333333333333333,
+        "hardwareFit": 0.45,
+        "benchQuality": 1,
+        "benchSpeed": 0.554312
+      },
+      "hardware": {
+        "paramsBillions": null,
+        "quantHint": null,
+        "estimatedVramGb": null,
+        "fitScore": 0.45
+      },
+      "benchmark": {
+        "lane": "qwen3_coder_abliterated",
+        "modelFile": "C:\\Users\\erdno\\chthonic-archive\\models\\Qwen3-Coder-30B-A3B-abliterated-GGUF\\Huihui-Qwen3-Coder-30B-A3B-Instruct-abliterated.i1-Q3_K_M.gguf",
+        "quality": 1,
+        "speed": 0.554312,
+        "matchConfidence": 0.501818
+      }
+    },
+    {
+      "id": "mistralai/Ministral-3-14B-Instruct-2512",
+      "score": 0.507692,
+      "downloads": 333381,
+      "likes": 253,
+      "trendingScore": 4,
+      "createdAt": "2025-10-31T08:43:24.000Z",
+      "libraryName": "vllm",
+      "tags": [
+        "vllm",
+        "safetensors",
+        "mistral3",
+        "mistral-common",
+        "en",
+        "fr",
+        "es",
+        "de",
+        "it",
+        "pt",
+        "nl",
+        "zh",
+        "ja",
+        "ko",
+        "ar",
+        "arxiv:2601.08584",
+        "base_model:mistralai/Ministral-3-14B-Base-2512",
+        "base_model:quantized:mistralai/Ministral-3-14B-Base-2512",
+        "license:apache-2.0",
+        "fp8",
+        "region:us"
+      ],
+      "sources": [
+        "search_mistral"
+      ],
+      "scoreBreakdown": {
+        "trend": 0.005,
+        "downloads": 0.64975789972311,
+        "likes": 0.5344074925822084,
+        "recency": 0.5,
+        "source": 0.16666666666666666,
+        "hardwareFit": 0.967547,
+        "benchQuality": 1,
+        "benchSpeed": 0.331598
+      },
+      "hardware": {
+        "paramsBillions": 14,
+        "quantHint": null,
+        "estimatedVramGb": 24.5,
+        "fitScore": 0.967547
+      },
+      "benchmark": {
+        "lane": "qwen25_14b_baseline",
+        "modelFile": "C:\\Users\\erdno\\chthonic-archive\\models\\Qwen2.5-14B-Instruct-GGUF\\qwen2.5-14b-instruct-q4_k_m-00001-of-00003.gguf",
+        "quality": 1,
+        "speed": 0.331598,
+        "matchConfidence": 0.334545
+      }
+    },
+    {
+      "id": "Qwen/Qwen2.5-7B",
+      "score": 0.500303,
+      "downloads": 1985682,
+      "likes": 264,
+      "trendingScore": 0,
+      "createdAt": "2024-09-15T12:17:40.000Z",
+      "pipelineTag": "text-generation",
+      "libraryName": "transformers",
+      "tags": [
+        "transformers",
+        "safetensors",
+        "qwen2",
+        "text-generation",
+        "conversational",
+        "en",
+        "arxiv:2407.10671",
+        "license:apache-2.0",
+        "text-generation-inference",
+        "endpoints_compatible",
+        "deploy:azure",
+        "region:us"
+      ],
+      "sources": [
+        "downloads_text_generation"
+      ],
+      "scoreBreakdown": {
+        "trend": 0,
+        "downloads": 0.740930578553474,
+        "likes": 0.5384990830970684,
+        "recency": 0.15,
+        "source": 0.16666666666666666,
+        "hardwareFit": 1,
+        "benchQuality": 1,
+        "benchSpeed": 0.331598
+      },
+      "hardware": {
+        "paramsBillions": 7,
+        "quantHint": null,
+        "estimatedVramGb": 12.25,
+        "fitScore": 1
+      },
+      "benchmark": {
+        "lane": "qwen25_14b_baseline",
+        "modelFile": "C:\\Users\\erdno\\chthonic-archive\\models\\Qwen2.5-14B-Instruct-GGUF\\qwen2.5-14b-instruct-q4_k_m-00001-of-00003.gguf",
+        "quality": 1,
+        "speed": 0.331598,
+        "matchConfidence": 0.266667
+      }
+    },
+    {
+      "id": "Qwen/Qwen2-1.5B-Instruct",
+      "score": 0.497844,
+      "downloads": 3051042,
+      "likes": 158,
+      "trendingScore": 0,
+      "createdAt": "2024-06-03T09:08:12.000Z",
+      "pipelineTag": "text-generation",
+      "libraryName": "transformers",
+      "tags": [
+        "transformers",
+        "safetensors",
+        "qwen2",
+        "text-generation",
+        "chat",
+        "conversational",
+        "en",
+        "license:apache-2.0",
+        "text-generation-inference",
+        "endpoints_compatible",
+        "deploy:azure",
+        "region:us"
+      ],
+      "sources": [
+        "downloads_text_generation"
+      ],
+      "scoreBreakdown": {
+        "trend": 0,
+        "downloads": 0.7628762739332565,
+        "likes": 0.4891993609601003,
+        "recency": 0.15,
+        "source": 0.16666666666666666,
+        "hardwareFit": 1,
+        "benchQuality": 1,
+        "benchSpeed": 0.331598
+      },
+      "hardware": {
+        "paramsBillions": 1.5,
+        "quantHint": null,
+        "estimatedVramGb": 2.62,
+        "fitScore": 1
+      },
+      "benchmark": {
+        "lane": "qwen25_14b_baseline",
+        "modelFile": "C:\\Users\\erdno\\chthonic-archive\\models\\Qwen2.5-14B-Instruct-GGUF\\qwen2.5-14b-instruct-q4_k_m-00001-of-00003.gguf",
+        "quality": 1,
+        "speed": 0.331598,
+        "matchConfidence": 0.41
+      }
+    },
+    {
+      "id": "unsloth/DeepSeek-R1-0528-Qwen3-8B-GGUF",
+      "score": 0.497648,
+      "downloads": 81819,
+      "likes": 380,
+      "trendingScore": 4,
+      "createdAt": "2025-05-29T14:17:25.000Z",
+      "pipelineTag": "text-generation",
+      "libraryName": "transformers",
+      "tags": [
+        "transformers",
+        "gguf",
+        "qwen3",
+        "text-generation",
+        "unsloth",
+        "deepseek",
+        "qwen",
+        "arxiv:2501.12948",
+        "base_model:deepseek-ai/DeepSeek-R1-0528-Qwen3-8B",
+        "base_model:quantized:deepseek-ai/DeepSeek-R1-0528-Qwen3-8B",
+        "license:mit",
+        "endpoints_compatible",
+        "region:us",
+        "conversational"
+      ],
+      "sources": [
+        "search_deepseek"
+      ],
+      "scoreBreakdown": {
+        "trend": 0.005,
+        "downloads": 0.5779834676661594,
+        "likes": 0.5735388834834709,
+        "recency": 0.3,
+        "source": 0.16666666666666666,
+        "hardwareFit": 1,
+        "benchQuality": 1,
+        "benchSpeed": 0.554595
+      },
+      "hardware": {
+        "paramsBillions": 8,
+        "quantHint": null,
+        "estimatedVramGb": 14,
+        "fitScore": 1
+      },
+      "benchmark": {
+        "lane": "qwen3_instruct_abliterated",
+        "modelFile": "C:\\Users\\erdno\\chthonic-archive\\models\\Qwen3-30B-A3B-Instruct-abliterated-GGUF\\Huihui-Qwen3-30B-A3B-Instruct-2507-abliterated.i1-Q3_K_M.gguf",
+        "quality": 1,
+        "speed": 0.554595,
+        "matchConfidence": 0.246154
+      }
+    },
+    {
+      "id": "Qwen/Qwen2.5-Coder-1.5B-Instruct",
+      "score": 0.49549,
+      "downloads": 1538980,
+      "likes": 106,
+      "trendingScore": 0,
+      "createdAt": "2024-09-18T09:41:47.000Z",
+      "pipelineTag": "text-generation",
+      "libraryName": "transformers",
+      "tags": [
+        "transformers",
+        "safetensors",
+        "qwen2",
+        "text-generation",
+        "code",
+        "codeqwen",
+        "chat",
+        "qwen",
+        "qwen-coder",
+        "conversational",
+        "en",
+        "arxiv:2409.12186",
+        "arxiv:2407.10671",
+        "base_model:Qwen/Qwen2.5-Coder-1.5B",
+        "base_model:finetune:Qwen/Qwen2.5-Coder-1.5B",
+        "license:apache-2.0",
+        "text-generation-inference",
+        "endpoints_compatible",
+        "deploy:azure",
+        "region:us"
+      ],
+      "sources": [
+        "downloads_text_generation"
+      ],
+      "scoreBreakdown": {
+        "trend": 0,
+        "downloads": 0.7279097950750719,
+        "likes": 0.4509741728189355,
+        "recency": 0.15,
+        "source": 0.16666666666666666,
+        "hardwareFit": 1,
+        "benchQuality": 1,
+        "benchSpeed": 0.554312
+      },
+      "hardware": {
+        "paramsBillions": 1.5,
+        "quantHint": null,
+        "estimatedVramGb": 2.62,
+        "fitScore": 1
+      },
+      "benchmark": {
+        "lane": "qwen3_coder_abliterated",
+        "modelFile": "C:\\Users\\erdno\\chthonic-archive\\models\\Qwen3-Coder-30B-A3B-abliterated-GGUF\\Huihui-Qwen3-Coder-30B-A3B-Instruct-abliterated.i1-Q3_K_M.gguf",
+        "quality": 1,
+        "speed": 0.554312,
+        "matchConfidence": 0.334545
+      }
+    },
+    {
+      "id": "unsloth/MiniMax-M2.5-GGUF",
+      "score": 0.492946,
+      "downloads": 59026,
+      "likes": 131,
+      "trendingScore": 131,
+      "createdAt": "2026-02-14T00:57:38.000Z",
+      "pipelineTag": "text-generation",
+      "libraryName": "transformers",
+      "tags": [
+        "transformers",
+        "gguf",
+        "unsloth",
+        "minimax_m2",
+        "text-generation",
+        "base_model:MiniMaxAI/MiniMax-M2.5",
+        "base_model:quantized:MiniMaxAI/MiniMax-M2.5",
+        "license:other",
+        "endpoints_compatible",
+        "region:us",
+        "imatrix",
+        "conversational"
+      ],
+      "sources": [
+        "trending_text_generation"
+      ],
+      "scoreBreakdown": {
+        "trend": 0.16375,
+        "downloads": 0.5613000836603381,
+        "likes": 0.4712386513790778,
+        "recency": 1,
+        "source": 0.16666666666666666,
+        "hardwareFit": 0.45,
+        "benchQuality": 1,
+        "benchSpeed": 0.554595
+      },
+      "hardware": {
+        "paramsBillions": null,
+        "quantHint": null,
+        "estimatedVramGb": null,
+        "fitScore": 0.45
+      },
+      "benchmark": {
+        "lane": "qwen3_instruct_abliterated",
+        "modelFile": "C:\\Users\\erdno\\chthonic-archive\\models\\Qwen3-30B-A3B-Instruct-abliterated-GGUF\\Huihui-Qwen3-30B-A3B-Instruct-2507-abliterated.i1-Q3_K_M.gguf",
+        "quality": 1,
+        "speed": 0.554595,
+        "matchConfidence": 0.205
+      }
+    },
+    {
+      "id": "Qwen/Qwen2.5-Coder-0.5B-Instruct",
+      "score": 0.492884,
+      "downloads": 2288190,
+      "likes": 64,
+      "trendingScore": 0,
+      "createdAt": "2024-11-06T07:49:26.000Z",
+      "pipelineTag": "text-generation",
+      "libraryName": "transformers",
+      "tags": [
+        "transformers",
+        "safetensors",
+        "qwen2",
+        "text-generation",
+        "code",
+        "codeqwen",
+        "chat",
+        "qwen",
+        "qwen-coder",
+        "conversational",
+        "en",
+        "arxiv:2409.12186",
+        "arxiv:2407.10671",
+        "base_model:Qwen/Qwen2.5-Coder-0.5B",
+        "base_model:finetune:Qwen/Qwen2.5-Coder-0.5B",
+        "license:apache-2.0",
+        "text-generation-inference",
+        "endpoints_compatible",
+        "deploy:azure",
+        "region:us"
+      ],
+      "sources": [
+        "downloads_text_generation"
+      ],
+      "scoreBreakdown": {
+        "trend": 0,
+        "downloads": 0.7481755615395285,
+        "likes": 0.4028696348095234,
+        "recency": 0.15,
+        "source": 0.16666666666666666,
+        "hardwareFit": 1,
+        "benchQuality": 1,
+        "benchSpeed": 0.554312
+      },
+      "hardware": {
+        "paramsBillions": 0.5,
+        "quantHint": null,
+        "estimatedVramGb": 0.88,
+        "fitScore": 1
+      },
+      "benchmark": {
+        "lane": "qwen3_coder_abliterated",
+        "modelFile": "C:\\Users\\erdno\\chthonic-archive\\models\\Qwen3-Coder-30B-A3B-abliterated-GGUF\\Huihui-Qwen3-Coder-30B-A3B-Instruct-abliterated.i1-Q3_K_M.gguf",
+        "quality": 1,
+        "speed": 0.554312,
+        "matchConfidence": 0.334545
+      }
+    },
+    {
+      "id": "deepseek-ai/deepseek-coder-6.7b-instruct",
+      "score": 0.488164,
+      "downloads": 88171,
+      "likes": 473,
+      "trendingScore": 1,
+      "createdAt": "2023-10-29T11:01:36.000Z",
+      "pipelineTag": "text-generation",
+      "libraryName": "transformers",
+      "tags": [
+        "transformers",
+        "pytorch",
+        "safetensors",
+        "llama",
+        "text-generation",
+        "conversational",
+        "license:other",
+        "text-generation-inference",
+        "endpoints_compatible",
+        "deploy:azure",
+        "region:us"
+      ],
+      "sources": [
+        "search_deepseek"
+      ],
+      "scoreBreakdown": {
+        "trend": 0.00125,
+        "downloads": 0.5818036108210309,
+        "likes": 0.5946174092609078,
+        "recency": 0.15,
+        "source": 0.16666666666666666,
+        "hardwareFit": 1,
+        "benchQuality": 1,
+        "benchSpeed": 0.554312
+      },
+      "hardware": {
+        "paramsBillions": 6.7,
+        "quantHint": null,
+        "estimatedVramGb": 11.72,
+        "fitScore": 1
+      },
+      "benchmark": {
+        "lane": "qwen3_coder_abliterated",
+        "modelFile": "C:\\Users\\erdno\\chthonic-archive\\models\\Qwen3-Coder-30B-A3B-abliterated-GGUF\\Huihui-Qwen3-Coder-30B-A3B-Instruct-abliterated.i1-Q3_K_M.gguf",
+        "quality": 1,
+        "speed": 0.554312,
+        "matchConfidence": 0.334545
+      }
     },
     {
       "id": "mistralai/Voxtral-Mini-4B-Realtime-2602",
@@ -504,1232 +1964,12 @@
       "benchmark": null
     },
     {
-      "id": "Qwen/Qwen3-8B",
-      "score": 0.477477,
-      "downloads": 4856958,
-      "likes": 944,
-      "trendingScore": 21,
-      "createdAt": "2025-04-27T03:42:21.000Z",
-      "pipelineTag": "text-generation",
-      "libraryName": "transformers",
-      "tags": [
-        "transformers",
-        "safetensors",
-        "qwen3",
-        "text-generation",
-        "conversational",
-        "arxiv:2309.00071",
-        "arxiv:2505.09388",
-        "base_model:Qwen/Qwen3-8B-Base",
-        "base_model:finetune:Qwen/Qwen3-8B-Base",
-        "license:apache-2.0",
-        "text-generation-inference",
-        "endpoints_compatible",
-        "deploy:azure",
-        "region:us"
-      ],
-      "sources": [
-        "downloads_text_generation",
-        "search_qwen"
-      ],
-      "scoreBreakdown": {
-        "trend": 0.02625,
-        "downloads": 0.7866311102815735,
-        "likes": 0.661207068557614,
-        "recency": 0.3,
-        "source": 0.3333333333333333,
-        "hardwareFit": 1,
-        "benchQuality": 0,
-        "benchSpeed": 0
-      },
-      "hardware": {
-        "paramsBillions": 8,
-        "quantHint": null,
-        "estimatedVramGb": 14,
-        "fitScore": 1
-      },
-      "benchmark": null
-    },
-    {
-      "id": "Qwen/Qwen2.5-7B-Instruct",
-      "score": 0.475021,
-      "downloads": 14966457,
-      "likes": 1080,
-      "trendingScore": 10,
-      "createdAt": "2024-09-16T11:55:40.000Z",
-      "pipelineTag": "text-generation",
-      "libraryName": "transformers",
-      "tags": [
-        "transformers",
-        "safetensors",
-        "qwen2",
-        "text-generation",
-        "chat",
-        "conversational",
-        "en",
-        "arxiv:2309.00071",
-        "arxiv:2407.10671",
-        "base_model:Qwen/Qwen2.5-7B",
-        "base_model:finetune:Qwen/Qwen2.5-7B",
-        "license:apache-2.0",
-        "text-generation-inference",
-        "endpoints_compatible",
-        "deploy:azure",
-        "region:us"
-      ],
-      "sources": [
-        "downloads_text_generation",
-        "search_qwen"
-      ],
-      "scoreBreakdown": {
-        "trend": 0.0125,
-        "downloads": 0.8441316507373129,
-        "likes": 0.67418348754518,
-        "recency": 0.15,
-        "source": 0.3333333333333333,
-        "hardwareFit": 1,
-        "benchQuality": 0,
-        "benchSpeed": 0
-      },
-      "hardware": {
-        "paramsBillions": 7,
-        "quantHint": null,
-        "estimatedVramGb": 12.25,
-        "fitScore": 1
-      },
-      "benchmark": null
-    },
-    {
-      "id": "Qwen/Qwen3-VL-2B-Instruct",
-      "score": 0.473012,
-      "downloads": 12451682,
-      "likes": 327,
-      "trendingScore": 9,
-      "createdAt": "2025-10-19T13:13:24.000Z",
-      "pipelineTag": "image-text-to-text",
-      "libraryName": "transformers",
-      "tags": [
-        "transformers",
-        "safetensors",
-        "qwen3_vl",
-        "image-text-to-text",
-        "conversational",
-        "arxiv:2505.09388",
-        "arxiv:2502.13923",
-        "arxiv:2409.12191",
-        "arxiv:2308.12966",
-        "license:apache-2.0",
-        "endpoints_compatible",
-        "deploy:azure",
-        "region:us"
-      ],
-      "sources": [
-        "search_qwen"
-      ],
-      "scoreBreakdown": {
-        "trend": 0.01125,
-        "downloads": 0.8347327124360016,
-        "likes": 0.5590830763803731,
-        "recency": 0.5,
-        "source": 0.16666666666666666,
-        "hardwareFit": 1,
-        "benchQuality": 0,
-        "benchSpeed": 0
-      },
-      "hardware": {
-        "paramsBillions": 2,
-        "quantHint": null,
-        "estimatedVramGb": 3.5,
-        "fitScore": 1
-      },
-      "benchmark": null
-    },
-    {
-      "id": "meta-llama/Meta-Llama-3-8B",
-      "score": 0.471567,
-      "downloads": 1784578,
-      "likes": 6458,
-      "trendingScore": 0,
-      "createdAt": "2024-04-17T09:35:16.000Z",
-      "pipelineTag": "text-generation",
-      "libraryName": "transformers",
-      "tags": [
-        "transformers",
-        "safetensors",
-        "llama",
-        "text-generation",
-        "facebook",
-        "meta",
-        "pytorch",
-        "llama-3",
-        "en",
-        "license:llama3",
-        "text-generation-inference",
-        "endpoints_compatible",
-        "region:us"
-      ],
-      "sources": [
-        "downloads_text_generation",
-        "likes_text_generation"
-      ],
-      "scoreBreakdown": {
-        "trend": 0,
-        "downloads": 0.7354747974268064,
-        "likes": 0.8467033965651444,
-        "recency": 0.15,
-        "source": 0.3333333333333333,
-        "hardwareFit": 1,
-        "benchQuality": 0,
-        "benchSpeed": 0
-      },
-      "hardware": {
-        "paramsBillions": 8,
-        "quantHint": null,
-        "estimatedVramGb": 14,
-        "fitScore": 1
-      },
-      "benchmark": null
-    },
-    {
-      "id": "Qwen/Qwen3-VL-8B-Instruct",
-      "score": 0.471147,
-      "downloads": 3762779,
-      "likes": 760,
-      "trendingScore": 9,
-      "createdAt": "2025-10-11T07:23:39.000Z",
-      "pipelineTag": "image-text-to-text",
-      "libraryName": "transformers",
-      "tags": [
-        "transformers",
-        "safetensors",
-        "qwen3_vl",
-        "image-text-to-text",
-        "conversational",
-        "arxiv:2505.09388",
-        "arxiv:2502.13923",
-        "arxiv:2409.12191",
-        "arxiv:2308.12966",
-        "license:apache-2.0",
-        "endpoints_compatible",
-        "deploy:azure",
-        "region:us"
-      ],
-      "sources": [
-        "search_qwen"
-      ],
-      "scoreBreakdown": {
-        "trend": 0.01125,
-        "downloads": 0.7735892737633789,
-        "likes": 0.6403077015045717,
-        "recency": 0.5,
-        "source": 0.16666666666666666,
-        "hardwareFit": 1,
-        "benchQuality": 0,
-        "benchSpeed": 0
-      },
-      "hardware": {
-        "paramsBillions": 8,
-        "quantHint": null,
-        "estimatedVramGb": 14,
-        "fitScore": 1
-      },
-      "benchmark": null
-    },
-    {
-      "id": "Qwen/Qwen3-Embedding-0.6B",
-      "score": 0.468463,
-      "downloads": 3818012,
-      "likes": 881,
-      "trendingScore": 8,
-      "createdAt": "2025-06-03T14:25:32.000Z",
-      "pipelineTag": "feature-extraction",
-      "libraryName": "sentence-transformers",
-      "tags": [
-        "sentence-transformers",
-        "safetensors",
-        "qwen3",
-        "text-generation",
-        "transformers",
-        "sentence-similarity",
-        "feature-extraction",
-        "text-embeddings-inference",
-        "arxiv:2506.05176",
-        "base_model:Qwen/Qwen3-0.6B-Base",
-        "base_model:finetune:Qwen/Qwen3-0.6B-Base",
-        "license:apache-2.0",
-        "endpoints_compatible",
-        "deploy:azure",
-        "region:us"
-      ],
-      "sources": [
-        "downloads_text_generation",
-        "search_qwen"
-      ],
-      "scoreBreakdown": {
-        "trend": 0.01,
-        "downloads": 0.7743338120935123,
-        "likes": 0.6545485744737377,
-        "recency": 0.3,
-        "source": 0.3333333333333333,
-        "hardwareFit": 1,
-        "benchQuality": 0,
-        "benchSpeed": 0
-      },
-      "hardware": {
-        "paramsBillions": 0.6,
-        "quantHint": null,
-        "estimatedVramGb": 1.05,
-        "fitScore": 1
-      },
-      "benchmark": null
-    },
-    {
-      "id": "Qwen/Qwen3-4B-Instruct-2507",
-      "score": 0.467771,
-      "downloads": 3457329,
-      "likes": 735,
-      "trendingScore": 15,
-      "createdAt": "2025-08-05T10:58:03.000Z",
-      "pipelineTag": "text-generation",
-      "libraryName": "transformers",
-      "tags": [
-        "transformers",
-        "safetensors",
-        "qwen3",
-        "text-generation",
-        "conversational",
-        "arxiv:2505.09388",
-        "license:apache-2.0",
-        "eval-results",
-        "text-generation-inference",
-        "endpoints_compatible",
-        "deploy:azure",
-        "region:us"
-      ],
-      "sources": [
-        "downloads_text_generation",
-        "search_qwen"
-      ],
-      "scoreBreakdown": {
-        "trend": 0.01875,
-        "downloads": 0.7692636276069745,
-        "likes": 0.6370839587416665,
-        "recency": 0.3,
-        "source": 0.3333333333333333,
-        "hardwareFit": 1,
-        "benchQuality": 0,
-        "benchSpeed": 0
-      },
-      "hardware": {
-        "paramsBillions": 4,
-        "quantHint": null,
-        "estimatedVramGb": 7,
-        "fitScore": 1
-      },
-      "benchmark": null
-    },
-    {
-      "id": "Qwen/Qwen3-TTS-12Hz-1.7B-VoiceDesign",
-      "score": 0.466984,
-      "downloads": 399171,
-      "likes": 264,
-      "trendingScore": 15,
-      "createdAt": "2026-01-21T08:55:55.000Z",
-      "pipelineTag": "text-to-speech",
-      "libraryName": "qwen-tts",
-      "tags": [
-        "qwen-tts",
-        "safetensors",
-        "qwen3_tts",
-        "audio",
-        "tts",
-        "qwen",
-        "multilingual",
-        "text-to-speech",
-        "arxiv:2601.15621",
-        "license:apache-2.0",
-        "region:us"
-      ],
-      "sources": [
-        "search_qwen"
-      ],
-      "scoreBreakdown": {
-        "trend": 0.01875,
-        "downloads": 0.6589600082364925,
-        "likes": 0.5384990830970684,
-        "recency": 0.9,
-        "source": 0.16666666666666666,
-        "hardwareFit": 1,
-        "benchQuality": 0,
-        "benchSpeed": 0
-      },
-      "hardware": {
-        "paramsBillions": 1.7,
-        "quantHint": null,
-        "estimatedVramGb": 2.97,
-        "fitScore": 1
-      },
-      "benchmark": null
-    },
-    {
-      "id": "meta-llama/Meta-Llama-3-8B-Instruct",
-      "score": 0.463507,
-      "downloads": 1394471,
-      "likes": 4384,
-      "trendingScore": 0,
-      "createdAt": "2024-04-17T09:35:12.000Z",
-      "pipelineTag": "text-generation",
-      "libraryName": "transformers",
-      "tags": [
-        "transformers",
-        "safetensors",
-        "llama",
-        "text-generation",
-        "facebook",
-        "meta",
-        "pytorch",
-        "llama-3",
-        "conversational",
-        "en",
-        "license:llama3",
-        "text-generation-inference",
-        "endpoints_compatible",
-        "deploy:azure",
-        "region:us"
-      ],
-      "sources": [
-        "downloads_text_generation",
-        "likes_text_generation"
-      ],
-      "scoreBreakdown": {
-        "trend": 0,
-        "downloads": 0.722871740984372,
-        "likes": 0.8093265772671243,
-        "recency": 0.15,
-        "source": 0.3333333333333333,
-        "hardwareFit": 1,
-        "benchQuality": 0,
-        "benchSpeed": 0
-      },
-      "hardware": {
-        "paramsBillions": 8,
-        "quantHint": null,
-        "estimatedVramGb": 14,
-        "fitScore": 1
-      },
-      "benchmark": null
-    },
-    {
-      "id": "Qwen/Qwen3-VL-Embedding-2B",
-      "score": 0.460391,
-      "downloads": 990519,
-      "likes": 319,
-      "trendingScore": 8,
-      "createdAt": "2026-01-07T03:03:25.000Z",
-      "pipelineTag": "feature-extraction",
-      "libraryName": "transformers",
-      "tags": [
-        "transformers",
-        "safetensors",
-        "qwen3_vl",
-        "image-text-to-text",
-        "multimodal embedding",
-        "qwen",
-        "embedding",
-        "feature-extraction",
-        "arxiv:2601.04720",
-        "base_model:Qwen/Qwen3-VL-2B-Instruct",
-        "base_model:finetune:Qwen/Qwen3-VL-2B-Instruct",
-        "license:apache-2.0",
-        "endpoints_compatible",
-        "region:us"
-      ],
-      "sources": [
-        "search_qwen"
-      ],
-      "scoreBreakdown": {
-        "trend": 0.01,
-        "downloads": 0.7053956763509464,
-        "likes": 0.5566999951822013,
-        "recency": 0.7,
-        "source": 0.16666666666666666,
-        "hardwareFit": 1,
-        "benchQuality": 0,
-        "benchSpeed": 0
-      },
-      "hardware": {
-        "paramsBillions": 2,
-        "quantHint": null,
-        "estimatedVramGb": 3.5,
-        "fitScore": 1
-      },
-      "benchmark": null
-    },
-    {
-      "id": "meta-llama/Llama-3.2-3B-Instruct",
-      "score": 0.457688,
-      "downloads": 2178265,
-      "likes": 1990,
-      "trendingScore": 0,
-      "createdAt": "2024-09-18T15:19:20.000Z",
-      "pipelineTag": "text-generation",
-      "libraryName": "transformers",
-      "tags": [
-        "transformers",
-        "safetensors",
-        "llama",
-        "text-generation",
-        "facebook",
-        "meta",
-        "pytorch",
-        "llama-3",
-        "conversational",
-        "en",
-        "de",
-        "fr",
-        "it",
-        "pt",
-        "hi",
-        "es",
-        "th",
-        "arxiv:2204.05149",
-        "arxiv:2405.16406",
-        "license:llama3.2",
-        "text-generation-inference",
-        "endpoints_compatible",
-        "region:us"
-      ],
-      "sources": [
-        "downloads_text_generation",
-        "likes_text_generation"
-      ],
-      "scoreBreakdown": {
-        "trend": 0,
-        "downloads": 0.7456601073808996,
-        "likes": 0.7331269466727577,
-        "recency": 0.15,
-        "source": 0.3333333333333333,
-        "hardwareFit": 1,
-        "benchQuality": 0,
-        "benchSpeed": 0
-      },
-      "hardware": {
-        "paramsBillions": 3,
-        "quantHint": null,
-        "estimatedVramGb": 5.25,
-        "fitScore": 1
-      },
-      "benchmark": null
-    },
-    {
-      "id": "meta-llama/Llama-3.2-1B",
-      "score": 0.455505,
-      "downloads": 1504380,
-      "likes": 2296,
-      "trendingScore": 0,
-      "createdAt": "2024-09-18T15:03:14.000Z",
-      "pipelineTag": "text-generation",
-      "libraryName": "transformers",
-      "tags": [
-        "transformers",
-        "safetensors",
-        "llama",
-        "text-generation",
-        "facebook",
-        "meta",
-        "pytorch",
-        "llama-3",
-        "en",
-        "de",
-        "fr",
-        "it",
-        "pt",
-        "hi",
-        "es",
-        "th",
-        "arxiv:2204.05149",
-        "arxiv:2405.16406",
-        "license:llama3.2",
-        "text-generation-inference",
-        "endpoints_compatible",
-        "region:us"
-      ],
-      "sources": [
-        "downloads_text_generation",
-        "likes_text_generation"
-      ],
-      "scoreBreakdown": {
-        "trend": 0,
-        "downloads": 0.7267479811460641,
-        "likes": 0.7469246655988946,
-        "recency": 0.15,
-        "source": 0.3333333333333333,
-        "hardwareFit": 1,
-        "benchQuality": 0,
-        "benchSpeed": 0
-      },
-      "hardware": {
-        "paramsBillions": 1,
-        "quantHint": null,
-        "estimatedVramGb": 1.75,
-        "fitScore": 1
-      },
-      "benchmark": null
-    },
-    {
-      "id": "Qwen/Qwen3-Embedding-8B",
-      "score": 0.45515,
-      "downloads": 1915271,
-      "likes": 585,
-      "trendingScore": 8,
-      "createdAt": "2025-06-03T14:39:10.000Z",
-      "pipelineTag": "feature-extraction",
-      "libraryName": "sentence-transformers",
-      "tags": [
-        "sentence-transformers",
-        "safetensors",
-        "qwen3",
-        "text-generation",
-        "transformers",
-        "sentence-similarity",
-        "feature-extraction",
-        "text-embeddings-inference",
-        "arxiv:2506.05176",
-        "base_model:Qwen/Qwen3-8B-Base",
-        "base_model:finetune:Qwen/Qwen3-8B-Base",
-        "license:apache-2.0",
-        "endpoints_compatible",
-        "deploy:azure",
-        "region:us"
-      ],
-      "sources": [
-        "downloads_text_generation",
-        "search_qwen"
-      ],
-      "scoreBreakdown": {
-        "trend": 0.01,
-        "downloads": 0.7390859364253729,
-        "likes": 0.6150883591151313,
-        "recency": 0.3,
-        "source": 0.3333333333333333,
-        "hardwareFit": 1,
-        "benchQuality": 0,
-        "benchSpeed": 0
-      },
-      "hardware": {
-        "paramsBillions": 8,
-        "quantHint": null,
-        "estimatedVramGb": 14,
-        "fitScore": 1
-      },
-      "benchmark": null
-    },
-    {
-      "id": "Qwen/Qwen3-Coder-Next",
-      "score": 0.450873,
-      "downloads": 389713,
-      "likes": 933,
-      "trendingScore": 111,
-      "createdAt": "2026-01-30T15:08:18.000Z",
-      "pipelineTag": "text-generation",
-      "libraryName": "transformers",
-      "tags": [
-        "transformers",
-        "safetensors",
-        "qwen3_next",
-        "text-generation",
-        "conversational",
-        "license:apache-2.0",
-        "endpoints_compatible",
-        "deploy:azure",
-        "region:us"
-      ],
-      "sources": [
-        "trending_text_generation",
-        "search_qwen"
-      ],
-      "scoreBreakdown": {
-        "trend": 0.13875,
-        "downloads": 0.6577348244202769,
-        "likes": 0.6600770836066875,
-        "recency": 0.9,
-        "source": 0.3333333333333333,
-        "hardwareFit": 0.45,
-        "benchQuality": 0,
-        "benchSpeed": 0
-      },
-      "hardware": {
-        "paramsBillions": null,
-        "quantHint": null,
-        "estimatedVramGb": null,
-        "fitScore": 0.45
-      },
-      "benchmark": null
-    },
-    {
-      "id": "openai/gpt-oss-20b",
-      "score": 0.449952,
-      "downloads": 5541163,
-      "likes": 4387,
-      "trendingScore": 40,
-      "createdAt": "2025-08-04T22:33:29.000Z",
-      "pipelineTag": "text-generation",
-      "libraryName": "transformers",
-      "tags": [
-        "transformers",
-        "safetensors",
-        "gpt_oss",
-        "text-generation",
-        "vllm",
-        "conversational",
-        "arxiv:2508.10925",
-        "license:apache-2.0",
-        "endpoints_compatible",
-        "8-bit",
-        "mxfp4",
-        "deploy:azure",
-        "region:us"
-      ],
-      "sources": [
-        "trending_text_generation",
-        "downloads_text_generation",
-        "likes_text_generation"
-      ],
-      "scoreBreakdown": {
-        "trend": 0.05,
-        "downloads": 0.7933648240024002,
-        "likes": 0.8093925819783718,
-        "recency": 0.3,
-        "source": 0.5,
-        "hardwareFit": 0.546801,
-        "benchQuality": 0,
-        "benchSpeed": 0
-      },
-      "hardware": {
-        "paramsBillions": 20,
-        "quantHint": null,
-        "estimatedVramGb": 35,
-        "fitScore": 0.546801
-      },
-      "benchmark": null
-    },
-    {
-      "id": "mistralai/Mistral-7B-Instruct-v0.3",
-      "score": 0.449572,
-      "downloads": 1197081,
-      "likes": 2426,
-      "trendingScore": 19,
-      "createdAt": "2024-05-22T09:57:04.000Z",
-      "libraryName": "vllm",
-      "tags": [
-        "vllm",
-        "safetensors",
-        "mistral",
-        "mistral-common",
-        "base_model:mistralai/Mistral-7B-v0.3",
-        "base_model:finetune:mistralai/Mistral-7B-v0.3",
-        "license:apache-2.0",
-        "region:us"
-      ],
-      "sources": [
-        "search_mistral"
-      ],
-      "scoreBreakdown": {
-        "trend": 0.02375,
-        "downloads": 0.7150734000652855,
-        "likes": 0.7522377280737633,
-        "recency": 0.15,
-        "source": 0.16666666666666666,
-        "hardwareFit": 1,
-        "benchQuality": 0,
-        "benchSpeed": 0
-      },
-      "hardware": {
-        "paramsBillions": 7,
-        "quantHint": null,
-        "estimatedVramGb": 12.25,
-        "fitScore": 1
-      },
-      "benchmark": null
-    },
-    {
-      "id": "Qwen/Qwen3-4B",
-      "score": 0.449479,
-      "downloads": 4841670,
-      "likes": 554,
-      "trendingScore": 0,
-      "createdAt": "2025-04-27T03:41:29.000Z",
-      "pipelineTag": "text-generation",
-      "libraryName": "transformers",
-      "tags": [
-        "transformers",
-        "safetensors",
-        "qwen3",
-        "text-generation",
-        "conversational",
-        "arxiv:2309.00071",
-        "arxiv:2505.09388",
-        "base_model:Qwen/Qwen3-4B-Base",
-        "base_model:finetune:Qwen/Qwen3-4B-Base",
-        "license:apache-2.0",
-        "text-generation-inference",
-        "endpoints_compatible",
-        "region:us"
-      ],
-      "sources": [
-        "downloads_text_generation"
-      ],
-      "scoreBreakdown": {
-        "trend": 0,
-        "downloads": 0.7864700323576271,
-        "likes": 0.6098428851383725,
-        "recency": 0.3,
-        "source": 0.16666666666666666,
-        "hardwareFit": 1,
-        "benchQuality": 0,
-        "benchSpeed": 0
-      },
-      "hardware": {
-        "paramsBillions": 4,
-        "quantHint": null,
-        "estimatedVramGb": 7,
-        "fitScore": 1
-      },
-      "benchmark": null
-    },
-    {
-      "id": "Qwen/Qwen3-ASR-0.6B",
-      "score": 0.448614,
-      "downloads": 100914,
-      "likes": 212,
-      "trendingScore": 15,
-      "createdAt": "2026-01-28T03:15:39.000Z",
-      "pipelineTag": "automatic-speech-recognition",
-      "tags": [
-        "safetensors",
-        "qwen3_asr",
-        "automatic-speech-recognition",
-        "arxiv:2601.21337",
-        "license:apache-2.0",
-        "deploy:azure",
-        "region:us"
-      ],
-      "sources": [
-        "search_qwen"
-      ],
-      "scoreBreakdown": {
-        "trend": 0.01875,
-        "downloads": 0.5887006734756107,
-        "likes": 0.5174176896530528,
-        "recency": 0.9,
-        "source": 0.16666666666666666,
-        "hardwareFit": 1,
-        "benchQuality": 0,
-        "benchSpeed": 0
-      },
-      "hardware": {
-        "paramsBillions": 0.6,
-        "quantHint": null,
-        "estimatedVramGb": 1.05,
-        "fitScore": 1
-      },
-      "benchmark": null
-    },
-    {
-      "id": "mistralai/Mistral-7B-v0.1",
-      "score": 0.446871,
-      "downloads": 323207,
-      "likes": 4042,
-      "trendingScore": 2,
-      "createdAt": "2023-09-20T13:03:50.000Z",
-      "pipelineTag": "text-generation",
-      "libraryName": "transformers",
-      "tags": [
-        "transformers",
-        "pytorch",
-        "safetensors",
-        "mistral",
-        "text-generation",
-        "pretrained",
-        "mistral-common",
-        "en",
-        "arxiv:2310.06825",
-        "license:apache-2.0",
-        "text-generation-inference",
-        "region:us"
-      ],
-      "sources": [
-        "likes_text_generation",
-        "search_mistral"
-      ],
-      "scoreBreakdown": {
-        "trend": 0.0025,
-        "downloads": 0.6481743649215201,
-        "likes": 0.8014897202963721,
-        "recency": 0.15,
-        "source": 0.3333333333333333,
-        "hardwareFit": 1,
-        "benchQuality": 0,
-        "benchSpeed": 0
-      },
-      "hardware": {
-        "paramsBillions": 7,
-        "quantHint": null,
-        "estimatedVramGb": 12.25,
-        "fitScore": 1
-      },
-      "benchmark": null
-    },
-    {
-      "id": "Qwen/Qwen3-1.7B",
-      "score": 0.444822,
-      "downloads": 4451561,
-      "likes": 422,
-      "trendingScore": 0,
-      "createdAt": "2025-04-27T03:41:05.000Z",
-      "pipelineTag": "text-generation",
-      "libraryName": "transformers",
-      "tags": [
-        "transformers",
-        "safetensors",
-        "qwen3",
-        "text-generation",
-        "conversational",
-        "arxiv:2505.09388",
-        "base_model:Qwen/Qwen3-1.7B-Base",
-        "base_model:finetune:Qwen/Qwen3-1.7B-Base",
-        "license:apache-2.0",
-        "text-generation-inference",
-        "endpoints_compatible",
-        "region:us"
-      ],
-      "sources": [
-        "downloads_text_generation"
-      ],
-      "scoreBreakdown": {
-        "trend": 0,
-        "downloads": 0.7821779325265391,
-        "likes": 0.5836311927500094,
-        "recency": 0.3,
-        "source": 0.16666666666666666,
-        "hardwareFit": 1,
-        "benchQuality": 0,
-        "benchSpeed": 0
-      },
-      "hardware": {
-        "paramsBillions": 1.7,
-        "quantHint": null,
-        "estimatedVramGb": 2.97,
-        "fitScore": 1
-      },
-      "benchmark": null
-    },
-    {
-      "id": "mistralai/Mixtral-8x7B-Instruct-v0.1",
-      "score": 0.444133,
-      "downloads": 601994,
-      "likes": 4638,
-      "trendingScore": 3,
-      "createdAt": "2023-12-10T18:47:12.000Z",
-      "libraryName": "vllm",
-      "tags": [
-        "vllm",
-        "safetensors",
-        "mixtral",
-        "fr",
-        "it",
-        "de",
-        "es",
-        "en",
-        "base_model:mistralai/Mixtral-8x7B-v0.1",
-        "base_model:finetune:mistralai/Mixtral-8x7B-v0.1",
-        "license:apache-2.0",
-        "region:us"
-      ],
-      "sources": [
-        "search_mistral"
-      ],
-      "scoreBreakdown": {
-        "trend": 0.00375,
-        "downloads": 0.6799521040171551,
-        "likes": 0.8147609716708355,
-        "recency": 0.15,
-        "source": 0.16666666666666666,
-        "hardwareFit": 1,
-        "benchQuality": 0,
-        "benchSpeed": 0
-      },
-      "hardware": {
-        "paramsBillions": 7,
-        "quantHint": null,
-        "estimatedVramGb": 12.25,
-        "fitScore": 1
-      },
-      "benchmark": null
-    },
-    {
-      "id": "meta-llama/Llama-3.2-1B-Instruct",
-      "score": 0.443485,
-      "downloads": 3025580,
-      "likes": 1294,
-      "trendingScore": 0,
-      "createdAt": "2024-09-18T15:12:47.000Z",
-      "pipelineTag": "text-generation",
-      "libraryName": "transformers",
-      "tags": [
-        "transformers",
-        "safetensors",
-        "llama",
-        "text-generation",
-        "facebook",
-        "meta",
-        "pytorch",
-        "llama-3",
-        "conversational",
-        "en",
-        "de",
-        "fr",
-        "it",
-        "pt",
-        "hi",
-        "es",
-        "th",
-        "arxiv:2204.05149",
-        "arxiv:2405.16406",
-        "license:llama3.2",
-        "text-generation-inference",
-        "endpoints_compatible",
-        "region:us"
-      ],
-      "sources": [
-        "downloads_text_generation"
-      ],
-      "scoreBreakdown": {
-        "trend": 0,
-        "downloads": 0.7624480922627405,
-        "likes": 0.6916155040927268,
-        "recency": 0.15,
-        "source": 0.16666666666666666,
-        "hardwareFit": 1,
-        "benchQuality": 0,
-        "benchSpeed": 0
-      },
-      "hardware": {
-        "paramsBillions": 1,
-        "quantHint": null,
-        "estimatedVramGb": 1.75,
-        "fitScore": 1
-      },
-      "benchmark": null
-    },
-    {
-      "id": "Qwen/Qwen2.5-Coder-7B-Instruct",
-      "score": 0.443235,
-      "downloads": 1397537,
-      "likes": 651,
-      "trendingScore": 14,
-      "createdAt": "2024-09-17T13:38:49.000Z",
-      "pipelineTag": "text-generation",
-      "libraryName": "transformers",
-      "tags": [
-        "transformers",
-        "safetensors",
-        "qwen2",
-        "text-generation",
-        "code",
-        "codeqwen",
-        "chat",
-        "qwen",
-        "qwen-coder",
-        "conversational",
-        "en",
-        "arxiv:2409.12186",
-        "arxiv:2309.00071",
-        "arxiv:2407.10671",
-        "base_model:Qwen/Qwen2.5-Coder-7B",
-        "base_model:finetune:Qwen/Qwen2.5-Coder-7B",
-        "license:apache-2.0",
-        "text-generation-inference",
-        "endpoints_compatible",
-        "deploy:azure",
-        "region:us"
-      ],
-      "sources": [
-        "downloads_text_generation",
-        "search_qwen"
-      ],
-      "scoreBreakdown": {
-        "trend": 0.0175,
-        "downloads": 0.722983955938663,
-        "likes": 0.6253883546070934,
-        "recency": 0.15,
-        "source": 0.3333333333333333,
-        "hardwareFit": 1,
-        "benchQuality": 0,
-        "benchSpeed": 0
-      },
-      "hardware": {
-        "paramsBillions": 7,
-        "quantHint": null,
-        "estimatedVramGb": 12.25,
-        "fitScore": 1
-      },
-      "benchmark": null
-    },
-    {
-      "id": "mistralai/Mistral-7B-Instruct-v0.1",
-      "score": 0.4432,
-      "downloads": 638552,
-      "likes": 1826,
+      "id": "deepseek-ai/deepseek-coder-1.3b-instruct",
+      "score": 0.478144,
+      "downloads": 133915,
+      "likes": 156,
       "trendingScore": 1,
-      "createdAt": "2023-09-27T14:31:52.000Z",
-      "pipelineTag": "text-generation",
-      "libraryName": "transformers",
-      "tags": [
-        "transformers",
-        "pytorch",
-        "safetensors",
-        "mistral",
-        "text-generation",
-        "finetuned",
-        "mistral-common",
-        "conversational",
-        "arxiv:2310.06825",
-        "base_model:mistralai/Mistral-7B-v0.1",
-        "base_model:finetune:mistralai/Mistral-7B-v0.1",
-        "license:apache-2.0",
-        "text-generation-inference",
-        "region:us"
-      ],
-      "sources": [
-        "likes_text_generation",
-        "search_mistral"
-      ],
-      "scoreBreakdown": {
-        "trend": 0.00125,
-        "downloads": 0.6829643470124871,
-        "likes": 0.7248307883005639,
-        "recency": 0.15,
-        "source": 0.3333333333333333,
-        "hardwareFit": 1,
-        "benchQuality": 0,
-        "benchSpeed": 0
-      },
-      "hardware": {
-        "paramsBillions": 7,
-        "quantHint": null,
-        "estimatedVramGb": 12.25,
-        "fitScore": 1
-      },
-      "benchmark": null
-    },
-    {
-      "id": "Qwen/Qwen2.5-1.5B-Instruct",
-      "score": 0.44217,
-      "downloads": 6651765,
-      "likes": 617,
-      "trendingScore": 0,
-      "createdAt": "2024-09-17T14:10:29.000Z",
-      "pipelineTag": "text-generation",
-      "libraryName": "transformers",
-      "tags": [
-        "transformers",
-        "safetensors",
-        "qwen2",
-        "text-generation",
-        "chat",
-        "conversational",
-        "en",
-        "arxiv:2407.10671",
-        "base_model:Qwen/Qwen2.5-1.5B",
-        "base_model:finetune:Qwen/Qwen2.5-1.5B",
-        "license:apache-2.0",
-        "text-generation-inference",
-        "endpoints_compatible",
-        "deploy:azure",
-        "region:us"
-      ],
-      "sources": [
-        "downloads_text_generation"
-      ],
-      "scoreBreakdown": {
-        "trend": 0,
-        "downloads": 0.8026984662273282,
-        "likes": 0.6202196611308479,
-        "recency": 0.15,
-        "source": 0.16666666666666666,
-        "hardwareFit": 1,
-        "benchQuality": 0,
-        "benchSpeed": 0
-      },
-      "hardware": {
-        "paramsBillions": 1.5,
-        "quantHint": null,
-        "estimatedVramGb": 2.62,
-        "fitScore": 1
-      },
-      "benchmark": null
-    },
-    {
-      "id": "meta-llama/Llama-3.1-8B",
-      "score": 0.439567,
-      "downloads": 1199887,
-      "likes": 2070,
-      "trendingScore": 0,
-      "createdAt": "2024-07-14T22:20:15.000Z",
-      "pipelineTag": "text-generation",
-      "libraryName": "transformers",
-      "tags": [
-        "transformers",
-        "safetensors",
-        "llama",
-        "text-generation",
-        "facebook",
-        "meta",
-        "pytorch",
-        "llama-3",
-        "en",
-        "de",
-        "fr",
-        "it",
-        "pt",
-        "hi",
-        "es",
-        "th",
-        "arxiv:2204.05149",
-        "license:llama3.1",
-        "text-generation-inference",
-        "endpoints_compatible",
-        "region:us"
-      ],
-      "sources": [
-        "likes_text_generation"
-      ],
-      "scoreBreakdown": {
-        "trend": 0,
-        "downloads": 0.7151930247063847,
-        "likes": 0.7369289108652117,
-        "recency": 0.15,
-        "source": 0.16666666666666666,
-        "hardwareFit": 1,
-        "benchQuality": 0,
-        "benchSpeed": 0
-      },
-      "hardware": {
-        "paramsBillions": 8,
-        "quantHint": null,
-        "estimatedVramGb": 14,
-        "fitScore": 1
-      },
-      "benchmark": null
-    },
-    {
-      "id": "meta-llama/Llama-2-7b-chat-hf",
-      "score": 0.438759,
-      "downloads": 408583,
-      "likes": 4707,
-      "trendingScore": 0,
-      "createdAt": "2023-07-13T16:45:23.000Z",
+      "createdAt": "2023-10-29T12:43:40.000Z",
       "pipelineTag": "text-generation",
       "libraryName": "transformers",
       "tags": [
@@ -1738,100 +1978,8 @@
         "safetensors",
         "llama",
         "text-generation",
-        "facebook",
-        "meta",
-        "llama-2",
         "conversational",
-        "en",
-        "arxiv:2307.09288",
-        "license:llama2",
-        "text-generation-inference",
-        "endpoints_compatible",
-        "region:us"
-      ],
-      "sources": [
-        "likes_text_generation"
-      ],
-      "scoreBreakdown": {
-        "trend": 0,
-        "downloads": 0.6601507477430991,
-        "likes": 0.8161858787047549,
-        "recency": 0.15,
-        "source": 0.16666666666666666,
-        "hardwareFit": 1,
-        "benchQuality": 0,
-        "benchSpeed": 0
-      },
-      "hardware": {
-        "paramsBillions": 7,
-        "quantHint": null,
-        "estimatedVramGb": 12.25,
-        "fitScore": 1
-      },
-      "benchmark": null
-    },
-    {
-      "id": "microsoft/VibeVoice-1.5B",
-      "score": 0.438341,
-      "downloads": 75457,
-      "likes": 2217,
-      "trendingScore": 0,
-      "createdAt": "2025-08-25T13:46:48.000Z",
-      "pipelineTag": "text-to-speech",
-      "libraryName": "transformers",
-      "tags": [
-        "transformers",
-        "safetensors",
-        "vibevoice",
-        "text-generation",
-        "Podcast",
-        "text-to-speech",
-        "en",
-        "zh",
-        "arxiv:2508.19205",
-        "arxiv:2412.08635",
-        "license:mit",
-        "endpoints_compatible",
-        "region:us"
-      ],
-      "sources": [
-        "likes_text_generation"
-      ],
-      "scoreBreakdown": {
-        "trend": 0,
-        "downloads": 0.5738476811911204,
-        "likes": 0.7435470092918092,
-        "recency": 0.5,
-        "source": 0.16666666666666666,
-        "hardwareFit": 1,
-        "benchQuality": 0,
-        "benchSpeed": 0
-      },
-      "hardware": {
-        "paramsBillions": 1.5,
-        "quantHint": null,
-        "estimatedVramGb": 2.62,
-        "fitScore": 1
-      },
-      "benchmark": null
-    },
-    {
-      "id": "deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B",
-      "score": 0.436776,
-      "downloads": 1345341,
-      "likes": 1447,
-      "trendingScore": 2,
-      "createdAt": "2025-01-20T09:04:18.000Z",
-      "pipelineTag": "text-generation",
-      "libraryName": "transformers",
-      "tags": [
-        "transformers",
-        "safetensors",
-        "qwen2",
-        "text-generation",
-        "conversational",
-        "arxiv:2501.12948",
-        "license:mit",
+        "license:other",
         "text-generation-inference",
         "endpoints_compatible",
         "region:us"
@@ -1840,22 +1988,81 @@
         "search_deepseek"
       ],
       "scoreBreakdown": {
-        "trend": 0.0025,
-        "downloads": 0.7210391412436142,
-        "likes": 0.7023930137469174,
+        "trend": 0.00125,
+        "downloads": 0.6031567610231457,
+        "likes": 0.48797770053538525,
         "recency": 0.15,
         "source": 0.16666666666666666,
         "hardwareFit": 1,
-        "benchQuality": 0,
-        "benchSpeed": 0
+        "benchQuality": 1,
+        "benchSpeed": 0.554312
       },
       "hardware": {
-        "paramsBillions": 1.5,
+        "paramsBillions": 1.3,
         "quantHint": null,
-        "estimatedVramGb": 2.62,
+        "estimatedVramGb": 2.27,
         "fitScore": 1
       },
-      "benchmark": null
+      "benchmark": {
+        "lane": "qwen3_coder_abliterated",
+        "modelFile": "C:\\Users\\erdno\\chthonic-archive\\models\\Qwen3-Coder-30B-A3B-abliterated-GGUF\\Huihui-Qwen3-Coder-30B-A3B-Instruct-abliterated.i1-Q3_K_M.gguf",
+        "quality": 1,
+        "speed": 0.554312,
+        "matchConfidence": 0.334545
+      }
+    },
+    {
+      "id": "unsloth/GLM-4.7-Flash-GGUF",
+      "score": 0.47729,
+      "downloads": 395137,
+      "likes": 497,
+      "trendingScore": 45,
+      "createdAt": "2026-01-20T00:14:42.000Z",
+      "pipelineTag": "text-generation",
+      "libraryName": "transformers",
+      "tags": [
+        "transformers",
+        "gguf",
+        "unsloth",
+        "text-generation",
+        "en",
+        "zh",
+        "arxiv:2508.06471",
+        "base_model:zai-org/GLM-4.7-Flash",
+        "base_model:quantized:zai-org/GLM-4.7-Flash",
+        "license:mit",
+        "endpoints_compatible",
+        "deploy:azure",
+        "region:us",
+        "imatrix",
+        "conversational"
+      ],
+      "sources": [
+        "trending_text_generation"
+      ],
+      "scoreBreakdown": {
+        "trend": 0.05625,
+        "downloads": 0.6584410349796415,
+        "likes": 0.5993842983910483,
+        "recency": 0.7,
+        "source": 0.16666666666666666,
+        "hardwareFit": 0.45,
+        "benchQuality": 1,
+        "benchSpeed": 0.554595
+      },
+      "hardware": {
+        "paramsBillions": null,
+        "quantHint": null,
+        "estimatedVramGb": null,
+        "fitScore": 0.45
+      },
+      "benchmark": {
+        "lane": "qwen3_instruct_abliterated",
+        "modelFile": "C:\\Users\\erdno\\chthonic-archive\\models\\Qwen3-30B-A3B-Instruct-abliterated-GGUF\\Huihui-Qwen3-30B-A3B-Instruct-2507-abliterated.i1-Q3_K_M.gguf",
+        "quality": 1,
+        "speed": 0.554595,
+        "matchConfidence": 0.205
+      }
     }
   ],
   "sources": [

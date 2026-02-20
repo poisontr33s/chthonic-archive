@@ -236,7 +236,7 @@ function findLatestBenchmarkJson(repoRoot: string): string | null {
     return null;
   }
   const candidates = readdirSync(dir)
-    .filter((name) => /^LOCAL_UNCENSORED_BENCHMARK_\d+\.json$/i.test(name))
+    .filter((name) => /^LOCAL_UNCENSORED_BENCHMARK_\d+(?:_\d+)?\.json$/i.test(name))
     .map((name) => {
       const full = path.join(dir, name);
       return { full, mtime: statSync(full).mtimeMs };
@@ -271,11 +271,35 @@ function benchmarkMatch(modelId: string, entry: BenchmarkEntry): number {
     return 0;
   }
 
+  const sharedAlpha: string[] = [];
   let intersection = 0;
   for (const token of modelTokens) {
-    if (benchTokens.has(token)) {
-      intersection += 1;
+    if (!benchTokens.has(token)) continue;
+    intersection += 1;
+    if (/[a-z]/.test(token) && token.length >= 3) {
+      sharedAlpha.push(token);
     }
+  }
+
+  if (sharedAlpha.length === 0) {
+    return 0;
+  }
+
+  const familyTokens = new Set([
+    'qwen',
+    'llama',
+    'deepseek',
+    'mistral',
+    'gemma',
+    'gpt',
+    'glm',
+    'phi',
+    'minimax',
+  ]);
+
+  const hasFamilyAffinity = sharedAlpha.some((token) => familyTokens.has(token));
+  if (!hasFamilyAffinity) {
+    return 0;
   }
 
   const coverage = intersection / modelTokens.size;
@@ -604,24 +628,4 @@ async function main() {
         config: {
           targetVramGb,
           benchmarkPath,
-          benchmarkEntries: benchmarkEntries.length,
-        },
-        top,
-        sources,
-      },
-      null,
-      2,
-    ) + '\n',
-    'utf8',
-  );
-
-  console.log(`[hf-ranker] wrote ${latestMd}`);
-  console.log(`[hf-ranker] wrote ${archiveMd}`);
-  console.log(`[hf-ranker] wrote ${latestJson}`);
-  console.log(`[hf-ranker] sqlite ${dbPath}`);
-}
-
-await main().catch((error) => {
-  console.error(`[hf-ranker] fatal: ${(error as Error).message}`);
-  process.exit(1);
-});
+          b
