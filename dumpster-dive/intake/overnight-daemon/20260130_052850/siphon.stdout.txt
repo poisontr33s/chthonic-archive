@@ -1,3 +1,0 @@
-Siphoned files: 0
-Dest: C:\Users\erdno\chthonic-archive\dumpster-dive\intake\overnight-siphon\20260130_052852
-Manifest: C:\Users\erdno\chthonic-archive\dumpster-dive\intake\overnight-siphon\20260130_052852\manifest.json

@@ -1,6 +1,0 @@
-C:\Users\erdno\chthonic-archive\scripts\siphon_to_dumpster_dive.ps1 : A positional 
-parameter cannot be found that accepts argument 'scripts/claudineENV.ps1'.
-    + CategoryInfo          : InvalidArgument: (:) [siphon_to_dumpster_dive.ps1], ParentCon 
-   tainsErrorRecordException
-    + FullyQualifiedErrorId : PositionalParameterNotFound,siphon_to_dumpster_dive.ps1
- 

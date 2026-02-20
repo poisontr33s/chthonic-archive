@@ -1,9 +1,0 @@
-{
-  "task": "extension-health",
-  "timestamp": "2026-02-11T02-19-33",
-  "result": {
-    "fileCount": 8,
-    "events": 10
-  },
-  "summary": "8 extension files analyzed"
-}
