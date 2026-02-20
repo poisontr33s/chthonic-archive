@@ -23,7 +23,7 @@
     "onView:chthonic.mandalaView",
     "onView:chthonic.dependencyView",
     "onView:chthonic.healthView",
-    "onView:chthonic.themeView"
+    "onView:chthonic.themeViewBridge"
   ],
   "main": "./dist/extension.js",
   "sideEffects": false,
@@ -93,7 +93,7 @@
           "icon": "resources/mandala.svg"
         },
         {
-          "id": "chthonic.themeView",
+          "id": "chthonic.themeViewBridge",
           "name": "Theme Bridge",
           "icon": "resources/mandala.svg"
         }

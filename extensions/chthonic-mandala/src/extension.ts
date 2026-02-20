@@ -28,7 +28,7 @@ const VIEW_GROUPS: Record<string, BridgeView[]> = {
             command: 'chthonic.openHealthReport',
         },
     ],
-    'chthonic.themeView': [
+    'chthonic.themeViewBridge': [
         {
             label: 'Switch Theme',
             description: 'Delegate theme switching to Chthonic Archive',
