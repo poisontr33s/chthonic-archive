@@ -52,3 +52,17 @@ llama_context: n_ctx_per_seq (4096) < n_ctx_train (262144) -- the full capacity 
   L2: "models" (7 files)... 57.5s (3 actionable)
   L2: "pr2_review" (7 files)... 40.6s (7 actionable)
   L2: "error-classifier" (6 files)... 36.4s (6 actionable)
+  L2: "assets" (5 files)... 31.7s (3 actionable)
+  L2: "logs" (5 files)... 36.4s (2 actionable)
+  L2: "dev" (4 files)... 20.1s (4 actionable)
+  L2: "plugins" (3 files)... 14.6s (3 actionable)
+
+  L2 complete: 23 domains, 99 promotions, 69 flags
+  Total: 1801.0s (78.3s/domain)
+  ☥ Digest written: C:\Users\erdno\chthonic-archive\claude\mailbox\ARCHAEOLOGY_DIGEST_2026_02_20.md
+
+☥ Refinement complete (structured JSON, $0 cost).
+
+  ────────────────────────────────────────────────────
+  ☥ Nightly run complete.
+
