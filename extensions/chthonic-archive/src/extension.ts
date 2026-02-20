@@ -467,6 +467,8 @@ export function activate(context: vscode.ExtensionContext) {
             const cockpitUrl = resolveWebCockpitUrl(chthonicConfig);
             const webCockpitReachable = await isWebCockpitReachable(cockpitUrl, 900);
             const commandCatalog = new Set(await vscode.commands.getCommands(true));
+            const mandalaExtension = vscode.extensions.getExtension('chthonic-archive.chthonic-mandala');
+            const statusbarExtension = vscode.extensions.getExtension('chthonic-archive.chthonic-statusbar');
             const rows = collectRuntimeStatusRows({
                 workspaceRoot,
                 entropyEnabled,
@@ -478,6 +480,16 @@ export function activate(context: vscode.ExtensionContext) {
                 webCockpitUrl: cockpitUrl,
                 webCockpitReachable,
                 commandCatalog,
+                bridgeMandala: {
+                    installed: Boolean(mandalaExtension),
+                    active: mandalaExtension?.isActive ?? false,
+                    commandAvailable: commandCatalog.has('chthonic.mandalaBridge.switchTheme'),
+                },
+                bridgeStatusbar: {
+                    installed: Boolean(statusbarExtension),
+                    active: statusbarExtension?.isActive ?? false,
+                    commandAvailable: commandCatalog.has('chthonic.bridge.verifySSOT'),
+                },
             });
 
             outputChannel.show(true);
@@ -890,14 +902,20 @@ interface RuntimeStatusInput {
     webCockpitUrl: string;
     webCockpitReachable: boolean;
     commandCatalog: Set<string>;
+    bridgeMandala: BridgeLaneStatus;
+    bridgeStatusbar: BridgeLaneStatus;
+}
+
+interface BridgeLaneStatus {
+    installed: boolean;
+    active: boolean;
+    commandAvailable: boolean;
 }
 
 function collectRuntimeStatusRows(input: RuntimeStatusInput): string[] {
     const rows: string[] = [];
     const entropyWorkerPath = path.join(input.extensionPath, 'dist', 'entropy-worker.js');
     const entropyWorkerReady = fs.existsSync(entropyWorkerPath);
-    const mandalaBridgeReady = input.commandCatalog.has('chthonic.mandalaBridge.switchTheme');
-    const statusBridgeReady = input.commandCatalog.has('chthonic.bridge.verifySSOT');
 
     rows.push(`workspace=${input.workspaceRoot ? 'READY' : 'UNAVAILABLE'}`);
     rows.push(`workspace-health=${input.entropyEnabled ? 'ENABLED' : 'DISABLED'}`);
@@ -927,13 +945,32 @@ function collectRuntimeStatusRows(input: RuntimeStatusInput): string[] {
     );
     rows.push(`loom-view=${input.workspaceRoot ? 'READY' : 'PARKED (workspace unavailable)'}`);
     rows.push(`web-cockpit-url=${input.webCockpitUrl}`);
-    rows.push(`web-cockpit=${input.webCockpitReachable ? 'REACHABLE' : 'UNREACHABLE'}`);
-    rows.push(`bridge-mandala=${mandalaBridgeReady ? 'READY' : 'UNAVAILABLE'}`);
-    rows.push(`bridge-statusbar=${statusBridgeReady ? 'READY' : 'UNAVAILABLE'}`);
+    rows.push(
+        `web-cockpit=${
+            input.webCockpitReachable
+                ? 'REACHABLE'
+                : 'UNREACHABLE (run "Chthonic: Start Next Cockpit")'
+        }`,
+    );
+    rows.push(`bridge-mandala=${formatBridgeStatus(input.bridgeMandala)}`);
+    rows.push(`bridge-statusbar=${formatBridgeStatus(input.bridgeStatusbar)}`);
     if (input.reactorReadiness.daemonPath) {
         rows.push(`reactor-daemon=${input.reactorReadiness.daemonPath}`);
     }
     return rows;
+}
+
+function formatBridgeStatus(status: BridgeLaneStatus): string {
+    if (!status.installed) {
+        return 'UNAVAILABLE (extension not installed)';
+    }
+    if (status.commandAvailable) {
+        return 'READY';
+    }
+    if (status.active) {
+        return 'DEGRADED (active but command missing)';
+    }
+    return 'INSTALLED (awaiting activation)';
 }
 
 interface GitLineage {
