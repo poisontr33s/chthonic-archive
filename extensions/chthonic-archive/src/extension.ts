@@ -92,12 +92,16 @@ export function activate(context: vscode.ExtensionContext) {
     );
     const abyssalProvider = new AbyssalPaneProvider(context.extensionUri, entropyClient);
     abyssalProvider.setRootPath(workspaceRoot);
+    loomProvider.updateWorkspaceHealth(entropyClient.getSnapshot());
 
     context.subscriptions.push(
         entropyClient,
         entropyDecorations,
         abyssalProvider,
         polyglotOrchestrator,
+        entropyClient.onDidUpdateSnapshot((snapshot) => {
+            loomProvider.updateWorkspaceHealth(snapshot);
+        }),
         vscode.window.registerFileDecorationProvider(entropyDecorations),
         vscode.window.registerWebviewViewProvider(AbyssalPaneProvider.viewType, abyssalProvider),
     );
@@ -244,12 +248,6 @@ export function activate(context: vscode.ExtensionContext) {
         annoClient.onDidReceiveEnv((envReport) => {
             cockpitLayout.applyTerminalEnv(envReport);
         }),
-        annoClient.onDidReceiveSediment((sediment) => {
-            abyssalProvider.postSedimentData(sediment);
-        }),
-        annoClient.onDidReceiveSedimentChunk((chunk) => {
-            abyssalProvider.postSedimentChunk(chunk);
-        }),
         annoClient.onDidReceiveSynapse((descriptor) => {
             synapseBridge.updateDescriptor(descriptor);
         }),
@@ -266,11 +264,6 @@ export function activate(context: vscode.ExtensionContext) {
             }
         }),
     );
-
-    // Allow the Abyssal Pane webview to trigger sediment computation
-    abyssalProvider.onRequestSediment(() => {
-        void requestSedimentForWebview(annoClient, abyssalProvider, synapseBridge, outputChannel);
-    });
 
     if (workspaceRoot && reactorEnabled) {
         annoClient.start(workspaceRoot);
@@ -569,30 +562,6 @@ export function activate(context: vscode.ExtensionContext) {
 }
 
 export function deactivate() {}
-
-async function requestSedimentForWebview(
-    annoClient: AnnoClient,
-    abyssalProvider: AbyssalPaneProvider,
-    synapseBridge: SynapseBridge,
-    outputChannel: vscode.OutputChannel,
-): Promise<void> {
-    try {
-        if (synapseBridge.isReady()) {
-            const result = await annoClient.requestSedimentSynapse(10, 500, 220);
-            if (result.transport === 'shared_memory') {
-                const drained = await synapseBridge.drain(result, (chunk) => {
-                    abyssalProvider.postSedimentBinary(chunk);
-                });
-                outputChannel.appendLine(`[reactor] synapse drain ${drained}/${result.chunks_written} chunks`);
-                return;
-            }
-        }
-
-        await annoClient.requestSedimentStream(10, 500);
-    } catch (error) {
-        outputChannel.appendLine(`[reactor] sediment request failed: ${error}`);
-    }
-}
 
 // --- SSOT Hash ---
 function computeSSOTHash(): string | null {
