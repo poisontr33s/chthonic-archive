@@ -14,6 +14,8 @@
     "onCommand:chthonic.openDependencyGraph",
     "onCommand:chthonic.openHealthReport",
     "onCommand:chthonic.mandalaBridge.switchTheme",
+    "onCommand:chthonic.mandalaBridge.openWebCockpit",
+    "onCommand:chthonic.mandalaBridge.openBunDocs",
     "onView:chthonic.mandalaView",
     "onView:chthonic.dependencyView",
     "onView:chthonic.healthView",
@@ -47,6 +49,16 @@
         "command": "chthonic.mandalaBridge.switchTheme",
         "title": "Chthonic: Switch Theme (Mandala Bridge)",
         "icon": "$(paintcan)"
+      },
+      {
+        "command": "chthonic.mandalaBridge.openWebCockpit",
+        "title": "Chthonic: Open Web Cockpit (Mandala Bridge)",
+        "icon": "$(globe)"
+      },
+      {
+        "command": "chthonic.mandalaBridge.openBunDocs",
+        "title": "Chthonic: Open Bun Training Docs (Mandala Bridge)",
+        "icon": "$(book)"
       }
     ],
     "viewsContainers": {

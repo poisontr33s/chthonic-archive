@@ -16,7 +16,9 @@
     "onCommand:chthonic.runMetabolicCycle",
     "onCommand:chthonic.showGPUStats",
     "onCommand:chthonic.runHostVerify",
-    "onCommand:chthonic.runVsAudit"
+    "onCommand:chthonic.runVsAudit",
+    "onCommand:chthonic.openWebCockpitBridge",
+    "onCommand:chthonic.openBunTrainingDocsBridge"
   ],
   "main": "./dist/extension.js",
   "sideEffects": false,
@@ -48,6 +50,14 @@
       {
         "command": "chthonic.runVsAudit",
         "title": "Chthonic: Run VS 2026 Audit (Bridge)"
+      },
+      {
+        "command": "chthonic.openWebCockpitBridge",
+        "title": "Chthonic: Open Web Cockpit (Bridge)"
+      },
+      {
+        "command": "chthonic.openBunTrainingDocsBridge",
+        "title": "Chthonic: Open Bun Training Docs (Bridge)"
       }
     ]
   },

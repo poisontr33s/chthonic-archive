@@ -27,6 +27,16 @@ const ROUTES: RouteSpec[] = [
         to: 'chthonic.reactorSediment',
         title: 'Chthonic: Run Reactor Sediment (Bridge)',
     },
+    {
+        from: 'chthonic.openWebCockpitBridge',
+        to: 'chthonic.openWebCockpit',
+        title: 'Chthonic: Open Web Cockpit (Bridge)',
+    },
+    {
+        from: 'chthonic.openBunTrainingDocsBridge',
+        to: 'chthonic.openBunTrainingDocs',
+        title: 'Chthonic: Open Bun Training Docs (Bridge)',
+    },
 ];
 
 export function activate(context: vscode.ExtensionContext): void {

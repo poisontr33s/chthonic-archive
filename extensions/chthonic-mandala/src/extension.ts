@@ -34,6 +34,16 @@ const VIEW_GROUPS: Record<string, BridgeView[]> = {
             description: 'Delegate theme switching to Chthonic Archive',
             command: 'chthonic.mandalaBridge.switchTheme',
         },
+        {
+            label: 'Open Web Cockpit',
+            description: 'Open Bun/Next cockpit lane in browser',
+            command: 'chthonic.mandalaBridge.openWebCockpit',
+        },
+        {
+            label: 'Open Bun Docs',
+            description: 'Open Bun React/Next/Tailwind/SQLite docs',
+            command: 'chthonic.mandalaBridge.openBunDocs',
+        },
     ],
 };
 
@@ -47,6 +57,8 @@ export function activate(context: vscode.ExtensionContext): void {
         ['chthonic.openDependencyGraph', () => focusArchiveView('chthonic.abyssalView.focus', output)],
         ['chthonic.openHealthReport', () => focusArchiveView('chthonic.statusView.focus', output)],
         ['chthonic.mandalaBridge.switchTheme', () => delegate('chthonic.switchTheme', output)],
+        ['chthonic.mandalaBridge.openWebCockpit', () => delegate('chthonic.openWebCockpit', output)],
+        ['chthonic.mandalaBridge.openBunDocs', () => delegate('chthonic.openBunTrainingDocs', output)],
     ];
 
     for (const [command, handler] of commands) {

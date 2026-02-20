@@ -35,14 +35,12 @@ const statusbarHealth = statusbarSize < 10 * 1024 ? "✓" : "⚠️";
 const mandalaHealth = mandalaSize < 18 * 1024 ? "✓" : "⚠️";
 console.log(`  Status:    ${statusbarHealth} StatusBar, ${mandalaHealth} Mandala\n`);
 
-// Python detection
-console.log("🐍 Python Detection");
+// Bun lane detection
+console.log("🥟 Bun Runtime Lane");
 try {
-  process.env.PYTHONIOENCODING = "utf-8";
-  const output = execSync("uv run python --version", { encoding: "utf-8", timeout: 5000 }).trim();
-  const match = output.match(/Python\s+(\d+\.\d+(?:\.\d+)?)/);
-  console.log(`  Version:   ${match ? match[1] : "FAILED"}`);
-  console.log(`  Status:    ${match ? "✓" : "❌"}\n`);
+  const output = execSync("bun --version", { encoding: "utf-8", timeout: 5000 }).trim();
+  console.log(`  Version:   ${output || "FAILED"}`);
+  console.log(`  Status:    ${output ? "✓" : "❌"}\n`);
 } catch (error: any) {
   console.log(`  Status:    ❌ ${error.message}\n`);
 }
@@ -86,12 +84,18 @@ console.log(`  NODE_ENV:      ${statusbarPkg.bun?.define?.["process.env.NODE_ENV
 // Source code checks
 console.log("🔬 Source Code Health");
 const extensionSrc = readFileSync("extensions/chthonic-statusbar/src/extension.ts", "utf-8");
-const hasUtf8 = extensionSrc.includes("PYTHONIOENCODING");
-const hasBrokenRegex = extensionSrc.includes("/Python\\\\s+");
+const hasBridgeRoutes =
+  extensionSrc.includes("const ROUTES: RouteSpec[]") &&
+  extensionSrc.includes("chthonic.verifySSO_T") &&
+  extensionSrc.includes("chthonic.verifySSOT");
+const dispatchesBunTasks =
+  extensionSrc.includes("terminal.sendText(`bun run ${taskName}`)") &&
+  extensionSrc.includes("runArchiveTask('verify:host', output)") &&
+  extensionSrc.includes("runArchiveTask('audit:vs2026', output)");
 const hasDeadImport = extensionSrc.includes("hedonisticValidation");
 
-console.log(`  UTF-8 enforcement:     ${hasUtf8 ? "✓" : "❌"}`);
-console.log(`  Regex fixed:           ${!hasBrokenRegex ? "✓" : "❌"}`);
+console.log(`  Bridge routes mapped:  ${hasBridgeRoutes ? "✓" : "❌"}`);
+console.log(`  Bun task dispatch:     ${dispatchesBunTasks ? "✓" : "❌"}`);
 console.log(`  Dead imports removed:  ${!hasDeadImport ? "✓" : "❌"}\n`);
 
 // Summary
@@ -101,8 +105,8 @@ const allHealthy =
   mandalaSize < 18 * 1024 &&
   statusbarDeployed &&
   mandalaDeployed &&
-  hasUtf8 &&
-  !hasBrokenRegex &&
+  hasBridgeRoutes &&
+  dispatchesBunTasks &&
   !hasDeadImport;
 
 if (allHealthy) {

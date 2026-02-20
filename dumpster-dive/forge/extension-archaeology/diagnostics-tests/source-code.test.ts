@@ -12,25 +12,28 @@
 import { test, expect } from "bun:test";
 import { readFileSync } from "fs";
 
-test("statusbar extension has UTF-8 enforcement", () => {
+test("statusbar extension maps legacy bridge routes", () => {
   const src = readFileSync(
     "extensions/chthonic-statusbar/src/extension.ts",
     "utf-8"
   );
-  expect(src).toContain("PYTHONIOENCODING");
+  expect(src).toContain("const ROUTES: RouteSpec[]");
+  expect(src).toContain("chthonic.verifySSO_T");
+  expect(src).toContain("chthonic.verifySSOT");
 });
 
-test("python regex is correctly escaped", () => {
+test("statusbar bridge dispatches bun host tasks", () => {
   const src = readFileSync(
     "extensions/chthonic-statusbar/src/extension.ts",
     "utf-8"
   );
 
-  // Should NOT have double backslashes
-  expect(src).not.toContain("/Python\\\\s+");
-
-  // Should have single backslashes in regex
-  expect(src).toContain("/Python\\s+");
+  expect(src).toContain("terminal.sendText(`bun run ${taskName}`)");
+  expect(src).toContain("runArchiveTask('verify:host', output)");
+  expect(src).toContain("runArchiveTask('audit:vs2026', output)");
+  // Legacy Python/version-detection lane should remain absent in bridge runtime.
+  expect(src).not.toContain("PYTHONIOENCODING");
+  expect(src).not.toContain("/Python\\s+");
 });
 
 test("dead hedonisticValidation import is removed", () => {
