@@ -1,0 +1,30 @@
+{
+  "path": "data/indices",
+  "primaryLanguage": "json",
+  "purpose": "general",
+  "fileCount": 1,
+  "totalSize": 30088,
+  "averageComplexity": 1,
+  "documentationCoverage": 0,
+  "files": [
+    {
+      "path": "data/indices/sid_index.json",
+      "language": "json",
+      "size": 30088,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 4,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    }
+  ]
+}

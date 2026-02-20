@@ -1,0 +1,129 @@
+{
+  "path": "extensions/chthonic-archive/src/reactor",
+  "primaryLanguage": "typescript",
+  "purpose": "general",
+  "fileCount": 5,
+  "totalSize": 366943,
+  "averageComplexity": 9,
+  "documentationCoverage": 0.05,
+  "files": [
+    {
+      "path": "extensions/chthonic-archive/src/reactor/annoClient.ts",
+      "language": "typescript",
+      "size": 11040,
+      "complexity": {
+        "cyclomatic": 14,
+        "nestingDepth": 10,
+        "functionCount": 2,
+        "avgFunctionLength": 136
+      },
+      "imports": [
+        "path",
+        "child_process",
+        "vscode",
+        "../polyglot/jsonl"
+      ],
+      "exports": [
+        "AnnoClient"
+      ],
+      "todoCount": 0,
+      "docstringCount": 1,
+      "commentDensity": 0.011029411764705883,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "extensions/chthonic-archive/src/reactor/cockpitLayout.ts",
+      "language": "typescript",
+      "size": 4459,
+      "complexity": {
+        "cyclomatic": 13,
+        "nestingDepth": 10,
+        "functionCount": 1,
+        "avgFunctionLength": 120
+      },
+      "imports": [
+        "vscode",
+        "./types"
+      ],
+      "exports": [
+        "CockpitLayout"
+      ],
+      "todoCount": 0,
+      "docstringCount": 3,
+      "commentDensity": 0.14166666666666666,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "extensions/chthonic-archive/src/reactor/synapse.node",
+      "language": "unknown",
+      "size": 342528,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 3,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "extensions/chthonic-archive/src/reactor/synapseBridge.ts",
+      "language": "typescript",
+      "size": 4879,
+      "complexity": {
+        "cyclomatic": 17,
+        "nestingDepth": 10,
+        "functionCount": 3,
+        "avgFunctionLength": 49
+      },
+      "imports": [
+        "fs",
+        "path",
+        "vscode",
+        "./types"
+      ],
+      "exports": [
+        "SynapseBridge"
+      ],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [
+        "async-patterns"
+      ],
+      "antiPatterns": [],
+      "securityFlags": [
+        "eval-usage"
+      ]
+    },
+    {
+      "path": "extensions/chthonic-archive/src/reactor/types.ts",
+      "language": "typescript",
+      "size": 4037,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 4,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0.07317073170731707,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    }
+  ]
+}

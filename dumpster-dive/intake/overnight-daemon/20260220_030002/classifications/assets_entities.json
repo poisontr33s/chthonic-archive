@@ -1,0 +1,30 @@
+{
+  "path": "assets/entities",
+  "primaryLanguage": "json",
+  "purpose": "general",
+  "fileCount": 1,
+  "totalSize": 27564,
+  "averageComplexity": 1,
+  "documentationCoverage": 0,
+  "files": [
+    {
+      "path": "assets/entities/abbreviations.json",
+      "language": "json",
+      "size": 27564,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 6,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    }
+  ]
+}

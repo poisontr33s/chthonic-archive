@@ -1,0 +1,256 @@
+{
+  "path": "extensions/chthonic-archive/native/chthonic-daemon/src",
+  "primaryLanguage": "rust",
+  "purpose": "core",
+  "fileCount": 7,
+  "totalSize": 110432,
+  "averageComplexity": 33,
+  "documentationCoverage": 0.06,
+  "files": [
+    {
+      "path": "extensions/chthonic-archive/native/chthonic-daemon/src/anno.rs",
+      "language": "rust",
+      "size": 8858,
+      "complexity": {
+        "cyclomatic": 37,
+        "nestingDepth": 8,
+        "functionCount": 6,
+        "avgFunctionLength": 40
+      },
+      "imports": [
+        "std::collections::HashMap",
+        "std::path::Path",
+        "anyhow::Result",
+        "crate::types::",
+        "dedicated",
+        "a"
+      ],
+      "exports": [
+        "detect_project"
+      ],
+      "todoCount": 0,
+      "docstringCount": 10,
+      "commentDensity": 0.11885245901639344,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "extensions/chthonic-archive/native/chthonic-daemon/src/entropy_monitor.rs",
+      "language": "rust",
+      "size": 26508,
+      "complexity": {
+        "cyclomatic": 71,
+        "nestingDepth": 16,
+        "functionCount": 36,
+        "avgFunctionLength": 24
+      },
+      "imports": [
+        "std::cmp::Ordering",
+        "std::collections::HashMap",
+        "std::fs",
+        "std::path::",
+        "std::sync::atomic::",
+        "std::sync::",
+        "std::thread::",
+        "std::time::",
+        "anyhow::",
+        "reqwest::blocking::Client",
+        "serde::Deserialize",
+        "serde::Serialize",
+        "std::process::Command"
+      ],
+      "exports": [
+        "EntropyState",
+        "EntropyToolState",
+        "EntropyMonitorOptions",
+        "from_env",
+        "EntropyMonitor",
+        "start",
+        "snapshot"
+      ],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [
+        "error-handling:Result"
+      ],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "extensions/chthonic-archive/native/chthonic-daemon/src/env.rs",
+      "language": "rust",
+      "size": 8815,
+      "complexity": {
+        "cyclomatic": 36,
+        "nestingDepth": 12,
+        "functionCount": 8,
+        "avgFunctionLength": 32
+      },
+      "imports": [
+        "std::path::PathBuf",
+        "anyhow::Result",
+        "crate::types::"
+      ],
+      "exports": [
+        "provision"
+      ],
+      "todoCount": 0,
+      "docstringCount": 4,
+      "commentDensity": 0.07751937984496124,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "extensions/chthonic-archive/native/chthonic-daemon/src/main.rs",
+      "language": "rust",
+      "size": 15223,
+      "complexity": {
+        "cyclomatic": 28,
+        "nestingDepth": 18,
+        "functionCount": 5,
+        "avgFunctionLength": 86
+      },
+      "imports": [
+        "std::io::",
+        "anyhow::",
+        "clap::Parser",
+        "serde::Serialize",
+        "types::"
+      ],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 4,
+      "commentDensity": 0.05069124423963134,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "extensions/chthonic-archive/native/chthonic-daemon/src/reactor.rs",
+      "language": "rust",
+      "size": 34655,
+      "complexity": {
+        "cyclomatic": 41,
+        "nestingDepth": 14,
+        "functionCount": 17,
+        "avgFunctionLength": 56
+      },
+      "imports": [
+        "std::time::Instant",
+        "anyhow::",
+        "crate::types::",
+        "ash::vk",
+        "windows_sys::Win32::System::LibraryLoader::",
+        "the"
+      ],
+      "exports": [
+        "Node",
+        "VulkanReactor",
+        "compute_sediment",
+        "initialize",
+        "GitMetricsResult",
+        "gather_git_metrics",
+        "compute_path_entropy",
+        "cpu_simulate",
+        "simulate_firedancer_telemetry"
+      ],
+      "todoCount": 0,
+      "docstringCount": 48,
+      "commentDensity": 0.11570247933884298,
+      "patterns": [
+        "error-handling:Result"
+      ],
+      "antiPatterns": [],
+      "securityFlags": [
+        "unsafe-block"
+      ]
+    },
+    {
+      "path": "extensions/chthonic-archive/native/chthonic-daemon/src/synapse.rs",
+      "language": "rust",
+      "size": 10924,
+      "complexity": {
+        "cyclomatic": 16,
+        "nestingDepth": 10,
+        "functionCount": 11,
+        "avgFunctionLength": 33
+      },
+      "imports": [
+        "std::mem::size_of",
+        "std::sync::atomic::",
+        "std::time::",
+        "anyhow::",
+        "chthonic_synapse_schema::",
+        "shared_memory::",
+        "crate::types::",
+        "the",
+        "windows_sys::Win32::System::Threading::CreateEventW"
+      ],
+      "exports": [
+        "SynapseDescriptor",
+        "SynapsePublishSummary",
+        "SynapseWriter",
+        "create",
+        "descriptor",
+        "publish_result"
+      ],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0.01084010840108401,
+      "patterns": [
+        "error-handling:Result"
+      ],
+      "antiPatterns": [],
+      "securityFlags": [
+        "unsafe-block"
+      ]
+    },
+    {
+      "path": "extensions/chthonic-archive/native/chthonic-daemon/src/types.rs",
+      "language": "rust",
+      "size": 5449,
+      "complexity": {
+        "cyclomatic": 2,
+        "nestingDepth": 8,
+        "functionCount": 9,
+        "avgFunctionLength": 25
+      },
+      "imports": [
+        "serde::",
+        "std::collections::HashMap"
+      ],
+      "exports": [
+        "JsonRpcRequest",
+        "JsonRpcNotification",
+        "JsonRpcSuccess",
+        "JsonRpcError",
+        "ErrorPayload",
+        "parse_error",
+        "method_not_found",
+        "internal",
+        "AnnoManifest",
+        "LanguagePolicy",
+        "ToolOwner",
+        "DetectedMarker",
+        "MarkerKind",
+        "has_language",
+        "needs_mise",
+        "EnvReport",
+        "PathSegment",
+        "SedimentRequest",
+        "SedimentResult",
+        "FiredancerTelemetry",
+        "SedimentVertex"
+      ],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0.05286343612334802,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+
+╔══════════════════════════════════════════════════════╗
+║  ☥ NIGHTLY DAEMON — Local Computation, Zero API     ║
+╚══════════════════════════════════════════════════════╝
+
+  ☥ Daemon: debt scoring + complexity analysis...
+report: C:/Users/erdno/chthonic-archive/dumpster-dive/intake/overnight-daemon/20260220_030002/report.json
+top: scripts/chthonic.ps1
+  ☥ Archaeology: scavenge only (Loop 1, zero API)
+[2026-02-20T02:00:06.818Z] ☥ Overnight Archaeology Refinery starting
+[2026-02-20T02:00:06.819Z]   Loop 1 (scavenge): YES
+[2026-02-20T02:00:06.820Z]   Loop 2 (refine):   SKIP
+[2026-02-20T02:00:06.820Z]   Output: C:\Users\erdno\chthonic-archive\dumpster-dive\intake\overnight-intelligence\arch-2026-02-20T02-00-06
+[2026-02-20T02:00:06.820Z]   Dry run: false
+[2026-02-20T02:00:06.820Z] 
+━━━ LOOP 1: SCAVENGE ━━━
+[2026-02-20T02:00:19.869Z]   Scavenged 10219 files
+[2026-02-20T02:00:19.870Z]   By category: docs:1183, code:6016, data:2961, sentinel:59
+[2026-02-20T02:00:19.870Z]   By tier: T1:6016, T2:2961, T3:1242
+[2026-02-20T02:00:19.871Z]   Files with name signals: 614
+[2026-02-20T02:00:19.873Z] 
+☥ Archaeology complete. 0.2 min.
+  ☥ Local Refiner: Qwen3-30B-A3B Instruct abliterated (default, uncensored) (zero network, zero cost)
+llama_context: n_ctx_per_seq (4096) < n_ctx_train (262144) -- the full capacity of the model will not be utilized
+☥ Local Archaeology Refiner v2 (llama-cpp + structured JSON)
+  Mode: Qwen3-30B-A3B Instruct abliterated (default)
+  Model dir: C:\Users\erdno\chthonic-archive\models\Qwen3-30B-A3B-Instruct-abliterated-GGUF
+  Ore: C:\Users\erdno\chthonic-archive\dumpster-dive\intake\overnight-intelligence\arch-2026-02-20T02-00-06\L1-ore.json
+  Ore entries (raw): 10219
+  Filtered: 5448 noise entries removed (venvs, node_modules, build artifacts)
+  Ore entries (filtered): 4771
+  L0 newsfeed: 2026-02-19 (15P/15F)
+  Loading: Huihui-Qwen3-30B-A3B-Instruct-2507-abliterated.i1-Q3_K_M.gguf
+  Loaded in 38.2s
+

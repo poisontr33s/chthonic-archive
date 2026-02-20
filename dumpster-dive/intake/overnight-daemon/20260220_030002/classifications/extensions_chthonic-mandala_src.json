@@ -1,0 +1,66 @@
+{
+  "path": "extensions/chthonic-mandala/src",
+  "primaryLanguage": "typescript",
+  "purpose": "core",
+  "fileCount": 2,
+  "totalSize": 41810,
+  "averageComplexity": 18,
+  "documentationCoverage": 0.01,
+  "files": [
+    {
+      "path": "extensions/chthonic-mandala/src/extension.ts",
+      "language": "typescript",
+      "size": 4196,
+      "complexity": {
+        "cyclomatic": 7,
+        "nestingDepth": 6,
+        "functionCount": 7,
+        "avgFunctionLength": 19
+      },
+      "imports": [
+        "vscode"
+      ],
+      "exports": [
+        "activate",
+        "deactivate"
+      ],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0.007518796992481203,
+      "patterns": [
+        "async-patterns"
+      ],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "extensions/chthonic-mandala/src/mandala_viewer_legacy.ts",
+      "language": "typescript",
+      "size": 37614,
+      "complexity": {
+        "cyclomatic": 29,
+        "nestingDepth": 12,
+        "functionCount": 23,
+        "avgFunctionLength": 44
+      },
+      "imports": [
+        "fs",
+        "path",
+        "child_process",
+        "vscode"
+      ],
+      "exports": [
+        "activate",
+        "deactivate"
+      ],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0.016536964980544747,
+      "patterns": [
+        "async-patterns"
+      ],
+      "antiPatterns": [],
+      "securityFlags": []
+    }
+  ]
+}

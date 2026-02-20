@@ -1,0 +1,49 @@
+{
+  "path": "anti-patterns",
+  "primaryLanguage": "markdown",
+  "purpose": "general",
+  "fileCount": 2,
+  "totalSize": 110321,
+  "averageComplexity": 1,
+  "documentationCoverage": 0,
+  "files": [
+    {
+      "path": "anti-patterns/codekiller.md",
+      "language": "markdown",
+      "size": 106683,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 14,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    },
+    {
+      "path": "anti-patterns/README.md",
+      "language": "markdown",
+      "size": 3638,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 1,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    }
+  ]
+}

@@ -1,0 +1,47 @@
+{
+  "path": "extensions/chthonic-archive/native/synapse-node/src",
+  "primaryLanguage": "rust",
+  "purpose": "core",
+  "fileCount": 1,
+  "totalSize": 5572,
+  "averageComplexity": 12,
+  "documentationCoverage": 0,
+  "files": [
+    {
+      "path": "extensions/chthonic-archive/native/synapse-node/src/lib.rs",
+      "language": "rust",
+      "size": 5572,
+      "complexity": {
+        "cyclomatic": 12,
+        "nestingDepth": 12,
+        "functionCount": 7,
+        "avgFunctionLength": 25
+      },
+      "imports": [
+        "std::mem::size_of",
+        "std::sync::atomic::",
+        "std::sync::Mutex",
+        "std::time::",
+        "chthonic_synapse_schema::",
+        "napi::bindgen_prelude::",
+        "napi_derive::napi",
+        "shared_memory::",
+        "windows_sys::Win32::System::Threading::"
+      ],
+      "exports": [
+        "SynapseReader",
+        "new",
+        "wait_for_signal",
+        "read_chunk"
+      ],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": [
+        "unsafe-block"
+      ]
+    }
+  ]
+}

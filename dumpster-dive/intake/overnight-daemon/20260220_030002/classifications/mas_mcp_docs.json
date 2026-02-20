@@ -1,0 +1,30 @@
+{
+  "path": "mas_mcp/docs",
+  "primaryLanguage": "markdown",
+  "purpose": "documentation",
+  "fileCount": 1,
+  "totalSize": 25835,
+  "averageComplexity": 1,
+  "documentationCoverage": 0,
+  "files": [
+    {
+      "path": "mas_mcp/docs/ARCHITECTURE_FLOW.md",
+      "language": "markdown",
+      "size": 25835,
+      "complexity": {
+        "cyclomatic": 1,
+        "nestingDepth": 26,
+        "functionCount": 0,
+        "avgFunctionLength": 0
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0,
+      "patterns": [],
+      "antiPatterns": [],
+      "securityFlags": []
+    }
+  ]
+}

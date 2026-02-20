@@ -1,0 +1,32 @@
+{
+  "path": "extensions/chthonic-archive/media",
+  "primaryLanguage": "javascript",
+  "purpose": "general",
+  "fileCount": 1,
+  "totalSize": 21580,
+  "averageComplexity": 62,
+  "documentationCoverage": 0.02,
+  "files": [
+    {
+      "path": "extensions/chthonic-archive/media/abyssalPane.js",
+      "language": "javascript",
+      "size": 21580,
+      "complexity": {
+        "cyclomatic": 62,
+        "nestingDepth": 12,
+        "functionCount": 23,
+        "avgFunctionLength": 27
+      },
+      "imports": [],
+      "exports": [],
+      "todoCount": 0,
+      "docstringCount": 0,
+      "commentDensity": 0.022082018927444796,
+      "patterns": [
+        "async-patterns"
+      ],
+      "antiPatterns": [],
+      "securityFlags": []
+    }
+  ]
+}
