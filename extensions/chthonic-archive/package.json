@@ -112,6 +112,11 @@
         "command": "chthonic.postRestartVerify",
         "title": "Chthonic: Post-Restart Verify",
         "icon": "$(check)"
+      },
+      {
+        "command": "chthonic.restartGate",
+        "title": "Chthonic: Restart Gate Check",
+        "icon": "$(debug-pause)"
       }
     ],
     "viewsContainers": {
@@ -338,6 +343,7 @@
     "insiders:package": "bunx @vscode/vsce package --pre-release --no-dependencies --out chthonic-archive-insiders.vsix",
     "insiders:run": "code-insiders --extensionDevelopmentPath=.",
     "insiders:dts:sync": "bunx @vscode/dts dev && bunx @vscode/dts main",
+    "insiders:restart:gate": "bun run scripts/insiders-post-restart-verify.ts --gate-only",
     "insiders:post-restart:verify": "bun run scripts/insiders-post-restart-verify.ts"
   },
   "devDependencies": {
