@@ -1,4 +1,3 @@
-import { spawnSync } from 'node:child_process';
 import { existsSync } from 'node:fs';
 import path from 'node:path';
 import { runTests } from '@vscode/test-electron';
@@ -71,7 +70,11 @@ const smokeCases: ExtensionSmokeCase[] = [
 ];
 
 async function main(): Promise<void> {
-    const vscodeExecutablePath = resolveCodeInsidersExecutable();
+    const vscodeExecutablePath = resolveInsidersCli();
+    if (!vscodeExecutablePath) {
+        throw new Error('Unable to resolve VS Code Insiders CLI (code-insiders.cmd)');
+    }
+
     for (const testCase of smokeCases) {
         console.log(`[e2e] running ${testCase.label}`);
         await runTests({
@@ -95,35 +98,24 @@ async function main(): Promise<void> {
     }
 }
 
-function resolveCodeInsidersExecutable(): string | undefined {
+function resolveInsidersCli(): string | null {
     const localAppData = process.env.LOCALAPPDATA;
-    if (localAppData) {
-        const insidersExe = path.join(
-            localAppData,
-            'Programs',
-            'Microsoft VS Code Insiders',
-            'Code - Insiders.exe',
-        );
-        if (existsSync(insidersExe)) {
-            return insidersExe;
-        }
+    if (!localAppData) {
+        return null;
     }
 
-    const whereInsiders = spawnSync('where.exe', ['code-insiders'], {
-        encoding: 'utf8',
-        windowsHide: true,
-    });
-    if (whereInsiders.status === 0) {
-        const firstMatch = whereInsiders.stdout
-            .split(/\r?\n/)
-            .map((line) => line.trim())
-            .find((line) => line.length > 0);
-        if (firstMatch && existsSync(firstMatch)) {
-            return firstMatch;
-        }
+    const insidersCli = path.join(
+        localAppData,
+        'Programs',
+        'Microsoft VS Code Insiders',
+        'bin',
+        'code-insiders.cmd',
+    );
+    if (existsSync(insidersCli)) {
+        return insidersCli;
     }
 
-    return undefined;
+    return null;
 }
 
 main().catch((error) => {
