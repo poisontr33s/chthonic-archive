@@ -49,3 +49,6 @@ llama_context: n_ctx_per_seq (4096) < n_ctx_train (262144) -- the full capacity 
   L2: "chthonic-vscode-extension" (11 files)... 49.4s (6 actionable)
   L2: "data" (10 files)... 42.0s (5 actionable)
   L2: "ankh_atlas" (9 files)... 44.2s (7 actionable)
+  L2: "models" (7 files)... 57.5s (3 actionable)
+  L2: "pr2_review" (7 files)... 40.6s (7 actionable)
+  L2: "error-classifier" (6 files)... 36.4s (6 actionable)
