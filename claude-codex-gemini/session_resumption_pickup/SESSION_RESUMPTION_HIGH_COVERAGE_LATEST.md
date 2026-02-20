@@ -1,14 +1,14 @@
 ---
 type: session-resumption-packet
 owner: codex
-generated: 2026-02-20T02:31:10.079793+00:00
+generated: 2026-02-20T03:18:07.171189+00:00
 scope: claude-side continuation + localai stewardship
 ---
 
 # Session Resumption High Coverage (Codex Stewardship)
 
-- Coverage score: **75.0%**
-- Generated (UTC): `2026-02-20 02:31:10`
+- Coverage score: **100.0%**
+- Generated (UTC): `2026-02-20 03:18:07`
 
 ## Continuation Trail (Claude-side)
 
@@ -27,18 +27,18 @@ scope: claude-side continuation + localai stewardship
 | Nightly scheduler log exists | OK | C:\Users\erdno\chthonic-archive\dumpster-dive\intake\overnight-daemon\nightly-scheduled-2026-02-20_030002.log |
 | Nightly scheduler log clean | OK | clean |
 | Nightly completion marker present | OK | complete marker found |
-| Daemon report exists | OK | C:\Users\erdno\chthonic-archive\dumpster-dive\intake\overnight-daemon\20260220_030002\report.json |
+| Daemon report exists | OK | C:\Users\erdno\chthonic-archive\dumpster-dive\intake\overnight-daemon\20260220_041557\report.json |
 | L1 ore exists | OK | C:\Users\erdno\chthonic-archive\dumpster-dive\intake\overnight-intelligence\arch-2026-02-20T02-00-06\L1-ore.json |
 | Uncensored model lane present | OK | detected |
 | Qwen3 abliterated lane present | OK | detected |
-| numpy 2.x functional | FAIL | missing |
-| polars functional | FAIL | missing |
-| llama-cpp lane import | FAIL | missing |
+| numpy 2.x functional | OK | 2.4.2 |
+| polars functional | OK | 1.38.1 |
+| llama-cpp lane import | OK | 0.3.16 |
 
 ## Nightly Daemon Status
 
 - Latest scheduler log: `C:\Users\erdno\chthonic-archive\dumpster-dive\intake\overnight-daemon\nightly-scheduled-2026-02-20_030002.log`
-- Latest daemon run: `C:\Users\erdno\chthonic-archive\dumpster-dive\intake\overnight-daemon\20260220_030002`
+- Latest daemon run: `C:\Users\erdno\chthonic-archive\dumpster-dive\intake\overnight-daemon\20260220_041557`
 - Latest archaeology run: `C:\Users\erdno\chthonic-archive\dumpster-dive\intake\overnight-intelligence\arch-2026-02-20T02-00-06`
 - Nightly clean: **yes**
 
@@ -50,9 +50,9 @@ scope: claude-side continuation + localai stewardship
 | bun | OK | 1.3.9 |
 | pwsh | OK | PowerShell 7.5.4 |
 
-- numpy: `missing`
-- polars: `missing`
-- llama_cpp: `missing`
+- numpy: `2.4.2`
+- polars: `1.38.1`
+- llama_cpp: `0.3.16`
 
 ## Model Inventory (Installed)
 
@@ -113,18 +113,18 @@ scope: claude-side continuation + localai stewardship
 ## Session Log Tail (Raw Anchor)
 
 ```text
-All parameters are case-insensitive.
-Bash Check PowerShell syntax
+OUT
+0
+Bash Uncommitted diff stats
 IN
-pwsh -NoProfile -Command 'try { $null = [System.Management.Automation.Language.Parser]::ParseFile("c:\Users\erdno\chthonic-archive\scripts\run_archaeology.ps1", [ref]$null, [ref]$errs); if ($errs.Count -gt 0) { $errs | ForEach-Object { $_.Message } } else { "Syntax OK" } } catch { $_.Exception.Message }'
+cd /c/Users/erdno/chthonic-archive && git diff --stat
 
 OUT
-[ref] cannot be applied to a variable that does not exist.
-Bash Check PowerShell syntax
+0
+Bash Today's commit count
 IN
-pwsh -NoProfile -Command '$tokens = $null; $parseErrors = $null; [void][System.Management.Automation.Language.Parser]::ParseFile("c:\Users\erdno\chthonic-archive\scripts\run_archaeology.ps1", [ref]$tokens, [ref]$parseErrors); if ($parseErrors.Count -gt 0) { $parseErrors | ForEach-Object { $_.Message } } else { "Syntax OK" }'
+cd /c/Users/erdno/chthonic-archive && git log --oneline --since="24 hours ago" | wc -l
 
 OUT
-Syntax OK
-You've hit your limit · resets 1am (Europe/Oslo)
+24
 ```

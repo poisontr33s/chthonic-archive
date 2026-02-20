@@ -1,0 +1,98 @@
+[0001] CMD
+uv run python -c "
+
+[0002] CMD
+uv run python -c "
+
+[0003] CMD
+uv run python -c "
+
+[0004] CMD
+uv run python -c "
+
+[0005] CMD
+uv run python -c "import ast; ast.parse(open('scripts/local_refiner_v2.py').read()); print('Syntax OK')"
+
+[0006] CMD
+pwsh -NoProfile -Command "try { [System.Management.Automation.Language.Parser]::ParseFile('c:\Users\erdno\chthonic-archive\scripts\run_archaeology.ps1', [ref]\$null, [ref]\$null) | Out-Null; Write-Host 'Syntax OK' } catch { Write-Host \"Parse error: \$_\" }"
+
+[0007] CMD
+pwsh -NoProfile -File /dev/null -Command '& { $null = [System.Management.Automation.Language.Parser]::ParseFile("c:\Users\erdno\chthonic-archive\scripts\run_archaeology.ps1", [ref]$null, [ref]$errors); if ($errors.Count -gt 0) { $errors | ForEach-Object { Write-Host $_.Message } } else { Write-Host "Syntax OK" } }'
+
+[0008] CMD
+pwsh -NoProfile -Command 'try { $null = [System.Management.Automation.Language.Parser]::ParseFile("c:\Users\erdno\chthonic-archive\scripts\run_archaeology.ps1", [ref]$null, [ref]$errs); if ($errs.Count -gt 0) { $errs | ForEach-Object { $_.Message } } else { "Syntax OK" } } catch { $_.Exception.Message }'
+
+[0009] CMD
+pwsh -NoProfile -Command '$tokens = $null; $parseErrors = $null; [void][System.Management.Automation.Language.Parser]::ParseFile("c:\Users\erdno\chthonic-archive\scripts\run_archaeology.ps1", [ref]$tokens, [ref]$parseErrors); if ($parseErrors.Count -gt 0) { $parseErrors | ForEach-Object { $_.Message } } else { "Syntax OK" }'
+
+[0010] CMD
+uv run python -c "import ast; ast.parse(open('scripts/local_refiner_v2.py').read()); print('Syntax OK')"
+
+[0011] CMD
+pwsh -NoProfile -Command "try { [System.Management.Automation.Language.Parser]::ParseFile('c:\Users\erdno\chthonic-archive\scripts\run_archaeology.ps1', [ref]\$null, [ref]\$null) | Out-Null; Write-Host 'Syntax OK' } catch { Write-Host \"Parse error: \$_\" }"
+
+[0012] CMD
+pwsh -NoProfile -File /dev/null -Command '& { $null = [System.Management.Automation.Language.Parser]::ParseFile("c:\Users\erdno\chthonic-archive\scripts\run_archaeology.ps1", [ref]$null, [ref]$errors); if ($errors.Count -gt 0) { $errors | ForEach-Object { Write-Host $_.Message } } else { Write-Host "Syntax OK" } }'
+
+[0013] CMD
+pwsh -NoProfile -Command 'try { $null = [System.Management.Automation.Language.Parser]::ParseFile("c:\Users\erdno\chthonic-archive\scripts\run_archaeology.ps1", [ref]$null, [ref]$errs); if ($errs.Count -gt 0) { $errs | ForEach-Object { $_.Message } } else { "Syntax OK" } } catch { $_.Exception.Message }'
+
+[0014] CMD
+pwsh -NoProfile -Command '$tokens = $null; $parseErrors = $null; [void][System.Management.Automation.Language.Parser]::ParseFile("c:\Users\erdno\chthonic-archive\scripts\run_archaeology.ps1", [ref]$tokens, [ref]$parseErrors); if ($parseErrors.Count -gt 0) { $parseErrors | ForEach-Object { $_.Message } } else { "Syntax OK" }'
+
+[0015] CMD
+uv run scripts/genre_extractor.py                    # scan all creative dirs
+
+[0016] CMD
+uv run scripts/genre_extractor.py --path game/lore   # scan specific path
+
+[0017] CMD
+uv run scripts/genre_extractor.py --dry-run           # list files without inference
+
+[0018] CMD
+uv run scripts/genre_extractor.py --coder             # use code-focused model
+
+[0019] CMD
+uv run python -c "import ast; ast.parse(open('scripts/genre_extractor.py').read()); print('Syntax OK')"
+
+[0020] CMD
+pwsh -NoProfile -Command "Get-ScheduledTask -TaskName 'ChthonicNightly' | Select-Object -ExpandProperty Triggers | Format-List"
+
+[0021] CMD
+pwsh -NoProfile -Command "schtasks /Change /TN 'ChthonicNightly' /TR 'pwsh -NoProfile -WindowStyle Hidden -File C:\Users\erdno\chthonic-archive\scripts\nightly-scheduled.ps1'"
+
+[0022] CMD
+uv run python -c "import ast; ast.parse(open('scripts/genre_extractor.py').read()); print('OK')"
+
+[0023] CMD
+pwsh -NoProfile -Command "
+
+[0024] CMD
+$repoRoot = (Resolve-Path (Join-Path $PSScriptRoot '..')).Path
+
+[0025] CMD
+$daemonDir = Join-Path $repoRoot 'dumpster-dive\intake\overnight-daemon'
+
+[0026] CMD
+$archDir   = Join-Path $repoRoot 'dumpster-dive\intake\overnight-intelligence'
+
+[0027] CMD
+  $dirs = Get-ChildItem -Path $dir -Directory | Sort-Object Name -Descending
+
+[0028] CMD
+  $stale = $dirs | Select-Object -Skip 7
+
+[0029] CMD
+$logs = Get-ChildItem -Path $daemonDir -Filter 'nightly-scheduled-*.log' | Sort-Object Name -Descending
+
+[0030] CMD
+  $staleLogs = $logs | Select-Object -Skip 7
+
+[0031] CMD
+pwsh -NoProfile -File /c/Users/erdno/chthonic-archive/scripts/_prune_old_runs.ps1
+
+[0032] CMD
+uv run python -c "import yaml; yaml.safe_load(open('.temple/governance/ledger/LEDGER.yaml')); print('YAML OK')"
+
+[0033] CMD
+uv run python -c "import yaml; yaml.safe_load(open('.temple/governance/ledger/PRECEDENTS.yaml')); print('YAML OK')"
