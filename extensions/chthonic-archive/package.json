@@ -328,6 +328,7 @@
     "compile": "bun build src/extension.ts --outdir dist --target node --format cjs --external vscode --minify && bun build src/entropy/entropyWorker.ts --outfile dist/entropy-worker.js --target node --format cjs --minify",
     "watch": "bun build src/extension.ts --outdir dist --target node --format cjs --external vscode --watch",
     "watch:worker": "bun build src/entropy/entropyWorker.ts --outfile dist/entropy-worker.js --target node --format cjs --watch",
+    "test:e2e": "bun run scripts/e2e-extension-host.ts",
     "insiders:run": "code-insiders --extensionDevelopmentPath=.",
     "insiders:dts:sync": "vscode-dts dev && vscode-dts main"
   },
