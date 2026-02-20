@@ -360,7 +360,53 @@ export function activate(context: vscode.ExtensionContext) {
         }),
         vscode.commands.registerCommand('chthonic.openWebCockpit', () => {
             const cockpitUrl = resolveWebCockpitUrl(chthonicConfig);
-            void vscode.env.openExternal(vscode.Uri.parse(cockpitUrl));
+
+            const panel = vscode.window.createWebviewPanel(
+                'chthonicWebCockpit',
+                'Chthonic Web Cockpit',
+                vscode.ViewColumn.Active, // Opens in a new active tab
+                {
+                    enableScripts: true, // Allow the webview to run scripts (essential for Next.js app)
+                    retainContextWhenHidden: true, // Keep the webview alive when not visible
+                }
+            );
+
+            // Set the HTML content of the webview to load the Next.js app
+            panel.webview.html = `
+                <!DOCTYPE html>
+                <html lang="en">
+                <head>
+                    <meta charset="UTF-8">
+                    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                    <title>Chthonic Web Cockpit</title>
+                    <style>
+                        body, html { margin: 0; padding: 0; width: 100%; height: 100%; overflow: hidden; }
+                        iframe { border: none; width: 100%; height: 100%; }
+                    </style>
+                </head>
+                <body>
+                    <iframe src="${cockpitUrl}"></iframe>
+                </body>
+                </html>
+            `;
+
+            // Handle messages from the webview (for future bi-directional communication)
+            panel.webview.onDidReceiveMessage(
+                message => {
+                    outputChannel.appendLine(`[webview] Received message: ${JSON.stringify(message)}`);
+                },
+                undefined,
+                context.subscriptions
+            );
+
+            // Clean up when the panel is disposed
+            panel.onDidDispose(
+                () => {
+                    outputChannel.appendLine('[webview] Chthonic Web Cockpit panel disposed');
+                },
+                undefined,
+                context.subscriptions
+            );
         }),
         vscode.commands.registerCommand('chthonic.startWebCockpit', () => {
             if (!workspaceRoot) {
