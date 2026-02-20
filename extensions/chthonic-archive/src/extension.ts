@@ -419,6 +419,19 @@ export function activate(context: vscode.ExtensionContext) {
             terminal.sendText('bun run --cwd extensions/chthonic-archive insiders:post-restart:verify');
             outputChannel.appendLine('[insiders] post-restart verification lane started');
         }),
+        vscode.commands.registerCommand('chthonic.restartGate', () => {
+            if (!workspaceRoot) {
+                void vscode.window.showWarningMessage('Workspace root is required to run restart gate checks.');
+                return;
+            }
+            const terminal = vscode.window.createTerminal({
+                name: 'Chthonic Restart Gate',
+                cwd: workspaceRoot,
+            });
+            terminal.show();
+            terminal.sendText('bun run --cwd extensions/chthonic-archive insiders:restart:gate');
+            outputChannel.appendLine('[insiders] restart gate check lane started');
+        }),
     );
 
     if (workspaceRoot && chthonicConfig.get<boolean>('webCockpit.autoStart', false)) {

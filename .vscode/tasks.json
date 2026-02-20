@@ -239,6 +239,18 @@
 				"focus": true
 			},
 			"problemMatcher": []
+		},
+		{
+			"label": "Chthonic: Restart Gate Check (Insiders)",
+			"type": "shell",
+			"command": "bun run --cwd extensions/chthonic-archive insiders:restart:gate",
+			"group": "test",
+			"presentation": {
+				"reveal": "always",
+				"panel": "shared",
+				"focus": true
+			},
+			"problemMatcher": []
 		}
 	]
 }
