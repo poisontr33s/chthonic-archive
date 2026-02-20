@@ -277,25 +277,21 @@ diagnose().catch(console.error);
 - `bunx playwright --version` ✅
 - Chromium binary execution ✅
 - Process spawning ✅
+- **Bun-Playwright Validation Suite** ✅ (See `BUN_PLAYWRIGHT_VALIDATION.md`)
 
 ### What Blocks
-- WebSocket handshake to localhost:PORT ❌
-- CDP endpoint discovery ❌
-- Any command requiring `browser.launch()` ❌
+- `playwright.connectOverCDP(...)` timeout under Bun on Windows 11 ❌
+- `node:inspector` missing in Bun (blocks VS Code Debugger) ❌
 
 ### Immediate Next Actions (Win11 Bun-Centric)
-1. Run `win11-diagnostic.ts` to confirm whether TCP, HTTP, or WebSocket is blocked.
-2. Test `--remote-debugging-pipe` in `bun-launcher.ts` to bypass WebSocket.
-3. If still blocked, capture WDAC + firewall status for IT (see §3).
-4. Use WSL2 as the local validation escape hatch if policy cannot be adjusted.
+1. **Analyze Validation Report**: Review `BUN_PLAYWRIGHT_VALIDATION.md` for specific failure modes.
+2. **Test Pipe Transport**: Verify if `--remote-debugging-pipe` bypasses the WebSocket/CDP block for Playwright-native launch.
+3. **Hybrid Workflow Pilot**: Test the "Bun for Run / Node for Debug" workflow in VS Code.
 
-### Next Logical Steps
-
-1. **Run `win11-diagnostic.ts`** to isolate exact failure point
-2. **Test `--remote-debugging-pipe`** flag to bypass WebSocket
-3. **Check Windows Event Viewer** for security blocks
-4. **Test with Windows Firewall disabled** (if allowed)
-5. **Try WSL2** if all Windows paths fail
+### Status
+- **Validation**: Complete (Feasible with caveats).
+- **Architecture**: Hybrid (Bun-Test + Node-Debug) recommended.
+- **Blocker**: Playwright's specific CDP connection logic seems more brittle than raw WebSocket.
 
 ---
 
