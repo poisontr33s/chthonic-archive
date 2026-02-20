@@ -1,4 +1,5 @@
 import * as vscode from 'vscode';
+import type { EntropySnapshot } from '../entropy/entropyWorkerClient';
 import type { RustificationReport } from './rustificationScore';
 
 export class LoomViewProvider implements vscode.WebviewViewProvider, vscode.Disposable {
@@ -6,6 +7,7 @@ export class LoomViewProvider implements vscode.WebviewViewProvider, vscode.Disp
 
     private view: vscode.WebviewView | null = null;
     private report: RustificationReport | null = null;
+    private snapshot: EntropySnapshot | null = null;
 
     resolveWebviewView(
         webviewView: vscode.WebviewView,
@@ -26,6 +28,9 @@ export class LoomViewProvider implements vscode.WebviewViewProvider, vscode.Disp
             if (payload.type === 'refresh') {
                 void vscode.commands.executeCommand('chthonic.refreshRustification');
             }
+            if (payload.type === 'rescan') {
+                void vscode.commands.executeCommand('chthonic.entropyRefresh');
+            }
             if (payload.type === 'heal') {
                 void vscode.commands.executeCommand('chthonic.slabHeal');
             }
@@ -45,17 +50,23 @@ export class LoomViewProvider implements vscode.WebviewViewProvider, vscode.Disp
         this.postState();
     }
 
+    updateWorkspaceHealth(snapshot: EntropySnapshot): void {
+        this.snapshot = snapshot;
+        this.postState();
+    }
+
     dispose(): void {
         this.view = null;
     }
 
     private postState(): void {
-        if (!this.view || !this.report) {
+        if (!this.view) {
             return;
         }
         this.view.webview.postMessage({
             type: 'state',
             report: this.report,
+            snapshot: this.snapshot,
         });
     }
 
