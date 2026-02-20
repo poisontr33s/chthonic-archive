@@ -251,6 +251,42 @@
 				"focus": true
 			},
 			"problemMatcher": []
+		},
+		{
+			"label": "Chthonic: HF Rank Refresh",
+			"type": "shell",
+			"command": "bun run scripts/hf-model-ranker.ts --limit 80 --target-vram-gb 24",
+			"group": "test",
+			"presentation": {
+				"reveal": "always",
+				"panel": "shared",
+				"focus": true
+			},
+			"problemMatcher": []
+		},
+		{
+			"label": "Chthonic: ArtCop (Latest Screenshots)",
+			"type": "shell",
+			"command": "bun run scripts/vscode-art-cop.ts --images-dir bun-playwright-poc --max-images 4 --no-llm",
+			"group": "test",
+			"presentation": {
+				"reveal": "always",
+				"panel": "shared",
+				"focus": true
+			},
+			"problemMatcher": []
+		},
+		{
+			"label": "Chthonic: Post-Restart Verify + AI Lanes",
+			"type": "shell",
+			"command": "bun run --cwd extensions/chthonic-archive scripts/insiders-post-restart-verify.ts --with-ai-lanes --artcop-no-llm --rank-vram-gb 24",
+			"group": "test",
+			"presentation": {
+				"reveal": "always",
+				"panel": "shared",
+				"focus": true
+			},
+			"problemMatcher": []
 		}
 	]
 }

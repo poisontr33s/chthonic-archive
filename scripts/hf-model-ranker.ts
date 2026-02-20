@@ -297,7 +297,13 @@ function benchmarkMatch(modelId: string, entry: BenchmarkEntry): number {
     'minimax',
   ]);
 
-  const hasFamilyAffinity = sharedAlpha.some((token) => familyTokens.has(token));
+  const hasFamilyAffinity = sharedAlpha.some((token) => {
+    if (familyTokens.has(token)) return true;
+    for (const family of familyTokens) {
+      if (token.startsWith(family)) return true;
+    }
+    return false;
+  });
   if (!hasFamilyAffinity) {
     return 0;
   }
