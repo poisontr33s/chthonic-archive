@@ -1,4 +1,5 @@
 #!/usr/bin/env pwsh
+
 <#
 .SYNOPSIS
     Build CuPy from source for Python 3.14 + CUDA 13 + cuDNN 9.17
@@ -10,7 +11,7 @@
     - Python 3.14 (via uv)
     - CUDA Toolkit 13.0
     - cuDNN 9.17
-    - Visual Studio 2022 with C++ workload
+    - Visual Studio 2026 with C++ workload
     - Git
 
 .PARAMETER DryRun
@@ -53,7 +54,7 @@ $ErrorActionPreference = "Stop"
 
 $CUDA_PATH = "C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v13.1"
 $CUDNN_PATH = "C:\Program Files\NVIDIA\CUDNN\v9.17"
-$VS_PATH = "C:\Program Files\Microsoft Visual Studio\2022\Community"
+$VS_PATH = "C:\Program Files\Microsoft Visual Studio\2026"
 $CUPY_REPO = "https://github.com/cupy/cupy.git"
 $CUPY_BRANCH = "main"  # or "v13.x" when stable
 

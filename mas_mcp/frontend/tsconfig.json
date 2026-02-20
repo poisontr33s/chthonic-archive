@@ -1,23 +1,31 @@
 {
   "compilerOptions": {
     "target": "ESNext",
-    "module": "ESNext",
-    "moduleResolution": "bundler",
-    "types": [
-      "bun-types"
-    ],
+    "module": "Preserve",
+    "moduleResolution": "Bundler",
+    "moduleDetection": "force",
+    "allowImportingTsExtensions": true,
+    "verbatimModuleSyntax": true,
     "strict": true,
     "skipLibCheck": true,
     "noEmit": true,
-    "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true,
+    "types": [
+      "node",
+      "@types/bun",
+      "react",
+      "react-dom"
+    ],
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "verbatimModuleSyntax": true,
     "lib": [
       "ESNext",
       "DOM",
       "DOM.Iterable"
+    ],
+    "plugins": [
+      {
+        "name": "next"
+      }
     ],
     "baseUrl": ".",
     "paths": {
@@ -33,11 +41,13 @@
     },
     "allowJs": true,
     "incremental": true,
-    "jsx": "preserve"
+    "jsx": "react-jsx"
   },
   "include": [
+    "next-env.d.ts",
     "**/*.ts",
-    "**/*.tsx"
+    "**/*.tsx",
+    ".next/types/**/*.ts"
   ],
   "exclude": [
     "node_modules",

@@ -1,0 +1,13 @@
+{
+  "name": "spec-enforcer",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "bun run src/index.ts",
+    "once": "bun run src/index.ts --once"
+  },
+  "devDependencies": {
+    "@types/bun": "^1.3.9",
+    "@types/node": "^20.19.0"
+  }
+}

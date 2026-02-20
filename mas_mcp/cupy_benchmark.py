@@ -1,6 +1,15 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-"""RTX 4090 Laptop GPU - Full CuPy Benchmark Suite"""
+#-*- coding: utf-8 -*-
+
+"""
+RTX 4090 Laptop GPU - Full CuPy Benchmark Suite
+
+This script runs a comprehensive set of benchmarks on the RTX 4090 Laptop GPU using CuPy.
+It tests GEMM performance in FP32 and FP16, memory bandwidth, element-wise operations, FFT performance, and reduction operations.
+
+Run this to validate GPU performance and stability before enabling GPU features in
+MAS-MCP. Usage: uv run python cupy_benchmark.py
+"""
 
 import os
 os.add_dll_directory(r'C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.6\bin')

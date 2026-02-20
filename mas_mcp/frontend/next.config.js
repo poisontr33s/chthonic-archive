@@ -1,13 +1,14 @@
+import path from "node:path";
+import { fileURLToPath } from "node:url";
+
+const frontendRoot = path.dirname(fileURLToPath(import.meta.url));
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  // Bun-native runtime - no Node polyfills needed
-  experimental: {
-    // Enable Bun compatibility
+  turbopack: {
+    root: frontendRoot,
   },
-  // Force dynamic rendering for all pages (skip SSG pre-rendering)
-  // This avoids Next.js 16 SSG issues with client-only components
-  output: undefined,
   // API routes proxy to existing Bun server
   async rewrites() {
     return [
@@ -23,4 +24,4 @@ const nextConfig = {
   },
 };
 
-module.exports = nextConfig;
+export default nextConfig;

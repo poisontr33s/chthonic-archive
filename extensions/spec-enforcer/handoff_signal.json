@@ -1,0 +1,17 @@
+{
+  "status": "Ready for Implementation",
+  "detectedAt": "2026-02-20T05:27:33.525Z",
+  "reason": "once",
+  "spec": {
+    "name": "packet_004_infrastructure_spec.md",
+    "path": "claude-codex-gemini/context_packets/packet_004_infrastructure_spec.md"
+  },
+  "context": {
+    "outputPath": ".chthonic/cache/neural-bus/latest_context.md",
+    "refreshOk": true,
+    "command": "C:\\Users\\erdno\\chthonic-archive\\extensions\\context-compressor\\target\\debug\\context-compressor.exe --in C:\\Users\\erdno\\chthonic-archive\\src --format md --out C:\\Users\\erdno\\chthonic-archive\\.chthonic\\cache\\neural-bus\\latest_context.md",
+    "exitCode": 0,
+    "stdoutTail": "Scanning directory: C:\\Users\\erdno\\chthonic-archive\\src\nwrote C:\\Users\\erdno\\chthonic-archive\\.chthonic\\cache\\neural-bus\\latest_context.md",
+    "stderrTail": ""
+  }
+}

@@ -1,17 +1,8 @@
 {
+  "extends": "../../tsconfig.bun-base.json",
   "compilerOptions": {
-    "module": "commonjs",
-    "target": "ES2020",
-    "outDir": "./dist",
-    "rootDir": "./src",
-    "lib": ["ES2020"],
-    "sourceMap": true,
-    "strict": true,
-    "esModuleInterop": true,
-    "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true,
-    "moduleResolution": "node",
-    "resolveJsonModule": true
+    "resolveJsonModule": true,
+    "types": ["node", "vscode"]
   },
   "include": ["src/**/*"],
   "exclude": ["node_modules", "dist", "src/mandala_viewer_legacy.ts"]

@@ -1,0 +1,14 @@
+{
+  "allowed_crates": [
+    "anyhow",
+    "serde",
+    "serde_json",
+    "tokio",
+    "reqwest",
+    "walkdir",
+    "chrono",
+    "thiserror",
+    "log",
+    "env_logger"
+  ]
+}
