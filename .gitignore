@@ -154,6 +154,16 @@ extensions/*/bun.lock
 !scripts/copilot_clean.ps1
 !scripts/hf-model-ranker.ts
 !scripts/vscode-art-cop.ts
+!scripts/genre_extractor.py
+!scripts/nightly-scheduled.ps1
+!scripts/run_archaeology.ps1
+!scripts/local_refiner_v2.py
+!scripts/session_resumption_high_coverage.py
+!scripts/overnight_daemon.ts
+!scripts/benchmark_local_uncensored_lanes.py
+!scripts/run_overnight_daemon.ps1
+!scripts/sentry_init.ts
+!scripts/mcp-chthonic-server.ts
 
 # mdBook build output (generated artifact)
 book/
