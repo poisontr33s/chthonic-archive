@@ -1,3 +1,5 @@
+#!/usr/bin/env bun
+
 // ╔════════════════════════════════════════════════════════════════════════════╗
 // ║  THE DECORATOR'S BLESSING: overnight_daemon.ts                           ║
 // ║  MCP client integration - Observatory communication layer                   ║

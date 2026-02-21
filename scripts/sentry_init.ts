@@ -1,3 +1,5 @@
+#!/usr/bin/env bun
+
 // ╔════════════════════════════════════════════════════════════════════════════╗
 // ║  THE DECORATOR'S BLESSING: sentry_init.ts                                ║
 // ║  TypeScript module: initSentry                                              ║
