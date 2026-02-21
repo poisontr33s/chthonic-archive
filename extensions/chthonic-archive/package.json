@@ -1,7 +1,7 @@
 {
   "name": "chthonic-archive",
   "displayName": "Chthonic Archive",
-  "description": "VS Code workspace extension for the Chthonic Archive — themes, status bar, sidebar, and SSOT tools.",
+  "description": "VS Code workspace extension for the Chthonic Archive — themes, status bar, sidebar, and policy tools.",
   "version": "0.2.1",
   "publisher": "chthonic-archive",
   "icon": "icons/mandala.png",
@@ -51,7 +51,7 @@
       },
       {
         "command": "chthonic.verifySSOT",
-        "title": "Chthonic: Verify SSOT Hash"
+        "title": "Chthonic: Verify Policy Fingerprint"
       },
       {
         "command": "chthonic.entropyRefresh",
@@ -171,12 +171,12 @@
         "chthonic.ssotPath": {
           "type": "string",
           "default": ".github/copilot-instructions.md",
-          "description": "Path to the SSOT file (relative to workspace root)."
+          "description": "Path to the policy file for fingerprint verification (relative to workspace root)."
         },
         "chthonic.showSSOTHash": {
           "type": "boolean",
           "default": true,
-          "description": "Show SSOT hash in status bar."
+          "description": "Show policy fingerprint in status bar."
         },
         "chthonic.showLineage": {
           "type": "boolean",

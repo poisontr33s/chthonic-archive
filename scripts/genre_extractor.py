@@ -568,6 +568,7 @@ def main():
     parser.add_argument("--model-dir", type=str, help="Override model directory")
     parser.add_argument("--batch-size", type=int, default=3, help="Files per inference batch (default: 3)")
     parser.add_argument("--dry-run", action="store_true", help="List files without running inference")
+    parser.add_argument("--smoke", action="store_true", help="Smoke test: process 1 file, exit 1 if 0 profiles extracted")
     parser.add_argument(
         "--json-out",
         action="store_true",
@@ -593,6 +594,22 @@ def main():
     if not files:
         print("  No creative content files found.")
         return
+
+    # Smoke gate: test 1 file, fail-fast if extraction broken
+    if args.smoke:
+        if not model_dir.exists():
+            print(f"SMOKE FAIL: Model directory not found: {model_dir}")
+            sys.exit(1)
+        smoke_file = files[:1]
+        print(f"  Smoke test: {smoke_file[0].relative_to(REPO_ROOT)}")
+        llm = load_model(model_dir)
+        results = extract_genres(llm, smoke_file, batch_size=1)
+        if results:
+            print(f"  SMOKE OK: {len(results)} profile(s) extracted")
+            sys.exit(0)
+        else:
+            print("  SMOKE FAIL: 0 profiles — schema or model regression detected")
+            sys.exit(1)
 
     if args.dry_run:
         print("\n── DRY RUN ──")

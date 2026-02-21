@@ -550,7 +550,7 @@ export function activate(context: vscode.ExtensionContext) {
         vscode.commands.registerCommand('chthonic.switchTheme', async () => {
             const themes = [
                 { label: '$(paintcan) Flesh & Earth', description: 'Warm earth · WCAG AA · Distribution palette', id: 'Chthonic Mandala - Flesh & Earth' },
-                { label: '$(zap) ROGBIV', description: 'SSOT spectral · FA¹⁻⁵ canonical hexes', id: 'Chthonic Mandala - ROGBIV' },
+                { label: '$(zap) ROGBIV', description: 'Spectral canon · FA¹⁻⁵ canonical hexes', id: 'Chthonic Mandala - ROGBIV' },
                 { label: '$(symbol-color) Geological Core', description: 'Mineral strata palette · deep earth lane', id: 'Chthonic Geological Core' },
             ];
             const current = vscode.workspace.getConfiguration('workbench').get<string>('colorTheme');
@@ -566,20 +566,20 @@ export function activate(context: vscode.ExtensionContext) {
         })
     );
 
-    // --- Status Bar: SSOT Hash ---
+    // --- Status Bar: Policy Fingerprint ---
     const displayConfig = chthonicConfig;
     if (displayConfig.get<boolean>('showSSOTHash', true)) {
-        const ssotItem = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Left, 50);
-        ssotItem.command = 'chthonic.verifySSOT';
-        ssotItem.tooltip = 'SSOT integrity hash — click to verify';
-        context.subscriptions.push(ssotItem);
-        updateSSOTHash(ssotItem);
+        const fpItem = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Left, 50);
+        fpItem.command = 'chthonic.verifySSOT';
+        fpItem.tooltip = 'Policy fingerprint — click to verify integrity';
+        context.subscriptions.push(fpItem);
+        updatePolicyFingerprint(fpItem);
 
         // Re-check on save
         context.subscriptions.push(
             vscode.workspace.onDidSaveTextDocument(doc => {
                 if (doc.fileName.includes('copilot-instructions')) {
-                    updateSSOTHash(ssotItem);
+                    updatePolicyFingerprint(fpItem);
                 }
             })
         );
@@ -610,14 +610,14 @@ export function activate(context: vscode.ExtensionContext) {
     const statusProvider = new StatusTreeProvider();
     vscode.window.registerTreeDataProvider('chthonic.statusView', statusProvider);
 
-    // --- SSOT Verify Command ---
+    // --- Policy Fingerprint Verify Command ---
     context.subscriptions.push(
         vscode.commands.registerCommand('chthonic.verifySSOT', async () => {
-            const hash = computeSSOTHash();
+            const hash = computePolicyFingerprint();
             if (hash) {
-                vscode.window.showInformationMessage(`SSOT SHA-256: ${hash.substring(0, 16)}…`);
+                vscode.window.showInformationMessage(`Policy fingerprint: ${hash.substring(0, 16)}…`);
             } else {
-                vscode.window.showWarningMessage('SSOT file not found');
+                vscode.window.showWarningMessage('Policy file not found');
             }
         })
     );
@@ -639,26 +639,26 @@ export function activate(context: vscode.ExtensionContext) {
 
 export function deactivate() {}
 
-// --- SSOT Hash ---
-function computeSSOTHash(): string | null {
+// --- Policy Fingerprint ---
+function computePolicyFingerprint(): string | null {
     const ws = vscode.workspace.workspaceFolders?.[0];
     if (!ws) return null;
-    const ssotRel = vscode.workspace.getConfiguration('chthonic').get<string>('ssotPath', '.github/copilot-instructions.md');
-    const ssotPath = path.join(ws.uri.fsPath, ssotRel);
-    if (!fs.existsSync(ssotPath)) return null;
-    const content = fs.readFileSync(ssotPath, 'utf-8');
+    const policyRel = vscode.workspace.getConfiguration('chthonic').get<string>('ssotPath', '.github/copilot-instructions.md');
+    const policyPath = path.join(ws.uri.fsPath, policyRel);
+    if (!fs.existsSync(policyPath)) return null;
+    const content = fs.readFileSync(policyPath, 'utf-8');
     const canonical = content.replace(/\r\n/g, '\n').replace(/\r/g, '\n')
         .split('\n').map(l => l.trimEnd()).join('\n').trim();
     return crypto.createHash('sha256').update(canonical, 'utf-8').digest('hex');
 }
 
-function updateSSOTHash(item: vscode.StatusBarItem) {
-    const hash = computeSSOTHash();
+function updatePolicyFingerprint(item: vscode.StatusBarItem) {
+    const hash = computePolicyFingerprint();
     if (hash) {
         item.text = `$(shield) ${hash.substring(0, 8)}`;
         item.show();
     } else {
-        item.text = '$(shield) SSOT ??';
+        item.text = '$(shield) Policy ??';
         item.show();
     }
 }
@@ -1131,7 +1131,7 @@ class ThemeTreeProvider implements vscode.TreeDataProvider<vscode.TreeItem> {
         const current = vscode.workspace.getConfiguration('workbench').get<string>('colorTheme') || '';
         const themes = [
             { name: 'Chthonic Mandala - Flesh & Earth', short: 'Flesh & Earth', icon: '🌍', desc: 'Warm earth · Distribution' },
-            { name: 'Chthonic Mandala - ROGBIV', short: 'ROGBIV', icon: '🌈', desc: 'SSOT spectral · Research' },
+            { name: 'Chthonic Mandala - ROGBIV', short: 'ROGBIV', icon: '🌈', desc: 'Spectral canon · Research' },
             { name: 'Chthonic Geological Core', short: 'Geological Core', icon: '🪨', desc: 'Mineral strata · Deep earth' },
         ];
         return themes.map(t => {
@@ -1157,15 +1157,15 @@ class StatusTreeProvider implements vscode.TreeDataProvider<vscode.TreeItem> {
     getTreeItem(el: vscode.TreeItem) { return el; }
 
     getChildren(): vscode.TreeItem[] {
-        const hash = computeSSOTHash();
+        const hash = computePolicyFingerprint();
         const items: vscode.TreeItem[] = [];
 
-        const ssotItem = new vscode.TreeItem(
-            `$(shield) SSOT: ${hash ? hash.substring(0, 12) + '…' : 'not found'}`,
+        const fpItem = new vscode.TreeItem(
+            `$(shield) Policy: ${hash ? hash.substring(0, 12) + '…' : 'not found'}`,
             vscode.TreeItemCollapsibleState.None
         );
-        ssotItem.command = { command: 'chthonic.verifySSOT', title: 'Verify' };
-        items.push(ssotItem);
+        fpItem.command = { command: 'chthonic.verifySSOT', title: 'Verify' };
+        items.push(fpItem);
 
         const themeItem = new vscode.TreeItem(
             `$(paintcan) Theme: ${(vscode.workspace.getConfiguration('workbench').get<string>('colorTheme') || 'default').replace('Chthonic Mandala - ', '')}`,
