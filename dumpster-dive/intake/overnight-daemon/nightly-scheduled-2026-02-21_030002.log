@@ -1,0 +1,16 @@
+
+╔══════════════════════════════════════════════════════╗
+║  ☥ NIGHTLY DAEMON — Local Computation, Zero API     ║
+╚══════════════════════════════════════════════════════╝
+
+  ☥ Daemon: debt scoring + complexity analysis...
+report: C:/Users/erdno/chthonic-archive/dumpster-dive/intake/overnight-daemon/20260221_030002/report.json
+top: scripts/api_pool_persist_user_env.ps1
+  ☥ Genre Extractor: creative content analysis (local GPU, uncensored)
+llama_context: n_ctx_per_seq (4096) < n_ctx_train (262144) -- the full capacity of the model will not be utilized
+☥ Genre Extractor v1 (llama-cpp + structured JSON, uncensored)
+  Model: Qwen3-30B-A3B-Instruct-abliterated-GGUF
+  Creative files found: 54
+  Loading: Huihui-Qwen3-30B-A3B-Instruct-2507-abliterated.i1-Q3_K_M.gguf
+  Loaded in 9.8s
+

@@ -80,6 +80,9 @@ export class EntropyWorkerClient implements vscode.Disposable {
     }
 
     requestGraph(limit: number): void {
+        if (!this.rootPath) {
+            return;
+        }
         this.send({
             type: 'graph',
             limit,

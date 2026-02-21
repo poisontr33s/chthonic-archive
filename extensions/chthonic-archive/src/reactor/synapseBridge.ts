@@ -1,4 +1,5 @@
 import * as fs from 'fs';
+import { createRequire } from 'module';
 import * as path from 'path';
 import * as vscode from 'vscode';
 import type { SedimentSynapseResult, SynapseDescriptor } from './types';
@@ -118,7 +119,7 @@ export class SynapseBridge implements vscode.Disposable {
             throw new Error(`synapse.node not found in ${candidates.join(', ')}`);
         }
 
-        const req = eval('require') as NodeRequire;
+        const req = createRequire(__filename);
         this.binding = req(existing) as SynapseBinding;
         return this.binding;
     }
