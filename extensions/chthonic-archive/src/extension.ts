@@ -50,12 +50,14 @@ export function activate(context: vscode.ExtensionContext) {
 
     // --- Entropy Engine (worker + decorations + webview) ---
     const entropyConfig = chthonicConfig;
+    const allowNativeSidecars = entropyConfig.get<boolean>('security.allowNativeSidecars', false);
     const entropyEnabled = entropyConfig.get<boolean>('entropy.enabled', false);
     const entropyMaxFiles = entropyConfig.get<number>('entropy.maxFiles', 3000);
     const entropyScanIntervalMs = entropyConfig.get<number>('entropy.scanIntervalMs', 60000);
     const entropyDecorationDebounceMs = entropyConfig.get<number>('entropy.decorationDebounceMs', 120);
     const entropyDecorationBatch = entropyConfig.get<number>('entropy.decorationBatchSize', 240);
-    const entropyPolyglotEnabled = entropyConfig.get<boolean>('entropy.polyglotEnabled', false);
+    const entropyPolyglotRequested = entropyConfig.get<boolean>('entropy.polyglotEnabled', false);
+    const entropyPolyglotEnabled = entropyPolyglotRequested && allowNativeSidecars;
     const entropyPythonScanIntervalMs = entropyConfig.get<number>('entropy.pythonScanIntervalMs', 30000);
     const entropyLedgerSettleDebounceMs = entropyConfig.get<number>('entropy.ledgerSettleDebounceMs', 1400);
     const entropyLedgerMode = entropyConfig.get<LedgerMode>('entropy.ledgerMode', 'bankrun');
@@ -165,13 +167,21 @@ export function activate(context: vscode.ExtensionContext) {
     );
 
     // --- ANNO / Workspace Health Reactor ---
-    const reactorEnabled = entropyConfig.get<boolean>('reactor.enabled', false);
+    const reactorRequested = entropyConfig.get<boolean>('reactor.enabled', false);
+    const reactorEnabled = reactorRequested && allowNativeSidecars;
     const reactorHeadlessVulkan = entropyConfig.get<boolean>('reactor.headlessVulkan', true);
     const reactorCockpitAutoLayout = entropyConfig.get<boolean>('reactor.cockpitAutoLayout', false);
     const reactorTransport = entropyConfig.get<string>('reactor.transport', 'auto');
     const reactorDaemonBinaryPath = asOptionalPath(entropyConfig.get<string>('reactor.daemonBinaryPath', ''));
-    const reactorReadiness = assessReactorReadiness(workspaceRoot, reactorEnabled, reactorDaemonBinaryPath);
-    const slabSelfHealingEnabled = entropyConfig.get<boolean>('slab.selfHealingEnabled', false);
+    const reactorReadiness = assessReactorReadiness(
+        workspaceRoot,
+        reactorEnabled,
+        reactorDaemonBinaryPath,
+        allowNativeSidecars,
+        reactorRequested,
+    );
+    const slabSelfHealingRequested = entropyConfig.get<boolean>('slab.selfHealingEnabled', false);
+    const slabSelfHealingEnabled = slabSelfHealingRequested && allowNativeSidecars;
     const slabSelfHealingIntervalMs = entropyConfig.get<number>('slab.selfHealingIntervalMs', 21600000);
     const slabEolApiBase = entropyConfig.get<string>('slab.eolApiBase', 'https://endoflife.date/api');
     const daemonEolApiBase = normalizeEolApiBase(slabEolApiBase);
@@ -337,12 +347,25 @@ export function activate(context: vscode.ExtensionContext) {
             void restoreOrderLayout.activate();
         }),
         vscode.commands.registerCommand('chthonic.slabHeal', () => {
+            if (!allowNativeSidecars) {
+                void vscode.window.showWarningMessage(
+                    'Native sidecars are disabled (chthonic.security.allowNativeSidecars=false).',
+                );
+                return;
+            }
             void selfHealingLoop.runNow('manual');
         }),
         vscode.commands.registerCommand('chthonic.refreshRustification', () => {
             void refreshToolchainCompleteness('manual-command');
         }),
         vscode.commands.registerCommand('chthonic.annoDetect', () => {
+            if (!allowNativeSidecars) {
+                void vscode.window.showWarningMessage(
+                    'ANNO lane is disabled by chthonic.security.allowNativeSidecars=false.',
+                );
+                void vscode.commands.executeCommand('chthonic.entropyRefresh');
+                return;
+            }
             if (!reactorReadiness.ready) {
                 void vscode.window.showWarningMessage(
                     `ANNO lane unavailable: ${reactorReadiness.reason}. Using workspace-health fallback.`,
@@ -478,6 +501,7 @@ export function activate(context: vscode.ExtensionContext) {
                 entropyLedgerMode,
                 reactorReadiness,
                 slabSelfHealingEnabled,
+                allowNativeSidecars,
                 extensionPath: context.extensionPath,
                 webCockpitUrl: cockpitUrl,
                 webCockpitReachable,
@@ -855,7 +879,15 @@ function assessReactorReadiness(
     workspaceRoot: string | null,
     enabled: boolean,
     daemonBinaryOverride?: string,
+    allowNativeSidecars = false,
+    requested = false,
 ): ReactorReadiness {
+    if (!allowNativeSidecars && requested) {
+        return {
+            ready: false,
+            reason: 'disabled by chthonic.security.allowNativeSidecars=false',
+        };
+    }
     if (!enabled) {
         return {
             ready: false,
@@ -902,6 +934,7 @@ interface RuntimeStatusInput {
     entropyLedgerMode: LedgerMode;
     reactorReadiness: ReactorReadiness;
     slabSelfHealingEnabled: boolean;
+    allowNativeSidecars: boolean;
     extensionPath: string;
     webCockpitUrl: string;
     webCockpitReachable: boolean;
@@ -923,6 +956,13 @@ function collectRuntimeStatusRows(input: RuntimeStatusInput): string[] {
 
     rows.push(`workspace=${input.workspaceRoot ? 'READY' : 'UNAVAILABLE'}`);
     rows.push(`workspace-health=${input.entropyEnabled ? 'ENABLED' : 'DISABLED'}`);
+    rows.push(
+        `native-sidecars=${
+            input.allowNativeSidecars
+                ? 'ENABLED'
+                : 'DISABLED (chthonic.security.allowNativeSidecars=false)'
+        }`,
+    );
     rows.push(
         `polyglot-sidecars=${
             input.entropyEnabled

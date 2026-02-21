@@ -309,6 +309,11 @@
           "default": "https://endoflife.date/api",
           "description": "Base URL for endoflife lifecycle API used by slab self-healing."
         },
+        "chthonic.security.allowNativeSidecars": {
+          "type": "boolean",
+          "default": false,
+          "description": "Master kill-switch for native/sidecar process lanes (daemon, ledger host, Solana validator, Python/Ruby sidecars, and slab self-healing probes)."
+        },
         "chthonic.webCockpit.url": {
           "type": "string",
           "default": "http://127.0.0.1:3000",
