@@ -29,9 +29,12 @@
     "task.notifyWindowOnTaskCompletion": -1,
 
     // === CHTHONIC THERMAL CONTAINMENT ===
-    // Disable background Python/Ruby sidecars and runtime probes.
+    // Disable all high-I/O/background runtime lanes.
+    "chthonic.entropy.enabled": false,
     "chthonic.entropy.polyglotEnabled": false,
     "chthonic.slab.selfHealingEnabled": false,
+    "chthonic.reactor.enabled": false,
+    "chthonic.showLineage": false,
 
     // === FILE ASSOCIATIONS ===
     "files.associations": {

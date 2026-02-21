@@ -180,23 +180,23 @@
         },
         "chthonic.showLineage": {
           "type": "boolean",
-          "default": true,
+          "default": false,
           "description": "Show active lineage indicator in status bar."
         },
         "chthonic.entropy.enabled": {
           "type": "boolean",
-          "default": true,
-          "description": "Enable workspace health analysis and explorer health decoration overlay."
+          "default": false,
+          "description": "Enable workspace health analysis and explorer health decoration overlay (opt-in)."
         },
         "chthonic.entropy.maxFiles": {
           "type": "number",
-          "default": 1e4,
+          "default": 3000,
           "minimum": 200,
           "description": "Maximum number of files scanned by the workspace health worker."
         },
         "chthonic.entropy.scanIntervalMs": {
           "type": "number",
-          "default": 20000,
+          "default": 60000,
           "minimum": 5000,
           "description": "Background workspace health rescan interval in milliseconds."
         },
@@ -214,8 +214,8 @@
         },
         "chthonic.entropy.polyglotEnabled": {
           "type": "boolean",
-          "default": true,
-          "description": "Enable uv/Ruby sidecars, Merkle accumulation, and Solana settlement workflows."
+          "default": false,
+          "description": "Enable uv/Ruby sidecars, Merkle accumulation, and Solana settlement workflows (opt-in)."
         },
         "chthonic.entropy.pythonScanIntervalMs": {
           "type": "number",
@@ -265,8 +265,8 @@
         },
         "chthonic.reactor.enabled": {
           "type": "boolean",
-          "default": true,
-          "description": "Enable the Workspace Health Reactor (ANNO + Vulkan compute daemon)."
+          "default": false,
+          "description": "Enable the Workspace Health Reactor (ANNO + Vulkan compute daemon) (opt-in)."
         },
         "chthonic.reactor.headlessVulkan": {
           "type": "boolean",
@@ -295,8 +295,8 @@
         },
         "chthonic.slab.selfHealingEnabled": {
           "type": "boolean",
-          "default": true,
-          "description": "Enable periodic slab self-healing via endoflife.date checks and mise upgrade."
+          "default": false,
+          "description": "Enable periodic slab self-healing via endoflife.date checks and mise upgrade (opt-in)."
         },
         "chthonic.slab.selfHealingIntervalMs": {
           "type": "number",
