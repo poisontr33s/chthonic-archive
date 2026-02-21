@@ -14,3 +14,31 @@ llama_context: n_ctx_per_seq (4096) < n_ctx_train (262144) -- the full capacity 
   Loading: Huihui-Qwen3-30B-A3B-Instruct-2507-abliterated.i1-Q3_K_M.gguf
   Loaded in 9.8s
 
+  Genre: batch 1/18 (3 files)... 236.0s (salvaged 0)
+  Genre: batch 2/18 (3 files)... 167.3s (salvaged 0)
+  Genre: batch 3/18 (3 files)... 153.1s (salvaged 0)
+  Genre: batch 4/18 (3 files)... 148.1s (salvaged 0)
+  Genre: batch 5/18 (3 files)... 154.0s (salvaged 0)
+  Genre: batch 6/18 (3 files)... 150.6s (salvaged 0)
+  Genre: batch 7/18 (3 files)... 150.5s (salvaged 0)
+  Genre: batch 8/18 (3 files)... 151.9s (salvaged 0)
+  Genre: batch 9/18 (3 files)... 156.7s (salvaged 0)
+  Genre: batch 10/18 (3 files)... 163.3s (salvaged 0)
+  Genre: batch 11/18 (3 files)... 150.2s (salvaged 0)
+  Genre: batch 12/18 (3 files)... 150.9s (salvaged 0)
+  Genre: batch 13/18 (3 files)... 162.1s (salvaged 0)
+  Genre: batch 14/18 (3 files)... 160.8s (salvaged 0)
+  Genre: batch 15/18 (3 files)... 148.7s (salvaged 0)
+  Genre: batch 16/18 (3 files)... 162.5s (salvaged 0)
+  Genre: batch 17/18 (3 files)... 152.8s (salvaged 0)
+  Genre: batch 18/18 (3 files)... 158.0s (salvaged 0)
+
+  Genre extraction complete: 0 profiles in 2877.7s
+  Digest: C:\Users\erdno\chthonic-archive\claude\mailbox\GENRE_EXTRACTION_2026_02_21.md
+  JSON:   skipped (use --json-out to enable)
+
+☥ Genre extraction complete ($0 cost).
+
+  ────────────────────────────────────────────────────
+  ☥ Nightly run complete.
+
