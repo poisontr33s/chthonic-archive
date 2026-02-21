@@ -182,6 +182,11 @@
     "configuration": {
       "title": "Chthonic Archive",
       "properties": {
+        "chthonic.security.allowNativeSidecars": {
+          "type": "boolean",
+          "default": false,
+          "description": "Master kill-switch for native binaries and sidecar processes (daemon, Solana validator, ledger host, Python/Ruby sidecars). Must be explicitly enabled to allow any native process spawning."
+        },
         "chthonic.ssotPath": {
           "type": "string",
           "default": ".github/copilot-instructions.md",
