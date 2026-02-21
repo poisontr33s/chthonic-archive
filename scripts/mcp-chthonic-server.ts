@@ -1,3 +1,5 @@
+#!/usr/bin/env bun
+
 // ╔════════════════════════════════════════════════════════════════════════════╗
 // ║  THE DECORATOR'S BLESSING: mcp-chthonic-server.ts                          ║
 // ║  MCP client integration - Observatory communication layer                  ║
