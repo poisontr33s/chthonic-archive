@@ -25,6 +25,7 @@ export function activate(context: vscode.ExtensionContext) {
     const outputChannel = vscode.window.createOutputChannel('Chthonic Archive');
     const workspaceRoot = vscode.workspace.workspaceFolders?.[0]?.uri.fsPath || null;
     const chthonicConfig = vscode.workspace.getConfiguration('chthonic');
+    const allowNativeSidecars = chthonicConfig.get<boolean>('security.allowNativeSidecars', false);
 
     context.subscriptions.push(
         outputChannel,
@@ -50,12 +51,12 @@ export function activate(context: vscode.ExtensionContext) {
 
     // --- Entropy Engine (worker + decorations + webview) ---
     const entropyConfig = chthonicConfig;
-    const entropyEnabled = entropyConfig.get<boolean>('entropy.enabled', true);
-    const entropyMaxFiles = entropyConfig.get<number>('entropy.maxFiles', 10000);
-    const entropyScanIntervalMs = entropyConfig.get<number>('entropy.scanIntervalMs', 20000);
+    const entropyEnabled = entropyConfig.get<boolean>('entropy.enabled', false);
+    const entropyMaxFiles = entropyConfig.get<number>('entropy.maxFiles', 3000);
+    const entropyScanIntervalMs = entropyConfig.get<number>('entropy.scanIntervalMs', 60000);
     const entropyDecorationDebounceMs = entropyConfig.get<number>('entropy.decorationDebounceMs', 120);
     const entropyDecorationBatch = entropyConfig.get<number>('entropy.decorationBatchSize', 240);
-    const entropyPolyglotEnabled = entropyConfig.get<boolean>('entropy.polyglotEnabled', true);
+    const entropyPolyglotEnabled = entropyConfig.get<boolean>('entropy.polyglotEnabled', false);
     const entropyPythonScanIntervalMs = entropyConfig.get<number>('entropy.pythonScanIntervalMs', 30000);
     const entropyLedgerSettleDebounceMs = entropyConfig.get<number>('entropy.ledgerSettleDebounceMs', 1400);
     const entropyLedgerMode = entropyConfig.get<LedgerMode>('entropy.ledgerMode', 'bankrun');
@@ -135,7 +136,9 @@ export function activate(context: vscode.ExtensionContext) {
 
     if (workspaceRoot && entropyEnabled) {
         entropyClient.start(workspaceRoot, entropyMaxFiles, entropyScanIntervalMs);
-        void polyglotOrchestrator.start(workspaceRoot);
+        if (entropyPolyglotEnabled && allowNativeSidecars) {
+            void polyglotOrchestrator.start(workspaceRoot);
+        }
     }
 
     context.subscriptions.push(
@@ -163,13 +166,13 @@ export function activate(context: vscode.ExtensionContext) {
     );
 
     // --- ANNO / Workspace Health Reactor ---
-    const reactorEnabled = entropyConfig.get<boolean>('reactor.enabled', true);
+    const reactorEnabled = entropyConfig.get<boolean>('reactor.enabled', false);
     const reactorHeadlessVulkan = entropyConfig.get<boolean>('reactor.headlessVulkan', true);
     const reactorCockpitAutoLayout = entropyConfig.get<boolean>('reactor.cockpitAutoLayout', false);
     const reactorTransport = entropyConfig.get<string>('reactor.transport', 'auto');
     const reactorDaemonBinaryPath = asOptionalPath(entropyConfig.get<string>('reactor.daemonBinaryPath', ''));
     const reactorReadiness = assessReactorReadiness(workspaceRoot, reactorEnabled, reactorDaemonBinaryPath);
-    const slabSelfHealingEnabled = entropyConfig.get<boolean>('slab.selfHealingEnabled', true);
+    const slabSelfHealingEnabled = entropyConfig.get<boolean>('slab.selfHealingEnabled', false);
     const slabSelfHealingIntervalMs = entropyConfig.get<number>('slab.selfHealingIntervalMs', 21600000);
     const slabEolApiBase = entropyConfig.get<string>('slab.eolApiBase', 'https://endoflife.date/api');
     const daemonEolApiBase = normalizeEolApiBase(slabEolApiBase);
@@ -278,7 +281,7 @@ export function activate(context: vscode.ExtensionContext) {
         }),
     );
 
-    if (reactorReadiness.ready && workspaceRoot && reactorEnabled) {
+    if (reactorReadiness.ready && workspaceRoot && reactorEnabled && allowNativeSidecars) {
         annoClient.start(workspaceRoot);
         void annoClient.requestEntropyState()
             .then((state) => {
@@ -316,7 +319,7 @@ export function activate(context: vscode.ExtensionContext) {
         }
     }
 
-    if (workspaceRoot && slabSelfHealingEnabled) {
+    if (workspaceRoot && slabSelfHealingEnabled && allowNativeSidecars) {
         selfHealingLoop.start({
             intervalMs: slabSelfHealingIntervalMs,
             eolApiBase: slabEolApiBase,
@@ -335,12 +338,20 @@ export function activate(context: vscode.ExtensionContext) {
             void restoreOrderLayout.activate();
         }),
         vscode.commands.registerCommand('chthonic.slabHeal', () => {
+            if (!allowNativeSidecars) {
+                void vscode.window.showWarningMessage('Native sidecars are disabled (chthonic.security.allowNativeSidecars=false).');
+                return;
+            }
             void selfHealingLoop.runNow('manual');
         }),
         vscode.commands.registerCommand('chthonic.refreshRustification', () => {
             void refreshToolchainCompleteness('manual-command');
         }),
         vscode.commands.registerCommand('chthonic.annoDetect', () => {
+            if (!allowNativeSidecars) {
+                void vscode.window.showWarningMessage('Native sidecars are disabled (chthonic.security.allowNativeSidecars=false).');
+                return;
+            }
             if (!reactorReadiness.ready) {
                 void vscode.window.showWarningMessage(
                     `ANNO lane unavailable: ${reactorReadiness.reason}. Using workspace-health fallback.`,
@@ -560,7 +571,7 @@ export function activate(context: vscode.ExtensionContext) {
     }
 
     // --- Status Bar: Lineage ---
-    if (displayConfig.get<boolean>('showLineage', true)) {
+    if (displayConfig.get<boolean>('showLineage', false)) {
         const lineageItem = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Left, 49);
         lineageItem.command = 'workbench.view.scm';
         const refreshLineage = () => {
@@ -601,9 +612,11 @@ export function activate(context: vscode.ExtensionContext) {
         vscode.commands.registerCommand('chthonic.refreshStatus', () => {
             statusProvider.refresh();
             themeProvider.refresh();
-            entropyClient.rescanNow();
-            entropyClient.requestGraph(260);
-            polyglotOrchestrator.requestManualScan();
+            if (entropyEnabled) {
+                entropyClient.rescanNow();
+                entropyClient.requestGraph(260);
+                polyglotOrchestrator.requestManualScan();
+            }
             void refreshToolchainCompleteness('refresh-status');
         })
     );
