@@ -28,6 +28,11 @@
     "workbench.experimental.cloudChanges.partialMatches.enabled": true,
     "task.notifyWindowOnTaskCompletion": -1,
 
+    // === CHTHONIC THERMAL CONTAINMENT ===
+    // Disable background Python/Ruby sidecars and runtime probes.
+    "chthonic.entropy.polyglotEnabled": false,
+    "chthonic.slab.selfHealingEnabled": false,
+
     // === FILE ASSOCIATIONS ===
     "files.associations": {
         "*.vert": "glsl",

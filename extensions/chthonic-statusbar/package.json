@@ -15,7 +15,6 @@
     "Other"
   ],
   "activationEvents": [
-    "onStartupFinished",
     "onCommand:chthonic.bridge.verifySSOT",
     "onCommand:chthonic.bridge.selfHeal",
     "onCommand:chthonic.bridge.sediment",

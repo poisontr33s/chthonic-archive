@@ -116,9 +116,6 @@ export function activate(context: vscode.ExtensionContext): void {
         }),
     );
 
-    const interval = setInterval(() => refreshItems(output), 30_000);
-    context.subscriptions.push({ dispose: () => clearInterval(interval) });
-
     refreshItems(output);
 }
 
