@@ -1,4 +1,5 @@
 #!/usr/bin/env bun
+
 /**
  * SID: VSCODE_ART_COP_2026_02_20
  * Purpose: Analyze UI screenshots via local OpenAI-compatible LLM endpoint and emit mailbox report.
