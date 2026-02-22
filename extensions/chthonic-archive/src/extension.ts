@@ -612,8 +612,14 @@ export function activate(context: vscode.ExtensionContext) {
         context.subscriptions.push(lineageItem);
     }
 
-    // --- Status View ---
+    // --- Status View (Lens) ---
     const statusProvider = new StatusTreeProvider();
+    statusProvider.configure({
+        entropyEnabled,
+        allowSidecars: allowNativeSidecars,
+        reactorReady: reactorReadiness.ready,
+        selfHealing: slabSelfHealingEnabled,
+    });
     vscode.window.registerTreeDataProvider('chthonic.statusView', statusProvider);
 
     // --- Policy Fingerprint Verify Command ---
@@ -1155,18 +1161,32 @@ class ThemeTreeProvider implements vscode.TreeDataProvider<vscode.TreeItem> {
     }
 }
 
-// --- Status Tree ---
+// --- Status Tree (Lens) ---
 class StatusTreeProvider implements vscode.TreeDataProvider<vscode.TreeItem> {
     private _onDidChange = new vscode.EventEmitter<void>();
     readonly onDidChangeTreeData = this._onDidChange.event;
+
+    private _entropyEnabled = false;
+    private _allowSidecars = false;
+    private _reactorReady = false;
+    private _selfHealing = false;
+
+    configure(opts: { entropyEnabled: boolean; allowSidecars: boolean; reactorReady: boolean; selfHealing: boolean }) {
+        this._entropyEnabled = opts.entropyEnabled;
+        this._allowSidecars = opts.allowSidecars;
+        this._reactorReady = opts.reactorReady;
+        this._selfHealing = opts.selfHealing;
+    }
+
     refresh() { this._onDidChange.fire(); }
 
     getTreeItem(el: vscode.TreeItem) { return el; }
 
     getChildren(): vscode.TreeItem[] {
-        const hash = computePolicyFingerprint();
         const items: vscode.TreeItem[] = [];
 
+        // Policy fingerprint
+        const hash = computePolicyFingerprint();
         const fpItem = new vscode.TreeItem(
             `Policy: ${hash ? hash.substring(0, 12) + '…' : 'not found'}`,
             vscode.TreeItemCollapsibleState.None
@@ -1175,6 +1195,7 @@ class StatusTreeProvider implements vscode.TreeDataProvider<vscode.TreeItem> {
         fpItem.command = { command: 'chthonic.verifySSOT', title: 'Verify' };
         items.push(fpItem);
 
+        // Current theme
         const currentTheme = (vscode.workspace.getConfiguration('workbench').get<string>('colorTheme') || 'default').replace('Chthonic Mandala - ', '');
         const themeItem = new vscode.TreeItem(
             `Theme: ${currentTheme}`,
@@ -1183,6 +1204,41 @@ class StatusTreeProvider implements vscode.TreeDataProvider<vscode.TreeItem> {
         themeItem.iconPath = new vscode.ThemeIcon('paintcan');
         themeItem.command = { command: 'chthonic.switchTheme', title: 'Switch' };
         items.push(themeItem);
+
+        // Security gate
+        const secItem = new vscode.TreeItem(
+            `Sidecars: ${this._allowSidecars ? 'unlocked' : 'locked'}`,
+            vscode.TreeItemCollapsibleState.None
+        );
+        secItem.iconPath = new vscode.ThemeIcon(this._allowSidecars ? 'unlock' : 'lock');
+        secItem.tooltip = this._allowSidecars
+            ? 'Native sidecars are enabled — polyglot, reactor, and self-healing lanes are permitted.'
+            : 'Native sidecars disabled (safe mode). Set chthonic.security.allowNativeSidecars to enable.';
+        items.push(secItem);
+
+        // Subsystem status
+        const subsystems = [
+            { label: 'Entropy', on: this._entropyEnabled, icon: 'pulse' },
+            { label: 'Reactor', on: this._reactorReady, icon: 'flame' },
+            { label: 'Self-Heal', on: this._selfHealing, icon: 'wrench' },
+        ];
+        for (const s of subsystems) {
+            const sub = new vscode.TreeItem(
+                `${s.label}: ${s.on ? 'active' : 'off'}`,
+                vscode.TreeItemCollapsibleState.None
+            );
+            sub.iconPath = new vscode.ThemeIcon(s.on ? s.icon : 'circle-slash');
+            items.push(sub);
+        }
+
+        // Runtime status command
+        const rtItem = new vscode.TreeItem(
+            'Full Runtime Status…',
+            vscode.TreeItemCollapsibleState.None
+        );
+        rtItem.iconPath = new vscode.ThemeIcon('output');
+        rtItem.command = { command: 'chthonic.runtimeStatus', title: 'Runtime Status' };
+        items.push(rtItem);
 
         return items;
     }
