@@ -14,6 +14,7 @@ import { ActivityBarMorph } from './monolith/activityBarMorph';
 import { DeepFocusLayout } from './monolith/deepFocusLayout';
 import { RestoreOrderLayout } from './monolith/restoreOrderLayout';
 import { LoomViewProvider } from './monolith/loomView';
+import { AnkhReferenceProvider } from './monolith/ankhReferenceView';
 import { SelfHealingLoop } from './monolith/selfHealingLoop';
 import { computeRustificationReport } from './monolith/rustificationScore';
 import type { EntropyState, FiredancerSurgeState } from './reactor/types';
@@ -28,7 +29,7 @@ export function activate(context: vscode.ExtensionContext) {
 
     context.subscriptions.push(
         outputChannel,
-        vscode.window.registerWebviewViewProvider('chthonic.chatView', new ParkedChatProvider()),
+        vscode.window.registerWebviewViewProvider('chthonic.chatView', new AnkhReferenceProvider(workspaceRoot)),
     );
 
     const activityBarMorph = new ActivityBarMorph(context.extensionUri, outputChannel);
@@ -1084,50 +1085,6 @@ function readGitLineage(workspaceRoot: string | null): GitLineage {
             label: 'lineage-error',
             tooltip: `Chthonic lineage read failed: ${String(error)}`,
         };
-    }
-}
-
-class ParkedChatProvider implements vscode.WebviewViewProvider {
-    resolveWebviewView(
-        webviewView: vscode.WebviewView,
-        _context: vscode.WebviewViewResolveContext,
-        _token: vscode.CancellationToken,
-    ): void {
-        webviewView.webview.options = { enableScripts: false };
-        webviewView.webview.html = `
-            <!DOCTYPE html>
-            <html lang="en">
-            <head>
-                <meta charset="UTF-8" />
-                <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-                <style>
-                    body {
-                        margin: 0;
-                        padding: 16px;
-                        font-family: var(--vscode-font-family);
-                        color: var(--vscode-foreground);
-                        background: var(--vscode-editor-background);
-                    }
-                    h3 {
-                        margin: 0 0 8px 0;
-                        font-size: 14px;
-                    }
-                    p {
-                        margin: 0;
-                        line-height: 1.4;
-                        color: var(--vscode-descriptionForeground);
-                    }
-                </style>
-            </head>
-            <body>
-                <h3>Agent Chat Parked</h3>
-                <p>
-                    SDK/ACP chat integration is intentionally parked during runtime hardening.
-                    Existing SDK files remain in source for later reactivation.
-                </p>
-            </body>
-            </html>
-        `;
     }
 }
 

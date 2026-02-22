@@ -262,6 +262,11 @@ export class LoomViewProvider implements vscode.WebviewViewProvider, vscode.Disp
                 healthEntropy.textContent = Math.round((snapshot.averageEntropy || 0) * 100) + '%';
                 healthDuration.textContent = String(snapshot.lastScanDurationMs || 0) + ' ms';
                 healthUpdated.textContent = formatElapsed(snapshot.lastScanAt || 0);
+            } else {
+                healthFiles.textContent = '—';
+                healthEntropy.textContent = '—';
+                healthDuration.textContent = '—';
+                healthUpdated.textContent = 'entropy disabled';
             }
         });
     </script>
