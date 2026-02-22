@@ -1,0 +1,9 @@
+{
+  "iconDefinitions": {
+    "pulse":              { "iconPath": "./icons/product/pulse.svg" },
+    "shield":             { "iconPath": "./icons/product/shield.svg" },
+    "paintcan":           { "iconPath": "./icons/product/paintcan.svg" },
+    "layers":             { "iconPath": "./icons/product/layers.svg" },
+    "comment-discussion": { "iconPath": "./icons/product/comment-discussion.svg" }
+  }
+}

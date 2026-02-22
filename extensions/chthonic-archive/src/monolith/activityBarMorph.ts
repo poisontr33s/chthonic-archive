@@ -76,13 +76,13 @@ export class ActivityBarMorph implements vscode.Disposable {
         const decayPercent = entropy ? Math.round(entropy.decay_score * 100) : null;
         const decayLabel = entropy ? `${entropy.status} ${decayPercent}%` : 'unknown';
 
-        this.fallbackItem.text = `$(pulse) ${label} ${rust.score}% · Decay ${decayPercent ?? '?'}%`;
+        const decayText = decayPercent !== null ? ` · Decay ${decayPercent}%` : '';
+        this.fallbackItem.text = `$(pulse) ${label} ${rust.score}%${decayText}`;
         this.fallbackItem.tooltip = [
-            `Rustification ${rust.score}% (${rust.tier})`,
-            `Decay ${decayLabel}`,
-            `Glyph: ${this.resolveIconFile()}`,
+            `Toolchain completeness: ${rust.score}% (${rust.tier})`,
             `Present: ${rust.present.join(', ') || 'none'}`,
             `Missing: ${rust.missing.join(', ') || 'none'}`,
+            entropy ? `Workspace health: ${decayLabel}` : 'Workspace health: entropy disabled',
             entropy && entropy.critical_tools.length > 0
                 ? `Critical tools: ${entropy.critical_tools.join(', ')}`
                 : undefined,

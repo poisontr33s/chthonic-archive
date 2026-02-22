@@ -39,6 +39,20 @@
         "path": "./themes/chthonic-geology-color-theme.json"
       }
     ],
+    "iconThemes": [
+      {
+        "id": "chthonic-file-icons",
+        "label": "Chthonic Archive File Icons",
+        "path": "./themes/chthonic-file-icon-theme.json"
+      }
+    ],
+    "productIconThemes": [
+      {
+        "id": "chthonic-product-icons",
+        "label": "Chthonic Archive Product Icons",
+        "path": "./themes/chthonic-product-icon-theme.json"
+      }
+    ],
     "commands": [
       {
         "command": "chthonic.switchTheme",
@@ -175,8 +189,8 @@
         },
         "chthonic.showSSOTHash": {
           "type": "boolean",
-          "default": true,
-          "description": "Show policy fingerprint in status bar."
+          "default": false,
+          "description": "Show policy fingerprint in status bar (opt-in)."
         },
         "chthonic.showLineage": {
           "type": "boolean",

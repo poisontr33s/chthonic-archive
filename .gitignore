@@ -78,6 +78,10 @@
 !extensions/*/dist/*.js
 !extensions/*/themes/
 !extensions/*/themes/*.json
+!extensions/*/themes/icons/
+!extensions/*/themes/icons/*.svg
+!extensions/*/themes/icons/product/
+!extensions/*/themes/icons/product/*.svg
 !extensions/*/icons/
 !extensions/*/icons/*.svg
 !extensions/*/icons/*.png
