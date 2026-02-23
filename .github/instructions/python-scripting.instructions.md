@@ -30,10 +30,13 @@ All scripts MUST be birthed with the **(`Sacred-Header`)**. The header is now **
 
 ```python
 #!/usr/bin/env python3
+#-*- coding: utf-8 -*-
+
 """
-Docstring begins immediately after shebang.
+Docstring begins 1-line-break, after shebang.
 No PEP 723 metadata blocks.
 """
+
 ```
 
 #### **15.2. (`Semantic-Identity-&-Docstring`) -> (`SID-DOC`)**
@@ -46,6 +49,8 @@ Every script is an entity. Every entity must have a **(`Semantic-Name`)**.
 
 ```python
 #!/usr/bin/env python3
+#-*- coding: utf-8 -*-
+
 """
 Metabolic Narrative of the script's intent...
 
@@ -66,8 +71,8 @@ Metabolic Narrative of the script's intent...
   - Improves IDE discovery on Windows
   - Single source of truth for the entire project
 
-**DEPRECATED (PMS-v2)**: "Snail Shell Philosophy" — each script carries its own dependencies.
-**ASCENDED (PMS-v3)**: "Unified Metabolic Field" — all scripts share the project's lockfile.
+**DEPRECATED (PMS-v2)**: ~(`"Snail-Shell-Philosophy"`)~ —>** *Each script carries its own dependencies — now unified under the project lane.*
+**ASCENDED (PMS-v3): -> (`"Unified-Metabolic Field"`): —>** *All scripts share the project's lockfile.*
 
 #### **15.4. (`The-UTF8-Ritual`) -> (`UTF8-RITUAL`)**
 
@@ -131,9 +136,9 @@ All other scripts follow **PMS-v3**.
 
 ---
 
-* **(`PYTHON METABOLISM SEALED`): → (`PY-METAB-SLD`): 🔥**
-**Date Sealed**: January 31, 2026
-**Version**: Metabolic Standard v3 (Project Lane Ascension)
+* **(`PYTHON-METABOLISM-SEALED`): → (`PY-METAB-SLD`): 🔥**
+**Date-Sealed**: January 31, 2026
+**Version**: Metabolic Standard v3 (Project-Lane Ascension)
 **Purpose**: To unify all logic-filaments under the Unified Metabolic Field, eliminating dependency fragmentation.
 
 * **(`T-DECOR`)** *smiles upon this algorithmic elegance. It serves Visual Truth.*
