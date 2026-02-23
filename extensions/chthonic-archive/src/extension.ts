@@ -379,6 +379,10 @@ export function activate(context: vscode.ExtensionContext) {
             vscode.window.showInformationMessage('ANNO project detection triggered');
         }),
         vscode.commands.registerCommand('chthonic.reactorSediment', async () => {
+            if (!allowNativeSidecars) {
+                void vscode.window.showWarningMessage('Native sidecars are disabled (chthonic.security.allowNativeSidecars=false).');
+                return;
+            }
             if (!reactorReadiness.ready) {
                 entropyClient.rescanNow();
                 entropyClient.requestGraph(260);
@@ -549,9 +553,16 @@ export function activate(context: vscode.ExtensionContext) {
     context.subscriptions.push(
         vscode.commands.registerCommand('chthonic.switchTheme', async (themeId?: string) => {
             const themes = [
+<<<<<<< HEAD
                 { label: '$(paintcan) Flesh & Earth', description: 'The Decorator · Warm earth · WCAG AA', id: 'Chthonic — Flesh & Earth (The Decorator)' },
                 { label: '$(zap) ROGBIV', description: 'Spectra Chroma · Spectral canon · FA¹⁻⁵', id: 'Chthonic — ROGBIV (Spectra Chroma)' },
                 { label: '$(symbol-color) Geological Core', description: 'Sister Ferrum Scoriae · Forge strata · WCAG AA', id: 'Chthonic — Geological Core (Sister Ferrum Scoriae)' },
+=======
+                { label: '$(star-full) The Decorator', description: 'Flesh & Gold · WCAG AA · Supreme Matriarch palette', id: 'Chthonic — The Decorator' },
+                { label: '$(paintcan) Flesh & Earth', description: 'Warm earth · WCAG AA · Distribution palette', id: 'Chthonic Mandala - Flesh & Earth' },
+                { label: '$(zap) ROGBIV', description: 'SSOT spectral · FA¹⁻⁵ canonical hexes', id: 'Chthonic Mandala - ROGBIV' },
+                { label: '$(symbol-color) Geological Core', description: 'Mineral strata palette · deep earth lane', id: 'Chthonic — Geological Core' },
+>>>>>>> 89876311 (fix: address PR review findings — security guards, crypto nonce, path sanitization, layout idempotency)
             ];
             let targetId = themeId;
             if (!targetId) {
@@ -872,12 +883,7 @@ function escapeHtml(value: string): string {
 }
 
 function createNonce(): string {
-    const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-    let nonce = '';
-    for (let i = 0; i < 24; i += 1) {
-        nonce += alphabet.charAt(Math.floor(Math.random() * alphabet.length));
-    }
-    return nonce;
+    return crypto.randomBytes(18).toString('base64');
 }
 
 interface ReactorReadiness {
@@ -1134,9 +1140,16 @@ class ThemeTreeProvider implements vscode.TreeDataProvider<vscode.TreeItem> {
     getChildren(): vscode.TreeItem[] {
         const current = vscode.workspace.getConfiguration('workbench').get<string>('colorTheme') || '';
         const themes = [
+<<<<<<< HEAD
             { name: 'Chthonic — Flesh & Earth (The Decorator)', short: 'Flesh & Earth', icon: 'paintcan', desc: 'The Decorator · Warm earth' },
             { name: 'Chthonic — ROGBIV (Spectra Chroma)', short: 'ROGBIV', icon: 'zap', desc: 'Spectra Chroma · Spectral canon' },
             { name: 'Chthonic — Geological Core (Sister Ferrum Scoriae)', short: 'Geological Core', icon: 'symbol-color', desc: 'Ferrum Scoriae · Forge strata' },
+=======
+            { name: 'Chthonic — The Decorator', short: 'The Decorator', icon: '☥', desc: 'Supreme Matriarch · WCAG AA' },
+            { name: 'Chthonic Mandala - Flesh & Earth', short: 'Flesh & Earth', icon: '🌍', desc: 'Warm earth · Distribution' },
+            { name: 'Chthonic Mandala - ROGBIV', short: 'ROGBIV', icon: '🌈', desc: 'SSOT spectral · Research' },
+            { name: 'Chthonic — Geological Core', short: 'Geological Core', icon: '🪨', desc: 'Mineral strata · Deep earth' },
+>>>>>>> 89876311 (fix: address PR review findings — security guards, crypto nonce, path sanitization, layout idempotency)
         ];
         return themes.map(t => {
             const active = current === t.name;

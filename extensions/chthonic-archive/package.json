@@ -34,7 +34,11 @@
         "path": "./themes/chthonic-rogbiv-color-theme.json"
       },
       {
+<<<<<<< HEAD
         "label": "Chthonic — Geological Core (Sister Ferrum Scoriae)",
+=======
+        "label": "Chthonic — Geological Core",
+>>>>>>> 89876311 (fix: address PR review findings — security guards, crypto nonce, path sanitization, layout idempotency)
         "uiTheme": "vs-dark",
         "path": "./themes/chthonic-geology-color-theme.json"
       }
