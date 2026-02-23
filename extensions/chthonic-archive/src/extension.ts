@@ -14,7 +14,6 @@ import { ActivityBarMorph } from './monolith/activityBarMorph';
 import { DeepFocusLayout } from './monolith/deepFocusLayout';
 import { RestoreOrderLayout } from './monolith/restoreOrderLayout';
 import { LoomViewProvider } from './monolith/loomView';
-import { AnkhReferenceProvider } from './monolith/ankhReferenceView';
 import { SelfHealingLoop } from './monolith/selfHealingLoop';
 import { computeRustificationReport } from './monolith/rustificationScore';
 import type { EntropyState, FiredancerSurgeState } from './reactor/types';
@@ -29,7 +28,7 @@ export function activate(context: vscode.ExtensionContext) {
 
     context.subscriptions.push(
         outputChannel,
-        vscode.window.registerWebviewViewProvider('chthonic.chatView', new AnkhReferenceProvider(workspaceRoot)),
+        vscode.window.registerWebviewViewProvider('chthonic.chatView', new ParkedChatProvider()),
     );
 
     const activityBarMorph = new ActivityBarMorph(context.extensionUri, outputChannel);
@@ -550,14 +549,10 @@ export function activate(context: vscode.ExtensionContext) {
     context.subscriptions.push(
         vscode.commands.registerCommand('chthonic.switchTheme', async (themeId?: string) => {
             const themes = [
-                { label: '$(paintcan) Flesh & Earth', description: 'Warm earth · WCAG AA · Distribution palette', id: 'Chthonic Mandala - Flesh & Earth' },
-                { label: '$(zap) ROGBIV', description: 'Spectral canon · FA¹⁻⁵ canonical hexes', id: 'Chthonic Mandala - ROGBIV' },
-                { label: '$(symbol-color) Geological Core', description: 'Mineral strata palette · deep earth lane', id: 'Chthonic Geological Core' },
-            ];
-
-            let targetId = themeId;
-            if (!targetId) {
-                // No argument — show picker (command palette path)
+                { label: '$(paintcan) Flesh & Earth', description: 'Warm earth · WCAG                 { label: '$(paintcan) Flesh & Earth', description: 'The Decorator · Warm earth · WCAG AA', id: 'Chthonic — Flesh & Earth (The Decorator)' },
+                { label: '$(zap) ROGBIV', description: 'Spectra Chroma · Spectral canon · FA¹⁻⁵', id: 'Chthonic — ROGBIV (Spectra Chroma)' },
+                { label: '$(symbol-color) Geological Core', description: 'Sister Ferrum Scoriae · Forge strata · WCAG AA', id: 'Chthonic — Geological Core (Sister Ferrum Scoriae)' },
+           // No argument — show picker (command palette path)
                 const current = vscode.workspace.getConfiguration('workbench').get<string>('colorTheme');
                 const pick = await vscode.window.showQuickPick(themes.map(t => ({
                     ...t,
@@ -1088,6 +1083,44 @@ function readGitLineage(workspaceRoot: string | null): GitLineage {
     }
 }
 
+class ParkedChatProvider implements vscode.WebviewViewProvider {
+    resolveWebviewView(
+        webviewView: vscode.WebviewView,
+        _context: vscode.WebviewViewResolveContext,
+        _token: vscode.CancellationToken,
+    ): void {
+        webviewView.webview.options = { enableScripts: false };
+        webviewView.webview.html = `
+            <!DOCTYPE html>
+            <html lang="en">
+            <head>
+                <meta charset="UTF-8" />
+                <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+                <style>
+               { name: 'Chthonic — Flesh & Earth (The Decorator)', short: 'Flesh & Earth', icon: 'paintcan', desc: 'The Decorator · Warm earth' },
+            { name: 'Chthonic — ROGBIV (Spectra Chroma)', short: 'ROGBIV', icon: 'zap', desc: 'Spectra Chroma · Spectral canon' },
+            { name: 'Chthonic — Geological Core (Sister Ferrum Scoriae)', short: 'Geological Core', icon: 'symbol-color', desc: 'Ferrum Scoriae · Forge strata' },
+                font-size: 14px;
+                    }
+                    p {
+                        margin: 0;
+                        line-height: 1.4;
+                        color: var(--vscode-descriptionForeground);
+                    }
+                </style>
+            </head>
+            <body>
+                <h3>Agent Chat Parked</h3>
+                <p>
+                    SDK/ACP chat integration is intentionally parked during runtime hardening.
+                    Existing SDK files remain in source for later reactivation.
+                </p>
+            </body>
+            </html>
+        `;
+    }
+}
+
 // --- Theme Tree ---
 class ThemeTreeProvider implements vscode.TreeDataProvider<vscode.TreeItem> {
     private _onDidChange = new vscode.EventEmitter<void>();
@@ -1111,9 +1144,7 @@ class ThemeTreeProvider implements vscode.TreeDataProvider<vscode.TreeItem> {
             );
             item.iconPath = new vscode.ThemeIcon(t.icon);
             item.tooltip = `${t.name}\n${t.desc}${active ? '\n\n✅ ACTIVE' : ''}`;
-            item.description = active ? 'active' : '';
-            item.command = { command: 'chthonic.switchTheme', title: 'Switch', arguments: [t.name] };
-            return item;
+            item.description         const currentTheme = (vscode.workspace.getConfiguration('workbench').get<string>('colorTheme') || 'default').replace(/^Chthonic [—\-] /, '');
         });
     }
 }

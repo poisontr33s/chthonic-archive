@@ -24,17 +24,17 @@
   "contributes": {
     "themes": [
       {
-        "label": "Chthonic Mandala - Flesh & Earth",
+        "label": "Chthonic — Flesh & Earth (The Decorator)",
         "uiTheme": "vs-dark",
         "path": "./themes/chthonic-mandala-color-theme.json"
       },
       {
-        "label": "Chthonic Mandala - ROGBIV",
+        "label": "Chthonic — ROGBIV (Spectra Chroma)",
         "uiTheme": "vs-dark",
         "path": "./themes/chthonic-rogbiv-color-theme.json"
       },
       {
-        "label": "Chthonic Geological Core",
+        "label": "Chthonic — Geological Core (Sister Ferrum Scoriae)",
         "uiTheme": "vs-dark",
         "path": "./themes/chthonic-geology-color-theme.json"
       }

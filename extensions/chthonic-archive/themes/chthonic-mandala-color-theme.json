@@ -1,5 +1,5 @@
 {
-  "name": "Chthonic Mandala - Flesh & Earth",
+  "name": "Chthonic — Flesh & Earth (The Decorator)",
   "type": "dark",
   "semanticHighlighting": true,
   "semanticTokenColors": {
@@ -95,6 +95,12 @@
 
     "editorBracketMatch.background": "#C9A96230",
     "editorBracketMatch.border": "#C9A962",
+    "editorBracketHighlight.foreground1": "#C9A962",
+    "editorBracketHighlight.foreground2": "#D4A5A5",
+    "editorBracketHighlight.foreground3": "#6B9E94",
+    "editorBracketHighlight.foreground4": "#C9A55A",
+    "editorBracketHighlight.foreground5": "#A8C686",
+    "editorBracketHighlight.foreground6": "#C75D5D",
     "editorIndentGuide.background1": "#2D221E",
     "editorIndentGuide.activeBackground1": "#5A4D44",
 
@@ -109,6 +115,8 @@
 
     "diffEditor.insertedTextBackground": "#A8C68618",
     "diffEditor.removedTextBackground": "#D0606018",
+    "diffEditor.insertedLineBackground": "#A8C68610",
+    "diffEditor.removedLineBackground": "#D0606010",
 
     "terminal.background": "#110D0A",
     "terminal.foreground": "#E8DDD4",

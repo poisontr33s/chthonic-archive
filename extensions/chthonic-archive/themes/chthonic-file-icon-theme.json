@@ -19,9 +19,26 @@
     "_svg":     { "iconPath": "./icons/file-svg.svg" },
     "_img":     { "iconPath": "./icons/file-img.svg" },
     "_git":     { "iconPath": "./icons/file-git.svg" },
+    "_claude":  { "iconPath": "./icons/file-claude.svg" },
+    "_copilot": { "iconPath": "./icons/file-copilot.svg" },
+    "_env":     { "iconPath": "./icons/file-env.svg" },
+    "_css":     { "iconPath": "./icons/file-css.svg" },
+    "_html":    { "iconPath": "./icons/file-html.svg" },
     "_file":    { "iconPath": "./icons/file-default.svg" },
-    "_folder":  { "iconPath": "./icons/folder-default.svg" },
-    "_folderX": { "iconPath": "./icons/folder-open.svg" }
+    "_folder":         { "iconPath": "./icons/folder-default.svg" },
+    "_folderX":        { "iconPath": "./icons/folder-open.svg" },
+    "_folder_src":     { "iconPath": "./icons/folder-src.svg" },
+    "_folder_srcX":    { "iconPath": "./icons/folder-src-open.svg" },
+    "_folder_github":  { "iconPath": "./icons/folder-github.svg" },
+    "_folder_githubX": { "iconPath": "./icons/folder-github-open.svg" },
+    "_folder_scripts": { "iconPath": "./icons/folder-scripts.svg" },
+    "_folder_scriptsX":{ "iconPath": "./icons/folder-scripts-open.svg" },
+    "_folder_game":    { "iconPath": "./icons/folder-game.svg" },
+    "_folder_gameX":   { "iconPath": "./icons/folder-game-open.svg" },
+    "_folder_temple":  { "iconPath": "./icons/folder-temple.svg" },
+    "_folder_templeX": { "iconPath": "./icons/folder-temple-open.svg" },
+    "_folder_nodemod": { "iconPath": "./icons/folder-node-modules.svg" },
+    "_folder_nodemodX":{ "iconPath": "./icons/folder-node-modules-open.svg" }
   },
   "file":           "_file",
   "folder":         "_folder",
@@ -42,7 +59,11 @@
     "go":              "_go",
     "ruby":            "_rb",
     "shellscript":     "_sh",
-    "xml":             "_svg"
+    "xml":             "_svg",
+    "css":             "_css",
+    "scss":            "_css",
+    "less":            "_css",
+    "html":            "_html"
   },
   "fileExtensions": {
     "ts":    "_ts",
@@ -77,7 +98,13 @@
     "jpeg":  "_img",
     "gif":   "_img",
     "webp":  "_img",
-    "ico":   "_img"
+    "ico":   "_img",
+    "css":   "_css",
+    "scss":  "_css",
+    "less":  "_css",
+    "html":  "_html",
+    "htm":   "_html",
+    "env":   "_env"
   },
   "fileNames": {
     ".gitignore":        "_git",
@@ -96,6 +123,30 @@
     "pyproject.toml":    "_py",
     "bunfig.toml":       "_js",
     "package.json":      "_js",
-    "tsconfig.json":     "_ts"
+    "tsconfig.json":     "_ts",
+    "CLAUDE.md":         "_claude",
+    ".env":              "_env",
+    ".env.local":        "_env",
+    ".env.development":  "_env",
+    ".env.production":   "_env",
+    "copilot-instructions.md": "_copilot"
+  },
+  "folderNames": {
+    "src":          "_folder_src",
+    "lib":          "_folder_src",
+    ".github":      "_folder_github",
+    "scripts":      "_folder_scripts",
+    "game":         "_folder_game",
+    ".temple":      "_folder_temple",
+    "node_modules": "_folder_nodemod"
+  },
+  "folderNamesExpanded": {
+    "src":          "_folder_srcX",
+    "lib":          "_folder_srcX",
+    ".github":      "_folder_githubX",
+    "scripts":      "_folder_scriptsX",
+    "game":         "_folder_gameX",
+    ".temple":      "_folder_templeX",
+    "node_modules": "_folder_nodemodX"
   }
 }

@@ -4,6 +4,8 @@
     "shield":             { "iconPath": "./icons/product/shield.svg" },
     "paintcan":           { "iconPath": "./icons/product/paintcan.svg" },
     "layers":             { "iconPath": "./icons/product/layers.svg" },
-    "comment-discussion": { "iconPath": "./icons/product/comment-discussion.svg" }
+    "comment-discussion": { "iconPath": "./icons/product/comment-discussion.svg" },
+    "hammer":             { "iconPath": "./icons/product/hammer.svg" },
+    "flame":              { "iconPath": "./icons/product/flame.svg" }
   }
 }

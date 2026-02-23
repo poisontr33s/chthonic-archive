@@ -1,5 +1,5 @@
 {
-  "name": "Chthonic Mandala - ROGBIV",
+  "name": "Chthonic — ROGBIV (Spectra Chroma)",
   "type": "dark",
   "semanticHighlighting": true,
   "semanticTokenColors": {
@@ -95,6 +95,12 @@
 
     "editorBracketMatch.background": "#FFD70020",
     "editorBracketMatch.border": "#FFD700",
+    "editorBracketHighlight.foreground1": "#FFD700",
+    "editorBracketHighlight.foreground2": "#FFB84D",
+    "editorBracketHighlight.foreground3": "#4ECDC4",
+    "editorBracketHighlight.foreground4": "#FF6B6B",
+    "editorBracketHighlight.foreground5": "#9B7ACC",
+    "editorBracketHighlight.foreground6": "#B8B8CC",
     "editorIndentGuide.background1": "#2A2840",
     "editorIndentGuide.activeBackground1": "#4ECDC450",
 
@@ -109,6 +115,8 @@
 
     "diffEditor.insertedTextBackground": "#4ECDC418",
     "diffEditor.removedTextBackground": "#FF6B6B18",
+    "diffEditor.insertedLineBackground": "#4ECDC410",
+    "diffEditor.removedLineBackground": "#FF6B6B10",
 
     "terminal.background": "#0D0B12",
     "terminal.foreground": "#DADAE6",

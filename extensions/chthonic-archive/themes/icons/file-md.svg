@@ -1,4 +1,5 @@
-﻿<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
   <rect x="1" y="1" width="14" height="14" rx="2" fill="#040d14"/>
-  <text x="8" y="11.5" text-anchor="middle" font-family="'Consolas','Courier New',monospace" font-size="7.5" font-weight="bold" fill="#519ABA">MD</text>
+  <path d="M2.5 12V5l2 4 2-4v7" fill="none" stroke="#519ABA" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M9 12V5h2c1.5 0 2.5 1 2.5 3.5S12.5 12 11 12H9" fill="none" stroke="#519ABA" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/>
 </svg>
