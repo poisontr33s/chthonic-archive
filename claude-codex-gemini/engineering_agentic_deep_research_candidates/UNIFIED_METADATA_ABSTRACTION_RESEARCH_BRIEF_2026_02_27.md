@@ -178,6 +178,65 @@ The unified standard must be parseable by:
 
 ---
 
+## Addendum: Hierarchical Precedence & Phase-Gated WPTG Integration
+
+### The Ankhological Metadata Standard PRECEDES Existing Standards
+
+The unified metadata abstraction being researched is NOT a peer to `STD_SCRIPT_METADATA_V2` or `PMS-v3` — it is the **WPTG higher stage** that encompasses and supersedes both. The hierarchy becomes:
+
+```
+☥ ANKH Metadata Standard (this research output)     ← NEW: highest authority
+  └── PMS-v3 (Python-specific canonical layout)      ← preserved, subsumed
+  └── STD_SCRIPT_METADATA_V2 (cross-language)        ← preserved, subsumed
+      └── Decorator's Blessing (visual envelope)     ← preserved, visual layer
+      └── Per-framework conventions                  ← respected, lowest
+```
+
+The new standard absorbs the existing ones — it doesn't compete with them. Existing files that comply with PMS-v3 or STD_V2 are already partially compliant with the ANKH standard. The gap is the **semantic richness** (cross-language `@Implements`/`@Emits`) and the **aesthetic naming** (Egypto-Andean field vocabulary).
+
+### Phase-Gated Structure (0.0 → 10.0)
+
+This research must NOT produce an indefinite upcycling plan. Every output must map to a bounded WPTG phase gate with a concrete `~est goal'd standard` — a terminal quality state where the phase is DONE.
+
+| Phase | Gate | Purpose | Terminal State |
+|-------|------|---------|----------------|
+| **0.0** | Field Specification | Define the complete unified field set | All fields named, typed, and layer-assigned |
+| **1.0** | Architecture Decision | Select from candidate approaches A-E (or hybrid) | One architecture locked, rationale documented |
+| **2.0** | Template Canon | Per-language header templates (Py/TS/PS1/RS) | 4 templates, zero ambiguity |
+| **3.0** | Python Migration | Unify envelope + docstring in all `.py` files | 120 files compliant, zero SID duplication |
+| **4.0** | TypeScript Semantic Layer | Add `@SID`/`@Implements` to TS via JSDoc or comment | 62 files with semantic tags |
+| **5.0** | PowerShell Semantic Layer | Add semantic tags via `<# #>` or comment block | 82 files with semantic tags |
+| **6.0** | Rust Semantic Layer | Add `@SID` to `//!` inner doc or envelope | 15 files with semantic tags |
+| **7.0** | Cross-Language Audit Tool | Script that validates all 279 files against unified standard | `chthonic audit metadata` command operational |
+| **8.0** | SFA Integration | Update `sfa_cross_reference.py` to parse unified tags | Balance audit reads new format |
+| **9.0** | Content Truncation Elimination | All Purpose/Exports fields at full fidelity | Zero truncated metadata across repo |
+| **10.0** | Gold Standard | 100% compliance, tooling verified, aesthetic naming finalized | WPTG Pillar V COMPLETE |
+
+Each phase has exactly ONE output, ONE gate, and ONE terminal state. No phase may be reopened once gated.
+
+### RQ6: Local AI Model Delegation Pipeline
+
+**Context:** Claude Code cannot delegate batch metadata transformations to itself across sessions. A local AI model (running on user hardware, e.g., via Ollama/LM Studio/vLLM) could serve as an execution engine that:
+
+1. Receives a **precise instruction template** from Claude (the "what to transform")
+2. Processes files batch-style without requiring interactive pivot
+3. Outputs transformed files or diffs that Claude validates post-hoc
+4. Operates within the user's existing local AI infrastructure (24GB VRAM available)
+
+**Research needed:**
+
+| Question | Detail |
+|----------|--------|
+| **Model Selection** | What local model (7B-70B range, 24GB VRAM) is best suited for structured comment-block rewriting? Code-specialized (CodeLlama, DeepSeek-Coder) vs general (Llama 3.1)? |
+| **Instruction Template Design** | How should the "transform instruction" be structured so the local model applies it deterministically across 279 files without drift? JSON transform spec? Regex + template? |
+| **Validation Pipeline** | How does Claude validate the local model's output? Diff review? Automated gate (parse the output, check field completeness)? |
+| **Integration** | Should the local model run as an MCP server, a CLI tool called by `chthonic`, or a standalone batch script? |
+| **Failure Mode** | What happens when the local model hallucinates a field value or breaks syntax? Rollback strategy? |
+
+This is about using the right tool for the right job: Claude architects the standard, the local model applies it at scale, Claude validates the result.
+
+---
+
 ## Constraints
 
 These are non-negotiable:
@@ -189,6 +248,8 @@ These are non-negotiable:
 5. **Visual Presence (FA⁵)** — The Decorator's Blessing must remain visually distinctive. Files must be "recognizably governed" at a glance.
 6. **Cross-Language Uniformity** — The semantic metadata layer must work identically across Python, TypeScript, PowerShell, and Rust.
 7. **Backward Compatibility** — 279 files already have headers. Migration must be incremental, not big-bang.
+8. **Phase-Gated Execution** — Every migration step maps to a WPTG phase (0.0-10.0). No indefinite upcycling. Each phase has a terminal state.
+9. **Goal-Oriented, Not Process-Oriented** — The output must be a concrete standard, not a methodology for creating a standard. Research serves execution.
 
 ---
 
@@ -218,11 +279,13 @@ The duplication is concentrated in Python, where PMS-v3 mandates the docstring `
 
 3. **Per-Language Templates** — Provide concrete header templates for Python, TypeScript, PowerShell, and Rust under the unified standard.
 
-4. **Migration Path** — How do we get from 279 files in the current dual-system to the unified standard? Batch tooling approach? Incremental during normal edits? Priority ordering?
+4. **Migration Path (Phase-Gated)** — Map the migration to WPTG phases 0.0→10.0 as defined in the Addendum. Each phase must have one gate, one output, one terminal state. No indefinite iteration.
 
-5. **ANKH Aesthetic Framing** — Propose names/framing for the unified standard that honor the Egypto-Andean vocabulary. The standard itself should have a name that fits the ANKH cosmology (not just "Unified Metadata Standard v3").
+5. **ANKH Aesthetic Framing** — Propose names/framing for the unified standard that honor the Egypto-Andean vocabulary. The standard itself should have a name that fits the ANKH cosmology (not just "Unified Metadata Standard v3"). This name becomes the **WPTG high-stage identity** that supersedes STD_V2 and PMS-v3.
 
 6. **Tooling Impact** — What changes are needed in `normalize_blessing_box.py`, `sfa_cross_reference.py`, and `chthonic audit` to support the unified format?
+
+7. **Local AI Model Delegation Spec** — How should a local model (24GB VRAM, 7B-70B) be configured as a batch execution engine for metadata migration? Include: model selection, instruction template design, validation pipeline, integration path (MCP/CLI/standalone), and failure recovery.
 
 ---
 
