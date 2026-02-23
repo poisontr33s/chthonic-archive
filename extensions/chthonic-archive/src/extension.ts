@@ -553,6 +553,7 @@ export function activate(context: vscode.ExtensionContext) {
                 { label: '$(paintcan) Flesh & Earth', description: 'The Decorator · Warm earth · WCAG AA', id: 'Chthonic — Flesh & Earth (The Decorator)' },
                 { label: '$(zap) ROGBIV', description: 'Spectra Chroma · Spectral canon · FA¹⁻⁵', id: 'Chthonic — ROGBIV (Spectra Chroma)' },
                 { label: '$(symbol-color) Geological Core', description: 'Sister Ferrum Scoriae · Forge strata · WCAG AA', id: 'Chthonic — Geological Core (Sister Ferrum Scoriae)' },
+                { label: '$(flame) The Decorator', description: 'The Decorator · Tier 0.5 · Ornamental precision', id: 'Chthonic — The Decorator' },
             ];
             let targetId = themeId;
             if (!targetId) {
@@ -1133,6 +1134,7 @@ class ThemeTreeProvider implements vscode.TreeDataProvider<vscode.TreeItem> {
             { name: 'Chthonic — Flesh & Earth (The Decorator)', short: 'Flesh & Earth', icon: 'paintcan', desc: 'The Decorator · Warm earth' },
             { name: 'Chthonic — ROGBIV (Spectra Chroma)', short: 'ROGBIV', icon: 'zap', desc: 'Spectra Chroma · Spectral canon' },
             { name: 'Chthonic — Geological Core (Sister Ferrum Scoriae)', short: 'Geological Core', icon: 'symbol-color', desc: 'Ferrum Scoriae · Forge strata' },
+            { name: 'Chthonic — The Decorator', short: 'The Decorator', icon: 'flame', desc: 'Tier 0.5 · Ornamental precision' },
         ];
         return themes.map(t => {
             const active = current === t.name;

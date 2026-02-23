@@ -37,6 +37,11 @@
         "label": "Chthonic — Geological Core (Sister Ferrum Scoriae)",
         "uiTheme": "vs-dark",
         "path": "./themes/chthonic-geology-color-theme.json"
+      },
+      {
+        "label": "Chthonic — The Decorator",
+        "uiTheme": "vs-dark",
+        "path": "./themes/chthonic-decorator-color-theme.json"
       }
     ],
     "iconThemes": [
