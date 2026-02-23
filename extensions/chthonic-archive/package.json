@@ -24,6 +24,11 @@
   "contributes": {
     "themes": [
       {
+        "label": "Chthonic — The Decorator",
+        "uiTheme": "vs-dark",
+        "path": "./themes/chthonic-decorator-color-theme.json"
+      },
+      {
         "label": "Chthonic Mandala - Flesh & Earth",
         "uiTheme": "vs-dark",
         "path": "./themes/chthonic-mandala-color-theme.json"

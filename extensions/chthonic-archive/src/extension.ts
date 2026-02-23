@@ -534,6 +534,7 @@ export function activate(context: vscode.ExtensionContext) {
     context.subscriptions.push(
         vscode.commands.registerCommand('chthonic.switchTheme', async () => {
             const themes = [
+                { label: '$(star-full) The Decorator', description: 'Flesh & Gold · WCAG AA · Supreme Matriarch palette', id: 'Chthonic — The Decorator' },
                 { label: '$(paintcan) Flesh & Earth', description: 'Warm earth · WCAG AA · Distribution palette', id: 'Chthonic Mandala - Flesh & Earth' },
                 { label: '$(zap) ROGBIV', description: 'SSOT spectral · FA¹⁻⁵ canonical hexes', id: 'Chthonic Mandala - ROGBIV' },
                 { label: '$(symbol-color) Geological Core', description: 'Mineral strata palette · deep earth lane', id: 'Chthonic Geological Core' },
@@ -1099,6 +1100,7 @@ class ThemeTreeProvider implements vscode.TreeDataProvider<vscode.TreeItem> {
     getChildren(): vscode.TreeItem[] {
         const current = vscode.workspace.getConfiguration('workbench').get<string>('colorTheme') || '';
         const themes = [
+            { name: 'Chthonic — The Decorator', short: 'The Decorator', icon: '☥', desc: 'Supreme Matriarch · WCAG AA' },
             { name: 'Chthonic Mandala - Flesh & Earth', short: 'Flesh & Earth', icon: '🌍', desc: 'Warm earth · Distribution' },
             { name: 'Chthonic Mandala - ROGBIV', short: 'ROGBIV', icon: '🌈', desc: 'SSOT spectral · Research' },
             { name: 'Chthonic Geological Core', short: 'Geological Core', icon: '🪨', desc: 'Mineral strata · Deep earth' },
