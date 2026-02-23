@@ -2,20 +2,20 @@
  <!-- Stele base -->
  <rect x="3" y="1.5" width="10" height="13" rx="1" fill="#0A0A0A" stroke="#908672" stroke-width="0.5"/>
 
- <ellipse cx="8" cy="8.5" rx="1.2" ry="1.5" fill="none" stroke="#D4907A" stroke-width="0.5"/>
+ <ellipse cx="8" cy="8.5" rx="1.2" ry="1.5" fill="none" stroke="#8CB87A" stroke-width="0.5"/>
 
- <circle cx="8" cy="6.2" r="0.8" fill="none" stroke="#D4907A" stroke-width="0.5"/>
+ <circle cx="8" cy="6.2" r="0.8" fill="none" stroke="#8CB87A" stroke-width="0.5"/>
 
- <path d="M7.2 6.5L5.5 4.5" stroke="#D4907A" stroke-width="0.4"/>
- <path d="M7 7.5L4.5 6.5" stroke="#D4907A" stroke-width="0.4"/>
- <path d="M7 8.5L4.5 9" stroke="#D4907A" stroke-width="0.4"/>
- <path d="M7 9.5L5.5 11" stroke="#D4907A" stroke-width="0.4"/>
+ <path d="M7.2 6.5L5.5 4.5" stroke="#8CB87A" stroke-width="0.4"/>
+ <path d="M7 7.5L4.5 6.5" stroke="#8CB87A" stroke-width="0.4"/>
+ <path d="M7 8.5L4.5 9" stroke="#8CB87A" stroke-width="0.4"/>
+ <path d="M7 9.5L5.5 11" stroke="#8CB87A" stroke-width="0.4"/>
 
- <path d="M8.8 6.5L10.5 4.5" stroke="#D4907A" stroke-width="0.4"/>
- <path d="M9 7.5L11.5 6.5" stroke="#D4907A" stroke-width="0.4"/>
- <path d="M9 8.5L11.5 9" stroke="#D4907A" stroke-width="0.4"/>
- <path d="M9 9.5L10.5 11" stroke="#D4907A" stroke-width="0.4"/>
+ <path d="M8.8 6.5L10.5 4.5" stroke="#8CB87A" stroke-width="0.4"/>
+ <path d="M9 7.5L11.5 6.5" stroke="#8CB87A" stroke-width="0.4"/>
+ <path d="M9 8.5L11.5 9" stroke="#8CB87A" stroke-width="0.4"/>
+ <path d="M9 9.5L10.5 11" stroke="#8CB87A" stroke-width="0.4"/>
 
- <path d="M8 5.4L8 3.5" stroke="#D4907A" stroke-width="0.4"/>
- <circle cx="8" cy="3.5" r="0.25" fill="#D4907A"/>
+ <path d="M8 5.4L8 3.5" stroke="#8CB87A" stroke-width="0.4"/>
+ <circle cx="8" cy="3.5" r="0.25" fill="#8CB87A"/>
 </svg>

@@ -2,12 +2,12 @@
  <!-- Stele base -->
  <rect x="3" y="1.5" width="10" height="13" rx="1" fill="#0A0A0A" stroke="#908672" stroke-width="0.5"/>
 
- <ellipse cx="8" cy="5" rx="1.5" ry="1.2" fill="none" stroke="#F4C430" stroke-width="0.7"/>
+ <ellipse cx="8" cy="5" rx="1.5" ry="1.2" fill="none" stroke="#8CB87A" stroke-width="0.7"/>
 
- <line x1="5.5" y1="7" x2="10.5" y2="7" stroke="#F4C430" stroke-width="0.6" stroke-linecap="round"/>
+ <line x1="5.5" y1="7" x2="10.5" y2="7" stroke="#8CB87A" stroke-width="0.6" stroke-linecap="round"/>
 
- <line x1="8" y1="6.2" x2="8" y2="12" stroke="#F4C430" stroke-width="0.7" stroke-linecap="round"/>
+ <line x1="8" y1="6.2" x2="8" y2="12" stroke="#8CB87A" stroke-width="0.7" stroke-linecap="round"/>
 
- <path d="M6.2 3.5c.3-.3.8-.5 1.8-.5s1.5.2 1.8.5" fill="none" stroke="#F4C430" stroke-width="0.3" stroke-linecap="round" opacity="0.6"/>
- <path d="M5.8 2.8c.5-.4 1-.6 2.2-.6s1.7.2 2.2.6" fill="none" stroke="#F4C430" stroke-width="0.3" stroke-linecap="round" opacity="0.3"/>
+ <path d="M6.2 3.5c.3-.3.8-.5 1.8-.5s1.5.2 1.8.5" fill="none" stroke="#8CB87A" stroke-width="0.3" stroke-linecap="round" opacity="0.6"/>
+ <path d="M5.8 2.8c.5-.4 1-.6 2.2-.6s1.7.2 2.2.6" fill="none" stroke="#8CB87A" stroke-width="0.3" stroke-linecap="round" opacity="0.3"/>
 </svg>

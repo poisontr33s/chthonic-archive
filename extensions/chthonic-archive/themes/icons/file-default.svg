@@ -1,9 +1,9 @@
-﻿<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
  <!-- Stele: rounded-top tablet (Egyptian memorial stone) -->
  <path d="M4.5 2C4.5 2 4 2 4 2.5v11c0 .5.5.5.5.5h7s.5 0 .5-.5v-11c0-.5-.5-.5-.5-.5h-7z" fill="#0A0A0A" stroke="#908672" stroke-width="0.6"/>
  <path d="M4.5 2h7c.3 0 .5.2.5.5v0c0 0 0 0 0 0H4c0 0 0 0 0 0v0c0-.3.2-.5.5-.5z" fill="#908672" opacity="0.3"/>
 
- <ellipse cx="8" cy="6.5" rx="1.5" ry="1.8" fill="none" stroke="#F4C430" stroke-width="0.7"/>
- <line x1="8" y1="8.3" x2="8" y2="12.5" stroke="#F4C430" stroke-width="0.7" stroke-linecap="round"/>
- <line x1="6.2" y1="10" x2="9.8" y2="10" stroke="#F4C430" stroke-width="0.7" stroke-linecap="round"/>
+ <ellipse cx="8" cy="6.5" rx="1.5" ry="1.8" fill="none" stroke="#B9A37A" stroke-width="0.7"/>
+ <line x1="8" y1="8.3" x2="8" y2="12.5" stroke="#B9A37A" stroke-width="0.7" stroke-linecap="round"/>
+ <line x1="6.2" y1="10" x2="9.8" y2="10" stroke="#B9A37A" stroke-width="0.7" stroke-linecap="round"/>
 </svg>
