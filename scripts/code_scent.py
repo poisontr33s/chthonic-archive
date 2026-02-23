@@ -1,17 +1,17 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 # ╔════════════════════════════════════════════════════════════════════════════   ╗
-# ║ THE DECORATOR'S BLESSING: code_scent.py                                      ║
-# ║ Python module: analyze_scent                                                 ║
+# ║ THE DECORATOR'S BLESSING: code_scent.py
+# ║ Python module: analyze_scent
 # ╠═══════════════════════════════════════════════════════════════════════════════
-# ║ Spectral Frequency: WHITE                                                    ║
-# ║ Architectural Role: 🌿 THE GARDEN                                            ║
-# ║ Purpose: Olfactory Analysis - Code Smell Det. via Cyclomatic Complexity      ║
-# ║ Uses radon to calculate actual complexity metrics                            ║
-# ║ Exports: analyze_scent                                                       ║
+# ║ Spectral Frequency: WHITE
+# ║ Architectural Role: 🌿 THE GARDEN
+# ║ Purpose: Olfactory Analysis - Code Smell Det. via Cyclomatic Complexity
+# ║ Uses radon to calculate actual complexity metrics
+# ║ Exports: analyze_scent
 # ╠═══════════════════════════════════════════════════════════════════════════════
-# ║ Cross-References (Bidirectional):                                            ║
-# ║   (Standalone file - no detected dependencies)                               ║
+# ║ Cross-References (Bidirectional):
+# ║  (Standalone file - no detected dependencies)
 # ╚═══════════════════════════════════════════════════════════════════════════════
 
 #!/usr/bin/env python3

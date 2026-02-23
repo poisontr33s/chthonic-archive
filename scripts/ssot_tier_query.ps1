@@ -2,16 +2,16 @@
 
 <#
 # ╔════════════════════════════════════════════════════════════════════════════
-# ║ THE DECORATOR'S BLESSING: ssot_tier_query.ps1                             ║
-# ║ Module: SSOT tier query                                                   ║
+# ║ THE DECORATOR'S BLESSING: ssot_tier_query.ps1
+# ║ Module: SSOT tier query
 # ╠════════════════════════════════════════════════════════════════════════════
-# ║ Spectral Frequency: WHITE                                                 ║
-# ║ Architectural Role: SSOT                                                  ║
-# ║ Semantic ID: SCRIPT_SSOT_TIER_QUERY_V1                                     ║
-# ║ Purpose: Query GHAR-MHS tier hierarchy and entities                        ║
-# ║ Exports: (none)                                                           ║
-# ║ Flags/Modes: -Tier, -Entity                                               ║
-# ║ Cross-References: scripts/ssot_outline_extractor.ps1                       ║
+# ║ Spectral Frequency: WHITE
+# ║ Architectural Role: SSOT
+# ║ Semantic ID: SCRIPT_SSOT_TIER_QUERY_V1
+# ║ Purpose: Query GHAR-MHS tier hierarchy and entities
+# ║ Exports: (none)
+# ║ Flags/Modes: -Tier, -Entity
+# ║ Cross-References: scripts/ssot_outline_extractor.ps1
 # ╚════════════════════════════════════════════════════════════════════════════
 #>
 

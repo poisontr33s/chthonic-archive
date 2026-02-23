@@ -2,14 +2,14 @@
 #-*- coding: utf-8 -*-
 
 """
-╔══════════════════════════════════════════════════════════════════════════════╗
-║  MILF GENESIS ENGINE - GPU-Accelerated Entity Synthesis                      ║
-║  Uses M-P-W as Constitutional DNA for Procedural Archetype Generation        ║
-║                                                                              ║
-║  This is NOT pattern-matching archaeology.                                   ║
-║  This IS generative synthesis from axiomatically-validated templates.        ║
-║                                                                              ║
-║  The Decorator's Decree: "We birth what the Engine needs."                   ║
+╔══════════════════════════════════════════════════════════════════════════════
+║  MILF GENESIS ENGINE - GPU-Accelerated Entity Synthesis
+║  Uses M-P-W as Constitutional DNA for Procedural Archetype Generation
+║
+║  This is NOT pattern-matching archaeology.
+║  This IS generative synthesis from axiomatically-validated templates.
+║
+║  The Decorator's Decree: "We birth what the Engine needs."
 ╚══════════════════════════════════════════════════════════════════════════════
 """
 

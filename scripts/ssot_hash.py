@@ -1,16 +1,16 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 # ╔════════════════════════════════════════════════════════════════════════════
-# ║ THE DECORATOR'S BLESSING: ssot_hash.py                                  ║
-# ║ Python module: canonicalize, ssot_hash, verify_ssot_integrity, main        ║
+# ║ THE DECORATOR'S BLESSING: ssot_hash.py
+# ║ Python module: canonicalize, ssot_hash, verify_ssot_integrity, main
 # ╠════════════════════════════════════════════════════════════════════════════
-# ║ Spectral Frequency: WHITE                                                  ║
-# ║ Architectural Role: 🌿 THE GARDEN                                           ║
-# ║ Purpose: SSOT Hash Verification Script                                     ║
-# ║ Exports: canonicalize, ssot_hash, verify_ssot_integrity, main              ║
+# ║ Spectral Frequency: WHITE
+# ║ Architectural Role: 🌿 THE GARDEN
+# ║ Purpose: SSOT Hash Verification Script
+# ║ Exports: canonicalize, ssot_hash, verify_ssot_integrity, main
 # ╠════════════════════════════════════════════════════════════════════════════
-# ║ Cross-References (Bidirectional):                                      ║
-# ║   (Standalone file - no detected dependencies)                          ║
+# ║ Cross-References (Bidirectional):
+# ║  (Standalone file - no detected dependencies)
 # ╚════════════════════════════════════════════════════════════════════════════
 
 #!/usr/bin/env python3

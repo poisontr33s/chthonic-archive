@@ -1,16 +1,16 @@
 // Legacy preservation file: restored per WPTG non-delete policy.
 // Not imported by the active bridge lane, retained for upcycle continuity.
 // ╔════════════════════════════════════════════════════════════════════════════
-// ║ THE DECORATOR'S BLESSING: hedonisticValidation.ts                       ║
-// ║ TypeScript module: activate, deactivate, CONFIGURATION_SCHEMA              ║
+// ║ THE DECORATOR'S BLESSING: hedonisticValidation.ts
+// ║ TypeScript module: activate, deactivate, CONFIGURATION_SCHEMA
 // ╠════════════════════════════════════════════════════════════════════════════
-// ║ Spectral Frequency: ORANGE                                                 ║
-// ║ Architectural Role: 🔭 THE OBSERVATORY                                      ║
-// ║ Exports: activate, deactivate, CONFIGURATION_SCHEMA                        ║
+// ║ Spectral Frequency: ORANGE
+// ║ Architectural Role: 🔭 THE OBSERVATORY
+// ║ Exports: activate, deactivate, CONFIGURATION_SCHEMA
 // ╠════════════════════════════════════════════════════════════════════════════
-// ║ Cross-References (Bidirectional):                                      ║
-// ║ Dependencies (I rely on):                                               ║
-// ║   ├─► VSCODE_GUI_ENHANCEMENT_COMPLETE.md                                ║
+// ║ Cross-References (Bidirectional):
+// ║ Dependencies (I rely on):
+// ║  ├─► VSCODE_GUI_ENHANCEMENT_COMPLETE.md
 // ╚════════════════════════════════════════════════════════════════════════════
 
 import * as vscode from 'vscode';

@@ -1,17 +1,17 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 # ╔════════════════════════════════════════════════════════════════════════════
-# ║ THE DECORATOR'S BLESSING: github_voice.py                               ║
-# ║ Python module: is_voice_active, broadcast_issue                            ║
+# ║ THE DECORATOR'S BLESSING: github_voice.py
+# ║ Python module: is_voice_active, broadcast_issue
 # ╠════════════════════════════════════════════════════════════════════════════
-# ║ Spectral Frequency: WHITE                                                  ║
-# ║ Architectural Role: 🌿 THE GARDEN                                           ║
-# ║ Purpose: Check if the 'gh' CLI is available and authenticated.             ║
-# ║ Exports: is_voice_active, broadcast_issue                                  ║
+# ║ Spectral Frequency: WHITE
+# ║ Architectural Role: 🌿 THE GARDEN
+# ║ Purpose: Check if the 'gh' CLI is available and authenticated.
+# ║ Exports: is_voice_active, broadcast_issue
 # ╠════════════════════════════════════════════════════════════════════════════
-# ║ Cross-References (Bidirectional):                                      ║
-# ║ Dependencies (I rely on):                                               ║
-# ║   ├─► scripts/autonomous_coordinator.py                                 ║
+# ║ Cross-References (Bidirectional):
+# ║ Dependencies (I rely on):
+# ║  ├─► scripts/autonomous_coordinator.py
 # ╚════════════════════════════════════════════════════════════════════════════
 
 import subprocess

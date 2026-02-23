@@ -1,14 +1,14 @@
 // ╔════════════════════════════════════════════════════════════════════════════
-// ║ THE DECORATOR'S BLESSING: factions.rs                                   ║
-// ║ Vulkan rendering pipeline - visual truth incarnate                         ║
+// ║ THE DECORATOR'S BLESSING: factions.rs
+// ║ Vulkan rendering pipeline - visual truth incarnate
 // ╠════════════════════════════════════════════════════════════════════════════
-// ║ Spectral Frequency: RED                                                    ║
-// ║ Architectural Role: 🏰 THE FORTRESS                                         ║
-// ║ Purpose: Faction Registry - ASC Faction System Core                        ║
-// ║ Exports: FactionRegistry, new, initialize, activate_tsrp, deactivate_tsrp  ║
+// ║ Spectral Frequency: RED
+// ║ Architectural Role: 🏰 THE FORTRESS
+// ║ Purpose: Faction Registry - ASC Faction System Core
+// ║ Exports: FactionRegistry, new, initialize, activate_tsrp, deactivate_tsrp
 // ╠════════════════════════════════════════════════════════════════════════════
-// ║ Cross-References (Bidirectional):                                      ║
-// ║   (Standalone file - no detected dependencies)                          ║
+// ║ Cross-References (Bidirectional):
+// ║  (Standalone file - no detected dependencies)
 // ╚════════════════════════════════════════════════════════════════════════════
 
 //! Faction Registry - ASC Faction System Core

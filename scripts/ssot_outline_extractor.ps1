@@ -2,16 +2,16 @@
 
 <#
 # ╔════════════════════════════════════════════════════════════════════════════
-# ║ THE DECORATOR'S BLESSING: ssot_outline_extractor.ps1                      ║
-# ║ Module: SSOT outline extractor                                            ║
+# ║ THE DECORATOR'S BLESSING: ssot_outline_extractor.ps1
+# ║ Module: SSOT outline extractor
 # ╠════════════════════════════════════════════════════════════════════════════
-# ║ Spectral Frequency: WHITE                                                 ║
-# ║ Architectural Role: SSOT                                                  ║
-# ║ Semantic ID: SCRIPT_SSOT_OUTLINE_EXTRACTOR_V1                              ║
-# ║ Purpose: Extract SSOT outline and update structural index                 ║
-# ║ Exports: (none)                                                           ║
-# ║ Flags/Modes: -OutputJson, -Section, -Acronym, -UpdateIndex                 ║
-# ║ Cross-References: .github/instructions/ssot-toolbox.instructions.md        ║
+# ║ Spectral Frequency: WHITE
+# ║ Architectural Role: SSOT
+# ║ Semantic ID: SCRIPT_SSOT_OUTLINE_EXTRACTOR_V1
+# ║ Purpose: Extract SSOT outline and update structural index
+# ║ Exports: (none)
+# ║ Flags/Modes: -OutputJson, -Section, -Acronym, -UpdateIndex
+# ║ Cross-References: .github/instructions/ssot-toolbox.instructions.md
 # ╚════════════════════════════════════════════════════════════════════════════
 #>
 

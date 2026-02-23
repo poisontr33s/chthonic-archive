@@ -1,16 +1,16 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 # ╔════════════════════════════════════════════════════════════════════════════
-# ║ THE DECORATOR'S BLESSING: upcycle_audit.py                              ║
-# ║ Python module: COMMENT_MARKERS, SKIP_PATTERNS, EXEMPT_FROM_NOMINATION, should_skip, analyze_file, scan_paths... ║
+# ║ THE DECORATOR'S BLESSING: upcycle_audit.py
+# ║ Python module: COMMENT_MARKERS, SKIP_PATTERNS, EXEMPT_FROM_NOMINATION, should_skip, analyze_file, scan_paths...
 # ╠════════════════════════════════════════════════════════════════════════════
-# ║ Spectral Frequency: WHITE                                                  ║
-# ║ Architectural Role: 🌿 THE GARDEN                                           ║
-# ║ Purpose: Upcycling audit tool for chthonic-archive.                        ║
-# ║ Exports: COMMENT_MARKERS, SKIP_PATTERNS, EXEMPT_FROM_NOMINATION, should_skip, ║
+# ║ Spectral Frequency: WHITE
+# ║ Architectural Role: 🌿 THE GARDEN
+# ║ Purpose: Upcycling audit tool for chthonic-archive.
+# ║ Exports: COMMENT_MARKERS, SKIP_PATTERNS, EXEMPT_FROM_NOMINATION, should_skip,
 # ╠════════════════════════════════════════════════════════════════════════════
-# ║ Cross-References (Bidirectional):                                      ║
-# ║   (Standalone file - no detected dependencies)                          ║
+# ║ Cross-References (Bidirectional):
+# ║  (Standalone file - no detected dependencies)
 # ╚════════════════════════════════════════════════════════════════════════════
 
 #!/usr/bin/env python3

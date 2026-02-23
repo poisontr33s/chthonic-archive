@@ -1,14 +1,14 @@
 // ╔════════════════════════════════════════════════════════════════════════════
-// ║ THE DECORATOR'S BLESSING: loader.rs                                     ║
-// ║ Rust module: load_game_data                                                ║
+// ║ THE DECORATOR'S BLESSING: loader.rs
+// ║ Rust module: load_game_data
 // ╠════════════════════════════════════════════════════════════════════════════
-// ║ Spectral Frequency: RED                                                    ║
-// ║ Architectural Role: 🏰 THE FORTRESS                                         ║
-// ║ Purpose: Data loader - Transmutes JSON into living game entities           ║
-// ║ Exports: load_game_data                                                    ║
+// ║ Spectral Frequency: RED
+// ║ Architectural Role: 🏰 THE FORTRESS
+// ║ Purpose: Data loader - Transmutes JSON into living game entities
+// ║ Exports: load_game_data
 // ╠════════════════════════════════════════════════════════════════════════════
-// ║ Cross-References (Bidirectional):                                      ║
-// ║   (Standalone file - no detected dependencies)                          ║
+// ║ Cross-References (Bidirectional):
+// ║  (Standalone file - no detected dependencies)
 // ╚════════════════════════════════════════════════════════════════════════════
 
 //! Data loader - Transmutes JSON into living game entities

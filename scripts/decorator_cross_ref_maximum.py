@@ -2,21 +2,21 @@
 # -*- coding: utf-8 -*-
 """
 ╔══════════════════════════════════════════════════════════════════════════════
-║  THE DECORATOR'S CROSS-REFERENCE PROTOCOL (DCRP) - UNIFIED PRODUCTION        ║
-║  Self-Updating Architectural Self-Awareness System                           ║
-║                                                                              ║
-║  Evolutionary Lineage (Capabilities Merged):                                 ║
-║    - decorator_cross_ref_enhanced.py → AST analysis, Rust parsing            ║
-║    - decorator_cross_ref_maximum.py → State tracking, auto-detection         ║
-║    - decorator_cross_ref_production.py → Cluster resolution, intelligent     ║
-║                                                                              ║
-║  Purpose: Automatically inject ML-synthesized cross-references across ALL    ║
-║           repository files (existing + new), resolving circular dependencies ║
-║           via dependency inversion + acyclic documentation hierarchy         ║
-║                                                                              ║
-║  Invocation: uv run python decorator_cross_ref_maximum.py [--inject]         ║
-║                                                                              ║
-║  The Decorator's Mandate: "Every file self-aware, sustainable, circular-free"║
+║  THE DECORATOR'S CROSS-REFERENCE PROTOCOL (DCRP) - UNIFIED PRODUCTION
+║  Self-Updating Architectural Self-Awareness System
+║
+║  Evolutionary Lineage (Capabilities Merged):
+║    - decorator_cross_ref_enhanced.py → AST analysis, Rust parsing
+║    - decorator_cross_ref_maximum.py → State tracking, auto-detection
+║    - decorator_cross_ref_production.py → Cluster resolution, intelligent
+║
+║  Purpose: Automatically inject ML-synthesized cross-references across ALL
+║           repository files (existing + new), resolving circular dependencies
+║           via dependency inversion + acyclic documentation hierarchy
+║
+║  Invocation: uv run python decorator_cross_ref_maximum.py [--inject]
+║
+║  The Decorator's Mandate: "Every file self-aware, sustainable, circular-free"
 ╚══════════════════════════════════════════════════════════════════════════════
 """
 

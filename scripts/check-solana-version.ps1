@@ -1,16 +1,16 @@
 #!/usr/bin/env pwsh
 
 # ╔════════════════════════════════════════════════════════════════════════════
-# ║ THE DECORATOR'S BLESSING: check-solana-version.ps1                        ║
-# ║ Module: Solana/Agave governance version gate                              ║
+# ║ THE DECORATOR'S BLESSING: check-solana-version.ps1
+# ║ Module: Solana/Agave governance version gate
 # ╠════════════════════════════════════════════════════════════════════════════
-# ║ Spectral Frequency: WHITE                                                 ║
-# ║ Architectural Role: GOVERNANCE                                            ║
-# ║ Semantic ID: SCRIPT_CHECK_SOLANA_VERSION_V1                               ║
-# ║ Purpose: Enforce max-version-drift policy for local Solana CLI            ║
-# ║ Exports: (none)                                                           ║
-# ║ Flags/Modes: -MaxMinorBehind -Json -CliCommand                            ║
-# ║ Cross-References: scripts/chthonic.ps1                                    ║
+# ║ Spectral Frequency: WHITE
+# ║ Architectural Role: GOVERNANCE
+# ║ Semantic ID: SCRIPT_CHECK_SOLANA_VERSION_V1
+# ║ Purpose: Enforce max-version-drift policy for local Solana CLI
+# ║ Exports: (none)
+# ║ Flags/Modes: -MaxMinorBehind -Json -CliCommand
+# ║ Cross-References: scripts/chthonic.ps1
 # ╚════════════════════════════════════════════════════════════════════════════
 
 param(

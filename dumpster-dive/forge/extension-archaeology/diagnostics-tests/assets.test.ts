@@ -1,12 +1,12 @@
 // ╔════════════════════════════════════════════════════════════════════════════
-// ║ THE DECORATOR'S BLESSING: assets.test.ts                                ║
-// ║ TypeScript module: frontend utility                                        ║
+// ║ THE DECORATOR'S BLESSING: assets.test.ts
+// ║ TypeScript module: frontend utility
 // ╠════════════════════════════════════════════════════════════════════════════
-// ║ Spectral Frequency: ORANGE                                                 ║
-// ║ Architectural Role: 🔭 THE OBSERVATORY                                      ║
+// ║ Spectral Frequency: ORANGE
+// ║ Architectural Role: 🔭 THE OBSERVATORY
 // ╠════════════════════════════════════════════════════════════════════════════
-// ║ Cross-References (Bidirectional):                                      ║
-// ║   (Standalone file - no detected dependencies)                          ║
+// ║ Cross-References (Bidirectional):
+// ║  (Standalone file - no detected dependencies)
 // ╚════════════════════════════════════════════════════════════════════════════
 
 import { test, expect } from "bun:test";

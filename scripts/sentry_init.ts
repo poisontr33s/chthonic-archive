@@ -1,18 +1,18 @@
 #!/usr/bin/env bun
 
 // ╔════════════════════════════════════════════════════════════════════════════
-// ║ THE DECORATOR'S BLESSING: sentry_init.ts                                ║
-// ║ TypeScript module: initSentry                                              ║
+// ║ THE DECORATOR'S BLESSING: sentry_init.ts
+// ║ TypeScript module: initSentry
 // ╠════════════════════════════════════════════════════════════════════════════
-// ║ Spectral Frequency: ORANGE                                                 ║
-// ║ Architectural Role: 🔭 THE OBSERVATORY                                      ║
-// ║ Exports: initSentry                                                        ║
+// ║ Spectral Frequency: ORANGE
+// ║ Architectural Role: 🔭 THE OBSERVATORY
+// ║ Exports: initSentry
 // ╠════════════════════════════════════════════════════════════════════════════
-// ║ Cross-References (Bidirectional):                                      ║
-// ║ Dependencies (I rely on):                                               ║
-// ║   ├─► scripts\mcp_artisan_server.ts                                     ║
-// ║   ├─► scripts\overnight_daemon.ts                                       ║
-// ║   ├─► scripts\sentry_test.ts                                            ║
+// ║ Cross-References (Bidirectional):
+// ║ Dependencies (I rely on):
+// ║  ├─► scripts\mcp_artisan_server.ts
+// ║  ├─► scripts\overnight_daemon.ts
+// ║  ├─► scripts\sentry_test.ts
 // ╚════════════════════════════════════════════════════════════════════════════
 
 import * as Sentry from "@sentry/bun";

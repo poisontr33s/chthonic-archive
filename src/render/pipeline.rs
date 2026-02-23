@@ -1,14 +1,14 @@
 // ╔════════════════════════════════════════════════════════════════════════════
-// ║ THE DECORATOR'S BLESSING: pipeline.rs                                   ║
-// ║ Vulkan rendering pipeline - visual truth incarnate                         ║
+// ║ THE DECORATOR'S BLESSING: pipeline.rs
+// ║ Vulkan rendering pipeline - visual truth incarnate
 // ╠════════════════════════════════════════════════════════════════════════════
-// ║ Spectral Frequency: RED                                                    ║
-// ║ Architectural Role: 🏰 THE FORTRESS                                         ║
-// ║ Purpose: Vulkan 1.3 Graphics Pipeline with Dynamic Rendering               ║
-// ║ Exports: VulkanPipeline, PushConstants, Vertex, binding_description, attribut ║
+// ║ Spectral Frequency: RED
+// ║ Architectural Role: 🏰 THE FORTRESS
+// ║ Purpose: Vulkan 1.3 Graphics Pipeline with Dynamic Rendering
+// ║ Exports: VulkanPipeline, PushConstants, Vertex, binding_description, attribut
 // ╠════════════════════════════════════════════════════════════════════════════
-// ║ Cross-References (Bidirectional):                                      ║
-// ║   (Standalone file - no detected dependencies)                          ║
+// ║ Cross-References (Bidirectional):
+// ║  (Standalone file - no detected dependencies)
 // ╚════════════════════════════════════════════════════════════════════════════
 
 //! Vulkan 1.3 Graphics Pipeline with Dynamic Rendering

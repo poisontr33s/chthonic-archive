@@ -1,8 +1,8 @@
 // ╔══════════════════════════════════════════════════════════════════
-// ║  THE CHTHONIC ARCHIVE - Build Script                           ║
-// ║  Phase 11: GLSL → SPIR-V Compilation                           ║
-// ║  "We extract the gold through relentless pressure and heat."   ║
-// ║  <69.96 Alpha Omega>                                           ║
+// ║ THE CHTHONIC ARCHIVE - Build Script
+// ║ Phase 11: GLSL → SPIR-V Compilation
+// ║ "We extract the gold through relentless pressure and heat."
+// ║ <69.96 Alpha Omega>
 // ╚══════════════════════════════════════════════════════════════════
 
 use std::env;

@@ -2,16 +2,16 @@
 
 <#
 # ╔════════════════════════════════════════════════════════════════════════════
-# ║ THE DECORATOR'S BLESSING: patch-claude-insiders.ps1                       ║
-# ║ Module: Claude Code VS Code Insiders patcher                              ║
+# ║ THE DECORATOR'S BLESSING: patch-claude-insiders.ps1
+# ║ Module: Claude Code VS Code Insiders patcher
 # ╠════════════════════════════════════════════════════════════════════════════
-# ║ Spectral Frequency: WHITE                                                 ║
-# ║ Architectural Role: UTILITY                                               ║
-# ║ Semantic ID: SCRIPT_PATCH_CLAUDE_INSIDERS_V1                               ║
-# ║ Purpose: Patch Claude Code CLI to use code-insiders on Windows             ║
-# ║ Exports: (none)                                                           ║
-# ║ Flags/Modes: (none)                                                       ║
-# ║ Cross-References: (none)                                                  ║
+# ║ Spectral Frequency: WHITE
+# ║ Architectural Role: UTILITY
+# ║ Semantic ID: SCRIPT_PATCH_CLAUDE_INSIDERS_V1
+# ║ Purpose: Patch Claude Code CLI to use code-insiders on Windows
+# ║ Exports: (none)
+# ║ Flags/Modes: (none)
+# ║ Cross-References: (none)
 # ╚════════════════════════════════════════════════════════════════════════════
 #>
 

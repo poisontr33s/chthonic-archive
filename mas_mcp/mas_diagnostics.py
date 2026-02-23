@@ -2,21 +2,21 @@
 # -*- coding: utf-8 -*-
 """
 ╔══════════════════════════════════════════════════════════════════════
-║  MAS-MCP DIAGNOSTICS: The Living Layer's Self-Examination            ║
-║══════════════════════════════════════════════════════════════════════║
-║                                                                      ║
-║  "The living layer looks at itself in the mirror of the static      ║
-║   Codex and asks: 'Am I still aligned?'"                             ║
-║                                                  — MAS-MCP Protocol   ║
-║                                                                      ║
-║  This diagnostic suite validates the GPU/CPU backend infrastructure  ║
-║  that enables the MAS-MCP server to extract, score, and nurture     ║
-║  entities from the Chthonic Archive.                                 ║
-║                                                                      ║
-║  Hardware Target: Predator Helios (i9-14900 + NVIDIA Laptop GPU)     ║
-║  Environment: Windows 11 + PowerShell 7.4+ + Python 3.14 + uv 0.9+   ║
-║                                                                      ║
-║  Run: cd mas_mcp && uv run python mas_diagnostics.py                 ║
+║  MAS-MCP DIAGNOSTICS: The Living Layer's Self-Examination
+║══════════════════════════════════════════════════════════════════════
+║
+║  "The living layer looks at itself in the mirror of the static
+║   Codex and asks: 'Am I still aligned?'"
+║                                                  — MAS-MCP Protocol
+║
+║  This diagnostic suite validates the GPU/CPU backend infrastructure
+║  that enables the MAS-MCP server to extract, score, and nurture
+║  entities from the Chthonic Archive.
+║
+║  Hardware Target: Predator Helios (i9-14900 + NVIDIA Laptop GPU)
+║  Environment: Windows 11 + PowerShell 7.4+ + Python 3.14 + uv 0.9+
+║
+║  Run: cd mas_mcp && uv run python mas_diagnostics.py
 ╚══════════════════════════════════════════════════════════════════════
 """
 
@@ -679,9 +679,9 @@ def run_diagnostics() -> DiagnosticReport:
 
     print("""
 ╔══════════════════════════════════════════════════════════════════════
-║       MAS-MCP DIAGNOSTICS: The Living Layer Self-Examination         ║
+║       MAS-MCP DIAGNOSTICS: The Living Layer Self-Examination
 ╠══════════════════════════════════════════════════════════════════════
-║  "The flying carpet above the static files and codebase"             ║
+║  "The flying carpet above the static files and codebase"
 ╚══════════════════════════════════════════════════════════════════════
     """)
 

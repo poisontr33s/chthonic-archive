@@ -2,16 +2,16 @@
 
 <#
 # ╔════════════════════════════════════════════════════════════════════════════
-# ║ THE DECORATOR'S BLESSING: ssot_registry_query_v2.ps1                      ║
-# ║ Module: SSOT registry query (dynamic)                                    ║
+# ║ THE DECORATOR'S BLESSING: ssot_registry_query_v2.ps1
+# ║ Module: SSOT registry query (dynamic)
 # ╠════════════════════════════════════════════════════════════════════════════
-# ║ Spectral Frequency: WHITE                                                 ║
-# ║ Architectural Role: SSOT                                                  ║
-# ║ Semantic ID: SCRIPT_SSOT_REGISTRY_QUERY_V2_V1                              ║
-# ║ Purpose: Dynamically parse SSOT registries from copilot-instructions.md    ║
-# ║ Exports: (none)                                                           ║
-# ║ Flags/Modes: -Registry, -Entity                                           ║
-# ║ Cross-References: .github/copilot-instructions.md                          ║
+# ║ Spectral Frequency: WHITE
+# ║ Architectural Role: SSOT
+# ║ Semantic ID: SCRIPT_SSOT_REGISTRY_QUERY_V2_V1
+# ║ Purpose: Dynamically parse SSOT registries from copilot-instructions.md
+# ║ Exports: (none)
+# ║ Flags/Modes: -Registry, -Entity
+# ║ Cross-References: .github/copilot-instructions.md
 # ╚════════════════════════════════════════════════════════════════════════════
 #>
 

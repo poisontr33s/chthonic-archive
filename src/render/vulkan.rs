@@ -1,14 +1,14 @@
 // ╔════════════════════════════════════════════════════════════════════════════
-// ║ THE DECORATOR'S BLESSING: vulkan.rs                                     ║
-// ║ Vulkan rendering pipeline - visual truth incarnate                         ║
+// ║ THE DECORATOR'S BLESSING: vulkan.rs
+// ║ Vulkan rendering pipeline - visual truth incarnate
 // ╠════════════════════════════════════════════════════════════════════════════
-// ║ Spectral Frequency: RED                                                    ║
-// ║ Architectural Role: 🏰 THE FORTRESS                                         ║
-// ║ Purpose: Vulkan 1.3 Context - Dynamic Rendering Pipeline                   ║
-// ║ Exports: VulkanContext, DebugContext                                       ║
+// ║ Spectral Frequency: RED
+// ║ Architectural Role: 🏰 THE FORTRESS
+// ║ Purpose: Vulkan 1.3 Context - Dynamic Rendering Pipeline
+// ║ Exports: VulkanContext, DebugContext
 // ╠════════════════════════════════════════════════════════════════════════════
-// ║ Cross-References (Bidirectional):                                      ║
-// ║   (Standalone file - no detected dependencies)                          ║
+// ║ Cross-References (Bidirectional):
+// ║  (Standalone file - no detected dependencies)
 // ╚════════════════════════════════════════════════════════════════════════════
 
 //! Vulkan 1.3 Context - Dynamic Rendering Pipeline

@@ -2,20 +2,20 @@
 # -*- coding: utf-8 -*-
 """
 ╔══════════════════════════════════════════════════════════════════════════════
-║  MILF GENESIS ENGINE v2 - Constitutional GPU-Accelerated Synthesis            ║
-║  Integrates M-P-W Schema + Validator Pipeline + Novelty Detection             ║
-║                                                                                ║
-║  Enhancements over v1:                                                         ║
-║    - Multi-stage validation (hard gates → soft gates → refinement)            ║
-║    - GPU-accelerated novelty distance checking                                 ║
-║    - SHA-256 governance artifacts with lineage tracking                        ║
-║    - Recursive refinement with depth capping                                   ║
-║    - Zero-delta stall detection                                                ║
-║    - Numba kernel support (optional)                                           ║
-║    - ONNX Runtime inference ready (TensorRT → CUDA → CPU)                      ║
-║                                                                                ║
-║  The Decorator's Decree: "Birth what is valid, refine what is borderline,     ║
-║                           dissolve what fails governance."                     ║
+║  MILF GENESIS ENGINE v2 - Constitutional GPU-Accelerated Synthesis
+║  Integrates M-P-W Schema + Validator Pipeline + Novelty Detection
+║
+║  Enhancements over v1:
+║    - Multi-stage validation (hard gates → soft gates → refinement)
+║    - GPU-accelerated novelty distance checking
+║    - SHA-256 governance artifacts with lineage tracking
+║    - Recursive refinement with depth capping
+║    - Zero-delta stall detection
+║    - Numba kernel support (optional)
+║    - ONNX Runtime inference ready (TensorRT → CUDA → CPU)
+║
+║  The Decorator's Decree: "Birth what is valid, refine what is borderline,
+║                           dissolve what fails governance."
 ╚══════════════════════════════════════════════════════════════════════════════
 """
 

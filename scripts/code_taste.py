@@ -1,16 +1,16 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 # ╔════════════════════════════════════════════════════════════════════════════
-# ║ THE DECORATOR'S BLESSING: code_taste.py                                 ║
-# ║ Python module: analyze_taste                                               ║
+# ║ THE DECORATOR'S BLESSING: code_taste.py
+# ║ Python module: analyze_taste
 # ╠════════════════════════════════════════════════════════════════════════════
-# ║ Spectral Frequency: WHITE                                                  ║
-# ║ Architectural Role: 🌿 THE GARDEN                                           ║
-# ║ Purpose: Gustatory Validation - Commit Quality as Flavor Profiles          ║
-# ║ Exports: analyze_taste                                                     ║
+# ║ Spectral Frequency: WHITE
+# ║ Architectural Role: 🌿 THE GARDEN
+# ║ Purpose: Gustatory Validation - Commit Quality as Flavor Profiles
+# ║ Exports: analyze_taste
 # ╠════════════════════════════════════════════════════════════════════════════
-# ║ Cross-References (Bidirectional):                                      ║
-# ║   (Standalone file - no detected dependencies)                          ║
+# ║ Cross-References (Bidirectional):
+# ║  (Standalone file - no detected dependencies)
 # ╚════════════════════════════════════════════════════════════════════════════
 
 #!/usr/bin/env python3

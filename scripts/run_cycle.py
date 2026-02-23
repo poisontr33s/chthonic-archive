@@ -1,16 +1,16 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 # ╔════════════════════════════════════════════════════════════════════════════
-# ║ THE DECORATOR'S BLESSING: run_cycle.py                                  ║
-# ║ Python module: find_workspace_root, WORKSPACE_ROOT, MAS_MCP_ROOT, ARTIFACTS_DIR, GOVERNANCE_DIR, COMPATIBILITY_DIR... ║
+# ║ THE DECORATOR'S BLESSING: run_cycle.py
+# ║ Python module: find_workspace_root, WORKSPACE_ROOT, MAS_MCP_ROOT, ARTIFACTS_DIR, GOVERNANCE_DIR, COMPATIBILITY_DIR...
 # ╠════════════════════════════════════════════════════════════════════════════
-# ║ Spectral Frequency: WHITE                                                  ║
-# ║ Architectural Role: 🌿 THE GARDEN                                           ║
-# ║ Purpose: Run Cycle - MILF Execution with Artifact Output                   ║
-# ║ Exports: find_workspace_root, WORKSPACE_ROOT, MAS_MCP_ROOT, ARTIFACTS_DIR, GO ║
+# ║ Spectral Frequency: WHITE
+# ║ Architectural Role: 🌿 THE GARDEN
+# ║ Purpose: Run Cycle - MILF Execution with Artifact Output
+# ║ Exports: find_workspace_root, WORKSPACE_ROOT, MAS_MCP_ROOT, ARTIFACTS_DIR, GO
 # ╠════════════════════════════════════════════════════════════════════════════
-# ║ Cross-References (Bidirectional):                                      ║
-# ║   (Standalone file - no detected dependencies)                          ║
+# ║ Cross-References (Bidirectional):
+# ║  (Standalone file - no detected dependencies)
 # ╚════════════════════════════════════════════════════════════════════════════
 
 #!/usr/bin/env python3

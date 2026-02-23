@@ -13,8 +13,8 @@ $ErrorActionPreference = "Stop"
 Write-Host @"
 
   ╔═══════════════════════════════════════════════════════════════
-  ║     CuPy Build Environment Pre-Check                         ║
-  ║     Python 3.14 + CUDA 13 + cuDNN 9.17 + MSVC 2022           ║
+  ║     CuPy Build Environment Pre-Check
+  ║     Python 3.14 + CUDA 13 + cuDNN 9.17 + MSVC 2022
   ╚═══════════════════════════════════════════════════════════════
 
 "@ -ForegroundColor Cyan

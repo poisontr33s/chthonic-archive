@@ -1,15 +1,15 @@
 #!/usr/bin/env bun
 
 // ╔════════════════════════════════════════════════════════════════════════════
-// ║ THE DECORATOR'S BLESSING: run_mcp_validation.ts                         ║
-// ║ MCP client integration - Observatory communication layer                   ║
+// ║ THE DECORATOR'S BLESSING: run_mcp_validation.ts
+// ║ MCP client integration - Observatory communication layer
 // ╠════════════════════════════════════════════════════════════════════════════
-// ║ Spectral Frequency: ORANGE                                                 ║
-// ║ Architectural Role: 🔭 THE OBSERVATORY                                      ║
-// ║ Purpose: MCP validation runner - local testing and queries                 ║
+// ║ Spectral Frequency: ORANGE
+// ║ Architectural Role: 🔭 THE OBSERVATORY
+// ║ Purpose: MCP validation runner - local testing and queries
 // ╠════════════════════════════════════════════════════════════════════════════
-// ║ Cross-References (Bidirectional):                                      ║
-// ║   (Standalone file - no detected dependencies)                          ║
+// ║ Cross-References (Bidirectional):
+// ║  (Standalone file - no detected dependencies)
 // ╚════════════════════════════════════════════════════════════════════════════
 
 /**

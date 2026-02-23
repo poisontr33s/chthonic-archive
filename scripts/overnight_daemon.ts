@@ -1,16 +1,16 @@
 #!/usr/bin/env bun
 
 // ╔════════════════════════════════════════════════════════════════════════════
-// ║ THE DECORATOR'S BLESSING: overnight_daemon.ts                           ║
-// ║ MCP client integration - Observatory communication layer                   ║
+// ║ THE DECORATOR'S BLESSING: overnight_daemon.ts
+// ║ MCP client integration - Observatory communication layer
 // ╠════════════════════════════════════════════════════════════════════════════
-// ║ Spectral Frequency: ORANGE                                                 ║
-// ║ Architectural Role: 🔭 THE OBSERVATORY                                      ║
-// ║ Purpose: Overnight daemon - deterministic repo-local batch runner          ║
+// ║ Spectral Frequency: ORANGE
+// ║ Architectural Role: 🔭 THE OBSERVATORY
+// ║ Purpose: Overnight daemon - deterministic repo-local batch runner
 // ╠════════════════════════════════════════════════════════════════════════════
-// ║ Cross-References (Bidirectional):                                      ║
-// ║ Dependents (Rely on me):                                                ║
-// ║   └─◄ scripts\sentry_init.ts                                            ║
+// ║ Cross-References (Bidirectional):
+// ║ Dependents (Rely on me):
+// ║  └─◄ scripts\sentry_init.ts
 // ╚════════════════════════════════════════════════════════════════════════════
 
 /**

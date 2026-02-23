@@ -1,14 +1,14 @@
 // ╔════════════════════════════════════════════════════════════════════════════
-// ║ THE DECORATOR'S BLESSING: renderer.rs                                   ║
-// ║ Vulkan rendering pipeline - visual truth incarnate                         ║
+// ║ THE DECORATOR'S BLESSING: renderer.rs
+// ║ Vulkan rendering pipeline - visual truth incarnate
 // ╠════════════════════════════════════════════════════════════════════════════
-// ║ Spectral Frequency: RED                                                    ║
-// ║ Architectural Role: 🏰 THE FORTRESS                                         ║
-// ║ Purpose: Renderer - Main rendering orchestration using Dynamic Rendering   ║
-// ║ Exports: Renderer                                                          ║
+// ║ Spectral Frequency: RED
+// ║ Architectural Role: 🏰 THE FORTRESS
+// ║ Purpose: Renderer - Main rendering orchestration using Dynamic Rendering
+// ║ Exports: Renderer
 // ╠════════════════════════════════════════════════════════════════════════════
-// ║ Cross-References (Bidirectional):                                      ║
-// ║   (Standalone file - no detected dependencies)                          ║
+// ║ Cross-References (Bidirectional):
+// ║  (Standalone file - no detected dependencies)
 // ╚════════════════════════════════════════════════════════════════════════════
 
 //! Renderer - Main rendering orchestration using Dynamic Rendering

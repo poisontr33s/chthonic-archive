@@ -1,17 +1,20 @@
 // ╔════════════════════════════════════════════════════════════════════════════
-// ║ THE DECORATOR'S BLESSING: doctor.ts                                     ║
-// ║ TypeScript module: frontend utility                                        ║
+// ║ THE DECORATOR'S BLESSING: doctor.ts
+// ║ TypeScript module: frontend utility
 // ╠════════════════════════════════════════════════════════════════════════════
-// ║ Spectral Frequency: ORANGE                                                 ║
-// ║ Architectural Role: 🔭 THE OBSERVATORY                                      ║
+// ║ Spectral Frequency: ORANGE
+// ║ Architectural Role: 🔭 THE OBSERVATORY
 // ║ Purpose: * System health check - human-facing diagnostic output
- * Run with: bu ║
+// ║ Usage: Run with `bun run doctor` to get a comprehensive report,
+// ║  on extension health, including bundle sizes, runtime lane detection,
+// ║  GPU status, deployment status, build configuration,
+// ║  and source code checks.
 // ╠════════════════════════════════════════════════════════════════════════════
-// ║ Cross-References (Bidirectional):                                      ║
-// ║   (Standalone file - no detected dependencies)                          ║
+// ║ Cross-References (Bidirectional):
+// ║  (Standalone file - no detected dependencies)
 // ╚════════════════════════════════════════════════════════════════════════════
 
-#!/usr/bin/env bun
+
 /**
  * System health check - human-facing diagnostic output
  * Run with: bun run doctor

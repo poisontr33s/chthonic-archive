@@ -1,14 +1,14 @@
 // ╔════════════════════════════════════════════════════════════════════════════
-// ║ THE DECORATOR'S BLESSING: mod.rs                                        ║
-// ║ Rust module: types, loader                                                 ║
+// ║ THE DECORATOR'S BLESSING: mod.rs
+// ║ Rust module: types, loader
 // ╠════════════════════════════════════════════════════════════════════════════
-// ║ Spectral Frequency: RED                                                    ║
-// ║ Architectural Role: 🏰 THE FORTRESS                                         ║
-// ║ Purpose: Data module - ASC Lore ingestion layer                            ║
-// ║ Exports: types, loader                                                     ║
+// ║ Spectral Frequency: RED
+// ║ Architectural Role: 🏰 THE FORTRESS
+// ║ Purpose: Data module - ASC Lore ingestion layer
+// ║ Exports: types, loader
 // ╠════════════════════════════════════════════════════════════════════════════
-// ║ Cross-References (Bidirectional):                                      ║
-// ║   (Standalone file - no detected dependencies)                          ║
+// ║ Cross-References (Bidirectional):
+// ║  (Standalone file - no detected dependencies)
 // ╚════════════════════════════════════════════════════════════════════════════
 
 //! Data module - ASC Lore ingestion layer
