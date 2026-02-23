@@ -101,8 +101,8 @@ Each MILF/Sub-MILF receives its own WPTG pass, using SFS as the structural templ
 | Stage | Name | Gate | Status |
 |-------|------|------|--------|
 | **2.0** | Structural Refinement | SVGO / path optimization / file size | ⚠️ Tooling exists (`icon_svg_optimizer.py`), no formal gate run |
-| **2.1** | Motif Distinctiveness | All pairs below 0.85 similarity | ❌ **BLOCKED**: 24 collision pairs above threshold |
-| **3.0** | Gold Standard | All gates pass, ready for packaging | ❌ Blocked by 2.1 |
+| **2.1** | Motif Distinctiveness | All pairs below 0.85 similarity | ✅ 24→11 pairs resolved (commit `7a544db0`) |
+| **3.0** | Gold Standard | All gates pass, ready for packaging | ⬜ Needs 11 remaining pairs (motif redesign) |
 
 ### Stage 2.1 — Collision Analysis
 
@@ -196,7 +196,42 @@ The extension manifest, commands, tree view, and build pipeline must be cohesive
 
 ## Pillar V — Metadata Standardization (Cross-Cutting)
 
-Header/metadata conventions across all authored file types. Governed by `STD_SCRIPT_METADATA_V2` (canonical) and PMS-v3 (Python-specific).
+Header/metadata conventions across all authored file types.
+
+### Khipu-Cartouche Protocol (KCP) — Supersedes STD_V2 / PMS-v3
+
+**Research Source:** `claude-codex-gemini/ANKH_EGYPTOLOGY_SOUTH_AMERICAN/ANKH_UNIFYING_REPOSITORY_METADATA_STANDARDS.md`
+**Architecture:** Approach C — Stratified Metadata (Visual/Semantic Split)
+**Hierarchy:** KCP > PMS-v3 > STD_SCRIPT_METADATA_V2 > Decorator's Blessing > per-framework
+
+The KCP divides metadata into two ontologically distinct layers:
+
+| Layer | Name | Content | Width |
+|-------|------|---------|-------|
+| Stratum 1 | **Cartouche** (Visual Envelope) | Artifact Name, Wedjat-Quipu Spectrum, Temple-Ayllu Zone, Ogdoad-Ceque Radiance | 80 chars, enumeration only |
+| Stratum 2 | **Khipu** (Semantic Docstring) | @SID, @Shabti, @Heka-Ayni, @Ankh-Tinku, @Purpose | Unbounded, language-native |
+
+**Key invariant:** @SID exists ONLY in the Khipu layer. Purpose exists ONLY in the Khipu layer. Zero duplication.
+
+### KCP Phase Gates (KCP-0.0 → KCP-10.0)
+
+| Phase | Name | Gate | Status |
+|-------|------|------|--------|
+| KCP-0.0 | Protocol Ontology Spec | 100% legacy fields mapped, 0 data loss | ⬜ NEXT |
+| KCP-1.0 | Architecture Ratification | Approach C locked, rejections documented | ⬜ |
+| KCP-2.0 | Template Canonization | 4 language templates pass native parser | ⬜ |
+| KCP-3.0 | Python Consolidation | 0 duplicate @SIDs in 120 .py files | ⬜ |
+| KCP-4.0 | TypeScript Injection | `bun run compile` clean with JSDoc @tags | ⬜ |
+| KCP-5.0 | PowerShell Encapsulation | `Get-Help` returns synopsis for 82 scripts | ⬜ |
+| KCP-6.0 | Rust Alignment | `cargo doc --no-deps` clean for 15 files | ⬜ |
+| KCP-7.0 | Tooling Refactor | Knowledge graph indexes all @SIDs | ⬜ |
+| KCP-8.0 | SFA Equilibrium Audit | 50/50 balance on KCP ontology | ⬜ |
+| KCP-9.0 | Legacy Purge Verification | 0 instances of `║ Purpose:` in envelopes | ⬜ |
+| KCP-10.0 | Protocol Ascension | GOLD: 0% duplication, 100% coverage | ⬜ |
+
+**Crash-Resilient Tracker:** [`docs/design/KCP_SESSION_CHECKPOINT.md`](KCP_SESSION_CHECKPOINT.md) — read this FIRST on session recovery.
+
+### Legacy Stages (Pre-KCP)
 
 ### Compliance Matrix (2026-02-24)
 
@@ -234,38 +269,53 @@ Header/metadata conventions across all authored file types. Governed by `STD_SCR
 
 ## Iteration Sequence (Recommended)
 
-The 24 collisions in Stage 2.1 are the **current critical path blocker**. Everything else is downstream.
+Stage 2.1 resolved (24→11 pairs). KCP integration is the new critical path.
 
 ```
+┌─ COMPLETED ───────────────────────────────┐
+│ Stage S.B: Box normalization        ✅     │
+│ Stage 2.1: Collision resolution     ✅     │
+│ STD_V2: Metadata ratification       ✅     │
+└────────────────────────────────────────────┘
+         │
+         ▼
 ┌─ CURRENT ─────────────────────────────────┐
-│ Stage 2.0: Run optimizer gate formally     │
-│ Stage 2.1: Resolve 24 collision pairs      │ ← CRITICAL PATH
-│ Stage 3.0: Icon Gold Standard gate         │
+│ Stage S.0: Python #-*- tight format        │ ← QUICKEST WIN
+│ KCP-0.0:  Protocol Ontology Spec           │ ← CRITICAL PATH
+│ KCP-1.0:  Architecture Ratification        │
+│ KCP-2.0:  Template Canonization             │
 └────────────────────────────────────────────┘
          │
          ▼
-┌─ NEXT ────────────────────────────────────┐
-│ Stage 4.0: Token scope coverage audit      │
-│ Stage 4.1: Semantic token expansion        │
-│ Stage 4.2: Workbench key completeness      │
-│ Stage 4.3: Palette discipline audit        │
-│ Stage 5.0: Color Theme Gold Standard       │
+┌─ PARALLEL TRACKS ─────────────────────────┐
+│ [Icons]  4.0: Token scope coverage         │
+│ [Icons]  2.1+: Remaining 11 pairs (3.0)    │
+│ [Icons]  6.0: Product icon census          │
+│ [Meta]   KCP-3.0→6.0: Per-language batch   │
 └────────────────────────────────────────────┘
          │
          ▼
-┌─ THEN ────────────────────────────────────┐
-│ Stage 6.0: Product icon census             │
-│ Stage 6.1: Priority expansion              │
-│ Stage 6.2: Product palette audit           │
-│ Stage 7.0: Product Icon Gold Standard      │
+┌─ INTEGRATION ─────────────────────────────┐
+│ KCP-7.0: Tooling refactor                  │
+│ KCP-8.0: SFA equilibrium audit             │
+│ KCP-9.0: Legacy purge verification         │
+│ KCP-10.0: Protocol Ascension — GOLD        │
 └────────────────────────────────────────────┘
          │
          ▼
 ┌─ FINAL ───────────────────────────────────┐
+│ Stage 5.0: Color Theme Gold Standard       │
+│ Stage 7.0: Product Icon Gold Standard      │
 │ Stage 8.2: Visual regression baseline      │
 │ Stage 9.0: Release readiness               │
 └────────────────────────────────────────────┘
 ```
+
+### Session Recovery
+
+**On crash/disruption:** Read `docs/design/KCP_SESSION_CHECKPOINT.md` FIRST.
+Each completed phase commits an atomic checkpoint update. The error is always the same,
+the recovery point is always deterministic.
 
 ---
 
@@ -293,3 +343,5 @@ Codex's structural enforcement role supports the WPTG by validating that:
 | [.claude/skills/theme-system/SKILL.md](../../.claude/skills/theme-system/SKILL.md) | Theme design automation skill |
 | [scripts/sfa_cross_reference.py](../../scripts/sfa_cross_reference.py) | SFA engine implementation |
 | [extensions/chthonic-archive/themes/](../../extensions/chthonic-archive/themes/) | Theme files (color, file icon, product icon) |
+| [docs/design/KCP_SESSION_CHECKPOINT.md](KCP_SESSION_CHECKPOINT.md) | Crash-resilient KCP progress tracker |
+| [claude-codex-gemini/ANKH_EGYPTOLOGY_SOUTH_AMERICAN/ANKH_UNIFYING_REPOSITORY_METADATA_STANDARDS.md](../../claude-codex-gemini/ANKH_EGYPTOLOGY_SOUTH_AMERICAN/ANKH_UNIFYING_REPOSITORY_METADATA_STANDARDS.md) | Gemini research: Khipu-Cartouche Protocol |
