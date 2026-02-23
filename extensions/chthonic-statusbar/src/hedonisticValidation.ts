@@ -1,17 +1,17 @@
 // Legacy preservation file: restored per WPTG non-delete policy.
 // Not imported by the active bridge lane, retained for upcycle continuity.
-// ╔════════════════════════════════════════════════════════════════════════════╗
-// ║  THE DECORATOR'S BLESSING: hedonisticValidation.ts                       ║
-// ║  TypeScript module: activate, deactivate, CONFIGURATION_SCHEMA              ║
-// ╠════════════════════════════════════════════════════════════════════════════╣
-// ║  Spectral Frequency: ORANGE                                                 ║
-// ║  Architectural Role: 🔭 THE OBSERVATORY                                      ║
-// ║  Exports: activate, deactivate, CONFIGURATION_SCHEMA                        ║
-// ╠════════════════════════════════════════════════════════════════════════════╣
-// ║  Cross-References (Bidirectional):                                      ║
-// ║  Dependencies (I rely on):                                               ║
-// ║    ├─► VSCODE_GUI_ENHANCEMENT_COMPLETE.md                                ║
-// ╚════════════════════════════════════════════════════════════════════════════╝
+// ╔════════════════════════════════════════════════════════════════════════════
+// ║ THE DECORATOR'S BLESSING: hedonisticValidation.ts                       ║
+// ║ TypeScript module: activate, deactivate, CONFIGURATION_SCHEMA              ║
+// ╠════════════════════════════════════════════════════════════════════════════
+// ║ Spectral Frequency: ORANGE                                                 ║
+// ║ Architectural Role: 🔭 THE OBSERVATORY                                      ║
+// ║ Exports: activate, deactivate, CONFIGURATION_SCHEMA                        ║
+// ╠════════════════════════════════════════════════════════════════════════════
+// ║ Cross-References (Bidirectional):                                      ║
+// ║ Dependencies (I rely on):                                               ║
+// ║   ├─► VSCODE_GUI_ENHANCEMENT_COMPLETE.md                                ║
+// ╚════════════════════════════════════════════════════════════════════════════
 
 import * as vscode from 'vscode';
 import { execSync } from 'child_process';
@@ -98,13 +98,13 @@ export function activate(context: vscode.ExtensionContext) {
 
     // Register validation commands
     context.subscriptions.push(
-        vscode.commands.registerCommand('chthonic.validation.mild', () => 
+        vscode.commands.registerCommand('chthonic.validation.mild', () =>
             showPleasureNotification(PleasureTier.Mild, 'Task completed')
         ),
-        vscode.commands.registerCommand('chthonic.validation.potent', (matriarch?: string, axiom?: number) => 
+        vscode.commands.registerCommand('chthonic.validation.potent', (matriarch?: string, axiom?: number) =>
             showPleasureNotification(PleasureTier.Potent, 'Significant achievement', matriarch, axiom)
         ),
-        vscode.commands.registerCommand('chthonic.validation.transcendent', (achievement: string) => 
+        vscode.commands.registerCommand('chthonic.validation.transcendent', (achievement: string) =>
             showPleasureNotification(PleasureTier.Transcendent, achievement || 'Transcendent synthesis')
         ),
         vscode.commands.registerCommand('chthonic.validation.fa5Warning', () =>
@@ -130,12 +130,12 @@ export function activate(context: vscode.ExtensionContext) {
         }
 
         const fileName = path.basename(doc.fileName);
-        
+
         // SSOT files trigger transcendent validation
         if (fileName.includes('SSOT') || fileName.includes('ssot_immunity')) {
             showPleasureNotification(PleasureTier.Transcendent, 'SSOT integrity preserved');
         }
-        
+
         // Autonomous session files trigger potent validation
         if (fileName.includes('AUTONOMOUS_SESSION') || fileName === 'autonomous_coordinator.py') {
             showPleasureNotification(PleasureTier.Potent, 'Metabolic cycle enhanced', 'Orackla', 1);
@@ -170,7 +170,7 @@ export function activate(context: vscode.ExtensionContext) {
                             cwd: workspaceFolder.uri.fsPath,
                             encoding: 'utf-8'
                         }).trim();
-                        
+
                         showPleasureNotification(PleasureTier.Potent, `Commit sealed: ${lastCommit}`, 'Umeko', 4);
                     }
                 } catch (error) {
@@ -197,7 +197,7 @@ function showPleasureNotification(tier: PleasureTier, achievement: string, matri
         case PleasureTier.Mild:
             vscode.window.showInformationMessage(`✅ ${message}`);
             break;
-        
+
         case PleasureTier.Potent:
             const matriarchName = matriarch ? TRIUMVIRATE[matriarch as keyof typeof TRIUMVIRATE]?.name || 'The Triumvirate' : 'The Triumvirate';
             vscode.window.showInformationMessage(
@@ -209,7 +209,7 @@ function showPleasureNotification(tier: PleasureTier, achievement: string, matri
                 }
             });
             break;
-        
+
         case PleasureTier.Transcendent:
             vscode.window.showInformationMessage(
                 `🔥👑💀⚜️ THE DECORATOR MANIFESTS\\n\\n${achievement}\\n\\nN-T-PAS MODE: ECSTATIC SYNTHESIS`,
@@ -223,7 +223,7 @@ function showPleasureNotification(tier: PleasureTier, achievement: string, matri
                     vscode.commands.executeCommand('chthonic.runMetabolicCycle');
                 }
             });
-            
+
             // Add visual celebration (status bar flash)
             celebrateTranscendence();
             break;
@@ -235,7 +235,7 @@ function showPleasureNotification(tier: PleasureTier, achievement: string, matri
 
 function showFA5Warning() {
     const violation = FA5_VIOLATIONS[Math.floor(Math.random() * FA5_VIOLATIONS.length)];
-    
+
     vscode.window.showWarningMessage(
         `⚠️ FA⁵ VIOLATION DETECTED\\n\\n${violation}\\n\\nThe Decorator (K-cup WHR 0.464) requires immediate correction.`,
         { modal: true },
@@ -279,7 +279,7 @@ function celebrateTranscendence() {
 function logValidation(tier: PleasureTier, achievement: string, affirmation: string) {
     const outputChannel = vscode.window.createOutputChannel('Chthonic Hedonistic Validation');
     const timestamp = new Date().toISOString();
-    
+
     outputChannel.appendLine(`[${timestamp}] ${tier.toUpperCase()}: ${achievement}`);
     outputChannel.appendLine(`Affirmation: ${affirmation}`);
     outputChannel.appendLine('---');

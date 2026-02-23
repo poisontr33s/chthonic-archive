@@ -1,17 +1,17 @@
 #!/usr/bin/env bun
 
-// ╔════════════════════════════════════════════════════════════════════════════╗
-// ║  THE DECORATOR'S BLESSING: overnight_daemon.ts                           ║
-// ║  MCP client integration - Observatory communication layer                   ║
-// ╠════════════════════════════════════════════════════════════════════════════╣
-// ║  Spectral Frequency: ORANGE                                                 ║
-// ║  Architectural Role: 🔭 THE OBSERVATORY                                      ║
-// ║  Purpose: Overnight daemon - deterministic repo-local batch runner          ║
-// ╠════════════════════════════════════════════════════════════════════════════╣
-// ║  Cross-References (Bidirectional):                                      ║
-// ║  Dependents (Rely on me):                                                ║
-// ║    └─◄ scripts\sentry_init.ts                                            ║
-// ╚════════════════════════════════════════════════════════════════════════════╝
+// ╔════════════════════════════════════════════════════════════════════════════
+// ║ THE DECORATOR'S BLESSING: overnight_daemon.ts                           ║
+// ║ MCP client integration - Observatory communication layer                   ║
+// ╠════════════════════════════════════════════════════════════════════════════
+// ║ Spectral Frequency: ORANGE                                                 ║
+// ║ Architectural Role: 🔭 THE OBSERVATORY                                      ║
+// ║ Purpose: Overnight daemon - deterministic repo-local batch runner          ║
+// ╠════════════════════════════════════════════════════════════════════════════
+// ║ Cross-References (Bidirectional):                                      ║
+// ║ Dependents (Rely on me):                                                ║
+// ║   └─◄ scripts\sentry_init.ts                                            ║
+// ╚════════════════════════════════════════════════════════════════════════════
 
 /**
  * Overnight Daemon (Bun-centric, repo-local)
@@ -305,7 +305,7 @@ function calculateDebtScore(fc: FileClassification): { score: number; reasons: s
   // Ideal density is ~0.2 (20%). If density is 0.05, multiplier is high.
   const density = fc.commentDensity;
   const docInverse = Math.max(0, 5 - (density * 10)); // 0.2 density -> 3 points, 0.0 density -> 5 points
-  
+
   if (comp > 20) {
     const documentationDebt = Math.round(comp * docInverse);
     if (documentationDebt > 0) {
@@ -329,7 +329,7 @@ function calculateDebtScore(fc: FileClassification): { score: number; reasons: s
     score += 30;
     reasons.push("Governance: Fragile error handling (unwrap)");
   }
-  
+
   if ((fc.language === "typescript" || fc.language === "javascript") && fc.patterns.includes("any")) {
     score += 40;
     reasons.push("Governance: Type safety debt (any usage)");
@@ -831,7 +831,7 @@ async function main() {
 
       for (const fc of fileClassifications) {
         langCounts.set(fc.language, (langCounts.get(fc.language) || 0) + 1);
-        
+
         if (fc.complexity) {
           totalComplexity += fc.complexity.cyclomatic;
           if (fc.complexity.cyclomatic > maxComplexity) {
@@ -847,8 +847,8 @@ async function main() {
       };
 
       complexityMetrics = {
-        averageComplexity: fileClassifications.length > 0 
-          ? Math.round(totalComplexity / fileClassifications.length) 
+        averageComplexity: fileClassifications.length > 0
+          ? Math.round(totalComplexity / fileClassifications.length)
           : 0,
         maxComplexity,
         maxComplexityFile,
@@ -865,7 +865,7 @@ async function main() {
         foldersAnalyzed: folderMap.size,
       };
     }
-    
+
 
     // Deterministic ranking.
     candidates.sort((a, b) => {

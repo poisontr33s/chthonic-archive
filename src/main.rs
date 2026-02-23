@@ -1,22 +1,22 @@
-// ╔════════════════════════════════════════════════════════════════════════════╗
-// ║  THE DECORATOR'S BLESSING: main.rs
-// ║  Vulkan rendering pipeline - visual truth incarnate
-// ╠════════════════════════════════════════════════════════════════════════════╣
-// ║  Spectral Frequency: RED                                                    
-// ║  Architectural Role: 🏰 THE FORTRESS                                         
-// ║  Purpose: The Chthonic Archive: Triumvirate Ascension
-// ╠════════════════════════════════════════════════════════════════════════════╣
-// ║  Cross-References (Bidirectional):
-// ║    (Standalone file - no detected dependencies)
-// ╚════════════════════════════════════════════════════════════════════════════╝
+// ╔════════════════════════════════════════════════════════════════════════════
+// ║ THE DECORATOR'S BLESSING: main.rs
+// ║ Vulkan rendering pipeline - visual truth incarnate
+// ╠════════════════════════════════════════════════════════════════════════════
+// ║ Spectral Frequency: RED
+// ║ Architectural Role: 🏰 THE FORTRESS
+// ║ Purpose: The Chthonic Archive: Triumvirate Ascension
+// ╠════════════════════════════════════════════════════════════════════════════
+// ║ Cross-References (Bidirectional):
+// ║   (Standalone file - no detected dependencies)
+// ╚════════════════════════════════════════════════════════════════════════════
 
 //! The Chthonic Archive: Triumvirate Ascension
-//! 
+//!
 //! ASC-NATIVE-CHAIN-RPG - The World's First Rust/Vulkan/Solana Isometric RPG
-//! 
+//!
 //! "We do not accept the CRCs as they are. We demand they be stretched,
 //!  filled, and broken until they evolve."
-//!  
+//!
 //! <69.96 Alpha Omega>
 
 mod data;
@@ -43,7 +43,7 @@ fn main() -> Result<()> {
     env_logger::Builder::from_env(
         env_logger::Env::default().default_filter_or("info")
     ).init();
-    
+
     info!("╔══════════════════════════════════════════════════════════════════╗");
     info!("║   THE CHTHONIC ARCHIVE: TRIUMVIRATE ASCENSION                   ║");
     info!("║   Classification: ASC-NATIVE-CHAIN-RPG                          ║");
@@ -53,7 +53,7 @@ fn main() -> Result<()> {
     // === PHASE 14: AXIOMATIC VERIFICATION ===
     info!("⚖️ Verifying Axiomatic Integrity (SSOT)...");
     let verifier = AxiomVerifier::new(
-        ".github/copilot-instructions.md", 
+        ".github/copilot-instructions.md",
         "23658c449f09f3b2ad4d5cb7b94f2ecdcc4c64ae4a5de2d852872eef7f153b22"
     );
     if let Err(e) = verifier.verify_integrity() {
@@ -61,48 +61,48 @@ fn main() -> Result<()> {
         // In a production build, we might terminate here.
         // For development, we log and proceed with caution.
     }
-    
+
     // === PHASE 1: LOAD GAME DATA (Level 1.5 Entity Persistence) ===
     info!("📥 Loading game data and persistent state...");
     let save_path = "assets/save_state.json";
     let default_path = "assets/data.json";
-    
+
     let game_data = load_game_state(save_path, default_path)?;
-    
+
     // === PHASE 12: WORLD MANIFESTATION ===
     info!("🌍 Manifesting world into Faction Registry...");
     let mut faction_registry = FactionRegistry::new();
     faction_registry.initialize(&game_data);
-    
+
     faction_registry.log_invocation("AIP-FA1: World Manifestation Initialized");
-    
-    info!("✅ World manifestation complete. {} matriarchs active. {} world layers manifested.", 
+
+    info!("✅ World manifestation complete. {} matriarchs active. {} world layers manifested.",
           faction_registry.matriarchs.len(),
           faction_registry.districts.len());
-    
-    info!("✅ Data ingestion complete. {} entities ready for manifestation.", 
+
+    info!("✅ Data ingestion complete. {} entities ready for manifestation.",
           game_data.entities.len());
-    
+
     // === PHASE 2: CREATE WINDOW ===
     info!("🖼️  Initializing windowing system...");
     let event_loop = EventLoop::new()?;
-    
+
     let window = WindowBuilder::new()
         .with_title("The Chthonic Archive: Triumvirate Ascension 🔺")
         .with_inner_size(LogicalSize::new(1280.0, 720.0))
         .with_resizable(true)
         .build(&event_loop)?;
-    
+
     info!("✅ Window created: {}x{}", 1280, 720);
-    
+
     // === PHASE 3: INITIALIZE VULKAN (Dynamic Rendering) ===
     info!("🔥 Initializing Vulkan 1.3 with Dynamic Rendering...");
     let vulkan_context = unsafe { VulkanContext::new(&window)? };
-    
+
     // === PHASE 11: CREATE RENDERER ===
     info!("🎨 Creating rendering pipeline...");
     let window_size = window.inner_size();
-    let mut renderer = unsafe { 
+    let mut renderer = unsafe {
         Renderer::new(&vulkan_context, (window_size.width, window_size.height))?
     };
 
@@ -112,7 +112,7 @@ fn main() -> Result<()> {
     info!("   Shader: iso_grid.vert + iso_grid.frag → SPIR-V");
     info!("   Ready to render: Hello Triangle 🔺");
     info!("═══════════════════════════════════════════════════════════════════");
-    
+
     // === PHASE 4: RUN EVENT LOOP ===
     let mut frame_count: u64 = 0;
 
@@ -121,7 +121,7 @@ fn main() -> Result<()> {
             Event::WindowEvent { event, .. } => match event {
                 WindowEvent::CloseRequested => {
                     info!("👋 Window close requested. Terminating Archive.");
-                    
+
                     // === PHASE 12: PERSISTENCE (Save on Exit) ===
                     if let Err(e) = save_game_state(save_path, &game_data) {
                         error!("❌ Failed to save game state: {}", e);
@@ -131,7 +131,7 @@ fn main() -> Result<()> {
                     unsafe {
                         renderer.cleanup(&vulkan_context.device);
                     }
-                    
+
                     elwt.exit();
                 }
                 WindowEvent::Resized(size) => {
@@ -140,7 +140,7 @@ fn main() -> Result<()> {
                         // Check if size actually changed from current swapchain
                         let current = renderer.swapchain.extent;
                         if size.width != current.width || size.height != current.height {
-                            info!("📐 Window resized: {}x{} (was {}x{})", 
+                            info!("📐 Window resized: {}x{} (was {}x{})",
                                   size.width, size.height, current.width, current.height);
                             renderer.needs_resize = true;
                         }
@@ -174,7 +174,7 @@ fn main() -> Result<()> {
                     frame_count += 1;
                     let layer_num = ((frame_count / 120) % 6) + 1;
                     let layer_code = format!("LAYER-{}", layer_num);
-                    
+
                     let layer_color = faction_registry.districts.get(&layer_code)
                         .map(|d| d.visual.primary_color)
                         .unwrap_or([0.69, 0.0, 0.96]); // Fallback Purple
@@ -182,7 +182,7 @@ fn main() -> Result<()> {
                     let final_color = [layer_color[0], layer_color[1], layer_color[2], 1.0];
 
                     if frame_count % 120 == 0 {
-                        info!("🎨 Manifesting Spectral Frequency for {}: [{}, {}, {}]", 
+                        info!("🎨 Manifesting Spectral Frequency for {}: [{}, {}, {}]",
                               layer_code, layer_color[0], layer_color[1], layer_color[2]);
                     }
 
@@ -208,6 +208,6 @@ fn main() -> Result<()> {
             _ => {}
         }
     })?;
-    
+
     Ok(())
 }

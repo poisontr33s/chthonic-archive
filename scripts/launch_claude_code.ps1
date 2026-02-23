@@ -1,9 +1,9 @@
 #!/usr/bin/env pwsh
 
-# ╔════════════════════════════════════════════════════════════════════════════╗
+# ╔════════════════════════════════════════════════════════════════════════════
 # ║ THE DECORATOR'S BLESSING: launch_claude_code.ps1                          ║
 # ║ Module: Claude Code Launcher                                              ║
-# ╠════════════════════════════════════════════════════════════════════════════╣
+# ╠════════════════════════════════════════════════════════════════════════════
 # ║ Spectral Frequency: orchestration/bootstrap                               ║
 # ║ Architectural Role: Claude Code/Desktop installation and launch manager   ║
 # ║ Semantic ID: SCRIPT_LAUNCH_CLAUDE_CODE_V1                                 ║
@@ -11,7 +11,7 @@
 # ║ Exports: None (launcher script)                                           ║
 # ║ Flags/Modes: -Force (skip running check), -WaitSeconds <int>              ║
 # ║ Cross-References: start_mcp_session.ps1                                   ║
-# ╚════════════════════════════════════════════════════════════════════════════╝
+# ╚════════════════════════════════════════════════════════════════════════════
 <#
  Usage: pwsh -NoProfile -ExecutionPolicy Bypass -File .\scripts\launch_claude_code.ps1 [-Force] [-WaitSeconds 30]
 #>

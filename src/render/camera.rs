@@ -1,15 +1,15 @@
-// ╔════════════════════════════════════════════════════════════════════════════╗
-// ║  THE DECORATOR'S BLESSING: camera.rs                                     ║
-// ║  Rust module: IsometricCamera, new, update_matrices                         ║
-// ╠════════════════════════════════════════════════════════════════════════════╣
-// ║  Spectral Frequency: RED                                                    ║
-// ║  Architectural Role: 🏰 THE FORTRESS                                         ║
-// ║  Purpose: Isometric Camera System                                           ║
-// ║  Exports: IsometricCamera, new, update_matrices, view_matrix, projection_matri ║
-// ╠════════════════════════════════════════════════════════════════════════════╣
-// ║  Cross-References (Bidirectional):                                      ║
-// ║    (Standalone file - no detected dependencies)                          ║
-// ╚════════════════════════════════════════════════════════════════════════════╝
+// ╔════════════════════════════════════════════════════════════════════════════
+// ║ THE DECORATOR'S BLESSING: camera.rs                                     ║
+// ║ Rust module: IsometricCamera, new, update_matrices                         ║
+// ╠════════════════════════════════════════════════════════════════════════════
+// ║ Spectral Frequency: RED                                                    ║
+// ║ Architectural Role: 🏰 THE FORTRESS                                         ║
+// ║ Purpose: Isometric Camera System                                           ║
+// ║ Exports: IsometricCamera, new, update_matrices, view_matrix, projection_matri ║
+// ╠════════════════════════════════════════════════════════════════════════════
+// ║ Cross-References (Bidirectional):                                      ║
+// ║   (Standalone file - no detected dependencies)                          ║
+// ╚════════════════════════════════════════════════════════════════════════════
 
 //! Isometric Camera System
 //!
@@ -60,23 +60,23 @@ impl IsometricCamera {
         // X-axis rotation: ~35.264° = arctan(1/√2) ≈ 0.6154797 radians
         const ISO_X_ANGLE: f32 = 0.615_479_7; // arctan(1/√2)
         const ISO_Y_ANGLE: f32 = std::f32::consts::FRAC_PI_4; // 45° = π/4
-        
+
         // Calculate camera position from target using isometric angles
         // The camera looks down and to the side
         let cos_x = ISO_X_ANGLE.cos();
         let sin_x = ISO_X_ANGLE.sin();
         let cos_y = ISO_Y_ANGLE.cos();
         let sin_y = ISO_Y_ANGLE.sin();
-        
+
         // Camera offset from target (spherical coordinates transformed)
         let offset = Vec3::new(
             distance * cos_x * sin_y,  // X: horizontal offset
             distance * sin_x,           // Y: vertical offset (looking down)
             distance * cos_x * cos_y,   // Z: depth offset
         );
-        
+
         let position = target + offset;
-        
+
         info!("╔══════════════════════════════════════════════════════════════╗");
         info!("║   ISOMETRIC CAMERA INITIALIZED                              ║");
         info!("╠══════════════════════════════════════════════════════════════╣");
@@ -95,7 +95,7 @@ impl IsometricCamera {
             view: Mat4::IDENTITY,
             projection: Mat4::IDENTITY,
         };
-        
+
         camera.update_matrices(1.0);
         camera
     }
@@ -107,12 +107,12 @@ impl IsometricCamera {
     pub fn update_matrices(&mut self, aspect_ratio: f32) {
         // View matrix: look from position at target
         self.view = Mat4::look_at_rh(self.position, self.target, Vec3::Y);
-        
+
         // Orthographic projection: no perspective distortion
         // The Shelf of Creation: flat projection maintains isometric aesthetic
         let half_width = self.ortho_size * aspect_ratio;
         let half_height = self.ortho_size;
-        
+
         self.projection = Mat4::orthographic_rh(
             -half_width,
             half_width,
@@ -159,18 +159,18 @@ impl IsometricCamera {
     pub fn set_distance(&mut self, distance: f32, aspect_ratio: f32) {
         const ISO_X_ANGLE: f32 = 0.615_479_7;
         const ISO_Y_ANGLE: f32 = std::f32::consts::FRAC_PI_4;
-        
+
         let cos_x = ISO_X_ANGLE.cos();
         let sin_x = ISO_X_ANGLE.sin();
         let cos_y = ISO_Y_ANGLE.cos();
         let sin_y = ISO_Y_ANGLE.sin();
-        
+
         let offset = Vec3::new(
             distance * cos_x * sin_y,
             distance * sin_x,
             distance * cos_x * cos_y,
         );
-        
+
         self.position = self.target + offset;
         self.update_matrices(aspect_ratio);
     }
@@ -198,7 +198,7 @@ mod tests {
     #[test]
     fn test_camera_creation() {
         let camera = IsometricCamera::new(Vec3::ZERO, 10.0, 5.0);
-        
+
         // Camera should be positioned above and to the side
         assert!(camera.position.y > 0.0, "Camera should be above target");
         assert!(camera.position.x > 0.0, "Camera should be offset in X");
@@ -209,7 +209,7 @@ mod tests {
     fn test_matrices_update() {
         let mut camera = IsometricCamera::new(Vec3::ZERO, 10.0, 5.0);
         camera.update_matrices(16.0 / 9.0);
-        
+
         // Matrices should not be identity after update
         assert_ne!(camera.view_matrix(), Mat4::IDENTITY);
         assert_ne!(camera.projection_matrix(), Mat4::IDENTITY);

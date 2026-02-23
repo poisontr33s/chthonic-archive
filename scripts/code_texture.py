@@ -1,17 +1,17 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-# ╔════════════════════════════════════════════════════════════════════════════╗
-# ║  THE DECORATOR'S BLESSING: code_texture.py                               ║
-# ║  Python module: analyze_texture                                             ║
-# ╠════════════════════════════════════════════════════════════════════════════╣
-# ║  Spectral Frequency: WHITE                                                  ║
-# ║  Architectural Role: 🌿 THE GARDEN                                           ║
-# ║  Purpose: Tactile Feedback - Code Structure as Physical Texture             ║
-# ║  Exports: analyze_texture                                                   ║
-# ╠════════════════════════════════════════════════════════════════════════════╣
-# ║  Cross-References (Bidirectional):                                      ║
-# ║    (Standalone file - no detected dependencies)                          ║
-# ╚════════════════════════════════════════════════════════════════════════════╝
+# ╔════════════════════════════════════════════════════════════════════════════
+# ║ THE DECORATOR'S BLESSING: code_texture.py                               ║
+# ║ Python module: analyze_texture                                             ║
+# ╠════════════════════════════════════════════════════════════════════════════
+# ║ Spectral Frequency: WHITE                                                  ║
+# ║ Architectural Role: 🌿 THE GARDEN                                           ║
+# ║ Purpose: Tactile Feedback - Code Structure as Physical Texture             ║
+# ║ Exports: analyze_texture                                                   ║
+# ╠════════════════════════════════════════════════════════════════════════════
+# ║ Cross-References (Bidirectional):                                      ║
+# ║   (Standalone file - no detected dependencies)                          ║
+# ╚════════════════════════════════════════════════════════════════════════════
 
 #!/usr/bin/env python3
 """
@@ -28,13 +28,13 @@ def analyze_texture(file_path: str) -> tuple[str, int]:
     try:
         code = Path(file_path).read_text(encoding='utf-8')
         tree = ast.parse(code)
-        
+
         # Count imports
         import_count = 0
         for node in ast.walk(tree):
             if isinstance(node, (ast.Import, ast.ImportFrom)):
                 import_count += 1
-        
+
         # Map import count to texture
         if import_count <= 3:
             texture = "🧵 SILK"
@@ -46,7 +46,7 @@ def analyze_texture(file_path: str) -> tuple[str, int]:
             texture = "🪵 ROUGH"
         else:
             texture = "⚡ SHARP"
-        
+
         return texture, import_count
     except Exception as e:
         return f"ERROR: {e}", 0
@@ -56,9 +56,9 @@ if __name__ == "__main__":
         target = sys.argv[1]
     else:
         target = "autonomous_coordinator.py"
-    
+
     print(f"✋ [TACTILE] Feeling code texture...")
-    
+
     # Scan Python files
     files_to_scan = [
         "autonomous_coordinator.py",
@@ -66,7 +66,7 @@ if __name__ == "__main__":
         "scripts/mandala_topology.py",
         "unified_topology.py"
     ]
-    
+
     print("   🧵 Texture Report:")
     for file in files_to_scan:
         if Path(file).exists():

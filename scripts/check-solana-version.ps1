@@ -1,9 +1,9 @@
 #!/usr/bin/env pwsh
 
-# ╔════════════════════════════════════════════════════════════════════════════╗
+# ╔════════════════════════════════════════════════════════════════════════════
 # ║ THE DECORATOR'S BLESSING: check-solana-version.ps1                        ║
 # ║ Module: Solana/Agave governance version gate                              ║
-# ╠════════════════════════════════════════════════════════════════════════════╣
+# ╠════════════════════════════════════════════════════════════════════════════
 # ║ Spectral Frequency: WHITE                                                 ║
 # ║ Architectural Role: GOVERNANCE                                            ║
 # ║ Semantic ID: SCRIPT_CHECK_SOLANA_VERSION_V1                               ║
@@ -11,7 +11,7 @@
 # ║ Exports: (none)                                                           ║
 # ║ Flags/Modes: -MaxMinorBehind -Json -CliCommand                            ║
 # ║ Cross-References: scripts/chthonic.ps1                                    ║
-# ╚════════════════════════════════════════════════════════════════════════════╝
+# ╚════════════════════════════════════════════════════════════════════════════
 
 param(
     [int]$MaxMinorBehind = 2,

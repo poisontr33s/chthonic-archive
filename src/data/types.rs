@@ -1,14 +1,14 @@
-// ╔════════════════════════════════════════════════════════════════════════════╗
-// ║  THE DECORATOR'S BLESSING: types.rs                                      ║
-// ║  Rust module: GameData, MetaData, Entity                                    ║
-// ╠════════════════════════════════════════════════════════════════════════════╣
-// ║  Spectral Frequency: RED                                                    ║
-// ║  Architectural Role: 🏰 THE FORTRESS                                         ║
-// ║  Exports: GameData, MetaData, Entity, PhysicsData, GameStats                ║
-// ╠════════════════════════════════════════════════════════════════════════════╣
-// ║  Cross-References (Bidirectional):                                      ║
-// ║    (Standalone file - no detected dependencies)                          ║
-// ╚════════════════════════════════════════════════════════════════════════════╝
+// ╔════════════════════════════════════════════════════════════════════════════
+// ║ THE DECORATOR'S BLESSING: types.rs                                      ║
+// ║ Rust module: GameData, MetaData, Entity                                    ║
+// ╠════════════════════════════════════════════════════════════════════════════
+// ║ Spectral Frequency: RED                                                    ║
+// ║ Architectural Role: 🏰 THE FORTRESS                                         ║
+// ║ Exports: GameData, MetaData, Entity, PhysicsData, GameStats                ║
+// ╠════════════════════════════════════════════════════════════════════════════
+// ║ Cross-References (Bidirectional):                                      ║
+// ║   (Standalone file - no detected dependencies)                          ║
+// ╚════════════════════════════════════════════════════════════════════════════
 
 // Auto-generated from ProjectMPW Export Service
 // Date: 2025-11-30T17:35:02.099203

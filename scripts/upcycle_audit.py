@@ -1,17 +1,17 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-# ╔════════════════════════════════════════════════════════════════════════════╗
-# ║  THE DECORATOR'S BLESSING: upcycle_audit.py                              ║
-# ║  Python module: COMMENT_MARKERS, SKIP_PATTERNS, EXEMPT_FROM_NOMINATION, should_skip, analyze_file, scan_paths... ║
-# ╠════════════════════════════════════════════════════════════════════════════╣
-# ║  Spectral Frequency: WHITE                                                  ║
-# ║  Architectural Role: 🌿 THE GARDEN                                           ║
-# ║  Purpose: Upcycling audit tool for chthonic-archive.                        ║
-# ║  Exports: COMMENT_MARKERS, SKIP_PATTERNS, EXEMPT_FROM_NOMINATION, should_skip, ║
-# ╠════════════════════════════════════════════════════════════════════════════╣
-# ║  Cross-References (Bidirectional):                                      ║
-# ║    (Standalone file - no detected dependencies)                          ║
-# ╚════════════════════════════════════════════════════════════════════════════╝
+# ╔════════════════════════════════════════════════════════════════════════════
+# ║ THE DECORATOR'S BLESSING: upcycle_audit.py                              ║
+# ║ Python module: COMMENT_MARKERS, SKIP_PATTERNS, EXEMPT_FROM_NOMINATION, should_skip, analyze_file, scan_paths... ║
+# ╠════════════════════════════════════════════════════════════════════════════
+# ║ Spectral Frequency: WHITE                                                  ║
+# ║ Architectural Role: 🌿 THE GARDEN                                           ║
+# ║ Purpose: Upcycling audit tool for chthonic-archive.                        ║
+# ║ Exports: COMMENT_MARKERS, SKIP_PATTERNS, EXEMPT_FROM_NOMINATION, should_skip, ║
+# ╠════════════════════════════════════════════════════════════════════════════
+# ║ Cross-References (Bidirectional):                                      ║
+# ║   (Standalone file - no detected dependencies)                          ║
+# ╚════════════════════════════════════════════════════════════════════════════
 
 #!/usr/bin/env python3
 """
@@ -115,7 +115,7 @@ def should_skip(path: Path) -> bool:
 def analyze_file(path: Path) -> Dict:
     """
     Analyze a single file for code/text density.
-    
+
     Returns dict with:
         - path, ext, lines, code_lines, text_lines, blank_lines
         - code_ratio, text_ratio
@@ -223,7 +223,7 @@ def analyze_file(path: Path) -> Dict:
                 break
 
     is_candidate = nomination_reason is not None
-    
+
     # Handle path display - use absolute path, then make relative if possible
     try:
         display_path = str(path.absolute().relative_to(Path.cwd()))
@@ -244,11 +244,11 @@ def analyze_file(path: Path) -> Dict:
         "flags": flags,
         "upcycle_candidate": is_candidate,
     }
-    
+
     # Add nomination reason if candidate
     if is_candidate:
         result["nomination_reason"] = nomination_reason
-    
+
     return result
 
 
@@ -258,7 +258,7 @@ def scan_paths(paths: List[str]) -> List[Dict]:
 
     for p in paths:
         path = Path(p)
-        
+
         if not path.exists():
             print(f"Warning: {p} does not exist", file=sys.stderr)
             continue
@@ -328,12 +328,12 @@ def main() -> None:
         action="store_true",
         help="Show summary statistics instead of full JSON"
     )
-    
+
     args = parser.parse_args()
-    
+
     # Interactive mode selection if no explicit intent provided
     args = prompt_mode_if_ambiguous(args)
-    
+
     # Print resolved mode to stderr for audit trail
     mode = 'summary' if args.summary else 'candidates' if args.candidates_only else 'full'
     print(f"[upcycle-audit] mode = {mode}", file=sys.stderr)
@@ -350,22 +350,22 @@ def main() -> None:
         total_files = len(results)
         candidates = sum(1 for r in results if r.get("upcycle_candidate"))
         total_lines = sum(r.get("lines", 0) for r in results)
-        
+
         # Build flag distribution
         flag_counts = {}
         for r in results:
             for flag in r.get("flags", []):
                 flag_counts[flag] = flag_counts.get(flag, 0) + 1
-        
+
         # Human-readable summary to stderr, JSON to stdout
         print(f"Total files scanned: {total_files}", file=sys.stderr)
         print(f"Upcycle candidates: {candidates}", file=sys.stderr)
         print(f"Total lines: {total_lines:,}", file=sys.stderr)
         print(f"\nFlag distribution:", file=sys.stderr)
-        
+
         for flag, count in sorted(flag_counts.items(), key=lambda x: -x[1]):
             print(f"  {flag}: {count}", file=sys.stderr)
-        
+
         # Build schema envelope for JSON output
         from datetime import datetime, UTC
         output = {

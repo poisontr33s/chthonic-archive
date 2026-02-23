@@ -12,10 +12,10 @@ $ErrorActionPreference = "Stop"
 
 Write-Host @"
 
-  ╔═══════════════════════════════════════════════════════════════╗
+  ╔═══════════════════════════════════════════════════════════════
   ║     CuPy Build Environment Pre-Check                         ║
   ║     Python 3.14 + CUDA 13 + cuDNN 9.17 + MSVC 2022           ║
-  ╚═══════════════════════════════════════════════════════════════╝
+  ╚═══════════════════════════════════════════════════════════════
 
 "@ -ForegroundColor Cyan
 
@@ -23,16 +23,16 @@ $allPassed = $true
 
 function Check-Item {
     param([string]$Name, [string]$Path, [switch]$Required)
-    
+
     $exists = Test-Path $Path
     $icon = if ($exists) { "✅" } elseif ($Required) { "❌" } else { "⚠️" }
     $status = if ($exists) { "Found" } else { "MISSING" }
-    
+
     Write-Host "  $icon $Name : $status"
     if ($exists) {
         Write-Host "     └─ $Path" -ForegroundColor DarkGray
     }
-    
+
     if (-not $exists -and $Required) {
         $script:allPassed = $false
     }
@@ -128,7 +128,7 @@ if ($nvidiaSmi) {
     if ($gpuInfo) {
         Write-Host "  ✅ GPU detected:"
         Write-Host "     └─ $gpuInfo" -ForegroundColor DarkGray
-        
+
         # Check for Ada Lovelace (SM 8.9)
         if ($gpuInfo -match "4090|4080|4070|Ada") {
             Write-Host "  ✅ Ada Lovelace architecture (SM 8.9) - optimal for build" -ForegroundColor Green

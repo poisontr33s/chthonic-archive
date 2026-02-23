@@ -1,15 +1,15 @@
-// ╔════════════════════════════════════════════════════════════════════════════╗
-// ║  THE DECORATOR'S BLESSING: vulkan.rs                                     ║
-// ║  Vulkan rendering pipeline - visual truth incarnate                         ║
-// ╠════════════════════════════════════════════════════════════════════════════╣
-// ║  Spectral Frequency: RED                                                    ║
-// ║  Architectural Role: 🏰 THE FORTRESS                                         ║
-// ║  Purpose: Vulkan 1.3 Context - Dynamic Rendering Pipeline                   ║
-// ║  Exports: VulkanContext, DebugContext                                       ║
-// ╠════════════════════════════════════════════════════════════════════════════╣
-// ║  Cross-References (Bidirectional):                                      ║
-// ║    (Standalone file - no detected dependencies)                          ║
-// ╚════════════════════════════════════════════════════════════════════════════╝
+// ╔════════════════════════════════════════════════════════════════════════════
+// ║ THE DECORATOR'S BLESSING: vulkan.rs                                     ║
+// ║ Vulkan rendering pipeline - visual truth incarnate                         ║
+// ╠════════════════════════════════════════════════════════════════════════════
+// ║ Spectral Frequency: RED                                                    ║
+// ║ Architectural Role: 🏰 THE FORTRESS                                         ║
+// ║ Purpose: Vulkan 1.3 Context - Dynamic Rendering Pipeline                   ║
+// ║ Exports: VulkanContext, DebugContext                                       ║
+// ╠════════════════════════════════════════════════════════════════════════════
+// ║ Cross-References (Bidirectional):                                      ║
+// ║   (Standalone file - no detected dependencies)                          ║
+// ╚════════════════════════════════════════════════════════════════════════════
 
 //! Vulkan 1.3 Context - Dynamic Rendering Pipeline
 //!
@@ -68,15 +68,15 @@ impl VulkanContext {
 
         // Load Vulkan library
         let entry = Entry::load().context("Failed to load Vulkan library")?;
-        
+
         // Verify Vulkan 1.3 support
         let api_version = entry.try_enumerate_instance_version()?.unwrap_or(vk::API_VERSION_1_0);
-        
+
         let major = vk::api_version_major(api_version);
         let minor = vk::api_version_minor(api_version);
         let patch = vk::api_version_patch(api_version);
         info!("📦 Vulkan Instance Version: {major}.{minor}.{patch}");
-        
+
         if api_version < vk::API_VERSION_1_3 {
             return Err(anyhow!(
                 "Vulkan 1.3 required for Dynamic Rendering. Found: {major}.{minor}.{patch}"
@@ -85,10 +85,10 @@ impl VulkanContext {
 
         // Create instance
         let instance = Self::create_instance(&entry, window)?;
-        
+
         // Set up debug messenger (debug builds only)
         let debug_utils = Self::setup_debug_messenger(&entry, &instance)?;
-        
+
         // Create surface
         let surface_loader = khr::surface::Instance::new(&entry, &instance);
         let surface = ash_window::create_surface(
@@ -101,23 +101,23 @@ impl VulkanContext {
         info!("✅ Surface created");
 
         // Select physical device (The 4090 Hunt)
-        let (physical_device, physical_device_properties, queue_family_index) = 
+        let (physical_device, physical_device_properties, queue_family_index) =
             Self::select_physical_device(&instance, &surface_loader, surface)?;
-        
+
         // Create logical device with Dynamic Rendering
         let device = Self::create_logical_device(
-            &instance, 
-            physical_device, 
+            &instance,
+            physical_device,
             queue_family_index
         )?;
-        
+
         // Get queues
         let graphics_queue = device.get_device_queue(queue_family_index, 0);
         let present_queue = device.get_device_queue(queue_family_index, 0);
-        
+
         info!("═══════════════════════════════════════════════════════════════");
         info!("🔥 VULKAN CONTEXT INITIALIZED: 4090 READY 🔥");
-        info!("   Device: {0}", 
+        info!("   Device: {0}",
             CStr::from_ptr(physical_device_properties.device_name.as_ptr())
                 .to_string_lossy()
         );
@@ -143,7 +143,7 @@ impl VulkanContext {
     unsafe fn create_instance(entry: &Entry, window: &winit::window::Window) -> Result<Instance> {
         let app_name = CString::new("The Chthonic Archive").unwrap();
         let engine_name = CString::new("ASC-NATIVE-CHAIN-RPG").unwrap();
-        
+
         // ash 0.38: Use Default + setters instead of builder()
         let app_info = vk::ApplicationInfo::default()
             .application_name(&app_name)
@@ -156,11 +156,11 @@ impl VulkanContext {
         let mut extensions = ash_window::enumerate_required_extensions(
             window.display_handle()?.as_raw()
         )?.to_vec();
-        
+
         // Add debug utils extension
         #[cfg(debug_assertions)]
         extensions.push(ext::debug_utils::NAME.as_ptr());
-        
+
         info!("📦 Instance extensions: {}", extensions.len());
         for ext in &extensions {
             debug!("   - {}", CStr::from_ptr(*ext).to_string_lossy());
@@ -176,7 +176,7 @@ impl VulkanContext {
                 let name = CStr::from_ptr(layer.layer_name.as_ptr());
                 name == VALIDATION_LAYER
             });
-            
+
             if validation_available {
                 layer_names = vec![VALIDATION_LAYER.as_ptr()];
                 info!("✅ Validation layers enabled");
@@ -199,7 +199,7 @@ impl VulkanContext {
         let instance = entry
             .create_instance(&create_info, None)
             .context("Failed to create Vulkan instance")?;
-        
+
         info!("✅ Vulkan instance created");
         Ok(instance)
     }
@@ -211,7 +211,7 @@ impl VulkanContext {
         instance: &Instance,
     ) -> Result<Option<DebugContext>> {
         let debug_utils_loader = ext::debug_utils::Instance::new(entry, instance);
-        
+
         // ash 0.38: Use Default + setters
         let messenger_info = vk::DebugUtilsMessengerCreateInfoEXT::default()
             .message_severity(
@@ -229,7 +229,7 @@ impl VulkanContext {
         let messenger = debug_utils_loader
             .create_debug_utils_messenger(&messenger_info, None)
             .context("Failed to create debug messenger")?;
-        
+
         info!("✅ Debug messenger initialized");
         Ok(Some(DebugContext {
             loader: debug_utils_loader,
@@ -267,7 +267,7 @@ impl VulkanContext {
         for pdevice in physical_devices {
             let properties = instance.get_physical_device_properties(pdevice);
             let device_name = CStr::from_ptr(properties.device_name.as_ptr()).to_string_lossy();
-            
+
             // Check queue family support
             let queue_families = instance.get_physical_device_queue_family_properties(pdevice);
             let queue_family_index = queue_families
@@ -278,7 +278,7 @@ impl VulkanContext {
                     let supports_present = surface_loader
                         .get_physical_device_surface_support(pdevice, u32::try_from(index).unwrap_or(0), surface)
                         .unwrap_or(false);
-                    
+
                     if supports_graphics && supports_present {
                         Some(u32::try_from(index).unwrap_or(0))
                     } else {
@@ -296,7 +296,7 @@ impl VulkanContext {
             let mut features2 = vk::PhysicalDeviceFeatures2::default()
                 .push_next(&mut dynamic_rendering_features);
             instance.get_physical_device_features2(pdevice, &mut features2);
-            
+
             if dynamic_rendering_features.dynamic_rendering == vk::FALSE {
                 debug!("   ❌ {device_name} - No Dynamic Rendering support");
                 continue;
@@ -304,12 +304,12 @@ impl VulkanContext {
 
             // Calculate score
             let mut score: u64 = 0;
-            
+
             // Prioritize discrete GPU
             if properties.device_type == vk::PhysicalDeviceType::DISCRETE_GPU {
                 score += 10000;
             }
-            
+
             // Add VRAM to score (from memory properties)
             let memory_properties = instance.get_physical_device_memory_properties(pdevice);
             let vram: u64 = memory_properties.memory_heaps
@@ -318,9 +318,9 @@ impl VulkanContext {
                 .filter(|heap| heap.flags.contains(vk::MemoryHeapFlags::DEVICE_LOCAL))
                 .map(|heap| heap.size)
                 .sum();
-            
+
             score += vram / (1024 * 1024); // MB as score component
-            
+
             let device_type_str = match properties.device_type {
                 vk::PhysicalDeviceType::DISCRETE_GPU => "Discrete",
                 vk::PhysicalDeviceType::INTEGRATED_GPU => "Integrated",
@@ -328,7 +328,7 @@ impl VulkanContext {
                 vk::PhysicalDeviceType::CPU => "CPU",
                 _ => "Other",
             };
-            
+
             let vram_mb = vram / (1024 * 1024);
             info!(
                 "   📊 {device_name} ({device_type_str}) - VRAM: {vram_mb} MB, Score: {score}"
@@ -342,10 +342,10 @@ impl VulkanContext {
 
         let (pdevice, properties, queue_family_index, _score) = best_device
             .ok_or_else(|| anyhow!("No suitable GPU found with Dynamic Rendering support"))?;
-        
+
         let device_name = CStr::from_ptr(properties.device_name.as_ptr()).to_string_lossy();
         info!("✅ Selected GPU: {device_name}");
-        
+
         Ok((pdevice, properties, queue_family_index))
     }
 
@@ -404,16 +404,16 @@ impl Drop for VulkanContext {
     fn drop(&mut self) {
         unsafe {
             info!("🧹 Cleaning up Vulkan context...");
-            
+
             self.device.device_wait_idle().ok();
             self.device.destroy_device(None);
-            
+
             self.surface_loader.destroy_surface(self.surface, None);
-            
+
             if let Some(ref debug) = self.debug_utils {
                 debug.loader.destroy_debug_utils_messenger(debug.messenger, None);
             }
-            
+
             self.instance.destroy_instance(None);
             info!("✅ Vulkan context destroyed");
         }

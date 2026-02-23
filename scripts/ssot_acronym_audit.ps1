@@ -1,10 +1,10 @@
 #!/usr/bin/env pwsh
 
 <#
-# ╔════════════════════════════════════════════════════════════════════════════╗
+# ╔════════════════════════════════════════════════════════════════════════════
 # ║ THE DECORATOR'S BLESSING: ssot_acronym_audit.ps1                          ║
 # ║ Module: SSOT acronym auditor                                              ║
-# ╠════════════════════════════════════════════════════════════════════════════╣
+# ╠════════════════════════════════════════════════════════════════════════════
 # ║ Spectral Frequency: WHITE                                                 ║
 # ║ Architectural Role: SSOT                                                  ║
 # ║ Semantic ID: SCRIPT_SSOT_ACRONYM_AUDIT_V1                                  ║
@@ -12,7 +12,7 @@
 # ║ Exports: (none)                                                           ║
 # ║ Flags/Modes: -Root, -ShowAll, -FindLines                                   ║
 # ║ Cross-References: scripts/ssot_outline_extractor.ps1                       ║
-# ╚════════════════════════════════════════════════════════════════════════════╝
+# ╚════════════════════════════════════════════════════════════════════════════
 #>
 
 <#
@@ -72,12 +72,12 @@ foreach ($line in $lines) {
 
 if ($ShowAll) {
     Write-Host "`n=== ALL SSOT ACRONYMS (by frequency) ===" -ForegroundColor Cyan
-    $acronymIndex.GetEnumerator() | 
+    $acronymIndex.GetEnumerator() |
         Sort-Object { $_.Value.Count } -Descending |
         Select-Object -First 50 |
         ForEach-Object {
-            $color = if ($_.Value.Count -gt 10) { 'Green' } 
-                     elseif ($_.Value.Count -gt 3) { 'Yellow' } 
+            $color = if ($_.Value.Count -gt 10) { 'Green' }
+                     elseif ($_.Value.Count -gt 3) { 'Yellow' }
                      else { 'Gray' }
             Write-Host ("{0,-40} {1,3}x" -f $_.Key, $_.Value.Count) -ForegroundColor $color
         }
@@ -99,7 +99,7 @@ elseif ($FindLines) {
 }
 elseif ($Root) {
     Write-Host "`n=== VARIANTS OF '$Root' ===" -ForegroundColor Cyan
-    $variants = $acronymIndex.GetEnumerator() | 
+    $variants = $acronymIndex.GetEnumerator() |
         Where-Object { $_.Key -match $Root } |
         Sort-Object { $_.Value.Count } -Descending
 

@@ -1,18 +1,18 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-# ╔════════════════════════════════════════════════════════════════════════════╗
-# ║  THE DECORATOR'S BLESSING: mandala_topology.py                           ║
-# ║  Python module: _load_graph, _top_centrality, _build_report, _render_text, reveal_sacred_geometry, _write_output_json... ║
-# ╠════════════════════════════════════════════════════════════════════════════╣
-# ║  Spectral Frequency: WHITE                                                  ║
-# ║  Architectural Role: 🌿 THE GARDEN                                           ║
-# ║  Semantic ID: TOOL_MANDALA_TOPOLOGY_V1                                      ║
-# ║  Purpose: mandala_topology.py — Mandala Topology Reporter & Sacred Geometry Reve ║
-# ║  Exports: _load_graph, _top_centrality, _build_report, _render_text, reveal_sa ║
-# ╠════════════════════════════════════════════════════════════════════════════╣
-# ║  Cross-References (Bidirectional):                                      ║
-# ║    (Standalone file - no detected dependencies)                          ║
-# ╚════════════════════════════════════════════════════════════════════════════╝
+# ╔════════════════════════════════════════════════════════════════════════════
+# ║ THE DECORATOR'S BLESSING: mandala_topology.py                           ║
+# ║ Python module: _load_graph, _top_centrality, _build_report, _render_text, reveal_sacred_geometry, _write_output_json... ║
+# ╠════════════════════════════════════════════════════════════════════════════
+# ║ Spectral Frequency: WHITE                                                  ║
+# ║ Architectural Role: 🌿 THE GARDEN                                           ║
+# ║ Semantic ID: TOOL_MANDALA_TOPOLOGY_V1                                      ║
+# ║ Purpose: mandala_topology.py — Mandala Topology Reporter & Sacred Geometry Reve ║
+# ║ Exports: _load_graph, _top_centrality, _build_report, _render_text, reveal_sa ║
+# ╠════════════════════════════════════════════════════════════════════════════
+# ║ Cross-References (Bidirectional):                                      ║
+# ║   (Standalone file - no detected dependencies)                          ║
+# ╚════════════════════════════════════════════════════════════════════════════
 
 #!/usr/bin/env python3
 """
@@ -30,9 +30,9 @@ SEMANTIC IDENTITY (Anchor & Signal Protocol)
 Generates a topology report from a Mandala graph JSON file, revealing the sacred geometry
 of the archive.
 Usage:
-uv run scripts/mandala_topology.py 
-                                   --graph topology_graph.json 
-                                   --format text 
+uv run scripts/mandala_topology.py
+                                   --graph topology_graph.json
+                                   --format text
                                    --style mythic
                                    --top 10
                                    --out report.json

@@ -1,39 +1,39 @@
 #!/usr/bin/env bun
 
-// ╔════════════════════════════════════════════════════════════════════════════╗
-// ║  THE DECORATOR'S BLESSING: run_mcp_validation.ts                         ║
-// ║  MCP client integration - Observatory communication layer                   ║
-// ╠════════════════════════════════════════════════════════════════════════════╣
-// ║  Spectral Frequency: ORANGE                                                 ║
-// ║  Architectural Role: 🔭 THE OBSERVATORY                                      ║
-// ║  Purpose: MCP validation runner - local testing and queries                 ║
-// ╠════════════════════════════════════════════════════════════════════════════╣
-// ║  Cross-References (Bidirectional):                                      ║
-// ║    (Standalone file - no detected dependencies)                          ║
-// ╚════════════════════════════════════════════════════════════════════════════╝
+// ╔════════════════════════════════════════════════════════════════════════════
+// ║ THE DECORATOR'S BLESSING: run_mcp_validation.ts                         ║
+// ║ MCP client integration - Observatory communication layer                   ║
+// ╠════════════════════════════════════════════════════════════════════════════
+// ║ Spectral Frequency: ORANGE                                                 ║
+// ║ Architectural Role: 🔭 THE OBSERVATORY                                      ║
+// ║ Purpose: MCP validation runner - local testing and queries                 ║
+// ╠════════════════════════════════════════════════════════════════════════════
+// ║ Cross-References (Bidirectional):                                      ║
+// ║   (Standalone file - no detected dependencies)                          ║
+// ╚════════════════════════════════════════════════════════════════════════════
 
 /**
  * MCP Validation Runner (Root-Level)
- * 
+ *
  * Purpose: Local validation and parameterized queries against MCP server
  * Location: chthonic-archive/ (root)
- * Usage: 
+ * Usage:
  *   bun run run_mcp_validation.ts                       # Baseline validation (7 checks)
  *   bun run run_mcp_validation.ts --node BLACKSMITH     # Custom dependency graph node query
  *   bun run run_mcp_validation.ts --spectral GOLD       # Custom spectral frequency query
  *   bun run run_mcp_validation.ts --dry-run             # Print requests without executing
  *   bun run run_mcp_validation.ts --ensure-claude-code  # Ensure Claude Code installed/running first (Win11)
- * 
+ *
  * Validates:
  *   1. Server spawns and responds to initialize
  *   2. tools/list returns 4 tools (ping, scan_repository, validate_ssot_integrity, query_dependency_graph)
  *   3. Each tool executes successfully
  *   4. Responses match expected structure
- * 
+ *
  * Exit codes:
  *   0 = All validations passed
  *   1 = One or more validations failed
- * 
+ *
  * Design: Boring, explicit, inspectable, operational.
  * No network, no CI, no remote dependencies.
  */
@@ -91,7 +91,7 @@ function ensureClaude() {
     "-ExecutionPolicy", "Bypass",
     "-File", "scripts\\launch_claude_code.ps1"
   ], { stdio: "inherit" });
-  
+
   if (ps.status !== 0) {
     throw new Error(`launch_claude_code.ps1 failed with exit ${ps.status}`);
   }
@@ -118,7 +118,7 @@ function logResult(result: TestResult): void {
   console.log(`${color}${status}${reset} ${result.name}`);
   if (result.error) console.log(`  Error: ${result.error}`);
   if (result.details) {
-    Object.entries(result.details).forEach(([k, v]) => 
+    Object.entries(result.details).forEach(([k, v]) =>
       console.log(`  ${k}: ${typeof v === 'object' ? JSON.stringify(v) : v}`)
     );
   }
@@ -146,14 +146,14 @@ if (dryRun) {
     { jsonrpc: "2.0", id: 5, method: "tools/call", params: { name: "validate_ssot_integrity", arguments: {} } },
     { jsonrpc: "2.0", id: 6, method: "tools/call", params: { name: "query_dependency_graph", arguments: { query: customQuery || "stats" } } },
   ];
-  
+
   console.log("The following JSON-RPC requests would be sent to the MCP server:\n");
   requests.forEach((req, idx) => {
     console.log(`[Request ${idx + 1}]`);
     console.log(JSON.stringify(req, null, 2));
     console.log();
   });
-  
+
   console.log("Dry-run complete. No server spawned, no execution performed.");
   console.log("Run without --dry-run to execute validations.\n");
   process.exit(0);
@@ -189,7 +189,7 @@ const decoder = new TextDecoder();
 
 setTimeout(() => {
   server.kill();
-  
+
   // Validation 1: Initialize response
   const initResp = responses.find(r => r.id === 1);
   logResult({
@@ -197,7 +197,7 @@ setTimeout(() => {
     passed: !!initResp?.result?.protocolVersion,
     details: { protocolVersion: initResp?.result?.protocolVersion },
   });
-  
+
   // Validation 2: Tool list count
   const toolsResp = responses.find(r => r.id === 2);
   const tools = toolsResp?.result?.tools || [];
@@ -206,20 +206,20 @@ setTimeout(() => {
     passed: tools.length >= MIN_TOOL_COUNT,
     details: { count: tools.length, tools: tools.map((t: any) => t.name) },
   });
-  
+
   // Validation 3: Required tools present (subset check)
   const toolNames = tools.map((t: any) => t.name);
   const allPresent = REQUIRED_TOOLS.every(name => toolNames.includes(name));
   logResult({
     name: "Required tools present",
     passed: allPresent,
-    details: { 
-      required: REQUIRED_TOOLS, 
+    details: {
+      required: REQUIRED_TOOLS,
       found: toolNames,
       missing: REQUIRED_TOOLS.filter(n => !toolNames.includes(n))
     },
   });
-  
+
   function getToolText(respId: number): string {
     const resp = responses.find(r => r.id === respId);
     const txt = resp?.result?.content?.[0]?.text;
@@ -246,7 +246,7 @@ setTimeout(() => {
       error: e instanceof Error ? e.message : String(e),
     });
   }
-  
+
   // Validation 5: chthonic_scan
   const scanText = getToolText(4);
   try {
@@ -262,7 +262,7 @@ setTimeout(() => {
       error: e instanceof Error ? e.message : String(e),
     });
   }
-  
+
   // Validation 6: chthonic_validate_ssot
   const ssotText = getToolText(5);
   try {
@@ -278,7 +278,7 @@ setTimeout(() => {
       error: e instanceof Error ? e.message : String(e),
     });
   }
-  
+
   // Validation 7: meta_cli (should respond; exact payload intentionally not constrained)
   const metaText = getToolText(6);
   try {
@@ -294,18 +294,18 @@ setTimeout(() => {
       error: e instanceof Error ? e.message : String(e),
     });
   }
-  
+
   // Summary
   const passCount = results.filter(r => r.passed).length;
   const totalCount = results.length;
   const allPassed = passCount === totalCount;
-  
+
   console.log("\n" + "=".repeat(80));
   const summaryColor = allPassed ? "\x1b[32m" : "\x1b[31m";
   const reset = "\x1b[0m";
   console.log(`${summaryColor}RESULTS: ${passCount}/${totalCount} validations passed${reset}`);
   console.log("=".repeat(80) + "\n");
-  
+
   if (!allPassed) {
     console.log("Failed validations:");
     results.filter(r => !r.passed).forEach(r => {
@@ -313,7 +313,7 @@ setTimeout(() => {
     });
     console.log();
   }
-  
+
   // Emit a deterministic run artifact for orchestrator validation.
   try {
     mkdirSync("artifacts", { recursive: true });

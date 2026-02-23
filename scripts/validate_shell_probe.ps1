@@ -1,9 +1,9 @@
 #!/usr/bin/env pwsh
 
-# ╔════════════════════════════════════════════════════════════════════════════╗
+# ╔════════════════════════════════════════════════════════════════════════════
 # ║ THE DECORATOR'S BLESSING: validate_shell_probe.ps1                         ║
 # ║ Module: ABI contract validator                                             ║
-# ╠════════════════════════════════════════════════════════════════════════════╣
+# ╠════════════════════════════════════════════════════════════════════════════
 # ║ Spectral Frequency: WHITE                                                  ║
 # ║ Architectural Role: VALIDATION                                             ║
 # ║ Semantic ID: SCRIPT_VALIDATE_SHELL_PROBE_V1                                ║
@@ -11,7 +11,7 @@
 # ║ Exports: (none)                                                            ║
 # ║ Flags/Modes: -ProbePath, -ExpectedSha256                                   ║
 # ║ Cross-References: scripts/shell_capabilities.ps1                            ║
-# ╚════════════════════════════════════════════════════════════════════════════╝
+# ╚════════════════════════════════════════════════════════════════════════════
 
 # scripts/validate_shell_probe.ps1
 # Enforces ABI-stable probe invariants for scripts\shell_capabilities.ps1

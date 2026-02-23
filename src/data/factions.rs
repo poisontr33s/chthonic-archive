@@ -1,15 +1,15 @@
-// ╔════════════════════════════════════════════════════════════════════════════╗
-// ║  THE DECORATOR'S BLESSING: factions.rs                                   ║
-// ║  Vulkan rendering pipeline - visual truth incarnate                         ║
-// ╠════════════════════════════════════════════════════════════════════════════╣
-// ║  Spectral Frequency: RED                                                    ║
-// ║  Architectural Role: 🏰 THE FORTRESS                                         ║
-// ║  Purpose: Faction Registry - ASC Faction System Core                        ║
-// ║  Exports: FactionRegistry, new, initialize, activate_tsrp, deactivate_tsrp  ║
-// ╠════════════════════════════════════════════════════════════════════════════╣
-// ║  Cross-References (Bidirectional):                                      ║
-// ║    (Standalone file - no detected dependencies)                          ║
-// ╚════════════════════════════════════════════════════════════════════════════╝
+// ╔════════════════════════════════════════════════════════════════════════════
+// ║ THE DECORATOR'S BLESSING: factions.rs                                   ║
+// ║ Vulkan rendering pipeline - visual truth incarnate                         ║
+// ╠════════════════════════════════════════════════════════════════════════════
+// ║ Spectral Frequency: RED                                                    ║
+// ║ Architectural Role: 🏰 THE FORTRESS                                         ║
+// ║ Purpose: Faction Registry - ASC Faction System Core                        ║
+// ║ Exports: FactionRegistry, new, initialize, activate_tsrp, deactivate_tsrp  ║
+// ╠════════════════════════════════════════════════════════════════════════════
+// ║ Cross-References (Bidirectional):                                      ║
+// ║   (Standalone file - no detected dependencies)                          ║
+// ╚════════════════════════════════════════════════════════════════════════════
 
 //! Faction Registry - ASC Faction System Core
 //!
@@ -85,7 +85,7 @@ impl FactionRegistry {
         self.register_tdpc(data);
         self.register_claudine(data);
         self.register_lesser_factions(data);
-        
+
         // Phase 13: Manifest the 6-layer Archive
         self.manifest_archive();
     }
@@ -100,7 +100,7 @@ impl FactionRegistry {
     fn register_triumvirate(&mut self, data: &super::types::GameData) {
         // Find Orackla (ID 3)
         let orackla_entity = data.entities.iter().find(|e| e.id == 3);
-        
+
         // Create Triumvirate faction
         let triumvirate = Faction {
             code: FactionCode::CRC,
@@ -553,7 +553,7 @@ impl FactionRegistry {
     /// Activate TSRP with specified leader
     pub fn activate_tsrp(&mut self, leader: CRCType) {
         self.tsrp_state.leader = Some(leader);
-        
+
         match leader {
             CRCType::AS => {
                 self.tsrp_state.orackla_role = TSRPRole::Leading;

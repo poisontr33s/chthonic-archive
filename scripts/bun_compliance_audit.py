@@ -1,25 +1,25 @@
 #!/usr/bin/env python3
 #-*- coding: utf-8 -*-
 
-# ╔════════════════════════════════════════════════════════════════════════════╗
-# ║  THE DECORATOR'S BLESSING: bun_compliance_audit.py                       
-# ║  Python module: Severity, Violation, BunComplianceScanner, safe_print, main 
-# ╠════════════════════════════════════════════════════════════════════════════╣
-# ║  Spectral Frequency: WHITE                                                  
-# ║  Architectural Role: 🌿 THE GARDEN                                           
-# ║  Purpose: Bun Compliance Audit Script.                                    
-# ║  Exports: Severity, Violation, BunComplianceScanner, safe_print, main.
-# ╠════════════════════════════════════════════════════════════════════════════╣
-# ║  Cross-References (Bidirectional):                                      
-# ║  (Standalone file - no detected dependencies)                          
-# ║  Bun Compliance Audit Script
-# ╠════════════════════════════════════════════════════════════════════════════╣
-# ║     @SID: TOOL_BUN_COMPLIANCE_AUDIT
-# ║     @Type: Compliance Audit Script
-# ║     @Context: Package Manager Standardization / SSOT Enforcement
-# ║     @SessionOrigin: CONTINUATION_2026_01_30
-# ║     @Implements: CONCEPT_BUN_COMPLIANCE_AUDIT
-# ╚═════════════════════════════════════════════════════════════════════════════╝
+# ╔════════════════════════════════════════════════════════════════════════════
+# ║ THE DECORATOR'S BLESSING: bun_compliance_audit.py
+# ║ Python module: Severity, Violation, BunComplianceScanner, safe_print, main
+# ╠════════════════════════════════════════════════════════════════════════════
+# ║ Spectral Frequency: WHITE
+# ║ Architectural Role: 🌿 THE GARDEN
+# ║ Purpose: Bun Compliance Audit Script.
+# ║ Exports: Severity, Violation, BunComplianceScanner, safe_print, main.
+# ╠════════════════════════════════════════════════════════════════════════════
+# ║ Cross-References (Bidirectional):
+# ║ (Standalone file - no detected dependencies)
+# ║ Bun Compliance Audit Script
+# ╠════════════════════════════════════════════════════════════════════════════
+# ║    @SID: TOOL_BUN_COMPLIANCE_AUDIT
+# ║    @Type: Compliance Audit Script
+# ║    @Context: Package Manager Standardization / SSOT Enforcement
+# ║    @SessionOrigin: CONTINUATION_2026_01_30
+# ║    @Implements: CONCEPT_BUN_COMPLIANCE_AUDIT
+# ╚═════════════════════════════════════════════════════════════════════════════
 
 """
 Bun Compliance Audit Script
@@ -101,7 +101,7 @@ class Violation:
 
 class BunComplianceScanner:
     """Scans for non-Bun package manager usage"""
-    
+
     # Patterns to detect (regex -> severity, suggestion, docs)
     VIOLATION_PATTERNS: Dict[str, Tuple[Severity, str, str]] = {
         # Package execution
@@ -120,7 +120,7 @@ class BunComplianceScanner:
             "Replace 'pnpm dlx' with 'bunx'",
             "https://bun.sh/docs/cli/bunx"
         ),
-        
+
         # Package installation
         r'\bnpm\s+install\b': (
             Severity.CRITICAL,
@@ -142,7 +142,7 @@ class BunComplianceScanner:
             "Replace 'pnpm add' with 'bun add'",
             "https://bun.sh/docs/cli/install"
         ),
-        
+
         # Script execution
         r'\bnpm\s+run\b': (
             Severity.CRITICAL,
@@ -159,7 +159,7 @@ class BunComplianceScanner:
             "Replace 'pnpm run' with 'bun run'",
             "https://bun.sh/docs/cli/run"
         ),
-        
+
         # Test execution
         r'\bnpm\s+test\b': (
             Severity.CRITICAL,
@@ -171,7 +171,7 @@ class BunComplianceScanner:
             "Replace 'yarn test' with 'bun test'",
             "https://bun.sh/docs/test/writing"
         ),
-        
+
         # Lockfile references
         r'package-lock\.json': (
             Severity.WARNING,
@@ -188,7 +188,7 @@ class BunComplianceScanner:
             "Should reference 'bun.lock' instead of 'pnpm-lock.yaml'",
             "https://bun.sh/docs/cli/install"
         ),
-        
+
         # Node.js runtime (informational - context-dependent)
         r'\bnode\s+[a-zA-Z0-9_\-./]+\.(?:js|ts|mjs|cjs)\b': (
             Severity.INFO,
@@ -196,7 +196,7 @@ class BunComplianceScanner:
             "https://bun.sh/docs/cli/run"
         ),
     }
-    
+
     # Exclusions (patterns that are acceptable despite matching)
     EXCLUSIONS = {
         # MCP Inspector is Node.js-only tool (documented exception)
@@ -234,7 +234,7 @@ class BunComplianceScanner:
         # node_modules internals (vendor code)
         r'node_modules',
     }
-    
+
     # Paths to skip entirely
     SKIP_PATHS = {
         'dist/',  # Bundled vendor code (e.g., React in VSCode extension)
@@ -259,19 +259,19 @@ class BunComplianceScanner:
         'BUN_COMPLIANCE_COMPLETE.md',  # Educational migration guide
         'WIN11_CONFIGURATION.md',  # Historical setup documentation
     }
-    
+
     def __init__(self, repo_root: Path, verbose: bool = False):
         self.repo_root = repo_root
         self.verbose = verbose
         self.violations: List[Violation] = []
-        
+
     def is_excluded_line(self, line: str) -> bool:
         """Check if line matches exclusion patterns"""
         for pattern in self.EXCLUSIONS:
             if re.search(pattern, line, re.IGNORECASE):
                 return True
         return False
-    
+
     def should_skip_path(self, path: Path) -> bool:
         """Check if path should be skipped"""
         path_str = str(path.relative_to(self.repo_root)).replace('\\', '/')
@@ -282,28 +282,28 @@ class BunComplianceScanner:
         if path.suffix in {'.pyc', '.so', '.dll', '.exe', '.lock', '.sqlite'}:
             return True
         return False
-    
+
     def scan_file(self, file_path: Path):
         """Scan single file for violations"""
         if self.should_skip_path(file_path):
             return
-        
+
         # Skip this script itself (meta-reference)
         if file_path.name == 'bun_compliance_audit.py':
             return
-            
+
         try:
             content = file_path.read_text(encoding='utf-8', errors='ignore')
         except Exception as e:
             if self.verbose:
                 safe_print(f"[WARN] Skipping {file_path}: {e}")
             return
-        
+
         for line_num, line in enumerate(content.splitlines(), start=1):
             # Skip excluded lines (documentation, historical, etc.)
             if self.is_excluded_line(line):
                 continue
-            
+
             # Check against violation patterns
             for pattern, (severity, suggestion, docs_ref) in self.VIOLATION_PATTERNS.items():
                 if re.search(pattern, line):
@@ -316,7 +316,7 @@ class BunComplianceScanner:
                         suggestion=suggestion,
                         docs_ref=docs_ref
                     ))
-    
+
     def scan(self):
         """Scan entire repository"""
         text_extensions = {
@@ -324,48 +324,48 @@ class BunComplianceScanner:
             '.ts', '.js', '.tsx', '.jsx', '.mjs', '.cjs',
             '.py', '.rs', '.sh', '.ps1', '.psm1',
         }
-        
+
         for path in self.repo_root.rglob('*'):
             if path.is_file() and path.suffix in text_extensions:
                 self.scan_file(path)
-    
+
     def print_report(self):
         """Print violation report"""
         if not self.violations:
             safe_print("[PASS] Bun compliance: CLEAN (no violations detected)")
             return
-        
+
         # Group by severity
         by_severity = {s: [] for s in Severity}
         for v in self.violations:
             by_severity[v.severity].append(v)
-        
+
         total = len(self.violations)
         critical = len(by_severity[Severity.CRITICAL])
         warning = len(by_severity[Severity.WARNING])
         info = len(by_severity[Severity.INFO])
-        
+
         safe_print(f"[FAIL] Bun compliance: VIOLATIONS DETECTED")
         safe_print(f"   Total: {total} | Critical: {critical} | Warning: {warning} | Info: {info}\n")
-        
+
         for severity in [Severity.CRITICAL, Severity.WARNING, Severity.INFO]:
             violations = by_severity[severity]
             if not violations:
                 continue
-            
+
             icon = "[!]" if severity == Severity.CRITICAL else "[W]" if severity == Severity.WARNING else "[i]"
             safe_print(f"{icon} {severity.value} ({len(violations)})")
             safe_print("=" * 80)
-            
+
             for v in violations:
                 rel_path = v.file.relative_to(self.repo_root)
                 safe_print(f"\nFile: {rel_path}:{v.line_num}")
                 safe_print(f"   Line: {v.line_content[:100]}")
                 safe_print(f"   Fix:  {v.suggestion}")
                 safe_print(f"   Docs: {v.docs_ref}")
-            
+
             safe_print("")
-    
+
     def get_exit_code(self) -> int:
         """Determine exit code based on violations"""
         if not self.violations:
@@ -391,7 +391,7 @@ def safe_print(msg: str):
 
 def main():
     import argparse
-    
+
     parser = argparse.ArgumentParser(
         description="Scan repository for Bun compliance violations",
         formatter_class=argparse.RawDescriptionHelpFormatter,
@@ -403,30 +403,30 @@ def main():
                        help='Auto-fix mode (NOT IMPLEMENTED - placeholder)')
     parser.add_argument('--verbose', '-v', action='store_true',
                        help='Verbose output')
-    
+
     args = parser.parse_args()
-    
+
     # Determine repo root
     script_path = Path(__file__).resolve()
     repo_root = script_path.parent.parent
-    
+
     if args.verbose:
         safe_print(f"[SCAN] Checking {repo_root} for Bun compliance violations...")
-    
+
     scanner = BunComplianceScanner(repo_root, verbose=args.verbose)
     scanner.scan()
     scanner.print_report()
-    
+
     if args.fix:
         safe_print("\n[WARNING] Auto-fix mode not yet implemented (requires SSOT approval)")
         return 2
-    
+
     exit_code = scanner.get_exit_code()
-    
+
     if args.ci and exit_code != 0:
         safe_print("\n[CI FAILURE] Critical Bun compliance violations detected")
         safe_print("   Run locally to see details: uv run python scripts/bun_compliance_audit.py")
-    
+
     return exit_code
 
 

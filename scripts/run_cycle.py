@@ -1,17 +1,17 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-# ╔════════════════════════════════════════════════════════════════════════════╗
-# ║  THE DECORATOR'S BLESSING: run_cycle.py                                  ║
-# ║  Python module: find_workspace_root, WORKSPACE_ROOT, MAS_MCP_ROOT, ARTIFACTS_DIR, GOVERNANCE_DIR, COMPATIBILITY_DIR... ║
-# ╠════════════════════════════════════════════════════════════════════════════╣
-# ║  Spectral Frequency: WHITE                                                  ║
-# ║  Architectural Role: 🌿 THE GARDEN                                           ║
-# ║  Purpose: Run Cycle - MILF Execution with Artifact Output                   ║
-# ║  Exports: find_workspace_root, WORKSPACE_ROOT, MAS_MCP_ROOT, ARTIFACTS_DIR, GO ║
-# ╠════════════════════════════════════════════════════════════════════════════╣
-# ║  Cross-References (Bidirectional):                                      ║
-# ║    (Standalone file - no detected dependencies)                          ║
-# ╚════════════════════════════════════════════════════════════════════════════╝
+# ╔════════════════════════════════════════════════════════════════════════════
+# ║ THE DECORATOR'S BLESSING: run_cycle.py                                  ║
+# ║ Python module: find_workspace_root, WORKSPACE_ROOT, MAS_MCP_ROOT, ARTIFACTS_DIR, GOVERNANCE_DIR, COMPATIBILITY_DIR... ║
+# ╠════════════════════════════════════════════════════════════════════════════
+# ║ Spectral Frequency: WHITE                                                  ║
+# ║ Architectural Role: 🌿 THE GARDEN                                           ║
+# ║ Purpose: Run Cycle - MILF Execution with Artifact Output                   ║
+# ║ Exports: find_workspace_root, WORKSPACE_ROOT, MAS_MCP_ROOT, ARTIFACTS_DIR, GO ║
+# ╠════════════════════════════════════════════════════════════════════════════
+# ║ Cross-References (Bidirectional):                                      ║
+# ║   (Standalone file - no detected dependencies)                          ║
+# ╚════════════════════════════════════════════════════════════════════════════
 
 #!/usr/bin/env python3
 """
@@ -65,14 +65,14 @@ def find_workspace_root() -> Path:
     """Find the chthonic-archive workspace root."""
     if "CHTHONIC_ROOT" in os.environ:
         return Path(os.environ["CHTHONIC_ROOT"])
-    
+
     # Walk up from script location
     current = Path(__file__).resolve().parent
     for _ in range(5):
         if (current / "Cargo.toml").exists() and (current / ".github").exists():
             return current
         current = current.parent
-    
+
     raise RuntimeError("Could not find workspace root (no Cargo.toml + .github found)")
 
 
@@ -93,7 +93,7 @@ def compute_ssot_hash() -> str:
     """Compute SHA256 hash of the SSOT file."""
     if not SSOT_PATH.exists():
         return "SSOT_NOT_FOUND"
-    
+
     content = SSOT_PATH.read_bytes()
     return hashlib.sha256(content).hexdigest()[:16]
 
@@ -125,7 +125,7 @@ class ProbeResult:
     driver_version: Optional[str]
     errors: List[str] = field(default_factory=list)
     warnings: List[str] = field(default_factory=list)
-    
+
     @classmethod
     def from_probe_report(cls, path: Path) -> "ProbeResult":
         """Load from probe_report.json."""
@@ -141,7 +141,7 @@ class ProbeResult:
                 driver_version=None,
                 errors=["probe_report.json not found"],
             )
-        
+
         try:
             data = json.loads(path.read_text())
             return cls(
@@ -168,7 +168,7 @@ class ProbeResult:
                 driver_version=None,
                 errors=[f"Failed to parse probe_report.json: {e}"],
             )
-    
+
     @classmethod
     def run_probe(cls, probe_script: Path) -> "ProbeResult":
         """Run the GPU probe script and return results."""
@@ -184,7 +184,7 @@ class ProbeResult:
                 driver_version=None,
                 errors=[f"Probe script not found: {probe_script}"],
             )
-        
+
         try:
             result = subprocess.run(
                 [sys.executable, str(probe_script)],
@@ -193,7 +193,7 @@ class ProbeResult:
                 timeout=60,
                 cwd=str(WORKSPACE_ROOT),
             )
-            
+
             if result.returncode != 0:
                 return cls(
                     status="fail",
@@ -206,11 +206,11 @@ class ProbeResult:
                     driver_version=None,
                     errors=[f"Probe failed: {result.stderr}"],
                 )
-            
+
             # Load the generated report
             report_path = COMPATIBILITY_DIR / "probe_report.json"
             return cls.from_probe_report(report_path)
-            
+
         except subprocess.TimeoutExpired:
             return cls(
                 status="fail",
@@ -249,20 +249,20 @@ class EngineLane:
     providers: List[str]
     min_vram_gb: float
     features: List[str] = field(default_factory=list)
-    
+
     def is_compatible(self, probe: ProbeResult) -> bool:
         """Check if this lane is compatible with probe results."""
         if not probe.gpu_available:
             return self.name == "cpu"
-        
+
         # Check provider availability
         if not any(p in probe.providers for p in self.providers):
             return False
-        
+
         # Check VRAM
         if probe.vram_total_gb is not None and probe.vram_total_gb < self.min_vram_gb:
             return False
-        
+
         return True
 
 
@@ -313,7 +313,7 @@ def select_engine_lane(
 ) -> Tuple[Optional[EngineLane], str]:
     """
     Select the best engine lane based on probe results.
-    
+
     Returns:
         (EngineLane, reason) or (None, error_reason)
     """
@@ -325,18 +325,18 @@ def select_engine_lane(
                     return lane, f"User requested {lane.name}"
                 return None, f"Requested lane {requested_lane} not compatible: probe status={probe.status}"
         return None, f"Unknown lane: {requested_lane}"
-    
+
     # Auto-select best compatible lane
     for lane in sorted(DEFAULT_LANES, key=lambda l: l.priority):
         if lane.is_compatible(probe):
             if lane.name == "cpu" and not allow_cpu_fallback:
                 continue
             return lane, f"Auto-selected {lane.name} (priority {lane.priority})"
-    
+
     if allow_cpu_fallback:
         cpu_lane = next(l for l in DEFAULT_LANES if l.name == "cpu")
         return cpu_lane, "Fallback to CPU (no GPU lanes compatible)"
-    
+
     return None, "No compatible lanes and CPU fallback disabled"
 
 
@@ -360,7 +360,7 @@ def load_milf_registry() -> Dict[str, Any]:
     registry_path = GOVERNANCE_DIR / "milf_registry.json"
     if not registry_path.exists():
         return {"functions": [], "activation_gates": {}, "engine_lanes": {}}
-    
+
     try:
         return json.loads(registry_path.read_text())
     except Exception:
@@ -371,7 +371,7 @@ def load_scoring_profile(profile_name: str) -> Dict[str, Any]:
     """Load a scoring profile."""
     profiles_dir = GOVERNANCE_DIR / "scoring_profiles"
     profile_path = profiles_dir / f"{profile_name}_weights.json"
-    
+
     if not profile_path.exists():
         return {
             "acceptance_weight": 0.4,
@@ -380,7 +380,7 @@ def load_scoring_profile(profile_name: str) -> Dict[str, Any]:
             "error_penalty": 0.1,
             "drift_penalty": 0.1,
         }
-    
+
     try:
         return json.loads(profile_path.read_text())
     except Exception:
@@ -395,7 +395,7 @@ def check_milf_activation(
 ) -> MILFActivation:
     """
     Check if a MILF should be activated based on gates.
-    
+
     Gates:
         - probe_pass: GPU probe passed
         - lane_available: Compatible engine lane found
@@ -408,15 +408,15 @@ def check_milf_activation(
         "slo_threshold": True,  # Will be computed from scoring profile
         "drift_stable": True,  # Placeholder for drift detection
     }
-    
+
     # Compute score based on gates
     weights = {"probe_pass": 0.3, "lane_available": 0.3, "slo_threshold": 0.2, "drift_stable": 0.2}
     score = sum(weights[g] for g, passed in gates.items() if passed)
-    
+
     activated = score >= threshold and all([gates["probe_pass"], gates["lane_available"]])
-    
+
     reason = "Activated" if activated else f"Gates failed: {[g for g, p in gates.items() if not p]}"
-    
+
     return MILFActivation(
         name=milf_name,
         activated=activated,
@@ -438,27 +438,27 @@ class CycleResult:
     timestamp: str
     duration_s: float
     status: str  # "success", "degraded", "failed", "skipped"
-    
+
     # Lineage
     lineage: Dict[str, Any] = field(default_factory=dict)
-    
+
     # Probe
     probe_status: str = "unknown"
     probe_errors: List[str] = field(default_factory=list)
-    
+
     # Engine
     engine_lane: Optional[str] = None
     engine_reason: str = ""
-    
+
     # MILF
     milf_activations: List[Dict[str, Any]] = field(default_factory=list)
-    
+
     # Artifacts
     artifacts_written: List[str] = field(default_factory=list)
-    
+
     # Metrics
     metrics: Dict[str, Any] = field(default_factory=dict)
-    
+
     # Errors
     errors: List[str] = field(default_factory=list)
     warnings: List[str] = field(default_factory=list)
@@ -473,7 +473,7 @@ def run_cycle(
 ) -> CycleResult:
     """
     Execute a single governance cycle.
-    
+
     Steps:
         1. Compute SSOT lineage
         2. Run GPU probe (or load existing)
@@ -484,7 +484,7 @@ def run_cycle(
     """
     cycle_id = datetime.datetime.now().strftime("%Y%m%d_%H%M%S_%f")[:20]
     start_time = time.time()
-    
+
     result = CycleResult(
         cycle_id=cycle_id,
         timestamp=datetime.datetime.now(datetime.timezone.utc).isoformat(),
@@ -492,7 +492,7 @@ def run_cycle(
         status="unknown",
         lineage=create_lineage_pointer(),
     )
-    
+
     try:
         # Step 1: GPU Probe
         if skip_probe:
@@ -503,37 +503,37 @@ def run_cycle(
             if not probe_script.exists():
                 probe_script = MAS_MCP_ROOT / "scripts" / "probe_gpu_compatibility.py"
             probe = ProbeResult.run_probe(probe_script)
-        
+
         result.probe_status = probe.status
         result.probe_errors = probe.errors
-        
+
         if probe.status not in ("pass", "degraded") and not allow_cpu:
             result.status = "failed"
             result.errors.append(f"Probe failed: {probe.status}")
             result.duration_s = time.time() - start_time
             return result
-        
+
         # Step 2: Engine Lane Selection
         lane, lane_reason = select_engine_lane(
             probe,
             requested_lane=requested_engine,
             allow_cpu_fallback=allow_cpu,
         )
-        
+
         result.engine_lane = lane.name if lane else None
         result.engine_reason = lane_reason
-        
+
         if not lane:
             result.status = "failed"
             result.errors.append(f"No engine lane: {lane_reason}")
             result.duration_s = time.time() - start_time
             return result
-        
+
         # Step 3: MILF Activation
         registry = load_milf_registry()
         scoring = load_scoring_profile(profile)
         threshold = float(os.environ.get("MILF_SCORE_THRESHOLD", "0.8"))
-        
+
         activations = []
         for milf in registry.get("functions", []):
             activation = check_milf_activation(
@@ -543,9 +543,9 @@ def run_cycle(
                 threshold=threshold,
             )
             activations.append(asdict(activation))
-        
+
         result.milf_activations = activations
-        
+
         # Check if any MILFs activated
         active_milfs = [a for a in activations if a["activated"]]
         if not active_milfs:
@@ -553,7 +553,7 @@ def run_cycle(
             result.warnings.append("No MILFs activated")
             result.duration_s = time.time() - start_time
             return result
-        
+
         # Step 4: Execute (placeholder for actual genesis integration)
         if not dry_run:
             # Write cycle artifact
@@ -580,15 +580,15 @@ def run_cycle(
                 "scoring_weights": scoring,
                 "status": "success",
             }
-            
+
             # Ensure output directory exists
             cycles_dir = ARTIFACTS_DIR / "cycles"
             cycles_dir.mkdir(parents=True, exist_ok=True)
-            
+
             artifact_path = cycles_dir / f"cycle_{cycle_id}.json"
             artifact_path.write_text(json.dumps(cycle_artifact, indent=2))
             result.artifacts_written.append(str(artifact_path.relative_to(WORKSPACE_ROOT)))
-        
+
         result.status = "success" if probe.status == "pass" else "degraded"
         result.metrics = {
             "active_milfs": len(active_milfs),
@@ -596,11 +596,11 @@ def run_cycle(
             "engine_lane": lane.name,
             "probe_status": probe.status,
         }
-        
+
     except Exception as e:
         result.status = "failed"
         result.errors.append(f"Cycle exception: {e}")
-    
+
     result.duration_s = time.time() - start_time
     return result
 
@@ -615,63 +615,63 @@ def parse_args() -> argparse.Namespace:
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog=__doc__,
     )
-    
+
     parser.add_argument(
         "--dry-run", "-n",
         action="store_true",
         help="Simulate cycle without writing artifacts",
     )
-    
+
     parser.add_argument(
         "--engine", "-e",
         type=str,
         choices=["tensorrt", "cuda", "rocm", "directml", "cpu"],
         help="Force specific engine lane",
     )
-    
+
     parser.add_argument(
         "--profile", "-p",
         type=str,
         default="standard",
         help="Scoring profile to use (default: standard)",
     )
-    
+
     parser.add_argument(
         "--skip-probe",
         action="store_true",
         help="Use cached probe report instead of running probe",
     )
-    
+
     parser.add_argument(
         "--allow-cpu",
         action="store_true",
         help="Allow CPU fallback if GPU unavailable",
     )
-    
+
     parser.add_argument(
         "--json",
         action="store_true",
         help="Output result as JSON",
     )
-    
+
     parser.add_argument(
         "--quiet", "-q",
         action="store_true",
         help="Suppress non-essential output",
     )
-    
+
     return parser.parse_args()
 
 
 def main():
     args = parse_args()
-    
+
     if not args.quiet:
         print(f"🔄 Run Cycle - MILF Execution")
         print(f"   Workspace: {WORKSPACE_ROOT}")
         print(f"   SSOT Hash: {compute_ssot_hash()}")
         print()
-    
+
     result = run_cycle(
         dry_run=args.dry_run,
         requested_engine=args.engine,
@@ -679,7 +679,7 @@ def main():
         skip_probe=args.skip_probe,
         allow_cpu=args.allow_cpu,
     )
-    
+
     if args.json:
         print(json.dumps(asdict(result), indent=2))
     else:
@@ -690,32 +690,32 @@ def main():
             "failed": "❌",
             "skipped": "⏭️",
         }.get(result.status, "❓")
-        
+
         print(f"{status_emoji} Cycle {result.cycle_id}")
         print(f"   Status: {result.status}")
         print(f"   Duration: {result.duration_s:.2f}s")
         print(f"   Probe: {result.probe_status}")
         print(f"   Engine: {result.engine_lane or 'none'}")
-        
+
         if result.milf_activations:
             active = sum(1 for a in result.milf_activations if a["activated"])
             print(f"   MILFs: {active}/{len(result.milf_activations)} activated")
-        
+
         if result.artifacts_written:
             print(f"   Artifacts: {len(result.artifacts_written)} written")
             for a in result.artifacts_written:
                 print(f"      → {a}")
-        
+
         if result.errors:
             print(f"   Errors:")
             for e in result.errors:
                 print(f"      ❌ {e}")
-        
+
         if result.warnings:
             print(f"   Warnings:")
             for w in result.warnings:
                 print(f"      ⚠️ {w}")
-    
+
     # Exit code based on status
     sys.exit(0 if result.status in ("success", "degraded", "skipped") else 1)
 

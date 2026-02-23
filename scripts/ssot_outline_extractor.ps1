@@ -1,10 +1,10 @@
 #!/usr/bin/env pwsh
 
 <#
-# ╔════════════════════════════════════════════════════════════════════════════╗
+# ╔════════════════════════════════════════════════════════════════════════════
 # ║ THE DECORATOR'S BLESSING: ssot_outline_extractor.ps1                      ║
 # ║ Module: SSOT outline extractor                                            ║
-# ╠════════════════════════════════════════════════════════════════════════════╣
+# ╠════════════════════════════════════════════════════════════════════════════
 # ║ Spectral Frequency: WHITE                                                 ║
 # ║ Architectural Role: SSOT                                                  ║
 # ║ Semantic ID: SCRIPT_SSOT_OUTLINE_EXTRACTOR_V1                              ║
@@ -12,7 +12,7 @@
 # ║ Exports: (none)                                                           ║
 # ║ Flags/Modes: -OutputJson, -Section, -Acronym, -UpdateIndex                 ║
 # ║ Cross-References: .github/instructions/ssot-toolbox.instructions.md        ║
-# ╚════════════════════════════════════════════════════════════════════════════╝
+# ╚════════════════════════════════════════════════════════════════════════════
 #>
 
 <#
@@ -21,10 +21,10 @@
 .DESCRIPTION
     Extracts markdown headers with line numbers, providing the same view as VS Code's Outline panel.
     Run this to regenerate the index after SSOT edits.
-    
+
     ⚠️ AUTO-UPDATE RULE: After ANY edit to copilot-instructions.md, run:
        .\ssot_outline_extractor.ps1 -UpdateIndex
-    
+
     This keeps SSOT_STRUCTURAL_INDEX.json synchronized.
     See: .github/instructions/ssot-toolbox.instructions.md for full toolbox docs.
 .USAGE
@@ -57,7 +57,7 @@ $content = Get-Content $SSOTPath
 
 foreach ($line in $content) {
     $lineNum++
-    
+
     # Check if line starts with ## ### or ####
     if ($line.StartsWith("##")) {
         # Count the hash marks
@@ -65,15 +65,15 @@ foreach ($line in $content) {
         for ($i = 0; $i -lt $line.Length -and $line[$i] -eq '#'; $i++) {
             $hashCount++
         }
-        
+
         # Only process ## to #### (levels 2-4)
         if ($hashCount -ge 2 -and $hashCount -le 4) {
             $level = $hashCount
             $rawTitle = $line.Substring($hashCount).Trim()
-            
+
             # Clean up bold markers
             $title = $rawTitle.Replace("**", "").Replace("``", "")
-            
+
             # Extract acronyms in parentheses using simple regex
             $acronyms = New-Object System.Collections.ArrayList
             $acroPattern = [regex]"\(([A-Z][A-Z0-9_-]+)\)"
@@ -81,7 +81,7 @@ foreach ($line in $content) {
             foreach ($m in $acroMatches) {
                 [void]$acronyms.Add($m.Groups[1].Value)
             }
-            
+
             $entry = [PSCustomObject]@{
                 Line = $lineNum
                 Level = $level
@@ -113,20 +113,20 @@ if ($OutputJson) {
     Write-Host "   Source: $SSOTPath" -ForegroundColor DarkGray
     Write-Host "   Total Headers: $($headers.Count)" -ForegroundColor DarkGray
     Write-Host ("-" * 80) -ForegroundColor DarkGray
-    
+
     foreach ($h in $headers) {
         $lineStr = "{0,5}" -f $h.Line
         $acroStr = ""
         if ($h.Acronyms) { $acroStr = " [$($h.Acronyms)]" }
-        
+
         $color = "DarkGray"
         if ($h.Level -eq 2) { $color = "Yellow" }
         elseif ($h.Level -eq 3) { $color = "White" }
         elseif ($h.Level -eq 4) { $color = "Gray" }
-        
+
         Write-Host "$lineStr | $($h.Indent)$($h.Title)$acroStr" -ForegroundColor $color
     }
-    
+
     Write-Host ("-" * 80) -ForegroundColor DarkGray
     Write-Host ""
     Write-Host "Quick commands:" -ForegroundColor Green
@@ -139,7 +139,7 @@ if ($OutputJson) {
 if ($UpdateIndex) {
     Write-Host ""
     Write-Host "Updating SSOT_STRUCTURAL_INDEX.json..." -ForegroundColor Yellow
-    
+
     $indexData = [ordered]@{
         _WARNING = "AUTO-GENERATED FILE - Do not edit manually. Regenerate via: .\ssot_outline_extractor.ps1 -UpdateIndex"
         _toolbox = ".github/instructions/ssot-toolbox.instructions.md"
@@ -155,7 +155,7 @@ if ($UpdateIndex) {
             }
         })
     }
-    
+
     $indexData | ConvertTo-Json -Depth 4 | Set-Content $IndexPath -Encoding UTF8
     Write-Host "Index updated at: $IndexPath" -ForegroundColor Green
 }

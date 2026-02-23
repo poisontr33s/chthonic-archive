@@ -1,15 +1,15 @@
-// ╔════════════════════════════════════════════════════════════════════════════╗
-// ║  THE DECORATOR'S BLESSING: renderer.rs                                   ║
-// ║  Vulkan rendering pipeline - visual truth incarnate                         ║
-// ╠════════════════════════════════════════════════════════════════════════════╣
-// ║  Spectral Frequency: RED                                                    ║
-// ║  Architectural Role: 🏰 THE FORTRESS                                         ║
-// ║  Purpose: Renderer - Main rendering orchestration using Dynamic Rendering   ║
-// ║  Exports: Renderer                                                          ║
-// ╠════════════════════════════════════════════════════════════════════════════╣
-// ║  Cross-References (Bidirectional):                                      ║
-// ║    (Standalone file - no detected dependencies)                          ║
-// ╚════════════════════════════════════════════════════════════════════════════╝
+// ╔════════════════════════════════════════════════════════════════════════════
+// ║ THE DECORATOR'S BLESSING: renderer.rs                                   ║
+// ║ Vulkan rendering pipeline - visual truth incarnate                         ║
+// ╠════════════════════════════════════════════════════════════════════════════
+// ║ Spectral Frequency: RED                                                    ║
+// ║ Architectural Role: 🏰 THE FORTRESS                                         ║
+// ║ Purpose: Renderer - Main rendering orchestration using Dynamic Rendering   ║
+// ║ Exports: Renderer                                                          ║
+// ╠════════════════════════════════════════════════════════════════════════════
+// ║ Cross-References (Bidirectional):                                      ║
+// ║   (Standalone file - no detected dependencies)                          ║
+// ╚════════════════════════════════════════════════════════════════════════════
 
 //! Renderer - Main rendering orchestration using Dynamic Rendering
 //!
@@ -97,7 +97,7 @@ impl Renderer {
 
         // Create vertex buffer with triangle data
         let vertices = triangle_vertices();
-        let (vertex_buffer, vertex_buffer_memory) = 
+        let (vertex_buffer, vertex_buffer_memory) =
             Self::create_vertex_buffer(ctx, &vertices)?;
 
         // Initialize isometric camera
@@ -167,16 +167,16 @@ impl Renderer {
         // Map memory and copy vertex data
         let data_ptr = ctx.device
             .map_memory(memory, 0, buffer_size, vk::MemoryMapFlags::empty())?;
-        
+
         std::ptr::copy_nonoverlapping(
             vertices.as_ptr().cast::<u8>(),
             data_ptr.cast::<u8>(),
             usize::try_from(buffer_size).unwrap(),
         );
-        
+
         ctx.device.unmap_memory(memory);
 
-        info!("✅ Vertex buffer created: {0} bytes, {1} vertices", 
+        info!("✅ Vertex buffer created: {0} bytes, {1} vertices",
               buffer_size, vertices.len());
 
         Ok((buffer, memory))
@@ -212,23 +212,23 @@ impl Renderer {
     pub unsafe fn render_frame(&mut self, ctx: &VulkanContext, layer_color: [f32; 4]) -> Result<bool> {
         // Acquire next swapchain image
         let (image_index, needs_resize) = self.swapchain.acquire_next_image(&ctx.device)?;
-        
+
         if needs_resize {
             self.needs_resize = true;
             return Ok(true);
         }
 
         let (image_available, render_finished, in_flight) = self.swapchain.current_sync();
-        
+
         // Reset fence for this frame
         ctx.device.reset_fences(&[in_flight])?;
 
         // Get current command buffer
         let cmd = self.command_buffers[self.swapchain.current_frame];
-        
+
         // Reset and begin command buffer
         ctx.device.reset_command_buffer(cmd, vk::CommandBufferResetFlags::empty())?;
-        
+
         let begin_info = vk::CommandBufferBeginInfo::default()
             .flags(vk::CommandBufferUsageFlags::ONE_TIME_SUBMIT);
         ctx.device.begin_command_buffer(cmd, &begin_info)?;
@@ -382,7 +382,7 @@ impl Renderer {
     /// Handle window resize
     pub unsafe fn handle_resize(&mut self, ctx: &VulkanContext, new_size: (u32, u32)) -> Result<()> {
         info!("🔄 Handling resize to {0}x{1}", new_size.0, new_size.1);
-        
+
         ctx.device.device_wait_idle()?;
 
         self.swapchain.recreate(

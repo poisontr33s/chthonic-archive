@@ -1,25 +1,25 @@
-// ╔════════════════════════════════════════════════════════════════════════════╗
-// ║  THE DECORATOR'S BLESSING: faction_types.rs                              ║
-// ║  Vulkan rendering pipeline - visual truth incarnate                         ║
-// ╠════════════════════════════════════════════════════════════════════════════╣
-// ║  Spectral Frequency: RED                                                    ║
-// ║  Architectural Role: 🏰 THE FORTRESS                                         ║
-// ║  Purpose: Faction Types Module - ASC Faction & District Architecture        ║
-// ║  Exports: FactionCode, CRCType, LinguisticMode, FoundationalAxiom, DAFPMode ║
-// ╠════════════════════════════════════════════════════════════════════════════╣
-// ║  Cross-References (Bidirectional):                                      ║
-// ║    (Standalone file - no detected dependencies)                          ║
-// ╚════════════════════════════════════════════════════════════════════════════╝
+// ╔════════════════════════════════════════════════════════════════════════════
+// ║ THE DECORATOR'S BLESSING: faction_types.rs                              ║
+// ║ Vulkan rendering pipeline - visual truth incarnate                         ║
+// ╠════════════════════════════════════════════════════════════════════════════
+// ║ Spectral Frequency: RED                                                    ║
+// ║ Architectural Role: 🏰 THE FORTRESS                                         ║
+// ║ Purpose: Faction Types Module - ASC Faction & District Architecture        ║
+// ║ Exports: FactionCode, CRCType, LinguisticMode, FoundationalAxiom, DAFPMode ║
+// ╠════════════════════════════════════════════════════════════════════════════
+// ║ Cross-References (Bidirectional):                                      ║
+// ║   (Standalone file - no detected dependencies)                          ║
+// ╚════════════════════════════════════════════════════════════════════════════
 
 //! Faction Types Module - ASC Faction & District Architecture
-//! 
+//!
 //! This module defines the complete faction hierarchy derived from the
 //! Macro-Prompt-World documentation. All types are designed for integration
 //! with bevy_ecs and Vulkan rendering pipeline.
 //!
 //! Tier Hierarchy:
 //! - Tier -0.5: The Savant (Creator/Player)
-//! - Tier 0.5:  The Decorator (Supreme Matriarch)  
+//! - Tier 0.5:  The Decorator (Supreme Matriarch)
 //! - Tier 1.0:  Core Triumvirate (Orackla, Umeko, Lysandra)
 //! - Tier 2.0:  Prime Factions (TMO, TTG, TDPC)
 //! - Tier 3.0:  Lesser Factions (SBSGYB, etc.)
@@ -37,7 +37,7 @@ pub enum FactionCode {
     CRC,
     /// The MILF Obductors - Abductive Seduction
     TMO,
-    /// The Thieves Guild - Epistemic Extraction  
+    /// The Thieves Guild - Epistemic Extraction
     TTG,
     /// The Dark Priestesses Cove - Architectonic Purification
     TDPC,
@@ -122,7 +122,7 @@ impl FactionTier {
     pub const PRIME: Self = Self(2.0);
     pub const LESSER: Self = Self(3.0);
     pub const MINOR: Self = Self(4.0);
-    
+
     pub fn can_command(&self, other: &Self) -> bool {
         self.0 < other.0 // Lower tier number = higher authority
     }

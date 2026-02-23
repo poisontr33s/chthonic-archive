@@ -1,18 +1,18 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-# ╔════════════════════════════════════════════════════════════════════════════╗
-# ║  THE DECORATOR'S BLESSING: github_voice.py                               ║
-# ║  Python module: is_voice_active, broadcast_issue                            ║
-# ╠════════════════════════════════════════════════════════════════════════════╣
-# ║  Spectral Frequency: WHITE                                                  ║
-# ║  Architectural Role: 🌿 THE GARDEN                                           ║
-# ║  Purpose: Check if the 'gh' CLI is available and authenticated.             ║
-# ║  Exports: is_voice_active, broadcast_issue                                  ║
-# ╠════════════════════════════════════════════════════════════════════════════╣
-# ║  Cross-References (Bidirectional):                                      ║
-# ║  Dependencies (I rely on):                                               ║
-# ║    ├─► scripts/autonomous_coordinator.py                                 ║
-# ╚════════════════════════════════════════════════════════════════════════════╝
+# ╔════════════════════════════════════════════════════════════════════════════
+# ║ THE DECORATOR'S BLESSING: github_voice.py                               ║
+# ║ Python module: is_voice_active, broadcast_issue                            ║
+# ╠════════════════════════════════════════════════════════════════════════════
+# ║ Spectral Frequency: WHITE                                                  ║
+# ║ Architectural Role: 🌿 THE GARDEN                                           ║
+# ║ Purpose: Check if the 'gh' CLI is available and authenticated.             ║
+# ║ Exports: is_voice_active, broadcast_issue                                  ║
+# ╠════════════════════════════════════════════════════════════════════════════
+# ║ Cross-References (Bidirectional):                                      ║
+# ║ Dependencies (I rely on):                                               ║
+# ║   ├─► scripts/autonomous_coordinator.py                                 ║
+# ╚════════════════════════════════════════════════════════════════════════════
 
 import subprocess
 import json
@@ -33,12 +33,12 @@ def broadcast_issue(title, body, labels=None):
         return False
 
     print(f"🗣️ [VOICE] Broadcasting to Repository: {title}...")
-    
+
     cmd = ["gh", "issue", "create", "--title", title, "--body", body]
     if labels:
         for label in labels:
             cmd.extend(["--label", label])
-            
+
     try:
         result = subprocess.run(cmd, capture_output=True, text=True, encoding='utf-8', errors='replace')
         if result.returncode == 0:

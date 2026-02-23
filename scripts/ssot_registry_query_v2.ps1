@@ -1,10 +1,10 @@
 #!/usr/bin/env pwsh
 
 <#
-# ╔════════════════════════════════════════════════════════════════════════════╗
+# ╔════════════════════════════════════════════════════════════════════════════
 # ║ THE DECORATOR'S BLESSING: ssot_registry_query_v2.ps1                      ║
 # ║ Module: SSOT registry query (dynamic)                                    ║
-# ╠════════════════════════════════════════════════════════════════════════════╣
+# ╠════════════════════════════════════════════════════════════════════════════
 # ║ Spectral Frequency: WHITE                                                 ║
 # ║ Architectural Role: SSOT                                                  ║
 # ║ Semantic ID: SCRIPT_SSOT_REGISTRY_QUERY_V2_V1                              ║
@@ -12,7 +12,7 @@
 # ║ Exports: (none)                                                           ║
 # ║ Flags/Modes: -Registry, -Entity                                           ║
 # ║ Cross-References: .github/copilot-instructions.md                          ║
-# ╚════════════════════════════════════════════════════════════════════════════╝
+# ╚════════════════════════════════════════════════════════════════════════════
 #>
 
 <#
@@ -22,7 +22,7 @@
 .DESCRIPTION
     ⚠️ AUTO-UPDATE: No longer hardcoded. Directly parses copilot-instructions.md.
     Queries the three registries in SSOT:
-    - AR (Axiom Registry) 
+    - AR (Axiom Registry)
     - CR (CRC Registry)
     - SAI (Special Archetype Invocation)
 
@@ -128,7 +128,7 @@ if ($Entity) {
             $foundAny = $true
         }
     }
-    
+
     if (-not $foundAny) {
         Write-Host "❌ Entity '$Entity' not found in registries." -ForegroundColor Red
     }

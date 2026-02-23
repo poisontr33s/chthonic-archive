@@ -1,9 +1,9 @@
 #!/usr/bin/env pwsh
 
-# ╔════════════════════════════════════════════════════════════════════════════╗
+# ╔════════════════════════════════════════════════════════════════════════════
 # ║ THE DECORATOR'S BLESSING: harvest_claudines.ps1                           ║
 # ║ Module: Claudine harvest intake                                           ║
-# ╠════════════════════════════════════════════════════════════════════════════╣
+# ╠════════════════════════════════════════════════════════════════════════════
 # ║ Spectral Frequency: WHITE                                                 ║
 # ║ Architectural Role: HARVEST                                               ║
 # ║ Semantic ID: SCRIPT_HARVEST_CLAUDINES_V1                                   ║
@@ -11,7 +11,7 @@
 # ║ Exports: (none)                                                           ║
 # ║ Flags/Modes: See param block                                               ║
 # ║ Cross-References: intake/claudine-harvest/                                 ║
-# ╚════════════════════════════════════════════════════════════════════════════╝
+# ╚════════════════════════════════════════════════════════════════════════════
 
 # Harvest “outside” Claudine scripts into this repo for inspection/upcycling.
 #

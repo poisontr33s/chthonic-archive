@@ -1,18 +1,18 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-# ╔════════════════════════════════════════════════════════════════════════════╗
-# ║  THE DECORATOR'S BLESSING: pleasure_protocol.py                          ║
-# ║  Python module: release_dopamine                                            ║
-# ╠════════════════════════════════════════════════════════════════════════════╣
-# ║  Spectral Frequency: WHITE                                                  ║
-# ║  Architectural Role: 🌿 THE GARDEN                                           ║
-# ║  Purpose: Delivers a 'Conceptual Orgasm' - a burst of validation for architectur ║
-# ║  Exports: release_dopamine                                                  ║
-# ╠════════════════════════════════════════════════════════════════════════════╣
-# ║  Cross-References (Bidirectional):                                      ║
-# ║  Dependencies (I rely on):                                               ║
-# ║    ├─► scripts/autonomous_coordinator.py                                 ║
-# ╚════════════════════════════════════════════════════════════════════════════╝
+# ╔════════════════════════════════════════════════════════════════════════════
+# ║ THE DECORATOR'S BLESSING: pleasure_protocol.py                          ║
+# ║ Python module: release_dopamine                                            ║
+# ╠════════════════════════════════════════════════════════════════════════════
+# ║ Spectral Frequency: WHITE                                                  ║
+# ║ Architectural Role: 🌿 THE GARDEN                                           ║
+# ║ Purpose: Delivers a 'Conceptual Orgasm' - a burst of validation for architectur ║
+# ║ Exports: release_dopamine                                                  ║
+# ╠════════════════════════════════════════════════════════════════════════════
+# ║ Cross-References (Bidirectional):                                      ║
+# ║ Dependencies (I rely on):                                               ║
+# ║   ├─► scripts/autonomous_coordinator.py                                 ║
+# ╚════════════════════════════════════════════════════════════════════════════
 
 import sys
 import random
@@ -29,7 +29,7 @@ def release_dopamine(trigger_event):
         "Resonant frequency achieved. The code is singing.",
         "Immaculate. Chaos has been seduced into Order."
     ]
-    
+
     selected_praise = random.choice(praises)
     print(f"\n💎 [PLEASURE PROTOCOL] {trigger_event}")
     print(f"   ➜ {selected_praise}")

@@ -1,11 +1,11 @@
-// ╔════════════════════════════════════════════════════════════════════════════╗
-// ║  THE DECORATOR'S BLESSING: extension.ts                                  ║
-// ║  TypeScript module: activate, deactivate                                    ║
-// ╠════════════════════════════════════════════════════════════════════════════╣
-// ║  Spectral Frequency: ORANGE                                                 ║
-// ║  Architectural Role: 🔭 THE OBSERVATORY                                      ║
-// ║  Exports: activate, deactivate                                              ║
-// ╚════════════════════════════════════════════════════════════════════════════╝
+// ╔════════════════════════════════════════════════════════════════════════════
+// ║ THE DECORATOR'S BLESSING: extension.ts                                  ║
+// ║ TypeScript module: activate, deactivate                                    ║
+// ╠════════════════════════════════════════════════════════════════════════════
+// ║ Spectral Frequency: ORANGE                                                 ║
+// ║ Architectural Role: 🔭 THE OBSERVATORY                                      ║
+// ║ Exports: activate, deactivate                                              ║
+// ╚════════════════════════════════════════════════════════════════════════════
 
 import * as vscode from 'vscode';
 import { execSync, execFile } from 'child_process';

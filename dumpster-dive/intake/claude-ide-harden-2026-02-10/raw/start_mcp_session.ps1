@@ -1,9 +1,9 @@
 #!/usr/bin/env pwsh
 
-# ╔════════════════════════════════════════════════════════════════════════════╗
+# ╔════════════════════════════════════════════════════════════════════════════
 # ║ THE DECORATOR'S BLESSING: start_mcp_session.ps1                           ║
 # ║ Module: MCP Session Bootstrap                                             ║
-# ╠════════════════════════════════════════════════════════════════════════════╣
+# ╠════════════════════════════════════════════════════════════════════════════
 # ║ Spectral Frequency: orchestration/bootstrap                               ║
 # ║ Architectural Role: MCP server launcher with optional Claude integration  ║
 # ║ Semantic ID: SCRIPT_START_MCP_SESSION_V1                                  ║
@@ -11,7 +11,7 @@
 # ║ Exports: None (launcher script)                                           ║
 # ║ Flags/Modes: -EnsureClaude, -McpCmd <string>                              ║
 # ║ Cross-References: launch_claude_code.ps1, mcp/server.ts                   ║
-# ╚════════════════════════════════════════════════════════════════════════════╝
+# ╚════════════════════════════════════════════════════════════════════════════
 <#
  Usage:
  pwsh -NoProfile -ExecutionPolicy Bypass -File .\scripts\start_mcp_session.ps1 [-EnsureClaude] [-McpCmd "bun run mcp/server.ts"]

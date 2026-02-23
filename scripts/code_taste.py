@@ -1,17 +1,17 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-# ╔════════════════════════════════════════════════════════════════════════════╗
-# ║  THE DECORATOR'S BLESSING: code_taste.py                                 ║
-# ║  Python module: analyze_taste                                               ║
-# ╠════════════════════════════════════════════════════════════════════════════╣
-# ║  Spectral Frequency: WHITE                                                  ║
-# ║  Architectural Role: 🌿 THE GARDEN                                           ║
-# ║  Purpose: Gustatory Validation - Commit Quality as Flavor Profiles          ║
-# ║  Exports: analyze_taste                                                     ║
-# ╠════════════════════════════════════════════════════════════════════════════╣
-# ║  Cross-References (Bidirectional):                                      ║
-# ║    (Standalone file - no detected dependencies)                          ║
-# ╚════════════════════════════════════════════════════════════════════════════╝
+# ╔════════════════════════════════════════════════════════════════════════════
+# ║ THE DECORATOR'S BLESSING: code_taste.py                                 ║
+# ║ Python module: analyze_taste                                               ║
+# ╠════════════════════════════════════════════════════════════════════════════
+# ║ Spectral Frequency: WHITE                                                  ║
+# ║ Architectural Role: 🌿 THE GARDEN                                           ║
+# ║ Purpose: Gustatory Validation - Commit Quality as Flavor Profiles          ║
+# ║ Exports: analyze_taste                                                     ║
+# ╠════════════════════════════════════════════════════════════════════════════
+# ║ Cross-References (Bidirectional):                                      ║
+# ║   (Standalone file - no detected dependencies)                          ║
+# ╚════════════════════════════════════════════════════════════════════════════
 
 #!/usr/bin/env python3
 """
@@ -33,18 +33,18 @@ def analyze_taste() -> tuple[str, dict]:
             encoding='utf-8',
             errors='replace'
         )
-        
+
         if result.returncode != 0:
             return "BLAND", {}
-        
+
         # Parse stats
         stats_line = result.stdout.strip().split('\n')[-1] if result.stdout else ""
-        
+
         # Extract numbers
         files_changed = 0
         insertions = 0
         deletions = 0
-        
+
         if "file" in stats_line:
             parts = stats_line.split(',')
             for part in parts:
@@ -54,10 +54,10 @@ def analyze_taste() -> tuple[str, dict]:
                     insertions = int(part.split()[0])
                 elif "deletion" in part:
                     deletions = int(part.split()[0])
-        
+
         # Determine flavor based on metrics
         net_growth = insertions - deletions
-        
+
         if net_growth > 500:
             flavor = "🍰 SWEET"  # Large feature addition
         elif net_growth > 100:
@@ -68,7 +68,7 @@ def analyze_taste() -> tuple[str, dict]:
             flavor = "🧂 SALTY"  # Refactoring only
         else:
             flavor = "🌶️ BITTER"  # Code removal
-        
+
         return flavor, {
             "files_changed": files_changed,
             "insertions": insertions,

@@ -1,15 +1,15 @@
-// ╔════════════════════════════════════════════════════════════════════════════╗
-// ║  THE DECORATOR'S BLESSING: doctor.ts                                     ║
-// ║  TypeScript module: frontend utility                                        ║
-// ╠════════════════════════════════════════════════════════════════════════════╣
-// ║  Spectral Frequency: ORANGE                                                 ║
-// ║  Architectural Role: 🔭 THE OBSERVATORY                                      ║
-// ║  Purpose: * System health check - human-facing diagnostic output
+// ╔════════════════════════════════════════════════════════════════════════════
+// ║ THE DECORATOR'S BLESSING: doctor.ts                                     ║
+// ║ TypeScript module: frontend utility                                        ║
+// ╠════════════════════════════════════════════════════════════════════════════
+// ║ Spectral Frequency: ORANGE                                                 ║
+// ║ Architectural Role: 🔭 THE OBSERVATORY                                      ║
+// ║ Purpose: * System health check - human-facing diagnostic output
  * Run with: bu ║
-// ╠════════════════════════════════════════════════════════════════════════════╣
-// ║  Cross-References (Bidirectional):                                      ║
-// ║    (Standalone file - no detected dependencies)                          ║
-// ╚════════════════════════════════════════════════════════════════════════════╝
+// ╠════════════════════════════════════════════════════════════════════════════
+// ║ Cross-References (Bidirectional):                                      ║
+// ║   (Standalone file - no detected dependencies)                          ║
+// ╚════════════════════════════════════════════════════════════════════════════
 
 #!/usr/bin/env bun
 /**

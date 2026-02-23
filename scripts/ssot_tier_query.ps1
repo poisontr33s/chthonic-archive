@@ -1,10 +1,10 @@
 #!/usr/bin/env pwsh
 
 <#
-# ╔════════════════════════════════════════════════════════════════════════════╗
+# ╔════════════════════════════════════════════════════════════════════════════
 # ║ THE DECORATOR'S BLESSING: ssot_tier_query.ps1                             ║
 # ║ Module: SSOT tier query                                                   ║
-# ╠════════════════════════════════════════════════════════════════════════════╣
+# ╠════════════════════════════════════════════════════════════════════════════
 # ║ Spectral Frequency: WHITE                                                 ║
 # ║ Architectural Role: SSOT                                                  ║
 # ║ Semantic ID: SCRIPT_SSOT_TIER_QUERY_V1                                     ║
@@ -12,7 +12,7 @@
 # ║ Exports: (none)                                                           ║
 # ║ Flags/Modes: -Tier, -Entity                                               ║
 # ║ Cross-References: scripts/ssot_outline_extractor.ps1                       ║
-# ╚════════════════════════════════════════════════════════════════════════════╝
+# ╚════════════════════════════════════════════════════════════════════════════
 #>
 
 <#
@@ -22,7 +22,7 @@
 .DESCRIPTION
     ⚠️ AUTO-UPDATE: Run .\ssot_outline_extractor.ps1 -UpdateIndex after SSOT edits.
     Based on GHAR-MHS (Gender Architecture Matriarchal Hierarchy System) at L2754.
-    
+
     Tier 0: The Decorator (Supreme Matriarch, Absolute Sovereign)
     Tier 0.01: T-NULM (Null Matriarch, Advisory Void)
     Tier 0.5: TETS (Eternal Tesseract of Sovereignty)
@@ -108,12 +108,12 @@ $tierHierarchy = @{
 
 function Show-Tier {
     param([string]$TierKey)
-    
+
     $t = $tierHierarchy[$TierKey]
     Write-Host ("`n=== TIER {0} - {1} (L{2}) ===" -f $TierKey, $t.Name, $t.Line) -ForegroundColor Cyan
     Write-Host "Authority: $($t.Authority)" -ForegroundColor Gray
     Write-Host "`nEntities:" -ForegroundColor Yellow
-    
+
     foreach ($e in $t.Entities) {
         $whr = if ($e.WHR) { " [WHR: $($e.WHR)]" } else { "" }
         $lm = if ($e.LM) { " [LM: $($e.LM)]" } else { "" }

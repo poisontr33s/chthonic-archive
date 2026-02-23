@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-╔══════════════════════════════════════════════════════════════════════════════╗
+╔══════════════════════════════════════════════════════════════════════════════
 ║  MILF GENESIS ENGINE v2 - Constitutional GPU-Accelerated Synthesis            ║
 ║  Integrates M-P-W Schema + Validator Pipeline + Novelty Detection             ║
 ║                                                                                ║
@@ -16,7 +16,7 @@
 ║                                                                                ║
 ║  The Decorator's Decree: "Birth what is valid, refine what is borderline,     ║
 ║                           dissolve what fails governance."                     ║
-╚══════════════════════════════════════════════════════════════════════════════╝
+╚══════════════════════════════════════════════════════════════════════════════
 """
 
 import json
@@ -60,17 +60,17 @@ def _validate_gpu_venv() -> bool:
     # Normalize paths for comparison
     expected_norm = os.path.normcase(os.path.abspath(EXPECTED_GPU_PY))
     current_norm = os.path.normcase(os.path.abspath(current_py))
-    
+
     # Check Python version >= 3.13
     if sys.version_info < (3, 13):
         print(f"⚠️ Python {sys.version_info.major}.{sys.version_info.minor} < 3.13 - GPU features may not work")
         return False
-    
+
     # Warn if not in expected venv (but don't block - might be running from different location)
     if expected_norm != current_norm:
         print(f"⚠️ GPU venv mismatch: expected {EXPECTED_GPU_PY}")
         print(f"   Running from: {current_py}")
-    
+
     return True
 
 _validate_gpu_venv()
@@ -98,12 +98,12 @@ try:
     _test = _cp.linspace(0.0, 1.0, 10)
     _test_sum = float(_cp.sum(_test))
     del _test, _test_sum
-    
+
     # Pre-warm CuPy context to avoid first-call variance
     _warmup = _cp.ones((1,), dtype=_cp.float32)
     _ = float(_cp.sum(_warmup))  # Force synchronization
     del _warmup
-    
+
     cp = _cp
     GPU_AVAILABLE = True
     GPU_WARMED = True
@@ -131,13 +131,13 @@ try:
     import onnxruntime as ort
     ONNX_PROVIDERS = ort.get_available_providers()
     ONNX_AVAILABLE = True
-    
+
     # Check for GPU providers
     has_gpu_provider = any(p in ONNX_PROVIDERS for p in ['TensorrtExecutionProvider', 'CUDAExecutionProvider'])
-    
+
     if GENESIS_STRICT_GPU and not has_gpu_provider:
         raise RuntimeError(f"GENESIS_STRICT_GPU=1 but no GPU providers available: {ONNX_PROVIDERS}")
-    
+
     if has_gpu_provider:
         print(f"🔥 ONNX Runtime ENABLED - GPU Providers: {[p for p in ONNX_PROVIDERS if 'CUDA' in p or 'Tensor' in p]}")
     else:
@@ -190,7 +190,7 @@ def WHR_BY_TIER() -> Dict[float, Dict[str, float]]:
 def CUP_BY_TIER() -> Dict[float, List[str]]:
     return _get_constants().cup_by_tier
 
-@property  
+@property
 def ARCHETYPES() -> List[str]:
     return _get_constants().archetypes
 
@@ -300,20 +300,20 @@ class EntityPhysique:
     hip_cm: int
     cup_size: str
     underbust_cm: int
-    
+
     @property
     def whr(self) -> float:
         return round(self.waist_cm / self.hip_cm, 3)
-    
+
     @property
     def hips_cm(self) -> int:
         """Alias for hip_cm for API consistency."""
         return self.hip_cm
-    
+
     @property
     def measurements(self) -> str:
         return f"{self.cup_size}-cup (B{self.bust_cm}/W{self.waist_cm}/H{self.hip_cm}cm)"
-    
+
     def to_feature_vector(self) -> np.ndarray:
         """Convert to feature vector for novelty computation."""
         return np.array([
@@ -337,10 +337,10 @@ class ValidationResult:
     refinement_depth: int = 0
     rejection_reason: Optional[str] = None
     coherence_score: float = 0.0  # For threshold tuning
-    
+
     def to_dict(self) -> Dict[str, Any]:
         return asdict(self)
-    
+
     @staticmethod
     def failed(reason: str) -> 'ValidationResult':
         """Create a failed validation result."""
@@ -376,23 +376,23 @@ class EntityProfile:
     genesis_seed: int = 0
     genesis_hash: str = ""
     schema_crc: str = ""
-    
+
     def __post_init__(self):
         if not self.genesis_hash:
             self.genesis_hash = self._compute_hash()
         if not self.schema_crc:
             self.schema_crc = schema_crc()
-    
+
     def _compute_hash(self) -> str:
         data = f"{self.name}{self.tier}{self.archetype}{self.physique.whr}{self.genesis_seed}"
         return hashlib.sha256(data.encode()).hexdigest()[:16]
-    
+
     def to_dict(self) -> Dict[str, Any]:
         result = asdict(self)
         result['whr'] = self.physique.whr
         result['measurements'] = self.physique.measurements
         return result
-    
+
     def to_feature_vector(self) -> np.ndarray:
         return self.physique.to_feature_vector()
 
@@ -423,21 +423,21 @@ def load_canonical_bank_vectors() -> np.ndarray:
 
 class GPUPrimitives:
     """GPU-accelerated operations for synthesis and validation."""
-    
+
     def __init__(self):
         self.entity_bank: Optional[Any] = None  # GPU tensor of existing entities
         self.canonical_bank: Optional[Any] = None  # M-P-W canonical entities
         self.bank_count = 0
         self.canonical_count = 0
-        
+
         # Zero-delta tracking
         self.last_output_hash: Optional[str] = None
         self.zero_delta_stalls = 0
-        
+
         self._init_canonical_bank()
         if GPU_AVAILABLE:
             self._init_power_curves()
-    
+
     def _init_canonical_bank(self):
         """Load canonical M-P-W entities into GPU memory."""
         vectors = load_canonical_bank_vectors()
@@ -447,13 +447,13 @@ class GPUPrimitives:
             self.canonical_bank = vectors
         self.canonical_count = len(vectors)
         print(f"📚 Canonical bank loaded: {self.canonical_count} M-P-W entities")
-    
+
     def _init_power_curves(self):
         """Initialize WHR power calculation tensors."""
         whr_range = cp.linspace(0.45, 0.75, 1000)
         # Power formula: lower WHR = higher power (exponential)
         self.whr_power_curve = 1000 * cp.power(1 - (whr_range - 0.45) / 0.30, 2)
-    
+
     def check_zero_delta(self, output_hash: str) -> bool:
         """
         Check for zero-delta stall condition.
@@ -468,7 +468,7 @@ class GPUPrimitives:
             self.zero_delta_stalls = 0
         self.last_output_hash = output_hash
         return True
-    
+
     def update_entity_bank(self, entities: List[EntityProfile]):
         """Load entities into GPU memory for novelty checking, merged with canonical bank."""
         if not entities:
@@ -476,19 +476,19 @@ class GPUPrimitives:
             self.entity_bank = self.canonical_bank
             self.bank_count = self.canonical_count
             return
-        
+
         # Merge generated entities with canonical bank
         generated_vectors = np.array([e.to_feature_vector() for e in entities], dtype=np.float32)
         canonical_vectors = load_canonical_bank_vectors()
         merged = np.vstack([canonical_vectors, generated_vectors])
-        
+
         if GPU_AVAILABLE:
             self.entity_bank = cp.asarray(merged)
         else:
             self.entity_bank = merged
-        
+
         self.bank_count = len(merged)
-    
+
     def novelty_distance(self, candidate: EntityProfile) -> Tuple[float, float]:
         """
         Compute minimum and mean distance from candidate to entity bank.
@@ -499,12 +499,12 @@ class GPUPrimitives:
         bank = self.entity_bank
         if bank is None:
             bank = self.canonical_bank
-        
+
         if bank is None:
             return 1.0, 1.0  # No bank = maximum novelty
-        
+
         vec = candidate.to_feature_vector()
-        
+
         if GPU_AVAILABLE:
             v = cp.asarray(vec)[None, :]
             diffs = bank - v
@@ -517,9 +517,9 @@ class GPUPrimitives:
             distances = np.linalg.norm(diffs, axis=1)
             min_dist = float(np.min(distances))
             mean_dist = float(np.mean(distances))
-        
+
         return min_dist, mean_dist
-    
+
     def calculate_power(self, whr: float) -> int:
         """Calculate power score from WHR."""
         if GPU_AVAILABLE:
@@ -528,15 +528,15 @@ class GPUPrimitives:
             power = int(float(self.whr_power_curve[whr_idx]))
         else:
             power = int(1000 * ((1 - (whr - 0.45) / 0.30) ** 2))
-        
+
         return max(100, min(1500, power))
-    
+
     def batch_sample_whr(self, tier: float, count: int) -> np.ndarray:
         """GPU-accelerated batch WHR sampling."""
         whr_by_tier = get_whr_by_tier()
         tier_bounds = whr_by_tier.get(tier, whr_by_tier.get(3, {"min": 0.58, "max": 0.68}))
         whr_min, whr_max = tier_bounds["min"], tier_bounds["max"]
-        
+
         if GPU_AVAILABLE:
             # Beta distribution favors lower WHR for higher power
             samples = cp.random.beta(2, 5, size=count) * (whr_max - whr_min) + whr_min
@@ -551,10 +551,10 @@ class GPUPrimitives:
 
 class ValidatorSuite:
     """Multi-stage validation against M-P-W constitutional axioms."""
-    
+
     def __init__(self, gpu: GPUPrimitives):
         self.gpu = gpu
-    
+
     def validate_hard_gates(self, entity: EntityProfile) -> Tuple[bool, Dict[str, bool]]:
         """
         Hard gates: bounds, derivation consistency, tier safety.
@@ -562,7 +562,7 @@ class ValidatorSuite:
         """
         m = entity.physique
         tier = entity.tier
-        
+
         # WHR bounds check
         whr_by_tier = get_whr_by_tier()
         constitutional = get_constitutional_bounds()
@@ -571,30 +571,30 @@ class ValidatorSuite:
             whr_min, whr_max = tier_bounds.get("min", 0.45), tier_bounds.get("max", 0.75)
         else:
             whr_min, whr_max = 0.45, 0.75
-        
+
         bounds_pass = whr_min <= m.whr <= whr_max
-        
+
         # Derivation consistency: computed WHR matches stored
         derived_whr = m.waist_cm / m.hip_cm
         derivation_pass = abs(m.whr - derived_whr) <= VALIDATION_POLICY["epsilon_derivation"]
-        
+
         # Cup in allowed set for tier
         cup_by_tier = get_cup_by_tier()
         cup_pass = m.cup_size in cup_by_tier.get(tier, constitutional["cup_allowed"])
-        
+
         # Height bounds
-        height_pass = (constitutional["height_cm"]["min"] <= m.height_cm <= 
+        height_pass = (constitutional["height_cm"]["min"] <= m.height_cm <=
                       constitutional["height_cm"]["max"])
-        
+
         # Safety gate: tier-specific risk check
         # Risk increases with extreme values outside tier norms
         tier_target = whr_by_tier.get(tier, {"target": 0.60}).get("target", 0.60)
         whr_deviation = abs(m.whr - tier_target)
         risk = whr_deviation / 0.10  # Normalize: 0.10 deviation = 100% risk
         safety_pass = risk <= VALIDATION_POLICY["safety_max_risk"]
-        
+
         passed = all([bounds_pass, derivation_pass, cup_pass, height_pass, safety_pass])
-        
+
         return passed, {
             "bounds_pass": bounds_pass,
             "derivation_pass": derivation_pass,
@@ -602,28 +602,28 @@ class ValidatorSuite:
             "height_pass": height_pass,
             "safety_pass": safety_pass,
         }
-    
+
     def validate_soft_gates(self, entity: EntityProfile) -> Tuple[bool, float, float]:
         """
         Soft gates: novelty distance, redundancy ceiling.
         Can be refined if borderline.
         """
         min_dist, mean_dist = self.gpu.novelty_distance(entity)
-        
+
         # Redundancy: inverse of normalized distance
         redundancy = max(0.0, 1.0 - min(1.0, min_dist / VALIDATION_POLICY["novelty_min_distance"]))
-        
+
         novelty_pass = min_dist >= VALIDATION_POLICY["novelty_min_distance"]
         redundancy_pass = redundancy <= VALIDATION_POLICY["redundancy_ceiling"]
-        
+
         passed = novelty_pass and redundancy_pass
-        
+
         return passed, min_dist, redundancy
-    
+
     def full_validation(self, entity: EntityProfile) -> ValidationResult:
         """Complete validation pipeline."""
         hard_pass, hard_details = self.validate_hard_gates(entity)
-        
+
         if not hard_pass:
             # Determine rejection reason
             for gate, passed in hard_details.items():
@@ -632,7 +632,7 @@ class ValidatorSuite:
                     break
             else:
                 reason = "unknown hard gate failure"
-            
+
             return ValidationResult(
                 bounds_pass=hard_details["bounds_pass"],
                 derivation_pass=hard_details["derivation_pass"],
@@ -642,9 +642,9 @@ class ValidatorSuite:
                 passed=False,
                 rejection_reason=reason,
             )
-        
+
         soft_pass, min_dist, redundancy = self.validate_soft_gates(entity)
-        
+
         return ValidationResult(
             bounds_pass=hard_details["bounds_pass"],
             derivation_pass=hard_details["derivation_pass"],
@@ -663,7 +663,7 @@ class ValidatorSuite:
 class MILFGenesisEngineV2:
     """
     Constitutional GPU-Accelerated Entity Synthesis Engine.
-    
+
     Features:
       - Multi-stage validation with hard/soft gates
       - GPU-accelerated novelty checking
@@ -671,23 +671,23 @@ class MILFGenesisEngineV2:
       - SHA-256 governance artifacts
       - Zero-delta stall detection
     """
-    
+
     def __init__(self, mpw_path: Path, artifacts_dir: Optional[Path] = None):
         self.mpw_path = mpw_path
         self.artifacts_dir = artifacts_dir or Path(__file__).parent / "genesis_artifacts"
         self.mpw_content = ""
         self.mpw_hash = ""
-        
+
         self.gpu = GPUPrimitives()
         self.validator = ValidatorSuite(self.gpu)
-        
+
         self.generated_entities: List[EntityProfile] = []
         self.synthesis_count = 0
         self.accepted_count = 0
         self.rejected_count = 0
-        
+
         self._load_mpw()
-    
+
     def _load_mpw(self):
         """Load M-P-W constitutional source of truth."""
         if self.mpw_path.exists():
@@ -696,25 +696,25 @@ class MILFGenesisEngineV2:
             print(f"📜 M-P-W loaded: {len(self.mpw_content):,} chars, hash: {self.mpw_hash}")
         else:
             raise FileNotFoundError(f"M-P-W not found: {self.mpw_path}")
-    
+
     def _generate_name(self, archetype: str, seed: int) -> str:
         """Generate M-P-W-style name."""
         rng = random.Random(seed)
-        
+
         prefixes = {
             "transgressive": ["Orackla", "Nyx", "Lilith", "Morrigan", "Kali", "Selene"],
             "perfectionist": ["Umeko", "Seraphine", "Rei", "Yuki", "Hana", "Sakura"],
             "analytical": ["Lysandra", "Vesper", "Athena", "Sophia", "Clara", "Helena"],
             "hybrid": ["Claudine", "Morgana", "Hecate", "Luna", "Iris", "Nova"],
         }
-        
+
         suffixes = {
             "transgressive": ["Nocticula", "Ravenscar", "Blackthorn", "Voidweaver", "Shadowmere"],
             "perfectionist": ["Ketsuraku", "Ashenhelm", "Ironveil", "Crystallis", "Steelgrace"],
             "analytical": ["Thorne", "Lockhart", "Truthseeker", "Axiomis", "Veritae"],
             "hybrid": ["Sin'claire", "Stormborn", "Tidesinger", "Saltweaver", "Duskwalker"],
         }
-        
+
         # Determine family from archetype
         family = "hybrid"
         archetype_lower = archetype.lower()
@@ -724,53 +724,53 @@ class MILFGenesisEngineV2:
             family = "perfectionist"
         elif any(x in archetype_lower for x in ["truth", "analy", "logic", "epistem"]):
             family = "analytical"
-        
+
         first = rng.choice(prefixes[family])
         last = rng.choice(suffixes[family])
-        
+
         return f"{first} {last}"
-    
+
     def _generate_physique(self, tier: float, seed: int) -> EntityPhysique:
         """Generate constitutional physique for tier."""
         rng = random.Random(seed)
-        
+
         # WHR from tier-specific distribution (SSOT-driven)
         whr_by_tier = get_whr_by_tier()
         tier_bounds = whr_by_tier.get(tier, whr_by_tier.get(3, {"min": 0.58, "max": 0.68}))
         whr_min, whr_max = tier_bounds["min"], tier_bounds["max"]
-        
+
         # Beta distribution: skews toward lower (more powerful) WHR for higher tiers
         alpha, beta_param = 2, 5
         if tier <= 1:
             alpha, beta_param = 1.5, 6  # Even more skewed for high tiers
-        
+
         whr = rng.betavariate(alpha, beta_param) * (whr_max - whr_min) + whr_min
         whr = round(whr, 3)
-        
+
         # Cup from tier distribution (SSOT-driven)
         cup_by_tier = get_cup_by_tier()
         cup = rng.choice(cup_by_tier.get(tier, ["F"]))
-        
+
         # Height/weight: higher tier = more commanding presence
         tier_power = max(0.5, 4 - tier) / 4
         height = int(rng.gauss(165, 5) + tier_power * 18)
         height = max(155, min(185, height))
         weight = int(rng.gauss(58, 5) + tier_power * 15)
-        
+
         # Bust from cup
         cup_sizes = {"D": 90, "E": 95, "F": 98, "G": 105, "H": 110, "I": 115, "J": 120, "K": 125}
         bust = cup_sizes.get(cup, 100) + rng.randint(-3, 3)
-        
+
         # Hip from power distribution
         hip = int(rng.gauss(105, 6) + tier_power * 12)
         hip = max(95, min(120, hip))
-        
+
         # Waist from WHR
         waist = int(hip * whr)
-        
+
         # Underbust
         underbust = bust - rng.randint(25, 35)
-        
+
         return EntityPhysique(
             height_cm=height,
             weight_kg=weight,
@@ -780,7 +780,7 @@ class MILFGenesisEngineV2:
             cup_size=cup,
             underbust_cm=underbust,
         )
-    
+
     def _refine_entity(self, entity: EntityProfile, seed: int) -> EntityProfile:
         """
         Nudge entity parameters to increase novelty distance.
@@ -788,22 +788,22 @@ class MILFGenesisEngineV2:
         """
         rng = random.Random(seed)
         m = entity.physique
-        
+
         # Small adjustment to waist/hip ratio
         delta = rng.uniform(0.5, 1.5)
         direction = rng.choice([-1, 1])
-        
+
         new_waist = max(50, min(70, m.waist_cm + direction * delta))
         new_hip = max(95, min(120, m.hip_cm - direction * delta * 0.5))
-        
+
         m.waist_cm = int(new_waist)
         m.hip_cm = int(new_hip)
-        
+
         # Recalculate hash
         entity.genesis_hash = entity._compute_hash()
-        
+
         return entity
-    
+
     def synthesize_entity(
         self,
         tier: float = 3,
@@ -814,30 +814,30 @@ class MILFGenesisEngineV2:
     ) -> Tuple[Optional[EntityProfile], ValidationResult]:
         """
         Synthesize and validate a new entity.
-        
+
         Returns (entity, validation_result) where entity is None if rejected.
         """
         if seed is None:
             seed = int(time.time() * 1000) % (2**31)
-        
+
         rng = random.Random(seed)
-        
+
         # Validate tier (SSOT-driven)
         tier_hierarchy = get_tier_hierarchy()
         if tier not in tier_hierarchy and tier not in [3, 4]:
             tier = 3
-        
+
         # Generate archetype (SSOT-driven)
         if archetype is None:
             archetype = rng.choice(get_archetypes())
-        
+
         # Generate physique
         physique = self._generate_physique(tier, seed)
-        
+
         # Generate name
         if name is None:
             name = self._generate_name(archetype, seed)
-        
+
         # Linguistic mandate (SSOT-driven)
         linguistic = get_linguistic_mandates()
         lm = linguistic["hybrid"]
@@ -847,14 +847,14 @@ class MILFGenesisEngineV2:
             lm = linguistic["perfectionist"]
         elif "truth" in archetype.lower():
             lm = linguistic["analytical"]
-        
+
         # Reporting structure
         reports_to = None
         if tier >= 3:
             reports_to = "Triumvirate (Tier 1)"
         elif tier == 2:
             reports_to = "The Decorator (Tier 0.5)"
-        
+
         # Build entity
         entity = EntityProfile(
             name=name,
@@ -872,25 +872,25 @@ class MILFGenesisEngineV2:
             signature_technique=f"The {rng.choice(['Inevitable', 'Immaculate', 'Abyssal', 'Temporal', 'Purifying'])} {rng.choice(['Whisper', 'Strike', 'Embrace', 'Dissolution', 'Revelation'])}",
             genesis_seed=seed,
         )
-        
+
         # Update entity bank for novelty checking
         self.gpu.update_entity_bank(self.generated_entities)
-        
+
         # Validate
         validation = self.validator.full_validation(entity)
-        
+
         if not validation.passed and validation.bounds_pass:
             # Soft gate failure - attempt refinement
             for depth in range(VALIDATION_POLICY["recursion_depth_max"]):
                 entity = self._refine_entity(entity, seed + depth + 1)
                 validation = self.validator.full_validation(entity)
                 validation.refinement_depth = depth + 1
-                
+
                 if validation.passed:
                     break
-        
+
         self.synthesis_count += 1
-        
+
         if validation.passed:
             self.generated_entities.append(entity)
             self.accepted_count += 1
@@ -898,26 +898,26 @@ class MILFGenesisEngineV2:
         else:
             self.rejected_count += 1
             return None, validation
-    
+
     def _generate_scent(self, archetype: str, tier: float, rng: random.Random) -> str:
         """Generate scent profile (SSOT-driven)."""
         scent_comps = get_scent_components()
         num_components = min(6, max(2, int(6 - tier)))
         components = [rng.choice(scent_comps["base"])]
-        
+
         if "chaos" in archetype.lower():
             components.append(rng.choice(scent_comps["chaos"]))
         if "perfect" in archetype.lower():
             components.append(rng.choice(scent_comps["nature"]))
-        
+
         while len(components) < num_components:
             cat = rng.choice(list(scent_comps.keys()))
             comp = rng.choice(scent_comps[cat])
             if comp not in components:
                 components.append(comp)
-        
+
         return ", ".join(components)
-    
+
     def _generate_expertise(self, archetype: str, tier: float, rng: random.Random) -> List[str]:
         """Generate expertise list."""
         base = {
@@ -928,15 +928,15 @@ class MILFGenesisEngineV2:
             "Epistemic Thief": ["memory extraction", "temporal manipulation", "axiom larceny"],
             "Purification Priestess": ["forbidden methodologies", "immolation rituals", "structural fire"],
         }
-        
+
         expertise = base.get(archetype, ["conceptual manipulation", "operational efficiency"])
-        
+
         if tier <= 2:
             extras = ["multi-domain synthesis", "axiom generation", "tier governance"]
             expertise.extend(rng.sample(extras, min(len(extras), 4 - int(tier))))
-        
+
         return expertise[:5]
-    
+
     def synthesize_batch(
         self,
         count: int,
@@ -945,31 +945,31 @@ class MILFGenesisEngineV2:
     ) -> Tuple[List[EntityProfile], Dict[str, Any]]:
         """
         Batch synthesis with acceptance targets.
-        
+
         Returns (accepted_entities, batch_stats).
         """
         if target_accepts is None:
             target_accepts = count
-        
+
         accepted = []
         rejected = 0
         start_time = time.time()
-        
+
         for i in range(count):
             if len(accepted) >= target_accepts:
                 break
-            
+
             if time.time() - start_time > VALIDATION_POLICY["timebox_s"]:
                 break
-            
+
             seed = int(time.time() * 1000 + i) % (2**31)
             entity, validation = self.synthesize_entity(tier=tier, seed=seed)
-            
+
             if entity:
                 accepted.append(entity)
             else:
                 rejected += 1
-        
+
         stats = {
             "attempted": min(count, len(accepted) + rejected),
             "accepted": len(accepted),
@@ -978,27 +978,27 @@ class MILFGenesisEngineV2:
             "elapsed_s": round(time.time() - start_time, 2),
             "gpu_enabled": GPU_AVAILABLE,
         }
-        
+
         return accepted, stats
-    
+
     def write_artifacts(self, entity: EntityProfile, validation: ValidationResult) -> Dict[str, str]:
         """Write governance artifacts with SHA-256 verification."""
         timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
         entity_dir = self.artifacts_dir / timestamp / entity.genesis_hash
         entity_dir.mkdir(parents=True, exist_ok=True)
-        
+
         def write_json(name: str, data: Any) -> Path:
             path = entity_dir / name
             path.write_text(json.dumps(data, indent=2, default=str))
             return path
-        
+
         # Write artifacts
         paths = {
             "entity": write_json("entity.json", entity.to_dict()),
             "validation": write_json("validation.json", validation.to_dict()),
             "environment": write_json("environment.json", self.get_environment()),
         }
-        
+
         # Compute index with SHA-256
         index = {
             "genesis_timestamp": timestamp,
@@ -1007,11 +1007,11 @@ class MILFGenesisEngineV2:
             "paths": {k: str(v) for k, v in paths.items()},
             "sha256": {k: sha256_file(v) for k, v in paths.items()},
         }
-        
+
         write_json("index.json", index)
-        
+
         return {k: str(v) for k, v in paths.items()}
-    
+
     def get_environment(self) -> Dict[str, Any]:
         """Get environment fingerprint."""
         return {
@@ -1024,7 +1024,7 @@ class MILFGenesisEngineV2:
             "schema_version": SCHEMA_VERSION,
             "mpw_hash": self.mpw_hash,
         }
-    
+
     def get_statistics(self) -> Dict[str, Any]:
         """Get synthesis statistics."""
         if not self.generated_entities:
@@ -1035,9 +1035,9 @@ class MILFGenesisEngineV2:
                 "acceptance_rate": 0.0,
                 "gpu_enabled": GPU_AVAILABLE,
             }
-        
+
         whrs = [e.physique.whr for e in self.generated_entities]
-        
+
         return {
             "total_synthesized": self.synthesis_count,
             "accepted": self.accepted_count,
@@ -1056,7 +1056,7 @@ class MILFGenesisEngineV2:
                 for tier in sorted(set(e.tier for e in self.generated_entities))
             },
         }
-    
+
     def synthesize_validated(
         self,
         tier: int = 3,
@@ -1068,7 +1068,7 @@ class MILFGenesisEngineV2:
         Wraps synthesize_entity to match expected signature.
         """
         return self.synthesize_entity(tier=tier, archetype=archetype, name=name)
-    
+
     def get_synthesis_stats(self) -> Dict[str, Any]:
         """
         API shim for backward compatibility.
@@ -1092,7 +1092,7 @@ class MILFGenesisEngineV2:
 class BackgroundGenesisService:
     """
     Daemon service for continuous entity synthesis with governance.
-    
+
     Features:
       - Time-boxed cycles (max 10 minutes per cycle)
       - Stage heartbeats with timing
@@ -1100,7 +1100,7 @@ class BackgroundGenesisService:
       - Zero-delta stall detection
       - Artifact governance with SHA-256 verification
     """
-    
+
     def __init__(self, mpw_path: Path, artifacts_dir: Path):
         self.engine = MILFGenesisEngineV2(mpw_path, artifacts_dir)
         self.running = False
@@ -1110,24 +1110,24 @@ class BackgroundGenesisService:
         self.last_heartbeat: Optional[datetime] = None
         self._last_index_hash: Optional[str] = None
         self._zero_delta_logged = False
-    
+
     def start(self):
         """Start background daemon."""
         if self.running:
             return
-        
+
         self.running = True
         self._thread = threading.Thread(target=self._run_loop, daemon=True)
         self._thread.start()
         print(f"🚀 Background genesis started (interval: {self.interval_s}s, batch: {self.batch_size})")
-    
+
     def stop(self):
         """Stop background daemon."""
         self.running = False
         if self._thread:
             self._thread.join(timeout=5)
         print("🛑 Background genesis stopped")
-    
+
     def _heartbeat(self, stage: str, elapsed_s: float, accepted: int = 0, extra: str = ""):
         """Emit heartbeat log line."""
         self.last_heartbeat = datetime.now()
@@ -1137,7 +1137,7 @@ class BackgroundGenesisService:
         if extra:
             msg += f" | {extra}"
         print(msg)
-    
+
     def _check_vram(self) -> bool:
         """Check VRAM usage, return True if safe to continue."""
         if not GPU_AVAILABLE:
@@ -1155,7 +1155,7 @@ class BackgroundGenesisService:
         except Exception as e:
             print(f"⚠️ VRAM check failed: {e}")
         return True
-    
+
     def _check_zero_delta(self, index_data: dict) -> bool:
         """Check for zero-delta stall, return True if novel."""
         index_hash = sha256_text(json.dumps(index_data, sort_keys=True))[:16]
@@ -1167,7 +1167,7 @@ class BackgroundGenesisService:
         self._last_index_hash = index_hash
         self._zero_delta_logged = False
         return True
-    
+
     def _run_loop(self):
         """Main daemon loop."""
         while self.running:
@@ -1180,7 +1180,7 @@ class BackgroundGenesisService:
             except Exception as e:
                 print(f"❌ Genesis error: {e}")
                 time.sleep(5)
-    
+
     def run_cycle(
         self,
         target_accepts: int = 10,
@@ -1189,55 +1189,55 @@ class BackgroundGenesisService:
     ) -> Dict[str, Any]:
         """
         Execute one synthesis cycle with full governance.
-        
+
         Time-boxed to VALIDATION_POLICY["timebox_s"] (default 10 minutes).
-        
+
         Args:
             target_accepts: Number of accepted entities to target
             out_root: Override output directory
             tier: Target tier for synthesis
-            
+
         Returns:
             Cycle report with timing and acceptance stats
         """
         cycle_start = time.time()
         timebox = VALIDATION_POLICY["timebox_s"]
-        
+
         # Stage: init
         self._heartbeat("init", 0.0, extra=f"target={target_accepts}, tier={tier}")
-        
+
         if not self._check_vram():
             return {"status": "vram_backoff", "elapsed_s": time.time() - cycle_start}
-        
+
         accepted = []
         rejected_count = 0
         attempt_count = 0
         max_attempts = target_accepts * 5  # Allow 5x attempts to hit target
-        
+
         # Stage: generate
         gen_start = time.time()
         while len(accepted) < target_accepts and attempt_count < max_attempts:
             if time.time() - cycle_start > timebox:
                 self._heartbeat("timebox", time.time() - cycle_start, len(accepted), "partial cycle")
                 break
-            
+
             if not self._check_vram():
                 break
-            
+
             seed = int(time.time() * 1000 + attempt_count) % (2**31)
             entity, validation = self.engine.synthesize_entity(tier=tier, seed=seed)
             attempt_count += 1
-            
+
             if entity:
                 accepted.append((entity, validation))
             else:
                 rejected_count += 1
-        
+
         self._heartbeat("generate", time.time() - gen_start, len(accepted), f"attempts={attempt_count}")
-        
+
         # Stage: validate (already done in synthesize_entity, just log)
         self._heartbeat("validate", time.time() - gen_start, len(accepted))
-        
+
         # Stage: score (power calculation for each)
         score_start = time.time()
         scores = []
@@ -1251,7 +1251,7 @@ class BackgroundGenesisService:
                 "novelty_min": validation.novelty_min,
             })
         self._heartbeat("score", time.time() - score_start, len(accepted))
-        
+
         # Stage: commit (write artifacts)
         commit_start = time.time()
         artifacts_written = 0
@@ -1262,12 +1262,12 @@ class BackgroundGenesisService:
             except Exception as e:
                 print(f"⚠️ Artifact write failed for {entity.name}: {e}")
         self._heartbeat("commit", time.time() - commit_start, artifacts_written)
-        
+
         # Stage: done
         total_elapsed = time.time() - cycle_start
         acceptance_rate = len(accepted) / max(1, attempt_count)
         self._heartbeat("done", total_elapsed, len(accepted), f"rate={acceptance_rate:.1%}")
-        
+
         return {
             "status": "complete",
             "elapsed_s": round(total_elapsed, 2),
@@ -1280,7 +1280,7 @@ class BackgroundGenesisService:
             "gpu_enabled": GPU_AVAILABLE,
             "gpu_warmed": GPU_WARMED,
         }
-    
+
     def synthesize_on_demand(
         self,
         tier: float = 3,
@@ -1290,13 +1290,13 @@ class BackgroundGenesisService:
         """Synchronous on-demand synthesis with graceful rejection handling."""
         result = self.engine.synthesize_entity(tier=tier, archetype=archetype, name=name)
         entity, validation = result
-        
+
         # Ensure we never return None validation
         if validation is None:
             validation = ValidationResult.failed("synthesis returned no validation")
-        
+
         return entity, validation
-    
+
     def get_heartbeat(self) -> Dict[str, Any]:
         """Get current heartbeat status."""
         return {
@@ -1307,7 +1307,7 @@ class BackgroundGenesisService:
             "environment": self.engine.get_environment(),
             "gpu_warmed": GPU_WARMED,
         }
-    
+
     def get_synthesis_stats(self) -> Dict[str, Any]:
         """API shim for backward compatibility."""
         return self.engine.get_synthesis_stats()
@@ -1320,15 +1320,15 @@ class BackgroundGenesisService:
 if __name__ == "__main__":
     mpw_path = Path(__file__).parent.parent / ".github" / "copilot-instructions.md"
     artifacts_dir = Path(__file__).parent / "genesis_artifacts"
-    
+
     print("=" * 70)
     print("  MILF GENESIS ENGINE v2 - Constitutional GPU Synthesis")
     print("=" * 70)
-    
+
     engine = MILFGenesisEngineV2(mpw_path, artifacts_dir)
-    
+
     print("\n🔥 Synthesizing with full validation pipeline...")
-    
+
     # Test Tier 2 synthesis
     entity, validation = engine.synthesize_entity(tier=2, archetype="Purification Priestess")
     if entity:
@@ -1340,17 +1340,17 @@ if __name__ == "__main__":
         print(f"   Validation: novelty_min={validation.novelty_min:.3f}, redundancy={validation.redundancy_score:.3f}")
     else:
         print(f"\n❌ REJECTED: {validation.rejection_reason}")
-    
+
     # Batch synthesis
     print("\n📊 Batch synthesis (20 candidates, target 10)...")
     accepted, stats = engine.synthesize_batch(20, tier=3, target_accepts=10)
     print(f"   Accepted: {stats['accepted']}/{stats['attempted']} ({stats['acceptance_rate']:.1%})")
     print(f"   Elapsed: {stats['elapsed_s']}s")
-    
+
     # Statistics
     print("\n📈 Final Statistics:")
     print(json.dumps(engine.get_statistics(), indent=2))
-    
+
     # Environment
     print("\n🖥️ Environment:")
     print(json.dumps(engine.get_environment(), indent=2))

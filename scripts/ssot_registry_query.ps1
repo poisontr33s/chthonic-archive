@@ -1,10 +1,10 @@
 #!/usr/bin/env pwsh
 
 <#
-# ╔════════════════════════════════════════════════════════════════════════════╗
+# ╔════════════════════════════════════════════════════════════════════════════
 # ║ THE DECORATOR'S BLESSING: ssot_registry_query.ps1                         ║
 # ║ Module: SSOT registry query                                               ║
-# ╠════════════════════════════════════════════════════════════════════════════╣
+# ╠════════════════════════════════════════════════════════════════════════════
 # ║ Spectral Frequency: WHITE                                                 ║
 # ║ Architectural Role: SSOT                                                  ║
 # ║ Semantic ID: SCRIPT_SSOT_REGISTRY_QUERY_V1                                 ║
@@ -12,7 +12,7 @@
 # ║ Exports: (none)                                                           ║
 # ║ Flags/Modes: -Registry, -Entity                                           ║
 # ║ Cross-References: scripts/ssot_outline_extractor.ps1                       ║
-# ╚════════════════════════════════════════════════════════════════════════════╝
+# ╚════════════════════════════════════════════════════════════════════════════
 #>
 
 <#
@@ -85,13 +85,13 @@ $registries = @{
 
 function Show-Registry {
     param([string]$Key)
-    
+
     $reg = $registries[$Key]
     Write-Host "`n=== $($reg.Name) (L$($reg.Line)) ===" -ForegroundColor Cyan
     Write-Host "Purpose: $($reg.Purpose)" -ForegroundColor Gray
     Write-Host "Syntax: $($reg.Syntax)" -ForegroundColor Magenta
     Write-Host "`nEntities:" -ForegroundColor Yellow
-    
+
     foreach ($e in $reg.Entities.Keys | Sort-Object) {
         $ent = $reg.Entities[$e]
         $rate = if ($ent.Rate) { " [$($ent.Rate)]" } else { "" }

@@ -1,15 +1,15 @@
 #!/usr/bin/env pwsh
 
-# ╔════════════════════════════════════════════════════════════════════════════╗
+# ╔════════════════════════════════════════════════════════════════════════════
 # ║ Nightly Daemon Launcher                                                   ║
-# ╠════════════════════════════════════════════════════════════════════════════╣
+# ╠════════════════════════════════════════════════════════════════════════════
 # ║ Semantic ID: SCRIPT_RUN_NIGHTLY_V1                                        ║
 # ║ Purpose: Run local-only overnight analysis before sleep — zero API calls  ║
 # ║ Flags: -Background -WithLLM -WithHF -Local -LocalCoder -LocalHeavy -Genre║
 # ║ Cross-References:                                                         ║
-# ║   scripts/overnight_daemon.ts        (debt/complexity scorer, local)      ║
-# ║   meta-ide/copilot-sdk/overnight-archaeology.ts  (file archaeology)       ║
-# ╚════════════════════════════════════════════════════════════════════════════╝
+# ║  scripts/overnight_daemon.ts        (debt/complexity scorer, local)      ║
+# ║  meta-ide/copilot-sdk/overnight-archaeology.ts  (file archaeology)       ║
+# ╚════════════════════════════════════════════════════════════════════════════
 
 [CmdletBinding()]
 param(

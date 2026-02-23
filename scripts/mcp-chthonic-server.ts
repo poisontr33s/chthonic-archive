@@ -1,34 +1,34 @@
 #!/usr/bin/env bun
 
-// ╔════════════════════════════════════════════════════════════════════════════╗
-// ║  THE DECORATOR'S BLESSING: mcp-chthonic-server.ts                          ║
-// ║  MCP client integration - Observatory communication layer                  ║
-// ╠════════════════════════════════════════════════════════════════════════════╣
-// ║  Spectral Frequency: ORANGE                                                ║
-// ║  Architectural Role: 🔭 THE OBSERVATORY                                    ║
-// ╠════════════════════════════════════════════════════════════════════════════╣
-// ║  Cross-References (Bidirectional):                                         ║
-// ║  Dependencies (I rely on):                                                 ║
-// ║    ├─► CLAUDE_CODE_IDE_SETUP.md                                            ║
-// ╚════════════════════════════════════════════════════════════════════════════╝
+// ╔════════════════════════════════════════════════════════════════════════════
+// ║ THE DECORATOR'S BLESSING: mcp-chthonic-server.ts                          ║
+// ║ MCP client integration - Observatory communication layer                  ║
+// ╠════════════════════════════════════════════════════════════════════════════
+// ║ Spectral Frequency: ORANGE                                                ║
+// ║ Architectural Role: 🔭 THE OBSERVATORY                                    ║
+// ╠════════════════════════════════════════════════════════════════════════════
+// ║ Cross-References (Bidirectional):                                         ║
+// ║ Dependencies (I rely on):                                                 ║
+// ║   ├─► CLAUDE_CODE_IDE_SETUP.md                                            ║
+// ╚════════════════════════════════════════════════════════════════════════════
 
-// ╔════════════════════════════════════════════════════════════════════════════╗
-// ║  🔥💀⚓ CHTHONIC POLYGLOT MCP SERVER v3.0.0                               ║
-// ║  Bun-centric unified MCP: polyglot toolchain + chthonic archive CLI        ║
-// ╠════════════════════════════════════════════════════════════════════════════╣
-// ║  @SID:           MCP_CHTHONIC_UNIFIED_SERVER                               ║
-// ║  @Type:          MCP Server (stdio transport)                              ║
-// ║  @Context:       Infrastructure / Polyglot Tools                           ║
-// ║  @SessionOrigin: CONTINUATION_2026_01_28                                   ║
-// ║  @Implements:    ROADMAP_BUN_CENTRIC_MCP_2026_01_28                        ║
-// ║  @Protocol:      MCP 2024-11-05 (JSON-RPC 2.0 over stdio)                  ║
-// ╠════════════════════════════════════════════════════════════════════════════╣
-// ║  Tools: 24 total                                                           ║
-// ║  - Polyglot: cargo, uv, gcc, gpp, go, ruby, git, bash, bun, make           ║
-// ║  - Archive:  resolve, audit, map, analyze, compact, status, book,          ║
-// ║    scan, validate_ssot, probe, report                                      ║
-// ║  - Meta:     polyglot_versions, claudine_env, meta_cli (v3.0.0 meta-CLI)   ║
-// ╚════════════════════════════════════════════════════════════════════════════╝
+// ╔════════════════════════════════════════════════════════════════════════════
+// ║ 🔥💀⚓ CHTHONIC POLYGLOT MCP SERVER v3.0.0                               ║
+// ║ Bun-centric unified MCP: polyglot toolchain + chthonic archive CLI        ║
+// ╠════════════════════════════════════════════════════════════════════════════
+// ║ @SID:           MCP_CHTHONIC_UNIFIED_SERVER                               ║
+// ║ @Type:          MCP Server (stdio transport)                              ║
+// ║ @Context:       Infrastructure / Polyglot Tools                           ║
+// ║ @SessionOrigin: CONTINUATION_2026_01_28                                   ║
+// ║ @Implements:    ROADMAP_BUN_CENTRIC_MCP_2026_01_28                        ║
+// ║ @Protocol:      MCP 2024-11-05 (JSON-RPC 2.0 over stdio)                  ║
+// ╠════════════════════════════════════════════════════════════════════════════
+// ║ Tools: 24 total                                                           ║
+// ║ - Polyglot: cargo, uv, gcc, gpp, go, ruby, git, bash, bun, make           ║
+// ║ - Archive:  resolve, audit, map, analyze, compact, status, book,          ║
+// ║   scan, validate_ssot, probe, report                                      ║
+// ║ - Meta:     polyglot_versions, claudine_env, meta_cli (v3.0.0 meta-CLI)   ║
+// ╚════════════════════════════════════════════════════════════════════════════
 
 import { join, resolve } from "path";
 import { existsSync } from "fs";
@@ -145,9 +145,9 @@ const activeProcesses = new Set<any>();
 async function runTool(exe: string, args: string[], cwd?: string, timeoutMs: number = 180000): Promise<ToolResult> {
   const start = performance.now();
   const workDir = cwd ?? CHTHONIC_ROOT;
-  
+
   log(`exec: ${exe} ${args.join(" ")} [cwd: ${workDir}] [timeout: ${timeoutMs}ms]`);
-  
+
   let proc: any;
   let timer: Timer | undefined;
 
@@ -182,15 +182,15 @@ async function runTool(exe: string, args: string[], cwd?: string, timeoutMs: num
         new Response(proc.stdout).text(),
         new Response(proc.stderr).text(),
       ]);
-      
+
       const exitCode = await proc.exited;
       const duration = performance.now() - start;
-      
+
       const output = [
         stdout.trim(),
         stderr.trim() ? `\n[stderr] ${stderr.trim()}` : "",
       ].join("");
-      
+
       return { success: exitCode === 0, output, exitCode, duration };
     })();
 
@@ -286,29 +286,29 @@ const ARCHIVE_TOOLS: ToolDefinition[] = [
 const META_TOOLS: ToolDefinition[] = [
   { name: "polyglot_versions", description: "Get all polyglot tool versions with paths (bun, rust, go, python, ruby, gcc, vulkan, etc).", inputSchema: { type: "object", properties: { includePaths: { type: "boolean", default: true, description: "Include full paths in output" } }, required: [] } },
   { name: "claudine_env", description: "Activate/verify the claudine polyglot environment. Returns environment status.", inputSchema: { type: "object", properties: { verify: { type: "boolean", default: true, description: "Verify environment is properly configured" } }, required: [] } },
-  { 
-    name: "meta_cli", 
-    description: "Chthonic v3.0.0 Meta-CLI — unified polyglot development tool with domains: env, status, detect, ide (launch/detect/reset), mcp (start/stop/status), config (init/show/set), audit, compact, resolve, map, analyze, book.", 
-    inputSchema: { 
-      type: "object", 
-      properties: { 
-        domain: { 
-          type: "string", 
-          description: "Domain: env, status, detect, ide, mcp, config, audit, compact, resolve, map, analyze, book", 
+  {
+    name: "meta_cli",
+    description: "Chthonic v3.0.0 Meta-CLI — unified polyglot development tool with domains: env, status, detect, ide (launch/detect/reset), mcp (start/stop/status), config (init/show/set), audit, compact, resolve, map, analyze, book.",
+    inputSchema: {
+      type: "object",
+      properties: {
+        domain: {
+          type: "string",
+          description: "Domain: env, status, detect, ide, mcp, config, audit, compact, resolve, map, analyze, book",
           enum: ["env", "status", "detect", "ide", "mcp", "config", "audit", "compact", "resolve", "map", "analyze", "book", "extract"]
         },
-        action: { 
-          type: "string", 
-          description: "Action within domain (e.g., 'launch' for ide, 'start' for mcp, 'init' for config). Optional for single-action domains." 
+        action: {
+          type: "string",
+          description: "Action within domain (e.g., 'launch' for ide, 'start' for mcp, 'init' for config). Optional for single-action domains."
         },
-        args: { 
-          type: "array", 
-          items: { type: "string" }, 
-          description: "Additional arguments to pass to the command" 
+        args: {
+          type: "array",
+          items: { type: "string" },
+          description: "Additional arguments to pass to the command"
         }
-      }, 
-      required: ["domain"] 
-    } 
+      },
+      required: ["domain"]
+    }
   },
 ];
 
@@ -339,7 +339,7 @@ async function polyglotVersions(includePaths: boolean): Promise<string> {
   ];
 
   const lines: string[] = [`🔥💀⚓ CHTHONIC POLYGLOT v${VERSION}`, "═".repeat(50)];
-  
+
   for (const c of checks) {
     const exe = resolveToolPath(c.tool);
     try {
@@ -351,27 +351,27 @@ async function polyglotVersions(includePaths: boolean): Promise<string> {
       lines.push(`  ${c.name}: not found`);
     }
   }
-  
+
   if (process.env.VULKAN_SDK) {
     const ver = process.env.VULKAN_SDK.split(/[\\\/]/).pop();
     lines.push(`  vulkan: ${ver} → ${process.env.VULKAN_SDK}`);
   }
-  
+
   lines.push("═".repeat(50));
   return lines.join("\n");
 }
 
 async function claudineEnv(verify: boolean): Promise<string> {
   if (!verify) return "claudine_env: verification skipped";
-  
+
   const checks: string[] = [];
-  
+
   if (existsSync(CHTHONIC_SCRIPT)) {
     checks.push(`✅ chthonic.ps1 found: ${CHTHONIC_SCRIPT}`);
   } else {
     checks.push(`❌ chthonic.ps1 NOT found: ${CHTHONIC_SCRIPT}`);
   }
-  
+
   const keyTools = ["bun", "cargo", "uv", "go", "git"];
   for (const t of keyTools) {
     const path = resolveToolPath(t);
@@ -381,7 +381,7 @@ async function claudineEnv(verify: boolean): Promise<string> {
       checks.push(`⚠️ ${t}: not found in expected paths`);
     }
   }
-  
+
   return `🔥💀⚓ CLAUDINE ENV STATUS\n${"─".repeat(40)}\n${checks.join("\n")}`;
 }
 
@@ -454,19 +454,19 @@ const DIRECT_TOOL_MAP: Record<string, string> = {
 
 async function handleToolCall(name: string, args: Record<string, unknown>): Promise<string> {
   log(`tool call: ${name} ${JSON.stringify(args)}`);
-  
+
   if (name in DIRECT_TOOL_MAP) {
     const toolArgs = Array.isArray(args?.args) ? args.args as string[] : ["--version"];
     let timeout = 180000;
     if (name === "cargo") timeout = 600000; // 10m for Rust
     return runPolyglotTool(DIRECT_TOOL_MAP[name], toolArgs, timeout);
   }
-  
+
   if (name === "polyglot_versions") return polyglotVersions(args?.includePaths !== false);
   if (name === "claudine_env") return claudineEnv(args?.verify !== false);
   if (name === "chthonic_scan") return chthonicScan();
   if (name === "chthonic_validate_ssot") return chthonicValidateSSOT();
-  
+
   if (name === "toolchain_probe") {
     const pwsh = resolveToolPath("pwsh");
     const script = join(CHTHONIC_ROOT, "scripts", "probe_toolchain_path.ps1");
@@ -487,7 +487,7 @@ async function handleToolCall(name: string, args: Record<string, unknown>): Prom
     const result = await runTool(bun, cmdArgs, undefined, 600000);
     return result.output;
   }
-  
+
   // ═══════════════════════════════════════════════════════════════════════════
   // CHTHONIC V3.0.0 META-CLI ROUTER — Domain/Action model
   // ═══════════════════════════════════════════════════════════════════════════
@@ -495,20 +495,20 @@ async function handleToolCall(name: string, args: Record<string, unknown>): Prom
     const domain = args.domain as string;
     const action = args.action as string | undefined;
     const cmdArgs = Array.isArray(args.args) ? args.args as string[] : [];
-    
+
     const allArgs: string[] = [];
     allArgs.push(domain);
     if (action) allArgs.push(action);
     allArgs.push(...cmdArgs);
     allArgs.push("-Json"); // PowerShell switch for JSON output
-    
+
     log(`chthonic meta-CLI: ${allArgs.join(" ")}`);
     return await runChthonic(allArgs, 300000); // 5m default for meta-CLI
   }
-  
+
   const cmdArgs: string[] = [];
   let timeout = 180000;
-  
+
   switch (name) {
     case "chthonic_status": cmdArgs.push("status"); break;
     case "chthonic_resolve":
@@ -549,7 +549,7 @@ async function handleToolCall(name: string, args: Record<string, unknown>): Prom
     default:
       return `Unknown tool: ${name}`;
   }
-  
+
   return await runChthonic(cmdArgs, timeout);
 }
 
@@ -560,7 +560,7 @@ async function handleToolCall(name: string, args: Record<string, unknown>): Prom
 async function handleRequest(request: MCPRequest): Promise<MCPResponse> {
   const { method, params, id } = request;
   log(`request: ${method}`);
-  
+
   switch (method) {
     case "initialize":
       return {
@@ -571,10 +571,10 @@ async function handleRequest(request: MCPRequest): Promise<MCPResponse> {
           serverInfo: { name: "chthonic-polyglot", version: VERSION }
         }
       };
-      
+
     case "tools/list":
       return { jsonrpc: "2.0", id, result: { tools: ALL_TOOLS } };
-      
+
     case "tools/call": {
       const { name, arguments: callArgs } = params as { name: string; arguments?: Record<string, unknown> };
       try {
@@ -585,10 +585,10 @@ async function handleRequest(request: MCPRequest): Promise<MCPResponse> {
         return { jsonrpc: "2.0", id, error: { code: -32000, message: `Tool execution failed: ${errMsg}` } };
       }
     }
-    
+
     case "notifications/initialized":
       return { jsonrpc: "2.0" };
-      
+
     default:
       return { jsonrpc: "2.0", id, error: { code: -32601, message: `Method not found: ${method}` } };
   }
@@ -612,7 +612,7 @@ function checkExit(): void {
 
 async function processLine(line: string): Promise<void> {
   if (!line.trim()) return;
-  
+
   pendingOps++;
   try {
     const request = JSON.parse(line) as MCPRequest;
@@ -637,7 +637,7 @@ process.stdin.on("data", (chunk: Buffer) => {
   for (const line of lines) processLine(line);
 });
 
-process.stdin.on("end", () => { 
+process.stdin.on("end", () => {
   stdinClosed = true;
   log("stdin closed");
   checkExit();

@@ -1,15 +1,15 @@
-// ╔════════════════════════════════════════════════════════════════════════════╗
-// ║  THE DECORATOR'S BLESSING: swapchain.rs                                  ║
-// ║  Vulkan rendering pipeline - visual truth incarnate                         ║
-// ╠════════════════════════════════════════════════════════════════════════════╣
-// ║  Spectral Frequency: RED                                                    ║
-// ║  Architectural Role: 🏰 THE FORTRESS                                         ║
-// ║  Purpose: Vulkan 1.3 Swapchain Management                                   ║
-// ║  Exports: VulkanSwapchain, SwapchainSupportDetails, MAX_FRAMES_IN_FLIGHT, curr ║
-// ╠════════════════════════════════════════════════════════════════════════════╣
-// ║  Cross-References (Bidirectional):                                      ║
-// ║    (Standalone file - no detected dependencies)                          ║
-// ╚════════════════════════════════════════════════════════════════════════════╝
+// ╔════════════════════════════════════════════════════════════════════════════
+// ║ THE DECORATOR'S BLESSING: swapchain.rs                                  ║
+// ║ Vulkan rendering pipeline - visual truth incarnate                         ║
+// ╠════════════════════════════════════════════════════════════════════════════
+// ║ Spectral Frequency: RED                                                    ║
+// ║ Architectural Role: 🏰 THE FORTRESS                                         ║
+// ║ Purpose: Vulkan 1.3 Swapchain Management                                   ║
+// ║ Exports: VulkanSwapchain, SwapchainSupportDetails, MAX_FRAMES_IN_FLIGHT, curr ║
+// ╠════════════════════════════════════════════════════════════════════════════
+// ║ Cross-References (Bidirectional):                                      ║
+// ║   (Standalone file - no detected dependencies)                          ║
+// ╚════════════════════════════════════════════════════════════════════════════
 
 //! Vulkan 1.3 Swapchain Management
 //!
@@ -28,7 +28,7 @@ use ash::{khr, vk, Device, Instance};
 use log::{debug, info};
 
 /// Swapchain configuration and state
-/// 
+///
 /// HYBRID SYNC STRATEGY (Per Vulkan Swapchain Semaphore Reuse Guide):
 /// - `image_available_semaphores`: Index by FRAME (we control acquisition timing)
 /// - `render_finished_semaphores`: Index by IMAGE (swapchain controls which image)
@@ -40,20 +40,20 @@ pub struct VulkanSwapchain {
     pub image_views: Vec<vk::ImageView>,
     pub format: vk::Format,
     pub extent: vk::Extent2D,
-    
+
     // === SYNCHRONIZATION (HYBRID STRATEGY) ===
     // image_available: Frame-indexed (for vkAcquireNextImage)
     pub image_available_semaphores: Vec<vk::Semaphore>,  // Index by current_frame
-    // render_finished: IMAGE-indexed (for vkQueuePresentKHR) 
+    // render_finished: IMAGE-indexed (for vkQueuePresentKHR)
     // This is the KEY FIX - present waits on this, so it must match the image
     pub render_finished_semaphores: Vec<vk::Semaphore>,  // Index by image_index
     // Fences: Frame-indexed (for CPU-GPU sync)
     pub in_flight_fences: Vec<vk::Fence>,                // Index by current_frame
-    
+
     // Track which fence is associated with each swapchain image
     // This prevents using an image that's still being rendered
     pub images_in_flight: Vec<vk::Fence>,  // Index by image_index
-    
+
     // Frame counter (we control this) and currently acquired image
     pub current_frame: usize,
     pub current_image_index: u32,  // The image we acquired for this frame
@@ -237,7 +237,7 @@ impl VulkanSwapchain {
             info!("   Using FIFO present mode (V-Sync, stable)");
             return vk::PresentModeKHR::FIFO;
         }
-        
+
         // Fallback (should never happen - FIFO is mandatory)
         info!("   Using IMMEDIATE present mode (fallback)");
         vk::PresentModeKHR::IMMEDIATE
@@ -301,7 +301,7 @@ impl VulkanSwapchain {
     }
 
     /// Create synchronization primitives with HYBRID indexing strategy
-    /// 
+    ///
     /// Per Vulkan Swapchain Semaphore Reuse Guide:
     /// - `image_available`: FRAME-indexed (we control acquire timing)
     /// - `render_finished`: IMAGE-indexed (must match swapchain image)
@@ -323,7 +323,7 @@ impl VulkanSwapchain {
                     .with_context(|| format!("Failed to create image_available semaphore {i}"))?
             );
         }
-        
+
         // render_finished: one per swapchain IMAGE (IMAGE-indexed) - THE KEY FIX
         // This semaphore is used in vkQueuePresentKHR which waits for rendering
         // It can only be reused when its associated image is re-acquired
@@ -334,7 +334,7 @@ impl VulkanSwapchain {
                     .with_context(|| format!("Failed to create render_finished semaphore for image {i}"))?
             );
         }
-        
+
         // in_flight_fences: one per frame in flight (FRAME-indexed)
         let mut in_flight = Vec::with_capacity(frames_in_flight);
         for i in 0..frames_in_flight {
@@ -367,7 +367,7 @@ impl VulkanSwapchain {
 
         // Use FRAME-indexed semaphore for acquire
         let semaphore = self.image_available_semaphores[self.current_frame];
-        
+
         match self.loader.acquire_next_image(
             self.swapchain,
             u64::MAX,
@@ -377,7 +377,7 @@ impl VulkanSwapchain {
             Ok((image_index, suboptimal)) => {
                 // Store the acquired image index for use in present()
                 self.current_image_index = image_index;
-                
+
                 // Check if this specific IMAGE is still being used by a previous frame
                 let image_fence = self.images_in_flight[image_index as usize];
                 if image_fence != vk::Fence::null() && image_fence != fence {
@@ -386,10 +386,10 @@ impl VulkanSwapchain {
                         .wait_for_fences(&[image_fence], true, u64::MAX)
                         .context("Failed to wait for image fence")?;
                 }
-                
+
                 // Mark this image as being used by the current frame's fence
                 self.images_in_flight[image_index as usize] = fence;
-                
+
                 if suboptimal {
                     debug!("Swapchain suboptimal");
                 }
@@ -424,7 +424,7 @@ impl VulkanSwapchain {
             .image_indices(&image_indices);
 
         let result = self.loader.queue_present(queue, &present_info);
-        
+
         // Advance to next frame slot (we control this counter)
         self.current_frame = (self.current_frame + 1) % self.frames_in_flight;
 
@@ -516,7 +516,7 @@ impl VulkanSwapchain {
         self.image_views = Self::create_image_views(device, &self.images, format.format)?;
         self.format = format.format;
         self.extent = extent;
-        
+
         // If image count changed, recreate render_finished semaphores (IMAGE-indexed)
         let old_image_count = self.render_finished_semaphores.len();
         if new_image_count != old_image_count {
@@ -535,10 +535,10 @@ impl VulkanSwapchain {
             }
             debug!("🔄 Recreated {new_image_count} render_finished semaphores for new image count");
         }
-        
+
         // Reset image tracking
         self.images_in_flight = vec![vk::Fence::null(); new_image_count];
-        
+
         // Reset frame and image index
         self.current_frame = 0;
         self.current_image_index = 0;
@@ -583,7 +583,7 @@ impl VulkanSwapchain {
     }
 
     /// Get current sync objects for rendering (HYBRID indexing)
-    /// 
+    ///
     /// Returns (`image_available_semaphore`, `render_finished_semaphore`, `fence`)
     /// - `image_available`: FRAME-indexed (for acquire)
     /// - `render_finished`: IMAGE-indexed (for present - must be called after acquire!)

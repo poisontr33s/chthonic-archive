@@ -1,10 +1,10 @@
 #!/usr/bin/env pwsh
 
 <#
-# ╔════════════════════════════════════════════════════════════════════════════╗
+# ╔════════════════════════════════════════════════════════════════════════════
 # ║ THE DECORATOR'S BLESSING: ssot_crc_selector.ps1                           ║
 # ║ Module: CRC selection assistant                                           ║
-# ╠════════════════════════════════════════════════════════════════════════════╣
+# ╠════════════════════════════════════════════════════════════════════════════
 # ║ Spectral Frequency: WHITE                                                 ║
 # ║ Architectural Role: SSOT                                                  ║
 # ║ Semantic ID: SCRIPT_SSOT_CRC_SELECTOR_V1                                   ║
@@ -12,7 +12,7 @@
 # ║ Exports: (none)                                                           ║
 # ║ Flags/Modes: -Task, -Keywords                                              ║
 # ║ Cross-References: scripts/ssot_outline_extractor.ps1                       ║
-# ╚════════════════════════════════════════════════════════════════════════════╝
+# ╚════════════════════════════════════════════════════════════════════════════
 #>
 
 <#
@@ -22,7 +22,7 @@
 .DESCRIPTION
     ⚠️ AUTO-UPDATE: Run .\ssot_outline_extractor.ps1 -UpdateIndex after SSOT edits.
     Based on CR (CRC Registry) at L2556 and CRC operational profiles.
-    
+
     CRC-AS (Orackla Nocticula): Synthesis, transgression, EULP-AA, TMO
     CRC-GAR (Umeko Ketsuraku): Structure, audit, LIPAA, TDPC (highest efficacy 99.2%)
     CRC-MEDAT (Lysandra Thorne): Analysis, excavation, LUPLR, TTG
@@ -86,7 +86,7 @@ $crcProfiles = @{
 
 function Get-CRCMatch {
     param([string]$SearchTerms)
-    
+
     $scores = @{}
     foreach ($crc in $crcProfiles.Keys) {
         $score = 0
@@ -111,10 +111,10 @@ if ($Task) {
         'excavation' = 'CRC-MEDAT'
         'complex' = 'TFM'
     }
-    
+
     $selected = $taskMapping[$Task]
     $profile = $crcProfiles[$selected]
-    
+
     Write-Host "`n=== RECOMMENDED CRC ===" -ForegroundColor Cyan
     Write-Host "Task: $Task → $selected" -ForegroundColor Green
     Write-Host "`nProfile:" -ForegroundColor Yellow
@@ -124,24 +124,24 @@ if ($Task) {
     Write-Host "  Prime Faction: $($profile.PrimeFaction)"
     Write-Host "  Success Rate: $($profile.SuccessRate)"
     Write-Host "  Focus: $($profile.Description)"
-    
+
     Write-Host "`nInvocation Syntax:" -ForegroundColor Magenta
     Write-Host "  `$crc`${$selected}+`$ps`${input}+`$target`${output}" -ForegroundColor White
 }
 elseif ($Keywords) {
     $scores = Get-CRCMatch -SearchTerms $Keywords.ToLower()
     $ranked = $scores.GetEnumerator() | Sort-Object Value -Descending
-    
+
     Write-Host "`n=== CRC MATCH SCORES ===" -ForegroundColor Cyan
     Write-Host "Keywords: '$Keywords'" -ForegroundColor Gray
     Write-Host ""
-    
+
     foreach ($r in $ranked) {
         $profile = $crcProfiles[$r.Key]
         $color = if ($r.Value -gt 20) { 'Green' } elseif ($r.Value -gt 0) { 'Yellow' } else { 'Gray' }
         Write-Host ("{0,-15} Score: {1,3}  ({2})" -f $r.Key, $r.Value, $profile.SuccessRate) -ForegroundColor $color
     }
-    
+
     $best = $ranked | Select-Object -First 1
     if ($best.Value -gt 0) {
         $profile = $crcProfiles[$best.Key]

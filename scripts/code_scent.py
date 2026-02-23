@@ -1,18 +1,18 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 # ╔════════════════════════════════════════════════════════════════════════════   ╗
-# ║  THE DECORATOR'S BLESSING: code_scent.py                                      ║
-# ║  Python module: analyze_scent                                                 ║
-# ╠═══════════════════════════════════════════════════════════════════════════════╣
-# ║  Spectral Frequency: WHITE                                                    ║
-# ║  Architectural Role: 🌿 THE GARDEN                                            ║
-# ║  Purpose: Olfactory Analysis - Code Smell Det. via Cyclomatic Complexity      ║
-# ║  Uses radon to calculate actual complexity metrics                            ║
-# ║  Exports: analyze_scent                                                       ║
-# ╠═══════════════════════════════════════════════════════════════════════════════╣
-# ║  Cross-References (Bidirectional):                                            ║
-# ║    (Standalone file - no detected dependencies)                               ║
-# ╚═══════════════════════════════════════════════════════════════════════════════╝
+# ║ THE DECORATOR'S BLESSING: code_scent.py                                      ║
+# ║ Python module: analyze_scent                                                 ║
+# ╠═══════════════════════════════════════════════════════════════════════════════
+# ║ Spectral Frequency: WHITE                                                    ║
+# ║ Architectural Role: 🌿 THE GARDEN                                            ║
+# ║ Purpose: Olfactory Analysis - Code Smell Det. via Cyclomatic Complexity      ║
+# ║ Uses radon to calculate actual complexity metrics                            ║
+# ║ Exports: analyze_scent                                                       ║
+# ╠═══════════════════════════════════════════════════════════════════════════════
+# ║ Cross-References (Bidirectional):                                            ║
+# ║   (Standalone file - no detected dependencies)                               ║
+# ╚═══════════════════════════════════════════════════════════════════════════════
 
 #!/usr/bin/env python3
 """
@@ -29,13 +29,13 @@ def analyze_scent(file_path: str) -> tuple[str, float]:
     try:
         code = Path(file_path).read_text(encoding='utf-8')
         complexity_results = cc_visit(code)
-        
+
         if not complexity_results:
             return "NEUTRAL", 0.0
-        
+
         # Average complexity across all functions/classes
         avg_complexity = sum(item.complexity for item in complexity_results) / len(complexity_results)
-        
+
         # Map complexity to scent
         if avg_complexity < 5:
             scent = "🌸 FLORAL"
@@ -47,7 +47,7 @@ def analyze_scent(file_path: str) -> tuple[str, float]:
             scent = "⚠️ PUNGENT"
         else:
             scent = "💀 ROTTEN"
-        
+
         return scent, avg_complexity
     except Exception as e:
         return f"ERROR: {e}", 0.0
@@ -57,9 +57,9 @@ if __name__ == "__main__":
         target = sys.argv[1]
     else:
         target = "autonomous_coordinator.py"
-    
+
     print(f"👃 [OLFACTORY] Analyzing code scent...")
-    
+
     # Scan Python files
     files_to_scan = [
         "autonomous_coordinator.py",
@@ -67,7 +67,7 @@ if __name__ == "__main__":
         "scripts/mandala_topology.py",
         "scripts/cycle_detector.py"
     ]
-    
+
     print("   📊 Scent Profile:")
     for file in files_to_scan:
         if Path(file).exists():

@@ -211,10 +211,19 @@ Header/metadata conventions across all authored file types. Governed by `STD_SCR
 
 | Stage | Name | Description | Status |
 |-------|------|-------------|--------|
+| **S.B** | Box Normalization | Normalize all Decorator's Blessing envelopes to open-sided (no right border). 145 files, 1422 lines. | ✅ Complete |
 | **S.0** | Python Header Canon | Fix 92 scripts with spaced `# -*-` to tight `#-*-` per PMS-v3. | ⬜ Batch tooling target |
 | **S.1** | @SID Expansion | Raise @SID coverage from 19% to ≥60% across all languages. | ⬜ Incremental |
 | **S.2** | TypeScript Shebang Sweep | Add `#!/usr/bin/env bun` to CLI-oriented `.ts` scripts missing it. | ⬜ Not started |
 | **S.3** | Rust @SID Tags | Add `@SID` to all 15 Rust files within their existing Blessing envelopes. | ⬜ Not started |
+
+### S.B Completion Record
+
+- **Script:** `scripts/normalize_blessing_box.py` (`TOOL_NORMALIZE_BLESSING_BOX_V1`)
+- **Scope:** All `.py`, `.ps1`, `.ts`, `.tsx`, `.rs`, `.js` files with closed-box envelopes
+- **Transform:** Strip right-border chars (`╗`, `╣`, `╝`), normalize `║  ` → `║ ` (double→single space), strip trailing whitespace
+- **Result:** 145 files normalized, 1422 lines changed, 0 remaining closed boxes
+- **Validation:** `cargo build` ✅, `bun run compile` ✅, zero closed boxes verified
 
 ### Reference
 
