@@ -31,10 +31,10 @@
 |-------|-------|
 | **HEAD** | (pending commit) |
 | **Branch** | `main` |
-| **Last Completed Phase** | Stage S.3 — Rust @SID Tags |
-| **Active Phase** | Stage 6.0 — Product Icon Census |
+| **Last Completed Phase** | Stage 6.0 — Product Icon Census |
+| **Active Phase** | KCP-0.0 — Protocol Ontology Spec |
 | **Blockers** | None |
-| **Working Tree** | Clean (pending directory rename commit) |
+| **Working Tree** | Clean |
 
 ---
 
@@ -101,6 +101,8 @@ If you are a new session picking up from a crash:
 | 2.1 | Icon Collision Resolution | `7a544db0` | 24→11 pairs, 76/76 audits pass |
 | S.0 | Python Header Canon | (this commit) | 143 files: spaced→tight `#-*-` |
 | 4.0 | Token Scope Coverage Audit | (this commit) | 83 rules, 57 semantic; 12/13 TM cats, 25/52 LSP types |
+| S.3 | Rust @SID Tags | `92ceffc2` | 16/16 files: @SID + @Shabti in //! blocks |
+| 6.0 | Product Icon Census | (this commit) | 6/534 (1.1%); 39 Tier 1 gaps; `hammer` invalid |
 
 ### Active — KCP Integration Phases
 
@@ -125,21 +127,21 @@ If you are a new session picking up from a crash:
 | S.0 | Python `#-*-` tight format | ✅ | 143 files fixed, 0 spaced remaining |
 | S.3 | Rust @SID tags | ✅ | 16 files: @SID + @Shabti in //! blocks |
 | 4.0 | Token scope coverage | ✅ | 83 rules, 57 semantic; script: `scripts/theme_token_coverage.py` |
-| 6.0 | Product icon census | ⬜ | Discovery-only |
+| 6.0 | Product icon census | ✅ | 6/534 codicon IDs; script: `scripts/product_icon_census.py` |
 | 2.1+ | Remaining 11 collision pairs | ⬜ | Need motif redesign (Stage 3.0) |
 
 ---
 
 ## Priority Stack (Ordered)
 
-1. **S.0** — Python `#-*-` tight format (92 scripts, quickest win, prerequisite for KCP-3.0)
+1. ~~**S.0**~~ — ~~Python `#-*-` tight format~~ ✅
 2. **KCP-0.0** — Protocol Ontology Specification (canonical schema doc)
 3. **KCP-1.0** — Architecture Ratification (lock Approach C)
 4. **KCP-2.0** — Template Canonization (4 language templates)
 5. **D.0** — Daemon-Forge Bridge (SFS forge × overnight daemon convergence)
-6. **4.0** — Token scope coverage audit
-7. **S.3** — Rust @SID tags
-8. **6.0** — Product icon census
+6. ~~**4.0**~~ — ~~Token scope coverage audit~~ ✅
+7. ~~**S.3**~~ — ~~Rust @SID tags~~ ✅
+8. ~~**6.0**~~ — ~~Product icon census~~ ✅
 
 ---
 

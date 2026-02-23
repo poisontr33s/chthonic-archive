@@ -173,6 +173,7 @@ extensions/*/bun.lock
 !scripts/sentry_init.ts
 !scripts/mcp-chthonic-server.ts
 !scripts/theme_token_coverage.py
+!scripts/product_icon_census.py
 
 # mdBook build output (generated artifact)
 book/

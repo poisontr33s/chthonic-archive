@@ -1,0 +1,287 @@
+{
+  "stage": "6.0",
+  "name": "Product Icon Census",
+  "total_codicon_ids": 534,
+  "theme_definitions": 7,
+  "valid_overrides": [
+    "comment-discussion",
+    "flame",
+    "layers",
+    "paintcan",
+    "pulse",
+    "shield"
+  ],
+  "invalid_definitions": [
+    "hammer"
+  ],
+  "coverage_pct": 1.1,
+  "tier_summary": {
+    "tier_1": {
+      "label": "always_visible",
+      "total": 39,
+      "covered": 0,
+      "gap_count": 39
+    },
+    "tier_2": {
+      "label": "frequently_visible",
+      "total": 78,
+      "covered": 0,
+      "gap_count": 78
+    },
+    "tier_3": {
+      "label": "context_specific",
+      "total": 81,
+      "covered": 1,
+      "gap_count": 80
+    },
+    "tier_4": {
+      "label": "rare_symbolic",
+      "total": 336,
+      "covered": 5,
+      "gap_count": 331
+    }
+  },
+  "category_summary": {
+    "accounts": {
+      "total": 1,
+      "covered": 0,
+      "gap_count": 1
+    },
+    "ai-chat": {
+      "total": 9,
+      "covered": 0,
+      "gap_count": 9
+    },
+    "ai-copilot": {
+      "total": 10,
+      "covered": 0,
+      "gap_count": 10
+    },
+    "comments": {
+      "total": 5,
+      "covered": 1,
+      "gap_count": 4
+    },
+    "debug": {
+      "total": 33,
+      "covered": 0,
+      "gap_count": 33
+    },
+    "diagnostics": {
+      "total": 3,
+      "covered": 0,
+      "gap_count": 3
+    },
+    "files": {
+      "total": 14,
+      "covered": 0,
+      "gap_count": 14
+    },
+    "general": {
+      "total": 333,
+      "covered": 0,
+      "gap_count": 333
+    },
+    "layout": {
+      "total": 18,
+      "covered": 0,
+      "gap_count": 18
+    },
+    "misc": {
+      "total": 4,
+      "covered": 4,
+      "gap_count": 0
+    },
+    "navigation": {
+      "total": 14,
+      "covered": 0,
+      "gap_count": 14
+    },
+    "notifications": {
+      "total": 3,
+      "covered": 0,
+      "gap_count": 3
+    },
+    "panel": {
+      "total": 1,
+      "covered": 0,
+      "gap_count": 1
+    },
+    "remote": {
+      "total": 7,
+      "covered": 0,
+      "gap_count": 7
+    },
+    "scm": {
+      "total": 26,
+      "covered": 0,
+      "gap_count": 26
+    },
+    "search": {
+      "total": 1,
+      "covered": 0,
+      "gap_count": 1
+    },
+    "settings": {
+      "total": 1,
+      "covered": 0,
+      "gap_count": 1
+    },
+    "symbols": {
+      "total": 23,
+      "covered": 0,
+      "gap_count": 23
+    },
+    "sync": {
+      "total": 1,
+      "covered": 0,
+      "gap_count": 1
+    },
+    "terminal": {
+      "total": 9,
+      "covered": 0,
+      "gap_count": 9
+    },
+    "testing": {
+      "total": 10,
+      "covered": 0,
+      "gap_count": 10
+    },
+    "theme": {
+      "total": 1,
+      "covered": 1,
+      "gap_count": 0
+    },
+    "visualization": {
+      "total": 3,
+      "covered": 0,
+      "gap_count": 3
+    },
+    "window-chrome": {
+      "total": 4,
+      "covered": 0,
+      "gap_count": 4
+    }
+  },
+  "tier_1_gaps": [
+    "account",
+    "bell",
+    "bell-dot",
+    "bell-slash",
+    "bell-slash-dot",
+    "chrome-close",
+    "chrome-maximize",
+    "chrome-minimize",
+    "chrome-restore",
+    "copilot",
+    "copilot-blocked",
+    "copilot-error",
+    "copilot-in-progress",
+    "copilot-large",
+    "copilot-not-connected",
+    "copilot-snooze",
+    "copilot-success",
+    "copilot-unavailable",
+    "copilot-warning",
+    "copilot-warning-large",
+    "debug",
+    "debug-alt",
+    "error",
+    "error-small",
+    "extensions",
+    "extensions-large",
+    "files",
+    "git-branch",
+    "git-branch-changes",
+    "git-branch-conflicts",
+    "git-branch-staged-changes",
+    "info",
+    "remote",
+    "remote-explorer",
+    "search",
+    "settings-gear",
+    "sync",
+    "sync-ignored",
+    "warning"
+  ],
+  "tier_2_gaps": [
+    "add",
+    "add-small",
+    "clear-all",
+    "close",
+    "close-all",
+    "collapse-all",
+    "copy",
+    "debug-console",
+    "edit",
+    "edit-sparkle",
+    "editor-layout",
+    "expand-all",
+    "file",
+    "file-binary",
+    "file-code",
+    "file-media",
+    "file-pdf",
+    "file-submodule",
+    "file-text",
+    "file-zip",
+    "filter",
+    "filter-filled",
+    "fold",
+    "fold-down",
+    "fold-up",
+    "folder",
+    "folder-active",
+    "folder-library",
+    "folder-opened",
+    "go-to-file",
+    "inbox",
+    "layout",
+    "layout-activitybar-left",
+    "layout-activitybar-right",
+    "layout-centered",
+    "layout-menubar",
+    "layout-panel",
+    "layout-panel-center",
+    "layout-panel-dock",
+    "layout-panel-justify",
+    "layout-panel-left",
+    "layout-panel-off",
+    "layout-panel-right",
+    "layout-sidebar-left",
+    "layout-sidebar-left-dock",
+    "layout-sidebar-left-off",
+    "layout-sidebar-right",
+    "layout-sidebar-right-dock",
+    "layout-sidebar-right-off",
+    "layout-statusbar",
+    "megaphone",
+    "open-preview",
+    "output",
+    "preview",
+    "redo",
+    "refresh",
+    "remove",
+    "remove-small",
+    "root-folder",
+    "root-folder-opened",
+    "save",
+    "save-all",
+    "save-as",
+    "search-large",
+    "search-sparkle",
+    "split-horizontal",
+    "split-vertical",
+    "terminal",
+    "terminal-bash",
+    "terminal-cmd",
+    "terminal-debian",
+    "terminal-git-bash",
+    "terminal-linux",
+    "terminal-powershell",
+    "terminal-tmux",
+    "terminal-ubuntu",
+    "trash",
+    "unfold"
+  ]
+}

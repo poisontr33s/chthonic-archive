@@ -165,7 +165,7 @@ The color theme is at 669/83/57 — a strong foundation. These stages refine and
 
 | Stage | Name | Description | Status |
 |-------|------|-------------|--------|
-| **6.0** | Product Icon Census | Map all VS Code product icon IDs in active use (activity bar, status bar, editor widgets, debug, SCM, testing, etc.) against current 7. | ⬜ Not started |
+| **6.0** | Product Icon Census | Map all VS Code product icon IDs in active use (activity bar, status bar, editor widgets, debug, SCM, testing, etc.) against current 7. | ✅ 6/534 (1.1%) — 39 Tier 1 gaps, `hammer` invalid |
 | **6.1** | Priority Expansion | Design and implement icons for highest-visibility product icon slots (activity bar, editor actions, debug controls). | ⬜ Not started |
 | **6.2** | Product Palette + Motif Audit | Verify product SVGs use SFS palette and maintain Egypto-Andean motif vocabulary. | ⬜ Not started |
 | **7.0** | Product Icon Gold Standard | All high-visibility slots covered. Palette and motif compliant. Visual coherence with file icons. | ⬜ Not started |
@@ -174,7 +174,7 @@ The color theme is at 669/83/57 — a strong foundation. These stages refine and
 
 | Script | Purpose | Exists? |
 |--------|---------|---------|
-| `product_icon_census.py` | Map VS Code product icon IDs vs coverage | ❌ Create |
+| `product_icon_census.py` | Map VS Code product icon IDs vs coverage | ✅ Created |
 | Product SVG audit | Reuse `icon_svg_audit.py` (extend to product/ path) | ✅ Extend |
 
 ---
