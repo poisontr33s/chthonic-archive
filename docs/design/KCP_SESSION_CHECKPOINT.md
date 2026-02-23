@@ -134,9 +134,10 @@ If you are a new session picking up from a crash:
 2. **KCP-0.0** — Protocol Ontology Specification (canonical schema doc)
 3. **KCP-1.0** — Architecture Ratification (lock Approach C)
 4. **KCP-2.0** — Template Canonization (4 language templates)
-5. **4.0** — Token scope coverage audit
-6. **S.3** — Rust @SID tags
-7. **6.0** — Product icon census
+5. **D.0** — Daemon-Forge Bridge (SFS forge × overnight daemon convergence)
+6. **4.0** — Token scope coverage audit
+7. **S.3** — Rust @SID tags
+8. **6.0** — Product icon census
 
 ---
 

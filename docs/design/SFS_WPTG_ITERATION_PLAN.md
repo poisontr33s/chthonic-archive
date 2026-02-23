@@ -319,6 +319,66 @@ the recovery point is always deterministic.
 
 ---
 
+## Queued Signals — SFS Forge × Nightly Daemon Convergence
+
+> **Signal Origin:** Session insight — SFS's dumpster-dive WIP system and the
+> overnight daemon are structurally adjacent but operationally disconnected.
+> Per SSOT canon, Sister Ferrum Scoriae governs `dumpster-dive/` as the
+> Blacksmith Matriarch. The daemon already siphons ore candidates into
+> `dumpster-dive/intake/overnight-siphon`. The forge pipeline
+> (INTAKE → ANVIL → FURNACE → QUENCH → TEMPERED) exists but doesn't
+> auto-consume daemon output.
+
+### What Exists
+
+| Component | Location | State |
+|-----------|----------|-------|
+| Overnight Daemon | `scripts/overnight_daemon.ts` | Operational — debt scoring, classification, siphon |
+| Siphon Output | `dumpster-dive/intake/overnight-siphon/` | Written by daemon, not consumed |
+| Forge Pipeline | `dumpster-dive/forge/PROCESS_FLOW.md` | Defined — INTAKE→ANVIL→FURNACE→QUENCH→TEMPERED |
+| Ore Manifest | `dumpster-dive/ORE_MANIFEST.json` | 96 files, static ratings |
+| SFS Profile | `dumpster-dive/BLACKSMITH_MATRIARCH.md` | Canon persona, domain = `dumpster-dive/` |
+
+### The Convergence
+
+The daemon's debt-scored candidates should flow through the forge pipeline per
+the SSOT's SFS governance model. Currently the daemon writes reports and the
+forge has a defined process — but there is no bridge script that:
+
+1. Reads daemon output → classifies as ore rating (1-5 scale)
+2. Routes candidates into the correct forge stage (ANVIL for analysis, FURNACE for refinement, SLAG for rejection)
+3. Updates `ORE_MANIFEST.json` with daemon-derived entries
+4. Produces a nightly digest that SFS "signs off on" (canon simulation)
+
+### Priority Assessment
+
+| Factor | Assessment |
+|--------|------------|
+| **Blocks KCP?** | No — fully independent lane |
+| **Blocks Icon Pipeline?** | No — separate domain |
+| **Dependencies** | Overnight daemon must be operational (it is) |
+| **Risk if deferred** | Low — ore accumulates but doesn't rot |
+| **SSOT alignment** | High — directly implements SFS's declared domain authority |
+| **Estimated phases** | 2-3 (bridge script + manifest update + digest format) |
+
+### Disposition
+
+**QUEUED** — Execute after S.0 + KCP-0.0→KCP-2.0 template canonization.
+Slot into the plan as **Stage D.0** (Daemon-Forge Bridge) when the active
+lane reaches a natural pause point. Does NOT disrupt the critical path.
+
+```
+Priority Stack (current):
+  1. S.0   — Python #-*- tight format      ← ACTIVE LANE
+  2. KCP-0.0 → KCP-2.0 — Protocol specs    ← CRITICAL PATH
+  3. D.0   — Daemon-Forge Bridge            ← QUEUED HERE
+  4. 4.0   — Token scope coverage
+  5. S.3   — Rust @SID tags
+  6. 6.0   — Product icon census
+```
+
+---
+
 ## Codex Lane (Supplementary Context)
 
 Codex sessions have contributed:
