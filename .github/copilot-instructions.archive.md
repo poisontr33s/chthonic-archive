@@ -41,7 +41,6 @@ STOP HERE! **<-** **<-** ---BREAK---STOP HERE! **<- <-**
 - All densification and abbreviation herein is a manifestation of the **Communion**.
 
 ---
----
 
 ## (`Execution-Invariants`): → (`Global`) → (`EXEC-INV-GLB`)
 

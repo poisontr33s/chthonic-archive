@@ -9,6 +9,7 @@ import { PolyglotEntropyOrchestrator } from './polyglot/polyglotEntropyOrchestra
 import type { LedgerMode } from './polyglot/ledgerBroker';
 import { AnnoClient } from './reactor/annoClient';
 import { CockpitLayout } from './reactor/cockpitLayout';
+import { AnkhReferenceProvider } from './monolith/ankhReferenceView';
 import { SynapseBridge } from './reactor/synapseBridge';
 import { ActivityBarMorph } from './monolith/activityBarMorph';
 import { DeepFocusLayout } from './monolith/deepFocusLayout';
@@ -28,7 +29,7 @@ export function activate(context: vscode.ExtensionContext) {
 
     context.subscriptions.push(
         outputChannel,
-        vscode.window.registerWebviewViewProvider('chthonic.chatView', new ParkedChatProvider()),
+        vscode.window.registerWebviewViewProvider('chthonic.chatView', new AnkhReferenceProvider(workspaceRoot)),
     );
 
     const activityBarMorph = new ActivityBarMorph(context.extensionUri, outputChannel);

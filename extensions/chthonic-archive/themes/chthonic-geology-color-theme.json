@@ -873,12 +873,12 @@
     {
       "name": "Interfaces (Quenched Steel)",
       "scope": ["entity.name.type.interface", "entity.name.type.enum"],
-      "settings": { "foreground": "#7AAAB2" }
+      "settings": { "foreground": "#7AAAB2", "fontStyle": "italic" }
     },
     {
       "name": "Type Parameters (Bright Steel)",
       "scope": ["entity.name.type.parameter", "meta.type.parameters"],
-      "settings": { "foreground": "#8CBEC6" }
+      "settings": { "foreground": "#8CBEC6", "fontStyle": "italic" }
     },
     {
       "name": "Namespaces/Modules (Quenched Steel)",
@@ -973,7 +973,7 @@
     {
       "name": "JSX/TSX Components (Heated Copper)",
       "scope": ["entity.name.tag.tsx", "entity.name.tag.jsx", "support.class.component", "support.class.component.tsx", "support.class.component.jsx"],
-      "settings": { "foreground": "#D4907A" }
+      "settings": { "foreground": "#D4907A", "fontStyle": "bold" }
     },
     {
       "name": "Markup Heading (Forge Gold)",
@@ -1013,7 +1013,7 @@
     {
       "name": "Markup Link Text (Bright Steel)",
       "scope": ["string.other.link", "meta.link.inline"],
-      "settings": { "foreground": "#8CBEC6" }
+      "settings": { "foreground": "#8CBEC6", "fontStyle": "underline" }
     },
     {
       "name": "Markup Link URL (Parchment)",
@@ -1093,7 +1093,7 @@
     {
       "name": "Invalid (Hot Iron Red)",
       "scope": ["invalid", "invalid.illegal"],
-      "settings": { "foreground": "#E05545" }
+      "settings": { "foreground": "#E05545", "fontStyle": "strikethrough" }
     },
     {
       "name": "Deprecated (Strikethrough)",
@@ -1138,7 +1138,7 @@
     {
       "name": "Go Package (Quenched Steel)",
       "scope": ["entity.name.package.go", "entity.name.import.go", "variable.other.receiver.go"],
-      "settings": { "foreground": "#7AAAB2" }
+      "settings": { "foreground": "#7AAAB2", "fontStyle": "italic" }
     },
     {
       "name": "Go Builtins (Heated Copper)",

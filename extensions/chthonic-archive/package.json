@@ -152,8 +152,8 @@
         {
           "id": "chthonic.chatView",
           "type": "webview",
-          "name": "Agent Chat",
-          "icon": "$(comment-discussion)"
+          "name": "☥ ANKH Reference",
+          "icon": "$(book)"
         },
         {
           "id": "chthonic.abyssalView",
