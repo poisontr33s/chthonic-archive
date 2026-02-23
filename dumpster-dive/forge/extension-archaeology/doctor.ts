@@ -1,3 +1,5 @@
+#!/usr/bin/env bun
+
 // ╔════════════════════════════════════════════════════════════════════════════
 // ║ THE DECORATOR'S BLESSING: doctor.ts
 // ║ TypeScript module: frontend utility
