@@ -11,6 +11,9 @@ Modes:
 Secrets:
 - Reads only environment variables.
 - Never prints token values.
+
+@SID:           TOOL_POE_LANE_V1
+@Type:          Utility
 """
 
 from __future__ import annotations

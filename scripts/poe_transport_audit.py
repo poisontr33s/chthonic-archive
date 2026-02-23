@@ -4,6 +4,9 @@
 Poe transport audit.
 
 Compares OpenAI-compatible lane vs Poe SDK lane on selected accounts and bots/models.
+
+@SID:           TOOL_POE_TRANSPORT_AUDIT_V1
+@Type:          Utility
 """
 
 from __future__ import annotations

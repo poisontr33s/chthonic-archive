@@ -5,6 +5,9 @@ Poe SDK lane helper (fastapi_poe transport).
 
 Run with:
   uv run --with fastapi-poe scripts/poe_sdk_lane.py --account 1 --bot app-creator
+
+@SID:           TOOL_POE_SDK_LANE_V1
+@Type:          Utility
 """
 
 from __future__ import annotations
