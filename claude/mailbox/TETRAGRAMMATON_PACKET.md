@@ -1,16 +1,16 @@
 ---
 type: packet
 created: 2026-02-07T18:08:22.695770+00:00
-updated: 2026-02-17T01:56:19.143263+00:00
+updated: 2026-02-23T16:57:13.768136+00:00
 mailbox: claude/mailbox
 codename: TETRAGRAMMATON
-sources_hash: e97b147f477aaadfc5392266067a7636016ca6dacc19f11a7b4d536daffbb762
+sources_hash: 37b8a74d410969d32ba624d39f19ae8f956b6b68612b68bc24a62cc25011ad28
 sources_count: 6
 ---
 
 # TETRAGRAMMATON Packet
 
-<!-- @SCRIBED: 2026-02-17T01:56:19.143267+00:00 -->
+<!-- @SCRIBED: 2026-02-23T16:57:13.768140+00:00 -->
 
 ## Packet Rules
 - Paths are repo-relative (portable; no local usernames).
@@ -26,8 +26,8 @@ sources_count: 6
 - `mailbox_manifest.json`
 
 ## Snapshot
-- Generated: `2026-02-17T01:56:19.143263+00:00`
-- Sources hash: `e97b147f477aaadfc5392266067a7636016ca6dacc19f11a7b4d536daffbb762`
+- Generated: `2026-02-23T16:57:13.768136+00:00`
+- Sources hash: `37b8a74d410969d32ba624d39f19ae8f956b6b68612b68bc24a62cc25011ad28`
 
 ## Content
 
@@ -364,7 +364,7 @@ Path: `claude/mailbox/MAILBOX_CURRENT_STATE.md`
 ```md
 ---
 type: mailbox-state
-updated: 2026-02-17T01:56:19.138637+00:00
+updated: 2026-02-23T16:57:13.761471+00:00
 mailbox: claude/mailbox
 ---
 
@@ -373,14 +373,29 @@ mailbox: claude/mailbox
 ## Active Files
 - `ARCHAEOLOGY_DIGEST_2026_02_11.md`
 - `ARCHAEOLOGY_DIGEST_2026_02_13.md`
+- `ARCHAEOLOGY_DIGEST_2026_02_18.md`
+- `ARCHAEOLOGY_DIGEST_2026_02_19.md`
+- `ARCHAEOLOGY_DIGEST_2026_02_20.md`
 - `CLAUDE_CODE_CENTRIC_SETUP_2026_02_09.md`
 - `CLAUDE_CODE_HIERARCHICAL_RESEARCH_2026_02_09.md`
 - `CLAUDE_META_VALIDATION_SUMMARY.json`
+- `CLAUDE_SKILL_POLISH_SUMMARY_LATEST.md`
 - `CLAUDE_TASK_SESSION_SYNC_2026_02_09.md`
 - `CODEX_TO_CLAUDE_TASK_LATEST.md`
 - `GEMINI_DEEP_RESEARCH_SOLANA.md`
+- `GENRE_EXTRACTION_2026_02_21.md`
+- `GENRE_EXTRACTION_2026_02_22.md`
+- `GENRE_EXTRACTION_2026_02_23.md`
 - `KISS_PARITY_BRIEF_2026_02_06.md`
+- `LOCAL_AI_READINESS_LATEST.json`
+- `LOCAL_AI_READINESS_LATEST.md`
 - `MAILBOX_CURRENT_STATE.md`
+- `POE_LANE_LATEST.json`
+- `POE_LANE_LATEST.md`
+- `POE_SDK_LATEST.json`
+- `POE_SDK_LATEST.md`
+- `POE_TRANSPORT_AUDIT_LATEST.json`
+- `POE_TRANSPORT_AUDIT_LATEST.md`
 - `SESSION_CONTEXT_APPENDIX_2026_02_06.md`
 - `SESSION_CONTEXT_CHRONICLE_2026_02_06.md`
 - `SESSION_CONTEXT_CHRONICLE_2026_02_09.md`
@@ -411,19 +426,30 @@ Path: `claude/mailbox/mailbox_manifest.json`
 {
   "schema_version": 2,
   "mailbox": "claude/mailbox",
-  "generated_on": "2026-02-17T01:56:19.137544+00:00",
+  "generated_on": "2026-02-23T16:57:13.760320+00:00",
   "manifest_file": "mailbox_manifest.json",
   "active": {
     "md": [
       "ARCHAEOLOGY_DIGEST_2026_02_11.md",
       "ARCHAEOLOGY_DIGEST_2026_02_13.md",
+      "ARCHAEOLOGY_DIGEST_2026_02_18.md",
+      "ARCHAEOLOGY_DIGEST_2026_02_19.md",
+      "ARCHAEOLOGY_DIGEST_2026_02_20.md",
       "CLAUDE_CODE_CENTRIC_SETUP_2026_02_09.md",
       "CLAUDE_CODE_HIERARCHICAL_RESEARCH_2026_02_09.md",
+      "CLAUDE_SKILL_POLISH_SUMMARY_LATEST.md",
       "CLAUDE_TASK_SESSION_SYNC_2026_02_09.md",
       "CODEX_TO_CLAUDE_TASK_LATEST.md",
       "GEMINI_DEEP_RESEARCH_SOLANA.md",
+      "GENRE_EXTRACTION_2026_02_21.md",
+      "GENRE_EXTRACTION_2026_02_22.md",
+      "GENRE_EXTRACTION_2026_02_23.md",
       "KISS_PARITY_BRIEF_2026_02_06.md",
+      "LOCAL_AI_READINESS_LATEST.md",
       "MAILBOX_CURRENT_STATE.md",
+      "POE_LANE_LATEST.md",
+      "POE_SDK_LATEST.md",
+      "POE_TRANSPORT_AUDIT_LATEST.md",
       "SESSION_CONTEXT_APPENDIX_2026_02_06.md",
       "SESSION_CONTEXT_CHRONICLE_2026_02_06.md",
       "SESSION_CONTEXT_CHRONICLE_2026_02_09.md",
@@ -435,6 +461,10 @@ Path: `claude/mailbox/mailbox_manifest.json`
     ],
     "json": [
       "CLAUDE_META_VALIDATION_SUMMARY.json",
+      "LOCAL_AI_READINESS_LATEST.json",
+      "POE_LANE_LATEST.json",
+      "POE_SDK_LATEST.json",
+      "POE_TRANSPORT_AUDIT_LATEST.json",
       "SESSION_SYNC_INDEX_2026_02_09.json",
       "skill_audit_claude_2026-02-09T22-01-52Z.json",
       "skills_parity_map_2026_02_06.json"
@@ -466,3 +496,17 @@ Path: `claude/mailbox/mailbox_manifest.json`
 - 2026-02-07T19:46:59.007637+00:00: sources changed
 - 2026-02-09T22:01:53.509316+00:00: sources changed
 - 2026-02-17T01:56:19.143263+00:00: sources changed
+- 2026-02-23T15:59:47.340130+00:00: sources changed
+- 2026-02-23T15:59:47.359324+00:00: sources changed
+- 2026-02-23T16:04:04.722694+00:00: sources changed
+- 2026-02-23T16:04:04.748117+00:00: sources changed
+- 2026-02-23T16:04:35.677829+00:00: sources changed
+- 2026-02-23T16:07:20.671461+00:00: sources changed
+- 2026-02-23T16:09:42.565094+00:00: sources changed
+- 2026-02-23T16:09:42.614210+00:00: sources changed
+- 2026-02-23T16:11:39.964782+00:00: sources changed
+- 2026-02-23T16:31:24.725253+00:00: sources changed
+- 2026-02-23T16:31:42.622908+00:00: sources changed
+- 2026-02-23T16:35:06.343494+00:00: sources changed
+- 2026-02-23T16:36:17.924172+00:00: sources changed
+- 2026-02-23T16:57:13.768136+00:00: sources changed

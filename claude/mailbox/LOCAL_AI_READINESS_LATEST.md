@@ -1,6 +1,6 @@
 # Local AI Readiness (Latest)
 
-- Generated: `2026-02-18T03:35:00Z`
+- Generated: `2026-02-23T16:57:31Z`
 - Runtime ready: `True`
 - C++/Vulkan toolchain ready: `True`
 - Local refiner ready: `True`
@@ -12,7 +12,7 @@
 ## Toolchain
 - `uv`: `uv 0.10.3 (c75a0c625 2026-02-16)`
 - `python`: `3.13.11 (main, Dec  9 2025, 19:02:08) [MSC v.1944 64 bit (AMD64)]`
-- `rv`: `rv 0.5.0`
+- `rv`: `rv 0.5.1`
 - `ruby`: `ruby 4.0.1 (2026-01-13 revision e04267a14b) +PRISM [x64-mingw-ucrt]`
 - `az`: `2.83.0`
 - `bun`: `1.3.9`
@@ -30,10 +30,10 @@
 - `ssms`: `22.3.11505.172`
 
 ## Paths
-- Latest daemon run: `C:/Users/erdno/chthonic-archive/dumpster-dive/intake/overnight-daemon/20260218_030002`
-- Latest scheduler log: `C:/Users/erdno/chthonic-archive/dumpster-dive/intake/overnight-daemon/nightly-scheduled-2026-02-18_030002.log`
-- Latest archaeology run: `C:/Users/erdno/chthonic-archive/dumpster-dive/intake/overnight-intelligence/arch-2026-02-18T02-00-06`
-- Latest digest: `C:/Users/erdno/chthonic-archive/claude/mailbox/ARCHAEOLOGY_DIGEST_2026_02_18.md`
+- Latest daemon run: `C:/Users/erdno/chthonic-archive/dumpster-dive/intake/overnight-daemon/20260223_030002`
+- Latest scheduler log: `C:/Users/erdno/chthonic-archive/dumpster-dive/intake/overnight-daemon/nightly-scheduled-2026-02-23_030002.log`
+- Latest archaeology run: `C:/Users/erdno/chthonic-archive/dumpster-dive/intake/overnight-intelligence/arch-2026-02-20T02-00-06`
+- Latest digest: `C:/Users/erdno/chthonic-archive/claude/mailbox/ARCHAEOLOGY_DIGEST_2026_02_20.md`
 
 ## Model Residences
 - `qwen_14b`: exists=`True` format=`gguf` files=`7` size_gb=`8.371` path=`C:/Users/erdno/chthonic-archive/models/Qwen2.5-14B-Instruct-GGUF`
@@ -45,18 +45,18 @@
   - model: `C:/Users/erdno/chthonic-archive/models/Qwen2.5-14B-Instruct-GGUF`
   - required: `llama_cpp, pydantic, numpy, tool:uv, tool:pwsh`
   - missing_required: `(none)`
-  - optional_missing: `(none)`
+  - optional_missing: `torch`
   - Primary local LLM lane (structured JSON).
 - `local_refiner_v1` [python] ready=`False` entry=`scripts/local_refiner.py`
   - model: `C:/Users/erdno/chthonic-archive/models/Llama-3.1-8B-Instruct-exl2-6.0bpw`
   - required: `exllamav2, torch, tool:uv, tool:pwsh`
-  - missing_required: `exllamav2`
+  - missing_required: `exllamav2, torch`
   - optional_missing: `(none)`
   - Legacy fallback lane (ExLlamaV2).
 - `hf_refiner` [python] ready=`True` entry=`scripts/hf_refiner.py`
   - required: `huggingface_hub, requests, mcp, pydantic_settings, tool:uv, tool:pwsh`
   - missing_required: `(none)`
-  - optional_missing: `(none)`
+  - optional_missing: `transformers, datasets, accelerate, tokenizers, safetensors`
   - Uses HF token auth; can run without local GPU model files.
 - `overnight_daemon` [typescript+powershell] ready=`True` entry=`scripts/run_archaeology.ps1 + scripts/overnight_daemon.ts`
   - required: `tool:bun, tool:pwsh, tool:uv`
@@ -77,7 +77,7 @@
 - `OK` `runtime:pwsh`: 7.5.4
 - `OK` `runtime:rustc`: rustc 1.93.1 (01f6ddf75 2026-02-11)
   - Rust toolchain is optional for current local-AI paths but available for extension lanes.
-- `OK` `runtime:rv`: rv 0.5.0
+- `OK` `runtime:rv`: rv 0.5.1
   - Ruby manager lane in your polyglot toolchain.
 - `OK` `runtime:ruby`: ruby 4.0.1 (2026-01-13 revision e04267a14b) +PRISM [x64-mingw-ucrt]
   - Optional for local-AI flows; useful for broader polyglot automation.
@@ -109,24 +109,24 @@
 - `OK` `module:requests`: import ok
 - `OK` `module:mcp`: import ok
 - `OK` `module:pydantic_settings`: import ok
-- `OK` `module:transformers`: import ok
-- `OK` `module:tokenizers`: import ok
-- `OK` `module:safetensors`: import ok
-- `OK` `module:datasets`: import ok
-- `OK` `module:accelerate`: import ok
-- `OK` `module:torch`: import ok
+- `FAIL` `module:transformers`: missing module transformers
+- `FAIL` `module:tokenizers`: missing module tokenizers
+- `FAIL` `module:safetensors`: missing module safetensors
+- `FAIL` `module:datasets`: missing module datasets
+- `FAIL` `module:accelerate`: missing module accelerate
+- `FAIL` `module:torch`: missing module torch
 - `FAIL` `module:exllamav2`: missing module exllamav2
   - Optional legacy lane for local_refiner.py (v1).
 - `OK` `model:qwen_14b`: 3 gguf file(s) in C:/Users/erdno/chthonic-archive/models/Qwen2.5-14B-Instruct-GGUF
 - `OK` `model:gpt_oss_20b`: 1 gguf file(s) in C:/Users/erdno/chthonic-archive/models/GPT-OSS-20B-NEOPlus-Uncensored
 - `OK` `model:llama_8b_exl2`: 1 safetensors file(s) in C:/Users/erdno/chthonic-archive/models/Llama-3.1-8B-Instruct-exl2-6.0bpw
-- `OK` `artifact:daemon_report_json`: C:/Users/erdno/chthonic-archive/dumpster-dive/intake/overnight-daemon/20260218_030002/report.json
-- `OK` `artifact:daemon_report_md`: C:/Users/erdno/chthonic-archive/dumpster-dive/intake/overnight-daemon/20260218_030002/report.md
-- `OK` `artifact:l1_ore`: C:/Users/erdno/chthonic-archive/dumpster-dive/intake/overnight-intelligence/arch-2026-02-18T02-00-06/L1-ore.json
-- `OK` `artifact:l1_summary`: C:/Users/erdno/chthonic-archive/dumpster-dive/intake/overnight-intelligence/arch-2026-02-18T02-00-06/L1-summary.md
-- `OK` `artifact:latest_digest`: C:/Users/erdno/chthonic-archive/claude/mailbox/ARCHAEOLOGY_DIGEST_2026_02_18.md
+- `OK` `artifact:daemon_report_json`: C:/Users/erdno/chthonic-archive/dumpster-dive/intake/overnight-daemon/20260223_030002/report.json
+- `OK` `artifact:daemon_report_md`: C:/Users/erdno/chthonic-archive/dumpster-dive/intake/overnight-daemon/20260223_030002/report.md
+- `OK` `artifact:l1_ore`: C:/Users/erdno/chthonic-archive/dumpster-dive/intake/overnight-intelligence/arch-2026-02-20T02-00-06/L1-ore.json
+- `OK` `artifact:l1_summary`: C:/Users/erdno/chthonic-archive/dumpster-dive/intake/overnight-intelligence/arch-2026-02-20T02-00-06/L1-summary.md
+- `OK` `artifact:latest_digest`: C:/Users/erdno/chthonic-archive/claude/mailbox/ARCHAEOLOGY_DIGEST_2026_02_20.md
   - Digest absence is acceptable for L1-only runs.
-- `OK` `log:scheduler`: C:/Users/erdno/chthonic-archive/dumpster-dive/intake/overnight-daemon/nightly-scheduled-2026-02-18_030002.log
+- `OK` `log:scheduler`: C:/Users/erdno/chthonic-archive/dumpster-dive/intake/overnight-daemon/nightly-scheduled-2026-02-23_030002.log
   - No fatal markers in latest scheduler log.
 
 ## Recommendations

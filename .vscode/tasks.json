@@ -287,6 +287,238 @@
 				"focus": true
 			},
 			"problemMatcher": []
+		},
+		{
+			"label": "Chthonic: Poe Account 1 (OpenAI Compat)",
+			"type": "shell",
+			"command": "pwsh",
+			"args": [
+				"-NoProfile",
+				"-File",
+				"${workspaceFolder}/scripts/chthonic.ps1",
+				"poe",
+				"account",
+				"-Account",
+				"1",
+				"-MapOpenAICompat",
+				"-Doctor"
+			],
+			"group": "test",
+			"presentation": {
+				"reveal": "always",
+				"panel": "shared",
+				"focus": true
+			},
+			"problemMatcher": []
+		},
+		{
+			"label": "Chthonic: Poe Account 2 (OpenAI Compat)",
+			"type": "shell",
+			"command": "pwsh",
+			"args": [
+				"-NoProfile",
+				"-File",
+				"${workspaceFolder}/scripts/chthonic.ps1",
+				"poe",
+				"account",
+				"-Account",
+				"2",
+				"-MapOpenAICompat",
+				"-Doctor"
+			],
+			"group": "test",
+			"presentation": {
+				"reveal": "always",
+				"panel": "shared",
+				"focus": true
+			},
+			"problemMatcher": []
+		},
+		{
+			"label": "Chthonic: Poe Models (Account 1)",
+			"type": "shell",
+			"command": "pwsh",
+			"args": [
+				"-NoProfile",
+				"-File",
+				"${workspaceFolder}/scripts/chthonic.ps1",
+				"poe",
+				"models",
+				"--account",
+				"1",
+				"--limit",
+				"40"
+			],
+			"group": "test",
+			"presentation": {
+				"reveal": "always",
+				"panel": "shared",
+				"focus": true
+			},
+			"problemMatcher": []
+		},
+		{
+			"label": "Chthonic: Poe Models (Account 2)",
+			"type": "shell",
+			"command": "pwsh",
+			"args": [
+				"-NoProfile",
+				"-File",
+				"${workspaceFolder}/scripts/chthonic.ps1",
+				"poe",
+				"models",
+				"--account",
+				"2",
+				"--limit",
+				"40"
+			],
+			"group": "test",
+			"presentation": {
+				"reveal": "always",
+				"panel": "shared",
+				"focus": true
+			},
+			"problemMatcher": []
+		},
+		{
+			"label": "Chthonic: Poe Probe (App-Creator)",
+			"type": "shell",
+			"command": "pwsh",
+			"args": [
+				"-NoProfile",
+				"-File",
+				"${workspaceFolder}/scripts/chthonic.ps1",
+				"poe",
+				"probe",
+				"--account",
+				"1",
+				"--model",
+				"app-creator",
+				"--effort",
+				"max"
+			],
+			"group": "test",
+			"presentation": {
+				"reveal": "always",
+				"panel": "shared",
+				"focus": true
+			},
+			"problemMatcher": []
+		},
+		{
+			"label": "Chthonic: Poe Probe (App-Creator Account 2)",
+			"type": "shell",
+			"command": "pwsh",
+			"args": [
+				"-NoProfile",
+				"-File",
+				"${workspaceFolder}/scripts/chthonic.ps1",
+				"poe",
+				"probe",
+				"--account",
+				"2",
+				"--model",
+				"app-creator",
+				"--effort",
+				"max"
+			],
+			"group": "test",
+			"presentation": {
+				"reveal": "always",
+				"panel": "shared",
+				"focus": true
+			},
+			"problemMatcher": []
+		},
+		{
+			"label": "Chthonic: Poe Probe (Claude Sonnet 4.5)",
+			"type": "shell",
+			"command": "pwsh",
+			"args": [
+				"-NoProfile",
+				"-File",
+				"${workspaceFolder}/scripts/chthonic.ps1",
+				"poe",
+				"probe",
+				"--account",
+				"1",
+				"--model",
+				"claude-sonnet-4.5"
+			],
+			"group": "test",
+			"presentation": {
+				"reveal": "always",
+				"panel": "shared",
+				"focus": true
+			},
+			"problemMatcher": []
+		},
+		{
+			"label": "Chthonic: Poe SDK Probe (App-Creator Account 1)",
+			"type": "shell",
+			"command": "pwsh",
+			"args": [
+				"-NoProfile",
+				"-File",
+				"${workspaceFolder}/scripts/chthonic.ps1",
+				"poe",
+				"sdk-probe",
+				"--account",
+				"1",
+				"--bot",
+				"app-creator"
+			],
+			"group": "test",
+			"presentation": {
+				"reveal": "always",
+				"panel": "shared",
+				"focus": true
+			},
+			"problemMatcher": []
+		},
+		{
+			"label": "Chthonic: Poe SDK Probe (App-Creator Account 2)",
+			"type": "shell",
+			"command": "pwsh",
+			"args": [
+				"-NoProfile",
+				"-File",
+				"${workspaceFolder}/scripts/chthonic.ps1",
+				"poe",
+				"sdk-probe",
+				"--account",
+				"2",
+				"--bot",
+				"app-creator"
+			],
+			"group": "test",
+			"presentation": {
+				"reveal": "always",
+				"panel": "shared",
+				"focus": true
+			},
+			"problemMatcher": []
+		},
+		{
+			"label": "Chthonic: Poe Transport Audit",
+			"type": "shell",
+			"command": "pwsh",
+			"args": [
+				"-NoProfile",
+				"-File",
+				"${workspaceFolder}/scripts/chthonic.ps1",
+				"poe",
+				"audit",
+				"--accounts",
+				"1,2"
+			],
+			"group": "test",
+			"presentation": {
+				"reveal": "always",
+				"panel": "shared",
+				"focus": true
+			},
+			"problemMatcher": []
 		}
 	]
 }

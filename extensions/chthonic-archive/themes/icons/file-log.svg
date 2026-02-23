@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+ <!-- Stele base -->
+ <rect x="3" y="1.5" width="10" height="13" rx="1" fill="#0A0A0A" stroke="#908672" stroke-width="0.5"/>
+
+ <line x1="5" y1="4" x2="8" y2="7.5" stroke="#908672" stroke-width="0.7" stroke-linecap="round"/>
+ <line x1="11" y1="4" x2="8" y2="7.5" stroke="#908672" stroke-width="0.7" stroke-linecap="round"/>
+
+ <circle cx="8" cy="7.5" r="0.7" fill="#908672"/>
+
+ <line x1="8" y1="8.5" x2="8" y2="10.5" stroke="#908672" stroke-width="0.5" stroke-linecap="round"/>
+ <line x1="6.5" y1="8.5" x2="5.5" y2="10" stroke="#908672" stroke-width="0.4" stroke-linecap="round"/>
+ <line x1="9.5" y1="8.5" x2="10.5" y2="10" stroke="#908672" stroke-width="0.4" stroke-linecap="round"/>
+
+ <circle cx="6" cy="6" r="0.3" fill="#908672"/>
+ <circle cx="10" cy="6" r="0.3" fill="#908672"/>
+</svg>

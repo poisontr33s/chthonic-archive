@@ -1,0 +1,2137 @@
+{
+  "summary": {
+    "total_svgs": 47,
+    "structure_pass": 47,
+    "structure_fail": 0,
+    "palette_perfect": 47,
+    "palette_drift": 0,
+    "contrast_pass": 47,
+    "contrast_fail": 0
+  },
+  "stage_1_0_structure": [
+    {
+      "file": "file-claude.svg",
+      "valid_xml": true,
+      "has_svg_root": true,
+      "has_xmlns": true,
+      "viewbox": "0 0 16 16",
+      "viewbox_correct": true,
+      "has_external_refs": false,
+      "has_raster_data": false,
+      "has_script_style": false,
+      "issues": []
+    },
+    {
+      "file": "file-copilot.svg",
+      "valid_xml": true,
+      "has_svg_root": true,
+      "has_xmlns": true,
+      "viewbox": "0 0 16 16",
+      "viewbox_correct": true,
+      "has_external_refs": false,
+      "has_raster_data": false,
+      "has_script_style": false,
+      "issues": []
+    },
+    {
+      "file": "file-css.svg",
+      "valid_xml": true,
+      "has_svg_root": true,
+      "has_xmlns": true,
+      "viewbox": "0 0 16 16",
+      "viewbox_correct": true,
+      "has_external_refs": false,
+      "has_raster_data": false,
+      "has_script_style": false,
+      "issues": []
+    },
+    {
+      "file": "file-default.svg",
+      "valid_xml": true,
+      "has_svg_root": true,
+      "has_xmlns": true,
+      "viewbox": "0 0 16 16",
+      "viewbox_correct": true,
+      "has_external_refs": false,
+      "has_raster_data": false,
+      "has_script_style": false,
+      "issues": []
+    },
+    {
+      "file": "file-env.svg",
+      "valid_xml": true,
+      "has_svg_root": true,
+      "has_xmlns": true,
+      "viewbox": "0 0 16 16",
+      "viewbox_correct": true,
+      "has_external_refs": false,
+      "has_raster_data": false,
+      "has_script_style": false,
+      "issues": []
+    },
+    {
+      "file": "file-git.svg",
+      "valid_xml": true,
+      "has_svg_root": true,
+      "has_xmlns": true,
+      "viewbox": "0 0 16 16",
+      "viewbox_correct": true,
+      "has_external_refs": false,
+      "has_raster_data": false,
+      "has_script_style": false,
+      "issues": []
+    },
+    {
+      "file": "file-go.svg",
+      "valid_xml": true,
+      "has_svg_root": true,
+      "has_xmlns": true,
+      "viewbox": "0 0 16 16",
+      "viewbox_correct": true,
+      "has_external_refs": false,
+      "has_raster_data": false,
+      "has_script_style": false,
+      "issues": []
+    },
+    {
+      "file": "file-html.svg",
+      "valid_xml": true,
+      "has_svg_root": true,
+      "has_xmlns": true,
+      "viewbox": "0 0 16 16",
+      "viewbox_correct": true,
+      "has_external_refs": false,
+      "has_raster_data": false,
+      "has_script_style": false,
+      "issues": []
+    },
+    {
+      "file": "file-img.svg",
+      "valid_xml": true,
+      "has_svg_root": true,
+      "has_xmlns": true,
+      "viewbox": "0 0 16 16",
+      "viewbox_correct": true,
+      "has_external_refs": false,
+      "has_raster_data": false,
+      "has_script_style": false,
+      "issues": []
+    },
+    {
+      "file": "file-js.svg",
+      "valid_xml": true,
+      "has_svg_root": true,
+      "has_xmlns": true,
+      "viewbox": "0 0 16 16",
+      "viewbox_correct": true,
+      "has_external_refs": false,
+      "has_raster_data": false,
+      "has_script_style": false,
+      "issues": []
+    },
+    {
+      "file": "file-json.svg",
+      "valid_xml": true,
+      "has_svg_root": true,
+      "has_xmlns": true,
+      "viewbox": "0 0 16 16",
+      "viewbox_correct": true,
+      "has_external_refs": false,
+      "has_raster_data": false,
+      "has_script_style": false,
+      "issues": []
+    },
+    {
+      "file": "file-jsx.svg",
+      "valid_xml": true,
+      "has_svg_root": true,
+      "has_xmlns": true,
+      "viewbox": "0 0 16 16",
+      "viewbox_correct": true,
+      "has_external_refs": false,
+      "has_raster_data": false,
+      "has_script_style": false,
+      "issues": []
+    },
+    {
+      "file": "file-lock.svg",
+      "valid_xml": true,
+      "has_svg_root": true,
+      "has_xmlns": true,
+      "viewbox": "0 0 16 16",
+      "viewbox_correct": true,
+      "has_external_refs": false,
+      "has_raster_data": false,
+      "has_script_style": false,
+      "issues": []
+    },
+    {
+      "file": "file-md.svg",
+      "valid_xml": true,
+      "has_svg_root": true,
+      "has_xmlns": true,
+      "viewbox": "0 0 16 16",
+      "viewbox_correct": true,
+      "has_external_refs": false,
+      "has_raster_data": false,
+      "has_script_style": false,
+      "issues": []
+    },
+    {
+      "file": "file-ps1.svg",
+      "valid_xml": true,
+      "has_svg_root": true,
+      "has_xmlns": true,
+      "viewbox": "0 0 16 16",
+      "viewbox_correct": true,
+      "has_external_refs": false,
+      "has_raster_data": false,
+      "has_script_style": false,
+      "issues": []
+    },
+    {
+      "file": "file-py.svg",
+      "valid_xml": true,
+      "has_svg_root": true,
+      "has_xmlns": true,
+      "viewbox": "0 0 16 16",
+      "viewbox_correct": true,
+      "has_external_refs": false,
+      "has_raster_data": false,
+      "has_script_style": false,
+      "issues": []
+    },
+    {
+      "file": "file-rb.svg",
+      "valid_xml": true,
+      "has_svg_root": true,
+      "has_xmlns": true,
+      "viewbox": "0 0 16 16",
+      "viewbox_correct": true,
+      "has_external_refs": false,
+      "has_raster_data": false,
+      "has_script_style": false,
+      "issues": []
+    },
+    {
+      "file": "file-rs.svg",
+      "valid_xml": true,
+      "has_svg_root": true,
+      "has_xmlns": true,
+      "viewbox": "0 0 16 16",
+      "viewbox_correct": true,
+      "has_external_refs": false,
+      "has_raster_data": false,
+      "has_script_style": false,
+      "issues": []
+    },
+    {
+      "file": "file-rust-toml.svg",
+      "valid_xml": true,
+      "has_svg_root": true,
+      "has_xmlns": true,
+      "viewbox": "0 0 16 16",
+      "viewbox_correct": true,
+      "has_external_refs": false,
+      "has_raster_data": false,
+      "has_script_style": false,
+      "issues": []
+    },
+    {
+      "file": "file-sh.svg",
+      "valid_xml": true,
+      "has_svg_root": true,
+      "has_xmlns": true,
+      "viewbox": "0 0 16 16",
+      "viewbox_correct": true,
+      "has_external_refs": false,
+      "has_raster_data": false,
+      "has_script_style": false,
+      "issues": []
+    },
+    {
+      "file": "file-svg.svg",
+      "valid_xml": true,
+      "has_svg_root": true,
+      "has_xmlns": true,
+      "viewbox": "0 0 16 16",
+      "viewbox_correct": true,
+      "has_external_refs": false,
+      "has_raster_data": false,
+      "has_script_style": false,
+      "issues": []
+    },
+    {
+      "file": "file-toml.svg",
+      "valid_xml": true,
+      "has_svg_root": true,
+      "has_xmlns": true,
+      "viewbox": "0 0 16 16",
+      "viewbox_correct": true,
+      "has_external_refs": false,
+      "has_raster_data": false,
+      "has_script_style": false,
+      "issues": []
+    },
+    {
+      "file": "file-ts.svg",
+      "valid_xml": true,
+      "has_svg_root": true,
+      "has_xmlns": true,
+      "viewbox": "0 0 16 16",
+      "viewbox_correct": true,
+      "has_external_refs": false,
+      "has_raster_data": false,
+      "has_script_style": false,
+      "issues": []
+    },
+    {
+      "file": "file-tsx.svg",
+      "valid_xml": true,
+      "has_svg_root": true,
+      "has_xmlns": true,
+      "viewbox": "0 0 16 16",
+      "viewbox_correct": true,
+      "has_external_refs": false,
+      "has_raster_data": false,
+      "has_script_style": false,
+      "issues": []
+    },
+    {
+      "file": "file-wasm.svg",
+      "valid_xml": true,
+      "has_svg_root": true,
+      "has_xmlns": true,
+      "viewbox": "0 0 16 16",
+      "viewbox_correct": true,
+      "has_external_refs": false,
+      "has_raster_data": false,
+      "has_script_style": false,
+      "issues": []
+    },
+    {
+      "file": "file-yml.svg",
+      "valid_xml": true,
+      "has_svg_root": true,
+      "has_xmlns": true,
+      "viewbox": "0 0 16 16",
+      "viewbox_correct": true,
+      "has_external_refs": false,
+      "has_raster_data": false,
+      "has_script_style": false,
+      "issues": []
+    },
+    {
+      "file": "folder-default.svg",
+      "valid_xml": true,
+      "has_svg_root": true,
+      "has_xmlns": true,
+      "viewbox": "0 0 16 16",
+      "viewbox_correct": true,
+      "has_external_refs": false,
+      "has_raster_data": false,
+      "has_script_style": false,
+      "issues": []
+    },
+    {
+      "file": "folder-game-open.svg",
+      "valid_xml": true,
+      "has_svg_root": true,
+      "has_xmlns": true,
+      "viewbox": "0 0 16 16",
+      "viewbox_correct": true,
+      "has_external_refs": false,
+      "has_raster_data": false,
+      "has_script_style": false,
+      "issues": []
+    },
+    {
+      "file": "folder-game.svg",
+      "valid_xml": true,
+      "has_svg_root": true,
+      "has_xmlns": true,
+      "viewbox": "0 0 16 16",
+      "viewbox_correct": true,
+      "has_external_refs": false,
+      "has_raster_data": false,
+      "has_script_style": false,
+      "issues": []
+    },
+    {
+      "file": "folder-github-open.svg",
+      "valid_xml": true,
+      "has_svg_root": true,
+      "has_xmlns": true,
+      "viewbox": "0 0 16 16",
+      "viewbox_correct": true,
+      "has_external_refs": false,
+      "has_raster_data": false,
+      "has_script_style": false,
+      "issues": []
+    },
+    {
+      "file": "folder-github.svg",
+      "valid_xml": true,
+      "has_svg_root": true,
+      "has_xmlns": true,
+      "viewbox": "0 0 16 16",
+      "viewbox_correct": true,
+      "has_external_refs": false,
+      "has_raster_data": false,
+      "has_script_style": false,
+      "issues": []
+    },
+    {
+      "file": "folder-node-modules-open.svg",
+      "valid_xml": true,
+      "has_svg_root": true,
+      "has_xmlns": true,
+      "viewbox": "0 0 16 16",
+      "viewbox_correct": true,
+      "has_external_refs": false,
+      "has_raster_data": false,
+      "has_script_style": false,
+      "issues": []
+    },
+    {
+      "file": "folder-node-modules.svg",
+      "valid_xml": true,
+      "has_svg_root": true,
+      "has_xmlns": true,
+      "viewbox": "0 0 16 16",
+      "viewbox_correct": true,
+      "has_external_refs": false,
+      "has_raster_data": false,
+      "has_script_style": false,
+      "issues": []
+    },
+    {
+      "file": "folder-open.svg",
+      "valid_xml": true,
+      "has_svg_root": true,
+      "has_xmlns": true,
+      "viewbox": "0 0 16 16",
+      "viewbox_correct": true,
+      "has_external_refs": false,
+      "has_raster_data": false,
+      "has_script_style": false,
+      "issues": []
+    },
+    {
+      "file": "folder-scripts-open.svg",
+      "valid_xml": true,
+      "has_svg_root": true,
+      "has_xmlns": true,
+      "viewbox": "0 0 16 16",
+      "viewbox_correct": true,
+      "has_external_refs": false,
+      "has_raster_data": false,
+      "has_script_style": false,
+      "issues": []
+    },
+    {
+      "file": "folder-scripts.svg",
+      "valid_xml": true,
+      "has_svg_root": true,
+      "has_xmlns": true,
+      "viewbox": "0 0 16 16",
+      "viewbox_correct": true,
+      "has_external_refs": false,
+      "has_raster_data": false,
+      "has_script_style": false,
+      "issues": []
+    },
+    {
+      "file": "folder-src-open.svg",
+      "valid_xml": true,
+      "has_svg_root": true,
+      "has_xmlns": true,
+      "viewbox": "0 0 16 16",
+      "viewbox_correct": true,
+      "has_external_refs": false,
+      "has_raster_data": false,
+      "has_script_style": false,
+      "issues": []
+    },
+    {
+      "file": "folder-src.svg",
+      "valid_xml": true,
+      "has_svg_root": true,
+      "has_xmlns": true,
+      "viewbox": "0 0 16 16",
+      "viewbox_correct": true,
+      "has_external_refs": false,
+      "has_raster_data": false,
+      "has_script_style": false,
+      "issues": []
+    },
+    {
+      "file": "folder-temple-open.svg",
+      "valid_xml": true,
+      "has_svg_root": true,
+      "has_xmlns": true,
+      "viewbox": "0 0 16 16",
+      "viewbox_correct": true,
+      "has_external_refs": false,
+      "has_raster_data": false,
+      "has_script_style": false,
+      "issues": []
+    },
+    {
+      "file": "folder-temple.svg",
+      "valid_xml": true,
+      "has_svg_root": true,
+      "has_xmlns": true,
+      "viewbox": "0 0 16 16",
+      "viewbox_correct": true,
+      "has_external_refs": false,
+      "has_raster_data": false,
+      "has_script_style": false,
+      "issues": []
+    },
+    {
+      "file": "comment-discussion.svg",
+      "valid_xml": true,
+      "has_svg_root": true,
+      "has_xmlns": true,
+      "viewbox": "0 0 16 16",
+      "viewbox_correct": true,
+      "has_external_refs": false,
+      "has_raster_data": false,
+      "has_script_style": false,
+      "issues": []
+    },
+    {
+      "file": "flame.svg",
+      "valid_xml": true,
+      "has_svg_root": true,
+      "has_xmlns": true,
+      "viewbox": "0 0 16 16",
+      "viewbox_correct": true,
+      "has_external_refs": false,
+      "has_raster_data": false,
+      "has_script_style": false,
+      "issues": []
+    },
+    {
+      "file": "hammer.svg",
+      "valid_xml": true,
+      "has_svg_root": true,
+      "has_xmlns": true,
+      "viewbox": "0 0 16 16",
+      "viewbox_correct": true,
+      "has_external_refs": false,
+      "has_raster_data": false,
+      "has_script_style": false,
+      "issues": []
+    },
+    {
+      "file": "layers.svg",
+      "valid_xml": true,
+      "has_svg_root": true,
+      "has_xmlns": true,
+      "viewbox": "0 0 16 16",
+      "viewbox_correct": true,
+      "has_external_refs": false,
+      "has_raster_data": false,
+      "has_script_style": false,
+      "issues": []
+    },
+    {
+      "file": "paintcan.svg",
+      "valid_xml": true,
+      "has_svg_root": true,
+      "has_xmlns": true,
+      "viewbox": "0 0 16 16",
+      "viewbox_correct": true,
+      "has_external_refs": false,
+      "has_raster_data": false,
+      "has_script_style": false,
+      "issues": []
+    },
+    {
+      "file": "pulse.svg",
+      "valid_xml": true,
+      "has_svg_root": true,
+      "has_xmlns": true,
+      "viewbox": "0 0 16 16",
+      "viewbox_correct": true,
+      "has_external_refs": false,
+      "has_raster_data": false,
+      "has_script_style": false,
+      "issues": []
+    },
+    {
+      "file": "shield.svg",
+      "valid_xml": true,
+      "has_svg_root": true,
+      "has_xmlns": true,
+      "viewbox": "0 0 16 16",
+      "viewbox_correct": true,
+      "has_external_refs": false,
+      "has_raster_data": false,
+      "has_script_style": false,
+      "issues": []
+    }
+  ],
+  "stage_1_1_contrast": [
+    {
+      "file": "file-claude.svg",
+      "all_pass": true,
+      "checks": [
+        {
+          "color": "#908672",
+          "background": "#050505",
+          "ratio": 5.67,
+          "passes_aa_large": true
+        },
+        {
+          "color": "#908672",
+          "background": "#0A0A0A",
+          "ratio": 5.5,
+          "passes_aa_large": true
+        },
+        {
+          "color": "#F4C430",
+          "background": "#050505",
+          "ratio": 12.41,
+          "passes_aa_large": true
+        },
+        {
+          "color": "#F4C430",
+          "background": "#0A0A0A",
+          "ratio": 12.05,
+          "passes_aa_large": true
+        }
+      ]
+    },
+    {
+      "file": "file-copilot.svg",
+      "all_pass": true,
+      "checks": [
+        {
+          "color": "#908672",
+          "background": "#050505",
+          "ratio": 5.67,
+          "passes_aa_large": true
+        },
+        {
+          "color": "#908672",
+          "background": "#0A0A0A",
+          "ratio": 5.5,
+          "passes_aa_large": true
+        },
+        {
+          "color": "#7AAAB2",
+          "background": "#050505",
+          "ratio": 7.98,
+          "passes_aa_large": true
+        },
+        {
+          "color": "#7AAAB2",
+          "background": "#0A0A0A",
+          "ratio": 7.75,
+          "passes_aa_large": true
+        }
+      ]
+    },
+    {
+      "file": "file-css.svg",
+      "all_pass": true,
+      "checks": [
+        {
+          "color": "#908672",
+          "background": "#050505",
+          "ratio": 5.67,
+          "passes_aa_large": true
+        },
+        {
+          "color": "#908672",
+          "background": "#0A0A0A",
+          "ratio": 5.5,
+          "passes_aa_large": true
+        },
+        {
+          "color": "#D4907A",
+          "background": "#050505",
+          "ratio": 7.83,
+          "passes_aa_large": true
+        },
+        {
+          "color": "#D4907A",
+          "background": "#0A0A0A",
+          "ratio": 7.61,
+          "passes_aa_large": true
+        }
+      ]
+    },
+    {
+      "file": "file-default.svg",
+      "all_pass": true,
+      "checks": [
+        {
+          "color": "#908672",
+          "background": "#050505",
+          "ratio": 5.67,
+          "passes_aa_large": true
+        },
+        {
+          "color": "#908672",
+          "background": "#0A0A0A",
+          "ratio": 5.5,
+          "passes_aa_large": true
+        },
+        {
+          "color": "#F4C430",
+          "background": "#050505",
+          "ratio": 12.41,
+          "passes_aa_large": true
+        },
+        {
+          "color": "#F4C430",
+          "background": "#0A0A0A",
+          "ratio": 12.05,
+          "passes_aa_large": true
+        }
+      ]
+    },
+    {
+      "file": "file-env.svg",
+      "all_pass": true,
+      "checks": [
+        {
+          "color": "#908672",
+          "background": "#050505",
+          "ratio": 5.67,
+          "passes_aa_large": true
+        },
+        {
+          "color": "#908672",
+          "background": "#0A0A0A",
+          "ratio": 5.5,
+          "passes_aa_large": true
+        },
+        {
+          "color": "#D7B562",
+          "background": "#050505",
+          "ratio": 10.36,
+          "passes_aa_large": true
+        },
+        {
+          "color": "#D7B562",
+          "background": "#0A0A0A",
+          "ratio": 10.06,
+          "passes_aa_large": true
+        }
+      ]
+    },
+    {
+      "file": "file-git.svg",
+      "all_pass": true,
+      "checks": [
+        {
+          "color": "#908672",
+          "background": "#050505",
+          "ratio": 5.67,
+          "passes_aa_large": true
+        },
+        {
+          "color": "#908672",
+          "background": "#0A0A0A",
+          "ratio": 5.5,
+          "passes_aa_large": true
+        },
+        {
+          "color": "#D4714E",
+          "background": "#050505",
+          "ratio": 6.09,
+          "passes_aa_large": true
+        },
+        {
+          "color": "#D4714E",
+          "background": "#0A0A0A",
+          "ratio": 5.91,
+          "passes_aa_large": true
+        }
+      ]
+    },
+    {
+      "file": "file-go.svg",
+      "all_pass": true,
+      "checks": [
+        {
+          "color": "#908672",
+          "background": "#050505",
+          "ratio": 5.67,
+          "passes_aa_large": true
+        },
+        {
+          "color": "#908672",
+          "background": "#0A0A0A",
+          "ratio": 5.5,
+          "passes_aa_large": true
+        },
+        {
+          "color": "#7AAAB2",
+          "background": "#050505",
+          "ratio": 7.98,
+          "passes_aa_large": true
+        },
+        {
+          "color": "#7AAAB2",
+          "background": "#0A0A0A",
+          "ratio": 7.75,
+          "passes_aa_large": true
+        }
+      ]
+    },
+    {
+      "file": "file-html.svg",
+      "all_pass": true,
+      "checks": [
+        {
+          "color": "#908672",
+          "background": "#050505",
+          "ratio": 5.67,
+          "passes_aa_large": true
+        },
+        {
+          "color": "#908672",
+          "background": "#0A0A0A",
+          "ratio": 5.5,
+          "passes_aa_large": true
+        },
+        {
+          "color": "#D4714E",
+          "background": "#050505",
+          "ratio": 6.09,
+          "passes_aa_large": true
+        },
+        {
+          "color": "#D4714E",
+          "background": "#0A0A0A",
+          "ratio": 5.91,
+          "passes_aa_large": true
+        }
+      ]
+    },
+    {
+      "file": "file-img.svg",
+      "all_pass": true,
+      "checks": [
+        {
+          "color": "#908672",
+          "background": "#050505",
+          "ratio": 5.67,
+          "passes_aa_large": true
+        },
+        {
+          "color": "#908672",
+          "background": "#0A0A0A",
+          "ratio": 5.5,
+          "passes_aa_large": true
+        },
+        {
+          "color": "#F4C430",
+          "background": "#050505",
+          "ratio": 12.41,
+          "passes_aa_large": true
+        },
+        {
+          "color": "#F4C430",
+          "background": "#0A0A0A",
+          "ratio": 12.05,
+          "passes_aa_large": true
+        }
+      ]
+    },
+    {
+      "file": "file-js.svg",
+      "all_pass": true,
+      "checks": [
+        {
+          "color": "#908672",
+          "background": "#050505",
+          "ratio": 5.67,
+          "passes_aa_large": true
+        },
+        {
+          "color": "#908672",
+          "background": "#0A0A0A",
+          "ratio": 5.5,
+          "passes_aa_large": true
+        },
+        {
+          "color": "#D7B562",
+          "background": "#050505",
+          "ratio": 10.36,
+          "passes_aa_large": true
+        },
+        {
+          "color": "#D7B562",
+          "background": "#0A0A0A",
+          "ratio": 10.06,
+          "passes_aa_large": true
+        }
+      ]
+    },
+    {
+      "file": "file-json.svg",
+      "all_pass": true,
+      "checks": [
+        {
+          "color": "#908672",
+          "background": "#050505",
+          "ratio": 5.67,
+          "passes_aa_large": true
+        },
+        {
+          "color": "#908672",
+          "background": "#0A0A0A",
+          "ratio": 5.5,
+          "passes_aa_large": true
+        },
+        {
+          "color": "#B9A37A",
+          "background": "#050505",
+          "ratio": 8.33,
+          "passes_aa_large": true
+        },
+        {
+          "color": "#B9A37A",
+          "background": "#0A0A0A",
+          "ratio": 8.09,
+          "passes_aa_large": true
+        }
+      ]
+    },
+    {
+      "file": "file-jsx.svg",
+      "all_pass": true,
+      "checks": [
+        {
+          "color": "#908672",
+          "background": "#050505",
+          "ratio": 5.67,
+          "passes_aa_large": true
+        },
+        {
+          "color": "#908672",
+          "background": "#0A0A0A",
+          "ratio": 5.5,
+          "passes_aa_large": true
+        },
+        {
+          "color": "#D7B562",
+          "background": "#050505",
+          "ratio": 10.36,
+          "passes_aa_large": true
+        },
+        {
+          "color": "#D7B562",
+          "background": "#0A0A0A",
+          "ratio": 10.06,
+          "passes_aa_large": true
+        }
+      ]
+    },
+    {
+      "file": "file-lock.svg",
+      "all_pass": true,
+      "checks": [
+        {
+          "color": "#908672",
+          "background": "#050505",
+          "ratio": 5.67,
+          "passes_aa_large": true
+        },
+        {
+          "color": "#908672",
+          "background": "#0A0A0A",
+          "ratio": 5.5,
+          "passes_aa_large": true
+        },
+        {
+          "color": "#F4C430",
+          "background": "#050505",
+          "ratio": 12.41,
+          "passes_aa_large": true
+        },
+        {
+          "color": "#F4C430",
+          "background": "#0A0A0A",
+          "ratio": 12.05,
+          "passes_aa_large": true
+        }
+      ]
+    },
+    {
+      "file": "file-md.svg",
+      "all_pass": true,
+      "checks": [
+        {
+          "color": "#908672",
+          "background": "#050505",
+          "ratio": 5.67,
+          "passes_aa_large": true
+        },
+        {
+          "color": "#908672",
+          "background": "#0A0A0A",
+          "ratio": 5.5,
+          "passes_aa_large": true
+        },
+        {
+          "color": "#B9A37A",
+          "background": "#050505",
+          "ratio": 8.33,
+          "passes_aa_large": true
+        },
+        {
+          "color": "#B9A37A",
+          "background": "#0A0A0A",
+          "ratio": 8.09,
+          "passes_aa_large": true
+        }
+      ]
+    },
+    {
+      "file": "file-ps1.svg",
+      "all_pass": true,
+      "checks": [
+        {
+          "color": "#908672",
+          "background": "#050505",
+          "ratio": 5.67,
+          "passes_aa_large": true
+        },
+        {
+          "color": "#908672",
+          "background": "#0A0A0A",
+          "ratio": 5.5,
+          "passes_aa_large": true
+        },
+        {
+          "color": "#7AAAB2",
+          "background": "#050505",
+          "ratio": 7.98,
+          "passes_aa_large": true
+        },
+        {
+          "color": "#7AAAB2",
+          "background": "#0A0A0A",
+          "ratio": 7.75,
+          "passes_aa_large": true
+        }
+      ]
+    },
+    {
+      "file": "file-py.svg",
+      "all_pass": true,
+      "checks": [
+        {
+          "color": "#908672",
+          "background": "#050505",
+          "ratio": 5.67,
+          "passes_aa_large": true
+        },
+        {
+          "color": "#908672",
+          "background": "#0A0A0A",
+          "ratio": 5.5,
+          "passes_aa_large": true
+        },
+        {
+          "color": "#D4714E",
+          "background": "#050505",
+          "ratio": 6.09,
+          "passes_aa_large": true
+        },
+        {
+          "color": "#D4714E",
+          "background": "#0A0A0A",
+          "ratio": 5.91,
+          "passes_aa_large": true
+        }
+      ]
+    },
+    {
+      "file": "file-rb.svg",
+      "all_pass": true,
+      "checks": [
+        {
+          "color": "#908672",
+          "background": "#050505",
+          "ratio": 5.67,
+          "passes_aa_large": true
+        },
+        {
+          "color": "#908672",
+          "background": "#0A0A0A",
+          "ratio": 5.5,
+          "passes_aa_large": true
+        },
+        {
+          "color": "#E05545",
+          "background": "#050505",
+          "ratio": 5.39,
+          "passes_aa_large": true
+        },
+        {
+          "color": "#E05545",
+          "background": "#0A0A0A",
+          "ratio": 5.24,
+          "passes_aa_large": true
+        }
+      ]
+    },
+    {
+      "file": "file-rs.svg",
+      "all_pass": true,
+      "checks": [
+        {
+          "color": "#908672",
+          "background": "#050505",
+          "ratio": 5.67,
+          "passes_aa_large": true
+        },
+        {
+          "color": "#908672",
+          "background": "#0A0A0A",
+          "ratio": 5.5,
+          "passes_aa_large": true
+        },
+        {
+          "color": "#F4C430",
+          "background": "#050505",
+          "ratio": 12.41,
+          "passes_aa_large": true
+        },
+        {
+          "color": "#F4C430",
+          "background": "#0A0A0A",
+          "ratio": 12.05,
+          "passes_aa_large": true
+        }
+      ]
+    },
+    {
+      "file": "file-rust-toml.svg",
+      "all_pass": true,
+      "checks": [
+        {
+          "color": "#908672",
+          "background": "#050505",
+          "ratio": 5.67,
+          "passes_aa_large": true
+        },
+        {
+          "color": "#908672",
+          "background": "#0A0A0A",
+          "ratio": 5.5,
+          "passes_aa_large": true
+        },
+        {
+          "color": "#F4C430",
+          "background": "#050505",
+          "ratio": 12.41,
+          "passes_aa_large": true
+        },
+        {
+          "color": "#F4C430",
+          "background": "#0A0A0A",
+          "ratio": 12.05,
+          "passes_aa_large": true
+        }
+      ]
+    },
+    {
+      "file": "file-sh.svg",
+      "all_pass": true,
+      "checks": [
+        {
+          "color": "#908672",
+          "background": "#050505",
+          "ratio": 5.67,
+          "passes_aa_large": true
+        },
+        {
+          "color": "#908672",
+          "background": "#0A0A0A",
+          "ratio": 5.5,
+          "passes_aa_large": true
+        },
+        {
+          "color": "#8CB87A",
+          "background": "#050505",
+          "ratio": 8.98,
+          "passes_aa_large": true
+        },
+        {
+          "color": "#8CB87A",
+          "background": "#0A0A0A",
+          "ratio": 8.72,
+          "passes_aa_large": true
+        }
+      ]
+    },
+    {
+      "file": "file-svg.svg",
+      "all_pass": true,
+      "checks": [
+        {
+          "color": "#908672",
+          "background": "#050505",
+          "ratio": 5.67,
+          "passes_aa_large": true
+        },
+        {
+          "color": "#908672",
+          "background": "#0A0A0A",
+          "ratio": 5.5,
+          "passes_aa_large": true
+        },
+        {
+          "color": "#D4907A",
+          "background": "#050505",
+          "ratio": 7.83,
+          "passes_aa_large": true
+        },
+        {
+          "color": "#D4907A",
+          "background": "#0A0A0A",
+          "ratio": 7.61,
+          "passes_aa_large": true
+        }
+      ]
+    },
+    {
+      "file": "file-toml.svg",
+      "all_pass": true,
+      "checks": [
+        {
+          "color": "#908672",
+          "background": "#050505",
+          "ratio": 5.67,
+          "passes_aa_large": true
+        },
+        {
+          "color": "#908672",
+          "background": "#0A0A0A",
+          "ratio": 5.5,
+          "passes_aa_large": true
+        },
+        {
+          "color": "#D4714E",
+          "background": "#050505",
+          "ratio": 6.09,
+          "passes_aa_large": true
+        },
+        {
+          "color": "#D4714E",
+          "background": "#0A0A0A",
+          "ratio": 5.91,
+          "passes_aa_large": true
+        }
+      ]
+    },
+    {
+      "file": "file-ts.svg",
+      "all_pass": true,
+      "checks": [
+        {
+          "color": "#908672",
+          "background": "#050505",
+          "ratio": 5.67,
+          "passes_aa_large": true
+        },
+        {
+          "color": "#908672",
+          "background": "#0A0A0A",
+          "ratio": 5.5,
+          "passes_aa_large": true
+        },
+        {
+          "color": "#7AAAB2",
+          "background": "#050505",
+          "ratio": 7.98,
+          "passes_aa_large": true
+        },
+        {
+          "color": "#7AAAB2",
+          "background": "#0A0A0A",
+          "ratio": 7.75,
+          "passes_aa_large": true
+        }
+      ]
+    },
+    {
+      "file": "file-tsx.svg",
+      "all_pass": true,
+      "checks": [
+        {
+          "color": "#908672",
+          "background": "#050505",
+          "ratio": 5.67,
+          "passes_aa_large": true
+        },
+        {
+          "color": "#908672",
+          "background": "#0A0A0A",
+          "ratio": 5.5,
+          "passes_aa_large": true
+        },
+        {
+          "color": "#7AAAB2",
+          "background": "#050505",
+          "ratio": 7.98,
+          "passes_aa_large": true
+        },
+        {
+          "color": "#7AAAB2",
+          "background": "#0A0A0A",
+          "ratio": 7.75,
+          "passes_aa_large": true
+        }
+      ]
+    },
+    {
+      "file": "file-wasm.svg",
+      "all_pass": true,
+      "checks": [
+        {
+          "color": "#908672",
+          "background": "#050505",
+          "ratio": 5.67,
+          "passes_aa_large": true
+        },
+        {
+          "color": "#908672",
+          "background": "#0A0A0A",
+          "ratio": 5.5,
+          "passes_aa_large": true
+        },
+        {
+          "color": "#D4907A",
+          "background": "#050505",
+          "ratio": 7.83,
+          "passes_aa_large": true
+        },
+        {
+          "color": "#D4907A",
+          "background": "#0A0A0A",
+          "ratio": 7.61,
+          "passes_aa_large": true
+        }
+      ]
+    },
+    {
+      "file": "file-yml.svg",
+      "all_pass": true,
+      "checks": [
+        {
+          "color": "#908672",
+          "background": "#050505",
+          "ratio": 5.67,
+          "passes_aa_large": true
+        },
+        {
+          "color": "#908672",
+          "background": "#0A0A0A",
+          "ratio": 5.5,
+          "passes_aa_large": true
+        },
+        {
+          "color": "#D4907A",
+          "background": "#050505",
+          "ratio": 7.83,
+          "passes_aa_large": true
+        },
+        {
+          "color": "#D4907A",
+          "background": "#0A0A0A",
+          "ratio": 7.61,
+          "passes_aa_large": true
+        }
+      ]
+    },
+    {
+      "file": "folder-default.svg",
+      "all_pass": true,
+      "checks": [
+        {
+          "color": "#908672",
+          "background": "#050505",
+          "ratio": 5.67,
+          "passes_aa_large": true
+        },
+        {
+          "color": "#908672",
+          "background": "#0A0A0A",
+          "ratio": 5.5,
+          "passes_aa_large": true
+        },
+        {
+          "color": "#F4C430",
+          "background": "#050505",
+          "ratio": 12.41,
+          "passes_aa_large": true
+        },
+        {
+          "color": "#F4C430",
+          "background": "#0A0A0A",
+          "ratio": 12.05,
+          "passes_aa_large": true
+        }
+      ]
+    },
+    {
+      "file": "folder-game-open.svg",
+      "all_pass": true,
+      "checks": [
+        {
+          "color": "#D4907A",
+          "background": "#050505",
+          "ratio": 7.83,
+          "passes_aa_large": true
+        },
+        {
+          "color": "#D4907A",
+          "background": "#0A0A0A",
+          "ratio": 7.61,
+          "passes_aa_large": true
+        }
+      ]
+    },
+    {
+      "file": "folder-game.svg",
+      "all_pass": true,
+      "checks": [
+        {
+          "color": "#D4907A",
+          "background": "#050505",
+          "ratio": 7.83,
+          "passes_aa_large": true
+        },
+        {
+          "color": "#D4907A",
+          "background": "#0A0A0A",
+          "ratio": 7.61,
+          "passes_aa_large": true
+        }
+      ]
+    },
+    {
+      "file": "folder-github-open.svg",
+      "all_pass": true,
+      "checks": [
+        {
+          "color": "#D4714E",
+          "background": "#050505",
+          "ratio": 6.09,
+          "passes_aa_large": true
+        },
+        {
+          "color": "#D4714E",
+          "background": "#0A0A0A",
+          "ratio": 5.91,
+          "passes_aa_large": true
+        }
+      ]
+    },
+    {
+      "file": "folder-github.svg",
+      "all_pass": true,
+      "checks": [
+        {
+          "color": "#D4714E",
+          "background": "#050505",
+          "ratio": 6.09,
+          "passes_aa_large": true
+        },
+        {
+          "color": "#D4714E",
+          "background": "#0A0A0A",
+          "ratio": 5.91,
+          "passes_aa_large": true
+        }
+      ]
+    },
+    {
+      "file": "folder-node-modules-open.svg",
+      "all_pass": true,
+      "checks": [
+        {
+          "color": "#908672",
+          "background": "#050505",
+          "ratio": 5.67,
+          "passes_aa_large": true
+        },
+        {
+          "color": "#908672",
+          "background": "#0A0A0A",
+          "ratio": 5.5,
+          "passes_aa_large": true
+        }
+      ]
+    },
+    {
+      "file": "folder-node-modules.svg",
+      "all_pass": true,
+      "checks": [
+        {
+          "color": "#908672",
+          "background": "#050505",
+          "ratio": 5.67,
+          "passes_aa_large": true
+        },
+        {
+          "color": "#908672",
+          "background": "#0A0A0A",
+          "ratio": 5.5,
+          "passes_aa_large": true
+        }
+      ]
+    },
+    {
+      "file": "folder-open.svg",
+      "all_pass": true,
+      "checks": [
+        {
+          "color": "#F4C430",
+          "background": "#050505",
+          "ratio": 12.41,
+          "passes_aa_large": true
+        },
+        {
+          "color": "#F4C430",
+          "background": "#0A0A0A",
+          "ratio": 12.05,
+          "passes_aa_large": true
+        }
+      ]
+    },
+    {
+      "file": "folder-scripts-open.svg",
+      "all_pass": true,
+      "checks": [
+        {
+          "color": "#D7B562",
+          "background": "#050505",
+          "ratio": 10.36,
+          "passes_aa_large": true
+        },
+        {
+          "color": "#D7B562",
+          "background": "#0A0A0A",
+          "ratio": 10.06,
+          "passes_aa_large": true
+        }
+      ]
+    },
+    {
+      "file": "folder-scripts.svg",
+      "all_pass": true,
+      "checks": [
+        {
+          "color": "#D7B562",
+          "background": "#050505",
+          "ratio": 10.36,
+          "passes_aa_large": true
+        },
+        {
+          "color": "#D7B562",
+          "background": "#0A0A0A",
+          "ratio": 10.06,
+          "passes_aa_large": true
+        }
+      ]
+    },
+    {
+      "file": "folder-src-open.svg",
+      "all_pass": true,
+      "checks": [
+        {
+          "color": "#7AAAB2",
+          "background": "#050505",
+          "ratio": 7.98,
+          "passes_aa_large": true
+        },
+        {
+          "color": "#7AAAB2",
+          "background": "#0A0A0A",
+          "ratio": 7.75,
+          "passes_aa_large": true
+        }
+      ]
+    },
+    {
+      "file": "folder-src.svg",
+      "all_pass": true,
+      "checks": [
+        {
+          "color": "#7AAAB2",
+          "background": "#050505",
+          "ratio": 7.98,
+          "passes_aa_large": true
+        },
+        {
+          "color": "#7AAAB2",
+          "background": "#0A0A0A",
+          "ratio": 7.75,
+          "passes_aa_large": true
+        }
+      ]
+    },
+    {
+      "file": "folder-temple-open.svg",
+      "all_pass": true,
+      "checks": [
+        {
+          "color": "#F4C430",
+          "background": "#050505",
+          "ratio": 12.41,
+          "passes_aa_large": true
+        },
+        {
+          "color": "#F4C430",
+          "background": "#0A0A0A",
+          "ratio": 12.05,
+          "passes_aa_large": true
+        }
+      ]
+    },
+    {
+      "file": "folder-temple.svg",
+      "all_pass": true,
+      "checks": [
+        {
+          "color": "#F4C430",
+          "background": "#050505",
+          "ratio": 12.41,
+          "passes_aa_large": true
+        },
+        {
+          "color": "#F4C430",
+          "background": "#0A0A0A",
+          "ratio": 12.05,
+          "passes_aa_large": true
+        }
+      ]
+    },
+    {
+      "file": "comment-discussion.svg",
+      "all_pass": true,
+      "checks": []
+    },
+    {
+      "file": "flame.svg",
+      "all_pass": true,
+      "checks": []
+    },
+    {
+      "file": "hammer.svg",
+      "all_pass": true,
+      "checks": []
+    },
+    {
+      "file": "layers.svg",
+      "all_pass": true,
+      "checks": []
+    },
+    {
+      "file": "paintcan.svg",
+      "all_pass": true,
+      "checks": []
+    },
+    {
+      "file": "pulse.svg",
+      "all_pass": true,
+      "checks": []
+    },
+    {
+      "file": "shield.svg",
+      "all_pass": true,
+      "checks": []
+    }
+  ],
+  "stage_1_2_palette": [
+    {
+      "file": "file-claude.svg",
+      "total_colors": 3,
+      "on_palette": [
+        "#0A0A0A",
+        "#908672",
+        "#F4C430"
+      ],
+      "off_palette": [],
+      "palette_adherence": 100.0
+    },
+    {
+      "file": "file-copilot.svg",
+      "total_colors": 3,
+      "on_palette": [
+        "#0A0A0A",
+        "#908672",
+        "#7AAAB2"
+      ],
+      "off_palette": [],
+      "palette_adherence": 100.0
+    },
+    {
+      "file": "file-css.svg",
+      "total_colors": 3,
+      "on_palette": [
+        "#0A0A0A",
+        "#908672",
+        "#D4907A"
+      ],
+      "off_palette": [],
+      "palette_adherence": 100.0
+    },
+    {
+      "file": "file-default.svg",
+      "total_colors": 3,
+      "on_palette": [
+        "#0A0A0A",
+        "#908672",
+        "#F4C430"
+      ],
+      "off_palette": [],
+      "palette_adherence": 100.0
+    },
+    {
+      "file": "file-env.svg",
+      "total_colors": 3,
+      "on_palette": [
+        "#0A0A0A",
+        "#908672",
+        "#D7B562"
+      ],
+      "off_palette": [],
+      "palette_adherence": 100.0
+    },
+    {
+      "file": "file-git.svg",
+      "total_colors": 3,
+      "on_palette": [
+        "#0A0A0A",
+        "#908672",
+        "#D4714E"
+      ],
+      "off_palette": [],
+      "palette_adherence": 100.0
+    },
+    {
+      "file": "file-go.svg",
+      "total_colors": 3,
+      "on_palette": [
+        "#0A0A0A",
+        "#908672",
+        "#7AAAB2"
+      ],
+      "off_palette": [],
+      "palette_adherence": 100.0
+    },
+    {
+      "file": "file-html.svg",
+      "total_colors": 4,
+      "on_palette": [
+        "#0A0A0A",
+        "#908672",
+        "#D4714E",
+        "#050505"
+      ],
+      "off_palette": [],
+      "palette_adherence": 100.0
+    },
+    {
+      "file": "file-img.svg",
+      "total_colors": 3,
+      "on_palette": [
+        "#0A0A0A",
+        "#908672",
+        "#F4C430"
+      ],
+      "off_palette": [],
+      "palette_adherence": 100.0
+    },
+    {
+      "file": "file-js.svg",
+      "total_colors": 3,
+      "on_palette": [
+        "#0A0A0A",
+        "#908672",
+        "#D7B562"
+      ],
+      "off_palette": [],
+      "palette_adherence": 100.0
+    },
+    {
+      "file": "file-json.svg",
+      "total_colors": 3,
+      "on_palette": [
+        "#0A0A0A",
+        "#908672",
+        "#B9A37A"
+      ],
+      "off_palette": [],
+      "palette_adherence": 100.0
+    },
+    {
+      "file": "file-jsx.svg",
+      "total_colors": 3,
+      "on_palette": [
+        "#0A0A0A",
+        "#908672",
+        "#D7B562"
+      ],
+      "off_palette": [],
+      "palette_adherence": 100.0
+    },
+    {
+      "file": "file-lock.svg",
+      "total_colors": 3,
+      "on_palette": [
+        "#0A0A0A",
+        "#908672",
+        "#F4C430"
+      ],
+      "off_palette": [],
+      "palette_adherence": 100.0
+    },
+    {
+      "file": "file-md.svg",
+      "total_colors": 3,
+      "on_palette": [
+        "#0A0A0A",
+        "#908672",
+        "#B9A37A"
+      ],
+      "off_palette": [],
+      "palette_adherence": 100.0
+    },
+    {
+      "file": "file-ps1.svg",
+      "total_colors": 3,
+      "on_palette": [
+        "#0A0A0A",
+        "#908672",
+        "#7AAAB2"
+      ],
+      "off_palette": [],
+      "palette_adherence": 100.0
+    },
+    {
+      "file": "file-py.svg",
+      "total_colors": 3,
+      "on_palette": [
+        "#0A0A0A",
+        "#908672",
+        "#D4714E"
+      ],
+      "off_palette": [],
+      "palette_adherence": 100.0
+    },
+    {
+      "file": "file-rb.svg",
+      "total_colors": 3,
+      "on_palette": [
+        "#0A0A0A",
+        "#908672",
+        "#E05545"
+      ],
+      "off_palette": [],
+      "palette_adherence": 100.0
+    },
+    {
+      "file": "file-rs.svg",
+      "total_colors": 3,
+      "on_palette": [
+        "#0A0A0A",
+        "#908672",
+        "#F4C430"
+      ],
+      "off_palette": [],
+      "palette_adherence": 100.0
+    },
+    {
+      "file": "file-rust-toml.svg",
+      "total_colors": 3,
+      "on_palette": [
+        "#0A0A0A",
+        "#908672",
+        "#F4C430"
+      ],
+      "off_palette": [],
+      "palette_adherence": 100.0
+    },
+    {
+      "file": "file-sh.svg",
+      "total_colors": 3,
+      "on_palette": [
+        "#0A0A0A",
+        "#908672",
+        "#8CB87A"
+      ],
+      "off_palette": [],
+      "palette_adherence": 100.0
+    },
+    {
+      "file": "file-svg.svg",
+      "total_colors": 3,
+      "on_palette": [
+        "#0A0A0A",
+        "#908672",
+        "#D4907A"
+      ],
+      "off_palette": [],
+      "palette_adherence": 100.0
+    },
+    {
+      "file": "file-toml.svg",
+      "total_colors": 3,
+      "on_palette": [
+        "#0A0A0A",
+        "#908672",
+        "#D4714E"
+      ],
+      "off_palette": [],
+      "palette_adherence": 100.0
+    },
+    {
+      "file": "file-ts.svg",
+      "total_colors": 3,
+      "on_palette": [
+        "#0A0A0A",
+        "#908672",
+        "#7AAAB2"
+      ],
+      "off_palette": [],
+      "palette_adherence": 100.0
+    },
+    {
+      "file": "file-tsx.svg",
+      "total_colors": 3,
+      "on_palette": [
+        "#0A0A0A",
+        "#908672",
+        "#7AAAB2"
+      ],
+      "off_palette": [],
+      "palette_adherence": 100.0
+    },
+    {
+      "file": "file-wasm.svg",
+      "total_colors": 3,
+      "on_palette": [
+        "#0A0A0A",
+        "#908672",
+        "#D4907A"
+      ],
+      "off_palette": [],
+      "palette_adherence": 100.0
+    },
+    {
+      "file": "file-yml.svg",
+      "total_colors": 3,
+      "on_palette": [
+        "#0A0A0A",
+        "#908672",
+        "#D4907A"
+      ],
+      "off_palette": [],
+      "palette_adherence": 100.0
+    },
+    {
+      "file": "folder-default.svg",
+      "total_colors": 3,
+      "on_palette": [
+        "#0A0A0A",
+        "#908672",
+        "#F4C430"
+      ],
+      "off_palette": [],
+      "palette_adherence": 100.0
+    },
+    {
+      "file": "folder-game-open.svg",
+      "total_colors": 2,
+      "on_palette": [
+        "#0A0A0A",
+        "#D4907A"
+      ],
+      "off_palette": [],
+      "palette_adherence": 100.0
+    },
+    {
+      "file": "folder-game.svg",
+      "total_colors": 2,
+      "on_palette": [
+        "#0A0A0A",
+        "#D4907A"
+      ],
+      "off_palette": [],
+      "palette_adherence": 100.0
+    },
+    {
+      "file": "folder-github-open.svg",
+      "total_colors": 2,
+      "on_palette": [
+        "#0A0A0A",
+        "#D4714E"
+      ],
+      "off_palette": [],
+      "palette_adherence": 100.0
+    },
+    {
+      "file": "folder-github.svg",
+      "total_colors": 2,
+      "on_palette": [
+        "#0A0A0A",
+        "#D4714E"
+      ],
+      "off_palette": [],
+      "palette_adherence": 100.0
+    },
+    {
+      "file": "folder-node-modules-open.svg",
+      "total_colors": 2,
+      "on_palette": [
+        "#0A0A0A",
+        "#908672"
+      ],
+      "off_palette": [],
+      "palette_adherence": 100.0
+    },
+    {
+      "file": "folder-node-modules.svg",
+      "total_colors": 2,
+      "on_palette": [
+        "#0A0A0A",
+        "#908672"
+      ],
+      "off_palette": [],
+      "palette_adherence": 100.0
+    },
+    {
+      "file": "folder-open.svg",
+      "total_colors": 2,
+      "on_palette": [
+        "#0A0A0A",
+        "#F4C430"
+      ],
+      "off_palette": [],
+      "palette_adherence": 100.0
+    },
+    {
+      "file": "folder-scripts-open.svg",
+      "total_colors": 2,
+      "on_palette": [
+        "#0A0A0A",
+        "#D7B562"
+      ],
+      "off_palette": [],
+      "palette_adherence": 100.0
+    },
+    {
+      "file": "folder-scripts.svg",
+      "total_colors": 2,
+      "on_palette": [
+        "#0A0A0A",
+        "#D7B562"
+      ],
+      "off_palette": [],
+      "palette_adherence": 100.0
+    },
+    {
+      "file": "folder-src-open.svg",
+      "total_colors": 2,
+      "on_palette": [
+        "#0A0A0A",
+        "#7AAAB2"
+      ],
+      "off_palette": [],
+      "palette_adherence": 100.0
+    },
+    {
+      "file": "folder-src.svg",
+      "total_colors": 2,
+      "on_palette": [
+        "#0A0A0A",
+        "#7AAAB2"
+      ],
+      "off_palette": [],
+      "palette_adherence": 100.0
+    },
+    {
+      "file": "folder-temple-open.svg",
+      "total_colors": 2,
+      "on_palette": [
+        "#0A0A0A",
+        "#F4C430"
+      ],
+      "off_palette": [],
+      "palette_adherence": 100.0
+    },
+    {
+      "file": "folder-temple.svg",
+      "total_colors": 2,
+      "on_palette": [
+        "#0A0A0A",
+        "#F4C430"
+      ],
+      "off_palette": [],
+      "palette_adherence": 100.0
+    },
+    {
+      "file": "comment-discussion.svg",
+      "total_colors": 0,
+      "on_palette": [],
+      "off_palette": [],
+      "palette_adherence": 100.0
+    },
+    {
+      "file": "flame.svg",
+      "total_colors": 0,
+      "on_palette": [],
+      "off_palette": [],
+      "palette_adherence": 100.0
+    },
+    {
+      "file": "hammer.svg",
+      "total_colors": 0,
+      "on_palette": [],
+      "off_palette": [],
+      "palette_adherence": 100.0
+    },
+    {
+      "file": "layers.svg",
+      "total_colors": 0,
+      "on_palette": [],
+      "off_palette": [],
+      "palette_adherence": 100.0
+    },
+    {
+      "file": "paintcan.svg",
+      "total_colors": 0,
+      "on_palette": [],
+      "off_palette": [],
+      "palette_adherence": 100.0
+    },
+    {
+      "file": "pulse.svg",
+      "total_colors": 0,
+      "on_palette": [],
+      "off_palette": [],
+      "palette_adherence": 100.0
+    },
+    {
+      "file": "shield.svg",
+      "total_colors": 0,
+      "on_palette": [],
+      "off_palette": [],
+      "palette_adherence": 100.0
+    }
+  ]
+}

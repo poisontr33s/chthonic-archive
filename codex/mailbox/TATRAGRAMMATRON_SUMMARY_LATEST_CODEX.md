@@ -1,7 +1,7 @@
 # Skill Polisher Summary
 
-- Generated: `2026-02-17T01:56:18.558188+00:00`
-- Mode: `apply`
+- Generated: `2026-02-23T16:57:13.147038+00:00`
+- Mode: `verify`
 - Total skills: `24`
 - Passed: `24`
 - Failed: `0`

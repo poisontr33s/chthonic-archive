@@ -138,6 +138,10 @@ extensions/*/bun.lock
 !scripts/hf_probe.py
 !scripts/api_pool.ps1
 !scripts/structure_session_log.py
+!scripts/poe_account.ps1
+!scripts/poe_lane.py
+!scripts/poe_sdk_lane.py
+!scripts/poe_transport_audit.py
 
 # Allow Shell Sovereignty & Validation (§XIV.2 canonical probe)
 !scripts/shell_capabilities.ps1

@@ -1,4 +1,11 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
-  <path d="M1.5 5a1 1 0 011-1h3.7l1.3 1.5H14a1 1 0 011 1v5.5a1 1 0 01-1 1H2.5a1 1 0 01-1-1V5z" fill="#DCAD58" opacity="0.85"/>
-  <path d="M10.5 8.5l2 1.5-2 1.5M7.5 8.5l-2 1.5 2 1.5" fill="none" stroke="#050505" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
+ <!-- Sealed pylon — src = scribal workshop (Thoth’s house) -->
+ <rect x="2" y="4" width="2.5" height="9" fill="#0A0A0A" stroke="#7AAAB2" stroke-width="0.4"/>
+ <rect x="11.5" y="4" width="2.5" height="9" fill="#0A0A0A" stroke="#7AAAB2" stroke-width="0.4"/>
+ <rect x="4.5" y="4" width="7" height="1" fill="#7AAAB2" opacity="0.4"/>
+ <rect x="5" y="5" width="6" height="8" fill="#0A0A0A" stroke="#7AAAB2" stroke-width="0.3"/>
+
+ <line x1="6" y1="7" x2="10" y2="7" stroke="#7AAAB2" stroke-width="0.4" stroke-linecap="round" opacity="0.6"/>
+ <line x1="6.5" y1="8.5" x2="9.5" y2="8.5" stroke="#7AAAB2" stroke-width="0.4" stroke-linecap="round" opacity="0.6"/>
+ <line x1="6" y1="10" x2="9" y2="10" stroke="#7AAAB2" stroke-width="0.4" stroke-linecap="round" opacity="0.6"/>
 </svg>

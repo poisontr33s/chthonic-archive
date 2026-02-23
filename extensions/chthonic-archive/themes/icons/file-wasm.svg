@@ -1,4 +1,16 @@
 ﻿<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
-  <rect x="1" y="1" width="14" height="14" rx="2" fill="#0a0014"/>
-  <text x="8" y="11.5" text-anchor="middle" font-family="'Consolas','Courier New',monospace" font-size="5" font-weight="bold" fill="#9B59B6">WASM</text>
+ <!-- Stele base -->
+ <rect x="3" y="1.5" width="10" height="13" rx="1" fill="#0A0A0A" stroke="#908672" stroke-width="0.5"/>
+
+ <ellipse cx="8" cy="7.5" rx="2" ry="3" fill="none" stroke="#D4907A" stroke-width="0.6"/>
+
+ <line x1="8" y1="4.5" x2="8" y2="10.5" stroke="#D4907A" stroke-width="0.4"/>
+
+ <path d="M6.8 4.8c.5-.7 1.9-.7 2.4 0" fill="none" stroke="#D4907A" stroke-width="0.5" stroke-linecap="round"/>
+
+ <path d="M6 6l-1.5-1M10 6l1.5-1" stroke="#D4907A" stroke-width="0.4" stroke-linecap="round"/>
+ <path d="M6 7.5l-1.8 0M10 7.5l1.8 0" stroke="#D4907A" stroke-width="0.4" stroke-linecap="round"/>
+ <path d="M6 9l-1.5 1M10 9l1.5 1" stroke="#D4907A" stroke-width="0.4" stroke-linecap="round"/>
+
+ <circle cx="8" cy="3.5" r="0.7" fill="#D4907A" opacity="0.4"/>
 </svg>

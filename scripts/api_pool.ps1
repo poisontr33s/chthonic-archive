@@ -47,7 +47,7 @@ function Get-EnvVar {
 }
 
 function Normalize-Token {
-  param([Parameter(Mandatory=$true)][string]$Value)
+  param([AllowEmptyString()][string]$Value = "")
   $v = [string]$Value
   $v = $v.Trim()
   # Some configs/logs wrap tokens like <ghp_...>. Strip safely.

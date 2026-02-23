@@ -1,4 +1,18 @@
 ﻿<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
-  <rect x="1" y="1" width="14" height="14" rx="2" fill="#140404"/>
-  <text x="8" y="11.5" text-anchor="middle" font-family="'Consolas','Courier New',monospace" font-size="5.5" font-weight="bold" fill="#cc3e44">YAML</text>
+ <!-- Stele base -->
+ <rect x="3" y="1.5" width="10" height="13" rx="1" fill="#0A0A0A" stroke="#908672" stroke-width="0.5"/>
+
+ <line x1="5" y1="4" x2="11" y2="4" stroke="#D4907A" stroke-width="0.7" stroke-linecap="round"/>
+
+ <path d="M6 4v4" stroke="#D4907A" stroke-width="0.5" fill="none"/>
+ <path d="M6 5.5c-.3 0-.5.2-.5.4s.2.4.5.4.5-.2.5-.4-.2-.4-.5-.4z" fill="#D4907A"/>
+ <path d="M8.5 4v5.5" stroke="#D4907A" stroke-width="0.5" fill="none"/>
+ <path d="M8.5 5c-.3 0-.5.2-.5.4s.2.4.5.4.5-.2.5-.4-.2-.4-.5-.4z" fill="#D4907A"/>
+ <path d="M8.5 7c-.3 0-.5.2-.5.4s.2.4.5.4.5-.2.5-.4-.2-.4-.5-.4z" fill="#D4907A"/>
+ <path d="M10.5 4v3.5" stroke="#D4907A" stroke-width="0.5" fill="none"/>
+
+ <path d="M6 8l-1 2.5" stroke="#D4907A" stroke-width="0.4" fill="none"/>
+ <path d="M8.5 9.5l-.8 2" stroke="#D4907A" stroke-width="0.4" fill="none"/>
+ <circle cx="5.2" cy="10.2" r="0.3" fill="#D4907A"/>
+ <circle cx="7.9" cy="11.2" r="0.3" fill="#D4907A"/>
 </svg>

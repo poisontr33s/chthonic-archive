@@ -1,6 +1,12 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
-  <path d="M1.5 5a1 1 0 011-1h3.7l1.3 1.5H14a1 1 0 011 1v1.5H2.5L1 9.5V5h.5z" fill="#DCAD58" opacity="0.5"/>
-  <path d="M1 9.5l1.5-3H15.5l-1.8 5H2a1 1 0 01-1-1v-1z" fill="#F4C430" opacity="0.9"/>
-  <circle cx="9" cy="9" r="2" fill="none" stroke="#050505" stroke-width="0.8"/>
-  <circle cx="9" cy="9" r="0.8" fill="#050505"/>
+ <!-- Open pylon — temple open = revealed inner sanctum -->
+ <rect x="2" y="4" width="2.5" height="9" fill="#0A0A0A" stroke="#F4C430" stroke-width="0.5"/>
+ <rect x="11.5" y="4" width="2.5" height="9" fill="#0A0A0A" stroke="#F4C430" stroke-width="0.5"/>
+ <rect x="4.5" y="4" width="7" height="1" fill="#F4C430" opacity="0.6"/>
+ <rect x="5" y="5" width="6" height="8" fill="#F4C430" opacity="0.15"/>
+
+ <ellipse cx="8" cy="7.5" rx="1" ry="0.8" fill="none" stroke="#F4C430" stroke-width="0.6"/>
+ <line x1="6.8" y1="9" x2="9.2" y2="9" stroke="#F4C430" stroke-width="0.5" stroke-linecap="round"/>
+ <line x1="8" y1="8.3" x2="8" y2="11.5" stroke="#F4C430" stroke-width="0.6" stroke-linecap="round"/>
+ <line x1="5" y1="13" x2="11" y2="13" stroke="#F4C430" stroke-width="0.5" stroke-linecap="round"/>
 </svg>

@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "generated_on": "2026-02-17T02:36:55Z",
-  "apply": true,
+  "generated_on": "2026-02-23T16:09:21Z",
+  "apply": false,
   "platform": {
     "system": "Windows",
     "release": "11",
@@ -29,7 +29,7 @@
       "ok": true,
       "detail": "env present",
       "notes": [
-        "recommended: pwsh -NoProfile -Command \".\\scripts\\api_pool.ps1 -Load | Out-Null\""
+        "recommended: pwsh -NoProfile -File .codex/skills/api-manager/scripts/api_manager.ps1 -Load"
       ]
     },
     {
@@ -58,39 +58,33 @@
     },
     {
       "name": "dep:transformers",
-      "ok": true,
-      "detail": "transformers=5.2.0",
-      "notes": [
-        "installed_by_uv"
-      ]
+      "ok": false,
+      "detail": "transformers (not installed)",
+      "notes": []
     },
     {
       "name": "dep:tokenizers",
-      "ok": true,
-      "detail": "tokenizers=0.22.2",
+      "ok": false,
+      "detail": "tokenizers (not installed)",
       "notes": []
     },
     {
       "name": "dep:safetensors",
-      "ok": true,
-      "detail": "safetensors=0.7.0",
+      "ok": false,
+      "detail": "safetensors (not installed)",
       "notes": []
     },
     {
       "name": "dep:datasets",
-      "ok": true,
-      "detail": "datasets=4.5.0",
-      "notes": [
-        "installed_by_uv"
-      ]
+      "ok": false,
+      "detail": "datasets (not installed)",
+      "notes": []
     },
     {
       "name": "dep:accelerate",
-      "ok": true,
-      "detail": "accelerate=1.12.0",
-      "notes": [
-        "installed_by_uv"
-      ]
+      "ok": false,
+      "detail": "accelerate (not installed)",
+      "notes": []
     }
   ]
 }

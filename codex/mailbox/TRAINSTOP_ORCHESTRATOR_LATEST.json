@@ -1,19 +1,68 @@
 {
   "schema_version": 1,
-  "generated_on": "2026-02-17T02:26:19Z",
+  "generated_on": "2026-02-23T17:01:16Z",
   "results": [
     {
-      "name": "Local AI Readiness",
+      "name": "Poe Models (account 1)",
       "rc": 0,
-      "seconds": 0.182,
+      "seconds": 0.494,
       "cmd": [
         "uv",
         "run",
-        ".codex/skills/trainstop-orchestrator/scripts/local_ai_readiness.py",
+        "scripts/poe_lane.py",
+        "--mode",
+        "models",
+        "--account",
+        "1",
+        "--limit",
+        "5",
+        "--emit-mailbox",
         "--mailboxes",
         "codex,claude"
       ],
-      "stdout_tail": "Wrote: codex/mailbox/LOCAL_AI_READINESS_LATEST.json\nWrote: codex/mailbox/LOCAL_AI_READINESS_LATEST.md\nWrote: claude/mailbox/LOCAL_AI_READINESS_LATEST.json\nWrote: claude/mailbox/LOCAL_AI_READINESS_LATEST.md",
+      "stdout_tail": "MODEL=assistant\nMODEL=gemini-3-flash\nMODEL=claude-opus-4.6\nMODEL=claude-sonnet-4.6\nMODEL=gemini-3.1-pro\nCOUNT=5",
+      "stderr_tail": "",
+      "missing_artifacts": [],
+      "notes": []
+    },
+    {
+      "name": "Poe Models (account 2)",
+      "rc": 0,
+      "seconds": 0.437,
+      "cmd": [
+        "uv",
+        "run",
+        "scripts/poe_lane.py",
+        "--mode",
+        "models",
+        "--account",
+        "2",
+        "--limit",
+        "5",
+        "--emit-mailbox",
+        "--mailboxes",
+        "codex,claude"
+      ],
+      "stdout_tail": "MODEL=assistant\nMODEL=gemini-3-flash\nMODEL=claude-opus-4.6\nMODEL=claude-sonnet-4.6\nMODEL=gemini-3.1-pro\nCOUNT=5",
+      "stderr_tail": "",
+      "missing_artifacts": [],
+      "notes": []
+    },
+    {
+      "name": "Poe Transport Audit",
+      "rc": 0,
+      "seconds": 12.291,
+      "cmd": [
+        "uv",
+        "run",
+        "scripts/poe_transport_audit.py",
+        "--accounts",
+        "1,2",
+        "--emit-mailbox",
+        "--mailboxes",
+        "codex,claude"
+      ],
+      "stdout_tail": "recommendation=openai-compatible\nrationale=Both lanes work for control probes, but App-Creator is not API-accessible on tested keys.\naccount=1 openai_control=True openai_app_creator=False sdk_control=True sdk_app_creator=False models_has_app_creator=False\naccount=2 openai_control=True openai_app_creator=False sdk_control=False sdk_app_creator=False models_has_app_creator=False",
       "stderr_tail": "",
       "missing_artifacts": [],
       "notes": []

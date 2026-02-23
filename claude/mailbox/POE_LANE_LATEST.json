@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "generated_on": "2026-02-23T17:01:03Z",
+  "mode": "models",
+  "account": "2",
+  "model": null,
+  "effort": null,
+  "base_url": "https://api.poe.com/v1",
+  "ok": true,
+  "error": null,
+  "response_preview": null,
+  "model_count": 5
+}

@@ -1,0 +1,68 @@
+{
+  "schema_version": 2,
+  "generated_on": "2026-02-23T16:09:22Z",
+  "source": {
+    "type": "hf_mcp_server",
+    "url": "https://huggingface.co/mcp"
+  },
+  "filters": {
+    "min_despair": 0
+  },
+  "tool_count": 6,
+  "tools": [
+    {
+      "name": "space_search",
+      "description": "Find Hugging Face Spaces using semantic search. IMPORTANT Only MCP Servers can be used with the dynamic_space toolInclude links to the Space when presenting the results.",
+      "creed": "Order from Chaos",
+      "inner_voice": "LOGIC",
+      "despair_description": "Find Hugging Face Spaces using semantic search. IMPORTANT Only MCP Servers can be used with the dynamic_space toolInclude links to the Space when presenting the results.",
+      "despair_score": 0,
+      "wholesome_hits": []
+    },
+    {
+      "name": "hf_whoami",
+      "description": "Hugging Face tools are being used by authenticated user 'esabbr'",
+      "creed": "Order from Chaos",
+      "inner_voice": "LOGIC",
+      "despair_description": "Hugging Face tools are being used by authenticated user 'esabbr'",
+      "despair_score": 0,
+      "wholesome_hits": []
+    },
+    {
+      "name": "hf_doc_search",
+      "description": "Search and Discover Hugging Face Product and Library documentation. Send an empty query to discover structure and navigation instructions. Knowledge up-to-date as at 17 February 2026. Combine with the Product filter to focus results.",
+      "creed": "Body as Temple (Cracked)",
+      "inner_voice": "IRON HIDE",
+      "despair_description": "Search and Discover Hugging Face Product and Library documentation. Send an empty query to discover structure and navigation instructions. Knowledge up-to-date as at 17 February 2026. Combine with the Product filter to focus results.",
+      "despair_score": 0,
+      "wholesome_hits": []
+    },
+    {
+      "name": "hf_doc_fetch",
+      "description": "Fetch a document from the Hugging Face or Gradio documentation library. For large documents, use offset to get subsequent chunks.",
+      "creed": "Body as Temple (Cracked)",
+      "inner_voice": "IRON HIDE",
+      "despair_description": "Fetch a document from the Hugging Face or Gradio documentation library. For large documents, use offset to get subsequent chunks.",
+      "despair_score": 0,
+      "wholesome_hits": []
+    },
+    {
+      "name": "hub_repo_search",
+      "description": "Search Hugging Face repositories with a shared query interface. You can target models, datasets, spaces, or aggregate across multiple repo types in one call. Use space_search for semantic-first discovery of Spaces. Include links to repositories in your response.",
+      "creed": "The Ledger",
+      "inner_voice": "LOGIC",
+      "despair_description": "Search Hugging Face repositories with a shared query interface. You can target models, datasets, spaces, or aggregate across multiple repo types in one call. Use space_search for semantic-first discovery of Spaces. Include links to repositories in your response.",
+      "despair_score": 0,
+      "wholesome_hits": []
+    },
+    {
+      "name": "hub_repo_details",
+      "description": "Get details for one or more Hugging Face repos (model, dataset, or space). Auto-detects type unless specified.",
+      "creed": "The Ledger",
+      "inner_voice": "LOGIC",
+      "despair_description": "Get details for one or more Hugging Face repos (model, dataset, or space). Auto-detects type unless specified.",
+      "despair_score": 0,
+      "wholesome_hits": []
+    }
+  ]
+}

@@ -274,4 +274,5 @@
     "chatgpt.openOnStartup": true,
     "chatgpt.composerEnterBehavior": "cmdIfMultiline",
     "chatgpt.thinkingMode": "high",
+    "github.copilot.chat.anthropic.contextEditing.mode": "clear-both",
 }

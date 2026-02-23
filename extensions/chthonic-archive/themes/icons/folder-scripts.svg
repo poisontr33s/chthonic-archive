@@ -1,5 +1,11 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
-  <path d="M1.5 5a1 1 0 011-1h3.7l1.3 1.5H14a1 1 0 011 1v5.5a1 1 0 01-1 1H2.5a1 1 0 01-1-1V5z" fill="#DCAD58" opacity="0.85"/>
-  <path d="M7.5 8.5h4M7.5 10.5h3" fill="none" stroke="#050505" stroke-width="0.9" stroke-linecap="round"/>
-  <path d="M6 8.5l-1 1 1 1" fill="none" stroke="#050505" stroke-width="0.9" stroke-linecap="round" stroke-linejoin="round"/>
+ <!-- Sealed pylon — scripts = ritual tool chamber -->
+ <rect x="2" y="4" width="2.5" height="9" fill="#0A0A0A" stroke="#D7B562" stroke-width="0.4"/>
+ <rect x="11.5" y="4" width="2.5" height="9" fill="#0A0A0A" stroke="#D7B562" stroke-width="0.4"/>
+ <rect x="4.5" y="4" width="7" height="1" fill="#D7B562" opacity="0.4"/>
+ <rect x="5" y="5" width="6" height="8" fill="#0A0A0A" stroke="#D7B562" stroke-width="0.3"/>
+
+ <path d="M8 6.5v4" stroke="#D7B562" stroke-width="0.6" stroke-linecap="round"/>
+ <path d="M8 6.5l2 1" stroke="#D7B562" stroke-width="0.6" stroke-linecap="round"/>
+ <path d="M10 7.5c.3.5.3 1 0 1.5" fill="none" stroke="#D7B562" stroke-width="0.5" stroke-linecap="round"/>
 </svg>

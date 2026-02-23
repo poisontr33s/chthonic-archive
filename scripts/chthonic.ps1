@@ -752,6 +752,7 @@ Usage: chthonic [--version] [--help] <domain> [<action>] [<args>]
 
   ide launch|detect|reset IDE management
   mcp start|stop|status   MCP + bridge services
+  poe account|models|probe|chat|sdk-probe|audit  Poe account routing + Poe lanes
   config init|show|set    Configuration (~/.chthonic/)
 
   audit|compact|extract|resolve|map|analyze  Archive tools (uv run)
@@ -1955,6 +1956,73 @@ switch ($Domain) {
         }
         $exitCode = Invoke-IDEDetect -Json:$false
         exit $exitCode
+    }
+    "poe" {
+        $poeAccountScript = Join-Path $SCRIPT_DIR "poe_account.ps1"
+        $poeLaneScript = Join-Path $SCRIPT_DIR "poe_lane.py"
+        $poeSdkScript = Join-Path $SCRIPT_DIR "poe_sdk_lane.py"
+        $poeAuditScript = Join-Path $SCRIPT_DIR "poe_transport_audit.py"
+
+        switch ($Action) {
+            "account" {
+                if (-not (Test-Path -LiteralPath $poeAccountScript)) {
+                    Write-Error "Missing script: $poeAccountScript"
+                    exit 1
+                }
+                & pwsh -NoProfile -File $poeAccountScript @RemainingArgs
+                exit $LASTEXITCODE
+            }
+            "models" {
+                if (-not (Test-Path -LiteralPath $poeLaneScript)) {
+                    Write-Error "Missing script: $poeLaneScript"
+                    exit 1
+                }
+                & uv run $poeLaneScript --mode models @RemainingArgs
+                exit $LASTEXITCODE
+            }
+            "probe" {
+                if (-not (Test-Path -LiteralPath $poeLaneScript)) {
+                    Write-Error "Missing script: $poeLaneScript"
+                    exit 1
+                }
+                & uv run $poeLaneScript --mode probe --emit-mailbox @RemainingArgs
+                exit $LASTEXITCODE
+            }
+            "chat" {
+                if (-not (Test-Path -LiteralPath $poeLaneScript)) {
+                    Write-Error "Missing script: $poeLaneScript"
+                    exit 1
+                }
+                & uv run $poeLaneScript --mode chat @RemainingArgs
+                exit $LASTEXITCODE
+            }
+            "sdk-probe" {
+                if (-not (Test-Path -LiteralPath $poeSdkScript)) {
+                    Write-Error "Missing script: $poeSdkScript"
+                    exit 1
+                }
+                & uv run --with fastapi-poe $poeSdkScript --emit-mailbox @RemainingArgs
+                exit $LASTEXITCODE
+            }
+            "audit" {
+                if (-not (Test-Path -LiteralPath $poeAuditScript)) {
+                    Write-Error "Missing script: $poeAuditScript"
+                    exit 1
+                }
+                & uv run $poeAuditScript --emit-mailbox @RemainingArgs
+                exit $LASTEXITCODE
+            }
+            default {
+                Write-Host "chthonic poe <action>"
+                Write-Host "  account -Account 1|2 [-MapOpenAICompat] [-Doctor] [-Model <model>] (shell-local)"
+                Write-Host "  models [--account 1|2] [--limit 40]"
+                Write-Host "  probe [--account 1|2] [--model <model>] [--prompt <text>] [--effort max] [--emit-mailbox] [--mailboxes codex|claude|codex,claude]"
+                Write-Host "  chat [--account 1|2] --model <model> --prompt <text> [--effort max]"
+                Write-Host "  sdk-probe [--account 1|2] [--bot <bot>] [--prompt <text>] [--effort max] [--mailboxes codex|claude|codex,claude]"
+                Write-Host "  audit [--accounts 1,2] [--control-model claude-sonnet-4.5] [--target-bot app-creator] [--mailboxes codex,claude]"
+                exit 0
+            }
+        }
     }
     
     # IDE Domain (nested commands)
