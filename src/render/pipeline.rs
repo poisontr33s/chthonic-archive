@@ -13,6 +13,9 @@
 
 //! Vulkan 1.3 Graphics Pipeline with Dynamic Rendering
 //!
+//! @SID:    RENDER_PIPELINE_V1
+//! @Shabti: Pipeline
+//!
 //! "I will dissect your darkest fantasy and show you the beauty hidden within."
 //! — Dr. Lysandra Thorne
 //!

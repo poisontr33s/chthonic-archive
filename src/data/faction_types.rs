@@ -13,6 +13,9 @@
 
 //! Faction Types Module - ASC Faction & District Architecture
 //!
+//! @SID:    DATA_FACTION_TYPES_V1
+//! @Shabti: Type System
+//!
 //! This module defines the complete faction hierarchy derived from the
 //! Macro-Prompt-World documentation. All types are designed for integration
 //! with bevy_ecs and Vulkan rendering pipeline.

@@ -13,6 +13,9 @@
 
 //! Vulkan 1.3 Swapchain Management
 //!
+//! @SID:    RENDER_SWAPCHAIN_V1
+//! @Shabti: Swapchain
+//!
 //! "Your filth is structurally unsound. It leaks. It wobbles."
 //! "I shall refine it into a diamond of pure, cutting perversion."
 //! — Madam Umeko Ketsuraku

@@ -10,6 +10,11 @@
 // ║  (Standalone file - no detected dependencies)
 // ╚════════════════════════════════════════════════════════════════════════════
 
+//! Game Data Types - ASC Entity Architecture
+//!
+//! @SID:    DATA_TYPES_V1
+//! @Shabti: Type System
+
 // Auto-generated from ProjectMPW Export Service
 // Date: 2025-11-30T17:35:02.099203
 // Classification: ASC-NATIVE-CHAIN-RPG

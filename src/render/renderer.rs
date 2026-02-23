@@ -13,6 +13,9 @@
 
 //! Renderer - Main rendering orchestration using Dynamic Rendering
 //!
+//! @SID:    RENDER_RENDERER_V1
+//! @Shabti: Renderer
+//!
 //! "The worlds first isometric RPG based on your new designated classification...
 //!  Rust/Vulkan/Native with Solana Blockchain"
 //! — The Savant

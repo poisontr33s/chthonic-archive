@@ -13,6 +13,9 @@
 
 //! Render module - Vulkan 1.3 Dynamic Rendering Pipeline
 //!
+//! @SID:    RENDER_MOD_V1
+//! @Shabti: Module Root
+//!
 //! "We do not accept legacy Render Passes. We demand Dynamic Rendering."
 //! — Gemini 3 Pro Thinking (Architect)
 //!

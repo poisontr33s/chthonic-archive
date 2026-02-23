@@ -13,6 +13,9 @@
 
 //! Isometric Camera System
 //!
+//! @SID:    RENDER_CAMERA_V1
+//! @Shabti: Camera
+//!
 //! "The Ultimate pleasure found in the relentless transformation of perspective"
 //! — Orackla Nocticula
 //!

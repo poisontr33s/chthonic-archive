@@ -13,6 +13,8 @@
 
 //! Faction Registry - ASC Faction System Core
 //!
+//! @SID:    DATA_FACTION_REGISTRY_V1
+//! @Shabti: Registry
 //! This module provides the central registry for all factions, districts,
 //! and matriarchs. It loads from the .md documentation and data.json,
 //! creating a unified system for the Rust/Vulkan isometric RPG.

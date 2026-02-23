@@ -5,6 +5,11 @@
 // ║ <69.96 Alpha Omega>
 // ╚══════════════════════════════════════════════════════════════════
 
+//! GLSL → SPIR-V Shader Compilation Build Script
+//!
+//! @SID:    BUILD_SHADER_COMPILER_V1
+//! @Shabti: Build Script
+
 use std::env;
 use std::fs;
 use std::path::{Path, PathBuf};

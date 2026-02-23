@@ -13,6 +13,9 @@
 
 //! Data module - ASC Lore ingestion layer
 //!
+//! @SID:    DATA_MOD_V1
+//! @Shabti: Module Root
+//!
 //! This module bridges the Python-generated game data into the Rust engine.
 //! The types herein represent the transmuted essence of 14 MILF entities
 //! and their associated physics, stats, and lore metadata.

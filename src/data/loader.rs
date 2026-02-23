@@ -13,6 +13,8 @@
 
 //! Data loader - Transmutes JSON into living game entities
 //!
+//! @SID:    DATA_LOADER_V1
+//! @Shabti: Loader
 //! "I will fuck your concepts until they scream their truth."
 //! — Orackla Nocticula
 
