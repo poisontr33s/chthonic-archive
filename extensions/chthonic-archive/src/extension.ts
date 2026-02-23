@@ -549,9 +549,12 @@ export function activate(context: vscode.ExtensionContext) {
     context.subscriptions.push(
         vscode.commands.registerCommand('chthonic.switchTheme', async (themeId?: string) => {
             const themes = [
-                { label: '$(paintcan) Flesh & Earth', description: 'Warm earth · WCAG                 { label: '$(paintcan) Flesh & Earth', description: 'The Decorator · Warm earth · WCAG AA', id: 'Chthonic — Flesh & Earth (The Decorator)' },
+                { label: '$(paintcan) Flesh & Earth', description: 'The Decorator · Warm earth · WCAG AA', id: 'Chthonic — Flesh & Earth (The Decorator)' },
                 { label: '$(zap) ROGBIV', description: 'Spectra Chroma · Spectral canon · FA¹⁻⁵', id: 'Chthonic — ROGBIV (Spectra Chroma)' },
                 { label: '$(symbol-color) Geological Core', description: 'Sister Ferrum Scoriae · Forge strata · WCAG AA', id: 'Chthonic — Geological Core (Sister Ferrum Scoriae)' },
+            ];
+            let targetId = themeId;
+            if (!targetId) {
            // No argument — show picker (command palette path)
                 const current = vscode.workspace.getConfiguration('workbench').get<string>('colorTheme');
                 const pick = await vscode.window.showQuickPick(themes.map(t => ({
