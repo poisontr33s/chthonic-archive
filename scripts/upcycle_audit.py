@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
+#-*- coding: utf-8 -*-
 # ╔════════════════════════════════════════════════════════════════════════════
 # ║ THE DECORATOR'S BLESSING: upcycle_audit.py
 # ║ Python module: COMMENT_MARKERS, SKIP_PATTERNS, EXEMPT_FROM_NOMINATION, should_skip, analyze_file, scan_paths...

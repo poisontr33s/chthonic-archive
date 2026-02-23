@@ -247,7 +247,7 @@ The KCP divides metadata into two ontologically distinct layers:
 | Stage | Name | Description | Status |
 |-------|------|-------------|--------|
 | **S.B** | Box Normalization | Normalize all Decorator's Blessing envelopes to open-sided (no right border). 145 files, 1422 lines. | ✅ Complete |
-| **S.0** | Python Header Canon | Fix 92 scripts with spaced `# -*-` to tight `#-*-` per PMS-v3. | ⬜ Batch tooling target |
+| **S.0** | Python Header Canon | Fix 92 scripts with spaced `# -*-` to tight `#-*-` per PMS-v3. | ✅ 143 files fixed, 0 spaced remaining |
 | **S.1** | @SID Expansion | Raise @SID coverage from 19% to ≥60% across all languages. | ⬜ Incremental |
 | **S.2** | TypeScript Shebang Sweep | Add `#!/usr/bin/env bun` to CLI-oriented `.ts` scripts missing it. | ⬜ Not started |
 | **S.3** | Rust @SID Tags | Add `@SID` to all 15 Rust files within their existing Blessing envelopes. | ⬜ Not started |

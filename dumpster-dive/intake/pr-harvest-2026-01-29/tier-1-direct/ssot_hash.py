@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
+#-*- coding: utf-8 -*-
 """
 SSOT Hash Verification Script
 Per §XIV.3 of .github/copilot-instructions.md

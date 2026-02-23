@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
+#-*- coding: utf-8 -*-
 """
 Normalize archived e2e_matrix JSON artifacts for cross-platform consumption.
 

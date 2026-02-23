@@ -29,9 +29,9 @@
 
 | Field | Value |
 |-------|-------|
-| **HEAD** | `7a544db0` |
+| **HEAD** | (pending commit) |
 | **Branch** | `main` |
-| **Last Completed Phase** | Stage 2.1 — Icon Collision Resolution |
+| **Last Completed Phase** | Stage S.0 — Python Header Canon |
 | **Active Phase** | KCP Phase 0.0 — Protocol Ontology Specification |
 | **Blockers** | None |
 | **Working Tree** | Clean (pending directory rename commit) |
@@ -99,6 +99,7 @@ If you are a new session picking up from a crash:
 | S.B | Box Normalization | `51062d30`→`5ed27d93` | 0 closed boxes, 145 files |
 | STD_V2 | Metadata Standard Ratification | `aa3d6e84` | Canonical status |
 | 2.1 | Icon Collision Resolution | `7a544db0` | 24→11 pairs, 76/76 audits pass |
+| S.0 | Python Header Canon | (this commit) | 143 files: spaced→tight `#-*-` |
 
 ### Active — KCP Integration Phases
 
@@ -120,7 +121,7 @@ If you are a new session picking up from a crash:
 
 | Stage | Name | Status | Notes |
 |-------|------|--------|-------|
-| S.0 | Python `#-*-` tight format | ⬜ | 92 scripts, simple regex, no KCP dependency |
+| S.0 | Python `#-*-` tight format | ✅ | 143 files fixed, 0 spaced remaining |
 | S.3 | Rust @SID tags | ⬜ | 15 files, feeds into KCP-6.0 |
 | 4.0 | Token scope coverage | ⬜ | Create `theme_token_coverage.py` |
 | 6.0 | Product icon census | ⬜ | Discovery-only |

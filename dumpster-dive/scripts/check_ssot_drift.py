@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
+#-*- coding: utf-8 -*-
 """SSOT Drift Check (governance guardrail)
 
 Recomputes the SHA256 of `.github/copilot-instructions.md` and checks that each

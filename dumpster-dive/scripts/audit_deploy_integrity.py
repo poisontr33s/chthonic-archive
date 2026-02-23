@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
+#-*- coding: utf-8 -*-
 """Zero-mutation audit: deployment manifest ↔ registry ↔ filesystem integrity.
 
 Checks, for a given deployment_id:

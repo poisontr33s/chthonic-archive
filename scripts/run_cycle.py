@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
+#-*- coding: utf-8 -*-
 # ╔════════════════════════════════════════════════════════════════════════════
 # ║ THE DECORATOR'S BLESSING: run_cycle.py
 # ║ Python module: find_workspace_root, WORKSPACE_ROOT, MAS_MCP_ROOT, ARTIFACTS_DIR, GOVERNANCE_DIR, COMPATIBILITY_DIR...
