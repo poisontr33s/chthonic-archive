@@ -104,6 +104,8 @@ configure_utf8_output()
 
 ```python
 #!/usr/bin/env python3
+#-*- coding: utf-8 -*-
+
 """
 Example of a Metabolically Correct Python Entity (v3).
 
