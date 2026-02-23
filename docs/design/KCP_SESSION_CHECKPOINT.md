@@ -105,6 +105,7 @@ If you are a new session picking up from a crash:
 | 6.0 | Product Icon Census | (this commit) | 6/534 (1.1%); 39 Tier 1 gaps; `hammer` invalid |
 | KCP-0.0 | Protocol Ontology Spec | (this commit) | 15/15 fields mapped; 0 data loss; `docs/standards/KCP_PROTOCOL_ONTOLOGY.md` |
 | KCP-1.0 | Architecture Ratification | (this commit) | Approach C locked; A/B/D/E rejected; `docs/standards/KCP_ARCHITECTURE_RATIFICATION.md` |
+| KCP-2.0 | Template Canonization | (this commit) | 4/4 templates pass native parser; `docs/standards/templates/kcp_template.*` |
 
 ### Active — KCP Integration Phases
 
@@ -112,8 +113,8 @@ If you are a new session picking up from a crash:
 |-------|------|-------------|--------|------|
 | **KCP-0.0** | Protocol Ontology Spec | Finalize field mappings, write canonical schema to `docs/standards/` | ✅ DONE | 100% legacy fields mapped, 0 data loss |
 | **KCP-1.0** | Architecture Ratification | Lock Approach C into WPTG plan, document rejections | ✅ DONE | Decision doc merged; `KCP_ARCHITECTURE_RATIFICATION.md` |
-| **KCP-2.0** | Template Canonization | Character-perfect boilerplate for Python/TS/PS1/Rust | ⬜ NEXT | All 4 templates pass native parser |
-| **KCP-3.0** | Python Consolidation | Batch: eliminate dual @SID, populate Khipu layer in 120 .py files | ⬜ | 0 duplicate @SIDs in Python |
+| **KCP-2.0** | Template Canonization | Character-perfect boilerplate for Python/TS/PS1/Rust | ✅ DONE | All 4 templates pass native parser |
+| **KCP-3.0** | Python Consolidation | Batch: eliminate dual @SID, populate Khipu layer in 120 .py files | ⬜ NEXT (delegated to Codex .5.3) | 0 duplicate @SIDs in Python |
 | **KCP-4.0** | TypeScript Injection | Embed Khipu in JSDoc for 62 .ts/.tsx files | ⬜ | `bun run compile` clean |
 | **KCP-5.0** | PowerShell Encapsulation | Khipu in `.NOTES` block for 82 .ps1 files | ⬜ | `Get-Help` returns synopsis |
 | **KCP-6.0** | Rust Alignment | `//!` Khipu for 15 .rs files | ⬜ | `cargo doc --no-deps` clean |
@@ -139,8 +140,8 @@ If you are a new session picking up from a crash:
 1. ~~**S.0**~~ — ~~Python `#-*-` tight format~~ ✅
 2. **KCP-0.0** — Protocol Ontology Specification (canonical schema doc)
 3. **KCP-1.0** — Architecture Ratification (lock Approach C)
-4. **KCP-2.0** — Template Canonization (4 language templates)
-5. **D.0** — Daemon-Forge Bridge (SFS forge × overnight daemon convergence)
+4. ~~**KCP-2.0**~~ — ~~Template Canonization (4 language templates)~~ ✅
+5. **KCP-3.0** — Python Consolidation (Codex .5.3 delegated — audit first)
 6. ~~**4.0**~~ — ~~Token scope coverage audit~~ ✅
 7. ~~**S.3**~~ — ~~Rust @SID tags~~ ✅
 8. ~~**6.0**~~ — ~~Product icon census~~ ✅
