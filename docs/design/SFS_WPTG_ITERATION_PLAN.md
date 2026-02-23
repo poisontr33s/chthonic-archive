@@ -218,8 +218,8 @@ The KCP divides metadata into two ontologically distinct layers:
 | Phase | Name | Gate | Status |
 |-------|------|------|--------|
 | KCP-0.0 | Protocol Ontology Spec | 100% legacy fields mapped, 0 data loss | ✅ |
-| KCP-1.0 | Architecture Ratification | Approach C locked, rejections documented | ⬜ NEXT |
-| KCP-2.0 | Template Canonization | 4 language templates pass native parser | ⬜ |
+| KCP-1.0 | Architecture Ratification | Approach C locked, rejections documented | ✅ |
+| KCP-2.0 | Template Canonization | 4 language templates pass native parser | ⬜ NEXT |
 | KCP-3.0 | Python Consolidation | 0 duplicate @SIDs in 120 .py files | ⬜ |
 | KCP-4.0 | TypeScript Injection | `bun run compile` clean with JSDoc @tags | ⬜ |
 | KCP-5.0 | PowerShell Encapsulation | `Get-Help` returns synopsis for 82 scripts | ⬜ |

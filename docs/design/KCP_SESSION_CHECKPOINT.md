@@ -31,8 +31,8 @@
 |-------|-------|
 | **HEAD** | (pending commit) |
 | **Branch** | `main` |
-| **Last Completed Phase** | KCP-0.0 — Protocol Ontology Spec |
-| **Active Phase** | KCP-1.0 — Architecture Ratification |
+| **Last Completed Phase** | KCP-1.0 — Architecture Ratification |
+| **Active Phase** | KCP-2.0 — Template Canonization |
 | **Blockers** | None |
 | **Working Tree** | Clean |
 
@@ -104,14 +104,15 @@ If you are a new session picking up from a crash:
 | S.3 | Rust @SID Tags | `92ceffc2` | 16/16 files: @SID + @Shabti in //! blocks |
 | 6.0 | Product Icon Census | (this commit) | 6/534 (1.1%); 39 Tier 1 gaps; `hammer` invalid |
 | KCP-0.0 | Protocol Ontology Spec | (this commit) | 15/15 fields mapped; 0 data loss; `docs/standards/KCP_PROTOCOL_ONTOLOGY.md` |
+| KCP-1.0 | Architecture Ratification | (this commit) | Approach C locked; A/B/D/E rejected; `docs/standards/KCP_ARCHITECTURE_RATIFICATION.md` |
 
 ### Active — KCP Integration Phases
 
 | Phase | Name | Description | Status | Gate |
 |-------|------|-------------|--------|------|
 | **KCP-0.0** | Protocol Ontology Spec | Finalize field mappings, write canonical schema to `docs/standards/` | ✅ DONE | 100% legacy fields mapped, 0 data loss |
-| **KCP-1.0** | Architecture Ratification | Lock Approach C into WPTG plan, document rejections | ⬜ NEXT | Decision doc merged |
-| **KCP-2.0** | Template Canonization | Character-perfect boilerplate for Python/TS/PS1/Rust | ⬜ | All 4 templates pass native parser |
+| **KCP-1.0** | Architecture Ratification | Lock Approach C into WPTG plan, document rejections | ✅ DONE | Decision doc merged; `KCP_ARCHITECTURE_RATIFICATION.md` |
+| **KCP-2.0** | Template Canonization | Character-perfect boilerplate for Python/TS/PS1/Rust | ⬜ NEXT | All 4 templates pass native parser |
 | **KCP-3.0** | Python Consolidation | Batch: eliminate dual @SID, populate Khipu layer in 120 .py files | ⬜ | 0 duplicate @SIDs in Python |
 | **KCP-4.0** | TypeScript Injection | Embed Khipu in JSDoc for 62 .ts/.tsx files | ⬜ | `bun run compile` clean |
 | **KCP-5.0** | PowerShell Encapsulation | Khipu in `.NOTES` block for 82 .ps1 files | ⬜ | `Get-Help` returns synopsis |
