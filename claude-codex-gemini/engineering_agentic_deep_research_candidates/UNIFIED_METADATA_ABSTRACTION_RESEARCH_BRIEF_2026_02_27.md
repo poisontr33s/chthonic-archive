@@ -285,7 +285,7 @@ The duplication is concentrated in Python, where PMS-v3 mandates the docstring `
 
 6. **Tooling Impact** — What changes are needed in `normalize_blessing_box.py`, `sfa_cross_reference.py`, and `chthonic audit` to support the unified format?
 
-7. **Local AI Model Delegation Spec** — How should a local model (24GB VRAM, 7B-70B) be configured as a batch execution engine for metadata migration? Include: model selection, instruction template design, validation pipeline, integration path (MCP/CLI/standalone), and failure recovery.
+7. **Local AI Model Delegation Spec** — How should a local model (16GB VRAM (NVIDIA Laptop 4090 GPU), 7B-70B) be configured as a batch execution engine for metadata migration? Include: model selection, instruction template design, validation pipeline, integration path (MCP/CLI/standalone), and failure recovery.
 
 ---
 
