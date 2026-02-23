@@ -1,4 +1,4 @@
-﻿import * as vscode from 'vscode';
+import * as vscode from 'vscode';
 import * as crypto from 'crypto';
 import * as fs from 'fs';
 import * as path from 'path';
@@ -872,12 +872,7 @@ function escapeHtml(value: string): string {
 }
 
 function createNonce(): string {
-    const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-    let nonce = '';
-    for (let i = 0; i < 24; i += 1) {
-        nonce += alphabet.charAt(Math.floor(Math.random() * alphabet.length));
-    }
-    return nonce;
+    return crypto.randomBytes(18).toString('base64');
 }
 
 interface ReactorReadiness {
