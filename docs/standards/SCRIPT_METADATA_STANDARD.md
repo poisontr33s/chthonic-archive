@@ -1,16 +1,21 @@
 ---
 type: standard
 category: governance
-status: candidate
+status: canonical
 created: 2026-02-03
+updated: 2026-02-24
 author: Gemini-3 Pro (Deep Research)
+ratified-by: Claude Code Opus 4.6
 ---
 
-# Deep Research Candidate: Script Metadata & Shebang Standardization
+# Script Metadata & Shebang Standardization
 
-**@SID:** STD_SCRIPT_METADATA_V1
+**@SID:** STD_SCRIPT_METADATA_V2
 **@Context:** Codebase Hygiene / Cross-Platform Compatibility
-**@Purpose:** Define a robust, encoding-safe, and visually distinct header standard for all executable scripts.
+**@Purpose:** Define a robust, encoding-safe, and visually distinct header standard for all authored scripts.
+
+> Ratified from `candidate` → `canonical` on 2026-02-24.
+> Reconciled with PMS-v3 (Python Metabolic Standard v3) for unified governance.
 
 ---
 
@@ -93,26 +98,109 @@ Immediately following the visual envelope (or inside the module docstring for Py
 
 ## 4. Language-Specific Adaptations
 
-### Python (`.py`)
-- **Envelope:** Use `#` comments at the very top (before imports).
-- **Shebang:** Line 1 (if executable) or after Envelope?
-    - *Decision:* **Envelope First**, then Shebang? NO.
-    - *Standard:* **Shebang MUST be Line 1** for the kernel to recognize it.
-    - *Correction:* The Visual Envelope goes *below* the shebang, or the Shebang is part of the file metadata but physically top.
-    - *Revised Layout:*
-        1. Shebang
-        2. Visual Envelope (Comment block)
-        3. Module Docstring (with Semantic Tags)
-        4. Imports
+### Python (`.py`) — PMS-v3 Canonical Layout
+
+Python files follow a **specific ordering** ratified under PMS-v3:
+
+```python
+#!/usr/bin/env python3
+#-*- coding: utf-8 -*-
+
+"""
+Script description — narrative of intent.
+
+@SID:           TOOL_EXAMPLE_V1
+@Type:          Utility
+"""
+
+import sys
+from pathlib import Path
+```
+
+| Line | Content | Required |
+|------|---------|----------|
+| 1 | `#!/usr/bin/env python3` | Yes — shebang |
+| 2 | `#-*- coding: utf-8 -*-` | Yes — tight, NO space after `#` |
+| 3 | (blank) | Yes |
+| 4+ | `"""` docstring with `@SID` + `@Type` `"""` | Yes |
+| N | (blank) | Yes |
+| N+1 | imports | — |
+
+**Note**: The Decorator's Blessing envelope is **optional** for Python — the `@SID`/`@Type` docstring fulfills the semantic identity requirement. Scripts that carry the envelope keep it between the coding line and the docstring.
 
 ### PowerShell (`.ps1`)
-- **Shebang:** Line 1 (`#!/usr/bin/env pwsh`).
-- **Envelope:** Line 2+ (Comment block).
-- **Doc-Block:** Use `<# ... #>` for help/metadata or just comments.
 
-### TypeScript (`.ts`)
-- **Shebang:** Line 1 (`#!/usr/bin/env bun`).
-- **Envelope:** `//` comments.
+```powershell
+#!/usr/bin/env pwsh
+# ╔════════════════════════════════════════════════════════════════════════════
+# ║ THE DECORATOR'S BLESSING: <filename>.ps1
+# ║ Module: <description>
+# ╠════════════════════════════════════════════════════════════════════════════
+# ║ Spectral Frequency: <COLOR>
+# ║ Architectural Role: <ROLE>
+# ║ Semantic ID: <SID>
+# ╚════════════════════════════════════════════════════════════════════════════
+```
+
+| Line | Content | Required |
+|------|---------|----------|
+| 1 | `#!/usr/bin/env pwsh` | Yes — shebang |
+| 2+ | Decorator's Blessing envelope | Recommended |
+| N | `@SID` within envelope or `<# #>` block | Recommended |
+
+### TypeScript / TSX (`.ts`, `.tsx`)
+
+```typescript
+#!/usr/bin/env bun
+// ╔════════════════════════════════════════════════════════════════════════════
+// ║ THE DECORATOR'S BLESSING: <filename>.ts
+// ║ Module: <exports / key symbols>
+// ╠════════════════════════════════════════════════════════════════════════════
+// ║ Spectral Frequency: <COLOR>
+// ║ Architectural Role: <ROLE>
+// ║ @SID: <SID>
+// ╚════════════════════════════════════════════════════════════════════════════
+```
+
+| Line | Content | Required |
+|------|---------|----------|
+| 1 | `#!/usr/bin/env bun` | Yes for CLI scripts; omit for library modules / VS Code extension source |
+| 2+ | Decorator's Blessing envelope | Recommended for scripts; optional for library modules |
+| Alt | `/** JSDoc */` with `@SID` | Acceptable for library modules (VS Code extension source) |
+
+**VS Code extension source** (`extensions/chthonic-archive/src/`) uses JSDoc `/** */` with `@SID` instead of the envelope:
+
+```typescript
+/**
+ * Module description.
+ * @SID EXTENSION_MODULE_V1
+ */
+import * as vscode from 'vscode';
+```
+
+### Rust (`.rs`)
+
+Rust has no shebang. The Decorator's Blessing envelope is the canonical header:
+
+```rust
+// ╔════════════════════════════════════════════════════════════════════════════
+// ║  THE DECORATOR'S BLESSING: <filename>.rs
+// ║  Module: <description>
+// ╠════════════════════════════════════════════════════════════════════════════
+// ║  Spectral Frequency: <COLOR>
+// ║  Architectural Role: <ROLE>
+// ║  @SID: <SID>
+// ╚════════════════════════════════════════════════════════════════════════════
+```
+
+### Config Files (JSON, TOML, YAML)
+
+Config files carry structural metadata (keys like `name`, `version`, `description`) as content. No shebang, no envelope. `@SID` is expressed via the file's position in the project hierarchy, not inline.
+
+### CSS / Tailwind
+
+CSS is generated output in this repo. No header convention applies to generated CSS.
+For authored CSS, a `/* @SID */` comment at line 1 is acceptable but not required.
 
 ---
 
@@ -122,3 +210,35 @@ By standardizing this structure, we enable:
 1.  **Automated Auditing:** `chthonic audit` can parse `@SID` tags to build a graph.
 2.  **Context Loading:** Agents can read *just the header* (first 20 lines) to understand a file's role without reading the full code.
 3.  **Visual Scanning:** Humans can quickly identify "Official" vs "Scratchpad" scripts by the presence of the **Decorator's Blessing** (the envelope).
+
+---
+
+## 6. Compliance Matrix (2026-02-24 Audit)
+
+| Language | Files | Shebang | Decorator's Blessing | @SID |
+|----------|-------|---------|---------------------|------|
+| Python | 120 | 120/120 (100%) | 57/120 (48%) | 47/120 (39%) |
+| PowerShell | 82 | 82/82 (100%) | 32/82 (39%) | 2/82 (2%) |
+| TypeScript | 62 | 10/62 (16%) | 26/62 (42%) | 3/62 (5%) |
+| Rust | 15 | N/A | 15/15 (100%) | 0/15 (0%) |
+| **Total** | **279** | **212/264 (80%)** | **130/279 (47%)** | **52/279 (19%)** |
+
+### Known Systemic Debt
+
+- **Python `#-*-` spacing**: 92/120 scripts use `# -*- coding: utf-8 -*-` (spaced) vs canonical `#-*- coding: utf-8 -*-` (tight). Batch tooling target.
+- **TypeScript shebangs**: Only 10/62 have `#!/usr/bin/env bun`. Library modules correctly omit; CLI scripts need addition.
+- **@SID coverage**: 19% overall. Highest priority for incremental improvement.
+- **Rust @SID**: 0/15. All have the Blessing envelope but lack `@SID` tags within.
+
+---
+
+## 7. Hierarchy (Priority Order)
+
+When conventions conflict:
+
+1. **PMS-v3** (Python-specific: shebang, `#-*-`, docstring @SID/@Type) — highest authority for `.py`
+2. **STD_SCRIPT_METADATA_V2** (this document) — universal cross-language standard
+3. **Decorator's Blessing** (visual envelope) — recommended, not mandatory
+4. **Per-framework conventions** (Next.js, Tailwind, Cargo) — respected for config files
+
+The hierarchy ensures Python's metabolic standard is never overridden by the general standard, while all other languages follow this document.

@@ -194,6 +194,35 @@ The extension manifest, commands, tree view, and build pipeline must be cohesive
 
 ---
 
+## Pillar V — Metadata Standardization (Cross-Cutting)
+
+Header/metadata conventions across all authored file types. Governed by `STD_SCRIPT_METADATA_V2` (canonical) and PMS-v3 (Python-specific).
+
+### Compliance Matrix (2026-02-24)
+
+| Language | Files | Shebang | Decorator's Blessing | @SID |
+|----------|-------|---------|---------------------|------|
+| Python | 120 | 100% | 48% | 39% |
+| PowerShell | 82 | 100% | 39% | 2% |
+| TypeScript | 62 | 16% | 42% | 5% |
+| Rust | 15 | N/A | 100% | 0% |
+
+### Planned Stages
+
+| Stage | Name | Description | Status |
+|-------|------|-------------|--------|
+| **S.0** | Python Header Canon | Fix 92 scripts with spaced `# -*-` to tight `#-*-` per PMS-v3. | ⬜ Batch tooling target |
+| **S.1** | @SID Expansion | Raise @SID coverage from 19% to ≥60% across all languages. | ⬜ Incremental |
+| **S.2** | TypeScript Shebang Sweep | Add `#!/usr/bin/env bun` to CLI-oriented `.ts` scripts missing it. | ⬜ Not started |
+| **S.3** | Rust @SID Tags | Add `@SID` to all 15 Rust files within their existing Blessing envelopes. | ⬜ Not started |
+
+### Reference
+
+- [docs/standards/SCRIPT_METADATA_STANDARD.md](../standards/SCRIPT_METADATA_STANDARD.md) — Universal standard (V2, canonical)
+- [.github/instructions/python-scripting.instructions.md](../../.github/instructions/python-scripting.instructions.md) — PMS-v3 (Python canonical)
+
+---
+
 ## Iteration Sequence (Recommended)
 
 The 24 collisions in Stage 2.1 are the **current critical path blocker**. Everything else is downstream.
