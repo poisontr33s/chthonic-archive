@@ -1,4 +1,4 @@
-import * as vscode from 'vscode';
+﻿import * as vscode from 'vscode';
 import * as crypto from 'crypto';
 import * as fs from 'fs';
 import * as path from 'path';
@@ -555,7 +555,7 @@ export function activate(context: vscode.ExtensionContext) {
             ];
             let targetId = themeId;
             if (!targetId) {
-           // No argument — show picker (command palette path)
+            // No argument — show picker (command palette path)
                 const current = vscode.workspace.getConfiguration('workbench').get<string>('colorTheme');
                 const pick = await vscode.window.showQuickPick(themes.map(t => ({
                     ...t,
@@ -1100,10 +1100,9 @@ class ParkedChatProvider implements vscode.WebviewViewProvider {
                 <meta charset="UTF-8" />
                 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
                 <style>
-               { name: 'Chthonic — Flesh & Earth (The Decorator)', short: 'Flesh & Earth', icon: 'paintcan', desc: 'The Decorator · Warm earth' },
-            { name: 'Chthonic — ROGBIV (Spectra Chroma)', short: 'ROGBIV', icon: 'zap', desc: 'Spectra Chroma · Spectral canon' },
-            { name: 'Chthonic — Geological Core (Sister Ferrum Scoriae)', short: 'Geological Core', icon: 'symbol-color', desc: 'Ferrum Scoriae · Forge strata' },
-                font-size: 14px;
+                    body {
+                        font-family: var(--vscode-font-family);
+                        font-size: 14px;
                     }
                     p {
                         margin: 0;
@@ -1135,9 +1134,9 @@ class ThemeTreeProvider implements vscode.TreeDataProvider<vscode.TreeItem> {
     getChildren(): vscode.TreeItem[] {
         const current = vscode.workspace.getConfiguration('workbench').get<string>('colorTheme') || '';
         const themes = [
-            { name: 'Chthonic Mandala - Flesh & Earth', short: 'Flesh & Earth', icon: 'paintcan', desc: 'Warm earth · Distribution' },
-            { name: 'Chthonic Mandala - ROGBIV', short: 'ROGBIV', icon: 'zap', desc: 'Spectral canon · Research' },
-            { name: 'Chthonic Geological Core', short: 'Geological Core', icon: 'symbol-color', desc: 'Mineral strata · Deep earth' },
+            { name: 'Chthonic — Flesh & Earth (The Decorator)', short: 'Flesh & Earth', icon: 'paintcan', desc: 'The Decorator · Warm earth' },
+            { name: 'Chthonic — ROGBIV (Spectra Chroma)', short: 'ROGBIV', icon: 'zap', desc: 'Spectra Chroma · Spectral canon' },
+            { name: 'Chthonic — Geological Core (Sister Ferrum Scoriae)', short: 'Geological Core', icon: 'symbol-color', desc: 'Ferrum Scoriae · Forge strata' },
         ];
         return themes.map(t => {
             const active = current === t.name;
@@ -1147,7 +1146,9 @@ class ThemeTreeProvider implements vscode.TreeDataProvider<vscode.TreeItem> {
             );
             item.iconPath = new vscode.ThemeIcon(t.icon);
             item.tooltip = `${t.name}\n${t.desc}${active ? '\n\n✅ ACTIVE' : ''}`;
-            item.description         const currentTheme = (vscode.workspace.getConfiguration('workbench').get<string>('colorTheme') || 'default').replace(/^Chthonic [—\-] /, '');
+            item.description = active ? '✅ Active' : t.desc;
+            item.command = { command: 'chthonic.switchTheme', title: 'Switch Theme', arguments: [t.name] };
+            return item;
         });
     }
 }
