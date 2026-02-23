@@ -8,7 +8,7 @@
 // ║ Exports: load_game_data
 // ╠════════════════════════════════════════════════════════════════════════════
 // ║ Cross-References (Bidirectional):
-// ║  (Standalone file - no detected dependencies)
+// ║ (Standalone file - no detected dependencies)
 // ╚════════════════════════════════════════════════════════════════════════════
 
 //! Data loader - Transmutes JSON into living game entities

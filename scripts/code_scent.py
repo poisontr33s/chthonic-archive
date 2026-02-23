@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-# ╔════════════════════════════════════════════════════════════════════════════   ╗
+# ╔════════════════════════════════════════════════════════════════════════════
 # ║ THE DECORATOR'S BLESSING: code_scent.py
 # ║ Python module: analyze_scent
 # ╠═══════════════════════════════════════════════════════════════════════════════
@@ -11,7 +11,7 @@
 # ║ Exports: analyze_scent
 # ╠═══════════════════════════════════════════════════════════════════════════════
 # ║ Cross-References (Bidirectional):
-# ║  (Standalone file - no detected dependencies)
+# ║ (Standalone file - no detected dependencies)
 # ╚═══════════════════════════════════════════════════════════════════════════════
 
 #!/usr/bin/env python3
@@ -19,6 +19,8 @@
 Olfactory Analysis - Code Smell Detection via Cyclomatic Complexity
 Uses radon to calculate actual complexity metrics
 """
+
+from __future__ import annotations
 import sys
 from pathlib import Path
 from radon.complexity import cc_visit
