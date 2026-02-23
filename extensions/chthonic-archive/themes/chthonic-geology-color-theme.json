@@ -239,6 +239,7 @@
 
     "editorUnicodeHighlight.background":            "#D4A03020",
     "editorUnicodeHighlight.border":                "#D4A03060",
+    "editorGhost.foreground":                       "#887A6880",
     "editorGhostText.foreground":                   "#887A6880",
     "editorGhostText.border":                       "#00000000",
     "editorGhostText.background":                   "#00000000",
@@ -941,7 +942,7 @@
     },
     {
       "name": "Decorators/Annotations (Forge Gold)",
-      "scope": ["meta.decorator", "entity.name.function.decorator", "punctuation.definition.decorator", "meta.annotation", "storage.type.annotation", "punctuation.definition.annotation"],
+      "scope": ["meta.decorator", "entity.name.function.decorator", "punctuation.definition.decorator", "meta.decorator punctuation.decorator", "meta.annotation", "storage.type.annotation", "punctuation.definition.annotation"],
       "settings": { "foreground": "#F4C430", "fontStyle": "bold italic" }
     },
     {
@@ -1036,7 +1037,7 @@
     },
     {
       "name": "JSON Keys (Forge Amber)",
-      "scope": ["support.type.property-name.json", "support.type.property-name.json.comments", "meta.structure.dictionary.key"],
+      "scope": ["support.type.property-name.json", "support.type.property-name.json.comments", "meta.structure.dictionary.key", "source.json meta.structure.dictionary.json support.type.property-name.json"],
       "settings": { "foreground": "#D7B562" }
     },
     {
@@ -1191,7 +1192,7 @@
     },
     {
       "name": "Function Definitions (Forge Amber Bold)",
-      "scope": ["entity.name.function.definition"],
+      "scope": ["entity.name.function.definition", "meta.definition.function entity.name.function"],
       "settings": { "foreground": "#D7B562", "fontStyle": "bold" }
     },
     {
