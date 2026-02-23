@@ -723,8 +723,7 @@
     "charts.purple":                                "#D4907A",
     "charts.foreground":                            "#E8E2D2",
     "charts.lines":                                 "#3A3028"
-  },
-  "tokenColors": [
+  },  "tokenColors": [
     {
       "name": "Comments (Soot)",
       "scope": ["comment", "punctuation.definition.comment"],

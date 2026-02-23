@@ -34,11 +34,7 @@
         "path": "./themes/chthonic-rogbiv-color-theme.json"
       },
       {
-<<<<<<< HEAD
         "label": "Chthonic — Geological Core (Sister Ferrum Scoriae)",
-=======
-        "label": "Chthonic — Geological Core",
->>>>>>> 89876311 (fix: address PR review findings — security guards, crypto nonce, path sanitization, layout idempotency)
         "uiTheme": "vs-dark",
         "path": "./themes/chthonic-geology-color-theme.json"
       }
@@ -186,11 +182,6 @@
     "configuration": {
       "title": "Chthonic Archive",
       "properties": {
-        "chthonic.security.allowNativeSidecars": {
-          "type": "boolean",
-          "default": false,
-          "description": "Master kill-switch for native binaries and sidecar processes (daemon, Solana validator, ledger host, Python/Ruby sidecars). Must be explicitly enabled to allow any native process spawning."
-        },
         "chthonic.ssotPath": {
           "type": "string",
           "default": ".github/copilot-instructions.md",

@@ -20,7 +20,7 @@ export class CockpitLayout implements vscode.Disposable {
     ) {}
 
     /**
-     * Force the IDE into Cockpit layout. Idempotent — repeated calls are no-ops.
+     * Force the IDE into Cockpit layout. Idempotent - repeated calls are no-ops.
      */
     async activate(): Promise<void> {
         if (this.disposed || this.cockpitActive) {
