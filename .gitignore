@@ -172,6 +172,7 @@ extensions/*/bun.lock
 !scripts/run_overnight_daemon.ps1
 !scripts/sentry_init.ts
 !scripts/mcp-chthonic-server.ts
+!scripts/theme_token_coverage.py
 
 # mdBook build output (generated artifact)
 book/

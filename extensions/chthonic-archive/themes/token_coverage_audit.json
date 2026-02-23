@@ -1,0 +1,270 @@
+{
+  "textmate": {
+    "rule_count": 83,
+    "unique_scopes": 226,
+    "covered_categories": [
+      "comment",
+      "constant",
+      "entity",
+      "invalid",
+      "keyword",
+      "markup",
+      "meta",
+      "punctuation",
+      "storage",
+      "string",
+      "support",
+      "variable"
+    ],
+    "uncovered_categories": [
+      "source-specific"
+    ],
+    "partially_covered": {
+      "comment": {
+        "covered": 4,
+        "total": 11,
+        "missing": [
+          "comment.line",
+          "comment.line.double-slash",
+          "comment.line.double-dash",
+          "comment.line.number-sign",
+          "comment.line.percentage",
+          "comment.line.character",
+          "comment.block"
+        ]
+      },
+      "constant": {
+        "covered": 20,
+        "total": 21,
+        "missing": [
+          "constant.other.color",
+          "constant.other.symbol",
+          "constant.other.caps",
+          "constant.other.enum",
+          "constant.regexp"
+        ]
+      },
+      "entity": {
+        "covered": 34,
+        "total": 26,
+        "missing": [
+          "entity.name",
+          "entity.name.function.macro",
+          "entity.name.type.anchor",
+          "entity.name.package",
+          "entity.name.import",
+          "entity.name.label",
+          "entity.other.attribute-name.class",
+          "entity.other.attribute-name.id",
+          "entity.other.attribute-name.pseudo-class",
+          "entity.other.attribute-name.pseudo-element"
+        ]
+      },
+      "keyword": {
+        "covered": 37,
+        "total": 37,
+        "missing": [
+          "keyword.control.new",
+          "keyword.control.exception",
+          "keyword.control.trycatch",
+          "keyword.operator.expression.delete",
+          "keyword.operator.expression.void",
+          "keyword.operator.ternary",
+          "keyword.other",
+          "keyword.other.unit",
+          "keyword.other.unsafe"
+        ]
+      },
+      "markup": {
+        "covered": 18,
+        "total": 19,
+        "missing": [
+          "markup.list.numbered",
+          "markup.list.unnumbered",
+          "markup.separator"
+        ]
+      },
+      "meta": {
+        "covered": 29,
+        "total": 27,
+        "missing": [
+          "meta.function",
+          "meta.class",
+          "meta.block",
+          "meta.return.type",
+          "meta.embedded",
+          "meta.macro.rules",
+          "meta.attribute",
+          "meta.fstring",
+          "meta.property-value"
+        ]
+      },
+      "punctuation": {
+        "covered": 23,
+        "total": 24,
+        "missing": [
+          "punctuation.definition.variable",
+          "punctuation.definition.anchor",
+          "punctuation.definition.attribute",
+          "punctuation.definition.lifetime",
+          "punctuation.definition.expression"
+        ]
+      },
+      "storage": {
+        "covered": 6,
+        "total": 13,
+        "missing": [
+          "storage.type.function",
+          "storage.type.interface",
+          "storage.type.enum",
+          "storage.type.struct",
+          "storage.modifier.async",
+          "storage.modifier.static",
+          "storage.modifier.readonly",
+          "storage.modifier.lifetime",
+          "storage.modifier.unsafe"
+        ]
+      },
+      "string": {
+        "covered": 9,
+        "total": 13,
+        "missing": [
+          "string.quoted.single",
+          "string.quoted.double",
+          "string.quoted.triple",
+          "string.interpolated"
+        ]
+      },
+      "support": {
+        "covered": 25,
+        "total": 21,
+        "missing": [
+          "support.function.magic",
+          "support.function.builtin",
+          "support.function.macro",
+          "support.function.transform",
+          "support.type.builtin",
+          "support.type.property-name",
+          "support.type.vendored.property-name",
+          "support.constant.property-value",
+          "support.constant.font-name",
+          "support.variable",
+          "support.other"
+        ]
+      },
+      "variable": {
+        "covered": 16,
+        "total": 16,
+        "missing": [
+          "variable.other.normal",
+          "variable.other.alias",
+          "variable.other.receiver"
+        ]
+      }
+    }
+  },
+  "semantic": {
+    "definition_count": 57,
+    "covered_types": [
+      "builtinType",
+      "class",
+      "comment",
+      "decorator",
+      "enum",
+      "enumMember",
+      "event",
+      "function",
+      "interface",
+      "keyword",
+      "label",
+      "macro",
+      "method",
+      "namespace",
+      "number",
+      "operator",
+      "parameter",
+      "property",
+      "regexp",
+      "selfKeyword",
+      "string",
+      "struct",
+      "type",
+      "typeParameter",
+      "variable"
+    ],
+    "uncovered_types": [
+      "angle",
+      "arithmetic",
+      "attributeBracket",
+      "bitwise",
+      "boolean",
+      "builtinAttribute",
+      "colon",
+      "comma",
+      "comparison",
+      "constParameter",
+      "derive",
+      "deriveHelper",
+      "dot",
+      "escapeSequence",
+      "formatSpecifier",
+      "generic",
+      "intrinsic",
+      "lifetime",
+      "logical",
+      "magicFunction",
+      "modifier",
+      "parenthesis",
+      "procMacro",
+      "punctuation",
+      "semicolon",
+      "toolModule",
+      "unresolvedReference"
+    ],
+    "type_coverage_pct": 48.1,
+    "covered_modifiers": [
+      "declaration",
+      "defaultLibrary",
+      "mutable",
+      "readonly"
+    ],
+    "uncovered_modifiers": [
+      "abstract",
+      "async",
+      "attribute",
+      "callable",
+      "consuming",
+      "controlFlow",
+      "crateRoot",
+      "definition",
+      "deprecated",
+      "documentation",
+      "injected",
+      "library",
+      "modification",
+      "public",
+      "reference",
+      "static",
+      "trait",
+      "unsafe"
+    ],
+    "modifier_coverage_pct": 18.2,
+    "custom_modifiers": [
+      "critical",
+      "decorator",
+      "frozen",
+      "lineageA",
+      "lineageB",
+      "lineageC",
+      "matriarch",
+      "milf",
+      "slab",
+      "ssot",
+      "tier0",
+      "tier1",
+      "tier2",
+      "tier3",
+      "triumvirate"
+    ]
+  }
+}

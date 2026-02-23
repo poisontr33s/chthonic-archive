@@ -140,7 +140,7 @@ The color theme is at 669/83/57 — a strong foundation. These stages refine and
 
 | Stage | Name | Description | Status |
 |-------|------|-------------|--------|
-| **4.0** | Token Scope Coverage Audit | Compare 83 token scopes against VS Code's full TextMate grammar universe. Identify syntax contexts with no assigned color. | ⬜ Not started |
+| **4.0** | Token Scope Coverage Audit | Compare 83 token scopes against VS Code's full TextMate grammar universe. Identify syntax contexts with no assigned color. | ✅ 12/13 TM categories covered, 25/52 LSP types, 4/22 LSP modifiers + 15 custom SFS modifiers |
 | **4.1** | Semantic Token Expansion | Validate 57 semantic keys cover all LSP semantic token types + modifiers used by major language servers (TS, Python, Rust, Go, C++). | ⬜ Not started |
 | **4.2** | Workbench Key Completeness | Diff 669 workbench keys against VS Code's full `workbench.colorCustomizations` schema. Identify missing UI surfaces. | ⬜ Not started |
 | **4.3** | Palette Discipline Audit | Verify every hex value in the theme is either from the SFS 12-color palette or a derivation (alpha, lighten, darken) with documented relationship. | ⬜ Not started |
