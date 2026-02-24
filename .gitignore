@@ -178,6 +178,7 @@ extensions/*/bun.lock
 !scripts/kcp_header_classifier.py
 !scripts/sfs_reference_index.py
 !scripts/theme_promote_master.py
+!scripts/theme_color_diversity.py
 
 # Allow specific Codex skill additions
 !.codex/
