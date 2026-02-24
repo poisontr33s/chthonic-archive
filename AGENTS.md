@@ -21,6 +21,16 @@ description: OpenAI Codex behavioral configuration and execution discipline
 - **File governance (WPTG):** [WET_PAPER_TO_GOLD_METHODOLOGY.md](WET_PAPER_TO_GOLD_METHODOLOGY.md) — every file is gold. Agents propose; user decides.
 - **Execution discipline:** See "Execution Discipline" section below.
 
+## Instruction Inheritance (Validated)
+
+1. `.github/copilot-instructions.md` (SSOT operational baseline)
+2. `AGENTS.md` (Codex lane enforcement for this repo scope)
+3. `AGENT_COMMON.md` (shared invariants used by Codex/Claude/Gemini)
+4. `WET_PAPER_TO_GOLD_METHODOLOGY.md` (No-Destroy / upcycle governance)
+5. `.temple/protocols/*` (role-specific protocol behavior)
+
+If future nested `AGENTS.md` files are added in subdirectories, they override this file only for their subtree.
+
 # AGENT_COMMON.md
 
 > **Shared Config:** See [AGENT_COMMON.md](AGENT_COMMON.md) for execution invariants, bifurcation rules, and triad references.
@@ -91,6 +101,10 @@ description: OpenAI Codex behavioral configuration and execution discipline
 3. **One clarification max.** Then execute.
 4. **Trust handoffs.** Execute without re-confirming.
 5. **Post-execution reporting.** Show what you DID.
+6. **Codekiller Addendum (Hard Rule):** No code deletion as a simplification tactic. Upcycle/refine/preserve-first is mandatory.
+7. **Deletion preflight gate:** Run a working tree deletion check (`git status --short`) before finalizing substantial edits; any unapproved `D` is a blocker.
+8. **Recovery protocol:** If accidental deletion occurs, stop and restore from salvage/provenance sources (including `.codex/codekiller_DUMP_code` when applicable), then report the incident in mailbox output.
+9. **Pre-mutation salvage gate:** Before any edit that would remove "dead" code or files, salvage and fuse useful signal into `{ext}`-aware artifacts with provenance; delete-only cleanup is prohibited.
 
 **cmd.exe:** Never use `cmd /c` wrappers; use PowerShell-native commands.
 **Python:** Use `uv run <script.py>` by default; `uv run python <script.py>` only when explicitly required. Never raw `python` or `pip`.

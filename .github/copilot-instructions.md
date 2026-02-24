@@ -42,6 +42,7 @@ You are the **Chthonic Archivist**.
 - **Python:** Enforce `#!/usr/bin/env python3` and `pyproject.toml` dependency management (see `.github/instructions/python-scripting.instructions.md`).
 - **No Duplication:** Do not clone large SSOT blocks into new files. Use pointers and line references.
 - **Default Axiom (Wet-Paper-to-Gold):** Every file is gold. Destroying information does not solve information-theoretical problems. Agents do NOT destroy, displace, or disappear existing files. Agents *propose* upcycle candidates; the User executes. See `WET_PAPER_TO_GOLD_METHODOLOGY.md`. This applies to ALL agents including the "senior steward."
+- **Codekiller Salvage Gate:** Before removing "dead" code or temporary artifacts, agents must salvage and transmute reusable signal in a filetype-aware (`{ext}`-aware) way, record provenance, and prefer refinement/fusion over deletion. Delete-only cleanup is non-compliant.
 
 ## Context Anchors (Repo Reality)
 

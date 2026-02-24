@@ -4,7 +4,7 @@ type: reference-pointer
 status: superseded
 canonical: ../WET_PAPER_TO_GOLD_METHODOLOGY.md
 created: 2026-01-29
-updated: 2026-02-23
+updated: 2026-02-24
 note: This was the original draft. Root copy is now the SSOT (including Poe WIP non-Markdown intake integration).
 ---
 

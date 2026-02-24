@@ -1,0 +1,44 @@
+  Pruned 2 old runs from overnight-daemon
+
+╔══════════════════════════════════════════════════════╗
+║  ☥ NIGHTLY DAEMON — Local Computation, Zero API     ║
+╚══════════════════════════════════════════════════════╝
+
+  ☥ Daemon: debt scoring + complexity analysis...
+report: C:/Users/erdno/chthonic-archive/dumpster-dive/intake/overnight-daemon/20260224_030003/report.json
+top: scripts/api_pool.ps1
+  ☥ Genre Extractor: creative content analysis (local GPU, uncensored)
+llama_context: n_ctx_per_seq (4096) < n_ctx_train (262144) -- the full capacity of the model will not be utilized
+☥ Genre Extractor v1 (llama-cpp + structured JSON, uncensored)
+  Model: Qwen3-30B-A3B-Instruct-abliterated-GGUF
+  Creative files found: 50
+  Loading: Huihui-Qwen3-30B-A3B-Instruct-2507-abliterated.i1-Q3_K_M.gguf
+  Loaded in 39.2s
+
+  Genre: batch 1/17 (3 files)... 281.7s (1 profiles)
+  Genre: batch 2/17 (3 files)... 179.9s (1 profiles)
+  Genre: batch 3/17 (3 files)... 156.0s (1 profiles)
+  Genre: batch 4/17 (3 files)... 155.5s (1 profiles)
+  Genre: batch 5/17 (3 files)... 159.2s (parsed 0; response preview: '{ "results": [ { "path": "dumpster-dive/from-github/macro-prompt-world/prime-factions/The_Triumvirate_Core.md", "title":')
+  Genre: batch 6/17 (3 files)... 154.7s (1 profiles)
+  Genre: batch 7/17 (3 files)... 161.9s (1 profiles)
+  Genre: batch 8/17 (3 files)... 180.6s (1 profiles)
+  Genre: batch 9/17 (3 files)... 165.2s (1 profiles)
+  Genre: batch 10/17 (3 files)... 165.0s (1 profiles)
+  Genre: batch 11/17 (3 files)... 163.5s (1 profiles)
+  Genre: batch 12/17 (3 files)... 167.0s (35 profiles)
+  Genre: batch 13/17 (3 files)... 157.5s (1 profiles)
+  Genre: batch 14/17 (3 files)... 134.3s (2 profiles)
+  Genre: batch 15/17 (3 files)... 162.2s (1 profiles)
+  Genre: batch 16/17 (3 files)... 155.8s (45 profiles)
+  Genre: batch 17/17 (2 files)... 157.7s (parsed 0; response preview: '{ "results": [ { "path": ".temple/governance/TEMPORAL_MECHANICS.md", "title": "Temporal Mechanics", "tags": [ { "tag": "')
+
+  Genre extraction complete: 94 profiles in 2858.2s
+  Digest: C:\Users\erdno\chthonic-archive\claude\mailbox\GENRE_EXTRACTION_2026_02_24.md
+  JSON:   skipped (use --json-out to enable)
+
+☥ Genre extraction complete ($0 cost).
+
+  ────────────────────────────────────────────────────
+  ☥ Nightly run complete.
+

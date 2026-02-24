@@ -175,6 +175,13 @@ extensions/*/bun.lock
 !scripts/theme_token_coverage.py
 !scripts/product_icon_census.py
 !scripts/ankh_theme_reference.py
+!scripts/kcp_header_classifier.py
+
+# Allow specific Codex skill additions
+!.codex/
+!.codex/skills/
+!.codex/skills/codekiller-remediation-gate/
+!.codex/skills/codekiller-remediation-gate/**
 
 # mdBook build output (generated artifact)
 book/
@@ -192,6 +199,8 @@ book/
 !GEMINI.md
 !CLAUDE.md
 !AGENTS.md
+!AGENT_COMMON.md
+!WET_PAPER_TO_GOLD_METHODOLOGY.md
 !codex/
 !codex/**
 !claude/
