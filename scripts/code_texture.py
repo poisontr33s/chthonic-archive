@@ -2,21 +2,20 @@
 #-*- coding: utf-8 -*-
 # ╔════════════════════════════════════════════════════════════════════════════
 # ║ THE DECORATOR'S BLESSING: code_texture.py
-# ║ Python module: analyze_texture
 # ╠════════════════════════════════════════════════════════════════════════════
-# ║ Spectral Frequency: WHITE
-# ║ Architectural Role: 🌿 THE GARDEN
-# ║ Purpose: Tactile Feedback - Code Structure as Physical Texture
-# ║ Exports: analyze_texture
-# ╠════════════════════════════════════════════════════════════════════════════
-# ║ Cross-References (Bidirectional):
-# ║  (Standalone file - no detected dependencies)
+# ║ Wedjat-Quipu Spectrum: WHITE
+# ║ Temple-Ayllu Zone: 🌿 THE GARDEN
+# ║ Ogdoad-Ceque Radiance:
+# ║   └─◄ (Standalone)
 # ╚════════════════════════════════════════════════════════════════════════════
 
-#!/usr/bin/env python3
 """
-Tactile Feedback - Code Structure as Physical Texture
-Uses AST import analysis to detect coupling
+code_texture.py — Tactile Feedback: Code Structure as Physical Texture
+
+@SID:           TOOL_CODE_TEXTURE_V1
+@Shabti:        CLI Script
+@Purpose:       Analyzes import coupling via AST and maps dependency
+                density to tactile (texture) descriptors.
 """
 
 import sys

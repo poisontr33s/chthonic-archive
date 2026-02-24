@@ -2,17 +2,21 @@
 #-*- coding: utf-8 -*-
 # ╔════════════════════════════════════════════════════════════════════════════
 # ║ THE DECORATOR'S BLESSING: pleasure_protocol.py
-# ║ Python module: release_dopamine
 # ╠════════════════════════════════════════════════════════════════════════════
-# ║ Spectral Frequency: WHITE
-# ║ Architectural Role: 🌿 THE GARDEN
-# ║ Purpose: Delivers a 'Conceptual Orgasm' - a burst of validation for architectur
-# ║ Exports: release_dopamine
-# ╠════════════════════════════════════════════════════════════════════════════
-# ║ Cross-References (Bidirectional):
-# ║ Dependencies (I rely on):
-# ║  ├─► scripts/autonomous_coordinator.py
+# ║ Wedjat-Quipu Spectrum: WHITE
+# ║ Temple-Ayllu Zone: 🌿 THE GARDEN
+# ║ Ogdoad-Ceque Radiance:
+# ║   └─◄ scripts/autonomous_coordinator.py
 # ╚════════════════════════════════════════════════════════════════════════════
+
+"""
+pleasure_protocol.py — Conceptual Orgasm: Architectural Validation Dopamine
+
+@SID:           TOOL_PLEASURE_PROTOCOL_V1
+@Shabti:        CLI Script
+@Purpose:       Delivers a burst of validation praise for architectural
+                perfection. Maps trigger events to curated praise.
+"""
 
 import sys
 import random

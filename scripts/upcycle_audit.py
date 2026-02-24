@@ -2,34 +2,21 @@
 #-*- coding: utf-8 -*-
 # ╔════════════════════════════════════════════════════════════════════════════
 # ║ THE DECORATOR'S BLESSING: upcycle_audit.py
-# ║ Python module: COMMENT_MARKERS, SKIP_PATTERNS, EXEMPT_FROM_NOMINATION, should_skip, analyze_file, scan_paths...
 # ╠════════════════════════════════════════════════════════════════════════════
-# ║ Spectral Frequency: WHITE
-# ║ Architectural Role: 🌿 THE GARDEN
-# ║ Purpose: Upcycling audit tool for chthonic-archive.
-# ║ Exports: COMMENT_MARKERS, SKIP_PATTERNS, EXEMPT_FROM_NOMINATION, should_skip,
-# ╠════════════════════════════════════════════════════════════════════════════
-# ║ Cross-References (Bidirectional):
-# ║  (Standalone file - no detected dependencies)
+# ║ Wedjat-Quipu Spectrum: WHITE
+# ║ Temple-Ayllu Zone: 🌿 THE GARDEN
+# ║ Ogdoad-Ceque Radiance:
+# ║   └─◄ (Standalone)
 # ╚════════════════════════════════════════════════════════════════════════════
 
-#!/usr/bin/env python3
 """
-Upcycling audit tool for chthonic-archive.
-Nominates files for refactor/consolidation based on code vs text density.
+upcycle_audit.py — File Upcycling Auditor
 
-DESIGN PRINCIPLES:
-- No AI inference — only measurable signals
-- Filetype-aware heuristics
-- Nominate, don't decide
-- uv-compatible, stdlib-only
-- Readable + hackable
-
-USAGE:
-    uv run python scripts/upcycle_audit.py <paths...>
-    uv run python scripts/upcycle_audit.py scripts docs *.md
-
-OUTPUT: JSON array of file analysis results
+@SID:           TOOL_UPCYCLE_AUDIT_V1
+@Shabti:        CLI Script
+@Purpose:       Nominates files for refactor/consolidation based on code
+                vs text density. Filetype-aware heuristics, no AI inference.
+                Usage: uv run python scripts/upcycle_audit.py <paths...>
 """
 
 from __future__ import annotations

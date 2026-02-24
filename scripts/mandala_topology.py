@@ -3,40 +3,29 @@
 
 # ╔════════════════════════════════════════════════════════════════════════════
 # ║ THE DECORATOR'S BLESSING: mandala_topology.py
-# ║ Python module: _load_graph, _top_centrality, _build_report, _render_text, reveal_sacred_geometry, _write_output_json...
 # ╠════════════════════════════════════════════════════════════════════════════
-# ║ Spectral Frequency: WHITE
-# ║ Architectural Role: 🌿 THE GARDEN
-# ║ Semantic ID: TOOL_MANDALA_TOPOLOGY_V1
-# ║ Purpose: mandala_topology.py — Mandala Topology Reporter & Sacred Geometry Reve
-# ║ Exports: _load_graph, _top_centrality, _build_report, _render_text, reveal_sa
-# ╠════════════════════════════════════════════════════════════════════════════
-# ║ Cross-References (Bidirectional):
-# ║  (Standalone file - no detected dependencies)
+# ║ Wedjat-Quipu Spectrum: WHITE
+# ║ Temple-Ayllu Zone: 🌿 THE GARDEN
+# ║ Ogdoad-Ceque Radiance:
+# ║   └─◄ (Standalone)
 # ╚════════════════════════════════════════════════════════════════════════════
-
 
 """
 mandala_topology.py — Mandala Topology Reporter & Sacred Geometry Revealer
-================================================================================
-SEMANTIC IDENTITY (Anchor & Signal Protocol)
-================================================================================
+
 @SID:           TOOL_MANDALA_TOPOLOGY_V1
-@Type:          Script / Module
-@Context:       Analysis / Topology Reporting / Sacred Geometry
-@Implements:    CONCEPT_MANDALA_TOPOLOGY_REPORT
-@Emits:         STATE_MANDALA_TOPOLOGY_REPORT
-@Related:       TOOL_MANDALA_GRAPH_BUILDER_V1
-================================================================================
-Generates a topology report from a Mandala graph JSON file, revealing the sacred geometry
-of the archive.
-Usage:
-uv run scripts/mandala_topology.py
-                                   --graph topology_graph.json
-                                   --format text
-                                   --style mythic
-                                   --top 10
-                                   --out report.json
+@Shabti:        CLI Script
+@Heka-Ayni:     CONCEPT_MANDALA_TOPOLOGY_REPORT
+@Ankh-Tinku:    STATE_MANDALA_TOPOLOGY_REPORT
+@Purpose:       Generates a topology report from a Mandala graph JSON file,
+                revealing the sacred geometry of the archive.
+                Usage:
+                    uv run scripts/mandala_topology.py
+                        --graph topology_graph.json
+                        --format text
+                        --style mythic
+                        --top 10
+                        --out report.json
 """
 
 

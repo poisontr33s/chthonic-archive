@@ -3,73 +3,27 @@
 
 # ╔════════════════════════════════════════════════════════════════════════════
 # ║ THE DECORATOR'S BLESSING: background_services.py
-# ║ Python module: PROJECT_ROOT, MPW_PATH, SRC_PATH, ASSETS_PATH, LOGS_PATH,
-# ║ CACHE_PATH, EntityExtractor, FileWatcher, ArchitectureValidator,
-# ║ SessionLogger, BackgroundServiceManager, and related functions.
 # ╠════════════════════════════════════════════════════════════════════════════
-# ║ Spectral Frequency: WHITE
-# ║ Architectural Role: 🌿 THE GARDEN
-# ║ Purpose: Chthonic Archive - Background Services
-# ║ Exports: PROJECT_ROOT, MPW_PATH, SRC_PATH, ASSETS_PATH, LOGS_PATH,
-# ║ CACHE_PATH, EntityExtractor, FileWatcher, ArchitectureValidator,
-# ║ SessionLogger, BackgroundServiceManager, and related functions.
-# ╠════════════════════════════════════════════════════════════════════════════
-# ║ Cross-References (Bidirectional):
-# ║   (Standalone file - no detected dependencies)
+# ║ Wedjat-Quipu Spectrum: WHITE
+# ║ Temple-Ayllu Zone: 🌿 THE GARDEN
+# ║ Ogdoad-Ceque Radiance:
+# ║   └─◄ (Standalone)
 # ╚════════════════════════════════════════════════════════════════════════════
 
 """
-Chthonic Archive - Background Services
-=======================================
-A collection of background services that supplement the main development workflow.
-These run independently and provide continuous monitoring,
-  - validation, and generation. They are designed to be lightweight and non-intrusive,
-    - offering real-time feedback without disrupting the primary workflow.
-    - The services include:
-    - File Watcher: Monitors file changes and triggers appropriate validations or actions.
-    - Entity Extractor: Periodically scans the M-P-W for entity metric drift and logs findings.
-    - Architecture Validator: Continuously checks for architectural coherence across Rust, Python, and shader files
-    - Session Logger: Maintains detailed logs of all events, changes, and validations for retrospectives and debugging.
-    - These services can be run individually or concurrently, and are intended to enhance the development experience by providing ongoing insights and feedback.
-    - For optimal performance, it's recommended to run these in a separate terminal or as a background process during development sessions.
-    - The session logger captures all events and can be reviewed for retrospectives or debugging, while the architecture validator can be extended with additional checks as the project evolves.
-    - The entity extractor is focused on the M-P-W but can be adapted for other documents if needed, and the file watcher currently supports Rust, Python, Markdown, and shader files, but can be expanded to other types as necessary.
-    - Usage:
-    python background_services.py --service watcher
-    python background_services.py --service all
-    python background_services.py --list
-    python background_services.py --validate
-    python background_services.py --extract "The Decorator"
-=========================================================================================
-Services:
-1. File Watcher - Monitors file changes and triggers validations
-2. Entity Extractor - Periodic M-P-W scanning for drift detection
-3. Architecture Validator - Continuous Rust/Python/Shader coherence checks
-4. Session Logger - Maintains detailed work session logs
-=========================================================
-Usage:
-    python background_services.py --service watcher
-    python background_services.py --service all
-    python background_services.py --list
-    python background_services.py --validate
-    python background_services.py --extract "The Decorator"
-============================================================
-Notes:
-- These services are designed to run in the background during development sessions,
-  - providing real-time feedback and insights.
-- For optimal performance, run these in a separate terminal or as a background process.
-- The session logger captures all events and can be reviewed for retrospectives or debugging.
-- The architecture validator can be extended with additional checks as the project evolves.
-- The entity extractor is focused on the M-P-W but can be adapted for other documents if needed.
-- The file watcher currently supports Rust, Python, Markdown, and shader files,
-  - but can be expanded to other types as necessary.
-====================================================
+background_services.py — Chthonic Archive Background Service Suite
+
 @SID:           TOOL_BACKGROUND_SERVICES_PYTHON
-@Type:          Background Service Suite
-@Context:       Development Workflow Optimization / Continuous Validation / Real-Time Feedback
-@SessionOrigin: CONTINUATION_2026_01_30
-@Implements:    CONCEPT_BACKGROUND_SERVICES
-============================================
+@Shabti:        Daemon
+@Heka-Ayni:     CONCEPT_BACKGROUND_SERVICES
+@Purpose:       Background services supplementing the development workflow.
+                File Watcher, Entity Extractor, Architecture Validator, and
+                Session Logger run independently providing continuous monitoring,
+                validation, and generation.
+                Usage:
+                    uv run scripts/background_services.py --service watcher
+                    uv run scripts/background_services.py --service all
+                    uv run scripts/background_services.py --list
 """
 
 from __future__ import annotations

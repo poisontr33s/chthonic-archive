@@ -3,22 +3,21 @@
 
 # ╔════════════════════════════════════════════════════════════════════════════
 # ║ THE DECORATOR'S BLESSING: code_scent.py
-# ║ Python module: analyze_scent
-# ╠═══════════════════════════════════════════════════════════════════════════════
-# ║ Spectral Frequency: WHITE
-# ║ Architectural Role: 🌿 THE GARDEN
-# ║ Purpose: Olfactory Analysis - Code Smell Det. via Cyclomatic Complexity
-# ║ Uses radon to calculate actual complexity metrics
-# ║ Exports: analyze_scent
-# ╠═══════════════════════════════════════════════════════════════════════════════
-# ║ Cross-References (Bidirectional):
-# ║ (Standalone file - no detected dependencies)
-# ╚═══════════════════════════════════════════════════════════════════════════════
-
+# ╠════════════════════════════════════════════════════════════════════════════
+# ║ Wedjat-Quipu Spectrum: WHITE
+# ║ Temple-Ayllu Zone: 🌿 THE GARDEN
+# ║ Ogdoad-Ceque Radiance:
+# ║   └─◄ (Standalone)
+# ╚════════════════════════════════════════════════════════════════════════════
 
 """
-Olfactory Analysis - Code Smell Detection via Cyclomatic Complexity
-Uses radon to calculate actual complexity metrics
+code_scent.py — Olfactory Analysis: Code Smell Detection via Cyclomatic Complexity
+
+@SID:           TOOL_CODE_SCENT_V1
+@Shabti:        CLI Script
+@Purpose:       Analyzes code complexity using radon and maps cyclomatic
+                complexity scores to olfactory (scent) descriptors.
+                Usage: uv run scripts/code_scent.py <file_path>
 """
 
 from __future__ import annotations

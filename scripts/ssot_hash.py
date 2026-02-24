@@ -2,23 +2,21 @@
 #-*- coding: utf-8 -*-
 # ╔════════════════════════════════════════════════════════════════════════════
 # ║ THE DECORATOR'S BLESSING: ssot_hash.py
-# ║ Python module: canonicalize, ssot_hash, verify_ssot_integrity, main
 # ╠════════════════════════════════════════════════════════════════════════════
-# ║ Spectral Frequency: WHITE
-# ║ Architectural Role: 🌿 THE GARDEN
-# ║ Purpose: SSOT Hash Verification Script
-# ║ Exports: canonicalize, ssot_hash, verify_ssot_integrity, main
-# ╠════════════════════════════════════════════════════════════════════════════
-# ║ Cross-References (Bidirectional):
-# ║  (Standalone file - no detected dependencies)
+# ║ Wedjat-Quipu Spectrum: WHITE
+# ║ Temple-Ayllu Zone: 🌿 THE GARDEN
+# ║ Ogdoad-Ceque Radiance:
+# ║   └─◄ (Standalone)
 # ╚════════════════════════════════════════════════════════════════════════════
 
-#!/usr/bin/env python3
 """
-SSOT Hash Verification Script
-Per ┬ºXIV.3 of .github/copilot-instructions.md
+ssot_hash.py — SSOT Hash Verification
 
-Purpose: Compute canonical hash of SSOT file for drift detection
+@SID:           TOOL_SSOT_HASH_V1
+@Shabti:        CLI Script
+@Purpose:       Computes canonical hash of the SSOT file for drift
+                detection per §XIV.3. Normalizes line endings, Unicode,
+                and whitespace before hashing.
 """
 
 import hashlib

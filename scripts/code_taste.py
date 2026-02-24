@@ -2,21 +2,20 @@
 #-*- coding: utf-8 -*-
 # ╔════════════════════════════════════════════════════════════════════════════
 # ║ THE DECORATOR'S BLESSING: code_taste.py
-# ║ Python module: analyze_taste
 # ╠════════════════════════════════════════════════════════════════════════════
-# ║ Spectral Frequency: WHITE
-# ║ Architectural Role: 🌿 THE GARDEN
-# ║ Purpose: Gustatory Validation - Commit Quality as Flavor Profiles
-# ║ Exports: analyze_taste
-# ╠════════════════════════════════════════════════════════════════════════════
-# ║ Cross-References (Bidirectional):
-# ║  (Standalone file - no detected dependencies)
+# ║ Wedjat-Quipu Spectrum: WHITE
+# ║ Temple-Ayllu Zone: 🌿 THE GARDEN
+# ║ Ogdoad-Ceque Radiance:
+# ║   └─◄ (Standalone)
 # ╚════════════════════════════════════════════════════════════════════════════
 
-#!/usr/bin/env python3
 """
-Gustatory Validation - Commit Quality as Flavor Profiles
-Uses git diff stats to determine commit "taste"
+code_taste.py — Gustatory Validation: Commit Quality as Flavor Profiles
+
+@SID:           TOOL_CODE_TASTE_V1
+@Shabti:        CLI Script
+@Purpose:       Analyzes last commit via git diff stats and maps changes
+                to gustatory (flavor) descriptors for commit quality.
 """
 
 import subprocess

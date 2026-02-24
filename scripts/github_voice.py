@@ -2,17 +2,21 @@
 #-*- coding: utf-8 -*-
 # ╔════════════════════════════════════════════════════════════════════════════
 # ║ THE DECORATOR'S BLESSING: github_voice.py
-# ║ Python module: is_voice_active, broadcast_issue
 # ╠════════════════════════════════════════════════════════════════════════════
-# ║ Spectral Frequency: WHITE
-# ║ Architectural Role: 🌿 THE GARDEN
-# ║ Purpose: Check if the 'gh' CLI is available and authenticated.
-# ║ Exports: is_voice_active, broadcast_issue
-# ╠════════════════════════════════════════════════════════════════════════════
-# ║ Cross-References (Bidirectional):
-# ║ Dependencies (I rely on):
-# ║  ├─► scripts/autonomous_coordinator.py
+# ║ Wedjat-Quipu Spectrum: WHITE
+# ║ Temple-Ayllu Zone: 🌿 THE GARDEN
+# ║ Ogdoad-Ceque Radiance:
+# ║   └─◄ scripts/autonomous_coordinator.py
 # ╚════════════════════════════════════════════════════════════════════════════
+
+"""
+github_voice.py — The Voice of the Archive
+
+@SID:           LIB_GITHUB_VOICE_V1
+@Shabti:        Library Module
+@Purpose:       Wraps the gh CLI to check authentication status and
+                broadcast GitHub issues when critical events occur.
+"""
 
 import subprocess
 import json

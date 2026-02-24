@@ -2,44 +2,27 @@
 #-*- coding: utf-8 -*-
 # ╔════════════════════════════════════════════════════════════════════════════
 # ║ THE DECORATOR'S BLESSING: run_cycle.py
-# ║ Python module: find_workspace_root, WORKSPACE_ROOT, MAS_MCP_ROOT, ARTIFACTS_DIR, GOVERNANCE_DIR, COMPATIBILITY_DIR...
 # ╠════════════════════════════════════════════════════════════════════════════
-# ║ Spectral Frequency: WHITE
-# ║ Architectural Role: 🌿 THE GARDEN
-# ║ Purpose: Run Cycle - MILF Execution with Artifact Output
-# ║ Exports: find_workspace_root, WORKSPACE_ROOT, MAS_MCP_ROOT, ARTIFACTS_DIR, GO
-# ╠════════════════════════════════════════════════════════════════════════════
-# ║ Cross-References (Bidirectional):
-# ║  (Standalone file - no detected dependencies)
+# ║ Wedjat-Quipu Spectrum: WHITE
+# ║ Temple-Ayllu Zone: 🌿 THE GARDEN
+# ║ Ogdoad-Ceque Radiance:
+# ║   └─◄ (Standalone)
 # ╚════════════════════════════════════════════════════════════════════════════
 
-#!/usr/bin/env python3
 """
-Run Cycle - MILF Execution with Artifact Output
+run_cycle.py — Governance Cycle Executor
 
-Executes a single governance cycle under uv, selecting engine lanes based on
-compatibility probes, enforcing activation gates, and writing structured artifacts.
-
-Flow:
-    SSOT → GPU Probe → Compatibility Check → MILF Activation → Cycle Execution → Artifact Output
-
-Usage:
-    # Full cycle with GPU probe
-    uv run scripts/run_cycle.py
-
-    # Dry run (no artifacts, no side effects)
-    uv run scripts/run_cycle.py --dry-run
-
-    # Specific engine lane
-    uv run scripts/run_cycle.py --engine tensorrt
-
-    # With scoring profile
-    uv run scripts/run_cycle.py --profile opus
-
-Environment:
-    CHTHONIC_ROOT        Override workspace root detection
-    MILF_SCORE_THRESHOLD Minimum MILF activation score (default: 0.8)
-    GPU_FALLBACK_CPU     Allow CPU fallback if GPU unavailable (default: false)
+@SID:           TOOL_RUN_CYCLE_V1
+@Shabti:        CLI Script
+@Purpose:       Executes a single governance cycle under uv, selecting engine
+                lanes based on compatibility probes, enforcing activation gates,
+                and writing structured artifacts.
+                Flow: SSOT → GPU Probe → Compatibility Check → Activation → Execution → Artifact Output
+                Usage:
+                    uv run scripts/run_cycle.py
+                    uv run scripts/run_cycle.py --dry-run
+                    uv run scripts/run_cycle.py --engine tensorrt
+                    uv run scripts/run_cycle.py --profile opus
 """
 
 from __future__ import annotations
