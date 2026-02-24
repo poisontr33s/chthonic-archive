@@ -1629,6 +1629,794 @@
       "settings": {
         "foreground": "#7BAEA4"
       }
+    },
+    {
+      "scope": [
+        "constant.numeric"
+      ],
+      "settings": {
+        "foreground": "#d4b59a"
+      },
+      "name": "Numbers (Warm Amber)"
+    },
+    {
+      "scope": [
+        "constant.language"
+      ],
+      "settings": {
+        "foreground": "#d4a5a5"
+      },
+      "name": "Language Constants (Flesh Rose)"
+    },
+    {
+      "scope": [
+        "keyword",
+        "keyword.control",
+        "storage.type",
+        "storage.modifier"
+      ],
+      "settings": {
+        "foreground": "#c75d5d",
+        "fontStyle": "bold"
+      },
+      "name": "Keywords (Earthy Red)"
+    },
+    {
+      "scope": [
+        "entity.name.type",
+        "entity.name.class",
+        "support.type",
+        "support.class",
+        "storage.type.class"
+      ],
+      "settings": {
+        "foreground": "#d4a5a5",
+        "fontStyle": "bold"
+      },
+      "name": "Classes/Types (Flesh Rose)"
+    },
+    {
+      "scope": [
+        "constant",
+        "variable.other.constant",
+        "entity.name.namespace",
+        "support.constant"
+      ],
+      "settings": {
+        "foreground": "#6b9e94"
+      },
+      "name": "Constants/Namespaces (Sacred Teal)"
+    },
+    {
+      "scope": [
+        "variable",
+        "variable.parameter",
+        "variable.language",
+        "variable.other"
+      ],
+      "settings": {
+        "foreground": "#e8ddd4"
+      },
+      "name": "Variables (Warm Cream)"
+    },
+    {
+      "scope": [
+        "keyword.operator",
+        "punctuation"
+      ],
+      "settings": {
+        "foreground": "#b8a89e"
+      },
+      "name": "Operators (Warm Neutral)"
+    },
+    {
+      "scope": [
+        "meta.decorator",
+        "entity.name.function.decorator",
+        "punctuation.definition.decorator"
+      ],
+      "settings": {
+        "foreground": "#c9a962",
+        "fontStyle": "bold italic"
+      },
+      "name": "Decorators (Supreme Gold)"
+    },
+    {
+      "scope": [
+        "markup.heading",
+        "markup.bold"
+      ],
+      "settings": {
+        "foreground": "#c9a962",
+        "fontStyle": "bold"
+      },
+      "name": "Markup Heading/Bold (Gold)"
+    },
+    {
+      "scope": [
+        "markup.inline.raw",
+        "markup.fenced_code",
+        "markup.fenced_code.block"
+      ],
+      "settings": {
+        "foreground": "#a8c686"
+      },
+      "name": "Markdown Code (Sage)"
+    },
+    {
+      "scope": [
+        "support.type.property-name.json",
+        "meta.object-literal.key"
+      ],
+      "settings": {
+        "foreground": "#c9a55a"
+      },
+      "name": "JSON Keys (Warm Gold)"
+    },
+    {
+      "scope": [
+        "invalid",
+        "invalid.deprecated"
+      ],
+      "settings": {
+        "foreground": "#d06060",
+        "fontStyle": "strikethrough"
+      },
+      "name": "Invalid (Blood Red)"
+    },
+    {
+      "scope": [
+        "storage.modifier.lifetime.rust",
+        "entity.name.type.lifetime"
+      ],
+      "settings": {
+        "foreground": "#c87070",
+        "fontStyle": "italic"
+      },
+      "name": "Rust Lifetimes (Muted Rose)"
+    },
+    {
+      "scope": [
+        "entity.name.function.macro.rust",
+        "support.function.macro.rust"
+      ],
+      "settings": {
+        "foreground": "#c9a962",
+        "fontStyle": "bold"
+      },
+      "name": "Rust Macros (Gold)"
+    },
+    {
+      "scope": [
+        "meta.function.decorator.python",
+        "entity.name.function.decorator.python"
+      ],
+      "settings": {
+        "foreground": "#c9a962",
+        "fontStyle": "bold italic"
+      },
+      "name": "Python Decorators (Gold)"
+    },
+    {
+      "scope": [
+        "entity.name.tag.tsx",
+        "support.class.component.tsx"
+      ],
+      "settings": {
+        "foreground": "#d4a5a5"
+      },
+      "name": "TSX Components (Flesh Rose)"
+    },
+    {
+      "scope": [
+        "variable.language.this",
+        "variable.language.self"
+      ],
+      "settings": {
+        "foreground": "#c87070",
+        "fontStyle": "italic"
+      },
+      "name": "This/Self (Transgressive Rose)"
+    },
+    {
+      "scope": [
+        "keyword.control.import",
+        "keyword.control.export",
+        "keyword.control.from"
+      ],
+      "settings": {
+        "foreground": "#6b9e94"
+      },
+      "name": "Import/Export (Sacred Teal)"
+    },
+    {
+      "scope": [
+        "string.template",
+        "punctuation.definition.template-expression"
+      ],
+      "settings": {
+        "foreground": "#a8c686"
+      },
+      "name": "Template Literals (Sage)"
+    },
+    {
+      "scope": [
+        "comment",
+        "punctuation.definition.comment"
+      ],
+      "settings": {
+        "foreground": "#9b8b82",
+        "fontStyle": "italic"
+      },
+      "name": "Comments (Soot)"
+    },
+    {
+      "scope": [
+        "string.quoted.docstring",
+        "comment.block.documentation",
+        "comment.block.javadoc"
+      ],
+      "settings": {
+        "foreground": "#9b8b82",
+        "fontStyle": "italic"
+      },
+      "name": "Doc Comments (Warm Soot)"
+    },
+    {
+      "scope": [
+        "string",
+        "string.quoted"
+      ],
+      "settings": {
+        "foreground": "#c9a962"
+      },
+      "name": "Strings (Worn Parchment)"
+    },
+    {
+      "scope": [
+        "constant.character.escape",
+        "constant.character.unicode"
+      ],
+      "settings": {
+        "foreground": "#d9b56a"
+      },
+      "name": "String Escape (Forge Gold)"
+    },
+    {
+      "scope": [
+        "string.template",
+        "punctuation.definition.template-expression",
+        "punctuation.definition.template-expression.begin",
+        "punctuation.definition.template-expression.end"
+      ],
+      "settings": {
+        "foreground": "#c9a962"
+      },
+      "name": "Template Strings (Parchment)"
+    },
+    {
+      "scope": [
+        "meta.template.expression",
+        "meta.embedded.line"
+      ],
+      "settings": {
+        "foreground": "#e8ddd4"
+      },
+      "name": "Template Expressions (Iron Dust)"
+    },
+    {
+      "scope": [
+        "string.regexp",
+        "constant.other.character-class.regexp",
+        "keyword.operator.quantifier.regexp"
+      ],
+      "settings": {
+        "foreground": "#c75d5d"
+      },
+      "name": "Regex (Ember Rose)"
+    },
+    {
+      "scope": [
+        "variable.other.constant",
+        "constant.other",
+        "support.constant",
+        "constant.character",
+        "constant.other.placeholder"
+      ],
+      "settings": {
+        "foreground": "#6eaea4"
+      },
+      "name": "Other Constants (Quenched Steel)"
+    },
+    {
+      "scope": [
+        "keyword",
+        "keyword.control",
+        "keyword.control.conditional",
+        "keyword.control.loop",
+        "keyword.control.flow",
+        "keyword.control.default"
+      ],
+      "settings": {
+        "foreground": "#d06060",
+        "fontStyle": "bold"
+      },
+      "name": "Keywords (Hot Iron)"
+    },
+    {
+      "scope": [
+        "variable.parameter",
+        "variable.parameter.function",
+        "meta.parameter"
+      ],
+      "settings": {
+        "foreground": "#d4c9c0"
+      },
+      "name": "Function Parameters (Warm Dust)"
+    },
+    {
+      "scope": [
+        "entity.name.type",
+        "entity.name.class",
+        "entity.name.type.class",
+        "entity.other.inherited-class",
+        "support.type",
+        "support.class",
+        "storage.type.class"
+      ],
+      "settings": {
+        "foreground": "#d88080",
+        "fontStyle": "bold"
+      },
+      "name": "Classes/Types (Heated Copper)"
+    },
+    {
+      "scope": [
+        "entity.name.type.interface",
+        "entity.name.type.enum"
+      ],
+      "settings": {
+        "foreground": "#6eaea4",
+        "fontStyle": "italic"
+      },
+      "name": "Interfaces (Quenched Steel)"
+    },
+    {
+      "scope": [
+        "entity.name.namespace",
+        "entity.name.module",
+        "entity.name.type.module"
+      ],
+      "settings": {
+        "foreground": "#6eaea4"
+      },
+      "name": "Namespaces/Modules (Quenched Steel)"
+    },
+    {
+      "scope": [
+        "variable.other.readwrite",
+        "variable.other.object"
+      ],
+      "settings": {
+        "foreground": "#c9a962"
+      },
+      "name": "Readonly Variables (Slab)"
+    },
+    {
+      "scope": [
+        "variable.other.property",
+        "meta.object-literal.key"
+      ],
+      "settings": {
+        "foreground": "#d4c9c0"
+      },
+      "name": "Properties (Sidebar Dust)"
+    },
+    {
+      "scope": [
+        "variable.language",
+        "variable.language.this",
+        "variable.language.self",
+        "variable.language.super"
+      ],
+      "settings": {
+        "foreground": "#c75d5d",
+        "fontStyle": "italic"
+      },
+      "name": "Language Variables — this/self (Ember Rose)"
+    },
+    {
+      "scope": [
+        "keyword.operator.comparison",
+        "keyword.operator.logical",
+        "keyword.operator.relational",
+        "keyword.operator.arithmetic"
+      ],
+      "settings": {
+        "foreground": "#d06060"
+      },
+      "name": "Comparison/Logical Operators (Warm Slag)"
+    },
+    {
+      "scope": [
+        "keyword.operator.assignment"
+      ],
+      "settings": {
+        "foreground": "#b8a89e"
+      },
+      "name": "Assignment Operators"
+    },
+    {
+      "scope": [
+        "punctuation",
+        "punctuation.separator",
+        "punctuation.terminator",
+        "punctuation.definition.parameters",
+        "punctuation.accessor",
+        "meta.brace"
+      ],
+      "settings": {
+        "foreground": "#9b8b82"
+      },
+      "name": "Punctuation (Dim Slag)"
+    },
+    {
+      "scope": [
+        "punctuation.definition.block",
+        "punctuation.section",
+        "meta.brace.round",
+        "meta.brace.square",
+        "meta.brace.curly"
+      ],
+      "settings": {
+        "foreground": "#b8a89e"
+      },
+      "name": "Punctuation — Brackets/Braces (Slag)"
+    },
+    {
+      "scope": [
+        "meta.decorator",
+        "entity.name.function.decorator",
+        "punctuation.definition.decorator",
+        "meta.decorator punctuation.decorator",
+        "meta.annotation",
+        "storage.type.annotation",
+        "punctuation.definition.annotation"
+      ],
+      "settings": {
+        "foreground": "#d9b56a",
+        "fontStyle": "bold italic"
+      },
+      "name": "Decorators/Annotations (Forge Gold)"
+    },
+    {
+      "scope": [
+        "keyword.control.import",
+        "keyword.control.export",
+        "keyword.control.from",
+        "keyword.control.as"
+      ],
+      "settings": {
+        "foreground": "#6eaea4"
+      },
+      "name": "Import/Export (Quenched Steel)"
+    },
+    {
+      "scope": [
+        "entity.name.tag"
+      ],
+      "settings": {
+        "foreground": "#d88080",
+        "fontStyle": "bold"
+      },
+      "name": "HTML Tags (Heated Copper)"
+    },
+    {
+      "scope": [
+        "punctuation.definition.tag",
+        "punctuation.definition.tag.begin",
+        "punctuation.definition.tag.end"
+      ],
+      "settings": {
+        "foreground": "#9b8b82"
+      },
+      "name": "HTML Tag Brackets"
+    },
+    {
+      "scope": [
+        "string.quoted.double.html"
+      ],
+      "settings": {
+        "foreground": "#c9a962"
+      },
+      "name": "HTML Attribute Strings (Parchment)"
+    },
+    {
+      "scope": [
+        "entity.name.tag.tsx",
+        "entity.name.tag.jsx",
+        "support.class.component",
+        "support.class.component.tsx",
+        "support.class.component.jsx"
+      ],
+      "settings": {
+        "foreground": "#d88080",
+        "fontStyle": "bold"
+      },
+      "name": "JSX/TSX Components (Heated Copper)"
+    },
+    {
+      "scope": [
+        "markup.heading",
+        "markup.heading.setext",
+        "entity.name.section"
+      ],
+      "settings": {
+        "foreground": "#d9b56a",
+        "fontStyle": "bold"
+      },
+      "name": "Markup Heading (Forge Gold)"
+    },
+    {
+      "scope": [
+        "markup.list",
+        "beginning.punctuation.definition.list",
+        "punctuation.definition.list.begin"
+      ],
+      "settings": {
+        "foreground": "#e8ddd4"
+      },
+      "name": "Markup List (Iron Dust)"
+    },
+    {
+      "scope": [
+        "string.other.link",
+        "meta.link.inline"
+      ],
+      "settings": {
+        "foreground": "#7ebeb4",
+        "fontStyle": "underline"
+      },
+      "name": "Markup Link Text (Bright Steel)"
+    },
+    {
+      "scope": [
+        "markup.underline.link",
+        "markup.underline",
+        "meta.link.inline.uri"
+      ],
+      "settings": {
+        "foreground": "#c9a962",
+        "fontStyle": "underline"
+      },
+      "name": "Markup Link URL (Parchment)"
+    },
+    {
+      "scope": [
+        "support.type.property-name.json",
+        "support.type.property-name.json.comments",
+        "meta.structure.dictionary.key",
+        "source.json meta.structure.dictionary.json support.type.property-name.json"
+      ],
+      "settings": {
+        "foreground": "#d9b56a"
+      },
+      "name": "JSON Keys (Forge Amber)"
+    },
+    {
+      "scope": [
+        "string.value.json",
+        "string.quoted.double.json"
+      ],
+      "settings": {
+        "foreground": "#c9a962"
+      },
+      "name": "JSON Values (Iron Dust)"
+    },
+    {
+      "scope": [
+        "support.type.property-name.toml",
+        "entity.name.tag.toml",
+        "keyword.key.toml"
+      ],
+      "settings": {
+        "foreground": "#d9b56a"
+      },
+      "name": "TOML Keys (Forge Amber)"
+    },
+    {
+      "scope": [
+        "entity.name.section.toml",
+        "support.type.property-name.table.toml",
+        "entity.other.attribute-name.table.toml"
+      ],
+      "settings": {
+        "foreground": "#d88080",
+        "fontStyle": "bold"
+      },
+      "name": "TOML Table Headers (Heated Copper)"
+    },
+    {
+      "scope": [
+        "entity.name.tag.css",
+        "entity.other.attribute-name.class.css",
+        "entity.other.attribute-name.id.css",
+        "entity.other.attribute-name.pseudo-class.css",
+        "entity.other.attribute-name.pseudo-element.css"
+      ],
+      "settings": {
+        "foreground": "#d88080"
+      },
+      "name": "CSS Selectors (Heated Copper)"
+    },
+    {
+      "scope": [
+        "support.constant.property-value.css",
+        "meta.property-value.css",
+        "support.constant.font-name.css"
+      ],
+      "settings": {
+        "foreground": "#e8ddd4"
+      },
+      "name": "CSS Values (Iron Dust)"
+    },
+    {
+      "scope": [
+        "keyword.other.unit.css",
+        "keyword.other.unit.rem.css",
+        "keyword.other.unit.em.css",
+        "keyword.other.unit.px.css",
+        "support.function.css",
+        "support.function.transform.css"
+      ],
+      "settings": {
+        "foreground": "#6eaea4"
+      },
+      "name": "CSS Units/Functions (Quenched Steel)"
+    },
+    {
+      "scope": [
+        "constant.other.color.rgb-value.hex.css",
+        "constant.other.color.css"
+      ],
+      "settings": {
+        "foreground": "#d9b56a"
+      },
+      "name": "CSS Color Values (Forge Gold)"
+    },
+    {
+      "scope": [
+        "meta.attribute.rust",
+        "punctuation.definition.attribute.rust",
+        "meta.attribute string"
+      ],
+      "settings": {
+        "foreground": "#d9b56a"
+      },
+      "name": "Rust Attributes (Forge Gold)"
+    },
+    {
+      "scope": [
+        "keyword.other.unsafe.rust",
+        "storage.modifier.unsafe.rust"
+      ],
+      "settings": {
+        "foreground": "#d06060",
+        "fontStyle": "bold"
+      },
+      "name": "Rust Unsafe (Error Red)"
+    },
+    {
+      "scope": [
+        "constant.character.format.placeholder.other.python",
+        "meta.fstring.python"
+      ],
+      "settings": {
+        "foreground": "#d9b56a"
+      },
+      "name": "Python f-string Braces"
+    },
+    {
+      "scope": [
+        "entity.name.package.go",
+        "entity.name.import.go",
+        "variable.other.receiver.go"
+      ],
+      "settings": {
+        "foreground": "#6eaea4",
+        "fontStyle": "italic"
+      },
+      "name": "Go Package (Quenched Steel)"
+    },
+    {
+      "scope": [
+        "support.function.builtin.go",
+        "support.type.builtin.go"
+      ],
+      "settings": {
+        "foreground": "#d88080"
+      },
+      "name": "Go Builtins (Heated Copper)"
+    },
+    {
+      "scope": [
+        "support.function.sql",
+        "support.function.aggregate.sql",
+        "support.function.scalar.sql"
+      ],
+      "settings": {
+        "foreground": "#d9b56a"
+      },
+      "name": "SQL Functions (Forge Amber)"
+    },
+    {
+      "scope": [
+        "markup.inserted.diff",
+        "meta.diff.header.to-file"
+      ],
+      "settings": {
+        "foreground": "#a8c686"
+      },
+      "name": "Diff Inserted (Spring Green)"
+    },
+    {
+      "scope": [
+        "markup.deleted.diff",
+        "meta.diff.header.from-file"
+      ],
+      "settings": {
+        "foreground": "#d06060"
+      },
+      "name": "Diff Deleted (Error Red)"
+    },
+    {
+      "scope": [
+        "meta.diff.header",
+        "meta.diff.range",
+        "meta.diff.index"
+      ],
+      "settings": {
+        "foreground": "#d9b56a",
+        "fontStyle": "bold"
+      },
+      "name": "Diff Header (Forge Gold)"
+    },
+    {
+      "scope": [
+        "constant"
+      ],
+      "settings": {
+        "foreground": "#6eaea4"
+      },
+      "name": "Constants (Quenched Steel)"
+    },
+    {
+      "scope": [
+        "variable.other.enummember"
+      ],
+      "settings": {
+        "foreground": "#6eaea4"
+      },
+      "name": "Enum Members (Quenched Steel)"
+    },
+    {
+      "scope": [
+        "meta.fstring.python punctuation.definition.expression"
+      ],
+      "settings": {
+        "foreground": "#d9b56a"
+      },
+      "name": "Python f-string Expression (Forge Gold)"
+    },
+    {
+      "scope": [
+        "punctuation.definition.to-file.diff",
+        "punctuation.definition.from-file.diff"
+      ],
+      "settings": {
+        "foreground": "#8b7b72"
+      },
+      "name": "Diff File Markers"
     }
   ]
 }
