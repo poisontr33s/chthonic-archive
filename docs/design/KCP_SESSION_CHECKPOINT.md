@@ -29,10 +29,11 @@
 
 | Field | Value |
 |-------|-------|
-| **HEAD** | `ba186421` |
+| **HEAD** | `d25f2735` |
 | **Branch** | `main` |
 | **Last Completed Phase** | KCP-3.0 — Python Consolidation |
 | **Active Phase** | KCP-4.0 — TypeScript Injection |
+| **Parallel Lane** | Local AI Teaching Framework (Gemini deep research dispatched) |
 | **Blockers** | None |
 | **Working Tree** | Clean |
 
@@ -134,6 +135,8 @@ If you are a new session picking up from a crash:
 | 4.0 | Token scope coverage | ✅ | 83 rules, 57 semantic; script: `scripts/theme_token_coverage.py` |
 | 6.0 | Product icon census | ✅ | 6/534 codicon IDs; script: `scripts/product_icon_census.py` |
 | 2.1+ | Remaining 11 collision pairs | ⬜ | Need motif redesign (Stage 3.0) |
+| LAT | Local AI Teaching Framework | 🔄 | Gemini deep research dispatched (3 queries: QLoRA MoE feasibility, distillation pipelines, structured output training). SFS theme = candidate domain. Brief: `claude/mailbox/GEMINI_DEEP_RESEARCH_BRIEF_LOCAL_AI_TEACHING.md` |
+| GEX | Genre Extractor dedup fix | ✅ | `d25f2735`: batch-scoped path filter + resolve() dedup. 94→50 profiles. |
 
 ---
 
