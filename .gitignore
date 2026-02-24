@@ -176,12 +176,15 @@ extensions/*/bun.lock
 !scripts/product_icon_census.py
 !scripts/ankh_theme_reference.py
 !scripts/kcp_header_classifier.py
+!scripts/sfs_reference_index.py
 
 # Allow specific Codex skill additions
 !.codex/
 !.codex/skills/
 !.codex/skills/codekiller-remediation-gate/
 !.codex/skills/codekiller-remediation-gate/**
+!.codex/skills/artifact-upcycle/
+!.codex/skills/artifact-upcycle/**
 
 # mdBook build output (generated artifact)
 book/
