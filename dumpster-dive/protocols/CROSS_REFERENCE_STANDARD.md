@@ -156,7 +156,7 @@ Use language-appropriate comments at top of file:
 From: dumpster-dive/README.md
 To:   dumpster-dive/protocols/FORGE_CIRCULATION_PROTOCOL.md
 
-Reference: [FORGE_CIRCULATION_PROTOCOL.md](protocols/FORGE_CIRCULATION_PROTOCOL.md)
+Reference: [FORGE_CIRCULATION_PROTOCOL.md](FORGE_CIRCULATION_PROTOCOL.md)
 ```
 
 ### **Absolute Paths (When Needed)**
@@ -410,37 +410,37 @@ File: `README.md`
 
 ### Core Documentation
 - [Ore Quality Rating System](#ore-quality-rating-system) — Understanding 1-5 ratings
-- [Current Inventory](ORE_MANIFEST.json) — 96 files, 4.58 MB
+- [Current Inventory](../ORE_MANIFEST.json) — 96 files, 4.58 MB
 - [Forge States](#the-forge-7-states-not-stages) — Circulation system overview
 - [Processing Levels](#processing-levels) — 4-level framework
 
 ### Operational Protocols
-- [Circulation Protocol](protocols/FORGE_CIRCULATION_PROTOCOL.md) — **Primary reference** for state movement
-- [Processing Levels](protocols/FORGE_PROTOCOL_LEVELS.md) — Standard/Extended/QMR/CTF framework
-- [TEA Registry](protocols/TEA_REGISTRY.json) — Timeline-Entangled Artifact tracking
-- [CTF Requests](protocols/CTF_REQUESTS.md) — Cross-Tier Fusion approval workflow
-- [Cross-Reference Standard](protocols/CROSS_REFERENCE_STANDARD.md) — This document's standard
+- [Circulation Protocol](FORGE_CIRCULATION_PROTOCOL.md) — **Primary reference** for state movement
+- [Processing Levels](FORGE_PROTOCOL_LEVELS.md) — Standard/Extended/QMR/CTF framework
+- [TEA Registry](TEA_REGISTRY.json) — Timeline-Entangled Artifact tracking
+- [CTF Requests](CTF_REQUESTS.md) — Cross-Tier Fusion approval workflow
+- [Cross-Reference Standard](CROSS_REFERENCE_STANDARD.md) — This document's standard
 
 ### Visual References
-- [Circulation Diagram](CIRCULATION_DIAGRAM.md) — Visual guide to state movement
+- [Circulation Diagram](../CIRCULATION_DIAGRAM.md) — Visual guide to state movement
 - [Blacksmith Profile](BLACKSMITH_MATRIARCH.md) — SFS operator details
 
 ### Infrastructure
-- [Central Registry](DUMPSTER_DIVE_REGISTRY.json) — Complete navigation & tracking system
+- [Central Registry](../DUMPSTER_DIVE_REGISTRY.json) — Complete navigation & tracking system
 
 ---
 
 ## Cross-References
 
 ### Dependencies
-- [.github/copilot-instructions.md](../.github/copilot-instructions.md) — SSOT (Macro Prompt World)
+- [.github/copilot-instructions.md](../../.github/copilot-instructions.md) — SSOT (Macro Prompt World)
 - None (this is a root documentation file)
 
 ### Dependents
 - All files in dumpster-dive/ reference this for overview
 
 ### Related Documentation
-- [CIRCULATION_DIAGRAM.md](CIRCULATION_DIAGRAM.md) — Visual companion to this README
+- [CIRCULATION_DIAGRAM.md](../CIRCULATION_DIAGRAM.md) — Visual companion to this README
 
 ### External References
 - SSOT: Multiple sections (see individual protocol docs)

@@ -149800,21 +149800,21 @@
     },
     {
       "artifact": "dumpster-dive\\CIRCULATION_DIAGRAM.md",
-      "context": "- [ORE_MANIFEST.json](ORE_MANIFEST.json) — Ore rating system (1-5)",
+      "context": "- [ORE_MANIFEST.json](../../dumpster-dive/ORE_MANIFEST.json) — Ore rating system (1-5)",
       "line": 330,
       "signal_type": "invariant-tag",
       "token": "1-5"
     },
     {
       "artifact": "dumpster-dive\\CIRCULATION_DIAGRAM.md",
-      "context": "- [ORE_MANIFEST.json](ORE_MANIFEST.json) — Ore rating system (1-5)",
+      "context": "- [ORE_MANIFEST.json](../../dumpster-dive/ORE_MANIFEST.json) — Ore rating system (1-5)",
       "line": 330,
       "signal_type": "abbrev-def",
       "token": "1-5"
     },
     {
       "artifact": "dumpster-dive\\CIRCULATION_DIAGRAM.md",
-      "context": "- [ORE_MANIFEST.json](ORE_MANIFEST.json) — Ore rating system (1-5)",
+      "context": "- [ORE_MANIFEST.json](../../dumpster-dive/ORE_MANIFEST.json) — Ore rating system (1-5)",
       "line": 330,
       "signal_type": "abbrev-use",
       "token": "1-5"
@@ -149842,7 +149842,7 @@
     },
     {
       "artifact": "dumpster-dive\\CIRCULATION_DIAGRAM.md",
-      "context": "- SSOT: [Section 4.5.1.2](../.github/copilot-instructions.md#section-4512) — QMR Protocol",
+      "context": "- SSOT: [Section 4.5.1.2](../../.github/copilot-instructions.md) — QMR Protocol",
       "line": 343,
       "signal_type": "crossref-section-ref",
       "token": "4.5.1.2"
@@ -150185,14 +150185,14 @@
     },
     {
       "artifact": "dumpster-dive\\forge\\intake\\README.md",
-      "context": "- [../../ORE_MANIFEST.json](../../ORE_MANIFEST.json) — Ore rating system (1-5)",
+      "context": "- [../../ORE_MANIFEST.json](../../dumpster-dive/ORE_MANIFEST.json) — Ore rating system (1-5)",
       "line": 58,
       "signal_type": "invariant-tag",
       "token": "1-5"
     },
     {
       "artifact": "dumpster-dive\\forge\\intake\\README.md",
-      "context": "- [../../ORE_MANIFEST.json](../../ORE_MANIFEST.json) — Ore rating system (1-5)",
+      "context": "- [../../ORE_MANIFEST.json](../../dumpster-dive/ORE_MANIFEST.json) — Ore rating system (1-5)",
       "line": 58,
       "signal_type": "abbrev-use",
       "token": "1-5"
@@ -150332,14 +150332,14 @@
     },
     {
       "artifact": "dumpster-dive\\forge\\quench\\README.md",
-      "context": "- [../../../.github/copilot-instructions.md](../../../.github/copilot-instructions.md) — FA⁴ axiom definition (Section II.2.4)",
+      "context": "- [../../../.github/copilot-instructions.md](../../.github/copilot-instructions.md) — FA⁴ axiom definition (Section II.2.4)",
       "line": 86,
       "signal_type": "crossref-section-ref",
       "token": "II.2.4"
     },
     {
       "artifact": "dumpster-dive\\forge\\quench\\README.md",
-      "context": "- [../../../.github/copilot-instructions.md](../../../.github/copilot-instructions.md) — FA⁴ axiom definition (Section II.2.4)",
+      "context": "- [../../../.github/copilot-instructions.md](../../.github/copilot-instructions.md) — FA⁴ axiom definition (Section II.2.4)",
       "line": 86,
       "signal_type": "crossref-section-ref",
       "token": "II.2.4"
@@ -150591,14 +150591,14 @@
     },
     {
       "artifact": "dumpster-dive\\forge\\tea-vault\\README.md",
-      "context": "- [../../../.github/copilot-instructions.md](../../../.github/copilot-instructions.md) — SSOT Section 4.5.1.2 (QMR Protocol canonical definition)",
+      "context": "- [../../../.github/copilot-instructions.md](../../.github/copilot-instructions.md) — SSOT Section 4.5.1.2 (QMR Protocol canonical definition)",
       "line": 124,
       "signal_type": "crossref-section-ref",
       "token": "4.5.1.2"
     },
     {
       "artifact": "dumpster-dive\\forge\\tea-vault\\README.md",
-      "context": "- [../../../.github/copilot-instructions.md](../../../.github/copilot-instructions.md) — SSOT Section 4.5.1.1 (TNKW-RIAT temporal specialists)",
+      "context": "- [../../../.github/copilot-instructions.md](../../.github/copilot-instructions.md) — SSOT Section 4.5.1.1 (TNKW-RIAT temporal specialists)",
       "line": 125,
       "signal_type": "crossref-section-ref",
       "token": "4.5.1.1"
@@ -153496,14 +153496,14 @@
     },
     {
       "artifact": "dumpster-dive\\forge\\tempered\\README.md",
-      "context": "- [../../../.github/copilot-instructions.md](../../../.github/copilot-instructions.md) — Primary integration target (SSOT)",
+      "context": "- [../../../.github/copilot-instructions.md](../../.github/copilot-instructions.md) — Primary integration target (SSOT)",
       "line": 90,
       "signal_type": "invariant-tag",
       "token": "SSOT"
     },
     {
       "artifact": "dumpster-dive\\forge\\tempered\\README.md",
-      "context": "- [../../../.github/copilot-instructions.md](../../../.github/copilot-instructions.md) — Primary integration target (SSOT)",
+      "context": "- [../../../.github/copilot-instructions.md](../../.github/copilot-instructions.md) — Primary integration target (SSOT)",
       "line": 90,
       "signal_type": "abbrev-use",
       "token": "SSOT"
@@ -245728,14 +245728,14 @@
     },
     {
       "artifact": "dumpster-dive\\protocols\\CROSS_REFERENCE_STANDARD.md",
-      "context": "- [ORE_MANIFEST.json](../ORE_MANIFEST.json) — Defines ore rating system (1-5)",
+      "context": "- [ORE_MANIFEST.json](../../dumpster-dive/ORE_MANIFEST.json) — Defines ore rating system (1-5)",
       "line": 313,
       "signal_type": "invariant-tag",
       "token": "1-5"
     },
     {
       "artifact": "dumpster-dive\\protocols\\CROSS_REFERENCE_STANDARD.md",
-      "context": "- [ORE_MANIFEST.json](../ORE_MANIFEST.json) — Defines ore rating system (1-5)",
+      "context": "- [ORE_MANIFEST.json](../../dumpster-dive/ORE_MANIFEST.json) — Defines ore rating system (1-5)",
       "line": 313,
       "signal_type": "abbrev-use",
       "token": "1-5"
@@ -246617,14 +246617,14 @@
     },
     {
       "artifact": "dumpster-dive\\protocols\\FORGE_CIRCULATION_PROTOCOL.md",
-      "context": "- [../ORE_MANIFEST.json](../ORE_MANIFEST.json) — Defines ore rating system (1-5)",
+      "context": "- [../ORE_MANIFEST.json](../../dumpster-dive/ORE_MANIFEST.json) — Defines ore rating system (1-5)",
       "line": 543,
       "signal_type": "invariant-tag",
       "token": "1-5"
     },
     {
       "artifact": "dumpster-dive\\protocols\\FORGE_CIRCULATION_PROTOCOL.md",
-      "context": "- [../ORE_MANIFEST.json](../ORE_MANIFEST.json) — Defines ore rating system (1-5)",
+      "context": "- [../ORE_MANIFEST.json](../../dumpster-dive/ORE_MANIFEST.json) — Defines ore rating system (1-5)",
       "line": 543,
       "signal_type": "abbrev-use",
       "token": "1-5"

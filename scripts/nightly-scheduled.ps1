@@ -6,6 +6,10 @@
   
   @SID:   SCRIPT_NIGHTLY_SCHEDULED_V1
   @Shabti: Launcher
+  @Purpose
+    Called by Task Scheduler at 04:00 CET. Runs the focused local pipeline:
+    daemon + genre extraction (markdown-first), with archaeology/classification
+    stage skipped by default to reduce JSON artifact churn.  
 
 .DESCRIPTION
   Called by Task Scheduler at 04:00 CET. Runs the focused local pipeline:

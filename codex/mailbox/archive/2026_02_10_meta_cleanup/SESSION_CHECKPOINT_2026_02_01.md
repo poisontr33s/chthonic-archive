@@ -153,10 +153,10 @@ User indicated Claude Code is "next up for hooking it up" with GitHub Copilot Pr
 
 ## Cross-References
 
-- Triad Strategy: [TRIAD_DOC_CONSOLIDATION_STRATEGY.md](../../claude-codex-gemini/TRIAD_DOC_CONSOLIDATION_STRATEGY.md)
-- Gemini Sync: [TRIAD_SYNC_2026_02_01.md](../../.gemini/TRIAD_SYNC_2026_02_01.md)
-- MCP Handoff: [SESSION_HANDOFF_2026_02_01_CLAUDE.md](../handoffs/SESSION_HANDOFF_2026_02_01_CLAUDE.md)
-- Session Waypoint: [NEXT.md](../NEXT.md)
+- Triad Strategy: [TRIAD_DOC_CONSOLIDATION_STRATEGY.md](../../../../claude-codex-gemini/TRIAD_DOC_CONSOLIDATION_STRATEGY.md)
+- Gemini Sync: [TRIAD_SYNC_2026_02_01.md](../../../../.gemini/TRIAD_SYNC_2026_02_01.md)
+- MCP Handoff: [SESSION_HANDOFF_2026_02_01_CLAUDE.md](../../../../.temple/handoffs/SESSION_HANDOFF_2026_02_01_CLAUDE.md)
+- Session Waypoint: [NEXT.md](../../../NEXT.md)
 
 ---
 

@@ -16,7 +16,7 @@
 - Emergency quick reference
 
 ### 📋 Full Context (2 minutes)
-→ **[`DEVELOPMENT_STATE.md`](DEVELOPMENT_STATE.md)**
+→ **[`DEVELOPMENT_STATE.md`](../../../docs/DEVELOPMENT_STATE.md)**
 - Complete file path map
 - Architecture overview
 - Development conventions
@@ -24,7 +24,7 @@
 - Known issues & blockers
 
 ### 📚 Complete Framework (10+ minutes)
-→ **[`.github/copilot-instructions.md`](.github/copilot-instructions.md)**
+→ **[`.github/copilot-instructions.md`](../../../.github/copilot-instructions.md)**
 - Codex Brahmanica Perfectus (SSOT)
 - ASC Framework complete specification
 - Foundational Axioms (FA¹-⁵)
@@ -41,8 +41,8 @@
 
 **Quick Links to Active Files**:
 - [`chthonic-vscode-extension/src/extension.ts`](chthonic-vscode-extension/src/extension.ts) - Main extension logic
-- [`chthonic-vscode-extension/INSTALL.md`](chthonic-vscode-extension/INSTALL.md) - Debug guide
-- [`chthonic-vscode-extension/COPILOT_API.md`](chthonic-vscode-extension/COPILOT_API.md) - Architecture docs
+- [`chthonic-vscode-extension/INSTALL.md`](../../../chthonic-vscode-extension/INSTALL.md) - Debug guide
+- [`chthonic-vscode-extension/COPILOT_API.md`](../../../chthonic-vscode-extension/COPILOT_API.md) - Architecture docs
 
 ---
 
@@ -50,13 +50,13 @@
 
 ### Core Documentation
 - **[SESSION_RESUME.md](.github/SESSION_RESUME.md)** - Point-blank session recovery (3.5K chars)
-- **[DEVELOPMENT_STATE.md](DEVELOPMENT_STATE.md)** - Full development context (13.5K chars)
-- **[copilot-instructions.md](.github/copilot-instructions.md)** - SSOT (89K lines)
+- **[DEVELOPMENT_STATE.md](../../../docs/DEVELOPMENT_STATE.md)** - Full development context (13.5K chars)
+- **[copilot-instructions.md](../../../.github/copilot-instructions.md)** - SSOT (89K lines)
 
 ### Project-Specific Documentation
 - **[chthonic-vscode-extension/README.md](chthonic-vscode-extension/README.md)** - Extension overview
-- **[chthonic-vscode-extension/INSTALL.md](chthonic-vscode-extension/INSTALL.md)** - Installation & debugging
-- **[chthonic-vscode-extension/COPILOT_API.md](chthonic-vscode-extension/COPILOT_API.md)** - API integration details
+- **[chthonic-vscode-extension/INSTALL.md](../../../chthonic-vscode-extension/INSTALL.md)** - Installation & debugging
+- **[chthonic-vscode-extension/COPILOT_API.md](../../../chthonic-vscode-extension/COPILOT_API.md)** - API integration details
 - **[mas_mcp/README.md](mas_mcp/README.md)** - Python backend documentation
 - **[mas_mcp/frontend/README.md](mas_mcp/frontend/README.md)** - Dashboard documentation
 
@@ -118,7 +118,7 @@ bun run build        # Production build
 ### 1. VSCode Extension - Copilot API
 **Status**: 🔥 Diagnostic build deployed, awaiting user test  
 **Details**: See [SESSION_RESUME.md → Active Issue](.github/SESSION_RESUME.md#-active-issue)  
-**Debug Steps**: See [INSTALL.md → Debugging](chthonic-vscode-extension/INSTALL.md#-debugging-echo-issue)
+**Debug Steps**: See [INSTALL.md → Debugging](../../../chthonic-vscode-extension/INSTALL.md)
 
 ### 2. GPU Stack - Python 3.14 Incompatibility
 **Status**: ✅ Mitigated via uv-managed Python 3.13.10  
@@ -129,12 +129,12 @@ bun run build        # Production build
 ## 📝 Session History
 
 **Latest Session (2025-12-31 06:23-06:49)**:
-- **Transcript**: [`logs/sessions/session_2025-12-31_0746_vscode-extension-debug.md`](logs/sessions/session_2025-12-31_0746_vscode-extension-debug.md)
+- **Transcript**: [`logs/sessions/session_2025-12-31_0746_vscode-extension-debug.md`](../../../logs/sessions/session_2025-12-31_0746_vscode-extension-debug.md)
 - Enhanced Copilot API error handling
 - Created session resumption documentation
 - Diagnostic build deployed
 
-**View Full Log**: [DEVELOPMENT_STATE.md → Change Log](DEVELOPMENT_STATE.md#-change-log-this-session)
+**View Full Log**: [DEVELOPMENT_STATE.md → Change Log](../../../docs/DEVELOPMENT_STATE.md)
 
 ---
 
@@ -156,7 +156,7 @@ bun run build        # Production build
 - Visual truth supreme authority
 - Created FA⁵ as co-equal with FA⁴
 
-**Full Framework**: [copilot-instructions.md](.github/copilot-instructions.md)
+**Full Framework**: [copilot-instructions.md](../../../.github/copilot-instructions.md)
 
 ---
 
@@ -178,14 +178,14 @@ bun run build        # Production build
 
 **If context completely lost:**
 1. Load [SESSION_RESUME.md](.github/SESSION_RESUME.md) (30-sec orientation)
-2. Load [DEVELOPMENT_STATE.md](DEVELOPMENT_STATE.md) (full context)
+2. Load [DEVELOPMENT_STATE.md](../../../docs/DEVELOPMENT_STATE.md) (full context)
 3. Check `git status` for uncommitted work
 4. Check `git log --oneline -10` for recent activity
 
 **If files corrupted:**
 - Git restore: `git restore <file>`
 - Check backups: `.git/` directory
-- Rebuild from SSOT: [copilot-instructions.md](.github/copilot-instructions.md)
+- Rebuild from SSOT: [copilot-instructions.md](../../../.github/copilot-instructions.md)
 
 ---
 

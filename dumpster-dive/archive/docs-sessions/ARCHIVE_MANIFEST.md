@@ -43,7 +43,7 @@ The SID index should be updated to reflect the new archive location via `chthoni
 To reference these archived sessions:
 
 ```markdown
-See archived session analysis: [Session Synthesis](../../dumpster-dive/archive/docs-sessions/SESSION_2026-01-17_SYNTHESIS.md)
+See archived session analysis: [Session Synthesis](SESSION_2026-01-17_SYNTHESIS.md)
 ```
 
 Or via SID protocol:

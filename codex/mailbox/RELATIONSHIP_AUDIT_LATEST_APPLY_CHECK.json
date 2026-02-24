@@ -1,0 +1,72 @@
+{
+  "target": "docs/standards/LAT_CANONICAL_SPEC.md",
+  "type": "file",
+  "relationships": {
+    "parent": "docs/standards",
+    "siblings": [
+      "docs/standards/ANTI_PATTERNS_GLOBAL.md",
+      "docs/standards/KCP_ARCHITECTURE_RATIFICATION.md",
+      "docs/standards/KCP_PROTOCOL_ONTOLOGY.md",
+      "docs/standards/SCRIPT_METADATA_STANDARD.md"
+    ],
+    "same_name_candidates": [],
+    "inbound_references": [],
+    "outbound_references": [
+      {
+        "source": "docs/standards/LAT_CANONICAL_SPEC.md",
+        "kind": "md_link",
+        "raw": "KCP_PROTOCOL_ONTOLOGY.md",
+        "resolved": "docs/standards/KCP_PROTOCOL_ONTOLOGY.md",
+        "exists": true,
+        "candidates": [],
+        "reason": null
+      },
+      {
+        "source": "docs/standards/LAT_CANONICAL_SPEC.md",
+        "kind": "md_link",
+        "raw": "KCP_ARCHITECTURE_RATIFICATION.md",
+        "resolved": "docs/standards/KCP_ARCHITECTURE_RATIFICATION.md",
+        "exists": true,
+        "candidates": [],
+        "reason": null
+      },
+      {
+        "source": "docs/standards/LAT_CANONICAL_SPEC.md",
+        "kind": "md_link",
+        "raw": "../../claude/mailbox/Local_AI_Teaching_Framework_Research_Variant1of2.md",
+        "resolved": "claude/mailbox/Local_AI_Teaching_Framework_Research_Variant1of2.md",
+        "exists": true,
+        "candidates": [],
+        "reason": null
+      },
+      {
+        "source": "docs/standards/LAT_CANONICAL_SPEC.md",
+        "kind": "md_link",
+        "raw": "../../claude/mailbox/Local_AI_Teaching_Framework_Research_Variant2of2.md",
+        "resolved": "claude/mailbox/Local_AI_Teaching_Framework_Research_Variant2of2.md",
+        "exists": true,
+        "candidates": [],
+        "reason": null
+      }
+    ]
+  },
+  "auto_fix_suggestions": [],
+  "manual_intervention_required": false,
+  "manual_reasons": [],
+  "simulation_gate": {
+    "mechanical_pass": true,
+    "apply_allowed": true,
+    "candidate_suggestion_count": 0,
+    "plan_file_count": 0,
+    "planned_replacements": 0,
+    "plan_preview": [],
+    "fail_reasons": [],
+    "warnings": []
+  },
+  "applied_fixes": {
+    "changed_files": 0,
+    "replacements": 0,
+    "mechanical_pass": true,
+    "blocked": false
+  }
+}

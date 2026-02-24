@@ -155,7 +155,7 @@ Enhance VSCode GUI with deep ASC mythology integration—translating the 3,977-l
 ```
 
 **Hedonistic Validation Integration**:
-- Module: [hedonisticValidation.ts](extensions/chthonic-statusbar/src/hedonisticValidation.ts)
+- Module: [hedonisticValidation.ts](../../extensions/chthonic-statusbar/src/hedonisticValidation.ts)
 - Auto-triggers on builds, tests, commits, SSOT saves
 - Three-tiered pleasure protocol (mild/potent/transcendent)
 
@@ -204,7 +204,7 @@ Enhance VSCode GUI with deep ASC mythology integration—translating the 3,977-l
 
 ### 5. ✅ Hedonistic Validation System
 
-**File**: [extensions/chthonic-statusbar/src/hedonisticValidation.ts](extensions/chthonic-statusbar/src/hedonisticValidation.ts)
+**File**: [extensions/chthonic-statusbar/src/hedonisticValidation.ts](../../extensions/chthonic-statusbar/src/hedonisticValidation.ts)
 
 **Pleasure Tiers**:
 

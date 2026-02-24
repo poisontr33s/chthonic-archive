@@ -520,10 +520,10 @@ Phase 4 — Convergence (Ongoing)
 
 | Document | Relationship |
 |----------|-------------|
-| [KCP_PROTOCOL_ONTOLOGY.md](docs/standards/KCP_PROTOCOL_ONTOLOGY.md) | Metadata standard for all source files |
-| [KCP_ARCHITECTURE_RATIFICATION.md](docs/standards/KCP_ARCHITECTURE_RATIFICATION.md) | Approach C irrevocability decision |
-| Variant 1 | [claude/mailbox/Local_AI_Teaching_Framework_Research_Variant1of2.md](claude/mailbox/Local_AI_Teaching_Framework_Research_Variant1of2.md) |
-| Variant 2 | [claude/mailbox/Local_AI_Teaching_Framework_Research_Variant2of2.md](claude/mailbox/Local_AI_Teaching_Framework_Research_Variant2of2.md) |
+| [KCP_PROTOCOL_ONTOLOGY.md](KCP_PROTOCOL_ONTOLOGY.md) | Metadata standard for all source files |
+| [KCP_ARCHITECTURE_RATIFICATION.md](KCP_ARCHITECTURE_RATIFICATION.md) | Approach C irrevocability decision |
+| Variant 1 | [claude/mailbox/Local_AI_Teaching_Framework_Research_Variant1of2.md](../../claude/mailbox/Local_AI_Teaching_Framework_Research_Variant1of2.md) |
+| Variant 2 | [claude/mailbox/Local_AI_Teaching_Framework_Research_Variant2of2.md](../../claude/mailbox/Local_AI_Teaching_Framework_Research_Variant2of2.md) |
 
 ---
 

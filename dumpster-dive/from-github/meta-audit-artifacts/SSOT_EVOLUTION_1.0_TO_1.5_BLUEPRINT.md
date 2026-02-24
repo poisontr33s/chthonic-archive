@@ -384,11 +384,11 @@ If any phase violates FA⁴ (Architectonic Integrity):
 ## VI. Cross-References
 
 **SSOT Authority:**
-- [`.github/copilot-instructions.md`](copilot-instructions.md) - Supreme governance document
+- [`.github/copilot-instructions.md`](../../../.github/copilot-instructions.md) - Supreme governance document
 
 **Workflow Compliance:**
-- [`.github/instructions/ankh-workflow.instructions.md`](instructions/ankh-workflow.instructions.md) - Procedural governance
-- [`.github/instructions/project-workflow.instructions.md`](instructions/project-workflow.instructions.md) - Lineage sovereignty
+- [`.github/instructions/ankh-workflow.instructions.md`](../../../.github/instructions/ankh-workflow.instructions.md) - Procedural governance
+- [`.github/instructions/project-workflow.instructions.md`](../../../.github/instructions/project-workflow.instructions.md) - Lineage sovereignty
 
 **Existing Level 1.5 Templates:**
 - SSOT Section X (MMPS): Invocation syntax template

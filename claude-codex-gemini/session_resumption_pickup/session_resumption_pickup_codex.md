@@ -1644,14 +1644,14 @@ The Kinetic (K) point type is void-locked with Orackla until the TNKW-RIAT proba
 
 | Document | Category | Purpose |
 |---|---|---|
-| [ROLES.md](./ROLES.md) | Roles | 7 tribunal roles with PRISM/FA/forge mappings |
-| [CRIME_CLASSIFICATION.md](./CRIME_CLASSIFICATION.md) | Classification | Fractal violation tiers (Infraction through Capital Offense) |
-| [POINTS_ECONOMY.md](./POINTS_ECONOMY.md) | Economy | Point types, earning, deduction, and recovery mechanics |
-| [TEMPORAL_MECHANICS.md](./TEMPORAL_MECHANICS.md) | Temporal | Epochs, Cycles, Sessions, Moments, and Dormancy |
-| [PROCEEDINGS.md](./PROCEEDINGS.md) | Process | 7-stage trial process (Detection through Rehabilitation) |
-| [FRACTAL_GOVERNANCE.md](./FRACTAL_GOVERNANCE.md) | Fractal | Self-similar governance at Macro/Meso/Micro scales |
-| [ledger/LEDGER.yaml](./ledger/LEDGER.yaml) | Ledger | Machine-readable points tracking |
-| [ledger/PRECEDENTS.yaml](./ledger/PRECEDENTS.yaml) | Precedent | Adjudicated case law |
+| [ROLES.md](../../.temple/governance/ROLES.md) | Roles | 7 tribunal roles with PRISM/FA/forge mappings |
+| [CRIME_CLASSIFICATION.md](../../.temple/governance/CRIME_CLASSIFICATION.md) | Classification | Fractal violation tiers (Infraction through Capital Offense) |
+| [POINTS_ECONOMY.md](../../.temple/governance/POINTS_ECONOMY.md) | Economy | Point types, earning, deduction, and recovery mechanics |
+| [TEMPORAL_MECHANICS.md](../../.temple/governance/TEMPORAL_MECHANICS.md) | Temporal | Epochs, Cycles, Sessions, Moments, and Dormancy |
+| [PROCEEDINGS.md](../../.temple/governance/PROCEEDINGS.md) | Process | 7-stage trial process (Detection through Rehabilitation) |
+| [FRACTAL_GOVERNANCE.md](../../.temple/governance/FRACTAL_GOVERNANCE.md) | Fractal | Self-similar governance at Macro/Meso/Micro scales |
+| [ledger/LEDGER.yaml](../../.temple/governance/ledger/LEDGER.yaml) | Ledger | Machine-readable points tracking |
+| [ledger/PRECEDENTS.yaml](../../.temple/governance/ledger/PRECEDENTS.yaml) | Precedent | Adjudicated case law |
 | [evidence/](./evidence/) | Evidence | Evidence packet standards and templates |
 
 ---

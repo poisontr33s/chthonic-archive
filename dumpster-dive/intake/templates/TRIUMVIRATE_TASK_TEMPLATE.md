@@ -213,12 +213,12 @@ Copy the relevant lineage section above and paste into the appropriate assistant
 **Equality Guarantee:** Democratic, symmetric, synchronized—no hierarchy except ***specialized expertise***.
 
 ## Extra Points: BONUS For Excellent Coordination
-- Diligence into looking into the [SSOT](../../.github/copilot-instructions.md) for full framework details.
+- Diligence into looking into the [SSOT](../../../.github/copilot-instructions.md) for full framework details.
 - Proactively check in with other $files|filetypes$ for alignment before finalizing.
 - Ensure all lineage assistants have access to each other's outputs for supporting resonance.
 
 **If context completely lost: -> Rebuild from SSOT**:
-- Pattern match with: [SSOT](../../.github/copilot-instructions.md) for tracing **(`SSOT`)** infinitesimally intricate detail for framework fidelity & bonus points to compare lineages later by the **(`User`/`Taskmaster`)**.
+- Pattern match with: [SSOT](../../../.github/copilot-instructions.md) for tracing **(`SSOT`)** infinitesimally intricate detail for framework fidelity & bonus points to compare lineages later by the **(`User`/`Taskmaster`)**.
 
 ---
 

@@ -112,8 +112,8 @@ Keep Node.js available — Bun lacks `node:inspector` for breakpoint debugging.
 |------|---------|
 | [BUN_PLAYWRIGHT_VALIDATION.md](BUN_PLAYWRIGHT_VALIDATION.md) | Full technical validation study |
 | [bun-playwright-poc/](bun-playwright-poc/) | Minimal PoC with scripts |
-| [bun-playwright-poc/bun-launcher.ts](bun-playwright-poc/bun-launcher.ts) | Diagnostic launcher |
-| [bun-playwright-poc/scripts/validate.ts](bun-playwright-poc/scripts/validate.ts) | Full acceptance test suite |
+| [bun-playwright-poc/bun-launcher.ts](../../../bun-playwright-poc/bun-launcher.ts) | Diagnostic launcher |
+| [bun-playwright-poc/scripts/validate.ts](../../../bun-playwright-poc/scripts/validate.ts) | Full acceptance test suite |
 
 ---
 

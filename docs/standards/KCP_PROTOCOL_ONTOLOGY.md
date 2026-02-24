@@ -337,6 +337,7 @@ documentation tooltips. No compilation warnings.
 
 ```typescript
 #!/usr/bin/env bun
+
 // ╔════════════════════════════════════════════════════════════════════════════
 // ║ THE DECORATOR'S BLESSING: daemon_overseer.ts
 // ╠════════════════════════════════════════════════════════════════════════════
@@ -379,6 +380,7 @@ The `.SYNOPSIS` block remains a standard one-line description.
 
 ```powershell
 #!/usr/bin/env pwsh
+
 # ╔════════════════════════════════════════════════════════════════════════════
 # ║ THE DECORATOR'S BLESSING: audit_permissions.ps1
 # ╠════════════════════════════════════════════════════════════════════════════

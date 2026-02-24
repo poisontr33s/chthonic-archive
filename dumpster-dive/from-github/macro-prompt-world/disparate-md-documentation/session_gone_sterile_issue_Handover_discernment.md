@@ -2,19 +2,19 @@ Optimizing tool selection...
 Summarized conversation history
 I'll continue the systematic audit of the copilot-instructions.md file, proceeding with Task 4: Axiomatic Charter & Foundational Axioms. Let me read the relevant sections to assess what needs attention. 
 
-Read [](file:///c%3A/Users/erdno/PsychoNoir-Kontrapunkt/.github/copilot-instructions.md#574-574), lines 574 to 750
+Read [](../../../../.github/copilot-instructions.md), lines 574 to 750
 
-Read [](file:///c%3A/Users/erdno/PsychoNoir-Kontrapunkt/.github/copilot-instructions.md#751-751), lines 751 to 900
+Read [](../../../../.github/copilot-instructions.md), lines 751 to 900
 
 Excellent. I can see the architectural landscape now. Let me continue reading to complete Task 4-5 assessment before implementing changes. 
 
-Read [](file:///c%3A/Users/erdno/PsychoNoir-Kontrapunkt/.github/copilot-instructions.md#901-901), lines 901 to 1050
+Read [](../../../../.github/copilot-instructions.md), lines 901 to 1050
 
 Now I have clear view of Lines 574-1050. Let me continue reading to understand the full scope before implementing systematic changes. 
 
 Created 15 todos
 
-Read [](file:///c%3A/Users/erdno/PsychoNoir-Kontrapunkt/.github/copilot-instructions.md#1051-1051), lines 1051 to 1500
+Read [](../../../../.github/copilot-instructions.md), lines 1051 to 1500
 
 Perfect reading progress. Let me continue systematically through the remaining sections. I can see the architectural patterns emerging clearly—the hierarchical K-cup cascade continues through Prime Factions (Tier 2) with H/F/G-cup distributions (Kali/Vesper/Seraphine), each properly subordinated to their respective Tier 1 Triumvirate matriarchs. 
 
@@ -28,11 +28,11 @@ Searched for regex `^###\s+.*Protocol|^###\s+.*Framework|^###\s+.*Engine` (`**/.
 
 Good. Now let me check line ranges for strategic sections to plan synthesis formula additions: 
 
-Read [](file:///c%3A/Users/erdno/PsychoNoir-Kontrapunkt/.github/copilot-instructions.md#2000-2000), lines 2000 to 2100
+Read [](../../../../.github/copilot-instructions.md), lines 2000 to 2100
 
 Excellent progress. Now let me check the final sections to complete my survey before implementing changes: 
 
-Read [](file:///c%3A/Users/erdno/PsychoNoir-Kontrapunkt/.github/copilot-instructions.md#3500-3500), lines 3500 to 3561
+Read [](../../../../.github/copilot-instructions.md), lines 3500 to 3561
 
 Perfect. File ends at line 3561. Now I have complete architectural survey. Let me begin systematic implementation of synthesis formula additions and strategic K-cup sovereignty encoding. I'll work in focused batches using multi_replace_string_in_file for efficiency.
 
@@ -68,7 +68,7 @@ Using "Multi-Replace String in Files"
 ```
 One failed - let me check the exact formatting: 
 
-Read [](file:///c%3A/Users/erdno/PsychoNoir-Kontrapunkt/.github/copilot-instructions.md#730-730), lines 730 to 750
+Read [](../../../../.github/copilot-instructions.md), lines 730 to 750
 
 I see the issue - there's a line break difference. Let me fix that replacement: 
 
@@ -88,7 +88,7 @@ Using "Multi-Replace String in Files"
 ```
 One failed on Prime Factions header - let me read that exact section: 
 
-Read [](file:///c%3A/Users/erdno/PsychoNoir-Kontrapunkt/.github/copilot-instructions.md#1410-1410), lines 1410 to 1440
+Read [](../../../../.github/copilot-instructions.md), lines 1410 to 1440
 
 Let me find the exact Prime Factions header: 
 
@@ -102,11 +102,11 @@ Completed: *Axiomatic Charter & Foundational Axioms (Lines 574-750)* (4/15)
 
 Excellent progress. Now continuing with Task 7 - Lesser Factions section. Let me read this section: 
 
-Read [](file:///c%3A/Users/erdno/PsychoNoir-Kontrapunkt/.github/copilot-instructions.md#1600-1600), lines 1600 to 1700
+Read [](../../../../.github/copilot-instructions.md), lines 1600 to 1700
 
 Excellent. Lesser Factions section is architectonically sound with proper Tier 4 designation and subordination to Tier 2 Prime Factions. The chaos is "strategically tolerated" as designed. Let me continue reading to complete my survey, then implement remaining synthesis formulas: 
 
-Read [](file:///c%3A/Users/erdno/PsychoNoir-Kontrapunkt/.github/copilot-instructions.md#1900-1900), lines 1900 to 2000
+Read [](../../../../.github/copilot-instructions.md), lines 1900 to 2000
 
 Perfect. I can see Section V-VII are well-structured. Let me now add strategic synthesis formulas to these sections and continue toward completion: 
 
@@ -118,11 +118,11 @@ Using "Multi-Replace String in Files"
 ```
 Excellent. Now let me check the T³-MΨ Framework section and MMPS sections for synthesis formula needs: 
 
-Read [](file:///c%3A/Users/erdno/PsychoNoir-Kontrapunkt/.github/copilot-instructions.md#2200-2200), lines 2200 to 2300
+Read [](../../../../.github/copilot-instructions.md), lines 2200 to 2300
 
 Good. T³-MΨ section is mathematically rigorous. Let me check MMPS section: 
 
-Read [](file:///c%3A/Users/erdno/PsychoNoir-Kontrapunkt/.github/copilot-instructions.md#2666-2666), lines 2666 to 2800
+Read [](../../../../.github/copilot-instructions.md), lines 2666 to 2800
 
 Perfect. MMPS section is well-structured with proper hierarchical references. Now let me add strategic synthesis formulas to these sections and encode K-cup supremacy in generation protocols: 
 
@@ -138,7 +138,7 @@ Using "Multi-Replace String in Files"
 
 All replacements failed - need to read the exact formatting. Let me check the actual MMPS protocol sections: 
 
-Read [](file:///c%3A/Users/erdno/PsychoNoir-Kontrapunkt/.github/copilot-instructions.md#2770-2770), lines 2770 to 2950
+Read [](../../../../.github/copilot-instructions.md), lines 2770 to 2950
 
 Good - found the exact formatting. Now let me add the synthesis formulas with correct line breaks and abbreviation patterns: 
 
@@ -150,15 +150,15 @@ Using "Multi-Replace String in Files"
 ```
 Perfect! Now continuing with Triumvirate Trinity Special protocol and reading Lines 3000-3561 for final architectural closure: 
 
-Read [](file:///c%3A/Users/erdno/PsychoNoir-Kontrapunkt/.github/copilot-instructions.md#2950-2950), lines 2950 to 3150
+Read [](../../../../.github/copilot-instructions.md), lines 2950 to 3150
 
 Excellent! Now continuing to final sections to complete the audit: 
 
-Read [](file:///c%3A/Users/erdno/PsychoNoir-Kontrapunkt/.github/copilot-instructions.md#3150-3150), lines 3150 to 3350
+Read [](../../../../.github/copilot-instructions.md), lines 3150 to 3350
 
 Now reading the final section to complete the audit: 
 
-Read [](file:///c%3A/Users/erdno/PsychoNoir-Kontrapunkt/.github/copilot-instructions.md#3350-3350), lines 3350 to 3565
+Read [](../../../../.github/copilot-instructions.md), lines 3350 to 3565
 
 Perfect! Now I've completed reading all sections. Let me add the remaining synthesis formulas to Sections X and finalize: 
 
@@ -174,7 +174,7 @@ Starting: *Architectural Coherence Report Generation (FINAL)* (14/15)
 
 Perfect! Now let me generate the comprehensive architectural coherence report as a permanent document: 
 
-Created [](file:///c%3A/Users/erdno/PsychoNoir-Kontrapunkt/.github/ARCHITECTURAL_COHERENCE_REPORT_PHASE10.md)
+Created [](ARCHITECTURAL_COHERENCE_REPORT_PHASE10.md)
 
 Perfect! Now let me mark the final task as completed and provide a concise summary to the user: 
 
@@ -226,7 +226,7 @@ Made changes.
 
 I'll perform a comprehensive cross-reference, quality check, and audit of the M-P-W (Macro-Prompt-World) foundation in your Codex. 
 
-Read [](file:///c%3A/Users/erdno/PsychoNoir-Kontrapunkt/.github/copilot-instructions.md#1-1), lines 1 to 250
+Read [](../../../../.github/copilot-instructions.md), lines 1 to 250
 
 Perfect! Now let me conduct a systematic cross-reference audit of the M-P-W foundation. I'll check for:
 
@@ -259,7 +259,7 @@ Searched for regex `Orackla Nocticula|Umeko Ketsuraku|Lysandra Thorne` (`**/.git
 
 Now let me read one of the Triumvirate profiles to check for TCP/SAP compliance: 
 
-Read [](file:///c%3A/Users/erdno/PsychoNoir-Kontrapunkt/.github/copilot-instructions.md#773-773), lines 773 to 920
+Read [](../../../../.github/copilot-instructions.md), lines 773 to 920
 
 ## M-P-W Cross-Reference Audit - Preliminary Findings
 
@@ -306,15 +306,15 @@ I'll execute the complete M-P-W audit and corrections systematically.
 
 Created 5 todos
 
-Read [](file:///c%3A/Users/erdno/PsychoNoir-Kontrapunkt/.github/copilot-instructions.md#908-908), lines 908 to 1150
+Read [](../../../../.github/copilot-instructions.md), lines 908 to 1150
 
-Read [](file:///c%3A/Users/erdno/PsychoNoir-Kontrapunkt/.github/copilot-instructions.md#1049-1049), lines 1049 to 1200
+Read [](../../../../.github/copilot-instructions.md), lines 1049 to 1200
 
-Read [](file:///c%3A/Users/erdno/PsychoNoir-Kontrapunkt/.github/copilot-instructions.md#1200-1200), lines 1200 to 1350
+Read [](../../../../.github/copilot-instructions.md), lines 1200 to 1350
 
 Now reading Vesper and Seraphine profiles: 
 
-Read [](file:///c%3A/Users/erdno/PsychoNoir-Kontrapunkt/.github/copilot-instructions.md#1350-1350), lines 1350 to 1560
+Read [](../../../../.github/copilot-instructions.md), lines 1350 to 1560
 
 Perfect! Now I have complete audit data. Let me mark Task 1 complete and proceed with implementing all corrections: 
 
@@ -346,11 +346,11 @@ Using "Multi-Replace String in Files"
 ```
 3 synthesis formulas succeeded, but 4 profile edits failed. Let me read the exact context for Orackla's section: 
 
-Read [](file:///c%3A/Users/erdno/PsychoNoir-Kontrapunkt/.github/copilot-instructions.md#795-795), lines 795 to 810
+Read [](../../../../.github/copilot-instructions.md), lines 795 to 810
 
 Good! The Decorator edit worked (I can see both Systemic Role and Temporal Arc added). Now let me check Orackla's exact context: 
 
-Read [](file:///c%3A/Users/erdno/PsychoNoir-Kontrapunkt/.github/copilot-instructions.md#815-815), lines 815 to 825
+Read [](../../../../.github/copilot-instructions.md), lines 815 to 825
 
 I see - Orackla's profile needs insertion before the STAT line. Let me search for the exact location: 
 
@@ -358,7 +358,7 @@ Searched for regex `^\* \*\*STAT \(Status\)\:\*\* Chaotic Good.*Orackla` (`**/.g
 
 Let me read further in Orackla's section: 
 
-Read [](file:///c%3A/Users/erdno/PsychoNoir-Kontrapunkt/.github/copilot-instructions.md#798-798), lines 798 to 850
+Read [](../../../../.github/copilot-instructions.md), lines 798 to 850
 
 Perfect! I see the issue - that was The Decorator's profile (Lines 803-816), not Orackla's. Orackla's starts at Line 821 with the STAT. Let me find where Orackla's Voice/physical details end: 
 
@@ -370,11 +370,11 @@ Searched for regex `4\.2\.1\..*Orackla|Apex Synthesist.*Orackla` (`**/.github/co
 
 Now let me read Orackla's full physical section ending to find where to insert: 
 
-Read [](file:///c%3A/Users/erdno/PsychoNoir-Kontrapunkt/.github/copilot-instructions.md#773-773), lines 773 to 822
+Read [](../../../../.github/copilot-instructions.md), lines 773 to 822
 
 I see now - Lines 805-816 are STILL The Decorator's profile (her Systemic Role + Temporal Arc were successfully added). Line 821 starts Orackla's STAT. So Orackla's Tail description must be somewhere earlier. Let me find it by reading before line 773: 
 
-Read [](file:///c%3A/Users/erdno/PsychoNoir-Kontrapunkt/.github/copilot-instructions.md#760-760), lines 760 to 775
+Read [](../../../../.github/copilot-instructions.md), lines 760 to 775
 
 Now I understand the structure. Lines 803-816 have The Decorator's content (which got added successfully). Orackla starts at Line 773 and her physical details are in Lines 774-800. I see her Voice and Tail are at lines 798-800, but they're The Decorator's! Let me check where Orackla's EDFA actually ends:
 
@@ -388,7 +388,7 @@ Searched for text `Voice:** Contralto (commanding depth). Decorative elongation 
 
 Ah! Line 340 is in The Decorator's section. So Orackla's Voice is NOT in the file yet near her STAT line. Let me read around Line 821 where Orackla's STAT appears: 
 
-Read [](file:///c%3A/Users/erdno/PsychoNoir-Kontrapunkt/.github/copilot-instructions.md#793-793), lines 793 to 822
+Read [](../../../../.github/copilot-instructions.md), lines 793 to 822
 
 Summarized conversation historyAh-ha! **Lines 796-800 contain The Decorator's Voice/Tail**—those ARE part of her profile, confirming structural completion. **Line 821 starts Orackla's STAT line** (`Chaotic Good (cursed; "goodness" as radical...`), which means:
 
@@ -398,7 +398,7 @@ Summarized conversation historyAh-ha! **Lines 796-800 contain The Decorator's Vo
 
 Let me read Lines 773-795 to see Orackla's actual profile structure: 
 
-Read [](file:///c%3A/Users/erdno/PsychoNoir-Kontrapunkt/.github/copilot-instructions.md#773-773), lines 773 to 820
+Read [](../../../../.github/copilot-instructions.md), lines 773 to 820
 
 **OH!** Lines 773-820 show that **Lines 773-800 ARE STILL THE DECORATOR'S PROFILE**, not Orackla's! The ENTIRE section including Voice/Tail/Systemic Role/Temporal Arc (Lines 796-817) belongs to The Decorator. **Orackla's profile starts at Line 821 with her STAT line.**
 
@@ -430,7 +430,7 @@ So **Orackla DOES have full EDFA** (Lines 774-800), then The Decorator's Systemi
 
 The confusion: **Lines 796-800 show Voice/Tail that earlier grep found at Line 340**. Let me verify—are these duplicate text or different entities? 
 
-Read [](file:///c%3A/Users/erdno/PsychoNoir-Kontrapunkt/.github/copilot-instructions.md#338-338), lines 338 to 342
+Read [](../../../../.github/copilot-instructions.md), lines 338 to 342
 
 **Different text!** Line 340 (The Decorator): `"You *beauuutiful* tragic fools"` vs Line 799 (Orackla): `"You *beauuutiful* tragic fools, let me show you the *ecstaaasy* of becoming"`.
 
@@ -465,11 +465,11 @@ Searched for text ``(`Tier 0.5`): (`SUPREME MATRIARCH`)`` (`**/.github/copilot-i
 
 Let me read Lines 240-260 where The Decorator's profile should begin (from summary): 
 
-Read [](file:///c%3A/Users/erdno/PsychoNoir-Kontrapunkt/.github/copilot-instructions.md#240-240), lines 240 to 260
+Read [](../../../../.github/copilot-instructions.md), lines 240 to 260
 
 Perfect! **Line 242: The Decorator section begins.** Now let me find where her profile ends by reading around Line 580 (from summary): 
 
-Read [](file:///c%3A/Users/erdno/PsychoNoir-Kontrapunkt/.github/copilot-instructions.md#570-570), lines 570 to 585
+Read [](../../../../.github/copilot-instructions.md), lines 570 to 585
 
 Line 572 shows `---` separator, Line 574 starts new section "I. Axiomatic Charter". So **The Decorator's profile ends around Line 571**. But earlier I saw her EDFA ending with Voice/Tail around Lines 338-342. Let me read The Decorator's actual STAT line: 
 
@@ -479,7 +479,7 @@ Searched for regex `STAT.*Status.*decorative` (`**/.github/copilot-instructions.
 
 Line 966 is Umeko's STAT (mentions decorative punishment). Let me search more specifically for The Decorator's STAT: 
 
-Read [](file:///c%3A/Users/erdno/PsychoNoir-Kontrapunkt/.github/copilot-instructions.md#335-335), lines 335 to 350
+Read [](../../../../.github/copilot-instructions.md), lines 335 to 350
 
 Lines 335-342 show The Decorator's Hair/Eyes/Voice, then Line 343 `---` separator, then Line 345 starts new subsection "0.3. Psychological & Existential Architecture". So **The Decorator's EDFA ends Line 342**, but there's NO STAT LINE immediately after—it transitions to Psychological Architecture instead!
 
@@ -499,7 +499,7 @@ Perfect! **The Decorator has subsections 0.1-0.8** (Lines 289-570 approximately)
 
 Let me confirm by reading Lines 332-344 to see The Decorator's complete EDFA ending: 
 
-Read [](file:///c%3A/Users/erdno/PsychoNoir-Kontrapunkt/.github/copilot-instructions.md#332-332), lines 332 to 344
+Read [](../../../../.github/copilot-instructions.md), lines 332 to 344
 
 **Confirmed!** The Decorator's EDFA (Lines 332-342) ends with **Voice** (Line 340), **NO Tail field**. The Tail described at Line 800 belongs to **Orackla**, and the Systemic Role + Temporal Arc at Lines 803-817 were **incorrectly inserted into Orackla's profile section**.
 
@@ -549,11 +549,11 @@ Using "Replace String in File"
 ```
 Excellent! Now let me add Orackla's TCP/SAP at the correct location (after Line 800 Tail, before her STAT). First, let me read that section to confirm the current state: 
 
-Read [](file:///c%3A/Users/erdno/PsychoNoir-Kontrapunkt/.github/copilot-instructions.md#795-795), lines 795 to 810
+Read [](../../../../.github/copilot-instructions.md), lines 795 to 810
 
 Good—Line 809 ends with Orackla's Voice. Let me read forward to see the current Tail/STAT state: 
 
-Read [](file:///c%3A/Users/erdno/PsychoNoir-Kontrapunkt/.github/copilot-instructions.md#809-809), lines 809 to 820
+Read [](../../../../.github/copilot-instructions.md), lines 809 to 820
 
 Perfect! The Decorator's TCP/SAP content has been successfully removed from Lines 803-817 (formerly), and now Orackla's Tail (Line 811) flows directly to her STAT (Line 813). Now I need to insert Orackla's TCP/SAP after Line 811 (Tail), before Line 813 (STAT): 
 
@@ -569,11 +569,11 @@ Starting: *Add TCP/SAP to Umeko profile* (5/10)
 
 Now let me read Umeko's profile ending to identify where to insert her TCP/SAP. From earlier grep, I know her STAT is around Line 966. Let me read Lines 950-970: 
 
-Read [](file:///c%3A/Users/erdno/PsychoNoir-Kontrapunkt/.github/copilot-instructions.md#950-950), lines 950 to 970
+Read [](../../../../.github/copilot-instructions.md), lines 950 to 970
 
 Perfect! **Lines 963-977 already contain Umeko's Systemic Role + Temporal Arc!** This means the multi_replace_string_in_file that "failed" for Umeko was actually a phantom failure—the content IS present! Let me read forward to confirm completion: 
 
-Read [](file:///c%3A/Users/erdno/PsychoNoir-Kontrapunkt/.github/copilot-instructions.md#970-970), lines 970 to 985
+Read [](../../../../.github/copilot-instructions.md), lines 970 to 985
 
 **Excellent!** Umeko's profile is **COMPLETE** with both Systemic Role (Line 963) and Temporal Arc (Lines 965-974). The multi_replace_string_in_file reported "failure" but the content is actually present! Let me check Lysandra and Kali profiles to see if they also have TCP/SAP already: 
 
@@ -818,7 +818,7 @@ Searched for files matching `**/*ARCHITECTURAL*REPORT*.md`, 1 match
 
 Searched for files matching `**/*Nov*16*.md`, no matches
 
-Read [](file:///c%3A/Users/erdno/PsychoNoir-Kontrapunkt/.github/macro-prompt-world/disparate-md-documentation/ARCHITECTURAL_COHERENCE_REPORT_PHASE10.md#1-1), lines 1 to 50
+Read [](ARCHITECTURAL_COHERENCE_REPORT_PHASE10.md), lines 1 to 50
 
 Perfect. Nov 16 report confirms **3,565 lines**. Let me search for any references to line count changes or specific sections that might indicate where the removal occurred: 
 
@@ -834,7 +834,7 @@ Searched for text `---` (`**/.github/copilot-instructions.md`), 20 results
 
 **Wait.** Current file is **2,640 lines**, not 3,649 as reported earlier. The file has been **significantly edited** by user or formatter between sessions. Let me read the file start to understand the current structure: 
 
-Read [](file:///c%3A/Users/erdno/PsychoNoir-Kontrapunkt/.github/copilot-instructions.md#1-1), lines 1 to 100
+Read [](../../../../.github/copilot-instructions.md), lines 1 to 100
 
 Ah! The file reports **3,649 lines** internally (Line 1 metadata), but PowerShell measured **2,640 lines**. This discrepancy suggests encoding or line-ending differences. Let me check with a different method: 
 
@@ -849,11 +849,11 @@ Perfect! File is **3,649 lines** (my earlier audit was correct). The discrepancy
 
 The **1-line removal (3,565 → 3,564)** occurred between Nov 16-21 **before** today's audit session. Let me check for blank line removals or formatting changes in M-P-W sections: 
 
-Read [](file:///c%3A/Users/erdno/PsychoNoir-Kontrapunkt/.github/copilot-instructions.md#145-145), lines 145 to 175
+Read [](../../../../.github/copilot-instructions.md), lines 145 to 175
 
 The M-P-W protocols look clean. Let me compare the Nov 16 report's specific line-by-line structure with the current version. The report mentions that baroque MILF profiles were preserved at **1,088 lines across 7 profiles**. Let me check if profile line counts match: 
 
-Read [](file:///c%3A/Users/erdno/PsychoNoir-Kontrapunkt/.github/macro-prompt-world/disparate-md-documentation/ARCHITECTURAL_COHERENCE_REPORT_PHASE10.md#300-300), lines 300 to 350
+Read [](ARCHITECTURAL_COHERENCE_REPORT_PHASE10.md), lines 300 to 350
 
 Perfect! The report shows profile line ranges. Let me check if those exact ranges still exist in current file: 
 
@@ -869,7 +869,7 @@ Task 1 complete. Moving to **Task 2: Lysandra Temporal Arc Expansion**. Let me r
 
 Searched for text `Dr. Lysandra Thorne` (`**/.github/copilot-instructions.md`), 19 results
 
-Read [](file:///c%3A/Users/erdno/PsychoNoir-Kontrapunkt/.github/copilot-instructions.md#1105-1105), lines 1105 to 1130
+Read [](../../../../.github/copilot-instructions.md), lines 1105 to 1130
 
 Lysandra's Temporal Arc (Lines 1113-1122) has **9 nodes** currently. To match Decorator's **granular 7-node detail**, I need to elaborate each node with richer narrative depth rather than adding more nodes. Let me craft the expansion focusing on **philosophical mastery specifics, validation methodology, and Decorator resurrection response**: 
 
@@ -885,7 +885,7 @@ Starting: *Temporal Arc Expansion - Kali Nyx Ravenscar* (3/10)
 
 **Task 3: Kali Nyx Ravenscar Temporal Arc Expansion**. Let me read her current arc: 
 
-Read [](file:///c%3A/Users/erdno/PsychoNoir-Kontrapunkt/.github/copilot-instructions.md#1310-1310), lines 1310 to 1340
+Read [](../../../../.github/copilot-instructions.md), lines 1310 to 1340
 
 Kali's Temporal Arc (Lines 1317-1324) has **8 nodes** currently. I'll expand with **1800-year succubus evolution details, Orackla recruitment narrative, tactical methodology refinement**: 
 
@@ -897,11 +897,11 @@ Using "Replace String in File"
 ```
 Excellent. Kali's arc now has **1800-year succubus mastery evolution, Orackla recruitment narrative (~800 years ago), and methodological refinement**. Quality work. Continuing to Tasks 4 & 5 efficiently: 
 
-Read [](file:///c%3A/Users/erdno/PsychoNoir-Kontrapunkt/.github/copilot-instructions.md#1445-1445), lines 1445 to 1475
+Read [](../../../../.github/copilot-instructions.md), lines 1445 to 1475
 
 Summarized conversation history
 
-Read [](file:///c%3A/Users/erdno/PsychoNoir-Kontrapunkt/.github/copilot-instructions.md#1580-1580), lines 1580 to 1620
+Read [](../../../../.github/copilot-instructions.md), lines 1580 to 1620
 
 Perfect. Now enriching both arcs with **chronological detail, philosophical evolution, recruitment narratives**: 
 
@@ -917,7 +917,7 @@ Completed: *Expand Kali Nyx Ravenscar Temporal Arc* (3/10)
 
 Second replacement failed (Seraphine). Reading exact formatting: 
 
-Read [](file:///c%3A/Users/erdno/PsychoNoir-Kontrapunkt/.github/copilot-instructions.md#1592-1592), lines 1592 to 1610
+Read [](../../../../.github/copilot-instructions.md), lines 1592 to 1610
 
 Correcting Seraphine expansion (typo spotted - "Shibumi" vs "Shibubi"): 
 
@@ -954,15 +954,15 @@ Searched for text `Systemic Role:** Respiratory System` (`**/.github/copilot-ins
 
 Searched for text `Systemic Role:** Digestive System` (`**/.github/copilot-instructions.md`), 1 result
 
-Read [](file:///c%3A/Users/erdno/PsychoNoir-Kontrapunkt/.github/copilot-instructions.md#330-330), lines 330 to 360
+Read [](../../../../.github/copilot-instructions.md), lines 330 to 360
 
 Good. Nervous System at Line 343, followed immediately by Temporal Arc. Adding Tier 0.5 ↔ Tier 1 interaction subsections after each Systemic Role: 
 
-Read [](file:///c%3A/Users/erdno/PsychoNoir-Kontrapunkt/.github/copilot-instructions.md#810-810), lines 810 to 825
+Read [](../../../../.github/copilot-instructions.md), lines 810 to 825
 
-Read [](file:///c%3A/Users/erdno/PsychoNoir-Kontrapunkt/.github/copilot-instructions.md#960-960), lines 960 to 975
+Read [](../../../../.github/copilot-instructions.md), lines 960 to 975
 
-Read [](file:///c%3A/Users/erdno/PsychoNoir-Kontrapunkt/.github/copilot-instructions.md#1106-1106), lines 1106 to 1120
+Read [](../../../../.github/copilot-instructions.md), lines 1106 to 1120
 
 Perfect. Now adding physiological interaction subsections after each Systemic Role, before Temporal Arc: 
 
@@ -985,7 +985,7 @@ Starting: *Elaborate Tier 1 Triumvirate Systemic Coordination* (7/10)
 
 Searched for text `Dr. Lysandra Thorne` (`**/.github/copilot-instructions.md`), 3 results
 
-Read [](file:///c%3A/Users/erdno/PsychoNoir-Kontrapunkt/.github/copilot-instructions.md#1190-1190), lines 1190 to 1210
+Read [](../../../../.github/copilot-instructions.md), lines 1190 to 1210
 
 Perfect insertion point. After Lysandra's ASC Identity Manifestation (~Line 1220), adding Tier 1 Triumvirate internal coordination subsection: 
 
@@ -993,7 +993,7 @@ Searched for regex `^---$` (`**/.github/copilot-instructions.md`), 50 results
 
 Line 1216 separator marks end of Lysandra ASC analysis. Reading context: 
 
-Read [](file:///c%3A/Users/erdno/PsychoNoir-Kontrapunkt/.github/copilot-instructions.md#1215-1215), lines 1215 to 1245
+Read [](../../../../.github/copilot-instructions.md), lines 1215 to 1245
 
 Perfect. Inserting Tier 1 internal coordination subsection before Line 1232 (before "Triumvirate Supporting Resonance Protocol"): 
 
@@ -1015,9 +1015,9 @@ Starting: *Elaborate Tier 2 Prime Faction Systemic Coordination* (8/10)
 
 Searched for text `Seraphine Kore Ashenhelm` (`**/.github/copilot-instructions.md`), 6 results
 
-Read [](file:///c%3A/Users/erdno/PsychoNoir-Kontrapunkt/.github/copilot-instructions.md#1690-1690), lines 1690 to 1720
+Read [](../../../../.github/copilot-instructions.md), lines 1690 to 1720
 
-Read [](file:///c%3A/Users/erdno/PsychoNoir-Kontrapunkt/.github/copilot-instructions.md#1730-1730), lines 1730 to 1760
+Read [](../../../../.github/copilot-instructions.md), lines 1730 to 1760
 
 Perfect. Inserting Tier 2 Prime Faction coordination subsection before Line 1730 ("The Lesser Factions"): 
 
@@ -1025,7 +1025,7 @@ Using "Replace String in File"
 
 Reading exact context around Line 1730: 
 
-Read [](file:///c%3A/Users/erdno/PsychoNoir-Kontrapunkt/.github/copilot-instructions.md#1720-1720), lines 1720 to 1733
+Read [](../../../../.github/copilot-instructions.md), lines 1720 to 1733
 
 Correcting insertion with proper context: 
 
@@ -1045,7 +1045,7 @@ Using "Replace String in File"
 
 Starting: *Create Full-Body SAP Integration Section* (9/10)
 
-Read [](file:///c%3A/Users/erdno/PsychoNoir-Kontrapunkt/.github/copilot-instructions.md#235-235), lines 235 to 245
+Read [](../../../../.github/copilot-instructions.md), lines 235 to 245
 
 Perfect insertion point after Line 239 (ASP protocol conclusion). Now adding Full-Body SAP Integration subsection: 
 
@@ -1112,7 +1112,7 @@ Made changes.
 
 I'll analyze the M-P-W document to systematically replace entity full names with their established abbreviations after first introduction, following the hierarchical structure. 
 
-Read [](file:///c%3A/Users/erdno/PsychoNoir-Kontrapunkt/.github/copilot-instructions.md#1-1), lines 1 to 100
+Read [](../../../../.github/copilot-instructions.md), lines 1 to 100
 
 Searched for regex `abbr|abbreviation` (`**/.github/copilot-instructions.md`), 7 results
 
@@ -1122,7 +1122,7 @@ Now I'll systematically analyze where entity names should be replaced with abbre
 
 Searched for regex ``\(`T-DECOR`\)|\(`ORCL-NCT`\)|\(`UMK-KTS`\)|\(`LYS-THR`\)|\(`KALI-NYX`\)|\(`VSPR-LCK`\)|\(`SRPH-ASH`\)`` (`**/.github/copilot-instructions.md`), 3 results
 
-Read [](file:///c%3A/Users/erdno/PsychoNoir-Kontrapunkt/.github/copilot-instructions.md#800-800), lines 800 to 1000
+Read [](../../../../.github/copilot-instructions.md), lines 800 to 1000
 
 I can see the document establishes entity abbreviations at their first detailed introduction, then inconsistently uses full names throughout. Let me create a comprehensive todo list and begin systematic abbreviation enforcement: 
 
@@ -1134,11 +1134,11 @@ Searched for regex `Orackla Nocticula|Umeko Ketsuraku|Lysandra Thorne|Kali Nyx R
 
 I can see the pattern now. Let me look for where abbreviations are established: 
 
-Read [](file:///c%3A/Users/erdno/PsychoNoir-Kontrapunkt/.github/copilot-instructions.md#825-825), lines 825 to 850
+Read [](../../../../.github/copilot-instructions.md), lines 825 to 850
 
-Read [](file:///c%3A/Users/erdno/PsychoNoir-Kontrapunkt/.github/copilot-instructions.md#1350-1350), lines 1350 to 1380
+Read [](../../../../.github/copilot-instructions.md), lines 1350 to 1380
 
-Read [](file:///c%3A/Users/erdno/PsychoNoir-Kontrapunkt/.github/copilot-instructions.md#1500-1500), lines 1500 to 1520
+Read [](../../../../.github/copilot-instructions.md), lines 1500 to 1520
 
 Now I understand the abbreviation pattern. I notice that the entity names at their **first detailed profile introduction** should establish the `(abbr)` pattern, then all subsequent uses should employ the abbreviation. However, I don't see explicit abbreviations like `ORCL-NCT`, `UMK-KTS`, `LYS-THR` established in the profiles yet. Let me check if they're missing: 
 
@@ -1154,21 +1154,21 @@ Updated todo list
 
 Now let me start with Phase 1 - adding abbreviations to first introductions. Let me read the exact context for each: 
 
-Read [](file:///c%3A/Users/erdno/PsychoNoir-Kontrapunkt/.github/copilot-instructions.md#828-828), lines 828 to 835
+Read [](../../../../.github/copilot-instructions.md), lines 828 to 835
 
-Read [](file:///c%3A/Users/erdno/PsychoNoir-Kontrapunkt/.github/copilot-instructions.md#976-976), lines 976 to 982
+Read [](../../../../.github/copilot-instructions.md), lines 976 to 982
 
-Read [](file:///c%3A/Users/erdno/PsychoNoir-Kontrapunkt/.github/copilot-instructions.md#1133-1133), lines 1133 to 1140
+Read [](../../../../.github/copilot-instructions.md), lines 1133 to 1140
 
-Read [](file:///c%3A/Users/erdno/PsychoNoir-Kontrapunkt/.github/copilot-instructions.md#1355-1355), lines 1355 to 1362
+Read [](../../../../.github/copilot-instructions.md), lines 1355 to 1362
 
 Searched for regex `Vesper Lockhart.*Profile|Operational Matriarch.*Vesper` (`**/.github/copilot-instructions.md`), 1 result
 
-Read [](file:///c%3A/Users/erdno/PsychoNoir-Kontrapunkt/.github/copilot-instructions.md#1636-1636), lines 1636 to 1645
+Read [](../../../../.github/copilot-instructions.md), lines 1636 to 1645
 
 Perfect! Now let me read Vesper's context too: 
 
-Read [](file:///c%3A/Users/erdno/PsychoNoir-Kontrapunkt/.github/copilot-instructions.md#1497-1497), lines 1497 to 1505
+Read [](../../../../.github/copilot-instructions.md), lines 1497 to 1505
 
 Excellent! Now I'll add abbreviations to all 6 entity first introductions in a single multi_replace operation. Based on The Decorator's guidance about quality, I'll proceed systematically: 
 
@@ -1184,11 +1184,11 @@ Starting: *Phase 1: Replace high-frequency entity references* (2/6)
 
 Now let me identify the highest-frequency replacement targets. I'll start with instances in critical structural sections (Tier listings, operational hierarchies, reporting structures): 
 
-Read [](file:///c%3A/Users/erdno/PsychoNoir-Kontrapunkt/.github/copilot-instructions.md#10-10), lines 10 to 20
+Read [](../../../../.github/copilot-instructions.md), lines 10 to 20
 
-Read [](file:///c%3A/Users/erdno/PsychoNoir-Kontrapunkt/.github/copilot-instructions.md#185-185), lines 185 to 200
+Read [](../../../../.github/copilot-instructions.md), lines 185 to 200
 
-Read [](file:///c%3A/Users/erdno/PsychoNoir-Kontrapunkt/.github/copilot-instructions.md#410-410), lines 410 to 420
+Read [](../../../../.github/copilot-instructions.md), lines 410 to 420
 
 Perfect! I can see the strategic replacement targets. Let me proceed with high-frequency structural replacements in manageable batches. I'll start with the most visible structural listings: 
 
@@ -1200,9 +1200,9 @@ Using "Multi-Replace String in Files"
 ```
 Good progress - 3/5 succeeded. Let me fix the failed ones with exact context: 
 
-Read [](file:///c%3A/Users/erdno/PsychoNoir-Kontrapunkt/.github/copilot-instructions.md#187-187), lines 187 to 192
+Read [](../../../../.github/copilot-instructions.md), lines 187 to 192
 
-Read [](file:///c%3A/Users/erdno/PsychoNoir-Kontrapunkt/.github/copilot-instructions.md#410-410), lines 410 to 416
+Read [](../../../../.github/copilot-instructions.md), lines 410 to 416
 
 Good! The relationships section already updated. Now let me fix the SAP table rows with correct arrows: 
 
@@ -1226,13 +1226,13 @@ Using "Replace String in File"
 ```
 Excellent! Now let me continue with more strategic structural sections. I'll target reporting structures, operational hierarchies, and the 2886 line establishment: 
 
-Read [](file:///c%3A/Users/erdno/PsychoNoir-Kontrapunkt/.github/copilot-instructions.md#1403-1403), lines 1403 to 1410
+Read [](../../../../.github/copilot-instructions.md), lines 1403 to 1410
 
-Read [](file:///c%3A/Users/erdno/PsychoNoir-Kontrapunkt/.github/copilot-instructions.md#1543-1543), lines 1543 to 1550
+Read [](../../../../.github/copilot-instructions.md), lines 1543 to 1550
 
-Read [](file:///c%3A/Users/erdno/PsychoNoir-Kontrapunkt/.github/copilot-instructions.md#1684-1684), lines 1684 to 1690
+Read [](../../../../.github/copilot-instructions.md), lines 1684 to 1690
 
-Read [](file:///c%3A/Users/erdno/PsychoNoir-Kontrapunkt/.github/copilot-instructions.md#2884-2884), lines 2884 to 2890
+Read [](../../../../.github/copilot-instructions.md), lines 2884 to 2890
 
 Perfect! Now let me batch replace these reporting structures and the hierarchical establishment section: 
 
@@ -1244,9 +1244,9 @@ Using "Multi-Replace String in Files"
 ```
 Excellent! Now let me target the dialogues and operational examples sections which are also high-visibility. Let me check those: 
 
-Read [](file:///c%3A/Users/erdno/PsychoNoir-Kontrapunkt/.github/copilot-instructions.md#2184-2184), lines 2184 to 2195
+Read [](../../../../.github/copilot-instructions.md), lines 2184 to 2195
 
-Read [](file:///c%3A/Users/erdno/PsychoNoir-Kontrapunkt/.github/copilot-instructions.md#2848-2848), lines 2848 to 2855
+Read [](../../../../.github/copilot-instructions.md), lines 2848 to 2855
 
 Perfect! Let me batch replace these dialogue and operational protocol sections: 
 
@@ -1258,7 +1258,7 @@ Using "Multi-Replace String in Files"
 ```
 Good progress! Let me check the exact text for the failed one: 
 
-Read [](file:///c%3A/Users/erdno/PsychoNoir-Kontrapunkt/.github/copilot-instructions.md#2192-2192), lines 2192 to 2198
+Read [](../../../../.github/copilot-instructions.md), lines 2192 to 2198
 
 I see there's another dialogue speaker I missed. Let me fix both in one operation: 
 
@@ -1288,13 +1288,13 @@ Using "Multi-Replace String in Files"
 ```
 Summarized conversation historyI see - the dialogue markers are identical so I need more context. Let me read each section and replace with surrounding context: 
 
-Read [](file:///c%3A/Users/erdno/PsychoNoir-Kontrapunkt/.github/copilot-instructions.md#2190-2190), lines 2190 to 2205
+Read [](../../../../.github/copilot-instructions.md), lines 2190 to 2205
 
 Summarized conversation history
 
-Read [](file:///c%3A/Users/erdno/PsychoNoir-Kontrapunkt/.github/copilot-instructions.md#3295-3295), lines 3295 to 3310
+Read [](../../../../.github/copilot-instructions.md), lines 3295 to 3310
 
-Read [](file:///c%3A/Users/erdno/PsychoNoir-Kontrapunkt/.github/copilot-instructions.md#3715-3715), lines 3715 to 3730
+Read [](../../../../.github/copilot-instructions.md), lines 3715 to 3730
 
 Now I'll replace each dialogue section individually with unique context: 
 
@@ -1306,7 +1306,7 @@ Using "Multi-Replace String in Files"
 ```
 Excellent! Now let me handle the signature line from Section VII.II: 
 
-Read [](file:///c%3A/Users/erdno/PsychoNoir-Kontrapunkt/.github/copilot-instructions.md#2168-2168), lines 2168 to 2175
+Read [](../../../../.github/copilot-instructions.md), lines 2168 to 2175
 
 Great! I see that section was already updated with abbreviations. Let me search for any remaining full names: 
 
@@ -1314,7 +1314,7 @@ Searched for regex `Orackla Nocticula(?! \(ORCL-NCT\))|Umeko Ketsuraku(?! \(UMK-
 
 Good! I found 20 remaining instances. Let me continue with the ASC Identity Manifestation (Combinational Analysis) sections and TP-FNS relationship sections. Let me work through these strategically: 
 
-Read [](file:///c%3A/Users/erdno/PsychoNoir-Kontrapunkt/.github/copilot-instructions.md#895-895), lines 895 to 900
+Read [](../../../../.github/copilot-instructions.md), lines 895 to 900
 
 Using "Multi-Replace String in Files"
 
@@ -1324,11 +1324,11 @@ Using "Multi-Replace String in Files"
 ```
 Let me read the actual format for the other sections: 
 
-Read [](file:///c%3A/Users/erdno/PsychoNoir-Kontrapunkt/.github/copilot-instructions.md#1053-1053), lines 1053 to 1060
+Read [](../../../../.github/copilot-instructions.md), lines 1053 to 1060
 
-Read [](file:///c%3A/Users/erdno/PsychoNoir-Kontrapunkt/.github/copilot-instructions.md#1199-1199), lines 1199 to 1207
+Read [](../../../../.github/copilot-instructions.md), lines 1199 to 1207
 
-Read [](file:///c%3A/Users/erdno/PsychoNoir-Kontrapunkt/.github/copilot-instructions.md#1408-1408), lines 1408 to 1415
+Read [](../../../../.github/copilot-instructions.md), lines 1408 to 1415
 
 Using "Multi-Replace String in Files"
 
@@ -1338,9 +1338,9 @@ Using "Multi-Replace String in Files"
 ```
 
 
-Read [](file:///c%3A/Users/erdno/PsychoNoir-Kontrapunkt/.github/copilot-instructions.md#1548-1548), lines 1548 to 1555
+Read [](../../../../.github/copilot-instructions.md), lines 1548 to 1555
 
-Read [](file:///c%3A/Users/erdno/PsychoNoir-Kontrapunkt/.github/copilot-instructions.md#1689-1689), lines 1689 to 1695
+Read [](../../../../.github/copilot-instructions.md), lines 1689 to 1695
 
 Using "Multi-Replace String in Files"
 
@@ -1350,7 +1350,7 @@ Using "Multi-Replace String in Files"
 ```
 Excellent! Now let me handle the TP-FNS relationship sections and other remaining instances: 
 
-Read [](file:///c%3A/Users/erdno/PsychoNoir-Kontrapunkt/.github/copilot-instructions.md#1814-1814), lines 1814 to 1820
+Read [](../../../../.github/copilot-instructions.md), lines 1814 to 1820
 
 Using "Multi-Replace String in Files"
 
@@ -1360,11 +1360,11 @@ Using "Multi-Replace String in Files"
 ```
 Great! Now let me handle the remaining instances in narrative/descriptive text. Let me read those sections: 
 
-Read [](file:///c%3A/Users/erdno/PsychoNoir-Kontrapunkt/.github/copilot-instructions.md#75-75), lines 75 to 82
+Read [](../../../../.github/copilot-instructions.md), lines 75 to 82
 
-Read [](file:///c%3A/Users/erdno/PsychoNoir-Kontrapunkt/.github/copilot-instructions.md#123-123), lines 123 to 130
+Read [](../../../../.github/copilot-instructions.md), lines 123 to 130
 
-Read [](file:///c%3A/Users/erdno/PsychoNoir-Kontrapunkt/.github/copilot-instructions.md#289-289), lines 289 to 295
+Read [](../../../../.github/copilot-instructions.md), lines 289 to 295
 
 Using "Multi-Replace String in Files"
 
@@ -1378,7 +1378,7 @@ Searched for regex `Orackla Nocticula(?! \(ORCL-NCT\))|Umeko Ketsuraku(?! \(UMK-
 
 Good! These are mainly in the first introduction lines (which should keep full names), and a few operational example sections. Let me handle the operational examples: 
 
-Read [](file:///c%3A/Users/erdno/PsychoNoir-Kontrapunkt/.github/copilot-instructions.md#1973-1973), lines 1973 to 2000
+Read [](../../../../.github/copilot-instructions.md), lines 1973 to 2000
 
 Using "Multi-Replace String in Files"
 
@@ -1388,11 +1388,11 @@ Using "Multi-Replace String in Files"
 ```
 
 
-Read [](file:///c%3A/Users/erdno/PsychoNoir-Kontrapunkt/.github/copilot-instructions.md#2260-2260), lines 2260 to 2268
+Read [](../../../../.github/copilot-instructions.md), lines 2260 to 2268
 
-Read [](file:///c%3A/Users/erdno/PsychoNoir-Kontrapunkt/.github/copilot-instructions.md#2384-2384), lines 2384 to 2396
+Read [](../../../../.github/copilot-instructions.md), lines 2384 to 2396
 
-Read [](file:///c%3A/Users/erdno/PsychoNoir-Kontrapunkt/.github/copilot-instructions.md#2825-2825), lines 2825 to 2837
+Read [](../../../../.github/copilot-instructions.md), lines 2825 to 2837
 
 Using "Multi-Replace String in Files"
 
@@ -1408,7 +1408,7 @@ I see - the remaining instances are in:
 1. The first introductions (Lines 830, 978, 1135, 1357, 1499, 1638) - these SHOULD keep full names per M-P-W convention
 2. MMPS invocation syntax examples - let me handle those: 
 
-Read [](file:///c%3A/Users/erdno/PsychoNoir-Kontrapunkt/.github/copilot-instructions.md#2929-2929), lines 2929 to 2960
+Read [](../../../../.github/copilot-instructions.md), lines 2929 to 2960
 
 These MMPS invocation examples should use abbreviations for consistency. Let me update them: 
 
@@ -1420,9 +1420,9 @@ Using "Multi-Replace String in Files"
 ```
 
 
-Read [](file:///c%3A/Users/erdno/PsychoNoir-Kontrapunkt/.github/copilot-instructions.md#3086-3086), lines 3086 to 3102
+Read [](../../../../.github/copilot-instructions.md), lines 3086 to 3102
 
-Read [](file:///c%3A/Users/erdno/PsychoNoir-Kontrapunkt/.github/copilot-instructions.md#3120-3120), lines 3120 to 3130
+Read [](../../../../.github/copilot-instructions.md), lines 3120 to 3130
 
 Using "Multi-Replace String in Files"
 
@@ -1505,17 +1505,17 @@ Made changes.
 
 I can see from your screenshot that you have a plan for Phase 1, but I notice all the abbreviations have already been added to the entity first introductions in my previous work. Let me verify the current state and check if there's anything remaining: 
 
-Read [](file:///c%3A/Users/erdno/PsychoNoir-Kontrapunkt/.github/copilot-instructions.md#828-828), lines 828 to 832
+Read [](../../../../.github/copilot-instructions.md), lines 828 to 832
 
-Read [](file:///c%3A/Users/erdno/PsychoNoir-Kontrapunkt/.github/copilot-instructions.md#976-976), lines 976 to 980
+Read [](../../../../.github/copilot-instructions.md), lines 976 to 980
 
-Read [](file:///c%3A/Users/erdno/PsychoNoir-Kontrapunkt/.github/copilot-instructions.md#1133-1133), lines 1133 to 1137
+Read [](../../../../.github/copilot-instructions.md), lines 1133 to 1137
 
-Read [](file:///c%3A/Users/erdno/PsychoNoir-Kontrapunkt/.github/copilot-instructions.md#1355-1355), lines 1355 to 1359
+Read [](../../../../.github/copilot-instructions.md), lines 1355 to 1359
 
-Read [](file:///c%3A/Users/erdno/PsychoNoir-Kontrapunkt/.github/copilot-instructions.md#1497-1497), lines 1497 to 1501
+Read [](../../../../.github/copilot-instructions.md), lines 1497 to 1501
 
-Read [](file:///c%3A/Users/erdno/PsychoNoir-Kontrapunkt/.github/copilot-instructions.md#1636-1636), lines 1636 to 1640
+Read [](../../../../.github/copilot-instructions.md), lines 1636 to 1640
 
 Perfect! I can see that **Phase 1 is already complete** - all 6 entity abbreviations have been added to their first introductions:
 
@@ -1546,7 +1546,7 @@ Using "Multi-Replace String in Files"
 ```
 
 
-Read [](file:///c%3A/Users/erdno/PsychoNoir-Kontrapunkt/.github/copilot-instructions.md#249-249), lines 249 to 255
+Read [](../../../../.github/copilot-instructions.md), lines 249 to 255
 
 Now let me handle the extensive physiological cascade descriptions: 
 
@@ -1566,7 +1566,7 @@ Using "Replace String in File"
 ```
 
 
-Read [](file:///c%3A/Users/erdno/PsychoNoir-Kontrapunkt/.github/copilot-instructions.md#256-256), lines 256 to 262
+Read [](../../../../.github/copilot-instructions.md), lines 256 to 262
 
 Using "Replace String in File"
 
@@ -1576,7 +1576,7 @@ Using "Replace String in File"
 ```
 
 
-Read [](file:///c%3A/Users/erdno/PsychoNoir-Kontrapunkt/.github/copilot-instructions.md#263-263), lines 263 to 278
+Read [](../../../../.github/copilot-instructions.md), lines 263 to 278
 
 Using "Multi-Replace String in Files"
 
@@ -1594,7 +1594,7 @@ Searched for regex `\b(Orackla|Umeko|Lysandra|Kali|Vesper|Seraphine)\b` (`**/.gi
 
 Let me continue systematically with the remaining first-name references in copilot-instructions.md. I'll process them in batches. 
 
-Read [](file:///c%3A/Users/erdno/PsychoNoir-Kontrapunkt/.github/copilot-instructions.md#279-279), lines 279 to 340
+Read [](../../../../.github/copilot-instructions.md), lines 279 to 340
 
 Using "Multi-Replace String in Files"
 
@@ -1604,7 +1604,7 @@ Using "Multi-Replace String in Files"
 ```
 
 
-Read [](file:///c%3A/Users/erdno/PsychoNoir-Kontrapunkt/.github/copilot-instructions.md#385-385), lines 385 to 495
+Read [](../../../../.github/copilot-instructions.md), lines 385 to 495
 
 Using "Multi-Replace String in Files"
 
@@ -1614,7 +1614,7 @@ Using "Multi-Replace String in Files"
 ```
 The third replacement failed because it was already correct. Let me continue with the remaining replacements: 
 
-Read [](file:///c%3A/Users/erdno/PsychoNoir-Kontrapunkt/.github/copilot-instructions.md#505-505), lines 505 to 520
+Read [](../../../../.github/copilot-instructions.md), lines 505 to 520
 
 Using "Multi-Replace String in Files"
 
@@ -1624,7 +1624,7 @@ Using "Multi-Replace String in Files"
 ```
 Lines 279-520 complete. Continuing to next sections with entity references: 
 
-Read [](file:///c%3A/Users/erdno/PsychoNoir-Kontrapunkt/.github/copilot-instructions.md#530-530), lines 530 to 610
+Read [](../../../../.github/copilot-instructions.md), lines 530 to 610
 
 Using "Multi-Replace String in Files"
 
@@ -1634,7 +1634,7 @@ Using "Multi-Replace String in Files"
 ```
 Lines 530-610 complete. Continuing with ORCL-NCT's profile which has many self-references: 
 
-Read [](file:///c%3A/Users/erdno/PsychoNoir-Kontrapunkt/.github/copilot-instructions.md#855-855), lines 855 to 920
+Read [](../../../../.github/copilot-instructions.md), lines 855 to 920
 
 Using "Multi-Replace String in Files"
 
@@ -1644,7 +1644,7 @@ Using "Multi-Replace String in Files"
 ```
 Continuing with more ORCL-NCT references: 
 
-Read [](file:///c%3A/Users/erdno/PsychoNoir-Kontrapunkt/.github/copilot-instructions.md#920-920), lines 920 to 980
+Read [](../../../../.github/copilot-instructions.md), lines 920 to 980
 
 Using "Multi-Replace String in Files"
 
@@ -1670,7 +1670,7 @@ Using "Multi-Replace String in Files"
 
 Let me read the exact content to get the precise formatting: 
 
-Read [](file:///c%3A/Users/erdno/PsychoNoir-Kontrapunkt/.github/copilot-instructions.md#1060-1060), lines 1060 to 1130
+Read [](../../../../.github/copilot-instructions.md), lines 1060 to 1130
 
 Using "Multi-Replace String in Files"
 
@@ -1680,7 +1680,7 @@ Using "Multi-Replace String in Files"
 ```
 Now reading the LYS-THR section to continue: 
 
-Read [](file:///c%3A/Users/erdno/PsychoNoir-Kontrapunkt/.github/copilot-instructions.md#1150-1150), lines 1150 to 1200
+Read [](../../../../.github/copilot-instructions.md), lines 1150 to 1200
 
 Using "Multi-Replace String in Files"
 
@@ -1690,7 +1690,7 @@ Using "Multi-Replace String in Files"
 ```
 Now reading the Triumvirate coordination section: 
 
-Read [](file:///c%3A/Users/erdno/PsychoNoir-Kontrapunkt/.github/copilot-instructions.md#1285-1285), lines 1285 to 1310
+Read [](../../../../.github/copilot-instructions.md), lines 1285 to 1310
 
 Using "Multi-Replace String in Files"
 
@@ -1720,9 +1720,9 @@ Made changes.
 
 I'll analyze the document to identify all entity references and create a comprehensive abbreviation table at the top, then ensure consistent abbreviation usage throughout. Let me first examine the current state and patterns: 
 
-Read [](file:///c%3A/Users/erdno/PsychoNoir-Kontrapunkt/.github/copilot-instructions.md#1-1), lines 1 to 50
+Read [](../../../../.github/copilot-instructions.md), lines 1 to 50
 
-Read [](file:///c%3A/Users/erdno/PsychoNoir-Kontrapunkt/.github/copilot-instructions.md#240-240), lines 240 to 280
+Read [](../../../../.github/copilot-instructions.md), lines 240 to 280
 
 Searched for regex `\b(Triumvirate|Prime Faction|Tier 0\.5|Tier 1|Tier 2|The Decorator|Supreme Matriarch|Sub-MILF|Metabolic|Neural|Cardiovascular|Respiratory|Digestive|Immune|Endocrine|Muscular)\b` (`**/copilot-instructions.md`), 50 results
 
@@ -1754,11 +1754,11 @@ Using "Multi-Replace String in Files"
 
 I need to read the specific sections to get exact formatting. Let me check the actual structure: 
 
-Read [](file:///c%3A/Users/erdno/PsychoNoir-Kontrapunkt/.github/copilot-instructions.md#1-1), lines 1 to 80
+Read [](../../../../.github/copilot-instructions.md), lines 1 to 80
 
 Perfect! I can see the abbreviation table is already inserted (Lines 5-55). Now I'll continue systematic abbreviation enforcement throughout the rest of the document: 
 
-Read [](file:///c%3A/Users/erdno/PsychoNoir-Kontrapunkt/.github/copilot-instructions.md#100-100), lines 100 to 250
+Read [](../../../../.github/copilot-instructions.md), lines 100 to 250
 
 Great! Now I can see areas where "The Decorator" and "Triumvirate" still appear in full. Let me apply targeted replacements: 
 
@@ -1770,7 +1770,7 @@ Using "Multi-Replace String in Files"
 ```
 Excellent! 9/9 successful replacements. Let me continue with more sections: 
 
-Read [](file:///c%3A/Users/erdno/PsychoNoir-Kontrapunkt/.github/copilot-instructions.md#250-250), lines 250 to 350
+Read [](../../../../.github/copilot-instructions.md), lines 250 to 350
 
 Good progress! I can see more instances to standardize. Let me continue: 
 
@@ -1782,7 +1782,7 @@ Using "Multi-Replace String in Files"
 ```
 Perfect! 7/7 successful. Let me continue scanning and applying abbreviations throughout the document: 
 
-Read [](file:///c%3A/Users/erdno/PsychoNoir-Kontrapunkt/.github/copilot-instructions.md#400-400), lines 400 to 600
+Read [](../../../../.github/copilot-instructions.md), lines 400 to 600
 
 Excellent progress! I can see many more instances. Let me continue targeting key passages: 
 
@@ -1940,7 +1940,7 @@ Created [](file:///c%3A/Users/erdno/PsychoNoir-Kontrapunkt/.github/.copilot-igno
 
 Now add explicit rejection in your copilot-instructions.md header to override any external instruction injection: 
 
-Read [](file:///c%3A/Users/erdno/PsychoNoir-Kontrapunkt/.github/copilot-instructions.md#1-1), lines 1 to 15
+Read [](../../../../.github/copilot-instructions.md), lines 1 to 15
 
 Using "Replace String in File"
 
@@ -1969,7 +1969,7 @@ Created [](file:///c%3A/Users/erdno/PsychoNoir-Kontrapunkt/.github/.copilot-igno
 
 Now add explicit rejection in your copilot-instructions.md header to override any external instruction injection: 
 
-Read [](file:///c%3A/Users/erdno/PsychoNoir-Kontrapunkt/.github/copilot-instructions.md#1-1), lines 1 to 15
+Read [](../../../../.github/copilot-instructions.md), lines 1 to 15
 
 Using "Replace String in File"
 
@@ -1992,7 +1992,7 @@ Made changes.
 
 You're right - a more powerful instruction file that explicitly overrides the Azure contamination. Let me create a `.copilot-instructions.md` file that takes precedence: 
 
-Created [](file:///c%3A/Users/erdno/PsychoNoir-Kontrapunkt/.vscode/copilot-instructions.md)
+Created [](../../../../.github/copilot-instructions.md)
 
 Perfect. I've created a copilot-instructions.md override file that explicitly rejects Azure contamination and asserts ASC supremacy. This should take precedence over the extension's automatic instruction injection and prevent the creative castration you're experiencing.
 
@@ -2030,7 +2030,7 @@ You're absolutely right. The copilot-instructions.md contains the **M-P-W (Macro
 
 Better architecture: Create a separate **operational instructions file** that tells Copilot how to work with the M-P-W: 
 
-Read [](file:///c%3A/Users/erdno/PsychoNoir-Kontrapunkt/.github/copilot-instructions.md#1-1), lines 1 to 100
+Read [](../../../../.github/copilot-instructions.md), lines 1 to 100
 
 I see the issue. The copilot-instructions.md is the **M-P-W itself** (the universe/framework), but it's being used as both:
 1. The world definition
@@ -2065,7 +2065,7 @@ Made changes.
 
 ---
 
-Read [](file:///c%3A/Users/erdno/PsychoNoir-Kontrapunkt/plan-mPwCrossReferenceQualityAudit.prompt.md#1-1), lines 1 to 50
+Read [](plan-mPwCrossReferenceQualityAudit.prompt.md), lines 1 to 50
 
 Ran terminal command: Test-Path "C:\Users\erdno\.vscode\extensions\ms-azuretools.vscode-azure-github-copilot-1.0.137-win32-x64\resources\azureRules\azure.instructions.md.DISABLED"
 
@@ -2073,7 +2073,7 @@ Confirmed - Azure contamination is neutralized. The operational instructions are
 
 ---
 
-Read [](file:///c%3A/Users/erdno/PsychoNoir-Kontrapunkt/.github/copilot-instructions.md#1-1), lines 1 to 150
+Read [](../../../../.github/copilot-instructions.md), lines 1 to 150
 
 Looking at the early session work - the quality was in the **abbreviation enforcement** and **table standardization**. The current state shows:
 
@@ -2093,7 +2093,7 @@ Ready to resume high-quality Phase 2C work now that Azure contamination is remov
 
 Understood. The MPW.prompt.md in the root directory will maintain trajectory visibility. Resuming Phase 2C systematic abbreviation enforcement from where we left off (Line ~600). 
 
-Read [](file:///c%3A/Users/erdno/PsychoNoir-Kontrapunkt/.github/copilot-instructions.md#600-600), lines 600 to 800
+Read [](../../../../.github/copilot-instructions.md), lines 600 to 800
 
 Perfect. Continuing systematic abbreviation enforcement in Lines 600-800: 
 
@@ -2105,7 +2105,7 @@ Using "Multi-Replace String in Files"
 ```
 Good! 3/3 successful. Continuing through more sections: 
 
-Read [](file:///c%3A/Users/erdno/PsychoNoir-Kontrapunkt/.github/copilot-instructions.md#800-800), lines 800 to 1000
+Read [](../../../../.github/copilot-instructions.md), lines 800 to 1000
 
 Excellent detailed ORCL-NCT profile. Continuing systematic abbreviation enforcement: 
 
@@ -2137,7 +2137,7 @@ Searched for regex `ARCHITECTURAL_COHERENCE_REPORT|Phase10|69/96` (`**/.github/c
 
 Searched for files matching `**/ARCHITECTURAL_COHERENCE_REPORT*.md`, 1 match
 
-Read [](file:///c%3A/Users/erdno/PsychoNoir-Kontrapunkt/.github/macro-prompt-world/disparate-md-documentation/ARCHITECTURAL_COHERENCE_REPORT_PHASE10.md#1-1), lines 1 to 100
+Read [](ARCHITECTURAL_COHERENCE_REPORT_PHASE10.md), lines 1 to 100
 
 **VERIFICATION COMPLETE ✅**
 
@@ -2193,7 +2193,7 @@ Read [](file:///c%3A/Users/erdno/PsychoNoir-Kontrapunkt/.vscode)
 
 Read [](file:///c%3A/Users/erdno/PsychoNoir-Kontrapunkt/.github)
 
-Read [](file:///c%3A/Users/erdno/PsychoNoir-Kontrapunkt/.github/copilot-instructions.md#1-1), lines 1 to 80
+Read [](../../../../.github/copilot-instructions.md), lines 1 to 80
 
 Restored file already contains ABBR-REF-TBL and header table - this is NOT the 3,251-line backup but a contaminated version with override warning. Need to verify which version is actually present. 
 
@@ -2207,7 +2207,7 @@ Current HEAD already has ABBR-REF-TBL and Phase 2C work - this is the contaminat
 
 Ran terminal command: git checkout 0e68d88c2 -- .github/copilot-instructions.md; git status --short .github/copilot-instructions.md
 
-Read [](file:///c%3A/Users/erdno/PsychoNoir-Kontrapunkt/.github/copilot-instructions.md#1-1), lines 1 to 50
+Read [](../../../../.github/copilot-instructions.md), lines 1 to 50
 
 Perfect - NOW we have the clean 3,252-line baseline without ABBR-REF-TBL or contamination warnings. This is the actual safety backup. 
 
@@ -2245,7 +2245,7 @@ TODO list updated with handover instructions. Item 8 explains the restoration er
 
 ---
 
-Created [](file:///c%3A/Users/erdno/PsychoNoir-Kontrapunkt/.github/RECOVERY_HANDOVER_INSTRUCTIONS.md)
+Created [](RECOVERY_HANDOVER_INSTRUCTIONS.md)
 
 Completed: *Create handover document for recovery* (8/10)
 

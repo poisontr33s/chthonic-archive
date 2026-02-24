@@ -175,7 +175,7 @@ Tracking completed data harvests from PRs, sessions, and other sources.
 
 | Source | Status | Notes |
 |--------|--------|-------|
-| [sessionDUMP0001.txt](../claude/sessionDUMP0001.txt) | Analyzed | IDE patch patterns, third patch location open |
+| [sessionDUMP0001.txt](../.temple/session-archives/sessionDUMP0001.txt) | Analyzed | IDE patch patterns, third patch location open |
 
 ---
 

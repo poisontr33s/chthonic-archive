@@ -1,0 +1,20 @@
+{
+  "target": ".",
+  "pre": {
+    "file_count": 10562,
+    "manual_file_count": 609,
+    "auto_fix_suggestion_count": 1720,
+    "manual_reason_count": 3443
+  },
+  "post": {
+    "file_count": 10565,
+    "manual_file_count": 609,
+    "auto_fix_suggestion_count": 0,
+    "manual_reason_count": 3443
+  },
+  "delta": {
+    "auto_fix_suggestion_count": -1720,
+    "manual_file_count": 0,
+    "manual_reason_count": 0
+  }
+}

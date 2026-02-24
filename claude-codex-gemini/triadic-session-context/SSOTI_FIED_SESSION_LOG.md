@@ -258,7 +258,7 @@ Read [](../../debugging_data)
 
 I see the situation. Codex fixed the dependencies (added `playwright` and `@types/bun`) but the PoC hangs at Chromium launch due to enterprise WebSocket blocking. Let me create the IT-safe summary you mentioned as option 3: 
 
-Created [](../../BUN_PLAYWRIGHT_IT_SUMMARY.md)
+Created [](../../docs/reference/bun-playwright/BUN_PLAYWRIGHT_IT_SUMMARY.md)
 
 Summarized conversation historyCreated BUN_PLAYWRIGHT_IT_SUMMARY.md — a clean, enterprise-appropriate summary that:
 
@@ -296,7 +296,7 @@ Read [](../../bun-playwright-poc/bun-launcher.ts)
 
 Now I have solid data. Let me create a detailed Windows 11 learning document for the trajectory: 
 
-Created [](../../WIN11_BUN_PLAYWRIGHT_TRAJECTORY.md)
+Created [](../../docs/reference/bun-playwright/WIN11_BUN_PLAYWRIGHT_TRAJECTORY.md)
 
 Created WIN11_BUN_PLAYWRIGHT_TRAJECTORY.md with:
 
@@ -351,11 +351,11 @@ GPT-5.2-Codex • 1x
 
 GitHub Copilot: Let me see what Codex added, then create a coordination protocol: 
 
-Read [](../../WIN11_BUN_PLAYWRIGHT_TRAJECTORY.md)
+Read [](../../docs/reference/bun-playwright/WIN11_BUN_PLAYWRIGHT_TRAJECTORY.md)
 
 Good, I see Codex added the "Immediate Next Actions" section. Now I'll create a coordination protocol for dual-agent work: 
 
-Created [](../../AGENT_COORDINATION_WIN11.md)
+Created [](../../docs/reference/bun-playwright/AGENT_COORDINATION_WIN11.md)
 
 Now let me create the actual diagnostic script file for Codex to run: 
 
@@ -620,7 +620,7 @@ Ran terminal command: Get-Process bun -ErrorAction SilentlyContinue | ForEach-Ob
 
 Read [](../../bun-playwright-poc/win11-launch-fix.out.txt)
 
-Generating patch (23 lines) in [](../../WIN11_BUN_PLAYWRIGHT_TRAJECTORY.md)
+Generating patch (23 lines) in [](../../docs/reference/bun-playwright/WIN11_BUN_PLAYWRIGHT_TRAJECTORY.md)
 
 Reporting launch fix results
 
@@ -754,7 +754,7 @@ Ran terminal command: Write-Host "Terminal test"
 
 Terminal output capture seems to be having issues. Let me summarize what we've learned and update the trajectory document: 
 
-Replacing 5 lines with 52 lines in [](../../WIN11_BUN_PLAYWRIGHT_TRAJECTORY.md)
+Replacing 5 lines with 52 lines in [](../../docs/reference/bun-playwright/WIN11_BUN_PLAYWRIGHT_TRAJECTORY.md)
 
 
 ```
@@ -762,7 +762,7 @@ Replacing 5 lines with 52 lines in [](../../WIN11_BUN_PLAYWRIGHT_TRAJECTORY.md)
 ```
 Now let me update the IT summary with the corrected diagnosis: 
 
-Replacing 15 lines with 15 lines in [](../../BUN_PLAYWRIGHT_IT_SUMMARY.md)
+Replacing 15 lines with 15 lines in [](../../docs/reference/bun-playwright/BUN_PLAYWRIGHT_IT_SUMMARY.md)
 
 
 ```
@@ -983,7 +983,7 @@ Same result — `chromium.connect()` also hangs. Both `connectOverCDP` and `conn
 
 Let me update the trajectory doc with the definitive findings and the working solution: 
 
-Replacing 8 lines with 19 lines in [](../../WIN11_BUN_PLAYWRIGHT_TRAJECTORY.md)
+Replacing 8 lines with 19 lines in [](../../docs/reference/bun-playwright/WIN11_BUN_PLAYWRIGHT_TRAJECTORY.md)
 
 
 ```
@@ -1631,9 +1631,9 @@ Starting: *Create reusable CDP wrapper* (2/3)
 
 Now let me create a clean, reusable Bun CDP wrapper based on what we proved works: 
 
-Created [](../../bun-playwright-poc/lib/bun-cdp.ts)
+Created [](../../bun-playwright-poc/src/bun-cdp.ts)
 
-Created [](../../bun-playwright-poc/lib/bun-cdp-page.ts)
+Created [](../../bun-playwright-poc/src/bun-cdp-page.ts)
 
 Created [](../../bun-playwright-poc/lib/index.ts)
 
@@ -1645,7 +1645,7 @@ Ran terminal command: cd C:\Users\erdno\chthonic-archive\bun-playwright-poc; bun
 
 Good progress! Steps 1-3 work perfectly. The issue is that `Page.enable` needs to be sent to the page session, not the browser session. Let me fix the page module: 
 
-Replacing 26 lines with 91 lines in [](../../bun-playwright-poc/lib/bun-cdp-page.ts)
+Replacing 26 lines with 91 lines in [](../../bun-playwright-poc/src/bun-cdp-page.ts)
 
 Summarized conversation history
 ```
@@ -1653,13 +1653,13 @@ Summarized conversation history
 ```
 Now update the close method to clean up the page WebSocket: 
 
-Replacing 6 lines with 14 lines in [](../../bun-playwright-poc/lib/bun-cdp-page.ts)
+Replacing 6 lines with 14 lines in [](../../bun-playwright-poc/src/bun-cdp-page.ts)
 
-Read [](../../bun-playwright-poc/lib/bun-cdp-page.ts)
+Read [](../../bun-playwright-poc/src/bun-cdp-page.ts)
 
 The first edit went through. Now update the close method: 
 
-Replacing 6 lines with 14 lines in [](../../bun-playwright-poc/lib/bun-cdp-page.ts)
+Replacing 6 lines with 14 lines in [](../../bun-playwright-poc/src/bun-cdp-page.ts)
 
 
 ```
@@ -1667,7 +1667,7 @@ Replacing 6 lines with 14 lines in [](../../bun-playwright-poc/lib/bun-cdp-page.
 ```
 Now remove the `sessionId` field we're no longer using and run the test: 
 
-Replacing 10 lines with 2 lines in [](../../bun-playwright-poc/lib/bun-cdp-page.ts)
+Replacing 10 lines with 2 lines in [](../../bun-playwright-poc/src/bun-cdp-page.ts)
 
 
 ```
@@ -1675,7 +1675,7 @@ Replacing 10 lines with 2 lines in [](../../bun-playwright-poc/lib/bun-cdp-page.
 ```
 
 
-Replacing 7 lines with 13 lines in [](../../bun-playwright-poc/lib/bun-cdp-page.ts)
+Replacing 7 lines with 13 lines in [](../../bun-playwright-poc/src/bun-cdp-page.ts)
 
 
 ```
@@ -1701,9 +1701,9 @@ Let me check if there's a compile error:
 
 Ran terminal command: Set-Location c:\Users\erdno\chthonic-archive\bun-playwright-poc; bun build --target=bun lib/bun-cdp-page.ts --outdir=dist 2>&1
 
-Checked [](../../bun-playwright-poc/lib/bun-cdp-page.ts), no problems found
+Checked [](../../bun-playwright-poc/src/bun-cdp-page.ts), no problems found
 
-Read [](../../bun-playwright-poc/lib/bun-cdp-page.ts)
+Read [](../../bun-playwright-poc/src/bun-cdp-page.ts)
 
 File is clean. Let me create a simpler inline test script that logs progress: 
 
@@ -1757,7 +1757,7 @@ Replacing 1 lines with 1 lines in [](../../bun-playwright-poc/inline-page-test.t
 ```
 Also need to update the lib: 
 
-Read [](../../bun-playwright-poc/lib/bun-cdp.ts#1-1), lines 1 to 51
+Read [](../../bun-playwright-poc/src/bun-cdp.ts), lines 1 to 51
 
 Searched for text `chrome-win` (`**/bun-playwright-poc/lib/**`), 1 result
 
@@ -1931,11 +1931,11 @@ This will sync the execution flow and populate those "undefined" fields in your 
 
 GitHub Copilot: Gemini's analysis is spot-on. The race condition is classic CDP - `Page.navigate` returns immediately. Let me fix the navigation waiter: 
 
-Read [](../../bun-playwright-poc/lib/bun-cdp-page.ts)
+Read [](../../bun-playwright-poc/src/bun-cdp-page.ts)
 
 The issue is clear - the `goto()` method tries to listen on `this.browser.on('Page.lifecycleEvent')` but events come through the **page** WebSocket, not the browser one. Let me fix this properly: 
 
-Replacing 13 lines with 14 lines in [](../../bun-playwright-poc/lib/bun-cdp-page.ts)
+Replacing 13 lines with 14 lines in [](../../bun-playwright-poc/src/bun-cdp-page.ts)
 
 
 ```
@@ -1943,7 +1943,7 @@ Replacing 13 lines with 14 lines in [](../../bun-playwright-poc/lib/bun-cdp-page
 ```
 
 
-Replacing 14 lines with 27 lines in [](../../bun-playwright-poc/lib/bun-cdp-page.ts)
+Replacing 14 lines with 27 lines in [](../../bun-playwright-poc/src/bun-cdp-page.ts)
 
 
 ```
@@ -1951,7 +1951,7 @@ Replacing 14 lines with 27 lines in [](../../bun-playwright-poc/lib/bun-cdp-page
 ```
 Now add the event listener methods and fix the `goto()` method: 
 
-Replacing 57 lines with 93 lines in [](../../bun-playwright-poc/lib/bun-cdp-page.ts)
+Replacing 57 lines with 93 lines in [](../../bun-playwright-poc/src/bun-cdp-page.ts)
 
 
 ```
@@ -2060,13 +2060,13 @@ Would you like to hand over the **Element Interaction** task to Claude Opus 4.5 
 
 GitHub Copilot: Let's complete the driver with element interaction. I'll implement the CDP element handling: 
 
-Created [](../../bun-playwright-poc/lib/bun-cdp-element.ts)
+Created [](../../bun-playwright-poc/src/bun-cdp-element.ts)
 
 Now expose `sendToTarget` as a public method and add high-level element methods to the page class: 
 
-Read [](../../bun-playwright-poc/lib/bun-cdp-page.ts)
+Read [](../../bun-playwright-poc/src/bun-cdp-page.ts)
 
-Replacing 24 lines with 115 lines in [](../../bun-playwright-poc/lib/bun-cdp-page.ts)
+Replacing 24 lines with 115 lines in [](../../bun-playwright-poc/src/bun-cdp-page.ts)
 
 
 ```
@@ -2387,11 +2387,11 @@ Ran terminal command: git tag v0.1.0-buncdp-validated
 
 **v0.1.0 committed and tagged.** Now implementing NetworkIdle: 
 
-Read [](../../bun-playwright-poc/lib/bun-cdp-page.ts)
+Read [](../../bun-playwright-poc/src/bun-cdp-page.ts)
 
 Now I'll add the NetworkIdle implementation: 
 
-Replacing 14 lines with 18 lines in [](../../bun-playwright-poc/lib/bun-cdp-page.ts)
+Replacing 14 lines with 18 lines in [](../../bun-playwright-poc/src/bun-cdp-page.ts)
 
 
 ```
@@ -2399,7 +2399,7 @@ Replacing 14 lines with 18 lines in [](../../bun-playwright-poc/lib/bun-cdp-page
 ```
 
 
-Replacing 25 lines with 142 lines in [](../../bun-playwright-poc/lib/bun-cdp-page.ts)
+Replacing 25 lines with 142 lines in [](../../bun-playwright-poc/src/bun-cdp-page.ts)
 
 
 ```
@@ -2407,7 +2407,7 @@ Replacing 25 lines with 142 lines in [](../../bun-playwright-poc/lib/bun-cdp-pag
 ```
 Now add `networkidle` as a `waitUntil` option for `goto`: 
 
-Replacing 23 lines with 29 lines in [](../../bun-playwright-poc/lib/bun-cdp-page.ts)
+Replacing 23 lines with 29 lines in [](../../bun-playwright-poc/src/bun-cdp-page.ts)
 
 
 ```
@@ -2487,11 +2487,11 @@ This will be the final architectural pillar before you can package this as `bun-
 
 GitHub Copilot: Implementing the iframe architecture - the final pillar: 
 
-Created [](../../bun-playwright-poc/lib/bun-cdp-frame.ts)
+Created [](../../bun-playwright-poc/src/bun-cdp-frame.ts)
 
 Now integrate frame support into CDPPage: 
 
-Replacing 19 lines with 20 lines in [](../../bun-playwright-poc/lib/bun-cdp-page.ts)
+Replacing 19 lines with 20 lines in [](../../bun-playwright-poc/src/bun-cdp-page.ts)
 
 
 ```
@@ -2499,7 +2499,7 @@ Replacing 19 lines with 20 lines in [](../../bun-playwright-poc/lib/bun-cdp-page
 ```
 
 
-Replacing 5 lines with 8 lines in [](../../bun-playwright-poc/lib/bun-cdp-page.ts)
+Replacing 5 lines with 8 lines in [](../../bun-playwright-poc/src/bun-cdp-page.ts)
 
 
 ```
@@ -2507,9 +2507,9 @@ Replacing 5 lines with 8 lines in [](../../bun-playwright-poc/lib/bun-cdp-page.t
 ```
 Now add the frame methods to CDPPage. Let me find a good insertion point: 
 
-Read [](../../bun-playwright-poc/lib/bun-cdp-page.ts#290-290), lines 290 to 488
+Read [](../../bun-playwright-poc/src/bun-cdp-page.ts), lines 290 to 488
 
-Replacing 7 lines with 85 lines in [](../../bun-playwright-poc/lib/bun-cdp-page.ts)
+Replacing 7 lines with 85 lines in [](../../bun-playwright-poc/src/bun-cdp-page.ts)
 
 
 ```
@@ -2533,11 +2533,11 @@ Ran terminal command: cd c:\Users\erdno\chthonic-archive\bun-playwright-poc; bun
 
 Good progress! Frame detection works but execution context resolution needs fixing. The issue is that `Page.frameNavigated` alone doesn't give us execution contexts - we need to listen to `Runtime.executionContextCreated` and map frameId→contextId. 
 
-Read [](../../bun-playwright-poc/lib/bun-cdp-frame.ts)
+Read [](../../bun-playwright-poc/src/bun-cdp-frame.ts)
 
 The issue is that we need to proactively fetch execution contexts. Let me fix this by adding a context resolution method: 
 
-Replacing 45 lines with 109 lines in [](../../bun-playwright-poc/lib/bun-cdp-frame.ts)
+Replacing 45 lines with 109 lines in [](../../bun-playwright-poc/src/bun-cdp-frame.ts)
 
 
 ```
@@ -2545,7 +2545,7 @@ Replacing 45 lines with 109 lines in [](../../bun-playwright-poc/lib/bun-cdp-fra
 ```
 Now update CDPFrame to use lazy context resolution: 
 
-Replacing 49 lines with 61 lines in [](../../bun-playwright-poc/lib/bun-cdp-frame.ts)
+Replacing 49 lines with 61 lines in [](../../bun-playwright-poc/src/bun-cdp-frame.ts)
 
 
 ```
@@ -2553,7 +2553,7 @@ Replacing 49 lines with 61 lines in [](../../bun-playwright-poc/lib/bun-cdp-fram
 ```
 
 
-Replacing 9 lines with 5 lines in [](../../bun-playwright-poc/lib/bun-cdp-frame.ts)
+Replacing 9 lines with 5 lines in [](../../bun-playwright-poc/src/bun-cdp-frame.ts)
 
 
 ```
@@ -2561,15 +2561,15 @@ Replacing 9 lines with 5 lines in [](../../bun-playwright-poc/lib/bun-cdp-frame.
 ```
 Now update CDPPage to pass the registry to CDPFrame: 
 
-Read [](../../bun-playwright-poc/lib/bun-cdp-page.ts#1-1), lines 1 to 101
+Read [](../../bun-playwright-poc/src/bun-cdp-page.ts), lines 1 to 101
 
 Searched for text `new CDPFrame` (`**/bun-cdp-page.ts`), 3 results
 
-Read [](../../bun-playwright-poc/lib/bun-cdp-page.ts#500-500), lines 500 to 566
+Read [](../../bun-playwright-poc/src/bun-cdp-page.ts), lines 500 to 566
 
 Now I need to update all CDPFrame constructors to pass the registry: 
 
-Replacing 37 lines with 37 lines in [](../../bun-playwright-poc/lib/bun-cdp-page.ts)
+Replacing 37 lines with 37 lines in [](../../bun-playwright-poc/src/bun-cdp-page.ts)
 
 
 ```
@@ -2591,7 +2591,7 @@ Searched for text `get url()` (`**/lib/bun-cdp-page.ts`), no results
 
 Searched for text `url()` (`**/lib/bun-cdp-page.ts`), 1 result
 
-Read [](../../bun-playwright-poc/lib/bun-cdp-page.ts#346-346), lines 346 to 366
+Read [](../../bun-playwright-poc/src/bun-cdp-page.ts), lines 346 to 366
 
 The `url()` method is async, so the test needs `await`. That's a minor test bug, not a library bug. Let me commit the iframe support: 
 
@@ -2679,13 +2679,13 @@ GitHub Copilot: You're right. A driver that hangs on `alert()` is broken. Option
 
 Created 4 todos
 
-Read [](../../bun-playwright-poc/lib/bun-cdp-page.ts#45-45), lines 45 to 125
+Read [](../../bun-playwright-poc/src/bun-cdp-page.ts), lines 45 to 125
 
-Read [](../../bun-playwright-poc/lib/bun-cdp-page.ts#20-20), lines 20 to 70
+Read [](../../bun-playwright-poc/src/bun-cdp-page.ts), lines 20 to 70
 
 Now I'll add dialog handling and popup tracking: 
 
-Replacing 48 lines with 69 lines in [](../../bun-playwright-poc/lib/bun-cdp-page.ts)
+Replacing 48 lines with 69 lines in [](../../bun-playwright-poc/src/bun-cdp-page.ts)
 
 
 ```
@@ -2693,9 +2693,9 @@ Replacing 48 lines with 69 lines in [](../../bun-playwright-poc/lib/bun-cdp-page
 ```
 Now add the dialog handler setup and popup tracking methods: 
 
-Read [](../../bun-playwright-poc/lib/bun-cdp-page.ts#130-130), lines 130 to 190
+Read [](../../bun-playwright-poc/src/bun-cdp-page.ts), lines 130 to 190
 
-Replacing 12 lines with 59 lines in [](../../bun-playwright-poc/lib/bun-cdp-page.ts)
+Replacing 12 lines with 59 lines in [](../../bun-playwright-poc/src/bun-cdp-page.ts)
 
 
 ```
@@ -2707,11 +2707,11 @@ Starting: *Add popup/new tab detection* (2/4)
 
 Now add popup/new tab detection to the browser-level: 
 
-Read [](../../bun-playwright-poc/lib/bun-cdp.ts)
+Read [](../../bun-playwright-poc/src/bun-cdp.ts)
 
 Now add popup tracking at the browser level with Target.setDiscoverTargets: 
 
-Replacing 14 lines with 21 lines in [](../../bun-playwright-poc/lib/bun-cdp.ts)
+Replacing 14 lines with 21 lines in [](../../bun-playwright-poc/src/bun-cdp.ts)
 
 
 ```
@@ -2719,7 +2719,7 @@ Replacing 14 lines with 21 lines in [](../../bun-playwright-poc/lib/bun-cdp.ts)
 ```
 
 
-Replacing 16 lines with 22 lines in [](../../bun-playwright-poc/lib/bun-cdp.ts)
+Replacing 16 lines with 22 lines in [](../../bun-playwright-poc/src/bun-cdp.ts)
 
 
 ```
@@ -2727,7 +2727,7 @@ Replacing 16 lines with 22 lines in [](../../bun-playwright-poc/lib/bun-cdp.ts)
 ```
 Now add target discovery after getting browser version: 
 
-Replacing 6 lines with 105 lines in [](../../bun-playwright-poc/lib/bun-cdp.ts)
+Replacing 6 lines with 105 lines in [](../../bun-playwright-poc/src/bun-cdp.ts)
 
 
 ```
@@ -4173,7 +4173,7 @@ Searched for files matching `**/*Decorator*profile*.md`, no matches
 
 Searched for regex `WIP|work in progress|current session|session state` (`**/*.md`), 20 results
 
-Read [](../../DEVELOPMENT_STATE.md)
+Read [](../../docs/DEVELOPMENT_STATE.md)
 
 Read [](../../.github/copilot-instructions.md#700-700), lines 700 to 1100
 
@@ -4986,7 +4986,7 @@ And call `activateHedonistic(context);` in the activate function.
 
 Now let me continue with the palette design and implementation: 
 
-Created [](../../extensions/chthonic-mandala/themes/decorator-palette-research.md)
+Created [](../../dumpster-dive/forge/extension-archaeology/theme-research/decorator-palette-research.md)
 
 **CRITICAL CONTEXT SAVE - BEFORE CLEAR:**
 
@@ -5286,7 +5286,7 @@ Ran terminal command: Remove-Item "c:\Users\erdno\chthonic-archive\extensions\ch
 
 Now creating the research document with palette analysis and repurposing options: 
 
-Created [](../../extensions/chthonic-mandala/themes/PALETTE_EVOLUTION_RESEARCH.md)
+Created [](../../dumpster-dive/forge/extension-archaeology/theme-research/PALETTE_EVOLUTION_RESEARCH.md)
 
 ## Summary — Theme Ecosystem Cleanup Complete
 
@@ -5458,15 +5458,15 @@ Excellent research. Now I'll archive the non-Bun code and create the research do
 
 Ran terminal command: New-Item -ItemType Directory -Path "c:\Users\erdno\chthonic-archive\extensions\_non_bun_research" -Force
 
-Created [](../../extensions/_non_bun_research/BUN_CONVERSION_RESEARCH.md)
+Created [](../../dumpster-dive/forge/extension-archaeology/BUN_CONVERSION_RESEARCH.md)
 
 Now extracting the actual non-Bun code blocks: 
 
-Created [](../../extensions/_non_bun_research/extracted/mandala_nonbun_patterns.ts)
+Created [](../../dumpster-dive/forge/extension-archaeology/extracted/mandala_nonbun_patterns.ts)
 
-Created [](../../extensions/_non_bun_research/extracted/statusbar_nonbun_patterns.ts)
+Created [](../../dumpster-dive/forge/extension-archaeology/extracted/statusbar_nonbun_patterns.ts)
 
-Created [](../../extensions/_non_bun_research/extracted/assistant_nonbun_patterns.ts)
+Created [](../../dumpster-dive/forge/extension-archaeology/extracted/assistant_nonbun_patterns.ts)
 
 Completed: *Audit non-Bun code in extensions* (1/5)
 
@@ -5550,11 +5550,11 @@ Read [](../../chthonic-vscode-extension/package.json)
 
 Read [](../../extensions/__diagnostics__)
 
-Read [](../../extensions/__diagnostics__/bundle-size.test.ts)
+Read [](../../dumpster-dive/forge/extension-archaeology/diagnostics-tests/bundle-size.test.ts)
 
-Read [](../../extensions/doctor.ts)
+Read [](../../dumpster-dive/forge/extension-archaeology/doctor.ts)
 
-Read [](../../extensions/DIAGNOSTIC_REPORT.md)
+Read [](../../dumpster-dive/forge/extension-archaeology/DIAGNOSTIC_REPORT.md)
 
 **CRITICAL CONTEXT SAVE:**
 
@@ -7295,7 +7295,7 @@ Searched for regex `ankh_index|sid_index|\.ankhrc`, 20 results
 
 **CRITICAL FINDING:** .ankhrc already exists as symbolic path resolver — but it's OUTDATED. Missing our SSOT-ified files. Let me continue mapping:    
 
-Read [](../../ankh_index.json#1-1), lines 1 to 2000
+Read [](../../data/indices/ankh_index.json), lines 1 to 2000
 
 Read [](../../sid_index.json#1-1), lines 1 to 51
 
@@ -7536,9 +7536,9 @@ Starting: *Consolidate DCRP files* (4/6)
 
 Ran terminal command: Get-ChildItem -Path "c:\Users\erdno\chthonic-archive" -Filter "DCRP_*.md" | Select-Object Name, Length
 
-Read [](../../DCRP_FINAL_STATUS.md#1-1), lines 1 to 61
+Read [](../../dumpster-dive/consolidated/dcrp/DCRP_FINAL_STATUS.md), lines 1 to 61
 
-Read [](../../DCRP_UNIFIED_REFACTOR.md#1-1), lines 1 to 61
+Read [](../../dumpster-dive/consolidated/dcrp/DCRP_UNIFIED_REFACTOR.md), lines 1 to 61
 
 Created [](../../docs/DCRP_SYNTHESIS.md)
 
@@ -8600,7 +8600,7 @@ Ran terminal command: Get-ChildItem "C:\Users\erdno\chthonic-archive\ankh_index.
 
 Checked background terminal output
 
-Read [](../../ankh_index.json#1-1), lines 1 to 2000
+Read [](../../data/indices/ankh_index.json), lines 1 to 2000
 
 Read [](../../sid_index.json#1-1), lines 1 to 51
 
@@ -9150,7 +9150,7 @@ Focus on the **MCP Server** failures first, as they block the core logic verific
 
 GitHub Copilot: Created 5 todos
 
-Read [](../../mcp/server.test.ts)
+Read [](../../scripts/.deprecated/mcp_legacy/server.test.ts)
 
 Read [](../../extensions/chthonic-mandala/package.json)
 
@@ -9162,7 +9162,7 @@ Read [](../../mcp/server.ts)
 
 Now I see the full picture. The tests use the wrong protocol. The server expects MCP SDK format (`tools/call` with `params.name`), but tests send raw methods. Let me fix all issues: 
 
-Replacing 85 lines with 87 lines in [](../../mcp/server.test.ts)
+Replacing 85 lines with 87 lines in [](../../scripts/.deprecated/mcp_legacy/server.test.ts)
 
 
 ```
@@ -11113,15 +11113,15 @@ Read [](../../mcp)
 
 Read [](../../mcp/tools)
 
-Read [](../../mcp/tools/validateSSOT.ts)
+Read [](../../scripts/.deprecated/mcp_legacy/tools/validateSSOT.ts)
 
 Read [](../../mcp/server.ts)
 
 Read [](../../scripts/mcp-asc-injector.ts)
 
-Read [](../../scripts/mcp_artisan_server.ts)
+Read [](../../scripts/.deprecated/mcp_artisan_server.ts)
 
-Read [](../../synthesis_summary.txt)
+Read [](../../.temple/session-archives/synthesis_summary.txt)
 
 Read [](../../pr2_review)
 
@@ -11131,7 +11131,7 @@ Read [](../../.github/copilot-instructions.md#1-1), lines 1 to 501
 
 Summarized conversation history
 
-Read [](../../synthesis_summary.txt)
+Read [](../../.temple/session-archives/synthesis_summary.txt)
 
 Read [](../../pr2_review)
 
@@ -14166,7 +14166,7 @@ User: @agent Try Again
 
 GitHub Copilot: Summarized conversation history
 
-Read [](../../.github/Claude_Opus_4_5_grade_lossless_compr_SSOT-IFICATION_cross_REF_data/Zone_1_REDUX_implementation_ripe_for_SSOT_canon.md)
+Read [](Zone_1_REDUX_implementation_ripe_for_SSOT_canon.md)
 
 I can see you're looking at a comprehensive transdisciplinary analysis document. What would you like me to try again? For example:
 
@@ -14226,7 +14226,7 @@ Read [](../../.github/instructions/ankh-workflow.instructions.md)
 
 Starting: *Analyze Zone_1_REDUX research data* (3/6)
 
-Read [](../../.github/Claude_Opus_4_5_grade_lossless_compr_SSOT-IFICATION_cross_REF_data/Zone_1_REDUX_implementation_ripe_for_SSOT_canon.md)
+Read [](Zone_1_REDUX_implementation_ripe_for_SSOT_canon.md)
 
 Read [](../../.github/copilot-instructions.md#1-1), lines 1 to 2000
 
@@ -14238,7 +14238,7 @@ Read [](../../.github/copilot-instructions.md#2000-2000), lines 2000 to 2800
 
 Let me read the Zone_1_REDUX document for the enhancement data: 
 
-Read [](../../.github/Claude_Opus_4_5_grade_lossless_compr_SSOT-IFICATION_cross_REF_data/Zone_1_REDUX_implementation_ripe_for_SSOT_canon.md)
+Read [](Zone_1_REDUX_implementation_ripe_for_SSOT_canon.md)
 
 Now I have the full research data. Let me update the todo list and begin implementation: 
 
@@ -14491,7 +14491,7 @@ Read [](../../.github/copilot-instructions.md#1445-1445), lines 1445 to 1525
 
 The FA¹ integration is already there with full alchemical phases. Now let me check on the CRC linguistic mandate section and see if my sensory additions are good - and what content I potentially deleted. Let me load the original Zone_1_REDUX research file:  
 
-Read [](../../.github/Claude_Opus_4_5_grade_lossless_compr_SSOT-IFICATION_cross_REF_data/Zone_1_REDUX_implementation_ripe_for_SSOT_canon.md)
+Read [](Zone_1_REDUX_implementation_ripe_for_SSOT_canon.md)
 
 Now I understand the full richness of the Zone_1_REDUX. The key is: **I deleted detailed prose, Orackla's voice/commentary, metaphorical associations, and full sensory tables** when I "condensed" the appendices. Let me restore the FULL linguistic content: 
 
@@ -14543,11 +14543,11 @@ Searched for regex `^### \*\*|^#### \*\*|^## \*\*` (`**/.github/copilot-instruct
 
 Now I'll create the SSOT structural index tool: 
 
-Created [](../../.github/Claude_Opus_4_5_grade_lossless_compr_SSOT-IFICATION_cross_REF_data/SSOT_STRUCTURAL_INDEX.json)
+Created [](SSOT_STRUCTURAL_INDEX.json)
 
 Now let me create the markdown reference document:  
 
-Created [](../../.github/Claude_Opus_4_5_grade_lossless_compr_SSOT-IFICATION_cross_REF_data/SSOT_NAVIGATION_INDEX.md)
+Created [](SSOT_NAVIGATION_INDEX.md)
 
 
 
@@ -14579,11 +14579,11 @@ GitHub Copilot: You're right - my static JSON/MD index is a **snapshot** that wi
 
 **Better solution:** A script that extracts headers on-demand, giving me the same view you have: 
 
-Created [](../../.github/Claude_Opus_4_5_grade_lossless_compr_SSOT-IFICATION_cross_REF_data/ssot_outline_extractor.ps1)
+Created [](../../scripts/ssot_outline_extractor.ps1)
 
 Ran terminal command: cd "./"; .\ssot_outline_extractor.ps1 | Select-Object -First 60
 
-Replacing 27 lines with 26 lines in [](../../.github/Claude_Opus_4_5_grade_lossless_compr_SSOT-IFICATION_cross_REF_data/ssot_outline_extractor.ps1)
+Replacing 27 lines with 26 lines in [](../../scripts/ssot_outline_extractor.ps1)
 
 
 ```
@@ -14597,11 +14597,11 @@ Replacing 27 lines with 26 lines in [](../../.github/Claude_Opus_4_5_grade_lossl
 
 Ran terminal command: cd "./"; .\ssot_outline_extractor.ps1 2>&1 | Select-Object -First 50
 
-Read [](../../.github/Claude_Opus_4_5_grade_lossless_compr_SSOT-IFICATION_cross_REF_data/ssot_outline_extractor.ps1)
+Read [](../../scripts/ssot_outline_extractor.ps1)
 
 I see the issue - PowerShell is having trouble with the backtick (escape character) and the regex. Let me fix it: 
 
-Replacing 26 lines with 31 lines in [](../../.github/Claude_Opus_4_5_grade_lossless_compr_SSOT-IFICATION_cross_REF_data/ssot_outline_extractor.ps1)
+Replacing 26 lines with 31 lines in [](../../scripts/ssot_outline_extractor.ps1)
 
 
 ```
@@ -14611,19 +14611,19 @@ Replacing 26 lines with 31 lines in [](../../.github/Claude_Opus_4_5_grade_lossl
 
 Ran terminal command: cd "./"; .\ssot_outline_extractor.ps1 2>&1 | Select-Object -First 60
 
-Read [](../../.github/Claude_Opus_4_5_grade_lossless_compr_SSOT-IFICATION_cross_REF_data/ssot_outline_extractor.ps1)
+Read [](../../scripts/ssot_outline_extractor.ps1)
 
 The `{2,4}` in regex is causing PowerShell parsing issues. Let me rewrite with a simpler approach: 
 
-Created [](../../.github/Claude_Opus_4_5_grade_lossless_compr_SSOT-IFICATION_cross_REF_data/ssot_outline_extractor.ps1)
+Created [](../../scripts/ssot_outline_extractor.ps1)
 
 Ran terminal command: Remove-Item "./\ssot_outline_extractor.ps1"
 
-Created [](../../.github/Claude_Opus_4_5_grade_lossless_compr_SSOT-IFICATION_cross_REF_data/ssot_outline_extractor.ps1)
+Created [](../../scripts/ssot_outline_extractor.ps1)
 
 Ran terminal command: cd "./"; .\ssot_outline_extractor.ps1 2>&1 | Select-Object -First 80
 
-Replacing 2 lines with 2 lines in [](../../.github/Claude_Opus_4_5_grade_lossless_compr_SSOT-IFICATION_cross_REF_data/ssot_outline_extractor.ps1)
+Replacing 2 lines with 2 lines in [](../../scripts/ssot_outline_extractor.ps1)
 
 
 ```
@@ -14717,13 +14717,13 @@ Zone_1_REDUX_implementation_ripe_for_SSOT_canon.md
 C:\Users\erdno\chthonic-archive\.github\instructions\ssot-toolbox.instructions.md
 `
 
-GitHub Copilot: Read [](../../.github/Claude_Opus_4_5_grade_lossless_compr_SSOT-IFICATION_cross_REF_data/SSOT_NAVIGATION_INDEX.md#1-1), lines 1 to 31
+GitHub Copilot: Read [](SSOT_NAVIGATION_INDEX.md), lines 1 to 31
 
-Read [](../../.github/Claude_Opus_4_5_grade_lossless_compr_SSOT-IFICATION_cross_REF_data/Zone_1_REDUX_implementation_ripe_for_SSOT_canon.md#1-1), lines 1 to 31
+Read [](Zone_1_REDUX_implementation_ripe_for_SSOT_canon.md), lines 1 to 31
 
-Read [](../../.github/Claude_Opus_4_5_grade_lossless_compr_SSOT-IFICATION_cross_REF_data/ssot_outline_extractor.ps1#1-1), lines 1 to 21
+Read [](../../scripts/ssot_outline_extractor.ps1), lines 1 to 21
 
-Replacing 23 lines with 41 lines in [](../../.github/Claude_Opus_4_5_grade_lossless_compr_SSOT-IFICATION_cross_REF_data/SSOT_NAVIGATION_INDEX.md), [](../../.github/Claude_Opus_4_5_grade_lossless_compr_SSOT-IFICATION_cross_REF_data/Zone_1_REDUX_implementation_ripe_for_SSOT_canon.md), [](../../.github/Claude_Opus_4_5_grade_lossless_compr_SSOT-IFICATION_cross_REF_data/ssot_outline_extractor.ps1)
+Replacing 23 lines with 41 lines in [](SSOT_NAVIGATION_INDEX.md), [](Zone_1_REDUX_implementation_ripe_for_SSOT_canon.md), [](../../scripts/ssot_outline_extractor.ps1)
 
 
 ```
@@ -14739,9 +14739,9 @@ Replacing 23 lines with 41 lines in [](../../.github/Claude_Opus_4_5_grade_lossl
 ```
 Now let me add the notice to the JSON file as a metadata field: 
 
-Read [](../../.github/Claude_Opus_4_5_grade_lossless_compr_SSOT-IFICATION_cross_REF_data/SSOT_STRUCTURAL_INDEX.json#1-1), lines 1 to 21
+Read [](SSOT_STRUCTURAL_INDEX.json), lines 1 to 21
 
-Replacing 21 lines with 24 lines in [](../../.github/Claude_Opus_4_5_grade_lossless_compr_SSOT-IFICATION_cross_REF_data/SSOT_STRUCTURAL_INDEX.json)
+Replacing 21 lines with 24 lines in [](SSOT_STRUCTURAL_INDEX.json)
 
 
 ```
@@ -14749,9 +14749,9 @@ Replacing 21 lines with 24 lines in [](../../.github/Claude_Opus_4_5_grade_lossl
 ```
 Now let me update the extractor script to include these metadata fields when regenerating:  
 
-Read [](../../.github/Claude_Opus_4_5_grade_lossless_compr_SSOT-IFICATION_cross_REF_data/ssot_outline_extractor.ps1#95-95), lines 95 to 140
+Read [](../../scripts/ssot_outline_extractor.ps1), lines 95 to 140
 
-Replacing 20 lines with 22 lines in [](../../.github/Claude_Opus_4_5_grade_lossless_compr_SSOT-IFICATION_cross_REF_data/ssot_outline_extractor.ps1)
+Replacing 20 lines with 22 lines in [](../../scripts/ssot_outline_extractor.ps1)
 
 
 ```
@@ -14942,7 +14942,7 @@ Ran terminal command: cd "./"; $ssot = Get-Content "..\copilot-instructions.md" 
 
 Now I see the landscape. Let me create a persistent acronym audit tool and fix the deviations: 
 
-Created [](../../.github/Claude_Opus_4_5_grade_lossless_compr_SSOT-IFICATION_cross_REF_data/ssot_acronym_audit.ps1)
+Created [](../../scripts/ssot_acronym_audit.ps1)
 
 Ran terminal command: cd "./"; .\ssot_acronym_audit.ps1 -Root 'TRM'
 
@@ -15045,17 +15045,17 @@ Now I understand. The SSOT has:
 
 Let me create the critical ones: 
 
-Created [](../../.github/Claude_Opus_4_5_grade_lossless_compr_SSOT-IFICATION_cross_REF_data/ssot_crc_selector.ps1)
+Created [](../../scripts/ssot_crc_selector.ps1)
 
-Created [](../../.github/Claude_Opus_4_5_grade_lossless_compr_SSOT-IFICATION_cross_REF_data/ssot_registry_query.ps1)
+Created [](../../scripts/ssot_registry_query.ps1)
 
-Created [](../../.github/Claude_Opus_4_5_grade_lossless_compr_SSOT-IFICATION_cross_REF_data/ssot_tier_query.ps1)
+Created [](../../scripts/ssot_tier_query.ps1)
 
 Ran terminal command: cd "./"; Write-Host "=== TESTING NEW TOOLS ===" -ForegroundColor Magenta; Write-Host "`n[1] CRC Selector - Task 'excavation':" -ForegroundColor Cyan; .\ssot_crc_selector.ps1 -Task excavation; Write-Host "`n[2] Registry Query - AR:" -ForegroundColor Cyan; .\ssot_registry_query.ps1 -Registry AR
 
 Ran terminal command: cd "./"; Write-Host "[3] Tier Query - Tier 1:" -ForegroundColor Cyan; .\ssot_tier_query.ps1 -Tier 1; Write-Host "`n[4] Entity Search - Umeko:" -ForegroundColor Cyan; .\ssot_tier_query.ps1 -Entity Umeko
 
-Replacing 5 lines with 5 lines in [](../../.github/Claude_Opus_4_5_grade_lossless_compr_SSOT-IFICATION_cross_REF_data/ssot_tier_query.ps1)
+Replacing 5 lines with 5 lines in [](../../scripts/ssot_tier_query.ps1)
 
 
 ```

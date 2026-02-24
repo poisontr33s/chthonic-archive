@@ -80,5 +80,5 @@ TWorkaround. Proper fix dangling Anthropics' Claude Code — `SW7` **should try*
 ## Session Methodology
 
 - [WET_PAPER_TO_GOLD_METHODOLOGY.md](./WET_PAPER_TO_GOLD_METHODOLOGY.md) — Pattern for harvesting stale PRs/sessions into reusable artifacts
-- [sessionDUMP0001.txt](./sessionDUMP0001.txt) — Raw session dumps for analysis
-- [IDE_DETECTION_EXTENSION_ACTIVATION.md](../IDE_DETECTION_EXTENSION_ACTIVATION.md) — Claude Code IDE Detection Fix - Extension Activation (moved to repository root)
+- [sessionDUMP0001.txt](../.temple/session-archives/sessionDUMP0001.txt) — Raw session dumps for analysis
+- [IDE_DETECTION_EXTENSION_ACTIVATION.md](../.temple/session-archives/IDE_DETECTION_EXTENSION_ACTIVATION.md) — Claude Code IDE Detection Fix - Extension Activation (moved to repository root)

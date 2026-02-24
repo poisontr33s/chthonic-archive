@@ -1,0 +1,442 @@
+{
+  "target": ".",
+  "file_count": 10562,
+  "manual_file_count": 609,
+  "manual_reason_count": 3443,
+  "reason_kind_counts": {
+    "ambiguous": 93,
+    "unresolved": 3350,
+    "other": 0
+  },
+  "auto_fix_suggestion_count": 1720,
+  "applied_fixes": {
+    "changed_files": 54,
+    "replacements": 1005
+  },
+  "top_manual_files": [
+    {
+      "path": "meta-ide/copilot-cli-0.0.406/index.js",
+      "count": 443
+    },
+    {
+      "path": "meta-ide/copilot-sdk/sdk/index.js",
+      "count": 252
+    },
+    {
+      "path": "meta-ide/copilot-cli-0.0.406/sdk/index.js",
+      "count": 252
+    },
+    {
+      "path": "artifacts/claude-code.cli.2.1.38.frozen.2026-02-10T15-28-36.cli.js",
+      "count": 144
+    },
+    {
+      "path": "extensions/chthonic-archive/.vscode-test/vscode-win32-x64-archive-1.109.5/072586267e/resources/app/out/vs/workbench/workbench.desktop.main.js",
+      "count": 89
+    },
+    {
+      "path": "extensions/chthonic-archive/.vscode-test/vscode-win32-x64-archive-1.109.5/072586267e/resources/app/extensions/ms-vscode.js-debug/src/extension.js",
+      "count": 84
+    },
+    {
+      "path": "meta-ide/LocalAI-3.11.0/core/http/static/assets/pdf.worker.min.js",
+      "count": 73
+    },
+    {
+      "path": "mas_mcp/.venv-py314-parked/Lib/site-packages/sympy/printing/tests/test_glsl.py",
+      "count": 73
+    },
+    {
+      "path": "extensions/chthonic-archive/.vscode-test/vscode-win32-x64-archive-1.109.5/072586267e/resources/app/extensions/mermaid-chat-features/chat-webview-out/index-editor.js",
+      "count": 50
+    },
+    {
+      "path": "extensions/chthonic-archive/.vscode-test/vscode-win32-x64-archive-1.109.5/072586267e/resources/app/extensions/mermaid-chat-features/chat-webview-out/index.js",
+      "count": 50
+    },
+    {
+      "path": ".github/prompts/archives/TypeError_ExpectedObjectIssue_Beautified.md",
+      "count": 45
+    },
+    {
+      "path": ".github/prompts/raw/TypeError_ExpectedObjectIssue.txt",
+      "count": 45
+    },
+    {
+      "path": "debugging_data/codex_5.1_sabotage_trick.md",
+      "count": 38
+    },
+    {
+      "path": "extensions/chthonic-archive/.vscode-test/vscode-win32-x64-archive-1.109.5/072586267e/resources/app/extensions/ms-vscode.js-debug/src/watchdog.js",
+      "count": 38
+    },
+    {
+      "path": "claude-codex-gemini/triadic-session-context/SSOTI_FIED_SESSION_LOG.md",
+      "count": 29
+    },
+    {
+      "path": "meta-ide/LocalAI-3.11.0/core/http/static/assets/highlightjs.js",
+      "count": 25
+    },
+    {
+      "path": "extensions/chthonic-archive/.vscode-test/vscode-win32-x64-archive-1.109.5/072586267e/resources/app/extensions/ms-vscode.js-debug-companion/out/extension.js",
+      "count": 25
+    },
+    {
+      "path": "apps/chthonic-next/.next/dev/server/chunks/ssr/node_modules_next_dist_7381059c._.js",
+      "count": 25
+    },
+    {
+      "path": "extensions/chthonic-archive/.vscode-test/vscode-win32-x64-archive-1.109.5/072586267e/resources/app/extensions/git/package.nls.json",
+      "count": 24
+    },
+    {
+      "path": "mas_mcp/.venv-py314-parked/Lib/site-packages/setuptools/config/_validate_pyproject/fastjsonschema_validations.py",
+      "count": 22
+    },
+    {
+      "path": "extensions/chthonic-archive/src/extension.ts",
+      "count": 20
+    },
+    {
+      "path": "extensions/chthonic-archive/.vscode-test/vscode-win32-x64-archive-1.109.5/072586267e/resources/app/out/vs/workbench/api/node/extensionHostProcess.js",
+      "count": 20
+    },
+    {
+      "path": "meta-ide/LocalAI-3.11.0/docs/content/features/_index.en.md",
+      "count": 19
+    },
+    {
+      "path": "artifacts/_tmp_gh_mcp_v0.30.3/README.md",
+      "count": 17
+    },
+    {
+      "path": "extensions/chthonic-archive/.vscode-test/vscode-win32-x64-archive-1.109.5/072586267e/resources/app/out/nls.messages.json",
+      "count": 16
+    },
+    {
+      "path": "extensions/chthonic-archive/.vscode-test/vscode-win32-x64-archive-1.109.5/072586267e/resources/app/out/vs/workbench/api/worker/extensionHostWorkerMain.js",
+      "count": 16
+    },
+    {
+      "path": "extensions/chthonic-archive/.vscode-test/vscode-win32-x64-archive-1.109.5/072586267e/resources/app/extensions/markdown-language-features/notebook-out/index.js",
+      "count": 15
+    },
+    {
+      "path": "meta-ide/LocalAI-3.11.0/docs/content/whats-new.md",
+      "count": 15
+    },
+    {
+      "path": "extensions/chthonic-archive/.vscode-test/vscode-win32-x64-archive-1.109.5/072586267e/resources/app/extensions/cpp/syntaxes/cuda-cpp.tmLanguage.json",
+      "count": 14
+    },
+    {
+      "path": "meta-ide/copilot-cli-0.0.406/sdk/index.d.ts",
+      "count": 13
+    },
+    {
+      "path": "meta-ide/LocalAI-3.11.0/core/http/static/assets/tailwindcss.js",
+      "count": 13
+    },
+    {
+      "path": "meta-ide/copilot-sdk/sdk/index.d.ts",
+      "count": 13
+    },
+    {
+      "path": "apps/chthonic-next/.next/dev/server/chunks/ssr/node_modules_next_dist_be4a4c3c._.js",
+      "count": 13
+    },
+    {
+      "path": "extensions/chthonic-archive/.vscode-test/vscode-win32-x64-archive-1.109.5/072586267e/resources/app/extensions/latex/syntaxes/cpp-grammar-bailout.tmLanguage.json",
+      "count": 13
+    },
+    {
+      "path": "extensions/chthonic-archive/.vscode-test/vscode-win32-x64-archive-1.109.5/072586267e/resources/app/extensions/cpp/syntaxes/cpp.tmLanguage.json",
+      "count": 13
+    },
+    {
+      "path": "extensions/chthonic-archive/.vscode-test/vscode-win32-x64-archive-1.109.5/072586267e/resources/app/extensions/cpp/syntaxes/c.tmLanguage.json",
+      "count": 12
+    },
+    {
+      "path": "apps/chthonic-next/.next/dev/static/chunks/node_modules_next_dist_build_polyfills_polyfill-nomodule.js",
+      "count": 11
+    },
+    {
+      "path": "dumpster-dive/protocols/CROSS_REFERENCE_STANDARD.md",
+      "count": 11
+    },
+    {
+      "path": "models/Llama-3.1-8B-Instruct-exl2-6.0bpw/tokenizer.json",
+      "count": 11
+    },
+    {
+      "path": "models/Llama-3.1-8B-Instruct-exl2-8.0bpw/tokenizer.json",
+      "count": 11
+    }
+  ],
+  "top_manual_dirs": [
+    {
+      "dir": "meta-ide\\copilot-cli-0.0.406",
+      "count": 443
+    },
+    {
+      "dir": "meta-ide\\copilot-cli-0.0.406\\sdk",
+      "count": 265
+    },
+    {
+      "dir": "meta-ide\\copilot-sdk\\sdk",
+      "count": 265
+    },
+    {
+      "dir": "artifacts",
+      "count": 144
+    },
+    {
+      "dir": "meta-ide\\LocalAI-3.11.0\\core\\http\\static\\assets",
+      "count": 143
+    },
+    {
+      "dir": "extensions\\chthonic-archive\\.vscode-test\\vscode-win32-x64-archive-1.109.5\\072586267e\\resources\\app\\extensions\\ms-vscode.js-debug\\src",
+      "count": 125
+    },
+    {
+      "dir": "extensions\\chthonic-archive\\.vscode-test\\vscode-win32-x64-archive-1.109.5\\072586267e\\resources\\app\\extensions\\mermaid-chat-features\\chat-webview-out",
+      "count": 100
+    },
+    {
+      "dir": "extensions\\chthonic-archive\\.vscode-test\\vscode-win32-x64-archive-1.109.5\\072586267e\\resources\\app\\out\\vs\\workbench",
+      "count": 89
+    },
+    {
+      "dir": "scripts",
+      "count": 75
+    },
+    {
+      "dir": "mas_mcp\\.venv-py314-parked\\Lib\\site-packages\\sympy\\printing\\tests",
+      "count": 73
+    },
+    {
+      "dir": "apps\\chthonic-next\\.next\\dev\\server\\chunks\\ssr",
+      "count": 71
+    },
+    {
+      "dir": "mas_mcp\\.venv-py314-parked\\Lib\\site-packages\\pydantic",
+      "count": 47
+    },
+    {
+      "dir": "extensions\\chthonic-archive\\.vscode-test\\vscode-win32-x64-archive-1.109.5\\072586267e\\resources\\app\\extensions\\cpp\\syntaxes",
+      "count": 46
+    },
+    {
+      "dir": ".github\\prompts\\raw",
+      "count": 45
+    },
+    {
+      "dir": ".github\\prompts\\archives",
+      "count": 45
+    },
+    {
+      "dir": "apps\\chthonic-next\\.next\\server\\chunks\\ssr",
+      "count": 39
+    },
+    {
+      "dir": "meta-ide\\LocalAI-3.11.0\\docs\\content\\features",
+      "count": 39
+    },
+    {
+      "dir": "debugging_data",
+      "count": 38
+    },
+    {
+      "dir": "meta-ide\\LocalAI-3.11.0\\docs\\content\\getting-started",
+      "count": 35
+    },
+    {
+      "dir": "extensions\\chthonic-archive\\.vscode-test\\vscode-win32-x64-archive-1.109.5\\072586267e\\resources\\app\\out",
+      "count": 33
+    },
+    {
+      "dir": "extensions\\chthonic-archive\\scripts",
+      "count": 32
+    },
+    {
+      "dir": "claude-codex-gemini\\triadic-session-context",
+      "count": 29
+    },
+    {
+      "dir": "mas_mcp\\frontend\\.next\\server\\chunks",
+      "count": 28
+    },
+    {
+      "dir": "meta-ide\\LocalAI-3.11.0\\docs\\content",
+      "count": 27
+    },
+    {
+      "dir": "extensions\\chthonic-archive\\.vscode-test\\vscode-win32-x64-archive-1.109.5\\072586267e\\resources\\app\\extensions\\ms-vscode.vscode-js-profile-table\\out",
+      "count": 26
+    }
+  ],
+  "top_auto_fix_sources": [
+    {
+      "path": ".github/prompts/raw/TypeError_ExpectedObjectIssue.txt",
+      "count": 583
+    },
+    {
+      "path": ".github/prompts/archives/TypeError_ExpectedObjectIssue_Beautified.md",
+      "count": 575
+    },
+    {
+      "path": "debugging_data/codex_5.1_sabotage_trick.md",
+      "count": 154
+    },
+    {
+      "path": "dumpster-dive/from-github/macro-prompt-world/disparate-md-documentation/session_gone_sterile_issue_Handover_discernment.md",
+      "count": 138
+    },
+    {
+      "path": "claude-codex-gemini/triadic-session-context/SSOTI_FIED_SESSION_LOG.md",
+      "count": 101
+    },
+    {
+      "path": "docs/SUMMARY.md",
+      "count": 20
+    },
+    {
+      "path": "data/indices/ankh_index.json",
+      "count": 16
+    },
+    {
+      "path": "dumpster-dive/archive/sessions_2026-01/session_resumption_chthonic_progress.md",
+      "count": 14
+    },
+    {
+      "path": "dumpster-dive/archive/docs-sessions/SESSION_2026-01-17_CLEANUP.md",
+      "count": 11
+    },
+    {
+      "path": "dumpster-dive/protocols/CROSS_REFERENCE_STANDARD.md",
+      "count": 11
+    },
+    {
+      "path": "claude-codex-gemini/session_resumption_pickup/session_resumption_pickup_codex.md_structured.json",
+      "count": 8
+    },
+    {
+      "path": "claude-codex-gemini/session_resumption_pickup/session_resumption_pickup_codex.md",
+      "count": 8
+    },
+    {
+      "path": ".github/copilot-inststructons-backups.md/copilot-instructions.readable.md",
+      "count": 6
+    },
+    {
+      "path": "dumpster-dive/from-github/ssot-backups-consolidated/copilot-instructions.readable.md",
+      "count": 6
+    },
+    {
+      "path": "dumpster-dive/archive/docs-sessions/SESSION_2026-01-17_SYNTHESIS.md",
+      "count": 5
+    },
+    {
+      "path": ".temple/session-archives/claude_code_opus45_session_resumption_pickup.md",
+      "count": 4
+    },
+    {
+      "path": "codex/mailbox/archive/2026_02_10_meta_cleanup/SESSION_CHECKPOINT_2026_02_01.md",
+      "count": 4
+    },
+    {
+      "path": "game/lore/claudine_check.txt",
+      "count": 3
+    },
+    {
+      "path": ".temple/protocols/check_jump.txt",
+      "count": 3
+    },
+    {
+      "path": ".temple/methodology/xiv_xv_check.txt",
+      "count": 3
+    },
+    {
+      "path": "mas_mcp/.venv-py314-parked/Lib/site-packages/pydantic/main.py",
+      "count": 3
+    },
+    {
+      "path": "dumpster-dive/from-github/meta-audit-artifacts/SSOT_EVOLUTION_1.0_TO_1.5_BLUEPRINT.md",
+      "count": 3
+    },
+    {
+      "path": "docs/TOOL_CONSOLIDATION_ROADMAP.md",
+      "count": 2
+    },
+    {
+      "path": "dumpster-dive/from-github/meta-audit-artifacts/SESSION_RESUME.md",
+      "count": 2
+    },
+    {
+      "path": "dumpster-dive/intake/templates/TRIUMVIRATE_TASK_TEMPLATE.md",
+      "count": 2
+    },
+    {
+      "path": "logs/sessions/README.md",
+      "count": 2
+    },
+    {
+      "path": "mas_mcp/.venv-py314-parked/Lib/site-packages/onnx/defs/gen_doc.py",
+      "count": 2
+    },
+    {
+      "path": "docs/reference/bun-playwright/BUN_PLAYWRIGHT_IT_SUMMARY.md",
+      "count": 2
+    },
+    {
+      "path": "claude/README.md",
+      "count": 2
+    },
+    {
+      "path": ".temple/session-archives/CLAUDE_CODE_IDE_SETUP.md",
+      "count": 2
+    },
+    {
+      "path": "docs/reference/VSCODE_GUI_ENHANCEMENT_COMPLETE.md",
+      "count": 2
+    },
+    {
+      "path": "mas_mcp/.venv-py314-parked/Lib/site-packages/pydantic/root_model.py",
+      "count": 1
+    },
+    {
+      "path": ".github/instructions/mathematical-engines.reference.md",
+      "count": 1
+    },
+    {
+      "path": "mas_mcp/.venv-py314-parked/Lib/site-packages/pydantic/fields.py",
+      "count": 1
+    },
+    {
+      "path": "mas_mcp/.venv-py314-parked/Lib/site-packages/pydantic/config.py",
+      "count": 1
+    },
+    {
+      "path": ".temple/methodology/AGENT_COMMON.md",
+      "count": 1
+    },
+    {
+      "path": ".temple/protocols/captured_viii_ix.txt",
+      "count": 1
+    },
+    {
+      "path": "HARVEST_REGISTRY.md",
+      "count": 1
+    },
+    {
+      "path": ".temple/protocols/tech_blocks_check.txt",
+      "count": 1
+    },
+    {
+      "path": ".temple/session-archives/CLAUDE_README.md",
+      "count": 1
+    }
+  ]
+}

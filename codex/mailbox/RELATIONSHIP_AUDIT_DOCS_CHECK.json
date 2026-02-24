@@ -1,0 +1,30 @@
+{
+  "target": "docs",
+  "type": "directory",
+  "file_count": 97,
+  "manual_file_count": 8,
+  "auto_fix_suggestion_count": 0,
+  "manual_intervention_required": true,
+  "manual_reasons": [
+    "Ambiguous target for './The_Chthonic_Archive_World.md' in docs/architecture/CHTHONIC_ARCHIVE_WORLD_TPEF.md (2 candidates).",
+    "Unresolved reference '?:package-lock\\.json|yarn\\.lock|pnpm-lock\\.yaml' in docs/reference/bun-playwright/BUN_COMPLIANCE_COMPLETE.md with no candidates.",
+    "Unresolved reference '[^\"\\']+' in docs/reference/TYPESCRIPT_INTELLIGENCE_ENHANCEMENT.md with no candidates.",
+    "Unresolved reference 'bun-playwright-poc/' in docs/reference/bun-playwright/BUN_PLAYWRIGHT_IT_SUMMARY.md with no candidates.",
+    "Unresolved reference 'docs/FILE.md' in docs/TRUE_MISSING_FILES_REVIEW.md with no candidates.",
+    "Unresolved reference 'extensions/chthonic-mandala/' in docs/reference/VSCODE_GUI_ENHANCEMENT_COMPLETE.md with no candidates.",
+    "Unresolved reference 'extensions/chthonic-statusbar/' in docs/reference/VSCODE_GUI_ENHANCEMENT_COMPLETE.md with no candidates.",
+    "Unresolved reference 'instructions/xyz.instructions.md' in docs/reference/handoff0001.md with no candidates.",
+    "Unresolved reference 'path' in docs/VALIDATION_COMPLETION_REPORT.md with no candidates."
+  ],
+  "auto_fix_suggestions": [],
+  "simulation_gate": {
+    "mechanical_pass": true,
+    "apply_allowed": true,
+    "candidate_suggestion_count": 0,
+    "plan_file_count": 0,
+    "planned_replacements": 0,
+    "plan_preview": [],
+    "fail_reasons": [],
+    "warnings": []
+  }
+}

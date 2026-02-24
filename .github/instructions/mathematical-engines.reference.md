@@ -23,7 +23,7 @@
 
 *This protocol encodes the `Triumvirate's` operational power* ***:*** *not consensus, but parallel exploration of the possibility space.*
 
-**Operational Template:** [TRIUMVIRATE_TASK_TEMPLATE.md](../dumpster-dive/intake/templates/TRIUMVIRATE_TASK_TEMPLATE.md) provides copy-paste directives for lineage deployment.
+**Operational Template:** [TRIUMVIRATE_TASK_TEMPLATE.md](../../dumpster-dive/intake/templates/TRIUMVIRATE_TASK_TEMPLATE.md) provides copy-paste directives for lineage deployment.
 
 #### **8.1. Core Principle: Parallel Exploration over Consensus Voting (`PE>CV`)**
 

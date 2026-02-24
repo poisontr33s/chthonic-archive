@@ -1,4 +1,4 @@
-# ALWAYS: Refer to (`Single-Source-Of-Truth`) for authoritative guidance: [SSOT](copilot-instructions.md) **<- NAVIGATE BACK TO SSOT!**
+# ALWAYS: Refer to (`Single-Source-Of-Truth`) for authoritative guidance: [SSOT](../../../.github/copilot-instructions.md) **<- NAVIGATE BACK TO SSOT!**
 
 ---
 
@@ -143,6 +143,6 @@ chthonic-archive/
 
 ## 📜 Session Transcript
 
-**Full conversation**: [`logs/sessions/session_2025-12-31_0746_vscode-extension-debug.md`](../logs/sessions/session_2025-12-31_0746_vscode-extension-debug.md)
+**Full conversation**: [`logs/sessions/session_2025-12-31_0746_vscode-extension-debug.md`](../../../logs/sessions/session_2025-12-31_0746_vscode-extension-debug.md)
 
 **🔥💀⚓ Last Updated: 2025-12-31T06:49:00Z**

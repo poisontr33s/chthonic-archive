@@ -1,0 +1,40 @@
+{
+  "target": ".",
+  "type": "directory",
+  "file_count": 10562,
+  "manual_intervention_required": true,
+  "manual_file_count": 609,
+  "auto_fix_suggestion_count": 1720,
+  "applied_fixes": {
+    "changed_files": 54,
+    "replacements": 1005
+  },
+  "manual_reason_count": 3443,
+  "sample_manual_reasons": [
+    "Ambiguous target for '../../bun-playwright-poc/lib/index.ts' in claude-codex-gemini/triadic-session-context/SSOTI_FIED_SESSION_LOG.md (8 candidates).",
+    "Ambiguous target for '../../chthonic-vscode-extension/themes/chthonic-archive-theme.json' in claude-codex-gemini/triadic-session-context/SSOTI_FIED_SESSION_LOG.md (2 candidates).",
+    "Ambiguous target for '../../extensions/chthonic-statusbar/src/package.json' in claude-codex-gemini/triadic-session-context/SSOTI_FIED_SESSION_LOG.md (116 candidates).",
+    "Ambiguous target for '../../mcp/server.ts' in claude-codex-gemini/triadic-session-context/SSOTI_FIED_SESSION_LOG.md (2 candidates).",
+    "Ambiguous target for '../../sid_index.json#1-1' in claude-codex-gemini/triadic-session-context/SSOTI_FIED_SESSION_LOG.md (2 candidates).",
+    "Ambiguous target for '../../sid_index.json#190-190' in claude-codex-gemini/triadic-session-context/SSOTI_FIED_SESSION_LOG.md (2 candidates).",
+    "Ambiguous target for '../../sid_index.json' in claude-codex-gemini/triadic-session-context/SSOTI_FIED_SESSION_LOG.md (2 candidates).",
+    "Ambiguous target for '../README.md#api-documentation' in mas_mcp/.venv-py314-parked/Lib/site-packages/onnxruntime/Privacy.md (97 candidates).",
+    "Ambiguous target for '../README.md#binaries' in mas_mcp/.venv-py314-parked/Lib/site-packages/onnxruntime/Privacy.md (97 candidates).",
+    "Ambiguous target for '../concepts/serialization.md#json-mode' in mas_mcp/.venv-py314-parked/Lib/site-packages/pydantic/main.py (2 candidates).",
+    "Ambiguous target for '../concepts/serialization.md#python-mode' in mas_mcp/.venv-py314-parked/Lib/site-packages/pydantic/main.py (2 candidates).",
+    "Ambiguous target for '../concepts/serialization.md#serializers' in mas_mcp/.venv-py314-parked/Lib/site-packages/pydantic/functional_serializers.py (2 candidates).",
+    "Ambiguous target for '../concepts/serialization.md#serializing-data' in mas_mcp/.venv-py314-parked/Lib/site-packages/pydantic/config.py (2 candidates).",
+    "Ambiguous target for '../concepts/serialization.md#serializing-with-duck-typing' in mas_mcp/.venv-py314-parked/Lib/site-packages/pydantic/functional_serializers.py (2 candidates).",
+    "Ambiguous target for '../scripts/README.md' in dumpster-dive/archive/docs-sessions/SESSION_2026-01-17_CLEANUP.md (97 candidates).",
+    "Ambiguous target for '../src/README.md' in dumpster-dive/archive/docs-sessions/SESSION_2026-01-17_CLEANUP.md (97 candidates).",
+    "Ambiguous target for './PWSH_RULES.md' in dumpster-dive/archive/docs-sessions/SESSION_2026-01-17_CLEANUP.md (2 candidates).",
+    "Ambiguous target for './The_Chthonic_Archive_World.md' in docs/architecture/CHTHONIC_ARCHIVE_WORLD_TPEF.md (2 candidates).",
+    "Ambiguous target for './WET_PAPER_TO_GOLD_METHODOLOGY.md' in .temple/session-archives/CLAUDE_README.md (2 candidates).",
+    "Ambiguous target for '.github/SESSION_RESUME.md#-active-issue' in dumpster-dive/archive/sessions_2026-01/session_resumption_chthonic_progress.md (2 candidates).",
+    "Ambiguous target for '.github/SESSION_RESUME.md' in dumpster-dive/archive/sessions_2026-01/session_resumption_chthonic_progress.md (2 candidates).",
+    "Ambiguous target for '@modelcontextprotocol/sdk/client/index.js' in meta-ide/copilot-cli-0.0.406/sdk/index.d.ts (11 candidates).",
+    "Ambiguous target for '@modelcontextprotocol/sdk/client/index.js' in meta-ide/copilot-sdk/sdk/index.d.ts (11 candidates).",
+    "Ambiguous target for '@modelcontextprotocol/sdk/server/index.js' in scripts/mcp-asc-injector.ts (11 candidates).",
+    "Ambiguous target for '@modelcontextprotocol/sdk/server/index.js' in scripts/mcp-browser.ts (11 candidates)."
+  ]
+}

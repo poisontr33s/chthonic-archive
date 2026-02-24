@@ -1,0 +1,215 @@
+# Ignore everything
+*
+
+# Allow git metadata
+!.gitignore
+!.copilotignore
+!.gitattributes
+
+# Allow PR/patch suggestions
+!PR_SUGGESTION.md
+
+# Allow DCRP Cross-Reference System (Section XV)
+!decorator_cross_ref_maximum.py
+!dependency_graph.json
+!CROSS_REFERENCE_TRIPTYCH.md
+
+# Allow MCP autonomous prerequisites (immutable)
+!docs/
+!docs/**
+!docs/MCP_*.md
+!docs/CLI_EDITING_POLICY.md
+!docs/CLAUDE_CODE_REGISTRATION.md
+
+# Allow migrated session/framework/handoff docs (Stage 1 repurposing)
+!docs/sessions/
+!docs/sessions/**
+!docs/frameworks/
+!docs/frameworks/**
+!docs/handoffs/
+!docs/handoffs/**
+!docs/DCRP_SYNTHESIS.md
+!docs/STAGE_1_MIGRATION_PLAN.md
+!docs/SSOTIFICATION_METHODOLOGY.md
+!docs/protocols/
+!docs/protocols/**
+
+# Allow SSOT Hub and Indices
+!.ankhrc
+!ankh_index.json
+!sid_index.json
+
+# Allow dumpster-dive consolidated archives
+!dumpster-dive/
+!dumpster-dive/**
+
+# Allow MCP server implementation
+!mcp/
+!mcp/*.ts
+!mcp/*.md
+!mcp/*.json
+!mcp/*.ps1
+!mcp/tools/
+!mcp/tools/*.ts
+!mcp/tools/*.json
+
+# Allow Bun configuration
+!bunfig.toml
+
+# Allow VS Code extensions (but not node_modules)
+!extensions/
+!extensions/*/
+!extensions/*/*.json
+!extensions/*/*.ts
+!extensions/*/*.md
+!extensions/*/src/
+!extensions/*/src/*.ts
+!extensions/*/src/monolith/
+!extensions/*/src/monolith/*.ts
+!extensions/*/src/entropy/
+!extensions/*/src/entropy/*.ts
+!extensions/*/src/reactor/
+!extensions/*/src/reactor/annoClient.ts
+!extensions/*/src/reactor/types.ts
+!extensions/*/src/reactor/synapseBridge.ts
+!extensions/*/src/polyglot/
+!extensions/*/src/polyglot/*.ts
+!extensions/*/dist/
+!extensions/*/dist/*.js
+!extensions/*/themes/
+!extensions/*/themes/*.json
+!extensions/*/themes/icons/
+!extensions/*/themes/icons/*.svg
+!extensions/*/themes/icons/product/
+!extensions/*/themes/icons/product/*.svg
+!extensions/*/icons/
+!extensions/*/icons/*.svg
+!extensions/*/icons/*.png
+!extensions/*/resources/
+!extensions/*/resources/*.svg
+!extensions/*/media/
+!extensions/*/media/**
+!extensions/*/wasm/
+!extensions/*/wasm/**
+!extensions/*/native/
+!extensions/*/native/**
+!extensions/*/scripts/
+!extensions/*/scripts/*.ts
+!extensions/*/scripts/*.ps1
+!extensions/*/scripts/*.cjs
+!extensions/*/.vscodeignore
+!extensions/*/.chthonic/
+!extensions/*/.chthonic/**
+extensions/*/.chthonic/venv/
+extensions/*/.chthonic/cache/
+extensions/*/.chthonic/python/.venv/
+extensions/*/.chthonic/python/uv.lock
+extensions/*/.chthonic/ruby/vendor/
+extensions/*/.chthonic/ruby/.bundle/
+extensions/*/.chthonic/rust-target/
+extensions/*/native/target/
+extensions/*/media/wasm/pkg/
+extensions/*/node_modules/
+extensions/*/bun.lock
+
+# Explicitly ignore all node_modules
+**/node_modules/
+
+# Allow MCP workflow artifacts (smoke suite provenance)
+!artifacts/
+!artifacts/mcp_run_*.json
+
+# Allow root-level MCP validation runner
+!run_mcp_validation.ts
+
+# Allow Claude Code integration scripts (launcher/orchestrator layer)
+!scripts/
+!scripts/launch_claude_code.ps1
+!scripts/start_mcp_session.ps1
+!scripts/CLAUDE_CODE_INTEGRATION.md
+!CLAUDE_CODE_INTEGRATION_SUMMARY.md
+
+# Allow mailbox + audit tooling
+!scripts/mailbox_scribe.py
+!scripts/mailbox_polisher.py
+!scripts/normalize_e2e_archives.py
+!scripts/normalize_eol.py
+!scripts/check_mailbox_manifest.py
+!scripts/hf_probe.py
+!scripts/api_pool.ps1
+!scripts/structure_session_log.py
+!scripts/poe_account.ps1
+!scripts/poe_lane.py
+!scripts/poe_sdk_lane.py
+!scripts/poe_transport_audit.py
+
+# Allow Shell Sovereignty & Validation (§XIV.2 canonical probe)
+!scripts/shell_capabilities.ps1
+!scripts/validate_shell_probe.ps1
+!scripts/validate_probe.ps1
+!scripts/lint_shell_sovereignty.ps1
+!scripts/bun_compliance_audit.py
+!scripts/ssot_hash.py
+!scripts/pause_agents.ps1
+!scripts/validate_session_changes.ps1
+!scripts/probe_toolchain_path.ps1
+!scripts/gemini-cli-wrapper.ps1
+!scripts/check-solana-version.ps1
+!scripts/uncensored_lane_steward.py
+!scripts/serve_uncensored_lane.ps1
+!scripts/chthonic.ps1
+!scripts/fix-md-links.ps1
+!scripts/copilot_clean.ps1
+!scripts/hf-model-ranker.ts
+!scripts/vscode-art-cop.ts
+!scripts/genre_extractor.py
+!scripts/nightly-scheduled.ps1
+!scripts/run_archaeology.ps1
+!scripts/local_refiner_v2.py
+!scripts/session_resumption_high_coverage.py
+!scripts/overnight_daemon.ts
+!scripts/benchmark_local_uncensored_lanes.py
+!scripts/run_overnight_daemon.ps1
+!scripts/sentry_init.ts
+!scripts/mcp-chthonic-server.ts
+!scripts/theme_token_coverage.py
+!scripts/product_icon_census.py
+!scripts/ankh_theme_reference.py
+!scripts/kcp_header_classifier.py
+!scripts/sfs_reference_index.py
+
+# Allow specific Codex skill additions
+!.codex/
+!.codex/skills/
+!.codex/skills/codekiller-remediation-gate/
+!.codex/skills/codekiller-remediation-gate/**
+!.codex/skills/artifact-upcycle/
+!.codex/skills/artifact-upcycle/**
+
+# mdBook build output (generated artifact)
+book/
+
+# Allow mdBook config
+!book.toml
+
+# Allow SSOT and governance
+!.github/
+!.github/**
+!.gemini/
+!.gemini/**
+
+# Allow Agent Anchors & Directories (Triad)
+!GEMINI.md
+!CLAUDE.md
+!AGENTS.md
+!AGENT_COMMON.md
+!WET_PAPER_TO_GOLD_METHODOLOGY.md
+!codex/
+!codex/**
+!claude/
+!claude/**
+!claude-codex-gemini/
+!claude-codex-gemini/**
+
+gha-creds-*.json
+claude/SESSION_HANDOFF_2026_02_01_TO_CLAUDE.md

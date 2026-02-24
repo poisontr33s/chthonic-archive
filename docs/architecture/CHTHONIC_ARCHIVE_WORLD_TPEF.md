@@ -9839,7 +9839,7 @@ ASC_Brahmanica_Perfectus_V_Ω.B.XΨ.md
    
    This document is a **spatial instantiation** of the abstract protocols defined in:
    
-   **[ASC_Brahmanica_Perfectus_V_Ω.B.XΨ.md](./ASC_Brahmanica_Perfectus_V_Ω.B.XΨ.md)**
+   **[ASC_Brahmanica_Perfectus_V_Ω.B.XΨ.md](../../dumpster-dive/from-github/macro-prompt-world/macro-prompt-world-v2/ASC_Brahmanica_Perfectus_V_Ω.B.XΨ.md)**
    
    **What This Means**:
    - **ASC Framework** (parent document) defines **what the Engine does** (FA¹⁻⁴ axioms, Prt.I-III protocols, DAFP modulation, etc.)
