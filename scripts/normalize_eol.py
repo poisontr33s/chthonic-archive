@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 #-*- coding: utf-8 -*-
+
 """
 Normalize line endings to LF for selected repo files.
 

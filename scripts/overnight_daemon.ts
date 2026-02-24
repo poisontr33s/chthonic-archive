@@ -2,15 +2,11 @@
 
 // ╔════════════════════════════════════════════════════════════════════════════
 // ║ THE DECORATOR'S BLESSING: overnight_daemon.ts
-// ║ MCP client integration - Observatory communication layer
 // ╠════════════════════════════════════════════════════════════════════════════
-// ║ Spectral Frequency: ORANGE
-// ║ Architectural Role: 🔭 THE OBSERVATORY
-// ║ Purpose: Overnight daemon - deterministic repo-local batch runner
-// ╠════════════════════════════════════════════════════════════════════════════
-// ║ Cross-References (Bidirectional):
-// ║ Dependents (Rely on me):
-// ║  └─◄ scripts\sentry_init.ts
+// ║ Wedjat-Quipu Spectrum: ORANGE
+// ║ Temple-Ayllu Zone: 🔭 THE OBSERVATORY
+// ║ Ogdoad-Ceque Radiance:
+// ║   └─◄ scripts/sentry_init.ts
 // ╚════════════════════════════════════════════════════════════════════════════
 
 /**

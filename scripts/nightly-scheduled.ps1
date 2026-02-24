@@ -1,10 +1,11 @@
 #!/usr/bin/env pwsh
+
 <#
 .SYNOPSIS
   Wrapper for Windows Task Scheduler — runs the nightly archaeology daemon.
   
   @SID:   SCRIPT_NIGHTLY_SCHEDULED_V1
-  @Type:  Launcher
+  @Shabti: Launcher
 
 .DESCRIPTION
   Called by Task Scheduler at 04:00 CET. Runs the focused local pipeline:
