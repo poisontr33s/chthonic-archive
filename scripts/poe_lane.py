@@ -1,19 +1,24 @@
 #!/usr/bin/env python3
 #-*- coding: utf-8 -*-
+
+# ╔════════════════════════════════════════════════════════════════════════════
+# ║ THE DECORATOR'S BLESSING: poe_lane.py
+# ╠════════════════════════════════════════════════════════════════════════════
+# ║ Wedjat-Quipu Spectrum: WHITE
+# ║ Temple-Ayllu Zone: 🌿 THE GARDEN
+# ║ Ogdoad-Ceque Radiance:
+# ║   └─◄ (Standalone)
+# ╚════════════════════════════════════════════════════════════════════════════
+
 """
-Poe lane helper (OpenAI-compatible endpoint).
-
-Modes:
-- models: list accessible model IDs for the active Poe key.
-- probe: run a tiny completion check against a specific model.
-- chat: send a normal prompt and print the response.
-
-Secrets:
-- Reads only environment variables.
-- Never prints token values.
+poe_lane.py — Poe lane helper (OpenAI-compatible endpoint).
 
 @SID:           TOOL_POE_LANE_V1
-@Type:          Utility
+@Shabti:        CLI Script
+@Purpose:       OpenAI-compatible Poe lane helper. Lists model IDs, probes
+                completions, and runs chat prompts. Reads secrets from
+                environment variables only — never prints token values.
+                Usage: uv run scripts/poe_lane.py
 """
 
 from __future__ import annotations

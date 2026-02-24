@@ -1,10 +1,24 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
+# ╔════════════════════════════════════════════════════════════════════════════
+# ║ THE DECORATOR'S BLESSING: server.py
+# ╠════════════════════════════════════════════════════════════════════════════
+# ║ Wedjat-Quipu Spectrum: WHITE
+# ║ Temple-Ayllu Zone: 🏛️ THE HYPOSTYLE
+# ║ Ogdoad-Ceque Radiance:
+# ║   └─◄ mas_mcp/lib/ssot_handler.py
+# ║   └─◄ mas_mcp/lib/gpu_probe.py
+# ╚════════════════════════════════════════════════════════════════════════════
+
 """
-@SID: SERVER_MPW_ROUTER_V1
-@Type: Core Gateway
-@Context: M-P-W Router Server (Modularized)
+server.py — M-P-W Router Server (Modularized).
+
+@SID:           SERVER_MPW_ROUTER_V1
+@Shabti:        Router
+@Purpose:       Core MAS MCP gateway server. Routes archive vault, entity,
+                pulse, narrative, and qualia operations via FastMCP.
+                Integrates SSOT hash verification and GPU probing.
 """
 
 import logging

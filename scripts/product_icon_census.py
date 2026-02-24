@@ -1,17 +1,24 @@
 #!/usr/bin/env python3
 #-*- coding: utf-8 -*-
 
+# ╔════════════════════════════════════════════════════════════════════════════
+# ║ THE DECORATOR'S BLESSING: product_icon_census.py
+# ╠════════════════════════════════════════════════════════════════════════════
+# ║ Wedjat-Quipu Spectrum: WHITE
+# ║ Temple-Ayllu Zone: 🔭 THE OBSERVATORY
+# ║ Ogdoad-Ceque Radiance:
+# ║   └─◄ (Standalone)
+# ╚════════════════════════════════════════════════════════════════════════════
+
 """
-Product Icon Census — Stage 6.0
-
-Maps all VS Code codicon IDs against the current SFS product icon theme
-to identify coverage gaps. Reads the codicon CSV from the local VS Code
-Insiders installation as the authoritative source.
-
-Discovery-only: no modifications, only reporting.
+product_icon_census.py — Product Icon Census (Stage 6.0).
 
 @SID:           TOOL_PRODUCT_ICON_CENSUS_V1
-@Type:          Utility
+@Shabti:        CLI Script
+@Purpose:       Maps all VS Code codicon IDs against the current SFS product
+                icon theme to identify coverage gaps. Reads the codicon CSV
+                from the local VS Code Insiders installation as the
+                authoritative source. Discovery-only: no modifications.
 """
 
 import csv

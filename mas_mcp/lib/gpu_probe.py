@@ -4,29 +4,25 @@
 # requires-python = ">=3.13"
 # dependencies = []
 # ///
+
+# ╔════════════════════════════════════════════════════════════════════════════
+# ║ THE DECORATOR'S BLESSING: gpu_probe.py
+# ╠════════════════════════════════════════════════════════════════════════════
+# ║ Wedjat-Quipu Spectrum: WHITE
+# ║ Temple-Ayllu Zone: 🔥 THE FOUNDRY
+# ║ Ogdoad-Ceque Radiance:
+# ║   └─◄ (Standalone)
+# ╚════════════════════════════════════════════════════════════════════════════
+
 """
-@SID: LIB_GPU_PROBE_V1
-@Type: Library (Infrastructure)
-@Context: GPU Capability Probing with Output Suppression
-"""
-spurious GPU warnings would pollute JSON responses.
+gpu_probe.py — GPU Capability Probing with Output Suppression.
 
-Key Features:
-- OutputSuppressor context manager for silent GPU init
-- Tiered capability detection (CUDA → Numba → CPU fallback)
-- Cached probe results for fast repeated queries
-- MCP-compatible JSON output format
-
-Usage:
-    from mas_mcp.lib.gpu_probe import probe_gpu_capabilities, GPUProbeResult
-    
-    result = probe_gpu_capabilities()
-    if result.cuda_available:
-        print(f"CUDA: {result.cuda_device}")
-    else:
-        print(f"Fallback: {result.fallback_reason}")
-
-Per Section XIV.1: Always invoke via `uv run python`, never `python` directly.
+@SID:           LIB_GPU_PROBE_V1
+@Shabti:        Library Module
+@Purpose:       Probes GPU capabilities (CUDA/Numba/CPU fallback) with output
+                suppression to prevent GPU init warnings from polluting JSON
+                responses. Provides OutputSuppressor context manager, tiered
+                detection, and cached probe results. MCP-compatible output.
 """
 
 from __future__ import annotations

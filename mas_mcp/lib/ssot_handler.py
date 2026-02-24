@@ -4,35 +4,25 @@
 # requires-python = ">=3.13"
 # dependencies = []
 # ///
+
+# ╔════════════════════════════════════════════════════════════════════════════
+# ║ THE DECORATOR'S BLESSING: ssot_handler.py
+# ╠════════════════════════════════════════════════════════════════════════════
+# ║ Wedjat-Quipu Spectrum: WHITE
+# ║ Temple-Ayllu Zone: 📜 THE SCRIPTORIUM
+# ║ Ogdoad-Ceque Radiance:
+# ║   └─◄ .github/copilot-instructions.md
+# ╚════════════════════════════════════════════════════════════════════════════
+
 """
-@SID: LIB_SSOT_HANDLER_V1
-@Type: Library (EPFA)
-@Context: SSOT Handler: Cryptographic Binding to Single Source of Truth
-"""
+ssot_handler.py — Cryptographic Binding to Single Source of Truth.
 
-The SSOT (Single Source of Truth) is `.github/copilot-instructions.md`.
-This module provides cryptographic verification that the ASC Framework
-operates with grounded, consistent governance.
-
-Key Functions:
-- canonicalize_text(): Normalize text for consistent hashing
-- compute_ssot_hash(): SHA-256 of canonical SSOT content
-- verify_bookend(): Compare start/end hashes for drift detection
-
-Usage:
-    from mas_mcp.lib import compute_ssot_hash, verify_bookend
-    
-    # At session start
-    hash_start = compute_ssot_hash()
-    
-    # ... do work ...
-    
-    # At session end
-    is_consistent, hash_end = verify_bookend(hash_start)
-    if not is_consistent:
-        raise GovernanceDriftError("SSOT modified during session!")
-
-Per Section XIV.1: Always invoke via `uv run python`, never `python` directly.
+@SID:           LIB_SSOT_HANDLER_V1
+@Shabti:        Library Module
+@Purpose:       Provides cryptographic verification that the ASC Framework
+                operates with grounded, consistent governance. Canonical text
+                normalization, SHA-256 SSOT hashing, and bookend drift detection
+                bound to .github/copilot-instructions.md.
 """
 
 from __future__ import annotations

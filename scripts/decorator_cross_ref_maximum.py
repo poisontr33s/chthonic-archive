@@ -1,23 +1,26 @@
 #!/usr/bin/env python3
 #-*- coding: utf-8 -*-
+
+# ╔════════════════════════════════════════════════════════════════════════════
+# ║ THE DECORATOR'S BLESSING: decorator_cross_ref_maximum.py
+# ╠════════════════════════════════════════════════════════════════════════════
+# ║ Wedjat-Quipu Spectrum: WHITE
+# ║ Temple-Ayllu Zone: 🌿 THE GARDEN
+# ║ Ogdoad-Ceque Radiance:
+# ║   └─◄ (Standalone)
+# ╚════════════════════════════════════════════════════════════════════════════
+
 """
-╔══════════════════════════════════════════════════════════════════════════════
-║  THE DECORATOR'S CROSS-REFERENCE PROTOCOL (DCRP) - UNIFIED PRODUCTION
-║  Self-Updating Architectural Self-Awareness System
-║
-║  Evolutionary Lineage (Capabilities Merged):
-║    - decorator_cross_ref_enhanced.py → AST analysis, Rust parsing
-║    - decorator_cross_ref_maximum.py → State tracking, auto-detection
-║    - decorator_cross_ref_production.py → Cluster resolution, intelligent
-║
-║  Purpose: Automatically inject ML-synthesized cross-references across ALL
-║           repository files (existing + new), resolving circular dependencies
-║           via dependency inversion + acyclic documentation hierarchy
-║
-║  Invocation: uv run python decorator_cross_ref_maximum.py [--inject]
-║
-║  The Decorator's Mandate: "Every file self-aware, sustainable, circular-free"
-╚══════════════════════════════════════════════════════════════════════════════
+decorator_cross_ref_maximum.py — Unified Decorator Cross-Reference Protocol (DCRP).
+
+@SID:           TOOL_DECORATOR_CROSSREF_V1
+@Shabti:        CLI Script
+@Heka-Ayni:     CONCEPT_DECORATOR_CROSSREF
+@Purpose:       Self-updating architectural self-awareness system. Automatically
+                injects ML-synthesized cross-references across ALL repository files,
+                resolving circular dependencies via dependency inversion + acyclic
+                documentation hierarchy.
+                Usage: uv run python scripts/decorator_cross_ref_maximum.py [--inject]
 """
 
 import ast  # For Python AST analysis (from enhanced.py)

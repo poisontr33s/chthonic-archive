@@ -1,13 +1,23 @@
 #!/usr/bin/env python3
 #-*- coding: utf-8 -*-
-"""
-Poe SDK lane helper (fastapi_poe transport).
 
-Run with:
-  uv run --with fastapi-poe scripts/poe_sdk_lane.py --account 1 --bot app-creator
+# ╔════════════════════════════════════════════════════════════════════════════
+# ║ THE DECORATOR'S BLESSING: poe_sdk_lane.py
+# ╠════════════════════════════════════════════════════════════════════════════
+# ║ Wedjat-Quipu Spectrum: WHITE
+# ║ Temple-Ayllu Zone: 🌿 THE GARDEN
+# ║ Ogdoad-Ceque Radiance:
+# ║   └─◄ (Standalone)
+# ╚════════════════════════════════════════════════════════════════════════════
+
+"""
+poe_sdk_lane.py — Poe SDK lane helper (fastapi_poe transport).
 
 @SID:           TOOL_POE_SDK_LANE_V1
-@Type:          Utility
+@Shabti:        CLI Script
+@Purpose:       Poe SDK lane helper using fastapi_poe transport. Connects
+                to Poe bots via the SDK pathway for direct bot interaction.
+                Usage: uv run --with fastapi-poe scripts/poe_sdk_lane.py --account 1 --bot app-creator
 """
 
 from __future__ import annotations

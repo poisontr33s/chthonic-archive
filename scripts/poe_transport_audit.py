@@ -1,12 +1,23 @@
 #!/usr/bin/env python3
 #-*- coding: utf-8 -*-
-"""
-Poe transport audit.
 
-Compares OpenAI-compatible lane vs Poe SDK lane on selected accounts and bots/models.
+# ╔════════════════════════════════════════════════════════════════════════════
+# ║ THE DECORATOR'S BLESSING: poe_transport_audit.py
+# ╠════════════════════════════════════════════════════════════════════════════
+# ║ Wedjat-Quipu Spectrum: WHITE
+# ║ Temple-Ayllu Zone: 🌿 THE GARDEN
+# ║ Ogdoad-Ceque Radiance:
+# ║   └─◄ scripts/poe_lane.py
+# ║   └─◄ scripts/poe_sdk_lane.py
+# ╚════════════════════════════════════════════════════════════════════════════
+
+"""
+poe_transport_audit.py — Poe transport audit.
 
 @SID:           TOOL_POE_TRANSPORT_AUDIT_V1
-@Type:          Utility
+@Shabti:        CLI Script
+@Purpose:       Compares OpenAI-compatible lane vs Poe SDK lane on selected
+                accounts and bots/models. Validates transport parity.
 """
 
 from __future__ import annotations

@@ -1,15 +1,24 @@
 #!/usr/bin/env python3
 #-*- coding: utf-8 -*-
 
-"""
-SFS Token Scope Coverage Audit — Stage 4.0
+# ╔════════════════════════════════════════════════════════════════════════════
+# ║ THE DECORATOR'S BLESSING: theme_token_coverage.py
+# ╠════════════════════════════════════════════════════════════════════════════
+# ║ Wedjat-Quipu Spectrum: WHITE
+# ║ Temple-Ayllu Zone: 🔭 THE OBSERVATORY
+# ║ Ogdoad-Ceque Radiance:
+# ║   └─◄ (Standalone)
+# ╚════════════════════════════════════════════════════════════════════════════
 
-Parses chthonic-geology-color-theme.json and compares defined tokenColors
-+ semanticTokenColors against the VS Code TextMate grammar universe.
-Reports covered categories, uncovered gaps, and per-language specializations.
+"""
+theme_token_coverage.py — SFS Token Scope Coverage Audit (Stage 4.0).
 
 @SID:           TOOL_THEME_TOKEN_COVERAGE_V1
-@Type:          Audit / Analysis
+@Shabti:        CLI Script
+@Purpose:       Parses chthonic-geology-color-theme.json and compares defined
+                tokenColors + semanticTokenColors against the VS Code TextMate
+                grammar universe. Reports covered categories, uncovered gaps,
+                and per-language specializations.
 """
 
 import json

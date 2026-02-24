@@ -1,31 +1,26 @@
 #!/usr/bin/env python3
 #-*- coding: utf-8 -*-
 
+# ╔════════════════════════════════════════════════════════════════════════════
+# ║ THE DECORATOR'S BLESSING: local_refiner_v2.py
+# ╠════════════════════════════════════════════════════════════════════════════
+# ║ Wedjat-Quipu Spectrum: RED
+# ║ Temple-Ayllu Zone: 🔥 THE FOUNDRY
+# ║ Ogdoad-Ceque Radiance:
+# ║   └─◄ (Standalone)
+# ╚════════════════════════════════════════════════════════════════════════════
+
 """
-Overnight Archaeology Refiner v2 — llama-cpp-python + Structured Output
-
-Uses llama-cpp-python with abliterated/uncensored GGUF models and JSON
-schema constraints for hallucination-free classification. Zero API cost.
-
-Models (all uncensored, all GGUF, all local):
-  - Default: Qwen3-30B-A3B Instruct abliterated (MoE, 3B active, fast)
-  - Coder:   Qwen3-Coder-30B-A3B abliterated (code-focused analysis)
-  - Heavy:   GPT-OSS-20B NEOPlus Uncensored (dense 20B, Harmony parser)
-  - Legacy:  Qwen 2.5-14B Instruct (CENSORED — deprecated, do not use)
+local_refiner_v2.py — Overnight Archaeology Refiner v2 (llama-cpp-python).
 
 @SID:           TOOL_LOCAL_REFINER_V2
-@Type:          Synthesis
-@Context:       Local Refinement / L1→L2 Pipeline
-@SessionOrigin: CONTINUATION_2024_06_01
-@Implements:    ROADMAP_LOCAL_REFINER_V2_2024_06_01
-
-Usage:
-  uv run scripts/local_refiner_v2.py                    # Qwen3 Instruct (default)
-  uv run scripts/local_refiner_v2.py --coder             # Qwen3 Coder variant
-  uv run scripts/local_refiner_v2.py --heavy             # GPT-OSS 20B dense
-  uv run scripts/local_refiner_v2.py --ore path/to/L1-ore.json
-  uv run scripts/local_refiner_v2.py --model-dir path/to/gguf/dir
-  uv run scripts/local_refiner_v2.py --dry-run
+@Shabti:        CLI Script
+@Heka-Ayni:     CONCEPT_LOCAL_REFINEMENT
+@Purpose:       Uses llama-cpp-python with abliterated/uncensored GGUF models
+                and JSON schema constraints for hallucination-free classification.
+                Zero API cost. Tiered: Qwen3-30B-A3B (default), Qwen3-Coder-30B-A3B
+                (code), GPT-OSS-20B NEOPlus (heavy). L1→L2 pipeline.
+                Usage: uv run scripts/local_refiner_v2.py [--coder|--heavy|--dry-run]
 """
 
 import json

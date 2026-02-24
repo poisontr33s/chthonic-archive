@@ -1,27 +1,26 @@
 #!/usr/bin/env python3
 #-*- coding: utf-8 -*-
 
+# ╔════════════════════════════════════════════════════════════════════════════
+# ║ THE DECORATOR'S BLESSING: genre_extractor.py
+# ╠════════════════════════════════════════════════════════════════════════════
+# ║ Wedjat-Quipu Spectrum: RED
+# ║ Temple-Ayllu Zone: 🔥 THE FOUNDRY
+# ║ Ogdoad-Ceque Radiance:
+# ║   └─◄ (Standalone)
+# ╚════════════════════════════════════════════════════════════════════════════
+
 """
-Genre Extractor — Local uncensored model creative content analysis.
-
-Scans repository creative content files (lore, factions, NSFW, concept art,
-Ankh research, body systems) and extracts structured genre/theme/archetype
-metadata using the abliterated Qwen3 model. Zero API cost, zero censorship.
-
-Outputs a human-readable digest to claude/mailbox/.
-JSON output is optional (`--json-out`) to avoid artifact noise.
+genre_extractor.py — Local uncensored model creative content analysis.
 
 @SID:           TOOL_GENRE_EXTRACTOR_V1
-@Type:          Synthesis
-@Context:       Creative Content Analysis / Genre Extraction
-@Implements:    Tribunal SSOT_TRIBUNAL_BRIDGE Local AI Integration Vector
-
-Usage:
-  uv run scripts/genre_extractor.py                    # scan all creative dirs
-  uv run scripts/genre_extractor.py --path game/lore   # scan specific path
-  uv run scripts/genre_extractor.py --dry-run           # list files without inference
-  uv run scripts/genre_extractor.py --coder             # use code-focused model
-  uv run scripts/genre_extractor.py --json-out          # also write JSON artifact
+@Shabti:        CLI Script
+@Heka-Ayni:     CONCEPT_GENRE_EXTRACTION
+@Purpose:       Scans repository creative content files (lore, factions, NSFW,
+                concept art, Ankh research, body systems) and extracts structured
+                genre/theme/archetype metadata using the abliterated Qwen3 model.
+                Zero API cost, zero censorship. Outputs digest to claude/mailbox/.
+                Usage: uv run scripts/genre_extractor.py [--path DIR] [--dry-run] [--json-out]
 """
 
 import json
