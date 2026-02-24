@@ -1,0 +1,1696 @@
+{
+  "generated_at": "2026-02-24T01:59:04.587270+00:00",
+  "target": ".",
+  "extensions": [
+    ".ts",
+    ".tsx"
+  ],
+  "scan_mode": "git-tracked-only",
+  "totals": {
+    "files_scanned": 99,
+    "by_classification": {
+      "LEGACY": 17,
+      "KCP-COMPLIANT": 0,
+      "HYBRID": 7,
+      "NONE": 75
+    }
+  },
+  "results": [
+    {
+      "file_path": "bun-playwright-poc/chthonic-crawler.ts",
+      "classification": "LEGACY",
+      "detected_fields": [
+        "artifact_name",
+        "cartouche_bottom",
+        "cartouche_top",
+        "legacy_architectural_role",
+        "legacy_envelope_purpose",
+        "legacy_spectral_frequency"
+      ],
+      "missing_fields": [
+        "spectrum",
+        "zone",
+        "sid",
+        "shabti",
+        "purpose"
+      ],
+      "dual_sid": false
+    },
+    {
+      "file_path": "bun-playwright-poc/example-buncdp.ts",
+      "classification": "LEGACY",
+      "detected_fields": [
+        "artifact_name",
+        "cartouche_bottom",
+        "cartouche_top",
+        "legacy_architectural_role",
+        "legacy_envelope_purpose",
+        "legacy_spectral_frequency"
+      ],
+      "missing_fields": [
+        "spectrum",
+        "zone",
+        "sid",
+        "shabti",
+        "purpose"
+      ],
+      "dual_sid": false
+    },
+    {
+      "file_path": "bun-playwright-poc/src/bun-cdp-element.ts",
+      "classification": "HYBRID",
+      "detected_fields": [
+        "artifact_name",
+        "cartouche_bottom",
+        "cartouche_top",
+        "legacy_architectural_role",
+        "legacy_envelope_exports",
+        "legacy_envelope_purpose",
+        "legacy_spectral_frequency",
+        "radiance"
+      ],
+      "missing_fields": [
+        "spectrum",
+        "zone",
+        "sid",
+        "shabti",
+        "purpose"
+      ],
+      "dual_sid": false
+    },
+    {
+      "file_path": "bun-playwright-poc/src/bun-cdp-frame.ts",
+      "classification": "HYBRID",
+      "detected_fields": [
+        "artifact_name",
+        "cartouche_bottom",
+        "cartouche_top",
+        "legacy_architectural_role",
+        "legacy_envelope_exports",
+        "legacy_envelope_purpose",
+        "legacy_spectral_frequency",
+        "radiance"
+      ],
+      "missing_fields": [
+        "spectrum",
+        "zone",
+        "sid",
+        "shabti",
+        "purpose"
+      ],
+      "dual_sid": false
+    },
+    {
+      "file_path": "bun-playwright-poc/src/bun-cdp-page.ts",
+      "classification": "HYBRID",
+      "detected_fields": [
+        "artifact_name",
+        "cartouche_bottom",
+        "cartouche_top",
+        "legacy_architectural_role",
+        "legacy_envelope_exports",
+        "legacy_envelope_purpose",
+        "legacy_spectral_frequency",
+        "radiance"
+      ],
+      "missing_fields": [
+        "spectrum",
+        "zone",
+        "sid",
+        "shabti",
+        "purpose"
+      ],
+      "dual_sid": false
+    },
+    {
+      "file_path": "bun-playwright-poc/src/bun-cdp.ts",
+      "classification": "LEGACY",
+      "detected_fields": [
+        "artifact_name",
+        "cartouche_bottom",
+        "cartouche_top",
+        "legacy_architectural_role",
+        "legacy_envelope_exports",
+        "legacy_envelope_purpose",
+        "legacy_spectral_frequency"
+      ],
+      "missing_fields": [
+        "spectrum",
+        "zone",
+        "sid",
+        "shabti",
+        "purpose"
+      ],
+      "dual_sid": false
+    },
+    {
+      "file_path": "bun-playwright-poc/src/index.ts",
+      "classification": "HYBRID",
+      "detected_fields": [
+        "artifact_name",
+        "cartouche_bottom",
+        "cartouche_top",
+        "legacy_architectural_role",
+        "legacy_envelope_purpose",
+        "legacy_spectral_frequency",
+        "radiance"
+      ],
+      "missing_fields": [
+        "spectrum",
+        "zone",
+        "sid",
+        "shabti",
+        "purpose"
+      ],
+      "dual_sid": false
+    },
+    {
+      "file_path": "bun-playwright-poc/test-interaction.ts",
+      "classification": "LEGACY",
+      "detected_fields": [
+        "artifact_name",
+        "cartouche_bottom",
+        "cartouche_top",
+        "legacy_architectural_role",
+        "legacy_envelope_purpose",
+        "legacy_spectral_frequency"
+      ],
+      "missing_fields": [
+        "spectrum",
+        "zone",
+        "sid",
+        "shabti",
+        "purpose"
+      ],
+      "dual_sid": false
+    },
+    {
+      "file_path": "docs/standards/templates/kcp_template.ts",
+      "classification": "HYBRID",
+      "detected_fields": [
+        "artifact_name",
+        "cartouche_bottom",
+        "cartouche_top",
+        "radiance",
+        "spectrum",
+        "zone"
+      ],
+      "missing_fields": [
+        "sid",
+        "shabti",
+        "purpose"
+      ],
+      "dual_sid": false
+    },
+    {
+      "file_path": "dumpster-dive/forge/extension-archaeology/diagnostics-tests/assets.test.ts",
+      "classification": "LEGACY",
+      "detected_fields": [
+        "artifact_name",
+        "cartouche_bottom",
+        "cartouche_top",
+        "legacy_architectural_role",
+        "legacy_spectral_frequency"
+      ],
+      "missing_fields": [
+        "spectrum",
+        "zone",
+        "sid",
+        "shabti",
+        "purpose"
+      ],
+      "dual_sid": false
+    },
+    {
+      "file_path": "dumpster-dive/forge/extension-archaeology/diagnostics-tests/bundle-size.test.ts",
+      "classification": "LEGACY",
+      "detected_fields": [
+        "artifact_name",
+        "cartouche_bottom",
+        "cartouche_top",
+        "legacy_architectural_role",
+        "legacy_spectral_frequency"
+      ],
+      "missing_fields": [
+        "spectrum",
+        "zone",
+        "sid",
+        "shabti",
+        "purpose"
+      ],
+      "dual_sid": false
+    },
+    {
+      "file_path": "dumpster-dive/forge/extension-archaeology/diagnostics-tests/deployment.test.ts",
+      "classification": "LEGACY",
+      "detected_fields": [
+        "artifact_name",
+        "cartouche_bottom",
+        "cartouche_top",
+        "legacy_architectural_role",
+        "legacy_spectral_frequency"
+      ],
+      "missing_fields": [
+        "spectrum",
+        "zone",
+        "sid",
+        "shabti",
+        "purpose"
+      ],
+      "dual_sid": false
+    },
+    {
+      "file_path": "dumpster-dive/forge/extension-archaeology/diagnostics-tests/gpu-parsing.test.ts",
+      "classification": "LEGACY",
+      "detected_fields": [
+        "artifact_name",
+        "cartouche_bottom",
+        "cartouche_top",
+        "legacy_architectural_role",
+        "legacy_spectral_frequency"
+      ],
+      "missing_fields": [
+        "spectrum",
+        "zone",
+        "sid",
+        "shabti",
+        "purpose"
+      ],
+      "dual_sid": false
+    },
+    {
+      "file_path": "dumpster-dive/forge/extension-archaeology/diagnostics-tests/package-config.test.ts",
+      "classification": "LEGACY",
+      "detected_fields": [
+        "artifact_name",
+        "cartouche_bottom",
+        "cartouche_top",
+        "legacy_architectural_role",
+        "legacy_spectral_frequency"
+      ],
+      "missing_fields": [
+        "spectrum",
+        "zone",
+        "sid",
+        "shabti",
+        "purpose"
+      ],
+      "dual_sid": false
+    },
+    {
+      "file_path": "dumpster-dive/forge/extension-archaeology/diagnostics-tests/python-detection.test.ts",
+      "classification": "LEGACY",
+      "detected_fields": [
+        "artifact_name",
+        "cartouche_bottom",
+        "cartouche_top",
+        "legacy_architectural_role",
+        "legacy_spectral_frequency"
+      ],
+      "missing_fields": [
+        "spectrum",
+        "zone",
+        "sid",
+        "shabti",
+        "purpose"
+      ],
+      "dual_sid": false
+    },
+    {
+      "file_path": "dumpster-dive/forge/extension-archaeology/diagnostics-tests/source-code.test.ts",
+      "classification": "LEGACY",
+      "detected_fields": [
+        "artifact_name",
+        "cartouche_bottom",
+        "cartouche_top",
+        "legacy_architectural_role",
+        "legacy_spectral_frequency"
+      ],
+      "missing_fields": [
+        "spectrum",
+        "zone",
+        "sid",
+        "shabti",
+        "purpose"
+      ],
+      "dual_sid": false
+    },
+    {
+      "file_path": "dumpster-dive/forge/extension-archaeology/doctor.ts",
+      "classification": "LEGACY",
+      "detected_fields": [
+        "artifact_name",
+        "cartouche_bottom",
+        "cartouche_top",
+        "legacy_architectural_role",
+        "legacy_envelope_purpose",
+        "legacy_spectral_frequency"
+      ],
+      "missing_fields": [
+        "spectrum",
+        "zone",
+        "sid",
+        "shabti",
+        "purpose"
+      ],
+      "dual_sid": false
+    },
+    {
+      "file_path": "dumpster-dive/forge/extension-archaeology/extracted/assistant_nonbun_patterns.ts",
+      "classification": "NONE",
+      "detected_fields": [],
+      "missing_fields": [
+        "cartouche_top",
+        "artifact_name",
+        "spectrum",
+        "zone",
+        "cartouche_bottom",
+        "sid",
+        "shabti",
+        "purpose"
+      ],
+      "dual_sid": false
+    },
+    {
+      "file_path": "dumpster-dive/forge/extension-archaeology/extracted/mandala_nonbun_patterns.ts",
+      "classification": "NONE",
+      "detected_fields": [],
+      "missing_fields": [
+        "cartouche_top",
+        "artifact_name",
+        "spectrum",
+        "zone",
+        "cartouche_bottom",
+        "sid",
+        "shabti",
+        "purpose"
+      ],
+      "dual_sid": false
+    },
+    {
+      "file_path": "dumpster-dive/forge/extension-archaeology/extracted/statusbar_nonbun_patterns.ts",
+      "classification": "NONE",
+      "detected_fields": [],
+      "missing_fields": [
+        "cartouche_top",
+        "artifact_name",
+        "spectrum",
+        "zone",
+        "cartouche_bottom",
+        "sid",
+        "shabti",
+        "purpose"
+      ],
+      "dual_sid": false
+    },
+    {
+      "file_path": "extensions/chthonic-archive/scripts/bootstrap-env.ts",
+      "classification": "NONE",
+      "detected_fields": [],
+      "missing_fields": [
+        "cartouche_top",
+        "artifact_name",
+        "spectrum",
+        "zone",
+        "cartouche_bottom",
+        "sid",
+        "shabti",
+        "purpose"
+      ],
+      "dual_sid": false
+    },
+    {
+      "file_path": "extensions/chthonic-archive/scripts/build-daemon.ts",
+      "classification": "NONE",
+      "detected_fields": [],
+      "missing_fields": [
+        "cartouche_top",
+        "artifact_name",
+        "spectrum",
+        "zone",
+        "cartouche_bottom",
+        "sid",
+        "shabti",
+        "purpose"
+      ],
+      "dual_sid": false
+    },
+    {
+      "file_path": "extensions/chthonic-archive/scripts/build-ledger.ts",
+      "classification": "NONE",
+      "detected_fields": [],
+      "missing_fields": [
+        "cartouche_top",
+        "artifact_name",
+        "spectrum",
+        "zone",
+        "cartouche_bottom",
+        "sid",
+        "shabti",
+        "purpose"
+      ],
+      "dual_sid": false
+    },
+    {
+      "file_path": "extensions/chthonic-archive/scripts/build-synapse.ts",
+      "classification": "NONE",
+      "detected_fields": [],
+      "missing_fields": [
+        "cartouche_top",
+        "artifact_name",
+        "spectrum",
+        "zone",
+        "cartouche_bottom",
+        "sid",
+        "shabti",
+        "purpose"
+      ],
+      "dual_sid": false
+    },
+    {
+      "file_path": "extensions/chthonic-archive/scripts/build-wasm.ts",
+      "classification": "NONE",
+      "detected_fields": [],
+      "missing_fields": [
+        "cartouche_top",
+        "artifact_name",
+        "spectrum",
+        "zone",
+        "cartouche_bottom",
+        "sid",
+        "shabti",
+        "purpose"
+      ],
+      "dual_sid": false
+    },
+    {
+      "file_path": "extensions/chthonic-archive/scripts/e2e-extension-host.ts",
+      "classification": "NONE",
+      "detected_fields": [],
+      "missing_fields": [
+        "cartouche_top",
+        "artifact_name",
+        "spectrum",
+        "zone",
+        "cartouche_bottom",
+        "sid",
+        "shabti",
+        "purpose"
+      ],
+      "dual_sid": false
+    },
+    {
+      "file_path": "extensions/chthonic-archive/scripts/insiders-post-restart-verify.ts",
+      "classification": "NONE",
+      "detected_fields": [],
+      "missing_fields": [
+        "cartouche_top",
+        "artifact_name",
+        "spectrum",
+        "zone",
+        "cartouche_bottom",
+        "sid",
+        "shabti",
+        "purpose"
+      ],
+      "dual_sid": false
+    },
+    {
+      "file_path": "extensions/chthonic-archive/scripts/setup-oxidized.ts",
+      "classification": "NONE",
+      "detected_fields": [],
+      "missing_fields": [
+        "cartouche_top",
+        "artifact_name",
+        "spectrum",
+        "zone",
+        "cartouche_bottom",
+        "sid",
+        "shabti",
+        "purpose"
+      ],
+      "dual_sid": false
+    },
+    {
+      "file_path": "extensions/chthonic-archive/scripts/toolpool-scan.ts",
+      "classification": "NONE",
+      "detected_fields": [],
+      "missing_fields": [
+        "cartouche_top",
+        "artifact_name",
+        "spectrum",
+        "zone",
+        "cartouche_bottom",
+        "sid",
+        "shabti",
+        "purpose"
+      ],
+      "dual_sid": false
+    },
+    {
+      "file_path": "extensions/chthonic-archive/scripts/verify-host.ts",
+      "classification": "NONE",
+      "detected_fields": [],
+      "missing_fields": [
+        "cartouche_top",
+        "artifact_name",
+        "spectrum",
+        "zone",
+        "cartouche_bottom",
+        "sid",
+        "shabti",
+        "purpose"
+      ],
+      "dual_sid": false
+    },
+    {
+      "file_path": "extensions/chthonic-archive/src/entropy/archiveAbyssalView.ts",
+      "classification": "NONE",
+      "detected_fields": [],
+      "missing_fields": [
+        "cartouche_top",
+        "artifact_name",
+        "spectrum",
+        "zone",
+        "cartouche_bottom",
+        "sid",
+        "shabti",
+        "purpose"
+      ],
+      "dual_sid": false
+    },
+    {
+      "file_path": "extensions/chthonic-archive/src/entropy/entropyDecorations.ts",
+      "classification": "NONE",
+      "detected_fields": [],
+      "missing_fields": [
+        "cartouche_top",
+        "artifact_name",
+        "spectrum",
+        "zone",
+        "cartouche_bottom",
+        "sid",
+        "shabti",
+        "purpose"
+      ],
+      "dual_sid": false
+    },
+    {
+      "file_path": "extensions/chthonic-archive/src/entropy/entropyWorker.ts",
+      "classification": "NONE",
+      "detected_fields": [],
+      "missing_fields": [
+        "cartouche_top",
+        "artifact_name",
+        "spectrum",
+        "zone",
+        "cartouche_bottom",
+        "sid",
+        "shabti",
+        "purpose"
+      ],
+      "dual_sid": false
+    },
+    {
+      "file_path": "extensions/chthonic-archive/src/entropy/entropyWorkerClient.ts",
+      "classification": "NONE",
+      "detected_fields": [],
+      "missing_fields": [
+        "cartouche_top",
+        "artifact_name",
+        "spectrum",
+        "zone",
+        "cartouche_bottom",
+        "sid",
+        "shabti",
+        "purpose"
+      ],
+      "dual_sid": false
+    },
+    {
+      "file_path": "extensions/chthonic-archive/src/entropy/types.ts",
+      "classification": "NONE",
+      "detected_fields": [],
+      "missing_fields": [
+        "cartouche_top",
+        "artifact_name",
+        "spectrum",
+        "zone",
+        "cartouche_bottom",
+        "sid",
+        "shabti",
+        "purpose"
+      ],
+      "dual_sid": false
+    },
+    {
+      "file_path": "extensions/chthonic-archive/src/extension.ts",
+      "classification": "NONE",
+      "detected_fields": [],
+      "missing_fields": [
+        "cartouche_top",
+        "artifact_name",
+        "spectrum",
+        "zone",
+        "cartouche_bottom",
+        "sid",
+        "shabti",
+        "purpose"
+      ],
+      "dual_sid": false
+    },
+    {
+      "file_path": "extensions/chthonic-archive/src/monolith/activityBarMorph.ts",
+      "classification": "NONE",
+      "detected_fields": [],
+      "missing_fields": [
+        "cartouche_top",
+        "artifact_name",
+        "spectrum",
+        "zone",
+        "cartouche_bottom",
+        "sid",
+        "shabti",
+        "purpose"
+      ],
+      "dual_sid": false
+    },
+    {
+      "file_path": "extensions/chthonic-archive/src/monolith/ankhReferenceView.ts",
+      "classification": "NONE",
+      "detected_fields": [],
+      "missing_fields": [
+        "cartouche_top",
+        "artifact_name",
+        "spectrum",
+        "zone",
+        "cartouche_bottom",
+        "sid",
+        "shabti",
+        "purpose"
+      ],
+      "dual_sid": false
+    },
+    {
+      "file_path": "extensions/chthonic-archive/src/monolith/deepFocusLayout.ts",
+      "classification": "NONE",
+      "detected_fields": [],
+      "missing_fields": [
+        "cartouche_top",
+        "artifact_name",
+        "spectrum",
+        "zone",
+        "cartouche_bottom",
+        "sid",
+        "shabti",
+        "purpose"
+      ],
+      "dual_sid": false
+    },
+    {
+      "file_path": "extensions/chthonic-archive/src/monolith/loomView.ts",
+      "classification": "NONE",
+      "detected_fields": [],
+      "missing_fields": [
+        "cartouche_top",
+        "artifact_name",
+        "spectrum",
+        "zone",
+        "cartouche_bottom",
+        "sid",
+        "shabti",
+        "purpose"
+      ],
+      "dual_sid": false
+    },
+    {
+      "file_path": "extensions/chthonic-archive/src/monolith/restoreOrderLayout.ts",
+      "classification": "NONE",
+      "detected_fields": [],
+      "missing_fields": [
+        "cartouche_top",
+        "artifact_name",
+        "spectrum",
+        "zone",
+        "cartouche_bottom",
+        "sid",
+        "shabti",
+        "purpose"
+      ],
+      "dual_sid": false
+    },
+    {
+      "file_path": "extensions/chthonic-archive/src/monolith/rustificationScore.ts",
+      "classification": "NONE",
+      "detected_fields": [],
+      "missing_fields": [
+        "cartouche_top",
+        "artifact_name",
+        "spectrum",
+        "zone",
+        "cartouche_bottom",
+        "sid",
+        "shabti",
+        "purpose"
+      ],
+      "dual_sid": false
+    },
+    {
+      "file_path": "extensions/chthonic-archive/src/monolith/selfHealingLoop.ts",
+      "classification": "NONE",
+      "detected_fields": [],
+      "missing_fields": [
+        "cartouche_top",
+        "artifact_name",
+        "spectrum",
+        "zone",
+        "cartouche_bottom",
+        "sid",
+        "shabti",
+        "purpose"
+      ],
+      "dual_sid": false
+    },
+    {
+      "file_path": "extensions/chthonic-archive/src/polyglot/jsonl.ts",
+      "classification": "NONE",
+      "detected_fields": [],
+      "missing_fields": [
+        "cartouche_top",
+        "artifact_name",
+        "spectrum",
+        "zone",
+        "cartouche_bottom",
+        "sid",
+        "shabti",
+        "purpose"
+      ],
+      "dual_sid": false
+    },
+    {
+      "file_path": "extensions/chthonic-archive/src/polyglot/ledgerBroker.ts",
+      "classification": "NONE",
+      "detected_fields": [],
+      "missing_fields": [
+        "cartouche_top",
+        "artifact_name",
+        "spectrum",
+        "zone",
+        "cartouche_bottom",
+        "sid",
+        "shabti",
+        "purpose"
+      ],
+      "dual_sid": false
+    },
+    {
+      "file_path": "extensions/chthonic-archive/src/polyglot/merkleAccumulator.ts",
+      "classification": "NONE",
+      "detected_fields": [],
+      "missing_fields": [
+        "cartouche_top",
+        "artifact_name",
+        "spectrum",
+        "zone",
+        "cartouche_bottom",
+        "sid",
+        "shabti",
+        "purpose"
+      ],
+      "dual_sid": false
+    },
+    {
+      "file_path": "extensions/chthonic-archive/src/polyglot/polyglotBroker.ts",
+      "classification": "NONE",
+      "detected_fields": [],
+      "missing_fields": [
+        "cartouche_top",
+        "artifact_name",
+        "spectrum",
+        "zone",
+        "cartouche_bottom",
+        "sid",
+        "shabti",
+        "purpose"
+      ],
+      "dual_sid": false
+    },
+    {
+      "file_path": "extensions/chthonic-archive/src/polyglot/polyglotEntropyOrchestrator.ts",
+      "classification": "NONE",
+      "detected_fields": [],
+      "missing_fields": [
+        "cartouche_top",
+        "artifact_name",
+        "spectrum",
+        "zone",
+        "cartouche_bottom",
+        "sid",
+        "shabti",
+        "purpose"
+      ],
+      "dual_sid": false
+    },
+    {
+      "file_path": "extensions/chthonic-archive/src/polyglot/solanaLedger.ts",
+      "classification": "NONE",
+      "detected_fields": [],
+      "missing_fields": [
+        "cartouche_top",
+        "artifact_name",
+        "spectrum",
+        "zone",
+        "cartouche_bottom",
+        "sid",
+        "shabti",
+        "purpose"
+      ],
+      "dual_sid": false
+    },
+    {
+      "file_path": "extensions/chthonic-archive/src/polyglot/types.ts",
+      "classification": "NONE",
+      "detected_fields": [],
+      "missing_fields": [
+        "cartouche_top",
+        "artifact_name",
+        "spectrum",
+        "zone",
+        "cartouche_bottom",
+        "sid",
+        "shabti",
+        "purpose"
+      ],
+      "dual_sid": false
+    },
+    {
+      "file_path": "extensions/chthonic-archive/src/reactor/annoClient.ts",
+      "classification": "NONE",
+      "detected_fields": [],
+      "missing_fields": [
+        "cartouche_top",
+        "artifact_name",
+        "spectrum",
+        "zone",
+        "cartouche_bottom",
+        "sid",
+        "shabti",
+        "purpose"
+      ],
+      "dual_sid": false
+    },
+    {
+      "file_path": "extensions/chthonic-archive/src/reactor/cockpitLayout.ts",
+      "classification": "NONE",
+      "detected_fields": [],
+      "missing_fields": [
+        "cartouche_top",
+        "artifact_name",
+        "spectrum",
+        "zone",
+        "cartouche_bottom",
+        "sid",
+        "shabti",
+        "purpose"
+      ],
+      "dual_sid": false
+    },
+    {
+      "file_path": "extensions/chthonic-archive/src/reactor/synapseBridge.ts",
+      "classification": "NONE",
+      "detected_fields": [],
+      "missing_fields": [
+        "cartouche_top",
+        "artifact_name",
+        "spectrum",
+        "zone",
+        "cartouche_bottom",
+        "sid",
+        "shabti",
+        "purpose"
+      ],
+      "dual_sid": false
+    },
+    {
+      "file_path": "extensions/chthonic-archive/src/reactor/types.ts",
+      "classification": "NONE",
+      "detected_fields": [],
+      "missing_fields": [
+        "cartouche_top",
+        "artifact_name",
+        "spectrum",
+        "zone",
+        "cartouche_bottom",
+        "sid",
+        "shabti",
+        "purpose"
+      ],
+      "dual_sid": false
+    },
+    {
+      "file_path": "extensions/chthonic-archive/vscode.d.ts",
+      "classification": "NONE",
+      "detected_fields": [],
+      "missing_fields": [
+        "cartouche_top",
+        "artifact_name",
+        "spectrum",
+        "zone",
+        "cartouche_bottom",
+        "sid",
+        "shabti",
+        "purpose"
+      ],
+      "dual_sid": false
+    },
+    {
+      "file_path": "extensions/chthonic-mandala/src/extension.ts",
+      "classification": "NONE",
+      "detected_fields": [],
+      "missing_fields": [
+        "cartouche_top",
+        "artifact_name",
+        "spectrum",
+        "zone",
+        "cartouche_bottom",
+        "sid",
+        "shabti",
+        "purpose"
+      ],
+      "dual_sid": false
+    },
+    {
+      "file_path": "extensions/chthonic-mandala/src/mandala_viewer_legacy.ts",
+      "classification": "HYBRID",
+      "detected_fields": [
+        "cartouche_bottom",
+        "cartouche_top"
+      ],
+      "missing_fields": [
+        "artifact_name",
+        "spectrum",
+        "zone",
+        "sid",
+        "shabti",
+        "purpose"
+      ],
+      "dual_sid": false
+    },
+    {
+      "file_path": "extensions/chthonic-mandala/vscode.d.ts",
+      "classification": "NONE",
+      "detected_fields": [],
+      "missing_fields": [
+        "cartouche_top",
+        "artifact_name",
+        "spectrum",
+        "zone",
+        "cartouche_bottom",
+        "sid",
+        "shabti",
+        "purpose"
+      ],
+      "dual_sid": false
+    },
+    {
+      "file_path": "extensions/chthonic-statusbar/src/extension.ts",
+      "classification": "NONE",
+      "detected_fields": [],
+      "missing_fields": [
+        "cartouche_top",
+        "artifact_name",
+        "spectrum",
+        "zone",
+        "cartouche_bottom",
+        "sid",
+        "shabti",
+        "purpose"
+      ],
+      "dual_sid": false
+    },
+    {
+      "file_path": "extensions/chthonic-statusbar/src/hedonisticValidation.ts",
+      "classification": "LEGACY",
+      "detected_fields": [
+        "artifact_name",
+        "cartouche_bottom",
+        "cartouche_top",
+        "legacy_architectural_role",
+        "legacy_envelope_exports",
+        "legacy_spectral_frequency"
+      ],
+      "missing_fields": [
+        "spectrum",
+        "zone",
+        "sid",
+        "shabti",
+        "purpose"
+      ],
+      "dual_sid": false
+    },
+    {
+      "file_path": "extensions/chthonic-statusbar/src/statusbar_runtime_legacy.ts",
+      "classification": "LEGACY",
+      "detected_fields": [
+        "artifact_name",
+        "cartouche_bottom",
+        "cartouche_top",
+        "legacy_architectural_role",
+        "legacy_envelope_exports",
+        "legacy_spectral_frequency"
+      ],
+      "missing_fields": [
+        "spectrum",
+        "zone",
+        "sid",
+        "shabti",
+        "purpose"
+      ],
+      "dual_sid": false
+    },
+    {
+      "file_path": "extensions/chthonic-statusbar/vscode.d.ts",
+      "classification": "NONE",
+      "detected_fields": [],
+      "missing_fields": [
+        "cartouche_top",
+        "artifact_name",
+        "spectrum",
+        "zone",
+        "cartouche_bottom",
+        "sid",
+        "shabti",
+        "purpose"
+      ],
+      "dual_sid": false
+    },
+    {
+      "file_path": "extensions/spec-enforcer/src/index.ts",
+      "classification": "NONE",
+      "detected_fields": [],
+      "missing_fields": [
+        "cartouche_top",
+        "artifact_name",
+        "spectrum",
+        "zone",
+        "cartouche_bottom",
+        "sid",
+        "shabti",
+        "purpose"
+      ],
+      "dual_sid": false
+    },
+    {
+      "file_path": "mas_mcp/frontend/api/routes.ts",
+      "classification": "NONE",
+      "detected_fields": [],
+      "missing_fields": [
+        "cartouche_top",
+        "artifact_name",
+        "spectrum",
+        "zone",
+        "cartouche_bottom",
+        "sid",
+        "shabti",
+        "purpose"
+      ],
+      "dual_sid": false
+    },
+    {
+      "file_path": "mas_mcp/frontend/components/AcceptanceChart.tsx",
+      "classification": "NONE",
+      "detected_fields": [],
+      "missing_fields": [
+        "cartouche_top",
+        "artifact_name",
+        "spectrum",
+        "zone",
+        "cartouche_bottom",
+        "sid",
+        "shabti",
+        "purpose"
+      ],
+      "dual_sid": false
+    },
+    {
+      "file_path": "mas_mcp/frontend/components/CycleTable.tsx",
+      "classification": "NONE",
+      "detected_fields": [],
+      "missing_fields": [
+        "cartouche_top",
+        "artifact_name",
+        "spectrum",
+        "zone",
+        "cartouche_bottom",
+        "sid",
+        "shabti",
+        "purpose"
+      ],
+      "dual_sid": false
+    },
+    {
+      "file_path": "mas_mcp/frontend/components/EntityCard.tsx",
+      "classification": "NONE",
+      "detected_fields": [],
+      "missing_fields": [
+        "cartouche_top",
+        "artifact_name",
+        "spectrum",
+        "zone",
+        "cartouche_bottom",
+        "sid",
+        "shabti",
+        "purpose"
+      ],
+      "dual_sid": false
+    },
+    {
+      "file_path": "mas_mcp/frontend/components/LatencyChart.tsx",
+      "classification": "NONE",
+      "detected_fields": [],
+      "missing_fields": [
+        "cartouche_top",
+        "artifact_name",
+        "spectrum",
+        "zone",
+        "cartouche_bottom",
+        "sid",
+        "shabti",
+        "purpose"
+      ],
+      "dual_sid": false
+    },
+    {
+      "file_path": "mas_mcp/frontend/components/MonitoringCard.tsx",
+      "classification": "NONE",
+      "detected_fields": [],
+      "missing_fields": [
+        "cartouche_top",
+        "artifact_name",
+        "spectrum",
+        "zone",
+        "cartouche_bottom",
+        "sid",
+        "shabti",
+        "purpose"
+      ],
+      "dual_sid": false
+    },
+    {
+      "file_path": "mas_mcp/frontend/components/QualityTrendChart.tsx",
+      "classification": "NONE",
+      "detected_fields": [],
+      "missing_fields": [
+        "cartouche_top",
+        "artifact_name",
+        "spectrum",
+        "zone",
+        "cartouche_bottom",
+        "sid",
+        "shabti",
+        "purpose"
+      ],
+      "dual_sid": false
+    },
+    {
+      "file_path": "mas_mcp/frontend/components/StatCard.tsx",
+      "classification": "NONE",
+      "detected_fields": [],
+      "missing_fields": [
+        "cartouche_top",
+        "artifact_name",
+        "spectrum",
+        "zone",
+        "cartouche_bottom",
+        "sid",
+        "shabti",
+        "purpose"
+      ],
+      "dual_sid": false
+    },
+    {
+      "file_path": "mas_mcp/frontend/lib/activator.ts",
+      "classification": "NONE",
+      "detected_fields": [],
+      "missing_fields": [
+        "cartouche_top",
+        "artifact_name",
+        "spectrum",
+        "zone",
+        "cartouche_bottom",
+        "sid",
+        "shabti",
+        "purpose"
+      ],
+      "dual_sid": false
+    },
+    {
+      "file_path": "mas_mcp/frontend/lib/artifacts.ts",
+      "classification": "NONE",
+      "detected_fields": [],
+      "missing_fields": [
+        "cartouche_top",
+        "artifact_name",
+        "spectrum",
+        "zone",
+        "cartouche_bottom",
+        "sid",
+        "shabti",
+        "purpose"
+      ],
+      "dual_sid": false
+    },
+    {
+      "file_path": "mas_mcp/frontend/lib/config.ts",
+      "classification": "NONE",
+      "detected_fields": [],
+      "missing_fields": [
+        "cartouche_top",
+        "artifact_name",
+        "spectrum",
+        "zone",
+        "cartouche_bottom",
+        "sid",
+        "shabti",
+        "purpose"
+      ],
+      "dual_sid": false
+    },
+    {
+      "file_path": "mas_mcp/frontend/lib/index.ts",
+      "classification": "NONE",
+      "detected_fields": [],
+      "missing_fields": [
+        "cartouche_top",
+        "artifact_name",
+        "spectrum",
+        "zone",
+        "cartouche_bottom",
+        "sid",
+        "shabti",
+        "purpose"
+      ],
+      "dual_sid": false
+    },
+    {
+      "file_path": "mas_mcp/frontend/lib/ssot.ts",
+      "classification": "NONE",
+      "detected_fields": [],
+      "missing_fields": [
+        "cartouche_top",
+        "artifact_name",
+        "spectrum",
+        "zone",
+        "cartouche_bottom",
+        "sid",
+        "shabti",
+        "purpose"
+      ],
+      "dual_sid": false
+    },
+    {
+      "file_path": "mas_mcp/frontend/lib/types.ts",
+      "classification": "NONE",
+      "detected_fields": [],
+      "missing_fields": [
+        "cartouche_top",
+        "artifact_name",
+        "spectrum",
+        "zone",
+        "cartouche_bottom",
+        "sid",
+        "shabti",
+        "purpose"
+      ],
+      "dual_sid": false
+    },
+    {
+      "file_path": "mas_mcp/frontend/next-env.d.ts",
+      "classification": "NONE",
+      "detected_fields": [],
+      "missing_fields": [
+        "cartouche_top",
+        "artifact_name",
+        "spectrum",
+        "zone",
+        "cartouche_bottom",
+        "sid",
+        "shabti",
+        "purpose"
+      ],
+      "dual_sid": false
+    },
+    {
+      "file_path": "mas_mcp/frontend/pages/_app.tsx",
+      "classification": "NONE",
+      "detected_fields": [],
+      "missing_fields": [
+        "cartouche_top",
+        "artifact_name",
+        "spectrum",
+        "zone",
+        "cartouche_bottom",
+        "sid",
+        "shabti",
+        "purpose"
+      ],
+      "dual_sid": false
+    },
+    {
+      "file_path": "mas_mcp/frontend/pages/_document.tsx",
+      "classification": "NONE",
+      "detected_fields": [],
+      "missing_fields": [
+        "cartouche_top",
+        "artifact_name",
+        "spectrum",
+        "zone",
+        "cartouche_bottom",
+        "sid",
+        "shabti",
+        "purpose"
+      ],
+      "dual_sid": false
+    },
+    {
+      "file_path": "mas_mcp/frontend/pages/_error.tsx",
+      "classification": "NONE",
+      "detected_fields": [],
+      "missing_fields": [
+        "cartouche_top",
+        "artifact_name",
+        "spectrum",
+        "zone",
+        "cartouche_bottom",
+        "sid",
+        "shabti",
+        "purpose"
+      ],
+      "dual_sid": false
+    },
+    {
+      "file_path": "mas_mcp/frontend/pages/api/cycles.ts",
+      "classification": "NONE",
+      "detected_fields": [],
+      "missing_fields": [
+        "cartouche_top",
+        "artifact_name",
+        "spectrum",
+        "zone",
+        "cartouche_bottom",
+        "sid",
+        "shabti",
+        "purpose"
+      ],
+      "dual_sid": false
+    },
+    {
+      "file_path": "mas_mcp/frontend/pages/api/digest.ts",
+      "classification": "NONE",
+      "detected_fields": [],
+      "missing_fields": [
+        "cartouche_top",
+        "artifact_name",
+        "spectrum",
+        "zone",
+        "cartouche_bottom",
+        "sid",
+        "shabti",
+        "purpose"
+      ],
+      "dual_sid": false
+    },
+    {
+      "file_path": "mas_mcp/frontend/pages/api/entities.ts",
+      "classification": "NONE",
+      "detected_fields": [],
+      "missing_fields": [
+        "cartouche_top",
+        "artifact_name",
+        "spectrum",
+        "zone",
+        "cartouche_bottom",
+        "sid",
+        "shabti",
+        "purpose"
+      ],
+      "dual_sid": false
+    },
+    {
+      "file_path": "mas_mcp/frontend/pages/api/metrics/history.ts",
+      "classification": "NONE",
+      "detected_fields": [],
+      "missing_fields": [
+        "cartouche_top",
+        "artifact_name",
+        "spectrum",
+        "zone",
+        "cartouche_bottom",
+        "sid",
+        "shabti",
+        "purpose"
+      ],
+      "dual_sid": false
+    },
+    {
+      "file_path": "mas_mcp/frontend/pages/api/metrics/index.ts",
+      "classification": "NONE",
+      "detected_fields": [],
+      "missing_fields": [
+        "cartouche_top",
+        "artifact_name",
+        "spectrum",
+        "zone",
+        "cartouche_bottom",
+        "sid",
+        "shabti",
+        "purpose"
+      ],
+      "dual_sid": false
+    },
+    {
+      "file_path": "mas_mcp/frontend/pages/api/monitoring.ts",
+      "classification": "NONE",
+      "detected_fields": [],
+      "missing_fields": [
+        "cartouche_top",
+        "artifact_name",
+        "spectrum",
+        "zone",
+        "cartouche_bottom",
+        "sid",
+        "shabti",
+        "purpose"
+      ],
+      "dual_sid": false
+    },
+    {
+      "file_path": "mas_mcp/frontend/pages/api/ssot.ts",
+      "classification": "NONE",
+      "detected_fields": [],
+      "missing_fields": [
+        "cartouche_top",
+        "artifact_name",
+        "spectrum",
+        "zone",
+        "cartouche_bottom",
+        "sid",
+        "shabti",
+        "purpose"
+      ],
+      "dual_sid": false
+    },
+    {
+      "file_path": "mas_mcp/frontend/pages/cycles.tsx",
+      "classification": "NONE",
+      "detected_fields": [],
+      "missing_fields": [
+        "cartouche_top",
+        "artifact_name",
+        "spectrum",
+        "zone",
+        "cartouche_bottom",
+        "sid",
+        "shabti",
+        "purpose"
+      ],
+      "dual_sid": false
+    },
+    {
+      "file_path": "mas_mcp/frontend/pages/digest.tsx",
+      "classification": "NONE",
+      "detected_fields": [],
+      "missing_fields": [
+        "cartouche_top",
+        "artifact_name",
+        "spectrum",
+        "zone",
+        "cartouche_bottom",
+        "sid",
+        "shabti",
+        "purpose"
+      ],
+      "dual_sid": false
+    },
+    {
+      "file_path": "mas_mcp/frontend/pages/entities.tsx",
+      "classification": "NONE",
+      "detected_fields": [],
+      "missing_fields": [
+        "cartouche_top",
+        "artifact_name",
+        "spectrum",
+        "zone",
+        "cartouche_bottom",
+        "sid",
+        "shabti",
+        "purpose"
+      ],
+      "dual_sid": false
+    },
+    {
+      "file_path": "mas_mcp/frontend/pages/index.tsx",
+      "classification": "NONE",
+      "detected_fields": [],
+      "missing_fields": [
+        "cartouche_top",
+        "artifact_name",
+        "spectrum",
+        "zone",
+        "cartouche_bottom",
+        "sid",
+        "shabti",
+        "purpose"
+      ],
+      "dual_sid": false
+    },
+    {
+      "file_path": "mas_mcp/frontend/server.ts",
+      "classification": "NONE",
+      "detected_fields": [],
+      "missing_fields": [
+        "cartouche_top",
+        "artifact_name",
+        "spectrum",
+        "zone",
+        "cartouche_bottom",
+        "sid",
+        "shabti",
+        "purpose"
+      ],
+      "dual_sid": false
+    },
+    {
+      "file_path": "scripts/hf-model-ranker.ts",
+      "classification": "NONE",
+      "detected_fields": [],
+      "missing_fields": [
+        "cartouche_top",
+        "artifact_name",
+        "spectrum",
+        "zone",
+        "cartouche_bottom",
+        "sid",
+        "shabti",
+        "purpose"
+      ],
+      "dual_sid": false
+    },
+    {
+      "file_path": "scripts/mcp-chthonic-server.ts",
+      "classification": "LEGACY",
+      "detected_fields": [
+        "artifact_name",
+        "cartouche_bottom",
+        "cartouche_top",
+        "legacy_architectural_role",
+        "legacy_spectral_frequency",
+        "sid"
+      ],
+      "missing_fields": [
+        "spectrum",
+        "zone",
+        "shabti",
+        "purpose"
+      ],
+      "dual_sid": false
+    },
+    {
+      "file_path": "scripts/overnight_daemon.ts",
+      "classification": "HYBRID",
+      "detected_fields": [
+        "artifact_name",
+        "cartouche_bottom",
+        "cartouche_top",
+        "legacy_architectural_role",
+        "legacy_envelope_purpose",
+        "legacy_spectral_frequency",
+        "radiance"
+      ],
+      "missing_fields": [
+        "spectrum",
+        "zone",
+        "sid",
+        "shabti",
+        "purpose"
+      ],
+      "dual_sid": false
+    },
+    {
+      "file_path": "scripts/run_mcp_validation.ts",
+      "classification": "LEGACY",
+      "detected_fields": [
+        "artifact_name",
+        "cartouche_bottom",
+        "cartouche_top",
+        "legacy_architectural_role",
+        "legacy_envelope_purpose",
+        "legacy_spectral_frequency"
+      ],
+      "missing_fields": [
+        "spectrum",
+        "zone",
+        "sid",
+        "shabti",
+        "purpose"
+      ],
+      "dual_sid": false
+    },
+    {
+      "file_path": "scripts/sentry_init.ts",
+      "classification": "LEGACY",
+      "detected_fields": [
+        "artifact_name",
+        "cartouche_bottom",
+        "cartouche_top",
+        "legacy_architectural_role",
+        "legacy_envelope_exports",
+        "legacy_spectral_frequency"
+      ],
+      "missing_fields": [
+        "spectrum",
+        "zone",
+        "sid",
+        "shabti",
+        "purpose"
+      ],
+      "dual_sid": false
+    },
+    {
+      "file_path": "scripts/vscode-art-cop.ts",
+      "classification": "NONE",
+      "detected_fields": [],
+      "missing_fields": [
+        "cartouche_top",
+        "artifact_name",
+        "spectrum",
+        "zone",
+        "cartouche_bottom",
+        "sid",
+        "shabti",
+        "purpose"
+      ],
+      "dual_sid": false
+    }
+  ]
+}

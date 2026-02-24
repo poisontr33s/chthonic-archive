@@ -220,7 +220,7 @@ The KCP divides metadata into two ontologically distinct layers:
 | KCP-0.0 | Protocol Ontology Spec | 100% legacy fields mapped, 0 data loss | ✅ |
 | KCP-1.0 | Architecture Ratification | Approach C locked, rejections documented | ✅ |
 | KCP-2.0 | Template Canonization | 4 language templates pass native parser | ✅ DONE |
-| KCP-3.0 | Python Consolidation | 0 duplicate @SIDs in 120 .py files | ⬜ |
+| KCP-3.0 | Python Consolidation | 0 duplicate @SIDs in 97 .py files (audit: 11L/2K/11H/73N) | ⬜ NEXT |
 | KCP-4.0 | TypeScript Injection | `bun run compile` clean with JSDoc @tags | ⬜ |
 | KCP-5.0 | PowerShell Encapsulation | `Get-Help` returns synopsis for 82 scripts | ⬜ |
 | KCP-6.0 | Rust Alignment | `cargo doc --no-deps` clean for 15 files | ⬜ |

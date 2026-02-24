@@ -22,6 +22,7 @@ All 4 canonical templates created and parser-validated:
 ## Delegation Tasks for Codex .5.3
 
 ### TASK 1: KCP-3.0 — Python Consolidation (Pre-Scan)
+- [x] **Status:** COMPLETED (validated on 2026-02-24)
 - **Objective:** Audit all ~120 `.py` files for dual `@SID` instances (one in Cartouche envelope `║ Semantic ID:`, one in docstring `@SID:`)
 - **Action:** Generate a manifest listing every `.py` file with its current header state:
   - `LEGACY` — old STD_V2 envelope, PMS-v3 docstring
@@ -30,31 +31,40 @@ All 4 canonical templates created and parser-validated:
   - `NONE` — no header at all
 - **Output:** `codex/mailbox/KCP_3_0_PYTHON_AUDIT.json` with per-file classification
 - **Gate:** Zero files classified as UNKNOWN
+- [x] **Verification:** `files_scanned=97`, `unknown=0`, `dual_sid=1`
 
 ### TASK 2: KCP-4.0 — TypeScript Census
+- [x] **Status:** COMPLETED (validated on 2026-02-24)
 - **Objective:** Audit all ~62 `.ts/.tsx` files for existing header state
 - **Action:** Same classification as TASK 1 (LEGACY/KCP-COMPLIANT/HYBRID/NONE)
 - **Output:** `codex/mailbox/KCP_4_0_TYPESCRIPT_AUDIT.json`
 - **Gate:** Zero files classified as UNKNOWN
+- [x] **Verification:** `files_scanned=99`, `unknown=0`
 
 ### TASK 3: KCP-5.0 — PowerShell Census
+- [x] **Status:** COMPLETED (validated on 2026-02-24)
 - **Objective:** Audit all ~82 `.ps1` files for existing header state
 - **Action:** Same classification as TASK 1
 - **Output:** `codex/mailbox/KCP_5_0_POWERSHELL_AUDIT.json`
 - **Gate:** Zero files classified as UNKNOWN
+- [x] **Verification:** `files_scanned=54`, `unknown=0`
 
 ### TASK 4: KCP-6.0 — Rust Census
+- [x] **Status:** COMPLETED (validated on 2026-02-24)
 - **Objective:** Audit all ~15 `.rs` files for existing header state
 - **Action:** Same classification as TASK 1
 - **Output:** `codex/mailbox/KCP_6_0_RUST_AUDIT.json`
 - **Gate:** Zero files classified as UNKNOWN
+- [x] **Verification:** `files_scanned=33`, `unknown=0`
 
 ### TASK 5: Regex Validation Tool
+- [x] **Status:** COMPLETED (validated on 2026-02-24)
 - **Objective:** Build a standalone validation script using the regex patterns from `KCP_PROTOCOL_ONTOLOGY.md` §8 that can classify any file's header state
 - **Action:** Create `scripts/kcp_header_classifier.py` using the canonical regex patterns (§8.1 Cartouche detection, §8.2 Khipu tag extraction, §8.3 Legacy detection)
 - **Input:** File path or directory
 - **Output:** JSON report with per-file classification
 - **Gate:** Script passes `uv run python scripts/kcp_header_classifier.py --selftest`
+- [x] **Verification:** `scripts/kcp_header_classifier.py` implemented; selftest gate returns `selftest: OK`
 
 ## Priority
 - TASK 5 first (the classifier tool), then TASKS 1-4 use it

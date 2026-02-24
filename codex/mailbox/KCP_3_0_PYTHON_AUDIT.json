@@ -1,0 +1,1650 @@
+{
+  "generated_at": "2026-02-24T01:59:04.577237+00:00",
+  "target": ".",
+  "extensions": [
+    ".py"
+  ],
+  "scan_mode": "git-tracked-only",
+  "totals": {
+    "files_scanned": 97,
+    "by_classification": {
+      "LEGACY": 11,
+      "KCP-COMPLIANT": 2,
+      "HYBRID": 11,
+      "NONE": 73
+    }
+  },
+  "results": [
+    {
+      "file_path": ".github/prompts/saveprompt_algorithm.py",
+      "classification": "NONE",
+      "detected_fields": [],
+      "missing_fields": [
+        "cartouche_top",
+        "artifact_name",
+        "spectrum",
+        "zone",
+        "cartouche_bottom",
+        "sid",
+        "shabti",
+        "purpose"
+      ],
+      "dual_sid": false
+    },
+    {
+      "file_path": "codex/codex-session-logs/archive/default-session-code-gemini.py",
+      "classification": "NONE",
+      "detected_fields": [],
+      "missing_fields": [
+        "cartouche_top",
+        "artifact_name",
+        "spectrum",
+        "zone",
+        "cartouche_bottom",
+        "sid",
+        "shabti",
+        "purpose"
+      ],
+      "dual_sid": false
+    },
+    {
+      "file_path": "docs/standards/templates/kcp_template.py",
+      "classification": "KCP-COMPLIANT",
+      "detected_fields": [
+        "ankh_tinku",
+        "artifact_name",
+        "cartouche_bottom",
+        "cartouche_top",
+        "heka_ayni",
+        "purpose",
+        "radiance",
+        "shabti",
+        "sid",
+        "spectrum",
+        "zone"
+      ],
+      "missing_fields": [],
+      "dual_sid": false
+    },
+    {
+      "file_path": "dumpster-dive/forge/extension-archaeology/deprecated/milf_genesis_v1_deprecated.py",
+      "classification": "NONE",
+      "detected_fields": [],
+      "missing_fields": [
+        "cartouche_top",
+        "artifact_name",
+        "spectrum",
+        "zone",
+        "cartouche_bottom",
+        "sid",
+        "shabti",
+        "purpose"
+      ],
+      "dual_sid": false
+    },
+    {
+      "file_path": "dumpster-dive/intake/pr-harvest-2026-01-29/tier-1-direct/ssot_hash.py",
+      "classification": "NONE",
+      "detected_fields": [],
+      "missing_fields": [
+        "cartouche_top",
+        "artifact_name",
+        "spectrum",
+        "zone",
+        "cartouche_bottom",
+        "sid",
+        "shabti",
+        "purpose"
+      ],
+      "dual_sid": false
+    },
+    {
+      "file_path": "dumpster-dive/scripts/audit_deploy_integrity.py",
+      "classification": "NONE",
+      "detected_fields": [],
+      "missing_fields": [
+        "cartouche_top",
+        "artifact_name",
+        "spectrum",
+        "zone",
+        "cartouche_bottom",
+        "sid",
+        "shabti",
+        "purpose"
+      ],
+      "dual_sid": false
+    },
+    {
+      "file_path": "dumpster-dive/scripts/check_ssot_drift.py",
+      "classification": "NONE",
+      "detected_fields": [],
+      "missing_fields": [
+        "cartouche_top",
+        "artifact_name",
+        "spectrum",
+        "zone",
+        "cartouche_bottom",
+        "sid",
+        "shabti",
+        "purpose"
+      ],
+      "dual_sid": false
+    },
+    {
+      "file_path": "dumpster-dive/scripts/deploy_timeline_a.py",
+      "classification": "NONE",
+      "detected_fields": [],
+      "missing_fields": [
+        "cartouche_top",
+        "artifact_name",
+        "spectrum",
+        "zone",
+        "cartouche_bottom",
+        "sid",
+        "shabti",
+        "purpose"
+      ],
+      "dual_sid": false
+    },
+    {
+      "file_path": "dumpster-dive/scripts/embed_ssot_lineage.py",
+      "classification": "NONE",
+      "detected_fields": [],
+      "missing_fields": [
+        "cartouche_top",
+        "artifact_name",
+        "spectrum",
+        "zone",
+        "cartouche_bottom",
+        "sid",
+        "shabti",
+        "purpose"
+      ],
+      "dual_sid": false
+    },
+    {
+      "file_path": "dumpster-dive/scripts/generate_registry_identifiers.py",
+      "classification": "NONE",
+      "detected_fields": [],
+      "missing_fields": [
+        "cartouche_top",
+        "artifact_name",
+        "spectrum",
+        "zone",
+        "cartouche_bottom",
+        "sid",
+        "shabti",
+        "purpose"
+      ],
+      "dual_sid": false
+    },
+    {
+      "file_path": "extensions/chthonic-archive/.chthonic/python/entropy_scan.py",
+      "classification": "NONE",
+      "detected_fields": [],
+      "missing_fields": [
+        "cartouche_top",
+        "artifact_name",
+        "spectrum",
+        "zone",
+        "cartouche_bottom",
+        "sid",
+        "shabti",
+        "purpose"
+      ],
+      "dual_sid": false
+    },
+    {
+      "file_path": "extensions/reflex-guard/.chthonic/reflex_guard.py",
+      "classification": "NONE",
+      "detected_fields": [],
+      "missing_fields": [
+        "cartouche_top",
+        "artifact_name",
+        "spectrum",
+        "zone",
+        "cartouche_bottom",
+        "sid",
+        "shabti",
+        "purpose"
+      ],
+      "dual_sid": false
+    },
+    {
+      "file_path": "mas_mcp/__init__.py",
+      "classification": "NONE",
+      "detected_fields": [],
+      "missing_fields": [
+        "cartouche_top",
+        "artifact_name",
+        "spectrum",
+        "zone",
+        "cartouche_bottom",
+        "sid",
+        "shabti",
+        "purpose"
+      ],
+      "dual_sid": false
+    },
+    {
+      "file_path": "mas_mcp/__main__.py",
+      "classification": "NONE",
+      "detected_fields": [],
+      "missing_fields": [
+        "cartouche_top",
+        "artifact_name",
+        "spectrum",
+        "zone",
+        "cartouche_bottom",
+        "sid",
+        "shabti",
+        "purpose"
+      ],
+      "dual_sid": false
+    },
+    {
+      "file_path": "mas_mcp/abbreviation_system/__init__.py",
+      "classification": "NONE",
+      "detected_fields": [],
+      "missing_fields": [
+        "cartouche_top",
+        "artifact_name",
+        "spectrum",
+        "zone",
+        "cartouche_bottom",
+        "sid",
+        "shabti",
+        "purpose"
+      ],
+      "dual_sid": false
+    },
+    {
+      "file_path": "mas_mcp/abbreviation_system/cli.py",
+      "classification": "NONE",
+      "detected_fields": [],
+      "missing_fields": [
+        "cartouche_top",
+        "artifact_name",
+        "spectrum",
+        "zone",
+        "cartouche_bottom",
+        "sid",
+        "shabti",
+        "purpose"
+      ],
+      "dual_sid": false
+    },
+    {
+      "file_path": "mas_mcp/abbreviation_system/generator.py",
+      "classification": "NONE",
+      "detected_fields": [],
+      "missing_fields": [
+        "cartouche_top",
+        "artifact_name",
+        "spectrum",
+        "zone",
+        "cartouche_bottom",
+        "sid",
+        "shabti",
+        "purpose"
+      ],
+      "dual_sid": false
+    },
+    {
+      "file_path": "mas_mcp/abbreviation_system/models.py",
+      "classification": "NONE",
+      "detected_fields": [],
+      "missing_fields": [
+        "cartouche_top",
+        "artifact_name",
+        "spectrum",
+        "zone",
+        "cartouche_bottom",
+        "sid",
+        "shabti",
+        "purpose"
+      ],
+      "dual_sid": false
+    },
+    {
+      "file_path": "mas_mcp/abbreviation_system/parser.py",
+      "classification": "NONE",
+      "detected_fields": [],
+      "missing_fields": [
+        "cartouche_top",
+        "artifact_name",
+        "spectrum",
+        "zone",
+        "cartouche_bottom",
+        "sid",
+        "shabti",
+        "purpose"
+      ],
+      "dual_sid": false
+    },
+    {
+      "file_path": "mas_mcp/abbreviation_system/registry.py",
+      "classification": "NONE",
+      "detected_fields": [],
+      "missing_fields": [
+        "cartouche_top",
+        "artifact_name",
+        "spectrum",
+        "zone",
+        "cartouche_bottom",
+        "sid",
+        "shabti",
+        "purpose"
+      ],
+      "dual_sid": false
+    },
+    {
+      "file_path": "mas_mcp/abbreviation_system/reporter.py",
+      "classification": "NONE",
+      "detected_fields": [],
+      "missing_fields": [
+        "cartouche_top",
+        "artifact_name",
+        "spectrum",
+        "zone",
+        "cartouche_bottom",
+        "sid",
+        "shabti",
+        "purpose"
+      ],
+      "dual_sid": false
+    },
+    {
+      "file_path": "mas_mcp/abbreviation_system/validator.py",
+      "classification": "NONE",
+      "detected_fields": [],
+      "missing_fields": [
+        "cartouche_top",
+        "artifact_name",
+        "spectrum",
+        "zone",
+        "cartouche_bottom",
+        "sid",
+        "shabti",
+        "purpose"
+      ],
+      "dual_sid": false
+    },
+    {
+      "file_path": "mas_mcp/async_core.py",
+      "classification": "NONE",
+      "detected_fields": [],
+      "missing_fields": [
+        "cartouche_top",
+        "artifact_name",
+        "spectrum",
+        "zone",
+        "cartouche_bottom",
+        "sid",
+        "shabti",
+        "purpose"
+      ],
+      "dual_sid": false
+    },
+    {
+      "file_path": "mas_mcp/bench_safe.py",
+      "classification": "NONE",
+      "detected_fields": [],
+      "missing_fields": [
+        "cartouche_top",
+        "artifact_name",
+        "spectrum",
+        "zone",
+        "cartouche_bottom",
+        "sid",
+        "shabti",
+        "purpose"
+      ],
+      "dual_sid": false
+    },
+    {
+      "file_path": "mas_mcp/benchmark_gpu.py",
+      "classification": "NONE",
+      "detected_fields": [],
+      "missing_fields": [
+        "cartouche_top",
+        "artifact_name",
+        "spectrum",
+        "zone",
+        "cartouche_bottom",
+        "sid",
+        "shabti",
+        "purpose"
+      ],
+      "dual_sid": false
+    },
+    {
+      "file_path": "mas_mcp/benchmark_gpu_vs_cpu.py",
+      "classification": "NONE",
+      "detected_fields": [],
+      "missing_fields": [
+        "cartouche_top",
+        "artifact_name",
+        "spectrum",
+        "zone",
+        "cartouche_bottom",
+        "sid",
+        "shabti",
+        "purpose"
+      ],
+      "dual_sid": false
+    },
+    {
+      "file_path": "mas_mcp/cuda_probe.py",
+      "classification": "NONE",
+      "detected_fields": [],
+      "missing_fields": [
+        "cartouche_top",
+        "artifact_name",
+        "spectrum",
+        "zone",
+        "cartouche_bottom",
+        "sid",
+        "shabti",
+        "purpose"
+      ],
+      "dual_sid": false
+    },
+    {
+      "file_path": "mas_mcp/cupy_benchmark.py",
+      "classification": "NONE",
+      "detected_fields": [],
+      "missing_fields": [
+        "cartouche_top",
+        "artifact_name",
+        "spectrum",
+        "zone",
+        "cartouche_bottom",
+        "sid",
+        "shabti",
+        "purpose"
+      ],
+      "dual_sid": false
+    },
+    {
+      "file_path": "mas_mcp/genesis_scheduler.py",
+      "classification": "NONE",
+      "detected_fields": [],
+      "missing_fields": [
+        "cartouche_top",
+        "artifact_name",
+        "spectrum",
+        "zone",
+        "cartouche_bottom",
+        "sid",
+        "shabti",
+        "purpose"
+      ],
+      "dual_sid": false
+    },
+    {
+      "file_path": "mas_mcp/gpu_config.py",
+      "classification": "NONE",
+      "detected_fields": [],
+      "missing_fields": [
+        "cartouche_top",
+        "artifact_name",
+        "spectrum",
+        "zone",
+        "cartouche_bottom",
+        "sid",
+        "shabti",
+        "purpose"
+      ],
+      "dual_sid": false
+    },
+    {
+      "file_path": "mas_mcp/gpu_forces.py",
+      "classification": "NONE",
+      "detected_fields": [],
+      "missing_fields": [
+        "cartouche_top",
+        "artifact_name",
+        "spectrum",
+        "zone",
+        "cartouche_bottom",
+        "sid",
+        "shabti",
+        "purpose"
+      ],
+      "dual_sid": false
+    },
+    {
+      "file_path": "mas_mcp/gpu_orchestrator.py",
+      "classification": "NONE",
+      "detected_fields": [],
+      "missing_fields": [
+        "cartouche_top",
+        "artifact_name",
+        "spectrum",
+        "zone",
+        "cartouche_bottom",
+        "sid",
+        "shabti",
+        "purpose"
+      ],
+      "dual_sid": false
+    },
+    {
+      "file_path": "mas_mcp/gpu_scores.py",
+      "classification": "NONE",
+      "detected_fields": [],
+      "missing_fields": [
+        "cartouche_top",
+        "artifact_name",
+        "spectrum",
+        "zone",
+        "cartouche_bottom",
+        "sid",
+        "shabti",
+        "purpose"
+      ],
+      "dual_sid": false
+    },
+    {
+      "file_path": "mas_mcp/gpu_status.py",
+      "classification": "NONE",
+      "detected_fields": [],
+      "missing_fields": [
+        "cartouche_top",
+        "artifact_name",
+        "spectrum",
+        "zone",
+        "cartouche_bottom",
+        "sid",
+        "shabti",
+        "purpose"
+      ],
+      "dual_sid": false
+    },
+    {
+      "file_path": "mas_mcp/gpu_validation_test.py",
+      "classification": "NONE",
+      "detected_fields": [],
+      "missing_fields": [
+        "cartouche_top",
+        "artifact_name",
+        "spectrum",
+        "zone",
+        "cartouche_bottom",
+        "sid",
+        "shabti",
+        "purpose"
+      ],
+      "dual_sid": false
+    },
+    {
+      "file_path": "mas_mcp/hardware_diagnostic.py",
+      "classification": "NONE",
+      "detected_fields": [],
+      "missing_fields": [
+        "cartouche_top",
+        "artifact_name",
+        "spectrum",
+        "zone",
+        "cartouche_bottom",
+        "sid",
+        "shabti",
+        "purpose"
+      ],
+      "dual_sid": false
+    },
+    {
+      "file_path": "mas_mcp/lib/__init__.py",
+      "classification": "NONE",
+      "detected_fields": [],
+      "missing_fields": [
+        "cartouche_top",
+        "artifact_name",
+        "spectrum",
+        "zone",
+        "cartouche_bottom",
+        "sid",
+        "shabti",
+        "purpose"
+      ],
+      "dual_sid": false
+    },
+    {
+      "file_path": "mas_mcp/lib/asc_toolchain.py",
+      "classification": "NONE",
+      "detected_fields": [],
+      "missing_fields": [
+        "cartouche_top",
+        "artifact_name",
+        "spectrum",
+        "zone",
+        "cartouche_bottom",
+        "sid",
+        "shabti",
+        "purpose"
+      ],
+      "dual_sid": false
+    },
+    {
+      "file_path": "mas_mcp/lib/gpu_probe.py",
+      "classification": "HYBRID",
+      "detected_fields": [
+        "sid"
+      ],
+      "missing_fields": [
+        "cartouche_top",
+        "artifact_name",
+        "spectrum",
+        "zone",
+        "cartouche_bottom",
+        "shabti",
+        "purpose"
+      ],
+      "dual_sid": false
+    },
+    {
+      "file_path": "mas_mcp/lib/ssot_handler.py",
+      "classification": "HYBRID",
+      "detected_fields": [
+        "sid"
+      ],
+      "missing_fields": [
+        "cartouche_top",
+        "artifact_name",
+        "spectrum",
+        "zone",
+        "cartouche_bottom",
+        "shabti",
+        "purpose"
+      ],
+      "dual_sid": false
+    },
+    {
+      "file_path": "mas_mcp/mas_diagnostics.py",
+      "classification": "NONE",
+      "detected_fields": [],
+      "missing_fields": [
+        "cartouche_top",
+        "artifact_name",
+        "spectrum",
+        "zone",
+        "cartouche_bottom",
+        "sid",
+        "shabti",
+        "purpose"
+      ],
+      "dual_sid": false
+    },
+    {
+      "file_path": "mas_mcp/mas_mcp_testing.py",
+      "classification": "NONE",
+      "detected_fields": [],
+      "missing_fields": [
+        "cartouche_top",
+        "artifact_name",
+        "spectrum",
+        "zone",
+        "cartouche_bottom",
+        "sid",
+        "shabti",
+        "purpose"
+      ],
+      "dual_sid": false
+    },
+    {
+      "file_path": "mas_mcp/milf_genesis_v2.py",
+      "classification": "NONE",
+      "detected_fields": [],
+      "missing_fields": [
+        "cartouche_top",
+        "artifact_name",
+        "spectrum",
+        "zone",
+        "cartouche_bottom",
+        "sid",
+        "shabti",
+        "purpose"
+      ],
+      "dual_sid": false
+    },
+    {
+      "file_path": "mas_mcp/scripts/abbrev/__main__.py",
+      "classification": "NONE",
+      "detected_fields": [],
+      "missing_fields": [
+        "cartouche_top",
+        "artifact_name",
+        "spectrum",
+        "zone",
+        "cartouche_bottom",
+        "sid",
+        "shabti",
+        "purpose"
+      ],
+      "dual_sid": false
+    },
+    {
+      "file_path": "mas_mcp/scripts/abbrev/cli.py",
+      "classification": "NONE",
+      "detected_fields": [],
+      "missing_fields": [
+        "cartouche_top",
+        "artifact_name",
+        "spectrum",
+        "zone",
+        "cartouche_bottom",
+        "sid",
+        "shabti",
+        "purpose"
+      ],
+      "dual_sid": false
+    },
+    {
+      "file_path": "mas_mcp/scripts/abbrev/generator.py",
+      "classification": "NONE",
+      "detected_fields": [],
+      "missing_fields": [
+        "cartouche_top",
+        "artifact_name",
+        "spectrum",
+        "zone",
+        "cartouche_bottom",
+        "sid",
+        "shabti",
+        "purpose"
+      ],
+      "dual_sid": false
+    },
+    {
+      "file_path": "mas_mcp/scripts/abbrev/reporter.py",
+      "classification": "NONE",
+      "detected_fields": [],
+      "missing_fields": [
+        "cartouche_top",
+        "artifact_name",
+        "spectrum",
+        "zone",
+        "cartouche_bottom",
+        "sid",
+        "shabti",
+        "purpose"
+      ],
+      "dual_sid": false
+    },
+    {
+      "file_path": "mas_mcp/scripts/generate_claude_cycle.py",
+      "classification": "NONE",
+      "detected_fields": [],
+      "missing_fields": [
+        "cartouche_top",
+        "artifact_name",
+        "spectrum",
+        "zone",
+        "cartouche_bottom",
+        "sid",
+        "shabti",
+        "purpose"
+      ],
+      "dual_sid": false
+    },
+    {
+      "file_path": "mas_mcp/scripts/milf_activator.py",
+      "classification": "NONE",
+      "detected_fields": [],
+      "missing_fields": [
+        "cartouche_top",
+        "artifact_name",
+        "spectrum",
+        "zone",
+        "cartouche_bottom",
+        "sid",
+        "shabti",
+        "purpose"
+      ],
+      "dual_sid": false
+    },
+    {
+      "file_path": "mas_mcp/scripts/monitor_dashboard.py",
+      "classification": "NONE",
+      "detected_fields": [],
+      "missing_fields": [
+        "cartouche_top",
+        "artifact_name",
+        "spectrum",
+        "zone",
+        "cartouche_bottom",
+        "sid",
+        "shabti",
+        "purpose"
+      ],
+      "dual_sid": false
+    },
+    {
+      "file_path": "mas_mcp/scripts/monitor_dashboard_extended.py",
+      "classification": "NONE",
+      "detected_fields": [],
+      "missing_fields": [
+        "cartouche_top",
+        "artifact_name",
+        "spectrum",
+        "zone",
+        "cartouche_bottom",
+        "sid",
+        "shabti",
+        "purpose"
+      ],
+      "dual_sid": false
+    },
+    {
+      "file_path": "mas_mcp/scripts/probe_gpu_compatibility.py",
+      "classification": "NONE",
+      "detected_fields": [],
+      "missing_fields": [
+        "cartouche_top",
+        "artifact_name",
+        "spectrum",
+        "zone",
+        "cartouche_bottom",
+        "sid",
+        "shabti",
+        "purpose"
+      ],
+      "dual_sid": false
+    },
+    {
+      "file_path": "mas_mcp/scripts/run_cycle.py",
+      "classification": "NONE",
+      "detected_fields": [],
+      "missing_fields": [
+        "cartouche_top",
+        "artifact_name",
+        "spectrum",
+        "zone",
+        "cartouche_bottom",
+        "sid",
+        "shabti",
+        "purpose"
+      ],
+      "dual_sid": false
+    },
+    {
+      "file_path": "mas_mcp/scripts/ssot_abbrev/__main__.py",
+      "classification": "NONE",
+      "detected_fields": [],
+      "missing_fields": [
+        "cartouche_top",
+        "artifact_name",
+        "spectrum",
+        "zone",
+        "cartouche_bottom",
+        "sid",
+        "shabti",
+        "purpose"
+      ],
+      "dual_sid": false
+    },
+    {
+      "file_path": "mas_mcp/scripts/ssot_abbrev/cli.py",
+      "classification": "NONE",
+      "detected_fields": [],
+      "missing_fields": [
+        "cartouche_top",
+        "artifact_name",
+        "spectrum",
+        "zone",
+        "cartouche_bottom",
+        "sid",
+        "shabti",
+        "purpose"
+      ],
+      "dual_sid": false
+    },
+    {
+      "file_path": "mas_mcp/scripts/ssot_abbrev/generator.py",
+      "classification": "NONE",
+      "detected_fields": [],
+      "missing_fields": [
+        "cartouche_top",
+        "artifact_name",
+        "spectrum",
+        "zone",
+        "cartouche_bottom",
+        "sid",
+        "shabti",
+        "purpose"
+      ],
+      "dual_sid": false
+    },
+    {
+      "file_path": "mas_mcp/scripts/ssot_abbrev/models.py",
+      "classification": "NONE",
+      "detected_fields": [],
+      "missing_fields": [
+        "cartouche_top",
+        "artifact_name",
+        "spectrum",
+        "zone",
+        "cartouche_bottom",
+        "sid",
+        "shabti",
+        "purpose"
+      ],
+      "dual_sid": false
+    },
+    {
+      "file_path": "mas_mcp/scripts/ssot_abbrev/reporter.py",
+      "classification": "NONE",
+      "detected_fields": [],
+      "missing_fields": [
+        "cartouche_top",
+        "artifact_name",
+        "spectrum",
+        "zone",
+        "cartouche_bottom",
+        "sid",
+        "shabti",
+        "purpose"
+      ],
+      "dual_sid": false
+    },
+    {
+      "file_path": "mas_mcp/server.py",
+      "classification": "HYBRID",
+      "detected_fields": [
+        "sid"
+      ],
+      "missing_fields": [
+        "cartouche_top",
+        "artifact_name",
+        "spectrum",
+        "zone",
+        "cartouche_bottom",
+        "shabti",
+        "purpose"
+      ],
+      "dual_sid": false
+    },
+    {
+      "file_path": "mas_mcp/test_gpu_scores.py",
+      "classification": "NONE",
+      "detected_fields": [],
+      "missing_fields": [
+        "cartouche_top",
+        "artifact_name",
+        "spectrum",
+        "zone",
+        "cartouche_bottom",
+        "sid",
+        "shabti",
+        "purpose"
+      ],
+      "dual_sid": false
+    },
+    {
+      "file_path": "mas_mcp/test_hardware_specific.py",
+      "classification": "NONE",
+      "detected_fields": [],
+      "missing_fields": [
+        "cartouche_top",
+        "artifact_name",
+        "spectrum",
+        "zone",
+        "cartouche_bottom",
+        "sid",
+        "shabti",
+        "purpose"
+      ],
+      "dual_sid": false
+    },
+    {
+      "file_path": "mas_mcp/test_helios.py",
+      "classification": "NONE",
+      "detected_fields": [],
+      "missing_fields": [
+        "cartouche_top",
+        "artifact_name",
+        "spectrum",
+        "zone",
+        "cartouche_bottom",
+        "sid",
+        "shabti",
+        "purpose"
+      ],
+      "dual_sid": false
+    },
+    {
+      "file_path": "mas_mcp/test_mas.py",
+      "classification": "NONE",
+      "detected_fields": [],
+      "missing_fields": [
+        "cartouche_top",
+        "artifact_name",
+        "spectrum",
+        "zone",
+        "cartouche_bottom",
+        "sid",
+        "shabti",
+        "purpose"
+      ],
+      "dual_sid": false
+    },
+    {
+      "file_path": "mas_mcp/test_mcp_gpu.py",
+      "classification": "NONE",
+      "detected_fields": [],
+      "missing_fields": [
+        "cartouche_top",
+        "artifact_name",
+        "spectrum",
+        "zone",
+        "cartouche_bottom",
+        "sid",
+        "shabti",
+        "purpose"
+      ],
+      "dual_sid": false
+    },
+    {
+      "file_path": "mas_mcp/test_mpw_scan.py",
+      "classification": "NONE",
+      "detected_fields": [],
+      "missing_fields": [
+        "cartouche_top",
+        "artifact_name",
+        "spectrum",
+        "zone",
+        "cartouche_bottom",
+        "sid",
+        "shabti",
+        "purpose"
+      ],
+      "dual_sid": false
+    },
+    {
+      "file_path": "mas_mcp/tests/test_gpu_integration.py",
+      "classification": "NONE",
+      "detected_fields": [],
+      "missing_fields": [
+        "cartouche_top",
+        "artifact_name",
+        "spectrum",
+        "zone",
+        "cartouche_bottom",
+        "sid",
+        "shabti",
+        "purpose"
+      ],
+      "dual_sid": false
+    },
+    {
+      "file_path": "mas_mcp/validate_gpu.py",
+      "classification": "NONE",
+      "detected_fields": [],
+      "missing_fields": [
+        "cartouche_top",
+        "artifact_name",
+        "spectrum",
+        "zone",
+        "cartouche_bottom",
+        "sid",
+        "shabti",
+        "purpose"
+      ],
+      "dual_sid": false
+    },
+    {
+      "file_path": "scripts/ankh_theme_reference.py",
+      "classification": "KCP-COMPLIANT",
+      "detected_fields": [
+        "ankh_tinku",
+        "artifact_name",
+        "cartouche_bottom",
+        "cartouche_top",
+        "heka_ayni",
+        "purpose",
+        "radiance",
+        "shabti",
+        "sid",
+        "spectrum",
+        "zone"
+      ],
+      "missing_fields": [],
+      "dual_sid": false
+    },
+    {
+      "file_path": "scripts/background_services.py",
+      "classification": "LEGACY",
+      "detected_fields": [
+        "artifact_name",
+        "cartouche_bottom",
+        "cartouche_top",
+        "legacy_architectural_role",
+        "legacy_envelope_exports",
+        "legacy_envelope_purpose",
+        "legacy_spectral_frequency",
+        "sid"
+      ],
+      "missing_fields": [
+        "spectrum",
+        "zone",
+        "shabti",
+        "purpose"
+      ],
+      "dual_sid": false
+    },
+    {
+      "file_path": "scripts/benchmark_local_uncensored_lanes.py",
+      "classification": "NONE",
+      "detected_fields": [],
+      "missing_fields": [
+        "cartouche_top",
+        "artifact_name",
+        "spectrum",
+        "zone",
+        "cartouche_bottom",
+        "sid",
+        "shabti",
+        "purpose"
+      ],
+      "dual_sid": false
+    },
+    {
+      "file_path": "scripts/bun_compliance_audit.py",
+      "classification": "LEGACY",
+      "detected_fields": [
+        "artifact_name",
+        "cartouche_bottom",
+        "cartouche_top",
+        "legacy_architectural_role",
+        "legacy_envelope_exports",
+        "legacy_envelope_purpose",
+        "legacy_spectral_frequency",
+        "sid"
+      ],
+      "missing_fields": [
+        "spectrum",
+        "zone",
+        "shabti",
+        "purpose"
+      ],
+      "dual_sid": false
+    },
+    {
+      "file_path": "scripts/check_mailbox_manifest.py",
+      "classification": "NONE",
+      "detected_fields": [],
+      "missing_fields": [
+        "cartouche_top",
+        "artifact_name",
+        "spectrum",
+        "zone",
+        "cartouche_bottom",
+        "sid",
+        "shabti",
+        "purpose"
+      ],
+      "dual_sid": false
+    },
+    {
+      "file_path": "scripts/code_scent.py",
+      "classification": "LEGACY",
+      "detected_fields": [
+        "artifact_name",
+        "cartouche_bottom",
+        "cartouche_top",
+        "legacy_architectural_role",
+        "legacy_envelope_exports",
+        "legacy_envelope_purpose",
+        "legacy_spectral_frequency"
+      ],
+      "missing_fields": [
+        "spectrum",
+        "zone",
+        "sid",
+        "shabti",
+        "purpose"
+      ],
+      "dual_sid": false
+    },
+    {
+      "file_path": "scripts/code_taste.py",
+      "classification": "LEGACY",
+      "detected_fields": [
+        "artifact_name",
+        "cartouche_bottom",
+        "cartouche_top",
+        "legacy_architectural_role",
+        "legacy_envelope_exports",
+        "legacy_envelope_purpose",
+        "legacy_spectral_frequency"
+      ],
+      "missing_fields": [
+        "spectrum",
+        "zone",
+        "sid",
+        "shabti",
+        "purpose"
+      ],
+      "dual_sid": false
+    },
+    {
+      "file_path": "scripts/code_texture.py",
+      "classification": "LEGACY",
+      "detected_fields": [
+        "artifact_name",
+        "cartouche_bottom",
+        "cartouche_top",
+        "legacy_architectural_role",
+        "legacy_envelope_exports",
+        "legacy_envelope_purpose",
+        "legacy_spectral_frequency"
+      ],
+      "missing_fields": [
+        "spectrum",
+        "zone",
+        "sid",
+        "shabti",
+        "purpose"
+      ],
+      "dual_sid": false
+    },
+    {
+      "file_path": "scripts/decorator_cross_ref_maximum.py",
+      "classification": "HYBRID",
+      "detected_fields": [
+        "artifact_name",
+        "legacy_architectural_role",
+        "legacy_envelope_exports",
+        "legacy_envelope_purpose",
+        "legacy_envelope_sid",
+        "legacy_spectral_frequency",
+        "radiance"
+      ],
+      "missing_fields": [
+        "cartouche_top",
+        "spectrum",
+        "zone",
+        "cartouche_bottom",
+        "sid",
+        "shabti",
+        "purpose"
+      ],
+      "dual_sid": false
+    },
+    {
+      "file_path": "scripts/genre_extractor.py",
+      "classification": "HYBRID",
+      "detected_fields": [
+        "sid"
+      ],
+      "missing_fields": [
+        "cartouche_top",
+        "artifact_name",
+        "spectrum",
+        "zone",
+        "cartouche_bottom",
+        "shabti",
+        "purpose"
+      ],
+      "dual_sid": false
+    },
+    {
+      "file_path": "scripts/github_voice.py",
+      "classification": "LEGACY",
+      "detected_fields": [
+        "artifact_name",
+        "cartouche_bottom",
+        "cartouche_top",
+        "legacy_architectural_role",
+        "legacy_envelope_exports",
+        "legacy_envelope_purpose",
+        "legacy_spectral_frequency"
+      ],
+      "missing_fields": [
+        "spectrum",
+        "zone",
+        "sid",
+        "shabti",
+        "purpose"
+      ],
+      "dual_sid": false
+    },
+    {
+      "file_path": "scripts/hf_probe.py",
+      "classification": "NONE",
+      "detected_fields": [],
+      "missing_fields": [
+        "cartouche_top",
+        "artifact_name",
+        "spectrum",
+        "zone",
+        "cartouche_bottom",
+        "sid",
+        "shabti",
+        "purpose"
+      ],
+      "dual_sid": false
+    },
+    {
+      "file_path": "scripts/local_refiner_v2.py",
+      "classification": "HYBRID",
+      "detected_fields": [
+        "sid"
+      ],
+      "missing_fields": [
+        "cartouche_top",
+        "artifact_name",
+        "spectrum",
+        "zone",
+        "cartouche_bottom",
+        "shabti",
+        "purpose"
+      ],
+      "dual_sid": false
+    },
+    {
+      "file_path": "scripts/mailbox_polisher.py",
+      "classification": "NONE",
+      "detected_fields": [],
+      "missing_fields": [
+        "cartouche_top",
+        "artifact_name",
+        "spectrum",
+        "zone",
+        "cartouche_bottom",
+        "sid",
+        "shabti",
+        "purpose"
+      ],
+      "dual_sid": false
+    },
+    {
+      "file_path": "scripts/mailbox_scribe.py",
+      "classification": "NONE",
+      "detected_fields": [],
+      "missing_fields": [
+        "cartouche_top",
+        "artifact_name",
+        "spectrum",
+        "zone",
+        "cartouche_bottom",
+        "sid",
+        "shabti",
+        "purpose"
+      ],
+      "dual_sid": false
+    },
+    {
+      "file_path": "scripts/mandala_topology.py",
+      "classification": "LEGACY",
+      "detected_fields": [
+        "artifact_name",
+        "cartouche_bottom",
+        "cartouche_top",
+        "legacy_architectural_role",
+        "legacy_envelope_exports",
+        "legacy_envelope_purpose",
+        "legacy_envelope_sid",
+        "legacy_spectral_frequency",
+        "sid"
+      ],
+      "missing_fields": [
+        "spectrum",
+        "zone",
+        "shabti",
+        "purpose"
+      ],
+      "dual_sid": true
+    },
+    {
+      "file_path": "scripts/normalize_e2e_archives.py",
+      "classification": "NONE",
+      "detected_fields": [],
+      "missing_fields": [
+        "cartouche_top",
+        "artifact_name",
+        "spectrum",
+        "zone",
+        "cartouche_bottom",
+        "sid",
+        "shabti",
+        "purpose"
+      ],
+      "dual_sid": false
+    },
+    {
+      "file_path": "scripts/normalize_eol.py",
+      "classification": "NONE",
+      "detected_fields": [],
+      "missing_fields": [
+        "cartouche_top",
+        "artifact_name",
+        "spectrum",
+        "zone",
+        "cartouche_bottom",
+        "sid",
+        "shabti",
+        "purpose"
+      ],
+      "dual_sid": false
+    },
+    {
+      "file_path": "scripts/pleasure_protocol.py",
+      "classification": "LEGACY",
+      "detected_fields": [
+        "artifact_name",
+        "cartouche_bottom",
+        "cartouche_top",
+        "legacy_architectural_role",
+        "legacy_envelope_exports",
+        "legacy_envelope_purpose",
+        "legacy_spectral_frequency"
+      ],
+      "missing_fields": [
+        "spectrum",
+        "zone",
+        "sid",
+        "shabti",
+        "purpose"
+      ],
+      "dual_sid": false
+    },
+    {
+      "file_path": "scripts/poe_lane.py",
+      "classification": "HYBRID",
+      "detected_fields": [
+        "sid"
+      ],
+      "missing_fields": [
+        "cartouche_top",
+        "artifact_name",
+        "spectrum",
+        "zone",
+        "cartouche_bottom",
+        "shabti",
+        "purpose"
+      ],
+      "dual_sid": false
+    },
+    {
+      "file_path": "scripts/poe_sdk_lane.py",
+      "classification": "HYBRID",
+      "detected_fields": [
+        "sid"
+      ],
+      "missing_fields": [
+        "cartouche_top",
+        "artifact_name",
+        "spectrum",
+        "zone",
+        "cartouche_bottom",
+        "shabti",
+        "purpose"
+      ],
+      "dual_sid": false
+    },
+    {
+      "file_path": "scripts/poe_transport_audit.py",
+      "classification": "HYBRID",
+      "detected_fields": [
+        "sid"
+      ],
+      "missing_fields": [
+        "cartouche_top",
+        "artifact_name",
+        "spectrum",
+        "zone",
+        "cartouche_bottom",
+        "shabti",
+        "purpose"
+      ],
+      "dual_sid": false
+    },
+    {
+      "file_path": "scripts/product_icon_census.py",
+      "classification": "HYBRID",
+      "detected_fields": [
+        "sid"
+      ],
+      "missing_fields": [
+        "cartouche_top",
+        "artifact_name",
+        "spectrum",
+        "zone",
+        "cartouche_bottom",
+        "shabti",
+        "purpose"
+      ],
+      "dual_sid": false
+    },
+    {
+      "file_path": "scripts/run_cycle.py",
+      "classification": "LEGACY",
+      "detected_fields": [
+        "artifact_name",
+        "cartouche_bottom",
+        "cartouche_top",
+        "legacy_architectural_role",
+        "legacy_envelope_exports",
+        "legacy_envelope_purpose",
+        "legacy_spectral_frequency"
+      ],
+      "missing_fields": [
+        "spectrum",
+        "zone",
+        "sid",
+        "shabti",
+        "purpose"
+      ],
+      "dual_sid": false
+    },
+    {
+      "file_path": "scripts/session_resumption_high_coverage.py",
+      "classification": "NONE",
+      "detected_fields": [],
+      "missing_fields": [
+        "cartouche_top",
+        "artifact_name",
+        "spectrum",
+        "zone",
+        "cartouche_bottom",
+        "sid",
+        "shabti",
+        "purpose"
+      ],
+      "dual_sid": false
+    },
+    {
+      "file_path": "scripts/ssot_hash.py",
+      "classification": "LEGACY",
+      "detected_fields": [
+        "artifact_name",
+        "cartouche_bottom",
+        "cartouche_top",
+        "legacy_architectural_role",
+        "legacy_envelope_exports",
+        "legacy_envelope_purpose",
+        "legacy_spectral_frequency"
+      ],
+      "missing_fields": [
+        "spectrum",
+        "zone",
+        "sid",
+        "shabti",
+        "purpose"
+      ],
+      "dual_sid": false
+    },
+    {
+      "file_path": "scripts/structure_session_log.py",
+      "classification": "NONE",
+      "detected_fields": [],
+      "missing_fields": [
+        "cartouche_top",
+        "artifact_name",
+        "spectrum",
+        "zone",
+        "cartouche_bottom",
+        "sid",
+        "shabti",
+        "purpose"
+      ],
+      "dual_sid": false
+    },
+    {
+      "file_path": "scripts/theme_token_coverage.py",
+      "classification": "HYBRID",
+      "detected_fields": [
+        "sid"
+      ],
+      "missing_fields": [
+        "cartouche_top",
+        "artifact_name",
+        "spectrum",
+        "zone",
+        "cartouche_bottom",
+        "shabti",
+        "purpose"
+      ],
+      "dual_sid": false
+    },
+    {
+      "file_path": "scripts/uncensored_lane_steward.py",
+      "classification": "NONE",
+      "detected_fields": [],
+      "missing_fields": [
+        "cartouche_top",
+        "artifact_name",
+        "spectrum",
+        "zone",
+        "cartouche_bottom",
+        "sid",
+        "shabti",
+        "purpose"
+      ],
+      "dual_sid": false
+    },
+    {
+      "file_path": "scripts/upcycle_audit.py",
+      "classification": "LEGACY",
+      "detected_fields": [
+        "artifact_name",
+        "cartouche_bottom",
+        "cartouche_top",
+        "legacy_architectural_role",
+        "legacy_envelope_exports",
+        "legacy_envelope_purpose",
+        "legacy_spectral_frequency"
+      ],
+      "missing_fields": [
+        "spectrum",
+        "zone",
+        "sid",
+        "shabti",
+        "purpose"
+      ],
+      "dual_sid": false
+    }
+  ]
+}
