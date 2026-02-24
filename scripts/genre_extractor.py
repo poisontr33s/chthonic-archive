@@ -98,17 +98,24 @@ GENRE_SCHEMA = GenreExtractionBatch.model_json_schema()
 def discover_creative_files(paths: list[str] | None = None) -> list[Path]:
     """Find all creative content files in the specified directories."""
     dirs = paths or CREATIVE_DIRS
-    files = []
+    seen: set[Path] = set()
+    files: list[Path] = []
     for d in dirs:
         dir_path = REPO_ROOT / d
         if not dir_path.exists():
             continue
         if dir_path.is_file():
-            files.append(dir_path)
+            resolved = dir_path.resolve()
+            if resolved not in seen:
+                seen.add(resolved)
+                files.append(dir_path)
             continue
         for f in sorted(dir_path.rglob("*")):
             if f.is_file() and f.suffix.lower() in CREATIVE_EXTENSIONS:
-                files.append(f)
+                resolved = f.resolve()
+                if resolved not in seen:
+                    seen.add(resolved)
+                    files.append(f)
     return files
 
 
@@ -420,10 +427,12 @@ def parse_genre_response(content: str, batch_files: list[Path]) -> list[dict]:
 
 def extract_genres(llm, files: list[Path], batch_size: int = 5) -> list[dict]:
     """Extract genre profiles from creative files in batches."""
-    all_results = []
+    all_results: list[dict] = []
+    seen_paths: set[str] = set()
 
     for i in range(0, len(files), batch_size):
         batch = files[i:i + batch_size]
+        batch_rel_paths = {str(f.relative_to(REPO_ROOT)).replace("\\", "/").lower() for f in batch}
         file_entries = []
         for f in batch:
             rel_path = str(f.relative_to(REPO_ROOT)).replace("\\", "/")
@@ -463,8 +472,17 @@ def extract_genres(llm, files: list[Path], batch_size: int = 5) -> list[dict]:
 
             parsed_batch = parse_genre_response(content, batch)
             if parsed_batch:
-                all_results.extend(parsed_batch)
-                print(f" {elapsed:.1f}s ({len(parsed_batch)} profiles)")
+                added = 0
+                for profile in parsed_batch:
+                    path_key = profile.get("path", "").replace("\\", "/").lower()
+                    if path_key in seen_paths:
+                        continue
+                    if path_key not in batch_rel_paths:
+                        continue
+                    seen_paths.add(path_key)
+                    all_results.append(profile)
+                    added += 1
+                print(f" {elapsed:.1f}s ({added} profiles, {len(parsed_batch) - added} skipped)")
             else:
                 preview = " ".join(content.strip().split())[:120]
                 print(f" {elapsed:.1f}s (parsed 0; response preview: {preview!r})")
