@@ -29,10 +29,10 @@
 
 | Field | Value |
 |-------|-------|
-| **HEAD** | (pending commit) |
+| **HEAD** | `ba186421` |
 | **Branch** | `main` |
-| **Last Completed Phase** | KCP-1.0 — Architecture Ratification |
-| **Active Phase** | KCP-2.0 — Template Canonization |
+| **Last Completed Phase** | KCP-3.0 — Python Consolidation |
+| **Active Phase** | KCP-4.0 — TypeScript Injection |
 | **Blockers** | None |
 | **Working Tree** | Clean |
 
@@ -107,6 +107,7 @@ If you are a new session picking up from a crash:
 | KCP-1.0 | Architecture Ratification | (this commit) | Approach C locked; A/B/D/E rejected; `docs/standards/KCP_ARCHITECTURE_RATIFICATION.md` |
 | KCP-2.0 | Template Canonization | (this commit) | 4/4 templates pass native parser; `docs/standards/templates/kcp_template.*` |
 | KCP-2.5 | Codex Pre-Scan Audits | (Codex .5.3) | Classifier + 4 audit manifests; 283 files scanned, 0 UNKNOWN; `scripts/kcp_header_classifier.py` |
+| KCP-3.0 | Python Consolidation | `b52a4b20`→`ba186421` | 22 files migrated (11 LEGACY + 11 HYBRID); 0 dual @SIDs; 2 broken docstrings fixed (gpu_probe, ssot_handler); 1 new SID assigned (TOOL_DECORATOR_CROSSREF_V1) |
 
 ### Active — KCP Integration Phases
 
@@ -115,8 +116,8 @@ If you are a new session picking up from a crash:
 | **KCP-0.0** | Protocol Ontology Spec | Finalize field mappings, write canonical schema to `docs/standards/` | ✅ DONE | 100% legacy fields mapped, 0 data loss |
 | **KCP-1.0** | Architecture Ratification | Lock Approach C into WPTG plan, document rejections | ✅ DONE | Decision doc merged; `KCP_ARCHITECTURE_RATIFICATION.md` |
 | **KCP-2.0** | Template Canonization | Character-perfect boilerplate for Python/TS/PS1/Rust | ✅ DONE | All 4 templates pass native parser |
-| **KCP-3.0** | Python Consolidation | Batch: eliminate dual @SID, populate Khipu layer in 97 .py files | ⬜ NEXT | Audit: 11 LEGACY, 2 KCP, 11 HYBRID, 73 NONE, 1 dual_sid |
-| **KCP-4.0** | TypeScript Injection | Embed Khipu in JSDoc for 99 .ts/.tsx files | ⬜ | Audit: 17 LEGACY, 0 KCP, 7 HYBRID, 75 NONE |
+| **KCP-3.0** | Python Consolidation | Batch: eliminate dual @SID, populate Khipu layer in 97 .py files | ✅ DONE | 22/24 non-NONE migrated; 0 dual @SID; 73 NONE deferred |
+| **KCP-4.0** | TypeScript Injection | Embed Khipu in JSDoc for 99 .ts/.tsx files | ⬜ NEXT | Audit: 17 LEGACY, 0 KCP, 7 HYBRID, 75 NONE |
 | **KCP-5.0** | PowerShell Encapsulation | Khipu in `.NOTES` block for 54 .ps1 files | ⬜ | Audit: 25 LEGACY, 1 KCP, 1 HYBRID, 27 NONE |
 | **KCP-6.0** | Rust Alignment | `//!` Khipu for 33 .rs files | ⬜ | Audit: 0 LEGACY, 1 KCP, 17 HYBRID, 15 NONE |
 | **KCP-7.0** | Tooling Refactor | Update `chthonic audit`, SFA engine, normalize script | ⬜ | Knowledge graph indexes all @SIDs |
@@ -142,7 +143,7 @@ If you are a new session picking up from a crash:
 2. **KCP-0.0** — Protocol Ontology Specification (canonical schema doc)
 3. **KCP-1.0** — Architecture Ratification (lock Approach C)
 4. ~~**KCP-2.0**~~ — ~~Template Canonization (4 language templates)~~ ✅
-5. **KCP-3.0** — Python Consolidation (audit complete: 97 files classified)
+5. ~~**KCP-3.0**~~ — ~~Python Consolidation (22 files migrated)~~ ✅
 6. ~~**4.0**~~ — ~~Token scope coverage audit~~ ✅
 7. ~~**S.3**~~ — ~~Rust @SID tags~~ ✅
 8. ~~**6.0**~~ — ~~Product icon census~~ ✅
