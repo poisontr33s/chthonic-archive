@@ -1,37 +1,27 @@
-// ╔════════════════════════════════════════════════════════════════════════════╗
-// ║  THE DECORATOR'S BLESSING: bun-cdp-frame.ts                              ║
-// ║  TypeScript module: FrameInfo, FrameRegistry, CDPFrame                      ║
-// ╠════════════════════════════════════════════════════════════════════════════╣
-// ║  Spectral Frequency: ORANGE                                                 ║
-// ║  Architectural Role: 🔭 THE OBSERVATORY                                      ║
-// ║  Purpose: * BunCDP Frame - Cross-frame interaction support                 ║
-// ║           * Manages iframe tracking and execution contexts                  ║
-// ║  Exports: FrameInfo, FrameRegistry, CDPFrame                                ║
-// ╠════════════════════════════════════════════════════════════════════════════╣
-// ║  Cross-References (Bidirectional):                                      ║
-// ║  Dependencies (I rely on):                                               ║
-// ║    ├─► bun-playwright-poc\src\bun-cdp-element.ts                         ║
-// ║    ├─► bun-playwright-poc\src\bun-cdp-page.ts                            ║
-// ║    ├─► bun-playwright-poc\src\index.ts                                   ║
-// ║  Dependents (Rely on me):                                                ║
-// ║    └─◄ bun-playwright-poc\src\bun-cdp-element.ts                         ║
-// ║    └─◄ bun-playwright-poc\src\bun-cdp-page.ts                            ║
-// ╚════════════════════════════════════════════════════════════════════════════╝
+#!/usr/bin/env bun
+
+// ╔════════════════════════════════════════════════════════════════════════════
+// ║ THE DECORATOR'S BLESSING: bun-cdp-frame.ts
+// ╠════════════════════════════════════════════════════════════════════════════
+// ║ Wedjat-Quipu Spectrum: ORANGE
+// ║ Temple-Ayllu Zone: 🔭 THE OBSERVATORY
+// ║ Ogdoad-Ceque Radiance:
+// ║   └─◄ bun-playwright-poc/src/bun-cdp-element.ts
+// ║   └─◄ bun-playwright-poc/src/bun-cdp-page.ts
+// ║   └─◄ bun-playwright-poc/src/index.ts
+// ╚════════════════════════════════════════════════════════════════════════════
 
 /**
  * BunCDP Frame - Cross-frame interaction support
- * 
- * Manages iframe execution contexts for enterprise automation scenarios:
- * - Stripe payment forms
- * - OAuth popups
- * - Embedded widgets
- * - Legacy iframe-based apps
- * 
- * Architecture:
- * - FrameRegistry: Tracks Page.frameNavigated/frameDetached events
- * - CDPFrame: Page-like API scoped to a specific frame context
- * 
- * @module bun-cdp/frame
+ *
+ * @SID           LIB_BUN_CDP_FRAME_V1
+ * @Shabti        Library Module
+ * @Heka-Ayni     CONCEPT_CDP_FRAME_MANAGEMENT
+ * @Ankh-Tinku    STATE_CDP_FRAME_OPERATIONAL
+ * @Purpose       Manages iframe execution contexts for enterprise automation:
+ *                FrameRegistry tracks Page.frameNavigated/frameDetached events,
+ *                CDPFrame provides Page-like API scoped to a specific frame
+ *                context (Stripe payment forms, OAuth popups, embedded widgets).
  */
 
 import type { CDPPage } from './bun-cdp-page';

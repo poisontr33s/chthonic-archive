@@ -1,0 +1,9 @@
+llama_context: n_ctx_per_seq (4096) < n_ctx_train (262144) -- the full capacity of the model will not be utilized
+☥ Genre Extractor v1 (llama-cpp + structured JSON, uncensored)
+  Model: Qwen3-30B-A3B-Instruct-abliterated-GGUF
+  Creative files found: 50
+  Loading: Huihui-Qwen3-30B-A3B-Instruct-2507-abliterated.i1-Q3_K_M.gguf
+  Loaded in 5.1s
+
+  Genre: batch 1/17 (3 files)... 133.3s (1 profiles, 0 skipped)
+  Genre: batch 2/17 (3 files)... 171.4s (1 profiles, 0 skipped)

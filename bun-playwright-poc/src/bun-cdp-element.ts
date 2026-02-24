@@ -1,31 +1,27 @@
-// ╔════════════════════════════════════════════════════════════════════════════╗
-// ║  THE DECORATOR'S BLESSING: bun-cdp-element.ts                            ║
-// ║  TypeScript module: BoxModel, ElementHandle                                 ║
-// ╠════════════════════════════════════════════════════════════════════════════╣
-// ║  Spectral Frequency: ORANGE                                                 ║
-// ║  Architectural Role: 🔭 THE OBSERVATORY                                      ║
-// ║  Purpose: * BunCDP Element - Element interaction via CDP                  ║
-// ║           * Translates CSS selectors to CDP NodeIds                        ║
-// ║  Exports: BoxModel, ElementHandle                                           ║
-// ╠════════════════════════════════════════════════════════════════════════════╣
-// ║  Cross-References (Bidirectional):                                      ║
-// ║  Dependencies (I rely on):                                               ║
-// ║    ├─► bun-playwright-poc\src\bun-cdp-frame.ts                           ║
-// ║    ├─► bun-playwright-poc\src\index.ts                                   ║
-// ║  Dependents (Rely on me):                                                ║
-// ║    └─◄ bun-playwright-poc\src\bun-cdp-frame.ts                           ║
-// ║    └─◄ bun-playwright-poc\src\bun-cdp-page.ts                            ║
-// ╚════════════════════════════════════════════════════════════════════════════╝
+#!/usr/bin/env bun
+
+// ╔════════════════════════════════════════════════════════════════════════════
+// ║ THE DECORATOR'S BLESSING: bun-cdp-element.ts
+// ╠════════════════════════════════════════════════════════════════════════════
+// ║ Wedjat-Quipu Spectrum: ORANGE
+// ║ Temple-Ayllu Zone: 🔭 THE OBSERVATORY
+// ║ Ogdoad-Ceque Radiance:
+// ║   └─◄ bun-playwright-poc/src/bun-cdp-frame.ts
+// ║   └─◄ bun-playwright-poc/src/bun-cdp-page.ts
+// ║   └─◄ bun-playwright-poc/src/index.ts
+// ╚════════════════════════════════════════════════════════════════════════════
 
 /**
  * BunCDP Element - Element interaction via CDP
- * 
- * Translates CSS selectors into CDP operations:
- * 1. selector → DOM.querySelector → nodeId
- * 2. nodeId → DOM.getBoxModel → coordinates
- * 3. coordinates → Input.dispatchMouseEvent → click
- * 
- * @module bun-cdp/element
+ *
+ * @SID           LIB_BUN_CDP_ELEMENT_V1
+ * @Shabti        Library Module
+ * @Heka-Ayni     CONCEPT_CDP_ELEMENT_INTERACTION
+ * @Ankh-Tinku    STATE_CDP_ELEMENT_OPERATIONAL
+ * @Purpose       Translates CSS selectors into CDP operations:
+ *                1. selector → DOM.querySelector → nodeId
+ *                2. nodeId → DOM.getBoxModel → coordinates
+ *                3. coordinates → Input.dispatchMouseEvent → click
  */
 
 import type { CDPPage } from './bun-cdp-page';

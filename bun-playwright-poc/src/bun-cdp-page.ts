@@ -1,28 +1,26 @@
-// ╔════════════════════════════════════════════════════════════════════════════╗
-// ║  THE DECORATOR'S BLESSING: bun-cdp-page.ts                               ║
-// ║  TypeScript module: PageOptions, DialogInfo, CDPPage                        ║
-// ╠════════════════════════════════════════════════════════════════════════════╣
-// ║  Spectral Frequency: ORANGE                                                 ║
-// ║  Architectural Role: 🔭 THE OBSERVATORY                                      ║
-// ║  Purpose: * BunCDP Page - High-level page automation API                   ║
-// ║           * Built on top of raw CDP                                        ║
-// ║  Exports: PageOptions, DialogInfo, CDPPage                                  ║
-// ╠════════════════════════════════════════════════════════════════════════════╣
-// ║  Cross-References (Bidirectional):                                      ║
-// ║  Dependencies (I rely on):                                               ║
-// ║    ├─► bun-playwright-poc\src\bun-cdp-element.ts                         ║
-// ║    ├─► bun-playwright-poc\src\bun-cdp-frame.ts                           ║
-// ║    ├─► bun-playwright-poc\src\index.ts                                   ║
-// ║  Dependents (Rely on me):                                                ║
-// ║    └─◄ bun-playwright-poc\src\bun-cdp.ts                                 ║
-// ║    └─◄ bun-playwright-poc\src\bun-cdp-frame.ts                           ║
-// ╚════════════════════════════════════════════════════════════════════════════╝
+#!/usr/bin/env bun
+
+// ╔════════════════════════════════════════════════════════════════════════════
+// ║ THE DECORATOR'S BLESSING: bun-cdp-page.ts
+// ╠════════════════════════════════════════════════════════════════════════════
+// ║ Wedjat-Quipu Spectrum: ORANGE
+// ║ Temple-Ayllu Zone: 🔭 THE OBSERVATORY
+// ║ Ogdoad-Ceque Radiance:
+// ║   └─◄ bun-playwright-poc/src/bun-cdp-element.ts
+// ║   └─◄ bun-playwright-poc/src/bun-cdp-frame.ts
+// ║   └─◄ bun-playwright-poc/src/index.ts
+// ╚════════════════════════════════════════════════════════════════════════════
 
 /**
  * BunCDP Page - High-level page automation API
- * Built on top of raw CDP, providing familiar Playwright-like methods
- * 
- * @module bun-cdp/page
+ *
+ * @SID           LIB_BUN_CDP_PAGE_V1
+ * @Shabti        Library Module
+ * @Heka-Ayni     CONCEPT_CDP_PAGE_AUTOMATION
+ * @Ankh-Tinku    STATE_CDP_PAGE_OPERATIONAL
+ * @Purpose       High-level page automation API built on raw CDP, providing
+ *                familiar Playwright-like methods (goto, click, fill, evaluate,
+ *                screenshot, waitForSelector, dialog handling).
  */
 
 import { BunCDP } from './bun-cdp';

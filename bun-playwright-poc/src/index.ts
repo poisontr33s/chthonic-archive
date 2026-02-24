@@ -1,25 +1,26 @@
-// ╔════════════════════════════════════════════════════════════════════════════╗
-// ║  THE DECORATOR'S BLESSING: index.ts                                      ║
-// ║  TypeScript module: frontend utility                                        ║
-// ╠════════════════════════════════════════════════════════════════════════════╣
-// ║  Spectral Frequency: ORANGE                                                 ║
-// ║  Architectural Role: 🔭 THE OBSERVATORY                                      ║
-// ║  Purpose: * BunCDP - Bun-native Chrome automation library                  ║
-// ║           * Bypasses Playwright incompatibilities                          ║
-// ╠════════════════════════════════════════════════════════════════════════════╣
-// ║  Cross-References (Bidirectional):                                      ║
-// ║  Dependents (Rely on me):                                                ║
-// ║    └─◄ bun-playwright-poc\src\bun-cdp-element.ts                         ║
-// ║    └─◄ bun-playwright-poc\src\bun-cdp.ts                                 ║
-// ║    └─◄ bun-playwright-poc\src\bun-cdp-frame.ts                           ║
-// ║    └─◄ bun-playwright-poc\src\bun-cdp-page.ts                            ║
-// ╚════════════════════════════════════════════════════════════════════════════╝
+#!/usr/bin/env bun
+
+// ╔════════════════════════════════════════════════════════════════════════════
+// ║ THE DECORATOR'S BLESSING: index.ts
+// ╠════════════════════════════════════════════════════════════════════════════
+// ║ Wedjat-Quipu Spectrum: ORANGE
+// ║ Temple-Ayllu Zone: 🔭 THE OBSERVATORY
+// ║ Ogdoad-Ceque Radiance:
+// ║   └─◄ bun-playwright-poc/src/bun-cdp.ts
+// ║   └─◄ bun-playwright-poc/src/bun-cdp-element.ts
+// ║   └─◄ bun-playwright-poc/src/bun-cdp-frame.ts
+// ║   └─◄ bun-playwright-poc/src/bun-cdp-page.ts
+// ╚════════════════════════════════════════════════════════════════════════════
 
 /**
  * BunCDP - Bun-native Chrome automation library
- * 
- * Bypasses Playwright's incompatible CDP layer by using raw WebSocket.
- * Provides Playwright-like API: page.goto(), page.click(), page.fill(), etc.
+ *
+ * @SID           LIB_BUN_CDP_INDEX_V1
+ * @Shabti        Library Module
+ * @Purpose       Public barrel export for the BunCDP library. Bypasses
+ *                Playwright's incompatible CDP layer by using raw WebSocket.
+ *                Provides Playwright-like API: page.goto(), page.click(),
+ *                page.fill(), etc.
  */
 
 // Core
