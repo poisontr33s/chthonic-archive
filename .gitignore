@@ -179,6 +179,7 @@ extensions/*/bun.lock
 !scripts/sfs_reference_index.py
 !scripts/theme_promote_master.py
 !scripts/theme_color_diversity.py
+!scripts/theme_sfs_transmute.py
 
 # Allow specific Codex skill additions
 !.codex/
