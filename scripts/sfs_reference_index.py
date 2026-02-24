@@ -423,7 +423,7 @@ def ingest_registry(conn: sqlite3.Connection) -> int:
             tags.append({"tag": forge_status, "category": "mechanic"})
 
         file_id = upsert_file(conn, {
-            "path": rel_path,
+            "path": rel_path if rel_path.startswith("dumpster-dive/") else f"dumpster-dive/{rel_path}",
             "title": entry.get("file", Path(rel_path).stem),
             "sid": entry.get("identifier"),
             "spectrum": None,
