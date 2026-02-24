@@ -1,11 +1,19 @@
 // ╔════════════════════════════════════════════════════════════════════════════
-// ║ THE DECORATOR'S BLESSING: extension.ts
-// ║ TypeScript module: activate, deactivate
+// ║ THE DECORATOR'S BLESSING: statusbar_runtime_legacy.ts
 // ╠════════════════════════════════════════════════════════════════════════════
-// ║ Spectral Frequency: ORANGE
-// ║ Architectural Role: 🔭 THE OBSERVATORY
-// ║ Exports: activate, deactivate
+// ║ Wedjat-Quipu Spectrum: ORANGE
+// ║ Temple-Ayllu Zone: 🔭 THE OBSERVATORY
+// ║ Ogdoad-Ceque Radiance: (standalone)
 // ╚════════════════════════════════════════════════════════════════════════════
+
+/**
+ * Legacy statusbar runtime — original monolithic extension entry point.
+ *
+ * @SID           EXT_STATUSBAR_RUNTIME_LEGACY_V1
+ * @Shabti        VS Code Extension Module
+ * @Purpose       SSOT status bar items, GPU polling, metabolic cycle display.
+ * @Ankh-Tinku    activate, deactivate
+ */
 
 import * as vscode from 'vscode';
 import { execSync, execFile } from 'child_process';

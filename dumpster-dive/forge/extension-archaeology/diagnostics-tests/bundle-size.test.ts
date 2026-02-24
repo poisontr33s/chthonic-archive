@@ -1,13 +1,12 @@
 // ╔════════════════════════════════════════════════════════════════════════════
 // ║ THE DECORATOR'S BLESSING: bundle-size.test.ts
-// ║ TypeScript module: frontend utility
 // ╠════════════════════════════════════════════════════════════════════════════
-// ║ Spectral Frequency: ORANGE
-// ║ Architectural Role: 🔭 THE OBSERVATORY
-// ╠════════════════════════════════════════════════════════════════════════════
-// ║ Cross-References (Bidirectional):
-// ║  (Standalone file - no detected dependencies)
+// ║ Wedjat-Quipu Spectrum: ORANGE
+// ║ Temple-Ayllu Zone: 🔭 THE OBSERVATORY
+// ║ Ogdoad-Ceque Radiance: (standalone)
 // ╚════════════════════════════════════════════════════════════════════════════
+
+/** @SID TEST_EXT_ARCH_BUNDLE_SIZE_V1 @Shabti Test Script @Purpose Validates extension bundle sizes against thresholds. */
 
 import { test, expect } from "bun:test";
 import { statSync } from "fs";

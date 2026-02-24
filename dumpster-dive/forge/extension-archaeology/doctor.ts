@@ -2,24 +2,19 @@
 
 // ╔════════════════════════════════════════════════════════════════════════════
 // ║ THE DECORATOR'S BLESSING: doctor.ts
-// ║ TypeScript module: frontend utility
 // ╠════════════════════════════════════════════════════════════════════════════
-// ║ Spectral Frequency: ORANGE
-// ║ Architectural Role: 🔭 THE OBSERVATORY
-// ║ Purpose: * System health check - human-facing diagnostic output
-// ║ Usage: Run with `bun run doctor` to get a comprehensive report,
-// ║  on extension health, including bundle sizes, runtime lane detection,
-// ║  GPU status, deployment status, build configuration,
-// ║  and source code checks.
-// ╠════════════════════════════════════════════════════════════════════════════
-// ║ Cross-References (Bidirectional):
-// ║  (Standalone file - no detected dependencies)
+// ║ Wedjat-Quipu Spectrum: ORANGE
+// ║ Temple-Ayllu Zone: 🔭 THE OBSERVATORY
+// ║ Ogdoad-Ceque Radiance: (standalone)
 // ╚════════════════════════════════════════════════════════════════════════════
 
-
 /**
- * System health check - human-facing diagnostic output
- * Run with: bun run doctor
+ * Extension archaeology doctor — system health check
+ *
+ * @SID           TOOL_EXT_ARCH_DOCTOR_V1
+ * @Shabti        CLI Script
+ * @Purpose       Comprehensive diagnostics: bundle sizes, runtime lanes,
+ *                GPU status, deployment, build config, source checks.
  */
 
 import { execSync } from "child_process";

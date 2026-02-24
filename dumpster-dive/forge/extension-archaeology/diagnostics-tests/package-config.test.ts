@@ -1,13 +1,12 @@
 // ╔════════════════════════════════════════════════════════════════════════════
 // ║ THE DECORATOR'S BLESSING: package-config.test.ts
-// ║ TypeScript module: frontend utility
 // ╠════════════════════════════════════════════════════════════════════════════
-// ║ Spectral Frequency: ORANGE
-// ║ Architectural Role: 🔭 THE OBSERVATORY
-// ╠════════════════════════════════════════════════════════════════════════════
-// ║ Cross-References (Bidirectional):
-// ║  (Standalone file - no detected dependencies)
+// ║ Wedjat-Quipu Spectrum: ORANGE
+// ║ Temple-Ayllu Zone: 🔭 THE OBSERVATORY
+// ║ Ogdoad-Ceque Radiance: (standalone)
 // ╚════════════════════════════════════════════════════════════════════════════
+
+/** @SID TEST_EXT_ARCH_PACKAGE_CONFIG_V1 @Shabti Test Script @Purpose Validates statusbar package.json production config. */
 
 import { test, expect } from "bun:test";
 import { readFileSync } from "fs";

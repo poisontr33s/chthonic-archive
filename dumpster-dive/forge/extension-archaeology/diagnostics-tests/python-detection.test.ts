@@ -1,13 +1,12 @@
 // ╔════════════════════════════════════════════════════════════════════════════
 // ║ THE DECORATOR'S BLESSING: python-detection.test.ts
-// ║ TypeScript module: frontend utility
 // ╠════════════════════════════════════════════════════════════════════════════
-// ║ Spectral Frequency: ORANGE
-// ║ Architectural Role: 🔭 THE OBSERVATORY
-// ╠════════════════════════════════════════════════════════════════════════════
-// ║ Cross-References (Bidirectional):
-// ║  (Standalone file - no detected dependencies)
+// ║ Wedjat-Quipu Spectrum: ORANGE
+// ║ Temple-Ayllu Zone: 🔭 THE OBSERVATORY
+// ║ Ogdoad-Ceque Radiance: (standalone)
 // ╚════════════════════════════════════════════════════════════════════════════
+
+/** @SID TEST_EXT_ARCH_PYTHON_DETECT_V1 @Shabti Test Script @Purpose Validates Python version detection regex. */
 
 import { test, expect } from "bun:test";
 import { execSync } from "child_process";

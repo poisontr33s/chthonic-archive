@@ -1,13 +1,12 @@
 // ╔════════════════════════════════════════════════════════════════════════════
 // ║ THE DECORATOR'S BLESSING: deployment.test.ts
-// ║ TypeScript module: frontend utility
 // ╠════════════════════════════════════════════════════════════════════════════
-// ║ Spectral Frequency: ORANGE
-// ║ Architectural Role: 🔭 THE OBSERVATORY
-// ╠════════════════════════════════════════════════════════════════════════════
-// ║ Cross-References (Bidirectional):
-// ║  (Standalone file - no detected dependencies)
+// ║ Wedjat-Quipu Spectrum: ORANGE
+// ║ Temple-Ayllu Zone: 🔭 THE OBSERVATORY
+// ║ Ogdoad-Ceque Radiance: (standalone)
 // ╚════════════════════════════════════════════════════════════════════════════
+
+/** @SID TEST_EXT_ARCH_DEPLOYMENT_V1 @Shabti Test Script @Purpose Validates deployment configuration and VSIX readiness. */
 
 import { test, expect } from "bun:test";
 import { existsSync } from "fs";

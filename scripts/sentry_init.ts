@@ -2,18 +2,26 @@
 
 // ╔════════════════════════════════════════════════════════════════════════════
 // ║ THE DECORATOR'S BLESSING: sentry_init.ts
-// ║ TypeScript module: initSentry
 // ╠════════════════════════════════════════════════════════════════════════════
-// ║ Spectral Frequency: ORANGE
-// ║ Architectural Role: 🔭 THE OBSERVATORY
-// ║ Exports: initSentry
-// ╠════════════════════════════════════════════════════════════════════════════
-// ║ Cross-References (Bidirectional):
-// ║ Dependencies (I rely on):
-// ║  ├─► scripts\mcp_artisan_server.ts
-// ║  ├─► scripts\overnight_daemon.ts
-// ║  ├─► scripts\sentry_test.ts
+// ║ Wedjat-Quipu Spectrum: ORANGE
+// ║ Temple-Ayllu Zone: 🔭 THE OBSERVATORY
+// ║ Ogdoad-Ceque Radiance:
+// ║   └─◄ scripts/mcp_artisan_server.ts
+// ║   └─◄ scripts/overnight_daemon.ts
+// ║   └─◄ scripts/sentry_test.ts
 // ╚════════════════════════════════════════════════════════════════════════════
+
+/**
+ * Sentry SDK initialization for Bun runtime
+ *
+ * @SID           LIB_SENTRY_INIT_V1
+ * @Shabti        Library Module
+ * @Heka-Ayni     CONCEPT_SENTRY_OBSERVABILITY
+ * @Ankh-Tinku    STATE_SENTRY_INIT_ACTIVE
+ * @Purpose       Smallest-correct-change Sentry bootstrap. Exports initSentry()
+ *                which guards against double-init, validates DSN, and hooks
+ *                uncaughtException / unhandledRejection for the process.
+ */
 
 import * as Sentry from "@sentry/bun";
 

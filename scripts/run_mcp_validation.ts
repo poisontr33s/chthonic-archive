@@ -2,18 +2,22 @@
 
 // ╔════════════════════════════════════════════════════════════════════════════
 // ║ THE DECORATOR'S BLESSING: run_mcp_validation.ts
-// ║ MCP client integration - Observatory communication layer
 // ╠════════════════════════════════════════════════════════════════════════════
-// ║ Spectral Frequency: ORANGE
-// ║ Architectural Role: 🔭 THE OBSERVATORY
-// ║ Purpose: MCP validation runner - local testing and queries
-// ╠════════════════════════════════════════════════════════════════════════════
-// ║ Cross-References (Bidirectional):
-// ║  (Standalone file - no detected dependencies)
+// ║ Wedjat-Quipu Spectrum: ORANGE
+// ║ Temple-Ayllu Zone: 🔭 THE OBSERVATORY
+// ║ Ogdoad-Ceque Radiance: (standalone)
 // ╚════════════════════════════════════════════════════════════════════════════
 
 /**
- * MCP Validation Runner (Root-Level)
+ * MCP Validation Runner
+ *
+ * @SID           TEST_MCP_VALIDATION_V1
+ * @Shabti        CLI Script
+ * @Heka-Ayni     CONCEPT_MCP_VALIDATION
+ * @Ankh-Tinku    STATE_MCP_VALIDATION_ACTIVE
+ * @Purpose       Local validation and parameterized queries against MCP
+ *                server. Supports baseline checks, node/spectral queries,
+ *                dry-run mode, and Claude Code integration verification.
  *
  * Purpose: Local validation and parameterized queries against MCP server
  * Location: chthonic-archive/ (root)

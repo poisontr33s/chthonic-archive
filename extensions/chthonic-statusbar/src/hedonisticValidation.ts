@@ -2,16 +2,22 @@
 // Not imported by the active bridge lane, retained for upcycle continuity.
 // ╔════════════════════════════════════════════════════════════════════════════
 // ║ THE DECORATOR'S BLESSING: hedonisticValidation.ts
-// ║ TypeScript module: activate, deactivate, CONFIGURATION_SCHEMA
 // ╠════════════════════════════════════════════════════════════════════════════
-// ║ Spectral Frequency: ORANGE
-// ║ Architectural Role: 🔭 THE OBSERVATORY
-// ║ Exports: activate, deactivate, CONFIGURATION_SCHEMA
-// ╠════════════════════════════════════════════════════════════════════════════
-// ║ Cross-References (Bidirectional):
-// ║ Dependencies (I rely on):
+// ║ Wedjat-Quipu Spectrum: ORANGE
+// ║ Temple-Ayllu Zone: 🔭 THE OBSERVATORY
+// ║ Ogdoad-Ceque Radiance:
 // ║  ├─► VSCODE_GUI_ENHANCEMENT_COMPLETE.md
 // ╚════════════════════════════════════════════════════════════════════════════
+
+/**
+ * Hedonistic validation — pleasure-tier configuration schema.
+ *
+ * @SID           EXT_HEDONISTIC_VALIDATION_V1
+ * @Shabti        VS Code Extension Module
+ * @Purpose       Pleasure-tier config validation, WPTG legacy upcycle artifact.
+ * @Ankh-Tinku    activate, deactivate, CONFIGURATION_SCHEMA
+ * @Heka-Ayni     VSCODE_GUI_ENHANCEMENT_COMPLETE.md
+ */
 
 import * as vscode from 'vscode';
 import { execSync } from 'child_process';

@@ -2,33 +2,29 @@
 
 // ╔════════════════════════════════════════════════════════════════════════════
 // ║ THE DECORATOR'S BLESSING: mcp-chthonic-server.ts
-// ║ MCP client integration - Observatory communication layer
 // ╠════════════════════════════════════════════════════════════════════════════
-// ║ Spectral Frequency: ORANGE
-// ║ Architectural Role: 🔭 THE OBSERVATORY
-// ╠════════════════════════════════════════════════════════════════════════════
-// ║ Cross-References (Bidirectional):
-// ║ Dependencies (I rely on):
-// ║  ├─► CLAUDE_CODE_IDE_SETUP.md
+// ║ Wedjat-Quipu Spectrum: ORANGE
+// ║ Temple-Ayllu Zone: 🔭 THE OBSERVATORY
+// ║ Ogdoad-Ceque Radiance:
+// ║   └─◄ docs/CLAUDE_CODE_IDE_SETUP.md
+// ║   └─◄ scripts/sentry_init.ts
 // ╚════════════════════════════════════════════════════════════════════════════
 
-// ╔════════════════════════════════════════════════════════════════════════════
-// ║ 🔥💀⚓ CHTHONIC POLYGLOT MCP SERVER v3.0.0
-// ║ Bun-centric unified MCP: polyglot toolchain + chthonic archive CLI
-// ╠════════════════════════════════════════════════════════════════════════════
-// ║ @SID:           MCP_CHTHONIC_UNIFIED_SERVER
-// ║ @Type:          MCP Server (stdio transport)
-// ║ @Context:       Infrastructure / Polyglot Tools
-// ║ @SessionOrigin: CONTINUATION_2026_01_28
-// ║ @Implements:    ROADMAP_BUN_CENTRIC_MCP_2026_01_28
-// ║ @Protocol:      MCP 2024-11-05 (JSON-RPC 2.0 over stdio)
-// ╠════════════════════════════════════════════════════════════════════════════
-// ║ Tools: 24 total
-// ║ - Polyglot: cargo, uv, gcc, gpp, go, ruby, git, bash, bun, make
-// ║ - Archive:  resolve, audit, map, analyze, compact, status, book,
-// ║  scan, validate_ssot, probe, report
-// ║ - Meta:     polyglot_versions, claudine_env, meta_cli (v3.0.0 meta-CLI)
-// ╚════════════════════════════════════════════════════════════════════════════
+/**
+ * Chthonic Polyglot MCP Server v3.0.0
+ *
+ * @SID           TOOL_MCP_CHTHONIC_SERVER_V3
+ * @Shabti        MCP Server (stdio transport)
+ * @Heka-Ayni     CONCEPT_MCP_POLYGLOT_UNIFIED
+ * @Ankh-Tinku    STATE_MCP_CHTHONIC_ACTIVE
+ * @Purpose       Bun-centric unified MCP server: polyglot toolchain (cargo,
+ *                uv, gcc, gpp, go, ruby, git, bash, bun, make) + chthonic
+ *                archive CLI (resolve, audit, map, analyze, compact, status,
+ *                book, scan, validate_ssot, probe, report) + meta tools
+ *                (polyglot_versions, claudine_env, meta_cli v3.0.0).
+ *                24 tools total. Protocol: MCP 2024-11-05 (JSON-RPC 2.0
+ *                over stdio).
+ */
 
 import { join, resolve } from "path";
 import { existsSync } from "fs";
