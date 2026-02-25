@@ -268,6 +268,178 @@ def write_plan(repo_root: Path, audit_result: dict, fix_recs: dict) -> Path:
     return output_path
 
 
+def generate_snapshot(repo_root: Path, audit_result: dict) -> Path:
+    """Phase 4: Pre-nuke clarity snapshot — full working context to mailbox."""
+    now = datetime.now(timezone.utc)
+    ts = now.strftime("%Y-%m-%d %H:%M UTC")
+    ts_file = now.strftime("%Y_%m_%dT%H_%M_%SZ")
+
+    # Git metadata
+    branch = subprocess.run(
+        ["git", "branch", "--show-current"],
+        capture_output=True, text=True, cwd=repo_root,
+        encoding="utf-8", errors="replace",
+    ).stdout.strip()
+
+    head = subprocess.run(
+        ["git", "log", "--oneline", "-1"],
+        capture_output=True, text=True, cwd=repo_root,
+        encoding="utf-8", errors="replace",
+    ).stdout.strip()
+
+    recent = subprocess.run(
+        ["git", "log", "--oneline", "-15"],
+        capture_output=True, text=True, cwd=repo_root,
+        encoding="utf-8", errors="replace",
+    ).stdout.strip()
+
+    # Commits ahead of origin
+    ahead = subprocess.run(
+        ["git", "rev-list", "--count", f"origin/{branch}..HEAD"],
+        capture_output=True, text=True, cwd=repo_root,
+        encoding="utf-8", errors="replace",
+    )
+    ahead_count = ahead.stdout.strip() if ahead.returncode == 0 else "?"
+
+    # 24h velocity
+    velocity = subprocess.run(
+        ["git", "log", "--oneline", "--since=24 hours ago"],
+        capture_output=True, text=True, cwd=repo_root,
+        encoding="utf-8", errors="replace",
+    ).stdout.strip()
+    velocity_count = len(velocity.splitlines()) if velocity else 0
+
+    # Diff stats for uncommitted work
+    diff_stat = subprocess.run(
+        ["git", "diff", "--stat"],
+        capture_output=True, text=True, cwd=repo_root,
+        encoding="utf-8", errors="replace",
+    ).stdout.strip()
+
+    # Mailbox inventory
+    mailbox_files = {}
+    for lane in ["claude/mailbox", "codex/mailbox", "gemini/mailbox"]:
+        lane_path = repo_root / lane
+        if lane_path.is_dir():
+            files = [f.name for f in lane_path.iterdir()
+                     if f.is_file() and not f.name.startswith(".")]
+            if files:
+                mailbox_files[lane] = sorted(files)
+
+    # Build snapshot markdown
+    lines = [
+        "---",
+        "type: scm-triage-snapshot",
+        "from: scm-triage-skill",
+        "to: claude",
+        f"created: {now.isoformat()}",
+        "priority: high",
+        "scope: session-resumption",
+        "---",
+        "",
+        f"# SCM Triage Snapshot — {ts}",
+        "",
+        f"**Branch:** {branch}",
+        f"**HEAD:** {head}",
+        f"**Ahead of origin:** {ahead_count} commits",
+        f"**24h velocity:** {velocity_count} commits",
+        "",
+        "## Recent Commits (last 15)",
+        "```",
+        recent,
+        "```",
+        "",
+        "## Change Classification",
+        f"- **Total:** {audit_result['total_changes']}",
+        f"- **SIGNAL:** {audit_result['by_classification']['SIGNAL']} (intentional)",
+        f"- **NOISE:** {audit_result['by_classification']['NOISE']} (transient)",
+        f"- **GHOST:** {audit_result['by_classification']['GHOST']} (deleted but tracked)",
+        f"- **MAILBOX:** {audit_result['by_classification']['MAILBOX']} (agent deliverables)",
+        "",
+    ]
+
+    if audit_result["signal"]:
+        lines.append("### Signal Files")
+        for p in audit_result["signal"]:
+            lines.append(f"- `{p}`")
+        lines.append("")
+
+    if audit_result["mailbox"]:
+        lines.append("### Mailbox Deliverables (pending)")
+        for p in audit_result["mailbox"]:
+            lines.append(f"- `{p}`")
+        lines.append("")
+
+    if audit_result["noise"]:
+        lines.append(f"### Noise ({len(audit_result['noise'])} items)")
+        for p in audit_result["noise"][:20]:
+            lines.append(f"- `{p}`")
+        if len(audit_result["noise"]) > 20:
+            lines.append(f"- ... and {len(audit_result['noise']) - 20} more")
+        lines.append("")
+
+    if audit_result["ghost"]:
+        lines.append(f"### Ghosts ({len(audit_result['ghost'])} items — need `git rm --cached`)")
+        for p in audit_result["ghost"][:20]:
+            lines.append(f"- `{p}`")
+        if len(audit_result["ghost"]) > 20:
+            lines.append(f"- ... and {len(audit_result['ghost']) - 20} more")
+        lines.append("")
+
+    if diff_stat:
+        lines.extend([
+            "## Uncommitted Diff Stats",
+            "```",
+            diff_stat,
+            "```",
+            "",
+        ])
+
+    if mailbox_files:
+        lines.append("## Mailbox Inventory")
+        for lane, files in mailbox_files.items():
+            lines.append(f"### {lane}/")
+            for f in files:
+                lines.append(f"- `{f}`")
+        lines.append("")
+
+    lines.extend([
+        "## Recovery Actions",
+        "```powershell",
+        "# Read this snapshot for instant context:",
+        "# cat claude/mailbox/SCM_TRIAGE_SNAPSHOT_LATEST.md",
+        "",
+        "# Run triage to see current state:",
+        "uv run scripts/scm_triage.py",
+        "",
+        "# Fix noise + ghosts:",
+        "uv run scripts/scm_triage.py --fix",
+        "",
+        "# Full audit + fix + plan:",
+        "uv run scripts/scm_triage.py --full",
+        "```",
+        "",
+    ])
+
+    content = "\n".join(lines)
+
+    # Write timestamped + LATEST
+    mailbox = repo_root / "claude" / "mailbox"
+    mailbox.mkdir(parents=True, exist_ok=True)
+
+    latest_path = mailbox / "SCM_TRIAGE_SNAPSHOT_LATEST.md"
+    with open(latest_path, "w", encoding="utf-8") as f:
+        f.write(content)
+
+    ts_path = mailbox / f"SCM_TRIAGE_SNAPSHOT_{ts_file}.md"
+    with open(ts_path, "w", encoding="utf-8") as f:
+        f.write(content)
+
+    print(f"  Snapshot: {latest_path.relative_to(repo_root)}")
+    print(f"  Archive:  {ts_path.relative_to(repo_root)}")
+    return latest_path
+
+
 def apply_ghost_cleanup(repo_root: Path, ghost_paths: list[str], dry_run: bool) -> int:
     """Remove ghost entries from git index."""
     if not ghost_paths:
@@ -309,7 +481,9 @@ def main():
     )
     parser.add_argument("--fix", action="store_true", help="Apply noise fixes")
     parser.add_argument("--plan", action="store_true", help="Generate migration plan")
-    parser.add_argument("--full", action="store_true", help="Audit + fix + plan")
+    parser.add_argument("--snapshot", action="store_true",
+                        help="Write pre-nuke clarity snapshot to mailbox")
+    parser.add_argument("--full", action="store_true", help="Audit + fix + plan + snapshot")
     parser.add_argument("--dry-run", action="store_true", help="Preview without applying")
     parser.add_argument("-v", "--verbose", action="store_true", help="Verbose output")
     parser.add_argument("-q", "--quiet", action="store_true", help="Suppress info output")
@@ -321,6 +495,7 @@ def main():
     if args.full:
         args.fix = True
         args.plan = True
+        args.snapshot = True
 
     # Phase 1: Always audit
     audit_result = audit(repo_root, logger)
@@ -348,6 +523,10 @@ def main():
     # Phase 3: Plan (if requested)
     if args.plan:
         write_plan(repo_root, audit_result, fix_recs)
+
+    # Phase 4: Snapshot (if requested)
+    if args.snapshot:
+        generate_snapshot(repo_root, audit_result)
 
     # Final state
     if args.fix and not args.dry_run:

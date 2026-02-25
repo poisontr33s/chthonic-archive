@@ -1,15 +1,15 @@
 ---
 name: scm-triage
-description: "Audit git status, classify changes as signal/noise/transient, generate gitignore/exclude fixes, identify files needing relocation to canonical paths, and produce structured migration plans. Use when source control is noisy, before bulk commits, or when the codebase needs structural housekeeping."
+description: "Audit git status, classify changes as signal/noise/transient, generate gitignore/exclude fixes, identify files needing relocation to canonical paths, produce structured migration plans, and write pre-nuke clarity snapshots. Use when source control is noisy, before bulk commits, when the codebase needs structural housekeeping, or before risky operations to preserve working context."
 allowed-tools: "Bash, Read, Write, Glob, Grep"
 user-invocable: true
 ---
 
-# SCM Triage — Source Control Noise Reduction & Codebase Structurization
+# SCM Triage — Source Control Noise Reduction & Pre-Nuke Clarity
 
-Deterministic skill for silencing source control noise, classifying changes, and planning ANKH-aligned file relocations.
+Deterministic skill for silencing source control noise, classifying changes, planning ANKH-aligned file relocations, and snapshotting full working context before VS Code reloads.
 
-Arguments: `$ARGUMENTS` (optional: "audit" for read-only analysis, "fix" to apply gitignore/exclude changes, "plan" to generate migration manifest, "full" for audit+fix+plan)
+Arguments: `$ARGUMENTS` (optional: "audit" for read-only analysis, "fix" to apply gitignore/exclude changes, "plan" to generate migration manifest, "snapshot" to write pre-nuke clarity snapshot, "full" for all phases)
 
 ## When to invoke
 
@@ -18,6 +18,8 @@ Arguments: `$ARGUMENTS` (optional: "audit" for read-only analysis, "fix" to appl
 - Before a bulk commit to understand what's actually changed
 - When the codebase has accumulated orphans or misplaced files
 - User asks to "structurize," "clean up changes," or "silence the noise"
+- **Before risky operations or when VS Code nuke is imminent** — run with "snapshot" to preserve context
+- **At session start** — read `claude/mailbox/SCM_TRIAGE_SNAPSHOT_LATEST.md` for instant recovery
 
 ## Workflow
 
@@ -81,6 +83,26 @@ Arguments: `$ARGUMENTS` (optional: "audit" for read-only analysis, "fix" to appl
    }
    ```
 
+### Phase 4: Pre-Nuke Clarity Snapshot (runs with "snapshot" or "full")
+
+10. Capture full working context:
+    - Branch, HEAD commit, commits ahead of origin
+    - 24h velocity (commit count)
+    - Change classification from Phase 1
+    - Uncommitted diff stats
+    - Mailbox inventory (all three agent lanes)
+11. Write structured markdown with YAML frontmatter to:
+    - `claude/mailbox/SCM_TRIAGE_SNAPSHOT_LATEST.md` (overwritten each time)
+    - `claude/mailbox/SCM_TRIAGE_SNAPSHOT_<timestamp>.md` (archived)
+12. Include recovery actions section with copy-paste commands
+
+**On session restart:**
+Read `claude/mailbox/SCM_TRIAGE_SNAPSHOT_LATEST.md` — this gives the resuming agent instant clarity on:
+- What branch/commit we're on and how far ahead of origin
+- What changes exist and whether they're signal or noise
+- What mailbox deliverables are pending
+- What to run next to pick up where we left off
+
 ## Invariants
 
 - NEVER delete files. Relocations use `git mv` (preserves history).
@@ -108,7 +130,8 @@ Arguments: `$ARGUMENTS` (optional: "audit" for read-only analysis, "fix" to appl
 uv run scripts/scm_triage.py              # Audit only (read-only)
 uv run scripts/scm_triage.py --fix        # Audit + apply noise fixes
 uv run scripts/scm_triage.py --plan       # Audit + generate migration plan
-uv run scripts/scm_triage.py --full       # All phases
+uv run scripts/scm_triage.py --snapshot   # Audit + write clarity snapshot to mailbox
+uv run scripts/scm_triage.py --full       # All phases (audit + fix + plan + snapshot)
 uv run scripts/scm_triage.py --dry-run    # Preview all changes without applying
 ```
 
