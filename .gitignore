@@ -42,6 +42,14 @@
 # Allow dumpster-dive consolidated archives
 !dumpster-dive/
 !dumpster-dive/**
+# Exclude transient overnight daemon outputs (regenerable nightly)
+dumpster-dive/intake/overnight-daemon/*/classifications/
+dumpster-dive/intake/overnight-daemon/*/report.json
+dumpster-dive/intake/overnight-daemon/*/report.md
+dumpster-dive/intake/overnight-daemon/*/run.json
+dumpster-dive/intake/overnight-daemon/*/.keep
+dumpster-dive/intake/overnight-daemon/*.log
+
 
 # Allow MCP server implementation
 !mcp/
@@ -213,6 +221,9 @@ book/
 !claude/**
 !claude-codex-gemini/
 !claude-codex-gemini/**
+
+# Re-exclude transient artifacts AFTER the allow-all rules above
+codex/mailbox/.tmp_fixture_eval/
 
 gha-creds-*.json
 claude/SESSION_HANDOFF_2026_02_01_TO_CLAUDE.md
