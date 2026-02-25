@@ -188,6 +188,7 @@ extensions/*/bun.lock
 !scripts/theme_promote_master.py
 !scripts/theme_color_diversity.py
 !scripts/theme_sfs_transmute.py
+!scripts/scm_triage.py
 
 # Allow specific Codex skill additions
 !.codex/
@@ -196,6 +197,12 @@ extensions/*/bun.lock
 !.codex/skills/codekiller-remediation-gate/**
 !.codex/skills/artifact-upcycle/
 !.codex/skills/artifact-upcycle/**
+
+# Allow specific Claude skill additions
+!.claude/
+!.claude/skills/
+!.claude/skills/scm-triage/
+!.claude/skills/scm-triage/**
 
 # mdBook build output (generated artifact)
 book/
