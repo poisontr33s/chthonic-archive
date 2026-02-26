@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
+#-*- coding: utf-8 -*-
 
 """
 VS Code Error Autopsy — Electron/Node fragility classifier and severity scorer.

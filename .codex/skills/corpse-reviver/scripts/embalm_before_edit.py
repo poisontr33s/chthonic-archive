@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+#-*- coding: utf-8 -*-
+
 """
 Embalm Before Edit — The Bride's Pre-Mortem Preservation Protocol.
 

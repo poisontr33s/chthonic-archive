@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
+#-*- coding: utf-8 -*-
 
 """
 Skill Health Auditor — Automated 1-10 discriminatory scoring for all skill lanes.
