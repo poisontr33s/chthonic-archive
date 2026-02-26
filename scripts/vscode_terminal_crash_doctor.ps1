@@ -152,12 +152,12 @@ function Collect-InsidersLogs {
     $patternsHit = @(
         "terminated with exit code",
         "0xC0000005",
-        "C0000005",
+        "STATUS_ACCESS_VIOLATION",
         "access violation",
-        "pty host",
-        "ptyhost",
-        "renderer process",
-        "crash"
+        "renderer process gone",
+        "reason: crashed",
+        "pty host exited",
+        "pty host terminated"
     )
 
     $hits = @()
