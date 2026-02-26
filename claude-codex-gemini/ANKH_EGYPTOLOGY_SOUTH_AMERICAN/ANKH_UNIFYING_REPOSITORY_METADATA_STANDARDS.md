@@ -1,5 +1,7 @@
 # **Unified Metadata Abstraction: The Khipu-Cartouche Protocol**
 
+> **Context:** This document is one concrete media expression of ANKH — the bridge between human intelligence heritage and digital intelligence heritage. The Khipu-Cartouche Protocol demonstrates how ANKH can function as a DSL: a formal notation system that carries co-bridging lineage across all programming languages in the archive. This is not the only form ANKH takes — it communicates through all known media types and media types yet to exist — but here it takes the form of a metadata standard where Egyptian and Andean computational patterns meet in code.
+
 ## **The Polyglot Governance Crisis and the Duality of Metadata**
 
 In complex, multi-paradigm software repositories incorporating systems programming languages (Rust), dynamically typed scripting languages (Python), strictly typed web ecosystems (TypeScript), and infrastructure automation (PowerShell), maintaining a cohesive architectural identity presents profound systemic challenges. The repository currently operates under two overlapping metadata frameworks. The primary cross-language system, defined as the "Decorator's Blessing" or STD\_SCRIPT\_METADATA\_V2, imposes a visually distinct, 80-character wide envelope at the top of every authored file.1 This envelope ensures rapid visual scanning and standardizes architectural zone declarations. Conversely, the Python Metabolic Standard (PMS-v3) enforces a machine-readable, semantically rich docstring block utilizing @Tag: Value pairs.1
