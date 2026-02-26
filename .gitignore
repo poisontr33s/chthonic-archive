@@ -192,6 +192,9 @@ extensions/*/bun.lock
 !scripts/theme_color_diversity.py
 !scripts/theme_sfs_transmute.py
 !scripts/scm_triage.py
+!scripts/vscode_terminal_crash_doctor.ps1
+!scripts/api_key_gap_report.ps1
+!scripts/vscode_insiders_matrix.ps1
 
 # Allow specific Codex skill additions
 !.codex/

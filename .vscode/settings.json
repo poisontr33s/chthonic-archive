@@ -67,8 +67,10 @@
     "terminal.integrated.defaultEncoding": "utf8",
     // Unicode 11 width tables — correct emoji/CJK column widths
     "terminal.integrated.unicodeVersion": "11",
-    // GPU rendering for smooth scrolling and glyph rendering
-    "terminal.integrated.gpuAcceleration": "on",
+    // Stability gate: disable terminal GPU acceleration while Insiders renderer crashes are being triaged.
+    "terminal.integrated.gpuAcceleration": "off",
+    // Triage gate: capture terminal diagnostics in trace mode.
+    "terminal.integrated.logLevel": "trace",
     // Kill the yellow "wants to contribute" env warning banner
     "terminal.integrated.environmentChangesIndicator": "off",
     // Auto-apply extension env changes without the "relaunch" nag
@@ -86,7 +88,7 @@
             "icon": "terminal"
         }
     },
-    "terminal.integrated.defaultProfile.windows": "Pwsh 7.5 (Chthonic)",
+    "terminal.integrated.defaultProfile.windows": "Pwsh (No Profile)",
     "terminal.integrated.shellIntegration.enabled": true,
     "terminal.integrated.shellIntegration.decorationsEnabled": "both",
     "terminal.integrated.shellIntegration.showCommandGuide": true,
@@ -274,6 +276,6 @@
     "chatgpt.commentCodeLensEnabled": true,
     "chatgpt.openOnStartup": true,
     "chatgpt.composerEnterBehavior": "cmdIfMultiline",
-    "chatgpt.thinkingMode": "high",
+    "chatgpt.thinkingMode": "xhigh",
     "github.copilot.chat.anthropic.contextEditing.mode": "clear-both",
 }
