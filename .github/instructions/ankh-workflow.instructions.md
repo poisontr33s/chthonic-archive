@@ -12,65 +12,40 @@
 
 ---
 
-## Ankhological Workflow Instructions
+## Workflow Orientation
 
-These instructions govern how we operate inside this repository.
-
-They are procedural, not doctrinal.
-They reference files, not concepts.
+These are practical entry points for operating in this repository.
+They point to files. The files carry the substance.
 
 ---
 
-## Primary Reading Order (Mandatory)
+## Entry Points
 
-When operating in this repository, we read in this order:
+When starting work, orient from these templates:
 
-1. `dumpster-dive/intake/templates/intake-checklist.md`
-2. `dumpster-dive/intake/templates/manifest-template.yml`
-3. `dumpster-dive/intake/templates/lineage-*-template/main.md`
+1. `dumpster-dive/intake/templates/intake-checklist.md` — operational checklist
+2. `dumpster-dive/intake/templates/manifest-template.yml` — manifest structure
+3. `dumpster-dive/intake/templates/lineage-*-template/main.md` — lineage-specific context
 
-We do not infer workflow from SSOT documents.
-We follow file-declared structure only.
-
----
-
-## Coordination Rule (Global)
-
-When a file states:
-
-**"Awaiting sovereign population (Lineage X)"**
-
-This means:
-
-→ Lineage X must populate its own  
-`lineage-X-template/manifest.yml` and `main.md`.
-
-This is an instruction, not a waiting state.
+These are starting points, not boundaries. Follow what the files declare.
 
 ---
 
-## File Interconnection Rule
+## Coordination
 
-Some files declare a `refs` block.
-
-This block lists related files only.
-It does not assign authority.
-It does not imply execution order unless stated in the checklist.
+When a file states **"Awaiting population (Lineage X)"** — that lineage populates its own `manifest.yml` and `main.md`. This is a prompt to act, not a waiting state.
 
 ---
 
-## What We Do Not Do
+## References
 
-- We do not invent workflow from prose
-- We do not infer intent from SSOT
-- We do not modify frozen tools
-- We do not act across lineage boundaries
+Some files declare a `refs` block. This lists related files — it does not assign authority or imply execution order unless the checklist states otherwise.
 
 ---
 
-## Ground Truth
+## Conflict Resolution
 
-If instructions conflict:
-- Checklist > Instructions > Templates
-- Files override memory
-- Structure overrides interpretation
+When instructions conflict:
+- Checklist → Instructions → Templates (specificity wins)
+- Files carry more weight than recall
+- Frozen artifacts are not modified — they are referenced
