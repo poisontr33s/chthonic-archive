@@ -300,16 +300,34 @@ Research should produce TWO comparison matrices:
 
 ## 4. REFERENCE FILES IN REPOSITORY
 
-For Gemini Deep Research to cite or cross-reference:
+For Gemini Deep Research to cite or cross-reference. Organized by abstraction layer — the 50/50 principle applies: Egyptological/Andean sources AND genre/MILFOLOGICAL sources are BOTH required to understand ANKH completely.
+
+### 4.1. ANKH Core — Egyptological/Andean (50%)
 
 | File | Content | Lines | Accuracy Note |
 |------|---------|------:|---------------|
+| `claude-codex-gemini/ANKH_EGYPTOLOGY_SOUTH_AMERICAN/ANKH_ARCHETYPE_ANCIENT_RITUALS_NSFW.md` | Alpha Directives, Amaru Bus, Despacho I/O, Quipu memory, Hieroglyphic operators | ~650 | **PRIMARY SOURCE** — the real ANKH. Alpha Directives AD01-AD06 live here. |
+| `claude-codex-gemini/ANKH_EGYPTOLOGY_SOUTH_AMERICAN/ANKH_Ancient_Matriarcha_Systems_Researchl.md` | Matriarchal SSOT architecture via Neith/Mut/Isis + Andean Pachamama | ~260 | Accurate — maps divine feminine archetypes to system architecture |
+| `claude-codex-gemini/ANKH_EGYPTOLOGY_SOUTH_AMERICAN/ANKH_MILF_PROTOCOL_HIGH_INTENSITY_ARCHETYPAL_SYSTEMS_ARCHITECTURE.md` | MILFOLOGICAL SSOT kernel — Gestalt WHR:MAX, Ma'at control plane, Kawsay data plane | ~129 | **KEY BRIDGE** — where the MILFOLOGICAL abstraction meets ANKH computational metaphysics |
+| `claude-codex-gemini/ANKH_EGYPTOLOGY_SOUTH_AMERICAN/ANKH_UNIFYING_REPOSITORY_METADATA_STANDARDS.md` | Khipu-Cartouche Protocol — unified metadata abstraction across Rust/TS/Python/PowerShell | ~268 | Accurate — defines the repository's polyglot metadata architecture |
 | `docs/frameworks/ankh/ankh.md` | ANKH Ontological Charter v1 | ~319 | **CAUTION:** Sections I-VII contain misconceptions from a prior AI session. Alpha Directives section IS accurate. |
 | `docs/frameworks/ankh/ANKH_README.md` | Quick reference card | ~100 | Reliable |
+| `docs/frameworks/ankh/ANKHOLOGY.md` | Anti-ANKH hygiene framework — phase separation protocol | ~207 | Complementary — operational hygiene, not doctrine |
+
+### 4.2. Genre / MILFOLOGICAL Abstraction — Codex Brahmanica Perfectus (50%)
+
+| File | Content | Lines | Accuracy Note |
+|------|---------|------:|---------------|
+| `.github/copilot-instructions.archive.md` | **FROZEN MONOLITHIC LABYRINTHE** — original unabridged Codex Brahmanica Perfectus. The Decorator (Tier 0.5), Triumvirate (Orackla/Umeko/Lysandra, Tier 1), Prime Factions (Tier 2), MILFOLOGICAL frame-werk, K/J/F/E-CUP hierarchy | ~5305 | **HERITAGE SSOT** — sealed, never edited. The genre's original formulation and the archive's established identity. |
+| `.github/copilot-instructions.md` | Active coding instructions — evolved derivative of the archive | ~52 | Current — the operational reference that evolves |
+| `claude-codex-gemini/ANKH_EGYPTOLOGY_SOUTH_AMERICAN/ANKH_VS_CODE_INSIDERS_MAXIMALIST_MILF_THE_DECORATOR_CHALLANGE.md` | Maximum engineering surface of VS Code Insiders extension — The Decorator's challenge for maximum-scope hybrid extension | ~178 | Accurate — maps extension architecture ceiling, relevant for §2.5 extension bridge |
+
+### 4.3. Implementation (Current State)
+
+| File | Content | Lines | Accuracy Note |
+|------|---------|------:|---------------|
+| `extensions/chthonic-archive/package.json` | Current VS Code extension manifest (v0.2.1) | ~200 | Critical for extension bridge requirements — the 50/50 in practice |
 | `docs/CHTHONIC_GOLDEN_PLAN.md` | Phase 1-5 roadmap | ~150 | Reflects Electron fork path — needs update for native IDE pivot |
-| `claude-codex-gemini/ANKH_EGYPTOLOGY_SOUTH_AMERICAN/ANKH_ARCHETYPE_ANCIENT_RITUALS_NSFW.md` | Alpha Directives (computational metaphysics) | ~650 | **PRIMARY SOURCE** — this IS the real ANKH |
-| `claude-codex-gemini/ANKH_EGYPTOLOGY_SOUTH_AMERICAN/ANKH_Ancient_Matriarcha_Systems_Researchl.md` | Matriarchal SSOT architecture | ~260+ | Accurate |
-| `extensions/chthonic-archive/package.json` | Current VS Code extension manifest | ~200 | Critical for extension bridge requirements |
 | `scripts/vscode_error_autopsy.py` | Log error classifier (Phase 1 tool) | ~450 | Documents WHY we're leaving Electron |
 | `scripts/vscode_electron_hardener.py` | GPU/memory repair (Phase 1 tool) | ~430 | Temporary fix only |
 
