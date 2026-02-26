@@ -1,21 +1,27 @@
 ---
 name: claude-skill-bridge
-description: "One-command Claude skill audit. Runs local audit; add --cross-polish for cross-flavor check."
-allowed-tools: "Read, Write, Glob, Grep, Bash"
-user-invocable: true
+description: "REDIRECT — Merged into skill-polisher. Use skill-polisher for Claude skill audits and cross-flavor checks."
+allowed-tools: "Read"
+user-invocable: false
 ---
 
-# Claude Skill Bridge
+# Claude Skill Bridge — REDIRECT
 
-## Command
+Absorbed into **skill-polisher** (SKILL-HARDENING-3.0). All Claude audit commands live there now.
+
+## Equivalent commands in skill-polisher
 
 ```powershell
-# Audit all Claude skills
-.\scripts\run_claude_local_audit.ps1 -Root .claude/skills
+# Claude local audit (was: run_claude_local_audit.ps1)
+uv run scripts/skill_audit.py --flavor claude --root .claude/skills
 
-# Cross-polish (Claude ↔ Codex parity check)
-.\scripts\run_claude_cross_polish.ps1 -CodexRoot .codex/skills -ClaudeRoot .claude/skills
+# Cross-polish (was: run_claude_cross_polish.ps1)
+uv run .codex/skills/skill-polisher/scripts/polish_skill.py .claude/skills --all --mode verify --target-flavor auto
 ```
+
+## Provenance
+
+Original commands (`run_claude_local_audit.ps1`, `run_claude_cross_polish.ps1`) were never implemented as scripts — they were aspirational references. The underlying functionality was always in `skill_audit.py` and `polish_skill.py`.
 
 
 

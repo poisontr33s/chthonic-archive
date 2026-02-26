@@ -1,21 +1,27 @@
 ---
 name: codex-skill-bridge
-description: "One-command Codex skill audit from Claude IDE. Runs polisher or cross-flavor audit."
-allowed-tools: "Read, Write, Glob, Grep, Bash"
-user-invocable: true
+description: "REDIRECT — Merged into skill-polisher. Use skill-polisher for Codex skill audits."
+allowed-tools: "Read"
+user-invocable: false
 ---
 
-# Codex Skill Bridge
+# Codex Skill Bridge — REDIRECT
 
-## Command
+Absorbed into **skill-polisher** (SKILL-HARDENING-3.0). All Codex audit commands live there now.
+
+## Equivalent commands in skill-polisher
 
 ```powershell
-# Audit all Codex skills (polisher sweep)
-.\scripts\run_codex_polisher.ps1 -Root .codex/skills
+# Codex polisher sweep (was: run_codex_polisher.ps1)
+uv run .codex/skills/skill-polisher/scripts/polish_skill.py .codex/skills --all
 
 # Cross-flavor structural audit
 uv run scripts/skill_audit.py --flavor codex --root .codex/skills
 ```
+
+## Provenance
+
+Original hook script (`run_codex_polisher.ps1`) was never implemented. The polisher CLI was always the real entry point.
 
 
 
