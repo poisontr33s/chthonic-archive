@@ -4468,25 +4468,158 @@ T3      Spectra Chroma          H     0.537    Chromatic archaeology
 T4      [Sub-entities]          C-D   0.65+    Task-specific operatives
 ```
 
-**§ Realistic Calibration Substrate (RCS) — Pending Deep-Research Injection**
+**§ Realistic Calibration Substrate (RCS) — CALIBRATED**
 
-The WHR:MAX framework above operates in the **Oda X Curve** register — exaggerated proportional perfection calibrated for anime/ecchi/hentai/pornographic gestalt. To anchor these creative abstractions to real-world measurement truth, the following calibration layer is reserved:
+The WHR:MAX framework above operates in the **Oda X Curve** register — exaggerated proportional perfection calibrated for anime/ecchi/hentai/pornographic gestalt. The following calibration substrate anchors these creative abstractions to real-world measurement truth, grounded by Gemini 3.1 Pro Deep Research (2026-02-26).
 
-**Calibration Vectors (awaiting deep-research document):**
-- **International Lingerie Sizing Matrices:** Real underwear/brassiere sizing data across countries (US, EU, UK, JP, AU) mapped to band/cup measurement equivalencies
-- **WHR:REAL → WHR:MAX Transformation Functions:** Mathematical mapping from realistic waist-hip ratios (0.67-0.80 healthy range) to the exaggerated Oda X Curve (0.464-0.65 creative range)
-- **Clothing Fit Calibration:** How each entity's measurements translate to real lingerie/clothing sizes — injecting sovereign realism into creative proportions
-- **Anti-Body-Positivity Fortress:** Sovereign aesthetic standards rejecting obesity normalization — the forbidden garden of proportion discipline where health and beauty maintain their alliance
-- **Gestalt Measurement Areas:** Bust/underbust differential, hip spring, torso proportions — the structural mathematics that make WHR:MAX architectonically viable rather than arbitrary
+**Status:** `CALIBRATED` — data injected, transformation functions verified, per-entity sizing resolved.
 
-**Integration Protocol:** When the deep-research candidate arrives, it will be:
-1. Ingested via `ingest-research` skill into structured digest
-2. Pre-edit embalmed (auto-embalm protocol) before any SSOT modifications
-3. Calibration matrices computed and inserted as RCS subsection
-4. Each entity's profile annotated with RCS-equivalent real-world sizing
-5. Delta fragments stitched for selective reapplication across the hierarchy
+---
 
-**Status:** `AWAITING_RESEARCH_DOCUMENT` — infrastructure ready, data pending.
+**RCS Vector 1: International Lingerie Sizing Matrix**
+
+All sizes computed via +0 method (underbust = band size, no +4 inflation). Entities at T0.5–T1 exceed mass-market retail entirely — Polish bespoke engineering (Ewa Michalak, Comexim) or full custom required. The "impossibility boundary" is the threshold beyond which standard retail sizing ceases to function.
+
+```
+Entity                  US      UK      EU      JP      AU      Morphological Note
+─────────────────────────────────────────────────────────────────────────────────────
+The Decorator           34P     34KK    75P     75P     12KK    Bespoke only; impossibility boundary
+Snow White              32O     32K     70O     70O     10K     4-hook closure minimum
+Orackla Nocticula       32O     32K     70O     70O     10K     Same bust-underbust differential as Snow White
+Spectra Chroma          30N     30JJ    65N     65N     8JJ     Narrow frame; gore-tack issues
+Kali Praharshini        30M     30J     65M     65M     8J      Max threshold for specialist brands
+Claudine Pyrrhique      30L     30HH    65L     65L     8HH     Upper limit of off-the-rack
+Belle Noire             28L     28HH    60L     60L     6HH     Narrow ribcage + massive volume challenge
+Eva Malitia             30L     30HH    65L     65L     8HH     Volumetric equivalent to Belle Noire
+Seraphine Pyralis       30K     30H     65K     65K     8H      Supported by Panache/Freya ranges
+Umeko Ketsuraku         28J     28GG    60J     60J     6GG     Sub-30" band; structural leverage challenge
+Vesper Tempus           30I     30G     65I     65I     8G      Commercially viable at specialist retailers
+SFS                     30I     30G     65I     65I     8G      Sister-size equivalent to Vesper
+Dr. Lysandra Thorne     28H     28FF    60H     60H     6FF     Lower extreme boundary
+Magistra                30H     30FF    65H     65H     8FF     "Accessible extreme" — mirror of Lysandra
+Novia Cadaveris         28G     28F     60G     60G     6F      Most conservative bust-underbust differential
+```
+
+---
+
+**RCS Vector 2: WHR:REAL → WHR:MAX Transformation Functions**
+
+Three mathematical models were evaluated. The **sigmoidal (logistic)** model provides the best fit across the full WHR range:
+
+**Sigmoidal transformation (CANONICAL):**
+```
+f(x) = M + (L - M) / (1 + e^(-k(x - x₀)))
+
+Parameters:
+  L (upper asymptote) = 0.85   — real-world WHR ceiling (obese range)
+  M (lower asymptote) = 0.40   — theoretical WHR floor (corsetry extreme)
+  k (steepness)       = 45     — compression intensity at midpoint
+  x₀ (midpoint)       = 0.72   — inflection point (population median WHR)
+```
+
+**Inverse function (WHR:MAX → WHR:REAL back-computation):**
+```
+x_real = x₀ - (1/k) * ln((L - M) / (WHR_MAX - M) - 1)
+```
+
+**Verification:** Decorator's WHR:MAX 0.464 → inverse yields WHR:REAL ~0.68 (apex of genetic potential, empirically consistent with elite fitness competitors).
+
+**Rejected models:**
+- Linear: fails catastrophically at extremes (predicts impossible sub-0.30 WHR:REAL)
+- Cubic spline: acceptable fit but lacks closed-form inverse; unsuitable for programmatic use
+
+---
+
+**RCS Vector 3: Clothing Fit Calibration — Anthropometric Divergence**
+
+The WHR:MAX entities exhibit **anthropometric divergence**: measurements that fragment across multiple incompatible size ranges in every mass-market system. Standard clothing cannot accommodate simultaneous extremes at waist, bust, and hips.
+
+**Exemplar — Orackla Nocticula (B:120 / W:55 / H:112):**
+- Waist = US 00 (XS floor), Hips = US 14 (L ceiling), Bust = US 20+ (off-scale)
+- Japanese market: waist fits size 5 but bust exceeds size 21 (6L+)
+
+**Two survival avenues:**
+1. **Spandex Horizon:** Fabrics with 15–25% elastane content. Stretch bridges the gap between waist and hip—practical for bodycon silhouettes but sacrifices structural support.
+2. **Bespoke Corsetry & Bias-Cut:** Custom-drafted patterns. Historical precedent: Victorian/Edwardian tight-lacing routinely achieved 20–22" waists (50–55 cm) on corseted figures with large busts. Cathie Jung (Guinness record, 15" corseted waist) proves decades-long sustainability of extreme skeletal adaptation.
+
+**Per-entity clothing cascade:** Every WHR:MAX entity requires split-sizing across garment regions. No single off-the-rack size serves any entity above T4.
+
+---
+
+**RCS Vector 4: Anti-Body-Positivity Fortress**
+
+The WHR:MAX aesthetic does not apologize. Medical and evolutionary evidence fortifies its position:
+
+**Medical evidence (WHR as health proxy):**
+- INTERHEART study (Yusuf et al., 2005, 52 countries, 27,000+ subjects): elevated WHR carries 3× myocardial infarction risk; odds ratio 4.63 in women. WHR outperforms BMI as cardiovascular risk predictor.
+- WHO clinical baselines: healthy female WHR ≤ 0.80; male WHR ≤ 0.90. Values above correlate with increased all-cause mortality, type 2 diabetes, and metabolic syndrome.
+
+**Evolutionary psychology (WHR as attractiveness proxy):**
+- Singh (1993): WHR 0.70 ± 0.04 rated universally attractive across disparate global cultures, cross-validated in over 30 studies.
+- Low female WHR signals: high estrogen, youth, absence of current pregnancy, gluteofemoral omega-3 reserves critical for offspring neural development.
+
+**The supernormal stimulus principle:** WHR:MAX entities represent a "supernormal stimulus" — artificially exaggerated features triggering stronger neurological response than biological originals. This is an intentional creative operation on biological truth, not ignorance of it. The framework *weaponizes* evolutionary aesthetics rather than denying them.
+
+**Historical viability:** Victorian tight-lacing (20–22" waists), Cathie Jung (15" corseted, WHR 0.38, sustained decades without mortality), Japanese gravure industry (natural J/K-cup volumes on 60 cm waists — e.g., Hitomi Tanaka: B:116 / W:61 / H:87). The 55–58 cm waists of WHR:MAX entities are achievable through dedicated corset training and body composition management.
+
+---
+
+**RCS Vector 5: Gestalt Measurement Mathematics & Biomechanics**
+
+**Anterior breast load:**
+- Breast tissue density: ~0.945 kg/L. UK KK-cup (Decorator class) exceeds 2,500 cc per breast = 2.3+ kg each, 4.6+ kg total anterior cantilever.
+- Anterior center-of-gravity shift demands continuous compensatory erector spinae engagement; increased thoracic kyphosis and lumbar lordosis documented via surface topography studies.
+
+**Dynamic motion (locomotion):**
+- Breast tissue oscillates in multi-directional figure-8 pattern during running stride. Peak acceleration: up to 3G during initial stride phase.
+- For 120 cm bust: ~15 kg dynamic force on Cooper's ligaments per stride. Without maximum-control encapsulation sports bras, locomotion beyond brisk walking causes immediate tissue strain, micro-tearing, and rapid ptosis.
+
+**Hip spring mathematics:**
+- Standard female hip spring: ~25 cm circumference differential. WHR:MAX entities exhibit springs up to 57 cm (Decorator: 115-58=57 cm).
+- Modeled as truncated cone with 18–20 cm vertical pelvic drop: lateral flare angle approaches 45–55°.
+- This extreme lower-pole expansion is *architecturally necessary* — the wide base acts as a dynamic counterweight to the massive anterior breast load, creating mathematical gestalt balance.
+
+---
+
+**RCS Vector 6: The Oda X Curve — Mathematical Formalization**
+
+The WHR:MAX framework descends directly from the "Oda X Curve" — the systematic morphological pattern developed by manga artist Eiichiro Oda (One Piece). Oda codified his method as "three circles, one X" (SBS Volume 79): head + two breast circles + X-taper at waist.
+
+**Official Oda character statistics (SBS columns):**
+```
+Character               B(cm)  W(cm)  H(cm)  Height  WHR    Cup(JP)
+────────────────────────────────────────────────────────────────────
+Nami (pre-timeskip)     95     55     85     —       0.647  I
+Nami (post-timeskip)    98     58     88     170cm   0.659  J
+Nico Robin (post-TS)    100    60     90     188cm   0.666  J
+Boa Hancock             111    61     91     191cm   0.670  J
+```
+
+**Three immutable rules of the Oda X Curve:**
+1. **Static ultra-narrow anchor:** Waist locked at 55–61 cm regardless of character height. Robin: 188 cm tall, 60 cm waist — surreal BMI at torso core while retaining massive mass at poles.
+2. **Symmetrical radial divergence:** Both bust and hip regions expand dramatically and symmetrically from the microscopic central anchor.
+3. **1.6–1.8 volumetric ratio:** Bust and hip circumferences systematically 1.6–1.8× the waist circumference. This boundary mirrors the golden ratio mapped onto human volumetric expansion — the brain registers it as "ideal" despite profound biological deviation.
+
+**WHR:MAX as Oda X Curve amplifier:** The framework uses Oda's canonical ~0.66 WHR baseline as its floor, then drives it down into the 0.46–0.59 extreme domain along a mathematically rigorous, biomechanically aware trajectory. The entities represent the absolute zenith of calculated, architectonic maximalism — the Oda X Curve scaled to its theoretical limit.
+
+---
+
+**RCS Supplementary: Zero-Gravity Breast Volumetry & Camera Optics**
+
+**Zero-gravity volumetry (from Finite Element Modeling):**
+- Standard tape measurements fail for extreme proportions. 3D FEM establishes "zero-gravity" breast baseline by mathematically inverting gravitational vectors on hyperelastic neo-Hookean tissue models (Poisson ratio ~0.5).
+- This provides absolute volume in cc independent of posture-induced deformation (ptosis standing, lateral flattening supine). Conversion: ~130–150 cc per cup size increment; extreme enhancements (B→J+) require 800–1000+ cc per breast.
+
+**Camera optics weaponization (from supplementary DR):**
+- High-angle shot (looking down): inflates perceived bust volume via proximity effect, tapers waist via perspective convergence — top half of X-Curve illusion.
+- Low-angle shot (looking up): widens perceived hip circumference, narrows waist via vertical recession — bottom half of X-Curve illusion.
+- Combined: a performer with surgical 0.65 WHR can be photographed to *appear* at WHR:MAX-level 0.50 or below. The framework acknowledges this optical dimension.
+
+**Supernormal stimulus economics:** Adult industry data (10,000+ profiles) confirms low WHR is the strongest predictor of performer success and role frequency, outperforming BMI. Average adult actress weighs 29% less than average American woman. Apex WHRs: 0.60–0.65 common, 0.50s documented in extreme cases.
+
+---
+
+**RCS Integration Complete.** Deep Research artifacts archived at `gemini/mailbox/from_gemini_DR/`. Embalm snapshot taken before injection. Per-entity RCS annotations available via the international sizing matrix above.
 
 **Why Magistra ≠ Tier 1 Despite WHR 0.58:**
 
