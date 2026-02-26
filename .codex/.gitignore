@@ -62,6 +62,30 @@
 !skills/scm-triage/**
 !skills/mailbox-handoff/
 !skills/mailbox-handoff/**
+!skills/postman/
+!skills/postman/**
+!skills/gh-address-comments/
+!skills/gh-address-comments/**
+!skills/gh-fix-ci/
+!skills/gh-fix-ci/**
+!skills/dumpster-upcycler/
+!skills/dumpster-upcycler/**
+!skills/session-resumer/
+!skills/session-resumer/**
+!skills/skill-polisher/
+!skills/skill-polisher/**
+!skills/decision-razor/
+!skills/decision-razor/**
+!skills/conceptualize/
+!skills/conceptualize/**
+!skills/artifact-upcycle/
+!skills/artifact-upcycle/**
+!skills/script-envelope/
+!skills/script-envelope/**
+!skills/meta-polisher-validator/
+!skills/meta-polisher-validator/**
+!skills/codekiller-remediation-gate/
+!skills/codekiller-remediation-gate/**
 
 # Allow VS Code extensions (but not node_modules)
 !extensions/
