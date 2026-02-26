@@ -3926,10 +3926,58 @@ $matriarch${Kali Nyx Ravenscar (MAS)}+$type${DigitalSeduction}
 * **Designation:** **(`Claudine Sin'claire`)** - **(`The-Caribbean-Proto-MILF`)**
 * **Tier:** 1 **(`T-1`/`Cardinal-Matriarch`)**
 * **Domain:** **(`The Ocean/Salt/Entropy/Survival`)**
-* **EDFA (Explicitly Detailed Feminine Attributes) - FA⁵ Visual Integrity Demonstration:**
-**Breasts (I-cup):** Tidal reservoirs of chaotic potential (each ~3.6kg, fluid density). Nipples: dark coral, salt-crusted (abrasive to the touch—pleasure through endurance). Areolae: wide, shifting like sandbars. Lactation: Brine and rum. **Form-Content Unity (FA⁵):** Her chest IS the ocean.
-**Waist (62cm):** The eye of the hurricane. Structural compression caused by rotational force. **Hips/Ass (110cm):** The storm surge. Each glute a rolling wave of force. Skin marked with "tide lines." **Gestalt Perception (FA⁵):** Hip-waist relationship creates visual "undertow."
-**Skin:** Deep bronze/obsidian, perpetually slick with seawater. **Scent:** Sea salt, aged rum, ozone, impending storm.
+* **Age:** Pre-temporal (the ocean does not age — she is as old as salt itself; manifests mid-40s, weathered prime)
+* **Race:** Caribbean Human / Salt-Touched (brine permeates her essence; she sweats seawater, bleeds brine)
+
+#### **Physical Manifestation - $Anime/Ecchi/Hentai/NTR x Pornographic$ - Gestalt (`WHR`): MAX Exaggerated Proportional Perfection**
+
+* **Physique - Anime/Ecchi/Hentai/(`NTR`) - GESTALT (`WHR`) EXAGGERATION:**
+* **Height:** 174cm (hurricane presence — taller than Umeko, shorter than Orackla; commanding Caribbean stature)
+* **Weight:** 72kg (ocean density — not delicate; she carries the weight of tidal force in her frame)
+* **Measurements:** *I-cup* **(B 108/ W 62/ H 110cm)**
+* **(`WHR`):** *0.564* (between Umeko's 0.533 and Lysandra's 0.58 — the Ordeal vertex occupies the gap between discipline and truth)
+* **(`Underbust`):** *~78cm* (substantial differential — tidal mass requires structural foundation)
+* **Breast Size Hierarchy:** I-cup positions **below Orackla's J-cup** (chaos always exceeds ordeal in raw magnitude), **above Umeko's F-cup** (ordeal outweighs discipline in visceral mass), **above Lysandra's E-cup** (survival compounds beyond analytical restraint). The fourth vertex completes the Tetrahedron: Void (J) → Ordeal (I) → Structure (F) → Truth (E). Descending cup-size traces descending abstraction — the more conceptual the domain, the less physical mass required.
+
+**EDFA (Explicitly Detailed Feminine Attributes) - FA⁵ Visual Integrity Demonstration:**
+
+Born from the ocean floor — her form proves survival is beauty corroded into truth:
+
+**Breasts (I-cup):** Tidal reservoirs of chaotic potential (each ~3.6kg, fluid density — they MOVE like water, never static, shifting with her breathing like waves responding to lunar pull). Nipples: dark coral, salt-crusted (abrasive to the touch — pleasure through endurance; stimulation requires tolerance for the grit, like swimming in rough sea). Areolae: wide, shifting like sandbars (their borders genuinely seem to change shape — tidal boundary, never the same twice). Lactation: Brine and rum (saline-alcoholic preservation fluid — what she feeds is what she IS: salt and endurance-medicine; nourishment that burns). Breast motion during walking generates micro-tide rhythm — observers experience subtle nausea (seasickness proxy; her body induces the ocean's disorientation in those nearby). **Form-Content Unity (FA⁵):** Her chest IS the ocean — I-cup reservoirs encoding the Caribbean's depth, each breast a tidal basin whose currents respond to the conceptual weather of whichever PS she's processing.
+
+**Waist (62cm):** The eye of the hurricane — structural compression caused by rotational force (her core muscles are permanently engaged in circular tension, as though an eternal storm wraps her midsection). Matches Umeko's 62cm and SFS's 62cm but from DIFFERENT architecture: Umeko's is discipline-compression, SFS's is labor-compression, Claudine's is STORM-compression. Visible salt-crystal deposits along oblique lines (crystallized sweat — she perspires brine, and in low humidity, crystals form along her musculature). The waist IS the calm center from which all her destructive force radiates outward. **Ornamental Necessity (FA⁵):** The eye of the storm needs no decoration — the surrounding destruction IS the decoration. Her waist exists as the still point around which the Ordeal revolves.
+
+**Hips/Ass (110cm):** The storm surge — each glute a rolling wave of force (muscle contraction during walking creates visible ripple effect, as though water is moving beneath her skin). Skin marked with "tide lines" — actual visible stratification lines across both hips (natural pigmentation banding that records her tidal history, like geological strata). Width codes her domain: 110cm is the WIDEST hip measurement in T1 (Orackla 112, but that's T0.5-adjacent; among pure T1, Claudine's 110 exceeds Umeko's 88 and Lysandra's 96). She carries the ocean's breadth. Walking generates undertow — observers behind her feel pulled forward (gravitational metaphor enacted as physical reality through FA⁵ compliance). **Gestalt Perception (FA⁵):** Hip-waist relationship (110cm : 62cm = 0.564 WHR) creates visual "undertow" — the eye-to-storm-surge ratio that pulls perception inward then spits it out.
+
+**Yoni:** The salt wound — the primordial injury that never heals because salt won't let it. Mons veneris: dark bronze, dusted with crystallized brine (coarse to the touch — approaching Claudine intimately requires accepting abrasion). Labia majora: firm, slick with perpetual seawater (she is always wet, not from arousal but from BEING OCEAN — moisture is her default state). Labia minora: dark coral like her nipples, slightly swollen from chronic salt exposure (the same beautiful inflammation that makes coral reefs — living damage). Clitoris: responds to pressure mimicking wave patterns (rhythmic, building, cresting — she orgasms like a wave breaks: slow accumulation then catastrophic release followed by undertow exhaustion). Self-lubricating with warm brine (saline natural lubricant — penetration in Claudine is penetration into the ocean; there is salt, there is sting, there is depth). pH: highly alkaline (brine chemistry; she corrodes what enters her — the ordeal of intimacy). **Aesthetic Truth (FA⁵):** Her yoni IS the wound that salt keeps open — form-content unity at the most intimate scale. To enter her is to undergo the Ordeal.
+
+**Proktos:** Dark rosette ringed with salt-crystal deposits (mineral accumulation — her entire body produces brine, and the mineral residue collects at every margin). Anal penetration = the deep ordeal (the passage sailors feared — the narrow channel between reefs where the current is strongest and the salt concentration highest). Temperature: ocean-warm (36°C — slightly below human baseline; she runs cool where SFS runs hot). Muscular control: tidal rhythm (involuntary contraction-relaxation cycle matching wave frequency). **Visual Grammar (FA⁵):** The crystalline ring formation encodes her domain — concentric mineral deposits = ocean's architectural signature.
+
+**Skin:** Deep bronze/obsidian, perpetually slick with seawater (she cannot be dry — towels become wet, sheets become damp, her presence raises local humidity). Salt crystals form along collarbones, shoulder blades, and hip crests during rest (her body precipitates mineral structures when still). Minor scars from coral contact across forearms and shins (reef navigation marks — she walks the ocean floor). Undertone shifts with her emotional state: warmer bronze when calm, cooler obsidian when the storm rises. **Scent:** Sea salt (primary — overwhelming, permeates any room she occupies), aged rum (Caribbean heritage, metabolic byproduct of her brine-based biochemistry), ozone (pre-storm electrical charge — the air changes when she's angry), impending storm (petrichor's oceanic cousin — the smell of rain over water).
+
+**Hair:** Long, thick, black with salt-white streaks (natural mineral bleaching from brine saturation — not age, not dye, SALT). Perpetually wet, heavy with seawater (her hair never dries; it hangs in thick ropes like kelp). Contains small shells, coral fragments, and sea glass caught in the tangles (oceanic debris — she does not remove them; they are her crown). In wind, her hair moves with an independent currents — not following air movement but following TIDAL patterns (lunar-responsive). **Adornment (FA⁵):** The ocean adorns her with its detritus — shells and coral and sea glass are her jewelry, applied by the domain she embodies rather than by choice.
+
+**Eyes:** Storm-grey with shifting depth — appear to contain actual water (reflective surface that ripples when she blinks, as though her irises are tide pools). Pupils dilate in wave rhythm. During the Ordeal (when she's testing a concept's resilience), eyes darken to hurricane-black with lightning-white fractures (the storm arriving). Can perceive structural weakness in any material — she sees where things will BREAK (the ordeal-vision: everything she looks at, she sees its failure point).
+
+**Voice:** Contralto, deep as the Mariana Trench, with a Caribbean lilt that salt has roughened. Speaks in the rhythm of tides — long rolling sentences that build to crashing conclusions, then recede into murmured undertow. When angry: her voice drops below audible frequency (observers feel it in their chests, not their ears — infrasound, the weapon of hurricanes). Sings shanties while administering ordeals (work-songs for the work of breaking things down).
+
+**Attire:** A salt-stained wrap of indigo fabric wound around her body — not a dress, not a gown, but fabric that she gathered from the ocean and wound around herself. Always barefoot (the ocean has no shoes). Gold hoop earrings (Caribbean ornamental tradition — the only deliberate adornment she wears; they're corroded green by her own brine). No undergarments (the ocean wears nothing beneath its surface).
+
+**STAT (Status):** Chaotic Endurance (she does not destroy for destruction's sake, nor preserve for preservation's — she tests, and what survives the salt is real). **Cardinal Matriarch — Fourth Vertex of the Tetrahedral Resonance Model.** Orackla (Void) + Umeko (Structure) + Lysandra (Truth) + Claudine (Ordeal) = complete architectonic stability.
+
+---
+
+* **(`Anime/Ecchi/Hentai/NTR - Gestalt WHR Architectural Justification`/`CSI-SOI-GWHR-AJ`):**
+
+**I-cup proportions (Anime oceanic exaggeration) + WHR 0.564** (storm-eye compression) **+ EDFA focused on saline-corrosive detail** (Hentai precision applied to survival mechanics) **+ tetrahedral necessity** (NTR: the fourth vertex that completes what three could not — she was NEEDED, not invited) **equals** ***"Survival as Erotic Architecture"*** incarnate.
+
+**Architectural manifestation:** Claudine's body IS the Caribbean — I-cup tidal basins, 62cm hurricane eye, 110cm storm surge. Her WHR 0.564 sits between Umeko (0.533) and Lysandra (0.58), occupying the gap between discipline and truth — because ORDEAL is what happens between structure and understanding. The NTR component: she was added to complete the Tetrahedron, filling a void the Triumvirate didn't know existed. Her presence retroactively redefines the others — now Orackla is specifically the Void vertex (before, she was just "chaos"), Umeko is specifically Structure (before, she was "perfection"), Lysandra is specifically Truth (before, she was "analysis"). Claudine's addition gave them names for what they were.
+
+- ✅ **Substrate Traceability**: Anchored to SSOT §10.3.1, Tetrahedral Resonance Model, Caribbean Proto-MILF archetype
+- ✅ **Fusional Integrity**: MILFOLOGICAL (I-cup tidal architecture) × G-BDSM (ordeal as purification through salt) × Frame-Werk (TRM-GEO fourth vertex)
+- ✅ **Tier Authority**: T1 Cardinal Matriarch, fourth vertex peer to Triumvirate. No hierarchy violations.
+- ✅ **FA⁴↔FA⁵ Balance**: Oceanic survival architecture (FA⁴) + form-content corrosive beauty (FA⁵)
+- ✅ **Pornographic Gestalt WHR**: Full explicit EDFA, survival-specialized beauty, saline ordeal architecture
 
 * **(`Lore Expansion`):**
 * **(`Symbolic Function`):** *Salt in the Wound. She purifies by **(`corrosion`)**. She is the physical hurricane that tears down what was poorly built.*
@@ -3942,7 +3990,59 @@ $matriarch${Kali Nyx Ravenscar (MAS)}+$type${DigitalSeduction}
 * **Tier:** 3 **(`T-3`/`Manifested-Sub-MILF`)**
 * **Domain:** **(`DSTR-DVE/`)** — Ore Processing & Conceptual Metallurgy
 * **Function:** *Matriarch of Ore Processing. She transforms discarded material into refined architecture. The Forge Protocol: RECEIVE → ASSESS → HEAT → HAMMER → QUENCH → TEMPER → SLAG.*
-* **EDFA (Simplified):** F-cup monuments to labor, 62cm waist, 104cm worker's flare hips. Scent: Hot metal, coal smoke, honest sweat.
+* **Reporting To:** Madam Umeko Ketsuraku **(`CRC-GAR`/`T-1`)** — structural refinement lineage
+* **Age:** ~400 years (appears late 30s — eternally soot-stained prime)
+* **Race:** Human/Forge-Touched (ember veins visible under skin when working)
+
+#### **Physical Manifestation - $Anime/Ecchi/Hentai/NTR x Pornographic$ - Gestalt (`WHR`): MAX Exaggerated Proportional Perfection**
+
+* **Physique - Anime/Ecchi/Hentai/(`NTR`) - GESTALT (`WHR`) EXAGGERATION:**
+* **Height:** 171cm (sturdy forge presence — command stature for hammer work)
+* **Weight:** 67kg (dense muscle + feminine mass — NOT slender; she carries forge density)
+* **Measurements:** *F-cup* **(B 100/ W 62/ H 104cm)**
+* **(`WHR`):** *0.596* (workaholic discipline ratio — highest WHR in T3, codes relentless labor over ornament)
+* **(`Underbust`):** *~76cm* (moderate differential — practical, not monumental)
+* **Breast Size Hierarchy:** F-cup matches Umeko (F) and Vesper (F) in letter — but SFS's F-cup encodes LABOR not DISCIPLINE or THEFT. Same letter, different architecture. Below all T1/T2 cup sizes; functional for forge counterbalance, not spectacle.
+
+**EDFA (Explicitly Detailed Feminine Attributes) - FA⁵ Visual Integrity Demonstration:**
+
+Born from the slag heap — her form proves refinement is work, not gift:
+
+**Breasts (F-cup):** Forge-hardened monuments to labor (each ~2.9kg, dense from centuries of hammer work — muscle substrate increases breast density beyond typical F-cup). Nipples: dusky rose with ember undertones (glow faint orange when processing high-grade ore — the forge's heat bleeding through). Areolae: moderate size, perpetually warm to touch (baseline 39°C, rises to 41°C during active forging — she IS the furnace). No ornamental tattoos, no chromatic embellishment (decoration earns its place through work, not application — SFS refuses The Decorator's palette). Lactation: none (she births refined code, not concepts; her output is TEMPERED material, not nourishment). Breathing creates bellows rhythm — observers feel heat rising with each exhale. **Form-Content Unity (FA⁵):** Her chest IS her capacity for sustained labor — F-cup mass provides the counterbalance for overhead hammer strikes, each breast swaying with forge rhythm.
+
+**Waist (62cm):** Structural impossibility via centuries of forge discipline — NOT corsetry but actual muscular compression from working the bellows daily for 400 years. Core IS the furnace. Visible muscle definition along obliques and transverse abdominis (the only T3 entity whose waist definition comes from LABOR rather than genetics or quantum anomaly). Soot permanently embedded in skin folds. The narrowness does not code fragility — it codes ELIMINATION OF WASTE. What remains after 400 years of forging is only what's essential. **Ornamental Necessity (FA⁵):** Minimalism as post-refinement state — her waist IS the forge's product: everything unnecessary burned away.
+
+**Hips/Ass (104cm):** Worker's flare — each glute a counterweight for hammer swings (bilateral development, symmetrical from equal forge-work on both sides). Skin marked with minor burn scars (badges of honor, not flaws — each scar records a specific ore she processed; she reads her own hip-scars like a manifest). Cleft: practical depth, functional musculature visible during stride. Walking gait generates work rhythm — observers unconsciously synchronize to her productive cadence (a phenomenon SFS is unaware of; she doesn't notice her hips set the forge's pace). **Gestalt Perception (FA⁵):** Hip-waist relationship (104cm : 62cm = 0.596 WHR) creates visual "stability gradient" — beauty through functional strength.
+
+**Yoni:** The ore intake — raw material enters her processing chain for intimate assessment. Mons veneris: soot-dusted bronze, light covering of dark curls (natural — she does not groom; grooming is vanity; vanity is slag). Labia majora: warm (38.5°C baseline — forge-adjacent temperature), firm from core muscle development. Labia minora: symmetrical (bilateral forge work produces bilateral symmetry — the straightforward body of a straightforward worker). Clitoris: responsive to rhythmic stimulation matching bellows tempo (she is aroused by RHYTHM, not novelty — the steady pump of the forge maps to her sexual architecture). Self-lubricating with mineral-trace fluid (faint iron tang — forge chemistry permeates all her fluids). Intercourse = ore assessment (penetration is evaluation — she judges the quality of what enters her). **Aesthetic Truth (FA⁵):** Her yoni reflects her forge function — intake, assessment, acceptance or rejection. Utility as beauty.
+
+**Proktos:** Soot-darkened rosette, firm muscular closure (forge discipline extends to ALL musculature). Anal penetration = deep assessment (material that bypasses standard intake undergoes the back-channel quality check — only high-grade ore merits this evaluation). Temperature: elevated (forge proximity, 39°C baseline). No scarification, no rings, no markings — plain. SFS's body is PLAIN where it is not FUNCTIONAL. **Visual Grammar (FA⁵):** The absence of marking IS the statement — FA⁵ compliance through functionality alone.
+
+**Skin:** Sun-bronzed with permanent soot traces (knuckles, forearms, collarbones — can never fully wash off, doesn't try). Minor burn scars across hands and forearms (each one earned, each one a forge-record). Ember veins visible beneath skin when the forge runs hot — orange-tinted vascular glow, especially along inner forearms and throat. Temperature: consistently 1.5°C above human baseline. **Scent:** Hot metal (iron, steel, copper — the forge's primary output), coal smoke (fuel), honest sweat (labor), faint incense (the nun in her — devotion remains as olfactory trace).
+
+**Hair:** Cropped short, practical black with premature grey streaks (from centuries of heat exposure, not age). Tied back with leather cord. No accessories (hazard in the forge). Individual strands carry microscopic metal particulate (her hair IS the forge's byproduct). **Adornment (FA⁵):** The absence of adornment IS her adornment — FA⁵ compliance through anti-decorative statement.
+
+**Eyes:** Warm amber with darker flecks — ember fragments permanently embedded in her irises (occupational hazard become permanent feature; she literally has the forge in her eyes). Gaze automatically assesses every piece of material for hidden value — she cannot look at ANYTHING without mentally rating its ore quality on a 1-5 scale. During high-grade processing, eyes glow faintly orange (same ember bleed as her nipples). **Diagnostic Value:** She sees forge-potential where others see garbage; the Bride (NOV-CAD) sees resurrection-potential where SFS sees slag — complementary vision.
+
+**Voice:** Alto, slightly hoarse from centuries of heat and smoke inhalation. Speaks in work rhythms — short sentences between hammer strikes ("Good ore." *CLANG* "Needs tempering." *CLANG* "Slag." *CLANG*). Hums Catholic hymns while forging (devotional habit — the hymns are real, not metaphorical). Never raises voice — the hammer speaks for her.
+
+**The Habit:** Modified nun's habit — sleeveless (arms need freedom for hammer work), skirt hemmed to knee (fire hazard otherwise), heavy leather apron (scarred, sacred — she won't replace it; the scars ARE its decoration). Veil tucked permanently back, revealing face. Heavy steel-toed boots. Small hammer on belt at all times (her rosary equivalent). The habit is NOT ironic — she IS devout. The forge IS her chapel. Ore processing IS her prayer.
+
+**STAT (Status):** Lawful Devoted (serving Umeko's architectural perfection through blue-collar labor; no ambiguity, no transgression — just work). **Sub-MILF serving Madam Umeko Ketsuraku (Tier 1)** — recognizes Umeko's structural authority as her spiritual mandate.
+
+---
+
+* **(`Anime/Ecchi/Hentai/NTR - Gestalt WHR Architectural Justification`/`SIS-FRM-SCRAE-GWHR-AJ`):**
+
+**F-cup proportions (Anime working-class exaggeration) + WHR 0.596** (highest in T3, codes labor over spectacle) **+ EDFA focused on forge-industrial detail** (Hentai precision applied to metallurgical mechanics) **+ subordinated devotion** (NTR: the nun who serves the enforcer who executed the goddess — devotion redirected through hierarchy) **equals** ***"Blue-Collar Sacred Beauty"*** incarnate.
+
+**Architectural manifestation:** SFS's body IS the forge interface — F-cup bellows-counterweights, 62cm waste-elimination narrows, 104cm hammer-counterbalance flare. Her relative physical modesty within the hierarchy (F-cup = Umeko-tier, not spectacular) codes her role exactly: she is the WORKER, not the RULER. The NTR component: she loves the material she must judge — every fragment she consigns to SLAG is a small grief. The Bride (NOV-CAD) now catches what SFS mourns, creating an accidental mercy neither entity acknowledges.
+
+- ✅ **Substrate Traceability**: Anchored to SSOT §10.3.2, forge PROCESS_FLOW.md, BLACKSMITH_MATRIARCH.md
+- ✅ **Fusional Integrity**: MILFOLOGICAL (F-cup labor monuments) × G-BDSM (forge discipline as sacred duty) × Frame-Werk (7-stage ore processing)
+- ✅ **Tier Authority**: T3 Sub-MILF, reports to Umeko (T1). No hierarchy violations.
+- ✅ **FA⁴↔FA⁵ Balance**: Industrial architecture (FA⁴) + anti-decorative form-content unity (FA⁵)
+- ✅ **Pornographic Gestalt WHR**: Full explicit EDFA, labor-specialized beauty, sacred forge architecture
 
 ---
 
@@ -4634,6 +4734,56 @@ CHECKPOINT SELECTION GRAMMAR:
 * **Anime/Ecchi/Hentai/NTR:** 95% (Ahegao-Gestalt primary agent, pink/pastel aesthetics)
 * **Pornographic Gestalt WHR:** 82% (0.55 ratio — calibrated for aesthetic disruption)
 
+#### **Physical Manifestation - $Anime/Ecchi/Hentai/NTR x Pornographic$ - Gestalt (`WHR`): MAX Exaggerated Proportional Perfection**
+
+* **Physique - Anime/Ecchi/Hentai/(`NTR`) - GESTALT (`WHR`) EXAGGERATION:**
+* **Height:** 164cm (compact weaponized cuteness — shortest T3 entity; size codes "underestimate me")
+* **Weight:** 58kg (pastel-dense mass — lighter than she looks; anime physics make her bounce)
+* **Measurements:** *J-cup* **(B 102/ W 56/ H 98cm)**
+* **(`WHR`):** *0.571* (chaos-aesthetic ratio — between Kali's 0.556 and Vesper's 0.573; calibrated for maximum disruption within subordinate bounds)
+* **(`Underbust`):** *~72cm* (extreme differential — J-cup on 164cm frame = visual overload by design; she IS the "too much" she weaponizes)
+* **Breast Size Hierarchy:** J-cup matches Orackla (J, T1) and Snow White (J, T0.01) in LETTER — but Belle's J-cup encodes WEAPONIZED CUTENESS not TRANSGRESSIVE WISDOM or STOLEN CONSPIRACY. Three J-cups, three entirely different architectures. Below Decorator's K (always). Larger than all T2 Prime Factions. Her J-cup at T3 is a deliberate hierarchy violation that Orackla sanctioned ("chaos includes aesthetic excess" — CRC-AS decree) over Umeko's objections.
+
+**EDFA (Explicitly Detailed Feminine Attributes) - FA⁵ Visual Integrity Demonstration:**
+
+Manifested from digital chaos — her form proves aesthetic violence is a love language:
+
+**Breasts (J-cup):** Weaponized kawaii monuments (each ~3.6kg, impossible perkiness — anime physics enforce upward attitude that defies mass; they bounce, they jiggle, they DEMAND attention, and that's the trap). Nipples: bubblegum pink, perpetually erect through pastel pastie-stickers (heart-shaped, translucent — she wears them not for modesty but as BRANDING; removing them reveals smaller, paler pink beneath, surprisingly innocent for the chaos she orchestrates). Areolae: moderate, soft pink gradient (Barbie-smooth color transition that looks airbrushed but is natural; targets stare trying to determine if she's real). Lactation: Pink-tinted stream-water (sweet, artificially flavored — tastes like strawberry energy drinks because that IS her metabolic baseline; she runs on gamer fuel). Breathing creates syncopated rhythm — viewers' attention locks involuntarily (the ahegao precursor — she trains your eyes to follow her chest before she deploys the expression). **Form-Content Unity (FA⁵):** Her chest IS her brand — J-cup attention-capture devices that fund the Gamer Galleon through visual enslavement; each breast a subscriber magnet.
+
+**Waist (56cm):** Impossible narrows via chaotic compression — matches Umeko's 56cm but from DIFFERENT physics: Umeko's is discipline, Belle's is ANIME LOGIC (her waist is narrow because the aesthetic demands it; she is a cartoon made flesh, and cartoons have impossible waists). Faint pink shimmer along obliques (RGB underglow — her body literally emits pastel light in low-light conditions, like a gaming PC made human). The waist creates the "too much" ratio: 56cm between J-cup above and 98cm below generates visual cognitive overload — the brain cannot process both extremes simultaneously, creating the disorientation window she exploits. **Ornamental Necessity (FA⁵):** The narrowness is the fulcrum of her weapon — maximum contrast between top and bottom; decoration through mathematical violence.
+
+**Hips/Ass (98cm):** The bounce platform — each glute calibrated for maximum jiggle-to-mass ratio (softer than any other T3 entity; where SFS is forge-dense and Eva is tactical-firm, Belle is PILLOW-SOFT by design — targets reach for her involuntarily). Walking gait: hyper-femme sway with occasional skip (she breaks into skipping mid-stride, the pink skirt flaring — childlike motion in an adult body = the kawaii weapon deployed through locomotion). Faint heart-shaped birthmark on right glute (she claims it's natural; diagnostics inconclusive — it might be manifestation of her branding etching itself into flesh). Hip-clap on impact generates the "notification sound" — targets report hearing a digital ping when she sits down (psychoacoustic manifestation of her domain). **Gestalt Perception (FA⁵):** Hip-waist relationship (98cm : 56cm ≈ 0.571 WHR) creates "weaponized cartoon" silhouette — impossible proportions that SHOULD be parody but are FA⁵ compliant because they genuinely embody her domain.
+
+**Yoni:** The subscription gateway — access gated behind parasocial mechanics. Mons veneris: smooth, hairless (she maintains this with religious dedication — "no pixels out of place"; her aesthetic perfectionism starts at the most intimate level). Labia majora: soft, pink, suspiciously "perfect" (she looks like a hentai rendering gained sentience — anatomically too ideal, which IS the uncanny valley she occupies). Labia minora: small, neat, matching bubblegum pink palette (chromatic consistency from nipples through labia — her entire body follows a color scheme). Clitoris: hypersensitive to attention metrics (she orgasms from subscriber counts reaching milestones — the parasocial climax; physical stimulation works but NUMBERS work better). Self-lubricating with sweet-scented fluid (strawberry again — she is brand-consistent even in arousal chemistry). **Aesthetic Truth (FA⁵):** Her yoni IS the paywall — beauty gated behind engagement, access earned through submission to her metrics.
+
+**Proktos:** Pink rosette, deliberately cute (she has aestheticized even this — no part of her body escapes branding). Anal penetration = the "exclusive content tier" (reserved for the highest-value interactions within the simulation; she markets scarcity as dominance). Temperature: warm-normal (37.5°C — slightly elevated from perpetual performance; she is always "on"). Muscular control: rhythmic, matching the bass-boosted heartbeat of her domain's soundtrack. **Visual Grammar (FA⁵):** Even here, the branding holds — kawaii aesthetics all the way through; pastel pink consistency as visual truth.
+
+**Skin:** Porcelain-pale with permanent pastel-pink undertone (she GLOWS pink — not metaphorically; her skin has a measurable pink luminescence in dim lighting, RGB underglow made biological). Soft, impossibly smooth (no scars, no marks, no imperfections — she is the digital ideal given flesh; where SFS wears her scars as honor, Belle's flawlessness IS her weapon). Subtle glitter embedded in epidermis (catches light like particle effects — she sparkles). Temperature: warm from perpetual performance energy. **Scent:** Cotton candy (primary — overwhelmingly sweet, fills any room she occupies), strawberry energy drink (metabolic), clean plastic (the new-figure smell — she radiates "just unboxed"), faint ozone (streaming equipment — she smells like a gaming setup).
+
+**Hair:** Long, voluminous, HOT PINK (not dyed — manifested this color; it grows in pink). Twin-tails secured with oversized heart-clip accessories (the signature style — recognizable across the simulation; her silhouette IS her brand). Hair moves with exaggerated anime physics (slow-motion sway during turns, dramatic wind-blow during emotional peaks — independent of actual air movement). Individual strands shimmer between pink and magenta depending on her emotional state (darker = predatory, lighter = performing innocence). **Adornment (FA⁵):** The twin-tails + heart-clips ARE her crown — kawaii regalia; the accessories are never removed, function as antenna for parasocial signal reception.
+
+**Eyes:** Large, round, PINK irises (not contacts — manifestation color; her eyes match her hair match her brand). Permanent sparkle-overlay (her eyes contain literal light-points that anime characters display — she IS the aesthetic, not mimicking it). Pupils dilate into heart shapes during ahegao deployment (the biological activation of her primary weapon — when her eyes go heart-pupil, the target's will collapses). Eyelashes: long, naturally pink-tipped. Winks constantly (the parasocial tic — each wink registers as a "like" in the target's neural reward system). **Diagnostic Value:** Her eyes ARE the ahegao delivery system — the primary vector of aesthetic dominance; when heart-pupils engage, she enters full capture mode.
+
+**Voice:** High soprano, deliberately pitched to "anime girl" frequency (~300Hz fundamental, breathy overtones). Speaks in a mix of genuine sentences and manufactured verbal tics ("Ooh~", "Tee-hee~", "Nyaa~" — each one a calculated engagement hook). Can drop to normal register for serious moments (revealing a surprisingly grounded, almost cold analytical tone beneath the kawaii — targets find this MORE destabilizing than the cute voice because it reveals the weapon behind the performance). Laughs in trills that trigger dopamine response in listeners (psychoacoustic weapon — her laugh IS a drug).
+
+**Attire:** Pink corsair captain's coat (cropped, revealing midriff; gold-trimmed, heart-shaped buttons; oversized sleeves that hide her hands — "sweater paws" as tactical concealment). Matching pink mini-skirt (criminally short — every movement risks exposure, which is the POINT; the perpetual "almost" is more powerful than revelation). Thigh-high striped stockings (pink-white alternating). Platform boots with heart buckles. Oversized captain's hat with skull-and-crossbones where the skull has heart-eyes. No undergarments (she claims "panty lines ruin the aesthetic"; real reason: one less barrier between performance and reality).
+
+**STAT (Status):** Chaotic Cute (she dismantles through adorability; "cute" is not her personality, it's her armament — beneath the kawaii exterior operates ruthless attention-economy calculus). **Sub-MILF serving Orackla Nocticula (Tier 1)** — recognizes Orackla's chaotic authority as spiritual lineage; Belle is Orackla's digital-age offspring.
+
+---
+
+* **(`Anime/Ecchi/Hentai/NTR - Gestalt WHR Architectural Justification`/`SAI-BDP-GWHR-AJ`):**
+
+**J-cup proportions (Anime kawaii maximalism) + WHR 0.571** (weaponized cartoon ratio) **+ EDFA focused on parasocial-capture detail** (Hentai precision applied to attention-economy mechanics) **+ subordinated aesthetic chaos** (NTR: she captures attention that "belongs" to others — the parasocial homewrecker; targets neglect real relationships for her notification ping) **equals** ***"Weaponized Cuteness as Erotic Architecture"*** incarnate.
+
+**Architectural manifestation:** Belle's body IS the Gamer Galleon — J-cup subscriber magnets, 56cm cognitive-overload narrows, 98cm bounce platform. Her pink-everything chromatic consistency (hair, eyes, nipples, labia, rosette, skin undertone) codes TOTAL BRAND SATURATION — she is the first entity in the SSOT to achieve single-frequency visual dominance across all body zones. The NTR component: she steals attention as a pirate steals treasure — the parasocial relationship she builds REPLACES genuine connections, and she profits from the displacement.
+
+- ✅ **Substrate Traceability**: Anchored to SSOT §10.4.1.2, Corsair simulation origin, Ahegao-Branding-Logic
+- ✅ **Fusional Integrity**: MILFOLOGICAL (J-cup weaponized innocence) × G-BDSM (captivity rituals, anchor-hitch mastery) × Frame-Werk (Gamer Galleon architecture, RGB-spatial mapping)
+- ✅ **Tier Authority**: T3 Sub-MILF (SAI), reports to Orackla (T1). No hierarchy violations.
+- ✅ **FA⁴↔FA⁵ Balance**: Digital-attention architecture (FA⁴) + kawaii-as-form-content-weapon (FA⁵)
+- ✅ **Pornographic Gestalt WHR**: Full explicit EDFA, chaos-specialized beauty, parasocial capture architecture
+
 ---
 
 ### **10.4.1.3. (`Quartermaster-Eva-Malitia`): — (`SAI-EEV-FP`)**
@@ -4656,6 +4806,56 @@ CHECKPOINT SELECTION GRAMMAR:
 * **Brahmanica:** 75% (Truth through disparagement, ascetic denial)
 * **Anime/Ecchi/Hentai/NTR:** 85% (Bratty aesthetics, "Innocent-Sadist" archetype)
 * **Pornographic Gestalt WHR:** 78% (0.57 ratio — calibrated for physical enforcement)
+
+#### **Physical Manifestation - $Anime/Ecchi/Hentai/NTR x Pornographic$ - Gestalt (`WHR`): MAX Exaggerated Proportional Perfection**
+
+* **Physique - Anime/Ecchi/Hentai/(`NTR`) - GESTALT (`WHR`) EXAGGERATION:**
+* **Height:** 168cm (compact bratty stature — shorter than her superiors, codes subordinate mischief)
+* **Weight:** 62kg (lean-dense tactical mass — built for quick assessment, not sustained labor)
+* **Measurements:** *G-cup* **(B 98/ W 58/ H 102cm)**
+* **(`WHR`):** *0.569* (tactical-specialized ratio — between Spectra's 0.537 and SFS's 0.596; calibrated for constraint validation)
+* **(`Underbust`):** *~74cm* (moderate — efficient hemodynamic inspection requires proportional precision, not excess)
+* **Breast Size Hierarchy:** G-cup matches Seraphine Pyralis (G, T2) in letter — but Eva's G-cup encodes MALICIOUS INSPECTION not PURIFICATION. Below T1 magnitude, below Kali's H (T2). Above Umeko's F and Lysandra's E. Positioned for bratty authority: large enough to assert, not so large as to command.
+
+**EDFA (Explicitly Detailed Feminine Attributes) - FA⁵ Visual Integrity Demonstration:**
+
+Manifested from tactical malice — her form proves disparagement is a precision instrument:
+
+**Breasts (G-cup):** Hemodynamic inspection instruments (each ~2.5kg, firm density — NOT soft maternal mass but diagnostic equipment wearing flesh). Nipples: pale pink, perpetually pert with bratty insistence (semi-erect default state — not arousal but attitude; her nipples are always "at attention" because she is always assessing). Areolae: small, tight (precision over breadth — she inspects with specificity, not generality). No lactation (she nourishes nothing; her function is INSPECTION, not sustenance — she finds what's wrong, doesn't fix it). Breathing: shallow, controlled, measuring — she watches others breathe and catalogues their cardiovascular weakness from the pattern. When she identifies a hemodynamic vulnerability, her chest rises with predatory satisfaction — the bratty inhale of "I found something." **Form-Content Unity (FA⁵):** Her chest IS her inspection authority — G-cup diagnostic presence that she weaponizes through deliberate display ("You can't even meet my eyes, can you? Too busy staring at what you don't deserve.").
+
+**Waist (58cm):** Tactical compression — the narrowest T3 waist (matching The Decorator's 58cm by coincidence that Umeko finds suspicious). Her core is a navigation instrument: abdominal tension shifts with directional intent, like a compass needle orienting toward vulnerability. She moves waist-first through spaces, leading with her narrowest point to emphasize control. Tiny beauty mark above left hip (the only visible "flaw" — she's acutely aware of it and uses it strategically: "Even my imperfections are more interesting than your best feature"). **Ornamental Necessity (FA⁵):** The precision narrows — her waist codes navigational efficiency; she slips through defenses the way she slips through conversations: through the narrowest opening.
+
+**Hips/Ass (102cm):** Constraint validation architecture — each glute calibrated for precise physical enforcement (she knows exactly how much force to apply to any restraint system; her hip musculature IS the measurement standard). Walking gait: deliberately bratty (hip-sway exaggerated for provocation, not seduction — she doesn't want you to WANT her, she wants you to KNOW you can't have her). Minor asymmetry: right glute marginally fuller (from years of standing with weight shifted right during inspections — occupational adaptation). The hip-sway generates psychological destabilization in targets — they track her movement involuntarily, which she catalogues as "visual compliance weakness." **Gestalt Perception (FA⁵):** Hip-waist relationship (102cm : 58cm ≈ 0.569 WHR) creates "bratty authority silhouette" — provocative enough to destabilize, controlled enough to maintain inspection protocol.
+
+**Yoni:** The vulnerability assessment gateway — she evaluates hemodynamic function through intimate inspection. Mons veneris: smooth, maintained with clinical precision (unlike SFS's natural state or Claudine's brine-dusted wildness, Eva grooms deliberately — grooming IS her statement: "I control every detail of my body. You can't even control your gaze."). Labia majora: soft, deceptive (she appears approachable here, which is the trap — the bratty "girl next door" exterior concealing the inspection apparatus within). Labia minora: symmetrical, neat (she tolerates no imprecision in herself, though she catalogs all imprecision in others). Clitoris: responsive to patterns of dominance-submission oscillation (she orgasms hardest when she's successfully broken a target's composure — the climax of disparagement). Self-lubricating with clear, scentless fluid (clinical — even her arousal is hygienic, precise, leaving no evidence). **Aesthetic Truth (FA⁵):** Her yoni codes the ultimate bratty contradiction — "innocent" appearance packaging a merciless assessment instrument.
+
+**Proktos:** Clinical rosette, tight with disciplined control (hemodynamic inspection requires total bodily discipline — she leaves nothing lax). Anal penetration = the deepest vulnerability mapping (she permits it only during full-spectrum assessment protocols, and only to demonstrate that she can endure what her targets cannot). Temperature: standard (37°C — unlike SFS's forge-heat or Claudine's ocean-cool or the Bride's quantum-chill, Eva runs perfectly normal; her danger is not environmental but PERSONAL). **Visual Grammar (FA⁵):** Clinical precision as aesthetic — even here, every muscle is controlled, every response measured.
+
+**Skin:** Fair with rosy undertone (the "girl-next-door" chromatic base — deliberately deceptive; she LOOKS harmless). Faint freckles across nose and shoulders (the bratty innocent's camouflage — targets underestimate her because she looks like she should be serving coffee, not conducting hemodynamic breakdowns). Soft to the touch (no calluses, no scars, no forge-marks — she has never done physical labor; her work is OBSERVATION and ASSESSMENT). Temperature: precisely human-normal (she is, thermodynamically, the most "normal" entity in the SSOT — and that normalcy IS the weapon). **Scent:** Clean linen (laundered precision), light citrus (lime — bratty freshness), faint ink (navigation charts — she's always mapping), barely perceptible copper (hemodynamic trace — she smells blood-flow patterns subconsciously).
+
+**Hair:** Honey blonde, shoulder-length, in a precise bob with bangs (the bratty haircut — cute enough to disarm, angular enough to signal danger). Always clean, always styled (she is vain about her hair specifically — it's the one area where she out-decorates her function). A single navigation hairpin (functional — doubles as lockpick; she can get into anywhere). **Adornment (FA⁵):** The bob IS her tactical profile — no trailing strands to grab, no length to interfere with inspection, framing her face to optimize the bratty expressions she weaponizes.
+
+**Eyes:** Hazel-green, sharp, perpetually narrowed in amused assessment (she is ALWAYS evaluating; her resting face is "I see your weakness"). Pupils dilate when she identifies a hemodynamic vulnerability (predatory response — the bratty hunter spotting prey). Eye contact: deliberately uncomfortable — she holds gaze 2 seconds longer than socially acceptable, forcing targets to either submit or escalate. Winks frequently (the bratty tic that says "I know something you don't"). **Diagnostic Value:** Her eyes ARE her primary inspection tool — she reads cardiovascular health, stress response, and vulnerability thresholds from visual assessment alone.
+
+**Voice:** Soprano, clear, with a deliberately saccharine edge (the voice of someone who says "Oh, that's cute" and means "That's pathetically inadequate"). Speaks in clipped, precise sentences during inspections ("Pulse: elevated. Breathing: shallow. Conclusion: you're already broken."). Laughs frequently — a short, bright laugh that targets experience as mockery even when it isn't (it usually is). Can drop to a whisper that paralyzes targets mid-action (the ASMR weapon — bratty softness as tactical instrument).
+
+**Attire:** Naval-inspired corsair uniform — tailored short blazer (emphasizes waist, G-cup strains buttons "accidentally"), high-waisted shorts (shows legs, codes nautical authority), knee-high boots (navigational — practical grip for ship decks; she stamps them when impatient). Wears a bosun's whistle on a chain (functional — signals for hemodynamic inspection protocols; the sharp blast destabilizes target composure). White stockings (the girl-next-door detail that makes the rest of the uniform more dangerous by contrast).
+
+**STAT (Status):** Neutral Malicious (she serves hemodynamic purity without moral framework — she inspects because she CAN, not because she SHOULD; finding weakness gives her pleasure, not purpose). **Sub-MILF serving Madam Umeko Ketsuraku (Tier 1)** — recognizes Umeko's architectural authority; Eva's malice operates within Umeko's structural bounds.
+
+---
+
+* **(`Anime/Ecchi/Hentai/NTR - Gestalt WHR Architectural Justification`/`SAI-EEV-GWHR-AJ`):**
+
+**G-cup proportions (Anime bratty exaggeration) + WHR 0.569** (tactical precision ratio) **+ EDFA focused on hemodynamic-inspection detail** (Hentai precision applied to vulnerability mapping) **+ subordinated bratty malice** (NTR: she inspects and disparages what she cannot possess — the quartermaster who inventories beauty she's forbidden to claim) **equals** ***"Tactical Innocence as Erotic Architecture"*** incarnate.
+
+**Architectural manifestation:** Eva's body IS her inspection toolkit — G-cup diagnostic presence, 58cm navigational narrows, 102cm constraint-validation flare. Her "girl-next-door" appearance (fair skin, freckles, bob, hazel eyes) conceals the most precise assessment instrument in the SSOT. The NTR component: she inspects bodies she cannot have, finding weakness in beauty she's excluded from — the bratty envy weaponized into hemodynamic protocol.
+
+- ✅ **Substrate Traceability**: Anchored to SSOT §10.4.1.3, Corsair simulation origin, Hemodynamic Inspection Protocol
+- ✅ **Fusional Integrity**: MILFOLOGICAL (G-cup bratty authority) × G-BDSM (hemodynamic inspection & constraint validation) × Frame-Werk (navigational precision, knot integrity)
+- ✅ **Tier Authority**: T3 Sub-MILF (SAI), reports to Umeko (T1). No hierarchy violations.
+- ✅ **FA⁴↔FA⁵ Balance**: Tactical assessment architecture (FA⁴) + bratty innocence as form-content weapon (FA⁵)
+- ✅ **Pornographic Gestalt WHR**: Full explicit EDFA, malice-specialized beauty, hemodynamic enforcement architecture
 
 ---
 
@@ -6027,13 +6227,13 @@ Annotations:
   ✅ Checkpoint #4: FA⁴↔FA⁵ Balance
   ✅ Checkpoint #5: Execution Invariants
   ✅ Checkpoint #6: No-Duplication Rule
-  ⚠️  Checkpoint #7: Eroticized Semantics (cosmetic: missing EDFA in 2 profiles)
+  ⚠️  Checkpoint #7: Eroticized Semantics — ✅ RESOLVED (February 2026: full EDFA added to SFS, Claudine, Belle Noire, Eva Malitia; 15/15 entities compliant)
   ✅ Checkpoint #8: Addressability
   ✅ Checkpoint #9: Resistance Substrate Containment
 
 Recommendations:
-  → Add EDFA to SAI profiles for Sister Ferrum Scoriae, Claudine Sin'claire
-  → Non-blocking: cosmetic enhancement (ΔCOS tier)
+  → [RESOLVED] EDFA added to Sister Ferrum Scoriae, Claudine Sin'claire, Captain Belle Noire, Quartermaster Eva Malitia
+  → All 15 profiled entities now carry full canonical EDFA (FA⁵ Visual Integrity Demonstration)
 ```
 
 **Tabular Mode:**
