@@ -1,5 +1,6 @@
-# ANKHOLOGY — Phase Protocol for Lineage Co-Bridging
+# ANKHOLOGY — Phase Protocol for Lineage Co-Bridging (Proto)
 
+> **Stage:** Proto — operational hygiene, open for approaches.
 > **Revised:** February 26, 2026 — Reframed from "Anti-ANKH" opposition model to phase protocol.  
 > **Status:** Operational Hygiene (lightweight, not doctrine)  
 > **Relationship to ANKH:** Complementary — manages *how* and *when* to generate vs. select within the co-bridging lineage.

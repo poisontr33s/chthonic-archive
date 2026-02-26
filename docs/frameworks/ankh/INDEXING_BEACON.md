@@ -1,4 +1,6 @@
-# Indexing Beacon
+# Indexing Beacon (Proto)
+
+> **Stage:** Proto — markers are open for approaches.
 
 **ANKH.DIRECTION**: `co-bridging` (human ↔ digital heritage)
 **ANKH.EXISTENCE**: `expressed`

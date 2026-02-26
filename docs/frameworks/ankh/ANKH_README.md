@@ -1,5 +1,6 @@
-# ANKH — Quick Reference
+# ANKH — Quick Reference (Proto)
 
+> **Stage:** Proto — open for approaches.
 > **Revised:** February 26, 2026 — Corrected from prior AI-generated misconceptions.
 
 ---

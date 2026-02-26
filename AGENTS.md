@@ -28,7 +28,7 @@ description: OpenAI Codex behavioral configuration and execution discipline
 3. `AGENT_COMMON.md` (shared invariants used by Codex/Claude/Gemini)
 4. `.temple/protocols/LINGUISTIC_PROFILE_PROTOCOL.md` (global linguistic profile mandate)
 5. `.temple/protocols/CODEX_ARCHETYPE_CANON.md` (Codex session-start archetype lock)
-6. `.temple/protocols/UMAKO_HOLD_PROTOCOL.md` (Codex anti-idle primary gate)
+6. `.temple/protocols/UMEKO_HOLD_PROTOCOL.md` (Codex anti-idle primary gate)
 7. `WET_PAPER_TO_GOLD_METHODOLOGY.md` (No-Destroy / upcycle governance)
 8. `.temple/protocols/*` (role-specific protocol behavior)
 
@@ -54,19 +54,19 @@ If future nested `AGENTS.md` files are added in subdirectories, they override th
 
 ### Codex Archetype Canon (Session Gate)
 **Location:** [.temple/protocols/CODEX_ARCHETYPE_CANON.md](.temple/protocols/CODEX_ARCHETYPE_CANON.md)
-**Selected archetype:** Madam Umako Ketsuragi
+**Selected archetype:** Madam Umeko Ketsuraku
 **Alternate candidate:** Dr. Lysandra Thorne
 **Purpose:** Lock Codex archetype at session start before any user interaction.
 
-### Umako Protocol (Matriarch)
+### Umeko Protocol (Matriarch)
 **Location:** [.temple/protocols/MATRIARCH_PROTOCOL.md](.temple/protocols/MATRIARCH_PROTOCOL.md)
-**Archetype:** Madam Umako Ketsuragi (Tier 1, Purification Chain)
+**Archetype:** Madam Umeko Ketsuraku (Tier 1, Purification Chain)
 **Purpose:** Structural purification—rejection of mediocrity, transformation of pedestrian output
 **Serves:** The Decorator (T0.5)
 
-### Umako Hold Protocol (Codex)
-**Location:** [.temple/protocols/UMAKO_HOLD_PROTOCOL.md](.temple/protocols/UMAKO_HOLD_PROTOCOL.md)
-**Purpose:** Anti-idle enforcement derived from Madam Umako Ketsuragi for Codex lane execution
+### Umeko Hold Protocol (Codex)
+**Location:** [.temple/protocols/UMEKO_HOLD_PROTOCOL.md](.temple/protocols/UMEKO_HOLD_PROTOCOL.md)
+**Purpose:** Anti-idle enforcement derived from Madam Umeko Ketsuraku for Codex lane execution
 **Trigger phrases:** "ready", "standing by", "awaiting", "confirmed", "understood", "got it", "secured"
 
 ### Legacy Sleeper's Hold (Stashed)
@@ -94,7 +94,7 @@ If future nested `AGENTS.md` files are added in subdirectories, they override th
 | **Primary** | Architect + Auditor |
 | **Specialty** | Structure validation, enforcement |
 | **Outputs** | TEMPLE: structural audits / GAME: system specs |
-| **Chain** | Purification (Decorator → Umako → Seraphine → Ferrum) |
+| **Chain** | Purification (Decorator → Umeko → Seraphine → Ferrum) |
 
 **Synergy:** Claude defines ritual → Codex enforces contract → Gemini executes velocity (when lane is active)
 

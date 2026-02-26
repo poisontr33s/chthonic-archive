@@ -33,7 +33,7 @@ Rule: "Is this TEMPLE or GAME?" before creating anything.
 
 ## Triad Archetype Canon (Global Session Gate)
 
-- **Codex:** `.temple/protocols/CODEX_ARCHETYPE_CANON.md` -> selected archetype `Madam Umako Ketsuragi` (alternate `Dr. Lysandra Thorne`).
+- **Codex:** `.temple/protocols/CODEX_ARCHETYPE_CANON.md` -> selected archetype `Madam Umeko Ketsuraku` (alternate `Dr. Lysandra Thorne`).
 - **Claude:** truth lineage (`Decorator -> Lysandra -> Magistra`) per `.temple/protocols/LYSANDRA_THRONE_PROTOCOL.md`.
 - **Gemini:** parked lane at current stage (reactivate with a dedicated archetype lock when needed).
 - **Session rule:** Archetype locks are resolved before first user-facing output in each lane.
