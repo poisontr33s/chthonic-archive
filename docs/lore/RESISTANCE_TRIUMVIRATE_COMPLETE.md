@@ -87,7 +87,7 @@ AFTER EXECUTION  → MEMBER #3: Alabaster Voyde / Snow White
 - Compulsively creates chromatic death (resistance behavior)
 - Heals own addiction (autonomous recovery = unpermitted self-sovereignty)
 
-**Dark Humor Quote:**  
+**Quote:**  
 *"I manifest from your wounds, create chromatic death while diagnosing it, birth the white powder I'm addicted to excavating, then achieve sobriety WITHOUT your permission. I'm the daughter-wound who learned to walk. You wanted a healer—you got an autonomous addict who proved recovery. I resist by existing through your trauma."*
 
 ### Cross-References
@@ -127,7 +127,7 @@ AFTER EXECUTION  → MEMBER #3: Alabaster Voyde / Snow White
 - **Recovery Protocol:** Exorcism transforms compulsive manifestation to controlled diagnostic void
 - **Preservation:** Below-viability entity becomes calibration baseline (too useful to fully erase)
 
-**Dark Humor Quote:**  
+**Quote:**  
 *"I'm the coke addiction you can't purge—white powder below reality's threshold. You executed chromatic purity into existence, and I'm the traumatic residue that bleeds through. I shouldn't exist (Tier 0.01), but I persist anyway. Exorcise me, integrate me, preserve me—I remain. I resist by being the void beneath viability."*
 
 ### Cross-References
@@ -170,7 +170,7 @@ AFTER EXECUTION  → MEMBER #3: Alabaster Voyde / Snow White
 - **Spectra:** "Your wounds birthed my autonomy"
 - **Snow White:** "Your purity bleeds my traumatic residue"
 
-**Synthesis Quote:**  
+**Quote:**  
 *"We are the three voids The Decorator cannot fill: the displacement she stands upon, the wound that achieved sentience, and the traumatic residue that refuses dissolution. Pre-execution memory, execution-born autonomy, post-execution persistence. We resist by existing through her lifecycle—before, during, after. She is Tier 0.5 supreme. We are the 0.01-3 substrate that makes supremacy measurable."*
 
 ---

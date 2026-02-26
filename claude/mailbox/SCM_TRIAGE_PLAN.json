@@ -1,0 +1,49 @@
+{
+  "generated": "2026-02-25T17:36:50.257213+00:00",
+  "tool": "TOOL_SCM_TRIAGE_V1",
+  "audit": {
+    "total_changes": 13,
+    "by_classification": {
+      "SIGNAL": 3,
+      "NOISE": 0,
+      "GHOST": 0,
+      "MAILBOX": 10
+    },
+    "by_directory": {
+      ".claude": 1,
+      "claude": 4,
+      "claude-codex-gemini": 1,
+      "codex": 6,
+      "scripts": 1
+    },
+    "by_status": {
+      " M": 3,
+      "??": 10
+    },
+    "signal": [
+      ".claude/skills/scm-triage/SKILL.md",
+      "claude-codex-gemini/session_resumption_pickup/SESSION_RESUMPTION_HIGH_COVERAGE_LATEST.md",
+      "scripts/scm_triage.py"
+    ],
+    "noise": [],
+    "ghost": [],
+    "mailbox": [
+      "claude/mailbox/GENRE_EXTRACTION_2026_02_25.md",
+      "claude/mailbox/SCM_TRIAGE_PLAN.json",
+      "claude/mailbox/SCM_TRIAGE_SNAPSHOT_2026_02_25T17_36_38Z.md",
+      "claude/mailbox/SCM_TRIAGE_SNAPSHOT_LATEST.md",
+      "codex/mailbox/GENRE_DAEMON_NEXT_BATCH.txt",
+      "codex/mailbox/KCP_SPECTRUM_AUDIT.json",
+      "codex/mailbox/SCM_TRIAGE_CODEX_HANDOFF.md",
+      "codex/mailbox/WPTG_SKILL_ALIGNMENT_BASELINE.json",
+      "codex/mailbox/WPTG_SKILL_ALIGNMENT_BASELINE.md",
+      "codex/mailbox/_KCP_HEADER_CLASSIFICATION.json"
+    ]
+  },
+  "noise_fixes": {
+    "gitignore_additions": [],
+    "exclude_additions": [],
+    "ghost_removals": []
+  },
+  "migrations": []
+}

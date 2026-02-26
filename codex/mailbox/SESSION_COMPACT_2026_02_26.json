@@ -1,0 +1,93 @@
+{
+  "schema_version": 1,
+  "type": "session-compact",
+  "generated_on_utc": "2026-02-26T01:12:00Z",
+  "sources": [
+    "codex/codex-session-logs/session_dump_2026_02_26_compact_input.txt",
+    "codex/codex-session-logs/session_dump_2026_02_26_compact_input.txt_structured.json",
+    "claude/mailbox/PRE_SCM_REVIEW_CLAUDE_RESPONSE_2026_02_26.json"
+  ],
+  "metrics": {
+    "raw_bytes": 27643,
+    "resume_bytes": 754,
+    "reduction_ratio": 0.9727,
+    "structured_counts": {
+      "events": 78,
+      "cmd": 0,
+      "action": 0,
+      "note": 78
+    }
+  },
+  "focus": {
+    "primary": [
+      "Consolidate duplicated governance authority by reference.",
+      "Patch handoff creativity scoring to exclude machine-only artifacts.",
+      "Use compact mailbox packets as first-stop restart context."
+    ],
+    "evidence": [
+      {
+        "item": "Governance redundancy map",
+        "status": "captured",
+        "priority_hint": "P1/P2 split already identified"
+      },
+      {
+        "item": "Claude review response",
+        "status": "captured",
+        "score": 8.7,
+        "requested_follow_up": "patch scripts/handoff_audit.py and rerun strict audit"
+      }
+    ]
+  },
+  "micro_steps": [
+    {
+      "step": 1,
+      "agent_role": "intake",
+      "action": "Read only compact packet and linked evidence.",
+      "output": "task_cards seed",
+      "gate": "No full-transcript reload unless blocked."
+    },
+    {
+      "step": 2,
+      "agent_role": "compression",
+      "action": "Run session resumer on any new raw dump.",
+      "output": "structured + resume artifacts",
+      "gate": "Artifacts present and non-empty."
+    },
+    {
+      "step": 3,
+      "agent_role": "signal",
+      "action": "Extract P1 tasks and required file targets.",
+      "output": "minimal execution backlog",
+      "gate": "Each task has owner + verify command."
+    },
+    {
+      "step": 4,
+      "agent_role": "execution",
+      "action": "Implement highest-priority code/doc changes.",
+      "output": "patch set",
+      "gate": "No delete-only simplification."
+    },
+    {
+      "step": 5,
+      "agent_role": "verification",
+      "action": "Run strict checks and score recomputation.",
+      "output": "validation report",
+      "gate": "All key checks pass or are explicitly waived."
+    },
+    {
+      "step": 6,
+      "agent_role": "handoff",
+      "action": "Emit one mailbox handoff with done/pending/risks.",
+      "output": "next-session anchor file",
+      "gate": "Includes exact rerun commands."
+    }
+  ],
+  "delegation_policy": {
+    "objective": "Reduce context depth while preserving audit-grade traceability.",
+    "rules": [
+      "Prefer role-split execution over monolithic run.",
+      "Use compact packet as context root.",
+      "Escalate only unresolved blockers, not full transcript."
+    ]
+  }
+}

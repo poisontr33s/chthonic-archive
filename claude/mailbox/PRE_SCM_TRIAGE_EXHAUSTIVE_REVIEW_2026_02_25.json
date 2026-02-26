@@ -1,0 +1,971 @@
+{
+  "schema_version": 1,
+  "generated_on_utc": "2026-02-25T22:03:33.3069313Z",
+  "anchor": {
+    "path": "codex/mailbox/SCM_TRIAGE_CODEX_HANDOFF.md",
+    "creation_time_utc": "2026-02-25T17:36:27.8387647Z",
+    "last_write_time_utc": "2026-02-25T18:58:02.6797677Z",
+    "note": "Pre-SCM scope includes files with LastWriteTimeUtc <= anchor creation time."
+  },
+  "inventory": {
+    "codex_mailbox": {
+      "count": 89,
+      "by_extension": {
+        "md": 40,
+        "json": 33,
+        "txt": 2,
+        "log": 9,
+        "other": 5
+      },
+      "workstream_counts": [
+        {
+          "stream": "Miscellaneous",
+          "count": 22
+        },
+        {
+          "stream": "Toolchain and Skill Hygiene",
+          "count": 21
+        },
+        {
+          "stream": "Research and Content Profiling",
+          "count": 14
+        },
+        {
+          "stream": "Relationship Audit",
+          "count": 11
+        },
+        {
+          "stream": "Codekiller Forensics",
+          "count": 6
+        },
+        {
+          "stream": "KCP and Header Canon",
+          "count": 6
+        },
+        {
+          "stream": "POE API and Callability",
+          "count": 4
+        },
+        {
+          "stream": "Mailbox Infrastructure",
+          "count": 3
+        },
+        {
+          "stream": "WPTG Skill Alignment",
+          "count": 2
+        }
+      ],
+      "files": [
+        {
+          "path": "codex/mailbox/CLAUDE_IDE_HEALTH_LATEST.json",
+          "mtime_utc": "2026-02-17T19:51:14.9573098Z",
+          "size_bytes": 1236,
+          "workstream": "Miscellaneous"
+        },
+        {
+          "path": "codex/mailbox/FIX_DEAD_CODE_WARNINGS.md",
+          "mtime_utc": "2026-02-17T19:51:14.9593096Z",
+          "size_bytes": 1084,
+          "workstream": "Miscellaneous"
+        },
+        {
+          "path": "codex/mailbox/TOOLCHAIN_DOCTOR_REPORT_2026_02_17_015616.md",
+          "mtime_utc": "2026-02-17T19:51:14.9743385Z",
+          "size_bytes": 620,
+          "workstream": "Toolchain and Skill Hygiene"
+        },
+        {
+          "path": "codex/mailbox/VS2026_BUILDTOOLS_EXPORT.vsconfig",
+          "mtime_utc": "2026-02-17T19:51:14.9763393Z",
+          "size_bytes": 1043,
+          "workstream": "Miscellaneous"
+        },
+        {
+          "path": "codex/mailbox/VS2026_COMMUNITY_EXPORT.vsconfig",
+          "mtime_utc": "2026-02-17T19:51:14.9773397Z",
+          "size_bytes": 2116,
+          "workstream": "Miscellaneous"
+        },
+        {
+          "path": "codex/mailbox/VS2026_ELEVATED_VALIDATE_20260217_054144.log",
+          "mtime_utc": "2026-02-17T19:51:14.9783387Z",
+          "size_bytes": 965,
+          "workstream": "Miscellaneous"
+        },
+        {
+          "path": "codex/mailbox/VS2026_ELEVATED_VALIDATE_20260217_054157.log",
+          "mtime_utc": "2026-02-17T19:51:14.9793399Z",
+          "size_bytes": 1972,
+          "workstream": "Miscellaneous"
+        },
+        {
+          "path": "codex/mailbox/skill_audit_claude_2026-02-09T22-02-38Z.json",
+          "mtime_utc": "2026-02-17T19:51:15.1817468Z",
+          "size_bytes": 1559,
+          "workstream": "Toolchain and Skill Hygiene"
+        },
+        {
+          "path": "codex/mailbox/skill_audit_codex_2026-02-09T22-02-38Z.json",
+          "mtime_utc": "2026-02-17T19:51:15.1827558Z",
+          "size_bytes": 2076,
+          "workstream": "Toolchain and Skill Hygiene"
+        },
+        {
+          "path": "codex/mailbox/VS2026_ELEVATED_VALIDATE_20260217_231023.log",
+          "mtime_utc": "2026-02-17T22:10:27.7845138Z",
+          "size_bytes": 869,
+          "workstream": "Miscellaneous"
+        },
+        {
+          "path": "codex/mailbox/VS2026_ELEVATED_VALIDATE_20260217_231058.log",
+          "mtime_utc": "2026-02-17T22:13:22.6145907Z",
+          "size_bytes": 2155,
+          "workstream": "Miscellaneous"
+        },
+        {
+          "path": "codex/mailbox/VS2026_ELEVATED_VALIDATE_20260217_231535.log",
+          "mtime_utc": "2026-02-17T22:15:39.1921947Z",
+          "size_bytes": 932,
+          "workstream": "Miscellaneous"
+        },
+        {
+          "path": "codex/mailbox/VS2026_ELEVATED_VALIDATE_20260217_235550.log",
+          "mtime_utc": "2026-02-17T22:56:12.0667706Z",
+          "size_bytes": 2015,
+          "workstream": "Miscellaneous"
+        },
+        {
+          "path": "codex/mailbox/VS2026_ELEVATED_VALIDATE_20260217_235653.log",
+          "mtime_utc": "2026-02-17T22:57:15.6772903Z",
+          "size_bytes": 2015,
+          "workstream": "Miscellaneous"
+        },
+        {
+          "path": "codex/mailbox/SSMS22_ACTUAL_INSTALLED_20260218.vsconfig",
+          "mtime_utc": "2026-02-17T23:01:14.1642594Z",
+          "size_bytes": 254,
+          "workstream": "Miscellaneous"
+        },
+        {
+          "path": "codex/mailbox/VS_BUILDTOOLS_INSIDERS_ACTUAL_INSTALLED_20260218.vsconfig",
+          "mtime_utc": "2026-02-17T23:01:14.1642594Z",
+          "size_bytes": 5219,
+          "workstream": "Miscellaneous"
+        },
+        {
+          "path": "codex/mailbox/VS_PRO_INSIDERS_ACTUAL_INSTALLED_20260218.vsconfig",
+          "mtime_utc": "2026-02-17T23:01:14.1642594Z",
+          "size_bytes": 10032,
+          "workstream": "Miscellaneous"
+        },
+        {
+          "path": "codex/mailbox/VS2026_ELEVATED_VALIDATE_20260218_000139.log",
+          "mtime_utc": "2026-02-17T23:01:59.1994031Z",
+          "size_bytes": 2013,
+          "workstream": "Miscellaneous"
+        },
+        {
+          "path": "codex/mailbox/VS2026_ELEVATED_VALIDATION_LATEST.json",
+          "mtime_utc": "2026-02-17T23:11:06.0235575Z",
+          "size_bytes": 1741,
+          "workstream": "Miscellaneous"
+        },
+        {
+          "path": "codex/mailbox/VS2026_ELEVATED_VALIDATION_LATEST.md",
+          "mtime_utc": "2026-02-17T23:11:06.0300787Z",
+          "size_bytes": 4531,
+          "workstream": "Miscellaneous"
+        },
+        {
+          "path": "codex/mailbox/VS2026_ELEVATED_VALIDATE_20260218_001043.log",
+          "mtime_utc": "2026-02-17T23:11:06.0340773Z",
+          "size_bytes": 2013,
+          "workstream": "Miscellaneous"
+        },
+        {
+          "path": "codex/mailbox/SESSION_PLAN_2026_02_18_RUSTIFICATION_DAEMON_BATCH.md",
+          "mtime_utc": "2026-02-18T03:35:40.0354375Z",
+          "size_bytes": 4588,
+          "workstream": "Miscellaneous"
+        },
+        {
+          "path": "codex/mailbox/RESEARCH_DIGEST_ANNO_RUSTIFICATION_ENDO_DOT_LIFE_CURATED.md",
+          "mtime_utc": "2026-02-18T03:36:00.1636663Z",
+          "size_bytes": 2781,
+          "workstream": "Research and Content Profiling"
+        },
+        {
+          "path": "codex/mailbox/RESEARCH_DIGEST_ANNO_RUSTIFICATION_ENDO_DOT_LIFE.md",
+          "mtime_utc": "2026-02-18T03:45:20.5680067Z",
+          "size_bytes": 6738,
+          "workstream": "Research and Content Profiling"
+        },
+        {
+          "path": "codex/mailbox/RUSTIFICATION_TREND_LATEST.json",
+          "mtime_utc": "2026-02-18T04:00:05.4109385Z",
+          "size_bytes": 4870,
+          "workstream": "Research and Content Profiling"
+        },
+        {
+          "path": "codex/mailbox/RUSTIFICATION_TREND_LATEST.md",
+          "mtime_utc": "2026-02-18T04:00:05.4109385Z",
+          "size_bytes": 1893,
+          "workstream": "Research and Content Profiling"
+        },
+        {
+          "path": "codex/mailbox/OVERSIGHT_UPCYCLE_LATEST.json",
+          "mtime_utc": "2026-02-18T04:18:18.0402295Z",
+          "size_bytes": 3159,
+          "workstream": "Research and Content Profiling"
+        },
+        {
+          "path": "codex/mailbox/OVERSIGHT_UPCYCLE_LATEST.md",
+          "mtime_utc": "2026-02-18T04:18:18.0412433Z",
+          "size_bytes": 2291,
+          "workstream": "Research and Content Profiling"
+        },
+        {
+          "path": "codex/mailbox/RESEARCH_DIGEST_THE_RUSTIFICATION_JUSTIFICATION_ARCHITECTURAL_CONVERGENCE_OF_VISUAL_STUDIO_2026_LSL_AND_RUST_NATIVE_TOOLCHAINS_IN_THE_WINDOWS_11_ECOSYSTEM.md",
+          "mtime_utc": "2026-02-18T22:33:35.5512498Z",
+          "size_bytes": 14522,
+          "workstream": "Research and Content Profiling"
+        },
+        {
+          "path": "codex/mailbox/HF_MODEL_RANKING_LATEST.md",
+          "mtime_utc": "2026-02-20T16:26:18.4077601Z",
+          "size_bytes": 6050,
+          "workstream": "Research and Content Profiling"
+        },
+        {
+          "path": "codex/mailbox/ART_COP_REPORT_LATEST.md",
+          "mtime_utc": "2026-02-20T16:26:18.5008119Z",
+          "size_bytes": 939,
+          "workstream": "Miscellaneous"
+        },
+        {
+          "path": "codex/mailbox/TOOLCHAIN_DOCTOR_REPORT_2026_02_23_155943.md",
+          "mtime_utc": "2026-02-23T15:59:46.5087507Z",
+          "size_bytes": 662,
+          "workstream": "Toolchain and Skill Hygiene"
+        },
+        {
+          "path": "codex/mailbox/TOOLCHAIN_DOCTOR_REPORT_2026_02_23_160028.md",
+          "mtime_utc": "2026-02-23T16:00:29.6685333Z",
+          "size_bytes": 662,
+          "workstream": "Toolchain and Skill Hygiene"
+        },
+        {
+          "path": "codex/mailbox/TOOLCHAIN_DOCTOR_REPORT_2026_02_23_160402.md",
+          "mtime_utc": "2026-02-23T16:04:03.8731655Z",
+          "size_bytes": 659,
+          "workstream": "Toolchain and Skill Hygiene"
+        },
+        {
+          "path": "codex/mailbox/TOOLCHAIN_DOCTOR_REPORT_2026_02_23_160433.md",
+          "mtime_utc": "2026-02-23T16:04:34.8317505Z",
+          "size_bytes": 662,
+          "workstream": "Toolchain and Skill Hygiene"
+        },
+        {
+          "path": "codex/mailbox/TOOLCHAIN_DOCTOR_REPORT_2026_02_23_160529.md",
+          "mtime_utc": "2026-02-23T16:05:30.4331896Z",
+          "size_bytes": 661,
+          "workstream": "Toolchain and Skill Hygiene"
+        },
+        {
+          "path": "codex/mailbox/TOOLCHAIN_DOCTOR_REPORT_2026_02_23_160536.md",
+          "mtime_utc": "2026-02-23T16:05:38.0309684Z",
+          "size_bytes": 662,
+          "workstream": "Toolchain and Skill Hygiene"
+        },
+        {
+          "path": "codex/mailbox/TOOLCHAIN_DOCTOR_REPORT_2026_02_23_160715.md",
+          "mtime_utc": "2026-02-23T16:07:19.8510478Z",
+          "size_bytes": 1164,
+          "workstream": "Toolchain and Skill Hygiene"
+        },
+        {
+          "path": "codex/mailbox/HF_PREP_LATEST.json",
+          "mtime_utc": "2026-02-23T16:09:21.5251323Z",
+          "size_bytes": 1949,
+          "workstream": "Research and Content Profiling"
+        },
+        {
+          "path": "codex/mailbox/HF_PREP_LATEST.md",
+          "mtime_utc": "2026-02-23T16:09:21.5261318Z",
+          "size_bytes": 936,
+          "workstream": "Research and Content Profiling"
+        },
+        {
+          "path": "codex/mailbox/HF_MCP_TOOLS_LATEST.json",
+          "mtime_utc": "2026-02-23T16:09:22.2572568Z",
+          "size_bytes": 3498,
+          "workstream": "Research and Content Profiling"
+        },
+        {
+          "path": "codex/mailbox/TOOLCHAIN_DOCTOR_REPORT_2026_02_23_160940.md",
+          "mtime_utc": "2026-02-23T16:09:41.7610178Z",
+          "size_bytes": 662,
+          "workstream": "Toolchain and Skill Hygiene"
+        },
+        {
+          "path": "codex/mailbox/TOOLCHAIN_DOCTOR_REPORT_2026_02_23_161137.md",
+          "mtime_utc": "2026-02-23T16:11:39.1001461Z",
+          "size_bytes": 659,
+          "workstream": "Toolchain and Skill Hygiene"
+        },
+        {
+          "path": "codex/mailbox/TOOLCHAIN_DOCTOR_REPORT_2026_02_23_163122.md",
+          "mtime_utc": "2026-02-23T16:31:23.8723276Z",
+          "size_bytes": 662,
+          "workstream": "Toolchain and Skill Hygiene"
+        },
+        {
+          "path": "codex/mailbox/TOOLCHAIN_DOCTOR_REPORT_2026_02_23_163140.md",
+          "mtime_utc": "2026-02-23T16:31:41.7333913Z",
+          "size_bytes": 662,
+          "workstream": "Toolchain and Skill Hygiene"
+        },
+        {
+          "path": "codex/mailbox/TOOLCHAIN_DOCTOR_REPORT_2026_02_23_163504.md",
+          "mtime_utc": "2026-02-23T16:35:05.4679441Z",
+          "size_bytes": 659,
+          "workstream": "Toolchain and Skill Hygiene"
+        },
+        {
+          "path": "codex/mailbox/TOOLCHAIN_DOCTOR_REPORT_2026_02_23_163616.md",
+          "mtime_utc": "2026-02-23T16:36:17.0514590Z",
+          "size_bytes": 662,
+          "workstream": "Toolchain and Skill Hygiene"
+        },
+        {
+          "path": "codex/mailbox/POE_SDK_LATEST.json",
+          "mtime_utc": "2026-02-23T16:56:43.5597418Z",
+          "size_bytes": 211,
+          "workstream": "POE API and Callability"
+        },
+        {
+          "path": "codex/mailbox/POE_SDK_LATEST.md",
+          "mtime_utc": "2026-02-23T16:56:43.5607410Z",
+          "size_bytes": 156,
+          "workstream": "POE API and Callability"
+        },
+        {
+          "path": "codex/mailbox/TOOLCHAIN_DOCTOR_LATEST.md",
+          "mtime_utc": "2026-02-23T16:57:12.9034316Z",
+          "size_bytes": 210,
+          "workstream": "Toolchain and Skill Hygiene"
+        },
+        {
+          "path": "codex/mailbox/TOOLCHAIN_DOCTOR_REPORT_2026_02_23_165711.md",
+          "mtime_utc": "2026-02-23T16:57:12.9034316Z",
+          "size_bytes": 662,
+          "workstream": "Toolchain and Skill Hygiene"
+        },
+        {
+          "path": "codex/mailbox/tatragrammatron_stamps_latest_codex.json",
+          "mtime_utc": "2026-02-23T16:57:13.1461654Z",
+          "size_bytes": 11932,
+          "workstream": "Miscellaneous"
+        },
+        {
+          "path": "codex/mailbox/TATRAGRAMMATRON_SUMMARY_LATEST_CODEX.md",
+          "mtime_utc": "2026-02-23T16:57:13.1471656Z",
+          "size_bytes": 2256,
+          "workstream": "Miscellaneous"
+        },
+        {
+          "path": "codex/mailbox/mailbox_manifest.json",
+          "mtime_utc": "2026-02-23T16:57:13.6210133Z",
+          "size_bytes": 10045,
+          "workstream": "Mailbox Infrastructure"
+        },
+        {
+          "path": "codex/mailbox/MAILBOX_CURRENT_STATE.md",
+          "mtime_utc": "2026-02-23T16:57:13.6251115Z",
+          "size_bytes": 2625,
+          "workstream": "Mailbox Infrastructure"
+        },
+        {
+          "path": "codex/mailbox/TETRAGRAMMATON_PACKET.md",
+          "mtime_utc": "2026-02-23T16:57:13.6350243Z",
+          "size_bytes": 7905,
+          "workstream": "Mailbox Infrastructure"
+        },
+        {
+          "path": "codex/mailbox/LOCAL_AI_READINESS_LATEST.json",
+          "mtime_utc": "2026-02-23T16:57:31.8692422Z",
+          "size_bytes": 12725,
+          "workstream": "Research and Content Profiling"
+        },
+        {
+          "path": "codex/mailbox/LOCAL_AI_READINESS_LATEST.md",
+          "mtime_utc": "2026-02-23T16:57:31.8702440Z",
+          "size_bytes": 7914,
+          "workstream": "Research and Content Profiling"
+        },
+        {
+          "path": "codex/mailbox/POE_LANE_LATEST.json",
+          "mtime_utc": "2026-02-23T17:01:03.7972554Z",
+          "size_bytes": 273,
+          "workstream": "POE API and Callability"
+        },
+        {
+          "path": "codex/mailbox/POE_LANE_LATEST.md",
+          "mtime_utc": "2026-02-23T17:01:03.7972554Z",
+          "size_bytes": 199,
+          "workstream": "POE API and Callability"
+        },
+        {
+          "path": "codex/mailbox/TRAINSTOP_ORCHESTRATOR_LATEST.json",
+          "mtime_utc": "2026-02-23T17:01:16.1064724Z",
+          "size_bytes": 1992,
+          "workstream": "Toolchain and Skill Hygiene"
+        },
+        {
+          "path": "codex/mailbox/KCP_6_0_RUST_AUDIT.json",
+          "mtime_utc": "2026-02-24T01:59:04.5260460Z",
+          "size_bytes": 15110,
+          "workstream": "KCP and Header Canon"
+        },
+        {
+          "path": "codex/mailbox/KCP_5_0_POWERSHELL_AUDIT.json",
+          "mtime_utc": "2026-02-24T01:59:04.5370423Z",
+          "size_bytes": 26552,
+          "workstream": "KCP and Header Canon"
+        },
+        {
+          "path": "codex/mailbox/KCP_3_0_PYTHON_AUDIT.json",
+          "mtime_utc": "2026-02-24T01:59:04.5780433Z",
+          "size_bytes": 38336,
+          "workstream": "KCP and Header Canon"
+        },
+        {
+          "path": "codex/mailbox/KCP_4_0_TYPESCRIPT_AUDIT.json",
+          "mtime_utc": "2026-02-24T01:59:04.5880464Z",
+          "size_bytes": 41111,
+          "workstream": "KCP and Header Canon"
+        },
+        {
+          "path": "codex/mailbox/SKILL_FRESHNESS_LATEST.json",
+          "mtime_utc": "2026-02-24T03:55:52.2816621Z",
+          "size_bytes": 9610,
+          "workstream": "Toolchain and Skill Hygiene"
+        },
+        {
+          "path": "codex/mailbox/SKILL_FRESHNESS_LATEST.md",
+          "mtime_utc": "2026-02-24T03:55:52.2826554Z",
+          "size_bytes": 4171,
+          "workstream": "Toolchain and Skill Hygiene"
+        },
+        {
+          "path": "codex/mailbox/CODEKILLER_CROSSREF_AUDIT.md",
+          "mtime_utc": "2026-02-24T04:15:54.1213932Z",
+          "size_bytes": 1980,
+          "workstream": "Codekiller Forensics"
+        },
+        {
+          "path": "codex/mailbox/CODEKILLER_REPAIR_MANIFEST.md",
+          "mtime_utc": "2026-02-24T04:16:17.6542162Z",
+          "size_bytes": 4903,
+          "workstream": "Codekiller Forensics"
+        },
+        {
+          "path": "codex/mailbox/CODEKILLER_REMEDIATION_PREREQ_LATEST.json",
+          "mtime_utc": "2026-02-24T05:03:50.6939424Z",
+          "size_bytes": 18914,
+          "workstream": "Codekiller Forensics"
+        },
+        {
+          "path": "codex/mailbox/CODEKILLER_REMEDIATION_PREREQ_LATEST.md",
+          "mtime_utc": "2026-02-24T05:03:50.6949442Z",
+          "size_bytes": 5915,
+          "workstream": "Codekiller Forensics"
+        },
+        {
+          "path": "codex/mailbox/CODEKILLER_GATE_STATUS.json",
+          "mtime_utc": "2026-02-24T05:04:33.8998860Z",
+          "size_bytes": 18914,
+          "workstream": "Codekiller Forensics"
+        },
+        {
+          "path": "codex/mailbox/CODEKILLER_GATE_STATUS.md",
+          "mtime_utc": "2026-02-24T05:04:33.9008857Z",
+          "size_bytes": 5915,
+          "workstream": "Codekiller Forensics"
+        },
+        {
+          "path": "codex/mailbox/RELATIONSHIP_AUDIT_CODEBASE_SUMMARY.json",
+          "mtime_utc": "2026-02-24T07:33:27.0783478Z",
+          "size_bytes": 3944,
+          "workstream": "Relationship Audit"
+        },
+        {
+          "path": "codex/mailbox/RELATIONSHIP_AUDIT_CODEBASE_LATEST.json",
+          "mtime_utc": "2026-02-24T07:35:19.0171388Z",
+          "size_bytes": 1119470,
+          "workstream": "Relationship Audit"
+        },
+        {
+          "path": "codex/mailbox/RELATIONSHIP_AUDIT_CODEBASE_POST_APPLY_SUMMARY.json",
+          "mtime_utc": "2026-02-24T07:35:27.9387577Z",
+          "size_bytes": 4024,
+          "workstream": "Relationship Audit"
+        },
+        {
+          "path": "codex/mailbox/RELATIONSHIP_AUDIT_CODEBASE_BACKLOG_SUMMARY.json",
+          "mtime_utc": "2026-02-24T07:36:41.9908372Z",
+          "size_bytes": 13377,
+          "workstream": "Relationship Audit"
+        },
+        {
+          "path": "codex/mailbox/RELATIONSHIP_AUDIT_CODEBASE_BACKLOG_SUMMARY.md",
+          "mtime_utc": "2026-02-24T07:36:42.0037849Z",
+          "size_bytes": 8528,
+          "workstream": "Relationship Audit"
+        },
+        {
+          "path": "codex/mailbox/RELATIONSHIP_AUDIT_CODEBASE_APPLY_CHANGED_FILES.txt",
+          "mtime_utc": "2026-02-24T07:36:55.9428117Z",
+          "size_bytes": 2037,
+          "workstream": "Relationship Audit"
+        },
+        {
+          "path": "codex/mailbox/RELATIONSHIP_AUDIT_CODEBASE_POSTCHECK.json",
+          "mtime_utc": "2026-02-24T07:39:08.1603711Z",
+          "size_bytes": 556663,
+          "workstream": "Relationship Audit"
+        },
+        {
+          "path": "codex/mailbox/RELATIONSHIP_AUDIT_CODEBASE_DELTA.json",
+          "mtime_utc": "2026-02-24T07:39:18.7990487Z",
+          "size_bytes": 437,
+          "workstream": "Relationship Audit"
+        },
+        {
+          "path": "codex/mailbox/RELATIONSHIP_AUDIT_LATEST.json",
+          "mtime_utc": "2026-02-24T07:51:55.9333924Z",
+          "size_bytes": 2151,
+          "workstream": "Relationship Audit"
+        },
+        {
+          "path": "codex/mailbox/RELATIONSHIP_AUDIT_LATEST_APPLY_CHECK.json",
+          "mtime_utc": "2026-02-24T07:52:30.4238728Z",
+          "size_bytes": 2280,
+          "workstream": "Relationship Audit"
+        },
+        {
+          "path": "codex/mailbox/RELATIONSHIP_AUDIT_DOCS_CHECK.json",
+          "mtime_utc": "2026-02-24T07:52:58.0378946Z",
+          "size_bytes": 1612,
+          "workstream": "Relationship Audit"
+        },
+        {
+          "path": "codex/mailbox/_KCP_HEADER_CLASSIFICATION.json",
+          "mtime_utc": "2026-02-24T08:10:42.0046170Z",
+          "size_bytes": 398330,
+          "workstream": "KCP and Header Canon"
+        },
+        {
+          "path": "codex/mailbox/GENRE_DAEMON_NEXT_BATCH.txt",
+          "mtime_utc": "2026-02-24T08:11:29.9954382Z",
+          "size_bytes": 10993,
+          "workstream": "Research and Content Profiling"
+        },
+        {
+          "path": "codex/mailbox/KCP_SPECTRUM_AUDIT.json",
+          "mtime_utc": "2026-02-24T08:14:16.7171504Z",
+          "size_bytes": 24612,
+          "workstream": "KCP and Header Canon"
+        },
+        {
+          "path": "codex/mailbox/WPTG_SKILL_ALIGNMENT_BASELINE.md",
+          "mtime_utc": "2026-02-24T08:42:04.3418309Z",
+          "size_bytes": 2780,
+          "workstream": "WPTG Skill Alignment"
+        },
+        {
+          "path": "codex/mailbox/WPTG_SKILL_ALIGNMENT_BASELINE.json",
+          "mtime_utc": "2026-02-24T08:42:04.3428232Z",
+          "size_bytes": 52579,
+          "workstream": "WPTG Skill Alignment"
+        }
+      ]
+    },
+    "claude_mailbox": {
+      "count": 44,
+      "by_extension": {
+        "md": 34,
+        "json": 8,
+        "txt": 2,
+        "log": 0,
+        "other": 0
+      },
+      "workstream_counts": [
+        {
+          "stream": "Miscellaneous",
+          "count": 26
+        },
+        {
+          "stream": "Research and Content Profiling",
+          "count": 8
+        },
+        {
+          "stream": "POE API and Callability",
+          "count": 4
+        },
+        {
+          "stream": "Mailbox Infrastructure",
+          "count": 3
+        },
+        {
+          "stream": "Toolchain and Skill Hygiene",
+          "count": 2
+        },
+        {
+          "stream": "Session Handoffs",
+          "count": 1
+        }
+      ],
+      "files": [
+        {
+          "path": "claude/mailbox/ARCHAEOLOGY_DIGEST_2026_02_11.md",
+          "mtime_utc": "2026-02-17T19:51:14.7877859Z",
+          "size_bytes": 14703,
+          "workstream": "Miscellaneous"
+        },
+        {
+          "path": "claude/mailbox/ARCHAEOLOGY_DIGEST_2026_02_13.md",
+          "mtime_utc": "2026-02-17T19:51:14.7888928Z",
+          "size_bytes": 14481,
+          "workstream": "Miscellaneous"
+        },
+        {
+          "path": "claude/mailbox/CLAUDE_CODE_CENTRIC_SETUP_2026_02_09.md",
+          "mtime_utc": "2026-02-17T19:51:14.7909029Z",
+          "size_bytes": 3051,
+          "workstream": "Miscellaneous"
+        },
+        {
+          "path": "claude/mailbox/CLAUDE_CODE_HIERARCHICAL_RESEARCH_2026_02_09.md",
+          "mtime_utc": "2026-02-17T19:51:14.7918952Z",
+          "size_bytes": 3756,
+          "workstream": "Miscellaneous"
+        },
+        {
+          "path": "claude/mailbox/CLAUDE_META_VALIDATION_SUMMARY.json",
+          "mtime_utc": "2026-02-17T19:51:14.7928483Z",
+          "size_bytes": 638,
+          "workstream": "Miscellaneous"
+        },
+        {
+          "path": "claude/mailbox/CLAUDE_SKILL_POLISH_SUMMARY_LATEST.md",
+          "mtime_utc": "2026-02-17T19:51:14.7958962Z",
+          "size_bytes": 1891,
+          "workstream": "Miscellaneous"
+        },
+        {
+          "path": "claude/mailbox/CLAUDE_TASK_SESSION_SYNC_2026_02_09.md",
+          "mtime_utc": "2026-02-17T19:51:14.7968723Z",
+          "size_bytes": 6648,
+          "workstream": "Miscellaneous"
+        },
+        {
+          "path": "claude/mailbox/CODEX_TO_CLAUDE_TASK_LATEST.md",
+          "mtime_utc": "2026-02-17T19:51:14.7989121Z",
+          "size_bytes": 1426,
+          "workstream": "Miscellaneous"
+        },
+        {
+          "path": "claude/mailbox/GEMINI_DEEP_RESEARCH_SOLANA.md",
+          "mtime_utc": "2026-02-17T19:51:14.7999080Z",
+          "size_bytes": 2700,
+          "workstream": "Miscellaneous"
+        },
+        {
+          "path": "claude/mailbox/KISS_PARITY_BRIEF_2026_02_06.md",
+          "mtime_utc": "2026-02-17T19:51:14.8008380Z",
+          "size_bytes": 2584,
+          "workstream": "Miscellaneous"
+        },
+        {
+          "path": "claude/mailbox/SESSION_CONTEXT_APPENDIX_2026_02_06.md",
+          "mtime_utc": "2026-02-17T19:51:14.8048639Z",
+          "size_bytes": 3008,
+          "workstream": "Miscellaneous"
+        },
+        {
+          "path": "claude/mailbox/SESSION_CONTEXT_CHRONICLE_2026_02_06.md",
+          "mtime_utc": "2026-02-17T19:51:14.8058712Z",
+          "size_bytes": 2851,
+          "workstream": "Miscellaneous"
+        },
+        {
+          "path": "claude/mailbox/SESSION_CONTEXT_CHRONICLE_2026_02_09.md",
+          "mtime_utc": "2026-02-17T19:51:14.8078803Z",
+          "size_bytes": 8961,
+          "workstream": "Miscellaneous"
+        },
+        {
+          "path": "claude/mailbox/SESSION_HANDOFF_2026_02_10_CLAUDE_CODE_OPUS_SETUP.md",
+          "mtime_utc": "2026-02-17T19:51:14.8078803Z",
+          "size_bytes": 2244,
+          "workstream": "Session Handoffs"
+        },
+        {
+          "path": "claude/mailbox/SESSION_HANDOFF_2026_1_9_CLAUDE_SKILL_AUDIT.md",
+          "mtime_utc": "2026-02-17T19:51:14.8088649Z",
+          "size_bytes": 506,
+          "workstream": "Toolchain and Skill Hygiene"
+        },
+        {
+          "path": "claude/mailbox/SESSION_SYNC_INDEX_2026_02_09.json",
+          "mtime_utc": "2026-02-17T19:51:14.8108665Z",
+          "size_bytes": 2122,
+          "workstream": "Miscellaneous"
+        },
+        {
+          "path": "claude/mailbox/SESSION_SYNC_PACKET_2026_02_09.md",
+          "mtime_utc": "2026-02-17T19:51:14.8117851Z",
+          "size_bytes": 6531,
+          "workstream": "Miscellaneous"
+        },
+        {
+          "path": "claude/mailbox/SKILLS_PARITY_DISCREPANCY_2026_02_06.md",
+          "mtime_utc": "2026-02-17T19:51:14.8127857Z",
+          "size_bytes": 3790,
+          "workstream": "Miscellaneous"
+        },
+        {
+          "path": "claude/mailbox/skill_audit_claude_2026-02-09T22-01-52Z.json",
+          "mtime_utc": "2026-02-17T19:51:14.8287890Z",
+          "size_bytes": 1559,
+          "workstream": "Toolchain and Skill Hygiene"
+        },
+        {
+          "path": "claude/mailbox/skills_parity_map_2026_02_06.json",
+          "mtime_utc": "2026-02-17T19:51:14.8299212Z",
+          "size_bytes": 4330,
+          "workstream": "Miscellaneous"
+        },
+        {
+          "path": "claude/mailbox/ARCHAEOLOGY_DIGEST_2026_02_18.md",
+          "mtime_utc": "2026-02-18T02:52:56.4377080Z",
+          "size_bytes": 15450,
+          "workstream": "Miscellaneous"
+        },
+        {
+          "path": "claude/mailbox/ARCHAEOLOGY_DIGEST_2026_02_19.md",
+          "mtime_utc": "2026-02-19T02:48:39.1857948Z",
+          "size_bytes": 15904,
+          "workstream": "Miscellaneous"
+        },
+        {
+          "path": "claude/mailbox/ARCHAEOLOGY_DIGEST_2026_02_20.md",
+          "mtime_utc": "2026-02-20T02:31:04.4849144Z",
+          "size_bytes": 20586,
+          "workstream": "Miscellaneous"
+        },
+        {
+          "path": "claude/mailbox/GENRE_EXTRACTION_2026_02_21.md",
+          "mtime_utc": "2026-02-21T03:03:50.2310317Z",
+          "size_bytes": 2074,
+          "workstream": "Research and Content Profiling"
+        },
+        {
+          "path": "claude/mailbox/GENRE_EXTRACTION_2026_02_22.md",
+          "mtime_utc": "2026-02-22T02:43:03.2545710Z",
+          "size_bytes": 31612,
+          "workstream": "Research and Content Profiling"
+        },
+        {
+          "path": "claude/mailbox/GENRE_EXTRACTION_2026_02_23.md",
+          "mtime_utc": "2026-02-23T02:56:26.2162614Z",
+          "size_bytes": 31612,
+          "workstream": "Research and Content Profiling"
+        },
+        {
+          "path": "claude/mailbox/POE_SDK_LATEST.json",
+          "mtime_utc": "2026-02-23T16:56:43.5607410Z",
+          "size_bytes": 211,
+          "workstream": "POE API and Callability"
+        },
+        {
+          "path": "claude/mailbox/POE_SDK_LATEST.md",
+          "mtime_utc": "2026-02-23T16:56:43.5617403Z",
+          "size_bytes": 156,
+          "workstream": "POE API and Callability"
+        },
+        {
+          "path": "claude/mailbox/mailbox_manifest.json",
+          "mtime_utc": "2026-02-23T16:57:13.7601837Z",
+          "size_bytes": 2269,
+          "workstream": "Mailbox Infrastructure"
+        },
+        {
+          "path": "claude/mailbox/MAILBOX_CURRENT_STATE.md",
+          "mtime_utc": "2026-02-23T16:57:13.7611838Z",
+          "size_bytes": 1786,
+          "workstream": "Mailbox Infrastructure"
+        },
+        {
+          "path": "claude/mailbox/TETRAGRAMMATON_PACKET.md",
+          "mtime_utc": "2026-02-23T16:57:13.7681839Z",
+          "size_bytes": 19506,
+          "workstream": "Mailbox Infrastructure"
+        },
+        {
+          "path": "claude/mailbox/LOCAL_AI_READINESS_LATEST.json",
+          "mtime_utc": "2026-02-23T16:57:31.8702440Z",
+          "size_bytes": 12725,
+          "workstream": "Research and Content Profiling"
+        },
+        {
+          "path": "claude/mailbox/LOCAL_AI_READINESS_LATEST.md",
+          "mtime_utc": "2026-02-23T16:57:31.8712445Z",
+          "size_bytes": 7914,
+          "workstream": "Research and Content Profiling"
+        },
+        {
+          "path": "claude/mailbox/POE_LANE_LATEST.json",
+          "mtime_utc": "2026-02-23T17:01:03.7982563Z",
+          "size_bytes": 273,
+          "workstream": "POE API and Callability"
+        },
+        {
+          "path": "claude/mailbox/POE_LANE_LATEST.md",
+          "mtime_utc": "2026-02-23T17:01:03.7982563Z",
+          "size_bytes": 199,
+          "workstream": "POE API and Callability"
+        },
+        {
+          "path": "claude/mailbox/SFA_CROSS_REFERENCE_SCAN.md",
+          "mtime_utc": "2026-02-23T18:41:11.6669465Z",
+          "size_bytes": 5272,
+          "workstream": "Miscellaneous"
+        },
+        {
+          "path": "claude/mailbox/SFA_FORGE_DIGEST.md",
+          "mtime_utc": "2026-02-23T18:41:25.9933692Z",
+          "size_bytes": 5498,
+          "workstream": "Miscellaneous"
+        },
+        {
+          "path": "claude/mailbox/GEMINI_DEEP_RESEARCH_BRIEF_LOCAL_AI_TEACHING.md",
+          "mtime_utc": "2026-02-24T06:13:05.1845087Z",
+          "size_bytes": 8259,
+          "workstream": "Miscellaneous"
+        },
+        {
+          "path": "claude/mailbox/_legacy_ts.txt",
+          "mtime_utc": "2026-02-24T06:57:51.9599213Z",
+          "size_bytes": 2740,
+          "workstream": "Miscellaneous"
+        },
+        {
+          "path": "claude/mailbox/Local_AI_Teaching_Framework_Research_Variant2of2.md",
+          "mtime_utc": "2026-02-24T07:05:41.1213191Z",
+          "size_bytes": 46807,
+          "workstream": "Miscellaneous"
+        },
+        {
+          "path": "claude/mailbox/Local_AI_Teaching_Framework_Research_Variant1of2.md",
+          "mtime_utc": "2026-02-24T07:05:48.1632516Z",
+          "size_bytes": 51255,
+          "workstream": "Miscellaneous"
+        },
+        {
+          "path": "claude/mailbox/GENRE_EXTRACTION_2026_02_24.md",
+          "mtime_utc": "2026-02-24T07:22:07.6863430Z",
+          "size_bytes": 24702,
+          "workstream": "Research and Content Profiling"
+        },
+        {
+          "path": "claude/mailbox/genre_rerun_log.txt",
+          "mtime_utc": "2026-02-24T07:22:09.5592477Z",
+          "size_bytes": 1960,
+          "workstream": "Research and Content Profiling"
+        },
+        {
+          "path": "claude/mailbox/GENRE_EXTRACTION_2026_02_25.md",
+          "mtime_utc": "2026-02-25T02:44:03.2549127Z",
+          "size_bytes": 24589,
+          "workstream": "Research and Content Profiling"
+        }
+      ]
+    }
+  },
+  "integrated_point_system": {
+    "source_audit": "codex/mailbox/HANDOFF_AUDIT_LATEST.json",
+    "scoring_weights": {
+      "contract_compliance": 0.3,
+      "evidence_verifiability": 0.25,
+      "continuity_quality": 0.2,
+      "noise_discipline": 0.15,
+      "cross_lane_integrity": 0.1
+    },
+    "required_frontmatter": [
+      "type",
+      "from",
+      "to",
+      "created",
+      "priority",
+      "scope"
+    ],
+    "required_sections": [
+      "actions_taken",
+      "files_changed",
+      "how_to_verify",
+      "next_actions"
+    ],
+    "hard_caps": {
+      "missing_frontmatter_cap": 5.0,
+      "missing_verify_cap": 6.0,
+      "missing_next_actions_cap": 7.0,
+      "linguistic_violation_cap_1plus": 6.5,
+      "linguistic_violation_cap_3plus": 5.5,
+      "linguistic_violation_cap_6plus": 4.5
+    },
+    "linguistic_profile_name": "milfological_female_derived",
+    "pre_scm_summary": {
+      "handoff_count": 8,
+      "avg_score_10": 7.778,
+      "avg_technical_score_10": 8.231,
+      "avg_creativity_score_10": 5.088,
+      "avg_linguistic_score_10": 9.55,
+      "min_score_10": 5.8,
+      "max_score_10": 9.03
+    },
+    "post_scm_summary": {
+      "handoff_count": 2,
+      "avg_score_10": 7.83
+    },
+    "codex_claude_mutual_delta": {
+      "left_to_right": {
+        "from": "codex",
+        "to": "claude",
+        "handoff_count": 5,
+        "avg_overall_score_10": 7.04,
+        "avg_technical_score_10": 7.94,
+        "avg_creativity_score_10": 1.588,
+        "avg_linguistic_score_10": 9.55,
+        "avg_est_ratio": 0.95
+      },
+      "right_to_left": {
+        "from": "claude",
+        "to": "codex",
+        "handoff_count": 3,
+        "avg_overall_score_10": 8.607,
+        "avg_technical_score_10": 8.94,
+        "avg_creativity_score_10": 7.527,
+        "avg_linguistic_score_10": 9.55,
+        "avg_est_ratio": 1.0
+      },
+      "present_both_directions": true,
+      "overall_delta": -1.567,
+      "creativity_delta": -5.939,
+      "linguistic_delta": 0.0,
+      "technical_delta": -1.0
+    }
+  }
+}

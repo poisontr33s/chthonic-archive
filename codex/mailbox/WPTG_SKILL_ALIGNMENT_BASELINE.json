@@ -1,0 +1,1994 @@
+{
+  "generated_at": "2026-02-24T08:42:04.342601+00:00",
+  "skills_total": 25,
+  "skills_wptg_enabled": 25,
+  "avg_wptg_score": 49.72,
+  "skills": [
+    {
+      "skill": "api-manager",
+      "exit_code": 0,
+      "score": 100,
+      "wptg": {
+        "enabled": true,
+        "profile": "baseline",
+        "score": 57,
+        "met": 4,
+        "total": 7,
+        "stages": [
+          {
+            "stage_id": "00",
+            "stage_name": "Blind Ingestion",
+            "met": true,
+            "evidence": [
+              "frontmatter keys present",
+              "use contract present"
+            ],
+            "gaps": []
+          },
+          {
+            "stage_id": "01",
+            "stage_name": "Emergent Taxonomy",
+            "met": true,
+            "evidence": [
+              "flavor/scope contract"
+            ],
+            "gaps": []
+          },
+          {
+            "stage_id": "02",
+            "stage_name": "Cartography",
+            "met": false,
+            "evidence": [],
+            "gaps": [
+              "no relationship mapping to neighboring artifacts"
+            ]
+          },
+          {
+            "stage_id": "03",
+            "stage_name": "Criterion Genesis",
+            "met": true,
+            "evidence": [
+              "verification/gate criteria present"
+            ],
+            "gaps": []
+          },
+          {
+            "stage_id": "04",
+            "stage_name": "Transmutation",
+            "met": true,
+            "evidence": [
+              "script implementation present",
+              "executable command snippets present"
+            ],
+            "gaps": []
+          },
+          {
+            "stage_id": "05",
+            "stage_name": "Verification",
+            "met": false,
+            "evidence": [],
+            "gaps": [
+              "missing self-test/fixture/verify evidence"
+            ]
+          },
+          {
+            "stage_id": "06",
+            "stage_name": "Iteration",
+            "met": false,
+            "evidence": [],
+            "gaps": [
+              "missing iteration memory (trend/history/baseline promotion)"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "skill": "artifact-upcycle",
+      "exit_code": 0,
+      "score": 100,
+      "wptg": {
+        "enabled": true,
+        "profile": "baseline",
+        "score": 71,
+        "met": 5,
+        "total": 7,
+        "stages": [
+          {
+            "stage_id": "00",
+            "stage_name": "Blind Ingestion",
+            "met": true,
+            "evidence": [
+              "frontmatter keys present",
+              "use contract present"
+            ],
+            "gaps": []
+          },
+          {
+            "stage_id": "01",
+            "stage_name": "Emergent Taxonomy",
+            "met": true,
+            "evidence": [
+              "flavor/scope contract"
+            ],
+            "gaps": []
+          },
+          {
+            "stage_id": "02",
+            "stage_name": "Cartography",
+            "met": true,
+            "evidence": [
+              "references/ directory"
+            ],
+            "gaps": []
+          },
+          {
+            "stage_id": "03",
+            "stage_name": "Criterion Genesis",
+            "met": true,
+            "evidence": [
+              "verification/gate criteria present"
+            ],
+            "gaps": []
+          },
+          {
+            "stage_id": "04",
+            "stage_name": "Transmutation",
+            "met": false,
+            "evidence": [
+              "script implementation present"
+            ],
+            "gaps": [
+              "missing executable command snippets"
+            ]
+          },
+          {
+            "stage_id": "05",
+            "stage_name": "Verification",
+            "met": false,
+            "evidence": [],
+            "gaps": [
+              "missing self-test/fixture/verify evidence"
+            ]
+          },
+          {
+            "stage_id": "06",
+            "stage_name": "Iteration",
+            "met": true,
+            "evidence": [
+              "iteration/trend evidence present"
+            ],
+            "gaps": []
+          }
+        ]
+      }
+    },
+    {
+      "skill": "claude-skill-bridge",
+      "exit_code": 0,
+      "score": 100,
+      "wptg": {
+        "enabled": true,
+        "profile": "baseline",
+        "score": 14,
+        "met": 1,
+        "total": 7,
+        "stages": [
+          {
+            "stage_id": "00",
+            "stage_name": "Blind Ingestion",
+            "met": false,
+            "evidence": [
+              "frontmatter keys present"
+            ],
+            "gaps": [
+              "missing use contract"
+            ]
+          },
+          {
+            "stage_id": "01",
+            "stage_name": "Emergent Taxonomy",
+            "met": false,
+            "evidence": [],
+            "gaps": [
+              "no flavor/scope derivation language"
+            ]
+          },
+          {
+            "stage_id": "02",
+            "stage_name": "Cartography",
+            "met": false,
+            "evidence": [],
+            "gaps": [
+              "no relationship mapping to neighboring artifacts"
+            ]
+          },
+          {
+            "stage_id": "03",
+            "stage_name": "Criterion Genesis",
+            "met": false,
+            "evidence": [],
+            "gaps": [
+              "missing measurable criteria/gates"
+            ]
+          },
+          {
+            "stage_id": "04",
+            "stage_name": "Transmutation",
+            "met": false,
+            "evidence": [],
+            "gaps": [
+              "missing scripts/",
+              "missing executable command snippets"
+            ]
+          },
+          {
+            "stage_id": "05",
+            "stage_name": "Verification",
+            "met": false,
+            "evidence": [],
+            "gaps": [
+              "missing self-test/fixture/verify evidence"
+            ]
+          },
+          {
+            "stage_id": "06",
+            "stage_name": "Iteration",
+            "met": true,
+            "evidence": [
+              "iteration/trend evidence present"
+            ],
+            "gaps": []
+          }
+        ]
+      }
+    },
+    {
+      "skill": "codekiller-remediation-gate",
+      "exit_code": 0,
+      "score": 100,
+      "wptg": {
+        "enabled": true,
+        "profile": "baseline",
+        "score": 57,
+        "met": 4,
+        "total": 7,
+        "stages": [
+          {
+            "stage_id": "00",
+            "stage_name": "Blind Ingestion",
+            "met": true,
+            "evidence": [
+              "frontmatter keys present",
+              "use contract present"
+            ],
+            "gaps": []
+          },
+          {
+            "stage_id": "01",
+            "stage_name": "Emergent Taxonomy",
+            "met": false,
+            "evidence": [],
+            "gaps": [
+              "no flavor/scope derivation language"
+            ]
+          },
+          {
+            "stage_id": "02",
+            "stage_name": "Cartography",
+            "met": false,
+            "evidence": [],
+            "gaps": [
+              "no relationship mapping to neighboring artifacts"
+            ]
+          },
+          {
+            "stage_id": "03",
+            "stage_name": "Criterion Genesis",
+            "met": true,
+            "evidence": [
+              "verification/gate criteria present"
+            ],
+            "gaps": []
+          },
+          {
+            "stage_id": "04",
+            "stage_name": "Transmutation",
+            "met": true,
+            "evidence": [
+              "script implementation present",
+              "executable command snippets present"
+            ],
+            "gaps": []
+          },
+          {
+            "stage_id": "05",
+            "stage_name": "Verification",
+            "met": true,
+            "evidence": [
+              "fixture/selftest evidence present"
+            ],
+            "gaps": []
+          },
+          {
+            "stage_id": "06",
+            "stage_name": "Iteration",
+            "met": false,
+            "evidence": [],
+            "gaps": [
+              "missing iteration memory (trend/history/baseline promotion)"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "skill": "codex-skill-bridge",
+      "exit_code": 0,
+      "score": 100,
+      "wptg": {
+        "enabled": true,
+        "profile": "baseline",
+        "score": 29,
+        "met": 2,
+        "total": 7,
+        "stages": [
+          {
+            "stage_id": "00",
+            "stage_name": "Blind Ingestion",
+            "met": true,
+            "evidence": [
+              "frontmatter keys present",
+              "use contract present"
+            ],
+            "gaps": []
+          },
+          {
+            "stage_id": "01",
+            "stage_name": "Emergent Taxonomy",
+            "met": false,
+            "evidence": [],
+            "gaps": [
+              "no flavor/scope derivation language"
+            ]
+          },
+          {
+            "stage_id": "02",
+            "stage_name": "Cartography",
+            "met": false,
+            "evidence": [],
+            "gaps": [
+              "no relationship mapping to neighboring artifacts"
+            ]
+          },
+          {
+            "stage_id": "03",
+            "stage_name": "Criterion Genesis",
+            "met": false,
+            "evidence": [],
+            "gaps": [
+              "missing measurable criteria/gates"
+            ]
+          },
+          {
+            "stage_id": "04",
+            "stage_name": "Transmutation",
+            "met": false,
+            "evidence": [],
+            "gaps": [
+              "missing scripts/",
+              "missing executable command snippets"
+            ]
+          },
+          {
+            "stage_id": "05",
+            "stage_name": "Verification",
+            "met": false,
+            "evidence": [],
+            "gaps": [
+              "missing self-test/fixture/verify evidence"
+            ]
+          },
+          {
+            "stage_id": "06",
+            "stage_name": "Iteration",
+            "met": true,
+            "evidence": [
+              "iteration/trend evidence present"
+            ],
+            "gaps": []
+          }
+        ]
+      }
+    },
+    {
+      "skill": "conceptualize",
+      "exit_code": 0,
+      "score": 100,
+      "wptg": {
+        "enabled": true,
+        "profile": "baseline",
+        "score": 71,
+        "met": 5,
+        "total": 7,
+        "stages": [
+          {
+            "stage_id": "00",
+            "stage_name": "Blind Ingestion",
+            "met": true,
+            "evidence": [
+              "frontmatter keys present",
+              "use contract present"
+            ],
+            "gaps": []
+          },
+          {
+            "stage_id": "01",
+            "stage_name": "Emergent Taxonomy",
+            "met": true,
+            "evidence": [
+              "flavor/scope contract"
+            ],
+            "gaps": []
+          },
+          {
+            "stage_id": "02",
+            "stage_name": "Cartography",
+            "met": true,
+            "evidence": [
+              "references/ directory"
+            ],
+            "gaps": []
+          },
+          {
+            "stage_id": "03",
+            "stage_name": "Criterion Genesis",
+            "met": true,
+            "evidence": [
+              "verification/gate criteria present"
+            ],
+            "gaps": []
+          },
+          {
+            "stage_id": "04",
+            "stage_name": "Transmutation",
+            "met": false,
+            "evidence": [],
+            "gaps": [
+              "missing scripts/",
+              "missing executable command snippets"
+            ]
+          },
+          {
+            "stage_id": "05",
+            "stage_name": "Verification",
+            "met": true,
+            "evidence": [
+              "fixture/selftest evidence present"
+            ],
+            "gaps": []
+          },
+          {
+            "stage_id": "06",
+            "stage_name": "Iteration",
+            "met": false,
+            "evidence": [],
+            "gaps": [
+              "missing iteration memory (trend/history/baseline promotion)"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "skill": "decision-razor",
+      "exit_code": 0,
+      "score": 100,
+      "wptg": {
+        "enabled": true,
+        "profile": "baseline",
+        "score": 43,
+        "met": 3,
+        "total": 7,
+        "stages": [
+          {
+            "stage_id": "00",
+            "stage_name": "Blind Ingestion",
+            "met": true,
+            "evidence": [
+              "frontmatter keys present",
+              "use contract present"
+            ],
+            "gaps": []
+          },
+          {
+            "stage_id": "01",
+            "stage_name": "Emergent Taxonomy",
+            "met": true,
+            "evidence": [
+              "flavor/scope contract"
+            ],
+            "gaps": []
+          },
+          {
+            "stage_id": "02",
+            "stage_name": "Cartography",
+            "met": false,
+            "evidence": [],
+            "gaps": [
+              "no relationship mapping to neighboring artifacts"
+            ]
+          },
+          {
+            "stage_id": "03",
+            "stage_name": "Criterion Genesis",
+            "met": true,
+            "evidence": [
+              "verification/gate criteria present"
+            ],
+            "gaps": []
+          },
+          {
+            "stage_id": "04",
+            "stage_name": "Transmutation",
+            "met": false,
+            "evidence": [],
+            "gaps": [
+              "missing scripts/",
+              "missing executable command snippets"
+            ]
+          },
+          {
+            "stage_id": "05",
+            "stage_name": "Verification",
+            "met": false,
+            "evidence": [],
+            "gaps": [
+              "missing self-test/fixture/verify evidence"
+            ]
+          },
+          {
+            "stage_id": "06",
+            "stage_name": "Iteration",
+            "met": false,
+            "evidence": [],
+            "gaps": [
+              "missing iteration memory (trend/history/baseline promotion)"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "skill": "dumpster-upcycler",
+      "exit_code": 0,
+      "score": 100,
+      "wptg": {
+        "enabled": true,
+        "profile": "baseline",
+        "score": 43,
+        "met": 3,
+        "total": 7,
+        "stages": [
+          {
+            "stage_id": "00",
+            "stage_name": "Blind Ingestion",
+            "met": true,
+            "evidence": [
+              "frontmatter keys present",
+              "use contract present"
+            ],
+            "gaps": []
+          },
+          {
+            "stage_id": "01",
+            "stage_name": "Emergent Taxonomy",
+            "met": false,
+            "evidence": [],
+            "gaps": [
+              "no flavor/scope derivation language"
+            ]
+          },
+          {
+            "stage_id": "02",
+            "stage_name": "Cartography",
+            "met": false,
+            "evidence": [],
+            "gaps": [
+              "no relationship mapping to neighboring artifacts"
+            ]
+          },
+          {
+            "stage_id": "03",
+            "stage_name": "Criterion Genesis",
+            "met": false,
+            "evidence": [],
+            "gaps": [
+              "missing measurable criteria/gates"
+            ]
+          },
+          {
+            "stage_id": "04",
+            "stage_name": "Transmutation",
+            "met": true,
+            "evidence": [
+              "script implementation present",
+              "executable command snippets present"
+            ],
+            "gaps": []
+          },
+          {
+            "stage_id": "05",
+            "stage_name": "Verification",
+            "met": false,
+            "evidence": [],
+            "gaps": [
+              "missing self-test/fixture/verify evidence"
+            ]
+          },
+          {
+            "stage_id": "06",
+            "stage_name": "Iteration",
+            "met": true,
+            "evidence": [
+              "iteration/trend evidence present"
+            ],
+            "gaps": []
+          }
+        ]
+      }
+    },
+    {
+      "skill": "gh-address-comments",
+      "exit_code": 0,
+      "score": 100,
+      "wptg": {
+        "enabled": true,
+        "profile": "baseline",
+        "score": 43,
+        "met": 3,
+        "total": 7,
+        "stages": [
+          {
+            "stage_id": "00",
+            "stage_name": "Blind Ingestion",
+            "met": false,
+            "evidence": [
+              "frontmatter keys present"
+            ],
+            "gaps": [
+              "missing use contract"
+            ]
+          },
+          {
+            "stage_id": "01",
+            "stage_name": "Emergent Taxonomy",
+            "met": true,
+            "evidence": [
+              "flavor/scope contract"
+            ],
+            "gaps": []
+          },
+          {
+            "stage_id": "02",
+            "stage_name": "Cartography",
+            "met": false,
+            "evidence": [],
+            "gaps": [
+              "no relationship mapping to neighboring artifacts"
+            ]
+          },
+          {
+            "stage_id": "03",
+            "stage_name": "Criterion Genesis",
+            "met": true,
+            "evidence": [
+              "verification/gate criteria present"
+            ],
+            "gaps": []
+          },
+          {
+            "stage_id": "04",
+            "stage_name": "Transmutation",
+            "met": false,
+            "evidence": [
+              "script implementation present"
+            ],
+            "gaps": [
+              "missing executable command snippets"
+            ]
+          },
+          {
+            "stage_id": "05",
+            "stage_name": "Verification",
+            "met": false,
+            "evidence": [],
+            "gaps": [
+              "missing self-test/fixture/verify evidence"
+            ]
+          },
+          {
+            "stage_id": "06",
+            "stage_name": "Iteration",
+            "met": true,
+            "evidence": [
+              "iteration/trend evidence present"
+            ],
+            "gaps": []
+          }
+        ]
+      }
+    },
+    {
+      "skill": "gh-fix-ci",
+      "exit_code": 0,
+      "score": 100,
+      "wptg": {
+        "enabled": true,
+        "profile": "baseline",
+        "score": 43,
+        "met": 3,
+        "total": 7,
+        "stages": [
+          {
+            "stage_id": "00",
+            "stage_name": "Blind Ingestion",
+            "met": false,
+            "evidence": [
+              "frontmatter keys present"
+            ],
+            "gaps": [
+              "missing use contract"
+            ]
+          },
+          {
+            "stage_id": "01",
+            "stage_name": "Emergent Taxonomy",
+            "met": true,
+            "evidence": [
+              "flavor/scope contract"
+            ],
+            "gaps": []
+          },
+          {
+            "stage_id": "02",
+            "stage_name": "Cartography",
+            "met": false,
+            "evidence": [],
+            "gaps": [
+              "no relationship mapping to neighboring artifacts"
+            ]
+          },
+          {
+            "stage_id": "03",
+            "stage_name": "Criterion Genesis",
+            "met": true,
+            "evidence": [
+              "verification/gate criteria present"
+            ],
+            "gaps": []
+          },
+          {
+            "stage_id": "04",
+            "stage_name": "Transmutation",
+            "met": false,
+            "evidence": [
+              "script implementation present"
+            ],
+            "gaps": [
+              "missing executable command snippets"
+            ]
+          },
+          {
+            "stage_id": "05",
+            "stage_name": "Verification",
+            "met": false,
+            "evidence": [],
+            "gaps": [
+              "missing self-test/fixture/verify evidence"
+            ]
+          },
+          {
+            "stage_id": "06",
+            "stage_name": "Iteration",
+            "met": true,
+            "evidence": [
+              "iteration/trend evidence present"
+            ],
+            "gaps": []
+          }
+        ]
+      }
+    },
+    {
+      "skill": "gh-mcp-autonomy",
+      "exit_code": 0,
+      "score": 100,
+      "wptg": {
+        "enabled": true,
+        "profile": "baseline",
+        "score": 57,
+        "met": 4,
+        "total": 7,
+        "stages": [
+          {
+            "stage_id": "00",
+            "stage_name": "Blind Ingestion",
+            "met": true,
+            "evidence": [
+              "frontmatter keys present",
+              "use contract present"
+            ],
+            "gaps": []
+          },
+          {
+            "stage_id": "01",
+            "stage_name": "Emergent Taxonomy",
+            "met": true,
+            "evidence": [
+              "flavor/scope contract"
+            ],
+            "gaps": []
+          },
+          {
+            "stage_id": "02",
+            "stage_name": "Cartography",
+            "met": false,
+            "evidence": [],
+            "gaps": [
+              "no relationship mapping to neighboring artifacts"
+            ]
+          },
+          {
+            "stage_id": "03",
+            "stage_name": "Criterion Genesis",
+            "met": true,
+            "evidence": [
+              "verification/gate criteria present"
+            ],
+            "gaps": []
+          },
+          {
+            "stage_id": "04",
+            "stage_name": "Transmutation",
+            "met": false,
+            "evidence": [],
+            "gaps": [
+              "missing scripts/",
+              "missing executable command snippets"
+            ]
+          },
+          {
+            "stage_id": "05",
+            "stage_name": "Verification",
+            "met": false,
+            "evidence": [],
+            "gaps": [
+              "missing self-test/fixture/verify evidence"
+            ]
+          },
+          {
+            "stage_id": "06",
+            "stage_name": "Iteration",
+            "met": true,
+            "evidence": [
+              "iteration/trend evidence present"
+            ],
+            "gaps": []
+          }
+        ]
+      }
+    },
+    {
+      "skill": "imagegen",
+      "exit_code": 0,
+      "score": 100,
+      "wptg": {
+        "enabled": true,
+        "profile": "baseline",
+        "score": 57,
+        "met": 4,
+        "total": 7,
+        "stages": [
+          {
+            "stage_id": "00",
+            "stage_name": "Blind Ingestion",
+            "met": true,
+            "evidence": [
+              "frontmatter keys present",
+              "use contract present"
+            ],
+            "gaps": []
+          },
+          {
+            "stage_id": "01",
+            "stage_name": "Emergent Taxonomy",
+            "met": true,
+            "evidence": [
+              "flavor/scope contract"
+            ],
+            "gaps": []
+          },
+          {
+            "stage_id": "02",
+            "stage_name": "Cartography",
+            "met": true,
+            "evidence": [
+              "references/ directory"
+            ],
+            "gaps": []
+          },
+          {
+            "stage_id": "03",
+            "stage_name": "Criterion Genesis",
+            "met": false,
+            "evidence": [],
+            "gaps": [
+              "missing measurable criteria/gates"
+            ]
+          },
+          {
+            "stage_id": "04",
+            "stage_name": "Transmutation",
+            "met": false,
+            "evidence": [
+              "script implementation present"
+            ],
+            "gaps": [
+              "missing executable command snippets"
+            ]
+          },
+          {
+            "stage_id": "05",
+            "stage_name": "Verification",
+            "met": false,
+            "evidence": [],
+            "gaps": [
+              "missing self-test/fixture/verify evidence"
+            ]
+          },
+          {
+            "stage_id": "06",
+            "stage_name": "Iteration",
+            "met": true,
+            "evidence": [
+              "iteration/trend evidence present"
+            ],
+            "gaps": []
+          }
+        ]
+      }
+    },
+    {
+      "skill": "ingest-research",
+      "exit_code": 0,
+      "score": 100,
+      "wptg": {
+        "enabled": true,
+        "profile": "baseline",
+        "score": 29,
+        "met": 2,
+        "total": 7,
+        "stages": [
+          {
+            "stage_id": "00",
+            "stage_name": "Blind Ingestion",
+            "met": true,
+            "evidence": [
+              "frontmatter keys present",
+              "use contract present"
+            ],
+            "gaps": []
+          },
+          {
+            "stage_id": "01",
+            "stage_name": "Emergent Taxonomy",
+            "met": false,
+            "evidence": [],
+            "gaps": [
+              "no flavor/scope derivation language"
+            ]
+          },
+          {
+            "stage_id": "02",
+            "stage_name": "Cartography",
+            "met": false,
+            "evidence": [],
+            "gaps": [
+              "no relationship mapping to neighboring artifacts"
+            ]
+          },
+          {
+            "stage_id": "03",
+            "stage_name": "Criterion Genesis",
+            "met": true,
+            "evidence": [
+              "verification/gate criteria present"
+            ],
+            "gaps": []
+          },
+          {
+            "stage_id": "04",
+            "stage_name": "Transmutation",
+            "met": false,
+            "evidence": [
+              "executable command snippets present"
+            ],
+            "gaps": [
+              "missing scripts/"
+            ]
+          },
+          {
+            "stage_id": "05",
+            "stage_name": "Verification",
+            "met": false,
+            "evidence": [],
+            "gaps": [
+              "missing self-test/fixture/verify evidence"
+            ]
+          },
+          {
+            "stage_id": "06",
+            "stage_name": "Iteration",
+            "met": false,
+            "evidence": [],
+            "gaps": [
+              "missing iteration memory (trend/history/baseline promotion)"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "skill": "iron-maiden-runtime",
+      "exit_code": 0,
+      "score": 100,
+      "wptg": {
+        "enabled": true,
+        "profile": "baseline",
+        "score": 29,
+        "met": 2,
+        "total": 7,
+        "stages": [
+          {
+            "stage_id": "00",
+            "stage_name": "Blind Ingestion",
+            "met": false,
+            "evidence": [
+              "frontmatter keys present"
+            ],
+            "gaps": [
+              "missing use contract"
+            ]
+          },
+          {
+            "stage_id": "01",
+            "stage_name": "Emergent Taxonomy",
+            "met": false,
+            "evidence": [],
+            "gaps": [
+              "no flavor/scope derivation language"
+            ]
+          },
+          {
+            "stage_id": "02",
+            "stage_name": "Cartography",
+            "met": true,
+            "evidence": [
+              "references/ directory"
+            ],
+            "gaps": []
+          },
+          {
+            "stage_id": "03",
+            "stage_name": "Criterion Genesis",
+            "met": false,
+            "evidence": [],
+            "gaps": [
+              "missing measurable criteria/gates"
+            ]
+          },
+          {
+            "stage_id": "04",
+            "stage_name": "Transmutation",
+            "met": true,
+            "evidence": [
+              "script implementation present",
+              "executable command snippets present"
+            ],
+            "gaps": []
+          },
+          {
+            "stage_id": "05",
+            "stage_name": "Verification",
+            "met": false,
+            "evidence": [],
+            "gaps": [
+              "missing self-test/fixture/verify evidence"
+            ]
+          },
+          {
+            "stage_id": "06",
+            "stage_name": "Iteration",
+            "met": false,
+            "evidence": [],
+            "gaps": [
+              "missing iteration memory (trend/history/baseline promotion)"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "skill": "mailbox-handoff",
+      "exit_code": 0,
+      "score": 100,
+      "wptg": {
+        "enabled": true,
+        "profile": "baseline",
+        "score": 86,
+        "met": 6,
+        "total": 7,
+        "stages": [
+          {
+            "stage_id": "00",
+            "stage_name": "Blind Ingestion",
+            "met": true,
+            "evidence": [
+              "frontmatter keys present",
+              "use contract present"
+            ],
+            "gaps": []
+          },
+          {
+            "stage_id": "01",
+            "stage_name": "Emergent Taxonomy",
+            "met": true,
+            "evidence": [
+              "flavor/scope contract"
+            ],
+            "gaps": []
+          },
+          {
+            "stage_id": "02",
+            "stage_name": "Cartography",
+            "met": true,
+            "evidence": [],
+            "gaps": []
+          },
+          {
+            "stage_id": "03",
+            "stage_name": "Criterion Genesis",
+            "met": true,
+            "evidence": [
+              "verification/gate criteria present"
+            ],
+            "gaps": []
+          },
+          {
+            "stage_id": "04",
+            "stage_name": "Transmutation",
+            "met": true,
+            "evidence": [
+              "script implementation present",
+              "executable command snippets present"
+            ],
+            "gaps": []
+          },
+          {
+            "stage_id": "05",
+            "stage_name": "Verification",
+            "met": false,
+            "evidence": [],
+            "gaps": [
+              "missing self-test/fixture/verify evidence"
+            ]
+          },
+          {
+            "stage_id": "06",
+            "stage_name": "Iteration",
+            "met": true,
+            "evidence": [
+              "iteration/trend evidence present"
+            ],
+            "gaps": []
+          }
+        ]
+      }
+    },
+    {
+      "skill": "meta-polisher-validator",
+      "exit_code": 0,
+      "score": 100,
+      "wptg": {
+        "enabled": true,
+        "profile": "baseline",
+        "score": 57,
+        "met": 4,
+        "total": 7,
+        "stages": [
+          {
+            "stage_id": "00",
+            "stage_name": "Blind Ingestion",
+            "met": true,
+            "evidence": [
+              "frontmatter keys present",
+              "use contract present"
+            ],
+            "gaps": []
+          },
+          {
+            "stage_id": "01",
+            "stage_name": "Emergent Taxonomy",
+            "met": true,
+            "evidence": [
+              "flavor/scope contract"
+            ],
+            "gaps": []
+          },
+          {
+            "stage_id": "02",
+            "stage_name": "Cartography",
+            "met": false,
+            "evidence": [],
+            "gaps": [
+              "no relationship mapping to neighboring artifacts"
+            ]
+          },
+          {
+            "stage_id": "03",
+            "stage_name": "Criterion Genesis",
+            "met": true,
+            "evidence": [
+              "verification/gate criteria present"
+            ],
+            "gaps": []
+          },
+          {
+            "stage_id": "04",
+            "stage_name": "Transmutation",
+            "met": false,
+            "evidence": [
+              "executable command snippets present"
+            ],
+            "gaps": [
+              "missing scripts/"
+            ]
+          },
+          {
+            "stage_id": "05",
+            "stage_name": "Verification",
+            "met": false,
+            "evidence": [],
+            "gaps": [
+              "missing self-test/fixture/verify evidence"
+            ]
+          },
+          {
+            "stage_id": "06",
+            "stage_name": "Iteration",
+            "met": true,
+            "evidence": [
+              "iteration/trend evidence present"
+            ],
+            "gaps": []
+          }
+        ]
+      }
+    },
+    {
+      "skill": "openai-docs",
+      "exit_code": 0,
+      "score": 100,
+      "wptg": {
+        "enabled": true,
+        "profile": "baseline",
+        "score": 43,
+        "met": 3,
+        "total": 7,
+        "stages": [
+          {
+            "stage_id": "00",
+            "stage_name": "Blind Ingestion",
+            "met": true,
+            "evidence": [
+              "frontmatter keys present",
+              "use contract present"
+            ],
+            "gaps": []
+          },
+          {
+            "stage_id": "01",
+            "stage_name": "Emergent Taxonomy",
+            "met": true,
+            "evidence": [
+              "flavor/scope contract"
+            ],
+            "gaps": []
+          },
+          {
+            "stage_id": "02",
+            "stage_name": "Cartography",
+            "met": false,
+            "evidence": [],
+            "gaps": [
+              "no relationship mapping to neighboring artifacts"
+            ]
+          },
+          {
+            "stage_id": "03",
+            "stage_name": "Criterion Genesis",
+            "met": false,
+            "evidence": [],
+            "gaps": [
+              "missing measurable criteria/gates"
+            ]
+          },
+          {
+            "stage_id": "04",
+            "stage_name": "Transmutation",
+            "met": false,
+            "evidence": [],
+            "gaps": [
+              "missing scripts/",
+              "missing executable command snippets"
+            ]
+          },
+          {
+            "stage_id": "05",
+            "stage_name": "Verification",
+            "met": false,
+            "evidence": [],
+            "gaps": [
+              "missing self-test/fixture/verify evidence"
+            ]
+          },
+          {
+            "stage_id": "06",
+            "stage_name": "Iteration",
+            "met": true,
+            "evidence": [
+              "iteration/trend evidence present"
+            ],
+            "gaps": []
+          }
+        ]
+      }
+    },
+    {
+      "skill": "postman",
+      "exit_code": 0,
+      "score": 100,
+      "wptg": {
+        "enabled": true,
+        "profile": "baseline",
+        "score": 14,
+        "met": 1,
+        "total": 7,
+        "stages": [
+          {
+            "stage_id": "00",
+            "stage_name": "Blind Ingestion",
+            "met": false,
+            "evidence": [
+              "frontmatter keys present"
+            ],
+            "gaps": [
+              "missing use contract"
+            ]
+          },
+          {
+            "stage_id": "01",
+            "stage_name": "Emergent Taxonomy",
+            "met": false,
+            "evidence": [],
+            "gaps": [
+              "no flavor/scope derivation language"
+            ]
+          },
+          {
+            "stage_id": "02",
+            "stage_name": "Cartography",
+            "met": false,
+            "evidence": [],
+            "gaps": [
+              "no relationship mapping to neighboring artifacts"
+            ]
+          },
+          {
+            "stage_id": "03",
+            "stage_name": "Criterion Genesis",
+            "met": true,
+            "evidence": [
+              "verification/gate criteria present"
+            ],
+            "gaps": []
+          },
+          {
+            "stage_id": "04",
+            "stage_name": "Transmutation",
+            "met": false,
+            "evidence": [
+              "executable command snippets present"
+            ],
+            "gaps": [
+              "missing scripts/"
+            ]
+          },
+          {
+            "stage_id": "05",
+            "stage_name": "Verification",
+            "met": false,
+            "evidence": [],
+            "gaps": [
+              "missing self-test/fixture/verify evidence"
+            ]
+          },
+          {
+            "stage_id": "06",
+            "stage_name": "Iteration",
+            "met": false,
+            "evidence": [],
+            "gaps": [
+              "missing iteration memory (trend/history/baseline promotion)"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "skill": "python-header-canon",
+      "exit_code": 0,
+      "score": 100,
+      "wptg": {
+        "enabled": true,
+        "profile": "baseline",
+        "score": 29,
+        "met": 2,
+        "total": 7,
+        "stages": [
+          {
+            "stage_id": "00",
+            "stage_name": "Blind Ingestion",
+            "met": true,
+            "evidence": [
+              "frontmatter keys present",
+              "use contract present"
+            ],
+            "gaps": []
+          },
+          {
+            "stage_id": "01",
+            "stage_name": "Emergent Taxonomy",
+            "met": false,
+            "evidence": [],
+            "gaps": [
+              "no flavor/scope derivation language"
+            ]
+          },
+          {
+            "stage_id": "02",
+            "stage_name": "Cartography",
+            "met": false,
+            "evidence": [],
+            "gaps": [
+              "no relationship mapping to neighboring artifacts"
+            ]
+          },
+          {
+            "stage_id": "03",
+            "stage_name": "Criterion Genesis",
+            "met": false,
+            "evidence": [],
+            "gaps": [
+              "missing measurable criteria/gates"
+            ]
+          },
+          {
+            "stage_id": "04",
+            "stage_name": "Transmutation",
+            "met": true,
+            "evidence": [
+              "script implementation present",
+              "executable command snippets present"
+            ],
+            "gaps": []
+          },
+          {
+            "stage_id": "05",
+            "stage_name": "Verification",
+            "met": false,
+            "evidence": [],
+            "gaps": [
+              "missing self-test/fixture/verify evidence"
+            ]
+          },
+          {
+            "stage_id": "06",
+            "stage_name": "Iteration",
+            "met": false,
+            "evidence": [],
+            "gaps": [
+              "missing iteration memory (trend/history/baseline promotion)"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "skill": "script-envelope",
+      "exit_code": 0,
+      "score": 100,
+      "wptg": {
+        "enabled": true,
+        "profile": "baseline",
+        "score": 71,
+        "met": 5,
+        "total": 7,
+        "stages": [
+          {
+            "stage_id": "00",
+            "stage_name": "Blind Ingestion",
+            "met": true,
+            "evidence": [
+              "frontmatter keys present",
+              "use contract present"
+            ],
+            "gaps": []
+          },
+          {
+            "stage_id": "01",
+            "stage_name": "Emergent Taxonomy",
+            "met": true,
+            "evidence": [
+              "flavor/scope contract"
+            ],
+            "gaps": []
+          },
+          {
+            "stage_id": "02",
+            "stage_name": "Cartography",
+            "met": true,
+            "evidence": [
+              "references/ directory"
+            ],
+            "gaps": []
+          },
+          {
+            "stage_id": "03",
+            "stage_name": "Criterion Genesis",
+            "met": false,
+            "evidence": [],
+            "gaps": [
+              "missing measurable criteria/gates"
+            ]
+          },
+          {
+            "stage_id": "04",
+            "stage_name": "Transmutation",
+            "met": true,
+            "evidence": [
+              "script implementation present",
+              "executable command snippets present"
+            ],
+            "gaps": []
+          },
+          {
+            "stage_id": "05",
+            "stage_name": "Verification",
+            "met": false,
+            "evidence": [],
+            "gaps": [
+              "missing self-test/fixture/verify evidence"
+            ]
+          },
+          {
+            "stage_id": "06",
+            "stage_name": "Iteration",
+            "met": true,
+            "evidence": [
+              "iteration/trend evidence present"
+            ],
+            "gaps": []
+          }
+        ]
+      }
+    },
+    {
+      "skill": "session-resumer",
+      "exit_code": 0,
+      "score": 100,
+      "wptg": {
+        "enabled": true,
+        "profile": "baseline",
+        "score": 43,
+        "met": 3,
+        "total": 7,
+        "stages": [
+          {
+            "stage_id": "00",
+            "stage_name": "Blind Ingestion",
+            "met": true,
+            "evidence": [
+              "frontmatter keys present",
+              "use contract present"
+            ],
+            "gaps": []
+          },
+          {
+            "stage_id": "01",
+            "stage_name": "Emergent Taxonomy",
+            "met": false,
+            "evidence": [],
+            "gaps": [
+              "no flavor/scope derivation language"
+            ]
+          },
+          {
+            "stage_id": "02",
+            "stage_name": "Cartography",
+            "met": false,
+            "evidence": [],
+            "gaps": [
+              "no relationship mapping to neighboring artifacts"
+            ]
+          },
+          {
+            "stage_id": "03",
+            "stage_name": "Criterion Genesis",
+            "met": false,
+            "evidence": [],
+            "gaps": [
+              "missing measurable criteria/gates"
+            ]
+          },
+          {
+            "stage_id": "04",
+            "stage_name": "Transmutation",
+            "met": true,
+            "evidence": [
+              "script implementation present",
+              "executable command snippets present"
+            ],
+            "gaps": []
+          },
+          {
+            "stage_id": "05",
+            "stage_name": "Verification",
+            "met": true,
+            "evidence": [
+              "fixture/selftest evidence present"
+            ],
+            "gaps": []
+          },
+          {
+            "stage_id": "06",
+            "stage_name": "Iteration",
+            "met": false,
+            "evidence": [],
+            "gaps": [
+              "missing iteration memory (trend/history/baseline promotion)"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "skill": "skill-polisher",
+      "exit_code": 0,
+      "score": 100,
+      "wptg": {
+        "enabled": true,
+        "profile": "baseline",
+        "score": 100,
+        "met": 7,
+        "total": 7,
+        "stages": [
+          {
+            "stage_id": "00",
+            "stage_name": "Blind Ingestion",
+            "met": true,
+            "evidence": [
+              "frontmatter keys present",
+              "use contract present"
+            ],
+            "gaps": []
+          },
+          {
+            "stage_id": "01",
+            "stage_name": "Emergent Taxonomy",
+            "met": true,
+            "evidence": [
+              "flavor/scope contract"
+            ],
+            "gaps": []
+          },
+          {
+            "stage_id": "02",
+            "stage_name": "Cartography",
+            "met": true,
+            "evidence": [
+              "references/ directory"
+            ],
+            "gaps": []
+          },
+          {
+            "stage_id": "03",
+            "stage_name": "Criterion Genesis",
+            "met": true,
+            "evidence": [
+              "verification/gate criteria present"
+            ],
+            "gaps": []
+          },
+          {
+            "stage_id": "04",
+            "stage_name": "Transmutation",
+            "met": true,
+            "evidence": [
+              "script implementation present",
+              "executable command snippets present"
+            ],
+            "gaps": []
+          },
+          {
+            "stage_id": "05",
+            "stage_name": "Verification",
+            "met": true,
+            "evidence": [
+              "fixture/selftest evidence present"
+            ],
+            "gaps": []
+          },
+          {
+            "stage_id": "06",
+            "stage_name": "Iteration",
+            "met": true,
+            "evidence": [
+              "iteration/trend evidence present"
+            ],
+            "gaps": []
+          }
+        ]
+      }
+    },
+    {
+      "skill": "sora",
+      "exit_code": 0,
+      "score": 100,
+      "wptg": {
+        "enabled": true,
+        "profile": "baseline",
+        "score": 57,
+        "met": 4,
+        "total": 7,
+        "stages": [
+          {
+            "stage_id": "00",
+            "stage_name": "Blind Ingestion",
+            "met": true,
+            "evidence": [
+              "frontmatter keys present",
+              "use contract present"
+            ],
+            "gaps": []
+          },
+          {
+            "stage_id": "01",
+            "stage_name": "Emergent Taxonomy",
+            "met": true,
+            "evidence": [
+              "flavor/scope contract"
+            ],
+            "gaps": []
+          },
+          {
+            "stage_id": "02",
+            "stage_name": "Cartography",
+            "met": true,
+            "evidence": [
+              "references/ directory"
+            ],
+            "gaps": []
+          },
+          {
+            "stage_id": "03",
+            "stage_name": "Criterion Genesis",
+            "met": false,
+            "evidence": [],
+            "gaps": [
+              "missing measurable criteria/gates"
+            ]
+          },
+          {
+            "stage_id": "04",
+            "stage_name": "Transmutation",
+            "met": false,
+            "evidence": [
+              "script implementation present"
+            ],
+            "gaps": [
+              "missing executable command snippets"
+            ]
+          },
+          {
+            "stage_id": "05",
+            "stage_name": "Verification",
+            "met": false,
+            "evidence": [],
+            "gaps": [
+              "missing self-test/fixture/verify evidence"
+            ]
+          },
+          {
+            "stage_id": "06",
+            "stage_name": "Iteration",
+            "met": true,
+            "evidence": [
+              "iteration/trend evidence present"
+            ],
+            "gaps": []
+          }
+        ]
+      }
+    },
+    {
+      "skill": "toolchain-doctor",
+      "exit_code": 0,
+      "score": 100,
+      "wptg": {
+        "enabled": true,
+        "profile": "baseline",
+        "score": 43,
+        "met": 3,
+        "total": 7,
+        "stages": [
+          {
+            "stage_id": "00",
+            "stage_name": "Blind Ingestion",
+            "met": true,
+            "evidence": [
+              "frontmatter keys present",
+              "use contract present"
+            ],
+            "gaps": []
+          },
+          {
+            "stage_id": "01",
+            "stage_name": "Emergent Taxonomy",
+            "met": false,
+            "evidence": [],
+            "gaps": [
+              "no flavor/scope derivation language"
+            ]
+          },
+          {
+            "stage_id": "02",
+            "stage_name": "Cartography",
+            "met": true,
+            "evidence": [
+              "references/ directory"
+            ],
+            "gaps": []
+          },
+          {
+            "stage_id": "03",
+            "stage_name": "Criterion Genesis",
+            "met": false,
+            "evidence": [],
+            "gaps": [
+              "missing measurable criteria/gates"
+            ]
+          },
+          {
+            "stage_id": "04",
+            "stage_name": "Transmutation",
+            "met": true,
+            "evidence": [
+              "script implementation present",
+              "executable command snippets present"
+            ],
+            "gaps": []
+          },
+          {
+            "stage_id": "05",
+            "stage_name": "Verification",
+            "met": false,
+            "evidence": [],
+            "gaps": [
+              "missing self-test/fixture/verify evidence"
+            ]
+          },
+          {
+            "stage_id": "06",
+            "stage_name": "Iteration",
+            "met": false,
+            "evidence": [],
+            "gaps": [
+              "missing iteration memory (trend/history/baseline promotion)"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "skill": "trainstop-orchestrator",
+      "exit_code": 0,
+      "score": 100,
+      "wptg": {
+        "enabled": true,
+        "profile": "baseline",
+        "score": 57,
+        "met": 4,
+        "total": 7,
+        "stages": [
+          {
+            "stage_id": "00",
+            "stage_name": "Blind Ingestion",
+            "met": true,
+            "evidence": [
+              "frontmatter keys present",
+              "use contract present"
+            ],
+            "gaps": []
+          },
+          {
+            "stage_id": "01",
+            "stage_name": "Emergent Taxonomy",
+            "met": true,
+            "evidence": [
+              "flavor/scope contract"
+            ],
+            "gaps": []
+          },
+          {
+            "stage_id": "02",
+            "stage_name": "Cartography",
+            "met": false,
+            "evidence": [],
+            "gaps": [
+              "no relationship mapping to neighboring artifacts"
+            ]
+          },
+          {
+            "stage_id": "03",
+            "stage_name": "Criterion Genesis",
+            "met": true,
+            "evidence": [
+              "verification/gate criteria present"
+            ],
+            "gaps": []
+          },
+          {
+            "stage_id": "04",
+            "stage_name": "Transmutation",
+            "met": true,
+            "evidence": [
+              "script implementation present",
+              "executable command snippets present"
+            ],
+            "gaps": []
+          },
+          {
+            "stage_id": "05",
+            "stage_name": "Verification",
+            "met": false,
+            "evidence": [],
+            "gaps": [
+              "missing self-test/fixture/verify evidence"
+            ]
+          },
+          {
+            "stage_id": "06",
+            "stage_name": "Iteration",
+            "met": false,
+            "evidence": [],
+            "gaps": [
+              "missing iteration memory (trend/history/baseline promotion)"
+            ]
+          }
+        ]
+      }
+    }
+  ]
+}

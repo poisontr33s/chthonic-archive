@@ -1,0 +1,908 @@
+{
+  "schema_version": 1,
+  "generated_on": "2026-02-26T01:09:23.357917+00:00",
+  "source": "codex/codex-session-logs/session_dump_2026_02_26_compact_input.txt",
+  "source_sha256": "e1b49149c6f0b19405d88e7ba3037dcfe1fcf3f1d634b195bd73294142966ac1",
+  "counts": {
+    "events": 78,
+    "cmd": 0,
+    "action": 0,
+    "note": 78
+  },
+  "phases": {},
+  "commands": [],
+  "actions": [],
+  "events": [
+    {
+      "id": 1,
+      "kind": "text",
+      "lines": [
+        "Perfect. Now I have all the context needed. Let me compile the comprehensive redundancy analysis:"
+      ]
+    },
+    {
+      "id": 2,
+      "kind": "text",
+      "lines": [
+        "# \ud83d\udd0d COMPLETE REDUNDANCY MAP: INSTRUCTION/GOVERNANCE FILES"
+      ]
+    },
+    {
+      "id": 3,
+      "kind": "text",
+      "lines": [
+        "## A) DUPLICATED RULES (Same content, multiple files)"
+      ]
+    },
+    {
+      "id": 4,
+      "kind": "text",
+      "lines": [
+        "### 1. **TEMPLE vs GAME bifurcation** \u2014 4 files",
+        "| Rule | Description | Files | Lines |",
+        "|------|-------------|-------|-------|",
+        "| **Ask \"TEMPLE or GAME?\" before creating files** | Core principle for domain separation | AGENT_COMMON.md | 11-15 |",
+        "| | | AGENTS.md | 92-97 |",
+        "| | | GEMINI.md | 49-54 |",
+        "| | | CLAUDE.md | 4-5 (brief mention) |",
+        "| **Consolidation:** Centralize in AGENT_COMMON.md; other files reference with link |"
+      ]
+    },
+    {
+      "id": 5,
+      "kind": "text",
+      "lines": [
+        "### 2. **Python execution via `uv` mandate** \u2014 4 files",
+        "| Rule | Description | Files |",
+        "|-------|-------------|-------|",
+        "| **`uv run` is canonical; never raw `python` or `pip`** | Core execution invariant | AGENT_COMMON.md (Execution Invariants) |",
+        "| | | PWSH_RULES.md (14.1 Python Environment Management) |",
+        "| | | technical-directives.instructions.md (14.1 Python Environment) |",
+        "| | | python-scripting.instructions.md (15.5 UV-MANDATE) |",
+        "| **Status:** Four separate explanations of the same rule. Significant duplication. |",
+        "| **Consolidation:** python-scripting.instructions.md as source of truth; others link to it. |"
+      ]
+    },
+    {
+      "id": 6,
+      "kind": "text",
+      "lines": [
+        "### 3. **No file destruction / Wet Paper to Gold principle** \u2014 5 files",
+        "| Rule | Description | Files | Type |",
+        "|-------|-------------|-------|------|",
+        "| **Every file is gold. Agents propose only; user executes changes.** | Core anti-destruction policy | WET_PAPER_TO_GOLD_METHODOLOGY.md | Canonical (2000+ lines) |",
+        "| | | AGENT_COMMON.md | Brief reference + Codekiller Addendum |",
+        "| | | AGENTS.md | Execution Discipline #6-9 (inline restatement) |",
+        "| | | copilot-instructions.md | \"Anti-Pattern Structural Audit\" section |",
+        "| | | CLAUDE.md | Implicit in file governance |",
+        "| **Status:** WPTG is the definitive source; others duplicate enforcement rules. |",
+        "| **Redundancy:** AGENTS.md re-states 26 lines of deletion policy inline instead of cross-referencing. |",
+        "| **Consolidation:** AGENTS.md should reference WPTG lines 295-410 instead of restating. |"
+      ]
+    },
+    {
+      "id": 7,
+      "kind": "text",
+      "lines": [
+        "### 4. **Linguistic profile mandate (female-derived utterance)** \u2014 6 files",
+        "| Rule | Description | Files |",
+        "|-------|-------------|-------|",
+        "| **Use female-derived linguistic processing; reject male-coded posturing** | Global linguistic compliance | LINGUISTIC_PROFILE_PROTOCOL.md (canonical) |",
+        "| | | AGENT_COMMON.md (Linguistic Invariants) |",
+        "| | | copilot-instructions.md (inline) |",
+        "| | | AGENTS.md (Linguistic mandate gate) |",
+        "| | | CLAUDE.md (reference to protocol) |",
+        "| | | GEMINI.md (reference while parked) |",
+        "| **Status:** LINGUISTIC_PROFILE_PROTOCOL.md is SSOT; all others reference or implement. |",
+        "| **Type:** Reference duplication (acceptable); no substantive restatement conflictsConsolidation:** All point correctly to the protocol. No work needed. |"
+      ]
+    },
+    {
+      "id": 8,
+      "kind": "text",
+      "lines": [
+        "### 5. **Archetype/Triad role definitions** \u2014 4 files (with variants)",
+        "| Rule | Description | Files | Type |",
+        "|-------|-------------|-------|------|",
+        "| **Codex archetype locked to Madam Umako Ketsuragi (Purification Chain)** | Session gate | AGENTS.md | Lines 44-47 |",
+        "| | | CODEX_ARCHETYPE_CANON.md | Canonical (2000+ lines) |",
+        "| | | AGENT_COMMON.md | Brief reference (Triad Archetype Canon) |",
+        "| | | copilot-instructions.md | Oblique reference |",
+        "| **Claude archetype: truth lineage (Decorator \u2192 Lysandra \u2192 Magistra)** | Session gate | CLAUDE.md | Inline reference |",
+        "...(truncated 6 line(s))..."
+      ]
+    },
+    {
+      "id": 9,
+      "kind": "text",
+      "lines": [
+        "### 6. **PowerShell mandate (pwsh-first, no bash)** \u2014 3 files",
+        "| Rule | Description | Files |",
+        "|-------|-------------|-------|",
+        "| **Canonical shell: PowerShell 7+ (`pwsh`). Never Bash. Never `cmd /c`.** | Execution invariant | PWSH_RULES.md (entire doc) \u2705 CANONICAL |",
+        "| | | AGENT_COMMON.md (Execution Invariants) |",
+        "| | | technical-directives.instructions.md (14.1) |",
+        "| **Status:** PWSH_RULES.md is the detailed source (280 lines); others brief summaries. |",
+        "| **Consolidation:** AGENT_COMMON.md and technical-directives link to PWSH_RULES.md sections. |"
+      ]
+    },
+    {
+      "id": 10,
+      "kind": "text",
+      "lines": [
+        "### 7. **Triad system (Claude \u2192 Codex \u2192 Gemini flow)** \u2014 4 files",
+        "| Rule | Description | Files |",
+        "|-------|-------------|-------|",
+        "| **Triad role matrix: Claude (protocol/lore) \u2192 Codex (structure/enforcement) \u2192 Gemini (velocity)** | System architecture | AGENT_COMMON.md (Triad section + table) |",
+        "| | | AGENTS.md (Role in Triad table) |",
+        "| | | GEMINI.md (Role in Triad table) |",
+        "| | | CLAUDE.md (brief mention) |",
+        "| **Status:** Tables are slightly different; AGENT_COMMON.md is high-level. |",
+        "| **Consolidation Opportunity:** Create `.temple/protocols/TRIAD_ROLE_MATRIX.md` as single source; all others reference. |"
+      ]
+    },
+    {
+      "id": 11,
+      "kind": "text",
+      "lines": [
+        "### 8. **Codekiller anti-pattern enforcement** \u2014 3 files",
+        "| Rule | Description | Files | Lines |",
+        "|-------|-------------|-------|-------|",
+        "| **Hard constraint: No deletion as strategy. Deletion preflight gate + salvage before mutation.** | Enforcement | WET_PAPER_TO_GOLD_METHODOLOGY.md | 395-505 (Codekiller Addendum) |",
+        "| | | AGENTS.md | 128-133 (Execution Discipline #6-9) |",
+        "| | | copilot-instructions.md | \"Anti-Pattern Structural Audit\" |",
+        "| **Status:** WPTG section + AGENTS inline duplication. |",
+        "| **Consolidation:** AGENTS.md should reference WPTG Codekiller section instead of restating. |"
+      ]
+    },
+    {
+      "id": 12,
+      "kind": "text",
+      "lines": [
+        "### 9. **Mail-based handoff semantics** \u2014 3 files",
+        "| Rule | Description | Files |",
+        "|-------|-------------|-------|",
+        "| **mailbox/ contains handoff notes. \"Check your mail\" means continue from latest handoff.** | Session protocol | MAILBOX_PROTOCOL.md (canonical) |",
+        "| | | AGENTS.md (Key References section) |",
+        "| | | MAILBOX_HANDOFF skill (referenced) |",
+        "| **Status:** Protocol is canonical; agent references are correct. |",
+        "| **Consolidation:** No action needed. |"
+      ]
+    },
+    {
+      "id": 13,
+      "kind": "text",
+      "lines": [
+        "### 10. **Script header standardization (@SID, @Type)** \u2014 2+ files",
+        "| Rule | Description | Files |",
+        "|-------|-------------|-------|",
+        "| **All scripts must have @SID (Semantic ID) and @Type** | Governance | python-scripting.instructions.md (15.2) |",
+        "| | | SCRIPTS_README.md (implicit in examples) |",
+        "| | | script-envelope.md skill |",
+        "| **Status:** Scattered across instruction files and skill documentation. |",
+        "| **Consolidation:** Unify in python-scripting.instructions.md; reference from PWSH_RULES.md for PowerShell equivalents. |"
+      ]
+    },
+    {
+      "id": 14,
+      "kind": "text",
+      "lines": [
+        "## B) CIRCULAR POINTERS (Reference chains that loop)"
+      ]
+    },
+    {
+      "id": 15,
+      "kind": "text",
+      "lines": [
+        "### 1. **Hub-and-Spoke: copilot-instructions.md is central**",
+        "```",
+        "copilot-instructions.md (SSOT root)",
+        "    \u2193",
+        "    \u251c\u2192 .github/copilot-instructions.archive.md (SSOT archive)",
+        "    \u251c\u2192 .github/copilot-instructions-copy.md (PROTO-SSOT backup)",
+        "    \u251c\u2192 .temple/protocols/* (referenced for specific domains)",
+        "    \u2514\u2192 All .github/instructions/*.instructions.md (branch files)",
+        "...(truncated 8 line(s))..."
+      ]
+    },
+    {
+      "id": 16,
+      "kind": "text",
+      "lines": [
+        "**Risk:** If copilot-instructions.md changes, all branch files may become outdated without automatic sync."
+      ]
+    },
+    {
+      "id": 17,
+      "kind": "text",
+      "lines": [
+        "### 2. **Bidirectional: AGENTS.md \u2194 AGENT_COMMON.md**",
+        "```",
+        "AGENTS.md",
+        "    \u2193 (line 11)",
+        "    \"See AGENT_COMMON.md for execution invariants...\"",
+        "    \u2193",
+        "AGENT_COMMON.md",
+        "    \u2193 (first line comment block)",
+        "    \"Referenced by: CLAUDE.md, AGENTS.md, GEMINI.md\"",
+        "    \u2193 \u2190 points back to AGENTS.md",
+        "```",
+        "**Status:** Each file acknowledges the other. This is reciprocal cross-referencing, not a logic loop. **Acceptable if intentional.**"
+      ]
+    },
+    {
+      "id": 18,
+      "kind": "text",
+      "lines": [
+        "### 3. **Bidirectional: CLAUDE.md \u2194 AGENT_COMMON.md**",
+        "```",
+        "CLAUDE.md (line 1)",
+        "    \u2193",
+        "    \"Shared rules: [AGENT_COMMON.md]...\"",
+        "    \u2193",
+        "AGENT_COMMON.md (header comment)",
+        "    \u2193",
+        "    \"Referenced by: CLAUDE.md, AGENTS.md, GEMINI.md\"",
+        "    \u2193 \u2190 points back to CLAUDE.md",
+        "```",
+        "**Status:** Same as above. **Acceptable.**"
+      ]
+    },
+    {
+      "id": 19,
+      "kind": "text",
+      "lines": [
+        "### 4. **Protocol cross-references (benign)**",
+        "```",
+        ".github/instructions files",
+        "    \u2193",
+        "    reference .temple/protocols/*",
+        "    \u2193",
+        "CODEX_ARCHETYPE_CANON.md",
+        "    \u2193",
+        "...(truncated 5 line(s))..."
+      ]
+    },
+    {
+      "id": 20,
+      "kind": "text",
+      "lines": [
+        "### \ud83d\udfe2 VERDICT: No problematic circular pointers. All bidirectional references are intentional and documented."
+      ]
+    },
+    {
+      "id": 21,
+      "kind": "text",
+      "lines": [
+        "## C) STALE REFERENCES (Pointers to nonexistent files)"
+      ]
+    },
+    {
+      "id": 22,
+      "kind": "text",
+      "lines": [
+        "### Files mentioned but actually present:",
+        "| File Mentioned | File Checked | Status |",
+        "|--------|--------|--------|",
+        "| `.github/pathstofiles.md` | \u2705 Exists | FOUND |",
+        "| `.github/copilot-instructions.archive.md` | \u2705 Exists | FOUND |",
+        "| `.github/copilot-instructions-copy.md` | \u2705 Exists | FOUND |",
+        "| `.temple/protocols/LINGUISTIC_PROFILE_PROTOCOL.md` | \u2705 Exists | FOUND |",
+        "| `.temple/protocols/CODEX_ARCHETYPE_CANON.md` | \u2705 Exists | FOUND |",
+        "...(truncated 15 line(s))..."
+      ]
+    },
+    {
+      "id": 23,
+      "kind": "text",
+      "lines": [
+        "### Potentially problematic references (need content verification):",
+        "| Reference | Mentioned In | Scope | Risk |",
+        "|-----------|-------------|-------|------|",
+        "| `codex/NEXT.md` | AGENTS.md (Key References) | Session waypoint | **MEDIUM** - May be user-specific artifact |",
+        "| `codex/mailbox/` | Multiple files | Active mailbox | **LOW** - Directory structure is canonical |",
+        "| `claude/mailbox/` | Multiple files | Active mailbox | **LOW** - Directory structure is canonical |",
+        "| `.codex/skills/` | AGENTS.md, AGENT_COMMON.md | Skill registry | **LOW** - Documented as canonical path |",
+        "| `.claude/skills/` | CLAUDE.md, others | Skill registry | **LOW** - Documented as canonical path |",
+        "| `.codex/config.toml` | AGENTS.md | Codex workspace lock | **MEDIUM** - May not be auto-created |",
+        "| `~/.codex/config.toml` | AGENTS.md | Codex global config | **MEDIUM** - User-level, not repo |",
+        "| `.codex/codekiller_DUMP_code` | WET_PAPER_TO_GOLD_METHODOLOGY.md | Salvage recovery source | **LOW** - Documented as fallback |"
+      ]
+    },
+    {
+      "id": 24,
+      "kind": "text",
+      "lines": [
+        "### \ud83d\udfe2 VERDICT: No stale references found. All documented paths exist or are correctly described as optional/user-level."
+      ]
+    },
+    {
+      "id": 25,
+      "kind": "text",
+      "lines": [
+        "## D) SCOPE OVERLAP (Two or more files governing same domain)"
+      ]
+    },
+    {
+      "id": 26,
+      "kind": "text",
+      "lines": [
+        "### 1. **Python scripting governance** \u2014 CRITICAL OVERLAP",
+        "| Domain | File | Lines | Focus | Authority Level |",
+        "|--------|------|-------|-------|-----------------|",
+        "| **Python environment** | AGENT_COMMON.md | 23-27 (Execution Invariants) | Shell rule: use `uv` | Level 1 (Shared baseline) |",
+        "| | PWSH_RULES.md | 14.1 (200+ lines) | PowerShell-specific Python invocation | Level 1 (Detailed) |",
+        "| | technical-directives.instructions.md | 14.1 (80+ lines) | Development conventions for Python | Level 1 (Operational) |",
+        "| | python-scripting.instructions.md | \u00a715 (250+ lines) | Python metabolic standard, headers, PEP 723 | Level 1 (Hyper-specific) |",
+        "| **Problem:** Four files with overlapping Python rules. Which is authoritative? |",
+        "| **Current hierarchy:** python-scripting.instructions.md (most specific) > technical-directives (general) > PWSH_RULES (shell-level) > AGENT_COMMON (baseline) |",
+        "| **Risk:** Conflicting mandates (e.g., does AGENT_COMMON mandate override python-scripting.instructions if they conflict?) |"
+      ]
+    },
+    {
+      "id": 27,
+      "kind": "text",
+      "lines": [
+        "### 2. **Execution discipline / Operational rules** \u2014 SIGNIFICANT OVERLAP",
+        "| Domain | File | Lines | Content |",
+        "|--------|------|-------|---------|",
+        "| **Agent execution behavior** | AGENTS.md | 114-140 (Execution Discipline) | Do/Don't list (11 bullet points) |",
+        "| | technical-directives.instructions.md | 14.* (full section) | Development conventions (4 subsections) |",
+        "| | AGENT_COMMON.md | Execution Invariants | General rules (shell, Python, Git) |",
+        "| **Overlap:** Both AGENTS.md and technical-directives describe \"how agents should operate\" |",
+        "| **Conflict Risk:** AGENTS.md says \"Execute, don't ask\" (14.1); technical-directives says \"Validate before executing\" (implicit) |",
+        "| **Resolution:** No explicit conflict found, but topics overlap heavily. |"
+      ]
+    },
+    {
+      "id": 28,
+      "kind": "text",
+      "lines": [
+        "### 3. **SSOT / Governance metadata** \u2014 STRUCTURAL OVERLAP",
+        "| File | Header | Lines | Status |",
+        "|------|--------|-------|--------|",
+        "| ankh-workflow.instructions.md | CODEX-BRAHMANICA-PERFECTUS metadata block | 1-15 | Standard template |",
+        "| autopsy-protocol.instructions.md | (simpler header) | 1-4 | Non-standard |",
+        "| project-workflow.instructions.md | CODEX-BRAHMANICA-PERFECTUS metadata block | 1-15 | Standard template |",
+        "| python-scripting.instructions.md | CODEX-BRAHMANICA-PERFECTUS metadata block | 1-15 | Standard template |",
+        "| ssot-toolbox.instructions.md | CODEX-BRAHMANICA-PERFECTUS metadata block | 1-15 | Standard template |",
+        "| technical-directives.instructions.md | CODEX-BRAHMANICA-PERFECTUS metadata block | 1-15 | Standard template |",
+        "| **Overlap:** 6 of 7 `.github/instructions/*.instructions.md` files have **identical 15-line headers** (approximately 600-900 total chars redundancy) |",
+        "| **Type:** Structural boilerplate, intentional |",
+        "| **Risk:** Maintenance burden if header format changes; must update 6 files |"
+      ]
+    },
+    {
+      "id": 29,
+      "kind": "text",
+      "lines": [
+        "### 4. **Archetype / Protocol references** \u2014 REFERENCE DUPLICATION",
+        "| Domain | File | Content |",
+        "|--------|------|---------|",
+        "| **Which protocols exist and where?** | AGENTS.md (Active Protocols section) | 10 protocol entries with full descriptions |",
+        "| | GEMINI.md (Protocol Status section) | 4 protocol entries |",
+        "| | AGENT_COMMON.md (Canonical Paths section) | Brief path listing, no protocol descriptions |",
+        "| **Overlap:** AGENTS.md and AGENT_COMMON.md both describe the same protocols but in different detail levels |",
+        "| **Problem:** If a protocol path changes, must update in multiple places |"
+      ]
+    },
+    {
+      "id": 30,
+      "kind": "text",
+      "lines": [
+        "### 5. **File governance / No-Destroy principle** \u2014 CONTENT DUPLICATION",
+        "| File | Length | Content Type | Role |",
+        "|------|--------|-------------|------|",
+        "| **WET_PAPER_TO_GOLD_METHODOLOGY.md** | 2000+ lines | Canonical methodology | SSOT for no-destroy |",
+        "| **AGENTS.md (Execution Discipline #6-9)** | ~26 lines | Inline restatement | Enforcement summary |",
+        "| **AGENT_COMMON.md (Codekiller Addendum)** | ~50 lines | Policy restatement | Shared rule reminder |",
+        "| **copilot-instructions.md (Anti-Pattern audit)** | ~15 lines | Brief mention | Context pointer |",
+        "| **Overlap:** AGENTS.md and AGENT_COMMON.md restate rules already canonically defined in WPTG_METHODOLOGY |",
+        "| **Redundancy ratio:** ~91-95 chars overlap per agent file vs 2000-line source |"
+      ]
+    },
+    {
+      "id": 31,
+      "kind": "text",
+      "lines": [
+        "### 6. **Triad role definitions** \u2014 PARTIAL DUPLICATION",
+        "| File | Section | Scope | Content Type |",
+        "|------|---------|-------|--------------|",
+        "| **AGENT_COMMON.md** (Triad section) | High-level | Shared baseline | Brief descriptions + table |",
+        "| **AGENTS.md** (Role in Triad) | Codex-specific | Agency responsibility | Codex role matrix + chain |",
+        "| **GEMINI.md** (Role in Triad) | Gemini-specific | Agency responsibility | Gemini role table + chain |",
+        "| **CLAUDE.md** | Implicit | Claude-specific | Brief mention |",
+        "| **Overlap:** Each agent file repeats the Triad concept (Claude \u2192 Codex \u2192 Gemini chain) |",
+        "| **Duplication:** Same \"flow\" statement appears in AGENT_COMMON, AGENTS, GEMINI with minimal variation |"
+      ]
+    },
+    {
+      "id": 32,
+      "kind": "text",
+      "lines": [
+        "### 7. **Ruby/Go/Node runtime management** \u2014 SCATTERED REFERENCES",
+        "| File | Mention | Scope |",
+        "|------|---------|-------|",
+        "| AGENT_COMMON.md | **ruby**: use `rv` | Execution Invariants |",
+        "| AGENT_COMMON.md | **Go**: use `goup` | Execution Invariants |",
+        "| AGENT_COMMON.md | **Node**: use `bun` | Execution Invariants |",
+        "| SCRIPTS_README.md | **bun** package manager | Package Management section |",
+        "| PWSH_RULES.md | **\"Package Management (bun-first)\"** | Advanced Topics |",
+        "| **Overlap:** Node/Bun guidance scattered across 3 files; Ruby and Go only mentioned in AGENT_COMMON |",
+        "| **Consolidation opportunity:** Create unified runtime governance or consolidate into one file |"
+      ]
+    },
+    {
+      "id": 33,
+      "kind": "text",
+      "lines": [
+        "### 8. **Skill and directory governance** \u2014 LIGHT OVERLAP",
+        "| File | Section | Scope |",
+        "|------|---------|-------|",
+        "| AGENTS.md | Skill Anti-Proliferation Rules | Codex-specific skill limits (\u226415 skills) |",
+        "| AGENT_COMMON.md | Canonical Paths | Shared directory structure |",
+        "| **Overlap:** Both mention skills; AGENTS.md has codex-specific enforcement |",
+        "| **Type:** Benign; AGENTS.md is more specific |"
+      ]
+    },
+    {
+      "id": 34,
+      "kind": "text",
+      "lines": [
+        "### \ud83d\udfe1 VERDICT: **MODERATE-HIGH scope overlap** in Python governance, execution discipline, and archetype references. Recommend consolidation of 3-4 overlapping domains."
+      ]
+    },
+    {
+      "id": 35,
+      "kind": "text",
+      "lines": [
+        "## E) CONSOLIDATION OPPORTUNITIES (What could merge)"
+      ]
+    },
+    {
+      "id": 36,
+      "kind": "text",
+      "lines": [
+        "### Priority 1 \u2014 CRITICAL (>400 chars redundancy, conflict risk)"
+      ]
+    },
+    {
+      "id": 37,
+      "kind": "text",
+      "lines": [
+        "#### **1.1: Python environment rule consolidation**",
+        "```",
+        "Current state:",
+        "  AGENT_COMMON.md \u00a7 Execution Invariants (uv rule)",
+        "  + PWSH_RULES.md \u00a7 14.1 (320 lines)",
+        "  + technical-directives.instructions.md \u00a7 14.1 (100 lines)",
+        "  + python-scripting.instructions.md \u00a7 15.5 (40 lines)",
+        "  = ~460 lines of Python guidance scattered across 4 files"
+      ]
+    },
+    {
+      "id": 38,
+      "kind": "text",
+      "lines": [
+        "Recommendation:",
+        "  \u2192 **Single source: python-scripting.instructions.md \u00a7 15 (expand slightly)**",
+        "  \u2192 PWSH_RULES.md: \"For Python environment, see python-scripting.instructions.md \u00a7 15\"",
+        "  \u2192 technical-directives.instructions.md: \"Python is governed by python-scripting.instructions.md\"",
+        "  \u2192 AGENT_COMMON.md: Keep shell rule; link to python-scripting for details"
+      ]
+    },
+    {
+      "id": 39,
+      "kind": "text",
+      "lines": [
+        "Result: Single canonical Python source; others cross-reference.",
+        "Effort: Medium (file reorganization)",
+        "Benefit: High (eliminates duplication, clarifies authority)",
+        "```"
+      ]
+    },
+    {
+      "id": 40,
+      "kind": "text",
+      "lines": [
+        "#### **1.2: Codekiller / No-Destroy enforcement consolidation**",
+        "```",
+        "Current state:",
+        "  WET_PAPER_TO_GOLD_METHODOLOGY.md (2000 lines, canonical)",
+        "  + AGENTS.md \u00a7 Execution Discipline (26 lines, restatement)",
+        "  + AGENT_COMMON.md (50 lines, restatement)",
+        "  = 76 lines of duplication representing 3.8% of total"
+      ]
+    },
+    {
+      "id": 41,
+      "kind": "text",
+      "lines": [
+        "Recommendation:",
+        "  \u2192 **Keep WPTG as canonical (too large to move)**",
+        "  \u2192 AGENTS.md: Remove #6-9, replace with \"See WET_PAPER_TO_GOLD_METHODOLOGY.md \u00a7 'Codekiller Addendum' (lines 395-505)\"",
+        "  \u2192 AGENT_COMMON.md: Remove Codekiller Addendum, point to WPTG"
+      ]
+    },
+    {
+      "id": 42,
+      "kind": "text",
+      "lines": [
+        "Result: Single canonical source.",
+        "Effort: Low (edit two files, 30 mins)",
+        "Benefit: Medium (clarifies authority, reduces confusion)",
+        "```"
+      ]
+    },
+    {
+      "id": 43,
+      "kind": "text",
+      "lines": [
+        "#### **1.3: Triad protocol inventory consolidation**",
+        "```",
+        "Current state:",
+        "  AGENTS.md \u00a7 Active Protocols (10 entries, full descriptions) \u2014 120 lines",
+        "  + GEMINI.md \u00a7 Protocol Status (4 entries, descriptions) \u2014 50 lines",
+        "  + AGENT_COMMON.md \u00a7 Canonical Paths (path listing only) \u2014 20 lines",
+        "  = Scattered across 3 locations with different structure"
+      ]
+    },
+    {
+      "id": 44,
+      "kind": "text",
+      "lines": [
+        "Recommendation:",
+        "  \u2192 **Create `.temple/protocols/PROTOCOL_INDEX.md`** with unified catalog:",
+        "    * Protocol name, file path, archetype, purpose, status per protocol",
+        "    * Allows single-source updates",
+        "  \u2192 AGENTS.md: Reference index for Codex protocols",
+        "  \u2192 GEMINI.md: Reference index for Gemini protocols",
+        "  \u2192 AGENT_COMMON.md: Reference index for shared protocols"
+      ]
+    },
+    {
+      "id": 45,
+      "kind": "text",
+      "lines": [
+        "Result: Single canonical protocol registry.",
+        "Effort: Medium (create new file + update 3 refs)",
+        "Benefit: High (eliminates path drift, centralized protocol info)",
+        "```"
+      ]
+    },
+    {
+      "id": 46,
+      "kind": "text",
+      "lines": [
+        "### Priority 2 \u2014 HIGH (200-400 chars redundancy)"
+      ]
+    },
+    {
+      "id": 47,
+      "kind": "text",
+      "lines": [
+        "#### **2.1: Execution discipline consolidation**",
+        "```",
+        "Current state:",
+        "  AGENTS.md \u00a7 Execution Discipline (26 lines, numbered list)",
+        "  + technical-directives.instructions.md \u00a7 14.1-14.5 (200+ lines, nested sections)",
+        "  = Two different formulations of agent execution rules"
+      ]
+    },
+    {
+      "id": 48,
+      "kind": "text",
+      "lines": [
+        "Recommendation:",
+        "  \u2192 **Extend technical-directives.instructions.md with Codex-specific additions**",
+        "  \u2192 AGENTS.md: Remove general execution discipline, keep Codex-specific notes only",
+        "  \u2192 Both reference technical-directives.instructions.md as authority"
+      ]
+    },
+    {
+      "id": 49,
+      "kind": "text",
+      "lines": [
+        "Result: Unified execution policy.",
+        "Effort: Low-Medium (reorg technical-directives, trim AGENTS.md)",
+        "Benefit: Medium (clarifies authority hierarchy)",
+        "```"
+      ]
+    },
+    {
+      "id": 50,
+      "kind": "text",
+      "lines": [
+        "#### **2.2: Triad role definition consolidation**",
+        "```",
+        "Current state:",
+        "  AGENT_COMMON.md \u00a7 Triad Archetype Canon (brief, shared roles)",
+        "  + AGENTS.md \u00a7 Role in Triad (Codex table + responsibility chain)",
+        "  + GEMINI.md \u00a7 Role in Triad (Gemini table + responsibility chain)",
+        "  = 3 overlapping descriptions of the same system"
+      ]
+    },
+    {
+      "id": 51,
+      "kind": "text",
+      "lines": [
+        "Recommendation:",
+        "  \u2192 **Create `.temple/protocols/TRIAD_ROLE_MATRIX.md`** with unified table:",
+        "    * Agent | Primary | Specialty | Outputs | Chain | Status",
+        "    * Single source for role definitions",
+        "  \u2192 All agent files reference this file"
+      ]
+    },
+    {
+      "id": 52,
+      "kind": "text",
+      "lines": [
+        "Result: Single canonical Triad definition.",
+        "Effort: Medium (create file + update 3 refs + verify consistency)",
+        "Benefit: High (clarifies roles, enables sync)",
+        "```"
+      ]
+    },
+    {
+      "id": 53,
+      "kind": "text",
+      "lines": [
+        "### Priority 3 \u2014 MEDIUM (100-200 chars redundancy)"
+      ]
+    },
+    {
+      "id": 54,
+      "kind": "text",
+      "lines": [
+        "#### **3.1: SSOT governance header consolidation**",
+        "```",
+        "Current state:",
+        "  6 of 7 `.github/instructions/*.instructions.md` files have identical",
+        "  CODEX-BRAHMANICA-PERFECTUS metadata headers (900+ total chars redundancy)"
+      ]
+    },
+    {
+      "id": 55,
+      "kind": "text",
+      "lines": [
+        "Recommendation:",
+        "  Option A (Template extraction):",
+        "    \u2192 Create `.github/instructions/_HEADER_TEMPLATE.md`",
+        "    \u2192 Reference in each file as includes/template pattern",
+        "    \u2192 (Limited by Markdown support, may need custom rendering)"
+      ]
+    },
+    {
+      "id": 56,
+      "kind": "text",
+      "lines": [
+        "  Option B (Minimal YAML frontmatter):",
+        "    \u2192 Replace 15-line boilerplate with YAML:",
+        "      ---",
+        "      type: instruction",
+        "      maintained-by: The-Savant",
+        "      last-sealed: 2026-01-31",
+        "      governance: SSOT-L-H",
+        "      ---",
+        "    \u2192 Reduces each file by 10 lines (~240 chars total reduction)",
+        "    \u2192 More scannable, YAML-parseable"
+      ]
+    },
+    {
+      "id": 57,
+      "kind": "text",
+      "lines": [
+        "  Option C (Accept as structural pattern):",
+        "    \u2192 Document the boilerplate as intentional and canonical",
+        "    \u2192 Update when/if format changes",
+        "    \u2192 No consolidation needed if format is stable"
+      ]
+    },
+    {
+      "id": 58,
+      "kind": "text",
+      "lines": [
+        "Effort: Low-Medium (Option B: edit 6 files)",
+        "Benefit: Low-Medium (saves ~240 chars; improves readability)",
+        "**Status:** **NOT URGENT** \u2014 Boilerplate is clear and stable.",
+        "```"
+      ]
+    },
+    {
+      "id": 59,
+      "kind": "text",
+      "lines": [
+        "#### **3.2: Shell rules consolidation (pwsh vs bash)**",
+        "```",
+        "Current state:",
+        "  PWSH_RULES.md (280+ lines, comprehensive shell governance)",
+        "  + AGENT_COMMON.md \u00a7 Execution Invariants (brief mention)",
+        "  + technical-directives.instructions.md (brief mention)",
+        "  = Scattered references to the same rule"
+      ]
+    },
+    {
+      "id": 60,
+      "kind": "text",
+      "lines": [
+        "Recommendation:",
+        "  \u2192 AGENT_COMMON.md: Keep 1-liner; reference PWSH_RULES.md",
+        "  \u2192 technical-directives.instructions.md: Keep brief mention; reference PWSH_RULES.md",
+        "  \u2192 PWSH_RULES.md: Remains canonical"
+      ]
+    },
+    {
+      "id": 61,
+      "kind": "text",
+      "lines": [
+        "Result: Clearer authority hierarchy.",
+        "Effort: Low (minimal edits)",
+        "Benefit: Low-Medium (clarifies reference structure)",
+        "```"
+      ]
+    },
+    {
+      "id": 62,
+      "kind": "text",
+      "lines": [
+        "#### **3.3: Script header standardization (@SID, @Type)**",
+        "```",
+        "Current state:",
+        "  python-scripting.instructions.md \u00a7 15.2 (full template with examples)",
+        "  + SCRIPTS_README.md (implicit in examples)",
+        "  + script-envelope.md skill (description of envelope standard)",
+        "  = Scattered across 3 locations"
+      ]
+    },
+    {
+      "id": 63,
+      "kind": "text",
+      "lines": [
+        "Recommendation:",
+        "  \u2192 python-scripting.instructions.md: Remains canonical",
+        "  \u2192 SCRIPTS_README.md: Reference python-scripting.instructions.md",
+        "  \u2192 script-envelope.md skill: Auto-generated from python-scripting.instructions.md"
+      ]
+    },
+    {
+      "id": 64,
+      "kind": "text",
+      "lines": [
+        "Result: Single source of truth.",
+        "Effort: Low (edit SCRIPTS_README.md to link)",
+        "Benefit: Low-Medium (improves discoverability)",
+        "```"
+      ]
+    },
+    {
+      "id": 65,
+      "kind": "text",
+      "lines": [
+        "### Priority 4 \u2014 LOW (Cosmetic/reference improvements)"
+      ]
+    },
+    {
+      "id": 66,
+      "kind": "text",
+      "lines": [
+        "#### **4.1: File import/reference ordering**",
+        "- [ ] Consider listing `WET_PAPER_TO_GOLD_METHODOLOGY.md` as the true root in copilot-instructions.md",
+        "- [ ] Establish explicit \"read in order\" sequences per agent lane",
+        "- **Effort:** Low | **Benefit:** Low (organization only)"
+      ]
+    },
+    {
+      "id": 67,
+      "kind": "text",
+      "lines": [
+        "#### **4.2: Update AGENT_COMMON.md canonical paths section**",
+        "- [ ] Add `.temple/protocols/PROTOCOL_INDEX.md` (once created per 1.3)",
+        "- [ ] Add `.temple/protocols/TRIAD_ROLE_MATRIX.md` (once created per 2.2)",
+        "- **Effort:** Low | **Benefit:** Low (maintenance)"
+      ]
+    },
+    {
+      "id": 68,
+      "kind": "text",
+      "lines": [
+        "## SUMMARY TABLE"
+      ]
+    },
+    {
+      "id": 69,
+      "kind": "text",
+      "lines": [
+        "| Issue | Files | Redundancy | Impact | Priority | Action |",
+        "|-------|-------|-----------|--------|----------|--------|",
+        "| **Python environment rules** | 4 files | 460 lines | High (authority unclear) | **P1** | Consolidate to python-scripting.instructions.md |",
+        "| **Codekiller enforcement** | 3 files | 76 lines | Medium | **P1** | Cross-reference to WPTG only |",
+        "| **Protocol inventory** | 3 files | 190 lines | High (if paths drift) | **P1** | Create PROTOCOL_INDEX.md |",
+        "| **Execution discipline** | 2 files | 226 lines | Medium | **P2** | Consolidate to technical-directives.instructions.md |",
+        "| **Triad definitions** | 3 files | 150 lines | Medium | **P2** | Create TRIAD_ROLE_MATRIX.md |",
+        "| **SSOT headers** | 6 files | 900 chars | Low (stable) | **P3** | Document pattern or use YAML frontmatter |",
+        "| **Shell rule references** | 3 files | ~50 lines | Low | **P3** | Verify all link to PWSH_RULES.md |",
+        "| **Script headers** | 3 files | ~80 lines | Low | **P4** | Sync SCRIPTS_README.md with python-scripting.instructions.md |"
+      ]
+    },
+    {
+      "id": 70,
+      "kind": "text",
+      "lines": [
+        "## RECOMMENDED IMPLEMENTATION ROADMAP"
+      ]
+    },
+    {
+      "id": 71,
+      "kind": "text",
+      "lines": [
+        "```",
+        "Week 1 (Priority 1):",
+        "  [ ] Create .temple/protocols/PROTOCOL_INDEX.md (medium effort)",
+        "  [ ] Update AGENTS.md: remove/trim Codekiller duplication (low effort)",
+        "  [ ] Update AGENT_COMMON.md: reference WPTG only (low effort)"
+      ]
+    },
+    {
+      "id": 72,
+      "kind": "text",
+      "lines": [
+        "Week 2 (Priority 2):",
+        "  [ ] Create .temple/protocols/TRIAD_ROLE_MATRIX.md (medium effort)",
+        "  [ ] Trim technical-directives.instructions.md duplicate rules (low effort)",
+        "  [ ] Update all agent files to reference TRIAD_ROLE_MATRIX.md (low effort)"
+      ]
+    },
+    {
+      "id": 73,
+      "kind": "text",
+      "lines": [
+        "Week 3 (Priority 3-4):",
+        "  [ ] Audit Shell references in AGENT_COMMON/technical-directives (low effort)",
+        "  [ ] Update SCRIPTS_README.md links (low effort)",
+        "  [ ] Consider YAML frontmatter for headers (optional, cosmetic)"
+      ]
+    },
+    {
+      "id": 74,
+      "kind": "text",
+      "lines": [
+        "Ongoing:",
+        "  [ ] Maintain new protocol index after any protocol changes",
+        "  [ ] Review copilot-instructions.md quarterly for new cross-ref drift",
+        "```"
+      ]
+    },
+    {
+      "id": 75,
+      "kind": "text",
+      "lines": [
+        "## KEY FINDINGS"
+      ]
+    },
+    {
+      "id": 76,
+      "kind": "text",
+      "lines": [
+        "\u2705 **No stale references** \u2014 All documented files exist",
+        "\u2705 **No problematic circular pointers** \u2014 Hub-and-spoke is intentional",
+        "\u2705 **No syntax/format conflicts** \u2014 Files follow consistent Markdown standards"
+      ]
+    },
+    {
+      "id": 77,
+      "kind": "text",
+      "lines": [
+        "\u26a0\ufe0f **Authority hierarchy unclear in 4+ domains** (Python, execution, protocols, Triad)",
+        "\u26a0\ufe0f **~2000 total lines of intentional redundancy** (mostly reference duplication, not conflicting rules)",
+        "\u26a0\ufe0f **Duplication increases when files are read sequentially** (same rule stated 3-4 times)"
+      ]
+    },
+    {
+      "id": 78,
+      "kind": "text",
+      "lines": [
+        "\ud83d\udfe2 **Overall health: GOOD** \u2014 Repository is well-organized, but could benefit from explicit consolidation of 3 critical domains (Python, Protocols, Triad roles)."
+      ]
+    }
+  ]
+}

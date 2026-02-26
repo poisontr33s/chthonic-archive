@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
+  <rect width="16" height="16" rx="3" fill="hsl(40 77% 39%)"/>
+  <circle cx="8.0" cy="8.0" r="7.2" fill="none" stroke="hsl(202 60% 55%)" stroke-width="2" opacity="0.7"/>
+  <circle cx="8.0" cy="8.0" r="4.48" fill="none" stroke="hsl(202 60% 55%)" stroke-width="2" opacity="0.5"/>
+  <text x="50%" y="52%" dominant-baseline="middle" text-anchor="middle" fill="#ffffff" font-size="10" font-family="ui-sans-serif,system-ui">C</text>
+</svg>
