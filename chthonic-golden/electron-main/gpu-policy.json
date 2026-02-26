@@ -1,0 +1,34 @@
+{
+  "gpu": {
+    "disableHardwareAcceleration": false,
+    "enableGpuRasterization": true,
+    "ignoreGpuBlocklist": true,
+    "enableZeroCopy": true,
+    "enableNativeGpuMemoryBuffers": true,
+    "useAngle": "default",
+    "comment": "Baked-in GPU policy — overrides any argv.json or user setting. These flags are applied at Electron bootstrap before window creation."
+  },
+  "v8": {
+    "maxOldSpaceSize": 8192,
+    "maxSemiSpaceSize": 64,
+    "comment": "V8 heap tuning: 8GB old space, 64MB semi-space. Prevents OOM on large workspaces."
+  },
+  "process": {
+    "extensionHostMaxOldSpaceSize": 4096,
+    "sharedProcessMaxOldSpaceSize": 2048,
+    "comment": "Per-process V8 limits for extension host and shared process."
+  },
+  "crashRecovery": {
+    "enableWatchdog": true,
+    "watchdogIntervalMs": 30000,
+    "maxCrashRestartsPerHour": 3,
+    "crashReportEndpoint": "",
+    "comment": "Watchdog monitors extension host health. After 3 crashes/hour, enters safe mode."
+  },
+  "startup": {
+    "preloadGpuProcess": true,
+    "warmPtyHost": true,
+    "deferNonCriticalExtensions": true,
+    "comment": "WEPET-ER boot protocol: GPU process preloaded, PTY host warmed, non-critical extensions deferred."
+  }
+}

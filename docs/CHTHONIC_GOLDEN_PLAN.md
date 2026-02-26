@@ -1,8 +1,8 @@
 # Chthonic Golden Visual Studio Code — Architecture Plan
 
-> **Phase:** 1 — Foundation  
+> **Phase:** 2 — Fork Prototype  
 > **Status:** Active  
-> **Generated:** 2026-02-26  
+> **Generated:** 2026-02-26 (updated Phase 2)  
 > **Scope:** Diagnose → Harden → Customize → Fork
 
 ---
@@ -72,13 +72,27 @@ VS Code Insiders on this system scores **0/100 stability** (autopsy) and **72/10
 - [x] Apply argv.json with GPU + heap fixes
 - [x] Stability baseline report generated
 
-### Phase 2: Stabilization
+### Phase 2: Fork Prototype (Current)
+- [x] Gemini Deep Research briefing (`docs/GEMINI_DEEP_RESEARCH_BRIEFING.md`)
+- [x] Fork prototype scaffold (`chthonic-golden/`)
+- [x] product.json + quality.json (stable + insider channels)
+- [x] Hardened Electron bootstrap (`electron-main/bootstrap.js`)
+- [x] GPU policy baked into build (`electron-main/gpu-policy.json`)
+- [x] Extension allowlist/blocklist
+- [x] Build pipeline scripts (build.ps1, patch.ps1, package.ps1)
+- [x] ANKH semantic token definitions
+- [x] ANKH integration mapping document
+- [ ] Upstream VS Code clone + first successful build
+- [ ] Generate actual .patch files from prototype
+- [ ] Branding assets (icon.ico, icon.png)
+
+### Phase 3: Stabilization
 - [ ] Clean user-data-dir: purge stale caches, compress log sessions
 - [ ] Re-run matrix post-hardening to measure improvement
 - [ ] Extension host isolation: identify and disable unstable extensions
 - [ ] PTY host warm-up optimization (profile loading pipeline)
 
-### Phase 3: Customization
+### Phase 4: Customization
 - [ ] Custom launch wrapper: `scripts/chthonic_golden_launch.ps1`
   - Auto-applies GPU flags
   - Monitors crash dump dir
@@ -88,8 +102,7 @@ VS Code Insiders on this system scores **0/100 stability** (autopsy) and **72/10
 - [ ] Theme integration: chthonic-mandala themes as default
 - [ ] MCP server auto-registration on startup
 
-### Phase 4: Fork Architecture
-VS Code is MIT-licensed. A fork requires:
+### Phase 5: Fork Architecture (Absorbed into Phase 2 Prototype)
 - [ ] Clone `microsoft/vscode` repo
 - [ ] Apply product.json overrides (branding, telemetry, update channel)
 - [ ] Integrate ANKH abstraction layer (custom command palette, semantic navigation)
@@ -142,7 +155,24 @@ VS Code is MIT-licensed. A fork requires:
 scripts/vscode_error_autopsy.py          # ~450 lines — log classifier
 scripts/vscode_electron_hardener.py      # ~430 lines — GPU/memory repair
 docs/CHTHONIC_GOLDEN_PLAN.md             # this document
+docs/GEMINI_DEEP_RESEARCH_BRIEFING.md    # Gemini 3.1 context packet (~220 lines)
 claude/mailbox/VSCODE_ERROR_AUTOPSY_LATEST.md
 claude/mailbox/VSCODE_ERROR_AUTOPSY_LATEST.json
 claude/mailbox/VSCODE_ELECTRON_HARDENER_LATEST.md
+
+# Phase 2 — Fork Prototype
+chthonic-golden/README.md                # Fork overview + quick start
+chthonic-golden/product.json             # Distribution identity (Open VSX, no telemetry)
+chthonic-golden/quality.json             # Stable + insider channel defs
+chthonic-golden/electron-main/bootstrap.js    # Hardened Electron entry (~120 lines)
+chthonic-golden/electron-main/gpu-policy.json # Baked GPU + V8 + crash config
+chthonic-golden/extensions/allowlist.json     # Curated extension list
+chthonic-golden/extensions/blocklist.json     # Blocked extensions
+chthonic-golden/patches/README.md             # Patch strategy docs
+chthonic-golden/scripts/build.ps1             # Full build pipeline
+chthonic-golden/scripts/patch.ps1             # Patch applicator
+chthonic-golden/scripts/package.ps1           # Packaging pipeline
+chthonic-golden/ankh/semantic-tokens.json     # Custom @ankh: token types
+chthonic-golden/ankh/integration.md           # ANKH → fork mapping
+chthonic-golden/branding/README.md            # Brand asset specs
 ```

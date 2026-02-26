@@ -1,0 +1,68 @@
+{
+  "nameShort": "Chthonic Golden",
+  "nameLong": "Chthonic Golden - Visual Studio Code",
+  "applicationName": "chthonic-golden",
+  "dataFolderName": ".chthonic-golden",
+  "win32MutexName": "chthonicgolden",
+  "licenseName": "MIT",
+  "licenseUrl": "https://github.com/poisontr33s/chthonic-archive/blob/main/LICENSE",
+  "win32DirName": "Chthonic Golden",
+  "win32NameVersion": "Chthonic Golden",
+  "win32RegValueName": "ChthonicGolden",
+  "win32AppId": "{{A1B2C3D4-E5F6-7890-ABCD-EF1234567890}",
+  "win32x64AppId": "{{A1B2C3D4-E5F6-7890-ABCD-EF1234567891}",
+  "win32arm64AppId": "{{A1B2C3D4-E5F6-7890-ABCD-EF1234567892}",
+  "win32AppUserModelId": "ChthonicArchive.ChthonicGolden",
+  "win32ShellNameShort": "Chthonic Golden",
+  "darwinBundleIdentifier": "com.chthonic-archive.golden",
+
+  "reportIssueUrl": "https://github.com/poisontr33s/chthonic-archive/issues/new",
+  "urlProtocol": "chthonic-golden",
+
+  "extensionAllowedProposedApi": [],
+  "builtInExtensions": [],
+
+  "quality": "stable",
+
+  "extensionsGallery": {
+    "serviceUrl": "https://open-vsx.org/vscode/gallery",
+    "itemUrl": "https://open-vsx.org/vscode/item",
+    "resourceUrlTemplate": "https://open-vsx.org/vscode/unpkg/{publisher}/{name}/{version}/{path}",
+    "controlUrl": "",
+    "nlsBaseUrl": "",
+    "publisherUrl": ""
+  },
+
+  "linkProtectionTrustedDomains": [
+    "https://github.com/poisontr33s",
+    "https://open-vsx.org"
+  ],
+
+  "sendASmile": {
+    "reportIssueUrl": "https://github.com/poisontr33s/chthonic-archive/issues/new"
+  },
+
+  "documentationUrl": "https://github.com/poisontr33s/chthonic-archive/tree/main/docs",
+
+  "keyboardShortcutsUrlMac": "https://github.com/poisontr33s/chthonic-archive/tree/main/docs/keybindings/mac.md",
+  "keyboardShortcutsUrlLinux": "https://github.com/poisontr33s/chthonic-archive/tree/main/docs/keybindings/linux.md",
+  "keyboardShortcutsUrlWin": "https://github.com/poisontr33s/chthonic-archive/tree/main/docs/keybindings/win.md",
+
+  "introductoryVideosUrl": "",
+  "tipsAndTricksUrl": "",
+  "newsletterSignupUrl": "",
+
+  "enableTelemetry": false,
+  "aiConfig": {},
+
+  "commit": "chthonic-golden",
+  "date": "2026-02-26",
+
+  "_comment": [
+    "Chthonic Golden VS Code distribution — ANKH-integrated, GPU-hardened.",
+    "Marketplace: Open VSX (not Microsoft Marketplace).",
+    "Telemetry: Disabled by default.",
+    "This is a Layer 3 Media Projection of the ANKH semantic carrier system.",
+    "@ankh: heritage-continuity — product identity preserved across builds"
+  ]
+}

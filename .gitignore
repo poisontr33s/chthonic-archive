@@ -64,6 +64,10 @@ dumpster-dive/intake/overnight-daemon/*.log
 # Allow Bun configuration
 !bunfig.toml
 
+# Allow Chthonic Golden fork prototype
+!chthonic-golden/
+!chthonic-golden/**
+
 # Allow VS Code extensions (but not node_modules)
 !extensions/
 !extensions/*/

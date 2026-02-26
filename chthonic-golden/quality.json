@@ -1,0 +1,25 @@
+{
+  "stable": {
+    "quality": "stable",
+    "dataFolderName": ".chthonic-golden",
+    "applicationName": "chthonic-golden",
+    "win32MutexName": "chthonicgolden",
+    "serverApplicationName": "chthonic-golden-server",
+    "serverDataFolderName": ".chthonic-golden-server",
+    "updateUrl": "",
+    "downloadUrl": "https://github.com/poisontr33s/chthonic-archive/releases"
+  },
+  "insider": {
+    "quality": "insider",
+    "dataFolderName": ".chthonic-golden-insiders",
+    "applicationName": "chthonic-golden-insiders",
+    "win32MutexName": "chthonicgoldeninsiders",
+    "serverApplicationName": "chthonic-golden-insiders-server",
+    "serverDataFolderName": ".chthonic-golden-insiders-server",
+    "nameShort": "Chthonic Golden - Insiders",
+    "nameLong": "Chthonic Golden - Insiders",
+    "updateUrl": "",
+    "downloadUrl": "https://github.com/poisontr33s/chthonic-archive/releases"
+  },
+  "_comment": "Quality definitions for stable and insider channels. Update URLs left empty until CI/CD is configured."
+}

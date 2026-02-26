@@ -1,0 +1,66 @@
+{
+  "customSemanticTokenTypes": [
+    {
+      "id": "ankhInvariant",
+      "description": "ANKH invariant marker — @ankh: comments declaring lineage invariants",
+      "superType": "comment"
+    },
+    {
+      "id": "ankhDrift",
+      "description": "ANKH drift detection marker — [ANKH-DRIFT: type] annotations",
+      "superType": "comment"
+    },
+    {
+      "id": "ankhSilence",
+      "description": "ANKH silence region — intentional non-expression zones",
+      "superType": "comment"
+    },
+    {
+      "id": "ankhHeritage",
+      "description": "ANKH heritage continuity marker — lineage preservation annotations",
+      "superType": "comment"
+    }
+  ],
+  "customSemanticTokenModifiers": [
+    {
+      "id": "layer1",
+      "description": "Lineage Core (immutable invariant)"
+    },
+    {
+      "id": "layer2",
+      "description": "Interface Vessel (translation layer)"
+    },
+    {
+      "id": "layer3",
+      "description": "Media Projection (concrete expression)"
+    }
+  ],
+  "semanticHighlighting": {
+    "ankhInvariant": {
+      "foreground": "#FFD700",
+      "fontStyle": "bold",
+      "description": "Gold — invariant declarations"
+    },
+    "ankhDrift": {
+      "foreground": "#FF4444",
+      "fontStyle": "italic",
+      "description": "Red — drift warnings"
+    },
+    "ankhSilence": {
+      "foreground": "#666666",
+      "fontStyle": "",
+      "description": "Dim — intentional silence"
+    },
+    "ankhHeritage": {
+      "foreground": "#88CCFF",
+      "fontStyle": "underline",
+      "description": "Blue — heritage links"
+    }
+  },
+  "commentPatterns": {
+    "invariant": "(?:^|\\s)@ankh:\\s+(?:inheritance|constraint-philosophy|mythic-identity|silence-semantics|heritage-continuity|non-enumerated-meaning)\\b",
+    "drift": "\\[ANKH-DRIFT:\\s+\\w+\\]",
+    "silence": "\\[ANKH-INVARIANT:\\s+silence-preservation\\]"
+  },
+  "_comment": "@ankh: non-enumerated-meaning — These token types make ANKH semantics visible in the editor without flattening them into mere syntax highlighting. The gold/red/dim/blue palette echoes the ANKH layer hierarchy."
+}

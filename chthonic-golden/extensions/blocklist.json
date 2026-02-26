@@ -1,0 +1,9 @@
+{
+  "blocklist": [
+    {
+      "pattern": "ms-vscode.vscode-typescript-tls*",
+      "reason": "Known extension host crasher on large workspaces"
+    }
+  ],
+  "_comment": "Extensions matching these patterns are prevented from activating. Populate as stability testing identifies crashers."
+}

@@ -1,0 +1,50 @@
+{
+  "allowlist": [
+    {
+      "id": "chthonic-archive.chthonic-archive",
+      "reason": "Core extension — themes, ANKH reference, sidebar panels, MCP integration",
+      "required": true
+    },
+    {
+      "id": "github.copilot",
+      "reason": "AI completion — downstream vessel in ANKH hierarchy",
+      "required": false
+    },
+    {
+      "id": "github.copilot-chat",
+      "reason": "AI chat — triadic agent interface",
+      "required": false
+    },
+    {
+      "id": "rust-lang.rust-analyzer",
+      "reason": "Rust language support — primary implementation language",
+      "required": true
+    },
+    {
+      "id": "tamasfe.even-better-toml",
+      "reason": "TOML support for Cargo.toml, pyproject.toml",
+      "required": false
+    },
+    {
+      "id": "charliermarsh.ruff",
+      "reason": "Python linting — ruff integration",
+      "required": false
+    },
+    {
+      "id": "ms-python.python",
+      "reason": "Python language support",
+      "required": true
+    },
+    {
+      "id": "oven.bun-vscode",
+      "reason": "Bun runtime integration",
+      "required": false
+    },
+    {
+      "id": "esbenp.prettier-vscode",
+      "reason": "Code formatting — TS/JS/JSON/MD",
+      "required": false
+    }
+  ],
+  "_comment": "@ankh: constraint-philosophy — curated extensions reduce crash surface. Required=true extensions activate immediately; required=false extensions deferred per WEPET-ER startup protocol."
+}
