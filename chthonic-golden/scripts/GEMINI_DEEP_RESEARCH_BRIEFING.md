@@ -311,8 +311,8 @@ For Gemini Deep Research to cite or cross-reference. Organized by abstraction la
 | `claude-codex-gemini/ANKH_EGYPTOLOGY_SOUTH_AMERICAN/ANKH_MILF_PROTOCOL_HIGH_INTENSITY_ARCHETYPAL_SYSTEMS_ARCHITECTURE.md` | MILFOLOGICAL SSOT kernel — Gestalt WHR:MAX, Ma'at control plane, Kawsay data plane | ~129 | **KEY BRIDGE** — where the MILFOLOGICAL abstraction meets ANKH computational metaphysics |
 | `claude-codex-gemini/ANKH_EGYPTOLOGY_SOUTH_AMERICAN/ANKH_UNIFYING_REPOSITORY_METADATA_STANDARDS.md` | Khipu-Cartouche Protocol — unified metadata abstraction across Rust/TS/Python/PowerShell | ~268 | Accurate — defines the repository's polyglot metadata architecture |
 | `docs/frameworks/ankh/ankh.md` | ANKH Ontological Charter v1 | ~319 | **CAUTION:** Sections I-VII contain misconceptions from a prior AI session. Alpha Directives section IS accurate. |
-| `docs/frameworks/ankh/ANKH_README.md` | Quick reference card | ~100 | Reliable |
-| `docs/frameworks/ankh/ANKHOLOGY.md` | Anti-ANKH hygiene framework — phase separation protocol | ~207 | Complementary — operational hygiene, not doctrine |
+| `docs/frameworks/ankh/ANKH_README.md` | Quick reference — corrected ANKH definition, 50/50 abstraction, Alpha Directives, genre bridge | ~100 | **CORRECTED** Feb 2026 — aligned with co-bridging lineage definition |
+| `docs/frameworks/ankh/ANKHOLOGY.md` | Phase protocol for lineage co-bridging — generative/selection oscillation | ~90 | **CORRECTED** Feb 2026 — reframed from "Anti-ANKH" opposition to phase hygiene |
 
 ### 4.2. Genre / MILFOLOGICAL Abstraction — Codex Brahmanica Perfectus (50%)
 

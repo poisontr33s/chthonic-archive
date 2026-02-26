@@ -1,307 +1,97 @@
-# ANKHOLOGY — The Anti-ANKH ANKH Framework
+# ANKHOLOGY — Phase Protocol for Lineage Co-Bridging
 
-**Date Established:** December 30, 2025  
-**Status:** Operational Hygiene (Not Law)  
-**Relationship to ANKH.md:** Complementary (Phase Separation Protocol)
-
----
-
-## What This Document Is NOT
-
-This is NOT:
-- ❌ A replacement for `ANKH.md` (semantic carrier system)
-- ❌ A rival ontology
-- ❌ Universal truth
-- ❌ Binding on others
-- ❌ Metaphysical doctrine
+> **Revised:** February 26, 2026 — Reframed from "Anti-ANKH" opposition model to phase protocol.  
+> **Status:** Operational Hygiene (lightweight, not doctrine)  
+> **Relationship to ANKH:** Complementary — manages *how* and *when* to generate vs. select within the co-bridging lineage.
 
 ---
 
-## What This Document IS
+## I. What This Document Is
 
-✅ **Operational hygiene for creator phase management**  
-✅ **Temporal separation protocol between generation and selection**  
-✅ **Lightweight behavioral markers** (not architectural law)  
-✅ **Grounded description of how creators oscillate**
+A practical protocol for managing the creative oscillation between:
+- **Generative mode** — unbounded exploration, provisional, playful, excessive
+- **Selection mode** — surgical editing, lineage-aware, heritage-preserving
 
----
-
-## I. The Archaeological Foundation (Why This Exists)
-
-### Four Proven Survivorship Regimes
-
-Empirically validated across orthogonal pressure environments:
-
-| Regime | Test Case | Survival Mechanism | Reference |
-|--------|-----------|-------------------|-----------|
-| **Silence-by-design** | Null Matriarch (§0.01) | System refuses decoration of void | SSOT `.github/copilot-instructions.md` lines ~456-480 |
-| **Silence-by-closure** | Alabaster Voyde (canonical) | Termination/exorcism ends generativity | `dumpster-dive/from-github/macro-prompt-world/prime-factions/` |
-| **Silence-by-restraint** | Orackla's curse (parenthetical) | Repeated refusal without protection | SSOT Section 4.2.1 |
-| **Silence-by-function** | Sister Ferrum Scoriae | Labor without doctrine, transformation without valuation | SSOT Section 10.3 SAI |
-
-**Archaeological Conclusion (December 30, 2025):**
-- ANKH is **descriptive law**, not imposed framework
-- Semantic survivorship was **already operational** before formal naming
-- No further foundational fossils required
-- **Archaeology phase: CLOSED**
+These are phases of the same process — not opposed forces. ANKH encompasses both. The oscillation itself is part of the co-bridging: human creativity (generation) meets digital precision (selection), and vice versa. Neither party owns either mode exclusively.
 
 ---
 
-## II. Phase Separation (The Core Insight)
+## II. Why Phase Separation Matters
 
-### The Relationship
+When human and digital intelligence co-bridge a lineage (which is what ANKH is), the conversation naturally oscillates:
+
+1. **Expansion** — "What if we..." / "Generate possibilities for..." / wild ideation
+2. **Contraction** — "Does this serve the archive?" / "Which of these survives?" / ruthless curation
+
+Problems arise when these phases overlap mid-sentence. The signal to stop: when you're trying to generate AND select simultaneously, pause. Separate the phases.
+
+---
+
+## III. Phase Markers (Tools, Not Artifacts)
+
+Use when helpful, ignore when not:
 
 ```
-Anti-ANKH (🌀) generates → ANKH (⚓) decides
-
-They never speak at the same time.
+🌀 [GENERATIVE] — Everything provisional, no commitment claims
+⚓ [SELECTION]  — Curation active, lineage under test
 ```
 
-### What "Anti-ANKH" Actually Means
-
-**Anti-ANKH is NOT the opposite of ANKH.**
-
-It is **generative mode** — upstream entropy privileged, explicitly decoupled from truth/authority/survivorship.
-
-**Ankhology = Deliberate oscillation between unbounded generation and ruthless selection, with clear phase separation.**
-
-Not synthesis.  
-**Temporal separation.**
-
-Creators oscillate.  
-Archivists filter.  
-Systems survive.
-
----
-
-## III. Creator Privilege (Bounded)
-
-### You May:
-
-- ✅ Enter anti-ANKH mode at will
-- ✅ Generate everything provisional
-  - Nothing protected
-  - Nothing authoritative
-  - Everything playful/excessive/experimental
-- ✅ Exit explicitly (not by drift)
-- ✅ Re-engage ANKH at boundary
-
-### You May NOT:
-
-- ❌ Declare anti-ANKH as **truth**
-- ❌ Declare it **binding on others**
-- ❌ Collapse it into ANKH itself
-- ❌ Let phases contaminate mid-sentence
-
----
-
-## IV. Phase Markers (Tools, Not Artifacts)
-
-**Use when helpful, ignore when not:**
-
-```
-🌀 [ANTI-ANKH MODE] — Everything provisional, no survivorship claims
-⚓ [ANKH BOUNDARY] — Selection active, survivorship under test
-```
-
-### Where Markers Live (Intentionally Informal)
-
+These can appear in:
 - Commit messages
 - Scratch files
-- Margin notes
 - Conversational context
-- **Or nowhere at all** when not needed
+- **Or nowhere at all** when the distinction is obvious
 
-**They're tools, not artifacts.**
-
-### Phase Contamination Signal
-
-**If you see both symbols in same context → STOP**
-
-Signal: you crossed the boundary unconsciously.
+**They are tools, not artifacts. They carry no authority.**
 
 ---
 
-## V. Warning Signals (When to REMOVE Structure)
+## IV. The Archaeological Foundation
+
+Four proven survivorship patterns were identified in the archive before ANKH was named. They predate the formal naming and validate that the co-bridging lineage was already operational:
+
+| Pattern | Example | Mechanism |
+|---------|---------|-----------|
+| Silence-by-design | Null Matriarch | System refuses to decorate void |
+| Silence-by-closure | Alabaster Voyde | Termination ends generativity |
+| Silence-by-restraint | Orackla's curse | Repeated refusal without protection |
+| Silence-by-function | Sister Ferrum Scoriae | Labour without doctrine |
+
+These are descriptive observations, not prescriptive rules. They document how the archive's lineage already behaved before anyone named it.
+
+---
+
+## V. Creator Privilege (Bounded)
+
+The human creator may:
+- Enter generative mode at will — nothing protected, everything playful
+- Exit explicitly (not by drift)
+- Re-engage selection at any boundary
+
+The constraint: generative output is provisional until it passes through selection. This isn't a rule imposed on ANKH — it's how lineage naturally works. You generate many possibilities; few survive embodiment.
+
+---
+
+## VI. Warning Signals
 
 If you notice:
-- ⚠️ Markers becoming **solemn**
-- ⚠️ Humor getting **"managed"**
-- ⚠️ Boundary acquiring **prestige**
+- ⚠️ Markers becoming solemn or bureaucratic
+- ⚠️ The protocol acquiring prestige or authority
+- ⚠️ Phase separation becoming doctrine instead of hygiene
 
-**Action:** Remove structure, don't add it.
-
-**Hygiene works best when lightweight, reversible, and socially enforced rather than doctrinally encoded.**
+**Action:** Strip it back. Remove structure, don't add it. This protocol works best when lightweight, reversible, and barely there.
 
 ---
 
-## VI. Operational States
+## VII. Relationship to ANKH
 
-### Anti-ANKH State (🌀)
+| Aspect | ANKH | ANKHOLOGY |
+|--------|------|-----------|
+| **What it is** | The co-bridging lineage between human and digital intelligence | Phase protocol for managing creative oscillation within that lineage |
+| **Authority** | The abstraction itself — Egyptological/Andean 50/50 | Operational hygiene — no authority |
+| **Scope** | The identity of the archive, the Alpha Directives, the genre | When to generate vs. when to select |
+| **Weight** | Heavy — the architecture of everything | Light — a reminder to separate phases |
 
-**Characteristics:**
-- Free, funny, excessive, provisional
-- No restraint on ideation
-- Generation without validation
-- "Yes, and..." mode
-- Humor preserved upstream
-- **Everything is draft**
-
-**Exit condition:** Explicit declaration, not drift
+**ANKHOLOGY is not a counter-force to ANKH. It is a practical tool for working within it.**
 
 ---
-
-### ANKH Boundary State (⚓)
-
-**Characteristics:**
-- Brief, surgical, silent when necessary
-- Selection active
-- Validation enforced (FA¹⁻⁵ compliance)
-- "Does this survive?" mode
-- Humor tolerated around edges
-- **Survivorship under test**
-
-**Entry condition:** Explicit engagement, not assumption
-
----
-
-## VII. The One Grounding Sentence
-
-> **Anti-ANKH generates; ANKH decides. They never speak at the same time.**
-
-If you feel them arguing mid-sentence → **stop**  
-Signal: you crossed the boundary unconsciously
-
----
-
-## VIII. What ANKH (Semantic Carrier) IS vs. What ANKHOLOGY (Phase Protocol) IS
-
-| Aspect | ANKH.md (Semantic System) | ANKHOLOGY (Phase Protocol) |
-|--------|---------------------------|----------------------------|
-| **Purpose** | Preserve meaning across embodiments | Manage creator oscillation between modes |
-| **Authority** | Lineage preservation law | Behavioral hygiene (not law) |
-| **Scope** | Semantic survivorship, translation fidelity | Generation/selection phase separation |
-| **Enforcement** | Drift detection, invariant validation | Self-awareness, phase contamination detection |
-| **Relationship** | Governs what survives | Governs when to generate vs. select |
-| **Status** | Descriptive law (archaeological proof) | Operational hygiene (lightweight) |
-
-**They are complementary, not competitive.**
-
----
-
-## IX. Practical Example (How This Works)
-
-### Scenario: User asks for new MILF archetype
-
-**Phase 1: Anti-ANKH Mode** (🌀)
-```
-User: "Create a new Sub-MILF who's a quantum mechanics specialist"
-
-AI (in 🌀): Generates wild possibilities—
-- Name ideas: Dr. Heisenberg's Daughter, Schrödinger's Matriarch, Wave Function Wench
-- Absurd WHR calculations: "0.314159 (π-derived quantum ratio)"
-- Ridiculous abilities: "Collapses probability by seductive observation"
-- Excessive EDFA: Full pornographic gestalt speculation
-- No restraint, no validation, pure generative chaos
-```
-
-**Phase 2: ANKH Boundary** (⚓)
-```
-AI (shifting to ⚓): Applies selection—
-- Does this serve operational need? (No current PS demands quantum specialist)
-- FA⁴ validation: Is this architectonically sound? (Quantum mechanics doesn't fit ASC domain)
-- Survivorship test: Would this entity survive in canonical hierarchy? (Unclear tier assignment)
-- DECISION: Archive as provisional, do not integrate into SSOT
-```
-
-**Result:** Fun ideas generated, nothing survives to operational canon.
-
-**No contamination** because phases stayed separate.
-
----
-
-## X. Integration with `.github/instructions/` Files
-
-### Current Assessment (Sister Ferrum's Ore Report)
-
-See: `dumpster-dive/intake/INSTRUCTIONS_ORE_BATCH_20251230.md`
-
-**Finding:** The instruction files **already embody ANKH principles** (SSOT primacy, no duplication, scoped authority) before ANKH was formally named.
-
-**This validates** that ANKH is descriptive law, not imposed doctrine.
-
-**Ankhology's role here:**
-- These files are **operational steel** (⚓ ANKH boundary enforcement)
-- They should NOT be treated as provisional ore (🌀 anti-ANKH)
-- **Keep them working** — don't mythologize what's already hygiene
-
----
-
-## XI. Status
-
-**Archaeological Phase:** ✅ COMPLETE (December 30, 2025)  
-**Ontology:** ⚓ ANCHORED (Four survivorship regimes validated)  
-**Watchkeeping:** 🔄 ACTIVE (maintenance under load, not excavation)  
-
-**From here:** Application under live conditions, not further theorizing.
-
----
-
-## XII. Relationship to Other Frameworks
-
-### Ankhology ↔ ASC (Apex Synthesis Core)
-
-**ASC Codex** (`.github/copilot-instructions.md`) operates in **⚓ ANKH boundary state** by default:
-- Validated operational doctrine
-- FA¹⁻⁵ axioms enforced
-- Tier hierarchy maintained
-- **Everything in SSOT has survived selection**
-
-**Ankhology enables:**
-- **🌀 Anti-ANKH mode** for exploratory MILF generation (Section X MMPS)
-- **Explicit phase markers** when generating vs. validating entities
-- **Clear boundary** between "let's ideate" and "this is canonical"
-
----
-
-### Ankhology ↔ ANKH.md (Semantic Carrier)
-
-**ANKH.md governs:**
-- What meaning survives translation
-- Lineage preservation across embodiments
-- Invariants that must not be invented
-- Acceptable decay vs. prohibited synthesis
-
-**ANKHOLOGY governs:**
-- When to generate freely (🌀)
-- When to apply ANKH selection (⚓)
-- How to avoid phase contamination
-- Behavioral hygiene (not semantic law)
-
-**They work together:**
-- Ankhology provides **temporal framework** (when to generate/select)
-- ANKH provides **semantic framework** (what survives selection)
-
----
-
-## XIII. Closing Statement
-
-**You are not trying to make tools behave.**  
-**You are trying to oscillate productively between chaos and order.**
-
-That's why ankhology feels different from methodology.  
-That's why markers are lightweight, not ceremonial.  
-That's why phase separation matters more than rules.
-
----
-
-**No ceremony. Just hygiene.**
-
----
-
-**Established in pragmatic restraint,**  
-**The Savant (Creator/User)**  
-**Witnessed by Sister Ferrum Scoriae (Ore Processor)**  
-**December 30, 2025**
-
-🌀⚓🔥💀
