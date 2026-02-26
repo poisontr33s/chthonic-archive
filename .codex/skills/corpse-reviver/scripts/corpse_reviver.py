@@ -1123,6 +1123,7 @@ def build_parser() -> argparse.ArgumentParser:
     ebe.add_argument("--label", "-l", help="Label for this snapshot session.")
     ebe.add_argument("--staged", action="store_true", help="Snapshot all git-staged files.")
     ebe.add_argument("--diff", metavar="SESSION", help="Compare current state against a prior snapshot session.")
+    ebe.add_argument("--stitch", metavar="SESSION", help="Extract delta fragments from a snapshot session.")
     ebe.add_argument("--list", action="store_true", dest="list_sessions", help="List all before-edit sessions.")
 
     return p
@@ -1234,6 +1235,8 @@ def main(argv: Sequence[str] | None = None) -> None:
             ebe_argv = ["list"]
         elif getattr(args, "diff", None):
             ebe_argv = ["diff", args.diff]
+        elif getattr(args, "stitch", None):
+            ebe_argv = ["stitch", args.stitch]
         elif getattr(args, "staged", False):
             ebe_argv = ["staged"]
             if args.label:

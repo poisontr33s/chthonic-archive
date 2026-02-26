@@ -146,6 +146,43 @@ before-edit-experiments/
 
 **Pre-edit provenance** includes: hash, source path, language, byte/line count, git HEAD, git status, and **structural landmarks** (function/class/heading locations extracted at snapshot time).
 
+### stitch (post-edit delta extraction)
+After editing, run `stitch` against the pre-edit session to extract unified diffs as `.delta` files — candidate fragments for ankhological emigration injection or suture composites.
+
+```powershell
+# Extract deltas from a session (after edits are done)
+uv run .codex/skills/corpse-reviver/scripts/embalm_before_edit.py stitch <session-name>
+
+# Custom output directory
+uv run .codex/skills/corpse-reviver/scripts/embalm_before_edit.py stitch <session-name> --output path/to/deltas
+```
+
+**Stitch output:** `session/deltas/{language}/{hash}_{filename}.delta` — unified diff of what changed.
+
+### quick_embalm() — Programmatic API
+Other scripts/agents can import and call `quick_embalm()` directly:
+
+```python
+from embalm_before_edit import quick_embalm
+session = quick_embalm(["path/to/file.md", "path/to/other.py"], label="my-edit")
+```
+
+## Auto-Embalm Protocol
+
+**MANDATORY**: Before any edit operation on repository files, agents MUST run the embalmer:
+
+```powershell
+# Before editing — always run first
+uv run .codex/skills/corpse-reviver/scripts/embalm_before_edit.py <files-to-edit> --label "<edit-context>"
+
+# ... perform edits ...
+
+# After editing — extract deltas for the stitch pipeline
+uv run .codex/skills/corpse-reviver/scripts/embalm_before_edit.py stitch <session-name>
+```
+
+This creates a complete data lineage: **what it was → what changed → what it became**. The delta fragments feed into the ankhological emigration injection pipeline — all data can be stitched together to create new candidate data without needing to burden the edit workflow itself. Simply reference where it was edited.
+
 ## Vault
 
 Fragments are stored in `dumpster-dive/corpse-vault/` organized by language:

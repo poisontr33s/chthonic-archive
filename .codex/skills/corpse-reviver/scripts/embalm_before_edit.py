@@ -342,6 +342,121 @@ def cmd_list_sessions() -> None:
 
 
 # ---------------------------------------------------------------------------
+# Stitch mode — extract delta fragments from snapshot vs current state
+# ---------------------------------------------------------------------------
+
+def cmd_stitch(session_name: str, output_dir: Path | None = None) -> None:
+    """Extract changed regions between a snapshot session and current file state.
+
+    Produces .delta files containing only the lines that differ — candidate
+    data for ankhological emigration injection or suture composites.
+    """
+    session_dir = BEFORE_EDIT_DIR / session_name
+    if not session_dir.exists():
+        candidates = sorted(BEFORE_EDIT_DIR.iterdir()) if BEFORE_EDIT_DIR.exists() else []
+        matches = [c for c in candidates if c.is_dir() and session_name in c.name]
+        if len(matches) == 1:
+            session_dir = matches[0]
+        elif matches:
+            print(f"Ambiguous session name. Matches: {[m.name for m in matches]}")
+            return
+        else:
+            print(f"Session not found: {session_name}")
+            return
+
+    manifest_path = session_dir / "session_manifest.json"
+    if not manifest_path.exists():
+        print(f"No manifest in session: {session_dir.name}")
+        return
+
+    manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+    snapshots = manifest.get("snapshots", [])
+
+    # Output goes into session_dir/deltas/ by default
+    delta_dir = output_dir or (session_dir / "deltas")
+    delta_dir.mkdir(parents=True, exist_ok=True)
+
+    print(f"Stitching deltas from session '{session_dir.name}':\n")
+    delta_count = 0
+
+    for snap in snapshots:
+        source = REPO_ROOT / snap["source_file"]
+        snapshot_path = BEFORE_EDIT_DIR / snap["snapshot_path"]
+
+        if not source.exists() or not snapshot_path.exists():
+            continue
+
+        old_lines = snapshot_path.read_text(encoding="utf-8", errors="replace").splitlines()
+        new_lines = source.read_text(encoding="utf-8", errors="replace").splitlines()
+
+        if old_lines == new_lines:
+            continue
+
+        # Extract added/changed line ranges
+        import difflib
+        differ = difflib.unified_diff(
+            old_lines, new_lines,
+            fromfile=f"before/{snap['source_file']}",
+            tofile=f"after/{snap['source_file']}",
+            lineterm="",
+        )
+        diff_text = "\n".join(differ)
+
+        if not diff_text.strip():
+            continue
+
+        lang = snap.get("language", "unknown")
+        lang_dir = delta_dir / lang
+        lang_dir.mkdir(parents=True, exist_ok=True)
+
+        safe_name = Path(snap["source_file"]).name.replace(" ", "_")
+        delta_name = f"{snap['hash']}_{safe_name}.delta"
+        delta_path = lang_dir / delta_name
+
+        # Write the unified diff
+        delta_path.write_text(diff_text, encoding="utf-8")
+
+        added = sum(1 for l in diff_text.splitlines() if l.startswith("+") and not l.startswith("+++"))
+        removed = sum(1 for l in diff_text.splitlines() if l.startswith("-") and not l.startswith("---"))
+        print(f"  DELTA: {snap['source_file']} (+{added}/-{removed} lines) → {lang}/{delta_name}")
+        delta_count += 1
+
+    if delta_count:
+        print(f"\nStitched {delta_count} delta(s) into {delta_dir.relative_to(REPO_ROOT)}")
+    else:
+        print("\nNo deltas found (all files unchanged).")
+
+
+# ---------------------------------------------------------------------------
+# Quick embalm — programmatic API for agent integration
+# ---------------------------------------------------------------------------
+
+def quick_embalm(filepaths: list[str | Path], label: str = "auto") -> Path | None:
+    """Programmatic entry point: snapshot files and return session dir.
+
+    Called by agents/scripts to embalm files before editing them,
+    without going through CLI parsing. Returns the session directory
+    path, or None if nothing was snapshotted.
+    """
+    session_dir = create_session_dir(label)
+    snapshots: list[dict] = []
+    for f in filepaths:
+        fp = Path(f)
+        if not fp.is_absolute():
+            fp = REPO_ROOT / fp
+        result = snapshot_file(fp, session_dir)
+        if result:
+            snapshots.append(result)
+    if snapshots:
+        write_session_manifest(session_dir, snapshots)
+        return session_dir
+    # Clean up empty session
+    if not any(session_dir.iterdir()):
+        session_dir.rmdir()
+    return None
+
+
+# ---------------------------------------------------------------------------
 # CLI
 # ---------------------------------------------------------------------------
 
@@ -368,6 +483,11 @@ def build_parser() -> argparse.ArgumentParser:
     # list
     sub.add_parser("list", help="List all before-edit snapshot sessions.")
 
+    # stitch
+    st = sub.add_parser("stitch", help="Extract delta fragments between snapshot and current state.")
+    st.add_argument("session", help="Session directory name (or partial match).")
+    st.add_argument("--output", "-o", help="Output directory for delta files (default: session/deltas/).")
+
     return p
 
 
@@ -375,7 +495,7 @@ def main(argv: list[str] | None = None) -> None:
     raw_args = argv if argv is not None else sys.argv[1:]
 
     # If first arg is a file path (not a subcommand), treat as implicit "snapshot"
-    if raw_args and raw_args[0] not in ("snapshot", "staged", "diff", "list", "-h", "--help"):
+    if raw_args and raw_args[0] not in ("snapshot", "staged", "diff", "list", "stitch", "-h", "--help"):
         raw_args = ["snapshot"] + raw_args
 
     args = build_parser().parse_args(raw_args)
@@ -428,6 +548,10 @@ def main(argv: list[str] | None = None) -> None:
 
     elif args.command == "list":
         cmd_list_sessions()
+
+    elif args.command == "stitch":
+        out = Path(args.output) if args.output else None
+        cmd_stitch(args.session, out)
 
 
 if __name__ == "__main__":
