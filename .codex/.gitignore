@@ -86,6 +86,8 @@
 !skills/meta-polisher-validator/**
 !skills/codekiller-remediation-gate/
 !skills/codekiller-remediation-gate/**
+!skills/corpse-reviver/
+!skills/corpse-reviver/**
 
 # Allow VS Code extensions (but not node_modules)
 !extensions/
