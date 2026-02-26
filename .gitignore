@@ -195,6 +195,8 @@ extensions/*/bun.lock
 !scripts/vscode_terminal_crash_doctor.ps1
 !scripts/api_key_gap_report.ps1
 !scripts/vscode_insiders_matrix.ps1
+!scripts/vscode_error_autopsy.py
+!scripts/vscode_electron_hardener.py
 
 # Allow specific Codex skill additions
 !.codex/
