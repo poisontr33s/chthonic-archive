@@ -143,6 +143,7 @@ extensions/*/bun.lock
 !scripts/normalize_e2e_archives.py
 !scripts/normalize_eol.py
 !scripts/check_mailbox_manifest.py
+!scripts/mailbox_manifest.py
 !scripts/hf_probe.py
 !scripts/api_pool.ps1
 !scripts/structure_session_log.py
@@ -151,6 +152,7 @@ extensions/*/bun.lock
 !scripts/poe_sdk_lane.py
 !scripts/poe_transport_audit.py
 !scripts/handoff_audit.py
+!scripts/handoff_loop.py
 
 # Allow Shell Sovereignty & Validation (§XIV.2 canonical probe)
 !scripts/shell_capabilities.ps1
@@ -208,6 +210,8 @@ extensions/*/bun.lock
 !.claude/skills/
 !.claude/skills/scm-triage/
 !.claude/skills/scm-triage/**
+!.claude/skills/handoff-loop/
+!.claude/skills/handoff-loop/**
 
 # mdBook build output (generated artifact)
 book/

@@ -1,0 +1,50 @@
+{
+  "schema_version": 1,
+  "receipts": {
+    "claude/mailbox/SESSION_HANDOFF_2026_02_25_CODEX_MAILBOX_SCM_PROGRESS.md": {
+      "acks": [
+        {
+          "reader": "claude",
+          "ack_at": "2026-02-26T01:28:07.432756+00:00",
+          "sha256": "e01a0584df4d268ee070d5a73c584b16281c9cf2caa33209710016f03c3c4021"
+        }
+      ]
+    },
+    "claude/mailbox/SESSION_HANDOFF_2026_02_25_HANDOFF_AUDIT_GATE_WIRED.md": {
+      "acks": [
+        {
+          "reader": "claude",
+          "ack_at": "2026-02-26T01:28:07.579525+00:00",
+          "sha256": "6c7ae12eda197f73ee895dde507aa94f897635671fff2b00adc0f44b4f36326a"
+        }
+      ]
+    },
+    "claude/mailbox/SESSION_HANDOFF_2026_02_18_VS2026_TRIO_LEARNING_CACHE.md": {
+      "acks": [
+        {
+          "reader": "claude",
+          "ack_at": "2026-02-26T01:28:07.725861+00:00",
+          "sha256": "a75319b0cc0a4edee2636f0511db922c598348ff9eca10c5480fa56ce29bbfba"
+        }
+      ]
+    },
+    "claude/mailbox/SESSION_HANDOFF_2026_02_25_PRE_SCM_TRIAGE_EXHAUSTIVE_REVIEW.md": {
+      "acks": [
+        {
+          "reader": "claude",
+          "ack_at": "2026-02-26T01:28:07.869108+00:00",
+          "sha256": "5bc72e8e2934f32b5dd4b8ea32a7934a6940d6d1aa1f463b7f97a12e5116d318"
+        }
+      ]
+    },
+    "claude/mailbox/SESSION_HANDOFF_2026_02_26_PRE_SCM_REVIEW_CLAUDE_RESPONSE.md": {
+      "acks": [
+        {
+          "reader": "claude",
+          "ack_at": "2026-02-26T01:28:08.022559+00:00",
+          "sha256": "270fbee2af864b7070a46df3faa61ecf73705ba248890e630bc1f5eea112d2d3"
+        }
+      ]
+    }
+  }
+}

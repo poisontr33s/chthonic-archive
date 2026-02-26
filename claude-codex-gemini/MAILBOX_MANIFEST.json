@@ -1,0 +1,4332 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-02-26T01:29:18.088241+00:00",
+  "generator": "scripts/mailbox_manifest.py",
+  "total_files": 430,
+  "roots_scanned": [
+    "claude/mailbox",
+    "codex/mailbox",
+    "gemini/mailbox",
+    ".claude/mailbox",
+    ".codex/mailbox",
+    "claude-codex-gemini"
+  ],
+  "root_file_counts": {
+    "claude/mailbox": 84,
+    "codex/mailbox": 236,
+    "claude-codex-gemini": 110
+  },
+  "workstream_counts": {
+    "unclassified": 331,
+    "session-handoff": 23,
+    "genre-extraction": 7,
+    "handoff-audit": 4,
+    "mailbox-verification": 2,
+    "poe-transport": 44,
+    "scm-triage": 12,
+    "kcp-spectrum": 5,
+    "wptg-alignment": 2
+  },
+  "files": [
+    {
+      "path": "claude/mailbox/_legacy_ts.txt",
+      "root": "claude/mailbox",
+      "filename": "_legacy_ts.txt",
+      "extension": ".txt",
+      "size_bytes": 2740,
+      "mtime_iso": "2026-02-24T06:57:51.959921+00:00",
+      "sha256": "a3e55714c0e73bcd2d367ad0fe7fa35a6bb90bde666527eb51c16ae7b308e3e0",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "claude/mailbox/ARCHAEOLOGY_DIGEST_2026_02_11.md",
+      "root": "claude/mailbox",
+      "filename": "ARCHAEOLOGY_DIGEST_2026_02_11.md",
+      "extension": ".md",
+      "size_bytes": 14703,
+      "mtime_iso": "2026-02-17T19:51:14.787786+00:00",
+      "sha256": "db388994705ecb99bfa9aa733d8e19e07f1e75ef6e0b9fc5c7d02c864830a21f",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "claude/mailbox/ARCHAEOLOGY_DIGEST_2026_02_13.md",
+      "root": "claude/mailbox",
+      "filename": "ARCHAEOLOGY_DIGEST_2026_02_13.md",
+      "extension": ".md",
+      "size_bytes": 14481,
+      "mtime_iso": "2026-02-17T19:51:14.788893+00:00",
+      "sha256": "082867aa7063a811070d4f34e30d1cb9a65dfacbd57c9026c92302f220f817c5",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "claude/mailbox/ARCHAEOLOGY_DIGEST_2026_02_18.md",
+      "root": "claude/mailbox",
+      "filename": "ARCHAEOLOGY_DIGEST_2026_02_18.md",
+      "extension": ".md",
+      "size_bytes": 15450,
+      "mtime_iso": "2026-02-18T02:52:56.437708+00:00",
+      "sha256": "b763b0ce75ca9c08d8fbb15b89beb01e5f9e19ee71c3bd4cea35ab98ed6d1bac",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "claude/mailbox/ARCHAEOLOGY_DIGEST_2026_02_19.md",
+      "root": "claude/mailbox",
+      "filename": "ARCHAEOLOGY_DIGEST_2026_02_19.md",
+      "extension": ".md",
+      "size_bytes": 15904,
+      "mtime_iso": "2026-02-19T02:48:39.185795+00:00",
+      "sha256": "f5a3c1430ed3722707f6ae73f9e3d80138506bfdaf1aa390bd5bc8583f6e9e8e",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "claude/mailbox/ARCHAEOLOGY_DIGEST_2026_02_20.md",
+      "root": "claude/mailbox",
+      "filename": "ARCHAEOLOGY_DIGEST_2026_02_20.md",
+      "extension": ".md",
+      "size_bytes": 20586,
+      "mtime_iso": "2026-02-20T02:31:04.484914+00:00",
+      "sha256": "f7d46203549b8b3fe3aaa8950768a8833345d76132a183a5a8ac7b1b00a5b876",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "claude/mailbox/archive/2026_02_07/e2e_matrix_claude_on_claude.json",
+      "root": "claude/mailbox",
+      "filename": "e2e_matrix_claude_on_claude.json",
+      "extension": ".json",
+      "size_bytes": 1483,
+      "mtime_iso": "2026-02-17T19:51:14.816895+00:00",
+      "sha256": "66a44f342ea43db13f515c021af9593d3e177edc1e5ef753a0b5031f51c64c65",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "claude/mailbox/archive/2026_02_07/e2e_matrix_claude_on_codex.json",
+      "root": "claude/mailbox",
+      "filename": "e2e_matrix_claude_on_codex.json",
+      "extension": ".json",
+      "size_bytes": 1481,
+      "mtime_iso": "2026-02-17T19:51:14.818867+00:00",
+      "sha256": "469511f1981ccfd80e728156be784d476d29776e6499557060c46babe18255b0",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "claude/mailbox/archive/2026_02_07/e2e_matrix_codex_on_claude.json",
+      "root": "claude/mailbox",
+      "filename": "e2e_matrix_codex_on_claude.json",
+      "extension": ".json",
+      "size_bytes": 1482,
+      "mtime_iso": "2026-02-17T19:51:14.819908+00:00",
+      "sha256": "a2e784390a9c1c1c8a461c3a0f0c9a729dab10741070ffea095d469b5ac89e93",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "claude/mailbox/archive/2026_02_07/e2e_matrix_codex_on_codex.json",
+      "root": "claude/mailbox",
+      "filename": "e2e_matrix_codex_on_codex.json",
+      "extension": ".json",
+      "size_bytes": 1480,
+      "mtime_iso": "2026-02-17T19:51:14.820908+00:00",
+      "sha256": "e46f5da10acd94ef93a1ca53101ac8d9c259b1b50fbbbf2657864470b8ffbffc",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "claude/mailbox/archive/2026_02_07/MAILBOX_CURRENT_STATE_2026_02_06.md",
+      "root": "claude/mailbox",
+      "filename": "MAILBOX_CURRENT_STATE_2026_02_06.md",
+      "extension": ".md",
+      "size_bytes": 625,
+      "mtime_iso": "2026-02-17T19:51:14.815785+00:00",
+      "sha256": "60490dd22942a17bcd0b8a238fc76eba941e13f5a9cfe1dd5613c45d153c80e3",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "claude/mailbox/archive/SESSION_HANDOFF_2026_02_05_MAILBOX_SKILL_UPDATE.md",
+      "root": "claude/mailbox",
+      "filename": "SESSION_HANDOFF_2026_02_05_MAILBOX_SKILL_UPDATE.md",
+      "extension": ".md",
+      "size_bytes": 3913,
+      "mtime_iso": "2026-02-17T19:51:14.823869+00:00",
+      "sha256": "c6825538b33cca304bae87bd256e6ed2a3760fd1013e5a2d92ebb55e37d84a84",
+      "workstream": "session-handoff"
+    },
+    {
+      "path": "claude/mailbox/archive/SESSION_HANDOFF_2026_02_05_OPERATION_TRAIN_STOP.md",
+      "root": "claude/mailbox",
+      "filename": "SESSION_HANDOFF_2026_02_05_OPERATION_TRAIN_STOP.md",
+      "extension": ".md",
+      "size_bytes": 2889,
+      "mtime_iso": "2026-02-17T19:51:14.825787+00:00",
+      "sha256": "c6f344a6cb624e7a86e13fcac7aacb784ee6db9601bd4b42be3c5ef04bd7a508",
+      "workstream": "session-handoff"
+    },
+    {
+      "path": "claude/mailbox/archive/SESSION_HANDOFF_2026_02_05_PARITY_DELTA.md",
+      "root": "claude/mailbox",
+      "filename": "SESSION_HANDOFF_2026_02_05_PARITY_DELTA.md",
+      "extension": ".md",
+      "size_bytes": 2302,
+      "mtime_iso": "2026-02-17T19:51:14.825787+00:00",
+      "sha256": "37eb94ed829062692c13cfd6e6aaa557300b415bb8b405244d8899b7747cbaa1",
+      "workstream": "session-handoff"
+    },
+    {
+      "path": "claude/mailbox/CLAUDE_CODE_CENTRIC_SETUP_2026_02_09.md",
+      "root": "claude/mailbox",
+      "filename": "CLAUDE_CODE_CENTRIC_SETUP_2026_02_09.md",
+      "extension": ".md",
+      "size_bytes": 3051,
+      "mtime_iso": "2026-02-17T19:51:14.790903+00:00",
+      "sha256": "3ca8b454d78f3c6208f90d94f3fac2bf271d80b8cc7129ee3ccce40f8d7e61e4",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "claude/mailbox/CLAUDE_CODE_HIERARCHICAL_RESEARCH_2026_02_09.md",
+      "root": "claude/mailbox",
+      "filename": "CLAUDE_CODE_HIERARCHICAL_RESEARCH_2026_02_09.md",
+      "extension": ".md",
+      "size_bytes": 3756,
+      "mtime_iso": "2026-02-17T19:51:14.791895+00:00",
+      "sha256": "a5c6d346d2fdd7d8ba46617984822cdfe75e1f92cdc8c09dfdc9202ab2dca693",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "claude/mailbox/CLAUDE_META_VALIDATION_SUMMARY.json",
+      "root": "claude/mailbox",
+      "filename": "CLAUDE_META_VALIDATION_SUMMARY.json",
+      "extension": ".json",
+      "size_bytes": 638,
+      "mtime_iso": "2026-02-17T19:51:14.792848+00:00",
+      "sha256": "811a362d39b076f418b47be174536567900b4b40a4d90b4b94fb53b4b2f42b64",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "claude/mailbox/CLAUDE_SKILL_POLISH_SUMMARY_LATEST.md",
+      "root": "claude/mailbox",
+      "filename": "CLAUDE_SKILL_POLISH_SUMMARY_LATEST.md",
+      "extension": ".md",
+      "size_bytes": 1891,
+      "mtime_iso": "2026-02-17T19:51:14.795896+00:00",
+      "sha256": "0d1d8a9521dad95ba8255d99f25a0e6055995c4372b94b2123ce403fbd8dd517",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "claude/mailbox/CLAUDE_TASK_SESSION_SYNC_2026_02_09.md",
+      "root": "claude/mailbox",
+      "filename": "CLAUDE_TASK_SESSION_SYNC_2026_02_09.md",
+      "extension": ".md",
+      "size_bytes": 6648,
+      "mtime_iso": "2026-02-17T19:51:14.796872+00:00",
+      "sha256": "2c387e05071ec4792873986c70c4522977db74f038447d59d94141a7a42a16ad",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "claude/mailbox/CODEX_TO_CLAUDE_TASK_LATEST.md",
+      "root": "claude/mailbox",
+      "filename": "CODEX_TO_CLAUDE_TASK_LATEST.md",
+      "extension": ".md",
+      "size_bytes": 1426,
+      "mtime_iso": "2026-02-17T19:51:14.798912+00:00",
+      "sha256": "ea58a667e54a44b9301fbce51455c0268cbc3ae568d011d947d8cb1d2bb7c9fb",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "claude/mailbox/GEMINI_DEEP_RESEARCH_BRIEF_LOCAL_AI_TEACHING.md",
+      "root": "claude/mailbox",
+      "filename": "GEMINI_DEEP_RESEARCH_BRIEF_LOCAL_AI_TEACHING.md",
+      "extension": ".md",
+      "size_bytes": 8259,
+      "mtime_iso": "2026-02-24T06:13:05.184509+00:00",
+      "sha256": "58016ceef2981f71463caf939d4de75bb5cd4acdb956e1c693b0bc4a6f64c783",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "claude/mailbox/GEMINI_DEEP_RESEARCH_SOLANA.md",
+      "root": "claude/mailbox",
+      "filename": "GEMINI_DEEP_RESEARCH_SOLANA.md",
+      "extension": ".md",
+      "size_bytes": 2700,
+      "mtime_iso": "2026-02-17T19:51:14.799908+00:00",
+      "sha256": "001cb7674f559655dfc70d279bfc6e3fec74058a724a9f918797707e4a479412",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "claude/mailbox/GENRE_EXTRACTION_2026_02_21.md",
+      "root": "claude/mailbox",
+      "filename": "GENRE_EXTRACTION_2026_02_21.md",
+      "extension": ".md",
+      "size_bytes": 2074,
+      "mtime_iso": "2026-02-21T03:03:50.231032+00:00",
+      "sha256": "a6ec22c12cb0a80fc8599b3f449b1e31d9569cfd65df147303158b182d1c0947",
+      "workstream": "genre-extraction"
+    },
+    {
+      "path": "claude/mailbox/GENRE_EXTRACTION_2026_02_22.md",
+      "root": "claude/mailbox",
+      "filename": "GENRE_EXTRACTION_2026_02_22.md",
+      "extension": ".md",
+      "size_bytes": 31612,
+      "mtime_iso": "2026-02-22T02:43:03.254571+00:00",
+      "sha256": "2c88d895d0c75b0917f681eb19762a4d71d5dda7dca8da49f3507d4857e8c19e",
+      "workstream": "genre-extraction"
+    },
+    {
+      "path": "claude/mailbox/GENRE_EXTRACTION_2026_02_23.md",
+      "root": "claude/mailbox",
+      "filename": "GENRE_EXTRACTION_2026_02_23.md",
+      "extension": ".md",
+      "size_bytes": 31612,
+      "mtime_iso": "2026-02-23T02:56:26.216261+00:00",
+      "sha256": "5820c5459eb2579044302b909139449809380008dec79a585fefd4d6dbe389b5",
+      "workstream": "genre-extraction"
+    },
+    {
+      "path": "claude/mailbox/GENRE_EXTRACTION_2026_02_24.md",
+      "root": "claude/mailbox",
+      "filename": "GENRE_EXTRACTION_2026_02_24.md",
+      "extension": ".md",
+      "size_bytes": 24702,
+      "mtime_iso": "2026-02-24T07:22:07.686343+00:00",
+      "sha256": "86263d8cfc28f7dc8d722a6e68d09bb508e5d11d3da3684dbc07be35eb06ffbb",
+      "workstream": "genre-extraction"
+    },
+    {
+      "path": "claude/mailbox/GENRE_EXTRACTION_2026_02_25.md",
+      "root": "claude/mailbox",
+      "filename": "GENRE_EXTRACTION_2026_02_25.md",
+      "extension": ".md",
+      "size_bytes": 24589,
+      "mtime_iso": "2026-02-25T02:44:03.254913+00:00",
+      "sha256": "12171300129e798420c8b137280a4d92687bcc38bf8f5349bb23e7a32d869824",
+      "workstream": "genre-extraction"
+    },
+    {
+      "path": "claude/mailbox/genre_rerun_log.txt",
+      "root": "claude/mailbox",
+      "filename": "genre_rerun_log.txt",
+      "extension": ".txt",
+      "size_bytes": 1960,
+      "mtime_iso": "2026-02-24T07:22:09.559248+00:00",
+      "sha256": "27e76f4c4f6fd214617e6d02c963c845c0501c6c7650c00e1d4507e972f6b23c",
+      "workstream": "genre-extraction"
+    },
+    {
+      "path": "claude/mailbox/HANDOFF_AUDIT_LATEST.json",
+      "root": "claude/mailbox",
+      "filename": "HANDOFF_AUDIT_LATEST.json",
+      "extension": ".json",
+      "size_bytes": 32731,
+      "mtime_iso": "2026-02-25T21:10:20.896698+00:00",
+      "sha256": "2f61569e888699934275f0ad3d7a63da24cc2fc151545766c5ae6a6bfec062c1",
+      "workstream": "handoff-audit"
+    },
+    {
+      "path": "claude/mailbox/HANDOFF_AUDIT_LATEST.md",
+      "root": "claude/mailbox",
+      "filename": "HANDOFF_AUDIT_LATEST.md",
+      "extension": ".md",
+      "size_bytes": 8464,
+      "mtime_iso": "2026-02-25T21:10:20.896698+00:00",
+      "sha256": "b62306b1f38f59c0e28a258730911201d122311ede4192d3aec8784f21ce03fa",
+      "workstream": "handoff-audit"
+    },
+    {
+      "path": "claude/mailbox/KISS_PARITY_BRIEF_2026_02_06.md",
+      "root": "claude/mailbox",
+      "filename": "KISS_PARITY_BRIEF_2026_02_06.md",
+      "extension": ".md",
+      "size_bytes": 2584,
+      "mtime_iso": "2026-02-17T19:51:14.800838+00:00",
+      "sha256": "20487eb741f3761b4b9aa86db70212537fa198ee6ff3db88f72a22306288238b",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "claude/mailbox/LOCAL_AI_READINESS_LATEST.json",
+      "root": "claude/mailbox",
+      "filename": "LOCAL_AI_READINESS_LATEST.json",
+      "extension": ".json",
+      "size_bytes": 12725,
+      "mtime_iso": "2026-02-23T16:57:31.870244+00:00",
+      "sha256": "afa4443e3ffdf72b446c94944185f6db9482898fcca608c854e7782ed1e269af",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "claude/mailbox/LOCAL_AI_READINESS_LATEST.md",
+      "root": "claude/mailbox",
+      "filename": "LOCAL_AI_READINESS_LATEST.md",
+      "extension": ".md",
+      "size_bytes": 7914,
+      "mtime_iso": "2026-02-23T16:57:31.871244+00:00",
+      "sha256": "4ea379fe1697afabff1a36e85216aecbf5bb2aff2a4b29cee775980ebc188f69",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "claude/mailbox/Local_AI_Teaching_Framework_Research_Variant1of2.md",
+      "root": "claude/mailbox",
+      "filename": "Local_AI_Teaching_Framework_Research_Variant1of2.md",
+      "extension": ".md",
+      "size_bytes": 51255,
+      "mtime_iso": "2026-02-24T07:05:48.163252+00:00",
+      "sha256": "458cc5d8cfaf0b65c3c2e9486649377099efed920803750d853c6e93fbce73b8",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "claude/mailbox/Local_AI_Teaching_Framework_Research_Variant2of2.md",
+      "root": "claude/mailbox",
+      "filename": "Local_AI_Teaching_Framework_Research_Variant2of2.md",
+      "extension": ".md",
+      "size_bytes": 46807,
+      "mtime_iso": "2026-02-24T07:05:41.121319+00:00",
+      "sha256": "786ff592eefb2f8bbc76b1812c5b0e1b4f2556be07bdda22cef857be3be6e368",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "claude/mailbox/MAILBOX_CURRENT_STATE.md",
+      "root": "claude/mailbox",
+      "filename": "MAILBOX_CURRENT_STATE.md",
+      "extension": ".md",
+      "size_bytes": 1786,
+      "mtime_iso": "2026-02-23T16:57:13.761184+00:00",
+      "sha256": "1db3271280b11d7158554ef05167f33850ba5d7be3d618e9bdfd54e57b4e49a9",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "claude/mailbox/MAILBOX_HANDOFF_VERIFICATION_LATEST.md",
+      "root": "claude/mailbox",
+      "filename": "MAILBOX_HANDOFF_VERIFICATION_LATEST.md",
+      "extension": ".md",
+      "size_bytes": 1354,
+      "mtime_iso": "2026-02-25T20:02:39.412022+00:00",
+      "sha256": "c91d0ee1e9aa046dc255ef1c64527fe964cb95f0cfddbcc464c99f0756eaa90a",
+      "workstream": "mailbox-verification"
+    },
+    {
+      "path": "claude/mailbox/mailbox_manifest.json",
+      "root": "claude/mailbox",
+      "filename": "mailbox_manifest.json",
+      "extension": ".json",
+      "size_bytes": 2269,
+      "mtime_iso": "2026-02-23T16:57:13.760184+00:00",
+      "sha256": "9abbfcedd3fbe5dd3d6f433a661e5cbf3c7a2d4e1f00f6702314f2f996e1f5d2",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "claude/mailbox/POE_API_DUAL_DISCREPANCY_LATEST.json",
+      "root": "claude/mailbox",
+      "filename": "POE_API_DUAL_DISCREPANCY_LATEST.json",
+      "extension": ".json",
+      "size_bytes": 5487,
+      "mtime_iso": "2026-02-25T19:17:05.848799+00:00",
+      "sha256": "d81abc314661ea310d9e5da69172881dcd2986ae55200b4e576f067b509b2ec8",
+      "workstream": "poe-transport"
+    },
+    {
+      "path": "claude/mailbox/POE_API_DUAL_DISCREPANCY_LATEST.md",
+      "root": "claude/mailbox",
+      "filename": "POE_API_DUAL_DISCREPANCY_LATEST.md",
+      "extension": ".md",
+      "size_bytes": 3076,
+      "mtime_iso": "2026-02-25T19:17:05.849799+00:00",
+      "sha256": "659c693128b91b157776b5140e377050bf597663ab415683db07f6ee2c280d1d",
+      "workstream": "poe-transport"
+    },
+    {
+      "path": "claude/mailbox/POE_API_SETUP_PULL_LATEST.json",
+      "root": "claude/mailbox",
+      "filename": "POE_API_SETUP_PULL_LATEST.json",
+      "extension": ".json",
+      "size_bytes": 4025,
+      "mtime_iso": "2026-02-25T19:04:43.758677+00:00",
+      "sha256": "4294a8ec80efaef8005b91cb1ac1cc4db58785dc8116a1a2ab0fd0bce9ca30cc",
+      "workstream": "poe-transport"
+    },
+    {
+      "path": "claude/mailbox/POE_API_SETUP_PULL_LATEST.md",
+      "root": "claude/mailbox",
+      "filename": "POE_API_SETUP_PULL_LATEST.md",
+      "extension": ".md",
+      "size_bytes": 2685,
+      "mtime_iso": "2026-02-25T19:04:43.758677+00:00",
+      "sha256": "d3a523b11b6189824577760c0dea99c0fadca86a97a44b46f0ce697e5d2526bf",
+      "workstream": "poe-transport"
+    },
+    {
+      "path": "claude/mailbox/POE_CALLABILITY_REGISTRY_ACCOUNT_1.json",
+      "root": "claude/mailbox",
+      "filename": "POE_CALLABILITY_REGISTRY_ACCOUNT_1.json",
+      "extension": ".json",
+      "size_bytes": 42604,
+      "mtime_iso": "2026-02-25T18:27:00.169039+00:00",
+      "sha256": "5353c20f026a06ecbba143ebc14719ce1637c96d0ae17560e1798bc36d4cb889",
+      "workstream": "poe-transport"
+    },
+    {
+      "path": "claude/mailbox/POE_CALLABILITY_REGISTRY_ACCOUNT_1.md",
+      "root": "claude/mailbox",
+      "filename": "POE_CALLABILITY_REGISTRY_ACCOUNT_1.md",
+      "extension": ".md",
+      "size_bytes": 418,
+      "mtime_iso": "2026-02-25T18:27:00.169039+00:00",
+      "sha256": "1de9281b10e1fed376cb5b2f9d4f6e054fe39a89299cb81513845b67a1dd57d7",
+      "workstream": "poe-transport"
+    },
+    {
+      "path": "claude/mailbox/POE_CALLABILITY_REGISTRY_ACCOUNT_2.json",
+      "root": "claude/mailbox",
+      "filename": "POE_CALLABILITY_REGISTRY_ACCOUNT_2.json",
+      "extension": ".json",
+      "size_bytes": 42688,
+      "mtime_iso": "2026-02-25T18:29:29.360763+00:00",
+      "sha256": "d93c3d99171c97b48ff01b6847072444c05e22ac8a2fb35fe173324fb43cb5bc",
+      "workstream": "poe-transport"
+    },
+    {
+      "path": "claude/mailbox/POE_CALLABILITY_REGISTRY_ACCOUNT_2.md",
+      "root": "claude/mailbox",
+      "filename": "POE_CALLABILITY_REGISTRY_ACCOUNT_2.md",
+      "extension": ".md",
+      "size_bytes": 418,
+      "mtime_iso": "2026-02-25T18:29:29.360763+00:00",
+      "sha256": "9ce5bd6ccff8face59a53f641fa818667cd2b62f8a2063f8ba2d9cbb47f7f0b1",
+      "workstream": "poe-transport"
+    },
+    {
+      "path": "claude/mailbox/POE_CALLABILITY_REGISTRY_LATEST.json",
+      "root": "claude/mailbox",
+      "filename": "POE_CALLABILITY_REGISTRY_LATEST.json",
+      "extension": ".json",
+      "size_bytes": 42688,
+      "mtime_iso": "2026-02-25T18:29:29.360763+00:00",
+      "sha256": "d93c3d99171c97b48ff01b6847072444c05e22ac8a2fb35fe173324fb43cb5bc",
+      "workstream": "poe-transport"
+    },
+    {
+      "path": "claude/mailbox/POE_CALLABILITY_REGISTRY_LATEST.md",
+      "root": "claude/mailbox",
+      "filename": "POE_CALLABILITY_REGISTRY_LATEST.md",
+      "extension": ".md",
+      "size_bytes": 418,
+      "mtime_iso": "2026-02-25T18:29:29.360763+00:00",
+      "sha256": "9ce5bd6ccff8face59a53f641fa818667cd2b62f8a2063f8ba2d9cbb47f7f0b1",
+      "workstream": "poe-transport"
+    },
+    {
+      "path": "claude/mailbox/POE_CALLABILITY_TARGETED_SAMPLE.json",
+      "root": "claude/mailbox",
+      "filename": "POE_CALLABILITY_TARGETED_SAMPLE.json",
+      "extension": ".json",
+      "size_bytes": 2825,
+      "mtime_iso": "2026-02-25T19:04:43.760676+00:00",
+      "sha256": "f1a5301bb1177700df2e4ff334fbe017f80b0716171f6abcb1068c08240f88d7",
+      "workstream": "poe-transport"
+    },
+    {
+      "path": "claude/mailbox/POE_CALLABILITY_TARGETED_SAMPLE.md",
+      "root": "claude/mailbox",
+      "filename": "POE_CALLABILITY_TARGETED_SAMPLE.md",
+      "extension": ".md",
+      "size_bytes": 490,
+      "mtime_iso": "2026-02-25T19:04:43.760676+00:00",
+      "sha256": "221ff6b1421d38a0e9e79aa242647156ae01c17e7a8609a9751ffb55b54cf9d4",
+      "workstream": "poe-transport"
+    },
+    {
+      "path": "claude/mailbox/POE_CALLABILITY_TARGETED_SAMPLE_ACCOUNT_1.json",
+      "root": "claude/mailbox",
+      "filename": "POE_CALLABILITY_TARGETED_SAMPLE_ACCOUNT_1.json",
+      "extension": ".json",
+      "size_bytes": 2825,
+      "mtime_iso": "2026-02-25T19:14:15.238113+00:00",
+      "sha256": "47474ce978383708f2e32d5dbbdcc166618a6f20af2407c971b4f13cc10e47de",
+      "workstream": "poe-transport"
+    },
+    {
+      "path": "claude/mailbox/POE_CALLABILITY_TARGETED_SAMPLE_ACCOUNT_1.md",
+      "root": "claude/mailbox",
+      "filename": "POE_CALLABILITY_TARGETED_SAMPLE_ACCOUNT_1.md",
+      "extension": ".md",
+      "size_bytes": 490,
+      "mtime_iso": "2026-02-25T19:14:15.240248+00:00",
+      "sha256": "30634b59ece175324e4d06e8c2d22db790696ac450e24db2038bfc02621dde3e",
+      "workstream": "poe-transport"
+    },
+    {
+      "path": "claude/mailbox/POE_CALLABILITY_TARGETED_SAMPLE_ACCOUNT_2.json",
+      "root": "claude/mailbox",
+      "filename": "POE_CALLABILITY_TARGETED_SAMPLE_ACCOUNT_2.json",
+      "extension": ".json",
+      "size_bytes": 2825,
+      "mtime_iso": "2026-02-25T19:17:05.846797+00:00",
+      "sha256": "c78cbc7dbb3e1e0746791a1d6d09a0f1a139dc66c33e4c8f934c5e677071eb49",
+      "workstream": "poe-transport"
+    },
+    {
+      "path": "claude/mailbox/POE_CALLABILITY_TARGETED_SAMPLE_ACCOUNT_2.md",
+      "root": "claude/mailbox",
+      "filename": "POE_CALLABILITY_TARGETED_SAMPLE_ACCOUNT_2.md",
+      "extension": ".md",
+      "size_bytes": 490,
+      "mtime_iso": "2026-02-25T19:17:05.847805+00:00",
+      "sha256": "48d73431d5fb3acd5fb3a2cea94c01e43140dd44d288456d0ba1a393d055352c",
+      "workstream": "poe-transport"
+    },
+    {
+      "path": "claude/mailbox/POE_LANE_LATEST.json",
+      "root": "claude/mailbox",
+      "filename": "POE_LANE_LATEST.json",
+      "extension": ".json",
+      "size_bytes": 273,
+      "mtime_iso": "2026-02-23T17:01:03.798256+00:00",
+      "sha256": "0af0588311fa8e6de5391ff69bf2ecfde2bc8fad190dc185041ff783928115f8",
+      "workstream": "poe-transport"
+    },
+    {
+      "path": "claude/mailbox/POE_LANE_LATEST.md",
+      "root": "claude/mailbox",
+      "filename": "POE_LANE_LATEST.md",
+      "extension": ".md",
+      "size_bytes": 199,
+      "mtime_iso": "2026-02-23T17:01:03.798256+00:00",
+      "sha256": "5005ea65e0cbedb03eb1d0cd0b5dd84e3e096395156ade4d3a0de8714e0390b3",
+      "workstream": "poe-transport"
+    },
+    {
+      "path": "claude/mailbox/POE_SDK_LATEST.json",
+      "root": "claude/mailbox",
+      "filename": "POE_SDK_LATEST.json",
+      "extension": ".json",
+      "size_bytes": 211,
+      "mtime_iso": "2026-02-23T16:56:43.560741+00:00",
+      "sha256": "b1d687c509cb78a7cb49a42f8046c74d93ddee49c53d3e46654ef17e3eb54ec2",
+      "workstream": "poe-transport"
+    },
+    {
+      "path": "claude/mailbox/POE_SDK_LATEST.md",
+      "root": "claude/mailbox",
+      "filename": "POE_SDK_LATEST.md",
+      "extension": ".md",
+      "size_bytes": 156,
+      "mtime_iso": "2026-02-23T16:56:43.561740+00:00",
+      "sha256": "c415521203cb9c05930daa868526c1fd6139e130afccd95d22d99437c9fc367e",
+      "workstream": "poe-transport"
+    },
+    {
+      "path": "claude/mailbox/POE_TRANSPORT_AUDIT_LATEST.json",
+      "root": "claude/mailbox",
+      "filename": "POE_TRANSPORT_AUDIT_LATEST.json",
+      "extension": ".json",
+      "size_bytes": 2605,
+      "mtime_iso": "2026-02-25T18:15:05.901041+00:00",
+      "sha256": "90eb0ade1596e431915643f0a1ee57c6120e73241a3fb05407b0d7b69d93d83e",
+      "workstream": "poe-transport"
+    },
+    {
+      "path": "claude/mailbox/POE_TRANSPORT_AUDIT_LATEST.md",
+      "root": "claude/mailbox",
+      "filename": "POE_TRANSPORT_AUDIT_LATEST.md",
+      "extension": ".md",
+      "size_bytes": 740,
+      "mtime_iso": "2026-02-25T18:15:05.901041+00:00",
+      "sha256": "84233bd8c4c48cf80fb513f1c8afd29cd2cdd7010b4a5d7ad63ff909989448a1",
+      "workstream": "poe-transport"
+    },
+    {
+      "path": "claude/mailbox/PRE_SCM_REVIEW_CLAUDE_RESPONSE_2026_02_26.json",
+      "root": "claude/mailbox",
+      "filename": "PRE_SCM_REVIEW_CLAUDE_RESPONSE_2026_02_26.json",
+      "extension": ".json",
+      "size_bytes": 5530,
+      "mtime_iso": "2026-02-26T00:52:21.645149+00:00",
+      "sha256": "4e3be491edcdbb58e3a0de3a9dcbf1ed05ba18d5037a7520fae853dbb54014b0",
+      "workstream": "scm-triage"
+    },
+    {
+      "path": "claude/mailbox/PRE_SCM_TRIAGE_EXHAUSTIVE_REVIEW_2026_02_25.json",
+      "root": "claude/mailbox",
+      "filename": "PRE_SCM_TRIAGE_EXHAUSTIVE_REVIEW_2026_02_25.json",
+      "extension": ".json",
+      "size_bytes": 35171,
+      "mtime_iso": "2026-02-25T22:03:33.352422+00:00",
+      "sha256": "cd11de703788850a44c05d5db517fb7040ba23cee16ba2dc0fc94bdb74160dd8",
+      "workstream": "scm-triage"
+    },
+    {
+      "path": "claude/mailbox/SCM_TRIAGE_PLAN.json",
+      "root": "claude/mailbox",
+      "filename": "SCM_TRIAGE_PLAN.json",
+      "extension": ".json",
+      "size_bytes": 1398,
+      "mtime_iso": "2026-02-25T17:36:50.258483+00:00",
+      "sha256": "f5b32288d11887b4063317795228e8e3449dbc7b7d6a32ef9a32b3d48fa0d699",
+      "workstream": "scm-triage"
+    },
+    {
+      "path": "claude/mailbox/SCM_TRIAGE_SNAPSHOT_2026_02_25T17_36_38Z.md",
+      "root": "claude/mailbox",
+      "filename": "SCM_TRIAGE_SNAPSHOT_2026_02_25T17_36_38Z.md",
+      "extension": ".md",
+      "size_bytes": 9083,
+      "mtime_iso": "2026-02-25T17:36:38.955475+00:00",
+      "sha256": "9c491a35e75a0165522befcac85287ca131d4e0fa084237b25c941aedd01733c",
+      "workstream": "scm-triage"
+    },
+    {
+      "path": "claude/mailbox/SCM_TRIAGE_SNAPSHOT_2026_02_25T17_36_50Z.md",
+      "root": "claude/mailbox",
+      "filename": "SCM_TRIAGE_SNAPSHOT_2026_02_25T17_36_50Z.md",
+      "extension": ".md",
+      "size_bytes": 9282,
+      "mtime_iso": "2026-02-25T17:36:50.548224+00:00",
+      "sha256": "e9a0a5ec9ffc23f7715a720443784b751a859b9831b49610945a8c46cf94742d",
+      "workstream": "scm-triage"
+    },
+    {
+      "path": "claude/mailbox/SCM_TRIAGE_SNAPSHOT_LATEST.md",
+      "root": "claude/mailbox",
+      "filename": "SCM_TRIAGE_SNAPSHOT_LATEST.md",
+      "extension": ".md",
+      "size_bytes": 9282,
+      "mtime_iso": "2026-02-25T17:36:50.548224+00:00",
+      "sha256": "e9a0a5ec9ffc23f7715a720443784b751a859b9831b49610945a8c46cf94742d",
+      "workstream": "scm-triage"
+    },
+    {
+      "path": "claude/mailbox/SESSION_CONTEXT_APPENDIX_2026_02_06.md",
+      "root": "claude/mailbox",
+      "filename": "SESSION_CONTEXT_APPENDIX_2026_02_06.md",
+      "extension": ".md",
+      "size_bytes": 3008,
+      "mtime_iso": "2026-02-17T19:51:14.804864+00:00",
+      "sha256": "60bc29a6904d3c0d5dc1f2f76e1dcd257420426f1bd0f4a5f9127ad94070a5e8",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "claude/mailbox/SESSION_CONTEXT_CHRONICLE_2026_02_06.md",
+      "root": "claude/mailbox",
+      "filename": "SESSION_CONTEXT_CHRONICLE_2026_02_06.md",
+      "extension": ".md",
+      "size_bytes": 2851,
+      "mtime_iso": "2026-02-17T19:51:14.805871+00:00",
+      "sha256": "4ebd5bc8ec03354f68185983375de39ea2edc0d6333410d2ca504fe0e18ea04a",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "claude/mailbox/SESSION_CONTEXT_CHRONICLE_2026_02_09.md",
+      "root": "claude/mailbox",
+      "filename": "SESSION_CONTEXT_CHRONICLE_2026_02_09.md",
+      "extension": ".md",
+      "size_bytes": 8961,
+      "mtime_iso": "2026-02-17T19:51:14.807880+00:00",
+      "sha256": "d89689da2b5bbffba7e997eed4d5f473e6fdb705cb1729c22db1ddc837109643",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "claude/mailbox/SESSION_HANDOFF_2026_02_10_CLAUDE_CODE_OPUS_SETUP.md",
+      "root": "claude/mailbox",
+      "filename": "SESSION_HANDOFF_2026_02_10_CLAUDE_CODE_OPUS_SETUP.md",
+      "extension": ".md",
+      "size_bytes": 2244,
+      "mtime_iso": "2026-02-17T19:51:14.807880+00:00",
+      "sha256": "4d4f3838b12e9658aa6f352730eb2902ff36b0fcb6fe626a466dd935d96142fc",
+      "workstream": "session-handoff"
+    },
+    {
+      "path": "claude/mailbox/SESSION_HANDOFF_2026_02_18_VS2026_TRIO_LEARNING_CACHE.md",
+      "root": "claude/mailbox",
+      "filename": "SESSION_HANDOFF_2026_02_18_VS2026_TRIO_LEARNING_CACHE.md",
+      "extension": ".md",
+      "size_bytes": 4988,
+      "mtime_iso": "2026-02-25T20:46:36.568982+00:00",
+      "sha256": "a75319b0cc0a4edee2636f0511db922c598348ff9eca10c5480fa56ce29bbfba",
+      "workstream": "session-handoff"
+    },
+    {
+      "path": "claude/mailbox/SESSION_HANDOFF_2026_02_25_CODEX_MAILBOX_SCM_PROGRESS.md",
+      "root": "claude/mailbox",
+      "filename": "SESSION_HANDOFF_2026_02_25_CODEX_MAILBOX_SCM_PROGRESS.md",
+      "extension": ".md",
+      "size_bytes": 1987,
+      "mtime_iso": "2026-02-25T20:01:36.145335+00:00",
+      "sha256": "e01a0584df4d268ee070d5a73c584b16281c9cf2caa33209710016f03c3c4021",
+      "workstream": "session-handoff"
+    },
+    {
+      "path": "claude/mailbox/SESSION_HANDOFF_2026_02_25_HANDOFF_AUDIT_GATE_WIRED.md",
+      "root": "claude/mailbox",
+      "filename": "SESSION_HANDOFF_2026_02_25_HANDOFF_AUDIT_GATE_WIRED.md",
+      "extension": ".md",
+      "size_bytes": 1754,
+      "mtime_iso": "2026-02-25T20:19:20.924897+00:00",
+      "sha256": "6c7ae12eda197f73ee895dde507aa94f897635671fff2b00adc0f44b4f36326a",
+      "workstream": "session-handoff"
+    },
+    {
+      "path": "claude/mailbox/SESSION_HANDOFF_2026_02_25_PRE_SCM_TRIAGE_EXHAUSTIVE_REVIEW.md",
+      "root": "claude/mailbox",
+      "filename": "SESSION_HANDOFF_2026_02_25_PRE_SCM_TRIAGE_EXHAUSTIVE_REVIEW.md",
+      "extension": ".md",
+      "size_bytes": 16840,
+      "mtime_iso": "2026-02-25T22:03:33.364094+00:00",
+      "sha256": "5bc72e8e2934f32b5dd4b8ea32a7934a6940d6d1aa1f463b7f97a12e5116d318",
+      "workstream": "session-handoff"
+    },
+    {
+      "path": "claude/mailbox/SESSION_HANDOFF_2026_02_26_PRE_SCM_REVIEW_CLAUDE_RESPONSE.md",
+      "root": "claude/mailbox",
+      "filename": "SESSION_HANDOFF_2026_02_26_PRE_SCM_REVIEW_CLAUDE_RESPONSE.md",
+      "extension": ".md",
+      "size_bytes": 9210,
+      "mtime_iso": "2026-02-26T01:14:24.667134+00:00",
+      "sha256": "270fbee2af864b7070a46df3faa61ecf73705ba248890e630bc1f5eea112d2d3",
+      "workstream": "session-handoff"
+    },
+    {
+      "path": "claude/mailbox/SESSION_HANDOFF_2026_1_9_CLAUDE_SKILL_AUDIT.md",
+      "root": "claude/mailbox",
+      "filename": "SESSION_HANDOFF_2026_1_9_CLAUDE_SKILL_AUDIT.md",
+      "extension": ".md",
+      "size_bytes": 506,
+      "mtime_iso": "2026-02-17T19:51:14.808865+00:00",
+      "sha256": "783852158994f6ae958e3d9f09d0a6bd97a50f7c38fff188c553f845d082c438",
+      "workstream": "session-handoff"
+    },
+    {
+      "path": "claude/mailbox/SESSION_SYNC_INDEX_2026_02_09.json",
+      "root": "claude/mailbox",
+      "filename": "SESSION_SYNC_INDEX_2026_02_09.json",
+      "extension": ".json",
+      "size_bytes": 2122,
+      "mtime_iso": "2026-02-17T19:51:14.810867+00:00",
+      "sha256": "ecee411290d124a492da14ef134ae73a94bc56b175421f9ec068dad9bfec4eef",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "claude/mailbox/SESSION_SYNC_PACKET_2026_02_09.md",
+      "root": "claude/mailbox",
+      "filename": "SESSION_SYNC_PACKET_2026_02_09.md",
+      "extension": ".md",
+      "size_bytes": 6531,
+      "mtime_iso": "2026-02-17T19:51:14.811785+00:00",
+      "sha256": "5724d42318cb643b5042c3ca5782cb74fdbae7c0068296d880761599f4951939",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "claude/mailbox/SFA_CROSS_REFERENCE_SCAN.md",
+      "root": "claude/mailbox",
+      "filename": "SFA_CROSS_REFERENCE_SCAN.md",
+      "extension": ".md",
+      "size_bytes": 5272,
+      "mtime_iso": "2026-02-23T18:41:11.666946+00:00",
+      "sha256": "be481132c8779a0c9a2220bdf2027a9a588f97f9eec23be01bef11e9b4fe972d",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "claude/mailbox/SFA_FORGE_DIGEST.md",
+      "root": "claude/mailbox",
+      "filename": "SFA_FORGE_DIGEST.md",
+      "extension": ".md",
+      "size_bytes": 5498,
+      "mtime_iso": "2026-02-23T18:41:25.993369+00:00",
+      "sha256": "17725959a68f308e301e2adb6ffc7c9290c082a6e1ca3349679a6ef123f5f7e3",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "claude/mailbox/skill_audit_claude_2026-02-09T22-01-52Z.json",
+      "root": "claude/mailbox",
+      "filename": "skill_audit_claude_2026-02-09T22-01-52Z.json",
+      "extension": ".json",
+      "size_bytes": 1559,
+      "mtime_iso": "2026-02-17T19:51:14.828789+00:00",
+      "sha256": "f61e92c537c75fd049966b6882ed564165cc96c32f65459a075bf9e7d8157091",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "claude/mailbox/SKILLS_PARITY_DISCREPANCY_2026_02_06.md",
+      "root": "claude/mailbox",
+      "filename": "SKILLS_PARITY_DISCREPANCY_2026_02_06.md",
+      "extension": ".md",
+      "size_bytes": 3790,
+      "mtime_iso": "2026-02-17T19:51:14.812786+00:00",
+      "sha256": "2dce78c0e7ce7d0ad00e37e43cdf8882e1a6518bb3b650c1a05e9c3897900ec2",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "claude/mailbox/skills_parity_map_2026_02_06.json",
+      "root": "claude/mailbox",
+      "filename": "skills_parity_map_2026_02_06.json",
+      "extension": ".json",
+      "size_bytes": 4330,
+      "mtime_iso": "2026-02-17T19:51:14.829921+00:00",
+      "sha256": "485a03b9856682dfc6fbed276f901fbeb0212e684a6aab8feafe89b447069098",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "claude/mailbox/TETRAGRAMMATON_PACKET.md",
+      "root": "claude/mailbox",
+      "filename": "TETRAGRAMMATON_PACKET.md",
+      "extension": ".md",
+      "size_bytes": 19506,
+      "mtime_iso": "2026-02-23T16:57:13.768184+00:00",
+      "sha256": "030ddf7f2de7e3e24d50d971899ea6984efa77490701a3c78b92ab97f9a4dd1c",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "codex/mailbox/.tmp_fixture_eval/claude_missing_description/expected.json",
+      "root": "codex/mailbox",
+      "filename": "expected.json",
+      "extension": ".json",
+      "size_bytes": 87,
+      "mtime_iso": "2026-02-24T08:42:11.548982+00:00",
+      "sha256": "bd4bff498c9576dfd62ec29b7d5a36f397f4d7ec49700a2d9e8bc7c6a9d55385",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "codex/mailbox/.tmp_fixture_eval/claude_missing_description/SKILL.md",
+      "root": "codex/mailbox",
+      "filename": "SKILL.md",
+      "extension": ".md",
+      "size_bytes": 38,
+      "mtime_iso": "2026-02-24T08:42:11.548982+00:00",
+      "sha256": "ad7e9e9eb9f158cbc457fe3b289cf217342b1e4e697f7596ce922d196fcbd532",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "codex/mailbox/.tmp_fixture_eval/claude_missing_frontmatter/expected.json",
+      "root": "codex/mailbox",
+      "filename": "expected.json",
+      "extension": ".json",
+      "size_bytes": 87,
+      "mtime_iso": "2026-02-24T08:42:11.550983+00:00",
+      "sha256": "bd4bff498c9576dfd62ec29b7d5a36f397f4d7ec49700a2d9e8bc7c6a9d55385",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "codex/mailbox/.tmp_fixture_eval/claude_missing_frontmatter/SKILL.md",
+      "root": "codex/mailbox",
+      "filename": "SKILL.md",
+      "extension": ".md",
+      "size_bytes": 22,
+      "mtime_iso": "2026-02-24T08:42:11.551983+00:00",
+      "sha256": "cbddd6e178b472b5dd2c433274ccb04134798976d71f90481350872bead7e734",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "codex/mailbox/.tmp_fixture_eval/codex_missing_agents_yaml/expected.json",
+      "root": "codex/mailbox",
+      "filename": "expected.json",
+      "extension": ".json",
+      "size_bytes": 85,
+      "mtime_iso": "2026-02-24T08:42:11.554983+00:00",
+      "sha256": "1cad1bd92b6ec499a2c2b869c001dda03acc5f6a63fcfabc8746f61337245a41",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "codex/mailbox/.tmp_fixture_eval/codex_missing_agents_yaml/SKILL.md",
+      "root": "codex/mailbox",
+      "filename": "SKILL.md",
+      "extension": ".md",
+      "size_bytes": 62,
+      "mtime_iso": "2026-02-24T08:42:11.554983+00:00",
+      "sha256": "17f599f1968533f77b552e02486a417e699b008fcd66c2c4068e575ab7f00d5c",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "codex/mailbox/.tmp_fixture_eval/codex_missing_assets_dir/agents/openai.yaml",
+      "root": "codex/mailbox",
+      "filename": "openai.yaml",
+      "extension": ".yaml",
+      "size_bytes": 120,
+      "mtime_iso": "2026-02-24T08:42:11.559984+00:00",
+      "sha256": "b3c24e01eb1eb8d8b451a90b006569bb57f69970c842a8899d50fb586dd7a970",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "codex/mailbox/.tmp_fixture_eval/codex_missing_assets_dir/expected.json",
+      "root": "codex/mailbox",
+      "filename": "expected.json",
+      "extension": ".json",
+      "size_bytes": 84,
+      "mtime_iso": "2026-02-24T08:42:11.557983+00:00",
+      "sha256": "3d01264433372f684102b12b11dbfc6e32cdb6783e6a3bf67a75b65d6e3a573b",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "codex/mailbox/.tmp_fixture_eval/codex_missing_assets_dir/SKILL.md",
+      "root": "codex/mailbox",
+      "filename": "SKILL.md",
+      "extension": ".md",
+      "size_bytes": 61,
+      "mtime_iso": "2026-02-24T08:42:11.558983+00:00",
+      "sha256": "dabfecb71e663c54fc45ed0a435653d3bb3ac12359b5e47c8a400840573626b4",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "codex/mailbox/.tmp_fixture_eval/missing_assets/agents/openai.yaml",
+      "root": "codex/mailbox",
+      "filename": "openai.yaml",
+      "extension": ".yaml",
+      "size_bytes": 103,
+      "mtime_iso": "2026-02-24T08:42:11.563493+00:00",
+      "sha256": "8d9eb3e9ececa777ec5be904da2abca2fcf11aad828f82d503e4b1385a1039ec",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "codex/mailbox/.tmp_fixture_eval/missing_assets/expected.json",
+      "root": "codex/mailbox",
+      "filename": "expected.json",
+      "extension": ".json",
+      "size_bytes": 84,
+      "mtime_iso": "2026-02-24T08:42:11.561487+00:00",
+      "sha256": "3d01264433372f684102b12b11dbfc6e32cdb6783e6a3bf67a75b65d6e3a573b",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "codex/mailbox/.tmp_fixture_eval/missing_assets/SKILL.md",
+      "root": "codex/mailbox",
+      "filename": "SKILL.md",
+      "extension": ".md",
+      "size_bytes": 99,
+      "mtime_iso": "2026-02-24T08:42:11.562492+00:00",
+      "sha256": "d2bf9c8b45cd77ef2ea2dc978504decbb871da0604a733882fe53cd9d3f5cf4e",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "codex/mailbox/.tmp_fixture_eval/missing_openai_yaml/expected.json",
+      "root": "codex/mailbox",
+      "filename": "expected.json",
+      "extension": ".json",
+      "size_bytes": 85,
+      "mtime_iso": "2026-02-24T08:42:11.566493+00:00",
+      "sha256": "1cad1bd92b6ec499a2c2b869c001dda03acc5f6a63fcfabc8746f61337245a41",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "codex/mailbox/.tmp_fixture_eval/missing_openai_yaml/SKILL.md",
+      "root": "codex/mailbox",
+      "filename": "SKILL.md",
+      "extension": ".md",
+      "size_bytes": 104,
+      "mtime_iso": "2026-02-24T08:42:11.567492+00:00",
+      "sha256": "8256c672daedb23be5bf3d3613ea284656a6f4d99542a94d6150bcd2d35a34eb",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "codex/mailbox/_KCP_HEADER_CLASSIFICATION.json",
+      "root": "codex/mailbox",
+      "filename": "_KCP_HEADER_CLASSIFICATION.json",
+      "extension": ".json",
+      "size_bytes": 398330,
+      "mtime_iso": "2026-02-24T08:10:42.004617+00:00",
+      "sha256": "95ee5ecd3c1bf69ed49ed8468d5e9d187eb0379ebf3ede235ff149db58e7628c",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "codex/mailbox/ACTUAL-WORKING-HANDOFFS/CONTEXT_SURGERY_2026_02_10.md",
+      "root": "codex/mailbox",
+      "filename": "CONTEXT_SURGERY_2026_02_10.md",
+      "extension": ".md",
+      "size_bytes": 2597,
+      "mtime_iso": "2026-02-17T19:51:14.945818+00:00",
+      "sha256": "9f05e1173d224714cd1a826ba8822e9f537e0331953349fe97b5c8a4f30bec4d",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "codex/mailbox/ACTUAL-WORKING-HANDOFFS/TASK_CLEANUP_2026_02_10.md",
+      "root": "codex/mailbox",
+      "filename": "TASK_CLEANUP_2026_02_10.md",
+      "extension": ".md",
+      "size_bytes": 2659,
+      "mtime_iso": "2026-02-17T19:51:14.946817+00:00",
+      "sha256": "a4a13e490fcd9669b9fa0b039e9ca99d8ff0dcc758201c6d2de4a09f1000dcde",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "codex/mailbox/ACTUAL-WORKING-HANDOFFS/TASK_RESPONSE_2026_02_10.md",
+      "root": "codex/mailbox",
+      "filename": "TASK_RESPONSE_2026_02_10.md",
+      "extension": ".md",
+      "size_bytes": 1547,
+      "mtime_iso": "2026-02-17T19:51:14.949818+00:00",
+      "sha256": "469f49de16c29254a7d4476e7e31d2fb38814d5e58e115e7fe7089fee846abe5",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "codex/mailbox/ACTUAL-WORKING-HANDOFFS/TASK_RESPONSE_SCRIPTS_PHASE1_2026_02_10.md",
+      "root": "codex/mailbox",
+      "filename": "TASK_RESPONSE_SCRIPTS_PHASE1_2026_02_10.md",
+      "extension": ".md",
+      "size_bytes": 792,
+      "mtime_iso": "2026-02-17T19:51:14.952348+00:00",
+      "sha256": "73275cc1ad07f00de636550698397c286607838c3998a41c7cea4e553651d712",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "codex/mailbox/ACTUAL-WORKING-HANDOFFS/TASK_SCRIPTS_PHASE1_2026_02_10.md",
+      "root": "codex/mailbox",
+      "filename": "TASK_SCRIPTS_PHASE1_2026_02_10.md",
+      "extension": ".md",
+      "size_bytes": 2115,
+      "mtime_iso": "2026-02-17T19:51:14.956310+00:00",
+      "sha256": "0776c8038f0b20cbfa6b828c07b3688c65d37b2c67e3f408ab091d93aaf665f1",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "codex/mailbox/archive/2026_02_07/e2e_matrix_claude_on_claude.json",
+      "root": "codex/mailbox",
+      "filename": "e2e_matrix_claude_on_claude.json",
+      "extension": ".json",
+      "size_bytes": 1424,
+      "mtime_iso": "2026-02-17T19:51:15.002334+00:00",
+      "sha256": "d101d344de0161b7c162e6950cac3f59b627ff960c8e5dd1dc864f367bff6658",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "codex/mailbox/archive/2026_02_07/e2e_matrix_claude_on_codex.json",
+      "root": "codex/mailbox",
+      "filename": "e2e_matrix_claude_on_codex.json",
+      "extension": ".json",
+      "size_bytes": 1423,
+      "mtime_iso": "2026-02-17T19:51:15.004325+00:00",
+      "sha256": "a2b0ace28186e4c40191dcf451287e95bf3cab597fdd4762e0d45cfc6a439600",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "codex/mailbox/archive/2026_02_07/e2e_matrix_codex_on_claude.json",
+      "root": "codex/mailbox",
+      "filename": "e2e_matrix_codex_on_claude.json",
+      "extension": ".json",
+      "size_bytes": 1423,
+      "mtime_iso": "2026-02-17T19:51:15.006346+00:00",
+      "sha256": "7b58111431fe511af738efbb843737241b20d1fa39f0fdb3c12d9da8d70e5527",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "codex/mailbox/archive/2026_02_07/e2e_matrix_codex_on_codex.json",
+      "root": "codex/mailbox",
+      "filename": "e2e_matrix_codex_on_codex.json",
+      "extension": ".json",
+      "size_bytes": 1422,
+      "mtime_iso": "2026-02-17T19:51:15.009335+00:00",
+      "sha256": "bc4cc9f8ae11177bef6465b360393e71a7505c602a9d8c1466180ac885330a88",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "codex/mailbox/archive/2026_02_07/e2e_matrix_compare_summary.json",
+      "root": "codex/mailbox",
+      "filename": "e2e_matrix_compare_summary.json",
+      "extension": ".json",
+      "size_bytes": 6256,
+      "mtime_iso": "2026-02-17T19:51:15.011336+00:00",
+      "sha256": "3d92bfabe794e18279a75596920159c84e98b3a6bfecc9fae93213a143a78686",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "codex/mailbox/archive/2026_02_07/MAILBOX_CURRENT_STATE_2026_02_06.md",
+      "root": "codex/mailbox",
+      "filename": "MAILBOX_CURRENT_STATE_2026_02_06.md",
+      "extension": ".md",
+      "size_bytes": 1012,
+      "mtime_iso": "2026-02-17T19:51:14.986319+00:00",
+      "sha256": "186e420955f2b083055441eb02b8d3d4f034180c2587fffe72d3c013e402a197",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "codex/mailbox/archive/2026_02_07/tatragrammatron_stamps_2026_02_06.json",
+      "root": "codex/mailbox",
+      "filename": "tatragrammatron_stamps_2026_02_06.json",
+      "extension": ".json",
+      "size_bytes": 806,
+      "mtime_iso": "2026-02-17T19:51:15.013334+00:00",
+      "sha256": "a98e900df7b0ddcaf72670bae2340ef8461081ac74785e0efa1d4c0f9bc77a66",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "codex/mailbox/archive/2026_02_07/tatragrammatron_stamps_2026_02_07.json",
+      "root": "codex/mailbox",
+      "filename": "tatragrammatron_stamps_2026_02_07.json",
+      "extension": ".json",
+      "size_bytes": 806,
+      "mtime_iso": "2026-02-17T19:51:15.014332+00:00",
+      "sha256": "0db408e79d01bdac62c12be4fe44f1a15c399a2dcbdb6afc1117038dbea86fb2",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "codex/mailbox/archive/2026_02_07/tatragrammatron_stamps_2026_02_07_auto_on_claude.json",
+      "root": "codex/mailbox",
+      "filename": "tatragrammatron_stamps_2026_02_07_auto_on_claude.json",
+      "extension": ".json",
+      "size_bytes": 7539,
+      "mtime_iso": "2026-02-17T19:51:15.016337+00:00",
+      "sha256": "96e04a3a676ad39a92c1dfd3a0b94fb27c2030cf9c9e26aa58f1639d5c130003",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "codex/mailbox/archive/2026_02_07/tatragrammatron_stamps_2026_02_07_claude.json",
+      "root": "codex/mailbox",
+      "filename": "tatragrammatron_stamps_2026_02_07_claude.json",
+      "extension": ".json",
+      "size_bytes": 7539,
+      "mtime_iso": "2026-02-17T19:51:15.019336+00:00",
+      "sha256": "66cd326e72f056f1ea209813de57d3db804e8e028f4a3d5597a56ce2b8d699d7",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "codex/mailbox/archive/2026_02_07/tatragrammatron_stamps_2026_02_07_claude_contract_on_codex.json",
+      "root": "codex/mailbox",
+      "filename": "tatragrammatron_stamps_2026_02_07_claude_contract_on_codex.json",
+      "extension": ".json",
+      "size_bytes": 7915,
+      "mtime_iso": "2026-02-17T19:51:15.022334+00:00",
+      "sha256": "af25ddec1e66a06baa9879d520c3dce0fa5bfb20321f0c7ae9568bf48097d9f3",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "codex/mailbox/archive/2026_02_07/tatragrammatron_stamps_2026_02_07_claude_v2.json",
+      "root": "codex/mailbox",
+      "filename": "tatragrammatron_stamps_2026_02_07_claude_v2.json",
+      "extension": ".json",
+      "size_bytes": 7539,
+      "mtime_iso": "2026-02-17T19:51:15.024335+00:00",
+      "sha256": "44a4891fea708d316f7e946611c066dc206146b99e2c62cbfa61c5c9e968f440",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "codex/mailbox/archive/2026_02_07/tatragrammatron_stamps_2026_02_07_codex.json",
+      "root": "codex/mailbox",
+      "filename": "tatragrammatron_stamps_2026_02_07_codex.json",
+      "extension": ".json",
+      "size_bytes": 7914,
+      "mtime_iso": "2026-02-17T19:51:15.029335+00:00",
+      "sha256": "11a5aeadf6df5f37ca8e7814c5ec255e5ebd79a25a183cd66b844504629d14cb",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "codex/mailbox/archive/2026_02_07/tatragrammatron_stamps_2026_02_07_codex_on_claude.json",
+      "root": "codex/mailbox",
+      "filename": "tatragrammatron_stamps_2026_02_07_codex_on_claude.json",
+      "extension": ".json",
+      "size_bytes": 7539,
+      "mtime_iso": "2026-02-17T19:51:15.031332+00:00",
+      "sha256": "0ac1632c038102a0cf857ec491b72d55ee5442632d671936c8d0d0b6020c8967",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "codex/mailbox/archive/2026_02_07/tatragrammatron_stamps_2026_02_07_codex_on_codex.json",
+      "root": "codex/mailbox",
+      "filename": "tatragrammatron_stamps_2026_02_07_codex_on_codex.json",
+      "extension": ".json",
+      "size_bytes": 7915,
+      "mtime_iso": "2026-02-17T19:51:15.033335+00:00",
+      "sha256": "4d70e259a378ab6bc29676e466b36f98fec46a62680425a4e82e407157a1031d",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "codex/mailbox/archive/2026_02_07/tatragrammatron_stamps_2026_02_07_codex_v3.json",
+      "root": "codex/mailbox",
+      "filename": "tatragrammatron_stamps_2026_02_07_codex_v3.json",
+      "extension": ".json",
+      "size_bytes": 7914,
+      "mtime_iso": "2026-02-17T19:51:15.035335+00:00",
+      "sha256": "a2e6a3e626cce05aa54339fb7a7742a714fd1c16fa4782902c731a476b88f61b",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "codex/mailbox/archive/2026_02_07/tatragrammatron_stamps_2026_02_07_full_codex.json",
+      "root": "codex/mailbox",
+      "filename": "tatragrammatron_stamps_2026_02_07_full_codex.json",
+      "extension": ".json",
+      "size_bytes": 8361,
+      "mtime_iso": "2026-02-17T19:51:15.039333+00:00",
+      "sha256": "38189f4261ff77b29992d1017a77fc6bb6b55ec5c0097ada2ff19b55ec797b89",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "codex/mailbox/archive/2026_02_07/tatragrammatron_stamps_2026_02_07_v2.json",
+      "root": "codex/mailbox",
+      "filename": "tatragrammatron_stamps_2026_02_07_v2.json",
+      "extension": ".json",
+      "size_bytes": 7914,
+      "mtime_iso": "2026-02-17T19:51:15.043336+00:00",
+      "sha256": "36b47fb7f45a8ef8aafb78438a5278663005bf35f9dad1f7fc69e8cdba25a56d",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "codex/mailbox/archive/2026_02_07/TATRAGRAMMATRON_SUMMARY_2026_02_06.md",
+      "root": "codex/mailbox",
+      "filename": "TATRAGRAMMATRON_SUMMARY_2026_02_06.md",
+      "extension": ".md",
+      "size_bytes": 1455,
+      "mtime_iso": "2026-02-17T19:51:14.987327+00:00",
+      "sha256": "ab6c76d953b19e56379f965db738376056f12bb2515fbe91c433fb402808861c",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "codex/mailbox/archive/2026_02_07/TATRAGRAMMATRON_SUMMARY_2026_02_07.md",
+      "root": "codex/mailbox",
+      "filename": "TATRAGRAMMATRON_SUMMARY_2026_02_07.md",
+      "extension": ".md",
+      "size_bytes": 1455,
+      "mtime_iso": "2026-02-17T19:51:14.988325+00:00",
+      "sha256": "c74a9bc2dd2f977022d618c6a40d0d7c1cceea811b351995d3712310a692bcdb",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "codex/mailbox/archive/2026_02_07/TATRAGRAMMATRON_SUMMARY_2026_02_07_AUTO_ON_CLAUDE.md",
+      "root": "codex/mailbox",
+      "filename": "TATRAGRAMMATRON_SUMMARY_2026_02_07_AUTO_ON_CLAUDE.md",
+      "extension": ".md",
+      "size_bytes": 1577,
+      "mtime_iso": "2026-02-17T19:51:14.989336+00:00",
+      "sha256": "f9c69317ee10ededdb83d1fc107d9cb3bc5b31dd2c60dd1c170756ef69f0fd46",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "codex/mailbox/archive/2026_02_07/TATRAGRAMMATRON_SUMMARY_2026_02_07_CLAUDE.md",
+      "root": "codex/mailbox",
+      "filename": "TATRAGRAMMATRON_SUMMARY_2026_02_07_CLAUDE.md",
+      "extension": ".md",
+      "size_bytes": 1577,
+      "mtime_iso": "2026-02-17T19:51:14.990327+00:00",
+      "sha256": "fac966260a7946a542609b1158b00a5dd63f42226129a0506680c166d6dc1079",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "codex/mailbox/archive/2026_02_07/TATRAGRAMMATRON_SUMMARY_2026_02_07_CLAUDE_CONTRACT_ON_CODEX.md",
+      "root": "codex/mailbox",
+      "filename": "TATRAGRAMMATRON_SUMMARY_2026_02_07_CLAUDE_CONTRACT_ON_CODEX.md",
+      "extension": ".md",
+      "size_bytes": 1577,
+      "mtime_iso": "2026-02-17T19:51:14.992335+00:00",
+      "sha256": "a47936d005063726d3f690c9f78fa7b8c4a62e72cff547941c2d7e708473ac53",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "codex/mailbox/archive/2026_02_07/TATRAGRAMMATRON_SUMMARY_2026_02_07_CLAUDE_V2.md",
+      "root": "codex/mailbox",
+      "filename": "TATRAGRAMMATRON_SUMMARY_2026_02_07_CLAUDE_V2.md",
+      "extension": ".md",
+      "size_bytes": 1577,
+      "mtime_iso": "2026-02-17T19:51:14.993337+00:00",
+      "sha256": "5836287af90867de92ff5953752470e7ff81c51c692d5df99bba0d5217b0c875",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "codex/mailbox/archive/2026_02_07/TATRAGRAMMATRON_SUMMARY_2026_02_07_CODEX.md",
+      "root": "codex/mailbox",
+      "filename": "TATRAGRAMMATRON_SUMMARY_2026_02_07_CODEX.md",
+      "extension": ".md",
+      "size_bytes": 1577,
+      "mtime_iso": "2026-02-17T19:51:14.993337+00:00",
+      "sha256": "54e5403e9fa773b2ec5438f872b8dbdfeadf697968b77e42cfc48213e4a53d8a",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "codex/mailbox/archive/2026_02_07/TATRAGRAMMATRON_SUMMARY_2026_02_07_CODEX_ON_CLAUDE.md",
+      "root": "codex/mailbox",
+      "filename": "TATRAGRAMMATRON_SUMMARY_2026_02_07_CODEX_ON_CLAUDE.md",
+      "extension": ".md",
+      "size_bytes": 1577,
+      "mtime_iso": "2026-02-17T19:51:14.994336+00:00",
+      "sha256": "0d0de20443054bf4ea801219d2534034062dcb3d9e79290ce350d008953030a3",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "codex/mailbox/archive/2026_02_07/TATRAGRAMMATRON_SUMMARY_2026_02_07_CODEX_ON_CODEX.md",
+      "root": "codex/mailbox",
+      "filename": "TATRAGRAMMATRON_SUMMARY_2026_02_07_CODEX_ON_CODEX.md",
+      "extension": ".md",
+      "size_bytes": 1577,
+      "mtime_iso": "2026-02-17T19:51:14.997335+00:00",
+      "sha256": "75946114ead0ec5f9a71e7a41864be002a1b50140e3736488accc0e68e2b87ee",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "codex/mailbox/archive/2026_02_07/TATRAGRAMMATRON_SUMMARY_2026_02_07_CODEX_V3.md",
+      "root": "codex/mailbox",
+      "filename": "TATRAGRAMMATRON_SUMMARY_2026_02_07_CODEX_V3.md",
+      "extension": ".md",
+      "size_bytes": 1577,
+      "mtime_iso": "2026-02-17T19:51:14.997335+00:00",
+      "sha256": "d0751168848ad6191dfde46fee0c88779c74497909a16bf61572fdba7560b5de",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "codex/mailbox/archive/2026_02_07/TATRAGRAMMATRON_SUMMARY_2026_02_07_FULL_CODEX.md",
+      "root": "codex/mailbox",
+      "filename": "TATRAGRAMMATRON_SUMMARY_2026_02_07_FULL_CODEX.md",
+      "extension": ".md",
+      "size_bytes": 1658,
+      "mtime_iso": "2026-02-17T19:51:14.999332+00:00",
+      "sha256": "e5ff48eeb79d2c0bc071ca2470978cc044b8afded984a7cd2ad2fb8feea7ec41",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "codex/mailbox/archive/2026_02_07/TATRAGRAMMATRON_SUMMARY_2026_02_07_V2.md",
+      "root": "codex/mailbox",
+      "filename": "TATRAGRAMMATRON_SUMMARY_2026_02_07_V2.md",
+      "extension": ".md",
+      "size_bytes": 1577,
+      "mtime_iso": "2026-02-17T19:51:15.001335+00:00",
+      "sha256": "c07f2fa0ca144b2a7bbe8aea243cd9abfb6b315aa17cf332174ccd9ac862eb5d",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "codex/mailbox/archive/2026_02_10_cleanup/claude_skill_audit_2026_02_07.json",
+      "root": "codex/mailbox",
+      "filename": "claude_skill_audit_2026_02_07.json",
+      "extension": ".json",
+      "size_bytes": 1482,
+      "mtime_iso": "2026-02-17T19:51:15.061336+00:00",
+      "sha256": "73185ba71f551681b53782b689d3c457e3cc657ae1da1a32758f11bc0d67f1bb",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "codex/mailbox/archive/2026_02_10_cleanup/KISS_PARITY_BRIEF_2026_02_06.md",
+      "root": "codex/mailbox",
+      "filename": "KISS_PARITY_BRIEF_2026_02_06.md",
+      "extension": ".md",
+      "size_bytes": 2584,
+      "mtime_iso": "2026-02-17T19:51:15.044336+00:00",
+      "sha256": "20487eb741f3761b4b9aa86db70212537fa198ee6ff3db88f72a22306288238b",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "codex/mailbox/archive/2026_02_10_cleanup/QUEUE_2026_02_07.md",
+      "root": "codex/mailbox",
+      "filename": "QUEUE_2026_02_07.md",
+      "extension": ".md",
+      "size_bytes": 1524,
+      "mtime_iso": "2026-02-17T19:51:15.047335+00:00",
+      "sha256": "b2720d5760bdadcf2399a5df505a65284b74c9780902f0dac516370ce4379983",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "codex/mailbox/archive/2026_02_10_cleanup/SESSION_CHRONICLE_2026_02_07.md",
+      "root": "codex/mailbox",
+      "filename": "SESSION_CHRONICLE_2026_02_07.md",
+      "extension": ".md",
+      "size_bytes": 4481,
+      "mtime_iso": "2026-02-17T19:51:15.049336+00:00",
+      "sha256": "4c382f52499ae2537fcdb05b99c7c0563b2d41a23a66b13420366c225d6eb30f",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "codex/mailbox/archive/2026_02_10_cleanup/SESSION_CONTEXT_APPENDIX_2026_02_06.md",
+      "root": "codex/mailbox",
+      "filename": "SESSION_CONTEXT_APPENDIX_2026_02_06.md",
+      "extension": ".md",
+      "size_bytes": 3008,
+      "mtime_iso": "2026-02-17T19:51:15.050336+00:00",
+      "sha256": "60bc29a6904d3c0d5dc1f2f76e1dcd257420426f1bd0f4a5f9127ad94070a5e8",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "codex/mailbox/archive/2026_02_10_cleanup/SESSION_CONTEXT_CHRONICLE_2026_02_06.md",
+      "root": "codex/mailbox",
+      "filename": "SESSION_CONTEXT_CHRONICLE_2026_02_06.md",
+      "extension": ".md",
+      "size_bytes": 2851,
+      "mtime_iso": "2026-02-17T19:51:15.053335+00:00",
+      "sha256": "4ebd5bc8ec03354f68185983375de39ea2edc0d6333410d2ca504fe0e18ea04a",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "codex/mailbox/archive/2026_02_10_cleanup/SKILLS_PARITY_DISCREPANCY_2026_02_06.md",
+      "root": "codex/mailbox",
+      "filename": "SKILLS_PARITY_DISCREPANCY_2026_02_06.md",
+      "extension": ".md",
+      "size_bytes": 3790,
+      "mtime_iso": "2026-02-17T19:51:15.053335+00:00",
+      "sha256": "2dce78c0e7ce7d0ad00e37e43cdf8882e1a6518bb3b650c1a05e9c3897900ec2",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "codex/mailbox/archive/2026_02_10_cleanup/skills_parity_map_2026_02_06.json",
+      "root": "codex/mailbox",
+      "filename": "skills_parity_map_2026_02_06.json",
+      "extension": ".json",
+      "size_bytes": 4330,
+      "mtime_iso": "2026-02-17T19:51:15.062335+00:00",
+      "sha256": "485a03b9856682dfc6fbed276f901fbeb0212e684a6aab8feafe89b447069098",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "codex/mailbox/archive/2026_02_10_cleanup/tatragrammatron_matrix_2026_02_07.json",
+      "root": "codex/mailbox",
+      "filename": "tatragrammatron_matrix_2026_02_07.json",
+      "extension": ".json",
+      "size_bytes": 1622,
+      "mtime_iso": "2026-02-17T19:51:15.065334+00:00",
+      "sha256": "3b3913b3fd201d85052b9df20b188e6c159e2445d452f64342affac3c5a9f83e",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "codex/mailbox/archive/2026_02_10_cleanup/TETRAGRAMMATON_PROGRESS_2026_02_06.md",
+      "root": "codex/mailbox",
+      "filename": "TETRAGRAMMATON_PROGRESS_2026_02_06.md",
+      "extension": ".md",
+      "size_bytes": 717,
+      "mtime_iso": "2026-02-17T19:51:15.056335+00:00",
+      "sha256": "1c2437eeb5db615764c391c0642ea70c3acfc11b2302584bc65d51705d70a2ec",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "codex/mailbox/archive/2026_02_10_cleanup/TOOLCHAIN_DOCTOR_REPORT_2026_02_07_174714.md",
+      "root": "codex/mailbox",
+      "filename": "TOOLCHAIN_DOCTOR_REPORT_2026_02_07_174714.md",
+      "extension": ".md",
+      "size_bytes": 377,
+      "mtime_iso": "2026-02-17T19:51:15.057336+00:00",
+      "sha256": "b87b795ae8e943f4edc800ee789db07c7455bfe153e6e0fc2e3cf03fd257f8ac",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "codex/mailbox/archive/2026_02_10_cleanup/TOOLCHAIN_DOCTOR_REPORT_2026_02_07_180524.md",
+      "root": "codex/mailbox",
+      "filename": "TOOLCHAIN_DOCTOR_REPORT_2026_02_07_180524.md",
+      "extension": ".md",
+      "size_bytes": 578,
+      "mtime_iso": "2026-02-17T19:51:15.057336+00:00",
+      "sha256": "b54e443dad1dc03be6a442a05069d20e56454c75c201a9582020082bc94aae9a",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "codex/mailbox/archive/2026_02_10_cleanup/TOOLCHAIN_DOCTOR_REPORT_2026_02_07_180604.md",
+      "root": "codex/mailbox",
+      "filename": "TOOLCHAIN_DOCTOR_REPORT_2026_02_07_180604.md",
+      "extension": ".md",
+      "size_bytes": 578,
+      "mtime_iso": "2026-02-17T19:51:15.059334+00:00",
+      "sha256": "fcfd160462d6bc11fd903b163a93bf1cfb994dbd18b7f3b27ed96781e422207d",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "codex/mailbox/archive/2026_02_10_cleanup/TOOLCHAIN_DOCTOR_REPORT_2026_02_07_194657.md",
+      "root": "codex/mailbox",
+      "filename": "TOOLCHAIN_DOCTOR_REPORT_2026_02_07_194657.md",
+      "extension": ".md",
+      "size_bytes": 621,
+      "mtime_iso": "2026-02-17T19:51:15.060334+00:00",
+      "sha256": "2d899fe9e994b43ebda356765f0a86e4af535c6c5064867ede1a1e4f689d1d4a",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "codex/mailbox/archive/2026_02_10_meta_cleanup/.tmp_fixture_eval/claude_missing_description/expected.json",
+      "root": "codex/mailbox",
+      "filename": "expected.json",
+      "extension": ".json",
+      "size_bytes": 86,
+      "mtime_iso": "2026-02-17T19:51:15.071352+00:00",
+      "sha256": "b25058423901d0b7cfcfdb86e0138bc83f766ccc6f7a341b6feda51a0b72f739",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "codex/mailbox/archive/2026_02_10_meta_cleanup/.tmp_fixture_eval/claude_missing_description/SKILL.md",
+      "root": "codex/mailbox",
+      "filename": "SKILL.md",
+      "extension": ".md",
+      "size_bytes": 37,
+      "mtime_iso": "2026-02-17T19:51:15.069352+00:00",
+      "sha256": "aefa2c87149aacbaef4f4a0edd02c03043df9797f191f8c7b4b7ef48d1aa7f48",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "codex/mailbox/archive/2026_02_10_meta_cleanup/.tmp_fixture_eval/claude_missing_frontmatter/expected.json",
+      "root": "codex/mailbox",
+      "filename": "expected.json",
+      "extension": ".json",
+      "size_bytes": 86,
+      "mtime_iso": "2026-02-17T19:51:15.074353+00:00",
+      "sha256": "b25058423901d0b7cfcfdb86e0138bc83f766ccc6f7a341b6feda51a0b72f739",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "codex/mailbox/archive/2026_02_10_meta_cleanup/.tmp_fixture_eval/claude_missing_frontmatter/SKILL.md",
+      "root": "codex/mailbox",
+      "filename": "SKILL.md",
+      "extension": ".md",
+      "size_bytes": 21,
+      "mtime_iso": "2026-02-17T19:51:15.073352+00:00",
+      "sha256": "5aa21cd4a52c424971614382af90d4bb5e3f88d71ff7ab9bbd30da72e917333b",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "codex/mailbox/archive/2026_02_10_meta_cleanup/.tmp_fixture_eval/codex_missing_agents_yaml/expected.json",
+      "root": "codex/mailbox",
+      "filename": "expected.json",
+      "extension": ".json",
+      "size_bytes": 84,
+      "mtime_iso": "2026-02-17T19:51:15.079352+00:00",
+      "sha256": "e0e659e7831a8e64263c28305d9302017969c67ab37e98805dd852504ea9d320",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "codex/mailbox/archive/2026_02_10_meta_cleanup/.tmp_fixture_eval/codex_missing_agents_yaml/SKILL.md",
+      "root": "codex/mailbox",
+      "filename": "SKILL.md",
+      "extension": ".md",
+      "size_bytes": 61,
+      "mtime_iso": "2026-02-17T19:51:15.075353+00:00",
+      "sha256": "82838fee3c1077315e91b9f5ff7067338ea5f7675b58a29686f6c11c2a97eab4",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "codex/mailbox/archive/2026_02_10_meta_cleanup/.tmp_fixture_eval/codex_missing_assets_dir/agents/openai.yaml",
+      "root": "codex/mailbox",
+      "filename": "openai.yaml",
+      "extension": ".yaml",
+      "size_bytes": 114,
+      "mtime_iso": "2026-02-19T21:57:06.510256+00:00",
+      "sha256": "8f853a7fa49a1689bcf72f6e4ec468f6e0395a73d29a90fecaec9c93832ba921",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "codex/mailbox/archive/2026_02_10_meta_cleanup/.tmp_fixture_eval/codex_missing_assets_dir/expected.json",
+      "root": "codex/mailbox",
+      "filename": "expected.json",
+      "extension": ".json",
+      "size_bytes": 83,
+      "mtime_iso": "2026-02-17T19:51:15.087890+00:00",
+      "sha256": "15e3542d97ce8979c648bbd68b0dd7ffe385a97b2dfdbe26170ef9e8b711dd4a",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "codex/mailbox/archive/2026_02_10_meta_cleanup/.tmp_fixture_eval/codex_missing_assets_dir/SKILL.md",
+      "root": "codex/mailbox",
+      "filename": "SKILL.md",
+      "extension": ".md",
+      "size_bytes": 60,
+      "mtime_iso": "2026-02-17T19:51:15.079352+00:00",
+      "sha256": "c72ad837207b5cdde00d7b1ead6c27437908b09ba7ca039fd9193e92cd140c2c",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "codex/mailbox/archive/2026_02_10_meta_cleanup/.tmp_fixture_eval/missing_assets/agents/openai.yaml",
+      "root": "codex/mailbox",
+      "filename": "openai.yaml",
+      "extension": ".yaml",
+      "size_bytes": 102,
+      "mtime_iso": "2026-02-17T19:51:15.089890+00:00",
+      "sha256": "0e046a2bdf0fd04f771fc091c37199ca0850b0e1383a3a433417e6f1a180d395",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "codex/mailbox/archive/2026_02_10_meta_cleanup/.tmp_fixture_eval/missing_assets/expected.json",
+      "root": "codex/mailbox",
+      "filename": "expected.json",
+      "extension": ".json",
+      "size_bytes": 83,
+      "mtime_iso": "2026-02-17T19:51:15.092890+00:00",
+      "sha256": "15e3542d97ce8979c648bbd68b0dd7ffe385a97b2dfdbe26170ef9e8b711dd4a",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "codex/mailbox/archive/2026_02_10_meta_cleanup/.tmp_fixture_eval/missing_assets/SKILL.md",
+      "root": "codex/mailbox",
+      "filename": "SKILL.md",
+      "extension": ".md",
+      "size_bytes": 98,
+      "mtime_iso": "2026-02-17T19:51:15.089890+00:00",
+      "sha256": "3d25976303c71182844399cd94ba87479378fd31227f1a9cd3e515d3601abfac",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "codex/mailbox/archive/2026_02_10_meta_cleanup/.tmp_fixture_eval/missing_openai_yaml/expected.json",
+      "root": "codex/mailbox",
+      "filename": "expected.json",
+      "extension": ".json",
+      "size_bytes": 84,
+      "mtime_iso": "2026-02-17T19:51:15.098890+00:00",
+      "sha256": "e0e659e7831a8e64263c28305d9302017969c67ab37e98805dd852504ea9d320",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "codex/mailbox/archive/2026_02_10_meta_cleanup/.tmp_fixture_eval/missing_openai_yaml/SKILL.md",
+      "root": "codex/mailbox",
+      "filename": "SKILL.md",
+      "extension": ".md",
+      "size_bytes": 103,
+      "mtime_iso": "2026-02-17T19:51:15.094890+00:00",
+      "sha256": "5668cdce7d5e56d1e520531f7ef5695619d2a64a25acb9a8d5bd38d9f5885c58",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "codex/mailbox/archive/2026_02_10_meta_cleanup/CLAUDE_IDE_HEALTH_LATEST.json",
+      "root": "codex/mailbox",
+      "filename": "CLAUDE_IDE_HEALTH_LATEST.json",
+      "extension": ".json",
+      "size_bytes": 1240,
+      "mtime_iso": "2026-02-17T19:51:15.100884+00:00",
+      "sha256": "2173fdf0a573b979fb0191c34d9d5db3ef8d2d3ad96b10c1d30e77abb0afdc78",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "codex/mailbox/archive/2026_02_10_meta_cleanup/CLAUDE_RUNBOOK_MATRIX.md",
+      "root": "codex/mailbox",
+      "filename": "CLAUDE_RUNBOOK_MATRIX.md",
+      "extension": ".md",
+      "size_bytes": 1900,
+      "mtime_iso": "2026-02-17T19:51:15.107884+00:00",
+      "sha256": "04d97fedbbba5cc0a53e6af8f638fd052520dd906178041e34e932019b46f139",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "codex/mailbox/archive/2026_02_10_meta_cleanup/CODEX_TO_CLAUDE_TASK_LATEST.json",
+      "root": "codex/mailbox",
+      "filename": "CODEX_TO_CLAUDE_TASK_LATEST.json",
+      "extension": ".json",
+      "size_bytes": 502,
+      "mtime_iso": "2026-02-17T19:51:15.109884+00:00",
+      "sha256": "9fca1a59769250cff45b34d1fda2696a2f903a5f1122d58fc1bd39abcdda6943",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "codex/mailbox/archive/2026_02_10_meta_cleanup/cross_audit_2026-02-09T22-01-52Z.json",
+      "root": "codex/mailbox",
+      "filename": "cross_audit_2026-02-09T22-01-52Z.json",
+      "extension": ".json",
+      "size_bytes": 1261,
+      "mtime_iso": "2026-02-17T19:51:15.146190+00:00",
+      "sha256": "9a42dca4163101f6bec47adcdd54dd71beec031ccde8cf5eb545e960e3554eae",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "codex/mailbox/archive/2026_02_10_meta_cleanup/hf_gemma_probe.json",
+      "root": "codex/mailbox",
+      "filename": "hf_gemma_probe.json",
+      "extension": ".json",
+      "size_bytes": 31987,
+      "mtime_iso": "2026-02-17T19:51:15.149185+00:00",
+      "sha256": "71836b7ae75ab8e6dacbfc4be7d9c5831ebee52a0e751df07ad843ec1ca1489a",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "codex/mailbox/archive/2026_02_10_meta_cleanup/HF_GEMMA_PROBE.md",
+      "root": "codex/mailbox",
+      "filename": "HF_GEMMA_PROBE.md",
+      "extension": ".md",
+      "size_bytes": 6329,
+      "mtime_iso": "2026-02-17T19:51:15.111883+00:00",
+      "sha256": "afa242a40ede7bc18f82a28fed2917b8248c4ab98c84446034e6c3e0cec571d2",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "codex/mailbox/archive/2026_02_10_meta_cleanup/HF_MCP_TOOLS_LATEST.json",
+      "root": "codex/mailbox",
+      "filename": "HF_MCP_TOOLS_LATEST.json",
+      "extension": ".json",
+      "size_bytes": 3483,
+      "mtime_iso": "2026-02-17T19:51:15.113887+00:00",
+      "sha256": "68104f75b1c70c98a97013c797906fb097e8edcc0582bbcd7e4ed1b35c605df3",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "codex/mailbox/archive/2026_02_10_meta_cleanup/HF_PREP_LATEST.json",
+      "root": "codex/mailbox",
+      "filename": "HF_PREP_LATEST.json",
+      "extension": ".json",
+      "size_bytes": 1888,
+      "mtime_iso": "2026-02-17T19:51:15.115891+00:00",
+      "sha256": "39c8583f9fdb6f9f726cb2bddd1582468263fdba2d7e1ab84b49aa7e8eadf65d",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "codex/mailbox/archive/2026_02_10_meta_cleanup/HF_PREP_LATEST.md",
+      "root": "codex/mailbox",
+      "filename": "HF_PREP_LATEST.md",
+      "extension": ".md",
+      "size_bytes": 866,
+      "mtime_iso": "2026-02-17T19:51:15.118890+00:00",
+      "sha256": "f498afe614687d526089e8615513f9687e85154211e745b7d7b4743a0805fb31",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "codex/mailbox/archive/2026_02_10_meta_cleanup/mailbox_manifest.json",
+      "root": "codex/mailbox",
+      "filename": "mailbox_manifest.json",
+      "extension": ".json",
+      "size_bytes": 4242,
+      "mtime_iso": "2026-02-17T19:51:15.151442+00:00",
+      "sha256": "de9ded16353e4e603d80b9b048d68e50afac777f2964093173e02cd6c74a0455",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "codex/mailbox/archive/2026_02_10_meta_cleanup/MATRIARCH_PROTOCOL_DUPLICATE.md",
+      "root": "codex/mailbox",
+      "filename": "MATRIARCH_PROTOCOL_DUPLICATE.md",
+      "extension": ".md",
+      "size_bytes": 8469,
+      "mtime_iso": "2026-02-17T19:51:15.120898+00:00",
+      "sha256": "d110cba908f9f1a01a66f139ce88b0a82b3776e3d5cb76f603ac2a8ea256ec31",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "codex/mailbox/archive/2026_02_10_meta_cleanup/META_POLISHER_VALIDATION_SUMMARY.json",
+      "root": "codex/mailbox",
+      "filename": "META_POLISHER_VALIDATION_SUMMARY.json",
+      "extension": ".json",
+      "size_bytes": 1249,
+      "mtime_iso": "2026-02-17T19:51:15.122891+00:00",
+      "sha256": "5805508754eba4ea27987084cfebbf05a0d4493736a19e356741c164938d60e5",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "codex/mailbox/archive/2026_02_10_meta_cleanup/NEXT_OLD.md",
+      "root": "codex/mailbox",
+      "filename": "NEXT_OLD.md",
+      "extension": ".md",
+      "size_bytes": 11163,
+      "mtime_iso": "2026-02-17T19:51:15.124891+00:00",
+      "sha256": "45235eed3122ac02ebce2773349e3f63889593f30f4686fa66193b0806781509",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "codex/mailbox/archive/2026_02_10_meta_cleanup/REFINEMENT_PASS_2026_02_01.md",
+      "root": "codex/mailbox",
+      "filename": "REFINEMENT_PASS_2026_02_01.md",
+      "extension": ".md",
+      "size_bytes": 1846,
+      "mtime_iso": "2026-02-17T19:51:15.130886+00:00",
+      "sha256": "875f87a44cafb2cc68bac61e03684df097913911b9a38ff49ab506954725368b",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "codex/mailbox/archive/2026_02_10_meta_cleanup/SESSION_CHECKPOINT_2026_02_01.md",
+      "root": "codex/mailbox",
+      "filename": "SESSION_CHECKPOINT_2026_02_01.md",
+      "extension": ".md",
+      "size_bytes": 5459,
+      "mtime_iso": "2026-02-24T07:35:18.253712+00:00",
+      "sha256": "1cdc0a9f1c8562c9df7f837648861dc2c1866870a5f382f4c173c043d7ae8675",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "codex/mailbox/archive/2026_02_10_meta_cleanup/SESSION_HANDOFF_2026_02_09_CROSS_SKILL_AUDIT.md",
+      "root": "codex/mailbox",
+      "filename": "SESSION_HANDOFF_2026_02_09_CROSS_SKILL_AUDIT.md",
+      "extension": ".md",
+      "size_bytes": 410,
+      "mtime_iso": "2026-02-17T19:51:15.134881+00:00",
+      "sha256": "e124fbf8c81db40b00d6cadbf8d5ade318de8fdb409f61018ff52fbc2450e97a",
+      "workstream": "session-handoff"
+    },
+    {
+      "path": "codex/mailbox/archive/2026_02_10_meta_cleanup/SESSION_HANDOFF_2026_02_09_RESPONSE.md",
+      "root": "codex/mailbox",
+      "filename": "SESSION_HANDOFF_2026_02_09_RESPONSE.md",
+      "extension": ".md",
+      "size_bytes": 1815,
+      "mtime_iso": "2026-02-17T19:51:15.137165+00:00",
+      "sha256": "00cc89e9bc15d0e0c6d4b14e731d67983121cdcfbd21c2cd472f87aecd4b1fc8",
+      "workstream": "session-handoff"
+    },
+    {
+      "path": "codex/mailbox/archive/2026_02_10_meta_cleanup/SESSION_HANDOFF_2026_1_9_CROSS_AUDIT.md",
+      "root": "codex/mailbox",
+      "filename": "SESSION_HANDOFF_2026_1_9_CROSS_AUDIT.md",
+      "extension": ".md",
+      "size_bytes": 467,
+      "mtime_iso": "2026-02-17T19:51:15.138170+00:00",
+      "sha256": "d8beebb22638a8a2cb406306e87e25af6fc4c82cd5e411402882d073f820dce6",
+      "workstream": "session-handoff"
+    },
+    {
+      "path": "codex/mailbox/archive/2026_02_10_meta_cleanup/skill_audit_claude_2026-02-09T22-01-52Z.json",
+      "root": "codex/mailbox",
+      "filename": "skill_audit_claude_2026-02-09T22-01-52Z.json",
+      "extension": ".json",
+      "size_bytes": 1559,
+      "mtime_iso": "2026-02-17T19:51:15.152458+00:00",
+      "sha256": "f61e92c537c75fd049966b6882ed564165cc96c32f65459a075bf9e7d8157091",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "codex/mailbox/archive/2026_02_10_meta_cleanup/skill_audit_codex_2026-02-09T22-01-52Z.json",
+      "root": "codex/mailbox",
+      "filename": "skill_audit_codex_2026-02-09T22-01-52Z.json",
+      "extension": ".json",
+      "size_bytes": 2076,
+      "mtime_iso": "2026-02-17T19:51:15.154458+00:00",
+      "sha256": "00f1ac8c5b0a449393de107ded68e88c50859df40cab62de4efa6f088453ef2b",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "codex/mailbox/archive/2026_02_10_meta_cleanup/tatragrammatron_stamps_latest_codex.json",
+      "root": "codex/mailbox",
+      "filename": "tatragrammatron_stamps_latest_codex.json",
+      "extension": ".json",
+      "size_bytes": 10599,
+      "mtime_iso": "2026-02-17T19:51:15.156456+00:00",
+      "sha256": "910d8239dd62debd2def3f4db72118fda5c03b084019b1727db1a9d23ca3ca0d",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "codex/mailbox/archive/2026_02_10_meta_cleanup/TATRAGRAMMATRON_SUMMARY_LATEST_CODEX.md",
+      "root": "codex/mailbox",
+      "filename": "TATRAGRAMMATRON_SUMMARY_LATEST_CODEX.md",
+      "extension": ".md",
+      "size_bytes": 2067,
+      "mtime_iso": "2026-02-17T19:51:15.139172+00:00",
+      "sha256": "6cd647b410f769114f0cfc491dd983abff35f8253437656c8233c4326bfb162d",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "codex/mailbox/archive/2026_02_10_meta_cleanup/tatragrammatron_trend.json",
+      "root": "codex/mailbox",
+      "filename": "tatragrammatron_trend.json",
+      "extension": ".json",
+      "size_bytes": 1606,
+      "mtime_iso": "2026-02-17T19:51:15.158458+00:00",
+      "sha256": "6c59e2b18ee264c6552f19124fff76aac14d4128deda470c462a170a4ddd5b58",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "codex/mailbox/archive/2026_02_10_meta_cleanup/TETRAGRAMMATON_PACKET.md",
+      "root": "codex/mailbox",
+      "filename": "TETRAGRAMMATON_PACKET.md",
+      "extension": ".md",
+      "size_bytes": 33705,
+      "mtime_iso": "2026-02-17T19:51:15.144174+00:00",
+      "sha256": "d19bf9224022261ec3280c7d058615688a8cf8bb560f4fb9c5f19dfae9826b26",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "codex/mailbox/archive/2026_02_10_meta_cleanup/TOOLCHAIN_DOCTOR_REPORT_2026_02_09_170154.md",
+      "root": "codex/mailbox",
+      "filename": "TOOLCHAIN_DOCTOR_REPORT_2026_02_09_170154.md",
+      "extension": ".md",
+      "size_bytes": 764,
+      "mtime_iso": "2026-02-17T19:51:15.145182+00:00",
+      "sha256": "62d922f258af85616aaa36126aea31e7bf4d15a9fbde7271534c31dc1570e7b8",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "codex/mailbox/archive/art-cop/ART_COP_REPORT_2026-02-20T16-06-26-734Z.md",
+      "root": "codex/mailbox",
+      "filename": "ART_COP_REPORT_2026-02-20T16-06-26-734Z.md",
+      "extension": ".md",
+      "size_bytes": 614,
+      "mtime_iso": "2026-02-20T16:06:26.735699+00:00",
+      "sha256": "2b6f9c8c7768e911102d76fdac947aed7186a00fa41613002da3d36429a41cb9",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "codex/mailbox/archive/art-cop/ART_COP_REPORT_2026-02-20T16-07-15-350Z.md",
+      "root": "codex/mailbox",
+      "filename": "ART_COP_REPORT_2026-02-20T16-07-15-350Z.md",
+      "extension": ".md",
+      "size_bytes": 733,
+      "mtime_iso": "2026-02-20T16:07:15.364397+00:00",
+      "sha256": "e632e6cfb2ec356a9fc508f09b9a5b05c48016ac708d9c5b4bcf60df1cafb6f4",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "codex/mailbox/archive/art-cop/ART_COP_REPORT_2026-02-20T16-07-44-647Z.md",
+      "root": "codex/mailbox",
+      "filename": "ART_COP_REPORT_2026-02-20T16-07-44-647Z.md",
+      "extension": ".md",
+      "size_bytes": 614,
+      "mtime_iso": "2026-02-20T16:07:44.649224+00:00",
+      "sha256": "35268fa7c7cde553e05df4673ce9fe4b2622faf6466210156c2984030c6664c9",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "codex/mailbox/archive/art-cop/ART_COP_REPORT_2026-02-20T16-23-23-457Z.md",
+      "root": "codex/mailbox",
+      "filename": "ART_COP_REPORT_2026-02-20T16-23-23-457Z.md",
+      "extension": ".md",
+      "size_bytes": 791,
+      "mtime_iso": "2026-02-20T16:23:23.458012+00:00",
+      "sha256": "7ca11ef31fae66d463256f757ad30fd64494a7360428802fa376f683b1c73224",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "codex/mailbox/archive/art-cop/ART_COP_REPORT_2026-02-20T16-26-18-501Z.md",
+      "root": "codex/mailbox",
+      "filename": "ART_COP_REPORT_2026-02-20T16-26-18-501Z.md",
+      "extension": ".md",
+      "size_bytes": 939,
+      "mtime_iso": "2026-02-20T16:26:18.501818+00:00",
+      "sha256": "c28156d48d0a299f59694e484bce92a1231868a3b47a05639fe083e42f3045dd",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "codex/mailbox/archive/CLAUDE_RESPONSE_TRAIN_STOP_2026_02_05.md",
+      "root": "codex/mailbox",
+      "filename": "CLAUDE_RESPONSE_TRAIN_STOP_2026_02_05.md",
+      "extension": ".md",
+      "size_bytes": 1882,
+      "mtime_iso": "2026-02-17T19:51:15.161456+00:00",
+      "sha256": "ac4c13922db20b3cf13afc9da48a10a319c6b887f0f5121aebe57de57b1cede2",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "codex/mailbox/archive/CLAUDE_SKILLS_SPEC_VALIDATION_2026_02_05.md",
+      "root": "codex/mailbox",
+      "filename": "CLAUDE_SKILLS_SPEC_VALIDATION_2026_02_05.md",
+      "extension": ".md",
+      "size_bytes": 1795,
+      "mtime_iso": "2026-02-17T19:51:15.165672+00:00",
+      "sha256": "667e76370b9a24a1db9c4410f3c0a316913bee597f2e995eff35a8d2506210b0",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "codex/mailbox/archive/EXECUTION_ORDER_RECAP_2026_02_05.md",
+      "root": "codex/mailbox",
+      "filename": "EXECUTION_ORDER_RECAP_2026_02_05.md",
+      "extension": ".md",
+      "size_bytes": 600,
+      "mtime_iso": "2026-02-17T19:51:15.167215+00:00",
+      "sha256": "fa8c73d65fb80f9e90b42e55ca43fbf6032b8703141d2c18abbbdc30c97e0833",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "codex/mailbox/archive/hf-rankings/HF_MODEL_RANKING_2026-02-20T16-06-28-180Z.md",
+      "root": "codex/mailbox",
+      "filename": "HF_MODEL_RANKING_2026-02-20T16-06-28-180Z.md",
+      "extension": ".md",
+      "size_bytes": 5069,
+      "mtime_iso": "2026-02-20T16:06:28.195015+00:00",
+      "sha256": "e85e13bc90b9a21062a3899f2fafe8dda68cb3815b8204e6bf19b3f3793c787c",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "codex/mailbox/archive/hf-rankings/HF_MODEL_RANKING_2026-02-20T16-07-37-824Z.md",
+      "root": "codex/mailbox",
+      "filename": "HF_MODEL_RANKING_2026-02-20T16-07-37-824Z.md",
+      "extension": ".md",
+      "size_bytes": 5094,
+      "mtime_iso": "2026-02-20T16:07:37.832135+00:00",
+      "sha256": "41b20e90b8a01e3d3fc7fdfcbe8d3a5a02c4db279112253893ae59eea826edcc",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "codex/mailbox/archive/hf-rankings/HF_MODEL_RANKING_2026-02-20T16-23-24-670Z.md",
+      "root": "codex/mailbox",
+      "filename": "HF_MODEL_RANKING_2026-02-20T16-23-24-670Z.md",
+      "extension": ".md",
+      "size_bytes": 5862,
+      "mtime_iso": "2026-02-20T16:23:24.697595+00:00",
+      "sha256": "c290adec509d91c089ec97089a85460eed5e76571f876272ede65d4cde82c5f7",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "codex/mailbox/archive/hf-rankings/HF_MODEL_RANKING_2026-02-20T16-24-11-610Z.md",
+      "root": "codex/mailbox",
+      "filename": "HF_MODEL_RANKING_2026-02-20T16-24-11-610Z.md",
+      "extension": ".md",
+      "size_bytes": 5984,
+      "mtime_iso": "2026-02-20T16:24:11.617280+00:00",
+      "sha256": "bb3c6d16400a4fafbbb613bb4b7fd32686fc0727e5090e4e3683a7f7cdb1e855",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "codex/mailbox/archive/hf-rankings/HF_MODEL_RANKING_2026-02-20T16-24-53-945Z.md",
+      "root": "codex/mailbox",
+      "filename": "HF_MODEL_RANKING_2026-02-20T16-24-53-945Z.md",
+      "extension": ".md",
+      "size_bytes": 5983,
+      "mtime_iso": "2026-02-20T16:24:53.951940+00:00",
+      "sha256": "68a6cd28ba7947cf16ed4271461ab2b65fe0c6cc2072ba9f1dffa58193056f84",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "codex/mailbox/archive/hf-rankings/HF_MODEL_RANKING_2026-02-20T16-25-16-408Z.md",
+      "root": "codex/mailbox",
+      "filename": "HF_MODEL_RANKING_2026-02-20T16-25-16-408Z.md",
+      "extension": ".md",
+      "size_bytes": 5981,
+      "mtime_iso": "2026-02-20T16:25:16.413235+00:00",
+      "sha256": "7742f5eac05775e39526f7df093e3e91a8370eb9d724e3375b6540f7cf219e31",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "codex/mailbox/archive/hf-rankings/HF_MODEL_RANKING_2026-02-20T16-26-18-401Z.md",
+      "root": "codex/mailbox",
+      "filename": "HF_MODEL_RANKING_2026-02-20T16-26-18-401Z.md",
+      "extension": ".md",
+      "size_bytes": 6050,
+      "mtime_iso": "2026-02-20T16:26:18.407760+00:00",
+      "sha256": "1c4cc0ec3a11e10c7d040b2f87aa23f79edf0ce2473fd8b89c600dc91c89ee82",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "codex/mailbox/archive/MAILBOX_CMD_POLICY_2026_02_05.md",
+      "root": "codex/mailbox",
+      "filename": "MAILBOX_CMD_POLICY_2026_02_05.md",
+      "extension": ".md",
+      "size_bytes": 499,
+      "mtime_iso": "2026-02-17T19:51:15.169205+00:00",
+      "sha256": "7e8b6503b80317186263fcd549f9d2d6d39cbfd380856d5e925db9e0f886a266",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "codex/mailbox/archive/MAILBOX_CONSOLIDATED_2026_02_05.md",
+      "root": "codex/mailbox",
+      "filename": "MAILBOX_CONSOLIDATED_2026_02_05.md",
+      "extension": ".md",
+      "size_bytes": 5523,
+      "mtime_iso": "2026-02-17T19:51:15.171205+00:00",
+      "sha256": "b19c13495b96a81bfa59a11e75942f7d551d3f407059310c467dc2c968db69a5",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "codex/mailbox/archive/SESSION_HANDOFF_2026_02_05_PARITY_DELTA.md",
+      "root": "codex/mailbox",
+      "filename": "SESSION_HANDOFF_2026_02_05_PARITY_DELTA.md",
+      "extension": ".md",
+      "size_bytes": 2302,
+      "mtime_iso": "2026-02-17T19:51:15.172204+00:00",
+      "sha256": "37eb94ed829062692c13cfd6e6aaa557300b415bb8b405244d8899b7747cbaa1",
+      "workstream": "session-handoff"
+    },
+    {
+      "path": "codex/mailbox/archive/skill_audit_claude_2026_02_05.json",
+      "root": "codex/mailbox",
+      "filename": "skill_audit_claude_2026_02_05.json",
+      "extension": ".json",
+      "size_bytes": 1335,
+      "mtime_iso": "2026-02-17T19:51:15.178212+00:00",
+      "sha256": "c43e3147f48d4d45eab73693c24ac4ceaaffc5e1fe9a14118ab02457169eb5da",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "codex/mailbox/archive/skill_audit_codex_2026_02_05.json",
+      "root": "codex/mailbox",
+      "filename": "skill_audit_codex_2026_02_05.json",
+      "extension": ".json",
+      "size_bytes": 1422,
+      "mtime_iso": "2026-02-17T19:51:15.179210+00:00",
+      "sha256": "bc4cc9f8ae11177bef6465b360393e71a7505c602a9d8c1466180ac885330a88",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "codex/mailbox/archive/TRAIN_STOP_AUDIT_PRE_SEND_2026_02_05.md",
+      "root": "codex/mailbox",
+      "filename": "TRAIN_STOP_AUDIT_PRE_SEND_2026_02_05.md",
+      "extension": ".md",
+      "size_bytes": 4239,
+      "mtime_iso": "2026-02-17T19:51:15.175206+00:00",
+      "sha256": "62510f920e58a199dd27427d65d5a6e528d954ae22ffcab2b2b461d78fbf1196",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "codex/mailbox/archive/TRAIN_STOP_HANDOFF_CONSOLIDATED_2026_02_05.md",
+      "root": "codex/mailbox",
+      "filename": "TRAIN_STOP_HANDOFF_CONSOLIDATED_2026_02_05.md",
+      "extension": ".md",
+      "size_bytes": 10054,
+      "mtime_iso": "2026-02-17T19:51:15.177207+00:00",
+      "sha256": "d97b74327b346e9b898dc287e7c9163e67f4c13b2822feccd2046650384bd487",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "codex/mailbox/ART_COP_REPORT_LATEST.md",
+      "root": "codex/mailbox",
+      "filename": "ART_COP_REPORT_LATEST.md",
+      "extension": ".md",
+      "size_bytes": 939,
+      "mtime_iso": "2026-02-20T16:26:18.500812+00:00",
+      "sha256": "c28156d48d0a299f59694e484bce92a1231868a3b47a05639fe083e42f3045dd",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "codex/mailbox/cache/hf-model-rankings-latest.json",
+      "root": "codex/mailbox",
+      "filename": "hf-model-rankings-latest.json",
+      "extension": ".json",
+      "size_bytes": 54195,
+      "mtime_iso": "2026-02-20T16:26:18.407760+00:00",
+      "sha256": "2ca65c80ae7dbac5cbcf1dd091cc99ad2b3c5c0249d27515e9de4272ed022ace",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "codex/mailbox/CLAUDE_IDE_HEALTH_LATEST.json",
+      "root": "codex/mailbox",
+      "filename": "CLAUDE_IDE_HEALTH_LATEST.json",
+      "extension": ".json",
+      "size_bytes": 1236,
+      "mtime_iso": "2026-02-17T19:51:14.957310+00:00",
+      "sha256": "9f2a1e872a600baa54a601e94f8a46a545809470d961680ceff4cd66dd7c37b9",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "codex/mailbox/CODEKILLER_CROSSREF_AUDIT.md",
+      "root": "codex/mailbox",
+      "filename": "CODEKILLER_CROSSREF_AUDIT.md",
+      "extension": ".md",
+      "size_bytes": 1980,
+      "mtime_iso": "2026-02-24T04:15:54.121393+00:00",
+      "sha256": "94a96884fe203b629611a335d197377bfdf70bde40687b7254cdd44cc664b1c2",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "codex/mailbox/CODEKILLER_GATE_STATUS.json",
+      "root": "codex/mailbox",
+      "filename": "CODEKILLER_GATE_STATUS.json",
+      "extension": ".json",
+      "size_bytes": 18914,
+      "mtime_iso": "2026-02-24T05:04:33.899886+00:00",
+      "sha256": "06d06c976915080ec0c333df4d2365d613a63659c7ba06e2f62d30a5d88827bb",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "codex/mailbox/CODEKILLER_GATE_STATUS.md",
+      "root": "codex/mailbox",
+      "filename": "CODEKILLER_GATE_STATUS.md",
+      "extension": ".md",
+      "size_bytes": 5915,
+      "mtime_iso": "2026-02-24T05:04:33.900886+00:00",
+      "sha256": "9d3a44588ba1d7628c25f0163054ea923cc690530f42617745983bc94c3d3147",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "codex/mailbox/CODEKILLER_REMEDIATION_PREREQ_LATEST.json",
+      "root": "codex/mailbox",
+      "filename": "CODEKILLER_REMEDIATION_PREREQ_LATEST.json",
+      "extension": ".json",
+      "size_bytes": 18914,
+      "mtime_iso": "2026-02-24T05:03:50.693942+00:00",
+      "sha256": "549eb31ba288f2c276d66d3a551862af3bdc34726f670b261d3c0fa2894a1eac",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "codex/mailbox/CODEKILLER_REMEDIATION_PREREQ_LATEST.md",
+      "root": "codex/mailbox",
+      "filename": "CODEKILLER_REMEDIATION_PREREQ_LATEST.md",
+      "extension": ".md",
+      "size_bytes": 5915,
+      "mtime_iso": "2026-02-24T05:03:50.694944+00:00",
+      "sha256": "28270980a917b91cf3547e01fc0417195ad7a4fe0a4558352ae99a3df923a863",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "codex/mailbox/CODEKILLER_REPAIR_MANIFEST.md",
+      "root": "codex/mailbox",
+      "filename": "CODEKILLER_REPAIR_MANIFEST.md",
+      "extension": ".md",
+      "size_bytes": 4903,
+      "mtime_iso": "2026-02-24T04:16:17.654216+00:00",
+      "sha256": "678170d1c55e14ef435d69ec5d2a6d24253be65ed27a6727b9aec1d3583dac11",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "codex/mailbox/FIX_DEAD_CODE_WARNINGS.md",
+      "root": "codex/mailbox",
+      "filename": "FIX_DEAD_CODE_WARNINGS.md",
+      "extension": ".md",
+      "size_bytes": 1084,
+      "mtime_iso": "2026-02-17T19:51:14.959310+00:00",
+      "sha256": "7b1764ddc4fd4ff251877757abbd9db7196db3db0a9bc6431bb2dfc5a0efd01a",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "codex/mailbox/GENRE_DAEMON_NEXT_BATCH.txt",
+      "root": "codex/mailbox",
+      "filename": "GENRE_DAEMON_NEXT_BATCH.txt",
+      "extension": ".txt",
+      "size_bytes": 10993,
+      "mtime_iso": "2026-02-24T08:11:29.995438+00:00",
+      "sha256": "819761578094f855aa57f7df426b956e47bcf8669fe43890174bbfd30cf1846f",
+      "workstream": "genre-extraction"
+    },
+    {
+      "path": "codex/mailbox/HANDOFF_AUDIT_LATEST.json",
+      "root": "codex/mailbox",
+      "filename": "HANDOFF_AUDIT_LATEST.json",
+      "extension": ".json",
+      "size_bytes": 32731,
+      "mtime_iso": "2026-02-25T21:10:20.895691+00:00",
+      "sha256": "2f61569e888699934275f0ad3d7a63da24cc2fc151545766c5ae6a6bfec062c1",
+      "workstream": "handoff-audit"
+    },
+    {
+      "path": "codex/mailbox/HANDOFF_AUDIT_LATEST.md",
+      "root": "codex/mailbox",
+      "filename": "HANDOFF_AUDIT_LATEST.md",
+      "extension": ".md",
+      "size_bytes": 8464,
+      "mtime_iso": "2026-02-25T21:10:20.896698+00:00",
+      "sha256": "b62306b1f38f59c0e28a258730911201d122311ede4192d3aec8784f21ce03fa",
+      "workstream": "handoff-audit"
+    },
+    {
+      "path": "codex/mailbox/HF_MCP_TOOLS_LATEST.json",
+      "root": "codex/mailbox",
+      "filename": "HF_MCP_TOOLS_LATEST.json",
+      "extension": ".json",
+      "size_bytes": 3498,
+      "mtime_iso": "2026-02-23T16:09:22.257257+00:00",
+      "sha256": "d1596c845ea8b2a1139de267f3db53484fea2fe6acaade801ee034d62945a1f0",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "codex/mailbox/HF_MODEL_RANKING_LATEST.md",
+      "root": "codex/mailbox",
+      "filename": "HF_MODEL_RANKING_LATEST.md",
+      "extension": ".md",
+      "size_bytes": 6050,
+      "mtime_iso": "2026-02-20T16:26:18.407760+00:00",
+      "sha256": "1c4cc0ec3a11e10c7d040b2f87aa23f79edf0ce2473fd8b89c600dc91c89ee82",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "codex/mailbox/HF_PREP_LATEST.json",
+      "root": "codex/mailbox",
+      "filename": "HF_PREP_LATEST.json",
+      "extension": ".json",
+      "size_bytes": 1949,
+      "mtime_iso": "2026-02-23T16:09:21.525132+00:00",
+      "sha256": "5987a1e593427f9473d3822d1543b41bb1b74139fed7eccd56923b3d0f503c77",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "codex/mailbox/HF_PREP_LATEST.md",
+      "root": "codex/mailbox",
+      "filename": "HF_PREP_LATEST.md",
+      "extension": ".md",
+      "size_bytes": 936,
+      "mtime_iso": "2026-02-23T16:09:21.526132+00:00",
+      "sha256": "4a5b7e381909585a1ebeb90683f0706e6c7e69d9e5e797c4ea5329fc5e515dca",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "codex/mailbox/KCP_3_0_PYTHON_AUDIT.json",
+      "root": "codex/mailbox",
+      "filename": "KCP_3_0_PYTHON_AUDIT.json",
+      "extension": ".json",
+      "size_bytes": 38336,
+      "mtime_iso": "2026-02-24T01:59:04.578043+00:00",
+      "sha256": "dbfc79eb879e829a1b345333e5e548549f1755165b19be90ee2abe71d93a599c",
+      "workstream": "kcp-spectrum"
+    },
+    {
+      "path": "codex/mailbox/KCP_4_0_TYPESCRIPT_AUDIT.json",
+      "root": "codex/mailbox",
+      "filename": "KCP_4_0_TYPESCRIPT_AUDIT.json",
+      "extension": ".json",
+      "size_bytes": 41111,
+      "mtime_iso": "2026-02-24T01:59:04.588046+00:00",
+      "sha256": "5e157c25267fef811414f7b7512c94cdcabc4377a059363648ab89d390769e51",
+      "workstream": "kcp-spectrum"
+    },
+    {
+      "path": "codex/mailbox/KCP_5_0_POWERSHELL_AUDIT.json",
+      "root": "codex/mailbox",
+      "filename": "KCP_5_0_POWERSHELL_AUDIT.json",
+      "extension": ".json",
+      "size_bytes": 26552,
+      "mtime_iso": "2026-02-24T01:59:04.537042+00:00",
+      "sha256": "52f75f83868b8300105894f48a3aac619173d3e7b46d0773c6ff435f8024310c",
+      "workstream": "kcp-spectrum"
+    },
+    {
+      "path": "codex/mailbox/KCP_6_0_RUST_AUDIT.json",
+      "root": "codex/mailbox",
+      "filename": "KCP_6_0_RUST_AUDIT.json",
+      "extension": ".json",
+      "size_bytes": 15110,
+      "mtime_iso": "2026-02-24T01:59:04.526046+00:00",
+      "sha256": "b8b07c63e6620d092f0c387d0c890460f0f8ec9701f17ff7e45044aa65d25e47",
+      "workstream": "kcp-spectrum"
+    },
+    {
+      "path": "codex/mailbox/KCP_SPECTRUM_AUDIT.json",
+      "root": "codex/mailbox",
+      "filename": "KCP_SPECTRUM_AUDIT.json",
+      "extension": ".json",
+      "size_bytes": 24612,
+      "mtime_iso": "2026-02-24T08:14:16.717150+00:00",
+      "sha256": "4cbb4601b7cc2cf75fab95c8635297c0cf27a4814d58af863b5a7f3ae4bbffee",
+      "workstream": "kcp-spectrum"
+    },
+    {
+      "path": "codex/mailbox/LOCAL_AI_READINESS_LATEST.json",
+      "root": "codex/mailbox",
+      "filename": "LOCAL_AI_READINESS_LATEST.json",
+      "extension": ".json",
+      "size_bytes": 12725,
+      "mtime_iso": "2026-02-23T16:57:31.869242+00:00",
+      "sha256": "afa4443e3ffdf72b446c94944185f6db9482898fcca608c854e7782ed1e269af",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "codex/mailbox/LOCAL_AI_READINESS_LATEST.md",
+      "root": "codex/mailbox",
+      "filename": "LOCAL_AI_READINESS_LATEST.md",
+      "extension": ".md",
+      "size_bytes": 7914,
+      "mtime_iso": "2026-02-23T16:57:31.870244+00:00",
+      "sha256": "4ea379fe1697afabff1a36e85216aecbf5bb2aff2a4b29cee775980ebc188f69",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "codex/mailbox/MAILBOX_CURRENT_STATE.md",
+      "root": "codex/mailbox",
+      "filename": "MAILBOX_CURRENT_STATE.md",
+      "extension": ".md",
+      "size_bytes": 2625,
+      "mtime_iso": "2026-02-23T16:57:13.625112+00:00",
+      "sha256": "123eea2addc5211d699f813a63189e3dd3a8138fd618b69ea47cd4b5e24d56c9",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "codex/mailbox/MAILBOX_HANDOFF_VERIFICATION_LATEST.md",
+      "root": "codex/mailbox",
+      "filename": "MAILBOX_HANDOFF_VERIFICATION_LATEST.md",
+      "extension": ".md",
+      "size_bytes": 1343,
+      "mtime_iso": "2026-02-25T20:00:45.868140+00:00",
+      "sha256": "82402762c93f357bef6f24d0c093aaf0090b5dba21bbede77a3e9216c2ea9dc6",
+      "workstream": "mailbox-verification"
+    },
+    {
+      "path": "codex/mailbox/mailbox_manifest.json",
+      "root": "codex/mailbox",
+      "filename": "mailbox_manifest.json",
+      "extension": ".json",
+      "size_bytes": 10045,
+      "mtime_iso": "2026-02-23T16:57:13.621013+00:00",
+      "sha256": "392b0ea23b64d81d59d9a6b12e0ed1ec418d2e29834c7560fa045d84ea57ad9a",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "codex/mailbox/OVERSIGHT_UPCYCLE_LATEST.json",
+      "root": "codex/mailbox",
+      "filename": "OVERSIGHT_UPCYCLE_LATEST.json",
+      "extension": ".json",
+      "size_bytes": 3159,
+      "mtime_iso": "2026-02-18T04:18:18.040230+00:00",
+      "sha256": "fbd794a36c5ca8354c1bcd7345fb744c1678418e85fdb159e73f79c6481518e3",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "codex/mailbox/OVERSIGHT_UPCYCLE_LATEST.md",
+      "root": "codex/mailbox",
+      "filename": "OVERSIGHT_UPCYCLE_LATEST.md",
+      "extension": ".md",
+      "size_bytes": 2291,
+      "mtime_iso": "2026-02-18T04:18:18.041243+00:00",
+      "sha256": "5c84bc046c5d160bd046af579b866cd7df6254c34066e48aa66ac44cc47c8c44",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "codex/mailbox/POE_API_DUAL_DISCREPANCY_LATEST.json",
+      "root": "codex/mailbox",
+      "filename": "POE_API_DUAL_DISCREPANCY_LATEST.json",
+      "extension": ".json",
+      "size_bytes": 5487,
+      "mtime_iso": "2026-02-25T19:17:05.848799+00:00",
+      "sha256": "d81abc314661ea310d9e5da69172881dcd2986ae55200b4e576f067b509b2ec8",
+      "workstream": "poe-transport"
+    },
+    {
+      "path": "codex/mailbox/POE_API_DUAL_DISCREPANCY_LATEST.md",
+      "root": "codex/mailbox",
+      "filename": "POE_API_DUAL_DISCREPANCY_LATEST.md",
+      "extension": ".md",
+      "size_bytes": 3076,
+      "mtime_iso": "2026-02-25T19:17:05.848799+00:00",
+      "sha256": "659c693128b91b157776b5140e377050bf597663ab415683db07f6ee2c280d1d",
+      "workstream": "poe-transport"
+    },
+    {
+      "path": "codex/mailbox/POE_API_SETUP_PULL_LATEST.json",
+      "root": "codex/mailbox",
+      "filename": "POE_API_SETUP_PULL_LATEST.json",
+      "extension": ".json",
+      "size_bytes": 4101,
+      "mtime_iso": "2026-02-25T19:18:07.722383+00:00",
+      "sha256": "e58e49da1d5458c1b23389d1f0e0e761dfe341edeae5cd51630939b507e6f795",
+      "workstream": "poe-transport"
+    },
+    {
+      "path": "codex/mailbox/POE_API_SETUP_PULL_LATEST.md",
+      "root": "codex/mailbox",
+      "filename": "POE_API_SETUP_PULL_LATEST.md",
+      "extension": ".md",
+      "size_bytes": 2712,
+      "mtime_iso": "2026-02-25T19:18:07.722383+00:00",
+      "sha256": "bce0c97df4614be23df8e3be56fd7277bc3d0d8d649f970be7527a44e61dbc53",
+      "workstream": "poe-transport"
+    },
+    {
+      "path": "codex/mailbox/POE_CALLABILITY_REGISTRY_ACCOUNT_1.json",
+      "root": "codex/mailbox",
+      "filename": "POE_CALLABILITY_REGISTRY_ACCOUNT_1.json",
+      "extension": ".json",
+      "size_bytes": 42604,
+      "mtime_iso": "2026-02-25T18:27:00.168039+00:00",
+      "sha256": "5353c20f026a06ecbba143ebc14719ce1637c96d0ae17560e1798bc36d4cb889",
+      "workstream": "poe-transport"
+    },
+    {
+      "path": "codex/mailbox/POE_CALLABILITY_REGISTRY_ACCOUNT_1.md",
+      "root": "codex/mailbox",
+      "filename": "POE_CALLABILITY_REGISTRY_ACCOUNT_1.md",
+      "extension": ".md",
+      "size_bytes": 418,
+      "mtime_iso": "2026-02-25T18:27:00.168039+00:00",
+      "sha256": "1de9281b10e1fed376cb5b2f9d4f6e054fe39a89299cb81513845b67a1dd57d7",
+      "workstream": "poe-transport"
+    },
+    {
+      "path": "codex/mailbox/POE_CALLABILITY_REGISTRY_ACCOUNT_2.json",
+      "root": "codex/mailbox",
+      "filename": "POE_CALLABILITY_REGISTRY_ACCOUNT_2.json",
+      "extension": ".json",
+      "size_bytes": 42688,
+      "mtime_iso": "2026-02-25T18:29:29.359774+00:00",
+      "sha256": "d93c3d99171c97b48ff01b6847072444c05e22ac8a2fb35fe173324fb43cb5bc",
+      "workstream": "poe-transport"
+    },
+    {
+      "path": "codex/mailbox/POE_CALLABILITY_REGISTRY_ACCOUNT_2.md",
+      "root": "codex/mailbox",
+      "filename": "POE_CALLABILITY_REGISTRY_ACCOUNT_2.md",
+      "extension": ".md",
+      "size_bytes": 418,
+      "mtime_iso": "2026-02-25T18:29:29.359774+00:00",
+      "sha256": "9ce5bd6ccff8face59a53f641fa818667cd2b62f8a2063f8ba2d9cbb47f7f0b1",
+      "workstream": "poe-transport"
+    },
+    {
+      "path": "codex/mailbox/POE_CALLABILITY_REGISTRY_LATEST.json",
+      "root": "codex/mailbox",
+      "filename": "POE_CALLABILITY_REGISTRY_LATEST.json",
+      "extension": ".json",
+      "size_bytes": 42688,
+      "mtime_iso": "2026-02-25T18:29:29.359774+00:00",
+      "sha256": "d93c3d99171c97b48ff01b6847072444c05e22ac8a2fb35fe173324fb43cb5bc",
+      "workstream": "poe-transport"
+    },
+    {
+      "path": "codex/mailbox/POE_CALLABILITY_REGISTRY_LATEST.md",
+      "root": "codex/mailbox",
+      "filename": "POE_CALLABILITY_REGISTRY_LATEST.md",
+      "extension": ".md",
+      "size_bytes": 418,
+      "mtime_iso": "2026-02-25T18:29:29.359774+00:00",
+      "sha256": "9ce5bd6ccff8face59a53f641fa818667cd2b62f8a2063f8ba2d9cbb47f7f0b1",
+      "workstream": "poe-transport"
+    },
+    {
+      "path": "codex/mailbox/POE_CALLABILITY_TARGETED_SAMPLE.json",
+      "root": "codex/mailbox",
+      "filename": "POE_CALLABILITY_TARGETED_SAMPLE.json",
+      "extension": ".json",
+      "size_bytes": 2825,
+      "mtime_iso": "2026-02-25T19:18:07.723385+00:00",
+      "sha256": "2abeb3aa1492d01fa2ed31ed772dc79f61008176cacde72bfa964902a70049f0",
+      "workstream": "poe-transport"
+    },
+    {
+      "path": "codex/mailbox/POE_CALLABILITY_TARGETED_SAMPLE.md",
+      "root": "codex/mailbox",
+      "filename": "POE_CALLABILITY_TARGETED_SAMPLE.md",
+      "extension": ".md",
+      "size_bytes": 490,
+      "mtime_iso": "2026-02-25T19:18:07.723385+00:00",
+      "sha256": "9789c8e0bbe4d64ca694cb82da46994922dc124e9763d439ac617f97d57878c9",
+      "workstream": "poe-transport"
+    },
+    {
+      "path": "codex/mailbox/POE_CALLABILITY_TARGETED_SAMPLE_ACCOUNT_1.json",
+      "root": "codex/mailbox",
+      "filename": "POE_CALLABILITY_TARGETED_SAMPLE_ACCOUNT_1.json",
+      "extension": ".json",
+      "size_bytes": 2825,
+      "mtime_iso": "2026-02-25T19:14:15.237118+00:00",
+      "sha256": "47474ce978383708f2e32d5dbbdcc166618a6f20af2407c971b4f13cc10e47de",
+      "workstream": "poe-transport"
+    },
+    {
+      "path": "codex/mailbox/POE_CALLABILITY_TARGETED_SAMPLE_ACCOUNT_1.md",
+      "root": "codex/mailbox",
+      "filename": "POE_CALLABILITY_TARGETED_SAMPLE_ACCOUNT_1.md",
+      "extension": ".md",
+      "size_bytes": 490,
+      "mtime_iso": "2026-02-25T19:14:15.237118+00:00",
+      "sha256": "30634b59ece175324e4d06e8c2d22db790696ac450e24db2038bfc02621dde3e",
+      "workstream": "poe-transport"
+    },
+    {
+      "path": "codex/mailbox/POE_CALLABILITY_TARGETED_SAMPLE_ACCOUNT_2.json",
+      "root": "codex/mailbox",
+      "filename": "POE_CALLABILITY_TARGETED_SAMPLE_ACCOUNT_2.json",
+      "extension": ".json",
+      "size_bytes": 2825,
+      "mtime_iso": "2026-02-25T19:17:05.844802+00:00",
+      "sha256": "c78cbc7dbb3e1e0746791a1d6d09a0f1a139dc66c33e4c8f934c5e677071eb49",
+      "workstream": "poe-transport"
+    },
+    {
+      "path": "codex/mailbox/POE_CALLABILITY_TARGETED_SAMPLE_ACCOUNT_2.md",
+      "root": "codex/mailbox",
+      "filename": "POE_CALLABILITY_TARGETED_SAMPLE_ACCOUNT_2.md",
+      "extension": ".md",
+      "size_bytes": 490,
+      "mtime_iso": "2026-02-25T19:17:05.845797+00:00",
+      "sha256": "48d73431d5fb3acd5fb3a2cea94c01e43140dd44d288456d0ba1a393d055352c",
+      "workstream": "poe-transport"
+    },
+    {
+      "path": "codex/mailbox/POE_LANE_LATEST.json",
+      "root": "codex/mailbox",
+      "filename": "POE_LANE_LATEST.json",
+      "extension": ".json",
+      "size_bytes": 273,
+      "mtime_iso": "2026-02-23T17:01:03.797256+00:00",
+      "sha256": "0af0588311fa8e6de5391ff69bf2ecfde2bc8fad190dc185041ff783928115f8",
+      "workstream": "poe-transport"
+    },
+    {
+      "path": "codex/mailbox/POE_LANE_LATEST.md",
+      "root": "codex/mailbox",
+      "filename": "POE_LANE_LATEST.md",
+      "extension": ".md",
+      "size_bytes": 199,
+      "mtime_iso": "2026-02-23T17:01:03.797256+00:00",
+      "sha256": "5005ea65e0cbedb03eb1d0cd0b5dd84e3e096395156ade4d3a0de8714e0390b3",
+      "workstream": "poe-transport"
+    },
+    {
+      "path": "codex/mailbox/POE_SDK_LATEST.json",
+      "root": "codex/mailbox",
+      "filename": "POE_SDK_LATEST.json",
+      "extension": ".json",
+      "size_bytes": 211,
+      "mtime_iso": "2026-02-23T16:56:43.559742+00:00",
+      "sha256": "b1d687c509cb78a7cb49a42f8046c74d93ddee49c53d3e46654ef17e3eb54ec2",
+      "workstream": "poe-transport"
+    },
+    {
+      "path": "codex/mailbox/POE_SDK_LATEST.md",
+      "root": "codex/mailbox",
+      "filename": "POE_SDK_LATEST.md",
+      "extension": ".md",
+      "size_bytes": 156,
+      "mtime_iso": "2026-02-23T16:56:43.560741+00:00",
+      "sha256": "c415521203cb9c05930daa868526c1fd6139e130afccd95d22d99437c9fc367e",
+      "workstream": "poe-transport"
+    },
+    {
+      "path": "codex/mailbox/POE_TRANSPORT_AUDIT_LATEST.json",
+      "root": "codex/mailbox",
+      "filename": "POE_TRANSPORT_AUDIT_LATEST.json",
+      "extension": ".json",
+      "size_bytes": 2605,
+      "mtime_iso": "2026-02-25T18:15:05.900041+00:00",
+      "sha256": "90eb0ade1596e431915643f0a1ee57c6120e73241a3fb05407b0d7b69d93d83e",
+      "workstream": "poe-transport"
+    },
+    {
+      "path": "codex/mailbox/POE_TRANSPORT_AUDIT_LATEST.md",
+      "root": "codex/mailbox",
+      "filename": "POE_TRANSPORT_AUDIT_LATEST.md",
+      "extension": ".md",
+      "size_bytes": 740,
+      "mtime_iso": "2026-02-25T18:15:05.900041+00:00",
+      "sha256": "84233bd8c4c48cf80fb513f1c8afd29cd2cdd7010b4a5d7ad63ff909989448a1",
+      "workstream": "poe-transport"
+    },
+    {
+      "path": "codex/mailbox/PRE_SCM_REVIEW_CLAUDE_RESPONSE_2026_02_26.json",
+      "root": "codex/mailbox",
+      "filename": "PRE_SCM_REVIEW_CLAUDE_RESPONSE_2026_02_26.json",
+      "extension": ".json",
+      "size_bytes": 5530,
+      "mtime_iso": "2026-02-26T00:41:11.827545+00:00",
+      "sha256": "4e3be491edcdbb58e3a0de3a9dcbf1ed05ba18d5037a7520fae853dbb54014b0",
+      "workstream": "scm-triage"
+    },
+    {
+      "path": "codex/mailbox/PRE_SCM_TRIAGE_EXHAUSTIVE_REVIEW_2026_02_25.json",
+      "root": "codex/mailbox",
+      "filename": "PRE_SCM_TRIAGE_EXHAUSTIVE_REVIEW_2026_02_25.json",
+      "extension": ".json",
+      "size_bytes": 35171,
+      "mtime_iso": "2026-02-25T22:03:33.352422+00:00",
+      "sha256": "cd11de703788850a44c05d5db517fb7040ba23cee16ba2dc0fc94bdb74160dd8",
+      "workstream": "scm-triage"
+    },
+    {
+      "path": "codex/mailbox/RELATIONSHIP_AUDIT_CODEBASE_APPLY_CHANGED_FILES.txt",
+      "root": "codex/mailbox",
+      "filename": "RELATIONSHIP_AUDIT_CODEBASE_APPLY_CHANGED_FILES.txt",
+      "extension": ".txt",
+      "size_bytes": 2037,
+      "mtime_iso": "2026-02-24T07:36:55.942812+00:00",
+      "sha256": "65ec1ce3234ce8f7af1c8a375bc05c4940db5a539276fdbfb5bde80a16314144",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "codex/mailbox/RELATIONSHIP_AUDIT_CODEBASE_BACKLOG_SUMMARY.json",
+      "root": "codex/mailbox",
+      "filename": "RELATIONSHIP_AUDIT_CODEBASE_BACKLOG_SUMMARY.json",
+      "extension": ".json",
+      "size_bytes": 13377,
+      "mtime_iso": "2026-02-24T07:36:41.990837+00:00",
+      "sha256": "96facf11e1de31fdb462ead149e35b52a0e62130555a07e83471db6e419bf2a4",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "codex/mailbox/RELATIONSHIP_AUDIT_CODEBASE_BACKLOG_SUMMARY.md",
+      "root": "codex/mailbox",
+      "filename": "RELATIONSHIP_AUDIT_CODEBASE_BACKLOG_SUMMARY.md",
+      "extension": ".md",
+      "size_bytes": 8528,
+      "mtime_iso": "2026-02-24T07:36:42.003785+00:00",
+      "sha256": "60fae3f800e1dd7702f14b6ef06b64b282f074a86021bd816925d4d603657320",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "codex/mailbox/RELATIONSHIP_AUDIT_CODEBASE_DELTA.json",
+      "root": "codex/mailbox",
+      "filename": "RELATIONSHIP_AUDIT_CODEBASE_DELTA.json",
+      "extension": ".json",
+      "size_bytes": 437,
+      "mtime_iso": "2026-02-24T07:39:18.799049+00:00",
+      "sha256": "1cec288882c599ffe2ac5f8fb131f4cd3c88e56f7db17bed4db1f10dda3bed7b",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "codex/mailbox/RELATIONSHIP_AUDIT_CODEBASE_LATEST.json",
+      "root": "codex/mailbox",
+      "filename": "RELATIONSHIP_AUDIT_CODEBASE_LATEST.json",
+      "extension": ".json",
+      "size_bytes": 1119470,
+      "mtime_iso": "2026-02-24T07:35:19.017139+00:00",
+      "sha256": "b7d109ad1f2b3afc7491f88729503b26817cf7b8f1acf806c4cf7d63518ed063",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "codex/mailbox/RELATIONSHIP_AUDIT_CODEBASE_POST_APPLY_SUMMARY.json",
+      "root": "codex/mailbox",
+      "filename": "RELATIONSHIP_AUDIT_CODEBASE_POST_APPLY_SUMMARY.json",
+      "extension": ".json",
+      "size_bytes": 4024,
+      "mtime_iso": "2026-02-24T07:35:27.938758+00:00",
+      "sha256": "ce6e08bd6b51c2ea2ce84f4d1af46260086c050caf40226460f77abdf81b0c89",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "codex/mailbox/RELATIONSHIP_AUDIT_CODEBASE_POSTCHECK.json",
+      "root": "codex/mailbox",
+      "filename": "RELATIONSHIP_AUDIT_CODEBASE_POSTCHECK.json",
+      "extension": ".json",
+      "size_bytes": 556663,
+      "mtime_iso": "2026-02-24T07:39:08.160371+00:00",
+      "sha256": "4b9c6552f610165eae56dd59d155d77a66ca87ddedc9346caf130b25d1f4e965",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "codex/mailbox/RELATIONSHIP_AUDIT_CODEBASE_SUMMARY.json",
+      "root": "codex/mailbox",
+      "filename": "RELATIONSHIP_AUDIT_CODEBASE_SUMMARY.json",
+      "extension": ".json",
+      "size_bytes": 3944,
+      "mtime_iso": "2026-02-24T07:33:27.078348+00:00",
+      "sha256": "b1e3e47071eb91bffca3dbe875688132886285f867c26d177aa27e762cf8c1a7",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "codex/mailbox/RELATIONSHIP_AUDIT_DOCS_CHECK.json",
+      "root": "codex/mailbox",
+      "filename": "RELATIONSHIP_AUDIT_DOCS_CHECK.json",
+      "extension": ".json",
+      "size_bytes": 1612,
+      "mtime_iso": "2026-02-24T07:52:58.037894+00:00",
+      "sha256": "de2a956627a2e283e31a22de2e6ad921342a1cb8492e4a8d0e3ebd23510dbe0f",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "codex/mailbox/RELATIONSHIP_AUDIT_LATEST.json",
+      "root": "codex/mailbox",
+      "filename": "RELATIONSHIP_AUDIT_LATEST.json",
+      "extension": ".json",
+      "size_bytes": 2151,
+      "mtime_iso": "2026-02-24T07:51:55.933392+00:00",
+      "sha256": "db752c6fdb8288729fffc4a2daeb1c0f2c1e2ccb5e61a5a8e528c5332bd7289b",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "codex/mailbox/RELATIONSHIP_AUDIT_LATEST_APPLY_CHECK.json",
+      "root": "codex/mailbox",
+      "filename": "RELATIONSHIP_AUDIT_LATEST_APPLY_CHECK.json",
+      "extension": ".json",
+      "size_bytes": 2280,
+      "mtime_iso": "2026-02-24T07:52:30.423873+00:00",
+      "sha256": "77a191bccd3e3651e80274048f160b8a2a2f733b63fba45d824f52ef721b2f17",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "codex/mailbox/RESEARCH_DIGEST_ANNO_RUSTIFICATION_ENDO_DOT_LIFE.md",
+      "root": "codex/mailbox",
+      "filename": "RESEARCH_DIGEST_ANNO_RUSTIFICATION_ENDO_DOT_LIFE.md",
+      "extension": ".md",
+      "size_bytes": 6738,
+      "mtime_iso": "2026-02-18T03:45:20.568007+00:00",
+      "sha256": "6b6b8c05527f414818ba188708136ef7431b5254c2be0f3e36e85c70276765ac",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "codex/mailbox/RESEARCH_DIGEST_ANNO_RUSTIFICATION_ENDO_DOT_LIFE_CURATED.md",
+      "root": "codex/mailbox",
+      "filename": "RESEARCH_DIGEST_ANNO_RUSTIFICATION_ENDO_DOT_LIFE_CURATED.md",
+      "extension": ".md",
+      "size_bytes": 2781,
+      "mtime_iso": "2026-02-18T03:36:00.163666+00:00",
+      "sha256": "5767eaea09a3050f4f7288b99a8ae37664813e47ac2a482820f1484ddd1217e9",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "codex/mailbox/RESEARCH_DIGEST_THE_RUSTIFICATION_JUSTIFICATION_ARCHITECTURAL_CONVERGENCE_OF_VISUAL_STUDIO_2026_LSL_AND_RUST_NATIVE_TOOLCHAINS_IN_THE_WINDOWS_11_ECOSYSTEM.md",
+      "root": "codex/mailbox",
+      "filename": "RESEARCH_DIGEST_THE_RUSTIFICATION_JUSTIFICATION_ARCHITECTURAL_CONVERGENCE_OF_VISUAL_STUDIO_2026_LSL_AND_RUST_NATIVE_TOOLCHAINS_IN_THE_WINDOWS_11_ECOSYSTEM.md",
+      "extension": ".md",
+      "size_bytes": 14522,
+      "mtime_iso": "2026-02-18T22:33:35.551250+00:00",
+      "sha256": "09518630025ae9721d7568b98c7754b4398979ae84adf34a0686997c60609d00",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "codex/mailbox/RUSTIFICATION_TREND_LATEST.json",
+      "root": "codex/mailbox",
+      "filename": "RUSTIFICATION_TREND_LATEST.json",
+      "extension": ".json",
+      "size_bytes": 4870,
+      "mtime_iso": "2026-02-18T04:00:05.410939+00:00",
+      "sha256": "e4e34a7291b6a10fe49762b7d8d1d1a816b8a97e76e6b0d78411b05de068a3d7",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "codex/mailbox/RUSTIFICATION_TREND_LATEST.md",
+      "root": "codex/mailbox",
+      "filename": "RUSTIFICATION_TREND_LATEST.md",
+      "extension": ".md",
+      "size_bytes": 1893,
+      "mtime_iso": "2026-02-18T04:00:05.410939+00:00",
+      "sha256": "b56605a8c80500f22f0e3b836e4a62fce4be9e1ce5adf04050cdc883c03a4f21",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "codex/mailbox/SCM_TRIAGE_CODEX_HANDOFF.md",
+      "root": "codex/mailbox",
+      "filename": "SCM_TRIAGE_CODEX_HANDOFF.md",
+      "extension": ".md",
+      "size_bytes": 3154,
+      "mtime_iso": "2026-02-25T18:58:02.679768+00:00",
+      "sha256": "fa2beaf871b2ee40740ffca90c070bb44473078262621bb34fd990cc466dd3a0",
+      "workstream": "scm-triage"
+    },
+    {
+      "path": "codex/mailbox/SCM_TRIAGE_SNAPSHOT_2026_02_25T17_49_59Z.md",
+      "root": "codex/mailbox",
+      "filename": "SCM_TRIAGE_SNAPSHOT_2026_02_25T17_49_59Z.md",
+      "extension": ".md",
+      "size_bytes": 9364,
+      "mtime_iso": "2026-02-25T17:49:59.989656+00:00",
+      "sha256": "8f026ba6a83c6175a3645ac1103d9673b1989a3d8452b7ac885a44b93e7bcd1d",
+      "workstream": "scm-triage"
+    },
+    {
+      "path": "codex/mailbox/SCM_TRIAGE_SNAPSHOT_2026_02_25T17_50_56Z.md",
+      "root": "codex/mailbox",
+      "filename": "SCM_TRIAGE_SNAPSHOT_2026_02_25T17_50_56Z.md",
+      "extension": ".md",
+      "size_bytes": 9538,
+      "mtime_iso": "2026-02-25T17:50:56.732400+00:00",
+      "sha256": "a6140c96e9d6d5664526459c5c7476376cbe96a49d88606e634339fbc9c69930",
+      "workstream": "scm-triage"
+    },
+    {
+      "path": "codex/mailbox/SCM_TRIAGE_SNAPSHOT_LATEST.md",
+      "root": "codex/mailbox",
+      "filename": "SCM_TRIAGE_SNAPSHOT_LATEST.md",
+      "extension": ".md",
+      "size_bytes": 9538,
+      "mtime_iso": "2026-02-25T17:50:56.732400+00:00",
+      "sha256": "a6140c96e9d6d5664526459c5c7476376cbe96a49d88606e634339fbc9c69930",
+      "workstream": "scm-triage"
+    },
+    {
+      "path": "codex/mailbox/SESSION_COMPACT_2026_02_26.json",
+      "root": "codex/mailbox",
+      "filename": "SESSION_COMPACT_2026_02_26.json",
+      "extension": ".json",
+      "size_bytes": 2821,
+      "mtime_iso": "2026-02-26T01:10:29.104073+00:00",
+      "sha256": "a264348d505cbe6bcfe649d4267e923c9f75563a153248d373535cb6d3bc82f9",
+      "workstream": "session-handoff"
+    },
+    {
+      "path": "codex/mailbox/SESSION_COMPACT_2026_02_26.md",
+      "root": "codex/mailbox",
+      "filename": "SESSION_COMPACT_2026_02_26.md",
+      "extension": ".md",
+      "size_bytes": 3049,
+      "mtime_iso": "2026-02-26T01:10:13.657550+00:00",
+      "sha256": "b6943abb9efb16bedc889554064b77f8c49c0ee5418cd4ad7a14e39e20c39d00",
+      "workstream": "session-handoff"
+    },
+    {
+      "path": "codex/mailbox/SESSION_HANDOFF_2026_02_18_CLAUDINE_ARCHAEOLOGY_UPCYCLE_CLASSIFICATION.md",
+      "root": "codex/mailbox",
+      "filename": "SESSION_HANDOFF_2026_02_18_CLAUDINE_ARCHAEOLOGY_UPCYCLE_CLASSIFICATION.md",
+      "extension": ".md",
+      "size_bytes": 6296,
+      "mtime_iso": "2026-02-25T20:46:00.310199+00:00",
+      "sha256": "2c60ed8399d01fdd79bb09eb737b6195685402fdbe14592f326548ad4617f3c2",
+      "workstream": "session-handoff"
+    },
+    {
+      "path": "codex/mailbox/SESSION_HANDOFF_2026_02_18_VS2026_TRIO_LEARNING_CACHE.md",
+      "root": "codex/mailbox",
+      "filename": "SESSION_HANDOFF_2026_02_18_VS2026_TRIO_LEARNING_CACHE.md",
+      "extension": ".md",
+      "size_bytes": 4988,
+      "mtime_iso": "2026-02-25T20:46:36.568982+00:00",
+      "sha256": "a75319b0cc0a4edee2636f0511db922c598348ff9eca10c5480fa56ce29bbfba",
+      "workstream": "session-handoff"
+    },
+    {
+      "path": "codex/mailbox/SESSION_HANDOFF_2026_02_25_CODEX_MAILBOX_SCM_PROGRESS.md",
+      "root": "codex/mailbox",
+      "filename": "SESSION_HANDOFF_2026_02_25_CODEX_MAILBOX_SCM_PROGRESS.md",
+      "extension": ".md",
+      "size_bytes": 1987,
+      "mtime_iso": "2026-02-25T20:01:36.145335+00:00",
+      "sha256": "e01a0584df4d268ee070d5a73c584b16281c9cf2caa33209710016f03c3c4021",
+      "workstream": "session-handoff"
+    },
+    {
+      "path": "codex/mailbox/SESSION_HANDOFF_2026_02_25_PRE_SCM_TRIAGE_EXHAUSTIVE_REVIEW.md",
+      "root": "codex/mailbox",
+      "filename": "SESSION_HANDOFF_2026_02_25_PRE_SCM_TRIAGE_EXHAUSTIVE_REVIEW.md",
+      "extension": ".md",
+      "size_bytes": 16840,
+      "mtime_iso": "2026-02-25T22:03:33.364094+00:00",
+      "sha256": "5bc72e8e2934f32b5dd4b8ea32a7934a6940d6d1aa1f463b7f97a12e5116d318",
+      "workstream": "session-handoff"
+    },
+    {
+      "path": "codex/mailbox/SESSION_HANDOFF_2026_02_26_PRE_SCM_REVIEW_CLAUDE_RESPONSE.md",
+      "root": "codex/mailbox",
+      "filename": "SESSION_HANDOFF_2026_02_26_PRE_SCM_REVIEW_CLAUDE_RESPONSE.md",
+      "extension": ".md",
+      "size_bytes": 9210,
+      "mtime_iso": "2026-02-26T00:40:47.559537+00:00",
+      "sha256": "270fbee2af864b7070a46df3faa61ecf73705ba248890e630bc1f5eea112d2d3",
+      "workstream": "session-handoff"
+    },
+    {
+      "path": "codex/mailbox/SESSION_HANDOFF_CODEKILLER_STRUCTURAL_AUDIT.md",
+      "root": "codex/mailbox",
+      "filename": "SESSION_HANDOFF_CODEKILLER_STRUCTURAL_AUDIT.md",
+      "extension": ".md",
+      "size_bytes": 6774,
+      "mtime_iso": "2026-02-25T20:46:23.731144+00:00",
+      "sha256": "ec759bd3dbd0980cbf8e4350aeaeec2686e5359f7bdec9c188cf4552259a8568",
+      "workstream": "session-handoff"
+    },
+    {
+      "path": "codex/mailbox/SESSION_HANDOFF_KCP_2_0_TEMPLATE_CANONIZATION_COMPLETE.md",
+      "root": "codex/mailbox",
+      "filename": "SESSION_HANDOFF_KCP_2_0_TEMPLATE_CANONIZATION_COMPLETE.md",
+      "extension": ".md",
+      "size_bytes": 6046,
+      "mtime_iso": "2026-02-25T20:46:12.808212+00:00",
+      "sha256": "2a72c0d19be02596aa7b0e4571c840ee5a102403cf56a8d5259b4e080beb88b1",
+      "workstream": "session-handoff"
+    },
+    {
+      "path": "codex/mailbox/SESSION_PLAN_2026_02_18_RUSTIFICATION_DAEMON_BATCH.md",
+      "root": "codex/mailbox",
+      "filename": "SESSION_PLAN_2026_02_18_RUSTIFICATION_DAEMON_BATCH.md",
+      "extension": ".md",
+      "size_bytes": 4588,
+      "mtime_iso": "2026-02-18T03:35:40.035438+00:00",
+      "sha256": "a24cfc77dcdd4c71f474fd4eb6eff6b45bd01b024d35e514c181ad3f98d88d66",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "codex/mailbox/skill_audit_claude_2026-02-09T22-02-38Z.json",
+      "root": "codex/mailbox",
+      "filename": "skill_audit_claude_2026-02-09T22-02-38Z.json",
+      "extension": ".json",
+      "size_bytes": 1559,
+      "mtime_iso": "2026-02-17T19:51:15.181747+00:00",
+      "sha256": "f61e92c537c75fd049966b6882ed564165cc96c32f65459a075bf9e7d8157091",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "codex/mailbox/skill_audit_codex_2026-02-09T22-02-38Z.json",
+      "root": "codex/mailbox",
+      "filename": "skill_audit_codex_2026-02-09T22-02-38Z.json",
+      "extension": ".json",
+      "size_bytes": 2076,
+      "mtime_iso": "2026-02-17T19:51:15.182756+00:00",
+      "sha256": "00f1ac8c5b0a449393de107ded68e88c50859df40cab62de4efa6f088453ef2b",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "codex/mailbox/SKILL_FRESHNESS_LATEST.json",
+      "root": "codex/mailbox",
+      "filename": "SKILL_FRESHNESS_LATEST.json",
+      "extension": ".json",
+      "size_bytes": 9610,
+      "mtime_iso": "2026-02-24T03:55:52.281662+00:00",
+      "sha256": "79bfde0b1eb51602127aad0bab5c30cd9bd05fdc0ce4bfd8864ddc36a0fd85c3",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "codex/mailbox/SKILL_FRESHNESS_LATEST.md",
+      "root": "codex/mailbox",
+      "filename": "SKILL_FRESHNESS_LATEST.md",
+      "extension": ".md",
+      "size_bytes": 4171,
+      "mtime_iso": "2026-02-24T03:55:52.282655+00:00",
+      "sha256": "5d36bfa3ec74201d52accba39822028e29ab300ea720d3f2370f58c233ed4a32",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "codex/mailbox/tatragrammatron_stamps_latest_codex.json",
+      "root": "codex/mailbox",
+      "filename": "tatragrammatron_stamps_latest_codex.json",
+      "extension": ".json",
+      "size_bytes": 11932,
+      "mtime_iso": "2026-02-23T16:57:13.146165+00:00",
+      "sha256": "2a8fbdd89e7fcc5119730e7d003a89cad2756e49a32195f476eee7e03f60c8cc",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "codex/mailbox/TATRAGRAMMATRON_SUMMARY_LATEST_CODEX.md",
+      "root": "codex/mailbox",
+      "filename": "TATRAGRAMMATRON_SUMMARY_LATEST_CODEX.md",
+      "extension": ".md",
+      "size_bytes": 2256,
+      "mtime_iso": "2026-02-23T16:57:13.147166+00:00",
+      "sha256": "2433afff6e80f4ed380d39f7ec837853e730a1d9459780e9074ab0e7e4c0e2d4",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "codex/mailbox/TETRAGRAMMATON_PACKET.md",
+      "root": "codex/mailbox",
+      "filename": "TETRAGRAMMATON_PACKET.md",
+      "extension": ".md",
+      "size_bytes": 7905,
+      "mtime_iso": "2026-02-23T16:57:13.635024+00:00",
+      "sha256": "7de25fe9ca6fa885cb6b43750014a62a71f2c7c7a1c8be4600ef3627a2580a0a",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "codex/mailbox/TOOLCHAIN_DOCTOR_LATEST.md",
+      "root": "codex/mailbox",
+      "filename": "TOOLCHAIN_DOCTOR_LATEST.md",
+      "extension": ".md",
+      "size_bytes": 210,
+      "mtime_iso": "2026-02-23T16:57:12.903432+00:00",
+      "sha256": "f589ede293358cd9656f9218d7bc9a2bdaac3cdedb779982e735af81c189c214",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "codex/mailbox/TOOLCHAIN_DOCTOR_REPORT_2026_02_17_015616.md",
+      "root": "codex/mailbox",
+      "filename": "TOOLCHAIN_DOCTOR_REPORT_2026_02_17_015616.md",
+      "extension": ".md",
+      "size_bytes": 620,
+      "mtime_iso": "2026-02-17T19:51:14.974339+00:00",
+      "sha256": "5830e2c079afeb26742f7ac1dfd2e0e81ba151d2133160a3eda908f3dae68993",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "codex/mailbox/TOOLCHAIN_DOCTOR_REPORT_2026_02_23_155943.md",
+      "root": "codex/mailbox",
+      "filename": "TOOLCHAIN_DOCTOR_REPORT_2026_02_23_155943.md",
+      "extension": ".md",
+      "size_bytes": 662,
+      "mtime_iso": "2026-02-23T15:59:46.508751+00:00",
+      "sha256": "8229ad73449a08b9c015ab4d7ccb209ac0b13f1591c5ff03db0c6dfef09d606f",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "codex/mailbox/TOOLCHAIN_DOCTOR_REPORT_2026_02_23_160028.md",
+      "root": "codex/mailbox",
+      "filename": "TOOLCHAIN_DOCTOR_REPORT_2026_02_23_160028.md",
+      "extension": ".md",
+      "size_bytes": 662,
+      "mtime_iso": "2026-02-23T16:00:29.668533+00:00",
+      "sha256": "07c3df9006d146e972cbf79c88918a4a91203bf1effbbcc819e9e0ba335b8e87",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "codex/mailbox/TOOLCHAIN_DOCTOR_REPORT_2026_02_23_160402.md",
+      "root": "codex/mailbox",
+      "filename": "TOOLCHAIN_DOCTOR_REPORT_2026_02_23_160402.md",
+      "extension": ".md",
+      "size_bytes": 659,
+      "mtime_iso": "2026-02-23T16:04:03.873166+00:00",
+      "sha256": "97d142a3af0777bff2f8d3d90cf1d11ed8a4181a5000e13d6878dfac23917d79",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "codex/mailbox/TOOLCHAIN_DOCTOR_REPORT_2026_02_23_160433.md",
+      "root": "codex/mailbox",
+      "filename": "TOOLCHAIN_DOCTOR_REPORT_2026_02_23_160433.md",
+      "extension": ".md",
+      "size_bytes": 662,
+      "mtime_iso": "2026-02-23T16:04:34.831750+00:00",
+      "sha256": "38ead0203ce3fc96ad750c89fa6984eaf7d0549b9893e18f1951c68a6cefbceb",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "codex/mailbox/TOOLCHAIN_DOCTOR_REPORT_2026_02_23_160529.md",
+      "root": "codex/mailbox",
+      "filename": "TOOLCHAIN_DOCTOR_REPORT_2026_02_23_160529.md",
+      "extension": ".md",
+      "size_bytes": 661,
+      "mtime_iso": "2026-02-23T16:05:30.433190+00:00",
+      "sha256": "00d1c0653efc3a6f4286912c4c6d6194517c4c58a8d4f55b31773e2f86f7fb03",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "codex/mailbox/TOOLCHAIN_DOCTOR_REPORT_2026_02_23_160536.md",
+      "root": "codex/mailbox",
+      "filename": "TOOLCHAIN_DOCTOR_REPORT_2026_02_23_160536.md",
+      "extension": ".md",
+      "size_bytes": 662,
+      "mtime_iso": "2026-02-23T16:05:38.030968+00:00",
+      "sha256": "578806bc0232d820828c71d3406f7a9440486b53e5f669ca88c23fdb687b6276",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "codex/mailbox/TOOLCHAIN_DOCTOR_REPORT_2026_02_23_160715.md",
+      "root": "codex/mailbox",
+      "filename": "TOOLCHAIN_DOCTOR_REPORT_2026_02_23_160715.md",
+      "extension": ".md",
+      "size_bytes": 1164,
+      "mtime_iso": "2026-02-23T16:07:19.851048+00:00",
+      "sha256": "d5f016a6ffd15901994a2fc90a6e97b60d99e0a8f51b3fa97b448caf0d9836e1",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "codex/mailbox/TOOLCHAIN_DOCTOR_REPORT_2026_02_23_160940.md",
+      "root": "codex/mailbox",
+      "filename": "TOOLCHAIN_DOCTOR_REPORT_2026_02_23_160940.md",
+      "extension": ".md",
+      "size_bytes": 662,
+      "mtime_iso": "2026-02-23T16:09:41.761018+00:00",
+      "sha256": "2039171338335eaf86278a5bfbdb73ba9d58fc27b2d909b0d11304be43cf2bc0",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "codex/mailbox/TOOLCHAIN_DOCTOR_REPORT_2026_02_23_161137.md",
+      "root": "codex/mailbox",
+      "filename": "TOOLCHAIN_DOCTOR_REPORT_2026_02_23_161137.md",
+      "extension": ".md",
+      "size_bytes": 659,
+      "mtime_iso": "2026-02-23T16:11:39.100146+00:00",
+      "sha256": "1ef111106b2c2e88db2c988f17c73c40da70bcce63a825188a146a74b00fd6ee",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "codex/mailbox/TOOLCHAIN_DOCTOR_REPORT_2026_02_23_163122.md",
+      "root": "codex/mailbox",
+      "filename": "TOOLCHAIN_DOCTOR_REPORT_2026_02_23_163122.md",
+      "extension": ".md",
+      "size_bytes": 662,
+      "mtime_iso": "2026-02-23T16:31:23.872328+00:00",
+      "sha256": "db0436193ff731a5d85fb3763a96bbb4a6e2b799c916e50642dfac55a6490650",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "codex/mailbox/TOOLCHAIN_DOCTOR_REPORT_2026_02_23_163140.md",
+      "root": "codex/mailbox",
+      "filename": "TOOLCHAIN_DOCTOR_REPORT_2026_02_23_163140.md",
+      "extension": ".md",
+      "size_bytes": 662,
+      "mtime_iso": "2026-02-23T16:31:41.733391+00:00",
+      "sha256": "47d263766412342f7c07fed18abbec13fc54459fb119137c919800a4f720f908",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "codex/mailbox/TOOLCHAIN_DOCTOR_REPORT_2026_02_23_163504.md",
+      "root": "codex/mailbox",
+      "filename": "TOOLCHAIN_DOCTOR_REPORT_2026_02_23_163504.md",
+      "extension": ".md",
+      "size_bytes": 659,
+      "mtime_iso": "2026-02-23T16:35:05.467944+00:00",
+      "sha256": "7b6ed1d644305726e3ea5abf64aeabacaa7e7ee9a7d189dbcf9a982edaaa02a3",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "codex/mailbox/TOOLCHAIN_DOCTOR_REPORT_2026_02_23_163616.md",
+      "root": "codex/mailbox",
+      "filename": "TOOLCHAIN_DOCTOR_REPORT_2026_02_23_163616.md",
+      "extension": ".md",
+      "size_bytes": 662,
+      "mtime_iso": "2026-02-23T16:36:17.051459+00:00",
+      "sha256": "c6525c59c8702ee004c58b0f73d53676c5c55092fe7f644ea7d2246b8cad510d",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "codex/mailbox/TOOLCHAIN_DOCTOR_REPORT_2026_02_23_165711.md",
+      "root": "codex/mailbox",
+      "filename": "TOOLCHAIN_DOCTOR_REPORT_2026_02_23_165711.md",
+      "extension": ".md",
+      "size_bytes": 662,
+      "mtime_iso": "2026-02-23T16:57:12.903432+00:00",
+      "sha256": "e708b1530f08c8428bde8167beefd8a79dc4daebe343de5c2e9de969411fb479",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "codex/mailbox/TRAINSTOP_ORCHESTRATOR_LATEST.json",
+      "root": "codex/mailbox",
+      "filename": "TRAINSTOP_ORCHESTRATOR_LATEST.json",
+      "extension": ".json",
+      "size_bytes": 1992,
+      "mtime_iso": "2026-02-23T17:01:16.106472+00:00",
+      "sha256": "5d0c32c5f681f74d598408a5f80a12696203b5b3b9816f7bd0456b06cdb543f0",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "codex/mailbox/VS2026_ELEVATED_VALIDATION_LATEST.json",
+      "root": "codex/mailbox",
+      "filename": "VS2026_ELEVATED_VALIDATION_LATEST.json",
+      "extension": ".json",
+      "size_bytes": 1741,
+      "mtime_iso": "2026-02-17T23:11:06.023557+00:00",
+      "sha256": "60b3e3bc9e2e9f88789a1da27929b4e51c4f29cfb14b6e8686306353705008bf",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "codex/mailbox/VS2026_ELEVATED_VALIDATION_LATEST.md",
+      "root": "codex/mailbox",
+      "filename": "VS2026_ELEVATED_VALIDATION_LATEST.md",
+      "extension": ".md",
+      "size_bytes": 4531,
+      "mtime_iso": "2026-02-17T23:11:06.030079+00:00",
+      "sha256": "280da8928827626a349c27e22db09e7cfd77e255b5cea570962dffa24afa2cb7",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "codex/mailbox/WPTG_SKILL_ALIGNMENT_BASELINE.json",
+      "root": "codex/mailbox",
+      "filename": "WPTG_SKILL_ALIGNMENT_BASELINE.json",
+      "extension": ".json",
+      "size_bytes": 52579,
+      "mtime_iso": "2026-02-24T08:42:04.342823+00:00",
+      "sha256": "895dea5f50995a5b0b83920fa15d839bc8ba4aa1b4882519c5f244b46cfbec0f",
+      "workstream": "wptg-alignment"
+    },
+    {
+      "path": "codex/mailbox/WPTG_SKILL_ALIGNMENT_BASELINE.md",
+      "root": "codex/mailbox",
+      "filename": "WPTG_SKILL_ALIGNMENT_BASELINE.md",
+      "extension": ".md",
+      "size_bytes": 2780,
+      "mtime_iso": "2026-02-24T08:42:04.341831+00:00",
+      "sha256": "9855e294c69fe9e4de5b98d3adabbb4c527ecf900337cb3b4fabce75c10b3153",
+      "workstream": "wptg-alignment"
+    },
+    {
+      "path": "claude-codex-gemini/ANKH_EGYPTOLOGY_SOUTH_AMERICAN/ANKH_Ancient_Matriarcha_Systems_Researchl.md",
+      "root": "claude-codex-gemini",
+      "filename": "ANKH_Ancient_Matriarcha_Systems_Researchl.md",
+      "extension": ".md",
+      "size_bytes": 41332,
+      "mtime_iso": "2026-02-19T20:49:26.347805+00:00",
+      "sha256": "4a9f0832808899f5c7e5301c94d663431ee528e9febb501847b2fb9dd7e60795",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "claude-codex-gemini/ANKH_EGYPTOLOGY_SOUTH_AMERICAN/ANKH_ARCHETYPE_ANCIENT_RITUALS_NSFW.md",
+      "root": "claude-codex-gemini",
+      "filename": "ANKH_ARCHETYPE_ANCIENT_RITUALS_NSFW.md",
+      "extension": ".md",
+      "size_bytes": 33015,
+      "mtime_iso": "2026-02-19T20:49:47.859193+00:00",
+      "sha256": "aeb4dc73203b6ce7327bcd32954bf716d73117c83d55f73728e095925a7d8575",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "claude-codex-gemini/ANKH_EGYPTOLOGY_SOUTH_AMERICAN/ANKH_MILF_PROTOCOL_HIGH_INTENSITY_ARCHETYPAL_SYSTEMS_ARCHITECTURE.md",
+      "root": "claude-codex-gemini",
+      "filename": "ANKH_MILF_PROTOCOL_HIGH_INTENSITY_ARCHETYPAL_SYSTEMS_ARCHITECTURE.md",
+      "extension": ".md",
+      "size_bytes": 9323,
+      "mtime_iso": "2026-02-19T20:50:05.059761+00:00",
+      "sha256": "b8e3ecbe6c0e0e17ad3d61b0dee6d53d1f23e50387988192be12115760417c51",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "claude-codex-gemini/ANKH_EGYPTOLOGY_SOUTH_AMERICAN/ANKH_UNIFYING_REPOSITORY_METADATA_STANDARDS.md",
+      "root": "claude-codex-gemini",
+      "filename": "ANKH_UNIFYING_REPOSITORY_METADATA_STANDARDS.md",
+      "extension": ".md",
+      "size_bytes": 53695,
+      "mtime_iso": "2026-02-23T21:09:03.930524+00:00",
+      "sha256": "43d74fe58c4d2e774bad783b62120db60ec95f8214da962f889efe7be52438ed",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "claude-codex-gemini/ANKH_EGYPTOLOGY_SOUTH_AMERICAN/BODY_SYSTEMS/ABSTRACTING_GESTALT_WHR_MAX_ARCHITECTURE.md",
+      "root": "claude-codex-gemini",
+      "filename": "ABSTRACTING_GESTALT_WHR_MAX_ARCHITECTURE.md",
+      "extension": ".md",
+      "size_bytes": 38557,
+      "mtime_iso": "2026-02-23T18:38:36.021751+00:00",
+      "sha256": "925121a05403459faf28d199013497fba5e4efe5fe6e87960063ac6135f7b917",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "claude-codex-gemini/ANKH_EGYPTOLOGY_SOUTH_AMERICAN/VS_CODE_INSIDERS_MAXIMALIST_MILF_THE_DECORATOR_CHALLANGE.md",
+      "root": "claude-codex-gemini",
+      "filename": "VS_CODE_INSIDERS_MAXIMALIST_MILF_THE_DECORATOR_CHALLANGE.md",
+      "extension": ".md",
+      "size_bytes": 53654,
+      "mtime_iso": "2026-02-23T04:29:22.220154+00:00",
+      "sha256": "7159317cd24af2893904a38b959e571d44f348c6e6394ba7d37d42d89eeb3906",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "claude-codex-gemini/context_packets/packet_001_init.md",
+      "root": "claude-codex-gemini",
+      "filename": "packet_001_init.md",
+      "extension": ".md",
+      "size_bytes": 1510,
+      "mtime_iso": "2026-02-20T04:42:35.455713+00:00",
+      "sha256": "67b3e918e8226efc8649b956dba7184f3a0f32c6671578c9047483b70301310a",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "claude-codex-gemini/context_packets/packet_003_src_scan_meta.md",
+      "root": "claude-codex-gemini",
+      "filename": "packet_003_src_scan_meta.md",
+      "extension": ".md",
+      "size_bytes": 13186,
+      "mtime_iso": "2026-02-20T05:16:40.719790+00:00",
+      "sha256": "19e6616bda3161b86e94533a3362c2c2312e49231544bb73a13c37766681a4f2",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "claude-codex-gemini/context_packets/packet_004_infrastructure_spec.md",
+      "root": "claude-codex-gemini",
+      "filename": "packet_004_infrastructure_spec.md",
+      "extension": ".md",
+      "size_bytes": 1580,
+      "mtime_iso": "2026-02-20T05:21:40.396655+00:00",
+      "sha256": "f85e7586d44afc85cdd393ee29fb82e97d9137de6b3b2299025946fc86f74587",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "claude-codex-gemini/Embedding_model_landscape_DRESRCH_DUMP.md",
+      "root": "claude-codex-gemini",
+      "filename": "Embedding_model_landscape_DRESRCH_DUMP.md",
+      "extension": ".md",
+      "size_bytes": 30699,
+      "mtime_iso": "2026-02-17T19:51:14.654089+00:00",
+      "sha256": "77403f83983f718483041c036608ab008ca208f47f0427195b8869d27fb723f2",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "claude-codex-gemini/engineering_agentic_deep_research_candidates/codex52_medium_reasoning_candidate_persona.md",
+      "root": "claude-codex-gemini",
+      "filename": "codex52_medium_reasoning_candidate_persona.md",
+      "extension": ".md",
+      "size_bytes": 30220,
+      "mtime_iso": "2026-02-18T19:22:59.770535+00:00",
+      "sha256": "d3609dc5d6b2c7100f5841273e176fd1d321cd1233fbdf2217dd1dbf35db50e9",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "claude-codex-gemini/engineering_agentic_deep_research_candidates/gemini-deep-research-2026-02/00-unified-verdicts.md",
+      "root": "claude-codex-gemini",
+      "filename": "00-unified-verdicts.md",
+      "extension": ".md",
+      "size_bytes": 6647,
+      "mtime_iso": "2026-02-17T19:51:14.669088+00:00",
+      "sha256": "83591faaadc3cd3a8010236d4ba647a5bb7f4fcd3d34f99f1b9229a9483cd027",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "claude-codex-gemini/engineering_agentic_deep_research_candidates/gemini-deep-research-2026-02/01-local-llm-inference-stack.md",
+      "root": "claude-codex-gemini",
+      "filename": "01-local-llm-inference-stack.md",
+      "extension": ".md",
+      "size_bytes": 3838,
+      "mtime_iso": "2026-02-17T19:51:14.672096+00:00",
+      "sha256": "17e62fcf6e482c4e88913a5ac8e1b6f8d1f7a614c909979e49a0591030179aab",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "claude-codex-gemini/engineering_agentic_deep_research_candidates/gemini-deep-research-2026-02/02-rustified-polyglot-daemon.md",
+      "root": "claude-codex-gemini",
+      "filename": "02-rustified-polyglot-daemon.md",
+      "extension": ".md",
+      "size_bytes": 3945,
+      "mtime_iso": "2026-02-17T19:51:14.676095+00:00",
+      "sha256": "4e816728681290dfc2c4423fd71110b5c8ae5ed2cdc97f7e635d8a52996d9841",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "claude-codex-gemini/engineering_agentic_deep_research_candidates/gemini-deep-research-2026-02/03-api-gateways-and-vector-dbs.md",
+      "root": "claude-codex-gemini",
+      "filename": "03-api-gateways-and-vector-dbs.md",
+      "extension": ".md",
+      "size_bytes": 4184,
+      "mtime_iso": "2026-02-17T19:51:14.677193+00:00",
+      "sha256": "c782faa3ae7125e8ec6017834c71cf05aef2bc07c6f1890928c5d62bc1e865d9",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "claude-codex-gemini/engineering_agentic_deep_research_candidates/gemini-deep-research-2026-02/04-ruby-4-and-oxidized-toolchains.md",
+      "root": "claude-codex-gemini",
+      "filename": "04-ruby-4-and-oxidized-toolchains.md",
+      "extension": ".md",
+      "size_bytes": 4145,
+      "mtime_iso": "2026-02-17T19:51:14.679194+00:00",
+      "sha256": "8fcd59f26d955bf4dd43966b4efaf6a5d913649033031e9151ffda7ae6fe489a",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "claude-codex-gemini/engineering_agentic_deep_research_candidates/gemini-deep-research-2026-02/05-batch-classification-infrastructure.md",
+      "root": "claude-codex-gemini",
+      "filename": "05-batch-classification-infrastructure.md",
+      "extension": ".md",
+      "size_bytes": 39692,
+      "mtime_iso": "2026-02-17T19:51:14.681949+00:00",
+      "sha256": "2f92bb4340de8c6726d9b0bfb29d6c23a0806285f22ba05c56afb671c181c069",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "claude-codex-gemini/engineering_agentic_deep_research_candidates/gemini-deep-research-2026-02/06-field-tested-corrections-and-frontier.md",
+      "root": "claude-codex-gemini",
+      "filename": "06-field-tested-corrections-and-frontier.md",
+      "extension": ".md",
+      "size_bytes": 14895,
+      "mtime_iso": "2026-02-17T19:51:14.685283+00:00",
+      "sha256": "c89a239cb5f886744d2c379285db4b0c80392ea93b6c91530522ac99ad7043da",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "claude-codex-gemini/engineering_agentic_deep_research_candidates/gemini-deep-research-2026-02/07-phase-learning-research-questions.md",
+      "root": "claude-codex-gemini",
+      "filename": "07-phase-learning-research-questions.md",
+      "extension": ".md",
+      "size_bytes": 6943,
+      "mtime_iso": "2026-02-17T19:51:14.687304+00:00",
+      "sha256": "b3b01a76eca843c0dbd975bc881223f85cbb387c7824c7e8d69398c23387f7d2",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "claude-codex-gemini/engineering_agentic_deep_research_candidates/gemini-deep-research-2026-02/08-phase-learning-verdicts.md",
+      "root": "claude-codex-gemini",
+      "filename": "08-phase-learning-verdicts.md",
+      "extension": ".md",
+      "size_bytes": 7449,
+      "mtime_iso": "2026-02-17T19:51:14.690303+00:00",
+      "sha256": "ab3aee74c5df626fa889ba6242580a2bad1a4027fe56c84e6c130de222e82181",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "claude-codex-gemini/engineering_agentic_deep_research_candidates/gemini-deep-research-2026-02/09-session-trail-and-learnings.md",
+      "root": "claude-codex-gemini",
+      "filename": "09-session-trail-and-learnings.md",
+      "extension": ".md",
+      "size_bytes": 9168,
+      "mtime_iso": "2026-02-17T19:51:14.692304+00:00",
+      "sha256": "5374de5fbda9d45000a84ff60c781c3374e4a1227c0bdfb1453c32cc90f9d983",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "claude-codex-gemini/engineering_agentic_deep_research_candidates/gemini-deep-research-2026-02/10-anno-live-unanswered-questions-v2.md",
+      "root": "claude-codex-gemini",
+      "filename": "10-anno-live-unanswered-questions-v2.md",
+      "extension": ".md",
+      "size_bytes": 5094,
+      "mtime_iso": "2026-02-19T22:10:56.307787+00:00",
+      "sha256": "2bae529ec100df7ba24885d4d31091a6884cdb530b3567e30e6a25414a322f56",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "claude-codex-gemini/engineering_agentic_deep_research_candidates/gemini-deep-research-2026-02/ANNO_RUSTIFICATION_ENDO_DOT_LIFE.md",
+      "root": "claude-codex-gemini",
+      "filename": "ANNO_RUSTIFICATION_ENDO_DOT_LIFE.md",
+      "extension": ".md",
+      "size_bytes": 36551,
+      "mtime_iso": "2026-02-18T22:33:23.120637+00:00",
+      "sha256": "77463445553499be773cb6f3856a9e76e772fb3c808302ce32c25a3c393f5cb0",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "claude-codex-gemini/engineering_agentic_deep_research_candidates/GEMINI_RESEARCH_DIGEST_2026_02_12.md",
+      "root": "claude-codex-gemini",
+      "filename": "GEMINI_RESEARCH_DIGEST_2026_02_12.md",
+      "extension": ".md",
+      "size_bytes": 9286,
+      "mtime_iso": "2026-02-17T19:51:14.660077+00:00",
+      "sha256": "45068207a993727477384333a4aaf56e5b52df704c603979209ac1d00cfad518",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "claude-codex-gemini/engineering_agentic_deep_research_candidates/LOCAL_LLM_STACK_RESEARCH_BRIEF_2026_02_11.md",
+      "root": "claude-codex-gemini",
+      "filename": "LOCAL_LLM_STACK_RESEARCH_BRIEF_2026_02_11.md",
+      "extension": ".md",
+      "size_bytes": 5960,
+      "mtime_iso": "2026-02-17T19:51:14.663086+00:00",
+      "sha256": "56052420eb1981e1f2e442c45167e7fc8ce66693b858dad0ad1ea35844229c0f",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "claude-codex-gemini/engineering_agentic_deep_research_candidates/UNIFIED_METADATA_ABSTRACTION_RESEARCH_BRIEF_2026_02_27.md",
+      "root": "claude-codex-gemini",
+      "filename": "UNIFIED_METADATA_ABSTRACTION_RESEARCH_BRIEF_2026_02_27.md",
+      "extension": ".md",
+      "size_bytes": 22482,
+      "mtime_iso": "2026-02-23T20:51:26.783606+00:00",
+      "sha256": "00406d3805b159f3903b4f9524894ed7b4e1527f0023a28bcf9646c5399584b2",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "claude-codex-gemini/general_researchDUMP003.md",
+      "root": "claude-codex-gemini",
+      "filename": "general_researchDUMP003.md",
+      "extension": ".md",
+      "size_bytes": 30776,
+      "mtime_iso": "2026-02-17T19:51:14.698303+00:00",
+      "sha256": "2f2a81131635cac1af3024636c7c8f6252cce949824951bf838fb8abd77d2fdd",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "claude-codex-gemini/HANDOFF_RECEIPT_LOG.json",
+      "root": "claude-codex-gemini",
+      "filename": "HANDOFF_RECEIPT_LOG.json",
+      "extension": ".json",
+      "size_bytes": 1627,
+      "mtime_iso": "2026-02-26T01:28:08.022993+00:00",
+      "sha256": "d1d778c9dce6030dbbce49e88683b9ed5c5f9c11bd684916604b971b9ce93f6b",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "claude-codex-gemini/hotswapresearch.md",
+      "root": "claude-codex-gemini",
+      "filename": "hotswapresearch.md",
+      "extension": ".md",
+      "size_bytes": 42604,
+      "mtime_iso": "2026-02-17T19:51:14.700443+00:00",
+      "sha256": "f34cacba758b589ad4b6666e723b10e8714fed539ed2583894277122bada2d7b",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "claude-codex-gemini/research-dump002.md",
+      "root": "claude-codex-gemini",
+      "filename": "research-dump002.md",
+      "extension": ".md",
+      "size_bytes": 39692,
+      "mtime_iso": "2026-02-17T19:51:14.703460+00:00",
+      "sha256": "2f92bb4340de8c6726d9b0bfb29d6c23a0806285f22ba05c56afb671c181c069",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "claude-codex-gemini/research_dump003.md",
+      "root": "claude-codex-gemini",
+      "filename": "research_dump003.md",
+      "extension": ".md",
+      "size_bytes": 40023,
+      "mtime_iso": "2026-02-17T19:51:14.708460+00:00",
+      "sha256": "8d7b28991f697d457ded6a7b185ef8a1b1115ac9bac73e9f92e76c359ccc1b15",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "claude-codex-gemini/research_GPTOSS_HF.md",
+      "root": "claude-codex-gemini",
+      "filename": "research_GPTOSS_HF.md",
+      "extension": ".md",
+      "size_bytes": 36352,
+      "mtime_iso": "2026-02-17T19:51:14.706458+00:00",
+      "sha256": "7966f7f5312e290bff10e9075dbf47503fc72a437aed4f4d8000f91f583fc5be",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "claude-codex-gemini/RESEARCH_REGISTRY.md",
+      "root": "claude-codex-gemini",
+      "filename": "RESEARCH_REGISTRY.md",
+      "extension": ".md",
+      "size_bytes": 13446,
+      "mtime_iso": "2026-02-24T05:58:00.072048+00:00",
+      "sha256": "ce82679e0998e67ecc0368a88f1f151817ffdf7a27c4b9738017fb5f9d7101a2",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "claude-codex-gemini/researchhags.md",
+      "root": "claude-codex-gemini",
+      "filename": "researchhags.md",
+      "extension": ".md",
+      "size_bytes": 31111,
+      "mtime_iso": "2026-02-17T19:51:14.712574+00:00",
+      "sha256": "c1ece1fd567d5c76109800fc9afed7d26c36b13a44d272131739505d81ab04cc",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "claude-codex-gemini/session_resumption_pickup/GEMINI_DEEP_RESEARCH_TRIAGE_2026_02_19.md",
+      "root": "claude-codex-gemini",
+      "filename": "GEMINI_DEEP_RESEARCH_TRIAGE_2026_02_19.md",
+      "extension": ".md",
+      "size_bytes": 1839,
+      "mtime_iso": "2026-02-19T23:03:49.225554+00:00",
+      "sha256": "457d9a5b06c9f601f64419f320605bc6f52f118454fd280db8660987ea343630",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "claude-codex-gemini/session_resumption_pickup/GEMINI_UNANSWERED_QUESTIONS_20260219_225439.md",
+      "root": "claude-codex-gemini",
+      "filename": "GEMINI_UNANSWERED_QUESTIONS_20260219_225439.md",
+      "extension": ".md",
+      "size_bytes": 1689,
+      "mtime_iso": "2026-02-19T21:55:02.474186+00:00",
+      "sha256": "a1b88e5a10bb80ed1f9678f919f759d768f4556c4e330a42207871e4456f8537",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "claude-codex-gemini/session_resumption_pickup/GEMINI_UNANSWERED_QUESTIONS_LATEST.md",
+      "root": "claude-codex-gemini",
+      "filename": "GEMINI_UNANSWERED_QUESTIONS_LATEST.md",
+      "extension": ".md",
+      "size_bytes": 1689,
+      "mtime_iso": "2026-02-19T21:55:02.475187+00:00",
+      "sha256": "a1b88e5a10bb80ed1f9678f919f759d768f4556c4e330a42207871e4456f8537",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "claude-codex-gemini/session_resumption_pickup/LOCAL_UNCENSORED_BENCHMARK_20260219_213906.json",
+      "root": "claude-codex-gemini",
+      "filename": "LOCAL_UNCENSORED_BENCHMARK_20260219_213906.json",
+      "extension": ".json",
+      "size_bytes": 6624,
+      "mtime_iso": "2026-02-19T21:39:06.536189+00:00",
+      "sha256": "862ae2dd31c5d9fa7408f1590ca54d139dc6a771621dedf935807eebfe22a696",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "claude-codex-gemini/session_resumption_pickup/LOCAL_UNCENSORED_BENCHMARK_20260219_213906.md",
+      "root": "claude-codex-gemini",
+      "filename": "LOCAL_UNCENSORED_BENCHMARK_20260219_213906.md",
+      "extension": ".md",
+      "size_bytes": 4390,
+      "mtime_iso": "2026-02-19T21:39:06.535187+00:00",
+      "sha256": "eddb68eb63de30bdf157b848087475882159f2ee2e306a78e47b5c3640830c2e",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "claude-codex-gemini/session_resumption_pickup/LOCAL_UNCENSORED_BENCHMARK_20260219_214148.json",
+      "root": "claude-codex-gemini",
+      "filename": "LOCAL_UNCENSORED_BENCHMARK_20260219_214148.json",
+      "extension": ".json",
+      "size_bytes": 6622,
+      "mtime_iso": "2026-02-19T21:41:48.810518+00:00",
+      "sha256": "1d406516bafc4c987b32bb7efb71d13f0531b484e0643b4c472f1c9618a3d416",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "claude-codex-gemini/session_resumption_pickup/LOCAL_UNCENSORED_BENCHMARK_20260219_214148.md",
+      "root": "claude-codex-gemini",
+      "filename": "LOCAL_UNCENSORED_BENCHMARK_20260219_214148.md",
+      "extension": ".md",
+      "size_bytes": 4376,
+      "mtime_iso": "2026-02-19T21:41:48.807213+00:00",
+      "sha256": "53e1d2ca871ada36174f816a45d20f5acc17a3718eb9dab97580f660be1bf162",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "claude-codex-gemini/session_resumption_pickup/LOCAL_UNCENSORED_BENCHMARK_20260219_231009.json",
+      "root": "claude-codex-gemini",
+      "filename": "LOCAL_UNCENSORED_BENCHMARK_20260219_231009.json",
+      "extension": ".json",
+      "size_bytes": 6444,
+      "mtime_iso": "2026-02-19T23:10:09.402098+00:00",
+      "sha256": "51a76965604898b92657f4d814f2092cb9c3229c30ef9f0e91bf9e0b7b4691cd",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "claude-codex-gemini/session_resumption_pickup/LOCAL_UNCENSORED_BENCHMARK_20260219_231009.md",
+      "root": "claude-codex-gemini",
+      "filename": "LOCAL_UNCENSORED_BENCHMARK_20260219_231009.md",
+      "extension": ".md",
+      "size_bytes": 4204,
+      "mtime_iso": "2026-02-19T23:10:09.392486+00:00",
+      "sha256": "e878ffc4e7a6d9a98b3103edde26b945d0cee5f2a527c605ecd6fa63080e0ad0",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "claude-codex-gemini/session_resumption_pickup/LOCAL_UNCENSORED_BENCHMARK_20260219_231719.json",
+      "root": "claude-codex-gemini",
+      "filename": "LOCAL_UNCENSORED_BENCHMARK_20260219_231719.json",
+      "extension": ".json",
+      "size_bytes": 6448,
+      "mtime_iso": "2026-02-19T23:17:19.865630+00:00",
+      "sha256": "a971618cc9712dba368f1ff2264a0e01b07401360bbd8967f36771b7615d017e",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "claude-codex-gemini/session_resumption_pickup/LOCAL_UNCENSORED_BENCHMARK_20260219_231719.md",
+      "root": "claude-codex-gemini",
+      "filename": "LOCAL_UNCENSORED_BENCHMARK_20260219_231719.md",
+      "extension": ".md",
+      "size_bytes": 4208,
+      "mtime_iso": "2026-02-19T23:17:19.863630+00:00",
+      "sha256": "ac44443d1138ef55d4a39c50e50bed3870bbfe3690930bbe9c0952e8da13b80f",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "claude-codex-gemini/session_resumption_pickup/LOCAL_UNCENSORED_BENCHMARK_LATEST.md",
+      "root": "claude-codex-gemini",
+      "filename": "LOCAL_UNCENSORED_BENCHMARK_LATEST.md",
+      "extension": ".md",
+      "size_bytes": 4208,
+      "mtime_iso": "2026-02-19T23:17:19.864629+00:00",
+      "sha256": "ac44443d1138ef55d4a39c50e50bed3870bbfe3690930bbe9c0952e8da13b80f",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "claude-codex-gemini/session_resumption_pickup/SESSION_CONTINUATION_DAEMON_GENRE_LATEST.md",
+      "root": "claude-codex-gemini",
+      "filename": "SESSION_CONTINUATION_DAEMON_GENRE_LATEST.md",
+      "extension": ".md",
+      "size_bytes": 2971,
+      "mtime_iso": "2026-02-20T03:18:38.886135+00:00",
+      "sha256": "ab7dabab8b566bef3f0a65695e343c8c23d7db9aa4c975b79994746778ef1f27",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "claude-codex-gemini/session_resumption_pickup/SESSION_RESUMPTION_HIGH_COVERAGE_20260219_213137.json",
+      "root": "claude-codex-gemini",
+      "filename": "SESSION_RESUMPTION_HIGH_COVERAGE_20260219_213137.json",
+      "extension": ".json",
+      "size_bytes": 12676,
+      "mtime_iso": "2026-02-19T21:31:37.669464+00:00",
+      "sha256": "94087c5551f7184e96bedeb918558d7bf82526364ab58f43318cd2bf2868d7a3",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "claude-codex-gemini/session_resumption_pickup/SESSION_RESUMPTION_HIGH_COVERAGE_20260219_213137.md",
+      "root": "claude-codex-gemini",
+      "filename": "SESSION_RESUMPTION_HIGH_COVERAGE_20260219_213137.md",
+      "extension": ".md",
+      "size_bytes": 7260,
+      "mtime_iso": "2026-02-19T21:31:37.668473+00:00",
+      "sha256": "93e40946caeac31028c9f816a039cc86c75f8a47c728e60eef15b8a2c13afbc3",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "claude-codex-gemini/session_resumption_pickup/SESSION_RESUMPTION_HIGH_COVERAGE_20260219_213215.json",
+      "root": "claude-codex-gemini",
+      "filename": "SESSION_RESUMPTION_HIGH_COVERAGE_20260219_213215.json",
+      "extension": ".json",
+      "size_bytes": 12676,
+      "mtime_iso": "2026-02-19T21:32:15.142669+00:00",
+      "sha256": "afba5378a6d2b7afaac049bac24a69079a96482cbdc9e83d2742886f9a868a3e",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "claude-codex-gemini/session_resumption_pickup/SESSION_RESUMPTION_HIGH_COVERAGE_20260219_213215.md",
+      "root": "claude-codex-gemini",
+      "filename": "SESSION_RESUMPTION_HIGH_COVERAGE_20260219_213215.md",
+      "extension": ".md",
+      "size_bytes": 7260,
+      "mtime_iso": "2026-02-19T21:32:15.141669+00:00",
+      "sha256": "2c5b8d302f033a2165aab52f9b729d9b828911e8b6b6f1ba2720bd900800b99f",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "claude-codex-gemini/session_resumption_pickup/SESSION_RESUMPTION_HIGH_COVERAGE_20260219_213255.json",
+      "root": "claude-codex-gemini",
+      "filename": "SESSION_RESUMPTION_HIGH_COVERAGE_20260219_213255.json",
+      "extension": ".json",
+      "size_bytes": 13913,
+      "mtime_iso": "2026-02-19T21:32:55.092244+00:00",
+      "sha256": "a9505dc7632a819631842fa9334d23f5ffd20089558e4640cd6b5704b8924f1d",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "claude-codex-gemini/session_resumption_pickup/SESSION_RESUMPTION_HIGH_COVERAGE_20260219_213255.md",
+      "root": "claude-codex-gemini",
+      "filename": "SESSION_RESUMPTION_HIGH_COVERAGE_20260219_213255.md",
+      "extension": ".md",
+      "size_bytes": 7260,
+      "mtime_iso": "2026-02-19T21:32:55.091243+00:00",
+      "sha256": "849015fd4680d58b109b47e325c4bad3c6f3bf01c9903b97d15220926a2bfc78",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "claude-codex-gemini/session_resumption_pickup/SESSION_RESUMPTION_HIGH_COVERAGE_20260219_213920.json",
+      "root": "claude-codex-gemini",
+      "filename": "SESSION_RESUMPTION_HIGH_COVERAGE_20260219_213920.json",
+      "extension": ".json",
+      "size_bytes": 13913,
+      "mtime_iso": "2026-02-19T21:39:20.166781+00:00",
+      "sha256": "8e91df1b09af81faa281638749e647f26c2d88a82ab5fe7c2fae85a32c446911",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "claude-codex-gemini/session_resumption_pickup/SESSION_RESUMPTION_HIGH_COVERAGE_20260219_213920.md",
+      "root": "claude-codex-gemini",
+      "filename": "SESSION_RESUMPTION_HIGH_COVERAGE_20260219_213920.md",
+      "extension": ".md",
+      "size_bytes": 7260,
+      "mtime_iso": "2026-02-19T21:39:20.165775+00:00",
+      "sha256": "118538de86d7c51d8afbc77d328e5a520fa68f63a17ba5de8f9cc2dfc7cf2e42",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "claude-codex-gemini/session_resumption_pickup/SESSION_RESUMPTION_HIGH_COVERAGE_20260219_214157.json",
+      "root": "claude-codex-gemini",
+      "filename": "SESSION_RESUMPTION_HIGH_COVERAGE_20260219_214157.json",
+      "extension": ".json",
+      "size_bytes": 13913,
+      "mtime_iso": "2026-02-19T21:41:57.767172+00:00",
+      "sha256": "7ab31e3cdf6fc521f6964f512f9287bfea6acd4af04847d0dcb4a625cf60273f",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "claude-codex-gemini/session_resumption_pickup/SESSION_RESUMPTION_HIGH_COVERAGE_20260219_214157.md",
+      "root": "claude-codex-gemini",
+      "filename": "SESSION_RESUMPTION_HIGH_COVERAGE_20260219_214157.md",
+      "extension": ".md",
+      "size_bytes": 7260,
+      "mtime_iso": "2026-02-19T21:41:57.766175+00:00",
+      "sha256": "d4fe888dda64dfe852a53ad343a01d202bd81dc5d28a807ff9f3176fa729c2cb",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "claude-codex-gemini/session_resumption_pickup/SESSION_RESUMPTION_HIGH_COVERAGE_20260219_231102.json",
+      "root": "claude-codex-gemini",
+      "filename": "SESSION_RESUMPTION_HIGH_COVERAGE_20260219_231102.json",
+      "extension": ".json",
+      "size_bytes": 13913,
+      "mtime_iso": "2026-02-19T23:11:02.592857+00:00",
+      "sha256": "7c54821c6c8f8b18a9397120f8c73a6d2e200f2c1e6d3625ccd11e325797eba7",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "claude-codex-gemini/session_resumption_pickup/SESSION_RESUMPTION_HIGH_COVERAGE_20260219_231102.md",
+      "root": "claude-codex-gemini",
+      "filename": "SESSION_RESUMPTION_HIGH_COVERAGE_20260219_231102.md",
+      "extension": ".md",
+      "size_bytes": 7260,
+      "mtime_iso": "2026-02-19T23:11:02.590861+00:00",
+      "sha256": "bf529f57aca72068c966d7fa200f09239aae1762dc213b42760d62dc5618a03d",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "claude-codex-gemini/session_resumption_pickup/SESSION_RESUMPTION_HIGH_COVERAGE_20260219_231819.json",
+      "root": "claude-codex-gemini",
+      "filename": "SESSION_RESUMPTION_HIGH_COVERAGE_20260219_231819.json",
+      "extension": ".json",
+      "size_bytes": 13913,
+      "mtime_iso": "2026-02-19T23:18:19.020748+00:00",
+      "sha256": "301ddbbd16d98ce84910c10d039bf3ff7954c255303d123b6e94bbf9b173db7b",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "claude-codex-gemini/session_resumption_pickup/SESSION_RESUMPTION_HIGH_COVERAGE_20260219_231819.md",
+      "root": "claude-codex-gemini",
+      "filename": "SESSION_RESUMPTION_HIGH_COVERAGE_20260219_231819.md",
+      "extension": ".md",
+      "size_bytes": 7260,
+      "mtime_iso": "2026-02-19T23:18:19.019836+00:00",
+      "sha256": "483beb9d114d61f3d0f22e566b4214b2e190a1f004669fa56ca62bd71627d92d",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "claude-codex-gemini/session_resumption_pickup/SESSION_RESUMPTION_HIGH_COVERAGE_20260220_023113.json",
+      "root": "claude-codex-gemini",
+      "filename": "SESSION_RESUMPTION_HIGH_COVERAGE_20260220_023113.json",
+      "extension": ".json",
+      "size_bytes": 13908,
+      "mtime_iso": "2026-02-20T02:31:13.027512+00:00",
+      "sha256": "8a4334cfcb4f123b2ab61e288aedc79d3a7f05f93eea592039168068dbfd06d5",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "claude-codex-gemini/session_resumption_pickup/SESSION_RESUMPTION_HIGH_COVERAGE_20260220_023113.md",
+      "root": "claude-codex-gemini",
+      "filename": "SESSION_RESUMPTION_HIGH_COVERAGE_20260220_023113.md",
+      "extension": ".md",
+      "size_bytes": 7273,
+      "mtime_iso": "2026-02-20T02:31:13.024516+00:00",
+      "sha256": "9c800d5e122d62bd0e37bea0b47adc4ed11f1ae94b9b4d0dad3486ee11539a09",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "claude-codex-gemini/session_resumption_pickup/SESSION_RESUMPTION_HIGH_COVERAGE_LATEST.md",
+      "root": "claude-codex-gemini",
+      "filename": "SESSION_RESUMPTION_HIGH_COVERAGE_LATEST.md",
+      "extension": ".md",
+      "size_bytes": 6728,
+      "mtime_iso": "2026-02-25T02:44:07.921335+00:00",
+      "sha256": "2e9468b82c64b1e2fdc3a6add449be24999fbbb9d0f7064bcf5570258e43225a",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "claude-codex-gemini/session_resumption_pickup/session_resumption_pickup_codex.md",
+      "root": "claude-codex-gemini",
+      "filename": "session_resumption_pickup_codex.md",
+      "extension": ".md",
+      "size_bytes": 401056,
+      "mtime_iso": "2026-02-24T07:35:18.257710+00:00",
+      "sha256": "35c9996a6b5347a8e91c3f57adfd355106cb1029e0df0f2b76ce43d15ce8bd90",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "claude-codex-gemini/session_resumption_pickup/session_resumption_pickup_codex.md_pretty.md",
+      "root": "claude-codex-gemini",
+      "filename": "session_resumption_pickup_codex.md_pretty.md",
+      "extension": ".md",
+      "size_bytes": 9581,
+      "mtime_iso": "2026-02-20T03:13:13.820173+00:00",
+      "sha256": "ca5c5afcae68612b3621716dfc7f6463bc5ad1bf363ed4f6b46e92b182a48a5f",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "claude-codex-gemini/session_resumption_pickup/session_resumption_pickup_codex.md_resume.md",
+      "root": "claude-codex-gemini",
+      "filename": "session_resumption_pickup_codex.md_resume.md",
+      "extension": ".md",
+      "size_bytes": 2320,
+      "mtime_iso": "2026-02-20T03:13:13.838655+00:00",
+      "sha256": "fef636e322d401cebc514e5ead42ef7a45642d028e021cd9c7915ad6241d76dd",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "claude-codex-gemini/session_resumption_pickup/session_resumption_pickup_codex.md_structured.json",
+      "root": "claude-codex-gemini",
+      "filename": "session_resumption_pickup_codex.md_structured.json",
+      "extension": ".json",
+      "size_bytes": 542751,
+      "mtime_iso": "2026-02-24T07:35:18.260710+00:00",
+      "sha256": "c7de25c04e1d9848c52ab0bb3bf47e854cce7bc9f24ca8869f61818c641a1c65",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "claude-codex-gemini/session_resumption_pickup/session_resumption_pickup_codex.md_structured.txt",
+      "root": "claude-codex-gemini",
+      "filename": "session_resumption_pickup_codex.md_structured.txt",
+      "extension": ".txt",
+      "size_bytes": 4739,
+      "mtime_iso": "2026-02-20T03:13:13.810166+00:00",
+      "sha256": "a877c54a99ab4d81275122c989be1c4e219345dd261e5c2669d44a778a954a61",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "claude-codex-gemini/session_resumption_pickup/UNCENSORED_LANE_RUNTIME_20260219_231721.json",
+      "root": "claude-codex-gemini",
+      "filename": "UNCENSORED_LANE_RUNTIME_20260219_231721.json",
+      "extension": ".json",
+      "size_bytes": 2635,
+      "mtime_iso": "2026-02-19T23:17:26.808098+00:00",
+      "sha256": "afd8ad5e431abaec843d9dc05a3383f76bdcf96e7c2a0833010b56dc40d78611",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "claude-codex-gemini/session_resumption_pickup/UNCENSORED_LANE_RUNTIME_20260219_231721.md",
+      "root": "claude-codex-gemini",
+      "filename": "UNCENSORED_LANE_RUNTIME_20260219_231721.md",
+      "extension": ".md",
+      "size_bytes": 1107,
+      "mtime_iso": "2026-02-19T23:17:26.808098+00:00",
+      "sha256": "786c7182d3c4a7143bc5a69cfec1100eb85455357c873e0ade267ea4b42c50fb",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "claude-codex-gemini/session_resumption_pickup/UNCENSORED_LANE_RUNTIME_LATEST.json",
+      "root": "claude-codex-gemini",
+      "filename": "UNCENSORED_LANE_RUNTIME_LATEST.json",
+      "extension": ".json",
+      "size_bytes": 2635,
+      "mtime_iso": "2026-02-19T23:17:26.810097+00:00",
+      "sha256": "afd8ad5e431abaec843d9dc05a3383f76bdcf96e7c2a0833010b56dc40d78611",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "claude-codex-gemini/session_resumption_pickup/UNCENSORED_LANE_RUNTIME_LATEST.md",
+      "root": "claude-codex-gemini",
+      "filename": "UNCENSORED_LANE_RUNTIME_LATEST.md",
+      "extension": ".md",
+      "size_bytes": 1107,
+      "mtime_iso": "2026-02-19T23:17:26.810097+00:00",
+      "sha256": "786c7182d3c4a7143bc5a69cfec1100eb85455357c873e0ade267ea4b42c50fb",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "claude-codex-gemini/session_resumption_pickup/UNCENSORED_LANE_STEWARD_20260219_230748.json",
+      "root": "claude-codex-gemini",
+      "filename": "UNCENSORED_LANE_STEWARD_20260219_230748.json",
+      "extension": ".json",
+      "size_bytes": 21085,
+      "mtime_iso": "2026-02-19T23:07:53.365149+00:00",
+      "sha256": "85abbcb1f0df57b8963f30cc1f9e94aba011f9ff1b7fa75ea76a46cbf2edb155",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "claude-codex-gemini/session_resumption_pickup/UNCENSORED_LANE_STEWARD_20260219_230748.md",
+      "root": "claude-codex-gemini",
+      "filename": "UNCENSORED_LANE_STEWARD_20260219_230748.md",
+      "extension": ".md",
+      "size_bytes": 3934,
+      "mtime_iso": "2026-02-19T23:07:53.366035+00:00",
+      "sha256": "61c746795ce5436ab98436840e34db228c0a53aa9e73a5eb9280a57fc4189bc4",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "claude-codex-gemini/session_resumption_pickup/UNCENSORED_LANE_STEWARD_20260219_230805.json",
+      "root": "claude-codex-gemini",
+      "filename": "UNCENSORED_LANE_STEWARD_20260219_230805.json",
+      "extension": ".json",
+      "size_bytes": 21086,
+      "mtime_iso": "2026-02-19T23:08:11.068856+00:00",
+      "sha256": "fdd59bc12b68375d63e77f59bcb008a217aecc5865332a7211359fe1f56c5c73",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "claude-codex-gemini/session_resumption_pickup/UNCENSORED_LANE_STEWARD_20260219_230805.md",
+      "root": "claude-codex-gemini",
+      "filename": "UNCENSORED_LANE_STEWARD_20260219_230805.md",
+      "extension": ".md",
+      "size_bytes": 3935,
+      "mtime_iso": "2026-02-19T23:08:11.068856+00:00",
+      "sha256": "9b5f844c6d2aaf05e07d687a67543aa93f72905ae44484cc05193ae965b6b080",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "claude-codex-gemini/session_resumption_pickup/UNCENSORED_LANE_STEWARD_20260219_230830.json",
+      "root": "claude-codex-gemini",
+      "filename": "UNCENSORED_LANE_STEWARD_20260219_230830.json",
+      "extension": ".json",
+      "size_bytes": 21082,
+      "mtime_iso": "2026-02-19T23:08:35.993891+00:00",
+      "sha256": "bf7bfb786e115c5fa9ce6a8a05269b2e7119c7fa0b15def10279146bd1c14087",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "claude-codex-gemini/session_resumption_pickup/UNCENSORED_LANE_STEWARD_20260219_230830.md",
+      "root": "claude-codex-gemini",
+      "filename": "UNCENSORED_LANE_STEWARD_20260219_230830.md",
+      "extension": ".md",
+      "size_bytes": 3931,
+      "mtime_iso": "2026-02-19T23:08:35.994890+00:00",
+      "sha256": "16b6d79610d69922340b23946adec6cb7b1bbe83ae0d9c50ea8208d44a816b03",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "claude-codex-gemini/session_resumption_pickup/UNCENSORED_LANE_STEWARD_20260219_231022.json",
+      "root": "claude-codex-gemini",
+      "filename": "UNCENSORED_LANE_STEWARD_20260219_231022.json",
+      "extension": ".json",
+      "size_bytes": 20913,
+      "mtime_iso": "2026-02-19T23:10:27.907225+00:00",
+      "sha256": "e4ff6b51a9e922fe1727dfa663ee5b12c32b39829e8f7cc90f68c7e584648c7f",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "claude-codex-gemini/session_resumption_pickup/UNCENSORED_LANE_STEWARD_20260219_231022.md",
+      "root": "claude-codex-gemini",
+      "filename": "UNCENSORED_LANE_STEWARD_20260219_231022.md",
+      "extension": ".md",
+      "size_bytes": 3938,
+      "mtime_iso": "2026-02-19T23:10:27.907225+00:00",
+      "sha256": "6b6b81f92c3b959565eef7ce1c44c1e3d8e7492f2348235811c2b69cf954efe0",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "claude-codex-gemini/session_resumption_pickup/UNCENSORED_LANE_STEWARD_20260219_231721.json",
+      "root": "claude-codex-gemini",
+      "filename": "UNCENSORED_LANE_STEWARD_20260219_231721.json",
+      "extension": ".json",
+      "size_bytes": 20920,
+      "mtime_iso": "2026-02-19T23:17:26.805621+00:00",
+      "sha256": "e46f7ee043bc42874f900c712d123ced69a81dbbe82156acdfeff5a958f1a51e",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "claude-codex-gemini/session_resumption_pickup/UNCENSORED_LANE_STEWARD_20260219_231721.md",
+      "root": "claude-codex-gemini",
+      "filename": "UNCENSORED_LANE_STEWARD_20260219_231721.md",
+      "extension": ".md",
+      "size_bytes": 3942,
+      "mtime_iso": "2026-02-19T23:17:26.805621+00:00",
+      "sha256": "c5921155275bf0d3a61925aa8cde520ec44be28cb9c80ac555256f9881c059e4",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "claude-codex-gemini/session_resumption_pickup/UNCENSORED_LANE_STEWARD_LATEST.json",
+      "root": "claude-codex-gemini",
+      "filename": "UNCENSORED_LANE_STEWARD_LATEST.json",
+      "extension": ".json",
+      "size_bytes": 20920,
+      "mtime_iso": "2026-02-19T23:17:26.807092+00:00",
+      "sha256": "e46f7ee043bc42874f900c712d123ced69a81dbbe82156acdfeff5a958f1a51e",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "claude-codex-gemini/session_resumption_pickup/UNCENSORED_LANE_STEWARD_LATEST.md",
+      "root": "claude-codex-gemini",
+      "filename": "UNCENSORED_LANE_STEWARD_LATEST.md",
+      "extension": ".md",
+      "size_bytes": 3942,
+      "mtime_iso": "2026-02-19T23:17:26.807092+00:00",
+      "sha256": "c5921155275bf0d3a61925aa8cde520ec44be28cb9c80ac555256f9881c059e4",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "claude-codex-gemini/sessionANDresearch.md",
+      "root": "claude-codex-gemini",
+      "filename": "sessionANDresearch.md",
+      "extension": ".md",
+      "size_bytes": 199721,
+      "mtime_iso": "2026-02-17T19:51:14.716514+00:00",
+      "sha256": "112a2d322d359ac099fd79a43d2bd2bc76c4c1e9d7596af15ea9514c3b8b8e78",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "claude-codex-gemini/task_scheduler_researchDUMP.md",
+      "root": "claude-codex-gemini",
+      "filename": "task_scheduler_researchDUMP.md",
+      "extension": ".md",
+      "size_bytes": 46531,
+      "mtime_iso": "2026-02-17T19:51:14.718515+00:00",
+      "sha256": "7ba53bb452de7e4f17ed917ac98c7372e3531c33a2b81222c9aaa6a3cc2d4813",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "claude-codex-gemini/TRIAD_DOC_CONSOLIDATION_STRATEGY.md",
+      "root": "claude-codex-gemini",
+      "filename": "TRIAD_DOC_CONSOLIDATION_STRATEGY.md",
+      "extension": ".md",
+      "size_bytes": 5461,
+      "mtime_iso": "2026-02-17T19:51:14.656081+00:00",
+      "sha256": "e255aec0193a948861cec895a499dfe3a2d0364ce87b9b2e1eddfdd94ad21974",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "claude-codex-gemini/triadic-session-context/Accurate_PEP_Standards_Win11_Uv_Python.md",
+      "root": "claude-codex-gemini",
+      "filename": "Accurate_PEP_Standards_Win11_Uv_Python.md",
+      "extension": ".md",
+      "size_bytes": 24366,
+      "mtime_iso": "2026-02-17T19:51:14.721500+00:00",
+      "sha256": "64ddc0a997cc03b457fed5888af2da4c663f7cab93e806526e9eb08b7bfce444",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "claude-codex-gemini/triadic-session-context/BUN_SEGFAULT_2026_02_01.md",
+      "root": "claude-codex-gemini",
+      "filename": "BUN_SEGFAULT_2026_02_01.md",
+      "extension": ".md",
+      "size_bytes": 1722,
+      "mtime_iso": "2026-02-17T19:51:14.725605+00:00",
+      "sha256": "3695d26e6df7cda6f288123344c4e5c88ffcf10063204feccfe0dbf3b983cd2e",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "claude-codex-gemini/triadic-session-context/claude-session-help.md",
+      "root": "claude-codex-gemini",
+      "filename": "claude-session-help.md",
+      "extension": ".md",
+      "size_bytes": 86243,
+      "mtime_iso": "2026-02-17T19:51:14.770316+00:00",
+      "sha256": "ee9de71e0da9dd30db32a00de76f16a49c2839e217cca2dadd01235a0aaedb7e",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "claude-codex-gemini/triadic-session-context/gemini-cli-session-fix-too-large.md",
+      "root": "claude-codex-gemini",
+      "filename": "gemini-cli-session-fix-too-large.md",
+      "extension": ".md",
+      "size_bytes": 66293,
+      "mtime_iso": "2026-02-17T19:51:14.773164+00:00",
+      "sha256": "537326066506433c914cacf43afe0b59209f45577d944099e1e3f976d3be940a",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "claude-codex-gemini/triadic-session-context/OpenAI_Codex_Win11_Keyring_Auth_Resolution.md",
+      "root": "claude-codex-gemini",
+      "filename": "OpenAI_Codex_Win11_Keyring_Auth_Resolution.md",
+      "extension": ".md",
+      "size_bytes": 7403,
+      "mtime_iso": "2026-02-17T19:51:14.730983+00:00",
+      "sha256": "3839f35a199b5bced35a660e44da074b97e4df46bb9cfec91c225487ce365dda",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "claude-codex-gemini/triadic-session-context/PHASE4_LINK_VALIDATION_2026_02_01.filtered.json",
+      "root": "claude-codex-gemini",
+      "filename": "PHASE4_LINK_VALIDATION_2026_02_01.filtered.json",
+      "extension": ".json",
+      "size_bytes": 66707,
+      "mtime_iso": "2026-02-17T19:51:14.735983+00:00",
+      "sha256": "58a5585c406b15b59b48c10ebe301d2c6fb96c6f9060aa81d93d0f314044c3fb",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "claude-codex-gemini/triadic-session-context/PHASE4_LINK_VALIDATION_2026_02_01.filtered.summary.json",
+      "root": "claude-codex-gemini",
+      "filename": "PHASE4_LINK_VALIDATION_2026_02_01.filtered.summary.json",
+      "extension": ".json",
+      "size_bytes": 2095,
+      "mtime_iso": "2026-02-17T19:51:14.737980+00:00",
+      "sha256": "67c6223603971f9da47694db4e665cda76d2013aa224d8870f1b6e52e6d0ad87",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "claude-codex-gemini/triadic-session-context/PHASE4_LINK_VALIDATION_2026_02_01.json",
+      "root": "claude-codex-gemini",
+      "filename": "PHASE4_LINK_VALIDATION_2026_02_01.json",
+      "extension": ".json",
+      "size_bytes": 208845,
+      "mtime_iso": "2026-02-17T19:51:14.739972+00:00",
+      "sha256": "21873e0451d29d08336fc29fb13a10aa52cd91e5dfc2e5cbd07d1a75065f1c51",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "claude-codex-gemini/triadic-session-context/PHASE4_LINK_VALIDATION_2026_02_01.triad_only.json",
+      "root": "claude-codex-gemini",
+      "filename": "PHASE4_LINK_VALIDATION_2026_02_01.triad_only.json",
+      "extension": ".json",
+      "size_bytes": 5444,
+      "mtime_iso": "2026-02-17T19:51:14.741971+00:00",
+      "sha256": "92b1612681aa4246281e6002eb679c22567d7e0b3735dc15cac11de567a15cf1",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "claude-codex-gemini/triadic-session-context/Python_Metabolic_Standard_v3_Transition.md",
+      "root": "claude-codex-gemini",
+      "filename": "Python_Metabolic_Standard_v3_Transition.md",
+      "extension": ".md",
+      "size_bytes": 3968,
+      "mtime_iso": "2026-02-17T19:51:14.743970+00:00",
+      "sha256": "0dd73551e4c8b1309a2b76cda8ab2e94ac3aa961a4d503e1b04dd52bdcdb6ae9",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "claude-codex-gemini/triadic-session-context/Session_20260131_Codex_Onboarding_Summary.md",
+      "root": "claude-codex-gemini",
+      "filename": "Session_20260131_Codex_Onboarding_Summary.md",
+      "extension": ".md",
+      "size_bytes": 3018,
+      "mtime_iso": "2026-02-17T19:51:14.765142+00:00",
+      "sha256": "75fefa3403610db020b2b8b8bb413a41d07133596776d62a84452b0f7800ad49",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "claude-codex-gemini/triadic-session-context/SESSION_CACHE_STRUCTURED.md",
+      "root": "claude-codex-gemini",
+      "filename": "SESSION_CACHE_STRUCTURED.md",
+      "extension": ".md",
+      "size_bytes": 7319,
+      "mtime_iso": "2026-02-17T19:51:14.745986+00:00",
+      "sha256": "3141de2619a89ade913acf2378eaea12a6a76483b58398070ff81eb8e60c1019",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "claude-codex-gemini/triadic-session-context/SESSION_PROTOCOL.md",
+      "root": "claude-codex-gemini",
+      "filename": "SESSION_PROTOCOL.md",
+      "extension": ".md",
+      "size_bytes": 9133,
+      "mtime_iso": "2026-02-17T19:51:14.749972+00:00",
+      "sha256": "ae70965b9829393bc26c0c17469b1c50895c36f38d5b98512e1cd6ed248fea03",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "claude-codex-gemini/triadic-session-context/SSOT_NAVIGATION_INDEX.md",
+      "root": "claude-codex-gemini",
+      "filename": "SSOT_NAVIGATION_INDEX.md",
+      "extension": ".md",
+      "size_bytes": 8113,
+      "mtime_iso": "2026-02-17T19:51:14.759141+00:00",
+      "sha256": "d8db4655208be7729162e2f470a7ece76a2d0f1301b3e134a5cf478a34ffbd86",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "claude-codex-gemini/triadic-session-context/SSOT_STRUCTURAL_INDEX.json",
+      "root": "claude-codex-gemini",
+      "filename": "SSOT_STRUCTURAL_INDEX.json",
+      "extension": ".json",
+      "size_bytes": 24304,
+      "mtime_iso": "2026-02-17T19:51:14.762141+00:00",
+      "sha256": "1c675fda15802f839c10d349b08e4a5808e3a8bb1058de1da80dfd130710ad7a",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "claude-codex-gemini/triadic-session-context/SSOTI_FIED_SESSION_LOG.md",
+      "root": "claude-codex-gemini",
+      "filename": "SSOTI_FIED_SESSION_LOG.md",
+      "extension": ".md",
+      "size_bytes": 738251,
+      "mtime_iso": "2026-02-24T07:35:18.312266+00:00",
+      "sha256": "94a6cb37489a18ebde268af371355c95e40abb8fe997b44ee9d28d154767ead5",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "claude-codex-gemini/triadic-session-context/STRATEGIC_PLAN.md",
+      "root": "claude-codex-gemini",
+      "filename": "STRATEGIC_PLAN.md",
+      "extension": ".md",
+      "size_bytes": 4693,
+      "mtime_iso": "2026-02-17T19:51:14.763145+00:00",
+      "sha256": "a910b0ee9b265019f7973663037890691aa701b00aabb438c3ae639b7e5164a9",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "claude-codex-gemini/triadic-session-context/Zone_1_REDUX_implementation_ripe_for_SSOT_canon.md",
+      "root": "claude-codex-gemini",
+      "filename": "Zone_1_REDUX_implementation_ripe_for_SSOT_canon.md",
+      "extension": ".md",
+      "size_bytes": 47277,
+      "mtime_iso": "2026-02-17T19:51:14.768158+00:00",
+      "sha256": "f744fd37d59b1cb7798aaabc5cc343547b955b6451014330b652fb16018a64f0",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "claude-codex-gemini/triadic-session-shared-0001.md",
+      "root": "claude-codex-gemini",
+      "filename": "triadic-session-shared-0001.md",
+      "extension": ".md",
+      "size_bytes": 5766,
+      "mtime_iso": "2026-02-17T19:51:14.774158+00:00",
+      "sha256": "86ca2a0627d1ad8de1bbb36a5f7a666fe86d5a218c3d8462e94af813e51ddb91",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "claude-codex-gemini/triadic-session-shared-0002.md",
+      "root": "claude-codex-gemini",
+      "filename": "triadic-session-shared-0002.md",
+      "extension": ".md",
+      "size_bytes": 3570,
+      "mtime_iso": "2026-02-17T19:51:14.776313+00:00",
+      "sha256": "ea8925a71687f8b5c70b08d88faeb94b4d9288b3701684f501b5b779d0abb47b",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "claude-codex-gemini/TRIUVIRATE_ARCHITECTING_THREADS/CHTHONIC_NEURAL_BUS_ARCHITECTURE.md",
+      "root": "claude-codex-gemini",
+      "filename": "CHTHONIC_NEURAL_BUS_ARCHITECTURE.md",
+      "extension": ".md",
+      "size_bytes": 4571,
+      "mtime_iso": "2026-02-20T03:57:15.018996+00:00",
+      "sha256": "09ae7b344c14fb9ed01eea058bcb682d1f3e18948108a4b2a3f59832a91d01ea",
+      "workstream": "unclassified"
+    },
+    {
+      "path": "claude-codex-gemini/vsTRAJECTORYDUMP.md",
+      "root": "claude-codex-gemini",
+      "filename": "vsTRAJECTORYDUMP.md",
+      "extension": ".md",
+      "size_bytes": 27907,
+      "mtime_iso": "2026-02-17T19:51:14.780266+00:00",
+      "sha256": "e48cb9736bf2d1ef6fb5ed626f29a0bd214bf8805a409818a8850dc360edc667",
+      "workstream": "unclassified"
+    }
+  ]
+}
