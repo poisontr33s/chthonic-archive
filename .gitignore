@@ -212,6 +212,20 @@ extensions/*/bun.lock
 !.claude/skills/scm-triage/**
 !.claude/skills/handoff-loop/
 !.claude/skills/handoff-loop/**
+!.claude/skills/mailbox-handoff/
+!.claude/skills/mailbox-handoff/**
+!.claude/skills/postman/
+!.claude/skills/postman/**
+!.claude/skills/gh-fix-ci/
+!.claude/skills/gh-fix-ci/**
+!.claude/skills/gh-address-comments/
+!.claude/skills/gh-address-comments/**
+!.claude/skills/claude-skill-bridge/
+!.claude/skills/claude-skill-bridge/**
+!.claude/skills/codex-skill-bridge/
+!.claude/skills/codex-skill-bridge/**
+!.claude/skills/decision-razor/
+!.claude/skills/decision-razor/**
 
 # mdBook build output (generated artifact)
 book/
