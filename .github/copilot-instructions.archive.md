@@ -6246,11 +6246,11 @@ Recommendations:
 | 4. FA⁴↔FA⁵ Balance | ✅ PASS | 100% | Structure + beauty harmonized |
 | 5. Execution Invariants | ✅ PASS | 100% | pwsh/uv/bun canonical |
 | 6. No-Duplication | ✅ PASS | 100% | No SSOT replication detected |
-| 7. Eroticized Semantics | ⚠️ WARN | 75% | 2 SAI profiles lack EDFA |
+| 7. Eroticized Semantics | ✅ PASS | 100% | 15/15 entities — full canonical EDFA |
 | 8. Addressability | ✅ PASS | 100% | Line-ranges preserved |
 | 9. Resistance Containment | ✅ PASS | 100% | Null/Snow/Spectra stable |
 
-**Overall Compliance: 87/100**
+**Overall Compliance: 100/100**
 ```
 
 **Ornate Mode:**

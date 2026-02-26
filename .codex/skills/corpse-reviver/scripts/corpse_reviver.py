@@ -1117,6 +1117,14 @@ def build_parser() -> argparse.ArgumentParser:
     # manifest
     sub.add_parser("manifest", help="Print vault summary — the morgue ledger.")
 
+    # embalm-before-edit
+    ebe = sub.add_parser("embalm-before-edit", help="Snapshot files BEFORE editing — pre-mortem preservation.")
+    ebe.add_argument("files", nargs="*", help="Files to snapshot (omit for --staged mode).")
+    ebe.add_argument("--label", "-l", help="Label for this snapshot session.")
+    ebe.add_argument("--staged", action="store_true", help="Snapshot all git-staged files.")
+    ebe.add_argument("--diff", metavar="SESSION", help="Compare current state against a prior snapshot session.")
+    ebe.add_argument("--list", action="store_true", dest="list_sessions", help="List all before-edit sessions.")
+
     return p
 
 
@@ -1218,6 +1226,23 @@ def main(argv: Sequence[str] | None = None) -> None:
 
     elif args.command == "manifest":
         cmd_manifest()
+
+    elif args.command == "embalm-before-edit":
+        from embalm_before_edit import main as ebe_main
+        ebe_argv: list[str] = []
+        if getattr(args, "list_sessions", False):
+            ebe_argv = ["list"]
+        elif getattr(args, "diff", None):
+            ebe_argv = ["diff", args.diff]
+        elif getattr(args, "staged", False):
+            ebe_argv = ["staged"]
+            if args.label:
+                ebe_argv += ["--label", args.label]
+        else:
+            ebe_argv = ["snapshot"] + (args.files or [])
+            if args.label:
+                ebe_argv += ["--label", args.label]
+        ebe_main(ebe_argv)
 
 
 if __name__ == "__main__":

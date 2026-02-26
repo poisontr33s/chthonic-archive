@@ -105,6 +105,47 @@ Print vault summary — the morgue ledger.
 uv run .codex/skills/corpse-reviver/scripts/corpse_reviver.py manifest
 ```
 
+### embalm-before-edit
+Snapshot files BEFORE editing them — pre-mortem preservation. Captures the living state into timestamped sessions under `before-edit-experiments/`, with provenance sidecars and structural landmark extraction.
+
+```powershell
+# Snapshot specific files before editing
+uv run .codex/skills/corpse-reviver/scripts/embalm_before_edit.py <file1> <file2> --label "EDFA expansion"
+
+# Snapshot all git-staged files
+uv run .codex/skills/corpse-reviver/scripts/embalm_before_edit.py staged --label "pre-commit"
+
+# Compare current state against a prior snapshot
+uv run .codex/skills/corpse-reviver/scripts/embalm_before_edit.py diff <session-name>
+
+# List all snapshot sessions
+uv run .codex/skills/corpse-reviver/scripts/embalm_before_edit.py list
+```
+
+Also accessible via the main CLI:
+
+```powershell
+uv run .codex/skills/corpse-reviver/scripts/corpse_reviver.py embalm-before-edit <file1> --label "context"
+uv run .codex/skills/corpse-reviver/scripts/corpse_reviver.py embalm-before-edit --staged
+uv run .codex/skills/corpse-reviver/scripts/corpse_reviver.py embalm-before-edit --list
+uv run .codex/skills/corpse-reviver/scripts/corpse_reviver.py embalm-before-edit --diff <session>
+```
+
+**Session structure:**
+```
+before-edit-experiments/
+├── 2026-02-15T14-30-00Z_EDFA_expansion/
+│   ├── session_manifest.json
+│   ├── markdown/
+│   │   ├── a1b2c3d4_archive.md.snapshot
+│   │   └── a1b2c3d4_archive.md.provenance.json
+│   └── python/
+│       ├── e5f6g7h8_corpse_reviver.py.snapshot
+│       └── e5f6g7h8_corpse_reviver.py.provenance.json
+```
+
+**Pre-edit provenance** includes: hash, source path, language, byte/line count, git HEAD, git status, and **structural landmarks** (function/class/heading locations extracted at snapshot time).
+
 ## Vault
 
 Fragments are stored in `dumpster-dive/corpse-vault/` organized by language:
@@ -113,6 +154,7 @@ Fragments are stored in `dumpster-dive/corpse-vault/` organized by language:
 dumpster-dive/corpse-vault/
 ├── manifest.json          # the morgue ledger
 ├── sutures/               # composite outputs from suture mode
+├── before-edit-experiments/ # pre-edit snapshots (embalm-before-edit)
 ├── rust/
 ├── python/
 ├── typescript/
