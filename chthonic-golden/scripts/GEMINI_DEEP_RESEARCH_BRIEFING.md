@@ -84,13 +84,26 @@ These are the operational heart of ANKH — they map directly to system behavior
 
 ### 1.8. ANKH in Code
 
-Code markers use `@ankh: <directive> <description>`:
+ANKH manifests in code through two complementary marker patterns — reflecting the 50/50 abstraction:
 
+**Alpha Directive markers** (Egyptological/Andean computational primitives):
 ```rust
 // @ankh: AD01 WEPET-ER — boot sequence: GPU context init before window creation
 // @ankh: AD03 SEKHMET — crash watchdog: de-escalate after 3 failures/hour
 // @ankh: AD05 PACHAKUTI — full reset when user-data entropy exceeds threshold
 ```
+
+**Genre-heritage markers** (where `copilot-instructions.archive.md` meets ANKH — the Codex Brahmanica Perfectus archetypes as the living cRPG genre that ANKH abstracts):
+```rust
+// @ankh: inheritance — decorative naming = semantic clarity
+pub enum ArchetypeClass {
+    ChaosVortex,   // Orackla's domain
+    PurityForge,   // Umeko's domain
+    TruthMirror,   // Lysandra's domain
+}
+```
+
+The first pattern maps system behavior to Alpha Directives. The second maps the cRPG genre (the Triumvirate — Decorator, Orackla, Umeko, Lysandra) from `copilot-instructions.archive.md` into type-safe Rust archetypes. Together they are the 50/50: ANKH's computational metaphysics + the archive's established genre, unified in code.
 
 ---
 
