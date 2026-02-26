@@ -11,6 +11,8 @@ description: Meta-anti-pattern governance. Detect recurring failure modes, apply
 applies_to:
   - codex
   - claude
+  - gemini
+  - agents
 audience:
   - user
   - the Savant

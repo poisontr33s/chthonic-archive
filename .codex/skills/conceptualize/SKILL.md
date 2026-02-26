@@ -67,4 +67,5 @@ Use this skill when the user asks for judgment, review, critique, or refactor qu
 ## Cross-Flavor Compatibility
 - Codex flavor: requires `agents/openai.yaml` and `assets/` with SVG icons.
 - Claude flavor: requires `SKILL.md` with valid frontmatter (`name`, `description`), optional `allowed-tools`.
-- For shared audits use: `python scripts/skill_audit.py --flavor codex --root .codex/skills` and `python scripts/skill_audit.py --flavor claude --root .claude/skills`.
+- Gemini flavor: requires `SKILL.md` with valid frontmatter (`name`, `description`), optional `allowed-tools`.
+- For shared audits use: `python scripts/skill_audit.py --flavor codex --root .codex/skills`, `python scripts/skill_audit.py --flavor claude --root .claude/skills`, and `python scripts/skill_audit.py --flavor gemini --root .gemini/skills`.

@@ -4,6 +4,7 @@ description: "PROTOCOL — Anti-paralysis behavior. Not a separate execution lan
 allowed-tools: "Read, Write, Glob, Grep, Bash"
 user-invocable: false
 ---
+
 # DECISION RAZOR (Protocol Behavior)
 
 **This is not a skill you invoke. It is a behavior that activates automatically when the agent stalls.**
@@ -81,7 +82,6 @@ RAZOR: "Acceptable risk. Backups exist. Execute."
 ## Cross-Flavor Compatibility
 - Codex flavor: requires `agents/openai.yaml` and `assets/` with SVG icons.
 - Claude flavor: requires `SKILL.md` with valid frontmatter (`name`, `description`), optional `allowed-tools`.
-- For shared audits use: `python scripts/skill_audit.py --flavor codex --root .codex/skills` and `python scripts/skill_audit.py --flavor claude --root .claude/skills`.
-
-
+- Gemini flavor: requires `SKILL.md` with valid frontmatter (`name`, `description`), optional `allowed-tools`.
+- For shared audits use: `python scripts/skill_audit.py --flavor codex --root .codex/skills`, `python scripts/skill_audit.py --flavor claude --root .claude/skills`, and `python scripts/skill_audit.py --flavor gemini --root .gemini/skills`.
 

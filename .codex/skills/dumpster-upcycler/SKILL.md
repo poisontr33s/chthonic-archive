@@ -4,13 +4,10 @@ description: Convert raw session dumps into compact structured logs, readable ma
 metadata:
   short-description: "Upcycle raw dumps into structured logs + resume packets"
   argument-hint: "uv run .codex/skills/dumpster-upcycler/scripts/dumpster_upcycler.py codex/codex-session-logs/codex-session-log-00001"
-  triggers:
-    - "dumpster"
-    - "session dump"
-    - "upcycle logs"
-    - "compress txt"
-    - "resume session"
-    - "warm start"
+  tags:
+    - log processing
+    - session management
+    - data transformation
 ---
 
 # Dumpster Upcycler
