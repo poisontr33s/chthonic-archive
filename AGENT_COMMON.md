@@ -79,6 +79,22 @@ Every file is gold. Agents propose changes; user executes. See [WET_PAPER_TO_GOL
 - Record provenance for salvage/fusion outputs (source -> transformed destination).
 - Delete-only simplification is non-compliant for Codex, Claude, and Gemini lanes.
 
+### Auto-Embalm Protocol (Mandatory Pre-Edit)
+
+Before editing any repository file, agents MUST snapshot it via the Bride's pre-mortem preservation:
+
+```powershell
+uv run .codex/skills/corpse-reviver/scripts/embalm_before_edit.py <files-to-edit> --label "<context>"
+```
+
+After editing, extract deltas for the stitch pipeline:
+
+```powershell
+uv run .codex/skills/corpse-reviver/scripts/embalm_before_edit.py stitch <session-name>
+```
+
+This creates complete data lineage: **what it was -> what changed -> what it became**. Delta fragments feed the dumpster-dive categorization pipeline for selective reapplication — reference where it was edited without burdening the edit workflow.
+
 ## Architecture
 
 Rust-native polyglot: `uv` (Python), `rv` (Ruby), `goup` (Go), + `bun` is a "batteries included" drop-in-node-replacement ex. native; (Node/JS/TS/REACT/NEXT.JS/TAILWINDCSS/LIGHTNINGCSS/etc.). Rust core. `src/` = Rust core. 

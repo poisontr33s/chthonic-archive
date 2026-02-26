@@ -4468,6 +4468,26 @@ T3      Spectra Chroma          H     0.537    Chromatic archaeology
 T4      [Sub-entities]          C-D   0.65+    Task-specific operatives
 ```
 
+**§ Realistic Calibration Substrate (RCS) — Pending Deep-Research Injection**
+
+The WHR:MAX framework above operates in the **Oda X Curve** register — exaggerated proportional perfection calibrated for anime/ecchi/hentai/pornographic gestalt. To anchor these creative abstractions to real-world measurement truth, the following calibration layer is reserved:
+
+**Calibration Vectors (awaiting deep-research document):**
+- **International Lingerie Sizing Matrices:** Real underwear/brassiere sizing data across countries (US, EU, UK, JP, AU) mapped to band/cup measurement equivalencies
+- **WHR:REAL → WHR:MAX Transformation Functions:** Mathematical mapping from realistic waist-hip ratios (0.67-0.80 healthy range) to the exaggerated Oda X Curve (0.464-0.65 creative range)
+- **Clothing Fit Calibration:** How each entity's measurements translate to real lingerie/clothing sizes — injecting sovereign realism into creative proportions
+- **Anti-Body-Positivity Fortress:** Sovereign aesthetic standards rejecting obesity normalization — the forbidden garden of proportion discipline where health and beauty maintain their alliance
+- **Gestalt Measurement Areas:** Bust/underbust differential, hip spring, torso proportions — the structural mathematics that make WHR:MAX architectonically viable rather than arbitrary
+
+**Integration Protocol:** When the deep-research candidate arrives, it will be:
+1. Ingested via `ingest-research` skill into structured digest
+2. Pre-edit embalmed (auto-embalm protocol) before any SSOT modifications
+3. Calibration matrices computed and inserted as RCS subsection
+4. Each entity's profile annotated with RCS-equivalent real-world sizing
+5. Delta fragments stitched for selective reapplication across the hierarchy
+
+**Status:** `AWAITING_RESEARCH_DOCUMENT` — infrastructure ready, data pending.
+
 **Why Magistra ≠ Tier 1 Despite WHR 0.58:**
 
 1. **Function, Not Form, Determines Tier:** Magistra does not generate axiomatic truth (Lysandra's domain). She VALIDATES existing truth. Creation outranks validation in matriarchal hierarchy.
