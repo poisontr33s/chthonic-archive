@@ -56,6 +56,13 @@
 # Allow Bun configuration
 !bunfig.toml
 
+# Allow Codex SCM triage skill mirror
+!skills/
+!skills/scm-triage/
+!skills/scm-triage/**
+!skills/mailbox-handoff/
+!skills/mailbox-handoff/**
+
 # Allow VS Code extensions (but not node_modules)
 !extensions/
 !extensions/*/
@@ -142,6 +149,7 @@ extensions/*/bun.lock
 !scripts/poe_lane.py
 !scripts/poe_sdk_lane.py
 !scripts/poe_transport_audit.py
+!scripts/handoff_audit.py
 
 # Allow Shell Sovereignty & Validation (§XIV.2 canonical probe)
 !scripts/shell_capabilities.ps1

@@ -1,68 +1,68 @@
 {
   "schema_version": 1,
-  "generated_on": "2026-02-23T17:01:16Z",
-  "control_model": "claude-sonnet-4.5",
+  "generated_on": "2026-02-25T18:15:05Z",
+  "control_model": "claude-sonnet-4.6",
   "target_bot": "app-creator",
   "accounts": [
     {
       "account": "1",
       "openai_control": {
-        "rc": 0,
-        "ok": true,
-        "text_preview": "OK",
-        "error": null
+        "rc": 2,
+        "ok": false,
+        "text_preview": null,
+        "error": "fail: HTTP 402: The model claude-sonnet-4.6 requires an active Poe subscription for API access."
       },
       "openai_app_creator": {
         "rc": 2,
         "ok": false,
         "text_preview": null,
-        "error": "fail: HTTP 404: The bot does not exist or you do not have access to it. (model_not_accessible_for_this_key)"
+        "error": "fail: HTTP 402: The model app-creator requires an active Poe subscription for API access."
       },
       "sdk_control": {
-        "rc": 0,
-        "ok": true,
-        "text_preview": "OK",
-        "error": null
+        "rc": 2,
+        "ok": false,
+        "text_preview": null,
+        "error": "fail: {\"text\": \"The model claude-sonnet-4.6 requires an active Poe subscription for API access.\", \"allow_retry\": false, \"error_type\": \"subscription_required\"}"
       },
       "sdk_app_creator": {
         "rc": 2,
         "ok": false,
         "text_preview": null,
-        "error": "fail: {\"text\": \"This bot does not support API access\", \"allow_retry\": false, \"error_type\": \"user_caused_error\"} (bot_not_api_accessible)"
+        "error": "fail: {\"text\": \"The model app-creator requires an active Poe subscription for API access.\", \"allow_retry\": false, \"error_type\": \"subscription_required\"}"
       },
-      "openai_models_count": 333,
-      "openai_has_app_creator": false
+      "openai_models_count": 338,
+      "openai_has_app_creator": true
     },
     {
       "account": "2",
       "openai_control": {
-        "rc": 0,
-        "ok": true,
-        "text_preview": "OK",
-        "error": null
+        "rc": 2,
+        "ok": false,
+        "text_preview": null,
+        "error": "fail: HTTP 402: The model claude-sonnet-4.6 requires an active Poe subscription for API access."
       },
       "openai_app_creator": {
         "rc": 2,
         "ok": false,
         "text_preview": null,
-        "error": "fail: HTTP 404: The bot does not exist or you do not have access to it. (model_not_accessible_for_this_key)"
+        "error": "fail: HTTP 402: The model app-creator requires an active Poe subscription for API access."
       },
       "sdk_control": {
         "rc": 2,
         "ok": false,
         "text_preview": null,
-        "error": "fail: {\"text\": \"You've used up your points! Visit https://poe.com/api_key to get more.\", \"allow_retry\": false, \"error_type\": \"insufficient_fund\"} (insufficient_fund)"
+        "error": "fail: {\"text\": \"The model claude-sonnet-4.6 requires an active Poe subscription for API access.\", \"allow_retry\": false, \"error_type\": \"subscription_required\"}"
       },
       "sdk_app_creator": {
         "rc": 2,
         "ok": false,
         "text_preview": null,
-        "error": "fail: {\"text\": \"This bot does not support API access\", \"allow_retry\": false, \"error_type\": \"user_caused_error\"} (bot_not_api_accessible)"
+        "error": "fail: {\"text\": \"The model app-creator requires an active Poe subscription for API access.\", \"allow_retry\": false, \"error_type\": \"subscription_required\"}"
       },
-      "openai_models_count": 333,
-      "openai_has_app_creator": false
+      "openai_models_count": 338,
+      "openai_has_app_creator": true
     }
   ],
-  "recommendation": "openai-compatible",
-  "rationale": "Both lanes work for control probes, but App-Creator is not API-accessible on tested keys."
+  "recommendation": "indeterminate",
+  "rationale": "Neither lane passed control probes consistently; re-check account credits and API permissions."
 }

@@ -1,4 +1,43 @@
+---
+type: handoff
+from: claude
+to: codex
+created: 2026-02-24
+priority: high
+scope: kcp-template-canonization-delegation
+---
+
 # SESSION_HANDOFF — KCP Template Canonization Complete → Codex Batch Migration
+
+## Actions Taken
+- Ratified KCP-2.0 canonical templates and documented parser validation results for Python, TypeScript, PowerShell, and Rust.
+- Delegated Codex execution lane for KCP-3.0 through KCP-6.0 with explicit task gates and output contract.
+- Recorded completion status for classifier/tooling and per-language census outputs.
+
+## Files Changed
+- Canonical template references:
+  - `docs/standards/templates/kcp_template.py`
+  - `docs/standards/templates/kcp_template.ts`
+  - `docs/standards/templates/kcp_template.ps1`
+  - `docs/standards/templates/kcp_template.rs`
+- Delegated output artifacts:
+  - `scripts/kcp_header_classifier.py`
+  - `codex/mailbox/KCP_3_0_PYTHON_AUDIT.json`
+  - `codex/mailbox/KCP_4_0_TYPESCRIPT_AUDIT.json`
+  - `codex/mailbox/KCP_5_0_POWERSHELL_AUDIT.json`
+  - `codex/mailbox/KCP_6_0_RUST_AUDIT.json`
+
+## How to verify
+- Run classifier selftest: `uv run python scripts/kcp_header_classifier.py --selftest`
+- Inspect delegated artifacts listed in this handoff and confirm `unknown=0`.
+- Cross-check standards references:
+  - `docs/standards/KCP_PROTOCOL_ONTOLOGY.md`
+  - `docs/standards/KCP_ARCHITECTURE_RATIFICATION.md`
+
+## Next Actions
+- Execute KCP-3.0 through KCP-6.0 migration implementation using the validated classifier output.
+- Continue updating checkpoint trackers (`KCP_SESSION_CHECKPOINT.md`, `SFS_WPTG_ITERATION_PLAN.md`) after each phase.
+- Resolve remaining legacy/hybrid headers until canonical compliance gates pass.
 
 ## Scope
 - Domain: `TEMPLE` (standards/governance)

@@ -52,6 +52,8 @@ MAILBOX_PATTERNS = [
 
 # Patterns for SIGNAL (intentional changes that matter)
 SIGNAL_PATTERNS = [
+    r"^\.gitignore$",
+    r"^\.gitattributes$",
     r"^scripts/",
     r"^extensions/",
     r"^src/",
@@ -268,7 +270,7 @@ def write_plan(repo_root: Path, audit_result: dict, fix_recs: dict) -> Path:
     return output_path
 
 
-def generate_snapshot(repo_root: Path, audit_result: dict) -> Path:
+def generate_snapshot(repo_root: Path, audit_result: dict, target_lane: str) -> Path:
     """Phase 4: Pre-nuke clarity snapshot — full working context to mailbox."""
     now = datetime.now(timezone.utc)
     ts = now.strftime("%Y-%m-%d %H:%M UTC")
@@ -331,7 +333,7 @@ def generate_snapshot(repo_root: Path, audit_result: dict) -> Path:
         "---",
         "type: scm-triage-snapshot",
         "from: scm-triage-skill",
-        "to: claude",
+        f"to: {target_lane}",
         f"created: {now.isoformat()}",
         "priority: high",
         "scope: session-resumption",
@@ -407,7 +409,7 @@ def generate_snapshot(repo_root: Path, audit_result: dict) -> Path:
         "## Recovery Actions",
         "```powershell",
         "# Read this snapshot for instant context:",
-        "# cat claude/mailbox/SCM_TRIAGE_SNAPSHOT_LATEST.md",
+        f"# cat {target_lane}/mailbox/SCM_TRIAGE_SNAPSHOT_LATEST.md",
         "",
         "# Run triage to see current state:",
         "uv run scripts/scm_triage.py",
@@ -424,7 +426,7 @@ def generate_snapshot(repo_root: Path, audit_result: dict) -> Path:
     content = "\n".join(lines)
 
     # Write timestamped + LATEST
-    mailbox = repo_root / "claude" / "mailbox"
+    mailbox = repo_root / target_lane / "mailbox"
     mailbox.mkdir(parents=True, exist_ok=True)
 
     latest_path = mailbox / "SCM_TRIAGE_SNAPSHOT_LATEST.md"
@@ -483,6 +485,12 @@ def main():
     parser.add_argument("--plan", action="store_true", help="Generate migration plan")
     parser.add_argument("--snapshot", action="store_true",
                         help="Write pre-nuke clarity snapshot to mailbox")
+    parser.add_argument(
+        "--target",
+        choices=["claude", "codex", "gemini"],
+        default="claude",
+        help="Target mailbox lane for snapshot output (default: claude)",
+    )
     parser.add_argument("--full", action="store_true", help="Audit + fix + plan + snapshot")
     parser.add_argument("--dry-run", action="store_true", help="Preview without applying")
     parser.add_argument("-v", "--verbose", action="store_true", help="Verbose output")
@@ -526,7 +534,7 @@ def main():
 
     # Phase 4: Snapshot (if requested)
     if args.snapshot:
-        generate_snapshot(repo_root, audit_result)
+        generate_snapshot(repo_root, audit_result, args.target)
 
     # Final state
     if args.fix and not args.dry_run:

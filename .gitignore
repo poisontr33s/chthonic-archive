@@ -150,6 +150,7 @@ extensions/*/bun.lock
 !scripts/poe_lane.py
 !scripts/poe_sdk_lane.py
 !scripts/poe_transport_audit.py
+!scripts/handoff_audit.py
 
 # Allow Shell Sovereignty & Validation (§XIV.2 canonical probe)
 !scripts/shell_capabilities.ps1
@@ -197,6 +198,10 @@ extensions/*/bun.lock
 !.codex/skills/codekiller-remediation-gate/**
 !.codex/skills/artifact-upcycle/
 !.codex/skills/artifact-upcycle/**
+!.codex/skills/scm-triage/
+!.codex/skills/scm-triage/**
+!.codex/skills/mailbox-handoff/
+!.codex/skills/mailbox-handoff/**
 
 # Allow specific Claude skill additions
 !.claude/

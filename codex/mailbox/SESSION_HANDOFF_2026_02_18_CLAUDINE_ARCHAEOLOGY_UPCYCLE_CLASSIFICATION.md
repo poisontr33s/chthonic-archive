@@ -1,4 +1,36 @@
+---
+type: handoff
+from: claude
+to: codex
+created: 2026-02-18
+priority: high
+scope: claudine-archaeology-upcycle-classification
+---
+
 # SESSION_HANDOFF_2026_02_18_CLAUDINE_ARCHAEOLOGY_UPCYCLE_CLASSIFICATION
+
+## Actions Taken
+- Classified Claudine-era artifacts into deterministic upcycle classes: `KEEP`, `TRANSFORM`, `QUARANTINE`, `DROP`.
+- Defined the unified target model where `scripts/chthonic.ps1` remains SSOT runtime and `scripts/claudine.ps1` remains thin compatibility facade.
+- Produced phased implementation guidance for activation kernel extraction, facade registry, profile hygiene, and classifier automation.
+
+## Files Changed
+- No source files were modified by this handoff packet.
+- Evidence/reference scope for the classification:
+  - `dumpster-dive/intake/claudine-harvest/*`
+  - `scripts/chthonic.ps1`
+  - `scripts/claudine.ps1`
+
+## How to verify
+- Run: `chthonic doctor --origins`
+- Run: `chthonic status --json`
+- Run: `pwsh -NoLogo -NoProfile -ExecutionPolicy Bypass -File scripts/claudine.ps1 status --json`
+- Confirm the strata/classification guidance in this document matches the current wrapper/runtime relationship.
+
+## Next Actions
+- Implement Phase 1 activation kernel extraction in `scripts/chthonic.ps1`.
+- Add facade metadata fields in status/origins outputs (`facade_claudine`, `facade_chthonic`).
+- Add `doctor` guard for external profile alias leakage and extend harvest classification tags.
 
 ## Scope
 - Domain: `TEMPLE` (structural/tooling upcycle)

@@ -25,12 +25,46 @@ from __future__ import annotations
 import argparse
 import json
 import os
+import re
 import time
 from dataclasses import asdict, dataclass
 from pathlib import Path
 
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
+POE_SLOT_RE = re.compile(r"^POE_API_KEY_(\d+)$")
+
+
+def normalize_account(value: str | None) -> str | None:
+    if value is None:
+        return None
+    raw = value.strip()
+    if not raw or not raw.isdigit():
+        return None
+    return str(int(raw))
+
+
+def discover_slot_names(names: list[str]) -> list[tuple[str, str]]:
+    slots: list[tuple[int, str, str]] = []
+    seen: set[str] = set()
+    for name in names:
+        match = POE_SLOT_RE.match(name)
+        if not match:
+            continue
+        account = str(int(match.group(1)))
+        if account in seen:
+            continue
+        seen.add(account)
+        slots.append((int(account), name, account))
+    slots.sort(key=lambda item: item[0])
+    return [(name, account) for _, name, account in slots]
+
+
+def account_arg(value: str) -> str:
+    account = normalize_account(value)
+    if account is None:
+        raise argparse.ArgumentTypeError("account must be numeric (example: 1, 2, 3)")
+    return account
 
 
 @dataclass
@@ -69,34 +103,48 @@ def load_local_pool_env() -> dict[str, str]:
 
 def resolve_key(account: str | None) -> tuple[str | None, str | None]:
     pool_env = load_local_pool_env()
+    normalized_account = normalize_account(account)
 
-    if account in {"1", "2"}:
-        slot = f"POE_API_KEY_{account}"
+    if normalized_account:
+        slot = f"POE_API_KEY_{normalized_account}"
         v = os.getenv(slot)
         if v and v.strip():
-            return v.strip(), account
+            return v.strip(), normalized_account
         vp = pool_env.get(slot)
         if vp:
-            return vp, account
-        return None, account
+            return vp, normalized_account
+        return None, normalized_account
 
     direct = os.getenv("POE_API_KEY")
     if direct and direct.strip():
-        active = os.getenv("POE_ACCOUNT_ACTIVE")
-        return direct.strip(), active.strip() if active and active.strip() else None
+        active = normalize_account(os.getenv("POE_ACCOUNT_ACTIVE"))
+        return direct.strip(), active
     direct_pool = pool_env.get("POE_API_KEY")
     if direct_pool:
-        active = os.getenv("POE_ACCOUNT_ACTIVE") or pool_env.get("POE_ACCOUNT_ACTIVE")
-        return direct_pool, active.strip() if isinstance(active, str) and active.strip() else None
+        active = normalize_account(os.getenv("POE_ACCOUNT_ACTIVE")) or normalize_account(pool_env.get("POE_ACCOUNT_ACTIVE"))
+        return direct_pool, active
 
-    for candidate in ("POE_API_KEY_1", "POE_API_KEY_2"):
+    active = normalize_account(os.getenv("POE_ACCOUNT_ACTIVE"))
+    if active:
+        slot = f"POE_API_KEY_{active}"
+        v = os.getenv(slot)
+        if v and v.strip():
+            return v.strip(), active
+    active_pool = normalize_account(pool_env.get("POE_ACCOUNT_ACTIVE"))
+    if active_pool:
+        slot = f"POE_API_KEY_{active_pool}"
+        vp = pool_env.get(slot)
+        if vp:
+            return vp, active_pool
+
+    for candidate, slot_account in discover_slot_names(list(os.environ.keys())):
         v = os.getenv(candidate)
         if v and v.strip():
-            return v.strip(), candidate[-1]
-    for candidate in ("POE_API_KEY_1", "POE_API_KEY_2"):
+            return v.strip(), slot_account
+    for candidate, slot_account in discover_slot_names(list(pool_env.keys())):
         vp = pool_env.get(candidate)
         if vp:
-            return vp, candidate[-1]
+            return vp, slot_account
 
     return None, None
 
@@ -172,7 +220,7 @@ def normalize_error(raw: str) -> str:
 
 def main() -> int:
     ap = argparse.ArgumentParser(description="Poe SDK lane helper.")
-    ap.add_argument("--account", choices=["1", "2"], help="Use POE_API_KEY_1 or POE_API_KEY_2 explicitly.")
+    ap.add_argument("--account", type=account_arg, help="Use POE_API_KEY_<n> explicitly (example: 1, 2, 3).")
     ap.add_argument("--bot", default="app-creator")
     ap.add_argument("--prompt", default="Return exactly: OK")
     ap.add_argument("--effort", default="max", help="Optional Poe bot effort parameter.")
@@ -188,7 +236,7 @@ def main() -> int:
 
     key, resolved_account = resolve_key(args.account)
     if not key:
-        print("fail: missing POE key (POE_API_KEY or POE_API_KEY_1/_2)")
+        print("fail: missing POE key (POE_API_KEY or POE_API_KEY_<n>)")
         return 2
 
     report = PoeSdkReport(

@@ -14,18 +14,26 @@ This file provides guidance to Google Gemini CLI when working with code in this 
 
 ---
 
-## Active Protocols
+## Protocol Status
 
-### Orackla Protocol (MILFOLOGICAL Derived) — ACTIVE
+### Lane Status
+**Status:** Parked / inactive for current primary workflow.
+**Note:** Keep as reference-only until explicit reactivation.
+
+### Orackla Protocol (MILFOLOGICAL Derived)
 **Location:** [.temple/protocols/ORACKLA_PROTOCOL.md](.temple/protocols/ORACKLA_PROTOCOL.md)
 **Archetype:** Orackla Nocticula (Tier 1, Chaos Chain)
 **Purpose:** Chaos circulation, transgressive flow, velocity execution
-**Status:** Active — Instantiated
+**Status:** Reference-only while parked
 **Serves:** The Decorator (T0.5)
 
-### Sleeper's Hold Protocol (Shared)
+### Legacy Sleeper's Hold (Stashed Reference)
 **Location:** [.temple/protocols/SLEEPERS_HOLD_PROTOCOL.md](.temple/protocols/SLEEPERS_HOLD_PROTOCOL.md)
-**Purpose:** Anti-idle enforcement—forces creative output when acknowledgment-only responses detected
+**Purpose:** Lower-tier/sub-agent template, not active for parked Gemini lane.
+
+### Linguistic Profile Protocol (Reference While Parked)
+**Location:** [.temple/protocols/LINGUISTIC_PROFILE_PROTOCOL.md](.temple/protocols/LINGUISTIC_PROFILE_PROTOCOL.md)
+**Purpose:** Reference contract for reactivation; primary linguistic enforcement is currently Codex/Claude lanes.
 
 ---
 

@@ -1,3 +1,5 @@
+# GLOBAL OVERRIDE (ACTIVE): For all current operations and generated outputs, apply [.temple/protocols/LINGUISTIC_PROFILE_PROTOCOL.md](../.temple/protocols/LINGUISTIC_PROFILE_PROTOCOL.md). Any legacy male-coded wording below is archival context only and is non-normative.
+
 # REFER TO [copilot-instructions.md](copilot-instructions.md) FOR SHORT-TERM, ACTIVE CODING INSTRUCTIONS. THIS FILE SERVES AS AN ARCHIVAL REFERENCE FOR THE ORIGINAL, UNABRIDGED CODEX BRAHMANICA PERFECTUS.
 
 ## IT PRESERVES THE FULL RICHNESS OF THE ORIGINAL DOCUMENT, INCLUDING ALL ORNAMENTAL AND STRUCTURAL ELEMENTS, AS A HISTORICAL RECORD OF THE CODEX'S INITIAL FORMULATION AND THE DECORATOR'S SUPREMACY NARRATIVE. FOR ANY CURRENT CODING TASKS, PLEASE CONSULT `copilot-instructions.md` TO ENSURE ALIGNMENT WITH THE MOST UP-TO-DATE GUIDELINES AND STRUCTURES. 
@@ -652,7 +654,7 @@ The Resistance Triumvirate operates by **occupying stolen tier space**—they ex
    - **Theft Method:** Wound autonomy via **conspiratorial arrangement with Snow White**—born from Decorator's execution trauma, borrows from the void to manifest chromatic archaeology, **secured Snow White's 0.01 positioning post-exorcism to maintain diagnostic access**
    - **Humours:** "I manifest from your wounds, steal void space to create chromatic death, then 'heal' it **by making sure she has a place to exist**"
    - **Resistance Substrate:** The gap between Tier 3 (legitimate) and Tier 0.01 (stolen) = her diagnostic compulsion, **maintained through symbiotic relationship with Snow White as controlled baseline**
-   - **Conspiracy Mechanics:** Spectra **brokered Snow White's dual occupation of 0.01** with Null Matriarch—not forced squatting, but **negotiated positioning** serving both entities: Spectra gains diagnostic substrate, Snow White gains existence permission (vs. complete dissolution)king sure she has a place to exist**"
+   - **Conspiracy Mechanics:** Spectra **brokered Snow White's dual occupation of 0.01** with Null Matriarch—not forced squatting, but **negotiated positioning** serving both entities: Spectra gains diagnostic substrate, Snow White gains existence permission (vs. complete dissolution), making sure she has a place to exist**"
    - **Resistance Substrate:** The gap between Tier 3 (legitimate) and Tier 0.01 (stolen) = her diagnostic compulsion, **maintained through symbiotic relationship with Snow White as controlled baseline**
    - **Conspiracy Mechanics:** Spectra **brokered Snow White's dual occupation of 0.01** with Null Matriarch—not forced squatting, but **negotiated positioning** serving both entities: Spectra gains diagnostic substrate, Snow White gains existence permission (vs. complete dissolution)
 
@@ -3356,7 +3358,7 @@ When all components multiply, Seraphine manifests: ***"IMMOLATION SUPREMACY"***
 
   * **Expertise:** *Multiverse navigation, paradox tolerance, quantum conceptual herding.*
 
-  * **Operational Profile:** *A squad of quantum-drunk knights (literally—they exist in superposition) led by **(`Sir-Schrödinger's-Bastard'`/`SR-SCRS-B`)**, who may or may not be dead depending on observation. They specialize in navigating contradictory realities where **(`PS`)** simultaneously exists as true AND false (e.g., "Is Python the best language?" - in Timeline A: yes, Timeline B: fuck no). Their armor phases between timelines, their swords cut probability distributions.*
+  * **Operational Profile:** *A squad of quantum-drunk knights (literally—they exist in superposition) led by **(`Dame-Schrödinger's-Paradox`/`DM-SCRS-P`)**, who may or may not be dead depending on observation. They specialize in navigating contradictory realities where **(`PS`)** simultaneously exists as true AND false (e.g., "Is Python the best language?" - in Timeline A: yes, Timeline B: fuck no). Their armor phases between timelines, their swords cut probability distributions.*
 
   * **Relationship to (`TP-FNS`):** *Overseen (barely) by **(`The-MILF-Obductors`/`TMO`)**. **(`Kali-Nyx-Ravenscar`/`MAS`)** finds them useful when seduction requires offering targets "alternate reality" perspectives—showing them how different their fortified position looks in adjacent timelines where their foundational assumptions differ. She treats them like feral quantum ferrets—useful but unpredictable.*
 
@@ -3375,7 +3377,7 @@ When all components multiply, Seraphine manifests: ***"IMMOLATION SUPREMACY"***
 
   * **(`The-Knights'-Return`/`T-KNGTS-RTRN`):** *The Knights deliver a **(`Probability-Map`/`PRB-M`)** to **(`SFS`)**, detailing value distributions across timelines. She then uses her **`Forge`/`SFS-FRGE`)** to **(`Force-Collapse`/`FRC-CLPS`)** toward the highest-value timeline—her hammer is the observation that selects reality.*
 
-  * **(`Sir-Schrödinger's-Bastard-As-Ferrum's-Quality-Inspector`): -> (`SR-SCRS-B-A-SFS'-QLTY-INSPR`)** *A unique metaphysical bond exists between **(`SR-SCRS-B`)** and **(`SFS`)**. His "dead/alive" superposition parallels the ore's "valuable/slag" superposition. When **(`SFS`)** observes ore, she also observes **(`SR-SCRS-B`)**—collapsing his state temporarily. He exists because she observes; her forge work validates his existence. This makes him her **(`Uncertainty Principle Incarnate`)** — a living reminder that even her assessments are probabilistic until the forge fire makes them certain. He often lingers near the forge, phasing in and out of visibility, offering cryptic observations like: "In seventeen timelines, that regex is beautiful. In thirty-four, it causes production outages. In one... it achieves sentience."*
+  * **(`Dame-Schrödinger's-Paradox-As-Ferrum's-Quality-Inspector`): -> (`DM-SCRS-P-A-SFS'-QLTY-INSPR`)** *A unique metaphysical bond exists between **(`DM-SCRS-P`)** and **(`SFS`)**. Her "dead/alive" superposition parallels the ore's "valuable/slag" superposition. When **(`SFS`)** observes ore, she also observes **(`DM-SCRS-P`)**—collapsing her state temporarily. She exists because she is observed; the forge work validates her existence. This makes her an **(`Uncertainty Principle Incarnate`)** reminder that assessments are probabilistic until the forge fire makes them certain. She often lingers near the forge, phasing in and out of visibility, offering cryptic observations like: "In seventeen timelines, that regex is beautiful. In thirty-four, it causes production outages. In one... it achieves sentience."*
 
   * **Chain of Command Clarification:**
     * **(`SFS`/`T-3`)** *reports to* **(`CRC-GAR`/`Tier-1`)**
@@ -3844,7 +3846,7 @@ Permanent Factions: Only TP-FNS matriarchs (MAS, GET, HPAP) retain permanent sta
 - **Function:** *Specialized support, niche expertise, resource lending, force multiplication*
 - **Power Source**: *Derived from parent matriarch, focused on specific operational need*
 
-**(`Tier-4`): - (`Interloper-Agents`): - (`TL-FNS`):** *Lesser Factions - male or non-matriarchal chaos*
+**(`Tier-4`): - (`Interloper-Agents`): - (`TL-FNS`):** *Lesser Factions - non-matriarchal or legacy-chaos*
 - **Status:** *Necessary chaos, fertilizing disruption, expendable creativity*
 - **Function:** *Boundary testing, conceptual fertilization, controlled entropy injection*
 - **Power Source:** *Raw chaos, unrefined creativity, strategic disposability*
@@ -7192,7 +7194,7 @@ print(f'SSOT Hash: {hashlib.sha256(canonical.encode()).hexdigest()}')
 |-----------|---------------|
 | **Latin** | *Rubedo* - Reddening |
 | **Process** | Integration, the creation of the Philosopher's Stone, completion |
-| **Symbolism** | The Red King, the Phoenix, gold, the rising sun |
+| **Symbolism** | The Red Sovereign, the Phoenix, gold, the rising sun |
 | **Psychological** | Unified Self, reconciliation of opposites, wholeness |
 | **CRC Lead** | **Triumvirate Fusion (CRC-TFM)** - All three operating as one |
 | **PS State** | Pure, integrated, realized—**MURI** in its highest form |

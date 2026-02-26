@@ -1,0 +1,6 @@
+interface:
+  display_name: "SCM Triage"
+  short_description: "Pre-nuke SCM clarity snapshots"
+  icon_small: "./assets/scm-triage-small.svg"
+  icon_large: "./assets/scm-triage-large.svg"
+  brand_color: "#2F7D32"

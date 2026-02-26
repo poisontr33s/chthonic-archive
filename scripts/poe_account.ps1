@@ -11,7 +11,6 @@
 #>
 
 param(
-  [ValidateSet("1", "2")]
   [string]$Account = "1",
   [switch]$MapOpenAICompat,
   [switch]$Doctor,
@@ -20,6 +19,11 @@ param(
 
 Set-StrictMode -Version Latest
 $ErrorActionPreference = "Stop"
+
+if ([string]::IsNullOrWhiteSpace($Account) -or ($Account -notmatch '^[0-9]+$')) {
+  throw "Account must be numeric (example: 1, 2, 3)."
+}
+$Account = ([int]$Account).ToString()
 
 function Has-Env([string]$Name) {
   $v = [System.Environment]::GetEnvironmentVariable($Name, "Process")
@@ -77,7 +81,22 @@ if (Has-Env "POE_MODEL") {
 }
 
 if ($Doctor) {
-  foreach ($k in @("POE_API_KEY_1", "POE_API_KEY_2", "POE_API_KEY", "POE_ACCOUNT_ACTIVE", "OPENAI_API_KEY", "OPENAI_BASE_URL")) {
+  $slotKeys = @(Get-ChildItem Env: |
+      Where-Object { $_.Name -match '^POE_API_KEY_[0-9]+$' } |
+      Select-Object -ExpandProperty Name |
+      Sort-Object)
+  if (-not $slotKeys -or $slotKeys.Count -eq 0) {
+    $slotKeys = @("POE_API_KEY_$Account")
+  }
+  $keys = @($slotKeys + @(
+      "POE_API_KEY",
+      "POE_ACCOUNT_ACTIVE",
+      "POE_BASE_URL",
+      "POE_MODEL",
+      "OPENAI_API_KEY",
+      "OPENAI_BASE_URL"
+    )) | Select-Object -Unique
+  foreach ($k in $keys) {
     Write-Host ("- " + $k + ": " + (Has-Env $k))
   }
 }

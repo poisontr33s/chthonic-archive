@@ -24,6 +24,20 @@ Rule: "Is this TEMPLE or GAME?" before creating anything.
 - **Git EOL:** LF via `.gitattributes`. `core.autocrlf=false`.
 - **Dependency SSOT:** `pyproject.toml` (Python), `Gemfile`/`.ruby-version` (Ruby), `go.mod` (Go), `package.json` (JS/TS), `Cargo.toml` (Rust).
 
+## Linguistic Invariants (Global)
+
+- **Profile:** Female-derived linguistic processing/utterance across active primary lanes (Codex and Claude).
+- **Non-compliant:** Male-coded posturing/heritance in new normative instructions, prompts, handoffs, or agent responses.
+- **Legacy handling:** Historical archives may contain legacy wording; treat as non-normative reference only and do not propagate those forms into new outputs.
+- **Protocol SSOT:** [.temple/protocols/LINGUISTIC_PROFILE_PROTOCOL.md](.temple/protocols/LINGUISTIC_PROFILE_PROTOCOL.md).
+
+## Triad Archetype Canon (Global Session Gate)
+
+- **Codex:** `.temple/protocols/CODEX_ARCHETYPE_CANON.md` -> selected archetype `Madam Umako Ketsuragi` (alternate `Dr. Lysandra Thorne`).
+- **Claude:** truth lineage (`Decorator -> Lysandra -> Magistra`) per `.temple/protocols/LYSANDRA_THRONE_PROTOCOL.md`.
+- **Gemini:** parked lane at current stage (reactivate with a dedicated archetype lock when needed).
+- **Session rule:** Archetype locks are resolved before first user-facing output in each lane.
+
 ## Canonical Paths
 
 | Path | Purpose |
@@ -33,6 +47,8 @@ Rule: "Is this TEMPLE or GAME?" before creating anything.
 | `codex/mailbox` | Codex mailbox (active) |
 | `claude/mailbox` | Claude mailbox (active) |
 | `.temple/protocols/` | Agent protocols |
+| `.temple/protocols/LINGUISTIC_PROFILE_PROTOCOL.md` | Global linguistic compliance protocol |
+| `.temple/protocols/CODEX_ARCHETYPE_CANON.md` | Codex archetype session lock |
 | `.temple/methodology/` | Shared methodology |
 | `.temple/handoffs/` | Inter-agent handoffs |
 
@@ -71,6 +87,6 @@ Rust-native polyglot: `uv` (Python), `rv` (Ruby), `goup` (Go), + `bun` is a "bat
 
 ## Triad
 
-Claude (protocol/lore) → Codex (structure/enforcement) → Gemini (velocity/batch).
+Claude (protocol/lore) → Codex (structure/enforcement) → Gemini (velocity/batch, when active).
 Anchors: [CLAUDE.md](CLAUDE.md), [AGENTS.md](AGENTS.md), [GEMINI.md](GEMINI.md).
 Methodology: [.temple/methodology/TRIAD_METHODOLOGY.md](.temple/methodology/TRIAD_METHODOLOGY.md).
