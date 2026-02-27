@@ -205,6 +205,7 @@ extensions/*/bun.lock
 !scripts/vscode_insiders_matrix.ps1
 !scripts/vscode_error_autopsy.py
 !scripts/vscode_electron_hardener.py
+!scripts/install_mistralrs_cuda.ps1
 
 # Allow specific Codex skill additions
 !.codex/
