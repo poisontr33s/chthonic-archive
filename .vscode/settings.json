@@ -88,7 +88,7 @@
             "icon": "terminal"
         }
     },
-    "terminal.integrated.defaultProfile.windows": "Pwsh (No Profile)",
+    "terminal.integrated.defaultProfile.windows": "Pwsh 7.5 (Chthonic)",
     "terminal.integrated.shellIntegration.enabled": true,
     "terminal.integrated.shellIntegration.decorationsEnabled": "both",
     "terminal.integrated.shellIntegration.showCommandGuide": true,
