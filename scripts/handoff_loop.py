@@ -26,6 +26,9 @@ Usage:
     uv run scripts/handoff_loop.py obligations            # list all unACK'd handoffs by age
     uv run scripts/handoff_loop.py route <file> --to X    # validate → gate → route → log
     uv run scripts/handoff_loop.py sweep                  # full pipeline: obligations + stale alerts
+    uv run scripts/handoff_loop.py link-audit <file>      # audit markdown links in a file
+    uv run scripts/handoff_loop.py link-audit <f> --dry-run  # preview fixable links
+    uv run scripts/handoff_loop.py link-audit <f> --fix   # fix broken/ambiguous links in-place
 """
 
 from __future__ import annotations
@@ -401,6 +404,12 @@ def main() -> int:
     # sweep
     sub.add_parser("sweep", help="Full pipeline: obligations + stale alerts + manifest refresh")
 
+    # link-audit
+    p_link = sub.add_parser("link-audit", help="Audit markdown links in a file; fix or dry-run")
+    p_link.add_argument("file", type=Path)
+    p_link.add_argument("--fix", action="store_true", help="Apply fixes in-place")
+    p_link.add_argument("--dry-run", action="store_true", help="Show fixes without writing")
+
     parser.add_argument("--verbose", "-v", action="store_true")
     parser.add_argument("--quiet", "-q", action="store_true")
     parser.add_argument("--json", action="store_true", help="JSON output")
@@ -528,6 +537,60 @@ def main() -> int:
             if not oblig["stale_items"] and not oblig["pending_items"]:
                 print("\n✅ All handoffs acknowledged")
         return 0
+
+    # --- link-audit ---
+    if args.command == "link-audit":
+        from scripts.link_audit import audit_file, apply_fixes, build_collision_index
+
+        file_path = args.file.resolve()
+        if not file_path.is_file():
+            log.error("File not found: %s", file_path)
+            return 1
+
+        index = build_collision_index(repo_root)
+        result = audit_file(file_path, repo_root, index)
+        issues = result["issues"]
+        fixable = [i for i in issues if i["fix"] is not None]
+
+        if args.json:
+            for item in result.get("all", []):
+                if item.get("resolved_path"):
+                    item["resolved_path"] = str(item["resolved_path"])
+            for item in result.get("issues", []):
+                if item.get("resolved_path"):
+                    item["resolved_path"] = str(item["resolved_path"])
+            print(json.dumps(result, indent=2))
+            return 0 if not issues else 1
+
+        if not issues:
+            print(f"LINK-OK: {result['file']} — {result['total_links']} links, all valid")
+            return 0
+
+        print(f"LINK-AUDIT: {result['file']}")
+        print(f"  {result['total_links']} links: {result['ok']} ok, "
+              f"{result['broken']} broken, {result['ambiguous']} ambiguous, "
+              f"{result['collision_unlabeled']} unlabeled collisions")
+        for issue in issues:
+            tag = {"broken": "BROKEN", "ambiguous": "AMBIG",
+                   "collision_unlabeled": "LABEL"}.get(issue["status"], issue["status"].upper())
+            print(f"\n  L{issue['line']} [{tag}] {issue['original']}")
+            print(f"    {issue['reason']}")
+            if issue["fix"]:
+                print(f"    → {issue['fix']}")
+
+        if args.dry_run:
+            print(f"\n--dry-run: {len(fixable)} fixable (no changes written)")
+            return 1
+
+        if args.fix and fixable:
+            applied = apply_fixes(file_path, issues)
+            print(f"\nApplied {applied} fix(es)")
+            return 0 if applied == len(fixable) else 1
+
+        if fixable and not args.fix:
+            print(f"\n{len(fixable)} fixable. Use --fix to apply or --dry-run to preview.")
+
+        return 1
 
     parser.print_help()
     return 0

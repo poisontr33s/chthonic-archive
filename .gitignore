@@ -160,6 +160,7 @@ extensions/*/bun.lock
 !scripts/poe_transport_audit.py
 !scripts/handoff_audit.py
 !scripts/handoff_loop.py
+!scripts/link_audit.py
 
 # Allow Shell Sovereignty & Validation (§XIV.2 canonical probe)
 !scripts/shell_capabilities.ps1

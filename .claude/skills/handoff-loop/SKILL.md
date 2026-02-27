@@ -42,6 +42,10 @@ uv run scripts/handoff_loop.py route <file> --to codex
 
 # Full sweep: obligations + stale alerts
 uv run scripts/handoff_loop.py sweep
+
+# Audit markdown links in a handoff (post-create guard)
+uv run scripts/handoff_loop.py link-audit <file> --dry-run
+uv run scripts/handoff_loop.py link-audit <file> --fix
 ```
 
 ## Workflow Integration
@@ -49,7 +53,8 @@ uv run scripts/handoff_loop.py sweep
 ### Before Sending a Handoff
 1. Write `SESSION_HANDOFF_*.md` with required frontmatter + sections
 2. `uv run scripts/handoff_loop.py validate <file>` — fix any errors
-3. `uv run scripts/handoff_loop.py route <file> --to <target>` — gates + routes + logs
+3. `uv run scripts/handoff_loop.py link-audit <file> --dry-run` — catch broken paths
+4. `uv run scripts/handoff_loop.py route <file> --to <target>` — gates + routes + logs
 
 ### After Reading a Handoff
 1. `uv run scripts/handoff_loop.py ack <file> --reader claude` — record receipt

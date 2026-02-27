@@ -135,6 +135,27 @@ uv run scripts/handoff_loop.py ack <file> --reader claude
 uv run scripts/handoff_loop.py sweep
 ```
 
+## Link Audit (post-create guard)
+
+After creating or editing a handoff, run link-audit to catch broken/ambiguous `[label](path)` references:
+
+```bash
+# Dry-run: show what's broken without writing
+uv run scripts/handoff_loop.py link-audit <file> --dry-run
+
+# Fix: rewrite fixable broken links in-place
+uv run scripts/handoff_loop.py link-audit <file> --fix
+
+# Standalone (same engine, more options)
+uv run scripts/link_audit.py check <file> --dry-run
+uv run scripts/link_audit.py check <file> --fix
+
+# List all basename collisions in the repo
+uv run scripts/link_audit.py collisions --filter .md
+```
+
+When creating handoff files, always run `link-audit --dry-run` before routing to catch path drift.
+
 ## Cross-Flavor Compatibility
 - Codex flavor: requires `agents/openai.yaml` and `assets/` with SVG icons.
 - Claude flavor: requires `SKILL.md` with valid frontmatter (`name`, `description`), optional `allowed-tools`.
