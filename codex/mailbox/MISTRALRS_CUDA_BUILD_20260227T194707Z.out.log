@@ -1,0 +1,16 @@
+Using Visual Studio toolchain:
+  Path:    C:\Program Files\Microsoft Visual Studio\18\Insiders
+  Version: 18.4.11519.219
+  Product: Microsoft.VisualStudio.Product.Professional
+
+Resolved build environment:
+  nvcc version:         12.6
+  cl.exe:               C:\Program Files\Microsoft Visual Studio\18\Insiders\VC\Tools\MSVC\14.50.35717\bin\HostX64\x64\cl.exe
+  CUDAHOSTCXX:          C:\Program Files\Microsoft Visual Studio\18\Insiders\VC\Tools\MSVC\14.50.35717\bin\HostX64\x64\cl.exe
+  NVCC_CCBIN:           C:\Program Files\Microsoft Visual Studio\18\Insiders\VC\Tools\MSVC\14.50.35717\bin\HostX64\x64
+  NVCC_PREPEND_FLAGS:   --use-local-env --allow-unsupported-compiler -t1
+  CARGO_TARGET_DIR:     C:\Users\erdno\AppData\Local\chthonic\cargo-target\mistralrs-cuda
+  CARGO_BUILD_JOBS:     2
+  Cargo features:       cuda
+
+Running cargo install...

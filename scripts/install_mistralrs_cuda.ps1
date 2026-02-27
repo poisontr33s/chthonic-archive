@@ -13,12 +13,33 @@ param(
 
     [switch]$NoFlashAttn,
     [switch]$DryRun,
+    [switch]$NoForce,
+    [ValidateRange(1, 64)]
+    [int]$Jobs = 0,
+    [ValidateRange(1, 64)]
+    [int]$NvccThreads = 0,
 
-    [string]$CargoTargetDir = "$env:LOCALAPPDATA\Temp\cargo-mistralrs-cuda"
+    [string]$CargoTargetDir = "$env:LOCALAPPDATA\chthonic\cargo-target\mistralrs-cuda"
 )
 
 Set-StrictMode -Version Latest
 $ErrorActionPreference = "Stop"
+
+# Optional global defaults (persist via User env vars):
+#   CHTHONIC_MISTRAL_JOBS
+#   CHTHONIC_MISTRAL_NVCC_THREADS
+if ($Jobs -eq 0 -and $env:CHTHONIC_MISTRAL_JOBS) {
+    $parsedJobs = 0
+    if ([int]::TryParse($env:CHTHONIC_MISTRAL_JOBS, [ref]$parsedJobs) -and $parsedJobs -ge 1 -and $parsedJobs -le 64) {
+        $Jobs = $parsedJobs
+    }
+}
+if ($NvccThreads -eq 0 -and $env:CHTHONIC_MISTRAL_NVCC_THREADS) {
+    $parsedThreads = 0
+    if ([int]::TryParse($env:CHTHONIC_MISTRAL_NVCC_THREADS, [ref]$parsedThreads) -and $parsedThreads -ge 1 -and $parsedThreads -le 64) {
+        $NvccThreads = $parsedThreads
+    }
+}
 
 function Get-VSWherePath {
     $candidates = @(
@@ -117,13 +138,23 @@ function Get-NvccVersion {
 function Merge-NvccFlags {
     param(
         [Parameter(Mandatory = $true)]
-        [string[]]$RequiredFlags
+        [string[]]$RequiredFlags,
+
+        [int]$ThreadCount = 0
     )
 
     $existing = @()
     if ($env:NVCC_PREPEND_FLAGS) {
         $existing = @($env:NVCC_PREPEND_FLAGS -split "\s+" | Where-Object { $_ -ne "" })
     }
+
+    if ($ThreadCount -gt 0) {
+        $existing = @($existing | Where-Object {
+            $_ -notmatch "^-t\d+$" -and $_ -ne "--threads"
+        })
+        $RequiredFlags += "-t$ThreadCount"
+    }
+
     return (($RequiredFlags + $existing | Select-Object -Unique) -join " ").Trim()
 }
 
@@ -153,7 +184,7 @@ if ($selected.installationVersion -like "18.*") {
     # CUDA 12.x does not officially support VS 18 yet.
     $requiredFlags += "--allow-unsupported-compiler"
 }
-$env:NVCC_PREPEND_FLAGS = Merge-NvccFlags -RequiredFlags $requiredFlags
+$env:NVCC_PREPEND_FLAGS = Merge-NvccFlags -RequiredFlags $requiredFlags -ThreadCount $NvccThreads
 
 $featureList = if ($NoFlashAttn) { "cuda" } else { "cuda,flash-attn" }
 
@@ -161,6 +192,10 @@ if (-not (Test-Path $CargoTargetDir)) {
     New-Item -ItemType Directory -Path $CargoTargetDir -Force | Out-Null
 }
 $env:CARGO_TARGET_DIR = $CargoTargetDir
+
+if ($Jobs -gt 0) {
+    $env:CARGO_BUILD_JOBS = [string]$Jobs
+}
 
 Write-Host ""
 Write-Host "Resolved build environment:" -ForegroundColor Green
@@ -170,16 +205,21 @@ Write-Host "  CUDAHOSTCXX:          $env:CUDAHOSTCXX"
 Write-Host "  NVCC_CCBIN:           $env:NVCC_CCBIN"
 Write-Host "  NVCC_PREPEND_FLAGS:   $env:NVCC_PREPEND_FLAGS"
 Write-Host "  CARGO_TARGET_DIR:     $env:CARGO_TARGET_DIR"
+if ($Jobs -gt 0) {
+    Write-Host "  CARGO_BUILD_JOBS:     $env:CARGO_BUILD_JOBS"
+}
 Write-Host "  Cargo features:       $featureList"
 
 $installArgs = @(
     "install",
     "mistralrs-cli",
     "--locked",
-    "--force",
     "--features",
     $featureList
 )
+if (-not $NoForce) {
+    $installArgs += "--force"
+}
 
 if ($DryRun) {
     Write-Host ""
