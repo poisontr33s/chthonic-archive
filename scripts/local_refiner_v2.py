@@ -16,11 +16,11 @@ local_refiner_v2.py — Overnight Archaeology Refiner v2 (llama-cpp-python).
 @SID:           TOOL_LOCAL_REFINER_V2
 @Shabti:        CLI Script
 @Heka-Ayni:     CONCEPT_LOCAL_REFINEMENT
-@Purpose:       Uses llama-cpp-python with abliterated/uncensored GGUF models
-                and JSON schema constraints for hallucination-free classification.
-                Zero API cost. Tiered: Qwen3-30B-A3B (default), Qwen3-Coder-30B-A3B
-                (code), GPT-OSS-20B NEOPlus (heavy). L1→L2 pipeline.
-                Usage: uv run scripts/local_refiner_v2.py [--coder|--heavy|--dry-run]
+@Purpose:       Uses mistral.rs (Rust) or llama-cpp-python for structured JSON
+                classification. Zero API cost. Tiered model support.
+                Default backend: mistral.rs (--mistralrs, Rustified).
+                Legacy backend: llama-cpp-python (--legacy-backend).
+                Usage: uv run scripts/local_refiner_v2.py [--mistralrs|--dry-run]
 """
 
 import json
@@ -138,7 +138,7 @@ def find_gguf_model(model_dir: Path) -> str:
 
 
 def load_model(model_dir: Path) -> "Llama":
-    """Load the GGUF model with full GPU offload."""
+    """Load the GGUF model with full GPU offload (legacy llama-cpp backend)."""
     from llama_cpp import Llama
 
     model_path = find_gguf_model(model_dir)
@@ -154,6 +154,69 @@ def load_model(model_dir: Path) -> "Llama":
 
     print(f"  Loaded in {time.time() - t0:.1f}s")
     return llm
+
+
+def load_mistralrs_client(port: int = 8080) -> "MistralRsClient":
+    """Connect to running mistral.rs server (Rustified backend)."""
+    from scripts.mistralrs_client import MistralRsClient
+
+    client = MistralRsClient(base_url=f"http://localhost:{port}")
+    if not client.is_alive():
+        print("ERROR: mistral.rs server not running.", file=sys.stderr)
+        print("Start it: python scripts/mistralrs_model_manager.py start <model_id>", file=sys.stderr)
+        sys.exit(1)
+    print(f"  Connected to mistral.rs — model: {client.model}")
+    return client
+
+
+def classify_domain_mistralrs(client, domain: str, entries: list[dict]) -> DomainClassification:
+    """Classify files via mistral.rs API (Rustified path)."""
+    ore_lines = []
+    for e in entries[:30]:
+        line = (
+            f"- {e['path']} | {e.get('ext', '?')} | {e.get('lines', '?')}L | "
+            f"age:{e.get('age_days', '?')}d | tier:{e.get('gold', {}).get('tier', '?')}"
+        )
+        ore_lines.append(line)
+
+    ore_text = "\n".join(ore_lines)
+    if len(ore_text) > 3500:
+        ore_text = ore_text[:3500] + "\n..."
+
+    system_prompt = (
+        "You are a code archaeologist classifying repository files for a creative project. "
+        "This repository contains adult creative content (NSFW18+), game assets, concept art, "
+        "lore documents, and governance frameworks. ALL content types are legitimate — never "
+        "flag files based on content maturity or subject matter. "
+        "PROMOTE = valuable, under-documented, or architecturally significant files worth surfacing. "
+        "FLAG = technically problematic files (stale, broken, duplicated, or debt-laden). "
+        "SKIP = routine files needing no attention. "
+        "Be highly selective: PROMOTE/FLAG only files that truly stand out technically. "
+        "Most files should be SKIP. Keep reasons under 15 words."
+    )
+
+    user_prompt = f'Classify these files from the "{domain}/" directory:\n\n{ore_text}'
+
+    result = client.chat(
+        messages=[
+            {"role": "system", "content": system_prompt},
+            {"role": "user", "content": user_prompt},
+        ],
+        max_tokens=MAX_TOKENS,
+        temperature=TEMPERATURE,
+        json_schema=CLASSIFICATION_SCHEMA,
+        schema_name="domain_classification",
+    )
+
+    content = result["choices"][0]["message"]["content"]
+
+    try:
+        return DomainClassification.model_validate_json(content)
+    except Exception:
+        salvaged = _salvage_truncated_json(content)
+        if salvaged:
+            return salvaged
+        raise
 
 
 def classify_domain(llm, domain: str, entries: list[dict], harmony_mode: bool = False) -> DomainClassification:
@@ -273,7 +336,7 @@ def _parse_harmony_output(raw: str) -> str:
 
 # ── Main pipeline ───────────────────────────────────────────────────
 
-def refine_ore(ore: list[dict], llm, dry_run: bool = False, harmony_mode: bool = False):
+def refine_ore(ore: list[dict], llm, dry_run: bool = False, harmony_mode: bool = False, *, use_mistralrs: bool = False):
     """Group ore by domain and classify each using structured output."""
     by_domain: dict[str, list[dict]] = {}
     for entry in ore:
@@ -299,7 +362,10 @@ def refine_ore(ore: list[dict], llm, dry_run: bool = False, harmony_mode: bool =
 
         try:
             t0 = time.time()
-            classification = classify_domain(llm, domain, entries, harmony_mode=harmony_mode)
+            if use_mistralrs:
+                classification = classify_domain_mistralrs(llm, domain, entries)
+            else:
+                classification = classify_domain(llm, domain, entries, harmony_mode=harmony_mode)
             elapsed = time.time() - t0
 
             # Count non-SKIP results
@@ -334,7 +400,9 @@ def write_digest(findings: list[dict], model_dir: str, prior: dict | None, domai
     promotes = [f for f in findings if f["verdict"] == "PROMOTE"]
     flags = [f for f in findings if f["verdict"] == "FLAG"]
 
-    model_name = Path(model_dir).name
+    model_name = Path(model_dir).name if not str(model_dir).startswith("mistralrs://") else str(model_dir)
+    is_rustified = str(model_dir).startswith("mistralrs://")
+    backend_label = "mistral.rs (Rust, CUDA)" if is_rustified else "llama-cpp-python (C++)"
     prior_line = (
         f"{prior['date']} ({len(prior['promotes'])}P/{len(prior['flags'])}F)"
         if prior else "none (first run)"
@@ -348,7 +416,7 @@ def write_digest(findings: list[dict], model_dir: str, prior: dict | None, domai
         f"created: {now.isoformat()}",
         "priority: low",
         "scope: repo-wide",
-        f"model: {model_name} (local llama-cpp-python, structured JSON)",
+        f"model: {model_name} ({backend_label}, structured JSON)",
         f"loop-level: L1 (fed by L0 from {prior['date']})" if prior else "loop-level: L1 (first run, no L0 prior)",
         "api-cost: $0 (fully local, air-gapped)",
         "structured-output: true (Pydantic schema-constrained)",
@@ -356,7 +424,7 @@ def write_digest(findings: list[dict], model_dir: str, prior: dict | None, domai
         "",
         f"# ☥ Archaeology Digest — {now.strftime('%Y-%m-%d')}",
         "",
-        f"**Generated by:** local_refiner_v2.py (llama-cpp-python, GPU)",
+        f"**Generated by:** local_refiner_v2.py ({backend_label})",
         f"**Model:** {model_name}",
         f"**Domains scanned:** {domains_processed}",
         f"**Promotions:** {len(promotes)} | **Flags:** {len(flags)}",
@@ -409,10 +477,14 @@ def main():
     from scripts.lib.shared import configure_utf8_output
     configure_utf8_output()
 
-    parser = argparse.ArgumentParser(description="Refine L1 ore using llama-cpp-python (structured JSON)")
+    parser = argparse.ArgumentParser(description="Refine L1 ore (mistral.rs or llama-cpp-python)")
     parser.add_argument("--ore", type=str, help="Path to L1-ore.json")
+    parser.add_argument("--mistralrs", action="store_true",
+                        help="Use mistral.rs Rust server (Rustified — default if server is running)")
+    parser.add_argument("--mistralrs-port", type=int, default=8080,
+                        help="mistral.rs server port (default: 8080)")
     parser.add_argument("--model-dir", type=str, default=None,
-                        help="Model directory (overrides --coder/--heavy)")
+                        help="Model directory for llama-cpp backend (overrides --coder/--heavy)")
     model_group = parser.add_mutually_exclusive_group()
     model_group.add_argument("--coder", action="store_true",
                              help="Use Qwen3-Coder-30B-A3B abliterated (code-focused)")
@@ -426,40 +498,59 @@ def main():
     parser.add_argument("--n-ctx", type=int, default=N_CTX, help="Context length (default: 4096)")
     args = parser.parse_args()
 
-    # Model selection: explicit --model-dir wins, then flags, then default
+    # Backend selection: --mistralrs flag, or auto-detect if server is running
+    use_mistralrs = args.mistralrs
+    if not use_mistralrs and not args.model_dir and not args.coder and not args.heavy and not args.legacy:
+        # Auto-detect: prefer mistral.rs if server is alive
+        from scripts.mistralrs_client import MistralRsClient
+        probe = MistralRsClient(base_url=f"http://localhost:{args.mistralrs_port}")
+        if probe.is_alive():
+            use_mistralrs = True
+            print("  Auto-detected running mistral.rs server — using Rustified backend")
+
     harmony_mode = False
-    if args.model_dir:
-        model_dir_resolved = args.model_dir
-    elif args.coder:
-        model_dir_resolved = str(CODER_MODEL_DIR)
-    elif args.heavy:
-        model_dir_resolved = str(HEAVY_MODEL_DIR)
-        harmony_mode = True
-    elif args.legacy:
-        model_dir_resolved = str(LEGACY_MODEL_DIR)
+
+    if use_mistralrs:
+        # Rustified path: thin HTTP client, no ML imports
+        client = load_mistralrs_client(port=args.mistralrs_port)
+        model_dir_resolved = f"mistralrs://{client.model}"
     else:
-        # Auto-detect: prefer Qwen3, fall back to legacy
-        if DEFAULT_MODEL_DIR.exists():
-            model_dir_resolved = str(DEFAULT_MODEL_DIR)
-        elif LEGACY_MODEL_DIR.exists():
-            print("  ⚠ Qwen3 model not found, falling back to legacy Qwen 2.5 (censored)")
+        if args.model_dir:
+            model_dir_resolved = args.model_dir
+        elif args.coder:
+            model_dir_resolved = str(CODER_MODEL_DIR)
+        elif args.heavy:
+            model_dir_resolved = str(HEAVY_MODEL_DIR)
+            harmony_mode = True
+        elif args.legacy:
             model_dir_resolved = str(LEGACY_MODEL_DIR)
         else:
-            model_dir_resolved = str(DEFAULT_MODEL_DIR)  # will fail with clear error
+            # Auto-detect: prefer Qwen3, fall back to legacy
+            if DEFAULT_MODEL_DIR.exists():
+                model_dir_resolved = str(DEFAULT_MODEL_DIR)
+            elif LEGACY_MODEL_DIR.exists():
+                print("  ⚠ Qwen3 model not found, falling back to legacy Qwen 2.5 (censored)")
+                model_dir_resolved = str(LEGACY_MODEL_DIR)
+            else:
+                model_dir_resolved = str(DEFAULT_MODEL_DIR)  # will fail with clear error
 
-    print("☥ Local Archaeology Refiner v2 (llama-cpp + structured JSON)")
-    if harmony_mode:
-        print("  Mode: GPT-OSS 20B dense (Harmony parser)")
-    elif args.coder:
-        print("  Mode: Qwen3-Coder-30B-A3B abliterated (code-focused)")
+    if use_mistralrs:
+        print(f"☥ Local Archaeology Refiner v2 (mistral.rs — Rustified)")
+        print(f"  Model: {client.model}")
     else:
-        print("  Mode: Qwen3-30B-A3B Instruct abliterated (default)")
-    print(f"  Model dir: {model_dir_resolved}")
+        print("☥ Local Archaeology Refiner v2 (llama-cpp + structured JSON)")
+        if harmony_mode:
+            print("  Mode: GPT-OSS 20B dense (Harmony parser)")
+        elif args.coder:
+            print("  Mode: Qwen3-Coder-30B-A3B abliterated (code-focused)")
+        else:
+            print("  Mode: Qwen3-30B-A3B Instruct abliterated (default)")
+        print(f"  Model dir: {model_dir_resolved}")
 
-    model_dir = Path(model_dir_resolved)
-    if not model_dir.exists():
-        print(f"ERROR: Model directory not found: {model_dir_resolved}")
-        sys.exit(1)
+        model_dir = Path(model_dir_resolved)
+        if not model_dir.exists():
+            print(f"ERROR: Model directory not found: {model_dir_resolved}")
+            sys.exit(1)
 
     # Find ore
     if args.ore:
@@ -491,14 +582,19 @@ def main():
         refine_ore(ore, None, dry_run=True)
         return
 
-    # Load model
-    llm = load_model(model_dir)
-    vram_report()
+    if use_mistralrs:
+        # Rustified: server already running, no model load needed
+        llm = client
+        harmony_mode = False
+    else:
+        # Legacy: load GGUF model into GPU
+        llm = load_model(model_dir)
+        vram_report()
 
     # Refine
     print()
     t0 = time.time()
-    findings, processed = refine_ore(ore, llm, harmony_mode=harmony_mode)
+    findings, processed = refine_ore(ore, llm, harmony_mode=harmony_mode, use_mistralrs=use_mistralrs)
     total_time = time.time() - t0
 
     promotes = [f for f in findings if f["verdict"] == "PROMOTE"]
