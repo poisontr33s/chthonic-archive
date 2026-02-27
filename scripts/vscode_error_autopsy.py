@@ -93,8 +93,8 @@ ERROR_PATTERNS: list[ErrorPattern] = [
         ),
         root_cause="Chromium GPU command buffer referencing destroyed shared image mailbox. "
                     "Indicates GPU process instability or software rendering fallback.",
-        remediation="Enable hardware GPU acceleration via argv.json or --enable-gpu-rasterization. "
-                     "If on SwiftShader, install/update GPU drivers.",
+        remediation="For crash containment, first run with --disable-gpu and terminal GPU off. "
+                     "After stability returns, test hardware acceleration with updated GPU drivers.",
     ),
     ErrorPattern(
         name="gpu_all_disabled",
@@ -116,8 +116,8 @@ ERROR_PATTERNS: list[ErrorPattern] = [
         pattern=re.compile(r"SwiftShader", re.IGNORECASE),
         root_cause="Software Vulkan renderer active instead of hardware GPU. "
                     "Performance degradation and increased crash risk.",
-        remediation="Install hardware GPU drivers. Remove --disable-gpu if set. "
-                     "Check Windows Display Settings > Graphics > VS Code = High Performance.",
+        remediation="If crashes persist, keep software-safe mode (--disable-gpu) until stable. "
+                     "Then validate hardware path via driver updates and controlled re-enable.",
     ),
     ErrorPattern(
         name="renderer_process_gone",
@@ -214,6 +214,19 @@ ERROR_PATTERNS: list[ErrorPattern] = [
         root_cause="PTY host process died. All terminals become unresponsive.",
         remediation="Check for ACCESS_VIOLATION in logs. "
                      "Disable terminal GPU accel: terminal.integrated.gpuAcceleration=off.",
+    ),
+    ErrorPattern(
+        name="terminal_exit_access_violation",
+        category="PTY",
+        severity=SEVERITY_CRITICAL,
+        pattern=re.compile(
+            r"terminated with exit code -1073741819",
+            re.IGNORECASE,
+        ),
+        root_cause="Terminal process crashed with STATUS_ACCESS_VIOLATION (0xC0000005). "
+                    "Commonly tied to native crash in pwsh/electron host/driver boundary.",
+        remediation="Use -NoProfile terminal launch, keep terminal GPU acceleration off, "
+                     "and isolate extensions with --disable-extensions for crash triage.",
     ),
     ErrorPattern(
         name="shell_integration_timeout",
@@ -391,27 +404,32 @@ KNOWN_MAILBOX_PATTERNS = [
 INSIDERS_LOGS_DIR = Path(os.environ.get("APPDATA", "")) / "Code - Insiders" / "logs"
 
 
-def discover_log_files(repo: Path, extra_dirs: list[Path] | None = None) -> list[Path]:
+def discover_log_files(
+    repo: Path,
+    extra_dirs: list[Path] | None = None,
+    include_defaults: bool = True,
+) -> list[Path]:
     """Auto-discover all log files relevant to VS Code error autopsy."""
     files: list[Path] = []
 
-    # Repo-local log dirs
-    for d in KNOWN_LOG_DIRS:
-        log_dir = repo / d
-        if log_dir.is_dir():
-            for f in log_dir.rglob("*.log"):
-                files.append(f)
+    if include_defaults:
+        # Repo-local log dirs
+        for d in KNOWN_LOG_DIRS:
+            log_dir = repo / d
+            if log_dir.is_dir():
+                for f in log_dir.rglob("*.log"):
+                    files.append(f)
 
-    # Matrix/triage mailbox outputs
-    import glob
-    for pattern in KNOWN_MAILBOX_PATTERNS:
-        for match_dir in glob.glob(str(repo / pattern)):
-            mp = Path(match_dir)
-            if mp.is_dir():
-                for f in mp.rglob("*.log"):
-                    files.append(f)
-                for f in mp.rglob("*.err.log"):
-                    files.append(f)
+        # Matrix/triage mailbox outputs
+        import glob
+        for pattern in KNOWN_MAILBOX_PATTERNS:
+            for match_dir in glob.glob(str(repo / pattern)):
+                mp = Path(match_dir)
+                if mp.is_dir():
+                    for f in mp.rglob("*.log"):
+                        files.append(f)
+                    for f in mp.rglob("*.err.log"):
+                        files.append(f)
 
     # Extra user-specified dirs
     if extra_dirs:
@@ -422,17 +440,18 @@ def discover_log_files(repo: Path, extra_dirs: list[Path] | None = None) -> list
             elif d.is_file():
                 files.append(d)
 
-    # Insiders AppData logs (latest session only)
-    if INSIDERS_LOGS_DIR.is_dir():
-        session_dirs = sorted(
-            INSIDERS_LOGS_DIR.iterdir(),
-            key=lambda p: p.stat().st_mtime if p.is_dir() else 0,
-            reverse=True,
-        )
-        if session_dirs:
-            latest = session_dirs[0]
-            for f in latest.rglob("*.log"):
-                files.append(f)
+    if include_defaults:
+        # Insiders AppData logs (latest session only)
+        if INSIDERS_LOGS_DIR.is_dir():
+            session_dirs = sorted(
+                INSIDERS_LOGS_DIR.iterdir(),
+                key=lambda p: p.stat().st_mtime if p.is_dir() else 0,
+                reverse=True,
+            )
+            if session_dirs:
+                latest = session_dirs[0]
+                for f in latest.rglob("*.log"):
+                    files.append(f)
 
     # Deduplicate by resolved path
     seen: set[str] = set()
@@ -609,6 +628,12 @@ def build_parser() -> argparse.ArgumentParser:
         help="Additional log directory/file to scan (repeatable)",
     )
     parser.add_argument(
+        "--matrix-dir",
+        action="append",
+        default=[],
+        help="Additional matrix/triage directory or file to scan (repeatable)",
+    )
+    parser.add_argument(
         "--json", dest="emit_json", action="store_true",
         help="Emit JSON report to stdout",
     )
@@ -638,6 +663,10 @@ def build_parser() -> argparse.ArgumentParser:
         help="Skip scanning AppData VS Code Insiders logs",
     )
     parser.add_argument(
+        "--only-provided", action="store_true",
+        help="Scan only paths passed via --logs-dir/--matrix-dir (skip default discovery).",
+    )
+    parser.add_argument(
         "--no-dedupe", action="store_true",
         help="Show all error occurrences (no deduplication)",
     )
@@ -656,13 +685,18 @@ def main(argv: list[str] | None = None) -> int:
     log.info("Repo root: %s", repo)
 
     # Discover logs
-    extra = [Path(d) for d in args.logs_dir] if args.logs_dir else None
+    extra_inputs = list(args.logs_dir or []) + list(args.matrix_dir or [])
+    extra = [Path(d) for d in extra_inputs] if extra_inputs else None
     if args.no_appdata:
         # Temporarily disable AppData scanning
         global INSIDERS_LOGS_DIR
         INSIDERS_LOGS_DIR = Path("/nonexistent")
 
-    log_files = discover_log_files(repo, extra)
+    log_files = discover_log_files(
+        repo,
+        extra,
+        include_defaults=not args.only_provided,
+    )
     log.info("Discovered %d log files", len(log_files))
 
     if not log_files:

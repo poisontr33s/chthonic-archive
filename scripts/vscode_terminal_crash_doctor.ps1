@@ -37,6 +37,44 @@ function To-HexCode {
     return ("0x{0:X8}" -f ($Code -band 0xffffffff))
 }
 
+function Get-CrashMeaning {
+    param([int]$Code)
+    switch ($Code) {
+        -1073741819 { return "Access violation (STATUS_ACCESS_VIOLATION)" } # 0xC0000005
+        -2147483645 { return "Breakpoint trap / abort (STATUS_BREAKPOINT)" } # 0x80000003
+        default { return "Unknown / needs symbolized dump analysis" }
+    }
+}
+
+function Parse-CrashCodesFromLines {
+    param([string[]]$Lines)
+    $codes = @()
+    $pattern = [regex]'(?:exit code|code:\s*)(-?\d+)'
+    foreach ($line in @($Lines)) {
+        foreach ($m in $pattern.Matches([string]$line)) {
+            $raw = $m.Groups[1].Value
+            $parsed = 0
+            if ([int]::TryParse($raw, [ref]$parsed)) {
+                $codes += $parsed
+            }
+        }
+    }
+    return @($codes)
+}
+
+function Build-CrashCodeDescriptors {
+    param([int[]]$Codes)
+    $descriptors = @()
+    foreach ($code in @($Codes | Sort-Object -Unique)) {
+        $descriptors += [ordered]@{
+            decimal = $code
+            hex = (To-HexCode -Code $code)
+            meaning = (Get-CrashMeaning -Code $code)
+        }
+    }
+    return $descriptors
+}
+
 function Invoke-PwshProbe {
     param(
         [Parameter(Mandatory = $true)][string]$Name,
@@ -306,6 +344,7 @@ $report = [ordered]@{
     findings = @()
     log_collection = $null
     api_doctor = $null
+    detected_crash_codes = @()
     next_steps = @()
 }
 
@@ -377,6 +416,20 @@ if (-not $SkipCodeStatus) {
     }
 }
 
+$crashCodeLines = @()
+if ($report.log_collection -and $report.log_collection.crash_hits) {
+    $crashCodeLines += @($report.log_collection.crash_hits | ForEach-Object { [string]$_.text })
+}
+if ($report.vscode.status -and $report.vscode.status.available -and $report.vscode.status.renderer_crash_lines) {
+    $crashCodeLines += @($report.vscode.status.renderer_crash_lines | ForEach-Object { [string]$_ })
+}
+$detectedCodes = Parse-CrashCodesFromLines -Lines $crashCodeLines
+$report.detected_crash_codes = Build-CrashCodeDescriptors -Codes $detectedCodes
+if ($report.detected_crash_codes.Count -gt 0) {
+    $codesLabel = (@($report.detected_crash_codes | ForEach-Object { "$($_.decimal) ($($_.hex))" }) -join ", ")
+    $report.findings += ("Detected crash codes: " + $codesLabel)
+}
+
 $report.next_steps += @(
     "Inside VS Code Insiders, run: Developer: Set Log Level... -> Trace.",
     "Inside VS Code Insiders, run: Terminal: Set Log Level... -> Trace.",
@@ -435,6 +488,15 @@ if ($report.log_collection -and $report.log_collection.found) {
     $md += ('- Crash-pattern hits: `{0}`' -f $logHits)
 } else {
     $md += "- No Insiders logs found."
+}
+$md += ""
+$md += "## Detected Crash Codes"
+if ($report.detected_crash_codes.Count -gt 0) {
+    foreach ($c in $report.detected_crash_codes) {
+        $md += ('- `{0}` (`{1}`): {2}' -f $c.decimal, $c.hex, $c.meaning)
+    }
+} else {
+    $md += "- None detected from current bundle/status lines."
 }
 $md += ""
 $md += "## Code Status"

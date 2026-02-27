@@ -1,8 +1,10 @@
 ---
 name: mailbox-handoff
-description: Route handoffs between Codex and Claude by reading and writing mailbox files. Use when checking inboxes, creating handoff reports, responding to mailbox items, or delegating tasks between codex/mailbox and claude/mailbox.
+description: Manage Codex/Claude/Gemini mailboxes for handoffs, responses, verification, and routing. Use when checking inboxes, verifying handoff coverage across codex/.codex/claude/.claude/claude-codex-gemini, routing tasks, or running mailbox ops (postman/scribe/polisher).
 allowed-tools: "Read, Write, Glob, Grep"
 user-invocable: true
+metadata:
+  short-description: "Triad mailbox operations with cross-root handoff verification."
 ---
 
 # Mailbox Handoff (Claude Code)
@@ -19,12 +21,16 @@ Core rule: **mailbox == continuation**, not file spam. Always start from the new
 ## Mailbox locations
 - Codex inbox: `codex/mailbox/`
 - Claude inbox: `claude/mailbox/`
+- Gemini inbox: `gemini/mailbox/`
+- Shadow mailboxes (sentinel-only): `.codex/mailbox/`, `.claude/mailbox/`
+- Triad context root: `claude-codex-gemini/`
 
 ## Workflow (deterministic)
-1. Scan inbox
+1. **Scan inbox (continuation-first)**
    - Read `mailbox_manifest.json` (if present).
    - Open the newest `SESSION_HANDOFF_*.md` (fallback: newest `*.md`).
-2. Extract intent
+   - For overnight/local-LLM handoffs, read `LOCAL_AI_READINESS_LATEST.md` first and treat it as the gate artifact.
+2. **Extract intent**
    - Identify requested action(s), required files, and any constraints.
 3. Execute
    - Perform the work in the appropriate workspace path.
@@ -37,8 +43,9 @@ Core rule: **mailbox == continuation**, not file spam. Always start from the new
 
 ## Non-negotiables (quality)
 
-- One handoff note per change-set.
-- Every claim must be verifiable via a file path or artifact.
+- **One handoff note per change-set.** Update payload docs in place; don't emit duplicates.
+- **Every claim must be verifiable** via a file path, command, or artifact.
+- **No "checklist homework"** unless secrets/UI consent are required.
 - Prefer `SESSION_HANDOFF_*.md` over chronicles/payload docs for continuation.
 
 ## Output template
@@ -112,6 +119,72 @@ uv run .codex/skills/mailbox-handoff/scripts/mailbox_check.py --mailbox claude -
 
 # Read Codex inbox + emit response skeleton → Claude
 uv run .codex/skills/mailbox-handoff/scripts/mailbox_check.py --mailbox codex --emit-response --to claude
+```
+
+## Cross-Root Handoff Verification
+
+Verify handoff presence across canonical + shadow + triad roots:
+
+```powershell
+uv run .codex/skills/mailbox-handoff/scripts/mailbox_check.py --mode verify
+```
+
+Machine-readable output + mailbox report:
+
+```powershell
+uv run .codex/skills/mailbox-handoff/scripts/mailbox_check.py --mode verify --json
+uv run .codex/skills/mailbox-handoff/scripts/mailbox_check.py --mode verify --emit-report --report-target codex
+```
+
+## Mailbox Scribe
+
+Regenerate a single, up-to-date session packet from current mailbox artifacts. Does not delete historical content.
+
+```powershell
+uv run scripts/mailbox_scribe.py --target codex --packet codex/mailbox/TETRAGRAMMATON_PACKET.md
+uv run scripts/mailbox_scribe.py --target claude --packet claude/mailbox/TETRAGRAMMATON_PACKET.md
+```
+
+Optional send (route packet):
+
+```powershell
+.\scripts\mailbox_handoff.ps1 -Target claude -Source codex\mailbox\TETRAGRAMMATON_PACKET.md
+```
+
+## Integrated Ops (Postman + Scribe + Polisher)
+
+`mailbox_check.py` orchestrates related mailbox tools directly so mailbox flow is one command surface.
+
+Postman relay from inbox:
+
+```powershell
+uv run .codex/skills/mailbox-handoff/scripts/mailbox_check.py --mode verify --postman-target claude --postman-inbox codex/mailbox --send-latest
+```
+
+Postman relay from source file:
+
+```powershell
+uv run .codex/skills/mailbox-handoff/scripts/mailbox_check.py --postman-target claude --postman-source codex/mailbox/SESSION_HANDOFF_EXAMPLE.md
+```
+
+Run scribe and polisher from same command surface:
+
+```powershell
+uv run .codex/skills/mailbox-handoff/scripts/mailbox_check.py --scribe-target codex
+uv run .codex/skills/mailbox-handoff/scripts/mailbox_check.py --polish-target codex
+uv run .codex/skills/mailbox-handoff/scripts/mailbox_check.py --polish-target codex --polish-apply
+```
+
+## Link Canon Guard (via mailbox_check.py)
+
+Duplicate filename disambiguation via the Codex-side `mailbox_check.py` engine:
+
+```powershell
+# Dry-run check (fails on findings)
+uv run .codex/skills/mailbox-handoff/scripts/mailbox_check.py --mode link-canon --link-canon-file <file>
+
+# Apply fixes in place
+uv run .codex/skills/mailbox-handoff/scripts/mailbox_check.py --mode link-canon --link-canon-file <file> --link-canon-apply
 ```
 
 ## Quality Gates (via handoff-loop)

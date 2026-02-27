@@ -29,6 +29,9 @@ from typing import Any
 RE_HM_START = re.compile(r"^---\s*$")
 RE_HM_KV = re.compile(r"^([A-Za-z0-9_-]+)\s*:\s*(.*?)\s*$")
 RE_SECTION = re.compile(r"^#{1,6}\s+(.+?)\s*$")
+RE_MD_LINK = re.compile(r"\[([^\]\n]+)\]\(([^)\n]+)\)")
+RE_MD_LINK_MALFORMED_BRACKET = re.compile(r"\[([^\]\n]+)\]\(([^)\n\]]+)\]")
+RE_INLINE_CODE_SPAN = re.compile(r"(`+)([^`]*?)\1")
 REPO_ROOT = Path.cwd().resolve()
 
 MAILBOX_ALIASES: dict[str, str] = {
@@ -40,6 +43,18 @@ MAILBOX_ALIASES: dict[str, str] = {
 }
 
 DEFAULT_VERIFY_ROOTS = "codex,claude,.codex,.claude,claude-codex-gemini"
+GENERIC_LINK_LABELS = {
+    "file",
+    "files",
+    "path",
+    "paths",
+    "pathtofile",
+    "pathtofiles",
+    "pathoffile",
+    "pathoffiles",
+    "path-to-file",
+    "path-to-files",
+}
 
 
 def utc_now() -> str:
@@ -493,6 +508,224 @@ def run_polisher(target: str, apply: bool) -> None:
     run_cmd(cmd)
 
 
+def to_repo_relative(path: Path) -> str:
+    if path.is_relative_to(REPO_ROOT):
+        return path.relative_to(REPO_ROOT).as_posix()
+    return path.as_posix()
+
+
+def build_basename_index() -> dict[str, list[Path]]:
+    skip_dirs = {".git", "node_modules", "target", "__pycache__", ".venv", "venv"}
+    out: dict[str, list[Path]] = {}
+    for p in REPO_ROOT.rglob("*"):
+        if not p.is_file():
+            continue
+        if any(part in skip_dirs for part in p.parts):
+            continue
+        out.setdefault(p.name, []).append(p)
+    return out
+
+
+def resolve_markdown_target(md_file: Path, target: str) -> Path | None:
+    candidate = target.strip()
+    if not candidate:
+        return None
+    # Ignore URLs, anchors, and data URIs.
+    if re.match(r"^[A-Za-z][A-Za-z0-9+.-]*:", candidate):
+        return None
+    if candidate.startswith("#"):
+        return None
+    candidate = candidate.split("#", 1)[0].split("?", 1)[0].strip()
+    if not candidate:
+        return None
+    # Mailbox canonical convention: "./..." is repo-root relative.
+    if candidate.startswith("./"):
+        return (REPO_ROOT / candidate[2:]).resolve(strict=False)
+    if candidate.startswith(".\\"):
+        return (REPO_ROOT / candidate[2:]).resolve(strict=False)
+    if candidate.startswith("/"):
+        return (REPO_ROOT / candidate.lstrip("/")).resolve(strict=False)
+    return (md_file.parent / candidate).resolve(strict=False)
+
+
+def needs_label_qualifier(label: str, basename: str) -> bool:
+    clean = label.strip()
+    if not clean:
+        return True
+    # Any explicit path or qualifier counts as already disambiguated.
+    if "/" in clean or "\\" in clean:
+        return False
+    if "(" in clean and ")" in clean:
+        return False
+    low = clean.lower()
+    if low in GENERIC_LINK_LABELS:
+        return True
+    if low == basename.lower():
+        return True
+    return False
+
+
+def report_line(text: str, offset: int) -> int:
+    return text.count("\n", 0, offset) + 1
+
+
+def canonical_link_label(resolved_target: Path) -> str:
+    basename = resolved_target.name
+    parent = resolved_target.parent
+    parent_label = to_repo_relative(parent)
+    return f"{basename} ({parent_label})"
+
+
+def transform_non_code_segments(line: str, transform: Any) -> str:
+    """
+    Apply transform() only to non-inline-code segments in a line.
+    Splits on single backticks and preserves code spans untouched.
+    """
+    parts = line.split("`")
+    if len(parts) <= 1:
+        return transform(line)
+    out: list[str] = []
+    for idx, chunk in enumerate(parts):
+        if idx % 2 == 0:
+            out.append(transform(chunk))
+        else:
+            out.append(chunk)
+    return "`".join(out)
+
+
+def run_link_canon(
+    *,
+    files: list[str],
+    apply: bool,
+    max_findings: int,
+) -> int:
+    if not files:
+        return 0
+
+    basename_index = build_basename_index()
+    issues = 0
+
+    for raw_path in files:
+        md_path = Path(raw_path)
+        if not md_path.is_absolute():
+            md_path = (REPO_ROOT / md_path).resolve(strict=False)
+        if not md_path.exists() or not md_path.is_file():
+            print(f"[link-canon] missing file: {raw_path}")
+            issues += 1
+            continue
+        if md_path.suffix.lower() != ".md":
+            print(f"[link-canon] skip non-markdown: {to_repo_relative(md_path)}")
+            continue
+
+        text = md_path.read_text(encoding="utf-8", errors="replace")
+        lines = text.splitlines(keepends=True)
+        findings: list[str] = []
+        malformed_count = 0
+        missing_count = 0
+        ambiguous_count = 0
+        in_fence = False
+
+        for idx, original in enumerate(lines, start=1):
+            line = original.rstrip("\r\n")
+            stripped = line.strip()
+            if stripped.startswith("```"):
+                in_fence = not in_fence
+                continue
+            if in_fence:
+                continue
+
+            non_code = RE_INLINE_CODE_SPAN.sub("", line)
+            for m in RE_MD_LINK_MALFORMED_BRACKET.finditer(non_code):
+                malformed_count += 1
+                findings.append(
+                    f"L{idx}: malformed link `{m.group(0)}` -> expected `[{m.group(1)}]({m.group(2)})`"
+                )
+
+            for m in RE_MD_LINK.finditer(non_code):
+                label = m.group(1).strip()
+                target = m.group(2).strip()
+                resolved = resolve_markdown_target(md_path, target)
+                if not resolved:
+                    continue
+                if not resolved.exists():
+                    missing_count += 1
+                    findings.append(
+                        f"L{idx}: missing path for link `{m.group(0)}` -> `{to_repo_relative(resolved)}`"
+                    )
+                    continue
+                dupes = basename_index.get(resolved.name, [])
+                if len(dupes) > 1 and needs_label_qualifier(label, resolved.name):
+                    ambiguous_count += 1
+                    new_label = canonical_link_label(resolved)
+                    findings.append(
+                        f"L{idx}: ambiguous duplicate basename `{resolved.name}` -> suggest `[{new_label}]({target})`"
+                    )
+
+        updated_lines = list(lines)
+        applied_changes = 0
+        if apply:
+            in_fence_apply = False
+            for idx, original in enumerate(updated_lines):
+                line = original.rstrip("\r\n")
+                newline = original[len(line):]
+                stripped = line.strip()
+                if stripped.startswith("```"):
+                    in_fence_apply = not in_fence_apply
+                    continue
+                if in_fence_apply:
+                    continue
+                if "`" in line:
+                    # Avoid mutating inline code examples.
+                    continue
+
+                def _transform(chunk: str) -> str:
+                    fixed = RE_MD_LINK_MALFORMED_BRACKET.sub(
+                        lambda mm: f"[{mm.group(1)}]({mm.group(2)})",
+                        chunk,
+                    )
+
+                    def _rewrite_link(mm: re.Match[str]) -> str:
+                        nonlocal applied_changes
+                        label = mm.group(1).strip()
+                        target = mm.group(2).strip()
+                        resolved = resolve_markdown_target(md_path, target)
+                        if not resolved or not resolved.exists():
+                            return mm.group(0)
+                        dupes = basename_index.get(resolved.name, [])
+                        if len(dupes) <= 1:
+                            return mm.group(0)
+                        if not needs_label_qualifier(label, resolved.name):
+                            return mm.group(0)
+                        applied_changes += 1
+                        return f"[{canonical_link_label(resolved)}]({target})"
+
+                    return RE_MD_LINK.sub(_rewrite_link, fixed)
+
+                transformed = transform_non_code_segments(line, _transform) + newline
+                updated_lines[idx] = transformed
+
+            updated = "".join(updated_lines)
+            if updated != text:
+                md_path.write_text(updated, encoding="utf-8")
+
+        mode = "apply" if apply else "dry-run"
+        print(f"[link-canon:{mode}] {to_repo_relative(md_path)}")
+        print(
+            "  "
+            + f"malformed={malformed_count} missing={missing_count} ambiguous={ambiguous_count} "
+            + f"rewritten={applied_changes if apply else 0}"
+        )
+
+        if findings:
+            issues += len(findings)
+            for line in findings[:max_findings]:
+                print(f"  - {line}")
+            if len(findings) > max_findings:
+                print(f"  - ... {len(findings) - max_findings} more findings")
+
+    return issues
+
+
 def write_response(
     *,
     src_mailbox: str,
@@ -539,7 +772,7 @@ def write_response(
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--mailbox", choices=sorted(MAILBOX_ALIASES), default="codex")
-    ap.add_argument("--mode", choices=["inbox", "verify"], default="inbox")
+    ap.add_argument("--mode", choices=["inbox", "verify", "link-canon"], default="inbox")
     ap.add_argument("--verify-roots", default=DEFAULT_VERIFY_ROOTS)
     ap.add_argument("--json", action="store_true", help="Emit JSON for --mode verify.")
     ap.add_argument("--emit-report", action="store_true", help="Write markdown verify report to mailbox.")
@@ -560,6 +793,28 @@ def main() -> int:
     ap.add_argument("--scribe-target", choices=["codex", "claude", "gemini"])
     ap.add_argument("--polish-target", choices=["codex", "claude", "gemini"])
     ap.add_argument("--polish-apply", action="store_true")
+    ap.add_argument(
+        "--link-canon-file",
+        action="append",
+        default=[],
+        help="Markdown file to validate/fix [label](path) links. Repeatable.",
+    )
+    ap.add_argument(
+        "--link-canon-apply",
+        action="store_true",
+        help="Apply link canon fixes in-place. Default is dry-run.",
+    )
+    ap.add_argument(
+        "--link-canon-max-findings",
+        type=int,
+        default=40,
+        help="Max findings to print per file (default: 40).",
+    )
+    ap.add_argument(
+        "--link-canon-no-fail",
+        action="store_true",
+        help="Do not fail when dry-run finds link issues.",
+    )
     args = ap.parse_args()
 
     root = mailbox_root(args.mailbox)
@@ -580,6 +835,9 @@ def main() -> int:
             path = write_verify_report(payload, args.report_target, args.report_name)
             print("")
             print(f"Wrote verification report: {path.as_posix()}")
+    elif args.mode == "link-canon":
+        # Dedicated mode: run only link canon checks/fixes.
+        pass
 
     if args.emit_response:
         if not args.to:
@@ -624,6 +882,18 @@ def main() -> int:
         print("")
         print(f"Wrote response skeleton: {out_path.as_posix()}")
 
+        # Creation-time guard: validate/fix links in the newly generated handoff.
+        auto_findings = run_link_canon(
+            files=[out_path.as_posix()],
+            apply=bool(args.link_canon_apply),
+            max_findings=max(1, int(args.link_canon_max_findings)),
+        )
+        if auto_findings > 0 and not args.link_canon_apply and not args.link_canon_no_fail:
+            raise SystemExit(
+                f"new response handoff has {auto_findings} link issue(s). "
+                + "Re-run with --link-canon-apply to fix."
+            )
+
     if args.postman_target:
         source = args.postman_source.strip() or None
         inbox = args.postman_inbox.strip() or None
@@ -648,6 +918,18 @@ def main() -> int:
 
     if args.polish_target:
         run_polisher(args.polish_target, bool(args.polish_apply))
+
+    if args.link_canon_file:
+        finding_count = run_link_canon(
+            files=args.link_canon_file,
+            apply=bool(args.link_canon_apply),
+            max_findings=max(1, int(args.link_canon_max_findings)),
+        )
+        if finding_count > 0 and not args.link_canon_apply and not args.link_canon_no_fail:
+            raise SystemExit(
+                f"link-canon dry-run found {finding_count} issue(s). "
+                + "Re-run with --link-canon-apply to fix."
+            )
 
     return 0
 

@@ -36,6 +36,7 @@ from __future__ import annotations
 import argparse
 import json
 import os
+import re
 import shutil
 import sys
 from dataclasses import dataclass, field, asdict
@@ -61,11 +62,21 @@ INSIDERS_CRASHPAD = Path(os.environ.get("TEMP", "")) / "Electron Crashes"
 STABLE_USER_DATA = APPDATA / "Code"
 STABLE_ARGV = STABLE_USER_DATA / "argv.json"
 
-# Safe argv.json GPU flags — these enable hardware GPU without breaking anything
-SAFE_GPU_FLAGS = {
-    "disable-hardware-acceleration": False,  # ensure hardware GPU is ON
-    "enable-gpu-rasterization": True,
-    "ignore-gpu-blocklist": True,
+# Hardening profiles
+PROFILE_STABILITY = "stability"
+PROFILE_PERFORMANCE = "performance"
+
+PROFILE_GPU_FLAGS = {
+    PROFILE_STABILITY: {
+        "disable-hardware-acceleration": True,
+        "enable-gpu-rasterization": False,
+        "ignore-gpu-blocklist": False,
+    },
+    PROFILE_PERFORMANCE: {
+        "disable-hardware-acceleration": False,
+        "enable-gpu-rasterization": True,
+        "ignore-gpu-blocklist": True,
+    },
 }
 
 # Memory tuning for large workspaces
@@ -74,10 +85,9 @@ MEMORY_FLAGS = {
 }
 
 # Recommended workspace settings for stability
-RECOMMENDED_SETTINGS = {
-    "terminal.integrated.gpuAcceleration": "auto",
-    "window.titleBarStyle": "custom",
-    "extensions.experimental.affinity": {},
+PROFILE_TERMINAL_GPU = {
+    PROFILE_STABILITY: "off",
+    PROFILE_PERFORMANCE: "auto",
 }
 
 # User-data corruption signals
@@ -110,6 +120,7 @@ class HardeningReport:
     """Full hardening diagnostic and action report."""
     generated_utc: str = ""
     mode: str = ""
+    profile: str = PROFILE_STABILITY
     dry_run: bool = False
     argv_path: str = ""
     user_data_path: str = ""
@@ -128,21 +139,34 @@ class HardeningReport:
 # Diagnostic Functions
 # =============================================================================
 
+def parse_jsonc_object(text: str) -> dict:
+    """
+    Parse a JSONC object with conservative preprocessing.
+
+    Supports:
+    - line comments that start with optional whitespace then //
+    - trailing commas before } or ]
+    """
+    stripped = re.sub(r"^\s*//.*$", "", text, flags=re.MULTILINE)
+    stripped = re.sub(r",\s*([}\]])", r"\1", stripped)
+    value = json.loads(stripped)
+    if not isinstance(value, dict):
+        raise json.JSONDecodeError("Top-level JSON value is not an object", stripped, 0)
+    return value
+
+
 def read_argv_json(path: Path) -> dict | None:
     """Read and parse argv.json, handling JSONC (comments)."""
     if not path.is_file():
         return None
     try:
         text = path.read_text(encoding="utf-8")
-        # Strip single-line comments (// ...) — argv.json uses JSONC
-        import re
-        text = re.sub(r"//.*$", "", text, flags=re.MULTILINE)
-        return json.loads(text)
+        return parse_jsonc_object(text)
     except (json.JSONDecodeError, OSError):
         return None
 
 
-def diagnose_gpu(argv_data: dict | None) -> list[DiagnosticFinding]:
+def diagnose_gpu(argv_data: dict | None, profile: str) -> list[DiagnosticFinding]:
     """Diagnose GPU acceleration state from argv.json."""
     findings: list[DiagnosticFinding] = []
 
@@ -156,41 +180,67 @@ def diagnose_gpu(argv_data: dict | None) -> list[DiagnosticFinding]:
         ))
         return findings
 
-    # Check if hardware acceleration is explicitly disabled
-    if argv_data.get("disable-hardware-acceleration", False):
-        findings.append(DiagnosticFinding(
-            component="GPU",
-            status="CRITICAL",
-            message="Hardware acceleration explicitly DISABLED in argv.json",
-            detail='Found "disable-hardware-acceleration": true',
-            action="Remove or set to false to enable GPU.",
-        ))
+    disable_hw = bool(argv_data.get("disable-hardware-acceleration", False))
+    gpu_raster = bool(argv_data.get("enable-gpu-rasterization", False))
+    bypass_blocklist = bool(argv_data.get("ignore-gpu-blocklist", False))
+
+    if profile == PROFILE_STABILITY:
+        if disable_hw:
+            findings.append(DiagnosticFinding(
+                component="GPU",
+                status="OK",
+                message="Crash-safe profile active (hardware acceleration disabled)",
+                detail='Found "disable-hardware-acceleration": true',
+                action='Keep this while terminal/renderer crashes are active.',
+            ))
+        else:
+            findings.append(DiagnosticFinding(
+                component="GPU",
+                status="WARN",
+                message="Crash-safe profile expects GPU disabled",
+                detail='Found "disable-hardware-acceleration": false',
+                action='Set "disable-hardware-acceleration": true for maximum stability.',
+            ))
+        if gpu_raster:
+            findings.append(DiagnosticFinding(
+                component="GPU",
+                status="WARN",
+                message="GPU rasterization enabled under stability profile",
+                detail='Found "enable-gpu-rasterization": true',
+                action='Set to false while isolating GPU-related crashes.',
+            ))
     else:
-        findings.append(DiagnosticFinding(
-            component="GPU",
-            status="OK",
-            message="Hardware acceleration not explicitly disabled",
-        ))
+        if disable_hw:
+            findings.append(DiagnosticFinding(
+                component="GPU",
+                status="CRITICAL",
+                message="Performance profile blocked by disabled hardware acceleration",
+                detail='Found "disable-hardware-acceleration": true',
+                action='Set "disable-hardware-acceleration": false.',
+            ))
+        else:
+            findings.append(DiagnosticFinding(
+                component="GPU",
+                status="OK",
+                message="Hardware acceleration enabled for performance profile",
+            ))
 
-    # Check for GPU rasterization
-    if not argv_data.get("enable-gpu-rasterization", False):
-        findings.append(DiagnosticFinding(
-            component="GPU",
-            status="WARN",
-            message="GPU rasterization not enabled",
-            detail="Enabling can improve rendering performance.",
-            action='Add "enable-gpu-rasterization": true to argv.json.',
-        ))
-
-    # Check for GPU blocklist override
-    if not argv_data.get("ignore-gpu-blocklist", False):
-        findings.append(DiagnosticFinding(
-            component="GPU",
-            status="WARN",
-            message="GPU blocklist not bypassed",
-            detail="Some GPUs are incorrectly blocklisted by Chromium.",
-            action='Add "ignore-gpu-blocklist": true to argv.json.',
-        ))
+        if not gpu_raster:
+            findings.append(DiagnosticFinding(
+                component="GPU",
+                status="WARN",
+                message="GPU rasterization not enabled",
+                detail="Enabling can improve rendering performance.",
+                action='Add "enable-gpu-rasterization": true to argv.json.',
+            ))
+        if not bypass_blocklist:
+            findings.append(DiagnosticFinding(
+                component="GPU",
+                status="WARN",
+                message="GPU blocklist not bypassed",
+                detail="Some GPUs are incorrectly blocklisted by Chromium.",
+                action='Add "ignore-gpu-blocklist": true to argv.json.',
+            ))
 
     return findings
 
@@ -316,7 +366,7 @@ def diagnose_userdata(user_data: Path) -> list[DiagnosticFinding]:
     return findings
 
 
-def diagnose_settings(repo: Path) -> list[DiagnosticFinding]:
+def diagnose_settings(repo: Path, profile: str) -> list[DiagnosticFinding]:
     """Check workspace settings for known instability triggers."""
     findings: list[DiagnosticFinding] = []
     ws_settings = repo / ".vscode" / "settings.json"
@@ -326,9 +376,7 @@ def diagnose_settings(repo: Path) -> list[DiagnosticFinding]:
 
     try:
         text = ws_settings.read_text(encoding="utf-8")
-        import re
-        text = re.sub(r"//.*$", "", text, flags=re.MULTILINE)
-        settings = json.loads(text)
+        settings = parse_jsonc_object(text)
     except (json.JSONDecodeError, OSError):
         findings.append(DiagnosticFinding(
             component="SETTINGS",
@@ -339,13 +387,29 @@ def diagnose_settings(repo: Path) -> list[DiagnosticFinding]:
 
     # Check terminal GPU
     gpu_accel = settings.get("terminal.integrated.gpuAcceleration", "auto")
-    if gpu_accel == "off":
+    expected = PROFILE_TERMINAL_GPU.get(profile, "off")
+    if gpu_accel != expected:
+        if profile == PROFILE_STABILITY:
+            findings.append(DiagnosticFinding(
+                component="SETTINGS",
+                status="WARN",
+                message='Terminal GPU acceleration should be "off" in crash-safe profile',
+                detail=f'Current: "{gpu_accel}"',
+                action='Set terminal.integrated.gpuAcceleration to "off".',
+            ))
+        else:
+            findings.append(DiagnosticFinding(
+                component="SETTINGS",
+                status="WARN",
+                message='Terminal GPU acceleration should be "auto" in performance profile',
+                detail=f'Current: "{gpu_accel}"',
+                action='Set terminal.integrated.gpuAcceleration to "auto".',
+            ))
+    else:
         findings.append(DiagnosticFinding(
             component="SETTINGS",
-            status="WARN",
-            message="Terminal GPU acceleration is OFF (workspace setting)",
-            detail="Was likely disabled during triage. Can re-enable after hardening.",
-            action='Set terminal.integrated.gpuAcceleration to "auto".',
+            status="OK",
+            message=f'Terminal GPU acceleration matches profile ({gpu_accel})',
         ))
 
     return findings
@@ -357,6 +421,7 @@ def diagnose_settings(repo: Path) -> list[DiagnosticFinding]:
 
 def patch_argv(
     argv_path: Path,
+    profile: str = PROFILE_STABILITY,
     dry_run: bool = False,
 ) -> tuple[dict, list[str]]:
     """
@@ -375,8 +440,11 @@ def patch_argv(
 
     new_data = dict(existing)
 
+    profile_flags = PROFILE_GPU_FLAGS.get(profile, PROFILE_GPU_FLAGS[PROFILE_STABILITY])
+    actions.append(f"Applying GPU profile: {profile}")
+
     # Apply GPU flags
-    for key, value in SAFE_GPU_FLAGS.items():
+    for key, value in profile_flags.items():
         if new_data.get(key) != value:
             old_val = new_data.get(key, "<unset>")
             new_data[key] = value
@@ -406,15 +474,23 @@ def patch_argv(
     return new_data, actions
 
 
-def generate_launch_flags() -> str:
-    """Generate a safe launch command for VS Code Insiders."""
-    flags = [
-        "code-insiders",
-        "--enable-gpu-rasterization",
-        "--ignore-gpu-blocklist",
-        "--force-gpu-mem-available-mb=4096",
-        '--js-flags="--max-old-space-size=8192"',
-    ]
+def generate_launch_flags(profile: str) -> str:
+    """Generate a launch command for VS Code Insiders based on profile."""
+    if profile == PROFILE_PERFORMANCE:
+        flags = [
+            "code-insiders",
+            "--enable-gpu-rasterization",
+            "--ignore-gpu-blocklist",
+            "--force-gpu-mem-available-mb=4096",
+            '--js-flags="--max-old-space-size=8192"',
+        ]
+    else:
+        flags = [
+            "code-insiders",
+            "--disable-gpu",
+            "--disable-extensions",
+            '--user-data-dir="$env:TEMP\\code-insiders-safe"',
+        ]
     return " ".join(flags)
 
 
@@ -427,6 +503,7 @@ def report_to_dict(report: HardeningReport) -> dict:
         "schema_version": 1,
         "generated_utc": report.generated_utc,
         "mode": report.mode,
+        "profile": report.profile,
         "dry_run": report.dry_run,
         "health_score": report.health_score,
         "argv_path": report.argv_path,
@@ -443,6 +520,7 @@ def report_to_markdown(report: HardeningReport) -> str:
     lines.append("")
     lines.append(f"- **Generated (UTC):** {report.generated_utc}")
     lines.append(f"- **Mode:** {report.mode}")
+    lines.append(f"- **Profile:** {report.profile}")
     lines.append(f"- **Dry Run:** {report.dry_run}")
     lines.append(f"- **Health Score:** {report.health_score}/100")
     lines.append(f"- **argv.json:** `{report.argv_path}`")
@@ -494,7 +572,7 @@ def print_terminal_summary(report: HardeningReport):
     print(f"\n{'='*60}")
     print(f"  Electron Hardener  [{indicator}]  Score: {score}/100")
     print(f"{'='*60}")
-    print(f"  Mode: {report.mode}  |  Dry-run: {report.dry_run}")
+    print(f"  Mode: {report.mode}  |  Profile: {report.profile}  |  Dry-run: {report.dry_run}")
     print()
 
     for f in report.findings:
@@ -531,6 +609,12 @@ def build_parser() -> argparse.ArgumentParser:
         default="diagnose",
         choices=["diagnose", "patch", "audit-userdata", "launch-flags", "full"],
         help="Operation mode (default: diagnose)",
+    )
+    parser.add_argument(
+        "--profile",
+        choices=[PROFILE_STABILITY, PROFILE_PERFORMANCE],
+        default=PROFILE_STABILITY,
+        help="Hardening profile (default: stability).",
     )
     parser.add_argument("--json", dest="emit_json", action="store_true")
     parser.add_argument("--md", dest="emit_md", action="store_true")
@@ -570,6 +654,7 @@ def main(argv: list[str] | None = None) -> int:
     report = HardeningReport(
         generated_utc=datetime.now(timezone.utc).isoformat(),
         mode=args.mode,
+        profile=args.profile,
         dry_run=args.dry_run,
         argv_path=str(argv_path),
         user_data_path=str(user_data),
@@ -579,20 +664,20 @@ def main(argv: list[str] | None = None) -> int:
 
     # Diagnose
     if args.mode in ("diagnose", "full"):
-        report.findings.extend(diagnose_gpu(argv_data))
+        report.findings.extend(diagnose_gpu(argv_data, profile=args.profile))
         report.findings.extend(diagnose_memory(argv_data))
         report.findings.extend(diagnose_userdata(user_data))
-        report.findings.extend(diagnose_settings(repo))
+        report.findings.extend(diagnose_settings(repo, profile=args.profile))
 
     # Patch argv.json
     if args.mode in ("patch", "full"):
-        _, actions = patch_argv(argv_path, dry_run=args.dry_run)
+        _, actions = patch_argv(argv_path, profile=args.profile, dry_run=args.dry_run)
         report.actions_taken.extend(actions)
         # Re-diagnose after patch
         if not args.dry_run and actions:
             argv_data = read_argv_json(argv_path)
             # Update findings with post-patch state
-            gpu_findings = diagnose_gpu(argv_data)
+            gpu_findings = diagnose_gpu(argv_data, profile=args.profile)
             for f in gpu_findings:
                 if f.status == "OK":
                     f.status = "FIXED"
@@ -604,7 +689,7 @@ def main(argv: list[str] | None = None) -> int:
 
     # Launch flags
     if args.mode in ("launch-flags", "full"):
-        report.launch_command = generate_launch_flags()
+        report.launch_command = generate_launch_flags(profile=args.profile)
 
     report.compute_score()
 
