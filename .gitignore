@@ -207,6 +207,19 @@ extensions/*/bun.lock
 !scripts/vscode_electron_hardener.py
 !scripts/install_mistralrs_cuda.ps1
 !scripts/run_mistralrs_cuda_detached.ps1
+!scripts/mistralrs_model_manager.py
+!scripts/mistralrs_client.py
+!scripts/hf_model_scout.py
+
+# Allow mistral.rs UI
+!apps/
+!apps/mistralrs-ui/
+!apps/mistralrs-ui/index.html
+
+# Allow architecture docs
+!.temple/
+!.temple/architecture/
+!.temple/architecture/RUSTIFICATION.md
 
 # Allow specific Codex skill additions
 !.codex/

@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chthonic LLM — Local Inference UI</title>
+<style>
+  :root {
+    --bg: #0d1117; --surface: #161b22; --border: #30363d;
+    --text: #e6edf3; --muted: #7d8590; --accent: #58a6ff;
+    --user-bg: #1c2638; --assist-bg: #1a1e24; --error: #f85149;
+    --green: #3fb950; --radius: 8px;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+    background: var(--bg); color: var(--text); height: 100vh; display: flex;
+  }
+
+  /* Sidebar */
+  .sidebar {
+    width: 280px; min-width: 280px; background: var(--surface); border-right: 1px solid var(--border);
+    display: flex; flex-direction: column; overflow: hidden;
+  }
+  .sidebar-header { padding: 16px; border-bottom: 1px solid var(--border); }
+  .sidebar-header h2 { font-size: 14px; color: var(--accent); margin-bottom: 8px; }
+  .model-info { font-size: 12px; color: var(--muted); word-break: break-all; }
+  .model-info .model-name { color: var(--green); font-weight: 600; }
+  .model-info .speed { color: var(--accent); }
+
+  .sidebar-section { padding: 12px 16px; border-bottom: 1px solid var(--border); }
+  .sidebar-section label { font-size: 11px; text-transform: uppercase; color: var(--muted); letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+  .sidebar-section input, .sidebar-section textarea, .sidebar-section select {
+    width: 100%; background: var(--bg); border: 1px solid var(--border); color: var(--text);
+    border-radius: var(--radius); padding: 8px; font-size: 13px; resize: vertical;
+  }
+  .sidebar-section input:focus, .sidebar-section textarea:focus {
+    outline: none; border-color: var(--accent);
+  }
+  .sidebar-section textarea { min-height: 60px; font-family: inherit; }
+
+  .slider-row { display: flex; align-items: center; gap: 8px; }
+  .slider-row input[type="range"] { flex: 1; accent-color: var(--accent); }
+  .slider-row .val { font-size: 12px; color: var(--accent); min-width: 32px; text-align: right; }
+
+  /* HF Search */
+  .hf-search { flex: 1; overflow-y: auto; padding: 12px 16px; }
+  .hf-search label { font-size: 11px; text-transform: uppercase; color: var(--muted); letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+  .hf-search-input { display: flex; gap: 4px; margin-bottom: 8px; }
+  .hf-search-input input { flex: 1; background: var(--bg); border: 1px solid var(--border); color: var(--text); border-radius: var(--radius); padding: 6px 8px; font-size: 13px; }
+  .hf-search-input button { background: var(--accent); color: #000; border: none; border-radius: var(--radius); padding: 6px 12px; cursor: pointer; font-size: 12px; font-weight: 600; }
+  .hf-results { font-size: 12px; }
+  .hf-result {
+    padding: 8px; margin-bottom: 4px; background: var(--bg); border-radius: var(--radius);
+    cursor: pointer; border: 1px solid transparent; transition: border-color 0.15s;
+  }
+  .hf-result:hover { border-color: var(--accent); }
+  .hf-result .hf-name { color: var(--accent); font-weight: 600; }
+  .hf-result .hf-meta { color: var(--muted); font-size: 11px; margin-top: 2px; }
+
+  .sidebar-footer {
+    padding: 12px 16px; border-top: 1px solid var(--border); margin-top: auto;
+  }
+  .btn { background: var(--accent); color: #000; border: none; border-radius: var(--radius); padding: 8px 16px; cursor: pointer; font-size: 13px; font-weight: 600; width: 100%; }
+  .btn:hover { opacity: 0.9; }
+  .btn-danger { background: var(--error); color: #fff; }
+  .btn-secondary { background: var(--border); color: var(--text); }
+  .btn + .btn { margin-top: 6px; }
+
+  /* Chat Area */
+  .chat-area { flex: 1; display: flex; flex-direction: column; overflow: hidden; }
+  .chat-header {
+    padding: 12px 20px; border-bottom: 1px solid var(--border); display: flex;
+    align-items: center; justify-content: space-between;
+  }
+  .chat-header h1 { font-size: 16px; font-weight: 600; }
+  .chat-header .status { font-size: 12px; display: flex; align-items: center; gap: 6px; }
+  .status-dot { width: 8px; height: 8px; border-radius: 50%; }
+  .status-dot.connected { background: var(--green); }
+  .status-dot.disconnected { background: var(--error); }
+
+  .messages {
+    flex: 1; overflow-y: auto; padding: 20px; display: flex; flex-direction: column; gap: 12px;
+  }
+  .message { max-width: 80%; padding: 12px 16px; border-radius: 12px; line-height: 1.5; font-size: 14px; white-space: pre-wrap; word-wrap: break-word; }
+  .message.user { background: var(--user-bg); align-self: flex-end; border-bottom-right-radius: 4px; }
+  .message.assistant { background: var(--assist-bg); align-self: flex-start; border-bottom-left-radius: 4px; border: 1px solid var(--border); }
+  .message.system-msg { background: transparent; color: var(--muted); font-size: 12px; align-self: center; font-style: italic; }
+  .message .thinking { color: var(--muted); font-style: italic; }
+  .message code { background: rgba(110,118,129,0.2); padding: 2px 6px; border-radius: 4px; font-size: 13px; }
+  .message pre { background: var(--bg); padding: 12px; border-radius: var(--radius); overflow-x: auto; margin: 8px 0; }
+  .message pre code { background: none; padding: 0; }
+
+  .typing-indicator { color: var(--muted); font-size: 13px; padding: 12px 16px; }
+  .typing-indicator span { animation: blink 1.2s infinite; }
+  .typing-indicator span:nth-child(2) { animation-delay: 0.2s; }
+  .typing-indicator span:nth-child(3) { animation-delay: 0.4s; }
+  @keyframes blink { 0%, 100% { opacity: 0.2; } 50% { opacity: 1; } }
+
+  /* Input area */
+  .input-area { padding: 16px 20px; border-top: 1px solid var(--border); display: flex; gap: 8px; align-items: flex-end; }
+  .input-area textarea {
+    flex: 1; background: var(--surface); border: 1px solid var(--border); color: var(--text);
+    border-radius: var(--radius); padding: 10px 14px; font-size: 14px; font-family: inherit;
+    resize: none; min-height: 44px; max-height: 200px; line-height: 1.4;
+  }
+  .input-area textarea:focus { outline: none; border-color: var(--accent); }
+  .input-area button {
+    height: 44px; padding: 0 20px; background: var(--accent); color: #000; border: none;
+    border-radius: var(--radius); cursor: pointer; font-size: 14px; font-weight: 600;
+  }
+  .input-area button:disabled { opacity: 0.4; cursor: not-allowed; }
+  .input-area button:hover:not(:disabled) { opacity: 0.9; }
+  .stop-btn { background: var(--error) !important; color: #fff !important; }
+
+  /* Toast */
+  .toast {
+    position: fixed; top: 20px; right: 20px; background: var(--surface); border: 1px solid var(--border);
+    padding: 12px 20px; border-radius: var(--radius); font-size: 13px; z-index: 999;
+    animation: fadeIn 0.2s; box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+  }
+  .toast.error { border-color: var(--error); color: var(--error); }
+  .toast.success { border-color: var(--green); color: var(--green); }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(-10px); } }
+</style>
+</head>
+<body>
+
+<div class="sidebar">
+  <div class="sidebar-header">
+    <h2>⛧ Chthonic LLM</h2>
+    <div class="model-info">
+      Model: <span class="model-name" id="currentModel">—</span><br>
+      Speed: <span class="speed" id="currentSpeed">—</span>
+    </div>
+  </div>
+
+  <div class="sidebar-section">
+    <label>API Endpoint</label>
+    <input type="text" id="apiUrl" value="http://localhost:8080" placeholder="http://localhost:8080">
+  </div>
+
+  <div class="sidebar-section">
+    <label>System Prompt</label>
+    <textarea id="systemPrompt" placeholder="Optional system prompt..."></textarea>
+  </div>
+
+  <div class="sidebar-section">
+    <label>Temperature</label>
+    <div class="slider-row">
+      <input type="range" id="temperature" min="0" max="2" step="0.05" value="0.7">
+      <span class="val" id="tempVal">0.70</span>
+    </div>
+    <label style="margin-top:8px">Max Tokens</label>
+    <input type="number" id="maxTokens" value="2048" min="1" max="32768">
+    <label style="margin-top:8px">Top P</label>
+    <div class="slider-row">
+      <input type="range" id="topP" min="0" max="1" step="0.05" value="0.9">
+      <span class="val" id="topPVal">0.90</span>
+    </div>
+  </div>
+
+  <div class="hf-search">
+    <label>🤗 HuggingFace Model Search</label>
+    <div class="hf-search-input">
+      <input type="text" id="hfQuery" placeholder="Search models...">
+      <button onclick="searchHF()">Go</button>
+    </div>
+    <div class="hf-results" id="hfResults"></div>
+  </div>
+
+  <div class="sidebar-footer">
+    <button class="btn" onclick="newChat()">New Chat</button>
+    <button class="btn btn-secondary" onclick="checkConnection()">Test Connection</button>
+  </div>
+</div>
+
+<div class="chat-area">
+  <div class="chat-header">
+    <h1>Chat</h1>
+    <div class="status">
+      <div class="status-dot disconnected" id="statusDot"></div>
+      <span id="statusText">Disconnected</span>
+    </div>
+  </div>
+
+  <div class="messages" id="messages">
+    <div class="message system-msg">Connect to a mistral.rs server to start chatting. Model auto-detected.</div>
+  </div>
+
+  <div class="input-area">
+    <textarea id="userInput" placeholder="Type a message... (Ctrl+Enter to send)" rows="1"></textarea>
+    <button id="sendBtn" onclick="sendMessage()">Send</button>
+  </div>
+</div>
+
+<script>
+const $ = id => document.getElementById(id);
+let messages = [];
+let abortController = null;
+let isStreaming = false;
+
+// Slider bindings
+$('temperature').oninput = e => $('tempVal').textContent = parseFloat(e.target.value).toFixed(2);
+$('topP').oninput = e => $('topPVal').textContent = parseFloat(e.target.value).toFixed(2);
+
+// Auto-resize textarea
+$('userInput').addEventListener('input', function() {
+  this.style.height = 'auto';
+  this.style.height = Math.min(this.scrollHeight, 200) + 'px';
+});
+
+// Ctrl+Enter to send
+$('userInput').addEventListener('keydown', e => {
+  if (e.ctrlKey && e.key === 'Enter') { e.preventDefault(); sendMessage(); }
+});
+
+// Check connection on load
+window.addEventListener('load', () => checkConnection());
+
+async function checkConnection() {
+  const url = $('apiUrl').value.replace(/\/$/, '');
+  try {
+    const res = await fetch(`${url}/v1/models`);
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const data = await res.json();
+    $('statusDot').className = 'status-dot connected';
+    $('statusText').textContent = 'Connected';
+
+    const loaded = data.data?.find(m => m.status === 'loaded') || data.data?.[0];
+    if (loaded) {
+      $('currentModel').textContent = loaded.id;
+    }
+    toast(`Connected — ${data.data?.length || 0} model(s) available`, 'success');
+  } catch (err) {
+    $('statusDot').className = 'status-dot disconnected';
+    $('statusText').textContent = 'Disconnected';
+    $('currentModel').textContent = '—';
+    toast(`Connection failed: ${err.message}`, 'error');
+  }
+}
+
+function newChat() {
+  messages = [];
+  $('messages').innerHTML = '<div class="message system-msg">Chat cleared. Ready for a new conversation.</div>';
+}
+
+async function sendMessage() {
+  const input = $('userInput').value.trim();
+  if (!input || isStreaming) return;
+
+  // Add user message
+  messages.push({ role: 'user', content: input });
+  appendMessage('user', input);
+  $('userInput').value = '';
+  $('userInput').style.height = 'auto';
+
+  // Build request
+  const url = $('apiUrl').value.replace(/\/$/, '');
+  const sysPrompt = $('systemPrompt').value.trim();
+  const reqMessages = [];
+  if (sysPrompt) reqMessages.push({ role: 'system', content: sysPrompt });
+  reqMessages.push(...messages);
+
+  const body = {
+    model: $('currentModel').textContent || 'default',
+    messages: reqMessages,
+    max_tokens: parseInt($('maxTokens').value) || 2048,
+    temperature: parseFloat($('temperature').value),
+    top_p: parseFloat($('topP').value),
+    stream: true,
+  };
+
+  // Start streaming
+  isStreaming = true;
+  $('sendBtn').textContent = 'Stop';
+  $('sendBtn').className = 'stop-btn';
+  $('sendBtn').onclick = stopStreaming;
+
+  const assistDiv = appendMessage('assistant', '');
+  let fullContent = '';
+
+  try {
+    abortController = new AbortController();
+    const res = await fetch(`${url}/v1/chat/completions`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(body),
+      signal: abortController.signal,
+    });
+
+    if (!res.ok) {
+      const err = await res.text();
+      throw new Error(`HTTP ${res.status}: ${err}`);
+    }
+
+    const reader = res.body.getReader();
+    const decoder = new TextDecoder();
+    let buffer = '';
+
+    while (true) {
+      const { done, value } = await reader.read();
+      if (done) break;
+
+      buffer += decoder.decode(value, { stream: true });
+      const lines = buffer.split('\n');
+      buffer = lines.pop(); // keep incomplete line
+
+      for (const line of lines) {
+        if (!line.startsWith('data: ')) continue;
+        const data = line.slice(6).trim();
+        if (data === '[DONE]') continue;
+
+        try {
+          const chunk = JSON.parse(data);
+          const delta = chunk.choices?.[0]?.delta?.content;
+          if (delta) {
+            fullContent += delta;
+            assistDiv.textContent = fullContent;
+            scrollToBottom();
+          }
+
+          // Capture usage stats
+          if (chunk.usage?.avg_tok_per_sec) {
+            $('currentSpeed').textContent = `${chunk.usage.avg_tok_per_sec.toFixed(1)} tok/s`;
+          }
+        } catch { /* skip malformed chunks */ }
+      }
+    }
+
+    // If no streaming happened (non-streaming fallback)
+    if (!fullContent && res.headers.get('content-type')?.includes('json')) {
+      const json = JSON.parse(buffer);
+      fullContent = json.choices?.[0]?.message?.content || '';
+      assistDiv.textContent = fullContent;
+      if (json.usage?.avg_tok_per_sec) {
+        $('currentSpeed').textContent = `${json.usage.avg_tok_per_sec.toFixed(1)} tok/s`;
+      }
+    }
+
+    messages.push({ role: 'assistant', content: fullContent });
+
+  } catch (err) {
+    if (err.name === 'AbortError') {
+      assistDiv.textContent = fullContent + '\n\n[Stopped]';
+      messages.push({ role: 'assistant', content: fullContent });
+    } else {
+      assistDiv.textContent = `Error: ${err.message}`;
+      assistDiv.style.color = 'var(--error)';
+    }
+  } finally {
+    isStreaming = false;
+    abortController = null;
+    $('sendBtn').textContent = 'Send';
+    $('sendBtn').className = '';
+    $('sendBtn').onclick = sendMessage;
+    scrollToBottom();
+  }
+}
+
+function stopStreaming() {
+  if (abortController) abortController.abort();
+}
+
+function appendMessage(role, content) {
+  const div = document.createElement('div');
+  div.className = `message ${role}`;
+  div.textContent = content;
+  $('messages').appendChild(div);
+  scrollToBottom();
+  return div;
+}
+
+function scrollToBottom() {
+  const m = $('messages');
+  m.scrollTop = m.scrollHeight;
+}
+
+// HuggingFace Model Search
+async function searchHF() {
+  const query = $('hfQuery').value.trim();
+  if (!query) return;
+
+  $('hfResults').innerHTML = '<div style="color:var(--muted);font-size:12px;">Searching...</div>';
+
+  try {
+    const params = new URLSearchParams({
+      search: query,
+      filter: 'text-generation',
+      sort: 'downloads',
+      direction: '-1',
+      limit: '15',
+    });
+    const res = await fetch(`https://huggingface.co/api/models?${params}`);
+    if (!res.ok) throw new Error(`HF API: ${res.status}`);
+    const models = await res.json();
+
+    if (!models.length) {
+      $('hfResults').innerHTML = '<div style="color:var(--muted);">No results.</div>';
+      return;
+    }
+
+    $('hfResults').innerHTML = models.map(m => {
+      const downloads = m.downloads ? formatNum(m.downloads) : '?';
+      const likes = m.likes ?? '?';
+      return `<div class="hf-result" onclick="selectHFModel('${escapeAttr(m.id)}')" title="Click to copy model ID">
+        <div class="hf-name">${escapeHTML(m.id)}</div>
+        <div class="hf-meta">⬇ ${downloads} · ♥ ${likes}</div>
+      </div>`;
+    }).join('');
+  } catch (err) {
+    $('hfResults').innerHTML = `<div style="color:var(--error);font-size:12px;">Error: ${escapeHTML(err.message)}</div>`;
+  }
+}
+
+// Enter key for HF search
+$('hfQuery').addEventListener('keydown', e => {
+  if (e.key === 'Enter') { e.preventDefault(); searchHF(); }
+});
+
+function selectHFModel(modelId) {
+  // Show the command to restart mistral.rs with this model
+  const cmd = `mistralrs serve --ui -m "${modelId}" --isq Q4K -p 8080`;
+  const msg = `To load this model, stop the current server and run:\n\n${cmd}\n\nModel ID copied to clipboard.`;
+
+  // Copy to clipboard
+  navigator.clipboard.writeText(modelId).catch(() => {});
+
+  toast(`Model ID copied: ${modelId}`, 'success');
+  appendMessage('system-msg', msg);
+  scrollToBottom();
+}
+
+function formatNum(n) {
+  if (n >= 1_000_000) return (n / 1_000_000).toFixed(1) + 'M';
+  if (n >= 1_000) return (n / 1_000).toFixed(1) + 'K';
+  return String(n);
+}
+
+function escapeHTML(s) { return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+function escapeAttr(s) { return s.replace(/'/g, "\\'").replace(/"/g, '&quot;'); }
+
+function toast(msg, type = '') {
+  const t = document.createElement('div');
+  t.className = `toast ${type}`;
+  t.textContent = msg;
+  document.body.appendChild(t);
+  setTimeout(() => t.remove(), 3000);
+}
+</script>
+</body>
+</html>
