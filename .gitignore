@@ -221,6 +221,10 @@ extensions/*/bun.lock
 !.temple/architecture/
 !.temple/architecture/RUSTIFICATION.md
 
+# Allow session-archives epoch references
+!.temple/session-archives/
+!.temple/session-archives/EPOCH_REFERENCE_*.md
+
 # Allow specific Codex skill additions
 !.codex/
 !.codex/skills/
