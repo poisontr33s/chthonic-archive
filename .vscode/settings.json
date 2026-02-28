@@ -64,15 +64,18 @@
 
     // === TERMINAL ===
     // Force UTF-8 in VS Code terminal (matches system-wide registry setting)
-    "terminal.integrated.defaultEncoding": "utf8",
+    // Unsupported in the current Insiders build; preserved for future revalidation.
+    // "terminal.integrated.defaultEncoding": "utf8",
     // Unicode 11 width tables — correct emoji/CJK column widths
     "terminal.integrated.unicodeVersion": "11",
     // Stability gate: disable terminal GPU acceleration while Insiders renderer crashes are being triaged.
     "terminal.integrated.gpuAcceleration": "off",
     // Triage gate: capture terminal diagnostics in trace mode.
-    "terminal.integrated.logLevel": "trace",
+    // Unsupported in the current Insiders build; preserved for future revalidation.
+    // "terminal.integrated.logLevel": "trace",
     // Kill the yellow "wants to contribute" env warning banner
-    "terminal.integrated.environmentChangesIndicator": "off",
+    // Unsupported in the current Insiders build; preserved for future revalidation.
+    // "terminal.integrated.environmentChangesIndicator": "off",
     // Auto-apply extension env changes without the "relaunch" nag
     "terminal.integrated.environmentChangesRelaunch": false,
     // Polyglot mode: profile loads chthonic env automatically
@@ -103,15 +106,16 @@
         "RUST_LOG": "info,chthonic_archive=debug"
     },
 
-    "rust-analyzer.cargo.allFeatures": true,
-    "rust-analyzer.checkOnSave.command": "check",
-    "rust-analyzer.inlayHints.chainingHints.enable": true,
-    "rust-analyzer.inlayHints.typeHints.enable": true,
-    "rust-analyzer.inlayHints.parameterHints.enable": true,
-    "rust-analyzer.lens.enable": true,
-    "rust-analyzer.lens.run.enable": true,
-    "rust-analyzer.lens.debug.enable": true,
-    "rust-analyzer.procMacro.enable": true,
+    // Rust Analyzer is not currently installed in this profile; preserving these settings for restore.
+    // "rust-analyzer.cargo.allFeatures": true,
+    // "rust-analyzer.checkOnSave.command": "check",
+    // "rust-analyzer.inlayHints.chainingHints.enable": true,
+    // "rust-analyzer.inlayHints.typeHints.enable": true,
+    // "rust-analyzer.inlayHints.parameterHints.enable": true,
+    // "rust-analyzer.lens.enable": true,
+    // "rust-analyzer.lens.run.enable": true,
+    // "rust-analyzer.lens.debug.enable": true,
+    // "rust-analyzer.procMacro.enable": true,
 
     // === LANGUAGE-SPECIFIC FORMATTING ===
     "[rust]": {
@@ -165,23 +169,30 @@
         "*": true,
         "markdown": true,
         "scminput": true,
-        "plaintext": true,
-        "github.copilot.inlineSuggest.enable": true,
-        "github.copilot.nextEditSuggestions.enabled": true,
-        "github.copilot.chat.enable": true
+        "plaintext": true
     },
+    "github.copilot.nextEditSuggestions.enabled": true,
+    // Unsupported in the current Copilot build; preserved for future revalidation.
+    // "github.copilot.inlineSuggest.enable": true,
+    // Unsupported in the current Copilot build; preserved for future revalidation.
+    // "github.copilot.chat.enable": true,
 
     // === GITHUB COPILOT CHAT ===
-    "github.copilot.chat.useProjectContext": true,
+    // Unsupported in the current Copilot Chat build; preserved for future revalidation.
+    // "github.copilot.chat.useProjectContext": true,
     "github.copilot.chat.scopeSelection": true,
-    "github.copilot.chat.editor.temporalContext.enabled": true,
+    // Unsupported in the current Copilot Chat build; preserved for future revalidation.
+    // "github.copilot.chat.editor.temporalContext.enabled": true,
     "github.copilot.chat.newWorkspace.useContext7": false,
     "github.copilot.chat.codeGeneration.useInstructionFiles": false,
     "github.copilot.chat.customInstructionsInSystemMessage": false,
-    "github.copilot.chat.codeExplanation.enabled": true,
-    "github.copilot.chat.codeRefactoring.enabled": true,
+    // Unsupported in the current Copilot Chat build; preserved for future revalidation.
+    // "github.copilot.chat.codeExplanation.enabled": true,
+    // Unsupported in the current Copilot Chat build; preserved for future revalidation.
+    // "github.copilot.chat.codeRefactoring.enabled": true,
     "github.copilot.chat.agent.currentEditorContext.enabled": true,
-    "github.copilot.chat.anthropic.contextEditing.enabled": true,
+    // Replaced by github.copilot.chat.anthropic.contextEditing.mode below.
+    // "github.copilot.chat.anthropic.contextEditing.enabled": true,
     "github.copilot.chat.inlineEdits.diagnosticsContextProvider.enabled": true,
     "github.copilot.chat.cli.mcp.enabled": true,
 
@@ -194,8 +205,10 @@
     "chat.useAgentsMdFile": false,
     "chat.checkpoints.enabled": true,
     "chat.checkpoints.showFileChanges": true,
-    "chat.todoListTool.descriptionField": true,
-    "chat.todoListTool.writeOnly": true,
+    // Unsupported in the current Chat build; preserved for future revalidation.
+    // "chat.todoListTool.descriptionField": true,
+    // Unsupported in the current Chat build; preserved for future revalidation.
+    // "chat.todoListTool.writeOnly": true,
     "chat.instructionsFilesLocations": {
         ".github/copilot-instructions.md": true
     },
@@ -272,10 +285,12 @@
     // The copilot.exe --acp binary path is hardcoded in src/acp/connection.ts
 
     // === MISC ===
-    "@azure.enableAutoSetAzureRules": false,
+    // Unsupported in the current Azure extension set; preserved for future revalidation.
+    // "@azure.enableAutoSetAzureRules": false,
     "chatgpt.commentCodeLensEnabled": true,
     "chatgpt.openOnStartup": true,
     "chatgpt.composerEnterBehavior": "cmdIfMultiline",
-    "chatgpt.thinkingMode": "xhigh",
+    // Unsupported in the current Codex extension build; preserved for future revalidation.
+    // "chatgpt.thinkingMode": "xhigh",
     "github.copilot.chat.anthropic.contextEditing.mode": "clear-both",
 }
