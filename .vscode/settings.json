@@ -36,6 +36,14 @@
     "chthonic.reactor.enabled": false,
     "chthonic.showLineage": false,
 
+    // === GIT / SCM THERMAL CONTAINMENT ===
+    // 1.37 GiB repo, 2463 tracked files — default polling is a laptop-killer.
+    "git.autorefresh": false,
+    "git.autofetch": false,
+    "git.decorations.enabled": false,
+    "git.statusLimit": 500,
+    "scm.diffDecorations": "none",
+
     // === FILE ASSOCIATIONS ===
     "files.associations": {
         "*.vert": "glsl",
@@ -78,6 +86,8 @@
     },
 
     // === TERMINAL ===
+    // THERMAL CONTAINMENT: Minimize integrated terminal overhead.
+    // Agent commands run here but decorations/suggestions/scroll are thermal load per keystroke.
     // Force UTF-8 in VS Code terminal (matches system-wide registry setting)
     // Unsupported in the current Insiders build; preserved for future revalidation.
     // "terminal.integrated.defaultEncoding": "utf8",
@@ -108,12 +118,15 @@
     },
     "terminal.integrated.defaultProfile.windows": "Pwsh 7.5 (Chthonic)",
     "terminal.integrated.shellIntegration.enabled": true,
-    "terminal.integrated.shellIntegration.decorationsEnabled": "both",
-    "terminal.integrated.shellIntegration.showCommandGuide": true,
+    // THERMAL: Disable decoration rendering — saves per-line DOM ops
+    "terminal.integrated.shellIntegration.decorationsEnabled": "never",
+    "terminal.integrated.shellIntegration.showCommandGuide": false,
     "terminal.integrated.shellIntegration.history": 100,
-    "terminal.integrated.suggest.enabled": true,
-    "terminal.integrated.suggest.suggestOnTriggerCharacters": true,
-    "terminal.integrated.stickyScroll.enabled": true,
+    // THERMAL: Disable suggest widget — removes keystroke-level event handlers
+    "terminal.integrated.suggest.enabled": false,
+    "terminal.integrated.suggest.suggestOnTriggerCharacters": false,
+    // THERMAL: Disable sticky scroll — removes scroll-event DOM updates
+    "terminal.integrated.stickyScroll.enabled": false,
     "terminal.integrated.commandsToSkipShell": ["bash", "wsl", "ubuntu"],
     "terminal.integrated.env.windows": {
     "PATH": "${env:PATH};C:\\Program Files\\PowerShell\\7;C:\\Users\\erdno\\.bun\\bin;C:\\Users\\erdno\\.cargo\\bin;C:\\Users\\erdno\\.goup\\current\\bin;C:\\Users\\erdno\\.local\\bin;C:\\Users\\erdno\\AppData\\Roaming\\rv\\rubies\\ruby-4.0.1\\bin;C:\\Ruby40-x64\\msys64\\ucrt64\\bin;C:\\Ruby40-x64\\msys64\\usr\\bin;C:\\Program Files\\Git\\cmd;C:\\Users\\erdno\\AppData\\Roaming\\Code - Insiders\\User\\globalStorage\\github.copilot-chat\\debugCommand;C:\\Users\\erdno\\AppData\\Roaming\\Code - Insiders\\User\\globalStorage\\github.copilot-chat\\copilotCli;C:\\Windows\\System32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0;C:\\Program Files\\GitHub CLI;C:\\Users\\erdno\\AppData\\Local\\Programs\\Microsoft VS Code Insiders\\bin;C:\\Users\\erdno\\AppData\\Local\\Microsoft\\WinGet\\Packages\\GitHub.Copilot.Prerelease_Microsoft.Winget.Source_8wekyb3d8bbwe;C:\\Users\\erdno\\AppData\\Local\\GitHubDesktop\\bin;C:\\Program Files\\Git\\bin;C:\\Program Files\\Git\\usr\\bin",
