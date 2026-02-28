@@ -66,11 +66,17 @@ Hidden mailbox dirs (`.codex/mailbox`, `.claude/mailbox`) are non-canonical — 
 | `uv run <script>` | Python execution |
 | `rv --version` | Ruby lane health |
 | `goup --version` | Go lane health |
-| `fnm --version` / `volta --version` | Node lane health |
+| `pwsh --version` | PowerShell 7.x.x health |
 
 ## File Governance
 
 Every file is gold. Agents propose changes; user executes. See [WET_PAPER_TO_GOLD_METHODOLOGY.md](WET_PAPER_TO_GOLD_METHODOLOGY.md) (`WPTG`).
+
+### Commit Ownership
+
+- **User owns the commit lifecycle.** Agents edit files; user commits and pushes via SCM UI.
+- Agents do NOT run `git commit` or `git push` unless explicitly asked or announcing an atomic multi-file batch first.
+- If user pushes mid-operation, agent continues working — edits land in the next commit.
 
 ### Codekiller Addendum (Shared)
 
