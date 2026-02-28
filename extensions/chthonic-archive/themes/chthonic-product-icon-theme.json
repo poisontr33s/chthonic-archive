@@ -1,4 +1,5 @@
 {
+  "fonts": [],
   "iconDefinitions": {
     "pulse":              { "iconPath": "./icons/product/pulse.svg" },
     "shield":             { "iconPath": "./icons/product/shield.svg" },
