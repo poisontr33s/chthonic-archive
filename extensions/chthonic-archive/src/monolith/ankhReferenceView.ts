@@ -173,12 +173,51 @@ function createNonce(): string {
 export class AnkhReferenceProvider implements vscode.WebviewViewProvider {
     static readonly viewType = 'chthonic.chatView';
 
-    private readonly archivePath: string | null;
+    private readonly workspaceRoot: string | null;
+    private _currentSourcePath: string | null = null;
+    private _configListener: vscode.Disposable | undefined;
 
     constructor(workspaceRoot: string | null) {
-        this.archivePath = workspaceRoot
-            ? path.join(workspaceRoot, '.github', 'copilot-instructions.archive.md')
-            : null;
+        this.workspaceRoot = workspaceRoot;
+    }
+
+    /**
+     * Source-resolution chain:
+     *  1. Configured override — chthonic.ankh.sourcePath (wins when set)
+     *  2. Active epoch file — newest EPOCH_*.md in .temple/session-archives/
+     *  3. Legacy archive — .github/copilot-instructions.archive.md
+     */
+    private resolveSourcePath(): string | null {
+        if (!this.workspaceRoot) { return null; }
+
+        // 1. Configured override
+        const configured = vscode.workspace.getConfiguration('chthonic').get<string>('ankh.sourcePath');
+        if (configured) {
+            const abs = path.isAbsolute(configured)
+                ? configured
+                : path.join(this.workspaceRoot, configured);
+            if (fs.existsSync(abs)) { return abs; }
+        }
+
+        // 2. Active epoch: newest EPOCH_*.md
+        const epochDir = path.join(this.workspaceRoot, '.temple', 'session-archives');
+        if (fs.existsSync(epochDir)) {
+            try {
+                const epochFiles = fs.readdirSync(epochDir)
+                    .filter(f => f.startsWith('EPOCH_') && f.endsWith('.md'))
+                    .sort()
+                    .reverse();
+                if (epochFiles.length > 0) {
+                    return path.join(epochDir, epochFiles[0]);
+                }
+            } catch { /* fall through */ }
+        }
+
+        // 3. Legacy archive
+        const legacy = path.join(this.workspaceRoot, '.github', 'copilot-instructions.archive.md');
+        if (fs.existsSync(legacy)) { return legacy; }
+
+        return null;
     }
 
     resolveWebviewView(
@@ -188,35 +227,51 @@ export class AnkhReferenceProvider implements vscode.WebviewViewProvider {
     ): void {
         webviewView.webview.options = { enableScripts: true };
 
-        const sections = this.loadSections();
-        webviewView.webview.html = this.buildHtml(sections);
+        const refresh = () => {
+            const sourcePath = this.resolveSourcePath();
+            const sections = this.loadSections(sourcePath);
+            webviewView.webview.html = this.buildHtml(sections, sourcePath);
+            this._currentSourcePath = sourcePath;
+        };
+
+        refresh();
 
         webviewView.webview.onDidReceiveMessage((msg: unknown) => {
             if (!msg || typeof msg !== 'object') { return; }
             const payload = msg as { type?: string; line?: number };
-            if (payload.type === 'open' && this.archivePath && typeof payload.line === 'number') {
-                const uri = vscode.Uri.file(this.archivePath);
+            if (payload.type === 'open' && this._currentSourcePath && typeof payload.line === 'number') {
+                const uri = vscode.Uri.file(this._currentSourcePath);
                 void vscode.window.showTextDocument(uri, {
                     preview: true,
                     selection: new vscode.Range(payload.line, 0, payload.line, 0),
                 });
             }
         });
+
+        this._configListener = vscode.workspace.onDidChangeConfiguration(e => {
+            if (e.affectsConfiguration('chthonic.ankh.sourcePath')) {
+                refresh();
+            }
+        });
+        webviewView.onDidDispose(() => {
+            this._configListener?.dispose();
+            this._configListener = undefined;
+        });
     }
 
-    private loadSections(): ArchiveSection[] {
-        if (!this.archivePath || !fs.existsSync(this.archivePath)) {
+    private loadSections(sourcePath: string | null): ArchiveSection[] {
+        if (!sourcePath || !fs.existsSync(sourcePath)) {
             return [];
         }
         try {
-            const text = fs.readFileSync(this.archivePath, 'utf8');
+            const text = fs.readFileSync(sourcePath, 'utf8');
             return parseArchiveSections(text);
         } catch {
             return [];
         }
     }
 
-    private buildHtml(sections: ArchiveSection[]): string {
+    private buildHtml(sections: ArchiveSection[], sourcePath: string | null): string {
         const nonce = createNonce();
         // Embed title/line/level/kind/tag — no full content to keep payload small
         const sectionsJson = JSON.stringify(
@@ -229,7 +284,7 @@ export class AnkhReferenceProvider implements vscode.WebviewViewProvider {
         const anchorCount = sections.filter(s => s.kind === 'anchor').length;
         const mentionCount = sections.filter(s => s.kind === 'mention').length;
         const totalSections = sections.length;
-        const archiveLabel = this.archivePath ? path.basename(this.archivePath) : 'archive not found';
+        const archiveLabel = sourcePath ? path.basename(sourcePath) : 'no source found';
 
         return `<!DOCTYPE html>
 <html lang="en">

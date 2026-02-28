@@ -23,6 +23,8 @@
     },
     "diffEditor.maxComputationTime": 0,
     "workbench.colorTheme": "Chthonic — Flesh & Earth (The Decorator)",
+    "workbench.iconTheme": "chthonic-file-icons",
+    "workbench.productIconTheme": "chthonic-product-icons",
     "workbench.editor.enablePreviewFromQuickOpen": true,
     "workbench.editor.enablePreviewFromCodeNavigation": true,
     "workbench.experimental.cloudChanges.partialMatches.enabled": true,

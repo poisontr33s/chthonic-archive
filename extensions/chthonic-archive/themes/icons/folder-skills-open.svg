@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+ <!-- Open pylon — skills = Tocapu craft chamber -->
+ <rect x="2" y="4" width="2.5" height="9" fill="#0A0A0A" stroke="#D4907A" stroke-width="0.5"/>
+ <rect x="11.5" y="4" width="2.5" height="9" fill="#0A0A0A" stroke="#D4907A" stroke-width="0.5"/>
+ <rect x="4.5" y="4" width="7" height="1" fill="#D4907A" opacity="0.5"/>
+ <rect x="5" y="5" width="6" height="8" fill="#D4907A" opacity="0.15"/>
+ <rect x="5" y="5" width="6" height="8" fill="none" stroke="#D4907A" stroke-width="0.4"/>
+ <rect x="7" y="7.5" width="2" height="2" fill="none" stroke="#D4907A" stroke-width="0.6"/>
+ <line x1="7" y1="8.5" x2="9" y2="8.5" stroke="#D4907A" stroke-width="0.4"/>
+ <line x1="8" y1="7.5" x2="8" y2="9.5" stroke="#D4907A" stroke-width="0.4"/>
+ <rect x="6.5" y="10.5" width="3" height="1" fill="#D4907A" opacity="0.4"/>
+ <line x1="5" y1="13" x2="11" y2="13" stroke="#D4907A" stroke-width="0.5" stroke-linecap="round"/>
+</svg>

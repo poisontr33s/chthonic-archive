@@ -187,6 +187,11 @@
     "configuration": {
       "title": "Chthonic Archive",
       "properties": {
+        "chthonic.ankh.sourcePath": {
+          "type": "string",
+          "default": "",
+          "description": "Override source file for the ANKH Reference pane (relative to workspace root or absolute). When set and the file exists, takes precedence over epoch auto-discovery and legacy archive."
+        },
         "chthonic.ssotPath": {
           "type": "string",
           "default": ".github/copilot-instructions.md",
