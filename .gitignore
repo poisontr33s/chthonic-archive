@@ -97,6 +97,9 @@ dumpster-dive/corpse-vault/
 !extensions/*/themes/icons/*.svg
 !extensions/*/themes/icons/product/
 !extensions/*/themes/icons/product/*.svg
+!extensions/*/themes/fonts/
+!extensions/*/themes/fonts/*.woff
+!extensions/*/themes/fonts/*.json
 !extensions/*/icons/
 !extensions/*/icons/*.svg
 !extensions/*/icons/*.png
@@ -210,6 +213,7 @@ extensions/*/bun.lock
 !scripts/mistralrs_model_manager.py
 !scripts/mistralrs_client.py
 !scripts/hf_model_scout.py
+!scripts/generate-product-icon-font.mjs
 
 # Allow mistral.rs UI
 !apps/

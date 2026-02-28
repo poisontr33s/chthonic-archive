@@ -51,7 +51,13 @@
         "path": "./themes/chthonic-file-icon-theme.json"
       }
     ],
-    "_productIconThemes_disabled": "Requires font-based icons (woff2), not SVG iconPath. Re-enable after font generation.",
+    "productIconThemes": [
+      {
+        "id": "chthonic-product-icons",
+        "label": "Chthonic Archive Product Icons",
+        "path": "./themes/chthonic-product-icon-theme.json"
+      }
+    ],
     "commands": [
       {
         "command": "chthonic.switchTheme",

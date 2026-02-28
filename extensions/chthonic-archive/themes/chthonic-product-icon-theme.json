@@ -1,12 +1,24 @@
 {
-  "fonts": [],
+  "fonts": [
+    {
+      "id": "chthonic-product-icons",
+      "src": [
+        {
+          "path": "./fonts/chthonic-product-icons.woff",
+          "format": "woff"
+        }
+      ],
+      "weight": "normal",
+      "style": "normal"
+    }
+  ],
   "iconDefinitions": {
-    "pulse":              { "iconPath": "./icons/product/pulse.svg" },
-    "shield":             { "iconPath": "./icons/product/shield.svg" },
-    "paintcan":           { "iconPath": "./icons/product/paintcan.svg" },
-    "layers":             { "iconPath": "./icons/product/layers.svg" },
-    "comment-discussion": { "iconPath": "./icons/product/comment-discussion.svg" },
-    "hammer":             { "iconPath": "./icons/product/hammer.svg" },
-    "flame":              { "iconPath": "./icons/product/flame.svg" }
+    "pulse":              { "fontCharacter": "\uE006", "fontId": "chthonic-product-icons" },
+    "shield":             { "fontCharacter": "\uE007", "fontId": "chthonic-product-icons" },
+    "paintcan":           { "fontCharacter": "\uE005", "fontId": "chthonic-product-icons" },
+    "layers":             { "fontCharacter": "\uE004", "fontId": "chthonic-product-icons" },
+    "comment-discussion": { "fontCharacter": "\uE001", "fontId": "chthonic-product-icons" },
+    "hammer":             { "fontCharacter": "\uE003", "fontId": "chthonic-product-icons" },
+    "flame":              { "fontCharacter": "\uE002", "fontId": "chthonic-product-icons" }
   }
 }
