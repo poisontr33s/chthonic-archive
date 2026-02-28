@@ -49,17 +49,32 @@
         "*.json": "jsonc"
     },
 
-    // === FILE EXCLUSIONS (Performance) ===
+    // === FILE EXCLUSIONS (Performance + Thermal) ===
     "files.exclude": {
         "**/target": true,
         "**/*.spv": false,
         "**/Cargo.lock": false
     },
     "files.watcherExclude": {
-        "**/target/**": true
+        "**/target/**": true,
+        "**/.git/objects/**": true,
+        "**/.git/subtree-cache/**": true,
+        "**/node_modules/**": true,
+        "**/dumpster-dive/**": true,
+        "**/build/**": true,
+        "**/artifacts/**": true,
+        "**/__pycache__/**": true,
+        "**/book/**": true
     },
     "search.exclude": {
-        "**/target": true
+        "**/target": true,
+        "**/node_modules": true,
+        "**/dumpster-dive": true,
+        "**/build": true,
+        "**/artifacts": true,
+        "**/__pycache__": true,
+        "**/.git": true,
+        "**/book": true
     },
 
     // === TERMINAL ===
