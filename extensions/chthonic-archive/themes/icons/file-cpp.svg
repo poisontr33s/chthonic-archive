@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
  <!-- Stele base -->
- <rect x="3" y="1.5" width="10" height="13" rx="1" fill="#0A0A0A" stroke="#908672" stroke-width="0.5"/>
+ <rect x="3" y="1.5" width="10" height="13" rx="1" fill="#2A2724" stroke="#908672" stroke-width="0.5"/>
 
  <path d="M6 4L8.5 3.5L10.5 5L11 7.5L10 9.5L8.5 11L6.5 11.5L5 10L4.5 7.5L5 5.5Z" fill="none" stroke="#E05545" stroke-width="0.6" stroke-linejoin="miter"/>
 

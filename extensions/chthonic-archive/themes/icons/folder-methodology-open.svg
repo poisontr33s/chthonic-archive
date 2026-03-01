@@ -1,7 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
  <!-- Open pylon — methodology = Quipu record cord (aperture widened) -->
- <rect x="2" y="4" width="2.5" height="9" fill="#0A0A0A" stroke="#D4714E" stroke-width="0.5"/>
- <rect x="11.5" y="4" width="2.5" height="9" fill="#0A0A0A" stroke="#D4714E" stroke-width="0.5"/>
+ <rect x="2" y="4" width="2.5" height="9" fill="#2A2724" stroke="#D4714E" stroke-width="0.5"/>
+ <rect x="11.5" y="4" width="2.5" height="9" fill="#2A2724" stroke="#D4714E" stroke-width="0.5"/>
  <rect x="4.5" y="4" width="7" height="1" fill="#D4714E" opacity="0.5"/>
  <rect x="4.5" y="5" width="7" height="8" fill="#D4714E" opacity="0.15"/>
  <line x1="8" y1="6.5" x2="8" y2="12.5" stroke="#D4714E" stroke-width="0.6" stroke-linecap="round"/>

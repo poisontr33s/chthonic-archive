@@ -191,6 +191,41 @@ The three pillars interlock:
 
 ---
 
+## Runtime Icon ID Contract
+
+**Source:** Codex research contribution (2026-03-01)
+
+A source motif name is not the same thing as a runtime icon ID. Product icon themes can only override valid codicon IDs. If a name like `hammer` is not a real codicon, there are exactly two legal paths:
+
+1. **Remap** the archaeology-bearing art to an existing codicon ID (e.g., `hammer` → `tools`)
+2. **Contribute** a custom icon ID via `contributes.icons` in `package.json` and use it only on extension-owned surfaces
+
+The freedom split:
+
+| Scope | Constraint | Example |
+|-------|------------|--------|
+| **Workbench-wide chrome override** (`product-icon-theme`) | Must use real codicon IDs from default codicon registry | `tools` (EB6D), `debug` (EB45), `extensions` (EB0C) |
+| **Extension-local semantic freedom** (`contributes.icons`) | Any ID you want, but only usable on extension-owned commands, tree items, status bars | `chthonic-adze`, `chthonic-djed-tools` |
+
+### 4-Field Identity Model
+
+Every future product icon must carry these four fields:
+
+| Field | Description | Example (`tools`) |
+|-------|-------------|-------------------|
+| `runtime_id` | Valid codicon or contributed custom icon ID | `tools` |
+| `source_svg` | Actual file in `themes/icons/product/` | `tools.svg` |
+| `provenance_name` | Archaeology name from research | `adze-tupu hybrid (Direction B)` |
+| `consumer_scope` | `product-icon-theme` or `extension-local` | `product-icon-theme` |
+
+For future non-existing names like `hammer`, `anvil`, `tupu`, `adze`, `djed-tools`:
+- "Is this meant to override a VS Code codicon?" → Map to a **real codicon ID**
+- "Is this meant to be an extension-owned icon?" → **Contribute a custom icon**
+
+This contract prevents the `hammer` mistake from recurring for any future icon pass.
+
+---
+
 ## Action Items
 
 | Priority | Item | Owner | Status |

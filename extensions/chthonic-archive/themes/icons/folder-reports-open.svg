@@ -1,7 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
  <!-- Open pylon — reports = Thoth scribal record chamber (aperture widened) -->
- <rect x="2" y="4" width="2.5" height="9" fill="#0A0A0A" stroke="#B9A37A" stroke-width="0.5"/>
- <rect x="11.5" y="4" width="2.5" height="9" fill="#0A0A0A" stroke="#B9A37A" stroke-width="0.5"/>
+ <rect x="2" y="4" width="2.5" height="9" fill="#2A2724" stroke="#B9A37A" stroke-width="0.5"/>
+ <rect x="11.5" y="4" width="2.5" height="9" fill="#2A2724" stroke="#B9A37A" stroke-width="0.5"/>
  <rect x="4.5" y="4" width="7" height="1" fill="#B9A37A" opacity="0.5"/>
  <rect x="4.5" y="5" width="7" height="8" fill="#B9A37A" opacity="0.15"/>
  <rect x="6.5" y="7" width="3" height="5" rx="0.3" fill="none" stroke="#B9A37A" stroke-width="0.5"/>

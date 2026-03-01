@@ -64,7 +64,7 @@ Authoritative method: [WET_PAPER_TO_GOLD_METHODOLOGY.md](../../WET_PAPER_TO_GOLD
 |--------|----------|---------------|
 | **Color Theme** | `chthonic-geology-color-theme.json` | 669 workbench, 83 tokens, 57 semantic |
 | **File/Folder Icons** | `chthonic-file-icon-theme.json` + 76 SVGs | 76 defs, 91 ext, 34 filenames, 33 langs, 35 folders |
-| **Product Icons** | `chthonic-product-icon-theme.json` + 42 SVGs | 45 overrides (42 glyphs), Tier 1: 39/39 (100%), overall: 45/535 (8.4%) |
+| **Product Icons** | `chthonic-product-icon-theme.json` + 43 SVGs | 46 overrides (43 glyphs), Tier 1: 39/39 (100%), overall: 46/535 (8.6%) |
 
 ---
 
@@ -74,6 +74,7 @@ Authoritative method: [WET_PAPER_TO_GOLD_METHODOLOGY.md](../../WET_PAPER_TO_GOLD
 |-------|-----|------|
 | bg | `#050505` | Void substrate |
 | stele | `#0A0A0A` | Panel background |
+| stele-body | `#2A2724` | SVG icon body fill (stele tablets, pylon chambers). Lifted from `stele` for contrast against dark surfaces. |
 | fg | `#E8E2D2` | Primary text (aged papyrus) |
 | gold | `#F4C430` | Accent / Egyptian primary |
 | copper | `#D4714E` | Andean earth accent |
@@ -211,16 +212,35 @@ The color theme is at 669/83/57 — a strong foundation. These stages refine and
 
 ## Pillar III — Product Icons (Stages 6.0→7.0)
 
-45 product icon overrides (6 original + 39 Tier 1 expansion). Tier 1 coverage: 100%. Font: 42-glyph WOFF (2.0 KB).
+46 product icon overrides (6 original + 39 Tier 1 + 1 remap). Tier 1 coverage: 100%. Font: 43-glyph WOFF (2.1 KB).
 
 ### Planned Stages
 
 | Stage | Name | Description | Status |
 |-------|------|-------------|--------|
 | **6.0** | Product Icon Census | Map all VS Code product icon IDs in active use (activity bar, status bar, editor widgets, debug, SCM, testing, etc.) against current 7. | ✅ 6/535 (1.1%) — 39 Tier 1 gaps identified, `hammer` remapped → `tools` (valid codicon EB6D) |
-| **6.1** | Priority Expansion | Design and implement icons for highest-visibility product icon slots (activity bar, editor actions, debug controls). | ✅ 39/39 Tier 1 — 36 new SVGs, 42-glyph WOFF, 45 codicon mappings. Signature: scarab (debug), Eye of Horus (copilot). |
-| **6.2** | Product Palette + Motif Audit | Verify product SVGs use SFS palette and maintain Egypto-Andean motif vocabulary. | ✅ BCE Redesign — 28 SVGs rewritten with ANKH motif bank provenance. Modern motifs eliminated. Papyrus scroll (files), Wedjat eye (search), ashlar masonry (extensions), kheper scarab (debug), khopesh (debug-alt), Djed pillar (remote), broken ankh (error), pyramid+eye (warning), obelisk (info), Inti sun disc (settings), Nemes headdress (account), ouroboros (sync), Nile delta (git-branch×4), sistrum (bell×4), cartouche tablets (comment), pigment mortar (paintcan), Ka arms (pulse), ox-hide shield (shield), sedimentary strata (layers). Font rebuilt: 42 glyphs, 2.0 KB. E2E 3/3 PASS. |
+| **6.1** | Priority Expansion | Design and implement icons for highest-visibility product icon slots (activity bar, editor actions, debug controls). | ✅ 39/39 Tier 1 — 36 new SVGs, 43-glyph WOFF, 46 codicon mappings. Signature: scarab (debug), Eye of Horus (copilot). |
+| **6.2** | Product Palette + Motif Audit | Verify product SVGs use SFS palette and maintain Egypto-Andean motif vocabulary. | ✅ BCE Redesign — 28 SVGs rewritten with ANKH motif bank provenance. Modern motifs eliminated. Papyrus scroll (files), Wedjat eye (search), ashlar masonry (extensions), kheper scarab (debug), khopesh (debug-alt), Djed pillar (remote), broken ankh (error), pyramid+eye (warning), obelisk (info), Inti sun disc (settings), Nemes headdress (account), ouroboros (sync), Nile delta (git-branch×4), sistrum (bell×4), cartouche tablets (comment), pigment mortar (paintcan), Ka arms (pulse), ox-hide shield (shield), sedimentary strata (layers). Font rebuilt: 43 glyphs, 2.1 KB. E2E 3/3 PASS. |
 | **7.0** | Product Icon Gold Standard | All high-visibility slots covered. Palette and motif compliant. Visual coherence with file icons. | ⬜ Not started |
+
+### Runtime Icon ID Contract
+
+A source motif name (e.g., `adze-tupu`) ≠ a runtime icon ID (e.g., `tools`). Product icon themes can **only** override valid codicon IDs.
+
+**Two legal paths for non-codicon names:**
+1. **Remap** archaeology art → existing codicon ID (workbench-wide scope)
+2. **Contribute** custom icon via `contributes.icons` (extension-local scope only)
+
+**Required 4-field model for every product icon:**
+
+| Field | Description |
+|-------|-------------|
+| `runtime_id` | Valid codicon or contributed custom icon ID |
+| `source_svg` | Actual SVG file |
+| `provenance_name` | Archaeology name from research |
+| `consumer_scope` | `product-icon-theme` or `extension-local` |
+
+Question gate for future icon passes: "Is this a real codicon ID?" If no → remap or contribute. Never assume a name exists.
 
 ### Pipeline Scripts Needed (Product Pillar)
 

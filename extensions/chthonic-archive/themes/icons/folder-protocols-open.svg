@@ -1,7 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
  <!-- Open pylon — protocols = Ma'at feather of truth (aperture widened) -->
- <rect x="2" y="4" width="2.5" height="9" fill="#0A0A0A" stroke="#8CB87A" stroke-width="0.5"/>
- <rect x="11.5" y="4" width="2.5" height="9" fill="#0A0A0A" stroke="#8CB87A" stroke-width="0.5"/>
+ <rect x="2" y="4" width="2.5" height="9" fill="#2A2724" stroke="#8CB87A" stroke-width="0.5"/>
+ <rect x="11.5" y="4" width="2.5" height="9" fill="#2A2724" stroke="#8CB87A" stroke-width="0.5"/>
  <rect x="4.5" y="4" width="7" height="1" fill="#8CB87A" opacity="0.5"/>
  <rect x="4.5" y="5" width="7" height="8" fill="#8CB87A" opacity="0.15"/>
  <line x1="8" y1="6.5" x2="8" y2="12.5" stroke="#8CB87A" stroke-width="0.6" stroke-linecap="round"/>

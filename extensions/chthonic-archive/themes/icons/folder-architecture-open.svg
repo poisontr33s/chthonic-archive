@@ -1,7 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
  <!-- Open pylon — architecture = Chakana cosmic bridge (aperture widened) -->
- <rect x="2" y="4" width="2.5" height="9" fill="#0A0A0A" stroke="#7AAAB2" stroke-width="0.5"/>
- <rect x="11.5" y="4" width="2.5" height="9" fill="#0A0A0A" stroke="#7AAAB2" stroke-width="0.5"/>
+ <rect x="2" y="4" width="2.5" height="9" fill="#2A2724" stroke="#7AAAB2" stroke-width="0.5"/>
+ <rect x="11.5" y="4" width="2.5" height="9" fill="#2A2724" stroke="#7AAAB2" stroke-width="0.5"/>
  <rect x="4.5" y="4" width="7" height="1" fill="#7AAAB2" opacity="0.5"/>
  <rect x="4.5" y="5" width="7" height="8" fill="#7AAAB2" opacity="0.15"/>
  <path d="M8,7 l1,1 h1 v1 h-1 l-1,1 l-1,-1 h-1 v-1 h1 z" fill="#7AAAB2" opacity="0.35"/>

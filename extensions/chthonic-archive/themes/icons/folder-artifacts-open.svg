@@ -1,7 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
  <!-- Open pylon — artifacts = canopic jar chamber revealed -->
- <rect x="2" y="4" width="2.5" height="9" fill="#0A0A0A" stroke="#F4C430" stroke-width="0.4"/>
- <rect x="11.5" y="4" width="2.5" height="9" fill="#0A0A0A" stroke="#F4C430" stroke-width="0.4"/>
+ <rect x="2" y="4" width="2.5" height="9" fill="#2A2724" stroke="#F4C430" stroke-width="0.4"/>
+ <rect x="11.5" y="4" width="2.5" height="9" fill="#2A2724" stroke="#F4C430" stroke-width="0.4"/>
  <rect x="4.5" y="4" width="7" height="1" fill="#F4C430" opacity="0.5"/>
  <rect x="5" y="5" width="6" height="8" fill="#F4C430" opacity="0.1"/>
 

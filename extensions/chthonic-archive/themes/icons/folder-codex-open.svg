@@ -1,7 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
  <!-- Open pylon — codex = 12-Angled Stone vault opened -->
- <rect x="2" y="4" width="2.5" height="9" fill="#0A0A0A" stroke="#E05545" stroke-width="0.4"/>
- <rect x="11.5" y="4" width="2.5" height="9" fill="#0A0A0A" stroke="#E05545" stroke-width="0.4"/>
+ <rect x="2" y="4" width="2.5" height="9" fill="#2A2724" stroke="#E05545" stroke-width="0.4"/>
+ <rect x="11.5" y="4" width="2.5" height="9" fill="#2A2724" stroke="#E05545" stroke-width="0.4"/>
  <rect x="4.5" y="4" width="7" height="1" fill="#E05545" opacity="0.5"/>
  <rect x="5" y="5" width="6" height="8" fill="#E05545" opacity="0.1"/>
 

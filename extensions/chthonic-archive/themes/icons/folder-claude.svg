@@ -1,9 +1,9 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
  <!-- Sealed pylon — claude = Ibis scribe chamber (Thoth's messenger) -->
- <rect x="2" y="4" width="2.5" height="9" fill="#0A0A0A" stroke="#8CB87A" stroke-width="0.4"/>
- <rect x="11.5" y="4" width="2.5" height="9" fill="#0A0A0A" stroke="#8CB87A" stroke-width="0.4"/>
+ <rect x="2" y="4" width="2.5" height="9" fill="#2A2724" stroke="#8CB87A" stroke-width="0.4"/>
+ <rect x="11.5" y="4" width="2.5" height="9" fill="#2A2724" stroke="#8CB87A" stroke-width="0.4"/>
  <rect x="4.5" y="4" width="7" height="1" fill="#8CB87A" opacity="0.4"/>
- <rect x="5" y="5" width="6" height="8" fill="#0A0A0A" stroke="#8CB87A" stroke-width="0.3"/>
+ <rect x="5" y="5" width="6" height="8" fill="#2A2724" stroke="#8CB87A" stroke-width="0.3"/>
 
  <circle cx="8" cy="8" r="0.6" fill="none" stroke="#8CB87A" stroke-width="0.5"/>
  <circle cx="8" cy="8" r="0.2" fill="#8CB87A"/>
