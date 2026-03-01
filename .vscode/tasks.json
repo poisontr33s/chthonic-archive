@@ -531,6 +531,24 @@
 				"focus": true
 			},
 			"problemMatcher": []
+		},
+		{
+			"label": "Chthonic: SFS Slabstone Refresh",
+			"type": "shell",
+			"command": "uv",
+			"args": [
+				"run",
+				"scripts/sfs_slabstone_baseline.py",
+				"--report",
+				"--strict"
+			],
+			"group": "test",
+			"presentation": {
+				"reveal": "always",
+				"panel": "shared",
+				"focus": true
+			},
+			"problemMatcher": []
 		}
 	]
 }

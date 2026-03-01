@@ -608,6 +608,25 @@ def render_markdown(ref: dict) -> str:
         a(f"- [ ] {step}")
     a("")
 
+    # Reproducibility Anchor
+    a("---")
+    a("")
+    a("## Reproducibility Anchor")
+    a("")
+    a("These files bind the prose canon to the live SFS extension assets so the")
+    a("baseline remains intelligible, auditable, and reproducible instead of")
+    a("depending on session memory.")
+    a("")
+    a("| File | Role |")
+    a("|------|------|")
+    a("| [ANKH_ICON_GRAMMAR.md](ANKH_ICON_GRAMMAR.md) | Execution contract for stele/pylon grammar, state fit, and the 7-gate icon benchmark |")
+    a("| [SFS_WPTG_ITERATION_PLAN.md](SFS_WPTG_ITERATION_PLAN.md) | WPTG stage plan for SVG, theme, and product-icon iteration |")
+    a("| [SFS_SLABSTONE_BASELINE.md](SFS_SLABSTONE_BASELINE.md) | Generated anchor report that cross-checks the three canon docs against live theme/icon assets |")
+    a("")
+    a("Refresh the generated anchor with")
+    a("`uv run scripts/sfs_slabstone_baseline.py --report --strict`.")
+    a("")
+
     return "\n".join(lines)
 
 
@@ -623,6 +642,11 @@ def main() -> None:
     for i, arg in enumerate(args):
         if arg == "--output" and i + 1 < len(args):
             output_path = Path(args[i + 1])
+
+    if not output_path.is_absolute():
+        output_path = (REPO_ROOT / output_path).resolve()
+    else:
+        output_path = output_path.resolve()
 
     ref = build_reference()
 

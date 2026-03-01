@@ -362,6 +362,7 @@ not a casual local variation.
 |------|-----------|
 | [ANKH_THEME_REFERENCE.md](ANKH_THEME_REFERENCE.md) | Global SVG policy, SFS palette baseline, theme creation checklist |
 | [SFS_WPTG_ITERATION_PLAN.md](SFS_WPTG_ITERATION_PLAN.md) | WPTG stage gates, icon-pipeline stages (0.0→3.0), KCP metadata |
+| [SFS_SLABSTONE_BASELINE.md](SFS_SLABSTONE_BASELINE.md) | Generated reproducibility anchor linking canon prose to live SFS theme/icon assets |
 | [ANKH_README.md (ankh)](../frameworks/ankh/ANKH_README.md) | 50/50 Egyptological × Andean abstraction, top-level ANKH bridge |
 | [SFA_CROSS_REFERENCE_SCAN.md](../../claude/mailbox/SFA_CROSS_REFERENCE_SCAN.md) | Motif balance audit, motif-to-palette lineage |
 
@@ -410,4 +411,5 @@ not a casual local variation.
 | [icon_distinctiveness_audit.py](../../scripts/icon_distinctiveness_audit.py) | 2.1 | Motif similarity / collision detection |
 | [icon_surface_map.py](../../scripts/icon_surface_map.py) | (cross-cutting) | Deterministic surface mapping — where each icon renders |
 | [sfa_cross_reference.py](../../scripts/sfa_cross_reference.py) | (cross-cutting) | 50/50 balance engine, motif assignment |
+| [sfs_slabstone_baseline.py](../../scripts/sfs_slabstone_baseline.py) | (cross-cutting) | Generated anchor report tying icon canon prose to live SFS/theme asset state |
 | [vscode_settings_live_audit.py](../../scripts/vscode_settings_live_audit.py) | (validation) | Settings/language drift detection |

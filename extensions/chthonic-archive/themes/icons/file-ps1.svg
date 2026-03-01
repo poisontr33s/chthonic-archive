@@ -2,14 +2,14 @@
  <!-- Stele base -->
  <rect x="3" y="1.5" width="10" height="13" rx="1" fill="#0A0A0A" stroke="#908672" stroke-width="0.5"/>
 
- <path d="M8 3v4" stroke="#E05545" stroke-width="0.8" stroke-linecap="round"/>
+ <path d="M8 3v4" stroke="#B9A37A" stroke-width="0.8" stroke-linecap="round"/>
 
- <path d="M8 7l-2 3" stroke="#E05545" stroke-width="0.7" stroke-linecap="round"/>
- <path d="M8 7l2 3" stroke="#E05545" stroke-width="0.7" stroke-linecap="round"/>
+ <path d="M8 7l-2 3" stroke="#B9A37A" stroke-width="0.7" stroke-linecap="round"/>
+ <path d="M8 7l2 3" stroke="#B9A37A" stroke-width="0.7" stroke-linecap="round"/>
 
- <line x1="6.5" y1="4" x2="9.5" y2="4" stroke="#E05545" stroke-width="0.6" stroke-linecap="round"/>
+ <line x1="6.5" y1="4" x2="9.5" y2="4" stroke="#B9A37A" stroke-width="0.6" stroke-linecap="round"/>
 
- <circle cx="8" cy="3" r="0.8" fill="none" stroke="#E05545" stroke-width="0.5"/>
+ <circle cx="8" cy="3" r="0.8" fill="none" stroke="#B9A37A" stroke-width="0.5"/>
 
- <line x1="5" y1="12" x2="11" y2="12" stroke="#E05545" stroke-width="0.5" stroke-linecap="round" opacity="0.4"/>
+ <line x1="5" y1="12" x2="11" y2="12" stroke="#B9A37A" stroke-width="0.5" stroke-linecap="round" opacity="0.4"/>
 </svg>

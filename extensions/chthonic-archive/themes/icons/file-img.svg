@@ -2,12 +2,12 @@
  <!-- Stele base -->
  <rect x="3" y="1.5" width="10" height="13" rx="1" fill="#0A0A0A" stroke="#908672" stroke-width="0.5"/>
 
- <circle cx="8" cy="6.5" r="2.5" fill="none" stroke="#E05545" stroke-width="0.7"/>
- <circle cx="8" cy="6.5" r="1.5" fill="#E05545" opacity="0.3"/>
- <line x1="8" y1="3" x2="8" y2="3.8" stroke="#E05545" stroke-width="0.4" stroke-linecap="round"/>
- <line x1="5.5" y1="4.5" x2="6.1" y2="5" stroke="#E05545" stroke-width="0.4" stroke-linecap="round"/>
- <line x1="10.5" y1="4.5" x2="9.9" y2="5" stroke="#E05545" stroke-width="0.4" stroke-linecap="round"/>
- <line x1="4.5" y1="6.5" x2="5.3" y2="6.5" stroke="#E05545" stroke-width="0.4" stroke-linecap="round"/>
- <line x1="11.5" y1="6.5" x2="10.7" y2="6.5" stroke="#E05545" stroke-width="0.4" stroke-linecap="round"/>
- <path d="M5 11c1-1 2-1.5 3-1.5s2 .5 3 1.5" fill="none" stroke="#E05545" stroke-width="0.5" stroke-linecap="round"/>
+ <circle cx="8" cy="6.5" r="2.5" fill="none" stroke="#F4C430" stroke-width="0.7"/>
+ <circle cx="8" cy="6.5" r="1.5" fill="#F4C430" opacity="0.3"/>
+ <line x1="8" y1="3" x2="8" y2="3.8" stroke="#F4C430" stroke-width="0.4" stroke-linecap="round"/>
+ <line x1="5.5" y1="4.5" x2="6.1" y2="5" stroke="#F4C430" stroke-width="0.4" stroke-linecap="round"/>
+ <line x1="10.5" y1="4.5" x2="9.9" y2="5" stroke="#F4C430" stroke-width="0.4" stroke-linecap="round"/>
+ <line x1="4.5" y1="6.5" x2="5.3" y2="6.5" stroke="#F4C430" stroke-width="0.4" stroke-linecap="round"/>
+ <line x1="11.5" y1="6.5" x2="10.7" y2="6.5" stroke="#F4C430" stroke-width="0.4" stroke-linecap="round"/>
+ <path d="M5 11c1-1 2-1.5 3-1.5s2 .5 3 1.5" fill="none" stroke="#F4C430" stroke-width="0.5" stroke-linecap="round"/>
 </svg>

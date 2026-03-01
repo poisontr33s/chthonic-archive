@@ -416,6 +416,7 @@ Codex's structural enforcement role supports the WPTG by validating that:
 |------|-----------|
 | [ANKH_ICON_GRAMMAR.md](ANKH_ICON_GRAMMAR.md) | Canon icon execution bridge — 7-gate benchmark, state grammar, domain folder canon |
 | [ANKH_THEME_REFERENCE.md](ANKH_THEME_REFERENCE.md) | Global SVG policy, SFS palette baseline, theme creation checklist, tier hierarchy |
+| [SFS_SLABSTONE_BASELINE.md](SFS_SLABSTONE_BASELINE.md) | Generated reproducibility anchor linking the plan to live SFS/theme/icon assets |
 | [KCP_SESSION_CHECKPOINT.md](KCP_SESSION_CHECKPOINT.md) | Crash-resilient KCP progress tracker |
 
 ### Research Sources
@@ -465,6 +466,7 @@ Codex's structural enforcement role supports the WPTG by validating that:
 | [theme_parity.py](../../scripts/theme_parity.py) | (cross-cutting) | Cross-theme comparison |
 | [theme_artcop.py](../../scripts/theme_artcop.py) | (visual QA) | Screenshot-based quality assessment |
 | [vscode-art-cop.ts](../../scripts/vscode-art-cop.ts) | (visual QA) | Screenshot automation |
+| [sfs_slabstone_baseline.py](../../scripts/sfs_slabstone_baseline.py) | (cross-cutting) | Generated anchor report for canon-doc linkage and live SFS asset reproducibility |
 | [normalize_blessing_box.py](../../scripts/normalize_blessing_box.py) | S.B | Blessing envelope normalization |
 | [vscode_settings_live_audit.py](../../scripts/vscode_settings_live_audit.py) | (validation) | Settings/language drift detection |
 
@@ -475,6 +477,7 @@ Codex's structural enforcement role supports the WPTG by validating that:
 | [e2e-extension-host.ts](../../extensions/chthonic-archive/scripts/e2e-extension-host.ts) | Extension host smoke runner (3/3 gate) |
 | [e2e-smoke-runner.cjs](../../extensions/chthonic-archive/scripts/e2e-smoke-runner.cjs) | Smoke test — registration + command execution |
 | [SETTINGS_LIVE_AUDIT.md](../../.vscode/SETTINGS_LIVE_AUDIT.md) | Generated audit report (strict pass/fail) |
+| [SFS_SLABSTONE_BASELINE.md](SFS_SLABSTONE_BASELINE.md) | Generated anchor report for canon linkage, asset presence, and reproduction commands |
 
 ### Standards
 
