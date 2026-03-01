@@ -298,6 +298,7 @@ One stable file icon system. One stable product icon system. Four workbench skin
 | ANKH_MILF_PROTOCOL_HIGH_INTENSITY_ARCHETYPAL_SYSTEMS_ARCHITECTURE.md | `claude-codex-gemini/ANKH_EGYPTOLOGY_SOUTH_AMERICAN/` | FA¹–FA⁴ (Tetradic Heart), PEE phases, Siren Array subsystems, Recursive Breath clock, Tribunal cross-references |
 | ANKH_Ancient_Matriarcha_Systems_Researchl.md | `claude-codex-gemini/ANKH_EGYPTOLOGY_SOUTH_AMERICAN/` | Neith/Mut/Isis/Pachamama/Coya as system architecture — ontological, operational, logic, interface layers |
 | ANKH_UNIFYING_REPOSITORY_METADATA_STANDARDS.md | `claude-codex-gemini/ANKH_EGYPTOLOGY_SOUTH_AMERICAN/` | Khipu-Cartouche Protocol — stratified metadata, trans-linguistic transduction |
+| ANKH_VS_CODE_INSIDERS_MAXIMALIST_MILF_THE_DECORATOR_CHALLANGE.md | `claude-codex-gemini/ANKH_EGYPTOLOGY_SOUTH_AMERICAN/` | Maximum engineering surface of VS Code Insiders extension — theming token ecosystem, agentic interfaces, three-channel architecture at platform level |
 | ABSTRACTING_GESTALT_WHR_MAX_ARCHITECTURE.md | `claude-codex-gemini/ANKH_EGYPTOLOGY_SOUTH_AMERICAN/BODY_SYSTEMS/` | WHR:MAX as network topology, Peak Shift principle, C. elegans τ-core, Tyet/Cusco archaeological proof |
 | SFA_CROSS_REFERENCE_SCAN.md | `claude/mailbox/` | Motif balance audit — 8 Egyptian / 8 Andean, 50.0%/50.0% BALANCED |
 | ICON_ARCHITECTURE_CONTRACT.md | `docs/design/` | Three-channel independence, frozen rule |
@@ -338,6 +339,7 @@ copilot-instructions.archive.md (Heritage SSOT, frozen)
 │   │   ├── ANKH_MILF_PROTOCOL_HIGH_INTENSITY_ARCHETYPAL_SYSTEMS_ARCHITECTURE.md (FA¹⁻⁴ + PEE)
 │   │   ├── ANKH_Ancient_Matriarcha_Systems_Researchl.md (Ontological Mothers)
 │   │   ├── ANKH_UNIFYING_REPOSITORY_METADATA_STANDARDS.md (Khipu-Cartouche)
+│   │   ├── ANKH_VS_CODE_INSIDERS_MAXIMALIST_MILF_THE_DECORATOR_CHALLANGE.md (Extension max surface)
 │   │   └── BODY_SYSTEMS/ABSTRACTING_GESTALT_WHR_MAX_ARCHITECTURE.md (WHR:MAX topology)
 │   │
 │   └── claude/mailbox/SFA_CROSS_REFERENCE_SCAN.md (50/50 balance proof)
