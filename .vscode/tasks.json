@@ -277,6 +277,18 @@
 			"problemMatcher": []
 		},
 		{
+			"label": "Chthonic: Settings Live Audit",
+			"type": "shell",
+			"command": "uv run scripts/vscode_settings_live_audit.py --report",
+			"group": "test",
+			"presentation": {
+				"reveal": "always",
+				"panel": "shared",
+				"focus": true
+			},
+			"problemMatcher": []
+		},
+		{
 			"label": "Chthonic: Post-Restart Verify + AI Lanes",
 			"type": "shell",
 			"command": "bun run --cwd extensions/chthonic-archive scripts/insiders-post-restart-verify.ts --with-ai-lanes --artcop-no-llm --rank-vram-gb 24",

@@ -54,7 +54,6 @@
         "*.comp": "glsl",
         "*.tesc": "glsl",
         "*.tese": "glsl",
-        "*.spv": "binary",
         "*.md": "markdown",
         "*.json": "jsonc"
     },
@@ -275,7 +274,7 @@
             ]
         
         },
-        "chthonic-archive/.vscode/mcp.json: playwright": {
+        "chthonic-archive/.vscode/mcp.json: browser": {
             "allowedModels": [         
                 "copilot/auto",
                 "copilot/claude-sonnet-4.5",

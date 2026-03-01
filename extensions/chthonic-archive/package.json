@@ -58,6 +58,32 @@
         "path": "./themes/chthonic-product-icon-theme.json"
       }
     ],
+    "languages": [
+      {
+        "id": "glsl",
+        "aliases": ["GLSL", "OpenGL Shading Language"],
+        "extensions": [".glsl", ".vert", ".frag", ".geom", ".comp", ".tesc", ".tese"],
+        "configuration": "./language-configuration-glsl.json"
+      },
+      {
+        "id": "toml",
+        "aliases": ["TOML", "toml"],
+        "extensions": [".toml"],
+        "configuration": "./language-configuration-toml.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "glsl",
+        "scopeName": "source.glsl",
+        "path": "./syntaxes/glsl.tmLanguage.json"
+      },
+      {
+        "language": "toml",
+        "scopeName": "source.toml",
+        "path": "./syntaxes/toml.tmLanguage.json"
+      }
+    ],
     "commands": [
       {
         "command": "chthonic.switchTheme",
@@ -105,7 +131,7 @@
       {
         "command": "chthonic.slabHeal",
         "title": "Chthonic: Self-Heal Slab",
-        "icon": "$(wrench)"
+        "icon": "$(hammer)"
       },
       {
         "command": "chthonic.refreshRustification",
@@ -158,7 +184,7 @@
           "id": "chthonic.chatView",
           "type": "webview",
           "name": "☥ ANKH Reference",
-          "icon": "$(book)"
+          "icon": "$(comment-discussion)"
         },
         {
           "id": "chthonic.abyssalView",

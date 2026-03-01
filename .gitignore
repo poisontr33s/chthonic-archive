@@ -214,6 +214,11 @@ extensions/*/bun.lock
 !scripts/mistralrs_client.py
 !scripts/hf_model_scout.py
 !scripts/generate-product-icon-font.mjs
+!scripts/vscode_settings_live_audit.py
+
+# Allow targeted workspace diagnostics
+!.vscode/
+!.vscode/SETTINGS_LIVE_AUDIT.md
 
 # Allow mistral.rs UI
 !apps/
