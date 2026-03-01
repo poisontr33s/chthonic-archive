@@ -193,7 +193,8 @@ The icon lane inherits the SFS baseline:
 | Token | Hex | Role |
 |-------|-----|------|
 | `bg` | `#050505` | Void substrate |
-| `stele` | `#0A0A0A` | Internal panel / chamber background |
+| `stele` | `#0A0A0A` | Workbench panel background (reference only — not used in SVGs) |
+| `stele-body` | `#2A2724` | SVG icon body fill (stele tablets, pylon walls). Lifted from `stele` for contrast. |
 | `fg` | `#E8E2D2` | Primary text / aged papyrus |
 | `gold` | `#F4C430` | Egyptian primary |
 | `copper` | `#D4714E` | Andean earth |
@@ -204,6 +205,10 @@ The icon lane inherits the SFS baseline:
 | `weathered` | `#908672` | Subdued secondary |
 | `kiln` | `#E05545` | Alert / conflict |
 | `verdigris` | `#8CB87A` | Growth / truth / validation |
+
+### Chamber Transparency Rule
+
+Closed folder pylon chambers use `fill-opacity="0.55"` on the inner `<rect x="5" y="5" width="6" height="8">` element. This allows theme background color to bleed through the portal, creating per-theme chromatic tinting from one global SVG set. Outer pylon walls and file stele bodies remain fully opaque. Open folder variants already use accent-color opacity fills.
 
 ---
 

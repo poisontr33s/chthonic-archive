@@ -193,9 +193,19 @@ only hex values change per-faction.
 - [ ] 7. Validate WCAG AA contrast ratios (≥4.5:1 text, ≥3:1 UI)
 - [ ] 8. Add theme to package.json contributes.themes[]
 - [ ] 9. Run icon_svg_audit.py to verify SVG visibility on new palette
+  - Stage 1.3 validates chamber transparency on closed folders — no SVG edits needed.
+    Folder inner chambers use `fill-opacity="0.55"` which auto-tints to the new
+    theme's `sidebar.background` via alpha compositing. See ANKH_ICON_GRAMMAR §Chamber Transparency Rule.
 - [ ] 10. Run sfa_cross_reference.py balance-audit to verify 50/50 equilibrium
 - [ ] 11. Capture Art Cop screenshots for visual regression baseline
 - [ ] 12. Atomic commit with faction designation in message
+- [ ] 13. Run `uv run scripts/link_audit.py check docs/design/ANKH_THEME_REFERENCE.md --fix` (+ ICON_GRAMMAR, WPTG) to resolve any broken refs from file gen/move
+- [ ] 14. Repackage and install VSIX to verify in live IDE
+  - `cd extensions/chthonic-archive`
+  - `bunx @vscode/vsce package --pre-release --no-dependencies --out chthonic-archive-insiders.vsix --skip-license`
+  - `code-insiders --install-extension chthonic-archive-insiders.vsix --force`
+  - Reload Window — confirm icons and theme render correctly
+  - See WPTG Pillar IV §VSIX Repackage Loop for full verification checklist
 
 ---
 

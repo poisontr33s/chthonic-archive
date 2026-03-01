@@ -62,8 +62,8 @@ Authoritative method: [WET_PAPER_TO_GOLD_METHODOLOGY.md](../../WET_PAPER_TO_GOLD
 
 | Pillar | Artifact | Current State |
 |--------|----------|---------------|
-| **Color Theme** | `chthonic-geology-color-theme.json` | 669 workbench, 83 tokens, 57 semantic |
-| **File/Folder Icons** | `chthonic-file-icon-theme.json` + 76 SVGs | 76 defs, 91 ext, 34 filenames, 33 langs, 35 folders |
+| **Color Theme** | `chthonic-geology-color-theme.json` | 669 workbench, 149 tokens, 57 semantic |
+| **File/Folder Icons** | `chthonic-file-icon-theme.json` + 96 SVGs | 76 defs, 91 ext, 34 filenames, 33 langs, 35 folders. Gold 10.10: 26 closed folder chambers at `fill-opacity="0.55"` |
 | **Product Icons** | `chthonic-product-icon-theme.json` + 43 SVGs | 46 overrides (43 glyphs), Tier 1: 39/39 (100%), overall: 46/535 (8.6%) |
 
 ---
@@ -119,6 +119,7 @@ Authoritative method: [WET_PAPER_TO_GOLD_METHODOLOGY.md](../../WET_PAPER_TO_GOLD
 | **2.0** | Structural Refinement | SVGO / path optimization / file size | ✅ Pass — 103 SVGs, 10 optimized (364B saved) |
 | **2.1** | Motif Distinctiveness | All pairs below 0.85 similarity | ✅ 0 collisions — 3 rounds: 11→6→3→0 |
 | **3.0** | Gold Standard | All gates pass, ready for packaging | ✅ GOLD — 96/96 structural, 96/96 WCAG, 96/96 palette, 0 collisions |
+| **1.3** | Chamber Transparency | Closed folder SVGs have `fill-opacity="0.55"` inner chamber | ✅ 26/26 pass — audit enforced via `icon_svg_audit.py` Stage 1.3 |
 
 ### Canonical Execution Bridge
 
@@ -175,13 +176,14 @@ Original: 24 pairs reduced to 11 (commit `7a544db0`), then resolved to 0 across 
 
 | Script | Lines | WPTG Stage | Purpose |
 |--------|-------|------------|---------|
-| `icon_filetype_census.py` | 415 | 0.0 / 0.1 | Workspace filetype census + coverage gap mapping |
-| `icon_svg_audit.py` | 392 | 1.0 / 1.1 / 1.2 | Structural, WCAG, palette validation |
-| `icon_svg_optimizer.py` | 228 | 2.0 | SVG path optimization (SVGO equiv) |
-| `icon_distinctiveness_audit.py` | 293 | 2.1 | Motif similarity / collision detection |
-| `sfa_cross_reference.py` | 800 | (cross-cutting) | 50/50 balance engine, motif assignment |
-| `theme_artcop.py` | 245 | (visual QA) | Screenshot-based quality assessment |
-| `vscode-art-cop.ts` | — | (visual QA) | Screenshot automation for Art Cop |
+| [icon_filetype_census.py](../../scripts/icon_filetype_census.py) | 415 | 0.0 / 0.1 | Workspace filetype census + coverage gap mapping |
+| [icon_svg_audit.py](../../scripts/icon_svg_audit.py) | ~430 | 1.0 / 1.1 / 1.2 / 1.3 | Structural, WCAG, palette, chamber transparency validation |
+| [icon_svg_optimizer.py](../../scripts/icon_svg_optimizer.py) | 228 | 2.0 | SVG path optimization (SVGO equiv) |
+| [icon_distinctiveness_audit.py](../../scripts/icon_distinctiveness_audit.py) | 293 | 2.1 | Motif similarity / collision detection |
+| [sfa_cross_reference.py](../../scripts/sfa_cross_reference.py) | 800 | (cross-cutting) | 50/50 balance engine, motif assignment |
+| [link_audit.py](../../scripts/link_audit.py) | ~408 | (cross-cutting) | Markdown `[label](path)` validation + auto-fix; collision index |
+| [theme_artcop.py](../../scripts/theme_artcop.py) | 245 | (visual QA) | Screenshot-based quality assessment |
+| [vscode-art-cop.ts](../../scripts/vscode-art-cop.ts) | — | (visual QA) | Screenshot automation for Art Cop |
 
 ---
 
@@ -203,10 +205,10 @@ The color theme is at 669/83/57 — a strong foundation. These stages refine and
 
 | Script | Purpose | Exists? |
 |--------|---------|---------|
-| `theme_token_coverage.py` | Audit token scope vs full TextMate grammar | ✅ Created |
+| [theme_token_coverage.py](../../scripts/theme_token_coverage.py) | Audit token scope vs full TextMate grammar | ✅ Created |
 | `theme_workbench_completeness.py` | Diff workbench keys vs VS Code schema | ❌ Create |
 | `theme_palette_discipline.py` | Trace all hex values to palette derivations | ❌ Create |
-| `theme_parity.py` | Cross-theme comparison (existing) | ✅ 141L |
+| [theme_parity.py](../../scripts/theme_parity.py) | Cross-theme comparison (existing) | ✅ 141L |
 
 ---
 
@@ -246,8 +248,8 @@ Question gate for future icon passes: "Is this a real codicon ID?" If no → rem
 
 | Script | Purpose | Exists? |
 |--------|---------|---------|
-| `product_icon_census.py` | Map VS Code product icon IDs vs coverage | ✅ Created |
-| Product SVG audit | Reuse `icon_svg_audit.py` (extend to product/ path) | ✅ Extend |
+| [product_icon_census.py](../../scripts/product_icon_census.py) | Map VS Code product icon IDs vs coverage | ✅ Created |
+| Product SVG audit | Reuse [icon_svg_audit.py](../../scripts/icon_svg_audit.py) (extend to product/ path) | ✅ Extend |
 
 ---
 
@@ -255,14 +257,158 @@ Question gate for future icon passes: "Is this a real codicon ID?" If no → rem
 
 The extension manifest, commands, tree view, and build pipeline must be cohesive.
 
+### Two Development Loops
+
+| Loop | Command | When to Use | What Changes |
+|------|---------|-------------|--------------|
+| **Dev Host** | `bun run insiders:run` | Fast iteration on TS source, commands, UI. Opens a **separate** VS Code window reading directly from workspace source. | TypeScript, commands, webview panels |
+| **VSIX Repackage** | Package → Install → Reload | Final verification in your **real workspace**. The installed extension is a snapshot — it does not track source. | SVGs, theme JSONs, icon-theme JSON, product-icon font, any visual change |
+
+**Rule of thumb:** If you changed anything under `themes/` or `icons/`, you must repackage. If you only changed `.ts` source, the dev host is faster.
+
+### VSIX Repackage Loop (Canonical Build→Verify Cycle)
+
+Edits to SVGs, theme JSONs, or extension source in `extensions/chthonic-archive/`
+do **not** appear in VS Code until the extension is repackaged and reinstalled.
+The installed extension lives at `%USERPROFILE%\.vscode-insiders\extensions\chthonic-archive.chthonic-archive-<version>\`
+and is a **snapshot** — it does not track workspace source.
+
+```powershell
+# 0. Link audit — resolve broken refs from any file gen/move/rename
+uv run scripts/link_audit.py check docs/design/ANKH_THEME_REFERENCE.md --fix
+uv run scripts/link_audit.py check docs/design/ANKH_ICON_GRAMMAR.md --fix
+uv run scripts/link_audit.py check docs/design/SFS_WPTG_ITERATION_PLAN.md --fix
+
+# 1. Package (runs compile via prepublish automatically)
+cd extensions/chthonic-archive
+bunx @vscode/vsce package --pre-release --no-dependencies --out chthonic-archive-insiders.vsix --skip-license
+
+# 2. Install
+code-insiders --install-extension chthonic-archive-insiders.vsix --force
+
+# 3. Reload VS Code Insiders (Ctrl+Shift+P → "Developer: Reload Window")
+```
+
+**Step 0 rationale:** When files are generated, replaced, or moved during a WPTG stage, cross-references in the three canon design docs can break silently. `link_audit.py check <file> --fix` resolves fixable broken paths in-place (unique basename match → auto-rewrite) and flags ambiguous or missing targets. Run it before packaging so the VSIX ships with clean docs.
+
+Shortcut: `bun run insiders:package` runs step 1 (requires interactive `y` for missing LICENSE unless `--skip-license` is passed to vsce).
+
+**Verification after install:**
+- `code-insiders --list-extensions | Select-String chthonic` → confirms installed
+- Check `%USERPROFILE%\.vscode-insiders\extensions\chthonic-archive.chthonic-archive-<version>\themes\icons\` → SVGs match source
+- Settings must have `workbench.iconTheme: chthonic-file-icons` and `workbench.productIconTheme: chthonic-product-icons`
+
 ### Planned Stages
 
 | Stage | Name | Description | Status |
 |-------|------|-------------|--------|
 | **8.0** | Manifest Validation | Verify `package.json` contributes (themes, icons, commands) are wired correctly. All theme files referenced. | ✅ Done (commit 1e3a880e) |
-| **8.1** | Build Pipeline Health | `bun run compile` succeeds. `dist/extension.js` < 200KB. No dead imports. | ✅ Current: 100.33KB |
+| **8.1** | Build Pipeline Health | `bun run compile` succeeds. `dist/extension.js` < 200KB. No dead imports. | ✅ Current: 101.1KB |
 | **8.2** | Visual Regression Baseline | Capture Art Cop screenshots of SFS in active workspace. Store as baseline for future regression comparison. | ⬜ Not started |
 | **9.0** | Release Readiness | Marketplace metadata (README, CHANGELOG, screenshots, gallery images) prepared. Version bumped. | ⬜ Not started |
+
+---
+
+## Gold 10.10 — Cross-Theme Icon Modulation (Cross-Pillar Gate)
+
+**Binds:** Pillar I (Icons) + Pillar II (Color Theme) + Pillar IV (Integration)
+
+**Definition:** "If SVG icon backgrounds can be theme-modulated, that is the gold 10.10 achievement — the highest WPTG milestone for theme integration." — [ANKH_THEME_REFERENCE.md](ANKH_THEME_REFERENCE.md)
+
+### Architecture Trace
+
+```
+Color Theme (user selects 1 of 4)
+  → chthonic-{geology|mandala|rogbiv|decorator}-color-theme.json
+  → sidebar.background, editor.background, etc. (DIFFERENT per theme)
+      ↓
+File Icon Theme (shared — ONE icon theme across all 4 color themes)
+  → chthonic-file-icon-theme.json → 100 iconDefinitions (iconPath only)
+      ↓
+96 SVGs — stele (files) + pylon (folders), opaque #2A2724 body fills
+  → VS Code renders as <img> / CSS background-image
+  → NO CSS variable inheritance, NO currentColor cascade for SVG iconPaths
+```
+
+### VS Code API Constraints
+
+The official [file icon theme contract](https://code.visualstudio.com/api/extension-guides/file-icon-theme) provides:
+
+| Feature | Scope | Usable? |
+|---------|-------|---------|
+| `iconPath` | SVG/PNG path per definition | ✅ In use |
+| `fontCharacter` + `fontColor` | Font-based icons only | ❌ N/A for SVGs |
+| `light` | Binary override for light themes | ❌ All 4 themes are dark |
+| `highContrast` | Binary override for high-contrast | ❌ Not relevant |
+| Per-color-theme overrides | Not in API | ❌ Does not exist |
+
+**Conclusion:** VS Code provides no per-dark-theme icon variation mechanism for SVG-based file icons. Product icons (font-based) already inherit theme color automatically via `currentColor`.
+
+### Validated Mechanism: Inner Chamber Transparency
+
+SVGs rendered as images DO support alpha transparency. Background composites through.
+
+**Strategy:** Apply `fill-opacity` only to **inner chamber planes** in closed folder pylons. Outer pylon walls and file stele bodies remain opaque. This preserves structural mass while allowing theme background to bleed through the portal.
+
+**SVG Anatomy (175 `#2A2724` fills across 96 SVGs):**
+
+| Plane | Count | Treatment |
+|-------|-------|-----------|
+| File stele body | 44 (1 per file) | **Opaque** — single monolithic fill, no separable inner plane |
+| Folder pylon walls | 52 (2 per folder) | **Opaque** — structural mass, must read as stone |
+| Folder inner chamber | 26 (1 per closed folder) | **`fill-opacity="0.55"`** — portal reads as recessed depth, theme bleeds through |
+| Folder open variants | 0 | Already use accent-color opacity fills (`opacity="0.15"`) |
+
+### Contrast Validation
+
+**Outer wall (opaque `#2A2724`) vs sidebar backgrounds:**
+
+| Theme | Sidebar BG | Contrast |
+|-------|------------|----------|
+| Geology | `#100D0A` | 1.305:1 |
+| Mandala | `#171210` | 1.251:1 |
+| Decorator | `#141110` | 1.266:1 |
+| ROGBIV | `#100E18` | 1.288:1 |
+
+**Inner chamber composited (alpha=0.55) — accent motif legibility IMPROVES:**
+
+| Accent | On Opaque Chamber | On Translucent Chamber | Delta |
+|--------|-------------------|------------------------|-------|
+| Gold (`#F4C430`) | 9.04:1 | 10.1–10.4:1 | +12% |
+| Copper (`#D4714E`) | 4.44:1 | 5.0–5.1:1 | +12% |
+| Patina (`#7AAAB2`) | 5.81:1 | 6.5–6.7:1 | +12% |
+| Sandstone (`#B9A37A`) | 6.07:1 | 6.8–7.0:1 | +12% |
+
+**Wall-to-chamber depth contrast:** ~1.12–1.15:1 (subtle dimensional depth, not a legibility target)
+
+### A/B Phase (Current)
+
+Applied `fill-opacity="0.55"` to inner chamber rects in 3 canonical closed folders:
+
+| Icon | Status | Chamber Element |
+|------|--------|-----------------|
+| `folder-default.svg` | ✅ Applied | `<rect x="6" y="6" width="4" height="6.5">` |
+| `folder-temple.svg` | ✅ Applied | `<rect x="5" y="5" width="6" height="8">` |
+| `folder-session-archives.svg` | ✅ Applied | `<rect x="5" y="5" width="6" height="8">` |
+| `file-default.svg` | — | No separable inner plane (single stele body) |
+
+Pending visual validation before rollout to remaining 23 closed folders.
+
+### Rollout Gate
+
+| Step | Description | Status |
+|------|-------------|--------|
+| A/B-1 | Apply to 3 canonical folders | ✅ Done |
+| A/B-2 | Visual inspection across all 4 themes | ✅ Done |
+| A/B-3 | Roll out to remaining 23 closed folders | ✅ Done — 26/26 verified |
+| A/B-4 | Audit pipeline enforcement (Stage 1.3) | ✅ Done — `icon_svg_audit.py` validates chamber opacity |
+| **10.10** | **Gold** | ✅ GOLD — All 26 closed folder chambers translucent, 4 themes auto-tint via alpha compositing. File steles opaque. Audit enforced. |
+
+### What 10.10 Does NOT Cover
+
+- File stele body modulation (single monolithic fill — would require adding a new inner rect to all 44 SVGs)
+- Product icon modulation (already handled — font-based icons inherit `currentColor` from workbench theme)
+- Light theme variants (all 4 themes are dark; `light` override exists in API but is unused)
 
 ---
 
@@ -522,6 +668,7 @@ Codex's structural enforcement role supports the WPTG by validating that:
 | [theme_artcop.py](../../scripts/theme_artcop.py) | (visual QA) | Screenshot-based quality assessment |
 | [vscode-art-cop.ts](../../scripts/vscode-art-cop.ts) | (visual QA) | Screenshot automation |
 | [sfs_slabstone_baseline.py](../../scripts/sfs_slabstone_baseline.py) | (cross-cutting) | Generated anchor report for canon-doc linkage and live SFS asset reproducibility |
+| [link_audit.py](../../scripts/link_audit.py) | (cross-cutting) | Markdown link validation + auto-fix; runs as Step 0 of VSIX Repackage Loop |
 | [normalize_blessing_box.py](../../scripts/normalize_blessing_box.py) | S.B | Blessing envelope normalization |
 | [vscode_settings_live_audit.py](../../scripts/vscode_settings_live_audit.py) | (validation) | Settings/language drift detection |
 

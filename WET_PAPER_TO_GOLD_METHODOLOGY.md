@@ -445,10 +445,10 @@ This section describes the *decision process*. It does NOT authorize any specifi
 | Category | How to Identify | What to Propose |
 |----------|----------------|-----------------|
 | Auto-generated metadata | Pattern-matched (e.g. `*.meta.json`) | "These N files are regenerable. Want me to list them?" |
-| Backup copies | `* - Copy.*`, `*.bak_*` | "Git history preserves originals. Candidates: [list]" |
+| Backup copies | `* - Copy.*`, `*.bak_*` | "Git history preserves originals. Candidates: \[list\]" |
 | Orphan duplicates | Same content exists elsewhere | "Live copy is at X. This copy appears stale." |
 | Temp/transient | `_tmp_*`, state files | "These appear to be runtime artifacts." |
-| Variant chains | Multiple versions of same script | "Best variant appears to be X. Others: [list]" |
+| Variant chains | Multiple versions of same script | "Best variant appears to be X. Others: \[list\]" |
 
 **Triage output:** A conversation message or mailbox task listing candidates with rationale. The user approves specific items. Only then does execution happen.
 

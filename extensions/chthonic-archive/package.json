@@ -400,7 +400,7 @@
     "watch:worker": "bun build src/entropy/entropyWorker.ts --outfile dist/entropy-worker.js --target node --format cjs --watch",
     "test:e2e": "bun run scripts/e2e-extension-host.ts",
     "insiders:kits:check": "bunx @vscode/vsce --version && bunx vscode-test-web --help",
-    "insiders:package": "bunx @vscode/vsce package --pre-release --no-dependencies --out chthonic-archive-insiders.vsix",
+    "insiders:package": "bunx @vscode/vsce package --pre-release --no-dependencies --out chthonic-archive-insiders.vsix --skip-license",
     "insiders:run": "code-insiders --extensionDevelopmentPath=.",
     "insiders:dts:sync": "bunx @vscode/dts dev && bunx @vscode/dts main",
     "insiders:restart:gate": "bun run scripts/insiders-post-restart-verify.ts --gate-only",
