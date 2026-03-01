@@ -366,6 +366,12 @@ not a casual local variation.
 | [ANKH_README.md (ankh)](../frameworks/ankh/ANKH_README.md) | 50/50 Egyptological × Andean abstraction, top-level ANKH bridge |
 | [SFA_CROSS_REFERENCE_SCAN.md](../../claude/mailbox/SFA_CROSS_REFERENCE_SCAN.md) | Motif balance audit, motif-to-palette lineage |
 
+### Methodology
+
+| File | Relevance |
+|------|-----------|
+| [WET_PAPER_TO_GOLD_METHODOLOGY.md](../../WET_PAPER_TO_GOLD_METHODOLOGY.md) | Governs preservation-first icon/script refinement and the dry-lane contract for static script/skill audits |
+
 ### Canon Exemplars
 
 | File | Lane | Role |

@@ -103,7 +103,8 @@ If you are a new session picking up from a crash:
 | S.0 | Python Header Canon | (this commit) | 143 files: spaced→tight `#-*-` |
 | 4.0 | Token Scope Coverage Audit | (this commit) | 83 rules, 57 semantic; 12/13 TM cats, 25/52 LSP types |
 | S.3 | Rust @SID Tags | `92ceffc2` | 16/16 files: @SID + @Shabti in //! blocks |
-| 6.0 | Product Icon Census | (this commit) | 6/534 (1.1%); 39 Tier 1 gaps; `hammer` invalid |
+| 6.0 | Product Icon Census | (this commit) | 6/535 (1.1%); 39 Tier 1 gaps; `hammer` invalid |
+| 6.1 | Product Icon Expansion | (this commit) | 39/39 Tier 1 (100%); 42-glyph WOFF; 45 codicon overrides; scarab+Horus motifs |
 | KCP-0.0 | Protocol Ontology Spec | (this commit) | 15/15 fields mapped; 0 data loss; `docs/standards/KCP_PROTOCOL_ONTOLOGY.md` |
 | KCP-1.0 | Architecture Ratification | (this commit) | Approach C locked; A/B/D/E rejected; `docs/standards/KCP_ARCHITECTURE_RATIFICATION.md` |
 | KCP-2.0 | Template Canonization | (this commit) | 4/4 templates pass native parser; `docs/standards/templates/kcp_template.*` |
@@ -133,7 +134,8 @@ If you are a new session picking up from a crash:
 | S.0 | Python `#-*-` tight format | ✅ | 143 files fixed, 0 spaced remaining |
 | S.3 | Rust @SID tags | ✅ | 16 files: @SID + @Shabti in //! blocks |
 | 4.0 | Token scope coverage | ✅ | 83 rules, 57 semantic; script: `scripts/theme_token_coverage.py` |
-| 6.0 | Product icon census | ✅ | 6/534 codicon IDs; script: `scripts/product_icon_census.py` |
+| 6.0 | Product icon census | ✅ | 6/535 codicon IDs; script: `scripts/product_icon_census.py` |
+| 6.1 | Product icon expansion | ✅ | 39/39 Tier 1; 36 new SVGs; 42-glyph WOFF (1.8KB); scarab debug + Eye of Horus copilot |
 | 2.0→3.0 | SVG Optimization + Gold Standard | ✅ | 103 SVGs optimized, 0 collisions, 96/96 structural+WCAG+palette |
 | LAT | Local AI Teaching Framework | 🔄 | Gemini deep research dispatched (3 queries: QLoRA MoE feasibility, distillation pipelines, structured output training). SFS theme = candidate domain. Brief: `claude/mailbox/GEMINI_DEEP_RESEARCH_BRIEF_LOCAL_AI_TEACHING.md` |
 | GEX | Genre Extractor dedup fix | ✅ | `d25f2735`: batch-scoped path filter + resolve() dedup. 94→50 profiles. |
@@ -150,6 +152,7 @@ If you are a new session picking up from a crash:
 6. ~~**4.0**~~ — ~~Token scope coverage audit~~ ✅
 7. ~~**S.3**~~ — ~~Rust @SID tags~~ ✅
 8. ~~**6.0**~~ — ~~Product icon census~~ ✅
+9. ~~**6.1**~~ — ~~Product icon Tier 1 expansion (39/39)~~ ✅
 
 ---
 

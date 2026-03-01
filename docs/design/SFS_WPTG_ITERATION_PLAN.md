@@ -41,6 +41,21 @@ tags:
 This plan covers **SFS only**. No Mandala, ROGBIV, or Decorator work.
 Each MILF/Sub-MILF receives its own WPTG pass, using SFS as the structural template.
 
+## Dry Lane Contract (Scripts + Skills)
+
+When the SFS lane audits its supporting automation in `scripts/` and
+`.codex/skills/`, and execution would intersect live extension work, the audit
+stays in **dry lane** mode.
+
+Dry lane obligations:
+- inspect script/skill contracts statically before running anything
+- classify each surface as `preserve`, `refactor`, `re-scope`, or `demote`
+- treat redirect/stashed skills as provenance artifacts, not active runtime guidance
+- reserve salvage/embalming for destructive or provenance-critical edits only
+- do not generate reports, refresh manifests, or churn mailbox artifacts during overlapping lanes
+
+Authoritative method: [WET_PAPER_TO_GOLD_METHODOLOGY.md](../../WET_PAPER_TO_GOLD_METHODOLOGY.md)
+
 ---
 
 ## Three Pillars
@@ -49,7 +64,7 @@ Each MILF/Sub-MILF receives its own WPTG pass, using SFS as the structural templ
 |--------|----------|---------------|
 | **Color Theme** | `chthonic-geology-color-theme.json` | 669 workbench, 83 tokens, 57 semantic |
 | **File/Folder Icons** | `chthonic-file-icon-theme.json` + 76 SVGs | 76 defs, 91 ext, 34 filenames, 33 langs, 35 folders |
-| **Product Icons** | `chthonic-product-icon-theme.json` + 7 SVGs | 7 icons: pulse, shield, paintcan, layers, comment-discussion, hammer, flame |
+| **Product Icons** | `chthonic-product-icon-theme.json` + 42 SVGs | 45 overrides (42 glyphs), Tier 1: 39/39 (100%), overall: 45/535 (8.4%) |
 
 ---
 
@@ -196,14 +211,14 @@ The color theme is at 669/83/57 — a strong foundation. These stages refine and
 
 ## Pillar III — Product Icons (Stages 6.0→7.0)
 
-7 product icons exist. VS Code's product icon theme supports 400+ icon IDs. This pillar expands coverage.
+45 product icon overrides (6 original + 39 Tier 1 expansion). Tier 1 coverage: 100%. Font: 42-glyph WOFF (1.8 KB).
 
 ### Planned Stages
 
 | Stage | Name | Description | Status |
 |-------|------|-------------|--------|
-| **6.0** | Product Icon Census | Map all VS Code product icon IDs in active use (activity bar, status bar, editor widgets, debug, SCM, testing, etc.) against current 7. | ✅ 6/534 (1.1%) — 39 Tier 1 gaps, `hammer` invalid |
-| **6.1** | Priority Expansion | Design and implement icons for highest-visibility product icon slots (activity bar, editor actions, debug controls). | ⬜ Not started |
+| **6.0** | Product Icon Census | Map all VS Code product icon IDs in active use (activity bar, status bar, editor widgets, debug, SCM, testing, etc.) against current 7. | ✅ 6/535 (1.1%) — 39 Tier 1 gaps identified, `hammer` invalid |
+| **6.1** | Priority Expansion | Design and implement icons for highest-visibility product icon slots (activity bar, editor actions, debug controls). | ✅ 39/39 Tier 1 — 36 new SVGs, 42-glyph WOFF, 45 codicon mappings. Signature: scarab (debug), Eye of Horus (copilot). |
 | **6.2** | Product Palette + Motif Audit | Verify product SVGs use SFS palette and maintain Egypto-Andean motif vocabulary. | ⬜ Not started |
 | **7.0** | Product Icon Gold Standard | All high-visibility slots covered. Palette and motif compliant. Visual coherence with file icons. | ⬜ Not started |
 
@@ -442,7 +457,7 @@ Codex's structural enforcement role supports the WPTG by validating that:
 
 | File | Relevance |
 |------|-----------|
-| [WET_PAPER_TO_GOLD_METHODOLOGY.md (.)](../../WET_PAPER_TO_GOLD_METHODOLOGY.md) | WPTG foundational axioms |
+| [WET_PAPER_TO_GOLD_METHODOLOGY.md (.)](../../WET_PAPER_TO_GOLD_METHODOLOGY.md) | WPTG foundational axioms plus the dry-lane contract for script/skill dumpster-diving |
 | [ANKH_README.md (ankh)](../frameworks/ankh/ANKH_README.md) | 50/50 Egyptological × Andean abstraction |
 | [SFA_CROSS_REFERENCE_SCAN.md](../../claude/mailbox/SFA_CROSS_REFERENCE_SCAN.md) | Motif balance audit, motif-to-palette lineage |
 | [ANKH_UNIFYING_REPOSITORY_METADATA_STANDARDS.md](../../claude-codex-gemini/ANKH_EGYPTOLOGY_SOUTH_AMERICAN/ANKH_UNIFYING_REPOSITORY_METADATA_STANDARDS.md) | Gemini research: Khipu-Cartouche Protocol |

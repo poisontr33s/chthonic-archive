@@ -324,6 +324,52 @@ For iterative WIP upcycling, use these defaults unless user overrides:
 - `bun_lock_integrity_required: true`
 - `cross_lane_policy: { python: uv, rust: cargo }`
 
+### Dry Lane Contract (Skills + Scripts)
+
+When the active task is to dumpster-dive `.codex/skills/` and `scripts/` as
+live repository contract surfaces, and mutation/execution would intersect other
+development lanes, the WPTG cycle enters a **dry lane**.
+
+Dry lane rules:
+- **Static-first only**: use file reads, search, manifest inspection, and diff
+  classification. Do not run repo scripts, generators, mailbox refreshers, or
+  background loops unless the user explicitly re-opens execution.
+- **Repo-local authority**: truth comes from the current repository, local
+  manifests, and installed first-party rig/toolchain evidence, not marketplace
+  folklore or stale skill text.
+- **Contract before convenience**: inspect every script/skill for inputs,
+  outputs, write surfaces, strictness, dry-run support, fallback behavior, and
+  exit semantics before judging whether it is "useful."
+- **Conditional provenance only**: salvage/embalming is reserved for
+  destructive edits, deletion-risk work, or provenance-critical surgery. It is
+  not a universal pre-edit reflex.
+- **No overnight churn**: dry lane may produce hand-authored contract prose or
+  patch plans only. It may not generate reports, rewrite mailboxes, refresh
+  manifests, or emit derived artifacts while overlapping lanes are active.
+- **No meta proliferation**: findings must collapse toward fewer active
+  surfaces, not spawn wrapper-on-wrapper tooling.
+
+Required classification for each inspected script/skill:
+
+| Class | Meaning | Expected Next Move |
+|------|---------|--------------------|
+| `preserve` | Contract is live and coherent | Keep; link it into canon if missing |
+| `refactor` | Useful core, weak shell/CLI/contract | Tighten behavior contract in place |
+| `re-scope` | Useful only under narrower conditions | Fence it behind explicit lane boundaries |
+| `demote` | Redirect/stashed/ceremonial surface | Remove from active routing pressure; keep only as provenance |
+
+Promotion requirements for scripts in this lane:
+- deterministic CLI contract
+- explicit write/read behavior
+- `--strict` when pass/fail matters
+- `--dry-run` whenever mutation is possible
+- stable repo-root-safe path handling
+- honest fallback behavior (no silent degradation)
+
+Convergence rule:
+- stop the dry lane once contradictions are captured as contract and the next
+  move would require execution, cross-lane coordination, or user timing
+
 ---
 
 ## Harvest Structure

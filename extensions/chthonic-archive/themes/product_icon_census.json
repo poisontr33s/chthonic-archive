@@ -2,25 +2,62 @@
   "stage": "6.0",
   "name": "Product Icon Census",
   "total_codicon_ids": 535,
-  "theme_definitions": 7,
+  "theme_definitions": 45,
   "valid_overrides": [
+    "account",
+    "bell",
+    "bell-dot",
+    "bell-slash",
+    "bell-slash-dot",
+    "chrome-close",
+    "chrome-maximize",
+    "chrome-minimize",
+    "chrome-restore",
     "comment-discussion",
+    "copilot",
+    "copilot-blocked",
+    "copilot-error",
+    "copilot-in-progress",
+    "copilot-large",
+    "copilot-not-connected",
+    "copilot-snooze",
+    "copilot-success",
+    "copilot-unavailable",
+    "copilot-warning",
+    "copilot-warning-large",
+    "debug",
+    "debug-alt",
+    "error",
+    "error-small",
+    "extensions",
+    "extensions-large",
+    "files",
     "flame",
+    "git-branch",
+    "git-branch-changes",
+    "git-branch-conflicts",
+    "git-branch-staged-changes",
+    "info",
     "layers",
     "paintcan",
     "pulse",
-    "shield"
+    "remote",
+    "remote-explorer",
+    "search",
+    "settings-gear",
+    "shield",
+    "sync",
+    "sync-ignored",
+    "warning"
   ],
-  "invalid_definitions": [
-    "hammer"
-  ],
-  "coverage_pct": 1.1,
+  "invalid_definitions": [],
+  "coverage_pct": 8.4,
   "tier_summary": {
     "tier_1": {
       "label": "always_visible",
       "total": 39,
-      "covered": 0,
-      "gap_count": 39
+      "covered": 39,
+      "gap_count": 0
     },
     "tier_2": {
       "label": "frequently_visible",
@@ -44,8 +81,8 @@
   "category_summary": {
     "accounts": {
       "total": 1,
-      "covered": 0,
-      "gap_count": 1
+      "covered": 1,
+      "gap_count": 0
     },
     "ai-chat": {
       "total": 9,
@@ -54,8 +91,8 @@
     },
     "ai-copilot": {
       "total": 10,
-      "covered": 0,
-      "gap_count": 10
+      "covered": 10,
+      "gap_count": 0
     },
     "comments": {
       "total": 5,
@@ -64,23 +101,23 @@
     },
     "debug": {
       "total": 33,
-      "covered": 0,
-      "gap_count": 33
+      "covered": 2,
+      "gap_count": 31
     },
     "diagnostics": {
       "total": 3,
-      "covered": 0,
-      "gap_count": 3
+      "covered": 3,
+      "gap_count": 0
     },
     "files": {
       "total": 14,
-      "covered": 0,
-      "gap_count": 14
+      "covered": 2,
+      "gap_count": 12
     },
     "general": {
       "total": 334,
-      "covered": 0,
-      "gap_count": 334
+      "covered": 6,
+      "gap_count": 328
     },
     "layout": {
       "total": 18,
@@ -99,8 +136,8 @@
     },
     "notifications": {
       "total": 3,
-      "covered": 0,
-      "gap_count": 3
+      "covered": 3,
+      "gap_count": 0
     },
     "panel": {
       "total": 1,
@@ -109,23 +146,23 @@
     },
     "remote": {
       "total": 7,
-      "covered": 0,
-      "gap_count": 7
+      "covered": 1,
+      "gap_count": 6
     },
     "scm": {
       "total": 26,
-      "covered": 0,
-      "gap_count": 26
+      "covered": 4,
+      "gap_count": 22
     },
     "search": {
       "total": 1,
-      "covered": 0,
-      "gap_count": 1
+      "covered": 1,
+      "gap_count": 0
     },
     "settings": {
       "total": 1,
-      "covered": 0,
-      "gap_count": 1
+      "covered": 1,
+      "gap_count": 0
     },
     "symbols": {
       "total": 23,
@@ -134,8 +171,8 @@
     },
     "sync": {
       "total": 1,
-      "covered": 0,
-      "gap_count": 1
+      "covered": 1,
+      "gap_count": 0
     },
     "terminal": {
       "total": 9,
@@ -159,51 +196,11 @@
     },
     "window-chrome": {
       "total": 4,
-      "covered": 0,
-      "gap_count": 4
+      "covered": 4,
+      "gap_count": 0
     }
   },
-  "tier_1_gaps": [
-    "account",
-    "bell",
-    "bell-dot",
-    "bell-slash",
-    "bell-slash-dot",
-    "chrome-close",
-    "chrome-maximize",
-    "chrome-minimize",
-    "chrome-restore",
-    "copilot",
-    "copilot-blocked",
-    "copilot-error",
-    "copilot-in-progress",
-    "copilot-large",
-    "copilot-not-connected",
-    "copilot-snooze",
-    "copilot-success",
-    "copilot-unavailable",
-    "copilot-warning",
-    "copilot-warning-large",
-    "debug",
-    "debug-alt",
-    "error",
-    "error-small",
-    "extensions",
-    "extensions-large",
-    "files",
-    "git-branch",
-    "git-branch-changes",
-    "git-branch-conflicts",
-    "git-branch-staged-changes",
-    "info",
-    "remote",
-    "remote-explorer",
-    "search",
-    "settings-gear",
-    "sync",
-    "sync-ignored",
-    "warning"
-  ],
+  "tier_1_gaps": [],
   "tier_2_gaps": [
     "add",
     "add-small",

@@ -8,13 +8,55 @@ import { createReadStream, writeFileSync, mkdirSync } from 'fs';
 import { resolve, join } from 'path';
 
 const ICONS = [
+  // ── Existing (Pillar I) ──
   { name: 'comment-discussion', codepoint: 0xE001 },
   { name: 'flame',              codepoint: 0xE002 },
-  { name: 'hammer',             codepoint: 0xE003 },
   { name: 'layers',             codepoint: 0xE004 },
   { name: 'paintcan',           codepoint: 0xE005 },
   { name: 'pulse',              codepoint: 0xE006 },
   { name: 'shield',             codepoint: 0xE007 },
+  // ── Activity Bar ──
+  { name: 'files',              codepoint: 0xE008 },
+  { name: 'search',             codepoint: 0xE009 },
+  { name: 'extensions',         codepoint: 0xE00A },
+  { name: 'debug',              codepoint: 0xE00B },
+  { name: 'debug-alt',          codepoint: 0xE00C },
+  { name: 'remote',             codepoint: 0xE00D },
+  { name: 'remote-explorer',    codepoint: 0xE00E },
+  // ── Status Bar ──
+  { name: 'sync',               codepoint: 0xE00F },
+  { name: 'sync-ignored',       codepoint: 0xE010 },
+  { name: 'error',              codepoint: 0xE011 },
+  { name: 'error-small',        codepoint: 0xE012 },
+  { name: 'warning',            codepoint: 0xE013 },
+  { name: 'info',               codepoint: 0xE014 },
+  { name: 'settings-gear',      codepoint: 0xE015 },
+  { name: 'account',            codepoint: 0xE016 },
+  // ── Notifications ──
+  { name: 'bell',               codepoint: 0xE017 },
+  { name: 'bell-dot',           codepoint: 0xE018 },
+  { name: 'bell-slash',         codepoint: 0xE019 },
+  { name: 'bell-slash-dot',     codepoint: 0xE01A },
+  // ── Git / SCM ──
+  { name: 'git-branch',                codepoint: 0xE01B },
+  { name: 'git-branch-changes',        codepoint: 0xE01C },
+  { name: 'git-branch-conflicts',      codepoint: 0xE01D },
+  { name: 'git-branch-staged-changes', codepoint: 0xE01E },
+  // ── Window Chrome ──
+  { name: 'chrome-close',       codepoint: 0xE01F },
+  { name: 'chrome-maximize',    codepoint: 0xE020 },
+  { name: 'chrome-minimize',    codepoint: 0xE021 },
+  { name: 'chrome-restore',     codepoint: 0xE022 },
+  // ── Copilot (Eye of Horus) ──
+  { name: 'copilot',              codepoint: 0xE023 },
+  { name: 'copilot-blocked',      codepoint: 0xE024 },
+  { name: 'copilot-error',        codepoint: 0xE025 },
+  { name: 'copilot-in-progress',  codepoint: 0xE026 },
+  { name: 'copilot-not-connected', codepoint: 0xE027 },
+  { name: 'copilot-snooze',       codepoint: 0xE028 },
+  { name: 'copilot-success',      codepoint: 0xE029 },
+  { name: 'copilot-unavailable',  codepoint: 0xE02A },
+  { name: 'copilot-warning',      codepoint: 0xE02B },
 ];
 
 const svgDir = resolve('extensions/chthonic-archive/themes/icons/product');

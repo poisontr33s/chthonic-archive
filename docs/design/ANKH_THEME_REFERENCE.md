@@ -235,7 +235,7 @@ Refresh the generated anchor with
 
 | File | Relevance |
 |------|-----------|
-| [WET_PAPER_TO_GOLD_METHODOLOGY.md (.)](../../WET_PAPER_TO_GOLD_METHODOLOGY.md) | WPTG foundational axioms |
+| [WET_PAPER_TO_GOLD_METHODOLOGY.md (.)](../../WET_PAPER_TO_GOLD_METHODOLOGY.md) | WPTG foundational axioms plus the dry-lane contract for script/skill dumpster-diving |
 | [ANKH_README.md (ankh)](../frameworks/ankh/ANKH_README.md) | 50/50 Egyptological × Andean abstraction |
 | [SFA_CROSS_REFERENCE_SCAN.md](../../claude/mailbox/SFA_CROSS_REFERENCE_SCAN.md) | Motif balance audit, motif-to-palette lineage |
 | [BLACKSMITH_MATRIARCH.md (dumpster-dive)](../../dumpster-dive/BLACKSMITH_MATRIARCH.md) | SFS persona, dumpster-dive domain authority |
