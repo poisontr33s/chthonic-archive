@@ -105,6 +105,7 @@ If you are a new session picking up from a crash:
 | S.3 | Rust @SID Tags | `92ceffc2` | 16/16 files: @SID + @Shabti in //! blocks |
 | 6.0 | Product Icon Census | (this commit) | 6/535 (1.1%); 39 Tier 1 gaps; `hammer` invalid |
 | 6.1 | Product Icon Expansion | (this commit) | 39/39 Tier 1 (100%); 42-glyph WOFF; 45 codicon overrides; scarab+Horus motifs |
+| 6.2 | BCE Motif Redesign | (this commit) | 28 SVGs rewritten with ANKH motif bank provenance; 42-glyph WOFF (2.0KB); E2E 3/3; slabstone PASS |
 | KCP-0.0 | Protocol Ontology Spec | (this commit) | 15/15 fields mapped; 0 data loss; `docs/standards/KCP_PROTOCOL_ONTOLOGY.md` |
 | KCP-1.0 | Architecture Ratification | (this commit) | Approach C locked; A/B/D/E rejected; `docs/standards/KCP_ARCHITECTURE_RATIFICATION.md` |
 | KCP-2.0 | Template Canonization | (this commit) | 4/4 templates pass native parser; `docs/standards/templates/kcp_template.*` |
@@ -136,6 +137,8 @@ If you are a new session picking up from a crash:
 | 4.0 | Token scope coverage | ✅ | 83 rules, 57 semantic; script: `scripts/theme_token_coverage.py` |
 | 6.0 | Product icon census | ✅ | 6/535 codicon IDs; script: `scripts/product_icon_census.py` |
 | 6.1 | Product icon expansion | ✅ | 39/39 Tier 1; 36 new SVGs; 42-glyph WOFF (1.8KB); scarab debug + Eye of Horus copilot |
+| 6.2 | BCE motif redesign | ✅ | 28 SVGs rewritten: papyrus scroll, Wedjat eye, ashlar masonry, kheper scarab, khopesh, Djed pillar, broken ankh, pyramid+eye, obelisk, Inti sun disc, Nemes headdress, ouroboros, Nile delta(×4), sistrum(×4), cartouche tablets, pigment mortar, Ka arms, ox-hide shield, sedimentary strata. WOFF 2.0KB. |
+| ET-S | Archaeological Toolform Baseline | ✅ | Codex research lane. `docs/reference/ETS_ARCHAEOLOGICAL_TOOLFORM_BASELINE.md`. Primary-source archaeology (Met, UCL, BM, Smarthistory, Cleveland). 4 silhouette directions: mallet+trapezoid, adze+tupu, pounder+polygon, hammered-sheet head. `hammer.svg` redesigned to Direction B (adze-tupu hybrid). |
 | 2.0→3.0 | SVG Optimization + Gold Standard | ✅ | 103 SVGs optimized, 0 collisions, 96/96 structural+WCAG+palette |
 | LAT | Local AI Teaching Framework | 🔄 | Gemini deep research dispatched (3 queries: QLoRA MoE feasibility, distillation pipelines, structured output training). SFS theme = candidate domain. Brief: `claude/mailbox/GEMINI_DEEP_RESEARCH_BRIEF_LOCAL_AI_TEACHING.md` |
 | GEX | Genre Extractor dedup fix | ✅ | `d25f2735`: batch-scoped path filter + resolve() dedup. 94→50 profiles. |

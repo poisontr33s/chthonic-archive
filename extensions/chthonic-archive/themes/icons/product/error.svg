@@ -1,4 +1,9 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
- <circle cx="8" cy="8" r="6" fill="none" stroke="currentColor" stroke-width="1.1"/>
- <path d="M5.75 5.75l4.5 4.5M10.25 5.75l-4.5 4.5" stroke="currentColor" stroke-width="1.1" stroke-linecap="round"/>
+ <!-- Broken ankh — shattered life symbol = error -->
+ <ellipse cx="8" cy="3.5" rx="2.2" ry="2" fill="none" stroke="currentColor" stroke-width="1.1"/>
+ <path d="M8 5.5v2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+ <path d="M5 9h6" stroke="currentColor" stroke-width="1.1" stroke-linecap="round"/>
+ <!-- Fracture: shaft splits/crumbles -->
+ <path d="M7 11l-1 3.5" stroke="currentColor" stroke-width="1.1" stroke-linecap="round"/>
+ <path d="M9 11l1 3.5" stroke="currentColor" stroke-width="1.1" stroke-linecap="round"/>
 </svg>

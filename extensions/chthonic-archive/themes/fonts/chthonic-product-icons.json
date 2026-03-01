@@ -40,5 +40,6 @@
   "copilot-snooze": "U+E028",
   "copilot-success": "U+E029",
   "copilot-unavailable": "U+E02A",
-  "copilot-warning": "U+E02B"
+  "copilot-warning": "U+E02B",
+  "tools": "U+E02C"
 }

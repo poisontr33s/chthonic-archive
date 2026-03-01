@@ -6,7 +6,10 @@
     "palette_perfect": 57,
     "palette_drift": 0,
     "contrast_pass": 57,
-    "contrast_fail": 0
+    "contrast_fail": 0,
+    "amendments": [
+      "2026-03-01: hammer.svg renamed to tools.svg in-place (codicon remap); original audit ran against hammer.svg"
+    ]
   },
   "stage_1_0_structure": [
     {
@@ -634,7 +637,7 @@
       "issues": []
     },
     {
-      "file": "hammer.svg",
+      "file": "tools.svg",
       "valid_xml": true,
       "has_svg_root": true,
       "has_xmlns": true,
@@ -2038,7 +2041,7 @@
       "checks": []
     },
     {
-      "file": "hammer.svg",
+      "file": "tools.svg",
       "all_pass": true,
       "checks": []
     },
@@ -2616,7 +2619,7 @@
       "palette_adherence": 100.0
     },
     {
-      "file": "hammer.svg",
+      "file": "tools.svg",
       "total_colors": 0,
       "on_palette": [],
       "off_palette": [],

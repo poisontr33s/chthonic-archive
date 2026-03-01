@@ -1210,7 +1210,7 @@ class StatusTreeProvider implements vscode.TreeDataProvider<vscode.TreeItem> {
         const subsystems = [
             { label: 'Entropy', on: this._entropyEnabled, icon: 'pulse' },
             { label: 'Reactor', on: this._reactorReady, icon: 'flame' },
-            { label: 'Self-Heal', on: this._selfHealing, icon: 'hammer' },
+            { label: 'Self-Heal', on: this._selfHealing, icon: 'tools' },
         ];
         for (const s of subsystems) {
             const sub = new vscode.TreeItem(

@@ -211,15 +211,15 @@ The color theme is at 669/83/57 — a strong foundation. These stages refine and
 
 ## Pillar III — Product Icons (Stages 6.0→7.0)
 
-45 product icon overrides (6 original + 39 Tier 1 expansion). Tier 1 coverage: 100%. Font: 42-glyph WOFF (1.8 KB).
+45 product icon overrides (6 original + 39 Tier 1 expansion). Tier 1 coverage: 100%. Font: 42-glyph WOFF (2.0 KB).
 
 ### Planned Stages
 
 | Stage | Name | Description | Status |
 |-------|------|-------------|--------|
-| **6.0** | Product Icon Census | Map all VS Code product icon IDs in active use (activity bar, status bar, editor widgets, debug, SCM, testing, etc.) against current 7. | ✅ 6/535 (1.1%) — 39 Tier 1 gaps identified, `hammer` invalid |
+| **6.0** | Product Icon Census | Map all VS Code product icon IDs in active use (activity bar, status bar, editor widgets, debug, SCM, testing, etc.) against current 7. | ✅ 6/535 (1.1%) — 39 Tier 1 gaps identified, `hammer` remapped → `tools` (valid codicon EB6D) |
 | **6.1** | Priority Expansion | Design and implement icons for highest-visibility product icon slots (activity bar, editor actions, debug controls). | ✅ 39/39 Tier 1 — 36 new SVGs, 42-glyph WOFF, 45 codicon mappings. Signature: scarab (debug), Eye of Horus (copilot). |
-| **6.2** | Product Palette + Motif Audit | Verify product SVGs use SFS palette and maintain Egypto-Andean motif vocabulary. | ⬜ Not started |
+| **6.2** | Product Palette + Motif Audit | Verify product SVGs use SFS palette and maintain Egypto-Andean motif vocabulary. | ✅ BCE Redesign — 28 SVGs rewritten with ANKH motif bank provenance. Modern motifs eliminated. Papyrus scroll (files), Wedjat eye (search), ashlar masonry (extensions), kheper scarab (debug), khopesh (debug-alt), Djed pillar (remote), broken ankh (error), pyramid+eye (warning), obelisk (info), Inti sun disc (settings), Nemes headdress (account), ouroboros (sync), Nile delta (git-branch×4), sistrum (bell×4), cartouche tablets (comment), pigment mortar (paintcan), Ka arms (pulse), ox-hide shield (shield), sedimentary strata (layers). Font rebuilt: 42 glyphs, 2.0 KB. E2E 3/3 PASS. |
 | **7.0** | Product Icon Gold Standard | All high-visibility slots covered. Palette and motif compliant. Visual coherence with file icons. | ⬜ Not started |
 
 ### Pipeline Scripts Needed (Product Pillar)
@@ -458,6 +458,7 @@ Codex's structural enforcement role supports the WPTG by validating that:
 | File | Relevance |
 |------|-----------|
 | [WET_PAPER_TO_GOLD_METHODOLOGY.md (.)](../../WET_PAPER_TO_GOLD_METHODOLOGY.md) | WPTG foundational axioms plus the dry-lane contract for script/skill dumpster-diving |
+| [ETS_ARCHAEOLOGICAL_TOOLFORM_BASELINE.md](../reference/ETS_ARCHAEOLOGICAL_TOOLFORM_BASELINE.md) | Codex ET-S research: BCE toolform archaeology for `tools` glyph (adze-tupu hybrid, Direction B) |
 | [ANKH_README.md (ankh)](../frameworks/ankh/ANKH_README.md) | 50/50 Egyptological × Andean abstraction |
 | [SFA_CROSS_REFERENCE_SCAN.md](../../claude/mailbox/SFA_CROSS_REFERENCE_SCAN.md) | Motif balance audit, motif-to-palette lineage |
 | [ANKH_UNIFYING_REPOSITORY_METADATA_STANDARDS.md](../../claude-codex-gemini/ANKH_EGYPTOLOGY_SOUTH_AMERICAN/ANKH_UNIFYING_REPOSITORY_METADATA_STANDARDS.md) | Gemini research: Khipu-Cartouche Protocol |

@@ -57,6 +57,7 @@
     "copilot-success":      { "fontCharacter": "\uE029", "fontId": "chthonic-product-icons" },
     "copilot-unavailable":  { "fontCharacter": "\uE02A", "fontId": "chthonic-product-icons" },
     "copilot-warning":      { "fontCharacter": "\uE02B", "fontId": "chthonic-product-icons" },
-    "copilot-warning-large": { "fontCharacter": "\uE02B", "fontId": "chthonic-product-icons" }
+    "copilot-warning-large": { "fontCharacter": "\uE02B", "fontId": "chthonic-product-icons" },
+    "tools":                { "fontCharacter": "\uE02C", "fontId": "chthonic-product-icons" }
   }
 }

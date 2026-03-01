@@ -1,6 +1,9 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
- <rect x="2" y="7" width="4.5" height="4" rx="0.5" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linejoin="round"/>
- <rect x="9" y="7" width="4.5" height="4" rx="0.5" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linejoin="round"/>
- <rect x="2" y="12.5" width="4.5" height="2" rx="0.5" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linejoin="round"/>
- <rect x="9.5" y="1.5" width="3.5" height="4" rx="0.5" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linejoin="round"/>
+ <!-- Ashlar masonry — temple stone blocks with chisel seams -->
+ <rect x="2" y="2" width="5.5" height="3.5" fill="none" stroke="currentColor" stroke-width="1.0" stroke-linejoin="round"/>
+ <rect x="8.5" y="2" width="5.5" height="3.5" fill="none" stroke="currentColor" stroke-width="1.0" stroke-linejoin="round"/>
+ <rect x="2" y="6.5" width="4" height="3.5" fill="none" stroke="currentColor" stroke-width="1.0" stroke-linejoin="round"/>
+ <rect x="7" y="6.5" width="7" height="3.5" fill="none" stroke="currentColor" stroke-width="1.0" stroke-linejoin="round"/>
+ <rect x="2" y="11" width="6" height="3" fill="none" stroke="currentColor" stroke-width="1.0" stroke-linejoin="round"/>
+ <rect x="9" y="11" width="5" height="3" fill="none" stroke="currentColor" stroke-width="1.0" stroke-linejoin="round"/>
 </svg>

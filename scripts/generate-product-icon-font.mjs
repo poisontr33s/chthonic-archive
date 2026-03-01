@@ -57,6 +57,8 @@ const ICONS = [
   { name: 'copilot-success',      codepoint: 0xE029 },
   { name: 'copilot-unavailable',  codepoint: 0xE02A },
   { name: 'copilot-warning',      codepoint: 0xE02B },
+  // ── Build / Tools ──
+  { name: 'tools',               codepoint: 0xE02C },
 ];
 
 const svgDir = resolve('extensions/chthonic-archive/themes/icons/product');

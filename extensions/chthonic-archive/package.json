@@ -131,7 +131,7 @@
       {
         "command": "chthonic.slabHeal",
         "title": "Chthonic: Self-Heal Slab",
-        "icon": "$(hammer)"
+        "icon": "$(tools)"
       },
       {
         "command": "chthonic.refreshRustification",
