@@ -13,4 +13,5 @@
 
  <path d="M10 4V6L9.5 7L10.5 8L10 9V10.5" stroke="#D4714E" stroke-width="0.4" fill="none"/>
  <circle cx="10" cy="10.8" r="0.35" fill="#D4714E"/>
+ <ellipse cx="8" cy="12" rx="2" ry="0.6" fill="none" stroke="#D4714E" stroke-width="0.3" opacity="0.4"/>
 </svg>

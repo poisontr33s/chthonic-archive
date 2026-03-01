@@ -1,7 +1,7 @@
 {
   "stage": "6.0",
   "name": "Product Icon Census",
-  "total_codicon_ids": 534,
+  "total_codicon_ids": 535,
   "theme_definitions": 7,
   "valid_overrides": [
     "comment-discussion",
@@ -36,9 +36,9 @@
     },
     "tier_4": {
       "label": "rare_symbolic",
-      "total": 336,
+      "total": 337,
       "covered": 5,
-      "gap_count": 331
+      "gap_count": 332
     }
   },
   "category_summary": {
@@ -78,9 +78,9 @@
       "gap_count": 14
     },
     "general": {
-      "total": 333,
+      "total": 334,
       "covered": 0,
-      "gap_count": 333
+      "gap_count": 334
     },
     "layout": {
       "total": 18,

@@ -571,7 +571,7 @@ def render_markdown(ref: dict) -> str:
     a("| Label | File | Faction |")
     a("|-------|------|---------|")
     for t in ref["existing_themes"]:
-        a(f"| {t['label']} | `{t['file']}` | {t['faction']} |")
+        a(f"| {t['label']} | [{t['file']} (themes)](../../extensions/chthonic-archive/themes/{t['file']}) | {t['faction']} |")
     a("")
 
     if ref["theme_summaries"]:
@@ -580,7 +580,7 @@ def render_markdown(ref: dict) -> str:
         a("| File | Name | Workbench Keys | Token Rules | Semantic Keys |")
         a("|------|------|----------------|-------------|---------------|")
         for ts in ref["theme_summaries"]:
-            a(f"| `{ts['file']}` | {ts['name']} | {ts['workbench_keys']} "
+            a(f"| [{ts['file']} (themes)](../../extensions/chthonic-archive/themes/{ts['file']}) | {ts['name']} | {ts['workbench_keys']} "
               f"| {ts['token_rules']} | {ts['semantic_keys']} |")
         a("")
 

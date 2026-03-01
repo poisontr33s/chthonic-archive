@@ -143,19 +143,19 @@ When SFS encounters a Timeline-Entangled Artifact (TEA) in dumpster-dive/, she d
 
 | Label | File | Faction |
 |-------|------|---------|
-| Chthonic — Flesh & Earth (The Decorator) | `chthonic-mandala-color-theme.json` | The Decorator (T0.5) |
-| Chthonic — ROGBIV (Spectra Chroma) | `chthonic-rogbiv-color-theme.json` | Spectra Chroma Excavatus (T3) |
-| Chthonic — Geological Core (Sister Ferrum Scoriae) | `chthonic-geology-color-theme.json` | Sister Ferrum Scoriae (T3) |
-| Chthonic — The Decorator | `chthonic-decorator-color-theme.json` | The Decorator (T0.5) |
+| Chthonic — Flesh & Earth (The Decorator) | [chthonic-mandala-color-theme.json (themes)](../../extensions/chthonic-archive/themes/chthonic-mandala-color-theme.json) | The Decorator (T0.5) |
+| Chthonic — ROGBIV (Spectra Chroma) | [chthonic-rogbiv-color-theme.json (themes)](../../extensions/chthonic-archive/themes/chthonic-rogbiv-color-theme.json) | Spectra Chroma Excavatus (T3) |
+| Chthonic — Geological Core (Sister Ferrum Scoriae) | [chthonic-geology-color-theme.json](../../extensions/chthonic-archive/themes/chthonic-geology-color-theme.json) | Sister Ferrum Scoriae (T3) |
+| Chthonic — The Decorator | [chthonic-decorator-color-theme.json](../../extensions/chthonic-archive/themes/chthonic-decorator-color-theme.json) | The Decorator (T0.5) |
 
 ### Theme Metrics
 
 | File | Name | Workbench Keys | Token Rules | Semantic Keys |
 |------|------|----------------|-------------|---------------|
-| `chthonic-decorator-color-theme.json` | Chthonic — The Decorator | 669 | 149 | 57 |
-| `chthonic-geology-color-theme.json` | Chthonic — Geological Core (Sister Ferrum Scoriae) | 669 | 149 | 57 |
-| `chthonic-mandala-color-theme.json` | Chthonic — Flesh & Earth (The Decorator) | 669 | 149 | 57 |
-| `chthonic-rogbiv-color-theme.json` | Chthonic — ROGBIV (Spectra Chroma) | 669 | 149 | 57 |
+| [chthonic-decorator-color-theme.json](../../extensions/chthonic-archive/themes/chthonic-decorator-color-theme.json) | Chthonic — The Decorator | 669 | 149 | 57 |
+| [chthonic-geology-color-theme.json](../../extensions/chthonic-archive/themes/chthonic-geology-color-theme.json) | Chthonic — Geological Core (Sister Ferrum Scoriae) | 669 | 149 | 57 |
+| [chthonic-mandala-color-theme.json (themes)](../../extensions/chthonic-archive/themes/chthonic-mandala-color-theme.json) | Chthonic — Flesh & Earth (The Decorator) | 669 | 149 | 57 |
+| [chthonic-rogbiv-color-theme.json (themes)](../../extensions/chthonic-archive/themes/chthonic-rogbiv-color-theme.json) | Chthonic — ROGBIV (Spectra Chroma) | 669 | 149 | 57 |
 
 ---
 
@@ -213,3 +213,60 @@ depending on session memory.
 
 Refresh the generated anchor with
 `uv run scripts/sfs_slabstone_baseline.py --report --strict`.
+
+---
+
+## Cross-References
+
+<!-- This section is manually maintained. Re-running ankh_theme_reference.py
+     will overwrite everything above but NOT this section. If regenerating,
+     re-append from here. link_audit.py validates all links below. -->
+
+### Sibling Design Docs
+
+| File | Relevance |
+|------|-----------|
+| [ANKH_ICON_GRAMMAR.md](ANKH_ICON_GRAMMAR.md) | Canon icon execution bridge — 7-gate benchmark, state grammar, domain folder canon |
+| [SFS_WPTG_ITERATION_PLAN.md](SFS_WPTG_ITERATION_PLAN.md) | WPTG stage gates, icon-pipeline stages (0.0→3.0), KCP metadata |
+| [SFS_SLABSTONE_BASELINE.md](SFS_SLABSTONE_BASELINE.md) | Generated reproducibility anchor linking canon prose to live SFS theme/icon assets |
+| [KCP_SESSION_CHECKPOINT.md](KCP_SESSION_CHECKPOINT.md) | Crash-resilient KCP progress tracker |
+
+### Research Sources
+
+| File | Relevance |
+|------|-----------|
+| [WET_PAPER_TO_GOLD_METHODOLOGY.md (.)](../../WET_PAPER_TO_GOLD_METHODOLOGY.md) | WPTG foundational axioms |
+| [ANKH_README.md (ankh)](../frameworks/ankh/ANKH_README.md) | 50/50 Egyptological × Andean abstraction |
+| [SFA_CROSS_REFERENCE_SCAN.md](../../claude/mailbox/SFA_CROSS_REFERENCE_SCAN.md) | Motif balance audit, motif-to-palette lineage |
+| [BLACKSMITH_MATRIARCH.md (dumpster-dive)](../../dumpster-dive/BLACKSMITH_MATRIARCH.md) | SFS persona, dumpster-dive domain authority |
+
+### Theme / Icon JSON Inventory
+
+| File | Pillar | Purpose |
+|------|--------|---------|
+| [package.json (chthonic-archive)](../../extensions/chthonic-archive/package.json) | Integration | Extension manifest — themes, icons, languages, commands |
+| [chthonic-geology-color-theme.json](../../extensions/chthonic-archive/themes/chthonic-geology-color-theme.json) | Color | SFS color theme (669 workbench / 149 token / 57 semantic) |
+| [chthonic-file-icon-theme.json](../../extensions/chthonic-archive/themes/chthonic-file-icon-theme.json) | Icon | File/folder icon defs → SVGs |
+| [chthonic-product-icon-theme.json](../../extensions/chthonic-archive/themes/chthonic-product-icon-theme.json) | Icon | Product icon font definitions |
+| [chthonic-mandala-color-theme.json (themes)](../../extensions/chthonic-archive/themes/chthonic-mandala-color-theme.json) | Color | Decorator theme (Flesh & Earth) |
+| [chthonic-rogbiv-color-theme.json (themes)](../../extensions/chthonic-archive/themes/chthonic-rogbiv-color-theme.json) | Color | Spectra Chroma ROGBIV theme |
+| [chthonic-decorator-color-theme.json](../../extensions/chthonic-archive/themes/chthonic-decorator-color-theme.json) | Color | The Decorator theme |
+
+### Pipeline Scripts
+
+| Script | Stage | Purpose |
+|--------|-------|---------|
+| [ankh_theme_reference.py](../../scripts/ankh_theme_reference.py) | (generator) | Generates this document from archive + live assets |
+| [sfs_slabstone_baseline.py](../../scripts/sfs_slabstone_baseline.py) | (anchor) | Cross-checks canon docs against live theme/icon state |
+| [icon_filetype_census.py](../../scripts/icon_filetype_census.py) | 0.0–0.1 | Workspace filetype census + coverage |
+| [icon_svg_audit.py](../../scripts/icon_svg_audit.py) | 1.0–1.2 | Structural, WCAG, palette validation |
+| [icon_svg_optimizer.py](../../scripts/icon_svg_optimizer.py) | 2.0 | SVG path optimization |
+| [icon_distinctiveness_audit.py](../../scripts/icon_distinctiveness_audit.py) | 2.1 | Motif similarity / collision detection |
+| [icon_surface_map.py](../../scripts/icon_surface_map.py) | (cross-cutting) | Deterministic surface mapping |
+| [sfa_cross_reference.py](../../scripts/sfa_cross_reference.py) | (cross-cutting) | 50/50 balance engine, motif assignment |
+| [product_icon_census.py](../../scripts/product_icon_census.py) | 6.0 | Product icon ID coverage |
+| [theme_token_coverage.py](../../scripts/theme_token_coverage.py) | 4.0 | Token scope vs TextMate grammar audit |
+| [theme_parity.py](../../scripts/theme_parity.py) | (cross-cutting) | Cross-theme comparison |
+| [theme_artcop.py](../../scripts/theme_artcop.py) | (visual QA) | Screenshot-based quality assessment |
+| [theme_sfs_transmute.py](../../scripts/theme_sfs_transmute.py) | (cross-cutting) | SFS palette transmutation engine |
+| [theme_color_diversity.py](../../scripts/theme_color_diversity.py) | (cross-cutting) | Color diversity analysis |

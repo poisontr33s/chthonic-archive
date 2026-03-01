@@ -99,7 +99,7 @@ If you are a new session picking up from a crash:
 |-------|------|--------|------------|
 | S.B | Box Normalization | `51062d30`→`5ed27d93` | 0 closed boxes, 145 files |
 | STD_V2 | Metadata Standard Ratification | `aa3d6e84` | Canonical status |
-| 2.1 | Icon Collision Resolution | `7a544db0` | 24→11 pairs, 76/76 audits pass |
+| 2.1 | Icon Collision Resolution | `7a544db0` | 24→11→0 pairs (3 rounds), 96/96 audits pass, GOLD |
 | S.0 | Python Header Canon | (this commit) | 143 files: spaced→tight `#-*-` |
 | 4.0 | Token Scope Coverage Audit | (this commit) | 83 rules, 57 semantic; 12/13 TM cats, 25/52 LSP types |
 | S.3 | Rust @SID Tags | `92ceffc2` | 16/16 files: @SID + @Shabti in //! blocks |
@@ -134,7 +134,7 @@ If you are a new session picking up from a crash:
 | S.3 | Rust @SID tags | ✅ | 16 files: @SID + @Shabti in //! blocks |
 | 4.0 | Token scope coverage | ✅ | 83 rules, 57 semantic; script: `scripts/theme_token_coverage.py` |
 | 6.0 | Product icon census | ✅ | 6/534 codicon IDs; script: `scripts/product_icon_census.py` |
-| 2.1+ | Remaining 11 collision pairs | ⬜ | Need motif redesign (Stage 3.0) |
+| 2.0→3.0 | SVG Optimization + Gold Standard | ✅ | 103 SVGs optimized, 0 collisions, 96/96 structural+WCAG+palette |
 | LAT | Local AI Teaching Framework | 🔄 | Gemini deep research dispatched (3 queries: QLoRA MoE feasibility, distillation pipelines, structured output training). SFS theme = candidate domain. Brief: `claude/mailbox/GEMINI_DEEP_RESEARCH_BRIEF_LOCAL_AI_TEACHING.md` |
 | GEX | Genre Extractor dedup fix | ✅ | `d25f2735`: batch-scoped path filter + resolve() dedup. 94→50 profiles. |
 
@@ -157,8 +157,8 @@ If you are a new session picking up from a crash:
 
 ```bash
 # Icon pipeline gates
-uv run python scripts/icon_svg_audit.py          # 76/76 structural+WCAG+palette
-uv run python scripts/icon_distinctiveness_audit.py  # collision pairs report
+uv run python scripts/icon_svg_audit.py          # 96/96 structural+WCAG+palette
+uv run python scripts/icon_distinctiveness_audit.py  # 0 collisions (GOLD)
 
 # Build gates
 cargo build                                       # Rust compilation
