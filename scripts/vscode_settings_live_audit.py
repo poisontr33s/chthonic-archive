@@ -487,6 +487,34 @@ def pattern_matches_workspace(pattern: str, workspace_context: dict[str, Any]) -
     return False
 
 
+def _rg_search(needle: str, search_dir: Path) -> list[Path] | None:
+    """Try ripgrep first. Returns None if rg is unavailable."""
+    try:
+        result = run_command(["rg", "-l", "-F", needle, str(search_dir)])
+    except FileNotFoundError:
+        return None
+    if result.returncode not in (0, 1):
+        return None
+    return [Path(line.strip()) for line in result.stdout.splitlines() if line.strip()]
+
+
+def _python_search(needle: str, search_dir: Path) -> list[Path]:
+    """Pure-Python fallback: walk .js/.json files and grep for the key."""
+    hits: list[Path] = []
+    needle_bytes = needle.encode("utf-8", errors="replace")
+    for root, _dirs, files in os.walk(search_dir):
+        for fname in files:
+            if not fname.endswith((".js", ".json")):
+                continue
+            fpath = Path(root) / fname
+            try:
+                if needle_bytes in fpath.read_bytes():
+                    hits.append(fpath)
+            except OSError:
+                continue
+    return hits
+
+
 def find_core_hits(key: str, install_root: Path | None, repo_root: Path) -> list[str]:
     if not install_root:
         return []
@@ -495,23 +523,14 @@ def find_core_hits(key: str, install_root: Path | None, repo_root: Path) -> list
     if not app_root.exists():
         return []
 
-    try:
-        result = run_command(
-            [
-                "rg",
-                "-l",
-                "-F",
-                f'"{key}"',
-                str(app_root / "out"),
-            ]
-        )
-    except FileNotFoundError:
-        return []
-    if result.returncode not in (0, 1):
-        return []
+    search_dir = app_root / "out"
+    needle = f'"{key}"'
 
-    hits = [line.strip() for line in result.stdout.splitlines() if line.strip()]
-    return [f"core:{rel(Path(hit), repo_root)}" for hit in hits]
+    hits = _rg_search(needle, search_dir)
+    if hits is None:
+        hits = _python_search(needle, search_dir)
+
+    return [f"core:{rel(hit, repo_root)}" for hit in hits]
 
 
 def schema_violations(value: Any, schema: dict[str, Any], path: str = "$") -> list[str]:
