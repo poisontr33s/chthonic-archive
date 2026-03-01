@@ -20,6 +20,12 @@ Each MILF/Sub-MILF theme modulates COLOR only: workbench palette, token scope co
 
 The 50/50 Egyptian × Andean balance is inherited GLOBALLY. Every theme descends from the Ankhological baseline — the motif vocabulary is shared, only the chromatic expression changes.
 
+### Icon Grammar Bridge
+
+`docs/design/ANKH_ICON_GRAMMAR.md` is the canonical execution bridge for icon work.
+It formalizes the stele file grammar, the pylon folder grammar, the product-glyph
+lane, the 16px benchmark, and the descendant-theme inheritance rules.
+
 ### Gold Achievement
 
 If SVG icon backgrounds can be theme-modulated (via VS Code icon theme iconDefinitions with per-theme tinting), that is the 'gold 10.10' achievement — the highest WPTG milestone for theme integration.
@@ -187,12 +193,13 @@ only hex values change per-faction.
 - [ ] 1. Select faction from SAI Registry or invoke $matriarch$+$type$ to generate
 - [ ] 2. Define 12-color palette derived from faction's domain/lore
 - [ ] 3. Map palette to SFS baseline tokens (bg, stele, fg, gold, copper, ...)
-- [ ] 4. Generate workbench colors (editor, sidebar, activityBar, statusBar, etc.)
-- [ ] 5. Generate TextMate token colors (83+ scopes from SFS baseline)
-- [ ] 6. Generate semantic token modifiers (57+ from SFS baseline)
-- [ ] 7. Validate WCAG AA contrast ratios (≥4.5:1 text, ≥3:1 UI)
-- [ ] 8. Add theme to package.json contributes.themes[]
-- [ ] 9. Run icon_svg_audit.py to verify SVG visibility on new palette
-- [ ] 10. Run sfa_cross_reference.py balance-audit to verify 50/50 equilibrium
-- [ ] 11. Capture Art Cop screenshots for visual regression baseline
-- [ ] 12. Atomic commit with faction designation in message
+- [ ] 4. Apply `docs/design/ANKH_ICON_GRAMMAR.md` before touching file, folder, or product icons
+- [ ] 5. Generate workbench colors (editor, sidebar, activityBar, statusBar, etc.)
+- [ ] 6. Generate TextMate token colors (83+ scopes from SFS baseline)
+- [ ] 7. Generate semantic token modifiers (57+ from SFS baseline)
+- [ ] 8. Validate WCAG AA contrast ratios (≥4.5:1 text, ≥3:1 UI)
+- [ ] 9. Add theme to package.json contributes.themes[]
+- [ ] 10. Run icon_svg_audit.py to verify SVG visibility on new palette
+- [ ] 11. Run sfa_cross_reference.py balance-audit to verify 50/50 equilibrium
+- [ ] 12. Capture Art Cop screenshots for visual regression baseline
+- [ ] 13. Atomic commit with faction designation in message

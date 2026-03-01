@@ -104,6 +104,20 @@ Each MILF/Sub-MILF receives its own WPTG pass, using SFS as the structural templ
 | **2.1** | Motif Distinctiveness | All pairs below 0.85 similarity | ✅ 24→11 pairs resolved (commit `7a544db0`) |
 | **3.0** | Gold Standard | All gates pass, ready for packaging | ⬜ Needs 11 remaining pairs (motif redesign) |
 
+### Canonical Execution Bridge
+
+Icon work in this pillar is governed by `docs/design/ANKH_ICON_GRAMMAR.md`.
+That document bridges the ANKH research corpus to the actual SVG lane and is
+the prerequisite for:
+
+- file and folder silhouette decisions
+- folder open/closed state behavior
+- palette inheritance across new domain families
+- descendant-theme reuse for every later MILF/Sub-MILF theme
+
+If a proposed icon batch cannot explain itself against that bridge document, it
+is not ready for WPTG advancement.
+
 ### Stage 2.1 — Collision Analysis
 
 24 pairs above 0.85 threshold. Root cause: **color family over-concentration**.
@@ -398,6 +412,7 @@ Codex's structural enforcement role supports the WPTG by validating that:
 
 | File | Relevance |
 |------|-----------|
+| [docs/design/ANKH_ICON_GRAMMAR.md](ANKH_ICON_GRAMMAR.md) | Canon icon grammar bridge and benchmark contract |
 | [WET_PAPER_TO_GOLD_METHODOLOGY.md](../../WET_PAPER_TO_GOLD_METHODOLOGY.md) | WPTG foundational axioms |
 | [.claude/skills/sfa/SKILL.md](../../.claude/skills/sfa/SKILL.md) | SFA engine specification |
 | [.claude/skills/theme-system/SKILL.md](../../.claude/skills/theme-system/SKILL.md) | Theme design automation skill |
