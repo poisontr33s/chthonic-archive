@@ -203,3 +203,51 @@ only hex values change per-faction.
 - [ ] 11. Run sfa_cross_reference.py balance-audit to verify 50/50 equilibrium
 - [ ] 12. Capture Art Cop screenshots for visual regression baseline
 - [ ] 13. Atomic commit with faction designation in message
+
+---
+
+## Cross-References
+
+### Sibling Design Docs
+
+| File | Relevance |
+|------|-----------|
+| [ANKH_ICON_GRAMMAR.md](ANKH_ICON_GRAMMAR.md) | Canon icon execution bridge — 7-gate benchmark, domain folder canon, state grammar, canonical palette |
+| [SFS_WPTG_ITERATION_PLAN.md](SFS_WPTG_ITERATION_PLAN.md) | WPTG stage gates, 5-pillar iteration sequence, pipeline script registry |
+| [KCP_SESSION_CHECKPOINT.md](KCP_SESSION_CHECKPOINT.md) | Crash-resilient KCP progress tracker |
+
+### Research Sources
+
+| File | Relevance |
+|------|-----------|
+| [ANKH_README.md (ankh)](../frameworks/ankh/ANKH_README.md) | 50/50 Egyptological × Andean abstraction, top-level ANKH bridge |
+| [SFA_CROSS_REFERENCE_SCAN.md](../../claude/mailbox/SFA_CROSS_REFERENCE_SCAN.md) | Motif balance audit, motif-to-palette lineage |
+| [BLACKSMITH_MATRIARCH.md (dumpster-dive)](../../dumpster-dive/BLACKSMITH_MATRIARCH.md) | Faction generation engine ($matriarch$+$type$) |
+| [WET_PAPER_TO_GOLD_METHODOLOGY.md (.)](../../WET_PAPER_TO_GOLD_METHODOLOGY.md) | WPTG foundational axioms |
+
+### Theme / Icon JSON (Inventory)
+
+| File | Type | Metrics |
+|------|------|---------|
+| [chthonic-geology-color-theme.json](../../extensions/chthonic-archive/themes/chthonic-geology-color-theme.json) | SFS Color | 669 workbench / 83 token / 57 semantic |
+| [chthonic-mandala-color-theme.json (themes)](../../extensions/chthonic-archive/themes/chthonic-mandala-color-theme.json) | Color | Flesh & Earth mandala |
+| [chthonic-rogbiv-color-theme.json (themes)](../../extensions/chthonic-archive/themes/chthonic-rogbiv-color-theme.json) | Color | Spectra Chroma ROGBIV |
+| [chthonic-decorator-color-theme.json](../../extensions/chthonic-archive/themes/chthonic-decorator-color-theme.json) | Color | The Decorator |
+| [chthonic-file-icon-theme.json](../../extensions/chthonic-archive/themes/chthonic-file-icon-theme.json) | File Icon | SVG icon defs → file extensions, folder names |
+| [chthonic-product-icon-theme.json](../../extensions/chthonic-archive/themes/chthonic-product-icon-theme.json) | Product Icon | Product icon font definitions |
+| [package.json (chthonic-archive)](../../extensions/chthonic-archive/package.json) | Manifest | Extension manifest — themes, icons, languages, commands |
+
+### Pipeline Scripts (Checklist Backing)
+
+| Script | Checklist Step | Purpose |
+|--------|---------------|---------|
+| [icon_svg_audit.py](../../scripts/icon_svg_audit.py) | 10 | SVG structural, WCAG, palette validation |
+| [sfa_cross_reference.py](../../scripts/sfa_cross_reference.py) | 11 | 50/50 balance engine, motif assignment |
+| [theme_token_coverage.py](../../scripts/theme_token_coverage.py) | 6–7 | Token scope vs TextMate grammar audit |
+| [theme_parity.py](../../scripts/theme_parity.py) | (cross-theme) | Cross-theme parity comparison |
+| [theme_color_diversity.py](../../scripts/theme_color_diversity.py) | (cross-theme) | Color diversity / collision detection |
+| [theme_artcop.py](../../scripts/theme_artcop.py) | 12 | Screenshot-based quality assessment |
+| [vscode-art-cop.ts](../../scripts/vscode-art-cop.ts) | 12 | Screenshot automation harness |
+| [theme_sfs_transmute.py](../../scripts/theme_sfs_transmute.py) | 2–3 | SFS palette transmutation |
+| [theme_promote_master.py](../../scripts/theme_promote_master.py) | (promotion) | Master theme promotion pipeline |
+| [vscode_settings_live_audit.py](../../scripts/vscode_settings_live_audit.py) | (validation) | Settings/language drift detection |

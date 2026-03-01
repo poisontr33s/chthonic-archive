@@ -356,11 +356,58 @@ not a casual local variation.
 
 ## Cross-References
 
+### Sibling Design Docs
+
 | File | Relevance |
 |------|-----------|
-| [ANKH_THEME_REFERENCE.md](ANKH_THEME_REFERENCE.md) | Global SVG policy and SFS palette baseline |
-| [SFS_WPTG_ITERATION_PLAN.md](SFS_WPTG_ITERATION_PLAN.md) | WPTG gates and icon-pipeline stages |
-| [ANKH_README.md](../frameworks/ankh/ANKH_README.md) | 50/50 abstraction and top-level ANKH bridge |
-| [SFA_CROSS_REFERENCE_SCAN.md](../../claude/mailbox/SFA_CROSS_REFERENCE_SCAN.md) | Motif balance and motif-to-palette lineage |
-| [file-default.svg](../../extensions/chthonic-archive/themes/icons/file-default.svg) | Canon stele exemplar |
-| [folder-temple.svg](../../extensions/chthonic-archive/themes/icons/folder-temple.svg) | Canon pylon exemplar |
+| [ANKH_THEME_REFERENCE.md](ANKH_THEME_REFERENCE.md) | Global SVG policy, SFS palette baseline, theme creation checklist |
+| [SFS_WPTG_ITERATION_PLAN.md](SFS_WPTG_ITERATION_PLAN.md) | WPTG stage gates, icon-pipeline stages (0.0→3.0), KCP metadata |
+| [ANKH_README.md (ankh)](../frameworks/ankh/ANKH_README.md) | 50/50 Egyptological × Andean abstraction, top-level ANKH bridge |
+| [SFA_CROSS_REFERENCE_SCAN.md](../../claude/mailbox/SFA_CROSS_REFERENCE_SCAN.md) | Motif balance audit, motif-to-palette lineage |
+
+### Canon Exemplars
+
+| File | Lane | Role |
+|------|------|------|
+| [file-default.svg](../../extensions/chthonic-archive/themes/icons/file-default.svg) | Stele | Canon file silhouette |
+| [folder-temple.svg](../../extensions/chthonic-archive/themes/icons/folder-temple.svg) | Pylon | Canon folder silhouette (gold/Ankh) |
+| [folder-temple-open.svg](../../extensions/chthonic-archive/themes/icons/folder-temple-open.svg) | Pylon | Canon open-state exemplar |
+| [folder-src.svg](../../extensions/chthonic-archive/themes/icons/folder-src.svg) | Pylon | Early domain exemplar (patina/scribal) |
+| [folder-github.svg](../../extensions/chthonic-archive/themes/icons/folder-github.svg) | Pylon | Early domain exemplar |
+| [folder-scripts.svg](../../extensions/chthonic-archive/themes/icons/folder-scripts.svg) | Pylon | Early domain exemplar |
+
+### Domain Folder Canon SVGs (10 Families × 2 States)
+
+| Closed | Open |
+|--------|------|
+| [folder-session-archives.svg](../../extensions/chthonic-archive/themes/icons/folder-session-archives.svg) | [folder-session-archives-open.svg](../../extensions/chthonic-archive/themes/icons/folder-session-archives-open.svg) |
+| [folder-checkpoints.svg](../../extensions/chthonic-archive/themes/icons/folder-checkpoints.svg) | [folder-checkpoints-open.svg](../../extensions/chthonic-archive/themes/icons/folder-checkpoints-open.svg) |
+| [folder-reports.svg](../../extensions/chthonic-archive/themes/icons/folder-reports.svg) | [folder-reports-open.svg](../../extensions/chthonic-archive/themes/icons/folder-reports-open.svg) |
+| [folder-prompts.svg](../../extensions/chthonic-archive/themes/icons/folder-prompts.svg) | [folder-prompts-open.svg](../../extensions/chthonic-archive/themes/icons/folder-prompts-open.svg) |
+| [folder-protocols.svg](../../extensions/chthonic-archive/themes/icons/folder-protocols.svg) | [folder-protocols-open.svg](../../extensions/chthonic-archive/themes/icons/folder-protocols-open.svg) |
+| [folder-skills.svg](../../extensions/chthonic-archive/themes/icons/folder-skills.svg) | [folder-skills-open.svg](../../extensions/chthonic-archive/themes/icons/folder-skills-open.svg) |
+| [folder-governance.svg](../../extensions/chthonic-archive/themes/icons/folder-governance.svg) | [folder-governance-open.svg](../../extensions/chthonic-archive/themes/icons/folder-governance-open.svg) |
+| [folder-architecture.svg](../../extensions/chthonic-archive/themes/icons/folder-architecture.svg) | [folder-architecture-open.svg](../../extensions/chthonic-archive/themes/icons/folder-architecture-open.svg) |
+| [folder-methodology.svg](../../extensions/chthonic-archive/themes/icons/folder-methodology.svg) | [folder-methodology-open.svg](../../extensions/chthonic-archive/themes/icons/folder-methodology-open.svg) |
+| [folder-handoffs.svg](../../extensions/chthonic-archive/themes/icons/folder-handoffs.svg) | [folder-handoffs-open.svg](../../extensions/chthonic-archive/themes/icons/folder-handoffs-open.svg) |
+
+### Theme / Icon JSON (Wiring Layer)
+
+| File | Purpose |
+|------|--------|
+| [chthonic-file-icon-theme.json](../../extensions/chthonic-archive/themes/chthonic-file-icon-theme.json) | Maps SVG icon defs → file extensions, filenames, folder names |
+| [chthonic-product-icon-theme.json](../../extensions/chthonic-archive/themes/chthonic-product-icon-theme.json) | Product icon font definitions |
+| [chthonic-geology-color-theme.json](../../extensions/chthonic-archive/themes/chthonic-geology-color-theme.json) | SFS color theme (669 workbench / 83 token / 57 semantic) |
+| [package.json (chthonic-archive)](../../extensions/chthonic-archive/package.json) | Extension manifest — theme, icon, language, command contributions |
+
+### Pipeline Scripts (Icon Pillar)
+
+| Script | WPTG Stage | Purpose |
+|--------|------------|--------|
+| [icon_filetype_census.py](../../scripts/icon_filetype_census.py) | 0.0–0.1 | Workspace filetype census + coverage gap mapping |
+| [icon_svg_audit.py](../../scripts/icon_svg_audit.py) | 1.0–1.2 | Structural, WCAG, palette validation |
+| [icon_svg_optimizer.py](../../scripts/icon_svg_optimizer.py) | 2.0 | SVG path optimization |
+| [icon_distinctiveness_audit.py](../../scripts/icon_distinctiveness_audit.py) | 2.1 | Motif similarity / collision detection |
+| [icon_surface_map.py](../../scripts/icon_surface_map.py) | (cross-cutting) | Deterministic surface mapping — where each icon renders |
+| [sfa_cross_reference.py](../../scripts/sfa_cross_reference.py) | (cross-cutting) | 50/50 balance engine, motif assignment |
+| [vscode_settings_live_audit.py](../../scripts/vscode_settings_live_audit.py) | (validation) | Settings/language drift detection |

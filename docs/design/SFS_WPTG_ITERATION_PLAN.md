@@ -410,13 +410,75 @@ Codex's structural enforcement role supports the WPTG by validating that:
 
 ## Cross-References
 
+### Sibling Design Docs
+
 | File | Relevance |
 |------|-----------|
-| [docs/design/ANKH_ICON_GRAMMAR.md](ANKH_ICON_GRAMMAR.md) | Canon icon grammar bridge and benchmark contract |
-| [WET_PAPER_TO_GOLD_METHODOLOGY.md](../../WET_PAPER_TO_GOLD_METHODOLOGY.md) | WPTG foundational axioms |
+| [ANKH_ICON_GRAMMAR.md](ANKH_ICON_GRAMMAR.md) | Canon icon execution bridge — 7-gate benchmark, state grammar, domain folder canon |
+| [ANKH_THEME_REFERENCE.md](ANKH_THEME_REFERENCE.md) | Global SVG policy, SFS palette baseline, theme creation checklist, tier hierarchy |
+| [KCP_SESSION_CHECKPOINT.md](KCP_SESSION_CHECKPOINT.md) | Crash-resilient KCP progress tracker |
+
+### Research Sources
+
+| File | Relevance |
+|------|-----------|
+| [WET_PAPER_TO_GOLD_METHODOLOGY.md (.)](../../WET_PAPER_TO_GOLD_METHODOLOGY.md) | WPTG foundational axioms |
+| [ANKH_README.md (ankh)](../frameworks/ankh/ANKH_README.md) | 50/50 Egyptological × Andean abstraction |
+| [SFA_CROSS_REFERENCE_SCAN.md](../../claude/mailbox/SFA_CROSS_REFERENCE_SCAN.md) | Motif balance audit, motif-to-palette lineage |
+| [ANKH_UNIFYING_REPOSITORY_METADATA_STANDARDS.md](../../claude-codex-gemini/ANKH_EGYPTOLOGY_SOUTH_AMERICAN/ANKH_UNIFYING_REPOSITORY_METADATA_STANDARDS.md) | Gemini research: Khipu-Cartouche Protocol |
+
+### Skills
+
+| File | Relevance |
+|------|-----------|
 | [.claude/skills/sfa/SKILL.md](../../.claude/skills/sfa/SKILL.md) | SFA engine specification |
 | [.claude/skills/theme-system/SKILL.md](../../.claude/skills/theme-system/SKILL.md) | Theme design automation skill |
-| [scripts/sfa_cross_reference.py](../../scripts/sfa_cross_reference.py) | SFA engine implementation |
-| [extensions/chthonic-archive/themes/](../../extensions/chthonic-archive/themes/) | Theme files (color, file icon, product icon) |
-| [docs/design/KCP_SESSION_CHECKPOINT.md](KCP_SESSION_CHECKPOINT.md) | Crash-resilient KCP progress tracker |
-| [claude-codex-gemini/ANKH_EGYPTOLOGY_SOUTH_AMERICAN/ANKH_UNIFYING_REPOSITORY_METADATA_STANDARDS.md](../../claude-codex-gemini/ANKH_EGYPTOLOGY_SOUTH_AMERICAN/ANKH_UNIFYING_REPOSITORY_METADATA_STANDARDS.md) | Gemini research: Khipu-Cartouche Protocol |
+
+### Theme / Icon / Language Artifacts
+
+| File | Pillar | Purpose |
+|------|--------|--------|
+| [package.json (chthonic-archive)](../../extensions/chthonic-archive/package.json) | Integration | Extension manifest — themes, icons, languages, commands |
+| [chthonic-geology-color-theme.json](../../extensions/chthonic-archive/themes/chthonic-geology-color-theme.json) | Color | SFS color theme (669 workbench / 83 token / 57 semantic) |
+| [chthonic-file-icon-theme.json](../../extensions/chthonic-archive/themes/chthonic-file-icon-theme.json) | Icon | File/folder icon defs → SVGs |
+| [chthonic-product-icon-theme.json](../../extensions/chthonic-archive/themes/chthonic-product-icon-theme.json) | Icon | Product icon font definitions |
+| [chthonic-mandala-color-theme.json (themes)](../../extensions/chthonic-archive/themes/chthonic-mandala-color-theme.json) | Color | Decorator theme (Flesh & Earth) |
+| [chthonic-rogbiv-color-theme.json (themes)](../../extensions/chthonic-archive/themes/chthonic-rogbiv-color-theme.json) | Color | Spectra Chroma ROGBIV theme |
+| [chthonic-decorator-color-theme.json](../../extensions/chthonic-archive/themes/chthonic-decorator-color-theme.json) | Color | The Decorator theme |
+| [language-configuration-glsl.json](../../extensions/chthonic-archive/language-configuration-glsl.json) | Language | GLSL language config (Vulkan SDK backing) |
+| [language-configuration-toml.json](../../extensions/chthonic-archive/language-configuration-toml.json) | Language | TOML language config (Cargo/Python/Bun/Go backing) |
+| [glsl.tmLanguage.json](../../extensions/chthonic-archive/syntaxes/glsl.tmLanguage.json) | Language | GLSL TextMate grammar |
+| [toml.tmLanguage.json](../../extensions/chthonic-archive/syntaxes/toml.tmLanguage.json) | Language | TOML TextMate grammar |
+
+### Pipeline Scripts
+
+| Script | Stage | Purpose |
+|--------|-------|--------|
+| [icon_filetype_census.py](../../scripts/icon_filetype_census.py) | 0.0–0.1 | Workspace filetype census + coverage gap mapping |
+| [icon_svg_audit.py](../../scripts/icon_svg_audit.py) | 1.0–1.2 | Structural, WCAG, palette validation |
+| [icon_svg_optimizer.py](../../scripts/icon_svg_optimizer.py) | 2.0 | SVG path optimization |
+| [icon_distinctiveness_audit.py](../../scripts/icon_distinctiveness_audit.py) | 2.1 | Motif similarity / collision detection |
+| [icon_surface_map.py](../../scripts/icon_surface_map.py) | (cross-cutting) | Deterministic surface mapping |
+| [sfa_cross_reference.py](../../scripts/sfa_cross_reference.py) | (cross-cutting) | 50/50 balance engine, motif assignment |
+| [product_icon_census.py](../../scripts/product_icon_census.py) | 6.0 | Product icon ID coverage mapping |
+| [theme_token_coverage.py](../../scripts/theme_token_coverage.py) | 4.0 | Token scope vs TextMate grammar audit |
+| [theme_parity.py](../../scripts/theme_parity.py) | (cross-cutting) | Cross-theme comparison |
+| [theme_artcop.py](../../scripts/theme_artcop.py) | (visual QA) | Screenshot-based quality assessment |
+| [vscode-art-cop.ts](../../scripts/vscode-art-cop.ts) | (visual QA) | Screenshot automation |
+| [normalize_blessing_box.py](../../scripts/normalize_blessing_box.py) | S.B | Blessing envelope normalization |
+| [vscode_settings_live_audit.py](../../scripts/vscode_settings_live_audit.py) | (validation) | Settings/language drift detection |
+
+### Validation / E2E
+
+| File | Purpose |
+|------|--------|
+| [e2e-extension-host.ts](../../extensions/chthonic-archive/scripts/e2e-extension-host.ts) | Extension host smoke runner (3/3 gate) |
+| [e2e-smoke-runner.cjs](../../extensions/chthonic-archive/scripts/e2e-smoke-runner.cjs) | Smoke test — registration + command execution |
+| [SETTINGS_LIVE_AUDIT.md](../../.vscode/SETTINGS_LIVE_AUDIT.md) | Generated audit report (strict pass/fail) |
+
+### Standards
+
+| File | Relevance |
+|------|-----------|
+| [SCRIPT_METADATA_STANDARD.md](../standards/SCRIPT_METADATA_STANDARD.md) | Universal metadata standard V2 |
+| [python-scripting.instructions.md](../../.github/instructions/python-scripting.instructions.md) | PMS-v3 Python canonical |
