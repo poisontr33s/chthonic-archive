@@ -34,7 +34,7 @@ This created tension with the existing SSOT MILFOLOGICAL framework, which alread
 
 ## 2. Hybridization Protocol
 
-Following the pattern from [genre-extraction.md](genre-extraction.md):
+Following the pattern from [genre_extraction.md](genre_extraction.md):
 
 ### 2.1 What to KEEP from Disco Elysium
 

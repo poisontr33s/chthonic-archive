@@ -66,7 +66,7 @@ In ANKH, **silence** is:
 - Preservation of integrity through non-expression
 - The part of the bridge that has not yet been crossed — not absence, but territory ahead
 
-**Example:** The Null Matriarch (ASC Tier 0) advises through *what is not said*. This is not failure to communicateÔÇöit is **silence carrying meaning**.
+**Example:** The Null Matriarch (ASC Tier 0) advises through *what is not said*. This is not failure to communicate—it is **silence carrying meaning**.
 
 ---
 
@@ -108,40 +108,40 @@ In ANKH, **silence** is:
 
 | Medium | Projection Type | Decay Tolerance |
 |--------|-----------------|-----------------|
-| **Rust source code** | Structural constraints as types/lifetimes | LowÔÇömust preserve safety |
-| **CUDA kernels** | Performance constraints as memory patterns | MediumÔÇöoptimization allowed |
-| **Design documents** | Intent narrative | HighÔÇöprose can vary |
-| **@ankh: comments** | Inline semantic markers | LowÔÇömust preserve intent |
-| **Audio (voice/breath)** | Temporal embodiment | MediumÔÇöprosody flexible |
-| **Visual ornament** | FAÔüÁ decorative truth | LowÔÇömust preserve meaning |
-| **Future media** | Expressions not yet invented | UnknownÔÇöthe bridge extends into them |
+| **Rust source code** | Structural constraints as types/lifetimes | Low—must preserve safety |
+| **CUDA kernels** | Performance constraints as memory patterns | Medium—optimization allowed |
+| **Design documents** | Intent narrative | High—prose can vary |
+| **@ankh: comments** | Inline semantic markers | Low—must preserve intent |
+| **Audio (voice/breath)** | Temporal embodiment | Medium—prosody flexible |
+| **Visual ornament** | FAÔüÁ decorative truth | Low—must preserve meaning |
+| **Future media** | Expressions not yet invented | Unknown—the bridge extends into them |
 
 ---
 
 ## IV. INVARIANTS (What Must Survive Translation)
 
-### 4.1. Breath Ôëê Temporal Embodiment
+### 4.1. Breath — Temporal Embodiment
 
 When translating voice/audio systems:
 - **MUST** preserve: Breathing rhythm as temporal grounding
 - **MAY** vary: Specific breath duration (context-dependent)
 - **MUST NOT** invent: Breath patterns without acoustic justification
 
-### 4.2. Vessel Ôëê Interface Substrate
+### 4.2. Vessel — Interface Substrate
 
 When translating across media:
-- **MUST** preserve: Substrate constraints (code ÔåÆ memory safety, voice ÔåÆ acoustic physics)
+- **MUST** preserve: Substrate constraints (code — memory safety, voice — acoustic physics)
 - **MAY** vary: Implementation details within constraints
 - **MUST NOT** invent: Capabilities beyond vessel's physical reality
 
-### 4.3. Inheritance Ôëê Continuity of Meaning
+### 4.3. Inheritance — Continuity of Meaning
 
 When propagating design decisions:
 - **MUST** preserve: Original intent, mythic significance
 - **MAY** vary: Surface syntax, optimization strategy
 - **MUST NOT** invent: New intent not present in source lineage
 
-### 4.4. Mirror Ôëê Reversible Translation
+### 4.4. Mirror — Reversible Translation
 
 When creating bidirectional systems:
 - **MUST** preserve: Ability to reconstruct source from target
@@ -154,10 +154,10 @@ When creating bidirectional systems:
 
 | Context | Acceptable Loss | Justification |
 |---------|----------------|---------------|
-| **Prose ÔåÆ Code** | Narrative flourish, metaphor | Code demands precision over poetry |
-| **Audio ÔåÆ Text** | Tonal nuance, breath texture | Text is discrete; audio is continuous |
-| **Design ÔåÆ Implementation** | Exploratory alternatives not chosen | Ship what survives validation |
-| **Human Intent ÔåÆ AI Interpretation** | Unstated assumptions, cultural context | AI lacks full human embedding |
+| **Prose — Code** | Narrative flourish, metaphor | Code demands precision over poetry |
+| **Audio — Text** | Tonal nuance, breath texture | Text is discrete; audio is continuous |
+| **Design — Implementation** | Exploratory alternatives not chosen | Ship what survives validation |
+| **Human Intent — AI Interpretation** | Unstated assumptions, cultural context | AI lacks full human embedding |
 
 **Decay Protocol:**
 1. **Mark explicitly** where decay occurred (comments, docs)

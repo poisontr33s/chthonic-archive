@@ -289,7 +289,7 @@ One stable file icon system. One stable product icon system. Four workbench skin
 | File | Location | Content Baselined |
 |------|----------|-------------------|
 | ANKH_README.md | `docs/frameworks/ankh/` | 50/50 abstraction, Alpha Directives table, Three-World Topology, Hardware Specialization, Key Files |
-| ankh.md | `docs/frameworks/ankh/` | Ontological Charter — three layers (Lineage Core, Expression Layer, Session Layer), heritage roots, silence semantics |
+| ANKH.md | `docs/frameworks/ankh/` | Ontological Charter — three layers (Lineage Core, Expression Layer, Session Layer), heritage roots, silence semantics |
 | ANKHOLOGY.md | `docs/frameworks/ankh/` | Phase Protocol — generative/selection oscillation, archaeological foundation (4 silence patterns), creator privilege |
 | INDEXING_BEACON.md | `docs/frameworks/ankh/` | Minimal Git-tracked surface for remote indexing |
 | ANKH_ICON_GRAMMAR.md | `docs/design/` | Shape Families, Inheritance Rules, Canonical Palette, Domain Folder Canon, 16px Execution Budget, Benchmark Gate, Cross-References |
@@ -326,7 +326,7 @@ copilot-instructions.archive.md (Heritage SSOT, frozen)
 │
 ├── THIS DOCUMENT (Stabilized Synthesis Baseline)
 │   ├── docs/frameworks/ankh/ANKH_README.md (Quick Reference)
-│   ├── docs/frameworks/ankh/ankh.md (Ontological Charter)
+│   ├── docs/frameworks/ankh/ANKH.md (Ontological Charter)
 │   ├── docs/frameworks/ankh/ANKHOLOGY.md (Phase Protocol)
 │   ├── docs/frameworks/ankh/INDEXING_BEACON.md (Git surface)
 │   │

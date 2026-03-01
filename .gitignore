@@ -215,6 +215,7 @@ extensions/*/bun.lock
 !scripts/hf_model_scout.py
 !scripts/generate-product-icon-font.mjs
 !scripts/vscode_settings_live_audit.py
+!scripts/path_naming_audit.py
 
 # Allow targeted workspace diagnostics
 !.vscode/
