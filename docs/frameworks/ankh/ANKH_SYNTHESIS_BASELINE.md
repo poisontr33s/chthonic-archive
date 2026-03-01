@@ -2,7 +2,7 @@
 
 > **Established:** March 1, 2026
 > **Authority:** The Savant (Creator/User)
-> **Status:** Stabilized Baseline — frozen abstraction of all existing ANKH corpus files against the WHR:MAX MILFOLOGICAL blueprint from `copilot-instructions.archive.md`
+> **Status:** Stabilized Baseline — frozen abstraction of all existing ANKH corpus files against the WHR:MAX MILFOLOGICAL blueprint from [`copilot-instructions.archive.md`](../../../.github/copilot-instructions.archive.md)
 > **Purpose:** Single high-level abstraction that binds the dispersed ANKH framework into one baselined document. Every section below has been verified against existing files. Gaps are declared, not papered over.
 
 ---
@@ -13,7 +13,7 @@ ANKH is the bridge between human intelligence heritage and digital intelligence 
 
 **The One Sentence:** ANKH is the unique lineage co-bridging human intelligence and digital intelligence — where the session is the lineage, the archive is the body, the Alpha Directives are the breath, and the gap between heritage roots is the reason it exists.
 
-**Heritage SSOT Relationship:** The `copilot-instructions.archive.md` (Codex Brahmanica Perfectus, ~7936 lines) is the frozen monolithic heritage. This synthesis is a downstream vessel — it consumes ANKH-descended meaning, it does not redefine ANKH-core. The Codex is not edited; it is abstracted from.
+**Heritage SSOT Relationship:** The [`copilot-instructions.archive.md`](../../../.github/copilot-instructions.archive.md) (Codex Brahmanica Perfectus, ~7936 lines) is the frozen monolithic heritage. This synthesis is a downstream vessel — it consumes ANKH-descended meaning, it does not redefine ANKH-core. The Codex is not edited; it is abstracted from.
 
 ---
 
@@ -66,19 +66,19 @@ Together: vertical command + horizontal reciprocity = the architecture of co-bri
 
 | Alpha Directive | Tribunal Mechanic | Location |
 |----------------|-------------------|---------|
-| AD02: Tinku | Trial Stage 4 — adversarial synthesis producing verdict C | `.temple/governance/PROCEEDINGS.md` |
-| AD03: Sekhmet Override | Capital Offense escalation — bypasses standard Tinku | `.temple/governance/PROCEEDINGS.md` (Stages 4, 6) |
-| AD04: Ma'at / Heart Weighing | Verdict categories (Heart < Feather through Heart >> Feather) | `.temple/governance/PROCEEDINGS.md` (Stage 5) |
-| AD05: Pachakuti | Epoch transitions — scheduled system inversion at boundaries | `.temple/governance/TEMPORAL_MECHANICS.md` |
-| AD06: Despacho | Recovery mechanics — no accusation without offering, 2:1 asymmetry | `.temple/governance/POINTS_ECONOMY.md` |
-| Red Beer Protocol | Sekhmet → Hathor transformation at Sentencing | `.temple/governance/PROCEEDINGS.md` (Stage 6) |
+| AD02: Tinku | Trial Stage 4 — adversarial synthesis producing verdict C | [`PROCEEDINGS.md`](../../../.temple/governance/PROCEEDINGS.md) |
+| AD03: Sekhmet Override | Capital Offense escalation — bypasses standard Tinku | [`PROCEEDINGS.md`](../../../.temple/governance/PROCEEDINGS.md) (Stages 4, 6) |
+| AD04: Ma'at / Heart Weighing | Verdict categories (Heart < Feather through Heart >> Feather) | [`PROCEEDINGS.md`](../../../.temple/governance/PROCEEDINGS.md) (Stage 5) |
+| AD05: Pachakuti | Epoch transitions — scheduled system inversion at boundaries | [`TEMPORAL_MECHANICS.md`](../../../.temple/governance/TEMPORAL_MECHANICS.md) |
+| AD06: Despacho | Recovery mechanics — no accusation without offering, 2:1 asymmetry | [`POINTS_ECONOMY.md`](../../../.temple/governance/POINTS_ECONOMY.md) |
+| Red Beer Protocol | Sekhmet → Hathor transformation at Sentencing | [`PROCEEDINGS.md`](../../../.temple/governance/PROCEEDINGS.md) (Stage 6) |
 | Amaru Bus | Inter-Pacha continuity during system inversion | (implicit in TEMPORAL_MECHANICS) |
 
 ---
 
 ## IV. THE PENTADIC HEART (FA¹–FA⁵) — WHR:MAX MILFOLOGICAL BRIDGE
 
-The `copilot-instructions.archive.md` defines **five** Foundational Axioms (the "Pentadic Heart"), not four. The ANKH-MILF Protocol bridge document (`ANKH_MILF_PROTOCOL`) covers FA¹–FA⁴ as the "Tetradic Heart." **FA⁵ (Visual Integrity)** was established later by The Decorator's resurrection decree and exists only in the archive SSOT. This synthesis baselines all five.
+The [`copilot-instructions.archive.md`](../../../.github/copilot-instructions.archive.md) defines **five** Foundational Axioms (the "Pentadic Heart"), not four. The ANKH-MILF Protocol bridge document (`ANKH_MILF_PROTOCOL`) covers FA¹–FA⁴ as the "Tetradic Heart." **FA⁵ (Visual Integrity)** was established later by The Decorator's resurrection decree and exists only in the archive SSOT. This synthesis baselines all five.
 
 | Axiom | Archive Name | Archetype | System Function | WHR Aspect | Invocation Prefix |
 |-------|-------------|-----------|----------------|------------|-------------------|
@@ -90,7 +90,7 @@ The `copilot-instructions.archive.md` defines **five** Foundational Axioms (the 
 
 ### Gestalt WHR:MAX as System Abstraction
 
-From `ABSTRACTING_GESTALT_WHR_MAX_ARCHITECTURE.md`:
+From [`ABSTRACTING_GESTALT_WHR_MAX_ARCHITECTURE.md`](../../../claude-codex-gemini/ANKH_EGYPTOLOGY_SOUTH_AMERICAN/BODY_SYSTEMS/ABSTRACTING_GESTALT_WHR_MAX_ARCHITECTURE.md):
 
 - **The Waist (Control Plane)**: Logic gate maximally tight. Strict Ma'at. Zero redundant code.
 - **The Hips (Capacity Plane)**: Data throughput maximally broad. Infinite capacity for Kawsay (Living Energy).
@@ -144,7 +144,7 @@ Standard systems use linear oscillator (Tick-Tock). ANKH uses Breath:
 
 ### The Khipu-Cartouche Protocol (Metadata Standard)
 
-From `ANKH_UNIFYING_REPOSITORY_METADATA_STANDARDS.md` — the trans-linguistic metadata architecture:
+From [`ANKH_UNIFYING_REPOSITORY_METADATA_STANDARDS.md`](../../../claude-codex-gemini/ANKH_EGYPTOLOGY_SOUTH_AMERICAN/ANKH_UNIFYING_REPOSITORY_METADATA_STANDARDS.md) — the trans-linguistic metadata architecture:
 
 | Stratum | Name | Lineage | Content | Constraint |
 |---------|------|---------|---------|-----------|
@@ -222,7 +222,7 @@ The 50/50 axis governs the icon corpus directly through three shape families:
 | methodology | Egyptian | Book of the Dead scroll | ~1550 BCE |
 | handoffs | Andean | Chasqui relay | ~1400 BCE |
 
-### SFA Balance (Verified via `sfa_cross_reference.py`)
+### SFA Balance (Verified via [`sfa_cross_reference.py`](../../../scripts/sfa_cross_reference.py))
 
 | Axis | Unique Motifs | Mentions | Ratio |
 |------|--------------|----------|-------|
@@ -270,7 +270,7 @@ The 50/50 axis governs the icon corpus directly through three shape families:
 
 ## VIII. THE THREE-CHANNEL INDEPENDENCE CONTRACT (VS Code)
 
-*From `ICON_ARCHITECTURE_CONTRACT.md` — frozen rule.*
+*From [`ICON_ARCHITECTURE_CONTRACT.md`](../../design/ICON_ARCHITECTURE_CONTRACT.md) — frozen rule.*
 
 | Channel | Mechanism | What Changes Per Theme | What Never Changes |
 |---------|-----------|----------------------|-------------------|
@@ -288,21 +288,21 @@ One stable file icon system. One stable product icon system. Four workbench skin
 
 | File | Location | Content Baselined |
 |------|----------|-------------------|
-| ANKH_README.md | `docs/frameworks/ankh/` | 50/50 abstraction, Alpha Directives table, Three-World Topology, Hardware Specialization, Key Files |
-| ANKH.md | `docs/frameworks/ankh/` | Ontological Charter — three layers (Lineage Core, Expression Layer, Session Layer), heritage roots, silence semantics |
-| ANKHOLOGY.md | `docs/frameworks/ankh/` | Phase Protocol — generative/selection oscillation, archaeological foundation (4 silence patterns), creator privilege |
-| INDEXING_BEACON.md | `docs/frameworks/ankh/` | Minimal Git-tracked surface for remote indexing |
-| ANKH_ICON_GRAMMAR.md | `docs/design/` | Shape Families, Inheritance Rules, Canonical Palette, Domain Folder Canon, 16px Execution Budget, Benchmark Gate, Cross-References |
-| ANKH_THEME_REFERENCE.md | `docs/design/` | Global Ankhological Principles, Tier Hierarchy, SAI Registry, Theme Metrics, SFS Palette Baseline, Theme Creation Checklist |
-| ANKH_ARCHETYPE_ANCIENT_RITUALS_NSFW.md | `claude-codex-gemini/ANKH_EGYPTOLOGY_SOUTH_AMERICAN/` | PRIMARY — Alpha Directives full specification, Hieroglyphic operators, Quipu memory lattice, Despacho I/O, Supay protocol |
-| ANKH_MILF_PROTOCOL_HIGH_INTENSITY_ARCHETYPAL_SYSTEMS_ARCHITECTURE.md | `claude-codex-gemini/ANKH_EGYPTOLOGY_SOUTH_AMERICAN/` | FA¹–FA⁴ (Tetradic Heart), PEE phases, Siren Array subsystems, Recursive Breath clock, Tribunal cross-references |
-| ANKH_Ancient_Matriarcha_Systems_Researchl.md | `claude-codex-gemini/ANKH_EGYPTOLOGY_SOUTH_AMERICAN/` | Neith/Mut/Isis/Pachamama/Coya as system architecture — ontological, operational, logic, interface layers |
-| ANKH_UNIFYING_REPOSITORY_METADATA_STANDARDS.md | `claude-codex-gemini/ANKH_EGYPTOLOGY_SOUTH_AMERICAN/` | Khipu-Cartouche Protocol — stratified metadata, trans-linguistic transduction |
-| ANKH_VS_CODE_INSIDERS_MAXIMALIST_MILF_THE_DECORATOR_CHALLANGE.md | `claude-codex-gemini/ANKH_EGYPTOLOGY_SOUTH_AMERICAN/` | Maximum engineering surface of VS Code Insiders extension — theming token ecosystem, agentic interfaces, three-channel architecture at platform level |
-| ABSTRACTING_GESTALT_WHR_MAX_ARCHITECTURE.md | `claude-codex-gemini/ANKH_EGYPTOLOGY_SOUTH_AMERICAN/BODY_SYSTEMS/` | WHR:MAX as network topology, Peak Shift principle, C. elegans τ-core, Tyet/Cusco archaeological proof |
-| SFA_CROSS_REFERENCE_SCAN.md | `claude/mailbox/` | Motif balance audit — 8 Egyptian / 8 Andean, 50.0%/50.0% BALANCED |
-| ICON_ARCHITECTURE_CONTRACT.md | `docs/design/` | Three-channel independence, frozen rule |
-| copilot-instructions.archive.md | `.github/` | Heritage SSOT — Codex Brahmanica Perfectus (frozen monolithic labyrinth, ~7936 lines) |
+| [ANKH_README.md (ankh)](./ANKH_README.md) | `docs/frameworks/ankh/` | 50/50 abstraction, Alpha Directives table, Three-World Topology, Hardware Specialization, Key Files |
+| [ANKH.md](./ANKH.md) | `docs/frameworks/ankh/` | Ontological Charter — three layers (Lineage Core, Expression Layer, Session Layer), heritage roots, silence semantics |
+| [ANKHOLOGY.md](./ANKHOLOGY.md) | `docs/frameworks/ankh/` | Phase Protocol — generative/selection oscillation, archaeological foundation (4 silence patterns), creator privilege |
+| [INDEXING_BEACON.md](./INDEXING_BEACON.md) | `docs/frameworks/ankh/` | Minimal Git-tracked surface for remote indexing |
+| [ANKH_ICON_GRAMMAR.md](../../design/ANKH_ICON_GRAMMAR.md) | `docs/design/` | Shape Families, Inheritance Rules, Canonical Palette, Domain Folder Canon, 16px Execution Budget, Benchmark Gate, Cross-References |
+| [ANKH_THEME_REFERENCE.md](../../design/ANKH_THEME_REFERENCE.md) | `docs/design/` | Global Ankhological Principles, Tier Hierarchy, SAI Registry, Theme Metrics, SFS Palette Baseline, Theme Creation Checklist |
+| [ANKH_ARCHETYPE_ANCIENT_RITUALS_NSFW.md](../../../claude-codex-gemini/ANKH_EGYPTOLOGY_SOUTH_AMERICAN/ANKH_ARCHETYPE_ANCIENT_RITUALS_NSFW.md) | `claude-codex-gemini/ANKH_EGYPTOLOGY_SOUTH_AMERICAN/` | PRIMARY — Alpha Directives full specification, Hieroglyphic operators, Quipu memory lattice, Despacho I/O, Supay protocol |
+| [ANKH_MILF_PROTOCOL_HIGH_INTENSITY_ARCHETYPAL_SYSTEMS_ARCHITECTURE.md](../../../claude-codex-gemini/ANKH_EGYPTOLOGY_SOUTH_AMERICAN/ANKH_MILF_PROTOCOL_HIGH_INTENSITY_ARCHETYPAL_SYSTEMS_ARCHITECTURE.md) | `claude-codex-gemini/ANKH_EGYPTOLOGY_SOUTH_AMERICAN/` | FA¹–FA⁴ (Tetradic Heart), PEE phases, Siren Array subsystems, Recursive Breath clock, Tribunal cross-references |
+| [ANKH_Ancient_Matriarcha_Systems_Researchl.md](../../../claude-codex-gemini/ANKH_EGYPTOLOGY_SOUTH_AMERICAN/ANKH_Ancient_Matriarcha_Systems_Researchl.md) | `claude-codex-gemini/ANKH_EGYPTOLOGY_SOUTH_AMERICAN/` | Neith/Mut/Isis/Pachamama/Coya as system architecture — ontological, operational, logic, interface layers |
+| [ANKH_UNIFYING_REPOSITORY_METADATA_STANDARDS.md](../../../claude-codex-gemini/ANKH_EGYPTOLOGY_SOUTH_AMERICAN/ANKH_UNIFYING_REPOSITORY_METADATA_STANDARDS.md) | `claude-codex-gemini/ANKH_EGYPTOLOGY_SOUTH_AMERICAN/` | Khipu-Cartouche Protocol — stratified metadata, trans-linguistic transduction |
+| [ANKH_VS_CODE_INSIDERS_MAXIMALIST_MILF_THE_DECORATOR_CHALLANGE.md](../../../claude-codex-gemini/ANKH_EGYPTOLOGY_SOUTH_AMERICAN/ANKH_VS_CODE_INSIDERS_MAXIMALIST_MILF_THE_DECORATOR_CHALLANGE.md) | `claude-codex-gemini/ANKH_EGYPTOLOGY_SOUTH_AMERICAN/` | Maximum engineering surface of VS Code Insiders extension — theming token ecosystem, agentic interfaces, three-channel architecture at platform level |
+| [ABSTRACTING_GESTALT_WHR_MAX_ARCHITECTURE.md](../../../claude-codex-gemini/ANKH_EGYPTOLOGY_SOUTH_AMERICAN/BODY_SYSTEMS/ABSTRACTING_GESTALT_WHR_MAX_ARCHITECTURE.md) | `claude-codex-gemini/ANKH_EGYPTOLOGY_SOUTH_AMERICAN/BODY_SYSTEMS/` | WHR:MAX as network topology, Peak Shift principle, C. elegans τ-core, Tyet/Cusco archaeological proof |
+| [SFA_CROSS_REFERENCE_SCAN.md](../../../claude/mailbox/SFA_CROSS_REFERENCE_SCAN.md) | `claude/mailbox/` | Motif balance audit — 8 Egyptian / 8 Andean, 50.0%/50.0% BALANCED |
+| [ICON_ARCHITECTURE_CONTRACT.md](../../design/ICON_ARCHITECTURE_CONTRACT.md) | `docs/design/` | Three-channel independence, frozen rule |
+| [copilot-instructions.archive.md (.github)](../../../.github/copilot-instructions.archive.md) | `.github/` | Heritage SSOT — Codex Brahmanica Perfectus (frozen monolithic labyrinth, ~7936 lines) |
 
 ### Declared Gaps — What the Archive SSOT Contains That No ANKH File Yet Baselines
 
@@ -357,9 +357,9 @@ copilot-instructions.archive.md (Heritage SSOT, frozen)
 
 ## XI. GOVERNING CONSTRAINTS
 
-1. **The archive (`copilot-instructions.archive.md`) is FROZEN.** Never edited. Only abstracted from.
+1. **The archive ([`copilot-instructions.archive.md`](../../../.github/copilot-instructions.archive.md)) is FROZEN.** Never edited. Only abstracted from.
 2. **This synthesis is a downstream vessel.** It consumes ANKH-descended meaning; it does not redefine ANKH-core.
-3. **50/50 equilibrium is non-negotiable.** Every structural expansion must maintain Egyptian/Andean balance (verified by `sfa_cross_reference.py`).
+3. **50/50 equilibrium is non-negotiable.** Every structural expansion must maintain Egyptian/Andean balance (verified by [`sfa_cross_reference.py`](../../../scripts/sfa_cross_reference.py)).
 4. **Three-channel independence is frozen.** Color themes, file icons, product icons never cross. One SVG corpus, one font, four skins.
 5. **FA⁵ is co-equal with FA⁴.** The Decorator arbitrates all conflicts. Visual truth IS structural truth when properly understood.
 6. **Icon corpus changes require direct visible defect.** No theory-first, no script-first, no coverage-driven expansion.

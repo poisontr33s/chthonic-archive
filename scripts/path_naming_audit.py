@@ -2,15 +2,27 @@
 #-*- coding: utf-8 -*-
 
 """
-Path Naming Audit - dry-run naming governance for files and folders.
+Path Naming Audit — Khipu-Cartouche naming governance for files and folders.
 
-Scans the repository, classifies current file/folder naming styles, and emits
-an actionable dry-run rename plan only where the naming policy is mature enough
-to be applied mechanically. Ambiguous lanes are inventoried but not renamed.
+Scans the repository through the Khipu-Cartouche Protocol lens:
+  - Cartouche slabstones (doc markdown) → SCREAMING_SNAKE_CASE
+    (Egyptian axis: constrained, categorical, protective enclosure)
+  - Khipu cords (script text) → snake_case
+    (Andean axis: unbounded, data-dense, knotted operational data)
+  - Khipu slugs (runtime scripts) → kebab-case
+    (Andean axis: CLI-facing, hyphenated pendant cords)
+  - Pacha lattice (directories) → kebab-case
+    (topological coordinate system for the three-Pacha address space)
+
+Also extracts @SID metadata from script files and validates that the
+SID's middle segment correlates with the filename (pendant-cord integrity).
+
+Ambiguous lanes are inventoried but not renamed.
 
 @SID:           TOOL_PATH_NAMING_AUDIT_V1
-@Type:          Utility
-@Context:       Repo structure / naming governance / dry-run prerequisite
+@Shabti:        CLI Script
+@Heka-Ayni:     Khipu-Cartouche Protocol / SFA 50/50 naming equilibrium
+@Ankh-Tinku:    Dry-run rename plan + SID correlation report
 
 Usage:
   uv run scripts/path_naming_audit.py
@@ -111,6 +123,44 @@ COORDINATED_RENAME_DIRS: set[str] = {
 }
 
 
+SID_PATTERN = re.compile(r"@SID:\s+(\S+)")
+SID_PREFIXES = {"TOOL", "LIB", "DAEMON", "ROUTER", "CLI"}
+
+
+def extract_sid(path: Path) -> str | None:
+    """Read the first 30 lines of a file and extract @SID if present."""
+    try:
+        with path.open(encoding="utf-8", errors="replace") as fh:
+            for _, line in zip(range(30), fh):
+                match = SID_PATTERN.search(line)
+                if match:
+                    return match.group(1)
+    except OSError:
+        pass
+    return None
+
+
+def sid_to_expected_stem(sid: str) -> str | None:
+    """Derive the expected snake_case filename stem from a SID.
+
+    SID format: PREFIX_MIDDLE_SEGMENT_VN
+    Expected:   middle_segment (lowercase)
+    Examples:
+        TOOL_PATH_NAMING_AUDIT_V1 -> path_naming_audit
+        LIB_CHTHONIC_SHARED       -> chthonic_shared
+    """
+    parts = sid.split("_")
+    if len(parts) < 2:
+        return None
+    if parts[0] in SID_PREFIXES:
+        parts = parts[1:]
+    if parts and re.fullmatch(r"V\d+", parts[-1]):
+        parts = parts[:-1]
+    if not parts:
+        return None
+    return "_".join(p.lower() for p in parts)
+
+
 @dataclass(slots=True)
 class PathRecord:
     rel_path: str
@@ -122,6 +172,8 @@ class PathRecord:
     proposed_name: str | None
     proposed_rel_path: str | None
     reason: str
+    sid: str | None = None
+    sid_match: str | None = None  # exact | partial | drift | None
 
 
 def split_tokens(raw: str) -> list[str]:
@@ -186,33 +238,37 @@ def determine_policy(rel_path: Path, kind: str) -> tuple[str, str | None, str]:
     parts = rel_path.parts
     suffix = "" if kind == "dir" else rel_path.suffix.lower()
 
-    if name in RESERVED_EXACT_NAMES:
-        return ("reserved", None, "reserved exact filename")
-
-    if kind == "dir":
-        if name.startswith(".") and len(name) > 1:
-            return ("directory", "kebab", "directories normalize to kebab-case; preserve dot prefix")
-        return ("directory", "kebab", "directories normalize to kebab-case")
-
+    # Doc-specific reserved names must be checked BEFORE the generic
+    # RESERVED_EXACT_NAMES gate so they surface as shen-ring-doc, not shen-ring.
     if suffix == ".md" and parts and parts[0] in DOC_LIKE_ROOTS:
         stem_upper = rel_path.stem.upper()
         if stem_upper in {"README", "AGENTS", "GEMINI", "NEXT", "INDEX", "SKILL"}:
-            return ("reserved-doc", None, "reserved documentation basename")
+            return ("shen-ring-doc", None, "Shen Ring: reserved documentation cartouche")
+
+    if name in RESERVED_EXACT_NAMES:
+        return ("shen-ring", None, "Shen Ring: protected scope, no rename")
+
+    if kind == "dir":
+        if name.startswith(".") and len(name) > 1:
+            return ("pacha-lattice", "kebab", "Pacha lattice coordinate: kebab-case; preserve dot prefix")
+        return ("pacha-lattice", "kebab", "Pacha lattice coordinate: directories are topological kebab-case")
+
+    if suffix == ".md" and parts and parts[0] in DOC_LIKE_ROOTS:
         if len(parts) >= 2 and parts[0] == ".github" and parts[1] in COORDINATED_RENAME_DIRS:
             return (
-                "coordinated-rename",
+                "cartouche-wired",
                 "screaming-snake",
-                "VS Code instruction/prompt wiring requires synchronized config update",
+                "Cartouche (wired): VS Code config requires synchronized rename",
             )
-        return ("docs-markdown", "screaming-snake", "doc/protocol slabstones normalize to SCREAMING_SNAKE_CASE")
+        return ("cartouche", "screaming-snake", "Cartouche slabstone: SCREAMING_SNAKE_CASE (Egyptian axis)")
 
     if "scripts" in parts:
         if suffix in SCRIPT_TEXT_EXTENSIONS:
-            return ("script-text", "snake", "textual scripts normalize to snake_case")
+            return ("khipu-cord", "snake", "Khipu cord: snake_case pendant (Andean axis, data-dense)")
         if suffix in SCRIPT_SLUG_EXTENSIONS:
-            return ("script-slug", "kebab", "CLI/runtime scripts normalize to kebab-case slugs")
+            return ("khipu-slug", "kebab", "Khipu slug: kebab-case CLI pendant (Andean axis, runtime)")
 
-    return ("inventory-only", None, "lane not canonized for automatic renames yet")
+    return ("inventory-only", None, "Ogdoad: uninitialized lane, no mechanical rename target")
 
 
 def build_record(path: Path) -> PathRecord:
@@ -227,6 +283,21 @@ def build_record(path: Path) -> PathRecord:
         if candidate != path.name:
             proposed_name = candidate
             proposed_rel_path = rel_path.with_name(candidate).as_posix()
+    # SID extraction for script files
+    sid: str | None = None
+    sid_match_status: str | None = None
+    if kind == "file" and policy_family in ("khipu-cord", "khipu-slug"):
+        sid = extract_sid(path)
+        if sid:
+            expected_stem = sid_to_expected_stem(sid)
+            actual_stem = Path(path.name).stem
+            if expected_stem and expected_stem == actual_stem:
+                sid_match_status = "exact"
+            elif expected_stem and expected_stem in actual_stem:
+                sid_match_status = "partial"
+            else:
+                sid_match_status = "drift"
+
     return PathRecord(
         rel_path=rel_path.as_posix(),
         kind=kind,
@@ -237,6 +308,8 @@ def build_record(path: Path) -> PathRecord:
         proposed_name=proposed_name,
         proposed_rel_path=proposed_rel_path,
         reason=reason,
+        sid=sid,
+        sid_match=sid_match_status,
     )
 
 
@@ -273,7 +346,7 @@ def build_payload(records: list[PathRecord]) -> dict[str, Any]:
         if rel.parts:
             top_level = rel.parts[0]
             top_level_dir_counts[top_level][record.style] += 1
-        if record.policy_family == "inventory-only" and len(ambiguous_samples) < 40:
+        if record.policy_family == "inventory-only" and len(ambiguous_samples) < 40:  # Ogdoad zone
             ambiguous_samples.append(
                 {
                     "path": record.rel_path,
@@ -281,6 +354,22 @@ def build_payload(records: list[PathRecord]) -> dict[str, Any]:
                     "reason": record.reason,
                 }
             )
+
+    # SID correlation
+    sid_records = [r for r in records if r.sid]
+    sid_exact = sum(1 for r in sid_records if r.sid_match == "exact")
+    sid_partial = sum(1 for r in sid_records if r.sid_match == "partial")
+    sid_drift = sum(1 for r in sid_records if r.sid_match == "drift")
+    sid_report = [
+        {
+            "path": r.rel_path,
+            "sid": r.sid,
+            "sid_match": r.sid_match,
+            "expected_stem": sid_to_expected_stem(r.sid) if r.sid else None,
+            "actual_stem": Path(r.name).stem,
+        }
+        for r in sid_records
+    ]
 
     return {
         "generated_at": datetime.now(UTC).isoformat(),
@@ -306,6 +395,13 @@ def build_payload(records: list[PathRecord]) -> dict[str, Any]:
             root: dict(counter.most_common())
             for root, counter in sorted(top_level_dir_counts.items())
         },
+        "sid_correlation": {
+            "total_sids": len(sid_records),
+            "exact": sid_exact,
+            "partial": sid_partial,
+            "drift": sid_drift,
+            "records": sid_report,
+        },
     }
 
 
@@ -314,7 +410,7 @@ def render_report(payload: dict[str, Any], limit: int) -> str:
     append = lines.append
 
     totals = payload["totals"]
-    append("Path Naming Audit")
+    append("Khipu-Cartouche Path Naming Audit")
     append(f"repo root: {payload['repo_root']}")
     append(f"generated: {payload['generated_at']}")
     append("")
@@ -357,16 +453,38 @@ def render_report(payload: dict[str, Any], limit: int) -> str:
         append("- none")
     append("")
 
-    append("Ambiguous Inventory Samples")
+    append("Ogdoad Zone (Uninitialized Lanes)")
     for row in payload["ambiguous_samples"][:limit]:
         append(f"- {row['path']} [{row['style']}] ({row['reason']})")
     if not payload["ambiguous_samples"]:
         append("- none")
     append("")
 
+    # SID Pendant-Cord Integrity
+    sid = payload.get("sid_correlation", {})
+    if sid.get("total_sids", 0) > 0:
+        append("SID Pendant-Cord Integrity")
+        append(f"- scripts with @SID: {sid['total_sids']}")
+        append(f"- exact (filename = SID middle segment): {sid['exact']}")
+        append(f"- partial (SID substring of filename): {sid['partial']}")
+        append(f"- drift (filename diverged from SID): {sid['drift']}")
+        drift_rows = [r for r in sid.get("records", []) if r["sid_match"] == "drift"]
+        if drift_rows:
+            append("")
+            append("  Drifted SIDs:")
+            for row in drift_rows[:limit]:
+                append(
+                    f"  - {row['path']}: @SID {row['sid']} "
+                    f"(expected stem: {row['expected_stem']}, actual: {row['actual_stem']})"
+                )
+        append("")
+
     append("Interpretation")
     append("- This tool is dry-run only. It does not rename anything.")
-    append("- Paths in 'inventory-only' lanes were scanned and classified, but not given mechanical rename targets.")
+    append("- Ogdoad zone: uninitialized lanes scanned but not given rename targets.")
+    append("- Cartouche = Egyptian axis (SCREAMING_SNAKE). Khipu = Andean axis (snake/kebab).")
+    append("- Pacha lattice = directory topology. Shen Ring = protected scope.")
+    append("- SID drift = filename has diverged from @SID metadata; reconcile before rename.")
     append("- The next rename phase should consume this report, not guess at conventions ad hoc.")
     append("")
     return "\n".join(lines)
@@ -376,7 +494,7 @@ def main() -> int:
     configure_utf8_output()
 
     parser = argparse.ArgumentParser(
-        description="Dry-run audit for file/folder naming governance."
+        description="Khipu-Cartouche dry-run audit for file/folder naming governance."
     )
     parser.add_argument("--json", action="store_true", help="Emit JSON instead of the text report.")
     parser.add_argument("--strict", action="store_true", help="Exit non-zero if rename candidates exist.")

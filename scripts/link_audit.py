@@ -16,6 +16,9 @@ Usage:
     uv run scripts/link_audit.py check <file>              # audit one file
     uv run scripts/link_audit.py check <file> --fix        # audit + rewrite fixes
     uv run scripts/link_audit.py check <file> --dry-run    # show fixes without writing
+    uv run scripts/link_audit.py renames --staged          # audit markdown links against staged renames
+    uv run scripts/link_audit.py renames --staged --dry-run
+    uv run scripts/link_audit.py renames --staged --fix
     uv run scripts/link_audit.py collisions                 # list all basename collisions in repo
     uv run scripts/link_audit.py collisions --json          # JSON output
 """
@@ -26,6 +29,7 @@ import argparse
 import json
 import os
 import re
+import subprocess
 import sys
 from pathlib import Path
 
@@ -261,6 +265,106 @@ def audit_file(
     }
 
 
+def load_staged_renames(repo_root: Path) -> list[dict]:
+    """Load staged rename pairs from git index."""
+    proc = subprocess.run(
+        ["git", "diff", "--cached", "--name-status", "--diff-filter=R"],
+        cwd=repo_root,
+        capture_output=True,
+        text=True,
+        encoding="utf-8",
+        errors="replace",
+        check=False,
+    )
+    if proc.returncode != 0:
+        raise RuntimeError(proc.stderr.strip() or "git diff --cached failed")
+
+    renames: list[dict] = []
+    for line in proc.stdout.splitlines():
+        if not line.strip():
+            continue
+        parts = line.split("\t")
+        if len(parts) < 3:
+            continue
+        status, old_path, new_path = parts[0], parts[1], parts[2]
+        renames.append({
+            "status": status,
+            "old_rel": old_path.replace("\\", "/"),
+            "new_rel": new_path.replace("\\", "/"),
+            "old_abs": (repo_root / old_path).resolve(),
+            "new_abs": (repo_root / new_path).resolve(),
+        })
+    return renames
+
+
+def scan_repo_markdown(repo_root: Path) -> list[Path]:
+    """Collect markdown files in the repo, skipping generated/heavy dirs."""
+    files: list[Path] = []
+    root_str = str(repo_root)
+    for dirpath, dirnames, filenames in os.walk(root_str):
+        dirnames[:] = [d for d in dirnames if d not in SKIP_DIRS]
+        for fname in filenames:
+            if fname.lower().endswith(".md"):
+                files.append(Path(dirpath) / fname)
+    return sorted(files)
+
+
+def resolve_staged_rename_fix(link: dict, file_path: Path, repo_root: Path, renames: list[dict]) -> dict | None:
+    """Resolve a markdown link against staged rename pairs."""
+    target = link["target"]
+    path_part = link["path_part"]
+    fragment = ""
+    if "#" in target:
+        fragment = "#" + target.split("#", 1)[1]
+
+    file_dir = file_path.parent
+    clean = path_part[2:] if path_part.startswith("./") else path_part
+    candidate_rel = (file_dir / clean).resolve()
+    candidate_root = (repo_root / clean).resolve()
+
+    for rename in renames:
+        if candidate_rel == rename["old_abs"] or candidate_root == rename["old_abs"]:
+            replacement_rel = os.path.relpath(rename["new_abs"], file_dir).replace("\\", "/")
+            if not replacement_rel.startswith(".") and "/" not in replacement_rel:
+                replacement_rel = f"./{replacement_rel}"
+            return {
+                "status": "staged_rename",
+                "resolved_path": str(rename["new_abs"].relative_to(repo_root)),
+                "fix": f"[{link['label']}]({replacement_rel}{fragment})",
+                "reason": (
+                    f"Path '{path_part}' points to staged rename "
+                    f"'{rename['old_rel']}' -> '{rename['new_rel']}'"
+                ),
+            }
+    return None
+
+
+def audit_file_against_staged_renames(file_path: Path, repo_root: Path, renames: list[dict]) -> dict:
+    """Audit one markdown file against the staged rename set."""
+    text = file_path.read_text(encoding="utf-8", errors="replace")
+    links = extract_links(text)
+    issues = []
+
+    for link in links:
+        diag = resolve_staged_rename_fix(link, file_path, repo_root, renames)
+        if diag is None:
+            continue
+        issues.append({
+            "line": link["line"],
+            "original": link["full_match"],
+            "label": link["label"],
+            "target": link["target"],
+            **diag,
+        })
+
+    return {
+        "file": str(file_path.relative_to(repo_root)),
+        "total_links": len(links),
+        "fixable": len(issues),
+        "issues": issues,
+    }
+
+
 def apply_fixes(file_path: Path, issues: list[dict]) -> int:
     """Apply fixable replacements to a file. Returns count of fixes applied."""
     fixable = [i for i in issues if i["fix"] is not None]
@@ -307,6 +411,15 @@ def main() -> int:
     p_coll.add_argument("--filter", type=str, default=None,
                         help="Filter by extension (e.g., .md)")
 
+    # renames
+    p_renames = sub.add_parser("renames", help="Audit markdown links against staged renames")
+    p_renames.add_argument("--staged", action="store_true",
+                           help="Use staged git renames as the source set")
+    p_renames.add_argument("--fix", action="store_true",
+                           help="Apply fixable replacements to affected markdown files")
+    p_renames.add_argument("--dry-run", action="store_true",
+                           help="Show what --fix would do without writing")
+
     # Common options
     parser.add_argument("--json", action="store_true", help="JSON output")
     parser.add_argument("--verbose", "-v", action="store_true")
@@ -350,6 +463,72 @@ def main() -> int:
                 for p in sorted(paths):
                     print(f"    {p.relative_to(repo_root)}")
         return 0
+
+    # --- renames ---
+    if args.command == "renames":
+        if not args.staged:
+            log.error("renames currently requires --staged")
+            return 1
+
+        renames = load_staged_renames(repo_root)
+        if not renames:
+            print("No staged renames found.")
+            return 0
+
+        markdown_files = scan_repo_markdown(repo_root)
+        results = []
+        for file_path in markdown_files:
+            result = audit_file_against_staged_renames(file_path, repo_root, renames)
+            if result["issues"]:
+                results.append(result)
+
+        impacted_files = len(results)
+        impacted_issues = sum(len(result["issues"]) for result in results)
+
+        if args.json and not args.fix and not args.dry_run:
+            print(json.dumps({
+                "staged_renames": [
+                    {
+                        "status": rename["status"],
+                        "old_rel": rename["old_rel"],
+                        "new_rel": rename["new_rel"],
+                    }
+                    for rename in renames
+                ],
+                "impacted_files": impacted_files,
+                "impacted_issues": impacted_issues,
+                "results": results,
+            }, indent=2))
+            return 0 if impacted_issues == 0 else 1
+
+        print(f"STAGED RENAMES: {len(renames)}")
+        print(f"IMPACTED FILES: {impacted_files}")
+        print(f"FIXABLE LINKS: {impacted_issues}")
+
+        for result in results:
+            print(f"\nAUDIT: {result['file']}")
+            for issue in result["issues"]:
+                print(f"  L{issue['line']} [STAGED] {issue['original']}")
+                print(f"    Reason: {issue['reason']}")
+                print(f"    Fix:    {issue['fix']}")
+
+        if args.dry_run:
+            print(f"\n--dry-run: {impacted_issues} fixes would be applied across {impacted_files} files")
+            return 0 if impacted_issues == 0 else 1
+
+        if args.fix and impacted_issues:
+            applied = 0
+            touched = 0
+            for result in results:
+                file_path = repo_root / result["file"]
+                count = apply_fixes(file_path, result["issues"])
+                if count:
+                    touched += 1
+                    applied += count
+            print(f"\nApplied {applied} fix(es) across {touched} file(s)")
+            return 0 if applied == impacted_issues else 1
+
+        return 0 if impacted_issues == 0 else 1
 
     # --- check ---
     if args.command == "check":
