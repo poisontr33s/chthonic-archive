@@ -16,27 +16,27 @@ and spillover risk.
 | active consumers | 9 |
 | active workbench overrides | 38 |
 | dormant but valid | 53 |
-| upcycle candidates | 2 |
+| upcycle candidates | 3 |
 | invalid runtime ids | 0 |
 
-Structural rule: `46` runtime IDs, `43` unique glyphs, `3` aliases.
+Structural rule: `100` runtime IDs, `43` unique glyphs, `57` aliases.
 
 ## Product Alias Groups
 
 | Canonical | Aliases | Source SVGs |
 |---|---|---|
-| `close` | `chrome-close, clear-all, close-all` | `chrome-close.svg, close.svg` |
-| `comment` | `comment-discussion, comment-discussion-quote, comment-discussion-sparkle, comment-draft, comment-unresolved` | `comment.svg, comment-discussion.svg` |
-| `copilot-error` | `chat-sparkle-error` | `copilot-error.svg` |
-| `copilot-warning` | `chat-sparkle-warning, copilot-warning-large` | `copilot-warning.svg` |
+| `agent` | `chat-sparkle, copilot, copilot-large, mcp, robot, sparkle, sparkle-filled, wand` | `copilot.svg` |
+| `chat-sparkle-error` | `copilot-error` | `copilot-error.svg` |
+| `chat-sparkle-warning` | `copilot-warning, copilot-warning-large` | `copilot-warning.svg` |
+| `chrome-close` | `clear-all, close, close-all` | `chrome-close.svg` |
+| `comment-discussion` | `comment, comment-discussion-quote, comment-discussion-sparkle, comment-draft, comment-unresolved` | `comment-discussion.svg` |
 | `debug-alt` | `debug-console` | `debug-alt.svg` |
-| `file` | `file-binary, file-code, file-media, file-pdf, file-submodule, file-text, file-zip, files, go-to-file, open-preview, output, preview` | `file.svg, files.svg` |
-| `filter` | `filter-filled, search, search-large, search-sparkle` | `filter.svg, search.svg` |
-| `folder` | `extensions, extensions-large, folder-active, folder-library, folder-opened, root-folder, root-folder-opened` | `extensions.svg, folder.svg` |
+| `extensions` | `extensions-large, folder, folder-active, folder-library, folder-opened, root-folder, root-folder-opened` | `extensions.svg` |
+| `filter` | `filter-filled, search, search-large, search-sparkle` | `search.svg` |
 | `layers` | `collapse-all, editor-layout, expand-all` | `layers.svg` |
-| `mcp` | `agent, chat-sparkle, copilot, copilot-large, robot, sparkle, sparkle-filled, wand` | `mcp.svg, copilot.svg` |
+| `output` | `file, file-binary, file-code, file-media, file-pdf, file-submodule, file-text, file-zip, files, go-to-file, open-preview, preview` | `files.svg` |
 | `pulse` | `thinking` | `pulse.svg` |
-| `sync` | `refresh` | `sync.svg` |
+| `refresh` | `sync` | `sync.svg` |
 | `tools` | `terminal, terminal-bash, terminal-cmd, terminal-debian, terminal-git-bash, terminal-linux, terminal-powershell, terminal-tmux, terminal-ubuntu` | `tools.svg` |
 
 ## Active Consumers
@@ -47,7 +47,7 @@ Structural rule: `46` runtime IDs, `43` unique glyphs, `3` aliases.
 | `flame` | 4 | misc | `flame.svg` | source extensions/chthonic-archive/src/extension.ts:556 |
 | `git-branch` | 1 | scm | `git-branch.svg` | source extensions/chthonic-archive/src/extension.ts:601 |
 | `layers` | 4 | misc | `layers.svg` | package command chthonic.reactorSediment |
-| `output` | 2 | panel | `file.svg` | source extensions/chthonic-archive/src/extension.ts:1229 |
+| `output` | 2 | panel | `files.svg` | source extensions/chthonic-archive/src/extension.ts:1229 |
 | `paintcan` | 4 | theme | `paintcan.svg` | package command chthonic.switchTheme<br>package view chthonic.themeView<br>source extensions/chthonic-archive/src/extension.ts:1194<br>source extensions/chthonic-archive/src/extension.ts:553 |
 | `pulse` | 4 | misc | `pulse.svg` | package command chthonic.entropyRefresh<br>package command chthonic.refreshRustification<br>package command chthonic.runtimeStatus<br>package view chthonic.statusView<br>source extensions/chthonic-archive/src/monolith/activityBarMorph.ts:70<br>source extensions/chthonic-archive/src/monolith/activityBarMorph.ts:80 |
 | `shield` | 4 | misc | `shield.svg` | source extensions/chthonic-archive/src/extension.ts:1184<br>source extensions/chthonic-archive/src/extension.ts:671<br>source extensions/chthonic-archive/src/extension.ts:674 |
@@ -62,21 +62,21 @@ Structural rule: `46` runtime IDs, `43` unique glyphs, `3` aliases.
 | `bell-dot` | 1 | notifications | `bell-dot.svg` | — |
 | `bell-slash` | 1 | notifications | `bell-slash.svg` | — |
 | `bell-slash-dot` | 1 | notifications | `bell-slash-dot.svg` | — |
+| `chrome-close` | 1 | window-chrome | `chrome-close.svg` | — |
 | `chrome-maximize` | 1 | window-chrome | `chrome-maximize.svg` | — |
 | `chrome-minimize` | 1 | window-chrome | `chrome-minimize.svg` | — |
 | `chrome-restore` | 1 | window-chrome | `chrome-restore.svg` | — |
 | `copilot-blocked` | 1 | ai-copilot | `copilot-blocked.svg` | — |
-| `copilot-error` | 1 | ai-copilot | `copilot-error.svg` | — |
 | `copilot-in-progress` | 1 | ai-copilot | `copilot-in-progress.svg` | — |
 | `copilot-not-connected` | 1 | ai-copilot | `copilot-not-connected.svg` | — |
 | `copilot-snooze` | 1 | ai-copilot | `copilot-snooze.svg` | — |
 | `copilot-success` | 1 | ai-copilot | `copilot-success.svg` | — |
 | `copilot-unavailable` | 1 | ai-copilot | `copilot-unavailable.svg` | — |
-| `copilot-warning` | 1 | ai-copilot | `copilot-warning.svg` | — |
 | `debug` | 1 | debug | `debug.svg` | — |
 | `debug-alt` | 1 | debug | `debug-alt.svg` | — |
 | `error` | 1 | diagnostics | `error.svg` | — |
 | `error-small` | 1 | general | `error-small.svg` | — |
+| `extensions` | 1 | files | `extensions.svg` | — |
 | `git-branch-changes` | 1 | scm | `git-branch-changes.svg` | — |
 | `git-branch-conflicts` | 1 | scm | `git-branch-conflicts.svg` | — |
 | `git-branch-staged-changes` | 1 | scm | `git-branch-staged-changes.svg` | — |
@@ -84,7 +84,6 @@ Structural rule: `46` runtime IDs, `43` unique glyphs, `3` aliases.
 | `remote` | 1 | remote | `remote.svg` | — |
 | `remote-explorer` | 1 | general | `remote-explorer.svg` | — |
 | `settings-gear` | 1 | settings | `settings-gear.svg` | — |
-| `sync` | 1 | sync | `sync.svg` | — |
 | `sync-ignored` | 1 | general | `sync-ignored.svg` | — |
 | `warning` | 1 | diagnostics | `warning.svg` | — |
 
@@ -92,19 +91,19 @@ Structural rule: `46` runtime IDs, `43` unique glyphs, `3` aliases.
 
 | Runtime ID | Tier | Category | Source SVG | Consumer Evidence |
 |---|---:|---|---|---|
-| `close` | 2 | general | `close.svg` | — |
-| `comment` | 3 | general | `comment.svg` | — |
-| `file` | 2 | general | `file.svg` | — |
-| `filter` | 2 | general | `filter.svg` | — |
-| `folder` | 2 | general | `folder.svg` | — |
-| `mcp` | 3 | ai-chat | `mcp.svg` | — |
+| `agent` | 3 | ai-chat | `copilot.svg` | — |
+| `chat-sparkle-error` | 3 | ai-chat | `copilot-error.svg` | — |
+| `chat-sparkle-warning` | 3 | ai-chat | `copilot-warning.svg` | — |
+| `filter` | 2 | general | `search.svg` | — |
+| `refresh` | 2 | general | `sync.svg` | — |
 
 ## Upcycle Candidates
 
 | Runtime ID | Tier | Category | Source SVG | Consumer Evidence |
 |---|---:|---|---|---|
-| `comment` | 3 | general | `comment.svg` | — |
-| `mcp` | 3 | ai-chat | `mcp.svg` | — |
+| `agent` | 3 | ai-chat | `copilot.svg` | — |
+| `chat-sparkle-error` | 3 | ai-chat | `copilot-error.svg` | — |
+| `chat-sparkle-warning` | 3 | ai-chat | `copilot-warning.svg` | — |
 
 ## File Scaffold Summary
 

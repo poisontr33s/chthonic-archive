@@ -427,19 +427,45 @@ def build_product_entries(
     package_surfaces: dict[str, list[str]],
     source_surfaces: dict[str, list[str]],
 ) -> list[dict]:
-    entries: list[dict] = []
     icon_definitions = product_theme.get("iconDefinitions", {})
+    raw_entries: list[dict] = []
 
     for icon_id, definition in sorted(icon_definitions.items()):
         font_character = definition.get("fontCharacter", "")
         source_svg = repo_root / "extensions" / "chthonic-archive" / "themes" / "icons" / "product" / f"{icon_id}.svg"
-        entries.append(
+        raw_entries.append(
             {
                 "icon_id": icon_id,
                 "source_svg": rel(source_svg, repo_root),
                 "font_character": font_character,
                 "package_surfaces": sorted(package_surfaces.get(icon_id, [])),
                 "source_surfaces": sorted(source_surfaces.get(icon_id, [])),
+            }
+        )
+
+    grouped_by_font: dict[str, list[dict]] = defaultdict(list)
+    for entry in raw_entries:
+        grouped_by_font[entry["font_character"]].append(entry)
+
+    resolved_source_by_font: dict[str, str] = {}
+    for font_character, group in grouped_by_font.items():
+        existing = [entry for entry in group if (repo_root / entry["source_svg"]).exists()]
+        if existing:
+            existing.sort(key=lambda entry: (entry["icon_id"].endswith("-large"), len(entry["icon_id"]), entry["icon_id"]))
+            resolved_source_by_font[font_character] = existing[0]["source_svg"]
+        else:
+            group_sorted = sorted(group, key=lambda entry: (entry["icon_id"].endswith("-large"), len(entry["icon_id"]), entry["icon_id"]))
+            resolved_source_by_font[font_character] = group_sorted[0]["source_svg"]
+
+    entries: list[dict] = []
+    for entry in raw_entries:
+        resolved_source = resolved_source_by_font.get(entry["font_character"], entry["source_svg"])
+        entries.append(
+            {
+                **entry,
+                "source_svg": resolved_source,
+                "declared_source_svg": entry["source_svg"],
+                "source_svg_exists": (repo_root / resolved_source).exists(),
             }
         )
 

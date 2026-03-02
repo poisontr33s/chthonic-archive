@@ -86,12 +86,15 @@ def load_valid_runtime_ids(repo_root: Path) -> set[str]:
     return set()
 
 
-def choose_alias_primary(icon_ids: list[str]) -> str:
-    def score(icon_id: str) -> tuple[int, int, str]:
-        penalty = 1 if icon_id.endswith("-large") else 0
-        return (penalty, len(icon_id), icon_id)
+def choose_alias_primary(group: list[dict], repo_root: Path) -> str:
+    def score(entry: dict) -> tuple[int, int, int, str]:
+        source_exists = (repo_root / entry["source_svg"]).exists()
+        large_penalty = 1 if entry["icon_id"].endswith("-large") else 0
+        local_consumer_penalty = 0 if (entry["package_surfaces"] or entry["source_surfaces"]) else 1
+        source_penalty = 0 if source_exists else 1
+        return (source_penalty, large_penalty, local_consumer_penalty, entry["icon_id"])
 
-    return sorted(icon_ids, key=score)[0]
+    return sorted(group, key=score)[0]["icon_id"]
 
 
 def classify_workspace_path(example: str) -> str:
@@ -142,10 +145,13 @@ def build_product_scaffold(repo_root: Path, product_entries: list[dict]) -> dict
     alias_lookup: dict[str, dict[str, object]] = {}
     canonical_entries: list[dict[str, object]] = []
 
-    for font_character, group in sorted(groups.items(), key=lambda item: choose_alias_primary([entry["icon_id"] for entry in item[1]])):
+    for font_character, group in sorted(
+        groups.items(),
+        key=lambda item: choose_alias_primary(item[1], repo_root),
+    ):
         sorted_group = sorted(group, key=lambda entry: entry["icon_id"])
         icon_ids = [entry["icon_id"] for entry in sorted_group]
-        primary_id = choose_alias_primary(icon_ids)
+        primary_id = choose_alias_primary(sorted_group, repo_root)
         primary_entry = next(item for item in sorted_group if item["icon_id"] == primary_id)
         resolved_group_sources: list[str] = []
         for entry in sorted_group:
@@ -298,7 +304,12 @@ def build_report(data: dict[str, object]) -> str:
         label = key.replace("_", " ")
         lines.append(f"| {label} | {product['summary'][key]} |")
     lines.append("")
-    lines.append("Structural rule: `46` runtime IDs, `43` unique glyphs, `3` aliases.")
+    lines.append(
+        "Structural rule: "
+        f"`{product['summary']['runtime_ids']}` runtime IDs, "
+        f"`{product['summary']['unique_glyphs']}` unique glyphs, "
+        f"`{product['summary']['aliases']}` aliases."
+    )
     lines.append("")
 
     lines.append("## Product Alias Groups")

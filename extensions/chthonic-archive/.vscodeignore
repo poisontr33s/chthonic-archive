@@ -1,7 +1,10 @@
 **
 !dist/**
 !icons/**
+!language-configuration-*.json
 !media/**
 !resources/**
+!README.md
+!syntaxes/**
 !themes/**
 !package.json

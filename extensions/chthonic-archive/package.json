@@ -2,7 +2,7 @@
   "name": "chthonic-archive",
   "displayName": "Chthonic Archive",
   "description": "VS Code workspace extension for the Chthonic Archive — themes, status bar, sidebar, and policy tools.",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "publisher": "chthonic-archive",
   "icon": "icons/mandala.png",
   "repository": {
