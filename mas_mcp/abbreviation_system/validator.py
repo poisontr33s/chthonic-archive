@@ -1,8 +1,17 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
+#-*- coding: utf-8 -*-
+
+# ╔════════════════════════════════════════════════════════════════════════════
+# ║ THE DECORATOR'S BLESSING: validator.py
+# ╠════════════════════════════════════════════════════════════════════════════
+# ║ Wedjat-Quipu Spectrum: WHITE
+# ║ Temple-Ayllu Zone: 🏰 THE FORTRESS
+# ║ Ogdoad-Ceque Radiance:
+# ║   └─◄ (Standalone)
+# ╚════════════════════════════════════════════════════════════════════════════
+
 """
 Consistency Validator — Issue Detection Engine
-==============================================
 
 Analyzes the abbreviation registry and SSOT content to detect:
 - Duplicate abbreviations with different meanings
@@ -18,6 +27,10 @@ Produces ConsistencyIssue objects that can be reported or auto-fixed.
 Usage:
     validator = ConsistencyValidator(registry)
     issues = validator.validate_all(ssot_content)
+
+@SID:           TOOL_VALIDATOR_V1
+@Shabti:        CLI Script
+@Purpose:       Consistency Validator — Issue Detection Engine
 """
 
 import re

@@ -1,10 +1,24 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
+#-*- coding: utf-8 -*-
+
+# ╔════════════════════════════════════════════════════════════════════════════
+# ║ THE DECORATOR'S BLESSING: generate_claude_cycle.py
+# ╠════════════════════════════════════════════════════════════════════════════
+# ║ Wedjat-Quipu Spectrum: WHITE
+# ║ Temple-Ayllu Zone: 🌿 THE GARDEN
+# ║ Ogdoad-Ceque Radiance:
+# ║   └─◄ (Standalone)
+# ╚════════════════════════════════════════════════════════════════════════════
+
 """
 MAS-MCP Claude Cycle Report Generator
 Usage: python generate_claude_cycle.py --model claude-3.5-sonnet --intent code_generation --accepted true
 
 Generates a cycle report JSON file in mas_mcp/artifacts/cycle_reports/
+
+@SID:           TOOL_GENERATE_CLAUDE_CYCLE_V1
+@Shabti:        CLI Script
+@Purpose:       MAS-MCP Claude Cycle Report Generator
 """
 
 import argparse

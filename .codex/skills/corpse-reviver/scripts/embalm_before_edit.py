@@ -1,6 +1,15 @@
 #!/usr/bin/env python3
 #-*- coding: utf-8 -*-
 
+# ╔════════════════════════════════════════════════════════════════════════════
+# ║ THE DECORATOR'S BLESSING: embalm_before_edit.py
+# ╠════════════════════════════════════════════════════════════════════════════
+# ║ Wedjat-Quipu Spectrum: WHITE
+# ║ Temple-Ayllu Zone: 🔥 THE FOUNDRY
+# ║ Ogdoad-Ceque Radiance:
+# ║   └─◄ (Standalone)
+# ╚════════════════════════════════════════════════════════════════════════════
+
 """
 Embalm Before Edit — The Bride's Pre-Mortem Preservation Protocol.
 
@@ -18,6 +27,10 @@ Modes:
     (default)   Snapshot specific files before editing them.
     --staged    Snapshot all files currently staged in git (about to be committed).
     --diff      Compare current file state against a prior snapshot; extract fragments.
+
+@SID:           TOOL_EMBALM_BEFORE_EDIT_V1
+@Shabti:        CLI Script
+@Purpose:       Embalm Before Edit — The Bride's Pre-Mortem Preservation Protocol.
 """
 
 from __future__ import annotations

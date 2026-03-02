@@ -1,8 +1,17 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
+#-*- coding: utf-8 -*-
+
+# ╔════════════════════════════════════════════════════════════════════════════
+# ║ THE DECORATOR'S BLESSING: bench_safe.py
+# ╠════════════════════════════════════════════════════════════════════════════
+# ║ Wedjat-Quipu Spectrum: WHITE
+# ║ Temple-Ayllu Zone: 🏰 THE FORTRESS
+# ║ Ogdoad-Ceque Radiance:
+# ║   └─◄ (Standalone)
+# ╚════════════════════════════════════════════════════════════════════════════
+
 """
 Safe GPU Benchmark with Automatic Tiling
-=========================================
 
 Run this OUTSIDE VS Code to avoid TDR-triggered crashes:
     cd mas_mcp
@@ -10,6 +19,10 @@ Run this OUTSIDE VS Code to avoid TDR-triggered crashes:
 
 The tiling layer automatically chunks large workloads to keep
 each GPU kernel under the ~2 second Windows TDR timeout.
+
+@SID:           TOOL_BENCH_SAFE_V1
+@Shabti:        CLI Script
+@Purpose:       Safe GPU Benchmark with Automatic Tiling
 """
 
 import json

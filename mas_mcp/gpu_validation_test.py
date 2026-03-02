@@ -1,5 +1,15 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
+#-*- coding: utf-8 -*-
+
+# ╔════════════════════════════════════════════════════════════════════════════
+# ║ THE DECORATOR'S BLESSING: gpu_validation_test.py
+# ╠════════════════════════════════════════════════════════════════════════════
+# ║ Wedjat-Quipu Spectrum: WHITE
+# ║ Temple-Ayllu Zone: 🏰 THE FORTRESS
+# ║ Ogdoad-Ceque Radiance:
+# ║   └─◄ (Standalone)
+# ╚════════════════════════════════════════════════════════════════════════════
+
 """
 GPU Validation Test - Prove GPU is Actually Being Used
 
@@ -11,6 +21,10 @@ The test should show:
 - Different execution times (GPU should be faster for large N)
 - Different memory locations (GPU memory vs system RAM)
 - Actual provider being used (not just "available")
+
+@SID:           TOOL_GPU_VALIDATION_TEST_V1
+@Shabti:        CLI Script
+@Purpose:       GPU Validation Test - Prove GPU is Actually Being Used
 """
 
 import time

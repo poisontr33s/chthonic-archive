@@ -1,5 +1,14 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
+#-*- coding: utf-8 -*-
+
+# ╔════════════════════════════════════════════════════════════════════════════
+# ║ THE DECORATOR'S BLESSING: corpse_reviver.py
+# ╠════════════════════════════════════════════════════════════════════════════
+# ║ Wedjat-Quipu Spectrum: WHITE
+# ║ Temple-Ayllu Zone: 🔥 THE FOUNDRY
+# ║ Ogdoad-Ceque Radiance:
+# ║   └─◄ (Standalone)
+# ╚════════════════════════════════════════════════════════════════════════════
 
 """
 Corpse Reviver — necromancy pipeline for dead code.
@@ -9,7 +18,8 @@ blocks, orphaned files, gitignored treasures, and TODO/FIXME graffiti.
 Embalm with provenance metadata, classify by language, vault for reanimation.
 
 @SID:  CORPSE_REVIVER_V2
-@Type: Utility
+@Shabti: Utility
+@Purpose:       Corpse Reviver — necromancy pipeline for dead code.
 
 Invocation:
   uv run .codex/skills/corpse-reviver/scripts/corpse_reviver.py harvest --since 30d

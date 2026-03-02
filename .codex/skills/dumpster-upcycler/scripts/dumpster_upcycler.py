@@ -1,5 +1,15 @@
 #!/usr/bin/env python3
 #-*- coding: utf-8 -*-
+
+# ╔════════════════════════════════════════════════════════════════════════════
+# ║ THE DECORATOR'S BLESSING: dumpster_upcycler.py
+# ╠════════════════════════════════════════════════════════════════════════════
+# ║ Wedjat-Quipu Spectrum: WHITE
+# ║ Temple-Ayllu Zone: 🔥 THE FOUNDRY
+# ║ Ogdoad-Ceque Radiance:
+# ║   └─◄ (Standalone)
+# ╚════════════════════════════════════════════════════════════════════════════
+
 """
 Dumpster Upcycler.
 
@@ -10,6 +20,10 @@ Purpose:
 Invocation:
   uv run .codex/skills/dumpster-upcycler/scripts/dumpster_upcycler.py <path>
   uv run .codex/skills/dumpster-upcycler/scripts/dumpster_upcycler.py <dir> --glob "<pattern>" [--archive]
+
+@SID:           TOOL_DUMPSTER_UPCYCLER_V1
+@Shabti:        CLI Script
+@Purpose:       Dumpster Upcycler.
 """
 
 from __future__ import annotations

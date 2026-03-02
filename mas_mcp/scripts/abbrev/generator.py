@@ -1,5 +1,15 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
+#-*- coding: utf-8 -*-
+
+# ╔════════════════════════════════════════════════════════════════════════════
+# ║ THE DECORATOR'S BLESSING: generator.py
+# ╠════════════════════════════════════════════════════════════════════════════
+# ║ Wedjat-Quipu Spectrum: WHITE
+# ║ Temple-Ayllu Zone: 🌿 THE GARDEN
+# ║ Ogdoad-Ceque Radiance:
+# ║   └─◄ (Standalone)
+# ╚════════════════════════════════════════════════════════════════════════════
+
 """
 SSOT Abbreviation System: Generator Module
 
@@ -7,6 +17,10 @@ Generates formatted output files:
 - Master glossary (Markdown)
 - Notation guides for sections
 - Validation reports
+
+@SID:           TOOL_GENERATOR_V1
+@Shabti:        CLI Script
+@Purpose:       SSOT Abbreviation System: Generator Module
 """
 
 from pathlib import Path

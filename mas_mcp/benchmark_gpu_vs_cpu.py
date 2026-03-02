@@ -1,5 +1,19 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
+#-*- coding: utf-8 -*-
+
+# ╔════════════════════════════════════════════════════════════════════════════
+# ║ THE DECORATOR'S BLESSING: benchmark_gpu_vs_cpu.py
+# ╠════════════════════════════════════════════════════════════════════════════
+# ║ Wedjat-Quipu Spectrum: WHITE
+# ║ Temple-Ayllu Zone: 🏰 THE FORTRESS
+# ║ Ogdoad-Ceque Radiance:
+# ║   └─◄ (Standalone)
+# ╚════════════════════════════════════════════════════════════════════════════
+
+
+@SID:           TOOL_BENCHMARK_GPU_VS_CPU_V1
+@Shabti:        CLI Script
+@Purpose:       Benchmark GPU vs CPU scoring with warmup.
 """Benchmark GPU vs CPU scoring with warmup."""
 
 import sys

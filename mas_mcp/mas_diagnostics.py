@@ -1,5 +1,15 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
+#-*- coding: utf-8 -*-
+
+# ╔════════════════════════════════════════════════════════════════════════════
+# ║ THE DECORATOR'S BLESSING: mas_diagnostics.py
+# ╠════════════════════════════════════════════════════════════════════════════
+# ║ Wedjat-Quipu Spectrum: WHITE
+# ║ Temple-Ayllu Zone: 🏰 THE FORTRESS
+# ║ Ogdoad-Ceque Radiance:
+# ║   └─◄ (Standalone)
+# ╚════════════════════════════════════════════════════════════════════════════
+
 """
 ╔══════════════════════════════════════════════════════════════════════
 ║  MAS-MCP DIAGNOSTICS: The Living Layer's Self-Examination
@@ -18,6 +28,10 @@
 ║
 ║  Run: cd mas_mcp && uv run python mas_diagnostics.py
 ╚══════════════════════════════════════════════════════════════════════
+
+@SID:           TOOL_MAS_DIAGNOSTICS_V1
+@Shabti:        CLI Script
+@Purpose:       ╔══════════════════════════════════════════════════════════════════════
 """
 
 import json

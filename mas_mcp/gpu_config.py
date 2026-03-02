@@ -1,5 +1,15 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
+#-*- coding: utf-8 -*-
+
+# ╔════════════════════════════════════════════════════════════════════════════
+# ║ THE DECORATOR'S BLESSING: gpu_config.py
+# ╠════════════════════════════════════════════════════════════════════════════
+# ║ Wedjat-Quipu Spectrum: WHITE
+# ║ Temple-Ayllu Zone: 🏰 THE FORTRESS
+# ║ Ogdoad-Ceque Radiance:
+# ║   └─◄ (Standalone)
+# ╚════════════════════════════════════════════════════════════════════════════
+
 """
 🔥 GPU Configuration and Capability Detection
 
@@ -9,6 +19,10 @@ unified configuration for MAS-MCP performance modules.
 Hardware Target: NVIDIA RTX 4090 Laptop GPU (Ada Lovelace, 7424 CUDA cores, 16GB VRAM)
 System: Predator Helios 18 (Windows 11, CUDA 13.0)
 Forward Compatible: RTX 5090, TensorRT integration
+
+@SID:           TOOL_GPU_CONFIG_V1
+@Shabti:        CLI Script
+@Purpose:       🔥 GPU Configuration and Capability Detection
 """
 
 import os

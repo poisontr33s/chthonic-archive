@@ -1,8 +1,17 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
+#-*- coding: utf-8 -*-
+
+# ╔════════════════════════════════════════════════════════════════════════════
+# ║ THE DECORATOR'S BLESSING: registry.py
+# ╠════════════════════════════════════════════════════════════════════════════
+# ║ Wedjat-Quipu Spectrum: WHITE
+# ║ Temple-Ayllu Zone: 🏰 THE FORTRESS
+# ║ Ogdoad-Ceque Radiance:
+# ║   └─◄ (Standalone)
+# ╚════════════════════════════════════════════════════════════════════════════
+
 """
 Abbreviation Registry — Bidirectional Lookup System
-====================================================
 
 Provides fast bidirectional lookup between abbreviations and full terms,
 plus relationship tracking (aliases, related terms, deprecations).
@@ -21,6 +30,10 @@ Usage:
 
     result = registry.lookup("ASC")  # Returns AbbreviationEntry
     result = registry.reverse_lookup("Apex Synthesis Core")  # Returns "ASC"
+
+@SID:           TOOL_REGISTRY_V1
+@Shabti:        CLI Script
+@Purpose:       Abbreviation Registry — Bidirectional Lookup System
 """
 
 from collections import defaultdict

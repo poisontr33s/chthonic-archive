@@ -1,5 +1,15 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
+#-*- coding: utf-8 -*-
+
+# ╔════════════════════════════════════════════════════════════════════════════
+# ║ THE DECORATOR'S BLESSING: cli.py
+# ╠════════════════════════════════════════════════════════════════════════════
+# ║ Wedjat-Quipu Spectrum: WHITE
+# ║ Temple-Ayllu Zone: 🏰 THE FORTRESS
+# ║ Ogdoad-Ceque Radiance:
+# ║   └─◄ (Standalone)
+# ╚════════════════════════════════════════════════════════════════════════════
+
 """
 Command-Line Interface for SSOT Abbreviation System
 
@@ -7,6 +17,10 @@ Provides CLI access to all abbreviation management functions.
 Invoke via: uv run python -m abbreviation_system <command>
 
 Part of the ASC Abbreviation System for Codex Brahmanica Perfectus governance.
+
+@SID:           TOOL_CLI_V1
+@Shabti:        CLI Script
+@Purpose:       Command-Line Interface for SSOT Abbreviation System
 """
 
 import argparse

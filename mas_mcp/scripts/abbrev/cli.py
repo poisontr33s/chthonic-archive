@@ -1,5 +1,15 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
+#-*- coding: utf-8 -*-
+
+# ╔════════════════════════════════════════════════════════════════════════════
+# ║ THE DECORATOR'S BLESSING: cli.py
+# ╠════════════════════════════════════════════════════════════════════════════
+# ║ Wedjat-Quipu Spectrum: WHITE
+# ║ Temple-Ayllu Zone: 🌿 THE GARDEN
+# ║ Ogdoad-Ceque Radiance:
+# ║   └─◄ (Standalone)
+# ╚════════════════════════════════════════════════════════════════════════════
+
 """
 SSOT Abbreviation System: CLI Module
 
@@ -14,6 +24,10 @@ Commands:
     audit       Generate audit report
     backup      Create SSOT backup
     search      Search abbreviations
+
+@SID:           TOOL_CLI_V1
+@Shabti:        CLI Script
+@Purpose:       SSOT Abbreviation System: CLI Module
 """
 
 import argparse

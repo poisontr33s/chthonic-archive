@@ -1,5 +1,15 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
+#-*- coding: utf-8 -*-
+
+# ╔════════════════════════════════════════════════════════════════════════════
+# ║ THE DECORATOR'S BLESSING: run_cycle.py
+# ╠════════════════════════════════════════════════════════════════════════════
+# ║ Wedjat-Quipu Spectrum: WHITE
+# ║ Temple-Ayllu Zone: 🌿 THE GARDEN
+# ║ Ogdoad-Ceque Radiance:
+# ║   └─◄ (Standalone)
+# ╚════════════════════════════════════════════════════════════════════════════
+
 """
 run_cycle.py - Unified MILF Execution Cycle
 
@@ -26,6 +36,10 @@ Architecture:
     Execution → cycle_report.json
         ↓
     milf_activator.py → promotion/demotion
+
+@SID:           TOOL_RUN_CYCLE_V1
+@Shabti:        CLI Script
+@Purpose:       run_cycle.py - Unified MILF Execution Cycle
 """
 
 from __future__ import annotations

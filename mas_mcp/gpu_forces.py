@@ -1,6 +1,15 @@
 #!/usr/bin/env python3
 #-*- coding: utf-8 -*-
 
+# ╔════════════════════════════════════════════════════════════════════════════
+# ║ THE DECORATOR'S BLESSING: gpu_forces.py
+# ╠════════════════════════════════════════════════════════════════════════════
+# ║ Wedjat-Quipu Spectrum: WHITE
+# ║ Temple-Ayllu Zone: 🏰 THE FORTRESS
+# ║ Ogdoad-Ceque Radiance:
+# ║   └─◄ (Standalone)
+# ╚════════════════════════════════════════════════════════════════════════════
+
 """
 🌀 GPU-Accelerated Force-Directed Graph Layout
 
@@ -10,6 +19,10 @@ Implements batched force calculations for entity relationship visualization with
 - Progressive rendering for large graphs (100k+ edges)
 
 Hardware Target: RTX 4090 Laptop GPU (16GB VRAM, batch 500k+ edges)
+
+@SID:           TOOL_GPU_FORCES_V1
+@Shabti:        CLI Script
+@Purpose:       🌀 GPU-Accelerated Force-Directed Graph Layout
 """
 
 import numpy as np

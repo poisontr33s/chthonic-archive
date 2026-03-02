@@ -1,9 +1,23 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
+#-*- coding: utf-8 -*-
+
+# ╔════════════════════════════════════════════════════════════════════════════
+# ║ THE DECORATOR'S BLESSING: monitor_dashboard.py
+# ╠════════════════════════════════════════════════════════════════════════════
+# ║ Wedjat-Quipu Spectrum: WHITE
+# ║ Temple-Ayllu Zone: 🌿 THE GARDEN
+# ║ Ogdoad-Ceque Radiance:
+# ║   └─◄ (Standalone)
+# ╚════════════════════════════════════════════════════════════════════════════
+
 """
 MAS-MCP Genesis Dashboard — Post-Deployment Monitor
 Usage: python monitor_dashboard.py [BASE_URL]
 Cron: */15 * * * * /usr/bin/python3 /path/to/monitor_dashboard.py https://your-app.vercel.app >> /var/log/mas_mcp_monitor.log 2>&1
+
+@SID:           TOOL_MONITOR_DASHBOARD_V1
+@Shabti:        CLI Script
+@Purpose:       MAS-MCP Genesis Dashboard — Post-Deployment Monitor
 """
 
 import sys

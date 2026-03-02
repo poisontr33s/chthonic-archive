@@ -1,5 +1,15 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
+#-*- coding: utf-8 -*-
+
+# ╔════════════════════════════════════════════════════════════════════════════
+# ║ THE DECORATOR'S BLESSING: gpu_scores.py
+# ╠════════════════════════════════════════════════════════════════════════════
+# ║ Wedjat-Quipu Spectrum: WHITE
+# ║ Temple-Ayllu Zone: 🏰 THE FORTRESS
+# ║ Ogdoad-Ceque Radiance:
+# ║   └─◄ (Standalone)
+# ╚════════════════════════════════════════════════════════════════════════════
+
 """
 ⚡ GPU-Accelerated Scoring for Novelty, Redundancy, and Safety
 
@@ -9,6 +19,10 @@ Implements batch vector operations for governance scoring with:
 - Tolerance-based comparison for GPU/CPU equivalence
 
 Hardware Target: RTX 4090 Laptop GPU (16GB VRAM, 7424 CUDA cores)
+
+@SID:           TOOL_GPU_SCORES_V1
+@Shabti:        CLI Script
+@Purpose:       ⚡ GPU-Accelerated Scoring for Novelty, Redundancy, and Safety
 """
 
 import numpy as np

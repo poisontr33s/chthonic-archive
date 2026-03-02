@@ -1,10 +1,24 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
+#-*- coding: utf-8 -*-
+
+# ╔════════════════════════════════════════════════════════════════════════════
+# ║ THE DECORATOR'S BLESSING: gpu_status.py
+# ╠════════════════════════════════════════════════════════════════════════════
+# ║ Wedjat-Quipu Spectrum: WHITE
+# ║ Temple-Ayllu Zone: 🏰 THE FORTRESS
+# ║ Ogdoad-Ceque Radiance:
+# ║   └─◄ (Standalone)
+# ╚════════════════════════════════════════════════════════════════════════════
+
 """
 Simple GPU Status Check - Honest Assessment
 
 Shows EXACTLY what's working and what's not.
 No lies, no "available but broken" nonsense.
+
+@SID:           TOOL_GPU_STATUS_V1
+@Shabti:        CLI Script
+@Purpose:       Simple GPU Status Check - Honest Assessment
 """
 
 import sys

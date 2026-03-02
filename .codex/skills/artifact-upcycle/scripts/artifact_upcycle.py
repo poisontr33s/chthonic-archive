@@ -1,8 +1,22 @@
 #!/usr/bin/env python3
 #-*- coding: utf-8 -*-
+
+# ╔════════════════════════════════════════════════════════════════════════════
+# ║ THE DECORATOR'S BLESSING: artifact_upcycle.py
+# ╠════════════════════════════════════════════════════════════════════════════
+# ║ Wedjat-Quipu Spectrum: WHITE
+# ║ Temple-Ayllu Zone: 🔥 THE FOUNDRY
+# ║ Ogdoad-Ceque Radiance:
+# ║   └─◄ (Standalone)
+# ╚════════════════════════════════════════════════════════════════════════════
+
 """
 Artifact-Upcycle automation with intelligence.
 Implements Policy: references/POLICY.md
+
+@SID:           TOOL_ARTIFACT_UPCYCLE_V1
+@Shabti:        CLI Script
+@Purpose:       Artifact-Upcycle automation with intelligence.
 """
 
 from __future__ import annotations

@@ -1,6 +1,15 @@
 #!/usr/bin/env python3
 #-*- coding: utf-8 -*-
 
+# ╔════════════════════════════════════════════════════════════════════════════
+# ║ THE DECORATOR'S BLESSING: cupy_benchmark.py
+# ╠════════════════════════════════════════════════════════════════════════════
+# ║ Wedjat-Quipu Spectrum: WHITE
+# ║ Temple-Ayllu Zone: 🏰 THE FORTRESS
+# ║ Ogdoad-Ceque Radiance:
+# ║   └─◄ (Standalone)
+# ╚════════════════════════════════════════════════════════════════════════════
+
 """
 RTX 4090 Laptop GPU - Full CuPy Benchmark Suite
 
@@ -9,6 +18,10 @@ It tests GEMM performance in FP32 and FP16, memory bandwidth, element-wise opera
 
 Run this to validate GPU performance and stability before enabling GPU features in
 MAS-MCP. Usage: uv run python cupy_benchmark.py
+
+@SID:           TOOL_CUPY_BENCHMARK_V1
+@Shabti:        CLI Script
+@Purpose:       RTX 4090 Laptop GPU - Full CuPy Benchmark Suite
 """
 
 import os

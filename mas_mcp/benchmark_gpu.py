@@ -1,11 +1,25 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
+#-*- coding: utf-8 -*-
+
+# ╔════════════════════════════════════════════════════════════════════════════
+# ║ THE DECORATOR'S BLESSING: benchmark_gpu.py
+# ╠════════════════════════════════════════════════════════════════════════════
+# ║ Wedjat-Quipu Spectrum: WHITE
+# ║ Temple-Ayllu Zone: 🏰 THE FORTRESS
+# ║ Ogdoad-Ceque Radiance:
+# ║   └─◄ (Standalone)
+# ╚════════════════════════════════════════════════════════════════════════════
+
 """
 GPU ACCELERATION BENCHMARK
 TensorRT vs CUDA vs CPU execution providers
 
 Tests inference latency on a real model to demonstrate
 the value of our tri-marathonian GPU stack efforts.
+
+@SID:           TOOL_BENCHMARK_GPU_V1
+@Shabti:        CLI Script
+@Purpose:       GPU ACCELERATION BENCHMARK
 """
 
 import sys

@@ -1,5 +1,15 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
+#-*- coding: utf-8 -*-
+
+# ╔════════════════════════════════════════════════════════════════════════════
+# ║ THE DECORATOR'S BLESSING: reporter.py
+# ╠════════════════════════════════════════════════════════════════════════════
+# ║ Wedjat-Quipu Spectrum: WHITE
+# ║ Temple-Ayllu Zone: 🌿 THE GARDEN
+# ║ Ogdoad-Ceque Radiance:
+# ║   └─◄ (Standalone)
+# ╚════════════════════════════════════════════════════════════════════════════
+
 """
 Audit Report Generator Module
 
@@ -7,6 +17,10 @@ Generates comprehensive audit reports for SSOT abbreviation analysis.
 Implements FA⁵ (Visual Integrity) - clear, structured presentation of findings.
 
 Part of the ASC Abbreviation System for Codex Brahmanica Perfectus governance.
+
+@SID:           TOOL_REPORTER_V1
+@Shabti:        CLI Script
+@Purpose:       Audit Report Generator Module
 """
 
 from datetime import datetime

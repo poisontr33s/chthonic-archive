@@ -1,8 +1,17 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
+#-*- coding: utf-8 -*-
+
+# ╔════════════════════════════════════════════════════════════════════════════
+# ║ THE DECORATOR'S BLESSING: models.py
+# ╠════════════════════════════════════════════════════════════════════════════
+# ║ Wedjat-Quipu Spectrum: WHITE
+# ║ Temple-Ayllu Zone: 🌿 THE GARDEN
+# ║ Ogdoad-Ceque Radiance:
+# ║   └─◄ (Standalone)
+# ╚════════════════════════════════════════════════════════════════════════════
+
 """
 Data Models for SSOT Abbreviation System
-=========================================
 
 Core dataclasses representing abbreviations, patterns, issues, and reports.
 These form the type-safe foundation for all abbreviation operations.
@@ -23,6 +32,10 @@ Notation Pattern IDs (from Audit):
 - P13: SAI Designators
 - P14: Protocol/Section Reference
 - P15: Emoji-Semantic Layer
+
+@SID:           TOOL_MODELS_V1
+@Shabti:        CLI Script
+@Purpose:       Data Models for SSOT Abbreviation System
 """
 
 from dataclasses import dataclass, field

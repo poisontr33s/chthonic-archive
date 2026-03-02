@@ -1,5 +1,15 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
+#-*- coding: utf-8 -*-
+
+# ╔════════════════════════════════════════════════════════════════════════════
+# ║ THE DECORATOR'S BLESSING: genesis_scheduler.py
+# ╠════════════════════════════════════════════════════════════════════════════
+# ║ Wedjat-Quipu Spectrum: WHITE
+# ║ Temple-Ayllu Zone: 🏰 THE FORTRESS
+# ║ Ogdoad-Ceque Radiance:
+# ║   └─◄ (Standalone)
+# ╚════════════════════════════════════════════════════════════════════════════
+
 """
 Genesis Scheduler - Autonomous background entity synthesis (v2 Hardened).
 
@@ -41,6 +51,10 @@ Environment variables:
     GENESIS_ARTIFACT_DIR   Artifact directory (default: genesis_artifacts)
     GENESIS_RETENTION_DAYS Days to keep logs/artifacts (default: 7)
     GENESIS_VRAM_THRESHOLD VRAM usage % for degraded mode (default: 75)
+
+@SID:           TOOL_GENESIS_SCHEDULER_V1
+@Shabti:        CLI Script
+@Purpose:       Genesis Scheduler - Autonomous background entity synthesis (v2 Hardened).
 """
 
 from __future__ import annotations

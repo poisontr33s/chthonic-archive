@@ -1,5 +1,19 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
+#-*- coding: utf-8 -*-
+
+# ╔════════════════════════════════════════════════════════════════════════════
+# ║ THE DECORATOR'S BLESSING: validate_gpu.py
+# ╠════════════════════════════════════════════════════════════════════════════
+# ║ Wedjat-Quipu Spectrum: WHITE
+# ║ Temple-Ayllu Zone: 🏰 THE FORTRESS
+# ║ Ogdoad-Ceque Radiance:
+# ║   └─◄ (Standalone)
+# ╚════════════════════════════════════════════════════════════════════════════
+
+
+@SID:           TOOL_VALIDATE_GPU_V1
+@Shabti:        CLI Script
+@Purpose:       GPU Integration Validation Script for MAS-MCP
 """GPU Integration Validation Script for MAS-MCP"""
 
 def main():

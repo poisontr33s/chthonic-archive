@@ -1,8 +1,17 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
+#-*- coding: utf-8 -*-
+
+# ╔════════════════════════════════════════════════════════════════════════════
+# ║ THE DECORATOR'S BLESSING: hardware_diagnostic.py
+# ╠════════════════════════════════════════════════════════════════════════════
+# ║ Wedjat-Quipu Spectrum: WHITE
+# ║ Temple-Ayllu Zone: 🏰 THE FORTRESS
+# ║ Ogdoad-Ceque Radiance:
+# ║   └─◄ (Standalone)
+# ╚════════════════════════════════════════════════════════════════════════════
+
 """
 Hardware Diagnostic for Predator Helios + RTX 4090 Laptop GPU + i9-14900
-=========================================================================
 
 This script is specifically designed to:
 1. Safely probe YOUR specific hardware configuration
@@ -16,6 +25,10 @@ Run OUTSIDE VS Code to avoid TDR conflicts:
 
 Or with explicit Python:
     python hardware_diagnostic.py
+
+@SID:           TOOL_HARDWARE_DIAGNOSTIC_V1
+@Shabti:        CLI Script
+@Purpose:       Hardware Diagnostic for Predator Helios + RTX 4090 Laptop GPU + i9-14900
 """
 
 import json

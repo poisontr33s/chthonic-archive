@@ -1,5 +1,15 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
+#-*- coding: utf-8 -*-
+
+# ╔════════════════════════════════════════════════════════════════════════════
+# ║ THE DECORATOR'S BLESSING: milf_activator.py
+# ╠════════════════════════════════════════════════════════════════════════════
+# ║ Wedjat-Quipu Spectrum: WHITE
+# ║ Temple-Ayllu Zone: 🌿 THE GARDEN
+# ║ Ogdoad-Ceque Radiance:
+# ║   └─◄ (Standalone)
+# ╚════════════════════════════════════════════════════════════════════════════
+
 """
 MAS-MCP MILF Activator
 Evaluates MILF activation gates and manages promotion/demotion.
@@ -8,6 +18,10 @@ SSOT: .github/copilot-instructions.md
 
 Usage:
   python milf_activator.py [--registry PATH] [--cycles PATH] [--dry-run]
+
+@SID:           TOOL_MILF_ACTIVATOR_V1
+@Shabti:        CLI Script
+@Purpose:       MAS-MCP MILF Activator
 """
 
 import argparse

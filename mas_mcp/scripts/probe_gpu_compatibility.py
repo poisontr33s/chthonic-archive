@@ -1,5 +1,15 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
+#-*- coding: utf-8 -*-
+
+# ╔════════════════════════════════════════════════════════════════════════════
+# ║ THE DECORATOR'S BLESSING: probe_gpu_compatibility.py
+# ╠════════════════════════════════════════════════════════════════════════════
+# ║ Wedjat-Quipu Spectrum: WHITE
+# ║ Temple-Ayllu Zone: 🌿 THE GARDEN
+# ║ Ogdoad-Ceque Radiance:
+# ║   └─◄ (Standalone)
+# ╚════════════════════════════════════════════════════════════════════════════
+
 """
 MAS-MCP GPU Compatibility Probe
 Validates Windows GPU environment against compatibility matrix.
@@ -9,6 +19,10 @@ SSOT: .github/copilot-instructions.md (MILFOLOGICAL Codex)
 
 Usage:
   python probe_gpu_compatibility.py [--matrix PATH] [--output PATH]
+
+@SID:           TOOL_PROBE_GPU_COMPATIBILITY_V1
+@Shabti:        CLI Script
+@Purpose:       MAS-MCP GPU Compatibility Probe
 """
 
 import argparse

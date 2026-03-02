@@ -1,9 +1,23 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
+#-*- coding: utf-8 -*-
+
+# ╔════════════════════════════════════════════════════════════════════════════
+# ║ THE DECORATOR'S BLESSING: generator.py
+# ╠════════════════════════════════════════════════════════════════════════════
+# ║ Wedjat-Quipu Spectrum: WHITE
+# ║ Temple-Ayllu Zone: 🌿 THE GARDEN
+# ║ Ogdoad-Ceque Radiance:
+# ║   └─◄ (Standalone)
+# ╚════════════════════════════════════════════════════════════════════════════
+
 """
 SSOT Glossary Generator — Generates master glossary output files.
 
 Part of the SSOT Abbreviation System for the Chthonic Archive.
+
+@SID:           TOOL_GENERATOR_V1
+@Shabti:        CLI Script
+@Purpose:       SSOT Glossary Generator — Generates master glossary output files.
 """
 
 from collections import defaultdict

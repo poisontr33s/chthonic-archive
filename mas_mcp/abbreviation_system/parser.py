@@ -1,5 +1,23 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
+#-*- coding: utf-8 -*-
+
+# ╔════════════════════════════════════════════════════════════════════════════
+# ║ THE DECORATOR'S BLESSING: parser.py
+# ╠════════════════════════════════════════════════════════════════════════════
+# ║ Wedjat-Quipu Spectrum: WHITE
+# ║ Temple-Ayllu Zone: 🏰 THE FORTRESS
+# ║ Ogdoad-Ceque Radiance:
+# ║   └─◄ (Standalone)
+# ╚════════════════════════════════════════════════════════════════════════════
+
+"""
+parser.py — SSOT Parser — Abbreviation Extraction Engine
+
+@SID:           TOOL_PARSER_V1
+@Shabti:        CLI Script
+@Purpose:       SSOT Parser — Abbreviation Extraction Engine
+"""
+
 r"""
 SSOT Parser — Abbreviation Extraction Engine
 =============================================

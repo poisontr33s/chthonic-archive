@@ -1,8 +1,17 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
+#-*- coding: utf-8 -*-
+
+# ╔════════════════════════════════════════════════════════════════════════════
+# ║ THE DECORATOR'S BLESSING: mas_mcp_testing.py
+# ╠════════════════════════════════════════════════════════════════════════════
+# ║ Wedjat-Quipu Spectrum: WHITE
+# ║ Temple-Ayllu Zone: 🏰 THE FORTRESS
+# ║ Ogdoad-Ceque Radiance:
+# ║   └─◄ (Standalone)
+# ╚════════════════════════════════════════════════════════════════════════════
+
 """
 MAS-MCP Hardware-Specific Testing Suite
-========================================
 
 Designed for: Predator Helios + RTX 4090 Laptop GPU + Intel i9-14900
 Environment: VS Code integrated terminal (PowerShell 7.4+), Windows 11, Python 3.14
@@ -22,6 +31,10 @@ Safety features:
 - Automatic TDR-safe chunk sizing
 - Graceful fallback on any GPU failure
 - Detailed timing and memory reporting
+
+@SID:           TOOL_MAS_MCP_TESTING_V1
+@Shabti:        CLI Script
+@Purpose:       MAS-MCP Hardware-Specific Testing Suite
 """
 
 import json

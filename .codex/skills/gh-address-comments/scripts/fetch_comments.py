@@ -1,5 +1,15 @@
 #!/usr/bin/env python3
 #-*- coding: utf-8 -*-
+
+# ╔════════════════════════════════════════════════════════════════════════════
+# ║ THE DECORATOR'S BLESSING: fetch_comments.py
+# ╠════════════════════════════════════════════════════════════════════════════
+# ║ Wedjat-Quipu Spectrum: WHITE
+# ║ Temple-Ayllu Zone: 🔥 THE FOUNDRY
+# ║ Ogdoad-Ceque Radiance:
+# ║   └─◄ (Standalone)
+# ╚════════════════════════════════════════════════════════════════════════════
+
 """
 Fetch all PR conversation comments + reviews + review threads (inline threads)
 for the PR associated with the current git branch, by shelling out to:
@@ -12,6 +22,10 @@ Requires:
 
 Usage:
   python fetch_comments.py > pr_comments.json
+
+@SID:           TOOL_FETCH_COMMENTS_V1
+@Shabti:        CLI Script
+@Purpose:       Fetch all PR conversation comments + reviews + review threads (inline threads)
 """
 
 from __future__ import annotations

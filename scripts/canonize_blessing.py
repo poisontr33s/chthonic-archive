@@ -116,7 +116,8 @@ def _extract_radiance(text: str) -> str:
     return "(Standalone)"
 
 
-def _extract_spectrum_zone(text: str, filename: str) -> tuple[str, str]:
+def _extract_spectrum_zone(text: str, filename: str,
+                           filepath: Path | None = None) -> tuple[str, str]:
     """Extract or derive Spectrum and Zone."""
     # Check overrides first
     if filename in ZONE_OVERRIDES:
@@ -137,6 +138,21 @@ def _extract_spectrum_zone(text: str, filename: str) -> tuple[str, str]:
         zm = re.search(r"Architectural Role:\s*(.+)", text)
         zone = zm.group(1).strip() if zm else "🌿 THE GARDEN"
         return spectrum, zone
+
+    # Directory-based zone defaults for non-scripts/ files
+    if filepath is not None:
+        parts = set(filepath.parts)
+        fp_str = str(filepath).replace("\\", "/")
+        if "ankh_atlas" in parts:
+            return "WHITE", "🔭 THE OBSERVATORY"
+        if "mas_mcp" in parts:
+            if "lib" in parts or "logic" in parts:
+                return "WHITE", "🏰 THE FORTRESS"
+            if "scripts" in parts:
+                return "WHITE", "🌿 THE GARDEN"
+            return "WHITE", "🏰 THE FORTRESS"
+        if ".codex" in parts or ".temple" in parts:
+            return "WHITE", "🔥 THE FOUNDRY"
 
     # Default for .py
     return "WHITE", "🌿 THE GARDEN"
@@ -271,7 +287,7 @@ def canonize_file(filepath: Path, dry_run: bool = True) -> dict:
     lines = text.splitlines()
 
     # ── Step 1: Extract metadata from existing content ──
-    spectrum, zone = _extract_spectrum_zone(text, filename)
+    spectrum, zone = _extract_spectrum_zone(text, filename, filepath)
     radiance = _extract_radiance(text)
     sid = _extract_sid(text, filename)
     shabti = _derive_shabti(text)
@@ -601,13 +617,32 @@ def canonize_identity(filepath: Path, dry_run: bool = True) -> dict:
 #  CLI
 # ═══════════════════════════════════════════════════════════════════════════
 
+# Paths/names to skip in recursive mode
+_SKIP_DIRS = {".venv", "__pycache__", "site-packages", ".system", "node_modules"}
+_SKIP_NAMES = {"__init__.py", "__main__.py"}
+
+
+def _should_skip(filepath: Path) -> bool:
+    """Return True if this file should be skipped."""
+    if filepath.name.startswith("_"):
+        return True
+    if filepath.name in _SKIP_NAMES:
+        return True
+    if filepath.name.startswith("test_"):
+        return True
+    if any(part in _SKIP_DIRS for part in filepath.parts):
+        return True
+    return False
+
+
 def _run_envelope(args, files) -> int:
     """Run envelope canonization (Layer 1)."""
     dry_run = args.dry_run
-    stats = {"already-canon": 0, "changed": 0, "no-change": 0, "error": 0}
+    stats = {"already-canon": 0, "changed": 0, "no-change": 0, "error": 0, "skipped": 0}
 
     for filepath in files:
-        if filepath.name.startswith("_"):
+        if _should_skip(filepath):
+            stats["skipped"] += 1
             continue
         try:
             result = canonize_file(filepath, dry_run=dry_run)
@@ -621,6 +656,7 @@ def _run_envelope(args, files) -> int:
             stats["error"] += 1
             print(f"  ❌ {filepath.name}: ERROR — {e}", file=sys.stderr)
 
+    processed = len(files) - stats["skipped"]
     mode_label = "DRY RUN" if dry_run else "APPLIED"
     print(f"\n{'═' * 60}")
     print(f"  CANONIZE BLESSING — {mode_label}")
@@ -629,7 +665,7 @@ def _run_envelope(args, files) -> int:
     print(f"  ⏭️  Already canon: {stats['already-canon']}")
     print(f"  ·  No change:     {stats['no-change']}")
     print(f"  ❌ Errors:        {stats['error']}")
-    print(f"  📁 Total files:   {len(files)}")
+    print(f"  📁 Processed:     {processed} ({stats['skipped']} skipped)")
     print()
     return 0
 
@@ -637,10 +673,11 @@ def _run_envelope(args, files) -> int:
 def _run_identity(args, files) -> int:
     """Run docstring identity canonization (Layer 2)."""
     dry_run = args.dry_run
-    stats = {"changed": 0, "no-change": 0, "no-docstring": 0, "error": 0}
+    stats = {"changed": 0, "no-change": 0, "no-docstring": 0, "error": 0, "skipped": 0}
 
     for filepath in files:
-        if filepath.name.startswith("_"):
+        if _should_skip(filepath):
+            stats["skipped"] += 1
             continue
         try:
             result = canonize_identity(filepath, dry_run=dry_run)
@@ -654,6 +691,7 @@ def _run_identity(args, files) -> int:
             stats["error"] += 1
             print(f"  ❌ {filepath.name}: ERROR — {e}", file=sys.stderr)
 
+    processed = len(files) - stats["skipped"]
     mode_label = "DRY RUN" if dry_run else "APPLIED"
     print(f"\n{'═' * 60}")
     print(f"  CANONIZE IDENTITY — {mode_label}")
@@ -662,7 +700,7 @@ def _run_identity(args, files) -> int:
     print(f"  ·  No change:     {stats['no-change']}")
     print(f"  ⏭️  No docstring:  {stats['no-docstring']}")
     print(f"  ❌ Errors:        {stats['error']}")
-    print(f"  📁 Total files:   {len(files)}")
+    print(f"  📁 Processed:     {processed} ({stats['skipped']} skipped)")
     print()
     return 0
 
@@ -680,6 +718,8 @@ def main() -> int:
                         help="Canonize docstring @-fields (Layer 2) instead of envelope (Layer 1)")
     parser.add_argument("--target", type=Path, default=SCRIPTS_DIR,
                         help="Target directory (default: scripts/)")
+    parser.add_argument("--recursive", action="store_true",
+                        help="Recursively scan subdirectories (rglob)")
     parser.add_argument("--file", type=Path, default=None,
                         help="Process a single file instead of a directory")
     parser.add_argument("-v", "--verbose", action="store_true",
@@ -689,7 +729,8 @@ def main() -> int:
     if args.file:
         files = [args.file]
     else:
-        files = sorted(args.target.glob("*.py"))
+        glob_fn = args.target.rglob if args.recursive else args.target.glob
+        files = sorted(glob_fn("*.py"))
 
     if args.identity:
         return _run_identity(args, files)

@@ -1,5 +1,15 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
+#-*- coding: utf-8 -*-
+
+# ╔════════════════════════════════════════════════════════════════════════════
+# ║ THE DECORATOR'S BLESSING: monitor_dashboard_extended.py
+# ╠════════════════════════════════════════════════════════════════════════════
+# ║ Wedjat-Quipu Spectrum: WHITE
+# ║ Temple-Ayllu Zone: 🌿 THE GARDEN
+# ║ Ogdoad-Ceque Radiance:
+# ║   └─◄ (Standalone)
+# ╚════════════════════════════════════════════════════════════════════════════
+
 """
 MAS-MCP Genesis Dashboard — Extended Monitor with CSV Logging
 Usage: python monitor_dashboard_extended.py [BASE_URL] [--csv PATH] [--summary]
@@ -16,6 +26,10 @@ Cron examples:
 
   # Daily at midnight: generate summary
   0 0 * * * python3 /path/to/monitor_dashboard_extended.py https://your-app.vercel.app --csv /var/log/mas_mcp_metrics.csv --summary
+
+@SID:           TOOL_MONITOR_DASHBOARD_EXTENDED_V1
+@Shabti:        CLI Script
+@Purpose:       MAS-MCP Genesis Dashboard — Extended Monitor with CSV Logging
 """
 
 import sys

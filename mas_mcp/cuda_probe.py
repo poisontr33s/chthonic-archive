@@ -1,6 +1,15 @@
 #!/usr/bin/env python3
 #-*- coding: utf-8 -*-
 
+# ╔════════════════════════════════════════════════════════════════════════════
+# ║ THE DECORATOR'S BLESSING: cuda_probe.py
+# ╠════════════════════════════════════════════════════════════════════════════
+# ║ Wedjat-Quipu Spectrum: WHITE
+# ║ Temple-Ayllu Zone: 🏰 THE FORTRESS
+# ║ Ogdoad-Ceque Radiance:
+# ║   └─◄ (Standalone)
+# ╚════════════════════════════════════════════════════════════════════════════
+
 """
 CUDA-only probe for MAS-MCP GPU readiness.
 
@@ -9,6 +18,10 @@ Run this before enabling GPU features in MAS-MCP.
 
 Usage:
     uv run python cuda_probe.py
+
+@SID:           TOOL_CUDA_PROBE_V1
+@Shabti:        CLI Script
+@Purpose:       CUDA-only probe for MAS-MCP GPU readiness.
 """
 
 import sys

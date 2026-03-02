@@ -1,9 +1,23 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
+#-*- coding: utf-8 -*-
+
+# ╔════════════════════════════════════════════════════════════════════════════
+# ║ THE DECORATOR'S BLESSING: reporter.py
+# ╠════════════════════════════════════════════════════════════════════════════
+# ║ Wedjat-Quipu Spectrum: WHITE
+# ║ Temple-Ayllu Zone: 🌿 THE GARDEN
+# ║ Ogdoad-Ceque Radiance:
+# ║   └─◄ (Standalone)
+# ╚════════════════════════════════════════════════════════════════════════════
+
 """
 SSOT Abbreviation System: Reporter Module
 
 Generates validation reports and audit summaries.
+
+@SID:           TOOL_REPORTER_V1
+@Shabti:        CLI Script
+@Purpose:       SSOT Abbreviation System: Reporter Module
 """
 
 from pathlib import Path

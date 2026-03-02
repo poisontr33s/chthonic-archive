@@ -1,5 +1,15 @@
 #!/usr/bin/env python3
 #-*- coding: utf-8 -*-
+
+# ╔════════════════════════════════════════════════════════════════════════════
+# ║ THE DECORATOR'S BLESSING: session_resumer.py
+# ╠════════════════════════════════════════════════════════════════════════════
+# ║ Wedjat-Quipu Spectrum: WHITE
+# ║ Temple-Ayllu Zone: 🔥 THE FOUNDRY
+# ║ Ogdoad-Ceque Radiance:
+# ║   └─◄ (Standalone)
+# ╚════════════════════════════════════════════════════════════════════════════
+
 """
 Session Resumer.
 
@@ -12,6 +22,10 @@ Invocation:
   uv run .codex/skills/session-resumer/scripts/session_resumer.py <path-to-raw-log>
   <paste> | uv run .codex/skills/session-resumer/scripts/session_resumer.py - --write-stdin <path-to-write>
   uv run .codex/skills/session-resumer/scripts/session_resumer.py <path> --trail <SESSION_TRAIL_*.md>
+
+@SID:           TOOL_SESSION_RESUMER_V1
+@Shabti:        CLI Script
+@Purpose:       Session Resumer.
 """
 
 from __future__ import annotations

@@ -1,9 +1,23 @@
 #!/usr/bin/env python3
 #-*- coding: utf-8 -*-
+
+# ╔════════════════════════════════════════════════════════════════════════════
+# ║ THE DECORATOR'S BLESSING: polish_skill.py
+# ╠════════════════════════════════════════════════════════════════════════════
+# ║ Wedjat-Quipu Spectrum: WHITE
+# ║ Temple-Ayllu Zone: 🔥 THE FOUNDRY
+# ║ Ogdoad-Ceque Radiance:
+# ║   └─◄ (Standalone)
+# ╚════════════════════════════════════════════════════════════════════════════
+
 """
 The Digestive Enzyme (Skill Polisher Implementation).
 Audits skill directories for structural integrity, missing assets, and code gaps.
 Implements the 'Addiction' protocol with recursive improvement loops.
+
+@SID:           TOOL_POLISH_SKILL_V1
+@Shabti:        CLI Script
+@Purpose:       The Digestive Enzyme (Skill Polisher Implementation).
 """
 
 import ast

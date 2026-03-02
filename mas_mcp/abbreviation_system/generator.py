@@ -1,5 +1,15 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
+#-*- coding: utf-8 -*-
+
+# ╔════════════════════════════════════════════════════════════════════════════
+# ║ THE DECORATOR'S BLESSING: generator.py
+# ╠════════════════════════════════════════════════════════════════════════════
+# ║ Wedjat-Quipu Spectrum: WHITE
+# ║ Temple-Ayllu Zone: 🏰 THE FORTRESS
+# ║ Ogdoad-Ceque Radiance:
+# ║   └─◄ (Standalone)
+# ╚════════════════════════════════════════════════════════════════════════════
+
 """
 Abbreviation Generator Module
 
@@ -7,6 +17,10 @@ Suggests new abbreviations based on SSOT patterns and conventions.
 Implements FA¹ (Alchemical Actualization) - transmuting full terms into condensed forms.
 
 Part of the ASC Abbreviation System for Codex Brahmanica Perfectus governance.
+
+@SID:           TOOL_GENERATOR_V1
+@Shabti:        CLI Script
+@Purpose:       Abbreviation Generator Module
 """
 
 import re

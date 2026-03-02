@@ -1,11 +1,24 @@
 #!/usr/bin/env python3
 #-*- coding: utf-8 -*-
 
+# ╔════════════════════════════════════════════════════════════════════════════
+# ║ THE DECORATOR'S BLESSING: resolve_directory_relationships.py
+# ╠════════════════════════════════════════════════════════════════════════════
+# ║ Wedjat-Quipu Spectrum: WHITE
+# ║ Temple-Ayllu Zone: 🔥 THE FOUNDRY
+# ║ Ogdoad-Ceque Radiance:
+# ║   └─◄ (Standalone)
+# ╚════════════════════════════════════════════════════════════════════════════
+
 """
 Directory relationship resolver for Artifact-Upcycle.
 
 Scans file/directory references, classifies unresolved or ambiguous links,
 and reports whether manual intervention is required.
+
+@SID:           TOOL_RESOLVE_DIRECTORY_RELATIONSHIPS_V1
+@Shabti:        CLI Script
+@Purpose:       Directory relationship resolver for Artifact-Upcycle.
 """
 
 from __future__ import annotations

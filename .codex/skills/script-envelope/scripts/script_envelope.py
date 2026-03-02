@@ -4,6 +4,9 @@
 """
 Script-Envelope automation skeleton.
 Not executed by default. Extend only when explicit automation is requested.
+@SID:           TOOL_SCRIPT_ENVELOPE_V1
+@Shabti:        \s*(.+)", text)
+@Purpose:       Script-Envelope automation skeleton.
 """
 
 from __future__ import annotations

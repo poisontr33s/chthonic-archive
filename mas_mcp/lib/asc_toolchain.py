@@ -1,8 +1,22 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
+#-*- coding: utf-8 -*-
+
+# ╔════════════════════════════════════════════════════════════════════════════
+# ║ THE DECORATOR'S BLESSING: asc_toolchain.py
+# ╠════════════════════════════════════════════════════════════════════════════
+# ║ Wedjat-Quipu Spectrum: WHITE
+# ║ Temple-Ayllu Zone: 🏰 THE FORTRESS
+# ║ Ogdoad-Ceque Radiance:
+# ║   └─◄ (Standalone)
+# ╚════════════════════════════════════════════════════════════════════════════
+
 """
 ASC Toolchain Router
 Redirects to the modularized logic in mas_mcp/lib/asc/
+
+@SID:           TOOL_ASC_TOOLCHAIN_V1
+@Shabti:        CLI Script
+@Purpose:       ASC Toolchain Router
 """
 
 import sys

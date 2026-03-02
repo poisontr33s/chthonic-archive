@@ -1,5 +1,15 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
+#-*- coding: utf-8 -*-
+
+# ╔════════════════════════════════════════════════════════════════════════════
+# ║ THE DECORATOR'S BLESSING: milf_genesis_v2.py
+# ╠════════════════════════════════════════════════════════════════════════════
+# ║ Wedjat-Quipu Spectrum: WHITE
+# ║ Temple-Ayllu Zone: 🏰 THE FORTRESS
+# ║ Ogdoad-Ceque Radiance:
+# ║   └─◄ (Standalone)
+# ╚════════════════════════════════════════════════════════════════════════════
+
 """
 ╔══════════════════════════════════════════════════════════════════════════════
 ║  MILF GENESIS ENGINE v2 - Constitutional GPU-Accelerated Synthesis
@@ -17,6 +27,10 @@
 ║  The Decorator's Decree: "Birth what is valid, refine what is borderline,
 ║                           dissolve what fails governance."
 ╚══════════════════════════════════════════════════════════════════════════════
+
+@SID:           TOOL_MILF_GENESIS_V2_V1
+@Shabti:        CLI Script
+@Purpose:       ╔══════════════════════════════════════════════════════════════════════════════
 """
 
 import json

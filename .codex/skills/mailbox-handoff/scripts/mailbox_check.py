@@ -1,5 +1,15 @@
 #!/usr/bin/env python3
 #-*- coding: utf-8 -*-
+
+# ╔════════════════════════════════════════════════════════════════════════════
+# ║ THE DECORATOR'S BLESSING: mailbox_check.py
+# ╠════════════════════════════════════════════════════════════════════════════
+# ║ Wedjat-Quipu Spectrum: WHITE
+# ║ Temple-Ayllu Zone: 🔥 THE FOUNDRY
+# ║ Ogdoad-Ceque Radiance:
+# ║   └─◄ (Standalone)
+# ╚════════════════════════════════════════════════════════════════════════════
+
 """
 Mailbox Check (continuation-first).
 
@@ -12,6 +22,10 @@ This script makes "check your mail" mean something operational:
 - Orchestrate mailbox ops (Postman handoff, Scribe packet refresh, Polisher cleanup).
 
 No network. No non-stdlib deps.
+
+@SID:           TOOL_MAILBOX_CHECK_V1
+@Shabti:        CLI Script
+@Purpose:       Mailbox Check (continuation-first).
 """
 
 from __future__ import annotations

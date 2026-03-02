@@ -1,5 +1,15 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
+#-*- coding: utf-8 -*-
+
+# ╔════════════════════════════════════════════════════════════════════════════
+# ║ THE DECORATOR'S BLESSING: async_core.py
+# ╠════════════════════════════════════════════════════════════════════════════
+# ║ Wedjat-Quipu Spectrum: WHITE
+# ║ Temple-Ayllu Zone: 🏰 THE FORTRESS
+# ║ Ogdoad-Ceque Radiance:
+# ║   └─◄ (Standalone)
+# ╚════════════════════════════════════════════════════════════════════════════
+
 """
 🌊 ASYNC CORE - Flow-Balancer Integration (FBI-ATO-SP)
 ═══════════════════════════════════════════════════════════════════════════════
@@ -27,6 +37,10 @@ Key Features:
   - Memory pressure monitoring with adaptive batching
 
 ═══════════════════════════════════════════════════════════════════════════════
+
+@SID:           TOOL_ASYNC_CORE_V1
+@Shabti:        CLI Script
+@Purpose:       🌊 ASYNC CORE - Flow-Balancer Integration (FBI-ATO-SP)
 """
 
 import asyncio
