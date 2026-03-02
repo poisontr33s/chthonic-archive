@@ -648,9 +648,33 @@ export function activate(context: vscode.ExtensionContext) {
             void refreshToolchainCompleteness('refresh-status');
         })
     );
+
+    void ensureDefaultChthonicPlacement(context, restoreOrderLayout, outputChannel);
 }
 
 export function deactivate() {}
+
+async function ensureDefaultChthonicPlacement(
+    context: vscode.ExtensionContext,
+    restoreOrderLayout: RestoreOrderLayout,
+    output: vscode.OutputChannel,
+): Promise<void> {
+    const placementKey = 'chthonic.layoutPlacementAppliedVersion';
+    const currentVersion = String(context.extension.packageJSON.version ?? 'unknown');
+    const appliedVersion = context.workspaceState.get<string>(placementKey);
+
+    if (appliedVersion === currentVersion) {
+        return;
+    }
+
+    try {
+        await restoreOrderLayout.activate();
+        await context.workspaceState.update(placementKey, currentVersion);
+        output.appendLine(`[layout] default Chthonic placement applied for ${currentVersion}`);
+    } catch (error) {
+        output.appendLine(`[layout] placement bootstrap failed: ${stringifyError(error)}`);
+    }
+}
 
 // --- Policy Fingerprint ---
 function computePolicyFingerprint(): string | null {
