@@ -42,8 +42,8 @@
 ```
 
 **Rationale:**
-- Global Python is 3.14 bleeding edge, incompatible with TensorRT/CUDA stack
-- `mas_mcp/.venv` contains **Python 3.13.10** (latest stable, TensorRT-compatible)
+- Python 3.14 is now stable (bugfix phase) — pinned as the project baseline
+- `uv` manages Python acquisition, virtual environments, lockfiles, and dependency resolution
 - `uv` manages the virtual environment, lockfile, and dependency resolution
 - Invoking `python` or `pip` directly bypasses this governance
 
@@ -57,7 +57,7 @@ $env:PATH = "$env:VIRTUAL_ENV\Scripts;$env:PATH"
 
 ## Frontend Runtime Management (`FRM-BUN`)
 
-**Stack:** Bun 1.3.5 + Next.js + React 19
+**Stack:** Bun 1.x.x + Next.js + React xx.x + TypeScript x.x.x
 
 **Commands:**
 ```shell

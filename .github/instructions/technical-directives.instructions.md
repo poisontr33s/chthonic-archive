@@ -41,7 +41,7 @@
 All standalone scripts MUST adhere to the **(`Metabolic-Standard-v2`)**. This ensures **(`Autonomic-Execution`)** via `uv` while maintaining **(`Structural-Alignment`)** with the Archive.
 
 1. **Shebang**: `#!/usr/bin/env python3`
-2. **Inline Metadata (PEP 723)**: A `/// script` block defining `requires-python` (standard is `>=3.13`) and `dependencies`.
+2. **Inline Metadata (PEP 723)**: A `/// script` block defining `requires-python` (standard is `>=3.14`) and `dependencies`.
 3. **Semantic Docstring**: Must include `@SID` (Semantic ID) and `@Type`.
 
 **Rationale: The "Snail Shell" Philosophy**
@@ -51,7 +51,7 @@ Scripts are like snails—they carry their entire environment definition (the sh
 ```python
 #!/usr/bin/env python3
 # /// script
-# requires-python = ">=3.13"
+# requires-python = ">=3.14"
 # dependencies = [
 #     "pathlib",
 # ]
@@ -66,9 +66,8 @@ Script Description...
 ```
 
 **Rationale:**
-- Global Python is 3.14 bleeding edge, incompatible with all of the TensorRT/CUDA stack
-- `mas_mcp/.venv` contains **Python 3.13.10** (latest stable, TensorRT-compatible)
-- `uv` manages the virtual environment, lockfile, and dependency resolution
+- Python 3.14 is now stable (bugfix phase) — pinned as the project baseline
+- `uv` manages Python acquisition, virtual environments, lockfiles, and dependency resolution
 - Invoking `python` or `pip` directly bypasses this governance
 
 **Environment Variables (when needed):**
