@@ -26,7 +26,8 @@ Buckets are structural, not aesthetic:
 - vendor spillover
 
 @SID:           TOOL_ICON_SCAFFOLD_CONTRACT_AUDIT_V1
-@Type:          Utility
+@Shabti:          Utility
+@Purpose:       Icon Scaffold Contract Audit — classify the Chthonic icon scaffold without
 """
 
 from __future__ import annotations

@@ -25,9 +25,10 @@ Code patterns recycled from (WPTG provenance):
 - vscode_insiders_matrix.ps1       → stability scoring formula (100 - crash*25 - gpu*2)
 
 @SID:           TOOL_VSCODE_ERROR_AUTOPSY_V1
-@Type:          Utility
+@Shabti:          Utility
 @Context:       Infrastructure / VS Code Stability
 @Implements:    Electron/Node fragility diagnosis (CHTHONIC-GOLDEN-PHASE-1)
+@Purpose:       VS Code Error Autopsy — Electron/Node fragility classifier and severity scorer.
 
 Usage:
     uv run scripts/vscode_error_autopsy.py                        # auto-discover logs, full report

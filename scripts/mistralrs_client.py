@@ -16,6 +16,7 @@ mistralrs_client.py — Universal thin client for mistral.rs OpenAI-compatible A
 @SID:           LIB_MISTRALRS_CLIENT_V1
 @Purpose:       Drop-in replacement for llama-cpp-python in overnight pipeline.
                 All inference goes through the Rust server. No ML imports.
+@Shabti:        CLI Script
 
 Usage:
     from scripts.mistralrs_client import MistralRsClient

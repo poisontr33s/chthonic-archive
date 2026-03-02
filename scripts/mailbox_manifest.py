@@ -19,9 +19,10 @@ JSON manifest that can be committed to git — giving full inventory visibility
 without requiring git to track individual mailbox files.
 
 @SID:           TOOL_MAILBOX_MANIFEST_V1
-@Type:          Utility
+@Shabti:          Utility
 @Context:       Infrastructure / Cross-Agent Tracking
 @Implements:    NUKE-RESILIENCE mailbox tracking without git pollution
+@Purpose:       Mailbox Manifest Tracker.
 
 Usage:
     uv run scripts/mailbox_manifest.py                  # scan + write manifest

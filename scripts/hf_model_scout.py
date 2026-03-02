@@ -14,6 +14,7 @@
 @SID: HF_MODEL_SCOUT_2026_02_27
 @Purpose: Format-aware HuggingFace model discovery for mistral.rs v0.7.0
 @Backend: HuggingFace API → arch filter → format detect → VRAM fit → ranked output
+@Shabti:        CLI Script
 
 Discovers compatible models and recommends the OPTIMAL loading format per model:
   UQFF  — Pre-quantized, instant load, best of all worlds (if available)

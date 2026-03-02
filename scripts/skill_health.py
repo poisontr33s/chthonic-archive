@@ -24,9 +24,10 @@ Code patterns recycled from (WPTG provenance):
 - mailbox_manifest.py → directory traversal, file inventory
 
 @SID:           TOOL_SKILL_HEALTH_V1
-@Type:          Utility
+@Shabti:          Utility
 @Context:       Infrastructure / Skill Governance
 @Implements:    Automated skill audit (replaces manual 1-10 review)
+@Purpose:       Skill Health Auditor — Automated 1-10 discriminatory scoring for all skill lanes.
 
 Usage:
     uv run scripts/skill_health.py                      # full audit, print summary

@@ -32,6 +32,7 @@ Ambiguous lanes are inventoried but not renamed.
 @Shabti:        CLI Script
 @Heka-Ayni:     Khipu-Cartouche Protocol / SFA 50/50 naming equilibrium
 @Ankh-Tinku:    Dry-run rename plan + SID correlation report
+@Purpose:       Path Naming Audit — Khipu-Cartouche naming governance for files and folders.
 
 Usage:
   uv run scripts/path_naming_audit.py

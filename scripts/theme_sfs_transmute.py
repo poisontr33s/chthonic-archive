@@ -19,9 +19,8 @@ surface hierarchy, and reduced color concentration. Each changeset is
 independently reversible (Atomic Reversibility directive).
 
 @SID:           TOOL_THEME_SFS_TRANSMUTE_V1
-@Type:          Utility
-@Spectrum:      WHITE
-@Zone:          THE FOUNDRY
+@Shabti:          Utility
+@Purpose:       SFS (Sister Ferrum Scoriae) Geological Core Transmutation — WPTG Stage 04.
 """
 
 import json

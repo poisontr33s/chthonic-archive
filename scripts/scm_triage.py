@@ -18,9 +18,8 @@ generates gitignore/exclude recommendations, and produces structured
 migration plans for ANKH-aligned file relocation.
 
 @SID:           TOOL_SCM_TRIAGE_V1
-@Type:          Utility
-@Spectrum:      WHITE
-@Zone:          THE GARDEN
+@Shabti:          Utility
+@Purpose:       SCM Triage — Source Control Noise Reduction & Codebase Structurization.
 """
 
 import argparse

@@ -23,9 +23,10 @@ Connects existing tools: handoff_audit.py, mailbox_check.py, mailbox_manifest.py
 into a self-healing loop.
 
 @SID:           TOOL_HANDOFF_LOOP_V1
-@Type:          Utility
+@Shabti:          Utility
 @Context:       Infrastructure / Cross-Agent Orchestration
 @Implements:    Unified handoff-loop closing 4 manual breaks
+@Purpose:       Handoff Loop Orchestrator.
 
 Usage:
     uv run scripts/handoff_loop.py status                # show pending obligations + receipts

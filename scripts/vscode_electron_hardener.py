@@ -26,9 +26,10 @@ Code patterns recycled from (WPTG provenance):
 - vscode_insiders_matrix.ps1       → stability scoring, matrix approach
 
 @SID:           TOOL_VSCODE_ELECTRON_HARDENER_V1
-@Type:          Utility
+@Shabti:          Utility
 @Context:       Infrastructure / VS Code Stability
 @Implements:    Electron/GPU hardening (CHTHONIC-GOLDEN-PHASE-1)
+@Purpose:       VS Code Electron Hardener — GPU acceleration, memory, and user-data repair.
 
 Usage:
     uv run scripts/vscode_electron_hardener.py diagnose     # read-only audit

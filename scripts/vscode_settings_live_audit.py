@@ -23,7 +23,8 @@ This replaces comment-lore like "unsupported in the current build" with a
 repeatable audit that can be rerun after every editor or extension update.
 
 @SID:           TOOL_VSCODE_SETTINGS_LIVE_AUDIT_V1
-@Type:          Utility
+@Shabti:          Utility
+@Purpose:       VS Code Settings Live Audit — validate workspace settings against the local IDE.
 """
 
 from __future__ import annotations

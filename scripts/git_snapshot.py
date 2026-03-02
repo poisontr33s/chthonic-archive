@@ -18,9 +18,8 @@ Captures current git state (branch, recent commits, working tree, diff stats,
 Agents read the snapshot instead of burning tokens on git exploration.
 
 @SID:           TOOL_GIT_SNAPSHOT_V1
-@Type:          Utility
-@Spectrum:      WHITE
-@Zone:          THE GARDEN
+@Shabti:          Utility
+@Purpose:       Git Snapshot — session-resumption state capture.
 
 Usage:
     uv run scripts/git_snapshot.py                # standard snapshot (15 commits)
