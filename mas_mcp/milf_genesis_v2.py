@@ -61,9 +61,9 @@ def _validate_gpu_venv() -> bool:
     expected_norm = os.path.normcase(os.path.abspath(EXPECTED_GPU_PY))
     current_norm = os.path.normcase(os.path.abspath(current_py))
 
-    # Check Python version >= 3.13
-    if sys.version_info < (3, 13):
-        print(f"⚠️ Python {sys.version_info.major}.{sys.version_info.minor} < 3.13 - GPU features may not work")
+    # Check Python version >= 3.14
+    if sys.version_info < (3, 14):
+        print(f"⚠️ Python {sys.version_info.major}.{sys.version_info.minor} < 3.14 - GPU features may not work")
         return False
 
     # Warn if not in expected venv (but don't block - might be running from different location)
