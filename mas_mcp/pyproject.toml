@@ -38,7 +38,7 @@ gpu-fallback = [
 ]
 
 # ONNX Runtime GPU execution providers
-# NOTE: onnxruntime-gpu must be installed from Azure DevOps feed for Python 3.13+:
+# NOTE: onnxruntime-gpu must be installed from Azure DevOps feed for Python 3.10+:
 # uv pip install --pre --index-url https://aiinfra.pkgs.visualstudio.com/PublicPackages/_packaging/ort-cuda-13-nightly/pypi/simple/ onnxruntime-gpu --no-deps
 onnx-gpu = [
     # Placeholder - see NOTE above
@@ -62,6 +62,13 @@ dev = [
     "pytest-asyncio>=0.23",
     "ruff>=0.4",
     "mypy>=1.10",
+]
+
+# ASC Toolchain CLI
+asc = [
+    "rich>=13.0",
+    "pydantic>=2.0",
+    "typer>=0.12",
 ]
 
 # All production extras (excluding dev)

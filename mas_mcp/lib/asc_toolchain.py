@@ -1,13 +1,5 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-# /// script
-# requires-python = ">=3.14"
-# dependencies = [
-#     "rich>=13.0",
-#     "pydantic>=2.0",
-#     "typer>=0.12",
-# ]
-# ///
 """
 ASC Toolchain Router
 Redirects to the modularized logic in mas_mcp/lib/asc/
