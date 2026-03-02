@@ -12,7 +12,18 @@
 				"kind": "build",
 				"isDefault": true
 			},
-			"problemMatcher": "$rustc",
+			"problemMatcher": {
+				"owner": "rustc",
+				"fileLocation": ["autoDetect", "${workspaceFolder}"],
+				"pattern": {
+					"regexp": "^(error|warning)\\[.*\\]:\\s+(.*)$|^\\s+-->\\s+(.+):(\\d+):(\\d+)",
+					"file": 3,
+					"line": 4,
+					"column": 5,
+					"message": 2,
+					"severity": 1
+				}
+			},
 			"presentation": {
 				"reveal": "always",
 				"panel": "shared"
@@ -27,9 +38,18 @@
 				"--release"
 			],
 			"group": "build",
-			"problemMatcher": [
-				"$rustc"
-			]
+			"problemMatcher": {
+				"owner": "rustc",
+				"fileLocation": ["autoDetect", "${workspaceFolder}"],
+				"pattern": {
+					"regexp": "^(error|warning)\\[.*\\]:\\s+(.*)$|^\\s+-->\\s+(.+):(\\d+):(\\d+)",
+					"file": 3,
+					"line": 4,
+					"column": 5,
+					"message": 2,
+					"severity": 1
+				}
+			}
 		},
 		{
 			"label": "cargo run",
@@ -39,9 +59,18 @@
 				"run"
 			],
 			"group": "build",
-			"problemMatcher": [
-				"$rustc"
-			],
+			"problemMatcher": {
+				"owner": "rustc",
+				"fileLocation": ["autoDetect", "${workspaceFolder}"],
+				"pattern": {
+					"regexp": "^(error|warning)\\[.*\\]:\\s+(.*)$|^\\s+-->\\s+(.+):(\\d+):(\\d+)",
+					"file": 3,
+					"line": 4,
+					"column": 5,
+					"message": 2,
+					"severity": 1
+				}
+			},
 			"presentation": {
 				"reveal": "always",
 				"panel": "dedicated"
@@ -60,9 +89,18 @@
 				"clippy::pedantic"
 			],
 			"group": "test",
-			"problemMatcher": [
-				"$rustc"
-			]
+			"problemMatcher": {
+				"owner": "rustc",
+				"fileLocation": ["autoDetect", "${workspaceFolder}"],
+				"pattern": {
+					"regexp": "^(error|warning)\\[.*\\]:\\s+(.*)$|^\\s+-->\\s+(.+):(\\d+):(\\d+)",
+					"file": 3,
+					"line": 4,
+					"column": 5,
+					"message": 2,
+					"severity": 1
+				}
+			}
 		},
 		{
 			"label": "cargo test",
@@ -75,9 +113,18 @@
 				"kind": "test",
 				"isDefault": true
 			},
-			"problemMatcher": [
-				"$rustc"
-			]
+			"problemMatcher": {
+				"owner": "rustc",
+				"fileLocation": ["autoDetect", "${workspaceFolder}"],
+				"pattern": {
+					"regexp": "^(error|warning)\\[.*\\]:\\s+(.*)$|^\\s+-->\\s+(.+):(\\d+):(\\d+)",
+					"file": 3,
+					"line": 4,
+					"column": 5,
+					"message": 2,
+					"severity": 1
+				}
+			}
 		},
 		{
 			"label": "cargo clean",
@@ -96,9 +143,18 @@
 				"run"
 			],
 			"group": "none",
-			"problemMatcher": [
-				"$rustc"
-			],
+			"problemMatcher": {
+				"owner": "rustc",
+				"fileLocation": ["autoDetect", "${workspaceFolder}"],
+				"pattern": {
+					"regexp": "^(error|warning)\\[.*\\]:\\s+(.*)$|^\\s+-->\\s+(.+):(\\d+):(\\d+)",
+					"file": 3,
+					"line": 4,
+					"column": 5,
+					"message": 2,
+					"severity": 1
+				}
+			},
 			"presentation": {
 				"reveal": "always",
 				"panel": "dedicated",
@@ -114,9 +170,18 @@
 				"--release"
 			],
 			"group": "none",
-			"problemMatcher": [
-				"$rustc"
-			],
+			"problemMatcher": {
+				"owner": "rustc",
+				"fileLocation": ["autoDetect", "${workspaceFolder}"],
+				"pattern": {
+					"regexp": "^(error|warning)\\[.*\\]:\\s+(.*)$|^\\s+-->\\s+(.+):(\\d+):(\\d+)",
+					"file": 3,
+					"line": 4,
+					"column": 5,
+					"message": 2,
+					"severity": 1
+				}
+			},
 			"presentation": {
 				"reveal": "always",
 				"panel": "dedicated",
@@ -137,9 +202,7 @@
 				"panel": "new",
 				"focus": true
 			},
-			"problemMatcher": [
-				"$nvcc"
-			]
+			"problemMatcher": []
 		},
 		{
 			"label": "Run Inline Page Test",
