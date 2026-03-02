@@ -1,6 +1,15 @@
 #!/usr/bin/env python3
 #-*- coding: utf-8 -*-
 
+# ╔════════════════════════════════════════════════════════════════════════════
+# ║ THE DECORATOR'S BLESSING: normalize_e2e_archives.py
+# ╠════════════════════════════════════════════════════════════════════════════
+# ║ Wedjat-Quipu Spectrum: WHITE
+# ║ Temple-Ayllu Zone: 🌿 THE GARDEN
+# ║ Ogdoad-Ceque Radiance:
+# ║   └─◄ (Standalone)
+# ╚════════════════════════════════════════════════════════════════════════════
+
 """
 Normalize archived e2e_matrix JSON artifacts for cross-platform consumption.
 
@@ -13,6 +22,10 @@ Edits (in-place):
 
 Invocation:
 - uv run scripts/normalize_e2e_archives.py
+
+@SID:           TOOL_NORMALIZE_E2E_ARCHIVES_V1
+@Shabti:        CLI Script
+@Purpose:       Normalize archived e2e_matrix JSON artifacts for cross-platform consumption.
 """
 
 from __future__ import annotations

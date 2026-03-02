@@ -1,6 +1,15 @@
 #!/usr/bin/env python3
 #-*- coding: utf-8 -*-
 
+# ╔════════════════════════════════════════════════════════════════════════════
+# ║ THE DECORATOR'S BLESSING: session_resumption_high_coverage.py
+# ╠════════════════════════════════════════════════════════════════════════════
+# ║ Wedjat-Quipu Spectrum: WHITE
+# ║ Temple-Ayllu Zone: 🌿 THE GARDEN
+# ║ Ogdoad-Ceque Radiance:
+# ║   └─◄ (Standalone)
+# ╚════════════════════════════════════════════════════════════════════════════
+
 """
 Session Resumption High Coverage (Claude-side Stewardship)
 
@@ -13,6 +22,10 @@ Usage:
   uv run scripts/session_resumption_high_coverage.py
   uv run scripts/session_resumption_high_coverage.py --quiet
   uv run scripts/session_resumption_high_coverage.py --out path/to/report.md
+
+@SID:           TOOL_SESSION_RESUMPTION_HIGH_COVERAGE_V1
+@Shabti:        CLI Script
+@Purpose:       Session Resumption High Coverage (Claude-side Stewardship)
 """
 
 from __future__ import annotations

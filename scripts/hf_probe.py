@@ -1,5 +1,15 @@
 #!/usr/bin/env python3
 #-*- coding: utf-8 -*-
+
+# ╔════════════════════════════════════════════════════════════════════════════
+# ║ THE DECORATOR'S BLESSING: hf_probe.py
+# ╠════════════════════════════════════════════════════════════════════════════
+# ║ Wedjat-Quipu Spectrum: WHITE
+# ║ Temple-Ayllu Zone: 🌿 THE GARDEN
+# ║ Ogdoad-Ceque Radiance:
+# ║   └─◄ (Standalone)
+# ╚════════════════════════════════════════════════════════════════════════════
+
 """
 Hugging Face auth probe (no secrets).
 
@@ -9,6 +19,10 @@ Purpose:
 
 Invocation:
 - uv run scripts/hf_probe.py
+
+@SID:           TOOL_HF_PROBE_V1
+@Shabti:        CLI Script
+@Purpose:       Hugging Face auth probe (no secrets).
 """
 
 from __future__ import annotations

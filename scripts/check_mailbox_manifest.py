@@ -1,6 +1,15 @@
 #!/usr/bin/env python3
 #-*- coding: utf-8 -*-
 
+# ╔════════════════════════════════════════════════════════════════════════════
+# ║ THE DECORATOR'S BLESSING: check_mailbox_manifest.py
+# ╠════════════════════════════════════════════════════════════════════════════
+# ║ Wedjat-Quipu Spectrum: WHITE
+# ║ Temple-Ayllu Zone: 🌿 THE GARDEN
+# ║ Ogdoad-Ceque Radiance:
+# ║   └─◄ (Standalone)
+# ╚════════════════════════════════════════════════════════════════════════════
+
 """
 Mailbox manifest contract checks.
 
@@ -11,6 +20,10 @@ Checks (schema v2+):
 
 Invocation:
 - uv run scripts/check_mailbox_manifest.py
+
+@SID:           TOOL_CHECK_MAILBOX_MANIFEST_V1
+@Shabti:        CLI Script
+@Purpose:       Mailbox manifest contract checks.
 """
 
 from __future__ import annotations
@@ -58,4 +71,3 @@ def main() -> int:
 
 if __name__ == "__main__":
     raise SystemExit(main())
-

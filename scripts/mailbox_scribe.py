@@ -1,6 +1,15 @@
 #!/usr/bin/env python3
 #-*- coding: utf-8 -*-
 
+# ╔════════════════════════════════════════════════════════════════════════════
+# ║ THE DECORATOR'S BLESSING: mailbox_scribe.py
+# ╠════════════════════════════════════════════════════════════════════════════
+# ║ Wedjat-Quipu Spectrum: WHITE
+# ║ Temple-Ayllu Zone: 🌿 THE GARDEN
+# ║ Ogdoad-Ceque Radiance:
+# ║   └─◄ (Standalone)
+# ╚════════════════════════════════════════════════════════════════════════════
+
 """
 Mailbox Scribe.
 
@@ -10,6 +19,10 @@ Purpose:
 
 Invocation:
 - uv run scripts/mailbox_scribe.py --target codex --packet codex/mailbox/TETRAGRAMMATON_PACKET.md
+
+@SID:           TOOL_MAILBOX_SCRIBE_V1
+@Shabti:        CLI Script
+@Purpose:       Mailbox Scribe.
 """
 
 from __future__ import annotations

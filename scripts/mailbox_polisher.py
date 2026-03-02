@@ -1,6 +1,15 @@
 #!/usr/bin/env python3
 #-*- coding: utf-8 -*-
 
+# ╔════════════════════════════════════════════════════════════════════════════
+# ║ THE DECORATOR'S BLESSING: mailbox_polisher.py
+# ╠════════════════════════════════════════════════════════════════════════════
+# ║ Wedjat-Quipu Spectrum: WHITE
+# ║ Temple-Ayllu Zone: 🌿 THE GARDEN
+# ║ Ogdoad-Ceque Radiance:
+# ║   └─◄ (Standalone)
+# ╚════════════════════════════════════════════════════════════════════════════
+
 """
 Mailbox Polisher.
 
@@ -16,6 +25,10 @@ else in place.
 Invocation:
 - Detect: uv run scripts/mailbox_polisher.py --target codex
 - Apply:  uv run scripts/mailbox_polisher.py --target codex --apply
+
+@SID:           TOOL_MAILBOX_POLISHER_V1
+@Shabti:        CLI Script
+@Purpose:       Mailbox Polisher.
 """
 
 from __future__ import annotations

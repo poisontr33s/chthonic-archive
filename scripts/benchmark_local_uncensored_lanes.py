@@ -1,6 +1,15 @@
 #!/usr/bin/env python3
 #-*- coding: utf-8 -*-
 
+# ╔════════════════════════════════════════════════════════════════════════════
+# ║ THE DECORATOR'S BLESSING: benchmark_local_uncensored_lanes.py
+# ╠════════════════════════════════════════════════════════════════════════════
+# ║ Wedjat-Quipu Spectrum: WHITE
+# ║ Temple-Ayllu Zone: 🌿 THE GARDEN
+# ║ Ogdoad-Ceque Radiance:
+# ║   └─◄ (Standalone)
+# ╚════════════════════════════════════════════════════════════════════════════
+
 """
 Deterministic local model A/B benchmark for uncensored lanes.
 
@@ -13,6 +22,10 @@ Usage:
   uv run scripts/benchmark_local_uncensored_lanes.py
   uv run scripts/benchmark_local_uncensored_lanes.py --include-qwen25
   uv run scripts/benchmark_local_uncensored_lanes.py --out benchmark.md --json-out benchmark.json
+
+@SID:           TOOL_BENCHMARK_LOCAL_UNCENSORED_LANES_V1
+@Shabti:        CLI Script
+@Purpose:       Deterministic local model A/B benchmark for uncensored lanes.
 """
 
 from __future__ import annotations

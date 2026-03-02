@@ -1,6 +1,15 @@
 #!/usr/bin/env python3
 #-*- coding: utf-8 -*-
 
+# ╔════════════════════════════════════════════════════════════════════════════
+# ║ THE DECORATOR'S BLESSING: uncensored_lane_steward.py
+# ╠════════════════════════════════════════════════════════════════════════════
+# ║ Wedjat-Quipu Spectrum: WHITE
+# ║ Temple-Ayllu Zone: 🌿 THE GARDEN
+# ║ Ogdoad-Ceque Radiance:
+# ║   └─◄ (Standalone)
+# ╚════════════════════════════════════════════════════════════════════════════
+
 """
 Uncensored lane steward:
 - read latest local benchmark results
@@ -10,6 +19,10 @@ Uncensored lane steward:
 
 Usage:
   uv run scripts/uncensored_lane_steward.py
+
+@SID:           TOOL_UNCENSORED_LANE_STEWARD_V1
+@Shabti:        CLI Script
+@Purpose:       Uncensored lane steward:
 """
 
 from __future__ import annotations

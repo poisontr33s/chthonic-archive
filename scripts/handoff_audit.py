@@ -1,5 +1,15 @@
 #!/usr/bin/env python3
 #-*- coding: utf-8 -*-
+
+# ╔════════════════════════════════════════════════════════════════════════════
+# ║ THE DECORATOR'S BLESSING: handoff_audit.py
+# ╠════════════════════════════════════════════════════════════════════════════
+# ║ Wedjat-Quipu Spectrum: WHITE
+# ║ Temple-Ayllu Zone: 🌿 THE GARDEN
+# ║ Ogdoad-Ceque Radiance:
+# ║   └─◄ (Standalone)
+# ╚════════════════════════════════════════════════════════════════════════════
+
 """
 Handoff Audit.
 
@@ -16,6 +26,10 @@ Outputs:
 - codex/mailbox/HANDOFF_AUDIT_LATEST.md
 - claude/mailbox/HANDOFF_AUDIT_LATEST.json
 - claude/mailbox/HANDOFF_AUDIT_LATEST.md
+
+@SID:           TOOL_HANDOFF_AUDIT_V1
+@Shabti:        CLI Script
+@Purpose:       Handoff Audit.
 """
 
 from __future__ import annotations

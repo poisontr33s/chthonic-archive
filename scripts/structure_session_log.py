@@ -1,5 +1,15 @@
 #!/usr/bin/env python3
 #-*- coding: utf-8 -*-
+
+# ╔════════════════════════════════════════════════════════════════════════════
+# ║ THE DECORATOR'S BLESSING: structure_session_log.py
+# ╠════════════════════════════════════════════════════════════════════════════
+# ║ Wedjat-Quipu Spectrum: WHITE
+# ║ Temple-Ayllu Zone: 🌿 THE GARDEN
+# ║ Ogdoad-Ceque Radiance:
+# ║   └─◄ (Standalone)
+# ╚════════════════════════════════════════════════════════════════════════════
+
 """
 Structure a raw session dump into a compact, navigable log.
 
@@ -10,6 +20,10 @@ This script creates two artifacts next to the input:
 
 Invocation:
   uv run scripts/structure_session_log.py <path-to-log>
+
+@SID:           TOOL_STRUCTURE_SESSION_LOG_V1
+@Shabti:        CLI Script
+@Purpose:       Structure a raw session dump into a compact, navigable log.
 """
 
 from __future__ import annotations

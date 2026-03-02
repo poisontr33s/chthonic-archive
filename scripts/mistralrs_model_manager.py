@@ -1,6 +1,15 @@
 #!/usr/bin/env python3
 #-*- coding: utf-8 -*-
 
+# ╔════════════════════════════════════════════════════════════════════════════
+# ║ THE DECORATOR'S BLESSING: mistralrs_model_manager.py
+# ╠════════════════════════════════════════════════════════════════════════════
+# ║ Wedjat-Quipu Spectrum: WHITE
+# ║ Temple-Ayllu Zone: 🌿 THE GARDEN
+# ║ Ogdoad-Ceque Radiance:
+# ║   └─◄ (Standalone)
+# ╚════════════════════════════════════════════════════════════════════════════
+
 """
 mistralrs_model_manager.py — Model lifecycle manager for mistral.rs server.
 
@@ -24,6 +33,10 @@ Usage:
   python scripts/mistralrs_model_manager.py stop
   python scripts/mistralrs_model_manager.py swap "microsoft/Phi-4"
   python scripts/mistralrs_model_manager.py ask "What is 2+2?"
+
+@SID:           TOOL_MISTRALRS_MODEL_MANAGER_V1
+@Shabti:        CLI Script
+@Purpose:       mistralrs_model_manager.py — Model lifecycle manager for mistral.rs server.
 """
 
 from __future__ import annotations

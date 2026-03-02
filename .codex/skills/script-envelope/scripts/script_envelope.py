@@ -40,20 +40,30 @@ def build_envelope(lines: list[str]) -> list[str]:
     """
     Build a canonical ASCII envelope from ordered interior lines.
 
+    Canon layout:
+      ╔═══...
+      ║ THE DECORATOR'S BLESSING: <filename>
+      ╠═══...
+      ║ Wedjat-Quipu Spectrum: <color>
+      ║ Temple-Ayllu Zone: <emoji zone>
+      ║ Ogdoad-Ceque Radiance:
+      ║   └─◄ <radiance>
+      ╚═══...
+
     This is a pure function: it does not read/write files.
     """
     top = f"# ╔{'═' * _BORDER_LEN}"
     mid = f"# ╠{'═' * _BORDER_LEN}"
     bottom = f"# ╚{'═' * _BORDER_LEN}"
 
-    header = [
+    result = [
         top,
         _envelope_line(lines[0]),
-        _envelope_line(lines[1]),
         mid,
     ]
-    body = [_envelope_line(line) for line in lines[2:]]
-    return header + body + [bottom]
+    result.extend(_envelope_line(line) for line in lines[1:])
+    result.append(bottom)
+    return result
 
 
 def extract_existing_envelope(text: str) -> tuple[list[str], list[str]]:
@@ -86,17 +96,23 @@ def extract_fields(text: str, filename: str = "") -> dict[str, str]:
     """
     Extract metadata fields from script content using AST/Regex.
     Supports Python and PowerShell.
+
+    Canon field names (Wedjat-Quipu / Temple-Ayllu / Ogdoad-Ceque):
+      spectrum        -> Wedjat-Quipu Spectrum color
+      zone            -> Temple-Ayllu Zone (emoji + name)
+      radiance        -> Ogdoad-Ceque Radiance (dep chain hint)
+      sid             -> @SID value
+      shabti          -> @Shabti type
+      purpose         -> one-line purpose
     """
     fields = {
         "title": filename,
-        "module": "",
-        "spectral_frequency": "Unknown",
-        "architectural_role": "Utility",
-        "semantic_id": "",
+        "spectrum": "WHITE",
+        "zone": "\U0001f33f THE GARDEN",
+        "radiance": "(Standalone)",
+        "sid": "",
+        "shabti": "CLI Script",
         "purpose": "",
-        "exports": "",
-        "flags": "",
-        "cross_references": "",
     }
 
     # Python Strategy
@@ -109,19 +125,33 @@ def extract_fields(text: str, filename: str = "") -> dict[str, str]:
             if docstring:
                 fields["purpose"] = docstring.split('\n')[0]
 
-            # Exports: Functions and Classes
+            # Exports: Functions and Classes (not stored in envelope, for metadata only)
             exports = []
             for node in tree.body:
                 if isinstance(node, (ast.FunctionDef, ast.ClassDef)):
                     if not node.name.startswith('_'):
                         exports.append(node.name)
-            if exports:
-                fields["exports"] = ", ".join(exports[:5]) # Limit to 5 for brevity
 
-            # SID: Look for @SID tag in comments
+            # SID: Look for @SID tag in comments/docstrings
             sid_match = re.search(r"@SID:\s*([A-Z0-9_]+)", text)
             if sid_match:
-                fields["semantic_id"] = sid_match.group(1)
+                fields["sid"] = sid_match.group(1)
+
+            # Shabti: Look for @Shabti tag
+            shabti_match = re.search(r"@Shabti:\s*(.+)", text)
+            if shabti_match:
+                fields["shabti"] = shabti_match.group(1).strip()
+
+            # Existing envelope: extract Spectrum/Zone/Radiance if present
+            spectrum_match = re.search(r"(?:Wedjat-Quipu Spectrum|Spectral Frequency):\s*(.+)", text)
+            if spectrum_match:
+                fields["spectrum"] = spectrum_match.group(1).strip()
+            zone_match = re.search(r"(?:Temple-Ayllu Zone|Architectural Role):\s*(.+)", text)
+            if zone_match:
+                fields["zone"] = zone_match.group(1).strip()
+            radiance_match = re.search(r"\u2514\u2500\u25c4\s*(.+)", text)
+            if radiance_match:
+                fields["radiance"] = radiance_match.group(1).strip()
 
         except Exception:
             pass # Fallback to basic regex if AST fails
@@ -132,32 +162,28 @@ def extract_fields(text: str, filename: str = "") -> dict[str, str]:
         synopsis_match = re.search(r"\.SYNOPSIS\s*\n\s*(.*)", text)
         if synopsis_match:
             fields["purpose"] = synopsis_match.group(1).strip()
-        
-        # Exports: Functions
-        funcs = re.findall(r"function\s+([a-zA-Z0-9-]+)", text)
-        if funcs:
-            fields["exports"] = ", ".join(funcs[:5])
 
     return fields
 
 
 def fields_to_lines(fields: dict[str, str]) -> list[str]:
     """
-    Convert a field dict into ordered interior lines for the envelope.
+    Convert a field dict into ordered interior lines for the canon envelope.
 
-    This is pure and deterministic: no IO, no guessing.
-    Empty fields are allowed and preserved.
+    Canon format (Wedjat-Quipu / Temple-Ayllu / Ogdoad-Ceque):
+      Line 1: THE DECORATOR'S BLESSING: <filename>
+      --- mid border ---
+      Line 2: Wedjat-Quipu Spectrum: <color>
+      Line 3: Temple-Ayllu Zone: <emoji zone_name>
+      Line 4: Ogdoad-Ceque Radiance:
+      Line 5:   └─◄ <radiance>
     """
     return [
         f"THE DECORATOR'S BLESSING: {fields.get('title', '')}",
-        f"Module: {fields.get('module', '')}",
-        f"Spectral Frequency: {fields.get('spectral_frequency', '')}",
-        f"Architectural Role: {fields.get('architectural_role', '')}",
-        f"Semantic ID: {fields.get('semantic_id', '')}",
-        f"Purpose: {fields.get('purpose', '')}",
-        f"Exports: {fields.get('exports', '')}",
-        f"Flags/Modes: {fields.get('flags', '')}",
-        f"Cross-References: {fields.get('cross_references', '')}",
+        f"Wedjat-Quipu Spectrum: {fields.get('spectrum', 'WHITE')}",
+        f"Temple-Ayllu Zone: {fields.get('zone', '\U0001f33f THE GARDEN')}",
+        "Ogdoad-Ceque Radiance:",
+        f"  \u2514\u2500\u25c4 {fields.get('radiance', '(Standalone)')}",
     ]
 
 

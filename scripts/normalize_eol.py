@@ -1,6 +1,15 @@
 #!/usr/bin/env python3
 #-*- coding: utf-8 -*-
 
+# ╔════════════════════════════════════════════════════════════════════════════
+# ║ THE DECORATOR'S BLESSING: normalize_eol.py
+# ╠════════════════════════════════════════════════════════════════════════════
+# ║ Wedjat-Quipu Spectrum: WHITE
+# ║ Temple-Ayllu Zone: 🌿 THE GARDEN
+# ║ Ogdoad-Ceque Radiance:
+# ║   └─◄ (Standalone)
+# ╚════════════════════════════════════════════════════════════════════════════
+
 """
 Normalize line endings to LF for selected repo files.
 
@@ -10,6 +19,10 @@ repo-wide renormalization pass.
 
 Invocation:
 - uv run scripts/normalize_eol.py <path> [<path> ...]
+
+@SID:           TOOL_NORMALIZE_EOL_V1
+@Shabti:        CLI Script
+@Purpose:       Normalize line endings to LF for selected repo files.
 """
 
 from __future__ import annotations
@@ -48,4 +61,3 @@ def main(argv: list[str]) -> int:
 
 if __name__ == "__main__":
     raise SystemExit(main(sys.argv))
-
