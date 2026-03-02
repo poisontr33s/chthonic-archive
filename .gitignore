@@ -140,83 +140,15 @@ extensions/*/bun.lock
 # Allow root-level MCP validation runner
 !run_mcp_validation.ts
 
-# Allow Claude Code integration scripts (launcher/orchestrator layer)
+# Allow Claude Code integration scripts — all source files tracked by default
 !scripts/
-!scripts/launch_claude_code.ps1
-!scripts/start_mcp_session.ps1
+!scripts/*.py
+!scripts/*.ps1
+!scripts/*.ts
+!scripts/*.mjs
 !scripts/CLAUDE_CODE_INTEGRATION.md
-!CLAUDE_CODE_INTEGRATION_SUMMARY.md
-
-# Allow mailbox + audit tooling
-!scripts/mailbox_scribe.py
-!scripts/mailbox_polisher.py
-!scripts/normalize_e2e_archives.py
-!scripts/normalize_eol.py
-!scripts/check_mailbox_manifest.py
-!scripts/mailbox_manifest.py
-!scripts/hf_probe.py
-!scripts/api_pool.ps1
-!scripts/structure_session_log.py
-!scripts/poe_account.ps1
-!scripts/poe_lane.py
-!scripts/poe_sdk_lane.py
-!scripts/poe_transport_audit.py
-!scripts/handoff_audit.py
-!scripts/handoff_loop.py
-!scripts/link_audit.py
-
-# Allow Shell Sovereignty & Validation (§XIV.2 canonical probe)
-!scripts/shell_capabilities.ps1
-!scripts/validate_shell_probe.ps1
-!scripts/validate_probe.ps1
-!scripts/lint_shell_sovereignty.ps1
-!scripts/bun_compliance_audit.py
-!scripts/ssot_hash.py
-!scripts/pause_agents.ps1
-!scripts/validate_session_changes.ps1
-!scripts/probe_toolchain_path.ps1
-!scripts/gemini-cli-wrapper.ps1
-!scripts/check-solana-version.ps1
-!scripts/uncensored_lane_steward.py
-!scripts/serve_uncensored_lane.ps1
-!scripts/chthonic.ps1
-!scripts/fix-md-links.ps1
-!scripts/copilot_clean.ps1
-!scripts/hf-model-ranker.ts
-!scripts/vscode-art-cop.ts
-!scripts/genre_extractor.py
-!scripts/nightly-scheduled.ps1
-!scripts/run_archaeology.ps1
-!scripts/local_refiner_v2.py
-!scripts/session_resumption_high_coverage.py
-!scripts/overnight_daemon.ts
-!scripts/benchmark_local_uncensored_lanes.py
-!scripts/run_overnight_daemon.ps1
-!scripts/sentry_init.ts
-!scripts/mcp-chthonic-server.ts
-!scripts/theme_token_coverage.py
-!scripts/product_icon_census.py
-!scripts/ankh_theme_reference.py
-!scripts/kcp_header_classifier.py
-!scripts/sfs_reference_index.py
-!scripts/theme_promote_master.py
-!scripts/theme_color_diversity.py
-!scripts/theme_sfs_transmute.py
-!scripts/scm_triage.py
-!scripts/vscode_terminal_crash_doctor.ps1
-!scripts/api_key_gap_report.ps1
-!scripts/vscode_insiders_matrix.ps1
-!scripts/vscode_error_autopsy.py
-!scripts/vscode_electron_hardener.py
-!scripts/install_mistralrs_cuda.ps1
-!scripts/run_mistralrs_cuda_detached.ps1
-!scripts/mistralrs_model_manager.py
-!scripts/mistralrs_client.py
-!scripts/hf_model_scout.py
-!scripts/generate-product-icon-font.mjs
-!scripts/vscode_settings_live_audit.py
-!scripts/path_naming_audit.py
-!scripts/icon_scaffold_contract_audit.py
+# Exclude temp/ephemeral scripts (underscore prefix)
+scripts/_*.py
 
 # Allow targeted workspace diagnostics
 !.vscode/
