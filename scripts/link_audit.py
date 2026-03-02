@@ -16,6 +16,7 @@ Usage:
     uv run scripts/link_audit.py check <file>              # audit one file
     uv run scripts/link_audit.py check <file> --fix        # audit + rewrite fixes
     uv run scripts/link_audit.py check <file> --dry-run    # show fixes without writing
+    uv run scripts/link_audit.py backticks <file>           # scan for inert backtick file/path refs
     uv run scripts/link_audit.py renames --staged          # audit markdown links against staged renames
     uv run scripts/link_audit.py renames --staged --dry-run
     uv run scripts/link_audit.py renames --staged --fix
@@ -51,6 +52,10 @@ SKIP_DIRS = {
     ".git", "node_modules", "target", "__pycache__", ".venv",
     "build", "dist", ".mypy_cache", ".ruff_cache",
 }
+
+# Backtick-wrapped content: matches `...` outside of [`...`](...) link labels
+RE_BACKTICK = re.compile(r"`([^`]+)`")
+RE_FILEISH_EXT = re.compile(r"\.(md|py|svg|json|ts|js|toml|yaml|yml|ps1|sh)$")
 
 # =============================================================================
 # Collision Index
@@ -146,9 +151,9 @@ def resolve_link(
     candidate_root = (repo_root / clean).resolve()
 
     resolved = None
-    if candidate_rel.is_file():
+    if candidate_rel.is_file() or candidate_rel.is_dir():
         resolved = candidate_rel
-    elif candidate_root.is_file():
+    elif candidate_root.is_file() or candidate_root.is_dir():
         resolved = candidate_root
 
     basename = Path(clean).name
@@ -385,6 +390,38 @@ def apply_fixes(file_path: Path, issues: list[dict]) -> int:
 
 
 # =============================================================================
+# Inert Backtick Scanner
+# =============================================================================
+
+def scan_inert_backticks(file_path: Path) -> list[dict]:
+    """Find backtick-wrapped file/path-like literals outside code blocks.
+
+    Returns a list of dicts with keys: line, text.
+    Skips backticks that are part of markdown link labels ([`x`](url)).
+    """
+    text = file_path.read_text(encoding="utf-8")
+    hits: list[dict] = []
+    in_fence = False
+    for lineno, line in enumerate(text.split("\n"), start=1):
+        stripped = line.strip()
+        if stripped.startswith("```"):
+            in_fence = not in_fence
+            continue
+        if in_fence:
+            continue
+        for m in RE_BACKTICK.finditer(line):
+            txt = m.group(1)
+            if not ("/" in txt or RE_FILEISH_EXT.search(txt)):
+                continue
+            # Skip if part of markdown link label: [`text`](url)
+            s = m.start()
+            if s > 0 and line[s - 1] == "[":
+                continue
+            hits.append({"line": lineno, "text": txt})
+    return hits
+
+
+# =============================================================================
 # CLI
 # =============================================================================
 
@@ -411,6 +448,11 @@ def main() -> int:
     p_coll.add_argument("--filter", type=str, default=None,
                         help="Filter by extension (e.g., .md)")
 
+    # backticks
+    p_bt = sub.add_parser("backticks", help="Scan for inert backtick file/path refs outside code blocks")
+    p_bt.add_argument("file", type=Path, help="File to scan")
+    p_bt.add_argument("--json", dest="bt_json", action="store_true", help="JSON output")
+
     # renames
     p_renames = sub.add_parser("renames", help="Audit markdown links against staged renames")
     p_renames.add_argument("--staged", action="store_true",
@@ -432,6 +474,26 @@ def main() -> int:
     if not args.command:
         parser.print_help()
         return 0
+
+    # --- backticks ---
+    if args.command == "backticks":
+        file_path = args.file.resolve()
+        if not file_path.is_file():
+            log.error("File not found: %s", file_path)
+            return 1
+        hits = scan_inert_backticks(file_path)
+        rel = file_path.relative_to(repo_root)
+        use_json = getattr(args, "bt_json", False) or getattr(args, "json", False)
+        if use_json:
+            print(json.dumps({"file": str(rel), "inert_backtick_refs": len(hits), "hits": hits}, indent=2))
+        else:
+            if not hits:
+                print(f"OK: {rel} — 0 inert backtick file/path refs")
+            else:
+                print(f"AUDIT: {rel} — {len(hits)} inert backtick file/path ref(s)")
+                for h in hits:
+                    print(f"  L{h['line']}: `{h['text']}`")
+        return 1 if hits else 0
 
     # --- collisions ---
     if args.command == "collisions":
