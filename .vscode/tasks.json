@@ -549,6 +549,44 @@
 				"focus": true
 			},
 			"problemMatcher": []
+		},
+		{
+			"label": "Chthonic: Icon Scaffold Contract Audit",
+			"type": "shell",
+			"command": "uv",
+			"args": [
+				"run",
+				"scripts/icon_scaffold_contract_audit.py",
+				"--output",
+				"docs/design/ICON_SCAFFOLD_CONTRACT_AUDIT.md",
+				"--strict"
+			],
+			"group": "test",
+			"presentation": {
+				"reveal": "always",
+				"panel": "shared",
+				"focus": true
+			},
+			"problemMatcher": []
+		},
+		{
+			"label": "Chthonic: Theme Contrast Audit (Strict 4.5)",
+			"type": "shell",
+			"command": "uv",
+			"args": [
+				"run",
+				"scripts/theme_contrast_audit.py",
+				"--min-ratio",
+				"4.5",
+				"--strict"
+			],
+			"group": "test",
+			"presentation": {
+				"reveal": "always",
+				"panel": "shared",
+				"focus": true
+			},
+			"problemMatcher": []
 		}
 	]
 }

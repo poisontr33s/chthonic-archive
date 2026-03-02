@@ -109,7 +109,7 @@ Authoritative method: [WET_PAPER_TO_GOLD_METHODOLOGY.md](../../WET_PAPER_TO_GOLD
 | **0.1** | Coverage Audit | Census mapped all workspace filetypes | ✅ Pass |
 | **0.2** | Gap Fill — Bespoke Motifs | High-frequency uncovered types filled | ✅ Pass |
 | **1.0** | Rendering Validation | 76/76 viewBox `0 0 16 16` | ✅ Pass |
-| **1.1** | WCAG / Contrast Audit | 76/76 pass | ✅ Pass |
+| **1.1** | WCAG / Contrast Audit | 76/76 pass, plus 49/49 workbench secondary-lane pairs ≥ 4.5:1 across all 4 themes | ✅ Pass |
 | **1.2** | Palette Coherence | 76/76 on-palette (0 off-palette colors) | ✅ Pass |
 
 ### Completed Stages (cont.)
@@ -180,6 +180,7 @@ Original: 24 pairs reduced to 11 (commit `7a544db0`), then resolved to 0 across 
 | [icon_svg_audit.py](../../scripts/icon_svg_audit.py) | ~430 | 1.0 / 1.1 / 1.2 / 1.3 | Structural, WCAG, palette, chamber transparency validation |
 | [icon_svg_optimizer.py](../../scripts/icon_svg_optimizer.py) | 228 | 2.0 | SVG path optimization (SVGO equiv) |
 | [icon_distinctiveness_audit.py](../../scripts/icon_distinctiveness_audit.py) | 293 | 2.1 | Motif similarity / collision detection |
+| [icon_scaffold_contract_audit.py](../../scripts/icon_scaffold_contract_audit.py) | ~430 | (cross-cutting) | Scaffold matrix: runtime IDs, unique glyphs, aliases, consumers, spillover |
 | [sfa_cross_reference.py](../../scripts/sfa_cross_reference.py) | 800 | (cross-cutting) | 50/50 balance engine, motif assignment |
 | [link_audit.py](../../scripts/link_audit.py) | ~408 | (cross-cutting) | Markdown `[label](path)` validation + auto-fix; collision index |
 | [theme_artcop.py](../../scripts/theme_artcop.py) | 245 | (visual QA) | Screenshot-based quality assessment |
@@ -209,6 +210,7 @@ The color theme is at 669/83/57 — a strong foundation. These stages refine and
 | `theme_workbench_completeness.py` | Diff workbench keys vs VS Code schema | ❌ Create |
 | `theme_palette_discipline.py` | Trace all hex values to palette derivations | ❌ Create |
 | [theme_parity.py](../../scripts/theme_parity.py) | Cross-theme comparison (existing) | ✅ 141L |
+| [theme_contrast_audit.py](../../scripts/theme_contrast_audit.py) | Workbench contrast gate: 3.0 UI floor + 4.5 secondary-text floor | ✅ Expanded |
 
 ---
 
@@ -249,6 +251,7 @@ Question gate for future icon passes: "Is this a real codicon ID?" If no → rem
 | Script | Purpose | Exists? |
 |--------|---------|---------|
 | [product_icon_census.py](../../scripts/product_icon_census.py) | Map VS Code product icon IDs vs coverage | ✅ Created |
+| [icon_scaffold_contract_audit.py](../../scripts/icon_scaffold_contract_audit.py) | Classify `46` runtime IDs vs `43` unique glyphs vs `3` aliases; record consumers and dormant-valid coverage | ✅ Created |
 | Product SVG audit | Reuse [icon_svg_audit.py](../../scripts/icon_svg_audit.py) (extend to product/ path) | ✅ Extend |
 
 ---
@@ -661,6 +664,7 @@ Codex's structural enforcement role supports the WPTG by validating that:
 | [icon_svg_optimizer.py](../../scripts/icon_svg_optimizer.py) | 2.0 | SVG path optimization |
 | [icon_distinctiveness_audit.py](../../scripts/icon_distinctiveness_audit.py) | 2.1 | Motif similarity / collision detection |
 | [icon_surface_map.py](../../scripts/icon_surface_map.py) | (cross-cutting) | Deterministic surface mapping |
+| [icon_scaffold_contract_audit.py](../../scripts/icon_scaffold_contract_audit.py) | (cross-cutting) | Runtime IDs vs unique glyphs vs aliases; authored substrate / spillover matrix |
 | [sfa_cross_reference.py](../../scripts/sfa_cross_reference.py) | (cross-cutting) | 50/50 balance engine, motif assignment |
 | [product_icon_census.py](../../scripts/product_icon_census.py) | 6.0 | Product icon ID coverage mapping |
 | [theme_token_coverage.py](../../scripts/theme_token_coverage.py) | 4.0 | Token scope vs TextMate grammar audit |

@@ -38,9 +38,10 @@ These three channels are **independent**. A change to a color theme never requir
 
 1. **SFS (Geological Core) is the canonical baseline.** New workbench keys are authored in SFS first, then propagated to the other three.
 2. **Decorator, Mandala, ROGBIV are surface variants.** They change palette and workbench colors. They do not change icon systems.
-3. **No foreground below 3:1 contrast on its background.** Catch this before packaging, not after.
-4. **Dark-text-on-bright-button is correct** (e.g., `button.foreground` on `button.background`). Don't "fix" these.
-5. **`#000000` as a background or border on a dark theme is fine.** `#000000` as a foreground on a dark background is not.
+3. **No foreground below 3:1 contrast on its background.** This is the minimum UI floor for general workbench surfaces.
+4. **Secondary text and metadata lanes must clear 4.5:1.** This includes placeholders, deemphasized list text, breadcrumbs, codelens, inlay hints, inactive tab labels, inactive panel titles, and peek title descriptions.
+5. **Dark-text-on-bright-button is correct** (e.g., `button.foreground` on `button.background`). Don't "fix" these.
+6. **`#000000` as a background or border on a dark theme is fine.** `#000000` as a foreground on a dark background is not.
 
 ## What This Stops
 
@@ -49,6 +50,39 @@ These three channels are **independent**. A change to a color theme never requir
 - Treating product icon slots as decorative art surfaces.
 - Conflating workbench color work with icon work.
 - Multi-day debugging loops caused by not setting `workbench.colorTheme` in settings.
+
+## Scaffold Audit Surface
+
+The structural proof surface for this lane is:
+
+- `scripts/icon_scaffold_contract_audit.py`
+- `docs/design/ICON_SCAFFOLD_CONTRACT_AUDIT.md`
+- `scripts/theme_contrast_audit.py`
+- `.vscode/tasks.json` → `Chthonic: Theme Contrast Audit (Strict 4.5)`
+
+That audit is classification-only. It records:
+
+- `runtime_ids`
+- `unique_glyphs`
+- `aliases`
+- `active consumer`
+- `active workbench override`
+- `dormant but valid`
+- `upcycle candidate`
+- `authored substrate`
+- `broad utility mapping`
+- `vendor spillover`
+
+It does **not** claim artistic discard authority. It exists to make the scaffold
+reproducible, inspectable, and safe to extend.
+
+For theme work, the contrast proof surface is:
+
+- `uv run scripts/theme_contrast_audit.py --strict`
+- `uv run scripts/theme_contrast_audit.py --min-ratio 4.5 --strict`
+
+The first enforces the broad UI floor. The second enforces the readability floor
+for subdued metadata and secondary text lanes.
 
 ---
 
