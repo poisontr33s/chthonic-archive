@@ -1,0 +1,39 @@
+name: Blessing Gate
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "**.py"
+  pull_request:
+    paths:
+      - "**.py"
+
+jobs:
+  envelope-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.14"
+          allow-prereleases: true
+
+      - name: Envelope drift check (scripts/)
+        run: python scripts/canonize_blessing.py --check --target scripts -v
+
+      - name: Envelope drift check (mas_mcp/)
+        run: python scripts/canonize_blessing.py --check --recursive --target mas_mcp
+
+      - name: Envelope drift check (ankh_atlas/)
+        run: python scripts/canonize_blessing.py --check --recursive --target ankh_atlas
+
+      - name: Envelope drift check (.codex/)
+        run: python scripts/canonize_blessing.py --check --recursive --target .codex
+
+      - name: Envelope drift check (.temple/)
+        run: python scripts/canonize_blessing.py --check --recursive --target .temple
+
+      - name: Radiance cross-reference validation
+        run: python scripts/radiance_validate.py

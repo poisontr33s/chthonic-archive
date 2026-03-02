@@ -637,7 +637,7 @@ def _should_skip(filepath: Path) -> bool:
 
 def _run_envelope(args, files) -> int:
     """Run envelope canonization (Layer 1)."""
-    dry_run = args.dry_run
+    dry_run = args.dry_run or getattr(args, "check", False)
     stats = {"already-canon": 0, "changed": 0, "no-change": 0, "error": 0, "skipped": 0}
 
     for filepath in files:
@@ -657,7 +657,7 @@ def _run_envelope(args, files) -> int:
             print(f"  ❌ {filepath.name}: ERROR — {e}", file=sys.stderr)
 
     processed = len(files) - stats["skipped"]
-    mode_label = "DRY RUN" if dry_run else "APPLIED"
+    mode_label = "CHECK" if getattr(args, "check", False) else ("DRY RUN" if dry_run else "APPLIED")
     print(f"\n{'═' * 60}")
     print(f"  CANONIZE BLESSING — {mode_label}")
     print(f"{'═' * 60}")
@@ -667,12 +667,16 @@ def _run_envelope(args, files) -> int:
     print(f"  ❌ Errors:        {stats['error']}")
     print(f"  📁 Processed:     {processed} ({stats['skipped']} skipped)")
     print()
+    drift = stats["changed"] + stats["error"]
+    if getattr(args, "check", False) and drift:
+        print(f"  ⛔ CHECK FAILED — {drift} file(s) need canonization")
+        return 1
     return 0
 
 
 def _run_identity(args, files) -> int:
     """Run docstring identity canonization (Layer 2)."""
-    dry_run = args.dry_run
+    dry_run = args.dry_run or getattr(args, "check", False)
     stats = {"changed": 0, "no-change": 0, "no-docstring": 0, "error": 0, "skipped": 0}
 
     for filepath in files:
@@ -692,7 +696,7 @@ def _run_identity(args, files) -> int:
             print(f"  ❌ {filepath.name}: ERROR — {e}", file=sys.stderr)
 
     processed = len(files) - stats["skipped"]
-    mode_label = "DRY RUN" if dry_run else "APPLIED"
+    mode_label = "CHECK" if getattr(args, "check", False) else ("DRY RUN" if dry_run else "APPLIED")
     print(f"\n{'═' * 60}")
     print(f"  CANONIZE IDENTITY — {mode_label}")
     print(f"{'═' * 60}")
@@ -702,6 +706,10 @@ def _run_identity(args, files) -> int:
     print(f"  ❌ Errors:        {stats['error']}")
     print(f"  📁 Processed:     {processed} ({stats['skipped']} skipped)")
     print()
+    drift = stats["changed"] + stats["error"]
+    if getattr(args, "check", False) and drift:
+        print(f"  ⛔ CHECK FAILED — {drift} file(s) need identity canonization")
+        return 1
     return 0
 
 
@@ -714,6 +722,8 @@ def main() -> int:
                       help="Preview changes without writing")
     mode.add_argument("--apply", action="store_true",
                       help="Apply changes to files")
+    mode.add_argument("--check", action="store_true",
+                      help="CI gate: preview + exit 1 if drift detected")
     parser.add_argument("--identity", action="store_true",
                         help="Canonize docstring @-fields (Layer 2) instead of envelope (Layer 1)")
     parser.add_argument("--target", type=Path, default=SCRIPTS_DIR,
