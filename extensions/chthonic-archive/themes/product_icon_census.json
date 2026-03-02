@@ -2,7 +2,7 @@
   "stage": "6.0",
   "name": "Product Icon Census",
   "total_codicon_ids": 535,
-  "theme_definitions": 45,
+  "theme_definitions": 46,
   "valid_overrides": [
     "account",
     "bell",
@@ -48,10 +48,11 @@
     "shield",
     "sync",
     "sync-ignored",
+    "tools",
     "warning"
   ],
   "invalid_definitions": [],
-  "coverage_pct": 8.4,
+  "coverage_pct": 8.6,
   "tier_summary": {
     "tier_1": {
       "label": "always_visible",
@@ -74,8 +75,8 @@
     "tier_4": {
       "label": "rare_symbolic",
       "total": 337,
-      "covered": 5,
-      "gap_count": 332
+      "covered": 6,
+      "gap_count": 331
     }
   },
   "category_summary": {
@@ -116,8 +117,8 @@
     },
     "general": {
       "total": 334,
-      "covered": 6,
-      "gap_count": 328
+      "covered": 7,
+      "gap_count": 327
     },
     "layout": {
       "total": 18,

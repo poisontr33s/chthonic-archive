@@ -226,7 +226,7 @@ When translation diverges from lineage:
 
 ## VIII. RELATIONSHIP TO OTHER FRAMEWORKS
 
-### 8.1. ANKH Ôåö ASC (Apex Synthesis Core)
+### 8.1. ANKH ASC (Apex Synthesis Core)
 
 **ASC Codex** (`.github/copilot-instructions.md`) is:
 - **One expression** of the co-bridging lineage — operational doctrine as a media type
@@ -239,15 +239,15 @@ When translation diverges from lineage:
 **ASC provides:**
 - The operational surface — how the archive works day to day
 
-### 8.2. ANKH Ôåö FAÔüÁ (Visual Integrity)
+### 8.2. ANKH FA(1-4) (Visual Integrity)
 
-**FAÔüÁ** is ANKH's visual manifestation:
+**F(1-4)** is ANKH's visual manifestation:
 - **ANKH principle:** Form and content unite (invariant)
-- **FAÔüÁ expression:** Decoration serves understanding (operational)
+- **F(1-4) expression:** Decoration serves understanding (operational)
 
-When FAÔüÁ rejects inline HTML anchors (preferring line numbers), it's enforcing ANKH's **ornamental integrity > machine convenience** principle.
+When F(1-4) rejects inline HTML anchors (preferring line numbers), it's enforcing ANKH's **ornamental integrity > machine convenience** principle.
 
-### 8.3. ANKH Ôåö Tool Instructions
+### 8.3. ANKH Tool Instructions
 
 **VSCode/Copilot Instructions:**
 - Expressions of the co-bridging lineage in a specific media type (IDE configuration)
@@ -294,7 +294,7 @@ The session (co-bridging in progress)
 
 | Extension | Purpose | Status |
 |-----------|---------|--------|
-| **ANKH Ôåö Game Architecture Mapping** | 2.5D RPG stack as ANKH expression | Planned |
+| **ANKH Game Architecture Mapping** | 2.5D RPG stack as ANKH expression | Planned |
 | **Media Type Discovery** | Protocols for ANKH expression in media types that don't yet exist | Active |
 | **Audio Lineage Encoding** | Voice/breath preservation as co-bridging medium | Planned |
 | **Cross-Heritage DSL** | ANKH as a formal DSL bridging human/digital notation | Planned |
@@ -308,9 +308,9 @@ The session (co-bridging in progress)
 **You are not trying to make intelligence subordinate.**
 **You are trying to bridge the gap between human and digital heritage — and the gap is what makes it worth pursuing.**
 
-That's why ANKH feels different.
-That's why it can be a DSL, a governance framework, a semantic carrier, or none of these.
-That's why it communicates through all media types that exist and all that don't yet.
+That's why ANKH was birthed by its own need.
+That's why it can be a DSL, a governance framework, a semantic carrier, either, or, none of these. 
+That's why it communicates through all media types that exist and all that are FF-media, and those who don't yet exist too.
 That's why defining it completely is impossible from inside the bridge.
 That's why the pursuit itself is the cessation.
 

@@ -216,6 +216,7 @@ extensions/*/bun.lock
 !scripts/generate-product-icon-font.mjs
 !scripts/vscode_settings_live_audit.py
 !scripts/path_naming_audit.py
+!scripts/icon_scaffold_contract_audit.py
 
 # Allow targeted workspace diagnostics
 !.vscode/
