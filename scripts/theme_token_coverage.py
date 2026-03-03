@@ -671,7 +671,7 @@ def main() -> int:
     print(report)
 
     # Also dump JSON for machine consumption
-    json_out = theme_path.parent / "token_coverage_audit.json"
+    json_out = theme_path.parent.parent / "audit-reports" / "token_coverage_audit.json"
     audit_data = {
         "textmate": {
             "rule_count": scope_count,

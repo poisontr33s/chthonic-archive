@@ -30,7 +30,7 @@ from pathlib import Path
 REPO_ROOT = Path(__file__).resolve().parent.parent
 EXT_DIR = REPO_ROOT / "extensions" / "chthonic-archive"
 THEME_PATH = EXT_DIR / "themes" / "chthonic-product-icon-theme.json"
-AUDIT_OUT = EXT_DIR / "themes" / "product_icon_census.json"
+AUDIT_OUT = EXT_DIR / "audit-reports" / "product_icon_census.json"
 
 # VS Code Insiders codicon CSV — authoritative local source
 VSCODE_INSIDERS_BASE = Path.home() / "AppData" / "Local" / "Programs" / "Microsoft VS Code Insiders"
