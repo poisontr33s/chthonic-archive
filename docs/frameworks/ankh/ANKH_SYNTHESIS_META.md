@@ -1,4 +1,4 @@
-# ANKH Synthesis Baseline — Provenance & Registry
+# ANKH Synthesis — Provenance & Registry
 
 > Companion metadata for [`ANKH_SYNTHESIS_BASELINE.md`](./ANKH_SYNTHESIS_BASELINE.md).
 > Extracted to keep the synthesis itself free of scaffolding that does not serve the architectural content.
