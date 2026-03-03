@@ -1,0 +1,252 @@
+{
+  "confirmed_installed": [
+    {
+      "language": "Windows Batch",
+      "replaces": "system runtime",
+      "status": "installed",
+      "tool": "batch"
+    },
+    {
+      "language": "C/C++",
+      "replaces": "system runtime",
+      "status": "installed 15.2.0",
+      "tool": "c_cpp"
+    },
+    {
+      "language": ".NET / C# / F#",
+      "replaces": "system runtime",
+      "status": "installed 10.0.200",
+      "tool": "dotnet"
+    },
+    {
+      "language": "GLSL / Shader Tooling",
+      "replaces": "system runtime",
+      "status": "installed 16.2.0",
+      "tool": "glsl"
+    },
+    {
+      "language": "Go",
+      "replaces": "manual Go SDK installs",
+      "status": "installed 1.26.0",
+      "tool": "goup"
+    },
+    {
+      "language": "Perl",
+      "replaces": "system runtime",
+      "status": "installed 5.38.5",
+      "tool": "perl"
+    },
+    {
+      "language": "PowerShell",
+      "replaces": "system runtime",
+      "status": "installed 7.5.4",
+      "tool": "powershell"
+    },
+    {
+      "language": "Python",
+      "replaces": "pip, pip-tools, virtualenv, pyenv, pipenv, poetry",
+      "status": "installed 3.14.3",
+      "tool": "uv"
+    },
+    {
+      "language": "Ruby",
+      "replaces": "rbenv, rvm, chruby, ruby-install",
+      "status": "installed 4.0.1",
+      "tool": "rv"
+    },
+    {
+      "language": "Rust",
+      "replaces": "canonical Rust toolchain lane",
+      "status": "installed 1.93.1",
+      "tool": "rustup"
+    },
+    {
+      "language": "TypeScript/JS",
+      "replaces": "npm, yarn, pnpm, nvm, node",
+      "status": "installed 1.3.9",
+      "tool": "bun"
+    }
+  ],
+  "dead_extensions": [
+    ".sh"
+  ],
+  "eol_risk": {
+    "dotnet": {
+      "cycle": "10",
+      "eol": "2028-11-14",
+      "extended_support": null,
+      "latest": "10.0.3",
+      "latest_release_date": "2026-02-10",
+      "link": null,
+      "source": "https://endoflife.date",
+      "support": null,
+      "version": "10.0.200"
+    },
+    "go": {
+      "cycle": "1.26",
+      "eol": false,
+      "extended_support": null,
+      "latest": "1.26.0",
+      "latest_release_date": "2026-02-10",
+      "link": "https://go.dev/doc/go1.26",
+      "source": "https://endoflife.date",
+      "support": null,
+      "version": "1.26.0"
+    },
+    "perl": {
+      "source": "https://endoflife.date",
+      "status": "unknown",
+      "version": "5.38.5"
+    },
+    "python": {
+      "source": "https://endoflife.date",
+      "status": "unknown",
+      "version": "3.14.3"
+    },
+    "ruby": {
+      "cycle": "4.0",
+      "eol": "2029-03-31",
+      "extended_support": null,
+      "latest": "4.0.1",
+      "latest_release_date": "2026-01-12",
+      "link": "https://www.ruby-lang.org/en/news/2025/12/25/ruby-4-0-0-released/",
+      "source": "https://endoflife.date",
+      "support": null,
+      "version": "4.0.1"
+    },
+    "rust": {
+      "cycle": "1.93",
+      "eol": false,
+      "extended_support": null,
+      "latest": "1.93.1",
+      "latest_release_date": "2026-02-12",
+      "link": null,
+      "source": "https://endoflife.date",
+      "support": null,
+      "version": "1.93.1"
+    },
+    "typescript": {
+      "cycle": "1",
+      "eol": false,
+      "extended_support": null,
+      "latest": "1.3.10",
+      "latest_release_date": "2026-02-25",
+      "link": null,
+      "source": "https://endoflife.date",
+      "support": null,
+      "version": "1.3.9"
+    }
+  },
+  "known_oxidized_not_installed": [
+    {
+      "action": "Could install for Julia version management.",
+      "language": "Julia",
+      "status": "known_not_installed",
+      "tool": "juliaup"
+    },
+    {
+      "action": "Could install for Node version management.",
+      "language": "Node.js",
+      "status": "known_not_installed",
+      "tool": "fnm/volta"
+    },
+    {
+      "action": "Could install for native Zig bootstrapping.",
+      "language": "Zig",
+      "status": "known_not_installed",
+      "tool": "zigup"
+    }
+  ],
+  "recommendations": [
+    "Keep uv, rv, goup, rustup, and bun as the primary native toolchain lane.",
+    "Use ankh-forge scan/census as the fast path before deeper Python archaeology.",
+    "Consider fnm or Volta if Node-specific version pinning becomes necessary beyond bun."
+  ],
+  "timestamp": "2026-03-03T07:39:42.1120323Z",
+  "unoxidized_gap": [
+    {
+      "current_best_tooling": "system tooling",
+      "installed": true,
+      "language": "Windows Batch",
+      "why_not_oxidized": "No mature Rust-native manager confirmed in the current lane audit."
+    },
+    {
+      "current_best_tooling": "compiler toolchains",
+      "installed": true,
+      "language": "C/C++",
+      "why_not_oxidized": "No mature Rust-native manager confirmed in the current lane audit."
+    },
+    {
+      "current_best_tooling": "GnuCOBOL",
+      "installed": false,
+      "language": "COBOL",
+      "why_not_oxidized": "No mature Rust-native manager confirmed in the current lane audit."
+    },
+    {
+      "current_best_tooling": "dotnet",
+      "installed": true,
+      "language": ".NET / C# / F#",
+      "why_not_oxidized": "No mature Rust-native manager confirmed in the current lane audit."
+    },
+    {
+      "current_best_tooling": "asdf",
+      "installed": false,
+      "language": "Elixir",
+      "why_not_oxidized": "No mature Rust-native manager confirmed in the current lane audit."
+    },
+    {
+      "current_best_tooling": "system tooling",
+      "installed": true,
+      "language": "GLSL / Shader Tooling",
+      "why_not_oxidized": "No mature Rust-native manager confirmed in the current lane audit."
+    },
+    {
+      "current_best_tooling": "ghcup",
+      "installed": false,
+      "language": "Haskell",
+      "why_not_oxidized": "No mature Rust-native manager confirmed in the current lane audit."
+    },
+    {
+      "current_best_tooling": "sdkman / jabba",
+      "installed": false,
+      "language": "Java",
+      "why_not_oxidized": "No mature Rust-native manager confirmed in the current lane audit."
+    },
+    {
+      "current_best_tooling": "luaver",
+      "installed": false,
+      "language": "Lua",
+      "why_not_oxidized": "No mature Rust-native manager confirmed in the current lane audit."
+    },
+    {
+      "current_best_tooling": "system Perl",
+      "installed": true,
+      "language": "Perl",
+      "why_not_oxidized": "No mature Rust-native manager confirmed in the current lane audit."
+    },
+    {
+      "current_best_tooling": "phpbrew / phpenv",
+      "installed": false,
+      "language": "PHP",
+      "why_not_oxidized": "No mature Rust-native manager confirmed in the current lane audit."
+    },
+    {
+      "current_best_tooling": "system tooling",
+      "installed": true,
+      "language": "PowerShell",
+      "why_not_oxidized": "No mature Rust-native manager confirmed in the current lane audit."
+    },
+    {
+      "current_best_tooling": "system tooling",
+      "installed": false,
+      "language": "POSIX Shell",
+      "why_not_oxidized": "No mature Rust-native manager confirmed in the current lane audit."
+    }
+  ],
+  "viable_but_unrepresented": [
+    ".c",
+    ".cpp",
+    ".fsx",
+    ".pl"
+  ]
+}

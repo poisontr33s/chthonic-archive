@@ -1,0 +1,2775 @@
+{
+  "anomalies": [
+    {
+      "gold_grade": "raw_unrefined",
+      "path": ".codex/skills/artifact-upcycle/scripts/__pycache__/resolve_directory_relationships.cpython-313.pyc",
+      "recommendation": "untrack_gitignore",
+      "type": "tracked_bytecode",
+      "wptg_rationale": "Generator script is the gold, not this compiled artifact."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": ".codex/skills/codekiller-remediation-gate/scripts/__pycache__/codekiller_remediation_gate.cpython-313.pyc",
+      "recommendation": "untrack_gitignore",
+      "type": "tracked_bytecode",
+      "wptg_rationale": "Generator script is the gold, not this compiled artifact."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": ".codex/skills/mailbox-handoff/scripts/__pycache__/mailbox_check.cpython-313.pyc",
+      "recommendation": "untrack_gitignore",
+      "type": "tracked_bytecode",
+      "wptg_rationale": "Generator script is the gold, not this compiled artifact."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": ".codex/skills/script-envelope/scripts/__pycache__/script_envelope.cpython-313.pyc",
+      "recommendation": "untrack_gitignore",
+      "type": "tracked_bytecode",
+      "wptg_rationale": "Generator script is the gold, not this compiled artifact."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": ".codex/skills/skill-polisher/scripts/__pycache__/polish_skill.cpython-313.pyc",
+      "recommendation": "untrack_gitignore",
+      "type": "tracked_bytecode",
+      "wptg_rationale": "Generator script is the gold, not this compiled artifact."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": ".github/workflows/claude-code-review.yml.off",
+      "recommendation": "governed_toggle",
+      "type": "disabled_by_rename",
+      "wptg_rationale": "Disabled-by-rename hides workflow provenance behind filename mutation."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": ".github/workflows/claude.yml.off",
+      "recommendation": "governed_toggle",
+      "type": "disabled_by_rename",
+      "wptg_rationale": "Disabled-by-rename hides workflow provenance behind filename mutation."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": ".github/workflows/gemini-dispatch.yml.off",
+      "recommendation": "governed_toggle",
+      "type": "disabled_by_rename",
+      "wptg_rationale": "Disabled-by-rename hides workflow provenance behind filename mutation."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": ".github/workflows/gemini-invoke.yml.off",
+      "recommendation": "governed_toggle",
+      "type": "disabled_by_rename",
+      "wptg_rationale": "Disabled-by-rename hides workflow provenance behind filename mutation."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": ".github/workflows/gemini-review.yml.off",
+      "recommendation": "governed_toggle",
+      "type": "disabled_by_rename",
+      "wptg_rationale": "Disabled-by-rename hides workflow provenance behind filename mutation."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": ".github/workflows/gemini-scheduled-triage.yml.off",
+      "recommendation": "governed_toggle",
+      "type": "disabled_by_rename",
+      "wptg_rationale": "Disabled-by-rename hides workflow provenance behind filename mutation."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": ".github/workflows/gemini-triage.yml.off",
+      "recommendation": "governed_toggle",
+      "type": "disabled_by_rename",
+      "wptg_rationale": "Disabled-by-rename hides workflow provenance behind filename mutation."
+    },
+    {
+      "gold_grade": "tier_2_structural",
+      "path": "claude-codex-gemini/session_resumption_pickup/UNCENSORED_LANE_RUNTIME_20260219_231721.env",
+      "recommendation": "extract_schema_only",
+      "type": "tracked_env_surface",
+      "wptg_rationale": "Tracked environment files should be schemas or templates, not live surfaces."
+    },
+    {
+      "gold_grade": "tier_2_structural",
+      "path": "claude-codex-gemini/session_resumption_pickup/UNCENSORED_LANE_RUNTIME_LATEST.env",
+      "recommendation": "extract_schema_only",
+      "type": "tracked_env_surface",
+      "wptg_rationale": "Tracked environment files should be schemas or templates, not live surfaces."
+    },
+    {
+      "gold_grade": "tier_2_structural",
+      "path": "codex/mailbox/API_KEY_ENV_TEMPLATE_20260226T045112Z.env",
+      "recommendation": "extract_schema_only",
+      "type": "tracked_env_surface",
+      "wptg_rationale": "Tracked environment files should be schemas or templates, not live surfaces."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/MISTRALRS_CUDA_BUILD_20260227T194707Z.err.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/MISTRALRS_CUDA_BUILD_20260227T194707Z.out.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/MISTRALRS_CUDA_BUILD_20260227T195207Z.err.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/MISTRALRS_CUDA_BUILD_20260227T195207Z.out.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VS2026_ELEVATED_VALIDATE_20260217_054144.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VS2026_ELEVATED_VALIDATE_20260217_054157.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VS2026_ELEVATED_VALIDATE_20260217_231023.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VS2026_ELEVATED_VALIDATE_20260217_231058.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VS2026_ELEVATED_VALIDATE_20260217_231535.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VS2026_ELEVATED_VALIDATE_20260217_235550.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VS2026_ELEVATED_VALIDATE_20260217_235653.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VS2026_ELEVATED_VALIDATE_20260218_000139.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VS2026_ELEVATED_VALIDATE_20260218_001043.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_INSIDERS_MATRIX_20260226T033112Z/matrix_baseline_status.err.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_INSIDERS_MATRIX_20260226T033112Z/matrix_baseline_status.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_INSIDERS_MATRIX_20260226T033112Z/matrix_clean_safe_mode_status.err.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_INSIDERS_MATRIX_20260226T033112Z/matrix_clean_safe_mode_status.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_INSIDERS_MATRIX_20260226T033112Z/matrix_disable_extensions_status.err.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_INSIDERS_MATRIX_20260226T033112Z/matrix_disable_extensions_status.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_INSIDERS_MATRIX_20260226T033112Z/matrix_disable_gpu_status.err.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_INSIDERS_MATRIX_20260226T033112Z/matrix_disable_gpu_status.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_INSIDERS_MATRIX_20260226T033146Z/matrix_baseline_status.err.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_INSIDERS_MATRIX_20260226T033146Z/matrix_baseline_status.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_INSIDERS_MATRIX_20260226T033146Z/matrix_clean_safe_mode_status.err.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_INSIDERS_MATRIX_20260226T033146Z/matrix_clean_safe_mode_status.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_INSIDERS_MATRIX_20260226T033146Z/matrix_disable_extensions_status.err.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_INSIDERS_MATRIX_20260226T033146Z/matrix_disable_extensions_status.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_INSIDERS_MATRIX_20260226T033146Z/matrix_disable_gpu_status.err.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_INSIDERS_MATRIX_20260226T033146Z/matrix_disable_gpu_status.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_INSIDERS_MATRIX_20260226T033328Z/matrix_baseline_status.err.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_INSIDERS_MATRIX_20260226T033328Z/matrix_baseline_status.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_INSIDERS_MATRIX_20260226T033328Z/matrix_clean_safe_mode_status.err.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_INSIDERS_MATRIX_20260226T033328Z/matrix_clean_safe_mode_status.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_INSIDERS_MATRIX_20260226T033328Z/matrix_disable_extensions_status.err.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_INSIDERS_MATRIX_20260226T033328Z/matrix_disable_extensions_status.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_INSIDERS_MATRIX_20260226T033328Z/matrix_disable_gpu_status.err.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_INSIDERS_MATRIX_20260226T033328Z/matrix_disable_gpu_status.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_INSIDERS_MATRIX_20260226T033855Z/matrix_baseline_status.err.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_INSIDERS_MATRIX_20260226T033855Z/matrix_baseline_status.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_INSIDERS_MATRIX_20260226T033855Z/matrix_clean_safe_mode_status.err.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_INSIDERS_MATRIX_20260226T033855Z/matrix_clean_safe_mode_status.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_INSIDERS_MATRIX_20260226T033855Z/matrix_disable_extensions_status.err.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_INSIDERS_MATRIX_20260226T033855Z/matrix_disable_extensions_status.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_INSIDERS_MATRIX_20260226T033855Z/matrix_disable_gpu_status.err.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_INSIDERS_MATRIX_20260226T033855Z/matrix_disable_gpu_status.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_INSIDERS_MATRIX_20260226T195738Z/matrix_baseline_status.err.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_INSIDERS_MATRIX_20260226T195738Z/matrix_baseline_status.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_INSIDERS_MATRIX_20260226T195738Z/matrix_clean_safe_mode_status.err.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_INSIDERS_MATRIX_20260226T195738Z/matrix_clean_safe_mode_status.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_INSIDERS_MATRIX_20260226T195738Z/matrix_disable_extensions_status.err.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_INSIDERS_MATRIX_20260226T195738Z/matrix_disable_extensions_status.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_INSIDERS_MATRIX_20260226T195738Z/matrix_disable_gpu_status.err.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_INSIDERS_MATRIX_20260226T195738Z/matrix_disable_gpu_status.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_INSIDERS_MATRIX_20260226T200037Z/matrix_baseline_status.err.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_INSIDERS_MATRIX_20260226T200037Z/matrix_baseline_status.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_INSIDERS_MATRIX_20260226T200037Z/matrix_clean_safe_mode_status.err.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_INSIDERS_MATRIX_20260226T200037Z/matrix_clean_safe_mode_status.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_INSIDERS_MATRIX_20260226T200037Z/matrix_disable_extensions_status.err.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_INSIDERS_MATRIX_20260226T200037Z/matrix_disable_extensions_status.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_INSIDERS_MATRIX_20260226T200037Z/matrix_disable_gpu_status.err.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_INSIDERS_MATRIX_20260226T200037Z/matrix_disable_gpu_status.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032245Z/api_doctor.err.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032245Z/api_doctor.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032245Z/insiders_logs/main.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032245Z/insiders_logs/ptyhost.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032245Z/insiders_logs/sharedprocess.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032245Z/insiders_logs/terminal.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032245Z/insiders_logs/window1/exthost/extHostTelemetry.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032245Z/insiders_logs/window1/exthost/exthost.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032245Z/insiders_logs/window1/renderer.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032245Z/insiders_logs/window2/exthost/extHostTelemetry.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032245Z/insiders_logs/window2/exthost/exthost.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032245Z/insiders_logs/window2/renderer.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032245Z/insiders_logs/window3/exthost/extHostTelemetry.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032245Z/insiders_logs/window3/exthost/exthost.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032245Z/insiders_logs/window3/renderer.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032245Z/probe_no_profile_stderr.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032245Z/probe_no_profile_stdout.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032245Z/probe_with_profile_repo_stderr.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032245Z/probe_with_profile_repo_stdout.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032245Z/probe_with_profile_temp_stderr.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032245Z/probe_with_profile_temp_stdout.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032320Z/api_doctor.err.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032320Z/api_doctor.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032320Z/insiders_logs/main.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032320Z/insiders_logs/ptyhost.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032320Z/insiders_logs/sharedprocess.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032320Z/insiders_logs/terminal.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032320Z/insiders_logs/window1/exthost/extHostTelemetry.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032320Z/insiders_logs/window1/exthost/exthost.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032320Z/insiders_logs/window1/renderer.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032320Z/insiders_logs/window2/exthost/extHostTelemetry.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032320Z/insiders_logs/window2/exthost/exthost.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032320Z/insiders_logs/window2/renderer.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032320Z/insiders_logs/window3/exthost/extHostTelemetry.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032320Z/insiders_logs/window3/exthost/exthost.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032320Z/insiders_logs/window3/renderer.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032320Z/probe_no_profile_stderr.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032320Z/probe_no_profile_stdout.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032320Z/probe_with_profile_repo_stderr.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032320Z/probe_with_profile_repo_stdout.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032320Z/probe_with_profile_temp_stderr.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032320Z/probe_with_profile_temp_stdout.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032438Z/api_doctor.err.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032438Z/api_doctor.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032438Z/code_insiders_status.err.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032438Z/code_insiders_status.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032438Z/probe_no_profile_stderr.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032438Z/probe_no_profile_stdout.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032438Z/probe_with_profile_repo_stderr.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032438Z/probe_with_profile_repo_stdout.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032438Z/probe_with_profile_temp_stderr.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032438Z/probe_with_profile_temp_stdout.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032459Z/api_doctor.err.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032459Z/api_doctor.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032459Z/code_insiders_status.err.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032459Z/code_insiders_status.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032459Z/probe_no_profile_stderr.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032459Z/probe_no_profile_stdout.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032459Z/probe_with_profile_repo_stderr.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032459Z/probe_with_profile_repo_stdout.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032459Z/probe_with_profile_temp_stderr.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032459Z/probe_with_profile_temp_stdout.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032530Z/probe_no_profile_stderr.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032530Z/probe_no_profile_stdout.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032530Z/probe_with_profile_repo_stderr.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032530Z/probe_with_profile_repo_stdout.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032530Z/probe_with_profile_temp_stderr.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032530Z/probe_with_profile_temp_stdout.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032547Z/api_doctor.err.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032547Z/api_doctor.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032547Z/code_insiders_status.err.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032547Z/code_insiders_status.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032547Z/probe_no_profile_stderr.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032547Z/probe_no_profile_stdout.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032547Z/probe_with_profile_repo_stderr.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032547Z/probe_with_profile_repo_stdout.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032547Z/probe_with_profile_temp_stderr.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032547Z/probe_with_profile_temp_stdout.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032622Z/api_doctor.err.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032622Z/api_doctor.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032622Z/code_insiders_status.err.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032622Z/code_insiders_status.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032622Z/insiders_logs/main.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032622Z/insiders_logs/ptyhost.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032622Z/insiders_logs/sharedprocess.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032622Z/insiders_logs/terminal.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032622Z/insiders_logs/window1/exthost/extHostTelemetry.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032622Z/insiders_logs/window1/exthost/exthost.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032622Z/insiders_logs/window1/renderer.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032622Z/insiders_logs/window2/exthost/extHostTelemetry.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032622Z/insiders_logs/window2/exthost/exthost.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032622Z/insiders_logs/window2/renderer.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032622Z/insiders_logs/window3/exthost/extHostTelemetry.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032622Z/insiders_logs/window3/exthost/exthost.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032622Z/insiders_logs/window3/renderer.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032622Z/probe_no_profile_stderr.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032622Z/probe_no_profile_stdout.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032622Z/probe_with_profile_repo_stderr.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032622Z/probe_with_profile_repo_stdout.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032622Z/probe_with_profile_temp_stderr.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032622Z/probe_with_profile_temp_stdout.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T033307Z/api_doctor.err.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T033307Z/api_doctor.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T033307Z/code_insiders_status.err.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T033307Z/code_insiders_status.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T033307Z/insiders_logs/main.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T033307Z/insiders_logs/ptyhost.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T033307Z/insiders_logs/sharedprocess.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T033307Z/insiders_logs/terminal.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T033307Z/insiders_logs/window1/exthost/extHostTelemetry.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T033307Z/insiders_logs/window1/exthost/exthost.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T033307Z/insiders_logs/window1/renderer.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T033307Z/insiders_logs/window2/exthost/extHostTelemetry.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T033307Z/insiders_logs/window2/exthost/exthost.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T033307Z/insiders_logs/window2/renderer.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T033307Z/insiders_logs/window3/exthost/extHostTelemetry.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T033307Z/insiders_logs/window3/exthost/exthost.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T033307Z/insiders_logs/window3/renderer.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T033307Z/probe_no_profile_stderr.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T033307Z/probe_no_profile_stdout.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T033307Z/probe_with_profile_repo_stderr.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T033307Z/probe_with_profile_repo_stdout.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T033307Z/probe_with_profile_temp_stderr.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T033307Z/probe_with_profile_temp_stdout.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T033834Z/api_doctor.err.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T033834Z/api_doctor.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T033834Z/code_insiders_status.err.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T033834Z/code_insiders_status.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T033834Z/insiders_logs/main.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T033834Z/insiders_logs/ptyhost.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T033834Z/insiders_logs/sharedprocess.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T033834Z/insiders_logs/terminal.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T033834Z/insiders_logs/window1/exthost/extHostTelemetry.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T033834Z/insiders_logs/window1/exthost/exthost.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T033834Z/insiders_logs/window1/renderer.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T033834Z/insiders_logs/window2/exthost/extHostTelemetry.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T033834Z/insiders_logs/window2/exthost/exthost.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T033834Z/insiders_logs/window2/renderer.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T033834Z/insiders_logs/window3/exthost/extHostTelemetry.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T033834Z/insiders_logs/window3/exthost/exthost.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T033834Z/insiders_logs/window3/renderer.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T033834Z/probe_no_profile_stderr.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T033834Z/probe_no_profile_stdout.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T033834Z/probe_with_profile_repo_stderr.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T033834Z/probe_with_profile_repo_stdout.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T033834Z/probe_with_profile_temp_stderr.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T033834Z/probe_with_profile_temp_stdout.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T034024Z/api_doctor.err.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T034024Z/api_doctor.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T034024Z/code_insiders_status.err.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T034024Z/code_insiders_status.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T034024Z/insiders_logs/main.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T034024Z/insiders_logs/ptyhost.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T034024Z/insiders_logs/sharedprocess.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T034024Z/insiders_logs/terminal.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T034024Z/insiders_logs/window1/exthost/extHostTelemetry.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T034024Z/insiders_logs/window1/exthost/exthost.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T034024Z/insiders_logs/window1/renderer.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T034024Z/insiders_logs/window2/exthost/extHostTelemetry.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T034024Z/insiders_logs/window2/exthost/exthost.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T034024Z/insiders_logs/window2/renderer.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T034024Z/insiders_logs/window3/exthost/extHostTelemetry.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T034024Z/insiders_logs/window3/exthost/exthost.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T034024Z/insiders_logs/window3/renderer.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T034024Z/probe_no_profile_stderr.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T034024Z/probe_no_profile_stdout.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T034024Z/probe_with_profile_repo_stderr.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T034024Z/probe_with_profile_repo_stdout.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T034024Z/probe_with_profile_temp_stderr.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T034024Z/probe_with_profile_temp_stdout.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T034240Z/api_doctor.err.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T034240Z/api_doctor.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T034240Z/code_insiders_status.err.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T034240Z/code_insiders_status.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T034240Z/insiders_logs/main.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T034240Z/insiders_logs/ptyhost.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T034240Z/insiders_logs/sharedprocess.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T034240Z/insiders_logs/terminal.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T034240Z/insiders_logs/window1/exthost/extHostTelemetry.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T034240Z/insiders_logs/window1/exthost/exthost.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T034240Z/insiders_logs/window1/renderer.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T034240Z/insiders_logs/window2/exthost/extHostTelemetry.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T034240Z/insiders_logs/window2/exthost/exthost.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T034240Z/insiders_logs/window2/renderer.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T034240Z/insiders_logs/window3/exthost/extHostTelemetry.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T034240Z/insiders_logs/window3/exthost/exthost.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T034240Z/insiders_logs/window3/renderer.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T034240Z/probe_no_profile_stderr.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T034240Z/probe_no_profile_stdout.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T034240Z/probe_with_profile_repo_stderr.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T034240Z/probe_with_profile_repo_stdout.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T034240Z/probe_with_profile_temp_stderr.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T034240Z/probe_with_profile_temp_stdout.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T195738Z/api_doctor.err.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T195738Z/api_doctor.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T195738Z/code_insiders_status.err.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T195738Z/code_insiders_status.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T195738Z/insiders_logs/main.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T195738Z/insiders_logs/ptyhost.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T195738Z/insiders_logs/sharedprocess.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T195738Z/insiders_logs/terminal.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T195738Z/insiders_logs/window1/exthost/extHostTelemetry.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T195738Z/insiders_logs/window1/exthost/exthost.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T195738Z/insiders_logs/window1/renderer.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T195738Z/insiders_logs/window2/exthost/extHostTelemetry.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T195738Z/insiders_logs/window2/exthost/exthost.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T195738Z/insiders_logs/window2/renderer.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T195738Z/insiders_logs/window3/exthost/extHostTelemetry.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T195738Z/insiders_logs/window3/exthost/exthost.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T195738Z/insiders_logs/window3/renderer.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T195738Z/insiders_logs/window4/exthost/extHostTelemetry.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T195738Z/insiders_logs/window4/exthost/exthost.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T195738Z/insiders_logs/window4/renderer.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T195738Z/probe_no_profile_stderr.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T195738Z/probe_no_profile_stdout.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T195738Z/probe_with_profile_repo_stderr.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T195738Z/probe_with_profile_repo_stdout.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T195738Z/probe_with_profile_temp_stderr.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T195738Z/probe_with_profile_temp_stdout.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T200100Z/api_doctor.err.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T200100Z/api_doctor.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T200100Z/code_insiders_status.err.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T200100Z/code_insiders_status.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T200100Z/insiders_logs/main.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T200100Z/insiders_logs/ptyhost.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T200100Z/insiders_logs/sharedprocess.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T200100Z/insiders_logs/terminal.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T200100Z/insiders_logs/window1/exthost/extHostTelemetry.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T200100Z/insiders_logs/window1/exthost/exthost.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T200100Z/insiders_logs/window1/renderer.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T200100Z/insiders_logs/window2/exthost/extHostTelemetry.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T200100Z/insiders_logs/window2/exthost/exthost.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T200100Z/insiders_logs/window2/renderer.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T200100Z/insiders_logs/window3/exthost/extHostTelemetry.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T200100Z/insiders_logs/window3/exthost/exthost.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T200100Z/insiders_logs/window3/renderer.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T200100Z/insiders_logs/window4/exthost/extHostTelemetry.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T200100Z/insiders_logs/window4/exthost/exthost.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T200100Z/insiders_logs/window4/renderer.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T200100Z/probe_no_profile_stderr.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T200100Z/probe_no_profile_stdout.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T200100Z/probe_with_profile_repo_stderr.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T200100Z/probe_with_profile_repo_stdout.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T200100Z/probe_with_profile_temp_stderr.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T200100Z/probe_with_profile_temp_stdout.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T200225Z/api_doctor.err.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T200225Z/api_doctor.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T200225Z/code_insiders_status.err.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T200225Z/code_insiders_status.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T200225Z/insiders_logs/main.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T200225Z/insiders_logs/ptyhost.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T200225Z/insiders_logs/sharedprocess.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T200225Z/insiders_logs/terminal.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T200225Z/insiders_logs/window1/exthost/extHostTelemetry.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T200225Z/insiders_logs/window1/exthost/exthost.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T200225Z/insiders_logs/window1/renderer.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T200225Z/insiders_logs/window2/exthost/extHostTelemetry.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T200225Z/insiders_logs/window2/exthost/exthost.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T200225Z/insiders_logs/window2/renderer.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T200225Z/insiders_logs/window3/exthost/extHostTelemetry.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T200225Z/insiders_logs/window3/exthost/exthost.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T200225Z/insiders_logs/window3/renderer.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T200225Z/insiders_logs/window4/exthost/extHostTelemetry.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T200225Z/insiders_logs/window4/exthost/exthost.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T200225Z/insiders_logs/window4/renderer.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T200225Z/probe_no_profile_stderr.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T200225Z/probe_no_profile_stdout.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T200225Z/probe_with_profile_repo_stderr.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T200225Z/probe_with_profile_repo_stdout.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T200225Z/probe_with_profile_temp_stderr.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T200225Z/probe_with_profile_temp_stdout.log",
+      "recommendation": "triage_log_signal",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Mailbox logs belong to extracted signal, not as ambient tracked exhaust."
+    },
+    {
+      "gold_grade": "tier_3_conceptual",
+      "path": "\"dumpster-dive/from-github/macro-prompt-world/disparate-md-documentation/ASC-BP-V-/316/251.B.X/316/250.md\"",
+      "recommendation": "repair_filename",
+      "type": "filename_encoding_damage",
+      "wptg_rationale": "The content survives, but the path encoding is damaged."
+    },
+    {
+      "gold_grade": "tier_3_conceptual",
+      "path": "\"dumpster-dive/from-github/macro-prompt-world/macro-prompt-world-v2/ASC_Brahmanica_Perfectus_V_/316/251.B.X/316/250.md\"",
+      "recommendation": "repair_filename",
+      "type": "filename_encoding_damage",
+      "wptg_rationale": "The content survives, but the path encoding is damaged."
+    },
+    {
+      "gold_grade": "tier_3_conceptual",
+      "path": "\"dumpster-dive/from-github/macro-prompt-world/macro-prompt-world-v2/archive-world/ASC-BP-V-/316/251.B.X/316/250.md\"",
+      "recommendation": "repair_filename",
+      "type": "filename_encoding_damage",
+      "wptg_rationale": "The content survives, but the path encoding is damaged."
+    },
+    {
+      "gold_grade": "tier_1_direct",
+      "path": "dumpster-dive/intake/claude-ide-harden-2026-02-10/tier-1-direct/claude_process_wrapper.bat",
+      "recommendation": "transliterate_to_pwsh",
+      "type": "legacy_batch_in_pwsh_repo",
+      "wptg_rationale": "A lone batch file in a PowerShell-first repo is drift, not a durable lane."
+    },
+    {
+      "gold_grade": "raw_unrefined",
+      "path": "dumpster-dive/scripts/__pycache__/audit_deploy_integrity.cpython-313.pyc",
+      "recommendation": "untrack_gitignore",
+      "type": "tracked_bytecode",
+      "wptg_rationale": "Generator script is the gold, not this compiled artifact."
+    },
+    {
+      "gold_grade": "tier_2_structural",
+      "path": "mas_mcp/frontend/.env",
+      "recommendation": "extract_schema_only",
+      "type": "tracked_env_surface",
+      "wptg_rationale": "Tracked environment files should be schemas or templates, not live surfaces."
+    },
+    {
+      "gold_grade": "tier_3_conceptual",
+      "path": "scripts/CLAUDE_CODE_INTEGRATION.md",
+      "recommendation": "relocate_documentation",
+      "type": "filetype_directory_mismatch",
+      "wptg_rationale": "Documentation in scripts/ should be canonicalized into a docs/governance lane."
+    }
+  ],
+  "audited_files": 2687,
+  "by_extension": {
+    ".bak": {
+      "anomalies": {},
+      "count": 1
+    },
+    ".bat": {
+      "anomalies": {
+        "legacy_batch_in_pwsh_repo": 1
+      },
+      "count": 1
+    },
+    ".cjs": {
+      "anomalies": {},
+      "count": 1
+    },
+    ".comp": {
+      "anomalies": {},
+      "count": 1
+    },
+    ".copilotignore": {
+      "anomalies": {},
+      "count": 1
+    },
+    ".cpython-313.pyc": {
+      "anomalies": {
+        "tracked_bytecode": 6
+      },
+      "count": 6
+    },
+    ".cs": {
+      "anomalies": {},
+      "count": 2
+    },
+    ".csproj": {
+      "anomalies": {},
+      "count": 2
+    },
+    ".css": {
+      "anomalies": {},
+      "count": 2
+    },
+    ".d.ts": {
+      "anomalies": {},
+      "count": 6
+    },
+    ".db": {
+      "anomalies": {},
+      "count": 1
+    },
+    ".env": {
+      "anomalies": {
+        "tracked_env_surface": 4
+      },
+      "count": 4
+    },
+    ".frag": {
+      "anomalies": {},
+      "count": 1
+    },
+    ".geminiignore": {
+      "anomalies": {},
+      "count": 1
+    },
+    ".gitattributes": {
+      "anomalies": {},
+      "count": 1
+    },
+    ".gitignore": {
+      "anomalies": {},
+      "count": 4
+    },
+    ".gitkeep": {
+      "anomalies": {},
+      "count": 1
+    },
+    ".go": {
+      "anomalies": {},
+      "count": 2
+    },
+    ".h": {
+      "anomalies": {},
+      "count": 2
+    },
+    ".html": {
+      "anomalies": {},
+      "count": 3
+    },
+    ".js": {
+      "anomalies": {},
+      "count": 10
+    },
+    ".json": {
+      "anomalies": {},
+      "count": 667
+    },
+    ".jsonl": {
+      "anomalies": {},
+      "count": 3
+    },
+    ".keep": {
+      "anomalies": {},
+      "count": 4
+    },
+    ".lock": {
+      "anomalies": {},
+      "count": 5
+    },
+    ".log": {
+      "anomalies": {
+        "filetype_directory_mismatch": 332
+      },
+      "count": 340
+    },
+    ".md": {
+      "anomalies": {
+        "filetype_directory_mismatch": 1
+      },
+      "count": 838
+    },
+    ".md\"": {
+      "anomalies": {
+        "filename_encoding_damage": 3
+      },
+      "count": 3
+    },
+    ".off": {
+      "anomalies": {
+        "disabled_by_rename": 7
+      },
+      "count": 7
+    },
+    ".png": {
+      "anomalies": {},
+      "count": 6
+    },
+    ".ps1": {
+      "anomalies": {},
+      "count": 112
+    },
+    ".py": {
+      "anomalies": {},
+      "count": 213
+    },
+    ".python-version": {
+      "anomalies": {},
+      "count": 2
+    },
+    ".rb": {
+      "anomalies": {},
+      "count": 3
+    },
+    ".rs": {
+      "anomalies": {},
+      "count": 33
+    },
+    ".sh": {
+      "anomalies": {},
+      "count": 1
+    },
+    ".svg": {
+      "anomalies": {},
+      "count": 164
+    },
+    ".test.ts": {
+      "anomalies": {},
+      "count": 7
+    },
+    ".toml": {
+      "anomalies": {},
+      "count": 22
+    },
+    ".ts": {
+      "anomalies": {},
+      "count": 89
+    },
+    ".tsbuildinfo": {
+      "anomalies": {},
+      "count": 1
+    },
+    ".tsx": {
+      "anomalies": {},
+      "count": 14
+    },
+    ".txt": {
+      "anomalies": {},
+      "count": 60
+    },
+    ".vert": {
+      "anomalies": {},
+      "count": 1
+    },
+    ".vscodeignore": {
+      "anomalies": {},
+      "count": 3
+    },
+    ".vsconfig": {
+      "anomalies": {},
+      "count": 5
+    },
+    ".yaml": {
+      "anomalies": {},
+      "count": 19
+    },
+    ".yml": {
+      "anomalies": {},
+      "count": 8
+    },
+    "[no_ext]": {
+      "anomalies": {},
+      "count": 4
+    }
+  },
+  "by_gold_tier": {
+    "raw_unrefined": 559,
+    "tier_1_direct": 482,
+    "tier_2_structural": 745,
+    "tier_3_conceptual": 901
+  },
+  "excluded_lane_files": 68,
+  "excluded_paths": [
+    "extensions/chthonic-archive/themes/chthonic-decorator-color-theme.json",
+    "extensions/chthonic-archive/themes/chthonic-file-icon-theme.json",
+    "extensions/chthonic-archive/themes/chthonic-geology-color-theme.json",
+    "extensions/chthonic-archive/themes/chthonic-mandala-color-theme.json",
+    "extensions/chthonic-archive/themes/chthonic-product-icon-theme.json",
+    "extensions/chthonic-archive/themes/chthonic-rogbiv-color-theme.json",
+    "extensions/chthonic-archive/themes/fonts/chthonic-product-icons.json",
+    "extensions/chthonic-archive/themes/fonts/chthonic-product-icons.woff",
+    "extensions/chthonic-archive/themes/icons/product/account.svg",
+    "extensions/chthonic-archive/themes/icons/product/bell-dot.svg",
+    "extensions/chthonic-archive/themes/icons/product/bell-slash-dot.svg",
+    "extensions/chthonic-archive/themes/icons/product/bell-slash.svg",
+    "extensions/chthonic-archive/themes/icons/product/bell.svg",
+    "extensions/chthonic-archive/themes/icons/product/chrome-close.svg",
+    "extensions/chthonic-archive/themes/icons/product/chrome-maximize.svg",
+    "extensions/chthonic-archive/themes/icons/product/chrome-minimize.svg",
+    "extensions/chthonic-archive/themes/icons/product/chrome-restore.svg",
+    "extensions/chthonic-archive/themes/icons/product/comment-discussion.svg",
+    "extensions/chthonic-archive/themes/icons/product/copilot-blocked.svg",
+    "extensions/chthonic-archive/themes/icons/product/copilot-error.svg",
+    "extensions/chthonic-archive/themes/icons/product/copilot-in-progress.svg",
+    "extensions/chthonic-archive/themes/icons/product/copilot-not-connected.svg",
+    "extensions/chthonic-archive/themes/icons/product/copilot-snooze.svg",
+    "extensions/chthonic-archive/themes/icons/product/copilot-success.svg",
+    "extensions/chthonic-archive/themes/icons/product/copilot-unavailable.svg",
+    "extensions/chthonic-archive/themes/icons/product/copilot-warning.svg",
+    "extensions/chthonic-archive/themes/icons/product/copilot.svg",
+    "extensions/chthonic-archive/themes/icons/product/debug-alt.svg",
+    "extensions/chthonic-archive/themes/icons/product/debug.svg",
+    "extensions/chthonic-archive/themes/icons/product/error-small.svg",
+    "extensions/chthonic-archive/themes/icons/product/error.svg",
+    "extensions/chthonic-archive/themes/icons/product/extensions.svg",
+    "extensions/chthonic-archive/themes/icons/product/files.svg",
+    "extensions/chthonic-archive/themes/icons/product/flame.svg",
+    "extensions/chthonic-archive/themes/icons/product/git-branch-changes.svg",
+    "extensions/chthonic-archive/themes/icons/product/git-branch-conflicts.svg",
+    "extensions/chthonic-archive/themes/icons/product/git-branch-staged-changes.svg",
+    "extensions/chthonic-archive/themes/icons/product/git-branch.svg",
+    "extensions/chthonic-archive/themes/icons/product/info.svg",
+    "extensions/chthonic-archive/themes/icons/product/layers.svg",
+    "extensions/chthonic-archive/themes/icons/product/paintcan.svg",
+    "extensions/chthonic-archive/themes/icons/product/pulse.svg",
+    "extensions/chthonic-archive/themes/icons/product/remote-explorer.svg",
+    "extensions/chthonic-archive/themes/icons/product/remote.svg",
+    "extensions/chthonic-archive/themes/icons/product/search.svg",
+    "extensions/chthonic-archive/themes/icons/product/settings-gear.svg",
+    "extensions/chthonic-archive/themes/icons/product/shield.svg",
+    "extensions/chthonic-archive/themes/icons/product/sync-ignored.svg",
+    "extensions/chthonic-archive/themes/icons/product/sync.svg",
+    "extensions/chthonic-archive/themes/icons/product/tools.svg",
+    "extensions/chthonic-archive/themes/icons/product/warning.svg",
+    "scripts/generate-product-icon-font.mjs",
+    "scripts/icon_distinctiveness_audit.py",
+    "scripts/icon_filetype_census.py",
+    "scripts/icon_scaffold_contract_audit.py",
+    "scripts/icon_surface_map.py",
+    "scripts/icon_svg_audit.py",
+    "scripts/icon_svg_optimizer.py",
+    "scripts/product_icon_census.py",
+    "scripts/theme-sync.ps1",
+    "scripts/theme_artcop.py",
+    "scripts/theme_color_diversity.py",
+    "scripts/theme_contrast_audit.py",
+    "scripts/theme_parity.py",
+    "scripts/theme_promote_master.py",
+    "scripts/theme_scaffold.py",
+    "scripts/theme_sfs_transmute.py",
+    "scripts/theme_token_coverage.py"
+  ],
+  "timestamp": "1970-01-01T00:00:00+00:00",
+  "total_tracked": 2755,
+  "verdict": "FAIL"
+}

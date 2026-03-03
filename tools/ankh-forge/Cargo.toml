@@ -1,0 +1,16 @@
+[package]
+name = "ankh-forge"
+version = "0.1.0"
+edition = "2024"
+description = "Rust-native WPTG acceleration CLI for extension scanning, census, and file intelligence."
+license = "WTFPL"
+
+[dependencies]
+anyhow = "1.0"
+clap = { version = "4.5.32", features = ["derive"] }
+reqwest = { version = "0.12.15", default-features = false, features = ["blocking", "json", "rustls-tls"] }
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+
+[dev-dependencies]
+tempfile = "3.18"

@@ -1,0 +1,14 @@
+{
+  "category": "documentation",
+  "extension": ".md",
+  "gold_grade": "tier_3_conceptual",
+  "lane_excluded": false,
+  "path": "../../codex/mailbox/EXTENSION_CONTRIBUTION_GRAPH_VALIDATOR_CHORE.md",
+  "pathway": "Canonicalize into governance or operational reference material.",
+  "runtime_support": {
+    "required_toolchains": [],
+    "supported": true,
+    "supported_by": []
+  },
+  "timestamp": "2026-03-03T07:37:55.5718906Z"
+}
