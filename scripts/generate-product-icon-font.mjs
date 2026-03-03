@@ -1,11 +1,15 @@
 // generate-product-icon-font.mjs
-// One-shot: converts 7 product SVGs into a woff icon font for the product icon theme.
+// One-shot: converts 43 product SVGs into a woff icon font for the product icon theme.
 // Bypasses fantasticon CLI (broken glob on Windows) and uses underlying libs directly.
+// Stroke-to-fill preprocessing via @davestewart/outliner ensures glyph mass survives
+// font rendering (the raw stroke art is too skeletal for font outline conversion).
 import { SVGIcons2SVGFontStream } from 'svgicons2svgfont';
+import svgpath from 'svgpath';
 import svg2ttf from 'svg2ttf';
 import ttf2woff from 'ttf2woff';
-import { createReadStream, writeFileSync, mkdirSync } from 'fs';
+import { readFileSync, writeFileSync, mkdirSync, createReadStream } from 'fs';
 import { resolve, join } from 'path';
+import { outlineSvg } from '@davestewart/outliner';
 
 const ICONS = [
   // ── Existing (Pillar I) ──
@@ -63,7 +67,188 @@ const ICONS = [
 
 const svgDir = resolve('extensions/chthonic-archive/themes/icons/product');
 const outDir = resolve('extensions/chthonic-archive/themes/fonts');
+const outlinedDir = resolve('extensions/chthonic-archive/themes/icons/product-outlined');
 mkdirSync(outDir, { recursive: true });
+mkdirSync(outlinedDir, { recursive: true });
+
+const ATTRIBUTE_PATTERN = /([:\w-]+)\s*=\s*(?:"([^"]*)"|'([^']*)')/g;
+const NUMBER_PATTERN = /-?(?:\d+\.?\d*|\.\d+)(?:e[-+]?\d+)?/gi;
+const SHAPE_TAG_PATTERN = /<(circle|ellipse|rect|line|polyline|polygon)\b([^<>]*)\/?>/gi;
+const PATH_D_PATTERN = /(<path\b[^<>]*\sd=)(["'])(.*?)\2/gi;
+
+function parseAttributes(source) {
+  const attributes = {};
+  for (const match of source.matchAll(ATTRIBUTE_PATTERN)) {
+    attributes[match[1]] = match[2] ?? match[3] ?? '';
+  }
+  return attributes;
+}
+
+function toNumber(value, fallback = 0) {
+  const parsed = Number(value);
+  return Number.isFinite(parsed) ? parsed : fallback;
+}
+
+function formatNumber(value) {
+  const rounded = Number.parseFloat(value.toFixed(4));
+  return Number.isFinite(rounded) ? `${rounded}` : '0';
+}
+
+function buildShapePath(tagName, attributes) {
+  if (tagName === 'circle') {
+    const cx = toNumber(attributes.cx);
+    const cy = toNumber(attributes.cy);
+    const r = toNumber(attributes.r);
+    if (r <= 0) {
+      return '';
+    }
+    return [
+      `M ${formatNumber(cx - r)} ${formatNumber(cy)}`,
+      `A ${formatNumber(r)} ${formatNumber(r)} 0 1 0 ${formatNumber(cx + r)} ${formatNumber(cy)}`,
+      `A ${formatNumber(r)} ${formatNumber(r)} 0 1 0 ${formatNumber(cx - r)} ${formatNumber(cy)}`,
+      'Z',
+    ].join(' ');
+  }
+
+  if (tagName === 'ellipse') {
+    const cx = toNumber(attributes.cx);
+    const cy = toNumber(attributes.cy);
+    const rx = toNumber(attributes.rx);
+    const ry = toNumber(attributes.ry);
+    if (rx <= 0 || ry <= 0) {
+      return '';
+    }
+    return [
+      `M ${formatNumber(cx - rx)} ${formatNumber(cy)}`,
+      `A ${formatNumber(rx)} ${formatNumber(ry)} 0 1 0 ${formatNumber(cx + rx)} ${formatNumber(cy)}`,
+      `A ${formatNumber(rx)} ${formatNumber(ry)} 0 1 0 ${formatNumber(cx - rx)} ${formatNumber(cy)}`,
+      'Z',
+    ].join(' ');
+  }
+
+  if (tagName === 'rect') {
+    const x = toNumber(attributes.x);
+    const y = toNumber(attributes.y);
+    const width = toNumber(attributes.width);
+    const height = toNumber(attributes.height);
+    if (width <= 0 || height <= 0) {
+      return '';
+    }
+
+    const rawRx = attributes.rx ?? attributes.ry ?? 0;
+    const rawRy = attributes.ry ?? attributes.rx ?? 0;
+    const rx = Math.min(Math.max(toNumber(rawRx), 0), width / 2);
+    const ry = Math.min(Math.max(toNumber(rawRy), 0), height / 2);
+
+    if (rx === 0 && ry === 0) {
+      return [
+        `M ${formatNumber(x)} ${formatNumber(y)}`,
+        `H ${formatNumber(x + width)}`,
+        `V ${formatNumber(y + height)}`,
+        `H ${formatNumber(x)}`,
+        'Z',
+      ].join(' ');
+    }
+
+    return [
+      `M ${formatNumber(x + rx)} ${formatNumber(y)}`,
+      `H ${formatNumber(x + width - rx)}`,
+      `A ${formatNumber(rx)} ${formatNumber(ry)} 0 0 1 ${formatNumber(x + width)} ${formatNumber(y + ry)}`,
+      `V ${formatNumber(y + height - ry)}`,
+      `A ${formatNumber(rx)} ${formatNumber(ry)} 0 0 1 ${formatNumber(x + width - rx)} ${formatNumber(y + height)}`,
+      `H ${formatNumber(x + rx)}`,
+      `A ${formatNumber(rx)} ${formatNumber(ry)} 0 0 1 ${formatNumber(x)} ${formatNumber(y + height - ry)}`,
+      `V ${formatNumber(y + ry)}`,
+      `A ${formatNumber(rx)} ${formatNumber(ry)} 0 0 1 ${formatNumber(x + rx)} ${formatNumber(y)}`,
+      'Z',
+    ].join(' ');
+  }
+
+  if (tagName === 'line') {
+    const x1 = toNumber(attributes.x1);
+    const y1 = toNumber(attributes.y1);
+    const x2 = toNumber(attributes.x2);
+    const y2 = toNumber(attributes.y2);
+    return `M ${formatNumber(x1)} ${formatNumber(y1)} L ${formatNumber(x2)} ${formatNumber(y2)}`;
+  }
+
+  if (tagName === 'polyline' || tagName === 'polygon') {
+    const values = (attributes.points ?? '').match(NUMBER_PATTERN)?.map(Number) ?? [];
+    if (values.length < 4 || values.length % 2 !== 0) {
+      return '';
+    }
+
+    const segments = [`M ${formatNumber(values[0])} ${formatNumber(values[1])}`];
+    for (let index = 2; index < values.length; index += 2) {
+      segments.push(`L ${formatNumber(values[index])} ${formatNumber(values[index + 1])}`);
+    }
+    if (tagName === 'polygon') {
+      segments.push('Z');
+    }
+    return segments.join(' ');
+  }
+
+  return '';
+}
+
+function shapeAttributesToPathAttributes(tagName, attributes) {
+  const geometryAttributes = new Set({
+    circle: ['cx', 'cy', 'r'],
+    ellipse: ['cx', 'cy', 'rx', 'ry'],
+    rect: ['x', 'y', 'width', 'height', 'rx', 'ry'],
+    line: ['x1', 'y1', 'x2', 'y2'],
+    polyline: ['points'],
+    polygon: ['points'],
+  }[tagName]);
+
+  const parts = [];
+  for (const [name, value] of Object.entries(attributes)) {
+    if (geometryAttributes.has(name)) {
+      continue;
+    }
+    parts.push(`${name}="${value}"`);
+  }
+  return parts.length ? ` ${parts.join(' ')}` : '';
+}
+
+function convertShapesToPaths(svg) {
+  return svg.replace(SHAPE_TAG_PATTERN, (match, tagName, attributeSource) => {
+    const normalizedTag = tagName.toLowerCase();
+    const attributes = parseAttributes(attributeSource);
+    const d = buildShapePath(normalizedTag, attributes);
+    if (!d) {
+      return match;
+    }
+    const otherAttributes = shapeAttributesToPathAttributes(normalizedTag, attributes);
+    return `<path d="${d}"${otherAttributes}/>`;
+  });
+}
+
+function normalizePathData(svg) {
+  return svg.replace(PATH_D_PATTERN, (match, prefix, quote, d) => {
+    const normalized = svgpath(d).abs().unshort().round(4).toString();
+    return `${prefix}${quote}${normalized}${quote}`;
+  });
+}
+
+function sanitizeSvg(svg) {
+  return svg
+    .replace(/^\uFEFF/, '')
+    .replace(/^&#xfeff;/i, '')
+    .trim();
+}
+
+// Step 0: Preprocess — stroke-to-fill conversion
+const outlinedSvgs = [];
+for (const icon of ICONS) {
+  const raw = sanitizeSvg(readFileSync(join(svgDir, `${icon.name}.svg`), 'utf-8'));
+  const withPathShapes = convertShapesToPaths(raw);
+  const normalized = normalizePathData(withPathShapes);
+  const outlined = sanitizeSvg(outlineSvg(normalized, ['outline']));
+  outlinedSvgs.push({ ...icon, svg: outlined });
+  writeFileSync(join(outlinedDir, `${icon.name}.svg`), outlined);
+}
+console.log(`✓ Outlined ${outlinedSvgs.length} SVGs (stroke → fill)`);
 
 // Step 1: SVG icons → SVG font
 const svgFont = await new Promise((resolve, reject) => {
@@ -78,8 +263,8 @@ const svgFont = await new Promise((resolve, reject) => {
   stream.on('end', () => resolve(result.toString()));
   stream.on('error', reject);
 
-  for (const icon of ICONS) {
-    const glyph = createReadStream(join(svgDir, `${icon.name}.svg`));
+  for (const icon of outlinedSvgs) {
+    const glyph = createReadStream(join(outlinedDir, `${icon.name}.svg`));
     glyph.metadata = { name: icon.name, unicode: [String.fromCodePoint(icon.codepoint)] };
     stream.write(glyph);
   }
