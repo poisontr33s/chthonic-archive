@@ -238,19 +238,25 @@ function sanitizeSvg(svg) {
     .trim();
 }
 
-// Amplify stroke-widths so the outliner produces glyph paths with enough visual
-// mass to survive font hinting and software (SwiftShader) rendering.
+// Adaptive stroke-width remapping for visibility on SwiftShader while preserving
+// detail differentiation.  Instead of a flat multiplier (which compresses thin
+// detail lines and thick structural strokes into the same range), we linearly
+// remap the original stroke distribution [0.6 .. 1.8] into a target band that
+// guarantees SwiftShader visibility at the low end without bloating at the top.
+//
 // At 20px icon size in a 1000-unit em from 16-unit viewBox:
-//   1.8px stroke → 112.5 em-units → ~2.25px on screen (SwiftShader minimum).
-//   2.5px stroke → 156.25 em-units → ~3.1px on screen (max before detail loss).
-// factor: multiplier applied to every stroke-width value
-// floor:  minimum stroke-width after amplification (visibility threshold)
-// cap:    maximum stroke-width after amplification (detail preservation)
+//   1.6px → 100  em-units → 2.0px on screen  (SwiftShader visibility floor)
+//   2.0px → 125  em-units → 2.5px on screen  (structural maximum)
+//
+// Result: thin lines (0.6px) get ×2.67 boost, thick strokes (1.8px) get ×1.11.
 const STROKE_WIDTH_PATTERN = /stroke-width="([^"]+)"/g;
-function amplifyStrokes(svg, factor = 1.6, floor = 1.8, cap = 2.5) {
+function amplifyStrokes(svg, targetMin = 1.6, targetMax = 2.0) {
+  const origMin = 0.6, origMax = 1.8;
   return svg.replace(STROKE_WIDTH_PATTERN, (match, value) => {
-    const amplified = Math.min(Math.max(parseFloat(value) * factor, floor), cap);
-    return `stroke-width="${formatNumber(amplified)}"`;
+    const orig = parseFloat(value);
+    const t = Math.max(0, Math.min(1, (orig - origMin) / (origMax - origMin)));
+    const remapped = targetMin + t * (targetMax - targetMin);
+    return `stroke-width="${formatNumber(remapped)}"`;
   });
 }
 
@@ -272,7 +278,7 @@ for (const icon of ICONS) {
   outlinedSvgs.push({ ...icon, svg: outlined });
   writeFileSync(join(outlinedDir, `${icon.name}.svg`), outlined);
 }
-console.log(`✓ Outlined ${outlinedSvgs.length} SVGs (stroke ×1.6 → fill, floor 1.8px, cap 2.5px, nonzero fill)`);
+console.log(`✓ Outlined ${outlinedSvgs.length} SVGs (adaptive remap [0.6..1.8] → [1.6..2.0], nonzero fill)`);
 
 // Step 1: SVG icons → SVG font
 const svgFont = await new Promise((resolve, reject) => {
