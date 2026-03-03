@@ -243,11 +243,18 @@ function sanitizeSvg(svg) {
 // factor: multiplier applied to every stroke-width value
 // floor:  minimum stroke-width after amplification
 const STROKE_WIDTH_PATTERN = /stroke-width="([^"]+)"/g;
-function amplifyStrokes(svg, factor = 1.6, floor = 1.8) {
+function amplifyStrokes(svg, factor = 1.25, floor = 1.4) {
   return svg.replace(STROKE_WIDTH_PATTERN, (match, value) => {
     const amplified = Math.max(parseFloat(value) * factor, floor);
     return `stroke-width="${formatNumber(amplified)}"`;
   });
+}
+
+// The outliner creates compound paths (inner+outer contour) and preserves the
+// source fill-rule. With evenodd, the inner contour subtracts from the outer,
+// producing hollow/invisible glyphs. Nonzero fills everything.
+function fixFillRule(svg) {
+  return svg.replace(/fill-rule="evenodd"/g, 'fill-rule="nonzero"');
 }
 
 // Step 0: Preprocess — stroke-to-fill conversion
@@ -257,11 +264,11 @@ for (const icon of ICONS) {
   const withPathShapes = convertShapesToPaths(raw);
   const normalized = normalizePathData(withPathShapes);
   const amplified = amplifyStrokes(normalized);
-  const outlined = sanitizeSvg(outlineSvg(amplified, ['outline']));
+  const outlined = fixFillRule(sanitizeSvg(outlineSvg(amplified, ['outline'])));
   outlinedSvgs.push({ ...icon, svg: outlined });
   writeFileSync(join(outlinedDir, `${icon.name}.svg`), outlined);
 }
-console.log(`✓ Outlined ${outlinedSvgs.length} SVGs (stroke ×1.6 → fill, floor 1.8px)`);
+console.log(`✓ Outlined ${outlinedSvgs.length} SVGs (stroke ×1.25 → fill, floor 1.4px, nonzero fill)`);
 
 // Step 1: SVG icons → SVG font
 const svgFont = await new Promise((resolve, reject) => {
