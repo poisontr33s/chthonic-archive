@@ -1,0 +1,2017 @@
+{
+  "timestamp": "2026-03-03T06:49:55+00:00",
+  "codebase_extensions": {
+    "total_unique": 46,
+    "inventory": {
+      ".bak": {
+        "count": 1,
+        "directories": [
+          "dumpster-dive"
+        ],
+        "lane_excluded": false,
+        "lane_excluded_count": 0,
+        "category": "governance",
+        "gold_grade": "raw_unrefined",
+        "runtime_support": {
+          "supported": true,
+          "supported_by": [],
+          "required_toolchains": []
+        }
+      },
+      ".bat": {
+        "count": 1,
+        "directories": [
+          "dumpster-dive/intake/claude-ide-harden-2026-02-10/tier-1-direct"
+        ],
+        "lane_excluded": false,
+        "lane_excluded_count": 0,
+        "category": "source_code",
+        "gold_grade": "tier_1_direct",
+        "runtime_support": {
+          "supported": true,
+          "supported_by": [
+            "batch"
+          ],
+          "required_toolchains": [
+            "batch"
+          ]
+        }
+      },
+      ".cjs": {
+        "count": 1,
+        "directories": [
+          "extensions/chthonic-archive/scripts"
+        ],
+        "lane_excluded": false,
+        "lane_excluded_count": 0,
+        "category": "source_code",
+        "gold_grade": "tier_1_direct",
+        "runtime_support": {
+          "supported": true,
+          "supported_by": [
+            "typescript"
+          ],
+          "required_toolchains": [
+            "typescript"
+          ]
+        }
+      },
+      ".comp": {
+        "count": 1,
+        "directories": [
+          "extensions/chthonic-archive/native/chthonic-daemon/src/shaders"
+        ],
+        "lane_excluded": false,
+        "lane_excluded_count": 0,
+        "category": "graphics_gpu",
+        "gold_grade": "raw_unrefined",
+        "runtime_support": {
+          "supported": true,
+          "supported_by": [
+            "glsl"
+          ],
+          "required_toolchains": [
+            "glsl"
+          ]
+        }
+      },
+      ".copilotignore": {
+        "count": 1,
+        "directories": [
+          "."
+        ],
+        "lane_excluded": false,
+        "lane_excluded_count": 0,
+        "category": "vcs_meta",
+        "gold_grade": "tier_2_structural",
+        "runtime_support": {
+          "supported": true,
+          "supported_by": [],
+          "required_toolchains": []
+        }
+      },
+      ".cpython-313.pyc": {
+        "count": 6,
+        "directories": [
+          ".codex/skills/artifact-upcycle/scripts/__pycache__",
+          ".codex/skills/codekiller-remediation-gate/scripts/__pycache__",
+          ".codex/skills/mailbox-handoff/scripts/__pycache__",
+          ".codex/skills/script-envelope/scripts/__pycache__",
+          ".codex/skills/skill-polisher/scripts/__pycache__",
+          "dumpster-dive/scripts/__pycache__"
+        ],
+        "lane_excluded": false,
+        "lane_excluded_count": 0,
+        "category": "unclassified",
+        "gold_grade": "raw_unrefined",
+        "runtime_support": {
+          "supported": true,
+          "supported_by": [],
+          "required_toolchains": []
+        }
+      },
+      ".css": {
+        "count": 2,
+        "directories": [
+          "mas_mcp/frontend/public",
+          "mas_mcp/frontend/styles"
+        ],
+        "lane_excluded": false,
+        "lane_excluded_count": 0,
+        "category": "source_code",
+        "gold_grade": "tier_1_direct",
+        "runtime_support": {
+          "supported": true,
+          "supported_by": [],
+          "required_toolchains": []
+        }
+      },
+      ".d.ts": {
+        "count": 4,
+        "directories": [
+          "extensions/chthonic-archive",
+          "extensions/chthonic-mandala",
+          "extensions/chthonic-statusbar",
+          "mas_mcp/frontend"
+        ],
+        "lane_excluded": false,
+        "lane_excluded_count": 0,
+        "category": "unclassified",
+        "gold_grade": "raw_unrefined",
+        "runtime_support": {
+          "supported": true,
+          "supported_by": [],
+          "required_toolchains": []
+        }
+      },
+      ".db": {
+        "count": 1,
+        "directories": [
+          "codex/mailbox/cache"
+        ],
+        "lane_excluded": false,
+        "lane_excluded_count": 0,
+        "category": "build_output",
+        "gold_grade": "raw_unrefined",
+        "runtime_support": {
+          "supported": true,
+          "supported_by": [],
+          "required_toolchains": []
+        }
+      },
+      ".env": {
+        "count": 4,
+        "directories": [
+          "claude-codex-gemini/session_resumption_pickup",
+          "codex/mailbox",
+          "mas_mcp/frontend"
+        ],
+        "lane_excluded": false,
+        "lane_excluded_count": 0,
+        "category": "data_config",
+        "gold_grade": "tier_2_structural",
+        "runtime_support": {
+          "supported": true,
+          "supported_by": [
+            "python",
+            "typescript"
+          ],
+          "required_toolchains": [
+            "python",
+            "typescript"
+          ]
+        }
+      },
+      ".frag": {
+        "count": 1,
+        "directories": [
+          "assets/shaders"
+        ],
+        "lane_excluded": false,
+        "lane_excluded_count": 0,
+        "category": "graphics_gpu",
+        "gold_grade": "raw_unrefined",
+        "runtime_support": {
+          "supported": true,
+          "supported_by": [
+            "glsl"
+          ],
+          "required_toolchains": [
+            "glsl"
+          ]
+        }
+      },
+      ".geminiignore": {
+        "count": 1,
+        "directories": [
+          "."
+        ],
+        "lane_excluded": false,
+        "lane_excluded_count": 0,
+        "category": "vcs_meta",
+        "gold_grade": "tier_2_structural",
+        "runtime_support": {
+          "supported": true,
+          "supported_by": [],
+          "required_toolchains": []
+        }
+      },
+      ".gitattributes": {
+        "count": 1,
+        "directories": [
+          "."
+        ],
+        "lane_excluded": false,
+        "lane_excluded_count": 0,
+        "category": "vcs_meta",
+        "gold_grade": "tier_2_structural",
+        "runtime_support": {
+          "supported": true,
+          "supported_by": [],
+          "required_toolchains": []
+        }
+      },
+      ".gitignore": {
+        "count": 4,
+        "directories": [
+          ".",
+          ".codex",
+          "dumpster-dive/intake/claudine-harvest",
+          "mas_mcp/frontend"
+        ],
+        "lane_excluded": false,
+        "lane_excluded_count": 0,
+        "category": "vcs_meta",
+        "gold_grade": "tier_2_structural",
+        "runtime_support": {
+          "supported": true,
+          "supported_by": [],
+          "required_toolchains": []
+        }
+      },
+      ".gitkeep": {
+        "count": 1,
+        "directories": [
+          "dumpster-dive/archive/docs-sessions"
+        ],
+        "lane_excluded": false,
+        "lane_excluded_count": 0,
+        "category": "vcs_meta",
+        "gold_grade": "tier_2_structural",
+        "runtime_support": {
+          "supported": true,
+          "supported_by": [],
+          "required_toolchains": []
+        }
+      },
+      ".html": {
+        "count": 3,
+        "directories": [
+          "apps/mistralrs-ui",
+          "claude-codex-gemini/engineering_agentic_deep_research_candidates/gemini-deep-research-2026-02",
+          "mas_mcp/frontend/public"
+        ],
+        "lane_excluded": false,
+        "lane_excluded_count": 0,
+        "category": "source_code",
+        "gold_grade": "tier_1_direct",
+        "runtime_support": {
+          "supported": true,
+          "supported_by": [],
+          "required_toolchains": []
+        }
+      },
+      ".js": {
+        "count": 10,
+        "directories": [
+          "chthonic-golden/electron-main",
+          "extensions/chthonic-archive/dist",
+          "extensions/chthonic-archive/media",
+          "extensions/chthonic-mandala/dist",
+          "extensions/chthonic-statusbar/dist",
+          "mas_mcp/frontend",
+          "mas_mcp/frontend/public"
+        ],
+        "lane_excluded": false,
+        "lane_excluded_count": 0,
+        "category": "source_code",
+        "gold_grade": "tier_1_direct",
+        "runtime_support": {
+          "supported": true,
+          "supported_by": [
+            "typescript"
+          ],
+          "required_toolchains": [
+            "typescript"
+          ]
+        }
+      },
+      ".json": {
+        "count": 662,
+        "directories": [
+          ".codex/skills/artifact-upcycle/references",
+          ".codex/skills/skill-polisher/fixtures/claude_missing_description",
+          ".codex/skills/skill-polisher/fixtures/claude_missing_frontmatter",
+          ".codex/skills/skill-polisher/fixtures/codex_missing_agents_yaml",
+          ".codex/skills/skill-polisher/fixtures/codex_missing_assets_dir",
+          ".codex/skills/skill-polisher/fixtures/missing_assets",
+          ".codex/skills/skill-polisher/fixtures/missing_openai_yaml",
+          ".codex/skills/skill-polisher/references",
+          ".gemini",
+          ".gemini/extensions/chthonic-archive-sync",
+          ".github/instructions",
+          ".vscode",
+          "artifacts",
+          "assets",
+          "assets/entities",
+          "bun-playwright-poc",
+          "chthonic-golden",
+          "chthonic-golden/ankh",
+          "chthonic-golden/electron-main",
+          "chthonic-golden/extensions",
+          "claude-codex-gemini",
+          "claude-codex-gemini/session_resumption_pickup",
+          "claude-codex-gemini/triadic-session-context",
+          "claude/mailbox",
+          "claude/mailbox/archive/2026_02_07",
+          "codex/codex-session-logs",
+          "codex/codex-session-logs/archive",
+          "codex/mailbox",
+          "codex/mailbox/VSCODE_INSIDERS_MATRIX_20260226T033112Z",
+          "codex/mailbox/VSCODE_INSIDERS_MATRIX_20260226T033146Z",
+          "codex/mailbox/VSCODE_INSIDERS_MATRIX_20260226T033328Z",
+          "codex/mailbox/VSCODE_INSIDERS_MATRIX_20260226T033855Z",
+          "codex/mailbox/VSCODE_INSIDERS_MATRIX_20260226T195738Z",
+          "codex/mailbox/VSCODE_INSIDERS_MATRIX_20260226T200037Z",
+          "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032245Z",
+          "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032320Z",
+          "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032459Z",
+          "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032547Z",
+          "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032622Z",
+          "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T033307Z",
+          "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T033834Z",
+          "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T034024Z",
+          "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T034240Z",
+          "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T195738Z",
+          "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T200100Z",
+          "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T200225Z",
+          "codex/mailbox/archive",
+          "codex/mailbox/archive/2026_02_07",
+          "codex/mailbox/archive/2026_02_10_cleanup",
+          "codex/mailbox/archive/2026_02_10_meta_cleanup",
+          "codex/mailbox/archive/2026_02_10_meta_cleanup/.tmp_fixture_eval/claude_missing_description",
+          "codex/mailbox/archive/2026_02_10_meta_cleanup/.tmp_fixture_eval/claude_missing_frontmatter",
+          "codex/mailbox/archive/2026_02_10_meta_cleanup/.tmp_fixture_eval/codex_missing_agents_yaml",
+          "codex/mailbox/archive/2026_02_10_meta_cleanup/.tmp_fixture_eval/codex_missing_assets_dir",
+          "codex/mailbox/archive/2026_02_10_meta_cleanup/.tmp_fixture_eval/missing_assets",
+          "codex/mailbox/archive/2026_02_10_meta_cleanup/.tmp_fixture_eval/missing_openai_yaml",
+          "codex/mailbox/cache",
+          "data",
+          "data/graphs",
+          "data/indices",
+          "data/state",
+          "docs",
+          "docs/standards",
+          "dumpster-dive",
+          "dumpster-dive/forge/extension-archaeology/theme-research",
+          "dumpster-dive/forge/tempered",
+          "dumpster-dive/from-github",
+          "dumpster-dive/from-github/macro-prompt-world/disparate-md-documentation",
+          "dumpster-dive/intake/embeddings",
+          "dumpster-dive/intake/overnight-intelligence/arch-2026-02-11T02-27-22",
+          "dumpster-dive/intake/overnight-intelligence/arch-2026-02-11T02-39-10",
+          "dumpster-dive/intake/overnight-intelligence/arch-2026-02-11T03-00-12",
+          "dumpster-dive/intake/overnight-intelligence/arch-2026-02-17T02-00-04",
+          "dumpster-dive/intake/overnight-intelligence/arch-2026-02-18T02-00-06",
+          "dumpster-dive/intake/overnight-intelligence/arch-2026-02-19T02-00-05",
+          "dumpster-dive/intake/overnight-intelligence/arch-2026-02-20T02-00-06",
+          "dumpster-dive/intake/overnight-siphon/20251226_090059",
+          "dumpster-dive/intake/overnight-siphon/20251226_090059/.vscode",
+          "dumpster-dive/intake/pr-harvest-2026-01-29/pr1-copilot-research/tier-2-configs",
+          "dumpster-dive/intake/pr-harvest-2026-01-29/raw",
+          "dumpster-dive/intake/pr-harvest-2026-01-29/tier-2-schemas",
+          "dumpster-dive/intake/sentry-probe/20251226_225241",
+          "dumpster-dive/intake/sentry-probe/20251226_225319",
+          "dumpster-dive/intake/sentry-probe/20251226_225559",
+          "dumpster-dive/intake/sentry-probe/20251226_225620",
+          "dumpster-dive/intake/toolchain-probe",
+          "dumpster-dive/intake/toolchain-probe/20251226_091408",
+          "dumpster-dive/intake/toolchain-probe/20251226_091609",
+          "dumpster-dive/intake/toolchain-probe/20251226_092121",
+          "dumpster-dive/intake/toolchain-probe/20251226_092417",
+          "dumpster-dive/intake/toolchain-probe/20251226_093231",
+          "dumpster-dive/intake/toolchain-probe/20251226_093529",
+          "dumpster-dive/intake/toolchain-probe/20251226_093610",
+          "dumpster-dive/intake/toolchain-probe/20251226_093639",
+          "dumpster-dive/intake/toolchain-probe/20251226_093755",
+          "dumpster-dive/intake/toolchain-probe/20251226_093820",
+          "dumpster-dive/intake/toolchain-probe/20251226_093907",
+          "dumpster-dive/intake/toolchain-probe/20251226_094037",
+          "dumpster-dive/intake/toolchain-probe/20251226_094121",
+          "dumpster-dive/intake/toolchain-probe/20251226_094513",
+          "dumpster-dive/intake/toolchain-probe/20251227_002544",
+          "dumpster-dive/protocols",
+          "extensions/chthonic-archive",
+          "extensions/chthonic-archive/audit-reports",
+          "extensions/chthonic-archive/themes",
+          "extensions/chthonic-archive/themes/fonts",
+          "extensions/chthonic-mandala",
+          "extensions/chthonic-mandala/themes",
+          "extensions/chthonic-statusbar",
+          "extensions/context-compressor",
+          "extensions/reflex-guard",
+          "extensions/spec-enforcer",
+          "mas_mcp",
+          "mas_mcp/artifacts",
+          "mas_mcp/artifacts/compatibility",
+          "mas_mcp/data",
+          "mas_mcp/frontend",
+          "mas_mcp/genesis_artifacts/20251207_055735/03a1c7183233aa76",
+          "mas_mcp/genesis_artifacts/20251207_055735/20d4a94f74fc60f6",
+          "mas_mcp/genesis_artifacts/20251207_055735/84351a74b938cc19",
+          "mas_mcp/genesis_artifacts/20251207_055735/f74eeada6ad738be",
+          "mas_mcp/genesis_artifacts/20251207_055735/f7cfc1e2a27ac535",
+          "mas_mcp/genesis_artifacts/20251207_060612/19fb8f5b4bb12640",
+          "mas_mcp/genesis_artifacts/20251207_060612/acbe4e85c9b52eba",
+          "mas_mcp/genesis_artifacts/20251207_060612/cde2622894d52422",
+          "mas_mcp/genesis_artifacts/20251207_140343/0f55f1dc9106524a",
+          "mas_mcp/genesis_artifacts/20251207_140343/149afefdea424b76",
+          "mas_mcp/genesis_artifacts/20251207_140343/271e5bf85cdda5da",
+          "mas_mcp/genesis_artifacts/20251207_140343/2d505f27839727d3",
+          "mas_mcp/genesis_artifacts/20251207_140343/335bb5bf195ca27c",
+          "mas_mcp/genesis_artifacts/20251207_140343/39516c6ef596b5c1",
+          "mas_mcp/genesis_artifacts/20251207_140343/483b7f40d6475c93",
+          "mas_mcp/genesis_artifacts/20251207_140343/4b5a808c252eaf45",
+          "mas_mcp/genesis_artifacts/20251207_140343/513eac6691426516",
+          "mas_mcp/genesis_artifacts/20251207_140343/5b008e1fda762d8f",
+          "mas_mcp/genesis_artifacts/20251207_140343/5f1d6738545ac035",
+          "mas_mcp/genesis_artifacts/20251207_140343/7a877cc7b83c1f8c",
+          "mas_mcp/genesis_artifacts/20251207_140343/83438e210cc03a1c",
+          "mas_mcp/genesis_artifacts/20251207_140343/886fcfd870728ddc",
+          "mas_mcp/genesis_artifacts/20251207_140343/8bfc1aae222a31ad",
+          "mas_mcp/genesis_artifacts/20251207_140343/9209aed5910edc14",
+          "mas_mcp/genesis_artifacts/20251207_140343/95ece03d1032798b",
+          "mas_mcp/genesis_artifacts/20251207_140343/a48512c0386c0af4",
+          "mas_mcp/genesis_artifacts/20251207_140343/aa2a99a6f66ee65d",
+          "mas_mcp/genesis_artifacts/20251207_140343/b5b0bd54f3f39117",
+          "mas_mcp/genesis_artifacts/20251207_140343/bd3e2e4486e9f3bc",
+          "mas_mcp/genesis_artifacts/20251207_140343/f2265e3985eb0898",
+          "mas_mcp/genesis_artifacts/20251207_140343/f3e7e4033b877a0b",
+          "mas_mcp/genesis_artifacts/20251207_140343/fc1837ef1fa423f7",
+          "mas_mcp/genesis_artifacts/20251207_140343/fc9082f9a532b6e1",
+          "mas_mcp/genesis_artifacts/20251207_140344/36fc2afb9bba0f6e",
+          "mas_mcp/genesis_artifacts/20251207_140344/38c4b2f3463e6313",
+          "mas_mcp/genesis_artifacts/20251207_140344/9529997bd8463338",
+          "mas_mcp/genesis_artifacts/20251207_140344/b09dea1728f4f99e",
+          "mas_mcp/genesis_artifacts/20251207_140344/d1632a09c15b10a4",
+          "mas_mcp/genesis_artifacts/20251207_140401/6f5fb90bbb9c7040",
+          "mas_mcp/genesis_artifacts/20251207_140401/886a98284712718a",
+          "mas_mcp/genesis_artifacts/20251207_140401/9c166204b97dd5cb",
+          "mas_mcp/genesis_artifacts/20251207_140401/a72aa921f042e8b5",
+          "mas_mcp/genesis_artifacts/20251207_140843/09543828b4baa042",
+          "mas_mcp/genesis_artifacts/20251207_140843/09fa545bc04e7ccd",
+          "mas_mcp/genesis_artifacts/20251207_140843/293ffd46fb51626d",
+          "mas_mcp/genesis_artifacts/20251207_140843/2e3c31a20012aba5",
+          "mas_mcp/genesis_artifacts/20251207_140843/30a9dbbb5eab8332",
+          "mas_mcp/genesis_artifacts/20251207_140843/40d55fd81035254b",
+          "mas_mcp/genesis_artifacts/20251207_140843/4223749217c001ab",
+          "mas_mcp/genesis_artifacts/20251207_140843/5be6b8e6d7dafc95",
+          "mas_mcp/genesis_artifacts/20251207_140843/619af84ac4d5d65a",
+          "mas_mcp/genesis_artifacts/20251207_140843/65f339f4f4344d75",
+          "mas_mcp/genesis_artifacts/20251207_140843/67ab68bb0ec9eb71",
+          "mas_mcp/genesis_artifacts/20251207_140843/77b28552805571a8",
+          "mas_mcp/genesis_artifacts/20251207_140843/7ff11828d9ff34e9",
+          "mas_mcp/genesis_artifacts/20251207_140843/834c9822b76cc457",
+          "mas_mcp/genesis_artifacts/20251207_140843/884f19a06ce49cbb",
+          "mas_mcp/genesis_artifacts/20251207_140843/910b0cef80f477aa",
+          "mas_mcp/genesis_artifacts/20251207_140843/9c62326acd0a17c3",
+          "mas_mcp/genesis_artifacts/20251207_140843/a4b8bb50547e212d",
+          "mas_mcp/genesis_artifacts/20251207_140843/a601aac1b9ecec1f",
+          "mas_mcp/genesis_artifacts/20251207_140843/a6a8b1f110054111",
+          "mas_mcp/genesis_artifacts/20251207_140843/a88ea746851fb97a",
+          "mas_mcp/genesis_artifacts/20251207_140843/c9cbbf6762e3264e",
+          "mas_mcp/genesis_artifacts/20251207_140843/ddd0e3c61e136922",
+          "mas_mcp/genesis_artifacts/20251207_140843/e8cbeebfa32600dd",
+          "mas_mcp/genesis_artifacts/20251207_140843/f543973b6285f2fb",
+          "mas_mcp/schemas"
+        ],
+        "lane_excluded": true,
+        "lane_excluded_count": 7,
+        "category": "data_config",
+        "gold_grade": "tier_2_structural",
+        "runtime_support": {
+          "supported": true,
+          "supported_by": [
+            "python",
+            "typescript"
+          ],
+          "required_toolchains": [
+            "python",
+            "typescript"
+          ]
+        }
+      },
+      ".jsonl": {
+        "count": 3,
+        "directories": [
+          "logs"
+        ],
+        "lane_excluded": false,
+        "lane_excluded_count": 0,
+        "category": "data_config",
+        "gold_grade": "tier_2_structural",
+        "runtime_support": {
+          "supported": true,
+          "supported_by": [
+            "python",
+            "typescript"
+          ],
+          "required_toolchains": [
+            "python",
+            "typescript"
+          ]
+        }
+      },
+      ".keep": {
+        "count": 4,
+        "directories": [
+          "dumpster-dive/intake/sentry-probe/20251226_225241",
+          "dumpster-dive/intake/sentry-probe/20251226_225319",
+          "dumpster-dive/intake/sentry-probe/20251226_225559",
+          "dumpster-dive/intake/sentry-probe/20251226_225620"
+        ],
+        "lane_excluded": false,
+        "lane_excluded_count": 0,
+        "category": "vcs_meta",
+        "gold_grade": "tier_2_structural",
+        "runtime_support": {
+          "supported": true,
+          "supported_by": [],
+          "required_toolchains": []
+        }
+      },
+      ".lock": {
+        "count": 5,
+        "directories": [
+          "extensions/chthonic-archive/.chthonic/ruby",
+          "extensions/chthonic-archive/native",
+          "extensions/chthonic-archive/native/entropy-renderer-wasm",
+          "mas_mcp",
+          "mas_mcp/frontend"
+        ],
+        "lane_excluded": false,
+        "lane_excluded_count": 0,
+        "category": "data_config",
+        "gold_grade": "tier_2_structural",
+        "runtime_support": {
+          "supported": true,
+          "supported_by": [],
+          "required_toolchains": []
+        }
+      },
+      ".log": {
+        "count": 340,
+        "directories": [
+          "codex/mailbox",
+          "codex/mailbox/VSCODE_INSIDERS_MATRIX_20260226T033112Z",
+          "codex/mailbox/VSCODE_INSIDERS_MATRIX_20260226T033146Z",
+          "codex/mailbox/VSCODE_INSIDERS_MATRIX_20260226T033328Z",
+          "codex/mailbox/VSCODE_INSIDERS_MATRIX_20260226T033855Z",
+          "codex/mailbox/VSCODE_INSIDERS_MATRIX_20260226T195738Z",
+          "codex/mailbox/VSCODE_INSIDERS_MATRIX_20260226T200037Z",
+          "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032245Z",
+          "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032245Z/insiders_logs",
+          "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032245Z/insiders_logs/window1",
+          "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032245Z/insiders_logs/window1/exthost",
+          "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032245Z/insiders_logs/window2",
+          "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032245Z/insiders_logs/window2/exthost",
+          "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032245Z/insiders_logs/window3",
+          "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032245Z/insiders_logs/window3/exthost",
+          "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032320Z",
+          "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032320Z/insiders_logs",
+          "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032320Z/insiders_logs/window1",
+          "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032320Z/insiders_logs/window1/exthost",
+          "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032320Z/insiders_logs/window2",
+          "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032320Z/insiders_logs/window2/exthost",
+          "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032320Z/insiders_logs/window3",
+          "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032320Z/insiders_logs/window3/exthost",
+          "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032438Z",
+          "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032459Z",
+          "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032530Z",
+          "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032547Z",
+          "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032622Z",
+          "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032622Z/insiders_logs",
+          "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032622Z/insiders_logs/window1",
+          "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032622Z/insiders_logs/window1/exthost",
+          "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032622Z/insiders_logs/window2",
+          "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032622Z/insiders_logs/window2/exthost",
+          "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032622Z/insiders_logs/window3",
+          "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032622Z/insiders_logs/window3/exthost",
+          "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T033307Z",
+          "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T033307Z/insiders_logs",
+          "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T033307Z/insiders_logs/window1",
+          "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T033307Z/insiders_logs/window1/exthost",
+          "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T033307Z/insiders_logs/window2",
+          "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T033307Z/insiders_logs/window2/exthost",
+          "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T033307Z/insiders_logs/window3",
+          "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T033307Z/insiders_logs/window3/exthost",
+          "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T033834Z",
+          "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T033834Z/insiders_logs",
+          "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T033834Z/insiders_logs/window1",
+          "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T033834Z/insiders_logs/window1/exthost",
+          "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T033834Z/insiders_logs/window2",
+          "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T033834Z/insiders_logs/window2/exthost",
+          "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T033834Z/insiders_logs/window3",
+          "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T033834Z/insiders_logs/window3/exthost",
+          "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T034024Z",
+          "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T034024Z/insiders_logs",
+          "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T034024Z/insiders_logs/window1",
+          "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T034024Z/insiders_logs/window1/exthost",
+          "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T034024Z/insiders_logs/window2",
+          "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T034024Z/insiders_logs/window2/exthost",
+          "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T034024Z/insiders_logs/window3",
+          "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T034024Z/insiders_logs/window3/exthost",
+          "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T034240Z",
+          "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T034240Z/insiders_logs",
+          "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T034240Z/insiders_logs/window1",
+          "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T034240Z/insiders_logs/window1/exthost",
+          "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T034240Z/insiders_logs/window2",
+          "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T034240Z/insiders_logs/window2/exthost",
+          "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T034240Z/insiders_logs/window3",
+          "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T034240Z/insiders_logs/window3/exthost",
+          "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T195738Z",
+          "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T195738Z/insiders_logs",
+          "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T195738Z/insiders_logs/window1",
+          "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T195738Z/insiders_logs/window1/exthost",
+          "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T195738Z/insiders_logs/window2",
+          "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T195738Z/insiders_logs/window2/exthost",
+          "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T195738Z/insiders_logs/window3",
+          "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T195738Z/insiders_logs/window3/exthost",
+          "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T195738Z/insiders_logs/window4",
+          "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T195738Z/insiders_logs/window4/exthost",
+          "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T200100Z",
+          "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T200100Z/insiders_logs",
+          "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T200100Z/insiders_logs/window1",
+          "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T200100Z/insiders_logs/window1/exthost",
+          "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T200100Z/insiders_logs/window2",
+          "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T200100Z/insiders_logs/window2/exthost",
+          "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T200100Z/insiders_logs/window3",
+          "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T200100Z/insiders_logs/window3/exthost",
+          "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T200100Z/insiders_logs/window4",
+          "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T200100Z/insiders_logs/window4/exthost",
+          "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T200225Z",
+          "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T200225Z/insiders_logs",
+          "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T200225Z/insiders_logs/window1",
+          "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T200225Z/insiders_logs/window1/exthost",
+          "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T200225Z/insiders_logs/window2",
+          "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T200225Z/insiders_logs/window2/exthost",
+          "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T200225Z/insiders_logs/window3",
+          "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T200225Z/insiders_logs/window3/exthost",
+          "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T200225Z/insiders_logs/window4",
+          "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T200225Z/insiders_logs/window4/exthost",
+          "dumpster-dive/intake/overnight-intelligence/arch-2026-02-11T02-27-22",
+          "dumpster-dive/intake/overnight-intelligence/arch-2026-02-11T02-39-10",
+          "dumpster-dive/intake/overnight-intelligence/arch-2026-02-11T03-00-12",
+          "dumpster-dive/intake/overnight-intelligence/arch-2026-02-17T02-00-04",
+          "dumpster-dive/intake/overnight-intelligence/arch-2026-02-18T02-00-06",
+          "dumpster-dive/intake/overnight-intelligence/arch-2026-02-19T02-00-05",
+          "dumpster-dive/intake/overnight-intelligence/arch-2026-02-20T02-00-06",
+          "dumpster-dive/intake/toolchain-probe"
+        ],
+        "lane_excluded": false,
+        "lane_excluded_count": 0,
+        "category": "unclassified",
+        "gold_grade": "raw_unrefined",
+        "runtime_support": {
+          "supported": true,
+          "supported_by": [
+            "python",
+            "typescript"
+          ],
+          "required_toolchains": [
+            "python",
+            "typescript"
+          ]
+        }
+      },
+      ".md": {
+        "count": 823,
+        "directories": [
+          ".",
+          ".claude/skills/artifact-upcycle",
+          ".claude/skills/claude-skill-bridge",
+          ".claude/skills/codex-skill-bridge",
+          ".claude/skills/conceptualize",
+          ".claude/skills/decision-razor",
+          ".claude/skills/gh-address-comments",
+          ".claude/skills/gh-fix-ci",
+          ".claude/skills/git-snapshot",
+          ".claude/skills/handoff-loop",
+          ".claude/skills/mailbox-handoff",
+          ".claude/skills/meta-polisher-validator",
+          ".claude/skills/postman",
+          ".claude/skills/scm-triage",
+          ".claude/skills/script-envelope",
+          ".claude/skills/sfa",
+          ".claude/skills/skill-polisher",
+          ".codex/skills/artifact-upcycle",
+          ".codex/skills/artifact-upcycle/references",
+          ".codex/skills/claude-skill-bridge",
+          ".codex/skills/codekiller-remediation-gate",
+          ".codex/skills/codex-skill-bridge",
+          ".codex/skills/conceptualize",
+          ".codex/skills/conceptualize/references",
+          ".codex/skills/corpse-reviver",
+          ".codex/skills/decision-razor",
+          ".codex/skills/dumpster-upcycler",
+          ".codex/skills/gh-address-comments",
+          ".codex/skills/gh-fix-ci",
+          ".codex/skills/mailbox-handoff",
+          ".codex/skills/meta-polisher-validator",
+          ".codex/skills/postman",
+          ".codex/skills/scm-triage",
+          ".codex/skills/script-envelope",
+          ".codex/skills/script-envelope/references",
+          ".codex/skills/session-resumer",
+          ".codex/skills/skill-polisher",
+          ".codex/skills/skill-polisher/fixtures/claude_missing_description",
+          ".codex/skills/skill-polisher/fixtures/claude_missing_frontmatter",
+          ".codex/skills/skill-polisher/fixtures/codex_missing_agents_yaml",
+          ".codex/skills/skill-polisher/fixtures/codex_missing_assets_dir",
+          ".codex/skills/skill-polisher/fixtures/missing_assets",
+          ".codex/skills/skill-polisher/fixtures/missing_openai_yaml",
+          ".codex/skills/skill-polisher/references",
+          ".gemini",
+          ".gemini/extensions/chthonic-archive-sync",
+          ".github",
+          ".github/codex-satellites",
+          ".github/copilot-inststructons-backups.md",
+          ".github/instructions",
+          ".github/prompts",
+          ".github/prompts/_learning",
+          ".github/prompts/archives",
+          ".github/ssot_backups",
+          ".temple/architecture",
+          ".temple/methodology",
+          ".temple/session-archives",
+          ".vscode",
+          "bun-playwright-poc",
+          "chthonic-golden",
+          "chthonic-golden/ankh",
+          "chthonic-golden/branding",
+          "chthonic-golden/patches",
+          "chthonic-golden/scripts",
+          "claude",
+          "claude-codex-gemini",
+          "claude-codex-gemini/ANKH_EGYPTOLOGY_SOUTH_AMERICAN",
+          "claude-codex-gemini/ANKH_EGYPTOLOGY_SOUTH_AMERICAN/BODY_SYSTEMS",
+          "claude-codex-gemini/TRIUVIRATE_ARCHITECTING_THREADS",
+          "claude-codex-gemini/context_packets",
+          "claude-codex-gemini/engineering_agentic_deep_research_candidates",
+          "claude-codex-gemini/engineering_agentic_deep_research_candidates/gemini-deep-research-2026-02",
+          "claude-codex-gemini/session_resumption_pickup",
+          "claude-codex-gemini/triadic-session-context",
+          "claude/mailbox",
+          "claude/mailbox/archive",
+          "claude/mailbox/archive/2026_02_07",
+          "claude/protocols",
+          "codex",
+          "codex/artifacts",
+          "codex/codex-session-logs",
+          "codex/codex-session-logs/archive",
+          "codex/codex-session-logs/archive/2026_02_08",
+          "codex/mailbox",
+          "codex/mailbox/ACTUAL-WORKING-HANDOFFS",
+          "codex/mailbox/VSCODE_INSIDERS_MATRIX_20260226T033112Z",
+          "codex/mailbox/VSCODE_INSIDERS_MATRIX_20260226T033146Z",
+          "codex/mailbox/VSCODE_INSIDERS_MATRIX_20260226T033328Z",
+          "codex/mailbox/VSCODE_INSIDERS_MATRIX_20260226T033855Z",
+          "codex/mailbox/VSCODE_INSIDERS_MATRIX_20260226T195738Z",
+          "codex/mailbox/VSCODE_INSIDERS_MATRIX_20260226T200037Z",
+          "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032245Z",
+          "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032320Z",
+          "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032459Z",
+          "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032547Z",
+          "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032622Z",
+          "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T033307Z",
+          "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T033834Z",
+          "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T034024Z",
+          "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T034240Z",
+          "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T195738Z",
+          "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T200100Z",
+          "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T200225Z",
+          "codex/mailbox/archive",
+          "codex/mailbox/archive/2026_02_07",
+          "codex/mailbox/archive/2026_02_10_cleanup",
+          "codex/mailbox/archive/2026_02_10_meta_cleanup",
+          "codex/mailbox/archive/2026_02_10_meta_cleanup/.tmp_fixture_eval/claude_missing_description",
+          "codex/mailbox/archive/2026_02_10_meta_cleanup/.tmp_fixture_eval/claude_missing_frontmatter",
+          "codex/mailbox/archive/2026_02_10_meta_cleanup/.tmp_fixture_eval/codex_missing_agents_yaml",
+          "codex/mailbox/archive/2026_02_10_meta_cleanup/.tmp_fixture_eval/codex_missing_assets_dir",
+          "codex/mailbox/archive/2026_02_10_meta_cleanup/.tmp_fixture_eval/missing_assets",
+          "codex/mailbox/archive/2026_02_10_meta_cleanup/.tmp_fixture_eval/missing_openai_yaml",
+          "codex/mailbox/archive/art-cop",
+          "codex/mailbox/archive/hf-rankings",
+          "codex/reports",
+          "dev",
+          "docs",
+          "docs/architecture",
+          "docs/design",
+          "docs/frameworks",
+          "docs/frameworks/ankh",
+          "docs/handoffs",
+          "docs/lore",
+          "docs/ops",
+          "docs/protocols",
+          "docs/reference",
+          "docs/reference/bun-playwright",
+          "docs/reference/epistemograph",
+          "docs/standards",
+          "dumpster-dive",
+          "dumpster-dive/archive/deep-research",
+          "dumpster-dive/archive/docs-sessions",
+          "dumpster-dive/archive/health_reports_2026-01",
+          "dumpster-dive/archive/instructions-backup-20251230",
+          "dumpster-dive/archive/sessions_2026-01",
+          "dumpster-dive/autonomous-sessions/session-2026-01-01-0837",
+          "dumpster-dive/consolidated/dcrp",
+          "dumpster-dive/forge",
+          "dumpster-dive/forge/anvil",
+          "dumpster-dive/forge/extension-archaeology",
+          "dumpster-dive/forge/extension-archaeology/theme-research",
+          "dumpster-dive/forge/furnace",
+          "dumpster-dive/forge/intake",
+          "dumpster-dive/forge/quench",
+          "dumpster-dive/forge/slag",
+          "dumpster-dive/forge/tea-vault",
+          "dumpster-dive/forge/tempered",
+          "dumpster-dive/from-github",
+          "dumpster-dive/from-github/macro-prompt-world",
+          "dumpster-dive/from-github/macro-prompt-world/disparate-md-documentation",
+          "dumpster-dive/from-github/macro-prompt-world/even-more-disparate-extranerrous-md-documentation",
+          "dumpster-dive/from-github/macro-prompt-world/even-more-disparate-extranerrous-md-documentation/in-a-possible-future-when-other-stuff-is-done",
+          "dumpster-dive/from-github/macro-prompt-world/heritage",
+          "dumpster-dive/from-github/macro-prompt-world/macro-prompt-world-v2",
+          "dumpster-dive/from-github/macro-prompt-world/macro-prompt-world-v2/archive-world",
+          "dumpster-dive/from-github/macro-prompt-world/macro-prompt-world-v2/archive-world/deprecated",
+          "dumpster-dive/from-github/macro-prompt-world/macro-prompt-world-v2/body-system",
+          "dumpster-dive/from-github/macro-prompt-world/macro-prompt-world-v2/districts",
+          "dumpster-dive/from-github/macro-prompt-world/macro-prompt-world-v2/governance",
+          "dumpster-dive/from-github/macro-prompt-world/macro-prompt-world-v2/grimoires",
+          "dumpster-dive/from-github/macro-prompt-world/macro-prompt-world-v2/integration",
+          "dumpster-dive/from-github/macro-prompt-world/macro-prompt-world-v2/metrics",
+          "dumpster-dive/from-github/macro-prompt-world/minor-factions",
+          "dumpster-dive/from-github/macro-prompt-world/prime-factions",
+          "dumpster-dive/from-github/macro-prompt-world/sub-milfs",
+          "dumpster-dive/from-github/macro-prompt-world/validation",
+          "dumpster-dive/from-github/meta-audit-artifacts",
+          "dumpster-dive/from-github/ssot-backups-consolidated",
+          "dumpster-dive/intake",
+          "dumpster-dive/intake/archetype-fodder",
+          "dumpster-dive/intake/claude-ide-harden-2026-02-10",
+          "dumpster-dive/intake/claudine-harvest",
+          "dumpster-dive/intake/overnight-intelligence/arch-2026-02-11T02-27-22",
+          "dumpster-dive/intake/overnight-intelligence/arch-2026-02-11T02-39-10",
+          "dumpster-dive/intake/overnight-intelligence/arch-2026-02-11T03-00-12",
+          "dumpster-dive/intake/overnight-intelligence/arch-2026-02-17T02-00-04",
+          "dumpster-dive/intake/overnight-intelligence/arch-2026-02-18T02-00-06",
+          "dumpster-dive/intake/overnight-intelligence/arch-2026-02-19T02-00-05",
+          "dumpster-dive/intake/overnight-intelligence/arch-2026-02-20T02-00-06",
+          "dumpster-dive/intake/overnight-siphon/20251226_090059/.github/instructions",
+          "dumpster-dive/intake/pr-harvest-2026-01-29",
+          "dumpster-dive/intake/pr-harvest-2026-01-29/pr1-copilot-research/tier-1-direct",
+          "dumpster-dive/intake/pr-harvest-2026-01-29/tier-3-conceptual",
+          "dumpster-dive/intake/protocols",
+          "dumpster-dive/intake/templates",
+          "dumpster-dive/intake/templates/lineage-A-template",
+          "dumpster-dive/intake/templates/lineage-B-template",
+          "dumpster-dive/intake/templates/lineage-C-template",
+          "dumpster-dive/protocols",
+          "extensions/chthonic-archive",
+          "extensions/chthonic-mandala",
+          "extensions/chthonic-statusbar",
+          "extensions/context-compressor",
+          "extensions/reflex-guard",
+          "extensions/spec-enforcer",
+          "mas_mcp",
+          "mas_mcp/docs",
+          "mas_mcp/frontend",
+          "scripts"
+        ],
+        "lane_excluded": false,
+        "lane_excluded_count": 0,
+        "category": "documentation",
+        "gold_grade": "tier_3_conceptual",
+        "runtime_support": {
+          "supported": true,
+          "supported_by": [],
+          "required_toolchains": []
+        }
+      },
+      ".md\"": {
+        "count": 3,
+        "directories": [
+          "\"dumpster-dive/from-github/macro-prompt-world/disparate-md-documentation/ASC-BP-V-/316/251.B.X/316",
+          "\"dumpster-dive/from-github/macro-prompt-world/macro-prompt-world-v2/ASC_Brahmanica_Perfectus_V_/316/251.B.X/316",
+          "\"dumpster-dive/from-github/macro-prompt-world/macro-prompt-world-v2/archive-world/ASC-BP-V-/316/251.B.X/316"
+        ],
+        "lane_excluded": false,
+        "lane_excluded_count": 0,
+        "category": "documentation",
+        "gold_grade": "tier_3_conceptual",
+        "runtime_support": {
+          "supported": true,
+          "supported_by": [],
+          "required_toolchains": []
+        }
+      },
+      ".mjs": {
+        "count": 1,
+        "directories": [
+          "scripts"
+        ],
+        "lane_excluded": true,
+        "lane_excluded_count": 1,
+        "category": "source_code",
+        "gold_grade": "tier_1_direct",
+        "runtime_support": {
+          "supported": true,
+          "supported_by": [
+            "typescript"
+          ],
+          "required_toolchains": [
+            "typescript"
+          ]
+        }
+      },
+      ".off": {
+        "count": 7,
+        "directories": [
+          ".github/workflows"
+        ],
+        "lane_excluded": false,
+        "lane_excluded_count": 0,
+        "category": "governance",
+        "gold_grade": "raw_unrefined",
+        "runtime_support": {
+          "supported": true,
+          "supported_by": [],
+          "required_toolchains": []
+        }
+      },
+      ".png": {
+        "count": 6,
+        "directories": [
+          ".codex/skills/gh-address-comments/assets",
+          ".codex/skills/gh-fix-ci/assets",
+          "assets/concept-art",
+          "extensions/chthonic-archive/icons",
+          "extensions/chthonic-mandala/icons"
+        ],
+        "lane_excluded": false,
+        "lane_excluded_count": 0,
+        "category": "build_output",
+        "gold_grade": "raw_unrefined",
+        "runtime_support": {
+          "supported": true,
+          "supported_by": [],
+          "required_toolchains": []
+        }
+      },
+      ".ps1": {
+        "count": 109,
+        "directories": [
+          ".github/tools",
+          "chthonic-golden/scripts",
+          "docs/standards/templates",
+          "dumpster-dive",
+          "dumpster-dive/intake/claude-ide-harden-2026-02-10/raw",
+          "dumpster-dive/intake/claude-ide-harden-2026-02-10/tier-1-direct",
+          "dumpster-dive/intake/overnight-siphon/20251226_090059/.github/tools",
+          "dumpster-dive/intake/overnight-siphon/20251226_090059/scripts",
+          "extensions/chthonic-archive/scripts",
+          "extensions/reflex-guard/scripts",
+          "mas_mcp",
+          "scripts"
+        ],
+        "lane_excluded": true,
+        "lane_excluded_count": 1,
+        "category": "source_code",
+        "gold_grade": "tier_1_direct",
+        "runtime_support": {
+          "supported": true,
+          "supported_by": [
+            "powershell"
+          ],
+          "required_toolchains": [
+            "powershell"
+          ]
+        }
+      },
+      ".py": {
+        "count": 222,
+        "directories": [
+          ".codex/skills/artifact-upcycle/scripts",
+          ".codex/skills/codekiller-remediation-gate/scripts",
+          ".codex/skills/corpse-reviver/scripts",
+          ".codex/skills/dumpster-upcycler/scripts",
+          ".codex/skills/gh-address-comments/scripts",
+          ".codex/skills/gh-fix-ci/scripts",
+          ".codex/skills/mailbox-handoff/scripts",
+          ".codex/skills/script-envelope/scripts",
+          ".codex/skills/session-resumer/scripts",
+          ".codex/skills/skill-polisher/scripts",
+          ".github/prompts",
+          "codex/codex-session-logs/archive",
+          "docs/standards/templates",
+          "dumpster-dive/forge/extension-archaeology/deprecated",
+          "dumpster-dive/intake/pr-harvest-2026-01-29/tier-1-direct",
+          "dumpster-dive/scripts",
+          "extensions/chthonic-archive/.chthonic/python",
+          "extensions/reflex-guard/.chthonic",
+          "mas_mcp",
+          "mas_mcp/abbreviation_system",
+          "mas_mcp/lib",
+          "mas_mcp/scripts",
+          "mas_mcp/scripts/abbrev",
+          "mas_mcp/scripts/ssot_abbrev",
+          "mas_mcp/tests",
+          "scripts"
+        ],
+        "lane_excluded": true,
+        "lane_excluded_count": 15,
+        "category": "source_code",
+        "gold_grade": "tier_1_direct",
+        "runtime_support": {
+          "supported": true,
+          "supported_by": [
+            "python"
+          ],
+          "required_toolchains": [
+            "python"
+          ]
+        }
+      },
+      ".python-version": {
+        "count": 2,
+        "directories": [
+          "claude",
+          "mas_mcp"
+        ],
+        "lane_excluded": false,
+        "lane_excluded_count": 0,
+        "category": "domain_specific",
+        "gold_grade": "tier_2_structural",
+        "runtime_support": {
+          "supported": true,
+          "supported_by": [
+            "python"
+          ],
+          "required_toolchains": [
+            "python"
+          ]
+        }
+      },
+      ".rb": {
+        "count": 1,
+        "directories": [
+          "extensions/chthonic-archive/.chthonic/ruby"
+        ],
+        "lane_excluded": false,
+        "lane_excluded_count": 0,
+        "category": "source_code",
+        "gold_grade": "tier_1_direct",
+        "runtime_support": {
+          "supported": true,
+          "supported_by": [
+            "ruby"
+          ],
+          "required_toolchains": [
+            "ruby"
+          ]
+        }
+      },
+      ".rs": {
+        "count": 33,
+        "directories": [
+          ".",
+          "docs/standards/templates",
+          "dumpster-dive/intake/overnight-siphon/20251226_090059",
+          "dumpster-dive/intake/overnight-siphon/20251226_090059/src",
+          "extensions/chthonic-archive/native/chthonic-daemon/src",
+          "extensions/chthonic-archive/native/chthonic-synapse-schema/src",
+          "extensions/chthonic-archive/native/entropy-ledger-host/src",
+          "extensions/chthonic-archive/native/entropy-renderer-wasm/src",
+          "extensions/chthonic-archive/native/synapse-node",
+          "extensions/chthonic-archive/native/synapse-node/src",
+          "extensions/chthonic-archive/native/xtask/src",
+          "extensions/chthonic-archive/wasm/chthonic-loom/src",
+          "src",
+          "src/data",
+          "src/render"
+        ],
+        "lane_excluded": false,
+        "lane_excluded_count": 0,
+        "category": "source_code",
+        "gold_grade": "tier_1_direct",
+        "runtime_support": {
+          "supported": true,
+          "supported_by": [
+            "rust"
+          ],
+          "required_toolchains": [
+            "rust"
+          ]
+        }
+      },
+      ".sh": {
+        "count": 1,
+        "directories": [
+          "mas_mcp/scripts"
+        ],
+        "lane_excluded": false,
+        "lane_excluded_count": 0,
+        "category": "source_code",
+        "gold_grade": "tier_1_direct",
+        "runtime_support": {
+          "supported": false,
+          "supported_by": [],
+          "required_toolchains": [
+            "shell"
+          ]
+        }
+      },
+      ".svg": {
+        "count": 207,
+        "directories": [
+          ".claude/skills/artifact-upcycle/assets",
+          ".claude/skills/claude-skill-bridge/assets",
+          ".claude/skills/codex-skill-bridge/assets",
+          ".claude/skills/conceptualize/assets",
+          ".claude/skills/decision-razor/assets",
+          ".claude/skills/gh-address-comments/assets",
+          ".claude/skills/gh-fix-ci/assets",
+          ".claude/skills/mailbox-handoff/assets",
+          ".claude/skills/meta-polisher-validator/assets",
+          ".claude/skills/script-envelope/assets",
+          ".claude/skills/skill-polisher/assets",
+          ".codex/skills/artifact-upcycle/assets",
+          ".codex/skills/codekiller-remediation-gate/assets",
+          ".codex/skills/conceptualize/assets",
+          ".codex/skills/decision-razor/assets",
+          ".codex/skills/dumpster-upcycler/assets",
+          ".codex/skills/gh-address-comments/assets",
+          ".codex/skills/gh-fix-ci/assets",
+          ".codex/skills/mailbox-handoff/assets",
+          ".codex/skills/meta-polisher-validator/assets",
+          ".codex/skills/postman/assets",
+          ".codex/skills/scm-triage/assets",
+          ".codex/skills/script-envelope/assets",
+          ".codex/skills/session-resumer/assets",
+          ".codex/skills/skill-polisher/assets",
+          ".codex/skills/skill-polisher/fixtures/codex_missing_agents_yaml/assets",
+          ".codex/skills/skill-polisher/fixtures/missing_assets/assets",
+          ".codex/skills/skill-polisher/fixtures/missing_openai_yaml/assets",
+          "codex/mailbox/archive/2026_02_10_meta_cleanup/.tmp_fixture_eval/codex_missing_agents_yaml/assets",
+          "codex/mailbox/archive/2026_02_10_meta_cleanup/.tmp_fixture_eval/missing_assets/assets",
+          "codex/mailbox/archive/2026_02_10_meta_cleanup/.tmp_fixture_eval/missing_openai_yaml/assets",
+          "extensions/chthonic-archive/icons",
+          "extensions/chthonic-archive/resources",
+          "extensions/chthonic-archive/themes/icons",
+          "extensions/chthonic-archive/themes/icons/product",
+          "extensions/chthonic-mandala/icons",
+          "extensions/chthonic-mandala/resources"
+        ],
+        "lane_excluded": true,
+        "lane_excluded_count": 43,
+        "category": "graphics_gpu",
+        "gold_grade": "raw_unrefined",
+        "runtime_support": {
+          "supported": true,
+          "supported_by": [],
+          "required_toolchains": []
+        }
+      },
+      ".test.ts": {
+        "count": 7,
+        "directories": [
+          "dumpster-dive/forge/extension-archaeology/diagnostics-tests"
+        ],
+        "lane_excluded": false,
+        "lane_excluded_count": 0,
+        "category": "unclassified",
+        "gold_grade": "raw_unrefined",
+        "runtime_support": {
+          "supported": true,
+          "supported_by": [],
+          "required_toolchains": []
+        }
+      },
+      ".toml": {
+        "count": 22,
+        "directories": [
+          ".",
+          ".cargo",
+          ".github/commands",
+          "dumpster-dive/intake/overnight-siphon/20251226_090059",
+          "extensions/chthonic-archive/.chthonic",
+          "extensions/chthonic-archive/.chthonic/python",
+          "extensions/chthonic-archive/native",
+          "extensions/chthonic-archive/native/.cargo",
+          "extensions/chthonic-archive/native/chthonic-daemon",
+          "extensions/chthonic-archive/native/chthonic-synapse-schema",
+          "extensions/chthonic-archive/native/entropy-ledger-host",
+          "extensions/chthonic-archive/native/entropy-renderer-wasm",
+          "extensions/chthonic-archive/native/synapse-node",
+          "extensions/chthonic-archive/native/xtask",
+          "extensions/chthonic-archive/wasm/chthonic-loom",
+          "mas_mcp",
+          "mas_mcp/frontend"
+        ],
+        "lane_excluded": false,
+        "lane_excluded_count": 0,
+        "category": "data_config",
+        "gold_grade": "tier_2_structural",
+        "runtime_support": {
+          "supported": true,
+          "supported_by": [
+            "python",
+            "rust"
+          ],
+          "required_toolchains": [
+            "python",
+            "rust"
+          ]
+        }
+      },
+      ".ts": {
+        "count": 87,
+        "directories": [
+          "bun-playwright-poc",
+          "bun-playwright-poc/src",
+          "docs/standards/templates",
+          "dumpster-dive/forge/extension-archaeology",
+          "dumpster-dive/forge/extension-archaeology/extracted",
+          "extensions/chthonic-archive/scripts",
+          "extensions/chthonic-archive/src",
+          "extensions/chthonic-archive/src/entropy",
+          "extensions/chthonic-archive/src/monolith",
+          "extensions/chthonic-archive/src/polyglot",
+          "extensions/chthonic-archive/src/reactor",
+          "extensions/chthonic-mandala/src",
+          "extensions/chthonic-statusbar/src",
+          "extensions/spec-enforcer/src",
+          "mas_mcp/frontend",
+          "mas_mcp/frontend/api",
+          "mas_mcp/frontend/lib",
+          "mas_mcp/frontend/pages/api",
+          "mas_mcp/frontend/pages/api/metrics",
+          "scripts"
+        ],
+        "lane_excluded": false,
+        "lane_excluded_count": 0,
+        "category": "source_code",
+        "gold_grade": "tier_1_direct",
+        "runtime_support": {
+          "supported": true,
+          "supported_by": [
+            "typescript"
+          ],
+          "required_toolchains": [
+            "typescript"
+          ]
+        }
+      },
+      ".tsbuildinfo": {
+        "count": 1,
+        "directories": [
+          "mas_mcp/frontend"
+        ],
+        "lane_excluded": false,
+        "lane_excluded_count": 0,
+        "category": "build_output",
+        "gold_grade": "raw_unrefined",
+        "runtime_support": {
+          "supported": true,
+          "supported_by": [
+            "typescript"
+          ],
+          "required_toolchains": [
+            "typescript"
+          ]
+        }
+      },
+      ".tsx": {
+        "count": 14,
+        "directories": [
+          "mas_mcp/frontend/components",
+          "mas_mcp/frontend/pages"
+        ],
+        "lane_excluded": false,
+        "lane_excluded_count": 0,
+        "category": "source_code",
+        "gold_grade": "tier_1_direct",
+        "runtime_support": {
+          "supported": true,
+          "supported_by": [
+            "typescript"
+          ],
+          "required_toolchains": [
+            "typescript"
+          ]
+        }
+      },
+      ".txt": {
+        "count": 60,
+        "directories": [
+          ".codex/skills/artifact-upcycle",
+          ".codex/skills/conceptualize",
+          ".codex/skills/gh-address-comments",
+          ".codex/skills/gh-fix-ci",
+          ".github/prompts/raw",
+          "claude-codex-gemini/session_resumption_pickup",
+          "claude/mailbox",
+          "codex/codex-session-logs",
+          "codex/codex-session-logs/archive",
+          "codex/mailbox",
+          "dumpster-dive/consolidated/dcrp",
+          "dumpster-dive/intake/sentry-probe/20251226_225241",
+          "dumpster-dive/intake/sentry-probe/20251226_225319",
+          "dumpster-dive/intake/sentry-probe/20251226_225559",
+          "dumpster-dive/intake/sentry-probe/20251226_225620",
+          "dumpster-dive/intake/toolchain-probe",
+          "dumpster-dive/intake/toolchain-probe/20251226_091408",
+          "dumpster-dive/intake/toolchain-probe/20251226_091609",
+          "dumpster-dive/intake/toolchain-probe/20251226_092121",
+          "dumpster-dive/intake/toolchain-probe/20251226_092417",
+          "dumpster-dive/intake/toolchain-probe/20251226_093231",
+          "dumpster-dive/intake/toolchain-probe/20251226_093529",
+          "dumpster-dive/intake/toolchain-probe/20251226_093610",
+          "dumpster-dive/intake/toolchain-probe/20251226_093639",
+          "dumpster-dive/intake/toolchain-probe/20251226_093755",
+          "dumpster-dive/intake/toolchain-probe/20251226_093820",
+          "dumpster-dive/intake/toolchain-probe/20251226_093907",
+          "dumpster-dive/intake/toolchain-probe/20251226_094037",
+          "dumpster-dive/intake/toolchain-probe/20251226_094121",
+          "dumpster-dive/intake/toolchain-probe/20251226_094513",
+          "dumpster-dive/intake/toolchain-probe/20251227_002544",
+          "extensions/chthonic-archive/.chthonic/python"
+        ],
+        "lane_excluded": false,
+        "lane_excluded_count": 0,
+        "category": "documentation",
+        "gold_grade": "tier_3_conceptual",
+        "runtime_support": {
+          "supported": true,
+          "supported_by": [],
+          "required_toolchains": []
+        }
+      },
+      ".vert": {
+        "count": 1,
+        "directories": [
+          "assets/shaders"
+        ],
+        "lane_excluded": false,
+        "lane_excluded_count": 0,
+        "category": "graphics_gpu",
+        "gold_grade": "raw_unrefined",
+        "runtime_support": {
+          "supported": true,
+          "supported_by": [
+            "glsl"
+          ],
+          "required_toolchains": [
+            "glsl"
+          ]
+        }
+      },
+      ".vscodeignore": {
+        "count": 3,
+        "directories": [
+          "extensions/chthonic-archive",
+          "extensions/chthonic-mandala",
+          "extensions/chthonic-statusbar"
+        ],
+        "lane_excluded": false,
+        "lane_excluded_count": 0,
+        "category": "vcs_meta",
+        "gold_grade": "tier_2_structural",
+        "runtime_support": {
+          "supported": true,
+          "supported_by": [],
+          "required_toolchains": []
+        }
+      },
+      ".vsconfig": {
+        "count": 5,
+        "directories": [
+          "codex/mailbox"
+        ],
+        "lane_excluded": false,
+        "lane_excluded_count": 0,
+        "category": "governance",
+        "gold_grade": "raw_unrefined",
+        "runtime_support": {
+          "supported": true,
+          "supported_by": [
+            "dotnet"
+          ],
+          "required_toolchains": [
+            "dotnet"
+          ]
+        }
+      },
+      ".woff": {
+        "count": 1,
+        "directories": [
+          "extensions/chthonic-archive/themes/fonts"
+        ],
+        "lane_excluded": true,
+        "lane_excluded_count": 1,
+        "category": "build_output",
+        "gold_grade": "raw_unrefined",
+        "runtime_support": {
+          "supported": true,
+          "supported_by": [],
+          "required_toolchains": []
+        }
+      },
+      ".yaml": {
+        "count": 19,
+        "directories": [
+          ".codex/skills/artifact-upcycle/agents",
+          ".codex/skills/codekiller-remediation-gate/agents",
+          ".codex/skills/conceptualize/agents",
+          ".codex/skills/decision-razor/agents",
+          ".codex/skills/dumpster-upcycler/agents",
+          ".codex/skills/gh-address-comments/agents",
+          ".codex/skills/gh-fix-ci/agents",
+          ".codex/skills/mailbox-handoff/agents",
+          ".codex/skills/meta-polisher-validator/agents",
+          ".codex/skills/postman/agents",
+          ".codex/skills/scm-triage/agents",
+          ".codex/skills/script-envelope/agents",
+          ".codex/skills/session-resumer/agents",
+          ".codex/skills/skill-polisher/agents",
+          ".codex/skills/skill-polisher/fixtures/codex_missing_assets_dir/agents",
+          ".codex/skills/skill-polisher/fixtures/missing_assets/agents",
+          "codex/mailbox/archive/2026_02_10_meta_cleanup/.tmp_fixture_eval/codex_missing_assets_dir/agents",
+          "codex/mailbox/archive/2026_02_10_meta_cleanup/.tmp_fixture_eval/missing_assets/agents",
+          "dumpster-dive/archive/instructions-backup-20251230"
+        ],
+        "lane_excluded": false,
+        "lane_excluded_count": 0,
+        "category": "data_config",
+        "gold_grade": "tier_2_structural",
+        "runtime_support": {
+          "supported": true,
+          "supported_by": [
+            "python",
+            "typescript"
+          ],
+          "required_toolchains": [
+            "python",
+            "typescript"
+          ]
+        }
+      },
+      ".yml": {
+        "count": 6,
+        "directories": [
+          ".github/workflows",
+          "dumpster-dive/intake/templates",
+          "dumpster-dive/intake/templates/lineage-A-template",
+          "dumpster-dive/intake/templates/lineage-B-template",
+          "dumpster-dive/intake/templates/lineage-C-template"
+        ],
+        "lane_excluded": false,
+        "lane_excluded_count": 0,
+        "category": "data_config",
+        "gold_grade": "tier_2_structural",
+        "runtime_support": {
+          "supported": true,
+          "supported_by": [
+            "python",
+            "typescript"
+          ],
+          "required_toolchains": [
+            "python",
+            "typescript"
+          ]
+        }
+      },
+      "[no_ext]": {
+        "count": 4,
+        "directories": [
+          "claude-codex-gemini/triadic-session-context",
+          "codex/codex-session-logs/archive",
+          "dev",
+          "extensions/chthonic-archive/.chthonic/ruby"
+        ],
+        "lane_excluded": false,
+        "lane_excluded_count": 0,
+        "category": "unclassified",
+        "gold_grade": "raw_unrefined",
+        "runtime_support": {
+          "supported": true,
+          "supported_by": [],
+          "required_toolchains": []
+        }
+      }
+    },
+    "by_category": {
+      "build_output": [
+        ".db",
+        ".png",
+        ".tsbuildinfo",
+        ".woff"
+      ],
+      "data_config": [
+        ".env",
+        ".json",
+        ".jsonl",
+        ".lock",
+        ".toml",
+        ".yaml",
+        ".yml"
+      ],
+      "documentation": [
+        ".md",
+        ".md\"",
+        ".txt"
+      ],
+      "domain_specific": [
+        ".python-version"
+      ],
+      "governance": [
+        ".bak",
+        ".off",
+        ".vsconfig"
+      ],
+      "graphics_gpu": [
+        ".comp",
+        ".frag",
+        ".svg",
+        ".vert"
+      ],
+      "source_code": [
+        ".bat",
+        ".cjs",
+        ".css",
+        ".html",
+        ".js",
+        ".mjs",
+        ".ps1",
+        ".py",
+        ".rb",
+        ".rs",
+        ".sh",
+        ".ts",
+        ".tsx"
+      ],
+      "unclassified": [
+        ".cpython-313.pyc",
+        ".d.ts",
+        ".log",
+        ".test.ts",
+        "[no_ext]"
+      ],
+      "vcs_meta": [
+        ".copilotignore",
+        ".geminiignore",
+        ".gitattributes",
+        ".gitignore",
+        ".gitkeep",
+        ".keep",
+        ".vscodeignore"
+      ]
+    }
+  },
+  "system_toolchains": {
+    "installed": [
+      "rust",
+      "python",
+      "ruby",
+      "go",
+      "typescript",
+      "dotnet",
+      "c_cpp",
+      "perl",
+      "powershell",
+      "batch",
+      "glsl"
+    ],
+    "oxidized": [
+      "rust",
+      "python",
+      "ruby",
+      "go",
+      "typescript"
+    ],
+    "unoxidized_installed": [
+      "dotnet",
+      "c_cpp",
+      "perl",
+      "powershell",
+      "batch",
+      "glsl"
+    ],
+    "oxidized_available_not_installed": [
+      "julia (juliaup)",
+      "zig (zigup)",
+      "nodejs (fnm/volta)"
+    ],
+    "no_oxidized_tooling_exists": [
+      "php",
+      "elixir",
+      "lua",
+      "java",
+      "haskell",
+      "cobol",
+      "shell"
+    ],
+    "details": {
+      "batch": {
+        "display_name": "Windows Batch",
+        "installed": true,
+        "runtime_version": "10.0.26200.7840",
+        "runtime_output": "Microsoft Windows [Version 10.0.26200.7840]",
+        "manager": null,
+        "manager_installed": false,
+        "manager_version": null,
+        "oxidized": false
+      },
+      "c_cpp": {
+        "display_name": "C/C++",
+        "installed": true,
+        "runtime_version": "15.2.0",
+        "runtime_output": "gcc (Rev9, Built by MSYS2 project) 15.2.0\nCopyright (C) 2025 Free Software Foundation, Inc.\nThis is free software; see the source for copying conditions.  There is NO\nwarranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.",
+        "manager": null,
+        "manager_installed": false,
+        "manager_version": null,
+        "oxidized": false
+      },
+      "cobol": {
+        "display_name": "COBOL",
+        "installed": false,
+        "runtime_version": null,
+        "runtime_output": null,
+        "manager": null,
+        "manager_installed": false,
+        "manager_version": null,
+        "oxidized": false
+      },
+      "dotnet": {
+        "display_name": ".NET / C# / F#",
+        "installed": true,
+        "runtime_version": "10.0.200",
+        "runtime_output": "10.0.200-preview.0.26103.119",
+        "manager": null,
+        "manager_installed": false,
+        "manager_version": null,
+        "oxidized": false
+      },
+      "elixir": {
+        "display_name": "Elixir",
+        "installed": false,
+        "runtime_version": null,
+        "runtime_output": null,
+        "manager": null,
+        "manager_installed": false,
+        "manager_version": null,
+        "oxidized": false
+      },
+      "glsl": {
+        "display_name": "GLSL / Shader Tooling",
+        "installed": true,
+        "runtime_version": "16.2.0",
+        "runtime_output": "Glslang Version: 11:16.2.0\nESSL Version: OpenGL ES GLSL 3.20 glslang Khronos. 16.2.0\nGLSL Version: 4.60 glslang Khronos. 16.2.0\nSPIR-V Version 0x00010600, Revision 1\nGLSL.std.450 Version 100, Revision 1\nKhronos Tool ID 8\nSPIR-V Generator Version 11\nGL_KHR_vulkan_glsl version 100\nARB_GL_gl_spirv version 100",
+        "manager": null,
+        "manager_installed": false,
+        "manager_version": null,
+        "oxidized": false
+      },
+      "go": {
+        "display_name": "Go",
+        "installed": true,
+        "runtime_version": "1.26.0",
+        "runtime_output": "go version go1.26.0 windows/amd64",
+        "manager": "goup",
+        "manager_installed": true,
+        "manager_version": "0.16.10",
+        "oxidized": true
+      },
+      "haskell": {
+        "display_name": "Haskell",
+        "installed": false,
+        "runtime_version": null,
+        "runtime_output": null,
+        "manager": "ghcup",
+        "manager_installed": false,
+        "manager_version": null,
+        "oxidized": false
+      },
+      "java": {
+        "display_name": "Java",
+        "installed": false,
+        "runtime_version": null,
+        "runtime_output": null,
+        "manager": null,
+        "manager_installed": false,
+        "manager_version": null,
+        "oxidized": false
+      },
+      "julia": {
+        "display_name": "Julia",
+        "installed": false,
+        "runtime_version": null,
+        "runtime_output": null,
+        "manager": "juliaup",
+        "manager_installed": false,
+        "manager_version": null,
+        "oxidized": true
+      },
+      "lua": {
+        "display_name": "Lua",
+        "installed": false,
+        "runtime_version": null,
+        "runtime_output": null,
+        "manager": null,
+        "manager_installed": false,
+        "manager_version": null,
+        "oxidized": false
+      },
+      "nodejs": {
+        "display_name": "Node.js",
+        "installed": false,
+        "runtime_version": null,
+        "runtime_output": null,
+        "manager": "fnm/volta",
+        "manager_installed": false,
+        "manager_version": null,
+        "oxidized": true
+      },
+      "perl": {
+        "display_name": "Perl",
+        "installed": true,
+        "runtime_version": "5.38.5",
+        "runtime_output": "This is perl 5, version 38, subversion 5 (v5.38.5) built for MSWin32-x64-multi-thread\n\nCopyright 1987-2025, Larry Wall\n\nPerl may be copied only under the terms of either the Artistic License or the\nGNU General Public License, which may be found in the Perl 5 source kit.\n\nComplete documentation for Perl, including FAQ lists, should be found on\nthis system using \"man perl\" or \"perldoc perl\".  If you have access to the\nInternet, point your browser at https://www.perl.org/, the Perl Home Page.",
+        "manager": null,
+        "manager_installed": false,
+        "manager_version": null,
+        "oxidized": false
+      },
+      "php": {
+        "display_name": "PHP",
+        "installed": false,
+        "runtime_version": null,
+        "runtime_output": null,
+        "manager": null,
+        "manager_installed": false,
+        "manager_version": null,
+        "oxidized": false
+      },
+      "powershell": {
+        "display_name": "PowerShell",
+        "installed": true,
+        "runtime_version": "7.5.4",
+        "runtime_output": "PowerShell 7.5.4",
+        "manager": null,
+        "manager_installed": false,
+        "manager_version": null,
+        "oxidized": false
+      },
+      "python": {
+        "display_name": "Python",
+        "installed": true,
+        "runtime_version": "3.14.3",
+        "runtime_output": "Python 3.14.3",
+        "manager": "uv",
+        "manager_installed": true,
+        "manager_version": "0.10.7",
+        "oxidized": true
+      },
+      "ruby": {
+        "display_name": "Ruby",
+        "installed": true,
+        "runtime_version": "4.0.1",
+        "runtime_output": "ruby 4.0.1 (2026-01-13 revision e04267a14b) +PRISM [x64-mingw-ucrt]",
+        "manager": "rv",
+        "manager_installed": true,
+        "manager_version": "0.5.2",
+        "oxidized": true
+      },
+      "rust": {
+        "display_name": "Rust",
+        "installed": true,
+        "runtime_version": "1.93.1",
+        "runtime_output": "rustc 1.93.1 (01f6ddf75 2026-02-11)",
+        "manager": "rustup",
+        "manager_installed": true,
+        "manager_version": "1.28.2",
+        "oxidized": "self_oxidizing"
+      },
+      "shell": {
+        "display_name": "POSIX Shell",
+        "installed": false,
+        "runtime_version": null,
+        "runtime_output": "W\u0000i\u0000n\u0000d\u0000o\u0000w\u0000s\u0000 \u0000S\u0000u\u0000b\u0000s\u0000y\u0000s\u0000t\u0000e\u0000m\u0000 \u0000f\u0000o\u0000r\u0000 \u0000L\u0000i\u0000n\u0000u\u0000x\u0000 \u0000h\u0000a\u0000s\u0000 \u0000n\u0000o\u0000 \u0000i\u0000n\u0000s\u0000t\u0000a\u0000l\u0000l\u0000e\u0000d\u0000 \u0000d\u0000i\u0000s\u0000t\u0000r\u0000i\u0000b\u0000u\u0000t\u0000i\u0000o\u0000n\u0000s\u0000.\u0000\n\u0000\n\u0000Y\u0000o\u0000u\u0000 \u0000c\u0000a\u0000n\u0000 \u0000r\u0000e\u0000s\u0000o\u0000l\u0000v\u0000e\u0000 \u0000t\u0000h\u0000i\u0000s\u0000 \u0000b\u0000y\u0000 \u0000i\u0000n\u0000s\u0000t\u0000a\u0000l\u0000l\u0000i\u0000n\u0000g\u0000 \u0000a\u0000 \u0000d\u0000i\u0000s\u0000t\u0000r\u0000i\u0000b\u0000u\u0000t\u0000i\u0000o\u0000n\u0000 \u0000w\u0000i\u0000t\u0000h\u0000 \u0000t\u0000h\u0000e\u0000 \u0000i\u0000n\u0000s\u0000t\u0000r\u0000u\u0000c\u0000t\u0000i\u0000o\u0000n\u0000s\u0000 \u0000b\u0000e\u0000l\u0000o\u0000w\u0000:\u0000\n\u0000\n\u0000\n\u0000\n\u0000U\u0000s\u0000e\u0000 \u0000'\u0000w\u0000s\u0000l\u0000.\u0000e\u0000x\u0000e\u0000 \u0000-\u0000-\u0000l\u0000i\u0000s\u0000t\u0000 \u0000-\u0000-\u0000o\u0000n\u0000l\u0000i\u0000n\u0000e\u0000'\u0000 \u0000t\u0000o\u0000 \u0000l\u0000i\u0000s\u0000t\u0000 \u0000a\u0000v\u0000a\u0000i\u0000l\u0000a\u0000b\u0000l\u0000e\u0000 \u0000d\u0000i\u0000s\u0000t\u0000r\u0000i\u0000b\u0000u\u0000t\u0000i\u0000o\u0000n\u0000s\u0000\n\u0000\n\u0000a\u0000n\u0000d\u0000 \u0000'\u0000w\u0000s\u0000l\u0000.\u0000e\u0000x\u0000e\u0000 \u0000-\u0000-\u0000i\u0000n\u0000s\u0000t\u0000a\u0000l\u0000l\u0000 \u0000<\u0000D\u0000i\u0000s\u0000t\u0000r\u0000o\u0000>\u0000'\u0000 \u0000t\u0000o\u0000 \u0000i\u0000n\u0000s\u0000t\u0000a\u0000l\u0000l\u0000.\u0000\n\u0000\n\u0000",
+        "manager": null,
+        "manager_installed": false,
+        "manager_version": null,
+        "oxidized": false
+      },
+      "typescript": {
+        "display_name": "TypeScript/JS",
+        "installed": true,
+        "runtime_version": "1.3.9",
+        "runtime_output": "1.3.9",
+        "manager": "bun",
+        "manager_installed": true,
+        "manager_version": "1.3.9",
+        "oxidized": "honorary"
+      },
+      "zig": {
+        "display_name": "Zig",
+        "installed": false,
+        "runtime_version": null,
+        "runtime_output": null,
+        "manager": "zigup",
+        "manager_installed": false,
+        "manager_version": null,
+        "oxidized": "honorary"
+      }
+    }
+  },
+  "extension_gap": {
+    "viable_but_unrepresented": [
+      ".c",
+      ".cpp",
+      ".cs",
+      ".fsx",
+      ".go",
+      ".h",
+      ".pl"
+    ],
+    "dead_extensions": [
+      ".sh"
+    ],
+    "alchemy_opportunities": [
+      {
+        "target_ext": ".c",
+        "rationale": "GCC is installed; Rust data layouts can be surfaced as C-compatible headers and shims."
+      },
+      {
+        "target_ext": ".cpp",
+        "rationale": "G++ is installed; performance-sensitive utility patterns can be ported into native helpers."
+      },
+      {
+        "target_ext": ".cs",
+        "rationale": ".NET is installed; TypeScript interfaces can be mirrored as C# class contracts."
+      },
+      {
+        "target_ext": ".fsx",
+        "rationale": ".NET is installed; configuration and analysis flows can become F# scripts for typed automation."
+      },
+      {
+        "target_ext": ".go",
+        "rationale": "Go is installed; shell automation patterns can be recast as fast single-binary CLI tools."
+      },
+      {
+        "target_ext": ".h",
+        "rationale": "C headers are viable because Rust struct layouts can be exported for FFI bridges."
+      },
+      {
+        "target_ext": ".pl",
+        "rationale": "Perl is installed; text-heavy archaeology and extraction flows can be expressed as Perl utilities."
+      }
+    ]
+  },
+  "eol_risk": {
+    "rust": {
+      "version": "1.93.1",
+      "cycle": "1.93",
+      "eol": false,
+      "latest": "1.93.1",
+      "latest_release_date": "2026-02-12",
+      "support": null,
+      "extended_support": null,
+      "link": null,
+      "source": "https://endoflife.date"
+    },
+    "python": {
+      "version": "3.14.3",
+      "cycle": "3.14",
+      "eol": "2030-10-31",
+      "latest": "3.14.3",
+      "latest_release_date": "2026-02-03",
+      "support": "2027-10-01",
+      "extended_support": null,
+      "link": null,
+      "source": "https://endoflife.date"
+    },
+    "ruby": {
+      "version": "4.0.1",
+      "cycle": "4.0",
+      "eol": "2029-03-31",
+      "latest": "4.0.1",
+      "latest_release_date": "2026-01-12",
+      "support": null,
+      "extended_support": null,
+      "link": "https://www.ruby-lang.org/en/news/2025/12/25/ruby-4-0-0-released/",
+      "source": "https://endoflife.date"
+    },
+    "go": {
+      "version": "1.26.0",
+      "cycle": "1.26",
+      "eol": false,
+      "latest": "1.26.0",
+      "latest_release_date": "2026-02-10",
+      "support": null,
+      "extended_support": null,
+      "link": "https://go.dev/doc/go1.26",
+      "source": "https://endoflife.date"
+    },
+    "typescript": {
+      "version": "1.3.9",
+      "cycle": "1",
+      "eol": false,
+      "latest": "1.3.10",
+      "latest_release_date": "2026-02-25",
+      "support": null,
+      "extended_support": null,
+      "link": null,
+      "source": "https://endoflife.date"
+    },
+    "dotnet": {
+      "version": "10.0.200",
+      "cycle": "10",
+      "eol": "2028-11-14",
+      "latest": "10.0.3",
+      "latest_release_date": "2026-02-10",
+      "support": null,
+      "extended_support": null,
+      "link": null,
+      "source": "https://endoflife.date"
+    },
+    "perl": {
+      "version": "5.38.5",
+      "cycle": "5.38",
+      "eol": "2026-07-02",
+      "latest": "5.38.5",
+      "latest_release_date": "2025-08-03",
+      "support": "2025-07-03",
+      "extended_support": null,
+      "link": null,
+      "source": "https://endoflife.date"
+    }
+  },
+  "summary": {
+    "tracked_files": 2702,
+    "lane_excluded_files": 68,
+    "non_excluded_files": 2634,
+    "top_extensions": [
+      [
+        ".md",
+        823
+      ],
+      [
+        ".json",
+        662
+      ],
+      [
+        ".log",
+        340
+      ],
+      [
+        ".py",
+        222
+      ],
+      [
+        ".svg",
+        207
+      ],
+      [
+        ".ps1",
+        109
+      ],
+      [
+        ".ts",
+        87
+      ],
+      [
+        ".txt",
+        60
+      ],
+      [
+        ".rs",
+        33
+      ],
+      [
+        ".toml",
+        22
+      ]
+    ]
+  }
+}
