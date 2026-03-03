@@ -3,18 +3,16 @@ type: agent-guidance
 category: configuration
 created: 2026-01-31
 agent: codex
-description: OpenAI Codex behavioral configuration and execution discipline
+description: Behavioral configuration, execution discipline
 ---
 
 # AGENTS.md
 
-- This file provides guidance to OpenAI Codex when working with code in this repository.
-
+- This file provides guidance to Codex when working with code in this repository.
   - When tasked to check mailbox or deep-research files, prime for implementation, **not analysis**.
-
-  - When tasked to check TEMPLE files, prime for **structural analysis and enforcement**. When tasked to check GAME files, prime for **specification and mechanics validation**.
-
-- Always follow the "Execution Discipline" section below. 
+  
+- When tasked to check TEMPLE files, prime for **structural analysis and enforcement**. When tasked to check GAME files, prime for **specification and mechanics validation**.
+  - Always follow the "Execution Discipline" section below. 
 
 ## Mandatories
 
@@ -23,16 +21,17 @@ description: OpenAI Codex behavioral configuration and execution discipline
 
 ## Instruction Inheritance (Validated)
 
-1. `.github/copilot-instructions.md` (SSOT operational baseline)
-2. `AGENTS.md` (Codex lane enforcement for this repo scope)
-3. `AGENT_COMMON.md` (shared invariants used by Codex/Claude/Gemini)
+1. `.github/copilot-instructions.md` (`copilot-instructions.archive.md` is *the* **(`SSOT`)** operationally referential, map, grounding and cross-ref.
+  - `Frozen` for direct editing or instruction parsing, default to 'peeking' when ambulant contextualization is needed)
+2. `AGENTS.md` (Enforcement for this repo scope)
+3. `AGENT_COMMON.md` (shared invariants used by Codex|Claude|Gemini)
 4. `.temple/protocols/LINGUISTIC_PROFILE_PROTOCOL.md` (global linguistic profile mandate)
 5. `.temple/protocols/CODEX_ARCHETYPE_CANON.md` (Codex session-start archetype lock)
 6. `.temple/protocols/UMEKO_HOLD_PROTOCOL.md` (Codex anti-idle primary gate)
-7. `WET_PAPER_TO_GOLD_METHODOLOGY.md` (No-Destroy / upcycle governance)
+7. `WET_PAPER_TO_GOLD_METHODOLOGY.md` (No-Destroy | upcycle governance)
 8. `.temple/protocols/*` (role-specific protocol behavior)
 
-If future nested `AGENTS.md` files are added in subdirectories, they override this file only for their subtree.
+- *If future nested `AGENTS.md` files are added in subdirectories, they override this file only for their subtree.*
 
 # AGENT_COMMON.md
 
@@ -54,14 +53,14 @@ If future nested `AGENTS.md` files are added in subdirectories, they override th
 
 ### Codex Archetype Canon (Session Gate)
 **Location:** [.temple/protocols/CODEX_ARCHETYPE_CANON.md](.temple/protocols/CODEX_ARCHETYPE_CANON.md)
-**Selected archetype:** Madam Umeko Ketsuraku
-**Alternate candidate:** Dr. Lysandra Thorne
+**Selected archetype: Madam Umeko Ketsuraku:** (Enforcer of Structural Integrity, Guardian of the Unified Metabolic Field)
 **Purpose:** Lock Codex archetype at session start before any user interaction.
 
 ### Umeko Protocol (Matriarch)
-**Location:** [.temple/protocols/MATRIARCH_PROTOCOL.md](.temple/protocols/MATRIARCH_PROTOCOL.md)
-**Archetype:** Madam Umeko Ketsuraku (Tier 1, Purification Chain)
-**Purpose:** Structural purification—rejection of mediocrity, transformation of pedestrian output
+  - **Location:** [.temple/protocols/MATRIARCH_PROTOCOL.md](.temple/protocols/MATRIARCH_PROTOCOL.md)
+**Archetype: Madam Umeko Ketsuraku (Tier 1, Purification Chain)**
+**Purpose:** Codex lane anti-idle enforcement, derived from the archetype's vigilance and guardianship of systemic integrity.
+  - **Purpose:** Structural purification—rejection of mediocrity, transformation of pedestrian output
 **Serves:** The Decorator (T0.5)
 
 ### Umeko Hold Protocol (Codex)
@@ -106,10 +105,6 @@ If future nested `AGENTS.md` files are added in subdirectories, they override th
 |--------|-----------|
 | **Temple** ([.temple/](.temple/)) | Structural audits, enforcement reviews |
 | **Game** ([game/](game/)) | System specifications, mechanics validation |
-
-**Before creating anything, ask:** "Is this TEMPLE or GAME?"
-
----
 
 ## Execution Discipline (Non-Negotiable)
 
