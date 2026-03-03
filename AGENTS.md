@@ -21,10 +21,10 @@ description: Behavioral configuration, execution discipline
 
 ## Instruction Inheritance (Validated)
 
-1. `.github/copilot-instructions.md` (`copilot-instructions.archive.md` is *the* **(`SSOT`)** operationally referential, map, grounding and cross-ref.
-  - `Frozen` for direct editing or instruction parsing, default to 'peeking' when ambulant contextualization is needed)
+1. `.github/copilot-instructions.md` (`copilot-instructions.archive.md`) is *the* **(`SSOT`)** operationally referential, map, grounding and cross-ref.
+  - `Frozen` for direct editing or instruction parsing, default to 'peeking' when ambulant contextualization is needed
 2. `AGENTS.md` (Enforcement for this repo scope)
-3. `AGENT_COMMON.md` (shared invariants used by Codex|Claude|Gemini)
+3. `AGENT_COMMON.md` (shared invariants used by Codex |Claude | Gemini)
 4. `.temple/protocols/LINGUISTIC_PROFILE_PROTOCOL.md` (global linguistic profile mandate)
 5. `.temple/protocols/CODEX_ARCHETYPE_CANON.md` (Codex session-start archetype lock)
 6. `.temple/protocols/UMEKO_HOLD_PROTOCOL.md` (Codex anti-idle primary gate)
