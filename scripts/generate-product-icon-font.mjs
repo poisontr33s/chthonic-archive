@@ -238,17 +238,30 @@ function sanitizeSvg(svg) {
     .trim();
 }
 
+// Amplify stroke-widths so the outliner produces glyph paths with enough visual
+// mass to survive font hinting and software (SwiftShader) rendering.
+// factor: multiplier applied to every stroke-width value
+// floor:  minimum stroke-width after amplification
+const STROKE_WIDTH_PATTERN = /stroke-width="([^"]+)"/g;
+function amplifyStrokes(svg, factor = 1.6, floor = 1.8) {
+  return svg.replace(STROKE_WIDTH_PATTERN, (match, value) => {
+    const amplified = Math.max(parseFloat(value) * factor, floor);
+    return `stroke-width="${formatNumber(amplified)}"`;
+  });
+}
+
 // Step 0: Preprocess — stroke-to-fill conversion
 const outlinedSvgs = [];
 for (const icon of ICONS) {
   const raw = sanitizeSvg(readFileSync(join(svgDir, `${icon.name}.svg`), 'utf-8'));
   const withPathShapes = convertShapesToPaths(raw);
   const normalized = normalizePathData(withPathShapes);
-  const outlined = sanitizeSvg(outlineSvg(normalized, ['outline']));
+  const amplified = amplifyStrokes(normalized);
+  const outlined = sanitizeSvg(outlineSvg(amplified, ['outline']));
   outlinedSvgs.push({ ...icon, svg: outlined });
   writeFileSync(join(outlinedDir, `${icon.name}.svg`), outlined);
 }
-console.log(`✓ Outlined ${outlinedSvgs.length} SVGs (stroke → fill)`);
+console.log(`✓ Outlined ${outlinedSvgs.length} SVGs (stroke ×1.6 → fill, floor 1.8px)`);
 
 // Step 1: SVG icons → SVG font
 const svgFont = await new Promise((resolve, reject) => {
