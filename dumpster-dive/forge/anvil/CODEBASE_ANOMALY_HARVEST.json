@@ -1,0 +1,5625 @@
+{
+  "timestamp": "2026-03-03T07:13:13+00:00",
+  "anomalies": [
+    {
+      "path": "\"dumpster-dive/from-github/macro-prompt-world/disparate-md-documentation/ASC-BP-V-\\316\\251.B.X\\316\\250.md\"",
+      "extension": ".md\"",
+      "anomaly_types": [
+        "filename_encoding_damage"
+      ],
+      "intelligence_type": "path_forensics",
+      "target_output_types": [
+        ".md"
+      ],
+      "line_count": 0,
+      "data_points": 0,
+      "feasibility": "low"
+    },
+    {
+      "path": "\"dumpster-dive/from-github/macro-prompt-world/macro-prompt-world-v2/ASC_Brahmanica_Perfectus_V_\\316\\251.B.X\\316\\250.md\"",
+      "extension": ".md\"",
+      "anomaly_types": [
+        "filename_encoding_damage"
+      ],
+      "intelligence_type": "path_forensics",
+      "target_output_types": [
+        ".md"
+      ],
+      "line_count": 0,
+      "data_points": 0,
+      "feasibility": "low"
+    },
+    {
+      "path": "\"dumpster-dive/from-github/macro-prompt-world/macro-prompt-world-v2/archive-world/ASC-BP-V-\\316\\251.B.X\\316\\250.md\"",
+      "extension": ".md\"",
+      "anomaly_types": [
+        "filename_encoding_damage"
+      ],
+      "intelligence_type": "path_forensics",
+      "target_output_types": [
+        ".md"
+      ],
+      "line_count": 0,
+      "data_points": 0,
+      "feasibility": "low"
+    },
+    {
+      "path": ".codex/skills/artifact-upcycle/scripts/__pycache__/resolve_directory_relationships.cpython-313.pyc",
+      "extension": ".cpython-313.pyc",
+      "anomaly_types": [
+        "tracked_bytecode"
+      ],
+      "intelligence_type": "bytecode_contract",
+      "target_output_types": [
+        ".py"
+      ],
+      "line_count": 689,
+      "data_points": 136,
+      "feasibility": "high"
+    },
+    {
+      "path": ".codex/skills/codekiller-remediation-gate/scripts/__pycache__/codekiller_remediation_gate.cpython-313.pyc",
+      "extension": ".cpython-313.pyc",
+      "anomaly_types": [
+        "tracked_bytecode"
+      ],
+      "intelligence_type": "bytecode_contract",
+      "target_output_types": [
+        ".py"
+      ],
+      "line_count": 1156,
+      "data_points": 168,
+      "feasibility": "high"
+    },
+    {
+      "path": ".codex/skills/mailbox-handoff/scripts/__pycache__/mailbox_check.cpython-313.pyc",
+      "extension": ".cpython-313.pyc",
+      "anomaly_types": [
+        "tracked_bytecode"
+      ],
+      "intelligence_type": "bytecode_contract",
+      "target_output_types": [
+        ".py"
+      ],
+      "line_count": 885,
+      "data_points": 157,
+      "feasibility": "high"
+    },
+    {
+      "path": ".codex/skills/script-envelope/scripts/__pycache__/script_envelope.cpython-313.pyc",
+      "extension": ".cpython-313.pyc",
+      "anomaly_types": [
+        "tracked_bytecode"
+      ],
+      "intelligence_type": "bytecode_contract",
+      "target_output_types": [
+        ".py"
+      ],
+      "line_count": 402,
+      "data_points": 183,
+      "feasibility": "high"
+    },
+    {
+      "path": ".codex/skills/skill-polisher/scripts/__pycache__/polish_skill.cpython-313.pyc",
+      "extension": ".cpython-313.pyc",
+      "anomaly_types": [
+        "tracked_bytecode"
+      ],
+      "intelligence_type": "bytecode_contract",
+      "target_output_types": [
+        ".py"
+      ],
+      "line_count": 1668,
+      "data_points": 165,
+      "feasibility": "high"
+    },
+    {
+      "path": ".github/workflows/claude-code-review.yml.off",
+      "extension": ".yml.off",
+      "anomaly_types": [
+        "disabled_by_rename"
+      ],
+      "intelligence_type": "raw_unrefined_artifact",
+      "target_output_types": [
+        ".md"
+      ],
+      "line_count": 47,
+      "data_points": 46,
+      "feasibility": "high"
+    },
+    {
+      "path": ".github/workflows/claude.yml.off",
+      "extension": ".yml.off",
+      "anomaly_types": [
+        "disabled_by_rename"
+      ],
+      "intelligence_type": "raw_unrefined_artifact",
+      "target_output_types": [
+        ".md"
+      ],
+      "line_count": 41,
+      "data_points": 40,
+      "feasibility": "high"
+    },
+    {
+      "path": ".github/workflows/gemini-dispatch.yml.off",
+      "extension": ".yml.off",
+      "anomaly_types": [
+        "disabled_by_rename"
+      ],
+      "intelligence_type": "raw_unrefined_artifact",
+      "target_output_types": [
+        ".md"
+      ],
+      "line_count": 190,
+      "data_points": 119,
+      "feasibility": "high"
+    },
+    {
+      "path": ".github/workflows/gemini-invoke.yml.off",
+      "extension": ".yml.off",
+      "anomaly_types": [
+        "disabled_by_rename"
+      ],
+      "intelligence_type": "raw_unrefined_artifact",
+      "target_output_types": [
+        ".md"
+      ],
+      "line_count": 116,
+      "data_points": 109,
+      "feasibility": "high"
+    },
+    {
+      "path": ".github/workflows/gemini-review.yml.off",
+      "extension": ".yml.off",
+      "anomaly_types": [
+        "disabled_by_rename"
+      ],
+      "intelligence_type": "raw_unrefined_artifact",
+      "target_output_types": [
+        ".md"
+      ],
+      "line_count": 103,
+      "data_points": 96,
+      "feasibility": "high"
+    },
+    {
+      "path": ".github/workflows/gemini-scheduled-triage.yml.off",
+      "extension": ".yml.off",
+      "anomaly_types": [
+        "disabled_by_rename"
+      ],
+      "intelligence_type": "raw_unrefined_artifact",
+      "target_output_types": [
+        ".md"
+      ],
+      "line_count": 181,
+      "data_points": 154,
+      "feasibility": "high"
+    },
+    {
+      "path": ".github/workflows/gemini-triage.yml.off",
+      "extension": ".yml.off",
+      "anomaly_types": [
+        "disabled_by_rename"
+      ],
+      "intelligence_type": "raw_unrefined_artifact",
+      "target_output_types": [
+        ".md"
+      ],
+      "line_count": 147,
+      "data_points": 126,
+      "feasibility": "high"
+    },
+    {
+      "path": "claude-codex-gemini/session_resumption_pickup/UNCENSORED_LANE_RUNTIME_20260219_231721.env",
+      "extension": ".env",
+      "anomaly_types": [
+        "tracked_env_surface"
+      ],
+      "intelligence_type": "environment_contract",
+      "target_output_types": [
+        ".json",
+        ".md"
+      ],
+      "line_count": 6,
+      "data_points": 6,
+      "feasibility": "high"
+    },
+    {
+      "path": "claude-codex-gemini/session_resumption_pickup/UNCENSORED_LANE_RUNTIME_LATEST.env",
+      "extension": ".env",
+      "anomaly_types": [
+        "tracked_env_surface"
+      ],
+      "intelligence_type": "environment_contract",
+      "target_output_types": [
+        ".json",
+        ".md"
+      ],
+      "line_count": 6,
+      "data_points": 6,
+      "feasibility": "high"
+    },
+    {
+      "path": "codex/mailbox/MISTRALRS_CUDA_BUILD_20260227T194707Z.err.log",
+      "extension": ".err.log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 342,
+      "data_points": 198,
+      "feasibility": "high"
+    },
+    {
+      "path": "codex/mailbox/MISTRALRS_CUDA_BUILD_20260227T194707Z.out.log",
+      "extension": ".out.log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 14,
+      "data_points": 14,
+      "feasibility": "high"
+    },
+    {
+      "path": "codex/mailbox/MISTRALRS_CUDA_BUILD_20260227T195207Z.err.log",
+      "extension": ".err.log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 169,
+      "data_points": 1,
+      "feasibility": "high"
+    },
+    {
+      "path": "codex/mailbox/MISTRALRS_CUDA_BUILD_20260227T195207Z.out.log",
+      "extension": ".out.log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 4,
+      "data_points": 4,
+      "feasibility": "high"
+    },
+    {
+      "path": "codex/mailbox/VS2026_ELEVATED_VALIDATE_20260217_054144.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 17,
+      "data_points": 13,
+      "feasibility": "high"
+    },
+    {
+      "path": "codex/mailbox/VS2026_ELEVATED_VALIDATE_20260217_054157.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 23,
+      "data_points": 23,
+      "feasibility": "high"
+    },
+    {
+      "path": "codex/mailbox/VS2026_ELEVATED_VALIDATE_20260217_231023.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 13,
+      "data_points": 13,
+      "feasibility": "high"
+    },
+    {
+      "path": "codex/mailbox/VS2026_ELEVATED_VALIDATE_20260217_231058.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 22,
+      "data_points": 22,
+      "feasibility": "high"
+    },
+    {
+      "path": "codex/mailbox/VS2026_ELEVATED_VALIDATE_20260217_231535.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 15,
+      "data_points": 13,
+      "feasibility": "high"
+    },
+    {
+      "path": "codex/mailbox/VS2026_ELEVATED_VALIDATE_20260217_235550.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 23,
+      "data_points": 23,
+      "feasibility": "high"
+    },
+    {
+      "path": "codex/mailbox/VS2026_ELEVATED_VALIDATE_20260217_235653.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 23,
+      "data_points": 23,
+      "feasibility": "high"
+    },
+    {
+      "path": "codex/mailbox/VS2026_ELEVATED_VALIDATE_20260218_000139.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 23,
+      "data_points": 23,
+      "feasibility": "high"
+    },
+    {
+      "path": "codex/mailbox/VS2026_ELEVATED_VALIDATE_20260218_001043.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 23,
+      "data_points": 23,
+      "feasibility": "high"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_INSIDERS_MATRIX_20260226T033112Z/matrix_baseline_status.err.log",
+      "extension": ".err.log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 0,
+      "data_points": 0,
+      "feasibility": "low"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_INSIDERS_MATRIX_20260226T033112Z/matrix_baseline_status.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 82,
+      "data_points": 78,
+      "feasibility": "high"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_INSIDERS_MATRIX_20260226T033112Z/matrix_clean_safe_mode_status.err.log",
+      "extension": ".err.log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 0,
+      "data_points": 0,
+      "feasibility": "low"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_INSIDERS_MATRIX_20260226T033112Z/matrix_clean_safe_mode_status.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 1,
+      "data_points": 1,
+      "feasibility": "low"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_INSIDERS_MATRIX_20260226T033112Z/matrix_disable_extensions_status.err.log",
+      "extension": ".err.log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 0,
+      "data_points": 0,
+      "feasibility": "low"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_INSIDERS_MATRIX_20260226T033112Z/matrix_disable_extensions_status.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 82,
+      "data_points": 78,
+      "feasibility": "high"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_INSIDERS_MATRIX_20260226T033112Z/matrix_disable_gpu_status.err.log",
+      "extension": ".err.log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 0,
+      "data_points": 0,
+      "feasibility": "low"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_INSIDERS_MATRIX_20260226T033112Z/matrix_disable_gpu_status.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 82,
+      "data_points": 78,
+      "feasibility": "high"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_INSIDERS_MATRIX_20260226T033146Z/matrix_baseline_status.err.log",
+      "extension": ".err.log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 0,
+      "data_points": 0,
+      "feasibility": "low"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_INSIDERS_MATRIX_20260226T033146Z/matrix_baseline_status.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 82,
+      "data_points": 78,
+      "feasibility": "high"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_INSIDERS_MATRIX_20260226T033146Z/matrix_clean_safe_mode_status.err.log",
+      "extension": ".err.log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 0,
+      "data_points": 0,
+      "feasibility": "low"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_INSIDERS_MATRIX_20260226T033146Z/matrix_clean_safe_mode_status.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 1,
+      "data_points": 1,
+      "feasibility": "low"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_INSIDERS_MATRIX_20260226T033146Z/matrix_disable_extensions_status.err.log",
+      "extension": ".err.log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 0,
+      "data_points": 0,
+      "feasibility": "low"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_INSIDERS_MATRIX_20260226T033146Z/matrix_disable_extensions_status.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 82,
+      "data_points": 78,
+      "feasibility": "high"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_INSIDERS_MATRIX_20260226T033146Z/matrix_disable_gpu_status.err.log",
+      "extension": ".err.log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 0,
+      "data_points": 0,
+      "feasibility": "low"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_INSIDERS_MATRIX_20260226T033146Z/matrix_disable_gpu_status.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 82,
+      "data_points": 78,
+      "feasibility": "high"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_INSIDERS_MATRIX_20260226T033328Z/matrix_baseline_status.err.log",
+      "extension": ".err.log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 0,
+      "data_points": 0,
+      "feasibility": "low"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_INSIDERS_MATRIX_20260226T033328Z/matrix_baseline_status.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 82,
+      "data_points": 78,
+      "feasibility": "high"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_INSIDERS_MATRIX_20260226T033328Z/matrix_clean_safe_mode_status.err.log",
+      "extension": ".err.log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 0,
+      "data_points": 0,
+      "feasibility": "low"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_INSIDERS_MATRIX_20260226T033328Z/matrix_clean_safe_mode_status.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 1,
+      "data_points": 1,
+      "feasibility": "low"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_INSIDERS_MATRIX_20260226T033328Z/matrix_disable_extensions_status.err.log",
+      "extension": ".err.log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 0,
+      "data_points": 0,
+      "feasibility": "low"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_INSIDERS_MATRIX_20260226T033328Z/matrix_disable_extensions_status.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 82,
+      "data_points": 78,
+      "feasibility": "high"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_INSIDERS_MATRIX_20260226T033328Z/matrix_disable_gpu_status.err.log",
+      "extension": ".err.log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 0,
+      "data_points": 0,
+      "feasibility": "low"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_INSIDERS_MATRIX_20260226T033328Z/matrix_disable_gpu_status.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 82,
+      "data_points": 78,
+      "feasibility": "high"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_INSIDERS_MATRIX_20260226T033855Z/matrix_baseline_status.err.log",
+      "extension": ".err.log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 0,
+      "data_points": 0,
+      "feasibility": "low"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_INSIDERS_MATRIX_20260226T033855Z/matrix_baseline_status.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 82,
+      "data_points": 78,
+      "feasibility": "high"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_INSIDERS_MATRIX_20260226T033855Z/matrix_clean_safe_mode_status.err.log",
+      "extension": ".err.log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 0,
+      "data_points": 0,
+      "feasibility": "low"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_INSIDERS_MATRIX_20260226T033855Z/matrix_clean_safe_mode_status.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 1,
+      "data_points": 1,
+      "feasibility": "low"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_INSIDERS_MATRIX_20260226T033855Z/matrix_disable_extensions_status.err.log",
+      "extension": ".err.log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 0,
+      "data_points": 0,
+      "feasibility": "low"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_INSIDERS_MATRIX_20260226T033855Z/matrix_disable_extensions_status.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 82,
+      "data_points": 78,
+      "feasibility": "high"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_INSIDERS_MATRIX_20260226T033855Z/matrix_disable_gpu_status.err.log",
+      "extension": ".err.log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 0,
+      "data_points": 0,
+      "feasibility": "low"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_INSIDERS_MATRIX_20260226T033855Z/matrix_disable_gpu_status.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 82,
+      "data_points": 78,
+      "feasibility": "high"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_INSIDERS_MATRIX_20260226T195738Z/matrix_baseline_status.err.log",
+      "extension": ".err.log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 0,
+      "data_points": 0,
+      "feasibility": "low"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_INSIDERS_MATRIX_20260226T195738Z/matrix_baseline_status.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 80,
+      "data_points": 78,
+      "feasibility": "high"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_INSIDERS_MATRIX_20260226T195738Z/matrix_clean_safe_mode_status.err.log",
+      "extension": ".err.log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 0,
+      "data_points": 0,
+      "feasibility": "low"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_INSIDERS_MATRIX_20260226T195738Z/matrix_clean_safe_mode_status.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 1,
+      "data_points": 1,
+      "feasibility": "low"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_INSIDERS_MATRIX_20260226T195738Z/matrix_disable_extensions_status.err.log",
+      "extension": ".err.log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 0,
+      "data_points": 0,
+      "feasibility": "low"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_INSIDERS_MATRIX_20260226T195738Z/matrix_disable_extensions_status.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 84,
+      "data_points": 82,
+      "feasibility": "high"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_INSIDERS_MATRIX_20260226T195738Z/matrix_disable_gpu_status.err.log",
+      "extension": ".err.log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 0,
+      "data_points": 0,
+      "feasibility": "low"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_INSIDERS_MATRIX_20260226T195738Z/matrix_disable_gpu_status.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 81,
+      "data_points": 79,
+      "feasibility": "high"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_INSIDERS_MATRIX_20260226T200037Z/matrix_baseline_status.err.log",
+      "extension": ".err.log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 0,
+      "data_points": 0,
+      "feasibility": "low"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_INSIDERS_MATRIX_20260226T200037Z/matrix_baseline_status.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 77,
+      "data_points": 75,
+      "feasibility": "high"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_INSIDERS_MATRIX_20260226T200037Z/matrix_clean_safe_mode_status.err.log",
+      "extension": ".err.log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 0,
+      "data_points": 0,
+      "feasibility": "low"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_INSIDERS_MATRIX_20260226T200037Z/matrix_clean_safe_mode_status.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 1,
+      "data_points": 1,
+      "feasibility": "low"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_INSIDERS_MATRIX_20260226T200037Z/matrix_disable_extensions_status.err.log",
+      "extension": ".err.log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 0,
+      "data_points": 0,
+      "feasibility": "low"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_INSIDERS_MATRIX_20260226T200037Z/matrix_disable_extensions_status.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 77,
+      "data_points": 75,
+      "feasibility": "high"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_INSIDERS_MATRIX_20260226T200037Z/matrix_disable_gpu_status.err.log",
+      "extension": ".err.log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 0,
+      "data_points": 0,
+      "feasibility": "low"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_INSIDERS_MATRIX_20260226T200037Z/matrix_disable_gpu_status.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 77,
+      "data_points": 75,
+      "feasibility": "high"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032245Z/api_doctor.err.log",
+      "extension": ".err.log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 0,
+      "data_points": 0,
+      "feasibility": "low"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032245Z/api_doctor.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 14,
+      "data_points": 14,
+      "feasibility": "high"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032245Z/insiders_logs/main.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 10,
+      "data_points": 10,
+      "feasibility": "high"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032245Z/insiders_logs/ptyhost.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 0,
+      "data_points": 0,
+      "feasibility": "low"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032245Z/insiders_logs/sharedprocess.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 11,
+      "data_points": 11,
+      "feasibility": "high"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032245Z/insiders_logs/terminal.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 844,
+      "data_points": 164,
+      "feasibility": "high"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032245Z/insiders_logs/window1/exthost/extHostTelemetry.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 0,
+      "data_points": 0,
+      "feasibility": "low"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032245Z/insiders_logs/window1/exthost/exthost.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 96,
+      "data_points": 87,
+      "feasibility": "high"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032245Z/insiders_logs/window1/renderer.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 582,
+      "data_points": 71,
+      "feasibility": "high"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032245Z/insiders_logs/window2/exthost/extHostTelemetry.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 0,
+      "data_points": 0,
+      "feasibility": "low"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032245Z/insiders_logs/window2/exthost/exthost.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 119,
+      "data_points": 108,
+      "feasibility": "high"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032245Z/insiders_logs/window2/renderer.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 481,
+      "data_points": 70,
+      "feasibility": "high"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032245Z/insiders_logs/window3/exthost/extHostTelemetry.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 0,
+      "data_points": 0,
+      "feasibility": "low"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032245Z/insiders_logs/window3/exthost/exthost.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 60,
+      "data_points": 60,
+      "feasibility": "high"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032245Z/insiders_logs/window3/renderer.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 1241,
+      "data_points": 66,
+      "feasibility": "high"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032245Z/probe_no_profile_stderr.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 5,
+      "data_points": 5,
+      "feasibility": "high"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032245Z/probe_no_profile_stdout.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 0,
+      "data_points": 0,
+      "feasibility": "low"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032245Z/probe_with_profile_repo_stderr.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 5,
+      "data_points": 5,
+      "feasibility": "high"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032245Z/probe_with_profile_repo_stdout.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 0,
+      "data_points": 0,
+      "feasibility": "low"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032245Z/probe_with_profile_temp_stderr.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 5,
+      "data_points": 5,
+      "feasibility": "high"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032245Z/probe_with_profile_temp_stdout.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 0,
+      "data_points": 0,
+      "feasibility": "low"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032320Z/api_doctor.err.log",
+      "extension": ".err.log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 0,
+      "data_points": 0,
+      "feasibility": "low"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032320Z/api_doctor.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 14,
+      "data_points": 14,
+      "feasibility": "high"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032320Z/insiders_logs/main.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 10,
+      "data_points": 10,
+      "feasibility": "high"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032320Z/insiders_logs/ptyhost.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 0,
+      "data_points": 0,
+      "feasibility": "low"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032320Z/insiders_logs/sharedprocess.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 11,
+      "data_points": 11,
+      "feasibility": "high"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032320Z/insiders_logs/terminal.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 844,
+      "data_points": 164,
+      "feasibility": "high"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032320Z/insiders_logs/window1/exthost/extHostTelemetry.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 0,
+      "data_points": 0,
+      "feasibility": "low"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032320Z/insiders_logs/window1/exthost/exthost.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 96,
+      "data_points": 87,
+      "feasibility": "high"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032320Z/insiders_logs/window1/renderer.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 582,
+      "data_points": 71,
+      "feasibility": "high"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032320Z/insiders_logs/window2/exthost/extHostTelemetry.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 0,
+      "data_points": 0,
+      "feasibility": "low"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032320Z/insiders_logs/window2/exthost/exthost.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 119,
+      "data_points": 108,
+      "feasibility": "high"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032320Z/insiders_logs/window2/renderer.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 481,
+      "data_points": 70,
+      "feasibility": "high"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032320Z/insiders_logs/window3/exthost/extHostTelemetry.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 0,
+      "data_points": 0,
+      "feasibility": "low"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032320Z/insiders_logs/window3/exthost/exthost.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 60,
+      "data_points": 60,
+      "feasibility": "high"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032320Z/insiders_logs/window3/renderer.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 1241,
+      "data_points": 66,
+      "feasibility": "high"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032320Z/probe_no_profile_stderr.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 0,
+      "data_points": 0,
+      "feasibility": "low"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032320Z/probe_no_profile_stdout.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 1,
+      "data_points": 1,
+      "feasibility": "low"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032320Z/probe_with_profile_repo_stderr.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 0,
+      "data_points": 0,
+      "feasibility": "low"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032320Z/probe_with_profile_repo_stdout.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 1,
+      "data_points": 1,
+      "feasibility": "low"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032320Z/probe_with_profile_temp_stderr.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 0,
+      "data_points": 0,
+      "feasibility": "low"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032320Z/probe_with_profile_temp_stdout.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 1,
+      "data_points": 1,
+      "feasibility": "low"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032438Z/api_doctor.err.log",
+      "extension": ".err.log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 0,
+      "data_points": 0,
+      "feasibility": "low"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032438Z/api_doctor.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 14,
+      "data_points": 14,
+      "feasibility": "high"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032438Z/code_insiders_status.err.log",
+      "extension": ".err.log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 0,
+      "data_points": 0,
+      "feasibility": "low"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032438Z/code_insiders_status.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 82,
+      "data_points": 78,
+      "feasibility": "high"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032438Z/probe_no_profile_stderr.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 0,
+      "data_points": 0,
+      "feasibility": "low"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032438Z/probe_no_profile_stdout.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 1,
+      "data_points": 1,
+      "feasibility": "low"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032438Z/probe_with_profile_repo_stderr.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 0,
+      "data_points": 0,
+      "feasibility": "low"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032438Z/probe_with_profile_repo_stdout.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 1,
+      "data_points": 1,
+      "feasibility": "low"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032438Z/probe_with_profile_temp_stderr.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 0,
+      "data_points": 0,
+      "feasibility": "low"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032438Z/probe_with_profile_temp_stdout.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 1,
+      "data_points": 1,
+      "feasibility": "low"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032459Z/api_doctor.err.log",
+      "extension": ".err.log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 0,
+      "data_points": 0,
+      "feasibility": "low"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032459Z/api_doctor.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 14,
+      "data_points": 14,
+      "feasibility": "high"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032459Z/code_insiders_status.err.log",
+      "extension": ".err.log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 0,
+      "data_points": 0,
+      "feasibility": "low"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032459Z/code_insiders_status.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 79,
+      "data_points": 75,
+      "feasibility": "high"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032459Z/probe_no_profile_stderr.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 0,
+      "data_points": 0,
+      "feasibility": "low"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032459Z/probe_no_profile_stdout.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 1,
+      "data_points": 1,
+      "feasibility": "low"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032459Z/probe_with_profile_repo_stderr.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 0,
+      "data_points": 0,
+      "feasibility": "low"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032459Z/probe_with_profile_repo_stdout.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 1,
+      "data_points": 1,
+      "feasibility": "low"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032459Z/probe_with_profile_temp_stderr.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 0,
+      "data_points": 0,
+      "feasibility": "low"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032459Z/probe_with_profile_temp_stdout.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 1,
+      "data_points": 1,
+      "feasibility": "low"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032530Z/probe_no_profile_stderr.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 0,
+      "data_points": 0,
+      "feasibility": "low"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032530Z/probe_no_profile_stdout.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 1,
+      "data_points": 1,
+      "feasibility": "low"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032530Z/probe_with_profile_repo_stderr.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 0,
+      "data_points": 0,
+      "feasibility": "low"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032530Z/probe_with_profile_repo_stdout.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 1,
+      "data_points": 1,
+      "feasibility": "low"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032530Z/probe_with_profile_temp_stderr.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 0,
+      "data_points": 0,
+      "feasibility": "low"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032530Z/probe_with_profile_temp_stdout.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 1,
+      "data_points": 1,
+      "feasibility": "low"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032547Z/api_doctor.err.log",
+      "extension": ".err.log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 0,
+      "data_points": 0,
+      "feasibility": "low"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032547Z/api_doctor.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 14,
+      "data_points": 14,
+      "feasibility": "high"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032547Z/code_insiders_status.err.log",
+      "extension": ".err.log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 0,
+      "data_points": 0,
+      "feasibility": "low"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032547Z/code_insiders_status.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 82,
+      "data_points": 78,
+      "feasibility": "high"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032547Z/probe_no_profile_stderr.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 0,
+      "data_points": 0,
+      "feasibility": "low"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032547Z/probe_no_profile_stdout.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 1,
+      "data_points": 1,
+      "feasibility": "low"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032547Z/probe_with_profile_repo_stderr.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 0,
+      "data_points": 0,
+      "feasibility": "low"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032547Z/probe_with_profile_repo_stdout.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 1,
+      "data_points": 1,
+      "feasibility": "low"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032547Z/probe_with_profile_temp_stderr.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 0,
+      "data_points": 0,
+      "feasibility": "low"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032547Z/probe_with_profile_temp_stdout.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 1,
+      "data_points": 1,
+      "feasibility": "low"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032622Z/api_doctor.err.log",
+      "extension": ".err.log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 0,
+      "data_points": 0,
+      "feasibility": "low"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032622Z/api_doctor.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 14,
+      "data_points": 14,
+      "feasibility": "high"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032622Z/code_insiders_status.err.log",
+      "extension": ".err.log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 0,
+      "data_points": 0,
+      "feasibility": "low"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032622Z/code_insiders_status.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 82,
+      "data_points": 78,
+      "feasibility": "high"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032622Z/insiders_logs/main.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 10,
+      "data_points": 10,
+      "feasibility": "high"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032622Z/insiders_logs/ptyhost.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 0,
+      "data_points": 0,
+      "feasibility": "low"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032622Z/insiders_logs/sharedprocess.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 11,
+      "data_points": 11,
+      "feasibility": "high"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032622Z/insiders_logs/terminal.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 878,
+      "data_points": 164,
+      "feasibility": "high"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032622Z/insiders_logs/window1/exthost/extHostTelemetry.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 0,
+      "data_points": 0,
+      "feasibility": "low"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032622Z/insiders_logs/window1/exthost/exthost.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 96,
+      "data_points": 87,
+      "feasibility": "high"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032622Z/insiders_logs/window1/renderer.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 582,
+      "data_points": 71,
+      "feasibility": "high"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032622Z/insiders_logs/window2/exthost/extHostTelemetry.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 0,
+      "data_points": 0,
+      "feasibility": "low"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032622Z/insiders_logs/window2/exthost/exthost.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 119,
+      "data_points": 108,
+      "feasibility": "high"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032622Z/insiders_logs/window2/renderer.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 481,
+      "data_points": 70,
+      "feasibility": "high"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032622Z/insiders_logs/window3/exthost/extHostTelemetry.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 0,
+      "data_points": 0,
+      "feasibility": "low"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032622Z/insiders_logs/window3/exthost/exthost.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 63,
+      "data_points": 61,
+      "feasibility": "high"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032622Z/insiders_logs/window3/renderer.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 1383,
+      "data_points": 66,
+      "feasibility": "high"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032622Z/probe_no_profile_stderr.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 0,
+      "data_points": 0,
+      "feasibility": "low"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032622Z/probe_no_profile_stdout.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 1,
+      "data_points": 1,
+      "feasibility": "low"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032622Z/probe_with_profile_repo_stderr.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 0,
+      "data_points": 0,
+      "feasibility": "low"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032622Z/probe_with_profile_repo_stdout.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 1,
+      "data_points": 1,
+      "feasibility": "low"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032622Z/probe_with_profile_temp_stderr.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 0,
+      "data_points": 0,
+      "feasibility": "low"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032622Z/probe_with_profile_temp_stdout.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 1,
+      "data_points": 1,
+      "feasibility": "low"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T033307Z/api_doctor.err.log",
+      "extension": ".err.log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 0,
+      "data_points": 0,
+      "feasibility": "low"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T033307Z/api_doctor.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 14,
+      "data_points": 14,
+      "feasibility": "high"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T033307Z/code_insiders_status.err.log",
+      "extension": ".err.log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 0,
+      "data_points": 0,
+      "feasibility": "low"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T033307Z/code_insiders_status.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 82,
+      "data_points": 78,
+      "feasibility": "high"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T033307Z/insiders_logs/main.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 12,
+      "data_points": 12,
+      "feasibility": "high"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T033307Z/insiders_logs/ptyhost.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 0,
+      "data_points": 0,
+      "feasibility": "low"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T033307Z/insiders_logs/sharedprocess.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 11,
+      "data_points": 11,
+      "feasibility": "high"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T033307Z/insiders_logs/terminal.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 1017,
+      "data_points": 164,
+      "feasibility": "high"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T033307Z/insiders_logs/window1/exthost/extHostTelemetry.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 0,
+      "data_points": 0,
+      "feasibility": "low"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T033307Z/insiders_logs/window1/exthost/exthost.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 96,
+      "data_points": 87,
+      "feasibility": "high"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T033307Z/insiders_logs/window1/renderer.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 582,
+      "data_points": 71,
+      "feasibility": "high"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T033307Z/insiders_logs/window2/exthost/extHostTelemetry.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 0,
+      "data_points": 0,
+      "feasibility": "low"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T033307Z/insiders_logs/window2/exthost/exthost.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 119,
+      "data_points": 108,
+      "feasibility": "high"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T033307Z/insiders_logs/window2/renderer.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 481,
+      "data_points": 70,
+      "feasibility": "high"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T033307Z/insiders_logs/window3/exthost/extHostTelemetry.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 0,
+      "data_points": 0,
+      "feasibility": "low"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T033307Z/insiders_logs/window3/exthost/exthost.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 66,
+      "data_points": 62,
+      "feasibility": "high"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T033307Z/insiders_logs/window3/renderer.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 1452,
+      "data_points": 66,
+      "feasibility": "high"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T033307Z/probe_no_profile_stderr.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 0,
+      "data_points": 0,
+      "feasibility": "low"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T033307Z/probe_no_profile_stdout.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 1,
+      "data_points": 1,
+      "feasibility": "low"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T033307Z/probe_with_profile_repo_stderr.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 0,
+      "data_points": 0,
+      "feasibility": "low"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T033307Z/probe_with_profile_repo_stdout.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 1,
+      "data_points": 1,
+      "feasibility": "low"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T033307Z/probe_with_profile_temp_stderr.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 0,
+      "data_points": 0,
+      "feasibility": "low"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T033307Z/probe_with_profile_temp_stdout.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 1,
+      "data_points": 1,
+      "feasibility": "low"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T033834Z/api_doctor.err.log",
+      "extension": ".err.log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 0,
+      "data_points": 0,
+      "feasibility": "low"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T033834Z/api_doctor.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 14,
+      "data_points": 14,
+      "feasibility": "high"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T033834Z/code_insiders_status.err.log",
+      "extension": ".err.log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 0,
+      "data_points": 0,
+      "feasibility": "low"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T033834Z/code_insiders_status.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 82,
+      "data_points": 78,
+      "feasibility": "high"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T033834Z/insiders_logs/main.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 12,
+      "data_points": 12,
+      "feasibility": "high"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T033834Z/insiders_logs/ptyhost.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 0,
+      "data_points": 0,
+      "feasibility": "low"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T033834Z/insiders_logs/sharedprocess.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 11,
+      "data_points": 11,
+      "feasibility": "high"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T033834Z/insiders_logs/terminal.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 1021,
+      "data_points": 164,
+      "feasibility": "high"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T033834Z/insiders_logs/window1/exthost/extHostTelemetry.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 0,
+      "data_points": 0,
+      "feasibility": "low"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T033834Z/insiders_logs/window1/exthost/exthost.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 96,
+      "data_points": 87,
+      "feasibility": "high"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T033834Z/insiders_logs/window1/renderer.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 582,
+      "data_points": 71,
+      "feasibility": "high"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T033834Z/insiders_logs/window2/exthost/extHostTelemetry.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 0,
+      "data_points": 0,
+      "feasibility": "low"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T033834Z/insiders_logs/window2/exthost/exthost.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 119,
+      "data_points": 108,
+      "feasibility": "high"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T033834Z/insiders_logs/window2/renderer.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 481,
+      "data_points": 70,
+      "feasibility": "high"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T033834Z/insiders_logs/window3/exthost/extHostTelemetry.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 0,
+      "data_points": 0,
+      "feasibility": "low"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T033834Z/insiders_logs/window3/exthost/exthost.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 70,
+      "data_points": 64,
+      "feasibility": "high"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T033834Z/insiders_logs/window3/renderer.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 1652,
+      "data_points": 66,
+      "feasibility": "high"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T033834Z/probe_no_profile_stderr.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 0,
+      "data_points": 0,
+      "feasibility": "low"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T033834Z/probe_no_profile_stdout.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 1,
+      "data_points": 1,
+      "feasibility": "low"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T033834Z/probe_with_profile_repo_stderr.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 0,
+      "data_points": 0,
+      "feasibility": "low"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T033834Z/probe_with_profile_repo_stdout.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 2,
+      "data_points": 2,
+      "feasibility": "low"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T033834Z/probe_with_profile_temp_stderr.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 0,
+      "data_points": 0,
+      "feasibility": "low"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T033834Z/probe_with_profile_temp_stdout.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 1,
+      "data_points": 1,
+      "feasibility": "low"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T034024Z/api_doctor.err.log",
+      "extension": ".err.log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 0,
+      "data_points": 0,
+      "feasibility": "low"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T034024Z/api_doctor.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 14,
+      "data_points": 14,
+      "feasibility": "high"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T034024Z/code_insiders_status.err.log",
+      "extension": ".err.log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 0,
+      "data_points": 0,
+      "feasibility": "low"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T034024Z/code_insiders_status.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 84,
+      "data_points": 80,
+      "feasibility": "high"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T034024Z/insiders_logs/main.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 12,
+      "data_points": 12,
+      "feasibility": "high"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T034024Z/insiders_logs/ptyhost.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 0,
+      "data_points": 0,
+      "feasibility": "low"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T034024Z/insiders_logs/sharedprocess.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 11,
+      "data_points": 11,
+      "feasibility": "high"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T034024Z/insiders_logs/terminal.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 1021,
+      "data_points": 164,
+      "feasibility": "high"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T034024Z/insiders_logs/window1/exthost/extHostTelemetry.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 0,
+      "data_points": 0,
+      "feasibility": "low"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T034024Z/insiders_logs/window1/exthost/exthost.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 96,
+      "data_points": 87,
+      "feasibility": "high"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T034024Z/insiders_logs/window1/renderer.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 582,
+      "data_points": 71,
+      "feasibility": "high"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T034024Z/insiders_logs/window2/exthost/extHostTelemetry.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 0,
+      "data_points": 0,
+      "feasibility": "low"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T034024Z/insiders_logs/window2/exthost/exthost.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 119,
+      "data_points": 108,
+      "feasibility": "high"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T034024Z/insiders_logs/window2/renderer.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 481,
+      "data_points": 70,
+      "feasibility": "high"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T034024Z/insiders_logs/window3/exthost/extHostTelemetry.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 0,
+      "data_points": 0,
+      "feasibility": "low"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T034024Z/insiders_logs/window3/exthost/exthost.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 70,
+      "data_points": 64,
+      "feasibility": "high"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T034024Z/insiders_logs/window3/renderer.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 1652,
+      "data_points": 66,
+      "feasibility": "high"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T034024Z/probe_no_profile_stderr.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 0,
+      "data_points": 0,
+      "feasibility": "low"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T034024Z/probe_no_profile_stdout.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 1,
+      "data_points": 1,
+      "feasibility": "low"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T034024Z/probe_with_profile_repo_stderr.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 0,
+      "data_points": 0,
+      "feasibility": "low"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T034024Z/probe_with_profile_repo_stdout.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 1,
+      "data_points": 1,
+      "feasibility": "low"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T034024Z/probe_with_profile_temp_stderr.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 0,
+      "data_points": 0,
+      "feasibility": "low"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T034024Z/probe_with_profile_temp_stdout.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 1,
+      "data_points": 1,
+      "feasibility": "low"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T034240Z/api_doctor.err.log",
+      "extension": ".err.log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 0,
+      "data_points": 0,
+      "feasibility": "low"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T034240Z/api_doctor.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 14,
+      "data_points": 14,
+      "feasibility": "high"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T034240Z/code_insiders_status.err.log",
+      "extension": ".err.log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 0,
+      "data_points": 0,
+      "feasibility": "low"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T034240Z/code_insiders_status.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 82,
+      "data_points": 78,
+      "feasibility": "high"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T034240Z/insiders_logs/main.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 12,
+      "data_points": 12,
+      "feasibility": "high"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T034240Z/insiders_logs/ptyhost.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 0,
+      "data_points": 0,
+      "feasibility": "low"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T034240Z/insiders_logs/sharedprocess.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 11,
+      "data_points": 11,
+      "feasibility": "high"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T034240Z/insiders_logs/terminal.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 1021,
+      "data_points": 164,
+      "feasibility": "high"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T034240Z/insiders_logs/window1/exthost/extHostTelemetry.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 0,
+      "data_points": 0,
+      "feasibility": "low"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T034240Z/insiders_logs/window1/exthost/exthost.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 96,
+      "data_points": 87,
+      "feasibility": "high"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T034240Z/insiders_logs/window1/renderer.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 582,
+      "data_points": 71,
+      "feasibility": "high"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T034240Z/insiders_logs/window2/exthost/extHostTelemetry.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 0,
+      "data_points": 0,
+      "feasibility": "low"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T034240Z/insiders_logs/window2/exthost/exthost.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 119,
+      "data_points": 108,
+      "feasibility": "high"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T034240Z/insiders_logs/window2/renderer.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 481,
+      "data_points": 70,
+      "feasibility": "high"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T034240Z/insiders_logs/window3/exthost/extHostTelemetry.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 0,
+      "data_points": 0,
+      "feasibility": "low"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T034240Z/insiders_logs/window3/exthost/exthost.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 70,
+      "data_points": 64,
+      "feasibility": "high"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T034240Z/insiders_logs/window3/renderer.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 1718,
+      "data_points": 66,
+      "feasibility": "high"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T034240Z/probe_no_profile_stderr.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 0,
+      "data_points": 0,
+      "feasibility": "low"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T034240Z/probe_no_profile_stdout.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 1,
+      "data_points": 1,
+      "feasibility": "low"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T034240Z/probe_with_profile_repo_stderr.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 0,
+      "data_points": 0,
+      "feasibility": "low"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T034240Z/probe_with_profile_repo_stdout.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 1,
+      "data_points": 1,
+      "feasibility": "low"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T034240Z/probe_with_profile_temp_stderr.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 0,
+      "data_points": 0,
+      "feasibility": "low"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T034240Z/probe_with_profile_temp_stdout.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 1,
+      "data_points": 1,
+      "feasibility": "low"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T195738Z/api_doctor.err.log",
+      "extension": ".err.log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 0,
+      "data_points": 0,
+      "feasibility": "low"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T195738Z/api_doctor.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 14,
+      "data_points": 14,
+      "feasibility": "high"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T195738Z/code_insiders_status.err.log",
+      "extension": ".err.log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 0,
+      "data_points": 0,
+      "feasibility": "low"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T195738Z/code_insiders_status.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 86,
+      "data_points": 84,
+      "feasibility": "high"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T195738Z/insiders_logs/main.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 145,
+      "data_points": 145,
+      "feasibility": "high"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T195738Z/insiders_logs/ptyhost.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 0,
+      "data_points": 0,
+      "feasibility": "low"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T195738Z/insiders_logs/sharedprocess.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 4,
+      "data_points": 4,
+      "feasibility": "high"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T195738Z/insiders_logs/terminal.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 318,
+      "data_points": 183,
+      "feasibility": "high"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T195738Z/insiders_logs/window1/exthost/extHostTelemetry.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 0,
+      "data_points": 0,
+      "feasibility": "low"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T195738Z/insiders_logs/window1/exthost/exthost.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 93,
+      "data_points": 84,
+      "feasibility": "high"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T195738Z/insiders_logs/window1/renderer.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 582,
+      "data_points": 65,
+      "feasibility": "high"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T195738Z/insiders_logs/window2/exthost/extHostTelemetry.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 0,
+      "data_points": 0,
+      "feasibility": "low"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T195738Z/insiders_logs/window2/exthost/exthost.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 108,
+      "data_points": 95,
+      "feasibility": "high"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T195738Z/insiders_logs/window2/renderer.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 478,
+      "data_points": 53,
+      "feasibility": "high"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T195738Z/insiders_logs/window3/exthost/extHostTelemetry.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 0,
+      "data_points": 0,
+      "feasibility": "low"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T195738Z/insiders_logs/window3/exthost/exthost.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 108,
+      "data_points": 95,
+      "feasibility": "high"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T195738Z/insiders_logs/window3/renderer.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 633,
+      "data_points": 53,
+      "feasibility": "high"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T195738Z/insiders_logs/window4/exthost/extHostTelemetry.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 0,
+      "data_points": 0,
+      "feasibility": "low"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T195738Z/insiders_logs/window4/exthost/exthost.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 44,
+      "data_points": 44,
+      "feasibility": "high"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T195738Z/insiders_logs/window4/renderer.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 750,
+      "data_points": 56,
+      "feasibility": "high"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T195738Z/probe_no_profile_stderr.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 0,
+      "data_points": 0,
+      "feasibility": "low"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T195738Z/probe_no_profile_stdout.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 1,
+      "data_points": 1,
+      "feasibility": "low"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T195738Z/probe_with_profile_repo_stderr.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 0,
+      "data_points": 0,
+      "feasibility": "low"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T195738Z/probe_with_profile_repo_stdout.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 1,
+      "data_points": 1,
+      "feasibility": "low"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T195738Z/probe_with_profile_temp_stderr.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 0,
+      "data_points": 0,
+      "feasibility": "low"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T195738Z/probe_with_profile_temp_stdout.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 1,
+      "data_points": 1,
+      "feasibility": "low"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T200100Z/api_doctor.err.log",
+      "extension": ".err.log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 0,
+      "data_points": 0,
+      "feasibility": "low"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T200100Z/api_doctor.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 14,
+      "data_points": 14,
+      "feasibility": "high"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T200100Z/code_insiders_status.err.log",
+      "extension": ".err.log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 0,
+      "data_points": 0,
+      "feasibility": "low"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T200100Z/code_insiders_status.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 77,
+      "data_points": 75,
+      "feasibility": "high"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T200100Z/insiders_logs/main.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 145,
+      "data_points": 145,
+      "feasibility": "high"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T200100Z/insiders_logs/ptyhost.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 0,
+      "data_points": 0,
+      "feasibility": "low"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T200100Z/insiders_logs/sharedprocess.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 4,
+      "data_points": 4,
+      "feasibility": "high"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T200100Z/insiders_logs/terminal.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 318,
+      "data_points": 183,
+      "feasibility": "high"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T200100Z/insiders_logs/window1/exthost/extHostTelemetry.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 0,
+      "data_points": 0,
+      "feasibility": "low"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T200100Z/insiders_logs/window1/exthost/exthost.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 93,
+      "data_points": 84,
+      "feasibility": "high"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T200100Z/insiders_logs/window1/renderer.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 582,
+      "data_points": 65,
+      "feasibility": "high"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T200100Z/insiders_logs/window2/exthost/extHostTelemetry.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 0,
+      "data_points": 0,
+      "feasibility": "low"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T200100Z/insiders_logs/window2/exthost/exthost.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 108,
+      "data_points": 95,
+      "feasibility": "high"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T200100Z/insiders_logs/window2/renderer.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 478,
+      "data_points": 53,
+      "feasibility": "high"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T200100Z/insiders_logs/window3/exthost/extHostTelemetry.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 0,
+      "data_points": 0,
+      "feasibility": "low"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T200100Z/insiders_logs/window3/exthost/exthost.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 108,
+      "data_points": 95,
+      "feasibility": "high"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T200100Z/insiders_logs/window3/renderer.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 633,
+      "data_points": 53,
+      "feasibility": "high"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T200100Z/insiders_logs/window4/exthost/extHostTelemetry.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 0,
+      "data_points": 0,
+      "feasibility": "low"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T200100Z/insiders_logs/window4/exthost/exthost.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 44,
+      "data_points": 44,
+      "feasibility": "high"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T200100Z/insiders_logs/window4/renderer.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 802,
+      "data_points": 56,
+      "feasibility": "high"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T200100Z/probe_no_profile_stderr.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 0,
+      "data_points": 0,
+      "feasibility": "low"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T200100Z/probe_no_profile_stdout.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 1,
+      "data_points": 1,
+      "feasibility": "low"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T200100Z/probe_with_profile_repo_stderr.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 0,
+      "data_points": 0,
+      "feasibility": "low"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T200100Z/probe_with_profile_repo_stdout.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 1,
+      "data_points": 1,
+      "feasibility": "low"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T200100Z/probe_with_profile_temp_stderr.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 0,
+      "data_points": 0,
+      "feasibility": "low"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T200100Z/probe_with_profile_temp_stdout.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 1,
+      "data_points": 1,
+      "feasibility": "low"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T200225Z/api_doctor.err.log",
+      "extension": ".err.log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 0,
+      "data_points": 0,
+      "feasibility": "low"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T200225Z/api_doctor.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 14,
+      "data_points": 14,
+      "feasibility": "high"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T200225Z/code_insiders_status.err.log",
+      "extension": ".err.log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 0,
+      "data_points": 0,
+      "feasibility": "low"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T200225Z/code_insiders_status.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 77,
+      "data_points": 75,
+      "feasibility": "high"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T200225Z/insiders_logs/main.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 145,
+      "data_points": 145,
+      "feasibility": "high"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T200225Z/insiders_logs/ptyhost.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 0,
+      "data_points": 0,
+      "feasibility": "low"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T200225Z/insiders_logs/sharedprocess.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 4,
+      "data_points": 4,
+      "feasibility": "high"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T200225Z/insiders_logs/terminal.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 318,
+      "data_points": 183,
+      "feasibility": "high"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T200225Z/insiders_logs/window1/exthost/extHostTelemetry.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 0,
+      "data_points": 0,
+      "feasibility": "low"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T200225Z/insiders_logs/window1/exthost/exthost.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 93,
+      "data_points": 84,
+      "feasibility": "high"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T200225Z/insiders_logs/window1/renderer.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 582,
+      "data_points": 65,
+      "feasibility": "high"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T200225Z/insiders_logs/window2/exthost/extHostTelemetry.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 0,
+      "data_points": 0,
+      "feasibility": "low"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T200225Z/insiders_logs/window2/exthost/exthost.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 108,
+      "data_points": 95,
+      "feasibility": "high"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T200225Z/insiders_logs/window2/renderer.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 478,
+      "data_points": 53,
+      "feasibility": "high"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T200225Z/insiders_logs/window3/exthost/extHostTelemetry.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 0,
+      "data_points": 0,
+      "feasibility": "low"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T200225Z/insiders_logs/window3/exthost/exthost.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 108,
+      "data_points": 95,
+      "feasibility": "high"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T200225Z/insiders_logs/window3/renderer.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 633,
+      "data_points": 53,
+      "feasibility": "high"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T200225Z/insiders_logs/window4/exthost/extHostTelemetry.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 0,
+      "data_points": 0,
+      "feasibility": "low"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T200225Z/insiders_logs/window4/exthost/exthost.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 44,
+      "data_points": 44,
+      "feasibility": "high"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T200225Z/insiders_logs/window4/renderer.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 802,
+      "data_points": 56,
+      "feasibility": "high"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T200225Z/probe_no_profile_stderr.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 0,
+      "data_points": 0,
+      "feasibility": "low"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T200225Z/probe_no_profile_stdout.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 1,
+      "data_points": 1,
+      "feasibility": "low"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T200225Z/probe_with_profile_repo_stderr.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 0,
+      "data_points": 0,
+      "feasibility": "low"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T200225Z/probe_with_profile_repo_stdout.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 1,
+      "data_points": 1,
+      "feasibility": "low"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T200225Z/probe_with_profile_temp_stderr.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 0,
+      "data_points": 0,
+      "feasibility": "low"
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T200225Z/probe_with_profile_temp_stdout.log",
+      "extension": ".log",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "diagnostic_trace",
+      "target_output_types": [
+        ".md",
+        ".json",
+        ".py"
+      ],
+      "line_count": 1,
+      "data_points": 1,
+      "feasibility": "low"
+    },
+    {
+      "path": "dumpster-dive/intake/claude-ide-harden-2026-02-10/tier-1-direct/claude_process_wrapper.bat",
+      "extension": ".bat",
+      "anomaly_types": [
+        "legacy_batch_in_pwsh_repo"
+      ],
+      "intelligence_type": "legacy_windows_automation",
+      "target_output_types": [
+        ".ps1"
+      ],
+      "line_count": 9,
+      "data_points": 9,
+      "feasibility": "high"
+    },
+    {
+      "path": "dumpster-dive/scripts/__pycache__/audit_deploy_integrity.cpython-313.pyc",
+      "extension": ".cpython-313.pyc",
+      "anomaly_types": [
+        "tracked_bytecode"
+      ],
+      "intelligence_type": "bytecode_contract",
+      "target_output_types": [
+        ".py"
+      ],
+      "line_count": 469,
+      "data_points": 163,
+      "feasibility": "high"
+    },
+    {
+      "path": "mas_mcp/frontend/.env",
+      "extension": "[no_ext]",
+      "anomaly_types": [
+        "tracked_env_surface"
+      ],
+      "intelligence_type": "raw_unrefined_artifact",
+      "target_output_types": [
+        ".md"
+      ],
+      "line_count": 18,
+      "data_points": 17,
+      "feasibility": "high"
+    },
+    {
+      "path": "scripts/CLAUDE_CODE_INTEGRATION.md",
+      "extension": ".md",
+      "anomaly_types": [
+        "filetype_directory_mismatch"
+      ],
+      "intelligence_type": "raw_unrefined_artifact",
+      "target_output_types": [
+        ".md"
+      ],
+      "line_count": 143,
+      "data_points": 122,
+      "feasibility": "high"
+    }
+  ],
+  "summary": {
+    "files": 353,
+    "high_feasibility": 172,
+    "by_intelligence_type": {
+      "path_forensics": 3,
+      "bytecode_contract": 6,
+      "raw_unrefined_artifact": 9,
+      "environment_contract": 2,
+      "diagnostic_trace": 332,
+      "legacy_windows_automation": 1
+    }
+  }
+}

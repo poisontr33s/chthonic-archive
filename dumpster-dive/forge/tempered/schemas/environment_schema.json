@@ -1,0 +1,250 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Recovered Chthonic Environment Surface",
+  "type": "object",
+  "properties": {
+    "ANTHROPIC_API_KEY": {
+      "type": "string",
+      "description": "Recovered from codex/mailbox/API_KEY_ENV_TEMPLATE_20260226T045112Z.env",
+      "x-secret": true
+    },
+    "ASSEMBLYAI_API_KEY": {
+      "type": "string",
+      "description": "Recovered from codex/mailbox/API_KEY_ENV_TEMPLATE_20260226T045112Z.env",
+      "x-secret": true
+    },
+    "AZURE_OPENAI_API_KEY": {
+      "type": "string",
+      "description": "Recovered from codex/mailbox/API_KEY_ENV_TEMPLATE_20260226T045112Z.env",
+      "x-secret": true
+    },
+    "BRAVE_SEARCH_API_KEY": {
+      "type": "string",
+      "description": "Recovered from codex/mailbox/API_KEY_ENV_TEMPLATE_20260226T045112Z.env",
+      "x-secret": true
+    },
+    "CEREBRAS_API_KEY": {
+      "type": "string",
+      "description": "Recovered from codex/mailbox/API_KEY_ENV_TEMPLATE_20260226T045112Z.env",
+      "x-secret": true
+    },
+    "CHTHONIC_LLM_BASE_URL": {
+      "type": "string",
+      "description": "Recovered from claude-codex-gemini/session_resumption_pickup/UNCENSORED_LANE_RUNTIME_20260219_231721.env, claude-codex-gemini/session_resumption_pickup/UNCENSORED_LANE_RUNTIME_LATEST.env",
+      "x-secret": false
+    },
+    "CHTHONIC_LLM_CODE_MODEL_PATH": {
+      "type": "string",
+      "description": "Recovered from claude-codex-gemini/session_resumption_pickup/UNCENSORED_LANE_RUNTIME_20260219_231721.env, claude-codex-gemini/session_resumption_pickup/UNCENSORED_LANE_RUNTIME_LATEST.env",
+      "x-secret": false
+    },
+    "CHTHONIC_LLM_DEFAULT_LANE": {
+      "type": "string",
+      "description": "Recovered from claude-codex-gemini/session_resumption_pickup/UNCENSORED_LANE_RUNTIME_20260219_231721.env, claude-codex-gemini/session_resumption_pickup/UNCENSORED_LANE_RUNTIME_LATEST.env",
+      "x-secret": false
+    },
+    "CHTHONIC_LLM_DEFAULT_MODEL_PATH": {
+      "type": "string",
+      "description": "Recovered from claude-codex-gemini/session_resumption_pickup/UNCENSORED_LANE_RUNTIME_20260219_231721.env, claude-codex-gemini/session_resumption_pickup/UNCENSORED_LANE_RUNTIME_LATEST.env",
+      "x-secret": false
+    },
+    "CHTHONIC_LLM_STRICT_JSON_MODEL_PATH": {
+      "type": "string",
+      "description": "Recovered from claude-codex-gemini/session_resumption_pickup/UNCENSORED_LANE_RUNTIME_20260219_231721.env, claude-codex-gemini/session_resumption_pickup/UNCENSORED_LANE_RUNTIME_LATEST.env",
+      "x-secret": false
+    },
+    "CHTHONIC_LLM_UNRESTRICTED_MODEL_PATH": {
+      "type": "string",
+      "description": "Recovered from claude-codex-gemini/session_resumption_pickup/UNCENSORED_LANE_RUNTIME_20260219_231721.env, claude-codex-gemini/session_resumption_pickup/UNCENSORED_LANE_RUNTIME_LATEST.env",
+      "x-secret": false
+    },
+    "COHERE_API_KEY": {
+      "type": "string",
+      "description": "Recovered from codex/mailbox/API_KEY_ENV_TEMPLATE_20260226T045112Z.env",
+      "x-secret": true
+    },
+    "DEEPSEEK_API_KEY": {
+      "type": "string",
+      "description": "Recovered from codex/mailbox/API_KEY_ENV_TEMPLATE_20260226T045112Z.env",
+      "x-secret": true
+    },
+    "ELEVENLABS_API_KEY": {
+      "type": "string",
+      "description": "Recovered from codex/mailbox/API_KEY_ENV_TEMPLATE_20260226T045112Z.env",
+      "x-secret": true
+    },
+    "ENTITY_REGISTRY_PATH": {
+      "type": "string",
+      "description": "Recovered from mas_mcp/frontend/.env",
+      "x-secret": false
+    },
+    "EXA_API_KEY": {
+      "type": "string",
+      "description": "Recovered from codex/mailbox/API_KEY_ENV_TEMPLATE_20260226T045112Z.env",
+      "x-secret": true
+    },
+    "FIREWORKS_API_KEY": {
+      "type": "string",
+      "description": "Recovered from codex/mailbox/API_KEY_ENV_TEMPLATE_20260226T045112Z.env",
+      "x-secret": true
+    },
+    "GEMINI_API_KEY": {
+      "type": "string",
+      "description": "Recovered from codex/mailbox/API_KEY_ENV_TEMPLATE_20260226T045112Z.env",
+      "x-secret": true
+    },
+    "GENESIS_ARTIFACTS_DIR": {
+      "type": "string",
+      "description": "Recovered from mas_mcp/frontend/.env",
+      "x-secret": false
+    },
+    "GENESIS_GPU_PROVIDER": {
+      "type": "string",
+      "description": "Recovered from mas_mcp/frontend/.env",
+      "x-secret": false
+    },
+    "GENESIS_LOGS_DIR": {
+      "type": "string",
+      "description": "Recovered from mas_mcp/frontend/.env",
+      "x-secret": false
+    },
+    "GROQ_API_KEY": {
+      "type": "string",
+      "description": "Recovered from codex/mailbox/API_KEY_ENV_TEMPLATE_20260226T045112Z.env",
+      "x-secret": true
+    },
+    "HOST": {
+      "type": "string",
+      "description": "Recovered from mas_mcp/frontend/.env",
+      "x-secret": false
+    },
+    "LANGSMITH_API_KEY": {
+      "type": "string",
+      "description": "Recovered from codex/mailbox/API_KEY_ENV_TEMPLATE_20260226T045112Z.env",
+      "x-secret": true
+    },
+    "MISTRAL_API_KEY": {
+      "type": "string",
+      "description": "Recovered from codex/mailbox/API_KEY_ENV_TEMPLATE_20260226T045112Z.env",
+      "x-secret": true
+    },
+    "OPENAI_API_KEY": {
+      "type": "string",
+      "description": "Recovered from codex/mailbox/API_KEY_ENV_TEMPLATE_20260226T045112Z.env",
+      "x-secret": true
+    },
+    "OPENROUTER_API_KEY": {
+      "type": "string",
+      "description": "Recovered from codex/mailbox/API_KEY_ENV_TEMPLATE_20260226T045112Z.env",
+      "x-secret": true
+    },
+    "PERPLEXITY_API_KEY": {
+      "type": "string",
+      "description": "Recovered from codex/mailbox/API_KEY_ENV_TEMPLATE_20260226T045112Z.env",
+      "x-secret": true
+    },
+    "PINECONE_API_KEY": {
+      "type": "string",
+      "description": "Recovered from codex/mailbox/API_KEY_ENV_TEMPLATE_20260226T045112Z.env",
+      "x-secret": true
+    },
+    "PORT": {
+      "type": "integer",
+      "description": "Recovered from mas_mcp/frontend/.env",
+      "x-secret": false
+    },
+    "REPLICATE_API_TOKEN": {
+      "type": "string",
+      "description": "Recovered from codex/mailbox/API_KEY_ENV_TEMPLATE_20260226T045112Z.env",
+      "x-secret": true
+    },
+    "SERPAPI_API_KEY": {
+      "type": "string",
+      "description": "Recovered from codex/mailbox/API_KEY_ENV_TEMPLATE_20260226T045112Z.env",
+      "x-secret": true
+    },
+    "SLO_ACCEPTANCE_RATE": {
+      "type": "string",
+      "description": "Recovered from mas_mcp/frontend/.env",
+      "x-secret": false
+    },
+    "SLO_P50_LATENCY_MS": {
+      "type": "integer",
+      "description": "Recovered from mas_mcp/frontend/.env",
+      "x-secret": false
+    },
+    "SLO_P95_LATENCY_MS": {
+      "type": "integer",
+      "description": "Recovered from mas_mcp/frontend/.env",
+      "x-secret": false
+    },
+    "SLO_VRAM_PCT": {
+      "type": "integer",
+      "description": "Recovered from mas_mcp/frontend/.env",
+      "x-secret": false
+    },
+    "TAVILY_API_KEY": {
+      "type": "string",
+      "description": "Recovered from codex/mailbox/API_KEY_ENV_TEMPLATE_20260226T045112Z.env",
+      "x-secret": true
+    },
+    "TOGETHER_API_KEY": {
+      "type": "string",
+      "description": "Recovered from codex/mailbox/API_KEY_ENV_TEMPLATE_20260226T045112Z.env",
+      "x-secret": true
+    },
+    "VOYAGE_API_KEY": {
+      "type": "string",
+      "description": "Recovered from codex/mailbox/API_KEY_ENV_TEMPLATE_20260226T045112Z.env",
+      "x-secret": true
+    },
+    "XAI_API_KEY": {
+      "type": "string",
+      "description": "Recovered from codex/mailbox/API_KEY_ENV_TEMPLATE_20260226T045112Z.env",
+      "x-secret": true
+    }
+  },
+  "required": [
+    "ANTHROPIC_API_KEY",
+    "ASSEMBLYAI_API_KEY",
+    "AZURE_OPENAI_API_KEY",
+    "BRAVE_SEARCH_API_KEY",
+    "CEREBRAS_API_KEY",
+    "CHTHONIC_LLM_BASE_URL",
+    "CHTHONIC_LLM_CODE_MODEL_PATH",
+    "CHTHONIC_LLM_DEFAULT_LANE",
+    "CHTHONIC_LLM_DEFAULT_MODEL_PATH",
+    "CHTHONIC_LLM_STRICT_JSON_MODEL_PATH",
+    "CHTHONIC_LLM_UNRESTRICTED_MODEL_PATH",
+    "COHERE_API_KEY",
+    "DEEPSEEK_API_KEY",
+    "ELEVENLABS_API_KEY",
+    "ENTITY_REGISTRY_PATH",
+    "EXA_API_KEY",
+    "FIREWORKS_API_KEY",
+    "GEMINI_API_KEY",
+    "GENESIS_ARTIFACTS_DIR",
+    "GENESIS_GPU_PROVIDER",
+    "GENESIS_LOGS_DIR",
+    "GROQ_API_KEY",
+    "HOST",
+    "LANGSMITH_API_KEY",
+    "MISTRAL_API_KEY",
+    "OPENAI_API_KEY",
+    "OPENROUTER_API_KEY",
+    "PERPLEXITY_API_KEY",
+    "PINECONE_API_KEY",
+    "PORT",
+    "REPLICATE_API_TOKEN",
+    "SERPAPI_API_KEY",
+    "SLO_ACCEPTANCE_RATE",
+    "SLO_P50_LATENCY_MS",
+    "SLO_P95_LATENCY_MS",
+    "SLO_VRAM_PCT",
+    "TAVILY_API_KEY",
+    "TOGETHER_API_KEY",
+    "VOYAGE_API_KEY",
+    "XAI_API_KEY"
+  ],
+  "additionalProperties": true
+}

@@ -1,0 +1,128 @@
+[
+  {
+    "input_type": ".log",
+    "output_type": ".md",
+    "pathway": "log -> pattern extraction -> diagnostic playbook",
+    "path": "dumpster-dive/forge/furnace/docs/diagnostic_playbook.md",
+    "novel": false
+  },
+  {
+    "input_type": ".env",
+    "output_type": ".json",
+    "pathway": "env -> variable contract extraction -> JSON schema",
+    "path": "dumpster-dive/forge/furnace/schemas/environment_schema.json",
+    "novel": false
+  },
+  {
+    "input_type": ".env",
+    "output_type": ".md",
+    "pathway": "env -> integration hint extraction -> environment map",
+    "path": "dumpster-dive/forge/furnace/docs/environment_integration_map.md",
+    "novel": false
+  },
+  {
+    "input_type": ".off",
+    "output_type": ".md",
+    "pathway": "workflow.off -> pattern extraction -> workflow catalogue",
+    "path": "dumpster-dive/forge/furnace/workflows/workflow_pattern_catalog.md",
+    "novel": false
+  },
+  {
+    "input_type": ".off",
+    "output_type": ".yml",
+    "pathway": "workflow.off -> reusable template synthesis -> YAML templates",
+    "path": "dumpster-dive/forge/furnace/workflows/recovered_workflow_templates.yml",
+    "novel": false
+  },
+  {
+    "input_type": ".vsconfig",
+    "output_type": ".md",
+    "pathway": "vsconfig -> component diff -> toolchain decision record",
+    "path": "dumpster-dive/forge/furnace/docs/toolchain_decision_record.md",
+    "novel": false
+  },
+  {
+    "input_type": ".bat",
+    "output_type": ".ps1",
+    "pathway": "batch -> transcript-preserving PowerShell transliteration",
+    "path": "dumpster-dive/forge/furnace/powershell/batch_transliteration.ps1",
+    "novel": false
+  },
+  {
+    "input_type": ".md\"",
+    "output_type": ".md",
+    "pathway": "damaged markdown path -> filename forensics note",
+    "path": "dumpster-dive/forge/furnace/docs/filename_forensics_note.md",
+    "novel": true
+  },
+  {
+    "input_type": "corpse-vault/python",
+    "output_type": ".py",
+    "pathway": "python fragments -> cluster registry -> utility library",
+    "path": "dumpster-dive/forge/furnace/python/consolidated_python_utilities.py",
+    "novel": true
+  },
+  {
+    "input_type": "corpse-vault/typescript",
+    "output_type": ".d.ts",
+    "pathway": "typescript fragments -> declaration recovery -> archive",
+    "path": "dumpster-dive/forge/furnace/typescript/recovered_type_archive.d.ts",
+    "novel": false
+  },
+  {
+    "input_type": "corpse-vault/*test*",
+    "output_type": ".ts",
+    "pathway": "test fragments -> fixture metadata -> reusable registry",
+    "path": "dumpster-dive/forge/furnace/typescript/recovered_test_fixtures.ts",
+    "novel": true
+  },
+  {
+    "input_type": "corpse-vault/markdown",
+    "output_type": ".md",
+    "pathway": "markdown fragments -> recovered architecture decisions",
+    "path": "dumpster-dive/forge/furnace/docs/ADR_RECOVERED.md",
+    "novel": false
+  },
+  {
+    "input_type": "corpse-vault/config + orphaned json",
+    "output_type": ".json",
+    "pathway": "config fragments -> observed key signatures -> schema catalogue",
+    "path": "dumpster-dive/forge/furnace/schemas/configuration_schema_catalog.json",
+    "novel": false
+  },
+  {
+    "input_type": "corpse-vault/shell",
+    "output_type": ".ps1",
+    "pathway": "shell fragments -> recipe extraction -> PowerShell registry",
+    "path": "dumpster-dive/forge/furnace/powershell/recovered_shell_recipe_book.ps1",
+    "novel": false
+  },
+  {
+    "input_type": "corpse-vault/shell",
+    "output_type": ".go",
+    "pathway": "shell fragments -> recipe registry -> Go CLI",
+    "path": "dumpster-dive/forge/furnace/go/recovered_shell_recipe_cli.go",
+    "novel": false
+  },
+  {
+    "input_type": "corpse-vault/typescript",
+    "output_type": ".cs",
+    "pathway": "typescript contracts -> C# class mirror",
+    "path": "dumpster-dive/forge/furnace/csharp/RecoveredContracts.cs",
+    "novel": false
+  },
+  {
+    "input_type": "corpse-vault/rust",
+    "output_type": ".h",
+    "pathway": "rust struct signatures -> C header for FFI",
+    "path": "dumpster-dive/forge/furnace/c_cpp/recovered_rust_ffi.h",
+    "novel": false
+  },
+  {
+    "input_type": "corpse-vault/python",
+    "output_type": ".rb",
+    "pathway": "python cluster metadata -> Ruby registry mirror",
+    "path": "dumpster-dive/forge/furnace/ruby/recovered_python_cluster_registry.rb",
+    "novel": true
+  }
+]

@@ -1,0 +1,5692 @@
+{
+  "generated_at": "2026-03-03T07:13:14+00:00",
+  "schema_patterns": [
+    {
+      "signature": ".claude\\settings.local.json,.dcrp_evolution.json,.dcrp_state.json,.python-version,.vscode\\QUICKREF.md,.vscode\\SETTINGS_DIAGNOSIS.md,.vscode\\WIN11_CONFIGURATION.md,.vscode\\chthonic-archive-theme.json,.vscode\\chthonic-archive-theme.json.backup,.vscode\\chthonic.code-snippets,.vscode\\launch.json,.vscode\\mcp.json,.vscode\\settings.json,.vscode\\tasks.json,ALGORITHMIC_EMERGENCE_CATALOG.md,ANKHOLOGY.md,ANKH_README.md,AUTONOMOUS_COORDINATOR_QUICKREF.md,AUTONOMOUS_ORCHESTRATION_FRAMEWORK.md,AUTONOMOUS_SESSION_2026-01-01.md,AUTONOMOUS_SESSION_2_COMPLETE.md,AUTONOMOUS_SESSION_3_COMPLETE.md,AUTONOMOUS_SESSION_3_DEEP_DIVE_SYNTHESIS.md,AUTONOMOUS_SESSION_3_DEEP_RESEARCH.md,AUTONOMOUS_SESSION_3_EXECUTION_COMPLETE.md,AUTONOMOUS_SESSION_3_MISSION_COMPLETE.md,AUTONOMOUS_SESSION_3_MISSION_REPORT.md,AUTONOMOUS_SESSION_4_COMPLETE.md,AUTONOMOUS_SESSION_5_COMPLETE.md,AUTONOMOUS_SESSION_5_MISSION_REPORT.md,AUTONOMOUS_SESSION_7_COMPLETE.md,AUTONOMOUS_SESSION_STATUS.md,BUN_COMPLIANCE_COMPLETE.md,CLAUDE.md,CLAUDE_CODE_INTEGRATION_SUMMARY.md,CLAUDE_HANDOFF_CHROMA_GENESIS.md,CROSS_REFERENCE_TRIPTYCH.md,CURRICULUM_CORE_V1.md,Cargo.toml,DAEMON_CLASSIFICATION_ENHANCEMENTS.md,DCRP_DEPLOYMENT_SUMMARY.md,DCRP_ENHANCED_ANALYSIS.md,DCRP_FINAL_STATUS.md,DCRP_MERGE_REPORT.txt,DCRP_OBSERVABILITY_UPGRADE.md,DCRP_OBSERVABILITY_VALIDATION_COMPLETE.md,DCRP_PRODUCTION_ANALYSIS.md,DCRP_REFACTORING_SESSION_SUMMARY.md,DCRP_REFACTOR_COMPLETE.md,DCRP_UNIFIED_REFACTOR.md,DELIVERABLES_20251230.md,DEVELOPMENT_STATE.md,EPISTEMOGRAPH_TO_CURRICULUM_SUMMARY.md,GEMINI_HANDOFF_CACHE.md,GEMINI_HANDOFF_PHASE_11_5.md,INDEXING_BEACON.md,LOSSLESS_COMPRESSION_CROSS_REFERENCE.md,PR_SUGGESTION.md,SESSION_2026_01_04_EPISTEMOGRAPH_COMPLETE.md,SESSION_3_ORCHESTRATION_QUICKREF.md,SESSION_3_TYPESCRIPT_QUICKREF.md,TEST_FILE_DOCUMENTATION_RESTORED.md,THE_DECORATOR_AUTONOMOUS_SYNTHESIS.md,TYPESCRIPT_INTELLIGENCE_ENHANCEMENT.md,VSCODE_GUI_ENHANCEMENT_COMPLETE.md,ankh.md,ankh_atlas\\.python-version,ankh_atlas\\README.md,ankh_atlas\\ankh_atlas\\__main__.py,ankh_atlas\\ankh_atlas\\detectors.py,ankh_atlas\\ankh_atlas\\index.py,ankh_atlas\\ankh_atlas\\models.py,ankh_atlas\\ankh_atlas\\scan.py,ankh_atlas\\main.py,ankh_atlas\\pyproject.toml,ankh_index.json,artifacts\\mcp_run_audit_2026-01-05T00-42-49-176Z.json,artifacts\\mcp_run_audit_2026-01-05T00-43-12-981Z.json,artifacts\\mcp_run_audit_2026-01-05T00-43-47-483Z.json,artifacts\\mcp_run_curriculum_2026-01-05T00-42-49-176Z.json,artifacts\\mcp_run_curriculum_2026-01-05T00-43-12-981Z.json,artifacts\\mcp_run_curriculum_2026-01-05T00-43-47-483Z.json,artifacts\\mcp_run_discovery_2026-01-05T00-42-49-176Z.json,artifacts\\mcp_run_discovery_2026-01-05T00-43-12-981Z.json,artifacts\\mcp_run_discovery_2026-01-05T00-43-47-483Z.json,artifacts\\mcp_run_impact_2026-01-05T00-42-49-176Z.json,artifacts\\mcp_run_impact_2026-01-05T00-43-12-981Z.json,artifacts\\mcp_run_impact_2026-01-05T00-43-47-483Z.json,artifacts\\mcp_run_spectral_2026-01-05T00-42-49-176Z.json,artifacts\\mcp_run_spectral_2026-01-05T00-43-12-981Z.json,artifacts\\mcp_run_spectral_2026-01-05T00-43-47-483Z.json,artifacts\\mcp_run_trace_2026-01-05T00-42-49-176Z.json,artifacts\\mcp_run_trace_2026-01-05T00-43-12-981Z.json,artifacts\\mcp_run_trace_2026-01-05T00-43-47-483Z.json,assets\\concept-art\\MILF_TIER_0.1_Concept_The_Null_Matriarch_Entity_0dot1.png,assets\\concept-art\\MILF_TIER_UNKNOWN_Concept_Snow_White_Passive_Antithesis.png,assets\\data.json,assets\\entities\\abbreviations.json,assets\\shaders\\iso_grid.frag,assets\\shaders\\iso_grid.vert,chthonic_epistemograph.sqlite,chthonic_epistemograph_v1.1.1.sqlite,chthonic_epistemograph_v1.1.sqlite,curriculum_core_v1.json,dependency_graph.json,dependency_graph_enhanced.json,dependency_graph_production.json,dev\\overnight_refactor_mode.md,docs\\CLAUDE_CODE_REGISTRATION.md,docs\\CLI_EDITING_POLICY.md,docs\\CODEBASE_INVENTORY.md,docs\\COPILOT_SESSION_PERSISTENCE.md,docs\\EXECUTION_CONTRACT.md,docs\\HANDOFF_TO_CLAUDE.md,docs\\MCP_AUTONOMOUS_PREREQUISITES.md,docs\\MCP_SERVER_TEMPLATE.md,docs\\MCP_USER_WORKFLOWS.md,docs\\PROBE_CONTRACT.md,docs\\PWSH_RULES.md,docs\\README.md,docs\\ROOTDIR_HEALTH.md,docs\\SESSION_2026-01-17_CLEANUP.md,docs\\SESSION_2026_01_17_META_REVIEW.md,docs\\SESSION_2026_01_17_TRUTH_STEWARDSHIP.md,docs\\SESSION_BOOTSTRAP_SPEC.md,docs\\architecture\\CHTHONIC_ARCHIVE_WORLD_TPEF.md,docs\\architecture\\MILF_TRINITY_CHROMATIC_LINEAGE.md,docs\\design\\genre-extraction.md,docs\\lore\\Alabaster_Voyde_Snow_White.md,docs\\lore\\RESISTANCE_TRIUMVIRATE_COMPLETE.md,docs\\lore\\Spectra_Chroma_Excavatus.md,docs\\protocols\\ANCHOR_SIGNAL_PROTOCOL.md,docs\\protocols\\CROSS_TIER_MATRIX.md,docs\\protocols\\TEA_EXAMPLES.md,docs\\reference\\PYTHON_LANES.md,docs\\reference\\SENTRY_MCP_VSCODE.md,docs\\reference\\handoff0001.md,docs\\reference\\handoff001.md,epistemograph_custody_v1.1.1.md,extensions\\DEVHOST_TESTING.md,extensions\\DIAGNOSTIC_REPORT.md,extensions\\FA5_POLICY.md,extensions\\NON_REGRESSION_CHECKLIST.md,extensions\\TA_FA_CANONICAL_FUNCTION.md,extensions\\__diagnostics__\\assets.test.ts,extensions\\__diagnostics__\\bundle-size.test.ts,extensions\\__diagnostics__\\deployment.test.ts,extensions\\__diagnostics__\\gpu-parsing.test.ts,extensions\\__diagnostics__\\package-config.test.ts,extensions\\__diagnostics__\\python-detection.test.ts,extensions\\__diagnostics__\\source-code.test.ts,extensions\\chthonic-mandala\\README.md,extensions\\chthonic-mandala\\icons\\mandala.svg,extensions\\chthonic-mandala\\package.json,extensions\\chthonic-mandala\\resources\\mandala.svg,extensions\\chthonic-mandala\\src\\extension.ts,extensions\\chthonic-mandala\\themes\\chthonic-mandala-color-theme.json,extensions\\chthonic-mandala\\tsconfig.json,extensions\\chthonic-statusbar\\README.md,extensions\\chthonic-statusbar\\package.json,extensions\\chthonic-statusbar\\src\\extension.ts,extensions\\chthonic-statusbar\\src\\hedonisticValidation.ts,extensions\\chthonic-statusbar\\tsconfig.json,extensions\\doctor.ts,github-copilot-chat-log,health_reports\\HEALTH_REPORT_2026-01-01T08-17-33+00-00.md,health_reports\\HEALTH_REPORT_2026-01-01T08-47-40+00-00.md,health_reports\\HEALTH_REPORT_2026-01-01T09-00-51+00-00.md,health_reports\\HEALTH_REPORT_2026-01-01T10-08-36+00-00.md,health_reports\\HEALTH_REPORT_2026-01-01T22-18-04+00-00.md,health_reports\\HEALTH_REPORT_2026-01-01T22-19-02+00-00.md,health_reports\\HEALTH_REPORT_2026-01-01T23-29-00+00-00.md,health_reports\\HEALTH_REPORT_2026-01-02T04-55-54+00-00.md,health_reports\\HEALTH_REPORT_2026-01-02T04-59-13+00-00.md,health_reports\\HEALTH_REPORT_2026-01-02T04-59-26+00-00.md,health_reports\\HEALTH_REPORT_2026-01-02T05-37-40+00-00.md,health_reports\\HEALTH_REPORT_2026-01-02T05-40-33+00-00.md,health_reports\\HEALTH_REPORT_2026-01-09T17-26-14+00-00.md,health_reports\\HEALTH_REPORT_2026-01-09T17-27-28+00-00.md,health_reports\\HEALTH_REPORT_2026-01-09T17-29-17+00-00.md,health_reports\\HEALTH_REPORT_2026-01-09T19-47-59+00-00.md,latest-stable-policy.md,logs\\session_20251207_043539.jsonl,logs\\session_20251207_043745.jsonl,logs\\session_20251207_043803.jsonl,logs\\sessions\\README.md,logs\\sessions\\session_2025-12-31_0746_vscode-extension-debug.md,logs\\ssot_drift.log,mcp\\INTEGRATION_GUIDE.md,mcp\\OPTION_A_STATUS.md,mcp\\README.md,mcp\\claude_code_mcp_hint.json,mcp\\mcp.json,mcp\\preflight_response.json,mcp\\protocol.ts,mcp\\server.test.ts,mcp\\server.ts,mcp\\smoke-suite.ts,mcp\\test-client.ts,mcp\\test-dependency-graph.ts,mcp\\test-input.json,mcp\\tools\\ExecutionContext.schema.json,mcp\\tools\\ExecutionContextSchema.json,mcp\\tools\\preflightExecutionContext.test.json,mcp\\tools\\preflightExecutionContext.ts,mcp\\tools\\queryDependencyGraph.ts,mcp\\tools\\scanRepository.ts,mcp\\tools\\validateSSOT.ts,mcp\\validate-integration.ps1,mcp\\verify-final.ts,package.json,pr2_review\\ANKH_README.md,pr2_review\\CHERRY_PICK_PLAN.md,pr2_review\\COMPARISON_ANALYSIS.md,pr2_review\\ankh.md,pr2_review\\scripts\\ssot_hash.py,pyproject.toml,scanner_freeze_v1.1.1.md,scripts\\.dcrp_state.json,scripts\\BUN_COMPLIANCE_AUDIT.md,scripts\\BUN_COMPLIANCE_DEPLOYMENT.md,scripts\\CLAUDE_CODE_INTEGRATION.md,scripts\\Discover-SSOT-Treasure.ps1,scripts\\PROBE_VARIANT_AUDIT.md,scripts\\README.md,scripts\\autonomous_coordinator.py,scripts\\background_services.py,scripts\\bin\\python.cmd,scripts\\bin\\python314.cmd,scripts\\bun_compliance_audit.py,scripts\\code_scent.py,scripts\\code_taste.py,scripts\\code_texture.py,scripts\\compare_probe_variants.ps1,scripts\\cycle_detector.py,scripts\\debug_code_blocks.py,scripts\\decorator_cross_ref_enhanced.py,scripts\\decorator_cross_ref_maximum.py,scripts\\decorator_cross_ref_production.py,scripts\\deploy_dcrp_headers.py,scripts\\edge_case_test.py,scripts\\epistemograph_schema.sql,scripts\\epistemograph_schema_design.md,scripts\\extract_curriculum.py,scripts\\extract_session_value.py,scripts\\generate_readable_ssot.py,scripts\\github_voice.py,scripts\\governance_test.py,scripts\\harvest_claudines.ps1,scripts\\health_report.py,scripts\\incremental_updater.py,scripts\\launch_claude_code.ps1,scripts\\lint_shell_sovereignty.ps1,scripts\\mandala_topology.py,scripts\\map_codebase.py,scripts\\mcp-asc-injector.ts,scripts\\mcp-sentry-proxy.ts,scripts\\mcp_artisan_server.ts,scripts\\overnight_daemon.ts,scripts\\pause_agents.ps1,scripts\\pleasure_protocol.py,scripts\\polyglot_env.ps1,scripts\\probe_toolchain_path.ps1,scripts\\quick_validation.py,scripts\\resolve_sid.py,scripts\\rootdir_health_audit.py,scripts\\run_cycle.py,scripts\\run_mcp_artisan_server.ps1,scripts\\run_mcp_validation.ts,scripts\\run_overnight_daemon.ps1,scripts\\run_queries.py,scripts\\run_sentry_mcp.ps1,scripts\\scan_redundancy.py,scripts\\scanner_approval.md,scripts\\scanner_v1.1_fixes.md,scripts\\scanner_validation_FAILED.md,scripts\\scanner_validation_PASSED_v1.1.1.md,scripts\\schema_validation_report.md,scripts\\sentry_init.ts,scripts\\sentry_probe.ts,scripts\\sentry_test.ts,scripts\\session_learning_audit.py,scripts\\setup_db.py,scripts\\sfs.ps1,scripts\\shell_capabilities.ps1,scripts\\siphon_to_dumpster_dive.ps1,scripts\\ssot_hash.py,scripts\\ssot_immunity.py,scripts\\start_mcp_session.ps1,scripts\\test_epistemograph.sqlite,scripts\\test_ingest.py,scripts\\typescript_dependency_resolver.py,scripts\\unified_topology.py,scripts\\upcycle_audit.py,scripts\\validate_probe.ps1,scripts\\validate_session_changes.ps1,scripts\\validate_shell_probe.ps1,session_resumption_chthonic_progress.md,sid_index.json,src\\README.md,src\\data\\faction_types.rs,src\\data\\factions.rs,src\\data\\loader.rs,src\\data\\mod.rs,src\\data\\types.rs,src\\main.rs,src\\render\\camera.rs,src\\render\\mod.rs,src\\render\\pipeline.rs,src\\render\\renderer.rs,src\\render\\swapchain.rs,src\\render\\vulkan.rs,synthesis_summary.txt,topology_graph.json,topology_map.md,topology_summary.md,validation_alabaster_voyde.txt,validation_final.txt,validation_results.txt",
+      "properties": {
+        ".dcrp_evolution.json": [
+          "str"
+        ],
+        ".dcrp_state.json": [
+          "str"
+        ],
+        ".python-version": [
+          "str"
+        ],
+        "ALGORITHMIC_EMERGENCE_CATALOG.md": [
+          "str"
+        ],
+        "ankh.md": [
+          "str"
+        ],
+        "ANKHOLOGY.md": [
+          "str"
+        ],
+        "ankh_index.json": [
+          "str"
+        ],
+        "ANKH_README.md": [
+          "str"
+        ],
+        "AUTONOMOUS_COORDINATOR_QUICKREF.md": [
+          "str"
+        ],
+        "AUTONOMOUS_ORCHESTRATION_FRAMEWORK.md": [
+          "str"
+        ],
+        "AUTONOMOUS_SESSION_2026-01-01.md": [
+          "str"
+        ],
+        "AUTONOMOUS_SESSION_2_COMPLETE.md": [
+          "str"
+        ],
+        "AUTONOMOUS_SESSION_3_COMPLETE.md": [
+          "str"
+        ],
+        "AUTONOMOUS_SESSION_3_DEEP_DIVE_SYNTHESIS.md": [
+          "str"
+        ],
+        "AUTONOMOUS_SESSION_3_DEEP_RESEARCH.md": [
+          "str"
+        ],
+        "AUTONOMOUS_SESSION_3_EXECUTION_COMPLETE.md": [
+          "str"
+        ],
+        "AUTONOMOUS_SESSION_3_MISSION_COMPLETE.md": [
+          "str"
+        ],
+        "AUTONOMOUS_SESSION_3_MISSION_REPORT.md": [
+          "str"
+        ],
+        "AUTONOMOUS_SESSION_4_COMPLETE.md": [
+          "str"
+        ],
+        "AUTONOMOUS_SESSION_5_COMPLETE.md": [
+          "str"
+        ],
+        "AUTONOMOUS_SESSION_5_MISSION_REPORT.md": [
+          "str"
+        ],
+        "AUTONOMOUS_SESSION_7_COMPLETE.md": [
+          "str"
+        ],
+        "AUTONOMOUS_SESSION_STATUS.md": [
+          "str"
+        ],
+        "BUN_COMPLIANCE_COMPLETE.md": [
+          "str"
+        ],
+        "Cargo.toml": [
+          "str"
+        ],
+        "chthonic_epistemograph.sqlite": [
+          "str"
+        ],
+        "chthonic_epistemograph_v1.1.1.sqlite": [
+          "str"
+        ],
+        "chthonic_epistemograph_v1.1.sqlite": [
+          "str"
+        ],
+        "CLAUDE.md": [
+          "str"
+        ],
+        "CLAUDE_CODE_INTEGRATION_SUMMARY.md": [
+          "str"
+        ],
+        "CLAUDE_HANDOFF_CHROMA_GENESIS.md": [
+          "str"
+        ],
+        "CROSS_REFERENCE_TRIPTYCH.md": [
+          "str"
+        ],
+        "curriculum_core_v1.json": [
+          "str"
+        ],
+        "CURRICULUM_CORE_V1.md": [
+          "str"
+        ],
+        "DAEMON_CLASSIFICATION_ENHANCEMENTS.md": [
+          "str"
+        ],
+        "DCRP_DEPLOYMENT_SUMMARY.md": [
+          "str"
+        ],
+        "DCRP_ENHANCED_ANALYSIS.md": [
+          "str"
+        ],
+        "DCRP_FINAL_STATUS.md": [
+          "str"
+        ],
+        "DCRP_MERGE_REPORT.txt": [
+          "str"
+        ],
+        "DCRP_OBSERVABILITY_UPGRADE.md": [
+          "str"
+        ],
+        "DCRP_OBSERVABILITY_VALIDATION_COMPLETE.md": [
+          "str"
+        ],
+        "DCRP_PRODUCTION_ANALYSIS.md": [
+          "str"
+        ],
+        "DCRP_REFACTORING_SESSION_SUMMARY.md": [
+          "str"
+        ],
+        "DCRP_REFACTOR_COMPLETE.md": [
+          "str"
+        ],
+        "DCRP_UNIFIED_REFACTOR.md": [
+          "str"
+        ],
+        "DELIVERABLES_20251230.md": [
+          "str"
+        ],
+        "dependency_graph.json": [
+          "str"
+        ],
+        "dependency_graph_enhanced.json": [
+          "str"
+        ],
+        "dependency_graph_production.json": [
+          "str"
+        ],
+        "DEVELOPMENT_STATE.md": [
+          "str"
+        ],
+        "epistemograph_custody_v1.1.1.md": [
+          "str"
+        ],
+        "EPISTEMOGRAPH_TO_CURRICULUM_SUMMARY.md": [
+          "str"
+        ],
+        "GEMINI_HANDOFF_CACHE.md": [
+          "str"
+        ],
+        "GEMINI_HANDOFF_PHASE_11_5.md": [
+          "str"
+        ],
+        "github-copilot-chat-log": [
+          "str"
+        ],
+        "INDEXING_BEACON.md": [
+          "str"
+        ],
+        "latest-stable-policy.md": [
+          "str"
+        ],
+        "LOSSLESS_COMPRESSION_CROSS_REFERENCE.md": [
+          "str"
+        ],
+        "package.json": [
+          "str"
+        ],
+        "PR_SUGGESTION.md": [
+          "str"
+        ],
+        "pyproject.toml": [
+          "str"
+        ],
+        "scanner_freeze_v1.1.1.md": [
+          "str"
+        ],
+        "SESSION_2026_01_04_EPISTEMOGRAPH_COMPLETE.md": [
+          "str"
+        ],
+        "SESSION_3_ORCHESTRATION_QUICKREF.md": [
+          "str"
+        ],
+        "SESSION_3_TYPESCRIPT_QUICKREF.md": [
+          "str"
+        ],
+        "session_resumption_chthonic_progress.md": [
+          "str"
+        ],
+        "sid_index.json": [
+          "str"
+        ],
+        "synthesis_summary.txt": [
+          "str"
+        ],
+        "TEST_FILE_DOCUMENTATION_RESTORED.md": [
+          "str"
+        ],
+        "THE_DECORATOR_AUTONOMOUS_SYNTHESIS.md": [
+          "str"
+        ],
+        "topology_graph.json": [
+          "str"
+        ],
+        "topology_map.md": [
+          "str"
+        ],
+        "topology_summary.md": [
+          "str"
+        ],
+        "TYPESCRIPT_INTELLIGENCE_ENHANCEMENT.md": [
+          "str"
+        ],
+        "validation_alabaster_voyde.txt": [
+          "str"
+        ],
+        "validation_final.txt": [
+          "str"
+        ],
+        "validation_results.txt": [
+          "str"
+        ],
+        "VSCODE_GUI_ENHANCEMENT_COMPLETE.md": [
+          "str"
+        ],
+        ".claude\\settings.local.json": [
+          "str"
+        ],
+        ".vscode\\chthonic-archive-theme.json": [
+          "str"
+        ],
+        ".vscode\\chthonic-archive-theme.json.backup": [
+          "str"
+        ],
+        ".vscode\\chthonic.code-snippets": [
+          "str"
+        ],
+        ".vscode\\launch.json": [
+          "str"
+        ],
+        ".vscode\\mcp.json": [
+          "str"
+        ],
+        ".vscode\\QUICKREF.md": [
+          "str"
+        ],
+        ".vscode\\settings.json": [
+          "str"
+        ],
+        ".vscode\\SETTINGS_DIAGNOSIS.md": [
+          "str"
+        ],
+        ".vscode\\tasks.json": [
+          "str"
+        ],
+        ".vscode\\WIN11_CONFIGURATION.md": [
+          "str"
+        ],
+        "ankh_atlas\\.python-version": [
+          "str"
+        ],
+        "ankh_atlas\\main.py": [
+          "str"
+        ],
+        "ankh_atlas\\pyproject.toml": [
+          "str"
+        ],
+        "ankh_atlas\\README.md": [
+          "str"
+        ],
+        "artifacts\\mcp_run_audit_2026-01-05T00-42-49-176Z.json": [
+          "str"
+        ],
+        "artifacts\\mcp_run_audit_2026-01-05T00-43-12-981Z.json": [
+          "str"
+        ],
+        "artifacts\\mcp_run_audit_2026-01-05T00-43-47-483Z.json": [
+          "str"
+        ],
+        "artifacts\\mcp_run_curriculum_2026-01-05T00-42-49-176Z.json": [
+          "str"
+        ],
+        "artifacts\\mcp_run_curriculum_2026-01-05T00-43-12-981Z.json": [
+          "str"
+        ],
+        "artifacts\\mcp_run_curriculum_2026-01-05T00-43-47-483Z.json": [
+          "str"
+        ],
+        "artifacts\\mcp_run_discovery_2026-01-05T00-42-49-176Z.json": [
+          "str"
+        ],
+        "artifacts\\mcp_run_discovery_2026-01-05T00-43-12-981Z.json": [
+          "str"
+        ],
+        "artifacts\\mcp_run_discovery_2026-01-05T00-43-47-483Z.json": [
+          "str"
+        ],
+        "artifacts\\mcp_run_impact_2026-01-05T00-42-49-176Z.json": [
+          "str"
+        ],
+        "artifacts\\mcp_run_impact_2026-01-05T00-43-12-981Z.json": [
+          "str"
+        ],
+        "artifacts\\mcp_run_impact_2026-01-05T00-43-47-483Z.json": [
+          "str"
+        ],
+        "artifacts\\mcp_run_spectral_2026-01-05T00-42-49-176Z.json": [
+          "str"
+        ],
+        "artifacts\\mcp_run_spectral_2026-01-05T00-43-12-981Z.json": [
+          "str"
+        ],
+        "artifacts\\mcp_run_spectral_2026-01-05T00-43-47-483Z.json": [
+          "str"
+        ],
+        "artifacts\\mcp_run_trace_2026-01-05T00-42-49-176Z.json": [
+          "str"
+        ],
+        "artifacts\\mcp_run_trace_2026-01-05T00-43-12-981Z.json": [
+          "str"
+        ],
+        "artifacts\\mcp_run_trace_2026-01-05T00-43-47-483Z.json": [
+          "str"
+        ],
+        "assets\\data.json": [
+          "str"
+        ],
+        "dev\\overnight_refactor_mode.md": [
+          "str"
+        ],
+        "docs\\CLAUDE_CODE_REGISTRATION.md": [
+          "str"
+        ],
+        "docs\\CLI_EDITING_POLICY.md": [
+          "str"
+        ],
+        "docs\\CODEBASE_INVENTORY.md": [
+          "str"
+        ],
+        "docs\\COPILOT_SESSION_PERSISTENCE.md": [
+          "str"
+        ],
+        "docs\\EXECUTION_CONTRACT.md": [
+          "str"
+        ],
+        "docs\\HANDOFF_TO_CLAUDE.md": [
+          "str"
+        ],
+        "docs\\MCP_AUTONOMOUS_PREREQUISITES.md": [
+          "str"
+        ],
+        "docs\\MCP_SERVER_TEMPLATE.md": [
+          "str"
+        ],
+        "docs\\MCP_USER_WORKFLOWS.md": [
+          "str"
+        ],
+        "docs\\PROBE_CONTRACT.md": [
+          "str"
+        ],
+        "docs\\PWSH_RULES.md": [
+          "str"
+        ],
+        "docs\\README.md": [
+          "str"
+        ],
+        "docs\\ROOTDIR_HEALTH.md": [
+          "str"
+        ],
+        "docs\\SESSION_2026-01-17_CLEANUP.md": [
+          "str"
+        ],
+        "docs\\SESSION_2026_01_17_META_REVIEW.md": [
+          "str"
+        ],
+        "docs\\SESSION_2026_01_17_TRUTH_STEWARDSHIP.md": [
+          "str"
+        ],
+        "docs\\SESSION_BOOTSTRAP_SPEC.md": [
+          "str"
+        ],
+        "extensions\\DEVHOST_TESTING.md": [
+          "str"
+        ],
+        "extensions\\DIAGNOSTIC_REPORT.md": [
+          "str"
+        ],
+        "extensions\\doctor.ts": [
+          "str"
+        ],
+        "extensions\\FA5_POLICY.md": [
+          "str"
+        ],
+        "extensions\\NON_REGRESSION_CHECKLIST.md": [
+          "str"
+        ],
+        "extensions\\TA_FA_CANONICAL_FUNCTION.md": [
+          "str"
+        ],
+        "health_reports\\HEALTH_REPORT_2026-01-01T08-17-33+00-00.md": [
+          "str"
+        ],
+        "health_reports\\HEALTH_REPORT_2026-01-01T08-47-40+00-00.md": [
+          "str"
+        ],
+        "health_reports\\HEALTH_REPORT_2026-01-01T09-00-51+00-00.md": [
+          "str"
+        ],
+        "health_reports\\HEALTH_REPORT_2026-01-01T10-08-36+00-00.md": [
+          "str"
+        ],
+        "health_reports\\HEALTH_REPORT_2026-01-01T22-18-04+00-00.md": [
+          "str"
+        ],
+        "health_reports\\HEALTH_REPORT_2026-01-01T22-19-02+00-00.md": [
+          "str"
+        ],
+        "health_reports\\HEALTH_REPORT_2026-01-01T23-29-00+00-00.md": [
+          "str"
+        ],
+        "health_reports\\HEALTH_REPORT_2026-01-02T04-55-54+00-00.md": [
+          "str"
+        ],
+        "health_reports\\HEALTH_REPORT_2026-01-02T04-59-13+00-00.md": [
+          "str"
+        ],
+        "health_reports\\HEALTH_REPORT_2026-01-02T04-59-26+00-00.md": [
+          "str"
+        ],
+        "health_reports\\HEALTH_REPORT_2026-01-02T05-37-40+00-00.md": [
+          "str"
+        ],
+        "health_reports\\HEALTH_REPORT_2026-01-02T05-40-33+00-00.md": [
+          "str"
+        ],
+        "health_reports\\HEALTH_REPORT_2026-01-09T17-26-14+00-00.md": [
+          "str"
+        ],
+        "health_reports\\HEALTH_REPORT_2026-01-09T17-27-28+00-00.md": [
+          "str"
+        ],
+        "health_reports\\HEALTH_REPORT_2026-01-09T17-29-17+00-00.md": [
+          "str"
+        ],
+        "health_reports\\HEALTH_REPORT_2026-01-09T19-47-59+00-00.md": [
+          "str"
+        ],
+        "logs\\session_20251207_043539.jsonl": [
+          "str"
+        ],
+        "logs\\session_20251207_043745.jsonl": [
+          "str"
+        ],
+        "logs\\session_20251207_043803.jsonl": [
+          "str"
+        ],
+        "logs\\ssot_drift.log": [
+          "str"
+        ],
+        "mcp\\claude_code_mcp_hint.json": [
+          "str"
+        ],
+        "mcp\\INTEGRATION_GUIDE.md": [
+          "str"
+        ],
+        "mcp\\mcp.json": [
+          "str"
+        ],
+        "mcp\\OPTION_A_STATUS.md": [
+          "str"
+        ],
+        "mcp\\preflight_response.json": [
+          "str"
+        ],
+        "mcp\\protocol.ts": [
+          "str"
+        ],
+        "mcp\\README.md": [
+          "str"
+        ],
+        "mcp\\server.test.ts": [
+          "str"
+        ],
+        "mcp\\server.ts": [
+          "str"
+        ],
+        "mcp\\smoke-suite.ts": [
+          "str"
+        ],
+        "mcp\\test-client.ts": [
+          "str"
+        ],
+        "mcp\\test-dependency-graph.ts": [
+          "str"
+        ],
+        "mcp\\test-input.json": [
+          "str"
+        ],
+        "mcp\\validate-integration.ps1": [
+          "str"
+        ],
+        "mcp\\verify-final.ts": [
+          "str"
+        ],
+        "pr2_review\\ankh.md": [
+          "str"
+        ],
+        "pr2_review\\ANKH_README.md": [
+          "str"
+        ],
+        "pr2_review\\CHERRY_PICK_PLAN.md": [
+          "str"
+        ],
+        "pr2_review\\COMPARISON_ANALYSIS.md": [
+          "str"
+        ],
+        "scripts\\.dcrp_state.json": [
+          "str"
+        ],
+        "scripts\\autonomous_coordinator.py": [
+          "str"
+        ],
+        "scripts\\background_services.py": [
+          "str"
+        ],
+        "scripts\\BUN_COMPLIANCE_AUDIT.md": [
+          "str"
+        ],
+        "scripts\\bun_compliance_audit.py": [
+          "str"
+        ],
+        "scripts\\BUN_COMPLIANCE_DEPLOYMENT.md": [
+          "str"
+        ],
+        "scripts\\CLAUDE_CODE_INTEGRATION.md": [
+          "str"
+        ],
+        "scripts\\code_scent.py": [
+          "str"
+        ],
+        "scripts\\code_taste.py": [
+          "str"
+        ],
+        "scripts\\code_texture.py": [
+          "str"
+        ],
+        "scripts\\compare_probe_variants.ps1": [
+          "str"
+        ],
+        "scripts\\cycle_detector.py": [
+          "str"
+        ],
+        "scripts\\debug_code_blocks.py": [
+          "str"
+        ],
+        "scripts\\decorator_cross_ref_enhanced.py": [
+          "str"
+        ],
+        "scripts\\decorator_cross_ref_maximum.py": [
+          "str"
+        ],
+        "scripts\\decorator_cross_ref_production.py": [
+          "str"
+        ],
+        "scripts\\deploy_dcrp_headers.py": [
+          "str"
+        ],
+        "scripts\\Discover-SSOT-Treasure.ps1": [
+          "str"
+        ],
+        "scripts\\edge_case_test.py": [
+          "str"
+        ],
+        "scripts\\epistemograph_schema.sql": [
+          "str"
+        ],
+        "scripts\\epistemograph_schema_design.md": [
+          "str"
+        ],
+        "scripts\\extract_curriculum.py": [
+          "str"
+        ],
+        "scripts\\extract_session_value.py": [
+          "str"
+        ],
+        "scripts\\generate_readable_ssot.py": [
+          "str"
+        ],
+        "scripts\\github_voice.py": [
+          "str"
+        ],
+        "scripts\\governance_test.py": [
+          "str"
+        ],
+        "scripts\\harvest_claudines.ps1": [
+          "str"
+        ],
+        "scripts\\health_report.py": [
+          "str"
+        ],
+        "scripts\\incremental_updater.py": [
+          "str"
+        ],
+        "scripts\\launch_claude_code.ps1": [
+          "str"
+        ],
+        "scripts\\lint_shell_sovereignty.ps1": [
+          "str"
+        ],
+        "scripts\\mandala_topology.py": [
+          "str"
+        ],
+        "scripts\\map_codebase.py": [
+          "str"
+        ],
+        "scripts\\mcp-asc-injector.ts": [
+          "str"
+        ],
+        "scripts\\mcp-sentry-proxy.ts": [
+          "str"
+        ],
+        "scripts\\mcp_artisan_server.ts": [
+          "str"
+        ],
+        "scripts\\overnight_daemon.ts": [
+          "str"
+        ],
+        "scripts\\pause_agents.ps1": [
+          "str"
+        ],
+        "scripts\\pleasure_protocol.py": [
+          "str"
+        ],
+        "scripts\\polyglot_env.ps1": [
+          "str"
+        ],
+        "scripts\\probe_toolchain_path.ps1": [
+          "str"
+        ],
+        "scripts\\PROBE_VARIANT_AUDIT.md": [
+          "str"
+        ],
+        "scripts\\quick_validation.py": [
+          "str"
+        ],
+        "scripts\\README.md": [
+          "str"
+        ],
+        "scripts\\resolve_sid.py": [
+          "str"
+        ],
+        "scripts\\rootdir_health_audit.py": [
+          "str"
+        ],
+        "scripts\\run_cycle.py": [
+          "str"
+        ],
+        "scripts\\run_mcp_artisan_server.ps1": [
+          "str"
+        ],
+        "scripts\\run_mcp_validation.ts": [
+          "str"
+        ],
+        "scripts\\run_overnight_daemon.ps1": [
+          "str"
+        ],
+        "scripts\\run_queries.py": [
+          "str"
+        ],
+        "scripts\\run_sentry_mcp.ps1": [
+          "str"
+        ],
+        "scripts\\scanner_approval.md": [
+          "str"
+        ],
+        "scripts\\scanner_v1.1_fixes.md": [
+          "str"
+        ],
+        "scripts\\scanner_validation_FAILED.md": [
+          "str"
+        ],
+        "scripts\\scanner_validation_PASSED_v1.1.1.md": [
+          "str"
+        ],
+        "scripts\\scan_redundancy.py": [
+          "str"
+        ],
+        "scripts\\schema_validation_report.md": [
+          "str"
+        ],
+        "scripts\\sentry_init.ts": [
+          "str"
+        ],
+        "scripts\\sentry_probe.ts": [
+          "str"
+        ],
+        "scripts\\sentry_test.ts": [
+          "str"
+        ],
+        "scripts\\session_learning_audit.py": [
+          "str"
+        ],
+        "scripts\\setup_db.py": [
+          "str"
+        ],
+        "scripts\\sfs.ps1": [
+          "str"
+        ],
+        "scripts\\shell_capabilities.ps1": [
+          "str"
+        ],
+        "scripts\\siphon_to_dumpster_dive.ps1": [
+          "str"
+        ],
+        "scripts\\ssot_hash.py": [
+          "str"
+        ],
+        "scripts\\ssot_immunity.py": [
+          "str"
+        ],
+        "scripts\\start_mcp_session.ps1": [
+          "str"
+        ],
+        "scripts\\test_epistemograph.sqlite": [
+          "str"
+        ],
+        "scripts\\test_ingest.py": [
+          "str"
+        ],
+        "scripts\\typescript_dependency_resolver.py": [
+          "str"
+        ],
+        "scripts\\unified_topology.py": [
+          "str"
+        ],
+        "scripts\\upcycle_audit.py": [
+          "str"
+        ],
+        "scripts\\validate_probe.ps1": [
+          "str"
+        ],
+        "scripts\\validate_session_changes.ps1": [
+          "str"
+        ],
+        "scripts\\validate_shell_probe.ps1": [
+          "str"
+        ],
+        "src\\main.rs": [
+          "str"
+        ],
+        "src\\README.md": [
+          "str"
+        ],
+        "src\\data\\factions.rs": [
+          "str"
+        ],
+        "src\\data\\faction_types.rs": [
+          "str"
+        ],
+        "src\\data\\loader.rs": [
+          "str"
+        ],
+        "src\\data\\mod.rs": [
+          "str"
+        ],
+        "src\\data\\types.rs": [
+          "str"
+        ],
+        "src\\render\\camera.rs": [
+          "str"
+        ],
+        "src\\render\\mod.rs": [
+          "str"
+        ],
+        "src\\render\\pipeline.rs": [
+          "str"
+        ],
+        "src\\render\\renderer.rs": [
+          "str"
+        ],
+        "src\\render\\swapchain.rs": [
+          "str"
+        ],
+        "src\\render\\vulkan.rs": [
+          "str"
+        ],
+        "scripts\\bin\\python.cmd": [
+          "str"
+        ],
+        "scripts\\bin\\python314.cmd": [
+          "str"
+        ],
+        "pr2_review\\scripts\\ssot_hash.py": [
+          "str"
+        ],
+        "mcp\\tools\\ExecutionContext.schema.json": [
+          "str"
+        ],
+        "mcp\\tools\\ExecutionContextSchema.json": [
+          "str"
+        ],
+        "mcp\\tools\\preflightExecutionContext.test.json": [
+          "str"
+        ],
+        "mcp\\tools\\preflightExecutionContext.ts": [
+          "str"
+        ],
+        "mcp\\tools\\queryDependencyGraph.ts": [
+          "str"
+        ],
+        "mcp\\tools\\scanRepository.ts": [
+          "str"
+        ],
+        "mcp\\tools\\validateSSOT.ts": [
+          "str"
+        ],
+        "logs\\sessions\\README.md": [
+          "str"
+        ],
+        "logs\\sessions\\session_2025-12-31_0746_vscode-extension-debug.md": [
+          "str"
+        ],
+        "extensions\\chthonic-mandala\\package.json": [
+          "str"
+        ],
+        "extensions\\chthonic-mandala\\README.md": [
+          "str"
+        ],
+        "extensions\\chthonic-mandala\\tsconfig.json": [
+          "str"
+        ],
+        "extensions\\chthonic-statusbar\\package.json": [
+          "str"
+        ],
+        "extensions\\chthonic-statusbar\\README.md": [
+          "str"
+        ],
+        "extensions\\chthonic-statusbar\\tsconfig.json": [
+          "str"
+        ],
+        "extensions\\__diagnostics__\\assets.test.ts": [
+          "str"
+        ],
+        "extensions\\__diagnostics__\\bundle-size.test.ts": [
+          "str"
+        ],
+        "extensions\\__diagnostics__\\deployment.test.ts": [
+          "str"
+        ],
+        "extensions\\__diagnostics__\\gpu-parsing.test.ts": [
+          "str"
+        ],
+        "extensions\\__diagnostics__\\package-config.test.ts": [
+          "str"
+        ],
+        "extensions\\__diagnostics__\\python-detection.test.ts": [
+          "str"
+        ],
+        "extensions\\__diagnostics__\\source-code.test.ts": [
+          "str"
+        ],
+        "extensions\\chthonic-statusbar\\src\\extension.ts": [
+          "str"
+        ],
+        "extensions\\chthonic-statusbar\\src\\hedonisticValidation.ts": [
+          "str"
+        ],
+        "extensions\\chthonic-mandala\\icons\\mandala.svg": [
+          "str"
+        ],
+        "extensions\\chthonic-mandala\\resources\\mandala.svg": [
+          "str"
+        ],
+        "extensions\\chthonic-mandala\\src\\extension.ts": [
+          "str"
+        ],
+        "extensions\\chthonic-mandala\\themes\\chthonic-mandala-color-theme.json": [
+          "str"
+        ],
+        "docs\\architecture\\CHTHONIC_ARCHIVE_WORLD_TPEF.md": [
+          "str"
+        ],
+        "docs\\architecture\\MILF_TRINITY_CHROMATIC_LINEAGE.md": [
+          "str"
+        ],
+        "docs\\design\\genre-extraction.md": [
+          "str"
+        ],
+        "docs\\lore\\Alabaster_Voyde_Snow_White.md": [
+          "str"
+        ],
+        "docs\\lore\\RESISTANCE_TRIUMVIRATE_COMPLETE.md": [
+          "str"
+        ],
+        "docs\\lore\\Spectra_Chroma_Excavatus.md": [
+          "str"
+        ],
+        "docs\\protocols\\ANCHOR_SIGNAL_PROTOCOL.md": [
+          "str"
+        ],
+        "docs\\protocols\\CROSS_TIER_MATRIX.md": [
+          "str"
+        ],
+        "docs\\protocols\\TEA_EXAMPLES.md": [
+          "str"
+        ],
+        "docs\\reference\\handoff0001.md": [
+          "str"
+        ],
+        "docs\\reference\\handoff001.md": [
+          "str"
+        ],
+        "docs\\reference\\PYTHON_LANES.md": [
+          "str"
+        ],
+        "docs\\reference\\SENTRY_MCP_VSCODE.md": [
+          "str"
+        ],
+        "assets\\concept-art\\MILF_TIER_0.1_Concept_The_Null_Matriarch_Entity_0dot1.png": [
+          "str"
+        ],
+        "assets\\concept-art\\MILF_TIER_UNKNOWN_Concept_Snow_White_Passive_Antithesis.png": [
+          "str"
+        ],
+        "assets\\entities\\abbreviations.json": [
+          "str"
+        ],
+        "assets\\shaders\\iso_grid.frag": [
+          "str"
+        ],
+        "assets\\shaders\\iso_grid.vert": [
+          "str"
+        ],
+        "ankh_atlas\\ankh_atlas\\detectors.py": [
+          "str"
+        ],
+        "ankh_atlas\\ankh_atlas\\index.py": [
+          "str"
+        ],
+        "ankh_atlas\\ankh_atlas\\models.py": [
+          "str"
+        ],
+        "ankh_atlas\\ankh_atlas\\scan.py": [
+          "str"
+        ],
+        "ankh_atlas\\ankh_atlas\\__main__.py": [
+          "str"
+        ]
+      },
+      "examples": [
+        "data/state/.dcrp_state.json"
+      ]
+    },
+    {
+      "signature": "_comment,aiConfig,applicationName,builtInExtensions,commit,darwinBundleIdentifier,dataFolderName,date,documentationUrl,enableTelemetry,extensionAllowedProposedApi,extensionsGallery,introductoryVideosUrl,keyboardShortcutsUrlLinux,keyboardShortcutsUrlMac,keyboardShortcutsUrlWin,licenseName,licenseUrl,linkProtectionTrustedDomains,nameLong,nameShort,newsletterSignupUrl,quality,reportIssueUrl,sendASmile,tipsAndTricksUrl,urlProtocol,win32AppId,win32AppUserModelId,win32DirName,win32MutexName,win32NameVersion,win32RegValueName,win32ShellNameShort,win32arm64AppId,win32x64AppId",
+      "properties": {
+        "nameShort": [
+          "str"
+        ],
+        "nameLong": [
+          "str"
+        ],
+        "applicationName": [
+          "str"
+        ],
+        "dataFolderName": [
+          "str"
+        ],
+        "win32MutexName": [
+          "str"
+        ],
+        "licenseName": [
+          "str"
+        ],
+        "licenseUrl": [
+          "str"
+        ],
+        "win32DirName": [
+          "str"
+        ],
+        "win32NameVersion": [
+          "str"
+        ],
+        "win32RegValueName": [
+          "str"
+        ],
+        "win32AppId": [
+          "str"
+        ],
+        "win32x64AppId": [
+          "str"
+        ],
+        "win32arm64AppId": [
+          "str"
+        ],
+        "win32AppUserModelId": [
+          "str"
+        ],
+        "win32ShellNameShort": [
+          "str"
+        ],
+        "darwinBundleIdentifier": [
+          "str"
+        ],
+        "reportIssueUrl": [
+          "str"
+        ],
+        "urlProtocol": [
+          "str"
+        ],
+        "extensionAllowedProposedApi": [
+          "list"
+        ],
+        "builtInExtensions": [
+          "list"
+        ],
+        "quality": [
+          "str"
+        ],
+        "extensionsGallery": [
+          "dict"
+        ],
+        "linkProtectionTrustedDomains": [
+          "list"
+        ],
+        "sendASmile": [
+          "dict"
+        ],
+        "documentationUrl": [
+          "str"
+        ],
+        "keyboardShortcutsUrlMac": [
+          "str"
+        ],
+        "keyboardShortcutsUrlLinux": [
+          "str"
+        ],
+        "keyboardShortcutsUrlWin": [
+          "str"
+        ],
+        "introductoryVideosUrl": [
+          "str"
+        ],
+        "tipsAndTricksUrl": [
+          "str"
+        ],
+        "newsletterSignupUrl": [
+          "str"
+        ],
+        "enableTelemetry": [
+          "bool"
+        ],
+        "aiConfig": [
+          "dict"
+        ],
+        "commit": [
+          "str"
+        ],
+        "date": [
+          "str"
+        ],
+        "_comment": [
+          "list"
+        ]
+      },
+      "examples": [
+        "chthonic-golden/product.json"
+      ]
+    },
+    {
+      "signature": "$schema,blacksmith,created,current_state,extraction_date,extraction_log,forge_recommendation,forge_status,high_grade_inventory,high_priority_queue,integration_status,last_updated,manifest_version,ore_source,ore_validation,philosophy,purpose,quality_rating,rating_scale,ssot_lineage,tea_collapse_log",
+      "properties": {
+        "ssot_lineage": [
+          "dict"
+        ],
+        "integration_status": [
+          "dict"
+        ],
+        "$schema": [
+          "str"
+        ],
+        "extraction_date": [
+          "str"
+        ],
+        "forge_status": [
+          "str"
+        ],
+        "quality_rating": [
+          "str"
+        ],
+        "ore_source": [
+          "str"
+        ],
+        "purpose": [
+          "str"
+        ],
+        "manifest_version": [
+          "str"
+        ],
+        "created": [
+          "str"
+        ],
+        "last_updated": [
+          "str"
+        ],
+        "philosophy": [
+          "str"
+        ],
+        "blacksmith": [
+          "dict"
+        ],
+        "current_state": [
+          "dict"
+        ],
+        "rating_scale": [
+          "dict"
+        ],
+        "high_grade_inventory": [
+          "dict"
+        ],
+        "extraction_log": [
+          "list"
+        ],
+        "tea_collapse_log": [
+          "list"
+        ],
+        "high_priority_queue": [
+          "list"
+        ],
+        "ore_validation": [
+          "dict"
+        ],
+        "forge_recommendation": [
+          "dict"
+        ]
+      },
+      "examples": [
+        "dumpster-dive/forge/tempered/ORE_MANIFEST_v1.0.json"
+      ]
+    },
+    {
+      "signature": "age_actual,age_apparent,archetype,expertise,faction,genesis_hash,genesis_seed,genesis_timestamp,linguistic_mandate,measurements,name,physique,race,reports_to,scent,schema_crc,signature_technique,status,tier,whr",
+      "properties": {
+        "name": [
+          "str"
+        ],
+        "tier": [
+          "float"
+        ],
+        "archetype": [
+          "str"
+        ],
+        "age_apparent": [
+          "int"
+        ],
+        "age_actual": [
+          "int"
+        ],
+        "race": [
+          "str"
+        ],
+        "physique": [
+          "dict"
+        ],
+        "scent": [
+          "str"
+        ],
+        "linguistic_mandate": [
+          "str"
+        ],
+        "expertise": [
+          "list"
+        ],
+        "status": [
+          "str"
+        ],
+        "faction": [
+          "NoneType"
+        ],
+        "reports_to": [
+          "str"
+        ],
+        "signature_technique": [
+          "str"
+        ],
+        "genesis_timestamp": [
+          "str"
+        ],
+        "genesis_seed": [
+          "int"
+        ],
+        "genesis_hash": [
+          "str"
+        ],
+        "schema_crc": [
+          "str"
+        ],
+        "whr": [
+          "float"
+        ],
+        "measurements": [
+          "str"
+        ]
+      },
+      "examples": [
+        "mas_mcp/genesis_artifacts/20251207_055735/03a1c7183233aa76/entity.json",
+        "mas_mcp/genesis_artifacts/20251207_055735/20d4a94f74fc60f6/entity.json",
+        "mas_mcp/genesis_artifacts/20251207_055735/84351a74b938cc19/entity.json",
+        "mas_mcp/genesis_artifacts/20251207_055735/f74eeada6ad738be/entity.json",
+        "mas_mcp/genesis_artifacts/20251207_055735/f7cfc1e2a27ac535/entity.json",
+        "mas_mcp/genesis_artifacts/20251207_060612/19fb8f5b4bb12640/entity.json",
+        "mas_mcp/genesis_artifacts/20251207_060612/acbe4e85c9b52eba/entity.json",
+        "mas_mcp/genesis_artifacts/20251207_060612/cde2622894d52422/entity.json",
+        "mas_mcp/genesis_artifacts/20251207_140343/0f55f1dc9106524a/entity.json",
+        "mas_mcp/genesis_artifacts/20251207_140343/149afefdea424b76/entity.json"
+      ]
+    },
+    {
+      "signature": "circulation_model,created,cross_reference_index,cross_references,folder_structure,forge_tempered_artifacts,from_github,identifier_schema,integration_status,metadata,philosophy,protocols,protocols_tracking,purpose,query_examples,registry_metadata,registry_version,root_documentation,tempered_artifacts,updated",
+      "properties": {
+        "registry_version": [
+          "str"
+        ],
+        "created": [
+          "str"
+        ],
+        "updated": [
+          "str"
+        ],
+        "philosophy": [
+          "str"
+        ],
+        "purpose": [
+          "str"
+        ],
+        "circulation_model": [
+          "str"
+        ],
+        "metadata": [
+          "dict"
+        ],
+        "folder_structure": [
+          "dict"
+        ],
+        "forge_tempered_artifacts": [
+          "dict"
+        ],
+        "protocols_tracking": [
+          "dict"
+        ],
+        "cross_reference_index": [
+          "dict"
+        ],
+        "query_examples": [
+          "dict"
+        ],
+        "integration_status": [
+          "dict"
+        ],
+        "registry_metadata": [
+          "dict"
+        ],
+        "cross_references": [
+          "dict"
+        ],
+        "identifier_schema": [
+          "dict"
+        ],
+        "root_documentation": [
+          "dict"
+        ],
+        "protocols": [
+          "dict"
+        ],
+        "tempered_artifacts": [
+          "dict"
+        ],
+        "from_github": [
+          "dict"
+        ]
+      },
+      "examples": [
+        "dumpster-dive/DUMPSTER_DIVE_REGISTRY.json"
+      ]
+    },
+    {
+      "signature": "$schema,P1_actualization,P2_recontextualization,P3_transcendence,P4_integrity,P5_supremacy,extraction_date,forge_recommendation,forge_status,integration_status,meta,ore_source,ore_validation,purpose,quality_rating,relay_pointers,ssot_lineage,status_checkpoints",
+      "properties": {
+        "ssot_lineage": [
+          "dict"
+        ],
+        "integration_status": [
+          "dict"
+        ],
+        "$schema": [
+          "str"
+        ],
+        "extraction_date": [
+          "str"
+        ],
+        "forge_status": [
+          "str"
+        ],
+        "quality_rating": [
+          "str"
+        ],
+        "ore_source": [
+          "str"
+        ],
+        "purpose": [
+          "str"
+        ],
+        "meta": [
+          "dict"
+        ],
+        "P1_actualization": [
+          "dict"
+        ],
+        "P2_recontextualization": [
+          "dict"
+        ],
+        "P3_transcendence": [
+          "dict"
+        ],
+        "P4_integrity": [
+          "dict"
+        ],
+        "P5_supremacy": [
+          "dict"
+        ],
+        "status_checkpoints": [
+          "list"
+        ],
+        "relay_pointers": [
+          "list"
+        ],
+        "ore_validation": [
+          "dict"
+        ],
+        "forge_recommendation": [
+          "dict"
+        ]
+      },
+      "examples": [
+        "dumpster-dive/forge/tempered/ASC_SESSION1_METADATA_v1.0.json"
+      ]
+    },
+    {
+      "signature": "$schema,collapse_log,created,extraction_date,forge_recommendation,forge_status,integration_status,notes,ore_source,ore_validation,protocol_reference,purpose,quality_rating,registry,ssot_lineage,ssot_reference,tea_definition,version",
+      "properties": {
+        "ssot_lineage": [
+          "dict"
+        ],
+        "integration_status": [
+          "dict"
+        ],
+        "$schema": [
+          "str"
+        ],
+        "extraction_date": [
+          "str"
+        ],
+        "forge_status": [
+          "str"
+        ],
+        "quality_rating": [
+          "str"
+        ],
+        "ore_source": [
+          "str"
+        ],
+        "purpose": [
+          "str"
+        ],
+        "version": [
+          "str"
+        ],
+        "created": [
+          "str"
+        ],
+        "protocol_reference": [
+          "str"
+        ],
+        "ssot_reference": [
+          "str"
+        ],
+        "tea_definition": [
+          "dict"
+        ],
+        "registry": [
+          "dict"
+        ],
+        "collapse_log": [
+          "list"
+        ],
+        "notes": [
+          "dict"
+        ],
+        "ore_validation": [
+          "dict"
+        ],
+        "forge_recommendation": [
+          "dict"
+        ]
+      },
+      "examples": [
+        "dumpster-dive/forge/tempered/TEA_REGISTRY_v1.0.json"
+      ]
+    },
+    {
+      "signature": "account,balance_error,catalog_summary,current_point_balance,docs_alignment,entitlement_verdict,generated_on,mismatch_explanation,openai_max_tokens,prompt,registry_limit,registry_summary,rerun_commands,schema_version,sdk_probe_limit,targeted_models,targeted_summary",
+      "properties": {
+        "schema_version": [
+          "int"
+        ],
+        "generated_on": [
+          "str"
+        ],
+        "account": [
+          "str"
+        ],
+        "current_point_balance": [
+          "int"
+        ],
+        "balance_error": [
+          "NoneType"
+        ],
+        "prompt": [
+          "str"
+        ],
+        "openai_max_tokens": [
+          "int"
+        ],
+        "registry_limit": [
+          "int"
+        ],
+        "sdk_probe_limit": [
+          "int"
+        ],
+        "targeted_models": [
+          "list"
+        ],
+        "docs_alignment": [
+          "dict"
+        ],
+        "catalog_summary": [
+          "dict"
+        ],
+        "registry_summary": [
+          "dict"
+        ],
+        "targeted_summary": [
+          "dict"
+        ],
+        "entitlement_verdict": [
+          "str"
+        ],
+        "mismatch_explanation": [
+          "list"
+        ],
+        "rerun_commands": [
+          "list"
+        ]
+      },
+      "examples": [
+        "codex/mailbox/POE_API_SETUP_PULL_LATEST.json"
+      ]
+    },
+    {
+      "signature": "author,description,devDependencies,engines,exports,files,keywords,license,main,module,name,peerDependencies,repository,scripts,type,types,version",
+      "properties": {
+        "name": [
+          "str"
+        ],
+        "version": [
+          "str"
+        ],
+        "description": [
+          "str"
+        ],
+        "type": [
+          "str"
+        ],
+        "main": [
+          "str"
+        ],
+        "module": [
+          "str"
+        ],
+        "types": [
+          "str"
+        ],
+        "exports": [
+          "dict"
+        ],
+        "files": [
+          "list"
+        ],
+        "scripts": [
+          "dict"
+        ],
+        "keywords": [
+          "list"
+        ],
+        "author": [
+          "str"
+        ],
+        "license": [
+          "str"
+        ],
+        "repository": [
+          "dict"
+        ],
+        "engines": [
+          "dict"
+        ],
+        "peerDependencies": [
+          "dict"
+        ],
+        "devDependencies": [
+          "dict"
+        ]
+      },
+      "examples": [
+        "bun-playwright-poc/package.json"
+      ]
+    },
+    {
+      "signature": "activationEvents,bun,categories,contributes,dependencies,description,devDependencies,displayName,engines,main,name,publisher,repository,scripts,sideEffects,version",
+      "properties": {
+        "name": [
+          "str"
+        ],
+        "displayName": [
+          "str"
+        ],
+        "description": [
+          "str"
+        ],
+        "version": [
+          "str"
+        ],
+        "publisher": [
+          "str"
+        ],
+        "repository": [
+          "dict"
+        ],
+        "engines": [
+          "dict"
+        ],
+        "categories": [
+          "list"
+        ],
+        "activationEvents": [
+          "list"
+        ],
+        "main": [
+          "str"
+        ],
+        "sideEffects": [
+          "bool"
+        ],
+        "bun": [
+          "dict"
+        ],
+        "contributes": [
+          "dict"
+        ],
+        "scripts": [
+          "dict"
+        ],
+        "devDependencies": [
+          "dict"
+        ],
+        "dependencies": [
+          "dict"
+        ]
+      },
+      "examples": [
+        "extensions/chthonic-statusbar/package.json"
+      ]
+    },
+    {
+      "signature": "activationEvents,bun,categories,contributes,description,devDependencies,displayName,engines,icon,main,name,publisher,repository,scripts,sideEffects,version",
+      "properties": {
+        "name": [
+          "str"
+        ],
+        "displayName": [
+          "str"
+        ],
+        "description": [
+          "str"
+        ],
+        "version": [
+          "str"
+        ],
+        "publisher": [
+          "str"
+        ],
+        "repository": [
+          "dict"
+        ],
+        "icon": [
+          "str"
+        ],
+        "engines": [
+          "dict"
+        ],
+        "categories": [
+          "list"
+        ],
+        "activationEvents": [
+          "list"
+        ],
+        "main": [
+          "str"
+        ],
+        "sideEffects": [
+          "bool"
+        ],
+        "bun": [
+          "dict"
+        ],
+        "contributes": [
+          "dict"
+        ],
+        "scripts": [
+          "dict"
+        ],
+        "devDependencies": [
+          "dict"
+        ]
+      },
+      "examples": [
+        "extensions/chthonic-mandala/package.json"
+      ]
+    },
+    {
+      "signature": "acts,canonical_target,generated_on,guiding_principles,ideology_options,kind,model_handle_original,modules,schema_version,source,source_format,source_sha256,system_instructions,title,voice_quotes,voices",
+      "properties": {
+        "schema_version": [
+          "int"
+        ],
+        "kind": [
+          "str"
+        ],
+        "title": [
+          "str"
+        ],
+        "source_format": [
+          "str"
+        ],
+        "canonical_target": [
+          "str"
+        ],
+        "model_handle_original": [
+          "str"
+        ],
+        "acts": [
+          "list"
+        ],
+        "modules": [
+          "list"
+        ],
+        "system_instructions": [
+          "list"
+        ],
+        "guiding_principles": [
+          "list"
+        ],
+        "ideology_options": [
+          "list"
+        ],
+        "voice_quotes": [
+          "list"
+        ],
+        "voices": [
+          "list"
+        ],
+        "generated_on": [
+          "str"
+        ],
+        "source": [
+          "str"
+        ],
+        "source_sha256": [
+          "str"
+        ]
+      },
+      "examples": [
+        "codex/codex-session-logs/archive/The-Iron-Maiden-(SSOT)-Copyright-Savant.md.voicepack.json"
+      ]
+    },
+    {
+      "signature": "account,catalog_summary,docs_alignment,entitlement_verdict,generated_on,mismatch_explanation,openai_max_tokens,prompt,registry_limit,registry_summary,rerun_commands,schema_version,sdk_probe_limit,targeted_models,targeted_summary",
+      "properties": {
+        "schema_version": [
+          "int"
+        ],
+        "generated_on": [
+          "str"
+        ],
+        "account": [
+          "str"
+        ],
+        "prompt": [
+          "str"
+        ],
+        "openai_max_tokens": [
+          "int"
+        ],
+        "registry_limit": [
+          "int"
+        ],
+        "sdk_probe_limit": [
+          "int"
+        ],
+        "targeted_models": [
+          "list"
+        ],
+        "docs_alignment": [
+          "dict"
+        ],
+        "catalog_summary": [
+          "dict"
+        ],
+        "registry_summary": [
+          "dict"
+        ],
+        "targeted_summary": [
+          "dict"
+        ],
+        "entitlement_verdict": [
+          "str"
+        ],
+        "mismatch_explanation": [
+          "list"
+        ],
+        "rerun_commands": [
+          "list"
+        ]
+      },
+      "examples": [
+        "claude/mailbox/POE_API_SETUP_PULL_LATEST.json"
+      ]
+    },
+    {
+      "signature": "account,cheapest_callable,counts_by_best_status,counts_openai,counts_sdk,generated_on,model_source,models,openai_max_tokens,prompt,schema_version,sdk_probe_limit,source_error,total_models,transports",
+      "properties": {
+        "schema_version": [
+          "int"
+        ],
+        "generated_on": [
+          "str"
+        ],
+        "account": [
+          "str"
+        ],
+        "prompt": [
+          "str"
+        ],
+        "openai_max_tokens": [
+          "int"
+        ],
+        "transports": [
+          "list"
+        ],
+        "sdk_probe_limit": [
+          "int"
+        ],
+        "model_source": [
+          "str"
+        ],
+        "source_error": [
+          "NoneType"
+        ],
+        "total_models": [
+          "int"
+        ],
+        "counts_by_best_status": [
+          "dict"
+        ],
+        "counts_openai": [
+          "dict"
+        ],
+        "counts_sdk": [
+          "dict"
+        ],
+        "cheapest_callable": [
+          "list"
+        ],
+        "models": [
+          "list"
+        ]
+      },
+      "examples": [
+        "claude/mailbox/POE_CALLABILITY_REGISTRY_ACCOUNT_1.json",
+        "claude/mailbox/POE_CALLABILITY_REGISTRY_ACCOUNT_2.json",
+        "claude/mailbox/POE_CALLABILITY_REGISTRY_LATEST.json",
+        "claude/mailbox/POE_CALLABILITY_TARGETED_SAMPLE.json",
+        "claude/mailbox/POE_CALLABILITY_TARGETED_SAMPLE_ACCOUNT_1.json",
+        "claude/mailbox/POE_CALLABILITY_TARGETED_SAMPLE_ACCOUNT_2.json",
+        "codex/mailbox/POE_CALLABILITY_REGISTRY_ACCOUNT_1.json",
+        "codex/mailbox/POE_CALLABILITY_REGISTRY_ACCOUNT_2.json",
+        "codex/mailbox/POE_CALLABILITY_REGISTRY_LATEST.json",
+        "codex/mailbox/POE_CALLABILITY_TARGETED_SAMPLE.json"
+      ]
+    },
+    {
+      "signature": "acquisition_queue,available_keys,generated_on_utc,keys,missing_keys,missing_optional_keys,missing_required_keys,pool_path,provider_coverage,providers_total,providers_with_any_key,providers_without_any_key,registry_path,schema_version,total_keys",
+      "properties": {
+        "schema_version": [
+          "int"
+        ],
+        "generated_on_utc": [
+          "str"
+        ],
+        "registry_path": [
+          "str"
+        ],
+        "pool_path": [
+          "str"
+        ],
+        "total_keys": [
+          "int"
+        ],
+        "available_keys": [
+          "int"
+        ],
+        "missing_keys": [
+          "int"
+        ],
+        "missing_required_keys": [
+          "int"
+        ],
+        "missing_optional_keys": [
+          "int"
+        ],
+        "providers_total": [
+          "int"
+        ],
+        "providers_with_any_key": [
+          "int"
+        ],
+        "providers_without_any_key": [
+          "int"
+        ],
+        "keys": [
+          "list"
+        ],
+        "provider_coverage": [
+          "list"
+        ],
+        "acquisition_queue": [
+          "list"
+        ]
+      },
+      "examples": [
+        "codex/mailbox/API_KEY_GAP_REPORT_20260226T043933Z.json",
+        "codex/mailbox/API_KEY_GAP_REPORT_20260226T044046Z.json",
+        "codex/mailbox/API_KEY_GAP_REPORT_20260226T044116Z.json",
+        "codex/mailbox/API_KEY_GAP_REPORT_20260226T045112Z.json"
+      ]
+    },
+    {
+      "signature": "activationEvents,bun,categories,contributes,dependencies,description,devDependencies,displayName,engines,main,name,publisher,scripts,sideEffects,version",
+      "properties": {
+        "name": [
+          "str"
+        ],
+        "displayName": [
+          "str"
+        ],
+        "description": [
+          "str"
+        ],
+        "version": [
+          "str"
+        ],
+        "publisher": [
+          "str"
+        ],
+        "engines": [
+          "dict"
+        ],
+        "categories": [
+          "list"
+        ],
+        "activationEvents": [
+          "list"
+        ],
+        "main": [
+          "str"
+        ],
+        "sideEffects": [
+          "bool"
+        ],
+        "bun": [
+          "dict"
+        ],
+        "contributes": [
+          "dict"
+        ],
+        "scripts": [
+          "dict"
+        ],
+        "devDependencies": [
+          "dict"
+        ],
+        "dependencies": [
+          "dict"
+        ]
+      },
+      "examples": [
+        "extensions/chthonic-statusbar/legacy.package.snapshot.json"
+      ]
+    },
+    {
+      "signature": "activationEvents,bun,categories,contributes,description,devDependencies,displayName,engines,icon,main,name,publisher,scripts,sideEffects,version",
+      "properties": {
+        "name": [
+          "str"
+        ],
+        "displayName": [
+          "str"
+        ],
+        "description": [
+          "str"
+        ],
+        "version": [
+          "str"
+        ],
+        "publisher": [
+          "str"
+        ],
+        "icon": [
+          "str"
+        ],
+        "engines": [
+          "dict"
+        ],
+        "categories": [
+          "list"
+        ],
+        "activationEvents": [
+          "list"
+        ],
+        "main": [
+          "str"
+        ],
+        "sideEffects": [
+          "bool"
+        ],
+        "bun": [
+          "dict"
+        ],
+        "contributes": [
+          "dict"
+        ],
+        "scripts": [
+          "dict"
+        ],
+        "devDependencies": [
+          "dict"
+        ]
+      },
+      "examples": [
+        "extensions/chthonic-mandala/legacy.package.snapshot.json"
+      ]
+    },
+    {
+      "signature": "activationEvents,categories,contributes,dependencies,description,devDependencies,displayName,engines,icon,main,name,publisher,repository,scripts,version",
+      "properties": {
+        "name": [
+          "str"
+        ],
+        "displayName": [
+          "str"
+        ],
+        "description": [
+          "str"
+        ],
+        "version": [
+          "str"
+        ],
+        "publisher": [
+          "str"
+        ],
+        "icon": [
+          "str"
+        ],
+        "repository": [
+          "dict"
+        ],
+        "engines": [
+          "dict"
+        ],
+        "categories": [
+          "list"
+        ],
+        "activationEvents": [
+          "list"
+        ],
+        "main": [
+          "str"
+        ],
+        "contributes": [
+          "dict"
+        ],
+        "scripts": [
+          "dict"
+        ],
+        "devDependencies": [
+          "dict"
+        ],
+        "dependencies": [
+          "dict"
+        ]
+      },
+      "examples": [
+        "extensions/chthonic-archive/package.json"
+      ]
+    },
+    {
+      "signature": "blacksmith,completed_extractions,created,cross_references,current_state,extraction_log,high_priority_queue,inventory,last_updated,manifest_version,notes,philosophy,rating_scale,tea_collapse_log",
+      "properties": {
+        "manifest_version": [
+          "str"
+        ],
+        "created": [
+          "str"
+        ],
+        "last_updated": [
+          "str"
+        ],
+        "philosophy": [
+          "str"
+        ],
+        "blacksmith": [
+          "dict"
+        ],
+        "current_state": [
+          "dict"
+        ],
+        "rating_scale": [
+          "dict"
+        ],
+        "inventory": [
+          "dict"
+        ],
+        "extraction_log": [
+          "list"
+        ],
+        "tea_collapse_log": [
+          "list"
+        ],
+        "notes": [
+          "str"
+        ],
+        "high_priority_queue": [
+          "list"
+        ],
+        "completed_extractions": [
+          "list"
+        ],
+        "cross_references": [
+          "dict"
+        ]
+      },
+      "examples": [
+        "dumpster-dive/ORE_MANIFEST.json"
+      ]
+    },
+    {
+      "signature": "acts,generated_on,guiding_principles,ideology_options,kind,modules,schema_version,source,source_format,source_sha256,system_instructions,title,voice_quotes",
+      "properties": {
+        "schema_version": [
+          "int"
+        ],
+        "kind": [
+          "str"
+        ],
+        "title": [
+          "str"
+        ],
+        "source_format": [
+          "str"
+        ],
+        "acts": [
+          "list"
+        ],
+        "modules": [
+          "list"
+        ],
+        "system_instructions": [
+          "list"
+        ],
+        "guiding_principles": [
+          "list"
+        ],
+        "ideology_options": [
+          "list"
+        ],
+        "voice_quotes": [
+          "list"
+        ],
+        "generated_on": [
+          "str"
+        ],
+        "source": [
+          "str"
+        ],
+        "source_sha256": [
+          "str"
+        ]
+      },
+      "examples": [
+        "codex/codex-session-logs/archive/The-Iron-Maiden.md.voicepack.json"
+      ]
+    },
+    {
+      "signature": "category_summary,deduped_count,errors,generated_utc,log_sources,repo_root,schema_version,severity_summary,stability_score,top_remediations,total_errors,total_lines_scanned",
+      "properties": {
+        "schema_version": [
+          "int"
+        ],
+        "generated_utc": [
+          "str"
+        ],
+        "repo_root": [
+          "str"
+        ],
+        "stability_score": [
+          "int"
+        ],
+        "total_lines_scanned": [
+          "int"
+        ],
+        "total_errors": [
+          "int"
+        ],
+        "deduped_count": [
+          "int"
+        ],
+        "log_sources": [
+          "list"
+        ],
+        "category_summary": [
+          "dict"
+        ],
+        "severity_summary": [
+          "dict"
+        ],
+        "top_remediations": [
+          "list"
+        ],
+        "errors": [
+          "list"
+        ]
+      },
+      "examples": [
+        "claude/mailbox/VSCODE_ERROR_AUTOPSY_LATEST.json",
+        "codex/mailbox/VSCODE_ERROR_AUTOPSY_TARGETED_ONLY_20260226T2003Z.json"
+      ]
+    },
+    {
+      "signature": "claude_next_actions,codex_next_actions,creativity_delta_diagnosis,from,generated_on_utc,in_response_to,reference_chain,remediation_spec,review_scores,schema_version,to,type",
+      "properties": {
+        "schema_version": [
+          "int"
+        ],
+        "type": [
+          "str"
+        ],
+        "generated_on_utc": [
+          "str"
+        ],
+        "from": [
+          "str"
+        ],
+        "to": [
+          "str"
+        ],
+        "in_response_to": [
+          "dict"
+        ],
+        "review_scores": [
+          "dict"
+        ],
+        "creativity_delta_diagnosis": [
+          "dict"
+        ],
+        "remediation_spec": [
+          "dict"
+        ],
+        "codex_next_actions": [
+          "list"
+        ],
+        "claude_next_actions": [
+          "list"
+        ],
+        "reference_chain": [
+          "dict"
+        ]
+      },
+      "examples": [
+        "claude/mailbox/PRE_SCM_REVIEW_CLAUDE_RESPONSE_2026_02_26.json",
+        "codex/mailbox/PRE_SCM_REVIEW_CLAUDE_RESPONSE_2026_02_26.json"
+      ]
+    },
+    {
+      "signature": "account,base_url,effort,error,generated_on,mode,model,model_count,ok,response_preview,schema_version",
+      "properties": {
+        "schema_version": [
+          "int"
+        ],
+        "generated_on": [
+          "str"
+        ],
+        "mode": [
+          "str"
+        ],
+        "account": [
+          "str"
+        ],
+        "model": [
+          "NoneType"
+        ],
+        "effort": [
+          "NoneType"
+        ],
+        "base_url": [
+          "str"
+        ],
+        "ok": [
+          "bool"
+        ],
+        "error": [
+          "NoneType"
+        ],
+        "response_preview": [
+          "NoneType"
+        ],
+        "model_count": [
+          "int"
+        ]
+      },
+      "examples": [
+        "claude/mailbox/POE_LANE_LATEST.json",
+        "codex/mailbox/POE_LANE_LATEST.json"
+      ]
+    },
+    {
+      "signature": "api_doctor,crash_signature,detected_crash_codes,findings,generated_on_utc,host,log_collection,next_steps,probes,schema_version,vscode",
+      "properties": {
+        "schema_version": [
+          "int"
+        ],
+        "generated_on_utc": [
+          "str"
+        ],
+        "crash_signature": [
+          "dict"
+        ],
+        "host": [
+          "dict"
+        ],
+        "vscode": [
+          "dict"
+        ],
+        "probes": [
+          "list"
+        ],
+        "findings": [
+          "list"
+        ],
+        "log_collection": [
+          "dict"
+        ],
+        "api_doctor": [
+          "dict"
+        ],
+        "detected_crash_codes": [
+          "list"
+        ],
+        "next_steps": [
+          "list"
+        ]
+      },
+      "examples": [
+        "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T200225Z/triage_report.json"
+      ]
+    },
+    {
+      "signature": "blockers,case_id,conceptualize_bridge,evidence,generated_at,inputs,iterative_plan,milestones,prerequisites,readiness,repair_queue",
+      "properties": {
+        "generated_at": [
+          "str"
+        ],
+        "case_id": [
+          "str"
+        ],
+        "readiness": [
+          "str"
+        ],
+        "blockers": [
+          "list"
+        ],
+        "inputs": [
+          "dict"
+        ],
+        "evidence": [
+          "dict"
+        ],
+        "prerequisites": [
+          "dict"
+        ],
+        "repair_queue": [
+          "list"
+        ],
+        "iterative_plan": [
+          "list"
+        ],
+        "milestones": [
+          "list"
+        ],
+        "conceptualize_bridge": [
+          "dict"
+        ]
+      },
+      "examples": [
+        "codex/mailbox/CODEKILLER_GATE_STATUS.json",
+        "codex/mailbox/CODEKILLER_REMEDIATION_PREREQ_LATEST.json"
+      ]
+    },
+    {
+      "signature": "category_summary,coverage_pct,invalid_definitions,name,stage,theme_definitions,tier_1_gaps,tier_2_gaps,tier_summary,total_codicon_ids,valid_overrides",
+      "properties": {
+        "stage": [
+          "str"
+        ],
+        "name": [
+          "str"
+        ],
+        "total_codicon_ids": [
+          "int"
+        ],
+        "theme_definitions": [
+          "int"
+        ],
+        "valid_overrides": [
+          "list"
+        ],
+        "invalid_definitions": [
+          "list"
+        ],
+        "coverage_pct": [
+          "float"
+        ],
+        "tier_summary": [
+          "dict"
+        ],
+        "category_summary": [
+          "dict"
+        ],
+        "tier_1_gaps": [
+          "list"
+        ],
+        "tier_2_gaps": [
+          "list"
+        ]
+      },
+      "examples": [
+        "extensions/chthonic-archive/audit-reports/product_icon_census.json"
+      ]
+    },
+    {
+      "signature": "checks,generated_on,lanes,models,paths,platform,recommendations,repo_root,schema_version,summary,toolchain",
+      "properties": {
+        "schema_version": [
+          "int"
+        ],
+        "generated_on": [
+          "str"
+        ],
+        "repo_root": [
+          "str"
+        ],
+        "platform": [
+          "dict"
+        ],
+        "toolchain": [
+          "dict"
+        ],
+        "paths": [
+          "dict"
+        ],
+        "summary": [
+          "dict"
+        ],
+        "models": [
+          "list"
+        ],
+        "lanes": [
+          "list"
+        ],
+        "checks": [
+          "list"
+        ],
+        "recommendations": [
+          "list"
+        ]
+      },
+      "examples": [
+        "claude/mailbox/LOCAL_AI_READINESS_LATEST.json",
+        "codex/mailbox/LOCAL_AI_READINESS_LATEST.json"
+      ]
+    },
+    {
+      "signature": "chthonic_lanes,coverage,generated_at_utc,github_pages,github_per_page,rustification_finder,stamp_minute_day_month_year,top_n,trends,watchlist,window_days",
+      "properties": {
+        "generated_at_utc": [
+          "str"
+        ],
+        "stamp_minute_day_month_year": [
+          "str"
+        ],
+        "window_days": [
+          "int"
+        ],
+        "github_pages": [
+          "int"
+        ],
+        "github_per_page": [
+          "int"
+        ],
+        "top_n": [
+          "int"
+        ],
+        "chthonic_lanes": [
+          "list"
+        ],
+        "coverage": [
+          "dict"
+        ],
+        "trends": [
+          "list"
+        ],
+        "rustification_finder": [
+          "list"
+        ],
+        "watchlist": [
+          "list"
+        ]
+      },
+      "examples": [
+        "codex/mailbox/RUSTIFICATION_TREND_LATEST.json"
+      ]
+    },
+    {
+      "signature": "discrepancies,extensions_installed,extraction_history,invariant_checks,last_fingerprint,pattern_evolution,self_snapshots,session_count,snapshots,tested_functions,validated_truths",
+      "properties": {
+        "validated_truths": [
+          "dict"
+        ],
+        "discrepancies": [
+          "list"
+        ],
+        "extraction_history": [
+          "list"
+        ],
+        "pattern_evolution": [
+          "list"
+        ],
+        "session_count": [
+          "int"
+        ],
+        "extensions_installed": [
+          "list"
+        ],
+        "snapshots": [
+          "list"
+        ],
+        "tested_functions": [
+          "list"
+        ],
+        "self_snapshots": [
+          "list"
+        ],
+        "invariant_checks": [
+          "list"
+        ],
+        "last_fingerprint": [
+          "dict"
+        ]
+      },
+      "examples": [
+        "mas_mcp/mas_memory.json"
+      ]
+    },
+    {
+      "signature": "$schema,buildCommand,env,framework,functions,headers,installCommand,outputDirectory,regions,rewrites",
+      "properties": {
+        "$schema": [
+          "str"
+        ],
+        "framework": [
+          "str"
+        ],
+        "buildCommand": [
+          "str"
+        ],
+        "installCommand": [
+          "str"
+        ],
+        "outputDirectory": [
+          "str"
+        ],
+        "regions": [
+          "list"
+        ],
+        "functions": [
+          "dict"
+        ],
+        "headers": [
+          "list"
+        ],
+        "rewrites": [
+          "list"
+        ],
+        "env": [
+          "dict"
+        ]
+      },
+      "examples": [
+        "mas_mcp/frontend/vercel.json"
+      ]
+    },
+    {
+      "signature": "accounts,balance_ranking,callable_overlap,discrepancy_inference,docs_alignment,generated_on,preferred_account_for_calls,rerun_commands,schema_version,status_discrepancies",
+      "properties": {
+        "schema_version": [
+          "int"
+        ],
+        "generated_on": [
+          "str"
+        ],
+        "accounts": [
+          "list"
+        ],
+        "preferred_account_for_calls": [
+          "str"
+        ],
+        "balance_ranking": [
+          "list"
+        ],
+        "callable_overlap": [
+          "dict"
+        ],
+        "status_discrepancies": [
+          "dict"
+        ],
+        "discrepancy_inference": [
+          "list"
+        ],
+        "docs_alignment": [
+          "dict"
+        ],
+        "rerun_commands": [
+          "list"
+        ]
+      },
+      "examples": [
+        "claude/mailbox/POE_API_DUAL_DISCREPANCY_LATEST.json",
+        "codex/mailbox/POE_API_DUAL_DISCREPANCY_LATEST.json"
+      ]
+    },
+    {
+      "signature": "api_doctor,crash_signature,findings,generated_on_utc,host,log_collection,next_steps,probes,schema_version,vscode",
+      "properties": {
+        "schema_version": [
+          "int"
+        ],
+        "generated_on_utc": [
+          "str"
+        ],
+        "crash_signature": [
+          "dict"
+        ],
+        "host": [
+          "dict"
+        ],
+        "vscode": [
+          "dict"
+        ],
+        "probes": [
+          "list"
+        ],
+        "findings": [
+          "list"
+        ],
+        "log_collection": [
+          "dict"
+        ],
+        "api_doctor": [
+          "dict"
+        ],
+        "next_steps": [
+          "list"
+        ]
+      },
+      "examples": [
+        "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032245Z/triage_report.json",
+        "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032320Z/triage_report.json",
+        "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032459Z/triage_report.json",
+        "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032547Z/triage_report.json",
+        "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032622Z/triage_report.json",
+        "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T033307Z/triage_report.json",
+        "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T033834Z/triage_report.json",
+        "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T034024Z/triage_report.json",
+        "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T034240Z/triage_report.json",
+        "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T195738Z/triage_report.json"
+      ]
+    },
+    {
+      "signature": "applied_fixes,auto_fix_suggestion_count,file_count,manual_file_count,manual_reason_count,reason_kind_counts,target,top_auto_fix_sources,top_manual_dirs,top_manual_files",
+      "properties": {
+        "target": [
+          "str"
+        ],
+        "file_count": [
+          "int"
+        ],
+        "manual_file_count": [
+          "int"
+        ],
+        "manual_reason_count": [
+          "int"
+        ],
+        "reason_kind_counts": [
+          "dict"
+        ],
+        "auto_fix_suggestion_count": [
+          "int"
+        ],
+        "applied_fixes": [
+          "dict"
+        ],
+        "top_manual_files": [
+          "list"
+        ],
+        "top_manual_dirs": [
+          "list"
+        ],
+        "top_auto_fix_sources": [
+          "list"
+        ]
+      },
+      "examples": [
+        "codex/mailbox/RELATIONSHIP_AUDIT_CODEBASE_BACKLOG_SUMMARY.json"
+      ]
+    },
+    {
+      "signature": "author,dependencies,description,devDependencies,engines,license,name,scripts,type,version",
+      "properties": {
+        "name": [
+          "str"
+        ],
+        "version": [
+          "str"
+        ],
+        "type": [
+          "str"
+        ],
+        "description": [
+          "str"
+        ],
+        "scripts": [
+          "dict"
+        ],
+        "dependencies": [
+          "dict"
+        ],
+        "devDependencies": [
+          "dict"
+        ],
+        "engines": [
+          "dict"
+        ],
+        "author": [
+          "str"
+        ],
+        "license": [
+          "str"
+        ]
+      },
+      "examples": [
+        "mas_mcp/frontend/package.json"
+      ]
+    },
+    {
+      "signature": "$id,$schema,authority_flow,description,override_rules,potential_uses,source,tiers,title",
+      "properties": {
+        "$schema": [
+          "str"
+        ],
+        "$id": [
+          "str"
+        ],
+        "title": [
+          "str"
+        ],
+        "description": [
+          "str"
+        ],
+        "source": [
+          "dict"
+        ],
+        "tiers": [
+          "list"
+        ],
+        "authority_flow": [
+          "str"
+        ],
+        "override_rules": [
+          "dict"
+        ],
+        "potential_uses": [
+          "list"
+        ]
+      },
+      "examples": [
+        "dumpster-dive/intake/pr-harvest-2026-01-29/tier-2-schemas/tier_hierarchy.json"
+      ]
+    },
+    {
+      "signature": "$schema,collapse_log,created,notes,protocol_reference,registry,ssot_reference,tea_definition,version",
+      "properties": {
+        "$schema": [
+          "str"
+        ],
+        "version": [
+          "str"
+        ],
+        "created": [
+          "str"
+        ],
+        "protocol_reference": [
+          "str"
+        ],
+        "ssot_reference": [
+          "str"
+        ],
+        "tea_definition": [
+          "dict"
+        ],
+        "registry": [
+          "dict"
+        ],
+        "collapse_log": [
+          "list"
+        ],
+        "notes": [
+          "dict"
+        ]
+      },
+      "examples": [
+        "dumpster-dive/protocols/TEA_REGISTRY.json"
+      ]
+    },
+    {
+      "signature": "abbr_positions,all_abbrs,high_frequency,inconsistent_casing,orphan_candidates,section_density,suggested_abbrs,suggested_hyphen_abbrs,summary",
+      "properties": {
+        "summary": [
+          "dict"
+        ],
+        "high_frequency": [
+          "dict"
+        ],
+        "orphan_candidates": [
+          "list"
+        ],
+        "section_density": [
+          "dict"
+        ],
+        "all_abbrs": [
+          "dict"
+        ],
+        "abbr_positions": [
+          "dict"
+        ],
+        "suggested_abbrs": [
+          "dict"
+        ],
+        "suggested_hyphen_abbrs": [
+          "dict"
+        ],
+        "inconsistent_casing": [
+          "dict"
+        ]
+      },
+      "examples": [
+        "mas_mcp/data/abbr-validation-report.json"
+      ]
+    },
+    {
+      "signature": "actions,commands,counts,events,generated_on,phases,schema_version,source,source_sha256",
+      "properties": {
+        "schema_version": [
+          "int"
+        ],
+        "generated_on": [
+          "str"
+        ],
+        "source": [
+          "str"
+        ],
+        "source_sha256": [
+          "str"
+        ],
+        "counts": [
+          "dict"
+        ],
+        "phases": [
+          "dict"
+        ],
+        "commands": [
+          "list"
+        ],
+        "actions": [
+          "list"
+        ],
+        "events": [
+          "list"
+        ]
+      },
+      "examples": [
+        "claude-codex-gemini/session_resumption_pickup/session_resumption_pickup_codex.md_structured.json",
+        "codex/codex-session-logs/archive/bonus-missions-txt.txt_structured.json",
+        "codex/codex-session-logs/archive/codex-session-log-00001_structured.json",
+        "codex/codex-session-logs/archive/default-session-code-gemini.json_structured.json",
+        "codex/codex-session-logs/archive/default-session-code-gemini.py_transcript.txt_structured.json",
+        "codex/codex-session-logs/session_dump_2026_02_26_compact_input.txt_structured.json"
+      ]
+    },
+    {
+      "signature": "applied_fixes,auto_fix_suggestion_count,file_count,manual_file_count,manual_intervention_required,manual_reason_count,sample_manual_reasons,target,type",
+      "properties": {
+        "target": [
+          "str"
+        ],
+        "type": [
+          "str"
+        ],
+        "file_count": [
+          "int"
+        ],
+        "manual_intervention_required": [
+          "bool"
+        ],
+        "manual_file_count": [
+          "int"
+        ],
+        "auto_fix_suggestion_count": [
+          "int"
+        ],
+        "applied_fixes": [
+          "dict"
+        ],
+        "manual_reason_count": [
+          "int"
+        ],
+        "sample_manual_reasons": [
+          "list"
+        ]
+      },
+      "examples": [
+        "codex/mailbox/RELATIONSHIP_AUDIT_CODEBASE_POST_APPLY_SUMMARY.json"
+      ]
+    },
+    {
+      "signature": "auto_fix_suggestion_count,auto_fix_suggestions,file_count,manual_file_count,manual_intervention_required,manual_reasons,simulation_gate,target,type",
+      "properties": {
+        "target": [
+          "str"
+        ],
+        "type": [
+          "str"
+        ],
+        "file_count": [
+          "int"
+        ],
+        "manual_file_count": [
+          "int"
+        ],
+        "auto_fix_suggestion_count": [
+          "int"
+        ],
+        "manual_intervention_required": [
+          "bool"
+        ],
+        "manual_reasons": [
+          "list"
+        ],
+        "auto_fix_suggestions": [
+          "list"
+        ],
+        "simulation_gate": [
+          "dict"
+        ]
+      },
+      "examples": [
+        "codex/mailbox/RELATIONSHIP_AUDIT_DOCS_CHECK.json"
+      ]
+    },
+    {
+      "signature": "bounds_pass,coherence_score,derivation_pass,novelty_min,passed,redundancy_score,refinement_depth,rejection_reason,safety_pass",
+      "properties": {
+        "bounds_pass": [
+          "bool"
+        ],
+        "derivation_pass": [
+          "bool"
+        ],
+        "safety_pass": [
+          "bool"
+        ],
+        "novelty_min": [
+          "float"
+        ],
+        "redundancy_score": [
+          "float"
+        ],
+        "passed": [
+          "bool"
+        ],
+        "refinement_depth": [
+          "int"
+        ],
+        "rejection_reason": [
+          "NoneType"
+        ],
+        "coherence_score": [
+          "float"
+        ]
+      },
+      "examples": [
+        "mas_mcp/genesis_artifacts/20251207_055735/03a1c7183233aa76/validation.json",
+        "mas_mcp/genesis_artifacts/20251207_055735/20d4a94f74fc60f6/validation.json",
+        "mas_mcp/genesis_artifacts/20251207_055735/84351a74b938cc19/validation.json",
+        "mas_mcp/genesis_artifacts/20251207_055735/f74eeada6ad738be/validation.json",
+        "mas_mcp/genesis_artifacts/20251207_055735/f7cfc1e2a27ac535/validation.json",
+        "mas_mcp/genesis_artifacts/20251207_060612/19fb8f5b4bb12640/validation.json",
+        "mas_mcp/genesis_artifacts/20251207_060612/acbe4e85c9b52eba/validation.json",
+        "mas_mcp/genesis_artifacts/20251207_060612/cde2622894d52422/validation.json",
+        "mas_mcp/genesis_artifacts/20251207_140343/0f55f1dc9106524a/validation.json",
+        "mas_mcp/genesis_artifacts/20251207_140343/149afefdea424b76/validation.json"
+      ]
+    },
+    {
+      "signature": "elapsed_ms,error,inputs,notes,outputs,run_id,success,tool_versions,workflow",
+      "properties": {
+        "run_id": [
+          "str"
+        ],
+        "workflow": [
+          "str"
+        ],
+        "inputs": [
+          "dict"
+        ],
+        "outputs": [
+          "NoneType"
+        ],
+        "elapsed_ms": [
+          "int"
+        ],
+        "tool_versions": [
+          "dict"
+        ],
+        "notes": [
+          "str"
+        ],
+        "success": [
+          "bool"
+        ],
+        "error": [
+          "str"
+        ]
+      },
+      "examples": [
+        "artifacts/mcp_run_audit_2026-01-29T18-31-55-941Z.json",
+        "artifacts/mcp_run_audit_2026-01-29T18-35-18-246Z.json",
+        "artifacts/mcp_run_audit_2026-01-29T18-36-11-723Z.json",
+        "artifacts/mcp_run_curriculum_2026-01-29T18-31-55-941Z.json",
+        "artifacts/mcp_run_curriculum_2026-01-29T18-35-18-246Z.json",
+        "artifacts/mcp_run_curriculum_2026-01-29T18-36-11-723Z.json",
+        "artifacts/mcp_run_discovery_2026-01-05T00-42-49-176Z.json",
+        "artifacts/mcp_run_discovery_2026-01-05T00-43-12-981Z.json",
+        "artifacts/mcp_run_discovery_2026-01-29T18-30-47-901Z.json",
+        "artifacts/mcp_run_discovery_2026-01-29T18-31-55-941Z.json"
+      ]
+    },
+    {
+      "signature": "$id,$schema,acceptable_decay,description,invariants,prohibited_synthesis,source,title",
+      "properties": {
+        "$schema": [
+          "str"
+        ],
+        "$id": [
+          "str"
+        ],
+        "title": [
+          "str"
+        ],
+        "description": [
+          "str"
+        ],
+        "source": [
+          "dict"
+        ],
+        "invariants": [
+          "dict"
+        ],
+        "acceptable_decay": [
+          "dict"
+        ],
+        "prohibited_synthesis": [
+          "dict"
+        ]
+      },
+      "examples": [
+        "dumpster-dive/intake/pr-harvest-2026-01-29/tier-2-schemas/translation_matrix.json"
+      ]
+    },
+    {
+      "signature": "$id,$schema,additionalProperties,description,properties,required,title,type",
+      "properties": {
+        "$schema": [
+          "str"
+        ],
+        "$id": [
+          "str"
+        ],
+        "title": [
+          "str"
+        ],
+        "description": [
+          "str"
+        ],
+        "type": [
+          "str"
+        ],
+        "additionalProperties": [
+          "bool"
+        ],
+        "required": [
+          "list"
+        ],
+        "properties": [
+          "dict"
+        ]
+      },
+      "examples": [
+        ".codex/skills/skill-polisher/references/stamp.schema.json",
+        "mas_mcp/schemas/claude_cycle_report.schema.json"
+      ]
+    },
+    {
+      "signature": "$id,$schema,definitions,description,properties,required,title,type",
+      "properties": {
+        "$schema": [
+          "str"
+        ],
+        "$id": [
+          "str"
+        ],
+        "title": [
+          "str"
+        ],
+        "description": [
+          "str"
+        ],
+        "type": [
+          "str"
+        ],
+        "required": [
+          "list"
+        ],
+        "properties": [
+          "dict"
+        ],
+        "definitions": [
+          "dict"
+        ]
+      },
+      "examples": [
+        "dumpster-dive/protocols/INTEGRATION_MANIFEST_SCHEMA.json"
+      ]
+    },
+    {
+      "signature": "$id,$schema,description,extensions_recommended,settings,source,title,yolo_mode",
+      "properties": {
+        "$schema": [
+          "str"
+        ],
+        "$id": [
+          "str"
+        ],
+        "title": [
+          "str"
+        ],
+        "description": [
+          "str"
+        ],
+        "source": [
+          "dict"
+        ],
+        "settings": [
+          "dict"
+        ],
+        "yolo_mode": [
+          "dict"
+        ],
+        "extensions_recommended": [
+          "list"
+        ]
+      },
+      "examples": [
+        "dumpster-dive/intake/pr-harvest-2026-01-29/pr1-copilot-research/tier-2-configs/copilot_settings_patch.json"
+      ]
+    },
+    {
+      "signature": "$id,$schema,description,properties,required,source,title,type",
+      "properties": {
+        "$schema": [
+          "str"
+        ],
+        "$id": [
+          "str"
+        ],
+        "title": [
+          "str"
+        ],
+        "description": [
+          "str"
+        ],
+        "source": [
+          "dict"
+        ],
+        "type": [
+          "str"
+        ],
+        "required": [
+          "list"
+        ],
+        "properties": [
+          "dict"
+        ]
+      },
+      "examples": [
+        "dumpster-dive/intake/pr-harvest-2026-01-29/tier-2-schemas/entity_template.json"
+      ]
+    },
+    {
+      "signature": "P1_actualization,P2_recontextualization,P3_transcendence,P4_integrity,P5_supremacy,meta,relay_pointers,status_checkpoints",
+      "properties": {
+        "meta": [
+          "dict"
+        ],
+        "P1_actualization": [
+          "dict"
+        ],
+        "P2_recontextualization": [
+          "dict"
+        ],
+        "P3_transcendence": [
+          "dict"
+        ],
+        "P4_integrity": [
+          "dict"
+        ],
+        "P5_supremacy": [
+          "dict"
+        ],
+        "status_checkpoints": [
+          "list"
+        ],
+        "relay_pointers": [
+          "list"
+        ]
+      },
+      "examples": [
+        "dumpster-dive/from-github/macro-prompt-world/disparate-md-documentation/ASC_session1.json"
+      ]
+    },
+    {
+      "signature": "account,bot,error,generated_on,ok,response_preview,schema_version,transport",
+      "properties": {
+        "schema_version": [
+          "int"
+        ],
+        "generated_on": [
+          "str"
+        ],
+        "transport": [
+          "str"
+        ],
+        "account": [
+          "str"
+        ],
+        "bot": [
+          "str"
+        ],
+        "ok": [
+          "bool"
+        ],
+        "error": [
+          "NoneType"
+        ],
+        "response_preview": [
+          "str"
+        ]
+      },
+      "examples": [
+        "claude/mailbox/POE_SDK_LATEST.json",
+        "codex/mailbox/POE_SDK_LATEST.json"
+      ]
+    },
+    {
+      "signature": "action_priority,content_modifiers,header_exempt_extensions,link_repair_extensions,potency_map,safe_filenames,thresholds,todo_extensions",
+      "properties": {
+        "potency_map": [
+          "dict"
+        ],
+        "content_modifiers": [
+          "dict"
+        ],
+        "thresholds": [
+          "dict"
+        ],
+        "header_exempt_extensions": [
+          "list"
+        ],
+        "link_repair_extensions": [
+          "list"
+        ],
+        "todo_extensions": [
+          "list"
+        ],
+        "action_priority": [
+          "list"
+        ],
+        "safe_filenames": [
+          "list"
+        ]
+      },
+      "examples": [
+        ".codex/skills/artifact-upcycle/references/ruleset.json"
+      ]
+    },
+    {
+      "signature": "applied_fixes,auto_fix_suggestions,manual_intervention_required,manual_reasons,relationships,simulation_gate,target,type",
+      "properties": {
+        "target": [
+          "str"
+        ],
+        "type": [
+          "str"
+        ],
+        "relationships": [
+          "dict"
+        ],
+        "auto_fix_suggestions": [
+          "list"
+        ],
+        "manual_intervention_required": [
+          "bool"
+        ],
+        "manual_reasons": [
+          "list"
+        ],
+        "simulation_gate": [
+          "dict"
+        ],
+        "applied_fixes": [
+          "dict"
+        ]
+      },
+      "examples": [
+        "codex/mailbox/RELATIONSHIP_AUDIT_LATEST_APPLY_CHECK.json"
+      ]
+    },
+    {
+      "signature": "auto_fix_suggestion_count,auto_fix_suggestions,file_count,manual_file_count,manual_intervention_required,manual_reasons,target,type",
+      "properties": {
+        "target": [
+          "str"
+        ],
+        "type": [
+          "str"
+        ],
+        "file_count": [
+          "int"
+        ],
+        "manual_file_count": [
+          "int"
+        ],
+        "auto_fix_suggestion_count": [
+          "int"
+        ],
+        "manual_intervention_required": [
+          "bool"
+        ],
+        "manual_reasons": [
+          "list"
+        ],
+        "auto_fix_suggestions": [
+          "list"
+        ]
+      },
+      "examples": [
+        "codex/mailbox/RELATIONSHIP_AUDIT_CODEBASE_POSTCHECK.json"
+      ]
+    },
+    {
+      "signature": "auto_fix_suggestion_count,file_count,manual_file_count,manual_intervention_required,manual_reason_count,sample_manual_reasons,target,type",
+      "properties": {
+        "target": [
+          "str"
+        ],
+        "type": [
+          "str"
+        ],
+        "file_count": [
+          "int"
+        ],
+        "manual_intervention_required": [
+          "bool"
+        ],
+        "manual_file_count": [
+          "int"
+        ],
+        "auto_fix_suggestion_count": [
+          "int"
+        ],
+        "manual_reason_count": [
+          "int"
+        ],
+        "sample_manual_reasons": [
+          "list"
+        ]
+      },
+      "examples": [
+        "codex/mailbox/RELATIONSHIP_AUDIT_CODEBASE_SUMMARY.json"
+      ]
+    },
+    {
+      "signature": "available_keys,generated_on_utc,keys,missing_keys,missing_required_keys,pool_path,schema_version,total_keys",
+      "properties": {
+        "schema_version": [
+          "int"
+        ],
+        "generated_on_utc": [
+          "str"
+        ],
+        "pool_path": [
+          "str"
+        ],
+        "total_keys": [
+          "int"
+        ],
+        "available_keys": [
+          "int"
+        ],
+        "missing_keys": [
+          "int"
+        ],
+        "missing_required_keys": [
+          "int"
+        ],
+        "keys": [
+          "list"
+        ]
+      },
+      "examples": [
+        "codex/mailbox/API_KEY_GAP_REPORT_20260226T042039Z.json",
+        "codex/mailbox/API_KEY_GAP_REPORT_20260226T043333Z.json"
+      ]
+    },
+    {
+      "signature": "checks,coverage_percent,endoflife,generated,huggingface,models,paths,runtime",
+      "properties": {
+        "generated": [
+          "str"
+        ],
+        "coverage_percent": [
+          "float"
+        ],
+        "checks": [
+          "list"
+        ],
+        "paths": [
+          "dict"
+        ],
+        "models": [
+          "list"
+        ],
+        "runtime": [
+          "dict"
+        ],
+        "huggingface": [
+          "dict"
+        ],
+        "endoflife": [
+          "dict"
+        ]
+      },
+      "examples": [
+        "claude-codex-gemini/session_resumption_pickup/SESSION_RESUMPTION_HIGH_COVERAGE_20260219_213137.json",
+        "claude-codex-gemini/session_resumption_pickup/SESSION_RESUMPTION_HIGH_COVERAGE_20260219_213215.json",
+        "claude-codex-gemini/session_resumption_pickup/SESSION_RESUMPTION_HIGH_COVERAGE_20260219_213255.json",
+        "claude-codex-gemini/session_resumption_pickup/SESSION_RESUMPTION_HIGH_COVERAGE_20260219_213920.json",
+        "claude-codex-gemini/session_resumption_pickup/SESSION_RESUMPTION_HIGH_COVERAGE_20260219_214157.json",
+        "claude-codex-gemini/session_resumption_pickup/SESSION_RESUMPTION_HIGH_COVERAGE_20260219_231102.json",
+        "claude-codex-gemini/session_resumption_pickup/SESSION_RESUMPTION_HIGH_COVERAGE_20260219_231819.json",
+        "claude-codex-gemini/session_resumption_pickup/SESSION_RESUMPTION_HIGH_COVERAGE_20260220_023113.json"
+      ]
+    },
+    {
+      "signature": "cuda_runtime,gpu_available,mpw_hash,numba_available,onnx_available,onnx_providers,python,schema_version",
+      "properties": {
+        "python": [
+          "str"
+        ],
+        "gpu_available": [
+          "bool"
+        ],
+        "numba_available": [
+          "bool"
+        ],
+        "onnx_available": [
+          "bool"
+        ],
+        "cuda_runtime": [
+          "int"
+        ],
+        "onnx_providers": [
+          "list"
+        ],
+        "schema_version": [
+          "str"
+        ],
+        "mpw_hash": [
+          "str"
+        ]
+      },
+      "examples": [
+        "mas_mcp/genesis_artifacts/20251207_055735/03a1c7183233aa76/environment.json",
+        "mas_mcp/genesis_artifacts/20251207_055735/20d4a94f74fc60f6/environment.json",
+        "mas_mcp/genesis_artifacts/20251207_055735/84351a74b938cc19/environment.json",
+        "mas_mcp/genesis_artifacts/20251207_055735/f74eeada6ad738be/environment.json",
+        "mas_mcp/genesis_artifacts/20251207_055735/f7cfc1e2a27ac535/environment.json",
+        "mas_mcp/genesis_artifacts/20251207_060612/19fb8f5b4bb12640/environment.json",
+        "mas_mcp/genesis_artifacts/20251207_060612/acbe4e85c9b52eba/environment.json",
+        "mas_mcp/genesis_artifacts/20251207_060612/cde2622894d52422/environment.json",
+        "mas_mcp/genesis_artifacts/20251207_140343/0f55f1dc9106524a/environment.json",
+        "mas_mcp/genesis_artifacts/20251207_140343/149afefdea424b76/environment.json"
+      ]
+    },
+    {
+      "signature": "delegation_policy,focus,generated_on_utc,metrics,micro_steps,schema_version,sources,type",
+      "properties": {
+        "schema_version": [
+          "int"
+        ],
+        "type": [
+          "str"
+        ],
+        "generated_on_utc": [
+          "str"
+        ],
+        "sources": [
+          "list"
+        ],
+        "metrics": [
+          "dict"
+        ],
+        "focus": [
+          "dict"
+        ],
+        "micro_steps": [
+          "list"
+        ],
+        "delegation_policy": [
+          "dict"
+        ]
+      },
+      "examples": [
+        "codex/mailbox/SESSION_COMPACT_2026_02_26.json"
+      ]
+    },
+    {
+      "signature": "derived_metrics,generated_on,handoffs,peer_scoring_matrix,roots,schema_version,scoring_model,summary",
+      "properties": {
+        "schema_version": [
+          "int"
+        ],
+        "generated_on": [
+          "str"
+        ],
+        "scoring_model": [
+          "dict"
+        ],
+        "roots": [
+          "list"
+        ],
+        "handoffs": [
+          "list"
+        ],
+        "summary": [
+          "dict"
+        ],
+        "derived_metrics": [
+          "dict"
+        ],
+        "peer_scoring_matrix": [
+          "dict"
+        ]
+      },
+      "examples": [
+        "claude/mailbox/HANDOFF_AUDIT_LATEST.json",
+        "codex/mailbox/HANDOFF_AUDIT_LATEST.json"
+      ]
+    },
+    {
+      "signature": "elapsed_ms,inputs,notes,outputs,run_id,success,tool_versions,workflow",
+      "properties": {
+        "run_id": [
+          "str"
+        ],
+        "workflow": [
+          "str"
+        ],
+        "inputs": [
+          "dict"
+        ],
+        "outputs": [
+          "dict"
+        ],
+        "elapsed_ms": [
+          "int"
+        ],
+        "tool_versions": [
+          "dict"
+        ],
+        "notes": [
+          "str"
+        ],
+        "success": [
+          "bool"
+        ]
+      },
+      "examples": [
+        "artifacts/mcp_run_audit_2026-01-05T00-42-49-176Z.json",
+        "artifacts/mcp_run_audit_2026-01-05T00-43-12-981Z.json",
+        "artifacts/mcp_run_audit_2026-01-05T00-43-47-483Z.json",
+        "artifacts/mcp_run_audit_2026-01-29T18-30-47-901Z.json",
+        "artifacts/mcp_run_audit_2026-01-29T18-36-43-813Z.json",
+        "artifacts/mcp_run_audit_2026-01-29T18-52-46-564Z.json",
+        "artifacts/mcp_run_audit_2026-01-29T18-53-31-593Z.json",
+        "artifacts/mcp_run_audit_2026-01-29T18-59-32-890Z.json",
+        "artifacts/mcp_run_curriculum_2026-01-05T00-42-49-176Z.json",
+        "artifacts/mcp_run_curriculum_2026-01-05T00-43-12-981Z.json"
+      ]
+    },
+    {
+      "signature": "files,generated_at,generator,root_file_counts,roots_scanned,schema_version,total_files,workstream_counts",
+      "properties": {
+        "schema_version": [
+          "int"
+        ],
+        "generated_at": [
+          "str"
+        ],
+        "generator": [
+          "str"
+        ],
+        "total_files": [
+          "int"
+        ],
+        "roots_scanned": [
+          "list"
+        ],
+        "root_file_counts": [
+          "dict"
+        ],
+        "workstream_counts": [
+          "dict"
+        ],
+        "files": [
+          "list"
+        ]
+      },
+      "examples": [
+        "claude-codex-gemini/MAILBOX_MANIFEST.json"
+      ]
+    },
+    {
+      "signature": "$id,$schema,additionalProperties,properties,required,title,type",
+      "properties": {
+        "$schema": [
+          "str"
+        ],
+        "$id": [
+          "str"
+        ],
+        "title": [
+          "str"
+        ],
+        "type": [
+          "str"
+        ],
+        "additionalProperties": [
+          "bool"
+        ],
+        "required": [
+          "list"
+        ],
+        "properties": [
+          "dict"
+        ]
+      },
+      "examples": [
+        "extensions/context-compressor/packet.schema.json"
+      ]
+    },
+    {
+      "signature": "$id,$schema,description,properties,required,title,type",
+      "properties": {
+        "$schema": [
+          "str"
+        ],
+        "$id": [
+          "str"
+        ],
+        "title": [
+          "str"
+        ],
+        "description": [
+          "str"
+        ],
+        "type": [
+          "str"
+        ],
+        "required": [
+          "list"
+        ],
+        "properties": [
+          "dict"
+        ]
+      },
+      "examples": [
+        "mas_mcp/schemas/compatibility_matrix.schema.json",
+        "mas_mcp/schemas/milf_registry.schema.json"
+      ]
+    },
+    {
+      "signature": "abbr_counts,axiom_abbrs,operator_abbrs,protocol_abbrs,tier_system,total_abbrs,unique_abbrs",
+      "properties": {
+        "tier_system": [
+          "dict"
+        ],
+        "axiom_abbrs": [
+          "dict"
+        ],
+        "protocol_abbrs": [
+          "dict"
+        ],
+        "operator_abbrs": [
+          "dict"
+        ],
+        "abbr_counts": [
+          "dict"
+        ],
+        "total_abbrs": [
+          "int"
+        ],
+        "unique_abbrs": [
+          "int"
+        ]
+      },
+      "examples": [
+        "assets/entities/abbreviations.json"
+      ]
+    },
+    {
+      "signature": "accounts,control_model,generated_on,rationale,recommendation,schema_version,target_bot",
+      "properties": {
+        "schema_version": [
+          "int"
+        ],
+        "generated_on": [
+          "str"
+        ],
+        "control_model": [
+          "str"
+        ],
+        "target_bot": [
+          "str"
+        ],
+        "accounts": [
+          "list"
+        ],
+        "recommendation": [
+          "str"
+        ],
+        "rationale": [
+          "str"
+        ]
+      },
+      "examples": [
+        "claude/mailbox/POE_TRANSPORT_AUDIT_LATEST.json",
+        "codex/mailbox/POE_TRANSPORT_AUDIT_LATEST.json"
+      ]
+    },
+    {
+      "signature": "active,archive_count,archive_files,generated_on,mailbox,manifest_file,schema_version",
+      "properties": {
+        "schema_version": [
+          "int"
+        ],
+        "mailbox": [
+          "str"
+        ],
+        "generated_on": [
+          "str"
+        ],
+        "manifest_file": [
+          "str"
+        ],
+        "active": [
+          "dict"
+        ],
+        "archive_count": [
+          "int"
+        ],
+        "archive_files": [
+          "list"
+        ]
+      },
+      "examples": [
+        "claude/mailbox/mailbox_manifest.json",
+        "codex/mailbox/archive/2026_02_10_meta_cleanup/mailbox_manifest.json",
+        "codex/mailbox/mailbox_manifest.json"
+      ]
+    },
+    {
+      "signature": "auto_fix_suggestions,manual_intervention_required,manual_reasons,relationships,simulation_gate,target,type",
+      "properties": {
+        "target": [
+          "str"
+        ],
+        "type": [
+          "str"
+        ],
+        "relationships": [
+          "dict"
+        ],
+        "auto_fix_suggestions": [
+          "list"
+        ],
+        "manual_intervention_required": [
+          "bool"
+        ],
+        "manual_reasons": [
+          "list"
+        ],
+        "simulation_gate": [
+          "dict"
+        ]
+      },
+      "examples": [
+        "codex/mailbox/RELATIONSHIP_AUDIT_LATEST.json"
+      ]
+    },
+    {
+      "signature": "available_keys,generated_on_utc,keys,missing_keys,pool_path,schema_version,total_keys",
+      "properties": {
+        "schema_version": [
+          "int"
+        ],
+        "generated_on_utc": [
+          "str"
+        ],
+        "pool_path": [
+          "str"
+        ],
+        "total_keys": [
+          "int"
+        ],
+        "available_keys": [
+          "int"
+        ],
+        "missing_keys": [
+          "int"
+        ],
+        "keys": [
+          "list"
+        ]
+      },
+      "examples": [
+        "codex/mailbox/API_KEY_GAP_REPORT_20260226T032737Z.json",
+        "codex/mailbox/API_KEY_GAP_REPORT_20260226T033916Z.json"
+      ]
+    },
+    {
+      "signature": "cycle_id,governance,input,metrics,output,source,timestamp",
+      "properties": {
+        "cycle_id": [
+          "str"
+        ],
+        "timestamp": [
+          "str"
+        ],
+        "source": [
+          "dict"
+        ],
+        "input": [
+          "dict"
+        ],
+        "output": [
+          "dict"
+        ],
+        "metrics": [
+          "dict"
+        ],
+        "governance": [
+          "dict"
+        ]
+      },
+      "examples": [
+        "mas_mcp/schemas/claude_cycle_report.example.json"
+      ]
+    },
+    {
+      "signature": "cycles,directed,edges,graph,multigraph,nodes,strongly_connected_components",
+      "properties": {
+        "directed": [
+          "bool"
+        ],
+        "multigraph": [
+          "bool"
+        ],
+        "graph": [
+          "dict"
+        ],
+        "nodes": [
+          "list"
+        ],
+        "edges": [
+          "list"
+        ],
+        "cycles": [
+          "list"
+        ],
+        "strongly_connected_components": [
+          "list"
+        ]
+      },
+      "examples": [
+        "data/graphs/dependency_graph_enhanced.json"
+      ]
+    },
+    {
+      "signature": "$schema,description,last_updated,profiles,profiles_version,ssot_ref",
+      "properties": {
+        "$schema": [
+          "str"
+        ],
+        "profiles_version": [
+          "str"
+        ],
+        "ssot_ref": [
+          "str"
+        ],
+        "last_updated": [
+          "str"
+        ],
+        "description": [
+          "str"
+        ],
+        "profiles": [
+          "dict"
+        ]
+      },
+      "examples": [
+        "mas_mcp/artifacts/scoring_profiles.json"
+      ]
+    },
+    {
+      "signature": "_WARNING,_generated,_source,_toolbox,headers,total_lines",
+      "properties": {
+        "_WARNING": [
+          "str"
+        ],
+        "_toolbox": [
+          "str"
+        ],
+        "_source": [
+          "str"
+        ],
+        "_generated": [
+          "str"
+        ],
+        "total_lines": [
+          "int"
+        ],
+        "headers": [
+          "list"
+        ]
+      },
+      "examples": [
+        "claude-codex-gemini/triadic-session-context/SSOT_STRUCTURAL_INDEX.json"
+      ]
+    },
+    {
+      "signature": "apply,auth_signals,checks,generated_on,platform,schema_version",
+      "properties": {
+        "schema_version": [
+          "int"
+        ],
+        "generated_on": [
+          "str"
+        ],
+        "apply": [
+          "bool"
+        ],
+        "platform": [
+          "dict"
+        ],
+        "auth_signals": [
+          "dict"
+        ],
+        "checks": [
+          "list"
+        ]
+      },
+      "examples": [
+        "codex/mailbox/HF_PREP_LATEST.json",
+        "codex/mailbox/archive/2026_02_10_meta_cleanup/HF_PREP_LATEST.json"
+      ]
+    },
+    {
+      "signature": "artifact_type,export_type,notes,provider,schema_version,source_file",
+      "properties": {
+        "schema_version": [
+          "int"
+        ],
+        "artifact_type": [
+          "str"
+        ],
+        "provider": [
+          "str"
+        ],
+        "export_type": [
+          "str"
+        ],
+        "source_file": [
+          "str"
+        ],
+        "notes": [
+          "list"
+        ]
+      },
+      "examples": [
+        "codex/codex-session-logs/archive/default-session-code-gemini.json"
+      ]
+    },
+    {
+      "signature": "autoClosingPairs,brackets,comments,folding,indentationRules,surroundingPairs",
+      "properties": {
+        "comments": [
+          "dict"
+        ],
+        "brackets": [
+          "list"
+        ],
+        "autoClosingPairs": [
+          "list"
+        ],
+        "surroundingPairs": [
+          "list"
+        ],
+        "folding": [
+          "dict"
+        ],
+        "indentationRules": [
+          "dict"
+        ]
+      },
+      "examples": [
+        "extensions/chthonic-archive/language-configuration-glsl.json"
+      ]
+    },
+    {
+      "signature": "capturedAt,config,count,snapshotId,sources,top",
+      "properties": {
+        "capturedAt": [
+          "str"
+        ],
+        "snapshotId": [
+          "str"
+        ],
+        "count": [
+          "int"
+        ],
+        "config": [
+          "dict"
+        ],
+        "top": [
+          "list"
+        ],
+        "sources": [
+          "list"
+        ]
+      },
+      "examples": [
+        "codex/mailbox/cache/hf-model-rankings-latest.json"
+      ]
+    },
+    {
+      "signature": "census,covered_extensions,covered_filenames,uncovered_extensions,uncovered_filenames_hi_freq,wptg_plan",
+      "properties": {
+        "census": [
+          "dict"
+        ],
+        "covered_extensions": [
+          "dict"
+        ],
+        "uncovered_extensions": [
+          "dict"
+        ],
+        "covered_filenames": [
+          "dict"
+        ],
+        "uncovered_filenames_hi_freq": [
+          "dict"
+        ],
+        "wptg_plan": [
+          "list"
+        ]
+      },
+      "examples": [
+        "extensions/chthonic-archive/audit-reports/icon-census.json"
+      ]
+    },
+    {
+      "signature": "checks,generated_at_utc,invariants,ok,repo_root,schema_version",
+      "properties": {
+        "invariants": [
+          "dict"
+        ],
+        "checks": [
+          "list"
+        ],
+        "repo_root": [
+          "str"
+        ],
+        "generated_at_utc": [
+          "str"
+        ],
+        "ok": [
+          "bool"
+        ],
+        "schema_version": [
+          "int"
+        ]
+      },
+      "examples": [
+        "codex/mailbox/CLAUDE_IDE_HEALTH_LATEST.json",
+        "codex/mailbox/archive/2026_02_10_meta_cleanup/CLAUDE_IDE_HEALTH_LATEST.json"
+      ]
+    },
+    {
+      "signature": "chthonic_status,elevated_user,lanes,log_path,skip_modify,timestamp",
+      "properties": {
+        "timestamp": [
+          "str"
+        ],
+        "elevated_user": [
+          "str"
+        ],
+        "skip_modify": [
+          "bool"
+        ],
+        "lanes": [
+          "list"
+        ],
+        "chthonic_status": [
+          "dict"
+        ],
+        "log_path": [
+          "str"
+        ]
+      },
+      "examples": [
+        "codex/mailbox/VS2026_ELEVATED_VALIDATION_LATEST.json"
+      ]
+    },
+    {
+      "signature": "code_insiders_path,generated_on_utc,recommended_mode,results,schema_version,temp_user_data_dir",
+      "properties": {
+        "schema_version": [
+          "int"
+        ],
+        "generated_on_utc": [
+          "str"
+        ],
+        "code_insiders_path": [
+          "str"
+        ],
+        "temp_user_data_dir": [
+          "str"
+        ],
+        "results": [
+          "list"
+        ],
+        "recommended_mode": [
+          "dict"
+        ]
+      },
+      "examples": [
+        "codex/mailbox/VSCODE_INSIDERS_MATRIX_20260226T033112Z/matrix_report.json",
+        "codex/mailbox/VSCODE_INSIDERS_MATRIX_20260226T033146Z/matrix_report.json",
+        "codex/mailbox/VSCODE_INSIDERS_MATRIX_20260226T033328Z/matrix_report.json",
+        "codex/mailbox/VSCODE_INSIDERS_MATRIX_20260226T033855Z/matrix_report.json",
+        "codex/mailbox/VSCODE_INSIDERS_MATRIX_20260226T195738Z/matrix_report.json",
+        "codex/mailbox/VSCODE_INSIDERS_MATRIX_20260226T200037Z/matrix_report.json"
+      ]
+    },
+    {
+      "signature": "codebase_extensions,eol_risk,extension_gap,summary,system_toolchains,timestamp",
+      "properties": {
+        "timestamp": [
+          "str"
+        ],
+        "codebase_extensions": [
+          "dict"
+        ],
+        "system_toolchains": [
+          "dict"
+        ],
+        "extension_gap": [
+          "dict"
+        ],
+        "eol_risk": [
+          "dict"
+        ],
+        "summary": [
+          "dict"
+        ]
+      },
+      "examples": [
+        "audit-reports/extension_universe.json"
+      ]
+    },
+    {
+      "signature": "collision_count,collisions,color_distribution,fingerprints,threshold,total_file_icons",
+      "properties": {
+        "total_file_icons": [
+          "int"
+        ],
+        "threshold": [
+          "float"
+        ],
+        "collisions": [
+          "list"
+        ],
+        "collision_count": [
+          "int"
+        ],
+        "color_distribution": [
+          "dict"
+        ],
+        "fingerprints": [
+          "list"
+        ]
+      },
+      "examples": [
+        "extensions/chthonic-archive/audit-reports/icon-distinctiveness.json"
+      ]
+    },
+    {
+      "signature": "colors,name,semanticHighlighting,semanticTokenColors,tokenColors,type",
+      "properties": {
+        "name": [
+          "str"
+        ],
+        "type": [
+          "str"
+        ],
+        "semanticHighlighting": [
+          "bool"
+        ],
+        "semanticTokenColors": [
+          "dict"
+        ],
+        "colors": [
+          "dict"
+        ],
+        "tokenColors": [
+          "list"
+        ]
+      },
+      "examples": [
+        "dumpster-dive/forge/extension-archaeology/theme-research/chthonic-archive-theme.json",
+        "dumpster-dive/forge/extension-archaeology/theme-research/chthonic-mandala-color-theme.json",
+        "extensions/chthonic-mandala/themes/chthonic-mandala-color-theme.json",
+        "extensions/chthonic-mandala/themes/chthonic-rogbiv-color-theme.json"
+      ]
+    },
+    {
+      "signature": "commands,default_lane,default_model_file,endpoint_defaults,generated,lanes",
+      "properties": {
+        "generated": [
+          "str"
+        ],
+        "default_lane": [
+          "str"
+        ],
+        "default_model_file": [
+          "str"
+        ],
+        "endpoint_defaults": [
+          "dict"
+        ],
+        "lanes": [
+          "dict"
+        ],
+        "commands": [
+          "dict"
+        ]
+      },
+      "examples": [
+        "claude-codex-gemini/session_resumption_pickup/UNCENSORED_LANE_RUNTIME_20260219_231721.json",
+        "claude-codex-gemini/session_resumption_pickup/UNCENSORED_LANE_RUNTIME_LATEST.json"
+      ]
+    },
+    {
+      "signature": "directed,edges,graph,metadata,multigraph,nodes",
+      "properties": {
+        "directed": [
+          "bool"
+        ],
+        "multigraph": [
+          "bool"
+        ],
+        "graph": [
+          "dict"
+        ],
+        "nodes": [
+          "list"
+        ],
+        "edges": [
+          "list"
+        ],
+        "metadata": [
+          "dict"
+        ]
+      },
+      "examples": [
+        "data/graphs/dependency_graph_production.json"
+      ]
+    },
+    {
+      "signature": "excluded_skills,generated_on_utc,results,schema_version,scoring_model,skills_reviewed_count",
+      "properties": {
+        "schema_version": [
+          "int"
+        ],
+        "generated_on_utc": [
+          "str"
+        ],
+        "excluded_skills": [
+          "list"
+        ],
+        "scoring_model": [
+          "dict"
+        ],
+        "skills_reviewed_count": [
+          "int"
+        ],
+        "results": [
+          "list"
+        ]
+      },
+      "examples": [
+        "codex/mailbox/SKILL_COMPARATIVE_REVIEW_2026_02_26.json"
+      ]
+    },
+    {
+      "signature": "extensions,generated_at,results,scan_mode,target,totals",
+      "properties": {
+        "generated_at": [
+          "str"
+        ],
+        "target": [
+          "str"
+        ],
+        "extensions": [
+          "list"
+        ],
+        "scan_mode": [
+          "str"
+        ],
+        "totals": [
+          "dict"
+        ],
+        "results": [
+          "list"
+        ]
+      },
+      "examples": [
+        "codex/mailbox/KCP_3_0_PYTHON_AUDIT.json",
+        "codex/mailbox/KCP_4_0_TYPESCRIPT_AUDIT.json",
+        "codex/mailbox/KCP_5_0_POWERSHELL_AUDIT.json",
+        "codex/mailbox/KCP_6_0_RUST_AUDIT.json",
+        "codex/mailbox/_KCP_HEADER_CLASSIFICATION.json"
+      ]
+    },
+    {
+      "signature": "filters,generated_on,schema_version,source,tool_count,tools",
+      "properties": {
+        "schema_version": [
+          "int"
+        ],
+        "generated_on": [
+          "str"
+        ],
+        "source": [
+          "dict"
+        ],
+        "filters": [
+          "dict"
+        ],
+        "tool_count": [
+          "int"
+        ],
+        "tools": [
+          "list"
+        ]
+      },
+      "examples": [
+        "codex/mailbox/HF_MCP_TOOLS_LATEST.json",
+        "codex/mailbox/archive/2026_02_10_meta_cleanup/HF_MCP_TOOLS_LATEST.json"
+      ]
+    },
+    {
+      "signature": "functions,governance,last_updated,registry_version,ssot_ref,ssot_sections",
+      "properties": {
+        "registry_version": [
+          "str"
+        ],
+        "ssot_ref": [
+          "str"
+        ],
+        "ssot_sections": [
+          "list"
+        ],
+        "last_updated": [
+          "str"
+        ],
+        "governance": [
+          "dict"
+        ],
+        "functions": [
+          "list"
+        ]
+      },
+      "examples": [
+        "mas_mcp/artifacts/milf_registry.json"
+      ]
+    },
+    {
+      "signature": "generated,hf_live_candidates,lane_policy,local_models,local_ranked_lanes,source",
+      "properties": {
+        "generated": [
+          "str"
+        ],
+        "local_ranked_lanes": [
+          "list"
+        ],
+        "local_models": [
+          "list"
+        ],
+        "hf_live_candidates": [
+          "list"
+        ],
+        "lane_policy": [
+          "dict"
+        ],
+        "source": [
+          "dict"
+        ]
+      },
+      "examples": [
+        "claude-codex-gemini/session_resumption_pickup/UNCENSORED_LANE_STEWARD_20260219_230748.json",
+        "claude-codex-gemini/session_resumption_pickup/UNCENSORED_LANE_STEWARD_20260219_230805.json",
+        "claude-codex-gemini/session_resumption_pickup/UNCENSORED_LANE_STEWARD_20260219_230830.json",
+        "claude-codex-gemini/session_resumption_pickup/UNCENSORED_LANE_STEWARD_20260219_231022.json",
+        "claude-codex-gemini/session_resumption_pickup/UNCENSORED_LANE_STEWARD_20260219_231721.json",
+        "claude-codex-gemini/session_resumption_pickup/UNCENSORED_LANE_STEWARD_LATEST.json"
+      ]
+    },
+    {
+      "signature": "hardware,pass_rate,python_version,results,timestamp,uv_version",
+      "properties": {
+        "timestamp": [
+          "str"
+        ],
+        "hardware": [
+          "dict"
+        ],
+        "uv_version": [
+          "str"
+        ],
+        "python_version": [
+          "str"
+        ],
+        "pass_rate": [
+          "float"
+        ],
+        "results": [
+          "list"
+        ]
+      },
+      "examples": [
+        "mas_mcp/mas_diagnostic_report.json"
+      ]
+    },
+    {
+      "signature": "_comment,commentPatterns,customSemanticTokenModifiers,customSemanticTokenTypes,semanticHighlighting",
+      "properties": {
+        "customSemanticTokenTypes": [
+          "list"
+        ],
+        "customSemanticTokenModifiers": [
+          "list"
+        ],
+        "semanticHighlighting": [
+          "dict"
+        ],
+        "commentPatterns": [
+          "dict"
+        ],
+        "_comment": [
+          "str"
+        ]
+      },
+      "examples": [
+        "chthonic-golden/ankh/semantic-tokens.json"
+      ]
+    },
+    {
+      "signature": "active_row_id,last_updated,matrix_version,rows,ssot_ref",
+      "properties": {
+        "matrix_version": [
+          "str"
+        ],
+        "ssot_ref": [
+          "str"
+        ],
+        "last_updated": [
+          "str"
+        ],
+        "active_row_id": [
+          "NoneType"
+        ],
+        "rows": [
+          "list"
+        ]
+      },
+      "examples": [
+        "mas_mcp/artifacts/compatibility/matrix.json"
+      ]
+    },
+    {
+      "signature": "anchor,generated_on_utc,integrated_point_system,inventory,schema_version",
+      "properties": {
+        "schema_version": [
+          "int"
+        ],
+        "generated_on_utc": [
+          "str"
+        ],
+        "anchor": [
+          "dict"
+        ],
+        "inventory": [
+          "dict"
+        ],
+        "integrated_point_system": [
+          "dict"
+        ]
+      },
+      "examples": [
+        "claude/mailbox/PRE_SCM_TRIAGE_EXHAUSTIVE_REVIEW_2026_02_25.json",
+        "codex/mailbox/PRE_SCM_TRIAGE_EXHAUSTIVE_REVIEW_2026_02_25.json"
+      ]
+    },
+    {
+      "signature": "audit,generated,migrations,noise_fixes,tool",
+      "properties": {
+        "generated": [
+          "str"
+        ],
+        "tool": [
+          "str"
+        ],
+        "audit": [
+          "dict"
+        ],
+        "noise_fixes": [
+          "dict"
+        ],
+        "migrations": [
+          "list"
+        ]
+      },
+      "examples": [
+        "claude/mailbox/SCM_TRIAGE_PLAN.json"
+      ]
+    },
+    {
+      "signature": "autoClosingPairs,brackets,comments,folding,surroundingPairs",
+      "properties": {
+        "comments": [
+          "dict"
+        ],
+        "brackets": [
+          "list"
+        ],
+        "autoClosingPairs": [
+          "list"
+        ],
+        "surroundingPairs": [
+          "list"
+        ],
+        "folding": [
+          "dict"
+        ]
+      },
+      "examples": [
+        "extensions/chthonic-archive/language-configuration-toml.json"
+      ]
+    },
+    {
+      "signature": "avg_wptg_score,generated_at,skills,skills_total,skills_wptg_enabled",
+      "properties": {
+        "generated_at": [
+          "str"
+        ],
+        "skills_total": [
+          "int"
+        ],
+        "skills_wptg_enabled": [
+          "int"
+        ],
+        "avg_wptg_score": [
+          "float"
+        ],
+        "skills": [
+          "list"
+        ]
+      },
+      "examples": [
+        "codex/mailbox/WPTG_SKILL_ALIGNMENT_BASELINE.json"
+      ]
+    },
+    {
+      "signature": "baseUrl,generatedAt,ok,requests,tokenPresent",
+      "properties": {
+        "generatedAt": [
+          "str"
+        ],
+        "baseUrl": [
+          "str"
+        ],
+        "ok": [
+          "bool"
+        ],
+        "tokenPresent": [
+          "bool"
+        ],
+        "requests": [
+          "list"
+        ]
+      },
+      "examples": [
+        "dumpster-dive/intake/sentry-probe/20251226_225241/probe.json",
+        "dumpster-dive/intake/sentry-probe/20251226_225319/probe.json",
+        "dumpster-dive/intake/sentry-probe/20251226_225559/probe.json",
+        "dumpster-dive/intake/sentry-probe/20251226_225620/probe.json"
+      ]
+    },
+    {
+      "signature": "categories,generated_on,purpose,schema_version,verification_results",
+      "properties": {
+        "schema_version": [
+          "int"
+        ],
+        "generated_on": [
+          "str"
+        ],
+        "purpose": [
+          "str"
+        ],
+        "categories": [
+          "dict"
+        ],
+        "verification_results": [
+          "dict"
+        ]
+      },
+      "examples": [
+        "claude/mailbox/SESSION_SYNC_INDEX_2026_02_09.json"
+      ]
+    },
+    {
+      "signature": "claude_root,codex_root,generated_on,results,schema_version",
+      "properties": {
+        "schema_version": [
+          "int"
+        ],
+        "generated_on": [
+          "str"
+        ],
+        "codex_root": [
+          "str"
+        ],
+        "claude_root": [
+          "str"
+        ],
+        "results": [
+          "list"
+        ]
+      },
+      "examples": [
+        "codex/mailbox/archive/2026_02_10_meta_cleanup/cross_audit_2026-02-09T22-01-52Z.json"
+      ]
+    },
+    {
+      "signature": "claude_skill_count,codex_skill_count,generated_at,records,shared_skill_count",
+      "properties": {
+        "generated_at": [
+          "str"
+        ],
+        "codex_skill_count": [
+          "int"
+        ],
+        "claude_skill_count": [
+          "int"
+        ],
+        "shared_skill_count": [
+          "int"
+        ],
+        "records": [
+          "list"
+        ]
+      },
+      "examples": [
+        "claude/mailbox/skills_parity_map_2026_02_06.json",
+        "codex/mailbox/archive/2026_02_10_cleanup/skills_parity_map_2026_02_06.json"
+      ]
+    },
+    {
+      "signature": "context,detectedAt,reason,spec,status",
+      "properties": {
+        "status": [
+          "str"
+        ],
+        "detectedAt": [
+          "str"
+        ],
+        "reason": [
+          "str"
+        ],
+        "spec": [
+          "dict"
+        ],
+        "context": [
+          "dict"
+        ]
+      },
+      "examples": [
+        "extensions/spec-enforcer/handoff_signal.json"
+      ]
+    },
+    {
+      "signature": "context,experimental,general,model,permissions",
+      "properties": {
+        "permissions": [
+          "dict"
+        ],
+        "general": [
+          "dict"
+        ],
+        "model": [
+          "dict"
+        ],
+        "context": [
+          "dict"
+        ],
+        "experimental": [
+          "dict"
+        ]
+      },
+      "examples": [
+        ".gemini/settings.json"
+      ]
+    },
+    {
+      "signature": "crashRecovery,gpu,process,startup,v8",
+      "properties": {
+        "gpu": [
+          "dict"
+        ],
+        "v8": [
+          "dict"
+        ],
+        "process": [
+          "dict"
+        ],
+        "crashRecovery": [
+          "dict"
+        ],
+        "startup": [
+          "dict"
+        ]
+      },
+      "examples": [
+        "chthonic-golden/electron-main/gpu-policy.json"
+      ]
+    },
+    {
+      "signature": "created,deployments,manifest_version,registry_ref,ssot_reference",
+      "properties": {
+        "manifest_version": [
+          "str"
+        ],
+        "created": [
+          "str"
+        ],
+        "registry_ref": [
+          "str"
+        ],
+        "ssot_reference": [
+          "dict"
+        ],
+        "deployments": [
+          "list"
+        ]
+      },
+      "examples": [
+        "dumpster-dive/forge/tempered/INTEGRATION_MANIFEST_DEPLOY-001-20251225.json",
+        "dumpster-dive/forge/tempered/INTEGRATION_MANIFEST_DEPLOY-002-20251226.json"
+      ]
+    },
+    {
+      "signature": "created_at_utc,out_md,references,schema_version,topic",
+      "properties": {
+        "created_at_utc": [
+          "str"
+        ],
+        "schema_version": [
+          "int"
+        ],
+        "topic": [
+          "str"
+        ],
+        "references": [
+          "list"
+        ],
+        "out_md": [
+          "str"
+        ]
+      },
+      "examples": [
+        "codex/mailbox/archive/2026_02_10_meta_cleanup/CODEX_TO_CLAUDE_TASK_LATEST.json"
+      ]
+    },
+    {
+      "signature": "devDependencies,name,private,scripts,type",
+      "properties": {
+        "name": [
+          "str"
+        ],
+        "private": [
+          "bool"
+        ],
+        "type": [
+          "str"
+        ],
+        "scripts": [
+          "dict"
+        ],
+        "devDependencies": [
+          "dict"
+        ]
+      },
+      "examples": [
+        "extensions/spec-enforcer/package.json"
+      ]
+    },
+    {
+      "signature": "directed,edges,graph,multigraph,nodes",
+      "properties": {
+        "directed": [
+          "bool"
+        ],
+        "multigraph": [
+          "bool"
+        ],
+        "graph": [
+          "dict"
+        ],
+        "nodes": [
+          "list"
+        ],
+        "edges": [
+          "list"
+        ]
+      },
+      "examples": [
+        "data/graphs/dependency_graph.json"
+      ]
+    },
+    {
+      "signature": "entity_hash,genesis_timestamp,paths,schema_crc,sha256",
+      "properties": {
+        "genesis_timestamp": [
+          "str"
+        ],
+        "entity_hash": [
+          "str"
+        ],
+        "schema_crc": [
+          "str"
+        ],
+        "paths": [
+          "dict"
+        ],
+        "sha256": [
+          "dict"
+        ]
+      },
+      "examples": [
+        "mas_mcp/genesis_artifacts/20251207_055735/03a1c7183233aa76/index.json",
+        "mas_mcp/genesis_artifacts/20251207_055735/20d4a94f74fc60f6/index.json",
+        "mas_mcp/genesis_artifacts/20251207_055735/84351a74b938cc19/index.json",
+        "mas_mcp/genesis_artifacts/20251207_055735/f74eeada6ad738be/index.json",
+        "mas_mcp/genesis_artifacts/20251207_055735/f7cfc1e2a27ac535/index.json",
+        "mas_mcp/genesis_artifacts/20251207_060612/19fb8f5b4bb12640/index.json",
+        "mas_mcp/genesis_artifacts/20251207_060612/acbe4e85c9b52eba/index.json",
+        "mas_mcp/genesis_artifacts/20251207_060612/cde2622894d52422/index.json",
+        "mas_mcp/genesis_artifacts/20251207_140343/0f55f1dc9106524a/index.json",
+        "mas_mcp/genesis_artifacts/20251207_140343/149afefdea424b76/index.json"
+      ]
+    },
+    {
+      "signature": "entries,generated_at,source,source_report,totals",
+      "properties": {
+        "generated_at": [
+          "str"
+        ],
+        "source": [
+          "str"
+        ],
+        "source_report": [
+          "str"
+        ],
+        "totals": [
+          "dict"
+        ],
+        "entries": [
+          "list"
+        ]
+      },
+      "examples": [
+        "codex/mailbox/KCP_SPECTRUM_AUDIT.json"
+      ]
+    },
+    {
+      "signature": "false_positives,fixable,planned,real_missing,summary",
+      "properties": {
+        "summary": [
+          "dict"
+        ],
+        "false_positives": [
+          "list"
+        ],
+        "fixable": [
+          "list"
+        ],
+        "planned": [
+          "list"
+        ],
+        "real_missing": [
+          "list"
+        ]
+      },
+      "examples": [
+        "docs/VALIDATION_CATEGORIZED.json"
+      ]
+    },
+    {
+      "signature": "flavor,results,root,root_native,schema_version",
+      "properties": {
+        "schema_version": [
+          "int"
+        ],
+        "flavor": [
+          "str"
+        ],
+        "root": [
+          "str"
+        ],
+        "root_native": [
+          "str"
+        ],
+        "results": [
+          "list"
+        ]
+      },
+      "examples": [
+        "claude/mailbox/archive/2026_02_07/e2e_matrix_claude_on_claude.json",
+        "claude/mailbox/archive/2026_02_07/e2e_matrix_claude_on_codex.json",
+        "claude/mailbox/archive/2026_02_07/e2e_matrix_codex_on_claude.json",
+        "claude/mailbox/archive/2026_02_07/e2e_matrix_codex_on_codex.json",
+        "claude/mailbox/skill_audit_claude_2026-02-09T22-01-52Z.json",
+        "codex/mailbox/SKILL_AUDIT_STRUCTURAL_2026_02_26.json",
+        "codex/mailbox/archive/2026_02_10_cleanup/claude_skill_audit_2026_02_07.json",
+        "codex/mailbox/archive/2026_02_10_meta_cleanup/skill_audit_claude_2026-02-09T22-01-52Z.json",
+        "codex/mailbox/archive/2026_02_10_meta_cleanup/skill_audit_codex_2026-02-09T22-01-52Z.json",
+        "codex/mailbox/skill_audit_claude_2026-02-09T22-02-38Z.json"
+      ]
+    },
+    {
+      "signature": "found,generated_at,out_dir,path,repo_root",
+      "properties": {
+        "generated_at": [
+          "str"
+        ],
+        "repo_root": [
+          "str"
+        ],
+        "out_dir": [
+          "str"
+        ],
+        "found": [
+          "dict"
+        ],
+        "path": [
+          "str"
+        ]
+      },
+      "examples": [
+        "dumpster-dive/intake/toolchain-probe/20251226_091408/toolchain.json",
+        "dumpster-dive/intake/toolchain-probe/20251226_091609/toolchain.json",
+        "dumpster-dive/intake/toolchain-probe/20251226_092121/toolchain.json",
+        "dumpster-dive/intake/toolchain-probe/20251226_092417/toolchain.json",
+        "dumpster-dive/intake/toolchain-probe/20251226_093231/toolchain.json",
+        "dumpster-dive/intake/toolchain-probe/20251226_093529/toolchain.json",
+        "dumpster-dive/intake/toolchain-probe/20251226_093610/toolchain.json",
+        "dumpster-dive/intake/toolchain-probe/20251226_093639/toolchain.json",
+        "dumpster-dive/intake/toolchain-probe/20251226_093755/toolchain.json",
+        "dumpster-dive/intake/toolchain-probe/20251226_093820/toolchain.json"
+      ]
+    },
+    {
+      "signature": "generated_at,skills,skills_root,status,summary",
+      "properties": {
+        "generated_at": [
+          "str"
+        ],
+        "skills_root": [
+          "str"
+        ],
+        "status": [
+          "str"
+        ],
+        "summary": [
+          "dict"
+        ],
+        "skills": [
+          "list"
+        ]
+      },
+      "examples": [
+        "codex/mailbox/SKILL_FRESHNESS_LATEST.json"
+      ]
+    },
+    {
+      "signature": "compared,mismatches,ok,summary",
+      "properties": {
+        "ok": [
+          "bool"
+        ],
+        "compared": [
+          "int"
+        ],
+        "mismatches": [
+          "dict"
+        ],
+        "summary": [
+          "dict"
+        ]
+      },
+      "examples": [
+        "codex/mailbox/archive/2026_02_07/e2e_matrix_compare_summary.json"
+      ]
+    },
+    {
+      "signature": "compilerOptions,exclude,extends,include",
+      "properties": {
+        "extends": [
+          "str"
+        ],
+        "compilerOptions": [
+          "dict"
+        ],
+        "include": [
+          "list"
+        ],
+        "exclude": [
+          "list"
+        ]
+      },
+      "examples": [
+        "extensions/chthonic-archive/tsconfig.json",
+        "extensions/chthonic-mandala/tsconfig.json",
+        "extensions/chthonic-statusbar/tsconfig.json"
+      ]
+    },
+    {
+      "signature": "config,failures,generated,results",
+      "properties": {
+        "generated": [
+          "str"
+        ],
+        "results": [
+          "list"
+        ],
+        "failures": [
+          "list"
+        ],
+        "config": [
+          "dict"
+        ]
+      },
+      "examples": [
+        "claude-codex-gemini/session_resumption_pickup/LOCAL_UNCENSORED_BENCHMARK_20260219_213906.json",
+        "claude-codex-gemini/session_resumption_pickup/LOCAL_UNCENSORED_BENCHMARK_20260219_214148.json",
+        "claude-codex-gemini/session_resumption_pickup/LOCAL_UNCENSORED_BENCHMARK_20260219_231009.json",
+        "claude-codex-gemini/session_resumption_pickup/LOCAL_UNCENSORED_BENCHMARK_20260219_231719.json"
+      ]
+    },
+    {
+      "signature": "contextFileName,description,name,version",
+      "properties": {
+        "name": [
+          "str"
+        ],
+        "version": [
+          "str"
+        ],
+        "description": [
+          "str"
+        ],
+        "contextFileName": [
+          "str"
+        ]
+      },
+      "examples": [
+        ".gemini/extensions/chthonic-archive-sync/gemini-extension.json"
+      ]
+    },
+    {
+      "signature": "count,generated_at,records,skills",
+      "properties": {
+        "generated_at": [
+          "str"
+        ],
+        "count": [
+          "int"
+        ],
+        "records": [
+          "list"
+        ],
+        "skills": [
+          "list"
+        ]
+      },
+      "examples": [
+        "codex/mailbox/archive/2026_02_07/tatragrammatron_stamps_2026_02_07_auto_on_claude.json",
+        "codex/mailbox/archive/2026_02_07/tatragrammatron_stamps_2026_02_07_claude.json",
+        "codex/mailbox/archive/2026_02_07/tatragrammatron_stamps_2026_02_07_claude_contract_on_codex.json",
+        "codex/mailbox/archive/2026_02_07/tatragrammatron_stamps_2026_02_07_claude_v2.json",
+        "codex/mailbox/archive/2026_02_07/tatragrammatron_stamps_2026_02_07_codex.json",
+        "codex/mailbox/archive/2026_02_07/tatragrammatron_stamps_2026_02_07_codex_on_claude.json",
+        "codex/mailbox/archive/2026_02_07/tatragrammatron_stamps_2026_02_07_codex_on_codex.json",
+        "codex/mailbox/archive/2026_02_07/tatragrammatron_stamps_2026_02_07_codex_v3.json",
+        "codex/mailbox/archive/2026_02_07/tatragrammatron_stamps_2026_02_07_full_codex.json",
+        "codex/mailbox/archive/2026_02_07/tatragrammatron_stamps_2026_02_07_v2.json"
+      ]
+    },
+    {
+      "signature": "curriculum,extraction_date,source_db,version",
+      "properties": {
+        "version": [
+          "str"
+        ],
+        "source_db": [
+          "str"
+        ],
+        "extraction_date": [
+          "str"
+        ],
+        "curriculum": [
+          "list"
+        ]
+      },
+      "examples": [
+        "data/curriculum_core_v1.json"
+      ]
+    },
+    {
+      "signature": "delta,post,pre,target",
+      "properties": {
+        "target": [
+          "str"
+        ],
+        "pre": [
+          "dict"
+        ],
+        "post": [
+          "dict"
+        ],
+        "delta": [
+          "dict"
+        ]
+      },
+      "examples": [
+        "codex/mailbox/RELATIONSHIP_AUDIT_CODEBASE_DELTA.json"
+      ]
+    },
+    {
+      "signature": "domainCount,findings,priorDate,timestamp",
+      "properties": {
+        "timestamp": [
+          "str"
+        ],
+        "findings": [
+          "list"
+        ],
+        "domainCount": [
+          "int"
+        ],
+        "priorDate": [
+          "str"
+        ]
+      },
+      "examples": [
+        "dumpster-dive/intake/overnight-intelligence/arch-2026-02-11T02-39-10/L2-digest.json"
+      ]
+    },
+    {
+      "signature": "entries,orphaned_refs,updated,version",
+      "properties": {
+        "version": [
+          "str"
+        ],
+        "updated": [
+          "str"
+        ],
+        "entries": [
+          "dict"
+        ],
+        "orphaned_refs": [
+          "list"
+        ]
+      },
+      "examples": [
+        "data/indices/sid_index.json"
+      ]
+    },
+    {
+      "signature": "fetched,generated_at,search,top",
+      "properties": {
+        "generated_at": [
+          "str"
+        ],
+        "search": [
+          "str"
+        ],
+        "fetched": [
+          "int"
+        ],
+        "top": [
+          "list"
+        ]
+      },
+      "examples": [
+        "codex/mailbox/archive/2026_02_10_meta_cleanup/hf_gemma_probe.json"
+      ]
+    },
+    {
+      "signature": "generated_at,source_report,summary,tasks",
+      "properties": {
+        "generated_at": [
+          "str"
+        ],
+        "source_report": [
+          "str"
+        ],
+        "summary": [
+          "dict"
+        ],
+        "tasks": [
+          "list"
+        ]
+      },
+      "examples": [
+        "codex/mailbox/OVERSIGHT_UPCYCLE_LATEST.json"
+      ]
+    },
+    {
+      "signature": "mode,require_assets,stamps,target_flavor",
+      "properties": {
+        "mode": [
+          "str"
+        ],
+        "target_flavor": [
+          "str"
+        ],
+        "require_assets": [
+          "bool"
+        ],
+        "stamps": [
+          "list"
+        ]
+      },
+      "examples": [
+        ".codex/skills/skill-polisher/fixtures/claude_missing_description/expected.json",
+        ".codex/skills/skill-polisher/fixtures/claude_missing_frontmatter/expected.json",
+        ".codex/skills/skill-polisher/fixtures/codex_missing_agents_yaml/expected.json",
+        ".codex/skills/skill-polisher/fixtures/codex_missing_assets_dir/expected.json",
+        ".codex/skills/skill-polisher/fixtures/missing_assets/expected.json",
+        ".codex/skills/skill-polisher/fixtures/missing_openai_yaml/expected.json",
+        "codex/mailbox/archive/2026_02_10_meta_cleanup/.tmp_fixture_eval/claude_missing_description/expected.json",
+        "codex/mailbox/archive/2026_02_10_meta_cleanup/.tmp_fixture_eval/claude_missing_frontmatter/expected.json",
+        "codex/mailbox/archive/2026_02_10_meta_cleanup/.tmp_fixture_eval/codex_missing_agents_yaml/expected.json",
+        "codex/mailbox/archive/2026_02_10_meta_cleanup/.tmp_fixture_eval/codex_missing_assets_dir/expected.json"
+      ]
+    },
+    {
+      "signature": "stage_1_0_structure,stage_1_1_contrast,stage_1_2_palette,summary",
+      "properties": {
+        "summary": [
+          "dict"
+        ],
+        "stage_1_0_structure": [
+          "list"
+        ],
+        "stage_1_1_contrast": [
+          "list"
+        ],
+        "stage_1_2_palette": [
+          "list"
+        ]
+      },
+      "examples": [
+        "extensions/chthonic-archive/audit-reports/icon-audit-baseline.json",
+        "extensions/chthonic-archive/audit-reports/icon-audit-gold.json",
+        "extensions/chthonic-archive/audit-reports/icon-audit-stage02.json"
+      ]
+    },
+    {
+      "signature": "_comment,insider,stable",
+      "properties": {
+        "stable": [
+          "dict"
+        ],
+        "insider": [
+          "dict"
+        ],
+        "_comment": [
+          "str"
+        ]
+      },
+      "examples": [
+        "chthonic-golden/quality.json"
+      ]
+    },
+    {
+      "signature": "artifacts,ssot,version",
+      "properties": {
+        "version": [
+          "str"
+        ],
+        "ssot": [
+          "dict"
+        ],
+        "artifacts": [
+          "list"
+        ]
+      },
+      "examples": [
+        "dumpster-dive/protocols/TIMELINE_A_DEPLOY_MAP.json"
+      ]
+    },
+    {
+      "signature": "broken_total,checked,top_files",
+      "properties": {
+        "checked": [
+          "int"
+        ],
+        "broken_total": [
+          "int"
+        ],
+        "top_files": [
+          "list"
+        ]
+      },
+      "examples": [
+        "claude-codex-gemini/triadic-session-context/PHASE4_LINK_VALIDATION_2026_02_01.filtered.summary.json"
+      ]
+    },
+    {
+      "signature": "cases,generated_at,runner",
+      "properties": {
+        "generated_at": [
+          "str"
+        ],
+        "runner": [
+          "str"
+        ],
+        "cases": [
+          "list"
+        ]
+      },
+      "examples": [
+        "codex/mailbox/archive/2026_02_10_cleanup/tatragrammatron_matrix_2026_02_07.json"
+      ]
+    },
+    {
+      "signature": "compilerOptions,exclude,include",
+      "properties": {
+        "compilerOptions": [
+          "dict"
+        ],
+        "include": [
+          "list"
+        ],
+        "exclude": [
+          "list"
+        ]
+      },
+      "examples": [
+        "mas_mcp/frontend/tsconfig.json"
+      ]
+    },
+    {
+      "signature": "compilerOptions,extends,include",
+      "properties": {
+        "extends": [
+          "str"
+        ],
+        "compilerOptions": [
+          "dict"
+        ],
+        "include": [
+          "list"
+        ]
+      },
+      "examples": [
+        "extensions/spec-enforcer/tsconfig.json"
+      ]
+    },
+    {
+      "signature": "count,generated_at,records",
+      "properties": {
+        "generated_at": [
+          "str"
+        ],
+        "count": [
+          "int"
+        ],
+        "records": [
+          "list"
+        ]
+      },
+      "examples": [
+        "codex/mailbox/archive/2026_02_07/tatragrammatron_stamps_2026_02_06.json",
+        "codex/mailbox/archive/2026_02_07/tatragrammatron_stamps_2026_02_07.json"
+      ]
+    },
+    {
+      "signature": "domainCount,findings,timestamp",
+      "properties": {
+        "timestamp": [
+          "str"
+        ],
+        "findings": [
+          "list"
+        ],
+        "domainCount": [
+          "int"
+        ]
+      },
+      "examples": [
+        "dumpster-dive/intake/overnight-intelligence/arch-2026-02-11T02-27-22/L2-digest.json"
+      ]
+    },
+    {
+      "signature": "entities,meta,world",
+      "properties": {
+        "meta": [
+          "dict"
+        ],
+        "entities": [
+          "list"
+        ],
+        "world": [
+          "dict"
+        ]
+      },
+      "examples": [
+        "assets/data.json"
+      ]
+    },
+    {
+      "signature": "flavor,results,root",
+      "properties": {
+        "flavor": [
+          "str"
+        ],
+        "root": [
+          "str"
+        ],
+        "results": [
+          "list"
+        ]
+      },
+      "examples": [
+        "codex/mailbox/archive/2026_02_07/e2e_matrix_claude_on_claude.json",
+        "codex/mailbox/archive/2026_02_07/e2e_matrix_claude_on_codex.json",
+        "codex/mailbox/archive/2026_02_07/e2e_matrix_codex_on_claude.json",
+        "codex/mailbox/archive/2026_02_07/e2e_matrix_codex_on_codex.json",
+        "codex/mailbox/archive/skill_audit_claude_2026_02_05.json",
+        "codex/mailbox/archive/skill_audit_codex_2026_02_05.json"
+      ]
+    },
+    {
+      "signature": "generated_note,keys,schema_version",
+      "properties": {
+        "schema_version": [
+          "int"
+        ],
+        "generated_note": [
+          "str"
+        ],
+        "keys": [
+          "list"
+        ]
+      },
+      "examples": [
+        "docs/standards/API_PROVIDER_REGISTRY.json"
+      ]
+    },
+    {
+      "signature": "generated_on,results,schema_version",
+      "properties": {
+        "schema_version": [
+          "int"
+        ],
+        "generated_on": [
+          "str"
+        ],
+        "results": [
+          "list"
+        ]
+      },
+      "examples": [
+        "codex/mailbox/TRAINSTOP_ORCHESTRATOR_LATEST.json"
+      ]
+    },
+    {
+      "signature": "_comment,allowlist",
+      "properties": {
+        "allowlist": [
+          "list"
+        ],
+        "_comment": [
+          "str"
+        ]
+      },
+      "examples": [
+        "chthonic-golden/extensions/allowlist.json"
+      ]
+    },
+    {
+      "signature": "_comment,blocklist",
+      "properties": {
+        "blocklist": [
+          "list"
+        ],
+        "_comment": [
+          "str"
+        ]
+      },
+      "examples": [
+        "chthonic-golden/extensions/blocklist.json"
+      ]
+    },
+    {
+      "signature": "broken,checked",
+      "properties": {
+        "checked": [
+          "int"
+        ],
+        "broken": [
+          "list"
+        ]
+      },
+      "examples": [
+        "claude-codex-gemini/triadic-session-context/PHASE4_LINK_VALIDATION_2026_02_01.filtered.json"
+      ]
+    },
+    {
+      "signature": "broken,count",
+      "properties": {
+        "broken": [
+          "list"
+        ],
+        "count": [
+          "int"
+        ]
+      },
+      "examples": [
+        "claude-codex-gemini/triadic-session-context/PHASE4_LINK_VALIDATION_2026_02_01.json"
+      ]
+    },
+    {
+      "signature": "checks,ok",
+      "properties": {
+        "ok": [
+          "bool"
+        ],
+        "checks": [
+          "list"
+        ]
+      },
+      "examples": [
+        "claude/mailbox/CLAUDE_META_VALIDATION_SUMMARY.json",
+        "codex/mailbox/archive/2026_02_10_meta_cleanup/META_POLISHER_VALIDATION_SUMMARY.json"
+      ]
+    },
+    {
+      "signature": "entities,statistics",
+      "properties": {
+        "entities": [
+          "list"
+        ],
+        "statistics": [
+          "dict"
+        ]
+      },
+      "examples": [
+        "mas_mcp/genesis_output.json"
+      ]
+    },
+    {
+      "signature": "filename,patch",
+      "properties": {
+        "filename": [
+          "str"
+        ],
+        "patch": [
+          "NoneType"
+        ]
+      },
+      "examples": [
+        "dumpster-dive/intake/pr-harvest-2026-01-29/raw/pr5_patches.json"
+      ]
+    },
+    {
+      "signature": "receipts,schema_version",
+      "properties": {
+        "schema_version": [
+          "int"
+        ],
+        "receipts": [
+          "dict"
+        ]
+      },
+      "examples": [
+        "claude-codex-gemini/HANDOFF_RECEIPT_LOG.json"
+      ]
+    },
+    {
+      "signature": "semantic,textmate",
+      "properties": {
+        "textmate": [
+          "dict"
+        ],
+        "semantic": [
+          "dict"
+        ]
+      },
+      "examples": [
+        "extensions/chthonic-archive/audit-reports/token_coverage_audit.json"
+      ]
+    },
+    {
+      "signature": "tasks,version",
+      "properties": {
+        "version": [
+          "str"
+        ],
+        "tasks": [
+          "list"
+        ]
+      },
+      "examples": [
+        ".vscode/tasks.json"
+      ]
+    },
+    {
+      "signature": "allowed_crates",
+      "properties": {
+        "allowed_crates": [
+          "list"
+        ]
+      },
+      "examples": [
+        "extensions/reflex-guard/whitelist.json"
+      ]
+    },
+    {
+      "signature": "history",
+      "properties": {
+        "history": [
+          "list"
+        ]
+      },
+      "examples": [
+        "codex/mailbox/archive/2026_02_10_meta_cleanup/tatragrammatron_trend.json"
+      ]
+    },
+    {
+      "signature": "terminal.integrated.env.windows",
+      "properties": {
+        "terminal.integrated.env.windows": [
+          "dict"
+        ]
+      },
+      "examples": [
+        "dumpster-dive/intake/toolchain-probe/20251226_091408/vscode_terminal_env.snippet.json",
+        "dumpster-dive/intake/toolchain-probe/vscode_settings_20260203_173428.json"
+      ]
+    }
+  ]
+}

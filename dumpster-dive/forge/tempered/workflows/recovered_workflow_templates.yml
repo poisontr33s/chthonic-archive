@@ -1,0 +1,241 @@
+# @SID: FORGE_WORKFLOW_TEMPLATES_V1
+# Purpose: Recovered workflow templates from renamed .off workflows.
+
+---
+name: Recovered Claude Code Review
+on:
+  workflow_dispatch:
+jobs:
+  pull_request:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Recover pull_request
+        run: echo "Recovered workflow step placeholder driven by catalogue metadata."
+  claude-review:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Recover claude-review
+        run: echo "Recovered workflow step placeholder driven by catalogue metadata."
+# Source: .github/workflows/claude-code-review.yml.off
+
+---
+name: Recovered Claude Code
+on:
+  workflow_dispatch:
+jobs:
+  issue_comment:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Recover issue_comment
+        run: echo "Recovered workflow step placeholder driven by catalogue metadata."
+  issues:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Recover issues
+        run: echo "Recovered workflow step placeholder driven by catalogue metadata."
+  claude:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Recover claude
+        run: echo "Recovered workflow step placeholder driven by catalogue metadata."
+# Source: .github/workflows/claude.yml.off
+
+---
+name: Recovered '🔀 Gemini Dispatch'
+on:
+  workflow_dispatch:
+jobs:
+  pull_request:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Recover pull_request
+        run: echo "Recovered workflow step placeholder driven by catalogue metadata."
+  issues:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Recover issues
+        run: echo "Recovered workflow step placeholder driven by catalogue metadata."
+  issue_comment:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Recover issue_comment
+        run: echo "Recovered workflow step placeholder driven by catalogue metadata."
+  defaults:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Recover defaults
+        run: echo "Recovered workflow step placeholder driven by catalogue metadata."
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Recover run
+        run: echo "Recovered workflow step placeholder driven by catalogue metadata."
+  debugger:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Recover debugger
+        run: echo "Recovered workflow step placeholder driven by catalogue metadata."
+  dispatch:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Recover dispatch
+        run: echo "Recovered workflow step placeholder driven by catalogue metadata."
+  review:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Recover review
+        run: echo "Recovered workflow step placeholder driven by catalogue metadata."
+  triage:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Recover triage
+        run: echo "Recovered workflow step placeholder driven by catalogue metadata."
+  invoke:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Recover invoke
+        run: echo "Recovered workflow step placeholder driven by catalogue metadata."
+# Source: .github/workflows/gemini-dispatch.yml.off
+
+---
+name: Recovered '▶️ Gemini Invoke'
+on:
+  workflow_dispatch:
+jobs:
+  workflow_call:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Recover workflow_call
+        run: echo "Recovered workflow step placeholder driven by catalogue metadata."
+  concurrency:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Recover concurrency
+        run: echo "Recovered workflow step placeholder driven by catalogue metadata."
+  defaults:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Recover defaults
+        run: echo "Recovered workflow step placeholder driven by catalogue metadata."
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Recover run
+        run: echo "Recovered workflow step placeholder driven by catalogue metadata."
+  invoke:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Recover invoke
+        run: echo "Recovered workflow step placeholder driven by catalogue metadata."
+# Source: .github/workflows/gemini-invoke.yml.off
+
+---
+name: Recovered '🔎 Gemini Review'
+on:
+  workflow_dispatch:
+jobs:
+  workflow_call:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Recover workflow_call
+        run: echo "Recovered workflow step placeholder driven by catalogue metadata."
+  concurrency:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Recover concurrency
+        run: echo "Recovered workflow step placeholder driven by catalogue metadata."
+  defaults:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Recover defaults
+        run: echo "Recovered workflow step placeholder driven by catalogue metadata."
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Recover run
+        run: echo "Recovered workflow step placeholder driven by catalogue metadata."
+  review:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Recover review
+        run: echo "Recovered workflow step placeholder driven by catalogue metadata."
+# Source: .github/workflows/gemini-review.yml.off
+
+---
+name: Recovered '📋 Gemini Scheduled Issue Triage'
+on:
+  workflow_dispatch:
+jobs:
+  schedule:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Recover schedule
+        run: echo "Recovered workflow step placeholder driven by catalogue metadata."
+  workflow_dispatch:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Recover workflow_dispatch
+        run: echo "Recovered workflow step placeholder driven by catalogue metadata."
+  concurrency:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Recover concurrency
+        run: echo "Recovered workflow step placeholder driven by catalogue metadata."
+  defaults:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Recover defaults
+        run: echo "Recovered workflow step placeholder driven by catalogue metadata."
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Recover run
+        run: echo "Recovered workflow step placeholder driven by catalogue metadata."
+  triage:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Recover triage
+        run: echo "Recovered workflow step placeholder driven by catalogue metadata."
+  label:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Recover label
+        run: echo "Recovered workflow step placeholder driven by catalogue metadata."
+# Source: .github/workflows/gemini-scheduled-triage.yml.off
+
+---
+name: Recovered '🔀 Gemini Triage'
+on:
+  workflow_dispatch:
+jobs:
+  workflow_call:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Recover workflow_call
+        run: echo "Recovered workflow step placeholder driven by catalogue metadata."
+  concurrency:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Recover concurrency
+        run: echo "Recovered workflow step placeholder driven by catalogue metadata."
+  defaults:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Recover defaults
+        run: echo "Recovered workflow step placeholder driven by catalogue metadata."
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Recover run
+        run: echo "Recovered workflow step placeholder driven by catalogue metadata."
+  triage:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Recover triage
+        run: echo "Recovered workflow step placeholder driven by catalogue metadata."
+  label:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Recover label
+        run: echo "Recovered workflow step placeholder driven by catalogue metadata."
+# Source: .github/workflows/gemini-triage.yml.off
