@@ -1,0 +1,127 @@
+{
+  "timestamp": "2026-03-03T07:43:58+00:00",
+  "extension_version": "0.2.3",
+  "chains": {
+    "color_themes": {
+      "status": "skipped_lane_exclusion",
+      "declared": 4,
+      "valid": 0,
+      "skipped_paths": [
+        "extensions/chthonic-archive/themes/chthonic-mandala-color-theme.json",
+        "extensions/chthonic-archive/themes/chthonic-rogbiv-color-theme.json",
+        "extensions/chthonic-archive/themes/chthonic-geology-color-theme.json",
+        "extensions/chthonic-archive/themes/chthonic-decorator-color-theme.json"
+      ],
+      "errors": [],
+      "warnings": [
+        "Color themes skipped because downstream targets are inside the lane exclusion table."
+      ]
+    },
+    "file_icon_theme": {
+      "status": "skipped_lane_exclusion",
+      "declared": 1,
+      "valid": 0,
+      "skipped_paths": [
+        "extensions/chthonic-archive/themes/chthonic-file-icon-theme.json"
+      ],
+      "errors": [],
+      "warnings": [
+        "File icon theme skipped because downstream targets are inside the lane exclusion table."
+      ]
+    },
+    "product_icon_theme": {
+      "status": "skipped_lane_exclusion",
+      "declared": 1,
+      "valid": 0,
+      "skipped_paths": [
+        "extensions/chthonic-archive/themes/chthonic-product-icon-theme.json"
+      ],
+      "errors": [],
+      "warnings": [
+        "Product icon theme skipped because downstream targets are inside the lane exclusion table."
+      ]
+    },
+    "commands": {
+      "status": "pass",
+      "declared": 17,
+      "registered": 17,
+      "missing_registrations": [],
+      "orphan_menus": [],
+      "errors": [],
+      "warnings": []
+    },
+    "configuration": {
+      "status": "pass",
+      "properties": 29,
+      "namespace_violations": [],
+      "type_mismatches": [],
+      "errors": [],
+      "warnings": []
+    }
+  },
+  "verdict": "WARN",
+  "error_count": 0,
+  "warning_count": 3,
+  "skipped_due_to_lane_exclusion": 3,
+  "self_check": {
+    "passed": true,
+    "detected": {
+      "missing_registrations": [
+        "chthonic.syntheticBroken"
+      ],
+      "orphan_menus": [
+        {
+          "menu": "commandPalette",
+          "command": "chthonic.syntheticOrphan"
+        }
+      ],
+      "type_mismatches": [
+        {
+          "property": "chthonic.syntheticBroken",
+          "declared_type": "boolean",
+          "default": "not-a-bool"
+        }
+      ]
+    }
+  },
+  "registered_command_sources": {
+    "source": [
+      "chthonic.activateCockpit",
+      "chthonic.annoDetect",
+      "chthonic.deepFocus",
+      "chthonic.entropyRefresh",
+      "chthonic.openBunTrainingDocs",
+      "chthonic.openWebCockpit",
+      "chthonic.postRestartVerify",
+      "chthonic.reactorSediment",
+      "chthonic.refreshRustification",
+      "chthonic.refreshStatus",
+      "chthonic.restartGate",
+      "chthonic.restoreOrder",
+      "chthonic.runtimeStatus",
+      "chthonic.slabHeal",
+      "chthonic.startWebCockpit",
+      "chthonic.switchTheme",
+      "chthonic.verifySSOT"
+    ],
+    "dist": [
+      "chthonic.activateCockpit",
+      "chthonic.annoDetect",
+      "chthonic.deepFocus",
+      "chthonic.entropyRefresh",
+      "chthonic.openBunTrainingDocs",
+      "chthonic.openWebCockpit",
+      "chthonic.postRestartVerify",
+      "chthonic.reactorSediment",
+      "chthonic.refreshRustification",
+      "chthonic.refreshStatus",
+      "chthonic.restartGate",
+      "chthonic.restoreOrder",
+      "chthonic.runtimeStatus",
+      "chthonic.slabHeal",
+      "chthonic.startWebCockpit",
+      "chthonic.switchTheme",
+      "chthonic.verifySSOT"
+    ]
+  }
+}
