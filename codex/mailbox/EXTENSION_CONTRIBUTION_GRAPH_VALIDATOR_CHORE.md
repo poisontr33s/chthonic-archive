@@ -814,25 +814,30 @@ Follow-up remediation required by execution review was completed:
 - **Count validated**: `21` tracked generated files removed from index for these paths.
 - **Remote state**: correction commit pushed to `origin/main`.
 
-### Stage 2C — Current Continuation Plan (After Initial Delivery)
+### Stage 2C — Continuation Execution Ledger (Completed)
 
 Cross-reference planning artifact:
 
 - `codex/mailbox/EXTENSION_CONTRIBUTION_STAGE_2_PLAN.md`
 
-Continuation priorities:
+Execution completion snapshot:
 
-1. **P1**: verify whether `dumpster-dive/intake/ankh-forge-salvage/` has any required provenance; remove only if confirmed empty/non-required.
-2. **P1**: regression sweep for delivered scripts:
-   - `uv run scripts/extension_universe_scanner.py`
-   - `uv run scripts/wptg_filetype_census.py`
-   - `uv run scripts/universal_forge.py`
-   - `uv run scripts/extension_contribution_audit.py`
-3. **P2**: decide furnace/tempered dedupe strategy while preserving provenance semantics.
-4. **P2**: evaluate and choose promotion disposition for forge recommendations (PowerShell transliteration, Python utility lane, shell recipe book, Go CLI, C# contracts, C FFI header).
-5. **P3**: optionally add `tools/ankh-forge` to root Cargo workspace for root-level build ergonomics.
+| Priority | Item | Completion | Evidence |
+|---|---|---|---|
+| P1 | Verify `dumpster-dive/intake/ankh-forge-salvage/` and remove only if non-required | Completed (retained) | `nested-git-2026-03-03` present; provenance salvage is non-empty and retained |
+| P1 | Run regression sweep for delivered scripts | Completed | `uv run scripts/extension_universe_scanner.py`; `uv run scripts/wptg_filetype_census.py`; `uv run scripts/universal_forge.py`; `uv run scripts/extension_contribution_audit.py` |
+| P2 | Decide furnace/tempered dedupe strategy | Completed | `codex/mailbox/STAGE2_FORGE_DECISIONS.md` |
+| P2 | Decide promotion disposition for forge recommendations | Completed | `codex/mailbox/STAGE2_FORGE_DECISIONS.md` |
+| P3 | Add `tools/ankh-forge` to root Cargo workspace | Completed | Root `Cargo.toml` now includes `[workspace]` with `members = ["tools/ankh-forge"]` |
 
-### Stage 2D — Constraint Carry-Forward
+### Stage 2D — Decision Cross-Reference
+
+Stage 2 decision and status records:
+
+- `codex/mailbox/EXTENSION_CONTRIBUTION_STAGE_2_PLAN.md`
+- `codex/mailbox/STAGE2_FORGE_DECISIONS.md`
+
+### Stage 2E — Constraint Carry-Forward
 
 All Stage 2 work remains bound by:
 

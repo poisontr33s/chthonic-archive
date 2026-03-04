@@ -19,19 +19,21 @@ Validated review numbers:
 - Tracked C# furnace build artifacts: `21` files.
 - `audit-reports/orphaned_artifact_reconciliation.json`: `1,505,599` bytes, `41,234` lines.
 
-## Stage 2 (Post-Parts 0-4) Sequence
+## Stage 2 Execution Status
 
-1. **P0 complete in this pass**: untrack the 21 tracked C# build artifacts and guard against re-tracking with explicit `.gitignore` rules.
-2. **P0 complete in this pass**: push the cleanup commit so remote reflects the corrected furnace index state.
-3. **P1 next**: remove `dumpster-dive/intake/ankh-forge-salvage/` only after confirming there is no needed provenance in that quarantine path.
-4. **P1 next**: run a quick regression sweep of the delivered scripts:
-   - `uv run scripts/extension_universe_scanner.py`
-   - `uv run scripts/wptg_filetype_census.py`
-   - `uv run scripts/universal_forge.py`
-   - `uv run scripts/extension_contribution_audit.py`
-5. **P2 next**: decide furnace/tempered duplication strategy (keep both lanes vs. dedupe one lane with preserved manifests).
-6. **P2 next**: decide promotion disposition for the six forge recommendations (PowerShell transliteration, Python utility module, shell recipe book, Go CLI, C# contracts, C FFI header).
-7. **P3 optional**: add `tools/ankh-forge` as a workspace member to root `Cargo.toml` for root-level build ergonomics.
+| Priority | Task | Status | Evidence |
+|---|---|---|---|
+| P0 | Untrack furnace C# build artifacts + add ignore guards | **Completed** | Commit `81ab7569`; `.gitignore` guards for `dumpster-dive/forge/furnace/csharp/bin/` and `obj/`; tracked artifact count now `0` |
+| P0 | Push cleanup chain to remote | **Completed** | `main -> origin/main` push including `81ab7569` and later Stage 2 updates |
+| P1 | Verify `dumpster-dive/intake/ankh-forge-salvage/` and remove if non-required | **Verified / Retained** | Directory contains nested git metadata salvage (`nested-git-2026-03-03`); retained as provenance payload, not empty |
+| P1 | Regression sweep of delivered scripts | **Completed** | `uv run scripts/extension_universe_scanner.py`; `uv run scripts/wptg_filetype_census.py`; `uv run scripts/universal_forge.py`; `uv run scripts/extension_contribution_audit.py` |
+| P2 | Decide furnace/tempered dedupe strategy | **Completed** | `codex/mailbox/STAGE2_FORGE_DECISIONS.md` (retain dual-lane policy in Stage 2) |
+| P2 | Decide promotion disposition for six forge recommendations | **Completed** | `codex/mailbox/STAGE2_FORGE_DECISIONS.md` disposition table |
+| P3 | Add `ankh-forge` to root Cargo workspace | **Completed** | Root `Cargo.toml` updated with `[workspace] members = ["tools/ankh-forge"]` |
+
+## Stage 2 Decision Artifacts
+
+- `codex/mailbox/STAGE2_FORGE_DECISIONS.md` — dedupe policy + promotion dispositions.
 
 ## Lane Constraint Reminder
 

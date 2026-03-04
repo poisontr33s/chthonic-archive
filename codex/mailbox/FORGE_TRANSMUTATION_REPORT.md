@@ -2,7 +2,7 @@
 type: report
 from: codex
 to: user
-created: 2026-03-03T07:13:16+00:00
+created: 2026-03-04T19:10:49+00:00
 priority: high
 subject: FORGE_TRANSMUTATION_REPORT
 ---
@@ -88,30 +88,3 @@ subject: FORGE_TRANSMUTATION_REPORT
 - Novel pathway bonus: 4.0
 - Unrepresented language bonus: 6.0
 - Total Tier 2 boon: 16.5
-
-## Tier 3 Score
-
-- Penalty removed: 2
-- Base boon: 6.0
-- `ankh-forge forensics` bonus: 3.0
-- `ankh-forge eol` bonus: 2.0
-- JSON compatibility bonus: 1.0
-- Full pathway coverage bonus: 2.0
-- Total Tier 3 boon: 14.0
-
-## Tier 4 Score
-
-- Penalty removed: 1
-- Base boon: 2.0
-- Lane exclusion adjustment: constrained completion accepted for frozen theme/icon/product chains
-- Deliberate break caught: 1 synthetic missing registration, 1 orphan menu ref, 1 type mismatch
-- Total Tier 4 boon: 2.0
-
-## Cumulative Ledger
-
-- Penalties removed across completed tiers: 6
-- Cumulative boon after Tier 4: 32.5
-- Foundation boon: 2.0
-- Forge boon: 16.5
-- Oxidized boon: 14.0
-- Validator boon: 2.0

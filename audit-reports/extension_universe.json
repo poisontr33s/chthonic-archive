@@ -1,7 +1,7 @@
 {
-  "timestamp": "2026-03-03T06:49:55+00:00",
+  "timestamp": "2026-03-04T19:10:36+00:00",
   "codebase_extensions": {
-    "total_unique": 46,
+    "total_unique": 51,
     "inventory": {
       ".bak": {
         "count": 1,
@@ -110,6 +110,38 @@
           "required_toolchains": []
         }
       },
+      ".cs": {
+        "count": 2,
+        "directories": [
+          "dumpster-dive/forge/furnace/csharp",
+          "dumpster-dive/forge/tempered/csharp"
+        ],
+        "lane_excluded": false,
+        "lane_excluded_count": 0,
+        "category": "unclassified",
+        "gold_grade": "raw_unrefined",
+        "runtime_support": {
+          "supported": true,
+          "supported_by": [],
+          "required_toolchains": []
+        }
+      },
+      ".csproj": {
+        "count": 2,
+        "directories": [
+          "dumpster-dive/forge/furnace/csharp",
+          "dumpster-dive/forge/tempered/csharp"
+        ],
+        "lane_excluded": false,
+        "lane_excluded_count": 0,
+        "category": "unclassified",
+        "gold_grade": "raw_unrefined",
+        "runtime_support": {
+          "supported": true,
+          "supported_by": [],
+          "required_toolchains": []
+        }
+      },
       ".css": {
         "count": 2,
         "directories": [
@@ -127,8 +159,10 @@
         }
       },
       ".d.ts": {
-        "count": 4,
+        "count": 6,
         "directories": [
+          "dumpster-dive/forge/furnace/typescript",
+          "dumpster-dive/forge/tempered/typescript",
           "extensions/chthonic-archive",
           "extensions/chthonic-mandala",
           "extensions/chthonic-statusbar",
@@ -232,12 +266,13 @@
         }
       },
       ".gitignore": {
-        "count": 4,
+        "count": 5,
         "directories": [
           ".",
           ".codex",
           "dumpster-dive/intake/claudine-harvest",
-          "mas_mcp/frontend"
+          "mas_mcp/frontend",
+          "tools/ankh-forge"
         ],
         "lane_excluded": false,
         "lane_excluded_count": 0,
@@ -258,6 +293,38 @@
         "lane_excluded_count": 0,
         "category": "vcs_meta",
         "gold_grade": "tier_2_structural",
+        "runtime_support": {
+          "supported": true,
+          "supported_by": [],
+          "required_toolchains": []
+        }
+      },
+      ".go": {
+        "count": 2,
+        "directories": [
+          "dumpster-dive/forge/furnace/go",
+          "dumpster-dive/forge/tempered/go"
+        ],
+        "lane_excluded": false,
+        "lane_excluded_count": 0,
+        "category": "unclassified",
+        "gold_grade": "raw_unrefined",
+        "runtime_support": {
+          "supported": true,
+          "supported_by": [],
+          "required_toolchains": []
+        }
+      },
+      ".h": {
+        "count": 2,
+        "directories": [
+          "dumpster-dive/forge/furnace/c_cpp",
+          "dumpster-dive/forge/tempered/c_cpp"
+        ],
+        "lane_excluded": false,
+        "lane_excluded_count": 0,
+        "category": "unclassified",
+        "gold_grade": "raw_unrefined",
         "runtime_support": {
           "supported": true,
           "supported_by": [],
@@ -307,7 +374,7 @@
         }
       },
       ".json": {
-        "count": 662,
+        "count": 680,
         "directories": [
           ".codex/skills/artifact-upcycle/references",
           ".codex/skills/skill-polisher/fixtures/claude_missing_description",
@@ -324,6 +391,7 @@
           "artifacts",
           "assets",
           "assets/entities",
+          "audit-reports",
           "bun-playwright-poc",
           "chthonic-golden",
           "chthonic-golden/ankh",
@@ -373,8 +441,13 @@
           "docs",
           "docs/standards",
           "dumpster-dive",
+          "dumpster-dive/forge",
+          "dumpster-dive/forge/anvil",
           "dumpster-dive/forge/extension-archaeology/theme-research",
+          "dumpster-dive/forge/furnace",
+          "dumpster-dive/forge/furnace/schemas",
           "dumpster-dive/forge/tempered",
+          "dumpster-dive/forge/tempered/schemas",
           "dumpster-dive/from-github",
           "dumpster-dive/from-github/macro-prompt-world/disparate-md-documentation",
           "dumpster-dive/intake/embeddings",
@@ -551,13 +624,14 @@
         }
       },
       ".lock": {
-        "count": 5,
+        "count": 6,
         "directories": [
           "extensions/chthonic-archive/.chthonic/ruby",
           "extensions/chthonic-archive/native",
           "extensions/chthonic-archive/native/entropy-renderer-wasm",
           "mas_mcp",
-          "mas_mcp/frontend"
+          "mas_mcp/frontend",
+          "tools/ankh-forge"
         ],
         "lane_excluded": false,
         "lane_excluded_count": 0,
@@ -695,7 +769,7 @@
         }
       },
       ".md": {
-        "count": 823,
+        "count": 842,
         "directories": [
           ".",
           ".claude/skills/artifact-upcycle",
@@ -755,6 +829,7 @@
           ".temple/methodology",
           ".temple/session-archives",
           ".vscode",
+          "audit-reports",
           "bun-playwright-poc",
           "chthonic-golden",
           "chthonic-golden/ankh",
@@ -840,11 +915,15 @@
           "dumpster-dive/forge/extension-archaeology",
           "dumpster-dive/forge/extension-archaeology/theme-research",
           "dumpster-dive/forge/furnace",
+          "dumpster-dive/forge/furnace/docs",
+          "dumpster-dive/forge/furnace/workflows",
           "dumpster-dive/forge/intake",
           "dumpster-dive/forge/quench",
           "dumpster-dive/forge/slag",
           "dumpster-dive/forge/tea-vault",
           "dumpster-dive/forge/tempered",
+          "dumpster-dive/forge/tempered/docs",
+          "dumpster-dive/forge/tempered/workflows",
           "dumpster-dive/from-github",
           "dumpster-dive/from-github/macro-prompt-world",
           "dumpster-dive/from-github/macro-prompt-world/disparate-md-documentation",
@@ -979,12 +1058,14 @@
         }
       },
       ".ps1": {
-        "count": 109,
+        "count": 113,
         "directories": [
           ".github/tools",
           "chthonic-golden/scripts",
           "docs/standards/templates",
           "dumpster-dive",
+          "dumpster-dive/forge/furnace/powershell",
+          "dumpster-dive/forge/tempered/powershell",
           "dumpster-dive/intake/claude-ide-harden-2026-02-10/raw",
           "dumpster-dive/intake/claude-ide-harden-2026-02-10/tier-1-direct",
           "dumpster-dive/intake/overnight-siphon/20251226_090059/.github/tools",
@@ -1009,7 +1090,7 @@
         }
       },
       ".py": {
-        "count": 222,
+        "count": 229,
         "directories": [
           ".codex/skills/artifact-upcycle/scripts",
           ".codex/skills/codekiller-remediation-gate/scripts",
@@ -1025,6 +1106,8 @@
           "codex/codex-session-logs/archive",
           "docs/standards/templates",
           "dumpster-dive/forge/extension-archaeology/deprecated",
+          "dumpster-dive/forge/furnace/python",
+          "dumpster-dive/forge/tempered/python",
           "dumpster-dive/intake/pr-harvest-2026-01-29/tier-1-direct",
           "dumpster-dive/scripts",
           "extensions/chthonic-archive/.chthonic/python",
@@ -1073,8 +1156,10 @@
         }
       },
       ".rb": {
-        "count": 1,
+        "count": 3,
         "directories": [
+          "dumpster-dive/forge/furnace/ruby",
+          "dumpster-dive/forge/tempered/ruby",
           "extensions/chthonic-archive/.chthonic/ruby"
         ],
         "lane_excluded": false,
@@ -1092,7 +1177,7 @@
         }
       },
       ".rs": {
-        "count": 33,
+        "count": 35,
         "directories": [
           ".",
           "docs/standards/templates",
@@ -1108,7 +1193,8 @@
           "extensions/chthonic-archive/wasm/chthonic-loom/src",
           "src",
           "src/data",
-          "src/render"
+          "src/render",
+          "tools/ankh-forge/src"
         ],
         "lane_excluded": false,
         "lane_excluded_count": 0,
@@ -1122,6 +1208,21 @@
           "required_toolchains": [
             "rust"
           ]
+        }
+      },
+      ".sample": {
+        "count": 14,
+        "directories": [
+          "dumpster-dive/intake/ankh-forge-salvage/nested-git-2026-03-03/hooks"
+        ],
+        "lane_excluded": false,
+        "lane_excluded_count": 0,
+        "category": "unclassified",
+        "gold_grade": "raw_unrefined",
+        "runtime_support": {
+          "supported": true,
+          "supported_by": [],
+          "required_toolchains": []
         }
       },
       ".sh": {
@@ -1208,7 +1309,7 @@
         }
       },
       ".toml": {
-        "count": 22,
+        "count": 23,
         "directories": [
           ".",
           ".cargo",
@@ -1226,7 +1327,8 @@
           "extensions/chthonic-archive/native/xtask",
           "extensions/chthonic-archive/wasm/chthonic-loom",
           "mas_mcp",
-          "mas_mcp/frontend"
+          "mas_mcp/frontend",
+          "tools/ankh-forge"
         ],
         "lane_excluded": false,
         "lane_excluded_count": 0,
@@ -1245,13 +1347,15 @@
         }
       },
       ".ts": {
-        "count": 87,
+        "count": 89,
         "directories": [
           "bun-playwright-poc",
           "bun-playwright-poc/src",
           "docs/standards/templates",
           "dumpster-dive/forge/extension-archaeology",
           "dumpster-dive/forge/extension-archaeology/extracted",
+          "dumpster-dive/forge/furnace/typescript",
+          "dumpster-dive/forge/tempered/typescript",
           "extensions/chthonic-archive/scripts",
           "extensions/chthonic-archive/src",
           "extensions/chthonic-archive/src/entropy",
@@ -1477,9 +1581,11 @@
         }
       },
       ".yml": {
-        "count": 6,
+        "count": 8,
         "directories": [
           ".github/workflows",
+          "dumpster-dive/forge/furnace/workflows",
+          "dumpster-dive/forge/tempered/workflows",
           "dumpster-dive/intake/templates",
           "dumpster-dive/intake/templates/lineage-A-template",
           "dumpster-dive/intake/templates/lineage-B-template",
@@ -1502,11 +1608,13 @@
         }
       },
       "[no_ext]": {
-        "count": 4,
+        "count": 8,
         "directories": [
           "claude-codex-gemini/triadic-session-context",
           "codex/codex-session-logs/archive",
           "dev",
+          "dumpster-dive/intake/ankh-forge-salvage/nested-git-2026-03-03",
+          "dumpster-dive/intake/ankh-forge-salvage/nested-git-2026-03-03/info",
           "extensions/chthonic-archive/.chthonic/ruby"
         ],
         "lane_excluded": false,
@@ -1572,8 +1680,13 @@
       ],
       "unclassified": [
         ".cpython-313.pyc",
+        ".cs",
+        ".csproj",
         ".d.ts",
+        ".go",
+        ".h",
         ".log",
+        ".sample",
         ".test.ts",
         "[no_ext]"
       ],
@@ -1848,10 +1961,7 @@
     "viable_but_unrepresented": [
       ".c",
       ".cpp",
-      ".cs",
       ".fsx",
-      ".go",
-      ".h",
       ".pl"
     ],
     "dead_extensions": [
@@ -1867,20 +1977,8 @@
         "rationale": "G++ is installed; performance-sensitive utility patterns can be ported into native helpers."
       },
       {
-        "target_ext": ".cs",
-        "rationale": ".NET is installed; TypeScript interfaces can be mirrored as C# class contracts."
-      },
-      {
         "target_ext": ".fsx",
         "rationale": ".NET is installed; configuration and analysis flows can become F# scripts for typed automation."
-      },
-      {
-        "target_ext": ".go",
-        "rationale": "Go is installed; shell automation patterns can be recast as fast single-binary CLI tools."
-      },
-      {
-        "target_ext": ".h",
-        "rationale": "C headers are viable because Rust struct layouts can be exported for FFI bridges."
       },
       {
         "target_ext": ".pl",
@@ -1968,17 +2066,17 @@
     }
   },
   "summary": {
-    "tracked_files": 2702,
+    "tracked_files": 2789,
     "lane_excluded_files": 68,
-    "non_excluded_files": 2634,
+    "non_excluded_files": 2721,
     "top_extensions": [
       [
         ".md",
-        823
+        842
       ],
       [
         ".json",
-        662
+        680
       ],
       [
         ".log",
@@ -1986,7 +2084,7 @@
       ],
       [
         ".py",
-        222
+        229
       ],
       [
         ".svg",
@@ -1994,11 +2092,11 @@
       ],
       [
         ".ps1",
-        109
+        113
       ],
       [
         ".ts",
-        87
+        89
       ],
       [
         ".txt",
@@ -2006,11 +2104,11 @@
       ],
       [
         ".rs",
-        33
+        35
       ],
       [
         ".toml",
-        22
+        23
       ]
     ]
   }

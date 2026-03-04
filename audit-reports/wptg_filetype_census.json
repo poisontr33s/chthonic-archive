@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-03-03T06:57:03+00:00",
-  "total_tracked": 2705,
+  "timestamp": "2026-03-04T19:19:49+00:00",
+  "total_tracked": 2789,
   "excluded_lane_files": 68,
-  "audited_files": 2637,
+  "audited_files": 2721,
   "excluded_paths": [
     "extensions/chthonic-archive/themes/chthonic-decorator-color-theme.json",
     "extensions/chthonic-archive/themes/chthonic-file-icon-theme.json",
@@ -102,12 +102,20 @@
         "tracked_bytecode": 6
       }
     },
+    ".cs": {
+      "count": 2,
+      "anomalies": {}
+    },
+    ".csproj": {
+      "count": 2,
+      "anomalies": {}
+    },
     ".css": {
       "count": 2,
       "anomalies": {}
     },
     ".d.ts": {
-      "count": 4,
+      "count": 6,
       "anomalies": {}
     },
     ".db": {
@@ -133,11 +141,19 @@
       "anomalies": {}
     },
     ".gitignore": {
-      "count": 4,
+      "count": 5,
       "anomalies": {}
     },
     ".gitkeep": {
       "count": 1,
+      "anomalies": {}
+    },
+    ".go": {
+      "count": 2,
+      "anomalies": {}
+    },
+    ".h": {
+      "count": 2,
       "anomalies": {}
     },
     ".html": {
@@ -149,7 +165,7 @@
       "anomalies": {}
     },
     ".json": {
-      "count": 656,
+      "count": 673,
       "anomalies": {}
     },
     ".jsonl": {
@@ -161,7 +177,7 @@
       "anomalies": {}
     },
     ".lock": {
-      "count": 5,
+      "count": 6,
       "anomalies": {}
     },
     ".log": {
@@ -171,7 +187,7 @@
       }
     },
     ".md": {
-      "count": 823,
+      "count": 842,
       "anomalies": {
         "filetype_directory_mismatch": 1
       }
@@ -193,11 +209,11 @@
       "anomalies": {}
     },
     ".ps1": {
-      "count": 108,
+      "count": 112,
       "anomalies": {}
     },
     ".py": {
-      "count": 209,
+      "count": 214,
       "anomalies": {}
     },
     ".python-version": {
@@ -205,11 +221,15 @@
       "anomalies": {}
     },
     ".rb": {
-      "count": 1,
+      "count": 3,
       "anomalies": {}
     },
     ".rs": {
-      "count": 33,
+      "count": 35,
+      "anomalies": {}
+    },
+    ".sample": {
+      "count": 14,
       "anomalies": {}
     },
     ".sh": {
@@ -225,11 +245,11 @@
       "anomalies": {}
     },
     ".toml": {
-      "count": 22,
+      "count": 23,
       "anomalies": {}
     },
     ".ts": {
-      "count": 87,
+      "count": 89,
       "anomalies": {}
     },
     ".tsbuildinfo": {
@@ -261,11 +281,11 @@
       "anomalies": {}
     },
     ".yml": {
-      "count": 6,
+      "count": 8,
       "anomalies": {}
     },
     "[no_ext]": {
-      "count": 4,
+      "count": 8,
       "anomalies": {}
     }
   },
@@ -2743,10 +2763,10 @@
     }
   ],
   "by_gold_tier": {
-    "tier_2_structural": 729,
-    "tier_3_conceptual": 882,
-    "raw_unrefined": 557,
-    "tier_1_direct": 469
+    "tier_2_structural": 751,
+    "tier_3_conceptual": 901,
+    "raw_unrefined": 585,
+    "tier_1_direct": 484
   },
   "verdict": "FAIL"
 }
