@@ -24,6 +24,12 @@ Stage 3 trigger for dedupe reconsideration:
 
 - Promote at least 3 furnace-tempered pairs into active lanes, then reassess whether furnace copies can become manifest-only references.
 
+### Stage 3 Trigger Status (2026-03-04)
+
+- Trigger satisfied: three approved artifacts were promoted into active lanes.
+- Cross-reference: `codex/mailbox/EXTENSION_CONTRIBUTION_STAGE_3_EXECUTION.md`.
+- Reassessment outcome: retain dual-lane `furnace/` + `tempered/` model for now; revisit after broader downstream adoption.
+
 ## Promotion Disposition (Six Recommended Artifacts)
 
 | Artifact | Current Disposition | Reason |

@@ -148,6 +148,7 @@ extensions/*/bun.lock
 !scripts/*.py
 !scripts/*.ps1
 !scripts/*.ts
+!scripts/*.go
 !scripts/*.mjs
 !scripts/CLAUDE_CODE_INTEGRATION.md
 # Exclude temp/ephemeral scripts (underscore prefix)

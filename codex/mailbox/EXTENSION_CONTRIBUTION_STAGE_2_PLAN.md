@@ -34,6 +34,14 @@ Validated review numbers:
 ## Stage 2 Decision Artifacts
 
 - `codex/mailbox/STAGE2_FORGE_DECISIONS.md` — dedupe policy + promotion dispositions.
+- `codex/mailbox/EXTENSION_CONTRIBUTION_STAGE_3_EXECUTION.md` — promotion execution and dedupe reassessment.
+
+## Stage 3 Continuation Status
+
+Stage 3 continuation was executed after Stage 2 closure:
+
+- Three approved tempered artifacts promoted into active lanes under `scripts/`.
+- Trigger-based dedupe reassessment completed; dual-lane furnace/tempered model retained in this pass.
 
 ## Lane Constraint Reminder
 

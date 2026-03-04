@@ -844,3 +844,29 @@ All Stage 2 work remains bound by:
 - Lane Exclusion table defined in this chore.
 - WPTG preservation-first governance (`WET_PAPER_TO_GOLD_METHODOLOGY.md`).
 - No-destroy discipline unless explicit user-approved index/provenance operation (e.g., generated build outputs untracking).
+
+## Stage 3 — Promotion Continuation (Post-Stage 2)
+
+Stage 3 executes the previously-defined promotion trigger from `codex/mailbox/STAGE2_FORGE_DECISIONS.md`.
+
+### Stage 3A — Promotion Trigger Execution
+
+Three approved tempered artifacts were promoted into active lanes:
+
+| Tempered Artifact | Active Lane |
+|---|---|
+| `dumpster-dive/forge/tempered/powershell/batch_transliteration.ps1` | `scripts/recovered_batch_transliteration.ps1` |
+| `dumpster-dive/forge/tempered/python/consolidated_python_utilities.py` | `scripts/recovered_python_cluster_registry.py` |
+| `dumpster-dive/forge/tempered/go/recovered_shell_recipe_cli.go` | `scripts/recovered_shell_recipe_cli.go` |
+
+### Stage 3B — Dedupe Reassessment
+
+After promotion trigger completion, furnace/tempered dedupe was reassessed:
+
+- `furnace/` and `tempered/` remain intact for provenance continuity.
+- Manifest-only collapse is deferred to a later cycle after wider downstream adoption.
+
+### Stage 3C — Evidence Cross-Reference
+
+- `codex/mailbox/EXTENSION_CONTRIBUTION_STAGE_3_EXECUTION.md`
+- `codex/mailbox/STAGE2_FORGE_DECISIONS.md`

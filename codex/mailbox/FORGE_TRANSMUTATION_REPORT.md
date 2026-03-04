@@ -88,3 +88,10 @@ subject: FORGE_TRANSMUTATION_REPORT
 - Novel pathway bonus: 4.0
 - Unrepresented language bonus: 6.0
 - Total Tier 2 boon: 16.5
+
+## Stage 3 Promotion Addendum (2026-03-04)
+
+- Promotions executed into active lanes: 3
+- Penalty removed: 0
+- Promotion boon added: 1.5
+- Net addendum boon: +1.5
