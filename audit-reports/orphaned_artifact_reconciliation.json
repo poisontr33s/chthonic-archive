@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-03-04T19:19:49+00:00",
+  "timestamp": "2026-03-04T23:30:09+00:00",
   "total_json_files": 673,
   "orphan_candidate_count": 0,
   "orphan_candidates": [],
@@ -42,7 +42,7 @@
       ],
       "reference_count": 8,
       "modified_at": "2026-02-02T21:51:38+00:00",
-      "age_days": 29,
+      "age_days": 30,
       "timestamp_fields": {},
       "recognized_artifact_format": false,
       "json_parse_error": null,
@@ -282,7 +282,7 @@
       ],
       "reference_count": 6,
       "modified_at": "2026-02-17T19:51:14+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {},
       "recognized_artifact_format": false,
       "json_parse_error": null,
@@ -358,7 +358,7 @@
       ],
       "reference_count": 16,
       "modified_at": "2026-02-17T19:51:14+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {},
       "recognized_artifact_format": false,
       "json_parse_error": null,
@@ -410,7 +410,7 @@
       ],
       "reference_count": 10,
       "modified_at": "2026-02-17T19:51:14+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {},
       "recognized_artifact_format": false,
       "json_parse_error": "Expecting value: line 1 column 1 (char 0)",
@@ -434,7 +434,7 @@
       ],
       "reference_count": 3,
       "modified_at": "2026-02-17T19:51:14+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {},
       "recognized_artifact_format": false,
       "json_parse_error": "Expecting property name enclosed in double quotes: line 2 column 5 (char 6)",
@@ -526,7 +526,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:14+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {},
       "recognized_artifact_format": false,
       "json_parse_error": "Expecting property name enclosed in double quotes: line 2 column 3 (char 4)",
@@ -742,7 +742,7 @@
       ],
       "reference_count": 8,
       "modified_at": "2026-02-17T19:51:14+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {},
       "recognized_artifact_format": false,
       "json_parse_error": null,
@@ -778,7 +778,7 @@
       ],
       "reference_count": 6,
       "modified_at": "2026-02-17T19:51:14+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {},
       "recognized_artifact_format": false,
       "json_parse_error": null,
@@ -814,7 +814,7 @@
       ],
       "reference_count": 6,
       "modified_at": "2026-02-17T19:51:14+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {},
       "recognized_artifact_format": false,
       "json_parse_error": null,
@@ -846,7 +846,7 @@
       ],
       "reference_count": 5,
       "modified_at": "2026-02-17T19:51:14+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {},
       "recognized_artifact_format": false,
       "json_parse_error": null,
@@ -878,7 +878,7 @@
       ],
       "reference_count": 5,
       "modified_at": "2026-02-17T19:51:14+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {},
       "recognized_artifact_format": false,
       "json_parse_error": null,
@@ -910,7 +910,7 @@
       ],
       "reference_count": 5,
       "modified_at": "2026-02-17T19:51:14+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {},
       "recognized_artifact_format": false,
       "json_parse_error": null,
@@ -942,7 +942,7 @@
       ],
       "reference_count": 5,
       "modified_at": "2026-02-17T19:51:14+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {},
       "recognized_artifact_format": false,
       "json_parse_error": null,
@@ -974,7 +974,7 @@
       ],
       "reference_count": 5,
       "modified_at": "2026-02-17T19:51:14+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {},
       "recognized_artifact_format": false,
       "json_parse_error": null,
@@ -1006,7 +1006,7 @@
       ],
       "reference_count": 5,
       "modified_at": "2026-02-17T19:51:14+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {},
       "recognized_artifact_format": false,
       "json_parse_error": null,
@@ -1038,7 +1038,7 @@
       ],
       "reference_count": 5,
       "modified_at": "2026-02-17T19:51:14+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {},
       "recognized_artifact_format": false,
       "json_parse_error": null,
@@ -1070,7 +1070,7 @@
       ],
       "reference_count": 5,
       "modified_at": "2026-02-17T19:51:14+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {},
       "recognized_artifact_format": false,
       "json_parse_error": null,
@@ -1106,7 +1106,7 @@
       ],
       "reference_count": 6,
       "modified_at": "2026-02-17T19:51:14+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {},
       "recognized_artifact_format": false,
       "json_parse_error": null,
@@ -1142,7 +1142,7 @@
       ],
       "reference_count": 6,
       "modified_at": "2026-02-17T19:51:14+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {},
       "recognized_artifact_format": false,
       "json_parse_error": null,
@@ -1178,7 +1178,7 @@
       ],
       "reference_count": 6,
       "modified_at": "2026-02-17T19:51:14+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {},
       "recognized_artifact_format": false,
       "json_parse_error": null,
@@ -1202,7 +1202,7 @@
       ],
       "reference_count": 3,
       "modified_at": "2026-02-17T19:51:14+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {},
       "recognized_artifact_format": false,
       "json_parse_error": null,
@@ -1234,7 +1234,7 @@
       ],
       "reference_count": 5,
       "modified_at": "2026-02-17T19:51:14+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {},
       "recognized_artifact_format": false,
       "json_parse_error": null,
@@ -1266,7 +1266,7 @@
       ],
       "reference_count": 5,
       "modified_at": "2026-02-17T19:51:14+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {},
       "recognized_artifact_format": false,
       "json_parse_error": null,
@@ -1298,7 +1298,7 @@
       ],
       "reference_count": 5,
       "modified_at": "2026-02-17T19:51:14+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {},
       "recognized_artifact_format": false,
       "json_parse_error": null,
@@ -1322,7 +1322,7 @@
       ],
       "reference_count": 3,
       "modified_at": "2026-02-17T19:51:14+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {},
       "recognized_artifact_format": false,
       "json_parse_error": null,
@@ -1346,7 +1346,7 @@
       ],
       "reference_count": 3,
       "modified_at": "2026-02-17T19:51:14+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {},
       "recognized_artifact_format": false,
       "json_parse_error": null,
@@ -1370,7 +1370,7 @@
       ],
       "reference_count": 3,
       "modified_at": "2026-02-17T19:51:14+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {},
       "recognized_artifact_format": false,
       "json_parse_error": null,
@@ -1394,7 +1394,7 @@
       ],
       "reference_count": 3,
       "modified_at": "2026-02-17T19:51:14+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {},
       "recognized_artifact_format": false,
       "json_parse_error": null,
@@ -1430,7 +1430,7 @@
       ],
       "reference_count": 6,
       "modified_at": "2026-02-17T19:51:14+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {},
       "recognized_artifact_format": false,
       "json_parse_error": null,
@@ -1466,7 +1466,7 @@
       ],
       "reference_count": 6,
       "modified_at": "2026-02-17T19:51:14+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {},
       "recognized_artifact_format": false,
       "json_parse_error": null,
@@ -1502,7 +1502,7 @@
       ],
       "reference_count": 6,
       "modified_at": "2026-02-17T19:51:14+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {},
       "recognized_artifact_format": false,
       "json_parse_error": null,
@@ -1534,7 +1534,7 @@
       ],
       "reference_count": 5,
       "modified_at": "2026-02-17T19:51:14+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {},
       "recognized_artifact_format": false,
       "json_parse_error": null,
@@ -1566,7 +1566,7 @@
       ],
       "reference_count": 5,
       "modified_at": "2026-02-17T19:51:14+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {},
       "recognized_artifact_format": false,
       "json_parse_error": null,
@@ -1590,7 +1590,7 @@
       ],
       "reference_count": 3,
       "modified_at": "2026-02-17T19:51:14+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {},
       "recognized_artifact_format": false,
       "json_parse_error": null,
@@ -1614,7 +1614,7 @@
       ],
       "reference_count": 3,
       "modified_at": "2026-02-17T19:51:14+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {},
       "recognized_artifact_format": false,
       "json_parse_error": null,
@@ -1638,7 +1638,7 @@
       ],
       "reference_count": 3,
       "modified_at": "2026-02-17T19:51:14+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {},
       "recognized_artifact_format": false,
       "json_parse_error": null,
@@ -1662,7 +1662,7 @@
       ],
       "reference_count": 3,
       "modified_at": "2026-02-17T19:51:14+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {},
       "recognized_artifact_format": false,
       "json_parse_error": null,
@@ -1686,7 +1686,7 @@
       ],
       "reference_count": 3,
       "modified_at": "2026-02-17T19:51:14+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {},
       "recognized_artifact_format": false,
       "json_parse_error": null,
@@ -1710,7 +1710,7 @@
       ],
       "reference_count": 3,
       "modified_at": "2026-02-17T19:51:14+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {},
       "recognized_artifact_format": false,
       "json_parse_error": null,
@@ -1746,7 +1746,7 @@
       ],
       "reference_count": 6,
       "modified_at": "2026-02-17T19:51:14+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {},
       "recognized_artifact_format": false,
       "json_parse_error": null,
@@ -1782,7 +1782,7 @@
       ],
       "reference_count": 6,
       "modified_at": "2026-02-17T19:51:14+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {},
       "recognized_artifact_format": false,
       "json_parse_error": null,
@@ -1818,7 +1818,7 @@
       ],
       "reference_count": 6,
       "modified_at": "2026-02-17T19:51:14+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {},
       "recognized_artifact_format": false,
       "json_parse_error": null,
@@ -1842,7 +1842,7 @@
       ],
       "reference_count": 3,
       "modified_at": "2026-02-17T19:51:14+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {},
       "recognized_artifact_format": false,
       "json_parse_error": null,
@@ -1866,7 +1866,7 @@
       ],
       "reference_count": 3,
       "modified_at": "2026-02-17T19:51:14+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {},
       "recognized_artifact_format": false,
       "json_parse_error": null,
@@ -1890,7 +1890,7 @@
       ],
       "reference_count": 3,
       "modified_at": "2026-02-17T19:51:14+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {},
       "recognized_artifact_format": false,
       "json_parse_error": null,
@@ -1914,7 +1914,7 @@
       ],
       "reference_count": 3,
       "modified_at": "2026-02-17T19:51:14+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {},
       "recognized_artifact_format": false,
       "json_parse_error": null,
@@ -1938,7 +1938,7 @@
       ],
       "reference_count": 3,
       "modified_at": "2026-02-17T19:51:14+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {},
       "recognized_artifact_format": false,
       "json_parse_error": null,
@@ -1962,7 +1962,7 @@
       ],
       "reference_count": 3,
       "modified_at": "2026-02-17T19:51:14+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {},
       "recognized_artifact_format": false,
       "json_parse_error": null,
@@ -1986,7 +1986,7 @@
       ],
       "reference_count": 3,
       "modified_at": "2026-02-17T19:51:14+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {},
       "recognized_artifact_format": false,
       "json_parse_error": null,
@@ -2010,7 +2010,7 @@
       ],
       "reference_count": 3,
       "modified_at": "2026-02-17T19:51:14+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {},
       "recognized_artifact_format": false,
       "json_parse_error": null,
@@ -2046,7 +2046,7 @@
       ],
       "reference_count": 6,
       "modified_at": "2026-02-17T19:51:14+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {},
       "recognized_artifact_format": false,
       "json_parse_error": null,
@@ -2082,7 +2082,7 @@
       ],
       "reference_count": 6,
       "modified_at": "2026-02-17T19:51:14+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {},
       "recognized_artifact_format": false,
       "json_parse_error": null,
@@ -2118,7 +2118,7 @@
       ],
       "reference_count": 6,
       "modified_at": "2026-02-17T19:51:14+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {},
       "recognized_artifact_format": false,
       "json_parse_error": null,
@@ -2142,7 +2142,7 @@
       ],
       "reference_count": 3,
       "modified_at": "2026-02-17T19:51:14+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {},
       "recognized_artifact_format": false,
       "json_parse_error": null,
@@ -2166,7 +2166,7 @@
       ],
       "reference_count": 3,
       "modified_at": "2026-02-17T19:51:14+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {},
       "recognized_artifact_format": false,
       "json_parse_error": null,
@@ -2190,7 +2190,7 @@
       ],
       "reference_count": 3,
       "modified_at": "2026-02-17T19:51:14+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {},
       "recognized_artifact_format": false,
       "json_parse_error": null,
@@ -2214,7 +2214,7 @@
       ],
       "reference_count": 3,
       "modified_at": "2026-02-17T19:51:14+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {},
       "recognized_artifact_format": false,
       "json_parse_error": null,
@@ -2238,7 +2238,7 @@
       ],
       "reference_count": 3,
       "modified_at": "2026-02-17T19:51:14+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {},
       "recognized_artifact_format": false,
       "json_parse_error": null,
@@ -2262,7 +2262,7 @@
       ],
       "reference_count": 3,
       "modified_at": "2026-02-17T19:51:14+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {},
       "recognized_artifact_format": false,
       "json_parse_error": null,
@@ -2286,7 +2286,7 @@
       ],
       "reference_count": 3,
       "modified_at": "2026-02-17T19:51:14+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {},
       "recognized_artifact_format": false,
       "json_parse_error": null,
@@ -2310,7 +2310,7 @@
       ],
       "reference_count": 3,
       "modified_at": "2026-02-17T19:51:14+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {},
       "recognized_artifact_format": false,
       "json_parse_error": null,
@@ -2346,7 +2346,7 @@
       ],
       "reference_count": 6,
       "modified_at": "2026-02-17T19:51:14+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {},
       "recognized_artifact_format": false,
       "json_parse_error": null,
@@ -2382,7 +2382,7 @@
       ],
       "reference_count": 6,
       "modified_at": "2026-02-17T19:51:14+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {},
       "recognized_artifact_format": false,
       "json_parse_error": null,
@@ -2418,7 +2418,7 @@
       ],
       "reference_count": 6,
       "modified_at": "2026-02-17T19:51:14+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {},
       "recognized_artifact_format": false,
       "json_parse_error": null,
@@ -2442,7 +2442,7 @@
       ],
       "reference_count": 3,
       "modified_at": "2026-02-17T19:51:14+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {},
       "recognized_artifact_format": false,
       "json_parse_error": null,
@@ -2466,7 +2466,7 @@
       ],
       "reference_count": 3,
       "modified_at": "2026-02-17T19:51:14+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {},
       "recognized_artifact_format": false,
       "json_parse_error": null,
@@ -2490,7 +2490,7 @@
       ],
       "reference_count": 3,
       "modified_at": "2026-02-17T19:51:14+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {},
       "recognized_artifact_format": false,
       "json_parse_error": null,
@@ -2514,7 +2514,7 @@
       ],
       "reference_count": 3,
       "modified_at": "2026-02-17T19:51:14+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {},
       "recognized_artifact_format": false,
       "json_parse_error": null,
@@ -2538,7 +2538,7 @@
       ],
       "reference_count": 3,
       "modified_at": "2026-02-17T19:51:14+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {},
       "recognized_artifact_format": false,
       "json_parse_error": null,
@@ -2562,7 +2562,7 @@
       ],
       "reference_count": 3,
       "modified_at": "2026-02-17T19:51:14+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {},
       "recognized_artifact_format": false,
       "json_parse_error": null,
@@ -2586,7 +2586,7 @@
       ],
       "reference_count": 3,
       "modified_at": "2026-02-17T19:51:14+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {},
       "recognized_artifact_format": false,
       "json_parse_error": null,
@@ -2602,7 +2602,7 @@
       ],
       "reference_count": 1,
       "modified_at": "2026-02-17T19:51:14+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {},
       "recognized_artifact_format": false,
       "json_parse_error": null,
@@ -2613,7 +2613,7 @@
       "references": [],
       "reference_count": 0,
       "modified_at": "2026-02-17T19:51:14+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {},
       "recognized_artifact_format": false,
       "json_parse_error": "Expecting value: line 1 column 1 (char 0)",
@@ -2624,7 +2624,7 @@
       "references": [],
       "reference_count": 0,
       "modified_at": "2026-02-17T19:51:14+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {},
       "recognized_artifact_format": false,
       "json_parse_error": "Expecting value: line 1 column 1 (char 0)",
@@ -2640,7 +2640,7 @@
       ],
       "reference_count": 1,
       "modified_at": "2026-02-17T19:51:14+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {},
       "recognized_artifact_format": false,
       "json_parse_error": "Expecting value: line 1 column 1 (char 0)",
@@ -2656,7 +2656,7 @@
       ],
       "reference_count": 1,
       "modified_at": "2026-02-17T19:51:14+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {},
       "recognized_artifact_format": false,
       "json_parse_error": "Expecting value: line 1 column 1 (char 0)",
@@ -2861,7 +2861,7 @@
       ],
       "reference_count": 18,
       "modified_at": "2026-02-17T19:51:14+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {},
       "recognized_artifact_format": false,
       "json_parse_error": null,
@@ -2929,7 +2929,7 @@
       ],
       "reference_count": 14,
       "modified_at": "2026-02-17T19:51:14+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "abbr_counts.Resurrection Date": 1,
         "abbr_counts.M-P-W Timeline Infrastructure": 1,
@@ -2952,9 +2952,17 @@
         {
           "path": "codex/mailbox/OXIDIZED_TOOLING_LANDSCAPE.md",
           "match": "audit-reports/ankh_forge_chore_audit.json"
+        },
+        {
+          "path": "dumpster-dive/forge/furnace/schemas/configuration_schema_catalog.json",
+          "match": "audit-reports/ankh_forge_chore_audit.json"
+        },
+        {
+          "path": "dumpster-dive/forge/tempered/schemas/configuration_schema_catalog.json",
+          "match": "audit-reports/ankh_forge_chore_audit.json"
         }
       ],
-      "reference_count": 1,
+      "reference_count": 3,
       "modified_at": "2026-03-03T07:37:55+00:00",
       "age_days": 1,
       "timestamp_fields": {
@@ -2977,15 +2985,23 @@
           "match": "audit-reports/extension_contribution_audit.json"
         },
         {
+          "path": "dumpster-dive/forge/furnace/schemas/configuration_schema_catalog.json",
+          "match": "audit-reports/extension_contribution_audit.json"
+        },
+        {
+          "path": "dumpster-dive/forge/tempered/schemas/configuration_schema_catalog.json",
+          "match": "audit-reports/extension_contribution_audit.json"
+        },
+        {
           "path": "scripts/extension_contribution_audit.py",
           "match": "audit-reports/extension_contribution_audit.json"
         }
       ],
-      "reference_count": 2,
-      "modified_at": "2026-03-04T19:10:35+00:00",
+      "reference_count": 4,
+      "modified_at": "2026-03-04T23:27:22+00:00",
       "age_days": 0,
       "timestamp_fields": {
-        "timestamp": "2026-03-04T19:10:35+00:00"
+        "timestamp": "2026-03-04T23:27:22+00:00"
       },
       "recognized_artifact_format": false,
       "json_parse_error": null,
@@ -3012,10 +3028,10 @@
         }
       ],
       "reference_count": 4,
-      "modified_at": "2026-03-04T19:10:38+00:00",
+      "modified_at": "2026-03-04T23:28:01+00:00",
       "age_days": 0,
       "timestamp_fields": {
-        "timestamp": "2026-03-04T19:10:36+00:00",
+        "timestamp": "2026-03-04T23:27:59+00:00",
         "codebase_extensions.inventory..bak.runtime_support": {
           "supported": true,
           "supported_by": [],
@@ -3448,11 +3464,19 @@
         {
           "path": "codex/mailbox/OXIDIZED_TOOLING_LANDSCAPE.md",
           "match": "audit-reports/extension_universe_ankh.json"
+        },
+        {
+          "path": "dumpster-dive/forge/furnace/schemas/configuration_schema_catalog.json",
+          "match": "audit-reports/extension_universe_ankh.json"
+        },
+        {
+          "path": "dumpster-dive/forge/tempered/schemas/configuration_schema_catalog.json",
+          "match": "audit-reports/extension_universe_ankh.json"
         }
       ],
-      "reference_count": 2,
-      "modified_at": "2026-03-03T07:37:56+00:00",
-      "age_days": 1,
+      "reference_count": 4,
+      "modified_at": "2026-03-04T23:27:16+00:00",
+      "age_days": 0,
       "timestamp_fields": {
         "codebase_extensions.inventory..bak.runtime_support": {
           "required_toolchains": [],
@@ -3706,6 +3730,11 @@
             "rust"
           ]
         },
+        "codebase_extensions.inventory..sample.runtime_support": {
+          "required_toolchains": [],
+          "supported": true,
+          "supported_by": []
+        },
         "codebase_extensions.inventory..sh.runtime_support": {
           "required_toolchains": [
             "shell"
@@ -3825,6 +3854,7 @@
           "supported": true,
           "supported_by": []
         },
+        "eol_risk.dotnet.latest_release_date": "2026-02-10",
         "eol_risk.go.latest_release_date": "2026-02-10",
         "eol_risk.ruby.latest_release_date": "2026-01-12",
         "eol_risk.rust.latest_release_date": "2026-02-12",
@@ -3836,7 +3866,7 @@
         "system_toolchains.details.cobol.runtime_output": null,
         "system_toolchains.details.cobol.runtime_version": null,
         "system_toolchains.details.dotnet.runtime_output": "10.0.200-preview.0.26103.119",
-        "system_toolchains.details.dotnet.runtime_version": "0.26103.119",
+        "system_toolchains.details.dotnet.runtime_version": "10.0.200",
         "system_toolchains.details.elixir.runtime_output": null,
         "system_toolchains.details.elixir.runtime_version": null,
         "system_toolchains.details.glsl.runtime_output": "Glslang Version: 11:16.2.0\r\nESSL Version: OpenGL ES GLSL 3.20 glslang Khronos. 16.2.0\r\nGLSL Version: 4.60 glslang Khronos. 16.2.0\r\nSPIR-V Version 0x00010600, Revision 1\r\nGLSL.std.450 Version 100, Revision 1\r\nKhronos Tool ID 8\r\nSPIR-V Generator Version 11\r\nGL_KHR_vulkan_glsl version 100\r\nARB_GL_gl_spirv version 100",
@@ -3871,7 +3901,7 @@
         "system_toolchains.details.typescript.runtime_version": "1.3.9",
         "system_toolchains.details.zig.runtime_output": null,
         "system_toolchains.details.zig.runtime_version": null,
-        "timestamp": "2026-03-03T07:37:56.4183478Z"
+        "timestamp": "2026-03-04T23:27:16.2426556Z"
       },
       "recognized_artifact_format": false,
       "json_parse_error": null,
@@ -3898,7 +3928,7 @@
         }
       ],
       "reference_count": 4,
-      "modified_at": "2026-03-04T19:17:13+00:00",
+      "modified_at": "2026-03-04T23:26:51+00:00",
       "age_days": 0,
       "timestamp_fields": {},
       "recognized_artifact_format": false,
@@ -3915,11 +3945,19 @@
         {
           "path": "codex/mailbox/OXIDIZED_TOOLING_LANDSCAPE.md",
           "match": "audit-reports/oxidized_tooling_eol.json"
+        },
+        {
+          "path": "dumpster-dive/forge/furnace/schemas/configuration_schema_catalog.json",
+          "match": "audit-reports/oxidized_tooling_eol.json"
+        },
+        {
+          "path": "dumpster-dive/forge/tempered/schemas/configuration_schema_catalog.json",
+          "match": "audit-reports/oxidized_tooling_eol.json"
         }
       ],
-      "reference_count": 2,
-      "modified_at": "2026-03-03T07:39:42+00:00",
-      "age_days": 1,
+      "reference_count": 4,
+      "modified_at": "2026-03-04T23:27:21+00:00",
+      "age_days": 0,
       "timestamp_fields": {
         "runtimes": {
           "dotnet": {
@@ -3993,7 +4031,7 @@
         "runtimes.ruby.latest_release_date": "2026-01-12",
         "runtimes.rust.latest_release_date": "2026-02-12",
         "runtimes.typescript.latest_release_date": "2026-02-25",
-        "timestamp": "2026-03-03T07:39:42.0674900Z"
+        "timestamp": "2026-03-04T23:27:20.4937388Z"
       },
       "recognized_artifact_format": false,
       "json_parse_error": null,
@@ -4009,18 +4047,26 @@
         {
           "path": "codex/mailbox/OXIDIZED_TOOLING_LANDSCAPE.md",
           "match": "audit-reports/oxidized_tooling_landscape.json"
+        },
+        {
+          "path": "dumpster-dive/forge/furnace/schemas/configuration_schema_catalog.json",
+          "match": "audit-reports/oxidized_tooling_landscape.json"
+        },
+        {
+          "path": "dumpster-dive/forge/tempered/schemas/configuration_schema_catalog.json",
+          "match": "audit-reports/oxidized_tooling_landscape.json"
         }
       ],
-      "reference_count": 2,
-      "modified_at": "2026-03-03T07:39:42+00:00",
-      "age_days": 1,
+      "reference_count": 4,
+      "modified_at": "2026-03-04T23:27:19+00:00",
+      "age_days": 0,
       "timestamp_fields": {
         "eol_risk.dotnet.latest_release_date": "2026-02-10",
         "eol_risk.go.latest_release_date": "2026-02-10",
         "eol_risk.ruby.latest_release_date": "2026-01-12",
         "eol_risk.rust.latest_release_date": "2026-02-12",
         "eol_risk.typescript.latest_release_date": "2026-02-25",
-        "timestamp": "2026-03-03T07:39:42.1120323Z"
+        "timestamp": "2026-03-04T23:27:18.0666119Z"
       },
       "recognized_artifact_format": false,
       "json_parse_error": null,
@@ -4034,6 +4080,14 @@
           "match": "audit-reports/wptg_filetype_census.json"
         },
         {
+          "path": "dumpster-dive/forge/furnace/schemas/configuration_schema_catalog.json",
+          "match": "audit-reports/wptg_filetype_census.json"
+        },
+        {
+          "path": "dumpster-dive/forge/tempered/schemas/configuration_schema_catalog.json",
+          "match": "audit-reports/wptg_filetype_census.json"
+        },
+        {
           "path": "scripts/universal_forge.py",
           "match": "\"wptg_filetype_census.json\""
         },
@@ -4042,11 +4096,11 @@
           "match": "audit-reports/wptg_filetype_census.json"
         }
       ],
-      "reference_count": 3,
-      "modified_at": "2026-03-04T19:17:13+00:00",
+      "reference_count": 5,
+      "modified_at": "2026-03-04T23:26:51+00:00",
       "age_days": 0,
       "timestamp_fields": {
-        "timestamp": "2026-03-04T19:17:13+00:00"
+        "timestamp": "2026-03-04T23:26:51+00:00"
       },
       "recognized_artifact_format": false,
       "json_parse_error": null,
@@ -4062,13 +4116,21 @@
         {
           "path": "codex/mailbox/OXIDIZED_TOOLING_LANDSCAPE.md",
           "match": "audit-reports/wptg_filetype_census_ankh.json"
+        },
+        {
+          "path": "dumpster-dive/forge/furnace/schemas/configuration_schema_catalog.json",
+          "match": "audit-reports/wptg_filetype_census_ankh.json"
+        },
+        {
+          "path": "dumpster-dive/forge/tempered/schemas/configuration_schema_catalog.json",
+          "match": "audit-reports/wptg_filetype_census_ankh.json"
         }
       ],
-      "reference_count": 2,
-      "modified_at": "2026-03-03T07:34:21+00:00",
-      "age_days": 1,
+      "reference_count": 4,
+      "modified_at": "2026-03-04T23:27:16+00:00",
+      "age_days": 0,
       "timestamp_fields": {
-        "timestamp": "1970-01-01T00:00:00+00:00"
+        "timestamp": "2026-03-04T23:27:16.8525157Z"
       },
       "recognized_artifact_format": false,
       "json_parse_error": null,
@@ -4104,7 +4166,7 @@
       ],
       "reference_count": 6,
       "modified_at": "2026-02-17T19:51:14+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {},
       "recognized_artifact_format": false,
       "json_parse_error": null,
@@ -4481,7 +4543,7 @@
       ],
       "reference_count": 3,
       "modified_at": "2026-02-19T21:39:06+00:00",
-      "age_days": 12,
+      "age_days": 13,
       "timestamp_fields": {
         "generated": "2026-02-19T21:39:06.531238+00:00"
       },
@@ -4507,7 +4569,7 @@
       ],
       "reference_count": 3,
       "modified_at": "2026-02-19T21:41:48+00:00",
-      "age_days": 12,
+      "age_days": 13,
       "timestamp_fields": {
         "generated": "2026-02-19T21:41:48.800498+00:00"
       },
@@ -4533,7 +4595,7 @@
       ],
       "reference_count": 3,
       "modified_at": "2026-02-19T23:10:09+00:00",
-      "age_days": 12,
+      "age_days": 13,
       "timestamp_fields": {
         "generated": "2026-02-19T23:10:09.382829+00:00"
       },
@@ -4587,7 +4649,7 @@
       ],
       "reference_count": 10,
       "modified_at": "2026-02-19T23:17:19+00:00",
-      "age_days": 12,
+      "age_days": 13,
       "timestamp_fields": {
         "generated": "2026-02-19T23:17:19.851583+00:00"
       },
@@ -4613,7 +4675,7 @@
       ],
       "reference_count": 3,
       "modified_at": "2026-02-19T21:31:37+00:00",
-      "age_days": 12,
+      "age_days": 13,
       "timestamp_fields": {
         "generated": "2026-02-19T21:31:35.312471+00:00",
         "models[0].updated_at": "2026-02-13T02:54:57.917825+00:00",
@@ -4668,7 +4730,7 @@
       ],
       "reference_count": 3,
       "modified_at": "2026-02-19T21:32:15+00:00",
-      "age_days": 12,
+      "age_days": 13,
       "timestamp_fields": {
         "generated": "2026-02-19T21:32:13.170992+00:00",
         "models[0].updated_at": "2026-02-13T02:54:57.917825+00:00",
@@ -4723,7 +4785,7 @@
       ],
       "reference_count": 3,
       "modified_at": "2026-02-19T21:32:55+00:00",
-      "age_days": 12,
+      "age_days": 13,
       "timestamp_fields": {
         "generated": "2026-02-19T21:32:53.042226+00:00",
         "models[0].updated_at": "2026-02-13T02:54:57.917825+00:00",
@@ -4778,7 +4840,7 @@
       ],
       "reference_count": 3,
       "modified_at": "2026-02-19T21:39:20+00:00",
-      "age_days": 12,
+      "age_days": 13,
       "timestamp_fields": {
         "generated": "2026-02-19T21:39:17.714976+00:00",
         "models[0].updated_at": "2026-02-13T02:54:57.917825+00:00",
@@ -4833,7 +4895,7 @@
       ],
       "reference_count": 3,
       "modified_at": "2026-02-19T21:41:57+00:00",
-      "age_days": 12,
+      "age_days": 13,
       "timestamp_fields": {
         "generated": "2026-02-19T21:41:54.984008+00:00",
         "models[0].updated_at": "2026-02-13T02:54:57.917825+00:00",
@@ -4888,7 +4950,7 @@
       ],
       "reference_count": 3,
       "modified_at": "2026-02-19T23:11:02+00:00",
-      "age_days": 12,
+      "age_days": 13,
       "timestamp_fields": {
         "generated": "2026-02-19T23:10:58.763385+00:00",
         "models[0].updated_at": "2026-02-13T02:54:57.917825+00:00",
@@ -4943,7 +5005,7 @@
       ],
       "reference_count": 3,
       "modified_at": "2026-02-19T23:18:19+00:00",
-      "age_days": 12,
+      "age_days": 13,
       "timestamp_fields": {
         "generated": "2026-02-19T23:18:15.138950+00:00",
         "models[0].updated_at": "2026-02-13T02:54:57.917825+00:00",
@@ -5053,7 +5115,7 @@
       ],
       "reference_count": 3,
       "modified_at": "2026-02-19T23:17:26+00:00",
-      "age_days": 12,
+      "age_days": 13,
       "timestamp_fields": {
         "generated": "2026-02-19T23:17:21.292098+00:00"
       },
@@ -5095,7 +5157,7 @@
       ],
       "reference_count": 7,
       "modified_at": "2026-02-19T23:17:26+00:00",
-      "age_days": 12,
+      "age_days": 13,
       "timestamp_fields": {
         "generated": "2026-02-19T23:17:21.292098+00:00"
       },
@@ -5121,7 +5183,7 @@
       ],
       "reference_count": 3,
       "modified_at": "2026-02-19T23:07:53+00:00",
-      "age_days": 12,
+      "age_days": 13,
       "timestamp_fields": {
         "generated": "2026-02-19T23:07:48.141255+00:00",
         "local_models[0].newest_mtime_utc": "2026-02-13T02:54:57.920456+00:00",
@@ -5604,7 +5666,7 @@
       ],
       "reference_count": 3,
       "modified_at": "2026-02-19T23:08:11+00:00",
-      "age_days": 12,
+      "age_days": 13,
       "timestamp_fields": {
         "generated": "2026-02-19T23:08:05.674953+00:00",
         "local_models[0].newest_mtime_utc": "2026-02-13T02:54:57.920456+00:00",
@@ -6087,7 +6149,7 @@
       ],
       "reference_count": 3,
       "modified_at": "2026-02-19T23:08:35+00:00",
-      "age_days": 12,
+      "age_days": 13,
       "timestamp_fields": {
         "generated": "2026-02-19T23:08:30.601649+00:00",
         "local_models[0].newest_mtime_utc": "2026-02-13T02:54:57.920456+00:00",
@@ -6570,7 +6632,7 @@
       ],
       "reference_count": 3,
       "modified_at": "2026-02-19T23:10:27+00:00",
-      "age_days": 12,
+      "age_days": 13,
       "timestamp_fields": {
         "generated": "2026-02-19T23:10:22.505616+00:00",
         "local_models[0].newest_mtime_utc": "2026-02-13T02:54:57.920456+00:00",
@@ -7053,7 +7115,7 @@
       ],
       "reference_count": 3,
       "modified_at": "2026-02-19T23:17:26+00:00",
-      "age_days": 12,
+      "age_days": 13,
       "timestamp_fields": {
         "generated": "2026-02-19T23:17:21.292098+00:00",
         "local_models[0].newest_mtime_utc": "2026-02-13T02:54:57.920456+00:00",
@@ -7540,7 +7602,7 @@
       ],
       "reference_count": 4,
       "modified_at": "2026-02-19T23:17:26+00:00",
-      "age_days": 12,
+      "age_days": 13,
       "timestamp_fields": {
         "generated": "2026-02-19T23:17:21.292098+00:00",
         "local_models[0].newest_mtime_utc": "2026-02-13T02:54:57.920456+00:00",
@@ -8101,7 +8163,7 @@
       ],
       "reference_count": 8,
       "modified_at": "2026-02-17T19:51:14+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {},
       "recognized_artifact_format": false,
       "json_parse_error": null,
@@ -8141,7 +8203,7 @@
       ],
       "reference_count": 7,
       "modified_at": "2026-02-17T19:51:14+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {},
       "recognized_artifact_format": false,
       "json_parse_error": null,
@@ -8181,7 +8243,7 @@
       ],
       "reference_count": 7,
       "modified_at": "2026-02-17T19:51:14+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {},
       "recognized_artifact_format": false,
       "json_parse_error": null,
@@ -8209,7 +8271,7 @@
       ],
       "reference_count": 4,
       "modified_at": "2026-02-17T19:51:14+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {},
       "recognized_artifact_format": false,
       "json_parse_error": null,
@@ -8285,7 +8347,7 @@
       ],
       "reference_count": 16,
       "modified_at": "2026-02-17T19:51:14+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "_generated": "2026-01-29 11:19:56"
       },
@@ -8379,7 +8441,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:14+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {},
       "recognized_artifact_format": true,
       "json_parse_error": null,
@@ -8443,7 +8505,7 @@
       ],
       "reference_count": 13,
       "modified_at": "2026-02-25T21:10:20+00:00",
-      "age_days": 6,
+      "age_days": 7,
       "timestamp_fields": {
         "generated_on": "2026-02-25T21:10:20Z",
         "handoffs[0].mtime_utc": "2026-02-17T19:51:14Z",
@@ -9175,7 +9237,7 @@
       ],
       "reference_count": 8,
       "modified_at": "2026-02-25T22:03:33+00:00",
-      "age_days": 6,
+      "age_days": 7,
       "timestamp_fields": {
         "generated_on_utc": "2026-02-25T22:03:33.3069313Z",
         "anchor.creation_time_utc": "2026-02-25T17:36:27.8387647Z",
@@ -9357,7 +9419,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:14+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "generated_on": "2026-02-09T20:25:00Z",
         "verification_results.mcp_auth_lane.timestamp": "2026-02-09T20:21:45Z",
@@ -9484,7 +9546,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:14+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {},
       "recognized_artifact_format": true,
       "json_parse_error": null,
@@ -9576,7 +9638,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:14+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {},
       "recognized_artifact_format": true,
       "json_parse_error": null,
@@ -9668,7 +9730,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:14+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {},
       "recognized_artifact_format": true,
       "json_parse_error": null,
@@ -9760,7 +9822,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:14+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {},
       "recognized_artifact_format": true,
       "json_parse_error": null,
@@ -9946,7 +10008,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:14+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {},
       "recognized_artifact_format": true,
       "json_parse_error": null,
@@ -10038,7 +10100,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:14+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "generated_at": "2026-02-06T19:25:13"
       },
@@ -10064,7 +10126,7 @@
       ],
       "reference_count": 3,
       "modified_at": "2026-02-17T19:51:14+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "generated_on": "2026-02-08T01:08:37.953925+00:00"
       },
@@ -10094,7 +10156,7 @@
       ],
       "reference_count": 4,
       "modified_at": "2026-02-17T19:51:14+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "generated_on": "2026-02-07T22:27:43.171163+00:00"
       },
@@ -10116,7 +10178,7 @@
       ],
       "reference_count": 2,
       "modified_at": "2026-02-17T19:51:14+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "generated_on": "2026-02-09T15:51:03.727393+00:00"
       },
@@ -10142,7 +10204,7 @@
       ],
       "reference_count": 3,
       "modified_at": "2026-02-17T19:51:14+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "generated_on": "2026-02-09T15:51:03.962253+00:00"
       },
@@ -10180,7 +10242,7 @@
       ],
       "reference_count": 6,
       "modified_at": "2026-02-17T19:51:14+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {},
       "recognized_artifact_format": false,
       "json_parse_error": null,
@@ -10200,7 +10262,7 @@
       ],
       "reference_count": 2,
       "modified_at": "2026-02-17T19:51:14+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "generated_on": "2026-02-09T15:39:01.360749+00:00"
       },
@@ -10234,7 +10296,7 @@
       ],
       "reference_count": 5,
       "modified_at": "2026-02-17T19:51:14+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "generated_on": "2026-02-09T15:34:36.407560+00:00"
       },
@@ -10590,7 +10652,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:14+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "generated_at_utc": "2026-02-14T21:13:31.630Z"
       },
@@ -10818,7 +10880,7 @@
       ],
       "reference_count": 13,
       "modified_at": "2026-02-25T21:10:20+00:00",
-      "age_days": 6,
+      "age_days": 7,
       "timestamp_fields": {
         "generated_on": "2026-02-25T21:10:20Z",
         "handoffs[0].mtime_utc": "2026-02-17T19:51:14Z",
@@ -11640,7 +11702,7 @@
       ],
       "reference_count": 4,
       "modified_at": "2026-02-25T19:18:07+00:00",
-      "age_days": 6,
+      "age_days": 7,
       "timestamp_fields": {
         "generated_on": "2026-02-25T19:18:07Z"
       },
@@ -11764,7 +11826,7 @@
       ],
       "reference_count": 4,
       "modified_at": "2026-02-25T19:18:07+00:00",
-      "age_days": 6,
+      "age_days": 7,
       "timestamp_fields": {
         "generated_on": "2026-02-25T19:18:07Z"
       },
@@ -12194,7 +12256,7 @@
       ],
       "reference_count": 8,
       "modified_at": "2026-02-25T22:03:33+00:00",
-      "age_days": 6,
+      "age_days": 7,
       "timestamp_fields": {
         "generated_on_utc": "2026-02-25T22:03:33.3069313Z",
         "anchor.creation_time_utc": "2026-02-25T17:36:27.8387647Z",
@@ -13284,7 +13346,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T23:11:06+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "timestamp": "2026-02-18T00:11:06"
       },
@@ -13310,7 +13372,7 @@
       ],
       "reference_count": 3,
       "modified_at": "2026-02-26T20:04:40+00:00",
-      "age_days": 5,
+      "age_days": 6,
       "timestamp_fields": {
         "generated_utc": "2026-02-26T20:04:40.150067+00:00"
       },
@@ -13580,7 +13642,7 @@
       ],
       "reference_count": 10,
       "modified_at": "2026-02-26T19:57:49+00:00",
-      "age_days": 5,
+      "age_days": 6,
       "timestamp_fields": {
         "generated_on_utc": "2026-02-26T19:57:49.5944381Z"
       },
@@ -13634,7 +13696,7 @@
       ],
       "reference_count": 10,
       "modified_at": "2026-02-26T20:00:48+00:00",
-      "age_days": 5,
+      "age_days": 6,
       "timestamp_fields": {
         "generated_on_utc": "2026-02-26T20:00:48.7241554Z"
       },
@@ -14454,7 +14516,7 @@
       ],
       "reference_count": 17,
       "modified_at": "2026-02-26T19:57:45+00:00",
-      "age_days": 5,
+      "age_days": 6,
       "timestamp_fields": {
         "generated_on_utc": "2026-02-26T19:57:38.4153941Z"
       },
@@ -14536,7 +14598,7 @@
       ],
       "reference_count": 17,
       "modified_at": "2026-02-26T20:01:08+00:00",
-      "age_days": 5,
+      "age_days": 6,
       "timestamp_fields": {
         "generated_on_utc": "2026-02-26T20:01:00.9946611Z"
       },
@@ -14618,7 +14680,7 @@
       ],
       "reference_count": 17,
       "modified_at": "2026-02-26T20:02:32+00:00",
-      "age_days": 5,
+      "age_days": 6,
       "timestamp_fields": {
         "generated_on_utc": "2026-02-26T20:02:25.2368781Z"
       },
@@ -14880,7 +14942,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:15+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {},
       "recognized_artifact_format": true,
       "json_parse_error": null,
@@ -14972,7 +15034,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:15+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {},
       "recognized_artifact_format": true,
       "json_parse_error": null,
@@ -15064,7 +15126,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:15+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {},
       "recognized_artifact_format": true,
       "json_parse_error": null,
@@ -15156,7 +15218,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:15+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {},
       "recognized_artifact_format": true,
       "json_parse_error": null,
@@ -15216,7 +15278,7 @@
       ],
       "reference_count": 12,
       "modified_at": "2026-02-17T19:51:15+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {},
       "recognized_artifact_format": true,
       "json_parse_error": null,
@@ -15268,7 +15330,7 @@
       ],
       "reference_count": 10,
       "modified_at": "2026-02-17T19:51:15+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "generated_at": "2026-02-07T03:22:08.970826+00:00"
       },
@@ -15306,7 +15368,7 @@
       ],
       "reference_count": 6,
       "modified_at": "2026-02-17T19:51:15+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "generated_at": "2026-02-07T03:23:07.041845+00:00"
       },
@@ -15352,7 +15414,7 @@
       ],
       "reference_count": 8,
       "modified_at": "2026-02-17T19:51:15+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "generated_at": "2026-02-07T04:15:19.172528+00:00"
       },
@@ -15390,7 +15452,7 @@
       ],
       "reference_count": 6,
       "modified_at": "2026-02-17T19:51:15+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "generated_at": "2026-02-07T03:55:47.323229+00:00"
       },
@@ -15432,7 +15494,7 @@
       ],
       "reference_count": 7,
       "modified_at": "2026-02-17T19:51:15+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "generated_at": "2026-02-07T04:15:19.376805+00:00"
       },
@@ -15470,7 +15532,7 @@
       ],
       "reference_count": 6,
       "modified_at": "2026-02-17T19:51:15+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "generated_at": "2026-02-07T04:04:13.938265+00:00"
       },
@@ -15508,7 +15570,7 @@
       ],
       "reference_count": 6,
       "modified_at": "2026-02-17T19:51:15+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "generated_at": "2026-02-07T03:51:10.351460+00:00"
       },
@@ -15554,7 +15616,7 @@
       ],
       "reference_count": 8,
       "modified_at": "2026-02-17T19:51:15+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "generated_at": "2026-02-07T04:15:19.028301+00:00"
       },
@@ -15600,7 +15662,7 @@
       ],
       "reference_count": 8,
       "modified_at": "2026-02-17T19:51:15+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "generated_at": "2026-02-07T04:15:18.878439+00:00"
       },
@@ -15638,7 +15700,7 @@
       ],
       "reference_count": 6,
       "modified_at": "2026-02-17T19:51:15+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "generated_at": "2026-02-07T04:04:06.411172+00:00"
       },
@@ -15676,7 +15738,7 @@
       ],
       "reference_count": 6,
       "modified_at": "2026-02-17T19:51:15+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "generated_at": "2026-02-07T17:49:12.918633+00:00"
       },
@@ -15710,7 +15772,7 @@
       ],
       "reference_count": 5,
       "modified_at": "2026-02-17T19:51:15+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "generated_at": "2026-02-07T03:40:21.189483+00:00"
       },
@@ -15760,7 +15822,7 @@
       ],
       "reference_count": 9,
       "modified_at": "2026-02-17T19:51:15+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {},
       "recognized_artifact_format": true,
       "json_parse_error": null,
@@ -15852,7 +15914,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:15+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "generated_at": "2026-02-06T19:25:13"
       },
@@ -15902,7 +15964,7 @@
       ],
       "reference_count": 9,
       "modified_at": "2026-02-17T19:51:15+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "generated_at": "2026-02-07T04:15:19.398641+00:00"
       },
@@ -15928,7 +15990,7 @@
       ],
       "reference_count": 3,
       "modified_at": "2026-02-17T19:51:15+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {},
       "recognized_artifact_format": true,
       "json_parse_error": null,
@@ -15952,7 +16014,7 @@
       ],
       "reference_count": 3,
       "modified_at": "2026-02-17T19:51:15+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {},
       "recognized_artifact_format": true,
       "json_parse_error": null,
@@ -15976,7 +16038,7 @@
       ],
       "reference_count": 3,
       "modified_at": "2026-02-17T19:51:15+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {},
       "recognized_artifact_format": true,
       "json_parse_error": null,
@@ -16000,7 +16062,7 @@
       ],
       "reference_count": 3,
       "modified_at": "2026-02-17T19:51:15+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {},
       "recognized_artifact_format": true,
       "json_parse_error": null,
@@ -16016,7 +16078,7 @@
       ],
       "reference_count": 1,
       "modified_at": "2026-02-17T19:51:15+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {},
       "recognized_artifact_format": true,
       "json_parse_error": null,
@@ -16032,7 +16094,7 @@
       ],
       "reference_count": 1,
       "modified_at": "2026-02-17T19:51:15+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {},
       "recognized_artifact_format": true,
       "json_parse_error": null,
@@ -16124,7 +16186,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:15+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "generated_at_utc": "2026-02-10T16:30:17.932Z"
       },
@@ -16158,7 +16220,7 @@
       ],
       "reference_count": 5,
       "modified_at": "2026-02-17T19:51:15+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "created_at_utc": "2026-02-09T23:47:26.610Z"
       },
@@ -16252,7 +16314,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:15+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "generated_on": "2026-02-09T20:22:05Z"
       },
@@ -16346,7 +16408,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:15+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "generated_on": "2026-02-09T20:21:58Z"
       },
@@ -16416,7 +16478,7 @@
       ],
       "reference_count": 14,
       "modified_at": "2026-02-17T19:51:15+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {},
       "recognized_artifact_format": true,
       "json_parse_error": null,
@@ -16456,7 +16518,7 @@
       ],
       "reference_count": 7,
       "modified_at": "2026-02-17T19:51:15+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "generated_on": "2026-02-09T22:01:56.4193825Z"
       },
@@ -16514,7 +16576,7 @@
       ],
       "reference_count": 11,
       "modified_at": "2026-02-17T19:51:15+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "generated_at": "2026-02-06T20:21:36.149910+00:00"
       },
@@ -16608,7 +16670,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:15+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "generated_on": "2026-02-09T22:02:40.316866+00:00"
       },
@@ -16702,7 +16764,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:15+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {},
       "recognized_artifact_format": true,
       "json_parse_error": null,
@@ -16746,7 +16808,7 @@
       ],
       "reference_count": 8,
       "modified_at": "2026-02-17T19:51:15+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {},
       "recognized_artifact_format": true,
       "json_parse_error": null,
@@ -16838,7 +16900,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:15+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "generated_at": "2026-02-09T17:01:56.033865+00:00"
       },
@@ -16900,7 +16962,7 @@
       ],
       "reference_count": 12,
       "modified_at": "2026-02-17T19:51:15+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "history[0].generated_at": "2026-02-06T19:14:35.739901Z",
         "history[1].generated_at": "2026-02-06T19:14:53.993963+00:00",
@@ -16979,7 +17041,7 @@
       ],
       "reference_count": 14,
       "modified_at": "2026-02-17T19:51:15+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {},
       "recognized_artifact_format": true,
       "json_parse_error": null,
@@ -17047,7 +17109,7 @@
       ],
       "reference_count": 14,
       "modified_at": "2026-02-17T19:51:15+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {},
       "recognized_artifact_format": true,
       "json_parse_error": null,
@@ -17280,7 +17342,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:15+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {},
       "recognized_artifact_format": true,
       "json_parse_error": null,
@@ -17364,7 +17426,7 @@
       ],
       "reference_count": 18,
       "modified_at": "2026-02-17T19:51:15+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {},
       "recognized_artifact_format": true,
       "json_parse_error": null,
@@ -17546,7 +17608,7 @@
       ],
       "reference_count": 19,
       "modified_at": "2026-02-17T19:51:15+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "extraction_date": "2026-01-04"
       },
@@ -17640,7 +17702,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:15+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {},
       "recognized_artifact_format": false,
       "json_parse_error": null,
@@ -17704,7 +17766,7 @@
       ],
       "reference_count": 13,
       "modified_at": "2026-02-17T19:51:15+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {},
       "recognized_artifact_format": false,
       "json_parse_error": null,
@@ -17796,7 +17858,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:15+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "metadata.generated_at": "2026-01-01T09:47:40.101747"
       },
@@ -17890,7 +17952,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:15+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {},
       "recognized_artifact_format": false,
       "json_parse_error": null,
@@ -18074,7 +18136,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:15+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "updated": "2026-02-04T01:44:00.682260",
         "entries.TOOL_VALIDATE_SCRIPT_HEADERS_V1": {
@@ -18179,7 +18241,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:15+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "[0].timestamp": "2026-01-01T08:09:34.729422",
         "[1].timestamp": "2026-01-01T08:10:02.394155",
@@ -18280,7 +18342,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:15+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "mcp\\validate-integration.ps1": "0b17f3fdc3f34e2de404dd1f43e3a3ae4b089815016f14685a2dd0acb7ea6b48",
         "scripts\\incremental_updater.py": "a261af3a27c5335853b7d925548c8569a162f08486a0ca297334a036136a2acd",
@@ -18339,7 +18401,7 @@
       ],
       "reference_count": 10,
       "modified_at": "2026-02-17T19:51:15+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {},
       "recognized_artifact_format": false,
       "json_parse_error": null,
@@ -18379,7 +18441,7 @@
       ],
       "reference_count": 7,
       "modified_at": "2026-02-17T19:51:15+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {},
       "recognized_artifact_format": false,
       "json_parse_error": null,
@@ -18537,7 +18599,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:15+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "created": "2025-12-09",
         "updated": "2025-12-24",
@@ -18743,7 +18805,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:15+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "created": "2025-12-08",
         "last_updated": "2025-12-08",
@@ -18785,7 +18847,7 @@
         }
       ],
       "reference_count": 2,
-      "modified_at": "2026-03-04T19:10:49+00:00",
+      "modified_at": "2026-03-04T23:26:56+00:00",
       "age_days": 0,
       "timestamp_fields": {},
       "recognized_artifact_format": true,
@@ -18800,15 +18862,23 @@
           "match": "dumpster-dive/forge/anvil/codebase_anomaly_harvest.json"
         },
         {
+          "path": "dumpster-dive/forge/furnace/schemas/configuration_schema_catalog.json",
+          "match": "dumpster-dive/forge/anvil/codebase_anomaly_harvest.json"
+        },
+        {
+          "path": "dumpster-dive/forge/tempered/schemas/configuration_schema_catalog.json",
+          "match": "dumpster-dive/forge/anvil/codebase_anomaly_harvest.json"
+        },
+        {
           "path": "scripts/universal_forge.py",
           "match": "\"codebase_anomaly_harvest.json\""
         }
       ],
-      "reference_count": 2,
-      "modified_at": "2026-03-04T19:10:41+00:00",
+      "reference_count": 4,
+      "modified_at": "2026-03-04T23:26:52+00:00",
       "age_days": 0,
       "timestamp_fields": {
-        "timestamp": "2026-03-04T19:10:35+00:00"
+        "timestamp": "2026-03-04T23:26:51+00:00"
       },
       "recognized_artifact_format": true,
       "json_parse_error": null,
@@ -18827,10 +18897,10 @@
         }
       ],
       "reference_count": 2,
-      "modified_at": "2026-03-04T19:10:41+00:00",
+      "modified_at": "2026-03-04T23:26:52+00:00",
       "age_days": 0,
       "timestamp_fields": {
-        "timestamp": "2026-03-04T19:10:41+00:00",
+        "timestamp": "2026-03-04T23:26:52+00:00",
         "languages.ankh.amalgamation_candidates": [],
         "languages.before-edit-experiments.amalgamation_candidates": [],
         "languages.config.amalgamation_candidates": [
@@ -23873,7 +23943,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:15+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {},
       "recognized_artifact_format": true,
       "json_parse_error": null,
@@ -23965,7 +24035,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:15+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {},
       "recognized_artifact_format": true,
       "json_parse_error": null,
@@ -23979,15 +24049,23 @@
           "match": "`furnace_manifest.json`"
         },
         {
+          "path": "dumpster-dive/forge/furnace/schemas/configuration_schema_catalog.json",
+          "match": "dumpster-dive/forge/furnace/furnace_manifest.json"
+        },
+        {
+          "path": "dumpster-dive/forge/tempered/schemas/configuration_schema_catalog.json",
+          "match": "dumpster-dive/forge/furnace/furnace_manifest.json"
+        },
+        {
           "path": "scripts/universal_forge.py",
           "match": "\"furnace_manifest.json\""
         }
       ],
-      "reference_count": 2,
-      "modified_at": "2026-03-04T19:10:42+00:00",
+      "reference_count": 4,
+      "modified_at": "2026-03-04T23:26:52+00:00",
       "age_days": 0,
       "timestamp_fields": {
-        "timestamp": "2026-03-04T19:10:42+00:00"
+        "timestamp": "2026-03-04T23:26:52+00:00"
       },
       "recognized_artifact_format": true,
       "json_parse_error": null,
@@ -24013,15 +24091,19 @@
           "match": "/configuration_schema_catalog.json"
         },
         {
+          "path": "dumpster-dive/forge/tempered/schemas/configuration_schema_catalog.json",
+          "match": "dumpster-dive/forge/furnace/schemas/configuration_schema_catalog.json"
+        },
+        {
           "path": "scripts/universal_forge.py",
           "match": "\"configuration_schema_catalog.json\""
         }
       ],
-      "reference_count": 5,
-      "modified_at": "2026-03-04T19:10:42+00:00",
+      "reference_count": 6,
+      "modified_at": "2026-03-04T23:26:52+00:00",
       "age_days": 0,
       "timestamp_fields": {
-        "generated_at": "2026-03-04T19:10:42+00:00",
+        "generated_at": "2026-03-04T23:26:52+00:00",
         "schema_patterns[0].properties.mcp\\validate-integration.ps1": [
           "str"
         ],
@@ -24097,16 +24179,24 @@
           "match": "dumpster-dive/forge/furnace/schemas/environment_schema.json"
         },
         {
+          "path": "dumpster-dive/forge/furnace/schemas/configuration_schema_catalog.json",
+          "match": "dumpster-dive/forge/furnace/schemas/environment_schema.json"
+        },
+        {
           "path": "dumpster-dive/forge/tempered/GRADUATION_MANIFEST.json",
           "match": "/environment_schema.json"
+        },
+        {
+          "path": "dumpster-dive/forge/tempered/schemas/configuration_schema_catalog.json",
+          "match": "dumpster-dive/forge/furnace/schemas/environment_schema.json"
         },
         {
           "path": "scripts/universal_forge.py",
           "match": "\"environment_schema.json\""
         }
       ],
-      "reference_count": 5,
-      "modified_at": "2026-03-04T19:10:42+00:00",
+      "reference_count": 7,
+      "modified_at": "2026-03-04T23:26:52+00:00",
       "age_days": 0,
       "timestamp_fields": {},
       "recognized_artifact_format": true,
@@ -24171,7 +24261,7 @@
       ],
       "reference_count": 13,
       "modified_at": "2026-02-17T19:51:15+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "ssot_lineage.computed_date": "2025-12-25",
         "ssot_lineage.validation_date": "2025-12-09",
@@ -24207,15 +24297,23 @@
           "match": "dumpster-dive/forge/tempered/graduation_manifest.json"
         },
         {
+          "path": "dumpster-dive/forge/furnace/schemas/configuration_schema_catalog.json",
+          "match": "dumpster-dive/forge/tempered/graduation_manifest.json"
+        },
+        {
+          "path": "dumpster-dive/forge/tempered/schemas/configuration_schema_catalog.json",
+          "match": "dumpster-dive/forge/tempered/graduation_manifest.json"
+        },
+        {
           "path": "scripts/universal_forge.py",
           "match": "\"graduation_manifest.json\""
         }
       ],
-      "reference_count": 2,
-      "modified_at": "2026-03-04T19:10:49+00:00",
+      "reference_count": 4,
+      "modified_at": "2026-03-04T23:26:56+00:00",
       "age_days": 0,
       "timestamp_fields": {
-        "timestamp": "2026-03-04T19:10:49+00:00"
+        "timestamp": "2026-03-04T23:26:56+00:00"
       },
       "recognized_artifact_format": true,
       "json_parse_error": null,
@@ -24247,7 +24345,7 @@
       ],
       "reference_count": 5,
       "modified_at": "2026-02-17T19:51:15+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "created": "2025-12-25T09:33:34.345874Z",
         "ssot_reference.computed_date": "2025-12-25",
@@ -24297,7 +24395,7 @@
       ],
       "reference_count": 6,
       "modified_at": "2026-02-17T19:51:15+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "created": "2025-12-26T04:50:58.597284Z",
         "ssot_reference.computed_date": "2025-12-26",
@@ -24368,7 +24466,7 @@
       ],
       "reference_count": 13,
       "modified_at": "2026-02-17T19:51:15+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "ssot_lineage.computed_date": "2025-12-25",
         "ssot_lineage.validation_date": "2025-12-09",
@@ -24433,7 +24531,7 @@
       ],
       "reference_count": 10,
       "modified_at": "2026-02-17T19:51:15+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "ssot_lineage.computed_date": "2025-12-25",
         "ssot_lineage.validation_date": "2025-12-09",
@@ -24586,6 +24684,10 @@
           "match": "/configuration_schema_catalog.json"
         },
         {
+          "path": "dumpster-dive/forge/furnace/schemas/configuration_schema_catalog.json",
+          "match": "dumpster-dive/forge/tempered/schemas/configuration_schema_catalog.json"
+        },
+        {
           "path": "dumpster-dive/forge/tempered/GRADUATION_MANIFEST.json",
           "match": "dumpster-dive/forge/tempered/schemas/configuration_schema_catalog.json"
         },
@@ -24594,11 +24696,11 @@
           "match": "\"configuration_schema_catalog.json\""
         }
       ],
-      "reference_count": 5,
-      "modified_at": "2026-03-04T19:10:42+00:00",
+      "reference_count": 6,
+      "modified_at": "2026-03-04T23:26:52+00:00",
       "age_days": 0,
       "timestamp_fields": {
-        "generated_at": "2026-03-04T19:10:42+00:00",
+        "generated_at": "2026-03-04T23:26:52+00:00",
         "schema_patterns[0].properties.mcp\\validate-integration.ps1": [
           "str"
         ],
@@ -24674,7 +24776,15 @@
           "match": "/environment_schema.json"
         },
         {
+          "path": "dumpster-dive/forge/furnace/schemas/configuration_schema_catalog.json",
+          "match": "dumpster-dive/forge/tempered/schemas/environment_schema.json"
+        },
+        {
           "path": "dumpster-dive/forge/tempered/GRADUATION_MANIFEST.json",
+          "match": "dumpster-dive/forge/tempered/schemas/environment_schema.json"
+        },
+        {
+          "path": "dumpster-dive/forge/tempered/schemas/configuration_schema_catalog.json",
           "match": "dumpster-dive/forge/tempered/schemas/environment_schema.json"
         },
         {
@@ -24682,8 +24792,8 @@
           "match": "\"environment_schema.json\""
         }
       ],
-      "reference_count": 5,
-      "modified_at": "2026-03-04T19:10:42+00:00",
+      "reference_count": 7,
+      "modified_at": "2026-03-04T23:26:52+00:00",
       "age_days": 0,
       "timestamp_fields": {},
       "recognized_artifact_format": true,
@@ -24744,7 +24854,7 @@
       ],
       "reference_count": 12,
       "modified_at": "2026-02-17T19:51:15+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "P1_actualization.mandates": [
           {
@@ -24779,7 +24889,7 @@
       ],
       "reference_count": 1,
       "modified_at": "2026-02-17T19:51:15+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {},
       "recognized_artifact_format": false,
       "json_parse_error": "Expecting property name enclosed in double quotes: line 3 column 5 (char 7)",
@@ -24790,7 +24900,7 @@
       "references": [],
       "reference_count": 0,
       "modified_at": "2026-02-17T19:51:16+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {},
       "recognized_artifact_format": false,
       "json_parse_error": null,
@@ -24882,7 +24992,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:18+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {},
       "recognized_artifact_format": false,
       "json_parse_error": null,
@@ -24906,7 +25016,7 @@
       ],
       "reference_count": 3,
       "modified_at": "2026-02-17T19:51:18+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "timestamp": "2026-02-11T02-27-22"
       },
@@ -25000,7 +25110,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:18+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {},
       "recognized_artifact_format": false,
       "json_parse_error": null,
@@ -25024,7 +25134,7 @@
       ],
       "reference_count": 3,
       "modified_at": "2026-02-17T19:51:18+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "timestamp": "2026-02-11T02-39-10",
         "priorDate": "2026-02-11"
@@ -25119,7 +25229,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:18+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {},
       "recognized_artifact_format": false,
       "json_parse_error": null,
@@ -25211,7 +25321,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:19+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {},
       "recognized_artifact_format": false,
       "json_parse_error": null,
@@ -25498,7 +25608,7 @@
       "references": [],
       "reference_count": 0,
       "modified_at": "2026-02-17T19:51:19+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {},
       "recognized_artifact_format": false,
       "json_parse_error": "Expecting property name enclosed in double quotes: line 2 column 5 (char 6)",
@@ -25562,7 +25672,7 @@
       ],
       "reference_count": 13,
       "modified_at": "2026-02-17T19:51:19+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {},
       "recognized_artifact_format": false,
       "json_parse_error": "Unexpected UTF-8 BOM (decode using utf-8-sig): line 1 column 1 (char 0)",
@@ -25590,7 +25700,7 @@
       ],
       "reference_count": 4,
       "modified_at": "2026-02-17T19:51:19+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {},
       "recognized_artifact_format": false,
       "json_parse_error": null,
@@ -25606,7 +25716,7 @@
       ],
       "reference_count": 1,
       "modified_at": "2026-02-17T19:51:19+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {},
       "recognized_artifact_format": false,
       "json_parse_error": "Extra data: line 2 column 1 (char 3666)",
@@ -25630,7 +25740,7 @@
       ],
       "reference_count": 3,
       "modified_at": "2026-02-17T19:51:19+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {},
       "recognized_artifact_format": false,
       "json_parse_error": null,
@@ -25658,7 +25768,7 @@
       ],
       "reference_count": 4,
       "modified_at": "2026-02-17T19:51:19+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {},
       "recognized_artifact_format": false,
       "json_parse_error": null,
@@ -25686,7 +25796,7 @@
       ],
       "reference_count": 4,
       "modified_at": "2026-02-17T19:51:19+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {},
       "recognized_artifact_format": false,
       "json_parse_error": null,
@@ -25714,7 +25824,7 @@
       ],
       "reference_count": 4,
       "modified_at": "2026-02-17T19:51:19+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {},
       "recognized_artifact_format": false,
       "json_parse_error": null,
@@ -25754,7 +25864,7 @@
       ],
       "reference_count": 7,
       "modified_at": "2026-02-17T19:51:19+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "generatedAt": "2025-12-26T21:52:41.525Z"
       },
@@ -25796,7 +25906,7 @@
       ],
       "reference_count": 7,
       "modified_at": "2026-02-17T19:51:19+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "generatedAt": "2025-12-26T21:53:19.124Z"
       },
@@ -25838,7 +25948,7 @@
       ],
       "reference_count": 7,
       "modified_at": "2026-02-17T19:51:19+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "generatedAt": "2025-12-26T21:55:59.898Z"
       },
@@ -25880,7 +25990,7 @@
       ],
       "reference_count": 7,
       "modified_at": "2026-02-17T19:51:19+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "generatedAt": "2025-12-26T21:56:20.730Z"
       },
@@ -25926,7 +26036,7 @@
       ],
       "reference_count": 8,
       "modified_at": "2026-02-17T19:51:19+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "generated_at": "2025-12-26T09:14:08.7183002+01:00"
       },
@@ -25960,7 +26070,7 @@
       ],
       "reference_count": 5,
       "modified_at": "2026-02-17T19:51:19+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {},
       "recognized_artifact_format": false,
       "json_parse_error": null,
@@ -26004,7 +26114,7 @@
       ],
       "reference_count": 8,
       "modified_at": "2026-02-17T19:51:19+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "generated_at": "2025-12-26T09:16:09.3722830+01:00"
       },
@@ -26050,7 +26160,7 @@
       ],
       "reference_count": 8,
       "modified_at": "2026-02-17T19:51:19+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "generated_at": "2025-12-26T09:21:21.8604625+01:00"
       },
@@ -26096,7 +26206,7 @@
       ],
       "reference_count": 8,
       "modified_at": "2026-02-17T19:51:19+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "generated_at": "2025-12-26T09:24:17.8161579+01:00"
       },
@@ -26142,7 +26252,7 @@
       ],
       "reference_count": 8,
       "modified_at": "2026-02-17T19:51:19+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "generated_at": "2025-12-26T09:32:31.8373732+01:00"
       },
@@ -26188,7 +26298,7 @@
       ],
       "reference_count": 8,
       "modified_at": "2026-02-17T19:51:19+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "generated_at": "2025-12-26T09:35:29.8890906+01:00"
       },
@@ -26234,7 +26344,7 @@
       ],
       "reference_count": 8,
       "modified_at": "2026-02-17T19:51:19+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "generated_at": "2025-12-26T09:36:11.0212646+01:00"
       },
@@ -26280,7 +26390,7 @@
       ],
       "reference_count": 8,
       "modified_at": "2026-02-17T19:51:19+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "generated_at": "2025-12-26T09:36:39.9703678+01:00"
       },
@@ -26326,7 +26436,7 @@
       ],
       "reference_count": 8,
       "modified_at": "2026-02-17T19:51:19+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "generated_at": "2025-12-26T09:37:55.8527929+01:00"
       },
@@ -26372,7 +26482,7 @@
       ],
       "reference_count": 8,
       "modified_at": "2026-02-17T19:51:19+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "generated_at": "2025-12-26T09:38:20.1864575+01:00"
       },
@@ -26418,7 +26528,7 @@
       ],
       "reference_count": 8,
       "modified_at": "2026-02-17T19:51:19+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "generated_at": "2025-12-26T09:39:07.9994921+01:00"
       },
@@ -26464,7 +26574,7 @@
       ],
       "reference_count": 8,
       "modified_at": "2026-02-17T19:51:19+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "generated_at": "2025-12-26T09:40:37.6485612+01:00"
       },
@@ -26510,7 +26620,7 @@
       ],
       "reference_count": 8,
       "modified_at": "2026-02-17T19:51:19+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "generated_at": "2025-12-26T09:41:21.2181865+01:00"
       },
@@ -26556,7 +26666,7 @@
       ],
       "reference_count": 8,
       "modified_at": "2026-02-17T19:51:19+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "generated_at": "2025-12-26T09:45:14.1765881+01:00"
       },
@@ -26602,7 +26712,7 @@
       ],
       "reference_count": 8,
       "modified_at": "2026-02-17T19:51:19+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "generated_at": "2025-12-27T00:25:44.2353237+01:00"
       },
@@ -26628,7 +26738,7 @@
       ],
       "reference_count": 3,
       "modified_at": "2026-02-17T19:51:19+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {},
       "recognized_artifact_format": false,
       "json_parse_error": null,
@@ -26676,7 +26786,7 @@
       ],
       "reference_count": 9,
       "modified_at": "2026-02-17T19:51:19+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "properties.created": {
           "type": "string",
@@ -26786,7 +26896,7 @@
       ],
       "reference_count": 18,
       "modified_at": "2026-02-17T19:51:19+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "created": "2025-12-09",
         "registry.SSOT-MPW-WIP.ts.timelines": {
@@ -26958,7 +27068,7 @@
       ],
       "reference_count": 8,
       "modified_at": "2026-02-17T19:51:19+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {},
       "recognized_artifact_format": false,
       "json_parse_error": null,
@@ -27186,7 +27296,7 @@
       ],
       "reference_count": 2,
       "modified_at": "2026-03-02T20:05:36+00:00",
-      "age_days": 1,
+      "age_days": 2,
       "timestamp_fields": {},
       "recognized_artifact_format": false,
       "json_parse_error": null,
@@ -27334,7 +27444,7 @@
       ],
       "reference_count": 15,
       "modified_at": "2026-03-02T21:28:49+00:00",
-      "age_days": 1,
+      "age_days": 2,
       "timestamp_fields": {},
       "recognized_artifact_format": false,
       "json_parse_error": null,
@@ -27538,7 +27648,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:19+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {},
       "recognized_artifact_format": false,
       "json_parse_error": null,
@@ -27610,7 +27720,7 @@
       ],
       "reference_count": 15,
       "modified_at": "2026-02-17T19:51:19+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {},
       "recognized_artifact_format": false,
       "json_parse_error": null,
@@ -27950,7 +28060,7 @@
       ],
       "reference_count": 9,
       "modified_at": "2026-02-17T19:51:19+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "last_updated": "2025-12-07T00:00:00Z",
         "rows[0].onnxruntime": {
@@ -28021,7 +28131,7 @@
       ],
       "reference_count": 11,
       "modified_at": "2026-02-17T19:51:19+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "last_updated": "2025-12-07T12:00:00Z",
         "functions[2].promotion_history[0].timestamp": "2025-12-07T00:00:00Z",
@@ -28078,7 +28188,7 @@
       ],
       "reference_count": 9,
       "modified_at": "2026-02-17T19:51:19+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "last_updated": "2025-12-07T12:00:00Z",
         "profiles.inference_default.penalties.timeout": -25,
@@ -28122,7 +28232,7 @@
       ],
       "reference_count": 7,
       "modified_at": "2026-02-17T19:51:19+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "summary.orphan_candidates": 338,
         "orphan_candidates": [
@@ -28563,7 +28673,7 @@
       ],
       "reference_count": 4,
       "modified_at": "2026-02-17T19:51:19+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {},
       "recognized_artifact_format": false,
       "json_parse_error": null,
@@ -28651,7 +28761,7 @@
       ],
       "reference_count": 5,
       "modified_at": "2026-02-17T19:51:19+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "functions.api/**/*.ts.runtime": "bun@1.x"
       },
@@ -28745,7 +28855,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:19+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "linguistic_mandate": "TLM",
         "genesis_timestamp": "2025-12-07T05:57:35.943754"
@@ -28840,7 +28950,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:19+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "cuda_runtime": 12090
       },
@@ -28882,7 +28992,7 @@
       ],
       "reference_count": 7,
       "modified_at": "2026-02-17T19:51:19+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "genesis_timestamp": "20251207_055735"
       },
@@ -28976,7 +29086,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:19+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {},
       "recognized_artifact_format": false,
       "json_parse_error": null,
@@ -29068,7 +29178,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:19+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "linguistic_mandate": "TLM",
         "genesis_timestamp": "2025-12-07T05:57:35.923182"
@@ -29163,7 +29273,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:19+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "cuda_runtime": 12090
       },
@@ -29205,7 +29315,7 @@
       ],
       "reference_count": 7,
       "modified_at": "2026-02-17T19:51:19+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "genesis_timestamp": "20251207_055735"
       },
@@ -29299,7 +29409,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:19+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {},
       "recognized_artifact_format": false,
       "json_parse_error": null,
@@ -29391,7 +29501,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:19+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "linguistic_mandate": "TLM",
         "genesis_timestamp": "2025-12-07T05:57:35.941681"
@@ -29486,7 +29596,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:19+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "cuda_runtime": 12090
       },
@@ -29528,7 +29638,7 @@
       ],
       "reference_count": 7,
       "modified_at": "2026-02-17T19:51:19+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "genesis_timestamp": "20251207_055735"
       },
@@ -29622,7 +29732,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:19+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {},
       "recognized_artifact_format": false,
       "json_parse_error": null,
@@ -29714,7 +29824,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:19+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "linguistic_mandate": "EULP-AA",
         "genesis_timestamp": "2025-12-07T05:57:35.943199"
@@ -29809,7 +29919,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:19+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "cuda_runtime": 12090
       },
@@ -29851,7 +29961,7 @@
       ],
       "reference_count": 7,
       "modified_at": "2026-02-17T19:51:19+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "genesis_timestamp": "20251207_055735"
       },
@@ -29945,7 +30055,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:19+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {},
       "recognized_artifact_format": false,
       "json_parse_error": null,
@@ -30037,7 +30147,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:19+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "linguistic_mandate": "TLM",
         "genesis_timestamp": "2025-12-07T05:57:35.941129"
@@ -30132,7 +30242,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:19+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "cuda_runtime": 12090
       },
@@ -30174,7 +30284,7 @@
       ],
       "reference_count": 7,
       "modified_at": "2026-02-17T19:51:19+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "genesis_timestamp": "20251207_055735"
       },
@@ -30268,7 +30378,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:19+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {},
       "recognized_artifact_format": false,
       "json_parse_error": null,
@@ -30360,7 +30470,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:19+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "linguistic_mandate": "LIPAA",
         "genesis_timestamp": "2025-12-07T06:06:12.466734"
@@ -30455,7 +30565,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:19+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "cuda_runtime": 12090
       },
@@ -30497,7 +30607,7 @@
       ],
       "reference_count": 7,
       "modified_at": "2026-02-17T19:51:19+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "genesis_timestamp": "20251207_060612"
       },
@@ -30591,7 +30701,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:19+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {},
       "recognized_artifact_format": false,
       "json_parse_error": null,
@@ -30683,7 +30793,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:19+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "linguistic_mandate": "TLM",
         "genesis_timestamp": "2025-12-07T06:06:12.445727"
@@ -30778,7 +30888,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:19+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "cuda_runtime": 12090
       },
@@ -30820,7 +30930,7 @@
       ],
       "reference_count": 7,
       "modified_at": "2026-02-17T19:51:19+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "genesis_timestamp": "20251207_060612"
       },
@@ -30914,7 +31024,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:19+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {},
       "recognized_artifact_format": false,
       "json_parse_error": null,
@@ -31006,7 +31116,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:19+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "linguistic_mandate": "TLM",
         "genesis_timestamp": "2025-12-07T06:06:12.466250"
@@ -31101,7 +31211,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:19+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "cuda_runtime": 12090
       },
@@ -31143,7 +31253,7 @@
       ],
       "reference_count": 7,
       "modified_at": "2026-02-17T19:51:19+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "genesis_timestamp": "20251207_060612"
       },
@@ -31237,7 +31347,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:19+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {},
       "recognized_artifact_format": false,
       "json_parse_error": null,
@@ -31329,7 +31439,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:19+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "linguistic_mandate": "TLM",
         "genesis_timestamp": "2025-12-07T14:03:43.614406"
@@ -31424,7 +31534,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:19+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "cuda_runtime": 12090
       },
@@ -31466,7 +31576,7 @@
       ],
       "reference_count": 7,
       "modified_at": "2026-02-17T19:51:19+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "genesis_timestamp": "20251207_140343"
       },
@@ -31560,7 +31670,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:19+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {},
       "recognized_artifact_format": false,
       "json_parse_error": null,
@@ -31652,7 +31762,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:19+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "linguistic_mandate": "TLM",
         "genesis_timestamp": "2025-12-07T14:03:43.633303"
@@ -31747,7 +31857,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:19+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "cuda_runtime": 12090
       },
@@ -31789,7 +31899,7 @@
       ],
       "reference_count": 7,
       "modified_at": "2026-02-17T19:51:19+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "genesis_timestamp": "20251207_140343"
       },
@@ -31883,7 +31993,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:19+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {},
       "recognized_artifact_format": false,
       "json_parse_error": null,
@@ -31975,7 +32085,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:19+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "linguistic_mandate": "TLM",
         "genesis_timestamp": "2025-12-07T14:03:43.619681"
@@ -32070,7 +32180,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:19+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "cuda_runtime": 12090
       },
@@ -32112,7 +32222,7 @@
       ],
       "reference_count": 7,
       "modified_at": "2026-02-17T19:51:19+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "genesis_timestamp": "20251207_140343"
       },
@@ -32206,7 +32316,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:19+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {},
       "recognized_artifact_format": false,
       "json_parse_error": null,
@@ -32298,7 +32408,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:19+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "linguistic_mandate": "TLM",
         "genesis_timestamp": "2025-12-07T14:03:43.621749"
@@ -32393,7 +32503,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:19+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "cuda_runtime": 12090
       },
@@ -32435,7 +32545,7 @@
       ],
       "reference_count": 7,
       "modified_at": "2026-02-17T19:51:19+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "genesis_timestamp": "20251207_140343"
       },
@@ -32529,7 +32639,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:19+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {},
       "recognized_artifact_format": false,
       "json_parse_error": null,
@@ -32621,7 +32731,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:19+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "linguistic_mandate": "TLM",
         "genesis_timestamp": "2025-12-07T14:03:43.618180"
@@ -32716,7 +32826,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:19+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "cuda_runtime": 12090
       },
@@ -32758,7 +32868,7 @@
       ],
       "reference_count": 7,
       "modified_at": "2026-02-17T19:51:19+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "genesis_timestamp": "20251207_140343"
       },
@@ -32852,7 +32962,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:19+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {},
       "recognized_artifact_format": false,
       "json_parse_error": null,
@@ -32944,7 +33054,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:19+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "linguistic_mandate": "TLM",
         "genesis_timestamp": "2025-12-07T14:03:43.620027"
@@ -33039,7 +33149,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:19+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "cuda_runtime": 12090
       },
@@ -33081,7 +33191,7 @@
       ],
       "reference_count": 7,
       "modified_at": "2026-02-17T19:51:19+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "genesis_timestamp": "20251207_140343"
       },
@@ -33175,7 +33285,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:19+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {},
       "recognized_artifact_format": false,
       "json_parse_error": null,
@@ -33267,7 +33377,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:19+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "linguistic_mandate": "TLM",
         "genesis_timestamp": "2025-12-07T14:03:43.622454"
@@ -33362,7 +33472,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:19+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "cuda_runtime": 12090
       },
@@ -33404,7 +33514,7 @@
       ],
       "reference_count": 7,
       "modified_at": "2026-02-17T19:51:19+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "genesis_timestamp": "20251207_140343"
       },
@@ -33498,7 +33608,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:19+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {},
       "recognized_artifact_format": false,
       "json_parse_error": null,
@@ -33590,7 +33700,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:19+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "linguistic_mandate": "LUPLR",
         "genesis_timestamp": "2025-12-07T14:03:43.613199"
@@ -33685,7 +33795,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:19+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "cuda_runtime": 12090
       },
@@ -33727,7 +33837,7 @@
       ],
       "reference_count": 7,
       "modified_at": "2026-02-17T19:51:19+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "genesis_timestamp": "20251207_140343"
       },
@@ -33821,7 +33931,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:19+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {},
       "recognized_artifact_format": false,
       "json_parse_error": null,
@@ -33913,7 +34023,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:19+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "linguistic_mandate": "EULP-AA",
         "genesis_timestamp": "2025-12-07T14:03:43.631535"
@@ -34008,7 +34118,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:19+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "cuda_runtime": 12090
       },
@@ -34050,7 +34160,7 @@
       ],
       "reference_count": 7,
       "modified_at": "2026-02-17T19:51:19+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "genesis_timestamp": "20251207_140343"
       },
@@ -34144,7 +34254,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:19+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {},
       "recognized_artifact_format": false,
       "json_parse_error": null,
@@ -34236,7 +34346,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:19+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "linguistic_mandate": "LIPAA",
         "genesis_timestamp": "2025-12-07T14:03:43.632763"
@@ -34331,7 +34441,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:19+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "cuda_runtime": 12090
       },
@@ -34373,7 +34483,7 @@
       ],
       "reference_count": 7,
       "modified_at": "2026-02-17T19:51:19+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "genesis_timestamp": "20251207_140343"
       },
@@ -34467,7 +34577,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:19+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {},
       "recognized_artifact_format": false,
       "json_parse_error": null,
@@ -34559,7 +34669,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:19+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "linguistic_mandate": "TLM",
         "genesis_timestamp": "2025-12-07T14:03:43.629614"
@@ -34654,7 +34764,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:19+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "cuda_runtime": 12090
       },
@@ -34696,7 +34806,7 @@
       ],
       "reference_count": 7,
       "modified_at": "2026-02-17T19:51:19+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "genesis_timestamp": "20251207_140343"
       },
@@ -34790,7 +34900,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:19+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {},
       "recognized_artifact_format": false,
       "json_parse_error": null,
@@ -34882,7 +34992,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:19+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "linguistic_mandate": "TLM",
         "genesis_timestamp": "2025-12-07T14:03:43.614036"
@@ -34977,7 +35087,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:19+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "cuda_runtime": 12090
       },
@@ -35019,7 +35129,7 @@
       ],
       "reference_count": 7,
       "modified_at": "2026-02-17T19:51:19+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "genesis_timestamp": "20251207_140343"
       },
@@ -35113,7 +35223,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:19+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {},
       "recognized_artifact_format": false,
       "json_parse_error": null,
@@ -35205,7 +35315,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:19+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "linguistic_mandate": "TLM",
         "genesis_timestamp": "2025-12-07T14:03:43.627808"
@@ -35300,7 +35410,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:19+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "cuda_runtime": 12090
       },
@@ -35342,7 +35452,7 @@
       ],
       "reference_count": 7,
       "modified_at": "2026-02-17T19:51:19+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "genesis_timestamp": "20251207_140343"
       },
@@ -35436,7 +35546,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:19+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {},
       "recognized_artifact_format": false,
       "json_parse_error": null,
@@ -35528,7 +35638,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:19+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "linguistic_mandate": "TLM",
         "genesis_timestamp": "2025-12-07T14:03:43.628386"
@@ -35623,7 +35733,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:19+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "cuda_runtime": 12090
       },
@@ -35665,7 +35775,7 @@
       ],
       "reference_count": 7,
       "modified_at": "2026-02-17T19:51:19+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "genesis_timestamp": "20251207_140343"
       },
@@ -35759,7 +35869,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:19+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {},
       "recognized_artifact_format": false,
       "json_parse_error": null,
@@ -35851,7 +35961,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:19+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "linguistic_mandate": "TLM",
         "genesis_timestamp": "2025-12-07T14:03:43.629962"
@@ -35946,7 +36056,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:19+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "cuda_runtime": 12090
       },
@@ -35988,7 +36098,7 @@
       ],
       "reference_count": 7,
       "modified_at": "2026-02-17T19:51:19+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "genesis_timestamp": "20251207_140343"
       },
@@ -36082,7 +36192,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:19+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {},
       "recognized_artifact_format": false,
       "json_parse_error": null,
@@ -36174,7 +36284,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:19+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "linguistic_mandate": "TLM",
         "genesis_timestamp": "2025-12-07T14:03:43.625128"
@@ -36269,7 +36379,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:19+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "cuda_runtime": 12090
       },
@@ -36311,7 +36421,7 @@
       ],
       "reference_count": 7,
       "modified_at": "2026-02-17T19:51:19+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "genesis_timestamp": "20251207_140343"
       },
@@ -36405,7 +36515,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:19+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {},
       "recognized_artifact_format": false,
       "json_parse_error": null,
@@ -36497,7 +36607,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:19+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "linguistic_mandate": "TLM",
         "genesis_timestamp": "2025-12-07T14:03:43.621215"
@@ -36592,7 +36702,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:20+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "cuda_runtime": 12090
       },
@@ -36634,7 +36744,7 @@
       ],
       "reference_count": 7,
       "modified_at": "2026-02-17T19:51:20+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "genesis_timestamp": "20251207_140343"
       },
@@ -36728,7 +36838,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:20+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {},
       "recognized_artifact_format": false,
       "json_parse_error": null,
@@ -36820,7 +36930,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:20+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "linguistic_mandate": "EULP-AA",
         "genesis_timestamp": "2025-12-07T14:03:43.611110"
@@ -36915,7 +37025,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:20+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "cuda_runtime": 12090
       },
@@ -36957,7 +37067,7 @@
       ],
       "reference_count": 7,
       "modified_at": "2026-02-17T19:51:20+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "genesis_timestamp": "20251207_140343"
       },
@@ -37051,7 +37161,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:20+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {},
       "recognized_artifact_format": false,
       "json_parse_error": null,
@@ -37143,7 +37253,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:20+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "linguistic_mandate": "EULP-AA",
         "genesis_timestamp": "2025-12-07T14:03:43.624097"
@@ -37238,7 +37348,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:20+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "cuda_runtime": 12090
       },
@@ -37280,7 +37390,7 @@
       ],
       "reference_count": 7,
       "modified_at": "2026-02-17T19:51:20+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "genesis_timestamp": "20251207_140343"
       },
@@ -37374,7 +37484,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:20+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {},
       "recognized_artifact_format": false,
       "json_parse_error": null,
@@ -37466,7 +37576,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:20+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "linguistic_mandate": "TLM",
         "genesis_timestamp": "2025-12-07T14:03:43.614803"
@@ -37561,7 +37671,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:20+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "cuda_runtime": 12090
       },
@@ -37603,7 +37713,7 @@
       ],
       "reference_count": 7,
       "modified_at": "2026-02-17T19:51:20+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "genesis_timestamp": "20251207_140343"
       },
@@ -37697,7 +37807,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:20+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {},
       "recognized_artifact_format": false,
       "json_parse_error": null,
@@ -37789,7 +37899,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:20+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "linguistic_mandate": "TLM",
         "genesis_timestamp": "2025-12-07T14:03:43.617797"
@@ -37884,7 +37994,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:20+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "cuda_runtime": 12090
       },
@@ -37926,7 +38036,7 @@
       ],
       "reference_count": 7,
       "modified_at": "2026-02-17T19:51:20+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "genesis_timestamp": "20251207_140343"
       },
@@ -38020,7 +38130,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:20+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {},
       "recognized_artifact_format": false,
       "json_parse_error": null,
@@ -38112,7 +38222,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:20+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "linguistic_mandate": "TLM",
         "genesis_timestamp": "2025-12-07T14:03:43.615377"
@@ -38207,7 +38317,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:20+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "cuda_runtime": 12090
       },
@@ -38249,7 +38359,7 @@
       ],
       "reference_count": 7,
       "modified_at": "2026-02-17T19:51:20+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "genesis_timestamp": "20251207_140343"
       },
@@ -38343,7 +38453,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:20+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {},
       "recognized_artifact_format": false,
       "json_parse_error": null,
@@ -38435,7 +38545,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:20+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "linguistic_mandate": "TLM",
         "genesis_timestamp": "2025-12-07T14:03:43.620816"
@@ -38530,7 +38640,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:20+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "cuda_runtime": 12090
       },
@@ -38572,7 +38682,7 @@
       ],
       "reference_count": 7,
       "modified_at": "2026-02-17T19:51:20+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "genesis_timestamp": "20251207_140343"
       },
@@ -38666,7 +38776,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:20+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {},
       "recognized_artifact_format": false,
       "json_parse_error": null,
@@ -38758,7 +38868,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:20+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "linguistic_mandate": "TLM",
         "genesis_timestamp": "2025-12-07T14:03:43.593046"
@@ -38853,7 +38963,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:20+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "cuda_runtime": 12090
       },
@@ -38895,7 +39005,7 @@
       ],
       "reference_count": 7,
       "modified_at": "2026-02-17T19:51:20+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "genesis_timestamp": "20251207_140343"
       },
@@ -38989,7 +39099,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:20+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {},
       "recognized_artifact_format": false,
       "json_parse_error": null,
@@ -39081,7 +39191,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:20+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "linguistic_mandate": "TLM",
         "genesis_timestamp": "2025-12-07T14:03:43.616424"
@@ -39176,7 +39286,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:20+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "cuda_runtime": 12090
       },
@@ -39218,7 +39328,7 @@
       ],
       "reference_count": 7,
       "modified_at": "2026-02-17T19:51:20+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "genesis_timestamp": "20251207_140343"
       },
@@ -39312,7 +39422,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:20+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {},
       "recognized_artifact_format": false,
       "json_parse_error": null,
@@ -39404,7 +39514,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:20+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "linguistic_mandate": "TLM",
         "genesis_timestamp": "2025-12-07T14:03:44.605981"
@@ -39499,7 +39609,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:20+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "cuda_runtime": 12090
       },
@@ -39541,7 +39651,7 @@
       ],
       "reference_count": 7,
       "modified_at": "2026-02-17T19:51:20+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "genesis_timestamp": "20251207_140344"
       },
@@ -39635,7 +39745,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:20+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {},
       "recognized_artifact_format": false,
       "json_parse_error": null,
@@ -39727,7 +39837,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:20+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "linguistic_mandate": "TLM",
         "genesis_timestamp": "2025-12-07T14:03:44.605592"
@@ -39822,7 +39932,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:20+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "cuda_runtime": 12090
       },
@@ -39864,7 +39974,7 @@
       ],
       "reference_count": 7,
       "modified_at": "2026-02-17T19:51:20+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "genesis_timestamp": "20251207_140344"
       },
@@ -39958,7 +40068,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:20+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {},
       "recognized_artifact_format": false,
       "json_parse_error": null,
@@ -40050,7 +40160,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:20+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "linguistic_mandate": "TLM",
         "genesis_timestamp": "2025-12-07T14:03:44.586486"
@@ -40145,7 +40255,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:20+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "cuda_runtime": 12090
       },
@@ -40187,7 +40297,7 @@
       ],
       "reference_count": 7,
       "modified_at": "2026-02-17T19:51:20+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "genesis_timestamp": "20251207_140344"
       },
@@ -40281,7 +40391,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:20+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {},
       "recognized_artifact_format": false,
       "json_parse_error": null,
@@ -40373,7 +40483,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:20+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "linguistic_mandate": "TLM",
         "genesis_timestamp": "2025-12-07T14:03:44.605246"
@@ -40468,7 +40578,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:20+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "cuda_runtime": 12090
       },
@@ -40510,7 +40620,7 @@
       ],
       "reference_count": 7,
       "modified_at": "2026-02-17T19:51:20+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "genesis_timestamp": "20251207_140344"
       },
@@ -40604,7 +40714,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:20+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {},
       "recognized_artifact_format": false,
       "json_parse_error": null,
@@ -40696,7 +40806,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:20+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "linguistic_mandate": "TLM",
         "genesis_timestamp": "2025-12-07T14:03:44.603888"
@@ -40791,7 +40901,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:20+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "cuda_runtime": 12090
       },
@@ -40833,7 +40943,7 @@
       ],
       "reference_count": 7,
       "modified_at": "2026-02-17T19:51:20+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "genesis_timestamp": "20251207_140344"
       },
@@ -40927,7 +41037,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:20+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {},
       "recognized_artifact_format": false,
       "json_parse_error": null,
@@ -41019,7 +41129,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:20+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "linguistic_mandate": "TLM",
         "genesis_timestamp": "2025-12-07T14:04:01.878128"
@@ -41114,7 +41224,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:20+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "cuda_runtime": 12090
       },
@@ -41156,7 +41266,7 @@
       ],
       "reference_count": 7,
       "modified_at": "2026-02-17T19:51:20+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "genesis_timestamp": "20251207_140401"
       },
@@ -41250,7 +41360,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:20+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {},
       "recognized_artifact_format": false,
       "json_parse_error": null,
@@ -41342,7 +41452,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:20+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "linguistic_mandate": "TLM",
         "genesis_timestamp": "2025-12-07T14:04:01.900563"
@@ -41437,7 +41547,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:20+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "cuda_runtime": 12090
       },
@@ -41479,7 +41589,7 @@
       ],
       "reference_count": 7,
       "modified_at": "2026-02-17T19:51:20+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "genesis_timestamp": "20251207_140401"
       },
@@ -41573,7 +41683,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:20+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {},
       "recognized_artifact_format": false,
       "json_parse_error": null,
@@ -41665,7 +41775,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:20+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "linguistic_mandate": "TLM",
         "genesis_timestamp": "2025-12-07T14:04:01.897822"
@@ -41760,7 +41870,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:20+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "cuda_runtime": 12090
       },
@@ -41802,7 +41912,7 @@
       ],
       "reference_count": 7,
       "modified_at": "2026-02-17T19:51:20+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "genesis_timestamp": "20251207_140401"
       },
@@ -41896,7 +42006,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:20+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {},
       "recognized_artifact_format": false,
       "json_parse_error": null,
@@ -41988,7 +42098,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:20+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "linguistic_mandate": "EULP-AA",
         "genesis_timestamp": "2025-12-07T14:04:01.901874"
@@ -42083,7 +42193,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:20+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "cuda_runtime": 12090
       },
@@ -42125,7 +42235,7 @@
       ],
       "reference_count": 7,
       "modified_at": "2026-02-17T19:51:20+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "genesis_timestamp": "20251207_140401"
       },
@@ -42219,7 +42329,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:20+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {},
       "recognized_artifact_format": false,
       "json_parse_error": null,
@@ -42311,7 +42421,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:20+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "linguistic_mandate": "TLM",
         "genesis_timestamp": "2025-12-07T14:08:43.468411"
@@ -42406,7 +42516,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:20+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "cuda_runtime": 12090
       },
@@ -42448,7 +42558,7 @@
       ],
       "reference_count": 7,
       "modified_at": "2026-02-17T19:51:20+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "genesis_timestamp": "20251207_140843"
       },
@@ -42542,7 +42652,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:20+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {},
       "recognized_artifact_format": false,
       "json_parse_error": null,
@@ -42634,7 +42744,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:20+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "linguistic_mandate": "TLM",
         "genesis_timestamp": "2025-12-07T14:08:43.477832"
@@ -42729,7 +42839,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:20+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "cuda_runtime": 12090
       },
@@ -42771,7 +42881,7 @@
       ],
       "reference_count": 7,
       "modified_at": "2026-02-17T19:51:20+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "genesis_timestamp": "20251207_140843"
       },
@@ -42865,7 +42975,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:20+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {},
       "recognized_artifact_format": false,
       "json_parse_error": null,
@@ -42957,7 +43067,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:20+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "linguistic_mandate": "TLM",
         "genesis_timestamp": "2025-12-07T14:08:43.479165"
@@ -43052,7 +43162,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:20+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "cuda_runtime": 12090
       },
@@ -43094,7 +43204,7 @@
       ],
       "reference_count": 7,
       "modified_at": "2026-02-17T19:51:20+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "genesis_timestamp": "20251207_140843"
       },
@@ -43188,7 +43298,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:20+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {},
       "recognized_artifact_format": false,
       "json_parse_error": null,
@@ -43280,7 +43390,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:20+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "linguistic_mandate": "TLM",
         "genesis_timestamp": "2025-12-07T14:08:43.478203"
@@ -43375,7 +43485,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:20+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "cuda_runtime": 12090
       },
@@ -43417,7 +43527,7 @@
       ],
       "reference_count": 7,
       "modified_at": "2026-02-17T19:51:20+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "genesis_timestamp": "20251207_140843"
       },
@@ -43511,7 +43621,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:20+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {},
       "recognized_artifact_format": false,
       "json_parse_error": null,
@@ -43603,7 +43713,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:20+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "linguistic_mandate": "TLM",
         "genesis_timestamp": "2025-12-07T14:08:43.469318"
@@ -43698,7 +43808,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:20+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "cuda_runtime": 12090
       },
@@ -43740,7 +43850,7 @@
       ],
       "reference_count": 7,
       "modified_at": "2026-02-17T19:51:20+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "genesis_timestamp": "20251207_140843"
       },
@@ -43834,7 +43944,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:20+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {},
       "recognized_artifact_format": false,
       "json_parse_error": null,
@@ -43926,7 +44036,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:20+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "linguistic_mandate": "TLM",
         "genesis_timestamp": "2025-12-07T14:08:43.477253"
@@ -44021,7 +44131,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:20+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "cuda_runtime": 12090
       },
@@ -44063,7 +44173,7 @@
       ],
       "reference_count": 7,
       "modified_at": "2026-02-17T19:51:20+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "genesis_timestamp": "20251207_140843"
       },
@@ -44157,7 +44267,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:20+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {},
       "recognized_artifact_format": false,
       "json_parse_error": null,
@@ -44249,7 +44359,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:20+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "linguistic_mandate": "TLM",
         "genesis_timestamp": "2025-12-07T14:08:43.471482"
@@ -44344,7 +44454,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:20+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "cuda_runtime": 12090
       },
@@ -44386,7 +44496,7 @@
       ],
       "reference_count": 7,
       "modified_at": "2026-02-17T19:51:20+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "genesis_timestamp": "20251207_140843"
       },
@@ -44480,7 +44590,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:20+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {},
       "recognized_artifact_format": false,
       "json_parse_error": null,
@@ -44572,7 +44682,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:20+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "linguistic_mandate": "EULP-AA",
         "genesis_timestamp": "2025-12-07T14:08:43.459645"
@@ -44667,7 +44777,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:20+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "cuda_runtime": 12090
       },
@@ -44709,7 +44819,7 @@
       ],
       "reference_count": 7,
       "modified_at": "2026-02-17T19:51:20+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "genesis_timestamp": "20251207_140843"
       },
@@ -44803,7 +44913,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:20+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {},
       "recognized_artifact_format": false,
       "json_parse_error": null,
@@ -44895,7 +45005,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:20+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "linguistic_mandate": "TLM",
         "genesis_timestamp": "2025-12-07T14:08:43.458780"
@@ -44990,7 +45100,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:20+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "cuda_runtime": 12090
       },
@@ -45032,7 +45142,7 @@
       ],
       "reference_count": 7,
       "modified_at": "2026-02-17T19:51:20+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "genesis_timestamp": "20251207_140843"
       },
@@ -45126,7 +45236,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:20+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {},
       "recognized_artifact_format": false,
       "json_parse_error": null,
@@ -45218,7 +45328,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:20+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "linguistic_mandate": "TLM",
         "genesis_timestamp": "2025-12-07T14:08:43.457862"
@@ -45313,7 +45423,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:20+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "cuda_runtime": 12090
       },
@@ -45355,7 +45465,7 @@
       ],
       "reference_count": 7,
       "modified_at": "2026-02-17T19:51:20+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "genesis_timestamp": "20251207_140843"
       },
@@ -45449,7 +45559,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:20+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {},
       "recognized_artifact_format": false,
       "json_parse_error": null,
@@ -45541,7 +45651,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:20+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "linguistic_mandate": "TLM",
         "genesis_timestamp": "2025-12-07T14:08:43.476877"
@@ -45636,7 +45746,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:20+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "cuda_runtime": 12090
       },
@@ -45678,7 +45788,7 @@
       ],
       "reference_count": 7,
       "modified_at": "2026-02-17T19:51:20+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "genesis_timestamp": "20251207_140843"
       },
@@ -45772,7 +45882,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:20+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {},
       "recognized_artifact_format": false,
       "json_parse_error": null,
@@ -45864,7 +45974,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:20+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "linguistic_mandate": "EULP-AA",
         "genesis_timestamp": "2025-12-07T14:08:43.472754"
@@ -45959,7 +46069,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:20+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "cuda_runtime": 12090
       },
@@ -46001,7 +46111,7 @@
       ],
       "reference_count": 7,
       "modified_at": "2026-02-17T19:51:20+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "genesis_timestamp": "20251207_140843"
       },
@@ -46095,7 +46205,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:20+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {},
       "recognized_artifact_format": false,
       "json_parse_error": null,
@@ -46187,7 +46297,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:20+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "linguistic_mandate": "TLM",
         "genesis_timestamp": "2025-12-07T14:08:43.467247"
@@ -46282,7 +46392,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:20+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "cuda_runtime": 12090
       },
@@ -46324,7 +46434,7 @@
       ],
       "reference_count": 7,
       "modified_at": "2026-02-17T19:51:20+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "genesis_timestamp": "20251207_140843"
       },
@@ -46418,7 +46528,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:20+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {},
       "recognized_artifact_format": false,
       "json_parse_error": null,
@@ -46510,7 +46620,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:20+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "linguistic_mandate": "TLM",
         "genesis_timestamp": "2025-12-07T14:08:43.474956"
@@ -46605,7 +46715,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:20+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "cuda_runtime": 12090
       },
@@ -46647,7 +46757,7 @@
       ],
       "reference_count": 7,
       "modified_at": "2026-02-17T19:51:20+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "genesis_timestamp": "20251207_140843"
       },
@@ -46741,7 +46851,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:20+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {},
       "recognized_artifact_format": false,
       "json_parse_error": null,
@@ -46833,7 +46943,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:20+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "linguistic_mandate": "TLM",
         "genesis_timestamp": "2025-12-07T14:08:43.457196"
@@ -46928,7 +47038,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:20+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "cuda_runtime": 12090
       },
@@ -46970,7 +47080,7 @@
       ],
       "reference_count": 7,
       "modified_at": "2026-02-17T19:51:20+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "genesis_timestamp": "20251207_140843"
       },
@@ -47064,7 +47174,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:20+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {},
       "recognized_artifact_format": false,
       "json_parse_error": null,
@@ -47156,7 +47266,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:20+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "linguistic_mandate": "TLM",
         "genesis_timestamp": "2025-12-07T14:08:43.459114"
@@ -47251,7 +47361,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:20+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "cuda_runtime": 12090
       },
@@ -47293,7 +47403,7 @@
       ],
       "reference_count": 7,
       "modified_at": "2026-02-17T19:51:20+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "genesis_timestamp": "20251207_140843"
       },
@@ -47387,7 +47497,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:20+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {},
       "recognized_artifact_format": false,
       "json_parse_error": null,
@@ -47479,7 +47589,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:20+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "linguistic_mandate": "EULP-AA",
         "genesis_timestamp": "2025-12-07T14:08:43.460340"
@@ -47574,7 +47684,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:20+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "cuda_runtime": 12090
       },
@@ -47616,7 +47726,7 @@
       ],
       "reference_count": 7,
       "modified_at": "2026-02-17T19:51:20+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "genesis_timestamp": "20251207_140843"
       },
@@ -47710,7 +47820,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:20+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {},
       "recognized_artifact_format": false,
       "json_parse_error": null,
@@ -47802,7 +47912,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:20+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "linguistic_mandate": "TLM",
         "genesis_timestamp": "2025-12-07T14:08:43.463498"
@@ -47897,7 +48007,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:20+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "cuda_runtime": 12090
       },
@@ -47939,7 +48049,7 @@
       ],
       "reference_count": 7,
       "modified_at": "2026-02-17T19:51:20+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "genesis_timestamp": "20251207_140843"
       },
@@ -48033,7 +48143,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:20+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {},
       "recognized_artifact_format": false,
       "json_parse_error": null,
@@ -48125,7 +48235,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:20+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "linguistic_mandate": "LUPLR",
         "genesis_timestamp": "2025-12-07T14:08:43.439735"
@@ -48220,7 +48330,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:20+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "cuda_runtime": 12090
       },
@@ -48262,7 +48372,7 @@
       ],
       "reference_count": 7,
       "modified_at": "2026-02-17T19:51:20+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "genesis_timestamp": "20251207_140843"
       },
@@ -48356,7 +48466,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:20+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {},
       "recognized_artifact_format": false,
       "json_parse_error": null,
@@ -48448,7 +48558,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:20+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "linguistic_mandate": "TLM",
         "genesis_timestamp": "2025-12-07T14:08:43.456751"
@@ -48543,7 +48653,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:20+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "cuda_runtime": 12090
       },
@@ -48585,7 +48695,7 @@
       ],
       "reference_count": 7,
       "modified_at": "2026-02-17T19:51:20+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "genesis_timestamp": "20251207_140843"
       },
@@ -48679,7 +48789,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:20+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {},
       "recognized_artifact_format": false,
       "json_parse_error": null,
@@ -48771,7 +48881,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:20+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "linguistic_mandate": "TLM",
         "genesis_timestamp": "2025-12-07T14:08:43.458218"
@@ -48866,7 +48976,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:20+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "cuda_runtime": 12090
       },
@@ -48908,7 +49018,7 @@
       ],
       "reference_count": 7,
       "modified_at": "2026-02-17T19:51:20+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "genesis_timestamp": "20251207_140843"
       },
@@ -49002,7 +49112,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:20+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {},
       "recognized_artifact_format": false,
       "json_parse_error": null,
@@ -49094,7 +49204,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:20+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "linguistic_mandate": "TLM",
         "genesis_timestamp": "2025-12-07T14:08:43.479726"
@@ -49189,7 +49299,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:20+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "cuda_runtime": 12090
       },
@@ -49231,7 +49341,7 @@
       ],
       "reference_count": 7,
       "modified_at": "2026-02-17T19:51:20+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "genesis_timestamp": "20251207_140843"
       },
@@ -49325,7 +49435,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:20+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {},
       "recognized_artifact_format": false,
       "json_parse_error": null,
@@ -49417,7 +49527,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:20+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "linguistic_mandate": "TLM",
         "genesis_timestamp": "2025-12-07T14:08:43.464422"
@@ -49512,7 +49622,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:20+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "cuda_runtime": 12090
       },
@@ -49554,7 +49664,7 @@
       ],
       "reference_count": 7,
       "modified_at": "2026-02-17T19:51:20+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "genesis_timestamp": "20251207_140843"
       },
@@ -49648,7 +49758,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:20+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {},
       "recognized_artifact_format": false,
       "json_parse_error": null,
@@ -49740,7 +49850,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:20+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "linguistic_mandate": "TLM",
         "genesis_timestamp": "2025-12-07T14:08:43.474096"
@@ -49835,7 +49945,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:20+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "cuda_runtime": 12090
       },
@@ -49877,7 +49987,7 @@
       ],
       "reference_count": 7,
       "modified_at": "2026-02-17T19:51:20+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "genesis_timestamp": "20251207_140843"
       },
@@ -49971,7 +50081,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:20+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {},
       "recognized_artifact_format": false,
       "json_parse_error": null,
@@ -50063,7 +50173,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:20+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "linguistic_mandate": "TLM",
         "genesis_timestamp": "2025-12-07T14:08:43.461385"
@@ -50158,7 +50268,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:20+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "cuda_runtime": 12090
       },
@@ -50200,7 +50310,7 @@
       ],
       "reference_count": 7,
       "modified_at": "2026-02-17T19:51:20+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "genesis_timestamp": "20251207_140843"
       },
@@ -50294,7 +50404,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-17T19:51:20+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {},
       "recognized_artifact_format": false,
       "json_parse_error": null,
@@ -50334,7 +50444,7 @@
       ],
       "reference_count": 7,
       "modified_at": "2026-02-17T19:51:20+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "entities[0].linguistic_mandate": "EULP-AA",
         "entities[0].genesis_timestamp": "2025-12-07T04:55:07.838282",
@@ -50395,7 +50505,7 @@
       ],
       "reference_count": 7,
       "modified_at": "2026-02-17T19:51:20+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "timestamp": "2025-12-25T09:27:43.560469",
         "results[3].details.times_ms": [
@@ -50446,7 +50556,7 @@
       ],
       "reference_count": 8,
       "modified_at": "2026-02-17T19:51:20+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "validated_truths": {
           "The Decorator": {
@@ -50523,7 +50633,7 @@
       ],
       "reference_count": 6,
       "modified_at": "2026-02-17T19:51:20+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "timestamp": "2025-12-07T14:30:22.456Z",
         "output.files_created": [
@@ -50566,7 +50676,7 @@
       ],
       "reference_count": 6,
       "modified_at": "2026-02-17T19:51:20+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "properties.timestamp": {
           "type": "string",
@@ -50620,7 +50730,7 @@
       ],
       "reference_count": 6,
       "modified_at": "2026-02-17T19:51:20+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "properties.last_updated": {
           "type": "string",
@@ -50679,7 +50789,7 @@
       ],
       "reference_count": 6,
       "modified_at": "2026-02-17T19:51:20+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "properties.last_updated": {
           "type": "string",

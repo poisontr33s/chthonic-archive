@@ -151,6 +151,9 @@ extensions/*/bun.lock
 !scripts/*.go
 !scripts/*.mjs
 !scripts/CLAUDE_CODE_INTEGRATION.md
+!audit-reports/
+!audit-reports/wptg_cycle_state.json
+!audit-reports/wptg_default_view.json
 # Exclude temp/ephemeral scripts (underscore prefix)
 scripts/_*.py
 

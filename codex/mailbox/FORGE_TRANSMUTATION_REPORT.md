@@ -2,7 +2,7 @@
 type: report
 from: codex
 to: user
-created: 2026-03-04T19:10:49+00:00
+created: 2026-03-04T23:30:12+00:00
 priority: high
 subject: FORGE_TRANSMUTATION_REPORT
 ---
@@ -19,7 +19,7 @@ subject: FORGE_TRANSMUTATION_REPORT
 
 - Tempered artifacts: 18
 - Rejected artifacts: 0
-- Compression ratio: 9451642 -> 239702
+- Compression ratio: 9451642 -> 245663
 
 ## Source Pools
 
@@ -95,3 +95,11 @@ subject: FORGE_TRANSMUTATION_REPORT
 - Penalty removed: 0
 - Promotion boon added: 1.5
 - Net addendum boon: +1.5
+
+## Stage 4 Repeatable Cycle Addendum (2026-03-05)
+
+- Framework runner: `scripts/wptg_repeatable_cycle.py --begin-anew`
+- Cycle verdict: `WARN`
+- Cycle boon: `11.5`
+- Cycle penalty: `1.3`
+- Cycle net score: `10.2`

@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-03-04T19:10:36+00:00",
+  "timestamp": "2026-03-04T23:27:59+00:00",
   "codebase_extensions": {
     "total_unique": 51,
     "inventory": {
@@ -300,10 +300,11 @@
         }
       },
       ".go": {
-        "count": 2,
+        "count": 3,
         "directories": [
           "dumpster-dive/forge/furnace/go",
-          "dumpster-dive/forge/tempered/go"
+          "dumpster-dive/forge/tempered/go",
+          "scripts"
         ],
         "lane_excluded": false,
         "lane_excluded_count": 0,
@@ -769,7 +770,7 @@
         }
       },
       ".md": {
-        "count": 842,
+        "count": 844,
         "directories": [
           ".",
           ".claude/skills/artifact-upcycle",
@@ -1058,7 +1059,7 @@
         }
       },
       ".ps1": {
-        "count": 113,
+        "count": 114,
         "directories": [
           ".github/tools",
           "chthonic-golden/scripts",
@@ -1090,7 +1091,7 @@
         }
       },
       ".py": {
-        "count": 229,
+        "count": 230,
         "directories": [
           ".codex/skills/artifact-upcycle/scripts",
           ".codex/skills/codekiller-remediation-gate/scripts",
@@ -2066,13 +2067,13 @@
     }
   },
   "summary": {
-    "tracked_files": 2789,
+    "tracked_files": 2794,
     "lane_excluded_files": 68,
-    "non_excluded_files": 2721,
+    "non_excluded_files": 2726,
     "top_extensions": [
       [
         ".md",
-        842
+        844
       ],
       [
         ".json",
@@ -2084,7 +2085,7 @@
       ],
       [
         ".py",
-        229
+        230
       ],
       [
         ".svg",
@@ -2092,7 +2093,7 @@
       ],
       [
         ".ps1",
-        113
+        114
       ],
       [
         ".ts",

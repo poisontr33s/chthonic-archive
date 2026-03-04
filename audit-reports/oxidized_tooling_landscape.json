@@ -162,7 +162,7 @@
     "Use ankh-forge scan/census as the fast path before deeper Python archaeology.",
     "Consider fnm or Volta if Node-specific version pinning becomes necessary beyond bun."
   ],
-  "timestamp": "2026-03-03T07:39:42.1120323Z",
+  "timestamp": "2026-03-04T23:30:16.8082044Z",
   "unoxidized_gap": [
     {
       "current_best_tooling": "system tooling",

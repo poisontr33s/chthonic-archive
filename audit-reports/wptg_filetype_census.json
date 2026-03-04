@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-03-04T19:19:49+00:00",
-  "total_tracked": 2789,
+  "timestamp": "2026-03-04T23:30:09+00:00",
+  "total_tracked": 2794,
   "excluded_lane_files": 68,
-  "audited_files": 2721,
+  "audited_files": 2726,
   "excluded_paths": [
     "extensions/chthonic-archive/themes/chthonic-decorator-color-theme.json",
     "extensions/chthonic-archive/themes/chthonic-file-icon-theme.json",
@@ -149,7 +149,7 @@
       "anomalies": {}
     },
     ".go": {
-      "count": 2,
+      "count": 3,
       "anomalies": {}
     },
     ".h": {
@@ -187,7 +187,7 @@
       }
     },
     ".md": {
-      "count": 842,
+      "count": 844,
       "anomalies": {
         "filetype_directory_mismatch": 1
       }
@@ -209,11 +209,11 @@
       "anomalies": {}
     },
     ".ps1": {
-      "count": 112,
+      "count": 113,
       "anomalies": {}
     },
     ".py": {
-      "count": 214,
+      "count": 215,
       "anomalies": {}
     },
     ".python-version": {
@@ -2764,9 +2764,9 @@
   ],
   "by_gold_tier": {
     "tier_2_structural": 751,
-    "tier_3_conceptual": 901,
-    "raw_unrefined": 585,
-    "tier_1_direct": 484
+    "tier_3_conceptual": 903,
+    "raw_unrefined": 586,
+    "tier_1_direct": 486
   },
   "verdict": "FAIL"
 }

@@ -2479,7 +2479,7 @@
       "wptg_rationale": "Documentation in scripts/ should be canonicalized into a docs/governance lane."
     }
   ],
-  "audited_files": 2687,
+  "audited_files": 2726,
   "by_extension": {
     ".bak": {
       "anomalies": {},
@@ -2549,7 +2549,7 @@
     },
     ".gitignore": {
       "anomalies": {},
-      "count": 4
+      "count": 5
     },
     ".gitkeep": {
       "anomalies": {},
@@ -2557,7 +2557,7 @@
     },
     ".go": {
       "anomalies": {},
-      "count": 2
+      "count": 3
     },
     ".h": {
       "anomalies": {},
@@ -2573,7 +2573,7 @@
     },
     ".json": {
       "anomalies": {},
-      "count": 667
+      "count": 673
     },
     ".jsonl": {
       "anomalies": {},
@@ -2585,7 +2585,7 @@
     },
     ".lock": {
       "anomalies": {},
-      "count": 5
+      "count": 6
     },
     ".log": {
       "anomalies": {
@@ -2597,7 +2597,7 @@
       "anomalies": {
         "filetype_directory_mismatch": 1
       },
-      "count": 838
+      "count": 844
     },
     ".md\"": {
       "anomalies": {
@@ -2617,11 +2617,11 @@
     },
     ".ps1": {
       "anomalies": {},
-      "count": 112
+      "count": 113
     },
     ".py": {
       "anomalies": {},
-      "count": 213
+      "count": 215
     },
     ".python-version": {
       "anomalies": {},
@@ -2633,7 +2633,11 @@
     },
     ".rs": {
       "anomalies": {},
-      "count": 33
+      "count": 35
+    },
+    ".sample": {
+      "anomalies": {},
+      "count": 14
     },
     ".sh": {
       "anomalies": {},
@@ -2649,7 +2653,7 @@
     },
     ".toml": {
       "anomalies": {},
-      "count": 22
+      "count": 23
     },
     ".ts": {
       "anomalies": {},
@@ -2689,14 +2693,14 @@
     },
     "[no_ext]": {
       "anomalies": {},
-      "count": 4
+      "count": 8
     }
   },
   "by_gold_tier": {
-    "raw_unrefined": 559,
-    "tier_1_direct": 482,
-    "tier_2_structural": 745,
-    "tier_3_conceptual": 901
+    "raw_unrefined": 578,
+    "tier_1_direct": 487,
+    "tier_2_structural": 754,
+    "tier_3_conceptual": 907
   },
   "excluded_lane_files": 68,
   "excluded_paths": [
@@ -2769,7 +2773,7 @@
     "scripts/theme_sfs_transmute.py",
     "scripts/theme_token_coverage.py"
   ],
-  "timestamp": "1970-01-01T00:00:00+00:00",
-  "total_tracked": 2755,
+  "timestamp": "2026-03-04T23:30:15.6005942Z",
+  "total_tracked": 2794,
   "verdict": "FAIL"
 }

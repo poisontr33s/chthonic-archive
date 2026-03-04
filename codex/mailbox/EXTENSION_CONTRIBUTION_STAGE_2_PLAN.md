@@ -43,6 +43,15 @@ Stage 3 continuation was executed after Stage 2 closure:
 - Three approved tempered artifacts promoted into active lanes under `scripts/`.
 - Trigger-based dedupe reassessment completed; dual-lane furnace/tempered model retained in this pass.
 
+## Stage 4 Continuation Status
+
+Stage 4 converts the delivered chain into a repeatable cycle framework:
+
+- `scripts/wptg_repeatable_cycle.py` orchestrates Phase 0 -> Part 4 in ordered replay.
+- Cycle outputs now include `audit-reports/wptg_cycle_state.json` and `audit-reports/wptg_default_view.json`.
+- Framework contract recorded in `codex/mailbox/WPTG_REPEATABLE_FRAMEWORK.md`.
+- Baseline execution completed with `uv run scripts/wptg_repeatable_cycle.py --begin-anew` and report `codex/mailbox/WPTG_REPEATABLE_CYCLE_REPORT.md`.
+
 ## Lane Constraint Reminder
 
 Stage 2 must continue honoring the same absolute lane exclusions from the chore, especially the theme/icon/product chain paths under `extensions/chthonic-archive/themes/` and related icon/font pipelines.

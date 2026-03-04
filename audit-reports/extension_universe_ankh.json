@@ -58,6 +58,7 @@
         ".go",
         ".h",
         ".log",
+        ".sample",
         ".test.ts",
         "[no_ext]"
       ],
@@ -340,12 +341,13 @@
       },
       ".gitignore": {
         "category": "vcs_meta",
-        "count": 4,
+        "count": 5,
         "directories": [
           "",
           ".codex",
           "dumpster-dive/intake/claudine-harvest",
-          "mas_mcp/frontend"
+          "mas_mcp/frontend",
+          "tools/ankh-forge"
         ],
         "gold_grade": "tier_2_structural",
         "lane_excluded": false,
@@ -373,10 +375,11 @@
       },
       ".go": {
         "category": "unclassified",
-        "count": 2,
+        "count": 3,
         "directories": [
           "dumpster-dive/forge/furnace/go",
-          "dumpster-dive/forge/tempered/go"
+          "dumpster-dive/forge/tempered/go",
+          "scripts"
         ],
         "gold_grade": "raw_unrefined",
         "lane_excluded": false,
@@ -447,7 +450,7 @@
       },
       ".json": {
         "category": "data_config",
-        "count": 674,
+        "count": 680,
         "directories": [
           ".codex/skills/artifact-upcycle/references",
           ".codex/skills/skill-polisher/fixtures/claude_missing_description",
@@ -697,13 +700,14 @@
       },
       ".lock": {
         "category": "data_config",
-        "count": 5,
+        "count": 6,
         "directories": [
           "extensions/chthonic-archive/.chthonic/ruby",
           "extensions/chthonic-archive/native",
           "extensions/chthonic-archive/native/entropy-renderer-wasm",
           "mas_mcp",
-          "mas_mcp/frontend"
+          "mas_mcp/frontend",
+          "tools/ankh-forge"
         ],
         "gold_grade": "tier_2_structural",
         "lane_excluded": false,
@@ -841,7 +845,7 @@
       },
       ".md": {
         "category": "documentation",
-        "count": 838,
+        "count": 844,
         "directories": [
           "",
           ".claude/skills/artifact-upcycle",
@@ -901,6 +905,7 @@
           ".temple/methodology",
           ".temple/session-archives",
           ".vscode",
+          "audit-reports",
           "bun-playwright-poc",
           "chthonic-golden",
           "chthonic-golden/ankh",
@@ -1129,7 +1134,7 @@
       },
       ".ps1": {
         "category": "source_code",
-        "count": 113,
+        "count": 114,
         "directories": [
           ".github/tools",
           "chthonic-golden/scripts",
@@ -1161,7 +1166,7 @@
       },
       ".py": {
         "category": "source_code",
-        "count": 228,
+        "count": 230,
         "directories": [
           ".codex/skills/artifact-upcycle/scripts",
           ".codex/skills/codekiller-remediation-gate/scripts",
@@ -1248,7 +1253,7 @@
       },
       ".rs": {
         "category": "source_code",
-        "count": 33,
+        "count": 35,
         "directories": [
           "",
           "docs/standards/templates",
@@ -1264,7 +1269,8 @@
           "extensions/chthonic-archive/wasm/chthonic-loom/src",
           "src",
           "src/data",
-          "src/render"
+          "src/render",
+          "tools/ankh-forge/src"
         ],
         "gold_grade": "tier_1_direct",
         "lane_excluded": false,
@@ -1277,6 +1283,21 @@
           "supported_by": [
             "rust"
           ]
+        }
+      },
+      ".sample": {
+        "category": "unclassified",
+        "count": 14,
+        "directories": [
+          "dumpster-dive/intake/ankh-forge-salvage/nested-git-2026-03-03/hooks"
+        ],
+        "gold_grade": "raw_unrefined",
+        "lane_excluded": false,
+        "lane_excluded_count": 0,
+        "runtime_support": {
+          "required_toolchains": [],
+          "supported": true,
+          "supported_by": []
         }
       },
       ".sh": {
@@ -1368,7 +1389,7 @@
       },
       ".toml": {
         "category": "data_config",
-        "count": 22,
+        "count": 23,
         "directories": [
           "",
           ".cargo",
@@ -1386,7 +1407,8 @@
           "extensions/chthonic-archive/native/xtask",
           "extensions/chthonic-archive/wasm/chthonic-loom",
           "mas_mcp",
-          "mas_mcp/frontend"
+          "mas_mcp/frontend",
+          "tools/ankh-forge"
         ],
         "gold_grade": "tier_2_structural",
         "lane_excluded": false,
@@ -1666,11 +1688,13 @@
       },
       "[no_ext]": {
         "category": "unclassified",
-        "count": 4,
+        "count": 8,
         "directories": [
           "claude-codex-gemini/triadic-session-context",
           "codex/codex-session-logs/archive",
           "dev",
+          "dumpster-dive/intake/ankh-forge-salvage/nested-git-2026-03-03",
+          "dumpster-dive/intake/ankh-forge-salvage/nested-git-2026-03-03/info",
           "extensions/chthonic-archive/.chthonic/ruby"
         ],
         "gold_grade": "raw_unrefined",
@@ -1683,13 +1707,19 @@
         }
       }
     },
-    "total_unique": 50
+    "total_unique": 51
   },
   "eol_risk": {
     "dotnet": {
+      "cycle": "10",
+      "eol": "2028-11-14",
+      "extended_support": null,
+      "latest": "10.0.3",
+      "latest_release_date": "2026-02-10",
+      "link": null,
       "source": "https://endoflife.date",
-      "status": "unknown",
-      "version": "0.26103.119"
+      "support": null,
+      "version": "10.0.200"
     },
     "go": {
       "cycle": "1.26",
@@ -1777,15 +1807,15 @@
   },
   "summary": {
     "lane_excluded_files": 68,
-    "non_excluded_files": 2687,
+    "non_excluded_files": 2726,
     "top_extensions": [
       [
         ".md",
-        838
+        844
       ],
       [
         ".json",
-        674
+        680
       ],
       [
         ".log",
@@ -1793,7 +1823,7 @@
       ],
       [
         ".py",
-        228
+        230
       ],
       [
         ".svg",
@@ -1801,7 +1831,7 @@
       ],
       [
         ".ps1",
-        113
+        114
       ],
       [
         ".ts",
@@ -1813,14 +1843,14 @@
       ],
       [
         ".rs",
-        33
+        35
       ],
       [
         ".toml",
-        22
+        23
       ]
     ],
-    "tracked_files": 2755
+    "tracked_files": 2794
   },
   "system_toolchains": {
     "details": {
@@ -1862,7 +1892,7 @@
         "manager_version": null,
         "oxidized": false,
         "runtime_output": "10.0.200-preview.0.26103.119",
-        "runtime_version": "0.26103.119"
+        "runtime_version": "10.0.200"
       },
       "elixir": {
         "display_name": "Elixir",
@@ -2078,5 +2108,5 @@
       "powershell"
     ]
   },
-  "timestamp": "2026-03-03T07:37:56.4183478Z"
+  "timestamp": "2026-03-04T23:30:15.0534475Z"
 }

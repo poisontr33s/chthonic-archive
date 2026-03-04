@@ -1,7 +1,7 @@
 ---
 sid: FORGE_ADR_RECOVERED_V1
 title: Recovered Architecture Decisions
-created: 2026-03-04T19:10:42+00:00
+created: 2026-03-04T23:30:10+00:00
 source_files: ["codex/mailbox/RESEARCH_DIGEST_PREAMBLE.md", "codex/mailbox/RESEARCH_DIGEST_PREAMBLE.md", "codex/mailbox/RESEARCH_DIGEST_PREAMBLE.md", "codex/mailbox/RESEARCH_DIGEST_PREAMBLE.md", "codex/mailbox/RESEARCH_DIGEST_PREAMBLE.md", "codex/mailbox/RESEARCH_DIGEST_PREAMBLE.md", "claude/mailbox/GENRE_EXTRACTION_2026_02_24.md", "claude/mailbox/GENRE_EXTRACTION_2026_02_24.md", "dumpster-dive/intake/overnight-intelligence/2026-02-11T02-19-33/report.md", "dumpster-dive/intake/overnight-intelligence/2026-02-11T02-19-33/report.md", "dumpster-dive/intake/overnight-intelligence/2026-02-11T02-19-33/report.md", "dumpster-dive/intake/overnight-intelligence/2026-02-11T02-19-33/report.md", "dumpster-dive/intake/overnight-intelligence/2026-02-11T02-19-33/report.md", "dumpster-dive/intake/overnight-intelligence/2026-02-11T02-19-33/report.md", "dumpster-dive/intake/overnight-intelligence/2026-02-11T02-19-33/report.md", "dumpster-dive/intake/overnight-intelligence/2026-02-11T02-19-33/report.md", "dumpster-dive/intake/overnight-intelligence/2026-02-11T02-19-33/report.md", "dumpster-dive/intake/overnight-intelligence/2026-02-11T02-19-33/report.md"]
 pathway: markdown fragments -> decision capture -> recovered ADR anthology
 kept: Headings, rationale sentences, and provenance.

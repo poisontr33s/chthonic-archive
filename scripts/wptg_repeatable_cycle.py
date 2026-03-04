@@ -1,0 +1,553 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+
+"""
+Repeatable WPTG cycle orchestrator.
+
+@SID:           WPTG_REPEATABLE_CYCLE_V1
+@Shabti:        CLI Script
+@Purpose:       Execute a reusable Phase 0 -> Part 4 WPTG cycle, persist cycle memory, and emit a default-view baseline.
+"""
+
+from __future__ import annotations
+
+import argparse
+import json
+import subprocess
+import time
+from dataclasses import dataclass
+from pathlib import Path
+from typing import Any
+
+from scripts.wptg_common import ensure_utf8, now_iso, repo_root, write_json, write_text
+
+
+@dataclass(frozen=True, slots=True)
+class CycleStep:
+    step_id: str
+    label: str
+    toolchain: str
+    command: tuple[str, ...]
+    expected_exit_codes: tuple[int, ...]
+    required_outputs: tuple[str, ...]
+    critical: bool = True
+
+
+CYCLE_STEPS: tuple[CycleStep, ...] = (
+    CycleStep(
+        step_id="phase_0_universe",
+        label="Phase 0 - Polyglot Extension Universe Scanner",
+        toolchain="uv",
+        command=("uv", "run", "scripts/extension_universe_scanner.py"),
+        expected_exit_codes=(0, 1, 2),
+        required_outputs=("audit-reports/extension_universe.json",),
+    ),
+    CycleStep(
+        step_id="part_1_census",
+        label="Part 1 - WPTG Filetype Census",
+        toolchain="uv",
+        command=("uv", "run", "scripts/wptg_filetype_census.py"),
+        expected_exit_codes=(0, 1, 2),
+        required_outputs=(
+            "audit-reports/wptg_filetype_census.json",
+            "audit-reports/orphaned_artifact_reconciliation.json",
+            "codex/mailbox/LOG_ARCHAEOLOGY_TRIAGE.md",
+            "codex/mailbox/WPTG_FILETYPE_GOVERNANCE_PROPOSAL.md",
+        ),
+    ),
+    CycleStep(
+        step_id="part_2_forge",
+        label="Part 2 - Universal Forge",
+        toolchain="uv",
+        command=("uv", "run", "scripts/universal_forge.py"),
+        expected_exit_codes=(0,),
+        required_outputs=(
+            "dumpster-dive/forge/furnace/FURNACE_MANIFEST.json",
+            "dumpster-dive/forge/tempered/GRADUATION_MANIFEST.json",
+            "codex/mailbox/FORGE_TRANSMUTATION_REPORT.md",
+        ),
+    ),
+    CycleStep(
+        step_id="part_3_ankh_scan",
+        label="Part 3 - ankh-forge scan",
+        toolchain="cargo",
+        command=(
+            "cargo",
+            "run",
+            "-p",
+            "ankh-forge",
+            "--",
+            "scan",
+            "--root",
+            ".",
+            "--output",
+            "audit-reports/extension_universe_ankh.json",
+        ),
+        expected_exit_codes=(0,),
+        required_outputs=("audit-reports/extension_universe_ankh.json",),
+    ),
+    CycleStep(
+        step_id="part_3_ankh_census",
+        label="Part 3 - ankh-forge census",
+        toolchain="cargo",
+        command=(
+            "cargo",
+            "run",
+            "-p",
+            "ankh-forge",
+            "--",
+            "census",
+            "--root",
+            ".",
+            "--output",
+            "audit-reports/wptg_filetype_census_ankh.json",
+        ),
+        expected_exit_codes=(0,),
+        required_outputs=("audit-reports/wptg_filetype_census_ankh.json",),
+    ),
+    CycleStep(
+        step_id="part_3_ankh_landscape",
+        label="Part 3 - ankh-forge landscape",
+        toolchain="cargo",
+        command=(
+            "cargo",
+            "run",
+            "-p",
+            "ankh-forge",
+            "--",
+            "landscape",
+            "--root",
+            ".",
+            "--output",
+            "audit-reports/oxidized_tooling_landscape.json",
+        ),
+        expected_exit_codes=(0,),
+        required_outputs=("audit-reports/oxidized_tooling_landscape.json",),
+    ),
+    CycleStep(
+        step_id="part_3_ankh_eol",
+        label="Part 3 - ankh-forge eol",
+        toolchain="cargo",
+        command=(
+            "cargo",
+            "run",
+            "-p",
+            "ankh-forge",
+            "--",
+            "eol",
+            "--output",
+            "audit-reports/oxidized_tooling_eol.json",
+        ),
+        expected_exit_codes=(0,),
+        required_outputs=("audit-reports/oxidized_tooling_eol.json",),
+    ),
+    CycleStep(
+        step_id="part_3_bun_lane_pulse",
+        label="Part 3 - Bun lane pulse",
+        toolchain="bun",
+        command=("bun", "--version"),
+        expected_exit_codes=(0,),
+        required_outputs=(),
+        critical=False,
+    ),
+    CycleStep(
+        step_id="part_4_validator",
+        label="Part 4 - Extension Contribution Validator",
+        toolchain="uv",
+        command=("uv", "run", "scripts/extension_contribution_audit.py"),
+        expected_exit_codes=(0,),
+        required_outputs=(
+            "audit-reports/extension_contribution_audit.json",
+            "audit-reports/extension_contribution_audit.md",
+        ),
+    ),
+)
+
+
+def _output_pre_state(root: Path, outputs: tuple[str, ...]) -> dict[str, float | None]:
+    state: dict[str, float | None] = {}
+    for rel in outputs:
+        path = root / rel
+        state[rel] = path.stat().st_mtime if path.exists() else None
+    return state
+
+
+def _output_post_state(root: Path, outputs: tuple[str, ...]) -> dict[str, dict[str, Any]]:
+    state: dict[str, dict[str, Any]] = {}
+    for rel in outputs:
+        path = root / rel
+        if path.exists():
+            state[rel] = {"exists": True, "mtime": path.stat().st_mtime}
+        else:
+            state[rel] = {"exists": False, "mtime": None}
+    return state
+
+
+def run_step(root: Path, step: CycleStep) -> dict[str, Any]:
+    start = time.perf_counter()
+    pre_state = _output_pre_state(root, step.required_outputs)
+
+    result = subprocess.run(
+        list(step.command),
+        cwd=root,
+        capture_output=True,
+        text=True,
+        encoding="utf-8",
+        errors="replace",
+        check=False,
+    )
+
+    elapsed = time.perf_counter() - start
+    post_state = _output_post_state(root, step.required_outputs)
+
+    output_checks: dict[str, dict[str, Any]] = {}
+    for rel in step.required_outputs:
+        before = pre_state[rel]
+        after = post_state[rel]
+        fresh = bool(after["exists"]) and (before is None or float(after["mtime"]) > float(before))
+        output_checks[rel] = {
+            "exists": bool(after["exists"]),
+            "fresh": fresh,
+        }
+
+    command_ok = result.returncode in step.expected_exit_codes
+    outputs_ok = all(check["exists"] and check["fresh"] for check in output_checks.values())
+    status = "pass" if command_ok and outputs_ok and result.returncode == 0 else "warn"
+    if not command_ok or not outputs_ok:
+        status = "fail"
+
+    stdout_tail = "\n".join(result.stdout.strip().splitlines()[-12:]).strip()
+    stderr_tail = "\n".join(result.stderr.strip().splitlines()[-12:]).strip()
+
+    return {
+        "step_id": step.step_id,
+        "label": step.label,
+        "toolchain": step.toolchain,
+        "command": list(step.command),
+        "exit_code": result.returncode,
+        "expected_exit_codes": list(step.expected_exit_codes),
+        "duration_seconds": round(elapsed, 3),
+        "status": status,
+        "critical": step.critical,
+        "required_outputs": output_checks,
+        "stdout_tail": stdout_tail,
+        "stderr_tail": stderr_tail,
+    }
+
+
+def _load_json_if_exists(path: Path) -> dict[str, Any]:
+    if not path.exists():
+        return {}
+    try:
+        return json.loads(path.read_text(encoding="utf-8"))
+    except json.JSONDecodeError:
+        return {}
+
+
+def collect_metrics(root: Path) -> dict[str, Any]:
+    extension_universe = _load_json_if_exists(root / "audit-reports/extension_universe.json")
+    census = _load_json_if_exists(root / "audit-reports/wptg_filetype_census.json")
+    graduation = _load_json_if_exists(root / "dumpster-dive/forge/tempered/GRADUATION_MANIFEST.json")
+    validator = _load_json_if_exists(root / "audit-reports/extension_contribution_audit.json")
+    ankh_scan = _load_json_if_exists(root / "audit-reports/extension_universe_ankh.json")
+    ankh_census = _load_json_if_exists(root / "audit-reports/wptg_filetype_census_ankh.json")
+
+    return {
+        "codebase_extensions_unique": extension_universe.get("codebase_extensions", {}).get("total_unique", 0),
+        "tracked_files": extension_universe.get("summary", {}).get("tracked_files", 0),
+        "census_verdict": census.get("verdict", "UNKNOWN"),
+        "census_anomaly_count": len(census.get("anomalies", [])),
+        "forge_tempered": graduation.get("artifacts_tempered", 0),
+        "forge_rejected": graduation.get("artifacts_rejected", 0),
+        "validator_verdict": validator.get("verdict", "UNKNOWN"),
+        "validator_errors": validator.get("error_count", 0),
+        "validator_warnings": validator.get("warning_count", 0),
+        "ankh_extensions_unique": ankh_scan.get("codebase_extensions", {}).get("total_unique", 0),
+        "ankh_census_anomalies": len(ankh_census.get("anomalies", [])),
+    }
+
+
+def derive_learning(previous: dict[str, Any], current: dict[str, Any], baseline_mode: bool) -> dict[str, Any]:
+    prev_metrics = previous.get("metrics", {})
+    if baseline_mode or not prev_metrics:
+        return {
+            "deltas": {
+                "census_anomaly_count": 0,
+                "forge_tempered": 0,
+                "validator_errors": 0,
+                "validator_warnings": 0,
+            },
+            "guidance": [
+                "Baseline cycle established; use this snapshot as the default comparison anchor for future runs.",
+                "Forge yield is currently above Tier 2 gate; maintain provenance lanes and promotion discipline.",
+                "Validator warnings are lane-exclusion skips; treat current validator posture as operationally expected.",
+            ],
+        }
+
+    deltas: dict[str, Any] = {}
+    for key in ("census_anomaly_count", "forge_tempered", "validator_errors", "validator_warnings"):
+        prev_value = prev_metrics.get(key, 0)
+        curr_value = current.get(key, 0)
+        deltas[key] = curr_value - prev_value
+
+    guidance: list[str] = []
+    if deltas["census_anomaly_count"] > 0:
+        guidance.append("Anomalies increased; prioritize Part 1 governance proposals before new transmutation waves.")
+    elif deltas["census_anomaly_count"] < 0:
+        guidance.append("Anomalies dropped; preserve the same salvage pathways as canonical cycle defaults.")
+    else:
+        guidance.append("Anomaly count stable; emphasize incremental promotion quality rather than breadth.")
+
+    if current.get("forge_tempered", 0) < 13:
+        guidance.append("Forge yield below Tier 2 gate; run a focused salvage pass before next cycle.")
+    else:
+        guidance.append("Forge yield remains above Tier 2 gate; keep dual-lane furnace/tempered provenance.")
+
+    if current.get("validator_errors", 0) > 0:
+        guidance.append("Validator errors present; block promotions until Part 4 returns zero errors.")
+    elif current.get("validator_warnings", 0) > 0:
+        guidance.append("Validator warnings are lane-exclusion related; treat as expected WARN state.")
+    else:
+        guidance.append("Validator fully clean; allow promotion cadence increase.")
+
+    return {"deltas": deltas, "guidance": guidance}
+
+
+def compute_scoring(root: Path, results: list[dict[str, Any]], metrics: dict[str, Any]) -> dict[str, Any]:
+    penalties = 0.0
+    boon = 0.0
+
+    step_by_id = {result["step_id"]: result for result in results}
+    if step_by_id.get("phase_0_universe", {}).get("status") == "pass":
+        boon += 1.0
+    elif step_by_id.get("phase_0_universe", {}).get("status") == "warn":
+        boon += 0.5
+
+    census_verdict = metrics.get("census_verdict", "UNKNOWN")
+    if census_verdict == "PASS":
+        boon += 2.0
+    elif census_verdict == "WARN":
+        boon += 1.0
+    elif census_verdict == "FAIL":
+        penalties += 1.0
+
+    if metrics.get("forge_tempered", 0) >= 13 and metrics.get("forge_rejected", 0) == 0:
+        boon += 4.0
+    elif metrics.get("forge_tempered", 0) > 0:
+        boon += 1.0
+    else:
+        penalties += 2.0
+
+    oxidized_steps = (
+        "part_3_ankh_scan",
+        "part_3_ankh_census",
+        "part_3_ankh_landscape",
+        "part_3_ankh_eol",
+    )
+    if all(step_by_id.get(step, {}).get("status") == "pass" for step in oxidized_steps):
+        boon += 3.0
+    else:
+        penalties += 1.0
+
+    if metrics.get("validator_errors", 0) == 0:
+        boon += 2.0
+    else:
+        penalties += float(metrics.get("validator_errors", 0))
+
+    warnings = metrics.get("validator_warnings", 0)
+    if warnings:
+        penalties += min(1.0, warnings * 0.1)
+
+    status_bonus = 1.5 if (root / "scripts/recovered_shell_recipe_cli.go").exists() else 0.0
+    boon += status_bonus
+
+    return {
+        "penalty_total": round(penalties, 2),
+        "boon_total": round(boon, 2),
+        "net_score": round(boon - penalties, 2),
+        "components": {
+            "phase_0_boon": 1.0 if step_by_id.get("phase_0_universe", {}).get("status") == "pass" else 0.5,
+            "part_1_verdict": census_verdict,
+            "part_2_tempered": metrics.get("forge_tempered", 0),
+            "part_3_all_passed": all(step_by_id.get(step, {}).get("status") == "pass" for step in oxidized_steps),
+            "part_4_validator_errors": metrics.get("validator_errors", 0),
+            "stage_3_promotion_bonus": status_bonus,
+        },
+    }
+
+
+def cycle_verdict(results: list[dict[str, Any]], metrics: dict[str, Any]) -> str:
+    if any(result["status"] == "fail" and result["critical"] for result in results):
+        return "FAIL"
+    if metrics.get("validator_errors", 0) > 0:
+        return "FAIL"
+    if any(result["status"] == "warn" for result in results):
+        return "WARN"
+    if metrics.get("census_verdict") in {"WARN", "FAIL"}:
+        return "WARN"
+    if metrics.get("validator_warnings", 0) > 0:
+        return "WARN"
+    return "PASS"
+
+
+def build_default_view(cycle_data: dict[str, Any]) -> dict[str, Any]:
+    metrics = cycle_data["metrics"]
+    learning = cycle_data["learning"]
+    score = cycle_data["score"]
+    verdict = cycle_data["verdict"]
+
+    return {
+        "timestamp": now_iso(),
+        "default_mode": "renewal_loop",
+        "cycle_verdict": verdict,
+        "score": score,
+        "status_snapshot": {
+            "extensions_unique": metrics.get("codebase_extensions_unique", 0),
+            "tracked_files": metrics.get("tracked_files", 0),
+            "census_anomalies": metrics.get("census_anomaly_count", 0),
+            "forge_tempered": metrics.get("forge_tempered", 0),
+            "validator_errors": metrics.get("validator_errors", 0),
+            "validator_warnings": metrics.get("validator_warnings", 0),
+        },
+        "learning_guidance": learning["guidance"],
+        "next_cycle_focus": [
+            "Run Phase 0 -> Part 4 in the same ordered contract.",
+            "Preserve lane exclusions as immutable boundaries.",
+            "Use promotion gates only after Part 4 returns zero errors.",
+            "Reassess dedupe policy only after repeated stable downstream adoption.",
+        ],
+    }
+
+
+def render_report(cycle_data: dict[str, Any]) -> str:
+    lines = [
+        "# WPTG Repeatable Cycle Report",
+        "",
+        f"- Timestamp: `{cycle_data['timestamp']}`",
+        f"- Cycle ID: `{cycle_data['cycle_id']}`",
+        f"- Begin Anew Mode: `{cycle_data['begin_anew']}`",
+        f"- Verdict: `{cycle_data['verdict']}`",
+        "",
+        "## Step Results",
+        "",
+        "| Step | Toolchain | Exit | Status | Duration(s) |",
+        "|---|---|---:|---|---:|",
+    ]
+    for result in cycle_data["results"]:
+        lines.append(
+            f"| {result['step_id']} | {result['toolchain']} | {result['exit_code']} | {result['status']} | {result['duration_seconds']:.3f} |"
+        )
+
+    metrics = cycle_data["metrics"]
+    lines.extend(
+        [
+            "",
+            "## Metrics",
+            "",
+            f"- Extensions unique: `{metrics['codebase_extensions_unique']}`",
+            f"- Tracked files: `{metrics['tracked_files']}`",
+            f"- Census verdict/anomalies: `{metrics['census_verdict']}` / `{metrics['census_anomaly_count']}`",
+            f"- Forge tempered/rejected: `{metrics['forge_tempered']}` / `{metrics['forge_rejected']}`",
+            f"- Validator verdict/errors/warnings: `{metrics['validator_verdict']}` / `{metrics['validator_errors']}` / `{metrics['validator_warnings']}`",
+            "",
+            "## Learning Deltas",
+            "",
+        ]
+    )
+    for key, value in cycle_data["learning"]["deltas"].items():
+        lines.append(f"- `{key}` delta: `{value}`")
+
+    lines.extend(["", "## Guidance", ""])
+    for guidance in cycle_data["learning"]["guidance"]:
+        lines.append(f"- {guidance}")
+
+    score = cycle_data["score"]
+    lines.extend(
+        [
+            "",
+            "## Boon/Penalty",
+            "",
+            f"- Boon total: `{score['boon_total']}`",
+            f"- Penalty total: `{score['penalty_total']}`",
+            f"- Net score: `{score['net_score']}`",
+        ]
+    )
+    return "\n".join(lines)
+
+
+def main() -> int:
+    ensure_utf8()
+    parser = argparse.ArgumentParser(description="Execute repeatable WPTG cycle framework.")
+    parser.add_argument(
+        "--begin-anew",
+        action="store_true",
+        help="Start a fresh cycle baseline while preserving prior cycle memory.",
+    )
+    parser.add_argument(
+        "--state-output",
+        type=Path,
+        default=Path("audit-reports/wptg_cycle_state.json"),
+        help="Cycle state JSON output path.",
+    )
+    parser.add_argument(
+        "--default-view-output",
+        type=Path,
+        default=Path("audit-reports/wptg_default_view.json"),
+        help="Default-view JSON output path.",
+    )
+    parser.add_argument(
+        "--report-output",
+        type=Path,
+        default=Path("codex/mailbox/WPTG_REPEATABLE_CYCLE_REPORT.md"),
+        help="Markdown report output path.",
+    )
+    args = parser.parse_args()
+
+    root = repo_root()
+    state_path = root / args.state_output
+    previous_state = _load_json_if_exists(state_path) if state_path.exists() else {}
+
+    previous_cycle_id = int(previous_state.get("cycle_id", 0)) if previous_state else 0
+    cycle_id = 1 if args.begin_anew or previous_cycle_id == 0 else previous_cycle_id + 1
+
+    results = [run_step(root, step) for step in CYCLE_STEPS]
+    metrics = collect_metrics(root)
+    learning = derive_learning(previous_state, metrics, args.begin_anew)
+    score = compute_scoring(root, results, metrics)
+    verdict = cycle_verdict(results, metrics)
+
+    cycle_data = {
+        "timestamp": now_iso(),
+        "cycle_id": cycle_id,
+        "begin_anew": args.begin_anew,
+        "verdict": verdict,
+        "results": results,
+        "metrics": metrics,
+        "learning": learning,
+        "score": score,
+        "previous_cycle_reference": {
+            "cycle_id": previous_state.get("cycle_id"),
+            "verdict": previous_state.get("verdict"),
+            "timestamp": previous_state.get("timestamp"),
+        },
+    }
+
+    default_view = build_default_view(cycle_data)
+
+    write_json(root / args.state_output, cycle_data)
+    write_json(root / args.default_view_output, default_view)
+    write_text(root / args.report_output, render_report(cycle_data))
+
+    print(f"Wrote {args.state_output}")
+    print(f"Wrote {args.default_view_output}")
+    print(f"Wrote {args.report_output}")
+
+    if verdict == "FAIL":
+        return 2
+    if verdict == "WARN":
+        return 1
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())
