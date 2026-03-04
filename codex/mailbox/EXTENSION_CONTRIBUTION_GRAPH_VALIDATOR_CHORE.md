@@ -788,3 +788,54 @@ Maximum theoretical boon (all bonuses): **~40+** — enough to not just erase th
 - `dumpster-dive/corpse-vault/` — ~18,000 fragment+provenance pairs organized by language. The deepest ore deposit, but only ONE source pool — the anomaly harvest from Part 1 is the other.
 - `Cargo.toml` — existing Rust workspace (`chthonic-archive` v0.1.0, edition 2021). `ankh-forge` can be added as a binary target or a separate workspace member.
 - Oxidized tooling precedent: `uv` (Python, Astral), `rv` (Ruby), `goup` (Go) — all installed, all Rust-based, all single-binary. `ankh-forge` must meet this quality bar.
+
+---
+
+## Stage 2 — Post-Parts 0-4 Continuation Strategy
+
+This Stage 2 section records execution evidence for Parts 0-4, validates completion against the original acceptance gates, and defines continuation work after initial delivery.
+
+### Stage 2A — Execution Cross-Reference (Completed Chain)
+
+| Segment | Commit | Status | Evidence |
+|---|---|---|---|
+| Phase 0 — Extension Universe Scanner | `24876ea7` | Complete | `scripts/extension_universe_scanner.py`, `audit-reports/extension_universe.json` |
+| Part 1 — WPTG Filetype Census | `d207d5e3` | Complete | `scripts/wptg_filetype_census.py`, `audit-reports/wptg_filetype_census.json`, `audit-reports/orphaned_artifact_reconciliation.json`, `codex/mailbox/LOG_ARCHAEOLOGY_TRIAGE.md`, `codex/mailbox/WPTG_FILETYPE_GOVERNANCE_PROPOSAL.md` |
+| Part 2 — Universal Forge | `6cf73268` | Complete | `scripts/universal_forge.py`, `dumpster-dive/forge/anvil/*`, `dumpster-dive/forge/furnace/*`, `dumpster-dive/forge/tempered/*`, `dumpster-dive/forge/PATHWAY_REGISTRY.json`, `codex/mailbox/FORGE_TRANSMUTATION_REPORT.md` |
+| Part 3 — Oxidized Tooling Forge | `fd634ffe` | Complete | `tools/ankh-forge/*`, `audit-reports/extension_universe_ankh.json`, `audit-reports/wptg_filetype_census_ankh.json`, `audit-reports/oxidized_tooling_landscape.json`, `audit-reports/oxidized_tooling_eol.json`, `codex/mailbox/OXIDIZED_TOOLING_LANDSCAPE.md` |
+| Part 4 — Extension Contribution Validator | `b126892e` | Complete | `scripts/extension_contribution_audit.py`, `audit-reports/extension_contribution_audit.json`, `audit-reports/extension_contribution_audit.md` |
+
+### Stage 2B — Validation of Follow-up Corrections
+
+Follow-up remediation required by execution review was completed:
+
+- **Tracked furnace C# build artifacts fixed**: `dumpster-dive/forge/furnace/csharp/bin/` and `obj/` were untracked from git index and guarded by `.gitignore`.
+- **Correction commit**: `81ab7569` (`Untrack furnace csharp build artifacts`).
+- **Count validated**: `21` tracked generated files removed from index for these paths.
+- **Remote state**: correction commit pushed to `origin/main`.
+
+### Stage 2C — Current Continuation Plan (After Initial Delivery)
+
+Cross-reference planning artifact:
+
+- `codex/mailbox/EXTENSION_CONTRIBUTION_STAGE_2_PLAN.md`
+
+Continuation priorities:
+
+1. **P1**: verify whether `dumpster-dive/intake/ankh-forge-salvage/` has any required provenance; remove only if confirmed empty/non-required.
+2. **P1**: regression sweep for delivered scripts:
+   - `uv run scripts/extension_universe_scanner.py`
+   - `uv run scripts/wptg_filetype_census.py`
+   - `uv run scripts/universal_forge.py`
+   - `uv run scripts/extension_contribution_audit.py`
+3. **P2**: decide furnace/tempered dedupe strategy while preserving provenance semantics.
+4. **P2**: evaluate and choose promotion disposition for forge recommendations (PowerShell transliteration, Python utility lane, shell recipe book, Go CLI, C# contracts, C FFI header).
+5. **P3**: optionally add `tools/ankh-forge` to root Cargo workspace for root-level build ergonomics.
+
+### Stage 2D — Constraint Carry-Forward
+
+All Stage 2 work remains bound by:
+
+- Lane Exclusion table defined in this chore.
+- WPTG preservation-first governance (`WET_PAPER_TO_GOLD_METHODOLOGY.md`).
+- No-destroy discipline unless explicit user-approved index/provenance operation (e.g., generated build outputs untracking).
