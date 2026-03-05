@@ -1,8 +1,8 @@
 # WPTG Repeatable Cycle Report
 
 - Profile: `WPTG-AMALGAM-RR v1-candidate`
-- Timestamp: `2026-03-05T19:23:53+00:00`
-- Cycle ID: `8`
+- Timestamp: `2026-03-05T19:27:28+00:00`
+- Cycle ID: `9`
 - Begin Anew Mode: `False`
 - Execution Mode: `manual_continuation`
 - Verdict: `WARN`
@@ -27,14 +27,14 @@
 
 | Step | Toolchain | Exit | Status | Duration(s) |
 |---|---|---:|---|---:|
-| phase_0_universe | uv | 0 | pass | 1.923 |
-| part_1_census | uv | 2 | warn | 120.808 |
-| part_2_forge | uv | 0 | pass | 3.411 |
-| part_3_ankh_scan | cargo | 0 | pass | 2.800 |
-| part_3_ankh_census | cargo | 0 | pass | 0.542 |
-| part_3_ankh_landscape | cargo | 0 | pass | 2.127 |
-| part_3_ankh_eol | cargo | 0 | pass | 2.221 |
-| part_3_bun_lane_pulse | bun | 0 | pass | 0.019 |
+| phase_0_universe | uv | 0 | pass | 1.754 |
+| part_1_census | uv | 2 | warn | 119.709 |
+| part_2_forge | uv | 0 | pass | 3.474 |
+| part_3_ankh_scan | cargo | 0 | pass | 2.146 |
+| part_3_ankh_census | cargo | 0 | pass | 0.545 |
+| part_3_ankh_landscape | cargo | 0 | pass | 1.892 |
+| part_3_ankh_eol | cargo | 0 | pass | 1.871 |
+| part_3_bun_lane_pulse | bun | 0 | pass | 0.017 |
 | part_4_validator | uv | 0 | pass | 0.159 |
 
 ## Metrics

@@ -1,7 +1,7 @@
 {
-  "timestamp": "2026-03-05T19:23:53+00:00",
+  "timestamp": "2026-03-05T19:27:28+00:00",
   "profile_name": "WPTG-AMALGAM-RR v1-candidate",
-  "cycle_id": 8,
+  "cycle_id": 9,
   "begin_anew": false,
   "execution_mode": "manual_continuation",
   "verdict": "WARN",
@@ -21,7 +21,7 @@
         1,
         2
       ],
-      "duration_seconds": 1.923,
+      "duration_seconds": 1.754,
       "status": "pass",
       "critical": true,
       "required_outputs": {
@@ -48,7 +48,7 @@
         1,
         2
       ],
-      "duration_seconds": 120.808,
+      "duration_seconds": 119.709,
       "status": "warn",
       "critical": true,
       "required_outputs": {
@@ -85,7 +85,7 @@
       "expected_exit_codes": [
         0
       ],
-      "duration_seconds": 3.411,
+      "duration_seconds": 3.474,
       "status": "pass",
       "critical": true,
       "required_outputs": {
@@ -125,7 +125,7 @@
       "expected_exit_codes": [
         0
       ],
-      "duration_seconds": 2.8,
+      "duration_seconds": 2.146,
       "status": "pass",
       "critical": true,
       "required_outputs": {
@@ -135,7 +135,7 @@
         }
       },
       "stdout_tail": "",
-      "stderr_tail": "Finished `dev` profile [optimized + debuginfo] target(s) in 0.90s\n     Running `target\\debug\\ankh-forge.exe scan --root . --output audit-reports/extension_universe_ankh.json`"
+      "stderr_tail": "Finished `dev` profile [optimized + debuginfo] target(s) in 0.14s\n     Running `target\\debug\\ankh-forge.exe scan --root . --output audit-reports/extension_universe_ankh.json`"
     },
     {
       "step_id": "part_3_ankh_census",
@@ -157,7 +157,7 @@
       "expected_exit_codes": [
         0
       ],
-      "duration_seconds": 0.542,
+      "duration_seconds": 0.545,
       "status": "pass",
       "critical": true,
       "required_outputs": {
@@ -189,7 +189,7 @@
       "expected_exit_codes": [
         0
       ],
-      "duration_seconds": 2.127,
+      "duration_seconds": 1.892,
       "status": "pass",
       "critical": true,
       "required_outputs": {
@@ -219,7 +219,7 @@
       "expected_exit_codes": [
         0
       ],
-      "duration_seconds": 2.221,
+      "duration_seconds": 1.871,
       "status": "pass",
       "critical": true,
       "required_outputs": {
@@ -229,7 +229,7 @@
         }
       },
       "stdout_tail": "",
-      "stderr_tail": "Finished `dev` profile [optimized + debuginfo] target(s) in 0.13s\n     Running `target\\debug\\ankh-forge.exe eol --output audit-reports/oxidized_tooling_eol.json`"
+      "stderr_tail": "Finished `dev` profile [optimized + debuginfo] target(s) in 0.14s\n     Running `target\\debug\\ankh-forge.exe eol --output audit-reports/oxidized_tooling_eol.json`"
     },
     {
       "step_id": "part_3_bun_lane_pulse",
@@ -243,7 +243,7 @@
       "expected_exit_codes": [
         0
       ],
-      "duration_seconds": 0.019,
+      "duration_seconds": 0.017,
       "status": "pass",
       "critical": false,
       "required_outputs": {},
@@ -344,9 +344,9 @@
     }
   },
   "previous_cycle_reference": {
-    "cycle_id": 7,
+    "cycle_id": 8,
     "verdict": "WARN",
-    "timestamp": "2026-03-05T19:20:25+00:00"
+    "timestamp": "2026-03-05T19:23:53+00:00"
   },
   "profile_contract_reference": "audit-reports/wptg_amalgam_rr_v1_candidate_contract.json",
   "promotion_registry_reference": "audit-reports/wptg_promotion_adoption.json",
