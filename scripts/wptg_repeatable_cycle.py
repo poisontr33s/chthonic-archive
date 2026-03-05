@@ -16,6 +16,7 @@ import json
 import re
 import subprocess
 import time
+import urllib.parse
 from collections import Counter
 from dataclasses import dataclass
 from pathlib import Path
@@ -203,19 +204,26 @@ GOVERNANCE_BACKLOG_ANOMALY_TYPES: tuple[str, ...] = (
     "legacy_batch_in_pwsh_repo",
     "orphan_json_candidate",
 )
-MARKDOWN_REFERENCE_CHECK_GLOBS: tuple[str, ...] = (
-    "codex/mailbox/LOG_ARCHAEOLOGY_TRIAGE.md",
-    "codex/mailbox/WPTG_FILETYPE_GOVERNANCE_PROPOSAL.md",
-    "codex/mailbox/FORGE_TRANSMUTATION_REPORT.md",
-    "codex/mailbox/WPTG_REPEATABLE_CYCLE_REPORT.md",
+MARKDOWN_REFERENCE_EXTRA_GLOBS: tuple[str, ...] = (
     "dumpster-dive/forge/furnace/docs/*.md",
     "dumpster-dive/forge/tempered/docs/*.md",
     "dumpster-dive/forge/furnace/workflows/workflow_pattern_catalog.md",
     "dumpster-dive/forge/tempered/workflows/workflow_pattern_catalog.md",
 )
-MARKDOWN_REF_DEF_RE = re.compile(r"^\s*\[([^\]]+)\]:")
+MARKDOWN_REF_DEF_RE = re.compile(r"^\s*\[([^\]]+)\]:\s*(\S+)?")
 MARKDOWN_EXPLICIT_REF_RE = re.compile(r"(?<!\\)\[([^\]]+)\]\[([^\]]*)\]")
 MARKDOWN_SHORTCUT_REF_RE = re.compile(r"(?<!\\)\[([^\[\]\n]+?)\](?!\(|\[|:)")
+MARKDOWN_INLINE_LINK_RE = re.compile(r"(?<!\\)\[[^\]]+\]\(([^)]+)\)")
+INLINE_CODE_RE = re.compile(r"`[^`]*`")
+EXTERNAL_LINK_PREFIXES: tuple[str, ...] = (
+    "http://",
+    "https://",
+    "mailto:",
+    "tel:",
+    "data:",
+    "ftp://",
+    "vscode:",
+)
 
 
 def _output_pre_state(root: Path, outputs: tuple[str, ...]) -> dict[str, float | None]:
@@ -298,13 +306,42 @@ def _load_json_if_exists(path: Path) -> dict[str, Any]:
         return {}
 
 
+def markdown_check_globs() -> tuple[str, ...]:
+    generated_markdown_outputs = {
+        output
+        for step in CYCLE_STEPS
+        for output in step.required_outputs
+        if output.lower().endswith(".md")
+    }
+    return tuple(sorted(generated_markdown_outputs | set(MARKDOWN_REFERENCE_EXTRA_GLOBS)))
+
+
+def _parse_markdown_link_target(raw_target: str) -> str:
+    target = raw_target.strip()
+    if not target:
+        return ""
+    if target.startswith("<") and ">" in target:
+        target = target[1 : target.find(">")].strip()
+    if " " in target:
+        target = target.split(None, 1)[0]
+    return target.strip()
+
+
+def _should_skip_link_target(target: str) -> bool:
+    lowered = target.lower()
+    if not lowered or lowered.startswith("#"):
+        return True
+    return any(lowered.startswith(prefix) for prefix in EXTERNAL_LINK_PREFIXES)
+
+
 def collect_markdown_reference_issues(root: Path) -> dict[str, Any]:
     files: list[Path] = []
-    for pattern in MARKDOWN_REFERENCE_CHECK_GLOBS:
+    for pattern in markdown_check_globs():
         files.extend(path for path in root.glob(pattern) if path.is_file())
     unique_files = sorted({path.resolve() for path in files})
 
-    issues: list[dict[str, Any]] = []
+    reference_issues: list[dict[str, Any]] = []
+    missing_target_issues: list[dict[str, Any]] = []
     for file_path in unique_files:
         try:
             lines = file_path.read_text(encoding="utf-8", errors="replace").splitlines()
@@ -312,6 +349,7 @@ def collect_markdown_reference_issues(root: Path) -> dict[str, Any]:
             continue
 
         definitions: set[str] = set()
+        definition_targets: list[tuple[int, str]] = []
         in_frontmatter = False
         for line_number, line in enumerate(lines, start=1):
             if line_number == 1 and line.strip() == "---":
@@ -325,6 +363,9 @@ def collect_markdown_reference_issues(root: Path) -> dict[str, Any]:
             match = MARKDOWN_REF_DEF_RE.match(line)
             if match:
                 definitions.add(match.group(1).strip().lower())
+                target = _parse_markdown_link_target(match.group(2) or "")
+                if target:
+                    definition_targets.append((line_number, target))
 
         in_fence = False
         in_frontmatter = False
@@ -343,13 +384,13 @@ def collect_markdown_reference_issues(root: Path) -> dict[str, Any]:
             if in_fence:
                 continue
 
-            stripped_inline_code = re.sub(r"`[^`]*`", "", line)
+            stripped_inline_code = INLINE_CODE_RE.sub("", line)
             explicit_seen: set[str] = set()
             for match in MARKDOWN_EXPLICIT_REF_RE.finditer(stripped_inline_code):
                 label = (match.group(2) or match.group(1)).strip().lower()
                 explicit_seen.add(label)
                 if label and label not in definitions:
-                    issues.append(
+                    reference_issues.append(
                         {
                             "path": str(file_path.relative_to(root)).replace("\\", "/"),
                             "line": line_number,
@@ -364,7 +405,7 @@ def collect_markdown_reference_issues(root: Path) -> dict[str, Any]:
                     continue
                 if label in definitions or label in explicit_seen:
                     continue
-                issues.append(
+                reference_issues.append(
                     {
                         "path": str(file_path.relative_to(root)).replace("\\", "/"),
                         "line": line_number,
@@ -372,10 +413,46 @@ def collect_markdown_reference_issues(root: Path) -> dict[str, Any]:
                         "kind": "shortcut_reference",
                     }
                 )
+            for match in MARKDOWN_INLINE_LINK_RE.finditer(stripped_inline_code):
+                target = _parse_markdown_link_target(match.group(1))
+                if _should_skip_link_target(target):
+                    continue
+                target_rel = target.split("#", 1)[0].split("?", 1)[0]
+                if not target_rel:
+                    continue
+                resolved_target = (file_path.parent / urllib.parse.unquote(target_rel)).resolve()
+                if not resolved_target.exists():
+                    missing_target_issues.append(
+                        {
+                            "path": str(file_path.relative_to(root)).replace("\\", "/"),
+                            "line": line_number,
+                            "target": target_rel,
+                            "kind": "missing_link_target",
+                        }
+                    )
+
+        for line_number, target in definition_targets:
+            if _should_skip_link_target(target):
+                continue
+            target_rel = target.split("#", 1)[0].split("?", 1)[0]
+            if not target_rel:
+                continue
+            resolved_target = (file_path.parent / urllib.parse.unquote(target_rel)).resolve()
+            if not resolved_target.exists():
+                missing_target_issues.append(
+                    {
+                        "path": str(file_path.relative_to(root)).replace("\\", "/"),
+                        "line": line_number,
+                        "target": target_rel,
+                        "kind": "missing_reference_target",
+                    }
+                )
 
     return {
-        "count": len(issues),
-        "samples": issues[:30],
+        "count": len(reference_issues) + len(missing_target_issues),
+        "reference_count": len(reference_issues),
+        "path_count": len(missing_target_issues),
+        "samples": (reference_issues + missing_target_issues)[:30],
         "files_scanned": len(unique_files),
     }
 
