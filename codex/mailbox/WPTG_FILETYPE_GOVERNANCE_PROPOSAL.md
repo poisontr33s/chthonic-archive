@@ -2,7 +2,7 @@
 type: proposal
 from: codex
 to: user
-created: 2026-03-05T16:29:51+00:00
+created: 2026-03-05T19:07:52+00:00
 priority: high
 subject: WPTG_FILETYPE_GOVERNANCE_PROPOSAL
 ---

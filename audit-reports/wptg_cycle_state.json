@@ -1,6 +1,7 @@
 {
-  "timestamp": "2026-03-05T16:30:05+00:00",
-  "cycle_id": 2,
+  "timestamp": "2026-03-05T19:08:03+00:00",
+  "profile_name": "WPTG-AMALGAM-RR v1-candidate",
+  "cycle_id": 5,
   "begin_anew": false,
   "execution_mode": "manual_continuation",
   "verdict": "WARN",
@@ -20,7 +21,7 @@
         1,
         2
       ],
-      "duration_seconds": 2.327,
+      "duration_seconds": 1.871,
       "status": "pass",
       "critical": true,
       "required_outputs": {
@@ -47,7 +48,7 @@
         1,
         2
       ],
-      "duration_seconds": 117.099,
+      "duration_seconds": 126.953,
       "status": "warn",
       "critical": true,
       "required_outputs": {
@@ -84,7 +85,7 @@
       "expected_exit_codes": [
         0
       ],
-      "duration_seconds": 4.584,
+      "duration_seconds": 3.53,
       "status": "pass",
       "critical": true,
       "required_outputs": {
@@ -124,7 +125,7 @@
       "expected_exit_codes": [
         0
       ],
-      "duration_seconds": 2.841,
+      "duration_seconds": 2.418,
       "status": "pass",
       "critical": true,
       "required_outputs": {
@@ -134,7 +135,7 @@
         }
       },
       "stdout_tail": "",
-      "stderr_tail": "Finished `dev` profile [optimized + debuginfo] target(s) in 0.16s\n     Running `target\\debug\\ankh-forge.exe scan --root . --output audit-reports/extension_universe_ankh.json`"
+      "stderr_tail": "Finished `dev` profile [optimized + debuginfo] target(s) in 0.17s\n     Running `target\\debug\\ankh-forge.exe scan --root . --output audit-reports/extension_universe_ankh.json`"
     },
     {
       "step_id": "part_3_ankh_census",
@@ -156,7 +157,7 @@
       "expected_exit_codes": [
         0
       ],
-      "duration_seconds": 0.566,
+      "duration_seconds": 0.553,
       "status": "pass",
       "critical": true,
       "required_outputs": {
@@ -188,7 +189,7 @@
       "expected_exit_codes": [
         0
       ],
-      "duration_seconds": 2.951,
+      "duration_seconds": 2.064,
       "status": "pass",
       "critical": true,
       "required_outputs": {
@@ -218,7 +219,7 @@
       "expected_exit_codes": [
         0
       ],
-      "duration_seconds": 2.769,
+      "duration_seconds": 2.026,
       "status": "pass",
       "critical": true,
       "required_outputs": {
@@ -242,7 +243,7 @@
       "expected_exit_codes": [
         0
       ],
-      "duration_seconds": 0.025,
+      "duration_seconds": 0.017,
       "status": "pass",
       "critical": false,
       "required_outputs": {},
@@ -262,7 +263,7 @@
       "expected_exit_codes": [
         0
       ],
-      "duration_seconds": 0.156,
+      "duration_seconds": 0.172,
       "status": "pass",
       "critical": true,
       "required_outputs": {
@@ -280,10 +281,21 @@
     }
   ],
   "metrics": {
+    "profile_name": "WPTG-AMALGAM-RR v1-candidate",
     "codebase_extensions_unique": 51,
-    "tracked_files": 2801,
+    "tracked_files": 2803,
     "census_verdict": "FAIL",
     "census_anomaly_count": 353,
+    "anomaly_type_counts": {
+      "tracked_bytecode": 6,
+      "disabled_by_rename": 7,
+      "tracked_env_surface": 3,
+      "filetype_directory_mismatch": 333,
+      "filename_encoding_damage": 3,
+      "legacy_batch_in_pwsh_repo": 1
+    },
+    "hard_blocker_count": 12,
+    "governance_backlog_count": 341,
     "forge_tempered": 18,
     "forge_rejected": 0,
     "validator_verdict": "WARN",
@@ -293,7 +305,10 @@
     "ankh_census_anomalies": 354,
     "legacy_guard_present": true,
     "legacy_guard_size_bytes": 20113,
-    "legacy_guard_path": "scripts/wpth_repeatable_cycle_LEGACY"
+    "legacy_guard_path": "scripts/wpth_repeatable_cycle_LEGACY",
+    "promotion_recommended": 6,
+    "promotion_promoted": 0,
+    "promotion_ready_for_v1": false
   },
   "learning": {
     "deltas": {
@@ -310,29 +325,139 @@
   },
   "score": {
     "penalty_total": 1.3,
-    "boon_total": 11.5,
-    "net_score": 10.2,
+    "boon_total": 10.0,
+    "net_score": 8.7,
     "components": {
       "phase_0_boon": 1.0,
       "part_1_verdict": "FAIL",
       "part_2_tempered": 18,
       "part_3_all_passed": true,
       "part_4_validator_errors": 0,
-      "stage_3_promotion_bonus": 1.5
+      "stage_3_promotion_bonus": 0.0,
+      "promotions_counted": 0
     }
   },
   "previous_cycle_reference": {
-    "cycle_id": 1,
+    "cycle_id": 4,
     "verdict": "WARN",
-    "timestamp": "2026-03-05T16:18:35+00:00"
+    "timestamp": "2026-03-05T19:04:50+00:00"
   },
+  "profile_contract_reference": "audit-reports/wptg_amalgam_rr_v1_candidate_contract.json",
+  "promotion_registry_reference": "audit-reports/wptg_promotion_adoption.json",
   "restart_readiness": {
     "ready": true,
     "blockers": [],
     "notes": [
       "Census anomalies exist; they are handled via reverse-rarity-first priority.",
+      "Hard blocker anomalies present (12); profile remains WPTG-AMALGAM-RR v1-candidate.",
       "Validator warnings are currently lane-exclusion skips.",
       "Legacy salvage guard preserved: scripts/wpth_repeatable_cycle_LEGACY (20113 bytes)."
+    ]
+  },
+  "gate_model": {
+    "profile_name": "WPTG-AMALGAM-RR v1-candidate",
+    "target_name": "WPTG-AMALGAM-RR v1",
+    "status": "candidate",
+    "ready_for_v1": false,
+    "gates": [
+      {
+        "id": "validator_zero_errors",
+        "passed": true,
+        "value": 0,
+        "required": 0
+      },
+      {
+        "id": "hard_blockers_zero",
+        "passed": false,
+        "value": 12,
+        "required": 0
+      },
+      {
+        "id": "restart_ready",
+        "passed": true,
+        "value": true,
+        "required": true
+      },
+      {
+        "id": "forge_no_rejections",
+        "passed": true,
+        "value": 0,
+        "required": 0
+      },
+      {
+        "id": "stability_two_runs",
+        "passed": true,
+        "value": "matched",
+        "required": "two_consecutive_identical_signatures"
+      },
+      {
+        "id": "promotion_adoption_minimum",
+        "passed": false,
+        "value": 0,
+        "required": 3
+      },
+      {
+        "id": "contract_profile_frozen",
+        "passed": true,
+        "value": "WPTG-AMALGAM-RR v1-candidate",
+        "required": "WPTG-AMALGAM-RR v1-candidate"
+      }
+    ],
+    "blockers": [
+      "hard_blockers_zero",
+      "promotion_adoption_minimum"
+    ],
+    "hard_blocker_types": [
+      "tracked_env_surface",
+      "filename_encoding_damage",
+      "tracked_bytecode"
+    ],
+    "governance_backlog_types": [
+      "filetype_directory_mismatch",
+      "disabled_by_rename",
+      "legacy_batch_in_pwsh_repo",
+      "orphan_json_candidate"
+    ],
+    "promotion_registry_reference": "audit-reports/wptg_promotion_adoption.json",
+    "contract_reference": "audit-reports/wptg_amalgam_rr_v1_candidate_contract.json",
+    "stability_signature": {
+      "census_anomaly_count": 353,
+      "hard_blocker_count": 12,
+      "governance_backlog_count": 341,
+      "forge_tempered": 18,
+      "forge_rejected": 0,
+      "validator_errors": 0,
+      "validator_warnings": 3,
+      "top_extensions": [
+        ".bat",
+        ".cpython-313.pyc",
+        ".off",
+        ".sh",
+        ".md\"",
+        ".env",
+        ".bak",
+        ".db",
+        ".tsbuildinfo",
+        ".woff"
+      ],
+      "top_files": [
+        ".codex/skills/artifact-upcycle/scripts/__pycache__/resolve_directory_relationships.cpython-313.pyc",
+        ".codex/skills/codekiller-remediation-gate/scripts/__pycache__/codekiller_remediation_gate.cpython-313.pyc",
+        ".codex/skills/mailbox-handoff/scripts/__pycache__/mailbox_check.cpython-313.pyc",
+        ".codex/skills/script-envelope/scripts/__pycache__/script_envelope.cpython-313.pyc",
+        ".codex/skills/skill-polisher/scripts/__pycache__/polish_skill.cpython-313.pyc",
+        "dumpster-dive/scripts/__pycache__/audit_deploy_integrity.cpython-313.pyc",
+        "dumpster-dive/intake/claude-ide-harden-2026-02-10/tier-1-direct/claude_process_wrapper.bat",
+        ".github/workflows/claude-code-review.yml.off",
+        ".github/workflows/claude.yml.off",
+        ".github/workflows/gemini-dispatch.yml.off"
+      ]
+    },
+    "additional_findings": [
+      "Dominant anomaly types: filetype_directory_mismatch=333, disabled_by_rename=7, tracked_bytecode=6.",
+      "Backlog pressure is governance-heavy; critical risk concentration is comparatively low.",
+      "Hard blockers remain; keep profile in candidate mode until count reaches zero.",
+      "Promotion adoption shortfall: 0/3 required promoted artifacts."
     ]
   }
 }

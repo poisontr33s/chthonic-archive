@@ -1,7 +1,7 @@
 ---
 sid: FORGE_WORKFLOW_CATALOG_V1
 title: Recovered Workflow Pattern Catalogue
-created: 2026-03-05T16:29:52+00:00
+created: 2026-03-05T19:07:53+00:00
 source_files: [".github/workflows/claude-code-review.yml.off", ".github/workflows/claude.yml.off", ".github/workflows/gemini-dispatch.yml.off", ".github/workflows/gemini-invoke.yml.off", ".github/workflows/gemini-review.yml.off", ".github/workflows/gemini-scheduled-triage.yml.off", ".github/workflows/gemini-triage.yml.off"]
 pathway: workflow.off -> job and action extraction -> pattern catalogue
 kept: Workflow names, jobs, and action versions.

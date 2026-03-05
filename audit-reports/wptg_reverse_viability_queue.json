@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-03-05T16:30:05+00:00",
+  "timestamp": "2026-03-05T19:08:03+00:00",
   "perspective": "reverse_rarity_first",
   "selection_principle": "least_viable_first",
   "extension_priority": [
@@ -555,13 +555,13 @@
     },
     {
       "extension": ".json",
-      "count": 683,
+      "count": 685,
       "anomaly_count": 0,
       "category": "data_config",
       "runtime_supported": true,
-      "rarity_ratio": 0.1936,
-      "viability_score": 0.9032,
-      "reverse_effort_priority": 0.97,
+      "rarity_ratio": 0.1913,
+      "viability_score": 0.9044,
+      "reverse_effort_priority": 0.96,
       "reverse_rank": 51
     },
     {

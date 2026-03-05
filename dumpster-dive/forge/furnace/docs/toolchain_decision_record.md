@@ -1,7 +1,7 @@
 ---
 sid: FORGE_VSCONFIG_DECISION_RECORD_V1
 title: Recovered VS Toolchain Decision Record
-created: 2026-03-05T16:29:52+00:00
+created: 2026-03-05T19:07:53+00:00
 source_files: ["codex/mailbox/SSMS22_ACTUAL_INSTALLED_20260218.vsconfig", "codex/mailbox/VS2026_BUILDTOOLS_EXPORT.vsconfig", "codex/mailbox/VS2026_COMMUNITY_EXPORT.vsconfig", "codex/mailbox/VS_BUILDTOOLS_INSIDERS_ACTUAL_INSTALLED_20260218.vsconfig", "codex/mailbox/VS_PRO_INSIDERS_ACTUAL_INSTALLED_20260218.vsconfig"]
 pathway: vsconfig -> component diff -> decision record
 kept: Shared and divergent Visual Studio workload selections.

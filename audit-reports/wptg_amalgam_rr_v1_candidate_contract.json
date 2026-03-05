@@ -1,0 +1,190 @@
+{
+  "profile_name": "WPTG-AMALGAM-RR v1-candidate",
+  "target_name": "WPTG-AMALGAM-RR v1",
+  "status": "candidate",
+  "phase_contract": [
+    {
+      "step_id": "phase_0_universe",
+      "toolchain": "uv",
+      "command": [
+        "uv",
+        "run",
+        "scripts/extension_universe_scanner.py"
+      ],
+      "expected_exit_codes": [
+        0,
+        1,
+        2
+      ],
+      "critical": true
+    },
+    {
+      "step_id": "part_1_census",
+      "toolchain": "uv",
+      "command": [
+        "uv",
+        "run",
+        "scripts/wptg_filetype_census.py"
+      ],
+      "expected_exit_codes": [
+        0,
+        1,
+        2
+      ],
+      "critical": true
+    },
+    {
+      "step_id": "part_2_forge",
+      "toolchain": "uv",
+      "command": [
+        "uv",
+        "run",
+        "scripts/universal_forge.py"
+      ],
+      "expected_exit_codes": [
+        0
+      ],
+      "critical": true
+    },
+    {
+      "step_id": "part_3_ankh_scan",
+      "toolchain": "cargo",
+      "command": [
+        "cargo",
+        "run",
+        "-p",
+        "ankh-forge",
+        "--",
+        "scan",
+        "--root",
+        ".",
+        "--output",
+        "audit-reports/extension_universe_ankh.json"
+      ],
+      "expected_exit_codes": [
+        0
+      ],
+      "critical": true
+    },
+    {
+      "step_id": "part_3_ankh_census",
+      "toolchain": "cargo",
+      "command": [
+        "cargo",
+        "run",
+        "-p",
+        "ankh-forge",
+        "--",
+        "census",
+        "--root",
+        ".",
+        "--output",
+        "audit-reports/wptg_filetype_census_ankh.json"
+      ],
+      "expected_exit_codes": [
+        0
+      ],
+      "critical": true
+    },
+    {
+      "step_id": "part_3_ankh_landscape",
+      "toolchain": "cargo",
+      "command": [
+        "cargo",
+        "run",
+        "-p",
+        "ankh-forge",
+        "--",
+        "landscape",
+        "--root",
+        ".",
+        "--output",
+        "audit-reports/oxidized_tooling_landscape.json"
+      ],
+      "expected_exit_codes": [
+        0
+      ],
+      "critical": true
+    },
+    {
+      "step_id": "part_3_ankh_eol",
+      "toolchain": "cargo",
+      "command": [
+        "cargo",
+        "run",
+        "-p",
+        "ankh-forge",
+        "--",
+        "eol",
+        "--output",
+        "audit-reports/oxidized_tooling_eol.json"
+      ],
+      "expected_exit_codes": [
+        0
+      ],
+      "critical": true
+    },
+    {
+      "step_id": "part_3_bun_lane_pulse",
+      "toolchain": "bun",
+      "command": [
+        "bun",
+        "--version"
+      ],
+      "expected_exit_codes": [
+        0
+      ],
+      "critical": false
+    },
+    {
+      "step_id": "part_4_validator",
+      "toolchain": "uv",
+      "command": [
+        "uv",
+        "run",
+        "scripts/extension_contribution_audit.py"
+      ],
+      "expected_exit_codes": [
+        0
+      ],
+      "critical": true
+    }
+  ],
+  "score_contract": {
+    "anomaly_weights": {
+      "tracked_bytecode": 2.5,
+      "filename_encoding_damage": 2.3,
+      "tracked_env_surface": 2.2,
+      "orphan_json_candidate": 2.0,
+      "filetype_directory_mismatch": 1.8,
+      "legacy_batch_in_pwsh_repo": 1.6,
+      "disabled_by_rename": 1.5
+    },
+    "minimum_tempered_for_tier2": 13,
+    "required_validator_errors": 0,
+    "promotion_bonus_cap": 1.5
+  },
+  "gate_contract": {
+    "hard_blocker_anomaly_types": [
+      "tracked_env_surface",
+      "filename_encoding_damage",
+      "tracked_bytecode"
+    ],
+    "governance_backlog_anomaly_types": [
+      "filetype_directory_mismatch",
+      "disabled_by_rename",
+      "legacy_batch_in_pwsh_repo",
+      "orphan_json_candidate"
+    ],
+    "minimum_promotions_for_v1": 3,
+    "required_gates": [
+      "validator_zero_errors",
+      "hard_blockers_zero",
+      "restart_ready",
+      "forge_no_rejections",
+      "stability_two_runs",
+      "promotion_adoption_minimum",
+      "contract_profile_frozen"
+    ]
+  }
+}

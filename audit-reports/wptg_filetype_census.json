@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-03-05T16:29:51+00:00",
-  "total_tracked": 2801,
+  "timestamp": "2026-03-05T19:07:52+00:00",
+  "total_tracked": 2803,
   "excluded_lane_files": 68,
-  "audited_files": 2733,
+  "audited_files": 2735,
   "excluded_paths": [
     "extensions/chthonic-archive/themes/chthonic-decorator-color-theme.json",
     "extensions/chthonic-archive/themes/chthonic-file-icon-theme.json",
@@ -165,7 +165,7 @@
       "anomalies": {}
     },
     ".json": {
-      "count": 676,
+      "count": 678,
       "anomalies": {}
     },
     ".jsonl": {
@@ -2763,7 +2763,7 @@
     }
   ],
   "by_gold_tier": {
-    "tier_2_structural": 754,
+    "tier_2_structural": 756,
     "tier_3_conceptual": 906,
     "raw_unrefined": 586,
     "tier_1_direct": 487

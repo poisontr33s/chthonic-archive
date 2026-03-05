@@ -15,6 +15,7 @@ import argparse
 import json
 import subprocess
 import time
+from collections import Counter
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
@@ -183,6 +184,24 @@ ANOMALY_WEIGHTS: dict[str, float] = {
 }
 
 LEGACY_SCRIPT_REL = "scripts/wpth_repeatable_cycle_LEGACY"
+PROFILE_NAME = "WPTG-AMALGAM-RR v1-candidate"
+TARGET_V1_NAME = "WPTG-AMALGAM-RR v1"
+PROFILE_CONTRACT_OUTPUT = Path("audit-reports/wptg_amalgam_rr_v1_candidate_contract.json")
+PROMOTION_REGISTRY_OUTPUT = Path("audit-reports/wptg_promotion_adoption.json")
+MIN_PROMOTED_FOR_V1 = 3
+PROMOTION_LANE_TOKENS: tuple[str, ...] = ("go/", "csharp/", "c_cpp/", "python/", "powershell/")
+PROMOTION_STATUSES: tuple[str, ...] = ("pending", "promoted", "rejected", "deferred")
+HARD_BLOCKER_ANOMALY_TYPES: tuple[str, ...] = (
+    "tracked_env_surface",
+    "filename_encoding_damage",
+    "tracked_bytecode",
+)
+GOVERNANCE_BACKLOG_ANOMALY_TYPES: tuple[str, ...] = (
+    "filetype_directory_mismatch",
+    "disabled_by_rename",
+    "legacy_batch_in_pwsh_repo",
+    "orphan_json_candidate",
+)
 
 
 def _output_pre_state(root: Path, outputs: tuple[str, ...]) -> dict[str, float | None]:
@@ -265,7 +284,106 @@ def _load_json_if_exists(path: Path) -> dict[str, Any]:
         return {}
 
 
-def collect_metrics(root: Path) -> dict[str, Any]:
+def build_profile_contract() -> dict[str, Any]:
+    return {
+        "profile_name": PROFILE_NAME,
+        "target_name": TARGET_V1_NAME,
+        "status": "candidate",
+        "phase_contract": [
+            {
+                "step_id": step.step_id,
+                "toolchain": step.toolchain,
+                "command": list(step.command),
+                "expected_exit_codes": list(step.expected_exit_codes),
+                "critical": step.critical,
+            }
+            for step in CYCLE_STEPS
+        ],
+        "score_contract": {
+            "anomaly_weights": ANOMALY_WEIGHTS,
+            "minimum_tempered_for_tier2": 13,
+            "required_validator_errors": 0,
+            "promotion_bonus_cap": 1.5,
+        },
+        "gate_contract": {
+            "hard_blocker_anomaly_types": list(HARD_BLOCKER_ANOMALY_TYPES),
+            "governance_backlog_anomaly_types": list(GOVERNANCE_BACKLOG_ANOMALY_TYPES),
+            "minimum_promotions_for_v1": MIN_PROMOTED_FOR_V1,
+            "required_gates": [
+                "validator_zero_errors",
+                "hard_blockers_zero",
+                "restart_ready",
+                "forge_no_rejections",
+                "stability_two_runs",
+                "promotion_adoption_minimum",
+                "contract_profile_frozen",
+            ],
+        },
+    }
+
+
+def sync_promotion_registry(root: Path) -> dict[str, Any]:
+    graduation = _load_json_if_exists(root / "dumpster-dive/forge/tempered/GRADUATION_MANIFEST.json")
+    existing = _load_json_if_exists(root / PROMOTION_REGISTRY_OUTPUT)
+
+    recommended_paths = sorted(
+        {
+            str(entry.get("path", ""))
+            for entry in graduation.get("artifacts", [])
+            if entry.get("status") == "tempered"
+            and any(token in str(entry.get("path", "")) for token in PROMOTION_LANE_TOKENS)
+        }
+    )
+
+    existing_map = {
+        str(entry.get("path", "")): entry
+        for entry in existing.get("entries", [])
+        if str(entry.get("path", ""))
+    }
+
+    entries: list[dict[str, Any]] = []
+    for path in recommended_paths:
+        prior = existing_map.get(path, {})
+        status = str(prior.get("status", "pending")).strip().lower()
+        if status not in PROMOTION_STATUSES:
+            status = "pending"
+        entries.append(
+            {
+                "path": path,
+                "status": status,
+                "notes": str(prior.get("notes", "")).strip(),
+            }
+        )
+
+    recommended_set = set(recommended_paths)
+    stale_entries = [
+        entry
+        for old_path, entry in existing_map.items()
+        if old_path and old_path not in recommended_set
+    ]
+
+    promoted = sum(1 for entry in entries if entry["status"] == "promoted")
+    payload = {
+        "profile_name": PROFILE_NAME,
+        "target_name": TARGET_V1_NAME,
+        "required_promotions_for_v1": MIN_PROMOTED_FOR_V1,
+        "summary": {
+            "recommended": len(entries),
+            "promoted": promoted,
+            "pending": sum(1 for entry in entries if entry["status"] == "pending"),
+            "deferred": sum(1 for entry in entries if entry["status"] == "deferred"),
+            "rejected": sum(1 for entry in entries if entry["status"] == "rejected"),
+            "ready_for_v1": promoted >= MIN_PROMOTED_FOR_V1,
+        },
+        "entries": entries,
+        "stale_entries": stale_entries,
+        "status_enum": list(PROMOTION_STATUSES),
+    }
+    write_json(root / PROMOTION_REGISTRY_OUTPUT, payload)
+    return payload
+
+
+def collect_metrics(root: Path, promotion_registry: dict[str, Any]) -> dict[str, Any]:
     extension_universe = _load_json_if_exists(root / "audit-reports/extension_universe.json")
     census = _load_json_if_exists(root / "audit-reports/wptg_filetype_census.json")
     graduation = _load_json_if_exists(root / "dumpster-dive/forge/tempered/GRADUATION_MANIFEST.json")
@@ -275,12 +393,19 @@ def collect_metrics(root: Path) -> dict[str, Any]:
     legacy_path = root / LEGACY_SCRIPT_REL
     legacy_present = legacy_path.exists()
     legacy_size = legacy_path.stat().st_size if legacy_present else 0
+    anomaly_counts = Counter(str(entry.get("type", "unknown")) for entry in census.get("anomalies", []))
+    hard_blocker_count = sum(anomaly_counts.get(kind, 0) for kind in HARD_BLOCKER_ANOMALY_TYPES)
+    governance_backlog_count = sum(anomaly_counts.get(kind, 0) for kind in GOVERNANCE_BACKLOG_ANOMALY_TYPES)
 
     return {
+        "profile_name": PROFILE_NAME,
         "codebase_extensions_unique": extension_universe.get("codebase_extensions", {}).get("total_unique", 0),
         "tracked_files": extension_universe.get("summary", {}).get("tracked_files", 0),
         "census_verdict": census.get("verdict", "UNKNOWN"),
         "census_anomaly_count": len(census.get("anomalies", [])),
+        "anomaly_type_counts": dict(anomaly_counts),
+        "hard_blocker_count": hard_blocker_count,
+        "governance_backlog_count": governance_backlog_count,
         "forge_tempered": graduation.get("artifacts_tempered", 0),
         "forge_rejected": graduation.get("artifacts_rejected", 0),
         "validator_verdict": validator.get("verdict", "UNKNOWN"),
@@ -291,6 +416,9 @@ def collect_metrics(root: Path) -> dict[str, Any]:
         "legacy_guard_present": legacy_present,
         "legacy_guard_size_bytes": legacy_size,
         "legacy_guard_path": LEGACY_SCRIPT_REL,
+        "promotion_recommended": promotion_registry.get("summary", {}).get("recommended", 0),
+        "promotion_promoted": promotion_registry.get("summary", {}).get("promoted", 0),
+        "promotion_ready_for_v1": promotion_registry.get("summary", {}).get("ready_for_v1", False),
     }
 
 
@@ -338,7 +466,113 @@ def derive_learning(previous: dict[str, Any], current: dict[str, Any], baseline_
     return {"deltas": deltas, "guidance": guidance}
 
 
-def compute_scoring(root: Path, results: list[dict[str, Any]], metrics: dict[str, Any]) -> dict[str, Any]:
+def build_stability_signature(metrics: dict[str, Any], reverse_queue: dict[str, Any]) -> dict[str, Any]:
+    top_extensions = [row.get("extension", "") for row in reverse_queue.get("extension_priority", [])[:10]]
+    top_files = [row.get("path", "") for row in reverse_queue.get("file_priority", [])[:10]]
+    return {
+        "census_anomaly_count": int(metrics.get("census_anomaly_count", 0)),
+        "hard_blocker_count": int(metrics.get("hard_blocker_count", 0)),
+        "governance_backlog_count": int(metrics.get("governance_backlog_count", 0)),
+        "forge_tempered": int(metrics.get("forge_tempered", 0)),
+        "forge_rejected": int(metrics.get("forge_rejected", 0)),
+        "validator_errors": int(metrics.get("validator_errors", 0)),
+        "validator_warnings": int(metrics.get("validator_warnings", 0)),
+        "top_extensions": top_extensions,
+        "top_files": top_files,
+    }
+
+
+def evaluate_gate_model(
+    cycle_data: dict[str, Any],
+    previous_state: dict[str, Any],
+    reverse_queue: dict[str, Any],
+    contract_profile: dict[str, Any],
+) -> dict[str, Any]:
+    metrics = cycle_data["metrics"]
+    restart_ready = bool(cycle_data.get("restart_readiness", {}).get("ready", False))
+    current_signature = build_stability_signature(metrics, reverse_queue)
+    previous_signature = previous_state.get("gate_model", {}).get("stability_signature")
+    stability_ok = bool(previous_signature) and previous_signature == current_signature
+
+    gates = [
+        {
+            "id": "validator_zero_errors",
+            "passed": metrics.get("validator_errors", 0) == 0,
+            "value": metrics.get("validator_errors", 0),
+            "required": 0,
+        },
+        {
+            "id": "hard_blockers_zero",
+            "passed": metrics.get("hard_blocker_count", 0) == 0,
+            "value": metrics.get("hard_blocker_count", 0),
+            "required": 0,
+        },
+        {
+            "id": "restart_ready",
+            "passed": restart_ready,
+            "value": restart_ready,
+            "required": True,
+        },
+        {
+            "id": "forge_no_rejections",
+            "passed": metrics.get("forge_rejected", 0) == 0,
+            "value": metrics.get("forge_rejected", 0),
+            "required": 0,
+        },
+        {
+            "id": "stability_two_runs",
+            "passed": stability_ok,
+            "value": "matched" if stability_ok else "mismatch_or_missing_previous_signature",
+            "required": "two_consecutive_identical_signatures",
+        },
+        {
+            "id": "promotion_adoption_minimum",
+            "passed": metrics.get("promotion_promoted", 0) >= MIN_PROMOTED_FOR_V1,
+            "value": metrics.get("promotion_promoted", 0),
+            "required": MIN_PROMOTED_FOR_V1,
+        },
+        {
+            "id": "contract_profile_frozen",
+            "passed": contract_profile.get("profile_name") == PROFILE_NAME,
+            "value": contract_profile.get("profile_name"),
+            "required": PROFILE_NAME,
+        },
+    ]
+    blockers = [gate["id"] for gate in gates if not gate["passed"]]
+
+    anomaly_counts = metrics.get("anomaly_type_counts", {})
+    dominant_anomalies = sorted(anomaly_counts.items(), key=lambda item: (-item[1], item[0]))[:3]
+    findings: list[str] = []
+    if dominant_anomalies:
+        rendered = ", ".join(f"{name}={count}" for name, count in dominant_anomalies)
+        findings.append(f"Dominant anomaly types: {rendered}.")
+    if metrics.get("governance_backlog_count", 0) > metrics.get("hard_blocker_count", 0):
+        findings.append("Backlog pressure is governance-heavy; critical risk concentration is comparatively low.")
+    if metrics.get("hard_blocker_count", 0) > 0:
+        findings.append("Hard blockers remain; keep profile in candidate mode until count reaches zero.")
+    promoted = metrics.get("promotion_promoted", 0)
+    if promoted < MIN_PROMOTED_FOR_V1:
+        findings.append(
+            f"Promotion adoption shortfall: {promoted}/{MIN_PROMOTED_FOR_V1} required promoted artifacts."
+        )
+
+    return {
+        "profile_name": PROFILE_NAME,
+        "target_name": TARGET_V1_NAME,
+        "status": "candidate",
+        "ready_for_v1": not blockers,
+        "gates": gates,
+        "blockers": blockers,
+        "hard_blocker_types": list(HARD_BLOCKER_ANOMALY_TYPES),
+        "governance_backlog_types": list(GOVERNANCE_BACKLOG_ANOMALY_TYPES),
+        "promotion_registry_reference": str(PROMOTION_REGISTRY_OUTPUT).replace("\\", "/"),
+        "contract_reference": str(PROFILE_CONTRACT_OUTPUT).replace("\\", "/"),
+        "stability_signature": current_signature,
+        "additional_findings": findings,
+    }
+
+
+def compute_scoring(results: list[dict[str, Any]], metrics: dict[str, Any]) -> dict[str, Any]:
     penalties = 0.0
     boon = 0.0
 
@@ -383,7 +617,8 @@ def compute_scoring(root: Path, results: list[dict[str, Any]], metrics: dict[str
     if warnings:
         penalties += min(1.0, warnings * 0.1)
 
-    promotion_bonus = 1.5 if (root / "scripts/recovered_shell_recipe_cli.go").exists() else 0.0
+    promoted_count = int(metrics.get("promotion_promoted", 0))
+    promotion_bonus = min(1.5, promoted_count * 0.5)
     boon += promotion_bonus
 
     return {
@@ -397,6 +632,7 @@ def compute_scoring(root: Path, results: list[dict[str, Any]], metrics: dict[str
             "part_3_all_passed": all(step_by_id.get(step, {}).get("status") == "pass" for step in oxidized_steps),
             "part_4_validator_errors": metrics.get("validator_errors", 0),
             "stage_3_promotion_bonus": promotion_bonus,
+            "promotions_counted": promoted_count,
         },
     }
 
@@ -439,6 +675,10 @@ def assess_restart_readiness(snapshot: dict[str, Any]) -> dict[str, Any]:
 
     if metrics.get("census_anomaly_count", 0) > 0:
         notes.append("Census anomalies exist; they are handled via reverse-rarity-first priority.")
+    if metrics.get("hard_blocker_count", 0) > 0:
+        notes.append(
+            f"Hard blocker anomalies present ({metrics.get('hard_blocker_count', 0)}); profile remains {PROFILE_NAME}."
+        )
     if metrics.get("validator_warnings", 0) > 0:
         notes.append("Validator warnings are currently lane-exclusion skips.")
     if metrics.get("legacy_guard_present", False):
@@ -545,23 +785,35 @@ def build_default_view(
 
     return {
         "timestamp": now_iso(),
+        "profile_name": PROFILE_NAME,
         "default_mode": "renewal_loop_reverse_rarity_first",
         "cycle_verdict": verdict,
         "score": score,
         "restart_readiness": cycle_data["restart_readiness"],
+        "gate_model": {
+            "status": cycle_data.get("gate_model", {}).get("status", "candidate"),
+            "ready_for_v1": cycle_data.get("gate_model", {}).get("ready_for_v1", False),
+            "blockers": cycle_data.get("gate_model", {}).get("blockers", []),
+        },
         "status_snapshot": {
             "extensions_unique": metrics.get("codebase_extensions_unique", 0),
             "tracked_files": metrics.get("tracked_files", 0),
             "census_anomalies": metrics.get("census_anomaly_count", 0),
+            "hard_blockers": metrics.get("hard_blocker_count", 0),
+            "governance_backlog": metrics.get("governance_backlog_count", 0),
             "forge_tempered": metrics.get("forge_tempered", 0),
             "validator_errors": metrics.get("validator_errors", 0),
             "validator_warnings": metrics.get("validator_warnings", 0),
+            "promotion_recommended": metrics.get("promotion_recommended", 0),
+            "promotion_promoted": metrics.get("promotion_promoted", 0),
         },
         "legacy_guard": {
             "path": metrics.get("legacy_guard_path", LEGACY_SCRIPT_REL),
             "present": bool(metrics.get("legacy_guard_present", False)),
             "size_bytes": int(metrics.get("legacy_guard_size_bytes", 0)),
         },
+        "contract_reference": str(PROFILE_CONTRACT_OUTPUT).replace("\\", "/"),
+        "promotion_registry_reference": str(PROMOTION_REGISTRY_OUTPUT).replace("\\", "/"),
         "reverse_priority_reference": str(reverse_output_path).replace("\\", "/"),
         "reverse_priority_top_extensions": top_extensions,
         "reverse_priority_top_files": top_files,
@@ -579,6 +831,7 @@ def render_report(cycle_data: dict[str, Any], reverse_queue: dict[str, Any], rep
     lines = [
         "# WPTG Repeatable Cycle Report",
         "",
+        f"- Profile: `{PROFILE_NAME}`",
         f"- Timestamp: `{cycle_data['timestamp']}`",
         f"- Cycle ID: `{cycle_data['cycle_id']}`",
         f"- Begin Anew Mode: `{cycle_data['begin_anew']}`",
@@ -635,8 +888,37 @@ def render_report(cycle_data: dict[str, Any], reverse_queue: dict[str, Any], rep
             f"- Extensions unique: `{metrics['codebase_extensions_unique']}`",
             f"- Tracked files: `{metrics['tracked_files']}`",
             f"- Census verdict/anomalies: `{metrics['census_verdict']}` / `{metrics['census_anomaly_count']}`",
+            f"- Hard blockers/governance backlog: `{metrics['hard_blocker_count']}` / `{metrics['governance_backlog_count']}`",
             f"- Forge tempered/rejected: `{metrics['forge_tempered']}` / `{metrics['forge_rejected']}`",
             f"- Validator verdict/errors/warnings: `{metrics['validator_verdict']}` / `{metrics['validator_errors']}` / `{metrics['validator_warnings']}`",
+            f"- Promotion recommended/promoted: `{metrics['promotion_recommended']}` / `{metrics['promotion_promoted']}`",
+            "",
+            "## Candidate Gates",
+            "",
+        ]
+    )
+    gate_model = cycle_data.get("gate_model", {})
+    lines.extend(
+        [
+            f"- Ready for {TARGET_V1_NAME}: `{gate_model.get('ready_for_v1', False)}`",
+            "",
+            "| Gate | Passed | Value | Required |",
+            "|---|---|---|---|",
+        ]
+    )
+    for gate in gate_model.get("gates", []):
+        lines.append(f"| {gate['id']} | {gate['passed']} | `{gate['value']}` | `{gate['required']}` |")
+    if gate_model.get("blockers"):
+        lines.append("")
+        lines.append("- Blocking gates:")
+        lines.extend(f"  - `{gate_id}`" for gate_id in gate_model["blockers"])
+    if gate_model.get("additional_findings"):
+        lines.append("")
+        lines.append("- Additional findings:")
+        lines.extend(f"  - {finding}" for finding in gate_model["additional_findings"])
+
+    lines.extend(
+        [
             "",
             "## Reverse-Rarity Priority (Top 10 Extensions)",
             "",
@@ -697,13 +979,17 @@ def execute_single_cycle(
     cycle_id = 1 if begin_anew or previous_cycle_id == 0 else previous_cycle_id + 1
 
     results = [run_step(root, step) for step in CYCLE_STEPS]
-    metrics = collect_metrics(root)
+    contract_profile = build_profile_contract()
+    write_json(root / PROFILE_CONTRACT_OUTPUT, contract_profile)
+    promotion_registry = sync_promotion_registry(root)
+    metrics = collect_metrics(root, promotion_registry)
     learning = derive_learning(previous_state, metrics, begin_anew)
-    score = compute_scoring(root, results, metrics)
+    score = compute_scoring(results, metrics)
     verdict = cycle_verdict(results, metrics)
 
     cycle_data = {
         "timestamp": now_iso(),
+        "profile_name": PROFILE_NAME,
         "cycle_id": cycle_id,
         "begin_anew": begin_anew,
         "execution_mode": execution_mode,
@@ -717,10 +1003,13 @@ def execute_single_cycle(
             "verdict": previous_state.get("verdict"),
             "timestamp": previous_state.get("timestamp"),
         },
+        "profile_contract_reference": str(PROFILE_CONTRACT_OUTPUT).replace("\\", "/"),
+        "promotion_registry_reference": str(PROMOTION_REGISTRY_OUTPUT).replace("\\", "/"),
     }
     cycle_data["restart_readiness"] = assess_restart_readiness(cycle_data)
 
     reverse_queue = build_reverse_viability_queue(root, limit=args.reverse_limit)
+    cycle_data["gate_model"] = evaluate_gate_model(cycle_data, previous_state, reverse_queue, contract_profile)
     default_view = build_default_view(cycle_data, reverse_queue, args.reverse_output)
 
     write_json(root / args.state_output, cycle_data)
@@ -732,6 +1021,8 @@ def execute_single_cycle(
     print(f"Wrote {args.default_view_output}")
     print(f"Wrote {args.reverse_output}")
     print(f"Wrote {args.report_output}")
+    print(f"Wrote {PROFILE_CONTRACT_OUTPUT}")
+    print(f"Wrote {PROMOTION_REGISTRY_OUTPUT}")
     return cycle_data
 
 

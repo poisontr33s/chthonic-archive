@@ -1,0 +1,52 @@
+{
+  "profile_name": "WPTG-AMALGAM-RR v1-candidate",
+  "target_name": "WPTG-AMALGAM-RR v1",
+  "required_promotions_for_v1": 3,
+  "summary": {
+    "recommended": 6,
+    "promoted": 0,
+    "pending": 6,
+    "deferred": 0,
+    "rejected": 0,
+    "ready_for_v1": false
+  },
+  "entries": [
+    {
+      "path": "dumpster-dive/forge/tempered/c_cpp/recovered_rust_ffi.h",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "path": "dumpster-dive/forge/tempered/csharp/RecoveredContracts.cs",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "path": "dumpster-dive/forge/tempered/go/recovered_shell_recipe_cli.go",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "path": "dumpster-dive/forge/tempered/powershell/batch_transliteration.ps1",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "path": "dumpster-dive/forge/tempered/powershell/recovered_shell_recipe_book.ps1",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "path": "dumpster-dive/forge/tempered/python/consolidated_python_utilities.py",
+      "status": "pending",
+      "notes": ""
+    }
+  ],
+  "stale_entries": [],
+  "status_enum": [
+    "pending",
+    "promoted",
+    "rejected",
+    "deferred"
+  ]
+}

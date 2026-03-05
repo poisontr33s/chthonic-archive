@@ -1,18 +1,20 @@
 {
-  "timestamp": "2026-03-05T16:30:05+00:00",
+  "timestamp": "2026-03-05T19:08:03+00:00",
+  "profile_name": "WPTG-AMALGAM-RR v1-candidate",
   "default_mode": "renewal_loop_reverse_rarity_first",
   "cycle_verdict": "WARN",
   "score": {
     "penalty_total": 1.3,
-    "boon_total": 11.5,
-    "net_score": 10.2,
+    "boon_total": 10.0,
+    "net_score": 8.7,
     "components": {
       "phase_0_boon": 1.0,
       "part_1_verdict": "FAIL",
       "part_2_tempered": 18,
       "part_3_all_passed": true,
       "part_4_validator_errors": 0,
-      "stage_3_promotion_bonus": 1.5
+      "stage_3_promotion_bonus": 0.0,
+      "promotions_counted": 0
     }
   },
   "restart_readiness": {
@@ -20,23 +22,38 @@
     "blockers": [],
     "notes": [
       "Census anomalies exist; they are handled via reverse-rarity-first priority.",
+      "Hard blocker anomalies present (12); profile remains WPTG-AMALGAM-RR v1-candidate.",
       "Validator warnings are currently lane-exclusion skips.",
       "Legacy salvage guard preserved: scripts/wpth_repeatable_cycle_LEGACY (20113 bytes)."
     ]
   },
+  "gate_model": {
+    "status": "candidate",
+    "ready_for_v1": false,
+    "blockers": [
+      "hard_blockers_zero",
+      "promotion_adoption_minimum"
+    ]
+  },
   "status_snapshot": {
     "extensions_unique": 51,
-    "tracked_files": 2801,
+    "tracked_files": 2803,
     "census_anomalies": 353,
+    "hard_blockers": 12,
+    "governance_backlog": 341,
     "forge_tempered": 18,
     "validator_errors": 0,
-    "validator_warnings": 3
+    "validator_warnings": 3,
+    "promotion_recommended": 6,
+    "promotion_promoted": 0
   },
   "legacy_guard": {
     "path": "scripts/wpth_repeatable_cycle_LEGACY",
     "present": true,
     "size_bytes": 20113
   },
+  "contract_reference": "audit-reports/wptg_amalgam_rr_v1_candidate_contract.json",
+  "promotion_registry_reference": "audit-reports/wptg_promotion_adoption.json",
   "reverse_priority_reference": "audit-reports/wptg_reverse_viability_queue.json",
   "reverse_priority_top_extensions": [
     {

@@ -1,7 +1,7 @@
 ---
 sid: FORGE_ENVIRONMENT_MAP_V1
 title: Recovered Environment Integration Map
-created: 2026-03-05T16:29:52+00:00
+created: 2026-03-05T19:07:53+00:00
 source_files: ["claude-codex-gemini/session_resumption_pickup/UNCENSORED_LANE_RUNTIME_20260219_231721.env", "claude-codex-gemini/session_resumption_pickup/UNCENSORED_LANE_RUNTIME_LATEST.env", "codex/mailbox/API_KEY_ENV_TEMPLATE_20260226T045112Z.env", "mas_mcp/frontend/.env"]
 pathway: env -> service hint extraction -> integration map
 kept: Variable names, sample shapes, and secret/config classification.
