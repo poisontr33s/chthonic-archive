@@ -184,6 +184,7 @@
       "forge_no_rejections",
       "stability_two_runs",
       "promotion_adoption_minimum",
+      "generated_markdown_reference_clean",
       "contract_profile_frozen"
     ]
   }

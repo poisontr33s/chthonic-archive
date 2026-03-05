@@ -398,6 +398,8 @@ TEXTLIKE_SUFFIXES: set[str] = {
     ".yml",
 }
 
+SHORTCUT_REFERENCE_RE = re.compile(r"(?<!\\)\[([^\[\]\n]+?)\](?!\(|\[|:)")
+
 
 RUNTIME_VERSION_RE = re.compile(r"(?P<version>\d+(?:\.\d+){0,3})")
 
@@ -586,6 +588,26 @@ def write_json(path: Path, payload: Any) -> None:
 def write_text(path: Path, content: str) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(content.rstrip() + "\n", encoding="utf-8")
+
+
+def escape_markdown_shortcut_references(text: str) -> str:
+    if not text:
+        return text
+    segments = re.split(r"(`[^`]*`)", text)
+    escaped: list[str] = []
+    for index, segment in enumerate(segments):
+        if index % 2 == 1:
+            escaped.append(segment)
+            continue
+        def _escape_match(match: re.Match[str]) -> str:
+            label = match.group(1)
+            stripped = label.strip()
+            if not stripped or stripped in {"x", "X"}:
+                return match.group(0)
+            return f"\\[{label}\\]"
+
+        escaped.append(SHORTCUT_REFERENCE_RE.sub(_escape_match, segment))
+    return "".join(escaped)
 
 
 def discover_toolchains() -> dict[str, ToolchainProbe]:

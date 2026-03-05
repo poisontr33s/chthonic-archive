@@ -24,6 +24,7 @@ from pathlib import Path
 from typing import Any
 
 from scripts.wptg_common import (
+    escape_markdown_shortcut_references,
     ensure_utf8,
     json_load,
     markdown_path_link,
@@ -499,11 +500,11 @@ def recover_markdown_decisions(records: list[FragmentRecord], limit: int = 18) -
             match = MARKDOWN_HEADING_RE.match(line)
             if not match:
                 continue
-            heading = match.group(1).strip()
+            heading = escape_markdown_shortcut_references(match.group(1).strip())
             if heading in seen:
                 continue
             body_lines = [
-                candidate.strip()
+                escape_markdown_shortcut_references(candidate.strip())
                 for candidate in lines[index + 1:index + 5]
                 if candidate.strip() and not candidate.startswith("#")
             ]
@@ -656,7 +657,8 @@ def build_artifacts(census: dict[str, Any], orphan_data: dict[str, Any], corpse_
     )
     diagnostic_body += "# Recovered Diagnostic Playbook\n\n## Top Failure Signatures\n\n"
     for pattern in log_patterns[:30]:
-        diagnostic_body += f"- `{pattern_counts.get(pattern, 0)}x` {pattern}\n"
+        sanitized_pattern = escape_markdown_shortcut_references(pattern)
+        diagnostic_body += f"- `{pattern_counts.get(pattern, 0)}x` {sanitized_pattern}\n"
     diagnostic_body += "\n## Recovery Notes\n\n"
     diagnostic_body += "- Renderer crashes and shared image memory failures cluster around VS Code Insiders GPU and telemetry lanes.\n"
     diagnostic_body += "- Shell integration capability timeouts recur across the terminal triage captures.\n"

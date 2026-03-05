@@ -13,6 +13,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import re
 import subprocess
 import time
 from collections import Counter
@@ -202,6 +203,19 @@ GOVERNANCE_BACKLOG_ANOMALY_TYPES: tuple[str, ...] = (
     "legacy_batch_in_pwsh_repo",
     "orphan_json_candidate",
 )
+MARKDOWN_REFERENCE_CHECK_GLOBS: tuple[str, ...] = (
+    "codex/mailbox/LOG_ARCHAEOLOGY_TRIAGE.md",
+    "codex/mailbox/WPTG_FILETYPE_GOVERNANCE_PROPOSAL.md",
+    "codex/mailbox/FORGE_TRANSMUTATION_REPORT.md",
+    "codex/mailbox/WPTG_REPEATABLE_CYCLE_REPORT.md",
+    "dumpster-dive/forge/furnace/docs/*.md",
+    "dumpster-dive/forge/tempered/docs/*.md",
+    "dumpster-dive/forge/furnace/workflows/workflow_pattern_catalog.md",
+    "dumpster-dive/forge/tempered/workflows/workflow_pattern_catalog.md",
+)
+MARKDOWN_REF_DEF_RE = re.compile(r"^\s*\[([^\]]+)\]:")
+MARKDOWN_EXPLICIT_REF_RE = re.compile(r"(?<!\\)\[([^\]]+)\]\[([^\]]*)\]")
+MARKDOWN_SHORTCUT_REF_RE = re.compile(r"(?<!\\)\[([^\[\]\n]+?)\](?!\(|\[|:)")
 
 
 def _output_pre_state(root: Path, outputs: tuple[str, ...]) -> dict[str, float | None]:
@@ -284,6 +298,88 @@ def _load_json_if_exists(path: Path) -> dict[str, Any]:
         return {}
 
 
+def collect_markdown_reference_issues(root: Path) -> dict[str, Any]:
+    files: list[Path] = []
+    for pattern in MARKDOWN_REFERENCE_CHECK_GLOBS:
+        files.extend(path for path in root.glob(pattern) if path.is_file())
+    unique_files = sorted({path.resolve() for path in files})
+
+    issues: list[dict[str, Any]] = []
+    for file_path in unique_files:
+        try:
+            lines = file_path.read_text(encoding="utf-8", errors="replace").splitlines()
+        except OSError:
+            continue
+
+        definitions: set[str] = set()
+        in_frontmatter = False
+        for line_number, line in enumerate(lines, start=1):
+            if line_number == 1 and line.strip() == "---":
+                in_frontmatter = True
+                continue
+            if in_frontmatter and line.strip() == "---":
+                in_frontmatter = False
+                continue
+            if in_frontmatter:
+                continue
+            match = MARKDOWN_REF_DEF_RE.match(line)
+            if match:
+                definitions.add(match.group(1).strip().lower())
+
+        in_fence = False
+        in_frontmatter = False
+        for line_number, line in enumerate(lines, start=1):
+            if line_number == 1 and line.strip() == "---":
+                in_frontmatter = True
+                continue
+            if in_frontmatter and line.strip() == "---":
+                in_frontmatter = False
+                continue
+            if in_frontmatter:
+                continue
+            if line.strip().startswith("```"):
+                in_fence = not in_fence
+                continue
+            if in_fence:
+                continue
+
+            stripped_inline_code = re.sub(r"`[^`]*`", "", line)
+            explicit_seen: set[str] = set()
+            for match in MARKDOWN_EXPLICIT_REF_RE.finditer(stripped_inline_code):
+                label = (match.group(2) or match.group(1)).strip().lower()
+                explicit_seen.add(label)
+                if label and label not in definitions:
+                    issues.append(
+                        {
+                            "path": str(file_path.relative_to(root)).replace("\\", "/"),
+                            "line": line_number,
+                            "label": label,
+                            "kind": "explicit_reference",
+                        }
+                    )
+
+            for match in MARKDOWN_SHORTCUT_REF_RE.finditer(stripped_inline_code):
+                label = match.group(1).strip().lower()
+                if not label or label in {"x"}:
+                    continue
+                if label in definitions or label in explicit_seen:
+                    continue
+                issues.append(
+                    {
+                        "path": str(file_path.relative_to(root)).replace("\\", "/"),
+                        "line": line_number,
+                        "label": label,
+                        "kind": "shortcut_reference",
+                    }
+                )
+
+    return {
+        "count": len(issues),
+        "samples": issues[:30],
+        "files_scanned": len(unique_files),
+    }
+
+
 def build_profile_contract() -> dict[str, Any]:
     return {
         "profile_name": PROFILE_NAME,
@@ -316,6 +412,7 @@ def build_profile_contract() -> dict[str, Any]:
                 "forge_no_rejections",
                 "stability_two_runs",
                 "promotion_adoption_minimum",
+                "generated_markdown_reference_clean",
                 "contract_profile_frozen",
             ],
         },
@@ -383,7 +480,11 @@ def sync_promotion_registry(root: Path) -> dict[str, Any]:
     return payload
 
 
-def collect_metrics(root: Path, promotion_registry: dict[str, Any]) -> dict[str, Any]:
+def collect_metrics(
+    root: Path,
+    promotion_registry: dict[str, Any],
+    markdown_reference_report: dict[str, Any],
+) -> dict[str, Any]:
     extension_universe = _load_json_if_exists(root / "audit-reports/extension_universe.json")
     census = _load_json_if_exists(root / "audit-reports/wptg_filetype_census.json")
     graduation = _load_json_if_exists(root / "dumpster-dive/forge/tempered/GRADUATION_MANIFEST.json")
@@ -419,6 +520,9 @@ def collect_metrics(root: Path, promotion_registry: dict[str, Any]) -> dict[str,
         "promotion_recommended": promotion_registry.get("summary", {}).get("recommended", 0),
         "promotion_promoted": promotion_registry.get("summary", {}).get("promoted", 0),
         "promotion_ready_for_v1": promotion_registry.get("summary", {}).get("ready_for_v1", False),
+        "markdown_reference_issue_count": markdown_reference_report.get("count", 0),
+        "markdown_reference_issue_samples": markdown_reference_report.get("samples", []),
+        "markdown_reference_files_scanned": markdown_reference_report.get("files_scanned", 0),
     }
 
 
@@ -431,6 +535,7 @@ def derive_learning(previous: dict[str, Any], current: dict[str, Any], baseline_
                 "forge_tempered": 0,
                 "validator_errors": 0,
                 "validator_warnings": 0,
+                "markdown_reference_issue_count": 0,
             },
             "guidance": [
                 "Baseline cycle established; use this snapshot as the default comparison anchor for future runs.",
@@ -440,7 +545,13 @@ def derive_learning(previous: dict[str, Any], current: dict[str, Any], baseline_
         }
 
     deltas: dict[str, Any] = {}
-    for key in ("census_anomaly_count", "forge_tempered", "validator_errors", "validator_warnings"):
+    for key in (
+        "census_anomaly_count",
+        "forge_tempered",
+        "validator_errors",
+        "validator_warnings",
+        "markdown_reference_issue_count",
+    ):
         deltas[key] = current.get(key, 0) - prev_metrics.get(key, 0)
 
     guidance: list[str] = []
@@ -463,6 +574,11 @@ def derive_learning(previous: dict[str, Any], current: dict[str, Any], baseline_
     else:
         guidance.append("Validator clean; restart readiness can be evaluated immediately.")
 
+    if current.get("markdown_reference_issue_count", 0) > 0:
+        guidance.append("Generated markdown reference issues detected; sanitize bracket-token shortcuts before commit.")
+    else:
+        guidance.append("Generated markdown reference checks are clean.")
+
     return {"deltas": deltas, "guidance": guidance}
 
 
@@ -477,6 +593,7 @@ def build_stability_signature(metrics: dict[str, Any], reverse_queue: dict[str, 
         "forge_rejected": int(metrics.get("forge_rejected", 0)),
         "validator_errors": int(metrics.get("validator_errors", 0)),
         "validator_warnings": int(metrics.get("validator_warnings", 0)),
+        "markdown_reference_issue_count": int(metrics.get("markdown_reference_issue_count", 0)),
         "top_extensions": top_extensions,
         "top_files": top_files,
     }
@@ -532,6 +649,12 @@ def evaluate_gate_model(
             "required": MIN_PROMOTED_FOR_V1,
         },
         {
+            "id": "generated_markdown_reference_clean",
+            "passed": metrics.get("markdown_reference_issue_count", 0) == 0,
+            "value": metrics.get("markdown_reference_issue_count", 0),
+            "required": 0,
+        },
+        {
             "id": "contract_profile_frozen",
             "passed": contract_profile.get("profile_name") == PROFILE_NAME,
             "value": contract_profile.get("profile_name"),
@@ -555,6 +678,15 @@ def evaluate_gate_model(
         findings.append(
             f"Promotion adoption shortfall: {promoted}/{MIN_PROMOTED_FOR_V1} required promoted artifacts."
         )
+    markdown_issues = metrics.get("markdown_reference_issue_count", 0)
+    if markdown_issues > 0:
+        sample = metrics.get("markdown_reference_issue_samples", [])
+        if sample:
+            first = sample[0]
+            findings.append(
+                f"Markdown shortcut reference issue sample: {first.get('path')}:{first.get('line')} [{first.get('label')}]."
+            )
+        findings.append("Generated markdown contains unresolved shortcut/reference labels; fix before commit.")
 
     return {
         "profile_name": PROFILE_NAME,
@@ -616,6 +748,9 @@ def compute_scoring(results: list[dict[str, Any]], metrics: dict[str, Any]) -> d
     warnings = metrics.get("validator_warnings", 0)
     if warnings:
         penalties += min(1.0, warnings * 0.1)
+    markdown_issues = int(metrics.get("markdown_reference_issue_count", 0))
+    if markdown_issues:
+        penalties += min(2.0, markdown_issues * 0.05)
 
     promoted_count = int(metrics.get("promotion_promoted", 0))
     promotion_bonus = min(1.5, promoted_count * 0.5)
@@ -631,6 +766,7 @@ def compute_scoring(results: list[dict[str, Any]], metrics: dict[str, Any]) -> d
             "part_2_tempered": metrics.get("forge_tempered", 0),
             "part_3_all_passed": all(step_by_id.get(step, {}).get("status") == "pass" for step in oxidized_steps),
             "part_4_validator_errors": metrics.get("validator_errors", 0),
+            "markdown_reference_issues": markdown_issues,
             "stage_3_promotion_bonus": promotion_bonus,
             "promotions_counted": promoted_count,
         },
@@ -665,6 +801,8 @@ def assess_restart_readiness(snapshot: dict[str, Any]) -> dict[str, Any]:
         blockers.append("Forge tempered yield below Tier 2 minimum (13).")
     if not metrics.get("legacy_guard_present", False):
         blockers.append(f"Legacy salvage guard missing: {metrics.get('legacy_guard_path', LEGACY_SCRIPT_REL)}")
+    if metrics.get("markdown_reference_issue_count", 0) > 0:
+        blockers.append("Generated markdown has unresolved reference-style labels.")
     if any(result.get("critical") and result.get("status") == "fail" for result in results):
         blockers.append("At least one critical step failed in the most recent cycle.")
 
@@ -681,6 +819,9 @@ def assess_restart_readiness(snapshot: dict[str, Any]) -> dict[str, Any]:
         )
     if metrics.get("validator_warnings", 0) > 0:
         notes.append("Validator warnings are currently lane-exclusion skips.")
+    notes.append(
+        f"Generated markdown reference scan: {metrics.get('markdown_reference_issue_count', 0)} issues across {metrics.get('markdown_reference_files_scanned', 0)} files."
+    )
     if metrics.get("legacy_guard_present", False):
         notes.append(
             f"Legacy salvage guard preserved: {metrics.get('legacy_guard_path', LEGACY_SCRIPT_REL)} ({metrics.get('legacy_guard_size_bytes', 0)} bytes)."
@@ -806,6 +947,7 @@ def build_default_view(
             "validator_warnings": metrics.get("validator_warnings", 0),
             "promotion_recommended": metrics.get("promotion_recommended", 0),
             "promotion_promoted": metrics.get("promotion_promoted", 0),
+            "markdown_reference_issues": metrics.get("markdown_reference_issue_count", 0),
         },
         "legacy_guard": {
             "path": metrics.get("legacy_guard_path", LEGACY_SCRIPT_REL),
@@ -892,6 +1034,7 @@ def render_report(cycle_data: dict[str, Any], reverse_queue: dict[str, Any], rep
             f"- Forge tempered/rejected: `{metrics['forge_tempered']}` / `{metrics['forge_rejected']}`",
             f"- Validator verdict/errors/warnings: `{metrics['validator_verdict']}` / `{metrics['validator_errors']}` / `{metrics['validator_warnings']}`",
             f"- Promotion recommended/promoted: `{metrics['promotion_recommended']}` / `{metrics['promotion_promoted']}`",
+            f"- Markdown reference issues: `{metrics['markdown_reference_issue_count']}`",
             "",
             "## Candidate Gates",
             "",
@@ -982,7 +1125,8 @@ def execute_single_cycle(
     contract_profile = build_profile_contract()
     write_json(root / PROFILE_CONTRACT_OUTPUT, contract_profile)
     promotion_registry = sync_promotion_registry(root)
-    metrics = collect_metrics(root, promotion_registry)
+    markdown_reference_report = collect_markdown_reference_issues(root)
+    metrics = collect_metrics(root, promotion_registry, markdown_reference_report)
     learning = derive_learning(previous_state, metrics, begin_anew)
     score = compute_scoring(results, metrics)
     verdict = cycle_verdict(results, metrics)

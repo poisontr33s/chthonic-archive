@@ -1,7 +1,7 @@
 {
-  "timestamp": "2026-03-05T19:08:03+00:00",
+  "timestamp": "2026-03-05T19:23:53+00:00",
   "profile_name": "WPTG-AMALGAM-RR v1-candidate",
-  "cycle_id": 5,
+  "cycle_id": 8,
   "begin_anew": false,
   "execution_mode": "manual_continuation",
   "verdict": "WARN",
@@ -21,7 +21,7 @@
         1,
         2
       ],
-      "duration_seconds": 1.871,
+      "duration_seconds": 1.923,
       "status": "pass",
       "critical": true,
       "required_outputs": {
@@ -48,7 +48,7 @@
         1,
         2
       ],
-      "duration_seconds": 126.953,
+      "duration_seconds": 120.808,
       "status": "warn",
       "critical": true,
       "required_outputs": {
@@ -85,7 +85,7 @@
       "expected_exit_codes": [
         0
       ],
-      "duration_seconds": 3.53,
+      "duration_seconds": 3.411,
       "status": "pass",
       "critical": true,
       "required_outputs": {
@@ -125,7 +125,7 @@
       "expected_exit_codes": [
         0
       ],
-      "duration_seconds": 2.418,
+      "duration_seconds": 2.8,
       "status": "pass",
       "critical": true,
       "required_outputs": {
@@ -135,7 +135,7 @@
         }
       },
       "stdout_tail": "",
-      "stderr_tail": "Finished `dev` profile [optimized + debuginfo] target(s) in 0.17s\n     Running `target\\debug\\ankh-forge.exe scan --root . --output audit-reports/extension_universe_ankh.json`"
+      "stderr_tail": "Finished `dev` profile [optimized + debuginfo] target(s) in 0.90s\n     Running `target\\debug\\ankh-forge.exe scan --root . --output audit-reports/extension_universe_ankh.json`"
     },
     {
       "step_id": "part_3_ankh_census",
@@ -157,7 +157,7 @@
       "expected_exit_codes": [
         0
       ],
-      "duration_seconds": 0.553,
+      "duration_seconds": 0.542,
       "status": "pass",
       "critical": true,
       "required_outputs": {
@@ -189,7 +189,7 @@
       "expected_exit_codes": [
         0
       ],
-      "duration_seconds": 2.064,
+      "duration_seconds": 2.127,
       "status": "pass",
       "critical": true,
       "required_outputs": {
@@ -219,7 +219,7 @@
       "expected_exit_codes": [
         0
       ],
-      "duration_seconds": 2.026,
+      "duration_seconds": 2.221,
       "status": "pass",
       "critical": true,
       "required_outputs": {
@@ -243,7 +243,7 @@
       "expected_exit_codes": [
         0
       ],
-      "duration_seconds": 0.017,
+      "duration_seconds": 0.019,
       "status": "pass",
       "critical": false,
       "required_outputs": {},
@@ -263,7 +263,7 @@
       "expected_exit_codes": [
         0
       ],
-      "duration_seconds": 0.172,
+      "duration_seconds": 0.159,
       "status": "pass",
       "critical": true,
       "required_outputs": {
@@ -308,19 +308,24 @@
     "legacy_guard_path": "scripts/wpth_repeatable_cycle_LEGACY",
     "promotion_recommended": 6,
     "promotion_promoted": 0,
-    "promotion_ready_for_v1": false
+    "promotion_ready_for_v1": false,
+    "markdown_reference_issue_count": 0,
+    "markdown_reference_issue_samples": [],
+    "markdown_reference_files_scanned": 16
   },
   "learning": {
     "deltas": {
       "census_anomaly_count": 0,
       "forge_tempered": 0,
       "validator_errors": 0,
-      "validator_warnings": 0
+      "validator_warnings": 0,
+      "markdown_reference_issue_count": 0
     },
     "guidance": [
       "Anomaly count stable; continue rarity-first nurturing focus.",
       "Forge yield remains above Tier 2 gate; maintain provenance lanes and promotion discipline.",
-      "Validator warnings are lane-exclusion related; continue without treating them as hard blockers."
+      "Validator warnings are lane-exclusion related; continue without treating them as hard blockers.",
+      "Generated markdown reference checks are clean."
     ]
   },
   "score": {
@@ -333,14 +338,15 @@
       "part_2_tempered": 18,
       "part_3_all_passed": true,
       "part_4_validator_errors": 0,
+      "markdown_reference_issues": 0,
       "stage_3_promotion_bonus": 0.0,
       "promotions_counted": 0
     }
   },
   "previous_cycle_reference": {
-    "cycle_id": 4,
+    "cycle_id": 7,
     "verdict": "WARN",
-    "timestamp": "2026-03-05T19:04:50+00:00"
+    "timestamp": "2026-03-05T19:20:25+00:00"
   },
   "profile_contract_reference": "audit-reports/wptg_amalgam_rr_v1_candidate_contract.json",
   "promotion_registry_reference": "audit-reports/wptg_promotion_adoption.json",
@@ -351,6 +357,7 @@
       "Census anomalies exist; they are handled via reverse-rarity-first priority.",
       "Hard blocker anomalies present (12); profile remains WPTG-AMALGAM-RR v1-candidate.",
       "Validator warnings are currently lane-exclusion skips.",
+      "Generated markdown reference scan: 0 issues across 16 files.",
       "Legacy salvage guard preserved: scripts/wpth_repeatable_cycle_LEGACY (20113 bytes)."
     ]
   },
@@ -397,6 +404,12 @@
         "required": 3
       },
       {
+        "id": "generated_markdown_reference_clean",
+        "passed": true,
+        "value": 0,
+        "required": 0
+      },
+      {
         "id": "contract_profile_frozen",
         "passed": true,
         "value": "WPTG-AMALGAM-RR v1-candidate",
@@ -428,6 +441,7 @@
       "forge_rejected": 0,
       "validator_errors": 0,
       "validator_warnings": 3,
+      "markdown_reference_issue_count": 0,
       "top_extensions": [
         ".bat",
         ".cpython-313.pyc",

@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-03-05T19:07:56+00:00",
+  "timestamp": "2026-03-05T19:23:45+00:00",
   "artifacts_attempted": 18,
   "artifacts_tempered": 18,
   "artifacts_rejected": 0,
-  "compression_ratio": "9451642 -> 255826",
+  "compression_ratio": "9451642 -> 255878",
   "by_output_language": {
     "docs": {
       "tempered": 5,
@@ -398,7 +398,7 @@
       "output_type": ".md",
       "transmutation_pathway": "log -> pattern extraction -> diagnostic playbook",
       "input_bytes": 7816245,
-      "output_bytes": 6561,
+      "output_bytes": 6605,
       "quality_gates": {
         "syntax": "PASS",
         "provenance": "PASS",
@@ -701,7 +701,7 @@
       "output_type": ".md",
       "transmutation_pathway": "markdown fragments -> recovered architecture decisions",
       "input_bytes": 49404,
-      "output_bytes": 10344,
+      "output_bytes": 10352,
       "quality_gates": {
         "syntax": "PASS",
         "provenance": "PASS",

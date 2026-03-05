@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-03-05T19:08:03+00:00",
+  "timestamp": "2026-03-05T19:23:53+00:00",
   "profile_name": "WPTG-AMALGAM-RR v1-candidate",
   "default_mode": "renewal_loop_reverse_rarity_first",
   "cycle_verdict": "WARN",
@@ -13,6 +13,7 @@
       "part_2_tempered": 18,
       "part_3_all_passed": true,
       "part_4_validator_errors": 0,
+      "markdown_reference_issues": 0,
       "stage_3_promotion_bonus": 0.0,
       "promotions_counted": 0
     }
@@ -24,6 +25,7 @@
       "Census anomalies exist; they are handled via reverse-rarity-first priority.",
       "Hard blocker anomalies present (12); profile remains WPTG-AMALGAM-RR v1-candidate.",
       "Validator warnings are currently lane-exclusion skips.",
+      "Generated markdown reference scan: 0 issues across 16 files.",
       "Legacy salvage guard preserved: scripts/wpth_repeatable_cycle_LEGACY (20113 bytes)."
     ]
   },
@@ -45,7 +47,8 @@
     "validator_errors": 0,
     "validator_warnings": 3,
     "promotion_recommended": 6,
-    "promotion_promoted": 0
+    "promotion_promoted": 0,
+    "markdown_reference_issues": 0
   },
   "legacy_guard": {
     "path": "scripts/wpth_repeatable_cycle_LEGACY",
@@ -232,7 +235,8 @@
   "learning_guidance": [
     "Anomaly count stable; continue rarity-first nurturing focus.",
     "Forge yield remains above Tier 2 gate; maintain provenance lanes and promotion discipline.",
-    "Validator warnings are lane-exclusion related; continue without treating them as hard blockers."
+    "Validator warnings are lane-exclusion related; continue without treating them as hard blockers.",
+    "Generated markdown reference checks are clean."
   ],
   "next_cycle_focus": [
     "Apply least-viable-first triage before common-path optimizations.",

@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-03-05T19:07:54+00:00",
+  "timestamp": "2026-03-05T19:23:42+00:00",
   "artifacts": [
     {
       "path": "dumpster-dive/forge/furnace/docs/diagnostic_playbook.md",
@@ -342,7 +342,7 @@
       "output_type": ".md",
       "transmutation_pathway": "log -> pattern extraction -> diagnostic playbook",
       "input_bytes": 7816245,
-      "output_bytes": 6561,
+      "output_bytes": 6605,
       "gold_tier": "tier_3_conceptual",
       "novel_pathway": false
     },
@@ -579,7 +579,7 @@
       "output_type": ".md",
       "transmutation_pathway": "markdown fragments -> recovered architecture decisions",
       "input_bytes": 49404,
-      "output_bytes": 10344,
+      "output_bytes": 10352,
       "gold_tier": "tier_3_conceptual",
       "novel_pathway": false
     },

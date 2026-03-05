@@ -2,7 +2,7 @@
 type: report
 from: codex
 to: user
-created: 2026-03-05T19:07:56+00:00
+created: 2026-03-05T19:23:45+00:00
 priority: high
 subject: FORGE_TRANSMUTATION_REPORT
 ---
@@ -19,7 +19,7 @@ subject: FORGE_TRANSMUTATION_REPORT
 
 - Tempered artifacts: 18
 - Rejected artifacts: 0
-- Compression ratio: 9451642 -> 255826
+- Compression ratio: 9451642 -> 255878
 
 ## Source Pools
 

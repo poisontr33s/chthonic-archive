@@ -23,6 +23,7 @@ from typing import Any
 from scripts.wptg_common import (
     baseline_gold_tier,
     compound_extension,
+    escape_markdown_shortcut_references,
     ensure_utf8,
     is_textlike,
     markdown_path_link,
@@ -351,11 +352,13 @@ def build_log_archaeology(root: Path, log_paths: list[str], output_path: Path) -
     ]
 
     for line, count in unique_patterns.most_common(20):
-        lines.append(f"- `{count}x` {line}")
+        lines.append(f"- `{count}x` {escape_markdown_shortcut_references(line)}")
 
     lines.extend(["", "## Per-Log Triage", ""])
     for entry in results:
-        signal_preview = "; ".join(entry["signal_lines"][:3]) or "no strong signal extracted"
+        signal_preview = "; ".join(
+            escape_markdown_shortcut_references(line) for line in entry["signal_lines"][:3]
+        ) or "no strong signal extracted"
         path_link = markdown_path_link(entry["path"], output_path)
         lines.append(f"- {path_link} | `{entry['category']}` | `{entry['recommendation']}` | {signal_preview}")
 

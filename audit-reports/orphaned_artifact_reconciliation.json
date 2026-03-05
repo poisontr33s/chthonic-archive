@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-03-05T19:07:52+00:00",
+  "timestamp": "2026-03-05T19:23:41+00:00",
   "total_json_files": 678,
   "orphan_candidate_count": 0,
   "orphan_candidates": [],
@@ -246,7 +246,7 @@
       ],
       "reference_count": 6,
       "modified_at": "2026-02-06T19:07:49+00:00",
-      "age_days": 26,
+      "age_days": 27,
       "timestamp_fields": {},
       "recognized_artifact_format": false,
       "json_parse_error": null,
@@ -618,7 +618,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-03-04T19:06:31+00:00",
-      "age_days": 0,
+      "age_days": 1,
       "timestamp_fields": {},
       "recognized_artifact_format": false,
       "json_parse_error": "Expecting property name enclosed in double quotes: line 2 column 5 (char 6)",
@@ -3006,10 +3006,10 @@
         }
       ],
       "reference_count": 6,
-      "modified_at": "2026-03-05T19:04:50+00:00",
+      "modified_at": "2026-03-05T19:20:25+00:00",
       "age_days": 0,
       "timestamp_fields": {
-        "timestamp": "2026-03-05T19:04:50+00:00"
+        "timestamp": "2026-03-05T19:20:25+00:00"
       },
       "recognized_artifact_format": false,
       "json_parse_error": null,
@@ -3044,10 +3044,10 @@
         }
       ],
       "reference_count": 6,
-      "modified_at": "2026-03-05T19:05:46+00:00",
+      "modified_at": "2026-03-05T19:21:41+00:00",
       "age_days": 0,
       "timestamp_fields": {
-        "timestamp": "2026-03-05T19:05:45+00:00",
+        "timestamp": "2026-03-05T19:21:40+00:00",
         "codebase_extensions.inventory..bak.runtime_support": {
           "supported": true,
           "supported_by": [],
@@ -3503,7 +3503,7 @@
         }
       ],
       "reference_count": 7,
-      "modified_at": "2026-03-05T19:04:45+00:00",
+      "modified_at": "2026-03-05T19:20:20+00:00",
       "age_days": 0,
       "timestamp_fields": {
         "codebase_extensions.inventory..bak.runtime_support": {
@@ -3929,7 +3929,7 @@
         "system_toolchains.details.typescript.runtime_version": "1.3.9",
         "system_toolchains.details.zig.runtime_output": null,
         "system_toolchains.details.zig.runtime_version": null,
-        "timestamp": "2026-03-05T19:04:45.7090976Z"
+        "timestamp": "2026-03-05T19:20:20.3706865Z"
       },
       "recognized_artifact_format": false,
       "json_parse_error": null,
@@ -3964,7 +3964,7 @@
         }
       ],
       "reference_count": 6,
-      "modified_at": "2026-03-05T19:04:39+00:00",
+      "modified_at": "2026-03-05T19:20:14+00:00",
       "age_days": 0,
       "timestamp_fields": {},
       "recognized_artifact_format": false,
@@ -4004,7 +4004,7 @@
         }
       ],
       "reference_count": 7,
-      "modified_at": "2026-03-05T19:04:50+00:00",
+      "modified_at": "2026-03-05T19:20:25+00:00",
       "age_days": 0,
       "timestamp_fields": {
         "runtimes": {
@@ -4079,7 +4079,7 @@
         "runtimes.ruby.latest_release_date": "2026-01-12",
         "runtimes.rust.latest_release_date": "2026-02-12",
         "runtimes.typescript.latest_release_date": "2026-02-25",
-        "timestamp": "2026-03-05T19:04:49.7937210Z"
+        "timestamp": "2026-03-05T19:20:23.9643363Z"
       },
       "recognized_artifact_format": false,
       "json_parse_error": null,
@@ -4118,7 +4118,7 @@
         }
       ],
       "reference_count": 7,
-      "modified_at": "2026-03-05T19:04:48+00:00",
+      "modified_at": "2026-03-05T19:20:22+00:00",
       "age_days": 0,
       "timestamp_fields": {
         "eol_risk.dotnet.latest_release_date": "2026-02-10",
@@ -4126,7 +4126,7 @@
         "eol_risk.ruby.latest_release_date": "2026-01-12",
         "eol_risk.rust.latest_release_date": "2026-02-12",
         "eol_risk.typescript.latest_release_date": "2026-02-25",
-        "timestamp": "2026-03-05T19:04:47.6385476Z"
+        "timestamp": "2026-03-05T19:20:22.1083822Z"
       },
       "recognized_artifact_format": false,
       "json_parse_error": null,
@@ -4144,12 +4144,20 @@
           "match": "audit-reports/wptg_amalgam_rr_v1_candidate_contract.json"
         },
         {
+          "path": "dumpster-dive/forge/furnace/schemas/configuration_schema_catalog.json",
+          "match": "audit-reports/wptg_amalgam_rr_v1_candidate_contract.json"
+        },
+        {
+          "path": "dumpster-dive/forge/tempered/schemas/configuration_schema_catalog.json",
+          "match": "audit-reports/wptg_amalgam_rr_v1_candidate_contract.json"
+        },
+        {
           "path": "scripts/wptg_repeatable_cycle.py",
           "match": "audit-reports/wptg_amalgam_rr_v1_candidate_contract.json"
         }
       ],
-      "reference_count": 3,
-      "modified_at": "2026-03-05T19:04:50+00:00",
+      "reference_count": 5,
+      "modified_at": "2026-03-05T19:20:25+00:00",
       "age_days": 0,
       "timestamp_fields": {
         "score_contract.anomaly_weights.orphan_json_candidate": 2.0
@@ -4191,11 +4199,11 @@
         }
       ],
       "reference_count": 7,
-      "modified_at": "2026-03-05T19:04:50+00:00",
+      "modified_at": "2026-03-05T19:20:25+00:00",
       "age_days": 0,
       "timestamp_fields": {
-        "timestamp": "2026-03-05T19:04:50+00:00",
-        "previous_cycle_reference.timestamp": "2026-03-05T19:01:20+00:00"
+        "timestamp": "2026-03-05T19:20:25+00:00",
+        "previous_cycle_reference.timestamp": "2026-03-05T19:17:56+00:00"
       },
       "recognized_artifact_format": false,
       "json_parse_error": null,
@@ -4234,10 +4242,10 @@
         }
       ],
       "reference_count": 7,
-      "modified_at": "2026-03-05T19:04:50+00:00",
+      "modified_at": "2026-03-05T19:20:25+00:00",
       "age_days": 0,
       "timestamp_fields": {
-        "timestamp": "2026-03-05T19:04:50+00:00",
+        "timestamp": "2026-03-05T19:20:25+00:00",
         "reverse_priority_top_extensions[0].runtime_supported": true,
         "reverse_priority_top_extensions[1].runtime_supported": true,
         "reverse_priority_top_extensions[2].runtime_supported": true,
@@ -4286,10 +4294,10 @@
         }
       ],
       "reference_count": 7,
-      "modified_at": "2026-03-05T19:04:39+00:00",
+      "modified_at": "2026-03-05T19:20:14+00:00",
       "age_days": 0,
       "timestamp_fields": {
-        "timestamp": "2026-03-05T19:04:39+00:00"
+        "timestamp": "2026-03-05T19:20:14+00:00"
       },
       "recognized_artifact_format": false,
       "json_parse_error": null,
@@ -4328,10 +4336,10 @@
         }
       ],
       "reference_count": 7,
-      "modified_at": "2026-03-05T19:04:46+00:00",
+      "modified_at": "2026-03-05T19:20:20+00:00",
       "age_days": 0,
       "timestamp_fields": {
-        "timestamp": "2026-03-05T19:04:46.3286545Z"
+        "timestamp": "2026-03-05T19:20:20.9269111Z"
       },
       "recognized_artifact_format": false,
       "json_parse_error": null,
@@ -4349,12 +4357,20 @@
           "match": "audit-reports/wptg_promotion_adoption.json"
         },
         {
+          "path": "dumpster-dive/forge/furnace/schemas/configuration_schema_catalog.json",
+          "match": "audit-reports/wptg_promotion_adoption.json"
+        },
+        {
+          "path": "dumpster-dive/forge/tempered/schemas/configuration_schema_catalog.json",
+          "match": "audit-reports/wptg_promotion_adoption.json"
+        },
+        {
           "path": "scripts/wptg_repeatable_cycle.py",
           "match": "audit-reports/wptg_promotion_adoption.json"
         }
       ],
-      "reference_count": 3,
-      "modified_at": "2026-03-05T19:04:50+00:00",
+      "reference_count": 5,
+      "modified_at": "2026-03-05T19:20:25+00:00",
       "age_days": 0,
       "timestamp_fields": {},
       "recognized_artifact_format": false,
@@ -4398,10 +4414,10 @@
         }
       ],
       "reference_count": 8,
-      "modified_at": "2026-03-05T19:04:50+00:00",
+      "modified_at": "2026-03-05T19:20:25+00:00",
       "age_days": 0,
       "timestamp_fields": {
-        "timestamp": "2026-03-05T19:04:50+00:00",
+        "timestamp": "2026-03-05T19:20:25+00:00",
         "extension_priority[0].runtime_supported": true,
         "extension_priority[1].runtime_supported": true,
         "extension_priority[2].runtime_supported": true,
@@ -8934,7 +8950,7 @@
       ],
       "reference_count": 4,
       "modified_at": "2026-02-25T19:17:05+00:00",
-      "age_days": 7,
+      "age_days": 8,
       "timestamp_fields": {
         "generated_on": "2026-02-25T19:17:05Z"
       },
@@ -9118,7 +9134,7 @@
       ],
       "reference_count": 4,
       "modified_at": "2026-02-25T19:14:15+00:00",
-      "age_days": 7,
+      "age_days": 8,
       "timestamp_fields": {
         "generated_on": "2026-02-25T19:14:14Z"
       },
@@ -9148,7 +9164,7 @@
       ],
       "reference_count": 4,
       "modified_at": "2026-02-25T19:17:05+00:00",
-      "age_days": 7,
+      "age_days": 8,
       "timestamp_fields": {
         "generated_on": "2026-02-25T19:17:05Z"
       },
@@ -11953,7 +11969,7 @@
       ],
       "reference_count": 4,
       "modified_at": "2026-02-25T19:17:05+00:00",
-      "age_days": 7,
+      "age_days": 8,
       "timestamp_fields": {
         "generated_on": "2026-02-25T19:17:05Z"
       },
@@ -11983,7 +11999,7 @@
       ],
       "reference_count": 4,
       "modified_at": "2026-02-25T19:18:07+00:00",
-      "age_days": 7,
+      "age_days": 8,
       "timestamp_fields": {
         "generated_on": "2026-02-25T19:18:07Z"
       },
@@ -12107,7 +12123,7 @@
       ],
       "reference_count": 4,
       "modified_at": "2026-02-25T19:18:07+00:00",
-      "age_days": 7,
+      "age_days": 8,
       "timestamp_fields": {
         "generated_on": "2026-02-25T19:18:07Z"
       },
@@ -12137,7 +12153,7 @@
       ],
       "reference_count": 4,
       "modified_at": "2026-02-25T19:14:15+00:00",
-      "age_days": 7,
+      "age_days": 8,
       "timestamp_fields": {
         "generated_on": "2026-02-25T19:14:14Z"
       },
@@ -12167,7 +12183,7 @@
       ],
       "reference_count": 4,
       "modified_at": "2026-02-25T19:17:05+00:00",
-      "age_days": 7,
+      "age_days": 8,
       "timestamp_fields": {
         "generated_on": "2026-02-25T19:17:05Z"
       },
@@ -19128,7 +19144,7 @@
         }
       ],
       "reference_count": 2,
-      "modified_at": "2026-03-05T19:04:43+00:00",
+      "modified_at": "2026-03-05T19:20:18+00:00",
       "age_days": 0,
       "timestamp_fields": {},
       "recognized_artifact_format": true,
@@ -19160,10 +19176,10 @@
         }
       ],
       "reference_count": 5,
-      "modified_at": "2026-03-05T19:04:40+00:00",
+      "modified_at": "2026-03-05T19:20:15+00:00",
       "age_days": 0,
       "timestamp_fields": {
-        "timestamp": "2026-03-05T19:04:39+00:00"
+        "timestamp": "2026-03-05T19:20:15+00:00"
       },
       "recognized_artifact_format": true,
       "json_parse_error": null,
@@ -19186,10 +19202,10 @@
         }
       ],
       "reference_count": 3,
-      "modified_at": "2026-03-05T19:04:40+00:00",
+      "modified_at": "2026-03-05T19:20:15+00:00",
       "age_days": 0,
       "timestamp_fields": {
-        "timestamp": "2026-03-05T19:04:40+00:00",
+        "timestamp": "2026-03-05T19:20:15+00:00",
         "languages.ankh.amalgamation_candidates": [],
         "languages.before-edit-experiments.amalgamation_candidates": [],
         "languages.config.amalgamation_candidates": [
@@ -24359,10 +24375,10 @@
         }
       ],
       "reference_count": 6,
-      "modified_at": "2026-03-05T19:04:40+00:00",
+      "modified_at": "2026-03-05T19:20:15+00:00",
       "age_days": 0,
       "timestamp_fields": {
-        "timestamp": "2026-03-05T19:04:40+00:00"
+        "timestamp": "2026-03-05T19:20:15+00:00"
       },
       "recognized_artifact_format": true,
       "json_parse_error": null,
@@ -24397,10 +24413,10 @@
         }
       ],
       "reference_count": 6,
-      "modified_at": "2026-03-05T19:04:40+00:00",
+      "modified_at": "2026-03-05T19:20:15+00:00",
       "age_days": 0,
       "timestamp_fields": {
-        "generated_at": "2026-03-05T19:04:40+00:00",
+        "generated_at": "2026-03-05T19:20:15+00:00",
         "schema_patterns[0].properties.mcp\\validate-integration.ps1": [
           "str"
         ],
@@ -24493,7 +24509,7 @@
         }
       ],
       "reference_count": 7,
-      "modified_at": "2026-03-05T19:04:40+00:00",
+      "modified_at": "2026-03-05T19:20:15+00:00",
       "age_days": 0,
       "timestamp_fields": {},
       "recognized_artifact_format": true,
@@ -24615,10 +24631,10 @@
         }
       ],
       "reference_count": 6,
-      "modified_at": "2026-03-05T19:04:43+00:00",
+      "modified_at": "2026-03-05T19:20:18+00:00",
       "age_days": 0,
       "timestamp_fields": {
-        "timestamp": "2026-03-05T19:04:43+00:00"
+        "timestamp": "2026-03-05T19:20:18+00:00"
       },
       "recognized_artifact_format": true,
       "json_parse_error": null,
@@ -25002,10 +25018,10 @@
         }
       ],
       "reference_count": 6,
-      "modified_at": "2026-03-05T19:04:40+00:00",
+      "modified_at": "2026-03-05T19:20:15+00:00",
       "age_days": 0,
       "timestamp_fields": {
-        "generated_at": "2026-03-05T19:04:40+00:00",
+        "generated_at": "2026-03-05T19:20:15+00:00",
         "schema_patterns[0].properties.mcp\\validate-integration.ps1": [
           "str"
         ],
@@ -25098,7 +25114,7 @@
         }
       ],
       "reference_count": 7,
-      "modified_at": "2026-03-05T19:04:40+00:00",
+      "modified_at": "2026-03-05T19:20:15+00:00",
       "age_days": 0,
       "timestamp_fields": {},
       "recognized_artifact_format": true,

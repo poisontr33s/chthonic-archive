@@ -1,8 +1,8 @@
 # WPTG Repeatable Cycle Report
 
 - Profile: `WPTG-AMALGAM-RR v1-candidate`
-- Timestamp: `2026-03-05T19:08:03+00:00`
-- Cycle ID: `5`
+- Timestamp: `2026-03-05T19:23:53+00:00`
+- Cycle ID: `8`
 - Begin Anew Mode: `False`
 - Execution Mode: `manual_continuation`
 - Verdict: `WARN`
@@ -14,6 +14,7 @@
   - Census anomalies exist; they are handled via reverse-rarity-first priority.
   - Hard blocker anomalies present (12); profile remains WPTG-AMALGAM-RR v1-candidate.
   - Validator warnings are currently lane-exclusion skips.
+  - Generated markdown reference scan: 0 issues across 16 files.
   - Legacy salvage guard preserved: scripts/wpth_repeatable_cycle_LEGACY (20113 bytes).
 
 ## Legacy Guard
@@ -26,15 +27,15 @@
 
 | Step | Toolchain | Exit | Status | Duration(s) |
 |---|---|---:|---|---:|
-| phase_0_universe | uv | 0 | pass | 1.871 |
-| part_1_census | uv | 2 | warn | 126.953 |
-| part_2_forge | uv | 0 | pass | 3.530 |
-| part_3_ankh_scan | cargo | 0 | pass | 2.418 |
-| part_3_ankh_census | cargo | 0 | pass | 0.553 |
-| part_3_ankh_landscape | cargo | 0 | pass | 2.064 |
-| part_3_ankh_eol | cargo | 0 | pass | 2.026 |
-| part_3_bun_lane_pulse | bun | 0 | pass | 0.017 |
-| part_4_validator | uv | 0 | pass | 0.172 |
+| phase_0_universe | uv | 0 | pass | 1.923 |
+| part_1_census | uv | 2 | warn | 120.808 |
+| part_2_forge | uv | 0 | pass | 3.411 |
+| part_3_ankh_scan | cargo | 0 | pass | 2.800 |
+| part_3_ankh_census | cargo | 0 | pass | 0.542 |
+| part_3_ankh_landscape | cargo | 0 | pass | 2.127 |
+| part_3_ankh_eol | cargo | 0 | pass | 2.221 |
+| part_3_bun_lane_pulse | bun | 0 | pass | 0.019 |
+| part_4_validator | uv | 0 | pass | 0.159 |
 
 ## Metrics
 
@@ -45,6 +46,7 @@
 - Forge tempered/rejected: `18` / `0`
 - Validator verdict/errors/warnings: `WARN` / `0` / `3`
 - Promotion recommended/promoted: `6` / `0`
+- Markdown reference issues: `0`
 
 ## Candidate Gates
 
@@ -58,6 +60,7 @@
 | forge_no_rejections | True | `0` | `0` |
 | stability_two_runs | True | `matched` | `two_consecutive_identical_signatures` |
 | promotion_adoption_minimum | False | `0` | `3` |
+| generated_markdown_reference_clean | True | `0` | `0` |
 | contract_profile_frozen | True | `WPTG-AMALGAM-RR v1-candidate` | `WPTG-AMALGAM-RR v1-candidate` |
 
 - Blocking gates:
@@ -104,12 +107,14 @@
 - `forge_tempered` delta: `0`
 - `validator_errors` delta: `0`
 - `validator_warnings` delta: `0`
+- `markdown_reference_issue_count` delta: `0`
 
 ## Guidance
 
 - Anomaly count stable; continue rarity-first nurturing focus.
 - Forge yield remains above Tier 2 gate; maintain provenance lanes and promotion discipline.
 - Validator warnings are lane-exclusion related; continue without treating them as hard blockers.
+- Generated markdown reference checks are clean.
 
 ## Boon/Penalty
 
