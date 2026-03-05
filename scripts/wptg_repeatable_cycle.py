@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
+#-*- coding: utf-8 -*-
 
 """
 Repeatable WPTG cycle orchestrator.
@@ -174,6 +174,8 @@ ANOMALY_WEIGHTS: dict[str, float] = {
     "disabled_by_rename": 1.5,
 }
 
+LEGACY_SCRIPT_REL = "scripts/wpth_repeatable_cycle_LEGACY"
+
 
 def _output_pre_state(root: Path, outputs: tuple[str, ...]) -> dict[str, float | None]:
     state: dict[str, float | None] = {}
@@ -262,6 +264,9 @@ def collect_metrics(root: Path) -> dict[str, Any]:
     validator = _load_json_if_exists(root / "audit-reports/extension_contribution_audit.json")
     ankh_scan = _load_json_if_exists(root / "audit-reports/extension_universe_ankh.json")
     ankh_census = _load_json_if_exists(root / "audit-reports/wptg_filetype_census_ankh.json")
+    legacy_path = root / LEGACY_SCRIPT_REL
+    legacy_present = legacy_path.exists()
+    legacy_size = legacy_path.stat().st_size if legacy_present else 0
 
     return {
         "codebase_extensions_unique": extension_universe.get("codebase_extensions", {}).get("total_unique", 0),
@@ -275,6 +280,9 @@ def collect_metrics(root: Path) -> dict[str, Any]:
         "validator_warnings": validator.get("warning_count", 0),
         "ankh_extensions_unique": ankh_scan.get("codebase_extensions", {}).get("total_unique", 0),
         "ankh_census_anomalies": len(ankh_census.get("anomalies", [])),
+        "legacy_guard_present": legacy_present,
+        "legacy_guard_size_bytes": legacy_size,
+        "legacy_guard_path": LEGACY_SCRIPT_REL,
     }
 
 
@@ -411,6 +419,8 @@ def assess_restart_readiness(snapshot: dict[str, Any]) -> dict[str, Any]:
         blockers.append("Validator has non-zero errors.")
     if metrics.get("forge_tempered", 0) < 13:
         blockers.append("Forge tempered yield below Tier 2 minimum (13).")
+    if not metrics.get("legacy_guard_present", False):
+        blockers.append(f"Legacy salvage guard missing: {metrics.get('legacy_guard_path', LEGACY_SCRIPT_REL)}")
     if any(result.get("critical") and result.get("status") == "fail" for result in results):
         blockers.append("At least one critical step failed in the most recent cycle.")
 
@@ -423,6 +433,10 @@ def assess_restart_readiness(snapshot: dict[str, Any]) -> dict[str, Any]:
         notes.append("Census anomalies exist; they are handled via reverse-rarity-first priority.")
     if metrics.get("validator_warnings", 0) > 0:
         notes.append("Validator warnings are currently lane-exclusion skips.")
+    if metrics.get("legacy_guard_present", False):
+        notes.append(
+            f"Legacy salvage guard preserved: {metrics.get('legacy_guard_path', LEGACY_SCRIPT_REL)} ({metrics.get('legacy_guard_size_bytes', 0)} bytes)."
+        )
 
     return {"ready": not blockers, "blockers": blockers, "notes": notes}
 
@@ -535,6 +549,11 @@ def build_default_view(
             "validator_errors": metrics.get("validator_errors", 0),
             "validator_warnings": metrics.get("validator_warnings", 0),
         },
+        "legacy_guard": {
+            "path": metrics.get("legacy_guard_path", LEGACY_SCRIPT_REL),
+            "present": bool(metrics.get("legacy_guard_present", False)),
+            "size_bytes": int(metrics.get("legacy_guard_size_bytes", 0)),
+        },
         "reverse_priority_reference": str(reverse_output_path).replace("\\", "/"),
         "reverse_priority_top_extensions": top_extensions,
         "reverse_priority_top_files": top_files,
@@ -570,6 +589,20 @@ def render_report(cycle_data: dict[str, Any], reverse_queue: dict[str, Any]) -> 
     if notes:
         lines.append("- Notes:")
         lines.extend(f"  - {note}" for note in notes)
+
+    legacy_path = cycle_data["metrics"].get("legacy_guard_path", LEGACY_SCRIPT_REL)
+    legacy_present = cycle_data["metrics"].get("legacy_guard_present", False)
+    legacy_size = cycle_data["metrics"].get("legacy_guard_size_bytes", 0)
+    lines.extend(
+        [
+            "",
+            "## Legacy Guard",
+            "",
+            f"- Path: `{legacy_path}`",
+            f"- Present: `{legacy_present}`",
+            f"- Size bytes: `{legacy_size}`",
+        ]
+    )
 
     lines.extend(
         [

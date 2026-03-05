@@ -59,6 +59,7 @@ Stage 5 applies reverse-rarity-first default perspective with sequential restart
 - `scripts/wptg_repeatable_cycle.py --auto-restart` now handles readiness-driven sequencing.
 - New output: `audit-reports/wptg_reverse_viability_queue.json`.
 - Default view shifted to `renewal_loop_reverse_rarity_first` with `least_viable_first` selection principle.
+- Legacy safeguard enforced: `scripts/wpth_repeatable_cycle_LEGACY` is tracked as a restart-readiness guard.
 
 ## Lane Constraint Reminder
 

@@ -80,3 +80,6 @@ Default perspective is now:
 - Lane exclusion table remains immutable.
 - No destructive operations are introduced by the framework.
 - Promotion and dedupe decisions remain explicit governance actions, not implicit side effects.
+- Legacy preservation guard is mandatory:
+  - `scripts/wpth_repeatable_cycle_LEGACY` is checked during readiness.
+  - Missing legacy guard blocks restart in `--auto-restart` mode until restored.

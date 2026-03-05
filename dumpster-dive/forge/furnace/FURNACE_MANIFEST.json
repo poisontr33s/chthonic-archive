@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-03-05T16:04:23+00:00",
+  "timestamp": "2026-03-05T16:18:24+00:00",
   "artifacts": [
     {
       "path": "dumpster-dive/forge/furnace/docs/diagnostic_playbook.md",
@@ -672,7 +672,7 @@
       "output_type": ".json",
       "transmutation_pathway": "config fragments -> observed key signatures -> schema catalogue",
       "input_bytes": 147509,
-      "output_bytes": 158049,
+      "output_bytes": 159241,
       "gold_tier": "tier_2_structural",
       "novel_pathway": false
     },

@@ -2,7 +2,7 @@
 type: proposal
 from: codex
 to: user
-created: 2026-03-05T16:04:22+00:00
+created: 2026-03-05T16:18:23+00:00
 priority: high
 subject: LOG_ARCHAEOLOGY_TRIAGE
 ---

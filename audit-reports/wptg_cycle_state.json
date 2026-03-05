@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-03-05T16:04:36+00:00",
+  "timestamp": "2026-03-05T16:18:35+00:00",
   "cycle_id": 1,
   "begin_anew": true,
-  "execution_mode": "auto_restart_ready_now",
+  "execution_mode": "auto_restart_after_continuation",
   "verdict": "WARN",
   "results": [
     {
@@ -20,7 +20,7 @@
         1,
         2
       ],
-      "duration_seconds": 2.76,
+      "duration_seconds": 2.096,
       "status": "pass",
       "critical": true,
       "required_outputs": {
@@ -47,7 +47,7 @@
         1,
         2
       ],
-      "duration_seconds": 119.182,
+      "duration_seconds": 119.535,
       "status": "warn",
       "critical": true,
       "required_outputs": {
@@ -84,7 +84,7 @@
       "expected_exit_codes": [
         0
       ],
-      "duration_seconds": 5.154,
+      "duration_seconds": 3.648,
       "status": "pass",
       "critical": true,
       "required_outputs": {
@@ -124,7 +124,7 @@
       "expected_exit_codes": [
         0
       ],
-      "duration_seconds": 3.224,
+      "duration_seconds": 3.037,
       "status": "pass",
       "critical": true,
       "required_outputs": {
@@ -134,7 +134,7 @@
         }
       },
       "stdout_tail": "",
-      "stderr_tail": "Finished `dev` profile [optimized + debuginfo] target(s) in 0.17s\n     Running `target\\debug\\ankh-forge.exe scan --root . --output audit-reports/extension_universe_ankh.json`"
+      "stderr_tail": "Finished `dev` profile [optimized + debuginfo] target(s) in 0.14s\n     Running `target\\debug\\ankh-forge.exe scan --root . --output audit-reports/extension_universe_ankh.json`"
     },
     {
       "step_id": "part_3_ankh_census",
@@ -156,7 +156,7 @@
       "expected_exit_codes": [
         0
       ],
-      "duration_seconds": 0.607,
+      "duration_seconds": 0.576,
       "status": "pass",
       "critical": true,
       "required_outputs": {
@@ -166,7 +166,7 @@
         }
       },
       "stdout_tail": "",
-      "stderr_tail": "Finished `dev` profile [optimized + debuginfo] target(s) in 0.15s\n     Running `target\\debug\\ankh-forge.exe census --root . --output audit-reports/wptg_filetype_census_ankh.json`"
+      "stderr_tail": "Finished `dev` profile [optimized + debuginfo] target(s) in 0.14s\n     Running `target\\debug\\ankh-forge.exe census --root . --output audit-reports/wptg_filetype_census_ankh.json`"
     },
     {
       "step_id": "part_3_ankh_landscape",
@@ -198,7 +198,7 @@
         }
       },
       "stdout_tail": "",
-      "stderr_tail": "Finished `dev` profile [optimized + debuginfo] target(s) in 0.15s\n     Running `target\\debug\\ankh-forge.exe landscape --root . --output audit-reports/oxidized_tooling_landscape.json`"
+      "stderr_tail": "Finished `dev` profile [optimized + debuginfo] target(s) in 0.18s\n     Running `target\\debug\\ankh-forge.exe landscape --root . --output audit-reports/oxidized_tooling_landscape.json`"
     },
     {
       "step_id": "part_3_ankh_eol",
@@ -218,7 +218,7 @@
       "expected_exit_codes": [
         0
       ],
-      "duration_seconds": 3.044,
+      "duration_seconds": 2.222,
       "status": "pass",
       "critical": true,
       "required_outputs": {
@@ -228,7 +228,7 @@
         }
       },
       "stdout_tail": "",
-      "stderr_tail": "Finished `dev` profile [optimized + debuginfo] target(s) in 0.16s\n     Running `target\\debug\\ankh-forge.exe eol --output audit-reports/oxidized_tooling_eol.json`"
+      "stderr_tail": "Finished `dev` profile [optimized + debuginfo] target(s) in 0.14s\n     Running `target\\debug\\ankh-forge.exe eol --output audit-reports/oxidized_tooling_eol.json`"
     },
     {
       "step_id": "part_3_bun_lane_pulse",
@@ -242,7 +242,7 @@
       "expected_exit_codes": [
         0
       ],
-      "duration_seconds": 0.017,
+      "duration_seconds": 0.029,
       "status": "pass",
       "critical": false,
       "required_outputs": {},
@@ -262,7 +262,7 @@
       "expected_exit_codes": [
         0
       ],
-      "duration_seconds": 0.162,
+      "duration_seconds": 0.234,
       "status": "pass",
       "critical": true,
       "required_outputs": {
@@ -281,7 +281,7 @@
   ],
   "metrics": {
     "codebase_extensions_unique": 51,
-    "tracked_files": 2800,
+    "tracked_files": 2801,
     "census_verdict": "FAIL",
     "census_anomaly_count": 353,
     "forge_tempered": 18,
@@ -290,7 +290,10 @@
     "validator_errors": 0,
     "validator_warnings": 3,
     "ankh_extensions_unique": 51,
-    "ankh_census_anomalies": 354
+    "ankh_census_anomalies": 354,
+    "legacy_guard_present": true,
+    "legacy_guard_size_bytes": 20113,
+    "legacy_guard_path": "scripts/wpth_repeatable_cycle_LEGACY"
   },
   "learning": {
     "deltas": {
@@ -319,16 +322,17 @@
     }
   },
   "previous_cycle_reference": {
-    "cycle_id": 1,
+    "cycle_id": 2,
     "verdict": "WARN",
-    "timestamp": "2026-03-04T23:30:21+00:00"
+    "timestamp": "2026-03-05T16:16:21+00:00"
   },
   "restart_readiness": {
     "ready": true,
     "blockers": [],
     "notes": [
       "Census anomalies exist; they are handled via reverse-rarity-first priority.",
-      "Validator warnings are currently lane-exclusion skips."
+      "Validator warnings are currently lane-exclusion skips.",
+      "Legacy salvage guard preserved: scripts/wpth_repeatable_cycle_LEGACY (20113 bytes)."
     ]
   }
 }

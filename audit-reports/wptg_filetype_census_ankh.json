@@ -2479,7 +2479,7 @@
       "wptg_rationale": "Documentation in scripts/ should be canonicalized into a docs/governance lane."
     }
   ],
-  "audited_files": 2732,
+  "audited_files": 2733,
   "by_extension": {
     ".bak": {
       "anomalies": {},
@@ -2573,7 +2573,7 @@
     },
     ".json": {
       "anomalies": {},
-      "count": 675
+      "count": 676
     },
     ".jsonl": {
       "anomalies": {},
@@ -2699,7 +2699,7 @@
   "by_gold_tier": {
     "raw_unrefined": 578,
     "tier_1_direct": 488,
-    "tier_2_structural": 756,
+    "tier_2_structural": 757,
     "tier_3_conceptual": 910
   },
   "excluded_lane_files": 68,
@@ -2773,7 +2773,7 @@
     "scripts/theme_sfs_transmute.py",
     "scripts/theme_token_coverage.py"
   ],
-  "timestamp": "2026-03-05T16:04:31.0962740Z",
-  "total_tracked": 2800,
+  "timestamp": "2026-03-05T16:18:30.6927663Z",
+  "total_tracked": 2801,
   "verdict": "FAIL"
 }

@@ -944,6 +944,8 @@ Cycle outputs now include:
 - `audit-reports/wptg_reverse_viability_queue.json`
   - ranked extension queue by reverse effort priority;
   - ranked anomaly file queue by reverse effort score.
+- legacy guard signal in cycle state/default-view:
+  - `scripts/wpth_repeatable_cycle_LEGACY` presence + size are recorded and enforced as restart-readiness criteria.
 
 Default-view posture:
 

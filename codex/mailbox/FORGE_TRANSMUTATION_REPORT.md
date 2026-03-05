@@ -2,7 +2,7 @@
 type: report
 from: codex
 to: user
-created: 2026-03-05T16:04:27+00:00
+created: 2026-03-05T16:18:27+00:00
 priority: high
 subject: FORGE_TRANSMUTATION_REPORT
 ---
@@ -19,7 +19,7 @@ subject: FORGE_TRANSMUTATION_REPORT
 
 - Tempered artifacts: 18
 - Rejected artifacts: 0
-- Compression ratio: 9451642 -> 247032
+- Compression ratio: 9451642 -> 248224
 
 ## Source Pools
 
@@ -88,13 +88,3 @@ subject: FORGE_TRANSMUTATION_REPORT
 - Novel pathway bonus: 4.0
 - Unrepresented language bonus: 6.0
 - Total Tier 2 boon: 16.5
-
-## Stage 5 Repeatable-Cycle Addendum (2026-03-05)
-
-- Sequential mode executed: `uv run scripts/wptg_repeatable_cycle.py --auto-restart`
-- Execution mode: `auto_restart_ready_now`
-- Reverse priority artifact: `audit-reports/wptg_reverse_viability_queue.json`
-- Cycle verdict: `WARN`
-- Cycle boon: `11.5`
-- Cycle penalty: `1.3`
-- Cycle net score: `10.2`

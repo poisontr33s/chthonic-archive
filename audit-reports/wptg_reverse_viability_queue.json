@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-03-05T16:04:36+00:00",
+  "timestamp": "2026-03-05T16:18:35+00:00",
   "perspective": "reverse_rarity_first",
   "selection_principle": "least_viable_first",
   "extension_priority": [
@@ -555,12 +555,12 @@
     },
     {
       "extension": ".json",
-      "count": 682,
+      "count": 683,
       "anomaly_count": 0,
       "category": "data_config",
       "runtime_supported": true,
-      "rarity_ratio": 0.1948,
-      "viability_score": 0.9026,
+      "rarity_ratio": 0.1936,
+      "viability_score": 0.9032,
       "reverse_effort_priority": 0.97,
       "reverse_rank": 51
     },

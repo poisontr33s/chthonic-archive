@@ -1,9 +1,9 @@
 # WPTG Repeatable Cycle Report
 
-- Timestamp: `2026-03-05T16:04:36+00:00`
+- Timestamp: `2026-03-05T16:18:35+00:00`
 - Cycle ID: `1`
 - Begin Anew Mode: `True`
-- Execution Mode: `auto_restart_ready_now`
+- Execution Mode: `auto_restart_after_continuation`
 - Verdict: `WARN`
 
 ## Restart Readiness
@@ -12,25 +12,32 @@
 - Notes:
   - Census anomalies exist; they are handled via reverse-rarity-first priority.
   - Validator warnings are currently lane-exclusion skips.
+  - Legacy salvage guard preserved: scripts/wpth_repeatable_cycle_LEGACY (20113 bytes).
+
+## Legacy Guard
+
+- Path: `scripts/wpth_repeatable_cycle_LEGACY`
+- Present: `True`
+- Size bytes: `20113`
 
 ## Step Results
 
 | Step | Toolchain | Exit | Status | Duration(s) |
 |---|---|---:|---|---:|
-| phase_0_universe | uv | 0 | pass | 2.760 |
-| part_1_census | uv | 2 | warn | 119.182 |
-| part_2_forge | uv | 0 | pass | 5.154 |
-| part_3_ankh_scan | cargo | 0 | pass | 3.224 |
-| part_3_ankh_census | cargo | 0 | pass | 0.607 |
+| phase_0_universe | uv | 0 | pass | 2.096 |
+| part_1_census | uv | 2 | warn | 119.535 |
+| part_2_forge | uv | 0 | pass | 3.648 |
+| part_3_ankh_scan | cargo | 0 | pass | 3.037 |
+| part_3_ankh_census | cargo | 0 | pass | 0.576 |
 | part_3_ankh_landscape | cargo | 0 | pass | 2.556 |
-| part_3_ankh_eol | cargo | 0 | pass | 3.044 |
-| part_3_bun_lane_pulse | bun | 0 | pass | 0.017 |
-| part_4_validator | uv | 0 | pass | 0.162 |
+| part_3_ankh_eol | cargo | 0 | pass | 2.222 |
+| part_3_bun_lane_pulse | bun | 0 | pass | 0.029 |
+| part_4_validator | uv | 0 | pass | 0.234 |
 
 ## Metrics
 
 - Extensions unique: `51`
-- Tracked files: `2800`
+- Tracked files: `2801`
 - Census verdict/anomalies: `FAIL` / `353`
 - Forge tempered/rejected: `18` / `0`
 - Validator verdict/errors/warnings: `WARN` / `0` / `3`
