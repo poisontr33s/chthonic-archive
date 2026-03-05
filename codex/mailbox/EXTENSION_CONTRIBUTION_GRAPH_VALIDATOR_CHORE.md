@@ -924,3 +924,43 @@ Cycle verdict and score snapshot:
 - Boon: `11.5`
 - Penalty: `1.3`
 - Net: `10.2`
+
+## Stage 5 — Reverse-Rarity Baseline and Sequential Auto-Restart
+
+Stage 5 applies the "least viable first" WPTG perspective as the default baseline.
+
+### Stage 5A — Sequential Restart Logic
+
+`scripts/wptg_repeatable_cycle.py` now supports:
+
+- `--auto-restart`
+  - if restart-ready: restart immediately;
+  - if not restart-ready: run continuation first, then restart when viable.
+
+### Stage 5B — Reverse Priority Artifacts
+
+Cycle outputs now include:
+
+- `audit-reports/wptg_reverse_viability_queue.json`
+  - ranked extension queue by reverse effort priority;
+  - ranked anomaly file queue by reverse effort score.
+
+Default-view posture:
+
+- `default_mode: renewal_loop_reverse_rarity_first`
+- Principle: `least_viable_first` regardless of filetype.
+
+### Stage 5C — Execution Evidence (Completed)
+
+Executed command:
+
+```powershell
+uv run scripts/wptg_repeatable_cycle.py --auto-restart
+```
+
+Observed mode and result:
+
+- Execution mode: `auto_restart_ready_now`
+- Restart readiness: `true`
+- Verdict: `WARN`
+- Net score: `10.2`

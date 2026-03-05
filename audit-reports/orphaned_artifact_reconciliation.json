@@ -1,6 +1,6 @@
 {
-  "timestamp": "2026-03-04T23:30:09+00:00",
-  "total_json_files": 673,
+  "timestamp": "2026-03-05T16:04:21+00:00",
+  "total_json_files": 675,
   "orphan_candidate_count": 0,
   "orphan_candidates": [],
   "reference_traces": [
@@ -70,7 +70,7 @@
       ],
       "reference_count": 4,
       "modified_at": "2026-02-07T04:11:32+00:00",
-      "age_days": 25,
+      "age_days": 26,
       "timestamp_fields": {},
       "recognized_artifact_format": false,
       "json_parse_error": null,
@@ -98,7 +98,7 @@
       ],
       "reference_count": 4,
       "modified_at": "2026-02-07T04:03:31+00:00",
-      "age_days": 25,
+      "age_days": 26,
       "timestamp_fields": {},
       "recognized_artifact_format": false,
       "json_parse_error": null,
@@ -126,7 +126,7 @@
       ],
       "reference_count": 4,
       "modified_at": "2026-02-07T04:11:32+00:00",
-      "age_days": 25,
+      "age_days": 26,
       "timestamp_fields": {},
       "recognized_artifact_format": false,
       "json_parse_error": null,
@@ -154,7 +154,7 @@
       ],
       "reference_count": 4,
       "modified_at": "2026-02-07T04:11:32+00:00",
-      "age_days": 25,
+      "age_days": 26,
       "timestamp_fields": {},
       "recognized_artifact_format": false,
       "json_parse_error": null,
@@ -182,7 +182,7 @@
       ],
       "reference_count": 4,
       "modified_at": "2026-02-07T04:03:31+00:00",
-      "age_days": 25,
+      "age_days": 26,
       "timestamp_fields": {},
       "recognized_artifact_format": false,
       "json_parse_error": null,
@@ -210,7 +210,7 @@
       ],
       "reference_count": 4,
       "modified_at": "2026-02-07T04:03:31+00:00",
-      "age_days": 25,
+      "age_days": 26,
       "timestamp_fields": {},
       "recognized_artifact_format": false,
       "json_parse_error": null,
@@ -698,7 +698,7 @@
       ],
       "reference_count": 17,
       "modified_at": "2026-03-02T02:35:25+00:00",
-      "age_days": 2,
+      "age_days": 3,
       "timestamp_fields": {},
       "recognized_artifact_format": false,
       "json_parse_error": null,
@@ -2964,7 +2964,7 @@
       ],
       "reference_count": 3,
       "modified_at": "2026-03-03T07:37:55+00:00",
-      "age_days": 1,
+      "age_days": 2,
       "timestamp_fields": {
         "runtime_support": {
           "required_toolchains": [],
@@ -2981,6 +2981,10 @@
       "path": "audit-reports/extension_contribution_audit.json",
       "references": [
         {
+          "path": "audit-reports/wptg_cycle_state.json",
+          "match": "audit-reports/extension_contribution_audit.json"
+        },
+        {
           "path": "codex/mailbox/EXTENSION_CONTRIBUTION_GRAPH_VALIDATOR_CHORE.md",
           "match": "audit-reports/extension_contribution_audit.json"
         },
@@ -2995,13 +2999,17 @@
         {
           "path": "scripts/extension_contribution_audit.py",
           "match": "audit-reports/extension_contribution_audit.json"
+        },
+        {
+          "path": "scripts/wptg_repeatable_cycle.py",
+          "match": "audit-reports/extension_contribution_audit.json"
         }
       ],
-      "reference_count": 4,
-      "modified_at": "2026-03-04T23:27:22+00:00",
+      "reference_count": 6,
+      "modified_at": "2026-03-04T23:30:21+00:00",
       "age_days": 0,
       "timestamp_fields": {
-        "timestamp": "2026-03-04T23:27:22+00:00"
+        "timestamp": "2026-03-04T23:30:21+00:00"
       },
       "recognized_artifact_format": false,
       "json_parse_error": null,
@@ -3010,6 +3018,10 @@
     {
       "path": "audit-reports/extension_universe.json",
       "references": [
+        {
+          "path": "audit-reports/wptg_cycle_state.json",
+          "match": "audit-reports/extension_universe.json"
+        },
         {
           "path": "codex/mailbox/EXTENSION_CONTRIBUTION_GRAPH_VALIDATOR_CHORE.md",
           "match": "audit-reports/extension_universe.json"
@@ -3025,13 +3037,17 @@
         {
           "path": "scripts/extension_universe_scanner.py",
           "match": "audit-reports/extension_universe.json"
+        },
+        {
+          "path": "scripts/wptg_repeatable_cycle.py",
+          "match": "audit-reports/extension_universe.json"
         }
       ],
-      "reference_count": 4,
-      "modified_at": "2026-03-04T23:28:01+00:00",
+      "reference_count": 6,
+      "modified_at": "2026-03-05T16:02:22+00:00",
       "age_days": 0,
       "timestamp_fields": {
-        "timestamp": "2026-03-04T23:27:59+00:00",
+        "timestamp": "2026-03-05T16:02:21+00:00",
         "codebase_extensions.inventory..bak.runtime_support": {
           "supported": true,
           "supported_by": [],
@@ -3458,6 +3474,10 @@
       "path": "audit-reports/extension_universe_ankh.json",
       "references": [
         {
+          "path": "audit-reports/wptg_cycle_state.json",
+          "match": "audit-reports/extension_universe_ankh.json"
+        },
+        {
           "path": "codex/mailbox/EXTENSION_CONTRIBUTION_GRAPH_VALIDATOR_CHORE.md",
           "match": "audit-reports/extension_universe_ankh.json"
         },
@@ -3472,10 +3492,14 @@
         {
           "path": "dumpster-dive/forge/tempered/schemas/configuration_schema_catalog.json",
           "match": "audit-reports/extension_universe_ankh.json"
+        },
+        {
+          "path": "scripts/wptg_repeatable_cycle.py",
+          "match": "audit-reports/extension_universe_ankh.json"
         }
       ],
-      "reference_count": 4,
-      "modified_at": "2026-03-04T23:27:16+00:00",
+      "reference_count": 6,
+      "modified_at": "2026-03-04T23:30:15+00:00",
       "age_days": 0,
       "timestamp_fields": {
         "codebase_extensions.inventory..bak.runtime_support": {
@@ -3901,7 +3925,7 @@
         "system_toolchains.details.typescript.runtime_version": "1.3.9",
         "system_toolchains.details.zig.runtime_output": null,
         "system_toolchains.details.zig.runtime_version": null,
-        "timestamp": "2026-03-04T23:27:16.2426556Z"
+        "timestamp": "2026-03-04T23:30:15.0534475Z"
       },
       "recognized_artifact_format": false,
       "json_parse_error": null,
@@ -3910,6 +3934,10 @@
     {
       "path": "audit-reports/orphaned_artifact_reconciliation.json",
       "references": [
+        {
+          "path": "audit-reports/wptg_cycle_state.json",
+          "match": "audit-reports/orphaned_artifact_reconciliation.json"
+        },
         {
           "path": "codex/mailbox/EXTENSION_CONTRIBUTION_GRAPH_VALIDATOR_CHORE.md",
           "match": "audit-reports/orphaned_artifact_reconciliation.json"
@@ -3925,10 +3953,14 @@
         {
           "path": "scripts/wptg_filetype_census.py",
           "match": "audit-reports/orphaned_artifact_reconciliation.json"
+        },
+        {
+          "path": "scripts/wptg_repeatable_cycle.py",
+          "match": "audit-reports/orphaned_artifact_reconciliation.json"
         }
       ],
-      "reference_count": 4,
-      "modified_at": "2026-03-04T23:26:51+00:00",
+      "reference_count": 6,
+      "modified_at": "2026-03-04T23:30:09+00:00",
       "age_days": 0,
       "timestamp_fields": {},
       "recognized_artifact_format": false,
@@ -3938,6 +3970,10 @@
     {
       "path": "audit-reports/oxidized_tooling_eol.json",
       "references": [
+        {
+          "path": "audit-reports/wptg_cycle_state.json",
+          "match": "audit-reports/oxidized_tooling_eol.json"
+        },
         {
           "path": "codex/mailbox/EXTENSION_CONTRIBUTION_GRAPH_VALIDATOR_CHORE.md",
           "match": "audit-reports/oxidized_tooling_eol.json"
@@ -3953,10 +3989,14 @@
         {
           "path": "dumpster-dive/forge/tempered/schemas/configuration_schema_catalog.json",
           "match": "audit-reports/oxidized_tooling_eol.json"
+        },
+        {
+          "path": "scripts/wptg_repeatable_cycle.py",
+          "match": "audit-reports/oxidized_tooling_eol.json"
         }
       ],
-      "reference_count": 4,
-      "modified_at": "2026-03-04T23:27:21+00:00",
+      "reference_count": 6,
+      "modified_at": "2026-03-04T23:30:21+00:00",
       "age_days": 0,
       "timestamp_fields": {
         "runtimes": {
@@ -4031,7 +4071,7 @@
         "runtimes.ruby.latest_release_date": "2026-01-12",
         "runtimes.rust.latest_release_date": "2026-02-12",
         "runtimes.typescript.latest_release_date": "2026-02-25",
-        "timestamp": "2026-03-04T23:27:20.4937388Z"
+        "timestamp": "2026-03-04T23:30:19.3063670Z"
       },
       "recognized_artifact_format": false,
       "json_parse_error": null,
@@ -4040,6 +4080,10 @@
     {
       "path": "audit-reports/oxidized_tooling_landscape.json",
       "references": [
+        {
+          "path": "audit-reports/wptg_cycle_state.json",
+          "match": "audit-reports/oxidized_tooling_landscape.json"
+        },
         {
           "path": "codex/mailbox/EXTENSION_CONTRIBUTION_GRAPH_VALIDATOR_CHORE.md",
           "match": "audit-reports/oxidized_tooling_landscape.json"
@@ -4055,10 +4099,14 @@
         {
           "path": "dumpster-dive/forge/tempered/schemas/configuration_schema_catalog.json",
           "match": "audit-reports/oxidized_tooling_landscape.json"
+        },
+        {
+          "path": "scripts/wptg_repeatable_cycle.py",
+          "match": "audit-reports/oxidized_tooling_landscape.json"
         }
       ],
-      "reference_count": 4,
-      "modified_at": "2026-03-04T23:27:19+00:00",
+      "reference_count": 6,
+      "modified_at": "2026-03-04T23:30:18+00:00",
       "age_days": 0,
       "timestamp_fields": {
         "eol_risk.dotnet.latest_release_date": "2026-02-10",
@@ -4066,7 +4114,76 @@
         "eol_risk.ruby.latest_release_date": "2026-01-12",
         "eol_risk.rust.latest_release_date": "2026-02-12",
         "eol_risk.typescript.latest_release_date": "2026-02-25",
-        "timestamp": "2026-03-04T23:27:18.0666119Z"
+        "timestamp": "2026-03-04T23:30:16.8082044Z"
+      },
+      "recognized_artifact_format": false,
+      "json_parse_error": null,
+      "orphan_candidate": false
+    },
+    {
+      "path": "audit-reports/wptg_cycle_state.json",
+      "references": [
+        {
+          "path": ".gitignore",
+          "match": "audit-reports/wptg_cycle_state.json"
+        },
+        {
+          "path": "codex/mailbox/EXTENSION_CONTRIBUTION_GRAPH_VALIDATOR_CHORE.md",
+          "match": "audit-reports/wptg_cycle_state.json"
+        },
+        {
+          "path": "codex/mailbox/EXTENSION_CONTRIBUTION_STAGE_2_PLAN.md",
+          "match": "audit-reports/wptg_cycle_state.json"
+        },
+        {
+          "path": "codex/mailbox/WPTG_REPEATABLE_FRAMEWORK.md",
+          "match": "audit-reports/wptg_cycle_state.json"
+        },
+        {
+          "path": "scripts/wptg_repeatable_cycle.py",
+          "match": "audit-reports/wptg_cycle_state.json"
+        }
+      ],
+      "reference_count": 5,
+      "modified_at": "2026-03-04T23:30:21+00:00",
+      "age_days": 0,
+      "timestamp_fields": {
+        "timestamp": "2026-03-04T23:30:21+00:00",
+        "previous_cycle_reference.timestamp": "2026-03-04T23:27:22+00:00"
+      },
+      "recognized_artifact_format": false,
+      "json_parse_error": null,
+      "orphan_candidate": false
+    },
+    {
+      "path": "audit-reports/wptg_default_view.json",
+      "references": [
+        {
+          "path": ".gitignore",
+          "match": "audit-reports/wptg_default_view.json"
+        },
+        {
+          "path": "codex/mailbox/EXTENSION_CONTRIBUTION_GRAPH_VALIDATOR_CHORE.md",
+          "match": "audit-reports/wptg_default_view.json"
+        },
+        {
+          "path": "codex/mailbox/EXTENSION_CONTRIBUTION_STAGE_2_PLAN.md",
+          "match": "audit-reports/wptg_default_view.json"
+        },
+        {
+          "path": "codex/mailbox/WPTG_REPEATABLE_FRAMEWORK.md",
+          "match": "audit-reports/wptg_default_view.json"
+        },
+        {
+          "path": "scripts/wptg_repeatable_cycle.py",
+          "match": "audit-reports/wptg_default_view.json"
+        }
+      ],
+      "reference_count": 5,
+      "modified_at": "2026-03-04T23:30:21+00:00",
+      "age_days": 0,
+      "timestamp_fields": {
+        "timestamp": "2026-03-04T23:30:21+00:00"
       },
       "recognized_artifact_format": false,
       "json_parse_error": null,
@@ -4075,6 +4192,10 @@
     {
       "path": "audit-reports/wptg_filetype_census.json",
       "references": [
+        {
+          "path": "audit-reports/wptg_cycle_state.json",
+          "match": "audit-reports/wptg_filetype_census.json"
+        },
         {
           "path": "codex/mailbox/EXTENSION_CONTRIBUTION_GRAPH_VALIDATOR_CHORE.md",
           "match": "audit-reports/wptg_filetype_census.json"
@@ -4094,13 +4215,17 @@
         {
           "path": "scripts/wptg_filetype_census.py",
           "match": "audit-reports/wptg_filetype_census.json"
+        },
+        {
+          "path": "scripts/wptg_repeatable_cycle.py",
+          "match": "audit-reports/wptg_filetype_census.json"
         }
       ],
-      "reference_count": 5,
-      "modified_at": "2026-03-04T23:26:51+00:00",
+      "reference_count": 7,
+      "modified_at": "2026-03-04T23:30:09+00:00",
       "age_days": 0,
       "timestamp_fields": {
-        "timestamp": "2026-03-04T23:26:51+00:00"
+        "timestamp": "2026-03-04T23:30:09+00:00"
       },
       "recognized_artifact_format": false,
       "json_parse_error": null,
@@ -4109,6 +4234,10 @@
     {
       "path": "audit-reports/wptg_filetype_census_ankh.json",
       "references": [
+        {
+          "path": "audit-reports/wptg_cycle_state.json",
+          "match": "audit-reports/wptg_filetype_census_ankh.json"
+        },
         {
           "path": "codex/mailbox/EXTENSION_CONTRIBUTION_GRAPH_VALIDATOR_CHORE.md",
           "match": "audit-reports/wptg_filetype_census_ankh.json"
@@ -4124,13 +4253,17 @@
         {
           "path": "dumpster-dive/forge/tempered/schemas/configuration_schema_catalog.json",
           "match": "audit-reports/wptg_filetype_census_ankh.json"
+        },
+        {
+          "path": "scripts/wptg_repeatable_cycle.py",
+          "match": "audit-reports/wptg_filetype_census_ankh.json"
         }
       ],
-      "reference_count": 4,
-      "modified_at": "2026-03-04T23:27:16+00:00",
+      "reference_count": 6,
+      "modified_at": "2026-03-04T23:30:15+00:00",
       "age_days": 0,
       "timestamp_fields": {
-        "timestamp": "2026-03-04T23:27:16.8525157Z"
+        "timestamp": "2026-03-04T23:30:15.6005942Z"
       },
       "recognized_artifact_format": false,
       "json_parse_error": null,
@@ -4198,7 +4331,7 @@
       ],
       "reference_count": 5,
       "modified_at": "2026-02-26T06:34:56+00:00",
-      "age_days": 6,
+      "age_days": 7,
       "timestamp_fields": {},
       "recognized_artifact_format": false,
       "json_parse_error": null,
@@ -4234,7 +4367,7 @@
       ],
       "reference_count": 6,
       "modified_at": "2026-02-26T04:11:23+00:00",
-      "age_days": 6,
+      "age_days": 7,
       "timestamp_fields": {},
       "recognized_artifact_format": false,
       "json_parse_error": null,
@@ -4266,7 +4399,7 @@
       ],
       "reference_count": 5,
       "modified_at": "2026-02-26T04:11:23+00:00",
-      "age_days": 6,
+      "age_days": 7,
       "timestamp_fields": {},
       "recognized_artifact_format": false,
       "json_parse_error": null,
@@ -4294,7 +4427,7 @@
       ],
       "reference_count": 4,
       "modified_at": "2026-02-26T04:11:23+00:00",
-      "age_days": 6,
+      "age_days": 7,
       "timestamp_fields": {},
       "recognized_artifact_format": false,
       "json_parse_error": null,
@@ -4342,7 +4475,7 @@
       ],
       "reference_count": 9,
       "modified_at": "2026-02-26T04:11:23+00:00",
-      "age_days": 6,
+      "age_days": 7,
       "timestamp_fields": {
         "date": "2026-02-26"
       },
@@ -4376,7 +4509,7 @@
       ],
       "reference_count": 5,
       "modified_at": "2026-02-26T04:11:23+00:00",
-      "age_days": 6,
+      "age_days": 7,
       "timestamp_fields": {
         "stable.updateUrl": "",
         "insider.updateUrl": ""
@@ -4415,7 +4548,7 @@
       ],
       "reference_count": 6,
       "modified_at": "2026-02-26T01:28:08+00:00",
-      "age_days": 6,
+      "age_days": 7,
       "timestamp_fields": {},
       "recognized_artifact_format": false,
       "json_parse_error": null,
@@ -4507,7 +4640,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-26T01:29:18+00:00",
-      "age_days": 6,
+      "age_days": 7,
       "timestamp_fields": {
         "generated_at": "2026-02-26T01:29:18.088241+00:00",
         "files[0].mtime_iso": "2026-02-24T06:57:51.959921+00:00",
@@ -5060,7 +5193,7 @@
       ],
       "reference_count": 3,
       "modified_at": "2026-02-20T02:31:13+00:00",
-      "age_days": 12,
+      "age_days": 13,
       "timestamp_fields": {
         "generated": "2026-02-20T02:31:10.079793+00:00",
         "models[0].updated_at": "2026-02-13T02:54:57.917825+00:00",
@@ -8117,7 +8250,7 @@
       ],
       "reference_count": 11,
       "modified_at": "2026-02-24T07:35:18+00:00",
-      "age_days": 8,
+      "age_days": 9,
       "timestamp_fields": {
         "generated_on": "2026-02-20T03:13:13.810889+00:00"
       },
@@ -9191,7 +9324,7 @@
       ],
       "reference_count": 8,
       "modified_at": "2026-02-26T00:52:21+00:00",
-      "age_days": 6,
+      "age_days": 7,
       "timestamp_fields": {
         "generated_on_utc": "2026-02-26T00:39:33Z"
       },
@@ -9452,7 +9585,7 @@
       ],
       "reference_count": 4,
       "modified_at": "2026-02-26T03:48:59+00:00",
-      "age_days": 6,
+      "age_days": 7,
       "timestamp_fields": {
         "generated_utc": "2026-02-26T03:48:59.078102+00:00"
       },
@@ -10326,7 +10459,7 @@
       ],
       "reference_count": 4,
       "modified_at": "2026-02-26T01:09:23+00:00",
-      "age_days": 6,
+      "age_days": 7,
       "timestamp_fields": {
         "generated_on": "2026-02-26T01:09:23.357917+00:00"
       },
@@ -10352,7 +10485,7 @@
       ],
       "reference_count": 3,
       "modified_at": "2026-02-26T03:27:37+00:00",
-      "age_days": 6,
+      "age_days": 7,
       "timestamp_fields": {
         "generated_on_utc": "2026-02-26T03:27:37.9862265Z"
       },
@@ -10378,7 +10511,7 @@
       ],
       "reference_count": 3,
       "modified_at": "2026-02-26T03:39:16+00:00",
-      "age_days": 6,
+      "age_days": 7,
       "timestamp_fields": {
         "generated_on_utc": "2026-02-26T03:39:16.0398183Z"
       },
@@ -10408,7 +10541,7 @@
       ],
       "reference_count": 4,
       "modified_at": "2026-02-26T04:20:39+00:00",
-      "age_days": 6,
+      "age_days": 7,
       "timestamp_fields": {
         "generated_on_utc": "2026-02-26T04:20:39.3614831Z"
       },
@@ -10438,7 +10571,7 @@
       ],
       "reference_count": 4,
       "modified_at": "2026-02-26T04:33:33+00:00",
-      "age_days": 6,
+      "age_days": 7,
       "timestamp_fields": {
         "generated_on_utc": "2026-02-26T04:33:33.2786906Z"
       },
@@ -10468,7 +10601,7 @@
       ],
       "reference_count": 4,
       "modified_at": "2026-02-26T04:39:33+00:00",
-      "age_days": 6,
+      "age_days": 7,
       "timestamp_fields": {
         "generated_on_utc": "2026-02-26T04:39:33.3467233Z"
       },
@@ -10498,7 +10631,7 @@
       ],
       "reference_count": 4,
       "modified_at": "2026-02-26T04:40:46+00:00",
-      "age_days": 6,
+      "age_days": 7,
       "timestamp_fields": {
         "generated_on_utc": "2026-02-26T04:40:46.4344853Z"
       },
@@ -10528,7 +10661,7 @@
       ],
       "reference_count": 4,
       "modified_at": "2026-02-26T04:41:16+00:00",
-      "age_days": 6,
+      "age_days": 7,
       "timestamp_fields": {
         "generated_on_utc": "2026-02-26T04:41:16.7294083Z"
       },
@@ -10558,7 +10691,7 @@
       ],
       "reference_count": 4,
       "modified_at": "2026-02-26T04:51:12+00:00",
-      "age_days": 6,
+      "age_days": 7,
       "timestamp_fields": {
         "generated_on_utc": "2026-02-26T04:51:12.2573797Z"
       },
@@ -10730,7 +10863,7 @@
       ],
       "reference_count": 16,
       "modified_at": "2026-02-24T05:04:33+00:00",
-      "age_days": 8,
+      "age_days": 9,
       "timestamp_fields": {
         "generated_at": "2026-02-24T05:04:33.896693+00:00",
         "evidence.telemetry_summary.top_candidates": 20,
@@ -10809,7 +10942,7 @@
       ],
       "reference_count": 15,
       "modified_at": "2026-02-24T05:03:50+00:00",
-      "age_days": 8,
+      "age_days": 9,
       "timestamp_fields": {
         "generated_at": "2026-02-24T05:03:50.689137+00:00",
         "evidence.telemetry_summary.top_candidates": 20,
@@ -11162,7 +11295,7 @@
       ],
       "reference_count": 15,
       "modified_at": "2026-02-24T01:59:04+00:00",
-      "age_days": 8,
+      "age_days": 9,
       "timestamp_fields": {
         "generated_at": "2026-02-24T01:59:04.577237+00:00"
       },
@@ -11236,7 +11369,7 @@
       ],
       "reference_count": 15,
       "modified_at": "2026-02-24T01:59:04+00:00",
-      "age_days": 8,
+      "age_days": 9,
       "timestamp_fields": {
         "generated_at": "2026-02-24T01:59:04.587270+00:00"
       },
@@ -11310,7 +11443,7 @@
       ],
       "reference_count": 15,
       "modified_at": "2026-02-24T01:59:04+00:00",
-      "age_days": 8,
+      "age_days": 9,
       "timestamp_fields": {
         "generated_at": "2026-02-24T01:59:04.536413+00:00"
       },
@@ -11384,7 +11517,7 @@
       ],
       "reference_count": 15,
       "modified_at": "2026-02-24T01:59:04+00:00",
-      "age_days": 8,
+      "age_days": 9,
       "timestamp_fields": {
         "generated_at": "2026-02-24T01:59:04.525819+00:00"
       },
@@ -11458,7 +11591,7 @@
       ],
       "reference_count": 15,
       "modified_at": "2026-02-24T08:14:16+00:00",
-      "age_days": 8,
+      "age_days": 9,
       "timestamp_fields": {
         "generated_at": "2026-02-24T08:14:16.7075382Z"
       },
@@ -11642,7 +11775,7 @@
       ],
       "reference_count": 18,
       "modified_at": "2026-02-18T04:18:18+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {
         "generated_at": "2026-02-18T04:18:18.040690+00:00"
       },
@@ -12210,7 +12343,7 @@
       ],
       "reference_count": 8,
       "modified_at": "2026-02-26T00:41:11+00:00",
-      "age_days": 6,
+      "age_days": 7,
       "timestamp_fields": {
         "generated_on_utc": "2026-02-26T00:39:33Z"
       },
@@ -12348,7 +12481,7 @@
       ],
       "reference_count": 14,
       "modified_at": "2026-02-24T07:36:41+00:00",
-      "age_days": 8,
+      "age_days": 9,
       "timestamp_fields": {},
       "recognized_artifact_format": true,
       "json_parse_error": null,
@@ -12416,7 +12549,7 @@
       ],
       "reference_count": 14,
       "modified_at": "2026-02-24T07:39:18+00:00",
-      "age_days": 8,
+      "age_days": 9,
       "timestamp_fields": {},
       "recognized_artifact_format": true,
       "json_parse_error": null,
@@ -12476,7 +12609,7 @@
       ],
       "reference_count": 12,
       "modified_at": "2026-02-24T07:35:19+00:00",
-      "age_days": 8,
+      "age_days": 9,
       "timestamp_fields": {},
       "recognized_artifact_format": true,
       "json_parse_error": null,
@@ -12544,7 +12677,7 @@
       ],
       "reference_count": 14,
       "modified_at": "2026-02-24T07:39:08+00:00",
-      "age_days": 8,
+      "age_days": 9,
       "timestamp_fields": {},
       "recognized_artifact_format": true,
       "json_parse_error": null,
@@ -12612,7 +12745,7 @@
       ],
       "reference_count": 14,
       "modified_at": "2026-02-24T07:35:27+00:00",
-      "age_days": 8,
+      "age_days": 9,
       "timestamp_fields": {},
       "recognized_artifact_format": true,
       "json_parse_error": null,
@@ -12680,7 +12813,7 @@
       ],
       "reference_count": 14,
       "modified_at": "2026-02-24T07:33:27+00:00",
-      "age_days": 8,
+      "age_days": 9,
       "timestamp_fields": {},
       "recognized_artifact_format": true,
       "json_parse_error": null,
@@ -12748,7 +12881,7 @@
       ],
       "reference_count": 14,
       "modified_at": "2026-02-24T07:52:58+00:00",
-      "age_days": 8,
+      "age_days": 9,
       "timestamp_fields": {
         "simulation_gate.candidate_suggestion_count": 0
       },
@@ -12818,7 +12951,7 @@
       ],
       "reference_count": 14,
       "modified_at": "2026-02-24T07:51:55+00:00",
-      "age_days": 8,
+      "age_days": 9,
       "timestamp_fields": {
         "relationships.same_name_candidates": [],
         "relationships.outbound_references[0].candidates": [],
@@ -12893,7 +13026,7 @@
       ],
       "reference_count": 14,
       "modified_at": "2026-02-24T07:52:30+00:00",
-      "age_days": 8,
+      "age_days": 9,
       "timestamp_fields": {
         "relationships.same_name_candidates": [],
         "relationships.outbound_references[0].candidates": [],
@@ -13030,7 +13163,7 @@
       ],
       "reference_count": 4,
       "modified_at": "2026-02-26T01:10:29+00:00",
-      "age_days": 6,
+      "age_days": 7,
       "timestamp_fields": {
         "generated_on_utc": "2026-02-26T01:12:00Z"
       },
@@ -13060,7 +13193,7 @@
       ],
       "reference_count": 4,
       "modified_at": "2026-02-26T01:34:35+00:00",
-      "age_days": 6,
+      "age_days": 7,
       "timestamp_fields": {},
       "recognized_artifact_format": true,
       "json_parse_error": null,
@@ -13088,7 +13221,7 @@
       ],
       "reference_count": 4,
       "modified_at": "2026-02-26T01:35:48+00:00",
-      "age_days": 6,
+      "age_days": 7,
       "timestamp_fields": {
         "generated_on_utc": "2026-02-26T01:35:48.2689398Z"
       },
@@ -13158,7 +13291,7 @@
       ],
       "reference_count": 14,
       "modified_at": "2026-02-24T03:55:52+00:00",
-      "age_days": 8,
+      "age_days": 9,
       "timestamp_fields": {
         "generated_at": "2026-02-24T03:55:52.281880+00:00"
       },
@@ -13426,7 +13559,7 @@
       ],
       "reference_count": 10,
       "modified_at": "2026-02-26T03:31:23+00:00",
-      "age_days": 6,
+      "age_days": 7,
       "timestamp_fields": {
         "generated_on_utc": "2026-02-26T03:31:23.9143319Z"
       },
@@ -13480,7 +13613,7 @@
       ],
       "reference_count": 10,
       "modified_at": "2026-02-26T03:31:57+00:00",
-      "age_days": 6,
+      "age_days": 7,
       "timestamp_fields": {
         "generated_on_utc": "2026-02-26T03:31:57.5728448Z"
       },
@@ -13534,7 +13667,7 @@
       ],
       "reference_count": 10,
       "modified_at": "2026-02-26T03:33:40+00:00",
-      "age_days": 6,
+      "age_days": 7,
       "timestamp_fields": {
         "generated_on_utc": "2026-02-26T03:33:40.1098116Z"
       },
@@ -13588,7 +13721,7 @@
       ],
       "reference_count": 10,
       "modified_at": "2026-02-26T03:39:07+00:00",
-      "age_days": 6,
+      "age_days": 7,
       "timestamp_fields": {
         "generated_on_utc": "2026-02-26T03:39:07.1186731Z"
       },
@@ -13778,7 +13911,7 @@
       ],
       "reference_count": 17,
       "modified_at": "2026-02-26T03:22:49+00:00",
-      "age_days": 6,
+      "age_days": 7,
       "timestamp_fields": {
         "generated_on_utc": "2026-02-26T03:22:45.5468071Z"
       },
@@ -13860,7 +13993,7 @@
       ],
       "reference_count": 17,
       "modified_at": "2026-02-26T03:23:25+00:00",
-      "age_days": 6,
+      "age_days": 7,
       "timestamp_fields": {
         "generated_on_utc": "2026-02-26T03:23:20.8955182Z"
       },
@@ -13942,7 +14075,7 @@
       ],
       "reference_count": 17,
       "modified_at": "2026-02-26T03:25:06+00:00",
-      "age_days": 6,
+      "age_days": 7,
       "timestamp_fields": {
         "generated_on_utc": "2026-02-26T03:24:59.3703543Z"
       },
@@ -14024,7 +14157,7 @@
       ],
       "reference_count": 17,
       "modified_at": "2026-02-26T03:25:54+00:00",
-      "age_days": 6,
+      "age_days": 7,
       "timestamp_fields": {
         "generated_on_utc": "2026-02-26T03:25:47.3675691Z"
       },
@@ -14106,7 +14239,7 @@
       ],
       "reference_count": 17,
       "modified_at": "2026-02-26T03:26:30+00:00",
-      "age_days": 6,
+      "age_days": 7,
       "timestamp_fields": {
         "generated_on_utc": "2026-02-26T03:26:22.7560017Z"
       },
@@ -14188,7 +14321,7 @@
       ],
       "reference_count": 17,
       "modified_at": "2026-02-26T03:33:14+00:00",
-      "age_days": 6,
+      "age_days": 7,
       "timestamp_fields": {
         "generated_on_utc": "2026-02-26T03:33:07.1087445Z"
       },
@@ -14270,7 +14403,7 @@
       ],
       "reference_count": 17,
       "modified_at": "2026-02-26T03:38:41+00:00",
-      "age_days": 6,
+      "age_days": 7,
       "timestamp_fields": {
         "generated_on_utc": "2026-02-26T03:38:34.4121379Z"
       },
@@ -14352,7 +14485,7 @@
       ],
       "reference_count": 17,
       "modified_at": "2026-02-26T03:40:32+00:00",
-      "age_days": 6,
+      "age_days": 7,
       "timestamp_fields": {
         "generated_on_utc": "2026-02-26T03:40:24.9212356Z"
       },
@@ -14434,7 +14567,7 @@
       ],
       "reference_count": 17,
       "modified_at": "2026-02-26T03:42:47+00:00",
-      "age_days": 6,
+      "age_days": 7,
       "timestamp_fields": {
         "generated_on_utc": "2026-02-26T03:42:40.2451954Z"
       },
@@ -14754,7 +14887,7 @@
       ],
       "reference_count": 15,
       "modified_at": "2026-02-24T08:42:04+00:00",
-      "age_days": 8,
+      "age_days": 9,
       "timestamp_fields": {
         "generated_at": "2026-02-24T08:42:04.342601+00:00"
       },
@@ -14848,7 +14981,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-24T08:10:42+00:00",
-      "age_days": 8,
+      "age_days": 9,
       "timestamp_fields": {
         "generated_at": "2026-02-24T08:10:41.999983+00:00"
       },
@@ -18044,7 +18177,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-24T07:35:18+00:00",
-      "age_days": 8,
+      "age_days": 9,
       "timestamp_fields": {},
       "recognized_artifact_format": false,
       "json_parse_error": null,
@@ -18505,7 +18638,7 @@
       ],
       "reference_count": 13,
       "modified_at": "2026-02-26T04:40:39+00:00",
-      "age_days": 6,
+      "age_days": 7,
       "timestamp_fields": {
         "generated_note": "Registry of API key targets for chthonic-archive scaling lanes. No secret values stored here."
       },
@@ -18847,7 +18980,7 @@
         }
       ],
       "reference_count": 2,
-      "modified_at": "2026-03-04T23:26:56+00:00",
+      "modified_at": "2026-03-04T23:30:12+00:00",
       "age_days": 0,
       "timestamp_fields": {},
       "recognized_artifact_format": true,
@@ -18857,6 +18990,10 @@
     {
       "path": "dumpster-dive/forge/anvil/CODEBASE_ANOMALY_HARVEST.json",
       "references": [
+        {
+          "path": "audit-reports/wptg_cycle_state.json",
+          "match": "\\codebase_anomaly_harvest.json"
+        },
         {
           "path": "codex/mailbox/EXTENSION_CONTRIBUTION_GRAPH_VALIDATOR_CHORE.md",
           "match": "dumpster-dive/forge/anvil/codebase_anomaly_harvest.json"
@@ -18874,11 +19011,11 @@
           "match": "\"codebase_anomaly_harvest.json\""
         }
       ],
-      "reference_count": 4,
-      "modified_at": "2026-03-04T23:26:52+00:00",
+      "reference_count": 5,
+      "modified_at": "2026-03-04T23:30:10+00:00",
       "age_days": 0,
       "timestamp_fields": {
-        "timestamp": "2026-03-04T23:26:51+00:00"
+        "timestamp": "2026-03-04T23:30:09+00:00"
       },
       "recognized_artifact_format": true,
       "json_parse_error": null,
@@ -18888,6 +19025,10 @@
       "path": "dumpster-dive/forge/anvil/CORPSE_VAULT_DEEP_AUDIT.json",
       "references": [
         {
+          "path": "audit-reports/wptg_cycle_state.json",
+          "match": "\\corpse_vault_deep_audit.json"
+        },
+        {
           "path": "codex/mailbox/EXTENSION_CONTRIBUTION_GRAPH_VALIDATOR_CHORE.md",
           "match": "dumpster-dive/forge/anvil/corpse_vault_deep_audit.json"
         },
@@ -18896,11 +19037,11 @@
           "match": "\"corpse_vault_deep_audit.json\""
         }
       ],
-      "reference_count": 2,
-      "modified_at": "2026-03-04T23:26:52+00:00",
+      "reference_count": 3,
+      "modified_at": "2026-03-04T23:30:10+00:00",
       "age_days": 0,
       "timestamp_fields": {
-        "timestamp": "2026-03-04T23:26:52+00:00",
+        "timestamp": "2026-03-04T23:30:10+00:00",
         "languages.ankh.amalgamation_candidates": [],
         "languages.before-edit-experiments.amalgamation_candidates": [],
         "languages.config.amalgamation_candidates": [
@@ -24045,6 +24186,10 @@
       "path": "dumpster-dive/forge/furnace/FURNACE_MANIFEST.json",
       "references": [
         {
+          "path": "audit-reports/wptg_cycle_state.json",
+          "match": "dumpster-dive/forge/furnace/furnace_manifest.json"
+        },
+        {
           "path": "codex/mailbox/EXTENSION_CONTRIBUTION_GRAPH_VALIDATOR_CHORE.md",
           "match": "`furnace_manifest.json`"
         },
@@ -24059,13 +24204,17 @@
         {
           "path": "scripts/universal_forge.py",
           "match": "\"furnace_manifest.json\""
+        },
+        {
+          "path": "scripts/wptg_repeatable_cycle.py",
+          "match": "dumpster-dive/forge/furnace/furnace_manifest.json"
         }
       ],
-      "reference_count": 4,
-      "modified_at": "2026-03-04T23:26:52+00:00",
+      "reference_count": 6,
+      "modified_at": "2026-03-04T23:30:10+00:00",
       "age_days": 0,
       "timestamp_fields": {
-        "timestamp": "2026-03-04T23:26:52+00:00"
+        "timestamp": "2026-03-04T23:30:10+00:00"
       },
       "recognized_artifact_format": true,
       "json_parse_error": null,
@@ -24100,10 +24249,10 @@
         }
       ],
       "reference_count": 6,
-      "modified_at": "2026-03-04T23:26:52+00:00",
+      "modified_at": "2026-03-04T23:30:10+00:00",
       "age_days": 0,
       "timestamp_fields": {
-        "generated_at": "2026-03-04T23:26:52+00:00",
+        "generated_at": "2026-03-04T23:30:10+00:00",
         "schema_patterns[0].properties.mcp\\validate-integration.ps1": [
           "str"
         ],
@@ -24196,7 +24345,7 @@
         }
       ],
       "reference_count": 7,
-      "modified_at": "2026-03-04T23:26:52+00:00",
+      "modified_at": "2026-03-04T23:30:10+00:00",
       "age_days": 0,
       "timestamp_fields": {},
       "recognized_artifact_format": true,
@@ -24293,6 +24442,10 @@
       "path": "dumpster-dive/forge/tempered/GRADUATION_MANIFEST.json",
       "references": [
         {
+          "path": "audit-reports/wptg_cycle_state.json",
+          "match": "dumpster-dive/forge/tempered/graduation_manifest.json"
+        },
+        {
           "path": "codex/mailbox/EXTENSION_CONTRIBUTION_GRAPH_VALIDATOR_CHORE.md",
           "match": "dumpster-dive/forge/tempered/graduation_manifest.json"
         },
@@ -24307,13 +24460,17 @@
         {
           "path": "scripts/universal_forge.py",
           "match": "\"graduation_manifest.json\""
+        },
+        {
+          "path": "scripts/wptg_repeatable_cycle.py",
+          "match": "dumpster-dive/forge/tempered/graduation_manifest.json"
         }
       ],
-      "reference_count": 4,
-      "modified_at": "2026-03-04T23:26:56+00:00",
+      "reference_count": 6,
+      "modified_at": "2026-03-04T23:30:12+00:00",
       "age_days": 0,
       "timestamp_fields": {
-        "timestamp": "2026-03-04T23:26:56+00:00"
+        "timestamp": "2026-03-04T23:30:12+00:00"
       },
       "recognized_artifact_format": true,
       "json_parse_error": null,
@@ -24697,10 +24854,10 @@
         }
       ],
       "reference_count": 6,
-      "modified_at": "2026-03-04T23:26:52+00:00",
+      "modified_at": "2026-03-04T23:30:10+00:00",
       "age_days": 0,
       "timestamp_fields": {
-        "generated_at": "2026-03-04T23:26:52+00:00",
+        "generated_at": "2026-03-04T23:30:10+00:00",
         "schema_patterns[0].properties.mcp\\validate-integration.ps1": [
           "str"
         ],
@@ -24793,7 +24950,7 @@
         }
       ],
       "reference_count": 7,
-      "modified_at": "2026-03-04T23:26:52+00:00",
+      "modified_at": "2026-03-04T23:30:10+00:00",
       "age_days": 0,
       "timestamp_fields": {},
       "recognized_artifact_format": true,
@@ -25413,7 +25570,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-18T02:00:14+00:00",
-      "age_days": 14,
+      "age_days": 15,
       "timestamp_fields": {},
       "recognized_artifact_format": false,
       "json_parse_error": null,
@@ -25505,7 +25662,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-19T02:00:12+00:00",
-      "age_days": 13,
+      "age_days": 14,
       "timestamp_fields": {},
       "recognized_artifact_format": false,
       "json_parse_error": null,
@@ -25597,7 +25754,7 @@
       ],
       "reference_count": 20,
       "modified_at": "2026-02-20T02:00:19+00:00",
-      "age_days": 12,
+      "age_days": 13,
       "timestamp_fields": {},
       "recognized_artifact_format": false,
       "json_parse_error": null,
@@ -27108,7 +27265,7 @@
       ],
       "reference_count": 2,
       "modified_at": "2026-03-03T06:13:31+00:00",
-      "age_days": 1,
+      "age_days": 2,
       "timestamp_fields": {},
       "recognized_artifact_format": false,
       "json_parse_error": null,
@@ -27128,7 +27285,7 @@
       ],
       "reference_count": 2,
       "modified_at": "2026-03-03T07:20:51+00:00",
-      "age_days": 1,
+      "age_days": 2,
       "timestamp_fields": {},
       "recognized_artifact_format": false,
       "json_parse_error": null,
@@ -27276,7 +27433,7 @@
       ],
       "reference_count": 2,
       "modified_at": "2026-02-23T05:55:20+00:00",
-      "age_days": 9,
+      "age_days": 10,
       "timestamp_fields": {},
       "recognized_artifact_format": false,
       "json_parse_error": null,
@@ -27316,7 +27473,7 @@
       ],
       "reference_count": 2,
       "modified_at": "2026-02-24T08:27:42+00:00",
-      "age_days": 8,
+      "age_days": 9,
       "timestamp_fields": {},
       "recognized_artifact_format": false,
       "json_parse_error": null,
@@ -27344,7 +27501,7 @@
       ],
       "reference_count": 4,
       "modified_at": "2026-03-01T01:13:28+00:00",
-      "age_days": 3,
+      "age_days": 4,
       "timestamp_fields": {},
       "recognized_artifact_format": false,
       "json_parse_error": null,
@@ -27372,7 +27529,7 @@
       ],
       "reference_count": 4,
       "modified_at": "2026-03-01T01:20:14+00:00",
-      "age_days": 3,
+      "age_days": 4,
       "timestamp_fields": {},
       "recognized_artifact_format": false,
       "json_parse_error": null,
@@ -27468,7 +27625,7 @@
       ],
       "reference_count": 3,
       "modified_at": "2026-02-20T05:59:54+00:00",
-      "age_days": 12,
+      "age_days": 13,
       "timestamp_fields": {},
       "recognized_artifact_format": false,
       "json_parse_error": null,
@@ -27512,7 +27669,7 @@
       ],
       "reference_count": 8,
       "modified_at": "2026-02-19T01:01:57+00:00",
-      "age_days": 13,
+      "age_days": 14,
       "timestamp_fields": {},
       "recognized_artifact_format": false,
       "json_parse_error": null,
@@ -27752,7 +27909,7 @@
       ],
       "reference_count": 5,
       "modified_at": "2026-02-20T05:49:44+00:00",
-      "age_days": 12,
+      "age_days": 13,
       "timestamp_fields": {},
       "recognized_artifact_format": false,
       "json_parse_error": null,
@@ -27796,7 +27953,7 @@
       ],
       "reference_count": 8,
       "modified_at": "2026-02-19T01:01:57+00:00",
-      "age_days": 13,
+      "age_days": 14,
       "timestamp_fields": {},
       "recognized_artifact_format": false,
       "json_parse_error": null,
@@ -27840,7 +27997,7 @@
       ],
       "reference_count": 8,
       "modified_at": "2026-02-21T01:10:34+00:00",
-      "age_days": 11,
+      "age_days": 12,
       "timestamp_fields": {},
       "recognized_artifact_format": false,
       "json_parse_error": null,
@@ -27868,7 +28025,7 @@
       ],
       "reference_count": 4,
       "modified_at": "2026-02-20T05:49:49+00:00",
-      "age_days": 12,
+      "age_days": 13,
       "timestamp_fields": {},
       "recognized_artifact_format": false,
       "json_parse_error": null,
@@ -27896,7 +28053,7 @@
       ],
       "reference_count": 4,
       "modified_at": "2026-02-20T04:05:25+00:00",
-      "age_days": 12,
+      "age_days": 13,
       "timestamp_fields": {},
       "recognized_artifact_format": false,
       "json_parse_error": null,
@@ -27928,7 +28085,7 @@
       ],
       "reference_count": 5,
       "modified_at": "2026-02-20T05:25:59+00:00",
-      "age_days": 12,
+      "age_days": 13,
       "timestamp_fields": {},
       "recognized_artifact_format": false,
       "json_parse_error": null,
@@ -27968,7 +28125,7 @@
       ],
       "reference_count": 7,
       "modified_at": "2026-02-20T05:27:33+00:00",
-      "age_days": 12,
+      "age_days": 13,
       "timestamp_fields": {},
       "recognized_artifact_format": false,
       "json_parse_error": null,
@@ -27988,7 +28145,7 @@
       ],
       "reference_count": 2,
       "modified_at": "2026-02-20T05:33:29+00:00",
-      "age_days": 12,
+      "age_days": 13,
       "timestamp_fields": {},
       "recognized_artifact_format": false,
       "json_parse_error": null,
@@ -28012,7 +28169,7 @@
       ],
       "reference_count": 3,
       "modified_at": "2026-02-20T06:28:17+00:00",
-      "age_days": 12,
+      "age_days": 13,
       "timestamp_fields": {},
       "recognized_artifact_format": false,
       "json_parse_error": null,
@@ -28705,7 +28862,7 @@
       ],
       "reference_count": 5,
       "modified_at": "2026-02-20T06:21:31+00:00",
-      "age_days": 12,
+      "age_days": 13,
       "timestamp_fields": {},
       "recognized_artifact_format": false,
       "json_parse_error": null,
@@ -28729,7 +28886,7 @@
       ],
       "reference_count": 3,
       "modified_at": "2026-02-20T05:58:01+00:00",
-      "age_days": 12,
+      "age_days": 13,
       "timestamp_fields": {},
       "recognized_artifact_format": false,
       "json_parse_error": null,

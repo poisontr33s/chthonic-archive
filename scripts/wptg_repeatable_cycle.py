@@ -6,7 +6,7 @@ Repeatable WPTG cycle orchestrator.
 
 @SID:           WPTG_REPEATABLE_CYCLE_V1
 @Shabti:        CLI Script
-@Purpose:       Execute a reusable Phase 0 -> Part 4 WPTG cycle, persist cycle memory, and emit a default-view baseline.
+@Purpose:       Execute a reusable Phase 0 -> Part 4 WPTG cycle, persist cycle memory, and emit reverse-rarity-first baseline views.
 """
 
 from __future__ import annotations
@@ -19,7 +19,7 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
 
-from scripts.wptg_common import ensure_utf8, now_iso, repo_root, write_json, write_text
+from scripts.wptg_common import compound_extension, ensure_utf8, now_iso, repo_root, write_json, write_text
 
 
 @dataclass(frozen=True, slots=True)
@@ -164,6 +164,17 @@ CYCLE_STEPS: tuple[CycleStep, ...] = (
 )
 
 
+ANOMALY_WEIGHTS: dict[str, float] = {
+    "tracked_bytecode": 2.5,
+    "filename_encoding_damage": 2.3,
+    "tracked_env_surface": 2.2,
+    "orphan_json_candidate": 2.0,
+    "filetype_directory_mismatch": 1.8,
+    "legacy_batch_in_pwsh_repo": 1.6,
+    "disabled_by_rename": 1.5,
+}
+
+
 def _output_pre_state(root: Path, outputs: tuple[str, ...]) -> dict[str, float | None]:
     state: dict[str, float | None] = {}
     for rel in outputs:
@@ -279,36 +290,34 @@ def derive_learning(previous: dict[str, Any], current: dict[str, Any], baseline_
             },
             "guidance": [
                 "Baseline cycle established; use this snapshot as the default comparison anchor for future runs.",
-                "Forge yield is currently above Tier 2 gate; maintain provenance lanes and promotion discipline.",
+                "Reverse-rarity queue is now the primary selection mode for high-effort nurturing.",
                 "Validator warnings are lane-exclusion skips; treat current validator posture as operationally expected.",
             ],
         }
 
     deltas: dict[str, Any] = {}
     for key in ("census_anomaly_count", "forge_tempered", "validator_errors", "validator_warnings"):
-        prev_value = prev_metrics.get(key, 0)
-        curr_value = current.get(key, 0)
-        deltas[key] = curr_value - prev_value
+        deltas[key] = current.get(key, 0) - prev_metrics.get(key, 0)
 
     guidance: list[str] = []
     if deltas["census_anomaly_count"] > 0:
-        guidance.append("Anomalies increased; prioritize Part 1 governance proposals before new transmutation waves.")
+        guidance.append("Anomalies increased; expand reverse-priority salvage targeting before standard promotion.")
     elif deltas["census_anomaly_count"] < 0:
-        guidance.append("Anomalies dropped; preserve the same salvage pathways as canonical cycle defaults.")
+        guidance.append("Anomalies dropped; preserve current reverse-priority tactics as cycle defaults.")
     else:
-        guidance.append("Anomaly count stable; emphasize incremental promotion quality rather than breadth.")
+        guidance.append("Anomaly count stable; continue rarity-first nurturing focus.")
 
     if current.get("forge_tempered", 0) < 13:
-        guidance.append("Forge yield below Tier 2 gate; run a focused salvage pass before next cycle.")
+        guidance.append("Forge yield below Tier 2 gate; prioritize least-viable items for next transmutation run.")
     else:
-        guidance.append("Forge yield remains above Tier 2 gate; keep dual-lane furnace/tempered provenance.")
+        guidance.append("Forge yield remains above Tier 2 gate; maintain provenance lanes and promotion discipline.")
 
     if current.get("validator_errors", 0) > 0:
-        guidance.append("Validator errors present; block promotions until Part 4 returns zero errors.")
+        guidance.append("Validator errors present; block restart until zero-error continuation is reached.")
     elif current.get("validator_warnings", 0) > 0:
-        guidance.append("Validator warnings are lane-exclusion related; treat as expected WARN state.")
+        guidance.append("Validator warnings are lane-exclusion related; continue without treating them as hard blockers.")
     else:
-        guidance.append("Validator fully clean; allow promotion cadence increase.")
+        guidance.append("Validator clean; restart readiness can be evaluated immediately.")
 
     return {"deltas": deltas, "guidance": guidance}
 
@@ -358,8 +367,8 @@ def compute_scoring(root: Path, results: list[dict[str, Any]], metrics: dict[str
     if warnings:
         penalties += min(1.0, warnings * 0.1)
 
-    status_bonus = 1.5 if (root / "scripts/recovered_shell_recipe_cli.go").exists() else 0.0
-    boon += status_bonus
+    promotion_bonus = 1.5 if (root / "scripts/recovered_shell_recipe_cli.go").exists() else 0.0
+    boon += promotion_bonus
 
     return {
         "penalty_total": round(penalties, 2),
@@ -371,7 +380,7 @@ def compute_scoring(root: Path, results: list[dict[str, Any]], metrics: dict[str
             "part_2_tempered": metrics.get("forge_tempered", 0),
             "part_3_all_passed": all(step_by_id.get(step, {}).get("status") == "pass" for step in oxidized_steps),
             "part_4_validator_errors": metrics.get("validator_errors", 0),
-            "stage_3_promotion_bonus": status_bonus,
+            "stage_3_promotion_bonus": promotion_bonus,
         },
     }
 
@@ -390,17 +399,134 @@ def cycle_verdict(results: list[dict[str, Any]], metrics: dict[str, Any]) -> str
     return "PASS"
 
 
-def build_default_view(cycle_data: dict[str, Any]) -> dict[str, Any]:
+def assess_restart_readiness(snapshot: dict[str, Any]) -> dict[str, Any]:
+    metrics = snapshot.get("metrics", {})
+    results = snapshot.get("results", [])
+    blockers: list[str] = []
+    notes: list[str] = []
+
+    if not results:
+        blockers.append("No cycle results found; run a continuation cycle first.")
+    if metrics.get("validator_errors", 1) > 0:
+        blockers.append("Validator has non-zero errors.")
+    if metrics.get("forge_tempered", 0) < 13:
+        blockers.append("Forge tempered yield below Tier 2 minimum (13).")
+    if any(result.get("critical") and result.get("status") == "fail" for result in results):
+        blockers.append("At least one critical step failed in the most recent cycle.")
+
+    oxidized_ids = {"part_3_ankh_scan", "part_3_ankh_census", "part_3_ankh_landscape", "part_3_ankh_eol"}
+    oxidized_results = [result for result in results if result.get("step_id") in oxidized_ids]
+    if oxidized_results and any(result.get("status") != "pass" for result in oxidized_results):
+        blockers.append("Oxidized stage has non-pass substeps.")
+
+    if metrics.get("census_anomaly_count", 0) > 0:
+        notes.append("Census anomalies exist; they are handled via reverse-rarity-first priority.")
+    if metrics.get("validator_warnings", 0) > 0:
+        notes.append("Validator warnings are currently lane-exclusion skips.")
+
+    return {"ready": not blockers, "blockers": blockers, "notes": notes}
+
+
+def build_reverse_viability_queue(root: Path, limit: int = 64) -> dict[str, Any]:
+    extension_universe = _load_json_if_exists(root / "audit-reports/extension_universe.json")
+    census = _load_json_if_exists(root / "audit-reports/wptg_filetype_census.json")
+
+    inventory = extension_universe.get("codebase_extensions", {}).get("inventory", {})
+    by_extension = census.get("by_extension", {})
+    anomalies = census.get("anomalies", [])
+
+    all_extensions = sorted(set(inventory) | set(by_extension))
+    counts = [int(inventory.get(ext, {}).get("count", by_extension.get(ext, {}).get("count", 0))) for ext in all_extensions]
+    max_count = max(counts) if counts else 1
+
+    extension_rows: list[dict[str, Any]] = []
+    priority_map: dict[str, float] = {}
+    for extension in all_extensions:
+        inv = inventory.get(extension, {})
+        ext_count = int(inv.get("count", by_extension.get(extension, {}).get("count", 0)))
+        anomaly_map = by_extension.get(extension, {}).get("anomalies", {})
+        anomaly_count = int(sum(int(value) for value in anomaly_map.values()))
+        runtime_supported = bool(inv.get("runtime_support", {}).get("supported", True))
+        category = inv.get("category", "unknown")
+
+        rarity_ratio = 1.0 - min(1.0, (ext_count / max_count if max_count else 0.0))
+        anomaly_density = min(1.0, anomaly_count / max(ext_count, 1))
+        runtime_penalty = 0.0 if runtime_supported else 1.0
+        rarity_bonus = 0.1 if ext_count <= 2 else 0.0
+        category_bonus = 0.1 if category in {"unclassified", "build_output", "governance", "damaged", "unknown"} else 0.0
+
+        risk = min(1.0, 0.5 * rarity_ratio + 0.3 * anomaly_density + 0.2 * runtime_penalty + rarity_bonus + category_bonus)
+        viability = max(0.0, 1.0 - risk)
+        effort_priority = round(risk * 10.0, 2)
+        priority_map[extension] = effort_priority
+
+        extension_rows.append(
+            {
+                "extension": extension,
+                "count": ext_count,
+                "anomaly_count": anomaly_count,
+                "category": category,
+                "runtime_supported": runtime_supported,
+                "rarity_ratio": round(rarity_ratio, 4),
+                "viability_score": round(viability, 4),
+                "reverse_effort_priority": effort_priority,
+            }
+        )
+
+    extension_rows.sort(key=lambda row: (-row["reverse_effort_priority"], row["count"], -row["anomaly_count"], row["extension"]))
+    for index, row in enumerate(extension_rows, start=1):
+        row["reverse_rank"] = index
+
+    file_rows: list[dict[str, Any]] = []
+    for anomaly in anomalies:
+        path = str(anomaly.get("path", ""))
+        extension = compound_extension(path) or "[no_ext]"
+        anomaly_type = str(anomaly.get("type", "unknown"))
+        base = priority_map.get(extension, 0.0)
+        weight = ANOMALY_WEIGHTS.get(anomaly_type, 1.0)
+        file_rows.append(
+            {
+                "path": path,
+                "extension": extension,
+                "anomaly_type": anomaly_type,
+                "reverse_effort_score": round(base + weight, 2),
+            }
+        )
+    file_rows.sort(key=lambda row: (-row["reverse_effort_score"], row["path"]))
+
+    return {
+        "timestamp": now_iso(),
+        "perspective": "reverse_rarity_first",
+        "selection_principle": "least_viable_first",
+        "extension_priority": extension_rows[: max(1, limit)],
+        "file_priority": file_rows[: max(1, limit * 2)],
+        "summary": {
+            "extensions_ranked": len(extension_rows),
+            "anomaly_files_ranked": len(file_rows),
+            "highest_effort_extension": extension_rows[0]["extension"] if extension_rows else None,
+            "highest_effort_file": file_rows[0]["path"] if file_rows else None,
+        },
+    }
+
+
+def build_default_view(
+    cycle_data: dict[str, Any],
+    reverse_queue: dict[str, Any],
+    reverse_output_path: Path,
+) -> dict[str, Any]:
     metrics = cycle_data["metrics"]
     learning = cycle_data["learning"]
     score = cycle_data["score"]
     verdict = cycle_data["verdict"]
+    top_extensions = reverse_queue.get("extension_priority", [])[:10]
+    top_files = reverse_queue.get("file_priority", [])[:10]
 
     return {
         "timestamp": now_iso(),
-        "default_mode": "renewal_loop",
+        "default_mode": "renewal_loop_reverse_rarity_first",
         "cycle_verdict": verdict,
         "score": score,
+        "restart_readiness": cycle_data["restart_readiness"],
         "status_snapshot": {
             "extensions_unique": metrics.get("codebase_extensions_unique", 0),
             "tracked_files": metrics.get("tracked_files", 0),
@@ -409,30 +535,51 @@ def build_default_view(cycle_data: dict[str, Any]) -> dict[str, Any]:
             "validator_errors": metrics.get("validator_errors", 0),
             "validator_warnings": metrics.get("validator_warnings", 0),
         },
+        "reverse_priority_reference": str(reverse_output_path).replace("\\", "/"),
+        "reverse_priority_top_extensions": top_extensions,
+        "reverse_priority_top_files": top_files,
         "learning_guidance": learning["guidance"],
         "next_cycle_focus": [
-            "Run Phase 0 -> Part 4 in the same ordered contract.",
-            "Preserve lane exclusions as immutable boundaries.",
-            "Use promotion gates only after Part 4 returns zero errors.",
-            "Reassess dedupe policy only after repeated stable downstream adoption.",
+            "Apply least-viable-first triage before common-path optimizations.",
+            "Run Phase 0 -> Part 4 sequentially with lane exclusions preserved.",
+            "Invest highest effort in top reverse-priority files regardless of filetype.",
+            "Restart only when readiness gate remains green.",
         ],
     }
 
 
-def render_report(cycle_data: dict[str, Any]) -> str:
+def render_report(cycle_data: dict[str, Any], reverse_queue: dict[str, Any]) -> str:
     lines = [
         "# WPTG Repeatable Cycle Report",
         "",
         f"- Timestamp: `{cycle_data['timestamp']}`",
         f"- Cycle ID: `{cycle_data['cycle_id']}`",
         f"- Begin Anew Mode: `{cycle_data['begin_anew']}`",
+        f"- Execution Mode: `{cycle_data['execution_mode']}`",
         f"- Verdict: `{cycle_data['verdict']}`",
         "",
-        "## Step Results",
+        "## Restart Readiness",
         "",
-        "| Step | Toolchain | Exit | Status | Duration(s) |",
-        "|---|---|---:|---|---:|",
+        f"- Ready for restart: `{cycle_data['restart_readiness']['ready']}`",
     ]
+    blockers = cycle_data["restart_readiness"]["blockers"]
+    notes = cycle_data["restart_readiness"]["notes"]
+    if blockers:
+        lines.append("- Blockers:")
+        lines.extend(f"  - {blocker}" for blocker in blockers)
+    if notes:
+        lines.append("- Notes:")
+        lines.extend(f"  - {note}" for note in notes)
+
+    lines.extend(
+        [
+            "",
+            "## Step Results",
+            "",
+            "| Step | Toolchain | Exit | Status | Duration(s) |",
+            "|---|---|---:|---|---:|",
+        ]
+    )
     for result in cycle_data["results"]:
         lines.append(
             f"| {result['step_id']} | {result['toolchain']} | {result['exit_code']} | {result['status']} | {result['duration_seconds']:.3f} |"
@@ -450,10 +597,24 @@ def render_report(cycle_data: dict[str, Any]) -> str:
             f"- Forge tempered/rejected: `{metrics['forge_tempered']}` / `{metrics['forge_rejected']}`",
             f"- Validator verdict/errors/warnings: `{metrics['validator_verdict']}` / `{metrics['validator_errors']}` / `{metrics['validator_warnings']}`",
             "",
-            "## Learning Deltas",
+            "## Reverse-Rarity Priority (Top 10 Extensions)",
             "",
+            "| Rank | Ext | Count | Anomalies | Effort | Viability |",
+            "|---:|---|---:|---:|---:|---:|",
         ]
     )
+    for row in reverse_queue.get("extension_priority", [])[:10]:
+        lines.append(
+            f"| {row['reverse_rank']} | `{row['extension']}` | {row['count']} | {row['anomaly_count']} | {row['reverse_effort_priority']:.2f} | {row['viability_score']:.4f} |"
+        )
+
+    lines.extend(["", "## Reverse-Rarity Priority (Top 10 Files)", ""])
+    for row in reverse_queue.get("file_priority", [])[:10]:
+        lines.append(
+            f"- `{row['reverse_effort_score']:.2f}` | `{row['anomaly_type']}` | `{row['path']}`"
+        )
+
+    lines.extend(["", "## Learning Deltas", ""])
     for key, value in cycle_data["learning"]["deltas"].items():
         lines.append(f"- `{key}` delta: `{value}`")
 
@@ -475,6 +636,63 @@ def render_report(cycle_data: dict[str, Any]) -> str:
     return "\n".join(lines)
 
 
+def verdict_exit_code(verdict: str) -> int:
+    if verdict == "FAIL":
+        return 2
+    if verdict == "WARN":
+        return 1
+    return 0
+
+
+def execute_single_cycle(
+    root: Path,
+    args: argparse.Namespace,
+    previous_state: dict[str, Any],
+    begin_anew: bool,
+    execution_mode: str,
+) -> dict[str, Any]:
+    previous_cycle_id = int(previous_state.get("cycle_id", 0)) if previous_state else 0
+    cycle_id = 1 if begin_anew or previous_cycle_id == 0 else previous_cycle_id + 1
+
+    results = [run_step(root, step) for step in CYCLE_STEPS]
+    metrics = collect_metrics(root)
+    learning = derive_learning(previous_state, metrics, begin_anew)
+    score = compute_scoring(root, results, metrics)
+    verdict = cycle_verdict(results, metrics)
+
+    cycle_data = {
+        "timestamp": now_iso(),
+        "cycle_id": cycle_id,
+        "begin_anew": begin_anew,
+        "execution_mode": execution_mode,
+        "verdict": verdict,
+        "results": results,
+        "metrics": metrics,
+        "learning": learning,
+        "score": score,
+        "previous_cycle_reference": {
+            "cycle_id": previous_state.get("cycle_id"),
+            "verdict": previous_state.get("verdict"),
+            "timestamp": previous_state.get("timestamp"),
+        },
+    }
+    cycle_data["restart_readiness"] = assess_restart_readiness(cycle_data)
+
+    reverse_queue = build_reverse_viability_queue(root, limit=args.reverse_limit)
+    default_view = build_default_view(cycle_data, reverse_queue, args.reverse_output)
+
+    write_json(root / args.state_output, cycle_data)
+    write_json(root / args.default_view_output, default_view)
+    write_json(root / args.reverse_output, reverse_queue)
+    write_text(root / args.report_output, render_report(cycle_data, reverse_queue))
+
+    print(f"Wrote {args.state_output}")
+    print(f"Wrote {args.default_view_output}")
+    print(f"Wrote {args.reverse_output}")
+    print(f"Wrote {args.report_output}")
+    return cycle_data
+
+
 def main() -> int:
     ensure_utf8()
     parser = argparse.ArgumentParser(description="Execute repeatable WPTG cycle framework.")
@@ -482,6 +700,11 @@ def main() -> int:
         "--begin-anew",
         action="store_true",
         help="Start a fresh cycle baseline while preserving prior cycle memory.",
+    )
+    parser.add_argument(
+        "--auto-restart",
+        action="store_true",
+        help="If ready, restart immediately; otherwise run continuation first and restart when readiness turns green.",
     )
     parser.add_argument(
         "--state-output",
@@ -496,6 +719,18 @@ def main() -> int:
         help="Default-view JSON output path.",
     )
     parser.add_argument(
+        "--reverse-output",
+        type=Path,
+        default=Path("audit-reports/wptg_reverse_viability_queue.json"),
+        help="Reverse-rarity-first priority queue JSON output path.",
+    )
+    parser.add_argument(
+        "--reverse-limit",
+        type=int,
+        default=64,
+        help="Maximum number of extension rows in reverse-rarity queue output.",
+    )
+    parser.add_argument(
         "--report-output",
         type=Path,
         default=Path("codex/mailbox/WPTG_REPEATABLE_CYCLE_REPORT.md"),
@@ -507,46 +742,45 @@ def main() -> int:
     state_path = root / args.state_output
     previous_state = _load_json_if_exists(state_path) if state_path.exists() else {}
 
-    previous_cycle_id = int(previous_state.get("cycle_id", 0)) if previous_state else 0
-    cycle_id = 1 if args.begin_anew or previous_cycle_id == 0 else previous_cycle_id + 1
+    if args.auto_restart:
+        readiness = assess_restart_readiness(previous_state)
+        if readiness["ready"]:
+            final_cycle = execute_single_cycle(
+                root=root,
+                args=args,
+                previous_state=previous_state,
+                begin_anew=True,
+                execution_mode="auto_restart_ready_now",
+            )
+            return verdict_exit_code(final_cycle["verdict"])
 
-    results = [run_step(root, step) for step in CYCLE_STEPS]
-    metrics = collect_metrics(root)
-    learning = derive_learning(previous_state, metrics, args.begin_anew)
-    score = compute_scoring(root, results, metrics)
-    verdict = cycle_verdict(results, metrics)
+        continuation_cycle = execute_single_cycle(
+            root=root,
+            args=args,
+            previous_state=previous_state,
+            begin_anew=False,
+            execution_mode="auto_restart_continuation_before_restart",
+        )
+        if continuation_cycle["restart_readiness"]["ready"]:
+            final_cycle = execute_single_cycle(
+                root=root,
+                args=args,
+                previous_state=continuation_cycle,
+                begin_anew=True,
+                execution_mode="auto_restart_after_continuation",
+            )
+            return verdict_exit_code(final_cycle["verdict"])
+        return verdict_exit_code(continuation_cycle["verdict"])
 
-    cycle_data = {
-        "timestamp": now_iso(),
-        "cycle_id": cycle_id,
-        "begin_anew": args.begin_anew,
-        "verdict": verdict,
-        "results": results,
-        "metrics": metrics,
-        "learning": learning,
-        "score": score,
-        "previous_cycle_reference": {
-            "cycle_id": previous_state.get("cycle_id"),
-            "verdict": previous_state.get("verdict"),
-            "timestamp": previous_state.get("timestamp"),
-        },
-    }
-
-    default_view = build_default_view(cycle_data)
-
-    write_json(root / args.state_output, cycle_data)
-    write_json(root / args.default_view_output, default_view)
-    write_text(root / args.report_output, render_report(cycle_data))
-
-    print(f"Wrote {args.state_output}")
-    print(f"Wrote {args.default_view_output}")
-    print(f"Wrote {args.report_output}")
-
-    if verdict == "FAIL":
-        return 2
-    if verdict == "WARN":
-        return 1
-    return 0
+    execution_mode = "manual_begin_anew" if args.begin_anew else "manual_continuation"
+    cycle_data = execute_single_cycle(
+        root=root,
+        args=args,
+        previous_state=previous_state,
+        begin_anew=args.begin_anew,
+        execution_mode=execution_mode,
+    )
+    return verdict_exit_code(cycle_data["verdict"])
 
 
 if __name__ == "__main__":

@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-03-04T23:30:12+00:00",
+  "timestamp": "2026-03-05T16:04:27+00:00",
   "artifacts_attempted": 18,
   "artifacts_tempered": 18,
   "artifacts_rejected": 0,
-  "compression_ratio": "9451642 -> 245663",
+  "compression_ratio": "9451642 -> 247032",
   "by_output_language": {
     "docs": {
       "tempered": 5,
@@ -800,7 +800,7 @@
       "output_type": ".json",
       "transmutation_pathway": "config fragments -> observed key signatures -> schema catalogue",
       "input_bytes": 147509,
-      "output_bytes": 156680,
+      "output_bytes": 158049,
       "quality_gates": {
         "syntax": "PASS",
         "provenance": "PASS",

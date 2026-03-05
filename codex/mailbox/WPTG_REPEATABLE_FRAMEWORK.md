@@ -22,6 +22,18 @@ Run:
 uv run scripts/wptg_repeatable_cycle.py --begin-anew
 ```
 
+Or run sequential auto-mode:
+
+```powershell
+uv run scripts/wptg_repeatable_cycle.py --auto-restart
+```
+
+`--auto-restart` behavior:
+
+1. Check restart readiness from current cycle state.
+2. If ready, restart immediately (`begin_anew` path).
+3. If not ready, execute continuation cycle first, then restart only when readiness turns green.
+
 The orchestrator executes, in order:
 
 1. Phase 0 (`extension_universe_scanner.py`) via `uv`.
@@ -41,6 +53,9 @@ The orchestrator executes, in order:
 - `audit-reports/wptg_default_view.json`:
   - New default WPTG posture for the next loop.
   - Focus guidance distilled from current lane status.
+- `audit-reports/wptg_reverse_viability_queue.json`:
+  - Reverse-rarity-first extension and file priority queue.
+  - Least-viable artifacts ranked as highest-effort nurturing targets.
 - `codex/mailbox/WPTG_REPEATABLE_CYCLE_REPORT.md`:
   - Human-readable execution and scoring report.
 
@@ -53,6 +68,12 @@ Each run computes deltas from previous cycle state:
 - validator risk drift.
 
 These deltas produce concrete next-cycle guidance and a refreshed default-view baseline.
+
+Default perspective is now:
+
+- `reverse_rarity_first`
+- Selection principle: `least_viable_first`
+- Priority assignment ignores filetype prestige; rare/weak viability artifacts are targeted first.
 
 ## Governance Boundary
 

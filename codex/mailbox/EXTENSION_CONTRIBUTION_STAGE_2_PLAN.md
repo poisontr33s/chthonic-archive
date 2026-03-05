@@ -52,6 +52,14 @@ Stage 4 converts the delivered chain into a repeatable cycle framework:
 - Framework contract recorded in `codex/mailbox/WPTG_REPEATABLE_FRAMEWORK.md`.
 - Baseline execution completed with `uv run scripts/wptg_repeatable_cycle.py --begin-anew` and report `codex/mailbox/WPTG_REPEATABLE_CYCLE_REPORT.md`.
 
+## Stage 5 Continuation Status
+
+Stage 5 applies reverse-rarity-first default perspective with sequential restart control:
+
+- `scripts/wptg_repeatable_cycle.py --auto-restart` now handles readiness-driven sequencing.
+- New output: `audit-reports/wptg_reverse_viability_queue.json`.
+- Default view shifted to `renewal_loop_reverse_rarity_first` with `least_viable_first` selection principle.
+
 ## Lane Constraint Reminder
 
 Stage 2 must continue honoring the same absolute lane exclusions from the chore, especially the theme/icon/product chain paths under `extensions/chthonic-archive/themes/` and related icon/font pipelines.

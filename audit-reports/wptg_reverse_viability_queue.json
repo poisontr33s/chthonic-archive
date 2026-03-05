@@ -1,0 +1,1355 @@
+{
+  "timestamp": "2026-03-05T16:04:36+00:00",
+  "perspective": "reverse_rarity_first",
+  "selection_principle": "least_viable_first",
+  "extension_priority": [
+    {
+      "extension": ".bat",
+      "count": 1,
+      "anomaly_count": 1,
+      "category": "source_code",
+      "runtime_supported": true,
+      "rarity_ratio": 0.9988,
+      "viability_score": 0.1006,
+      "reverse_effort_priority": 8.99,
+      "reverse_rank": 1
+    },
+    {
+      "extension": ".cpython-313.pyc",
+      "count": 6,
+      "anomaly_count": 6,
+      "category": "unclassified",
+      "runtime_supported": true,
+      "rarity_ratio": 0.9929,
+      "viability_score": 0.1035,
+      "reverse_effort_priority": 8.96,
+      "reverse_rank": 2
+    },
+    {
+      "extension": ".off",
+      "count": 7,
+      "anomaly_count": 7,
+      "category": "governance",
+      "runtime_supported": true,
+      "rarity_ratio": 0.9917,
+      "viability_score": 0.1041,
+      "reverse_effort_priority": 8.96,
+      "reverse_rank": 3
+    },
+    {
+      "extension": ".sh",
+      "count": 1,
+      "anomaly_count": 0,
+      "category": "source_code",
+      "runtime_supported": false,
+      "rarity_ratio": 0.9988,
+      "viability_score": 0.2006,
+      "reverse_effort_priority": 7.99,
+      "reverse_rank": 4
+    },
+    {
+      "extension": ".md\"",
+      "count": 3,
+      "anomaly_count": 3,
+      "category": "documentation",
+      "runtime_supported": true,
+      "rarity_ratio": 0.9965,
+      "viability_score": 0.2018,
+      "reverse_effort_priority": 7.98,
+      "reverse_rank": 5
+    },
+    {
+      "extension": ".env",
+      "count": 4,
+      "anomaly_count": 3,
+      "category": "data_config",
+      "runtime_supported": true,
+      "rarity_ratio": 0.9953,
+      "viability_score": 0.2774,
+      "reverse_effort_priority": 7.23,
+      "reverse_rank": 6
+    },
+    {
+      "extension": ".bak",
+      "count": 1,
+      "anomaly_count": 0,
+      "category": "governance",
+      "runtime_supported": true,
+      "rarity_ratio": 0.9988,
+      "viability_score": 0.3006,
+      "reverse_effort_priority": 6.99,
+      "reverse_rank": 7
+    },
+    {
+      "extension": ".db",
+      "count": 1,
+      "anomaly_count": 0,
+      "category": "build_output",
+      "runtime_supported": true,
+      "rarity_ratio": 0.9988,
+      "viability_score": 0.3006,
+      "reverse_effort_priority": 6.99,
+      "reverse_rank": 8
+    },
+    {
+      "extension": ".tsbuildinfo",
+      "count": 1,
+      "anomaly_count": 0,
+      "category": "build_output",
+      "runtime_supported": true,
+      "rarity_ratio": 0.9988,
+      "viability_score": 0.3006,
+      "reverse_effort_priority": 6.99,
+      "reverse_rank": 9
+    },
+    {
+      "extension": ".woff",
+      "count": 1,
+      "anomaly_count": 0,
+      "category": "build_output",
+      "runtime_supported": true,
+      "rarity_ratio": 0.9988,
+      "viability_score": 0.3006,
+      "reverse_effort_priority": 6.99,
+      "reverse_rank": 10
+    },
+    {
+      "extension": ".cs",
+      "count": 2,
+      "anomaly_count": 0,
+      "category": "unclassified",
+      "runtime_supported": true,
+      "rarity_ratio": 0.9976,
+      "viability_score": 0.3012,
+      "reverse_effort_priority": 6.99,
+      "reverse_rank": 11
+    },
+    {
+      "extension": ".csproj",
+      "count": 2,
+      "anomaly_count": 0,
+      "category": "unclassified",
+      "runtime_supported": true,
+      "rarity_ratio": 0.9976,
+      "viability_score": 0.3012,
+      "reverse_effort_priority": 6.99,
+      "reverse_rank": 12
+    },
+    {
+      "extension": ".h",
+      "count": 2,
+      "anomaly_count": 0,
+      "category": "unclassified",
+      "runtime_supported": true,
+      "rarity_ratio": 0.9976,
+      "viability_score": 0.3012,
+      "reverse_effort_priority": 6.99,
+      "reverse_rank": 13
+    },
+    {
+      "extension": ".log",
+      "count": 340,
+      "anomaly_count": 332,
+      "category": "unclassified",
+      "runtime_supported": true,
+      "rarity_ratio": 0.5986,
+      "viability_score": 0.3078,
+      "reverse_effort_priority": 6.92,
+      "reverse_rank": 14
+    },
+    {
+      "extension": ".cjs",
+      "count": 1,
+      "anomaly_count": 0,
+      "category": "source_code",
+      "runtime_supported": true,
+      "rarity_ratio": 0.9988,
+      "viability_score": 0.4006,
+      "reverse_effort_priority": 5.99,
+      "reverse_rank": 15
+    },
+    {
+      "extension": ".comp",
+      "count": 1,
+      "anomaly_count": 0,
+      "category": "graphics_gpu",
+      "runtime_supported": true,
+      "rarity_ratio": 0.9988,
+      "viability_score": 0.4006,
+      "reverse_effort_priority": 5.99,
+      "reverse_rank": 16
+    },
+    {
+      "extension": ".copilotignore",
+      "count": 1,
+      "anomaly_count": 0,
+      "category": "vcs_meta",
+      "runtime_supported": true,
+      "rarity_ratio": 0.9988,
+      "viability_score": 0.4006,
+      "reverse_effort_priority": 5.99,
+      "reverse_rank": 17
+    },
+    {
+      "extension": ".frag",
+      "count": 1,
+      "anomaly_count": 0,
+      "category": "graphics_gpu",
+      "runtime_supported": true,
+      "rarity_ratio": 0.9988,
+      "viability_score": 0.4006,
+      "reverse_effort_priority": 5.99,
+      "reverse_rank": 18
+    },
+    {
+      "extension": ".geminiignore",
+      "count": 1,
+      "anomaly_count": 0,
+      "category": "vcs_meta",
+      "runtime_supported": true,
+      "rarity_ratio": 0.9988,
+      "viability_score": 0.4006,
+      "reverse_effort_priority": 5.99,
+      "reverse_rank": 19
+    },
+    {
+      "extension": ".gitattributes",
+      "count": 1,
+      "anomaly_count": 0,
+      "category": "vcs_meta",
+      "runtime_supported": true,
+      "rarity_ratio": 0.9988,
+      "viability_score": 0.4006,
+      "reverse_effort_priority": 5.99,
+      "reverse_rank": 20
+    },
+    {
+      "extension": ".gitkeep",
+      "count": 1,
+      "anomaly_count": 0,
+      "category": "vcs_meta",
+      "runtime_supported": true,
+      "rarity_ratio": 0.9988,
+      "viability_score": 0.4006,
+      "reverse_effort_priority": 5.99,
+      "reverse_rank": 21
+    },
+    {
+      "extension": ".mjs",
+      "count": 1,
+      "anomaly_count": 0,
+      "category": "source_code",
+      "runtime_supported": true,
+      "rarity_ratio": 0.9988,
+      "viability_score": 0.4006,
+      "reverse_effort_priority": 5.99,
+      "reverse_rank": 22
+    },
+    {
+      "extension": ".vert",
+      "count": 1,
+      "anomaly_count": 0,
+      "category": "graphics_gpu",
+      "runtime_supported": true,
+      "rarity_ratio": 0.9988,
+      "viability_score": 0.4006,
+      "reverse_effort_priority": 5.99,
+      "reverse_rank": 23
+    },
+    {
+      "extension": ".css",
+      "count": 2,
+      "anomaly_count": 0,
+      "category": "source_code",
+      "runtime_supported": true,
+      "rarity_ratio": 0.9976,
+      "viability_score": 0.4012,
+      "reverse_effort_priority": 5.99,
+      "reverse_rank": 24
+    },
+    {
+      "extension": ".python-version",
+      "count": 2,
+      "anomaly_count": 0,
+      "category": "domain_specific",
+      "runtime_supported": true,
+      "rarity_ratio": 0.9976,
+      "viability_score": 0.4012,
+      "reverse_effort_priority": 5.99,
+      "reverse_rank": 25
+    },
+    {
+      "extension": ".go",
+      "count": 3,
+      "anomaly_count": 0,
+      "category": "unclassified",
+      "runtime_supported": true,
+      "rarity_ratio": 0.9965,
+      "viability_score": 0.4018,
+      "reverse_effort_priority": 5.98,
+      "reverse_rank": 26
+    },
+    {
+      "extension": ".vsconfig",
+      "count": 5,
+      "anomaly_count": 0,
+      "category": "governance",
+      "runtime_supported": true,
+      "rarity_ratio": 0.9941,
+      "viability_score": 0.403,
+      "reverse_effort_priority": 5.97,
+      "reverse_rank": 27
+    },
+    {
+      "extension": ".d.ts",
+      "count": 6,
+      "anomaly_count": 0,
+      "category": "unclassified",
+      "runtime_supported": true,
+      "rarity_ratio": 0.9929,
+      "viability_score": 0.4035,
+      "reverse_effort_priority": 5.96,
+      "reverse_rank": 28
+    },
+    {
+      "extension": ".png",
+      "count": 6,
+      "anomaly_count": 0,
+      "category": "build_output",
+      "runtime_supported": true,
+      "rarity_ratio": 0.9929,
+      "viability_score": 0.4035,
+      "reverse_effort_priority": 5.96,
+      "reverse_rank": 29
+    },
+    {
+      "extension": ".test.ts",
+      "count": 7,
+      "anomaly_count": 0,
+      "category": "unclassified",
+      "runtime_supported": true,
+      "rarity_ratio": 0.9917,
+      "viability_score": 0.4041,
+      "reverse_effort_priority": 5.96,
+      "reverse_rank": 30
+    },
+    {
+      "extension": "[no_ext]",
+      "count": 8,
+      "anomaly_count": 0,
+      "category": "unclassified",
+      "runtime_supported": true,
+      "rarity_ratio": 0.9906,
+      "viability_score": 0.4047,
+      "reverse_effort_priority": 5.95,
+      "reverse_rank": 31
+    },
+    {
+      "extension": ".sample",
+      "count": 14,
+      "anomaly_count": 0,
+      "category": "unclassified",
+      "runtime_supported": true,
+      "rarity_ratio": 0.9835,
+      "viability_score": 0.4083,
+      "reverse_effort_priority": 5.92,
+      "reverse_rank": 32
+    },
+    {
+      "extension": ".html",
+      "count": 3,
+      "anomaly_count": 0,
+      "category": "source_code",
+      "runtime_supported": true,
+      "rarity_ratio": 0.9965,
+      "viability_score": 0.5018,
+      "reverse_effort_priority": 4.98,
+      "reverse_rank": 33
+    },
+    {
+      "extension": ".jsonl",
+      "count": 3,
+      "anomaly_count": 0,
+      "category": "data_config",
+      "runtime_supported": true,
+      "rarity_ratio": 0.9965,
+      "viability_score": 0.5018,
+      "reverse_effort_priority": 4.98,
+      "reverse_rank": 34
+    },
+    {
+      "extension": ".rb",
+      "count": 3,
+      "anomaly_count": 0,
+      "category": "source_code",
+      "runtime_supported": true,
+      "rarity_ratio": 0.9965,
+      "viability_score": 0.5018,
+      "reverse_effort_priority": 4.98,
+      "reverse_rank": 35
+    },
+    {
+      "extension": ".vscodeignore",
+      "count": 3,
+      "anomaly_count": 0,
+      "category": "vcs_meta",
+      "runtime_supported": true,
+      "rarity_ratio": 0.9965,
+      "viability_score": 0.5018,
+      "reverse_effort_priority": 4.98,
+      "reverse_rank": 36
+    },
+    {
+      "extension": ".keep",
+      "count": 4,
+      "anomaly_count": 0,
+      "category": "vcs_meta",
+      "runtime_supported": true,
+      "rarity_ratio": 0.9953,
+      "viability_score": 0.5024,
+      "reverse_effort_priority": 4.98,
+      "reverse_rank": 37
+    },
+    {
+      "extension": ".gitignore",
+      "count": 5,
+      "anomaly_count": 0,
+      "category": "vcs_meta",
+      "runtime_supported": true,
+      "rarity_ratio": 0.9941,
+      "viability_score": 0.503,
+      "reverse_effort_priority": 4.97,
+      "reverse_rank": 38
+    },
+    {
+      "extension": ".lock",
+      "count": 6,
+      "anomaly_count": 0,
+      "category": "data_config",
+      "runtime_supported": true,
+      "rarity_ratio": 0.9929,
+      "viability_score": 0.5035,
+      "reverse_effort_priority": 4.96,
+      "reverse_rank": 39
+    },
+    {
+      "extension": ".yml",
+      "count": 8,
+      "anomaly_count": 0,
+      "category": "data_config",
+      "runtime_supported": true,
+      "rarity_ratio": 0.9906,
+      "viability_score": 0.5047,
+      "reverse_effort_priority": 4.95,
+      "reverse_rank": 40
+    },
+    {
+      "extension": ".js",
+      "count": 10,
+      "anomaly_count": 0,
+      "category": "source_code",
+      "runtime_supported": true,
+      "rarity_ratio": 0.9882,
+      "viability_score": 0.5059,
+      "reverse_effort_priority": 4.94,
+      "reverse_rank": 41
+    },
+    {
+      "extension": ".tsx",
+      "count": 14,
+      "anomaly_count": 0,
+      "category": "source_code",
+      "runtime_supported": true,
+      "rarity_ratio": 0.9835,
+      "viability_score": 0.5083,
+      "reverse_effort_priority": 4.92,
+      "reverse_rank": 42
+    },
+    {
+      "extension": ".yaml",
+      "count": 19,
+      "anomaly_count": 0,
+      "category": "data_config",
+      "runtime_supported": true,
+      "rarity_ratio": 0.9776,
+      "viability_score": 0.5112,
+      "reverse_effort_priority": 4.89,
+      "reverse_rank": 43
+    },
+    {
+      "extension": ".toml",
+      "count": 23,
+      "anomaly_count": 0,
+      "category": "data_config",
+      "runtime_supported": true,
+      "rarity_ratio": 0.9728,
+      "viability_score": 0.5136,
+      "reverse_effort_priority": 4.86,
+      "reverse_rank": 44
+    },
+    {
+      "extension": ".rs",
+      "count": 35,
+      "anomaly_count": 0,
+      "category": "source_code",
+      "runtime_supported": true,
+      "rarity_ratio": 0.9587,
+      "viability_score": 0.5207,
+      "reverse_effort_priority": 4.79,
+      "reverse_rank": 45
+    },
+    {
+      "extension": ".txt",
+      "count": 60,
+      "anomaly_count": 0,
+      "category": "documentation",
+      "runtime_supported": true,
+      "rarity_ratio": 0.9292,
+      "viability_score": 0.5354,
+      "reverse_effort_priority": 4.65,
+      "reverse_rank": 46
+    },
+    {
+      "extension": ".ts",
+      "count": 89,
+      "anomaly_count": 0,
+      "category": "source_code",
+      "runtime_supported": true,
+      "rarity_ratio": 0.8949,
+      "viability_score": 0.5525,
+      "reverse_effort_priority": 4.47,
+      "reverse_rank": 47
+    },
+    {
+      "extension": ".ps1",
+      "count": 114,
+      "anomaly_count": 0,
+      "category": "source_code",
+      "runtime_supported": true,
+      "rarity_ratio": 0.8654,
+      "viability_score": 0.5673,
+      "reverse_effort_priority": 4.33,
+      "reverse_rank": 48
+    },
+    {
+      "extension": ".svg",
+      "count": 207,
+      "anomaly_count": 0,
+      "category": "graphics_gpu",
+      "runtime_supported": true,
+      "rarity_ratio": 0.7556,
+      "viability_score": 0.6222,
+      "reverse_effort_priority": 3.78,
+      "reverse_rank": 49
+    },
+    {
+      "extension": ".py",
+      "count": 231,
+      "anomaly_count": 0,
+      "category": "source_code",
+      "runtime_supported": true,
+      "rarity_ratio": 0.7273,
+      "viability_score": 0.6364,
+      "reverse_effort_priority": 3.64,
+      "reverse_rank": 50
+    },
+    {
+      "extension": ".json",
+      "count": 682,
+      "anomaly_count": 0,
+      "category": "data_config",
+      "runtime_supported": true,
+      "rarity_ratio": 0.1948,
+      "viability_score": 0.9026,
+      "reverse_effort_priority": 0.97,
+      "reverse_rank": 51
+    },
+    {
+      "extension": ".md",
+      "count": 847,
+      "anomaly_count": 1,
+      "category": "documentation",
+      "runtime_supported": true,
+      "rarity_ratio": 0.0,
+      "viability_score": 0.9996,
+      "reverse_effort_priority": 0.0,
+      "reverse_rank": 52
+    }
+  ],
+  "file_priority": [
+    {
+      "path": ".codex/skills/artifact-upcycle/scripts/__pycache__/resolve_directory_relationships.cpython-313.pyc",
+      "extension": ".cpython-313.pyc",
+      "anomaly_type": "tracked_bytecode",
+      "reverse_effort_score": 11.46
+    },
+    {
+      "path": ".codex/skills/codekiller-remediation-gate/scripts/__pycache__/codekiller_remediation_gate.cpython-313.pyc",
+      "extension": ".cpython-313.pyc",
+      "anomaly_type": "tracked_bytecode",
+      "reverse_effort_score": 11.46
+    },
+    {
+      "path": ".codex/skills/mailbox-handoff/scripts/__pycache__/mailbox_check.cpython-313.pyc",
+      "extension": ".cpython-313.pyc",
+      "anomaly_type": "tracked_bytecode",
+      "reverse_effort_score": 11.46
+    },
+    {
+      "path": ".codex/skills/script-envelope/scripts/__pycache__/script_envelope.cpython-313.pyc",
+      "extension": ".cpython-313.pyc",
+      "anomaly_type": "tracked_bytecode",
+      "reverse_effort_score": 11.46
+    },
+    {
+      "path": ".codex/skills/skill-polisher/scripts/__pycache__/polish_skill.cpython-313.pyc",
+      "extension": ".cpython-313.pyc",
+      "anomaly_type": "tracked_bytecode",
+      "reverse_effort_score": 11.46
+    },
+    {
+      "path": "dumpster-dive/scripts/__pycache__/audit_deploy_integrity.cpython-313.pyc",
+      "extension": ".cpython-313.pyc",
+      "anomaly_type": "tracked_bytecode",
+      "reverse_effort_score": 11.46
+    },
+    {
+      "path": "dumpster-dive/intake/claude-ide-harden-2026-02-10/tier-1-direct/claude_process_wrapper.bat",
+      "extension": ".bat",
+      "anomaly_type": "legacy_batch_in_pwsh_repo",
+      "reverse_effort_score": 10.59
+    },
+    {
+      "path": ".github/workflows/claude-code-review.yml.off",
+      "extension": ".off",
+      "anomaly_type": "disabled_by_rename",
+      "reverse_effort_score": 10.46
+    },
+    {
+      "path": ".github/workflows/claude.yml.off",
+      "extension": ".off",
+      "anomaly_type": "disabled_by_rename",
+      "reverse_effort_score": 10.46
+    },
+    {
+      "path": ".github/workflows/gemini-dispatch.yml.off",
+      "extension": ".off",
+      "anomaly_type": "disabled_by_rename",
+      "reverse_effort_score": 10.46
+    },
+    {
+      "path": ".github/workflows/gemini-invoke.yml.off",
+      "extension": ".off",
+      "anomaly_type": "disabled_by_rename",
+      "reverse_effort_score": 10.46
+    },
+    {
+      "path": ".github/workflows/gemini-review.yml.off",
+      "extension": ".off",
+      "anomaly_type": "disabled_by_rename",
+      "reverse_effort_score": 10.46
+    },
+    {
+      "path": ".github/workflows/gemini-scheduled-triage.yml.off",
+      "extension": ".off",
+      "anomaly_type": "disabled_by_rename",
+      "reverse_effort_score": 10.46
+    },
+    {
+      "path": ".github/workflows/gemini-triage.yml.off",
+      "extension": ".off",
+      "anomaly_type": "disabled_by_rename",
+      "reverse_effort_score": 10.46
+    },
+    {
+      "path": "\"dumpster-dive/from-github/macro-prompt-world/disparate-md-documentation/ASC-BP-V-\\316\\251.B.X\\316\\250.md\"",
+      "extension": ".md\"",
+      "anomaly_type": "filename_encoding_damage",
+      "reverse_effort_score": 10.28
+    },
+    {
+      "path": "\"dumpster-dive/from-github/macro-prompt-world/macro-prompt-world-v2/ASC_Brahmanica_Perfectus_V_\\316\\251.B.X\\316\\250.md\"",
+      "extension": ".md\"",
+      "anomaly_type": "filename_encoding_damage",
+      "reverse_effort_score": 10.28
+    },
+    {
+      "path": "\"dumpster-dive/from-github/macro-prompt-world/macro-prompt-world-v2/archive-world/ASC-BP-V-\\316\\251.B.X\\316\\250.md\"",
+      "extension": ".md\"",
+      "anomaly_type": "filename_encoding_damage",
+      "reverse_effort_score": 10.28
+    },
+    {
+      "path": "claude-codex-gemini/session_resumption_pickup/UNCENSORED_LANE_RUNTIME_20260219_231721.env",
+      "extension": ".env",
+      "anomaly_type": "tracked_env_surface",
+      "reverse_effort_score": 9.43
+    },
+    {
+      "path": "claude-codex-gemini/session_resumption_pickup/UNCENSORED_LANE_RUNTIME_LATEST.env",
+      "extension": ".env",
+      "anomaly_type": "tracked_env_surface",
+      "reverse_effort_score": 9.43
+    },
+    {
+      "path": "mas_mcp/frontend/.env",
+      "extension": ".env",
+      "anomaly_type": "tracked_env_surface",
+      "reverse_effort_score": 9.43
+    },
+    {
+      "path": "codex/mailbox/MISTRALRS_CUDA_BUILD_20260227T194707Z.err.log",
+      "extension": ".log",
+      "anomaly_type": "filetype_directory_mismatch",
+      "reverse_effort_score": 8.72
+    },
+    {
+      "path": "codex/mailbox/MISTRALRS_CUDA_BUILD_20260227T194707Z.out.log",
+      "extension": ".log",
+      "anomaly_type": "filetype_directory_mismatch",
+      "reverse_effort_score": 8.72
+    },
+    {
+      "path": "codex/mailbox/MISTRALRS_CUDA_BUILD_20260227T195207Z.err.log",
+      "extension": ".log",
+      "anomaly_type": "filetype_directory_mismatch",
+      "reverse_effort_score": 8.72
+    },
+    {
+      "path": "codex/mailbox/MISTRALRS_CUDA_BUILD_20260227T195207Z.out.log",
+      "extension": ".log",
+      "anomaly_type": "filetype_directory_mismatch",
+      "reverse_effort_score": 8.72
+    },
+    {
+      "path": "codex/mailbox/VS2026_ELEVATED_VALIDATE_20260217_054144.log",
+      "extension": ".log",
+      "anomaly_type": "filetype_directory_mismatch",
+      "reverse_effort_score": 8.72
+    },
+    {
+      "path": "codex/mailbox/VS2026_ELEVATED_VALIDATE_20260217_054157.log",
+      "extension": ".log",
+      "anomaly_type": "filetype_directory_mismatch",
+      "reverse_effort_score": 8.72
+    },
+    {
+      "path": "codex/mailbox/VS2026_ELEVATED_VALIDATE_20260217_231023.log",
+      "extension": ".log",
+      "anomaly_type": "filetype_directory_mismatch",
+      "reverse_effort_score": 8.72
+    },
+    {
+      "path": "codex/mailbox/VS2026_ELEVATED_VALIDATE_20260217_231058.log",
+      "extension": ".log",
+      "anomaly_type": "filetype_directory_mismatch",
+      "reverse_effort_score": 8.72
+    },
+    {
+      "path": "codex/mailbox/VS2026_ELEVATED_VALIDATE_20260217_231535.log",
+      "extension": ".log",
+      "anomaly_type": "filetype_directory_mismatch",
+      "reverse_effort_score": 8.72
+    },
+    {
+      "path": "codex/mailbox/VS2026_ELEVATED_VALIDATE_20260217_235550.log",
+      "extension": ".log",
+      "anomaly_type": "filetype_directory_mismatch",
+      "reverse_effort_score": 8.72
+    },
+    {
+      "path": "codex/mailbox/VS2026_ELEVATED_VALIDATE_20260217_235653.log",
+      "extension": ".log",
+      "anomaly_type": "filetype_directory_mismatch",
+      "reverse_effort_score": 8.72
+    },
+    {
+      "path": "codex/mailbox/VS2026_ELEVATED_VALIDATE_20260218_000139.log",
+      "extension": ".log",
+      "anomaly_type": "filetype_directory_mismatch",
+      "reverse_effort_score": 8.72
+    },
+    {
+      "path": "codex/mailbox/VS2026_ELEVATED_VALIDATE_20260218_001043.log",
+      "extension": ".log",
+      "anomaly_type": "filetype_directory_mismatch",
+      "reverse_effort_score": 8.72
+    },
+    {
+      "path": "codex/mailbox/VSCODE_INSIDERS_MATRIX_20260226T033112Z/matrix_baseline_status.err.log",
+      "extension": ".log",
+      "anomaly_type": "filetype_directory_mismatch",
+      "reverse_effort_score": 8.72
+    },
+    {
+      "path": "codex/mailbox/VSCODE_INSIDERS_MATRIX_20260226T033112Z/matrix_baseline_status.log",
+      "extension": ".log",
+      "anomaly_type": "filetype_directory_mismatch",
+      "reverse_effort_score": 8.72
+    },
+    {
+      "path": "codex/mailbox/VSCODE_INSIDERS_MATRIX_20260226T033112Z/matrix_clean_safe_mode_status.err.log",
+      "extension": ".log",
+      "anomaly_type": "filetype_directory_mismatch",
+      "reverse_effort_score": 8.72
+    },
+    {
+      "path": "codex/mailbox/VSCODE_INSIDERS_MATRIX_20260226T033112Z/matrix_clean_safe_mode_status.log",
+      "extension": ".log",
+      "anomaly_type": "filetype_directory_mismatch",
+      "reverse_effort_score": 8.72
+    },
+    {
+      "path": "codex/mailbox/VSCODE_INSIDERS_MATRIX_20260226T033112Z/matrix_disable_extensions_status.err.log",
+      "extension": ".log",
+      "anomaly_type": "filetype_directory_mismatch",
+      "reverse_effort_score": 8.72
+    },
+    {
+      "path": "codex/mailbox/VSCODE_INSIDERS_MATRIX_20260226T033112Z/matrix_disable_extensions_status.log",
+      "extension": ".log",
+      "anomaly_type": "filetype_directory_mismatch",
+      "reverse_effort_score": 8.72
+    },
+    {
+      "path": "codex/mailbox/VSCODE_INSIDERS_MATRIX_20260226T033112Z/matrix_disable_gpu_status.err.log",
+      "extension": ".log",
+      "anomaly_type": "filetype_directory_mismatch",
+      "reverse_effort_score": 8.72
+    },
+    {
+      "path": "codex/mailbox/VSCODE_INSIDERS_MATRIX_20260226T033112Z/matrix_disable_gpu_status.log",
+      "extension": ".log",
+      "anomaly_type": "filetype_directory_mismatch",
+      "reverse_effort_score": 8.72
+    },
+    {
+      "path": "codex/mailbox/VSCODE_INSIDERS_MATRIX_20260226T033146Z/matrix_baseline_status.err.log",
+      "extension": ".log",
+      "anomaly_type": "filetype_directory_mismatch",
+      "reverse_effort_score": 8.72
+    },
+    {
+      "path": "codex/mailbox/VSCODE_INSIDERS_MATRIX_20260226T033146Z/matrix_baseline_status.log",
+      "extension": ".log",
+      "anomaly_type": "filetype_directory_mismatch",
+      "reverse_effort_score": 8.72
+    },
+    {
+      "path": "codex/mailbox/VSCODE_INSIDERS_MATRIX_20260226T033146Z/matrix_clean_safe_mode_status.err.log",
+      "extension": ".log",
+      "anomaly_type": "filetype_directory_mismatch",
+      "reverse_effort_score": 8.72
+    },
+    {
+      "path": "codex/mailbox/VSCODE_INSIDERS_MATRIX_20260226T033146Z/matrix_clean_safe_mode_status.log",
+      "extension": ".log",
+      "anomaly_type": "filetype_directory_mismatch",
+      "reverse_effort_score": 8.72
+    },
+    {
+      "path": "codex/mailbox/VSCODE_INSIDERS_MATRIX_20260226T033146Z/matrix_disable_extensions_status.err.log",
+      "extension": ".log",
+      "anomaly_type": "filetype_directory_mismatch",
+      "reverse_effort_score": 8.72
+    },
+    {
+      "path": "codex/mailbox/VSCODE_INSIDERS_MATRIX_20260226T033146Z/matrix_disable_extensions_status.log",
+      "extension": ".log",
+      "anomaly_type": "filetype_directory_mismatch",
+      "reverse_effort_score": 8.72
+    },
+    {
+      "path": "codex/mailbox/VSCODE_INSIDERS_MATRIX_20260226T033146Z/matrix_disable_gpu_status.err.log",
+      "extension": ".log",
+      "anomaly_type": "filetype_directory_mismatch",
+      "reverse_effort_score": 8.72
+    },
+    {
+      "path": "codex/mailbox/VSCODE_INSIDERS_MATRIX_20260226T033146Z/matrix_disable_gpu_status.log",
+      "extension": ".log",
+      "anomaly_type": "filetype_directory_mismatch",
+      "reverse_effort_score": 8.72
+    },
+    {
+      "path": "codex/mailbox/VSCODE_INSIDERS_MATRIX_20260226T033328Z/matrix_baseline_status.err.log",
+      "extension": ".log",
+      "anomaly_type": "filetype_directory_mismatch",
+      "reverse_effort_score": 8.72
+    },
+    {
+      "path": "codex/mailbox/VSCODE_INSIDERS_MATRIX_20260226T033328Z/matrix_baseline_status.log",
+      "extension": ".log",
+      "anomaly_type": "filetype_directory_mismatch",
+      "reverse_effort_score": 8.72
+    },
+    {
+      "path": "codex/mailbox/VSCODE_INSIDERS_MATRIX_20260226T033328Z/matrix_clean_safe_mode_status.err.log",
+      "extension": ".log",
+      "anomaly_type": "filetype_directory_mismatch",
+      "reverse_effort_score": 8.72
+    },
+    {
+      "path": "codex/mailbox/VSCODE_INSIDERS_MATRIX_20260226T033328Z/matrix_clean_safe_mode_status.log",
+      "extension": ".log",
+      "anomaly_type": "filetype_directory_mismatch",
+      "reverse_effort_score": 8.72
+    },
+    {
+      "path": "codex/mailbox/VSCODE_INSIDERS_MATRIX_20260226T033328Z/matrix_disable_extensions_status.err.log",
+      "extension": ".log",
+      "anomaly_type": "filetype_directory_mismatch",
+      "reverse_effort_score": 8.72
+    },
+    {
+      "path": "codex/mailbox/VSCODE_INSIDERS_MATRIX_20260226T033328Z/matrix_disable_extensions_status.log",
+      "extension": ".log",
+      "anomaly_type": "filetype_directory_mismatch",
+      "reverse_effort_score": 8.72
+    },
+    {
+      "path": "codex/mailbox/VSCODE_INSIDERS_MATRIX_20260226T033328Z/matrix_disable_gpu_status.err.log",
+      "extension": ".log",
+      "anomaly_type": "filetype_directory_mismatch",
+      "reverse_effort_score": 8.72
+    },
+    {
+      "path": "codex/mailbox/VSCODE_INSIDERS_MATRIX_20260226T033328Z/matrix_disable_gpu_status.log",
+      "extension": ".log",
+      "anomaly_type": "filetype_directory_mismatch",
+      "reverse_effort_score": 8.72
+    },
+    {
+      "path": "codex/mailbox/VSCODE_INSIDERS_MATRIX_20260226T033855Z/matrix_baseline_status.err.log",
+      "extension": ".log",
+      "anomaly_type": "filetype_directory_mismatch",
+      "reverse_effort_score": 8.72
+    },
+    {
+      "path": "codex/mailbox/VSCODE_INSIDERS_MATRIX_20260226T033855Z/matrix_baseline_status.log",
+      "extension": ".log",
+      "anomaly_type": "filetype_directory_mismatch",
+      "reverse_effort_score": 8.72
+    },
+    {
+      "path": "codex/mailbox/VSCODE_INSIDERS_MATRIX_20260226T033855Z/matrix_clean_safe_mode_status.err.log",
+      "extension": ".log",
+      "anomaly_type": "filetype_directory_mismatch",
+      "reverse_effort_score": 8.72
+    },
+    {
+      "path": "codex/mailbox/VSCODE_INSIDERS_MATRIX_20260226T033855Z/matrix_clean_safe_mode_status.log",
+      "extension": ".log",
+      "anomaly_type": "filetype_directory_mismatch",
+      "reverse_effort_score": 8.72
+    },
+    {
+      "path": "codex/mailbox/VSCODE_INSIDERS_MATRIX_20260226T033855Z/matrix_disable_extensions_status.err.log",
+      "extension": ".log",
+      "anomaly_type": "filetype_directory_mismatch",
+      "reverse_effort_score": 8.72
+    },
+    {
+      "path": "codex/mailbox/VSCODE_INSIDERS_MATRIX_20260226T033855Z/matrix_disable_extensions_status.log",
+      "extension": ".log",
+      "anomaly_type": "filetype_directory_mismatch",
+      "reverse_effort_score": 8.72
+    },
+    {
+      "path": "codex/mailbox/VSCODE_INSIDERS_MATRIX_20260226T033855Z/matrix_disable_gpu_status.err.log",
+      "extension": ".log",
+      "anomaly_type": "filetype_directory_mismatch",
+      "reverse_effort_score": 8.72
+    },
+    {
+      "path": "codex/mailbox/VSCODE_INSIDERS_MATRIX_20260226T033855Z/matrix_disable_gpu_status.log",
+      "extension": ".log",
+      "anomaly_type": "filetype_directory_mismatch",
+      "reverse_effort_score": 8.72
+    },
+    {
+      "path": "codex/mailbox/VSCODE_INSIDERS_MATRIX_20260226T195738Z/matrix_baseline_status.err.log",
+      "extension": ".log",
+      "anomaly_type": "filetype_directory_mismatch",
+      "reverse_effort_score": 8.72
+    },
+    {
+      "path": "codex/mailbox/VSCODE_INSIDERS_MATRIX_20260226T195738Z/matrix_baseline_status.log",
+      "extension": ".log",
+      "anomaly_type": "filetype_directory_mismatch",
+      "reverse_effort_score": 8.72
+    },
+    {
+      "path": "codex/mailbox/VSCODE_INSIDERS_MATRIX_20260226T195738Z/matrix_clean_safe_mode_status.err.log",
+      "extension": ".log",
+      "anomaly_type": "filetype_directory_mismatch",
+      "reverse_effort_score": 8.72
+    },
+    {
+      "path": "codex/mailbox/VSCODE_INSIDERS_MATRIX_20260226T195738Z/matrix_clean_safe_mode_status.log",
+      "extension": ".log",
+      "anomaly_type": "filetype_directory_mismatch",
+      "reverse_effort_score": 8.72
+    },
+    {
+      "path": "codex/mailbox/VSCODE_INSIDERS_MATRIX_20260226T195738Z/matrix_disable_extensions_status.err.log",
+      "extension": ".log",
+      "anomaly_type": "filetype_directory_mismatch",
+      "reverse_effort_score": 8.72
+    },
+    {
+      "path": "codex/mailbox/VSCODE_INSIDERS_MATRIX_20260226T195738Z/matrix_disable_extensions_status.log",
+      "extension": ".log",
+      "anomaly_type": "filetype_directory_mismatch",
+      "reverse_effort_score": 8.72
+    },
+    {
+      "path": "codex/mailbox/VSCODE_INSIDERS_MATRIX_20260226T195738Z/matrix_disable_gpu_status.err.log",
+      "extension": ".log",
+      "anomaly_type": "filetype_directory_mismatch",
+      "reverse_effort_score": 8.72
+    },
+    {
+      "path": "codex/mailbox/VSCODE_INSIDERS_MATRIX_20260226T195738Z/matrix_disable_gpu_status.log",
+      "extension": ".log",
+      "anomaly_type": "filetype_directory_mismatch",
+      "reverse_effort_score": 8.72
+    },
+    {
+      "path": "codex/mailbox/VSCODE_INSIDERS_MATRIX_20260226T200037Z/matrix_baseline_status.err.log",
+      "extension": ".log",
+      "anomaly_type": "filetype_directory_mismatch",
+      "reverse_effort_score": 8.72
+    },
+    {
+      "path": "codex/mailbox/VSCODE_INSIDERS_MATRIX_20260226T200037Z/matrix_baseline_status.log",
+      "extension": ".log",
+      "anomaly_type": "filetype_directory_mismatch",
+      "reverse_effort_score": 8.72
+    },
+    {
+      "path": "codex/mailbox/VSCODE_INSIDERS_MATRIX_20260226T200037Z/matrix_clean_safe_mode_status.err.log",
+      "extension": ".log",
+      "anomaly_type": "filetype_directory_mismatch",
+      "reverse_effort_score": 8.72
+    },
+    {
+      "path": "codex/mailbox/VSCODE_INSIDERS_MATRIX_20260226T200037Z/matrix_clean_safe_mode_status.log",
+      "extension": ".log",
+      "anomaly_type": "filetype_directory_mismatch",
+      "reverse_effort_score": 8.72
+    },
+    {
+      "path": "codex/mailbox/VSCODE_INSIDERS_MATRIX_20260226T200037Z/matrix_disable_extensions_status.err.log",
+      "extension": ".log",
+      "anomaly_type": "filetype_directory_mismatch",
+      "reverse_effort_score": 8.72
+    },
+    {
+      "path": "codex/mailbox/VSCODE_INSIDERS_MATRIX_20260226T200037Z/matrix_disable_extensions_status.log",
+      "extension": ".log",
+      "anomaly_type": "filetype_directory_mismatch",
+      "reverse_effort_score": 8.72
+    },
+    {
+      "path": "codex/mailbox/VSCODE_INSIDERS_MATRIX_20260226T200037Z/matrix_disable_gpu_status.err.log",
+      "extension": ".log",
+      "anomaly_type": "filetype_directory_mismatch",
+      "reverse_effort_score": 8.72
+    },
+    {
+      "path": "codex/mailbox/VSCODE_INSIDERS_MATRIX_20260226T200037Z/matrix_disable_gpu_status.log",
+      "extension": ".log",
+      "anomaly_type": "filetype_directory_mismatch",
+      "reverse_effort_score": 8.72
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032245Z/api_doctor.err.log",
+      "extension": ".log",
+      "anomaly_type": "filetype_directory_mismatch",
+      "reverse_effort_score": 8.72
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032245Z/api_doctor.log",
+      "extension": ".log",
+      "anomaly_type": "filetype_directory_mismatch",
+      "reverse_effort_score": 8.72
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032245Z/insiders_logs/main.log",
+      "extension": ".log",
+      "anomaly_type": "filetype_directory_mismatch",
+      "reverse_effort_score": 8.72
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032245Z/insiders_logs/ptyhost.log",
+      "extension": ".log",
+      "anomaly_type": "filetype_directory_mismatch",
+      "reverse_effort_score": 8.72
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032245Z/insiders_logs/sharedprocess.log",
+      "extension": ".log",
+      "anomaly_type": "filetype_directory_mismatch",
+      "reverse_effort_score": 8.72
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032245Z/insiders_logs/terminal.log",
+      "extension": ".log",
+      "anomaly_type": "filetype_directory_mismatch",
+      "reverse_effort_score": 8.72
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032245Z/insiders_logs/window1/exthost/extHostTelemetry.log",
+      "extension": ".log",
+      "anomaly_type": "filetype_directory_mismatch",
+      "reverse_effort_score": 8.72
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032245Z/insiders_logs/window1/exthost/exthost.log",
+      "extension": ".log",
+      "anomaly_type": "filetype_directory_mismatch",
+      "reverse_effort_score": 8.72
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032245Z/insiders_logs/window1/renderer.log",
+      "extension": ".log",
+      "anomaly_type": "filetype_directory_mismatch",
+      "reverse_effort_score": 8.72
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032245Z/insiders_logs/window2/exthost/extHostTelemetry.log",
+      "extension": ".log",
+      "anomaly_type": "filetype_directory_mismatch",
+      "reverse_effort_score": 8.72
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032245Z/insiders_logs/window2/exthost/exthost.log",
+      "extension": ".log",
+      "anomaly_type": "filetype_directory_mismatch",
+      "reverse_effort_score": 8.72
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032245Z/insiders_logs/window2/renderer.log",
+      "extension": ".log",
+      "anomaly_type": "filetype_directory_mismatch",
+      "reverse_effort_score": 8.72
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032245Z/insiders_logs/window3/exthost/extHostTelemetry.log",
+      "extension": ".log",
+      "anomaly_type": "filetype_directory_mismatch",
+      "reverse_effort_score": 8.72
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032245Z/insiders_logs/window3/exthost/exthost.log",
+      "extension": ".log",
+      "anomaly_type": "filetype_directory_mismatch",
+      "reverse_effort_score": 8.72
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032245Z/insiders_logs/window3/renderer.log",
+      "extension": ".log",
+      "anomaly_type": "filetype_directory_mismatch",
+      "reverse_effort_score": 8.72
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032245Z/probe_no_profile_stderr.log",
+      "extension": ".log",
+      "anomaly_type": "filetype_directory_mismatch",
+      "reverse_effort_score": 8.72
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032245Z/probe_no_profile_stdout.log",
+      "extension": ".log",
+      "anomaly_type": "filetype_directory_mismatch",
+      "reverse_effort_score": 8.72
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032245Z/probe_with_profile_repo_stderr.log",
+      "extension": ".log",
+      "anomaly_type": "filetype_directory_mismatch",
+      "reverse_effort_score": 8.72
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032245Z/probe_with_profile_repo_stdout.log",
+      "extension": ".log",
+      "anomaly_type": "filetype_directory_mismatch",
+      "reverse_effort_score": 8.72
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032245Z/probe_with_profile_temp_stderr.log",
+      "extension": ".log",
+      "anomaly_type": "filetype_directory_mismatch",
+      "reverse_effort_score": 8.72
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032245Z/probe_with_profile_temp_stdout.log",
+      "extension": ".log",
+      "anomaly_type": "filetype_directory_mismatch",
+      "reverse_effort_score": 8.72
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032320Z/api_doctor.err.log",
+      "extension": ".log",
+      "anomaly_type": "filetype_directory_mismatch",
+      "reverse_effort_score": 8.72
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032320Z/api_doctor.log",
+      "extension": ".log",
+      "anomaly_type": "filetype_directory_mismatch",
+      "reverse_effort_score": 8.72
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032320Z/insiders_logs/main.log",
+      "extension": ".log",
+      "anomaly_type": "filetype_directory_mismatch",
+      "reverse_effort_score": 8.72
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032320Z/insiders_logs/ptyhost.log",
+      "extension": ".log",
+      "anomaly_type": "filetype_directory_mismatch",
+      "reverse_effort_score": 8.72
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032320Z/insiders_logs/sharedprocess.log",
+      "extension": ".log",
+      "anomaly_type": "filetype_directory_mismatch",
+      "reverse_effort_score": 8.72
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032320Z/insiders_logs/terminal.log",
+      "extension": ".log",
+      "anomaly_type": "filetype_directory_mismatch",
+      "reverse_effort_score": 8.72
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032320Z/insiders_logs/window1/exthost/extHostTelemetry.log",
+      "extension": ".log",
+      "anomaly_type": "filetype_directory_mismatch",
+      "reverse_effort_score": 8.72
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032320Z/insiders_logs/window1/exthost/exthost.log",
+      "extension": ".log",
+      "anomaly_type": "filetype_directory_mismatch",
+      "reverse_effort_score": 8.72
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032320Z/insiders_logs/window1/renderer.log",
+      "extension": ".log",
+      "anomaly_type": "filetype_directory_mismatch",
+      "reverse_effort_score": 8.72
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032320Z/insiders_logs/window2/exthost/extHostTelemetry.log",
+      "extension": ".log",
+      "anomaly_type": "filetype_directory_mismatch",
+      "reverse_effort_score": 8.72
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032320Z/insiders_logs/window2/exthost/exthost.log",
+      "extension": ".log",
+      "anomaly_type": "filetype_directory_mismatch",
+      "reverse_effort_score": 8.72
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032320Z/insiders_logs/window2/renderer.log",
+      "extension": ".log",
+      "anomaly_type": "filetype_directory_mismatch",
+      "reverse_effort_score": 8.72
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032320Z/insiders_logs/window3/exthost/extHostTelemetry.log",
+      "extension": ".log",
+      "anomaly_type": "filetype_directory_mismatch",
+      "reverse_effort_score": 8.72
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032320Z/insiders_logs/window3/exthost/exthost.log",
+      "extension": ".log",
+      "anomaly_type": "filetype_directory_mismatch",
+      "reverse_effort_score": 8.72
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032320Z/insiders_logs/window3/renderer.log",
+      "extension": ".log",
+      "anomaly_type": "filetype_directory_mismatch",
+      "reverse_effort_score": 8.72
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032320Z/probe_no_profile_stderr.log",
+      "extension": ".log",
+      "anomaly_type": "filetype_directory_mismatch",
+      "reverse_effort_score": 8.72
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032320Z/probe_no_profile_stdout.log",
+      "extension": ".log",
+      "anomaly_type": "filetype_directory_mismatch",
+      "reverse_effort_score": 8.72
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032320Z/probe_with_profile_repo_stderr.log",
+      "extension": ".log",
+      "anomaly_type": "filetype_directory_mismatch",
+      "reverse_effort_score": 8.72
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032320Z/probe_with_profile_repo_stdout.log",
+      "extension": ".log",
+      "anomaly_type": "filetype_directory_mismatch",
+      "reverse_effort_score": 8.72
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032320Z/probe_with_profile_temp_stderr.log",
+      "extension": ".log",
+      "anomaly_type": "filetype_directory_mismatch",
+      "reverse_effort_score": 8.72
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032320Z/probe_with_profile_temp_stdout.log",
+      "extension": ".log",
+      "anomaly_type": "filetype_directory_mismatch",
+      "reverse_effort_score": 8.72
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032438Z/api_doctor.err.log",
+      "extension": ".log",
+      "anomaly_type": "filetype_directory_mismatch",
+      "reverse_effort_score": 8.72
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032438Z/api_doctor.log",
+      "extension": ".log",
+      "anomaly_type": "filetype_directory_mismatch",
+      "reverse_effort_score": 8.72
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032438Z/code_insiders_status.err.log",
+      "extension": ".log",
+      "anomaly_type": "filetype_directory_mismatch",
+      "reverse_effort_score": 8.72
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032438Z/code_insiders_status.log",
+      "extension": ".log",
+      "anomaly_type": "filetype_directory_mismatch",
+      "reverse_effort_score": 8.72
+    },
+    {
+      "path": "codex/mailbox/VSCODE_TERMINAL_TRIAGE_20260226T032438Z/probe_no_profile_stderr.log",
+      "extension": ".log",
+      "anomaly_type": "filetype_directory_mismatch",
+      "reverse_effort_score": 8.72
+    }
+  ],
+  "summary": {
+    "extensions_ranked": 52,
+    "anomaly_files_ranked": 353,
+    "highest_effort_extension": ".bat",
+    "highest_effort_file": ".codex/skills/artifact-upcycle/scripts/__pycache__/resolve_directory_relationships.cpython-313.pyc"
+  }
+}

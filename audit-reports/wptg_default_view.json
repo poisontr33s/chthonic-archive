@@ -1,6 +1,6 @@
 {
-  "timestamp": "2026-03-04T23:30:21+00:00",
-  "default_mode": "renewal_loop",
+  "timestamp": "2026-03-05T16:04:36+00:00",
+  "default_mode": "renewal_loop_reverse_rarity_first",
   "cycle_verdict": "WARN",
   "score": {
     "penalty_total": 1.3,
@@ -15,23 +15,206 @@
       "stage_3_promotion_bonus": 1.5
     }
   },
+  "restart_readiness": {
+    "ready": true,
+    "blockers": [],
+    "notes": [
+      "Census anomalies exist; they are handled via reverse-rarity-first priority.",
+      "Validator warnings are currently lane-exclusion skips."
+    ]
+  },
   "status_snapshot": {
     "extensions_unique": 51,
-    "tracked_files": 2794,
+    "tracked_files": 2800,
     "census_anomalies": 353,
     "forge_tempered": 18,
     "validator_errors": 0,
     "validator_warnings": 3
   },
+  "reverse_priority_reference": "audit-reports/wptg_reverse_viability_queue.json",
+  "reverse_priority_top_extensions": [
+    {
+      "extension": ".bat",
+      "count": 1,
+      "anomaly_count": 1,
+      "category": "source_code",
+      "runtime_supported": true,
+      "rarity_ratio": 0.9988,
+      "viability_score": 0.1006,
+      "reverse_effort_priority": 8.99,
+      "reverse_rank": 1
+    },
+    {
+      "extension": ".cpython-313.pyc",
+      "count": 6,
+      "anomaly_count": 6,
+      "category": "unclassified",
+      "runtime_supported": true,
+      "rarity_ratio": 0.9929,
+      "viability_score": 0.1035,
+      "reverse_effort_priority": 8.96,
+      "reverse_rank": 2
+    },
+    {
+      "extension": ".off",
+      "count": 7,
+      "anomaly_count": 7,
+      "category": "governance",
+      "runtime_supported": true,
+      "rarity_ratio": 0.9917,
+      "viability_score": 0.1041,
+      "reverse_effort_priority": 8.96,
+      "reverse_rank": 3
+    },
+    {
+      "extension": ".sh",
+      "count": 1,
+      "anomaly_count": 0,
+      "category": "source_code",
+      "runtime_supported": false,
+      "rarity_ratio": 0.9988,
+      "viability_score": 0.2006,
+      "reverse_effort_priority": 7.99,
+      "reverse_rank": 4
+    },
+    {
+      "extension": ".md\"",
+      "count": 3,
+      "anomaly_count": 3,
+      "category": "documentation",
+      "runtime_supported": true,
+      "rarity_ratio": 0.9965,
+      "viability_score": 0.2018,
+      "reverse_effort_priority": 7.98,
+      "reverse_rank": 5
+    },
+    {
+      "extension": ".env",
+      "count": 4,
+      "anomaly_count": 3,
+      "category": "data_config",
+      "runtime_supported": true,
+      "rarity_ratio": 0.9953,
+      "viability_score": 0.2774,
+      "reverse_effort_priority": 7.23,
+      "reverse_rank": 6
+    },
+    {
+      "extension": ".bak",
+      "count": 1,
+      "anomaly_count": 0,
+      "category": "governance",
+      "runtime_supported": true,
+      "rarity_ratio": 0.9988,
+      "viability_score": 0.3006,
+      "reverse_effort_priority": 6.99,
+      "reverse_rank": 7
+    },
+    {
+      "extension": ".db",
+      "count": 1,
+      "anomaly_count": 0,
+      "category": "build_output",
+      "runtime_supported": true,
+      "rarity_ratio": 0.9988,
+      "viability_score": 0.3006,
+      "reverse_effort_priority": 6.99,
+      "reverse_rank": 8
+    },
+    {
+      "extension": ".tsbuildinfo",
+      "count": 1,
+      "anomaly_count": 0,
+      "category": "build_output",
+      "runtime_supported": true,
+      "rarity_ratio": 0.9988,
+      "viability_score": 0.3006,
+      "reverse_effort_priority": 6.99,
+      "reverse_rank": 9
+    },
+    {
+      "extension": ".woff",
+      "count": 1,
+      "anomaly_count": 0,
+      "category": "build_output",
+      "runtime_supported": true,
+      "rarity_ratio": 0.9988,
+      "viability_score": 0.3006,
+      "reverse_effort_priority": 6.99,
+      "reverse_rank": 10
+    }
+  ],
+  "reverse_priority_top_files": [
+    {
+      "path": ".codex/skills/artifact-upcycle/scripts/__pycache__/resolve_directory_relationships.cpython-313.pyc",
+      "extension": ".cpython-313.pyc",
+      "anomaly_type": "tracked_bytecode",
+      "reverse_effort_score": 11.46
+    },
+    {
+      "path": ".codex/skills/codekiller-remediation-gate/scripts/__pycache__/codekiller_remediation_gate.cpython-313.pyc",
+      "extension": ".cpython-313.pyc",
+      "anomaly_type": "tracked_bytecode",
+      "reverse_effort_score": 11.46
+    },
+    {
+      "path": ".codex/skills/mailbox-handoff/scripts/__pycache__/mailbox_check.cpython-313.pyc",
+      "extension": ".cpython-313.pyc",
+      "anomaly_type": "tracked_bytecode",
+      "reverse_effort_score": 11.46
+    },
+    {
+      "path": ".codex/skills/script-envelope/scripts/__pycache__/script_envelope.cpython-313.pyc",
+      "extension": ".cpython-313.pyc",
+      "anomaly_type": "tracked_bytecode",
+      "reverse_effort_score": 11.46
+    },
+    {
+      "path": ".codex/skills/skill-polisher/scripts/__pycache__/polish_skill.cpython-313.pyc",
+      "extension": ".cpython-313.pyc",
+      "anomaly_type": "tracked_bytecode",
+      "reverse_effort_score": 11.46
+    },
+    {
+      "path": "dumpster-dive/scripts/__pycache__/audit_deploy_integrity.cpython-313.pyc",
+      "extension": ".cpython-313.pyc",
+      "anomaly_type": "tracked_bytecode",
+      "reverse_effort_score": 11.46
+    },
+    {
+      "path": "dumpster-dive/intake/claude-ide-harden-2026-02-10/tier-1-direct/claude_process_wrapper.bat",
+      "extension": ".bat",
+      "anomaly_type": "legacy_batch_in_pwsh_repo",
+      "reverse_effort_score": 10.59
+    },
+    {
+      "path": ".github/workflows/claude-code-review.yml.off",
+      "extension": ".off",
+      "anomaly_type": "disabled_by_rename",
+      "reverse_effort_score": 10.46
+    },
+    {
+      "path": ".github/workflows/claude.yml.off",
+      "extension": ".off",
+      "anomaly_type": "disabled_by_rename",
+      "reverse_effort_score": 10.46
+    },
+    {
+      "path": ".github/workflows/gemini-dispatch.yml.off",
+      "extension": ".off",
+      "anomaly_type": "disabled_by_rename",
+      "reverse_effort_score": 10.46
+    }
+  ],
   "learning_guidance": [
     "Baseline cycle established; use this snapshot as the default comparison anchor for future runs.",
-    "Forge yield is currently above Tier 2 gate; maintain provenance lanes and promotion discipline.",
+    "Reverse-rarity queue is now the primary selection mode for high-effort nurturing.",
     "Validator warnings are lane-exclusion skips; treat current validator posture as operationally expected."
   ],
   "next_cycle_focus": [
-    "Run Phase 0 -> Part 4 in the same ordered contract.",
-    "Preserve lane exclusions as immutable boundaries.",
-    "Use promotion gates only after Part 4 returns zero errors.",
-    "Reassess dedupe policy only after repeated stable downstream adoption."
+    "Apply least-viable-first triage before common-path optimizations.",
+    "Run Phase 0 -> Part 4 sequentially with lane exclusions preserved.",
+    "Invest highest effort in top reverse-priority files regardless of filetype.",
+    "Restart only when readiness gate remains green."
   ]
 }

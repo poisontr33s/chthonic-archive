@@ -154,6 +154,7 @@ extensions/*/bun.lock
 !audit-reports/
 !audit-reports/wptg_cycle_state.json
 !audit-reports/wptg_default_view.json
+!audit-reports/wptg_reverse_viability_queue.json
 # Exclude temp/ephemeral scripts (underscore prefix)
 scripts/_*.py
 
