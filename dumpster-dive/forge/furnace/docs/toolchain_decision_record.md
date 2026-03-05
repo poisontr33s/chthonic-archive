@@ -1,7 +1,7 @@
 ---
 sid: FORGE_VSCONFIG_DECISION_RECORD_V1
 title: Recovered VS Toolchain Decision Record
-created: 2026-03-05T16:18:24+00:00
+created: 2026-03-05T16:29:52+00:00
 source_files: ["codex/mailbox/SSMS22_ACTUAL_INSTALLED_20260218.vsconfig", "codex/mailbox/VS2026_BUILDTOOLS_EXPORT.vsconfig", "codex/mailbox/VS2026_COMMUNITY_EXPORT.vsconfig", "codex/mailbox/VS_BUILDTOOLS_INSIDERS_ACTUAL_INSTALLED_20260218.vsconfig", "codex/mailbox/VS_PRO_INSIDERS_ACTUAL_INSTALLED_20260218.vsconfig"]
 pathway: vsconfig -> component diff -> decision record
 kept: Shared and divergent Visual Studio workload selections.
@@ -18,14 +18,14 @@ discarded: Redundant snapshot serialization once the comparison exists.
 
 ## Snapshot Deltas
 
-### codex/mailbox/SSMS22_ACTUAL_INSTALLED_20260218.vsconfig
+### [`codex/mailbox/SSMS22_ACTUAL_INSTALLED_20260218.vsconfig`](../../../../codex/mailbox/SSMS22_ACTUAL_INSTALLED_20260218.vsconfig)
 
 - `Microsoft.SSMS.Component.Core`
 - `Microsoft.VisualStudio.Component.CoreEditor`
 - `Microsoft.VisualStudio.Product.Ssms`
 - `Microsoft.VisualStudio.Workload.SSMSCore`
 
-### codex/mailbox/VS2026_BUILDTOOLS_EXPORT.vsconfig
+### [`codex/mailbox/VS2026_BUILDTOOLS_EXPORT.vsconfig`](../../../../codex/mailbox/VS2026_BUILDTOOLS_EXPORT.vsconfig)
 
 - `Microsoft.Component.MSBuild`
 - `Microsoft.VisualStudio.Component.CoreBuildTools`
@@ -46,7 +46,7 @@ discarded: Redundant snapshot serialization once the comparison exists.
 - `Microsoft.VisualStudio.Workload.MSBuildTools`
 - `Microsoft.VisualStudio.Workload.VCTools`
 
-### codex/mailbox/VS2026_COMMUNITY_EXPORT.vsconfig
+### [`codex/mailbox/VS2026_COMMUNITY_EXPORT.vsconfig`](../../../../codex/mailbox/VS2026_COMMUNITY_EXPORT.vsconfig)
 
 - `Component.Linux.CMake`
 - `Component.MDD.Linux`
@@ -87,7 +87,7 @@ discarded: Redundant snapshot serialization once the comparison exists.
 - `Microsoft.VisualStudio.Workload.NativeDesktop`
 - `Microsoft.VisualStudio.Workload.NativeGame`
 
-### codex/mailbox/VS_BUILDTOOLS_INSIDERS_ACTUAL_INSTALLED_20260218.vsconfig
+### [`codex/mailbox/VS_BUILDTOOLS_INSIDERS_ACTUAL_INSTALLED_20260218.vsconfig`](../../../../codex/mailbox/VS_BUILDTOOLS_INSIDERS_ACTUAL_INSTALLED_20260218.vsconfig)
 
 - `Component.Android.SDK.MAUI`
 - `Component.LinuxBuildTools`
@@ -130,7 +130,7 @@ discarded: Redundant snapshot serialization once the comparison exists.
 - `Microsoft.VisualStudio.Component.VC.ATL.Spectre`
 - `Microsoft.VisualStudio.Component.VC.ATLMFC`
 
-### codex/mailbox/VS_PRO_INSIDERS_ACTUAL_INSTALLED_20260218.vsconfig
+### [`codex/mailbox/VS_PRO_INSIDERS_ACTUAL_INSTALLED_20260218.vsconfig`](../../../../codex/mailbox/VS_PRO_INSIDERS_ACTUAL_INSTALLED_20260218.vsconfig)
 
 - `Component.Android.NDK.R27C`
 - `Component.Android.SDK.MAUI`

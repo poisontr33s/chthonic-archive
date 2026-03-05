@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-03-05T16:18:24+00:00",
+  "timestamp": "2026-03-05T16:29:52+00:00",
   "artifacts": [
     {
       "path": "dumpster-dive/forge/furnace/docs/diagnostic_playbook.md",
@@ -376,7 +376,7 @@
       "output_type": ".md",
       "transmutation_pathway": "env -> integration hint extraction -> environment map",
       "input_bytes": 6841,
-      "output_bytes": 5895,
+      "output_bytes": 9267,
       "gold_tier": "tier_3_conceptual",
       "novel_pathway": false
     },
@@ -396,7 +396,7 @@
       "output_type": ".md",
       "transmutation_pathway": "workflow.off -> pattern extraction -> workflow catalogue",
       "input_bytes": 34543,
-      "output_bytes": 3047,
+      "output_bytes": 3442,
       "gold_tier": "tier_3_conceptual",
       "novel_pathway": false
     },
@@ -434,7 +434,7 @@
       "output_type": ".md",
       "transmutation_pathway": "vsconfig -> component diff -> toolchain decision record",
       "input_bytes": 18664,
-      "output_bytes": 7815,
+      "output_bytes": 8188,
       "gold_tier": "tier_3_conceptual",
       "novel_pathway": false
     },
@@ -464,7 +464,7 @@
       "output_type": ".md",
       "transmutation_pathway": "damaged markdown path -> filename forensics note",
       "input_bytes": 0,
-      "output_bytes": 1077,
+      "output_bytes": 1477,
       "gold_tier": "tier_3_conceptual",
       "novel_pathway": true
     },
@@ -579,7 +579,7 @@
       "output_type": ".md",
       "transmutation_pathway": "markdown fragments -> recovered architecture decisions",
       "input_bytes": 49404,
-      "output_bytes": 9160,
+      "output_bytes": 10344,
       "gold_tier": "tier_3_conceptual",
       "novel_pathway": false
     },

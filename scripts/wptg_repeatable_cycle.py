@@ -19,7 +19,15 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
 
-from scripts.wptg_common import compound_extension, ensure_utf8, now_iso, repo_root, write_json, write_text
+from scripts.wptg_common import (
+    compound_extension,
+    ensure_utf8,
+    markdown_path_link,
+    now_iso,
+    repo_root,
+    write_json,
+    write_text,
+)
 
 
 @dataclass(frozen=True, slots=True)
@@ -567,7 +575,7 @@ def build_default_view(
     }
 
 
-def render_report(cycle_data: dict[str, Any], reverse_queue: dict[str, Any]) -> str:
+def render_report(cycle_data: dict[str, Any], reverse_queue: dict[str, Any], report_path: Path) -> str:
     lines = [
         "# WPTG Repeatable Cycle Report",
         "",
@@ -598,7 +606,7 @@ def render_report(cycle_data: dict[str, Any], reverse_queue: dict[str, Any]) -> 
             "",
             "## Legacy Guard",
             "",
-            f"- Path: `{legacy_path}`",
+            f"- Path: {markdown_path_link(legacy_path, report_path)}",
             f"- Present: `{legacy_present}`",
             f"- Size bytes: `{legacy_size}`",
         ]
@@ -643,8 +651,9 @@ def render_report(cycle_data: dict[str, Any], reverse_queue: dict[str, Any]) -> 
 
     lines.extend(["", "## Reverse-Rarity Priority (Top 10 Files)", ""])
     for row in reverse_queue.get("file_priority", [])[:10]:
+        path_link = markdown_path_link(row["path"], report_path)
         lines.append(
-            f"- `{row['reverse_effort_score']:.2f}` | `{row['anomaly_type']}` | `{row['path']}`"
+            f"- `{row['reverse_effort_score']:.2f}` | `{row['anomaly_type']}` | {path_link}"
         )
 
     lines.extend(["", "## Learning Deltas", ""])
@@ -717,7 +726,7 @@ def execute_single_cycle(
     write_json(root / args.state_output, cycle_data)
     write_json(root / args.default_view_output, default_view)
     write_json(root / args.reverse_output, reverse_queue)
-    write_text(root / args.report_output, render_report(cycle_data, reverse_queue))
+    write_text(root / args.report_output, render_report(cycle_data, reverse_queue, args.report_output))
 
     print(f"Wrote {args.state_output}")
     print(f"Wrote {args.default_view_output}")

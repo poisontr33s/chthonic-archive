@@ -23,7 +23,17 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
 
-from scripts.wptg_common import ensure_utf8, json_load, now_iso, repo_root, safe_read_text, tracked_files, write_json, write_text
+from scripts.wptg_common import (
+    ensure_utf8,
+    json_load,
+    markdown_path_link,
+    now_iso,
+    repo_root,
+    safe_read_text,
+    tracked_files,
+    write_json,
+    write_text,
+)
 
 
 ROOT = repo_root()
@@ -701,12 +711,14 @@ def build_artifacts(census: dict[str, Any], orphan_data: dict[str, Any], corpse_
         "Variable names, sample shapes, and secret/config classification.",
         "Concrete secret values.",
     )
+    env_map_path = FURNACE_ROOT / "docs" / "environment_integration_map.md"
     env_map += "# Recovered Environment Integration Map\n\n"
     for key, value in sorted(env_contracts.items()):
-        env_map += f"- `{key}` | type `{value['type']}` | secret `{value['secret']}` | sources: {', '.join(value['referenced_by'])}\n"
+        source_links = ", ".join(markdown_path_link(source, env_map_path) for source in value["referenced_by"])
+        env_map += f"- `{key}` | type `{value['type']}` | secret `{value['secret']}` | sources: {source_links}\n"
     artifacts.append(
         Artifact(
-            path=FURNACE_ROOT / "docs" / "environment_integration_map.md",
+            path=env_map_path,
             source_pool="anomaly_harvest",
             source_files=env_sources,
             input_type=".env",
@@ -726,15 +738,16 @@ def build_artifacts(census: dict[str, Any], orphan_data: dict[str, Any], corpse_
         "Workflow names, jobs, and action versions.",
         "The disabled-by-rename wrapper around the live logic.",
     )
+    workflow_catalog_path = FURNACE_ROOT / "workflows" / "workflow_pattern_catalog.md"
     workflow_catalog += "# Recovered Workflow Pattern Catalogue\n\n"
     for workflow in workflows:
         workflow_catalog += f"## {workflow['name']}\n\n"
-        workflow_catalog += f"- Source: `{workflow['path']}`\n"
+        workflow_catalog += f"- Source: {markdown_path_link(workflow['path'], workflow_catalog_path)}\n"
         workflow_catalog += f"- Jobs: {', '.join(workflow['jobs']) or 'none recovered'}\n"
         workflow_catalog += f"- Actions: {', '.join(workflow['uses']) or 'none recovered'}\n\n"
     artifacts.append(
         Artifact(
-            path=FURNACE_ROOT / "workflows" / "workflow_pattern_catalog.md",
+            path=workflow_catalog_path,
             source_pool="anomaly_harvest",
             source_files=workflow_sources,
             input_type=".off",
@@ -789,6 +802,7 @@ def build_artifacts(census: dict[str, Any], orphan_data: dict[str, Any], corpse_
         "Shared and divergent Visual Studio workload selections.",
         "Redundant snapshot serialization once the comparison exists.",
     )
+    vsconfig_doc_path = FURNACE_ROOT / "docs" / "toolchain_decision_record.md"
     vsconfig_doc += "# VS Toolchain Decision Record\n\n"
     vsconfig_doc += f"- Snapshots compared: {len(snapshots)}\n- Common components: {len(common_components)}\n- Union components: {len(union_components)}\n\n"
     vsconfig_doc += "## Shared Components\n\n"
@@ -797,13 +811,13 @@ def build_artifacts(census: dict[str, Any], orphan_data: dict[str, Any], corpse_
     vsconfig_doc += "\n## Snapshot Deltas\n\n"
     for snapshot in snapshots:
         exclusive = sorted(set(snapshot["components"]) - set(common_components))
-        vsconfig_doc += f"### {snapshot['path']}\n\n"
+        vsconfig_doc += f"### {markdown_path_link(snapshot['path'], vsconfig_doc_path)}\n\n"
         for component in exclusive[:40]:
             vsconfig_doc += f"- `{component}`\n"
         vsconfig_doc += "\n"
     artifacts.append(
         Artifact(
-            path=FURNACE_ROOT / "docs" / "toolchain_decision_record.md",
+            path=vsconfig_doc_path,
             source_pool="anomaly_harvest",
             source_files=vsconfig_sources,
             input_type=".vsconfig",
@@ -853,12 +867,13 @@ def build_artifacts(census: dict[str, Any], orphan_data: dict[str, Any], corpse_
         "The damaged path strings and their surviving content lineage.",
         "The unsafe path form as an active dependency.",
     )
+    filename_forensics_path = FURNACE_ROOT / "docs" / "filename_forensics_note.md"
     filename_forensics += "# Filename Forensics\n\n"
     for path in damaged_sources:
-        filename_forensics += f"- `{path}`\n"
+        filename_forensics += f"- {markdown_path_link(path, filename_forensics_path)}\n"
     artifacts.append(
         Artifact(
-            path=FURNACE_ROOT / "docs" / "filename_forensics_note.md",
+            path=filename_forensics_path,
             source_pool="anomaly_harvest",
             source_files=damaged_sources,
             input_type='.md"',
@@ -986,13 +1001,15 @@ def build_artifacts(census: dict[str, Any], orphan_data: dict[str, Any], corpse_
         "Headings, rationale sentences, and provenance.",
         "Formatting noise and broken draft fragments.",
     )
+    adr_doc_path = FURNACE_ROOT / "docs" / "ADR_RECOVERED.md"
     adr_doc += "# Recovered Architecture Decisions\n\n"
     for index, decision in enumerate(decisions, start=1):
+        provenance_link = markdown_path_link(decision["source_file"], adr_doc_path)
         adr_doc += f"## ADR-{index:02d}: {decision['heading']}\n\n"
-        adr_doc += f"{decision['body']}\n\n_Provenance: `{decision['source_file']}` / `{decision['hash']}`_\n\n"
+        adr_doc += f"{decision['body']}\n\n_Provenance: {provenance_link} / `{decision['hash']}`_\n\n"
     artifacts.append(
         Artifact(
-            path=FURNACE_ROOT / "docs" / "ADR_RECOVERED.md",
+            path=adr_doc_path,
             source_pool="corpse_vault",
             source_files=[decision["source_file"] for decision in decisions],
             input_type="corpse-vault/markdown",
@@ -1474,6 +1491,7 @@ def write_forge_report(
     graduation_manifest: dict[str, Any],
     pathways: dict[str, Any],
 ) -> str:
+    report_path = FORGE_REPORT_PATH
     tempered = [artifact for artifact in graduation_manifest["artifacts"] if artifact["status"] == "tempered"]
     novel_count = sum(1 for artifact in tempered if artifact["novel_pathway"])
     artifact_bonus = max(graduation_manifest["artifacts_tempered"] - 13, 0) * 0.5
@@ -1521,23 +1539,27 @@ def write_forge_report(
         lines.append(f"- `{language}` | tempered `{counts['tempered']}` | rejected `{counts['rejected']}`")
     lines.extend(["", "## Pathway Catalogue", ""])
     for entry in pathways["pathways"]:
-        lines.append(f"- `{entry['input_type']}` -> `{entry['output_type']}` | {entry['pathway']} | example `{entry['path']}`")
+        example_link = markdown_path_link(entry["path"], report_path)
+        lines.append(f"- `{entry['input_type']}` -> `{entry['output_type']}` | {entry['pathway']} | example {example_link}")
     lines.extend(["", "## Novel Pathways", ""])
     for artifact in tempered:
         if artifact["novel_pathway"]:
-            lines.append(f"- `{artifact['transmutation_pathway']}` -> `{artifact['path']}`")
+            artifact_link = markdown_path_link(artifact["path"], report_path)
+            lines.append(f"- `{artifact['transmutation_pathway']}` -> {artifact_link}")
     if not any(artifact["novel_pathway"] for artifact in tempered):
         lines.append("- None.")
     lines.extend(["", "## Failures and Honest Skips", ""])
     for artifact in graduation_manifest["artifacts"]:
         if artifact["status"] == "rejected":
-            lines.append(f"- `{artifact['path']}` | {artifact['quality_gates']}")
+            artifact_link = markdown_path_link(artifact["path"], report_path)
+            lines.append(f"- {artifact_link} | {artifact['quality_gates']}")
     if graduation_manifest["artifacts_rejected"] == 0:
         lines.append("- None. All produced artifacts cleared the tempering gates.")
     lines.extend(["", "## Promotion Recommendations", ""])
     for artifact in tempered:
         if any(token in artifact["path"] for token in ("go/", "csharp/", "c_cpp/", "python/", "powershell/")):
-            lines.append(f"- Promote `{artifact['path']}` into an active tooling lane after user review.")
+            artifact_link = markdown_path_link(artifact["path"], report_path)
+            lines.append(f"- Promote {artifact_link} into an active tooling lane after user review.")
     lines.extend(
         [
             "",

@@ -18,6 +18,7 @@ import re
 import subprocess
 import sys
 import urllib.error
+import urllib.parse
 import urllib.request
 from dataclasses import dataclass
 from datetime import UTC, datetime
@@ -474,6 +475,38 @@ def path_is_excluded(path: str) -> bool:
         if fnmatch.fnmatch(normalized, glob):
             return True
     return False
+
+
+def normalize_repo_path(path: str | Path) -> str:
+    normalized = str(path).strip().replace("\\", "/")
+    if normalized.startswith("./"):
+        normalized = normalized[2:]
+    while normalized.startswith("/"):
+        normalized = normalized[1:]
+    return normalized
+
+
+def markdown_path_link(path: str | Path, markdown_output_path: str | Path, label: str | None = None) -> str:
+    root = repo_root()
+    report_path = Path(markdown_output_path)
+    if not report_path.is_absolute():
+        report_path = root / report_path
+
+    target_input = Path(path)
+    if target_input.is_absolute():
+        target_path = target_input
+        try:
+            normalized = target_input.relative_to(root).as_posix()
+        except ValueError:
+            normalized = target_input.as_posix()
+    else:
+        normalized = normalize_repo_path(path)
+        target_path = root / normalized
+
+    href = os.path.relpath(target_path, start=report_path.parent).replace("\\", "/")
+    href = urllib.parse.quote(href, safe="/._-~")
+    display = (label or normalized).replace("`", "\\`")
+    return f"[`{display}`]({href})"
 
 
 def compound_extension(path: str) -> str:

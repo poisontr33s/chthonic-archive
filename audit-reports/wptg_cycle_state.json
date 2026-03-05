@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-03-05T16:18:35+00:00",
-  "cycle_id": 1,
-  "begin_anew": true,
-  "execution_mode": "auto_restart_after_continuation",
+  "timestamp": "2026-03-05T16:30:05+00:00",
+  "cycle_id": 2,
+  "begin_anew": false,
+  "execution_mode": "manual_continuation",
   "verdict": "WARN",
   "results": [
     {
@@ -20,7 +20,7 @@
         1,
         2
       ],
-      "duration_seconds": 2.096,
+      "duration_seconds": 2.327,
       "status": "pass",
       "critical": true,
       "required_outputs": {
@@ -47,7 +47,7 @@
         1,
         2
       ],
-      "duration_seconds": 119.535,
+      "duration_seconds": 117.099,
       "status": "warn",
       "critical": true,
       "required_outputs": {
@@ -84,7 +84,7 @@
       "expected_exit_codes": [
         0
       ],
-      "duration_seconds": 3.648,
+      "duration_seconds": 4.584,
       "status": "pass",
       "critical": true,
       "required_outputs": {
@@ -124,7 +124,7 @@
       "expected_exit_codes": [
         0
       ],
-      "duration_seconds": 3.037,
+      "duration_seconds": 2.841,
       "status": "pass",
       "critical": true,
       "required_outputs": {
@@ -134,7 +134,7 @@
         }
       },
       "stdout_tail": "",
-      "stderr_tail": "Finished `dev` profile [optimized + debuginfo] target(s) in 0.14s\n     Running `target\\debug\\ankh-forge.exe scan --root . --output audit-reports/extension_universe_ankh.json`"
+      "stderr_tail": "Finished `dev` profile [optimized + debuginfo] target(s) in 0.16s\n     Running `target\\debug\\ankh-forge.exe scan --root . --output audit-reports/extension_universe_ankh.json`"
     },
     {
       "step_id": "part_3_ankh_census",
@@ -156,7 +156,7 @@
       "expected_exit_codes": [
         0
       ],
-      "duration_seconds": 0.576,
+      "duration_seconds": 0.566,
       "status": "pass",
       "critical": true,
       "required_outputs": {
@@ -188,7 +188,7 @@
       "expected_exit_codes": [
         0
       ],
-      "duration_seconds": 2.556,
+      "duration_seconds": 2.951,
       "status": "pass",
       "critical": true,
       "required_outputs": {
@@ -198,7 +198,7 @@
         }
       },
       "stdout_tail": "",
-      "stderr_tail": "Finished `dev` profile [optimized + debuginfo] target(s) in 0.18s\n     Running `target\\debug\\ankh-forge.exe landscape --root . --output audit-reports/oxidized_tooling_landscape.json`"
+      "stderr_tail": "Finished `dev` profile [optimized + debuginfo] target(s) in 0.13s\n     Running `target\\debug\\ankh-forge.exe landscape --root . --output audit-reports/oxidized_tooling_landscape.json`"
     },
     {
       "step_id": "part_3_ankh_eol",
@@ -218,7 +218,7 @@
       "expected_exit_codes": [
         0
       ],
-      "duration_seconds": 2.222,
+      "duration_seconds": 2.769,
       "status": "pass",
       "critical": true,
       "required_outputs": {
@@ -228,7 +228,7 @@
         }
       },
       "stdout_tail": "",
-      "stderr_tail": "Finished `dev` profile [optimized + debuginfo] target(s) in 0.14s\n     Running `target\\debug\\ankh-forge.exe eol --output audit-reports/oxidized_tooling_eol.json`"
+      "stderr_tail": "Finished `dev` profile [optimized + debuginfo] target(s) in 0.13s\n     Running `target\\debug\\ankh-forge.exe eol --output audit-reports/oxidized_tooling_eol.json`"
     },
     {
       "step_id": "part_3_bun_lane_pulse",
@@ -242,7 +242,7 @@
       "expected_exit_codes": [
         0
       ],
-      "duration_seconds": 0.029,
+      "duration_seconds": 0.025,
       "status": "pass",
       "critical": false,
       "required_outputs": {},
@@ -262,7 +262,7 @@
       "expected_exit_codes": [
         0
       ],
-      "duration_seconds": 0.234,
+      "duration_seconds": 0.156,
       "status": "pass",
       "critical": true,
       "required_outputs": {
@@ -303,9 +303,9 @@
       "validator_warnings": 0
     },
     "guidance": [
-      "Baseline cycle established; use this snapshot as the default comparison anchor for future runs.",
-      "Reverse-rarity queue is now the primary selection mode for high-effort nurturing.",
-      "Validator warnings are lane-exclusion skips; treat current validator posture as operationally expected."
+      "Anomaly count stable; continue rarity-first nurturing focus.",
+      "Forge yield remains above Tier 2 gate; maintain provenance lanes and promotion discipline.",
+      "Validator warnings are lane-exclusion related; continue without treating them as hard blockers."
     ]
   },
   "score": {
@@ -322,9 +322,9 @@
     }
   },
   "previous_cycle_reference": {
-    "cycle_id": 2,
+    "cycle_id": 1,
     "verdict": "WARN",
-    "timestamp": "2026-03-05T16:16:21+00:00"
+    "timestamp": "2026-03-05T16:18:35+00:00"
   },
   "restart_readiness": {
     "ready": true,

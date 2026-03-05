@@ -25,6 +25,7 @@ from scripts.wptg_common import (
     compound_extension,
     ensure_utf8,
     is_textlike,
+    markdown_path_link,
     now_iso,
     path_is_excluded,
     repo_root,
@@ -314,7 +315,7 @@ def classify_log(path: str, text: str) -> dict[str, Any]:
     }
 
 
-def build_log_archaeology(root: Path, log_paths: list[str]) -> tuple[dict[str, Any], str]:
+def build_log_archaeology(root: Path, log_paths: list[str], output_path: Path) -> tuple[dict[str, Any], str]:
     results: list[dict[str, Any]] = []
     category_counts: Counter[str] = Counter()
     recommendation_counts: Counter[str] = Counter()
@@ -355,7 +356,8 @@ def build_log_archaeology(root: Path, log_paths: list[str]) -> tuple[dict[str, A
     lines.extend(["", "## Per-Log Triage", ""])
     for entry in results:
         signal_preview = "; ".join(entry["signal_lines"][:3]) or "no strong signal extracted"
-        lines.append(f"- `{entry['path']}` | `{entry['category']}` | `{entry['recommendation']}` | {signal_preview}")
+        path_link = markdown_path_link(entry["path"], output_path)
+        lines.append(f"- {path_link} | `{entry['category']}` | `{entry['recommendation']}` | {signal_preview}")
 
     return {
         "total_logs": len(results),
@@ -369,6 +371,7 @@ def build_governance_proposal(
     census: dict[str, Any],
     orphan_data: dict[str, Any],
     log_data: dict[str, Any],
+    output_path: Path,
 ) -> str:
     anomaly_index = census["anomalies"]
     rename_candidates = [entry["path"] for entry in anomaly_index if entry["type"] == "disabled_by_rename"]
@@ -406,34 +409,35 @@ def build_governance_proposal(
     ]
 
     for path in archive_candidates[:80]:
-        lines.append(f"- `{path}`")
+        lines.append(f"- {markdown_path_link(path, output_path)}")
 
     lines.extend(["", "## Rename Candidates", ""])
     for path in rename_candidates[:80]:
-        lines.append(f"- `{path}`")
+        lines.append(f"- {markdown_path_link(path, output_path)}")
 
     lines.extend(["", "## Encoding Repair Candidates", ""])
     for path in encoding_candidates[:80]:
-        lines.append(f"- `{path}`")
+        lines.append(f"- {markdown_path_link(path, output_path)}")
 
     lines.extend(["", "## Directory Migration Candidates", ""])
     for path in migration_candidates[:80]:
-        lines.append(f"- `{path}`")
+        lines.append(f"- {markdown_path_link(path, output_path)}")
 
     lines.extend(["", "## Schema / Contract Extraction Candidates", ""])
     for path in bytecode_candidates[:80]:
-        lines.append(f"- `{path}` -> extract interface contract before any ignore proposal")
+        lines.append(f"- {markdown_path_link(path, output_path)} -> extract interface contract before any ignore proposal")
     for path in env_candidates[:80]:
-        lines.append(f"- `{path}` -> extract env schema and integration map")
+        lines.append(f"- {markdown_path_link(path, output_path)} -> extract env schema and integration map")
 
     lines.extend(["", "## Orphan JSON Candidates", ""])
     for entry in orphan_data["orphan_candidates"][:120]:
-        lines.append(f"- `{entry['path']}` | age `{entry['age_days']}` days | references `{entry['reference_count']}`")
+        path_link = markdown_path_link(entry["path"], output_path)
+        lines.append(f"- {path_link} | age `{entry['age_days']}` days | references `{entry['reference_count']}`")
 
     return "\n".join(lines)
 
 
-def build_census(root: Path) -> tuple[dict[str, Any], dict[str, Any], str, str]:
+def build_census(root: Path, log_output: Path, proposal_output: Path) -> tuple[dict[str, Any], dict[str, Any], str, str]:
     tracked = tracked_files(root)
     excluded = [path for path in tracked if path_is_excluded(path)]
     audited = [path for path in tracked if not path_is_excluded(path)]
@@ -475,7 +479,7 @@ def build_census(root: Path) -> tuple[dict[str, Any], dict[str, Any], str, str]:
         )
         by_extension[".json"]["anomalies"]["orphan_json_candidate"] += 1
 
-    log_data, log_markdown = build_log_archaeology(root, log_paths)
+    log_data, log_markdown = build_log_archaeology(root, log_paths, log_output)
 
     verdict = "PASS"
     if any(entry["type"] in {"tracked_bytecode", "filename_encoding_damage", "tracked_env_surface"} for entry in anomalies):
@@ -500,7 +504,7 @@ def build_census(root: Path) -> tuple[dict[str, Any], dict[str, Any], str, str]:
         "by_gold_tier": dict(gold_tiers),
         "verdict": verdict,
     }
-    governance_markdown = build_governance_proposal(census, orphan_data, log_data)
+    governance_markdown = build_governance_proposal(census, orphan_data, log_data, proposal_output)
     return census, orphan_data, log_markdown, governance_markdown
 
 
@@ -538,7 +542,11 @@ def main() -> int:
     args = parser.parse_args()
 
     root = repo_root()
-    census, orphan_data, log_markdown, governance_markdown = build_census(root)
+    census, orphan_data, log_markdown, governance_markdown = build_census(
+        root,
+        args.log_output,
+        args.proposal_output,
+    )
     write_json(root / args.census_output, census)
     write_json(root / args.orphan_output, orphan_data)
     write_text(root / args.log_output, log_markdown)

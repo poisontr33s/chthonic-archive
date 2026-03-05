@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-03-05T16:18:35+00:00",
+  "timestamp": "2026-03-05T16:30:05+00:00",
   "default_mode": "renewal_loop_reverse_rarity_first",
   "cycle_verdict": "WARN",
   "score": {
@@ -213,9 +213,9 @@
     }
   ],
   "learning_guidance": [
-    "Baseline cycle established; use this snapshot as the default comparison anchor for future runs.",
-    "Reverse-rarity queue is now the primary selection mode for high-effort nurturing.",
-    "Validator warnings are lane-exclusion skips; treat current validator posture as operationally expected."
+    "Anomaly count stable; continue rarity-first nurturing focus.",
+    "Forge yield remains above Tier 2 gate; maintain provenance lanes and promotion discipline.",
+    "Validator warnings are lane-exclusion related; continue without treating them as hard blockers."
   ],
   "next_cycle_focus": [
     "Apply least-viable-first triage before common-path optimizations.",

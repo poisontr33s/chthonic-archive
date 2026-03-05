@@ -1,9 +1,9 @@
 # WPTG Repeatable Cycle Report
 
-- Timestamp: `2026-03-05T16:18:35+00:00`
-- Cycle ID: `1`
-- Begin Anew Mode: `True`
-- Execution Mode: `auto_restart_after_continuation`
+- Timestamp: `2026-03-05T16:30:05+00:00`
+- Cycle ID: `2`
+- Begin Anew Mode: `False`
+- Execution Mode: `manual_continuation`
 - Verdict: `WARN`
 
 ## Restart Readiness
@@ -16,7 +16,7 @@
 
 ## Legacy Guard
 
-- Path: `scripts/wpth_repeatable_cycle_LEGACY`
+- Path: [`scripts/wpth_repeatable_cycle_LEGACY`](../../scripts/wpth_repeatable_cycle_LEGACY)
 - Present: `True`
 - Size bytes: `20113`
 
@@ -24,15 +24,15 @@
 
 | Step | Toolchain | Exit | Status | Duration(s) |
 |---|---|---:|---|---:|
-| phase_0_universe | uv | 0 | pass | 2.096 |
-| part_1_census | uv | 2 | warn | 119.535 |
-| part_2_forge | uv | 0 | pass | 3.648 |
-| part_3_ankh_scan | cargo | 0 | pass | 3.037 |
-| part_3_ankh_census | cargo | 0 | pass | 0.576 |
-| part_3_ankh_landscape | cargo | 0 | pass | 2.556 |
-| part_3_ankh_eol | cargo | 0 | pass | 2.222 |
-| part_3_bun_lane_pulse | bun | 0 | pass | 0.029 |
-| part_4_validator | uv | 0 | pass | 0.234 |
+| phase_0_universe | uv | 0 | pass | 2.327 |
+| part_1_census | uv | 2 | warn | 117.099 |
+| part_2_forge | uv | 0 | pass | 4.584 |
+| part_3_ankh_scan | cargo | 0 | pass | 2.841 |
+| part_3_ankh_census | cargo | 0 | pass | 0.566 |
+| part_3_ankh_landscape | cargo | 0 | pass | 2.951 |
+| part_3_ankh_eol | cargo | 0 | pass | 2.769 |
+| part_3_bun_lane_pulse | bun | 0 | pass | 0.025 |
+| part_4_validator | uv | 0 | pass | 0.156 |
 
 ## Metrics
 
@@ -59,16 +59,16 @@
 
 ## Reverse-Rarity Priority (Top 10 Files)
 
-- `11.46` | `tracked_bytecode` | `.codex/skills/artifact-upcycle/scripts/__pycache__/resolve_directory_relationships.cpython-313.pyc`
-- `11.46` | `tracked_bytecode` | `.codex/skills/codekiller-remediation-gate/scripts/__pycache__/codekiller_remediation_gate.cpython-313.pyc`
-- `11.46` | `tracked_bytecode` | `.codex/skills/mailbox-handoff/scripts/__pycache__/mailbox_check.cpython-313.pyc`
-- `11.46` | `tracked_bytecode` | `.codex/skills/script-envelope/scripts/__pycache__/script_envelope.cpython-313.pyc`
-- `11.46` | `tracked_bytecode` | `.codex/skills/skill-polisher/scripts/__pycache__/polish_skill.cpython-313.pyc`
-- `11.46` | `tracked_bytecode` | `dumpster-dive/scripts/__pycache__/audit_deploy_integrity.cpython-313.pyc`
-- `10.59` | `legacy_batch_in_pwsh_repo` | `dumpster-dive/intake/claude-ide-harden-2026-02-10/tier-1-direct/claude_process_wrapper.bat`
-- `10.46` | `disabled_by_rename` | `.github/workflows/claude-code-review.yml.off`
-- `10.46` | `disabled_by_rename` | `.github/workflows/claude.yml.off`
-- `10.46` | `disabled_by_rename` | `.github/workflows/gemini-dispatch.yml.off`
+- `11.46` | `tracked_bytecode` | [`.codex/skills/artifact-upcycle/scripts/__pycache__/resolve_directory_relationships.cpython-313.pyc`](../../.codex/skills/artifact-upcycle/scripts/__pycache__/resolve_directory_relationships.cpython-313.pyc)
+- `11.46` | `tracked_bytecode` | [`.codex/skills/codekiller-remediation-gate/scripts/__pycache__/codekiller_remediation_gate.cpython-313.pyc`](../../.codex/skills/codekiller-remediation-gate/scripts/__pycache__/codekiller_remediation_gate.cpython-313.pyc)
+- `11.46` | `tracked_bytecode` | [`.codex/skills/mailbox-handoff/scripts/__pycache__/mailbox_check.cpython-313.pyc`](../../.codex/skills/mailbox-handoff/scripts/__pycache__/mailbox_check.cpython-313.pyc)
+- `11.46` | `tracked_bytecode` | [`.codex/skills/script-envelope/scripts/__pycache__/script_envelope.cpython-313.pyc`](../../.codex/skills/script-envelope/scripts/__pycache__/script_envelope.cpython-313.pyc)
+- `11.46` | `tracked_bytecode` | [`.codex/skills/skill-polisher/scripts/__pycache__/polish_skill.cpython-313.pyc`](../../.codex/skills/skill-polisher/scripts/__pycache__/polish_skill.cpython-313.pyc)
+- `11.46` | `tracked_bytecode` | [`dumpster-dive/scripts/__pycache__/audit_deploy_integrity.cpython-313.pyc`](../../dumpster-dive/scripts/__pycache__/audit_deploy_integrity.cpython-313.pyc)
+- `10.59` | `legacy_batch_in_pwsh_repo` | [`dumpster-dive/intake/claude-ide-harden-2026-02-10/tier-1-direct/claude_process_wrapper.bat`](../../dumpster-dive/intake/claude-ide-harden-2026-02-10/tier-1-direct/claude_process_wrapper.bat)
+- `10.46` | `disabled_by_rename` | [`.github/workflows/claude-code-review.yml.off`](../../.github/workflows/claude-code-review.yml.off)
+- `10.46` | `disabled_by_rename` | [`.github/workflows/claude.yml.off`](../../.github/workflows/claude.yml.off)
+- `10.46` | `disabled_by_rename` | [`.github/workflows/gemini-dispatch.yml.off`](../../.github/workflows/gemini-dispatch.yml.off)
 
 ## Learning Deltas
 
@@ -79,9 +79,9 @@
 
 ## Guidance
 
-- Baseline cycle established; use this snapshot as the default comparison anchor for future runs.
-- Reverse-rarity queue is now the primary selection mode for high-effort nurturing.
-- Validator warnings are lane-exclusion skips; treat current validator posture as operationally expected.
+- Anomaly count stable; continue rarity-first nurturing focus.
+- Forge yield remains above Tier 2 gate; maintain provenance lanes and promotion discipline.
+- Validator warnings are lane-exclusion related; continue without treating them as hard blockers.
 
 ## Boon/Penalty
 
