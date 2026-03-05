@@ -16,7 +16,8 @@ poe_sdk_lane.py — Poe SDK lane helper (fastapi_poe transport).
 @SID:           TOOL_POE_SDK_LANE_V1
 @Shabti:        CLI Script
 @Purpose:       Poe SDK lane helper using fastapi_poe transport. Connects
-                to Poe bots via the SDK pathway for direct bot interaction.
+                to Poe bots via the SDK pathway for direct bot interaction
+                with shared process-env then pool-file credential resolution.
                 Usage: uv run --with fastapi-poe scripts/poe_sdk_lane.py --account 1 --bot app-creator
 """
 
@@ -24,47 +25,13 @@ from __future__ import annotations
 
 import argparse
 import json
-import os
-import re
 import time
 from dataclasses import asdict, dataclass
 from pathlib import Path
 
+from scripts.lib.poe_auth import account_arg, resolve_poe_credentials
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
-POE_SLOT_RE = re.compile(r"^POE_API_KEY_(\d+)$")
-
-
-def normalize_account(value: str | None) -> str | None:
-    if value is None:
-        return None
-    raw = value.strip()
-    if not raw or not raw.isdigit():
-        return None
-    return str(int(raw))
-
-
-def discover_slot_names(names: list[str]) -> list[tuple[str, str]]:
-    slots: list[tuple[int, str, str]] = []
-    seen: set[str] = set()
-    for name in names:
-        match = POE_SLOT_RE.match(name)
-        if not match:
-            continue
-        account = str(int(match.group(1)))
-        if account in seen:
-            continue
-        seen.add(account)
-        slots.append((int(account), name, account))
-    slots.sort(key=lambda item: item[0])
-    return [(name, account) for _, name, account in slots]
-
-
-def account_arg(value: str) -> str:
-    account = normalize_account(value)
-    if account is None:
-        raise argparse.ArgumentTypeError("account must be numeric (example: 1, 2, 3)")
-    return account
 
 
 @dataclass
@@ -74,6 +41,9 @@ class PoeSdkReport:
     transport: str
     account: str | None
     bot: str
+    auth_source: str
+    account_source: str
+    selected_name: str | None
     ok: bool
     error: str | None
     response_preview: str | None
@@ -81,72 +51,6 @@ class PoeSdkReport:
 
 def now_utc() -> str:
     return time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())
-
-
-def load_local_pool_env() -> dict[str, str]:
-    pool_path = Path.home() / ".chthonic" / "api_pool.json"
-    if not pool_path.exists():
-        return {}
-    try:
-        obj = json.loads(pool_path.read_text(encoding="utf-8", errors="replace"))
-    except Exception:
-        return {}
-    env = obj.get("env")
-    if not isinstance(env, dict):
-        return {}
-    out: dict[str, str] = {}
-    for k, v in env.items():
-        if isinstance(v, str) and v.strip():
-            out[k] = v.strip()
-    return out
-
-
-def resolve_key(account: str | None) -> tuple[str | None, str | None]:
-    pool_env = load_local_pool_env()
-    normalized_account = normalize_account(account)
-
-    if normalized_account:
-        slot = f"POE_API_KEY_{normalized_account}"
-        v = os.getenv(slot)
-        if v and v.strip():
-            return v.strip(), normalized_account
-        vp = pool_env.get(slot)
-        if vp:
-            return vp, normalized_account
-        return None, normalized_account
-
-    direct = os.getenv("POE_API_KEY")
-    if direct and direct.strip():
-        active = normalize_account(os.getenv("POE_ACCOUNT_ACTIVE"))
-        return direct.strip(), active
-    direct_pool = pool_env.get("POE_API_KEY")
-    if direct_pool:
-        active = normalize_account(os.getenv("POE_ACCOUNT_ACTIVE")) or normalize_account(pool_env.get("POE_ACCOUNT_ACTIVE"))
-        return direct_pool, active
-
-    active = normalize_account(os.getenv("POE_ACCOUNT_ACTIVE"))
-    if active:
-        slot = f"POE_API_KEY_{active}"
-        v = os.getenv(slot)
-        if v and v.strip():
-            return v.strip(), active
-    active_pool = normalize_account(pool_env.get("POE_ACCOUNT_ACTIVE"))
-    if active_pool:
-        slot = f"POE_API_KEY_{active_pool}"
-        vp = pool_env.get(slot)
-        if vp:
-            return vp, active_pool
-
-    for candidate, slot_account in discover_slot_names(list(os.environ.keys())):
-        v = os.getenv(candidate)
-        if v and v.strip():
-            return v.strip(), slot_account
-    for candidate, slot_account in discover_slot_names(list(pool_env.keys())):
-        vp = pool_env.get(candidate)
-        if vp:
-            return vp, slot_account
-
-    return None, None
 
 
 def parse_mailboxes(value: str) -> list[str]:
@@ -171,6 +75,9 @@ def write_mailbox(report: PoeSdkReport, mailboxes: list[str]) -> None:
         f"- Transport: `{report.transport}`",
         f"- Account: `{report.account}`",
         f"- Bot: `{report.bot}`",
+        f"- Auth source: `{report.auth_source}`",
+        f"- Account source: `{report.account_source}`",
+        f"- Selected name: `{report.selected_name}`",
         f"- OK: `{report.ok}`",
     ]
     if report.error:
@@ -224,6 +131,7 @@ def main() -> int:
     ap.add_argument("--bot", default="app-creator")
     ap.add_argument("--prompt", default="Return exactly: OK")
     ap.add_argument("--effort", default="max", help="Optional Poe bot effort parameter.")
+    ap.add_argument("--resolve-only", action="store_true", help="Emit resolved auth source without making a Poe call.")
     ap.add_argument("--emit-mailbox", action="store_true", help="Write <mailbox>/mailbox/POE_SDK_LATEST.*")
     ap.add_argument(
         "--mailboxes",
@@ -234,8 +142,8 @@ def main() -> int:
     args = ap.parse_args()
     mailbox_targets = parse_mailboxes(args.mailboxes)
 
-    key, resolved_account = resolve_key(args.account)
-    if not key:
+    resolution = resolve_poe_credentials(args.account)
+    if not resolution.token:
         print("fail: missing POE key (POE_API_KEY or POE_API_KEY_<n>)")
         return 2
 
@@ -243,21 +151,62 @@ def main() -> int:
         schema_version=1,
         generated_on=now_utc(),
         transport="poe-sdk",
-        account=resolved_account,
+        account=resolution.account,
         bot=args.bot,
+        auth_source=resolution.auth_source,
+        account_source=resolution.account_source,
+        selected_name=resolution.selected_name,
         ok=False,
         error=None,
         response_preview=None,
     )
 
     try:
-        text = run_probe(bot=args.bot, prompt=args.prompt, token=key, effort=args.effort)
-        report.ok = True
-        report.response_preview = text[:400]
-        if args.json:
-            print(json.dumps({"bot": args.bot, "text": text}, ensure_ascii=True))
+        if args.resolve_only:
+            report.ok = True
+            if args.json:
+                print(
+                    json.dumps(
+                        {
+                            "account": resolution.account,
+                            "auth_source": resolution.auth_source,
+                            "account_source": resolution.account_source,
+                            "selected_name": resolution.selected_name,
+                            "pool_path": resolution.pool_path,
+                            "transport": report.transport,
+                        },
+                        ensure_ascii=True,
+                    )
+                )
+            else:
+                print(f"account={resolution.account}")
+                print(f"auth_source={resolution.auth_source}")
+                print(f"account_source={resolution.account_source}")
+                print(f"selected_name={resolution.selected_name}")
+                print(f"pool_path={resolution.pool_path}")
+                print(f"transport={report.transport}")
         else:
-            print(text)
+            text = run_probe(bot=args.bot, prompt=args.prompt, token=resolution.token, effort=args.effort)
+            report.ok = True
+            report.response_preview = text[:400]
+        if args.json:
+            if not args.resolve_only:
+                print(
+                    json.dumps(
+                        {
+                            "account": resolution.account,
+                            "auth_source": resolution.auth_source,
+                            "account_source": resolution.account_source,
+                            "selected_name": resolution.selected_name,
+                            "bot": args.bot,
+                            "text": text,
+                        },
+                        ensure_ascii=True,
+                    )
+                )
+        else:
+            if not args.resolve_only:
+                print(text)
     except Exception as e:
         report.ok = False
         report.error = normalize_error(str(e))

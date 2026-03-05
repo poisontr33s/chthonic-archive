@@ -36,6 +36,7 @@ from dataclasses import asdict, dataclass
 from pathlib import Path
 from urllib import error, request
 
+from scripts.lib.poe_auth import resolve_poe_credentials
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_BASELINE_MODEL = "qwen3.5-397b-a17b-t"
@@ -161,31 +162,13 @@ def parse_accounts(value: str) -> list[str]:
     return out
 
 
-def load_pool_env() -> dict[str, str]:
-    pool_path = Path.home() / ".chthonic" / "api_pool.json"
-    if not pool_path.exists():
-        return {}
-    try:
-        data = json.loads(pool_path.read_text(encoding="utf-8", errors="replace"))
-    except Exception:
-        return {}
-    env = data.get("env")
-    if not isinstance(env, dict):
-        return {}
-    out: dict[str, str] = {}
-    for key, value in env.items():
-        if isinstance(key, str) and isinstance(value, str) and value.strip():
-            out[key] = value.strip()
-    return out
-
-
-def fetch_point_balance(account: str, pool_env: dict[str, str]) -> tuple[int | None, str | None]:
-    key = pool_env.get(f"POE_API_KEY_{account}") or pool_env.get("POE_API_KEY")
-    if not key:
+def fetch_point_balance(account: str) -> tuple[int | None, str | None]:
+    resolution = resolve_poe_credentials(account)
+    if not resolution.token:
         return None, f"missing_poe_key_for_account_{account}"
     req = request.Request(
         "https://api.poe.com/usage/current_balance",
-        headers={"Authorization": f"Bearer {key}", "Accept": "application/json"},
+        headers={"Authorization": f"Bearer {resolution.token}", "Accept": "application/json"},
         method="GET",
     )
     try:
@@ -674,7 +657,6 @@ def main() -> int:
     catalog_total = int(catalog_summary.get("api_model_count") or 0)
     effective_registry_limit = compute_effective_registry_limit(catalog_total, int(args.registry_limit))
     docs_alignment = build_docs_alignment()
-    pool_env = load_pool_env()
 
     if args.dual_discrepancy:
         accounts = parse_accounts(args.accounts)
@@ -691,7 +673,7 @@ def main() -> int:
                 targeted_models=targeted_models,
                 effective_registry_limit=effective_registry_limit,
             )
-            point_balance, balance_error = fetch_point_balance(account, pool_env)
+            point_balance, balance_error = fetch_point_balance(account)
             validation.current_point_balance = point_balance
             validation.balance_error = balance_error
             validations.append(validation)
@@ -755,7 +737,7 @@ def main() -> int:
         targeted_models=targeted_models,
         effective_registry_limit=effective_registry_limit,
     )
-    point_balance, balance_error = fetch_point_balance(account, pool_env)
+    point_balance, balance_error = fetch_point_balance(account)
     validation.current_point_balance = point_balance
     validation.balance_error = balance_error
 

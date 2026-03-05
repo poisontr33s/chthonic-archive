@@ -225,6 +225,15 @@ def classify_status(ok: bool, error: str | None) -> str:
     return "unknown_error"
 
 
+def needs_min_token_retry(message: str, max_tokens: int) -> bool:
+    lower = message.lower()
+    return (
+        max_tokens < 16
+        and "invalid 'max_output_tokens'" in lower
+        and "expected a value >= 16" in lower
+    )
+
+
 def infer_cost_tier(model: str) -> str:
     lower = model.lower()
     high_markers = ("opus", "pro", "thinking", "reasoning", "max")
@@ -298,24 +307,29 @@ def probe_openai(
     effort: str = "",
     max_tokens: int = 1,
 ) -> ProbeResult:
-    cmd = [
-        sys.executable,
-        str(REPO_ROOT / "scripts" / "poe_lane.py"),
-        "--mode",
-        "probe",
-        "--account",
-        account,
-        "--model",
-        model,
-        "--prompt",
-        prompt,
-        "--max-tokens",
-        str(max(1, int(max_tokens))),
-        "--json",
-    ]
-    if effort.strip():
-        cmd.extend(["--effort", effort.strip()])
-    rc, out, err = run_cmd(cmd)
+    requested_tokens = max(1, int(max_tokens))
+
+    def build_cmd(tokens: int) -> list[str]:
+        cmd = [
+            sys.executable,
+            str(REPO_ROOT / "scripts" / "poe_lane.py"),
+            "--mode",
+            "probe",
+            "--account",
+            account,
+            "--model",
+            model,
+            "--prompt",
+            prompt,
+            "--max-tokens",
+            str(tokens),
+            "--json",
+        ]
+        if effort.strip():
+            cmd.extend(["--effort", effort.strip()])
+        return cmd
+
+    rc, out, err = run_cmd(build_cmd(requested_tokens))
     payload = parse_json_line(out)
     if rc == 0 and isinstance(payload, dict):
         text = payload.get("text")
@@ -327,6 +341,21 @@ def probe_openai(
             error=None,
         )
     message = (out.strip() or err.strip() or "probe_failed").strip()
+
+    if needs_min_token_retry(message, requested_tokens):
+        rc, out, err = run_cmd(build_cmd(16))
+        payload = parse_json_line(out)
+        if rc == 0 and isinstance(payload, dict):
+            text = payload.get("text")
+            return ProbeResult(
+                rc=rc,
+                ok=True,
+                status="callable",
+                text_preview=(str(text)[:300] if text is not None else None),
+                error=None,
+            )
+        message = (out.strip() or err.strip() or "probe_failed").strip()
+
     return ProbeResult(
         rc=rc,
         ok=False,

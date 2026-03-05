@@ -16,8 +16,9 @@ poe_lane.py — Poe lane helper (OpenAI-compatible endpoint).
 @SID:           TOOL_POE_LANE_V1
 @Shabti:        CLI Script
 @Purpose:       OpenAI-compatible Poe lane helper. Lists model IDs, probes
-                completions, and runs chat prompts. Reads secrets from
-                environment variables only — never prints token values.
+                completions, and runs chat prompts. Resolves secrets from
+                process environment first, then the local API pool fallback,
+                and never prints token values.
                 Usage: uv run scripts/poe_lane.py
 """
 
@@ -26,49 +27,16 @@ from __future__ import annotations
 import argparse
 import json
 import os
-import re
 import time
 from dataclasses import asdict, dataclass
 from pathlib import Path
 from typing import Any
 from urllib import error, request
 
+from scripts.lib.poe_auth import account_arg, resolve_poe_credentials
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_BASE_URL = "https://api.poe.com/v1"
-POE_SLOT_RE = re.compile(r"^POE_API_KEY_(\d+)$")
-
-
-def normalize_account(value: str | None) -> str | None:
-    if value is None:
-        return None
-    raw = value.strip()
-    if not raw or not raw.isdigit():
-        return None
-    return str(int(raw))
-
-
-def discover_slot_names(names: list[str]) -> list[tuple[str, str]]:
-    slots: list[tuple[int, str, str]] = []
-    seen: set[str] = set()
-    for name in names:
-        match = POE_SLOT_RE.match(name)
-        if not match:
-            continue
-        account = str(int(match.group(1)))
-        if account in seen:
-            continue
-        seen.add(account)
-        slots.append((int(account), name, account))
-    slots.sort(key=lambda item: item[0])
-    return [(name, account) for _, name, account in slots]
-
-
-def account_arg(value: str) -> str:
-    account = normalize_account(value)
-    if account is None:
-        raise argparse.ArgumentTypeError("account must be numeric (example: 1, 2, 3)")
-    return account
 
 
 @dataclass
@@ -80,6 +48,9 @@ class PoeReport:
     model: str | None
     effort: str | None
     base_url: str
+    auth_source: str
+    account_source: str
+    selected_name: str | None
     ok: bool
     error: str | None
     response_preview: str | None
@@ -88,72 +59,6 @@ class PoeReport:
 
 def now_utc() -> str:
     return time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())
-
-
-def load_local_pool_env() -> dict[str, str]:
-    pool_path = Path.home() / ".chthonic" / "api_pool.json"
-    if not pool_path.exists():
-        return {}
-    try:
-        obj = json.loads(pool_path.read_text(encoding="utf-8", errors="replace"))
-    except Exception:
-        return {}
-    env = obj.get("env")
-    if not isinstance(env, dict):
-        return {}
-    out: dict[str, str] = {}
-    for k, v in env.items():
-        if isinstance(v, str) and v.strip():
-            out[k] = v.strip()
-    return out
-
-
-def resolve_key(account: str | None) -> tuple[str | None, str | None]:
-    pool_env = load_local_pool_env()
-    normalized_account = normalize_account(account)
-
-    if normalized_account:
-        slot = f"POE_API_KEY_{normalized_account}"
-        v = os.getenv(slot)
-        if v and v.strip():
-            return v.strip(), normalized_account
-        vp = pool_env.get(slot)
-        if vp:
-            return vp, normalized_account
-        return None, normalized_account
-
-    direct = os.getenv("POE_API_KEY")
-    if direct and direct.strip():
-        active = normalize_account(os.getenv("POE_ACCOUNT_ACTIVE"))
-        return direct.strip(), active
-    direct_pool = pool_env.get("POE_API_KEY")
-    if direct_pool:
-        active = normalize_account(os.getenv("POE_ACCOUNT_ACTIVE")) or normalize_account(pool_env.get("POE_ACCOUNT_ACTIVE"))
-        return direct_pool, active
-
-    active = normalize_account(os.getenv("POE_ACCOUNT_ACTIVE"))
-    if active:
-        slot = f"POE_API_KEY_{active}"
-        v = os.getenv(slot)
-        if v and v.strip():
-            return v.strip(), active
-    active_pool = normalize_account(pool_env.get("POE_ACCOUNT_ACTIVE"))
-    if active_pool:
-        slot = f"POE_API_KEY_{active_pool}"
-        vp = pool_env.get(slot)
-        if vp:
-            return vp, active_pool
-
-    for candidate, slot_account in discover_slot_names(list(os.environ.keys())):
-        v = os.getenv(candidate)
-        if v and v.strip():
-            return v.strip(), slot_account
-    for candidate, slot_account in discover_slot_names(list(pool_env.keys())):
-        vp = pool_env.get(candidate)
-        if vp:
-            return vp, slot_account
-
-    return None, None
 
 
 def http_json(method: str, url: str, token: str, payload: dict[str, Any] | None = None) -> dict[str, Any]:
@@ -263,6 +168,9 @@ def write_mailbox(report: PoeReport, mailboxes: list[str]) -> None:
         f"- Model: `{report.model}`",
         f"- Effort: `{report.effort}`",
         f"- Base URL: `{report.base_url}`",
+        f"- Auth source: `{report.auth_source}`",
+        f"- Account source: `{report.account_source}`",
+        f"- Selected name: `{report.selected_name}`",
         f"- OK: `{report.ok}`",
     ]
     if report.model_count is not None:
@@ -283,7 +191,7 @@ def write_mailbox(report: PoeReport, mailboxes: list[str]) -> None:
 
 def main() -> int:
     ap = argparse.ArgumentParser(description="Poe OpenAI-compatible lane helper.")
-    ap.add_argument("--mode", choices=["models", "probe", "chat"], required=True)
+    ap.add_argument("--mode", choices=["auth", "models", "probe", "chat"], required=True)
     ap.add_argument("--account", type=account_arg, help="Use POE_API_KEY_<n> explicitly (example: 1, 2, 3).")
     ap.add_argument("--model", default=os.getenv("POE_MODEL", "claude-sonnet-4.5"))
     ap.add_argument("--prompt", default="Return exactly: OK")
@@ -302,8 +210,8 @@ def main() -> int:
     args = ap.parse_args()
     mailbox_targets = parse_mailboxes(args.mailboxes)
 
-    key, resolved_account = resolve_key(args.account)
-    if not key:
+    resolution = resolve_poe_credentials(args.account)
+    if not resolution.token:
         print("fail: missing POE key (POE_API_KEY or POE_API_KEY_<n>)")
         return 2
 
@@ -311,10 +219,13 @@ def main() -> int:
         schema_version=1,
         generated_on=now_utc(),
         mode=args.mode,
-        account=resolved_account,
+        account=resolution.account,
         model=args.model if args.mode in {"probe", "chat"} else None,
         effort=args.effort.strip() if args.effort and args.effort.strip() else None,
         base_url=args.base_url,
+        auth_source=resolution.auth_source,
+        account_source=resolution.account_source,
+        selected_name=resolution.selected_name,
         ok=False,
         error=None,
         response_preview=None,
@@ -322,12 +233,45 @@ def main() -> int:
     )
 
     try:
-        if args.mode == "models":
-            model_ids, _raw = run_models(args.base_url, key, args.limit)
+        if args.mode == "auth":
+            report.ok = True
+            if args.json:
+                print(
+                    json.dumps(
+                        {
+                            "account": resolution.account,
+                            "auth_source": resolution.auth_source,
+                            "account_source": resolution.account_source,
+                            "selected_name": resolution.selected_name,
+                            "pool_path": resolution.pool_path,
+                        },
+                        ensure_ascii=True,
+                    )
+                )
+            else:
+                print(f"account={resolution.account}")
+                print(f"auth_source={resolution.auth_source}")
+                print(f"account_source={resolution.account_source}")
+                print(f"selected_name={resolution.selected_name}")
+                print(f"pool_path={resolution.pool_path}")
+        elif args.mode == "models":
+            model_ids, _raw = run_models(args.base_url, resolution.token, args.limit)
             report.ok = True
             report.model_count = len(model_ids)
             if args.json:
-                print(json.dumps({"count": len(model_ids), "models": model_ids}, ensure_ascii=True))
+                print(
+                    json.dumps(
+                        {
+                            "account": resolution.account,
+                            "auth_source": resolution.auth_source,
+                            "account_source": resolution.account_source,
+                            "selected_name": resolution.selected_name,
+                            "count": len(model_ids),
+                            "models": model_ids,
+                        },
+                        ensure_ascii=True,
+                    )
+                )
             else:
                 for model_id in model_ids:
                     print(f"MODEL={model_id}")
@@ -335,7 +279,7 @@ def main() -> int:
         else:
             text, _raw = run_chat(
                 base_url=args.base_url,
-                token=key,
+                token=resolution.token,
                 model=args.model,
                 prompt=args.prompt,
                 system=args.system,
@@ -345,7 +289,19 @@ def main() -> int:
             report.ok = True
             report.response_preview = text[:400]
             if args.json:
-                print(json.dumps({"model": args.model, "text": text}, ensure_ascii=True))
+                print(
+                    json.dumps(
+                        {
+                            "account": resolution.account,
+                            "auth_source": resolution.auth_source,
+                            "account_source": resolution.account_source,
+                            "selected_name": resolution.selected_name,
+                            "model": args.model,
+                            "text": text,
+                        },
+                        ensure_ascii=True,
+                    )
+                )
             else:
                 print(text)
 
