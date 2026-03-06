@@ -1,0 +1,2 @@
+The ANKH fixture exists to prove that inert backtick detection can find
+newly introduced repo-local filetypes without a handcrafted extension list.

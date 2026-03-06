@@ -69,6 +69,7 @@ SKIP_DIRS = {
 RE_BACKTICK = re.compile(r"`([^`]+)`")
 RE_FILEISH_EXT = re.compile(r"\.(md|py|svg|json|ts|js|toml|yaml|yml|ps1|sh)$")
 RE_WINDOWS_ABS = re.compile(r"^[A-Za-z]:[\\/]")
+RE_GENERIC_DOTTED_NAME = re.compile(r"^[^`\s\\/]+(?:\.[A-Za-z0-9_-]{1,24})+$")
 
 # =============================================================================
 # Collision Index
@@ -115,8 +116,9 @@ def extract_links(text: str) -> list[dict]:
             continue
         if in_fence:
             continue
-        # Strip inline code spans before scanning for links
-        scanline = re.sub(r"`[^`]+`", "", line)
+        # Strip inline code spans before scanning for links, but preserve
+        # backticks that are part of a markdown link label: [`file`](path)
+        scanline = re.sub(r"(?<!\[)`[^`]+`(?!\]\()", "", line)
         for match in RE_MD_LINK.finditer(scanline):
             full, label, target = match.group(1), match.group(2), match.group(3)
             # Skip external links
@@ -183,6 +185,8 @@ def resolve_link(
                 # Label is just the basename — recommend disambiguation
                 rel_path = resolved.relative_to(repo_root)
                 parent_hint = rel_path.parent.name or str(rel_path.parent)
+                if parent_hint == ".":
+                    parent_hint = "repo-root"
                 suggested_label = f"{basename} ({parent_hint})"
                 fix = f"[{suggested_label}]({link['target']})"
                 return {
@@ -406,6 +410,25 @@ def apply_fixes(file_path: Path, issues: list[dict]) -> int:
 # Inert Backtick Scanner
 # =============================================================================
 
+def looks_like_path_literal(text: str) -> bool:
+    """Heuristic guard for inert backtick refs.
+
+    Conservative by default:
+    - always accept slash-based paths and known extensions
+    - accept hidden dot-paths/dotfiles
+    - accept generic dotted filenames so new filetypes are discoverable
+    """
+    candidate = text.strip()
+    if not candidate:
+        return False
+    if "/" in candidate or "\\" in candidate:
+        return True
+    if RE_FILEISH_EXT.search(candidate):
+        return True
+    if candidate.startswith("."):
+        return True
+    return RE_GENERIC_DOTTED_NAME.match(candidate) is not None
+
 def scan_inert_backticks(file_path: Path) -> list[dict]:
     """Find backtick-wrapped file/path-like literals outside code blocks.
 
@@ -424,7 +447,7 @@ def scan_inert_backticks(file_path: Path) -> list[dict]:
             continue
         for m in RE_BACKTICK.finditer(line):
             txt = m.group(1)
-            if not ("/" in txt or RE_FILEISH_EXT.search(txt)):
+            if not looks_like_path_literal(txt):
                 continue
             # Skip if part of markdown link label: [`text`](url)
             s = m.start()
