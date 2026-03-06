@@ -1,6 +1,6 @@
 # Poe Callability Targeted Sample
 
-- Generated: `2026-03-05T21:46:21Z`
+- Generated: `2026-03-06T06:28:58Z`
 - Account: `2`
 - Total models: `2`
 - Counts by best status: `{'callable': 1, 'subscription_required': 1}`

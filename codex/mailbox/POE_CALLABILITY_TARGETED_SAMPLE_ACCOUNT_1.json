@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_on": "2026-03-05T21:46:07Z",
+  "generated_on": "2026-03-06T06:28:42Z",
   "account": "1",
   "prompt": "Return exactly: OK",
   "openai_max_tokens": 1,
@@ -17,7 +17,7 @@
     "subscription_required": 1
   },
   "counts_openai": {
-    "callable": 1,
+    "network_error": 1,
     "subscription_required": 1
   },
   "counts_sdk": {
@@ -27,9 +27,9 @@
   "cheapest_callable": [
     {
       "model": "qwen3.5-397b-a17b-t",
-      "transport": "openai",
+      "transport": "sdk",
       "cost_tier": "likely_mid",
-      "openai_status": "callable",
+      "openai_status": "network_error",
       "sdk_status": "callable"
     }
   ],
@@ -38,11 +38,11 @@
       "model": "qwen3.5-397b-a17b-t",
       "cost_tier": "likely_mid",
       "openai": {
-        "rc": 0,
-        "ok": true,
-        "status": "callable",
-        "text_preview": "OK",
-        "error": null
+        "rc": 2,
+        "ok": false,
+        "status": "network_error",
+        "text_preview": null,
+        "error": "fail: The read operation timed out"
       },
       "sdk": {
         "rc": 0,
@@ -51,9 +51,9 @@
         "text_preview": "OK",
         "error": null
       },
-      "best_transport": "openai",
+      "best_transport": "sdk",
       "best_status": "callable",
-      "discrepancy": null
+      "discrepancy": "openai=network_error;sdk=callable"
     },
     {
       "model": "app-creator",

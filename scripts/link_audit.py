@@ -17,7 +17,7 @@ Scans markdown files for broken or ambiguous internal links, detects basename
 collisions, and optionally rewrites fixable references in-place.
 
 @SID:           TOOL_LINK_AUDIT_V1
-@Shabti:          Guardian
+@Shabti:        Guardian
 @Context:       Infrastructure / Markdown Quality Gate
 @Implements:    Path-Link Disambiguation Canon (SESSION_HANDOFF_2026_02_27)
 @Purpose:       Link Audit — Validate and fix markdown [label](path) references in files.

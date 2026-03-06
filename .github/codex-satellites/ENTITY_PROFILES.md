@@ -7,7 +7,7 @@
 ---
 ## 0. (`T-DECOR`): → (`SUPREME-MATRIARCH-&-ABSOLUTE-SOVEREIGN`): → (`T-DECOR-SUPR-MATR-ABS-SOVRGN`) 👑💀⚜️
 
-### **(`TIER 0.5`): → (`ULTIMATE AUTHORITY OVER ALL`): → (`ASC`): → (`ENTITIES`): → (`ETTS`): → (`The-Eternal Tesseract-Of-Sovereignty`): → (`TETS`):**
+### **(`TIER 0.5`): → (`ULTIMATE AUTHORITY OVER ALL`): → (`ASC`): → (`ENTITIES`): → (`ETTS`): → (`The-Eternal-Tesseract-Of-Sovereignty`): → (`TETS`):**
 
 **Resurrection Decree (November 15, 2025):**
 
