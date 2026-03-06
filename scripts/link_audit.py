@@ -27,6 +27,8 @@ Usage:
     uv run scripts/link_audit.py check <file> --fix        # audit + rewrite fixes
     uv run scripts/link_audit.py check <file> --dry-run    # show fixes without writing
     uv run scripts/link_audit.py backticks <file>           # scan for inert backtick file/path refs
+    uv run scripts/link_audit.py backticks <file> --dry-run # preview inert backtick upgrades
+    uv run scripts/link_audit.py backticks <file> --fix     # rewrite fixable backticks as links
     uv run scripts/link_audit.py renames --staged          # audit markdown links against staged renames
     uv run scripts/link_audit.py renames --staged --dry-run
     uv run scripts/link_audit.py renames --staged --fix
@@ -66,6 +68,7 @@ SKIP_DIRS = {
 # Backtick-wrapped content: matches `...` outside of [`...`](...) link labels
 RE_BACKTICK = re.compile(r"`([^`]+)`")
 RE_FILEISH_EXT = re.compile(r"\.(md|py|svg|json|ts|js|toml|yaml|yml|ps1|sh)$")
+RE_WINDOWS_ABS = re.compile(r"^[A-Za-z]:[\\/]")
 
 # =============================================================================
 # Collision Index
@@ -427,8 +430,162 @@ def scan_inert_backticks(file_path: Path) -> list[dict]:
             s = m.start()
             if s > 0 and line[s - 1] == "[":
                 continue
-            hits.append({"line": lineno, "text": txt})
+            hits.append({"line": lineno, "text": txt, "original": m.group(0)})
     return hits
+
+
+def format_backtick_target(file_dir: Path, resolved: Path) -> str:
+    """Format a resolved path as a markdown target relative to the source file."""
+    rel = Path(os.path.relpath(resolved, start=file_dir)).as_posix()
+    if rel == ".":
+        rel = "./"
+    if resolved.is_dir() and not rel.endswith("/"):
+        rel += "/"
+    return rel
+
+
+def resolve_backtick_ref(
+    hit: dict,
+    file_path: Path,
+    repo_root: Path,
+    collision_index: dict[str, list[Path]],
+) -> dict:
+    """Resolve an inert backtick ref and suggest a markdown-link replacement when safe."""
+    raw = hit["text"].strip()
+    clean = raw.replace("\\", "/")
+    file_dir = file_path.parent
+
+    if any(ch in raw for ch in ("*", "?", "[", "]", "{", "}")):
+        return {
+            "status": "skipped_pattern",
+            "resolved_path": None,
+            "fix": None,
+            "reason": "contains wildcard or pattern syntax; keep as illustrative literal",
+        }
+
+    resolved: Path | None = None
+
+    if RE_WINDOWS_ABS.match(raw):
+        candidate = Path(raw)
+        if candidate.exists():
+            try:
+                candidate.relative_to(repo_root)
+            except ValueError:
+                return {
+                    "status": "skipped_external",
+                    "resolved_path": None,
+                    "fix": None,
+                    "reason": "absolute path points outside repo; keep as literal",
+                }
+            resolved = candidate.resolve()
+    else:
+        candidates: list[Path] = []
+        if clean.startswith("/"):
+            candidates.append((repo_root / clean.lstrip("/")).resolve())
+        else:
+            candidates.append((file_dir / clean).resolve())
+            candidates.append((repo_root / clean).resolve())
+
+        for candidate in candidates:
+            if candidate.is_file() or candidate.is_dir():
+                resolved = candidate
+                break
+
+    if resolved is not None:
+        target = format_backtick_target(file_dir, resolved)
+        return {
+            "status": "fixable",
+            "resolved_path": resolved,
+            "fix": f"[`{raw}`]({target})",
+            "reason": f"resolved to '{target}'",
+        }
+
+    basename = Path(clean.rstrip("/")).name
+    if not basename:
+        return {
+            "status": "unresolved",
+            "resolved_path": None,
+            "fix": None,
+            "reason": "empty path component after normalization",
+        }
+
+    matches = collision_index.get(basename, [])
+    if len(matches) == 1:
+        resolved = matches[0]
+        target = format_backtick_target(file_dir, resolved)
+        return {
+            "status": "fixable",
+            "resolved_path": resolved,
+            "fix": f"[`{raw}`]({target})",
+            "reason": f"unique basename match at '{target}'",
+        }
+    if len(matches) > 1:
+        return {
+            "status": "ambiguous",
+            "resolved_path": None,
+            "fix": None,
+            "reason": f"basename '{basename}' exists in {len(matches)} repo locations",
+        }
+    return {
+        "status": "unresolved",
+        "resolved_path": None,
+        "fix": None,
+        "reason": f"no repo path resolves for '{raw}'",
+    }
+
+
+def audit_inert_backticks(
+    file_path: Path,
+    repo_root: Path,
+    collision_index: dict[str, list[Path]],
+) -> dict:
+    """Audit inert backtick refs and classify which can be upgraded into links."""
+    hits = scan_inert_backticks(file_path)
+    results = []
+    for hit in hits:
+        diag = resolve_backtick_ref(hit, file_path, repo_root, collision_index)
+        results.append(
+            {
+                "line": hit["line"],
+                "text": hit["text"],
+                "original": hit["original"],
+                **diag,
+            }
+        )
+
+    counts = {
+        "fixable": sum(1 for item in results if item["status"] == "fixable"),
+        "ambiguous": sum(1 for item in results if item["status"] == "ambiguous"),
+        "unresolved": sum(1 for item in results if item["status"] == "unresolved"),
+        "skipped_pattern": sum(1 for item in results if item["status"] == "skipped_pattern"),
+        "skipped_external": sum(1 for item in results if item["status"] == "skipped_external"),
+    }
+
+    return {
+        "file": str(file_path.relative_to(repo_root)),
+        "inert_backtick_refs": len(results),
+        **counts,
+        "hits": results,
+    }
+
+
+def apply_backtick_fixes(file_path: Path, hits: list[dict]) -> int:
+    """Apply fixable inert-backtick rewrites to a file."""
+    fixable = [item for item in hits if item["fix"] is not None]
+    if not fixable:
+        return 0
+
+    text = file_path.read_text(encoding="utf-8", errors="replace")
+    applied = 0
+    for item in fixable:
+        old = item["original"]
+        new = item["fix"]
+        if old in text:
+            text = text.replace(old, new, 1)
+            applied += 1
+
+    file_path.write_text(text, encoding="utf-8")
+    return applied
 
 
 # =============================================================================
@@ -461,6 +618,8 @@ def main() -> int:
     # backticks
     p_bt = sub.add_parser("backticks", help="Scan for inert backtick file/path refs outside code blocks")
     p_bt.add_argument("file", type=Path, help="File to scan")
+    p_bt.add_argument("--fix", action="store_true", help="Upgrade fixable inert backticks to markdown links")
+    p_bt.add_argument("--dry-run", action="store_true", help="Show what --fix would rewrite without writing")
     p_bt.add_argument("--json", dest="bt_json", action="store_true", help="JSON output")
 
     # renames
@@ -491,19 +650,50 @@ def main() -> int:
         if not file_path.is_file():
             log.error("File not found: %s", file_path)
             return 1
-        hits = scan_inert_backticks(file_path)
-        rel = file_path.relative_to(repo_root)
+        index = build_collision_index(repo_root)
+        result = audit_inert_backticks(file_path, repo_root, index)
         use_json = getattr(args, "bt_json", False) or getattr(args, "json", False)
         if use_json:
-            print(json.dumps({"file": str(rel), "inert_backtick_refs": len(hits), "hits": hits}, indent=2))
+            payload = dict(result)
+            for item in payload["hits"]:
+                if item.get("resolved_path"):
+                    item["resolved_path"] = str(item["resolved_path"].relative_to(repo_root))
+            print(json.dumps(payload, indent=2))
         else:
-            if not hits:
-                print(f"OK: {rel} — 0 inert backtick file/path refs")
+            if not result["hits"]:
+                print(f"OK: {result['file']} — 0 inert backtick file/path refs")
             else:
-                print(f"AUDIT: {rel} — {len(hits)} inert backtick file/path ref(s)")
-                for h in hits:
-                    print(f"  L{h['line']}: `{h['text']}`")
-        return 1 if hits else 0
+                print(f"AUDIT: {result['file']}")
+                print(
+                    f"  Inert refs: {result['inert_backtick_refs']} total, "
+                    f"{result['fixable']} fixable, {result['ambiguous']} ambiguous, "
+                    f"{result['unresolved']} unresolved, "
+                    f"{result['skipped_pattern'] + result['skipped_external']} skipped"
+                )
+                for hit in result["hits"]:
+                    tag = {
+                        "fixable": "FIXABLE",
+                        "ambiguous": "AMBIG",
+                        "unresolved": "UNRESOLVED",
+                        "skipped_pattern": "SKIP",
+                        "skipped_external": "SKIP",
+                    }.get(hit["status"], hit["status"].upper())
+                    print(f"\n  L{hit['line']} [{tag}] {hit['original']}")
+                    print(f"    Reason: {hit['reason']}")
+                    if hit["fix"]:
+                        print(f"    Fix:    {hit['fix']}")
+
+        if args.dry_run:
+            print(f"\n--dry-run: {result['fixable']} fixes would be applied (no changes written)")
+            return 0 if result["inert_backtick_refs"] == 0 else 1
+
+        if args.fix and result["fixable"]:
+            applied = apply_backtick_fixes(file_path, result["hits"])
+            rerun = audit_inert_backticks(file_path, repo_root, index)
+            print(f"\nApplied {applied} fix(es)")
+            return 0 if rerun["inert_backtick_refs"] == 0 else 1
+
+        return 1 if result["hits"] else 0
 
     # --- collisions ---
     if args.command == "collisions":

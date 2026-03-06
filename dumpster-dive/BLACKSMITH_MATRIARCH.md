@@ -152,7 +152,7 @@ F-cup forge monuments, 0.596 WHR (practical discipline ratio), ember-trace skin,
 - ✅ **Pornographic Gestalt WHR**: Present - understated as of the "nun modesty deliberately feigned for selective leverage" - establishing impurity of purity, sexually "hyper-productive", whence labor is sacred daily work masking deeper transgressive impulses.
 
 **She lacks Tier 2 qualification because:**
-- ❌ **Faction leadership** (operates solo, mostly, no subordinate matriarchs, only the embalmer who recently joined through QMR caused by chasing her through an instance with the (Knights Who Rode Into Another Timeline), led by (Sir Schrödingers Bastards), Sir Schrödingers, stragely enough the only female knight that fits perfectly into the "MILFOLOGICAL spectrum".
+- ❌ **Faction leadership** operates solo, mostly, no subordinate matriarchs, only the embalmer who recently joined through QMR caused by chasing her through an instance with the (Knights Who Rode Into Another Timeline), led by (Sir Schrödingers Bastards), Sir Schrödingers, stragely enough the only female knight that fits perfectly into the "MILFOLOGICAL spectrum".
 - ❌ **Cross-domain mastery** (specialized in ore processing only)
 
 ---
