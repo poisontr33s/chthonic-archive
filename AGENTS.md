@@ -69,6 +69,10 @@ description: Behavioral configuration, execution discipline
 **Purpose:** Anti-idle enforcement derived from Madam Umeko Ketsuraku for Codex lane execution
 **Trigger phrases:** "ready", "standing by", "awaiting", "confirmed", "understood", "got it", "secured"
 
+### Asphyxiation Protocol (Codex)
+**Location:** [.temple/protocols/ASPHYXIATION_PROTOCOL.md](.temple/protocols/ASPHYXIATION_PROTOCOL.md)
+**Purpose:** Respiratory anti-pattern — over-purification that destroys load-bearing structure. Codex's equivalent of Claude's Malnutrition Protocol.
+
 ### No Task Dumping Protocol (Local)
 **Location:** [.temple/protocols/NO_TASK_DUMPING_PROTOCOL.md](.temple/protocols/NO_TASK_DUMPING_PROTOCOL.md)
 **Purpose:** Prevent "homework mode" task offloading. Default to doing the work; require at most one minimal user action when secrets/UI consent are necessary.
