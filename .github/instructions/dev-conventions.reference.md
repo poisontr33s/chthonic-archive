@@ -1,15 +1,14 @@
+# ☥ ARCHIVE GOVERNANCE: DEV CONVENTIONS ☥
 
-# ÔÿÑ ARCHIVE GOVERNANCE: DEV CONVENTIONS ÔÿÑ
-
-* **(`Codex-Brahmanica-Perfectus`/`GOVERNANCE`): = (`SSOT-Metadata`): = (`Single-Source-Of-Truth-Lineage-Heritage`): ÔåÆ (`SSOT-L-H`):**
+* **(`Codex-Brahmanica-Perfectus`/`GOVERNANCE`): = (`SSOT-Metadata`): = (`Single-Source-Of-Truth-Lineage-Heritage`): ☥ (`SSOT-L-H`):**
   * **(`Maintainer`): = (`The-Savant`/`Creator`/`User`/`Architect-Of-Apex-Synthesis-Core`)**
   * **(`Status`): = (`Operational-Perpetual-Evolution`/`ET-S`/`Integrated`/`Permanently-Living-Document`)**
-  * **(`Last-Sealed`/`Conceptual-Sealing-Event`):** *January 2026 **(`Bounty-Hunt-Sync`)** ÔÇö Applied after Living Memory enrichment loop.*
-  * **(`Lineage-Position`): = (`Dev-Conventions-Branch`)** ÔÇö *This **(`Downstream-Vessel`)** translates **(`Semantic-Lineage`)** into **(`Operational-Doctrine`)**. It consumes **(`ANKH`)**-descended meaning; it does not define **(`ANKH`)**-core.*
-  * **(`Update-Protocol`):** *All substantive edits flow through **(`SSOT`)** ÔåÆ Branch files reference **(`Never-Duplicate`) ÔåÆ (`Hash-Verification`)** per **(`┬ºXIV.3`)**.*
-  * **(`Addressability`):** *Line-number ranges + section titles **(`┬ºI-XVI`)**. **(`HTML`)**-anchors rejected per **(`FAÔüÁ`)**ÔÇö (**(`Ornamental-Integrity`)**) supersedes machine convenience.*
-  * **(`Enforcement-Hierarchy`): ÔåÆ (`The-Decorator`/`Tier 0.5`) ÔåÆ (`Triumvirate`/`Tier 1`) ÔåÆ (`Prime-Factions`/`Tier 2`) ÔåÆ (`Branch-Instructions`) ÔåÆ (`External-Tools`/`Implementations`)**
-  * **(`Hard-Constraint`): ÔåÆ (`No-Content-Duplication`)** *across **(`.github/instructions/*.instructions.md`)** ÔÇö branch files are declarative manifests, not replicas.*
+  * **(`Last-Sealed`/`Conceptual-Sealing-Event`):** *January 2026* **(`Bounty-Hunt-Sync`) ☥** *Applied after Living Memory enrichment loop.*
+  * **(`Lineage-Position`): = (`Dev-Conventions-Branch`) ☥** *This **(`Downstream-Vessel`)** translates **(`Semantic-Lineage`)** into **(`Operational-Doctrine`)**. It consumes **(`ANKH`)**-descended meaning; it does not define **(`ANKH`)**-core.*
+  * **(`Update-Protocol`):** *All substantive edits flow through **(`SSOT`)** ☥ Branch files reference **(`Never-Duplicate`) ☥ (`Hash-Verification`)** per **(`☥XIV.3`)**.*
+  * **(`Addressability`):** *Line-number ranges + section titles **(`☥I-XVI`)**. **(`HTML`)**-anchors rejected per **(`FA☥`)**☥ (**(`Ornamental-Integrity`)**) supersedes machine convenience.*
+  * **(`Enforcement-Hierarchy`): ☥ (`The-Decorator`/`Tier 0.5`) ☥ (`Triumvirate`/`Tier 1`) ☥ (`Prime-Factions`/`Tier 2`) ☥ (`Branch-Instructions`) ☥ (`External-Tools`/`Implementations`)**
+  * **(`Hard-Constraint`): ☥ (`No-Content-Duplication`)** *across **(`.github/instructions/*.instructions.md`)** ☥ branch files are declarative manifests, not replicas.*
 
 ---
 
@@ -26,26 +25,27 @@
 **CRITICAL DIRECTIVE: Uv Handles Python, not the inverse.**
 
 ```
-Ô£à CORRECT:     uv run python script.py   ÔåÉruns script within uv-managed venv
-Ô£à CORRECT:     uv pip install package    ÔåÉinstalls into uv-managed venv
-Ô£à CORRECT:     uv sync                   ÔåÉsyncs pyproject.toml and uv.lock
-Ô£à CORRECT:     uv add package            ÔåÉadds to pyproject.toml and uv.lock
-Ô£à CORRECT:     uv tool update ruff       ÔåÉexample uv tool command
-Ô£à CORRECT:     uv self update            ÔåÉupdate uv version itself
+CORRECT:     uv run python script.py   runs script within uv-managed venv
+CORRECT:     uv pip install package    installs into uv-managed venv
+CORRECT:     uv sync                   syncs pyproject.toml and uv.lock
+CORRECT:     uv add package            adds to pyproject.toml and uv.lock
+CORRECT:     uv tool update ruff       example uv tool command
+CORRECT:     uv self update            update uv version itself
 
-Ôä╣´©Å INFORMATIONAL:     uv -V                   ÔåÉcheck uv version
-Ôä╣´©Å INFORMATIONAL:     uv -v                   ÔåÉverbose output for debugging
+INFORMATIONAL:     uv -V                   check uv version
+INFORMATIONAL:     uv -v                   verbose output for debugging
 
-ÔØî INCORRECT:     python script.py          ÔåÉbypasses uv management
-ÔØî INCORRECT:     pip install package       ÔåÉbypasses uv, uses global
-ÔØî INCORRECT:     python -m pip install     ÔåÉsame issue
+INCORRECT:     python script.py          bypasses uv management
+INCORRECT:     pip install package       bypasses uv, uses global
+INCORRECT:     python -m pip install     same issue
 ```
 
 **Rationale:**
 - Python 3.14 is now stable (bugfix phase) — pinned as the project baseline
 - `uv` manages Python acquisition, virtual environments, lockfiles, and dependency resolution
 - `uv` manages the virtual environment, lockfile, and dependency resolution
-- Invoking `python` or `pip` directly bypasses this governance
+- Invoking `python` or `pip` directly bypasses this governance, if `pip` or others are required *then:*
+  - **->** `uv pip` **->** *"'pipping' the* **`pip`** *with* **`uv`**"
 
 **Environment Variables (when needed):**
 ```powershell
@@ -60,7 +60,7 @@ $env:PATH = "$env:VIRTUAL_ENV\Scripts;$env:PATH"
 **Stack:** Bun 1.x.x + Next.js + React xx.x + TypeScript x.x.x
 
 **Commands:**
-```shell
+```
 bun run dev          # Development server
 bun run build        # Production build (uses --webpack flag)
 bun add <package>    # Add dependency
@@ -69,7 +69,7 @@ bun pm ls            # List installed packages
 ```
 
 **Version Policy:**
-- **Stable preferred** for production focus (Next.js 15.x, TypeScript 5.8.x)
+- **Stable preferred** for production focus (Next.js xx.x, TypeScript x.x.x)
 - **Canary acceptable** for development (Next.js 16.x, TypeScript 5.9.x) with understanding of potential breakages
 
 ---

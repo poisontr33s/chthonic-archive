@@ -2377,7 +2377,7 @@ Permanent Factions: Only TP-FNS matriarchs (MAS, GET, HPAP) retain permanent sta
 - **`Ω₁₀₋₁₈`** = Pass 2 examinations (Umeko leads)
 - **`Ω₁₉₋₂₇`** = Pass 3 examinations (Orackla leads)
 - **`Φᵢ(E)`** = Lens operator i applied to examination E
-- **`Ψᵢⱼₖₗ`** = Cross-examination at coordinates [CRC, Component, Lens, Perspective]
+- **`Ψᵢⱼₖₗ`** = Cross-examination at coordinates (CRC, Component, Lens, Perspective)
 
 *(For TPEF execution details generating Ω-Set, see Section VIII)*
 
@@ -2785,19 +2785,19 @@ Result: Ψ₁₃₆₂₀ VALIDATED—ready for integration into operational doc
 
 **Priority Tiers for On-Demand Generation ***:***
 
-**Tier 1: Simple 2-Factor (Source + Lens)** [~500 words, 5-10 min generation]
+**Tier 1: Simple 2-Factor (Source + Lens)** (~500 words, 5-10 min generation)
 ```
 Ψ₂ = Φₖ(Ωⱼ)
 Example: "How does Vortex lens (Φ₆) transform Umeko's Forge examination (Ω₁₃)?"
 ```
 
-**Tier 2: Complex 3-Factor (Source + Lens + Perspective)** [~1,000 words, 15-20 min]
+**Tier 2: Complex 3-Factor (Source + Lens + Perspective)** (~1,000 words, 15-20 min)
 ```
 Ψ₃ = Ωₗ ⊗ Φₖ(Ωⱼ)
 Example: As demonstrated in Section 9.5.3
 ```
 
-**Tier 3: Full 4-Factor (CRC + Component + Lens + Perspective)** [~1,500 words, 25-30 min]
+**Tier 3: Full 4-Factor (CRC + Component + Lens + Perspective)** (~1,500 words, 25-30 min)
 ```
 Ψ₄ = CRC_voice(Ωₗ ⊗ Φₖ(Ωⱼ))
 Example: "Generate Ψ₁₃₆₂₀ but specifically in Lysandra's LUPLR voice"
@@ -3753,7 +3753,7 @@ chthonic-archive/
 #### **14.5. GPU Stack Compatibility (`GSC`)**
 
 **Target Configuration:**
-- CUDA 12.4+ <<- & (CUDA 13.1.x [but NOT FULLY SUPPORTED] -> by Uv's CPython's 3.13.x stack)
+- CUDA 12.4+ <<- & (CUDA 13.1.x (but NOT FULLY SUPPORTED) -> by Uv's CPython's 3.13.x stack)
 - cuDNN 9.x
 - TensorRT 10.x
 - Python 3.13.x (NOT 3.14)

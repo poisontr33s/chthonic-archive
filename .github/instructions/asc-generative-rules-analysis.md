@@ -1,4 +1,3 @@
-
 # ☥ ARCHIVE GOVERNANCE: GENERATIVE RULES ANALYSIS ☥
 
 * **(`Codex-Brahmanica-Perfectus`/`GOVERNANCE`): = (`SSOT-Metadata`): = (`Single-Source-Of-Truth-Lineage-Heritage`): → (`SSOT-L-H`):**
@@ -620,8 +619,8 @@ class ASCEntityGenerator:
    - 0.58 → 0.592: **0.012 gap** → Tier 1-2 boundary entity (philosophical → purification bridge)
 
 2. **Age Clustering Gaps:**
-   - No entities in **500-800 year range** (gap between compressed Triumvirate [40] and Tier 2 minimum [850])
-   - No entities in **2000-3000 year range** (gap between Tier 2 maximum [1800] and Orackla [3000])
+   - No entities in **500-800 year range** (gap between compressed Triumvirate (40) and Tier 2 minimum (850))
+   - No entities in **2000-3000 year range** (gap between Tier 2 maximum (1800) and Orackla (3000))
    - Potential **mid-age Tier 2 entities** (1000-1500 years) underrepresented (only Seraphine at 1200)
 
 3. **FA Mastery Gaps:**

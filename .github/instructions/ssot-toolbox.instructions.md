@@ -29,6 +29,7 @@
 | 2 | Faction | Raw logs, Zone_1_REDUX |
 
 **Quality = FA Traversal:**
+- FA zero: The Savant's Original Intent (pre-FA, pure semantic lineage)
 - FA¹: Transformative or additive?
 - FA²: References existing canon?
 - FA³: Emergent complexity arises?
@@ -37,7 +38,7 @@
 
 **To restore context:**  
 > "Load session log from toolbox"  
-> OR: "Orackla session: [objective]"
+> OR: "Orackla session: (objective), (CRC), (FA traversal), (memory tier), (key decisions or insights to retain)"
 
 **Files:**
 | File | Purpose |

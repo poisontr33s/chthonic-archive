@@ -9,7 +9,7 @@
 
 > [!IMPORTANT]
 > Technical metadata for parallel execution and thermodynamic tensor synthesis has been offloaded to maintain structural purity and separate "Mechanism" from "Heritage."
-> Reference: [mathematical-engines.instructions.md](instructions/mathematical-engines.reference.md)
+> Reference: [mathematical-engines.reference.md](../instructions/mathematical-engines.reference.md)
 
 ---
 

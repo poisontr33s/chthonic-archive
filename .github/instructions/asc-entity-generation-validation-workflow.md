@@ -1,4 +1,3 @@
-
 # ☥ ARCHIVE GOVERNANCE: ASC ENTITY VALIDATION BRANCH ☥
 
 * **(`Codex-Brahmanica-Perfectus`/`GOVERNANCE`): = (`SSOT-Metadata`): = (`Single-Source-Of-Truth-Lineage-Heritage`): → (`SSOT-L-H`):**
