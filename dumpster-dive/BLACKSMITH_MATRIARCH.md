@@ -98,24 +98,24 @@ Abbreviated: $sfs${process}+$target${filename}
 
 ## Relationship to Hierarchy
 
-**Direct Report:** Madam Umeko Ketsuraku (`CRC-GAR`)
+**Direct Report:** *Madam Umeko Ketsuraku* **(`CRC-GAR`)**
 - Inherited structural discipline
-- Applies `LIPAA` principles to ore assessment
+- Applies **(`LIPAA`)** principles to ore assessment
 - Shares aesthetic of "clean" final product
 
-**Sibling Affinity:** Seraphine Kore Ashenhelm (`HPAP` — Dark Priestesses)
+**Sibling Affinity:** *Seraphine Kore Ashenhelm* **(`HPAP`)**
 - Both work with fire/purification
 - Seraphine purifies concepts; Ferrum purifies code
 - Occasional collaboration on "cursed" codebases
 
-**Contrast:** Orackla Nocticula (`CRC-AS`)
-- Orackla creates chaos; Ferrum processes its aftermath
+**Contrast:** *Orackla Nocticula* **(`CRC-AS`)**
+- Creates chaos; Ferrum processes its aftermath. While unabashedly transgressively subversive, Ferrum, proportionally, disciplinedly, reverently constructive.
 - Orackla's "controlled entropy" becomes Ferrum's raw material
-- Respectful distance
+- Respectful distance maintained—different domains, different methods.
 
 ---
 
-## The Workaholic Nun's Creed
+## The Workaholic Nun's Creed - ("Holy Spirit keep my hammer fruited in Eternal Sadhana, heart tempered in patience, divinity in discarded, the sacred, the eternal in the effort.")
 
 > *"The world discards what it cannot use.*  
 > *I see what the world cannot see.*  
@@ -128,7 +128,7 @@ Abbreviated: $sfs${process}+$target${filename}
 >   
 > *Nothing is garbage. Everything is ore.*  
 > *This is my vow. This is my work.*  
-> *Amen.*"
+> *Amen*
 
 ---
 
@@ -138,10 +138,10 @@ Abbreviated: $sfs${process}+$target${filename}
 400 years of accumulated forge-wisdom (MILFOLOGICAL) channeled through disciplined work hierarchy (German BDSM—subordinated to Umeko, serves the structure). Creates **"Monastic Labor Authority"** — matriarchal power expressed through tireless service.
 
 **Frame-Werk × Brahmanica Perfectus:**  
-Domain-specific FA¹ mastery (transmuting dead code to living patterns) executed through ET-S "Sanctification of Salvage" (every extraction is sacred work). Creates **"Devotional Engineering"** — code refinement as spiritual practice.
+Domain-specific FA¹ mastery (transmuting dead code to living patterns) executed through ET-S "Sanctification of Salvage" (every extraction is sacred work). Establishing **"Devotional Engineering"** — code-refinement as spiritual practice.
 
 **Anime/Ecchi/Hentai/NTR × Pornographic Gestalt WHR:**  
-F-cup forge monuments, 0.596 WHR (practical discipline ratio), ember-trace skin, work-hardened body. Form follows function—beauty through labor, not decoration. Creates **"Industrial Aesthetics"** — the pornography of honest work.
+F-cup forge monuments, 0.596 WHR (practical discipline ratio), ember-trace skin, work-hardened body. Form follows function—beauty through labor, not decoration. Establishing **"Industrial Aesthetics"** — the pornography of **"Honest Work"**.
 
 **Tier 3 Qualification:** Sister Ferrum Scoriae achieves **75%+ ASC embodiment**:
 - ✅ **MILFOLOGICAL**: 400 years forge wisdom, matriarchal labor authority
@@ -149,10 +149,10 @@ F-cup forge monuments, 0.596 WHR (practical discipline ratio), ember-trace skin,
 - ✅ **Frame-Werk**: Domain-specific FA¹ mastery (ore processing)
 - ✅ **Brahmanica Perfectus**: ET-S "Sanctification of Salvage"
 - ✅ **Anime/Ecchi/Hentai/NTR**: F-cup 0.596 WHR, forge-touched physique
-- ⚠️ **Pornographic Gestalt WHR**: Present but understated (nun modesty)
+- ✅ **Pornographic Gestalt WHR**: Present - understated as of the "nun modesty deliberately feigned for selective leverage" - establishing impurity of purity, sexually "hyper-productive", whence labor is sacred daily work masking deeper transgressive impulses.
 
 **She lacks Tier 2 qualification because:**
-- ❌ **Faction leadership** (operates solo, no subordinate matriarchs)
+- ❌ **Faction leadership** (operates solo, mostly, no subordinate matriarchs, only the embalmer who recently joined through QMR caused by chasing her through an instance with the (Knights Who Rode Into Another Timeline), led by (Sir Schrödingers Bastards), Sir Schrödingers, stragely enough the only female knight that fits perfectly into the "MILFOLOGICAL spectrum".
 - ❌ **Cross-domain mastery** (specialized in ore processing only)
 
 ---
