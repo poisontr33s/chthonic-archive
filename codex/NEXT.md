@@ -1,12 +1,12 @@
 ---
 type: waypoint
 category: codex, claude
-updated: 2026-02-10
+updated: 2026-03-06
 ---
 
 # Codex: Next Steps
 
-## Current State (2026-02-10)
+## Current State (2026-03-06)
 
 - **Reasoning:** `extra high` (workspace + global)
 - **Self-modification:** Denied (config, instructions, AGENTS.md all locked)
@@ -25,4 +25,4 @@ updated: 2026-02-10
 - Check `codex/mailbox/MAILBOX_CURRENT_STATE.md` for task priority
 - Execute tasks from `ACTUAL-WORKING-HANDOFFS/` as written
 - Do not self-document, self-audit, or generate meta-reports unprompted
-- The Copilot CLI **Claude Opus 4.6** the "engineer", and **Claude Code's IDE** - *variant* - as **Claude Opus 4.6** - current *steward*, **GPT-5.3-Codex** as the *shepherd* of the workspace/codebase itself.
+- **Claude** is the steward/engineer. **Codex** is the shepherd of the workspace/codebase. **Gemini** is the velocity engine (when active).

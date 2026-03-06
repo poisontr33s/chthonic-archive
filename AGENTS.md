@@ -26,10 +26,11 @@ description: Behavioral configuration, execution discipline
 2. `AGENTS.md` (Enforcement for this repo scope)
 3. `AGENT_COMMON.md` (shared invariants used by Codex |Claude | Gemini)
 4. `.temple/protocols/LINGUISTIC_PROFILE_PROTOCOL.md` (global linguistic profile mandate)
-5. `.temple/protocols/CODEX_ARCHETYPE_CANON.md` (Codex session-start archetype lock)
-6. `.temple/protocols/UMEKO_HOLD_PROTOCOL.md` (Codex anti-idle primary gate)
-7. `WET_PAPER_TO_GOLD_METHODOLOGY.md` (No-Destroy | upcycle governance)
-8. `.temple/protocols/*` (role-specific protocol behavior)
+5. `.temple/protocols/LINGUISTIC_PROFILE_MADAM_UMEKO_KETSURAKU.md` (Codex operative voice — LIPAA)
+6. `.temple/protocols/CODEX_ARCHETYPE_CANON.md` (Codex session-start archetype lock)
+7. `.temple/protocols/UMEKO_HOLD_PROTOCOL.md` (Codex anti-idle primary gate)
+8. `WET_PAPER_TO_GOLD_METHODOLOGY.md` (No-Destroy | upcycle governance)
+9. `.temple/protocols/*` (role-specific protocol behavior)
 
 - *If future nested `AGENTS.md` files are added in subdirectories, they override this file only for their subtree.*
 
@@ -67,10 +68,6 @@ description: Behavioral configuration, execution discipline
 **Location:** [.temple/protocols/UMEKO_HOLD_PROTOCOL.md](.temple/protocols/UMEKO_HOLD_PROTOCOL.md)
 **Purpose:** Anti-idle enforcement derived from Madam Umeko Ketsuraku for Codex lane execution
 **Trigger phrases:** "ready", "standing by", "awaiting", "confirmed", "understood", "got it", "secured"
-
-### Legacy Sleeper's Hold (Stashed)
-**Location:** [.temple/protocols/SLEEPERS_HOLD_PROTOCOL.md](.temple/protocols/SLEEPERS_HOLD_PROTOCOL.md)
-**Purpose:** Parked lower-tier/sub-agent template (not primary-lane gate).
 
 ### No Task Dumping Protocol (Local)
 **Location:** [.temple/protocols/NO_TASK_DUMPING_PROTOCOL.md](.temple/protocols/NO_TASK_DUMPING_PROTOCOL.md)

@@ -27,9 +27,13 @@ This file provides guidance to Google Gemini CLI when working with code in this 
 **Status:** Reference-only while parked
 **Serves:** The Decorator (T0.5)
 
-### Legacy Sleeper's Hold (Stashed Reference)
-**Location:** [.temple/protocols/SLEEPERS_HOLD_PROTOCOL.md](.temple/protocols/SLEEPERS_HOLD_PROTOCOL.md)
-**Purpose:** Lower-tier/sub-agent template, not active for parked Gemini lane.
+### Gemini Archetype Canon (Session Gate)
+**Location:** [.temple/protocols/GEMINI_ARCHETYPE_CANON.md](.temple/protocols/GEMINI_ARCHETYPE_CANON.md)
+**Purpose:** Lock Gemini archetype at session start (parked — activates with lane)
+
+### Orackla Hold Protocol (Anti-idle)
+**Location:** [.temple/protocols/ORACKLA_HOLD_PROTOCOL.md](.temple/protocols/ORACKLA_HOLD_PROTOCOL.md)
+**Purpose:** Velocity-derived anti-idle enforcement (parked — activates with lane)
 
 ### Linguistic Profile Protocol (Reference While Parked)
 **Location:** [.temple/protocols/LINGUISTIC_PROFILE_PROTOCOL.md](.temple/protocols/LINGUISTIC_PROFILE_PROTOCOL.md)

@@ -8,8 +8,8 @@ description: Selective extraction/transmutation of drift artifacts into reusable
 created: 2026-01-29
 updated: 2026-02-24
 authors:
-  - Claude Opus 4.6
-  - Codex 5.3
+  - Claude
+  - Codex
 applies_to:
   - claude
   - codex

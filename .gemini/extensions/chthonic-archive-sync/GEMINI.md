@@ -5,8 +5,11 @@ Purpose: Keep Gemini CLI aligned with Codex + Claude without re-running onboardi
 ## Execution Invariants (Do Not Drift)
 - Workspace root: `C:\Users\erdno\chthonic-archive`
 - Shell: PowerShell only (no bash syntax)
-- Package manager: `bun` only
-- Python: `uv run python` only
+- JS/TS: `bun` (npm replacement)
+- Python: `uv run <script>` (never raw `python` or `pip`)
+- Ruby: `rv` (rbenv replacement)
+- Go: `goup` (goenv replacement)
+- Rust: `cargo`
 - SSOT: `.github/copilot-instructions.md` (reference only, do not duplicate)
 
 ## Onboarding State (Locked)
@@ -17,6 +20,8 @@ Purpose: Keep Gemini CLI aligned with Codex + Claude without re-running onboardi
   - Workspace: `.gemini/settings.json`
 
 ## Primary Instruction Sources
+- `GEMINI.md` (Gemini instructions)
+- `AGENT_COMMON.md` (shared invariants)
 - `AGENTS.md` (Codex instructions)
 - `CLAUDE.md` (Claude instructions)
 - `.github/instructions/*.instructions.md` (modular rules)
