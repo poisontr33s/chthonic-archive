@@ -1,0 +1,359 @@
+{
+  "session": "2026-03-07T02-57-39Z_claudine_trilemma",
+  "generated_at_utc": "2026-03-07T02:57:39.3774072Z",
+  "label": "claudine_trilemma",
+  "output_root": "C:\\Users\\erdno\\chthonic-archive\\dumpster-dive\\intake\\ferrum-embalmer",
+  "dry_run": true,
+  "copy_sources": false,
+  "total_sources": 10,
+  "existing_sources": 10,
+  "missing_sources": 0,
+  "roles": [
+    {
+      "role": "canon_runtime",
+      "count": 1
+    },
+    {
+      "role": "compat_facade",
+      "count": 1
+    },
+    {
+      "role": "context_anchor",
+      "count": 2
+    },
+    {
+      "role": "context_qmr_anomaly",
+      "count": 1
+    },
+    {
+      "role": "context_timeline",
+      "count": 1
+    },
+    {
+      "role": "legacy_residue",
+      "count": 1
+    },
+    {
+      "role": "profile_ingress",
+      "count": 1
+    },
+    {
+      "role": "profile_stub",
+      "count": 2
+    }
+  ],
+  "canon_name_judgements": [
+    {
+      "entity": "Kali",
+      "preferred_name": "Kali Nyx Ravenscar",
+      "drift_variants": [
+        "Kali Praharshini"
+      ],
+      "status": "preferred_old_name",
+      "rationale": "User-directed canon preference; the older name carries the stronger quality lineage.",
+      "evidence": [
+        ".github/copilot-instructions.archive.md:2824",
+        ".github/copilot-instructions.archive.md:4208"
+      ]
+    },
+    {
+      "entity": "Vesper",
+      "preferred_name": "Vesper Mnemosyne Lockhart",
+      "drift_variants": [
+        "Vesper Tempus"
+      ],
+      "status": "preferred_old_name",
+      "rationale": "User-directed canon preference; local-AI metadata condensation is treated as drift.",
+      "evidence": [
+        ".github/copilot-instructions.archive.md:2828",
+        ".github/copilot-instructions.archive.md:4209"
+      ]
+    },
+    {
+      "entity": "Seraphine",
+      "preferred_name": "Seraphine Ashveil",
+      "drift_variants": [
+        "Seraphine Pyralis"
+      ],
+      "status": "preferred_old_name",
+      "rationale": "User-directed canon preference; older embodied name retained.",
+      "evidence": [
+        ".github/copilot-instructions.archive.md:2832",
+        ".github/copilot-instructions.archive.md:4210"
+      ]
+    },
+    {
+      "entity": "Spectra",
+      "preferred_name": "Spectra Chroma Excavatus",
+      "drift_variants": [
+        "Spectra Chroma"
+      ],
+      "status": "full_name_required",
+      "rationale": "Shorthand erodes the archaeology weight and makes abbreviation systems purposeless.",
+      "evidence": [
+        ".github/copilot-instructions.archive.md:743",
+        ".github/copilot-instructions.archive.md:4335"
+      ]
+    },
+    {
+      "entity": "Snow White line",
+      "preferred_name": "Alabaster Voyde (Snow White)",
+      "drift_variants": [
+        "Snow White",
+        "The Coke-Fueled Phenomenon"
+      ],
+      "status": "canonical_but_shorthand_sensitive",
+      "rationale": "Formally usable, but not sufficient by itself to preserve the dark-humour manifestation lineage.",
+      "evidence": [
+        ".github/copilot-instructions.archive.md:849",
+        ".github/copilot-instructions.archive.md:4350"
+      ]
+    },
+    {
+      "entity": "QMR anomaly bride",
+      "preferred_name": "Novia-Cadaveris",
+      "drift_variants": [
+        "The White-Dressed Bride",
+        "The Corpse-Reviver"
+      ],
+      "status": "must_be_present",
+      "rationale": "The Ferrum embalmer must carry the QMR anomaly entity explicitly, not only indirect timeline context.",
+      "evidence": [
+        ".github/copilot-instructions.archive.md:4049",
+        ".github/codex-satellites/MMPS_GENERATION.md:263"
+      ]
+    }
+  ],
+  "records": [
+    {
+      "role": "canon_runtime",
+      "path": "C:\\Users\\erdno\\chthonic-archive\\scripts\\chthonic.ps1",
+      "scope": "repo",
+      "note": "SSOT runtime engine",
+      "exists": true,
+      "byte_size": 91672,
+      "sha256": "E0A8B579D02EAC63FEABB809A1EAF414C229666BC6BF00DD39EF18CB27F1D28B",
+      "copied_to": null,
+      "signals": {
+        "contains_chthonic_script_ref": true,
+        "contains_claudine_wrapper": true,
+        "contains_claudineenv": false,
+        "contains_legacy_markers": true,
+        "contains_canon_markers": true,
+        "contains_profile_ingress": false,
+        "contains_mcp_bridge": true,
+        "contains_ferrum": false,
+        "contains_qmr": false,
+        "contains_knights": false,
+        "contains_schrodinger": false
+      }
+    },
+    {
+      "role": "compat_facade",
+      "path": "C:\\Users\\erdno\\chthonic-archive\\scripts\\claudine.ps1",
+      "scope": "repo",
+      "note": "Thin compatibility wrapper",
+      "exists": true,
+      "byte_size": 3192,
+      "sha256": "8093D80ABA018EAC80501FE18E16EB9E378398A91AA3FD8C0AE5C31FFE84F0DC",
+      "copied_to": null,
+      "signals": {
+        "contains_chthonic_script_ref": true,
+        "contains_claudine_wrapper": true,
+        "contains_claudineenv": false,
+        "contains_legacy_markers": false,
+        "contains_canon_markers": false,
+        "contains_profile_ingress": false,
+        "contains_mcp_bridge": false,
+        "contains_ferrum": false,
+        "contains_qmr": false,
+        "contains_knights": false,
+        "contains_schrodinger": false
+      }
+    },
+    {
+      "role": "profile_ingress",
+      "path": "C:\\Users\\erdno\\.config\\powershell\\profile.ps1",
+      "scope": "external",
+      "note": "Active PowerShell ingress",
+      "exists": true,
+      "byte_size": 4878,
+      "sha256": "EB49401C1935281A2880A9716367E0FB4475EE65BC2BF25A0018DE9635ACA666",
+      "copied_to": null,
+      "signals": {
+        "contains_chthonic_script_ref": true,
+        "contains_claudine_wrapper": true,
+        "contains_claudineenv": false,
+        "contains_legacy_markers": true,
+        "contains_canon_markers": true,
+        "contains_profile_ingress": true,
+        "contains_mcp_bridge": true,
+        "contains_ferrum": false,
+        "contains_qmr": false,
+        "contains_knights": false,
+        "contains_schrodinger": false
+      }
+    },
+    {
+      "role": "profile_stub",
+      "path": "C:\\Users\\erdno\\OneDrive\\Documents\\PowerShell\\Microsoft.PowerShell_profile.ps1",
+      "scope": "external",
+      "note": "Current user current host profile stub",
+      "exists": true,
+      "byte_size": 182,
+      "sha256": "95E528A881E57250D07C9FE021331271B10B5E54044470FD2647E3F6564AE0A9",
+      "copied_to": null,
+      "signals": {
+        "contains_chthonic_script_ref": false,
+        "contains_claudine_wrapper": false,
+        "contains_claudineenv": false,
+        "contains_legacy_markers": false,
+        "contains_canon_markers": false,
+        "contains_profile_ingress": false,
+        "contains_mcp_bridge": false,
+        "contains_ferrum": false,
+        "contains_qmr": false,
+        "contains_knights": false,
+        "contains_schrodinger": false
+      }
+    },
+    {
+      "role": "profile_stub",
+      "path": "C:\\Users\\erdno\\OneDrive\\Documents\\PowerShell\\profile.ps1",
+      "scope": "external",
+      "note": "Current user all hosts profile",
+      "exists": true,
+      "byte_size": 590,
+      "sha256": "D5CB3A60AE1DF0A972447A0864094CACF138E6AF32F06F38ECA964F41C224557",
+      "copied_to": null,
+      "signals": {
+        "contains_chthonic_script_ref": false,
+        "contains_claudine_wrapper": false,
+        "contains_claudineenv": false,
+        "contains_legacy_markers": false,
+        "contains_canon_markers": false,
+        "contains_profile_ingress": false,
+        "contains_mcp_bridge": false,
+        "contains_ferrum": false,
+        "contains_qmr": false,
+        "contains_knights": false,
+        "contains_schrodinger": false
+      }
+    },
+    {
+      "role": "legacy_residue",
+      "path": "C:\\Users\\erdno\\PsychoNoir-Kontrapunkt\\scripts\\claudineENV.ps1",
+      "scope": "external",
+      "note": "Historical residue from Local AI era",
+      "exists": true,
+      "byte_size": 6289,
+      "sha256": "2ED300C9669FC8604618CDDD0C9260B3264AF86BD01F4ED9540A3AC253B74A44",
+      "copied_to": null,
+      "signals": {
+        "contains_chthonic_script_ref": false,
+        "contains_claudine_wrapper": true,
+        "contains_claudineenv": false,
+        "contains_legacy_markers": true,
+        "contains_canon_markers": false,
+        "contains_profile_ingress": false,
+        "contains_mcp_bridge": false,
+        "contains_ferrum": false,
+        "contains_qmr": false,
+        "contains_knights": false,
+        "contains_schrodinger": false
+      }
+    },
+    {
+      "role": "context_anchor",
+      "path": "C:\\Users\\erdno\\chthonic-archive\\.github\\copilot-instructions.archive.md",
+      "scope": "repo",
+      "note": "Frozen SSOT mythology anchor",
+      "exists": true,
+      "byte_size": 586092,
+      "sha256": "C9C5DB850E2B7491B545DC3CB2720753A8F999FE9B0BDA5230BA4895F784610C",
+      "copied_to": null,
+      "signals": {
+        "contains_chthonic_script_ref": false,
+        "contains_claudine_wrapper": true,
+        "contains_claudineenv": false,
+        "contains_legacy_markers": false,
+        "contains_canon_markers": false,
+        "contains_profile_ingress": false,
+        "contains_mcp_bridge": true,
+        "contains_ferrum": true,
+        "contains_qmr": true,
+        "contains_knights": true,
+        "contains_schrodinger": true
+      }
+    },
+    {
+      "role": "context_anchor",
+      "path": "C:\\Users\\erdno\\chthonic-archive\\dumpster-dive\\BLACKSMITH_MATRIARCH.md",
+      "scope": "repo",
+      "note": "Sister Ferrum Scoriae profile",
+      "exists": true,
+      "byte_size": 10504,
+      "sha256": "D28F2749040B6CA8BD63C39984693F78434FF02EA5ABA98DA6C62EC99A3A0742",
+      "copied_to": null,
+      "signals": {
+        "contains_chthonic_script_ref": false,
+        "contains_claudine_wrapper": false,
+        "contains_claudineenv": false,
+        "contains_legacy_markers": false,
+        "contains_canon_markers": false,
+        "contains_profile_ingress": false,
+        "contains_mcp_bridge": false,
+        "contains_ferrum": true,
+        "contains_qmr": true,
+        "contains_knights": true,
+        "contains_schrodinger": true
+      }
+    },
+    {
+      "role": "context_timeline",
+      "path": "C:\\Users\\erdno\\chthonic-archive\\dumpster-dive\\from-github\\SR_SCHRODINGERS_BASTARD.md",
+      "scope": "repo",
+      "note": "Sir Schroedinger's Bastard linkage",
+      "exists": true,
+      "byte_size": 4320,
+      "sha256": "129D629A2BE8C46D842F2E26B7DE929765F44EC496A104F2ED72775DD90D45BA",
+      "copied_to": null,
+      "signals": {
+        "contains_chthonic_script_ref": false,
+        "contains_claudine_wrapper": false,
+        "contains_claudineenv": false,
+        "contains_legacy_markers": false,
+        "contains_canon_markers": false,
+        "contains_profile_ingress": false,
+        "contains_mcp_bridge": false,
+        "contains_ferrum": true,
+        "contains_qmr": true,
+        "contains_knights": true,
+        "contains_schrodinger": true
+      }
+    },
+    {
+      "role": "context_qmr_anomaly",
+      "path": "C:\\Users\\erdno\\chthonic-archive\\.github\\codex-satellites\\MMPS_GENERATION.md",
+      "scope": "repo",
+      "note": "QMR anomaly / Novia-Cadaveris / Bride lane",
+      "exists": true,
+      "byte_size": 85391,
+      "sha256": "E1EBF14F4687F5098D812750B6F907FBED21AA4A55AD8E12A79B729A0B861E0A",
+      "copied_to": null,
+      "signals": {
+        "contains_chthonic_script_ref": false,
+        "contains_claudine_wrapper": true,
+        "contains_claudineenv": false,
+        "contains_legacy_markers": false,
+        "contains_canon_markers": false,
+        "contains_profile_ingress": false,
+        "contains_mcp_bridge": false,
+        "contains_ferrum": true,
+        "contains_qmr": true,
+        "contains_knights": true,
+        "contains_schrodinger": true
+      }
+    }
+  ]
+}

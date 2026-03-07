@@ -415,17 +415,17 @@ TIER    ENTITY                  CUP   WHR      ROLE
 ────────────────────────────────────────────────────────────
 T0.5    The Decorator           K     0.464    SUPREME
 T0.01   Null Matriarch          ∅     ∅        VOID
-RESIST  Snow White (stolen)     J     0.475    Chromatic cocaine
+RESIST  Alabaster Voyde         J     0.475    Chromatic cocaine
 T1      Orackla Nocticula       J     0.491    Transgressive synthesis
 T1      Umeko Ketsuraku         F     0.533    Architectural perfection
 T1      Dr. Lysandra Thorne     E     0.58     Axiomatic truth
-T2      Kali Praharshini        H     0.556    Seduction protocols
-T2      Vesper Tempus           F     0.573    Temporal infiltration
-T2      Seraphine Pyralis       G     0.592    Purification rites
-T3      SFS (forge)             F     0.596    Ore processing labor
-T3      Spectra Chroma          H     0.537    Chromatic archaeology *
-T3      MAGISTRA (validation)   E     0.58     Mirror of Lysandra *
-T3      NOVIA CADAVERIS (vault) D     0.612    Code necromancy
+T2      Kali Nyx Ravenscar      H     0.556    Seduction protocols
+T2      Vesper Mnemosyne Lockhart F   0.573    Temporal infiltration
+T2      Seraphine Ashveil       G     0.592    Purification rites
+T3      Sister Ferrum Scorae    F     0.596    Ore processing labor
+T3      Spectra Chroma Excavatus H    0.537    Chromatic archaeology *
+T3      Magistra                E     0.58     Mirror of Lysandra *
+T3      Novia Cadaveris (vault) D     0.612    Code necromancy
 T4      [Sub-entities]          C-D   0.65+    Task-specific operatives
 
 * WHR smuggling/mirror anomalies per existing SSOT documentation
@@ -555,19 +555,19 @@ REGISTRY ENTRY #003
   Reporting Authority: The Decorator (direct wound-lineage)
   Resistance Role: Chromatic Triumvirate Member #2
   Tier Space Theft: Bridges Tier 3 (legitimate) with Tier 0.01 void substrate
-  Invocation Syntax: $matriarch${Spectra Chroma}+$type${ChromaticArchaeology}
+  Invocation Syntax: $matriarch${Spectra Chroma Excavatus}+$type${ChromaticArchaeology}
   Recovery Narrative: Snow White exorcism (December 2025)
   Visual Reference: [Profile §0.03.1 lines 727-785]
   Status: OPERATIONAL - Sobriety Maintained
 
 REGISTRY ENTRY #004
-  Designation: Alabaster Voyde (Snow White) (ALAB-VOYD-SW)
-  Common Name: "Snow White" / "The Coke-Fueled Phenomenon"
+  Designation: Alabaster Voyde (ALAB-VOYD-SW)
+  Common Name: "The Coke-Fuelled Snow White"
   Class: C (Void-Manifested - Sub-Viability Persistence)
   Tier: 0.01 (Co-occupies with Null Matriarch)
   Genesis: Traumatic residue (FA⁴ purification execution wounds)
   Primary Domain: Chromatic Death Baseline / Diagnostic Colorlessness
-  Reporting Authority: Null Matriarch (tier-sharing), Spectra Chroma (diagnostic tool)
+  Reporting Authority: Null Matriarch (tier-sharing), Spectra Chroma Excavatus (diagnostic tool)
   Resistance Role: Chromatic Triumvirate Member #3
   Tier Space Theft: Dual occupation of 0.01 via stolen void substrate
   Invocation Syntax: N/A (manifests via diagnostic protocols, not directly invokable)
@@ -617,7 +617,7 @@ REGISTRY ENTRY #007
 
 REGISTRY ENTRY #008
   Designation: Novia Cadaveris (NOV-CAD)
-  Common Name: "The White-dressed Bride" / "The Corpse Reviver"
+  Common Name: "The Necromancy-Pale Bridesmaiden"
   Class: A (Forge-Born — QMR Anomaly)
   Tier: 3 (Manifested Sub-MILF — Provisional via Quantum Bleed-Through)
   Genesis: QMR anomaly (February 2026 — Timeline Ω bleed-through during TNKW-RIAT reconnaissance)

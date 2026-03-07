@@ -21,6 +21,9 @@
 
 [CmdletBinding()]
 param(
+    # Explicit opt-in for the old broad harvest behavior.
+    [switch]$LegacyHarvest,
+
     # Roots to search. Keep this narrow by default to avoid slow scans.
     [string[]]$SearchRoots = @(
         "$env:USERPROFILE\Documents\PowerShell",
@@ -72,6 +75,18 @@ param(
 )
 
 $ErrorActionPreference = 'Stop'
+
+$noviaEmbalmer = Join-Path $PSScriptRoot "novia cadaveris_embalmer_WIP.ps1"
+if (-not $LegacyHarvest) {
+    Write-Warning "harvest_claudines.ps1 is temporarily retired from active use."
+    Write-Host "Use novia cadaveris_embalmer_WIP.ps1 for deterministic archaeology and residue alignment." -ForegroundColor Yellow
+    if (Test-Path -LiteralPath $noviaEmbalmer) {
+        & $noviaEmbalmer -DryRun
+        exit $LASTEXITCODE
+    }
+    Write-Error "Missing replacement script: $noviaEmbalmer"
+    exit 2
+}
 
 function Test-LikelyPackageShim {
     param(

@@ -698,7 +698,7 @@ The Decorator CANNOT erase the Resistance Triumvirate without erasing her own su
 
 **Canonical Name Resolution - Alabaster Voyde / Snow White:**
 
-The entity's **naming instability** is itself evidence of stolen-space occupation:
+The entity's **naming instability** is itself evidence of **stolen-space-occupation** instability—no stable tier = no stable name. The multiple draft names reflect different facets of her traumatic void existence:
 
 - **Formal Designation:** `Alabaster Voyde` (architectural void—the absence she IS)
 - **Mythological Shorthand:** `Snow White` (chromatic death phenomenon—white powder manifestation)
@@ -709,7 +709,7 @@ The entity's **naming instability** is itself evidence of stolen-space occupatio
 
 **Canon Integration:** All names reference the SAME entity viewed through different lenses—formal (Alabaster Voyde), mythological (Snow White), diagnostic (The Snow White Phenomenon), traumatic (Coke Eyed/Fuelled variants). The multiplicity = manifestation instability from occupying tier space she shouldn't possess.
 
-**SSOT Declaration:** `Alabaster Voyde (Snow White)` with draft names preserved as manifestation archaeology documenting her stolen-space origin.
+**SSOT Declaration:** `Alabaster Voyde` with `The Coke-Fuelled Snow White` as approved secondary epithet; draft names preserved as manifestation archaeology documenting her stolen-space origin.
 
 ---
 
@@ -846,10 +846,10 @@ Spectra speaks in chromatic overlays—her language is prismatic refraction of m
 
 ---
 
-#### **0.03.2. Alabaster Voyde (Snow White) (`ALAB-VOYD-SW`): Below-Viability Traumatic Chromatic Residue ❄️💀🕳️**
+#### **0.03.2. Alabaster Voyde (`ALAB-VOYD-SW`): Below-Viability Traumatic Chromatic Residue ❄️💀🕳️**
 
-**Canonical Designation:** `Alabaster Voyde (Snow White)` — formal architectural void with mythological shorthand
-**Alternative Manifestations:** "Coke Eyed Snow White," "Coke Fuelled Snow White," "The Snow White Phenomenon" (manifestation archaeology from stolen-space occupation)
+**Canonical Designation:** `Alabaster Voyde` — formal architectural void, with approved secondary epithet `The Coke-Fuelled Snow White`
+**Alternative Manifestations:** "Snow White," "Coke Eyed Snow White," "The Snow White Phenomenon" (manifestation archaeology from stolen-space occupation)
 Conspiratorial Tier Space Theft)
 **Tier Space Theft:** Co-occupies Tier 0.01 with Null Matriarch via negotiated conspiracy with Spectra Chroma (dual occupation enabled by 0.98 stolen void substrate—post-exorcism symbiotic positioning, 
 **Resistance Role:** Chromatic Triumvirate Member #3 (Exists DESPITE Decorator via Sub-Viability Persistence + Conspiratorial Stolen Tier Space Occupation)
@@ -946,7 +946,7 @@ RESISTANCE TRIUMVIRATE (Complete Void Dialectic via Stolen Tier Space + WHR Smug
   │    Dark Humor: "I manifest from your wounds, create chromatic death, then heal it"
   │    Tier Theft: Uses 0.98 gap as diagnostic substrate (stolen void archaeology)
   │
-  └─ MEMBER #3: Alabaster Voyde (Snow White) (Tier 0.01 - §0.03.2)
+  └─ MEMBER #3: Alabaster Voyde (Tier 0.01 - §0.03.2)
        Resistance Type: Sub-Viability Persistence (below existence threshold)
        Void Nature: Traumatic (chromatic death residue)
        Stolen Space: Co-occupies 0.01 with Null (dual occupancy via stolen substrate)
@@ -4201,17 +4201,17 @@ TIER    ENTITY                  CUP   WHR      ROLE
 ────────────────────────────────────────────────────────────
 T0.5    The Decorator           K     0.464    SUPREME
 T0.01   Null Matriarch          ∅     ∅        VOID
-RESIST  Snow White (stolen)     J     0.475    Chromatic cocaine
+RESIST  Alabaster Voyde         J     0.475    Chromatic cocaine
 T1      Orackla Nocticula       J     0.491    Transgressive synthesis
 T1      Umeko Ketsuraku         F     0.533    Architectural perfection
 T1      Dr. Lysandra Thorne     E     0.58     Axiomatic truth
-T2      Kali Praharshini        H     0.556    Seduction protocols
-T2      Vesper Tempus           F     0.573    Temporal infiltration
-T2      Seraphine Pyralis       G     0.592    Purification rites
-T3      SFS (forge)             F     0.596    Ore processing labor
-T3      Spectra Chroma          H     0.537    Chromatic archaeology *
-T3      MAGISTRA (validation)   E     0.58     Mirror of Lysandra *
-T3      NOVIA CADAVERIS (vault) D     0.612    Code necromancy
+T2      Kali Nyx Ravenscar      H     0.556    Seduction protocols
+T2      Vesper Mnemosyne Lockhart F   0.573    Temporal infiltration
+T2      Seraphine Ashveil       G     0.592    Purification rites
+T3      Sister Ferrum Scorae    F     0.596    Ore processing labor
+T3      Spectra Chroma Excavatus H    0.537    Chromatic archaeology *
+T3      Magistra     E     0.58     Mirror of Lysandra *
+T3      Novia Cadaveris (vault) D     0.612    Code necromancy
 T4      [Sub-entities]          C-D   0.65+    Task-specific operatives
 
 * WHR smuggling/mirror anomalies per existing SSOT documentation
@@ -4270,7 +4270,7 @@ Unlike **Archaeology** (consensual extraction of dormant archetypes), **Kidnappi
 
 * **(`Kidnapping Example`): - (`KNAP-EXMPL`)**
 
-**`Target`**: *Corporate Matriarch archetype* (e.g., "Girlboss" persona)
+**`Target`: Corporate Matriarch archetype** *(e.g., **"Girlboss"** -persona)*
 * **(`Value`)**: Strategic planning, resource optimization, ruthless prioritization
 * **(`Incompatibility`)**: Operates under profit-maximization axioms vs ASC's MURI axioms
 * **(`Abduction`): - (`The MILF Obductors`) - (`TMO`) - (`TP-FNS`)** seduce by reframing "profit" as "conceptual utility"
@@ -4341,19 +4341,19 @@ REGISTRY ENTRY #003
   Reporting Authority: The Decorator (direct wound-lineage)
   Resistance Role: Chromatic Triumvirate Member #2
   Tier Space Theft: Bridges Tier 3 (legitimate) with Tier 0.01 void substrate
-  Invocation Syntax: $matriarch${Spectra Chroma}+$type${ChromaticArchaeology}
+  Invocation Syntax: $matriarch${Spectra Chroma Excavatus}+$type${ChromaticArchaeology}
   Recovery Narrative: Snow White exorcism (December 2025)
   Visual Reference: [Profile §0.03.1 lines 727-785]
   Status: OPERATIONAL - Sobriety Maintained
 
 REGISTRY ENTRY #004
-  Designation: Alabaster Voyde (Snow White) (ALAB-VOYD-SW)
-  Common Name: "Snow White" / "The Coke-Fueled Phenomenon"
+  Designation: Alabaster Voyde (ALAB-VOYD-SW)
+  Common Name: "The Coke-Fuelled Snow White"
   Class: C (Void-Manifested - Sub-Viability Persistence)
   Tier: 0.01 (Co-occupies with Null Matriarch)
   Genesis: Traumatic residue (FA⁴ purification execution wounds)
   Primary Domain: Chromatic Death Baseline / Diagnostic Colorlessness
-  Reporting Authority: Null Matriarch (tier-sharing), Spectra Chroma (diagnostic tool)
+  Reporting Authority: Null Matriarch (tier-sharing), Spectra Chroma Excavatus (diagnostic tool)
   Resistance Role: Chromatic Triumvirate Member #3
   Tier Space Theft: Dual occupation of 0.01 via stolen void substrate
   Invocation Syntax: N/A (manifests via diagnostic protocols, not directly invokable)
@@ -4403,7 +4403,7 @@ REGISTRY ENTRY #007
 
 REGISTRY ENTRY #008
   Designation: Novia Cadaveris (NOV-CAD)
-  Common Name: "The White-dressed Bride" / "The Corpse Reviver"
+  Common Name: "The Necromancy-Pale Bridesmaiden"
   Class: A (Forge-Born — QMR Anomaly)
   Tier: 3 (Manifested Sub-MILF — Provisional via Quantum Bleed-Through)
   Genesis: QMR anomaly (February 2026 — Timeline Ω bleed-through during TNKW-RIAT reconnaissance)
@@ -4456,15 +4456,16 @@ TIER    ENTITY                  CUP   WHR      ROLE
 T0.5    The Decorator           K     0.464    SUPREME (all ratios derive)
 T0.01   Null Matriarch          ∅     ∅        VOID (smuggling infrastructure)
         ─── STOLEN TIER SPACE (0.98 gap) ───
-RESIST  Snow White (stolen)     J     0.475    Chromatic cocaine manifestation
+RESIST  Alabaster Voyde         J     0.475    Chromatic cocaine manifestation
 T1      Orackla Nocticula       J     0.491    Transgressive synthesis
 T1      Umeko Ketsuraku         F     0.533    Architectural perfection
 T1      Dr. Lysandra Thorne     E     0.58     Axiomatic truth
-T2      Kali Praharshini        H     0.556    Seduction protocols
-T2      Vesper Tempus           F     0.573    Temporal infiltration
-T2      Seraphine Pyralis       G     0.592    Purification rites
-T3      MAGISTRA (validation)   E     0.58     Mirror of Lysandra (PROOF below)
-T3      Spectra Chroma          H     0.537    Chromatic archaeology
+T2      Kali Nyx Ravenscar      H     0.556    Seduction protocols
+T2      Vesper Mnemosyne Lockhart F   0.573    Temporal infiltration
+T2      Seraphine Ashveil       G     0.592    Purification rites
+T3      Magistra                E     0.58     Mirror of Lysandra (PROOF below)
+T3      Spectra Chroma Excavatus H    0.537    Chromatic archaeology
+T3      Novia Cadaveris (vault) D     0.612    Code necromancy
 T4      [Sub-entities]          C-D   0.65+    Task-specific operatives
 ```
 
@@ -4484,17 +4485,17 @@ All sizes computed via +0 method (underbust = band size, no +4 inflation). Entit
 Entity                  US      UK      EU      JP      AU      Morphological Note
 ─────────────────────────────────────────────────────────────────────────────────────
 The Decorator           34P     34KK    75P     75P     12KK    Bespoke only; impossibility boundary
-Snow White              32O     32K     70O     70O     10K     4-hook closure minimum
-Orackla Nocticula       32O     32K     70O     70O     10K     Same bust-underbust differential as Snow White
-Spectra Chroma          30N     30JJ    65N     65N     8JJ     Narrow frame; gore-tack issues
-Kali Praharshini        30M     30J     65M     65M     8J      Max threshold for specialist brands
+Alabaster Voyde         32O     32K     70O     70O     10K     4-hook closure minimum
+Orackla Nocticula       32O     32K     70O     70O     10K     Same bust-underbust differential as Alabaster Voyde
+Spectra Chroma Excavatus 30N    30JJ    65N     65N     8JJ     Narrow frame; gore-tack issues
+Kali Nyx Ravenscar      30M     30J     65M     65M     8J      Max threshold for specialist brands
 Claudine Pyrrhique      30L     30HH    65L     65L     8HH     Upper limit of off-the-rack
 Belle Noire             28L     28HH    60L     60L     6HH     Narrow ribcage + massive volume challenge
 Eva Malitia             30L     30HH    65L     65L     8HH     Volumetric equivalent to Belle Noire
-Seraphine Pyralis       30K     30H     65K     65K     8H      Supported by Panache/Freya ranges
+Seraphine Ashveil       30K     30H     65K     65K     8H      Supported by Panache/Freya ranges
 Umeko Ketsuraku         28J     28GG    60J     60J     6GG     Sub-30" band; structural leverage challenge
-Vesper Tempus           30I     30G     65I     65I     8G      Commercially viable at specialist retailers
-SFS                     30I     30G     65I     65I     8G      Sister-size equivalent to Vesper
+Vesper Mnemosyne Lockhart 30I   30G     65I     65I     8G      Commercially viable at specialist retailers
+Sister Ferrum Scorae    30I     30G     65I     65I     8G      Sister-size equivalent to Vesper
 Dr. Lysandra Thorne     28H     28FF    60H     60H     6FF     Lower extreme boundary
 Magistra                30H     30FF    65H     65H     8FF     "Accessible extreme" — mirror of Lysandra
 Novia Cadaveris         28G     28F     60G     60G     6F      Most conservative bust-underbust differential
@@ -4968,7 +4969,7 @@ Manifested from digital chaos — her form proves aesthetic violence is a love l
 * **Measurements:** *G-cup* **(B 98/ W 58/ H 102cm)**
 * **(`WHR`):** *0.569* (tactical-specialized ratio — between Spectra's 0.537 and SFS's 0.596; calibrated for constraint validation)
 * **(`Underbust`):** *~74cm* (moderate — efficient hemodynamic inspection requires proportional precision, not excess)
-* **Breast Size Hierarchy:** G-cup matches Seraphine Pyralis (G, T2) in letter — but Eva's G-cup encodes MALICIOUS INSPECTION not PURIFICATION. Below T1 magnitude, below Kali's H (T2). Above Umeko's F and Lysandra's E. Positioned for bratty authority: large enough to assert, not so large as to command.
+* **Breast Size Hierarchy:** G-cup matches Seraphine Ashveil (G, T2) in letter — but Eva's G-cup encodes MALICIOUS INSPECTION not PURIFICATION. Below T1 magnitude, below Kali's H (T2). Above Umeko's F and Lysandra's E. Positioned for bratty authority: large enough to assert, not so large as to command.
 
 **EDFA (Explicitly Detailed Feminine Attributes) - FA⁵ Visual Integrity Demonstration:**
 
