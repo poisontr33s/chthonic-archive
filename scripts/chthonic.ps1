@@ -765,6 +765,33 @@ Usage: chthonic [--version] [--help] <domain> [<action>] [<args>]
 "@
 }
 
+function Format-StatusKeyLabel {
+    param([Parameter(Mandatory = $true)][string]$Key)
+
+    return (($Key -replace '_', ' ') + ":").PadRight(28)
+}
+
+function Write-StatusSection {
+    param(
+        [Parameter(Mandatory = $true)][string]$Title,
+        [Parameter(Mandatory = $true)][hashtable]$Tools,
+        [Parameter(Mandatory = $true)][string[]]$Keys
+    )
+
+    Write-Host "  $Title" -ForegroundColor Cyan
+    foreach ($key in $Keys) {
+        if (-not $Tools.ContainsKey($key)) { continue }
+
+        $value = [string]$Tools[$key]
+        $label = Format-StatusKeyLabel -Key $key
+        $valueColor = if ($value -eq "not found") { "Red" } else { "White" }
+
+        Write-Host "    $label" -NoNewline -ForegroundColor DarkGray
+        Write-Host $value -ForegroundColor $valueColor
+    }
+    Write-Host ""
+}
+
 # ═══════════════════════════════════════════════════════════════════════════════
 # ENVIRONMENT & SERVICE DETECTION
 # ═══════════════════════════════════════════════════════════════════════════════
@@ -1212,20 +1239,48 @@ function Show-PolyglotStatus {
     }
 
     $claudineMeta = Get-CommandResolution -Name "claudine"
-    if ($claudineMeta) {
+    $claudineScriptPath = Get-ClaudineScriptPath
+    if ($claudineScriptPath) {
+        $tools['claudine_cmd'] = $claudineScriptPath
+    } elseif ($claudineMeta) {
         $tools['claudine_cmd'] = if ($claudineMeta.Path) { $claudineMeta.Path } else { $claudineMeta.Display }
-    } elseif (Get-ClaudineScriptPath) {
-        $tools['claudine_cmd'] = (Get-ClaudineScriptPath)
     } else {
         $tools['claudine_cmd'] = 'not found'
     }
+    if ($claudineMeta) {
+        $claudineBinding = if ($claudineMeta.Type -in @("Function", "Alias")) {
+            $claudineMeta.Display
+        } elseif ($claudineMeta.Path) {
+            $claudineMeta.Path
+        } else {
+            $claudineMeta.Display
+        }
+        if ($claudineBinding -and $claudineBinding -ne $tools['claudine_cmd']) {
+            $tools['claudine_binding'] = $claudineBinding
+        }
+    }
     $chthonicMeta = Get-CommandResolution -Name "chthonic"
-    if ($chthonicMeta) {
+    $chthonicScriptPath = Join-Path $SCRIPT_DIR "chthonic.ps1"
+    if (Test-Path $chthonicScriptPath) {
+        $tools['chthonic_cmd'] = $chthonicScriptPath
+    } elseif ($chthonicMeta) {
         $tools['chthonic_cmd'] = if ($chthonicMeta.Path) { $chthonicMeta.Path } else { $chthonicMeta.Display }
     } elseif ($PSCommandPath -and (Test-Path $PSCommandPath)) {
         $tools['chthonic_cmd'] = $PSCommandPath
     } else {
         $tools['chthonic_cmd'] = 'not found'
+    }
+    if ($chthonicMeta) {
+        $chthonicBinding = if ($chthonicMeta.Type -in @("Function", "Alias")) {
+            $chthonicMeta.Display
+        } elseif ($chthonicMeta.Path) {
+            $chthonicMeta.Path
+        } else {
+            $chthonicMeta.Display
+        }
+        if ($chthonicBinding -and $chthonicBinding -ne $tools['chthonic_cmd']) {
+            $tools['chthonic_binding'] = $chthonicBinding
+        }
     }
     $miseMeta = Get-CommandResolution -Name "mise"
     if ($miseMeta) {
@@ -1340,14 +1395,33 @@ function Show-PolyglotStatus {
     } else {
         Write-Host "`nCHTHONIC POLYGLOT ENVIRONMENT v$VERSION" -ForegroundColor Cyan
         Write-Host ("="*60) -ForegroundColor DarkGray
-        $tools.GetEnumerator() | Where-Object {$_.Key -ne 'workspace'} | Sort-Object Key | ForEach-Object {
-            Write-Host "  $($_.Key.PadRight(10))" -NoNewline -ForegroundColor Cyan
-            if ($_.Value -eq 'not found') {
-                Write-Host $_.Value -ForegroundColor Red
-            } else {
-                Write-Host $_.Value -ForegroundColor White
-            }
-        }
+
+        Write-StatusSection -Title "Toolchain" -Tools $tools -Keys @(
+            "ruby", "rv", "rvw", "python", "uv", "ruff",
+            "bun", "biome", "go", "goup", "cargo", "rust", "rustup",
+            "mdbook", "git", "gcc", "make", "claude"
+        )
+
+        Write-StatusSection -Title "Commands" -Tools $tools -Keys @(
+            "chthonic_cmd", "chthonic_binding",
+            "claudine_cmd", "claudine_binding",
+            "claude_cmd", "rv_cmd", "rv_binding", "rv_binding_reason",
+            "rvar_cmd", "mise", "mise_cmd"
+        )
+
+        Write-StatusSection -Title "Platform" -Tools $tools -Keys @(
+            "code-insiders", "az", "bicep", "sqlcmd", "sqlpackage", "ssms",
+            "msvc_cl", "msbuild", "clang", "vs_ide", "vs_professional",
+            "vs_community", "vs_enterprise", "vs_buildtools", "vulkan"
+        )
+
+        Write-StatusSection -Title "Routing Metadata" -Tools $tools -Keys @(
+            "orchestrator_ssot", "orchestration_mode", "manager_model",
+            "unified_overlay_optional", "handler_ruby", "handler_python",
+            "handler_rust", "handler_go", "handler_js", "uv_tool_lane",
+            "research_ingest_role"
+        )
+
         Write-Host ("="*60) -ForegroundColor DarkGray
         Write-Host "  Workspace:" -NoNewline -ForegroundColor DarkGray
         Write-Host " $REPO_ROOT" -ForegroundColor White
@@ -1891,6 +1965,19 @@ function Invoke-Doctor {
 # MAIN DISPATCH - Meta CLI (Domain/Action Model)
 # ═══════════════════════════════════════════════════════════════════════════════
 
+# Normalize unbound raw tokens so forms like `chthonic --help` and
+# accidental dashed inputs like `chthonic -uv` can be handled explicitly.
+if ($args -and $args.Count -gt 0) {
+    if (-not $Command) {
+        $Command = $args[0]
+        if ($args.Count -gt 1) {
+            $CmdArgs = @($CmdArgs + $args[1..($args.Count - 1)])
+        }
+    } else {
+        $CmdArgs = @($CmdArgs + $args)
+    }
+}
+
 # Parse domain/action if provided
 $Domain = $Command
 $Action = if ($CmdArgs.Count -gt 0) { $CmdArgs[0] } else { $null }
@@ -2186,6 +2273,11 @@ switch ($Domain) {
             exit $exitCode
         }
         else {
+            if ($Domain) {
+                Write-Host "Unknown option: $Domain" -ForegroundColor Red
+                Write-Host "Use --help for usage, or run `chthonic status` / `claudine status` for structured output." -ForegroundColor Yellow
+                Write-Host ""
+            }
             Show-Help
             exit 1
         }
