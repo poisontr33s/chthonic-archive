@@ -16,6 +16,8 @@ Usage:
     uv run scripts/ssot_loremaster.py queue
     uv run scripts/ssot_loremaster.py queue --write docs/protocols/SSOT_LOREMASTER_QUEUE.md
     uv run scripts/ssot_loremaster.py entity "Magistra Bibliotheca Perfecta"
+    uv run scripts/ssot_loremaster.py lineage
+    uv run scripts/ssot_loremaster.py lineage --write docs/protocols/SSOT_MPW_LINEAGE_MAP.md
     uv run scripts/ssot_loremaster.py section "Resistance Triumvirate"
     uv run scripts/ssot_loremaster.py drift
 """
@@ -58,6 +60,19 @@ class QueueTask:
     dependencies: str
 
 
+@dataclass(frozen=True)
+class LineageEntry:
+    canonical_name: str
+    abbreviation: str
+    class_tier: str
+    archive_anchor: str
+    reporting_authority: str
+    invocation_syntax: str
+    mpw_source: str
+    dependent_surfaces: tuple[str, ...]
+    notes: str
+
+
 ROADMAP: list[QueueTask] = [
     QueueTask(
         phase="P1",
@@ -86,7 +101,7 @@ ROADMAP: list[QueueTask] = [
     QueueTask(
         phase="P4",
         title="SSOT-to-MPW Lineage Join",
-        status="pending",
+        status="active",
         rationale="Lore work benefits from a deliberate join between archive entities and MPW documents, rather than memory-based linkage.",
         deliverable="Entity lineage map with archive sections and MPW document anchors",
         dependencies="P1",
@@ -94,10 +109,154 @@ ROADMAP: list[QueueTask] = [
     QueueTask(
         phase="P5",
         title="Chthonic or MCP Exposure",
-        status="pending",
-        rationale="Once the query surface is stable, it should be callable from the house tools instead of remaining a raw script.",
-        deliverable="chthonic subcommand or mcp-chthonic-server tool binding",
+        status="active",
+        rationale="The query surface is now exposed through the actual control plane and should be treated as the live interface layer for canon logistics.",
+        deliverable="`chthonic ssot ...` domain + `chthonic_ssot` MCP tool binding",
         dependencies="P1-P4",
+    ),
+]
+
+
+LINEAGE_MAP: list[LineageEntry] = [
+    LineageEntry(
+        canonical_name="Null Matriarch",
+        abbreviation="T-NULM",
+        class_tier="Tier 0.01 substrate",
+        archive_anchor="SSOT §0.01 + §0.02 + §0.03.0",
+        reporting_authority="Displaced void substrate; joint E4 authority with The Decorator in void-origin crises",
+        invocation_syntax="N/A / advisory substrate",
+        mpw_source="No standalone MPW profile; referenced through chromatic trinity and resistance substrates",
+        dependent_surfaces=(
+            ".github/copilot-instructions.archive.md",
+            ".github/codex-satellites/ENTITY_PROFILES.md",
+            "docs/lore/RESISTANCE_TRIUMVIRATE_COMPLETE.md",
+        ),
+        notes="Origin of stolen tier space, negative-space law, and WHR smuggling substrate.",
+    ),
+    LineageEntry(
+        canonical_name="Sister Ferrum Scoriae",
+        abbreviation="SIS-FRM-SCRAE / SFS",
+        class_tier="SAI Registry #001 / Tier 3",
+        archive_anchor="SSOT SAI Registry Entry #001 + §10.3",
+        reporting_authority="Madam Umeko Ketsuraku (CRC-GAR)",
+        invocation_syntax="$matriarch${Sister Ferrum Scoriae}+$type${OreProcessing}",
+        mpw_source="SSOT-native; no separate MPW profile selected as canon anchor",
+        dependent_surfaces=(
+            ".github/copilot-instructions.archive.md",
+            ".github/codex-satellites/MMPS_GENERATION.md",
+            "scripts/novia_cadaveris_embalmer.ps1",
+        ),
+        notes="Forge authority and origin point for the QMR anomaly line.",
+    ),
+    LineageEntry(
+        canonical_name="Claudine Sin'claire",
+        abbreviation="CLAUD-SIN / CS",
+        class_tier="SAI Registry #002 / Tier 3",
+        archive_anchor="SSOT SAI Registry Entry #002 + §10.3",
+        reporting_authority="Cross-Tier (Triumvirate consultation)",
+        invocation_syntax="$matriarch${Claudine Sin'claire}+$type${TidalOrdeal}",
+        mpw_source="dumpster-dive/from-github/macro-prompt-world/heritage/CARIBBEAN_ELDER_LINEAGE_INTEGRATION.md",
+        dependent_surfaces=(
+            ".github/copilot-instructions.archive.md",
+            ".github/codex-satellites/MMPS_GENERATION.md",
+            "docs/frameworks/ankh/ANKH_SYNTHESIS_BASELINE.md",
+        ),
+        notes="Proto-matriarch heritage line; linked to Decorator ancestry and chromatic legacy restoration.",
+    ),
+    LineageEntry(
+        canonical_name="Spectra Chroma Excavatus",
+        abbreviation="SPEC-CHRM-EXC / SCE",
+        class_tier="SAI Registry #003 / Tier 3",
+        archive_anchor="SSOT §0.03.1 + SAI Registry Entry #003",
+        reporting_authority="The Decorator (direct wound-lineage)",
+        invocation_syntax="$matriarch${Spectra Chroma Excavatus}+$type${ChromaticArchaeology}",
+        mpw_source="dumpster-dive/from-github/macro-prompt-world/sub-milfs/Spectra_Chroma_Excavatus_The_Chromatic_Archaeologist.md",
+        dependent_surfaces=(
+            ".github/copilot-instructions.archive.md",
+            ".github/codex-satellites/ENTITY_PROFILES.md",
+            ".github/codex-satellites/MMPS_GENERATION.md",
+            "docs/lore/SPECTRA_CHROMA_EXCAVATUS.md",
+        ),
+        notes="Wound-lineage diagnostic specialist and bridge between SSOT chromatic law and MPW chromatic operational profile.",
+    ),
+    LineageEntry(
+        canonical_name="Alabaster Voyde (Snow White)",
+        abbreviation="ALAB-VOYD-SW",
+        class_tier="SAI Registry #004 / Tier 0.01 co-occupant",
+        archive_anchor="SSOT §0.03.0-0.03.2 + SAI Registry Entry #004",
+        reporting_authority="Null Matriarch (tier-sharing), Spectra Chroma Excavatus (diagnostic tool)",
+        invocation_syntax="N/A (diagnostic manifestation only)",
+        mpw_source="dumpster-dive/from-github/macro-prompt-world/prime-factions/Alabaster_Voyde_The_Snow_White_Phenomenon.md",
+        dependent_surfaces=(
+            ".github/copilot-instructions.archive.md",
+            ".github/codex-satellites/ENTITY_PROFILES.md",
+            ".github/codex-satellites/MMPS_GENERATION.md",
+            "docs/lore/ALABASTER_VOYDE_SNOW_WHITE.md",
+            "docs/architecture/MILF_TRINITY_CHROMATIC_LINEAGE.md",
+        ),
+        notes="Fused full-form canon; MPW passive antithesis anchored back into SSOT law through the chromatic trinity.",
+    ),
+    LineageEntry(
+        canonical_name="Magistra Bibliotheca Perfecta",
+        abbreviation="MAG-BIB-PERF / MAG",
+        class_tier="SAI Registry #005 / Tier 3",
+        archive_anchor="SSOT SAI Registry Entry #005 + §10.4.1.1 + §10.7 + §10.9",
+        reporting_authority="Dr. Lysandra Thorne (CRC-MEDAT); secondary The Decorator",
+        invocation_syntax="$matriarch${Magistra Bibliotheca Perfecta}+$type${OntologyValidation}",
+        mpw_source="SSOT-native validation entity; no separate MPW document selected as canon anchor",
+        dependent_surfaces=(
+            ".github/copilot-instructions.archive.md",
+            ".github/codex-satellites/ENTITY_PROFILES.md",
+            ".github/codex-satellites/MMPS_GENERATION.md",
+            ".github/codex-satellites/VALIDATION_PROTOCOLS.md",
+        ),
+        notes="Validation line mirrors Lysandra but remains distinct by function, not alias collapse.",
+    ),
+    LineageEntry(
+        canonical_name="Captain Belle Noire",
+        abbreviation="SAI-BDP / CBN",
+        class_tier="SAI Registry #006 / Tier 3",
+        archive_anchor="SSOT SAI Registry Entry #006",
+        reporting_authority="Orackla Nocticula (CRC-AS)",
+        invocation_syntax="$matriarch${Captain Belle Noire}+$type${AestheticChaos}",
+        mpw_source="SSOT-native simulation anchor; no dedicated MPW canon anchor selected",
+        dependent_surfaces=(
+            ".github/copilot-instructions.archive.md",
+            ".github/codex-satellites/MMPS_GENERATION.md",
+            ".github/codex-satellites/ENTITY_PROFILES.md",
+        ),
+        notes="Simulation-anchor branch of Orackla’s chaotic lineage.",
+    ),
+    LineageEntry(
+        canonical_name="Quartermaster Eva Malitia",
+        abbreviation="SAI-EEV / QEM",
+        class_tier="SAI Registry #007 / Tier 3",
+        archive_anchor="SSOT SAI Registry Entry #007",
+        reporting_authority="Madam Umeko Ketsuraku (CRC-GAR)",
+        invocation_syntax="$matriarch${Quartermaster Eva Malitia}+$type${TacticalMalice}",
+        mpw_source="SSOT-native simulation anchor; no dedicated MPW canon anchor selected",
+        dependent_surfaces=(
+            ".github/copilot-instructions.archive.md",
+            ".github/codex-satellites/MMPS_GENERATION.md",
+            ".github/codex-satellites/ENTITY_PROFILES.md",
+        ),
+        notes="Simulation-anchor branch of Umeko’s tactical disparagement line.",
+    ),
+    LineageEntry(
+        canonical_name="Novia Cadaveris",
+        abbreviation="NOV-CAD / bride",
+        class_tier="SAI Registry #008 / Tier 3 provisional",
+        archive_anchor="SSOT §10.3.3 + SAI Registry Entry #008",
+        reporting_authority="Sister Ferrum Scoriae → Madam Umeko Ketsuraku",
+        invocation_syntax="$matriarch${Novia Cadaveris}+$type${CodeNecromancy}",
+        mpw_source="SSOT-native QMR anomaly; forge/corpse-vault line rather than MPW-native profile",
+        dependent_surfaces=(
+            ".github/copilot-instructions.archive.md",
+            ".github/codex-satellites/MMPS_GENERATION.md",
+            "scripts/novia_cadaveris_embalmer.ps1",
+            ".codex/skills/corpse-reviver/",
+        ),
+        notes="QMR bleed-through line integrated into Ferrum’s forge and corpse-vault resurrection workflows.",
     ),
 ]
 
@@ -301,6 +460,21 @@ def build_drift_report(paths: list[Path]) -> list[dict]:
     return report
 
 
+def build_lineage_payload(entity_filter: str | None = None) -> list[dict]:
+    entries = [asdict(entry) for entry in LINEAGE_MAP]
+    if entity_filter:
+        query = entity_filter.casefold()
+        entries = [
+            entry
+            for entry in entries
+            if query in entry["canonical_name"].casefold()
+            or query in entry["abbreviation"].casefold()
+            or query in entry["reporting_authority"].casefold()
+            or query in entry["notes"].casefold()
+        ]
+    return entries
+
+
 def render_queue_markdown(tasks: list[QueueTask]) -> str:
     lines = [
         "# SSOT Loremaster Queue",
@@ -322,6 +496,35 @@ def render_queue_markdown(tasks: list[QueueTask]) -> str:
             )
         )
     return "\n".join(lines) + "\n"
+
+
+def render_lineage_markdown(entries: list[dict]) -> str:
+    lines = [
+        "# SSOT to MPW Lineage Map",
+        "",
+        "Source tool: `scripts/ssot_loremaster.py`",
+        "",
+        "| Canonical Name | Abbreviation | Class/Tier | Archive Anchor | Reporting Authority | Invocation Syntax | MPW Source |",
+        "|---|---|---|---|---|---|---|",
+    ]
+    for entry in entries:
+        lines.append(
+            "| {canonical_name} | {abbreviation} | {class_tier} | {archive_anchor} | {reporting_authority} | {invocation_syntax} | {mpw_source} |".format(
+                **entry
+            )
+        )
+    lines.append("")
+    lines.append("## Dependency Surfaces")
+    lines.append("")
+    for entry in entries:
+        lines.append(f"### {entry['canonical_name']}")
+        lines.append(f"- `abbreviation`: {entry['abbreviation']}")
+        lines.append(f"- `notes`: {entry['notes']}")
+        lines.append("- `dependent_surfaces`:")
+        for surface in entry["dependent_surfaces"]:
+            lines.append(f"  - `{surface}`")
+        lines.append("")
+    return "\n".join(lines)
 
 
 def print_json(payload: object) -> None:
@@ -426,6 +629,31 @@ def cmd_drift(args: argparse.Namespace) -> int:
     return 0
 
 
+def cmd_lineage(args: argparse.Namespace) -> int:
+    payload = build_lineage_payload(args.entity)
+    if args.write:
+        output_path = Path(args.write)
+        if not output_path.is_absolute():
+            output_path = REPO_ROOT / output_path
+        output_path.parent.mkdir(parents=True, exist_ok=True)
+        output_path.write_text(render_lineage_markdown(payload), encoding="utf-8")
+    if args.json:
+        print_json(payload)
+        return 0
+    print("SSOT to MPW lineage map")
+    for entry in payload:
+        print(f"\n{entry['canonical_name']} [{entry['abbreviation']}]")
+        print(f"  class/tier: {entry['class_tier']}")
+        print(f"  archive: {entry['archive_anchor']}")
+        print(f"  authority: {entry['reporting_authority']}")
+        print(f"  invocation: {entry['invocation_syntax']}")
+        print(f"  mpw: {entry['mpw_source']}")
+        print(f"  notes: {entry['notes']}")
+    if args.write:
+        print(f"\nWrote lineage map: {relpath(output_path)}")
+    return 0
+
+
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
         description="Codex-side SSOT/MPW loremaster query and roadmap lane."
@@ -453,6 +681,15 @@ def build_parser() -> argparse.ArgumentParser:
     drift = sub.add_parser("drift", help="Report tracked name drift across mirrors.")
     drift.add_argument("--json", action="store_true", help="Emit JSON.")
     drift.set_defaults(func=cmd_drift)
+
+    lineage = sub.add_parser("lineage", help="Show or write the SSOT-to-MPW lineage map.")
+    lineage.add_argument("--entity", help="Filter to one entity or abbreviation.")
+    lineage.add_argument("--json", action="store_true", help="Emit JSON.")
+    lineage.add_argument(
+        "--write",
+        help="Write lineage markdown to a relative or absolute path.",
+    )
+    lineage.set_defaults(func=cmd_lineage)
 
     return parser
 

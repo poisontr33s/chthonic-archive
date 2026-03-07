@@ -20,9 +20,9 @@
  * @Purpose       Bun-centric unified MCP server: polyglot toolchain (cargo,
  *                uv, gcc, gpp, go, ruby, git, bash, bun, make) + chthonic
  *                archive CLI (resolve, audit, map, analyze, compact, status,
- *                book, scan, validate_ssot, probe, report) + meta tools
+ *                book, ssot, scan, validate_ssot, probe, report) + meta tools
  *                (polyglot_versions, claudine_env, meta_cli v3.0.0).
- *                24 tools total. Protocol: MCP 2024-11-05 (JSON-RPC 2.0
+ *                Protocol: MCP 2024-11-05 (JSON-RPC 2.0
  *                over stdio).
  */
 
@@ -268,6 +268,7 @@ const POLYGLOT_TOOLS: ToolDefinition[] = [
 const ARCHIVE_TOOLS: ToolDefinition[] = [
   { name: "chthonic_status", description: "Get polyglot environment status display with all tool versions.", inputSchema: { type: "object", properties: {}, required: [] } },
   { name: "chthonic_resolve", description: "Resolve Semantic IDs (@SID) to file paths. Use --list for all SIDs.", inputSchema: { type: "object", properties: { sid: { type: "string", description: "Semantic ID to resolve" }, list: { type: "boolean", description: "List all SIDs" }, json: { type: "boolean", description: "Output as JSON" } }, required: [] } },
+  { name: "chthonic_ssot", description: "Query the SSOT loremaster control plane: queue, entity, section, drift, lineage.", inputSchema: { type: "object", properties: { action: { type: "string", enum: ["queue", "entity", "section", "drift", "lineage"], description: "SSOT loremaster action to run" }, query: { type: "string", description: "Entity or section query. For lineage, this filters by entity." }, write: { type: "string", description: "Optional output path for queue/lineage markdown" }, json: { type: "boolean", description: "Output as JSON" } }, required: ["action"] } },
   { name: "chthonic_audit", description: "Analyze root directory health, find stale/orphan files.", inputSchema: { type: "object", properties: { dry_run: { type: "boolean", description: "Preview without changes" }, json: { type: "boolean", description: "Output as JSON" } }, required: [] } },
   { name: "chthonic_map", description: "Generate codebase inventory and dependency map.", inputSchema: { type: "object", properties: { dry_run: { type: "boolean", description: "Preview without writing" }, json: { type: "boolean", description: "Output as JSON" } }, required: [] } },
   { name: "chthonic_analyze", description: "Frequency analysis of line patterns in a file.", inputSchema: { type: "object", properties: { file: { type: "string", description: "File to analyze" }, top: { type: "number", description: "Number of top patterns to show" }, json: { type: "boolean", description: "Output as JSON" } }, required: ["file"] } },
@@ -290,8 +291,8 @@ const META_TOOLS: ToolDefinition[] = [
       properties: {
         domain: {
           type: "string",
-          description: "Domain: env, status, detect, ide, mcp, config, audit, compact, resolve, map, analyze, book",
-          enum: ["env", "status", "detect", "ide", "mcp", "config", "audit", "compact", "resolve", "map", "analyze", "book", "extract"]
+          description: "Domain: env, status, detect, ide, mcp, config, ssot, audit, compact, resolve, map, analyze, book",
+          enum: ["env", "status", "detect", "ide", "mcp", "config", "ssot", "audit", "compact", "resolve", "map", "analyze", "book", "extract"]
         },
         action: {
           type: "string",
@@ -513,6 +514,19 @@ async function handleToolCall(name: string, args: Record<string, unknown>): Prom
       if (args.json) cmdArgs.push("--json");
       if (args.sid) cmdArgs.push(args.sid as string);
       break;
+    case "chthonic_ssot": {
+      cmdArgs.push("ssot");
+      const action = (args.action as string | undefined) ?? "queue";
+      cmdArgs.push(action);
+      if (action === "entity" || action === "section") {
+        if (args.query) cmdArgs.push(args.query as string);
+      } else if (action === "lineage") {
+        if (args.query) cmdArgs.push("--entity", args.query as string);
+      }
+      if (args.write) cmdArgs.push("--write", args.write as string);
+      if (args.json) cmdArgs.push("--json");
+      break;
+    }
     case "chthonic_audit":
       cmdArgs.push("audit");
       if (args.dry_run) cmdArgs.push("--dry-run");

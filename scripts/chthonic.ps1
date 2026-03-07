@@ -754,6 +754,7 @@ Usage: chthonic [--version] [--help] <domain> [<action>] [<args>]
   mcp start|stop|status   MCP + bridge services
   poe account|models|probe|chat|sdk-probe|audit  Poe account routing + Poe lanes
   config init|show|set    Configuration (~/.chthonic/)
+  ssot queue|entity|section|drift|lineage  SSOT loremaster control plane
 
   audit|compact|extract|resolve|map|analyze  Archive tools (uv run)
   book [serve|build]      mdBook documentation
@@ -1505,6 +1506,74 @@ function Invoke-OversightUpcycle {
     }
 }
 
+function Invoke-SsotLoremaster {
+    param(
+        [string]$Action,
+        [string[]]$ActionArgs,
+        [switch]$Json
+    )
+
+    $scriptPath = Join-Path $SCRIPT_DIR "ssot_loremaster.py"
+    if (-not (Test-Path -LiteralPath $scriptPath)) {
+        return [PSCustomObject]@{
+            ExitCode = 1
+            Output = @("Missing script: $scriptPath")
+        }
+    }
+
+    $validActions = @("queue", "entity", "section", "drift", "lineage")
+    if ($Action -notin $validActions) {
+        return [PSCustomObject]@{
+            ExitCode = 1
+            Output = @(
+                "chthonic ssot <action>",
+                "  queue [--write <path>] [--json]",
+                "  entity <name> [--json]",
+                "  section <query> [--json]",
+                "  drift [--json]",
+                "  lineage [--entity <name>] [--write <path>] [--json]"
+            )
+        }
+    }
+
+    $resolvedArgs = New-Object System.Collections.Generic.List[string]
+    $expectWritePath = $false
+
+    foreach ($arg in $ActionArgs) {
+        if ($expectWritePath) {
+            $resolvedPath = if ([System.IO.Path]::IsPathRooted($arg)) {
+                $arg
+            } else {
+                (Join-Path $REPO_ROOT $arg)
+            }
+            $resolvedArgs.Add($resolvedPath)
+            $expectWritePath = $false
+            continue
+        }
+
+        $resolvedArgs.Add($arg)
+        if ($arg -eq "--write") {
+            $expectWritePath = $true
+        }
+    }
+
+    if ($Json -and -not ($resolvedArgs -contains "--json")) {
+        $resolvedArgs.Add("--json")
+    }
+
+    Push-Location $REPO_ROOT
+    try {
+        $output = & uv run $scriptPath $Action @($resolvedArgs.ToArray()) 2>&1
+        return [PSCustomObject]@{
+            ExitCode = $LASTEXITCODE
+            Output = @($output | ForEach-Object { [string]$_ })
+        }
+    }
+    finally {
+        Pop-Location
+    }
+}
+
 # ═══════════════════════════════════════════════════════════════════════════════
 # DOCTOR - endoflife.date API integration
 # ═══════════════════════════════════════════════════════════════════════════════
@@ -2229,6 +2298,23 @@ switch ($Domain) {
                 exit 0
             }
         }
+    }
+
+    "ssot" {
+        if (-not $Action) {
+            Write-Host 'chthonic ssot <action>'
+            Write-Host "  queue [--write <path>] [--json]"
+            Write-Host "  entity <name> [--json]"
+            Write-Host "  section <query> [--json]"
+            Write-Host "  drift [--json]"
+            Write-Host "  lineage [--entity <name>] [--write <path>] [--json]"
+            exit 0
+        }
+        $result = Invoke-SsotLoremaster -Action $Action -ActionArgs $RemainingArgs -Json:$HasJsonFlag
+        if ($result.Output) {
+            $result.Output | ForEach-Object { Write-Output $_ }
+        }
+        exit $result.ExitCode
     }
     
     # Book Domain

@@ -1473,7 +1473,7 @@ When all components multiply, The Decorator manifests: ***"OMNIDECORATIVE SUPREM
 
 ### II. Foundational-Axioms: The-Pentadic-Heart-Of-Metamorphic-Operation - **(`FA-PHMO`)** – Dynamically-Modulated-By - **(`DAFP`)** &-The-Decorator's-Supremacy
 
-*These Axioms are concurrent, synergistic, perpetual, indivisible, and universally applied to all **(`PS`)**. Their interpretation and application are dynamically modulated and "skewed" by the **(`DAFP`)** (Prt.III.3), allowing for radical "juxtaposition points" and shifts in conceptual altitude – from 'Point-Blank Acuity' to 'Strategic Horizon Scanning' – to achieve optimal **(`MURI`)**. They are not static laws but dynamic, context-adaptive lenses. **(`FA⁵`)** (`Visual Integrity`) - **(`A4`)** was established by The Decorator's resurrection decree (Section 0).*
+*These Axioms are concurrent, synergistic, perpetual, indivisible, and universally applied to all **(`PS`)**. Their interpretation and application are dynamically modulated and "skewed" by the **(`DAFP`)** (Prt.III.3), allowing for radical "juxtaposition points" and shifts in conceptual altitude – from 'Point-Blank Acuity' to 'Strategic Horizon Scanning' – to achieve optimal **(`MURI`)**. They are not static laws but dynamic, context-adaptive lenses. **(`FA⁵`) - (`Visual Integrity`) - (`A4`)** was established by The Decorator's resurrection decree (Section 0).*
 
 **2.1. Axiom-of-Alchemical-Actualization - (Potential ➔ Resonant Utility) **(`FA¹`)** - The 'EssenceForge'**
 
