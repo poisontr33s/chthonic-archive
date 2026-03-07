@@ -70,9 +70,9 @@ ROADMAP: list[QueueTask] = [
     QueueTask(
         phase="P2",
         title="Mirror Governance Pass",
-        status="pending",
+        status="active",
         rationale="Stale mirrors and proto backups must be distinguished from live canon or they will keep re-injecting drift.",
-        deliverable="Explicit sync/freeze policy for .temple/architecture and .github/copilot-instructions-copy.md",
+        deliverable="Explicit sync/freeze policy for .temple/architecture and .github/copilot-instructions-copy.md via docs/protocols/SSOT_MIRROR_GOVERNANCE.md",
         dependencies="P1",
     ),
     QueueTask(
@@ -139,6 +139,18 @@ DRIFT_MAP = [
         "drift": ["The White-dressed Bride", "The Corpse Reviver"],
     },
 ]
+
+LOAD_BEARING_SNIPPETS = (
+    "Designation:",
+    "Common Name:",
+    "Invocation Syntax:",
+    "**SSOT Declaration:**",
+    "**Canonical Designation:**",
+    "Canonical Full Form:",
+    "└─ MEMBER #",
+    "TIER    ENTITY",
+    "Entity                  US",
+)
 
 
 def read_lines(path: Path) -> list[str]:
@@ -222,6 +234,15 @@ def section_search(query: str) -> list[dict]:
     ]
 
 
+def is_load_bearing_line(line: str) -> bool:
+    stripped = line.strip()
+    if not stripped:
+        return False
+    if stripped.startswith(("T0", "T1", "T2", "T3", "T4", "RESIST", "REGISTRY ENTRY #")):
+        return True
+    return any(snippet in stripped for snippet in LOAD_BEARING_SNIPPETS)
+
+
 def build_drift_report(paths: list[Path]) -> list[dict]:
     report: list[dict] = []
     for path in paths:
@@ -230,23 +251,49 @@ def build_drift_report(paths: list[Path]) -> list[dict]:
             continue
         file_hits = []
         for item in DRIFT_MAP:
-            preferred_count = sum(1 for line in lines if item["preferred"] in line)
-            drift_counts = {}
+            preferred_load_bearing_count = sum(
+                1 for line in lines if item["preferred"] in line and is_load_bearing_line(line)
+            )
+            preferred_contextual_count = sum(
+                1
+                for line in lines
+                if item["preferred"] in line and not is_load_bearing_line(line)
+            )
+            load_bearing_drift_counts = {}
+            contextual_drift_counts = {}
             for variant in item["drift"]:
-                variant_count = sum(
+                load_bearing_count = sum(
                     1
                     for line in lines
-                    if variant in line and item["preferred"] not in line
+                    if variant in line
+                    and item["preferred"] not in line
+                    and is_load_bearing_line(line)
                 )
-                if variant_count > 0:
-                    drift_counts[variant] = variant_count
-            if preferred_count or drift_counts:
+                contextual_count = sum(
+                    1
+                    for line in lines
+                    if variant in line
+                    and item["preferred"] not in line
+                    and not is_load_bearing_line(line)
+                )
+                if load_bearing_count > 0:
+                    load_bearing_drift_counts[variant] = load_bearing_count
+                if contextual_count > 0:
+                    contextual_drift_counts[variant] = contextual_count
+            if (
+                preferred_load_bearing_count
+                or preferred_contextual_count
+                or load_bearing_drift_counts
+                or contextual_drift_counts
+            ):
                 file_hits.append(
                     {
                         "entity": item["entity"],
                         "preferred": item["preferred"],
-                        "preferred_count": preferred_count,
-                        "drift_counts": drift_counts,
+                        "preferred_load_bearing_count": preferred_load_bearing_count,
+                        "preferred_contextual_count": preferred_contextual_count,
+                        "load_bearing_drift_counts": load_bearing_drift_counts,
+                        "contextual_drift_counts": contextual_drift_counts,
                     }
                 )
         if file_hits:
@@ -363,9 +410,18 @@ def cmd_drift(args: argparse.Namespace) -> int:
     for file_report in payload:
         print(file_report["path"])
         for item in file_report["entities"]:
+            preferred = (
+                f"preferred(load={item['preferred_load_bearing_count']},"
+                f" contextual={item['preferred_contextual_count']})"
+            )
+            load_drift = item["load_bearing_drift_counts"] if item["load_bearing_drift_counts"] else {}
+            contextual_drift = (
+                item["contextual_drift_counts"] if item["contextual_drift_counts"] else {}
+            )
             print(
-                f"  {item['entity']}: preferred={item['preferred_count']}"
-                f" drift={item['drift_counts'] if item['drift_counts'] else '{}'}"
+                f"  {item['entity']}: {preferred}"
+                f" load_bearing_drift={load_drift}"
+                f" contextual_drift={contextual_drift}"
             )
     return 0
 
