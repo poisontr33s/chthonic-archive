@@ -754,6 +754,7 @@ Usage: chthonic [--version] [--help] <domain> [<action>] [<args>]
   mcp start|stop|status   MCP + bridge services
   poe account|models|probe|chat|sdk-probe|audit  Poe account routing + Poe lanes
   config init|show|set    Configuration (~/.chthonic/)
+  shell brush|pwsh|bash|probe  Experimental shell lane + shell capability probe
   ssot queue|entity|section|drift|lineage  SSOT loremaster control plane
 
   audit|compact|extract|resolve|map|analyze  Archive tools (uv run)
@@ -1234,12 +1235,30 @@ function Show-PolyglotStatus {
     } catch {
         $tools['claude'] = 'not found'
     }
+    try {
+        $brushOut = (& brush --version 2>$null)
+        if (($brushOut -join "`n") -match '^brush\s+([0-9][^\s]*)') {
+            $tools['brush'] = $matches[1]
+        } elseif ($brushOut) {
+            $tools['brush'] = ($brushOut | Select-Object -First 1).ToString().Trim()
+        } else {
+            $tools['brush'] = 'not found'
+        }
+    } catch {
+        $tools['brush'] = 'not found'
+    }
 
     $claudeMeta = Get-CommandResolution -Name "claude"
     if ($claudeMeta) {
         $tools['claude_cmd'] = if ($claudeMeta.Path) { $claudeMeta.Path } else { $claudeMeta.Display }
     } else {
         $tools['claude_cmd'] = 'not found'
+    }
+    $brushMeta = Get-CommandResolution -Name "brush"
+    if ($brushMeta) {
+        $tools['brush_cmd'] = if ($brushMeta.Path) { $brushMeta.Path } else { $brushMeta.Display }
+    } else {
+        $tools['brush_cmd'] = 'not found'
     }
 
     $claudineMeta = Get-CommandResolution -Name "claudine"
@@ -1392,6 +1411,7 @@ function Show-PolyglotStatus {
     $tools['vs_buildtools'] = if ($vsBuildToolsVer) { $vsBuildToolsVer } else { "not found" }
     if ($env:VULKAN_SDK -match '(\d+\.\d+\.\d+\.\d+)') { $tools['vulkan'] = $matches[1] } else { $tools['vulkan'] = 'not found' }
     $tools['workspace'] = $REPO_ROOT
+    $tools['handler_shell'] = 'pwsh primary, brush experimental, bash fallback'
     
     # Output as JSON or human-readable
     if ($Json) {
@@ -1403,13 +1423,13 @@ function Show-PolyglotStatus {
         Write-StatusSection -Title "Toolchain" -Tools $tools -Keys @(
             "ruby", "rv", "rvw", "python", "uv", "ruff",
             "bun", "biome", "go", "goup", "cargo", "rust", "rustup",
-            "mdbook", "git", "gcc", "make", "claude"
+            "mdbook", "git", "gcc", "make", "claude", "brush"
         )
 
         Write-StatusSection -Title "Commands" -Tools $tools -Keys @(
             "chthonic_cmd", "chthonic_binding",
             "claudine_cmd", "claudine_binding",
-            "claude_cmd", "rv_cmd", "rv_binding", "rv_binding_reason",
+            "claude_cmd", "brush_cmd", "rv_cmd", "rv_binding", "rv_binding_reason",
             "rvar_cmd", "mise", "mise_cmd"
         )
 
@@ -1422,7 +1442,7 @@ function Show-PolyglotStatus {
         Write-StatusSection -Title "Routing Metadata" -Tools $tools -Keys @(
             "orchestrator_ssot", "orchestration_mode", "manager_model",
             "unified_overlay_optional", "handler_ruby", "handler_python",
-            "handler_rust", "handler_go", "handler_js", "uv_tool_lane",
+            "handler_rust", "handler_go", "handler_js", "handler_shell", "uv_tool_lane",
             "research_ingest_role"
         )
 
@@ -1574,6 +1594,47 @@ function Invoke-SsotLoremaster {
     }
 }
 
+function Invoke-ShellProbe {
+    param([switch]$Json)
+
+    $shells = @(
+        [PSCustomObject]@{ name = "pwsh";  path = (Get-CommandPathFlexible -Name "pwsh");  version = $null; note = "primary control-plane host" },
+        [PSCustomObject]@{ name = "brush"; path = (Get-CommandPathFlexible -Name "brush"); version = $null; note = "experimental rust shell lane" },
+        [PSCustomObject]@{ name = "bash";  path = (Get-CommandPathFlexible -Name "bash");  version = $null; note = "fallback POSIX lane" }
+    )
+
+    foreach ($shell in $shells) {
+        if (-not $shell.path) { continue }
+        try {
+            switch ($shell.name) {
+                "pwsh"  { $shell.version = ((& $shell.path -NoLogo -NoProfile -Command '$PSVersionTable.PSVersion.ToString()' 2>$null) | Select-Object -First 1).ToString().Trim() }
+                "brush" { $shell.version = (((& $shell.path --version 2>$null) | Select-Object -First 1).ToString().Trim() -replace '^brush\s+', '') }
+                "bash"  { $shell.version = (((& $shell.path --version 2>$null) | Select-Object -First 1).ToString().Trim()) }
+            }
+        } catch {
+            if (-not $shell.version) { $shell.version = "unresolved" }
+        }
+    }
+
+    if ($Json) {
+        Write-Output (ConvertTo-Json $shells -Compress -Depth 5)
+        return
+    }
+
+    Write-Host ""
+    Write-Host "CHTHONIC SHELL PROBE" -ForegroundColor Cyan
+    Write-Host ("="*60) -ForegroundColor DarkGray
+    foreach ($shell in $shells) {
+        $status = if ($shell.path) { $shell.path } else { "not found" }
+        $color = if ($shell.path) { "White" } else { "Red" }
+        Write-Host ("  " + $shell.name.PadRight(8)) -NoNewline -ForegroundColor Gray
+        Write-Host (($shell.version ?? "not found").PadRight(24)) -NoNewline -ForegroundColor $color
+        Write-Host $status -ForegroundColor DarkGray
+    }
+    Write-Host ("="*60) -ForegroundColor DarkGray
+    Write-Host ""
+}
+
 # ═══════════════════════════════════════════════════════════════════════════════
 # DOCTOR - endoflife.date API integration
 # ═══════════════════════════════════════════════════════════════════════════════
@@ -1598,6 +1659,11 @@ function Get-InstalledVersion {
                 return $null
             }
             "bun"        { return (bun --version 2>$null) }
+            "brush"      {
+                $v = brush --version 2>$null
+                if ($v -match '^brush\s+(\d+\.\d+\.\d+)') { return $matches[1] }
+                return $v
+            }
             "rust"       { $v = rustc -V 2>$null; if ($v -match '(\d+\.\d+\.\d+)') { return $matches[1] }; return $null }
             "go"         {
                 # Try PATH first, then goup-managed Go
@@ -1666,6 +1732,10 @@ $global:DoctorFixMap = @{
         Upgrade = { bun upgrade }; UpgradeDesc = "bun upgrade"
         Install = { irm bun.sh/install.ps1 | iex }; InstallDesc = "irm bun.sh/install.ps1 | iex"
     }
+    brush  = @{
+        Upgrade = { cargo install --locked brush-shell }; UpgradeDesc = "cargo install --locked brush-shell"
+        Install = { cargo install --locked brush-shell }; InstallDesc = "cargo install --locked brush-shell"
+    }
     rust   = @{
         Upgrade = { rustup update stable }; UpgradeDesc = "rustup update stable"
         Install = { irm https://sh.rustup.rs -useb | iex }; InstallDesc = "irm rustup.rs | iex"
@@ -1702,6 +1772,7 @@ function Show-Origins {
         @{ Name = "goup";    Cmd = "goup";    Method = "GH release binary"; Ecosystem = "cargo" },
         @{ Name = "cargo";   Cmd = "cargo";   Method = "rustup toolchain"; Ecosystem = "cargo" },
         @{ Name = "rustup";  Cmd = "rustup";  Method = "rustup manager"; Ecosystem = "cargo" },
+        @{ Name = "brush";   Cmd = "brush";   Method = "cargo install brush-shell"; Ecosystem = "cargo" },
         @{ Name = "biome";   Cmd = "biome";   Method = "bun add -g";    Ecosystem = "bun" },
         @{ Name = "ruff";    Cmd = "ruff";    Method = "uv tool";       Ecosystem = "uv" },
         @{ Name = "cmake";   Cmd = "cmake";   Method = "uv tool";       Ecosystem = "uv" },
@@ -1843,6 +1914,7 @@ function Invoke-Doctor {
         @{ Name = "ruby";       Product = "ruby";       Manager = "rv" },
         @{ Name = "python";     Product = "python";     Manager = "uv" },
         @{ Name = "bun";        Product = "bun";        Manager = "bun" },
+        @{ Name = "brush";      Product = "brush-shell"; Manager = "cargo"; Optional = $true },
         @{ Name = "rust";       Product = "rust";       Manager = "rustup" },
         @{ Name = "go";         Product = "go";         Manager = "goup" },
         @{ Name = "visualstudio"; Product = "visual-studio"; Manager = "vs"; Optional = $true },
@@ -2295,6 +2367,65 @@ switch ($Domain) {
                 Write-Host "  init       - Initialize configuration"
                 Write-Host "  show       - Display configuration"
                 Write-Host '  set <k> <v> - Set configuration value'
+                exit 0
+            }
+        }
+    }
+
+    "shell" {
+        switch ($Action) {
+            "probe" {
+                Invoke-ShellProbe -Json:$HasJsonFlag
+                exit 0
+            }
+            "brush" {
+                $brushExe = Get-CommandPathFlexible -Name "brush"
+                if (-not $brushExe) {
+                    Write-Error "brush not found on PATH"
+                    exit 1
+                }
+                if ($RemainingArgs.Count -ge 2 -and $RemainingArgs[0] -eq "--cmd") {
+                    & $brushExe -c $RemainingArgs[1]
+                } else {
+                    & $brushExe @RemainingArgs
+                }
+                exit $LASTEXITCODE
+            }
+            "pwsh" {
+                $pwshExe = Get-CommandPathFlexible -Name "pwsh"
+                if (-not $pwshExe) {
+                    Write-Error "pwsh not found on PATH"
+                    exit 1
+                }
+                if ($RemainingArgs.Count -ge 2 -and $RemainingArgs[0] -eq "--cmd") {
+                    & $pwshExe -NoLogo -Command $RemainingArgs[1]
+                } else {
+                    & $pwshExe @RemainingArgs
+                }
+                exit $LASTEXITCODE
+            }
+            "bash" {
+                $bashExe = Get-CommandPathFlexible -Name "bash"
+                if (-not $bashExe) {
+                    Write-Error "bash not found on PATH"
+                    exit 1
+                }
+                if ($RemainingArgs.Count -ge 2 -and $RemainingArgs[0] -eq "--cmd") {
+                    & $bashExe -lc $RemainingArgs[1]
+                } else {
+                    & $bashExe @RemainingArgs
+                }
+                exit $LASTEXITCODE
+            }
+            default {
+                Write-Host 'chthonic shell <action>'
+                Write-Host "  probe           - show detected shell lanes"
+                Write-Host "  brush [args...] - launch Brush"
+                Write-Host "  brush --cmd <c> - run one Brush command"
+                Write-Host "  pwsh [args...]  - launch PowerShell 7"
+                Write-Host "  pwsh --cmd <c>  - run one PowerShell command"
+                Write-Host "  bash [args...]  - launch Git/MSYS2 Bash"
+                Write-Host "  bash --cmd <c>  - run one Bash command"
                 exit 0
             }
         }

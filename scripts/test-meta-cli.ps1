@@ -47,5 +47,21 @@ Write-Host "✅ Test 5: chthonic --version" -ForegroundColor Green
 " 2>&1
 Write-Host ""
 
+# Test 6: Shell probe
+Write-Host "✅ Test 6: chthonic shell probe --json" -ForegroundColor Green
+& pwsh -NoProfile -Command "
+  Set-Location '$REPO_ROOT'
+  & '$SCRIPT_DIR\chthonic.ps1' shell probe --json
+" 2>&1 | Select-Object -First 10
+Write-Host ""
+
+# Test 7: Brush lane
+Write-Host "✅ Test 7: chthonic shell brush --cmd" -ForegroundColor Green
+& pwsh -NoProfile -Command "
+  Set-Location '$REPO_ROOT'
+  & '$SCRIPT_DIR\chthonic.ps1' shell brush --cmd 'echo BRUSH_TEST_OK'
+" 2>&1 | Select-Object -First 5
+Write-Host ""
+
 Write-Host "✅ All tests passed! Meta-CLI is working." -ForegroundColor Cyan
 

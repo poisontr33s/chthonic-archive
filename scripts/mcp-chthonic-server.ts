@@ -106,6 +106,7 @@ function rubyToolchainCandidates(relativePath: string): string[] {
 
 const TOOL_PATHS: Record<string, string[]> = {
   bun: [process.execPath, join(HOME, ".bun", "bin", "bun.exe")],
+  brush: [join(HOME, ".cargo", "bin", "brush.exe")],
   uv: [join(HOME, ".local", "bin", "uv.exe")],
   cargo: [join(HOME, ".cargo", "bin", "cargo.exe")],
   rustc: [join(HOME, ".cargo", "bin", "rustc.exe")],
@@ -262,6 +263,7 @@ const POLYGLOT_TOOLS: ToolDefinition[] = [
   { name: "ruby", description: "Run Ruby interpreter with args.", inputSchema: { type: "object", properties: { args: { type: "array", items: { type: "string" }, default: ["--version"], description: "Arguments to pass to ruby" } }, required: [] } },
   { name: "git", description: "Run git with args — status, log, diff, commit, push, etc.", inputSchema: { type: "object", properties: { args: { type: "array", items: { type: "string" }, default: ["status"], description: "Arguments to pass to git" } }, required: [] } },
   { name: "bash", description: "Run bash (MSYS2) with args or script.", inputSchema: { type: "object", properties: { args: { type: "array", items: { type: "string" }, default: ["--version"], description: "Arguments to pass to bash" } }, required: [] } },
+  { name: "brush", description: "Run Brush shell (Rust-based POSIX/bash-compatible shell) with args.", inputSchema: { type: "object", properties: { args: { type: "array", items: { type: "string" }, default: ["--version"], description: "Arguments to pass to brush" } }, required: [] } },
   { name: "make", description: "Run GNU make with args.", inputSchema: { type: "object", properties: { args: { type: "array", items: { type: "string" }, default: ["--version"], description: "Arguments to pass to make" } }, required: [] } },
 ];
 
@@ -285,14 +287,14 @@ const META_TOOLS: ToolDefinition[] = [
   { name: "claudine_env", description: "Activate/verify the claudine polyglot environment. Returns environment status.", inputSchema: { type: "object", properties: { verify: { type: "boolean", default: true, description: "Verify environment is properly configured" } }, required: [] } },
   {
     name: "meta_cli",
-    description: "Chthonic v3.0.0 Meta-CLI — unified polyglot development tool with domains: env, status, detect, ide (launch/detect/reset), mcp (start/stop/status), config (init/show/set), audit, compact, resolve, map, analyze, book.",
+    description: "Chthonic v3.0.0 Meta-CLI — unified polyglot development tool with domains: env, status, detect, ide (launch/detect/reset), mcp (start/stop/status), config (init/show/set), shell, audit, compact, resolve, map, analyze, book.",
     inputSchema: {
       type: "object",
       properties: {
         domain: {
           type: "string",
-          description: "Domain: env, status, detect, ide, mcp, config, ssot, audit, compact, resolve, map, analyze, book",
-          enum: ["env", "status", "detect", "ide", "mcp", "config", "ssot", "audit", "compact", "resolve", "map", "analyze", "book", "extract"]
+          description: "Domain: env, status, detect, ide, mcp, config, shell, ssot, audit, compact, resolve, map, analyze, book",
+          enum: ["env", "status", "detect", "ide", "mcp", "config", "shell", "ssot", "audit", "compact", "resolve", "map", "analyze", "book", "extract"]
         },
         action: {
           type: "string",
@@ -445,7 +447,7 @@ async function chthonicValidateSSOT(): Promise<string> {
 // ═══════════════════════════════════════════════════════════════════════════════
 
 const DIRECT_TOOL_MAP: Record<string, string> = {
-  cargo: "cargo", uv: "uv", bun_run: "bun", gcc: "gcc", gpp: "g++",
+  cargo: "cargo", uv: "uv", bun_run: "bun", brush: "brush", gcc: "gcc", gpp: "g++",
   go_run: "go", ruby: "ruby", git: "git", bash: "bash", make: "make"
 };
 
