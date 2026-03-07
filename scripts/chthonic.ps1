@@ -1057,7 +1057,10 @@ function Invoke-PolyglotActivation {
         }
     }
     
-    # Mark as activated
+    # Canon markers for the active Chthonic environment.
+    # Keep the older Claudine markers mirrored for compatibility during transition.
+    $env:CHTHONIC_ACTIVATED = "1"
+    $env:CHTHONIC_VERSION = $VERSION
     $env:CLAUDINE_ACTIVATED = "1"
     $env:CLAUDINE_VERSION = $VERSION
     $env:CHTHONIC_REPO_ROOT = $REPO_ROOT
