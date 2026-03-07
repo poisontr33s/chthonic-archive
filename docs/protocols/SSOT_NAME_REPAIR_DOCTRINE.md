@@ -27,6 +27,7 @@ They are drift until explicitly ratified by the user.
 
 - Canon name:
   The load-bearing identity used by SSOT, abbreviations, subsystem references, and entity law.
+  In some cases that canon is a fused full form, not a stripped core token.
 - Secondary epithet:
   A descriptive subtitle or dark-humour expansion that may accompany the canon name.
 - Drift variant:
@@ -42,8 +43,11 @@ They are drift until explicitly ratified by the user.
   `Seraphine Pyralis` is drift.
 - `Spectra Chroma Excavatus` is canonical.
   `Spectra Chroma` is shorthand only.
-- `Alabaster Voyde` is the canon core for the Snow White line.
+- `Alabaster Voyde (Snow White)` is the canonical full form for the Snow White line.
+  `Alabaster Voyde` and `Snow White` may appear contextually, but neither replaces the fused canonical form in load-bearing surfaces.
   `The Coke-Fuelled Snow White` is an approved secondary epithet.
+- `Magistra Bibliotheca Perfecta` is canonical.
+  `Magistra` is not a replacement canon in load-bearing surfaces.
 - `Novia Cadaveris` is the canon core for the QMR anomaly bride line.
   `The Necromancy-Pale Bridesmaiden` is an approved secondary epithet.
 
@@ -62,6 +66,8 @@ Do not replace canon names with shorthand labels in any system that depends on:
 - invocation syntax
 - cross-reference anchors
 - hierarchy tables
+
+Do not split a fused canonical form into a stripped token plus a substitute convention when the older SSOT law already bound the full form into the system.
 
 ## Operational Consequence
 

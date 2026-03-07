@@ -77,10 +77,10 @@ ROADMAP: list[QueueTask] = [
     ),
     QueueTask(
         phase="P3",
-        title="Alias Canon Layer",
-        status="pending",
-        rationale="Long-form canon names need stable table-safe aliases so measurement tables stop degrading into ad hoc truncation.",
-        deliverable="Single alias policy for fixed-width SSOT tables",
+        title="Full-Name Law Pass",
+        status="active",
+        rationale="The SSOT abbreviation system depends on original full names. Load-bearing tables should preserve those names rather than inventing replacement aliases.",
+        deliverable="Full-name restoration matrix for load-bearing tables and registry rows",
         dependencies="P1",
     ),
     QueueTask(
@@ -125,8 +125,13 @@ DRIFT_MAP = [
     },
     {
         "entity": "Alabaster",
-        "preferred": "Alabaster Voyde",
-        "drift": ["Alabaster Voyde (Snow White)"],
+        "preferred": "Alabaster Voyde (Snow White)",
+        "drift": ["Alabaster Voyde"],
+    },
+    {
+        "entity": "Magistra",
+        "preferred": "Magistra Bibliotheca Perfecta",
+        "drift": ["Magistra"],
     },
     {
         "entity": "Novia",

@@ -158,11 +158,11 @@ $nameJudgements = @(
     },
     [ordered]@{
         entity = "Snow White line"
-        preferred_name = "Alabaster Voyde"
+        preferred_name = "Alabaster Voyde (Snow White)"
         secondary_epithet = "The Coke-Fuelled Snow White"
-        drift_variants = @("Snow White")
-        status = "canonical_but_shorthand_sensitive"
-        rationale = "Formally usable, but not sufficient by itself to preserve the dark-humour manifestation lineage."
+        drift_variants = @("Alabaster Voyde", "Snow White")
+        status = "canonical_full_form_required"
+        rationale = "The fused form is already load-bearing in the SSOT. Stripping Snow White out now alters the law encoded by the existing reference lattice."
         evidence = @(".github/copilot-instructions.archive.md:849", ".github/copilot-instructions.archive.md:4350")
     },
     [ordered]@{

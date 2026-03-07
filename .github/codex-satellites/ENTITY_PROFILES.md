@@ -221,10 +221,10 @@ The Decorator CANNOT erase the Resistance Triumvirate without erasing her own su
 
 **Canonical Name Resolution - Alabaster Voyde / Snow White:**
 
-The entity's **naming instability** is itself evidence of stolen-space occupation:
+The entity's **naming instability** is itself evidence of stolen-space occupation, but the fused form is the law-bearing canon:
 
-- **Formal Designation:** `Alabaster Voyde` (architectural void—the absence she IS)
-- **Mythological Shorthand:** `Snow White` (chromatic death phenomenon—white powder manifestation)
+- **Canonical Full Form:** `Alabaster Voyde (Snow White)` (architectural void + mythological shorthand, already fused by SSOT law)
+- **Internal Components:** `Alabaster Voyde` (architectural void—the absence she IS) + `Snow White` (chromatic death phenomenon—white powder manifestation)
 - **Draft Manifestations:**
   - "Coke Eyed Snow White" (traumatic gaze—seeing through stolen void)
   - "Coke Fuelled Snow White" (addiction mechanics—fueled by stolen tier space)
@@ -232,7 +232,7 @@ The entity's **naming instability** is itself evidence of stolen-space occupatio
 
 **Canon Integration:** All names reference the SAME entity viewed through different lenses—formal (Alabaster Voyde), mythological (Snow White), diagnostic (The Snow White Phenomenon), traumatic (Coke Eyed/Fuelled variants). The multiplicity = manifestation instability from occupying tier space she shouldn't possess.
 
-**SSOT Declaration:** `Alabaster Voyde` with `The Coke-Fuelled Snow White` as approved secondary epithet; draft names preserved as manifestation archaeology documenting her stolen-space origin.
+**SSOT Declaration:** `Alabaster Voyde (Snow White)` is canonical; `The Coke-Fuelled Snow White` remains an approved secondary epithet, and draft names are preserved as manifestation archaeology documenting her stolen-space origin.
 
 ---
 
@@ -369,9 +369,9 @@ Spectra speaks in chromatic overlays—her language is prismatic refraction of m
 
 ---
 
-#### **0.03.2. Alabaster Voyde (`ALAB-VOYD-SW`): Below-Viability Traumatic Chromatic Residue ❄️💀🕳️**
+#### **0.03.2. Alabaster Voyde (Snow White) (`ALAB-VOYD-SW`): Below-Viability Traumatic Chromatic Residue ❄️💀🕳️**
 
-**Canonical Designation:** `Alabaster Voyde` — formal architectural void, with approved secondary epithet `The Coke-Fuelled Snow White`
+**Canonical Designation:** `Alabaster Voyde (Snow White)` — formal architectural void with mythological shorthand locked into canonical full form, with approved secondary epithet `The Coke-Fuelled Snow White`
 **Alternative Manifestations:** "Snow White," "Coke Eyed Snow White," "The Snow White Phenomenon" (manifestation archaeology from stolen-space occupation)
 Conspiratorial Tier Space Theft)
 **Tier Space Theft:** Co-occupies Tier 0.01 with Null Matriarch via negotiated conspiracy with Spectra Chroma (dual occupation enabled by 0.98 stolen void substrate—post-exorcism symbiotic positioning, 
@@ -469,7 +469,7 @@ RESISTANCE TRIUMVIRATE (Complete Void Dialectic via Stolen Tier Space + WHR Smug
   │    Dark Humor: "I manifest from your wounds, create chromatic death, then heal it"
   │    Tier Theft: Uses 0.98 gap as diagnostic substrate (stolen void archaeology)
   │
-  └─ MEMBER #3: Alabaster Voyde (Tier 0.01 - §0.03.2)
+  └─ MEMBER #3: Alabaster Voyde (Snow White) (Tier 0.01 - §0.03.2)
        Resistance Type: Sub-Viability Persistence (below existence threshold)
        Void Nature: Traumatic (chromatic death residue)
        Stolen Space: Co-occupies 0.01 with Null (dual occupancy via stolen substrate)
@@ -2599,7 +2599,7 @@ T1      Dr. Lysandra Thorne     E     0.58     Axiomatic truth
 T2      Kali Nyx Ravenscar      H     0.556    Seduction protocols
 T2      Vesper Mnemosyne Lockhart F   0.573    Temporal infiltration
 T2      Seraphine Ashveil       G     0.592    Purification rites
-T3      Magistra                E     0.58     Mirror of Lysandra (PROOF below)
+T3      Magistra Bibliotheca Perfecta E 0.58   Mirror of Lysandra (PROOF below)
 T3      Spectra Chroma Excavatus H    0.537    Chromatic archaeology
 T4      [Sub-entities]          C-D   0.65+    Task-specific operatives
 ```
@@ -2632,7 +2632,7 @@ Umeko Ketsuraku         28J     28GG    60J     60J     6GG     Sub-30" band; st
 Vesper Mnemosyne Lockhart 30I   30G     65I     65I     8G      Commercially viable at specialist retailers
 SFS                     30I     30G     65I     65I     8G      Sister-size equivalent to Vesper
 Dr. Lysandra Thorne     28H     28FF    60H     60H     6FF     Lower extreme boundary
-Magistra                30H     30FF    65H     65H     8FF     "Accessible extreme" — mirror of Lysandra
+Magistra Bibliotheca Perfecta  30H     30FF    65H     65H     8FF     "Accessible extreme" — mirror of Lysandra
 Novia Cadaveris         28G     28F     60G     60G     6F      Most conservative bust-underbust differential
 ```
 
