@@ -1,22 +1,37 @@
 ---
 type: mailbox-state
-updated: 2026-02-23T16:57:13.625534+00:00
+updated: 2026-03-08T04:49:18Z
 mailbox: codex/mailbox
 ---
 
 # Mailbox Current State
 
-## Active Files
+## Root Summary
+
+- Root files: `175`
+- Root directories: `24`
+- Archive files: `113`
+- Protected files:
+  - `MAILBOX_CURRENT_STATE.md`
+  - `mailbox_manifest.json`
+- Protected directories:
+  - `ACTUAL-WORKING-HANDOFFS/`
+  - `archive/`
+
+## Current Working Queue
+
+- `ACTUAL-WORKING-HANDOFFS/CHORE_CODEBASE_HYGIENE_2026_03_09.md`
+- `ACTUAL-WORKING-HANDOFFS/CONTEXT_SURGERY_2026_02_10.md`
+
+## Stable Latest Aliases
+
 - `ART_COP_REPORT_LATEST.md`
 - `CLAUDE_IDE_HEALTH_LATEST.json`
-- `FIX_DEAD_CODE_WARNINGS.md`
-- `HF_MCP_TOOLS_LATEST.json`
 - `HF_MODEL_RANKING_LATEST.md`
 - `HF_PREP_LATEST.json`
 - `HF_PREP_LATEST.md`
 - `LOCAL_AI_READINESS_LATEST.json`
 - `LOCAL_AI_READINESS_LATEST.md`
-- `MAILBOX_CURRENT_STATE.md`
 - `OVERSIGHT_UPCYCLE_LATEST.json`
 - `OVERSIGHT_UPCYCLE_LATEST.md`
 - `POE_LANE_LATEST.json`
@@ -25,45 +40,30 @@ mailbox: codex/mailbox
 - `POE_SDK_LATEST.md`
 - `POE_TRANSPORT_AUDIT_LATEST.json`
 - `POE_TRANSPORT_AUDIT_LATEST.md`
-- `RESEARCH_DIGEST_ANNO_RUSTIFICATION_ENDO_DOT_LIFE.md`
-- `RESEARCH_DIGEST_ANNO_RUSTIFICATION_ENDO_DOT_LIFE_CURATED.md`
-- `RESEARCH_DIGEST_THE_RUSTIFICATION_JUSTIFICATION_ARCHITECTURAL_CONVERGENCE_OF_VISUAL_STUDIO_2026_LSL_AND_RUST_NATIVE_TOOLCHAINS_IN_THE_WINDOWS_11_ECOSYSTEM.md`
 - `RUSTIFICATION_TREND_LATEST.json`
 - `RUSTIFICATION_TREND_LATEST.md`
-- `SESSION_HANDOFF_2026_02_18_CLAUDINE_ARCHAEOLOGY_UPCYCLE_CLASSIFICATION.md`
-- `SESSION_HANDOFF_2026_02_18_VS2026_TRIO_LEARNING_CACHE.md`
-- `SESSION_PLAN_2026_02_18_RUSTIFICATION_DAEMON_BATCH.md`
-- `TATRAGRAMMATRON_SUMMARY_LATEST_CODEX.md`
-- `TETRAGRAMMATON_PACKET.md`
 - `TOOLCHAIN_DOCTOR_LATEST.md`
-- `TOOLCHAIN_DOCTOR_REPORT_2026_02_17_015616.md`
-- `TOOLCHAIN_DOCTOR_REPORT_2026_02_23_155943.md`
-- `TOOLCHAIN_DOCTOR_REPORT_2026_02_23_160028.md`
-- `TOOLCHAIN_DOCTOR_REPORT_2026_02_23_160402.md`
-- `TOOLCHAIN_DOCTOR_REPORT_2026_02_23_160433.md`
-- `TOOLCHAIN_DOCTOR_REPORT_2026_02_23_160529.md`
-- `TOOLCHAIN_DOCTOR_REPORT_2026_02_23_160536.md`
-- `TOOLCHAIN_DOCTOR_REPORT_2026_02_23_160715.md`
-- `TOOLCHAIN_DOCTOR_REPORT_2026_02_23_160940.md`
-- `TOOLCHAIN_DOCTOR_REPORT_2026_02_23_161137.md`
-- `TOOLCHAIN_DOCTOR_REPORT_2026_02_23_163122.md`
-- `TOOLCHAIN_DOCTOR_REPORT_2026_02_23_163140.md`
-- `TOOLCHAIN_DOCTOR_REPORT_2026_02_23_163504.md`
-- `TOOLCHAIN_DOCTOR_REPORT_2026_02_23_163616.md`
-- `TOOLCHAIN_DOCTOR_REPORT_2026_02_23_165711.md`
 - `TRAINSTOP_ORCHESTRATOR_LATEST.json`
 - `VS2026_ELEVATED_VALIDATION_LATEST.json`
 - `VS2026_ELEVATED_VALIDATION_LATEST.md`
-- `mailbox_manifest.json`
-- `skill_audit_claude_2026-02-09T22-02-38Z.json`
-- `skill_audit_codex_2026-02-09T22-02-38Z.json`
-- `tatragrammatron_stamps_latest_codex.json`
 
-## Archive
-- Path: `codex/mailbox/archive`
-- Count: 110
+## Root Series Under Rotation Policy
+
+- `TOOLCHAIN_DOCTOR_REPORT` (`15` root files)
+- `SESSION_HANDOFF` (`6` root files)
+- `SCM_TRIAGE_SNAPSHOT` (`2` root files)
+- `SESSION_COMPACT` (`2` root files)
+- `SKILL_COMPARATIVE_REVIEW` (`2` root files)
+- `VSCODE_TERMINAL_TRIAGE` (`14` root directories)
+- `VSCODE_INSIDERS_MATRIX` (`6` root directories)
+
+## Temporary / Non-Durable Surfaces
+
+- `.tmp_fixture_eval/` is fixture output, not a durable mailbox lane.
+- Timestamped VS Code triage and matrix directories are historical diagnostic bursts and should rotate to archive on a series basis.
 
 ## Policy
-- Root mailbox keeps only current-cycle files.
-- Historical files may remain in `archive/`.
-- Hidden dot mailboxes stay sentinel-only (`.gitkeep`).
+
+- Root mailbox keeps the current-cycle files, `*_LATEST.*` aliases, protected manifests, and the active working handoff queue.
+- Historical series should move to `archive/series/` or `archive/directories/` instead of piling up at root.
+- Rotation is archive-only; nothing is destroyed.

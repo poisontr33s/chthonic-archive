@@ -11,7 +11,7 @@
 // ╚════════════════════════════════════════════════════════════════════════════
 
 /**
- * Chthonic Polyglot MCP Server v3.0.0
+ * Chthonic Polyglot MCP Server v3.3.0
  *
  * @SID           TOOL_MCP_CHTHONIC_SERVER_V3
  * @Shabti        MCP Server (stdio transport)
@@ -21,7 +21,7 @@
  *                uv, gcc, gpp, go, ruby, git, bash, bun, make) + chthonic
  *                archive CLI (resolve, audit, map, analyze, compact, status,
  *                book, ssot, scan, validate_ssot, probe, report) + meta tools
- *                (polyglot_versions, claudine_env, meta_cli v3.0.0).
+ *                (polyglot_versions, claudine_env, meta_cli v3.3.0).
  *                Protocol: MCP 2024-11-05 (JSON-RPC 2.0
  *                over stdio).
  */
@@ -270,7 +270,9 @@ const POLYGLOT_TOOLS: ToolDefinition[] = [
 const ARCHIVE_TOOLS: ToolDefinition[] = [
   { name: "chthonic_status", description: "Get polyglot environment status display with all tool versions.", inputSchema: { type: "object", properties: {}, required: [] } },
   { name: "chthonic_resolve", description: "Resolve Semantic IDs (@SID) to file paths. Use --list for all SIDs.", inputSchema: { type: "object", properties: { sid: { type: "string", description: "Semantic ID to resolve" }, list: { type: "boolean", description: "List all SIDs" }, json: { type: "boolean", description: "Output as JSON" } }, required: [] } },
+  { name: "chthonic_new", description: "Scaffold new projects for the polyglot stack (uv, bun, cargo, go, ruby, azd).", inputSchema: { type: "object", properties: { profile: { type: "string", enum: ["uv-python-app", "uv-python-lib", "bun-react", "bun-react-tailwind", "bun-next", "cargo-rust-bin", "cargo-rust-lib", "go-basic", "ruby-gem", "azure-azd-template"], description: "Scaffold profile to use" }, destination: { type: "string", description: "Destination directory" }, module: { type: "string", description: "Optional module/template name for Go/Azure" }, dry_run: { type: "boolean", description: "Preview without creating files" }, json: { type: "boolean", description: "Output as JSON" } }, required: ["profile", "destination"] } },
   { name: "chthonic_ssot", description: "Query the SSOT loremaster control plane: queue, entity, section, drift, lineage.", inputSchema: { type: "object", properties: { action: { type: "string", enum: ["queue", "entity", "section", "drift", "lineage"], description: "SSOT loremaster action to run" }, query: { type: "string", description: "Entity or section query. For lineage, this filters by entity." }, write: { type: "string", description: "Optional output path for queue/lineage markdown" }, json: { type: "boolean", description: "Output as JSON" } }, required: ["action"] } },
+  { name: "chthonic_workflow", description: "Run higher-level Chthonic workflow profiles: control-plane or toolchain-governance.", inputSchema: { type: "object", properties: { profile: { type: "string", enum: ["control-plane", "toolchain-governance"], description: "Workflow profile to run" }, write: { type: "boolean", description: "Persist report artifacts under dumpster-dive/intake/chthonic-workflows/" }, json: { type: "boolean", description: "Output report as JSON" } }, required: ["profile"] } },
   { name: "chthonic_audit", description: "Analyze root directory health, find stale/orphan files.", inputSchema: { type: "object", properties: { dry_run: { type: "boolean", description: "Preview without changes" }, json: { type: "boolean", description: "Output as JSON" } }, required: [] } },
   { name: "chthonic_map", description: "Generate codebase inventory and dependency map.", inputSchema: { type: "object", properties: { dry_run: { type: "boolean", description: "Preview without writing" }, json: { type: "boolean", description: "Output as JSON" } }, required: [] } },
   { name: "chthonic_analyze", description: "Frequency analysis of line patterns in a file.", inputSchema: { type: "object", properties: { file: { type: "string", description: "File to analyze" }, top: { type: "number", description: "Number of top patterns to show" }, json: { type: "boolean", description: "Output as JSON" } }, required: ["file"] } },
@@ -287,14 +289,14 @@ const META_TOOLS: ToolDefinition[] = [
   { name: "claudine_env", description: "Activate/verify the claudine polyglot environment. Returns environment status.", inputSchema: { type: "object", properties: { verify: { type: "boolean", default: true, description: "Verify environment is properly configured" } }, required: [] } },
   {
     name: "meta_cli",
-    description: "Chthonic v3.0.0 Meta-CLI — unified polyglot development tool with domains: env, status, detect, ide (launch/detect/reset), mcp (start/stop/status), config (init/show/set), shell, audit, compact, resolve, map, analyze, book.",
+    description: "Chthonic v3.3.0 Meta-CLI — unified polyglot development tool with domains: env, status, detect, ide (launch/detect/reset), mcp (start/stop/status), config (init/show/set), new, shell, workflow, audit, compact, resolve, map, analyze, book.",
     inputSchema: {
       type: "object",
       properties: {
         domain: {
           type: "string",
-          description: "Domain: env, status, detect, ide, mcp, config, shell, ssot, audit, compact, resolve, map, analyze, book",
-          enum: ["env", "status", "detect", "ide", "mcp", "config", "shell", "ssot", "audit", "compact", "resolve", "map", "analyze", "book", "extract"]
+          description: "Domain: env, status, detect, ide, mcp, config, new, shell, workflow, ssot, audit, compact, resolve, map, analyze, book",
+          enum: ["env", "status", "detect", "ide", "mcp", "config", "new", "shell", "workflow", "ssot", "audit", "compact", "resolve", "map", "analyze", "book", "extract"]
         },
         action: {
           type: "string",
@@ -516,6 +518,16 @@ async function handleToolCall(name: string, args: Record<string, unknown>): Prom
       if (args.json) cmdArgs.push("--json");
       if (args.sid) cmdArgs.push(args.sid as string);
       break;
+    case "chthonic_new": {
+      cmdArgs.push("new");
+      cmdArgs.push((args.profile as string) ?? "uv-python-app");
+      if (args.destination) cmdArgs.push(args.destination as string);
+      if (args.module) cmdArgs.push("--module", args.module as string);
+      if (args.dry_run) cmdArgs.push("--dry-run");
+      if (args.json) cmdArgs.push("--json");
+      timeout = 600000;
+      break;
+    }
     case "chthonic_ssot": {
       cmdArgs.push("ssot");
       const action = (args.action as string | undefined) ?? "queue";
@@ -527,6 +539,14 @@ async function handleToolCall(name: string, args: Record<string, unknown>): Prom
       }
       if (args.write) cmdArgs.push("--write", args.write as string);
       if (args.json) cmdArgs.push("--json");
+      break;
+    }
+    case "chthonic_workflow": {
+      cmdArgs.push("workflow");
+      cmdArgs.push((args.profile as string) ?? "control-plane");
+      if (args.write) cmdArgs.push("--write");
+      if (args.json) cmdArgs.push("--json");
+      timeout = 600000;
       break;
     }
     case "chthonic_audit":

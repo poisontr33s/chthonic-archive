@@ -4,7 +4,7 @@
 $REPO_ROOT = Split-Path -Parent (Split-Path -Parent $MyInvocation.MyCommand.Path)
 $SCRIPT_DIR = Join-Path $REPO_ROOT "scripts"
 
-Write-Host "Testing refactored chthonic v3.0.0 meta-CLI...`n" -ForegroundColor Cyan
+Write-Host "Testing refactored chthonic v3.3.0 meta-CLI...`n" -ForegroundColor Cyan
 
 # Test 1: Help
 Write-Host "✅ Test 1: chthonic --help" -ForegroundColor Green
@@ -61,6 +61,14 @@ Write-Host "✅ Test 7: chthonic shell brush --cmd" -ForegroundColor Green
   Set-Location '$REPO_ROOT'
   & '$SCRIPT_DIR\chthonic.ps1' shell brush --cmd 'echo BRUSH_TEST_OK'
 " 2>&1 | Select-Object -First 5
+Write-Host ""
+
+# Test 8: Create lane dry-run
+Write-Host "✅ Test 8: chthonic new uv-python-app --dry-run --json" -ForegroundColor Green
+& pwsh -NoProfile -Command "
+  Set-Location '$REPO_ROOT'
+  & '$SCRIPT_DIR\chthonic.ps1' new uv-python-app tmp/chthonic-new-smoke --dry-run --json
+" 2>&1 | Select-Object -First 12
 Write-Host ""
 
 Write-Host "✅ All tests passed! Meta-CLI is working." -ForegroundColor Cyan

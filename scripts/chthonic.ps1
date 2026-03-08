@@ -754,7 +754,9 @@ Usage: chthonic [--version] [--help] <domain> [<action>] [<args>]
   mcp start|stop|status   MCP + bridge services
   poe account|models|probe|chat|sdk-probe|audit  Poe account routing + Poe lanes
   config init|show|set    Configuration (~/.chthonic/)
+  new <profile> <path>   Scaffold polyglot projects (uv, bun, cargo, go, ruby, azd)
   shell brush|pwsh|bash|probe  Experimental shell lane + shell capability probe
+  workflow control-plane|toolchain-governance  Run higher-level orchestrated profiles
   ssot queue|entity|section|drift|lineage  SSOT loremaster control plane
 
   audit|compact|extract|resolve|map|analyze  Archive tools (uv run)
@@ -1635,6 +1637,83 @@ function Invoke-ShellProbe {
     Write-Host ""
 }
 
+function Invoke-ChthonicWorkflow {
+    param(
+        [string]$Profile,
+        [string[]]$WorkflowArgs,
+        [switch]$Json
+    )
+
+    $scriptPath = Join-Path $SCRIPT_DIR "chthonic_workflow.py"
+    if (-not (Test-Path -LiteralPath $scriptPath)) {
+        return [PSCustomObject]@{
+            ExitCode = 1
+            Output = @("Missing script: $scriptPath")
+        }
+    }
+
+    $validProfiles = @("control-plane", "toolchain-governance")
+    if ($Profile -notin $validProfiles) {
+        return [PSCustomObject]@{
+            ExitCode = 1
+            Output = @(
+                "chthonic workflow <profile>",
+                "  control-plane         - validate status, shell probe, ssot queue/drift/lineage, MCP tool exposure",
+                "  toolchain-governance  - validate doctor/origins/toolchain probe surfaces"
+            )
+        }
+    }
+
+    $resolvedArgs = @()
+    if ($Json -and -not ($WorkflowArgs -contains "--json")) {
+        $resolvedArgs += "--json"
+    }
+    $resolvedArgs += $WorkflowArgs
+
+    Push-Location $REPO_ROOT
+    try {
+        $output = & uv run $scriptPath $Profile @resolvedArgs 2>&1
+        return [PSCustomObject]@{
+            ExitCode = $LASTEXITCODE
+            Output = @($output | ForEach-Object { [string]$_ })
+        }
+    }
+    finally {
+        Pop-Location
+    }
+}
+
+function Invoke-ChthonicNew {
+    param(
+        [string]$Profile,
+        [string[]]$CreateArgs,
+        [switch]$Json
+    )
+
+    $scriptPath = Join-Path $SCRIPT_DIR "chthonic_new.py"
+    if (-not (Test-Path -LiteralPath $scriptPath)) {
+        return [PSCustomObject]@{
+            ExitCode = 1
+            Output = @("Missing script: $scriptPath")
+        }
+    }
+
+    Push-Location $REPO_ROOT
+    try {
+        $resolvedArgs = @()
+        if ($Json -and -not ($CreateArgs -contains "--json")) { $resolvedArgs += "--json" }
+        $resolvedArgs += $CreateArgs
+        $output = & uv run $scriptPath $Profile @resolvedArgs 2>&1
+        return [PSCustomObject]@{
+            ExitCode = $LASTEXITCODE
+            Output = @($output | ForEach-Object { [string]$_ })
+        }
+    }
+    finally {
+        Pop-Location
+    }
+}
+
 # ═══════════════════════════════════════════════════════════════════════════════
 # DOCTOR - endoflife.date API integration
 # ═══════════════════════════════════════════════════════════════════════════════
@@ -2370,6 +2449,44 @@ switch ($Domain) {
                 exit 0
             }
         }
+    }
+
+    "new" {
+        if (-not $Action) {
+            Write-Host 'chthonic new <profile> <path>'
+            Write-Host "  uv-python-app        - uv init --app --package"
+            Write-Host "  uv-python-lib        - uv init --lib --package"
+            Write-Host "  bun-react            - bun init --react"
+            Write-Host "  bun-react-tailwind   - bun init --react=tailwind"
+            Write-Host "  bun-next             - bun create next-app"
+            Write-Host "  cargo-rust-bin       - cargo new --bin"
+            Write-Host "  cargo-rust-lib       - cargo new --lib"
+            Write-Host "  go-basic             - go mod init + main.go"
+            Write-Host "  ruby-gem             - bundle gem"
+            Write-Host "  azure-azd-template   - azd init --template (requires azd)"
+            Write-Host "  add --dry-run and/or --json as needed"
+            exit 0
+        }
+        $result = Invoke-ChthonicNew -Profile $Action -CreateArgs $RemainingArgs -Json:$HasJsonFlag
+        if ($result.Output) {
+            $result.Output | ForEach-Object { Write-Output $_ }
+        }
+        exit $result.ExitCode
+    }
+
+    "workflow" {
+        if (-not $Action) {
+            Write-Host 'chthonic workflow <profile>'
+            Write-Host "  control-plane         - validate status, shell probe, ssot queue/drift/lineage, MCP tool exposure"
+            Write-Host "  toolchain-governance  - validate doctor/origins/toolchain probe surfaces"
+            Write-Host "  add --write to persist report artifacts"
+            exit 0
+        }
+        $result = Invoke-ChthonicWorkflow -Profile $Action -WorkflowArgs $RemainingArgs -Json:$HasJsonFlag
+        if ($result.Output) {
+            $result.Output | ForEach-Object { Write-Output $_ }
+        }
+        exit $result.ExitCode
     }
 
     "shell" {

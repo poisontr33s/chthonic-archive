@@ -1,6 +1,6 @@
-# Chthonic Archive: Gemini CLI Sync
+# Chthonic Archive: Gemini Sync
 
-Purpose: Keep Gemini CLI aligned with Codex + Claude without re-running onboarding.
+Purpose: Keep Gemini aligned with Codex + Claude without re-running onboarding.
 
 ## Execution Invariants (Do Not Drift)
 - Workspace root: `C:\Users\erdno\chthonic-archive`

@@ -283,6 +283,10 @@ book/
 !claude-codex-gemini/
 !claude-codex-gemini/**
 
+# Exclude Python bytecode cache (regenerable)
+**/__pycache__/
+*.pyc
+
 # Re-exclude transient artifacts AFTER the allow-all rules above
 codex/mailbox/.tmp_fixture_eval/
 

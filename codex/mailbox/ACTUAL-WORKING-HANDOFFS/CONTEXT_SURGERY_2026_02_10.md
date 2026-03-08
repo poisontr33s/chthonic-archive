@@ -1,7 +1,7 @@
 # CONTEXT SURGERY HANDOFF — 2026-02-10
 
-**From:** Copilot CLI (Senior Steward session)
-**To:** Codex (IDE agent)
+**From:** Claude
+**To:** Codex
 **Priority:** READ BEFORE ACTING
 
 ---

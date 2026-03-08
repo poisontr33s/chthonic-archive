@@ -27,7 +27,7 @@ Claims are classified into three verdicts:
   UNVERIFIED — claim references structure not found in its declared source
 
 @SID:           TOOL_SYNTHESIS_CROSS_REFERENCE_V1
-@Shabti:          Validator
+@Shabti:        Validator
 @Context:       ANKH Governance / Lossless Compression Audit
 @Purpose:       Synthesis Cross-Reference — Validate ANKH_SYNTHESIS_BASELINE.md claims against
 

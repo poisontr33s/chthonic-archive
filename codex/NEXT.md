@@ -1,24 +1,32 @@
 ---
 type: waypoint
 category: codex
-updated: 2026-03-06
+updated: 2026-03-09
 ---
 
 # Codex: Next Steps
 
-## Current State (2026-03-06)
+## Current State (2026-03-09)
 
 - **Reasoning:** `extra high` (workspace + global)
 - **Self-modification:** Denied (config, instructions, AGENTS.md all locked)
 - **Git:** Read-only (no commit/add/push)
-- **Skills:** 24 active in `.codex/skills/` (cap is 15 — consolidation needed)
+- **Skills:** 27 non-system in `.codex/skills/` (cap is 15 — consolidation needed, 12 over)
 - **Mailbox:** `codex/mailbox/ACTUAL-WORKING-HANDOFFS/` is the task queue
+
+## Active Chore
+
+**`CHORE_CODEBASE_HYGIENE_2026_03_09.md`** — Seven-zone structural hygiene across skills (27→≤15), mailbox (294 files), scripts (255 files), tracked .pyc (6), root files (16+), forge dedup, and migration plan completions.
 
 ## Pending Work
 
-1. **Skill consolidation** — Reduce from 24 to ≤15 per AGENTS.md anti-proliferation rules
-2. **Scripts Phase 2** — Variant consolidation (3× decorator_cross_ref = 172KB)
-3. **Scripts Phase 3** — Relocate 13 .md docs from scripts/ to docs/
+1. **Skill consolidation** — Reduce from 27 to ≤15 per AGENTS.md anti-proliferation rules (5 redirects, 2 stashed, 1 protocol identified)
+2. **Mailbox rotation** — 294 files need census, rotation policy, and archive engine
+3. **Scripts variant triage** — 6+ variant families (decorator_cross_ref 3×172KB, hf_6×, claude_8×)
+4. **Scripts Phase 3** — Relocate .md docs from scripts/ to docs/
+5. **Tracked .pyc cleanup** — 6 compiled bytecode files tracked in git
+6. **Root file archaeology** — 16+ stale artifacts at repo root
+7. **Forge dedup audit** — furnace↔tempered 1:1 mirror after perfect 18/18 graduation
 
 ## Rules
 

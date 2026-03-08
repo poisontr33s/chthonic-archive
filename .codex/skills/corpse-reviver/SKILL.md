@@ -167,7 +167,12 @@ from embalm_before_edit import quick_embalm
 session = quick_embalm(["path/to/file.md", "path/to/other.py"], label="my-edit")
 ```
 
-## Auto-Embalm Protocol
+## Auto-Embalm Protocol (MANDATORY — QMR §10.3.3 Mode #8)
+
+> **Canonical grounding:** EMBALM is the 8th operational mode of Novia Cadaveris, visible in the
+> OSGTTLR pipeline diagram (PROWL → EMBALM → VAULT → SUTURE) as the provenance-capture step
+> that creates the `language`/`extension`/`hash`/`structural_landmarks` lineage feeding the
+> corpse-vault classification and PATHWAY_REGISTRY forge transformations.
 
 **MANDATORY**: Before any edit operation on repository files, agents MUST run the embalmer:
 
@@ -181,7 +186,7 @@ uv run .codex/skills/corpse-reviver/scripts/embalm_before_edit.py <files-to-edit
 uv run .codex/skills/corpse-reviver/scripts/embalm_before_edit.py stitch <session-name>
 ```
 
-This creates a complete data lineage: **what it was → what changed → what it became**. The delta fragments feed into the ankhological emigration injection pipeline — all data can be stitched together to create new candidate data without needing to burden the edit workflow itself. Simply reference where it was edited.
+This creates a complete data lineage: **what it was → what changed → what it became**. Embalm provenance captures language, extension, hash, and structural landmarks — classifying fragments at capture time for the vault’s language-indexed storage. The delta fragments feed into the ankhological emigration injection pipeline via PATHWAY_REGISTRY — all data can be stitched together to create new candidate data without needing to burden the edit workflow itself. Simply reference where it was edited.
 
 ## Vault
 

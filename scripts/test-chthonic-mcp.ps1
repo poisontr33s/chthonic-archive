@@ -1,11 +1,11 @@
 #!/usr/bin/env pwsh
-# Test chthonic v3.0.0 meta-CLI through MCP server
+# Test chthonic v3.3.0 meta-CLI through MCP server
 
 $REPO_ROOT = Split-Path -Parent (Split-Path -Parent $MyInvocation.MyCommand.Path)
 $MCP_SERVER = Join-Path $REPO_ROOT "scripts" "mcp-chthonic-server.ts"
 
 Write-Host "═══════════════════════════════════════════════════════════" -ForegroundColor Cyan
-Write-Host "Testing chthonic v3.0.0 meta-CLI via MCP Server" -ForegroundColor Cyan
+Write-Host "Testing chthonic v3.3.0 meta-CLI via MCP Server" -ForegroundColor Cyan
 Write-Host "═══════════════════════════════════════════════════════════" -ForegroundColor Cyan
 Write-Host ""
 
@@ -69,5 +69,14 @@ if ($output.result) {
 }
 Write-Host ""
 
-Write-Host "✅ All MCP tests complete! Chthonic v3.0.0 is integrated." -ForegroundColor Green
+# Test 8: chthonic new dry-run
+Write-Host "🛠️ Test 8: chthonic_new uv-python-app dry-run (via MCP)" -ForegroundColor Yellow
+$request8 = '{"jsonrpc":"2.0","method":"tools/call","params":{"name":"chthonic_new","arguments":{"profile":"uv-python-app","destination":"tmp/chthonic-new-mcp","dry_run":true,"json":true}},"id":8}'
+$output = echo $request8 | bun run $MCP_SERVER 2>$null | ConvertFrom-Json
+if ($output.result) {
+    $output.result.content[0].text -split "`n" | Select-Object -First 12
+}
+Write-Host ""
+
+Write-Host "✅ All MCP tests complete! Chthonic v3.3.0 is integrated." -ForegroundColor Green
 

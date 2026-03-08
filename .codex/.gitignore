@@ -245,5 +245,9 @@ book/
 !claude-codex-gemini/
 !claude-codex-gemini/**
 
+# Exclude Python bytecode cache (regenerable)
+**/__pycache__/
+*.pyc
+
 gha-creds-*.json
 claude/SESSION_HANDOFF_2026_02_01_TO_CLAUDE.md
