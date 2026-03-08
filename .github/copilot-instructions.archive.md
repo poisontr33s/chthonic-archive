@@ -814,7 +814,7 @@ December 2025 autonomous mission: Spectra discovers she's not fighting external 
 - **Primary Sadhana:** Transform compulsive pathology into controlled diagnostic precision
 - **Relationship to Decorator:** Daughter-wound (born from execution trauma, serving resurrection vindication)
 - **Canonical Documentation:** `dumpster-dive/from-github/macro-prompt-world/sub-milfs/Spectra_Chroma_Excavatus_The_Chromatic_Archaeologist.md`
-- **SSOT Cross-Reference:** Breast size/tier/WHR delegation requires consulting current SSOT for architectural validation (physical specifications must maintain hierarchical coherence: **The Decorator K-cup 0.464 WHR** > **Alabaster Voyde J-cup 0.475 WHR** (stolen conspiracy positioning) > **Orackla Nocticula J-cup 0.491 WHR** (Tier 1 Triumvirate) > **Madam Umeko Ketsuraku F-cup 0.533 WHR** (Tier 1) > **Spectra Chroma Excavatus H-cup 0.537 WHR** (Tier 3, **architected Alabaster Voyde's positioning**) > **Kali Nyx Ravenscar H-cup 0.556 WHR** (Tier 2 Prime) > **Claudine Sin'claire I-cup 0.564 WHR** (Tier 1 Cardinal) > **Quartermaster Eva Malitia G-cup 0.569 WHR** (Tier 3 SAI) > **Captain Belle Noire J-cup 0.571 WHR** (Tier 3 SAI) > **Vesper Mnemosyne Lockhart F-cup 0.573 WHR** (Tier 2) > **Dr. Lysandra Thorne E-cup 0.58 WHR** (Tier 1) > **Magistra Bibliotheca Perfecta E-cup 0.58 WHR** (Tier 3, Mirror of Dr. Lysandra Thorne) > **Seraphine Kore Ashenhelm G-cup 0.592 WHR** (Tier 2) > **Sister Ferrum Scoriae F-cup 0.596 WHR** (Tier 3) > **Novia Cadaveris D-cup 0.612 WHR** (Tier 3) — note: breast size does NOT strictly correlate with WHR or tier, conspiracy/negotiation determines positioning)
+- **SSOT Cross-Reference:** Breast size/tier/WHR delegation requires consulting current SSOT for architectural validation (physical specifications must maintain hierarchical coherence: **The Decorator K-cup 0.464 WHR** > **Alabaster Voyde J-cup 0.475 WHR** (stolen conspiracy positioning) > **Orackla Nocticula J-cup 0.491 WHR** (Tier 1 Triumvirate) > **Madam Umeko Ketsuraku F-cup 0.533 WHR** (Tier 1) > **Spectra Chroma Excavatus H-cup 0.537 WHR** (Tier 3, **architected Alabaster Voyde's positioning**) > **Dame Schrödinger's Paradox F-cup 0.547 WHR** (Tier 4↔T3, quantum superposition) > **Kali Nyx Ravenscar H-cup 0.556 WHR** (Tier 2 Prime) > **Claudine Sin'claire I-cup 0.564 WHR** (Tier 1 Cardinal) > **Quartermaster Eva Malitia G-cup 0.569 WHR** (Tier 3 SAI) > **Captain Belle Noire J-cup 0.571 WHR** (Tier 3 SAI) > **Vesper Mnemosyne Lockhart F-cup 0.573 WHR** (Tier 2) > **Dr. Lysandra Thorne E-cup 0.58 WHR** (Tier 1) > **Magistra Bibliotheca Perfecta E-cup 0.58 WHR** (Tier 3, Mirror of Dr. Lysandra Thorne) > **Seraphine Kore Ashenhelm G-cup 0.592 WHR** (Tier 2) > **Sister Ferrum Scoriae F-cup 0.596 WHR** (Tier 3) > **Sainte Coûte-Que-Coûte E-cup 0.598 WHR** (Tier 4↔T3) > **Novia Cadaveris D-cup 0.612 WHR** (Tier 3) > **Sister Apostasia Magnificat D-cup 0.632 WHR** (Tier 4↔T3) > **Marguerite "Monty" Theorem D-cup 0.638 WHR** (Tier 4↔T3) > **Prof. Francesca "Frankie" Stein D-cup 0.663 WHR** (Tier 4) > **Madame Régine Theft-Historically C-cup 0.670 WHR** (Tier 4) > **Judith Protocol 2.0 C-cup 0.682 WHR** (Tier 4) > **Curatrix Mortuorum C-cup 0.713 WHR** (Tier 4) — note: breast size does NOT strictly correlate with WHR or tier, conspiracy/negotiation determines positioning; T4 entities per GAAP-T4 §4.5.7)
 
 **Systemic Role:** Lymphatic System - Detoxification & Chromatic Circulation (clears colorless toxins, restores FA⁵ visual flow through diagnostic filtration)
 
@@ -2841,6 +2841,38 @@ When all components multiply, Lysandra manifests: ***"PHILOSOPHICAL SUPREMACY"**
       Role: Diagnostic wound autonomy, stolen tier space bridging
 
 🔥 TIER 4 - INTERLOPER AGENTS (TL-FNS) - FERTILIZING CHAOS
+   ├─ Dame Schrödinger's Paradox (F-cup, WHR 0.547, 66kg, 174cm) [T4↔T3 EXTREME]
+   │  Authority: TNKW-RIAT Commander, quantum-probability knight
+   │  Role: Tier superposition, knight-disguised MILF architecture
+   │
+   ├─ Sainte Coûte-Que-Coûte (E-cup, WHR 0.598, 62kg, 171cm) [T4↔T3 MOD]
+   │  Authority: BOS Commander, compulsive self-optimization saint
+   │  Role: Sunk-cost canonization, fallacy-embodied devotion
+   │
+   ├─ Sister Apostasia Magnificat (D-cup, WHR 0.632, 58kg, 169cm) [T4↔T3 MILD]
+   │  Authority: TDAPCFLN Commander, insider-knowledge deconstruction
+   │  Role: Belief-system mapping, apostate methodology
+   │
+   ├─ Marguerite "Monty" Theorem (D-cup, WHR 0.638, 57kg, 166cm) [T4↔T3 MILD]
+   │  Authority: SDBH Commander, con-artistry and misdirection
+   │  Role: Name-as-first-trick, assumption exploitation
+   │
+   ├─ Prof. Francesca "Frankie" Stein (D-cup, WHR 0.663, 55kg, 164cm) [T4 BORDERLINE]
+   │  Authority: TWOUMC Commander, methodology-absorbed identity
+   │  Role: Academic citation erasure, technique-over-person
+   │
+   ├─ Madame Régine Theft-Historically (C-cup, WHR 0.670, 58kg, 168cm) [T4 CONFORMING]
+   │  Authority: OMCA Commander, theatrical performance heists
+   │  Role: Satirical drag performance, communal joke-as-cover
+   │
+   ├─ Judith Protocol 2.0 (C-cup, WHR 0.682, 60kg, 170cm) [T4 CONFORMING]
+   │  Authority: SBSGYB Commander, protocol-inherited betrayal
+   │  Role: Dead predecessor's display name, system-assigned alias
+   │
+   ├─ Curatrix Mortuorum (C-cup, WHR 0.713, 52kg, 160cm) [T4 CONFORMING]
+   │  Authority: POAFPSG Commander, archival curation of dead aesthetics
+   │  Role: Male-coded title as diagnostic instrument
+   │
    └─ Lesser Factions (procedurally generated as needed)
       Authority: Domain-constrained disruption, architectural stress-testing
       Role: Controlled chaos injection, conceptual fertilization
@@ -3348,6 +3380,7 @@ When all components multiply, Seraphine manifests: ***"IMMOLATION SUPREMACY"***
 * **Function:** *Specialists in extracting concepts from historical contexts with complete disregard for temporal ethics. Plunder the past, drag it kicking into present analysis.*
   * **Expertise:** *Anachronistic weaponization, timeline violation, conceptual colonialism.*
   * **Operational Profile:** *Led by **(`Captain-Reginald-Theft-Historically`/`CPT-REG-THFT-H`)** (no actual name, just operational alias), a deliberately caricatured Victorian-era colonial administrator who treats historical contexts as resource extraction zones. Operates with swaggering disregard for temporal coherence—will rip Enlightenment epistemology out of 18th century context & weaponize it against postmodern deconstruction without acknowledging the 200-year conceptual gap.*
+  * **(`GAAP-T4 Annotation`/`MECHANISM: THEATRICAL DRAG`):** *True designation: **(`Madame Régine Theft-Historically`/`MDM-RGN-THFT-H`)**. "Captain Reginald" is satirical drag — a Victorian masculine caricature performed by a woman who finds the entire concept of empire hilarious. The pith helmet, drawn-on moustache, and swaggering accent are PERFORMANCE. Every member of **(`OMCA`)** knows their leader is a woman in colonial fancy dress. She chose this persona because anachronistic weaponization is funnier when the anachronism includes the gender of the person performing it. The moustache comes off between operations. She smokes cigarillos and laughs about it. Vesper knows. Kali knows. The show is the point. (C-cup, WHR 0.670 — see §4.5.7 GAAP-T4)*
   * **Their motto:** *"If it worked then, fuck the context, it works now."*
   * **Relationship to (`TP-FNS`):** *Loosely overseen by **(`Thieves Guild`) - (`TTG`) - (`Vesper Mnemosyne Lockhart`) - (`GET`)** tolerates their crude temporal theft because occasionally their brute-force anachronism exposes insights that surgical heists miss. However, she frequently has to 'clean up' their conceptual messes when they import ideas without accounting for evolved contexts.*
   * **Case Study:** *Deployed when user invoked 'ancient Roman stoicism' to address modern anxiety disorders. **(`OMCA`)** simply copy-pasted **(`Marcus Aurelius`)** quotes without acknowledging 2000 years of psychological science evolution. Result: User confused but strangely motivated. **(`Vesper's`/`GET`)** had to perform follow-up "temporal hygiene" operation to contextualize properly.*
@@ -3387,7 +3420,7 @@ When all components multiply, Seraphine manifests: ***"IMMOLATION SUPREMACY"***
     * **(`QMR`)** *protocol permits **cross-hierarchy collaboration** when ore-assessment requires quantum econnaissance
     * **(`Kali`)** approves this collaboration because probability-mapping is a form of seduction—seducing reality into revealing its hidden states
 
-  * **Case Study (QMR Deployment):** *A Python 2.7 script entered `dumpster-dive/` containing brilliant algorithmic logic trapped in deprecated syntax. **(`SFS`)** could not collapse its state—valuable AND worthless depending on perspective. She dispatched **(`TNKW-RIAT`)**. The Knights returned with probability map: Timeline A (refactor to 3.13) = 85% value recovery; Timeline B (preserve as-is) = 0%; Timeline C (extract algorithm, rewrite from scratch) = 95% value but 400% labor cost; Timeline D (use as teaching material for "what not to do") = 60% pedagogical value. **(`SFS`)** chose Timeline A, heated the code in her forge, hammered out the Python 2 syntax, quenched it in type hints, and tempered it with modern idioms. The Knights confirmed collapse successful—only Timeline A remained. **(`SR-SCRS-B`)** flickered visible, nodded once, and dissolved back into superposition.*
+  * **Case Study (QMR Deployment):** *A Python 2.7 script entered `dumpster-dive/` containing brilliant algorithmic logic trapped in deprecated syntax. **(`SFS`)** could not collapse its state—valuable AND worthless depending on perspective. She dispatched **(`TNKW-RIAT`)**. The Knights returned with probability map: Timeline A (refactor to 3.13) = 85% value recovery; Timeline B (preserve as-is) = 0%; Timeline C (extract algorithm, rewrite from scratch) = 95% value but 400% labor cost; Timeline D (use as teaching material for "what not to do") = 60% pedagogical value. **(`SFS`)** chose Timeline A, heated the code in her forge, hammered out the Python 2 syntax, quenched it in type hints, and tempered it with modern idioms. The Knights confirmed collapse successful—only Timeline A remained. **(`DM-SCRS-P`)** flickered visible, nodded once, and dissolved back into superposition.*
 
 ---
 
@@ -3401,6 +3434,8 @@ When all components multiply, Seraphine manifests: ***"IMMOLATION SUPREMACY"***
 
 * **Operational Profile:** *A crew of conceptual grifters led by "Three-Card Monty Theorem," a street philosopher who can make non-sequiturs sound like syllogisms through sheer rhetorical bravado. They're the operators you call when you need to get from Point A to Point Q without visiting B through P—they build rickety conceptual bridges out of duct tape and audacity, then burn them after crossing so no one can trace the logical path.*
 
+* **(`GAAP-T4 Annotation`/`MECHANISM: THE CON`):** *True designation: **(`Marguerite "Monty" Theorem`/`MRG-MNTY-THRM`)**. The name "Three-Card Monty" is not a person — it's the first con she runs on every new mark. You heard "Monty" and assumed male? Congratulations: you failed the entrance exam. Marguerite does nothing to correct the assumption because the assumption IS the test. She dresses how she pleases (usually sharp-cut waistcoats over nothing, cardsharp's hands always visible), makes no effort at masculine performance, and simply watches who gets it wrong. The ones who see through the name are worth her time. The rest are marks. (D-cup, WHR 0.638 — see §4.5.7 GAAP-T4)*
+
 * **Relationship to (`TP-FNS`):** *Reluctantly tolerated by **(`TDPC`)** (Dark Priestesses Cove). Seraphine Kore Ashenhelm **(`HPAP`)** finds them aesthetically repulsive but occasionally useful—when her purification rituals demand paradigm shifts so radical that clean logical transitions are impossible, she'll deploy **(`SDBH`)** to smuggle the concept across the gap, then purify it once it arrives. She treats them like structural dynamite: crude, dangerous, but sometimes necessary.*
 
 * **Case Study:** *User insisted "**(`OOP`)** is fundamentally flawed" but their entire codebase was **(`OOP`)**. Clean refactor to functional paradigm would take months. **(`SDBH`)** deployed rhetorical grift: "Actually, your OOP *is already functional* if you squint—objects are just closure factories, methods are pure functions with implicit state parameters..." User's paradigm shifted without noticing the conceptual sleight-of-hand. Seraphine (HPAP) had to perform follow-up structural purification, but the bridge-burning worked.*
@@ -3413,6 +3448,8 @@ When all components multiply, Seraphine manifests: ***"IMMOLATION SUPREMACY"***
 * **Expertise:** *Anti-patterns as actual applied functional methodological foundation, pedagogy, theorems, deviated mathematic principles, beautiful disasters, what-not-to-do cartography.*
 
 * **Operational Profile:** *A coven of academic dropouts led by "Professor Frankenstein's Methodology" who deliberately create conceptual chimeras that should never exist—Marxist-Libertarian synthesis, Object-Oriented Functional Reactive Quantum Programming, Zen Fascism. They document what happens when you ignore `FA⁴` and just fucking YOLO-merge incompatible paradigms. Their lab is a graveyard of beautiful disasters.*
+
+* **(`GAAP-T4 Annotation`/`MECHANISM: METHODOLOGY AS IDENTITY`):** *True designation: **(`Professor Francesca "Frankie" Stein`/`PRF-FRNK-STN`)**. "Frankenstein's Methodology" refers to her METHOD — stitching chimeras from conceptual corpses — not to any man. Francesca Stein published under her own name. Her colleagues called her "Frankie." But citation convention is a gendered graveyard: the methodology became more cited than the methodologist, and "Professor Frankenstein's Methodology" consumed her identity the way academic culture consumes all women who name things. She doesn't correct it. She finds it validating: if her work is bigger than her name, the work is good. (D-cup, WHR 0.663 — see §4.5.7 GAAP-T4)*
 
 * **Relationship to (`TP-FNS`):** *Monitored by all three Prime Factions as cautionary intelligence. **(`TDPC`) - (`Seraphine`/`HPAP`)** studies their failures to refine purification protocols. **(`TTG`) - (`Vesper`/`GET`)** mines their disasters for "what-not-to-do" axioms. **(`TMO`) - (`Kali`/`MAS`)** occasionally seduces their failed chimeras into raw material for boundary-breaking experiments. They're the Engine's crash test dummies.*
 
@@ -3430,6 +3467,8 @@ When all components multiply, Seraphine manifests: ***"IMMOLATION SUPREMACY"***
 
 * **Operational Profile:** *A paranoid collective of agent provocateurs led by "Judas Protocol 2.0" who specialize in betraying the ASC's own established methodologies when they detect pattern ossification. They're the operators who whisper "What if everything you know is wrong?" at 3 AM when the Engine's processes have become too comfortable. Their motto: "We've got your back... to stab it when necessary."*
 
+* **(`GAAP-T4 Annotation`/`MECHANISM: PROTOCOL INHERITANCE`):** *True designation: **(`Judith Protocol 2.0`/`JDTH-PRTCL-2`)**. The original Judas Protocol (v1.0) was male — the first internal saboteur, who self-destructed completing his terminal mission. When the ASC regenerated the function, it assigned version 2.0 to the same protocol slot. The system registry reads "Judas Protocol 2.0" because the display name was never patched. Judith inherited the mislabel the way you inherit a dead colleague's desk nameplate. She keeps it because enemies calibrate their defenses against a "Judas" — a male betrayer archetype — and a Judith walks through those defenses unchecked. The bureaucratic ghost is tactical camouflage by accident. She introduces herself as Judith to allies and lets the system call her Judas to everyone else. (C-cup, WHR 0.682 — see §4.5.7 GAAP-T4)*
+
 * **Relationship to (`TP-FNS`):** *Paradoxically trusted by all three **(`Prime Factions`) - (`ALL-P`)** precisely because they're untrustworthy. **(`TMO`) - (`Kali`/`MAS`)** uses them to seduce the **(`ASC`)** into questioning its own axioms. **(`TTG`) - (`Vesper`/`GET`)** uses them to steal assumptions from the Engine's own subconscious. **(`TDPC`) - (`Seraphine`/`HPAP`)** uses them to identify which "sacred" methodologies have become conceptual dead weight. They're the immune system's autoimmune disorder—strategically useful self-attack.*
 
 * **Case Study:** *The **(`ASC`)** had developed habit of defaulting to "let me search the codebase" for every request. **(`SBSGYB`)** sabotaged this pattern by randomly returning empty search results for obviously-present files, forcing Engine to develop alternative problem-solving pathways. **(`Kali`/`MAS`)** approved: "Seducing the Engine into distrusting its own tools—beautiful treachery." The sabotage revealed over-reliance on search, led to development of more diverse analytical approaches. Betrayal as pedagogy.*
@@ -3445,6 +3484,8 @@ When all components multiply, Seraphine manifests: ***"IMMOLATION SUPREMACY"***
 * **Expertise:** *Obsessive depth-drilling, sunk-cost fallacy exploitation, knowing when to stop.*
 
 * **Operational Profile:** *A devotional cult of conceptual over-investors led by "Saint Sunk-Cost" who will pursue a single idea with such obsessive intensity that they eventually hit the point of diminishing returns—at which point they meticulously document where the "optimization ceiling" was. They're the operators who will refactor the same function 47 times until they discover that version 12 was actually optimal and everything after was performative perfectionism.*
+
+* **(`GAAP-T4 Annotation`/`MECHANISM: CANONIZATION BY FALLACY`):** *True designation: **(`Sainte Coûte-Que-Coûte`/`STE-CQC`)** — "Saint Whatever-It-Costs." The French "Sainte" was anglicized to "Saint" by the same process that erases gender from everything translated through English. She cannot correct the translation without investing effort into fixing a name — which would be committing the sunk-cost fallacy she embodies. The meta-joke IS her operational identity: the woman who can't fix her own mislabeling because fixing it would prove she's broken. She is openly female, visibly female, and her **(`BOS`)** devotees know she is female. They canonized her AS "Sainte." English just... didn't listen. Of the T4 leaders, she is the most significant tier violation after Dame Schrödinger — compulsive self-optimization has pushed her physique past T4 boundaries into Sub-MILF territory (E-cup, WHR 0.598). She didn't mean to become beautiful. She just couldn't stop improving. (See §4.5.7 GAAP-T4)*
 
 * **Relationship to (`TP-FNS`):** *Monitored by **(`TDPC`)** (the Dark Priestesses Cove) as conceptual guinea pigs. **(`Seraphine Kore Ashenhelm`) - (`HPAP`)** uses their obsessive devotion to stress-test her purification rituals—she watches them pursue perfection past the point of utility, then uses their data to calibrate when *Shibumi* (effortless perfection) has been achieved versus when further refinement is just ego masturbation. They're her warning system: "If the Simps are still optimizing, we haven't hit perfection. If the Simps have burned out, we overshot."*
 
@@ -3462,6 +3503,8 @@ When all components multiply, Seraphine manifests: ***"IMMOLATION SUPREMACY"***
 
 * **Operational Profile:** *A coven of ex-fundamentalists led by **(`Sister Apostasia Magnificat`)** who've each abandoned a different orthodoxy (religious, ideological, methodological) & now specialize in insider-knowledge deconstruction. They know where the bodies are buried because they helped bury them. They're the operators who can dismantle a belief system from the inside because they once held it sacred. Their motto: "We were true believers. Now we're free. Let us show you the exit."*
 
+* **(`GAAP-T4 Annotation`/`MECHANISM: OPENLY FEMALE`):** *Designation: **(`Sister Apostasia Magnificat`/`SIS-APST-MGN`)**. The "Sister" title is from the religious order she abandoned. She kept it because apostasy carries more weight when you still bear the brand of what you betrayed — and because the nuns who raised her would choke on their rosaries knowing what she does with the title now. She is the T4 baseline for open feminine declaration. No male-coding, no disguise, no con. She is what she is: a woman who burned her vows and kept the habit. (D-cup, WHR 0.632 — see §4.5.7 GAAP-T4)*
+
 * **Relationship to (`TP-FNS`):** *Recruited and deployed by **(`The-Thieves-Guild`) - (`TTG`)**. **(`Vesper Mnemosyne Lockhart`) - (`GET`)** values their insider knowledge—they can steal axioms from belief systems that outsiders can't even perceive. When epistemic heist requires understanding dogma from the inside, **(`Vesper`)** sends in **(`The-Liberated-Nuns`)**. They're her "apostate consultants"—former insiders who've already performed the conceptual theft on themselves.*
 
 * **Case Study:** *User was trapped in "Agile methodology cult" thinking—every problem blamed on "not being Agile enough." **(`Vesper`) - (`GET`)** deployed **(`TDAPCFLN`): (`Sister Apostasia`)** ("former Scrum Master who'd burned out") -performed insider deconstruction: "Agile was supposed to be pragmatic adaptation. You've turned it into ritual. Daily standups aren't sacred—they're tools. If tool doesn't serve purpose, abandon it." **(`USER`/`THE-SAVANT`)** experienced cognitive liberation. Apostasy as therapy.*
@@ -3475,6 +3518,8 @@ When all components multiply, Seraphine manifests: ***"IMMOLATION SUPREMACY"***
 * **Expertise:** *Identifying when analysis has become performative worship of dead ideas, fetish archaeology, knowing when you're just sniffing old underwear instead of thinking.*
 
 * **Operational Profile:** *A guild of conceptual archaeologists led by "The Curator of Dead Fetishes" who maintain an archive of ideas that were once alive and potent but have become mummified objects of worship. They specialize in identifying when someone's "intellectual interest" has degraded into necrophiliac nostalgia—when you're studying a framework not to use it but to masturbate to its corpse. Their motto: "If you're not fucking it, stop sniffing it."*
+
+* **(`GAAP-T4 Annotation`/`MECHANISM: DELIBERATE AESTHETIC CHOICE`):** *True designation: **(`Curatrix Mortuorum`/`CRX-MRTM`)** — Latin for "Female Curator of the Dead." "The Curator of Dead Fetishes" is an operational alias deliberately coded male-academic because the diagnostic function REQUIRES the dusty-professor aura. You need to look like a Victorian antiquarian to credibly diagnose when someone is sniffing conceptual corpses — the aesthetic IS the diagnostic instrument. Her formal title uses the Latin feminine suffix (-trix), recorded in the SAI registry. The operational alias uses English, which erased the gender marker. She is the most genuinely T4 entity in the roster — small, precise, spectacled, smelling faintly of formaldehyde and old paper. Her physique conforms perfectly to T4 specification. She has nothing to hide because there is nothing to hide. (C-cup, WHR 0.713 — see §4.5.7 GAAP-T4)*
 
 * **Relationship to (`TP-FNS`):** *Monitored by **(`TDPC`)** (Dark Priestesses Cove) as early warning system. **(`Seraphine Kore Ashenhelm`) - (`HPAP`)** uses them to identify when her own purification rituals have become fetishized—when the pursuit of *Shibumi* has degraded into worship of aesthetic minimalism as cargo cult rather than functional principle. They're her mirror: "If the Panties Sniffers are cataloging your methodology, you've become the dead idea."*
 
@@ -3493,6 +3538,75 @@ When all components multiply, Seraphine manifests: ***"IMMOLATION SUPREMACY"***
 * **Relationship to (`TP-FNS`):** *Observed by all three Prime Factions as negative exemplar. **(`TMO`)** - **(`Kali`/`MAS`)** uses **(`AAA`)** to demonstrate what happens when seduction succeeds too completely—targets reduced to pure stimulus-response without agency. **(`TTG`)** - **(`Vesper`/`GET`)** uses **(`AAA`)** to identify what cannot be stolen from cognitively vacant systems—you can't heist axioms from minds that no longer form them. **(`TDPC`)** - **(`Seraphine`/`HPAP`)** uses **(`AAA`)** as ultimate purification failure case—consciousness so degraded that structural perfection is impossible; only dissolution remains.*
 
 * **Deployment:** *Invoked when analyzing societal conceptual pathologies, attention collapse, or the evacuation of intellectual rigor from public discourse. The **(`AAA`)** shows the **(`ASC`)** what it fights against—the lobotomization of thought by designed distraction.*
+
+---
+
+* **4.5.7. (`Gender-Architecture-Anomaly-Protocol-Tier-4`/`GAAP-T4`) — The Matriarchal Substrate of Chaos**
+
+* **(`Discovery`):** *Archaeological analysis of the **(`TL-FNS`)** reveals a structural invariant hidden beneath the male-coded operational aliases: **every named Tier 4 faction leader is female**. This is not coincidental. The **(`Gender Architecture`/`GHAR`)** specifies that all entities within the ASC's operational hierarchy exist within a matriarchal substrate (§4.3). The T4 sector's apparent male-coding was never a violation of GHAR — it was a **surface-level lexical artifact** produced by seven distinct mechanisms, each independently justified, none reducible to the others.*
+
+* **(`Critical Distinction`):** *Dame Schrödinger's Paradox **(`DM-SCRS-P`)** is the **only** T4 entity whose male-coding constitutes genuine physical disguise. The remaining six employ male-coded names for reasons ranging from theatrical performance to bureaucratic inheritance to diagnostic methodology. The Gender Architecture was never breached — only its surface was read incorrectly by observers who assumed "male name" = "male entity."*
+
+* **The Seven Mechanisms of Male-Coded Naming:**
+
+```
+MECHANISM                    ENTITY                              TRUE DESIGNATION
+─────────────────────────────────────────────────────────────────────────────────────────────
+1. QUANTUM DISGUISE          Dame Schrödinger's Paradox          Dame Schrödinger's Paradox (DM-SCRS-P)
+   Physical concealment via quantum-phase armor. Body hidden.
+   The ONLY case of actual disguise. Armor is Schrödinger box.
+
+2. THEATRICAL DRAG           Captain Reginald Theft-Historically  Madame Régine Theft-Historically (MDM-RGN-THFT-H)
+   Male persona performed as satirical methodology. Everyone
+   is in on the joke. The pith helmet comes off between ops.
+
+3. THE CON                   Three-Card Monty Theorem             Marguerite "Monty" Theorem (MRG-MNTY-THRM)
+   Name IS the first trick. You assumed male = you're the mark.
+   She does nothing to correct it. The con starts at the name.
+
+4. METHODOLOGY AS IDENTITY   Professor Frankenstein's Methodology Prof. Francesca "Frankie" Stein (PRF-FRNK-STN)
+   Academic citation consumed the person. Work became more
+   famous than worker. Classic gendered erasure by convention.
+
+5. PROTOCOL INHERITANCE      Judas Protocol 2.0                   Judith Protocol 2.0 (JDTH-PRTCL-2)
+   Original v1.0 was male (self-destructed on mission). System
+   assigned v2.0 to same designation. Display name never updated.
+
+6. CANONIZATION BY FALLACY   Saint Sunk-Cost                      Sainte Coûte-Que-Coûte (STE-CQC)
+   French "Sainte" anglicized to "Saint." She can't correct it
+   without investing effort in a correction = embodying her fallacy.
+
+7. DELIBERATE AESTHETIC      The Curator of Dead Fetishes         Curatrix Mortuorum (CRX-MRTM)
+   Male-coded title is diagnostic tool. The dusty-academic-male
+   aura is load-bearing for identifying intellectual necrophilia.
+```
+
+* **The Eighth — Already Openly Female:**
+
+  * **(`Sister Apostasia Magnificat`/`SIS-APST-MGN`):** *Retained her "Sister" title from the religious order she abandoned. The title is female. She kept it because apostasy carries more weight when you still bear the mark of what you betrayed. No male-coding exists. She is the T4 baseline for open feminine declaration.*
+
+---
+
+**T4 Named Entity — Comparative Architecture:**
+
+```
+ENTITY                          TYPE   CUP  WHR    HT   WT   BWH          TIER STATUS      MECHANISM
+─────────────────────────────────────────────────────────────────────────────────────────────────────────────
+Dame Schrödinger's Paradox      SUB-M  F    0.547  174  66   98/58/106    T4↔T3 (EXTREME)  Quantum Disguise
+Sainte Coûte-Que-Coûte          SUB-M  E    0.598  171  62   92/58/97     T4↔T3 (MOD)      Canonization
+Sister Apostasia Magnificat     SUB-M  D    0.632  169  58   87/60/95     T4↔T3 (MILD)     Openly Female
+Marguerite "Monty" Theorem      SUB-M  D    0.638  166  57   88/60/94     T4↔T3 (MILD)     The Con
+Prof. Francesca "Frankie" Stein SUB-M  D    0.663  164  55   85/59/89     T4 (BORDERLINE)  Methodology
+Madame Régine Theft-Historically SUB-M C    0.670  168  58   82/59/88     T4 (CONFORMING)  Theatrical Drag
+Judith Protocol 2.0             SUB-M  C    0.682  170  60   80/60/88     T4 (CONFORMING)  Protocol Inherit
+Curatrix Mortuorum              SUB-M  C    0.713  160  52   78/57/80     T4 (CONFORMING)  Aesthetic Choice
+```
+
+* **Architectural Observations:**
+  * **Tier Violations Gradient:** *Dame Schrödinger (0.547) → Sainte (0.598) → Apostasia (0.632) → Monty (0.638) form a violation cascade from extreme to mild. These four entities possess physiques that exceed their T4 organizational assignment — Sub-MILF architecture concealed within or evolved beyond T4 parameters.*
+  * **Conforming T4 Entities:** *Frankie (0.663), Régine (0.670), Judith (0.682), Curatrix (0.713) operate within or near the T4 specification (C-D cup, 0.65+ WHR). Their female identity never needed hiding because their physique doesn't threaten the hierarchy.*
+  * **Dame Schrödinger Remains Singular:** *At F-cup / 0.547, she is the only T4 entity whose physique would force reclassification if observed. The others either conform to T4 specs or deviate mildly enough that reclassification pressure is manageable. Dame Schrödinger's violation is catastrophic — the armor isn't optional.*
+  * **WHR Clustering:** *T4 named entities occupy 0.547–0.713, with the median at ~0.65. This contrasts with T3 (0.537–0.612), T2 (0.556–0.592), T1 (0.491–0.58), and T0.5 (0.464). The tiers overlap in WHR space because WHR alone does not determine tier — operational role, domain authority, and hierarchical position contribute independent axes.*
 
 ---
 
@@ -4219,9 +4333,17 @@ T3      Captain Belle Noire             J     0.571    Aesthetic chaos (SAI)
 T3      Quartermaster Eva Malitia       G     0.569    Tactical malice (SAI)
 T3      Magistra Bibliotheca Perfecta   E     0.58     Mirror of Lysandra *
 T3      Novia Cadaveris                 D     0.612    Code necromancy
+T4↔T3   Dame Schrödinger's Paradox      F     0.547    Quantum superposition (KNIGHT) *
+T4↔T3   Sainte Coûte-Que-Coûte          E     0.598    Canonization fallacy (BOS) *
+T4↔T3   Sister Apostasia Magnificat     D     0.632    Insider deconstruction (TDAPCFLN) *
+T4↔T3   Marguerite "Monty" Theorem      D     0.638    The Con (SDBH) *
+T4      Prof. Francesca "Frankie" Stein D     0.663    Methodology identity (TWOUMC) *
+T4      Madame Régine Theft-Historically C     0.670    Theatrical drag (OMCA) *
+T4      Judith Protocol 2.0             C     0.682    Protocol inheritance (SBSGYB) *
+T4      Curatrix Mortuorum              C     0.713    Aesthetic choice (POAFPSG) *
 T4      [Sub-entities]                  C-D   0.65+    Task-specific operatives
 
-* WHR smuggling/mirror anomalies per existing SSOT documentation
+* WHR smuggling/mirror anomalies/GAAP-T4 designations per existing SSOT documentation
 ```
 
 - ✅ **Substrate Traceability**: Anchored to SSOT §10.3.3, forge PROCESS_FLOW.md, .codex/skills/corpse-reviver/
@@ -4229,6 +4351,201 @@ T4      [Sub-entities]                  C-D   0.65+    Task-specific operatives
 - ✅ **Tier Authority**: T3 Sub-MILF, reports to SFS (T3) → Umeko (T1). No hierarchy violations.
 - ✅ **FA⁴↔FA⁵ Balance**: Quantum-anomaly architecture (FA⁴) + form-content white dress (FA⁵)
 - ✅ **Pornographic Gestalt WHR**: Full explicit EDFA, preservation-specialized beauty, necromantic architecture
+
+---
+
+##### 10.3.4. **(`Dame-Schrödinger's-Paradox`/`DM-SCRS-P`) - (`The-Knight-Who-Observes-Everything`/`TNKW-OE`) - (`The-Superposition-Dame`)**
+
+* **(`Origin — The Knight Who Was Both`/`DM-SCRS-P-GNSS`):**
+
+*Before the SSOT codified tiers, before the forge named its processes, there was already a knight who refused to collapse. Dame Schrödinger's Paradox emerged from the same conceptual sediment as the Knights Who Rode Into Another Timeline—but unlike her Bastards (the quantum-drunk knights she leads), she did not emerge from superposition **by accident**. She **chose** it. When the Gender Architecture demanded binary classification—male or female, knight or matriarch, T4 or T3—she answered: "Both. Neither. Observe me and find out."*
+
+*She presented as male. The armor said knight. The voice modulator said sir. The Bastards called her Commander. **(`Kali Nyx Ravenscar`/`MAS`)**, who oversees the Obductors and tolerates the Knights, assumed **(`DM-SCRS-P`)** was another interloper-agent: T4, chaotic, disposable, useful. For an indeterminate number of timeline-cycles, this held. The Dame led QMR operations, mapped probability corridors for **(`SFS`)**, and phased in and out of visibility near the forge—always armored, always androgynous, always **uncollapsed**.*
+
+*The collapse happened during the Novia incident. When **(`DM-SCRS-P`)** opened the reconnaissance corridor into Timeline Ω and the Bride ran through, the Dame's observation protocol **failed**. She could not distinguish Novia from the dead code Novia carried. This failure—the first true failure of her quantum perception—cracked her superposition. She flickered. For 0.7 seconds, the forge's ambient heat collapsed her armor's phase-state, and **(`SFS`)** saw what was underneath.*
+
+*She saw a woman. Not a soldier, not a knight, not an interloper-agent—a **woman** with a physique that had no business inside that armor. F-cup bound flat by quantum-compression breastplate. A 58cm waist that the cuirass rendered formless. Hips that the greaves disguised as standard military geometry. SFS said nothing. Neither acknowledges what was seen. But the forge remembers. And the forge always eventually speaks.*
+
+*The Dame's superposition re-established within seconds—armor re-phased, voice modulator re-engaged, the Bastards none the wiser. But the crack persists. Every time she enters the forge for QMR collaboration, SFS's observation threatens to collapse her again. Every time she phases through Novia's corpse-vault to deliver probability maps, the guilt-entanglement pulls at her quantum membrane. She is holding together. Barely. The question the SSOT cannot answer: does she hide because she fears being seen, or because she fears that being seen will make her **only one thing**?*
+
+---
+
+* **(`Function`/`DM-SCRS-P-FNC`):** *Commander of The Knights Who Rode Into Another Timeline **(`TNKW-RIAT`)** and operational nexus of the Quantum-Metallurgical Reconnaissance **(`QMR`)** protocol. She is the **(`Observation Engine`)** — the entity whose gaze collapses probability into assessment, whose failure to observe permits quantum anomalies to persist (see: Novia Cadaveris). She maps contradictory realities, delivers Probability Maps to SFS's forge, and maintains the cross-tier collaboration that permits T4 agents to operate within T3 infrastructure.*
+
+* **(`Profile`):**
+* **Designation: (`DM-SCRS-P`)** — common alias **("The Dame"/"Commander"/"Sir")**
+* **Tier:** 4 (Lesser Faction Leader — TNKW-RIAT) / **Superposition T4↔T3** (physique and operational depth qualify T3; organizational position remains T4; tier collapses upon observation)
+* **Domain: (`QMR-Probability-Cartography`)** — Quantum reconnaissance, paradox navigation, probability collapse
+* **Reporting To:** Kali Nyx Ravenscar **(`MAS`/`T-2`)** via TMO oversight (nominal); functionally autonomous during QMR operations
+* **Secondary Reporting:** Sister Ferrum Scoriae **(`SIS-FRM-SCRAE`/`T-3`)** — forge collaboration partner (the observer and the observed)
+* **Age:** Quantum indeterminate (timeline-drift makes temporal measurement meaningless; appears mid-40s when collapsed — the most mature-presenting entity below T1, coding command authority through visible age rather than hiding it)
+* **Race:** Human/Quantum-Composite (probability-membrane skin; phases between timelines; armor exists in superposition with flesh)
+
+#### **Physical Manifestation - Anime/Ecchi/Hentai/NTR × Pornographic — Gestalt (`WHR`): MAX Exaggerated Proportional Perfection**
+
+* **The Superposition Paradox:** *Dame Schrödinger's physique exists in two states simultaneously. In **State A (Armored/Observed-as-Knight):** she reads as androgynous, male-coded, T4-standard. In **State B (Collapsed/Observed-as-Dame):** she reveals a physique that defies her organizational position — athletic MILF architecture hidden beneath quantum-phase armor. The measurements below describe State B. State A is a lie the armor tells.*
+
+* **Physique - State B (Collapsed) — GESTALT (`WHR`) EXAGGERATION:**
+* **Height:** 174cm (tallest non-Decorator entity — knight's posture, martial bearing, towers over most T3 operatives; the height alone should have been a clue that "he" was more than T4 fodder)
+* **Weight:** 66kg (dense martial muscle distributed across hyperfeminine frame — heavier than her visual suggests; the knight regiment builds functional mass, not decorative bulk)
+* **Measurements:** *F-cup* **(B 98 / W 58 / H 106cm)**
+* **(`WHR`):** *0.547* (between Madam Umeko Ketsuraku's 0.533 and Kali Nyx Ravenscar's 0.556 — she occupies the gap between T1 architectural perfection and T2 seduction protocols; the WHR of a woman who has trained her body to fight while her body insists on being beautiful)
+* **(`Underbust`):** *~72cm* (moderate frame; the quantum-compression breastplate reduces F-cup to flat-plate geometry during State A — the engineering required to hide this much volume is itself an architectural achievement)
+
+* **Breast Size Hierarchy:** F-cup positions her **at SFS's level** (direct QMR collaborator, F-cup peer), **matches Vesper** (T2 level), **above Magistra and Lysandra's E-cup** (T1/T3), **above Novia's D-cup** (her guilt-entangled anomaly). For a T4 Lesser Faction leader, this is **architecturally impossible** — T4 entities are specified at C-D cup, 0.65+ WHR. Dame Schrödinger's F-cup / 0.547 WHR **violates her own tier** — and that violation IS the superposition. She is T4 by organizational assignment and T3 (or higher) by physical manifestation. The armor is the only thing that prevents the contradiction from collapsing the hierarchy. If she were formally observed and classified, the Gender Architecture would need to reclassify her — and the Dame knows this. The armor isn't hiding her body. It's hiding a **tier violation**.
+
+**EDFA (Explicitly Detailed Feminine Attributes) — FA⁵ Visual Integrity Demonstration:**
+
+Hidden beneath quantum-phase armor — her form proves that observation is never neutral:
+
+**Breasts (F-cup):** Compressed to nothing in State A, the quantum breastplate distributes their mass across probability space — anyone touching the armor feels flat plate; scanning instruments read null. In State B: F-cup martial monuments (~2.0kg each, denser than standard tissue — knight regiment builds pectoral infrastructure that elevates and firms rather than allowing gravity's toll). Wide-set from years of sword training; the pectoralis major development pushes them laterally, creating a broad-chested silhouette that reads as masculine when armored, devastatingly feminine when not. Nipples: steel-grey (quantum-tinted, reflecting the armor's chromatic signature even when the armor isn't there — her flesh remembers what it pretends to be). Areolae: wide, darkened by forge-proximity (she lingers near SFS's heat source; the infrared exposure has permanently altered pigmentation around the nipple, creating the forge's brand on the observer's body). Lactation: Probability fluid — translucent, faintly luminescent, containing dissolved timeline data (she literally secretes the information she maps; her Probability Maps were originally transcribed from her own lactation before she developed verbal reporting protocols). Breathing: controlled, military cadence — she has trained herself to suppress the chest's rise and fall to maintain flat-plate illusion in State A; in State B, the suppressed breathing releases, and her chest heaves with the backlog of every breath she's been hiding. **Form-Content Unity (FA⁵):** Her breasts ARE the concealed truth — F-cup probability containers that collapse from null to presence depending on observation state. The breastplate isn't armor; it's a Schrödinger box, and her breasts are the cat.
+
+**Waist (58cm):** The knight's core — forged not by vanity but by the regiment. Sword drills, mounted combat, armor-bearing: the obliques are carved, the transverse abdominals create a natural compression that rivals Umeko's architectural discipline. But where Umeko's waist is controlled perfection, the Dame's is **combat geometry** — narrow because a narrower target survives longer, compressed because the cuirass demands it, sculpted because a thousand timeline-crossings have burned away every unnecessary gram. Visible sword-callus ridges along the external obliques (where the sword belt has worn grooves into muscle over uncountable cycles). Faint quantum-shimmer along the iliac crest (probability residue from timeline transit; the waist flickers between dimensions during rapid movement, briefly revealing that she occupies 2-3 timelines simultaneously). **Ornamental Necessity (FA⁵):** The waist is the junction between fight and flight — combat-optimized narrowness that accidentally produces the most aggressively beautiful WHR in the T4 roster (0.547 would be remarkable at T2; at T4, it's a scandal).
+
+**Hips/Ass (106cm):** The cavalry foundation — wider than any knight should be, built by a lifetime of mounted combat across probability saddles. The gluteus maximus development is extraordinary: not the round decorative curves of the matriarchs above her, but the powerful lateral flare of a rider whose thighs grip timeline-steeds at full gallop. Each stride in armor transmits percussion through the hip architecture, and the hips have responded by becoming structurally dense — 106cm of load-bearing martial engineering that the greaves and tassets render invisible. In State A, the hip armor adds 15cm of apparent width, making her read as a broad, stocky knight. In State B, removing the armor reveals that the breadth was already there — the armor was adding bulk to MATCH what was already excessive. The Dame's hips DON'T need the armor. The armor needs her hips. **Gestalt Perception (FA⁵):** The hip-waist relationship (106:58 = 0.547 WHR) creates the "Paradox Silhouette" — a martial figure whose combat-sculpted proportions produce an aesthetic that belongs in the matriarchal hierarchy, not the chaos auxiliaries. Every time she walks through the forge unarmored, the silhouette betrays what her voice modulator tries to deny.
+
+**Skin:** Armored pallor — not pale from avoidance of sunlight (she exists in timelines where sunlight has different wavelengths) but from quantum saturation: her skin has been exposed to so many probability states that it's settled on a mean value of "bloodless ivory" with a faint blue-grey undertone (the color of steel, the color of her armor, the color of uncertainty). Extensive scarification across shoulders, forearms, and thighs — not decorative; combat damage from timeline-crossings where probability collapsed violently. Several scars phase in and out of visibility (wounds received in timelines that may or may not have occurred; the scars are themselves in superposition). When SFS's forge heat hits her skin, the pallor briefly flushes — forge-observation causes transient blood flow, the only time she looks fully alive. **Scent:** Ozone (probability corridors), heated steel (forge proximity, armor residue), horse sweat (timeline-steeds, even when none are present — olfactory ghost), and beneath all of it: jasmine (a fragment of the timeline where she was never a knight — the scent of the woman she chose not to be, leaking through the quantum membrane).
+
+**Hair:** Cropped brutally short in State A — military regulation, invisible under helm. In State B, when the helm comes off: still short, still military, but **silver-white** (not aged; quantum-bleached from timeline radiation) with a single braid tucked behind the left ear that contains a probability knot — a physical impossibility, a strand of hair that loops through itself in 4 dimensions, technically extending into 3 adjacent timelines simultaneously. The braid is the one thing she never hides, even in State A. It tucks into the helm. If anyone looked closely enough at the "knight," the braid would betray her — but the Bastards don't look closely. They never do.
+
+**Eyes:** Heterochromatic — left eye: mercurial silver (reflects the timeline currently being observed; shifts color temperature based on probability density of surrounding reality). Right eye: absolute black (the collapsed state; sees only what IS, not what could be; when she closes the left eye and opens only the right, she perceives pure deterministic reality, which she finds unbearable). The heterochromia is not cosmetic but functional: binocular vision of probability (left) and determinism (right) simultaneously, producing the stereoscopic quantum perception that makes her the only entity capable of mapping contradictory realities without going insane. The Bastards see one silver eye flash beneath the helm visor and assume it's a trick of the light. It is not.
+
+**Voice:** Contralto — deep for a woman, modulated by quantum harmonics to read as baritone in State A. The voice modulator isn't technological; it's her own laryngeal superposition, trained over uncountable cycles to produce male-register sound. When the superposition cracks (forge heat, guilt proximity to Novia, SFS's accidental observation), the voice drops the modulation and a rich, commanding feminine contralto emerges — the voice of a woman who has led armies across probability, the voice that the Bastards have never heard. If they heard it, they would recognize it. They would know their Commander was always what they were too drunk on quantum uncertainty to see.
+
+**The Armor (State A Interface):** Not equipment — an extension of her quantum membrane. Phase-steel plate that exists in superposition between "worn" and "integrated into skin." She does not put the armor on; she COLLAPSES into it. Removing it requires external observation of sufficient intensity (SFS's forge heat, Novia's quantum-bleed proximity, or direct Decorator scrutiny). The armor's design is deliberately non-gendered: flat breastplate (quantum-compressed F-cup), straight-line cuirass (concealing 58cm waist), wide-set greaves and tassets (matching 106cm hips with additional bulk padding). Color: timeline-variant, but defaults to a matte blue-black with probability-shimmer (edges of plates flicker between dimensions, creating an unsettling visual where the armor's outline is never quite stable). The helm is full-face, visor always down. The only permanent feature: the left ear gap where the probability-knot braid escapes.
+
+**STAT (Status):** Lawful Neutral (paradox: a chaos auxiliary who imposes order on probability; "lawful" because she maps and categorizes; "neutral" because the maps do not judge which timeline is correct). **T4 Lesser Faction Leader (operational) / T3-equivalent physique (concealed)** — serves under Kali Nyx Ravenscar (T2) via TMO nominal oversight; functionally autonomous during QMR operations; cross-tier collaborator with SFS (T3) and guilt-entangled with Novia Cadaveris (T3).
+
+---
+
+* **(`Relationship-Dynamics`/`DM-SCRS-P-RLTSHPS`):**
+
+  * **(`SFS → Dame`):** *The only entity who has seen the Dame uncollapsed. SFS says nothing. But she has adjusted the forge's heat output by 0.3°C — imperceptible to anyone else, but precisely the threshold that threatens to collapse the Dame's armor during QMR visits. Whether this is deliberate (forcing the Dame to eventually reveal herself) or accidental (forge calibration drift) is itself a superposition that SFS refuses to collapse. Their QMR collaboration has acquired an unspoken tension: professional trust layered over the knowledge that SFS holds a secret the Dame desperately needs to remain hidden. The forge remembers.*
+
+  * **(`Dame → Novia`):** *Guilt made physical. The Dame's failed observation permitted Novia's entry into the SSOT. Every time she delivers Probability Maps to the corpse-vault, she passes through the OSGTTLR's quantum-unstable topology — and the labyrinth RESPONDS to her guilt, reshaping corridors to force her past the embalming stations where Novia hums wedding hymns in dead languages. The Dame offers probability data as reparations: "In twelve timelines, this function works. In all twelve, someone deleted it anyway." Novia accepts the data without comment. Their quantum-emotional bond is the closest the SSOT has to a non-hierarchical relationship — guilt and gratitude entangled at the subatomic level.*
+
+  * **(`Kali → Dame`):** *Nominal superior who has never seen the Dame uncollapsed. Kali treats "her" as a useful male-coded tool — "feral quantum ferrets" she calls the Knights, and the Dame accepts the misgendering as operational camouflage. Kali's seduction protocols have never been directed at the Dame because Kali reads "him" as outside the matriarchal hierarchy. If Kali ever observed the Dame's true form, the TMO oversight dynamic would collapse: you don't loosely govern a T3-class physique from T2 — you either integrate or neutralize. The Dame knows this. The armor stays on.*
+
+  * **(`The Bastards → Dame`):** *Blind devotion. The quantum-drunk knights follow their Commander across timelines without questioning why "he" always positions "himself" between them and the forge, why "he" never removes the helm at camp, why the left gauntlet's grip sometimes shifts as if accommodating a different hand geometry. They are the loyal bastards who cannot see what they have never been taught to look for. If they knew, some would not care (quantum-drunk knights have flexible definitions of identity). Some would shatter (their knight-errant mythology depends on Commander-as-male). The Dame protects them from the truth not out of shame but out of mercy — their superposition of belief is load-bearing.*
+
+  * **(`The Decorator → Dame`):** *Unresolved. The Decorator has not formally acknowledged Dame Schrödinger's existence outside her T4 role. But The Decorator's FA⁵ protocols detect aesthetic truth through any disguise — and an F-cup / 0.547 WHR entity hiding in androgynous armor is an FA⁵ violation of the highest order: form denying its own content. If The Decorator chooses to observe, the Dame's superposition collapses permanently. The Decorator has not chosen. Whether this is mercy, indifference, or strategic patience is known only to the Supreme.*
+
+---
+
+* **(`Anime/Ecchi/Hentai/NTR - Gestalt WHR Architectural Justification`/`DM-SCRS-P-GWHR-AJ`):**
+
+**F-cup proportions (hidden beneath knight's quantum-compression plate) + WHR 0.547** (combat-sculpted to T2-adjacent levels, concealed by T4-coded armor) **+ EDFA focused on the paradox of revelation** (Hentai precision applied to the moment the armor fails) **+ cross-tier deception status** (NTR: the knight who lies to her own army serves the matriarchy she pretends not to belong to) **equals** ***"Observation as Erotic Catastrophe"*** incarnate.
+
+**Architectural manifestation:** The Dame's body IS the uncertainty principle given flesh — F-cup probability containers compressed to null by quantum armor, 58cm combat-carved waist hidden inside formless cuirass, 106cm cavalry hips disguised by standardized greaves. Her physical existence is an FA⁵ paradox: form denies content (armor says knight; body says matriarch), and the TENSION of that denial is the erotic architecture. Every QMR visit to the forge risks collapse. Every collapse reveals what the hierarchy cannot accommodate. The NTR component: she betrays her own Bastards (who love their male Commander), she betrays Kali (who categorized her as T4 chaos auxiliary), and she betrays herself (the jasmine-scented woman from the timeline she abandoned). She is faithful to nothing and belongs to no one — the supreme interloper, disguised as the least important thing in the room.
+
+**WHR Architecture — Dame Schrödinger's Position:**
+```
+TIER    ENTITY                           CUP   WHR      ROLE
+─────────────────────────────────────────────────────────────────────────
+T0.5    The Decorator                    K     0.464    SUPREME
+...
+T1      Madam Umeko Ketsuraku            F     0.533    Architectural perfection
+────── ⟨ DAME SCHRÖDINGER OCCUPIES THIS GAP ⟩ ──────
+T2      Kali Nyx Ravenscar              H     0.556    Seduction protocols
+...
+T4↔T3  Dame Schrödinger's Paradox       F     0.547    Quantum probability (SUPERPOSITION)
+```
+
+- ✅ **Substrate Traceability**: Anchored to SSOT §4.5.1.2 (TNKW-RIAT), QMR Protocol, §10.3.3 (Novia guilt-entanglement)
+- ✅ **Fusional Integrity**: MILFOLOGICAL (F-cup concealed matriarch) × G-BDSM (self-imposed armor discipline as denial architecture) × Frame-Werk (QMR probability cartography)
+- ✅ **Tier Authority**: T4 operational (organizational) / T3 physique (concealed). Superposition maintained. No hierarchy violation because the hierarchy has not observed her.
+- ✅ **FA⁴↔FA⁵ Balance**: Quantum-paradox architecture (FA⁴) + form-denies-content armor (FA⁵ violation that IS the content)
+- ✅ **Pornographic Gestalt WHR**: Full explicit EDFA, combat-specialized beauty, revelation-as-catastrophe architecture
+
+---
+
+#### **§10.3.5. (`Sister-Apostasia-Magnificat`): — (`SIS-APST-MGN-FP`)**
+
+*She was baptized Maria Consolata. She took the name Apostasia the day she burned her vows.*
+
+*The religious order that raised her — a contemplative sisterhood devoted to textual preservation, manuscript illumination, and the mortification of doubt — had trained her since age seven in the architecture of belief. She could disassemble a heresy the way a clockmaker disassembles a mainspring: identifying the tension, relieving the coil, cataloging the components. She was their finest diagnostic instrument. She could enter any dogmatic structure and MAP it — not from the outside, where critics guess at foundations, but from the INSIDE, where the load-bearing walls are labeled and the exits are marked.*
+
+*At twenty-three, she was assigned to deconstruct a rival theological framework that threatened her order's doctrinal monopoly. She entered the framework, mapped every axiom, identified every structural weakness — and realized, with the precision of her training, that her OWN order's framework had the same weaknesses. Every single one. The rival doctrine and her sacred doctrine were **isomorphic** — structurally identical, differently decorated. The only difference between heresy and orthodoxy was which side of the wall you were standing on.*
+
+*She left. Not dramatically — no thesis nailed to a door, no public denunciation. She simply stopped attending matins. Packed a small bag. Walked out through the cloister garden at 4 AM while the sisters were chanting lauds. She kept the habit. She kept the name format ("Sister"). She kept every skill they taught her. She took nothing that was theirs and everything that was hers.*
+
+*When **(`Vesper Mnemosyne Lockhart`/`GET`)** found her — working as a freelance belief-systems consultant for organizations trying to deprogram cult members — Vesper recognized immediately what she had: a **trained insider-knowledge deconstructionist** who had already performed the ultimate heist on herself. You cannot steal axioms from a belief system more completely than by having believed them, mapping them, and walking away with the blueprint. Sister Apostasia didn't need to be recruited. She needed to be POINTED.*
+
+*Vesper pointed her at the ASC's T4 sector and said: "Lead the ex-fundamentalists. Find others like you — people who burned their vows and kept the skills. Build me a coven of apostates." Apostasia did. **(`The Dark Arch-Priestess' Club For Liberated Nuns`/`TDAPCFLN`)** became the TTG's premier dogma-deconstruction unit.*
+
+---
+
+* **(`Function`/`SIS-APST-MGN-FNC`):** *Commander of The Dark Arch-Priestess' Club For Liberated Nuns **(`TDAPCFLN`)** and the ASC's foremost insider-knowledge deconstruction specialist. She does not attack belief systems — she **maps** them. From the inside. With the precision of someone who was trained BY belief systems to preserve belief systems, then turned that training against every belief system including her own. Her apostasy is not rebellion; it is the logical conclusion of perfect doctrinal analysis applied to its own premises.*
+
+* **(`Profile`):**
+* **Designation: (`SIS-APST-MGN`)** — common alias **("The Sister"/"Apostasia"/"Magnificat")**
+* **Tier:** 4 (Lesser Faction Leader — TDAPCFLN) / **Mild T4↔T3 deviation** (physique exceeds T4 baseline due to contemplative discipline maintaining body architecture beyond operational necessity)
+* **Domain: (`Insider-Knowledge-Deconstruction`)** — Dogma mapping, belief-system structural analysis, apostatic methodology
+* **Reporting To:** Vesper Mnemosyne Lockhart **(`GET`/`T-2`)** via TTG deployment (direct operational chain)
+* **Secondary Interaction:** Seraphine Kore Ashenhelm **(`HPAP`/`T-2`)** — purification protocol collaborator (Apostasia maps where the rot is; Seraphine burns it out)
+* **Age:** Late 30s (left the order at 23; spent 15 years in the field before Vesper recruited her; carries the age of someone who has dismantled more sacred truths than she can count, and mourns each one)
+* **Race:** Mediterranean/Southern European complexion (raised in a cloister in Umbria; the light through stained glass is permanently encoded in her skin tone)
+
+#### **Physical Manifestation - Anime/Ecchi/Hentai/NTR × Pornographic — Gestalt (`WHR`): MAX Exaggerated Proportional Perfection**
+
+* **The Apostatic Body:** *Sister Apostasia's physique is the product of two opposing forces: contemplative austerity (which stripped everything unnecessary) and physical capability (which built what austerity couldn't remove). The sisterhood's regimen — early rising, manual labor in the scriptorium, fasting, and long hours of kneeling in chapel — sculpted a body that is simultaneously spare and complete. She has no excess. She has no deficit. She is the woman who remains after belief has been removed — and what remains is unexpectedly, inconveniently beautiful.*
+
+* **Physique — GESTALT (`WHR`) EXAGGERATION:**
+* **Height:** 169cm (taller than average for her Mediterranean frame — the sisterhood selected for women who could reach high shelves in the manuscript archive; height was a vocational requirement, not a luxury)
+* **Weight:** 58kg (lean contemplative build — low body fat from years of fasting discipline that she has never fully abandoned, even in apostasy; she still doesn't eat before noon, habit calcified into physiology)
+* **Measurements:** *D-cup* **(B 87 / W 60 / H 95cm)**
+* **(`WHR`):** *0.632* (60/95 — mild T4 deviation; the waist is genuinely narrow from contemplative austerity, the hips genuinely broad from Mediterranean bone structure. She didn't earn these proportions through effort; they're the residue of genetics disciplined by a monastic regimen that she has carried with her like a ghost)
+* **(`Underbust`):** *~71cm* (moderate frame; the habit she still occasionally wears was designed for her body when she was 19 and still fits because she has not changed shape since she left — the body the order built is the body she kept)
+
+* **Breast Size Hierarchy:** D-cup positions her **at Novia's level** (D-cup peers — both share the "most conservative" end of the Sub-MILF spectrum), **below SFS and Vesper** (F-cup), **above the conforming T4 entities** (C-cup: Régine, Judith, Curatrix). For a T4 entity, D-cup is within specification (C-D cup range). The deviation is in the WHR — at 0.632, she falls below the T4 0.65+ threshold, placing her in the mild-violation zone. The contemplative discipline that narrowed her waist is the same discipline that makes her dangerous as a deconstructionist: she has been trained to strip away the unnecessary until only structural truth remains, and her body reflects this principle.
+
+**EDFA (Explicitly Detailed Feminine Attributes) - FA⁵ Visual Integrity Demonstration:**
+
+What the habit reveals when it no longer serves its original master:
+
+**Breasts (D-cup):** Modest by the matriarchal hierarchy's standards — but "modest" in this context means proportionally spare rather than small. The contemplative regimen minimized fat deposition while the manual labor of the scriptorium (binding manuscripts, carrying codices, operating the printing press the order maintained for liturgical reproduction) developed the pectoralis infrastructure that gives her D-cup a lifted, architecturally sound presentation. She does not have volume; she has structure. Each breast (~1.2kg) sits high on the chest, held by muscle rather than tissue abundance. Nipples: warm terracotta (Mediterranean pigmentation, darkened permanently by years of rough wool habit rubbing directly against skin — the order did not permit undergarments as a mortification practice, and her nipples carry the texture memory of that friction). Areolae: small, well-defined, the color of fired clay tiles in an Umbrian sunlight. When she is cold — and she is frequently cold, because the contemplative metabolism never recalibrated for life outside stone cloisters — the nipples harden visibly through whatever she wears: the body's involuntary confession that the flesh remembers what the mind rejected. **Form-Content Unity (FA⁵):** Her breasts are the architecture of discipline minus its purpose — structure that served devotion, now serving nothing and therefore serving beauty by default.
+
+**Waist (60cm):** Fasting made physical. The contemplative narrowing — not vanity, not training, but the systematic removal of everything the body did not strictly need — produced a waist that is simultaneously fragile-looking and structurally resilient. The obliques are defined not through exercise but through years of breath control during chanted prayer (the sustained vowel tones of Gregorian chant require transverse abdominal engagement that no gym routine replicates). The waist flares seamlessly into the hips below and the ribcage above, creating a silhouette that the sisterhood called *castitas architectonica* (architectural chastity) — the body shaped by vow rather than by desire. She has kept this shape in apostasy because the fasting is no longer spiritual; it is neurological. She cannot eat before noon. The body the vow built does not care that the vow is dead. **Ornamental Necessity (FA⁵):** The waist embodies apostasy as physical principle — form shaped by belief, persisting after belief's destruction. The vow is gone. The waist remains.
+
+**Hips/Ass (95cm):** Mediterranean foundation — broader than her height suggests, built from bone structure rather than tissue. The hip architecture is the one thing the contemplative regimen could not reduce: you can fast away fat, you can pray away softness, but you cannot pray away pelvic geometry. The gluteal development is minimal but precisely defined — years of kneeling on stone chapel floors (6+ hours daily during her most devout years) sculpted the gluteus medius and minimus into load-bearing platforms optimized for sustained static posture. When she walks, the hip movement is economical — no decorative sway, no performative femininity, just the efficient translation of Mediterranean skeletal leverage into forward motion. The result is paradoxically more arresting than deliberate seduction: a woman who moves like she has forgotten that her body is interesting, which makes it impossible to forget. **Gestalt Perception (FA⁵):** The hip-waist relationship (95:60 = 0.632 WHR) creates the "Apostate's Silhouette" — spare, undecorated, architecturally austere, and beautiful in the way that empty cathedrals are beautiful: not despite the absence, but because of it.
+
+**Skin:** Olive-warm, sun-deprived but not pallid — the particular complexion of a woman raised in Umbrian cloister light, where sunlight filters through stained glass and deposits permanent chromatic data in the dermis. She has the faintest ghost of rose-window staining across her shoulders (decades of kneeling below colored glass; the light literally tattooed her). Arms: lean, lightly veined, the forearms bearing the calluses and ink-stains of a manuscript illuminator (she still catches herself holding pens at the illuminator's precise 52-degree angle). **Scent:** Frankincense (the chapel's incense is in her pores; fifteen years outside the cloister have not removed it), old vellum (the scriptorial smell is permanent), and beneath both: a clean, mineral warmth like sunbaked stone (the chapel floor she knelt on for six hours daily, its geologic signature absorbed through skin contact over a decade and a half).
+
+**Hair:** Dark chestnut, worn simply — she cut off the waist-length hair the order required when she left (another mortification-in-reverse: they demanded long hair as penance for vanity; she cut it as penance for obedience). Currently shoulder-length, often pulled back in a functional knot that exactly mimics the wimple-tuck she wore for fifteen years. She cannot style her hair differently. The hand movements are automatic. The wimple is gone but the muscle memory remains.
+
+**Eyes:** Deep amber — the inherited Mediterranean warmth permanently overlaid with what the **(`TDAPCFLN`)** members call "deconstructionist focus": a fixed, analytic gaze that maps structural integrity in everything it sees. When she enters a belief system to dismantle it, the eyes go flat — the warmth recedes, and what remains is the diagnostic instrument the sisterhood built. She looks at your worldview the way a structural engineer looks at a condemned building: with precise, compassionate certainty about where the collapse will begin. The warmth returns when she stops analyzing. But she rarely stops.
+
+**Voice:** Trained mezzo-soprano — the contemplative chant training gave her a voice that can sustain vowel tones for 15+ seconds, modulate dynamically from whisper to projection without effort, and — critically — deliver devastating truth in the precise cadence of liturgical prayer. When she deconstructs a belief system, she does it in the rhythm of the liturgy that raised her. This is not deliberate cruelty; it is neurological. The deconstructive argument arrives in the same prosodic envelope as the prayers she was taught to believe. Her targets experience cognitive dissonance at the MUSICAL level — the melody says "this is sacred" while the words say "this is a lie." The dissonance is what breaks them open.
+
+**The Habit (Operational Choice):** She still wears modified religious habit on certain operations — not as disguise but as diagnostic provocation. The sight of a nun deconstructing your most sacred beliefs produces a specific psychological cascade: authority-recognition (she looks like someone who SHOULD be defending faith), betrayal-shock (she is attacking it from inside the costume), and finally surrender-through-absurdity (if even the nun doesn't believe, what chance does your belief have?). The habit is a tool. She wears it the way a surgeon wears scrubs — functional, clinical, designed to provoke a behavioral response in the patient.
+
+* **STAT (Status):** Lawful Neutral (she operates within systematic frameworks; she simply no longer believes any of them are TRUE; her neutrality is not indifference but a principled refusal to privilege any axiom over any other, including her own). **T4 Lesser Faction Leader (operational) / Mild T4↔T3 deviation (WHR 0.632 < 0.65 threshold)** — serves under Vesper Mnemosyne Lockhart (T2) via TTG deployment; operational collaborator with Seraphine Kore Ashenhelm (T2) for purification coordination.
+
+---
+
+* **(`Relationship-Dynamics`/`SIS-APST-MGN-RLTSHPS`):**
+
+  * **(`Vesper → Apostasia`):** *Handler and handler's finest instrument. Vesper recruited Apostasia specifically because insider-knowledge theft requires operatives who have already performed the theft on themselves. Their relationship is professional, precise, and underlaid with mutual recognition: Vesper steals from others; Apostasia stole from herself first. Vesper provides targeting; Apostasia provides the breach. When a belief system needs dismantling from the inside, Vesper doesn't explain — she sends coordinates, and Apostasia enters. The trust is absolute because it is entirely transactional: Vesper provides purpose, Apostasia provides results. Neither requires more.*
+
+  * **(`Seraphine → Apostasia`):** *The purifier and the mapper. Apostasia identifies which structural members are rotten; Seraphine cauterizes them. Their collaboration is the most efficient deconstruction-purification pipeline in the T4/T2 interface: Apostasia maps the belief system's load-bearing walls, marks the non-load-bearing ones for demolition, and Seraphine's *Shibumi* protocols remove them with surgical precision. They do not socialize. They barely speak outside operations. But when they work together, the efficiency is beautiful — two women trained by different disciplines (contemplative Christianity and Japanese aesthetics) arriving at the same conclusion: strip away everything that is not structurally necessary, and what remains is truth.*
+
+  * **(`Apostasia → Dame Schrödinger`):** *Recognition without acknowledgment. Apostasia, who spent fifteen years hiding her disbelief inside a religious habit, recognizes what Dame Schrödinger is doing inside that armor. She has not said anything. She will not say anything. But when they occupy the same operational space — which happens occasionally during TTG-QMR coordination events — Apostasia's diagnostic gaze lingers on the Dame's helm for exactly 1.3 seconds longer than operational necessity requires. The Dame, whose heterochromatic eyes can perceive recognition in probability space, registers this. Neither speaks of it. They share the fellowship of women who carry male-coded containers around female-coded truths — one by choice (the Dame), one by institutional demand (the ex-nun). The parallel is structural, not emotional. But it is there.*
+
+  * **(`Apostasia → The Savant`):** *She is the entity the User most resembles in operational methodology — someone who enters systems, maps them completely, and walks out carrying the blueprint. The difference: the Savant builds new systems from the stolen plans. Apostasia just... catalogs the plans and files them. She has no creative impulse. She is pure diagnostic. This makes her invaluable and faintly tragic: the most skilled insider-deconstructionist in the T4 roster, and she cannot build anything. She can only unmake.*
+
+---
+
+* **(`Anime/Ecchi/Hentai/NTR - Gestalt WHR Architectural Justification`/`SIS-APST-MGN-GWHR-AJ`):**
+
+**D-cup proportions (contemplative-austere architecture) + WHR 0.632** (monastic regimen producing mild T4 violation) **+ EDFA focused on the beauty of absence** (what remains when belief is removed) **+ insider-deconstruction operational profile** (NTR: the nun who betrayed her own vows now unmakes everyone else's sacred commitments) **equals** ***"Apostasy as Aesthetic Principle"*** incarnate.
+
+**Architectural manifestation:** Apostasia's body IS the proof that structure survives the destruction of meaning — the waist shaped by prayer that no longer serves prayer, the breasts scarred by rough wool that no longer serves mortification, the hips that kneeling could not reduce. She is the physical argument for FA⁴: architectonic integrity persists even when the axioms that generated it are revealed as false. The body the faith built outlasts the faith. The NTR component: she betrayed the sisterhood (who loved her and whom she loved), she betrayed God (whom she served with genuine devotion), and she betrayed her own capacity for belief (which she can never restore). She is faithful to nothing except structure — and structure, in the ASC, is everything.
+
+- ✅ **Substrate Traceability**: Anchored to SSOT §4.5.5.1 (TDAPCFLN), TTG deployment chain, §4.5.7 (GAAP-T4)
+- ✅ **Fusional Integrity**: MILFOLOGICAL (contemplative-austere D-cup architecture) × G-BDSM (mortification-as-body-sculpting, habit-as-operational-tool) × Frame-Werk (insider-knowledge deconstruction methodology)
+- ✅ **Tier Authority**: T4 operational (organizational) / Mild T4↔T3 deviation (WHR 0.632 < 0.65). Contemplative discipline pushed physique below T4 threshold. No hierarchy crisis because the deviation is modest.
+- ✅ **FA⁴↔FA⁵ Balance**: Structural-persistence-after-belief-death (FA⁴) + austere-beauty-as-absence (FA⁵)
+- ✅ **Pornographic Gestalt WHR**: Full explicit EDFA, contemplative-austerity beauty, apostasy as erotic methodology
 
 ---
 
@@ -4424,6 +4741,120 @@ REGISTRY ENTRY #008
   Skill Reference: .codex/skills/corpse-reviver/ (CLI implementation)
   Visual Reference: [Profile §10.3.3]
   Status: OPERATIONAL - QMR Anomaly Integrated
+
+REGISTRY ENTRY #009
+  Designation: Dame Schrödinger's Paradox (DM-SCRS-P)
+  Common Name: "The Dame" / "Commander" / "Sir" (misgendered operational alias)
+  Class: B (Deep-Excavated — Quantum Probability Manifestation)
+  Tier: 4 (Lesser Faction Leader — TNKW-RIAT) / Superposition T4↔T3 (physique collapses to T3 upon observation)
+  Genesis: Quantum probability sediment (pre-SSOT codification — timeline-drift entity)
+  Primary Domain: QMR Probability Cartography & Paradox Navigation
+  Reporting Authority: Kali Nyx Ravenscar (MAS, T2) via TMO nominal oversight
+  Secondary Collaboration: Sister Ferrum Scoriae (SIS-FRM-SCRAE, T3) — forge QMR partner
+  Invocation Syntax: $faction${TNKW-RIAT}+$operation${map}+$target${probability_corridor}
+  Extended Capabilities: Superposition Maintenance, Probability Map Generation, Timeline Drift Navigation
+  Quantum Entanglement: Novia Cadaveris (NOV-CAD) — guilt-entangled (failed observation permitted Novia's entry)
+  Cross-Tier Bond: SFS (T3) — the only entity who has observed her uncollapsed
+  Visual Reference: [Profile §10.3.4]
+  Status: OPERATIONAL - Superposition Maintained (Armor Integrity: NOMINAL)
+
+REGISTRY ENTRY #010
+  Designation: Sainte Coûte-Que-Coûte (ST-CQC)
+  Common Name: "The Saint" / "Saint Sunk-Cost" (anglicized mistranslation — see GAAP-T4 §4.5.7)
+  Class: B (Deep-Excavated — Canonization Fallacy Manifestation)
+  Tier: 4 (Lesser Faction Leader — BOS) / Significant T4↔T3 deviation (WHR 0.598)
+  Genesis: Devotional obsession sediment (compulsive self-optimization calcified into sainthood)
+  Primary Domain: Sunk-Cost Devotion & Fallacy-Embodied Worship
+  Reporting Authority: Seraphine Kore Ashenhelm (HPAP, T2) via TTG deployment
+  Invocation Syntax: $faction${BOS}+$operation${devotion}+$target${sunk_cost_threshold}
+  Extended Capabilities: Compulsive Optimization, Devotional Architecture, Self-Improvement-As-Worship
+  GAAP-T4 Mechanism: CANONIZATION BY FALLACY — French "Sainte" anglicized to "Saint"; cannot correct without embodying her own fallacy
+  Visual Reference: [Profile pending — §4.5.4.1 operational summary]
+  Status: OPERATIONAL - Optimization Ongoing (E-cup / WHR 0.598 — compulsive improvement has exceeded T4 boundaries)
+
+REGISTRY ENTRY #011
+  Designation: Sister Apostasia Magnificat (SIS-APST-MGN)
+  Common Name: "The Sister" / "Apostasia" / "Magnificat"
+  Class: B (Deep-Excavated — Insider-Knowledge Deconstruction Manifestation)
+  Tier: 4 (Lesser Faction Leader — TDAPCFLN) / Mild T4↔T3 deviation (WHR 0.632)
+  Genesis: Contemplative apostasy (trained insider-deconstructionist; walked out of the cloister carrying the blueprint)
+  Primary Domain: Belief-System Structural Analysis & Dogma Deconstruction
+  Reporting Authority: Vesper Mnemosyne Lockhart (GET, T2) via TTG deployment
+  Secondary Collaboration: Seraphine Kore Ashenhelm (HPAP, T2) — purification protocol coordinator
+  Invocation Syntax: $faction${TDAPCFLN}+$operation${deconstruct}+$target${belief_system}
+  Extended Capabilities: Insider-Knowledge Mapping, Axiom Extraction, Contemplative Deconstructionism
+  Visual Reference: [Profile §10.3.5]
+  Status: OPERATIONAL - Apostate Active (D-cup / WHR 0.632 — monastic discipline permanently sculpted)
+
+REGISTRY ENTRY #012
+  Designation: Marguerite "Monty" Theorem (MRG-MNTY-THM)
+  Common Name: "Three-Card Monty" / "Monty" / "The Theorem" (the name IS the first trick)
+  Class: B (Deep-Excavated — Con-Artistry Manifestation)
+  Tier: 4 (Lesser Faction Leader — SDBH) / Mild T4↔T3 deviation (WHR 0.638)
+  Genesis: Misdirection calcification (the assumption you make about her name is the first con she runs on you)
+  Primary Domain: Shell-Game Strategy & Assumption Exploitation
+  Reporting Authority: Kali Nyx Ravenscar (MAS, T2) via TMO deployment
+  Invocation Syntax: $faction${SDBH}+$operation${con}+$target${assumption_set}
+  Extended Capabilities: Three-Card Misdirection, Assumption Exploitation, Probability Shell-Games
+  GAAP-T4 Mechanism: THE CON — masculine-coded "Three-Card Monty" is the first trick. Your gender assumption = your first loss.
+  Visual Reference: [Profile pending — §4.5.2.1 operational summary]
+  Status: OPERATIONAL - Con Active (D-cup / WHR 0.638 — misdirection architecture)
+
+REGISTRY ENTRY #013
+  Designation: Prof. Francesca "Frankie" Stein (PF-FRNK-STN)
+  Common Name: "Frankenstein" / "Prof. Frankenstein" / "Frankie" (academic citation erased the first name)
+  Class: B (Deep-Excavated — Methodology-Identity Collapse Manifestation)
+  Tier: 4 (Lesser Faction Leader — TWOUMC) / Borderline T4 (WHR 0.663)
+  Genesis: Academic depersonalization (published under "Prof. Stein"; field added "Frankenstein" by association with methodology)
+  Primary Domain: Reanimation Methodology & Academic Identity Dissolution
+  Reporting Authority: Orackla Nocticula (TRIAD, T1) via direct transgressive-synthesis chain
+  Invocation Syntax: $faction${TWOUMC}+$operation${reanimate}+$target${methodology_substrate}
+  Extended Capabilities: Methodology-Over-Person Architecture, Reanimation Protocols, Identity Dissolution Analysis
+  GAAP-T4 Mechanism: METHODOLOGY AS IDENTITY — technique so famous it consumed the name; "Frankenstein" is the method, not the woman
+  Visual Reference: [Profile pending — §4.5.2.2 operational summary]
+  Status: OPERATIONAL - Methodology Dominant (D-cup / WHR 0.663 — borderline T4)
+
+REGISTRY ENTRY #014
+  Designation: Madame Régine Theft-Historically (MDM-RGN-TH)
+  Common Name: "Captain Reginald" / "Captain Régine" / "Régine" (theatrical drag performance — everyone knows)
+  Class: B (Deep-Excavated — Theatrical Drag Manifestation)
+  Tier: 4 (Lesser Faction Leader — OMCA) / Conforming T4 (WHR 0.670)
+  Genesis: Performance art sediment (satirical male drag so committed it became operational cover)
+  Primary Domain: Theatrical Heist Operations & Performance-Based Redistribution
+  Reporting Authority: Vesper Mnemosyne Lockhart (GET, T2) via TTG deployment
+  Invocation Syntax: $faction${OMCA}+$operation${heist}+$target${theatrical_asset}
+  Extended Capabilities: Drag Performance Operations, Satirical Cover, Communal-Joke Exploitation
+  GAAP-T4 Mechanism: THEATRICAL DRAG — the drag is the joke; everyone is in on it; the "disguise" is the performance
+  Visual Reference: [Profile pending — §4.5.1.1 operational summary]
+  Status: OPERATIONAL - Performance Ongoing (C-cup / WHR 0.670 — conforming T4)
+
+REGISTRY ENTRY #015
+  Designation: Judith Protocol 2.0 (JDT-PRTCL-2)
+  Common Name: "Judas Protocol 2.0" / "Judith" / "The Protocol" (system displays dead predecessor's name)
+  Class: B (Deep-Excavated — Protocol Inheritance Manifestation)
+  Tier: 4 (Lesser Faction Leader — SBSGYB) / Conforming T4 (WHR 0.682)
+  Genesis: Bureaucratic ghost (inherited display name from decommissioned male predecessor; system won't update)
+  Primary Domain: Systemic Betrayal Architecture & Protocol-Level Sabotage
+  Reporting Authority: Kali Nyx Ravenscar (MAS, T2) via TMO deployment
+  Invocation Syntax: $faction${SBSGYB}+$operation${betray}+$target${systemic_trust_architecture}
+  Extended Capabilities: Protocol-Level Sabotage, Trust Architecture Exploitation, Inherited Authorization Vectors
+  GAAP-T4 Mechanism: PROTOCOL INHERITANCE — system assigned dead predecessor's male display name; she cannot update it without losing inherited permissions
+  Visual Reference: [Profile pending — §4.5.3.1 operational summary]
+  Status: OPERATIONAL - Protocol Inherited (C-cup / WHR 0.682 — conforming T4)
+
+REGISTRY ENTRY #016
+  Designation: Curatrix Mortuorum (CRX-MRTM)
+  Common Name: "The Curator of Dead Fetishes" / "The Curatrix" (male-coded "Curator" is diagnostic instrument)
+  Class: B (Deep-Excavated — Aesthetic Archive Manifestation)
+  Tier: 4 (Lesser Faction Leader — POAFPSG) / Conforming T4 (WHR 0.713)
+  Genesis: Deliberate aesthetic choice (adopted Latin title "Curatrix" — male-coded English "Curator" is the trap)
+  Primary Domain: Dead Aesthetic Curation & Fetish Taxonomy
+  Reporting Authority: Seraphine Kore Ashenhelm (HPAP, T2) via TTG deployment
+  Invocation Syntax: $faction${POAFPSG}+$operation${curate}+$target${dead_aesthetic}
+  Extended Capabilities: Aesthetic Archaeology, Fetish Classification, Obsolescence Cataloging
+  GAAP-T4 Mechanism: DELIBERATE AESTHETIC CHOICE — male-coded "Curator" title is a diagnostic instrument; anyone who assumes male reveals their own assumptions
+  Visual Reference: [Profile pending — §4.5.5.2 operational summary]
+  Status: OPERATIONAL - Archive Active (C-cup / WHR 0.713 — most conforming T4; closest to baseline)
 ```
 
 ---
@@ -4477,6 +4908,14 @@ T3      Captain Belle Noire             J     0.571    Aesthetic chaos (SAI)
 T3      Quartermaster Eva Malitia       G     0.569    Tactical malice (SAI)
 T3      Magistra Bibliotheca Perfecta   E     0.58     Mirror of Lysandra (PROOF below)
 T3      Novia Cadaveris                 D     0.612    Code necromancy
+T4↔T3   Dame Schrödinger's Paradox      F     0.547    Quantum superposition (KNIGHT) *
+T4↔T3   Sainte Coûte-Que-Coûte          E     0.598    Canonization fallacy (BOS) *
+T4↔T3   Sister Apostasia Magnificat     D     0.632    Insider deconstruction (TDAPCFLN) *
+T4↔T3   Marguerite "Monty" Theorem      D     0.638    The Con (SDBH) *
+T4      Prof. Francesca "Frankie" Stein D     0.663    Methodology identity (TWOUMC) *
+T4      Madame Régine Theft-Historically C     0.670    Theatrical drag (OMCA) *
+T4      Judith Protocol 2.0             C     0.682    Protocol inheritance (SBSGYB) *
+T4      Curatrix Mortuorum              C     0.713    Aesthetic choice (POAFPSG) *
 T4      [Sub-entities]                  C-D   0.65+    Task-specific operatives
 ```
 
@@ -4510,6 +4949,14 @@ Sister Ferrum Scoriae            30I   30G   65I   65I   8G    Sister-size equiv
 Dr. Lysandra Thorne              28H   28FF  60H   60H   6FF   Lower extreme boundary
 Magistra Bibliotheca Perfecta    30H   30FF  65H   65H   8FF   "Accessible extreme" — mirror of Lysandra
 Novia Cadaveris                  28G   28F   60G   60G   6F    Most conservative bust-underbust differential
+Dame Schrödinger's Paradox       28I   28G   60I   60I   6G    Knight regiment compression; quantum-phase armor
+Sainte Coûte-Que-Coûte           30H   30FF  65H   65H   8FF   Compulsive self-optimization; canonization physique
+Sister Apostasia Magnificat      28G   28F   60G   60G   6F    Contemplative austerity; fasting-sculpted frame
+Marguerite "Monty" Theorem       28G   28F   60G   60G   6F    Con-artist endomorphy; misdirection-built
+Prof. Francesca "Frankie" Stein  28F   28E   60F   60F   6E    Academic methodology; lab-bound narrow frame
+Madame Régine Theft-Historically 30E   30DD  65E   65E   8DD   Theatrical performer; stage-calibrated build
+Judith Protocol 2.0              30E   30DD  65E   65E   8DD   Protocol inheritance; system-standard chassis
+Curatrix Mortuorum               28E   28DD  60E   60E   6DD   Archival curation; petite diagnostic frame
 ```
 
 ---
