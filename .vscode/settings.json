@@ -210,6 +210,9 @@
     // Unsupported in the current Copilot Chat build; preserved for future revalidation.
     // "github.copilot.chat.useProjectContext": true,
     "github.copilot.chat.scopeSelection": true,
+    // Subagent model overrides — force quality model instead of Haiku default
+    "github.copilot.chat.exploreAgent.model": "Claude Sonnet 4.6 (copilot)",
+    "github.copilot.chat.askAgent.model": "Claude Sonnet 4.6 (copilot)",
     // Unsupported in the current Copilot Chat build; preserved for future revalidation.
     // "github.copilot.chat.editor.temporalContext.enabled": true,
     "github.copilot.chat.newWorkspace.useContext7": false,
