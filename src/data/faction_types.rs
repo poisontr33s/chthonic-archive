@@ -99,6 +99,8 @@ pub enum FoundationalAxiom {
     FA3,
     /// FA⁴ - Architectonic Integrity (Structural Soundness)
     FA4,
+    /// FA⁵ - Visual Integrity (Aesthetic Coherence & Symbolic Truth)
+    FA5,
 }
 
 /// Dynamic Altitude & Focus Protocol modes
