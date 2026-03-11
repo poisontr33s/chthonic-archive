@@ -139,6 +139,83 @@ function Get-NormalizedGeminiLauncher {
     return $null
 }
 
+function Get-BunShimVersion {
+    $candidatePaths = @(
+        (Join-Path $env:USERPROFILE ".bun\bin\codex.bunx"),
+        (Join-Path $env:USERPROFILE ".bun\bin\biome.bunx")
+    )
+
+    foreach ($candidatePath in $candidatePaths) {
+        if (-not (Test-Path $candidatePath)) {
+            continue
+        }
+
+        try {
+            $candidateBytes = [System.IO.File]::ReadAllBytes($candidatePath)
+        } catch {
+            continue
+        }
+
+        if ($candidateBytes.Length -lt 2) {
+            continue
+        }
+
+        $rawFlags = [BitConverter]::ToUInt16($candidateBytes, $candidateBytes.Length - 2)
+        if ($rawFlags -ne 0) {
+            return ($rawFlags -shr 3)
+        }
+    }
+
+    return 5478
+}
+
+function Write-GeminiShimMetadata {
+    param(
+        [Parameter(Mandatory = $true)]
+        [string]$Path,
+
+        [Parameter(Mandatory = $true)]
+        [byte[]]$PathBytes,
+
+        [Parameter(Mandatory = $true)]
+        [string]$Launcher,
+
+        [Parameter(Mandatory = $true)]
+        [int]$Version
+    )
+
+    $separator = [byte[]](0x22, 0x00, 0x00, 0x00)
+    $launcherBytes = [System.Text.Encoding]::Unicode.GetBytes($Launcher)
+    $flags = [uint16](($Version -shl 3) -bor 0b101)
+    $updatedBytes = New-Object byte[] ($PathBytes.Length + $separator.Length + $launcherBytes.Length + 10)
+
+    [Array]::Copy($PathBytes, 0, $updatedBytes, 0, $PathBytes.Length)
+    [Array]::Copy($separator, 0, $updatedBytes, $PathBytes.Length, $separator.Length)
+    [Array]::Copy($launcherBytes, 0, $updatedBytes, $PathBytes.Length + $separator.Length, $launcherBytes.Length)
+    [Array]::Copy([BitConverter]::GetBytes([int]$PathBytes.Length), 0, $updatedBytes, $PathBytes.Length + $separator.Length + $launcherBytes.Length, 4)
+    [Array]::Copy([BitConverter]::GetBytes([int]$launcherBytes.Length), 0, $updatedBytes, $PathBytes.Length + $separator.Length + $launcherBytes.Length + 4, 4)
+    [Array]::Copy([BitConverter]::GetBytes($flags), 0, $updatedBytes, $PathBytes.Length + $separator.Length + $launcherBytes.Length + 8, 2)
+
+    [System.IO.File]::WriteAllBytes($Path, $updatedBytes)
+}
+
+function Get-GeminiRelativeEntrypoint {
+    $entry = Get-GeminiEntrypoint
+    if (-not $entry) {
+        return $null
+    }
+
+    $bunRoot = Join-Path $env:USERPROFILE ".bun"
+    $fullEntry = [System.IO.Path]::GetFullPath($entry)
+    $fullBunRoot = [System.IO.Path]::GetFullPath($bunRoot)
+
+    if (-not $fullEntry.StartsWith($fullBunRoot, [System.StringComparison]::OrdinalIgnoreCase)) {
+        return $null
+    }
+
+    return ($fullEntry.Substring($fullBunRoot.Length).TrimStart('\', '/'))
+}
+
 function Repair-GeminiWindowsShim {
     param(
         [switch]$Quiet
@@ -150,30 +227,29 @@ function Repair-GeminiWindowsShim {
 
     $metadataPath = Get-GeminiShimMetadataPath
     $metadata = Get-GeminiShimMetadata -Path $metadataPath
-    if (-not $metadata) {
+    if ($metadata) {
+        $normalizedLauncher = Get-NormalizedGeminiLauncher -Launcher $metadata.Launcher
+        if (-not $normalizedLauncher) {
+            return $false
+        }
+
+        Write-GeminiShimMetadata -Path $metadataPath -PathBytes $metadata.PathBytes -Launcher $normalizedLauncher -Version $metadata.Version
+        if (-not $Quiet) {
+            Write-Host "[gemini-wrapper] Repaired Windows Bun shim metadata: $metadataPath" -ForegroundColor Cyan
+        }
+        return $true
+    }
+
+    $relativeEntrypoint = Get-GeminiRelativeEntrypoint
+    if (-not $relativeEntrypoint) {
         return $false
     }
 
-    $normalizedLauncher = Get-NormalizedGeminiLauncher -Launcher $metadata.Launcher
-    if (-not $normalizedLauncher) {
-        return $false
-    }
-
-    $separator = [byte[]](0x22, 0x00, 0x00, 0x00)
-    $launcherBytes = [System.Text.Encoding]::Unicode.GetBytes($normalizedLauncher)
-    $flags = [uint16](($metadata.Version -shl 3) -bor 0b101)
-    $updatedBytes = New-Object byte[] ($metadata.PathBytes.Length + $separator.Length + $launcherBytes.Length + 10)
-
-    [Array]::Copy($metadata.PathBytes, 0, $updatedBytes, 0, $metadata.PathBytes.Length)
-    [Array]::Copy($separator, 0, $updatedBytes, $metadata.PathBytes.Length, $separator.Length)
-    [Array]::Copy($launcherBytes, 0, $updatedBytes, $metadata.PathBytes.Length + $separator.Length, $launcherBytes.Length)
-    [Array]::Copy([BitConverter]::GetBytes([int]$metadata.PathBytes.Length), 0, $updatedBytes, $metadata.PathBytes.Length + $separator.Length + $launcherBytes.Length, 4)
-    [Array]::Copy([BitConverter]::GetBytes([int]$launcherBytes.Length), 0, $updatedBytes, $metadata.PathBytes.Length + $separator.Length + $launcherBytes.Length + 4, 4)
-    [Array]::Copy([BitConverter]::GetBytes($flags), 0, $updatedBytes, $metadata.PathBytes.Length + $separator.Length + $launcherBytes.Length + 8, 2)
-
-    [System.IO.File]::WriteAllBytes($metadataPath, $updatedBytes)
+    $pathBytes = [System.Text.Encoding]::Unicode.GetBytes($relativeEntrypoint)
+    $version = Get-BunShimVersion
+    Write-GeminiShimMetadata -Path $metadataPath -PathBytes $pathBytes -Launcher "bun --no-warnings=DEP0040 " -Version $version
     if (-not $Quiet) {
-        Write-Host "[gemini-wrapper] Repaired Windows Bun shim metadata: $metadataPath" -ForegroundColor Cyan
+        Write-Host "[gemini-wrapper] Rebuilt Windows Bun shim metadata: $metadataPath" -ForegroundColor Cyan
     }
     return $true
 }
