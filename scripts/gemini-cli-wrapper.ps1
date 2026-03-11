@@ -9,7 +9,7 @@
 # ║ Semantic ID: SCRIPT_GEMINI_CLI_WRAPPER_V1
 # ║ Purpose: Wrap Gemini CLI to disable MCP discovery during Bun startup
 # ║ Exports: (none)
-# ║ Flags/Modes: -m/-p/-i/-u/-v/-h/-y/-c and -Arguments passthrough
+# ║ Flags/Modes: -m/-p/-i/-u/-v/-h/-y/-c/-r and -Arguments passthrough
 # ║ Cross-References: (none)
 # ╚════════════════════════════════════════════════════════════════════════════
 
@@ -17,6 +17,8 @@
 # Bun is drop-in Node replacement with node_modules support
 # Issue: Gemini CLI MCP discovery fails on startup → crash
 # Fix: Set GEMINI_DISABLE_MCP env var before execution
+# Windows note: Bun can generate a corrupted .bunx launcher for Gemini's
+# `#!/usr/bin/env -S node ...` shebang; normalize it back to Bun.
 
 param(
     [Alias("m")]
@@ -43,6 +45,9 @@ param(
     [Alias("c")]
     [switch]$CheckUpdate,
 
+    [Alias("r")]
+    [switch]$Repair,
+
     [Parameter(ValueFromRemainingArguments = $true)]
     [string[]]$Arguments
 )
@@ -50,12 +55,127 @@ param(
 # Disable MCP discovery to prevent Bun crash during startup
 $env:GEMINI_DISABLE_MCP = "1"
 
+function Get-GeminiExecutablePath {
+    return (Join-Path $env:USERPROFILE ".bun\bin\gemini.exe")
+}
+
+function Get-GeminiShimMetadataPath {
+    return (Join-Path $env:USERPROFILE ".bun\bin\gemini.bunx")
+}
+
 function Get-GeminiEntrypoint {
     $entry = Join-Path $env:USERPROFILE ".bun\install\global\node_modules\@google\gemini-cli\dist\index.js"
     if (Test-Path $entry) {
         return $entry
     }
     return $null
+}
+
+function Get-GeminiShimMetadata {
+    param(
+        [Parameter(Mandatory = $true)]
+        [string]$Path
+    )
+
+    if (-not (Test-Path $Path)) {
+        return $null
+    }
+
+    try {
+        $bytes = [System.IO.File]::ReadAllBytes($Path)
+    } catch {
+        return $null
+    }
+
+    if ($bytes.Length -lt 14) {
+        return $null
+    }
+
+    $binLength = [BitConverter]::ToInt32($bytes, $bytes.Length - 10)
+    $launcherLength = [BitConverter]::ToInt32($bytes, $bytes.Length - 6)
+    $flags = [BitConverter]::ToUInt16($bytes, $bytes.Length - 2)
+    $separatorLength = 4
+    $expectedLength = $binLength + $separatorLength + $launcherLength + 10
+
+    if ($binLength -lt 0 -or $launcherLength -lt 0 -or $expectedLength -ne $bytes.Length) {
+        return $null
+    }
+
+    if ($bytes[$binLength] -ne 0x22 -or $bytes[$binLength + 1] -ne 0x00 -or $bytes[$binLength + 2] -ne 0x00 -or $bytes[$binLength + 3] -ne 0x00) {
+        return $null
+    }
+
+    $pathBytes = New-Object byte[] $binLength
+    [Array]::Copy($bytes, 0, $pathBytes, 0, $binLength)
+    $launcherBytes = New-Object byte[] $launcherLength
+    [Array]::Copy($bytes, $binLength + $separatorLength, $launcherBytes, 0, $launcherLength)
+
+    return [pscustomobject]@{
+        Path = $Path
+        PathBytes = $pathBytes
+        Launcher = [System.Text.Encoding]::Unicode.GetString($launcherBytes)
+        Version = ($flags -shr 3)
+        Flags = $flags
+        HasShebang = (($flags -band 0b100) -ne 0)
+        IsNode = (($flags -band 0b010) -ne 0)
+        IsNodeOrBun = (($flags -band 0b001) -ne 0)
+    }
+}
+
+function Get-NormalizedGeminiLauncher {
+    param(
+        [Parameter(Mandatory = $true)]
+        [string]$Launcher
+    )
+
+    if ($Launcher -match '^-S node(?:\s+(?<args>.*))?$') {
+        $args = $Matches["args"]
+        if ([string]::IsNullOrEmpty($args)) {
+            return "bun "
+        }
+        return "bun $args"
+    }
+
+    return $null
+}
+
+function Repair-GeminiWindowsShim {
+    param(
+        [switch]$Quiet
+    )
+
+    if (-not $IsWindows) {
+        return $false
+    }
+
+    $metadataPath = Get-GeminiShimMetadataPath
+    $metadata = Get-GeminiShimMetadata -Path $metadataPath
+    if (-not $metadata) {
+        return $false
+    }
+
+    $normalizedLauncher = Get-NormalizedGeminiLauncher -Launcher $metadata.Launcher
+    if (-not $normalizedLauncher) {
+        return $false
+    }
+
+    $separator = [byte[]](0x22, 0x00, 0x00, 0x00)
+    $launcherBytes = [System.Text.Encoding]::Unicode.GetBytes($normalizedLauncher)
+    $flags = [uint16](($metadata.Version -shl 3) -bor 0b101)
+    $updatedBytes = New-Object byte[] ($metadata.PathBytes.Length + $separator.Length + $launcherBytes.Length + 10)
+
+    [Array]::Copy($metadata.PathBytes, 0, $updatedBytes, 0, $metadata.PathBytes.Length)
+    [Array]::Copy($separator, 0, $updatedBytes, $metadata.PathBytes.Length, $separator.Length)
+    [Array]::Copy($launcherBytes, 0, $updatedBytes, $metadata.PathBytes.Length + $separator.Length, $launcherBytes.Length)
+    [Array]::Copy([BitConverter]::GetBytes([int]$metadata.PathBytes.Length), 0, $updatedBytes, $metadata.PathBytes.Length + $separator.Length + $launcherBytes.Length, 4)
+    [Array]::Copy([BitConverter]::GetBytes([int]$launcherBytes.Length), 0, $updatedBytes, $metadata.PathBytes.Length + $separator.Length + $launcherBytes.Length + 4, 4)
+    [Array]::Copy([BitConverter]::GetBytes($flags), 0, $updatedBytes, $metadata.PathBytes.Length + $separator.Length + $launcherBytes.Length + 8, 2)
+
+    [System.IO.File]::WriteAllBytes($metadataPath, $updatedBytes)
+    if (-not $Quiet) {
+        Write-Host "[gemini-wrapper] Repaired Windows Bun shim metadata: $metadataPath" -ForegroundColor Cyan
+    }
+    return $true
 }
 
 function Test-GeminiExecutable {
@@ -73,7 +193,9 @@ function Test-GeminiExecutable {
 }
 
 function Resolve-GeminiExecutable {
-    $globalBunGemini = Join-Path $env:USERPROFILE ".bun\bin\gemini.exe"
+    Repair-GeminiWindowsShim -Quiet | Out-Null
+
+    $globalBunGemini = Get-GeminiExecutablePath
     if ((Test-Path $globalBunGemini) -and (Test-GeminiExecutable -Path $globalBunGemini)) {
         return $globalBunGemini
     }
@@ -120,6 +242,8 @@ function Invoke-GeminiSelfUpdate {
         exit $LASTEXITCODE
     }
 
+    Repair-GeminiWindowsShim -Quiet | Out-Null
+
     $geminiExe = Resolve-GeminiExecutable
     $updated = $null
     if ($geminiExe) {
@@ -135,6 +259,26 @@ function Invoke-GeminiSelfUpdate {
     } else {
         Write-Host "[gemini-wrapper] Update completed. Run `~/.bun/bin/gemini.exe --version` (or `gemini --version`) to confirm." -ForegroundColor Yellow
     }
+}
+
+function Invoke-GeminiRepair {
+    Write-Host "[gemini-wrapper] Repairing Gemini CLI global lane..." -ForegroundColor Cyan
+    Invoke-GeminiSelfUpdate
+
+    $geminiExe = Get-GeminiExecutablePath
+    if (-not (Test-Path $geminiExe)) {
+        Write-Error "Gemini CLI repair failed: missing executable shim at $geminiExe"
+        exit 1
+    }
+
+    $validated = & $geminiExe --version 2>$null
+    if ($LASTEXITCODE -ne 0 -or -not $validated) {
+        Write-Error "Gemini CLI repair failed: gemini.exe is still not runnable."
+        exit 1
+    }
+
+    $validatedVersion = ($validated | Select-Object -First 1).Trim()
+    Write-Host "[gemini-wrapper] Repair validated: $validatedVersion" -ForegroundColor Green
 }
 
 function Get-GeminiCurrentVersion {
@@ -237,9 +381,21 @@ $positionalCheck =
     -not $PSBoundParameters.ContainsKey("PromptInteractive") -and
     (-not $Arguments -or $Arguments.Count -eq 0)
 
+$positionalRepair =
+    ($Model -eq "repair" -or $Model -eq "--repair") -and
+    -not $PSBoundParameters.ContainsKey("Prompt") -and
+    -not $PSBoundParameters.ContainsKey("PromptInteractive") -and
+    (-not $Arguments -or $Arguments.Count -eq 0)
+
 if ($CheckUpdate -or $positionalCheck -or ($Arguments -and $Arguments.Count -gt 0 -and ($Arguments[0] -in @("check", "check-update", "--check-update")))) {
     Test-LegacyGeminiDependency
     Invoke-GeminiUpdateCheck
+    exit 0
+}
+
+if ($Repair -or $positionalRepair -or ($Arguments -and $Arguments.Count -gt 0 -and $Arguments[0] -eq "repair")) {
+    Test-LegacyGeminiDependency
+    Invoke-GeminiRepair
     exit 0
 }
 
