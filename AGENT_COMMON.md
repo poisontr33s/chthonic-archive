@@ -10,8 +10,8 @@ Referenced by: `CLAUDE.md`, `AGENTS.md`, `GEMINI.md`
 | **Game** | `game/` | Lore, systems, dialogue, design — cRPG content |
 
 ## Execution Invariants **Execute, don't ask.** When a task is clear, DO IT.
-- Oxidized "Rustified" language-tooling stack: `uv` (Python), `rv` (Ruby), `goup` (Go).
-- **Shell:** PowerShell 7+ (`pwsh`). Never bash on Windows. See [PWSH_RULES.md](PWSH_RULES.md).
+- Oxidized "Rustified" language-tooling stack: `uv` (Python), `rv` (Ruby), `goup` (Go), `brush` (bash-compatible shell).
+- **Shell:** PowerShell 7.5.x (`pwsh`) is primary. `brush` (`brush.exe` via `cargo install --locked brush-shell`) is the sanctioned bash-compatible companion when needed — not Git Bash, not WSL. See [PWSH_RULES.md](PWSH_RULES.md).
 - **Python:** `uv` is the default Python lane (`uv run <script.py>`). Never raw `python` or `pip`.
 - **Ruby:** use `rv` for runtime and gem/tool isolation.
 - **Go:** use `goup` for Go runtime ownership.
@@ -64,7 +64,8 @@ Hidden mailbox dirs (`.codex/mailbox`, `.claude/mailbox`) are non-canonical — 
 | `uv run <script>` | Python execution |
 | `rv --version` | Ruby lane health |
 | `goup --version` | Go lane health |
-| `pwsh --version` | PowerShell 7.x.x health |
+| `brush --version` | Bash-compatible shell health |
+| `pwsh --version` | PowerShell 7.5.x health |
 
 ## File Governance
 
@@ -107,7 +108,11 @@ This creates complete data lineage: **what it was → what changed → what it b
 
 ## Architecture
 
-Rust-native polyglot: `uv` (Python), `rv` (Ruby), `goup` (Go), + `bun` is a "batteries included" drop-in-node-replacement ex. native; (Node/JS/TS/REACT/NEXT.JS/TAILWINDCSS/LIGHTNINGCSS/etc.). Rust core. `src/` = Rust core. 
+Rust-native polyglot: `uv` (Python), `rv` (Ruby), `goup` (Go), `brush` (bash shell), + `bun` (Node/JS/TS/React/Next.js/TailwindCSS/etc.). All follow the same pattern as `uv` — canonical version/runtime manager for their language.
+- Full ecosystem reference + gaps: [docs/OXIDIZED_TOOLCHAIN_REFERENCE.md](docs/OXIDIZED_TOOLCHAIN_REFERENCE.md)
+- Command cheatsheet + cross-tool pattern map: [docs/OXIDIZED_CHEATSHEET.md](docs/OXIDIZED_CHEATSHEET.md)
+
+Rust core. `src/` = Rust core.
 
 ## Some ...`scripts/` = tooling. `mas_mcp/` = Python MCP. `extensions/` = VS Code extension. `docs/` = design docs and standards. `.temple/` = agent protocols and methodology. `.claude/skills/` and `.codex/skills/` = agent skills.
 

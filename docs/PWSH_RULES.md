@@ -45,13 +45,13 @@ This repository adopts **PowerShell 7+ as the canonical shell environment** for 
 
 ## Canonical Shell
 
-**Executable:** `pwsh.exe` or `pwsh` (PowerShell 7.4.0 or later)
+**Executable:** `pwsh.exe` or `pwsh` (PowerShell 7.5.x or later)
 **Required:** All new scripts MUST use PowerShell 7+
 **VS Code Terminal:** "Pwsh (Chthonic)" with `-NoProfile -NoExit`
 
 **Verification:**
 ```powershell
-$PSVersionTable.PSVersion   # Should return 7.4.0 or higher
+$PSVersionTable.PSVersion   # Should return 7.5.x or higher
 $PSVersionTable.PSEdition   # Should return "Core"
 ```
 
