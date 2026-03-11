@@ -34,6 +34,10 @@ build/
 # Archives & Dumpster
 dumpster-dive/
 
+# Windows phantom artifacts
+NUL
+$null
+
 # Credentials (safety)
 .env
 .env.*

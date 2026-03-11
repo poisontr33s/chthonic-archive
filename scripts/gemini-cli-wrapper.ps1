@@ -50,19 +50,32 @@ param(
 # Disable MCP discovery to prevent Bun crash during startup
 $env:GEMINI_DISABLE_MCP = "1"
 
+function Get-GeminiEntrypoint {
+    $entry = Join-Path $env:USERPROFILE ".bun\install\global\node_modules\@google\gemini-cli\dist\index.js"
+    if (Test-Path $entry) {
+        return $entry
+    }
+    return $null
+}
+
+function Test-GeminiExecutable {
+    param(
+        [Parameter(Mandatory = $true)]
+        [string]$Path
+    )
+
+    try {
+        $null = & $Path --version 2>$null
+        return ($LASTEXITCODE -eq 0)
+    } catch {
+        return $false
+    }
+}
+
 function Resolve-GeminiExecutable {
     $globalBunGemini = Join-Path $env:USERPROFILE ".bun\bin\gemini.exe"
-    if (Test-Path $globalBunGemini) {
+    if ((Test-Path $globalBunGemini) -and (Test-GeminiExecutable -Path $globalBunGemini)) {
         return $globalBunGemini
-    }
-
-    $cmd = Get-Command gemini -ErrorAction SilentlyContinue
-    if ($cmd -and $cmd.Source) {
-        # Ignore stale/accidental local shim lane from legacy `gemini` package.
-        if ($cmd.Source -match '\\node_modules\\gemini\\bin\\gemini(\.cmd|\.exe)?$') {
-            return $null
-        }
-        return $cmd.Source
     }
 
     return $null
@@ -111,6 +124,11 @@ function Invoke-GeminiSelfUpdate {
     $updated = $null
     if ($geminiExe) {
         $updated = & $geminiExe --version 2>$null
+    } else {
+        $entry = Get-GeminiEntrypoint
+        if ($entry) {
+            $updated = & bun $entry --version 2>$null
+        }
     }
     if ($LASTEXITCODE -eq 0 -and $updated) {
         Write-Host "[gemini-wrapper] Updated Gemini CLI version: $updated" -ForegroundColor Green
@@ -121,10 +139,19 @@ function Invoke-GeminiSelfUpdate {
 
 function Get-GeminiCurrentVersion {
     $geminiExe = Resolve-GeminiExecutable
-    if (-not $geminiExe) {
+    if ($geminiExe) {
+        $raw = & $geminiExe --version 2>$null
+        if ($LASTEXITCODE -ne 0 -or -not $raw) {
+            return $null
+        }
+        return ($raw | Select-Object -First 1).Trim()
+    }
+
+    $entry = Get-GeminiEntrypoint
+    if (-not $entry) {
         return $null
     }
-    $raw = & $geminiExe --version 2>$null
+    $raw = & bun $entry --version 2>$null
     if ($LASTEXITCODE -ne 0 -or -not $raw) {
         return $null
     }
@@ -231,7 +258,7 @@ if ($geminiExe) {
 }
 
 # Fallback execution via Bun global package path.
-$geminiCliPath = Join-Path $env:USERPROFILE ".bun\install\global\node_modules\@google\gemini-cli\dist\index.js"
+$geminiCliPath = Get-GeminiEntrypoint
 if (-not (Test-Path $geminiCliPath)) {
     Write-Error "Gemini CLI not found. Checked: gemini.exe on PATH and $geminiCliPath"
     Write-Host "Reinstall with: bun install -g @google/gemini-cli" -ForegroundColor Yellow
