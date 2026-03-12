@@ -1,0 +1,20 @@
+WHEA counts by error type
+
+
+Count ErrorType
+----- ---------
+  723 Internal parity error
+   27 Translation Lookaside Buffer Error
+
+
+
+WHEA counts by processor APIC ID
+
+
+Count ProcessorApicId
+----- ---------------
+  678 1
+   68 0
+    4 9
+
+

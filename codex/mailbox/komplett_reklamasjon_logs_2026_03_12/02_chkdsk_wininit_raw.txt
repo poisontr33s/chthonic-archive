@@ -1,0 +1,89 @@
+TimeCreated: 2026-03-11 23:01:11
+ProviderName: Microsoft-Windows-Wininit
+Id: 1001
+
+
+
+Checking file system on C:
+The type of the file system is NTFS.
+Volume label is Acer.
+
+A disk check has been scheduled.
+Windows will now check the disk.                         
+
+Stage 1: Examining basic file system structure ...
+  2635520 file records processed.                                                        
+
+File verification completed.
+ Phase duration (File record verification): 20.12 seconds.
+  81144 large file records processed.                                   
+
+ Phase duration (Orphan file record recovery): 26.50 milliseconds.
+  0 bad file records processed.                                     
+
+ Phase duration (Bad file record checking): 3.88 milliseconds.
+
+Stage 2: Examining file name linkage ...
+  32947 reparse records processed.                                      
+
+  3582458 index entries processed.                                                       
+
+Index verification completed.
+ Phase duration (Index verification): 1.09 minutes.
+  0 unindexed files scanned.                                        
+
+ Phase duration (Orphan reconnection): 26.73 seconds.
+  0 unindexed files recovered to lost and found.                    
+
+ Phase duration (Orphan recovery to lost and found): 2.52 seconds.
+  32947 reparse records processed.                                      
+
+ Phase duration (Reparse point and Object ID verification): 84.15 milliseconds.
+
+Stage 3: Examining security descriptors ...
+Cleaning up 2782 unused index entries from index $SII of file 0x9.
+Cleaning up 2782 unused index entries from index $SDH of file 0x9.
+Cleaning up 2782 unused security descriptors.
+Security descriptor verification completed.
+ Phase duration (Security descriptor verification): 47.23 milliseconds.
+  473470 data files processed.                                           
+
+ Phase duration (Data attribute verification): 4.13 milliseconds.
+CHKDSK is verifying Usn Journal...
+  38566696 USN bytes processed.                                                           
+
+Usn Journal verification completed.
+ Phase duration (USN journal verification): 106.91 milliseconds.
+
+Stage 4: Looking for bad clusters in user file data ...
+  2635504 files processed.                                                               
+
+File data verification completed.
+ Phase duration (User file recovery): 18.65 minutes.
+
+Stage 5: Looking for bad, free clusters ...
+  273212923 free clusters processed.                                                       
+
+Free space verification is complete.
+ Phase duration (Free space recovery): 4.39 minutes.
+
+Windows has scanned the file system and found no problems.
+No further action is required.
+
+1999057919 KB total disk space.
+ 902077816 KB in 2032810 files.
+   1243148 KB in 473471 indexes.
+         0 KB in bad sectors.
+   2885263 KB in use by the system.
+     65536 KB occupied by the log file.
+1092851692 KB available on disk.
+
+      4096 bytes in each allocation unit.
+ 499764479 total allocation units on disk.
+ 273212923 allocation units available on disk.
+Total duration: 24.97 minutes (1498440 ms).
+
+Internal Info:
+00 37 28 00 e5 3c 26 00 0b 43 45 00 00 00 00 00  .7(..<&..CE.....
+c4 05 00 00 ef 7a 00 00 00 00 00 00 00 00 00 00  .....z..........
+

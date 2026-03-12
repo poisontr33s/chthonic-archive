@@ -1,0 +1,262 @@
+
+TimeCreated      : 3/11/2026 11:39:02 PM
+Id               : 19
+ProviderName     : Microsoft-Windows-WHEA-Logger
+LevelDisplayName : Warning
+Message          : A corrected hardware error has occurred.
+                   
+                   Reported by component: Processor Core
+                   Error Source: Corrected Machine Check
+                   Error Type: Internal parity error
+                   Processor APIC ID: 1
+                   
+                   The details view of this entry contains further information.
+
+TimeCreated      : 3/11/2026 8:39:20 PM
+Id               : 19
+ProviderName     : Microsoft-Windows-WHEA-Logger
+LevelDisplayName : Warning
+Message          : A corrected hardware error has occurred.
+                   
+                   Reported by component: Processor Core
+                   Error Source: Corrected Machine Check
+                   Error Type: Internal parity error
+                   Processor APIC ID: 1
+                   
+                   The details view of this entry contains further information.
+
+TimeCreated      : 3/11/2026 8:39:20 PM
+Id               : 19
+ProviderName     : Microsoft-Windows-WHEA-Logger
+LevelDisplayName : Warning
+Message          : A corrected hardware error has occurred.
+                   
+                   Reported by component: Processor Core
+                   Error Source: Corrected Machine Check
+                   Error Type: Internal parity error
+                   Processor APIC ID: 1
+                   
+                   The details view of this entry contains further information.
+
+TimeCreated      : 3/11/2026 8:19:33 PM
+Id               : 19
+ProviderName     : Microsoft-Windows-WHEA-Logger
+LevelDisplayName : Warning
+Message          : A corrected hardware error has occurred.
+                   
+                   Reported by component: Processor Core
+                   Error Source: Corrected Machine Check
+                   Error Type: Internal parity error
+                   Processor APIC ID: 1
+                   
+                   The details view of this entry contains further information.
+
+TimeCreated      : 3/11/2026 8:19:33 PM
+Id               : 19
+ProviderName     : Microsoft-Windows-WHEA-Logger
+LevelDisplayName : Warning
+Message          : A corrected hardware error has occurred.
+                   
+                   Reported by component: Processor Core
+                   Error Source: Corrected Machine Check
+                   Error Type: Internal parity error
+                   Processor APIC ID: 1
+                   
+                   The details view of this entry contains further information.
+
+TimeCreated      : 3/11/2026 10:33:14 AM
+Id               : 19
+ProviderName     : Microsoft-Windows-WHEA-Logger
+LevelDisplayName : Warning
+Message          : A corrected hardware error has occurred.
+                   
+                   Reported by component: Processor Core
+                   Error Source: Corrected Machine Check
+                   Error Type: Internal parity error
+                   Processor APIC ID: 1
+                   
+                   The details view of this entry contains further information.
+
+TimeCreated      : 3/9/2026 11:02:51 PM
+Id               : 19
+ProviderName     : Microsoft-Windows-WHEA-Logger
+LevelDisplayName : Warning
+Message          : A corrected hardware error has occurred.
+                   
+                   Reported by component: Processor Core
+                   Error Source: Corrected Machine Check
+                   Error Type: Internal parity error
+                   Processor APIC ID: 1
+                   
+                   The details view of this entry contains further information.
+
+TimeCreated      : 3/9/2026 2:51:50 AM
+Id               : 19
+ProviderName     : Microsoft-Windows-WHEA-Logger
+LevelDisplayName : Warning
+Message          : A corrected hardware error has occurred.
+                   
+                   Reported by component: Processor Core
+                   Error Source: Corrected Machine Check
+                   Error Type: Internal parity error
+                   Processor APIC ID: 0
+                   
+                   The details view of this entry contains further information.
+
+TimeCreated      : 3/9/2026 12:35:03 AM
+Id               : 19
+ProviderName     : Microsoft-Windows-WHEA-Logger
+LevelDisplayName : Warning
+Message          : A corrected hardware error has occurred.
+                   
+                   Reported by component: Processor Core
+                   Error Source: Corrected Machine Check
+                   Error Type: Internal parity error
+                   Processor APIC ID: 1
+                   
+                   The details view of this entry contains further information.
+
+TimeCreated      : 3/8/2026 9:12:35 AM
+Id               : 19
+ProviderName     : Microsoft-Windows-WHEA-Logger
+LevelDisplayName : Warning
+Message          : A corrected hardware error has occurred.
+                   
+                   Reported by component: Processor Core
+                   Error Source: Corrected Machine Check
+                   Error Type: Internal parity error
+                   Processor APIC ID: 1
+                   
+                   The details view of this entry contains further information.
+
+TimeCreated      : 3/8/2026 8:46:18 AM
+Id               : 19
+ProviderName     : Microsoft-Windows-WHEA-Logger
+LevelDisplayName : Warning
+Message          : A corrected hardware error has occurred.
+                   
+                   Reported by component: Processor Core
+                   Error Source: Corrected Machine Check
+                   Error Type: Internal parity error
+                   Processor APIC ID: 1
+                   
+                   The details view of this entry contains further information.
+
+TimeCreated      : 3/8/2026 7:42:30 AM
+Id               : 19
+ProviderName     : Microsoft-Windows-WHEA-Logger
+LevelDisplayName : Warning
+Message          : A corrected hardware error has occurred.
+                   
+                   Reported by component: Processor Core
+                   Error Source: Corrected Machine Check
+                   Error Type: Internal parity error
+                   Processor APIC ID: 1
+                   
+                   The details view of this entry contains further information.
+
+TimeCreated      : 3/8/2026 7:22:45 AM
+Id               : 19
+ProviderName     : Microsoft-Windows-WHEA-Logger
+LevelDisplayName : Warning
+Message          : A corrected hardware error has occurred.
+                   
+                   Reported by component: Processor Core
+                   Error Source: Corrected Machine Check
+                   Error Type: Internal parity error
+                   Processor APIC ID: 1
+                   
+                   The details view of this entry contains further information.
+
+TimeCreated      : 3/7/2026 7:53:37 AM
+Id               : 19
+ProviderName     : Microsoft-Windows-WHEA-Logger
+LevelDisplayName : Warning
+Message          : A corrected hardware error has occurred.
+                   
+                   Reported by component: Processor Core
+                   Error Source: Corrected Machine Check
+                   Error Type: Internal parity error
+                   Processor APIC ID: 1
+                   
+                   The details view of this entry contains further information.
+
+TimeCreated      : 3/7/2026 7:47:37 AM
+Id               : 19
+ProviderName     : Microsoft-Windows-WHEA-Logger
+LevelDisplayName : Warning
+Message          : A corrected hardware error has occurred.
+                   
+                   Reported by component: Processor Core
+                   Error Source: Corrected Machine Check
+                   Error Type: Internal parity error
+                   Processor APIC ID: 1
+                   
+                   The details view of this entry contains further information.
+
+TimeCreated      : 3/7/2026 7:45:29 AM
+Id               : 19
+ProviderName     : Microsoft-Windows-WHEA-Logger
+LevelDisplayName : Warning
+Message          : A corrected hardware error has occurred.
+                   
+                   Reported by component: Processor Core
+                   Error Source: Corrected Machine Check
+                   Error Type: Internal parity error
+                   Processor APIC ID: 1
+                   
+                   The details view of this entry contains further information.
+
+TimeCreated      : 3/7/2026 7:33:36 AM
+Id               : 19
+ProviderName     : Microsoft-Windows-WHEA-Logger
+LevelDisplayName : Warning
+Message          : A corrected hardware error has occurred.
+                   
+                   Reported by component: Processor Core
+                   Error Source: Corrected Machine Check
+                   Error Type: Internal parity error
+                   Processor APIC ID: 1
+                   
+                   The details view of this entry contains further information.
+
+TimeCreated      : 3/7/2026 4:55:23 AM
+Id               : 19
+ProviderName     : Microsoft-Windows-WHEA-Logger
+LevelDisplayName : Warning
+Message          : A corrected hardware error has occurred.
+                   
+                   Reported by component: Processor Core
+                   Error Source: Corrected Machine Check
+                   Error Type: Translation Lookaside Buffer Error
+                   Processor APIC ID: 1
+                   
+                   The details view of this entry contains further information.
+
+TimeCreated      : 3/5/2026 11:43:54 PM
+Id               : 19
+ProviderName     : Microsoft-Windows-WHEA-Logger
+LevelDisplayName : Warning
+Message          : A corrected hardware error has occurred.
+                   
+                   Reported by component: Processor Core
+                   Error Source: Corrected Machine Check
+                   Error Type: Internal parity error
+                   Processor APIC ID: 1
+                   
+                   The details view of this entry contains further information.
+
+TimeCreated      : 3/5/2026 7:55:12 PM
+Id               : 19
+ProviderName     : Microsoft-Windows-WHEA-Logger
+LevelDisplayName : Warning
+Message          : A corrected hardware error has occurred.
+                   
+                   Reported by component: Processor Core
+                   Error Source: Corrected Machine Check
+                   Error Type: Internal parity error
+                   Processor APIC ID: 1
+                   
+                   The details view of this entry contains further information.
+
+

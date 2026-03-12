@@ -1,0 +1,16 @@
+Minidump inventory
+Generated: 2026-03-12 18:58:19
+
+Source folder: C:\Windows\Minidump
+Note: dump files could not be copied from this non-elevated session, but they are present on disk and listed below.
+
+
+Name                 Length LastWriteTime
+----                 ------ -------------
+031126-12515-01.dmp 6402684 3/11/2026 10:30:20 PM
+031126-12921-01.dmp 6049724 3/11/2026 9:50:38 PM
+031126-12703-01.dmp 3648764 3/11/2026 9:16:49 PM
+031126-12828-01.dmp 7158572 3/11/2026 9:14:56 PM
+031026-11156-01.dmp 7451572 3/10/2026 4:53:23 AM
+
+

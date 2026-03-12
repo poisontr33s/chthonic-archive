@@ -1,0 +1,44 @@
+Komplett reklamasjonspakke - loggutdrag
+Generert: 2026-03-12 00:48:34
+
+Maskin:
+Modell: Predator PH18-72
+Produsent: Acer
+CPU: Intel(R) Core(TM) i9-14900HX
+RAM_GB: 31.7
+GPU: NVIDIA GeForce RTX 4090 Laptop GPU
+OS: Microsoft Windows 11 Pro 10.0.26200
+BIOS: V1.10 (2024-07-16)
+
+Systemdisk:
+FriendlyName: NVMe HFS002TEJ9X125N
+HealthStatus: Healthy
+OperationalStatus: OK
+MediaType: SSD
+Size_GB: 1907.7
+
+Nokkeltall:
+Bugcheck-hendelser totalt: 50
+Kernel-Power 41 totalt: 79
+WHEA CPU-feil totalt: 750
+Bugcheck-hendelser siste 14 dager: 12
+Kernel-Power 41 siste 14 dager: 20
+WHEA CPU-feil siste 14 dager: 70
+Forste registrerte WHEA-feil: 2025-11-19 04:44:55
+Forste registrerte bugcheck: 2025-12-05 17:02:44
+
+CHKDSK:
+Tidspunkt: 2026-03-11 23:01:11
+Resultat: Windows has scanned the file system and found no problems.
+Resultat: 0 KB in bad sectors.
+
+Se filer:
+01_system_summary.txt
+02_chkdsk_wininit_raw.txt
+03_bugchecks_all.csv
+04_kernel_power_41_all.csv
+05_whea_cpu_errors_all.csv
+06_bugcheck_counts.txt
+07_whea_counts.txt
+08_whea_recent_examples.txt
+09_bugcheck_recent_examples.txt

@@ -1,0 +1,122 @@
+
+TimeCreated      : 3/11/2026 10:30:20 PM
+Id               : 1001
+ProviderName     : Microsoft-Windows-WER-SystemErrorReporting
+LevelDisplayName : Error
+Message          : The computer has rebooted from a bugcheck.  The bugcheck was: 0x00000050 (0xfffff803d2ad2e50, 0x0000000000000010, 0xfffff80352ad2e50, 0x0000000000000002). A dump was saved in: C:\WINDOWS\MEMORY.DMP. Report Id: ae431569-351e-45d7-abd2-e7804379494b.
+
+TimeCreated      : 3/11/2026 9:50:38 PM
+Id               : 1001
+ProviderName     : Microsoft-Windows-WER-SystemErrorReporting
+LevelDisplayName : Error
+Message          : The computer has rebooted from a bugcheck.  The bugcheck was: 0x00000050 (0xfffff801e3462e50, 0x0000000000000010, 0xfffff80141462e50, 0x0000000000000002). A dump was saved in: C:\WINDOWS\MEMORY.DMP. Report Id: df134973-cefc-431f-ac60-1b3dea4a1423.
+
+TimeCreated      : 3/11/2026 9:16:49 PM
+Id               : 1001
+ProviderName     : Microsoft-Windows-WER-SystemErrorReporting
+LevelDisplayName : Error
+Message          : The computer has rebooted from a bugcheck.  The bugcheck was: 0x00000050 (0xfffff80596492e50, 0x0000000000000010, 0xfffff80516492e50, 0x0000000000000002). A dump was saved in: C:\WINDOWS\MEMORY.DMP. Report Id: f6161fc2-49f8-439d-b6ab-377ddbed0f11.
+
+TimeCreated      : 3/11/2026 9:14:56 PM
+Id               : 1001
+ProviderName     : Microsoft-Windows-WER-SystemErrorReporting
+LevelDisplayName : Error
+Message          : The computer has rebooted from a bugcheck.  The bugcheck was: 0x0000001e (0xffffffffc0000005, 0x0000000000000000, 0x0000000000000008, 0x0000000000000000). A dump was saved in: C:\WINDOWS\MEMORY.DMP. Report Id: 272f2e90-8612-4385-bdfb-abe9973a443a.
+
+TimeCreated      : 3/10/2026 4:53:23 AM
+Id               : 1001
+ProviderName     : Microsoft-Windows-WER-SystemErrorReporting
+LevelDisplayName : Error
+Message          : The computer has rebooted from a bugcheck.  The bugcheck was: 0x0000007f (0x0000000000000008, 0xffffaa80ac1ece70, 0xffffa68d572c0fa0, 0xfffff804f08040b1). A dump was saved in: C:\WINDOWS\MEMORY.DMP. Report Id: 20dfb2e4-6f0b-46c8-b132-89c3c53e5712.
+
+TimeCreated      : 3/9/2026 12:34:12 AM
+Id               : 1001
+ProviderName     : Microsoft-Windows-WER-SystemErrorReporting
+LevelDisplayName : Error
+Message          : The computer has rebooted from a bugcheck.  The bugcheck was: 0x000000d1 (0x0000015487331d5f, 0x00000000000000ff, 0x0000000000000000, 0x0000015487331d5f). A dump was saved in: C:\WINDOWS\MEMORY.DMP. Report Id: 871433d9-0060-490e-a3fa-ba16638236c2.
+
+TimeCreated      : 3/7/2026 7:55:57 AM
+Id               : 1001
+ProviderName     : Microsoft-Windows-WER-SystemErrorReporting
+LevelDisplayName : Error
+Message          : The computer has rebooted from a bugcheck.  The bugcheck was: 0x0000007f (0x0000000000000008, 0xfffff80330e2ae70, 0xffffd307ddc40ed0, 0xfffff8039eb89450). A dump was saved in: C:\WINDOWS\MEMORY.DMP. Report Id: 7b76fae2-f911-4d9f-8c7e-a40f5762d027.
+
+TimeCreated      : 3/7/2026 4:45:06 AM
+Id               : 1001
+ProviderName     : Microsoft-Windows-WER-SystemErrorReporting
+LevelDisplayName : Error
+Message          : The computer has rebooted from a bugcheck.  The bugcheck was: 0x0000007f (0x0000000000000008, 0xffffa30038fece70, 0xfffff38e19ad9020, 0xfffff801730a9442). A dump was saved in: C:\WINDOWS\MEMORY.DMP. Report Id: 5659bc9c-00e8-4731-ba73-ff7323ae3f84.
+
+TimeCreated      : 3/6/2026 9:26:57 AM
+Id               : 1001
+ProviderName     : Microsoft-Windows-WER-SystemErrorReporting
+LevelDisplayName : Error
+Message          : The computer has rebooted from a bugcheck.  The bugcheck was: 0x00000139 (0x0000000000000002, 0xffffd28591156210, 0xffffd28591156168, 0x0000000000000000). A dump was saved in: C:\WINDOWS\MEMORY.DMP. Report Id: 4ffcde2b-9628-4620-bf06-27a7671d62fc.
+
+TimeCreated      : 3/5/2026 9:19:18 PM
+Id               : 1001
+ProviderName     : Microsoft-Windows-WER-SystemErrorReporting
+LevelDisplayName : Error
+Message          : The computer has rebooted from a bugcheck.  The bugcheck was: 0x0000000a (0x00007fffffff0000, 0x00000000000000ff, 0x00000000000000a0, 0xfffff804e7bd24f6). A dump was saved in: C:\WINDOWS\MEMORY.DMP. Report Id: 318864b6-585a-43a6-be0c-7f0939f82a3f.
+
+TimeCreated      : 3/5/2026 8:45:55 PM
+Id               : 1001
+ProviderName     : Microsoft-Windows-WER-SystemErrorReporting
+LevelDisplayName : Error
+Message          : The computer has rebooted from a bugcheck.  The bugcheck was: 0x0000007f (0x0000000000000008, 0xffffba0101bece70, 0xffffcb8784531010, 0xfffff803d0e9944f). A dump was saved in: C:\WINDOWS\MEMORY.DMP. Report Id: f4128b00-ef17-4ddd-82cb-0fdf17263618.
+
+TimeCreated      : 2/28/2026 3:53:09 AM
+Id               : 1001
+ProviderName     : Microsoft-Windows-WER-SystemErrorReporting
+LevelDisplayName : Error
+Message          : The computer has rebooted from a bugcheck.  The bugcheck was: 0x000001ca (0x000000001bbaec1d, 0x00000005111b5aa3, 0x00000005111e6880, 0x0000000000000001). A dump was saved in: C:\WINDOWS\MEMORY.DMP. Report Id: 9e3d8630-3349-4733-a63d-6e20db09790f.
+
+TimeCreated      : 2/24/2026 1:45:30 AM
+Id               : 1001
+ProviderName     : Microsoft-Windows-WER-SystemErrorReporting
+LevelDisplayName : Error
+Message          : The computer has rebooted from a bugcheck.  The bugcheck was: 0x0000000a (0x00003974030f3418, 0x00000000000000ff, 0x000000000000001a, 0xfffff803eb8294c0). A dump was saved in: C:\WINDOWS\MEMORY.DMP. Report Id: 590e7ef8-c67d-4fae-b5ea-756905dbbe6d.
+
+TimeCreated      : 2/21/2026 5:40:12 AM
+Id               : 1001
+ProviderName     : Microsoft-Windows-WER-SystemErrorReporting
+LevelDisplayName : Error
+Message          : The computer has rebooted from a bugcheck.  The bugcheck was: 0x00000050 (0xfffff8008d437e4d, 0x0000000000000010, 0xfffff8008d437e4d, 0x0000000000000002). A dump was saved in: C:\WINDOWS\MEMORY.DMP. Report Id: f491a806-51b7-4b25-87ae-aee45af0c4c9.
+
+TimeCreated      : 2/21/2026 2:22:53 AM
+Id               : 1001
+ProviderName     : Microsoft-Windows-WER-SystemErrorReporting
+LevelDisplayName : Error
+Message          : The computer has rebooted from a bugcheck.  The bugcheck was: 0x0000007f (0x0000000000000008, 0xffff940008960e70, 0xffffec8b48b43ef0, 0xfffff805a37f9450). A dump was saved in: C:\WINDOWS\MEMORY.DMP. Report Id: c1f33ddb-826a-44d2-88e5-744bb823e371.
+
+TimeCreated      : 2/20/2026 8:07:37 PM
+Id               : 1001
+ProviderName     : Microsoft-Windows-WER-SystemErrorReporting
+LevelDisplayName : Error
+Message          : The computer has rebooted from a bugcheck.  The bugcheck was: 0x00000050 (0xfffff8004e2d7e4d, 0x0000000000000010, 0xfffff8004e2d7e4d, 0x0000000000000002). A dump was saved in: C:\WINDOWS\MEMORY.DMP. Report Id: 7834272c-2069-481d-9611-fbd4b93e7600.
+
+TimeCreated      : 2/19/2026 4:46:59 AM
+Id               : 1001
+ProviderName     : Microsoft-Windows-WER-SystemErrorReporting
+LevelDisplayName : Error
+Message          : The computer has rebooted from a bugcheck.  The bugcheck was: 0x00020001 (0x0000000000000011, 0x000000000021f24f, 0x0000000000001007, 0xffffe8000052df00). A dump was saved in: C:\WINDOWS\MEMORY.DMP. Report Id: 65fe70ea-8d80-445f-939a-eb4efed86f8b.
+
+TimeCreated      : 2/17/2026 9:12:46 PM
+Id               : 1001
+ProviderName     : Microsoft-Windows-WER-SystemErrorReporting
+LevelDisplayName : Error
+Message          : The computer has rebooted from a bugcheck.  The bugcheck was: 0x0000000a (0x0000000000000184, 0x00000000000000ff, 0x0000000000000000, 0xfffff800d23c81a5). A dump was saved in: C:\WINDOWS\MEMORY.DMP. Report Id: c5df232c-85b8-42fc-87d9-3e30a5e425b5.
+
+TimeCreated      : 2/17/2026 8:39:37 PM
+Id               : 1001
+ProviderName     : Microsoft-Windows-WER-SystemErrorReporting
+LevelDisplayName : Error
+Message          : The computer has rebooted from a bugcheck.  The bugcheck was: 0x00020001 (0x0000000000000011, 0x00000000003a8ffc, 0x0000000000001004, 0xffffe70000205cf0). A dump was saved in: C:\WINDOWS\MEMORY.DMP. Report Id: a45edecd-063c-4ed4-8ffa-4f3862b2a890.
+
+TimeCreated      : 2/17/2026 8:22:44 PM
+Id               : 1001
+ProviderName     : Microsoft-Windows-WER-SystemErrorReporting
+LevelDisplayName : Error
+Message          : The computer has rebooted from a bugcheck.  The bugcheck was: 0x0000003b (0x00000000c0000005, 0xfffff8074cd9b664, 0xffffbb8bfae36b40, 0x0000000000000000). A dump was saved in: C:\WINDOWS\MEMORY.DMP. Report Id: 025a1ddb-0209-43d4-a52a-fc75022b47d0.
+
+

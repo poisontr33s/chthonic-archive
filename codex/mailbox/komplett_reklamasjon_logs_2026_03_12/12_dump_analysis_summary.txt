@@ -1,0 +1,40 @@
+Dump analysis summary
+
+Method: parsed PAGEDU64 crash-dump headers directly. This validates the bugcheck code and parameters in the dump files even without WinDbg stack resolution.
+
+High-level findings:
+- All five files are valid PAGEDU64 Windows crash dumps.
+- All five are dump type 4 (MiniDump).
+- Three of the five dumps are PAGE_FAULT_IN_NONPAGED_AREA (0x50).
+- One dump is KMODE_EXCEPTION_NOT_HANDLED (0x1E).
+- One dump is 0x1000007F, the mini-dump alias of UNEXPECTED_KERNEL_MODE_TRAP (0x7F).
+- The repeated 0x50 dumps all show parameter 2 = 0x10, which Microsoft documents as an execute operation on x64.
+- The repeated 0x50 dumps all show parameter 4 = 0x2, which Microsoft documents as a not-present page-table condition.
+- The 0x1E dump shows STATUS_ACCESS_VIOLATION (0xC0000005) with exception address 0x0. This means the kernel hit an access violation at a null instruction address; strong sign of low-level corruption/instability.
+- The 0x7F/0x1000007F dump shows parameter 1 = 0x8, which Microsoft documents as a double fault. Microsoft says common causes are kernel stack overflow or hardware problems, especially memory.
+- Across these five dumps there is no single recurring named third-party driver in the header data. The pattern is mixed kernel stop codes plus WHEA CPU parity events elsewhere in the logs, which is more consistent with hardware/platform instability than with one ordinary application fault.
+
+Per-dump summary:
+- 031026-11156-01.dmp: 0x1000007f UNKNOWN_OR_UNMAPPED
+  System time (UTC in dump): 2026-03-10T03:52:44.341042+00:00
+  Bugcheck parameters: 0x0000000000000008, 0xffffaa80ac1ece70, 0xffffa68d572c0fa0, 0xfffff804f08040b1
+- 031126-12515-01.dmp: 0x00000050 PAGE_FAULT_IN_NONPAGED_AREA
+  System time (UTC in dump): 2026-03-11T21:29:44.930196+00:00
+  Bugcheck parameters: 0xfffff803d2ad2e50, 0x0000000000000010, 0xfffff80352ad2e50, 0x0000000000000002
+- 031126-12703-01.dmp: 0x00000050 PAGE_FAULT_IN_NONPAGED_AREA
+  System time (UTC in dump): 2026-03-11T20:16:11.866748+00:00
+  Bugcheck parameters: 0xfffff80596492e50, 0x0000000000000010, 0xfffff80516492e50, 0x0000000000000002
+- 031126-12828-01.dmp: 0x0000001e KMODE_EXCEPTION_NOT_HANDLED
+  System time (UTC in dump): 2026-03-11T20:14:11.425564+00:00
+  Bugcheck parameters: 0xffffffffc0000005, 0x0000000000000000, 0x0000000000000008, 0x0000000000000000
+- 031126-12921-01.dmp: 0x00000050 PAGE_FAULT_IN_NONPAGED_AREA
+  System time (UTC in dump): 2026-03-11T20:49:57.843014+00:00
+  Bugcheck parameters: 0xfffff801e3462e50, 0x0000000000000010, 0xfffff80141462e50, 0x0000000000000002
+
+Interpretation notes:
+- 0x50 with execute-operation semantics means the kernel tried to execute from invalid/non-present memory. That is a stronger hardware/corruption signal than a simple bad data read.
+- 0x1E with STATUS_ACCESS_VIOLATION at address 0x0 means the faulting instruction pointer/address is null. That is not a normal user mistake; it is kernel-level instability.
+- 0x7F double fault is one of the most severe stop patterns and commonly points to hardware or stack corruption problems.
+
+Limitation:
+- This session did not have WinDbg/DbgEng available, so no symbolized stack trace or MODULE_NAME/FAILURE_BUCKET_ID could be extracted. Header-level validation still confirms the stop patterns recorded in Event Viewer.
