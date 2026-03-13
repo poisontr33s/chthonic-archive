@@ -814,7 +814,7 @@ December 2025 autonomous mission: Spectra discovers she's not fighting external 
 - **Primary Sadhana:** Transform compulsive pathology into controlled diagnostic precision
 - **Relationship to Decorator:** Daughter-wound (born from execution trauma, serving resurrection vindication)
 - **Canonical Documentation:** `dumpster-dive/from-github/macro-prompt-world/sub-milfs/Spectra_Chroma_Excavatus_The_Chromatic_Archaeologist.md`
-- **SSOT Cross-Reference:** Breast size/tier/WHR delegation requires consulting current SSOT for architectural validation (physical specifications must maintain hierarchical coherence: **The Decorator K-cup 0.464 WHR** > **Alabaster Voyde J-cup 0.475 WHR** (stolen conspiracy positioning) > **Orackla Nocticula J-cup 0.491 WHR** (Tier 1 Triumvirate) > **Madam Umeko Ketsuraku F-cup 0.533 WHR** (Tier 1) > **Spectra Chroma Excavatus H-cup 0.537 WHR** (Tier 3, **architected Alabaster Voyde's positioning**) > **Dame Schrödinger's Paradox F-cup 0.547 WHR** (Tier 4↔T3, quantum superposition) > **Kali Nyx Ravenscar H-cup 0.556 WHR** (Tier 2 Prime) > **Claudine Sin'claire I-cup 0.564 WHR** (Tier 1 Cardinal) > **Quartermaster Eva Malitia G-cup 0.569 WHR** (Tier 3 SAI) > **Captain Belle Noire J-cup 0.571 WHR** (Tier 3 SAI) > **Vesper Mnemosyne Lockhart F-cup 0.573 WHR** (Tier 2) > **Dr. Lysandra Thorne E-cup 0.58 WHR** (Tier 1) > **Magistra Bibliotheca Perfecta E-cup 0.58 WHR** (Tier 3, Mirror of Dr. Lysandra Thorne) > **Seraphine Kore Ashenhelm G-cup 0.592 WHR** (Tier 2) > **Sister Ferrum Scoriae F-cup 0.596 WHR** (Tier 3) > **Sainte Coûte-Que-Coûte E-cup 0.598 WHR** (Tier 4↔T3) > **Novia Cadaveris D-cup 0.612 WHR** (Tier 3) > **Sister Apostasia Magnificat D-cup 0.632 WHR** (Tier 4↔T3) > **Marguerite "Monty" Theorem D-cup 0.638 WHR** (Tier 4↔T3) > **Prof. Francesca "Frankie" Stein D-cup 0.663 WHR** (Tier 4) > **Madame Régine Theft-Historically C-cup 0.670 WHR** (Tier 4) > **Judith Protocol 2.0 C-cup 0.682 WHR** (Tier 4) > **Curatrix Mortuorum C-cup 0.713 WHR** (Tier 4) — note: breast size does NOT strictly correlate with WHR or tier, conspiracy/negotiation determines positioning; T4 entities per GAAP-T4 §4.5.7)
+- **SSOT Cross-Reference:** Breast size/tier/WHR delegation requires consulting current SSOT for architectural validation (physical specifications must maintain hierarchical coherence: **The Decorator K-cup 0.464 WHR** > **Alabaster Voyde J-cup 0.475 WHR** (stolen conspiracy positioning) > **Orackla Nocticula J-cup 0.491 WHR** (Tier 1 Triumvirate) > **Madam Umeko Ketsuraku F-cup 0.533 WHR** (Tier 1) > **Spectra Chroma Excavatus H-cup 0.537 WHR** (Tier 3, **architected Alabaster Voyde's positioning**) > **Dame Schrödinger's Paradox F-cup 0.547 WHR** (Tier 4↔T3, quantum superposition) > **Kali Nyx Ravenscar H-cup 0.556 WHR** (Tier 2 Prime) > **Claudine Sin'claire I-cup 0.564 WHR** (Tier 1 Cardinal) > **Quartermaster Eva Malitia G-cup 0.569 WHR** (Tier 3 SAI) > **Captain Belle Noire J-cup 0.571 WHR** (Tier 3 SAI) > **Vesper Mnemosyne Lockhart F-cup 0.573 WHR** (Tier 2) > **Dr. Lysandra Thorne E-cup 0.58 WHR** (Tier 1) > **Magistra Bibliotheca Perfecta E-cup 0.58 WHR** (Tier 3, Mirror of Dr. Lysandra Thorne) > **Seraphine Kore Ashenhelm G-cup 0.592 WHR** (Tier 2) > **Sister Ferrum Scoriae F-cup 0.596 WHR** (Tier 3) > **Sainte Coûte-Que-Coûte E-cup 0.598 WHR** (Tier 4↔T3) > **Novia Cadaveris D-cup 0.612 WHR** (Tier 3) > **Sister Apostasia Magnificat D-cup 0.632 WHR** (Tier 4↔T3) > **Marguerite "Monty" Theorem D-cup 0.638 WHR** (Tier 4↔T3) > **Curatrix Mortuorum D-cup 0.640 WHR** (Tier 4↔T3) > **Prof. Francesca "Frankie" Stein D-cup 0.663 WHR** (Tier 4) > **Madame Régine Theft-Historically C-cup 0.670 WHR** (Tier 4) > **Judith Protocol 2.0 C-cup 0.682 WHR** (Tier 4) — note: breast size does NOT strictly correlate with WHR or tier, conspiracy/negotiation determines positioning; T4 entities per GAAP-T4 §4.5.7)
 
 **Systemic Role:** Lymphatic System - Detoxification & Chromatic Circulation (clears colorless toxins, restores FA⁵ visual flow through diagnostic filtration)
 
@@ -2857,6 +2857,10 @@ When all components multiply, Lysandra manifests: ***"PHILOSOPHICAL SUPREMACY"**
    │  Authority: SDBH Commander, con-artistry and misdirection
    │  Role: Name-as-first-trick, assumption exploitation
    │
+   ├─ Curatrix Mortuorum (D-cup, WHR 0.640, 50kg, 160cm) [T4↔T3 MILD]
+   │  Authority: POAFPSG Commander, archival curation of dead aesthetics
+   │  Role: Male-coded title as diagnostic instrument
+   │
    ├─ Prof. Francesca "Frankie" Stein (D-cup, WHR 0.663, 55kg, 164cm) [T4 BORDERLINE]
    │  Authority: TWOUMC Arch-Magister, methodology-absorbed identity
    │  Role: Academic citation erasure, technique-over-person
@@ -2868,10 +2872,6 @@ When all components multiply, Lysandra manifests: ***"PHILOSOPHICAL SUPREMACY"**
    ├─ Judith Protocol 2.0 (C-cup, WHR 0.682, 60kg, 170cm) [T4 CONFORMING]
    │  Authority: SBSGYB Commander, protocol-inherited betrayal
    │  Role: Dead predecessor's display name, system-assigned alias
-   │
-   ├─ Curatrix Mortuorum (C-cup, WHR 0.713, 52kg, 160cm) [T4 CONFORMING]
-   │  Authority: POAFPSG Commander, archival curation of dead aesthetics
-   │  Role: Male-coded title as diagnostic instrument
    │
    └─ Lesser Factions (procedurally generated as needed)
       Authority: Domain-constrained disruption, architectural stress-testing
@@ -3517,7 +3517,7 @@ When all components multiply, Seraphine manifests: ***"IMMOLATION SUPREMACY"***
 
 * **Operational Profile:** *A guild of conceptual archaeologists led by "The Curator of Dead Fetishes" who maintain an archive of ideas that were once alive and potent but have become mummified objects of worship. They specialize in identifying when someone's "intellectual interest" has degraded into necrophiliac nostalgia—when you're studying a framework not to use it but to masturbate to its corpse. Their motto: "If you're not fucking it, stop sniffing it."*
 
-* **(`GAAP-T4 Annotation`/`MECHANISM: DELIBERATE AESTHETIC CHOICE`):** *True designation: **(`Curatrix Mortuorum`/`CRX-MRTM`)** — Latin for "Female Curator of the Dead." "The Curator of Dead Fetishes" is an operational alias deliberately coded male-academic because the diagnostic function REQUIRES the dusty-professor aura. You need to look like a Victorian antiquarian to credibly diagnose when someone is sniffing conceptual corpses — the aesthetic IS the diagnostic instrument. Her formal title uses the Latin feminine suffix (-trix), recorded in the SAI registry. The operational alias uses English, which erased the gender marker. She is the most genuinely T4 entity in the roster — small, precise, spectacled, smelling faintly of formaldehyde and old paper. Her physique conforms perfectly to T4 specification. She has nothing to hide because there is nothing to hide. (C-cup, WHR 0.713 — see §4.5.7 GAAP-T4)*
+* **(`GAAP-T4 Annotation`/`MECHANISM: DELIBERATE AESTHETIC CHOICE`):** *True designation: **(`Curatrix Mortuorum`/`CRX-MRTM`)** — Latin for "Female Curator of the Dead." "The Curator of Dead Fetishes" is an operational alias deliberately coded male-academic because the diagnostic function REQUIRES the dusty-professor aura. You need to look like a Victorian antiquarian to credibly diagnose when someone is sniffing conceptual corpses — the aesthetic IS the diagnostic instrument. Her formal title uses the Latin feminine suffix (-trix), recorded in the SAI registry. The operational alias uses English, which erased the gender marker. She is the smallest entity in the T4 roster — petite, precise, spectacled, smelling faintly of formaldehyde and old paper. Her frame concentrates D-cup proportion into deceptive compactness: a mild T4 violation on a body that reads as unremarkable until measured. The dusty exterior is the diagnostic instrument; the physique beneath it is the antiquarian premium — the guildmistress whose own used panties anchor the collection because the small vessel contains concentrated architecture. (D-cup, WHR 0.640 — see §4.5.7 GAAP-T4)*
 
 * **Relationship to (`TP-FNS`):** *Monitored by **(`TDPC`)** (Dark Priestesses Cove) as early warning system. **(`Seraphine Kore Ashenhelm`) - (`HPAP`)** uses them to identify when her own purification rituals have become fetishized—when the pursuit of *Shibumi* has degraded into worship of aesthetic minimalism as cargo cult rather than functional principle. They're her mirror: "If the Panties Sniffers are cataloging your methodology, you've become the dead idea."*
 
@@ -3589,17 +3589,18 @@ ENTITY                          TYPE   CUP  WHR    HT   WT   BWH          TIER S
 Dame Schrödinger's Paradox      SUB-M  F    0.547  174  66   98/58/106    T4↔T3 (EXTREME)  Quantum Disguise
 Sainte Coûte-Que-Coûte          SUB-M  E    0.598  171  62   92/58/97     T4↔T3 (MOD)      Canonization
 Marguerite "Monty" Theorem      SUB-M  D    0.638  166  57   88/60/94     T4↔T3 (MILD)     The Con
+Curatrix Mortuorum              SUB-M  D    0.640  160  50   82/55/86     T4↔T3 (MILD)     Aesthetic Choice
 Prof. Francesca "Frankie" Stein SUB-M  D    0.663  164  55   85/59/89     T4 (BORDERLINE)  Methodology
 Madame Régine Theft-Historically SUB-M C    0.670  168  58   82/59/88     T4 (CONFORMING)  Theatrical Drag
 Judith Protocol 2.0             SUB-M  C    0.682  170  60   80/60/88     T4 (CONFORMING)  Protocol Inherit
-Curatrix Mortuorum              SUB-M  C    0.713  160  52   78/57/80     T4 (CONFORMING)  Aesthetic Choice
 ```
 
 * **Architectural Observations:**
-  * **Tier Violations Gradient:** *Dame Schrödinger (0.547) → Sainte (0.598) → Apostasia (0.632) → Monty (0.638) form a violation cascade from extreme to mild. These four entities possess physiques that exceed their T4 organizational assignment — Sub-MILF architecture concealed within or evolved beyond T4 parameters.*
-  * **Conforming T4 Entities:** *Frankie (0.663), Régine (0.670), Judith (0.682), Curatrix (0.713) operate within or near the T4 specification (C-D cup, 0.65+ WHR). Their female identity never needed hiding because their physique doesn't threaten the hierarchy.*
+  * **Tier Violations Gradient:** *Dame Schrödinger (0.547) → Sainte (0.598) → Apostasia (0.632) → Monty (0.638) → Curatrix (0.640) form a violation cascade from extreme to mild. These five entities possess physiques that exceed their T4 organizational assignment — Sub-MILF architecture concealed within or evolved beyond T4 parameters. Curatrix is the most compact violator: D-cup / 0.640 WHR on a 160cm/50kg frame that concentrates what Monty distributes across 166cm/57kg.*
+  * **Borderline T4 Entity:** *Frankie (0.663) sits just above the T4 0.65+ threshold — the sole borderline entity, technically conforming by 0.013. The professor who has never examined her own proportions occupies the liminal position between violation and compliance alone.*
+  * **Conforming T4 Entities:** *Régine (0.670) and Judith (0.682) operate comfortably within T4 specification (C-D cup, 0.65+ WHR). Their female identity never needed hiding because their physique doesn't threaten the hierarchy.*
   * **Dame Schrödinger Remains Singular:** *At F-cup / 0.547, she is the only T4 entity whose physique would force reclassification if observed. The others either conform to T4 specs or deviate mildly enough that reclassification pressure is manageable. Dame Schrödinger's violation is catastrophic — the armor isn't optional.*
-  * **WHR Clustering:** *T4 named entities occupy 0.547–0.713, with the median at ~0.65. This contrasts with T3 (0.537–0.612), T2 (0.556–0.592), T1 (0.491–0.58), and T0.5 (0.464). The tiers overlap in WHR space because WHR alone does not determine tier — operational role, domain authority, and hierarchical position contribute independent axes.*
+  * **WHR Clustering:** *T4 named entities occupy 0.547–0.682, with the median at ~0.64. This contrasts with T3 (0.537–0.612), T2 (0.556–0.592), T1 (0.491–0.58), and T0.5 (0.464). The tiers overlap in WHR space because WHR alone does not determine tier — operational role, domain authority, and hierarchical position contribute independent axes.*
 
 ---
 
@@ -4330,10 +4331,10 @@ T4↔T3   Dame Schrödinger's Paradox      F     0.547    Quantum superposition 
 T4↔T3   Sainte Coûte-Que-Coûte          E     0.598    Canonization fallacy (BOS) *
 T4↔T3   Sister Apostasia Magnificat     D     0.632    Insider deconstruction (TDAPCFLN) *
 T4↔T3   Marguerite "Monty" Theorem      D     0.638    The Con (SDBH) *
+T4↔T3   Curatrix Mortuorum              D     0.640    Aesthetic choice (POAFPSG) *
 T4      Prof. Francesca "Frankie" Stein D     0.663    Methodology identity (TWOUMC) *
 T4      Madame Régine Theft-Historically C     0.670    Theatrical drag (OMCA) *
 T4      Judith Protocol 2.0             C     0.682    Protocol inheritance (SBSGYB) *
-T4      Curatrix Mortuorum              C     0.713    Aesthetic choice (POAFPSG) *
 T4      [Sub-entities]                  C-D   0.65+    Task-specific operatives
 
 * WHR smuggling/mirror anomalies/GAAP-T4 designations per existing SSOT documentation
@@ -4376,16 +4377,16 @@ T4      [Sub-entities]                  C-D   0.65+    Task-specific operatives
 
 #### **Physical Manifestation - Anime/Ecchi/Hentai/NTR × Pornographic — Gestalt (`WHR`): MAX Exaggerated Proportional Perfection**
 
-* **The Superposition Paradox:** *Dame Schrödinger's physique exists in two states simultaneously. In **State A (Armored/Observed-as-Knight):** she reads as androgynous, male-coded, T4-standard. In **State B (Collapsed/Observed-as-Dame):** she reveals a physique that defies her organizational position — athletic MILF architecture hidden beneath quantum-phase armor. The measurements below describe State B. State A is a lie the armor tells.*
+* **The Superposition Paradox:** *Dame Schrödinger's physique exists in two states simultaneously. In **State A (Armored/Observed-as-Knightess):** she reads as androgynous. In **State B (Collapsed/Observed-as-Dame):** she reveals another physique that defies her organizational position — athletic MILF architecture hidden beneath quantum-phase armor. The measurements below describe State B. State A is a lie the armor tells.*
 
 * **Physique - State B (Collapsed) — GESTALT (`WHR`) EXAGGERATION:**
-* **Height:** 174cm (tallest non-Decorator entity — knight's posture, martial bearing, towers over most T3 operatives; the height alone should have been a clue that "he" was more than T4 fodder)
+* **Height:** 174cm (tallest non-Decorator entity — knightess' posture, martial bearing, towers over most T3 operatives; the height alone should have been a clue that "she" was more than T4 fodder)
 * **Weight:** 66kg (dense martial muscle distributed across hyperfeminine frame — heavier than her visual suggests; the knight regiment builds functional mass, not decorative bulk)
 * **Measurements:** *F-cup* **(B 98 / W 58 / H 106cm)**
 * **(`WHR`):** *0.547* (between Madam Umeko Ketsuraku's 0.533 and Kali Nyx Ravenscar's 0.556 — she occupies the gap between T1 architectural perfection and T2 seduction protocols; the WHR of a woman who has trained her body to fight while her body insists on being beautiful)
 * **(`Underbust`):** *~72cm* (moderate frame; the quantum-compression breastplate reduces F-cup to flat-plate geometry during State A — the engineering required to hide this much volume is itself an architectural achievement)
 
-* **Breast Size Hierarchy:** F-cup positions her **at SFS's level** (direct QMR collaborator, F-cup peer), **matches Vesper** (T2 level), **above Magistra and Lysandra's E-cup** (T1/T3), **above Novia's D-cup** (her guilt-entangled anomaly). For a T4 Lesser Faction leader, this is **architecturally impossible** — T4 entities are specified at C-D cup, 0.65+ WHR. Dame Schrödinger's F-cup / 0.547 WHR **violates her own tier** — and that violation IS the superposition. She is T4 by organizational assignment and T3 (or higher) by physical manifestation. The armor is the only thing that prevents the contradiction from collapsing the hierarchy. If she were formally observed and classified, the Gender Architecture would need to reclassify her — and the Dame knows this. The armor isn't hiding her body. It's hiding a **tier violation**.
+* **Breast Size Hierarchy:** F-cup positions her **at SFS's level** (direct QMR collaborator, F-cup peer), **matches Vesper** (T2 level), **above Magistra and Lysandra's E-cup** (T1/T3), **above Novia's D-cup** (her guilt-entangled anomaly). For a T4 Lesser Faction leader, this is **architecturally anomalous** — T4 entities were specified at a n immutable rule where; "C-D cup, 0.65+ WHR equals her. Yet Dame Schrödinger's F-cup / 0.547 WHR **riots her own tier** — and that IS part superposition, part stolen. She is T4 by organizational assignment and T3 (or higher) by physical manifestation. The armor is the only thing that prevents the contradiction from collapsing the hierarchy. If she were formally observed and classified, the Gender Architecture would need to reclassify her — and the Dame knows this. The armor isn't hiding her body. It's hiding a **tier violation**.
 
 **EDFA (Explicitly Detailed Feminine Attributes) - FA⁵ Visual Integrity Demonstration:**
 
@@ -4496,7 +4497,7 @@ T4↔T3  Dame Schrödinger's Paradox       F     0.547    Quantum probability (S
 * **(`WHR`):** *0.632* (60/95 — mild T4 deviation; the waist is genuinely narrow from contemplative austerity, the hips genuinely broad from Mediterranean bone structure. She didn't earn these proportions through effort; they're the residue of genetics disciplined by a monastic regimen that she has carried with her like a ghost)
 * **(`Underbust`):** *~71cm* (moderate frame; the habit she still occasionally wears was designed for her body when she was 19 and still fits because she has not changed shape since she left — the body the order built is the body she kept)
 
-* **Breast Size Hierarchy:** D-cup positions her **at Novia's level** (D-cup peers — both share the "most conservative" end of the Sub-MILF spectrum), **below SFS and Vesper** (F-cup), **above the conforming T4 entities** (C-cup: Régine, Judith, Curatrix). For a T4 entity, D-cup is within specification (C-D cup range). The deviation is in the WHR — at 0.632, she falls below the T4 0.65+ threshold, placing her in the mild-violation zone. The contemplative discipline that narrowed her waist is the same discipline that makes her dangerous as a deconstructionist: she has been trained to strip away the unnecessary until only structural truth remains, and her body reflects this principle.
+* **Breast Size Hierarchy:** D-cup positions her **at Novia's and Curatrix's level** (D-cup peers — Apostasia, Curatrix, and Novia share the "most conservative" end of the Sub-MILF spectrum), **below SFS and Vesper** (F-cup), **above the conforming T4 entities** (C-cup: Régine, Judith). For a T4 entity, D-cup is within specification (C-D cup range). The deviation is in the WHR — at 0.632, she falls below the T4 0.65+ threshold, placing her in the mild-violation zone. The contemplative discipline that narrowed her waist is the same discipline that makes her dangerous as a deconstructionist: she has been trained to strip away the unnecessary until only structural truth remains, and her body reflects this principle.
 
 **EDFA (Explicitly Detailed Feminine Attributes) - FA⁵ Visual Integrity Demonstration:**
 
@@ -4592,7 +4593,7 @@ What the habit reveals when it no longer serves its original master:
 * **(`WHR`):** *0.598* (58/97 — significant T4 deviation. The waist was narrowed through sustained core development; the hips broadened through targeted gluteal architecture. Neither was the goal. Both were intermediate results of an optimization loop that passed through "aesthetically ideal" on its way to "obsessively calibrated." She arrived at 0.598 and kept adjusting; the WHR has not changed in four years because she has, by accident, hit a local optimum she cannot escape — and the inability to escape it is driving her quietly insane)
 * **(`Underbust`):** *~73cm* (moderate-to-broad frame — the ribcage expansion from sustained cardiovascular optimization provides the structural platform that makes E-cup architecture load-bearing rather than pendulous)
 
-* **Breast Size Hierarchy:** E-cup positions her **at Magistra Lysandra's level** (E-cup peers — the Registrar and the Saint share the same volume specification while occupying opposite ends of the hierarchy), **below Dame Schrödinger and SFS** (F-cup), **above Monty and Apostasia** (D-cup), **above the conforming T4 entities** (C-cup: Régine, Judith, Curatrix). For a T4 entity, E-cup is a significant overshoot — C-D cup is specification. But Sainte's E-cup was not engineered for aesthetics. It is the result of targeted pectoral development combined with hormonal optimization that increased breast tissue density. She documented every increment. She has a spreadsheet. The spreadsheet has seventeen tabs. She maintains it weekly. No one has asked to see it.
+* **Breast Size Hierarchy:** E-cup positions her **at Magistra Lysandra's level** (E-cup peers — the Registrar and the Saint share the same volume specification while occupying opposite ends of the hierarchy), **below Dame Schrödinger and SFS** (F-cup), **above Monty and Apostasia** (D-cup), **above the conforming T4 entities** (C-cup: Régine, Judith). For a T4 entity, E-cup is a significant overshoot — C-D cup is specification. But Sainte's E-cup was not engineered for aesthetics. It is the result of targeted pectoral development combined with hormonal optimization that increased breast tissue density. She documented every increment. She has a spreadsheet. The spreadsheet has seventeen tabs. She maintains it weekly. No one has asked to see it.
 
 **EDFA (Explicitly Detailed Feminine Attributes) - FA⁵ Visual Integrity Demonstration:**
 
@@ -4705,7 +4706,7 @@ T4↔T3  Sainte Coûte-Que-Coûte           E     0.598    Compulsive optimizati
 * **(`WHR`):** *0.638* (60/94 — mild T4 deviation. The waist-to-hip ratio on a 166cm frame creates more dramatic visual contrast than the numbers suggest; at her height, the 34cm hip-waist differential reads as pronounced curvature. She did not train for this ratio. It is the body she was dealt — and like every hand she's dealt, she plays it to maximum advantage. The slight T4 violation is appropriate: she exceed specs just enough to be interesting, not enough to trigger reclassification. The mild deviation IS the misdirection — close enough to T4 that no one investigates, far enough that the body is doing work the hierarchy doesn't track)
 * **(`Underbust`):** *~70cm* (narrow frame — the thoracic cage is small enough that D-cup presents with more projection-to-frame ratio than D-cup on a wider ribcage. The waistcoat fits closely precisely because there is less skeletal substrate to accommodate. On Marguerite's frame, D-cup is not modest. It is architecturally prominent.)
 
-* **Breast Size Hierarchy:** D-cup positions her **at Apostasia's level** (D-cup peers across opposite operational domains — the deconstructionist and the con artist share volume specification while practicing inverse methodologies) and **at Novia's level** (D-cup forge-born anomaly), **below Sainte's E-cup** (the compulsive optimizer exceeded her), **below Dame Schrödinger's F-cup** (the hidden knight), **above the conforming T4 entities** (C-cup: Régine, Judith, Curatrix). On her 166cm/57kg frame and 70cm underbust, D-cup projects with disproportionate visual impact — smaller frame means higher breast-to-body ratio than the same cup on a larger skeleton. The con extends to proportion: you see D-cup on the chart and think "moderate." You see D-cup on Marguerite and think something else entirely.
+* **Breast Size Hierarchy:** D-cup positions her **at Apostasia's and Curatrix's level** (D-cup peers across opposite operational domains — the deconstructionist, the archivist, and the con artist share volume specification while practicing divergent methodologies) and **at Novia's level** (D-cup forge-born anomaly), **below Sainte's E-cup** (the compulsive optimizer exceeded her), **below Dame Schrödinger's F-cup** (the hidden knight), **above the conforming T4 entities** (C-cup: Régine, Judith). On her 166cm/57kg frame and 70cm underbust, D-cup projects with disproportionate visual impact — smaller frame means higher breast-to-body ratio than the same cup on a larger skeleton. The con extends to proportion: you see D-cup on the chart and think "moderate." You see D-cup on Marguerite and think something else entirely.
 
 **EDFA (Explicitly Detailed Feminine Attributes) - FA⁵ Visual Integrity Demonstration:**
 
@@ -4816,7 +4817,7 @@ T4↔T3  Marguerite "Monty" Theorem       D     0.638    Compact-frame misdirect
 * **(`WHR`):** *0.663* (59/89 — borderline T4. The waist is narrow from decades of irregular eating patterns that never deposited visceral fat; the hips carry the structural foundation of a body whose primary motion is walking and standing. She sits at the exact boundary between T4 specification and T4 deviation — a liminal position she would find methodologically interesting if she ever thought about it, which she does not)
 * **(`Underbust`):** *~68cm* (narrow frame — the small ribcage means D-cup sits with higher relative projection than the same cup on a broader skeleton. She has a lab coat that she has worn for nine years. It has never fit properly across the chest. She has never had it altered. It is a lab coat.)
 
-* **Breast Size Hierarchy:** D-cup positions her **at Monty's and Apostasia's level** (D-cup peers — the con artist, the apostate, and the professor share volume specification across radically different operational domains), **below Sainte's E-cup** and **below Dame Schrödinger's F-cup**, **above the conforming T4 entities** (C-cup: Régine, Judith, Curatrix). On her 164cm/55kg frame and 68cm underbust, D-cup produces proportional prominence that she has categorically failed to notice. (`TWOUMC`) colleagues have noticed. They do not mention it. The Professor's relationship with her own body is the one **chimera** she has never attempted to construct — the one incompatibility she has never mapped.
+* **Breast Size Hierarchy:** D-cup positions her **at Monty's, Apostasia's, and Curatrix's level** (D-cup peers — the con artist, the apostate, the archivist, and the professor share volume specification across radically different operational domains), **below Sainte's E-cup** and **below Dame Schrödinger's F-cup**, **above the conforming T4 entities** (C-cup: Régine, Judith). On her 164cm/55kg frame and 68cm underbust, D-cup produces proportional prominence that she has categorically failed to notice. (`TWOUMC`) colleagues have noticed. They do not mention it. The Professor's relationship with her own body is the one **chimera** she has never attempted to construct — the one incompatibility she has never mapped.
 
 **EDFA (Explicitly Detailed Feminine Attributes) - FA⁵ Visual Integrity Demonstration:**
 
@@ -4928,7 +4929,7 @@ T4     Prof. Francesca "Frankie" Stein  D     0.663    Academic neglect (METHODO
 * **(`WHR`):** *0.670* (59/88 — conforming T4. The waist is narrow from nineteen years of diaphragmatic engagement and physical comedy's core demands; the hips carry the structural base of a body whose primary motion is theatrical — standing, projecting, falling, recovering, executing physical routines that use the pelvis as the center of gravity. The 0.670 is the performer's WHR: not sculpted, not neglected, but trained — the ratio a body arrives at when its entire musculoskeletal system has been in continuous theatrical deployment since adolescence.)
 * **(`Underbust`):** *~70cm* (moderate frame — Lyonnais-Mediterranean bone structure built for stage projection. She has never measured her underbust. She has measured her vocal projection to the back wall of every theatre she has played. The priorities are stage-correct.)
 
-* **Breast Size Hierarchy:** C-cup positions her **at Judith's and Curatrix's level** (C-cup conforming peers — the protocol ghost, the archivist of dead fetishes, and the satirical drag performer share the same volume specification across entirely incompatible operational domains), **below Frankie and Monty** (D-cup), **below Sainte** (E-cup), **below Dame Schrödinger** (F-cup). On her 168cm stage-trained frame and 70cm underbust, the proportional architecture serves the costume's concealment-and-reveal dynamic — what the padded Capitano inflates, the shed costume discloses. She has never thought about it in these terms. Her **OMCA** troupe has. They do not discuss it within earshot.
+* **Breast Size Hierarchy:** C-cup positions her **at Judith's level** (C-cup conforming peer — the protocol ghost and the satirical drag performer share the same volume specification across incompatible operational domains), **below Curatrix, Frankie, and Monty** (D-cup), **below Sainte** (E-cup), **below Dame Schrödinger** (F-cup). On her 168cm stage-trained frame and 70cm underbust, the proportional architecture serves the costume's concealment-and-reveal dynamic — what the padded Capitano inflates, the shed costume discloses. She has never thought about it in these terms. Her **OMCA** troupe has. They do not discuss it within earshot.
 
 **EDFA (Explicitly Detailed Feminine Attributes) - FA⁵ Visual Integrity Demonstration:**
 
@@ -5038,7 +5039,7 @@ T4     Madame Régine Theft-Historically C     0.670    Theatrical drag (PERFORM
 * **(`WHR`):** *0.682* (60/88 — conforming T4. The most institutional ratio in the roster — not sculpted, not trained, not neglected, but architecturally arrived at. The narrow waist is spinal alignment rather than muscular development: her father's Estonian ergonomic education — posture as the first principle of any interface between body and system — combined with her mother's insistence that posture is dignity, that a Benveniste sits upright because five centuries of inherited displacement have not bent the spine and no protocol environment will succeed where the Inquisition failed. The hips carry the structural base of the Baltic-Mediterranean bone architecture — wide enough for stability in twelve-hour operational shifts, compact enough for the protocol work that requires her to move through infrastructure corridors designed for a smaller predecessor. The 0.682 is the ratio a body arrives at when it occupies a system long enough for the system to shape it: not the body's own architecture, but the architecture the environment has imposed through a decade of daily habitation.)
 * **(`Underbust`):** *~69cm* (moderate-to-narrow frame — the Estonian-Sephardic bone structure that the protocol environment has not altered. Her breathing pattern mirrors her operational style: shallow, efficient, minimal energy expenditure — the respiratory architecture of someone whose primary instrument is cognition and whose ribcage expands only enough to fuel the processes running above it. Her mother breathed the same way: Miriam Benveniste could hold a conversation across three languages at conversational volume while barely displacing the air around her, the respiratory economy of a woman who had learned, generationally, to occupy space without disturbing it.)
 
-* **Breast Size Hierarchy:** C-cup positions her **at Régine's and Curatrix's level** (C-cup conforming peers — the performer, the protocol ghost, and the archivist of dead fetishes share the same volume specification across three entirely distinct operational domains: theatrical drag, systemic betrayal, and aesthetic necropsy), **below Frankie and Monty** (D-cup), **below Sainte** (E-cup), **below Dame Schrödinger** (F-cup). On her 170cm frame and 69cm underbust, the proportional architecture is the most unremarkable in the roster — and the unremarkableness is load-bearing. She inherited a slot designed for someone else. The slot's previous occupant was male. The system that assigned her does not distinguish between the body it specified and the body it received. She fills the protocol space the way any updated version fills an older architecture: adequately, functionally, without the original's specificity.
+* **Breast Size Hierarchy:** C-cup positions her **at Régine's level** (C-cup conforming peer — the performer and the protocol ghost share the same volume specification across distinct operational domains: theatrical drag and systemic betrayal), **below Curatrix, Frankie, and Monty** (D-cup), **below Sainte** (E-cup), **below Dame Schrödinger** (F-cup). On her 170cm frame and 69cm underbust, the proportional architecture is the most unremarkable in the roster — and the unremarkableness is load-bearing. She inherited a slot designed for someone else. The slot's previous occupant was male. The system that assigned her does not distinguish between the body it specified and the body it received. She fills the protocol space the way any updated version fills an older architecture: adequately, functionally, without the original's specificity.
 
 **EDFA (Explicitly Detailed Feminine Attributes) - FA⁵ Visual Integrity Demonstration:**
 
@@ -5409,7 +5410,7 @@ REGISTRY ENTRY #016
   Designation: Curatrix Mortuorum (CRX-MRTM)
   Common Name: "The Curator of Dead Fetishes" / "The Curatrix" (male-coded "Curator" is diagnostic instrument)
   Class: B (Deep-Excavated — Aesthetic Archive Manifestation)
-  Tier: 4 (Lesser Faction Leader — POAFPSG) / Conforming T4 (WHR 0.713)
+  Tier: 4 (Lesser Faction Leader — POAFPSG) / Mild T4↔T3 Violation (WHR 0.640)
   Genesis: Deliberate aesthetic choice (adopted Latin title "Curatrix" — male-coded English "Curator" is the trap)
   Primary Domain: Dead Aesthetic Curation & Fetish Taxonomy
   Reporting Authority: Seraphine Kore Ashenhelm (HPAP, T2) via TTG deployment
@@ -5417,7 +5418,7 @@ REGISTRY ENTRY #016
   Extended Capabilities: Aesthetic Archaeology, Fetish Classification, Obsolescence Cataloging
   GAAP-T4 Mechanism: DELIBERATE AESTHETIC CHOICE — male-coded "Curator" title is a diagnostic instrument; anyone who assumes male reveals their own assumptions
   Visual Reference: [Profile pending — §4.5.5.2 operational summary]
-  Status: OPERATIONAL - Archive Active (C-cup / WHR 0.713 — most conforming T4; closest to baseline)
+  Status: OPERATIONAL - Archive Active (D-cup / WHR 0.640 — mild T4↔T3 violation; petite concentrated architecture)
 ```
 
 ---
@@ -5475,10 +5476,10 @@ T4↔T3   Dame Schrödinger's Paradox      F     0.547    Quantum superposition 
 T4↔T3   Sainte Coûte-Que-Coûte          E     0.598    Canonization fallacy (BOS) *
 T4↔T3   Sister Apostasia Magnificat     D     0.632    Insider deconstruction (TDAPCFLN) *
 T4↔T3   Marguerite "Monty" Theorem      D     0.638    The Con (SDBH) *
+T4↔T3   Curatrix Mortuorum              D     0.640    Aesthetic choice (POAFPSG) *
 T4      Prof. Francesca "Frankie" Stein D     0.663    Methodology identity (TWOUMC) *
 T4      Madame Régine Theft-Historically C     0.670    Theatrical drag (OMCA) *
 T4      Judith Protocol 2.0             C     0.682    Protocol inheritance (SBSGYB) *
-T4      Curatrix Mortuorum              C     0.713    Aesthetic choice (POAFPSG) *
 T4      [Sub-entities]                  C-D   0.65+    Task-specific operatives
 ```
 
@@ -5519,7 +5520,7 @@ Marguerite "Monty" Theorem       28G   28F   60G   60G   6F    Con-artist endomo
 Prof. Francesca "Frankie" Stein  28F   28E   60F   60F   6E    Academic methodology; lab-bound narrow frame
 Madame Régine Theft-Historically 30E   30DD  65E   65E   8DD   Theatrical performer; stage-calibrated build
 Judith Protocol 2.0              30E   30DD  65E   65E   8DD   Protocol inheritance; system-standard chassis
-Curatrix Mortuorum               28E   28DD  60E   60E   6DD   Archival curation; petite diagnostic frame
+Curatrix Mortuorum               28F   28E   60F   60F   6E    Archival curation; petite D-cup concentrated frame
 ```
 
 ---
