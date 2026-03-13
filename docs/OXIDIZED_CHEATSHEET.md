@@ -252,6 +252,44 @@ rv cache                     # manage rv cache
 - `rvx` is the zero-friction gem runner — `rvx rails`, `rvx rubocop`, `rvx rake` all work without manual gem install
 - `rv tool install` creates isolated envs so global gems don't pollute each other (equivalent of `uv tool install`)
 - `rv clean-install` is the CI-safe command — equivalent of `uv sync --frozen` for Ruby
+- In this workspace, prefer `rv` directly. `rvw` is legacy fallback material for old PowerShell alias-collision situations, not the primary command anymore.
+
+**Windows Ruby lane: what owns what**
+- `rv` owns the Ruby runtime itself: install, switch, pin, and isolated gem tools.
+- RubyInstaller DevKit / `MSYS2` owns the native build toolchain around Ruby: `gcc`, `make`, `pacman`, UCRT64 headers/libs.
+- They cooperate, but they are not the same tool. `rv` gives you `ruby`; DevKit/MSYS gives Ruby native-extension gems something to compile with.
+
+**Windows Ruby lane: update + verify**
+
+```powershell
+rv selfupdate                        # update rv itself
+rv ruby list                         # see installed + available Rubies
+rv ruby install latest              # install latest stable Ruby
+rv ruby pin 4.0.1                   # pin project version explicitly
+
+ruby --version                      # verify active Ruby
+gcc --version                       # verify C compiler from DevKit/MSYS2
+make --version                      # verify make
+pacman -Q mingw-w64-ucrt-x86_64-gcc make   # verify package ownership/versions
+```
+
+**Windows Ruby lane: MSYS2 / DevKit maintenance**
+
+```powershell
+pacman -Syu                         # full package database + system update
+pacman -Qu                          # list pending package upgrades
+pacman -S mingw-w64-ucrt-x86_64-gcc mingw-w64-ucrt-x86_64-make make
+```
+
+**Observed package names in this workspace**
+- `mingw-w64-ucrt-x86_64-gcc`
+- `mingw-w64-ucrt-x86_64-gcc-libs`
+- `mingw-w64-ucrt-x86_64-make`
+- `make`
+
+**Mental model**
+- `rv` answers: "which Ruby am I using?"
+- `MSYS2` / `pacman` answers: "what native toolchain is Ruby compiling against?"
 
 ---
 

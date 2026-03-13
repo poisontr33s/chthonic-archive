@@ -500,16 +500,19 @@ function Ensure-RvCommandBinding {
         $result.rv_before = if ($rvBefore.Path) { $rvBefore.Path } else { $rvBefore.Display }
     }
 
+    $rvCmd = Get-CommandResolution -Name "rv"
     $rvExeCmd = Get-CommandResolution -Name "rv.exe"
     $rvwCmd = Get-CommandResolution -Name "rvw"
     $targetCommand = $null
-    if ($rvExeCmd) {
+    if ($rvCmd -and $rvCmd.Type -ne "Alias") {
+        $targetCommand = "rv"
+    } elseif ($rvExeCmd) {
         $targetCommand = "rv.exe"
     } elseif ($rvwCmd) {
         $targetCommand = "rvw"
     }
     if (-not $targetCommand) {
-        $result.reason = "rv.exe/rvw not found"
+        $result.reason = "rv/rv.exe/rvw not found"
         return [pscustomobject]$result
     }
 
@@ -793,6 +796,7 @@ Usage: chthonic [--version] [--help] <domain> [<action>] [<args>]
   doctor --dry-run        Simulate --fix without executing anything
   doctor --origins        Show install methodology per tool (path + origin + wrappers)
   detect                  Detect IDE and environment context
+  ruby versions|tools|lane|doctor|search|install|upgrade  Ruby lane via rv + RubyGems
 
   ide launch|detect|reset IDE management
   mcp start|stop|status   MCP + bridge services
@@ -1200,10 +1204,11 @@ function Show-PolyglotStatus {
         }
     } catch { $tools['fnm'] = 'not found' }
     try {
-        $nodeOut = (node --version 2>$null)
+        $nodeOut = $null
+        try { $nodeOut = (node --version 2>$null) } catch {}
         if (-not $nodeOut) {
             $fnmNode = Get-FnmNodeExePath
-            if ($fnmNode) { $nodeOut = (& $fnmNode --version 2>$null) }
+            if ($fnmNode) { $nodeOut = (& $fnmNode --version 2>&1) }
         }
         if (($nodeOut -join "`n") -match 'v?(\d+\.\d+\.\d+)') {
             $tools['node'] = $matches[1]
@@ -1269,7 +1274,7 @@ function Show-PolyglotStatus {
     try {
         $rExe = Get-RExePath
         if ($rExe) {
-            $rOut = (& $rExe --version 2>$null)
+            $rOut = (& $rExe --version 2>&1)
         } else {
             $rOut = $null
         }
@@ -1925,10 +1930,11 @@ function Get-InstalledVersion {
                 if ($v -match 'go(\d+\.\d+\.\d+)') { return $matches[1] }; return $null
             }
             "nodejs"     {
-                $v = node --version 2>$null
+                $v = $null
+                try { $v = node --version 2>$null } catch {}
                 if (-not $v) {
                     $fnmNode = Get-FnmNodeExePath
-                    if ($fnmNode) { $v = & $fnmNode --version 2>$null }
+                    if ($fnmNode) { $v = & $fnmNode --version 2>&1 }
                 }
                 if ($v -match '(\d+\.\d+\.\d+)') { return $matches[1] }
                 return $null
@@ -1946,7 +1952,7 @@ function Get-InstalledVersion {
             "r"          {
                 $rExe = Get-RExePath
                 if (-not $rExe) { return $null }
-                $v = & $rExe --version 2>$null
+                $v = & $rExe --version 2>&1
                 if (($v -join "`n") -match 'R version (\d+\.\d+\.\d+)') { return $matches[1] }
                 return $null
             }
@@ -1981,12 +1987,12 @@ function Compare-Versions {
 # Fix command map: tool -> { Upgrade (tool present), Install (tool missing) }
 # All vectors use native installers — zero winget dependency.
 # Pin policy: install + pin in one atomic operation where supported.
-#   Ruby/Python: explicit pin (rvw ruby pin / uv python pin)
+#   Ruby/Python: explicit pin (rv ruby pin / uv python pin)
 #   Go/Rust/Bun: implicit pin (goup install auto-defaults, rustup stays stable, bun is single binary)
 $global:DoctorFixMap = @{
     ruby   = @{
-        Upgrade = { param($ver) rvw ruby install $ver; rvw ruby pin $ver }; UpgradeDesc = "rvw ruby install && pin"
-        Install = { param($ver) cargo install rv; rvw ruby install $ver; rvw ruby pin $ver }; InstallDesc = "cargo install rv && rvw ruby install && pin"
+        Upgrade = { param($ver) rv ruby install $ver; rv ruby pin $ver }; UpgradeDesc = "rv ruby install && pin"
+        Install = { param($ver) cargo install rv; rv ruby install $ver; rv ruby pin $ver }; InstallDesc = "cargo install rv && rv ruby install && pin"
     }
     python = @{
         Upgrade = {
@@ -2032,7 +2038,7 @@ function Show-Origins {
 
     # Core ANNO-managed tools
     $tools = @(
-        @{ Name = "ruby";    Cmd = "ruby";    Method = "rvw (cargo install rv)";    Ecosystem = "cargo" },
+        @{ Name = "ruby";    Cmd = "ruby";    Method = "rv (cargo install rv)";     Ecosystem = "cargo" },
         @{ Name = "python";  Cmd = "uv";      Method = "irm astral.sh/uv";          Ecosystem = "uv" },
         @{ Name = "bun";     Cmd = "bun";     Method = "irm bun.sh";                Ecosystem = "bun" },
         @{ Name = "rust";    Cmd = "rustc";   Method = "rustup (irm rustup.rs)";     Ecosystem = "cargo" },
@@ -2041,8 +2047,8 @@ function Show-Origins {
 
     # Secondary tools
     $secondary = @(
-        @{ Name = "rv";      Cmd = $null;     Method = "PowerShell binding (alias collision guard)"; Ecosystem = "local"; Resolver = { Get-CommandDisplayFlexible -Name "rv" } },
-        @{ Name = "rvw";     Cmd = "rvw";     Method = "rv wrapper (ruby lane)"; Ecosystem = "cargo" },
+        @{ Name = "rv";      Cmd = $null;     Method = "primary Ruby lane"; Ecosystem = "local"; Resolver = { Get-CommandDisplayFlexible -Name "rv" } },
+        @{ Name = "rvw";     Cmd = "rvw";     Method = "fallback rv wrapper"; Ecosystem = "cargo" },
         @{ Name = "fnm";     Cmd = "fnm";     Method = "winget/cargo (Fast Node Manager)"; Ecosystem = "system" },
         @{ Name = "node";    Cmd = $null;     Method = "fnm-managed Node runtime"; Ecosystem = "system"; Resolver = { Get-FnmNodeExePath } },
         @{ Name = "mise";    Cmd = "mise";    Method = "optional unified overlay (not SSOT)"; Ecosystem = "system" },
@@ -2402,6 +2408,468 @@ function Invoke-Doctor {
     }
 }
 
+function Get-RvToolsDir {
+    return (Join-Path $env:APPDATA "rv\tools")
+}
+
+function Get-RubyInstalledVersions {
+    $rubyRoot = Join-Path $env:APPDATA "rv\rubies"
+    if (-not (Test-Path $rubyRoot)) { return @() }
+
+    return Get-ChildItem $rubyRoot -Directory -ErrorAction SilentlyContinue |
+        Where-Object { $_.Name -like "ruby-*" } |
+        Sort-Object Name |
+        ForEach-Object {
+            [pscustomobject]@{
+                name = $_.Name
+                path = $_.FullName
+            }
+        }
+}
+
+function Get-RubyReleaseCachePath {
+    $releaseRoot = Join-Path $env:LOCALAPPDATA "rv\ruby-v0\releases"
+    foreach ($candidate in @(
+        (Join-Path $releaseRoot "rubyinstaller2.json")
+    )) {
+        if (Test-Path $candidate) { return $candidate }
+    }
+
+    $latest = Get-ChildItem $releaseRoot -File -ErrorAction SilentlyContinue |
+        Sort-Object LastWriteTime -Descending |
+        Select-Object -First 1
+    if ($latest) { return $latest.FullName }
+    return $null
+}
+
+function Get-RubyLatestStableVersion {
+    $cachePath = Get-RubyReleaseCachePath
+    if (-not $cachePath) { return $null }
+
+    try {
+        $payload = Get-Content $cachePath -Raw | ConvertFrom-Json
+        $assets = $payload.release.assets
+        $versions = @()
+        foreach ($asset in $assets) {
+            if ($asset.name -match '^ruby-(\d+\.\d+\.\d+)\.x64\.7z$') {
+                try {
+                    $versions += [pscustomobject]@{
+                        raw = $matches[1]
+                        sem = [version]$matches[1]
+                    }
+                } catch {}
+            }
+        }
+        if (-not $versions) { return $null }
+        return ($versions | Sort-Object sem -Descending | Select-Object -First 1).raw
+    } catch {
+        return $null
+    }
+}
+
+function Get-RubyCurrentVersion {
+    try {
+        return (& ruby -e "print RUBY_VERSION" 2>$null | Select-Object -First 1).ToString().Trim()
+    } catch {
+        return $null
+    }
+}
+
+function Get-RubyProblemDirs {
+    $rubyRoot = Join-Path $env:APPDATA "rv\rubies"
+    if (-not (Test-Path $rubyRoot)) { return @() }
+
+    return Get-ChildItem $rubyRoot -Directory -ErrorAction SilentlyContinue |
+        Where-Object { $_.Name -like "rubyinstaller-*" -or $_.Name -like "_hold_rubyinstaller-*" } |
+        Sort-Object Name
+}
+
+function Get-RubyInterpreterMetadataIssues {
+    $interpRoot = Join-Path $env:LOCALAPPDATA "rv\ruby-v0\interpreters"
+    if (-not (Test-Path $interpRoot)) { return @() }
+
+    return Get-ChildItem $interpRoot -File -ErrorAction SilentlyContinue |
+        ForEach-Object {
+            try {
+                $raw = Get-Content $_.FullName -Raw | ConvertFrom-Json
+                $path = "$($raw.path)"
+                $issue = $null
+                if (-not (Test-Path $path)) {
+                    $issue = "path_missing"
+                } elseif ($path -match 'rubyinstaller-\d+\.\d+\.\d+-\d+-x64') {
+                    $issue = "installer_named_path"
+                }
+                if ($issue) {
+                    [pscustomobject]@{
+                        file = $_.FullName
+                        path = $path
+                        issue = $issue
+                    }
+                }
+            } catch {}
+        } | Where-Object { $_ }
+}
+
+function Get-RubyInstalledTools {
+    $toolsDir = Get-RvToolsDir
+    if (-not (Test-Path $toolsDir)) { return @() }
+
+    return Get-ChildItem $toolsDir -Directory -ErrorAction SilentlyContinue |
+        Sort-Object Name |
+        ForEach-Object {
+            $name = $_.Name
+            $tool = $name
+            $version = $null
+            if ($name -match '^(.*)@([^@]+)$') {
+                $tool = $matches[1]
+                $version = $matches[2]
+            }
+            [pscustomobject]@{
+                gem = $tool
+                version = $version
+                path = $_.FullName
+            }
+        }
+}
+
+function Invoke-RubyDoctor {
+    param([switch]$Json, [switch]$Fix)
+
+    $currentVersion = Get-RubyCurrentVersion
+    $currentPath = $null
+    try { $currentPath = (& rv ruby find 2>$null | Select-Object -First 1).ToString().Trim() } catch {}
+    $latestStable = Get-RubyLatestStableVersion
+    $problemDirs = @(Get-RubyProblemDirs)
+    $interpreterIssues = @(Get-RubyInterpreterMetadataIssues)
+
+    if ($Fix) {
+        $rvHome = Join-Path $env:APPDATA "rv"
+        $quarantineRoot = Join-Path $rvHome "quarantine"
+        New-Item -ItemType Directory -Force -Path $quarantineRoot | Out-Null
+
+        foreach ($dir in $problemDirs) {
+            if ($dir.FullName -notlike "$quarantineRoot*") {
+                $dest = Join-Path $quarantineRoot ($dir.Name + "_" + (Get-Date -Format "yyyyMMdd_HHmmss"))
+                Move-Item $dir.FullName $dest -Force
+            }
+        }
+
+        $interpRoot = Join-Path $env:LOCALAPPDATA "rv\ruby-v0\interpreters"
+        $interpQuarantine = Join-Path $env:LOCALAPPDATA "rv\ruby-v0\interpreters-quarantine"
+        New-Item -ItemType Directory -Force -Path $interpQuarantine | Out-Null
+        foreach ($issue in $interpreterIssues) {
+            if (Test-Path $issue.file) {
+                Move-Item $issue.file (Join-Path $interpQuarantine (Split-Path $issue.file -Leaf)) -Force
+            }
+        }
+
+        $problemDirs = @(Get-RubyProblemDirs)
+        $interpreterIssues = @(Get-RubyInterpreterMetadataIssues)
+    }
+
+    $status = if ($currentVersion -and $latestStable) {
+        try {
+            if ([version]$currentVersion -ge [version]$latestStable) { "current" } else { "upgrade_available" }
+        } catch { "unknown" }
+    } else {
+        "unknown"
+    }
+
+    $payload = [pscustomobject]@{
+        manager = "rv"
+        manager_version = (Get-InstalledVersion "rv")
+        current_version = $currentVersion
+        current_path = $currentPath
+        latest_stable = $latestStable
+        status = $status
+        problem_dirs = @($problemDirs | ForEach-Object {
+            [pscustomobject]@{ name = $_.Name; path = $_.FullName }
+        })
+        interpreter_issues = @($interpreterIssues)
+    }
+
+    if ($Json) {
+        Write-Output (ConvertTo-Json $payload -Depth 6)
+        return 0
+    }
+
+    Write-Host ""
+    Write-Host "CHTHONIC RUBY DOCTOR" -ForegroundColor Cyan
+    Write-Host ("="*72) -ForegroundColor DarkGray
+    Write-Host "  rv            " -NoNewline -ForegroundColor Cyan
+    Write-Host ($(if ($payload.manager_version) { $payload.manager_version } else { "not found" })) -ForegroundColor White
+    Write-Host "  current       " -NoNewline -ForegroundColor Cyan
+    Write-Host ($(if ($payload.current_version) { $payload.current_version } else { "not found" })) -ForegroundColor White
+    Write-Host "  latest stable " -NoNewline -ForegroundColor Cyan
+    Write-Host ($(if ($payload.latest_stable) { $payload.latest_stable } else { "unknown" })) -ForegroundColor White
+    Write-Host "  status        " -NoNewline -ForegroundColor Cyan
+    Write-Host $payload.status -ForegroundColor $(if ($payload.status -eq "current") { "Green" } else { "Yellow" })
+    Write-Host "  problem dirs  " -NoNewline -ForegroundColor Cyan
+    Write-Host $payload.problem_dirs.Count -ForegroundColor White
+    foreach ($item in $payload.problem_dirs) {
+        Write-Host "    - $($item.path)" -ForegroundColor DarkGray
+    }
+    Write-Host "  interp issues " -NoNewline -ForegroundColor Cyan
+    Write-Host $payload.interpreter_issues.Count -ForegroundColor White
+    foreach ($issue in $payload.interpreter_issues) {
+        Write-Host "    - $($issue.issue): $($issue.path)" -ForegroundColor DarkGray
+    }
+    Write-Host ""
+    return 0
+}
+
+function Invoke-RubyUpgrade {
+    param([switch]$Json)
+
+    $latestStable = Get-RubyLatestStableVersion
+    $currentVersion = Get-RubyCurrentVersion
+
+    if (-not $latestStable) {
+        Write-Error "Could not resolve latest stable Ruby version from rv cache."
+        return 1
+    }
+
+    if ($currentVersion -and $currentVersion -eq $latestStable) {
+        if ($Json) {
+            Write-Output (ConvertTo-Json @{
+                action = "noop"
+                current = $currentVersion
+                latest_stable = $latestStable
+                reason = "already_current"
+            } -Depth 4)
+        } else {
+            Write-Host "Ruby already current: $currentVersion" -ForegroundColor Green
+        }
+        return 0
+    }
+
+    & rv ruby install $latestStable
+    return $LASTEXITCODE
+}
+
+function Invoke-RubyVersions {
+    param([switch]$Json)
+
+    if ($Json) {
+        $activePath = $null
+        $activeVersion = $null
+        $managerVersion = $null
+        try { $activePath = (& rv ruby find 2>$null | Select-Object -First 1).ToString().Trim() } catch {}
+        try { $activeVersion = (& ruby -e "print RUBY_VERSION" 2>$null | Select-Object -First 1).ToString().Trim() } catch {}
+        try {
+            $rvOut = (rv --version 2>$null)
+            if (($rvOut -join "`n") -match '(\d+\.\d+\.\d+)') { $managerVersion = $matches[1] }
+        } catch {}
+
+        $payload = [pscustomobject]@{
+            manager = "rv"
+            manager_version = $managerVersion
+            active_ruby = $activeVersion
+            active_path = $activePath
+            installed = @(Get-RubyInstalledVersions)
+        }
+        Write-Output (ConvertTo-Json $payload -Depth 5)
+        return
+    }
+
+    & rv ruby list
+}
+
+function Invoke-RubyTools {
+    param([switch]$Json)
+
+    if ($Json) {
+        $payload = [pscustomobject]@{
+            manager = "rv"
+            tools = @(Get-RubyInstalledTools)
+        }
+        Write-Output (ConvertTo-Json $payload -Depth 5)
+        return
+    }
+
+    & rv tool list
+}
+
+function Invoke-RubyLane {
+    param([switch]$Json)
+
+    $rvVersion = $null
+    try {
+        $rvOut = (rv --version 2>$null)
+        if (($rvOut -join "`n") -match '(\d+\.\d+\.\d+)') { $rvVersion = $matches[1] }
+    } catch {}
+
+    $rubyVersion = Get-InstalledVersion "ruby"
+    $rubyPath = $null
+    try { $rubyPath = (& rv ruby find 2>$null | Select-Object -First 1).ToString().Trim() } catch {}
+
+    $gccVersion = $null
+    try {
+        $gccOut = & gcc --version 2>$null
+        if (($gccOut -join "`n") -match '(\d+\.\d+\.\d+)') { $gccVersion = $matches[1] }
+    } catch {}
+
+    $makeVersion = $null
+    try { $makeVersion = (((make --version 2>$null) | Select-Object -First 1) -replace 'GNU Make\s*','').Trim() } catch {}
+
+    $pacmanVersion = $null
+    try {
+        $out = & pacman --version 2>$null
+        if (($out -join "`n") -match 'Pacman v(\d+\.\d+\.\d+)') { $pacmanVersion = $matches[1] }
+    } catch {}
+
+    $msys2Home = if ($env:MSYS2_HOME) {
+        $env:MSYS2_HOME
+    } else {
+        $root = Get-RubyDevKitRoot
+        if ($root) {
+            $candidate = Join-Path $root "msys64"
+            if (Test-Path $candidate) { $candidate } else { $null }
+        } else { $null }
+    }
+
+    $payload = [pscustomobject]@{
+        manager = [pscustomobject]@{
+            name = "rv"
+            version = $rvVersion
+        }
+        runtime = [pscustomobject]@{
+            ruby = $rubyVersion
+            ruby_path = $rubyPath
+        }
+        toolchain = [pscustomobject]@{
+            gcc = $gccVersion
+            make = $makeVersion
+            pacman = $pacmanVersion
+            msys2_home = $msys2Home
+        }
+        tools = @(Get-RubyInstalledTools)
+    }
+
+    if ($Json) {
+        Write-Output (ConvertTo-Json $payload -Depth 6)
+        return
+    }
+
+    Write-Host ""
+    Write-Host "CHTHONIC RUBY LANE" -ForegroundColor Cyan
+    Write-Host ("="*72) -ForegroundColor DarkGray
+    Write-Host "  rv       " -NoNewline -ForegroundColor Cyan
+    Write-Host ($(if ($payload.manager.version) { $payload.manager.version } else { "not found" })) -ForegroundColor White
+    Write-Host "  ruby     " -NoNewline -ForegroundColor Cyan
+    Write-Host ($(if ($payload.runtime.ruby) { $payload.runtime.ruby } else { "not found" })) -NoNewline -ForegroundColor White
+    if ($payload.runtime.ruby_path) {
+        Write-Host "  $($payload.runtime.ruby_path)" -ForegroundColor DarkGray
+    } else {
+        Write-Host ""
+    }
+    Write-Host "  gcc      " -NoNewline -ForegroundColor Cyan
+    Write-Host ($(if ($payload.toolchain.gcc) { $payload.toolchain.gcc } else { "not found" })) -NoNewline -ForegroundColor White
+    Write-Host "  make " -NoNewline -ForegroundColor DarkGray
+    Write-Host ($(if ($payload.toolchain.make) { $payload.toolchain.make } else { "not found" })) -NoNewline -ForegroundColor White
+    Write-Host "  pacman " -NoNewline -ForegroundColor DarkGray
+    Write-Host ($(if ($payload.toolchain.pacman) { $payload.toolchain.pacman } else { "not found" })) -ForegroundColor White
+    Write-Host "  msys2    " -NoNewline -ForegroundColor Cyan
+    Write-Host ($(if ($payload.toolchain.msys2_home) { $payload.toolchain.msys2_home } else { "not found" })) -ForegroundColor DarkGray
+    Write-Host "  tools    " -NoNewline -ForegroundColor Cyan
+    Write-Host ($payload.tools.Count) -ForegroundColor White
+    foreach ($tool in $payload.tools) {
+        Write-Host "    - $($tool.gem)" -NoNewline -ForegroundColor White
+        if ($tool.version) {
+            Write-Host " @$($tool.version)" -ForegroundColor DarkGray
+        } else {
+            Write-Host ""
+        }
+    }
+    Write-Host ""
+}
+
+function Invoke-RubySearch {
+    param([string[]]$RubyArgs, [switch]$Json)
+
+    $queryParts = @()
+    $limit = 10
+    for ($i = 0; $i -lt $RubyArgs.Count; $i++) {
+        switch ($RubyArgs[$i]) {
+            "--limit" {
+                if ($i + 1 -lt $RubyArgs.Count) {
+                    $limit = [int]$RubyArgs[$i + 1]
+                    $i++
+                }
+            }
+            default {
+                if (-not $RubyArgs[$i].StartsWith("--")) { $queryParts += $RubyArgs[$i] }
+            }
+        }
+    }
+
+    $query = ($queryParts -join " ").Trim()
+    if (-not $query) {
+        Write-Host "Usage: chthonic ruby search <query> [--limit N]" -ForegroundColor Yellow
+        return 1
+    }
+
+    $uri = "https://rubygems.org/api/v1/search.json?query=$([uri]::EscapeDataString($query))"
+    $results = @((Invoke-RestMethod -Uri $uri -TimeoutSec 10 -ErrorAction Stop)) | Select-Object -First $limit
+
+    if ($Json) {
+        Write-Output (ConvertTo-Json $results -Depth 5)
+        return 0
+    }
+
+    Write-Host ""
+    Write-Host "RUBYGEMS SEARCH: $query" -ForegroundColor Cyan
+    Write-Host ("="*72) -ForegroundColor DarkGray
+    foreach ($item in $results) {
+        $name = "$($item.name)@$($item.version)"
+        $downloads = if ($item.downloads) { $item.downloads } else { 0 }
+        Write-Host "  $name" -NoNewline -ForegroundColor White
+        Write-Host "  downloads=$downloads" -ForegroundColor DarkGray
+        if ($item.info) {
+            Write-Host "    $($item.info)" -ForegroundColor Gray
+        }
+    }
+    Write-Host ""
+    return 0
+}
+
+function Invoke-RubyInstall {
+    param([string[]]$RubyArgs)
+
+    $gem = $null
+    $server = "https://rubygems.org"
+    $force = $false
+
+    for ($i = 0; $i -lt $RubyArgs.Count; $i++) {
+        switch ($RubyArgs[$i]) {
+            "--server" {
+                if ($i + 1 -lt $RubyArgs.Count) {
+                    $server = $RubyArgs[$i + 1]
+                    $i++
+                }
+            }
+            "--rubygems" { $server = "https://rubygems.org" }
+            "--coop"     { $server = "https://gem.coop/" }
+            "--force"    { $force = $true }
+            default {
+                if (-not $RubyArgs[$i].StartsWith("--") -and -not $gem) {
+                    $gem = $RubyArgs[$i]
+                }
+            }
+        }
+    }
+
+    if (-not $gem) {
+        Write-Host "Usage: chthonic ruby install <gem[@version]> [--rubygems|--coop|--server URL] [--force]" -ForegroundColor Yellow
+        return 1
+    }
+
+    $invokeArgs = @("tool", "install", $gem, "--gem-server", $server)
+    if ($force) { $invokeArgs += "--force" }
+    & rv @invokeArgs
+    return $LASTEXITCODE
+}
+
 # ═══════════════════════════════════════════════════════════════════════════════
 # MAIN DISPATCH - Meta CLI (Domain/Action Model)
 # ═══════════════════════════════════════════════════════════════════════════════
@@ -2484,6 +2952,51 @@ switch ($Domain) {
         }
         $exitCode = Invoke-IDEDetect -Json:$false
         exit $exitCode
+    }
+    "ruby" {
+        switch ($Action) {
+            { $_ -in $null, "", "lane", "status" } {
+                Invoke-RubyLane -Json:$HasJsonFlag
+                exit 0
+            }
+            { $_ -in "versions", "rubies", "list" } {
+                Invoke-RubyVersions -Json:$HasJsonFlag
+                exit 0
+            }
+            { $_ -in "tools", "tool-list", "installed" } {
+                Invoke-RubyTools -Json:$HasJsonFlag
+                exit 0
+            }
+            "doctor" {
+                $fixFlag = ($AllArgs -contains "--fix") -or ($AllArgs -contains "-f")
+                $exitCode = Invoke-RubyDoctor -Json:$HasJsonFlag -Fix:$fixFlag
+                exit $exitCode
+            }
+            { $_ -in "upgrade", "install-latest", "latest" } {
+                $exitCode = Invoke-RubyUpgrade -Json:$HasJsonFlag
+                exit $exitCode
+            }
+            "search" {
+                $exitCode = Invoke-RubySearch -RubyArgs $RemainingArgs -Json:$HasJsonFlag
+                exit $exitCode
+            }
+            "install" {
+                $exitCode = Invoke-RubyInstall -RubyArgs $RemainingArgs
+                exit $exitCode
+            }
+            default {
+                Write-Host 'chthonic ruby <action>'
+                Write-Host "  versions            - list installed/available Rubies"
+                Write-Host "  tools               - list rv-installed Ruby CLI tools"
+                Write-Host "  lane                - Ruby lane summary (rv + ruby + gcc + make + pacman)"
+                Write-Host "  doctor [--fix]      - detect/repair stale rv Ruby state"
+                Write-Host "  upgrade             - install latest stable Ruby if newer; no-op if already current"
+                Write-Host "  search <query>      - search RubyGems.org"
+                Write-Host "  install <gem>       - install via rv tool install (defaults to RubyGems.org)"
+                Write-Host "    flags: --rubygems | --coop | --server <url> | --force"
+                exit 0
+            }
+        }
     }
     "poe" {
         $poeAccountScript = Join-Path $SCRIPT_DIR "poe_account.ps1"
