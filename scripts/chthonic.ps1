@@ -70,6 +70,50 @@ function Get-RubyDevKitRoot {
     return $null
 }
 
+function Get-FnmNodeExePath {
+    $fnmRoot = Join-Path $env:APPDATA "fnm\node-versions"
+    if (-not (Test-Path $fnmRoot)) { return $null }
+
+    $latest = Get-ChildItem $fnmRoot -Directory -ErrorAction SilentlyContinue |
+        Sort-Object Name -Descending |
+        Select-Object -First 1
+    if (-not $latest) { return $null }
+
+    $nodeExe = Join-Path $latest.FullName "installation\node.exe"
+    if (Test-Path $nodeExe) { return $nodeExe }
+    return $null
+}
+
+function Get-RExePath {
+    $rRoot = "C:\Program Files\R"
+    if (-not (Test-Path $rRoot)) { return $null }
+
+    $latest = Get-ChildItem $rRoot -Directory -ErrorAction SilentlyContinue |
+        Where-Object { $_.Name -like "R-*" } |
+        Sort-Object Name -Descending |
+        Select-Object -First 1
+    if (-not $latest) { return $null }
+
+    foreach ($candidate in @(
+        (Join-Path $latest.FullName "bin\x64\R.exe"),
+        (Join-Path $latest.FullName "bin\R.exe")
+    )) {
+        if (Test-Path $candidate) { return $candidate }
+    }
+
+    return $null
+}
+
+function Get-RigExePath {
+    foreach ($candidate in @(
+        "C:\Program Files\rig\rig.exe",
+        (Join-Path $env:LOCALAPPDATA "Microsoft\WinGet\Links\rig.exe")
+    )) {
+        if ($candidate -and (Test-Path $candidate)) { return $candidate }
+    }
+    return $null
+}
+
 function Get-DevKitPaths {
     $root = Get-RubyDevKitRoot
     if (-not $root) { return @() }
@@ -1088,12 +1132,14 @@ function Show-PolyglotStatus {
     $tools['orchestrator_ssot'] = 'chthonic'
     $tools['orchestration_mode'] = 'polyglot_router'
     $tools['research_ingest_role'] = 'supplemental_input'
-    $tools['unified_overlay_optional'] = 'mise'
+    $tools['unified_overlay_optional'] = 'mise/proto'
     $tools['handler_ruby'] = 'rv (rvw wrapper optional)'
     $tools['handler_python'] = 'uv'
     $tools['handler_rust'] = 'rustup/cargo'
     $tools['handler_go'] = 'goup'
     $tools['handler_js'] = 'bun'
+    $tools['handler_node'] = 'fnm (optional Node version lane)'
+    $tools['handler_r'] = 'rig (optional R version lane)'
     $tools['uv_tool_lane'] = 'python,ruff,cmake,ninja'
     $tools['rv'] = 'not found'
     $rvMetaStatus = Get-CommandResolution -Name "rv"
@@ -1143,6 +1189,30 @@ function Show-PolyglotStatus {
             $tools['goup'] = (($goupOut | Select-Object -First 1).ToString().Trim())
         }
     } catch { $tools['goup'] = 'not found' }
+    try {
+        $fnmOut = (fnm --version 2>$null)
+        if (($fnmOut -join "`n") -match '(\d+\.\d+\.\d+)') {
+            $tools['fnm'] = $matches[1]
+        } elseif ($fnmOut) {
+            $tools['fnm'] = (($fnmOut | Select-Object -First 1).ToString().Trim())
+        } else {
+            $tools['fnm'] = 'not found'
+        }
+    } catch { $tools['fnm'] = 'not found' }
+    try {
+        $nodeOut = (node --version 2>$null)
+        if (-not $nodeOut) {
+            $fnmNode = Get-FnmNodeExePath
+            if ($fnmNode) { $nodeOut = (& $fnmNode --version 2>$null) }
+        }
+        if (($nodeOut -join "`n") -match 'v?(\d+\.\d+\.\d+)') {
+            $tools['node'] = $matches[1]
+        } elseif ($nodeOut) {
+            $tools['node'] = (($nodeOut | Select-Object -First 1).ToString().Trim())
+        } else {
+            $tools['node'] = 'not found'
+        }
+    } catch { $tools['node'] = 'not found' }
     try { $tools['python'] = (uv run python --version 2>&1) -replace 'Python\s*','' } catch { $tools['python'] = 'not found' }
     if ($tools['go'] -eq 'not found') {
         $goupGo = Join-Path $env:USERPROFILE ".goup\current\bin\go.exe"
@@ -1171,6 +1241,68 @@ function Show-PolyglotStatus {
             $tools['mise'] = (($miseOut | Select-Object -First 1).ToString().Trim())
         }
     } catch { $tools['mise'] = 'not found' }
+    try {
+        $protoOut = (proto --version 2>$null)
+        if (($protoOut -join "`n") -match '(\d+\.\d+\.\d+)') {
+            $tools['proto'] = $matches[1]
+        } elseif ($protoOut) {
+            $tools['proto'] = (($protoOut | Select-Object -First 1).ToString().Trim())
+        } else {
+            $tools['proto'] = 'not found'
+        }
+    } catch { $tools['proto'] = 'not found' }
+    try {
+        $rigExe = Get-RigExePath
+        if ($rigExe) {
+            $rigOut = (& $rigExe --version 2>$null)
+        } else {
+            $rigOut = $null
+        }
+        if (($rigOut -join "`n") -match '(\d+\.\d+\.\d+)') {
+            $tools['rig'] = $matches[1]
+        } elseif ($rigOut) {
+            $tools['rig'] = (($rigOut | Select-Object -First 1).ToString().Trim())
+        } else {
+            $tools['rig'] = 'not found'
+        }
+    } catch { $tools['rig'] = 'not found' }
+    try {
+        $rExe = Get-RExePath
+        if ($rExe) {
+            $rOut = (& $rExe --version 2>$null)
+        } else {
+            $rOut = $null
+        }
+        if (($rOut -join "`n") -match 'R version (\d+\.\d+\.\d+)') {
+            $tools['r'] = $matches[1]
+        } elseif ($rOut) {
+            $tools['r'] = (($rOut | Select-Object -First 1).ToString().Trim())
+        } else {
+            $tools['r'] = 'not found'
+        }
+    } catch { $tools['r'] = 'not found' }
+    try {
+        $pacmanOut = (& pacman --version 2>$null)
+        if (($pacmanOut -join "`n") -match 'Pacman v(\d+\.\d+\.\d+)') {
+            $tools['pacman'] = $matches[1]
+        } elseif ($pacmanOut) {
+            $tools['pacman'] = (($pacmanOut | Select-Object -First 1).ToString().Trim())
+        } else {
+            $tools['pacman'] = 'not found'
+        }
+    } catch { $tools['pacman'] = 'not found' }
+    $msys2Home = if ($env:MSYS2_HOME) {
+        $env:MSYS2_HOME
+    } else {
+        $root = Get-RubyDevKitRoot
+        if ($root) {
+            $candidate = Join-Path $root "msys64"
+            if (Test-Path $candidate) { $candidate } else { $null }
+        } else {
+            $null
+        }
+    }
+    $tools['msys2_home'] = if ($msys2Home) { $msys2Home } else { 'not found' }
     $azVer = Get-AzureCliVersion
     $tools['az'] = if ($azVer) { $azVer } else { 'not found' }
 
@@ -1312,6 +1444,45 @@ function Show-PolyglotStatus {
         $tools['mise_cmd'] = if ($miseMeta.Path) { $miseMeta.Path } else { $miseMeta.Display }
     } else {
         $tools['mise_cmd'] = 'not found'
+    }
+    $fnmMeta = Get-CommandResolution -Name "fnm"
+    if ($fnmMeta) {
+        $tools['fnm_cmd'] = if ($fnmMeta.Path) { $fnmMeta.Path } else { $fnmMeta.Display }
+    } else {
+        $tools['fnm_cmd'] = 'not found'
+    }
+    $protoMeta = Get-CommandResolution -Name "proto"
+    if ($protoMeta) {
+        $tools['proto_cmd'] = if ($protoMeta.Path) { $protoMeta.Path } else { $protoMeta.Display }
+    } else {
+        $tools['proto_cmd'] = 'not found'
+    }
+    $rigMeta = Get-CommandResolution -Name "rig"
+    if ($rigMeta) {
+        $tools['rig_cmd'] = if ($rigMeta.Path) { $rigMeta.Path } else { $rigMeta.Display }
+    } else {
+        $rigExe = Get-RigExePath
+        $tools['rig_cmd'] = if ($rigExe) { $rigExe } else { 'not found' }
+    }
+    $nodeMeta = Get-CommandResolution -Name "node"
+    if ($nodeMeta) {
+        $tools['node_cmd'] = if ($nodeMeta.Path) { $nodeMeta.Path } else { $nodeMeta.Display }
+    } else {
+        $fnmNode = Get-FnmNodeExePath
+        $tools['node_cmd'] = if ($fnmNode) { $fnmNode } else { 'not found' }
+    }
+    $rMeta = Get-CommandResolution -Name "R.exe"
+    if ($rMeta) {
+        $tools['r_cmd'] = if ($rMeta.Path) { $rMeta.Path } else { $rMeta.Display }
+    } else {
+        $rExe = Get-RExePath
+        $tools['r_cmd'] = if ($rExe) { $rExe } else { 'not found' }
+    }
+    $pacmanMeta = Get-CommandResolution -Name "pacman"
+    if ($pacmanMeta) {
+        $tools['pacman_cmd'] = if ($pacmanMeta.Path) { $pacmanMeta.Path } else { $pacmanMeta.Display }
+    } else {
+        $tools['pacman_cmd'] = 'not found'
     }
     if ($tools['mise'] -eq 'not found') {
         $tools['manager_model'] = 'explicit_managers(chthonic_ssot)'
@@ -1753,7 +1924,32 @@ function Get-InstalledVersion {
                 }
                 if ($v -match 'go(\d+\.\d+\.\d+)') { return $matches[1] }; return $null
             }
-            "nodejs"     { $v = node --version 2>$null; if ($v -match '(\d+\.\d+\.\d+)') { return $matches[1] }; return $null }
+            "nodejs"     {
+                $v = node --version 2>$null
+                if (-not $v) {
+                    $fnmNode = Get-FnmNodeExePath
+                    if ($fnmNode) { $v = & $fnmNode --version 2>$null }
+                }
+                if ($v -match '(\d+\.\d+\.\d+)') { return $matches[1] }
+                return $null
+            }
+            "fnm"        { $v = fnm --version 2>$null; if ($v -match '(\d+\.\d+\.\d+)') { return $matches[1] }; return $null }
+            "proto"      { $v = proto --version 2>$null; if ($v -match '(\d+\.\d+\.\d+)') { return $matches[1] }; return $null }
+            "mise"       { $v = mise --version 2>$null; if ($v -match '(\d+\.\d+\.\d+)') { return $matches[1] }; return $null }
+            "rig"        {
+                $rigExe = Get-RigExePath
+                if (-not $rigExe) { return $null }
+                $v = & $rigExe --version 2>$null
+                if ($v -match '(\d+\.\d+\.\d+)') { return $matches[1] }
+                return $null
+            }
+            "r"          {
+                $rExe = Get-RExePath
+                if (-not $rExe) { return $null }
+                $v = & $rExe --version 2>$null
+                if (($v -join "`n") -match 'R version (\d+\.\d+\.\d+)') { return $matches[1] }
+                return $null
+            }
             "postgresql" {
                 $v = psql --version 2>$null; if ($v -match '(\d+\.\d+)') { return $matches[1] }; return $null
             }
@@ -1847,11 +2043,32 @@ function Show-Origins {
     $secondary = @(
         @{ Name = "rv";      Cmd = $null;     Method = "PowerShell binding (alias collision guard)"; Ecosystem = "local"; Resolver = { Get-CommandDisplayFlexible -Name "rv" } },
         @{ Name = "rvw";     Cmd = "rvw";     Method = "rv wrapper (ruby lane)"; Ecosystem = "cargo" },
-        @{ Name = "mise";    Cmd = "mise";    Method = "optional unified overlay (not SSOT)"; Ecosystem = "local" },
+        @{ Name = "fnm";     Cmd = "fnm";     Method = "winget/cargo (Fast Node Manager)"; Ecosystem = "system" },
+        @{ Name = "node";    Cmd = $null;     Method = "fnm-managed Node runtime"; Ecosystem = "system"; Resolver = { Get-FnmNodeExePath } },
+        @{ Name = "mise";    Cmd = "mise";    Method = "optional unified overlay (not SSOT)"; Ecosystem = "system" },
+        @{ Name = "proto";   Cmd = "proto";   Method = "cargo install proto_cli"; Ecosystem = "cargo" },
+        @{ Name = "rig";     Cmd = $null;     Method = "winget (Posit.rig)"; Ecosystem = "system"; Resolver = { Get-RigExePath } },
+        @{ Name = "R";       Cmd = $null;     Method = "rig-managed R runtime"; Ecosystem = "system"; Resolver = { Get-RExePath } },
         @{ Name = "goup";    Cmd = "goup";    Method = "GH release binary"; Ecosystem = "cargo" },
         @{ Name = "cargo";   Cmd = "cargo";   Method = "rustup toolchain"; Ecosystem = "cargo" },
         @{ Name = "rustup";  Cmd = "rustup";  Method = "rustup manager"; Ecosystem = "cargo" },
         @{ Name = "brush";   Cmd = "brush";   Method = "cargo install brush-shell"; Ecosystem = "cargo" },
+        @{ Name = "pacman";  Cmd = $null;     Method = "MSYS2 package manager (RubyInstaller DevKit)"; Ecosystem = "system"; Resolver = {
+            $root = Get-RubyDevKitRoot
+            if ($root) {
+                $pacman = Join-Path $root "msys64\usr\bin\pacman.exe"
+                if (Test-Path $pacman) { return $pacman }
+            }
+            return $null
+        } },
+        @{ Name = "msys2";   Cmd = $null;     Method = "RubyInstaller DevKit / MSYS2 root"; Ecosystem = "system"; Resolver = {
+            $root = Get-RubyDevKitRoot
+            if ($root) {
+                $home = Join-Path $root "msys64"
+                if (Test-Path $home) { return $home }
+            }
+            return $null
+        } },
         @{ Name = "biome";   Cmd = "biome";   Method = "bun add -g";    Ecosystem = "bun" },
         @{ Name = "ruff";    Cmd = "ruff";    Method = "uv tool";       Ecosystem = "uv" },
         @{ Name = "cmake";   Cmd = "cmake";   Method = "uv tool";       Ecosystem = "uv" },
@@ -1927,7 +2144,8 @@ function Show-Origins {
         @{ Path = "~/.bun/bin/";     Label = "bun ecosystem (bun, biome, codex, gemini)" },
         @{ Path = "~/.cargo/bin/";   Label = "cargo ecosystem (rustc, rustup, mdbook, rv, goup)" },
         @{ Path = "~/.goup/";        Label = "goup-managed Go versions (go.dev source)" },
-        @{ Path = "%APPDATA%\rv\";   Label = "rv-managed Ruby versions" }
+        @{ Path = "%APPDATA%\rv\";   Label = "rv-managed Ruby versions" },
+        @{ Path = "%LOCALAPPDATA%\fnm\"; Label = "fnm-managed Node versions" }
     )
 
     $profileDir = Split-Path -Parent $PROFILE
