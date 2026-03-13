@@ -1,12 +1,12 @@
-# Copilot Instructions (Pointer / Router)
+# (Pointer)
 
-This file is intentionally small. It exists to prevent "context explosion" from large instruction artifacts.
+- This file is kept intentionally small. Preventing contextual excess from nesting "files/path-to-files" convention, inc. very large artifacts.
 
 ## Applies To
 
-- VS Code Insiders: GitHub Copilot Chat (`github.copilot-chat`)
-- Terminal: GitHub Copilot CLI (`copilot`) and GitHub CLI Copilot (`gh copilot`)
-- Any agent/tooling that auto-loads `.github/copilot-instructions.md`
+| *VS Code* |  *Terminals* | *Agents* | 
+|---|---|---|
+| *github copilot + cli*, *cloud*, *agents*  | *pwsh 7.x.x (chthonic) (default)*, *git*, *bash*, *brush shell*, *msys*, *ruby* | *agents* |
 
 ## Active SSOT (Archived)
 
