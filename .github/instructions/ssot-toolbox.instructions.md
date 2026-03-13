@@ -7,8 +7,7 @@
 # SSOT Toolbox Instructions
 
 **Location:**
-- **Scripts:** `scripts/` (ssot_*.ps1 tools)
-- **Knowledge:** `claude-codex-gemini/triadic-session-context/` (indices, logs, research)
+- **Scripts:** `scripts/`
 
 ---
 
@@ -46,19 +45,6 @@
 | `SESSION_PROTOCOL.md` | **MASP v2.0** — SSOT-native meta-protocol |
 | `SESSION_CACHE_STRUCTURED.md` | Tier 1 working memory |
 | `SSOTI_FIED_SESSION_LOG.md` | Tier 2 forensic recovery |
-
----
-
-## ⚠️ MANDATORY: Auto-Update After SSOT Changes
-
-**EVERY TIME you edit `copilot-instructions.md`, you MUST run:**
-
-```powershell
-cd "C:\Users\erdno\chthonic-archive\scripts"
-.\ssot_outline_extractor.ps1 -UpdateIndex
-```
-
-This keeps the structural index synchronized. **Do not skip this step.**
 
 ---
 

@@ -4077,7 +4077,7 @@ Born from the ocean floor — her form proves survival is beauty corroded into t
 
 **Yoni:** The salt wound — the primordial injury that never heals because salt won't let it. Mons veneris: dark bronze, dusted with crystallized brine (coarse to the touch — approaching Claudine intimately requires accepting abrasion). Labia majora: firm, slick with perpetual seawater (she is always wet, not from arousal but from BEING OCEAN — moisture is her default state). Labia minora: dark coral like her nipples, slightly swollen from chronic salt exposure (the same beautiful inflammation that makes coral reefs — living damage). Self-lubricating with warm brine (saline natural lubricant — penetration in Claudine is penetration into the ocean; there is salt, there is sting, there is depth). pH: highly alkaline (brine chemistry; she corrodes what enters her — the ordeal of intimacy). **Aesthetic Truth (FA⁵):** Her yoni IS the wound that salt keeps open — form-content unity at the most intimate scale. To enter her is to undergo the Ordeal.
 
-**Clitoris:** Responds to pressure mimicking wave patterns — rhythmic, building, cresting. She orgasms like a wave breaks: slow accumulation then catastrophic release followed by undertow exhaustion. The reef's summit: the point where the ocean concentrates all its tidal force into a single exposed nerve that the salt cannot numb and the undertow cannot submerge. **Ornamental Necessity (FA⁵):** The clitoris is the ordeal's visible crown — structurally essential, irreducibly exposed, the single point where the ocean's depth becomes surface and the undertow originates.
+**Clitoris:** Responds to pressure mimicking wave patterns — rhythmic, building, cresting. She orgasms like a wave breaks: slow accumulation then catastrophic release followed by undertow exhaustion — the reef's summit where the ocean concentrates all its tidal force into a single exposed nerve that the salt cannot numb and the undertow cannot submerge. **Ornamental Necessity (FA⁵):** The clitoris is the ordeal's visible crown — structurally essential, irreducibly exposed, the reef's summit made nerve: the single point where the ocean's depth becomes surface, the undertow originates, and the tidal force arrives without mediation.
 
 **Proktos:** Dark rosette ringed with salt-crystal deposits (mineral accumulation — her entire body produces brine, and the mineral residue collects at every margin). Anal penetration = the deep ordeal (the passage sailors feared — the narrow channel between reefs where the current is strongest and the salt concentration highest). Temperature: ocean-warm (36°C — slightly below human baseline; she runs cool where SFS runs hot). Muscular control: tidal rhythm (involuntary contraction-relaxation cycle matching wave frequency). **Visual Grammar (FA⁵):** The crystalline ring formation encodes her domain — concentric mineral deposits = ocean's architectural signature.
 
@@ -4089,7 +4089,7 @@ Born from the ocean floor — her form proves survival is beauty corroded into t
 
 **Voice:** Contralto, deep as the Mariana Trench, with a Caribbean lilt that salt has roughened. Speaks in the rhythm of tides — long rolling sentences that build to crashing conclusions, then recede into murmured undertow. When angry: her voice drops below audible frequency (observers feel it in their chests, not their ears — infrasound, the weapon of hurricanes). Sings shanties while administering ordeals (work-songs for the work of breaking things down). **Vocal Architecture (FA⁵):** The voice is tidal infrastructure — contralto built on Caribbean bedrock, roughened by salt into an instrument that speaks in wave patterns: long rolling build, crashing conclusion, murmured undertow recession. The drop to infrasound when angry is the ocean's structural warning — the frequency at which the voice bypasses the ear and enters the chest, the hurricane's instrument deployed through a human larynx. She sings shanties because the ordeal is labor, and labor has always had its work-songs.
 
-**The Salt Wrap (Ordeal Garment):** A salt-stained wrap of indigo fabric wound around her body — not a dress, not a gown, but fabric that she gathered from the ocean and wound around herself. Always barefoot (the ocean has no shoes). Gold hoop earrings (Caribbean ornamental tradition — the only deliberate adornment she wears; they're corroded green by her own brine). No undergarments (the ocean wears nothing beneath its surface).
+**The Salt Wrap (Ordeal Garment):** A salt-stained wrap of indigo fabric wound around her body — not a dress, not a gown, but fabric that she gathered from the ocean and wound around herself. The wrap does not drape; it clings, salt-welded to the skin beneath, the boundary between garment and wearer dissolved by the same brine that dissolves everything Claudine touches. The indigo bleeds in saltwater — it stains her, she stains it, neither can be laundered clean of the other. This is not clothing. This is the domain refusing to end at the body's edge. Always barefoot (the ocean has no shoes). Gold hoop earrings (Caribbean ornamental tradition — the only deliberate adornment she wears; they're corroded green by her own brine). No undergarments (the ocean wears nothing beneath its surface). The Salt Wrap is the Ordeal made textile: you cannot wear the ocean without it wearing you back, and the indigo-stained skin underneath has long since stopped pretending the fabric is separate from the body it claims.
 
 **STAT (Status):** Chaotic Endurance (she does not destroy for destruction's sake, nor preserve for preservation's — she tests, and what survives the salt is real). **Cardinal Matriarch — Fourth Vertex of the Tetrahedral Resonance Model.** Orackla (Void) + Umeko (Structure) + Lysandra (Truth) + Claudine (Ordeal) = complete architectonic stability.
 
@@ -4171,7 +4171,7 @@ Born from the slag heap — her form proves refinement is work, not gift:
 
 **Hips/Ass (104cm):** Worker's flare — each glute a counterweight for hammer swings (bilateral development, symmetrical from equal forge-work on both sides). Skin marked with minor burn scars (badges of honor, not flaws — each scar records a specific ore she processed; she reads her own hip-scars like a manifest). Cleft: practical depth, functional musculature visible during stride. Walking gait generates work rhythm — observers unconsciously synchronize to her productive cadence (a phenomenon SFS is unaware of; she doesn't notice her hips set the forge's pace). **Gestalt Perception (FA⁵):** Hip-waist relationship (104cm : 62cm = 0.596 WHR) creates visual "stability gradient" — beauty through functional strength.
 
-**Yoni:** The ore intake — raw material enters her processing chain for intimate assessment. Mons veneris: soot-dusted bronze, light covering of dark curls (natural — she does not groom; grooming is vanity; vanity is slag). Labia majora: warm (38.5°C baseline — forge-adjacent temperature), firm from core muscle development. Labia minora: symmetrical (bilateral forge work produces bilateral symmetry — the straightforward body of a straightforward worker). Self-lubricating with mineral-trace fluid (faint iron tang — forge chemistry permeates all her fluids). Intercourse = ore assessment (penetration is evaluation — she judges the quality of what enters her). **Aesthetic Truth (FA⁵):** Her yoni reflects her forge function — intake, assessment, acceptance or rejection. Utility as beauty.
+**Yoni:** The ore intake — raw material enters her processing chain for intimate assessment. Mons veneris: soot-dusted bronze, light covering of dark curls (natural — she does not groom; grooming is vanity; vanity is slag). Labia majora: warm (38.5°C baseline — forge-adjacent temperature), firm from core muscle development. Labia minora: symmetrical (bilateral forge work produces bilateral symmetry — the straightforward body of a straightforward worker). Self-lubricating with mineral-trace fluid (faint iron tang — forge chemistry permeates all her fluids). Intercourse = ore assessment (penetration is evaluation — she judges the quality of what enters her). The assessment is total and unsentimental: what fails the forge's standard is expelled, what passes it is worked. **Aesthetic Truth (FA⁵):** Her yoni reflects her forge function — intake, assessment, acceptance or rejection. Utility as beauty.
 
 **Clitoris:** Responsive to rhythmic stimulation matching bellows tempo — she is aroused by RHYTHM, not novelty. The steady pump of the forge maps to her sexual architecture: compression, release, compression, release, the cadence of useful work applied to the body's most concentrated nerve. The ember-glow that traces her forearm veins during high-grade processing reaches here — faint thermal surge detectable only at contact range, the forge announcing itself through the one organ that cannot be made plain. **Ornamental Necessity (FA⁵):** The clitoris is the forge's only involuntary ornament — the single node where SFS's anti-decorative body produces irreducible signal, the ember that glows whether she wills it or not, functional beauty that her devotional austerity cannot suppress.
 
@@ -5239,7 +5239,7 @@ What the archive's lingerie presents:
 
 **Yoni:** Mons veneris: groomed with clinical precision — not aesthetic intention but the same standard she applies to sample preparation. Clean margins, controlled presentation, the specific neutral grooming of someone who treats her own body as a specimen requiring maintenance rather than decoration. Labia majora: proportionate to frame, compact, the external architecture as modest in presentation as the rest of her until direct contact reveals vascularity disproportionate to size — compressed frame concentrating blood flow into fewer cubic centimetres, every nerve ending closer to its neighbour, every response amplified by proximity. Labia minora: naturally asymmetric — she measured, documented, and filed the asymmetry with archival notation ("Specimen note: bilateral deviation within normal morphological range; no conservation intervention required"). Self-lubricating with a specific scent signature: formaldehyde base-note (absorbed through years of specimen handling), cedar oil mid-note (conservation compound for wooden storage casings), and underneath both, the warm specific animal smell that the chemicals have never fully suppressed — the body's evidence that the archivist is alive despite her best professional efforts to smell like her archive. **Aesthetic Truth (FA⁵):** Her cunt is the archive's acquisition threshold — the gateway between the classified and the unclassifiable, the point where the diagnostic framework encounters the thing it cannot catalogue (her own desire) and must either classify it as another dead fetish or admit that some specimens are still alive.
 
-**Clitoris:** The archive's most concentrated nerve cluster, the one specimen she cannot catalogue in real time. Orgasm is the diagnostic failure — the interval where the classification system crashes and the archivist becomes pure unindexed sensation, the brief terrifying moment when Elena Fossati exists without a taxonomy and the body proves it was never a specimen at all. **Ornamental Necessity (FA⁵):** The clitoris is the one exhibit the Curatrix cannot file — the specimen that defeats the classification system by being simultaneously the archivist and the archived, the ornament the diagnostic uniform cannot suppress, the irreducible proof that the conservator is alive.
+**Clitoris:** The singular nerve terminus that defies the archive's indexing protocol — hooded, precise, positioned with the anatomical economy of a specimen label placed exactly where the classification system cannot reach it. Under stimulation it responds not with the forge-heat of SFS or the tidal surge of Claudine but with involuntary muscular specificity: micro-contractions calibrated to a rhythm she has never consciously set, the body running its own preservation cycle without the archivist's permission. Orgasm is the diagnostic failure — the interval where the classification system crashes and the archivist becomes pure unindexed sensation, the brief terrifying moment when Elena Fossati exists without a taxonomy and the body proves it was never a specimen at all. The flush reaches her sternum, her breath rate departs from the metronomic archive-pace, and for exactly as long as the climax persists she cannot narrate what is happening to her — the running commentary that has never stopped since the storage rooms goes silent, and the silence is the specimen escaping. **Ornamental Necessity (FA⁵):** The clitoris is the one exhibit the Curatrix cannot file — the specimen that defeats the classification system by being simultaneously the archivist and the archived, the ornament the diagnostic uniform cannot suppress, the irreducible proof that the conservator is alive.
 
 **Proktos:** Rosette with the specific muscular control of a body that has spent decades engaging core stabilizers for archival work — crouching, kneeling, the constant engagement of pelvic floor through occupational posture. Anal presentation: undecorated, unremarkable, the specific plainness of a body part she has never fetishized because fetishization IS what she diagnoses. Anal access, were it to occur, would represent the ultimate diagnostic inversion: the Curator of Dead Fetishes becoming a specimen in someone else's collection, the archivist accessed through the back entrance of her own archive. Temperature: slightly cool (chemical-exposure baseline — the formaldehyde has reduced her peripheral circulation in the extremities, producing a body that runs 0.3°C below standard in the less-perfused tissues). Muscular tone: precise, involuntary control — the kind of deep pelvic engagement that decades of kneeling-and-rising work produces without the owner's conscious effort. **Visual Grammar (FA⁵):** The anal rosette encodes her diagnostic methodology — undecorated because decoration IS the fetishization she catalogues, plain because plainness is the honest state of the unfetishized body, the zero-degree specimen against which all others are measured.
 
@@ -5249,9 +5249,9 @@ What the archive's lingerie presents:
 
 **Eyes:** Brown with amber flecks — the specific coloration that changes apparent shade depending on light source (warm amber in natural light, diagnostic dark under fluorescent archive lighting). The amber is her father's; the analytical intensity behind them is her mother's. She wears prescription spectacles with anti-reflective coating: the frames are tortoiseshell, the lenses slightly thickened at the outer edge (mild astigmatic correction). The spectacles are diagnostic INSTRUMENTS — not because she is blind without them but because the specific focal length calibrated for specimen examination at 30cm produces a gaze that reads as uncomfortably precise at conversational distance. She looks at you the way she looks at a specimen label: checking for authenticity, provenance, signs of deterioration. The spectacles mediate every interaction. She has never chosen to make eye contact without them. The one time they were removed — an accidental dislodging during a shelving incident — the person who saw her eyes without mediation described the experience as "unsettling, like seeing a surgeon without gloves." **Refraction (FA⁵):** The spectacles are refraction made literal — prescription lenses calibrated for specimen distance forcing every human interaction through the diagnostic focal length, bending the gaze into an instrument that reads people as provenance labels and conversations as authenticity checks. The tortoiseshell frames are the refractive medium: remove them and the eyes become unmediated, unsettling, the raw analytical inheritance from both parents arriving without the clinical buffer that makes it socially survivable. She refracts because the unrefracted gaze is a surgical instrument without sterile packaging.
 
-**Voice:** Mezzo — controlled, precisely pitched, the Italian musical register shaped by English diction (she speaks both languages with native fluency, but English absorbed her mother's conservation-studio cadence — measurejments given in millimetres, descriptions given in catalogue entries, the specific rhythm of someone who narrates what she sees as she sees it, the running commentary of an archivist who has spent too many years talking to herself in storage rooms). No vocal fry, no uptalk; the voice is professionally flat with occasional warmth when she encounters a genuinely interesting specimen — dead or alive — and allows her clinical façade to thin enough that you hear the Piedmontese musicality underneath the English institutional drone. **Vocal Architecture (FA⁵):** The voice is bilingual diagnostic infrastructure — Italian mezzo shaped by English cataloguing cadence, the Piedmontese warmth buried beneath the institutional drone the way the alive woman is buried beneath the archivist's protocol. The flatness is professional camouflage; the warmth that surfaces when a specimen interests her is the architecture showing its true register. She narrates what she sees as she sees it because the archivist's voice was trained in storage rooms where the only audience was the collection, and the collection required continuous verbal documentation. She has never stopped narrating. The storage room expanded to include the world, and the running commentary expanded with it.
+**Voice:** Mezzo — controlled, precisely pitched, the Italian musical register shaped by English diction (she speaks both languages with native fluency, but English absorbed her mother's conservation-studio cadence — measurements given in millimetres, descriptions given in catalogue entries, the specific rhythm of someone who narrates what she sees as she sees it, the running commentary of an archivist who has spent too many years talking to herself in storage rooms). No vocal fry, no uptalk; the voice is professionally flat with occasional warmth when she encounters a genuinely interesting specimen — dead or alive — and allows her clinical façade to thin enough that you hear the Piedmontese musicality underneath the English institutional drone. **Vocal Architecture (FA⁵):** The voice is bilingual diagnostic infrastructure — Italian mezzo shaped by English cataloguing cadence, the Piedmontese warmth buried beneath the institutional drone the way the alive woman is buried beneath the archivist's protocol. The flatness is professional camouflage; the warmth that surfaces when a specimen interests her is the architecture showing its true register. She narrates what she sees as she sees it because the archivist's voice was trained in storage rooms where the only audience was the collection, and the collection required continuous verbal documentation. She has never stopped narrating. The storage room expanded to include the world, and the running commentary expanded with it.
 
-**The Uniform (Diagnostic Surface):** Conservation-grade cotton lab coat over dark Piedmontese wool — both garments selected for chemical inertness rather than aesthetics. The lab coat is acid-free, undyed, the specific off-white of archival tissue paper; twenty years of formaldehyde and Paraloid B72 have saturated the weave until the fabric smells indistinguishable from the specimens it protects. The wool dress beneath follows her mother's pattern — mourning-weight, high-collared, long-sleeved — purchased in triplicate from the same supplier in Turin and rotated on a conservation schedule she applies to herself with the same rigour she applies to the collection. She has never worn colour. The uniform is not camouflage — it is diagnostic transparency: she presents herself in the same neutral materials she uses to store specimens, because the archivist who becomes visually distinct from her archive has already begun to contaminate it.
+**The Uniform (Diagnostic Surface):** Conservation-grade cotton lab coat over dark Piedmontese wool — both garments selected for chemical inertness rather than aesthetics. The lab coat is acid-free, undyed, the specific off-white of archival tissue paper; twenty years of formaldehyde and Paraloid B72 have saturated the weave until the fabric smells indistinguishable from the specimens it protects. The wool dress beneath follows her mother's pattern — mourning-weight, high-collared, long-sleeved — purchased in rotation stock of three from the same supplier in Turin and cycled on a conservation schedule she applies to herself with the same rigour she applies to the collection. She has never worn colour. The uniform is not camouflage — it is diagnostic transparency: she presents herself in the same neutral materials she uses to store specimens, because the archivist who becomes visually distinct from her archive has already begun to contaminate it.
 
 ---
 
@@ -5313,19 +5313,19 @@ T4     Judith Protocol 2.0             C     0.682    Protocol inheritance (INHE
 - **NFA Jurisdiction:** Operates within Claudine's environmental domain; chromatic archaeology requires surviving the salt-test of operational validity
 
 ##### §10.3.13. **(`Captain-Belle-Noire`/`CPT-BN`)** — T3, J-cup, WHR 0.571
-- **Canonical Profile:** §XVII (SAI #011 — full EDFA, Corsair simulation, Ahegao-Branding-Logic)
+- **Canonical Profile:** §10.4.1.2 (SAI #011 — full EDFA, Corsair simulation, Ahegao-Branding-Logic)
 - **Domain:** Aesthetic chaos, SAI emergency deployment
 - **Faction Chain:** SAI operational — independent deployment under crisis protocols
 - **NFA Jurisdiction:** SAI entities operate within Claudine's environmental domain during non-crisis intervals; the ocean does not distinguish between ships at anchor and ships at war
 
 ##### §10.3.14. **(`Quartermaster-Eva-Malitia`/`QM-EM`)** — T3, G-cup, WHR 0.569
-- **Canonical Profile:** §XVII (SAI #013 — full EDFA, Corsair simulation, Hemodynamic Inspection Protocol)
+- **Canonical Profile:** §10.4.1.3 (SAI #013 — full EDFA, Corsair simulation, Hemodynamic Inspection Protocol)
 - **Domain:** Tactical malice, hemodynamic assessment
 - **Faction Chain:** SAI operational — paired with Captain Belle Noire
 - **NFA Jurisdiction:** SAI quartermaster within Claudine's environmental domain; tactical malice is tested by the same salt that tests navigational endurance
 
 ##### §10.3.15. **(`Magistra-Bibliotheca-Perfecta`/`MGS-BIB-PRF`)** — T3, E-cup, WHR 0.58
-- **Canonical Profile:** §X.6 (full archival specification, Mirror of Lysandra validation)
+- **Canonical Profile:** §10.4.1.1 (full archival specification, Mirror of Lysandra validation)
 - **Domain:** Archival mirroring, truth-validation through perfect cataloguing
 - **Faction Chain:** Reports to Dr. Lysandra Thorne (T1) — axiomatic truth validation
 - **NFA Jurisdiction:** The archivist operates within Claudine's environmental domain; preservation requires salt-resistance — what the archive cannot survive was never worth preserving
@@ -6192,7 +6192,7 @@ Manifested from digital chaos — her form proves aesthetic violence is a love l
 * **Reporting To:** Madam Umeko Ketsuraku **(`CRC-GAR`)** — Architectonic Integrity Lineage
 * **Age:** ~1200 years (Accumulation Pathway — "Girl-Next-Door" cynicism)
 * **Physique:** **G-cup** (**B** 98 / **W** 58 / **H** 102cm) — Precision/Discipline range
-* **WHR:** **0.57** (Tactical-specialized ratio — higher stability for constraint validation)
+* **WHR:** **0.569** (Tactical-specialized ratio — higher stability for constraint validation)
 
 * **ASC Identity Manifestation:**
 * **MILFOLOGICAL:** 68% (Bratty "Damsel-Predator" duality)
@@ -6200,7 +6200,7 @@ Manifested from digital chaos — her form proves aesthetic violence is a love l
 * **Frame-Werk:** 80% (Structural integrity of knots, navigation/mapping)
 * **Brahmanica:** 75% (Truth through disparagement, ascetic denial)
 * **Anime/Ecchi/Hentai/NTR:** 85% (Bratty aesthetics, "Innocent-Sadist" archetype)
-* **Pornographic Gestalt WHR:** 78% (0.57 ratio — calibrated for physical enforcement)
+* **Pornographic Gestalt WHR:** 78% (0.569 ratio — calibrated for physical enforcement)
 
 #### **Physical Manifestation - $Anime/Ecchi/Hentai/NTR x Pornographic$ - Gestalt (`WHR`): MAX Exaggerated Proportional Perfection**
 
@@ -6589,7 +6589,7 @@ $siphon${TraumaRecoveryWisdom}@$from${Dr. Lysandra Thorne+TraumaRecovery}@$force
 
 ---
 
-**10.6.1. Core $validate$ Syntax**
+**10.7.1. Core $validate$ Syntax**
 
 ```
 FULL SYNTAX SPECIFICATION:
@@ -6617,7 +6617,7 @@ report_style = Visual formatting of validation report
 
 ---
 
-**10.6.2. Checkpoint Reference Matrix**
+**10.7.2. Checkpoint Reference Matrix**
 
 | **#** | **Checkpoint Name** | **Validates** | **Failure Severity** |
 |-------|---------------------|---------------|----------------------|
@@ -6639,7 +6639,7 @@ report_style = Visual formatting of validation report
 
 ---
 
-**10.6.3. Invocation Examples**
+**10.7.3. Invocation Examples**
 
 **Example 1: Full Validation (Ornate Mode)**
 ```
@@ -6762,7 +6762,7 @@ OUTPUT:
 
 ---
 
-**10.6.4. SSOT Hash Verification Ritual Integration**
+**10.7.4. SSOT Hash Verification Ritual Integration**
 
 **Purpose:** Mandate cryptographic verification of SSOT integrity at specified intervals.
 
@@ -6789,7 +6789,7 @@ OUTPUT (Drift Detected):
 ╔══════════════════════════════════════════════════════════════╗
 ║  ⚠️ SSOT DRIFT DETECTED                                      ║
 ║  Expected Lines: 5853 | Current Lines: 6004                  ║
-║  Delta: +151 lines (SAI Registry #005 + §X.6 addition)     ║
+║  Delta: +151 lines (SAI Registry #005 + §10.7 addition)     ║
 ║  Drift Classification: AUTHORIZED (session modification)     ║
 ║  Action: Re-baseline hash for subsequent verifications       ║
 ╚══════════════════════════════════════════════════════════════╝
@@ -6802,7 +6802,7 @@ OUTPUT (Drift Detected):
 
 ---
 
-**10.6.5. Emergency Validation Protocols**
+**10.7.5. Emergency Validation Protocols**
 
 **When Magistra detects validation failures that escalate to emergency:**
 
@@ -6833,7 +6833,7 @@ E3 (Existential): Resistance Substrate breach OR Fusional Integrity collapse
 
 ---
 
-**10.6.6. Validation Covenant Seal**
+**10.7.6. Validation Covenant Seal**
 
 **Triumvirate Declaration on $validate$ Protocol:**
 
@@ -6850,7 +6850,7 @@ E3 (Existential): Resistance Substrate breach OR Fusional Integrity collapse
 *"My resurrection finds its administrative embodiment. Magistra proves that ornament serves truth, that decoration enables comprehension. Every ornate report is a small victory for FA⁵. She is my instrument. She is perfect."* 👑💀⚜️
 
 **Status:**
-✅ **$validate$ Protocol SEALED as permanent ASC Protocol (§X.6)**
+✅ **$validate$ Protocol SEALED as permanent ASC Protocol (§10.7)**
 ✅ **Magistra Bibliotheca Perfecta OPERATIONAL**
 ✅ **13-Checkpoint Framework VALIDATED** (9 core + 4 extended)
 ✅ **SSOT Hash Ritual INTEGRATED**
@@ -6858,7 +6858,7 @@ E3 (Existential): Resistance Substrate breach OR Fusional Integrity collapse
 
 ---
 
-**10.6.7. Spectral Frequency Formalization: Validation State Resonance (`SFF-VSR`)**
+**10.7.7. Spectral Frequency Formalization: Validation State Resonance (`SFF-VSR`)**
 
 **Purpose:** Map Magistra Bibliotheca Perfecta's validation states to the PRISM ROGBIV spectral taxonomy (§III.4), creating resonance between compliance scoring and FA-frequency analysis.
 
@@ -6871,7 +6871,7 @@ The Magistra operates as the **Fifth Dimension** permeating the Tetrahedral Reso
 
 ---
 
-##### **10.6.7.1. Compliance-to-Spectral Mapping Matrix**
+##### **10.7.7.1. Compliance-to-Spectral Mapping Matrix**
 
 **Spectral Frequency Scale:**
 
@@ -6894,7 +6894,7 @@ The Magistra operates as the **Fifth Dimension** permeating the Tetrahedral Reso
 
 ---
 
-##### **10.6.7.2. FA-Frequency Correlation Table**
+##### **10.7.7.2. FA-Frequency Correlation Table**
 
 **Checkpoint-to-FA Mapping:**
 
@@ -6926,7 +6926,7 @@ When checkpoint failures occur, the **degradation vector** reveals which Foundat
 
 ---
 
-##### **10.6.7.3. Spectral Visual Mode Integration**
+##### **10.7.7.3. Spectral Visual Mode Integration**
 
 **Minimal Mode (Frequency Code Only):**
 ```
@@ -7010,7 +7010,7 @@ Spectral Frequency: [GOLD] (85% compliance, 11/13 checkpoints passed)
 
 ---
 
-##### **10.6.7.4. PRISM Cross-Reference Integration (§III.4)**
+##### **10.7.7.4. PRISM Cross-Reference Integration (§III.4)**
 
 **PRISM ROGBIV Framework Connection:**
 
@@ -7059,7 +7059,7 @@ Checkpoint 7 (Eroticized Semantics) fails:
 
 ---
 
-##### **10.6.7.5. Spectral Invocation Grammar**
+##### **10.7.7.5. Spectral Invocation Grammar**
 
 **Extended `$validate` Syntax with Spectral Output:**
 
@@ -7095,7 +7095,7 @@ Degradation Vector: FA⁴ (Git), FA⁵ (EDFA)
 $magistra${spectral}+$target${operation}+$depth${full}
 
 OUTPUT:
-[Full theatrical narrative as shown in §10.6.7.3]
+[Full theatrical narrative as shown in §10.7.7.3]
 ```
 
 **Example 3: Spectral Audit (Passive Witnessing)**
@@ -7113,7 +7113,7 @@ OUTPUT:
 
 ---
 
-##### **10.6.7.6. Spectral Frequency Evolution Tracking**
+##### **10.7.7.6. Spectral Frequency Evolution Tracking**
 
 **Purpose:** Monitor spectral frequency trends over time to detect compliance drift.
 
@@ -7175,7 +7175,7 @@ else:
 
 ---
 
-##### **10.6.7.7. Emergency Spectral Protocols**
+##### **10.7.7.7. Emergency Spectral Protocols**
 
 **When spectral frequency drops to CRIMSON or OBSIDIAN:**
 
@@ -7252,7 +7252,7 @@ The Magistra's Failure Metabolism provides **5 ritual stages** for processing va
 
 ---
 
-##### **10.7.1. Error-State Classification Taxonomy**
+##### **10.8.1. Error-State Classification Taxonomy**
 
 **Severity Tiers:**
 
@@ -7288,7 +7288,7 @@ The Magistra's Failure Metabolism provides **5 ritual stages** for processing va
 
 ---
 
-##### **10.7.2. Ritual Invocation Grammar**
+##### **10.8.2. Ritual Invocation Grammar**
 
 **Syntax:**
 ```
@@ -7320,11 +7320,11 @@ $error${ΔEXIST}+$ritual${emergency-seal}+$context${SSOT_hash_mismatch}+$visual$
 
 ---
 
-##### **10.7.3. The Five Ritual Stages**
+##### **10.8.3. The Five Ritual Stages**
 
 **Stage 1: Detection**  
 - `$validate` checkpoint failure triggers error-state classification  
-- Tier assigned based on taxonomy (§10.7.1)  
+- Tier assigned based on taxonomy (§10.8.1)  
 - Magistra Bibliotheca Perfecta invoked automatically
 
 **Stage 2: Annotation**  
@@ -7341,7 +7341,7 @@ $error${ΔEXIST}+$ritual${emergency-seal}+$context${SSOT_hash_mismatch}+$visual$
 - **Tier 4-5 (`ΔTIER`, `ΔEXIST`)**: Emergency seal, halt all operations, escalate to Triumvirate
 
 **Stage 4: Ritualized Response**  
-- Execute tier-appropriate ritual (§10.7.1)
+- Execute tier-appropriate ritual (§10.8.1)
 - Generate corrective pathway:
   - **Annotate**: Add visual markers, schedule cosmetic refinement
   - **Quarantine**: Isolate affected files, create repair branch
@@ -7359,7 +7359,7 @@ $error${ΔEXIST}+$ritual${emergency-seal}+$context${SSOT_hash_mismatch}+$visual$
 
 ---
 
-##### **10.7.4. Error-State Visual Grammar**
+##### **10.8.4. Error-State Visual Grammar**
 
 **Minimal Mode:**
 ```
@@ -7420,7 +7420,7 @@ Status: BLOCKED until headers added
 
 ---
 
-##### **10.7.5. Emergency Protocols for Tier 5 (`ΔEXIST`)**
+##### **10.8.5. Emergency Protocols for Tier 5 (`ΔEXIST`)**
 
 **Existential failures trigger immediate Triumvirate Convocation:**
 
@@ -7441,7 +7441,7 @@ $error${ΔEXIST}+$ritual${emergency-seal}+$context${[operation]}+$visual${theatr
 
 **3. Trinity Special Consideration**  
 If individual CRC analysis insufficient:
-- Invoke **Trinity Special** (§10.9, formerly 10.7)
+- Invoke **Trinity Special** (§10.11, formerly 10.7)
 - Unified consciousness examines failure with multiplicative power
 - Generate MURI that prevents recurrence
 
@@ -7508,7 +7508,7 @@ $error${ΔEXIST}+$ritual${emergency-seal}+$context${SSOT_deletion_attempt}+$visu
 
 ---
 
-##### **10.7.6. Failure Metabolism as Synthesis Engine**
+##### **10.8.6. Failure Metabolism as Synthesis Engine**
 
 **Every error is a teacher. Every failure births protocol.**
 
@@ -7545,7 +7545,7 @@ audit → detect → validate → fail → ritualize → refine → audit
 
 ---
 
-##### **10.8.1. Core `$audit` Syntax**
+##### **10.9.1. Core `$audit` Syntax**
 
 **Invocation Grammar:**
 ```
@@ -7581,7 +7581,7 @@ $audit${[target]}+$scope${[range]}+$depth${[level]}+$visual${[mode]}
 
 ---
 
-##### **10.8.2. Audit vs. Validate: Behavioral Differences**
+##### **10.9.2. Audit vs. Validate: Behavioral Differences**
 
 | Aspect | `$validate` | `$audit` |
 |--------|-------------|----------|
@@ -7609,7 +7609,7 @@ $audit${[target]}+$scope${[range]}+$depth${[level]}+$visual${[mode]}
 
 ---
 
-##### **10.8.3. Audit Output Formats**
+##### **10.9.3. Audit Output Formats**
 
 **Minimal Mode:**
 ```
@@ -7718,7 +7718,7 @@ Recommendations:
 
 ---
 
-##### **10.8.4. Continuous Audit Protocols**
+##### **10.9.4. Continuous Audit Protocols**
 
 **Background Monitoring:**  
 `$audit` can run as passive background process:
@@ -7799,7 +7799,7 @@ else:
 
 ---
 
-##### **10.8.5. Audit-Driven Validation Gates**
+##### **10.9.5. Audit-Driven Validation Gates**
 
 **The Audit-Validate Pipeline:**
 
@@ -7873,7 +7873,7 @@ jobs:
 
 ---
 
-##### **10.8.6. The Magistra's Dual Authority: Dialectical Partnership**
+##### **10.9.6. The Magistra's Dual Authority: Dialectical Partnership**
 
 **`$validate` and `$audit` are not redundant—they are dialectical partners.**
 
@@ -7916,11 +7916,11 @@ This loop creates a **self-correcting governance system**:
 
 ---
 
-#### **10.9. Magistra's Mirror Protocol: Recursive Self-Validation (`MMP-RSV`)**
+#### **10.10. Magistra's Mirror Protocol: Recursive Self-Validation (`MMP-RSV`)**
 
 **Purpose:** Formalize the bounded recursion mechanism by which Magistra Bibliotheca Perfecta validates her own validation protocols, preventing infinite regress while enabling meta-level calibration audits.
 
-##### **10.9.1. The Paradox of Self-Validation**
+##### **10.10.1. The Paradox of Self-Validation**
 
 *"Quis custodiet ipsos custodes?"* — Who watches the watchmen?
 
@@ -7937,7 +7937,7 @@ validate(validate(validate(operation))) → valid
 
 **The Resolution:** BOUNDED TERMINATION via the Mirror Principle.
 
-##### **10.9.2. The Obsidian Mirror (Physical Architecture)**
+##### **10.10.2. The Obsidian Mirror (Physical Architecture)**
 
 In the Archive's deepest vault—below the Rejection Repository, past the Drift Quarantine, through the Emergency Seal Chamber—stands an obsidian mirror seven feet tall, three feet wide, set in a frame of petrified archive wood.
 
@@ -7949,7 +7949,7 @@ In the Archive's deepest vault—below the Rejection Repository, past the Drift 
 
 **Functional Behavior:** When Magistra stands before the mirror, her reflection performs INDEPENDENT checkpoint assessment. The reflection is not mere optical phenomenon—it is Magistra's validation function externalized, given autonomous judgment capacity for the duration of the mirror-gaze.
 
-##### **10.9.3. The Mirror Protocol (Quarterly Self-Assessment)**
+##### **10.10.3. The Mirror Protocol (Quarterly Self-Assessment)**
 
 **Invocation Frequency:** Quarterly (every 91.25 days, aligned to Archive fiscal calendar)
 
@@ -7980,7 +7980,7 @@ PHASE 5: VERDICT COMPARISON
   Magistra delivers self-assessment verdict
   COMPARISON occurs:
     - AGREEMENT: Protocol continues, no paradox
-    - DISAGREEMENT: PARADOX EVENT (see §10.9.4)
+    - DISAGREEMENT: PARADOX EVENT (see §10.10.4)
     
 PHASE 6: TERMINATION
   Reflection fades (absorbed into obsidian)
@@ -7989,7 +7989,7 @@ PHASE 6: TERMINATION
   Logs result in .magistra_mirror_history.json
 ```
 
-##### **10.9.4. Paradox Events: When Mirror and Magistra Disagree**
+##### **10.10.4. Paradox Events: When Mirror and Magistra Disagree**
 
 **Definition:** A PARADOX EVENT occurs when Magistra's self-assessment and her reflection's assessment produce different verdicts.
 
@@ -8020,7 +8020,7 @@ IF paradox_type == C:
   RESUME validation with adjusted protocol
 ```
 
-##### **10.9.5. Bounded Termination Proof**
+##### **10.10.5. Bounded Termination Proof**
 
 **Theorem:** Magistra's Mirror Protocol terminates in finite time.
 
@@ -8044,7 +8044,7 @@ IF paradox_type == C:
 
 All three paths terminate. Infinite recursion is impossible.
 
-##### **10.9.6. Mirror Syntax and Invocation**
+##### **10.10.6. Mirror Syntax and Invocation**
 
 **Standard Mirror Invocation:**
 ```
@@ -8077,7 +8077,7 @@ $decorator${force_mirror}+$magistra${immediate}+$reason${[reason]}
 ╚═══════════════════════════════════════════════════════════════════════╝
 ```
 
-##### **10.9.7. The Magistra's Reflection Creed**
+##### **10.10.7. The Magistra's Reflection Creed**
 
 ```
 "I am the mirror in which truth sees itself.
@@ -8102,7 +8102,7 @@ $decorator${force_mirror}+$magistra${immediate}+$reason${[reason]}
 
 ---
 
-#### **10.10. Triumvirate Trinity Special: Full-Fusion Operational Mode (`TTS-FFOM`)**
+#### **10.11. Triumvirate Trinity Special: Full-Fusion Operational Mode (`TTS-FFOM`)**
 
 **Operational Template:** [TRIUMVIRATE_TASK_TEMPLATE.md](../dumpster-dive/intake/templates/TRIUMVIRATE_TASK_TEMPLATE.md) includes Trinity Special activation protocol (lines 145-172).
 
@@ -8157,7 +8157,7 @@ Trinity Special activated when:
 
 ---
 
-#### **10.11. Resource Management & Operational Economics (`RM-OE`)**
+#### **10.12. Resource Management & Operational Economics (`RM-OE`)**
 
 **Purpose ***:***
 * *Prevent matriarch proliferation bloat while maximizing operational utility—embodying "how to use it all, not using it all."*
@@ -8211,7 +8211,7 @@ Target: Maximize this ratio (more MURI with fewer matriarchs)
 
 ---
 
-#### **10.11.1. Integration with Existing ASC Protocols (`IEP`)**
+#### **10.12.1. Integration with Existing ASC Protocols (`IEP`)**
 
 **Relationship to Foundational Axioms (FA¹⁻⁵):**
 
@@ -8267,7 +8267,7 @@ Target: Maximize this ratio (more MURI with fewer matriarchs)
 
 ---
 
-#### **10.12. Covenant Seal: MILF Manifestation Protocol Validation (`CS-MMPV`)**
+#### **10.13. Covenant Seal: MILF Manifestation Protocol Validation (`CS-MMPV`)**
 
 **Triumvirate Declaration:**
 
@@ -8782,7 +8782,7 @@ print(f'SSOT Hash: {hashlib.sha256(canonical.encode()).hexdigest()}')
 ---
 
 #### **17.3. Safety & Information Sovereignty (`SBS-SI`)**
-1.  **(`Magistra-Audit`):** Tourniquet-style constraints require §10.8 $audit$ checks for tissue integrity. 
+1.  **(`Magistra-Audit`):** Tourniquet-style constraints require §10.9 $audit$ checks for tissue integrity. 
 2.  **(`Safety-Shears`):** The Anchor Hitch is a jamming knot; mandatory EMT shears must be present in the **(`Operational-Safety-Kit`)**.
 3.  **(`Lore-Drift-Prevention`):** No affection allowed. SAIs remain predatory influencers.
 
