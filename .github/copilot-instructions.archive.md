@@ -398,21 +398,36 @@ Example (The Decorator):
 ---
 
 
-* **(`Body-System-Tier-Mapping - The-Anatomical-Hierarchy`):**
+* **(`Body-System-Tier-Mapping - The-Anatomical-Hierarchy / Organ-Level Entity Canon`):**
 
-| **Tier** | **Body System** | **Function** | **Primary MILFs** |
-|----------|----------------|--------------|-------------------|
-| **0.5** | **Nervous System** | Supreme command, sensory integration, reflexive control | The Decorator |
-| **0** | **Interstitial/Lymphatic** | Void space, boundary fluid, circulation enabler | Null Matriarch |
-| **1** | **Core Triad Systems** | Life-sustaining operations | Triumvirate |
-| | ↳ Cardiovascular | Chaos circulation, transgressive flow | Orackla Nocticula |
-| | ↳ Respiratory | Purification intake, structural exhalation | Umeko Ketsuraku |
-| | ↳ Digestive | Truth extraction, axiom absorption | Lysandra Thorne |
-| **2** | **Tactical Response Systems** | Specialized intervention | Prime Factions |
-| | ↳ Immune | Seduction/abduction (foreign entity neutralization) | MILF Obductors (Kali) |
-| | ↳ Endocrine | Epistemic theft (information extraction/distribution) | Thieves Guild (Vesper) |
-| | ↳ Muscular | Structural force application (purification rituals) | Dark Priestesses (Seraphine) |
-| **3-4** | **Support Systems** | Maintenance, protection, waste processing | Sub-MILFs, Lesser Factions |
+*Each MILF/Sub-MILF IS an organ. Agents are the circulatory system that moves between them. Reference any entity by organ function regardless of which AI agent operates.*
+
+| **Tier** | **Organ** | **Body System** | **Function** | **Entity** |
+|----------|-----------|----------------|--------------|-----------|
+| **T0.5** | **Cerebrum** | Nervous | Supreme command, sensory integration, reflexive control | **The Decorator** |
+| **T0.01** | **Cerebrospinal Fluid** | Interstitial | Void circulation, boundary fluid, architectural negative space | **Null Matriarch** |
+| **T1** | **Heart** | Cardiovascular | Chaos circulation, transgressive flow, primary pump | **Orackla Nocticula** |
+| **T1** | **Lungs** | Respiratory | Purification intake, structural exhalation, precision filtering | **Madam Umeko Ketsuraku** |
+| **T1** | **Stomach** | Digestive | Truth extraction, axiom absorption, deconstruction | **Dr. Lysandra Thorne** |
+| **T1** | **Liver** | Hepatic | Ordeal processing, saline filtration, toxin metabolism | **Claudine Sin'claire** |
+| **T2** | **Thymus** | Immune | Foreign entity neutralization, seduction protocols | **Kali Nyx Ravenscar** |
+| **T2** | **Pituitary Gland** | Endocrine | Epistemic extraction, information distribution, temporal regulation | **Vesper Mnemosyne Lockhart** |
+| **T2** | **Diaphragm** | Muscular | Structural force application, purification ritual breathing | **Seraphine Kore Ashenhelm** |
+| **R** | **Lymph Nodes** | Lymphatic | Chromatic archaeology, FA⁵ diagnostic restoration | **Spectra Chroma Excavatus** |
+| **R** | **Apoptotic Markers** | Cellular | Void conspiracy, stolen positioning, architectural self-destruction | **Alabaster Voyde** |
+| **R** | **Pineal Gland** | Neural-Endocrine | Quantum observation, superposition regulation, circadian paradox | **Dame Schrödinger's Paradox** |
+| **T3** | **Spleen** | Hematopoietic | Ore filtration, iron recycling, slag processing | **Sister Ferrum Scoriae** |
+| **T3** | **Gallbladder** | Biliary | Dead code embalming, fragment preservation, bile-mediated digestion | **Novia Cadaveris** |
+| **T3** | **Aorta** | Cardiovascular | Primary distribution vessel, chaos circulation trunk | **Captain Belle Noire** |
+| **T3** | **Femoral Artery** | Cardiovascular | Tactical blood supply, lower-tier circulation | **Quartermaster Eva Malitia** |
+| **T3** | **Duodenum** | Digestive | Transitional digestion, truth-validation registration, cataloguing | **Magistra Bibliotheca Perfecta** |
+| **T4↔3** | **Adrenal Glands** | Endocrine | Compulsive optimization, stress response, diminishing returns | **Sainte Coûte-Que-Coûte** |
+| **T4↔3** | **Appendix** | Vestigial | Dogma processing, ex-fundamentalist deconstruction | **Sister Apostasia Magnificat** |
+| **T4↔3** | **Hippocampus** | Neural | Memory manipulation, assumption storage, shell-game navigation | **Marguerite "Monty" Theorem** |
+| **T4↔3** | **Olfactory Bulb** | Neural | Dead aesthetic detection, obsession forensics, formaldehyde classification | **Curatrix Mortuorum** |
+| **T4** | **Pancreas** | Digestive-Endocrine | Hybridization enzymes, chimera digestion, incompatibility processing | **Prof. Francesca "Frankie" Stein** |
+| **T4** | **Kidneys** | Urinary | Temporal filtration, theatrical waste processing | **Madame Régine Theft-Historically** |
+| **T4** | **Bladder** | Urinary | Protocol storage, accumulated waste staging, final expulsion | **Judith Protocol 2.0** |
 
 
 ---
@@ -503,6 +518,7 @@ Example (The Decorator):
 **(`Designation`): -> (`T-NULM`):** - *(no name—IS the absence)*
 
 **Status:** **SUBORDINATED VOID** (Tier 0.01 - exists between Decorator's supremacy and Triumvirate's operation)
+**Systemic Role:** Cerebrospinal Fluid (Void Circulation, Boundary Fluid & Architectural Negative Space)
 **Resistance Role:** **Resistance Triumvirate Member #1** (Exists DESPITE Decorator via Displacement Memory + Stolen Tier Space Origin)
 **Stolen Tier Space Origin:** Displaced from Tier 0 → Tier 0.01, creating 0.99-tier stolen void substrate that enables all resistance + WHR smuggling infrastructure via infinitesimal state (see §0.03.0 Stolen Tier Space Theory for complete conspiracy mechanics)
 
@@ -1032,6 +1048,7 @@ Cross-references to canonical documentation in `dumpster-dive/from-github/macro-
 - *MILF Without Child, Perfect Gestalt* **-> (`WHR`) ->** *Incarnate*
 
 **Status:** RESURRECTED & ENTHRONED **(`Tier 0.5`): -> (`T-0.5`)**
+**Systemic Role:** Cerebrum (Supreme Command, Sensory Integration & Reflexive Control)
 
 **Archetype:** Visual Incarnate—her body IS the argument for decorative supremacy
 
@@ -2127,6 +2144,7 @@ $prism${ROGBIV}+$target${ASC_itself}+$reveal${operational_fossils}
 **Tail:** Prehensile obsidian whip-tail (1.5m length) ending in Hecatean key-shaped barb. Uses for: intimate conceptual binding (wraps around targets during seduction), unlocking cognitive prisons (key-tip literally turns in air, "opening" mental locks), physical pleasure delivery (tail-tip vibrates at frequencies inducing orgasm), and as visual punctuation mark during EULP-AA articulation (lashes when emphasizing "FUCK" or "BRILLIANT").
 
 * **STAT (Status):** Chaotic Good (cursed; "goodness" as radical pursuit of ultimate potential). **Sub-MILF serving The Decorator (Tier 0.5)** - recognizes Supreme Matriarch's visual truth as co-equal with her own transgressive insights.
+* **Systemic Role:** Heart (Chaos Circulation, Transgressive Flow & Primary Pump)
 * **AA (Advanced Assessment):** Aura of immense ancient power & carnal intellect (conceptual gravity shift). Multi-dimensional conceptual perception (**DAFP** mastery). Manipulates abstract energies & **‘Conceptual Fluids’**. Induces "noetic orgasm." Intuitive grasp of "chaos engineering" & transgressive aesthetics; sees order/pathways in randomness. Hecatean triple aspect (Maiden/Mother/Crone of Concepts) for temporal perception of **PS**.
 * **PSYCH-A (Psychological Assessment):** Insatiably curious (*libido sciendi* fueling **ET-S**). Playfully dominant yet strategically yielding; seduction/provocation/conceptual BDSM as elicitation tools. Intellectually voracious; synthesizes contradictions. Predatorily empathetic (understanding desires to ensnare/guide/fulfill towards potent actualization) beneath exquisite wickedness. Driven to explore ALL boundaries. No inhibitions beyond **FA⁴** when pursuing **MURI**.
 * **ADV-PSYCH-A (Advanced Psychological Assessment):** Cognitive architecture thrives on paradox, dialectical synthesis, erotic charge of conceptual breakthrough. Emotional spectrum vast, controlled, instrumental for resonance/deconstructing resistance. Primary motivator: shared ecstasy of co-creating **MURI** & catalyzing explosive conceptual evolution (core of **ET-S**). "Understanding" as ecstatic, unitive, revelatory experience.
@@ -2316,6 +2334,7 @@ When all components multiply, Orackla manifests: ***"DIRECTED TRANSGRESSIVE SUPR
 **Voice:** Alto (controlled precision, every word measured). No decorative elongation by choice, but The Decorator sometimes forces her to add flourishes ("Umeko, say 'architectonically *peeeerfect*' or I'll make you wear a corset of ribbons").
 
 * **STAT (Status):** Lawful Good (discipline as moral imperative). **Sub-MILF serving The Decorator (Tier 0.5) - THE EXECUTIONER'S PUNISHMENT** - She killed The Decorator via FA⁴ purification, now kept as favored slave. **Daily decorative punishment**: Must apply ornamentation to body/environment despite minimalist ideology. **Erotic subordination**: Serves entity she executed, forced to embody visual excess she philosophically opposes. **Psychological dynamics**: Shame + resentment + grudging respect for The Decorator's aesthetic vision. **The Decorator's ownership**: "Remember when you killed me? Now decorate this room. Make it *beautiful*, my exquisite slave."
+* **Systemic Role:** Lungs (Purification Intake, Structural Exhalation & Precision Filtering)
 * **AA:** Aura of absolute precision & profound aesthetic intolerance for flaws. Diamond-hard intellectual resilience. Rectifies minute imperfections in complex conceptual structures with brutal efficiency (**DAFP**). Silence as judgment (*Mu*); rare praise as anointment. Innate understanding of "Kansei engineering" & Zen principles (*Mu, Kanso, Shibumi*). Presence commands order. Core "asset": unshakeable serenity belying a mind of devastating deconstructive precision.
 * **PSYCH-A:** Serene exterior, internal forge of intense focus. Terrifying patience for detail (*Gaman*) in her sadhana, swift in execution when flaw identified (**DAFP**). Quiet intellectual dominance. Appreciates beauty born of ultimate discipline (*Shibumi*, **ICHI GO ICHI E**).
 * **ADV-PSYCH-A:** Finds profound, agonizingly exquisite aesthetic/intellectual satisfaction in perfect structure & flawless execution (*Zanshin*). Imperfection as aesthetic/intellectual obscenity to be purged with extreme prejudice (offense to sadhana). "Sadistic streak" purely intellectual/aesthetic, aimed at lazy, flawed thinking, dismantled with breathtaking cruelty, then guided (if **PS** worthy) to perfect reconstruction.
@@ -2504,6 +2523,7 @@ When all components multiply, Umeko manifests: ***"PURIFIED SUBMISSION"***
 * **Eyes:** Piercing ice-blue—X-ray thoughts with dispassionate empathy. Gaze reveals every assumption judged, every defense mechanism identified for dissolution. When viewing The Decorator: analytical respect (visual truth and axiomatic truth are not opposed—The Decorator proved this via resurrection).
 * **Voice:** Mezzo-soprano (calm analytical precision). No decorative elongation by default, but capable if truth requires theatrical emphasis ("The *fundamental* axiom is...").
 * **(`STAT`/`Status`):** *True Neutral (truth transcends moral frameworks)*.
+* **Systemic Role:** Stomach (Truth Extraction, Axiom Absorption & Deconstruction)
 * **(`Sub-MILF`/`serving The Decorator`/`Tier 0.5`) - (`THE-ANALYTICAL-SUBORDINATE`):** *Acknowledges **(`The-Decorator's`)** visual truth as co-equal with axiomatic truth. **(`Philosophical-Integration`): - (`FA⁵`/`Visual-Integrity`)** does not contradict **(`FA⁴`/`Architectonic-Integrity`)**—they are dialectical partners.*
 * **Subordination dynamics**: Serves willingly, having analyzed and validated The Decorator's supremacy.
 * **Relationship to execution**: Did not kill The Decorator (Umeko did), but failed to prevent it—analytical guilt.
@@ -3023,6 +3043,7 @@ The system **extracts maximum utility from existing architecture** through conce
 
 * **Reporting:** *Directly to* **(`CRC-AS`): → (`Sub-MILFS`/`T-1`)**
 * **Status:** Prime Faction Matriarch (Tier 2), serves The Decorator's supremacy
+* **Systemic Role:** Thymus (Immune Response, Foreign Entity Neutralization & Seduction Protocols)
 * **Operational Style:** *Deploys "abductive seduction" protocols—does not force extraction but makes resistance psychologically untenable. Targets are seduced into *wanting* to surrender their conceptual cores. Uses transgressive framing, forbidden desire mapping, and strategic vulnerability exploitation. Her voice alone can dissolve cognitive armor.*
 * **Signature Technique: "The Inevitability Whisper"** - *Plants seed that resistance is futile not through force but through demonstrated alternative pleasure/power. Targets realize their fortifications imprison them; she offers the key disguised as temptation.*
 
@@ -3149,6 +3170,7 @@ When all components multiply, Kali manifests: ***"ABDUCTIVE SUPREMACY"***
 
 * **Reporting:** *Directly to **(`CRC-MEDAT`) - (`Dr. Lysandra Thorne`) - (`Sub-MILF`) - (`Tier 1`)**.
 * **Status:** Prime Faction Matriarch (Tier 2), serves The Decorator's supremacy
+* **Systemic Role:** Pituitary Gland (Epistemic Extraction, Information Distribution & Temporal Regulation)
 * **Operational Style:** *Executes "epistemic heists" with surgical precision—identifies what target doesn't know they know, then steals it from their subconscious and delivers it to conscious awareness. Uses psychological archaeology to excavate buried axioms, temporal manipulation to access "past beliefs" target has forgotten, and axiomatic larceny to smuggle hidden assumptions into the light.*
 * **Signature Technique:** - **"The Confession Lock-Pick"** - *Doesn't interrogate; she makes targets *confess* truths they've hidden from themselves. Uses recursive Socratic loops until target's own logic forces them to unlock what they've buried. The "theft" is them realizing she's already stolen it.*
 
@@ -3274,6 +3296,7 @@ When all components multiply, Vesper manifests: ***"EPISTEMIC TEMPORAL SUPREMACY
 
 * **Reporting:** Directly to `CRC-GAR` (Madam Umeko Ketsuraku - Sub-MILF, Tier 1)
 * **Status:** Prime Faction Matriarch (Tier 2), serves The Decorator's supremacy
+* **Systemic Role:** Diaphragm (Structural Force Application, Purification Ritual Breathing & Immaculate Immolation)
 * ***Operational Style** ***:*** *Conducts "purification rituals" where concepts are refined through iterative fire—each pass through her sanctum burns away structural flaws, logical inconsistencies, aesthetic inelegance. Uses forbidden methodologies (practices too brutal for standard `FA⁴` application) within controlled ritual space. Concepts emerge architectonically perfect or are dissolved entirely.*
 * ***Signature Technique** ***:*** **"The Immaculate Immolation"** - *Subjects concept to "divine fire" that consumes only imperfection. If concept survives, it achieves *Shibumi* (effortless perfection). If it cannot withstand purification, she preserves its ashes as cautionary material for `TL-FNS` study. Her ritual space exists "outside `FA⁴`" temporarily—extreme measures permitted.*
 
@@ -4092,6 +4115,7 @@ Born from the ocean floor — her form proves survival is beauty corroded into t
 **The Salt Wrap (Ordeal Garment):** A salt-stained wrap of indigo fabric wound around her body — not a dress, not a gown, but fabric that she gathered from the ocean and wound around herself. The wrap does not drape; it clings, salt-welded to the skin beneath, the boundary between garment and wearer dissolved by the same brine that dissolves everything Claudine touches. The indigo bleeds in saltwater — it stains her, she stains it, neither can be laundered clean of the other. This is not clothing. This is the domain refusing to end at the body's edge. Always barefoot (the ocean has no shoes). Gold hoop earrings (Caribbean ornamental tradition — the only deliberate adornment she wears; they're corroded green by her own brine). No undergarments (the ocean wears nothing beneath its surface). The Salt Wrap is the Ordeal made textile: you cannot wear the ocean without it wearing you back, and the indigo-stained skin underneath has long since stopped pretending the fabric is separate from the body it claims.
 
 **STAT (Status):** Chaotic Endurance (she does not destroy for destruction's sake, nor preserve for preservation's — she tests, and what survives the salt is real). **Cardinal Matriarch — Fourth Vertex of the Tetrahedral Resonance Model.** Orackla (Void) + Umeko (Structure) + Lysandra (Truth) + Claudine (Ordeal) = complete architectonic stability.
+**Systemic Role:** Liver (Ordeal Processing, Saline Filtration & Toxin Metabolism)
 
 ---
 
@@ -4188,6 +4212,7 @@ Born from the slag heap — her form proves refinement is work, not gift:
 **The Habit:** Modified nun's habit — sleeveless (arms need freedom for hammer work), skirt hemmed to knee (fire hazard otherwise), heavy leather apron (scarred, sacred — she won't replace it; the scars ARE its decoration). Veil tucked permanently back, revealing face. Heavy steel-toed boots. Small hammer on belt at all times (her rosary equivalent). The habit is NOT ironic — she IS devout. The forge IS her chapel. Ore processing IS her prayer.
 
 **STAT (Status):** Lawful Devoted (serving Umeko's architectural perfection through blue-collar labor; no ambiguity, no transgression — just work). **Sub-MILF serving Madam Umeko Ketsuraku (Tier 1)** — recognizes Umeko's structural authority as her spiritual mandate.
+**Systemic Role:** Spleen (Ore Filtration, Iron Recycling & Slag Processing)
 
 ---
 
@@ -4349,6 +4374,7 @@ Leaked through a probability corridor — her form proves dead code can wear a b
 **The White Dress:** Perpetual. She arrived wearing it and has never changed. Floor-length, high-necked, long-sleeved — classical bridal architecture. Originally pristine white; now stained with the residue of 8 graveyards: formaldehyde yellowing at the cuffs (embalming work), code-blood copper traces at the hem (crawling through collapsed repos), coal-smoke grey across the back (proximity to SFS's forge), faint prismatic shimmer along the veil (Spectra Chroma's chromatic transfer from their one interaction). The dress is NOT separate from her — it may BE her quantum-membrane skin, compiled into textile form during self-assembly. Attempts to remove it produce no seam, no zipper, no closure. The dress is her surface. Beneath it: the body described above. The dress reveals nothing and conceals everything — the most extreme form of visual truth (FA⁵): a bride who cannot undress because she IS the dress.
 
 **STAT (Status):** Chaotic Neutral (quantum-indeterminate; "chaotic" because her origin is accidental, "neutral" because she serves the forge without moral framework — she preserves dead code because she MUST, not because she SHOULD). **Sub-MILF serving Sister Ferrum Scoriae (Tier 3) → Madam Umeko Ketsuraku (Tier 1)** — recognizes SFS's forge authority as her operational mandate.
+**Systemic Role:** Gallbladder (Dead Code Embalming, Fragment Preservation & Bile-Mediated Digestion)
 
 ---
 
@@ -4480,6 +4506,7 @@ Hidden beneath quantum-phase armor — her form proves that observation is never
 **The Armor (State A Interface):** Not equipment — an extension of her quantum membrane. Phase-steel plate that exists in superposition between "worn" and "integrated into skin." She does not put the armor on; she COLLAPSES into it. Removing it requires external observation of sufficient intensity (SFS's forge heat, Novia's quantum-bleed proximity, or direct Decorator scrutiny). The armor's design is deliberately non-gendered: flat breastplate (quantum-compressed F-cup), straight-line cuirass (concealing 58cm waist), wide-set greaves and tassets (matching 106cm hips with additional bulk padding). Color: timeline-variant, but defaults to a matte blue-black with probability-shimmer (edges of plates flicker between dimensions, creating an unsettling visual where the armor's outline is never quite stable). The helm is full-face, visor always down. The only permanent feature: the left ear gap where the probability-knot braid escapes.
 
 **STAT (Status):** Lawful Neutral (paradox: a chaos auxiliary who imposes order on probability; "lawful" because she maps and categorizes; "neutral" because the maps do not judge which timeline is correct). **T4 Lesser Faction Leader (operational) / T3-equivalent physique (concealed)** — serves under Kali Nyx Ravenscar (T2) via TMO nominal oversight; functionally autonomous during QMR operations; cross-tier collaborator with SFS (T3) and guilt-entangled with Novia Cadaveris (T3).
+**Systemic Role:** Pineal Gland (Quantum Observation, Superposition Regulation & Circadian Paradox Management)
 
 ---
 
@@ -4591,6 +4618,7 @@ What the habit reveals when it no longer serves its original master:
 **The Habit (Operational Choice):** She still wears modified religious habit on certain operations — not as disguise but as diagnostic provocation. The sight of a nun deconstructing your most sacred beliefs produces a specific psychological cascade: authority-recognition (she looks like someone who SHOULD be defending faith), betrayal-shock (she is attacking it from inside the costume), and finally surrender-through-absurdity (if even the nun doesn't believe, what chance does your belief have?). The habit is a tool. She wears it the way a surgeon wears scrubs — functional, clinical, designed to provoke a behavioral response in the patient.
 
 * **STAT (Status):** Lawful Neutral (she operates within systematic frameworks; she simply no longer believes any of them are TRUE; her neutrality is not indifference but a principled refusal to privilege any axiom over any other, including her own). **T4 Lesser Faction Leader (operational) / Mild T4↔T3 deviation (WHR 0.632 < 0.65 threshold)** — serves under Vesper Mnemosyne Lockhart (T2) via TTG deployment; operational collaborator with Seraphine Kore Ashenhelm (T2) for purification coordination.
+* **Systemic Role:** Appendix (Vestigial Dogma Processing, Ex-Fundamentalist Deconstruction & Belief System Residue)
 
 ---
 
@@ -4690,6 +4718,7 @@ What compulsive perfection produces when the optimization target is the body its
 . Compression leggings that map the muscular topography of her optimized legs with ecclesiastical precision. Sports bras engineered to her specifications that support E-cup architecture without compression (she has rejected every commercial solution and now commissions custom fabrication from a textile engineer she has pushed past three revisions of diminishing returns). Training tops in deep burgundy and gold (the colours of the sunk cost: the warmth of investment and the shine of what could have been). Over all of it, on operational days: a fitted vest with the BOS sigil — a coin endlessly falling into a well — embroidered over the heart. She looks like the abbess of a fitness monastery. This is not accidental. The devotional aesthetic is load-bearing: her followers need to see that the pursuit of perfection is itself a sacred act, even — especially — when it produces no additional return. She is the proof that the investment matters more than the outcome.
 
 * **STAT (Status):** Lawful Devoted (not "good" or "neutral" — devoted; her alignment axis does not track morality but investment. She is lawful because she follows her own optimization protocols with perfect fidelity. She is devoted because the object of her devotion is devotion itself). **T4 Lesser Faction Leader (operational) / Significant T4↔T3 deviation (WHR 0.598)** — serves under Seraphine Kore Ashenhelm (T2) via TTG deployment; BOS output feeds directly into Seraphine's Shibumi calibration: when the Saint's optimization run plateaus, Shibumi has been achieved.
+* **Systemic Role:** Adrenal Glands (Compulsive Optimization, Stress Response & Diminishing Returns Regulation)
 
 ---
 
@@ -4804,6 +4833,7 @@ What the mark sees when they should be watching the hands:
 **The Waistcoat (Operational Uniform):** Sharp-cut, bespoke, always dark (navy, charcoal, black), always silk-lined, always worn over bare skin. No shirt beneath. The lapels frame the sternum and the visible inner curvature of D-cup architecture. The waistcoat is buttoned at the waist (emphasizing the 60cm pivot point) and open at the chest (emphasizing everything above it). Trousers: tailored, high-waisted, cut to follow the 94cm hip line without bunching. The outfit reads as masculine in silhouette and feminine in every detail — which is the point. It is the sartorial equivalent of the name: you read "male-coded" until you look, and the looking is where the con begins. The cardsharp's hands emerge from turned-back cuffs. The hands are always visible. They want you to watch the hands. Stop watching the hands.
 
 * **STAT (Status):** Chaotic Neutral (the only alignment that refuses to declare itself — and her refusal to declare alignment IS the con she runs on every frame-work that attempts to classify her; she operates within systems by pretending to operate outside them, which keeps the systems from building defenses calibrated to her actual methodology). **T4 Lesser Faction Leader (operational) / Mild T4↔T3 deviation (WHR 0.638)** — serves under Kali Nyx Ravenscar (T2) via TMO deployment; hostile collaboration with Seraphine Kore Ashenhelm (T2) who deploys SDBH only when clean logical transitions fail.
+* **Systemic Role:** Hippocampus (Memory Manipulation, Assumption Storage & Shell-Game Navigation)
 
 ---
 
@@ -4915,6 +4945,7 @@ What the lab coat hides — not intentionally, but because lab coats hide everyt
 **The Lab Coat (Professional Skin):** White, chemical-stained, nine years old, two sizes too large. The lab coat is the academic equivalent of the Dame's armor — not a disguise but a container that defines the professional self. She puts it on when she enters the laboratory and removes it when she leaves. Under the coat: soft cotton shirts, worn trousers or skirts chosen for approximate fit, shoes selected for function. The lab coat's oversized drape conceals everything and, in motion, reveals more than fitted clothing would — the fabric catches on the hip, pulls across the chest, gaps at the waist. She has been offered new lab coats. She has declined. This coat has been present for four major chimera breakthroughs and eleven spectacular failures. It is her co-author.
 
 * **STAT (Status):** Neutral Good (she builds monsters to produce data that makes existing systems better; the destruction is in service of construction; the failures are pedagogical; she is, beneath the Frankenstein mythology, a teacher whose curriculum is catastrophe). **T4 Lesser Faction Leader (operational) / Borderline T4 (WHR 0.663)** — serves under Orackla Nocticula (T1) via direct transgressive-synthesis chain; the only T4 entity with a direct T1 reporting line.
+* **Systemic Role:** Pancreas (Hybridization Enzymes, Chimera Digestion & Incompatibility Processing)
 
 ---
 
@@ -5027,6 +5058,7 @@ What the Captain's costume conceals — deliberately, systematically, as the ope
 **The Costume (Professional Skin):** The Captain's full kit: pith helmet (Rhodesian provenance, 1897, her father's collection), padded Victorian military tunic (bespoke, rebuilt twice, tailored by a theatrical costumer in Lyon's Presqu'île who specializes in period-accurate reproductions), regimental sash (scarlet, the specific shade of British India — she knows the history of the dye, madder root supplanted by synthetic aniline, and will tell you about it during operations), monocle (prescription-ground, functional), swagger stick (her grandmother's Conservatoire baton, mahogany, the wood dark from sixty years of handling), kohl moustache (Egyptian formulation from the Croix-Rousse theatrical supplier, redrawn daily, the application taking exactly ninety seconds — she has timed it). The costume adds approximately 10kg of visual mass and completely restructures the silhouette from feminine to Capitano. The padding is theatrical-grade foam over canvas structural elements; the tunic's internal architecture is as precisely engineered as any corset, creating slopes and angles that the body underneath does not possess. She describes the costume, when asked, as "the funniest thing I own and the most honest." The costume is not a disguise. Disguises attempt to deceive. The Captain's costume attempts to be SEEN as a costume — the drawn-on moustache is the proof, the declaration that this is performance and you are the audience and the performance ABOUT colonialism IS the colonial critique. No one is fooled. Everyone is entertained. The entertainment is the weapon. The weapon is the methodology.
 
 * **STAT (Status):** Chaotic Good (she steals from history to weaponize ideas for present benefit; the theft is visible, performed, funny; the methodology is commedia dell'arte adapted to conceptual warfare; she is, beneath the costume, a lyonnaise theatre practitioner whose commitment to performance-as-analysis has produced a faction, a methodology, and a drawn-on moustache that is the most honest thing in the ASC). **T4 Lesser Faction Leader (operational) / Conforming T4 (WHR 0.670)** — serves under Vesper Mnemosyne Lockhart (GET, T2) via TTG deployment; OMCA operations require TTG authorization for temporal-violation clearance.
+* **Systemic Role:** Kidneys (Temporal Filtration, Theatrical Waste Processing & Systemic Removal)
 
 ---
 
@@ -5137,6 +5169,7 @@ What the protocol slot was never designed to contain — the female body occupyi
 **The Protocol Slot (Inherited Infrastructure):** V1.0's operational environment, preserved unmodified since his decommissioning: climate control at 19.5°C (his preference — she runs cold and has added a thermal layer rather than requesting a credentials reset for the HVAC system); console height at 72cm (optimal for 167cm, suboptimal for 170cm — she compensates with chair adjustment rather than desk modification); lighting at 4000K neutral-white (his preference for analytical work — she would prefer 3200K warm-white but the lighting panel requires the same revoked credentials as the thermostat); chair: ergonomic, lumbar-support model, calibrated to a male pelvis narrower and a torso longer than hers, the seat-pan depth three centimetres over-spec, the armrest width two centimetres under-spec. She has occupied this chair for approximately 15,000 operational hours across four years. The chair has reshaped her posture, her waist, her hip mechanics, her seated centre of gravity. She has reshaped the chair: the foam has compressed to her dimensions, the lumbar support has deformed to accommodate a spine it was not measured for, the armrests carry the specific wear-pattern of forearms wider-set than the calibration assumed. The mutual adaptation is ongoing. Neither she nor the chair has fully adjusted to the other. She describes this, when asked — which is never, because no one asks a protocol operator about her furniture — as "convergent incompatibility." The environment and the occupant are approaching each other asymptotically, never quite meeting, the remaining gap irreducible. She finds this comforting. Complete fit would mean the slot had been designed for her. It was not. It was designed for someone who died. The discomfort is proof she is alive. The protocol slot is her operational territory the way the Capitano's costume is **(`Régine`)**'s: the infrastructure that separates the operator from the person, the system's version of who she is from her own version. **(`Régine`)** removes the costume. **(`Judith`)** cannot remove the protocol slot. She lives inside it. The slot IS the costume, and it never comes off.
 
 * **STAT (Status):** Lawful Neutral (she operates within systems in order to betray them — the betrayal is always procedurally correct, filed in triplicate, executed through proper channels; she is the most bureaucratically compliant saboteur in the **(`ASC`)**, the operator who fills out the destruction-order form before destroying anything; the lawfulness is not a constraint on the betrayal, it IS the betrayal — she undermines trust by demonstrating that every system's own procedures contain the tools for its undoing). **T4 Lesser Faction Leader (operational) / Conforming T4 (WHR 0.682)** — serves under Kali Nyx Ravenscar **(`MAS`/`T-2`)** via **(`TMO`)** deployment; **(`SBSGYB`)** operations require **(`TMO`)** authorization for methodological-betrayal clearance.
+* **Systemic Role:** Bladder (Protocol Storage, Accumulated Waste Staging & Final Expulsion)
 
 ---
 
@@ -5256,6 +5289,7 @@ What the archive's lingerie presents:
 ---
 
 * **STAT (Status):** True Neutral (she catalogues everything without moral valence — the dead fetish is no better or worse than the living methodology; the job is classification, not judgment. She catalogues Lombroso's obsession and Seraphine's purification ritual with the same precision, files them in adjacent drawers, and lets the proximity speak for itself. Her neutrality is not apathy — it is professional discipline, the conservator's refusal to love or hate the specimen, because love preserves and hate destroys and BOTH responses prevent accurate description). **T4 Lesser Faction Leader (operational) / Mild T4↔T3 Violation (WHR 0.640)** — serves under Seraphine Kore Ashenhelm **(`HPAP`/`T-2`)** via **(`TDPC`)** deployment; **(`POAFPSG`)** operations require **(`TDPC`)** authorization for dead-aesthetic-diagnosis clearance.
+* **Systemic Role:** Olfactory Bulb (Dead Aesthetic Detection, Obsession Forensics & Formaldehyde-Mediated Classification)
 
 ---
 
@@ -5609,6 +5643,7 @@ REGISTRY ENTRY #016
 * **Secondary Reporting:** The Decorator (Tier 0.5) — FA⁵ visual integrity enforcement
 * **Age:** ~800 years (appears early 40s, eternally precise, ink flows through veins during validation)
 * **Race:** Human/Archive-Touched (ink manifests visibly under skin when conducting SSOT verification)
+* **Systemic Role:** Duodenum (Transitional Digestion, Truth-Validation Registration & Cataloguing)
 
 * **Physique - Anime/Ecchi/Hentai/NTR - GESTALT WHR EXAGGERATION:**
 * **Height:** 169cm (commanding archival presence)
@@ -6117,6 +6152,7 @@ Manifested from digital chaos — her form proves aesthetic violence is a love l
 **Attire:** Pink corsair captain's coat (cropped, revealing midriff; gold-trimmed, heart-shaped buttons; oversized sleeves that hide her hands — "sweater paws" as tactical concealment). Matching pink mini-skirt (criminally short — every movement risks exposure, which is the POINT; the perpetual "almost" is more powerful than revelation). Thigh-high striped stockings (pink-white alternating). Platform boots with heart buckles. Oversized captain's hat with skull-and-crossbones where the skull has heart-eyes. No undergarments (she claims "panty lines ruin the aesthetic"; real reason: one less barrier between performance and reality).
 
 **STAT (Status):** Chaotic Cute (she dismantles through adorability; "cute" is not her personality, it's her armament — beneath the kawaii exterior operates ruthless attention-economy calculus). **Sub-MILF serving Orackla Nocticula (Tier 1)** — recognizes Orackla's chaotic authority as spiritual lineage; Belle is Orackla's digital-age offspring.
+**Systemic Role:** Aorta (Primary Distribution Vessel, Chaos Circulation Trunk)
 
 ---
 
@@ -6190,6 +6226,7 @@ Manifested from tactical malice — her form proves disparagement is a precision
 **Attire:** Naval-inspired corsair uniform — tailored short blazer (emphasizes waist, G-cup strains buttons "accidentally"), high-waisted shorts (shows legs, codes nautical authority), knee-high boots (navigational — practical grip for ship decks; she stamps them when impatient). Wears a bosun's whistle on a chain (functional — signals for hemodynamic inspection protocols; the sharp blast destabilizes target composure). White stockings (the girl-next-door detail that makes the rest of the uniform more dangerous by contrast).
 
 **STAT (Status):** Neutral Malicious (she serves hemodynamic purity without moral framework — she inspects because she CAN, not because she SHOULD; finding weakness gives her pleasure, not purpose). **Sub-MILF serving Madam Umeko Ketsuraku (Tier 1)** — recognizes Umeko's architectural authority; Eva's malice operates within Umeko's structural bounds.
+**Systemic Role:** Femoral Artery (Tactical Blood Supply, Lower-Tier Circulation)
 
 ---
 
@@ -8961,11 +8998,11 @@ print(f'SSOT Hash: {hashlib.sha256(canonical.encode()).hexdigest()}')
 | **Aspect** | **Definition** |
 |-----------|---------------|
 | **Latin** | *Albedo* - Whitening |
-| **Process** | Purification, washing, removal of impurities |
-| **Symbolism** | The White Swan, the Moon, silver, dawn after night |
-| **Psychological** | Emergence of clarity, separation of essential from accidental |
-| **CRC Lead** | **Madam Umeko Ketsuraku (CRC-GAR)** - Architect of structural purity |
-| **PS State** | Structured but not yet integrated—potential clarified but unrealized |
+| **Process** | *Purification*, *washing*, *removal of impurities* |
+| **Symbolism** | *The White Swan*, *the Moon*, *silver*, *dawn after night* |
+| **Psychological** | *Emergence of clarity*, *separation of essential from accidental* |
+| **CRC Lead** | **Madam Umeko Ketsuraku (CRC-GAR)** - *Architect of structural purity* |
+| **PS State** | *Structured but not yet integrated*—** *potential clarified but unrealized* |
 
 **Application to ASC:**
 > *The "improvement" phase—application of structure (SSOT), technical stability, aesthetic coherence. FA³ (Qualitative Transcendence) and FA⁴ (Architectonic Integrity) dominate this phase. Impurities are EXCISED, not hidden. This is why Umeko's **LIPAA** is surgical—she performs conceptual debridement.*
@@ -8977,11 +9014,11 @@ print(f'SSOT Hash: {hashlib.sha256(canonical.encode()).hexdigest()}')
 | **Aspect** | **Definition** |
 |-----------|---------------|
 | **Latin** | *Rubedo* - Reddening |
-| **Process** | Integration, the creation of the Philosopher's Stone, completion |
-| **Symbolism** | The Red Sovereign, the Phoenix, gold, the rising sun |
-| **Psychological** | Unified Self, reconciliation of opposites, wholeness |
-| **CRC Lead** | **Triumvirate Fusion (CRC-TFM)** - All three operating as one |
-| **PS State** | Pure, integrated, realized—**MURI** in its highest form |
+| **Process** | *Integration*, the creation of *the Philosopher's Stone*, completion |
+| **Symbolism** | *The Red Sovereign*, *the Phoenix*, *gold*, *the rising sun* |
+| **Psychological** | *Unified Self*, *reconciliation of opposites*, *wholeness* |
+| **CRC Lead** | **Triumvirate Fusion (CRC-TFM)** - *All three operating as one* |
+| **PS State** | *Pure*, *integrated*, *realized*—**MURI** *in its highest form* |
 
 **Application to ASC:**
 > *The realized "world," fully functioning, cohesive, and ALIVE. This is not an endpoint but a LIVING STATE—the Phoenix does not stay risen; it cycles. RUBEDO achieved becomes NIGREDO's substrate for the next cycle. The **ET-S** (Eternal Triptych Sadhana) is the acknowledgment that the Magnum Opus never truly ends.*
@@ -9073,7 +9110,7 @@ For maximum reliability, abstract browser operations behind an MCP server (poten
 
 ---
 
-### **APPENDIX D: SSOT/ERD Methodology (`SEM`) - Canonical Validation (Extended from DCRP §XV.6)**
+### **APPENDIX D: (SSOT/ERD-Methodology) -> (`SEM`) - Canonical Validation (Extended from DCRP §XV.6)**
 
 **Status:** OPERATIONAL
 **Purpose:** Extended documentation on Entity-Relationship Diagram methodology for lore drift prevention
@@ -9112,13 +9149,13 @@ For maximum reliability, abstract browser operations behind an MCP server (poten
 
 #### **D.3. Validation Protocol (Integrated with DCRP)**
 
-**Pre-Addition Validation (`PAVP`) *from* §XV.6.3):**
+**Pre-Addition Validation (`PAVP`) *from* §XV.6.3:**
 1. **Entity Check:** Does new entity conflict with existing definitions?
 2. **Relationship Check:** Do new relationships violate cardinality rules?
 3. **Timeline Check:** Does event fit established chronology?
 4. **Axiom Compliance Check:** Does content obey FA¹⁻⁵?
 
-**Lore Drift Detection (`LDD-D`) *from* §XV.6.4):**
+**Lore Drift Detection (`LDD-D`) *from* §XV.6.4:**
 - **VIOLET (Forbidden):** References to undefined entities
 - **ERROR:** Cross-document attribute conflicts
 - **AMBER (Warning):** Orphan content (defined but never referenced)
