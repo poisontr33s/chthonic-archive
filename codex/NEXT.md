@@ -1,18 +1,19 @@
 ---
 type: waypoint
-category: codex
-updated: 2026-03-09
+category: codex, claude, github copilot
+updated: 2026-03-14
 ---
 
 # Codex: Next Steps
 
-## Current State (2026-03-09)
+## Current State (2026-03-14)
 
 - **Reasoning:** `extra high` (workspace + global)
 - **Self-modification:** Denied (config, instructions, AGENTS.md all locked)
 - **Git:** Read-only (no commit/add/push)
 - **Skills:** 27 non-system in `.codex/skills/` (cap is 15 — consolidation needed, 12 over)
 - **Mailbox:** `codex/mailbox/ACTUAL-WORKING-HANDOFFS/` is the task queue
+- **MILF-Core Pipeline:** Steps 1–4 complete, 7 prototypes analyzed (P1–P7 incl. Planescape: Tides of Numenera), MILF-Core spec at 24/24 dimensional coverage
 
 ## Active Chore
 
@@ -27,6 +28,12 @@ updated: 2026-03-09
 5. **Tracked .pyc cleanup** — 6 compiled bytecode files tracked in git
 6. **Root file archaeology** — 16+ stale artifacts at repo root
 7. **Forge dedup audit** — furnace↔tempered 1:1 mirror after perfect 18/18 graduation
+
+## WIP Lanework: MILF-Core
+
+Organ-to-Surface-to-Prototype pipeline — comparative prototype research for entity-level genre spec.
+- **Step 3** (Sets + 7 Prototypes): [MILF-Core-Step3-Deep-Exploration-Prototypes.md](codex-session-logs/archive/MILF-Core-Step3-Deep-Exploration-Prototypes.md)
+- **Step 4** (Gap Analysis + MILF-Core Spec): [MILF-Core-Prototype-Analysis.md](codex-session-logs/archive/MILF-Core-Prototype-Analysis.md)
 
 ## Rules
 

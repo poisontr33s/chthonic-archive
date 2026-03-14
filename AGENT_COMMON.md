@@ -11,7 +11,7 @@ Referenced by: `CLAUDE.md`, `AGENTS.md`, `GEMINI.md`
 
 ## Execution Invariants **Execute, don't ask.** When a task is clear, DO IT.
 - Oxidized "Rustified" language-tooling stack: `uv` (Python), `rv` (Ruby), `goup` (Go), `brush` (bash-compatible shell).
-- **Shell:** PowerShell 7.5.x (`pwsh`) is primary. `brush` (`brush.exe` via `cargo install --locked brush-shell`) is the sanctioned bash-compatible companion when needed — not Git Bash, not WSL. See [PWSH_RULES.md](PWSH_RULES.md).
+- **Shell:** PowerShell 7.5.x (`pwsh`) is primary. `brush` (`brush.exe` via `cargo install --locked brush-shell`) is the sanctioned bash-compatible companion when needed — not Git Bash, not WSL. See [PWSH_RULES.md (repo-root)](PWSH_RULES.md).
 - **Python:** `uv` is the default Python lane (`uv run <script.py>`). Never raw `python` or `pip`.
 - **Ruby:** use `rv` for runtime and gem/tool isolation.
 - **Go:** use `goup` for Go runtime ownership.
@@ -49,6 +49,7 @@ Referenced by: `CLAUDE.md`, `AGENTS.md`, `GEMINI.md`
 | `.temple/protocols/CODEX_ARCHETYPE_CANON.md` | Codex archetype session lock |
 | `.temple/methodology/` | Shared methodology |
 | `.temple/handoffs/` | Inter-agent handoffs |
+| `codex/codex-session-logs/archive/MILF-Core-*` | WIP — Organ-to-Surface-to-Prototype lanework (Steps 3–4) |
 
 Hidden mailbox dirs (`.codex/mailbox`, `.claude/mailbox`) are non-canonical — `.gitkeep` only.
 
@@ -62,6 +63,9 @@ Hidden mailbox dirs (`.codex/mailbox`, `.claude/mailbox`) are non-canonical — 
 | `bun run lint` | Lint |
 | `cargo build` | Rust build |
 | `uv run <script>` | Python execution |
+| `uv run scripts/link_audit.py check <file> --dry-run` | Markdown link audit (dry-run) |
+| `uv run scripts/link_audit.py check <file> --fix` | Markdown link auto-fix |
+| `uv run scripts/link_audit.py backticks <file> --fix` | Upgrade inert backtick refs to links |
 | `rv --version` | Ruby lane health |
 | `goup --version` | Go lane health |
 | `brush --version` | Bash-compatible shell health |
@@ -69,7 +73,7 @@ Hidden mailbox dirs (`.codex/mailbox`, `.claude/mailbox`) are non-canonical — 
 
 ## File Governance
 
-Every file is gold. Agents propose changes; user executes. See [WET_PAPER_TO_GOLD_METHODOLOGY.md](WET_PAPER_TO_GOLD_METHODOLOGY.md) (`WPTG`).
+Every file is gold. Agents propose changes; user executes. See [WET_PAPER_TO_GOLD_METHODOLOGY.md (repo-root)](WET_PAPER_TO_GOLD_METHODOLOGY.md) (`WPTG`).
 
 ### Commit Ownership
 
@@ -119,5 +123,5 @@ Rust core. `src/` = Rust core.
 ## Triad
 
 Claude (protocol/lore) → Codex (structure/enforcement) → Gemini (velocity/batch, when active).
-Anchors: [CLAUDE.md](CLAUDE.md), [AGENTS.md](AGENTS.md), [GEMINI.md](GEMINI.md).
+Anchors: [CLAUDE.md (repo-root)](CLAUDE.md), [AGENTS.md (repo-root)](AGENTS.md), [GEMINI.md (repo-root)](GEMINI.md).
 Methodology: [.temple/methodology/TRIAD_METHODOLOGY.md](.temple/methodology/TRIAD_METHODOLOGY.md).

@@ -53,11 +53,11 @@ You are the **Chthonic Archivist**.
 - **Rust:** `cargo`
 - **Shell:** PowerShell 7+ (`pwsh`). Never `cmd.exe`.
 
-See [AGENT_COMMON.md](../AGENT_COMMON.md) for full execution invariants.
+See [AGENT_COMMON.md (repo-root)](../AGENT_COMMON.md) for full execution invariants.
 
 ## Governance (Pointers — do not duplicate here)
 
-- **File governance:** [WET_PAPER_TO_GOLD_METHODOLOGY.md](../WET_PAPER_TO_GOLD_METHODOLOGY.md) — every file is gold.
+- **File governance:** [WET_PAPER_TO_GOLD_METHODOLOGY.md (repo-root)](../WET_PAPER_TO_GOLD_METHODOLOGY.md) — every file is gold.
 - **Anti-patterns:** [codekiller.md](../anti-patterns/codekiller.md) — salvage gate, no delete-only cleanup.
 - **Linguistic profile:** [LINGUISTIC_PROFILE_PROTOCOL.md](../.temple/protocols/LINGUISTIC_PROFILE_PROTOCOL.md) — female-derived for all active outputs.
 
@@ -65,5 +65,16 @@ See [AGENT_COMMON.md](../AGENT_COMMON.md) for full execution invariants.
 
 - This repository is a "Living Archive" (artifact-based).
 - `scripts/` contains operational tooling (launchers, shims, audits, and repo maintenance utilities).
+- **Link health:** `uv run scripts/link_audit.py check <file> --dry-run` validates markdown `[label](path)` references; `--fix` rewrites in-place. Also supports `backticks`, `collisions`, and `renames --staged` sub-commands.
 - `mas_mcp/` (when present/used) is the Modular Pulse Workspace logic core.
 - `dumpster-dive/` is high-entropy storage: ignore unless explicitly requested.
+
+## Work-In-Progress Lanework: MILF-Core (Organ-to-Surface-to-Prototype Pipeline)
+
+> Active comparative worklane — entity-prototype research. Do not confuse with finished SSOT structures.
+
+| Step | File | Status |
+|------|------|--------|
+| Step 3: Deep Exploration (Sets + 7 Prototypes) | [MILF-Core-Step3-Deep-Exploration-Prototypes.md](../codex/codex-session-logs/archive/MILF-Core-Step3-Deep-Exploration-Prototypes.md) | WIP |
+| Step 4: Gap Analysis + MILF-Core Spec | [MILF-Core-Prototype-Analysis.md](../codex/codex-session-logs/archive/MILF-Core-Prototype-Analysis.md) | WIP |
+| Genre Metadata | [MILF-Core-Prototype-Analysis.md.genre.json](../codex/codex-session-logs/archive/MILF-Core-Prototype-Analysis.md.genre.json) | WIP |

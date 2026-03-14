@@ -92,6 +92,11 @@ Each lineage operates within declared boundaries. Cross-lane material requires s
 
 **Frozen Probes:**
 - [`scripts/Discover-SSOT-Treasure.ps1`](../../scripts/Discover-SSOT-Treasure.ps1)
+- [`scripts/link_audit.py`](../../scripts/link_audit.py) — Markdown link audit + auto-fix (check, backticks, collisions, renames)
+
+**WIP Lanework (MILF-Core — Organ-to-Surface-to-Prototype Pipeline):**
+- [Step 3: Deep Exploration (Sets + 7 Prototypes)](../../codex/codex-session-logs/archive/MILF-Core-Step3-Deep-Exploration-Prototypes.md)
+- [Step 4: Gap Analysis + MILF-Core Spec](../../codex/codex-session-logs/archive/MILF-Core-Prototype-Analysis.md)
 
 ---
 

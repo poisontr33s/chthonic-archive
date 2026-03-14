@@ -6,6 +6,12 @@ This document maps the bidirectional relationships across all files in the repos
 revealing the tri-modal architecture (Fortress/Garden/Observatory) through ML-synthesized
 identity analysis and PRISM spectral frequency mapping.
 
+> **WIP Lanework: MILF-Core Pipeline** — Steps 1–4 complete, 7 prototypes (P1–P7), 24/24 dimensional coverage.
+> MILF-Core analysis files not yet catalogued in this Triptych:
+> - `codex/codex-session-logs/archive/MILF-Core-Step3-Deep-Exploration-Prototypes.md`
+> - `codex/codex-session-logs/archive/MILF-Core-Prototype-Analysis.md`
+> - `codex/codex-session-logs/archive/MILF-Core-Prototype-Analysis.md.genre.json`
+
 ---
 
 ## 🏰 THE FORTRESS (Rust/Vulkan)

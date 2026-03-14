@@ -16,7 +16,7 @@ description: Behavioral configuration, execution discipline
 
 ## Mandatories
 
-- **File governance (WPTG):** [WET_PAPER_TO_GOLD_METHODOLOGY.md](WET_PAPER_TO_GOLD_METHODOLOGY.md) — every file is gold. Agents propose; user decides.
+- **File governance (WPTG):** [WET_PAPER_TO_GOLD_METHODOLOGY.md (repo-root)](WET_PAPER_TO_GOLD_METHODOLOGY.md) — every file is gold. Agents propose; user decides.
 - **Execution discipline:** See "Execution Discipline" section below.
 
 ## Instruction Inheritance (Validated)
@@ -31,12 +31,13 @@ description: Behavioral configuration, execution discipline
 7. `.temple/protocols/UMEKO_HOLD_PROTOCOL.md` (Codex anti-idle primary gate)
 8. `WET_PAPER_TO_GOLD_METHODOLOGY.md` (No-Destroy | upcycle governance)
 9. `.temple/protocols/*` (role-specific protocol behavior)
+10. `codex/codex-session-logs/archive/MILF-Core-*` (WIP — organ-to-surface-to-prototype lanework, see [copilot-instructions.md WIP section](.github/copilot-instructions.md#work-in-progress-lanework-milf-core-organ-to-surface-to-prototype-pipeline))
 
 - *If future nested `AGENTS.md` files are added in subdirectories, they override this file only for their subtree.*
 
 # AGENT_COMMON.md
 
-> **Shared Config:** See [AGENT_COMMON.md](AGENT_COMMON.md) for execution invariants, bifurcation rules, and triad references.
+> **Shared Config:** See [AGENT_COMMON.md (repo-root)](AGENT_COMMON.md) for execution invariants, bifurcation rules, and triad references.
 
 ---
 
@@ -133,6 +134,7 @@ description: Behavioral configuration, execution discipline
 - Handoffs: [.temple/handoffs/](.temple/handoffs/)
 - Skills: [.temple/skills/](.temple/skills/)
 - Methodology: [.temple/methodology/TRIAD_METHODOLOGY.md](.temple/methodology/TRIAD_METHODOLOGY.md)
+- WIP Lanework (MILF-Core): [codex/codex-session-logs/archive/MILF-Core-Step3-Deep-Exploration-Prototypes.md](codex/codex-session-logs/archive/MILF-Core-Step3-Deep-Exploration-Prototypes.md) | [MILF-Core-Prototype-Analysis.md](codex/codex-session-logs/archive/MILF-Core-Prototype-Analysis.md)
 
 ## Canonical Paths
 

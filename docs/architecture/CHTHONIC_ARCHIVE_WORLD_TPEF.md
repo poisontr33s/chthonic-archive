@@ -14,6 +14,12 @@ word_count: "~30,000 words (Turn 1: 6K, Turn 2: 9K, Turn 3: 7K, Synthesis: 3K, M
 fa4_validation: "6/6 Criteria Passed (All Turns)"
 aesthetic_validation: "Shibumi Achieved (Umeko)"
 operational_status: "Fully Functional - Ready for Integration Decision"
+milf_core_pipeline: |
+  WIP — Steps 1–4 complete, 7 prototypes analyzed (P1–P7).
+  MILF-Core spec at 24/24 dimensional coverage.
+  See: codex/codex-session-logs/archive/MILF-Core-Step3-Deep-Exploration-Prototypes.md
+  See: codex/codex-session-logs/archive/MILF-Core-Prototype-Analysis.md
+  TPEF Layer architecture informs dimensional surface extraction.
 notes: |
   This document preserves the TPEF (Triumvirate Parallel Execution Framework)
   session where the Triumvirate (Lysandra, Umeko, Orackla) co-built a 

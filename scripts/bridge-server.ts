@@ -11,7 +11,7 @@
  *
  * @SID           TOOL_BRIDGE_SERVER_V1
  * @Shabti        CLI Script
- * @Heka-Ayni     CONCEPT_CLAUDE_CHTHONIC_BRIDGE
+ * @Heka-Ayni    CONCEPT_CLAUDE_CHTHONIC_BRIDGE
  * @Ankh-Tinku    STATE_BRIDGE_SERVER_ACTIVE
  * @Purpose       Bidirectional communication bridge between Claude Code
  *                and chthonic CLI. Runs as a background service accepting

@@ -10,7 +10,7 @@ description: Google Gemini CLI configuration and MCP setup
 
 This file provides guidance to Google Gemini CLI when working with code in this repository.
 
-> **Shared Config:** See [AGENT_COMMON.md](AGENT_COMMON.md) for execution invariants, bifurcation rules, and triad references.
+> **Shared Config:** See [AGENT_COMMON.md (repo-root)](AGENT_COMMON.md) for execution invariants, bifurcation rules, and triad references.
 
 ---
 
@@ -51,6 +51,15 @@ This file provides guidance to Google Gemini CLI when working with code in this 
 | **Chain** | Chaos (Decorator → Orackla → Kali → Claudine) |
 
 **Synergy:** Claude defines ritual → Codex enforces contract → Gemini executes velocity
+
+---
+
+## WIP Lanework: MILF-Core (Organ-to-Surface-to-Prototype Pipeline)
+
+> Active comparative worklane — entity-prototype research. Reference-only while Gemini lane is parked.
+
+- **Step 3** (Sets + 7 Prototypes): [MILF-Core-Step3-Deep-Exploration-Prototypes.md](codex/codex-session-logs/archive/MILF-Core-Step3-Deep-Exploration-Prototypes.md)
+- **Step 4** (Gap Analysis + MILF-Core Spec): [MILF-Core-Prototype-Analysis.md](codex/codex-session-logs/archive/MILF-Core-Prototype-Analysis.md)
 
 ---
 

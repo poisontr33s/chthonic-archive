@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "kind": "milf-core-genre",
+  "title": "MILF-Core Temporary SSOT Genre Specification",
+  "generated": "2026-02-11",
+  "status": "temporary-genre",
+  "dependencies": {
+    "ssot": ".github/copilot-instructions.archive.md",
+    "iron_maiden_wip": "codex/codex-session-logs/archive/The-Iron-Maiden.md",
+    "iron_maiden_ssot": "codex/codex-session-logs/archive/The-Iron-Maiden-(SSOT)-Copyright-Savant.md",
+    "iron_maiden_voicepack": "codex/codex-session-logs/archive/The-Iron-Maiden.md.voicepack.json",
+    "surface_candidates": "session-memory: step2-surface-candidates.md"
+  },
+  "reference_models": {
+    "primary": {
+      "name": "Iron Maiden Voice Architecture",
+      "coverage": "11/24 dimensions",
+      "provides": ["voice_personality", "creed_ideology", "whisper_output", "conflict_resolution", "chemical_modulation", "echo_memory", "body_atlas", "session_persistence", "kayfabe_duality", "inventory", "randomization"],
+      "origin": "own-made (DE-inspired but independently evolved)"
+    },
+    "secondary": {
+      "name": "Battletech Systems Engineering",
+      "coverage": "8/24 dimensions",
+      "provides": ["heat_management", "location_damage", "cascading_failure", "ammo_exhaustion", "design_constraints", "critical_hit_tables", "pilot_damage", "movement_tempo"],
+      "origin": "FASA/Catalyst Game Labs (abstracted, not copied)"
+    },
+    "canonical": {
+      "name": "ASC SSOT (Codex Brahmanica Perfectus)",
+      "coverage": "19/24 dimensions (12 full + 7 partial)",
+      "provides": ["24_entity_fidelity", "fa_mastery", "tier_hierarchy", "8_circuits", "faction_system", "whr_values", "language_mandates", "organ_mapping", "surface_candidates", "complementary_pairs", "triadic_groupings", "generating_hierarchy"],
+      "origin": "canonical (sole source of truth)"
+    }
+  },
+  "milf_core_coverage": "24/24 dimensions (full)",
+  "entity_count": 24,
+  "voice_count": 23,
+  "silent_entity": "Null Matriarch (T0.01 — pre-architectural void, no voice)",
+  "critical_nodes": 11,
+  "circuits": 8,
+  "conflict_pairs": 9,
+  "card_schema_layers": [
+    "iron_maiden_layer (Nature + Creed + Whisper)",
+    "battletech_layer (Heat + Armor + Critical + Ammo + Tonnage)",
+    "ssot_canonical_layer (Organ + System + Circuit + Surface + Faction + ET-S + FA + WHR + Mandate + Chain)"
+  ],
+  "system_mechanics": [
+    "voice_conflict_resolution",
+    "heat_budget",
+    "cascading_somatic_rule",
+    "circuit_flow_direction",
+    "design_tonnage_limit",
+    "chemical_currents_engine",
+    "echo_memory_trigger_system",
+    "kayfabe_audit_layer",
+    "constrained_randomization",
+    "session_persistence"
+  ],
+  "prototype_gap_analysis": {
+    "P1_disco_elysium": {"coverage": "2/11 partial", "best_at": "voice/personality", "lacks": "conflict_logic, chemicals, echoes, persistence, kayfabe"},
+    "P2_tarot_arcana": {"coverage": "0/11", "best_at": "symbolic_ordering", "lacks": "all_dynamic_dimensions"},
+    "P3_set_collection": {"coverage": "0/11", "best_at": "circuit_completion", "lacks": "all_personality_dimensions"},
+    "P4_tableau_engine": {"coverage": "2/11 partial", "best_at": "resource_flow", "lacks": "voice, conflict, echoes, body_atlas, kayfabe"},
+    "P5_dnd_stat_block": {"coverage": "1/11 partial", "best_at": "stat_modeling", "lacks": "voice, creed, chemicals, echoes, persistence, kayfabe"},
+    "P6_organ_circuit": {"coverage": "1/11 partial", "best_at": "circuit_fidelity", "lacks": "creed, whisper, conflict, chemicals, echoes, kayfabe"}
+  }
+}

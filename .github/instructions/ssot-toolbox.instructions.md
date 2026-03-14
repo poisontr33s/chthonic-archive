@@ -46,9 +46,25 @@
 | `SESSION_CACHE_STRUCTURED.md` | Tier 1 working memory |
 | `SSOTI_FIED_SESSION_LOG.md` | Tier 2 forensic recovery |
 
+**Active WIP Lanework:**
+| File | Purpose |
+|------|--------|
+| [MILF-Core-Step3-Deep-Exploration-Prototypes.md](../../codex/codex-session-logs/archive/MILF-Core-Step3-Deep-Exploration-Prototypes.md) | Step 3: 12 dimensions, 5 set structures, 7 prototypes, comparison matrices |
+| [MILF-Core-Prototype-Analysis.md](../../codex/codex-session-logs/archive/MILF-Core-Prototype-Analysis.md) | Step 4: Gap analysis, Iron Maiden cross-ref, Battletech, MILF-Core spec |
+
 ---
 
 ## Quick Access Commands
+
+### Markdown Link Health
+
+| Tool | Command |
+|------|---------|
+| **Dry-Run Audit** | `uv run scripts/link_audit.py check <file> --dry-run` |
+| **Auto-Fix** | `uv run scripts/link_audit.py check <file> --fix` |
+| **Backtick Upgrade** | `uv run scripts/link_audit.py backticks <file> --fix` |
+| **Collision Index** | `uv run scripts/link_audit.py collisions --filter .md` |
+| **Staged Renames** | `uv run scripts/link_audit.py renames --staged --dry-run` |
 
 ### Navigation & Structure
 
@@ -107,6 +123,7 @@ Use `-Root` to detect deviations from canonical acronyms. Single-use variants fl
 
 | File | Purpose | Update Frequency |
 |------|---------|------------------|
+| `link_audit.py` | Markdown `[label](path)` validation, auto-fix, collision index, inert backtick upgrader | Static tool |
 | `ssot_outline_extractor.ps1` | Dynamic header extraction (same as VS Code Outline) | Static tool |
 | `ssot_acronym_audit.ps1` | Acronym consistency checker & deviation detector | Static tool |
 | `ssot_crc_selector.ps1` | CRC selection by task type or keywords | Static tool |

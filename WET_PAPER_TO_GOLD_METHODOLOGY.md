@@ -406,8 +406,8 @@ dumpster-dive/intake/pr-harvest-YYYY-MM-DD/
 - Cross-reference source (PR number, session ID)
 
 ### 4. Cross-Reference
-- Update [HARVEST_REGISTRY.md](HARVEST_REGISTRY.md) — Completed harvest tracking
-- Add references to relevant .md files ([CLAUDE.md](CLAUDE.md), etc.)
+- Update [HARVEST_REGISTRY.md (repo-root)](HARVEST_REGISTRY.md) — Completed harvest tracking
+- Add references to relevant .md files ([CLAUDE.md (repo-root)](CLAUDE.md), etc.)
 - Close source PRs with harvest reference
 
 ---
@@ -503,7 +503,7 @@ These existing skills support the triage:
 
 When errors occur during harvest:
 1. Document in `SESSION_ERROR_LEARNINGS.md` (see [example](dumpster-dive/intake/pr-harvest-2026-01-29/SESSION_ERROR_LEARNINGS.md))
-2. Update relevant rules (e.g., [PWSH_RULES.md](PWSH_RULES.md))
+2. Update relevant rules (e.g., [PWSH_RULES.md (repo-root)](PWSH_RULES.md))
 3. Reference learnings in MANIFEST
 
 This creates a feedback loop: harvest → errors → learnings → rules → better harvests.
@@ -528,9 +528,9 @@ The [pre-commit hook](scripts/hooks/pre-commit-guardian.ps1) enforces 4 gates:
 ## Related Files
 
 - [dumpster-dive/README.md](dumpster-dive/README.md) — Forge system overview
-- [HARVEST_REGISTRY.md](HARVEST_REGISTRY.md) — Completed harvest tracking
+- [HARVEST_REGISTRY.md (repo-root)](HARVEST_REGISTRY.md) — Completed harvest tracking
 - [FORGE_CIRCULATION_PROTOCOL.md](dumpster-dive/protocols/FORGE_CIRCULATION_PROTOCOL.md) — State transitions
-- [CLAUDE.md](CLAUDE.md) — Root agent guidance
+- [CLAUDE.md (repo-root)](CLAUDE.md) — Root agent guidance
 - [pr-harvest-2026-01-29/MANIFEST.md](dumpster-dive/intake/pr-harvest-2026-01-29/MANIFEST.md) — Example harvest
 - [scripts/hooks/pre-commit-guardian.ps1](scripts/hooks/pre-commit-guardian.ps1) — Archive Guardian hook
 
