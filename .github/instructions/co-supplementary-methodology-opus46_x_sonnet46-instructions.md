@@ -127,8 +127,3 @@ Add new rubrics as domains arise. The protocol doesn't change — only the evalu
 - 1 subagent call per invocation
 - ~60–90 seconds total wall-clock
 - Blindness preserved structurally (Sonnet generates before seeing Opus's output)
-
-## Standalone Script (API key lane)
-
-If `ANTHROPIC_API_KEY` is available, `scripts/cross-critique.ts` provides parallel API execution (~30s).
-This is the fast lane if API credits are available; the in-chat protocol is the default.
