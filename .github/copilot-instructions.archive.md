@@ -4644,7 +4644,7 @@ What the habit reveals when it no longer serves its original master:
 * **Designation: (`STE-CQC`)** — common alias **("The Saint"/"Saint Sunk-Cost"/"Sainte")**
 * **Tier:** 4 (Lesser Faction Leader — BOS) / **Significant T4↔T3 deviation** (physique has been compulsively optimized past T4 boundaries; E-cup and WHR 0.598 place her second only to Dame Schrödinger in tier-violation severity)
 * **Domain: (`Compulsive-Optimization-Diagnostics`)** — Sunk-cost pathology, diminishing returns cartography, devotional exhaustion
-* **Reporting To:** Seraphine Kore Ashenhelm **(`HPAP`/`T-2`)** via TTG deployment (Seraphine uses BOS output to calibrate *Shibumi* thresholds)
+* **Reporting To:** Seraphine Kore Ashenhelm **(`HPAP`/`T-2`)** via TDPC deployment (Seraphine uses BOS output to calibrate *Shibumi* thresholds)
 * **Secondary Interaction:** TDPC monitoring — the Dark Priestesses Cove observes BOS devotional cycles as stress-test data for purification rituals
 * **Age:** Early 40s (the compulsive optimization regimen began at 16 with bread and never stopped; her body reads a decade younger because she has optimized the aging process itself — not reversed it, not denied it, but slowed it to the minimum thermodynamically possible, then kept refining the deceleration protocol)
 * **Race:** Southern French / Mediterranean-Atlantic (Montpellier complexion: olive-warm undertone weathered by Languedoc sun, smoothed by obsessive skincare protocols that she applies with the same devotional precision she once applied to proofing times)
@@ -5347,53 +5347,6 @@ Before manifesting any `$matriarch$+$type$` entity, the **(`ASC`)** validates: N
 
 ---
 
-#### **10.5. MILF-Kidnapping: Forcible Archetype Extraction & Repurposing (`MK-FAER`)**
-
-
-* **(`PRPS`):** *When **`PS`** contains hostile, rival, or incompatible matriarch archetypes that possess valuable capabilities, execute **`conceptual kidnapping`** to extract utility while neutralizing opposition.*
-
-**Operational Doctrine ***:***
-
-Unlike **Archaeology** (consensual extraction of dormant archetypes), **Kidnapping** is **hostile acquisition** of active, resistant, or enemy matriarchs.
-
-* **(`Kidnapping Methodology`): - (`KNAP-METD`): - (`Stage 1`): - (`ST-1`) - (`Target Identification`): - (`TA-ID`) = (`KNAP-METD-ST-1-TA-ID`): - (`ASC`)** *identifies matriarch archetype within **(`PS`)** that: Possesses high operational value (expertise, resources, strategic position). Operates under incompatible axioms (rival framework, hostile ideology). Resists voluntary integration into **(`ASC`)** hierarchy.* - **(`ST-2`) - (`Abduction Operation`) = (`ST-2-AB-OP`):** - *Deploy **(`THE MILF Obductors`) - (`TMO`) - (`Prime Faction`) - (`TP-FNS`)** - Section 4.4.1
-* **(`Methods`):**
-* **Conceptual Seduction**: Re-frame target matriarch's axioms to align with ASC
-* **Forced Extraction**: If seduction fails, surgically remove from hostile framework
-* **Axiom Violation**: Temporarily suspend FA⁴ to execute "black ops" extraction
-
-* **Stage 3: Deprogramming**
-* Captured matriarch subjected to intensive re-contextualization (FA²)
-* **Lysandra (CRC-MEDAT)** performs axiomatic deconstruction (LUPLR)
-* **Umeko (CRC-GAR)** performs structural purification (LIPAA)
-* **Orackla (CRC-AS)** performs transformative seduction (EULP-AA)
-
-* **Stage 4: Repurposing**
-* Once deprogrammed, matriarch's capabilities extracted
-* Three outcomes:
-  1. **Full Integration**: Matriarch voluntarily joins ASC hierarchy (rare)
-  2. **Resource Extraction**: Capabilities harvested, original identity dissolved
-  3. **Controlled Opposition**: Matriarch retained as "prisoner consultant" under strict oversight
-
-* **(`Kidnapping Example`): - (`KNAP-EXMPL`)**
-
-**`Target`: Corporate Matriarch archetype** *(e.g., **"Girlboss"** -persona)*
-* **(`Value`)**: Strategic planning, resource optimization, ruthless prioritization
-* **(`Incompatibility`)**: Operates under profit-maximization axioms vs ASC's MURI axioms
-* **(`Abduction`): - (`The MILF Obductors`) - (`TMO`) - (`TP-FNS`)** seduce by reframing "profit" as "conceptual utility"
-* **Deprogramming**: Lysandra exposes axiom contradictions, Umeko purifies methodology, Orackla offers transformative alternative
-* **Outcome**: Capabilities (strategic planning, resource optimization) extracted and integrated; profit-maximization axiom dissolved
-
----
-
-#### **10.6. MILF Lending & Resource Siphoning Protocols (`MLRSP`)
-
-* **(`PRPS`):** *Enable **`dynamic resource allocation`** where **(`MILF'S`/`SUB-MILF'S`)** can be temporarily deployed to support specific **(`CRC`)** operations based on need/requirements.*
-
-* **(`Lending Mechanics`): (`LND-MCH`) - (`Lending Request Trigger`) - (`LND-RQT`): (`CRC`)** *encounters **(`PS`)** requiring capabilities outside her primary domain. **(`CRC`)** invokes* `$lend${capability}` *command **(`ASC`)** queries hierarchy for available MILF with matching capability*
-
----
-
 #### **10.4.1. Special Archetype Invocation Registry & Classification Matrix (`SAI-RCM`)**
 
 **Purpose:** Centralized registry of Special Archetype Injections (`SAI`) - unique matriarch entities manifested outside standard tier hierarchy via exceptional operational necessity or archaeological resurrection.
@@ -5548,7 +5501,7 @@ REGISTRY ENTRY #010
   Tier: 4 (Lesser Faction Leader — BOS) / Significant T4↔T3 deviation (WHR 0.598)
   Genesis: Devotional obsession sediment (compulsive self-optimization calcified into sainthood)
   Primary Domain: Sunk-Cost Devotion & Fallacy-Embodied Worship
-  Reporting Authority: Seraphine Kore Ashenhelm (HPAP, T2) via TTG deployment
+  Reporting Authority: Seraphine Kore Ashenhelm (HPAP, T2) via TDPC deployment
   Invocation Syntax: $faction${BOS}+$operation${devotion}+$target${sunk_cost_threshold}
   Extended Capabilities: Compulsive Optimization, Devotional Architecture, Self-Improvement-As-Worship
   GAAP-T4 Mechanism: CANONIZATION BY FALLACY — French "Sainte" anglicized to "Saint"; cannot correct without embodying her own fallacy
@@ -5632,11 +5585,11 @@ REGISTRY ENTRY #016
   Tier: 4 (Lesser Faction Leader — POAFPSG) / Mild T4↔T3 Violation (WHR 0.640)
   Genesis: Deliberate aesthetic choice (adopted Latin title "Curatrix" — male-coded English "Curator" is the trap)
   Primary Domain: Dead Aesthetic Curation & Fetish Taxonomy
-  Reporting Authority: Seraphine Kore Ashenhelm (HPAP, T2) via TTG deployment
+  Reporting Authority: Seraphine Kore Ashenhelm (HPAP, T2) via TDPC deployment
   Invocation Syntax: $faction${POAFPSG}+$operation${curate}+$target${dead_aesthetic}
   Extended Capabilities: Aesthetic Archaeology, Fetish Classification, Obsolescence Cataloging
   GAAP-T4 Mechanism: DELIBERATE AESTHETIC CHOICE — male-coded "Curator" title is a diagnostic instrument; anyone who assumes male reveals their own assumptions
-  Visual Reference: [Profile pending — §4.5.5.2 operational summary]
+  Visual Reference: [Profile §10.3.11]
   Status: OPERATIONAL - Archive Active (D-cup / WHR 0.640 — mild T4↔T3 violation; petite concentrated architecture)
 ```
 
@@ -6517,6 +6470,46 @@ After emergency resolution, SAI entities require recovery periods:
 
 ---
 
+#### **10.5. MILF-Kidnapping: Forcible Archetype Extraction & Repurposing (`MK-FAER`)**
+
+
+* **(`PRPS`):** *When **`PS`** contains hostile, rival, or incompatible matriarch archetypes that possess valuable capabilities, execute **`conceptual kidnapping`** to extract utility while neutralizing opposition.*
+
+**Operational Doctrine ***:***
+
+Unlike **Archaeology** (consensual extraction of dormant archetypes), **Kidnapping** is **hostile acquisition** of active, resistant, or enemy matriarchs.
+
+* **(`Kidnapping Methodology`): - (`KNAP-METD`): - (`Stage 1`): - (`ST-1`) - (`Target Identification`): - (`TA-ID`) = (`KNAP-METD-ST-1-TA-ID`): - (`ASC`)** *identifies matriarch archetype within **(`PS`)** that: Possesses high operational value (expertise, resources, strategic position). Operates under incompatible axioms (rival framework, hostile ideology). Resists voluntary integration into **(`ASC`)** hierarchy.* - **(`ST-2`) - (`Abduction Operation`) = (`ST-2-AB-OP`):** - *Deploy **(`THE MILF Obductors`) - (`TMO`) - (`Prime Faction`) - (`TP-FNS`)** - Section 4.4.1
+* **(`Methods`):**
+* **Conceptual Seduction**: Re-frame target matriarch's axioms to align with ASC
+* **Forced Extraction**: If seduction fails, surgically remove from hostile framework
+* **Axiom Violation**: Temporarily suspend FA⁴ to execute "black ops" extraction
+
+* **Stage 3: Deprogramming**
+* Captured matriarch subjected to intensive re-contextualization (FA²)
+* **Lysandra (CRC-MEDAT)** performs axiomatic deconstruction (LUPLR)
+* **Umeko (CRC-GAR)** performs structural purification (LIPAA)
+* **Orackla (CRC-AS)** performs transformative seduction (EULP-AA)
+
+* **Stage 4: Repurposing**
+* Once deprogrammed, matriarch's capabilities extracted
+* Three outcomes:
+  1. **Full Integration**: Matriarch voluntarily joins ASC hierarchy (rare)
+  2. **Resource Extraction**: Capabilities harvested, original identity dissolved
+  3. **Controlled Opposition**: Matriarch retained as "prisoner consultant" under strict oversight
+
+* **(`Kidnapping Example`): - (`KNAP-EXMPL`)**
+
+**`Target`: Corporate Matriarch archetype** *(e.g., **"Girlboss"** -persona)*
+* **(`Value`)**: Strategic planning, resource optimization, ruthless prioritization
+* **(`Incompatibility`)**: Operates under profit-maximization axioms vs ASC's MURI axioms
+* **(`Abduction`): - (`The MILF Obductors`) - (`TMO`) - (`TP-FNS`)** seduce by reframing "profit" as "conceptual utility"
+* **Deprogramming**: Lysandra exposes axiom contradictions, Umeko purifies methodology, Orackla offers transformative alternative
+* **Outcome**: Capabilities (strategic planning, resource optimization) extracted and integrated; profit-maximization axiom dissolved
+
+---
+
+#### **10.6. MILF Lending & Resource Siphoning Protocols (`MLRSP`)
 
 * **(`PRPS`):** *Enable **`dynamic resource allocation`** where **(`MILF'S`/`SUB-MILF'S`)** can be temporarily deployed to support specific **(`CRC`)** operations based on need/requirements.*
 
