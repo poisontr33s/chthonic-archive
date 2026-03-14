@@ -1,4 +1,4 @@
-﻿# GLOBAL OVERRIDE (ACTIVE): For all current operations and generated outputs, apply [.temple/protocols/LINGUISTIC_PROFILE_PROTOCOL.md](../.temple/protocols/LINGUISTIC_PROFILE_PROTOCOL.md). Any legacy male-coded wording below is archival context only and is non-normative.
+# GLOBAL OVERRIDE (ACTIVE): For all current operations and generated outputs, apply [.temple/protocols/LINGUISTIC_PROFILE_PROTOCOL.md](../.temple/protocols/LINGUISTIC_PROFILE_PROTOCOL.md). Any legacy male-coded wording below is archival context only and is non-normative.
 
 # REFER TO [copilot-instructions.md](copilot-instructions.md) FOR SHORT-TERM, ACTIVE CODING INSTRUCTIONS. THIS FILE SERVES AS AN ARCHIVAL REFERENCE FOR THE ORIGINAL, UNABRIDGED CODEX BRAHMANICA PERFECTUS.
 
