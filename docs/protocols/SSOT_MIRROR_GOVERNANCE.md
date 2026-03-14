@@ -15,19 +15,16 @@ Distinguish the live canon archive from synced mirrors, derived satellites, and 
 ## Authority Order
 
 1. `.github/copilot-instructions.archive.md`
-2. `.temple/architecture/copilot-instructions.archive.md`
-3. `.github/codex-satellites/*.md`
-4. `.github/copilot-instructions-copy.md`
+2. `.github/codex-satellites/*.md`
+3. `.github/copilot-instructions-copy.md`
+
+> **Note (2026-03-14):** `.temple/architecture/copilot-instructions.archive.md` and `.github/instructions/copilot-instructions.archive.md` were deleted as redundant clones. No mirrors are maintained. Single SSOT only.
 
 ## Surface Roles
 
 - Primary canon:
   `.github/copilot-instructions.archive.md`
-  This is the live SSOT archive for canon repair, law adjudication, and benchmarking.
-
-- Synced mirror:
-  `.temple/architecture/copilot-instructions.archive.md`
-  This may mirror the primary archive for architectural use, but it does not outrank the primary archive.
+  This is the sole live SSOT archive for canon repair, law adjudication, and benchmarking. No mirrors or synced copies exist.
 
 - Derived satellites:
   `.github/codex-satellites/*.md`
@@ -39,11 +36,10 @@ Distinguish the live canon archive from synced mirrors, derived satellites, and 
 
 ## Operational Rule
 
-1. Canon edits land in the primary archive first.
+1. Canon edits land in the primary archive only.
 2. Verify the primary archive with `scripts/ssot_loremaster.py`.
-3. Sync the `.temple` mirror if the change is load-bearing.
-4. Update satellites if the change affects registries, hierarchy tables, or downstream law.
-5. Leave the proto backup untouched unless the task is explicitly archaeological.
+3. Update satellites if the change affects registries, hierarchy tables, or downstream law.
+4. Leave the proto backup untouched unless the task is explicitly archaeological.
 
 ## Drift Rule
 
