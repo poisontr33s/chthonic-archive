@@ -54,6 +54,30 @@ function Get-RvRubyBinDir {
 # Resolve the best available RubyInstaller DevKit root (for MSYS2/UCRT64 toolchain).
 # Note: rv manages Ruby versions; RubyInstaller provides the DevKit (gcc, make, etc.).
 function Get-RubyDevKitRoot {
+    $rvCmd = Get-CommandResolution -Name "rvw"
+    if (-not $rvCmd) {
+        $rvCmd = Get-CommandResolution -Name "rv.exe"
+    }
+    if (-not $rvCmd) {
+        $rvCmd = Get-CommandResolution -Name "rv"
+    }
+
+    if ($rvCmd) {
+        try {
+            $rvExe = if ($rvCmd.Path) { $rvCmd.Path } elseif ($rvCmd.Definition -and (Test-Path $rvCmd.Definition)) { $rvCmd.Definition } else { $null }
+            if ($rvExe) {
+                $rubyExe = (& $rvExe ruby find 2>$null | Select-Object -First 1)
+                if ($rubyExe) {
+                    $rubyRoot = Split-Path (Split-Path $rubyExe -Parent) -Parent
+                    $rvDevkit = Join-Path $rubyRoot "msys64\ucrt64\bin\gcc.exe"
+                    if (Test-Path $rvDevkit) {
+                        return $rubyRoot
+                    }
+                }
+            }
+        } catch {}
+    }
+
     $devkitRoots = @(
         "C:\Ruby40-x64",
         "D:\Ruby40-x64",
@@ -62,7 +86,15 @@ function Get-RubyDevKitRoot {
     )
 
     foreach ($root in $devkitRoots) {
-        if (Test-Path (Join-Path $root "msys64\ucrt64\bin\gcc.exe")) {
+        if ([string]::IsNullOrWhiteSpace($root)) { continue }
+
+        $drive = [System.IO.Path]::GetPathRoot($root)
+        if ([string]::IsNullOrWhiteSpace($drive) -or -not (Test-Path $drive)) {
+            continue
+        }
+
+        $candidate = Join-Path $root "msys64\ucrt64\bin\gcc.exe"
+        if (Test-Path $candidate) {
             return $root
         }
     }
@@ -1218,7 +1250,15 @@ function Show-PolyglotStatus {
             $tools['node'] = 'not found'
         }
     } catch { $tools['node'] = 'not found' }
-    try { $tools['python'] = (uv run python --version 2>&1) -replace 'Python\s*','' } catch { $tools['python'] = 'not found' }
+    try {
+        $uvPython = $null
+        try { $uvPython = (uv python find 2>$null | Select-Object -First 1) } catch {}
+        if ($uvPython -and (Test-Path $uvPython)) {
+            $tools['python'] = ((& $uvPython --version 2>$null) -replace 'Python\s*','').Trim()
+        } else {
+            $tools['python'] = 'not found'
+        }
+    } catch { $tools['python'] = 'not found' }
     if ($tools['go'] -eq 'not found') {
         $goupGo = Join-Path $env:USERPROFILE ".goup\current\bin\go.exe"
         if (Test-Path $goupGo) {
@@ -1907,8 +1947,14 @@ function Get-InstalledVersion {
         switch ($Tool) {
             "ruby"       { $v = ruby -e "print RUBY_VERSION" 2>$null; return $v }
             "python"     {
-                $v = try { uv run python -c "import sys; print(f'{sys.version_info.major}.{sys.version_info.minor}.{sys.version_info.micro}')" 2>$null } catch { $null }
-                if ($v) { return $v }
+                $v = $null
+                try {
+                    $uvPython = (uv python find 2>$null | Select-Object -First 1)
+                    if ($uvPython -and (Test-Path $uvPython)) {
+                        $v = & $uvPython --version 2>$null
+                    }
+                } catch { $v = $null }
+                if ($v -match 'Python\s+(\d+\.\d+\.\d+)') { return $matches[1] }
                 $py = try { python --version 2>$null } catch { $null }
                 if ($py -match 'Python\s+(\d+\.\d+\.\d+)') { return $matches[1] }
                 return $null
@@ -1992,7 +2038,7 @@ function Compare-Versions {
 $global:DoctorFixMap = @{
     ruby   = @{
         Upgrade = { param($ver) rv ruby install $ver; rv ruby pin $ver }; UpgradeDesc = "rv ruby install && pin"
-        Install = { param($ver) cargo install rv; rv ruby install $ver; rv ruby pin $ver }; InstallDesc = "cargo install rv && rv ruby install && pin"
+        Install = { param($ver) if (-not (Get-Command rvw -ErrorAction SilentlyContinue)) { irm https://rv.dev/install.ps1 | iex }; rv ruby install $ver; rv ruby pin $ver }; InstallDesc = "install rv.dev (if missing) && rv ruby install && pin"
     }
     python = @{
         Upgrade = {
@@ -2038,7 +2084,7 @@ function Show-Origins {
 
     # Core ANNO-managed tools
     $tools = @(
-        @{ Name = "ruby";    Cmd = "ruby";    Method = "rv (cargo install rv)";     Ecosystem = "cargo" },
+        @{ Name = "ruby";    Cmd = "ruby";    Method = "rv (irm rv.dev/install.ps1)";     Ecosystem = "cargo" },
         @{ Name = "python";  Cmd = "uv";      Method = "irm astral.sh/uv";          Ecosystem = "uv" },
         @{ Name = "bun";     Cmd = "bun";     Method = "irm bun.sh";                Ecosystem = "bun" },
         @{ Name = "rust";    Cmd = "rustc";   Method = "rustup (irm rustup.rs)";     Ecosystem = "cargo" },
@@ -3351,3 +3397,8 @@ switch ($Domain) {
         }
     }
 }
+
+
+
+
+

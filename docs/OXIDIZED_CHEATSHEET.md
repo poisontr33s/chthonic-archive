@@ -226,7 +226,7 @@ uv cache clean               # clear cache
 ```
 rv ruby list                 # installed + available Ruby versions
 rv ruby install 4.0.1        # install a version
-rv ruby install latest       # install latest stable
+rv ruby install              # install pinned/current stable from rv
 rv ruby pin 4.0.1            # write .ruby-version for this project
 rv ruby find                 # show path to active Ruby executable
 rv ruby dir                  # show all Ruby install directory
@@ -264,7 +264,7 @@ rv cache                     # manage rv cache
 ```powershell
 rv selfupdate                        # update rv itself
 rv ruby list                         # see installed + available Rubies
-rv ruby install latest              # install latest stable Ruby
+rv ruby install 4.0.1               # install the repo-aligned Ruby runtime
 rv ruby pin 4.0.1                   # pin project version explicitly
 
 ruby --version                      # verify active Ruby
@@ -611,3 +611,4 @@ The compilation probe IS the real Windows test. The reference doc is the verifie
 ---
 
 *Authored: 2026-03-11. Command data sourced from official docs for uv, rv, goup, bun, fnm, rig, mise, proto, rustup.*
+

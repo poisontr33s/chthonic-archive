@@ -35,6 +35,25 @@ $CONFIG_FILE = Join-Path $STATE_DIR "config.json"
 
 # Resolve the best available RubyInstaller+DevKit root (prefer newest lane).
 function Get-RubyDevKitRoot {
+  $rvCandidates = @(
+    (Join-Path $env:USERPROFILE ".cargo\bin\rvw.exe"),
+    (Join-Path $env:USERPROFILE ".cargo\bin\rv.exe")
+  )
+
+  foreach ($rvExe in $rvCandidates) {
+    if (-not (Test-Path $rvExe)) { continue }
+    try {
+      $rubyExe = (& $rvExe ruby find 2>$null | Select-Object -First 1)
+      if (-not $rubyExe) { continue }
+
+      $rubyRoot = Split-Path (Split-Path $rubyExe -Parent) -Parent
+      $rvDevkit = Join-Path $rubyRoot "msys64\ucrt64\bin\gcc.exe"
+      if (Test-Path $rvDevkit) {
+        return $rubyRoot
+      }
+    } catch {}
+  }
+
   $rubyRoots = @(
     "C:\Ruby40-x64",
     "D:\Ruby40-x64",
@@ -51,7 +70,15 @@ function Get-RubyDevKitRoot {
   )
 
   foreach ($root in $rubyRoots) {
-    if (Test-Path (Join-Path $root "bin\ruby.exe")) {
+    if ([string]::IsNullOrWhiteSpace($root)) { continue }
+
+    $drive = [System.IO.Path]::GetPathRoot($root)
+    if ([string]::IsNullOrWhiteSpace($drive) -or -not (Test-Path $drive)) {
+      continue
+    }
+
+    $candidate = Join-Path $root "bin\ruby.exe"
+    if (Test-Path $candidate) {
       return $root
     }
   }
@@ -78,6 +105,7 @@ $rubyDevkitPaths = Get-RubyDevKitPaths
 $defaultPolyglotPaths = @(
     "$env:USERPROFILE\.bun\bin",
     "$env:USERPROFILE\.cargo\bin",
+    "$env:USERPROFILE\.goup\current\bin",
     "C:\Go\bin",
     "$env:USERPROFILE\go\bin",
     "$env:USERPROFILE\.local\bin"
@@ -217,3 +245,5 @@ if ($ApplyToSession) {
 }
 
 Log "Probe complete."
+
+

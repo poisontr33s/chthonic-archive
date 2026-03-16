@@ -1,0 +1,48 @@
+2026-03-16 19:29:29 Starting Toolchain PATH Probe...
+2026-03-16 19:29:29 Repo Root: C:\Users\eldno\chthonic-archive
+2026-03-16 19:29:29 Loading polyglot paths...
+2026-03-16 19:29:29   + Added: C:\Users\eldno\.bun\bin
+2026-03-16 19:29:29   + Added: C:\Users\eldno\.cargo\bin
+2026-03-16 19:29:29   + Added: C:\Users\eldno\.goup\current\bin
+2026-03-16 19:29:29   - Skipped (missing): C:\Go\bin
+2026-03-16 19:29:29   + Added: C:\Users\eldno\go\bin
+2026-03-16 19:29:29   + Added: C:\Users\eldno\.local\bin
+2026-03-16 19:29:29   + Added: C:\Program Files\Git\cmd
+2026-03-16 19:29:29 Constructed PATH with 47 entries.
+2026-03-16 19:29:29 Wrote probed PATH to: C:\Users\eldno\chthonic-archive\dumpster-dive\intake\toolchain-probe\probed_path_20260316_192929.txt
+2026-03-16 19:29:29 Applied new PATH to current session.
+2026-03-16 19:29:29   [OK] Found go
+2026-03-16 19:29:29 Starting Toolchain PATH Probe...
+2026-03-16 19:29:29 Repo Root: C:\Users\eldno\chthonic-archive
+2026-03-16 19:29:29   [WARN] Could not find ruby
+2026-03-16 19:29:29   [OK] Found bun
+2026-03-16 19:29:29 Loading polyglot paths...
+2026-03-16 19:29:29   [OK] Found uv
+2026-03-16 19:29:29   [OK] Found cargo
+2026-03-16 19:29:29 Probe complete.
+2026-03-16 19:29:29   + Added: C:\Users\eldno\.bun\bin
+2026-03-16 19:29:29   + Added: C:\Users\eldno\.cargo\bin
+2026-03-16 19:29:29   + Added: C:\Users\eldno\.goup\current\bin
+2026-03-16 19:29:29   - Skipped (missing): C:\Go\bin
+2026-03-16 19:29:29   + Added: C:\Users\eldno\go\bin
+2026-03-16 19:29:29   + Added: C:\Users\eldno\.local\bin
+2026-03-16 19:29:29   + Added: C:\Program Files\Git\cmd
+2026-03-16 19:29:29 Starting Toolchain PATH Probe...
+2026-03-16 19:29:29 Repo Root: C:\Users\eldno\chthonic-archive
+2026-03-16 19:29:30 Loading polyglot paths...
+2026-03-16 19:29:30   + Added: C:\Users\eldno\.bun\bin
+2026-03-16 19:29:30   + Added: C:\Users\eldno\.cargo\bin
+2026-03-16 19:29:30   + Added: C:\Users\eldno\.goup\current\bin
+2026-03-16 19:29:30   - Skipped (missing): C:\Go\bin
+2026-03-16 19:29:30   + Added: C:\Users\eldno\go\bin
+2026-03-16 19:29:30   + Added: C:\Users\eldno\.local\bin
+2026-03-16 19:29:30   + Added: C:\Program Files\Git\cmd
+2026-03-16 19:29:30 Constructed PATH with 47 entries.
+2026-03-16 19:29:30 Wrote probed PATH to: C:\Users\eldno\chthonic-archive\dumpster-dive\intake\toolchain-probe\probed_path_20260316_192929.txt
+2026-03-16 19:29:30 Applied new PATH to current session.
+2026-03-16 19:29:30   [OK] Found go
+2026-03-16 19:29:30   [WARN] Could not find ruby
+2026-03-16 19:29:30   [OK] Found bun
+2026-03-16 19:29:30   [OK] Found uv
+2026-03-16 19:29:30   [OK] Found cargo
+2026-03-16 19:29:30 Probe complete.

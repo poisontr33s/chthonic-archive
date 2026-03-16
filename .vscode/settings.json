@@ -130,7 +130,7 @@
     "terminal.integrated.stickyScroll.enabled": false,
     "terminal.integrated.commandsToSkipShell": ["bash", "wsl", "ubuntu"],
     "terminal.integrated.env.windows": {
-    "PATH": "${env:PATH};C:\\Program Files\\PowerShell\\7;C:\\Users\\erdno\\.bun\\bin;C:\\Users\\erdno\\.cargo\\bin;C:\\Users\\erdno\\.goup\\current\\bin;C:\\Users\\erdno\\.local\\bin;C:\\Users\\erdno\\AppData\\Roaming\\rv\\rubies\\ruby-4.0.1\\bin;C:\\Ruby40-x64\\msys64\\ucrt64\\bin;C:\\Ruby40-x64\\msys64\\usr\\bin;C:\\Program Files\\Git\\cmd;C:\\Users\\erdno\\AppData\\Roaming\\Code - Insiders\\User\\globalStorage\\github.copilot-chat\\debugCommand;C:\\Users\\erdno\\AppData\\Roaming\\Code - Insiders\\User\\globalStorage\\github.copilot-chat\\copilotCli;C:\\Windows\\System32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0;C:\\Program Files\\GitHub CLI;C:\\Users\\erdno\\AppData\\Local\\Programs\\Microsoft VS Code Insiders\\bin;C:\\Users\\erdno\\AppData\\Local\\Microsoft\\WinGet\\Packages\\GitHub.Copilot.Prerelease_Microsoft.Winget.Source_8wekyb3d8bbwe;C:\\Users\\erdno\\AppData\\Local\\GitHubDesktop\\bin;C:\\Program Files\\Git\\bin;C:\\Program Files\\Git\\usr\\bin",
+    "PATH": "${env:PATH};C:\\Program Files\\PowerShell\\7;${env:USERPROFILE}\\.bun\\bin;${env:USERPROFILE}\\.cargo\\bin;${env:USERPROFILE}\\.goup\\current\\bin;${env:USERPROFILE}\\.local\\bin;${env:APPDATA}\\rv\\rubies\\ruby-4.0.1\\bin;C:\\Ruby40-x64\\msys64\\ucrt64\\bin;C:\\Ruby40-x64\\msys64\\usr\\bin;C:\\Program Files\\Git\\cmd;${env:APPDATA}\\Code - Insiders\\User\\globalStorage\\github.copilot-chat\\debugCommand;${env:APPDATA}\\Code - Insiders\\User\\globalStorage\\github.copilot-chat\\copilotCli;C:\\Windows\\System32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0;C:\\Program Files\\GitHub CLI;${env:LOCALAPPDATA}\\Programs\\Microsoft VS Code Insiders\\bin;${env:LOCALAPPDATA}\\Microsoft\\WinGet\\Packages\\GitHub.Copilot.Prerelease_Microsoft.Winget.Source_8wekyb3d8bbwe;${env:LOCALAPPDATA}\\GitHubDesktop\\bin;C:\\Program Files\\Git\\bin;C:\\Program Files\\Git\\usr\\bin",
         "RUST_BACKTRACE": "1",
         "RUST_LOG": "info,chthonic_archive=debug"
     },
@@ -326,3 +326,4 @@
     // "chatgpt.thinkingMode": "xhigh",
     "github.copilot.chat.anthropic.contextEditing.mode": "clear-both",
 }
+
