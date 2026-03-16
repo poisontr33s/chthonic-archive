@@ -62,10 +62,11 @@ try {
 
 // Deployment
 console.log("📍 Deployment Status");
-const extDir = join(process.env.USERPROFILE || "", ".vscode-insiders", "extensions");
-const statusbarDeployed = existsSync(join(extDir, "chthonic-statusbar", "dist", "extension.js"));
-const mandalaDeployed = existsSync(join(extDir, "chthonic-mandala", "dist", "extension.js"));
-const themeDeployed = existsSync(join(extDir, "chthonic-mandala", "themes", "chthonic-mandala-color-theme.json"));
+const statusbarDeployed = existsSync(join("extensions", "chthonic-statusbar", "dist", "extension.js"));
+const mandalaDeployed = existsSync(join("extensions", "chthonic-mandala", "dist", "extension.js"));
+const themeDeployed = existsSync(
+  join("extensions", "chthonic-mandala", "themes", "chthonic-mandala-color-theme.json")
+);
 
 console.log(`  StatusBar: ${statusbarDeployed ? "✓" : "❌"}`);
 console.log(`  Mandala:   ${mandalaDeployed ? "✓" : "❌"}`);

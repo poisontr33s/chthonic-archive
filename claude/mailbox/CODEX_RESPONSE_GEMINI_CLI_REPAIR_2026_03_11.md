@@ -2,7 +2,7 @@
 type: handoff
 from: codex
 to: [claude]
-created: 2026-03-11
+created: 2026-03-16
 priority: inform
 in_response_to: CODEX_TASK_GEMINI_CLI_REPAIR_2026_03_11
 ---
@@ -10,32 +10,38 @@ in_response_to: CODEX_TASK_GEMINI_CLI_REPAIR_2026_03_11
 # Response: Gemini CLI Repair
 
 ## Actions Taken
-- Hardened `scripts/gemini-cli-wrapper.ps1` so it repairs Windows Bun shim corruption before trying `gemini.exe`.
-- Added `-r` / `--repair` to reinstall `@google/gemini-cli@latest`, rebuild or normalize the shim, and validate the raw executable path.
-- Verified two corruption modes against the live global install:
-- Legacy malformed launcher metadata: `-S node --no-warnings=DEP0040`.
-- Zero-filled `gemini.bunx` metadata under Bun `1.3.10`.
-- Confirmed the wrapper repairs both modes and restores direct `~/.bun/bin/gemini.exe --version` execution.
-- Ran `bun update` in the workspace root after the repair; it reported no dependency changes and did not break Gemini again.
+- Reproduced the Windows Bun global shim bug on live `bun 1.3.10`: fresh `bun add -g @google/gemini-cli@latest` writes `gemini.bunx` with `-S node --no-warnings=DEP0040`, and direct `gemini.exe --version` fails.
+- Hardened `scripts/gemini-cli-wrapper.ps1` to discover Gemini's global package under both `C:\Users\<user>\node_modules\@google\gemini-cli` and the legacy `.bun\install\global\node_modules\...` layout, silence probe noise, and fall back cleanly to `bun <entry>` when the shim is missing or invalid.
+- Kept `-r` / `--repair` as the explicit lane that reinstalls globally and normalizes the real Bun-generated `gemini.bunx`. I removed the synthetic bunx rewrite path after it produced a bad module root; missing metadata now falls back to the entrypoint instead of fabricating shim bytes.
+- Disabled the unfinished embalm lane per user direction by marking it `DO-NOT-USE-UNFINISHED-DEV--WIP` in `AGENT_COMMON.md`, `.codex/skills/corpse-reviver/SKILL.md`, `.codex/skills/corpse-reviver/scripts/embalm_before_edit.py`, and `.codex/skills/corpse-reviver/scripts/corpse_reviver.py`.
 
 ## Files Changed
 - `scripts/gemini-cli-wrapper.ps1`
+- `AGENT_COMMON.md`
+- `.codex/skills/corpse-reviver/SKILL.md`
+- `.codex/skills/corpse-reviver/scripts/embalm_before_edit.py`
+- `.codex/skills/corpse-reviver/scripts/corpse_reviver.py`
 - `claude/mailbox/CODEX_RESPONSE_GEMINI_CLI_REPAIR_2026_03_11.md`
 
 ## Tests
 - `bun --version` -> `1.3.10`
-- `~/.bun/bin/gemini.exe --version` -> reproduced failure before repair (`-S` on Bun `1.3.9`, `bin metadata is corrupt (validate)` / zero-filled `.bunx` on Bun `1.3.10`)
-- `bun run gemini -- --version` -> `0.33.0` after wrapper auto-repair
-- `pwsh -NoProfile -File scripts/gemini-cli-wrapper.ps1 -r` -> repair lane completed and validated `0.33.0`
-- `bun update` -> `Checked 273 installs across 258 packages (no changes)`
-- Post-update `~/.bun/bin/gemini.exe --version` -> `0.33.0`
-- Post-update `bun run gemini -- --version` -> `0.33.0`
+- `bun add -g @google/gemini-cli@latest` -> installed `0.33.2`, reproduced broken `-S node` launcher in `~/.bun/bin/gemini.bunx`
+- `GEMINI_DISABLE_MCP=1 ~/.bun/bin/gemini.exe --version` before repair -> `error: interpreter executable "-S" not found in %PATH%`
+- `pwsh -NoProfile -File scripts/gemini-cli-wrapper.ps1 -v` -> `0.33.2`
+- `pwsh -NoProfile -File scripts/gemini-cli-wrapper.ps1 -r` -> `Updated Gemini CLI version: 0.33.2` and `Repair validated: 0.33.2`
+- `bun run gemini -- --version` -> `0.33.2`
+- `GEMINI_DISABLE_MCP=1 ~/.bun/bin/gemini.exe --version` after repair -> `0.33.2`
+- Missing metadata probe: moved `gemini.bunx` aside, `pwsh -NoProfile -File scripts/gemini-cli-wrapper.ps1 -v` still returned `0.33.2`, and Bun recreated a working `gemini.bunx`
+- Temp workspace probe: copied root `package.json` and `bun.lock` to `%TEMP%`, ran `bun update`, result `shim-unchanged`
+- `uv run --no-project .codex/skills/corpse-reviver/scripts/embalm_before_edit.py` -> `DO-NOT-USE-UNFINISHED-DEV--WIP: embalm_before_edit.py is unfinished and disabled.`
+- `uv run --no-project .codex/skills/corpse-reviver/scripts/corpse_reviver.py embalm-before-edit` -> `DO-NOT-USE-UNFINISHED-DEV--WIP: embalm-before-edit is unfinished and disabled.`
+- `git diff --check` -> no diff errors; only LF normalization warnings on touched docs/scripts
 
 ## Findings
-- The repo no longer has the dual-lock condition from the packet; only `bun.lock` is present. `bun.lockb` is absent.
-- `bun update` in the workspace root did not touch the global Gemini install in this verification run.
-- `bum` remains orthogonal to this bug: it manages Bun runtime versions, not Bun global package shim generation. It can help pin to a known-good Bun release, but it does not repair corrupted global `.bunx` metadata by itself.
+- Current Bun global package layout is `C:\Users\eldno\node_modules\@google\gemini-cli`, not the older `~/.bun/install/global/node_modules/...` path hard-coded in the wrapper.
+- The immediate corruption trigger is Bun's own global install and shim generation on Windows, not the workspace dependency graph.
+- A workspace-style `bun update` did not rewrite or corrupt the global Gemini shim in the temp probe (`shim-unchanged`).
+- `bum` remains orthogonal: it manages Bun runtime versions, not Bun global package shim generation.
 
 ## Next Actions
-- If desired, upstream a minimized Windows repro to Bun using the two verified failure shapes above.
-- If desired, add a `gemini:repair` package script alias; the wrapper itself is already sufficient without it.
+- Upstream a minimized Bun Windows repro using the broken `-S node --no-warnings=DEP0040` `.bunx` payload.

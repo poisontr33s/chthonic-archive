@@ -37,9 +37,13 @@ test("statusbar has proper activation events", () => {
     readFileSync("extensions/chthonic-statusbar/package.json", "utf-8")
   );
 
-  expect(pkg.activationEvents).toContain("onStartupFinished");
   expect(pkg.activationEvents).toEqual(
     expect.arrayContaining([
+      "onCommand:chthonic.bridge.verifySSOT",
+      "onCommand:chthonic.bridge.selfHeal",
+      "onCommand:chthonic.bridge.sediment",
+      "onCommand:chthonic.bridge.verifyHost",
+      "onCommand:chthonic.bridge.vsAudit",
       "onCommand:chthonic.verifySSO_T",
       "onCommand:chthonic.runMetabolicCycle",
       "onCommand:chthonic.showGPUStats",
@@ -49,6 +53,7 @@ test("statusbar has proper activation events", () => {
   );
   // Bridge-era statusbar should not be Python-language activated.
   expect(pkg.activationEvents).not.toContain("onLanguage:python");
+  expect(pkg.activationEvents).not.toContain("onStartupFinished");
 });
 
 test("mandala has bridge view container contribution", () => {
