@@ -1,14 +1,14 @@
 ---
 type: session-resumption-packet
 owner: codex
-generated: 2026-03-13T09:47:32.727610+00:00
+generated: 2026-03-16T02:49:36.706136+00:00
 scope: claude-side continuation + localai stewardship
 ---
 
 # Session Resumption High Coverage (Codex Stewardship)
 
 - Coverage score: **75.0%**
-- Generated (UTC): `2026-03-13 09:47:32`
+- Generated (UTC): `2026-03-16 02:49:36`
 
 ## Continuation Trail (Claude-side)
 
@@ -24,10 +24,10 @@ scope: claude-side continuation + localai stewardship
 | --- | --- | --- |
 | Claude digest exists | OK | C:\Users\erdno\chthonic-archive\claude\mailbox\ARCHAEOLOGY_DIGEST_2026_02_20.md |
 | Local AI readiness snapshot exists | OK | C:\Users\erdno\chthonic-archive\claude\mailbox\LOCAL_AI_READINESS_LATEST.json |
-| Nightly scheduler log exists | OK | C:\Users\erdno\chthonic-archive\dumpster-dive\intake\overnight-daemon\nightly-scheduled-2026-03-13_030005.log |
+| Nightly scheduler log exists | OK | C:\Users\erdno\chthonic-archive\dumpster-dive\intake\overnight-daemon\nightly-scheduled-2026-03-16_030002.log |
 | Nightly scheduler log clean | OK | clean |
 | Nightly completion marker present | OK | complete marker found |
-| Daemon report exists | OK | C:\Users\erdno\chthonic-archive\dumpster-dive\intake\overnight-daemon\20260313_030005\report.json |
+| Daemon report exists | OK | C:\Users\erdno\chthonic-archive\dumpster-dive\intake\overnight-daemon\20260316_030003\report.json |
 | L1 ore exists | OK | C:\Users\erdno\chthonic-archive\dumpster-dive\intake\overnight-intelligence\arch-2026-02-20T02-00-06\L1-ore.json |
 | Uncensored model lane present | OK | detected |
 | Qwen3 abliterated lane present | OK | detected |
@@ -37,8 +37,8 @@ scope: claude-side continuation + localai stewardship
 
 ## Nightly Daemon Status
 
-- Latest scheduler log: `C:\Users\erdno\chthonic-archive\dumpster-dive\intake\overnight-daemon\nightly-scheduled-2026-03-13_030005.log`
-- Latest daemon run: `C:\Users\erdno\chthonic-archive\dumpster-dive\intake\overnight-daemon\20260313_030005`
+- Latest scheduler log: `C:\Users\erdno\chthonic-archive\dumpster-dive\intake\overnight-daemon\nightly-scheduled-2026-03-16_030002.log`
+- Latest daemon run: `C:\Users\erdno\chthonic-archive\dumpster-dive\intake\overnight-daemon\20260316_030003`
 - Latest archaeology run: `C:\Users\erdno\chthonic-archive\dumpster-dive\intake\overnight-intelligence\arch-2026-02-20T02-00-06`
 - Nightly clean: **yes**
 
@@ -46,7 +46,7 @@ scope: claude-side continuation + localai stewardship
 
 | Tool | Status | Detail |
 | --- | --- | --- |
-| uv | OK | uv 0.10.8 (c021be36a 2026-03-03) |
+| uv | OK | uv 0.10.9 (f675560f3 2026-03-06) |
 | bun | OK | 1.3.10 |
 | pwsh | OK | PowerShell 7.5.4 |
 
@@ -71,27 +71,27 @@ scope: claude-side continuation + localai stewardship
 
 | Model ID | Downloads | Likes | Last Modified |
 | --- | --- | --- | --- |
-| HauhauCS/Qwen3.5-9B-Uncensored-HauhauCS-Aggressive | 173501 | 393 | 2026-03-04T00:31:47.000Z |
-| DavidAU/GLM-4.7-Flash-Uncensored-Heretic-NEO-CODE-Imatrix-MAX-GGUF | 117545 | 287 | 2026-01-28T09:07:52.000Z |
-| mradermacher/Llama3.3-8B-Instruct-Thinking-Heretic-Uncensored-Claude-4.5-Opus-High-Reasoning-i1-GGUF | 95331 | 20 | 2026-01-02T19:45:54.000Z |
-| mradermacher/OpenAI-gpt-oss-20B-Claude-4.5-Opus-Heretic-Uncensored-i1-GGUF | 89088 | 29 | 2026-02-13T03:00:09.000Z |
-| DavidAU/OpenAi-GPT-oss-20b-abliterated-uncensored-NEO-Imatrix-gguf | 85850 | 460 | 2025-11-17T08:20:27.000Z |
-| DavidAU/Llama-3.2-8X3B-MOE-Dark-Champion-Instruct-uncensored-abliterated-18.4B-GGUF | 75147 | 510 | 2025-12-01T03:54:02.000Z |
-| HauhauCS/Qwen3.5-4B-Uncensored-HauhauCS-Aggressive | 68146 | 107 | 2026-03-04T00:29:28.000Z |
-| HauhauCS/Qwen3.5-27B-Uncensored-HauhauCS-Aggressive | 64990 | 109 | 2026-03-05T22:44:06.000Z |
+| HauhauCS/Qwen3.5-9B-Uncensored-HauhauCS-Aggressive | 220810 | 452 | 2026-03-04T00:31:47.000Z |
+| DavidAU/GLM-4.7-Flash-Uncensored-Heretic-NEO-CODE-Imatrix-MAX-GGUF | 114473 | 292 | 2026-01-28T09:07:52.000Z |
+| mradermacher/Llama3.3-8B-Instruct-Thinking-Heretic-Uncensored-Claude-4.5-Opus-High-Reasoning-i1-GGUF | 98216 | 23 | 2026-01-02T19:45:54.000Z |
+| DavidAU/OpenAi-GPT-oss-20b-abliterated-uncensored-NEO-Imatrix-gguf | 82126 | 465 | 2025-11-17T08:20:27.000Z |
+| HauhauCS/Qwen3.5-4B-Uncensored-HauhauCS-Aggressive | 80214 | 125 | 2026-03-04T00:29:28.000Z |
+| HauhauCS/Qwen3.5-27B-Uncensored-HauhauCS-Aggressive | 77559 | 124 | 2026-03-05T22:44:06.000Z |
+| HauhauCS/Qwen3.5-35B-A3B-Uncensored-HauhauCS-Aggressive | 77440 | 190 | 2026-03-10T21:50:05.000Z |
+| DavidAU/Llama-3.2-8X3B-MOE-Dark-Champion-Instruct-uncensored-abliterated-18.4B-GGUF | 75494 | 512 | 2025-12-01T03:54:02.000Z |
 
 ### Search: `abliterated` (top by downloads)
 
 | Model ID | Downloads | Likes | Last Modified |
 | --- | --- | --- | --- |
-| huihui-ai/Qwen2.5-72B-Instruct-abliterated | 151064 | 38 | 2025-06-06T09:15:07.000Z |
-| DavidAU/OpenAi-GPT-oss-20b-abliterated-uncensored-NEO-Imatrix-gguf | 85850 | 460 | 2025-11-17T08:20:27.000Z |
-| DavidAU/Llama-3.2-8X3B-MOE-Dark-Champion-Instruct-uncensored-abliterated-18.4B-GGUF | 75147 | 510 | 2025-12-01T03:54:02.000Z |
-| mlabonne/gemma-3-12b-it-abliterated | 65369 | 27 | 2025-03-21T16:10:27.000Z |
-| mradermacher/Huihui-Qwen3.5-35B-A3B-abliterated-i1-GGUF | 50321 | 26 | 2026-02-28T12:19:19.000Z |
-| jnvdx666/Qwen3-32B-abliterated-awq | 50252 | 0 | 2025-05-12T20:47:34.000Z |
-| mradermacher/Huihui-Qwen3.5-27B-abliterated-GGUF | 47408 | 16 | 2026-02-28T07:34:24.000Z |
-| BennyDaBall/Qwen3-4b-Z-Image-Turbo-AbliteratedV1 | 41741 | 43 | 2026-01-31T17:47:55.000Z |
+| huihui-ai/Qwen2.5-72B-Instruct-abliterated | 179729 | 40 | 2025-06-06T09:15:07.000Z |
+| DavidAU/OpenAi-GPT-oss-20b-abliterated-uncensored-NEO-Imatrix-gguf | 82126 | 465 | 2025-11-17T08:20:27.000Z |
+| DavidAU/Llama-3.2-8X3B-MOE-Dark-Champion-Instruct-uncensored-abliterated-18.4B-GGUF | 75494 | 512 | 2025-12-01T03:54:02.000Z |
+| mlabonne/gemma-3-12b-it-abliterated | 57172 | 27 | 2025-03-21T16:10:27.000Z |
+| mradermacher/Huihui-Qwen3.5-35B-A3B-abliterated-i1-GGUF | 52806 | 29 | 2026-02-28T12:19:19.000Z |
+| jnvdx666/Qwen3-32B-abliterated-awq | 50228 | 0 | 2025-05-12T20:47:34.000Z |
+| mradermacher/Huihui-Qwen3.5-27B-abliterated-GGUF | 49168 | 17 | 2026-02-28T07:34:24.000Z |
+| huihui-ai/Huihui-Qwen3.5-27B-abliterated | 41926 | 100 | 2026-03-02T09:44:39.000Z |
 
 ## Anno Live Time (endoflife.date)
 
