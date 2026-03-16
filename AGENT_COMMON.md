@@ -88,27 +88,16 @@ Every file is gold. Agents propose changes; user executes. See [WET_PAPER_TO_GOL
 - Record provenance for salvage/fusion outputs (source -> transformed destination).
 - Delete-only simplification is non-compliant for Codex, Claude, and Gemini lanes.
 
-### Auto-Embalm Protocol (Mandatory Pre-Edit — QMR §10.3.3 EMBALM)
+### Auto-Embalm Protocol (Disabled — `DO-NOT-USE-UNFINISHED-DEV--WIP`)
 
-> **Canonical grounding:** EMBALM is Mode #8 of Novia Cadaveris (NOV-CAD-MODES), the Bride's
-> pre-mortem preservation ritual. It is the provenance-capture step visible in the OSGTTLR pipeline
-> (PROWL → EMBALM → VAULT → SUTURE) and creates the `language`/`extension`/`hash` lineage that
-> feeds the corpse-vault classification and PATHWAY_REGISTRY transformations into the forge.
-> See SSOT §10.3.3 NOV-CAD-OSGTTLR and `.codex/skills/corpse-reviver/SKILL.md`.
-
-Before editing any repository file, agents MUST snapshot it via the Bride's pre-mortem preservation:
-
-```powershell
-uv run .codex/skills/corpse-reviver/scripts/embalm_before_edit.py <files-to-edit> --label "<context>"
-```
-
-After editing, extract deltas for the stitch pipeline:
-
-```powershell
-uv run .codex/skills/corpse-reviver/scripts/embalm_before_edit.py stitch <session-name>
-```
-
-This creates complete data lineage: **what it was → what changed → what it became**. Embalm provenance captures language, extension, hash, and structural landmarks — classifying fragments at capture time for the vault’s language-indexed storage (`dumpster-dive/corpse-vault/{lang}/`). Delta fragments feed the PATHWAY_REGISTRY for selective reapplication through the forge.
+> Status: `DO-NOT-USE-UNFINISHED-DEV--WIP`
+>
+> The embalm-before-edit lane is unfinished and must not be treated as a mandatory pre-edit gate.
+> Do not run `.codex/skills/corpse-reviver/scripts/embalm_before_edit.py` or its aliases until this
+> notice is explicitly removed and the tool is finished.
+>
+> Preserve provenance by other non-destructive means when needed, but this repo must not instruct
+> agents to execute the unfinished embalm tool.
 
 ## Architecture
 

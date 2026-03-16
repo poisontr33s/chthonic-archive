@@ -63,11 +63,69 @@ function Get-GeminiShimMetadataPath {
     return (Join-Path $env:USERPROFILE ".bun\bin\gemini.bunx")
 }
 
-function Get-GeminiEntrypoint {
-    $entry = Join-Path $env:USERPROFILE ".bun\install\global\node_modules\@google\gemini-cli\dist\index.js"
-    if (Test-Path $entry) {
-        return $entry
+function Get-BunInstallRoot {
+    if ($env:BUN_INSTALL) {
+        return $env:BUN_INSTALL
     }
+
+    return (Join-Path $env:USERPROFILE ".bun")
+}
+
+function Get-GeminiPackageRoot {
+    $candidates = @(
+        (Join-Path $env:USERPROFILE "node_modules\@google\gemini-cli"),
+        (Join-Path (Get-BunInstallRoot) "install\global\node_modules\@google\gemini-cli")
+    )
+
+    foreach ($candidate in $candidates) {
+        if (Test-Path $candidate) {
+            return $candidate
+        }
+    }
+
+    return $null
+}
+
+function Get-GeminiEntrypoint {
+    $packageRoot = Get-GeminiPackageRoot
+    if (-not $packageRoot) {
+        return $null
+    }
+
+    $packageJsonPath = Join-Path $packageRoot "package.json"
+    if (Test-Path $packageJsonPath) {
+        try {
+            $packageJson = Get-Content $packageJsonPath -Raw | ConvertFrom-Json
+            $candidateScripts = @()
+            if ($packageJson.bin) {
+                if ($packageJson.bin -is [string]) {
+                    $candidateScripts += $packageJson.bin
+                } elseif ($packageJson.bin.PSObject.Properties.Name -contains "gemini") {
+                    $candidateScripts += $packageJson.bin.gemini
+                } elseif ($packageJson.bin.PSObject.Properties.Count -gt 0) {
+                    $candidateScripts += $packageJson.bin.PSObject.Properties[0].Value
+                }
+            }
+            if ($packageJson.main) {
+                $candidateScripts += $packageJson.main
+            }
+
+            foreach ($candidateScript in ($candidateScripts | Where-Object { $_ } | Select-Object -Unique)) {
+                $entry = Join-Path $packageRoot $candidateScript
+                if (Test-Path $entry) {
+                    return $entry
+                }
+            }
+        } catch {
+            # Fall back to the known Gemini dist path below.
+        }
+    }
+
+    $fallback = Join-Path $packageRoot "dist\index.js"
+    if (Test-Path $fallback) {
+        return $fallback
+    }
+
     return $null
 }
 
@@ -205,15 +263,23 @@ function Get-GeminiRelativeEntrypoint {
         return $null
     }
 
-    $bunRoot = Join-Path $env:USERPROFILE ".bun"
     $fullEntry = [System.IO.Path]::GetFullPath($entry)
+    $fullUserProfile = [System.IO.Path]::GetFullPath($env:USERPROFILE)
+    $fullUserNodeModules = [System.IO.Path]::GetFullPath((Join-Path $env:USERPROFILE "node_modules"))
+    $bunRoot = Get-BunInstallRoot
     $fullBunRoot = [System.IO.Path]::GetFullPath($bunRoot)
+    $legacyGlobalRoot = [System.IO.Path]::GetFullPath((Join-Path $bunRoot "install\global"))
 
-    if (-not $fullEntry.StartsWith($fullBunRoot, [System.StringComparison]::OrdinalIgnoreCase)) {
-        return $null
+    if ($fullEntry.StartsWith($fullUserNodeModules, [System.StringComparison]::OrdinalIgnoreCase)) {
+        $relativeFromHome = $fullEntry.Substring($fullUserProfile.Length).TrimStart('\', '/')
+        return (".\$relativeFromHome").Replace('/', '\')
     }
 
-    return ($fullEntry.Substring($fullBunRoot.Length).TrimStart('\', '/'))
+    if ($fullEntry.StartsWith($legacyGlobalRoot, [System.StringComparison]::OrdinalIgnoreCase)) {
+        return ($fullEntry.Substring($fullBunRoot.Length).TrimStart('\', '/'))
+    }
+
+    return $null
 }
 
 function Repair-GeminiWindowsShim {
@@ -240,18 +306,7 @@ function Repair-GeminiWindowsShim {
         return $true
     }
 
-    $relativeEntrypoint = Get-GeminiRelativeEntrypoint
-    if (-not $relativeEntrypoint) {
-        return $false
-    }
-
-    $pathBytes = [System.Text.Encoding]::Unicode.GetBytes($relativeEntrypoint)
-    $version = Get-BunShimVersion
-    Write-GeminiShimMetadata -Path $metadataPath -PathBytes $pathBytes -Launcher "bun --no-warnings=DEP0040 " -Version $version
-    if (-not $Quiet) {
-        Write-Host "[gemini-wrapper] Rebuilt Windows Bun shim metadata: $metadataPath" -ForegroundColor Cyan
-    }
-    return $true
+    return $false
 }
 
 function Test-GeminiExecutable {
@@ -261,7 +316,7 @@ function Test-GeminiExecutable {
     )
 
     try {
-        $null = & $Path --version 2>$null
+        & $Path --version *> $null
         return ($LASTEXITCODE -eq 0)
     } catch {
         return $false
@@ -491,10 +546,11 @@ if ($geminiExe) {
 
 # Fallback execution via Bun global package path.
 $geminiCliPath = Get-GeminiEntrypoint
-if (-not (Test-Path $geminiCliPath)) {
+if (-not $geminiCliPath) {
     Write-Error "Gemini CLI not found. Checked: gemini.exe on PATH and $geminiCliPath"
-    Write-Host "Reinstall with: bun install -g @google/gemini-cli" -ForegroundColor Yellow
+    Write-Host "Repair with: pwsh -NoProfile -File scripts/gemini-cli-wrapper.ps1 -r" -ForegroundColor Yellow
     exit 1
 }
 
 & bun $geminiCliPath @cliArgs
+exit $LASTEXITCODE
