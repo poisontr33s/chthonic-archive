@@ -17,8 +17,10 @@
 
 .USAGE
   pwsh -NoProfile -File scripts/desktop-clone-state.ps1 -Mode Export
+  pwsh -NoProfile -File scripts/desktop-clone-state.ps1 -Mode Export -DryRun
   pwsh -NoProfile -File scripts/desktop-clone-state.ps1 -Mode Export -PackageRoot D:\transfer\clone
   pwsh -NoProfile -File scripts/desktop-clone-state.ps1 -Mode Restore -PackageRoot D:\transfer\clone
+  pwsh -NoProfile -File scripts/desktop-clone-state.ps1 -Mode Restore -PackageRoot D:\transfer\clone -DryRun
   pwsh -NoProfile -File scripts/desktop-clone-state.ps1 -Mode Restore -PackageRoot D:\transfer\clone -StrictMirror
   pwsh -NoProfile -File scripts/desktop-clone-state.ps1 -Mode Verify -PackageRoot D:\transfer\clone
 #>
@@ -43,7 +45,9 @@ param(
 
     [switch]$StrictMirror,
 
-    [switch]$CompressPackage
+    [switch]$CompressPackage,
+
+    [switch]$DryRun
 )
 
 Set-StrictMode -Version Latest
@@ -65,6 +69,49 @@ function Ensure-Directory {
     param([Parameter(Mandatory = $true)][string]$Path)
     if (-not (Test-Path -LiteralPath $Path)) {
         New-Item -ItemType Directory -Path $Path -Force | Out-Null
+    }
+}
+
+function Format-ByteSize {
+    param([Parameter(Mandatory = $true)][double]$Bytes)
+
+    if ($Bytes -ge 1TB) { return "{0:N2} TB" -f ($Bytes / 1TB) }
+    if ($Bytes -ge 1GB) { return "{0:N2} GB" -f ($Bytes / 1GB) }
+    if ($Bytes -ge 1MB) { return "{0:N2} MB" -f ($Bytes / 1MB) }
+    if ($Bytes -ge 1KB) { return "{0:N2} KB" -f ($Bytes / 1KB) }
+    return "{0:N0} B" -f $Bytes
+}
+
+function Get-PathStats {
+    param(
+        [Parameter(Mandatory = $true)][string]$Path,
+        [Parameter(Mandatory = $true)][ValidateSet("file", "directory")][string]$Kind
+    )
+
+    if (-not (Test-Path -LiteralPath $Path)) {
+        return @{
+            exists = $false
+            bytes = [int64]0
+            file_count = 0
+        }
+    }
+
+    if ($Kind -eq "file") {
+        $item = Get-Item -LiteralPath $Path
+        return @{
+            exists = $true
+            bytes = [int64]$item.Length
+            file_count = 1
+        }
+    }
+
+    $measure = Get-ChildItem -LiteralPath $Path -Recurse -Force -File -ErrorAction SilentlyContinue |
+        Measure-Object -Property Length -Sum
+
+    return @{
+        exists = $true
+        bytes = [int64]$measure.Sum
+        file_count = [int]$measure.Count
     }
 }
 
@@ -449,6 +496,65 @@ function Get-PortableEnvEntries {
     return $entries
 }
 
+function Get-ThemeState {
+    $userSettingsPath = Join-Path $env:APPDATA "Code - Insiders\User\settings.json"
+    if (-not (Test-Path -LiteralPath $userSettingsPath)) {
+        return $null
+    }
+
+    try {
+        $settings = Get-Content -LiteralPath $userSettingsPath -Raw | ConvertFrom-Json
+        return @{
+            color_theme = $settings.'workbench.colorTheme'
+            icon_theme = $settings.'workbench.iconTheme'
+            product_icon_theme = $settings.'workbench.productIconTheme'
+        }
+    } catch {
+        return @{
+            parse_error = [string]$_
+        }
+    }
+}
+
+function Get-RepoMetadataSummary {
+    param([Parameter(Mandatory = $true)][string]$SourceRepoRoot)
+
+    Push-Location $SourceRepoRoot
+    try {
+        $status = git status --short --branch
+        $branches = git branch -vv
+        $remotes = git remote -v
+        $stashList = git stash list
+        $head = git rev-parse HEAD
+
+        $stashes = @()
+        if (-not [string]::IsNullOrWhiteSpace($stashList)) {
+            $lines = @($stashList -split "`r?`n" | Where-Object { -not [string]::IsNullOrWhiteSpace($_) })
+            foreach ($line in $lines) {
+                if ($line -match '^(stash@\{\d+\}):\s+(.*)$') {
+                    $stashes += [ordered]@{
+                        ref = $Matches[1]
+                        description = $Matches[2]
+                    }
+                }
+            }
+        }
+
+        return @{
+            head = $head
+            status = $status
+            branches = $branches
+            remotes = $remotes
+            stash_list = $stashList
+            stash_count = $stashes.Count
+            stashes = $stashes
+        }
+    }
+    finally {
+        Pop-Location
+    }
+}
+
 function Export-EnvPayload {
     param([Parameter(Mandatory = $true)][string]$PayloadRoot)
 
@@ -491,48 +597,41 @@ function Export-RepoMetadata {
     $gitDir = Join-Path $PayloadRoot "git"
     Ensure-Directory -Path $gitDir
 
-    Push-Location $SourceRepoRoot
-    try {
-        $status = git status --short --branch
-        $branches = git branch -vv
-        $remotes = git remote -v
-        $stashList = git stash list
-        $head = git rev-parse HEAD
+    $summary = Get-RepoMetadataSummary -SourceRepoRoot $SourceRepoRoot
 
-        Set-Content -LiteralPath (Join-Path $gitDir "status.txt") -Value $status -Encoding utf8NoBOM
-        Set-Content -LiteralPath (Join-Path $gitDir "branches.txt") -Value $branches -Encoding utf8NoBOM
-        Set-Content -LiteralPath (Join-Path $gitDir "remotes.txt") -Value $remotes -Encoding utf8NoBOM
-        Set-Content -LiteralPath (Join-Path $gitDir "stash-list.txt") -Value $stashList -Encoding utf8NoBOM
-        Set-Content -LiteralPath (Join-Path $gitDir "head.txt") -Value $head -Encoding utf8NoBOM
+    Set-Content -LiteralPath (Join-Path $gitDir "status.txt") -Value $summary.status -Encoding utf8NoBOM
+    Set-Content -LiteralPath (Join-Path $gitDir "branches.txt") -Value $summary.branches -Encoding utf8NoBOM
+    Set-Content -LiteralPath (Join-Path $gitDir "remotes.txt") -Value $summary.remotes -Encoding utf8NoBOM
+    Set-Content -LiteralPath (Join-Path $gitDir "stash-list.txt") -Value $summary.stash_list -Encoding utf8NoBOM
+    Set-Content -LiteralPath (Join-Path $gitDir "head.txt") -Value $summary.head -Encoding utf8NoBOM
 
-        $stashes = @()
-        if (-not [string]::IsNullOrWhiteSpace($stashList)) {
-            $lines = @($stashList -split "`r?`n" | Where-Object { -not [string]::IsNullOrWhiteSpace($_) })
-            foreach ($line in $lines) {
-                if ($line -match '^(stash@\{\d+\}):\s+(.*)$') {
-                    $ref = $Matches[1]
-                    $desc = $Matches[2]
-                    $safeName = $ref.Replace("{", "").Replace("}", "").Replace("@", "").Replace(":", "-")
-                    $patchPath = Join-Path $gitDir "$safeName.patch"
-                    $patch = git stash show -p $ref
-                    Set-Content -LiteralPath $patchPath -Value $patch -Encoding utf8NoBOM
-                    $stashes += [ordered]@{
-                        ref = $ref
-                        description = $desc
-                        patch = [System.IO.Path]::GetFileName($patchPath)
-                    }
+    $stashes = @()
+    if ($summary.stashes.Count -gt 0) {
+        Push-Location $SourceRepoRoot
+        try {
+            foreach ($stash in $summary.stashes) {
+                $ref = [string]$stash.ref
+                $desc = [string]$stash.description
+                $safeName = $ref.Replace("{", "").Replace("}", "").Replace("@", "").Replace(":", "-")
+                $patchPath = Join-Path $gitDir "$safeName.patch"
+                $patch = git stash show -p $ref
+                Set-Content -LiteralPath $patchPath -Value $patch -Encoding utf8NoBOM
+                $stashes += [ordered]@{
+                    ref = $ref
+                    description = $desc
+                    patch = [System.IO.Path]::GetFileName($patchPath)
                 }
             }
         }
-
-        return @{
-            head = $head
-            stash_count = $stashes.Count
-            stashes = $stashes
+        finally {
+            Pop-Location
         }
     }
-    finally {
-        Pop-Location
+
+    return @{
+        head = $summary.head
+        stash_count = $stashes.Count
+        stashes = $stashes
     }
 }
 
@@ -629,6 +728,203 @@ function Write-RestoreNotes {
     Set-Content -LiteralPath (Join-Path $PackagePath "RESTORE_COMMANDS.txt") -Value $notes -Encoding utf8NoBOM
 }
 
+function Invoke-ExportDryRun {
+    param(
+        [Parameter(Mandatory = $true)][string]$DestinationPackageRoot,
+        [Parameter(Mandatory = $true)][string]$SourceRepoRoot,
+        [Parameter(Mandatory = $true)][object[]]$ComponentSelection
+    )
+
+    $packageRoot = Resolve-NormalizedPath -Path $DestinationPackageRoot
+    $repoFull = Resolve-NormalizedPath -Path $SourceRepoRoot
+    $payloadRoot = Join-Path $packageRoot "payload"
+    $issues = @()
+
+    if (Test-PathWithin -Parent $repoFull -Child $packageRoot) {
+        $issues += "PackageRoot is inside the repository and a real export would be blocked."
+    }
+
+    if (Test-Path -LiteralPath $packageRoot) {
+        $issues += "PackageRoot already exists and a real export would be blocked."
+    }
+
+    $live = Get-LiveProcessReport
+    $selected = @($ComponentSelection)
+    $componentResults = @()
+    [int64]$totalBytes = 0
+    [int64]$totalFiles = 0
+
+    foreach ($component in $selected) {
+        $source = [string]$component.source
+        $payloadPath = Join-Path $payloadRoot ([string]$component.payload_rel)
+        $stats = Get-PathStats -Path $source -Kind ([string]$component.kind)
+        $status = if ($stats.exists) { "would-copy" } else { "missing" }
+
+        if ($stats.exists) {
+            $totalBytes += $stats.bytes
+            $totalFiles += $stats.file_count
+        }
+
+        $componentResults += [ordered]@{
+            id = $component.id
+            status = $status
+            kind = $component.kind
+            source = $source
+            payload = $payloadPath
+            bytes = $stats.bytes
+            file_count = $stats.file_count
+            description = $component.description
+        }
+    }
+
+    $envEntries = @(Get-PortableEnvEntries)
+    $repoSummary = Get-RepoMetadataSummary -SourceRepoRoot $repoFull
+    $themeState = Get-ThemeState
+
+    Write-Section "Dry Run: Export"
+    Write-Info ("package root: {0}" -f $packageRoot)
+    Write-Info ("repo root: {0}" -f $repoFull)
+    Write-Info ("selected components: {0}" -f $selected.Count)
+    Write-Info ("estimated payload: {0} across {1} files" -f (Format-ByteSize -Bytes $totalBytes), $totalFiles)
+    Write-Info ("env vars to capture: {0}" -f $envEntries.Count)
+    Write-Info ("repo HEAD: {0}" -f $repoSummary.head)
+    Write-Info ("stash patches to export: {0}" -f $repoSummary.stash_count)
+
+    if ($themeState) {
+        Write-Info ("themes: color=`"{0}`" icon=`"{1}`" product=`"{2}`"" -f $themeState.color_theme, $themeState.icon_theme, $themeState.product_icon_theme)
+    }
+
+    if ($live.Count -gt 0) {
+        Write-Host "warning: live processes detected; an exact real export would require closing them or using -AllowLiveCapture." -ForegroundColor Yellow
+        foreach ($proc in $live) {
+            Write-Host ("  {0} ({1})" -f $proc.ProcessName, $proc.Id) -ForegroundColor Yellow
+        }
+    }
+
+    if ($issues.Count -gt 0) {
+        Write-Host "blockers:" -ForegroundColor Yellow
+        foreach ($issue in $issues) {
+            Write-Host ("  - {0}" -f $issue) -ForegroundColor Yellow
+        }
+    }
+
+    Write-Section "Components"
+    foreach ($result in $componentResults) {
+        $sizeText = Format-ByteSize -Bytes $result.bytes
+        Write-Host ("  [{0}] {1} :: {2} :: {3} :: {4}" -f $result.status, $result.id, $result.kind, $sizeText, $result.source)
+    }
+
+    if ($repoSummary.stashes.Count -gt 0) {
+        Write-Section "Stashes"
+        foreach ($stash in $repoSummary.stashes) {
+            Write-Host ("  {0} :: {1}" -f $stash.ref, $stash.description)
+        }
+    }
+
+    Write-Section "Dry Run Result"
+    if ($issues.Count -eq 0) {
+        Write-Host "Export simulation completed with no hard blockers." -ForegroundColor Green
+    } else {
+        Write-Host "Export simulation found blockers that would stop a real export." -ForegroundColor Yellow
+    }
+}
+
+function Invoke-RestoreDryRun {
+    param(
+        [Parameter(Mandatory = $true)][string]$SourcePackageRoot,
+        [Parameter(Mandatory = $true)][string]$SourceRepoRoot
+    )
+
+    $packageRoot = Resolve-NormalizedPath -Path $SourcePackageRoot
+    $issues = @()
+
+    if (-not (Test-Path -LiteralPath $packageRoot)) {
+        throw "PackageRoot does not exist: $packageRoot"
+    }
+
+    $manifest = Import-Manifest -PackagePath $packageRoot
+    $componentSourceRoot = if ($manifest.source.repo_root) { [string]$manifest.source.repo_root } else { $SourceRepoRoot }
+    $components = Get-CloneComponents -SourceRepoRoot $componentSourceRoot
+    $selected = Filter-Components -Components $components -Only $OnlyComponents -Exclude $ExcludeComponents
+    $payloadRoot = Join-Path $packageRoot "payload"
+    $live = Get-LiveProcessReport
+    $restoreResults = @()
+    [int64]$totalBytes = 0
+    [int64]$totalFiles = 0
+
+    foreach ($component in $selected) {
+        $payloadPath = Join-Path $payloadRoot ([string]$component.payload_rel)
+        $stats = Get-PathStats -Path $payloadPath -Kind ([string]$component.kind)
+        $targetRoot = Get-TargetRootPath -Kind $component.target_root -RepoRestoreBase $RestoreRepoRoot
+        $targetPath = if ($component.target_root -eq "literal") {
+            [string]$component.target_rel
+        } else {
+            Join-Path $targetRoot ([string]$component.target_rel)
+        }
+
+        $status = if ($stats.exists) { "would-restore" } else { "missing-payload" }
+        if ($stats.exists) {
+            $totalBytes += $stats.bytes
+            $totalFiles += $stats.file_count
+        } else {
+            $issues += "Missing payload for component `"$($component.id)`": $payloadPath"
+        }
+
+        $restoreResults += [ordered]@{
+            id = $component.id
+            status = $status
+            kind = $component.kind
+            payload = $payloadPath
+            target = $targetPath
+            bytes = $stats.bytes
+            file_count = $stats.file_count
+        }
+    }
+
+    $envFile = Join-Path $payloadRoot "env\user-env.json"
+    $envEntries = @()
+    if (Test-Path -LiteralPath $envFile) {
+        $envEntries = @(Get-Content -LiteralPath $envFile -Raw | ConvertFrom-Json)
+    } else {
+        $issues += "Missing env payload: $envFile"
+    }
+
+    Write-Section "Dry Run: Restore"
+    Write-Info ("package root: {0}" -f $packageRoot)
+    Write-Info ("restore repo root base: {0}" -f (Resolve-NormalizedPath -Path $RestoreRepoRoot))
+    Write-Info ("selected components: {0}" -f $selected.Count)
+    Write-Info ("payload to restore: {0} across {1} files" -f (Format-ByteSize -Bytes $totalBytes), $totalFiles)
+    Write-Info ("env vars to restore: {0}" -f $envEntries.Count)
+    Write-Info ("strict mirror: {0}" -f [bool]$StrictMirror)
+
+    if ($live.Count -gt 0) {
+        Write-Host "warning: live processes detected; an exact real restore would require closing them or using -AllowLiveCapture." -ForegroundColor Yellow
+        foreach ($proc in $live) {
+            Write-Host ("  {0} ({1})" -f $proc.ProcessName, $proc.Id) -ForegroundColor Yellow
+        }
+    }
+
+    if ($issues.Count -gt 0) {
+        Write-Host "blockers:" -ForegroundColor Yellow
+        foreach ($issue in $issues) {
+            Write-Host ("  - {0}" -f $issue) -ForegroundColor Yellow
+        }
+    }
+
+    Write-Section "Components"
+    foreach ($result in $restoreResults) {
+        $sizeText = Format-ByteSize -Bytes $result.bytes
+        Write-Host ("  [{0}] {1} :: {2} :: {3} -> {4}" -f $result.status, $result.id, $result.kind, $sizeText, $result.target)
+    }
+
+    Write-Section "Dry Run Result"
+    if ($issues.Count -eq 0) {
+        Write-Host "Restore simulation completed with no hard blockers." -ForegroundColor Green
+    } else {
+        Write-Host "Restore simulation found blockers that would stop or degrade a real restore." -ForegroundColor Yellow
+    }
+}
+
 function Export-ClonePackage {
     param(
         [Parameter(Mandatory = $true)][string]$DestinationPackageRoot,
@@ -675,20 +971,7 @@ function Export-ClonePackage {
     Copy-PortableFile -Source $script:SelfScriptPath -Destination (Join-Path $packageRoot $scriptName)
     Write-RestoreNotes -PackagePath $packageRoot -ScriptName $scriptName
 
-    $userSettingsPath = Join-Path $env:APPDATA "Code - Insiders\User\settings.json"
-    $themeState = $null
-    if (Test-Path -LiteralPath $userSettingsPath) {
-        try {
-            $settings = Get-Content -LiteralPath $userSettingsPath -Raw | ConvertFrom-Json
-            $themeState = @{
-                color_theme = $settings.'workbench.colorTheme'
-                icon_theme = $settings.'workbench.iconTheme'
-                product_icon_theme = $settings.'workbench.productIconTheme'
-            }
-        } catch {
-            $themeState = @{ parse_error = [string]$_ }
-        }
-    }
+    $themeState = Get-ThemeState
 
     $manifest = [ordered]@{
         version = 1
@@ -841,10 +1124,18 @@ switch ($Mode) {
         if (-not $selectedComponents -or $selectedComponents.Count -eq 0) {
             throw "No components selected. Check -OnlyComponents / -ExcludeComponents values."
         }
-        Export-ClonePackage -DestinationPackageRoot $PackageRoot -SourceRepoRoot $resolvedRepoRoot -ComponentSelection $selectedComponents
+        if ($DryRun) {
+            Invoke-ExportDryRun -DestinationPackageRoot $PackageRoot -SourceRepoRoot $resolvedRepoRoot -ComponentSelection $selectedComponents
+        } else {
+            Export-ClonePackage -DestinationPackageRoot $PackageRoot -SourceRepoRoot $resolvedRepoRoot -ComponentSelection $selectedComponents
+        }
     }
     "Restore" {
-        Restore-ClonePackage -SourcePackageRoot $PackageRoot -SourceRepoRoot $RepoRoot
+        if ($DryRun) {
+            Invoke-RestoreDryRun -SourcePackageRoot $PackageRoot -SourceRepoRoot $RepoRoot
+        } else {
+            Restore-ClonePackage -SourcePackageRoot $PackageRoot -SourceRepoRoot $RepoRoot
+        }
     }
     "Verify" {
         Verify-ClonePackage -SourcePackageRoot $PackageRoot
