@@ -13,7 +13,7 @@
         "-File",
         "scripts/start_github_mcp.ps1"
       ],
-      "cwd": "C:\\Users\\erdno\\chthonic-archive"
+      "cwd": "${workspaceFolder}"
     },
 
     // Browser automation: bun-cdp (replaces Playwright)
@@ -26,7 +26,7 @@
         "run",
         "scripts/mcp-browser.ts"
       ],
-      "cwd": "C:\\Users\\erdno\\chthonic-archive"
+      "cwd": "${workspaceFolder}"
     },
 
     "bun-docs": {
@@ -41,11 +41,11 @@
 
     "filesystem": {
       "type": "stdio",
-      "command": "node_modules/.bin/mcp-server-filesystem",
+      "command": "node_modules/.bin/mcp-server-filesystem.exe",
       "args": [
-        "C:\\Users\\erdno\\chthonic-archive"
+        "${workspaceFolder}"
       ],
-      "cwd": "C:\\Users\\erdno\\chthonic-archive"
+      "cwd": "${workspaceFolder}"
     },
 
     // artisan: MERGED into chthonic server v3.0.0
@@ -61,7 +61,7 @@
         "run",
         "scripts/mcp-asc-injector.ts"
       ],
-      "cwd": "C:\\Users\\erdno\\chthonic-archive",
+      "cwd": "${workspaceFolder}",
       "env": {
         "SSOT_PATH": ".github/copilot-instructions-archive.md"
       }
@@ -74,9 +74,9 @@
         "run",
         "scripts/mcp-chthonic-server.ts"
       ],
-      "cwd": "C:\\Users\\erdno\\chthonic-archive",
+      "cwd": "${workspaceFolder}",
       "env": {
-        "CHTHONIC_ROOT": "C:\\Users\\erdno\\chthonic-archive"
+        "CHTHONIC_ROOT": "${workspaceFolder}"
       }
     }
   }
