@@ -76,6 +76,8 @@ SKIP_DIRS = {
     "meta-ide", "extensions",
     # Session dumps / debugging artifacts — stale file:/// URIs, old usernames
     "debugging_data",
+    # Archive-heavy salvage vault — 19k+ files, no active links target it
+    "corpse-vault",
 }
 
 # Basenames to skip during scanning (third-party docs whose links are ecosystem-internal)
@@ -294,7 +296,7 @@ def resolve_link(
     """Resolve a single link and return a diagnostic record.
 
     Returns a dict with:
-        status: "ok" | "broken" | "ambiguous" | "collision_unlabeled" | "broken_anchor"
+        status: "ok" | "broken" | "ambiguous" | "empty_label" | "collision_unlabeled" | "broken_anchor"
         resolved_path: the resolved Path (or None)
         fix: suggested replacement string (or None)
         reason: human-readable explanation
@@ -451,8 +453,10 @@ def resolve_link(
     if len(candidates) > 1:
         # Multiple candidates — ambiguous, can't auto-fix
         locs = [str(c.relative_to(repo_root)) for c in candidates]
+        # Empty-label links [](path) are structural noise, not real ambiguity
+        status = "empty_label" if not link["label"] else "ambiguous"
         return {
-            "status": "ambiguous",
+            "status": status,
             "resolved_path": None,
             "fix": None,
             "reason": (
@@ -462,6 +466,14 @@ def resolve_link(
         }
 
     # Case 3: no match at all — file is genuinely deleted.
+    # Empty-label links with no matches are structural noise, not broken refs
+    if not link["label"]:
+        return {
+            "status": "empty_label",
+            "resolved_path": None,
+            "fix": None,
+            "reason": f"Empty-label link to '{target_str}'; no file named '{basename}' in repo",
+        }
     # Delink: replace [label](path) with just the label text.
     label = link["label"]
     delink = label if label else ""
@@ -503,6 +515,7 @@ def audit_file(
     ok = [r for r in results if r["status"] == "ok"]
     broken = [r for r in results if r["status"] in ("broken", "broken_anchor")]
     ambiguous = [r for r in results if r["status"] == "ambiguous"]
+    empty_label = [r for r in results if r["status"] == "empty_label"]
     unlabeled = [r for r in results if r["status"] == "collision_unlabeled"]
     fixable = [r for r in results if r["fix"] is not None]
 
@@ -512,6 +525,7 @@ def audit_file(
         "ok": len(ok),
         "broken": len(broken),
         "ambiguous": len(ambiguous),
+        "empty_label": len(empty_label),
         "collision_unlabeled": len(unlabeled),
         "fixable": len(fixable),
         "issues": [r for r in results if r["status"] != "ok"],
@@ -1099,6 +1113,7 @@ def main() -> int:
         total_fixable = sum(r["fixable"] for r in all_results)
         total_broken = sum(r["broken"] for r in all_results)
         total_ambiguous = sum(r["ambiguous"] for r in all_results)
+        total_empty_label = sum(r["empty_label"] for r in all_results)
 
         if args.json and not args.fix and not args.dry_run:
             for result in all_results:
@@ -1115,6 +1130,7 @@ def main() -> int:
                 "total_fixable": total_fixable,
                 "total_broken": total_broken,
                 "total_ambiguous": total_ambiguous,
+                "total_empty_label": total_empty_label,
                 "results": all_results,
             }, indent=2))
             return 0 if total_issues == 0 else 1
@@ -1125,7 +1141,8 @@ def main() -> int:
 
         print(f"SCAN: {total_files} files, {impacted_files} with issues")
         print(f"  Issues: {total_issues} total — {total_broken} broken, "
-              f"{total_ambiguous} ambiguous, {total_fixable} fixable")
+              f"{total_ambiguous} ambiguous, {total_empty_label} empty-label, "
+              f"{total_fixable} fixable")
 
         for result in all_results:
             print(f"\n  {result['file']}:")
@@ -1134,6 +1151,7 @@ def main() -> int:
                     "broken": "BROKEN",
                     "broken_anchor": "ANCHOR",
                     "ambiguous": "AMBIG",
+                    "empty_label": "EMPTY",
                     "collision_unlabeled": "LABEL",
                 }.get(issue["status"], issue["status"].upper())
                 fix_hint = f" -> {issue['fix']!r}" if issue["fix"] is not None else ""
@@ -1196,6 +1214,7 @@ def main() -> int:
         print(f"AUDIT: {result['file']}")
         print(f"  Links: {result['total_links']} total, {result['ok']} ok, "
               f"{result['broken']} broken, {result['ambiguous']} ambiguous, "
+              f"{result['empty_label']} empty-label, "
               f"{result['collision_unlabeled']} unlabeled collisions")
 
         for issue in issues:
@@ -1203,6 +1222,7 @@ def main() -> int:
                 "broken": "BROKEN",
                 "broken_anchor": "ANCHOR",
                 "ambiguous": "AMBIG",
+                "empty_label": "EMPTY",
                 "collision_unlabeled": "LABEL",
             }.get(issue["status"], issue["status"].upper())
             print(f"\n  L{issue['line']} [{status_icon}] {issue['original']}")
