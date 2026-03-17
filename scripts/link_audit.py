@@ -48,6 +48,7 @@ import re
 import subprocess
 import sys
 from pathlib import Path
+from urllib.parse import unquote as _url_unquote
 
 from scripts.lib.shared import configure_utf8_output, find_repo_root, setup_logging
 
@@ -142,6 +143,20 @@ def extract_heading_slugs(text: str) -> set[str]:
             slugs.add(f"{base_slug}-{count}")
         slug_counts[base_slug] = count + 1
     return slugs
+
+
+# =============================================================================
+# Serialization Helpers
+# =============================================================================
+
+def _safe_relative_path(p: Path, repo_root: Path) -> str:
+    """Return repo-relative posix string, or absolute string if outside repo."""
+    if isinstance(p, str):
+        return p
+    try:
+        return str(p.relative_to(repo_root))
+    except ValueError:
+        return str(p)
 
 
 # =============================================================================
@@ -302,12 +317,14 @@ def resolve_link(
         clean = clean[2:]
 
     # --- Absolute path detection (Windows C:\... or /c:/... or /repo/path) ---
+    # URL-decode percent-encoded chars (%20 etc.) before path construction
+    decoded = _url_unquote(clean)
     abs_candidate = None
-    if RE_WINDOWS_ABS.match(clean):
-        abs_candidate = Path(clean)
-    elif RE_WINDOWS_ABS.match(clean.lstrip("/")):
+    if RE_WINDOWS_ABS.match(decoded):
+        abs_candidate = Path(decoded)
+    elif RE_WINDOWS_ABS.match(decoded.lstrip("/")):
         # Handle /c:/Users/... (leading slash before drive letter)
-        abs_candidate = Path(clean.lstrip("/"))
+        abs_candidate = Path(decoded.lstrip("/"))
 
     if abs_candidate is not None:
         resolved_abs = abs_candidate.resolve()
@@ -418,7 +435,7 @@ def resolve_link(
     if len(candidates) == 1:
         # Unique match — the path was just wrong. Suggest fix.
         correct = candidates[0]
-        correct_rel = correct.relative_to(repo_root).as_posix()
+        correct_rel = os.path.relpath(correct, file_dir).replace("\\", "/")
         # Preserve fragment if present
         fragment = ""
         if "#" in link["target"]:
@@ -873,6 +890,7 @@ def main() -> int:
                         help="Only scan files changed vs HEAD (git diff --name-only)")
     p_scan.add_argument("--paths", nargs="*", type=Path, metavar="FILE",
                         help="Only scan these specific files")
+    p_scan.add_argument("--json", action="store_true", help="JSON output")
 
     # renames
     p_renames = sub.add_parser("renames", help="Audit markdown links against staged renames")
@@ -882,9 +900,11 @@ def main() -> int:
                            help="Apply fixable replacements to affected markdown files")
     p_renames.add_argument("--dry-run", action="store_true",
                            help="Show what --fix would do without writing")
+    p_renames.add_argument("--json", action="store_true", help="JSON output")
 
-    # Common options
-    parser.add_argument("--json", action="store_true", help="JSON output")
+    # Common options (--json is now per-subcommand; check + collisions get it here)
+    p_check.add_argument("--json", action="store_true", help="JSON output")
+    p_coll.add_argument("--json", action="store_true", help="JSON output")
     parser.add_argument("--verbose", "-v", action="store_true")
     parser.add_argument("--quiet", "-q", action="store_true")
 
@@ -909,7 +929,7 @@ def main() -> int:
             payload = dict(result)
             for item in payload["hits"]:
                 if item.get("resolved_path"):
-                    item["resolved_path"] = str(item["resolved_path"].relative_to(repo_root))
+                    item["resolved_path"] = _safe_relative_path(item["resolved_path"], repo_root)
             print(json.dumps(payload, indent=2))
         else:
             if not result["hits"]:
@@ -1046,14 +1066,10 @@ def main() -> int:
 
     # --- scan ---
     if args.command == "scan":
-        log.info("Building file index ...")
-        index = build_collision_index(repo_root)
-
         if args.paths:
             md_files = [p.resolve() for p in args.paths if p.resolve().is_file()]
         elif args.changed:
-            import subprocess as _sp
-            diff_out = _sp.run(
+            diff_out = subprocess.run(
                 ["git", "diff", "--name-only", "HEAD"],
                 capture_output=True, text=True, cwd=str(repo_root),
             )
@@ -1065,6 +1081,9 @@ def main() -> int:
             md_files = sorted(p for p in changed if p.is_file())
         else:
             md_files = scan_repo_markdown(repo_root)
+
+        log.info("Building file index ...")
+        index = build_collision_index(repo_root)
 
         log.info("Scanning %d markdown files ...", len(md_files))
 
@@ -1085,10 +1104,10 @@ def main() -> int:
             for result in all_results:
                 for item in result.get("all", []):
                     if item.get("resolved_path"):
-                        item["resolved_path"] = str(item["resolved_path"].relative_to(repo_root))
+                        item["resolved_path"] = _safe_relative_path(item["resolved_path"], repo_root)
                 for item in result.get("issues", []):
                     if item.get("resolved_path"):
-                        item["resolved_path"] = str(item["resolved_path"].relative_to(repo_root))
+                        item["resolved_path"] = _safe_relative_path(item["resolved_path"], repo_root)
             print(json.dumps({
                 "total_files": total_files,
                 "impacted_files": impacted_files,
@@ -1159,10 +1178,10 @@ def main() -> int:
             # Strip non-serializable Path objects
             for item in result.get("all", []):
                 if item.get("resolved_path"):
-                    item["resolved_path"] = str(item["resolved_path"].relative_to(repo_root))
+                    item["resolved_path"] = _safe_relative_path(item["resolved_path"], repo_root)
             for item in result.get("issues", []):
                 if item.get("resolved_path"):
-                    item["resolved_path"] = str(item["resolved_path"].relative_to(repo_root))
+                    item["resolved_path"] = _safe_relative_path(item["resolved_path"], repo_root)
             print(json.dumps(result, indent=2))
             return 0 if not result["issues"] else 1
 
