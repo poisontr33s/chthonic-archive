@@ -245,9 +245,9 @@ bun --version
 
 ## 📚 See Also
 
-- [claudineENV_REFERENCE.md](../.poly_gluttony/claudine_docs/claudineENV_REFERENCE.md) - Environment activation reference
-- [claudineENV_F_REFERENCE.md](../.poly_gluttony/claudine_docs/claudineENV_F_REFERENCE.md) - Functions library reference
-- [Setup-ClaudineProfile.ps1](../scripts/Setup-ClaudineProfile.ps1) - User profile setup script
+- claudineENV_REFERENCE.md - Environment activation reference
+- claudineENV_F_REFERENCE.md - Functions library reference
+- Setup-ClaudineProfile.ps1 - User profile setup script
 
 ---
 

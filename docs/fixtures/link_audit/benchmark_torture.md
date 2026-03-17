@@ -21,10 +21,10 @@ broken markdown references so `link_audit.py` can prove what it can fix.
 
 ## Markdown Links
 
-- Broken-but-unique: [methodology](WET_PAPER_TO_GOLD_METHODOLOGY.md)
+- Broken-but-unique: [methodology](../../../WET_PAPER_TO_GOLD_METHODOLOGY.md)
 - Broken-but-unique weird extension: [entropy](entropy-scroll.ankh)
-- Ambiguous broken basename: [readme](README.md)
-- Collision unlabeled but resolvable: [README.md](../../../docs/README.md)
+- Ambiguous broken basename: readme
+- Collision unlabeled but resolvable: [README.md (docs)](../../../docs/README.md)
 - Already good disambiguated link:
   [copilot-instructions.archive.md (.github)](../../../.github/copilot-instructions.archive.md)
 
@@ -40,5 +40,5 @@ Code fences should stay untouched:
 
 Inline markdown link labels should not be treated as inert backticks:
 
-- [`AGENTS.md`](../../../AGENTS.md)
+- [AGENTS.md (repo-root)](../../../AGENTS.md)
 - [`entropy-scroll.ankh`](./entropy-scroll.ankh)

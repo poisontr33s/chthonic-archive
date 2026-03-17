@@ -1652,7 +1652,7 @@ The Kinetic (K) point type is void-locked with Orackla until the TNKW-RIAT proba
 | [FRACTAL_GOVERNANCE.md](../../.temple/governance/FRACTAL_GOVERNANCE.md) | Fractal | Self-similar governance at Macro/Meso/Micro scales |
 | [ledger/LEDGER.yaml](../../.temple/governance/ledger/LEDGER.yaml) | Ledger | Machine-readable points tracking |
 | [ledger/PRECEDENTS.yaml](../../.temple/governance/ledger/PRECEDENTS.yaml) | Precedent | Adjudicated case law |
-| [evidence/](./evidence/) | Evidence | Evidence packet standards and templates |
+| evidence/ | Evidence | Evidence packet standards and templates |
 
 ---
 

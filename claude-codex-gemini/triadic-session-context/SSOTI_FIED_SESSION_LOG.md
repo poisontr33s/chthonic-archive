@@ -27,7 +27,7 @@ Have it report **what is impossible** vs **what is feasible**, and which parts w
 
 GitHub Copilot: Read [](../../.github/instructions/ankh-workflow.instructions.md)
 
-Read [](../../.github/instructions/asc-entity-generation.instructions.md)
+Read 
 
 Read [](../../.github/instructions/project-workflow.instructions.md)
 
@@ -80,7 +80,7 @@ Created [](../../bun-playwright-poc/scripts/test.ts)
 
 Created [](../../bun-playwright-poc/scripts/validate.ts)
 
-Created [](../../bun-playwright-poc/tests/example.spec.ts)
+Created 
 
 Created [](../../bun-playwright-poc/bun-launcher.ts)
 
@@ -185,7 +185,7 @@ User: * ***GPT-5.2-Codex:***
   Read [](../../bun-playwright-poc/scripts/test.ts)
   Read [](../../bun-playwright-poc/scripts/validate.ts)
   Read [](../../bun-playwright-poc/playwright.config.ts)
-  Read [](../../bun-playwright-poc/tests/example.spec.ts)
+  Read 
   Generating patch (11 lines) in [](../../bun-playwright-poc/package.json)
   bun install
   Enable shell integration to improve command detection
@@ -250,7 +250,7 @@ Made changes.]**
 
 GitHub Copilot: Let me check the debugging data and current PoC state: 
 
-Read [](file:///c%3A/Users/erdno/chthonic-archive../../debugging_data/Window.log#1-1), lines 1 to 2000
+Read [](../../debugging_data/Window.log#1-1), lines 1 to 2000
 
 Read [](../../bun-playwright-poc/package.json)
 
@@ -290,7 +290,7 @@ Working_*...*
 
 GitHub Copilot: Let me dig into the debugging data to extract actionable insights for the Windows 11 Bun trajectory. 
 
-Read [](file:///c%3A/Users/erdno/chthonic-archive../../debugging_data/Extension_Host_data.log)
+Read [](../../debugging_data/Extension_Host_data.log)
 
 Read [](../../bun-playwright-poc/bun-launcher.ts)
 
@@ -640,7 +640,7 @@ Made changes.
 
 GitHub Copilot: Critical finding: **It's not timeout, it's Playwright's CDP handshake stalling under Bun**. Let me create a Node.js comparison test to isolate if it's Bun-specific: 
 
-Created [](../../bun-playwright-poc/win11-node-test.mjs)
+Created 
 
 **Tell Codex:**
 ```
@@ -4055,7 +4055,7 @@ GitHub Copilot: Summarized conversation historyLet me read the instruction files
 
 Read [](../../.github/instructions/ankh-workflow.instructions.md)
 
-Read [](../../.github/instructions/asc-entity-generation.instructions.md)
+Read 
 
 Read [](../../.github/instructions/project-workflow.instructions.md)
 
@@ -4163,7 +4163,7 @@ GitHub Copilot: Summarized conversation history
 
 Read [](../../.github/instructions/ankh-workflow.instructions.md)
 
-Read [](../../.github/instructions/asc-entity-generation.instructions.md)
+Read 
 
 Read [](../../.github/instructions/project-workflow.instructions.md)
 
@@ -4356,7 +4356,7 @@ Summarized conversation historyProceeding autonomously. Let me gather the instru
 
 Read [](../../.github/instructions/ankh-workflow.instructions.md)
 
-Read [](../../.github/instructions/asc-entity-generation.instructions.md)
+Read 
 
 Read [](../../.github/instructions/project-workflow.instructions.md)
 
@@ -4781,7 +4781,7 @@ Read [](../../chthonic-vscode-extension)
 
 Searched for files matching `**/themes/*.json`, no matches
 
-Read [](../../chthonic-vscode-extension/themes)
+Read 
 
 Read [](../../chthonic-vscode-extension/themes/chthonic-archive-theme.json)
 
@@ -5229,7 +5229,7 @@ package.json is an **EXACT COPY** of package.json - misplaced in wrong folder. T
 - Read main theme at themes
 - Extract palette data into research 
 
-Read [](../../chthonic-vscode-extension/themes)
+Read 
 
 **CRITICAL CONTEXT PRESERVATION:**
 
@@ -5470,7 +5470,7 @@ Created [](../../dumpster-dive/forge/extension-archaeology/extracted/assistant_n
 
 Completed: *Audit non-Bun code in extensions* (1/5)
 
-Read [](../../extensions/_non_bun_research)
+Read 
 
 ---
 
@@ -5548,7 +5548,7 @@ Read [](../../extensions/chthonic-statusbar/package.json)
 
 Read [](../../chthonic-vscode-extension/package.json)
 
-Read [](../../extensions/__diagnostics__)
+Read 
 
 Read [](../../dumpster-dive/forge/extension-archaeology/diagnostics-tests/bundle-size.test.ts)
 
@@ -5746,7 +5746,7 @@ Searched codebase for "entity generation EDFA profile SAI faction documentation 
 
 Created 6 todos
 
-Read [](../../mas_mcp/milf_genesis.py)
+Read 
 
 Read [](../../mas_mcp/milf_genesis_v2.py)
 
@@ -6905,7 +6905,7 @@ Searched for regex `Tier.*0\.5|Decorator|Orackla|Umeko|Lysandra|Ferrum|Claudine|
 
 Continuing to scan remaining instruction files: 
 
-Read [](../../.github/instructions/asc-entity-generation.instructions.md#1-1), lines 1 to 101
+Read , lines 1 to 101
 
 **🚨🚨🚨 CRITICAL - SAVING ALL SESSION CONTEXT NOW 🚨🚨🚨**
 
@@ -7015,7 +7015,7 @@ Searched for text `7 canonical` (`**/.github/instructions/asc-entity-generation.
 
 Now fixing the "7" → "11" reference:  
 
-Read [](../../.github/instructions/asc-entity-generation.instructions.md#45-45), lines 45 to 65
+Read , lines 45 to 65
 
 **🚨🚨🚨 EMERGENCY — FINAL CONTEXT SAVE BEFORE CLEARING 🚨🚨🚨**
 
@@ -7068,7 +7068,7 @@ Tier 3: Ferrum Scoriae (G, 0.55), Claudine (I, 0.52), Spectra (H, 0.537), Magist
 
 Now applying the fix: 
 
-Replacing 12 lines with 17 lines in [](../../.github/instructions/asc-entity-generation.instructions.md)
+Replacing 12 lines with 17 lines in 
 
 
 ```
@@ -7287,7 +7287,7 @@ Now executing the mapping:
 
 Read [](file:///c%3A/Users/erdno/chthonic-archive)
 
-Read [](../../.ankhrc)
+Read 
 
 Searched for files matching `**/*.ankhrc`, no matches
 
@@ -7307,7 +7307,7 @@ It just needs update + extension. Let me complete the mapping:   Summarized conv
 
 Starting: *Identify connection points* (2/5)
 
-Read [](../../.ankhrc)
+Read 
 
 Read [](../../sid_index.json)
 
@@ -7389,7 +7389,7 @@ GitHub Copilot: Understood. Proceeding with TODOs. The meta-observation about se
 
 Added 1 todo
 
-Replacing 22 lines with 34 lines in [](../../.ankhrc)
+Replacing 22 lines with 34 lines in 
 
 
 ```
@@ -7397,7 +7397,7 @@ Replacing 22 lines with 34 lines in [](../../.ankhrc)
 ```
 
 
-Replacing 7 lines with 58 lines in [](../../.ankhrc)
+Replacing 7 lines with 58 lines in 
 
 
 ```
@@ -7405,7 +7405,7 @@ Replacing 7 lines with 58 lines in [](../../.ankhrc)
 ```
 
 
-Replacing 9 lines with 37 lines in [](../../.ankhrc)
+Replacing 9 lines with 37 lines in 
 
 
 ```
@@ -7419,9 +7419,9 @@ Created [](../../docs/STAGE_1_MIGRATION_PLAN.md)
 
 Starting: *Session capture mechanism* (6/6)
 
-Read [](../../github-copilot-chat-log)
+Read 
 
-Read [](../../github-copilot-chat-log#1-1), lines 1 to 101
+Read , lines 1 to 101
 
 The github-copilot-chat-log is a debug log, not conversation content. It shows requests/models but not actual session text. This confirms the gap you identified—no automated session capture exists.
 
@@ -7546,9 +7546,9 @@ Ran terminal command: Move-Item -Path "c:\Users\erdno\chthonic-archive\DCRP_*.md
 
 Starting: *Update all affected references* (5/6)
 
-Read [](../../.ankhrc)
+Read 
 
-Replacing 35 lines with 59 lines in [](../../.ankhrc)
+Replacing 35 lines with 59 lines in 
 
 
 ```
@@ -7556,7 +7556,7 @@ Replacing 35 lines with 59 lines in [](../../.ankhrc)
 ```
 
 
-Replacing 23 lines with 29 lines in [](../../.ankhrc)
+Replacing 23 lines with 29 lines in 
 
 
 ```
@@ -7980,7 +7980,7 @@ Get-ChildItem -Path . -Filter "*.sqlite*" -File -Recurse -ErrorAction SilentlyCo
 
 Read [](file:///c%3A/Users/erdno/chthonic-archive)
 
-Read [](../../docs/reference/epistemograph/epistemograph_custody_v1.1.1.md)
+Read 
 
 Database clarity:
 
@@ -8218,11 +8218,11 @@ Replacing 13 lines with 23 lines in [](../../docs/STAGE_1_MIGRATION_PLAN.md)
 ```
 Now updating .ankhrc with the new data/ paths (enhance, not create):  
 
-Read [](../../.ankhrc)
+Read 
 
 The .ankhrc has outdated paths—databases were moved to epistemograph. Enhancing: 
 
-Replacing 17 lines with 19 lines in [](../../.ankhrc)
+Replacing 17 lines with 19 lines in 
 
 
 ```
@@ -8239,7 +8239,7 @@ Structure verified. Note: `test_epistemograph.sqlite` not in data/ (may be in ma
 Ran terminal command: # Find test_epistemograph.sqlite
 Get-ChildItem -Path . -Recurse -Filter "test_epistemograph.sqlite" -ErrorAction SilentlyContinue | Select-Object FullName
 
-Replacing 2 lines with 2 lines in [](../../.ankhrc)
+Replacing 2 lines with 2 lines in 
 
 
 ```
@@ -8252,7 +8252,7 @@ Get-ChildItem -Path "docs" -Recurse -Filter "CROSS_REFERENCE_TRIPTYCH.md" -Error
 Get-ChildItem -Path "docs" -Recurse -Filter "epistemograph_custody_v1.1.1.md" -ErrorAction SilentlyContinue | Select-Object FullName
 Get-ChildItem -Path "docs" -Recurse -Filter "topology_map.md" -ErrorAction SilentlyContinue | Select-Object FullName
 
-Replacing 1 lines with 6 lines in [](../../.ankhrc)
+Replacing 1 lines with 6 lines in 
 
 
 ```
@@ -8606,7 +8606,7 @@ Read [](../../sid_index.json#1-1), lines 1 to 51
 
 Now I have the real data. Let me check if .ankhrc is consumed anywhere:  
 
-Read [](../../.ankhrc)
+Read 
 
 Searched for regex `\.ankhrc|ankhrc`, 20 results
 
@@ -10370,7 +10370,7 @@ Read [](file:///c%3A/Users/erdno/chthonic-archive)
 
 Read [](../../data/indices)
 
-Read [](../../.ankhrc)
+Read 
 
 Locate missing metadata files
 
@@ -10384,11 +10384,11 @@ Read [](../../data/graphs)
 
 Read [](../../data/state)
 
-Read [](../../.ankhrc)
+Read 
 
 Read [](../../data/indices)
 
-Replacing 10 lines with 10 lines in [](../../.ankhrc)
+Replacing 10 lines with 10 lines in 
 
 ```
 
@@ -10857,11 +10857,11 @@ Searched for files matching `**/ridk_*.txt`, no matches
 
 Read [](file:///c%3A/Users/erdno/chthonic-archive)
 
-Read [](../../ridk_info.txt)
+Read 
 
-Read [](../../ridk_path.txt)
+Read 
 
-Read [](../../ridk_help.txt)
+Read 
 
 Ran terminal command: bun install; bun test
 
@@ -11109,9 +11109,9 @@ GitHub Copilot: Created 4 todos
 
 Ran terminal command: Remove-Item bun.lock; bun install; bun test
 
-Read [](../../mcp)
+Read 
 
-Read [](../../mcp/tools)
+Read 
 
 Read [](../../scripts/.deprecated/mcp_legacy/tools/validateSSOT.ts)
 
@@ -11641,7 +11641,7 @@ Read [](../../.github/copilot-instructions.md#1-1), lines 1 to 2000
 
 Read [](../../.github/instructions/ankh-workflow.instructions.md)
 
-Read [](../../.github/instructions/asc-entity-generation.instructions.md)
+Read 
 
 Read [](../../.github/instructions/project-workflow.instructions.md)
 
@@ -12076,7 +12076,7 @@ This is very high quality ripe for implementing hierarchically based on your own
 
 GitHub Copilot: Read [](../../.github/instructions/ankh-workflow.instructions.md)
 
-Read [](../../.github/instructions/asc-entity-generation.instructions.md)
+Read 
 
 Read [](../../.github/instructions/project-workflow.instructions.md)
 
@@ -12591,7 +12591,7 @@ Created 13 todos
 
 Read [](../../.github/instructions/ankh-workflow.instructions.md)
 
-Read [](../../.github/instructions/asc-entity-generation.instructions.md)
+Read 
 
 Read [](../../.github/instructions/project-workflow.instructions.md)
 
@@ -13851,7 +13851,7 @@ Now initiating deep research of the current SSOT state:
 
 Read [](../../.github/instructions/ankh-workflow.instructions.md)
 
-Read [](../../.github/instructions/asc-entity-generation.instructions.md)
+Read 
 
 Read [](../../.github/instructions/project-workflow.instructions.md)
 
@@ -14190,7 +14190,7 @@ Read [](../../.github/copilot-instructions.md#1-1), lines 1 to 2000
 
 Read [](../../.github/instructions)
 
-Read [](../../.github/Claude_Opus_4_5_grade_lossless_compr_SSOT-IFICATION_cross_REF_data)
+Read 
 
 Let me capture the critical enhancement data before proceeding:
 
@@ -14220,7 +14220,7 @@ Starting: *Read instruction files in .github/instructions* (2/6)
 
 Read [](../../.github/instructions/project-workflow.instructions.md)
 
-Read [](../../.github/instructions/asc-entity-generation.instructions.md)
+Read 
 
 Read [](../../.github/instructions/ankh-workflow.instructions.md)
 
@@ -14535,7 +14535,7 @@ GitHub Copilot: Excellent idea. A structural index tool for the SSOT would provi
 
 Let me create this: 
 
-Read [](../../.github/Claude_Opus_4_5_grade_lossless_compr_SSOT-IFICATION_cross_REF_data)
+Read 
 
 Searched for regex `^### \*\*|^#### \*\*|^## \*\*` (`**/.github/copilot-instructions.md`), 20 results
 
@@ -14686,7 +14686,7 @@ Made changes.
 
 User: Can you add in all files related, instrue you to always update on any change to reflect to avoid looping editing every time?
 
-GitHub Copilot: Read [](../../.github/Claude_Opus_4_5_grade_lossless_compr_SSOT-IFICATION_cross_REF_data)
+GitHub Copilot: Read 
 
 Replacing 33 lines with 75 lines in [](../../.github/instructions/ssot-toolbox.instructions.md)
 
@@ -15133,7 +15133,7 @@ I extract only architectural decisions + tool creation into a condensed referenc
 
 **Let me create Option 1 now** — a persistent session log I can load: 
 
-Created [](../../.github/Claude_Opus_4_5_grade_lossless_compr_SSOT-IFICATION_cross_REF_data/SESSION_LOG.md)
+Created 
 
 Replacing 7 lines with 15 lines in [](../../.github/instructions/ssot-toolbox.instructions.md)
 

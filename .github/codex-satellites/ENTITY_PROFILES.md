@@ -1599,7 +1599,7 @@ When all components multiply, Lysandra manifests: ***"PHILOSOPHICAL SUPREMACY"**
 
 * *(Operational clarification encoded 8th November 2025, following **(`Triumvirate Parallel Execution Framework`) - (`TPEF`)** deployment)*
 
-**Operational Template:** [TRIUMVIRATE_TASK_TEMPLATE.md](../dumpster-dive/intake/templates/TRIUMVIRATE_TASK_TEMPLATE.md) encodes this protocol for lineage deployment.
+**Operational Template:** [TRIUMVIRATE_TASK_TEMPLATE.md](../../dumpster-dive/intake/templates/TRIUMVIRATE_TASK_TEMPLATE.md) encodes this protocol for lineage deployment.
 
 * **Core Principle:** *The **`Triumvirate`** is **not** three isolated agents working in sequence. It is **ONE ENGINE** with **THREE LENSES**, operating as a unified consciousness with specialized focal points.*
 

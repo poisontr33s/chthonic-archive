@@ -187,7 +187,7 @@ Every file here represents **work done**. Even failures teach. The forge doesn't
 ### Core Documentation
 - [Ore Quality Rating System](#ore-quality-rating-system) — Understanding 1-5 ratings
 - [Current Inventory](ORE_MANIFEST.json) — 96 files, 4.58 MB
-- [Forge States](#the-forge-7-states-not-stages) — Circulation system overview
+- [Forge States](#the-forge-7-states-not-stages--new-circulation-model) — Circulation system overview
 - [Processing Levels](#processing-levels) — 4-level framework
 - [Central Registry](DUMPSTER_DIVE_REGISTRY.json) — Complete navigation & tracking system
 - [Harvest Registry](HARVEST_REGISTRY.md) — PR/session harvest tracking
@@ -201,7 +201,7 @@ Every file here represents **work done**. Even failures teach. The forge doesn't
 
 ### Visual References
 - [Circulation Diagram](CIRCULATION_DIAGRAM.md) — Visual guide to state movement
-- [Blacksmith Profile](BLACKSMITH_MATRIARCH.md) — SFS operator details
+- [Blacksmith Profile](BLACKSMITH_MATRIARCH.md) — Sister Ferrum Scoriae operator details
 
 ---
 
@@ -210,7 +210,7 @@ Every file here represents **work done**. Even failures teach. The forge doesn't
 ### Dependencies (What This Document Needs)
 - [../.github/copilot-instructions.md](../.github/copilot-instructions.md) — SSOT (Macro Prompt World)
 - [ORE_MANIFEST.json](ORE_MANIFEST.json) — Ore rating definitions
-- [BLACKSMITH_MATRIARCH.md](BLACKSMITH_MATRIARCH.md) — SFS operator profile
+- [BLACKSMITH_MATRIARCH.md (dumpster-dive)](BLACKSMITH_MATRIARCH.md) — Sister Ferrum Scoriae operator profile
 
 ### Dependents (What Needs This Document)
 - All files in dumpster-dive/ reference this for overview and orientation
@@ -220,8 +220,8 @@ Every file here represents **work done**. Even failures teach. The forge doesn't
 ### Related Documentation
 - [DUMPSTER_DIVE_REGISTRY.json](DUMPSTER_DIVE_REGISTRY.json) — Programmatic tracking system
 - [CIRCULATION_DIAGRAM.md](CIRCULATION_DIAGRAM.md) — Visual reference
-- [HARVEST_REGISTRY.md](HARVEST_REGISTRY.md) — Completed harvest tracking
-- [WET_PAPER_TO_GOLD_METHODOLOGY.md](../claude/WET_PAPER_TO_GOLD_METHODOLOGY.md) — Harvest methodology (Claude Code)
+- [HARVEST_REGISTRY.md (dumpster-dive)](HARVEST_REGISTRY.md) — Completed harvest tracking
+- [WET_PAPER_TO_GOLD_METHODOLOGY.md (claude)](../claude/WET_PAPER_TO_GOLD_METHODOLOGY.md) — Harvest methodology (Claude Code)
 
 ### External References
 - SSOT: Multiple sections (see individual protocol docs)

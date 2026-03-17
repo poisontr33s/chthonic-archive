@@ -50,7 +50,7 @@ All three converge at LoRA fine-tune (LF1).
 
 | File | Change |
 |------|--------|
-| [AGENT_COMMON.md](../../AGENT_COMMON.md) | Added `brush` to toolchain line; added links to OXIDIZED_TOOLCHAIN_REFERENCE + OXIDIZED_CHEATSHEET; updated Architecture blurb |
+| [AGENT_COMMON.md (repo-root)](../../AGENT_COMMON.md) | Added `brush` to toolchain line; added links to OXIDIZED_TOOLCHAIN_REFERENCE + OXIDIZED_CHEATSHEET; updated Architecture blurb |
 | [docs/PWSH_RULES.md](../../docs/PWSH_RULES.md) | `7.4.0` → `7.5.x` in policy statement and verification comment |
 
 ---

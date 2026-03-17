@@ -8,7 +8,7 @@ subject: migration-plan-status
 
 ## Current Reading
 
-[STAGE_1_MIGRATION_PLAN.md](/c:/Users/erdno/chthonic-archive/docs/STAGE_1_MIGRATION_PLAN.md) still describes Stage 1 as complete, but one of its assumed live surfaces is now gone:
+[STAGE_1_MIGRATION_PLAN.md](../../docs/STAGE_1_MIGRATION_PLAN.md) still describes Stage 1 as complete, but one of its assumed live surfaces is now gone:
 
 - `.ankhrc` does **not** exist at repository root
 
@@ -18,7 +18,7 @@ That means the migration plan is historically useful, but its post-migration ver
 
 | Item | Status | Notes |
 |---|---|---|
-| `Create ankhrc_validator.py` | DONE | created as [ankhrc_validator.py](/c:/Users/erdno/chthonic-archive/scripts/ankhrc_validator.py) |
+| `Create ankhrc_validator.py` | DONE | created as [ankhrc_validator.py](../../scripts/ankhrc_validator.py) |
 | Verify `.ankhrc` paths | BLOCKED BY CURRENT TREE | validator correctly reports `.ankhrc` missing |
 | Investigate `github-copilot-chat-log` dependency | DONE | no such dependency exists in current repo |
 | Build `session_extractor.py` | BLOCKED | no chat-log source material or format to target |

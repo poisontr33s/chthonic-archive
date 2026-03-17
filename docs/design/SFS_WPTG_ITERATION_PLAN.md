@@ -54,7 +54,7 @@ Dry lane obligations:
 - reserve salvage/embalming for destructive or provenance-critical edits only
 - do not generate reports, refresh manifests, or churn mailbox artifacts during overlapping lanes
 
-Authoritative method: [WET_PAPER_TO_GOLD_METHODOLOGY.md](../../WET_PAPER_TO_GOLD_METHODOLOGY.md)
+Authoritative method: [WET_PAPER_TO_GOLD_METHODOLOGY.md (repo-root)](../../WET_PAPER_TO_GOLD_METHODOLOGY.md)
 
 ---
 

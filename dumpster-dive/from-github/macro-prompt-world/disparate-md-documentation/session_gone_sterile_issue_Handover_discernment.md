@@ -1904,7 +1904,7 @@ Using "Replace String in File"
 ```
 Now create an extensions.json to explicitly disable Azure extensions in this workspace: 
 
-Read [](file:///c%3A/Users/erdno/PsychoNoir-Kontrapunkt/.vscode/extensions.json)
+Read [](../../../../.vscode/extensions.json)
 
 Using "Replace String in File"
 

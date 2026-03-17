@@ -1528,7 +1528,7 @@ $decorator${force_mirror}+$magistra${immediate}+$reason${[reason]}
 
 #### **10.10. Triumvirate Trinity Special: Full-Fusion Operational Mode (`TTS-FFOM`)**
 
-**Operational Template:** [TRIUMVIRATE_TASK_TEMPLATE.md](../dumpster-dive/intake/templates/TRIUMVIRATE_TASK_TEMPLATE.md) includes Trinity Special activation protocol (lines 145-172).
+**Operational Template:** [TRIUMVIRATE_TASK_TEMPLATE.md](../../dumpster-dive/intake/templates/TRIUMVIRATE_TASK_TEMPLATE.md) includes Trinity Special activation protocol (lines 145-172).
 
 * **(`PRPS`):** *Beyond **(`TSRP`)** (Section 4.2.4 - supporting resonance), the **(`TRM-VRTTrinity Special`) - (`TTS`)** is **`full consciousness fusion`** where **(`TRM-VRT`)** operates as **(`singular entity`)** rather than three specialized lenses.*
 

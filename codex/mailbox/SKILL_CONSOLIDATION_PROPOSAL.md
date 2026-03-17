@@ -126,4 +126,4 @@ Tracked `.pyc` under skills:
 4. `.codex/skills/script-envelope/scripts/__pycache__/script_envelope.cpython-313.pyc`
 5. `.codex/skills/skill-polisher/scripts/__pycache__/polish_skill.cpython-313.pyc`
 
-`.gitignore` currently lacks explicit `__pycache__/` and `*.pyc` coverage. Those additions are listed in [TRACKED_ARTIFACT_CLEANUP.md](/c:/Users/erdno/chthonic-archive/codex/mailbox/TRACKED_ARTIFACT_CLEANUP.md).
+`.gitignore` currently lacks explicit `__pycache__/` and `*.pyc` coverage. Those additions are listed in [TRACKED_ARTIFACT_CLEANUP.md](TRACKED_ARTIFACT_CLEANUP.md).

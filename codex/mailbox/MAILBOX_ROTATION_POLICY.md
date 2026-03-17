@@ -85,7 +85,7 @@ Rotation is move-only. No deletion.
 
 ## Engine
 
-The repo-local engine is [mailbox_rotation.py](/c:/Users/erdno/chthonic-archive/scripts/mailbox_rotation.py).
+The repo-local engine is [mailbox_rotation.py](../../scripts/mailbox_rotation.py).
 
 Recommended usage:
 

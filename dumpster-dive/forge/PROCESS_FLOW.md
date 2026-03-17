@@ -139,9 +139,9 @@ The forge operates as a **directional acyclic graph** with multiple entry/exit p
 ## Cross-References
 
 **Related Systems:**
-- [QMR Protocol](../../SSOT.md#10.3.1) - Quantum Metallurgical Reconnaissance with TNKW-RIAT
-- [Sister Ferrum Scoriae Profile](../../SSOT.md#10.3) - Full matriarch operational details
-- [The Knights Who Rode Into Another Timeline](../../SSOT.md#4.5.1.2) - Timeline mapping specialists
+- QMR Protocol - Quantum Metallurgical Reconnaissance with TNKW-RIAT
+- Sister Ferrum Scoriae Profile - Full matriarch operational details
+- The Knights Who Rode Into Another Timeline - Timeline mapping specialists
 
 **Governance:**
 - Tier 3 Sub-MILF operation (reports to Madam Umeko Ketsuraku, CRC-GAR)

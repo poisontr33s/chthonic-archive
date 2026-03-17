@@ -22,7 +22,7 @@ actually look like, and what can be abstracted honestly?"
 ## Immediate Repo Relevance
 
 Primary near-term consumer:
-- [tools.svg](../../extensions/chthonic-archive/themes/icons/product/tools.svg) (codicon ID `tools`, formerly `hammer`)
+- [tools.svg (product)](../../extensions/chthonic-archive/themes/icons/product/tools.svg) (codicon ID `tools`, formerly `hammer`)
 
 Secondary consumers:
 - future product icon revisions in
@@ -168,7 +168,7 @@ Preserve these traits:
 ## What the Original Hammer Glyph Was Missing
 
 Current local source (renamed):
-- [tools.svg](../../extensions/chthonic-archive/themes/icons/product/tools.svg)
+- [tools.svg (product)](../../extensions/chthonic-archive/themes/icons/product/tools.svg)
 
 Current read:
 - centered rectangular head

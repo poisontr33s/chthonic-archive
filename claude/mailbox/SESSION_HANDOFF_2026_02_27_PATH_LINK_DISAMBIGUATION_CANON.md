@@ -26,7 +26,7 @@ Prevent path confusion when multiple files share the same basename across direct
 
 ## Collision-Critical Files (Current)
 
-- [copilot-instructions.archive.md (.temple/architecture)](../../.temple/architecture/copilot-instructions.archive.md)
+- [copilot-instructions.archive.md (.temple/architecture)](../../.github/copilot-instructions.archive.md)
 - [copilot-instructions.archive.md (.github)](../../.github/copilot-instructions.archive.md)
 - [copilot-instructions.md (.github)](../../.github/copilot-instructions.md)
 

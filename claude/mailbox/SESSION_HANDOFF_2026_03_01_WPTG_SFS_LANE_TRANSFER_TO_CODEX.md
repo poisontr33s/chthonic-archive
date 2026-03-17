@@ -28,7 +28,7 @@ The lane is now simple:
 
 ### Governance / Canon
 
-- [WET_PAPER_TO_GOLD_METHODOLOGY.md](../../WET_PAPER_TO_GOLD_METHODOLOGY.md)
+- [WET_PAPER_TO_GOLD_METHODOLOGY.md (repo-root)](../../WET_PAPER_TO_GOLD_METHODOLOGY.md)
 - [docs/design/SFS_WPTG_ITERATION_PLAN.md](../../docs/design/SFS_WPTG_ITERATION_PLAN.md)
 - [docs/design/ANKH_THEME_REFERENCE.md](../../docs/design/ANKH_THEME_REFERENCE.md)
 - [docs/design/ANKH_ICON_GRAMMAR.md](../../docs/design/ANKH_ICON_GRAMMAR.md)

@@ -35,7 +35,7 @@ Tracking completed data harvests from PRs, sessions, and other sources.
 
 | Tier | Artifact | Description |
 |------|----------|-------------|
-| 1 | [ssot_hash.py](./intake/pr-harvest-2026-01-29/tier-1-direct/ssot_hash.py) | SHA-256 hash verification utility |
+| 1 | [ssot_hash.py (tier-1-direct)](./intake/pr-harvest-2026-01-29/tier-1-direct/ssot_hash.py) | SHA-256 hash verification utility |
 | 1 | [COPILOT_PRO_VSCODE_SETUP_REPORT.md](./intake/pr-harvest-2026-01-29/pr1-copilot-research/tier-1-direct/COPILOT_PRO_VSCODE_SETUP_REPORT.md) | Copilot research doc |
 | 2 | [translation_matrix.json](./intake/pr-harvest-2026-01-29/tier-2-schemas/translation_matrix.json) | What survives/decays in translations |
 | 2 | [entity_template.json](./intake/pr-harvest-2026-01-29/tier-2-schemas/entity_template.json) | Procedural generation scaffold |
@@ -46,7 +46,7 @@ Tracking completed data harvests from PRs, sessions, and other sources.
 
 **Disposition:** PRs closed with harvest references
 
-**Methodology:** [WET_PAPER_TO_GOLD_METHODOLOGY.md](../claude/WET_PAPER_TO_GOLD_METHODOLOGY.md)
+**Methodology:** [WET_PAPER_TO_GOLD_METHODOLOGY.md (claude)](../claude/WET_PAPER_TO_GOLD_METHODOLOGY.md)
 
 ---
 
@@ -69,7 +69,7 @@ Tracking completed data harvests from PRs, sessions, and other sources.
 
 **Disposition:** Canonical path remains in `scripts/` (operational). Historical sources copied here for audit/mining.
 
-**Methodology:** [WET_PAPER_TO_GOLD_METHODOLOGY.md](../claude/WET_PAPER_TO_GOLD_METHODOLOGY.md)
+**Methodology:** [WET_PAPER_TO_GOLD_METHODOLOGY.md (claude)](../claude/WET_PAPER_TO_GOLD_METHODOLOGY.md)
 
 ---
 

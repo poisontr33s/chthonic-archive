@@ -8,7 +8,7 @@
 @References:    ANALYSIS_SESSION_2026_01_17_SYNTHESIS
 -->
 
-> **Navigation:** [Synthesis](../dumpster-dive/archive/docs-sessions/SESSION_2026-01-17_SYNTHESIS.md) | [Handoff](HANDOFF_TO_CLAUDE.md) | [CLAUDE.md](../CLAUDE.md)
+> **Navigation:** [Synthesis](../dumpster-dive/archive/docs-sessions/SESSION_2026-01-17_SYNTHESIS.md) | [Handoff](HANDOFF_TO_CLAUDE.md) | [CLAUDE.md (repo-root)](../CLAUDE.md)
 
 **Goal:** Consolidate 5+ standalone scripts into unified `chthonic` CLI tool  
 **Impact:** +3 points on session grade (92% → 95% → **100%**)  

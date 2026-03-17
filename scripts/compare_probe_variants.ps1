@@ -13,11 +13,11 @@
 # ║ Cross-References: scripts/shell_capabilities.ps1
 # ╚════════════════════════════════════════════════════════════════════════════
 
-"""
-scripts/compare_probe_variants.ps1
-Scans repository for probe-like .ps1 files and compares against canonical form
-Usage: .\scripts\compare_probe_variants.ps1
-"""
+
+# scripts/compare_probe_variants.ps1
+# Scans repository for probe-like .ps1 files and compares against canonical form
+# Usage: .\scripts\compare_probe_variants.ps1
+
 
 param(
     [string]$CanonicalHash = "636383C0DB1F4ACDF539335337C322FD9E4F30F429A15B46C647876D29918116"
