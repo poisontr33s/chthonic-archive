@@ -83,6 +83,7 @@
     // MAS MCP: Archive vault, narrative scan, qualia check, GPU probe
     // 6 tools: mas_ssot_hash, mas_narrative_scan, mas_qualia_check,
     //          mas_scan, mas_pulse, mas_gpu_probe
+    // --directory for uv dep resolution; PYTHONPATH for `from mas_mcp.*` imports
     "mas-mcp": {
       "type": "stdio",
       "command": "uv",
@@ -94,7 +95,10 @@
         "-m",
         "server"
       ],
-      "cwd": "${workspaceFolder}"
+      "cwd": "${workspaceFolder}",
+      "env": {
+        "PYTHONPATH": "${workspaceFolder}"
+      }
     }
   }
 }
