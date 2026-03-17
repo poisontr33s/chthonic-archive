@@ -16,7 +16,7 @@ The root stale-file set is not a trash heap. It is a mixed archaeological layer 
 - session-transcript derivatives,
 - and a live broken-reference scan.
 
-Several of these files are already referenced from [CROSS_REFERENCE_TRIPTYCH.md](c:/Users/erdno/chthonic-archive/docs/protocols/CROSS_REFERENCE_TRIPTYCH.md), so relocation must be treated as a governed follow-up, not a blind move.
+Several of these files are already referenced from [CROSS_REFERENCE_TRIPTYCH.md](../../docs/protocols/CROSS_REFERENCE_TRIPTYCH.md), so relocation must be treated as a governed follow-up, not a blind move.
 
 ## Inventory
 
@@ -53,8 +53,8 @@ Expected by handoff but already relocated:
 
 Load-bearing references already exist in:
 
-- [CROSS_REFERENCE_TRIPTYCH.md](docs/protocols/CROSS_REFERENCE_TRIPTYCH.md)
-- [CONTEXT_SURGERY_2026_02_10.md](codex/mailbox/ACTUAL-WORKING-HANDOFFS/CONTEXT_SURGERY_2026_02_10.md)
+- [CROSS_REFERENCE_TRIPTYCH.md](../../docs/protocols/CROSS_REFERENCE_TRIPTYCH.md)
+- [CONTEXT_SURGERY_2026_02_10.md](ACTUAL-WORKING-HANDOFFS/CONTEXT_SURGERY_2026_02_10.md)
 - `RELATIONSHIP_AUDIT_CODEBASE_LATEST.json`
 - `RELATIONSHIP_AUDIT_CODEBASE_POSTCHECK.json`
 
