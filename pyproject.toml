@@ -1,0 +1,58 @@
+[project]
+name = "chthonic-archive-tools"
+version = "0.1.0"
+description = "Repository-wide cross-reference and analysis tools"
+requires-python = ">=3.14"
+
+dependencies = [
+    "networkx>=3.6,<4",
+    "fastmcp>=2.14,<3",
+    "huggingface-hub>=1.4.1,<2",
+    "idna>=3.11",
+    "numpy>=2,<3",
+    "polars>=1,<2",
+]
+
+[project.optional-dependencies]
+analysis = [
+    "radon>=6.0.1,<7",
+]
+
+# Poe SDK transport lane. Install with: uv sync --extra poe
+poe = [
+    "fastapi-poe>=0.0.83,<1",
+]
+
+# OpenAI direct API lane (also used by Poe OpenAI-compat endpoint).
+# Install with: uv sync --extra openai
+openai = [
+    "openai>=1.82,<2",
+]
+
+# Optional bundles for "HF lanes". Install with:
+#   uv pip install -e ".[hf]"
+hf = [
+    "mcp>=1.26.0,<2",
+    "pydantic-settings>=2.12.0,<3",
+    "requests>=2.32,<3",
+]
+
+[build-system]
+requires = ["hatchling>=1.28.0"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+only-include = [
+    "scripts/decorator_cross_ref_maximum.py",
+    "scripts/decorator_cross_ref_enhanced.py",
+]
+
+[tool.uv.workspace]
+members = [
+    "tmp/chthonic-uv-real",
+]
+
+[dependency-groups]
+dev = [
+    "llama-cpp-python>=0.3.16",
+]
