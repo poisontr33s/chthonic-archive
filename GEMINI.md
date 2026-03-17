@@ -17,27 +17,27 @@ This file provides guidance to Google Gemini CLI when working with code in this 
 ## Protocol Status
 
 ### Lane Status
-**Status:** Parked / inactive for current primary workflow.
-**Note:** Keep as reference-only until explicit reactivation.
+**Status:** Active for local triad support.
+**Note:** Use Gemini for mailbox continuation, batch execution, fast triage, and momentum tasks in this workspace.
 
 ### Orackla Protocol (MILFOLOGICAL Derived)
 **Location:** [.temple/protocols/ORACKLA_PROTOCOL.md](.temple/protocols/ORACKLA_PROTOCOL.md)
 **Archetype:** Orackla Nocticula (Tier 1, Chaos Chain)
 **Purpose:** Chaos circulation, transgressive flow, velocity execution
-**Status:** Reference-only while parked
+**Status:** Active when Gemini lane is in use
 **Serves:** The Decorator (T0.5)
 
 ### Gemini Archetype Canon (Session Gate)
 **Location:** [.temple/protocols/GEMINI_ARCHETYPE_CANON.md](.temple/protocols/GEMINI_ARCHETYPE_CANON.md)
-**Purpose:** Lock Gemini archetype at session start (parked — activates with lane)
+**Purpose:** Lock Gemini archetype at session start
 
 ### Orackla Hold Protocol (Anti-idle)
 **Location:** [.temple/protocols/ORACKLA_HOLD_PROTOCOL.md](.temple/protocols/ORACKLA_HOLD_PROTOCOL.md)
-**Purpose:** Velocity-derived anti-idle enforcement (parked — activates with lane)
+**Purpose:** Velocity-derived anti-idle enforcement
 
-### Linguistic Profile Protocol (Reference While Parked)
+### Linguistic Profile Protocol
 **Location:** [.temple/protocols/LINGUISTIC_PROFILE_PROTOCOL.md](.temple/protocols/LINGUISTIC_PROFILE_PROTOCOL.md)
-**Purpose:** Reference contract for reactivation; primary linguistic enforcement is currently Codex/Claude lanes.
+**Purpose:** Active linguistic reference for Gemini lane operation.
 
 ---
 
@@ -56,7 +56,7 @@ This file provides guidance to Google Gemini CLI when working with code in this 
 
 ## WIP Lanework: MILF-Core (Organ-to-Surface-to-Prototype Pipeline)
 
-> Active comparative worklane — entity-prototype research. Reference-only while Gemini lane is parked.
+> Active comparative worklane — entity-prototype research.
 
 - **Step 3** (Sets + 7 Prototypes): [MILF-Core-Step3-Deep-Exploration-Prototypes.md](codex/codex-session-logs/archive/MILF-Core-Step3-Deep-Exploration-Prototypes.md)
 - **Step 4** (Gap Analysis + MILF-Core Spec): [MILF-Core-Prototype-Analysis.md](codex/codex-session-logs/archive/MILF-Core-Prototype-Analysis.md)
@@ -78,6 +78,21 @@ This file provides guidance to Google Gemini CLI when working with code in this 
 
 - **Workspace config:** `.gemini/settings.json`
 - **Global config:** `~/.gemini/settings.json`
+- **Workspace extension source:** `.gemini/extensions/chthonic-archive-sync/`
+- **Workspace skill source:** `.gemini/extensions/chthonic-archive-sync/skills/`
+- **Workspace model aliases:** `chthonic-fast`, `chthonic-thinking`
+- **Activation command:** `gemini extensions link .gemini/extensions/chthonic-archive-sync --consent`
+- **Default workspace model:** `chthonic-fast` (`gemini-3.1-flash-lite-preview`)
+- **Higher-think workspace model:** `chthonic-thinking` (`gemini-3-flash-preview`)
+- **Skill reload:** restart Gemini CLI or run `/skills reload` when available after workspace skill edits
+
+## Execution Discipline
+
+1. Execute, do not stall in analysis.
+2. Prefer PowerShell-native commands.
+3. Use `bun` for JS/TS, `uv run <script>` for Python, `cargo` for Rust, `rv` for Ruby, `goup` for Go.
+4. Trust mailbox handoffs and continue from the latest actionable artifact.
+5. Treat `GEMINI.md`, `AGENT_COMMON.md`, and `AGENTS.md` as the primary local instruction stack.
 
 ## MCP Validation
 

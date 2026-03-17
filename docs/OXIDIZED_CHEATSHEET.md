@@ -4,7 +4,7 @@ title: Oxidized Toolchain — Command Cheatsheet & Cross-Tool Pattern Map
 type: reference
 status: canonical
 created: 2026-03-11
-updated: 2026-03-11
+updated: 2026-03-16 (naming canon for rv/rig/zv + rationale cross-link + local install validation note + rig cleanup + zv install + rv-r install)
 authors:
   - Claude
 audience:
@@ -28,6 +28,20 @@ tags:
 > Problem this solves: you have the tools but don't know what they can do beyond the basics.
 > Structure: cross-tool pattern map first (find by concept), per-tool quick ref second.
 > Full command surfaces: documented in source READMEs — this surfaces the non-obvious.
+> Rationale: [OXIDIZED_TOOLCHAIN_RATIONALE.md](OXIDIZED_TOOLCHAIN_RATIONALE.md)
+> Local note: `uv`, `rv`, `goup`, `bun`, `cargo`, `brush`, `zv`, and `rv-r` are installed here. `rig` is documented, but not currently installed on this workstation.
+
+---
+
+## Naming Canon
+
+- `rv` = Ruby manager
+- `rig` = R version manager
+- `R rv` / `rv-r` = the A2-ai R package manager in documentation only
+- `zv` = Rust-native Zig version manager
+
+Use that naming in repo docs and tasks so `rv` does not collide with the Ruby lane.
+Repo wrapper: `scripts/rv-r.ps1`
 
 ---
 
@@ -385,6 +399,8 @@ fnm env --use-on-cd | Out-String | Invoke-Expression  # pwsh auto-switch init
 
 ### rig — R versions
 
+Local status: not currently installed on this workstation.
+
 ```
 rig list                     # installed R versions (alias: ls)
 rig available                # R versions available to install
@@ -414,6 +430,55 @@ rig system rtools            # manage Rtools (compiler toolchain for R on Window
 - `rig system add-pak` installs the `pak` R package manager which is much faster than base `install.packages()`
 - `rig add oldrel-1` / `oldrel-2` symbolic names — don't need to know exact version numbers
 - `rig system rtools` manages Rtools (the Windows C/C++ compiler for R packages with native code)
+
+---
+
+### R rv — R packages
+
+`A2-ai/rv` is the Rust-native R package manager discussed in the reference doc.
+
+Repo naming rule:
+
+- write `R rv` or `rv-r` in docs and tasks
+- do not use bare `rv` for R inside this repo, because bare `rv` is reserved for the Ruby lane
+
+Local status: installed via repo wrapper.
+
+Wrapper path in this repo:
+
+```powershell
+pwsh -NoProfile -File scripts/rv-r.ps1 <args>
+```
+
+Wrapper lookup order:
+
+1. `R_RV_BIN`
+2. `R_RV_HOME`
+3. `%USERPROFILE%\.r-rv\bin\rv.exe`
+
+Architectural cues from the research set:
+
+- `rproject.toml` is the explicit project manifest / lock anchor
+- `.rv` is the local project environment
+- console ergonomics are centered around calls like `.rv$sync()` and `.rv$add("pkg")`
+
+---
+
+### zv — Zig versions
+
+```
+zv --version                 # show installed zv version
+zv install 0.13.0            # install specific Zig version
+zv use 0.13.0                # switch active Zig version
+zv list                      # list installed Zig versions
+zv current                   # show active Zig version
+```
+
+**Non-obvious:**
+- `zv` is the Rust-native Zig lane this repo references
+- `.zigversion` is the project-facing version file in the `zv` ecosystem
+- `zv use <version>` is the core project-aware switching flow
+- keep `zv` distinct from `zigup` and `zvm` when writing repo docs
 
 ---
 
@@ -600,7 +665,7 @@ The compilation probe IS the real Windows test. The reference doc is the verifie
 | Node.js | fnm | `fnm` | runtime |
 | Node.js | volta | *(binary release)* | runtime + project pin |
 | R | rig | *(binary release)* | runtime |
-| R | rv (A2-ai) | `rv` | packages |
+| R | R rv (A2-ai) | `rv` | packages |
 | Zig | zv | `zv` | runtime |
 | Polyglot | mise | `mise` | runtime + tasks |
 | Polyglot | proto | `proto` | runtime + plugins |

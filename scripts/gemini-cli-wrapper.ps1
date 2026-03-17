@@ -20,6 +20,7 @@
 # Windows note: Bun can generate a corrupted .bunx launcher for Gemini's
 # `#!/usr/bin/env -S node ...` shebang; normalize it back to Bun.
 
+[CmdletBinding(PositionalBinding = $false)]
 param(
     [Alias("m")]
     [string]$Model,

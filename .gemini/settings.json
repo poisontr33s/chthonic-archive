@@ -6,8 +6,43 @@
   "general": {
     "previewFeatures": true
   },
+  "extensions": {
+    "disabled": []
+  },
+  "skills": {
+    "enabled": true,
+    "disabled": [
+      "azure-observability",
+      "azure-postgres"
+    ]
+  },
   "model": {
-    "name": "gemini-3-pro-preview"
+    "name": "chthonic-fast"
+  },
+  "modelConfigs": {
+    "customAliases": {
+      "chthonic-fast": {
+        "modelConfig": {
+          "model": "gemini-3.1-flash-lite-preview",
+          "generateContentConfig": {
+            "thinkingConfig": {
+              "thinkingLevel": "LOW"
+            }
+          }
+        }
+      },
+      "chthonic-thinking": {
+        "modelConfig": {
+          "model": "gemini-3-flash-preview",
+          "generateContentConfig": {
+            "thinkingConfig": {
+              "includeThoughts": true,
+              "thinkingLevel": "HIGH"
+            }
+          }
+        }
+      }
+    }
   },
   "context": {
     "fileFiltering": {
@@ -18,6 +53,9 @@
     "enableRecursiveFileSearch": true
   },
   "experimental": {
-    "plan": true
+    "plan": true,
+    "enableAgents": true,
+    "extensionConfig": true,
+    "extensionReloading": true
   }
 }
