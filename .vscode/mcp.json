@@ -78,6 +78,23 @@
       "env": {
         "CHTHONIC_ROOT": "${workspaceFolder}"
       }
+    },
+
+    // MAS MCP: Archive vault, narrative scan, qualia check, GPU probe
+    // 6 tools: mas_ssot_hash, mas_narrative_scan, mas_qualia_check,
+    //          mas_scan, mas_pulse, mas_gpu_probe
+    "mas-mcp": {
+      "type": "stdio",
+      "command": "uv",
+      "args": [
+        "run",
+        "--directory",
+        "${workspaceFolder}/mas_mcp",
+        "python",
+        "-m",
+        "server"
+      ],
+      "cwd": "${workspaceFolder}"
     }
   }
 }
