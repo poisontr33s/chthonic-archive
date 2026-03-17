@@ -199,10 +199,8 @@ def extract_links(text: str) -> list[dict]:
         scanline = re.sub(r"(?<!\[)`[^`]+`(?!\]\()", "", line)
         for match in RE_MD_LINK.finditer(scanline):
             full, label, target = match.group(1), match.group(2), match.group(3)
-            # Skip external links and Windows absolute paths
+            # Skip external links (but NOT Windows absolute paths — resolve_link handles those)
             if any(target.startswith(p) for p in EXTERNAL_PREFIXES):
-                continue
-            if RE_WINDOWS_ABS.match(target):
                 continue
             # Split target into path and fragment parts
             if "#" in target:
@@ -302,6 +300,43 @@ def resolve_link(
     clean = target_str
     if clean.startswith("./"):
         clean = clean[2:]
+
+    # --- Absolute path detection (Windows C:\... or /c:/... or /repo/path) ---
+    abs_candidate = None
+    if RE_WINDOWS_ABS.match(clean):
+        abs_candidate = Path(clean)
+    elif RE_WINDOWS_ABS.match(clean.lstrip("/")):
+        # Handle /c:/Users/... (leading slash before drive letter)
+        abs_candidate = Path(clean.lstrip("/"))
+
+    if abs_candidate is not None:
+        resolved_abs = abs_candidate.resolve()
+        if resolved_abs.is_file() or resolved_abs.is_dir():
+            try:
+                resolved_abs.relative_to(repo_root)
+            except ValueError:
+                return {
+                    "status": "ok",
+                    "resolved_path": resolved_abs,
+                    "fix": None,
+                    "reason": "absolute path points outside repo",
+                }
+            # Absolute path points inside repo — generate correct relative path
+            correct_rel = os.path.relpath(resolved_abs, file_dir).replace("\\", "/")
+            frag = ""
+            if fragment:
+                frag = f"#{fragment}"
+            fix = f"[{link['label']}]({correct_rel}{frag})"
+            return {
+                "status": "broken",
+                "resolved_path": resolved_abs,
+                "fix": fix,
+                "reason": (
+                    f"Absolute path '{target_str}' should be relative; "
+                    f"correct relative path is '{correct_rel}'"
+                ),
+            }
+        # Absolute path doesn't exist — fall through to normal resolution
 
     # Try resolve relative to the file's directory
     candidate_rel = (file_dir / clean).resolve()
@@ -834,6 +869,10 @@ def main() -> int:
                         help="Apply fixes to all files in-place")
     p_scan.add_argument("--dry-run", action="store_true",
                         help="Show what --fix would do without writing")
+    p_scan.add_argument("--changed", action="store_true",
+                        help="Only scan files changed vs HEAD (git diff --name-only)")
+    p_scan.add_argument("--paths", nargs="*", type=Path, metavar="FILE",
+                        help="Only scan these specific files")
 
     # renames
     p_renames = sub.add_parser("renames", help="Audit markdown links against staged renames")
@@ -1009,7 +1048,24 @@ def main() -> int:
     if args.command == "scan":
         log.info("Building file index ...")
         index = build_collision_index(repo_root)
-        md_files = scan_repo_markdown(repo_root)
+
+        if args.paths:
+            md_files = [p.resolve() for p in args.paths if p.resolve().is_file()]
+        elif args.changed:
+            import subprocess as _sp
+            diff_out = _sp.run(
+                ["git", "diff", "--name-only", "HEAD"],
+                capture_output=True, text=True, cwd=str(repo_root),
+            )
+            changed = [
+                (repo_root / line.strip()).resolve()
+                for line in diff_out.stdout.splitlines()
+                if line.strip().lower().endswith(".md")
+            ]
+            md_files = sorted(p for p in changed if p.is_file())
+        else:
+            md_files = scan_repo_markdown(repo_root)
+
         log.info("Scanning %d markdown files ...", len(md_files))
 
         all_results = []
