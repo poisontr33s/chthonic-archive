@@ -36,7 +36,8 @@ from mas_mcp.logic.governance import policy_check_logic
 from mas_mcp.logic.ssot_binding import (
     resolve_ssot, resolve_ssot_for_lexicon,
     init_session_bookend, check_session_bookend,
-    compute_ssot_hash
+    compute_ssot_hash, compute_ssot_vitals,
+    read_journal_tail,
 )
 from mas_mcp.lib.gpu_probe import probe_gpu_capabilities
 
@@ -61,16 +62,22 @@ mcp = FastMCP("mas-mcp", instructions="MAS - Metadata-Persistence-Workspace")
 VAULT = ArchiveVault(ARCHIVE_PATH)
 LEXICON = LexiconFilter()
 
-# Bookend: stamp SSOT hash at server startup for session drift detection
+# Bookend: stamp SSOT vitals at server startup for session drift detection + journal
 if SSOT_PATH.exists():
-    _session_start_hash = init_session_bookend(SSOT_PATH)
+    _session_start_hash = init_session_bookend(SSOT_PATH, project_root=PROJECT_ROOT)
     logger.info("SSOT bookend stamped: %s...", _session_start_hash[:16])
 
 @mcp.tool()
 def mas_narrative_scan(target: str = "."):
     """Calculates Cultural Drift against the SSOT Lexicon."""
     result = mas_narrative_scan_logic(target, PROJECT_ROOT, SSOT_LEXICON_PATH)
-    result["ssot_hash"] = compute_ssot_hash(SSOT_LEXICON_PATH)[:16] if SSOT_LEXICON_PATH.exists() else None
+    if SSOT_LEXICON_PATH.exists():
+        vitals = compute_ssot_vitals(SSOT_LEXICON_PATH)
+        result["ssot_hash"] = vitals["hash"][:16]
+        result["ssot_fingerprint"] = vitals["fingerprint"]
+    else:
+        result["ssot_hash"] = None
+        result["ssot_fingerprint"] = None
     return result
 
 @mcp.tool()
@@ -82,14 +89,21 @@ def mas_qualia_check(target: str):
 def mas_scan(target: str = "."):
     """Scan files for lexicon impulses, entity drift, and canonical alignment signals."""
     result = mas_scan_logic(target, PROJECT_ROOT, LEXICON)
-    result["ssot_hash"] = compute_ssot_hash(SSOT_PATH)[:16] if SSOT_PATH.exists() else None
+    if SSOT_PATH.exists():
+        vitals = compute_ssot_vitals(SSOT_PATH)
+        result["ssot_hash"] = vitals["hash"][:16]
+        result["ssot_fingerprint"] = vitals["fingerprint"]
+    else:
+        result["ssot_hash"] = None
+        result["ssot_fingerprint"] = None
     return result
 
 @mcp.tool()
 def mas_pulse():
-    """Report session pulse: entity status, drift alerts, MPW fingerprint, SSOT bookend integrity, and recommendations."""
+    """Report session pulse: entity status, drift alerts, MPW fingerprint, SSOT bookend integrity, journal timeline, and recommendations."""
     pulse = mas_pulse_logic(VAULT, MPW_SOURCE, LEXICON)
     pulse["ssot_bookend"] = check_session_bookend()
+    pulse["ssot_journal"] = read_journal_tail(PROJECT_ROOT, n=5)
     return pulse
 
 @mcp.tool()

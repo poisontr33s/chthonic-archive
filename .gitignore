@@ -86,6 +86,7 @@ mas_mcp/.venv/
 mas_mcp/__pycache__/
 mas_mcp/**/__pycache__/
 mas_mcp/uv.lock
+.mas_mcp/
 
 # Allow Bun configuration
 !bunfig.toml

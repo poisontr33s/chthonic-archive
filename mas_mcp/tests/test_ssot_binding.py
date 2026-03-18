@@ -5,6 +5,7 @@
 from __future__ import annotations
 
 import asyncio
+import json
 import sys
 from pathlib import Path
 
@@ -14,8 +15,12 @@ MAS_ROOT = TESTS_ROOT.parent
 if str(MAS_ROOT) not in sys.path:
     sys.path.insert(0, str(MAS_ROOT))
 
-from logic.ssot_binding import compute_ssot_hash, resolve_ssot, resolve_ssot_for_lexicon
-from server import SSOT_LEXICON_PATH, SSOT_PATH, mcp
+from logic.ssot_binding import (
+    compute_ssot_hash, compute_ssot_vitals, compare_vitals,
+    resolve_ssot, resolve_ssot_for_lexicon,
+    stamp_journal, read_journal_tail,
+)
+from server import SSOT_LEXICON_PATH, SSOT_PATH, PROJECT_ROOT, mcp
 
 
 def test_resolve_ssot_uses_git_root_and_env_overrides(tmp_path, monkeypatch):
@@ -74,16 +79,107 @@ def test_server_tools_surface_ssot_binding_metadata():
         compute_ssot_hash(SSOT_LEXICON_PATH)[:16] if SSOT_LEXICON_PATH.exists() else None
     )
 
-    assert set(bookend) == {"ssot_file", "hash_start", "hash_now", "drifted"}
+    assert set(bookend) >= {"ssot_file", "hash_start", "hash_now", "drifted",
+                             "fingerprint_start", "fingerprint_now", "drift_summary"}
     assert bookend["hash_now"] == expected_pointer_hash
     if expected_pointer_hash is not None:
         assert len(bookend["hash_start"]) == 16
         assert len(bookend["hash_now"]) == 16
         assert isinstance(bookend["drifted"], bool)
+        # Fingerprint should be a compact string like "L1504·E7·S42·955K"
+        assert bookend["fingerprint_start"] is not None
+        assert bookend["fingerprint_now"] is not None
+        assert bookend["fingerprint_start"][0] == "L"
+
+    # Pulse now includes journal timeline
+    assert "ssot_journal" in pulse
+    assert isinstance(pulse["ssot_journal"], list)
 
     narrative = tools["mas_narrative_scan"].fn("CLAUDE.md")
     assert narrative["ssot_hash"] == expected_lexicon_hash
+    assert "ssot_fingerprint" in narrative
 
     scan = tools["mas_scan"].fn("CLAUDE.md")
     assert scan["ssot_hash"] == expected_pointer_hash
+    assert "ssot_fingerprint" in scan
     assert scan["scan_metadata"]["files_scanned"] == 1
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Vitals Fingerprint Tests
+# ─────────────────────────────────────────────────────────────────────────────
+
+def test_vitals_fingerprint_structure(tmp_path):
+    """Vitals returns a structured dict with all expected fields."""
+    ssot = tmp_path / "ssot.md"
+    ssot.write_text(
+        "# Title\n\n## Section A\n\n`FooBar` `BazQux`\n\n"
+        "## Section B\n\nOrackla appears here.\n",
+        encoding="utf-8",
+    )
+    vitals = compute_ssot_vitals(ssot)
+
+    assert set(vitals) == {"hash", "lexicon_cardinality", "entity_census",
+                            "section_count", "byte_size", "fingerprint"}
+    assert len(vitals["hash"]) == 64
+    assert vitals["lexicon_cardinality"] >= 2  # FooBar, BazQux
+    assert "Orackla" in vitals["entity_census"]
+    assert vitals["section_count"] == 3  # Title, Section A, Section B
+    assert vitals["fingerprint"].startswith("L")
+    assert "\u00b7" in vitals["fingerprint"]  # middle dot separator
+
+
+def test_compare_vitals_detects_drift(tmp_path):
+    """Compare vitals produces a meaningful summary of what changed."""
+    ssot_v1 = tmp_path / "v1.md"
+    ssot_v1.write_text("# Title\n\n`Alpha` `Beta`\n", encoding="utf-8")
+    before = compute_ssot_vitals(ssot_v1)
+
+    ssot_v2 = tmp_path / "v2.md"
+    ssot_v2.write_text(
+        "# Title\n\n## New Section\n\n`Alpha` `Beta` `Gamma` `Delta`\n\n"
+        "Orackla is here now.\n",
+        encoding="utf-8",
+    )
+    after = compute_ssot_vitals(ssot_v2)
+
+    diff = compare_vitals(before, after)
+    assert diff["hash_changed"] is True
+    assert diff["lexicon_delta"] > 0
+    assert diff["section_delta"] > 0
+    assert "lexicon grew" in diff["summary"]
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Hash Journal Tests
+# ─────────────────────────────────────────────────────────────────────────────
+
+def test_journal_stamp_and_read(tmp_path):
+    """Journal stamps persist and can be read back."""
+    ssot = tmp_path / "ssot.md"
+    ssot.write_text("# Test\n\n`TermOne` `TermTwo`\n", encoding="utf-8")
+    vitals = compute_ssot_vitals(ssot)
+
+    # Stamp two events
+    entry1 = stamp_journal(tmp_path, vitals, event="startup")
+    assert entry1["event"] == "startup"
+    assert entry1["fingerprint"].startswith("L")
+
+    entry2 = stamp_journal(tmp_path, vitals, event="drift_detected")
+    assert entry2["event"] == "drift_detected"
+
+    # Read back
+    tail = read_journal_tail(tmp_path, n=10)
+    assert len(tail) == 2
+    assert tail[0]["event"] == "startup"
+    assert tail[1]["event"] == "drift_detected"
+
+    # Verify JSONL format
+    journal_file = tmp_path / ".mas_mcp" / "ssot_hash_journal.jsonl"
+    assert journal_file.exists()
+    lines = journal_file.read_text(encoding="utf-8").strip().splitlines()
+    assert len(lines) == 2
+    for line in lines:
+        parsed = json.loads(line)
+        assert "ts" in parsed
+        assert "hash" in parsed
