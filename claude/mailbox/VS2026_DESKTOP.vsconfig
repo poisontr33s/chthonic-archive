@@ -1,6 +1,5 @@
 {
   "version": "1.0",
-  "_comment": "VS 2026 Community Insiders 18.5 [11605.296] + Build Tools 2026 18.5 [11605.296]. Generated 2026-03-18.",
   "components": [
     "Microsoft.VisualStudio.Workload.NativeDesktop",
     "Microsoft.VisualStudio.Workload.NativeGame",
@@ -34,24 +33,6 @@
     "Microsoft.NetCore.Component.DevelopmentTools",
     "Microsoft.Net.Component.4.8.1.SDK"
   ],
-
-  "_desktop_ecosystem_audit": {
-    "_timestamp": "2026-03-18",
-    "_vs_community": "18.5.11605.296 @ C:\\Program Files\\Microsoft Visual Studio\\18\\Insiders",
-    "_vs_build_tools": "18.5.11605.296 @ C:\\Program Files (x86)\\Microsoft Visual Studio\\18\\BuildTools",
-    "_ssms": "22.3.11527.330 @ C:\\Program Files\\Microsoft SQL Server Management Studio 22\\Release",
-    "_sqlcmd": "C:\\Program Files\\Microsoft SQL Server\\Client SDK\\ODBC\\170\\Tools\\Binn\\SQLCMD.EXE",
-    "_cuda": ["v13.2", "v12.8"],
-    "_gpu": "NVIDIA GeForce RTX 4090 24GB (driver 576.88)",
-    "_rust": "1.94.0 stable-x86_64-pc-windows-msvc",
-    "_dotnet_sdk": "10.0.201",
-    "_missing_recommended": {
-      "bicep_cli": "NOT INSTALLED — install via winget: winget install Microsoft.Bicep",
-      "azure_cli": "NOT INSTALLED — install via winget: winget install Microsoft.AzureCLI",
-      "sqlpackage": "NOT INSTALLED — install via winget: winget install Microsoft.SqlPackage",
-      "mistralrs_server": "NOT INSTALLED — run scripts/install_mistralrs_cuda.ps1"
-    }
-  },
 
   "extensions": []
 }
