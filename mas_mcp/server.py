@@ -33,6 +33,11 @@ from mas_mcp.logic.tools import (
     mas_validate_entity_logic
 )
 from mas_mcp.logic.governance import policy_check_logic
+from mas_mcp.logic.ssot_binding import (
+    resolve_ssot, resolve_ssot_for_lexicon,
+    init_session_bookend, check_session_bookend,
+    compute_ssot_hash
+)
 from mas_mcp.lib.gpu_probe import probe_gpu_capabilities
 
 # Config
@@ -45,8 +50,8 @@ if str(PROJECT_ROOT) not in sys.path:
 from scripts.link_audit import build_collision_index, audit_file, scan_repo_markdown
 from scripts.scm_triage import audit as scm_audit, generate_fix_recommendations, suppress_noise
 ARCHIVE_PATH = Path(__file__).parent / "archive_vault.json"
-SSOT_PATH = PROJECT_ROOT / ".github" / "copilot-instructions.md"
-SSOT_ARCHIVE_PATH = PROJECT_ROOT / ".github" / "copilot-instructions.archive.md"
+SSOT_PATH, SSOT_ARCHIVE_PATH = resolve_ssot(PROJECT_ROOT)
+SSOT_LEXICON_PATH = resolve_ssot_for_lexicon(PROJECT_ROOT)
 MPW_SOURCE = PROJECT_ROOT / ".github" / "copilot-instructions-copy.md"
 
 logging.basicConfig(level=logging.INFO)
@@ -56,11 +61,17 @@ mcp = FastMCP("mas-mcp", instructions="MAS - Metadata-Persistence-Workspace")
 VAULT = ArchiveVault(ARCHIVE_PATH)
 LEXICON = LexiconFilter()
 
+# Bookend: stamp SSOT hash at server startup for session drift detection
+if SSOT_PATH.exists():
+    _session_start_hash = init_session_bookend(SSOT_PATH)
+    logger.info("SSOT bookend stamped: %s...", _session_start_hash[:16])
+
 @mcp.tool()
 def mas_narrative_scan(target: str = "."):
     """Calculates Cultural Drift against the SSOT Lexicon."""
-    ssot = SSOT_ARCHIVE_PATH if SSOT_ARCHIVE_PATH.exists() else SSOT_PATH
-    return mas_narrative_scan_logic(target, PROJECT_ROOT, ssot)
+    result = mas_narrative_scan_logic(target, PROJECT_ROOT, SSOT_LEXICON_PATH)
+    result["ssot_hash"] = compute_ssot_hash(SSOT_LEXICON_PATH)[:16] if SSOT_LEXICON_PATH.exists() else None
+    return result
 
 @mcp.tool()
 def mas_qualia_check(target: str):
@@ -70,12 +81,16 @@ def mas_qualia_check(target: str):
 @mcp.tool()
 def mas_scan(target: str = "."):
     """Scan files for lexicon impulses, entity drift, and canonical alignment signals."""
-    return mas_scan_logic(target, PROJECT_ROOT, LEXICON)
+    result = mas_scan_logic(target, PROJECT_ROOT, LEXICON)
+    result["ssot_hash"] = compute_ssot_hash(SSOT_PATH)[:16] if SSOT_PATH.exists() else None
+    return result
 
 @mcp.tool()
 def mas_pulse():
-    """Report session pulse: entity status, drift alerts, MPW fingerprint, and recommendations."""
-    return mas_pulse_logic(VAULT, MPW_SOURCE, LEXICON)
+    """Report session pulse: entity status, drift alerts, MPW fingerprint, SSOT bookend integrity, and recommendations."""
+    pulse = mas_pulse_logic(VAULT, MPW_SOURCE, LEXICON)
+    pulse["ssot_bookend"] = check_session_bookend()
+    return pulse
 
 @mcp.tool()
 def mas_gpu_probe():

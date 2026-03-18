@@ -20,6 +20,7 @@
 import re
 from pathlib import Path
 from typing import Dict, List, Set, Any
+from mas_mcp.logic.ssot_binding import canonicalize_text
 
 class NarrativeScanner:
     """
@@ -96,7 +97,7 @@ class NarrativeScanner:
                 content_bytes = file_path.read_bytes()
                 if b'\x00' in content_bytes: continue
                 
-                content = content_bytes.decode('utf-8', errors='ignore')
+                content = canonicalize_text(content_bytes.decode('utf-8', errors='ignore'))
                 
                 # Tokenize (allow single chars if they're in lexicon_lower)
                 words = re.findall(r'\b[A-Za-z0-9\-\.]{1,}\b', content)
