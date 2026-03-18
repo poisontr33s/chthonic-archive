@@ -16,9 +16,9 @@ server.py — M-P-W Router Server (Modularized).
 
 @SID:           SERVER_MPW_ROUTER_V1
 @Shabti:        Router
-@Purpose:       Core MAS MCP gateway server. Routes archive vault, entity,
-                pulse, narrative, and qualia operations via FastMCP.
-                Integrates SSOT hash verification and GPU probing.
+@Purpose:       Core MAS MCP gateway server. Routes entity analysis,
+                governance policy, narrative drift, qualia alignment,
+                and GPU probing via FastMCP.
 """
 
 import logging
