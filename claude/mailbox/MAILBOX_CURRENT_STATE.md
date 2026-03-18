@@ -1,55 +1,58 @@
 ---
 type: mailbox-state
-updated: 2026-02-23T16:57:13.761471+00:00
+updated: 2026-03-18T00:13:16.123166+00:00
 mailbox: claude/mailbox
 ---
 
 # Mailbox Current State
 
-## Active Files
-- `ARCHAEOLOGY_DIGEST_2026_02_11.md`
-- `ARCHAEOLOGY_DIGEST_2026_02_13.md`
-- `ARCHAEOLOGY_DIGEST_2026_02_18.md`
-- `ARCHAEOLOGY_DIGEST_2026_02_19.md`
-- `ARCHAEOLOGY_DIGEST_2026_02_20.md`
-- `CLAUDE_CODE_CENTRIC_SETUP_2026_02_09.md`
-- `CLAUDE_CODE_HIERARCHICAL_RESEARCH_2026_02_09.md`
-- `CLAUDE_META_VALIDATION_SUMMARY.json`
+## Root Summary
+- Root files: `75`
+- Root directories: `1`
+- Archive file count: `37`
+- Latest aliases at root: `24`
+- Timestamped root files: `23`
+
+## Protected Surfaces
+- `MAILBOX_CURRENT_STATE.md`
+- `mailbox_manifest.json`
+- `ACTUAL-WORKING-HANDOFFS/`
+- `archive/`
+
+## Root Series Under Rotation Policy
+- none
+
+## Root Latest Aliases
 - `CLAUDE_SKILL_POLISH_SUMMARY_LATEST.md`
-- `CLAUDE_TASK_SESSION_SYNC_2026_02_09.md`
 - `CODEX_TO_CLAUDE_TASK_LATEST.md`
-- `GEMINI_DEEP_RESEARCH_SOLANA.md`
-- `GENRE_EXTRACTION_2026_02_21.md`
-- `GENRE_EXTRACTION_2026_02_22.md`
-- `GENRE_EXTRACTION_2026_02_23.md`
-- `KISS_PARITY_BRIEF_2026_02_06.md`
+- `GIT_SNAPSHOT_LATEST.md`
+- `HANDOFF_AUDIT_LATEST.json`
+- `HANDOFF_AUDIT_LATEST.md`
 - `LOCAL_AI_READINESS_LATEST.json`
 - `LOCAL_AI_READINESS_LATEST.md`
-- `MAILBOX_CURRENT_STATE.md`
+- `MAILBOX_HANDOFF_VERIFICATION_LATEST.md`
+- `POE_API_DUAL_DISCREPANCY_LATEST.json`
+- `POE_API_DUAL_DISCREPANCY_LATEST.md`
+- `POE_API_SETUP_PULL_LATEST.json`
+- `POE_API_SETUP_PULL_LATEST.md`
+- `POE_CALLABILITY_REGISTRY_LATEST.json`
+- `POE_CALLABILITY_REGISTRY_LATEST.md`
 - `POE_LANE_LATEST.json`
 - `POE_LANE_LATEST.md`
 - `POE_SDK_LATEST.json`
 - `POE_SDK_LATEST.md`
 - `POE_TRANSPORT_AUDIT_LATEST.json`
 - `POE_TRANSPORT_AUDIT_LATEST.md`
-- `SESSION_CONTEXT_APPENDIX_2026_02_06.md`
-- `SESSION_CONTEXT_CHRONICLE_2026_02_06.md`
-- `SESSION_CONTEXT_CHRONICLE_2026_02_09.md`
-- `SESSION_HANDOFF_2026_02_10_CLAUDE_CODE_OPUS_SETUP.md`
-- `SESSION_HANDOFF_2026_1_9_CLAUDE_SKILL_AUDIT.md`
-- `SESSION_SYNC_INDEX_2026_02_09.json`
-- `SESSION_SYNC_PACKET_2026_02_09.md`
-- `SKILLS_PARITY_DISCREPANCY_2026_02_06.md`
-- `TETRAGRAMMATON_PACKET.md`
-- `mailbox_manifest.json`
-- `skill_audit_claude_2026-02-09T22-01-52Z.json`
-- `skills_parity_map_2026_02_06.json`
+- `SCM_TRIAGE_SNAPSHOT_LATEST.md`
+- `VSCODE_ELECTRON_HARDENER_LATEST.md`
+- `VSCODE_ERROR_AUTOPSY_LATEST.json`
+- `VSCODE_ERROR_AUTOPSY_LATEST.md`
 
-## Archive
-- Path: `claude/mailbox/archive`
-- Count: 8
+## Root Directory Series
+- none
 
 ## Policy
-- Root mailbox keeps only current-cycle files.
-- Historical files may remain in `archive/`.
-- Hidden dot mailboxes stay sentinel-only (`.gitkeep`).
+- Root mailbox keeps current-cycle files, latest aliases, and protected working handoffs.
+- Timestamped series with more than three members are rotation candidates.
+- Rotation always archives; it never deletes.
+- `.tmp_fixture_eval/` is temporary fixture output and should not be treated as a durable active handoff lane.
