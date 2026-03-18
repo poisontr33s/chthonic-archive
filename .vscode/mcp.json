@@ -63,7 +63,7 @@
       ],
       "cwd": "${workspaceFolder}",
       "env": {
-        "SSOT_PATH": ".github/copilot-instructions-archive.md"
+        "SSOT_PATH": ".github/copilot-instructions.archive.md"
       }
     },
 
@@ -96,10 +96,7 @@
         "-m",
         "server"
       ],
-      "cwd": "${workspaceFolder}",
-      "env": {
-        "PYTHONPATH": "${workspaceFolder}"
-      }
+      "cwd": "${workspaceFolder}"
     }
   }
 }

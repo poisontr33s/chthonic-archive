@@ -70,8 +70,8 @@ interface ToolResult {
 // CONFIGURATION
 // ═══════════════════════════════════════════════════════════════════════════════
 
-const VERSION = "3.0.0";
-const CHTHONIC_ROOT = process.env.CHTHONIC_ROOT ?? "C:\\Users\\erdno\\chthonic-archive";
+const VERSION = "3.3.0";
+const CHTHONIC_ROOT = process.env.CHTHONIC_ROOT ?? import.meta.dir.replace(/[\\/]scripts$/, "");
 const CHTHONIC_SCRIPT = join(CHTHONIC_ROOT, "scripts", "chthonic.ps1");
 const HOME = process.env.USERPROFILE ?? "";
 const DEBUG = process.env.MCP_DEBUG === "1";

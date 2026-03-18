@@ -49,7 +49,8 @@ only-include = [
 
 [tool.uv.workspace]
 members = [
-    "tmp/chthonic-uv-real",
+    "mas_mcp",
+    "ankh_atlas",
 ]
 
 [dependency-groups]

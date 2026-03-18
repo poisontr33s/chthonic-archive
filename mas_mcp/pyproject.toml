@@ -16,7 +16,6 @@ classifiers = [
 
 dependencies = [
     "fastmcp>=2.14,<3",
-    "mcp>=1.0.0",
     "networkx>=3.6",
     "numpy>=1.26",
     "onnx>=1.20.0",
