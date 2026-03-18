@@ -7,7 +7,7 @@
 # ║ Wedjat-Quipu Spectrum: WHITE
 # ║ Temple-Ayllu Zone: 🏛️ THE HYPOSTYLE
 # ║ Ogdoad-Ceque Radiance:
-# ║   └─◄ mas_mcp/lib/ssot_handler.py
+# ║   └─◄ mas_mcp/logic/governance.py
 # ║   └─◄ mas_mcp/lib/gpu_probe.py
 # ╚════════════════════════════════════════════════════════════════════════════
 
@@ -28,9 +28,10 @@ from fastmcp import FastMCP
 from mas_mcp.logic.resonance import ArchiveVault, LexiconFilter
 from mas_mcp.logic.tools import (
     mas_scan_logic, mas_entity_deep_logic, mas_pulse_logic,
-    mas_narrative_scan_logic, mas_qualia_check_logic
+    mas_narrative_scan_logic, mas_qualia_check_logic,
+    mas_validate_entity_logic
 )
-from mas_mcp.lib.ssot_handler import verify_bookend
+from mas_mcp.logic.governance import policy_check_logic
 from mas_mcp.lib.gpu_probe import probe_gpu_capabilities
 
 # Config
@@ -77,15 +78,14 @@ def mas_entity_deep(entity_name: str, context_lines: int = 5):
     return mas_entity_deep_logic(entity_name, context_lines, PROJECT_ROOT)
 
 @mcp.tool()
-def mas_bookend_verify(hash_start: str):
-    """Verify SSOT integrity by comparing a session-start hash against current state. Detects governance drift."""
-    is_consistent, hash_end = verify_bookend(hash_start)
-    return {
-        "consistent": is_consistent,
-        "hash_start": hash_start,
-        "hash_end": hash_end,
-        "status": "SSOT_CONSISTENT" if is_consistent else "GOVERNANCE_DRIFT_DETECTED"
-    }
+def mas_validate_entity(entity_name: str, expected_whr: float = None, expected_tier: int = None, expected_cup: str = None):
+    """Validate an entity against expected metrics. Records fractures on mismatch, seals truths on full match."""
+    return mas_validate_entity_logic(entity_name, expected_whr, expected_tier, expected_cup, PROJECT_ROOT, VAULT)
+
+@mcp.tool()
+def mas_policy_check(code: str):
+    """Security policy gate: scan code for prohibited or guarded patterns (exec, eval, rm -rf, etc). Returns risk band."""
+    return policy_check_logic(code)
 
 
 def main():
