@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
+#-*- coding: utf-8 -*-
 
 # ╔════════════════════════════════════════════════════════════════════════════
 # ║ THE DECORATOR'S BLESSING: server.py
@@ -48,6 +48,7 @@ LEXICON = LexiconFilter()
 
 @mcp.tool()
 def mas_ssot_hash():
+    """Compute SHA-256 hash of the canonical SSOT file for integrity verification."""
     return {"hash": compute_ssot_hash(get_ssot_path())}
 
 @mcp.tool()
@@ -62,14 +63,17 @@ def mas_qualia_check(target: str):
 
 @mcp.tool()
 def mas_scan(target: str = "."):
+    """Scan files for lexicon impulses, entity drift, and canonical alignment signals."""
     return mas_scan_logic(target, PROJECT_ROOT, LEXICON)
 
 @mcp.tool()
 def mas_pulse():
+    """Report session pulse: entity status, drift alerts, MPW fingerprint, and recommendations."""
     return mas_pulse_logic(VAULT, MPW_SOURCE, LEXICON)
 
 @mcp.tool()
 def mas_gpu_probe():
+    """Probe GPU capabilities: CUDA version, VRAM, driver, and compute features."""
     return probe_gpu_capabilities().to_dict()
 
 # ... other tools would be registered here ...
