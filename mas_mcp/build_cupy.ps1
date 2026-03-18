@@ -54,7 +54,7 @@ $ErrorActionPreference = "Stop"
 
 $CUDA_PATH = "C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v13.1"
 $CUDNN_PATH = "C:\Program Files\NVIDIA\CUDNN\v9.17"
-$VS_PATH = "C:\Program Files\Microsoft Visual Studio\2026"
+$VS_PATH = "C:\Program Files\Microsoft Visual Studio\18\Insiders"
 $CUPY_REPO = "https://github.com/cupy/cupy.git"
 $CUPY_BRANCH = "main"  # or "v13.x" when stable
 
@@ -219,7 +219,7 @@ Test-Prerequisite "cuDNN Library" "$cudnnLib\cudnn.lib" -Required
 Test-Prerequisite "cuDNN DLL" "$cudnnBinDir\cudnn64_9.dll" -Required
 
 # Visual Studio
-Test-Prerequisite "Visual Studio 2022" "$VS_PATH\VC\Auxiliary\Build\vcvars64.bat" -Required
+Test-Prerequisite "Visual Studio 2026 Insiders" "$VS_PATH\VC\Auxiliary\Build\vcvars64.bat" -Required
 
 # Git
 $git = Get-Command git.exe -ErrorAction SilentlyContinue

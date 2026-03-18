@@ -14,7 +14,7 @@ Write-Host @"
 
   ╔═══════════════════════════════════════════════════════════════
   ║     CuPy Build Environment Pre-Check
-  ║     Python 3.14 + CUDA 13 + cuDNN 9.17 + MSVC 2022
+  ║     Python 3.14 + CUDA 13 + cuDNN 9.17 + MSVC 2026 Insiders
   ╚═══════════════════════════════════════════════════════════════
 
 "@ -ForegroundColor Cyan
@@ -85,11 +85,11 @@ Check-Item "cuDNN lib" "$cudnnPath\lib\13.1\x64\cudnn.lib" -Required
 Check-Item "cuDNN DLL" "$cudnnPath\bin\13.1\cudnn64_9.dll" -Required
 
 # ─────────────────────────────────────────────────────────────────────────
-Write-Host "`n🛠️ Visual Studio 2022" -ForegroundColor Yellow
+Write-Host "`n🛠️ Visual Studio 2026 Insiders" -ForegroundColor Yellow
 # ─────────────────────────────────────────────────────────────────────────
 
-$vsPath = "C:\Program Files\Microsoft Visual Studio\2022\Community"
-Check-Item "VS2022 vcvars64.bat" "$vsPath\VC\Auxiliary\Build\vcvars64.bat" -Required
+$vsPath = "C:\Program Files\Microsoft Visual Studio\18\Insiders"
+Check-Item "VS2026 vcvars64.bat" "$vsPath\VC\Auxiliary\Build\vcvars64.bat" -Required
 Check-Item "MSVC cl.exe" "$vsPath\VC\Tools\MSVC" -Required
 
 # Test MSVC initialization

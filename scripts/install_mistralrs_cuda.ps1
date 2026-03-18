@@ -8,7 +8,7 @@
 # @Zone: THE GARDEN
 
 param(
-    [ValidateSet("insiders", "vs2022", "auto")]
+    [ValidateSet("insiders", "vs2026", "auto")]
     [string]$Toolchain = "insiders",
 
     [switch]$NoFlashAttn,
@@ -75,31 +75,31 @@ function Select-VSInstance {
     $insiders = @($Instances | Where-Object {
         $_.isPrerelease -eq $true -and $_.installationVersion -like "18.*"
     })
-    $vs2022 = @($Instances | Where-Object {
-        $_.installationVersion -like "17.*"
+    $vs2026 = @($Instances | Where-Object {
+        $_.installationVersion -like "18.*"
     })
 
     switch ($Selection) {
         "insiders" {
             if (-not $insiders) {
-                throw "VS 18 Insiders with C++ tools not found. Use -Toolchain vs2022 or install Insiders Build Tools."
+                throw "VS 18 Insiders with C++ tools not found. Use -Toolchain vs2026 or install Insiders Build Tools."
             }
             return ($insiders | Sort-Object installationVersion -Descending | Select-Object -First 1)
         }
-        "vs2022" {
-            if (-not $vs2022) {
-                throw "VS 2022 Build Tools with C++ tools not found."
+        "vs2026" {
+            if (-not $vs2026) {
+                throw "VS 2026 Build Tools with C++ tools not found."
             }
-            return ($vs2022 | Sort-Object installationVersion -Descending | Select-Object -First 1)
+            return ($vs2026 | Sort-Object installationVersion -Descending | Select-Object -First 1)
         }
         "auto" {
             if ($insiders) {
                 return ($insiders | Sort-Object installationVersion -Descending | Select-Object -First 1)
             }
-            if ($vs2022) {
-                return ($vs2022 | Sort-Object installationVersion -Descending | Select-Object -First 1)
+            if ($vs2026) {
+                return ($vs2026 | Sort-Object installationVersion -Descending | Select-Object -First 1)
             }
-            throw "No supported VS toolchain detected (insiders or vs2022)."
+            throw "No supported VS toolchain detected (insiders or vs2026)."
         }
         default {
             throw "Unsupported toolchain selection: $Selection"

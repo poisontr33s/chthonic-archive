@@ -8,7 +8,7 @@
 # @Zone: THE GARDEN
 
 param(
-    [ValidateSet("insiders", "vs2022", "auto")]
+    [ValidateSet("insiders", "vs2026", "auto")]
     [string]$Toolchain = "insiders",
 
     [switch]$NoFlashAttn,
