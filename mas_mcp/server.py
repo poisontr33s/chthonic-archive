@@ -22,6 +22,7 @@ server.py — M-P-W Router Server (Modularized).
 """
 
 import logging
+import sys
 from pathlib import Path
 from fastmcp import FastMCP
 
@@ -36,6 +37,13 @@ from mas_mcp.lib.gpu_probe import probe_gpu_capabilities
 
 # Config
 PROJECT_ROOT = Path(__file__).parent.parent
+
+# Allow scripts/ imports (link_audit, scm_triage) to resolve from repo root
+if str(PROJECT_ROOT) not in sys.path:
+    sys.path.insert(0, str(PROJECT_ROOT))
+
+from scripts.link_audit import build_collision_index, audit_file, scan_repo_markdown
+from scripts.scm_triage import audit as scm_audit, generate_fix_recommendations
 ARCHIVE_PATH = Path(__file__).parent / "archive_vault.json"
 SSOT_PATH = PROJECT_ROOT / ".github" / "copilot-instructions.md"
 MPW_SOURCE = PROJECT_ROOT / ".github" / "copilot-instructions-copy.md"
@@ -86,6 +94,49 @@ def mas_validate_entity(entity_name: str, expected_whr: float = None, expected_t
 def mas_policy_check(code: str):
     """Security policy gate: scan code for prohibited or guarded patterns (exec, eval, rm -rf, etc). Returns risk band."""
     return policy_check_logic(code)
+
+
+@mcp.tool()
+def mas_link_audit(target: str = "."):
+    """Audit markdown link health: broken refs, ambiguous paths, basename collisions. Pass a file path or '.' for full repo scan."""
+    collision_index = build_collision_index(PROJECT_ROOT)
+    if target == ".":
+        md_files = scan_repo_markdown(PROJECT_ROOT)
+        results = []
+        totals = {"total_links": 0, "ok": 0, "broken": 0, "ambiguous": 0}
+        for f in md_files:
+            r = audit_file(f, PROJECT_ROOT, collision_index)
+            totals["total_links"] += r["total_links"]
+            totals["ok"] += r["ok"]
+            totals["broken"] += r["broken"]
+            totals["ambiguous"] += r["ambiguous"]
+            if r["issues"]:
+                results.append({"file": str(f.relative_to(PROJECT_ROOT)), "issues": r["issues"]})
+        return {**totals, "files_scanned": len(md_files), "files_with_issues": results}
+    else:
+        file_path = Path(target) if Path(target).is_absolute() else PROJECT_ROOT / target
+        r = audit_file(file_path, PROJECT_ROOT, collision_index)
+        return r
+
+
+@mcp.tool()
+def mas_workspace_health():
+    """Root directory health audit: file hygiene, redundancy, versioning issues, and cleanup candidates."""
+    # Lazy import — rootdir_health_audit hijacks sys.stdout on import (Windows UTF-8 shim)
+    # which would break FastMCP's stdio transport if loaded at module level.
+    from scripts.rootdir_health_audit import scan_directory, analyze_files, generate_json_report
+    import json as _json
+    files = scan_directory(PROJECT_ROOT)
+    report = analyze_files(files)
+    return _json.loads(generate_json_report(report))
+
+
+@mcp.tool()
+def mas_scm_triage():
+    """Git working-tree triage: classify changes as signal/noise/ghost/mailbox, generate gitignore and cleanup recommendations."""
+    result = scm_audit(PROJECT_ROOT, logger)
+    recommendations = generate_fix_recommendations(result)
+    return {"audit": result, "recommendations": recommendations}
 
 
 def main():

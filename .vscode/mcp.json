@@ -80,9 +80,10 @@
       }
     },
 
-    // MAS MCP: Entity analysis, governance, narrative, qualia, GPU probe
-    // 8 tools: mas_narrative_scan, mas_qualia_check, mas_scan, mas_pulse,
-    //          mas_gpu_probe, mas_entity_deep, mas_validate_entity, mas_policy_check
+    // MAS MCP: Entity analysis, governance, narrative, qualia, GPU probe, workspace health
+    // 11 tools: mas_narrative_scan, mas_qualia_check, mas_scan, mas_pulse,
+    //           mas_gpu_probe, mas_entity_deep, mas_validate_entity, mas_policy_check,
+    //           mas_link_audit, mas_workspace_health, mas_scm_triage
     // --directory for uv dep resolution; PYTHONPATH for `from mas_mcp.*` imports
     "mas-mcp": {
       "type": "stdio",
