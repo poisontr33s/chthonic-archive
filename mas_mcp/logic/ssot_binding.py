@@ -36,22 +36,44 @@ SSOT_POINTER = ".github/copilot-instructions.md"
 SSOT_ARCHIVE = ".github/copilot-instructions.archive.md"
 
 
+def _detect_git_root(project_root: Path) -> Path:
+    """Walk upward until a git root is found, else fall back to project_root."""
+    current = project_root.resolve()
+    if current.is_file():
+        current = current.parent
+
+    for candidate in (current, *current.parents):
+        if (candidate / ".git").exists():
+            return candidate
+
+    return current
+
+
+def _resolve_from_root(root: Path, env_value: str | None, fallback: str) -> Path:
+    """Resolve env overrides relative to the detected repository root."""
+    if env_value:
+        candidate = Path(env_value).expanduser()
+        return candidate if candidate.is_absolute() else root / candidate
+    return root / fallback
+
+
 def resolve_ssot(project_root: Path) -> Tuple[Path, Path]:
     """
     Resolve SSOT pointer and archive paths.
 
     Priority for each:
     1. SSOT_PATH / SSOT_ARCHIVE_PATH environment variables
-    2. Standard paths relative to project_root
+    2. Standard paths relative to the detected git root
 
     Returns:
         (pointer_path, archive_path) — archive may not exist
     """
+    root = _detect_git_root(project_root)
     env_pointer = os.environ.get("SSOT_PATH")
-    pointer = Path(env_pointer) if env_pointer else project_root / SSOT_POINTER
+    pointer = _resolve_from_root(root, env_pointer, SSOT_POINTER)
 
     env_archive = os.environ.get("SSOT_ARCHIVE_PATH")
-    archive = Path(env_archive) if env_archive else project_root / SSOT_ARCHIVE
+    archive = _resolve_from_root(root, env_archive, SSOT_ARCHIVE)
 
     return pointer, archive
 

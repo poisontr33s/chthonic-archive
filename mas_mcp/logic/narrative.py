@@ -37,8 +37,10 @@ class NarrativeScanner:
         """Extracts key terminology and entity constraints from SSOT."""
         if not self.ssot_path.exists():
             return
-            
-        content = self.ssot_path.read_text(encoding='utf-8')
+
+        content = canonicalize_text(
+            self.ssot_path.read_bytes().decode('utf-8', errors='ignore')
+        )
         
         # 1. Extract terms in parentheses like (`Term`)
         terms = re.findall(r'\(`([^`\)]+)`?\)', content)

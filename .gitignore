@@ -77,6 +77,8 @@ dumpster-dive/forge/furnace/csharp/obj/
 !mas_mcp/logic/*.py
 !mas_mcp/lib/
 !mas_mcp/lib/*.py
+!mas_mcp/tests/
+!mas_mcp/tests/test_ssot_binding.py
 !mas_mcp/abbreviation_system/
 !mas_mcp/abbreviation_system/*.py
 # Exclude mas_mcp transient artifacts
