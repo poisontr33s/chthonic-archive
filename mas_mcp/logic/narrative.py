@@ -43,6 +43,10 @@ class NarrativeScanner:
         terms = re.findall(r'\(`([^`\)]+)`?\)', content)
         self.lexicon.update(terms)
         
+        # 1b. Extract standalone backtick terms (`Term-Name`, 3+ chars, no spaces)
+        bt_terms = re.findall(r'`([A-Za-z][A-Za-z0-9\-_\.]{2,})`', content)
+        self.lexicon.update(bt_terms)
+        
         # 2. Extract Tier and WHR patterns for entities
         # Example: (`T1`): → (`TRM-VRT`): → ... → (`Orackla-Nocticula`)
         # Example: (`T-DECOR`/`K-CUP`/`WHR-0.464`/`FA⁵-SUPREME`)

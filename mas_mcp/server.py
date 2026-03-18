@@ -43,9 +43,10 @@ if str(PROJECT_ROOT) not in sys.path:
     sys.path.insert(0, str(PROJECT_ROOT))
 
 from scripts.link_audit import build_collision_index, audit_file, scan_repo_markdown
-from scripts.scm_triage import audit as scm_audit, generate_fix_recommendations
+from scripts.scm_triage import audit as scm_audit, generate_fix_recommendations, suppress_noise
 ARCHIVE_PATH = Path(__file__).parent / "archive_vault.json"
 SSOT_PATH = PROJECT_ROOT / ".github" / "copilot-instructions.md"
+SSOT_ARCHIVE_PATH = PROJECT_ROOT / ".github" / "copilot-instructions.archive.md"
 MPW_SOURCE = PROJECT_ROOT / ".github" / "copilot-instructions-copy.md"
 
 logging.basicConfig(level=logging.INFO)
@@ -58,7 +59,8 @@ LEXICON = LexiconFilter()
 @mcp.tool()
 def mas_narrative_scan(target: str = "."):
     """Calculates Cultural Drift against the SSOT Lexicon."""
-    return mas_narrative_scan_logic(target, PROJECT_ROOT, SSOT_PATH)
+    ssot = SSOT_ARCHIVE_PATH if SSOT_ARCHIVE_PATH.exists() else SSOT_PATH
+    return mas_narrative_scan_logic(target, PROJECT_ROOT, ssot)
 
 @mcp.tool()
 def mas_qualia_check(target: str):
@@ -116,6 +118,8 @@ def mas_link_audit(target: str = "."):
     else:
         file_path = Path(target) if Path(target).is_absolute() else PROJECT_ROOT / target
         r = audit_file(file_path, PROJECT_ROOT, collision_index)
+        # Strip verbose 'all' list — MCP consumers only need stats + issues
+        r.pop("all", None)
         return r
 
 
@@ -137,6 +141,15 @@ def mas_scm_triage():
     result = scm_audit(PROJECT_ROOT, logger)
     recommendations = generate_fix_recommendations(result)
     return {"audit": result, "recommendations": recommendations}
+
+
+@mcp.tool()
+def mas_scm_suppress(dry_run: bool = True):
+    """Apply noise suppression from scm_triage results: append patterns to .gitignore, skip-worktree ghosts. Set dry_run=False to execute."""
+    result = scm_audit(PROJECT_ROOT, logger)
+    recommendations = generate_fix_recommendations(result)
+    suppression = suppress_noise(PROJECT_ROOT, recommendations, dry_run=dry_run)
+    return {"triage_summary": result["by_classification"], "suppression": suppression}
 
 
 def main():

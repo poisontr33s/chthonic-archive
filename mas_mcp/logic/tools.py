@@ -61,14 +61,16 @@ def mas_narrative_scan_logic(target: str, root_path: Path, ssot_path: Path) -> d
         return {"error": f"Target path does not exist: {root}"}
         
     target_files = []
-    for p in root.rglob("*"):
-        if p.is_file() and not should_skip_path(p):
-            # Skip the SSOT itself and other instructions to avoid self-reinforcement
-            if ".github/instructions" in str(p) or "copilot-instructions" in str(p):
-                continue
-            # Only scan relevant files for narrative
-            if p.suffix in {".py", ".rs", ".md", ".ts"}:
-                target_files.append(p)
+    if root.is_file():
+        if root.suffix in {".py", ".rs", ".md", ".ts"} and not should_skip_path(root):
+            target_files.append(root)
+    else:
+        for p in root.rglob("*"):
+            if p.is_file() and not should_skip_path(p):
+                if ".github/instructions" in str(p) or "copilot-instructions" in str(p):
+                    continue
+                if p.suffix in {".py", ".rs", ".md", ".ts"}:
+                    target_files.append(p)
                 
     results = scanner.calculate_drift(target_files)
     results["target"] = target
@@ -89,7 +91,12 @@ def mas_scan_logic(target: str, root_path: Path, lexicon: LexiconFilter) -> dict
     files_skipped = 0
     bytes_processed = 0
     
-    for file_path in root.rglob("*"):
+    if root.is_file():
+        file_iter = [root]
+    else:
+        file_iter = root.rglob("*")
+    
+    for file_path in file_iter:
         if not file_path.is_file():
             continue
         if should_skip_path(file_path):

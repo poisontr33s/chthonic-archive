@@ -259,6 +259,68 @@ def generate_fix_recommendations(audit_result: dict) -> dict:
     }
 
 
+def suppress_noise(repo_root: Path, recommendations: dict, dry_run: bool = True) -> dict:
+    """Apply noise suppression: append to .gitignore, skip-worktree ghosts.
+
+    Args:
+        repo_root: Repository root path.
+        recommendations: Output of generate_fix_recommendations().
+        dry_run: If True, report what would change without writing anything.
+
+    Returns:
+        Dict with applied/skipped counts and details.
+    """
+    gitignore_path = repo_root / ".gitignore"
+    existing_lines: set[str] = set()
+    if gitignore_path.exists():
+        existing_lines = {
+            ln.strip()
+            for ln in gitignore_path.read_text(encoding="utf-8").splitlines()
+            if ln.strip() and not ln.strip().startswith("#")
+        }
+
+    new_patterns = [
+        p for p in recommendations.get("gitignore_additions", [])
+        if p not in existing_lines
+    ]
+    ghost_removals = recommendations.get("ghost_removals", [])
+
+    result = {
+        "dry_run": dry_run,
+        "gitignore_added": new_patterns,
+        "gitignore_already_present": len(recommendations.get("gitignore_additions", [])) - len(new_patterns),
+        "ghost_skip_worktree": [],
+        "ghost_skip_worktree_failed": [],
+    }
+
+    if dry_run:
+        result["ghost_skip_worktree"] = ghost_removals
+        return result
+
+    # Append new patterns to .gitignore
+    if new_patterns:
+        with open(gitignore_path, "a", encoding="utf-8") as f:
+            f.write("\n# Auto-suppressed by mas_scm_suppress\n")
+            for pattern in new_patterns:
+                f.write(f"{pattern}\n")
+
+    # Apply skip-worktree to ghost files (tracked but deleted — hide from status)
+    for ghost_path in ghost_removals:
+        r = subprocess.run(
+            ["git", "update-index", "--skip-worktree", ghost_path],
+            capture_output=True, text=True, cwd=repo_root,
+            encoding="utf-8", errors="replace",
+        )
+        if r.returncode == 0:
+            result["ghost_skip_worktree"].append(ghost_path)
+        else:
+            result["ghost_skip_worktree_failed"].append(
+                {"path": ghost_path, "error": r.stderr.strip()}
+            )
+
+    return result
+
+
 def write_plan(repo_root: Path, audit_result: dict, fix_recs: dict) -> Path:
     """Phase 3: Write structured triage plan to mailbox."""
     plan = {
