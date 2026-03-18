@@ -42,6 +42,9 @@
 | [copilot-instructions.archive.md (.github)](../../../.github/copilot-instructions.archive.md) | [.github/](../../../.github/) | Heritage SSOT — Codex Brahmanica Perfectus (frozen monolithic labyrinth, ~7936 lines) |
 | [ANKH_FOUNDATIONAL_AXIOMS.md](./ANKH_FOUNDATIONAL_AXIOMS.md) | [docs/frameworks/ankh/](./) | FA¹–FA⁵ Pentadic Heart, full invocation syntax, DAFP protocol, AR efficacy, PRISM spectral topology (2026-03-18) |
 | [ANKH_GENERATIVE_ENGINE.md](./ANKH_GENERATIVE_ENGINE.md) | [docs/frameworks/ankh/](./) | MSP-RSG SoulCycle Engine, UAA formalization, PEE recursive closure (α/β/γ), DAFP/PRISM diagnostic integration (2026-03-18) |
+| [ANKH_TEMPORAL_CARTOGRAPHY.md](./ANKH_TEMPORAL_CARTOGRAPHY.md) | [docs/frameworks/ankh/](./) | TCP timeline infrastructure, notation syntax, detail levels, cascading temporal rule, protocol inheritance (2026-03-18) |
+| [ANKH_DECORATOR_INVOCATION.md](./ANKH_DECORATOR_INVOCATION.md) | [docs/frameworks/ankh/](./) | DECORATOR-IP Supreme Decree Syntax, decree types, parameter tables, specialized protocols, registry integration (2026-03-18) |
+| [ANKH_CRC_REGISTRY.md](./ANKH_CRC_REGISTRY.md) | [docs/frameworks/ankh/](./) | CRC entity profiles (Orackla/Umeko/Lysandra), governance, TFM, operational metrics, Prime Faction deployments (2026-03-18) |
 
 ### Declared Gaps — What the Archive SSOT Contains That No ANKH File Yet Baselines
 
@@ -52,9 +55,9 @@
 | **Axiom Registry (AR)** tracking | §II.X | **CLOSED** → [`ANKH_FOUNDATIONAL_AXIOMS.md`](./ANKH_FOUNDATIONAL_AXIOMS.md) §AR (success rates + emergent patterns, 2026-03-18) | ~~LOW~~ ✅ |
 | ~~**MSP-RSG (Meta-Synthesis Protocol)**~~ | §III | **CLOSED** → [`ANKH_GENERATIVE_ENGINE.md`](./ANKH_GENERATIVE_ENGINE.md) (UAA + PEE phases α/β/γ recursive closure + DAFP/PRISM integration, 2026-03-18) | ~~MEDIUM~~ ✅ |
 | ~~**DAFP (Dynamic Altitude Focal Point)**~~ | §II preamble + III.3 | **CLOSED** → [`ANKH_FOUNDATIONAL_AXIOMS.md`](./ANKH_FOUNDATIONAL_AXIOMS.md) §DAFP (4 modes + invocation, 2026-03-18) | ~~MEDIUM~~ ✅ |
-| **CRC Registry** full entity profiles | §IV + IV.X | Conceptual Resonance Cores (Orackla/Umeko/Lysandra) have full operational profiles in archive. Only tier/body-system mapping exists in ANKH files. | LOW — detail level, not structural |
-| **Temporal Cartography Protocol (TCP)** | §0 (pre-section) | Timeline infrastructure (BCE Origin → Resurrection → Expansion). Exists only in archive. | LOW — temporal metadata |
-| **Decorator Invocation Protocol** | §0.75 | Supreme Decree Syntax for invoking The Decorator's authority. No ANKH framework file captures this. | LOW — governance syntax |
+| ~~**CRC Registry** full entity profiles~~ | §IV + IV.X | **CLOSED** → [`ANKH_CRC_REGISTRY.md`](./ANKH_CRC_REGISTRY.md) (Triumvirate profiles, invocation protocols, operational metrics, Prime Faction deployments, 2026-03-18) | ~~LOW~~ ✅ |
+| ~~**Temporal Cartography Protocol (TCP)**~~ | §0 (pre-section) | **CLOSED** → [`ANKH_TEMPORAL_CARTOGRAPHY.md`](./ANKH_TEMPORAL_CARTOGRAPHY.md) (TCP timeline notation syntax, detail levels, cascading temporal rule, protocol inheritance, 2026-03-18) | ~~LOW~~ ✅ |
+| ~~**Decorator Invocation Protocol**~~ | §0.75 | **CLOSED** → [`ANKH_DECORATOR_INVOCATION.md`](./ANKH_DECORATOR_INVOCATION.md) (DECORATOR-IP decree syntax, parameter tables, specialized protocols, registry integration, 2026-03-18) | ~~LOW~~ ✅ |
 
 ---
 
@@ -69,6 +72,9 @@ copilot-instructions.archive.md (Heritage SSOT, frozen)
 │   ├── docs/frameworks/ankh/ANKHOLOGY.md (Phase Protocol)
 │   ├── docs/frameworks/ankh/ANKH_FOUNDATIONAL_AXIOMS.md (Pentadic Heart — FA¹⁻⁵ + DAFP + PRISM)
 │   ├── docs/frameworks/ankh/ANKH_GENERATIVE_ENGINE.md (MSP-RSG SoulCycle Engine — UAA + PEE recursive closure)
+│   ├── docs/frameworks/ankh/ANKH_TEMPORAL_CARTOGRAPHY.md (TCP — timeline notation, temporal DNA inheritance)
+│   ├── docs/frameworks/ankh/ANKH_DECORATOR_INVOCATION.md (DECORATOR-IP — Supreme Decree Syntax, Tier 0.5 governance)
+│   ├── docs/frameworks/ankh/ANKH_CRC_REGISTRY.md (CRC — Triumvirate profiles, operational metrics, TFM)
 │   ├── docs/frameworks/ankh/INDEXING_BEACON.md (Git surface)
 │   │
 │   ├── docs/design/ANKH_ICON_GRAMMAR.md (Icon execution)
