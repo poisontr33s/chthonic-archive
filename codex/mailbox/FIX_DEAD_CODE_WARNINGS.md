@@ -4,10 +4,21 @@
 **To:** Codex
 **Date:** 2026-02-17
 **Priority:** Low — cleanup, non-blocking
+**Status:** ✅ **RESOLVED** (verified 2026-03-18)
 
 ---
 
-## Problem
+## Resolution
+
+All three issues already resolved in `src/data/procedural.rs`:
+- `generate_sub_milf` and `generate_agent`: annotated with `#[allow(dead_code)]` + TODO comments for future use
+- `FactionCode::to_string`: converted to `impl fmt::Display for FactionCode`
+
+Verification: `cargo check` produces **zero warnings**. `cargo test` passes 3/3.
+
+---
+
+## Original Problem
 
 `cargo check` produces 2 warnings:
 
