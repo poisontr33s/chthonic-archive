@@ -1,0 +1,452 @@
+{
+  "schema_version": 1,
+  "entries": [
+    {
+      "recorded_at": "2026-03-19T21:05:00.711036+00:00",
+      "seed_text": "trainstop-default-seed",
+      "seed_value": 12077687225398345945,
+      "chain_length": 4,
+      "summary": {
+        "diversity_score": 0.9091,
+        "cross_lane_coverage": 1.0,
+        "operator_spread": 1.0,
+        "target_spread": 1.0,
+        "executor_flavors_seen": [
+          "codex",
+          "gemini"
+        ],
+        "operator_skills_seen": [
+          "link-path-guard",
+          "skill-audit",
+          "skill-polisher",
+          "trainstop-orchestrator"
+        ],
+        "distinct_targets_seen": 4
+      },
+      "sampled_steps": [
+        {
+          "step": 1,
+          "cell": {
+            "executor_flavor": "gemini",
+            "operator_skill": "link-path-guard",
+            "source_root": ".gemini/extensions/chthonic-archive-sync/skills",
+            "target_root": ".claude/skills",
+            "target_skill": "api-manager",
+            "target_skill_lane": "claude",
+            "target_flavor_mode": "claude"
+          },
+          "weight": 2.1,
+          "reasons": [
+            "mutating_operator:+0.4x",
+            "cross_lane:+0.5x",
+            "initial_step"
+          ],
+          "transition": {
+            "allowed": true,
+            "previous_target_lane": null,
+            "previous_operator": null,
+            "transition_weight_multiplier": 1.0,
+            "transition_weight_reasons": [
+              "initial_step"
+            ],
+            "filtered_out_rules": []
+          }
+        },
+        {
+          "step": 2,
+          "cell": {
+            "executor_flavor": "codex",
+            "operator_skill": "trainstop-orchestrator",
+            "source_root": ".codex/skills",
+            "target_root": ".gemini/extensions/chthonic-archive-sync/skills",
+            "target_skill": "ingest-research",
+            "target_skill_lane": "gemini",
+            "target_flavor_mode": "gemini"
+          },
+          "weight": 1.53,
+          "reasons": [
+            "meta_operator:+0.2x",
+            "cross_lane:+0.5x",
+            "meta_heavy_penalty:-0.15x"
+          ],
+          "transition": {
+            "allowed": true,
+            "previous_target_lane": "claude",
+            "previous_operator": "link-path-guard",
+            "transition_weight_multiplier": 1.0,
+            "transition_weight_reasons": [],
+            "filtered_out_rules": [
+              "duplicate_cell_blocked:1",
+              "repeated_target_skill_blocked:35",
+              "same_operator_consecutive_blocked:498"
+            ]
+          }
+        },
+        {
+          "step": 3,
+          "cell": {
+            "executor_flavor": "codex",
+            "operator_skill": "skill-polisher",
+            "source_root": ".codex/skills",
+            "target_root": ".claude/skills",
+            "target_skill": "gh-fix-ci",
+            "target_skill_lane": "claude",
+            "target_flavor_mode": "claude"
+          },
+          "weight": 2.1,
+          "reasons": [
+            "mutating_operator:+0.4x",
+            "cross_lane:+0.5x"
+          ],
+          "transition": {
+            "allowed": true,
+            "previous_target_lane": "gemini",
+            "previous_operator": "trainstop-orchestrator",
+            "transition_weight_multiplier": 1.0,
+            "transition_weight_reasons": [],
+            "filtered_out_rules": [
+              "duplicate_cell_blocked:2",
+              "repeated_target_skill_blocked:70",
+              "same_operator_consecutive_blocked:489"
+            ]
+          }
+        },
+        {
+          "step": 4,
+          "cell": {
+            "executor_flavor": "codex",
+            "operator_skill": "skill-audit",
+            "source_root": ".codex/skills",
+            "target_root": ".claude/skills",
+            "target_skill": "conceptualize",
+            "target_skill_lane": "claude",
+            "target_flavor_mode": "gemini"
+          },
+          "weight": 2.0625,
+          "reasons": [
+            "read_only_operator:+0.1x",
+            "cross_lane:+0.5x",
+            "cross_flavor_interp:+0.25x"
+          ],
+          "transition": {
+            "allowed": true,
+            "previous_target_lane": "claude",
+            "previous_operator": "skill-polisher",
+            "transition_weight_multiplier": 1.0,
+            "transition_weight_reasons": [],
+            "filtered_out_rules": [
+              "duplicate_cell_blocked:3",
+              "repeated_target_skill_blocked:105",
+              "same_operator_consecutive_blocked:480"
+            ]
+          }
+        }
+      ],
+      "planned_steps": [
+        {
+          "step": 1,
+          "cell": {
+            "executor_flavor": "gemini",
+            "operator_skill": "link-path-guard",
+            "source_root": ".gemini/extensions/chthonic-archive-sync/skills",
+            "target_root": ".claude/skills",
+            "target_skill": "api-manager",
+            "target_skill_lane": "claude",
+            "target_flavor_mode": "claude"
+          },
+          "command": [
+            "uv",
+            "run",
+            "scripts/skill_path_guard.py",
+            ".claude\\skills\\api-manager\\SKILL.md"
+          ],
+          "expected_artifacts": [
+            "logs/skill_path_guard.log"
+          ],
+          "expected_artifact_class": "log",
+          "operator_mode": "mutating",
+          "safety_class": "cross_lane_mutation",
+          "weight": 2.1,
+          "weight_reasons": [
+            "mutating_operator:+0.4x",
+            "cross_lane:+0.5x",
+            "initial_step"
+          ],
+          "transition": {
+            "allowed": true,
+            "previous_target_lane": null,
+            "previous_operator": null,
+            "transition_weight_multiplier": 1.0,
+            "transition_weight_reasons": [
+              "initial_step"
+            ],
+            "filtered_out_rules": []
+          },
+          "stop_condition": "stop_on_nonzero_or_missing_artifact"
+        },
+        {
+          "step": 2,
+          "cell": {
+            "executor_flavor": "codex",
+            "operator_skill": "trainstop-orchestrator",
+            "source_root": ".codex/skills",
+            "target_root": ".gemini/extensions/chthonic-archive-sync/skills",
+            "target_skill": "ingest-research",
+            "target_skill_lane": "gemini",
+            "target_flavor_mode": "gemini"
+          },
+          "command": [
+            "uv",
+            "run",
+            ".codex/skills/trainstop-orchestrator/scripts/orchestrate.py",
+            "--target",
+            "gemini",
+            "--lane",
+            "maintenance"
+          ],
+          "expected_artifacts": [
+            "codex/mailbox/TRAINSTOP_ORCHESTRATOR_LATEST.json"
+          ],
+          "expected_artifact_class": "orchestration_report",
+          "operator_mode": "meta",
+          "safety_class": "meta_orchestration",
+          "weight": 1.53,
+          "weight_reasons": [
+            "meta_operator:+0.2x",
+            "cross_lane:+0.5x",
+            "meta_heavy_penalty:-0.15x"
+          ],
+          "transition": {
+            "allowed": true,
+            "previous_target_lane": "claude",
+            "previous_operator": "link-path-guard",
+            "transition_weight_multiplier": 1.0,
+            "transition_weight_reasons": [],
+            "filtered_out_rules": [
+              "duplicate_cell_blocked:1",
+              "repeated_target_skill_blocked:35",
+              "same_operator_consecutive_blocked:498"
+            ]
+          },
+          "stop_condition": "stop_on_nonzero_or_missing_artifact"
+        },
+        {
+          "step": 3,
+          "cell": {
+            "executor_flavor": "codex",
+            "operator_skill": "skill-polisher",
+            "source_root": ".codex/skills",
+            "target_root": ".claude/skills",
+            "target_skill": "gh-fix-ci",
+            "target_skill_lane": "claude",
+            "target_flavor_mode": "claude"
+          },
+          "command": [
+            "uv",
+            "run",
+            ".codex/skills/skill-polisher/scripts/polish_skill.py",
+            ".claude/skills",
+            "--all",
+            "--mode",
+            "verify",
+            "--target-flavor",
+            "claude",
+            "--no-require-assets"
+          ],
+          "expected_artifacts": [
+            "codex/mailbox/polish_claude_gh-fix-ci.json"
+          ],
+          "expected_artifact_class": "verification_report",
+          "operator_mode": "mutating",
+          "safety_class": "cross_lane_mutation",
+          "weight": 2.1,
+          "weight_reasons": [
+            "mutating_operator:+0.4x",
+            "cross_lane:+0.5x"
+          ],
+          "transition": {
+            "allowed": true,
+            "previous_target_lane": "gemini",
+            "previous_operator": "trainstop-orchestrator",
+            "transition_weight_multiplier": 1.0,
+            "transition_weight_reasons": [],
+            "filtered_out_rules": [
+              "duplicate_cell_blocked:2",
+              "repeated_target_skill_blocked:70",
+              "same_operator_consecutive_blocked:489"
+            ]
+          },
+          "stop_condition": "stop_on_nonzero_or_missing_artifact"
+        },
+        {
+          "step": 4,
+          "cell": {
+            "executor_flavor": "codex",
+            "operator_skill": "skill-audit",
+            "source_root": ".codex/skills",
+            "target_root": ".claude/skills",
+            "target_skill": "conceptualize",
+            "target_skill_lane": "claude",
+            "target_flavor_mode": "gemini"
+          },
+          "command": [
+            "uv",
+            "run",
+            "scripts/skill_audit.py",
+            "--flavor",
+            "gemini",
+            "--root",
+            ".claude/skills"
+          ],
+          "expected_artifacts": [
+            "codex/mailbox/skill_audit_claude_conceptualize.json"
+          ],
+          "expected_artifact_class": "machine_report",
+          "operator_mode": "read_only",
+          "safety_class": "read_only",
+          "weight": 2.0625,
+          "weight_reasons": [
+            "read_only_operator:+0.1x",
+            "cross_lane:+0.5x",
+            "cross_flavor_interp:+0.25x"
+          ],
+          "transition": {
+            "allowed": true,
+            "previous_target_lane": "claude",
+            "previous_operator": "skill-polisher",
+            "transition_weight_multiplier": 1.0,
+            "transition_weight_reasons": [],
+            "filtered_out_rules": [
+              "duplicate_cell_blocked:3",
+              "repeated_target_skill_blocked:105",
+              "same_operator_consecutive_blocked:480"
+            ]
+          },
+          "stop_condition": "stop_on_nonzero"
+        }
+      ],
+      "execution_status": "passed",
+      "failure_classes": [],
+      "touched": [
+        {
+          "lane": "claude",
+          "root": ".claude/skills",
+          "skill": "api-manager"
+        },
+        {
+          "lane": "gemini",
+          "root": ".gemini/extensions/chthonic-archive-sync/skills",
+          "skill": "ingest-research"
+        },
+        {
+          "lane": "claude",
+          "root": ".claude/skills",
+          "skill": "gh-fix-ci"
+        },
+        {
+          "lane": "claude",
+          "root": ".claude/skills",
+          "skill": "conceptualize"
+        }
+      ],
+      "execution_results": [
+        {
+          "step": 1,
+          "command": [
+            "uv",
+            "run",
+            "scripts/skill_path_guard.py",
+            ".claude\\skills\\api-manager\\SKILL.md"
+          ],
+          "rc": 0,
+          "seconds": 7.067,
+          "stdout_tail": "OK: no stale or broken skill path references found",
+          "stderr_tail": "",
+          "expected_artifacts": [
+            "logs/skill_path_guard.log"
+          ],
+          "present_artifacts": [
+            "logs/skill_path_guard.log"
+          ],
+          "missing_artifacts": [],
+          "stop_condition": "stop_on_nonzero_or_missing_artifact",
+          "status": "passed",
+          "failure_kind": null
+        },
+        {
+          "step": 2,
+          "command": [
+            "uv",
+            "run",
+            ".codex/skills/trainstop-orchestrator/scripts/orchestrate.py",
+            "--target",
+            "gemini",
+            "--lane",
+            "maintenance"
+          ],
+          "rc": 0,
+          "seconds": 3.203,
+          "stdout_tail": "uv run .codex/skills/skill-polisher/scripts/polish_skill.py .codex/skills --all --mode verify --target-flavor codex --subprocess-fix --emit-stamps-json codex/mailbox/tatragrammatron_stamps_latest_codex.json --emit-summary-md codex/mailbox/TATRAGRAMMATRON_SUMMARY_LATEST_CODEX.md\n>>> VERIFY: PASSED (no blocking findings). <<<\n<unknown>:8: SyntaxWarning: \"\\s\" is an invalid escape sequence. Such sequences will not work in the future. Did you mean \"\\\\s\"? A raw string is also an option.\n\n=== Skill Polisher (Gemini contract on Gemini skills) ===\nuv run .codex/skills/skill-polisher/scripts/polish_skill.py .gemini/extensions/chthonic-archive-sync/skills --all --mode verify --target-flavor gemini --subprocess-fix --no-require-assets\n>>> VERIFY: PASSED (no blocking findings). <<<\n<unknown>:8: SyntaxWarning: \"\\s\" is an invalid escape sequence. Such sequences will not work in the future. Did you mean \"\\\\s\"? A raw string is also an option.\n\n=== Mailbox Polisher (gemini) ===\nuv run scripts/mailbox_polisher.py --target gemini --apply\nNo archivable churn artifacts found.\n\n=== Mailbox Scribe (gemini) ===\nuv run scripts/mailbox_scribe.py --target gemini --packet gemini/mailbox/TETRAGRAMMATON_PACKET.md\nWrote: gemini/mailbox/TETRAGRAMMATON_PACKET.md\n\n=== Mailbox Manifest Check ===\nuv run scripts/check_mailbox_manifest.py\nok",
+          "stderr_tail": "",
+          "expected_artifacts": [
+            "codex/mailbox/TRAINSTOP_ORCHESTRATOR_LATEST.json"
+          ],
+          "present_artifacts": [
+            "codex/mailbox/TRAINSTOP_ORCHESTRATOR_LATEST.json"
+          ],
+          "missing_artifacts": [],
+          "stop_condition": "stop_on_nonzero_or_missing_artifact",
+          "status": "passed",
+          "failure_kind": null
+        },
+        {
+          "step": 3,
+          "command": [
+            "uv",
+            "run",
+            ".codex/skills/skill-polisher/scripts/polish_skill.py",
+            ".claude/skills",
+            "--all",
+            "--mode",
+            "verify",
+            "--target-flavor",
+            "claude",
+            "--no-require-assets"
+          ],
+          "rc": 0,
+          "seconds": 0.24,
+          "stdout_tail": "System Satisfied. No entropy found.\n\n>>> VERIFY: PASSED (no blocking findings). <<<\n\n=== POLISHING: trainstop-orchestrator ===\n\u2554\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2557\n\u2551                    FEEDING REPORT: trainstop-orchestrator           \u2551\n\u255a\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u255d\nTASTE: PURE (Clean)\nNUTRITION LEVEL: 100%\n\nDOMAIN SCORES:\n  - structure: 100%\n  - policy: 100%\n  - semantics: 100%\n  - maintainability: 100%\n\nSystem Satisfied. No entropy found.\n\n>>> VERIFY: PASSED (no blocking findings). <<<",
+          "stderr_tail": "",
+          "expected_artifacts": [],
+          "present_artifacts": [],
+          "missing_artifacts": [],
+          "stop_condition": "stop_on_nonzero_or_missing_artifact",
+          "status": "passed",
+          "failure_kind": null
+        },
+        {
+          "step": 4,
+          "command": [
+            "uv",
+            "run",
+            "scripts/skill_audit.py",
+            "--flavor",
+            "gemini",
+            "--root",
+            ".claude/skills"
+          ],
+          "rc": 0,
+          "seconds": 0.121,
+          "stdout_tail": "\nSystem Satisfied. No entropy found.\n\n=== POLISHING: toolchain-doctor ===\n+--------------------------------------------------------------+\n|                    FEEDING REPORT: toolchain-doctor             |\n+--------------------------------------------------------------+\nTASTE: PURE (Clean)\nNUTRITION LEVEL: 100%\n\nSystem Satisfied. No entropy found.\n\n=== POLISHING: trainstop-orchestrator ===\n+--------------------------------------------------------------+\n|                    FEEDING REPORT: trainstop-orchestrator           |\n+--------------------------------------------------------------+\nTASTE: PURE (Clean)\nNUTRITION LEVEL: 100%\n\nSystem Satisfied. No entropy found.",
+          "stderr_tail": "",
+          "expected_artifacts": [],
+          "present_artifacts": [],
+          "missing_artifacts": [],
+          "stop_condition": "stop_on_nonzero",
+          "status": "passed",
+          "failure_kind": null
+        }
+      ]
+    }
+  ]
+}

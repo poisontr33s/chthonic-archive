@@ -1,0 +1,6 @@
+interface:
+  display_name: "Codex Skill Bridge"
+  short_description: "Invoke Codex-side audits from Codex"
+  icon_small: "./assets/bridge-small.svg"
+  icon_large: "./assets/bridge-large.svg"
+  brand_color: "#111827"

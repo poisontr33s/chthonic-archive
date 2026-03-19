@@ -1,0 +1,246 @@
+{
+  "schema_version": 1,
+  "roulette_source": "codex/mailbox/SKILL_TENSOR_ROULETTE_LATEST.json",
+  "capabilities_source": "config/skill_operator_capabilities.json",
+  "seed_text": "trainstop-default-seed",
+  "seed_value": 12077687225398345945,
+  "chain_length": 4,
+  "steps": [
+    {
+      "step": 1,
+      "cell": {
+        "executor_flavor": "gemini",
+        "operator_skill": "link-path-guard",
+        "source_root": ".gemini/extensions/chthonic-archive-sync/skills",
+        "target_root": ".codex/skills",
+        "target_skill": "trainstop-orchestrator",
+        "target_skill_lane": "codex",
+        "target_flavor_mode": "gemini"
+      },
+      "command": [
+        "uv",
+        "run",
+        "scripts/skill_path_guard.py",
+        ".codex\\skills\\trainstop-orchestrator\\SKILL.md"
+      ],
+      "expected_artifacts": [
+        "logs/skill_path_guard.log"
+      ],
+      "expected_artifact_class": "log",
+      "operator_mode": "mutating",
+      "operator_capabilities": {
+        "mode": "mutating",
+        "read": true,
+        "mutate": true,
+        "cross_lane_mutate": true,
+        "self_target": true,
+        "recurse": false,
+        "requires_artifacts": true,
+        "requires_review": true
+      },
+      "safety_class": "cross_lane_mutation",
+      "weight": 2.871094,
+      "weight_reasons": [
+        "mutating_operator:+0.4x",
+        "cross_lane:+0.5x",
+        "cross_flavor_interp:+0.25x",
+        "adaptive_weight:1.25x",
+        "operator_weight:0.875x",
+        "initial_step"
+      ],
+      "transition": {
+        "allowed": true,
+        "previous_target_lane": null,
+        "previous_operator": null,
+        "transition_weight_multiplier": 1.0,
+        "transition_weight_reasons": [
+          "initial_step"
+        ],
+        "filtered_out_rules": [
+          "history_pruned:4"
+        ]
+      },
+      "stop_condition": "stop_on_nonzero_or_missing_artifact"
+    },
+    {
+      "step": 2,
+      "cell": {
+        "executor_flavor": "codex",
+        "operator_skill": "trainstop-orchestrator",
+        "source_root": ".codex/skills",
+        "target_root": ".claude/skills",
+        "target_skill": "iron-maiden-runtime",
+        "target_skill_lane": "claude",
+        "target_flavor_mode": "claude"
+      },
+      "command": [
+        "uv",
+        "run",
+        ".codex/skills/trainstop-orchestrator/scripts/orchestrate.py",
+        "--target",
+        "claude",
+        "--lane",
+        "maintenance"
+      ],
+      "expected_artifacts": [
+        "codex/mailbox/TRAINSTOP_ORCHESTRATOR_LATEST.json"
+      ],
+      "expected_artifact_class": "orchestration_report",
+      "operator_mode": "meta",
+      "operator_capabilities": {
+        "mode": "meta",
+        "read": true,
+        "mutate": false,
+        "cross_lane_mutate": false,
+        "self_target": true,
+        "recurse": true,
+        "requires_artifacts": true,
+        "requires_review": true
+      },
+      "safety_class": "meta_orchestration",
+      "weight": 3.012187,
+      "weight_reasons": [
+        "meta_operator:+0.2x",
+        "cross_lane:+0.5x",
+        "meta_heavy_penalty:-0.15x",
+        "adaptive_weight:1.25x",
+        "operator_weight:0.875x",
+        "handoff_continuity:+0.8x"
+      ],
+      "transition": {
+        "allowed": true,
+        "previous_target_lane": "codex",
+        "previous_operator": "link-path-guard",
+        "transition_weight_multiplier": 1.8,
+        "transition_weight_reasons": [
+          "handoff_continuity:+0.8x"
+        ],
+        "filtered_out_rules": [
+          "duplicate_cell_blocked:1",
+          "history_pruned:4",
+          "repeated_target_skill_blocked:35",
+          "same_operator_consecutive_blocked:497"
+        ]
+      },
+      "stop_condition": "stop_on_nonzero_or_missing_artifact"
+    },
+    {
+      "step": 3,
+      "cell": {
+        "executor_flavor": "codex",
+        "operator_skill": "skill-polisher",
+        "source_root": ".codex/skills",
+        "target_root": ".claude/skills",
+        "target_skill": "gh-fix-ci",
+        "target_skill_lane": "claude",
+        "target_flavor_mode": "gemini"
+      },
+      "command": [
+        "uv",
+        "run",
+        ".codex/skills/skill-polisher/scripts/polish_skill.py",
+        ".claude\\skills\\gh-fix-ci",
+        "--mode",
+        "verify",
+        "--target-flavor",
+        "gemini",
+        "--no-require-assets"
+      ],
+      "expected_artifacts": [],
+      "expected_artifact_class": "verification_report",
+      "operator_mode": "mutating",
+      "operator_capabilities": {
+        "mode": "mutating",
+        "read": true,
+        "mutate": true,
+        "cross_lane_mutate": true,
+        "self_target": true,
+        "recurse": false,
+        "requires_artifacts": true,
+        "requires_review": true
+      },
+      "safety_class": "cross_lane_mutation",
+      "weight": 2.411719,
+      "weight_reasons": [
+        "mutating_operator:+0.4x",
+        "cross_lane:+0.5x",
+        "cross_flavor_interp:+0.25x",
+        "adaptive_weight:1.05x",
+        "operator_weight:0.875x"
+      ],
+      "transition": {
+        "allowed": true,
+        "previous_target_lane": "claude",
+        "previous_operator": "trainstop-orchestrator",
+        "transition_weight_multiplier": 1.0,
+        "transition_weight_reasons": [],
+        "filtered_out_rules": [
+          "duplicate_cell_blocked:2",
+          "history_pruned:4",
+          "repeated_target_skill_blocked:70",
+          "same_operator_consecutive_blocked:488"
+        ]
+      },
+      "stop_condition": "stop_on_nonzero_or_missing_artifact"
+    },
+    {
+      "step": 4,
+      "cell": {
+        "executor_flavor": "codex",
+        "operator_skill": "skill-audit",
+        "source_root": ".codex/skills",
+        "target_root": ".claude/skills",
+        "target_skill": "corpse-reviver",
+        "target_skill_lane": "claude",
+        "target_flavor_mode": "codex"
+      },
+      "command": [
+        "uv",
+        "run",
+        "scripts/skill_audit.py",
+        "--flavor",
+        "codex",
+        "--root",
+        ".claude/skills",
+        "--skill",
+        "corpse-reviver"
+      ],
+      "expected_artifacts": [],
+      "expected_artifact_class": "machine_report",
+      "operator_mode": "read_only",
+      "operator_capabilities": {
+        "mode": "read_only",
+        "read": true,
+        "mutate": false,
+        "cross_lane_mutate": false,
+        "self_target": true,
+        "recurse": false,
+        "requires_artifacts": true,
+        "requires_review": false
+      },
+      "safety_class": "read_only",
+      "weight": 2.255859,
+      "weight_reasons": [
+        "read_only_operator:+0.1x",
+        "cross_lane:+0.5x",
+        "cross_flavor_interp:+0.25x",
+        "adaptive_weight:1.25x",
+        "operator_weight:0.875x"
+      ],
+      "transition": {
+        "allowed": true,
+        "previous_target_lane": "claude",
+        "previous_operator": "skill-polisher",
+        "transition_weight_multiplier": 1.0,
+        "transition_weight_reasons": [],
+        "filtered_out_rules": [
+          "duplicate_cell_blocked:3",
+          "history_pruned:4",
+          "repeated_target_skill_blocked:104",
+          "same_operator_consecutive_blocked:480"
+        ]
+      },
+      "stop_condition": "stop_on_nonzero"
+    }
+  ]
+}

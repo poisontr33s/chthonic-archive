@@ -1,0 +1,103 @@
+{
+  "schema_version": 1,
+  "plan_source": "codex/mailbox/SKILL_TENSOR_PLAN_LATEST.json",
+  "overall_status": "passed",
+  "results": [
+    {
+      "step": 1,
+      "command": [
+        "uv",
+        "run",
+        "scripts/skill_path_guard.py",
+        ".claude\\skills\\api-manager\\SKILL.md"
+      ],
+      "rc": 0,
+      "seconds": 7.051,
+      "stdout_tail": "OK: no stale or broken skill path references found",
+      "stderr_tail": "",
+      "expected_artifacts": [
+        "logs/skill_path_guard.log"
+      ],
+      "present_artifacts": [
+        "logs/skill_path_guard.log"
+      ],
+      "missing_artifacts": [],
+      "stop_condition": "stop_on_nonzero_or_missing_artifact",
+      "status": "passed",
+      "failure_kind": null
+    },
+    {
+      "step": 2,
+      "command": [
+        "uv",
+        "run",
+        ".codex/skills/trainstop-orchestrator/scripts/orchestrate.py",
+        "--target",
+        "gemini",
+        "--lane",
+        "maintenance"
+      ],
+      "rc": 0,
+      "seconds": 3.238,
+      "stdout_tail": "uv run .codex/skills/skill-polisher/scripts/polish_skill.py .codex/skills --all --mode verify --target-flavor codex --subprocess-fix --emit-stamps-json codex/mailbox/tatragrammatron_stamps_latest_codex.json --emit-summary-md codex/mailbox/TATRAGRAMMATRON_SUMMARY_LATEST_CODEX.md\n>>> VERIFY: PASSED (no blocking findings). <<<\n<unknown>:8: SyntaxWarning: \"\\s\" is an invalid escape sequence. Such sequences will not work in the future. Did you mean \"\\\\s\"? A raw string is also an option.\n\n=== Skill Polisher (Gemini contract on Gemini skills) ===\nuv run .codex/skills/skill-polisher/scripts/polish_skill.py .gemini/extensions/chthonic-archive-sync/skills --all --mode verify --target-flavor gemini --subprocess-fix --no-require-assets\n>>> VERIFY: PASSED (no blocking findings). <<<\n<unknown>:8: SyntaxWarning: \"\\s\" is an invalid escape sequence. Such sequences will not work in the future. Did you mean \"\\\\s\"? A raw string is also an option.\n\n=== Mailbox Polisher (gemini) ===\nuv run scripts/mailbox_polisher.py --target gemini --apply\nNo archivable churn artifacts found.\n\n=== Mailbox Scribe (gemini) ===\nuv run scripts/mailbox_scribe.py --target gemini --packet gemini/mailbox/TETRAGRAMMATON_PACKET.md\nWrote: gemini/mailbox/TETRAGRAMMATON_PACKET.md\n\n=== Mailbox Manifest Check ===\nuv run scripts/check_mailbox_manifest.py\nok",
+      "stderr_tail": "",
+      "expected_artifacts": [
+        "codex/mailbox/TRAINSTOP_ORCHESTRATOR_LATEST.json"
+      ],
+      "present_artifacts": [
+        "codex/mailbox/TRAINSTOP_ORCHESTRATOR_LATEST.json"
+      ],
+      "missing_artifacts": [],
+      "stop_condition": "stop_on_nonzero_or_missing_artifact",
+      "status": "passed",
+      "failure_kind": null
+    },
+    {
+      "step": 3,
+      "command": [
+        "uv",
+        "run",
+        ".codex/skills/skill-polisher/scripts/polish_skill.py",
+        ".claude/skills",
+        "--all",
+        "--mode",
+        "verify",
+        "--target-flavor",
+        "claude",
+        "--no-require-assets"
+      ],
+      "rc": 0,
+      "seconds": 0.231,
+      "stdout_tail": "System Satisfied. No entropy found.\n\n>>> VERIFY: PASSED (no blocking findings). <<<\n\n=== POLISHING: trainstop-orchestrator ===\n\u2554\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2557\n\u2551                    FEEDING REPORT: trainstop-orchestrator           \u2551\n\u255a\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u255d\nTASTE: PURE (Clean)\nNUTRITION LEVEL: 100%\n\nDOMAIN SCORES:\n  - structure: 100%\n  - policy: 100%\n  - semantics: 100%\n  - maintainability: 100%\n\nSystem Satisfied. No entropy found.\n\n>>> VERIFY: PASSED (no blocking findings). <<<",
+      "stderr_tail": "",
+      "expected_artifacts": [],
+      "present_artifacts": [],
+      "missing_artifacts": [],
+      "stop_condition": "stop_on_nonzero_or_missing_artifact",
+      "status": "passed",
+      "failure_kind": null
+    },
+    {
+      "step": 4,
+      "command": [
+        "uv",
+        "run",
+        "scripts/skill_audit.py",
+        "--flavor",
+        "gemini",
+        "--root",
+        ".claude/skills"
+      ],
+      "rc": 0,
+      "seconds": 0.12,
+      "stdout_tail": "\nSystem Satisfied. No entropy found.\n\n=== POLISHING: toolchain-doctor ===\n+--------------------------------------------------------------+\n|                    FEEDING REPORT: toolchain-doctor             |\n+--------------------------------------------------------------+\nTASTE: PURE (Clean)\nNUTRITION LEVEL: 100%\n\nSystem Satisfied. No entropy found.\n\n=== POLISHING: trainstop-orchestrator ===\n+--------------------------------------------------------------+\n|                    FEEDING REPORT: trainstop-orchestrator           |\n+--------------------------------------------------------------+\nTASTE: PURE (Clean)\nNUTRITION LEVEL: 100%\n\nSystem Satisfied. No entropy found.",
+      "stderr_tail": "",
+      "expected_artifacts": [],
+      "present_artifacts": [],
+      "missing_artifacts": [],
+      "stop_condition": "stop_on_nonzero",
+      "status": "passed",
+      "failure_kind": null
+    }
+  ]
+}

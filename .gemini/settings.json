@@ -57,5 +57,8 @@
     "enableAgents": true,
     "extensionConfig": true,
     "extensionReloading": true
+  },
+  "ide": {
+    "enabled": true
   }
 }

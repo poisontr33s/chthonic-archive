@@ -119,7 +119,11 @@ const TOOL_PATHS: Record<string, string[]> = {
   bash: [...rubyToolchainCandidates(join("msys64", "usr", "bin", "bash.exe")), "C:\\msys64\\usr\\bin\\bash.exe"],
   mdbook: [join(HOME, ".cargo", "bin", "mdbook.exe")],
   ruff: [join(HOME, ".local", "bin", "ruff.exe")],
-  biome: [join(HOME, ".bun", "bin", "biome.exe")],
+  biome: [
+    join(CHTHONIC_ROOT, "node_modules", ".bin", "biome.cmd"),
+    join(CHTHONIC_ROOT, "node_modules", ".bin", "biome"),
+    join(HOME, ".bun", "bin", "biome.exe"),
+  ],
   pwsh: ["C:\\Program Files\\PowerShell\\7\\pwsh.exe"],
 };
 

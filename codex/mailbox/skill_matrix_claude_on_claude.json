@@ -1,0 +1,173 @@
+{
+  "schema_version": 1,
+  "flavor": "claude",
+  "root": ".claude/skills",
+  "root_native": ".claude\\skills",
+  "results": [
+    {
+      "name": "api-manager",
+      "score": 100,
+      "issues": []
+    },
+    {
+      "name": "artifact-upcycle",
+      "score": 100,
+      "issues": []
+    },
+    {
+      "name": "claude-skill-bridge",
+      "score": 100,
+      "issues": []
+    },
+    {
+      "name": "codekiller-remediation-gate",
+      "score": 100,
+      "issues": []
+    },
+    {
+      "name": "codex-skill-bridge",
+      "score": 100,
+      "issues": []
+    },
+    {
+      "name": "conceptualize",
+      "score": 100,
+      "issues": []
+    },
+    {
+      "name": "corpse-reviver",
+      "score": 100,
+      "issues": []
+    },
+    {
+      "name": "decision-razor",
+      "score": 100,
+      "issues": []
+    },
+    {
+      "name": "dumpster-upcycler",
+      "score": 100,
+      "issues": []
+    },
+    {
+      "name": "gh-address-comments",
+      "score": 100,
+      "issues": []
+    },
+    {
+      "name": "gh-fix-ci",
+      "score": 100,
+      "issues": []
+    },
+    {
+      "name": "gh-mcp-autonomy",
+      "score": 100,
+      "issues": []
+    },
+    {
+      "name": "git-snapshot",
+      "score": 100,
+      "issues": []
+    },
+    {
+      "name": "handoff-loop",
+      "score": 100,
+      "issues": []
+    },
+    {
+      "name": "imagegen",
+      "score": 100,
+      "issues": []
+    },
+    {
+      "name": "ingest-research",
+      "score": 100,
+      "issues": []
+    },
+    {
+      "name": "iron-maiden-runtime",
+      "score": 100,
+      "issues": []
+    },
+    {
+      "name": "link-path-guard",
+      "score": 100,
+      "issues": []
+    },
+    {
+      "name": "mailbox-handoff",
+      "score": 100,
+      "issues": []
+    },
+    {
+      "name": "meta-polisher-validator",
+      "score": 100,
+      "issues": []
+    },
+    {
+      "name": "openai-docs",
+      "score": 100,
+      "issues": []
+    },
+    {
+      "name": "overnight-archaeology",
+      "score": 100,
+      "issues": []
+    },
+    {
+      "name": "postman",
+      "score": 100,
+      "issues": []
+    },
+    {
+      "name": "python-header-canon",
+      "score": 100,
+      "issues": []
+    },
+    {
+      "name": "scm-triage",
+      "score": 100,
+      "issues": []
+    },
+    {
+      "name": "script-envelope",
+      "score": 100,
+      "issues": []
+    },
+    {
+      "name": "session-resumer",
+      "score": 100,
+      "issues": []
+    },
+    {
+      "name": "sfa",
+      "score": 100,
+      "issues": []
+    },
+    {
+      "name": "skill-polisher",
+      "score": 100,
+      "issues": []
+    },
+    {
+      "name": "sora",
+      "score": 100,
+      "issues": []
+    },
+    {
+      "name": "theme-system",
+      "score": 100,
+      "issues": []
+    },
+    {
+      "name": "toolchain-doctor",
+      "score": 100,
+      "issues": []
+    },
+    {
+      "name": "trainstop-orchestrator",
+      "score": 100,
+      "issues": []
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+# Auto-scaffolded by skill-polisher for `corpse-reviver`.
+# Review and adjust model/tool policy as needed.
+version: 1
+name: corpse-reviver
+provider: openai
+models:
+  default: gpt-5
+policy:
+  allowed_tools: []

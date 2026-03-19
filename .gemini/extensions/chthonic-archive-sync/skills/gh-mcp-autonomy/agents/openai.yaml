@@ -1,0 +1,6 @@
+interface:
+  display_name: "GH MCP Autonomy"
+  short_description: "Autonomous GitHub MCP lookups"
+  icon_small: "./assets/ghmcp-small.svg"
+  icon_large: "./assets/ghmcp-large.svg"
+  brand_color: "#181717"

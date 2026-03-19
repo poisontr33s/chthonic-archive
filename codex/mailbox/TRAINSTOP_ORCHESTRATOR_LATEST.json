@@ -1,68 +1,154 @@
 {
   "schema_version": 1,
-  "generated_on": "2026-02-23T17:01:16Z",
+  "generated_on": "2026-03-19T21:45:04Z",
   "results": [
     {
-      "name": "Poe Models (account 1)",
+      "name": "Skill Freshness Gate (Codex)",
       "rc": 0,
-      "seconds": 0.494,
+      "seconds": 0.129,
       "cmd": [
         "uv",
         "run",
-        "scripts/poe_lane.py",
-        "--mode",
-        "models",
-        "--account",
-        "1",
-        "--limit",
-        "5",
-        "--emit-mailbox",
-        "--mailboxes",
-        "codex,claude"
+        ".codex/skills/trainstop-orchestrator/scripts/skill_freshness_gate.py",
+        "--skills-root",
+        ".codex/skills",
+        "--emit-json",
+        "codex/mailbox/SKILL_FRESHNESS_LATEST.json",
+        "--emit-md",
+        "codex/mailbox/SKILL_FRESHNESS_LATEST.md",
+        "--strict"
       ],
-      "stdout_tail": "MODEL=assistant\nMODEL=gemini-3-flash\nMODEL=claude-opus-4.6\nMODEL=claude-sonnet-4.6\nMODEL=gemini-3.1-pro\nCOUNT=5",
+      "stdout_tail": "",
+      "stderr_tail": "",
+      "missing_artifacts": [],
+      "notes": [
+        "advisory_nonblocking"
+      ]
+    },
+    {
+      "name": "API Manager (Doctor)",
+      "rc": 0,
+      "seconds": 0.773,
+      "cmd": [
+        "pwsh",
+        "-NoProfile",
+        "-File",
+        ".codex/skills/api-manager/scripts/api_manager.ps1",
+        "-Doctor"
+      ],
+      "stdout_tail": "Auth signals (process env, no secrets):\n- HF_TOKEN: True\n- HUGGINGFACE_HUB_TOKEN: True\n- GITHUB_TOKEN: True\n- OPENAI_API_KEY: False\n- GEMINI_API_KEY: False\n- POE_API_KEY: True\n- POE_ACCOUNT_ACTIVE: False\n- POE_BASE_URL: False\n- POE_MODEL: False\n- POE_API_KEY_1: True\n- POE_API_KEY_2: True\n\nHF note: HF_TOKEN is set and takes precedence over hf CLI login; stale HF_TOKEN breaks HF auth.\nSuggested: run -FixHF (clears HF_TOKEN in current shell).\n",
       "stderr_tail": "",
       "missing_artifacts": [],
       "notes": []
     },
     {
-      "name": "Poe Models (account 2)",
+      "name": "Toolchain Doctor",
       "rc": 0,
-      "seconds": 0.437,
+      "seconds": 1.291,
       "cmd": [
         "uv",
         "run",
-        "scripts/poe_lane.py",
-        "--mode",
-        "models",
-        "--account",
-        "2",
-        "--limit",
-        "5",
-        "--emit-mailbox",
-        "--mailboxes",
-        "codex,claude"
+        ".codex/skills/toolchain-doctor/scripts/toolchain_doctor.py",
+        "--bun",
+        "--uv"
       ],
-      "stdout_tail": "MODEL=assistant\nMODEL=gemini-3-flash\nMODEL=claude-opus-4.6\nMODEL=claude-sonnet-4.6\nMODEL=gemini-3.1-pro\nCOUNT=5",
+      "stdout_tail": "Wrote: C:\\Users\\eldno\\chthonic-archive\\codex\\mailbox\\TOOLCHAIN_DOCTOR_REPORT_2026_03_19_214501.md",
       "stderr_tail": "",
       "missing_artifacts": [],
       "notes": []
     },
     {
-      "name": "Poe Transport Audit",
+      "name": "Skill Polisher (Codex on Codex)",
       "rc": 0,
-      "seconds": 12.291,
+      "seconds": 0.282,
       "cmd": [
         "uv",
         "run",
-        "scripts/poe_transport_audit.py",
-        "--accounts",
-        "1,2",
-        "--emit-mailbox",
-        "--mailboxes",
-        "codex,claude"
+        ".codex/skills/skill-polisher/scripts/polish_skill.py",
+        ".codex/skills",
+        "--all",
+        "--mode",
+        "verify",
+        "--target-flavor",
+        "codex",
+        "--subprocess-fix",
+        "--emit-stamps-json",
+        "codex/mailbox/tatragrammatron_stamps_latest_codex.json",
+        "--emit-summary-md",
+        "codex/mailbox/TATRAGRAMMATRON_SUMMARY_LATEST_CODEX.md"
       ],
-      "stdout_tail": "recommendation=openai-compatible\nrationale=Both lanes work for control probes, but App-Creator is not API-accessible on tested keys.\naccount=1 openai_control=True openai_app_creator=False sdk_control=True sdk_app_creator=False models_has_app_creator=False\naccount=2 openai_control=True openai_app_creator=False sdk_control=False sdk_app_creator=False models_has_app_creator=False",
+      "stdout_tail": "\u255a\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u255d\nTASTE: PURE (Clean)\nNUTRITION LEVEL: 100%\n\nDOMAIN SCORES:\n  - structure: 100%\n  - policy: 100%\n  - semantics: 100%\n  - maintainability: 100%\n\nSystem Satisfied. No entropy found.\n\n>>> VERIFY: PASSED (no blocking findings). <<<\n\n=== POLISHING: trainstop-orchestrator ===\n\u2554\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2557\n\u2551                    FEEDING REPORT: trainstop-orchestrator           \u2551\n\u255a\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u255d\nTASTE: PURE (Clean)\nNUTRITION LEVEL: 100%\n\nDOMAIN SCORES:\n  - structure: 100%\n  - policy: 100%\n  - semantics: 100%\n  - maintainability: 100%\n\nSystem Satisfied. No entropy found.\n\n>>> VERIFY: PASSED (no blocking findings). <<<",
+      "stderr_tail": "<unknown>:8: SyntaxWarning: \"\\s\" is an invalid escape sequence. Such sequences will not work in the future. Did you mean \"\\\\s\"? A raw string is also an option.",
+      "missing_artifacts": [],
+      "notes": []
+    },
+    {
+      "name": "Skill Polisher (Gemini contract on Gemini skills)",
+      "rc": 0,
+      "seconds": 0.283,
+      "cmd": [
+        "uv",
+        "run",
+        ".codex/skills/skill-polisher/scripts/polish_skill.py",
+        ".gemini/extensions/chthonic-archive-sync/skills",
+        "--all",
+        "--mode",
+        "verify",
+        "--target-flavor",
+        "gemini",
+        "--subprocess-fix",
+        "--no-require-assets"
+      ],
+      "stdout_tail": "\u255a\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u255d\nTASTE: PURE (Clean)\nNUTRITION LEVEL: 100%\n\nDOMAIN SCORES:\n  - structure: 100%\n  - policy: 100%\n  - semantics: 100%\n  - maintainability: 100%\n\nSystem Satisfied. No entropy found.\n\n>>> VERIFY: PASSED (no blocking findings). <<<\n\n=== POLISHING: triad-velocity-lane ===\n\u2554\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2557\n\u2551                    FEEDING REPORT: triad-velocity-lane           \u2551\n\u255a\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u255d\nTASTE: PURE (Clean)\nNUTRITION LEVEL: 100%\n\nDOMAIN SCORES:\n  - structure: 100%\n  - policy: 100%\n  - semantics: 100%\n  - maintainability: 100%\n\nSystem Satisfied. No entropy found.\n\n>>> VERIFY: PASSED (no blocking findings). <<<",
+      "stderr_tail": "<unknown>:8: SyntaxWarning: \"\\s\" is an invalid escape sequence. Such sequences will not work in the future. Did you mean \"\\\\s\"? A raw string is also an option.",
+      "missing_artifacts": [],
+      "notes": []
+    },
+    {
+      "name": "Mailbox Polisher (gemini)",
+      "rc": 0,
+      "seconds": 0.117,
+      "cmd": [
+        "uv",
+        "run",
+        "scripts/mailbox_polisher.py",
+        "--target",
+        "gemini",
+        "--apply"
+      ],
+      "stdout_tail": "No archivable churn artifacts found.",
+      "stderr_tail": "",
+      "missing_artifacts": [],
+      "notes": []
+    },
+    {
+      "name": "Mailbox Scribe (gemini)",
+      "rc": 0,
+      "seconds": 0.139,
+      "cmd": [
+        "uv",
+        "run",
+        "scripts/mailbox_scribe.py",
+        "--target",
+        "gemini",
+        "--packet",
+        "gemini/mailbox/TETRAGRAMMATON_PACKET.md"
+      ],
+      "stdout_tail": "Wrote: gemini/mailbox/TETRAGRAMMATON_PACKET.md",
+      "stderr_tail": "",
+      "missing_artifacts": [],
+      "notes": []
+    },
+    {
+      "name": "Mailbox Manifest Check",
+      "rc": 0,
+      "seconds": 0.094,
+      "cmd": [
+        "uv",
+        "run",
+        "scripts/check_mailbox_manifest.py"
+      ],
+      "stdout_tail": "ok",
       "stderr_tail": "",
       "missing_artifacts": [],
       "notes": []

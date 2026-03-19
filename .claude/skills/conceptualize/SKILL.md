@@ -13,6 +13,8 @@ metadata:
     - "refactor"
     - "judge"
     - "audit"
+allowed-tools: "Read, Write, Glob, Grep, Bash"
+user-invocable: true
 ---
 
 # Conceptualize (Refurbished)

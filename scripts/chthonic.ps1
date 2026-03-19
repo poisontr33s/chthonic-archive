@@ -21,7 +21,9 @@ param(
     [string[]]$CmdArgs,
     
     [switch]$Quiet,
-    [switch]$Json
+    [switch]$Json,
+
+    [switch]$NoExit
 )
 
 $VERSION = "3.3.0"
@@ -31,6 +33,16 @@ $LIB_DIR = Join-Path $SCRIPT_DIR "lib"
 $STATE_DIR = Join-Path $env:USERPROFILE ".chthonic"
 $CONFIG_FILE = Join-Path $STATE_DIR "config.json"
 $SERVICES_FILE = Join-Path $STATE_DIR "services.json"
+
+function Complete-ChthonicCommand {
+    param([int]$Code = 0)
+
+    if ($NoExit) {
+        return $Code
+    }
+
+    exit $Code
+}
 
 # ═══════════════════════════════════════════════════════════════════════════════
 # POLYGLOT PATHS - ALL GLOBAL NATIVE INSTALLATIONS (Win11)
@@ -457,6 +469,15 @@ function Get-CommandResolution {
                     $scriptPath = [string]$scriptVar.Value
                     if ($scriptPath -and (Test-Path $scriptPath)) {
                         $target = $scriptPath
+                    }
+                } catch {}
+            }
+            if (-not $target -and $cmd.Definition -match '\$global:CHTHONIC_CLAUDE_EXE') {
+                try {
+                    $claudeVar = Get-Variable -Name CHTHONIC_CLAUDE_EXE -Scope Global -ErrorAction Stop
+                    $claudePath = [string]$claudeVar.Value
+                    if ($claudePath -and (Test-Path $claudePath)) {
+                        $target = $claudePath
                     }
                 } catch {}
             }
@@ -1255,6 +1276,12 @@ function Show-PolyglotStatus {
         try { $uvPython = (uv python find 2>$null | Select-Object -First 1) } catch {}
         if ($uvPython -and (Test-Path $uvPython)) {
             $tools['python'] = ((& $uvPython --version 2>$null) -replace 'Python\s*','').Trim()
+            $tools['python_cmd'] = $uvPython
+            if ($uvPython.StartsWith($REPO_ROOT, [System.StringComparison]::OrdinalIgnoreCase)) {
+                $tools['python_origin'] = 'workspace_venv'
+            } else {
+                $tools['python_origin'] = 'uv_managed_global'
+            }
         } else {
             $tools['python'] = 'not found'
         }
@@ -1270,6 +1297,13 @@ function Show-PolyglotStatus {
             $pyRaw = (python --version 2>&1)
             if ($pyRaw) { $tools['python'] = ($pyRaw -replace 'Python\s*','') }
         } catch {}
+    }
+    if (-not $tools.ContainsKey('python_cmd')) {
+        $pythonMeta = Get-CommandResolution -Name "python"
+        if ($pythonMeta -and $pythonMeta.Path) {
+            $tools['python_cmd'] = $pythonMeta.Path
+            $tools['python_origin'] = 'path_fallback'
+        }
     }
     try { $tools['ruff'] = (ruff --version 2>$null) -replace 'ruff\s*','' } catch { $tools['ruff'] = 'not found' }
     try { $tools['uv'] = ((uv --version 2>$null) -split ' ')[1] } catch { $tools['uv'] = 'not found' }
@@ -1403,11 +1437,25 @@ function Show-PolyglotStatus {
     try { $tools['code-insiders'] = ((code-insiders --version 2>$null) -split '\n')[0] } catch { $tools['code-insiders'] = 'not found' }
     if (-not $tools['code-insiders']) { $tools['code-insiders'] = 'not found' }
     try {
-        $claudeOut = (& claude --version 2>$null)
-        if (($claudeOut -join "`n") -match '(\d+\.\d+\.\d+)') {
-            $tools['claude'] = $matches[1]
-        } elseif ($claudeOut) {
-            $tools['claude'] = ($claudeOut | Select-Object -First 1).ToString().Trim()
+        $claudeCmd = $null
+        $claudeMeta = Get-CommandResolution -Name "claude"
+        if ($claudeMeta -and $claudeMeta.Path) {
+            $claudeCmd = $claudeMeta.Path
+        } else {
+            $claudeExeMeta = Get-CommandResolution -Name "claude.exe"
+            if ($claudeExeMeta -and $claudeExeMeta.Path) { $claudeCmd = $claudeExeMeta.Path }
+        }
+        if ($claudeCmd) {
+            $claudeOut = (& $claudeCmd --version 2>&1)
+            if (($claudeOut -join "`n") -match '(\d+\.\d+\.\d+)') {
+                $tools['claude'] = $matches[1]
+            } elseif (($claudeOut -join "`n") -match 'Module not found') {
+                $tools['claude'] = 'broken_shim'
+            } elseif ($claudeOut) {
+                $tools['claude'] = ($claudeOut | Select-Object -First 1).ToString().Trim()
+            } else {
+                $tools['claude'] = 'not found'
+            }
         } else {
             $tools['claude'] = 'not found'
         }
@@ -1428,6 +1476,9 @@ function Show-PolyglotStatus {
     }
 
     $claudeMeta = Get-CommandResolution -Name "claude"
+    if (-not $claudeMeta) {
+        $claudeMeta = Get-CommandResolution -Name "claude.exe"
+    }
     if ($claudeMeta) {
         $tools['claude_cmd'] = if ($claudeMeta.Path) { $claudeMeta.Path } else { $claudeMeta.Display }
     } else {
@@ -2121,7 +2172,7 @@ function Show-Origins {
             }
             return $null
         } },
-        @{ Name = "biome";   Cmd = "biome";   Method = "bun add -g";    Ecosystem = "bun" },
+        @{ Name = "biome";   Cmd = "biome";   Method = "repo bun dependency or curated global tool";    Ecosystem = "bun" },
         @{ Name = "ruff";    Cmd = "ruff";    Method = "uv tool";       Ecosystem = "uv" },
         @{ Name = "cmake";   Cmd = "cmake";   Method = "uv tool";       Ecosystem = "uv" },
         @{ Name = "ninja";   Cmd = "ninja";   Method = "uv tool";       Ecosystem = "uv" },
@@ -2193,7 +2244,7 @@ function Show-Origins {
     Write-Host ("="*72) -ForegroundColor $D
     $dirs = @(
         @{ Path = "~/.local/bin/";   Label = "user local bin (uv + standalone CLIs)" },
-        @{ Path = "~/.bun/bin/";     Label = "bun ecosystem (bun, biome, codex, gemini)" },
+        @{ Path = "~/.bun/bin/";     Label = "bun runtime bin (bun/bunx; ambient shims are not authoritative for repo CLIs)" },
         @{ Path = "~/.cargo/bin/";   Label = "cargo ecosystem (rustc, rustup, mdbook, rv, goup)" },
         @{ Path = "~/.goup/";        Label = "goup-managed Go versions (go.dev source)" },
         @{ Path = "%APPDATA%\rv\";   Label = "rv-managed Ruby versions" },
@@ -2963,13 +3014,15 @@ switch ($Domain) {
     "env" {
         $quietFlag = $HasQuietFlag
         Invoke-PolyglotActivation -Quiet:$quietFlag
-        exit 0
+        Complete-ChthonicCommand 0
+        return
     }
     "claudine" {
         # Compatibility alias for existing shell/profile wrappers.
         $quietFlag = $HasQuietFlag
         Invoke-PolyglotActivation -Quiet:$quietFlag
-        exit 0
+        Complete-ChthonicCommand 0
+        return
     }
     "status" {
         Show-PolyglotStatus -Json:$HasJsonFlag

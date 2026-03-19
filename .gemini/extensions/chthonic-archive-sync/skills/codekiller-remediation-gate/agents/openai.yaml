@@ -1,0 +1,6 @@
+interface:
+  display_name: "Codekiller Remedy Gate"
+  short_description: "Forensic gate: governance math, evidence drift, tribunal chain, telemetry."
+  icon_small: "./assets/codekiller-remediation-gate-small.svg"
+  icon_large: "./assets/codekiller-remediation-gate-large.svg"
+  brand_color: "#8B1E1E"
