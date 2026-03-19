@@ -76,9 +76,16 @@ def test_ssot_hash_is_stable_across_canonical_whitespace(tmp_path):
 
 
 def test_server_tools_surface_ssot_binding_metadata():
-    tools = asyncio.run(mcp._tool_manager.get_tools())
+    # Verify all tools are registered
+    tools = {t.name: t for t in asyncio.run(mcp.list_tools())}
+    assert "mas_pulse" in tools
+    assert "mas_narrative_scan" in tools
+    assert "mas_scan" in tools
 
-    pulse = tools["mas_pulse"].fn()
+    # Call the actual server functions directly (FastMCP 3.x list_tools returns schema, not callables)
+    from mas_mcp.server import mas_pulse, mas_narrative_scan, mas_scan
+
+    pulse = mas_pulse()
     bookend = pulse["ssot_bookend"]
     expected_pointer_hash = compute_ssot_hash(SSOT_PATH)[:16] if SSOT_PATH.exists() else None
     expected_lexicon_hash = (
@@ -101,12 +108,12 @@ def test_server_tools_surface_ssot_binding_metadata():
     assert "ssot_journal" in pulse
     assert isinstance(pulse["ssot_journal"], list)
 
-    narrative = tools["mas_narrative_scan"].fn("CLAUDE.md")
+    narrative = mas_narrative_scan("CLAUDE.md")
     assert narrative["ssot_hash"] == expected_lexicon_hash
     assert "ssot_fingerprint" in narrative
     assert narrative["ssot_source_kind"] == "archive"
 
-    scan = tools["mas_scan"].fn("CLAUDE.md")
+    scan = mas_scan("CLAUDE.md")
     assert scan["ssot_hash"] == expected_pointer_hash
     assert "ssot_fingerprint" in scan
     assert scan["ssot_source_kind"] == "pointer"
