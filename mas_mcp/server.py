@@ -56,7 +56,6 @@ SSOT_PATH, SSOT_ARCHIVE_PATH = resolve_ssot(PROJECT_ROOT)
 SSOT_LEXICON_PATH = resolve_ssot_for_lexicon(PROJECT_ROOT)
 MPW_SOURCE = PROJECT_ROOT / SSOT_PROTO_RELPATH
 
-logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger("mas-mcp")
 
 mcp = FastMCP("mas-mcp", instructions="MAS - Metadata-Persistence-Workspace")
@@ -66,7 +65,7 @@ LEXICON = LexiconFilter()
 # Bookend: stamp SSOT vitals at server startup for session drift detection + journal
 if SSOT_PATH.exists():
     _session_start_hash = init_session_bookend(SSOT_PATH, project_root=PROJECT_ROOT, source_kind="pointer")
-    logger.info("SSOT bookend stamped: %s...", _session_start_hash[:16])
+    logger.debug("SSOT bookend stamped: %s...", _session_start_hash[:16])
 
 @mcp.tool()
 def mas_narrative_scan(target: str = "."):
@@ -187,7 +186,10 @@ def mas_scm_suppress(dry_run: bool = True):
 
 
 def main():
-    mcp.run()
+    # Clamp third-party loggers for quiet stdio transport
+    for name in ("fastmcp", "mcp", "docket", "pydocket"):
+        logging.getLogger(name).setLevel(logging.WARNING)
+    mcp.run(transport="stdio", log_level="ERROR")
 
 if __name__ == "__main__":
     main()

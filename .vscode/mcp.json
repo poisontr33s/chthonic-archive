@@ -96,7 +96,11 @@
         "-m",
         "server"
       ],
-      "cwd": "${workspaceFolder}"
+      "cwd": "${workspaceFolder}",
+      "env": {
+        "FASTMCP_LOG_ENABLED": "false",
+        "FASTMCP_CHECK_FOR_UPDATES": "off"
+      }
     }
   }
 }
