@@ -25,21 +25,27 @@ if sys.platform == 'win32':
     sys.stderr = io.TextIOWrapper(sys.stderr.buffer, encoding='utf-8')
 
 import sqlite3
+import sys
+from pathlib import Path
 
-db = sqlite3.connect(r"C:\Users\erdno\chthonic-archive\scripts\test_epistemograph.sqlite")
+_REPO_ROOT = Path(__file__).resolve().parent.parent
+sys.path.insert(0, str(_REPO_ROOT))
+from scripts.lib.ssot_paths import SSOT_POINTER
+
+db = sqlite3.connect(str(Path(__file__).resolve().parent / "test_epistemograph.sqlite"))
 cur = db.cursor()
 
 print("=" * 80)
 print("CRITICAL QUERY: SSOT Hierarchy Validation")
 print("=" * 80)
-print("\nExpected: .github/copilot-instructions.md should have:")
+print(f"\nExpected: {SSOT_POINTER} should have:")
 print("  - Highest export count (most referenced)")
 print("  - GOLD spectral frequency")
 print("  - DOCUMENTATION role")
 print("  - 'Single Source of Truth' in essence")
 print()
 
-result = cur.execute("""
+result = cur.execute(f"""
 SELECT
     path,
     dcrp_spectral_freq,
@@ -47,7 +53,7 @@ SELECT
     dcrp_exports_count,
     dcrp_essence
 FROM files
-WHERE path LIKE '%copilot-instructions.md'
+WHERE path LIKE '%{Path(SSOT_POINTER).name}'
 ORDER BY dcrp_exports_count DESC
 """).fetchall()
 

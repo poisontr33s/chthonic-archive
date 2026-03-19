@@ -22,11 +22,13 @@ from pathlib import Path
 
 # Add project root to path
 PROJECT_ROOT = Path(__file__).parent.parent
-sys.path.append(str(PROJECT_ROOT))
+sys.path.insert(0, str(PROJECT_ROOT))
 
 from mas_mcp.logic.tools import mas_narrative_scan_logic
+from scripts.lib.ssot_paths import resolve_ssot_paths
 
-SSOT_PATH = PROJECT_ROOT / ".github" / "copilot-instructions.md"
+_SSOT = resolve_ssot_paths(PROJECT_ROOT)
+SSOT_PATH = _SSOT.pointer
 
 def test_narrative():
     print("--- Running Narrative Scan (Cultural Drift) ---")

@@ -40,6 +40,9 @@ import argparse
 from pathlib import Path
 from typing import Dict, List, Tuple, Optional
 
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+from scripts.lib.ssot_paths import SSOT_POINTER
+
 # ============================================================================
 # CONSTANTS
 # ============================================================================
@@ -74,7 +77,7 @@ TEXT_EXTENSIONS = {
 }
 
 GOVERNANCE_FILES = [
-    '.github/copilot-instructions.md',
+    SSOT_POINTER,
     'dumpster-dive/protocols/CONSOLIDATED_OPERATIONAL_INSTRUCTIONS.md',
     'CROSS_REFERENCE_TRIPTYCH.md',
     'scripts/scanner_approval.md'
@@ -488,9 +491,9 @@ def phase5_score_files(db: sqlite3.Connection):
     cur = db.cursor()
     
     # Get SSOT file_id
-    ssot_row = cur.execute("""
+    ssot_row = cur.execute(f"""
         SELECT id FROM files 
-        WHERE path LIKE '%.github/copilot-instructions.md'
+        WHERE path LIKE '%{SSOT_POINTER}'
         ORDER BY dcrp_exports_count DESC
         LIMIT 1
     """).fetchone()
@@ -654,7 +657,7 @@ def run_scanner(root: Path, db_path: Path):
                 ("fixes_applied", "ssot_bootstrap,topology_ingestion,authority_precedence,path_normalization"))
     
     # CRITICAL: Compute SSOT sha256 BEFORE Phase 1 (satisfies schema trigger)
-    ssot_primary = root / ".github" / "copilot-instructions.md"
+    ssot_primary = root / SSOT_POINTER
     if ssot_primary.exists():
         ssot_hash = compute_sha256(ssot_primary)
         cur.execute("INSERT OR REPLACE INTO metadata (key, value) VALUES (?, ?)", 
@@ -715,11 +718,11 @@ def run_scanner(root: Path, db_path: Path):
         log(f"Summary: {total_files} files, {total_deps} deps, {total_signals} signals")
         
         # Verify SSOT integrity
-        ssot_check = cur.execute("""
+        ssot_check = cur.execute(f"""
             SELECT f.path, fs.rank, fs.epistemic_score
             FROM files f
             JOIN file_scores fs ON f.id = fs.file_id
-            WHERE f.path LIKE '%.github/copilot-instructions.md'
+            WHERE f.path LIKE '%{SSOT_POINTER}'
         """).fetchone()
         
         if ssot_check:

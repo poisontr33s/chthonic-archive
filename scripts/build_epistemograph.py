@@ -37,6 +37,9 @@ import argparse
 from pathlib import Path
 from typing import Dict, List, Tuple, Optional
 
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+from scripts.lib.ssot_paths import SSOT_POINTER
+
 # ============================================================================
 # CONSTANTS (from approval document)
 # ============================================================================
@@ -85,7 +88,7 @@ SIGNAL_PATTERNS = {
 }
 
 GOVERNANCE_FILES = {
-    '.github/copilot-instructions.md',
+    SSOT_POINTER,
     'ANKHOLOGY.md',
     'ANKH_README.md',
 }
@@ -495,9 +498,9 @@ def phase5_score_files(db: sqlite3.Connection):
     cur = db.cursor()
     
     # Get SSOT file_id for lineage computation
-    ssot_row = cur.execute("""
+    ssot_row = cur.execute(f"""
         SELECT id FROM files 
-        WHERE path LIKE '%.github/copilot-instructions.md'
+        WHERE path LIKE '%{SSOT_POINTER}'
         ORDER BY dcrp_exports_count DESC
         LIMIT 1
     """).fetchone()

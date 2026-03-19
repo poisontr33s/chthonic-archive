@@ -37,10 +37,12 @@ if hasattr(sys.stderr, "buffer"):
     sys.stderr = io.TextIOWrapper(sys.stderr.buffer, encoding="utf-8", errors="replace")
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
+sys.path.insert(0, str(REPO_ROOT))
+from scripts.lib.ssot_paths import SSOT_POINTER
 
 # Files agents auto-load or regularly read
 AGENT_READABLE_GLOBS = [
-    ".github/copilot-instructions.md",
+    SSOT_POINTER,
     ".github/pathstofiles.md",
     ".github/instructions/*.instructions.md",
     ".github/instructions/*.reference.md",

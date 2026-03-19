@@ -59,7 +59,8 @@ from typing import Any, TypedDict
 # ─────────────────────────────────────────────────────────────────────────────
 
 PROJECT_ROOT = Path(__file__).parent.parent
-SSOT_PATH = PROJECT_ROOT.parent / ".github" / "copilot-instructions.md"
+from mas_mcp.logic.ssot_manifest import SSOT_POINTER_RELPATH
+SSOT_PATH = PROJECT_ROOT.parent / SSOT_POINTER_RELPATH
 ARTIFACTS_DIR = PROJECT_ROOT / "artifacts"
 SCHEMAS_DIR = PROJECT_ROOT / "schemas"
 REPORTS_DIR = PROJECT_ROOT / "cycle_reports"

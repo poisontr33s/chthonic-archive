@@ -25,8 +25,14 @@ if sys.platform == 'win32':
 
 
 from pathlib import Path
+import sys
 
-path = Path(r'C:\Users\erdno\chthonic-archive\.github\copilot-instructions.md')
+_REPO_ROOT = Path(__file__).resolve().parent.parent
+sys.path.insert(0, str(_REPO_ROOT))
+from scripts.lib.ssot_paths import resolve_ssot_paths
+
+_SSOT = resolve_ssot_paths(_REPO_ROOT)
+path = _SSOT.pointer
 lines = path.read_text(encoding='utf-8').split('\n')
 
 count = 0

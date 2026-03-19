@@ -42,8 +42,7 @@ _SSOT = resolve_ssot_paths(REPO_ROOT)
 ACTIVE_ARCHIVE = _SSOT.holder
 QUERY_FILES = [
     ACTIVE_ARCHIVE,
-    REPO_ROOT / ".temple" / "architecture" / "copilot-instructions.archive.md",
-    REPO_ROOT / ".github" / "copilot-instructions-copy.md",
+    _SSOT.proto,
     REPO_ROOT / ".github" / "codex-satellites" / "ENTITY_PROFILES.md",
     REPO_ROOT / ".github" / "codex-satellites" / "MMPS_GENERATION.md",
     REPO_ROOT / "docs" / "lore" / "RESISTANCE_TRIUMVIRATE_COMPLETE.md",
