@@ -274,12 +274,30 @@ def test_manifest_journal_event_taxonomy():
 
 
 def test_cascade_register_completeness():
-    """Cascade register covers holder, pointer, proto, and journal."""
+    """Cascade register covers all declared SSOT-adjacent artifacts."""
     identities = [e.identity for e in CASCADE_REGISTER]
+    # Core SSOT files
     assert "holder" in identities
     assert "pointer" in identities
     assert "proto" in identities
     assert "hash_journal" in identities
+    # Phase 0.1 expansions
+    assert "ssot_binding" in identities
+    assert "ssot_binding_tests" in identities
+    assert "readable_ssot_generator" in identities
+    assert "structural_extractor" in identities
+    assert "loremaster" in identities
+    assert "ssot_paths_bridge" in identities
+    assert "asc_injector" in identities
+    assert "narrative_scan_runner" in identities
+    assert "run_cycle" in identities
+    assert "ssot_extractor" in identities
+    assert "abbreviation_cli" in identities
+
+    # Every entry has a valid role and relation
+    for entry in CASCADE_REGISTER:
+        assert entry.role in SSOT_ROLES, f"{entry.identity}: bad role {entry.role}"
+        assert entry.relation in SSOT_RELATIONS, f"{entry.identity}: bad relation {entry.relation}"
 
     holder = resolve_cascade_entry("holder")
     assert holder is not None
@@ -334,3 +352,31 @@ def test_binding_constants_resolve_through_manifest():
     from logic.ssot_binding import SSOT_POINTER, SSOT_ARCHIVE
     assert SSOT_POINTER == SSOT_POINTER_RELPATH
     assert SSOT_ARCHIVE == SSOT_HOLDER_RELPATH
+
+
+def test_ssot_paths_bridge_resolves_through_manifest():
+    """scripts/lib/ssot_paths.py bridge re-exports manifest constants and resolves absolute paths."""
+    from scripts.lib.ssot_paths import (
+        SSOT_HOLDER, SSOT_POINTER, SSOT_PROTO, resolve_ssot_paths
+    )
+    # Bridge re-exports match manifest
+    assert SSOT_HOLDER == SSOT_HOLDER_RELPATH
+    assert SSOT_POINTER == SSOT_POINTER_RELPATH
+    assert SSOT_PROTO == SSOT_PROTO_RELPATH
+
+    # resolve_ssot_paths produces absolute paths
+    paths = resolve_ssot_paths(PROJECT_ROOT)
+    assert paths.holder == PROJECT_ROOT / SSOT_HOLDER_RELPATH
+    assert paths.pointer == PROJECT_ROOT / SSOT_POINTER_RELPATH
+    assert paths.proto == PROJECT_ROOT / SSOT_PROTO_RELPATH
+    assert paths.holder.is_absolute()
+
+
+def test_cascade_register_all_relpaths_exist():
+    """Every cascade entry with a code file relpath points to a real file."""
+    for entry in CASCADE_REGISTER:
+        target = PROJECT_ROOT / entry.relpath
+        # Journal and SSOT content files may not exist in test environments,
+        # but code files (validators, projections, bridges, artifacts) should.
+        if entry.role in ("validator", "projection", "bridge", "artifact"):
+            assert target.exists(), f"CASCADE_REGISTER[{entry.identity}]: {entry.relpath} not found"

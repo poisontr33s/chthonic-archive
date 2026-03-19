@@ -27,8 +27,10 @@ sys.path.append(str(PROJECT_ROOT))
 
 # Import logic directly to avoid server overhead
 from mas_mcp.logic.tools import mas_narrative_scan_logic
+from scripts.lib.ssot_paths import resolve_ssot_paths
 
-SSOT_PATH = PROJECT_ROOT / ".github" / "copilot-instructions.md"
+_SSOT = resolve_ssot_paths(PROJECT_ROOT)
+SSOT_PATH = _SSOT.pointer
 
 def main():
     results = mas_narrative_scan_logic(".", PROJECT_ROOT, SSOT_PATH)

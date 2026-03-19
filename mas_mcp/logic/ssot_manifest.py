@@ -165,6 +165,7 @@ class CascadeEntry:
     description: str
 
 CASCADE_REGISTER: List[CascadeEntry] = [
+    # ── Canonical Sources ────────────────────────────────────────────────────
     CascadeEntry(
         role="holder",
         identity="holder",
@@ -186,12 +187,94 @@ CASCADE_REGISTER: List[CascadeEntry] = [
         relation="historizing",
         description="Proto-SSOT safe fork — reference only, not auto-loaded",
     ),
+    # ── Journals ─────────────────────────────────────────────────────────────
     CascadeEntry(
         role="journal",
         identity="hash_journal",
         relpath=".mas_mcp/ssot_hash_journal.jsonl",
         relation="historizing",
         description="Persistent SSOT state timeline — stamped at threshold events",
+    ),
+    # ── Validators ───────────────────────────────────────────────────────────
+    CascadeEntry(
+        role="validator",
+        identity="ssot_binding",
+        relpath="mas_mcp/logic/ssot_binding.py",
+        relation="validating",
+        description="Cryptographic + semantic binding: SHA-256, vitals fingerprint, drift detection",
+    ),
+    CascadeEntry(
+        role="validator",
+        identity="ssot_binding_tests",
+        relpath="mas_mcp/tests/test_ssot_binding.py",
+        relation="validating",
+        description="14-test suite verifying manifest, binding, provenance, and cascade integrity",
+    ),
+    # ── Projections (readable/navigable derived forms) ───────────────────────
+    CascadeEntry(
+        role="projection",
+        identity="readable_ssot_generator",
+        relpath="scripts/generate_readable_ssot.py",
+        relation="projecting",
+        description="Generates readable SSOT from pointer — derived human form",
+    ),
+    CascadeEntry(
+        role="projection",
+        identity="structural_extractor",
+        relpath="scripts/ssot_structural_extractor.py",
+        relation="indexing",
+        description="Extracts heading tree + section structure from holder archive",
+    ),
+    CascadeEntry(
+        role="projection",
+        identity="loremaster",
+        relpath="scripts/ssot_loremaster.py",
+        relation="indexing",
+        description="Holder mirror management, section queue, and archive navigation",
+    ),
+    # ── Bridges (cross-domain translators) ──────────────────────────────────
+    CascadeEntry(
+        role="bridge",
+        identity="ssot_paths_bridge",
+        relpath="scripts/lib/ssot_paths.py",
+        relation="indexing",
+        description="Thin re-export bridge for scripts/ — resolves SSOT paths from manifest",
+    ),
+    CascadeEntry(
+        role="bridge",
+        identity="asc_injector",
+        relpath="scripts/mcp-asc-injector.ts",
+        relation="projecting",
+        description="TypeScript MCP server — injects SSOT into Copilot context via stdio",
+    ),
+    # ── Artifacts (generated against specific SSOT state) ────────────────────
+    CascadeEntry(
+        role="artifact",
+        identity="narrative_scan_runner",
+        relpath="scripts/run_narrative_scan.py",
+        relation="validating",
+        description="CLI runner for cultural drift scanning against SSOT lexicon",
+    ),
+    CascadeEntry(
+        role="artifact",
+        identity="run_cycle",
+        relpath="scripts/run_cycle.py",
+        relation="validating",
+        description="Full audit cycle runner — hashes SSOT + orchestrates scan/audit pipeline",
+    ),
+    CascadeEntry(
+        role="artifact",
+        identity="ssot_extractor",
+        relpath="mas_mcp/ssot_extractor.py",
+        relation="indexing",
+        description="Structured entity/section extraction from SSOT content",
+    ),
+    CascadeEntry(
+        role="artifact",
+        identity="abbreviation_cli",
+        relpath="mas_mcp/abbreviation_system/cli.py",
+        relation="indexing",
+        description="Abbreviation system CLI — reads SSOT for canonical abbreviation registry",
     ),
 ]
 

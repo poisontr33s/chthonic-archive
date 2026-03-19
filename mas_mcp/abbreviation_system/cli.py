@@ -34,8 +34,10 @@ from .registry import AbbreviationRegistry
 from .reporter import AuditReporter
 from .validator import ConsistencyValidator
 
+from mas_mcp.logic.ssot_manifest import SSOT_POINTER_RELPATH
+
 # Default SSOT path relative to mas_mcp
-DEFAULT_SSOT_PATH = Path(__file__).parent.parent.parent / ".github" / "copilot-instructions.md"
+DEFAULT_SSOT_PATH = Path(__file__).parent.parent.parent / SSOT_POINTER_RELPATH
 
 
 def cmd_parse(args: argparse.Namespace) -> int:

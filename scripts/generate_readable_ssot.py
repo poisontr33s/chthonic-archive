@@ -123,7 +123,10 @@ def process_text(text):
 
 def main():
     root = Path(__file__).parent.parent
-    ssot_path = root / '.github' / 'copilot-instructions.md'
+    sys.path.insert(0, str(root))
+    from scripts.lib.ssot_paths import resolve_ssot_paths
+    _ssot = resolve_ssot_paths(root)
+    ssot_path = _ssot.pointer
     out_path = root / '.github' / 'copilot-instructions.readable.md'
 
     if not ssot_path.exists():

@@ -136,7 +136,8 @@ class SSOTExtractor:
 
     def __init__(self, ssot_path: Optional[Path] = None):
         if ssot_path is None:
-            ssot_path = Path(__file__).parent.parent / ".github" / "copilot-instructions.md"
+            from mas_mcp.logic.ssot_manifest import SSOT_POINTER_RELPATH
+            ssot_path = Path(__file__).parent.parent / SSOT_POINTER_RELPATH
 
         self.ssot_path = ssot_path
         self.content = ""

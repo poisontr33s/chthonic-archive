@@ -45,6 +45,7 @@ from pathlib import Path
 
 # Ritual: Configure output for the Archive's visual grammar
 from scripts.lib.shared import configure_utf8_output
+from scripts.lib.ssot_paths import resolve_ssot_paths
 configure_utf8_output()
 
 # ---------------------------------------------------------------------------
@@ -52,7 +53,8 @@ configure_utf8_output()
 # ---------------------------------------------------------------------------
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
-ARCHIVE_PATH = REPO_ROOT / ".github" / "copilot-instructions.archive.md"
+_SSOT = resolve_ssot_paths(REPO_ROOT)
+ARCHIVE_PATH = _SSOT.holder
 PACKAGE_JSON_PATH = REPO_ROOT / "extensions" / "chthonic-archive" / "package.json"
 THEMES_DIR = REPO_ROOT / "extensions" / "chthonic-archive" / "themes"
 DEFAULT_OUTPUT = REPO_ROOT / "docs" / "design" / "ANKH_THEME_REFERENCE.md"

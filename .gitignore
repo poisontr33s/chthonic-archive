@@ -175,7 +175,9 @@ extensions/*/bun.lock
 !scripts/*.go
 !scripts/*.mjs
 !scripts/lib/
+!scripts/lib/__init__.py
 !scripts/lib/poe_auth.py
+!scripts/lib/ssot_paths.py
 !scripts/CLAUDE_CODE_INTEGRATION.md
 !audit-reports/
 !audit-reports/wptg_cycle_state.json

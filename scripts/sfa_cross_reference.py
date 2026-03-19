@@ -30,6 +30,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 from scripts.lib.shared import configure_utf8_output
+from scripts.lib.ssot_paths import SSOT_HOLDER
 
 # ═══════════════════════════════════════════════════════════════════════════════
 # Constants
@@ -67,7 +68,7 @@ ANKH_SOURCES: list[dict[str, str]] = [
     },
 ]
 
-SSOT_PATH = REPO_ROOT / ".github" / "copilot-instructions.archive.md"
+SSOT_PATH = REPO_ROOT / SSOT_HOLDER
 MAILBOX_DIR = REPO_ROOT / "claude" / "mailbox"
 ICON_DIR = REPO_ROOT / "extensions" / "chthonic-archive" / "themes" / "icons"
 THEME_JSON = REPO_ROOT / "extensions" / "chthonic-archive" / "themes" / "chthonic-file-icon-theme.json"

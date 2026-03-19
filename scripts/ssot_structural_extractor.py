@@ -51,12 +51,13 @@ from datetime import UTC, datetime
 from pathlib import Path
 
 from scripts.lib.shared import configure_utf8_output, find_repo_root, setup_logging
+from scripts.lib.ssot_paths import SSOT_HOLDER
 
 # =============================================================================
 # Constants
 # =============================================================================
 
-ARCHIVE_REL_PATH = ".github/copilot-instructions.archive.md"
+ARCHIVE_REL_PATH = SSOT_HOLDER
 
 # Heading pattern: captures the # prefix and the rest of the line
 RE_HEADING = re.compile(r"^(#{1,6})\s+(.+)$")

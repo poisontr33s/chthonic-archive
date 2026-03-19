@@ -583,7 +583,10 @@ class ASCEntityGenerator:
     ALL patterns derived from SSOT canonical data
     """
 
-    def __init__(self, ssot_path: str = ".github/copilot-instructions.md"):
+    def __init__(self, ssot_path: str = None):
+        if ssot_path is None:
+            from scripts.lib.ssot_paths import SSOT_POINTER
+            ssot_path = SSOT_POINTER
         self.ssot = SSOTGroundTruth()
         self.ssot_path = ssot_path
         self.existing_entities = self._load_existing_entities()

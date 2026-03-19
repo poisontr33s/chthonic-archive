@@ -90,6 +90,7 @@
       "command": "uv",
       "args": [
         "run",
+        "--quiet",
         "--directory",
         "${workspaceFolder}/mas_mcp",
         "python",
