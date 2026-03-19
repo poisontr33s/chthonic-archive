@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
+#-*- coding: utf-8 -*-
 
 # ╔════════════════════════════════════════════════════════════════════════════
 # ║ THE DECORATOR'S BLESSING: ssot_binding.py
@@ -14,14 +14,15 @@
 """
 ssot_binding.py — Cryptographic SSOT Binding for MAS Pipeline.
 
-@SID:           LOGIC_SSOT_BINDING_V3
+@SID:           LOGIC_SSOT_BINDING_V4
 @Shabti:        Domain Logic (Governance)
 @Lineage:       Upcycled from LIB_SSOT_HANDLER_V1 (wet-paper-to-gold)
-@Purpose:       Canonical text normalization, SHA-256 fingerprinting,
-                semantic vitals fingerprint, persistent hash journal, and
-                bookend drift detection. Wired into mas_pulse (session
-                integrity), mas_narrative_scan (normalized vocab matching),
-                and mas_scan (provenance binding).
+@Purpose:       Canonical text normalization, SHA-256 fingerprinting (exact
+                identity), semantic vitals fingerprint (readable identity),
+                persistent hash journal, source-kind discrimination, and
+                bookend drift detection with structured dimension analysis.
+                Wired into mas_pulse (session integrity), mas_narrative_scan
+                (normalized vocab matching), and mas_scan (provenance binding).
 """
 
 from __future__ import annotations
@@ -131,20 +132,35 @@ KNOWN_ENTITIES = [
 ]
 
 
-def compute_ssot_vitals(ssot_path: Path) -> Dict[str, Any]:
+def compute_ssot_vitals(
+    ssot_path: Path, source_kind: str = "unknown",
+) -> Dict[str, Any]:
     """
     Semantic fingerprint of SSOT state.
 
-    Returns a structured dict that tells you the *shape* of the world:
-      - hash: exact SHA-256 (collision-resistant identity)
+    Two layers that coexist, never compete:
+      - hash (SHA-256): exact-match trust anchor. Answers "is it the same?"
+      - vitals/fingerprint: readable structure. Answers "what world is this?"
+
+    Args:
+        ssot_path: Path to the SSOT file.
+        source_kind: "pointer" or "archive" — discriminates SSOT roles so
+            journal entries from different sources don't create false drift.
+
+    Returns a structured dict:
+      - sha256: exact SHA-256 (64-char hex)
+      - source_kind: "pointer" | "archive" | "unknown"
+      - source_path: str (relative-looking or absolute)
       - lexicon_cardinality: count of extractable canon terms
-      - entity_census: which entities are present
+      - entity_census: which entities are present (list of names)
+      - entity_count: len(entity_census) — for delta arithmetic
       - section_count: markdown heading count (structural complexity)
       - byte_size: raw file size
-      - fingerprint: compact human-readable summary, e.g. "L1504·E7·S42·955K"
-
-    After a submergence, one glance at the fingerprint tells you what world
-    you're in without re-reading 955KB of SSOT.
+      - heading_digest: SHA-256[:12] of sorted heading text — detects
+          structural reorgs even when byte size stays the same
+      - metrics_digest: SHA-256[:12] of entity metrics block — detects
+          WHR/Tier changes without re-scanning full content
+      - fingerprint: compact human-readable, e.g. "L1504·E7·S204·955K"
     """
     raw = ssot_path.read_bytes()
     content = canonicalize_text(raw.decode('utf-8', errors='ignore'))
@@ -159,8 +175,22 @@ def compute_ssot_vitals(ssot_path: Path) -> Dict[str, Any]:
     content_lower = content.lower()
     entities_present = [e for e in KNOWN_ENTITIES if e.lower() in content_lower]
 
-    # Section count (markdown headings)
-    sections = len(re.findall(r'^#{1,6}\s', content, re.MULTILINE))
+    # Section count + heading digest (markdown headings)
+    headings = re.findall(r'^(#{1,6}\s.+)$', content, re.MULTILINE)
+    heading_text = "\n".join(sorted(headings))
+    heading_digest = hashlib.sha256(heading_text.encode('utf-8')).hexdigest()[:12]
+
+    # Metrics digest — entity WHR/Tier/Cup mentions near known entity names
+    metrics_lines: List[str] = []
+    for entity in entities_present:
+        pattern = re.compile(
+            rf'{re.escape(entity)}.{{0,200}}(?:WHR|Tier|Cup|FA\u2075)',
+            re.IGNORECASE | re.DOTALL,
+        )
+        for m in pattern.finditer(content):
+            metrics_lines.append(m.group(0))
+    metrics_text = "\n".join(sorted(metrics_lines))
+    metrics_digest = hashlib.sha256(metrics_text.encode('utf-8')).hexdigest()[:12]
 
     # Byte size
     byte_size = len(raw)
@@ -173,14 +203,19 @@ def compute_ssot_vitals(ssot_path: Path) -> Dict[str, Any]:
     else:
         size_label = f"{byte_size}B"
 
-    fingerprint = f"L{len(lexicon)}\u00b7E{len(entities_present)}\u00b7S{sections}\u00b7{size_label}"
+    fingerprint = f"L{len(lexicon)}\u00b7E{len(entities_present)}\u00b7S{len(headings)}\u00b7{size_label}"
 
     return {
-        "hash": sha,
+        "sha256": sha,
+        "source_kind": source_kind,
+        "source_path": str(ssot_path),
         "lexicon_cardinality": len(lexicon),
         "entity_census": entities_present,
-        "section_count": sections,
+        "entity_count": len(entities_present),
+        "section_count": len(headings),
         "byte_size": byte_size,
+        "heading_digest": heading_digest,
+        "metrics_digest": metrics_digest,
         "fingerprint": fingerprint,
     }
 
@@ -189,10 +224,12 @@ def compare_vitals(
     before: Dict[str, Any], after: Dict[str, Any]
 ) -> Dict[str, Any]:
     """
-    Human-readable diff between two vitals snapshots.
+    Structured diff between two vitals snapshots.
 
-    Returns structured deltas and a summary sentence. Designed to answer
-    "what changed while I was submerged?" in one glance.
+    Returns `changed_dimensions` (which axes moved) and a compact summary.
+    Summary format: "lexicon +12, entities +1, sections 42→45, metrics changed for Umeko"
+
+    Designed to answer "what changed while I was submerged?" in one glance.
     """
     lex_delta = after["lexicon_cardinality"] - before["lexicon_cardinality"]
     sec_delta = after["section_count"] - before["section_count"]
@@ -200,38 +237,59 @@ def compare_vitals(
 
     entities_added = [e for e in after["entity_census"] if e not in before["entity_census"]]
     entities_removed = [e for e in before["entity_census"] if e not in after["entity_census"]]
-    hash_changed = before["hash"] != after["hash"]
+    hash_changed = before["sha256"] != after["sha256"]
+    headings_changed = before.get("heading_digest") != after.get("heading_digest")
+    metrics_changed = before.get("metrics_digest") != after.get("metrics_digest")
 
-    # Build summary sentence
+    # Track which dimensions actually moved
+    changed_dimensions: List[str] = []
+    if lex_delta != 0:
+        changed_dimensions.append("lexicon")
+    if entities_added or entities_removed:
+        changed_dimensions.append("entities")
+    if sec_delta != 0:
+        changed_dimensions.append("sections")
+    if size_delta != 0:
+        changed_dimensions.append("byte_size")
+    if headings_changed:
+        changed_dimensions.append("headings")
+    if metrics_changed:
+        changed_dimensions.append("metrics")
+
+    # Build compact summary: "lexicon +12, sections 42→45, entities +1 (Umeko)"
     parts: List[str] = []
-    if lex_delta > 0:
-        parts.append(f"lexicon grew by {lex_delta} terms")
-    elif lex_delta < 0:
-        parts.append(f"lexicon shrank by {abs(lex_delta)} terms")
+    if lex_delta != 0:
+        sign = "+" if lex_delta > 0 else ""
+        parts.append(f"lexicon {sign}{lex_delta}")
     if entities_added:
-        parts.append(f"entities added: {', '.join(entities_added)}")
+        parts.append(f"entities +{len(entities_added)} ({', '.join(entities_added)})")
     if entities_removed:
-        parts.append(f"entities removed: {', '.join(entities_removed)}")
-    if sec_delta > 0:
-        parts.append(f"{sec_delta} sections added")
-    elif sec_delta < 0:
-        parts.append(f"{abs(sec_delta)} sections removed")
-    if size_delta:
+        parts.append(f"entities -{len(entities_removed)} ({', '.join(entities_removed)})")
+    if sec_delta != 0:
+        parts.append(f"sections {before['section_count']}\u2192{after['section_count']}")
+    if headings_changed and sec_delta == 0:
+        parts.append("headings restructured")
+    if metrics_changed:
+        parts.append("metrics changed")
+    if size_delta != 0:
         sign = "+" if size_delta > 0 else ""
-        parts.append(f"size {sign}{size_delta} bytes")
+        parts.append(f"size {sign}{size_delta}B")
     if not parts:
-        parts.append("no structural change detected")
+        parts.append("no structural change")
 
     return {
         "hash_changed": hash_changed,
+        "changed_dimensions": changed_dimensions,
         "lexicon_delta": lex_delta,
         "section_delta": sec_delta,
         "byte_delta": size_delta,
         "entities_added": entities_added,
         "entities_removed": entities_removed,
+        "headings_changed": headings_changed,
+        "metrics_changed": metrics_changed,
         "fingerprint_before": before["fingerprint"],
         "fingerprint_after": after["fingerprint"],
-        "summary": "; ".join(parts),
+        "summary": ", ".join(parts),
     }
 
 
@@ -263,10 +321,11 @@ def stamp_journal(
     entry = {
         "ts": datetime.now(timezone.utc).isoformat(timespec="seconds"),
         "event": event,
+        "source_kind": vitals.get("source_kind", "unknown"),
         "fingerprint": vitals["fingerprint"],
-        "hash": vitals["hash"][:16],
+        "hash": vitals["sha256"][:16],
         "lexicon": vitals["lexicon_cardinality"],
-        "entities": len(vitals["entity_census"]),
+        "entities": vitals["entity_count"],
         "sections": vitals["section_count"],
         "bytes": vitals["byte_size"],
     }
@@ -318,15 +377,19 @@ _session_vitals: Dict[str, Any] | None = None
 _session_project_root: Path | None = None
 
 
-def init_session_bookend(ssot_path: Path, project_root: Optional[Path] = None) -> str:
+def init_session_bookend(
+    ssot_path: Path,
+    project_root: Optional[Path] = None,
+    source_kind: str = "pointer",
+) -> str:
     """
     Stamp the session-start SSOT vitals. Called once at server init.
     Journals the startup event if project_root is provided.
     Returns the starting hash.
     """
     global _session_hash, _session_ssot_path, _session_vitals, _session_project_root
-    vitals = compute_ssot_vitals(ssot_path)
-    _session_hash = vitals["hash"]
+    vitals = compute_ssot_vitals(ssot_path, source_kind=source_kind)
+    _session_hash = vitals["sha256"]
     _session_ssot_path = ssot_path
     _session_vitals = vitals
     _session_project_root = project_root
@@ -339,9 +402,9 @@ def check_session_bookend() -> dict:
     """
     Check whether the SSOT has drifted since session start.
 
-    Now vitals-aware: returns fingerprints + a human-readable diff summary
-    when drift is detected — not just a boolean. After submergence, this
-    tells you *what* changed, not just *that* it changed.
+    Vitals-aware: returns fingerprints, changed_dimensions list, and a
+    human-readable diff summary when drift is detected. After submergence,
+    this tells you *what* changed and *which axes moved*, not just a boolean.
 
     Returns:
         {
@@ -349,25 +412,30 @@ def check_session_bookend() -> dict:
             "hash_start": str (short),
             "hash_now": str (short),
             "drifted": bool,
-            "fingerprint_start": str,      # compact vitals at session start
-            "fingerprint_now": str,         # compact vitals right now
-            "drift_summary": str | None,    # human sentence if drifted
+            "fingerprint_start": str,
+            "fingerprint_now": str,
+            "changed_dimensions": list[str] | None,
+            "drift_summary": str | None,
         }
     """
     if _session_hash is None or _session_ssot_path is None:
         return {
             "ssot_file": None, "hash_start": None, "hash_now": None,
             "drifted": None, "fingerprint_start": None,
-            "fingerprint_now": None, "drift_summary": None,
+            "fingerprint_now": None, "changed_dimensions": None,
+            "drift_summary": None,
         }
 
-    vitals_now = compute_ssot_vitals(_session_ssot_path)
-    is_ok = _session_hash == vitals_now["hash"]
+    source_kind = _session_vitals.get("source_kind", "pointer") if _session_vitals else "pointer"
+    vitals_now = compute_ssot_vitals(_session_ssot_path, source_kind=source_kind)
+    is_ok = _session_hash == vitals_now["sha256"]
 
     drift_summary: str | None = None
+    changed_dimensions: list | None = None
     if not is_ok and _session_vitals is not None:
         diff = compare_vitals(_session_vitals, vitals_now)
         drift_summary = diff["summary"]
+        changed_dimensions = diff["changed_dimensions"]
         # Journal the drift event
         if _session_project_root is not None:
             stamp_journal(_session_project_root, vitals_now, event="drift_detected")
@@ -377,9 +445,10 @@ def check_session_bookend() -> dict:
     return {
         "ssot_file": _session_ssot_path.name,
         "hash_start": _session_hash[:16],
-        "hash_now": vitals_now["hash"][:16],
+        "hash_now": vitals_now["sha256"][:16],
         "drifted": not is_ok,
         "fingerprint_start": fp_start,
         "fingerprint_now": vitals_now["fingerprint"],
+        "changed_dimensions": changed_dimensions,
         "drift_summary": drift_summary,
     }

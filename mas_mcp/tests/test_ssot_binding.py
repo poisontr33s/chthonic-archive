@@ -80,13 +80,13 @@ def test_server_tools_surface_ssot_binding_metadata():
     )
 
     assert set(bookend) >= {"ssot_file", "hash_start", "hash_now", "drifted",
-                             "fingerprint_start", "fingerprint_now", "drift_summary"}
+                             "fingerprint_start", "fingerprint_now",
+                             "changed_dimensions", "drift_summary"}
     assert bookend["hash_now"] == expected_pointer_hash
     if expected_pointer_hash is not None:
         assert len(bookend["hash_start"]) == 16
         assert len(bookend["hash_now"]) == 16
         assert isinstance(bookend["drifted"], bool)
-        # Fingerprint should be a compact string like "L1504·E7·S42·955K"
         assert bookend["fingerprint_start"] is not None
         assert bookend["fingerprint_now"] is not None
         assert bookend["fingerprint_start"][0] == "L"
@@ -98,10 +98,12 @@ def test_server_tools_surface_ssot_binding_metadata():
     narrative = tools["mas_narrative_scan"].fn("CLAUDE.md")
     assert narrative["ssot_hash"] == expected_lexicon_hash
     assert "ssot_fingerprint" in narrative
+    assert narrative["ssot_source_kind"] == "archive"
 
     scan = tools["mas_scan"].fn("CLAUDE.md")
     assert scan["ssot_hash"] == expected_pointer_hash
     assert "ssot_fingerprint" in scan
+    assert scan["ssot_source_kind"] == "pointer"
     assert scan["scan_metadata"]["files_scanned"] == 1
 
 
@@ -110,27 +112,37 @@ def test_server_tools_surface_ssot_binding_metadata():
 # ─────────────────────────────────────────────────────────────────────────────
 
 def test_vitals_fingerprint_structure(tmp_path):
-    """Vitals returns a structured dict with all expected fields."""
+    """Vitals returns a structured dict with all V4 fields."""
     ssot = tmp_path / "ssot.md"
     ssot.write_text(
         "# Title\n\n## Section A\n\n`FooBar` `BazQux`\n\n"
         "## Section B\n\nOrackla appears here.\n",
         encoding="utf-8",
     )
-    vitals = compute_ssot_vitals(ssot)
+    vitals = compute_ssot_vitals(ssot, source_kind="archive")
 
-    assert set(vitals) == {"hash", "lexicon_cardinality", "entity_census",
-                            "section_count", "byte_size", "fingerprint"}
-    assert len(vitals["hash"]) == 64
+    expected_keys = {
+        "sha256", "source_kind", "source_path",
+        "lexicon_cardinality", "entity_census", "entity_count",
+        "section_count", "byte_size",
+        "heading_digest", "metrics_digest", "fingerprint",
+    }
+    assert set(vitals) == expected_keys
+    assert len(vitals["sha256"]) == 64
+    assert vitals["source_kind"] == "archive"
+    assert vitals["source_path"] == str(ssot)
     assert vitals["lexicon_cardinality"] >= 2  # FooBar, BazQux
     assert "Orackla" in vitals["entity_census"]
+    assert vitals["entity_count"] == len(vitals["entity_census"])
     assert vitals["section_count"] == 3  # Title, Section A, Section B
+    assert len(vitals["heading_digest"]) == 12
+    assert len(vitals["metrics_digest"]) == 12
     assert vitals["fingerprint"].startswith("L")
     assert "\u00b7" in vitals["fingerprint"]  # middle dot separator
 
 
 def test_compare_vitals_detects_drift(tmp_path):
-    """Compare vitals produces a meaningful summary of what changed."""
+    """Compare vitals produces changed_dimensions and a compact summary."""
     ssot_v1 = tmp_path / "v1.md"
     ssot_v1.write_text("# Title\n\n`Alpha` `Beta`\n", encoding="utf-8")
     before = compute_ssot_vitals(ssot_v1)
@@ -147,7 +159,14 @@ def test_compare_vitals_detects_drift(tmp_path):
     assert diff["hash_changed"] is True
     assert diff["lexicon_delta"] > 0
     assert diff["section_delta"] > 0
-    assert "lexicon grew" in diff["summary"]
+    # V4: changed_dimensions tracks which axes moved
+    assert "lexicon" in diff["changed_dimensions"]
+    assert "sections" in diff["changed_dimensions"]
+    assert "entities" in diff["changed_dimensions"]
+    assert isinstance(diff["headings_changed"], bool)
+    assert isinstance(diff["metrics_changed"], bool)
+    # V4: compact summary format: "lexicon +N, ..."
+    assert "lexicon +" in diff["summary"]
 
 
 # ─────────────────────────────────────────────────────────────────────────────
@@ -155,23 +174,26 @@ def test_compare_vitals_detects_drift(tmp_path):
 # ─────────────────────────────────────────────────────────────────────────────
 
 def test_journal_stamp_and_read(tmp_path):
-    """Journal stamps persist and can be read back."""
+    """Journal stamps persist with source_kind and can be read back."""
     ssot = tmp_path / "ssot.md"
     ssot.write_text("# Test\n\n`TermOne` `TermTwo`\n", encoding="utf-8")
-    vitals = compute_ssot_vitals(ssot)
+    vitals = compute_ssot_vitals(ssot, source_kind="pointer")
 
     # Stamp two events
     entry1 = stamp_journal(tmp_path, vitals, event="startup")
     assert entry1["event"] == "startup"
+    assert entry1["source_kind"] == "pointer"
     assert entry1["fingerprint"].startswith("L")
 
     entry2 = stamp_journal(tmp_path, vitals, event="drift_detected")
     assert entry2["event"] == "drift_detected"
+    assert entry2["source_kind"] == "pointer"
 
     # Read back
     tail = read_journal_tail(tmp_path, n=10)
     assert len(tail) == 2
     assert tail[0]["event"] == "startup"
+    assert tail[0]["source_kind"] == "pointer"
     assert tail[1]["event"] == "drift_detected"
 
     # Verify JSONL format
@@ -183,3 +205,4 @@ def test_journal_stamp_and_read(tmp_path):
         parsed = json.loads(line)
         assert "ts" in parsed
         assert "hash" in parsed
+        assert "source_kind" in parsed
