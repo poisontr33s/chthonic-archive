@@ -15,25 +15,27 @@
 ### What Was Done (Phase 0.1 · `c3ce99e2`)
 - Created `scripts/lib/ssot_paths.py` bridge (re-exports `SSOT_HOLDER`, `SSOT_POINTER`, `SSOT_PROTO` + `resolve_ssot_paths()`)
 - Expanded CASCADE_REGISTER from 4 → 15 entries covering all role/relation categories
-- Wired **18 Python scripts** to resolve SSOT paths through the manifest chain
+- Wired **16 Python consumer scripts** + 4 infra files (20 total) through the manifest chain
+  - **14 scripts/**: ankh_theme_reference, asc_entity_generator, background_services, decorator_cross_ref_{enhanced,maximum,production}, generate_readable_ssot, run_cycle, run_narrative_scan, scan_redundancy, sfa_cross_reference, ssot_loremaster, ssot_structural_extractor, synthesis_cross_reference
+  - **2 mas_mcp/**: abbreviation_system/cli, ssot_extractor
+  - **4 infra**: ssot_manifest (source of truth), ssot_paths (bridge), test_ssot_binding (tests), lib/__init__
 - Fixed 2 REPO_ROOT bugs + 1 CWD dependency bug
 - Added `--quiet` to `uv run` in MCP config
 - 16/16 binding tests passing
 
 ### What Was Done (Phase 0.2 · `fa4a6120`)
-Wired **13 additional Python scripts** through the manifest→bridge cascade (31 total):
+Wired **13 additional Python scripts** through the manifest→bridge cascade (29 consumer scripts total):
 
 **Critical drift fixes (3):**
 - `scripts/ssot_loremaster.py` — dead `.temple/architecture/copilot-instructions.archive.md` → `_SSOT.proto`
 - `scripts/debug_code_blocks.py` — absolute `C:\Users\erdno\...` path → `resolve_ssot_paths()` bridge
 - `scripts/ssot_immunity.py` — `PROJECT_ROOT` bug (`.parent` → `.parent.parent`) + `SSOT_FILES[0]` → `SSOT_POINTER`
 
-**Direct filesystem wiring (5):**
+**Direct filesystem wiring (4):**
 - `scripts/ssot_hash.py` — argparse default → lazy bridge resolve at runtime
 - `scripts/test_narrative_scan.py` — `SSOT_PATH` → `resolve_ssot_paths()`
 - `mas_mcp/scripts/run_cycle.py` — `SSOT_PATH` → `SSOT_POINTER_RELPATH` from manifest
 - `mas_mcp/genesis_scheduler.py` — `mpw_path` default → manifest import
-- `get_hash.py` (root) — inline path → bridge import
 
 **Structural references (5):**
 - `scripts/build_epistemograph.py` — `GOVERNANCE_FILES` set + SQL LIKE pattern
@@ -45,11 +47,15 @@ Wired **13 additional Python scripts** through the manifest→bridge cascade (31
 
 ### What Remains (Full Inventory)
 
+> ⚠️ **Audit note:** The Phase 0.2 grep used PowerShell's `mas_mcp/**/*.py` glob which only
+> recurses one level. Directories at depth ≥3 (`scripts/abbrev/`, `scripts/ssot_abbrev/`,
+> `lib/asc/`) were missed. The corrected audit below uses `grep -rn --include="*.py"`.
+
 | Category | Wired (0.1+0.2) | Remaining | Notes |
 |----------|-----------------|-----------|-------|
-| Python scripts (scripts/) | 29 | ~4 cosmetic | Remaining are docstrings/prints/audit-exception sets — not path construction |
-| Python (mas_mcp/) | 4 | ~3 cosmetic | `probe_gpu_compatibility.py` (docstring+print), `milf_activator.py` (docstring+print), `abbreviation_system/parser.py` (docstring) |
-| TypeScript (scripts/) | 0 | 6 | **Phase 0.3** |
+| Python (scripts/) | 25 | 27 lines / 14 files — **0 functional** | Docstrings, content-match, metadata literals |
+| Python (mas_mcp/) | 4 | 26 lines / 15 files — **5 functional + 1 dead ref** | ⚠️ **Phase 0.2.1 needed** |
+| TypeScript (scripts/) | 0 | ~6 | **Phase 0.3** |
 | PowerShell (scripts/) | 0 | 6+ | **Phase 0.4** |
 | Config (.vscode/) | 1 (mcp.json noise) | 2 (mcp.json SSOT_PATH, settings.json) | **Phase 0.5** |
 | Agent docs (root md) | 0 | 4 (AGENTS, AGENT_COMMON, CLAUDE, GEMINI) | **Phase 0.6** |
@@ -57,7 +63,44 @@ Wired **13 additional Python scripts** through the manifest→bridge cascade (31
 | .temple/protocols/ | 0 | 24 files | **Phase 0.6** |
 | docs/ | 0 | 116 files | **Phase 0.6** |
 
-### Critical Drift (Status)
+**Remaining Python detail (53 lines across 29 files):**
+
+#### scripts/ — 27 lines / 14 files (0 functional path construction)
+| File | Line(s) | Count | Kind | Risk |
+|------|---------|-------|------|------|
+| `ankh_theme_reference.py` | 10, 18, 33 | 3 | Comment + docstring | None |
+| `asc_entity_generator.py` | 65 | 1 | Docstring | None |
+| `background_services.py` | 195 | 1 | Content-match (`in str(path)`) | Low |
+| `check_python_policy.py` | 45 | 1 | Literal in `PROTO_GLOBS` list | **Medium** |
+| `decorator_cross_ref_enhanced.py` | 429 | 1 | Content-match (`in path.name`) | Low |
+| `decorator_cross_ref_maximum.py` | 447 | 1 | Content-match (`in path.name`) | Low |
+| `decorator_cross_ref_production.py` | 866 | 1 | Content-match (`in path.name`) | Low |
+| `generate_readable_ssot.py` | 130 | 1 | Derivative output path (`.readable.md`) | **Medium** — derives from SSOT name |
+| `path_naming_audit.py` | 123–124 | 2 | Audit exception set (bare filenames) | **Medium** |
+| `regenerate_triptych.py` | 288 | 1 | Content-match (`in p`) | Low |
+| `ssot_hash.py` | 57, 120 | 2 | Docstring + usage example | None |
+| `ssot_loremaster.py` | 90, 130–254 | 10 | 1 deliverable desc + 9× `source=` metadata | **Medium** — stale on rename |
+| `ssot_structural_extractor.py` | 16 | 1 | Docstring | None |
+| `synthesis_cross_reference.py` | 19 | 1 | Docstring | None |
+
+#### mas_mcp/ — 26 lines / 15 files (5 functional + 1 dead ref)
+| File | Line(s) | Count | Kind | Risk |
+|------|---------|-------|------|------|
+| `abbreviation_system/__init__.py` | 8 | 1 | Docstring | None |
+| `abbreviation_system/parser.py` | 25, 37 | 2 | Docstring + example | None |
+| `lib/asc/cli.py` | 41 | 1 | **DEAD REF** — `mas_mcp/lib/copilot-instructions.md` doesn't exist | **Critical** |
+| `lib/asc/extractor.py` | 38 | 1 | Docstring | None |
+| `lib/asc/models.py` | 45 | 1 | Docstring | None |
+| `logic/tools.py` | 70 | 1 | Content-match skip filter | Low |
+| `milf_genesis_v2.py` | 174, 1335 | 2 | 1 comment + 1 **FUNCTIONAL** `mpw_path` default | **High** |
+| `scripts/abbrev/cli.py` | 48, 151 | 2 | 1 **FUNCTIONAL** `SSOT_PATH` constant + 1 backup name | **High** |
+| `scripts/abbrev/generator.py` | 56 | 1 | Docstring | None |
+| `scripts/milf_activator.py` | 17, 232 | 2 | Docstring + cosmetic print | None |
+| `scripts/probe_gpu_compatibility.py` | 18, 397, 416 | 3 | Docstring + `ssot_ref=` kwarg + print | **Medium** |
+| `scripts/run_cycle.py` | 28 | 1 | Docstring | None |
+| `scripts/ssot_abbrev/cli.py` | 42, 47, 48, 178 | 4 | 3 **FUNCTIONAL** (1 has wrong absolute `erdno` path!) + 1 backup | **Critical** |
+| `scripts/ssot_abbrev/generator.py` | 37, 160 | 2 | Source metadata strings | **Medium** |
+| `ssot_extractor.py` | 16, 132 | 2 | Docstring | None |
 1. ~~`scripts/ssot_loremaster.py` — references DELETED path `.temple/architecture/copilot-instructions.archive.md`~~ ✅ Fixed (Phase 0.2)
 2. ~~`scripts/debug_code_blocks.py` — hardcodes absolute path `C:\Users\erdno\...` (wrong username)~~ ✅ Fixed (Phase 0.2)
 3. Three `.ps1` scripts resolve SSOT via `$PSScriptRoot\..` → repo root (missing `.github/` prefix) — **Phase 0.4**
@@ -111,7 +154,7 @@ Everything in this codebase either **IS** the SSOT or **SERVES** the SSOT. There
 
 ## 2. Phase Hierarchy: 0.1 → 1.0
 
-### Phase 0.2 — Complete the Python Cascade (P0/P1 priority) ✅ LANDED `fa4a6120`
+### Phase 0.2 — Complete the Python Cascade (P0/P1 priority) ✅ `fa4a6120` (scripts/) · ⚠️ mas_mcp/ incomplete
 **Goal:** Zero hardcoded SSOT paths in any `.py` file.
 
 #### Stage 01: Fix Critical Drift ✅
@@ -119,7 +162,7 @@ Everything in this codebase either **IS** the SSOT or **SERVES** the SSOT. There
 |--------|-------|-----|--------|
 | `scripts/ssot_loremaster.py` L45 | References deleted `.temple/architecture/...` path | Dead ref → `_SSOT.proto` | ✅ |
 | `scripts/debug_code_blocks.py` L29 | Absolute path `C:\Users\erdno\...` | Replaced with `resolve_ssot_paths()` | ✅ |
-| `get_hash.py` (root) | Root-level utility with hardcoded path | Wired to bridge import | ✅ |
+| `get_hash.py` (root) | Root-level utility with hardcoded path | Wired on disk but **gitignored** — not in any commit. See Phase 0.7 "Relocate to scripts/" | ⚠️ |
 
 #### Stage 02: Wire Remaining scripts/*.py ✅
 | Script | Current Hardcoded Path | Status |
@@ -150,7 +193,28 @@ Everything in this codebase either **IS** the SSOT or **SERVES** the SSOT. There
 - `Path(SSOT_POINTER).name` correctly yields `copilot-instructions.md` for SQL LIKE derivation
 - Pre-existing broken tests (`test_gpu_integration.py`, `test_logic_qualia.py`) are unrelated import errors
 
-**Exit Gate:** `grep -r "copilot-instructions" scripts/*.py mas_mcp/**/*.py` returns ZERO functional path-construction hits. ~7 cosmetic references remain (docstrings, prints, audit-exception sets) which are acceptable per cascade contract §3.
+**Exit Gate:** `grep -rn --include="*.py" "copilot-instructions" scripts/ mas_mcp/` (excluding infra + imports):
+- **scripts/**: ✅ ZERO functional path-construction hits. 27 non-functional references (docstrings, content-match, metadata).
+- **mas_mcp/**: ❌ **5 functional path constructions remain** + 1 dead ref. These were missed because the original PowerShell glob `mas_mcp/**/*.py` didn't recurse into `scripts/abbrev/`, `scripts/ssot_abbrev/`, `lib/asc/`, or `milf_genesis_v2.py`. **Phase 0.2.1 required.**
+- 53 total non-import lines across 29 files (21 non-functional remainder acceptable per cascade contract §3).
+
+---
+
+### Phase 0.2.1 — Complete mas_mcp/ Deep Audit (P0 priority)
+**Goal:** Wire the 5 functional path constructions + 1 dead ref that were missed by the Phase 0.2 shallow glob.
+
+**Root cause:** PowerShell glob `mas_mcp/**/*.py` only recursed one level. Directories at depth ≥3 were invisible.
+
+| File | Line | Current | Fix |
+|------|------|---------|-----|
+| `milf_genesis_v2.py:1335` | `mpw_path = Path(...) / ".github" / "copilot-instructions.md"` | Hardcoded default in `__main__` | → bridge import |
+| `scripts/abbrev/cli.py:48` | `SSOT_PATH = PROJECT_ROOT / ".github" / "copilot-instructions.md"` | Module-level constant | → bridge import |
+| `scripts/ssot_abbrev/cli.py:42` | `ssot_path = project_root / ".github" / "copilot-instructions.md"` | In `get_ssot_path()` | → bridge import |
+| `scripts/ssot_abbrev/cli.py:47` | `Path("c:/Users/erdno/chthonic-archive/...")` | **Wrong absolute path** (`erdno` ≠ `eldno`) | → remove; bridge fallback |
+| `scripts/ssot_abbrev/cli.py:48` | `Path(".github/copilot-instructions.md")` | Fallback in `get_ssot_path()` | → remove; bridge handles this |
+| `lib/asc/cli.py:41` | `LORE_MD = ... / "mas_mcp" / "lib" / "copilot-instructions.md"` | **Dead ref** — file doesn't exist | → bridge import or remove |
+
+**Exit Gate:** `grep -rn --include="*.py" "copilot-instructions" mas_mcp/` (excluding infra + imports) returns ZERO functional path-construction hits.
 
 ---
 
@@ -359,6 +423,7 @@ Every file type in the codebase has a role in supplementing the SSOT. This matri
 | Priority | Phase | Scope | Effort | Dependencies | Status |
 |----------|-------|-------|--------|-------------|--------|
 | **P0** | 0.2 Stage 01 | Fix 3 critical broken references | Small | None | ✅ `fa4a6120` |
+| **P0** | 0.2.1 | Wire 5 functional refs + 1 dead ref in mas_mcp/ deep dirs | Small | None | ⭐ **Now** |
 | **P1** | 0.2 Stage 02-03 | Wire remaining ~20 Python scripts | Medium | Stage 01 | ✅ `fa4a6120` |
 | **P1** | 0.2 Stage 04 | Tests for Python cascade completion | Small | Stage 02-03 | ✅ 16/16 passing |
 | **P2** | 0.3 | TypeScript bridge + wire 6 files | Medium | None (parallel with 0.2) | ⭐ Next |
@@ -377,8 +442,8 @@ Every file type in the codebase has a role in supplementing the SSOT. This matri
 | Metric | Phase 0.1 | Phase 0.2 (now) | Target (1.0) |
 |--------|-----------|-----------------|--------------|
 | Cascade register entries | 15 | 15 | 26+ |
-| Python scripts wired | 18 | 31 (+13) | ALL (~36+) |
-| Python cosmetic refs remaining | ~40 | ~7 (docstrings/prints only) | 0 (outside config boundary) |
+| Python scripts wired | 16 | 29 (+13) | ALL (~36+) |
+| Python cosmetic refs remaining | ~40 | 53 lines / 29 files (5 functional in mas_mcp/ — Phase 0.2.1) | 0 (outside config boundary) |
 | TypeScript files wired | 0 | 0 | ALL (~6) |
 | PowerShell files wired | 0 | 0 | ALL (~6) |
 | Hardcoded SSOT paths (functional) | ~20 | 0 ✅ | 0 |
