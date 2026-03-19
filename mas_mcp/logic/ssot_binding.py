@@ -14,13 +14,15 @@
 """
 ssot_binding.py — Cryptographic SSOT Binding for MAS Pipeline.
 
-@SID:           LOGIC_SSOT_BINDING_V4
+@SID:           LOGIC_SSOT_BINDING_V5
 @Shabti:        Domain Logic (Governance)
 @Lineage:       Upcycled from LIB_SSOT_HANDLER_V1 (wet-paper-to-gold)
 @Purpose:       Canonical text normalization, SHA-256 fingerprinting (exact
                 identity), semantic vitals fingerprint (readable identity),
-                persistent hash journal, source-kind discrimination, and
-                bookend drift detection with structured dimension analysis.
+                persistent hash journal, source-kind discrimination,
+                provenance-aware role identity, and bookend drift detection
+                with structured dimension analysis.
+                Filenames resolve through ssot_manifest.py (cascade-safe).
                 Wired into mas_pulse (session integrity), mas_narrative_scan
                 (normalized vocab matching), and mas_scan (provenance binding).
 """
@@ -36,9 +38,18 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Dict, List, Optional, Tuple
 
-# Default SSOT paths relative to repository root
-SSOT_POINTER = ".github/copilot-instructions.md"
-SSOT_ARCHIVE = ".github/copilot-instructions.archive.md"
+from mas_mcp.logic.ssot_manifest import (
+    SSOT_HOLDER_RELPATH,
+    SSOT_POINTER_RELPATH,
+    SSOT_PROTO_RELPATH,
+    SSOTProvenance,
+    JournalEvent,
+    JOURNAL_EVENTS,
+)
+
+# Cascade-safe aliases — resolved through ssot_manifest.py
+SSOT_POINTER = SSOT_POINTER_RELPATH
+SSOT_ARCHIVE = SSOT_HOLDER_RELPATH
 
 
 def _detect_git_root(project_root: Path) -> Path:
@@ -205,9 +216,15 @@ def compute_ssot_vitals(
 
     fingerprint = f"L{len(lexicon)}\u00b7E{len(entities_present)}\u00b7S{len(headings)}\u00b7{size_label}"
 
+    # Map source_kind to role identity
+    role_map = {"pointer": "pointer", "archive": "holder", "unknown": "unknown"}
+    source_role = role_map.get(source_kind, source_kind)
+
     return {
         "sha256": sha,
         "source_kind": source_kind,
+        "source_role": source_role,
+        "source_identity": source_role,
         "source_path": str(ssot_path),
         "lexicon_cardinality": len(lexicon),
         "entity_census": entities_present,
@@ -310,18 +327,22 @@ def _journal_path(project_root: Path) -> Path:
 def stamp_journal(
     project_root: Path,
     vitals: Dict[str, Any],
-    event: str = "startup",
+    event: str = "startup_stamp",
 ) -> Dict[str, Any]:
     """
     Append a vitals snapshot to the hash journal.
 
-    Events: "startup", "drift_detected", "manual"
+    Threshold events only (sparse, meaningful):
+      startup_stamp, drift_detected, manual_reseal,
+      artifact_emitted, holder_pointer_divergence
     Returns the entry that was written.
     """
     entry = {
         "ts": datetime.now(timezone.utc).isoformat(timespec="seconds"),
         "event": event,
         "source_kind": vitals.get("source_kind", "unknown"),
+        "source_role": vitals.get("source_role", "unknown"),
+        "source_identity": vitals.get("source_identity", "unknown"),
         "fingerprint": vitals["fingerprint"],
         "hash": vitals["sha256"][:16],
         "lexicon": vitals["lexicon_cardinality"],
@@ -394,7 +415,7 @@ def init_session_bookend(
     _session_vitals = vitals
     _session_project_root = project_root
     if project_root is not None:
-        stamp_journal(project_root, vitals, event="startup")
+        stamp_journal(project_root, vitals, event="startup_stamp")
     return _session_hash
 
 

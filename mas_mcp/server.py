@@ -39,6 +39,7 @@ from mas_mcp.logic.ssot_binding import (
     compute_ssot_vitals,
     read_journal_tail,
 )
+from mas_mcp.logic.ssot_manifest import SSOT_PROTO_RELPATH
 from mas_mcp.lib.gpu_probe import probe_gpu_capabilities
 
 # Config
@@ -53,7 +54,7 @@ from scripts.scm_triage import audit as scm_audit, generate_fix_recommendations,
 ARCHIVE_PATH = Path(__file__).parent / "archive_vault.json"
 SSOT_PATH, SSOT_ARCHIVE_PATH = resolve_ssot(PROJECT_ROOT)
 SSOT_LEXICON_PATH = resolve_ssot_for_lexicon(PROJECT_ROOT)
-MPW_SOURCE = PROJECT_ROOT / ".github" / "copilot-instructions-copy.md"
+MPW_SOURCE = PROJECT_ROOT / SSOT_PROTO_RELPATH
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger("mas-mcp")

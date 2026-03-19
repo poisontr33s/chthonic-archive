@@ -20,6 +20,12 @@ from logic.ssot_binding import (
     resolve_ssot, resolve_ssot_for_lexicon,
     stamp_journal, read_journal_tail,
 )
+from logic.ssot_manifest import (
+    SSOT_HOLDER_RELPATH, SSOT_POINTER_RELPATH, SSOT_PROTO_RELPATH,
+    SSOT_ROLES, SSOT_RELATIONS, JOURNAL_EVENTS,
+    SSOTProvenance, CascadeEntry, CASCADE_REGISTER,
+    resolve_cascade_entry, cascade_register_to_dict,
+)
 from server import SSOT_LEXICON_PATH, SSOT_PATH, PROJECT_ROOT, mcp
 
 
@@ -112,7 +118,7 @@ def test_server_tools_surface_ssot_binding_metadata():
 # ─────────────────────────────────────────────────────────────────────────────
 
 def test_vitals_fingerprint_structure(tmp_path):
-    """Vitals returns a structured dict with all V4 fields."""
+    """Vitals returns a structured dict with all V5 fields."""
     ssot = tmp_path / "ssot.md"
     ssot.write_text(
         "# Title\n\n## Section A\n\n`FooBar` `BazQux`\n\n"
@@ -122,7 +128,8 @@ def test_vitals_fingerprint_structure(tmp_path):
     vitals = compute_ssot_vitals(ssot, source_kind="archive")
 
     expected_keys = {
-        "sha256", "source_kind", "source_path",
+        "sha256", "source_kind", "source_role", "source_identity",
+        "source_path",
         "lexicon_cardinality", "entity_census", "entity_count",
         "section_count", "byte_size",
         "heading_digest", "metrics_digest", "fingerprint",
@@ -130,6 +137,8 @@ def test_vitals_fingerprint_structure(tmp_path):
     assert set(vitals) == expected_keys
     assert len(vitals["sha256"]) == 64
     assert vitals["source_kind"] == "archive"
+    assert vitals["source_role"] == "holder"
+    assert vitals["source_identity"] == "holder"
     assert vitals["source_path"] == str(ssot)
     assert vitals["lexicon_cardinality"] >= 2  # FooBar, BazQux
     assert "Orackla" in vitals["entity_census"]
@@ -139,6 +148,11 @@ def test_vitals_fingerprint_structure(tmp_path):
     assert len(vitals["metrics_digest"]) == 12
     assert vitals["fingerprint"].startswith("L")
     assert "\u00b7" in vitals["fingerprint"]  # middle dot separator
+
+    # Pointer kind maps to pointer role
+    vitals_ptr = compute_ssot_vitals(ssot, source_kind="pointer")
+    assert vitals_ptr["source_role"] == "pointer"
+    assert vitals_ptr["source_identity"] == "pointer"
 
 
 def test_compare_vitals_detects_drift(tmp_path):
@@ -174,26 +188,30 @@ def test_compare_vitals_detects_drift(tmp_path):
 # ─────────────────────────────────────────────────────────────────────────────
 
 def test_journal_stamp_and_read(tmp_path):
-    """Journal stamps persist with source_kind and can be read back."""
+    """Journal stamps persist with source_kind, source_role, and can be read back."""
     ssot = tmp_path / "ssot.md"
     ssot.write_text("# Test\n\n`TermOne` `TermTwo`\n", encoding="utf-8")
     vitals = compute_ssot_vitals(ssot, source_kind="pointer")
 
-    # Stamp two events
-    entry1 = stamp_journal(tmp_path, vitals, event="startup")
-    assert entry1["event"] == "startup"
+    # Stamp two events with V5 event taxonomy
+    entry1 = stamp_journal(tmp_path, vitals, event="startup_stamp")
+    assert entry1["event"] == "startup_stamp"
     assert entry1["source_kind"] == "pointer"
+    assert entry1["source_role"] == "pointer"
+    assert entry1["source_identity"] == "pointer"
     assert entry1["fingerprint"].startswith("L")
 
     entry2 = stamp_journal(tmp_path, vitals, event="drift_detected")
     assert entry2["event"] == "drift_detected"
     assert entry2["source_kind"] == "pointer"
+    assert entry2["source_role"] == "pointer"
 
     # Read back
     tail = read_journal_tail(tmp_path, n=10)
     assert len(tail) == 2
-    assert tail[0]["event"] == "startup"
+    assert tail[0]["event"] == "startup_stamp"
     assert tail[0]["source_kind"] == "pointer"
+    assert tail[0]["source_role"] == "pointer"
     assert tail[1]["event"] == "drift_detected"
 
     # Verify JSONL format
@@ -206,3 +224,106 @@ def test_journal_stamp_and_read(tmp_path):
         assert "ts" in parsed
         assert "hash" in parsed
         assert "source_kind" in parsed
+        assert "source_role" in parsed
+        assert "source_identity" in parsed
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Manifest Tests (V5: Canon Declaration Layer)
+# ─────────────────────────────────────────────────────────────────────────────
+
+def test_manifest_role_taxonomy():
+    """SSOT roles are complete and ordered."""
+    assert "holder" in SSOT_ROLES
+    assert "pointer" in SSOT_ROLES
+    assert "projection" in SSOT_ROLES
+    assert "validator" in SSOT_ROLES
+    assert "journal" in SSOT_ROLES
+    assert "artifact" in SSOT_ROLES
+    assert "bridge" in SSOT_ROLES
+    assert len(SSOT_ROLES) == 7
+
+
+def test_manifest_relation_taxonomy():
+    """Relation types are complete."""
+    assert "authoritative" in SSOT_RELATIONS
+    assert "summarizing" in SSOT_RELATIONS
+    assert "indexing" in SSOT_RELATIONS
+    assert "validating" in SSOT_RELATIONS
+    assert "projecting" in SSOT_RELATIONS
+    assert "caching" in SSOT_RELATIONS
+    assert "historizing" in SSOT_RELATIONS
+    assert len(SSOT_RELATIONS) == 7
+
+
+def test_manifest_journal_event_taxonomy():
+    """Journal events are sparse, threshold-only."""
+    assert "startup_stamp" in JOURNAL_EVENTS
+    assert "drift_detected" in JOURNAL_EVENTS
+    assert "manual_reseal" in JOURNAL_EVENTS
+    assert "artifact_emitted" in JOURNAL_EVENTS
+    assert "holder_pointer_divergence" in JOURNAL_EVENTS
+    assert len(JOURNAL_EVENTS) == 5
+
+
+def test_cascade_register_completeness():
+    """Cascade register covers holder, pointer, proto, and journal."""
+    identities = [e.identity for e in CASCADE_REGISTER]
+    assert "holder" in identities
+    assert "pointer" in identities
+    assert "proto" in identities
+    assert "hash_journal" in identities
+
+    holder = resolve_cascade_entry("holder")
+    assert holder is not None
+    assert holder.role == "holder"
+    assert holder.relation == "authoritative"
+    assert holder.relpath == SSOT_HOLDER_RELPATH
+
+    pointer = resolve_cascade_entry("pointer")
+    assert pointer is not None
+    assert pointer.role == "pointer"
+    assert pointer.relation == "summarizing"
+    assert pointer.relpath == SSOT_POINTER_RELPATH
+
+
+def test_cascade_register_serialization():
+    """Cascade register exports as JSON-serializable list."""
+    data = cascade_register_to_dict()
+    assert isinstance(data, list)
+    assert len(data) >= 4
+    for entry in data:
+        assert set(entry.keys()) == {"role", "identity", "relpath", "relation", "description"}
+        assert entry["role"] in SSOT_ROLES
+        assert entry["relation"] in SSOT_RELATIONS
+
+
+def test_provenance_contract_roundtrip():
+    """Provenance stamps and deserializes faithfully."""
+    prov = SSOTProvenance.stamp_now(
+        role="holder",
+        identity="holder",
+        path=".github/copilot-instructions.archive.md",
+        sha256="a" * 64,
+        fingerprint="L1504·E7·S204·955K",
+        derived_from="canonical holder at session start",
+    )
+    d = prov.to_dict()
+    assert d["source_role"] == "holder"
+    assert d["source_identity"] == "holder"
+    assert d["source_hash"] == "a" * 64
+    assert d["source_fingerprint"] == "L1504·E7·S204·955K"
+    assert d["derived_from"] == "canonical holder at session start"
+    assert "T" in d["last_verified_at"]  # ISO timestamp
+
+    restored = SSOTProvenance.from_dict(d)
+    assert restored.source_role == prov.source_role
+    assert restored.source_hash == prov.source_hash
+    assert restored.last_verified_at == prov.last_verified_at
+
+
+def test_binding_constants_resolve_through_manifest():
+    """ssot_binding.SSOT_POINTER and SSOT_ARCHIVE are aliases of manifest constants."""
+    from logic.ssot_binding import SSOT_POINTER, SSOT_ARCHIVE
+    assert SSOT_POINTER == SSOT_POINTER_RELPATH
+    assert SSOT_ARCHIVE == SSOT_HOLDER_RELPATH
