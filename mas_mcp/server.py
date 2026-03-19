@@ -189,7 +189,7 @@ def main():
     # Clamp third-party loggers for quiet stdio transport
     for name in ("fastmcp", "mcp", "docket", "pydocket"):
         logging.getLogger(name).setLevel(logging.WARNING)
-    mcp.run(transport="stdio", log_level="ERROR")
+    mcp.run(transport="stdio", log_level="ERROR", show_banner=False)
 
 if __name__ == "__main__":
     main()
