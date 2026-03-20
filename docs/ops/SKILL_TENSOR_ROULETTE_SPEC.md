@@ -18,14 +18,14 @@ This spec is regenerated from the live tensor artifacts. It is the canonical anc
 - Degraded moves: `65709`
 - Blocked moves: `4887`
 - Pool size: `11214`
-- Unique action-key groups: `893`
+- Unique action-key groups: `891`
 - Excluded cells: `64962`
 - Current chain length: `4`
 - Current diversity score: `0.9091`
 - Current cross-lane coverage: `1.0`
 - Current distinct sampled action keys: `4`
-- Current history-pruned exact cells: `20`
-- Current history-pruned action keys: `20`
+- Current history-pruned exact cells: `24`
+- Current history-pruned action keys: `24`
 
 ## Core Objects
 

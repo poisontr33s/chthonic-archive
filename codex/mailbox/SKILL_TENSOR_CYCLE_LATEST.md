@@ -6,7 +6,7 @@
 ## Bootstrap
 - Ledger Existed: `True`
 - Ledger Initialized: `False`
-- Ledger Entries Before Run: `23`
+- Ledger Entries Before Run: `15`
 
 ## Severity
 - Freshness Status: `FAIL`
@@ -14,9 +14,9 @@
 - Warnings: `38`
 
 ## Action Model
-- Pool Unique Action Keys: `893`
-- Collapsed Action Groups: `3`
-- Largest Collision Group: `891`
+- Pool Unique Action Keys: `891`
+- Collapsed Action Groups: `1`
+- Largest Collision Group: `2403`
 - Sampled Unique Action Keys: `4`
 
 ## Duplication
@@ -30,55 +30,55 @@
 ### inventory
 - Status: `passed`
 - RC: `0`
-- Seconds: `0.29`
+- Seconds: `0.023`
 
 ### universe
 - Status: `passed`
 - RC: `0`
-- Seconds: `0.957`
+- Seconds: `0.358`
 
 ### legality
 - Status: `passed`
 - RC: `0`
-- Seconds: `0.363`
+- Seconds: `0.253`
 
 ### pool
 - Status: `passed`
 - RC: `0`
-- Seconds: `0.783`
+- Seconds: `0.607`
 
 ### ledger-bootstrap
 - Status: `passed`
 - RC: `0`
-- Seconds: `0.008`
+- Seconds: `0.007`
 
 ### weights
 - Status: `passed`
 - RC: `0`
-- Seconds: `0.149`
+- Seconds: `0.153`
 
 ### roulette
 - Status: `passed`
 - RC: `0`
-- Seconds: `0.28`
+- Seconds: `0.292`
 
 ### plan
 - Status: `passed`
 - RC: `0`
-- Seconds: `0.01`
+- Seconds: `0.009`
 
 ### ledger
 - Status: `passed`
 - RC: `0`
-- Seconds: `0.01`
+- Seconds: `0.009`
 
 ### execute
 - Status: `failed`
 - RC: `2`
-- Seconds: `7.288`
+- Seconds: `7.493`
 
 ### feedback
 - Status: `passed`
 - RC: `0`
-- Seconds: `0.679`
+- Seconds: `0.239`
 

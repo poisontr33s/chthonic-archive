@@ -13,6 +13,7 @@ import hashlib
 import importlib.util
 import json
 import random
+import shutil
 import subprocess
 import sys
 import time
@@ -424,6 +425,72 @@ class UniverseCell:
     legality_reasons: list[str]
 
 
+def compact_skill_entry(row: dict) -> dict:
+    profile = dict(row.get("role_profile", {}))
+    return {
+        "lane": str(row.get("lane", "")),
+        "root": str(row.get("root", "")),
+        "skill": str(row.get("skill", "")),
+        "classification": str(row.get("classification", "missing")),
+        "operator_role": str(profile.get("operator_role", "blocked")),
+        "target_role": str(profile.get("target_role", "blocked")),
+        "adapter_kind": profile.get("adapter_kind"),
+    }
+
+
+def universe_move_dict_from_record(universe: dict, record: list) -> dict:
+    executors = universe.get("executors", [])
+    interpretations = universe.get("interpretations", [])
+    skills = universe.get("skills", [])
+    statuses = universe.get("statuses", [])
+    execution_kinds = universe.get("execution_kinds", [])
+    reasons = universe.get("reasons", [])
+
+    executor_idx, operator_idx, target_idx, interpretation_idx, status_idx, execution_kind_idx, reason_idxs = record
+    operator = skills[operator_idx]
+    target = skills[target_idx]
+    executor_flavor = executors[executor_idx]
+    interpretation_flavor = interpretations[interpretation_idx]
+    legality_status = statuses[status_idx]
+    execution_kind = execution_kinds[execution_kind_idx]
+    legality_reasons = [reasons[idx] for idx in reason_idxs]
+
+    move = {
+        "executor_flavor": executor_flavor,
+        "operator_flavor": operator["lane"],
+        "operator_root": operator["root"],
+        "source_root": operator["root"],
+        "operator_skill": operator["skill"],
+        "operator_classification": operator["classification"],
+        "operator_role": operator["operator_role"],
+        "target_flavor": target["lane"],
+        "target_root": target["root"],
+        "target_skill": target["skill"],
+        "target_classification": target["classification"],
+        "target_role": target["target_role"],
+        "interpretation_flavor": interpretation_flavor,
+        "target_flavor_mode": interpretation_flavor,
+        "adapter_kind": operator.get("adapter_kind"),
+        "execution_kind": execution_kind,
+        "legality_status": legality_status,
+        "legality_reasons": legality_reasons,
+    }
+    move["action_scope"] = operator_execution_scope(move["operator_skill"])
+    move["action_key"] = action_key_parts(move)
+    move["symbolic_key"] = symbolic_key_parts(executor_flavor, operator, target, interpretation_flavor)
+    return move
+
+
+def iter_universe_moves(universe: dict):
+    if universe.get("move_encoding") == "indexed-v1":
+        for record in universe.get("moves", []):
+            yield universe_move_dict_from_record(universe, record)
+        return
+    for row in universe.get("moves", []):
+        if isinstance(row, dict):
+            yield row
+
+
 def render_universe_markdown(payload: dict) -> str:
     lines = [
         "# Skill Tensor Universe",
@@ -548,32 +615,69 @@ def evaluate_universe_cell(
 
 def build_universe_payload(rules: dict, inventory: dict, rules_source: str, inventory_source: str) -> dict:
     agent_flavors = list(rules["agent_flavors"])
-    skills = [row for row in inventory.get("skills", []) if isinstance(row, dict)]
-    moves: list[UniverseCell] = []
+    raw_skills = [row for row in inventory.get("skills", []) if isinstance(row, dict)]
+    skills = [compact_skill_entry(row) for row in raw_skills]
+    skill_index = {(
+        skill["lane"],
+        skill["root"],
+        skill["skill"],
+    ): idx for idx, skill in enumerate(skills)}
+    reasons: list[str] = []
+    reason_index: dict[str, int] = {}
+    statuses = ["legal", "degraded", "blocked"]
+    status_index = {name: idx for idx, name in enumerate(statuses)}
+    execution_kinds = ["native", "analysis_only", "none"]
+    execution_index = {name: idx for idx, name in enumerate(execution_kinds)}
+    moves: list[list[object]] = []
     status_counts = {"legal": 0, "degraded": 0, "blocked": 0}
     execution_kind_counts: dict[str, int] = defaultdict(int)
     reason_counts: dict[str, int] = defaultdict(int)
 
     for executor_flavor in agent_flavors:
-        for operator in skills:
-            for target in skills:
+        for operator_raw, operator in zip(raw_skills, skills):
+            operator_idx = skill_index[(operator["lane"], operator["root"], operator["skill"])]
+            for target_raw, target in zip(raw_skills, skills):
+                target_idx = skill_index[(target["lane"], target["root"], target["skill"])]
                 for interpretation_flavor in agent_flavors:
-                    move = evaluate_universe_cell(executor_flavor, operator, target, interpretation_flavor, rules)
-                    moves.append(move)
+                    move = evaluate_universe_cell(executor_flavor, operator_raw, target_raw, interpretation_flavor, rules)
+                    reason_ids: list[int] = []
+                    for reason in move.legality_reasons:
+                        if reason not in reason_index:
+                            reason_index[reason] = len(reasons)
+                            reasons.append(reason)
+                        reason_ids.append(reason_index[reason])
+                    moves.append(
+                        [
+                            agent_flavors.index(executor_flavor),
+                            operator_idx,
+                            target_idx,
+                            agent_flavors.index(interpretation_flavor),
+                            status_index[move.legality_status],
+                            execution_index[move.execution_kind],
+                            reason_ids,
+                        ]
+                    )
                     status_counts[move.legality_status] = status_counts.get(move.legality_status, 0) + 1
                     execution_kind_counts[move.execution_kind] = execution_kind_counts.get(move.execution_kind, 0) + 1
                     for reason in move.legality_reasons:
                         reason_counts[reason] = reason_counts.get(reason, 0) + 1
 
     return {
-        "schema_version": 1,
+        "schema_version": 2,
+        "move_encoding": "indexed-v1",
         "rules_source": rules_source,
         "inventory_source": inventory_source,
         "move_count": len(moves),
         "status_counts": status_counts,
         "execution_kind_counts": dict(sorted(execution_kind_counts.items())),
         "reason_counts": dict(sorted(reason_counts.items())),
-        "moves": [asdict(move) for move in moves],
+        "executors": agent_flavors,
+        "interpretations": agent_flavors,
+        "statuses": statuses,
+        "execution_kinds": execution_kinds,
+        "reasons": reasons,
+        "skills": skills,
+        "moves": moves,
     }
 
 
@@ -593,7 +697,7 @@ def render_legality_markdown(payload: dict) -> str:
 
 
 def build_legality_payload(universe: dict, universe_source: str) -> dict:
-    moves = [row for row in universe.get("moves", []) if isinstance(row, dict)]
+    moves = list(iter_universe_moves(universe))
     degraded = [row for row in moves if row.get("legality_status") == "degraded"]
     blocked = [row for row in moves if row.get("legality_status") == "blocked"]
     reason_counts: dict[str, int] = defaultdict(int)
@@ -631,7 +735,7 @@ def render_pool_markdown(payload: dict) -> str:
 
 
 def build_pool_payload(rules: dict, universe: dict, rules_source: str, universe_source: str) -> dict:
-    moves = [row for row in universe.get("moves", []) if isinstance(row, dict)]
+    moves = list(iter_universe_moves(universe))
     pool: list[RunCell] = []
     excluded: list[ExcludedCell] = []
 
@@ -714,7 +818,7 @@ def build_weights_payload(
 ) -> dict:
     skills = inventory.get("skills", [])
     pool_cells = pool.get("pool", [])
-    entries = ledger.get("entries", [])
+    runs = ledger.get("runs", [])
 
     recent_targets = set()
     failed_targets = set()
@@ -722,30 +826,22 @@ def build_weights_payload(
     recent_success_action_keys = set()
     operator_counts: dict[str, int] = {}
     success_window = int(rules.get("history_pruning", {}).get("recent_success_window", 5))
-    for entry in entries[-10:]:
+    for entry in runs:
         for touched in entry.get("touched", []):
             recent_targets.add((touched.get("root"), touched.get("skill")))
-        for sampled in entry.get("sampled_steps", []):
-            cell = sampled.get("cell", {})
-            op = cell.get("operator_skill")
+        for op in entry.get("operators", []):
             if op:
                 operator_counts[op] = operator_counts.get(op, 0) + 1
         if entry.get("execution_status") in {"failed", "blocked"}:
             for touched in entry.get("touched", []):
                 failed_targets.add((touched.get("root"), touched.get("skill")))
         if entry.get("execution_status") == "passed":
-            for sampled in entry.get("sampled_steps", []):
-                cell = sampled.get("cell", {})
-                ident = (
-                    cell.get("executor_flavor"),
-                    cell.get("operator_skill"),
-                    cell.get("source_root"),
-                    cell.get("target_root"),
-                    cell.get("target_skill"),
-                    cell.get("target_flavor_mode"),
-                )
-                recent_success_cells.add(ident)
-                recent_success_action_keys.add(tuple(sampled.get("action_key") or cell.get("action_key") or action_key_parts(cell, rules)))
+            for ident in entry.get("sampled_exact_cells", []):
+                if isinstance(ident, list) and len(ident) == 6:
+                    recent_success_cells.add(tuple(ident))
+            for action_key in entry.get("sampled_action_keys", []):
+                if isinstance(action_key, list):
+                    recent_success_action_keys.add(tuple(action_key))
 
     per_skill = {}
     for row in skills:
@@ -787,7 +883,7 @@ def build_weights_payload(
             "ledger": ledger_source,
         },
         "pool_size": pool.get("pool_size"),
-        "recent_entry_count": len(entries),
+        "recent_entry_count": len(runs),
         "per_skill_weight_adjustments": per_skill,
         "per_operator_weight_adjustments": per_operator,
         "pruned_exact_cells": pruned_exact_cells,
@@ -1150,7 +1246,8 @@ def command_for_step(cell: dict) -> list[str]:
     if operator == "skill-audit":
         return ["uv", "run", "scripts/skill_audit.py", "--flavor", flavor, "--root", target_root, "--skill", target_skill]
     if operator == "skill-polisher":
-        return ["uv", "run", resolve_adapter_script_path(operator_root, operator, "polish_skill.py"), skill_dir, "--mode", "verify", "--target-flavor", flavor, "--no-require-assets"]
+        target_flavor = flavor if flavor in {"codex", "claude"} else "auto"
+        return ["uv", "run", resolve_adapter_script_path(operator_root, operator, "polish_skill.py"), skill_dir, "--mode", "verify", "--target-flavor", target_flavor, "--no-require-assets"]
     if operator == "link-path-guard":
         return ["uv", "run", "scripts/skill_path_guard.py", str(Path(skill_dir) / "SKILL.md")]
     if operator == "trainstop-orchestrator":
@@ -1277,12 +1374,12 @@ def build_plan_payload(sampled: dict, rules: dict, capabilities: dict, input_sou
 
 
 def render_ledger_markdown(ledger: dict) -> str:
-    entries = ledger.get("entries", [])
-    latest = entries[-1] if entries else {}
+    runs = ledger.get("runs", [])
+    latest = runs[-1] if runs else {}
     lines = [
         "# Skill Tensor Ledger",
         "",
-        f"- Entries: `{len(entries)}`",
+        f"- Runs: `{len(runs)}`",
         f"- Latest Status: `{latest.get('execution_status')}`",
         f"- Latest Seed: `{latest.get('seed_text')}`",
         "",
@@ -1290,17 +1387,125 @@ def render_ledger_markdown(ledger: dict) -> str:
     return "\n".join(lines) + "\n"
 
 
+def compact_sampled_exact_cell(cell: dict) -> list[str]:
+    return [
+        str(cell.get("executor_flavor", "")),
+        str(cell.get("operator_skill", "")),
+        str(cell.get("source_root", cell.get("operator_root", ""))),
+        str(cell.get("target_root", "")),
+        str(cell.get("target_skill", "")),
+        str(cell.get("target_flavor_mode", "")),
+    ]
+
+
+def build_compact_run_record(roulette: dict, plan: dict, rules: dict, execution_status: str = "planned") -> dict:
+    sampled_steps = roulette.get("selected", [])
+    operators = sorted(
+        {
+            str(step.get("cell", {}).get("operator_skill", ""))
+            for step in sampled_steps
+            if step.get("cell", {}).get("operator_skill")
+        }
+    )
+    touched = [touch_record_for_cell(step["cell"], rules) for step in plan.get("steps", [])]
+    return {
+        "recorded_at": datetime.now(timezone.utc).isoformat(),
+        "seed_text": roulette.get("seed_text"),
+        "seed_value": roulette.get("seed_value"),
+        "chain_length": roulette.get("chain_length_actual"),
+        "summary": roulette.get("summary", {}),
+        "operators": operators,
+        "sampled_action_keys": [
+            step.get("action_key") or step.get("cell", {}).get("action_key") or action_key_parts(step.get("cell", {}), rules)
+            for step in sampled_steps
+        ],
+        "sampled_exact_cells": [
+            compact_sampled_exact_cell(step.get("cell", {}))
+            for step in sampled_steps
+        ],
+        "touched": touched,
+        "execution_status": execution_status,
+        "failure_classes": [],
+        "execution_results": [],
+    }
+
+
+def ledger_history_limit(rules: dict) -> int:
+    success_window = int(rules.get("history_pruning", {}).get("recent_success_window", 5))
+    return max(12, success_window * 3)
+
+
+def normalize_ledger(ledger: dict, rules: dict) -> dict:
+    if ledger.get("ledger_mode") == "bounded-history-v1":
+        runs = list(ledger.get("runs", []))
+    else:
+        runs = []
+        for entry in ledger.get("entries", []):
+            run = {
+                "recorded_at": entry.get("recorded_at"),
+                "seed_text": entry.get("seed_text"),
+                "seed_value": entry.get("seed_value"),
+                "chain_length": entry.get("chain_length"),
+                "summary": entry.get("summary", {}),
+                "operators": sorted(
+                    {
+                        str(step.get("cell", {}).get("operator_skill", ""))
+                        for step in entry.get("sampled_steps", [])
+                        if step.get("cell", {}).get("operator_skill")
+                    }
+                ),
+                "sampled_action_keys": [
+                    step.get("action_key") or step.get("cell", {}).get("action_key") or action_key_parts(step.get("cell", {}), rules)
+                    for step in entry.get("sampled_steps", [])
+                ],
+                "sampled_exact_cells": [
+                    compact_sampled_exact_cell(step.get("cell", {}))
+                    for step in entry.get("sampled_steps", [])
+                ],
+                "touched": list(entry.get("touched", [])),
+                "execution_status": entry.get("execution_status", "unknown"),
+                "failure_classes": list(entry.get("failure_classes", [])),
+                "execution_results": [
+                    {
+                        "step": result.get("step"),
+                        "status": result.get("status"),
+                        "failure_kind": result.get("failure_kind"),
+                        "rc": result.get("rc"),
+                    }
+                    for result in entry.get("execution_results", [])
+                ],
+            }
+            runs.append(run)
+
+    max_runs = ledger_history_limit(rules)
+    runs = runs[-max_runs:]
+    return {
+        "schema_version": 3,
+        "ledger_mode": "bounded-history-v1",
+        "max_runs": max_runs,
+        "runs": runs,
+    }
+
+
 def ensure_bootstrap_ledger(repo_root: Path, ledger_rel: str) -> tuple[dict, dict]:
     ledger_path = repo_root / ledger_rel
+    rules = load_json(repo_root / "config/skill_tensor_rules.json")
     if ledger_path.exists():
-        ledger = load_json(ledger_path)
+        ledger = normalize_ledger(load_json(ledger_path), rules)
+        write_json(ledger_path, ledger)
+        write_text(ledger_path.with_suffix(".md"), render_ledger_markdown(ledger))
         return ledger, {
             "ledger_path": ledger_rel,
             "ledger_existed": True,
             "ledger_initialized": False,
-            "entries_before_run": len(ledger.get("entries", [])),
+            "entries_before_run": len(ledger.get("runs", [])),
         }
-    payload = {"schema_version": 2, "entries": []}
+    payload = {
+        "schema_version": 3,
+        "ledger_mode": "bounded-history-v1",
+        "max_runs": ledger_history_limit(rules),
+        "runs": [],
+    }
     write_json(ledger_path, payload)
     write_text(ledger_path.with_suffix(".md"), render_ledger_markdown(payload))
     return payload, {
@@ -1312,22 +1517,10 @@ def ensure_bootstrap_ledger(repo_root: Path, ledger_rel: str) -> tuple[dict, dic
 
 
 def append_ledger_entry(ledger: dict, roulette: dict, plan: dict, rules: dict) -> tuple[dict, dict]:
-    ledger["schema_version"] = 2
-    steps = plan.get("steps", [])
-    touched = [touch_record_for_cell(step["cell"], rules) for step in steps]
-    entry = {
-        "recorded_at": datetime.now(timezone.utc).isoformat(),
-        "seed_text": roulette.get("seed_text"),
-        "seed_value": roulette.get("seed_value"),
-        "chain_length": roulette.get("chain_length_actual"),
-        "summary": roulette.get("summary", {}),
-        "sampled_steps": roulette.get("selected", []),
-        "planned_steps": steps,
-        "execution_status": "planned",
-        "failure_classes": [],
-        "touched": touched,
-    }
-    ledger.setdefault("entries", []).append(entry)
+    ledger = normalize_ledger(ledger, rules)
+    entry = build_compact_run_record(roulette, plan, rules, execution_status="planned")
+    ledger.setdefault("runs", []).append(entry)
+    ledger["runs"] = ledger["runs"][-ledger.get("max_runs", ledger_history_limit(rules)):]
     return ledger, entry
 
 
@@ -1462,29 +1655,29 @@ def execute_plan(plan: dict, repo_root: Path) -> dict:
 
 
 def ensure_current_cycle_entry(ledger: dict, roulette: dict, plan: dict, rules: dict) -> dict:
-    entries = ledger.setdefault("entries", [])
-    latest = entries[-1] if entries else None
-    sampled = roulette.get("selected", [])
-    latest_sampled = latest.get("sampled_steps", []) if latest else None
-    if latest is None or latest_sampled != sampled:
-        touched = [touch_record_for_cell(step["cell"], rules) for step in plan.get("steps", [])]
-        latest = {
-            "recorded_at": datetime.now(timezone.utc).isoformat(),
-            "seed_text": roulette.get("seed_text"),
-            "seed_value": roulette.get("seed_value"),
-            "chain_length": roulette.get("chain_length_actual"),
-            "summary": roulette.get("summary", {}),
-            "sampled_steps": sampled,
-            "planned_steps": plan.get("steps", []),
-            "execution_status": "planned",
-            "failure_classes": [],
-            "touched": touched,
-        }
-        entries.append(latest)
+    ledger = normalize_ledger(ledger, rules)
+    runs = ledger.setdefault("runs", [])
+    if not runs:
+        latest = build_compact_run_record(roulette, plan, rules, execution_status="planned")
+        runs.append(latest)
+        return latest
+    latest = runs[-1]
+    latest_actions = latest.get("sampled_action_keys", [])
+    current_actions = [
+        step.get("action_key") or step.get("cell", {}).get("action_key") or action_key_parts(step.get("cell", {}), rules)
+        for step in roulette.get("selected", [])
+    ]
+    if latest.get("seed_value") != roulette.get("seed_value") or latest_actions != current_actions:
+        latest = build_compact_run_record(roulette, plan, rules, execution_status="planned")
+        runs.append(latest)
+        runs[:] = runs[-ledger.get("max_runs", ledger_history_limit(rules)):]
+        return latest
+    latest.update(build_compact_run_record(roulette, plan, rules, execution_status=latest.get("execution_status", "planned")))
     return latest
 
 
 def apply_feedback(ledger: dict, execution: dict, roulette: dict, plan: dict, rules: dict) -> dict:
+    ledger = normalize_ledger(ledger, rules)
     latest = ensure_current_cycle_entry(ledger, roulette, plan, rules)
     latest["execution_status"] = execution.get("overall_status", "unknown")
     failure_classes = []
@@ -1501,10 +1694,14 @@ def apply_feedback(ledger: dict, execution: dict, roulette: dict, plan: dict, ru
                 }
             )
     latest["failure_classes"] = failure_classes
-    latest["execution_results"] = execution.get("results", [])
-    latest["sampled_action_keys"] = [
-        step.get("action_key") or step.get("cell", {}).get("action_key") or action_key_parts(step.get("cell", {}), rules)
-        for step in roulette.get("selected", [])
+    latest["execution_results"] = [
+        {
+            "step": result.get("step"),
+            "status": result.get("status"),
+            "failure_kind": result.get("failure_kind"),
+            "rc": result.get("rc"),
+        }
+        for result in execution.get("results", [])
     ]
     return ledger
 
@@ -1513,17 +1710,35 @@ def exists(repo_root: Path, rel: str) -> bool:
     return (repo_root / rel).exists()
 
 
+def load_cycle_sections(repo_root: Path) -> dict:
+    cycle_path = repo_root / "codex/mailbox/SKILL_TENSOR_CYCLE_LATEST.json"
+    if not cycle_path.exists():
+        return {}
+    cycle = load_json(cycle_path)
+    sections = cycle.get("sections")
+    return sections if isinstance(sections, dict) else {}
+
+
+def section_value(section: dict, key: str, fallback=None):
+    if key in section:
+        return section.get(key)
+    return fallback
+
+
 def phase_status(repo_root: Path) -> dict[str, str]:
+    cycle_sections = load_cycle_sections(repo_root)
     exec_payload = load_json(repo_root / "codex/mailbox/SKILL_TENSOR_EXECUTION_LATEST.json")
-    ledger_exists = exists(repo_root, "codex/mailbox/SKILL_TENSOR_LEDGER.json")
-    weights_exists = exists(repo_root, "codex/mailbox/SKILL_TENSOR_WEIGHTS_LATEST.json")
+    if not exec_payload and cycle_sections.get("execution"):
+        exec_payload = cycle_sections["execution"]
+    ledger_exists = exists(repo_root, "codex/mailbox/SKILL_TENSOR_LEDGER.json") or bool(cycle_sections.get("ledger"))
+    weights_exists = exists(repo_root, "codex/mailbox/SKILL_TENSOR_WEIGHTS_LATEST.json") or bool(cycle_sections.get("weights"))
     capabilities_exists = exists(repo_root, "config/skill_operator_capabilities.json")
-    plan_exists = exists(repo_root, "codex/mailbox/SKILL_TENSOR_PLAN_LATEST.json")
-    roulette_exists = exists(repo_root, "codex/mailbox/SKILL_TENSOR_ROULETTE_LATEST.json")
-    pool_exists = exists(repo_root, "codex/mailbox/SKILL_TENSOR_POOL.json")
-    inventory_exists = exists(repo_root, "codex/mailbox/SKILL_TENSOR_INVENTORY.json")
-    universe_exists = exists(repo_root, "codex/mailbox/SKILL_TENSOR_UNIVERSE_LATEST.json")
-    legality_exists = exists(repo_root, "codex/mailbox/SKILL_TENSOR_LEGALITY_LATEST.json")
+    plan_exists = exists(repo_root, "codex/mailbox/SKILL_TENSOR_PLAN_LATEST.json") or bool(cycle_sections.get("plan"))
+    roulette_exists = exists(repo_root, "codex/mailbox/SKILL_TENSOR_ROULETTE_LATEST.json") or bool(cycle_sections.get("roulette"))
+    pool_exists = exists(repo_root, "codex/mailbox/SKILL_TENSOR_POOL.json") or bool(cycle_sections.get("pool"))
+    inventory_exists = exists(repo_root, "codex/mailbox/SKILL_TENSOR_INVENTORY.json") or bool(cycle_sections.get("inventory"))
+    universe_exists = exists(repo_root, "codex/mailbox/SKILL_TENSOR_UNIVERSE_LATEST.json") or bool(cycle_sections.get("universe"))
+    legality_exists = exists(repo_root, "codex/mailbox/SKILL_TENSOR_LEGALITY_LATEST.json") or bool(cycle_sections.get("legality"))
     return {
         "phase0": "DONE" if inventory_exists and universe_exists and legality_exists and pool_exists and roulette_exists else "IN PROGRESS",
         "phase1": "DONE" if plan_exists else "IN PROGRESS",
@@ -1536,28 +1751,48 @@ def phase_status(repo_root: Path) -> dict[str, str]:
     }
 
 
-def render_spec(repo_root: Path) -> str:
-    statuses = phase_status(repo_root)
-    inventory = load_json(repo_root / "codex/mailbox/SKILL_TENSOR_INVENTORY.json")
-    universe = load_json(repo_root / "codex/mailbox/SKILL_TENSOR_UNIVERSE_LATEST.json")
-    legality = load_json(repo_root / "codex/mailbox/SKILL_TENSOR_LEGALITY_LATEST.json")
-    pool = load_json(repo_root / "codex/mailbox/SKILL_TENSOR_POOL.json")
-    roulette = load_json(repo_root / "codex/mailbox/SKILL_TENSOR_ROULETTE_LATEST.json")
-    weights = load_json(repo_root / "codex/mailbox/SKILL_TENSOR_WEIGHTS_LATEST.json")
-    skill_count = len(inventory.get("skills", []))
-    move_count = universe.get("move_count", 0)
-    legal_moves = legality.get("status_counts", {}).get("legal", 0)
-    degraded_moves = legality.get("status_counts", {}).get("degraded", 0)
-    blocked_moves = legality.get("status_counts", {}).get("blocked", 0)
-    pool_size = pool.get("pool_size", 0)
-    action_group_count = pool.get("action_group_count", 0)
-    excluded_size = pool.get("excluded_size", 0)
-    chain_length = roulette.get("chain_length_actual", 0)
-    diversity_score = roulette.get("summary", {}).get("diversity_score", 0)
-    cross_lane_coverage = roulette.get("summary", {}).get("cross_lane_coverage", 0)
-    distinct_action_keys = roulette.get("summary", {}).get("distinct_action_keys_seen", 0)
-    pruned = len(weights.get("pruned_exact_cells", []))
-    pruned_action_keys = len(weights.get("pruned_action_keys", []))
+def render_spec(repo_root: Path, sections: dict | None = None, execution_status: str | None = None) -> str:
+    if sections is None:
+        statuses = phase_status(repo_root)
+        cycle_sections = load_cycle_sections(repo_root)
+        inventory = load_json(repo_root / "codex/mailbox/SKILL_TENSOR_INVENTORY.json") or cycle_sections.get("inventory", {})
+        universe = load_json(repo_root / "codex/mailbox/SKILL_TENSOR_UNIVERSE_LATEST.json") or cycle_sections.get("universe", {})
+        legality = load_json(repo_root / "codex/mailbox/SKILL_TENSOR_LEGALITY_LATEST.json") or cycle_sections.get("legality", {})
+        pool = load_json(repo_root / "codex/mailbox/SKILL_TENSOR_POOL.json") or cycle_sections.get("pool", {})
+        roulette = load_json(repo_root / "codex/mailbox/SKILL_TENSOR_ROULETTE_LATEST.json") or cycle_sections.get("roulette", {})
+        weights = load_json(repo_root / "codex/mailbox/SKILL_TENSOR_WEIGHTS_LATEST.json") or cycle_sections.get("weights", {})
+    else:
+        inventory = sections.get("inventory", {})
+        universe = sections.get("universe", {})
+        legality = sections.get("legality", {})
+        pool = sections.get("pool", {})
+        roulette = sections.get("roulette", {})
+        weights = sections.get("weights", {})
+        statuses = {
+            "phase0": "DONE",
+            "phase1": "DONE",
+            "phase2": "DONE",
+            "phase3": "DONE",
+            "phase4": "DONE",
+            "phase5": "DONE" if execution_status == "passed" else "IN PROGRESS",
+            "phase6": "DONE",
+            "execution_status": execution_status or "unknown",
+        }
+    skill_count = section_value(inventory, "skill_count", len(inventory.get("skills", [])))
+    move_count = section_value(universe, "move_count", 0)
+    legal_moves = universe.get("status_counts", {}).get("legal", 0) if isinstance(universe.get("status_counts"), dict) else 0
+    degraded_moves = section_value(legality, "degraded_count", legality.get("status_counts", {}).get("degraded", 0))
+    blocked_moves = section_value(legality, "blocked_count", legality.get("status_counts", {}).get("blocked", 0))
+    pool_size = section_value(pool, "pool_size", 0)
+    action_group_count = section_value(pool, "action_group_count", 0)
+    excluded_size = section_value(pool, "excluded_size", 0)
+    chain_length = section_value(roulette, "chain_length", roulette.get("chain_length_actual", 0))
+    roulette_summary = roulette.get("summary", {})
+    diversity_score = roulette_summary.get("diversity_score", 0)
+    cross_lane_coverage = roulette_summary.get("cross_lane_coverage", 0)
+    distinct_action_keys = roulette_summary.get("distinct_action_keys_seen", 0)
+    pruned = section_value(weights, "pruned_exact_cell_count", len(weights.get("pruned_exact_cells", [])))
+    pruned_action_keys = section_value(weights, "pruned_action_key_count", len(weights.get("pruned_action_keys", [])))
     return f"""---
 type: design-spec
 category: operations
@@ -1923,10 +2158,7 @@ def collect_sections(repo_root: Path) -> dict:
     }
 
 
-def build_action_model_summary(repo_root: Path) -> dict:
-    mailbox = repo_root / "codex" / "mailbox"
-    pool = load_json(mailbox / "SKILL_TENSOR_POOL.json")
-    roulette = load_json(mailbox / "SKILL_TENSOR_ROULETTE_LATEST.json")
+def build_action_model_summary_from_payloads(pool: dict, roulette: dict) -> dict:
     groups: dict[str, list[dict]] = defaultdict(list)
     for cell in pool.get("pool", []):
         if not isinstance(cell, dict):
@@ -1965,6 +2197,13 @@ def build_action_model_summary(repo_root: Path) -> dict:
         "sampled_unique_action_keys": len(set(sampled_keys)),
         "sampled_has_action_collisions": len(sampled_keys) != len(set(sampled_keys)),
     }
+
+
+def build_action_model_summary(repo_root: Path) -> dict:
+    mailbox = repo_root / "codex" / "mailbox"
+    pool = load_json(mailbox / "SKILL_TENSOR_POOL.json")
+    roulette = load_json(mailbox / "SKILL_TENSOR_ROULETTE_LATEST.json")
+    return build_action_model_summary_from_payloads(pool, roulette)
 
 
 def render_cycle_markdown(payload: dict) -> str:
@@ -2131,6 +2370,24 @@ def stage_feedback(
     return ledger, weights
 
 
+def load_embedded_or_legacy_ledger(repo_root: Path, cycle_output_rel: str, legacy_ledger_rel: str, rules: dict) -> dict:
+    cycle_path = repo_root / cycle_output_rel
+    if cycle_path.exists():
+        cycle_payload = load_json(cycle_path)
+        embedded = cycle_payload.get("sections", {}).get("ledger")
+        if isinstance(embedded, dict) and embedded.get("ledger_mode") == "bounded-history-v1":
+            return normalize_ledger(embedded, rules)
+    legacy_path = repo_root / legacy_ledger_rel
+    if legacy_path.exists():
+        return normalize_ledger(load_json(legacy_path), rules)
+    return {
+        "schema_version": 3,
+        "ledger_mode": "bounded-history-v1",
+        "max_runs": ledger_history_limit(rules),
+        "runs": [],
+    }
+
+
 def run_cycle(args: argparse.Namespace) -> int:
     repo_root = find_repo_root(Path.cwd())
     sequence = [
@@ -2150,19 +2407,30 @@ def run_cycle(args: argparse.Namespace) -> int:
     overall_status = "passed"
     continue_after_failure = {"ledger", "execute", "feedback"}
 
-    inventory_path = "codex/mailbox/SKILL_TENSOR_INVENTORY.json"
-    universe_path = "codex/mailbox/SKILL_TENSOR_UNIVERSE_LATEST.json"
-    legality_path = "codex/mailbox/SKILL_TENSOR_LEGALITY_LATEST.json"
-    pool_path = "codex/mailbox/SKILL_TENSOR_POOL.json"
-    roulette_path = "codex/mailbox/SKILL_TENSOR_ROULETTE_LATEST.json"
-    plan_path = "codex/mailbox/SKILL_TENSOR_PLAN_LATEST.json"
-    execution_path = "codex/mailbox/SKILL_TENSOR_EXECUTION_LATEST.json"
-    ledger_path = args.ledger
-    weights_path = "codex/mailbox/SKILL_TENSOR_WEIGHTS_LATEST.json"
-    spec_path = "docs/ops/SKILL_TENSOR_ROULETTE_SPEC.md"
+    inventory_path = "codex/mailbox/.tmp_tensor_cycle/SKILL_TENSOR_INVENTORY.json"
+    universe_path = "codex/mailbox/.tmp_tensor_cycle/SKILL_TENSOR_UNIVERSE_LATEST.json"
+    legality_path = "codex/mailbox/.tmp_tensor_cycle/SKILL_TENSOR_LEGALITY_LATEST.json"
+    pool_path = "codex/mailbox/.tmp_tensor_cycle/SKILL_TENSOR_POOL.json"
+    roulette_path = "codex/mailbox/.tmp_tensor_cycle/SKILL_TENSOR_ROULETTE_LATEST.json"
+    plan_path = "codex/mailbox/.tmp_tensor_cycle/SKILL_TENSOR_PLAN_LATEST.json"
+    execution_path = "codex/mailbox/.tmp_tensor_cycle/SKILL_TENSOR_EXECUTION_LATEST.json"
+    ledger_path = "codex/mailbox/.tmp_tensor_cycle/SKILL_TENSOR_LEDGER.json"
+    weights_path = "codex/mailbox/.tmp_tensor_cycle/SKILL_TENSOR_WEIGHTS_LATEST.json"
+    spec_path = "codex/mailbox/.tmp_tensor_cycle/SKILL_TENSOR_ROULETTE_SPEC.md"
     rules_path = "config/skill_tensor_rules.json"
     capabilities_path = "config/skill_operator_capabilities.json"
+    cycle_output_rel = args.output
     bootstrap = {"ledger_path": args.ledger, "ledger_existed": False, "ledger_initialized": False, "entries_before_run": 0}
+
+    tmp_root = repo_root / "codex" / "mailbox" / ".tmp_tensor_cycle"
+    if tmp_root.exists():
+        shutil.rmtree(tmp_root)
+    tmp_root.mkdir(parents=True, exist_ok=True)
+
+    rules = load_json(repo_root / rules_path)
+    seeded_ledger = load_embedded_or_legacy_ledger(repo_root, cycle_output_rel, args.ledger, rules)
+    write_json(repo_root / ledger_path, seeded_ledger)
+    write_text((repo_root / ledger_path).with_suffix(".md"), render_ledger_markdown(seeded_ledger))
 
     for name in sequence:
         t0 = time.time()
@@ -2218,23 +2486,91 @@ def run_cycle(args: argparse.Namespace) -> int:
                 break
         results.append({"name": name, "cmd": [], "rc": rc, "seconds": round(time.time() - t0, 3), "status": status, "stdout_tail": stdout_tail, "stderr_tail": stderr_tail})
 
+    inventory = load_json(repo_root / inventory_path)
+    universe = load_json(repo_root / universe_path)
+    legality = load_json(repo_root / legality_path)
+    pool = load_json(repo_root / pool_path)
+    roulette = load_json(repo_root / roulette_path)
+    plan = load_json(repo_root / plan_path)
+    execution = load_json(repo_root / execution_path)
+    ledger = load_json(repo_root / ledger_path)
+    weights = load_json(repo_root / weights_path)
+
+    latest_run = {}
+    if ledger.get("runs"):
+        latest_run = ledger["runs"][-1]
+
+    sections = {
+        "inventory": {
+            "path": "codex/mailbox/.tmp_tensor_cycle/SKILL_TENSOR_INVENTORY.json",
+            "skill_count": len(inventory.get("skills", [])),
+        },
+        "universe": {
+            "path": "codex/mailbox/.tmp_tensor_cycle/SKILL_TENSOR_UNIVERSE_LATEST.json",
+            "move_count": universe.get("move_count", 0),
+            "status_counts": universe.get("status_counts", {}),
+            "execution_kind_counts": universe.get("execution_kind_counts", {}),
+        },
+        "legality": {
+            "path": "codex/mailbox/.tmp_tensor_cycle/SKILL_TENSOR_LEGALITY_LATEST.json",
+            "blocked_count": legality.get("blocked_count", 0),
+            "degraded_count": legality.get("degraded_count", 0),
+            "reason_counts_top": legality.get("reason_counts_top", []),
+        },
+        "pool": {
+            "path": "codex/mailbox/.tmp_tensor_cycle/SKILL_TENSOR_POOL.json",
+            "pool_size": pool.get("pool_size", 0),
+            "action_group_count": pool.get("action_group_count", 0),
+            "excluded_size": pool.get("excluded_size", 0),
+        },
+        "roulette": {
+            "path": "codex/mailbox/.tmp_tensor_cycle/SKILL_TENSOR_ROULETTE_LATEST.json",
+            "chain_length": roulette.get("chain_length_actual", 0),
+            "summary": roulette.get("summary", {}),
+        },
+        "plan": {
+            "path": "codex/mailbox/.tmp_tensor_cycle/SKILL_TENSOR_PLAN_LATEST.json",
+            "step_count": len(plan.get("steps", [])),
+        },
+        "execution": {
+            "path": "codex/mailbox/.tmp_tensor_cycle/SKILL_TENSOR_EXECUTION_LATEST.json",
+            "overall_status": execution.get("overall_status"),
+            "result_count": len(execution.get("results", [])),
+        },
+        "ledger": {
+            "path": "codex/mailbox/.tmp_tensor_cycle/SKILL_TENSOR_LEDGER.json",
+            "ledger_mode": ledger.get("ledger_mode"),
+            "max_runs": ledger.get("max_runs"),
+            "run_count": len(ledger.get("runs", [])),
+            "latest_execution_status": latest_run.get("execution_status"),
+            "latest_seed_text": latest_run.get("seed_text"),
+        },
+        "weights": {
+            "path": "codex/mailbox/.tmp_tensor_cycle/SKILL_TENSOR_WEIGHTS_LATEST.json",
+            "recent_entry_count": weights.get("recent_entry_count", 0),
+            "pruned_action_key_count": len(weights.get("pruned_action_keys", [])),
+            "pruned_exact_cell_count": len(weights.get("pruned_exact_cells", [])),
+        },
+    }
+
     payload = {
         "schema_version": 2,
         "overall_status": overall_status,
         "queue_length": len(sequence),
-        "subprocess_queue": sequence,
+        "stage_queue": sequence,
         "bootstrap": bootstrap,
         "freshness": build_freshness_summary(repo_root),
-        "action_model": build_action_model_summary(repo_root),
+        "action_model": build_action_model_summary_from_payloads(pool, roulette),
         "duplication": build_duplication_summary(repo_root),
         "dependencies": estimate_dependencies(repo_root),
         "steps": results,
-        "sections": collect_sections(repo_root),
+        "sections": sections,
     }
     out = repo_root / args.output
     write_json(out, payload)
     write_text(out.with_suffix(".md"), render_cycle_markdown(payload))
-    stage_render_spec(repo_root, spec_path)
+    write_text(repo_root / "docs/ops/SKILL_TENSOR_ROULETTE_SPEC.md", render_spec(repo_root, sections=sections, execution_status=overall_status))
+    shutil.rmtree(tmp_root, ignore_errors=True)
     print(out.relative_to(repo_root).as_posix())
     print(f"overall_status={overall_status}")
     print(f"ledger_initialized={bootstrap['ledger_initialized']}")
@@ -2252,59 +2588,59 @@ def build_parser() -> argparse.ArgumentParser:
     p_cycle.add_argument("--chain-length", type=int, default=4)
 
     p_inventory = sub.add_parser("inventory")
-    p_inventory.add_argument("--output", default="codex/mailbox/SKILL_TENSOR_INVENTORY.json")
+    p_inventory.add_argument("--output", default="codex/mailbox/.tensor_debug/SKILL_TENSOR_INVENTORY.json")
 
     p_universe = sub.add_parser("universe")
     p_universe.add_argument("--rules", default="config/skill_tensor_rules.json")
-    p_universe.add_argument("--inventory", default="codex/mailbox/SKILL_TENSOR_INVENTORY.json")
-    p_universe.add_argument("--output", default="codex/mailbox/SKILL_TENSOR_UNIVERSE_LATEST.json")
+    p_universe.add_argument("--inventory", default="codex/mailbox/.tensor_debug/SKILL_TENSOR_INVENTORY.json")
+    p_universe.add_argument("--output", default="codex/mailbox/.tensor_debug/SKILL_TENSOR_UNIVERSE_LATEST.json")
 
     p_legality = sub.add_parser("legality")
-    p_legality.add_argument("--universe", default="codex/mailbox/SKILL_TENSOR_UNIVERSE_LATEST.json")
-    p_legality.add_argument("--output", default="codex/mailbox/SKILL_TENSOR_LEGALITY_LATEST.json")
+    p_legality.add_argument("--universe", default="codex/mailbox/.tensor_debug/SKILL_TENSOR_UNIVERSE_LATEST.json")
+    p_legality.add_argument("--output", default="codex/mailbox/.tensor_debug/SKILL_TENSOR_LEGALITY_LATEST.json")
 
     p_pool = sub.add_parser("pool")
     p_pool.add_argument("--rules", default="config/skill_tensor_rules.json")
-    p_pool.add_argument("--universe", default="codex/mailbox/SKILL_TENSOR_UNIVERSE_LATEST.json")
-    p_pool.add_argument("--output", default="codex/mailbox/SKILL_TENSOR_POOL.json")
+    p_pool.add_argument("--universe", default="codex/mailbox/.tensor_debug/SKILL_TENSOR_UNIVERSE_LATEST.json")
+    p_pool.add_argument("--output", default="codex/mailbox/.tensor_debug/SKILL_TENSOR_POOL.json")
 
     p_weights = sub.add_parser("weights")
     p_weights.add_argument("--rules", default="config/skill_tensor_rules.json")
-    p_weights.add_argument("--inventory", default="codex/mailbox/SKILL_TENSOR_INVENTORY.json")
-    p_weights.add_argument("--pool", default="codex/mailbox/SKILL_TENSOR_POOL.json")
+    p_weights.add_argument("--inventory", default="codex/mailbox/.tensor_debug/SKILL_TENSOR_INVENTORY.json")
+    p_weights.add_argument("--pool", default="codex/mailbox/.tensor_debug/SKILL_TENSOR_POOL.json")
     p_weights.add_argument("--ledger", default="codex/mailbox/SKILL_TENSOR_LEDGER.json")
-    p_weights.add_argument("--output", default="codex/mailbox/SKILL_TENSOR_WEIGHTS_LATEST.json")
+    p_weights.add_argument("--output", default="codex/mailbox/.tensor_debug/SKILL_TENSOR_WEIGHTS_LATEST.json")
 
     p_roulette = sub.add_parser("roulette")
     p_roulette.add_argument("--rules", default="config/skill_tensor_rules.json")
-    p_roulette.add_argument("--pool", default="codex/mailbox/SKILL_TENSOR_POOL.json")
-    p_roulette.add_argument("--weights", default="codex/mailbox/SKILL_TENSOR_WEIGHTS_LATEST.json")
-    p_roulette.add_argument("--output", default="codex/mailbox/SKILL_TENSOR_ROULETTE_LATEST.json")
+    p_roulette.add_argument("--pool", default="codex/mailbox/.tensor_debug/SKILL_TENSOR_POOL.json")
+    p_roulette.add_argument("--weights", default="codex/mailbox/.tensor_debug/SKILL_TENSOR_WEIGHTS_LATEST.json")
+    p_roulette.add_argument("--output", default="codex/mailbox/.tensor_debug/SKILL_TENSOR_ROULETTE_LATEST.json")
     p_roulette.add_argument("--seed", default="trainstop-default-seed")
     p_roulette.add_argument("--chain-length", type=int, default=4)
 
     p_plan = sub.add_parser("plan")
     p_plan.add_argument("--rules", default="config/skill_tensor_rules.json")
     p_plan.add_argument("--capabilities", default="config/skill_operator_capabilities.json")
-    p_plan.add_argument("--input", default="codex/mailbox/SKILL_TENSOR_ROULETTE_LATEST.json")
-    p_plan.add_argument("--output", default="codex/mailbox/SKILL_TENSOR_PLAN_LATEST.json")
+    p_plan.add_argument("--input", default="codex/mailbox/.tensor_debug/SKILL_TENSOR_ROULETTE_LATEST.json")
+    p_plan.add_argument("--output", default="codex/mailbox/.tensor_debug/SKILL_TENSOR_PLAN_LATEST.json")
 
     p_ledger = sub.add_parser("ledger")
     p_ledger.add_argument("--rules", default="config/skill_tensor_rules.json")
-    p_ledger.add_argument("--roulette", default="codex/mailbox/SKILL_TENSOR_ROULETTE_LATEST.json")
-    p_ledger.add_argument("--plan", default="codex/mailbox/SKILL_TENSOR_PLAN_LATEST.json")
+    p_ledger.add_argument("--roulette", default="codex/mailbox/.tensor_debug/SKILL_TENSOR_ROULETTE_LATEST.json")
+    p_ledger.add_argument("--plan", default="codex/mailbox/.tensor_debug/SKILL_TENSOR_PLAN_LATEST.json")
     p_ledger.add_argument("--output", default="codex/mailbox/SKILL_TENSOR_LEDGER.json")
 
     p_execute = sub.add_parser("execute")
-    p_execute.add_argument("--input", default="codex/mailbox/SKILL_TENSOR_PLAN_LATEST.json")
-    p_execute.add_argument("--output", default="codex/mailbox/SKILL_TENSOR_EXECUTION_LATEST.json")
+    p_execute.add_argument("--input", default="codex/mailbox/.tensor_debug/SKILL_TENSOR_PLAN_LATEST.json")
+    p_execute.add_argument("--output", default="codex/mailbox/.tensor_debug/SKILL_TENSOR_EXECUTION_LATEST.json")
 
     p_feedback = sub.add_parser("feedback")
     p_feedback.add_argument("--rules", default="config/skill_tensor_rules.json")
     p_feedback.add_argument("--ledger", default="codex/mailbox/SKILL_TENSOR_LEDGER.json")
-    p_feedback.add_argument("--execution", default="codex/mailbox/SKILL_TENSOR_EXECUTION_LATEST.json")
-    p_feedback.add_argument("--roulette", default="codex/mailbox/SKILL_TENSOR_ROULETTE_LATEST.json")
-    p_feedback.add_argument("--plan", default="codex/mailbox/SKILL_TENSOR_PLAN_LATEST.json")
+    p_feedback.add_argument("--execution", default="codex/mailbox/.tensor_debug/SKILL_TENSOR_EXECUTION_LATEST.json")
+    p_feedback.add_argument("--roulette", default="codex/mailbox/.tensor_debug/SKILL_TENSOR_ROULETTE_LATEST.json")
+    p_feedback.add_argument("--plan", default="codex/mailbox/.tensor_debug/SKILL_TENSOR_PLAN_LATEST.json")
 
     p_spec = sub.add_parser("render-spec")
     p_spec.add_argument("--output", default="docs/ops/SKILL_TENSOR_ROULETTE_SPEC.md")
