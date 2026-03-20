@@ -1,6 +1,6 @@
 # Skill Freshness Gate Report
 
-- Generated: `2026-03-20T14:22:39.958857+00:00`
+- Generated: `2026-03-20T18:51:07.387388+00:00`
 - Skills scanned: `28`
 - Critical issues: `3`
 - Warnings: `38`

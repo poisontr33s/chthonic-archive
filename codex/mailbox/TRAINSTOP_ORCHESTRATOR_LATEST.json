@@ -1,11 +1,11 @@
 {
   "schema_version": 1,
-  "generated_on": "2026-03-20T14:22:43Z",
+  "generated_on": "2026-03-20T18:51:12Z",
   "results": [
     {
       "name": "Skill Freshness Gate (Codex)",
       "rc": 0,
-      "seconds": 0.135,
+      "seconds": 0.14,
       "cmd": [
         "uv",
         "run",
@@ -28,7 +28,7 @@
     {
       "name": "API Manager (Doctor)",
       "rc": 0,
-      "seconds": 0.926,
+      "seconds": 0.841,
       "cmd": [
         "pwsh",
         "-NoProfile",
@@ -44,7 +44,7 @@
     {
       "name": "Toolchain Doctor",
       "rc": 0,
-      "seconds": 1.238,
+      "seconds": 3.231,
       "cmd": [
         "uv",
         "run",
@@ -52,7 +52,7 @@
         "--bun",
         "--uv"
       ],
-      "stdout_tail": "Wrote: C:\\Users\\eldno\\chthonic-archive\\codex\\mailbox\\TOOLCHAIN_DOCTOR_REPORT_2026_03_20_142241.md",
+      "stdout_tail": "Wrote: C:\\Users\\eldno\\chthonic-archive\\codex\\mailbox\\TOOLCHAIN_DOCTOR_REPORT_2026_03_20_185108.md",
       "stderr_tail": "",
       "missing_artifacts": [],
       "notes": []
@@ -60,7 +60,7 @@
     {
       "name": "Skill Polisher (Codex on Codex)",
       "rc": 0,
-      "seconds": 0.29,
+      "seconds": 0.292,
       "cmd": [
         "uv",
         "run",
@@ -83,37 +83,15 @@
       "notes": []
     },
     {
-      "name": "Skill Polisher (Claude contract on Claude skills)",
+      "name": "Mailbox Polisher (codex)",
       "rc": 0,
-      "seconds": 0.233,
-      "cmd": [
-        "uv",
-        "run",
-        ".codex/skills/skill-polisher/scripts/polish_skill.py",
-        ".claude/skills",
-        "--all",
-        "--mode",
-        "verify",
-        "--target-flavor",
-        "claude",
-        "--subprocess-fix",
-        "--no-require-assets"
-      ],
-      "stdout_tail": "\u255a\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u255d\nTASTE: PURE (Clean)\nNUTRITION LEVEL: 100%\n\nDOMAIN SCORES:\n  - structure: 100%\n  - policy: 100%\n  - semantics: 100%\n  - maintainability: 100%\n\nSystem Satisfied. No entropy found.\n\n>>> VERIFY: PASSED (no blocking findings). <<<\n\n=== POLISHING: trainstop-orchestrator ===\n\u2554\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2557\n\u2551                    FEEDING REPORT: trainstop-orchestrator           \u2551\n\u255a\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u255d\nTASTE: PURE (Clean)\nNUTRITION LEVEL: 100%\n\nDOMAIN SCORES:\n  - structure: 100%\n  - policy: 100%\n  - semantics: 100%\n  - maintainability: 100%\n\nSystem Satisfied. No entropy found.\n\n>>> VERIFY: PASSED (no blocking findings). <<<",
-      "stderr_tail": "",
-      "missing_artifacts": [],
-      "notes": []
-    },
-    {
-      "name": "Mailbox Polisher (claude)",
-      "rc": 0,
-      "seconds": 0.122,
+      "seconds": 0.125,
       "cmd": [
         "uv",
         "run",
         "scripts/mailbox_polisher.py",
         "--target",
-        "claude",
+        "codex",
         "--apply"
       ],
       "stdout_tail": "No archivable churn artifacts found.",
@@ -122,19 +100,19 @@
       "notes": []
     },
     {
-      "name": "Mailbox Scribe (claude)",
+      "name": "Mailbox Scribe (codex)",
       "rc": 0,
-      "seconds": 0.156,
+      "seconds": 0.216,
       "cmd": [
         "uv",
         "run",
         "scripts/mailbox_scribe.py",
         "--target",
-        "claude",
+        "codex",
         "--packet",
-        "claude/mailbox/TETRAGRAMMATON_PACKET.md"
+        "codex/mailbox/TETRAGRAMMATON_PACKET.md"
       ],
-      "stdout_tail": "Wrote: claude/mailbox/TETRAGRAMMATON_PACKET.md",
+      "stdout_tail": "Wrote: codex/mailbox/TETRAGRAMMATON_PACKET.md",
       "stderr_tail": "",
       "missing_artifacts": [],
       "notes": []
@@ -142,7 +120,7 @@
     {
       "name": "Mailbox Manifest Check",
       "rc": 0,
-      "seconds": 0.098,
+      "seconds": 0.103,
       "cmd": [
         "uv",
         "run",

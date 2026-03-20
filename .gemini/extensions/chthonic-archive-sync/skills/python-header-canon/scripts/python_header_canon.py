@@ -38,7 +38,7 @@ def iter_py_files(root: Path) -> list[Path]:
     return files
 
 
-def normalize(path: Path) -> bool:
+def normalize(path: Path, *, write: bool) -> bool:
     lines = path.read_text(encoding="utf-8").splitlines()
 
     idx = 0
@@ -50,13 +50,15 @@ def normalize(path: Path) -> bool:
     new_lines = CANON + lines[idx:]
     if new_lines == lines:
         return False
-    path.write_text("\n".join(new_lines) + "\n", encoding="utf-8")
+    if write:
+        path.write_text("\n".join(new_lines) + "\n", encoding="utf-8")
     return True
 
 
 def main() -> None:
     parser = argparse.ArgumentParser(description="Normalize Python headers to repo canon.")
     parser.add_argument("targets", nargs="+", help="Files/directories to normalize.")
+    parser.add_argument("--report-only", action="store_true", help="Report files that would change without writing them.")
     args = parser.parse_args()
 
     changed: list[Path] = []
@@ -67,11 +69,12 @@ def main() -> None:
             continue
         for py_file in iter_py_files(root):
             scanned += 1
-            if normalize(py_file):
+            if normalize(py_file, write=not args.report_only):
                 changed.append(py_file)
 
     print(f"Scanned: {scanned}")
-    print(f"Changed: {len(changed)}")
+    label = "Would Change" if args.report_only else "Changed"
+    print(f"{label}: {len(changed)}")
     for path in changed[:25]:
         print(path.as_posix())
 

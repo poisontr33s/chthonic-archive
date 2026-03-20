@@ -13,7 +13,20 @@
       "has_assets_dir": false,
       "last_modified": 1770132430.3506656,
       "description": null,
-      "classification": "missing"
+      "classification": "missing",
+      "role_profile": {
+        "adapter_kind": null,
+        "can_target": false,
+        "can_operator": false,
+        "operator_role": "blocked",
+        "operator_reasons": [
+          "missing_skill_surface"
+        ],
+        "target_role": "blocked",
+        "target_reasons": [
+          "missing_skill_surface"
+        ]
+      }
     },
     {
       "lane": "codex",
@@ -26,7 +39,18 @@
       "has_assets_dir": true,
       "last_modified": 1770656515.4544551,
       "description": "Local API/token manager for this repo (no secrets in git). Diagnoses auth drift and loads tokens into the current shell from the user API pool.",
-      "classification": "candidate"
+      "classification": "candidate",
+      "role_profile": {
+        "adapter_kind": null,
+        "can_target": true,
+        "can_operator": true,
+        "operator_role": "analysis_only",
+        "operator_reasons": [
+          "scripts_present_no_registered_adapter"
+        ],
+        "target_role": "legal",
+        "target_reasons": []
+      }
     },
     {
       "lane": "codex",
@@ -39,7 +63,20 @@
       "has_assets_dir": true,
       "last_modified": 1770252672.0086937,
       "description": "STASHED - Salvage concept absorbed into dumpster-upcycler. Use dumpster-upcycler for converting raw artifacts into structured outputs.",
-      "classification": "redirect_or_stub"
+      "classification": "redirect_or_stub",
+      "role_profile": {
+        "adapter_kind": null,
+        "can_target": true,
+        "can_operator": true,
+        "operator_role": "legacy_only",
+        "operator_reasons": [
+          "operator_redirect_or_stub"
+        ],
+        "target_role": "degraded",
+        "target_reasons": [
+          "target_redirect_or_stub"
+        ]
+      }
     },
     {
       "lane": "codex",
@@ -52,7 +89,20 @@
       "has_assets_dir": true,
       "last_modified": 1770673346.3709095,
       "description": "REDIRECT \u2014 Merged into skill-polisher. Use skill-polisher for Claude skill audits and cross-flavor checks.",
-      "classification": "redirect_or_stub"
+      "classification": "redirect_or_stub",
+      "role_profile": {
+        "adapter_kind": null,
+        "can_target": true,
+        "can_operator": true,
+        "operator_role": "legacy_only",
+        "operator_reasons": [
+          "operator_redirect_or_stub"
+        ],
+        "target_role": "degraded",
+        "target_reasons": [
+          "target_redirect_or_stub"
+        ]
+      }
     },
     {
       "lane": "codex",
@@ -65,7 +115,18 @@
       "has_assets_dir": true,
       "last_modified": 1771904614.0384455,
       "description": "Forensic prerequisite gate for Codekiller (CDE-KLLR) recovery. Audits governance arithmetic, evidence integrity, frontmatter reference drift, tribunal chain presence, and telemetry anomalies before conceptual review.",
-      "classification": "candidate"
+      "classification": "candidate",
+      "role_profile": {
+        "adapter_kind": null,
+        "can_target": true,
+        "can_operator": true,
+        "operator_role": "analysis_only",
+        "operator_reasons": [
+          "scripts_present_no_registered_adapter"
+        ],
+        "target_role": "legal",
+        "target_reasons": []
+      }
     },
     {
       "lane": "codex",
@@ -78,7 +139,20 @@
       "has_assets_dir": true,
       "last_modified": 1770673349.352826,
       "description": "REDIRECT \u2014 Merged into skill-polisher. Use skill-polisher for Codex skill audits.",
-      "classification": "redirect_or_stub"
+      "classification": "redirect_or_stub",
+      "role_profile": {
+        "adapter_kind": null,
+        "can_target": true,
+        "can_operator": true,
+        "operator_role": "legacy_only",
+        "operator_reasons": [
+          "operator_redirect_or_stub"
+        ],
+        "target_role": "degraded",
+        "target_reasons": [
+          "target_redirect_or_stub"
+        ]
+      }
     },
     {
       "lane": "codex",
@@ -91,7 +165,18 @@
       "has_assets_dir": true,
       "last_modified": 1770673232.8333688,
       "description": "Perform high-rigor structural and aesthetic audits with findings-first output, actionable remediation, and governance-aware preconditions.",
-      "classification": "candidate"
+      "classification": "candidate",
+      "role_profile": {
+        "adapter_kind": null,
+        "can_target": true,
+        "can_operator": true,
+        "operator_role": "analysis_only",
+        "operator_reasons": [
+          "document_only_operator"
+        ],
+        "target_role": "legal",
+        "target_reasons": []
+      }
     },
     {
       "lane": "codex",
@@ -104,7 +189,18 @@
       "has_assets_dir": true,
       "last_modified": 1773954903.5404015,
       "description": "The White-dressed Bride \u2014 kleptomaniac necromancy pipeline. The embalm-before-edit lane is currently DO-NOT-USE-UNFINISHED-DEV--WIP.",
-      "classification": "candidate"
+      "classification": "candidate",
+      "role_profile": {
+        "adapter_kind": null,
+        "can_target": true,
+        "can_operator": true,
+        "operator_role": "analysis_only",
+        "operator_reasons": [
+          "scripts_present_no_registered_adapter"
+        ],
+        "target_role": "legal",
+        "target_reasons": []
+      }
     },
     {
       "lane": "codex",
@@ -117,7 +213,20 @@
       "has_assets_dir": true,
       "last_modified": 1770673235.4638774,
       "description": "PROTOCOL \u2014 Anti-paralysis behavior. Not a separate execution lane. When stuck in permission loops or ambiguity, apply the razor: infer, execute, never ask. Embedded into all agent behavior by default.",
-      "classification": "redirect_or_stub"
+      "classification": "redirect_or_stub",
+      "role_profile": {
+        "adapter_kind": null,
+        "can_target": true,
+        "can_operator": true,
+        "operator_role": "legacy_only",
+        "operator_reasons": [
+          "operator_redirect_or_stub"
+        ],
+        "target_role": "degraded",
+        "target_reasons": [
+          "target_redirect_or_stub"
+        ]
+      }
     },
     {
       "lane": "codex",
@@ -130,7 +239,18 @@
       "has_assets_dir": true,
       "last_modified": 1770673354.7395935,
       "description": "Convert raw session dumps into compact structured logs, readable markdown, and warm-start resume packets (no deletion, optional archiving). Absorbs session-resumer.",
-      "classification": "candidate"
+      "classification": "candidate",
+      "role_profile": {
+        "adapter_kind": null,
+        "can_target": true,
+        "can_operator": true,
+        "operator_role": "analysis_only",
+        "operator_reasons": [
+          "scripts_present_no_registered_adapter"
+        ],
+        "target_role": "legal",
+        "target_reasons": []
+      }
     },
     {
       "lane": "codex",
@@ -143,7 +263,20 @@
       "has_assets_dir": true,
       "last_modified": 1770132430.376567,
       "description": "REDIRECT - PR comment handling is now in gh-fix-ci. Use gh-fix-ci for both CI failures and review comment triage.",
-      "classification": "redirect_or_stub"
+      "classification": "redirect_or_stub",
+      "role_profile": {
+        "adapter_kind": null,
+        "can_target": true,
+        "can_operator": true,
+        "operator_role": "legacy_only",
+        "operator_reasons": [
+          "operator_redirect_or_stub"
+        ],
+        "target_role": "degraded",
+        "target_reasons": [
+          "target_redirect_or_stub"
+        ]
+      }
     },
     {
       "lane": "codex",
@@ -156,7 +289,18 @@
       "has_assets_dir": true,
       "last_modified": 1770301184.2514055,
       "description": "Debug and fix failing GitHub PR checks via GitHub Actions. Inspect checks and logs with `gh`, summarize failure context, draft a fix plan, implement after explicit approval. External providers (e.g. Buildkite) are out of scope\u2014report the details URL only.",
-      "classification": "candidate"
+      "classification": "candidate",
+      "role_profile": {
+        "adapter_kind": null,
+        "can_target": true,
+        "can_operator": true,
+        "operator_role": "analysis_only",
+        "operator_reasons": [
+          "scripts_present_no_registered_adapter"
+        ],
+        "target_role": "legal",
+        "target_reasons": []
+      }
     },
     {
       "lane": "codex",
@@ -169,7 +313,18 @@
       "has_assets_dir": true,
       "last_modified": 1770299005.1658401,
       "description": "Autonomous GitHub MCP usage for repo/issue/PR data and synthesis. Use when the user asks for repo facts, recent commits, issues/PRs, contributors, or creative priming. Execute without menus and write results to the specified file.",
-      "classification": "candidate"
+      "classification": "candidate",
+      "role_profile": {
+        "adapter_kind": null,
+        "can_target": true,
+        "can_operator": true,
+        "operator_role": "analysis_only",
+        "operator_reasons": [
+          "document_only_operator"
+        ],
+        "target_role": "legal",
+        "target_reasons": []
+      }
     },
     {
       "lane": "codex",
@@ -182,7 +337,18 @@
       "has_assets_dir": true,
       "last_modified": 1770132430.4073288,
       "description": "Use when the user asks to generate or edit images via the OpenAI Image API (for example: generate image, edit/inpaint/mask, background removal or replacement, transparent background, product shots, concept art, covers, or batch variants); run the bundled CLI (`scripts/image_gen.py`) and require `OPENAI_API_KEY` for live calls.",
-      "classification": "candidate"
+      "classification": "candidate",
+      "role_profile": {
+        "adapter_kind": null,
+        "can_target": true,
+        "can_operator": true,
+        "operator_role": "analysis_only",
+        "operator_reasons": [
+          "scripts_present_no_registered_adapter"
+        ],
+        "target_role": "legal",
+        "target_reasons": []
+      }
     },
     {
       "lane": "codex",
@@ -195,7 +361,18 @@
       "has_assets_dir": true,
       "last_modified": 1771291806.1361454,
       "description": "Ingest Gemini/Deep Research artifacts into structured digests and optional cross-mailbox handoff notes.",
-      "classification": "candidate"
+      "classification": "candidate",
+      "role_profile": {
+        "adapter_kind": null,
+        "can_target": true,
+        "can_operator": true,
+        "operator_role": "analysis_only",
+        "operator_reasons": [
+          "document_only_operator"
+        ],
+        "target_role": "legal",
+        "target_reasons": []
+      }
     },
     {
       "lane": "codex",
@@ -208,7 +385,18 @@
       "has_assets_dir": true,
       "last_modified": 1770505158.0937252,
       "description": "Deterministic runtime harness for The Iron Maiden voicepack (state model, contract schema, scene renderer).",
-      "classification": "candidate"
+      "classification": "candidate",
+      "role_profile": {
+        "adapter_kind": null,
+        "can_target": true,
+        "can_operator": true,
+        "operator_role": "analysis_only",
+        "operator_reasons": [
+          "scripts_present_no_registered_adapter"
+        ],
+        "target_role": "legal",
+        "target_reasons": []
+      }
     },
     {
       "lane": "codex",
@@ -221,7 +409,18 @@
       "has_assets_dir": true,
       "last_modified": 1773954903.7540226,
       "description": "Validate skill and settings path references across .codex/.claude/.gemini, then fix stale or broken repo-local file and directory links in-place.",
-      "classification": "candidate"
+      "classification": "candidate",
+      "role_profile": {
+        "adapter_kind": "skill_path_guard",
+        "can_target": true,
+        "can_operator": true,
+        "operator_role": "executable",
+        "operator_reasons": [
+          "registered_adapter:skill_path_guard"
+        ],
+        "target_role": "legal",
+        "target_reasons": []
+      }
     },
     {
       "lane": "codex",
@@ -234,7 +433,18 @@
       "has_assets_dir": true,
       "last_modified": 1770673368.8157556,
       "description": "Manage Codex/Claude/Gemini mailboxes for handoffs, responses, verification, and routing. Use when checking inboxes, verifying handoff coverage across codex/.codex/claude/.claude/claude-codex-gemini, routing tasks, or running mailbox ops (postman/scribe/polisher).",
-      "classification": "candidate"
+      "classification": "candidate",
+      "role_profile": {
+        "adapter_kind": "mailbox_link_canon",
+        "can_target": true,
+        "can_operator": true,
+        "operator_role": "executable",
+        "operator_reasons": [
+          "registered_adapter:mailbox_link_canon"
+        ],
+        "target_role": "legal",
+        "target_reasons": []
+      }
     },
     {
       "lane": "codex",
@@ -247,7 +457,20 @@
       "has_assets_dir": true,
       "last_modified": 1770673237.7912219,
       "description": "REDIRECT \u2014 Merged into skill-polisher. Use skill-polisher --mode verify for meta-skill validation.",
-      "classification": "redirect_or_stub"
+      "classification": "redirect_or_stub",
+      "role_profile": {
+        "adapter_kind": null,
+        "can_target": true,
+        "can_operator": true,
+        "operator_role": "legacy_only",
+        "operator_reasons": [
+          "operator_redirect_or_stub"
+        ],
+        "target_role": "degraded",
+        "target_reasons": [
+          "target_redirect_or_stub"
+        ]
+      }
     },
     {
       "lane": "codex",
@@ -260,7 +483,18 @@
       "has_assets_dir": true,
       "last_modified": 1770132430.4153636,
       "description": "Use when the user asks how to build with OpenAI products or APIs and needs up-to-date official documentation with citations (for example: Codex, Responses API, Chat Completions, Apps SDK, Agents SDK, Realtime, model capabilities or limits); prioritize OpenAI docs MCP tools and restrict any fallback browsing to official OpenAI domains.",
-      "classification": "candidate"
+      "classification": "candidate",
+      "role_profile": {
+        "adapter_kind": null,
+        "can_target": true,
+        "can_operator": true,
+        "operator_role": "analysis_only",
+        "operator_reasons": [
+          "document_only_operator"
+        ],
+        "target_role": "legal",
+        "target_reasons": []
+      }
     },
     {
       "lane": "codex",
@@ -273,7 +507,20 @@
       "has_assets_dir": true,
       "last_modified": 1770673239.7067702,
       "description": "REDIRECT - All postman commands are now in mailbox-handoff. Use mailbox-handoff for the full mailbox workflow.",
-      "classification": "redirect_or_stub"
+      "classification": "redirect_or_stub",
+      "role_profile": {
+        "adapter_kind": null,
+        "can_target": true,
+        "can_operator": true,
+        "operator_role": "legacy_only",
+        "operator_reasons": [
+          "operator_redirect_or_stub"
+        ],
+        "target_role": "degraded",
+        "target_reasons": [
+          "target_redirect_or_stub"
+        ]
+      }
     },
     {
       "lane": "codex",
@@ -286,7 +533,18 @@
       "has_assets_dir": true,
       "last_modified": 1770673362.6571884,
       "description": "Normalize Python file headers to the repository canon: #!/usr/bin/env python3 plus UTF-8 coding line. Use when standardizing .py files across Codex or Claude skill/script lanes.",
-      "classification": "candidate"
+      "classification": "candidate",
+      "role_profile": {
+        "adapter_kind": "python_header_report",
+        "can_target": true,
+        "can_operator": true,
+        "operator_role": "executable",
+        "operator_reasons": [
+          "registered_adapter:python_header_report"
+        ],
+        "target_role": "legal",
+        "target_reasons": []
+      }
     },
     {
       "lane": "codex",
@@ -299,7 +557,18 @@
       "has_assets_dir": true,
       "last_modified": 1772041784.871343,
       "description": "Audit git status, classify signal/noise/ghost/mailbox changes, clean index ghosts, generate triage plans, and write pre-nuke clarity snapshots for Codex lane recovery.",
-      "classification": "candidate"
+      "classification": "candidate",
+      "role_profile": {
+        "adapter_kind": null,
+        "can_target": true,
+        "can_operator": true,
+        "operator_role": "analysis_only",
+        "operator_reasons": [
+          "document_only_operator"
+        ],
+        "target_role": "legal",
+        "target_reasons": []
+      }
     },
     {
       "lane": "codex",
@@ -312,7 +581,20 @@
       "has_assets_dir": true,
       "last_modified": 1770673365.8680308,
       "description": "STASHED - Script metadata envelope standardization. This is a protocol rule (SID, shebang, flags), not a skill. Rule belongs in AGENT_COMMON.md.",
-      "classification": "redirect_or_stub"
+      "classification": "redirect_or_stub",
+      "role_profile": {
+        "adapter_kind": null,
+        "can_target": true,
+        "can_operator": true,
+        "operator_role": "legacy_only",
+        "operator_reasons": [
+          "operator_redirect_or_stub"
+        ],
+        "target_role": "degraded",
+        "target_reasons": [
+          "target_redirect_or_stub"
+        ]
+      }
     },
     {
       "lane": "codex",
@@ -325,7 +607,20 @@
       "has_assets_dir": true,
       "last_modified": 1770673359.2839887,
       "description": "REDIRECT - Resume packet generation is now in dumpster-upcycler. Use dumpster-upcycler for all session dump processing.",
-      "classification": "redirect_or_stub"
+      "classification": "redirect_or_stub",
+      "role_profile": {
+        "adapter_kind": null,
+        "can_target": true,
+        "can_operator": true,
+        "operator_role": "legacy_only",
+        "operator_reasons": [
+          "operator_redirect_or_stub"
+        ],
+        "target_role": "degraded",
+        "target_reasons": [
+          "target_redirect_or_stub"
+        ]
+      }
     },
     {
       "lane": "codex",
@@ -338,7 +633,18 @@
       "has_assets_dir": true,
       "last_modified": 1770435459.150892,
       "description": "Meta-skill to audit, validate, and fix other skills. Structural integrity checks, cross-flavor audits, WPTG alignment, fixture eval.",
-      "classification": "candidate"
+      "classification": "candidate",
+      "role_profile": {
+        "adapter_kind": "skill_polisher_verify",
+        "can_target": true,
+        "can_operator": true,
+        "operator_role": "executable",
+        "operator_reasons": [
+          "registered_adapter:skill_polisher_verify"
+        ],
+        "target_role": "legal",
+        "target_reasons": []
+      }
     },
     {
       "lane": "codex",
@@ -351,7 +657,18 @@
       "has_assets_dir": true,
       "last_modified": 1770132430.4477978,
       "description": "Use when the user asks to generate, remix, poll, list, download, or delete Sora videos via OpenAI\\u2019s video API using the bundled CLI (`scripts/sora.py`), including requests like \\u201cgenerate AI video,\\u201d \\u201cSora,\\u201d \\u201cvideo remix,\\u201d \\u201cdownload video/thumbnail/spritesheet,\\u201d and batch video generation; requires `OPENAI_API_KEY` and Sora API access.",
-      "classification": "candidate"
+      "classification": "candidate",
+      "role_profile": {
+        "adapter_kind": null,
+        "can_target": true,
+        "can_operator": true,
+        "operator_role": "analysis_only",
+        "operator_reasons": [
+          "scripts_present_no_registered_adapter"
+        ],
+        "target_role": "legal",
+        "target_reasons": []
+      }
     },
     {
       "lane": "codex",
@@ -364,7 +681,18 @@
       "has_assets_dir": true,
       "last_modified": 1770486352.4580762,
       "description": "Diagnose and remediate common Bun + uv drift in this repo (audit vulnerabilities, lockfile inconsistencies, uv sync health) with an opt-in apply mode that only performs safe fixes.",
-      "classification": "candidate"
+      "classification": "candidate",
+      "role_profile": {
+        "adapter_kind": null,
+        "can_target": true,
+        "can_operator": true,
+        "operator_role": "analysis_only",
+        "operator_reasons": [
+          "scripts_present_no_registered_adapter"
+        ],
+        "target_role": "legal",
+        "target_reasons": []
+      }
     },
     {
       "lane": "codex",
@@ -377,7 +705,18 @@
       "has_assets_dir": true,
       "last_modified": 1770658205.7442183,
       "description": "Proxy runner that chains the repo's non-official maintenance skills/tools in a deterministic order (skill freshness gate -> toolchain doctor -> skill polisher -> mailbox polish -> scribe -> manifest checks).",
-      "classification": "candidate"
+      "classification": "candidate",
+      "role_profile": {
+        "adapter_kind": "lane_orchestrator",
+        "can_target": true,
+        "can_operator": true,
+        "operator_role": "executable",
+        "operator_reasons": [
+          "registered_adapter:lane_orchestrator"
+        ],
+        "target_role": "legal",
+        "target_reasons": []
+      }
     },
     {
       "lane": "claude",
@@ -390,7 +729,20 @@
       "has_assets_dir": false,
       "last_modified": 1773945759.3299043,
       "description": null,
-      "classification": "missing"
+      "classification": "missing",
+      "role_profile": {
+        "adapter_kind": null,
+        "can_target": false,
+        "can_operator": false,
+        "operator_role": "blocked",
+        "operator_reasons": [
+          "missing_skill_surface"
+        ],
+        "target_role": "blocked",
+        "target_reasons": [
+          "missing_skill_surface"
+        ]
+      }
     },
     {
       "lane": "claude",
@@ -403,7 +755,18 @@
       "has_assets_dir": true,
       "last_modified": 1773945759.4416602,
       "description": "Local API/token manager for this repo (no secrets in git). Diagnoses auth drift and loads tokens into the current shell from the user API pool.",
-      "classification": "candidate"
+      "classification": "candidate",
+      "role_profile": {
+        "adapter_kind": null,
+        "can_target": true,
+        "can_operator": true,
+        "operator_role": "analysis_only",
+        "operator_reasons": [
+          "document_only_operator"
+        ],
+        "target_role": "legal",
+        "target_reasons": []
+      }
     },
     {
       "lane": "claude",
@@ -416,7 +779,20 @@
       "has_assets_dir": true,
       "last_modified": 1773945759.4526727,
       "description": "STASHED - Salvage concept absorbed into dumpster-upcycler. Use dumpster-upcycler for converting raw artifacts into structured outputs.",
-      "classification": "redirect_or_stub"
+      "classification": "redirect_or_stub",
+      "role_profile": {
+        "adapter_kind": null,
+        "can_target": true,
+        "can_operator": true,
+        "operator_role": "legacy_only",
+        "operator_reasons": [
+          "operator_redirect_or_stub"
+        ],
+        "target_role": "degraded",
+        "target_reasons": [
+          "target_redirect_or_stub"
+        ]
+      }
     },
     {
       "lane": "claude",
@@ -429,7 +805,20 @@
       "has_assets_dir": true,
       "last_modified": 1773945759.4742007,
       "description": "REDIRECT \u2014 Merged into skill-polisher. Use skill-polisher for Claude skill audits and cross-flavor checks.",
-      "classification": "redirect_or_stub"
+      "classification": "redirect_or_stub",
+      "role_profile": {
+        "adapter_kind": null,
+        "can_target": true,
+        "can_operator": true,
+        "operator_role": "legacy_only",
+        "operator_reasons": [
+          "operator_redirect_or_stub"
+        ],
+        "target_role": "degraded",
+        "target_reasons": [
+          "target_redirect_or_stub"
+        ]
+      }
     },
     {
       "lane": "claude",
@@ -442,7 +831,18 @@
       "has_assets_dir": true,
       "last_modified": 1773945759.5244095,
       "description": "Forensic prerequisite gate for Codekiller (CDE-KLLR) recovery. Audits governance arithmetic, evidence integrity, frontmatter reference drift, tribunal chain presence, and telemetry anomalies before conceptual review.",
-      "classification": "candidate"
+      "classification": "candidate",
+      "role_profile": {
+        "adapter_kind": null,
+        "can_target": true,
+        "can_operator": true,
+        "operator_role": "analysis_only",
+        "operator_reasons": [
+          "scripts_present_no_registered_adapter"
+        ],
+        "target_role": "legal",
+        "target_reasons": []
+      }
     },
     {
       "lane": "claude",
@@ -455,7 +855,20 @@
       "has_assets_dir": true,
       "last_modified": 1773945759.546951,
       "description": "REDIRECT \u2014 Merged into skill-polisher. Use skill-polisher for Codex skill audits.",
-      "classification": "redirect_or_stub"
+      "classification": "redirect_or_stub",
+      "role_profile": {
+        "adapter_kind": null,
+        "can_target": true,
+        "can_operator": true,
+        "operator_role": "legacy_only",
+        "operator_reasons": [
+          "operator_redirect_or_stub"
+        ],
+        "target_role": "degraded",
+        "target_reasons": [
+          "target_redirect_or_stub"
+        ]
+      }
     },
     {
       "lane": "claude",
@@ -468,7 +881,18 @@
       "has_assets_dir": true,
       "last_modified": 1773945759.5743668,
       "description": "Perform high-rigor structural and aesthetic audits with findings-first output, actionable remediation, and governance-aware preconditions.",
-      "classification": "candidate"
+      "classification": "candidate",
+      "role_profile": {
+        "adapter_kind": null,
+        "can_target": true,
+        "can_operator": true,
+        "operator_role": "analysis_only",
+        "operator_reasons": [
+          "document_only_operator"
+        ],
+        "target_role": "legal",
+        "target_reasons": []
+      }
     },
     {
       "lane": "claude",
@@ -481,7 +905,18 @@
       "has_assets_dir": false,
       "last_modified": 1773945759.5963929,
       "description": "The White-dressed Bride \u2014 kleptomaniac necromancy pipeline. The embalm-before-edit lane is currently DO-NOT-USE-UNFINISHED-DEV--WIP.",
-      "classification": "candidate"
+      "classification": "candidate",
+      "role_profile": {
+        "adapter_kind": null,
+        "can_target": true,
+        "can_operator": true,
+        "operator_role": "analysis_only",
+        "operator_reasons": [
+          "scripts_present_no_registered_adapter"
+        ],
+        "target_role": "legal",
+        "target_reasons": []
+      }
     },
     {
       "lane": "claude",
@@ -494,7 +929,20 @@
       "has_assets_dir": true,
       "last_modified": 1773945759.6219163,
       "description": "PROTOCOL \u2014 Anti-paralysis behavior. Not a separate execution lane. When stuck in permission loops or ambiguity, apply the razor: infer, execute, never ask. Embedded into all agent behavior by default.",
-      "classification": "redirect_or_stub"
+      "classification": "redirect_or_stub",
+      "role_profile": {
+        "adapter_kind": null,
+        "can_target": true,
+        "can_operator": true,
+        "operator_role": "legacy_only",
+        "operator_reasons": [
+          "operator_redirect_or_stub"
+        ],
+        "target_role": "degraded",
+        "target_reasons": [
+          "target_redirect_or_stub"
+        ]
+      }
     },
     {
       "lane": "claude",
@@ -507,7 +955,18 @@
       "has_assets_dir": true,
       "last_modified": 1773945759.6309469,
       "description": "Convert raw session dumps into compact structured logs, readable markdown, and warm-start resume packets (no deletion, optional archiving). Absorbs session-resumer.",
-      "classification": "candidate"
+      "classification": "candidate",
+      "role_profile": {
+        "adapter_kind": null,
+        "can_target": true,
+        "can_operator": true,
+        "operator_role": "analysis_only",
+        "operator_reasons": [
+          "scripts_present_no_registered_adapter"
+        ],
+        "target_role": "legal",
+        "target_reasons": []
+      }
     },
     {
       "lane": "claude",
@@ -520,7 +979,20 @@
       "has_assets_dir": true,
       "last_modified": 1773945759.6406662,
       "description": "REDIRECT - PR comment handling is now in gh-fix-ci. Use gh-fix-ci for both CI failures and review comment triage.",
-      "classification": "redirect_or_stub"
+      "classification": "redirect_or_stub",
+      "role_profile": {
+        "adapter_kind": null,
+        "can_target": true,
+        "can_operator": true,
+        "operator_role": "legacy_only",
+        "operator_reasons": [
+          "operator_redirect_or_stub"
+        ],
+        "target_role": "degraded",
+        "target_reasons": [
+          "target_redirect_or_stub"
+        ]
+      }
     },
     {
       "lane": "claude",
@@ -533,7 +1005,18 @@
       "has_assets_dir": true,
       "last_modified": 1773945759.6726725,
       "description": "Debug and fix failing GitHub PR checks via GitHub Actions. Inspect checks and logs with `gh`, summarize failure context, draft a fix plan, implement after explicit approval. External providers (e.g. Buildkite) are out of scope\u2014report the details URL only.",
-      "classification": "candidate"
+      "classification": "candidate",
+      "role_profile": {
+        "adapter_kind": null,
+        "can_target": true,
+        "can_operator": true,
+        "operator_role": "analysis_only",
+        "operator_reasons": [
+          "document_only_operator"
+        ],
+        "target_role": "legal",
+        "target_reasons": []
+      }
     },
     {
       "lane": "claude",
@@ -546,7 +1029,18 @@
       "has_assets_dir": true,
       "last_modified": 1773945759.683694,
       "description": "Autonomous GitHub MCP usage for repo/issue/PR data and synthesis. Use when the user asks for repo facts, recent commits, issues/PRs, contributors, or creative priming. Execute without menus and write results to the specified file.",
-      "classification": "candidate"
+      "classification": "candidate",
+      "role_profile": {
+        "adapter_kind": null,
+        "can_target": true,
+        "can_operator": true,
+        "operator_role": "analysis_only",
+        "operator_reasons": [
+          "document_only_operator"
+        ],
+        "target_role": "legal",
+        "target_reasons": []
+      }
     },
     {
       "lane": "claude",
@@ -559,7 +1053,18 @@
       "has_assets_dir": false,
       "last_modified": 1771556293.9756768,
       "description": "Snapshot the latest git state (recent commits, branch, diff stats, changed files) into claude/mailbox/ as a structured handoff. Zero context burn \u2014 run at session start or before handoff.",
-      "classification": "candidate"
+      "classification": "candidate",
+      "role_profile": {
+        "adapter_kind": null,
+        "can_target": true,
+        "can_operator": true,
+        "operator_role": "analysis_only",
+        "operator_reasons": [
+          "document_only_operator"
+        ],
+        "target_role": "legal",
+        "target_reasons": []
+      }
     },
     {
       "lane": "claude",
@@ -572,7 +1077,18 @@
       "has_assets_dir": false,
       "last_modified": 1772069344.692283,
       "description": "Unified handoff-loop orchestrator \u2014 validates, gates, routes, and tracks agent handoffs with receipt confirmation and obligation monitoring. Use when checking handoff status, validating before sending, routing with quality gates, or sweeping for stale/overdue items.",
-      "classification": "candidate"
+      "classification": "candidate",
+      "role_profile": {
+        "adapter_kind": null,
+        "can_target": true,
+        "can_operator": true,
+        "operator_role": "analysis_only",
+        "operator_reasons": [
+          "document_only_operator"
+        ],
+        "target_role": "legal",
+        "target_reasons": []
+      }
     },
     {
       "lane": "claude",
@@ -585,7 +1101,18 @@
       "has_assets_dir": true,
       "last_modified": 1773945759.6935706,
       "description": "Use when the user asks to generate or edit images via the OpenAI Image API (for example: generate image, edit/inpaint/mask, background removal or replacement, transparent background, product shots, concept art, covers, or batch variants); run the bundled CLI (scripts/image_gen.py) and require OPENAI_API_KEY for live calls.",
-      "classification": "candidate"
+      "classification": "candidate",
+      "role_profile": {
+        "adapter_kind": null,
+        "can_target": true,
+        "can_operator": true,
+        "operator_role": "analysis_only",
+        "operator_reasons": [
+          "document_only_operator"
+        ],
+        "target_role": "legal",
+        "target_reasons": []
+      }
     },
     {
       "lane": "claude",
@@ -598,7 +1125,18 @@
       "has_assets_dir": false,
       "last_modified": 1773945759.7110443,
       "description": "Ingest a deep research artifact into a structured digest and optional mailbox handoff packet.",
-      "classification": "candidate"
+      "classification": "candidate",
+      "role_profile": {
+        "adapter_kind": null,
+        "can_target": true,
+        "can_operator": true,
+        "operator_role": "analysis_only",
+        "operator_reasons": [
+          "document_only_operator"
+        ],
+        "target_role": "legal",
+        "target_reasons": []
+      }
     },
     {
       "lane": "claude",
@@ -611,7 +1149,18 @@
       "has_assets_dir": true,
       "last_modified": 1773945759.72055,
       "description": "Deterministic runtime harness for The Iron Maiden voicepack (state model, contract schema, scene renderer).",
-      "classification": "candidate"
+      "classification": "candidate",
+      "role_profile": {
+        "adapter_kind": null,
+        "can_target": true,
+        "can_operator": true,
+        "operator_role": "analysis_only",
+        "operator_reasons": [
+          "scripts_present_no_registered_adapter"
+        ],
+        "target_role": "legal",
+        "target_reasons": []
+      }
     },
     {
       "lane": "claude",
@@ -624,7 +1173,18 @@
       "has_assets_dir": false,
       "last_modified": 1773948573.121173,
       "description": "Validate skill and settings path references across .codex/.claude/.gemini, then fix stale or broken repo-local file and directory links in-place.",
-      "classification": "candidate"
+      "classification": "candidate",
+      "role_profile": {
+        "adapter_kind": "skill_path_guard",
+        "can_target": true,
+        "can_operator": true,
+        "operator_role": "executable",
+        "operator_reasons": [
+          "registered_adapter:skill_path_guard"
+        ],
+        "target_role": "legal",
+        "target_reasons": []
+      }
     },
     {
       "lane": "claude",
@@ -637,7 +1197,18 @@
       "has_assets_dir": true,
       "last_modified": 1773945759.7340906,
       "description": "Manage Codex/Claude/Gemini mailboxes for handoffs, responses, verification, and routing. Use when checking inboxes, verifying handoff coverage across codex/.codex/claude/.claude/claude-codex-gemini, routing tasks, or running mailbox ops (postman/scribe/polisher).",
-      "classification": "candidate"
+      "classification": "candidate",
+      "role_profile": {
+        "adapter_kind": "mailbox_link_canon",
+        "can_target": true,
+        "can_operator": true,
+        "operator_role": "executable",
+        "operator_reasons": [
+          "registered_adapter:mailbox_link_canon"
+        ],
+        "target_role": "legal",
+        "target_reasons": []
+      }
     },
     {
       "lane": "claude",
@@ -650,7 +1221,20 @@
       "has_assets_dir": true,
       "last_modified": 1773945759.7455976,
       "description": "REDIRECT \u2014 Merged into skill-polisher. Use skill-polisher --mode verify for meta-skill validation.",
-      "classification": "redirect_or_stub"
+      "classification": "redirect_or_stub",
+      "role_profile": {
+        "adapter_kind": null,
+        "can_target": true,
+        "can_operator": true,
+        "operator_role": "legacy_only",
+        "operator_reasons": [
+          "operator_redirect_or_stub"
+        ],
+        "target_role": "degraded",
+        "target_reasons": [
+          "target_redirect_or_stub"
+        ]
+      }
     },
     {
       "lane": "claude",
@@ -663,7 +1247,18 @@
       "has_assets_dir": true,
       "last_modified": 1773945759.7621627,
       "description": "Use when the user asks how to build with OpenAI products or APIs and needs up-to-date official documentation with citations (for example: Codex, Responses API, Chat Completions, Apps SDK, Agents SDK, Realtime, model capabilities or limits); prioritize OpenAI docs MCP tools and restrict any fallback browsing to official OpenAI domains.",
-      "classification": "candidate"
+      "classification": "candidate",
+      "role_profile": {
+        "adapter_kind": null,
+        "can_target": true,
+        "can_operator": true,
+        "operator_role": "analysis_only",
+        "operator_reasons": [
+          "document_only_operator"
+        ],
+        "target_role": "legal",
+        "target_reasons": []
+      }
     },
     {
       "lane": "claude",
@@ -676,7 +1271,18 @@
       "has_assets_dir": false,
       "last_modified": 1770778358.424456,
       "description": "Read the latest nightly daemon reports (debt scores + archaeology ore) from dumpster-dive/ and claude/mailbox/. Show status, findings, and launch commands. Does NOT run the daemons \u2014 zero API overhead. Use when asked about overnight findings, nightly status, debt scores, or archaeology digest.",
-      "classification": "candidate"
+      "classification": "candidate",
+      "role_profile": {
+        "adapter_kind": null,
+        "can_target": true,
+        "can_operator": true,
+        "operator_role": "analysis_only",
+        "operator_reasons": [
+          "document_only_operator"
+        ],
+        "target_role": "legal",
+        "target_reasons": []
+      }
     },
     {
       "lane": "claude",
@@ -689,7 +1295,20 @@
       "has_assets_dir": false,
       "last_modified": 1773945759.773198,
       "description": "REDIRECT - All postman commands are now in mailbox-handoff. Use mailbox-handoff for the full mailbox workflow.",
-      "classification": "redirect_or_stub"
+      "classification": "redirect_or_stub",
+      "role_profile": {
+        "adapter_kind": null,
+        "can_target": true,
+        "can_operator": true,
+        "operator_role": "legacy_only",
+        "operator_reasons": [
+          "operator_redirect_or_stub"
+        ],
+        "target_role": "degraded",
+        "target_reasons": [
+          "target_redirect_or_stub"
+        ]
+      }
     },
     {
       "lane": "claude",
@@ -702,7 +1321,18 @@
       "has_assets_dir": true,
       "last_modified": 1773945759.7881722,
       "description": "Normalize Python file headers to the repository canon: #!/usr/bin/env python3 plus UTF-8 coding line. Use when standardizing .py files across Codex or Claude skill/script lanes.",
-      "classification": "candidate"
+      "classification": "candidate",
+      "role_profile": {
+        "adapter_kind": "python_header_report",
+        "can_target": true,
+        "can_operator": true,
+        "operator_role": "executable",
+        "operator_reasons": [
+          "registered_adapter:python_header_report"
+        ],
+        "target_role": "legal",
+        "target_reasons": []
+      }
     },
     {
       "lane": "claude",
@@ -715,7 +1345,18 @@
       "has_assets_dir": false,
       "last_modified": 1773945759.7992842,
       "description": "Audit git status, classify changes as signal/noise/transient, generate gitignore/exclude fixes, identify files needing relocation to canonical paths, produce structured migration plans, and write pre-nuke clarity snapshots. Use when source control is noisy, before bulk commits, when the codebase needs structural housekeeping, or before risky operations to preserve working context.",
-      "classification": "candidate"
+      "classification": "candidate",
+      "role_profile": {
+        "adapter_kind": null,
+        "can_target": true,
+        "can_operator": true,
+        "operator_role": "analysis_only",
+        "operator_reasons": [
+          "document_only_operator"
+        ],
+        "target_role": "legal",
+        "target_reasons": []
+      }
     },
     {
       "lane": "claude",
@@ -728,7 +1369,20 @@
       "has_assets_dir": true,
       "last_modified": 1773945759.8067932,
       "description": "STASHED - Script metadata envelope standardization. This is a protocol rule (SID, shebang, flags), not a skill. Rule belongs in AGENT_COMMON.md.",
-      "classification": "redirect_or_stub"
+      "classification": "redirect_or_stub",
+      "role_profile": {
+        "adapter_kind": null,
+        "can_target": true,
+        "can_operator": true,
+        "operator_role": "legacy_only",
+        "operator_reasons": [
+          "operator_redirect_or_stub"
+        ],
+        "target_role": "degraded",
+        "target_reasons": [
+          "target_redirect_or_stub"
+        ]
+      }
     },
     {
       "lane": "claude",
@@ -741,7 +1395,20 @@
       "has_assets_dir": true,
       "last_modified": 1773945759.842523,
       "description": "REDIRECT - Resume packet generation is now in dumpster-upcycler. Use dumpster-upcycler for all session dump processing.",
-      "classification": "redirect_or_stub"
+      "classification": "redirect_or_stub",
+      "role_profile": {
+        "adapter_kind": null,
+        "can_target": true,
+        "can_operator": true,
+        "operator_role": "legacy_only",
+        "operator_reasons": [
+          "operator_redirect_or_stub"
+        ],
+        "target_role": "degraded",
+        "target_reasons": [
+          "target_redirect_or_stub"
+        ]
+      }
     },
     {
       "lane": "claude",
@@ -754,7 +1421,20 @@
       "has_assets_dir": false,
       "last_modified": 1771871945.987666,
       "description": "STASHED - Sister Ferrum Scoriae Abstraction. Pure aesthetic reference with no CLI or deterministic output. Content moved to docs/SFA_REFERENCE.md if needed.",
-      "classification": "redirect_or_stub"
+      "classification": "redirect_or_stub",
+      "role_profile": {
+        "adapter_kind": null,
+        "can_target": true,
+        "can_operator": true,
+        "operator_role": "legacy_only",
+        "operator_reasons": [
+          "operator_redirect_or_stub"
+        ],
+        "target_role": "degraded",
+        "target_reasons": [
+          "target_redirect_or_stub"
+        ]
+      }
     },
     {
       "lane": "claude",
@@ -767,7 +1447,18 @@
       "has_assets_dir": true,
       "last_modified": 1773945759.8530395,
       "description": "Meta-skill for Claude Code to validate and polish Codex skills under `.codex/skills/` by running the skill-polisher and reviewing structural integrity. Use when auditing Codex skills, enforcing standardization, or running integrity sweeps across the Codex skill set.",
-      "classification": "candidate"
+      "classification": "candidate",
+      "role_profile": {
+        "adapter_kind": "skill_polisher_verify",
+        "can_target": true,
+        "can_operator": true,
+        "operator_role": "executable",
+        "operator_reasons": [
+          "registered_adapter:skill_polisher_verify"
+        ],
+        "target_role": "legal",
+        "target_reasons": []
+      }
     },
     {
       "lane": "claude",
@@ -779,8 +1470,19 @@
       "has_scripts_dir": false,
       "has_assets_dir": true,
       "last_modified": 1773945759.8950996,
-      "description": "Use when the user asks to generate, remix, poll, list, download, or delete Sora videos via OpenAI\\u2019s video API using the bundled CLI (`scripts/sora.py`), including requests like \\u201cgenerate AI video,\\u201d \\u201cSora,\\u201d \\u201cvideo remix,\\u201d \\u201cdownload video/thumbnail/spritesheet,\\u201d and batch video generation; requires `OPENAI_API_KEY` and Sora API access.",
-      "classification": "candidate"
+      "description": "Use when the user asks to generate, remix, poll, list, download, or delete Sora videos via OpenAI\\u2019s video API using the bundled CLI (`<path-to-skill>/scripts/sora.py`), including requests like \\u201cgenerate AI video,\\u201d \\u201cSora,\\u201d \\u201cvideo remix,\\u201d \\u201cdownload video/thumbnail/spritesheet,\\u201d and batch video generation; requires `OPENAI_API_KEY` and Sora API access.",
+      "classification": "candidate",
+      "role_profile": {
+        "adapter_kind": null,
+        "can_target": true,
+        "can_operator": true,
+        "operator_role": "analysis_only",
+        "operator_reasons": [
+          "document_only_operator"
+        ],
+        "target_role": "legal",
+        "target_reasons": []
+      }
     },
     {
       "lane": "claude",
@@ -793,7 +1495,18 @@
       "has_assets_dir": false,
       "last_modified": 1770766763.9854438,
       "description": "Automate VS Code theme design, icon font generation, and validation for the chthonic-archive extension.",
-      "classification": "candidate"
+      "classification": "candidate",
+      "role_profile": {
+        "adapter_kind": null,
+        "can_target": true,
+        "can_operator": true,
+        "operator_role": "analysis_only",
+        "operator_reasons": [
+          "document_only_operator"
+        ],
+        "target_role": "legal",
+        "target_reasons": []
+      }
     },
     {
       "lane": "claude",
@@ -806,7 +1519,18 @@
       "has_assets_dir": true,
       "last_modified": 1773945759.914654,
       "description": "Diagnose and remediate common Bun + uv drift in this repo (audit vulnerabilities, lockfile inconsistencies, uv sync health) with an opt-in apply mode that only performs safe fixes.",
-      "classification": "candidate"
+      "classification": "candidate",
+      "role_profile": {
+        "adapter_kind": null,
+        "can_target": true,
+        "can_operator": true,
+        "operator_role": "analysis_only",
+        "operator_reasons": [
+          "scripts_present_no_registered_adapter"
+        ],
+        "target_role": "legal",
+        "target_reasons": []
+      }
     },
     {
       "lane": "claude",
@@ -819,7 +1543,18 @@
       "has_assets_dir": true,
       "last_modified": 1773945759.9266636,
       "description": "Proxy runner that chains the repo's non-official maintenance skills/tools in a deterministic order (skill freshness gate -> toolchain doctor -> skill polisher -> mailbox polish -> scribe -> manifest checks).",
-      "classification": "candidate"
+      "classification": "candidate",
+      "role_profile": {
+        "adapter_kind": "lane_orchestrator",
+        "can_target": true,
+        "can_operator": true,
+        "operator_role": "executable",
+        "operator_reasons": [
+          "registered_adapter:lane_orchestrator"
+        ],
+        "target_role": "legal",
+        "target_reasons": []
+      }
     },
     {
       "lane": "gemini",
@@ -832,7 +1567,20 @@
       "has_assets_dir": false,
       "last_modified": 1773945759.4316018,
       "description": null,
-      "classification": "missing"
+      "classification": "missing",
+      "role_profile": {
+        "adapter_kind": null,
+        "can_target": false,
+        "can_operator": false,
+        "operator_role": "blocked",
+        "operator_reasons": [
+          "missing_skill_surface"
+        ],
+        "target_role": "blocked",
+        "target_reasons": [
+          "missing_skill_surface"
+        ]
+      }
     },
     {
       "lane": "gemini",
@@ -845,7 +1593,18 @@
       "has_assets_dir": true,
       "last_modified": 1773945759.4447718,
       "description": "Local API/token manager for this repo (no secrets in git). Diagnoses auth drift and loads tokens into the current shell from the user API pool.",
-      "classification": "candidate"
+      "classification": "candidate",
+      "role_profile": {
+        "adapter_kind": null,
+        "can_target": true,
+        "can_operator": true,
+        "operator_role": "analysis_only",
+        "operator_reasons": [
+          "scripts_present_no_registered_adapter"
+        ],
+        "target_role": "legal",
+        "target_reasons": []
+      }
     },
     {
       "lane": "gemini",
@@ -858,7 +1617,18 @@
       "has_assets_dir": false,
       "last_modified": 1773944886.5782413,
       "description": "Preserve and restructure stale or messy artifacts instead of deleting them blindly.",
-      "classification": "candidate"
+      "classification": "candidate",
+      "role_profile": {
+        "adapter_kind": null,
+        "can_target": true,
+        "can_operator": true,
+        "operator_role": "analysis_only",
+        "operator_reasons": [
+          "document_only_operator"
+        ],
+        "target_role": "legal",
+        "target_reasons": []
+      }
     },
     {
       "lane": "gemini",
@@ -871,7 +1641,20 @@
       "has_assets_dir": true,
       "last_modified": 1773945759.5359313,
       "description": "REDIRECT \u2014 Merged into skill-polisher. Use skill-polisher for Claude skill audits and cross-flavor checks.",
-      "classification": "redirect_or_stub"
+      "classification": "redirect_or_stub",
+      "role_profile": {
+        "adapter_kind": null,
+        "can_target": true,
+        "can_operator": true,
+        "operator_role": "legacy_only",
+        "operator_reasons": [
+          "operator_redirect_or_stub"
+        ],
+        "target_role": "degraded",
+        "target_reasons": [
+          "target_redirect_or_stub"
+        ]
+      }
     },
     {
       "lane": "gemini",
@@ -884,7 +1667,18 @@
       "has_assets_dir": true,
       "last_modified": 1773945759.549952,
       "description": "Forensic prerequisite gate for Codekiller (CDE-KLLR) recovery. Audits governance arithmetic, evidence integrity, frontmatter reference drift, tribunal chain presence, and telemetry anomalies before conceptual review.",
-      "classification": "candidate"
+      "classification": "candidate",
+      "role_profile": {
+        "adapter_kind": null,
+        "can_target": true,
+        "can_operator": true,
+        "operator_role": "analysis_only",
+        "operator_reasons": [
+          "scripts_present_no_registered_adapter"
+        ],
+        "target_role": "legal",
+        "target_reasons": []
+      }
     },
     {
       "lane": "gemini",
@@ -897,7 +1691,20 @@
       "has_assets_dir": true,
       "last_modified": 1773945759.565979,
       "description": "REDIRECT \u2014 Merged into skill-polisher. Use skill-polisher for Codex skill audits.",
-      "classification": "redirect_or_stub"
+      "classification": "redirect_or_stub",
+      "role_profile": {
+        "adapter_kind": null,
+        "can_target": true,
+        "can_operator": true,
+        "operator_role": "legacy_only",
+        "operator_reasons": [
+          "operator_redirect_or_stub"
+        ],
+        "target_role": "degraded",
+        "target_reasons": [
+          "target_redirect_or_stub"
+        ]
+      }
     },
     {
       "lane": "gemini",
@@ -910,7 +1717,18 @@
       "has_assets_dir": true,
       "last_modified": 1773945759.5719783,
       "description": "Perform high-rigor structural and aesthetic audits with findings-first output, actionable remediation, and governance-aware preconditions.",
-      "classification": "candidate"
+      "classification": "candidate",
+      "role_profile": {
+        "adapter_kind": null,
+        "can_target": true,
+        "can_operator": true,
+        "operator_role": "analysis_only",
+        "operator_reasons": [
+          "document_only_operator"
+        ],
+        "target_role": "legal",
+        "target_reasons": []
+      }
     },
     {
       "lane": "gemini",
@@ -923,7 +1741,18 @@
       "has_assets_dir": false,
       "last_modified": 1773945759.5963929,
       "description": "The White-dressed Bride \u2014 kleptomaniac necromancy pipeline. The embalm-before-edit lane is currently DO-NOT-USE-UNFINISHED-DEV--WIP.",
-      "classification": "candidate"
+      "classification": "candidate",
+      "role_profile": {
+        "adapter_kind": null,
+        "can_target": true,
+        "can_operator": true,
+        "operator_role": "analysis_only",
+        "operator_reasons": [
+          "scripts_present_no_registered_adapter"
+        ],
+        "target_role": "legal",
+        "target_reasons": []
+      }
     },
     {
       "lane": "gemini",
@@ -936,7 +1765,18 @@
       "has_assets_dir": false,
       "last_modified": 1773944886.6781585,
       "description": "Break ambiguity fast: infer the obvious path, execute it, and avoid menu-mode drift.",
-      "classification": "candidate"
+      "classification": "candidate",
+      "role_profile": {
+        "adapter_kind": null,
+        "can_target": true,
+        "can_operator": true,
+        "operator_role": "analysis_only",
+        "operator_reasons": [
+          "document_only_operator"
+        ],
+        "target_role": "legal",
+        "target_reasons": []
+      }
     },
     {
       "lane": "gemini",
@@ -949,7 +1789,18 @@
       "has_assets_dir": true,
       "last_modified": 1773945759.6416664,
       "description": "Convert raw session dumps into compact structured logs, readable markdown, and warm-start resume packets (no deletion, optional archiving). Absorbs session-resumer.",
-      "classification": "candidate"
+      "classification": "candidate",
+      "role_profile": {
+        "adapter_kind": null,
+        "can_target": true,
+        "can_operator": true,
+        "operator_role": "analysis_only",
+        "operator_reasons": [
+          "scripts_present_no_registered_adapter"
+        ],
+        "target_role": "legal",
+        "target_reasons": []
+      }
     },
     {
       "lane": "gemini",
@@ -962,7 +1813,20 @@
       "has_assets_dir": true,
       "last_modified": 1773945759.6631103,
       "description": "REDIRECT - PR comment handling is now in gh-fix-ci. Use gh-fix-ci for both CI failures and review comment triage.",
-      "classification": "redirect_or_stub"
+      "classification": "redirect_or_stub",
+      "role_profile": {
+        "adapter_kind": null,
+        "can_target": true,
+        "can_operator": true,
+        "operator_role": "legacy_only",
+        "operator_reasons": [
+          "operator_redirect_or_stub"
+        ],
+        "target_role": "degraded",
+        "target_reasons": [
+          "target_redirect_or_stub"
+        ]
+      }
     },
     {
       "lane": "gemini",
@@ -975,7 +1839,18 @@
       "has_assets_dir": true,
       "last_modified": 1773945759.6736724,
       "description": "Debug and fix failing GitHub PR checks via GitHub Actions. Inspect checks and logs with `gh`, summarize failure context, draft a fix plan, implement after explicit approval. External providers (e.g. Buildkite) are out of scope\u2014report the details URL only.",
-      "classification": "candidate"
+      "classification": "candidate",
+      "role_profile": {
+        "adapter_kind": null,
+        "can_target": true,
+        "can_operator": true,
+        "operator_role": "analysis_only",
+        "operator_reasons": [
+          "scripts_present_no_registered_adapter"
+        ],
+        "target_role": "legal",
+        "target_reasons": []
+      }
     },
     {
       "lane": "gemini",
@@ -988,7 +1863,18 @@
       "has_assets_dir": true,
       "last_modified": 1773945759.6860673,
       "description": "Autonomous GitHub MCP usage for repo/issue/PR data and synthesis. Use when the user asks for repo facts, recent commits, issues/PRs, contributors, or creative priming. Execute without menus and write results to the specified file.",
-      "classification": "candidate"
+      "classification": "candidate",
+      "role_profile": {
+        "adapter_kind": null,
+        "can_target": true,
+        "can_operator": true,
+        "operator_role": "analysis_only",
+        "operator_reasons": [
+          "document_only_operator"
+        ],
+        "target_role": "legal",
+        "target_reasons": []
+      }
     },
     {
       "lane": "gemini",
@@ -1001,7 +1887,18 @@
       "has_assets_dir": true,
       "last_modified": 1773945759.695072,
       "description": "Use when the user asks to generate or edit images via the OpenAI Image API (for example: generate image, edit/inpaint/mask, background removal or replacement, transparent background, product shots, concept art, covers, or batch variants); run the bundled CLI (`scripts/image_gen.py`) and require `OPENAI_API_KEY` for live calls.",
-      "classification": "candidate"
+      "classification": "candidate",
+      "role_profile": {
+        "adapter_kind": null,
+        "can_target": true,
+        "can_operator": true,
+        "operator_role": "analysis_only",
+        "operator_reasons": [
+          "scripts_present_no_registered_adapter"
+        ],
+        "target_role": "legal",
+        "target_reasons": []
+      }
     },
     {
       "lane": "gemini",
@@ -1014,7 +1911,18 @@
       "has_assets_dir": true,
       "last_modified": 1773945759.71455,
       "description": "Ingest Gemini/Deep Research artifacts into structured digests and optional cross-mailbox handoff notes.",
-      "classification": "candidate"
+      "classification": "candidate",
+      "role_profile": {
+        "adapter_kind": null,
+        "can_target": true,
+        "can_operator": true,
+        "operator_role": "analysis_only",
+        "operator_reasons": [
+          "document_only_operator"
+        ],
+        "target_role": "legal",
+        "target_reasons": []
+      }
     },
     {
       "lane": "gemini",
@@ -1027,7 +1935,18 @@
       "has_assets_dir": true,
       "last_modified": 1773945759.723057,
       "description": "Deterministic runtime harness for The Iron Maiden voicepack (state model, contract schema, scene renderer).",
-      "classification": "candidate"
+      "classification": "candidate",
+      "role_profile": {
+        "adapter_kind": null,
+        "can_target": true,
+        "can_operator": true,
+        "operator_role": "analysis_only",
+        "operator_reasons": [
+          "scripts_present_no_registered_adapter"
+        ],
+        "target_role": "legal",
+        "target_reasons": []
+      }
     },
     {
       "lane": "gemini",
@@ -1040,7 +1959,18 @@
       "has_assets_dir": false,
       "last_modified": 1773944886.908235,
       "description": "Continue triad work from the latest mailbox handoff and respond with one concise completion note.",
-      "classification": "candidate"
+      "classification": "candidate",
+      "role_profile": {
+        "adapter_kind": "mailbox_link_canon",
+        "can_target": true,
+        "can_operator": true,
+        "operator_role": "executable",
+        "operator_reasons": [
+          "registered_adapter:mailbox_link_canon"
+        ],
+        "target_role": "legal",
+        "target_reasons": []
+      }
     },
     {
       "lane": "gemini",
@@ -1053,7 +1983,20 @@
       "has_assets_dir": true,
       "last_modified": 1773945759.7817025,
       "description": "REDIRECT \u2014 Merged into skill-polisher. Use skill-polisher --mode verify for meta-skill validation.",
-      "classification": "redirect_or_stub"
+      "classification": "redirect_or_stub",
+      "role_profile": {
+        "adapter_kind": null,
+        "can_target": true,
+        "can_operator": true,
+        "operator_role": "legacy_only",
+        "operator_reasons": [
+          "operator_redirect_or_stub"
+        ],
+        "target_role": "degraded",
+        "target_reasons": [
+          "target_redirect_or_stub"
+        ]
+      }
     },
     {
       "lane": "gemini",
@@ -1066,7 +2009,18 @@
       "has_assets_dir": true,
       "last_modified": 1773945759.787174,
       "description": "Use when the user asks how to build with OpenAI products or APIs and needs up-to-date official documentation with citations (for example: Codex, Responses API, Chat Completions, Apps SDK, Agents SDK, Realtime, model capabilities or limits); prioritize OpenAI docs MCP tools and restrict any fallback browsing to official OpenAI domains.",
-      "classification": "candidate"
+      "classification": "candidate",
+      "role_profile": {
+        "adapter_kind": null,
+        "can_target": true,
+        "can_operator": true,
+        "operator_role": "analysis_only",
+        "operator_reasons": [
+          "document_only_operator"
+        ],
+        "target_role": "legal",
+        "target_reasons": []
+      }
     },
     {
       "lane": "gemini",
@@ -1079,7 +2033,20 @@
       "has_assets_dir": true,
       "last_modified": 1773945759.800285,
       "description": "REDIRECT - All postman commands are now in mailbox-handoff. Use mailbox-handoff for the full mailbox workflow.",
-      "classification": "redirect_or_stub"
+      "classification": "redirect_or_stub",
+      "role_profile": {
+        "adapter_kind": null,
+        "can_target": true,
+        "can_operator": true,
+        "operator_role": "legacy_only",
+        "operator_reasons": [
+          "operator_redirect_or_stub"
+        ],
+        "target_role": "degraded",
+        "target_reasons": [
+          "target_redirect_or_stub"
+        ]
+      }
     },
     {
       "lane": "gemini",
@@ -1092,7 +2059,18 @@
       "has_assets_dir": true,
       "last_modified": 1773945759.8057933,
       "description": "Normalize Python file headers to the repository canon: #!/usr/bin/env python3 plus UTF-8 coding line. Use when standardizing .py files across Codex or Claude skill/script lanes.",
-      "classification": "candidate"
+      "classification": "candidate",
+      "role_profile": {
+        "adapter_kind": "python_header_report",
+        "can_target": true,
+        "can_operator": true,
+        "operator_role": "executable",
+        "operator_reasons": [
+          "registered_adapter:python_header_report"
+        ],
+        "target_role": "legal",
+        "target_reasons": []
+      }
     },
     {
       "lane": "gemini",
@@ -1105,7 +2083,18 @@
       "has_assets_dir": false,
       "last_modified": 1773944887.0024495,
       "description": "Audit working tree state, classify edits, and move forward without clobbering user work.",
-      "classification": "candidate"
+      "classification": "candidate",
+      "role_profile": {
+        "adapter_kind": null,
+        "can_target": true,
+        "can_operator": true,
+        "operator_role": "analysis_only",
+        "operator_reasons": [
+          "document_only_operator"
+        ],
+        "target_role": "legal",
+        "target_reasons": []
+      }
     },
     {
       "lane": "gemini",
@@ -1118,7 +2107,20 @@
       "has_assets_dir": true,
       "last_modified": 1773945759.8345156,
       "description": "STASHED - Script metadata envelope standardization. This is a protocol rule (SID, shebang, flags), not a skill. Rule belongs in AGENT_COMMON.md.",
-      "classification": "redirect_or_stub"
+      "classification": "redirect_or_stub",
+      "role_profile": {
+        "adapter_kind": null,
+        "can_target": true,
+        "can_operator": true,
+        "operator_role": "legacy_only",
+        "operator_reasons": [
+          "operator_redirect_or_stub"
+        ],
+        "target_role": "degraded",
+        "target_reasons": [
+          "target_redirect_or_stub"
+        ]
+      }
     },
     {
       "lane": "gemini",
@@ -1131,7 +2133,20 @@
       "has_assets_dir": true,
       "last_modified": 1773945759.85404,
       "description": "REDIRECT - Resume packet generation is now in dumpster-upcycler. Use dumpster-upcycler for all session dump processing.",
-      "classification": "redirect_or_stub"
+      "classification": "redirect_or_stub",
+      "role_profile": {
+        "adapter_kind": null,
+        "can_target": true,
+        "can_operator": true,
+        "operator_role": "legacy_only",
+        "operator_reasons": [
+          "operator_redirect_or_stub"
+        ],
+        "target_role": "degraded",
+        "target_reasons": [
+          "target_redirect_or_stub"
+        ]
+      }
     },
     {
       "lane": "gemini",
@@ -1144,7 +2159,18 @@
       "has_assets_dir": true,
       "last_modified": 1773945759.85904,
       "description": "Meta-skill to audit, validate, and fix other skills. Structural integrity checks, cross-flavor audits, WPTG alignment, fixture eval.",
-      "classification": "candidate"
+      "classification": "candidate",
+      "role_profile": {
+        "adapter_kind": "skill_polisher_verify",
+        "can_target": true,
+        "can_operator": true,
+        "operator_role": "executable",
+        "operator_reasons": [
+          "registered_adapter:skill_polisher_verify"
+        ],
+        "target_role": "legal",
+        "target_reasons": []
+      }
     },
     {
       "lane": "gemini",
@@ -1157,7 +2183,18 @@
       "has_assets_dir": true,
       "last_modified": 1773945759.9046474,
       "description": "Use when the user asks to generate, remix, poll, list, download, or delete Sora videos via OpenAI\\u2019s video API using the bundled CLI (`scripts/sora.py`), including requests like \\u201cgenerate AI video,\\u201d \\u201cSora,\\u201d \\u201cvideo remix,\\u201d \\u201cdownload video/thumbnail/spritesheet,\\u201d and batch video generation; requires `OPENAI_API_KEY` and Sora API access.",
-      "classification": "candidate"
+      "classification": "candidate",
+      "role_profile": {
+        "adapter_kind": null,
+        "can_target": true,
+        "can_operator": true,
+        "operator_role": "analysis_only",
+        "operator_reasons": [
+          "scripts_present_no_registered_adapter"
+        ],
+        "target_role": "legal",
+        "target_reasons": []
+      }
     },
     {
       "lane": "gemini",
@@ -1170,7 +2207,18 @@
       "has_assets_dir": true,
       "last_modified": 1773945759.9256616,
       "description": "Diagnose and remediate common Bun + uv drift in this repo (audit vulnerabilities, lockfile inconsistencies, uv sync health) with an opt-in apply mode that only performs safe fixes.",
-      "classification": "candidate"
+      "classification": "candidate",
+      "role_profile": {
+        "adapter_kind": null,
+        "can_target": true,
+        "can_operator": true,
+        "operator_role": "analysis_only",
+        "operator_reasons": [
+          "scripts_present_no_registered_adapter"
+        ],
+        "target_role": "legal",
+        "target_reasons": []
+      }
     },
     {
       "lane": "gemini",
@@ -1183,7 +2231,18 @@
       "has_assets_dir": true,
       "last_modified": 1773945759.9386754,
       "description": "Proxy runner that chains the repo's non-official maintenance skills/tools in a deterministic order (skill freshness gate -> toolchain doctor -> skill polisher -> mailbox polish -> scribe -> manifest checks).",
-      "classification": "candidate"
+      "classification": "candidate",
+      "role_profile": {
+        "adapter_kind": "lane_orchestrator",
+        "can_target": true,
+        "can_operator": true,
+        "operator_role": "executable",
+        "operator_reasons": [
+          "registered_adapter:lane_orchestrator"
+        ],
+        "target_role": "legal",
+        "target_reasons": []
+      }
     },
     {
       "lane": "gemini",
@@ -1196,7 +2255,18 @@
       "has_assets_dir": false,
       "last_modified": 1773698714.3857386,
       "description": "Gemini\u2019s local triad role: execute batch work, maintain momentum, and stay aligned with Codex and Claude.",
-      "classification": "candidate"
+      "classification": "candidate",
+      "role_profile": {
+        "adapter_kind": null,
+        "can_target": true,
+        "can_operator": true,
+        "operator_role": "analysis_only",
+        "operator_reasons": [
+          "document_only_operator"
+        ],
+        "target_role": "legal",
+        "target_reasons": []
+      }
     }
   ]
 }

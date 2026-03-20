@@ -9748,6 +9748,5527 @@
           "openai-docs"
         ]
       ]
+    },
+    {
+      "recorded_at": "2026-03-20T18:51:07.003120+00:00",
+      "seed_text": "trainstop-default-seed",
+      "seed_value": 12077687225398345945,
+      "chain_length": 4,
+      "summary": {
+        "diversity_score": 0.9091,
+        "cross_lane_coverage": 0.5,
+        "operator_spread": 0.75,
+        "target_spread": 1.0,
+        "executor_flavors_seen": [
+          "claude",
+          "codex",
+          "gemini"
+        ],
+        "operator_skills_seen": [
+          "link-path-guard",
+          "skill-polisher",
+          "trainstop-orchestrator"
+        ],
+        "distinct_targets_seen": 4,
+        "distinct_action_keys_seen": 4,
+        "action_scopes_seen": [
+          "lane",
+          "skill"
+        ]
+      },
+      "sampled_steps": [
+        {
+          "step": 1,
+          "cell": {
+            "executor_flavor": "claude",
+            "operator_flavor": "claude",
+            "operator_skill": "skill-polisher",
+            "operator_root": ".claude/skills",
+            "source_root": ".claude/skills",
+            "target_root": ".gemini/extensions/chthonic-archive-sync/skills",
+            "target_flavor": "gemini",
+            "target_skill": "iron-maiden-runtime",
+            "target_skill_lane": "gemini",
+            "target_flavor_mode": "claude",
+            "action_scope": "skill",
+            "action_key": [
+              "skill-polisher",
+              "skill",
+              "verify",
+              "claude",
+              ".gemini/extensions/chthonic-archive-sync/skills",
+              "iron-maiden-runtime"
+            ],
+            "adapter_kind": "skill_polisher_verify",
+            "legality_status": "degraded",
+            "legality_reasons": [
+              "interpretation_flavor_mismatch",
+              "registered_adapter:skill_polisher_verify"
+            ]
+          },
+          "action_key": [
+            "skill-polisher",
+            "skill",
+            "verify",
+            "claude",
+            ".gemini/extensions/chthonic-archive-sync/skills",
+            "iron-maiden-runtime"
+          ],
+          "action_scope": "skill",
+          "equivalent_cell_count": 9,
+          "available_variant_count": 9,
+          "equivalent_target_sample": [
+            ".gemini/extensions/chthonic-archive-sync/skills::iron-maiden-runtime"
+          ],
+          "weight": 2.503776,
+          "reasons": [
+            "mutating_operator:+0.4x",
+            "cross_lane:+0.5x",
+            "cross_flavor_interp:+0.25x",
+            "adaptive_weight:1.25x",
+            "operator_weight:0.8375x",
+            "initial_step",
+            "action_group_size:9"
+          ],
+          "transition": {
+            "allowed": true,
+            "previous_target_lane": null,
+            "previous_operator": null,
+            "transition_weight_multiplier": 1.0,
+            "transition_weight_reasons": [
+              "initial_step"
+            ],
+            "filtered_out_rules": [
+              "history_pruned_action:17"
+            ]
+          }
+        },
+        {
+          "step": 2,
+          "cell": {
+            "executor_flavor": "gemini",
+            "operator_flavor": "claude",
+            "operator_skill": "trainstop-orchestrator",
+            "operator_root": ".claude/skills",
+            "source_root": ".claude/skills",
+            "target_root": ".codex/skills",
+            "target_flavor": "codex",
+            "target_skill": "codekiller-remediation-gate",
+            "target_skill_lane": "codex",
+            "target_flavor_mode": "claude",
+            "action_scope": "lane",
+            "action_key": [
+              "trainstop-orchestrator",
+              "lane",
+              "codex",
+              "maintenance"
+            ],
+            "adapter_kind": "lane_orchestrator",
+            "legality_status": "degraded",
+            "legality_reasons": [
+              "interpretation_flavor_mismatch",
+              "lane_scoped_action",
+              "registered_adapter:lane_orchestrator"
+            ]
+          },
+          "action_key": [
+            "trainstop-orchestrator",
+            "lane",
+            "codex",
+            "maintenance"
+          ],
+          "action_scope": "lane",
+          "equivalent_cell_count": 756,
+          "available_variant_count": 756,
+          "equivalent_target_sample": [
+            ".codex/skills::api-manager",
+            ".codex/skills::artifact-upcycle",
+            ".codex/skills::claude-skill-bridge",
+            ".codex/skills::codekiller-remediation-gate",
+            ".codex/skills::codex-skill-bridge",
+            ".codex/skills::conceptualize"
+          ],
+          "weight": 2.455225,
+          "reasons": [
+            "meta_operator:+0.2x",
+            "cross_lane:+0.5x",
+            "cross_flavor_interp:+0.25x",
+            "meta_heavy_penalty:-0.15x",
+            "adaptive_weight:1.4x",
+            "operator_weight:1.0x",
+            "handoff_continuity:+0.8x",
+            "action_group_size:756"
+          ],
+          "transition": {
+            "allowed": true,
+            "previous_target_lane": "gemini",
+            "previous_operator": "skill-polisher",
+            "transition_weight_multiplier": 1.8,
+            "transition_weight_reasons": [
+              "handoff_continuity:+0.8x"
+            ],
+            "filtered_out_rules": [
+              "duplicate_cell_blocked:9",
+              "history_pruned_action:17",
+              "repeated_target_skill_blocked:36",
+              "same_operator_consecutive_blocked:2304"
+            ]
+          }
+        },
+        {
+          "step": 3,
+          "cell": {
+            "executor_flavor": "codex",
+            "operator_flavor": "claude",
+            "operator_skill": "skill-polisher",
+            "operator_root": ".claude/skills",
+            "source_root": ".claude/skills",
+            "target_root": ".codex/skills",
+            "target_flavor": "codex",
+            "target_skill": "gh-fix-ci",
+            "target_skill_lane": "codex",
+            "target_flavor_mode": "gemini",
+            "action_scope": "skill",
+            "action_key": [
+              "skill-polisher",
+              "skill",
+              "verify",
+              "gemini",
+              ".codex/skills",
+              "gh-fix-ci"
+            ],
+            "adapter_kind": "skill_polisher_verify",
+            "legality_status": "degraded",
+            "legality_reasons": [
+              "interpretation_flavor_mismatch",
+              "registered_adapter:skill_polisher_verify"
+            ]
+          },
+          "action_key": [
+            "skill-polisher",
+            "skill",
+            "verify",
+            "gemini",
+            ".codex/skills",
+            "gh-fix-ci"
+          ],
+          "action_scope": "skill",
+          "equivalent_cell_count": 9,
+          "available_variant_count": 9,
+          "equivalent_target_sample": [
+            ".codex/skills::gh-fix-ci"
+          ],
+          "weight": 3.406112,
+          "reasons": [
+            "mutating_operator:+0.4x",
+            "self_lane:+0.1x",
+            "cross_flavor_interp:+0.25x",
+            "adaptive_weight:1.4x",
+            "operator_weight:0.8375x",
+            "handoff_continuity:+0.8x",
+            "action_group_size:9"
+          ],
+          "transition": {
+            "allowed": true,
+            "previous_target_lane": "codex",
+            "previous_operator": "trainstop-orchestrator",
+            "transition_weight_multiplier": 1.8,
+            "transition_weight_reasons": [
+              "handoff_continuity:+0.8x"
+            ],
+            "filtered_out_rules": [
+              "duplicate_cell_blocked:765",
+              "history_pruned_action:17",
+              "repeated_target_skill_blocked:36",
+              "same_operator_consecutive_blocked:1647"
+            ]
+          }
+        },
+        {
+          "step": 4,
+          "cell": {
+            "executor_flavor": "codex",
+            "operator_flavor": "claude",
+            "operator_skill": "link-path-guard",
+            "operator_root": ".claude/skills",
+            "source_root": ".claude/skills",
+            "target_root": ".codex/skills",
+            "target_flavor": "codex",
+            "target_skill": "api-manager",
+            "target_skill_lane": "codex",
+            "target_flavor_mode": "claude",
+            "action_scope": "skill",
+            "action_key": [
+              "link-path-guard",
+              "skill",
+              ".codex/skills",
+              "api-manager"
+            ],
+            "adapter_kind": "skill_path_guard",
+            "legality_status": "legal",
+            "legality_reasons": [
+              "registered_adapter:skill_path_guard"
+            ]
+          },
+          "action_key": [
+            "link-path-guard",
+            "skill",
+            ".codex/skills",
+            "api-manager"
+          ],
+          "action_scope": "skill",
+          "equivalent_cell_count": 18,
+          "available_variant_count": 18,
+          "equivalent_target_sample": [
+            ".codex/skills::api-manager"
+          ],
+          "weight": 2.668969,
+          "reasons": [
+            "mutating_operator:+0.4x",
+            "self_lane:+0.1x",
+            "cross_flavor_interp:+0.25x",
+            "adaptive_weight:1.25x",
+            "operator_weight:0.7875x",
+            "handoff_continuity:+0.8x",
+            "action_group_size:18"
+          ],
+          "transition": {
+            "allowed": true,
+            "previous_target_lane": "codex",
+            "previous_operator": "skill-polisher",
+            "transition_weight_multiplier": 1.8,
+            "transition_weight_reasons": [
+              "handoff_continuity:+0.8x"
+            ],
+            "filtered_out_rules": [
+              "duplicate_cell_blocked:774",
+              "history_pruned_action:17",
+              "repeated_target_skill_blocked:72",
+              "same_operator_consecutive_blocked:2277"
+            ]
+          }
+        }
+      ],
+      "planned_steps": [
+        {
+          "step": 1,
+          "cell": {
+            "executor_flavor": "claude",
+            "operator_flavor": "claude",
+            "operator_skill": "skill-polisher",
+            "operator_root": ".claude/skills",
+            "source_root": ".claude/skills",
+            "target_root": ".gemini/extensions/chthonic-archive-sync/skills",
+            "target_flavor": "gemini",
+            "target_skill": "iron-maiden-runtime",
+            "target_skill_lane": "gemini",
+            "target_flavor_mode": "claude",
+            "action_scope": "skill",
+            "action_key": [
+              "skill-polisher",
+              "skill",
+              "verify",
+              "claude",
+              ".gemini/extensions/chthonic-archive-sync/skills",
+              "iron-maiden-runtime"
+            ],
+            "adapter_kind": "skill_polisher_verify",
+            "legality_status": "degraded",
+            "legality_reasons": [
+              "interpretation_flavor_mismatch",
+              "registered_adapter:skill_polisher_verify"
+            ]
+          },
+          "action_key": [
+            "skill-polisher",
+            "skill",
+            "verify",
+            "claude",
+            ".gemini/extensions/chthonic-archive-sync/skills",
+            "iron-maiden-runtime"
+          ],
+          "action_scope": "skill",
+          "equivalent_cell_count": 9,
+          "available_variant_count": 9,
+          "equivalent_target_sample": [
+            ".gemini/extensions/chthonic-archive-sync/skills::iron-maiden-runtime"
+          ],
+          "command": [
+            "uv",
+            "run",
+            ".codex/skills/skill-polisher/scripts/polish_skill.py",
+            ".gemini\\extensions\\chthonic-archive-sync\\skills\\iron-maiden-runtime",
+            "--mode",
+            "verify",
+            "--target-flavor",
+            "claude",
+            "--no-require-assets"
+          ],
+          "expected_artifacts": [],
+          "expected_artifact_class": "verification_report",
+          "operator_mode": "mutating",
+          "operator_capabilities": {
+            "mode": "mutating",
+            "read": true,
+            "mutate": true,
+            "cross_lane_mutate": true,
+            "self_target": true,
+            "recurse": false,
+            "requires_artifacts": true,
+            "requires_review": true
+          },
+          "safety_class": "cross_lane_mutation",
+          "weight": 2.503776,
+          "weight_reasons": [
+            "mutating_operator:+0.4x",
+            "cross_lane:+0.5x",
+            "cross_flavor_interp:+0.25x",
+            "adaptive_weight:1.25x",
+            "operator_weight:0.8375x",
+            "initial_step",
+            "action_group_size:9"
+          ],
+          "transition": {
+            "allowed": true,
+            "previous_target_lane": null,
+            "previous_operator": null,
+            "transition_weight_multiplier": 1.0,
+            "transition_weight_reasons": [
+              "initial_step"
+            ],
+            "filtered_out_rules": [
+              "history_pruned_action:17"
+            ]
+          },
+          "stop_condition": "stop_on_nonzero_or_missing_artifact"
+        },
+        {
+          "step": 2,
+          "cell": {
+            "executor_flavor": "gemini",
+            "operator_flavor": "claude",
+            "operator_skill": "trainstop-orchestrator",
+            "operator_root": ".claude/skills",
+            "source_root": ".claude/skills",
+            "target_root": ".codex/skills",
+            "target_flavor": "codex",
+            "target_skill": "codekiller-remediation-gate",
+            "target_skill_lane": "codex",
+            "target_flavor_mode": "claude",
+            "action_scope": "lane",
+            "action_key": [
+              "trainstop-orchestrator",
+              "lane",
+              "codex",
+              "maintenance"
+            ],
+            "adapter_kind": "lane_orchestrator",
+            "legality_status": "degraded",
+            "legality_reasons": [
+              "interpretation_flavor_mismatch",
+              "lane_scoped_action",
+              "registered_adapter:lane_orchestrator"
+            ]
+          },
+          "action_key": [
+            "trainstop-orchestrator",
+            "lane",
+            "codex",
+            "maintenance"
+          ],
+          "action_scope": "lane",
+          "equivalent_cell_count": 756,
+          "available_variant_count": 756,
+          "equivalent_target_sample": [
+            ".codex/skills::api-manager",
+            ".codex/skills::artifact-upcycle",
+            ".codex/skills::claude-skill-bridge",
+            ".codex/skills::codekiller-remediation-gate",
+            ".codex/skills::codex-skill-bridge",
+            ".codex/skills::conceptualize"
+          ],
+          "command": [
+            "uv",
+            "run",
+            ".codex/skills/trainstop-orchestrator/scripts/orchestrate.py",
+            "--target",
+            "codex",
+            "--lane",
+            "maintenance"
+          ],
+          "expected_artifacts": [
+            "codex/mailbox/TRAINSTOP_ORCHESTRATOR_LATEST.json"
+          ],
+          "expected_artifact_class": "orchestration_report",
+          "operator_mode": "meta",
+          "operator_capabilities": {
+            "mode": "meta",
+            "read": true,
+            "mutate": false,
+            "cross_lane_mutate": false,
+            "self_target": true,
+            "recurse": true,
+            "requires_artifacts": true,
+            "requires_review": true
+          },
+          "safety_class": "meta_orchestration",
+          "weight": 2.455225,
+          "weight_reasons": [
+            "meta_operator:+0.2x",
+            "cross_lane:+0.5x",
+            "cross_flavor_interp:+0.25x",
+            "meta_heavy_penalty:-0.15x",
+            "adaptive_weight:1.4x",
+            "operator_weight:1.0x",
+            "handoff_continuity:+0.8x",
+            "action_group_size:756"
+          ],
+          "transition": {
+            "allowed": true,
+            "previous_target_lane": "gemini",
+            "previous_operator": "skill-polisher",
+            "transition_weight_multiplier": 1.8,
+            "transition_weight_reasons": [
+              "handoff_continuity:+0.8x"
+            ],
+            "filtered_out_rules": [
+              "duplicate_cell_blocked:9",
+              "history_pruned_action:17",
+              "repeated_target_skill_blocked:36",
+              "same_operator_consecutive_blocked:2304"
+            ]
+          },
+          "stop_condition": "stop_on_nonzero_or_missing_artifact"
+        },
+        {
+          "step": 3,
+          "cell": {
+            "executor_flavor": "codex",
+            "operator_flavor": "claude",
+            "operator_skill": "skill-polisher",
+            "operator_root": ".claude/skills",
+            "source_root": ".claude/skills",
+            "target_root": ".codex/skills",
+            "target_flavor": "codex",
+            "target_skill": "gh-fix-ci",
+            "target_skill_lane": "codex",
+            "target_flavor_mode": "gemini",
+            "action_scope": "skill",
+            "action_key": [
+              "skill-polisher",
+              "skill",
+              "verify",
+              "gemini",
+              ".codex/skills",
+              "gh-fix-ci"
+            ],
+            "adapter_kind": "skill_polisher_verify",
+            "legality_status": "degraded",
+            "legality_reasons": [
+              "interpretation_flavor_mismatch",
+              "registered_adapter:skill_polisher_verify"
+            ]
+          },
+          "action_key": [
+            "skill-polisher",
+            "skill",
+            "verify",
+            "gemini",
+            ".codex/skills",
+            "gh-fix-ci"
+          ],
+          "action_scope": "skill",
+          "equivalent_cell_count": 9,
+          "available_variant_count": 9,
+          "equivalent_target_sample": [
+            ".codex/skills::gh-fix-ci"
+          ],
+          "command": [
+            "uv",
+            "run",
+            ".codex/skills/skill-polisher/scripts/polish_skill.py",
+            ".codex\\skills\\gh-fix-ci",
+            "--mode",
+            "verify",
+            "--target-flavor",
+            "gemini",
+            "--no-require-assets"
+          ],
+          "expected_artifacts": [],
+          "expected_artifact_class": "verification_report",
+          "operator_mode": "mutating",
+          "operator_capabilities": {
+            "mode": "mutating",
+            "read": true,
+            "mutate": true,
+            "cross_lane_mutate": true,
+            "self_target": true,
+            "recurse": false,
+            "requires_artifacts": true,
+            "requires_review": true
+          },
+          "safety_class": "local_mutation",
+          "weight": 3.406112,
+          "weight_reasons": [
+            "mutating_operator:+0.4x",
+            "self_lane:+0.1x",
+            "cross_flavor_interp:+0.25x",
+            "adaptive_weight:1.4x",
+            "operator_weight:0.8375x",
+            "handoff_continuity:+0.8x",
+            "action_group_size:9"
+          ],
+          "transition": {
+            "allowed": true,
+            "previous_target_lane": "codex",
+            "previous_operator": "trainstop-orchestrator",
+            "transition_weight_multiplier": 1.8,
+            "transition_weight_reasons": [
+              "handoff_continuity:+0.8x"
+            ],
+            "filtered_out_rules": [
+              "duplicate_cell_blocked:765",
+              "history_pruned_action:17",
+              "repeated_target_skill_blocked:36",
+              "same_operator_consecutive_blocked:1647"
+            ]
+          },
+          "stop_condition": "stop_on_nonzero"
+        },
+        {
+          "step": 4,
+          "cell": {
+            "executor_flavor": "codex",
+            "operator_flavor": "claude",
+            "operator_skill": "link-path-guard",
+            "operator_root": ".claude/skills",
+            "source_root": ".claude/skills",
+            "target_root": ".codex/skills",
+            "target_flavor": "codex",
+            "target_skill": "api-manager",
+            "target_skill_lane": "codex",
+            "target_flavor_mode": "claude",
+            "action_scope": "skill",
+            "action_key": [
+              "link-path-guard",
+              "skill",
+              ".codex/skills",
+              "api-manager"
+            ],
+            "adapter_kind": "skill_path_guard",
+            "legality_status": "legal",
+            "legality_reasons": [
+              "registered_adapter:skill_path_guard"
+            ]
+          },
+          "action_key": [
+            "link-path-guard",
+            "skill",
+            ".codex/skills",
+            "api-manager"
+          ],
+          "action_scope": "skill",
+          "equivalent_cell_count": 18,
+          "available_variant_count": 18,
+          "equivalent_target_sample": [
+            ".codex/skills::api-manager"
+          ],
+          "command": [
+            "uv",
+            "run",
+            "scripts/skill_path_guard.py",
+            ".codex\\skills\\api-manager\\SKILL.md"
+          ],
+          "expected_artifacts": [
+            "logs/skill_path_guard.log"
+          ],
+          "expected_artifact_class": "log",
+          "operator_mode": "mutating",
+          "operator_capabilities": {
+            "mode": "mutating",
+            "read": true,
+            "mutate": true,
+            "cross_lane_mutate": true,
+            "self_target": true,
+            "recurse": false,
+            "requires_artifacts": true,
+            "requires_review": true
+          },
+          "safety_class": "local_mutation",
+          "weight": 2.668969,
+          "weight_reasons": [
+            "mutating_operator:+0.4x",
+            "self_lane:+0.1x",
+            "cross_flavor_interp:+0.25x",
+            "adaptive_weight:1.25x",
+            "operator_weight:0.7875x",
+            "handoff_continuity:+0.8x",
+            "action_group_size:18"
+          ],
+          "transition": {
+            "allowed": true,
+            "previous_target_lane": "codex",
+            "previous_operator": "skill-polisher",
+            "transition_weight_multiplier": 1.8,
+            "transition_weight_reasons": [
+              "handoff_continuity:+0.8x"
+            ],
+            "filtered_out_rules": [
+              "duplicate_cell_blocked:774",
+              "history_pruned_action:17",
+              "repeated_target_skill_blocked:72",
+              "same_operator_consecutive_blocked:2277"
+            ]
+          },
+          "stop_condition": "stop_on_nonzero"
+        }
+      ],
+      "execution_status": "passed",
+      "failure_classes": [],
+      "touched": [
+        {
+          "lane": "gemini",
+          "root": ".gemini/extensions/chthonic-archive-sync/skills",
+          "skill": "iron-maiden-runtime"
+        },
+        {
+          "lane": "codex",
+          "root": ".codex/skills",
+          "skill": "__lane__maintenance"
+        },
+        {
+          "lane": "codex",
+          "root": ".codex/skills",
+          "skill": "gh-fix-ci"
+        },
+        {
+          "lane": "codex",
+          "root": ".codex/skills",
+          "skill": "api-manager"
+        }
+      ],
+      "execution_results": [
+        {
+          "step": 1,
+          "command": [
+            "uv",
+            "run",
+            ".codex/skills/skill-polisher/scripts/polish_skill.py",
+            ".gemini\\extensions\\chthonic-archive-sync\\skills\\iron-maiden-runtime",
+            "--mode",
+            "verify",
+            "--target-flavor",
+            "claude",
+            "--no-require-assets"
+          ],
+          "rc": 0,
+          "seconds": 0.133,
+          "stdout_tail": "\u2554\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2557\n\u2551                    FEEDING REPORT: iron-maiden-runtime           \u2551\n\u255a\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u255d\nTASTE: PURE (Clean)\nNUTRITION LEVEL: 100%\n\nDOMAIN SCORES:\n  - structure: 100%\n  - policy: 100%\n  - semantics: 100%\n  - maintainability: 100%\n\nSystem Satisfied. No entropy found.\n\n>>> VERIFY: PASSED (no blocking findings). <<<",
+          "stderr_tail": "",
+          "expected_artifacts": [],
+          "present_artifacts": [],
+          "missing_artifacts": [],
+          "stop_condition": "stop_on_nonzero_or_missing_artifact",
+          "status": "passed",
+          "failure_kind": null
+        },
+        {
+          "step": 2,
+          "command": [
+            "uv",
+            "run",
+            ".codex/skills/trainstop-orchestrator/scripts/orchestrate.py",
+            "--target",
+            "codex",
+            "--lane",
+            "maintenance"
+          ],
+          "rc": 0,
+          "seconds": 5.079,
+          "stdout_tail": "=== Toolchain Doctor ===\nuv run .codex/skills/toolchain-doctor/scripts/toolchain_doctor.py --bun --uv\nWrote: C:\\Users\\eldno\\chthonic-archive\\codex\\mailbox\\TOOLCHAIN_DOCTOR_REPORT_2026_03_20_185108.md\n\n=== Skill Polisher (Codex on Codex) ===\nuv run .codex/skills/skill-polisher/scripts/polish_skill.py .codex/skills --all --mode verify --target-flavor codex --subprocess-fix --emit-stamps-json codex/mailbox/tatragrammatron_stamps_latest_codex.json --emit-summary-md codex/mailbox/TATRAGRAMMATRON_SUMMARY_LATEST_CODEX.md\n>>> VERIFY: PASSED (no blocking findings). <<<\n<unknown>:8: SyntaxWarning: \"\\s\" is an invalid escape sequence. Such sequences will not work in the future. Did you mean \"\\\\s\"? A raw string is also an option.\n\n=== Mailbox Polisher (codex) ===\nuv run scripts/mailbox_polisher.py --target codex --apply\nNo archivable churn artifacts found.\n\n=== Mailbox Scribe (codex) ===\nuv run scripts/mailbox_scribe.py --target codex --packet codex/mailbox/TETRAGRAMMATON_PACKET.md\nWrote: codex/mailbox/TETRAGRAMMATON_PACKET.md\n\n=== Mailbox Manifest Check ===\nuv run scripts/check_mailbox_manifest.py\nok",
+          "stderr_tail": "",
+          "expected_artifacts": [
+            "codex/mailbox/TRAINSTOP_ORCHESTRATOR_LATEST.json"
+          ],
+          "present_artifacts": [
+            "codex/mailbox/TRAINSTOP_ORCHESTRATOR_LATEST.json"
+          ],
+          "missing_artifacts": [],
+          "stop_condition": "stop_on_nonzero_or_missing_artifact",
+          "status": "passed",
+          "failure_kind": null
+        },
+        {
+          "step": 3,
+          "command": [
+            "uv",
+            "run",
+            ".codex/skills/skill-polisher/scripts/polish_skill.py",
+            ".codex\\skills\\gh-fix-ci",
+            "--mode",
+            "verify",
+            "--target-flavor",
+            "gemini",
+            "--no-require-assets"
+          ],
+          "rc": 0,
+          "seconds": 0.137,
+          "stdout_tail": "\u2554\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2557\n\u2551                    FEEDING REPORT: gh-fix-ci                    \u2551\n\u255a\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u255d\nTASTE: PURE (Clean)\nNUTRITION LEVEL: 100%\n\nDOMAIN SCORES:\n  - structure: 100%\n  - policy: 100%\n  - semantics: 100%\n  - maintainability: 100%\n\nSystem Satisfied. No entropy found.\n\n>>> VERIFY: PASSED (no blocking findings). <<<",
+          "stderr_tail": "",
+          "expected_artifacts": [],
+          "present_artifacts": [],
+          "missing_artifacts": [],
+          "stop_condition": "stop_on_nonzero",
+          "status": "passed",
+          "failure_kind": null
+        },
+        {
+          "step": 4,
+          "command": [
+            "uv",
+            "run",
+            "scripts/skill_path_guard.py",
+            ".codex\\skills\\api-manager\\SKILL.md"
+          ],
+          "rc": 0,
+          "seconds": 7.773,
+          "stdout_tail": "OK: no stale or broken skill path references found",
+          "stderr_tail": "",
+          "expected_artifacts": [
+            "logs/skill_path_guard.log"
+          ],
+          "present_artifacts": [
+            "logs/skill_path_guard.log"
+          ],
+          "missing_artifacts": [],
+          "stop_condition": "stop_on_nonzero",
+          "status": "passed",
+          "failure_kind": null
+        }
+      ],
+      "sampled_action_keys": [
+        [
+          "skill-polisher",
+          "skill",
+          "verify",
+          "claude",
+          ".gemini/extensions/chthonic-archive-sync/skills",
+          "iron-maiden-runtime"
+        ],
+        [
+          "trainstop-orchestrator",
+          "lane",
+          "codex",
+          "maintenance"
+        ],
+        [
+          "skill-polisher",
+          "skill",
+          "verify",
+          "gemini",
+          ".codex/skills",
+          "gh-fix-ci"
+        ],
+        [
+          "link-path-guard",
+          "skill",
+          ".codex/skills",
+          "api-manager"
+        ]
+      ]
+    },
+    {
+      "recorded_at": "2026-03-20T18:52:47.440204+00:00",
+      "seed_text": "trainstop-default-seed",
+      "seed_value": 12077687225398345945,
+      "chain_length": 4,
+      "summary": {
+        "diversity_score": 0.7273,
+        "cross_lane_coverage": 0.5,
+        "operator_spread": 0.5,
+        "target_spread": 1.0,
+        "executor_flavors_seen": [
+          "claude",
+          "codex"
+        ],
+        "operator_skills_seen": [
+          "link-path-guard",
+          "skill-polisher"
+        ],
+        "distinct_targets_seen": 4,
+        "distinct_action_keys_seen": 4,
+        "action_scopes_seen": [
+          "skill"
+        ]
+      },
+      "sampled_steps": [
+        {
+          "step": 1,
+          "cell": {
+            "executor_flavor": "claude",
+            "operator_flavor": "claude",
+            "operator_skill": "skill-polisher",
+            "operator_root": ".claude/skills",
+            "source_root": ".claude/skills",
+            "target_root": ".codex/skills",
+            "target_flavor": "codex",
+            "target_skill": "postman",
+            "target_skill_lane": "codex",
+            "target_flavor_mode": "gemini",
+            "action_scope": "skill",
+            "action_key": [
+              "skill-polisher",
+              "skill",
+              "verify",
+              "gemini",
+              ".codex/skills",
+              "postman"
+            ],
+            "adapter_kind": "skill_polisher_verify",
+            "legality_status": "degraded",
+            "legality_reasons": [
+              "interpretation_flavor_mismatch",
+              "registered_adapter:skill_polisher_verify",
+              "target_redirect_or_stub"
+            ]
+          },
+          "action_key": [
+            "skill-polisher",
+            "skill",
+            "verify",
+            "gemini",
+            ".codex/skills",
+            "postman"
+          ],
+          "action_scope": "skill",
+          "equivalent_cell_count": 9,
+          "available_variant_count": 9,
+          "equivalent_target_sample": [
+            ".codex/skills::postman"
+          ],
+          "weight": 2.003021,
+          "reasons": [
+            "mutating_operator:+0.4x",
+            "cross_lane:+0.5x",
+            "cross_flavor_interp:+0.25x",
+            "adaptive_weight:1.0x",
+            "operator_weight:0.8375x",
+            "initial_step",
+            "action_group_size:9"
+          ],
+          "transition": {
+            "allowed": true,
+            "previous_target_lane": null,
+            "previous_operator": null,
+            "transition_weight_multiplier": 1.0,
+            "transition_weight_reasons": [
+              "initial_step"
+            ],
+            "filtered_out_rules": [
+              "history_pruned_action:21"
+            ]
+          }
+        },
+        {
+          "step": 2,
+          "cell": {
+            "executor_flavor": "codex",
+            "operator_flavor": "claude",
+            "operator_skill": "link-path-guard",
+            "operator_root": ".claude/skills",
+            "source_root": ".claude/skills",
+            "target_root": ".claude/skills",
+            "target_flavor": "claude",
+            "target_skill": "sora",
+            "target_skill_lane": "claude",
+            "target_flavor_mode": "codex",
+            "action_scope": "skill",
+            "action_key": [
+              "link-path-guard",
+              "skill",
+              ".claude/skills",
+              "sora"
+            ],
+            "adapter_kind": "skill_path_guard",
+            "legality_status": "legal",
+            "legality_reasons": [
+              "registered_adapter:skill_path_guard",
+              "same_root"
+            ]
+          },
+          "action_key": [
+            "link-path-guard",
+            "skill",
+            ".claude/skills",
+            "sora"
+          ],
+          "action_scope": "skill",
+          "equivalent_cell_count": 18,
+          "available_variant_count": 18,
+          "equivalent_target_sample": [
+            ".claude/skills::sora"
+          ],
+          "weight": 2.840469,
+          "reasons": [
+            "mutating_operator:+0.4x",
+            "cross_lane:+0.5x",
+            "cross_flavor_interp:+0.25x",
+            "adaptive_weight:1.25x",
+            "operator_weight:0.7875x",
+            "handoff_continuity:+0.8x",
+            "action_group_size:18"
+          ],
+          "transition": {
+            "allowed": true,
+            "previous_target_lane": "codex",
+            "previous_operator": "skill-polisher",
+            "transition_weight_multiplier": 1.8,
+            "transition_weight_reasons": [
+              "handoff_continuity:+0.8x"
+            ],
+            "filtered_out_rules": [
+              "duplicate_cell_blocked:9",
+              "history_pruned_action:21",
+              "repeated_target_skill_blocked:36",
+              "same_operator_consecutive_blocked:2286"
+            ]
+          }
+        },
+        {
+          "step": 3,
+          "cell": {
+            "executor_flavor": "claude",
+            "operator_flavor": "claude",
+            "operator_skill": "skill-polisher",
+            "operator_root": ".claude/skills",
+            "source_root": ".claude/skills",
+            "target_root": ".claude/skills",
+            "target_flavor": "claude",
+            "target_skill": "theme-system",
+            "target_skill_lane": "claude",
+            "target_flavor_mode": "gemini",
+            "action_scope": "skill",
+            "action_key": [
+              "skill-polisher",
+              "skill",
+              "verify",
+              "gemini",
+              ".claude/skills",
+              "theme-system"
+            ],
+            "adapter_kind": "skill_polisher_verify",
+            "legality_status": "degraded",
+            "legality_reasons": [
+              "interpretation_flavor_mismatch",
+              "registered_adapter:skill_polisher_verify",
+              "same_root"
+            ]
+          },
+          "action_key": [
+            "skill-polisher",
+            "skill",
+            "verify",
+            "gemini",
+            ".claude/skills",
+            "theme-system"
+          ],
+          "action_scope": "skill",
+          "equivalent_cell_count": 9,
+          "available_variant_count": 9,
+          "equivalent_target_sample": [
+            ".claude/skills::theme-system"
+          ],
+          "weight": 3.406112,
+          "reasons": [
+            "mutating_operator:+0.4x",
+            "self_lane:+0.1x",
+            "cross_flavor_interp:+0.25x",
+            "adaptive_weight:1.4x",
+            "operator_weight:0.8375x",
+            "handoff_continuity:+0.8x",
+            "action_group_size:9"
+          ],
+          "transition": {
+            "allowed": true,
+            "previous_target_lane": "claude",
+            "previous_operator": "link-path-guard",
+            "transition_weight_multiplier": 1.8,
+            "transition_weight_reasons": [
+              "handoff_continuity:+0.8x"
+            ],
+            "filtered_out_rules": [
+              "duplicate_cell_blocked:27",
+              "history_pruned_action:21",
+              "repeated_target_skill_blocked:63",
+              "same_operator_consecutive_blocked:1386"
+            ]
+          }
+        },
+        {
+          "step": 4,
+          "cell": {
+            "executor_flavor": "claude",
+            "operator_flavor": "claude",
+            "operator_skill": "link-path-guard",
+            "operator_root": ".claude/skills",
+            "source_root": ".claude/skills",
+            "target_root": ".claude/skills",
+            "target_flavor": "claude",
+            "target_skill": "script-envelope",
+            "target_skill_lane": "claude",
+            "target_flavor_mode": "codex",
+            "action_scope": "skill",
+            "action_key": [
+              "link-path-guard",
+              "skill",
+              ".claude/skills",
+              "script-envelope"
+            ],
+            "adapter_kind": "skill_path_guard",
+            "legality_status": "degraded",
+            "legality_reasons": [
+              "registered_adapter:skill_path_guard",
+              "same_root",
+              "target_redirect_or_stub"
+            ]
+          },
+          "action_key": [
+            "link-path-guard",
+            "skill",
+            ".claude/skills",
+            "script-envelope"
+          ],
+          "action_scope": "skill",
+          "equivalent_cell_count": 18,
+          "available_variant_count": 18,
+          "equivalent_target_sample": [
+            ".claude/skills::script-envelope"
+          ],
+          "weight": 2.135175,
+          "reasons": [
+            "mutating_operator:+0.4x",
+            "self_lane:+0.1x",
+            "cross_flavor_interp:+0.25x",
+            "adaptive_weight:1.0x",
+            "operator_weight:0.7875x",
+            "handoff_continuity:+0.8x",
+            "action_group_size:18"
+          ],
+          "transition": {
+            "allowed": true,
+            "previous_target_lane": "claude",
+            "previous_operator": "skill-polisher",
+            "transition_weight_multiplier": 1.8,
+            "transition_weight_reasons": [
+              "handoff_continuity:+0.8x"
+            ],
+            "filtered_out_rules": [
+              "duplicate_cell_blocked:36",
+              "history_pruned_action:21",
+              "repeated_target_skill_blocked:99",
+              "same_operator_consecutive_blocked:2232"
+            ]
+          }
+        }
+      ],
+      "planned_steps": [
+        {
+          "step": 1,
+          "cell": {
+            "executor_flavor": "claude",
+            "operator_flavor": "claude",
+            "operator_skill": "skill-polisher",
+            "operator_root": ".claude/skills",
+            "source_root": ".claude/skills",
+            "target_root": ".codex/skills",
+            "target_flavor": "codex",
+            "target_skill": "postman",
+            "target_skill_lane": "codex",
+            "target_flavor_mode": "gemini",
+            "action_scope": "skill",
+            "action_key": [
+              "skill-polisher",
+              "skill",
+              "verify",
+              "gemini",
+              ".codex/skills",
+              "postman"
+            ],
+            "adapter_kind": "skill_polisher_verify",
+            "legality_status": "degraded",
+            "legality_reasons": [
+              "interpretation_flavor_mismatch",
+              "registered_adapter:skill_polisher_verify",
+              "target_redirect_or_stub"
+            ]
+          },
+          "action_key": [
+            "skill-polisher",
+            "skill",
+            "verify",
+            "gemini",
+            ".codex/skills",
+            "postman"
+          ],
+          "action_scope": "skill",
+          "equivalent_cell_count": 9,
+          "available_variant_count": 9,
+          "equivalent_target_sample": [
+            ".codex/skills::postman"
+          ],
+          "command": [
+            "uv",
+            "run",
+            ".codex/skills/skill-polisher/scripts/polish_skill.py",
+            ".codex\\skills\\postman",
+            "--mode",
+            "verify",
+            "--target-flavor",
+            "gemini",
+            "--no-require-assets"
+          ],
+          "expected_artifacts": [],
+          "expected_artifact_class": "verification_report",
+          "operator_mode": "mutating",
+          "operator_capabilities": {
+            "mode": "mutating",
+            "read": true,
+            "mutate": true,
+            "cross_lane_mutate": true,
+            "self_target": true,
+            "recurse": false,
+            "requires_artifacts": true,
+            "requires_review": true
+          },
+          "safety_class": "cross_lane_mutation",
+          "weight": 2.003021,
+          "weight_reasons": [
+            "mutating_operator:+0.4x",
+            "cross_lane:+0.5x",
+            "cross_flavor_interp:+0.25x",
+            "adaptive_weight:1.0x",
+            "operator_weight:0.8375x",
+            "initial_step",
+            "action_group_size:9"
+          ],
+          "transition": {
+            "allowed": true,
+            "previous_target_lane": null,
+            "previous_operator": null,
+            "transition_weight_multiplier": 1.0,
+            "transition_weight_reasons": [
+              "initial_step"
+            ],
+            "filtered_out_rules": [
+              "history_pruned_action:21"
+            ]
+          },
+          "stop_condition": "stop_on_nonzero_or_missing_artifact"
+        },
+        {
+          "step": 2,
+          "cell": {
+            "executor_flavor": "codex",
+            "operator_flavor": "claude",
+            "operator_skill": "link-path-guard",
+            "operator_root": ".claude/skills",
+            "source_root": ".claude/skills",
+            "target_root": ".claude/skills",
+            "target_flavor": "claude",
+            "target_skill": "sora",
+            "target_skill_lane": "claude",
+            "target_flavor_mode": "codex",
+            "action_scope": "skill",
+            "action_key": [
+              "link-path-guard",
+              "skill",
+              ".claude/skills",
+              "sora"
+            ],
+            "adapter_kind": "skill_path_guard",
+            "legality_status": "legal",
+            "legality_reasons": [
+              "registered_adapter:skill_path_guard",
+              "same_root"
+            ]
+          },
+          "action_key": [
+            "link-path-guard",
+            "skill",
+            ".claude/skills",
+            "sora"
+          ],
+          "action_scope": "skill",
+          "equivalent_cell_count": 18,
+          "available_variant_count": 18,
+          "equivalent_target_sample": [
+            ".claude/skills::sora"
+          ],
+          "command": [
+            "uv",
+            "run",
+            "scripts/skill_path_guard.py",
+            ".claude\\skills\\sora\\SKILL.md"
+          ],
+          "expected_artifacts": [
+            "logs/skill_path_guard.log"
+          ],
+          "expected_artifact_class": "log",
+          "operator_mode": "mutating",
+          "operator_capabilities": {
+            "mode": "mutating",
+            "read": true,
+            "mutate": true,
+            "cross_lane_mutate": true,
+            "self_target": true,
+            "recurse": false,
+            "requires_artifacts": true,
+            "requires_review": true
+          },
+          "safety_class": "cross_lane_mutation",
+          "weight": 2.840469,
+          "weight_reasons": [
+            "mutating_operator:+0.4x",
+            "cross_lane:+0.5x",
+            "cross_flavor_interp:+0.25x",
+            "adaptive_weight:1.25x",
+            "operator_weight:0.7875x",
+            "handoff_continuity:+0.8x",
+            "action_group_size:18"
+          ],
+          "transition": {
+            "allowed": true,
+            "previous_target_lane": "codex",
+            "previous_operator": "skill-polisher",
+            "transition_weight_multiplier": 1.8,
+            "transition_weight_reasons": [
+              "handoff_continuity:+0.8x"
+            ],
+            "filtered_out_rules": [
+              "duplicate_cell_blocked:9",
+              "history_pruned_action:21",
+              "repeated_target_skill_blocked:36",
+              "same_operator_consecutive_blocked:2286"
+            ]
+          },
+          "stop_condition": "stop_on_nonzero_or_missing_artifact"
+        },
+        {
+          "step": 3,
+          "cell": {
+            "executor_flavor": "claude",
+            "operator_flavor": "claude",
+            "operator_skill": "skill-polisher",
+            "operator_root": ".claude/skills",
+            "source_root": ".claude/skills",
+            "target_root": ".claude/skills",
+            "target_flavor": "claude",
+            "target_skill": "theme-system",
+            "target_skill_lane": "claude",
+            "target_flavor_mode": "gemini",
+            "action_scope": "skill",
+            "action_key": [
+              "skill-polisher",
+              "skill",
+              "verify",
+              "gemini",
+              ".claude/skills",
+              "theme-system"
+            ],
+            "adapter_kind": "skill_polisher_verify",
+            "legality_status": "degraded",
+            "legality_reasons": [
+              "interpretation_flavor_mismatch",
+              "registered_adapter:skill_polisher_verify",
+              "same_root"
+            ]
+          },
+          "action_key": [
+            "skill-polisher",
+            "skill",
+            "verify",
+            "gemini",
+            ".claude/skills",
+            "theme-system"
+          ],
+          "action_scope": "skill",
+          "equivalent_cell_count": 9,
+          "available_variant_count": 9,
+          "equivalent_target_sample": [
+            ".claude/skills::theme-system"
+          ],
+          "command": [
+            "uv",
+            "run",
+            ".codex/skills/skill-polisher/scripts/polish_skill.py",
+            ".claude\\skills\\theme-system",
+            "--mode",
+            "verify",
+            "--target-flavor",
+            "gemini",
+            "--no-require-assets"
+          ],
+          "expected_artifacts": [],
+          "expected_artifact_class": "verification_report",
+          "operator_mode": "mutating",
+          "operator_capabilities": {
+            "mode": "mutating",
+            "read": true,
+            "mutate": true,
+            "cross_lane_mutate": true,
+            "self_target": true,
+            "recurse": false,
+            "requires_artifacts": true,
+            "requires_review": true
+          },
+          "safety_class": "local_mutation",
+          "weight": 3.406112,
+          "weight_reasons": [
+            "mutating_operator:+0.4x",
+            "self_lane:+0.1x",
+            "cross_flavor_interp:+0.25x",
+            "adaptive_weight:1.4x",
+            "operator_weight:0.8375x",
+            "handoff_continuity:+0.8x",
+            "action_group_size:9"
+          ],
+          "transition": {
+            "allowed": true,
+            "previous_target_lane": "claude",
+            "previous_operator": "link-path-guard",
+            "transition_weight_multiplier": 1.8,
+            "transition_weight_reasons": [
+              "handoff_continuity:+0.8x"
+            ],
+            "filtered_out_rules": [
+              "duplicate_cell_blocked:27",
+              "history_pruned_action:21",
+              "repeated_target_skill_blocked:63",
+              "same_operator_consecutive_blocked:1386"
+            ]
+          },
+          "stop_condition": "stop_on_nonzero"
+        },
+        {
+          "step": 4,
+          "cell": {
+            "executor_flavor": "claude",
+            "operator_flavor": "claude",
+            "operator_skill": "link-path-guard",
+            "operator_root": ".claude/skills",
+            "source_root": ".claude/skills",
+            "target_root": ".claude/skills",
+            "target_flavor": "claude",
+            "target_skill": "script-envelope",
+            "target_skill_lane": "claude",
+            "target_flavor_mode": "codex",
+            "action_scope": "skill",
+            "action_key": [
+              "link-path-guard",
+              "skill",
+              ".claude/skills",
+              "script-envelope"
+            ],
+            "adapter_kind": "skill_path_guard",
+            "legality_status": "degraded",
+            "legality_reasons": [
+              "registered_adapter:skill_path_guard",
+              "same_root",
+              "target_redirect_or_stub"
+            ]
+          },
+          "action_key": [
+            "link-path-guard",
+            "skill",
+            ".claude/skills",
+            "script-envelope"
+          ],
+          "action_scope": "skill",
+          "equivalent_cell_count": 18,
+          "available_variant_count": 18,
+          "equivalent_target_sample": [
+            ".claude/skills::script-envelope"
+          ],
+          "command": [
+            "uv",
+            "run",
+            "scripts/skill_path_guard.py",
+            ".claude\\skills\\script-envelope\\SKILL.md"
+          ],
+          "expected_artifacts": [
+            "logs/skill_path_guard.log"
+          ],
+          "expected_artifact_class": "log",
+          "operator_mode": "mutating",
+          "operator_capabilities": {
+            "mode": "mutating",
+            "read": true,
+            "mutate": true,
+            "cross_lane_mutate": true,
+            "self_target": true,
+            "recurse": false,
+            "requires_artifacts": true,
+            "requires_review": true
+          },
+          "safety_class": "local_mutation",
+          "weight": 2.135175,
+          "weight_reasons": [
+            "mutating_operator:+0.4x",
+            "self_lane:+0.1x",
+            "cross_flavor_interp:+0.25x",
+            "adaptive_weight:1.0x",
+            "operator_weight:0.7875x",
+            "handoff_continuity:+0.8x",
+            "action_group_size:18"
+          ],
+          "transition": {
+            "allowed": true,
+            "previous_target_lane": "claude",
+            "previous_operator": "skill-polisher",
+            "transition_weight_multiplier": 1.8,
+            "transition_weight_reasons": [
+              "handoff_continuity:+0.8x"
+            ],
+            "filtered_out_rules": [
+              "duplicate_cell_blocked:36",
+              "history_pruned_action:21",
+              "repeated_target_skill_blocked:99",
+              "same_operator_consecutive_blocked:2232"
+            ]
+          },
+          "stop_condition": "stop_on_nonzero"
+        }
+      ],
+      "execution_status": "failed",
+      "failure_classes": [
+        {
+          "step": 2,
+          "kind": "path_guard_failure",
+          "status": "failed",
+          "command": [
+            "uv",
+            "run",
+            "scripts/skill_path_guard.py",
+            ".claude\\skills\\sora\\SKILL.md"
+          ],
+          "rc": 1
+        }
+      ],
+      "touched": [
+        {
+          "lane": "codex",
+          "root": ".codex/skills",
+          "skill": "postman"
+        },
+        {
+          "lane": "claude",
+          "root": ".claude/skills",
+          "skill": "sora"
+        },
+        {
+          "lane": "claude",
+          "root": ".claude/skills",
+          "skill": "theme-system"
+        },
+        {
+          "lane": "claude",
+          "root": ".claude/skills",
+          "skill": "script-envelope"
+        }
+      ],
+      "execution_results": [
+        {
+          "step": 1,
+          "command": [
+            "uv",
+            "run",
+            ".codex/skills/skill-polisher/scripts/polish_skill.py",
+            ".codex\\skills\\postman",
+            "--mode",
+            "verify",
+            "--target-flavor",
+            "gemini",
+            "--no-require-assets"
+          ],
+          "rc": 0,
+          "seconds": 0.139,
+          "stdout_tail": "\u2554\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2557\n\u2551                    FEEDING REPORT: postman                      \u2551\n\u255a\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u255d\nTASTE: PURE (Clean)\nNUTRITION LEVEL: 100%\n\nDOMAIN SCORES:\n  - structure: 100%\n  - policy: 100%\n  - semantics: 100%\n  - maintainability: 100%\n\nSystem Satisfied. No entropy found.\n\n>>> VERIFY: PASSED (no blocking findings). <<<",
+          "stderr_tail": "",
+          "expected_artifacts": [],
+          "present_artifacts": [],
+          "missing_artifacts": [],
+          "stop_condition": "stop_on_nonzero_or_missing_artifact",
+          "status": "passed",
+          "failure_kind": null
+        },
+        {
+          "step": 2,
+          "command": [
+            "uv",
+            "run",
+            "scripts/skill_path_guard.py",
+            ".claude\\skills\\sora\\SKILL.md"
+          ],
+          "rc": 1,
+          "seconds": 7.114,
+          "stdout_tail": "[broken] .claude\\skills\\sora\\SKILL.md: scripts/sora.py\n  :: local skill-relative target does not exist\n[fixable] .claude\\skills\\sora\\SKILL.md: scripts/skill_audit.py\n  -> scripts/skill_audit.py\n  :: resolved to repo-root target instead of local skill-relative path",
+          "stderr_tail": "",
+          "expected_artifacts": [
+            "logs/skill_path_guard.log"
+          ],
+          "present_artifacts": [
+            "logs/skill_path_guard.log"
+          ],
+          "missing_artifacts": [],
+          "stop_condition": "stop_on_nonzero_or_missing_artifact",
+          "status": "failed",
+          "failure_kind": "path_guard_failure"
+        }
+      ],
+      "sampled_action_keys": [
+        [
+          "skill-polisher",
+          "skill",
+          "verify",
+          "gemini",
+          ".codex/skills",
+          "postman"
+        ],
+        [
+          "link-path-guard",
+          "skill",
+          ".claude/skills",
+          "sora"
+        ],
+        [
+          "skill-polisher",
+          "skill",
+          "verify",
+          "gemini",
+          ".claude/skills",
+          "theme-system"
+        ],
+        [
+          "link-path-guard",
+          "skill",
+          ".claude/skills",
+          "script-envelope"
+        ]
+      ]
+    },
+    {
+      "recorded_at": "2026-03-20T18:54:11.485285+00:00",
+      "seed_text": "trainstop-default-seed",
+      "seed_value": 12077687225398345945,
+      "chain_length": 4,
+      "summary": {
+        "diversity_score": 0.7273,
+        "cross_lane_coverage": 0.5,
+        "operator_spread": 0.5,
+        "target_spread": 1.0,
+        "executor_flavors_seen": [
+          "claude",
+          "codex"
+        ],
+        "operator_skills_seen": [
+          "link-path-guard",
+          "skill-polisher"
+        ],
+        "distinct_targets_seen": 4,
+        "distinct_action_keys_seen": 4,
+        "action_scopes_seen": [
+          "skill"
+        ]
+      },
+      "sampled_steps": [
+        {
+          "step": 1,
+          "cell": {
+            "executor_flavor": "claude",
+            "operator_flavor": "claude",
+            "operator_skill": "skill-polisher",
+            "operator_root": ".claude/skills",
+            "source_root": ".claude/skills",
+            "target_root": ".codex/skills",
+            "target_flavor": "codex",
+            "target_skill": "python-header-canon",
+            "target_skill_lane": "codex",
+            "target_flavor_mode": "claude",
+            "action_scope": "skill",
+            "action_key": [
+              "skill-polisher",
+              "skill",
+              "verify",
+              "claude",
+              ".codex/skills",
+              "python-header-canon"
+            ],
+            "adapter_kind": "skill_polisher_verify",
+            "legality_status": "degraded",
+            "legality_reasons": [
+              "interpretation_flavor_mismatch",
+              "registered_adapter:skill_polisher_verify"
+            ]
+          },
+          "action_key": [
+            "skill-polisher",
+            "skill",
+            "verify",
+            "claude",
+            ".codex/skills",
+            "python-header-canon"
+          ],
+          "action_scope": "skill",
+          "equivalent_cell_count": 9,
+          "available_variant_count": 9,
+          "equivalent_target_sample": [
+            ".codex/skills::python-header-canon"
+          ],
+          "weight": 2.503776,
+          "reasons": [
+            "mutating_operator:+0.4x",
+            "cross_lane:+0.5x",
+            "cross_flavor_interp:+0.25x",
+            "adaptive_weight:1.25x",
+            "operator_weight:0.8375x",
+            "initial_step",
+            "action_group_size:9"
+          ],
+          "transition": {
+            "allowed": true,
+            "previous_target_lane": null,
+            "previous_operator": null,
+            "transition_weight_multiplier": 1.0,
+            "transition_weight_reasons": [
+              "initial_step"
+            ],
+            "filtered_out_rules": [
+              "history_pruned_action:19"
+            ]
+          }
+        },
+        {
+          "step": 2,
+          "cell": {
+            "executor_flavor": "codex",
+            "operator_flavor": "claude",
+            "operator_skill": "link-path-guard",
+            "operator_root": ".claude/skills",
+            "source_root": ".claude/skills",
+            "target_root": ".claude/skills",
+            "target_flavor": "claude",
+            "target_skill": "sora",
+            "target_skill_lane": "claude",
+            "target_flavor_mode": "codex",
+            "action_scope": "skill",
+            "action_key": [
+              "link-path-guard",
+              "skill",
+              ".claude/skills",
+              "sora"
+            ],
+            "adapter_kind": "skill_path_guard",
+            "legality_status": "legal",
+            "legality_reasons": [
+              "registered_adapter:skill_path_guard",
+              "same_root"
+            ]
+          },
+          "action_key": [
+            "link-path-guard",
+            "skill",
+            ".claude/skills",
+            "sora"
+          ],
+          "action_scope": "skill",
+          "equivalent_cell_count": 18,
+          "available_variant_count": 18,
+          "equivalent_target_sample": [
+            ".claude/skills::sora"
+          ],
+          "weight": 3.130828,
+          "reasons": [
+            "mutating_operator:+0.4x",
+            "cross_lane:+0.5x",
+            "cross_flavor_interp:+0.25x",
+            "adaptive_weight:1.4x",
+            "operator_weight:0.775x",
+            "handoff_continuity:+0.8x",
+            "action_group_size:18"
+          ],
+          "transition": {
+            "allowed": true,
+            "previous_target_lane": "codex",
+            "previous_operator": "skill-polisher",
+            "transition_weight_multiplier": 1.8,
+            "transition_weight_reasons": [
+              "handoff_continuity:+0.8x"
+            ],
+            "filtered_out_rules": [
+              "duplicate_cell_blocked:9",
+              "history_pruned_action:19",
+              "repeated_target_skill_blocked:36",
+              "same_operator_consecutive_blocked:2304"
+            ]
+          }
+        },
+        {
+          "step": 3,
+          "cell": {
+            "executor_flavor": "claude",
+            "operator_flavor": "claude",
+            "operator_skill": "skill-polisher",
+            "operator_root": ".claude/skills",
+            "source_root": ".claude/skills",
+            "target_root": ".claude/skills",
+            "target_flavor": "claude",
+            "target_skill": "theme-system",
+            "target_skill_lane": "claude",
+            "target_flavor_mode": "gemini",
+            "action_scope": "skill",
+            "action_key": [
+              "skill-polisher",
+              "skill",
+              "verify",
+              "gemini",
+              ".claude/skills",
+              "theme-system"
+            ],
+            "adapter_kind": "skill_polisher_verify",
+            "legality_status": "degraded",
+            "legality_reasons": [
+              "interpretation_flavor_mismatch",
+              "registered_adapter:skill_polisher_verify",
+              "same_root"
+            ]
+          },
+          "action_key": [
+            "skill-polisher",
+            "skill",
+            "verify",
+            "gemini",
+            ".claude/skills",
+            "theme-system"
+          ],
+          "action_scope": "skill",
+          "equivalent_cell_count": 9,
+          "available_variant_count": 9,
+          "equivalent_target_sample": [
+            ".claude/skills::theme-system"
+          ],
+          "weight": 3.771053,
+          "reasons": [
+            "mutating_operator:+0.4x",
+            "self_lane:+0.1x",
+            "cross_flavor_interp:+0.25x",
+            "adaptive_weight:1.55x",
+            "operator_weight:0.8375x",
+            "handoff_continuity:+0.8x",
+            "action_group_size:9"
+          ],
+          "transition": {
+            "allowed": true,
+            "previous_target_lane": "claude",
+            "previous_operator": "link-path-guard",
+            "transition_weight_multiplier": 1.8,
+            "transition_weight_reasons": [
+              "handoff_continuity:+0.8x"
+            ],
+            "filtered_out_rules": [
+              "duplicate_cell_blocked:27",
+              "history_pruned_action:19",
+              "repeated_target_skill_blocked:63",
+              "same_operator_consecutive_blocked:1386"
+            ]
+          }
+        },
+        {
+          "step": 4,
+          "cell": {
+            "executor_flavor": "claude",
+            "operator_flavor": "claude",
+            "operator_skill": "link-path-guard",
+            "operator_root": ".claude/skills",
+            "source_root": ".claude/skills",
+            "target_root": ".claude/skills",
+            "target_flavor": "claude",
+            "target_skill": "script-envelope",
+            "target_skill_lane": "claude",
+            "target_flavor_mode": "codex",
+            "action_scope": "skill",
+            "action_key": [
+              "link-path-guard",
+              "skill",
+              ".claude/skills",
+              "script-envelope"
+            ],
+            "adapter_kind": "skill_path_guard",
+            "legality_status": "degraded",
+            "legality_reasons": [
+              "registered_adapter:skill_path_guard",
+              "same_root",
+              "target_redirect_or_stub"
+            ]
+          },
+          "action_key": [
+            "link-path-guard",
+            "skill",
+            ".claude/skills",
+            "script-envelope"
+          ],
+          "action_scope": "skill",
+          "equivalent_cell_count": 18,
+          "available_variant_count": 18,
+          "equivalent_target_sample": [
+            ".claude/skills::script-envelope"
+          ],
+          "weight": 2.416476,
+          "reasons": [
+            "mutating_operator:+0.4x",
+            "self_lane:+0.1x",
+            "cross_flavor_interp:+0.25x",
+            "adaptive_weight:1.15x",
+            "operator_weight:0.775x",
+            "handoff_continuity:+0.8x",
+            "action_group_size:18"
+          ],
+          "transition": {
+            "allowed": true,
+            "previous_target_lane": "claude",
+            "previous_operator": "skill-polisher",
+            "transition_weight_multiplier": 1.8,
+            "transition_weight_reasons": [
+              "handoff_continuity:+0.8x"
+            ],
+            "filtered_out_rules": [
+              "duplicate_cell_blocked:36",
+              "history_pruned_action:19",
+              "repeated_target_skill_blocked:99",
+              "same_operator_consecutive_blocked:2250"
+            ]
+          }
+        }
+      ],
+      "planned_steps": [
+        {
+          "step": 1,
+          "cell": {
+            "executor_flavor": "claude",
+            "operator_flavor": "claude",
+            "operator_skill": "skill-polisher",
+            "operator_root": ".claude/skills",
+            "source_root": ".claude/skills",
+            "target_root": ".codex/skills",
+            "target_flavor": "codex",
+            "target_skill": "python-header-canon",
+            "target_skill_lane": "codex",
+            "target_flavor_mode": "claude",
+            "action_scope": "skill",
+            "action_key": [
+              "skill-polisher",
+              "skill",
+              "verify",
+              "claude",
+              ".codex/skills",
+              "python-header-canon"
+            ],
+            "adapter_kind": "skill_polisher_verify",
+            "legality_status": "degraded",
+            "legality_reasons": [
+              "interpretation_flavor_mismatch",
+              "registered_adapter:skill_polisher_verify"
+            ]
+          },
+          "action_key": [
+            "skill-polisher",
+            "skill",
+            "verify",
+            "claude",
+            ".codex/skills",
+            "python-header-canon"
+          ],
+          "action_scope": "skill",
+          "equivalent_cell_count": 9,
+          "available_variant_count": 9,
+          "equivalent_target_sample": [
+            ".codex/skills::python-header-canon"
+          ],
+          "command": [
+            "uv",
+            "run",
+            ".codex/skills/skill-polisher/scripts/polish_skill.py",
+            ".codex\\skills\\python-header-canon",
+            "--mode",
+            "verify",
+            "--target-flavor",
+            "claude",
+            "--no-require-assets"
+          ],
+          "expected_artifacts": [],
+          "expected_artifact_class": "verification_report",
+          "operator_mode": "mutating",
+          "operator_capabilities": {
+            "mode": "mutating",
+            "read": true,
+            "mutate": true,
+            "cross_lane_mutate": true,
+            "self_target": true,
+            "recurse": false,
+            "requires_artifacts": true,
+            "requires_review": true
+          },
+          "safety_class": "cross_lane_mutation",
+          "weight": 2.503776,
+          "weight_reasons": [
+            "mutating_operator:+0.4x",
+            "cross_lane:+0.5x",
+            "cross_flavor_interp:+0.25x",
+            "adaptive_weight:1.25x",
+            "operator_weight:0.8375x",
+            "initial_step",
+            "action_group_size:9"
+          ],
+          "transition": {
+            "allowed": true,
+            "previous_target_lane": null,
+            "previous_operator": null,
+            "transition_weight_multiplier": 1.0,
+            "transition_weight_reasons": [
+              "initial_step"
+            ],
+            "filtered_out_rules": [
+              "history_pruned_action:19"
+            ]
+          },
+          "stop_condition": "stop_on_nonzero_or_missing_artifact"
+        },
+        {
+          "step": 2,
+          "cell": {
+            "executor_flavor": "codex",
+            "operator_flavor": "claude",
+            "operator_skill": "link-path-guard",
+            "operator_root": ".claude/skills",
+            "source_root": ".claude/skills",
+            "target_root": ".claude/skills",
+            "target_flavor": "claude",
+            "target_skill": "sora",
+            "target_skill_lane": "claude",
+            "target_flavor_mode": "codex",
+            "action_scope": "skill",
+            "action_key": [
+              "link-path-guard",
+              "skill",
+              ".claude/skills",
+              "sora"
+            ],
+            "adapter_kind": "skill_path_guard",
+            "legality_status": "legal",
+            "legality_reasons": [
+              "registered_adapter:skill_path_guard",
+              "same_root"
+            ]
+          },
+          "action_key": [
+            "link-path-guard",
+            "skill",
+            ".claude/skills",
+            "sora"
+          ],
+          "action_scope": "skill",
+          "equivalent_cell_count": 18,
+          "available_variant_count": 18,
+          "equivalent_target_sample": [
+            ".claude/skills::sora"
+          ],
+          "command": [
+            "uv",
+            "run",
+            "scripts/skill_path_guard.py",
+            ".claude\\skills\\sora\\SKILL.md"
+          ],
+          "expected_artifacts": [
+            "logs/skill_path_guard.log"
+          ],
+          "expected_artifact_class": "log",
+          "operator_mode": "mutating",
+          "operator_capabilities": {
+            "mode": "mutating",
+            "read": true,
+            "mutate": true,
+            "cross_lane_mutate": true,
+            "self_target": true,
+            "recurse": false,
+            "requires_artifacts": true,
+            "requires_review": true
+          },
+          "safety_class": "cross_lane_mutation",
+          "weight": 3.130828,
+          "weight_reasons": [
+            "mutating_operator:+0.4x",
+            "cross_lane:+0.5x",
+            "cross_flavor_interp:+0.25x",
+            "adaptive_weight:1.4x",
+            "operator_weight:0.775x",
+            "handoff_continuity:+0.8x",
+            "action_group_size:18"
+          ],
+          "transition": {
+            "allowed": true,
+            "previous_target_lane": "codex",
+            "previous_operator": "skill-polisher",
+            "transition_weight_multiplier": 1.8,
+            "transition_weight_reasons": [
+              "handoff_continuity:+0.8x"
+            ],
+            "filtered_out_rules": [
+              "duplicate_cell_blocked:9",
+              "history_pruned_action:19",
+              "repeated_target_skill_blocked:36",
+              "same_operator_consecutive_blocked:2304"
+            ]
+          },
+          "stop_condition": "stop_on_nonzero_or_missing_artifact"
+        },
+        {
+          "step": 3,
+          "cell": {
+            "executor_flavor": "claude",
+            "operator_flavor": "claude",
+            "operator_skill": "skill-polisher",
+            "operator_root": ".claude/skills",
+            "source_root": ".claude/skills",
+            "target_root": ".claude/skills",
+            "target_flavor": "claude",
+            "target_skill": "theme-system",
+            "target_skill_lane": "claude",
+            "target_flavor_mode": "gemini",
+            "action_scope": "skill",
+            "action_key": [
+              "skill-polisher",
+              "skill",
+              "verify",
+              "gemini",
+              ".claude/skills",
+              "theme-system"
+            ],
+            "adapter_kind": "skill_polisher_verify",
+            "legality_status": "degraded",
+            "legality_reasons": [
+              "interpretation_flavor_mismatch",
+              "registered_adapter:skill_polisher_verify",
+              "same_root"
+            ]
+          },
+          "action_key": [
+            "skill-polisher",
+            "skill",
+            "verify",
+            "gemini",
+            ".claude/skills",
+            "theme-system"
+          ],
+          "action_scope": "skill",
+          "equivalent_cell_count": 9,
+          "available_variant_count": 9,
+          "equivalent_target_sample": [
+            ".claude/skills::theme-system"
+          ],
+          "command": [
+            "uv",
+            "run",
+            ".codex/skills/skill-polisher/scripts/polish_skill.py",
+            ".claude\\skills\\theme-system",
+            "--mode",
+            "verify",
+            "--target-flavor",
+            "gemini",
+            "--no-require-assets"
+          ],
+          "expected_artifacts": [],
+          "expected_artifact_class": "verification_report",
+          "operator_mode": "mutating",
+          "operator_capabilities": {
+            "mode": "mutating",
+            "read": true,
+            "mutate": true,
+            "cross_lane_mutate": true,
+            "self_target": true,
+            "recurse": false,
+            "requires_artifacts": true,
+            "requires_review": true
+          },
+          "safety_class": "local_mutation",
+          "weight": 3.771053,
+          "weight_reasons": [
+            "mutating_operator:+0.4x",
+            "self_lane:+0.1x",
+            "cross_flavor_interp:+0.25x",
+            "adaptive_weight:1.55x",
+            "operator_weight:0.8375x",
+            "handoff_continuity:+0.8x",
+            "action_group_size:9"
+          ],
+          "transition": {
+            "allowed": true,
+            "previous_target_lane": "claude",
+            "previous_operator": "link-path-guard",
+            "transition_weight_multiplier": 1.8,
+            "transition_weight_reasons": [
+              "handoff_continuity:+0.8x"
+            ],
+            "filtered_out_rules": [
+              "duplicate_cell_blocked:27",
+              "history_pruned_action:19",
+              "repeated_target_skill_blocked:63",
+              "same_operator_consecutive_blocked:1386"
+            ]
+          },
+          "stop_condition": "stop_on_nonzero"
+        },
+        {
+          "step": 4,
+          "cell": {
+            "executor_flavor": "claude",
+            "operator_flavor": "claude",
+            "operator_skill": "link-path-guard",
+            "operator_root": ".claude/skills",
+            "source_root": ".claude/skills",
+            "target_root": ".claude/skills",
+            "target_flavor": "claude",
+            "target_skill": "script-envelope",
+            "target_skill_lane": "claude",
+            "target_flavor_mode": "codex",
+            "action_scope": "skill",
+            "action_key": [
+              "link-path-guard",
+              "skill",
+              ".claude/skills",
+              "script-envelope"
+            ],
+            "adapter_kind": "skill_path_guard",
+            "legality_status": "degraded",
+            "legality_reasons": [
+              "registered_adapter:skill_path_guard",
+              "same_root",
+              "target_redirect_or_stub"
+            ]
+          },
+          "action_key": [
+            "link-path-guard",
+            "skill",
+            ".claude/skills",
+            "script-envelope"
+          ],
+          "action_scope": "skill",
+          "equivalent_cell_count": 18,
+          "available_variant_count": 18,
+          "equivalent_target_sample": [
+            ".claude/skills::script-envelope"
+          ],
+          "command": [
+            "uv",
+            "run",
+            "scripts/skill_path_guard.py",
+            ".claude\\skills\\script-envelope\\SKILL.md"
+          ],
+          "expected_artifacts": [
+            "logs/skill_path_guard.log"
+          ],
+          "expected_artifact_class": "log",
+          "operator_mode": "mutating",
+          "operator_capabilities": {
+            "mode": "mutating",
+            "read": true,
+            "mutate": true,
+            "cross_lane_mutate": true,
+            "self_target": true,
+            "recurse": false,
+            "requires_artifacts": true,
+            "requires_review": true
+          },
+          "safety_class": "local_mutation",
+          "weight": 2.416476,
+          "weight_reasons": [
+            "mutating_operator:+0.4x",
+            "self_lane:+0.1x",
+            "cross_flavor_interp:+0.25x",
+            "adaptive_weight:1.15x",
+            "operator_weight:0.775x",
+            "handoff_continuity:+0.8x",
+            "action_group_size:18"
+          ],
+          "transition": {
+            "allowed": true,
+            "previous_target_lane": "claude",
+            "previous_operator": "skill-polisher",
+            "transition_weight_multiplier": 1.8,
+            "transition_weight_reasons": [
+              "handoff_continuity:+0.8x"
+            ],
+            "filtered_out_rules": [
+              "duplicate_cell_blocked:36",
+              "history_pruned_action:19",
+              "repeated_target_skill_blocked:99",
+              "same_operator_consecutive_blocked:2250"
+            ]
+          },
+          "stop_condition": "stop_on_nonzero"
+        }
+      ],
+      "execution_status": "passed",
+      "failure_classes": [],
+      "touched": [
+        {
+          "lane": "codex",
+          "root": ".codex/skills",
+          "skill": "python-header-canon"
+        },
+        {
+          "lane": "claude",
+          "root": ".claude/skills",
+          "skill": "sora"
+        },
+        {
+          "lane": "claude",
+          "root": ".claude/skills",
+          "skill": "theme-system"
+        },
+        {
+          "lane": "claude",
+          "root": ".claude/skills",
+          "skill": "script-envelope"
+        }
+      ],
+      "execution_results": [
+        {
+          "step": 1,
+          "command": [
+            "uv",
+            "run",
+            ".codex/skills/skill-polisher/scripts/polish_skill.py",
+            ".codex\\skills\\python-header-canon",
+            "--mode",
+            "verify",
+            "--target-flavor",
+            "claude",
+            "--no-require-assets"
+          ],
+          "rc": 0,
+          "seconds": 0.138,
+          "stdout_tail": "\u2554\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2557\n\u2551                    FEEDING REPORT: python-header-canon           \u2551\n\u255a\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u255d\nTASTE: PURE (Clean)\nNUTRITION LEVEL: 100%\n\nDOMAIN SCORES:\n  - structure: 100%\n  - policy: 100%\n  - semantics: 100%\n  - maintainability: 100%\n\nSystem Satisfied. No entropy found.\n\n>>> VERIFY: PASSED (no blocking findings). <<<",
+          "stderr_tail": "",
+          "expected_artifacts": [],
+          "present_artifacts": [],
+          "missing_artifacts": [],
+          "stop_condition": "stop_on_nonzero_or_missing_artifact",
+          "status": "passed",
+          "failure_kind": null
+        },
+        {
+          "step": 2,
+          "command": [
+            "uv",
+            "run",
+            "scripts/skill_path_guard.py",
+            ".claude\\skills\\sora\\SKILL.md"
+          ],
+          "rc": 0,
+          "seconds": 7.128,
+          "stdout_tail": "[fixable] .claude\\skills\\sora\\SKILL.md: scripts/skill_audit.py\n  -> scripts/skill_audit.py\n  :: resolved to repo-root target instead of local skill-relative path",
+          "stderr_tail": "",
+          "expected_artifacts": [
+            "logs/skill_path_guard.log"
+          ],
+          "present_artifacts": [
+            "logs/skill_path_guard.log"
+          ],
+          "missing_artifacts": [],
+          "stop_condition": "stop_on_nonzero_or_missing_artifact",
+          "status": "passed",
+          "failure_kind": null
+        },
+        {
+          "step": 3,
+          "command": [
+            "uv",
+            "run",
+            ".codex/skills/skill-polisher/scripts/polish_skill.py",
+            ".claude\\skills\\theme-system",
+            "--mode",
+            "verify",
+            "--target-flavor",
+            "gemini",
+            "--no-require-assets"
+          ],
+          "rc": 0,
+          "seconds": 0.14,
+          "stdout_tail": "\u2554\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2557\n\u2551                    FEEDING REPORT: theme-system                 \u2551\n\u255a\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u255d\nTASTE: PURE (Clean)\nNUTRITION LEVEL: 100%\n\nDOMAIN SCORES:\n  - structure: 100%\n  - policy: 100%\n  - semantics: 100%\n  - maintainability: 100%\n\nSystem Satisfied. No entropy found.\n\n>>> VERIFY: PASSED (no blocking findings). <<<",
+          "stderr_tail": "",
+          "expected_artifacts": [],
+          "present_artifacts": [],
+          "missing_artifacts": [],
+          "stop_condition": "stop_on_nonzero",
+          "status": "passed",
+          "failure_kind": null
+        },
+        {
+          "step": 4,
+          "command": [
+            "uv",
+            "run",
+            "scripts/skill_path_guard.py",
+            ".claude\\skills\\script-envelope\\SKILL.md"
+          ],
+          "rc": 0,
+          "seconds": 7.129,
+          "stdout_tail": "OK: no stale or broken skill path references found",
+          "stderr_tail": "",
+          "expected_artifacts": [
+            "logs/skill_path_guard.log"
+          ],
+          "present_artifacts": [
+            "logs/skill_path_guard.log"
+          ],
+          "missing_artifacts": [],
+          "stop_condition": "stop_on_nonzero",
+          "status": "passed",
+          "failure_kind": null
+        }
+      ],
+      "sampled_action_keys": [
+        [
+          "skill-polisher",
+          "skill",
+          "verify",
+          "claude",
+          ".codex/skills",
+          "python-header-canon"
+        ],
+        [
+          "link-path-guard",
+          "skill",
+          ".claude/skills",
+          "sora"
+        ],
+        [
+          "skill-polisher",
+          "skill",
+          "verify",
+          "gemini",
+          ".claude/skills",
+          "theme-system"
+        ],
+        [
+          "link-path-guard",
+          "skill",
+          ".claude/skills",
+          "script-envelope"
+        ]
+      ]
+    },
+    {
+      "recorded_at": "2026-03-20T19:05:35.092431+00:00",
+      "seed_text": "trainstop-default-seed",
+      "seed_value": 12077687225398345945,
+      "chain_length": 4,
+      "summary": {
+        "diversity_score": 0.9091,
+        "cross_lane_coverage": 1.0,
+        "operator_spread": 0.75,
+        "target_spread": 1.0,
+        "executor_flavors_seen": [
+          "claude",
+          "codex",
+          "gemini"
+        ],
+        "operator_skills_seen": [
+          "link-path-guard",
+          "mailbox-handoff",
+          "skill-polisher"
+        ],
+        "distinct_targets_seen": 4,
+        "distinct_action_keys_seen": 4,
+        "action_scopes_seen": [
+          "skill"
+        ]
+      },
+      "sampled_steps": [
+        {
+          "step": 1,
+          "cell": {
+            "executor_flavor": "claude",
+            "operator_flavor": "claude",
+            "operator_skill": "skill-polisher",
+            "operator_root": ".claude/skills",
+            "source_root": ".claude/skills",
+            "target_root": ".gemini/extensions/chthonic-archive-sync/skills",
+            "target_flavor": "gemini",
+            "target_skill": "gh-mcp-autonomy",
+            "target_skill_lane": "gemini",
+            "target_flavor_mode": "codex",
+            "action_scope": "skill",
+            "action_key": [
+              "skill-polisher",
+              "skill",
+              "verify",
+              "codex",
+              ".gemini/extensions/chthonic-archive-sync/skills",
+              "gh-mcp-autonomy"
+            ],
+            "adapter_kind": "skill_polisher_verify",
+            "legality_status": "degraded",
+            "legality_reasons": [
+              "interpretation_flavor_mismatch",
+              "registered_adapter:skill_polisher_verify"
+            ]
+          },
+          "action_key": [
+            "skill-polisher",
+            "skill",
+            "verify",
+            "codex",
+            ".gemini/extensions/chthonic-archive-sync/skills",
+            "gh-mcp-autonomy"
+          ],
+          "action_scope": "skill",
+          "equivalent_cell_count": 9,
+          "available_variant_count": 9,
+          "equivalent_target_sample": [
+            ".gemini/extensions/chthonic-archive-sync/skills::gh-mcp-autonomy"
+          ],
+          "weight": 2.503776,
+          "reasons": [
+            "mutating_operator:+0.4x",
+            "cross_lane:+0.5x",
+            "cross_flavor_interp:+0.25x",
+            "adaptive_weight:1.25x",
+            "operator_weight:0.8375x",
+            "initial_step",
+            "action_group_size:9"
+          ],
+          "transition": {
+            "allowed": true,
+            "previous_target_lane": null,
+            "previous_operator": null,
+            "transition_weight_multiplier": 1.0,
+            "transition_weight_reasons": [
+              "initial_step"
+            ],
+            "filtered_out_rules": [
+              "history_pruned_action:20"
+            ]
+          }
+        },
+        {
+          "step": 2,
+          "cell": {
+            "executor_flavor": "gemini",
+            "operator_flavor": "claude",
+            "operator_skill": "link-path-guard",
+            "operator_root": ".claude/skills",
+            "source_root": ".claude/skills",
+            "target_root": ".claude/skills",
+            "target_flavor": "claude",
+            "target_skill": "mailbox-handoff",
+            "target_skill_lane": "claude",
+            "target_flavor_mode": "codex",
+            "action_scope": "skill",
+            "action_key": [
+              "link-path-guard",
+              "skill",
+              ".claude/skills",
+              "mailbox-handoff"
+            ],
+            "adapter_kind": "skill_path_guard",
+            "legality_status": "legal",
+            "legality_reasons": [
+              "registered_adapter:skill_path_guard",
+              "same_root"
+            ]
+          },
+          "action_key": [
+            "link-path-guard",
+            "skill",
+            ".claude/skills",
+            "mailbox-handoff"
+          ],
+          "action_scope": "skill",
+          "equivalent_cell_count": 18,
+          "available_variant_count": 18,
+          "equivalent_target_sample": [
+            ".claude/skills::mailbox-handoff"
+          ],
+          "weight": 2.310248,
+          "reasons": [
+            "mutating_operator:+0.4x",
+            "cross_lane:+0.5x",
+            "cross_flavor_interp:+0.25x",
+            "adaptive_weight:1.05x",
+            "operator_weight:0.7625x",
+            "handoff_continuity:+0.8x",
+            "action_group_size:18"
+          ],
+          "transition": {
+            "allowed": true,
+            "previous_target_lane": "gemini",
+            "previous_operator": "skill-polisher",
+            "transition_weight_multiplier": 1.8,
+            "transition_weight_reasons": [
+              "handoff_continuity:+0.8x"
+            ],
+            "filtered_out_rules": [
+              "duplicate_cell_blocked:9",
+              "history_pruned_action:20",
+              "repeated_target_skill_blocked:90",
+              "same_operator_consecutive_blocked:2304"
+            ]
+          }
+        },
+        {
+          "step": 3,
+          "cell": {
+            "executor_flavor": "claude",
+            "operator_flavor": "claude",
+            "operator_skill": "mailbox-handoff",
+            "operator_root": ".claude/skills",
+            "source_root": ".claude/skills",
+            "target_root": ".codex/skills",
+            "target_flavor": "codex",
+            "target_skill": "gh-address-comments",
+            "target_skill_lane": "codex",
+            "target_flavor_mode": "gemini",
+            "action_scope": "skill",
+            "action_key": [
+              "mailbox-handoff",
+              "skill",
+              "codex",
+              "gemini",
+              ".codex/skills",
+              "gh-address-comments"
+            ],
+            "adapter_kind": "mailbox_link_canon",
+            "legality_status": "degraded",
+            "legality_reasons": [
+              "registered_adapter:mailbox_link_canon",
+              "target_redirect_or_stub"
+            ]
+          },
+          "action_key": [
+            "mailbox-handoff",
+            "skill",
+            "codex",
+            "gemini",
+            ".codex/skills",
+            "gh-address-comments"
+          ],
+          "action_scope": "skill",
+          "equivalent_cell_count": 9,
+          "available_variant_count": 9,
+          "equivalent_target_sample": [
+            ".codex/skills::gh-address-comments"
+          ],
+          "weight": 2.429167,
+          "reasons": [
+            "read_only_operator:+0.1x",
+            "cross_lane:+0.5x",
+            "cross_flavor_interp:+0.25x",
+            "adaptive_weight:1.0x",
+            "operator_weight:1.0x",
+            "handoff_continuity:+0.8x",
+            "action_group_size:9"
+          ],
+          "transition": {
+            "allowed": true,
+            "previous_target_lane": "claude",
+            "previous_operator": "link-path-guard",
+            "transition_weight_multiplier": 1.8,
+            "transition_weight_reasons": [
+              "handoff_continuity:+0.8x"
+            ],
+            "filtered_out_rules": [
+              "duplicate_cell_blocked:27",
+              "history_pruned_action:20",
+              "repeated_target_skill_blocked:162",
+              "same_operator_consecutive_blocked:1368"
+            ]
+          }
+        },
+        {
+          "step": 4,
+          "cell": {
+            "executor_flavor": "codex",
+            "operator_flavor": "claude",
+            "operator_skill": "link-path-guard",
+            "operator_root": ".claude/skills",
+            "source_root": ".claude/skills",
+            "target_root": ".gemini/extensions/chthonic-archive-sync/skills",
+            "target_flavor": "gemini",
+            "target_skill": "meta-polisher-validator",
+            "target_skill_lane": "gemini",
+            "target_flavor_mode": "claude",
+            "action_scope": "skill",
+            "action_key": [
+              "link-path-guard",
+              "skill",
+              ".gemini/extensions/chthonic-archive-sync/skills",
+              "meta-polisher-validator"
+            ],
+            "adapter_kind": "skill_path_guard",
+            "legality_status": "degraded",
+            "legality_reasons": [
+              "registered_adapter:skill_path_guard",
+              "target_redirect_or_stub"
+            ]
+          },
+          "action_key": [
+            "link-path-guard",
+            "skill",
+            ".gemini/extensions/chthonic-archive-sync/skills",
+            "meta-polisher-validator"
+          ],
+          "action_scope": "skill",
+          "equivalent_cell_count": 18,
+          "available_variant_count": 18,
+          "equivalent_target_sample": [
+            ".gemini/extensions/chthonic-archive-sync/skills::meta-polisher-validator"
+          ],
+          "weight": 2.200236,
+          "reasons": [
+            "mutating_operator:+0.4x",
+            "cross_lane:+0.5x",
+            "cross_flavor_interp:+0.25x",
+            "adaptive_weight:1.0x",
+            "operator_weight:0.7625x",
+            "handoff_continuity:+0.8x",
+            "action_group_size:18"
+          ],
+          "transition": {
+            "allowed": true,
+            "previous_target_lane": "codex",
+            "previous_operator": "mailbox-handoff",
+            "transition_weight_multiplier": 1.8,
+            "transition_weight_reasons": [
+              "handoff_continuity:+0.8x"
+            ],
+            "filtered_out_rules": [
+              "duplicate_cell_blocked:36",
+              "history_pruned_action:20",
+              "repeated_target_skill_blocked:252",
+              "same_operator_consecutive_blocked:2322"
+            ]
+          }
+        }
+      ],
+      "planned_steps": [
+        {
+          "step": 1,
+          "cell": {
+            "executor_flavor": "claude",
+            "operator_flavor": "claude",
+            "operator_skill": "skill-polisher",
+            "operator_root": ".claude/skills",
+            "source_root": ".claude/skills",
+            "target_root": ".gemini/extensions/chthonic-archive-sync/skills",
+            "target_flavor": "gemini",
+            "target_skill": "gh-mcp-autonomy",
+            "target_skill_lane": "gemini",
+            "target_flavor_mode": "codex",
+            "action_scope": "skill",
+            "action_key": [
+              "skill-polisher",
+              "skill",
+              "verify",
+              "codex",
+              ".gemini/extensions/chthonic-archive-sync/skills",
+              "gh-mcp-autonomy"
+            ],
+            "adapter_kind": "skill_polisher_verify",
+            "legality_status": "degraded",
+            "legality_reasons": [
+              "interpretation_flavor_mismatch",
+              "registered_adapter:skill_polisher_verify"
+            ]
+          },
+          "action_key": [
+            "skill-polisher",
+            "skill",
+            "verify",
+            "codex",
+            ".gemini/extensions/chthonic-archive-sync/skills",
+            "gh-mcp-autonomy"
+          ],
+          "action_scope": "skill",
+          "equivalent_cell_count": 9,
+          "available_variant_count": 9,
+          "equivalent_target_sample": [
+            ".gemini/extensions/chthonic-archive-sync/skills::gh-mcp-autonomy"
+          ],
+          "command": [
+            "uv",
+            "run",
+            ".claude\\skills\\skill-polisher\\scripts\\polish_skill.py",
+            ".gemini\\extensions\\chthonic-archive-sync\\skills\\gh-mcp-autonomy",
+            "--mode",
+            "verify",
+            "--target-flavor",
+            "codex",
+            "--no-require-assets"
+          ],
+          "expected_artifacts": [],
+          "expected_artifact_class": "verification_report",
+          "operator_mode": "mutating",
+          "operator_capabilities": {
+            "mode": "mutating",
+            "read": true,
+            "mutate": true,
+            "cross_lane_mutate": true,
+            "self_target": true,
+            "recurse": false,
+            "requires_artifacts": true,
+            "requires_review": true
+          },
+          "safety_class": "cross_lane_mutation",
+          "weight": 2.503776,
+          "weight_reasons": [
+            "mutating_operator:+0.4x",
+            "cross_lane:+0.5x",
+            "cross_flavor_interp:+0.25x",
+            "adaptive_weight:1.25x",
+            "operator_weight:0.8375x",
+            "initial_step",
+            "action_group_size:9"
+          ],
+          "transition": {
+            "allowed": true,
+            "previous_target_lane": null,
+            "previous_operator": null,
+            "transition_weight_multiplier": 1.0,
+            "transition_weight_reasons": [
+              "initial_step"
+            ],
+            "filtered_out_rules": [
+              "history_pruned_action:20"
+            ]
+          },
+          "stop_condition": "stop_on_nonzero_or_missing_artifact"
+        },
+        {
+          "step": 2,
+          "cell": {
+            "executor_flavor": "gemini",
+            "operator_flavor": "claude",
+            "operator_skill": "link-path-guard",
+            "operator_root": ".claude/skills",
+            "source_root": ".claude/skills",
+            "target_root": ".claude/skills",
+            "target_flavor": "claude",
+            "target_skill": "mailbox-handoff",
+            "target_skill_lane": "claude",
+            "target_flavor_mode": "codex",
+            "action_scope": "skill",
+            "action_key": [
+              "link-path-guard",
+              "skill",
+              ".claude/skills",
+              "mailbox-handoff"
+            ],
+            "adapter_kind": "skill_path_guard",
+            "legality_status": "legal",
+            "legality_reasons": [
+              "registered_adapter:skill_path_guard",
+              "same_root"
+            ]
+          },
+          "action_key": [
+            "link-path-guard",
+            "skill",
+            ".claude/skills",
+            "mailbox-handoff"
+          ],
+          "action_scope": "skill",
+          "equivalent_cell_count": 18,
+          "available_variant_count": 18,
+          "equivalent_target_sample": [
+            ".claude/skills::mailbox-handoff"
+          ],
+          "command": [
+            "uv",
+            "run",
+            "scripts/skill_path_guard.py",
+            ".claude\\skills\\mailbox-handoff\\SKILL.md"
+          ],
+          "expected_artifacts": [
+            "logs/skill_path_guard.log"
+          ],
+          "expected_artifact_class": "log",
+          "operator_mode": "mutating",
+          "operator_capabilities": {
+            "mode": "mutating",
+            "read": true,
+            "mutate": true,
+            "cross_lane_mutate": true,
+            "self_target": true,
+            "recurse": false,
+            "requires_artifacts": true,
+            "requires_review": true
+          },
+          "safety_class": "cross_lane_mutation",
+          "weight": 2.310248,
+          "weight_reasons": [
+            "mutating_operator:+0.4x",
+            "cross_lane:+0.5x",
+            "cross_flavor_interp:+0.25x",
+            "adaptive_weight:1.05x",
+            "operator_weight:0.7625x",
+            "handoff_continuity:+0.8x",
+            "action_group_size:18"
+          ],
+          "transition": {
+            "allowed": true,
+            "previous_target_lane": "gemini",
+            "previous_operator": "skill-polisher",
+            "transition_weight_multiplier": 1.8,
+            "transition_weight_reasons": [
+              "handoff_continuity:+0.8x"
+            ],
+            "filtered_out_rules": [
+              "duplicate_cell_blocked:9",
+              "history_pruned_action:20",
+              "repeated_target_skill_blocked:90",
+              "same_operator_consecutive_blocked:2304"
+            ]
+          },
+          "stop_condition": "stop_on_nonzero_or_missing_artifact"
+        },
+        {
+          "step": 3,
+          "cell": {
+            "executor_flavor": "claude",
+            "operator_flavor": "claude",
+            "operator_skill": "mailbox-handoff",
+            "operator_root": ".claude/skills",
+            "source_root": ".claude/skills",
+            "target_root": ".codex/skills",
+            "target_flavor": "codex",
+            "target_skill": "gh-address-comments",
+            "target_skill_lane": "codex",
+            "target_flavor_mode": "gemini",
+            "action_scope": "skill",
+            "action_key": [
+              "mailbox-handoff",
+              "skill",
+              "codex",
+              "gemini",
+              ".codex/skills",
+              "gh-address-comments"
+            ],
+            "adapter_kind": "mailbox_link_canon",
+            "legality_status": "degraded",
+            "legality_reasons": [
+              "registered_adapter:mailbox_link_canon",
+              "target_redirect_or_stub"
+            ]
+          },
+          "action_key": [
+            "mailbox-handoff",
+            "skill",
+            "codex",
+            "gemini",
+            ".codex/skills",
+            "gh-address-comments"
+          ],
+          "action_scope": "skill",
+          "equivalent_cell_count": 9,
+          "available_variant_count": 9,
+          "equivalent_target_sample": [
+            ".codex/skills::gh-address-comments"
+          ],
+          "command": [
+            "uv",
+            "run",
+            ".claude\\skills\\mailbox-handoff\\scripts\\mailbox_check.py",
+            "--mode",
+            "link-canon",
+            "--link-canon-file",
+            ".codex\\skills\\gh-address-comments\\SKILL.md",
+            "--link-canon-no-fail"
+          ],
+          "expected_artifacts": [],
+          "expected_artifact_class": "link_report",
+          "operator_mode": "meta",
+          "operator_capabilities": {
+            "mode": "read_only",
+            "read": true,
+            "mutate": false,
+            "cross_lane_mutate": false,
+            "self_target": true,
+            "recurse": false,
+            "requires_artifacts": false,
+            "requires_review": false
+          },
+          "safety_class": "read_only",
+          "weight": 2.429167,
+          "weight_reasons": [
+            "read_only_operator:+0.1x",
+            "cross_lane:+0.5x",
+            "cross_flavor_interp:+0.25x",
+            "adaptive_weight:1.0x",
+            "operator_weight:1.0x",
+            "handoff_continuity:+0.8x",
+            "action_group_size:9"
+          ],
+          "transition": {
+            "allowed": true,
+            "previous_target_lane": "claude",
+            "previous_operator": "link-path-guard",
+            "transition_weight_multiplier": 1.8,
+            "transition_weight_reasons": [
+              "handoff_continuity:+0.8x"
+            ],
+            "filtered_out_rules": [
+              "duplicate_cell_blocked:27",
+              "history_pruned_action:20",
+              "repeated_target_skill_blocked:162",
+              "same_operator_consecutive_blocked:1368"
+            ]
+          },
+          "stop_condition": "stop_on_nonzero"
+        },
+        {
+          "step": 4,
+          "cell": {
+            "executor_flavor": "codex",
+            "operator_flavor": "claude",
+            "operator_skill": "link-path-guard",
+            "operator_root": ".claude/skills",
+            "source_root": ".claude/skills",
+            "target_root": ".gemini/extensions/chthonic-archive-sync/skills",
+            "target_flavor": "gemini",
+            "target_skill": "meta-polisher-validator",
+            "target_skill_lane": "gemini",
+            "target_flavor_mode": "claude",
+            "action_scope": "skill",
+            "action_key": [
+              "link-path-guard",
+              "skill",
+              ".gemini/extensions/chthonic-archive-sync/skills",
+              "meta-polisher-validator"
+            ],
+            "adapter_kind": "skill_path_guard",
+            "legality_status": "degraded",
+            "legality_reasons": [
+              "registered_adapter:skill_path_guard",
+              "target_redirect_or_stub"
+            ]
+          },
+          "action_key": [
+            "link-path-guard",
+            "skill",
+            ".gemini/extensions/chthonic-archive-sync/skills",
+            "meta-polisher-validator"
+          ],
+          "action_scope": "skill",
+          "equivalent_cell_count": 18,
+          "available_variant_count": 18,
+          "equivalent_target_sample": [
+            ".gemini/extensions/chthonic-archive-sync/skills::meta-polisher-validator"
+          ],
+          "command": [
+            "uv",
+            "run",
+            "scripts/skill_path_guard.py",
+            ".gemini\\extensions\\chthonic-archive-sync\\skills\\meta-polisher-validator\\SKILL.md"
+          ],
+          "expected_artifacts": [
+            "logs/skill_path_guard.log"
+          ],
+          "expected_artifact_class": "log",
+          "operator_mode": "mutating",
+          "operator_capabilities": {
+            "mode": "mutating",
+            "read": true,
+            "mutate": true,
+            "cross_lane_mutate": true,
+            "self_target": true,
+            "recurse": false,
+            "requires_artifacts": true,
+            "requires_review": true
+          },
+          "safety_class": "cross_lane_mutation",
+          "weight": 2.200236,
+          "weight_reasons": [
+            "mutating_operator:+0.4x",
+            "cross_lane:+0.5x",
+            "cross_flavor_interp:+0.25x",
+            "adaptive_weight:1.0x",
+            "operator_weight:0.7625x",
+            "handoff_continuity:+0.8x",
+            "action_group_size:18"
+          ],
+          "transition": {
+            "allowed": true,
+            "previous_target_lane": "codex",
+            "previous_operator": "mailbox-handoff",
+            "transition_weight_multiplier": 1.8,
+            "transition_weight_reasons": [
+              "handoff_continuity:+0.8x"
+            ],
+            "filtered_out_rules": [
+              "duplicate_cell_blocked:36",
+              "history_pruned_action:20",
+              "repeated_target_skill_blocked:252",
+              "same_operator_consecutive_blocked:2322"
+            ]
+          },
+          "stop_condition": "stop_on_nonzero_or_missing_artifact"
+        }
+      ],
+      "execution_status": "failed",
+      "failure_classes": [
+        {
+          "step": 1,
+          "kind": "skill_polisher_failure",
+          "status": "failed",
+          "command": [
+            "uv",
+            "run",
+            ".claude\\skills\\skill-polisher\\scripts\\polish_skill.py",
+            ".gemini\\extensions\\chthonic-archive-sync\\skills\\gh-mcp-autonomy",
+            "--mode",
+            "verify",
+            "--target-flavor",
+            "codex",
+            "--no-require-assets"
+          ],
+          "rc": 2
+        }
+      ],
+      "touched": [
+        {
+          "lane": "gemini",
+          "root": ".gemini/extensions/chthonic-archive-sync/skills",
+          "skill": "gh-mcp-autonomy"
+        },
+        {
+          "lane": "claude",
+          "root": ".claude/skills",
+          "skill": "mailbox-handoff"
+        },
+        {
+          "lane": "codex",
+          "root": ".codex/skills",
+          "skill": "gh-address-comments"
+        },
+        {
+          "lane": "gemini",
+          "root": ".gemini/extensions/chthonic-archive-sync/skills",
+          "skill": "meta-polisher-validator"
+        }
+      ],
+      "execution_results": [
+        {
+          "step": 1,
+          "command": [
+            "uv",
+            "run",
+            ".claude\\skills\\skill-polisher\\scripts\\polish_skill.py",
+            ".gemini\\extensions\\chthonic-archive-sync\\skills\\gh-mcp-autonomy",
+            "--mode",
+            "verify",
+            "--target-flavor",
+            "codex",
+            "--no-require-assets"
+          ],
+          "rc": 2,
+          "seconds": 0.053,
+          "stdout_tail": "",
+          "stderr_tail": "error: Failed to spawn: `.claude\\skills\\skill-polisher\\scripts\\polish_skill.py`\n  Caused by: Systemet finner ikke angitt bane. (os error 3)",
+          "expected_artifacts": [],
+          "present_artifacts": [],
+          "missing_artifacts": [],
+          "stop_condition": "stop_on_nonzero_or_missing_artifact",
+          "status": "failed",
+          "failure_kind": "skill_polisher_failure"
+        }
+      ],
+      "sampled_action_keys": [
+        [
+          "skill-polisher",
+          "skill",
+          "verify",
+          "codex",
+          ".gemini/extensions/chthonic-archive-sync/skills",
+          "gh-mcp-autonomy"
+        ],
+        [
+          "link-path-guard",
+          "skill",
+          ".claude/skills",
+          "mailbox-handoff"
+        ],
+        [
+          "mailbox-handoff",
+          "skill",
+          "codex",
+          "gemini",
+          ".codex/skills",
+          "gh-address-comments"
+        ],
+        [
+          "link-path-guard",
+          "skill",
+          ".gemini/extensions/chthonic-archive-sync/skills",
+          "meta-polisher-validator"
+        ]
+      ]
+    },
+    {
+      "recorded_at": "2026-03-20T19:06:36.596209+00:00",
+      "seed_text": "trainstop-default-seed",
+      "seed_value": 12077687225398345945,
+      "chain_length": 4,
+      "summary": {
+        "diversity_score": 0.9091,
+        "cross_lane_coverage": 1.0,
+        "operator_spread": 0.75,
+        "target_spread": 1.0,
+        "executor_flavors_seen": [
+          "claude",
+          "codex",
+          "gemini"
+        ],
+        "operator_skills_seen": [
+          "link-path-guard",
+          "mailbox-handoff",
+          "skill-polisher"
+        ],
+        "distinct_targets_seen": 4,
+        "distinct_action_keys_seen": 4,
+        "action_scopes_seen": [
+          "skill"
+        ]
+      },
+      "sampled_steps": [
+        {
+          "step": 1,
+          "cell": {
+            "executor_flavor": "claude",
+            "operator_flavor": "claude",
+            "operator_skill": "skill-polisher",
+            "operator_root": ".claude/skills",
+            "source_root": ".claude/skills",
+            "target_root": ".gemini/extensions/chthonic-archive-sync/skills",
+            "target_flavor": "gemini",
+            "target_skill": "gh-mcp-autonomy",
+            "target_skill_lane": "gemini",
+            "target_flavor_mode": "codex",
+            "action_scope": "skill",
+            "action_key": [
+              "skill-polisher",
+              "skill",
+              "verify",
+              "codex",
+              ".gemini/extensions/chthonic-archive-sync/skills",
+              "gh-mcp-autonomy"
+            ],
+            "adapter_kind": "skill_polisher_verify",
+            "legality_status": "degraded",
+            "legality_reasons": [
+              "interpretation_flavor_mismatch",
+              "registered_adapter:skill_polisher_verify"
+            ]
+          },
+          "action_key": [
+            "skill-polisher",
+            "skill",
+            "verify",
+            "codex",
+            ".gemini/extensions/chthonic-archive-sync/skills",
+            "gh-mcp-autonomy"
+          ],
+          "action_scope": "skill",
+          "equivalent_cell_count": 9,
+          "available_variant_count": 9,
+          "equivalent_target_sample": [
+            ".gemini/extensions/chthonic-archive-sync/skills::gh-mcp-autonomy"
+          ],
+          "weight": 2.804229,
+          "reasons": [
+            "mutating_operator:+0.4x",
+            "cross_lane:+0.5x",
+            "cross_flavor_interp:+0.25x",
+            "adaptive_weight:1.4x",
+            "operator_weight:0.8375x",
+            "initial_step",
+            "action_group_size:9"
+          ],
+          "transition": {
+            "allowed": true,
+            "previous_target_lane": null,
+            "previous_operator": null,
+            "transition_weight_multiplier": 1.0,
+            "transition_weight_reasons": [
+              "initial_step"
+            ],
+            "filtered_out_rules": [
+              "history_pruned_action:17"
+            ]
+          }
+        },
+        {
+          "step": 2,
+          "cell": {
+            "executor_flavor": "gemini",
+            "operator_flavor": "claude",
+            "operator_skill": "link-path-guard",
+            "operator_root": ".claude/skills",
+            "source_root": ".claude/skills",
+            "target_root": ".claude/skills",
+            "target_flavor": "claude",
+            "target_skill": "link-path-guard",
+            "target_skill_lane": "claude",
+            "target_flavor_mode": "codex",
+            "action_scope": "skill",
+            "action_key": [
+              "link-path-guard",
+              "skill",
+              ".claude/skills",
+              "link-path-guard"
+            ],
+            "adapter_kind": "skill_path_guard",
+            "legality_status": "degraded",
+            "legality_reasons": [
+              "registered_adapter:skill_path_guard",
+              "same_root",
+              "self_target_skill"
+            ]
+          },
+          "action_key": [
+            "link-path-guard",
+            "skill",
+            ".claude/skills",
+            "link-path-guard"
+          ],
+          "action_scope": "skill",
+          "equivalent_cell_count": 18,
+          "available_variant_count": 18,
+          "equivalent_target_sample": [
+            ".claude/skills::link-path-guard"
+          ],
+          "weight": 3.080331,
+          "reasons": [
+            "mutating_operator:+0.4x",
+            "cross_lane:+0.5x",
+            "cross_flavor_interp:+0.25x",
+            "adaptive_weight:1.4x",
+            "operator_weight:0.7625x",
+            "handoff_continuity:+0.8x",
+            "action_group_size:18"
+          ],
+          "transition": {
+            "allowed": true,
+            "previous_target_lane": "gemini",
+            "previous_operator": "skill-polisher",
+            "transition_weight_multiplier": 1.8,
+            "transition_weight_reasons": [
+              "handoff_continuity:+0.8x"
+            ],
+            "filtered_out_rules": [
+              "duplicate_cell_blocked:9",
+              "history_pruned_action:17",
+              "repeated_target_skill_blocked:90",
+              "same_operator_consecutive_blocked:2313"
+            ]
+          }
+        },
+        {
+          "step": 3,
+          "cell": {
+            "executor_flavor": "claude",
+            "operator_flavor": "claude",
+            "operator_skill": "mailbox-handoff",
+            "operator_root": ".claude/skills",
+            "source_root": ".claude/skills",
+            "target_root": ".codex/skills",
+            "target_flavor": "codex",
+            "target_skill": "gh-address-comments",
+            "target_skill_lane": "codex",
+            "target_flavor_mode": "gemini",
+            "action_scope": "skill",
+            "action_key": [
+              "mailbox-handoff",
+              "skill",
+              "codex",
+              "gemini",
+              ".codex/skills",
+              "gh-address-comments"
+            ],
+            "adapter_kind": "mailbox_link_canon",
+            "legality_status": "degraded",
+            "legality_reasons": [
+              "registered_adapter:mailbox_link_canon",
+              "target_redirect_or_stub"
+            ]
+          },
+          "action_key": [
+            "mailbox-handoff",
+            "skill",
+            "codex",
+            "gemini",
+            ".codex/skills",
+            "gh-address-comments"
+          ],
+          "action_scope": "skill",
+          "equivalent_cell_count": 9,
+          "available_variant_count": 9,
+          "equivalent_target_sample": [
+            ".codex/skills::gh-address-comments"
+          ],
+          "weight": 2.758622,
+          "reasons": [
+            "read_only_operator:+0.1x",
+            "cross_lane:+0.5x",
+            "cross_flavor_interp:+0.25x",
+            "adaptive_weight:1.15x",
+            "operator_weight:0.9875x",
+            "handoff_continuity:+0.8x",
+            "action_group_size:9"
+          ],
+          "transition": {
+            "allowed": true,
+            "previous_target_lane": "claude",
+            "previous_operator": "link-path-guard",
+            "transition_weight_multiplier": 1.8,
+            "transition_weight_reasons": [
+              "handoff_continuity:+0.8x"
+            ],
+            "filtered_out_rules": [
+              "duplicate_cell_blocked:27",
+              "history_pruned_action:17",
+              "repeated_target_skill_blocked:162",
+              "same_operator_consecutive_blocked:1404"
+            ]
+          }
+        },
+        {
+          "step": 4,
+          "cell": {
+            "executor_flavor": "codex",
+            "operator_flavor": "claude",
+            "operator_skill": "link-path-guard",
+            "operator_root": ".claude/skills",
+            "source_root": ".claude/skills",
+            "target_root": ".gemini/extensions/chthonic-archive-sync/skills",
+            "target_flavor": "gemini",
+            "target_skill": "iron-maiden-runtime",
+            "target_skill_lane": "gemini",
+            "target_flavor_mode": "claude",
+            "action_scope": "skill",
+            "action_key": [
+              "link-path-guard",
+              "skill",
+              ".gemini/extensions/chthonic-archive-sync/skills",
+              "iron-maiden-runtime"
+            ],
+            "adapter_kind": "skill_path_guard",
+            "legality_status": "legal",
+            "legality_reasons": [
+              "registered_adapter:skill_path_guard"
+            ]
+          },
+          "action_key": [
+            "link-path-guard",
+            "skill",
+            ".gemini/extensions/chthonic-archive-sync/skills",
+            "iron-maiden-runtime"
+          ],
+          "action_scope": "skill",
+          "equivalent_cell_count": 18,
+          "available_variant_count": 18,
+          "equivalent_target_sample": [
+            ".gemini/extensions/chthonic-archive-sync/skills::iron-maiden-runtime"
+          ],
+          "weight": 2.310248,
+          "reasons": [
+            "mutating_operator:+0.4x",
+            "cross_lane:+0.5x",
+            "cross_flavor_interp:+0.25x",
+            "adaptive_weight:1.05x",
+            "operator_weight:0.7625x",
+            "handoff_continuity:+0.8x",
+            "action_group_size:18"
+          ],
+          "transition": {
+            "allowed": true,
+            "previous_target_lane": "codex",
+            "previous_operator": "mailbox-handoff",
+            "transition_weight_multiplier": 1.8,
+            "transition_weight_reasons": [
+              "handoff_continuity:+0.8x"
+            ],
+            "filtered_out_rules": [
+              "duplicate_cell_blocked:36",
+              "history_pruned_action:17",
+              "repeated_target_skill_blocked:252",
+              "same_operator_consecutive_blocked:2322"
+            ]
+          }
+        }
+      ],
+      "planned_steps": [
+        {
+          "step": 1,
+          "cell": {
+            "executor_flavor": "claude",
+            "operator_flavor": "claude",
+            "operator_skill": "skill-polisher",
+            "operator_root": ".claude/skills",
+            "source_root": ".claude/skills",
+            "target_root": ".gemini/extensions/chthonic-archive-sync/skills",
+            "target_flavor": "gemini",
+            "target_skill": "gh-mcp-autonomy",
+            "target_skill_lane": "gemini",
+            "target_flavor_mode": "codex",
+            "action_scope": "skill",
+            "action_key": [
+              "skill-polisher",
+              "skill",
+              "verify",
+              "codex",
+              ".gemini/extensions/chthonic-archive-sync/skills",
+              "gh-mcp-autonomy"
+            ],
+            "adapter_kind": "skill_polisher_verify",
+            "legality_status": "degraded",
+            "legality_reasons": [
+              "interpretation_flavor_mismatch",
+              "registered_adapter:skill_polisher_verify"
+            ]
+          },
+          "action_key": [
+            "skill-polisher",
+            "skill",
+            "verify",
+            "codex",
+            ".gemini/extensions/chthonic-archive-sync/skills",
+            "gh-mcp-autonomy"
+          ],
+          "action_scope": "skill",
+          "equivalent_cell_count": 9,
+          "available_variant_count": 9,
+          "equivalent_target_sample": [
+            ".gemini/extensions/chthonic-archive-sync/skills::gh-mcp-autonomy"
+          ],
+          "command": [
+            "uv",
+            "run",
+            ".claude\\skills\\skill-polisher\\skill-polisher\\scripts\\polish_skill.py",
+            ".gemini\\extensions\\chthonic-archive-sync\\skills\\gh-mcp-autonomy",
+            "--mode",
+            "verify",
+            "--target-flavor",
+            "codex",
+            "--no-require-assets"
+          ],
+          "expected_artifacts": [],
+          "expected_artifact_class": "verification_report",
+          "operator_mode": "mutating",
+          "operator_capabilities": {
+            "mode": "mutating",
+            "read": true,
+            "mutate": true,
+            "cross_lane_mutate": true,
+            "self_target": true,
+            "recurse": false,
+            "requires_artifacts": true,
+            "requires_review": true
+          },
+          "safety_class": "cross_lane_mutation",
+          "weight": 2.804229,
+          "weight_reasons": [
+            "mutating_operator:+0.4x",
+            "cross_lane:+0.5x",
+            "cross_flavor_interp:+0.25x",
+            "adaptive_weight:1.4x",
+            "operator_weight:0.8375x",
+            "initial_step",
+            "action_group_size:9"
+          ],
+          "transition": {
+            "allowed": true,
+            "previous_target_lane": null,
+            "previous_operator": null,
+            "transition_weight_multiplier": 1.0,
+            "transition_weight_reasons": [
+              "initial_step"
+            ],
+            "filtered_out_rules": [
+              "history_pruned_action:17"
+            ]
+          },
+          "stop_condition": "stop_on_nonzero_or_missing_artifact"
+        },
+        {
+          "step": 2,
+          "cell": {
+            "executor_flavor": "gemini",
+            "operator_flavor": "claude",
+            "operator_skill": "link-path-guard",
+            "operator_root": ".claude/skills",
+            "source_root": ".claude/skills",
+            "target_root": ".claude/skills",
+            "target_flavor": "claude",
+            "target_skill": "link-path-guard",
+            "target_skill_lane": "claude",
+            "target_flavor_mode": "codex",
+            "action_scope": "skill",
+            "action_key": [
+              "link-path-guard",
+              "skill",
+              ".claude/skills",
+              "link-path-guard"
+            ],
+            "adapter_kind": "skill_path_guard",
+            "legality_status": "degraded",
+            "legality_reasons": [
+              "registered_adapter:skill_path_guard",
+              "same_root",
+              "self_target_skill"
+            ]
+          },
+          "action_key": [
+            "link-path-guard",
+            "skill",
+            ".claude/skills",
+            "link-path-guard"
+          ],
+          "action_scope": "skill",
+          "equivalent_cell_count": 18,
+          "available_variant_count": 18,
+          "equivalent_target_sample": [
+            ".claude/skills::link-path-guard"
+          ],
+          "command": [
+            "uv",
+            "run",
+            "scripts/skill_path_guard.py",
+            ".claude\\skills\\link-path-guard\\SKILL.md"
+          ],
+          "expected_artifacts": [
+            "logs/skill_path_guard.log"
+          ],
+          "expected_artifact_class": "log",
+          "operator_mode": "mutating",
+          "operator_capabilities": {
+            "mode": "mutating",
+            "read": true,
+            "mutate": true,
+            "cross_lane_mutate": true,
+            "self_target": true,
+            "recurse": false,
+            "requires_artifacts": true,
+            "requires_review": true
+          },
+          "safety_class": "cross_lane_mutation",
+          "weight": 3.080331,
+          "weight_reasons": [
+            "mutating_operator:+0.4x",
+            "cross_lane:+0.5x",
+            "cross_flavor_interp:+0.25x",
+            "adaptive_weight:1.4x",
+            "operator_weight:0.7625x",
+            "handoff_continuity:+0.8x",
+            "action_group_size:18"
+          ],
+          "transition": {
+            "allowed": true,
+            "previous_target_lane": "gemini",
+            "previous_operator": "skill-polisher",
+            "transition_weight_multiplier": 1.8,
+            "transition_weight_reasons": [
+              "handoff_continuity:+0.8x"
+            ],
+            "filtered_out_rules": [
+              "duplicate_cell_blocked:9",
+              "history_pruned_action:17",
+              "repeated_target_skill_blocked:90",
+              "same_operator_consecutive_blocked:2313"
+            ]
+          },
+          "stop_condition": "stop_on_nonzero_or_missing_artifact"
+        },
+        {
+          "step": 3,
+          "cell": {
+            "executor_flavor": "claude",
+            "operator_flavor": "claude",
+            "operator_skill": "mailbox-handoff",
+            "operator_root": ".claude/skills",
+            "source_root": ".claude/skills",
+            "target_root": ".codex/skills",
+            "target_flavor": "codex",
+            "target_skill": "gh-address-comments",
+            "target_skill_lane": "codex",
+            "target_flavor_mode": "gemini",
+            "action_scope": "skill",
+            "action_key": [
+              "mailbox-handoff",
+              "skill",
+              "codex",
+              "gemini",
+              ".codex/skills",
+              "gh-address-comments"
+            ],
+            "adapter_kind": "mailbox_link_canon",
+            "legality_status": "degraded",
+            "legality_reasons": [
+              "registered_adapter:mailbox_link_canon",
+              "target_redirect_or_stub"
+            ]
+          },
+          "action_key": [
+            "mailbox-handoff",
+            "skill",
+            "codex",
+            "gemini",
+            ".codex/skills",
+            "gh-address-comments"
+          ],
+          "action_scope": "skill",
+          "equivalent_cell_count": 9,
+          "available_variant_count": 9,
+          "equivalent_target_sample": [
+            ".codex/skills::gh-address-comments"
+          ],
+          "command": [
+            "uv",
+            "run",
+            ".claude\\skills\\mailbox-handoff\\mailbox-handoff\\scripts\\mailbox_check.py",
+            "--mode",
+            "link-canon",
+            "--link-canon-file",
+            ".codex\\skills\\gh-address-comments\\SKILL.md",
+            "--link-canon-no-fail"
+          ],
+          "expected_artifacts": [],
+          "expected_artifact_class": "link_report",
+          "operator_mode": "meta",
+          "operator_capabilities": {
+            "mode": "read_only",
+            "read": true,
+            "mutate": false,
+            "cross_lane_mutate": false,
+            "self_target": true,
+            "recurse": false,
+            "requires_artifacts": false,
+            "requires_review": false
+          },
+          "safety_class": "read_only",
+          "weight": 2.758622,
+          "weight_reasons": [
+            "read_only_operator:+0.1x",
+            "cross_lane:+0.5x",
+            "cross_flavor_interp:+0.25x",
+            "adaptive_weight:1.15x",
+            "operator_weight:0.9875x",
+            "handoff_continuity:+0.8x",
+            "action_group_size:9"
+          ],
+          "transition": {
+            "allowed": true,
+            "previous_target_lane": "claude",
+            "previous_operator": "link-path-guard",
+            "transition_weight_multiplier": 1.8,
+            "transition_weight_reasons": [
+              "handoff_continuity:+0.8x"
+            ],
+            "filtered_out_rules": [
+              "duplicate_cell_blocked:27",
+              "history_pruned_action:17",
+              "repeated_target_skill_blocked:162",
+              "same_operator_consecutive_blocked:1404"
+            ]
+          },
+          "stop_condition": "stop_on_nonzero"
+        },
+        {
+          "step": 4,
+          "cell": {
+            "executor_flavor": "codex",
+            "operator_flavor": "claude",
+            "operator_skill": "link-path-guard",
+            "operator_root": ".claude/skills",
+            "source_root": ".claude/skills",
+            "target_root": ".gemini/extensions/chthonic-archive-sync/skills",
+            "target_flavor": "gemini",
+            "target_skill": "iron-maiden-runtime",
+            "target_skill_lane": "gemini",
+            "target_flavor_mode": "claude",
+            "action_scope": "skill",
+            "action_key": [
+              "link-path-guard",
+              "skill",
+              ".gemini/extensions/chthonic-archive-sync/skills",
+              "iron-maiden-runtime"
+            ],
+            "adapter_kind": "skill_path_guard",
+            "legality_status": "legal",
+            "legality_reasons": [
+              "registered_adapter:skill_path_guard"
+            ]
+          },
+          "action_key": [
+            "link-path-guard",
+            "skill",
+            ".gemini/extensions/chthonic-archive-sync/skills",
+            "iron-maiden-runtime"
+          ],
+          "action_scope": "skill",
+          "equivalent_cell_count": 18,
+          "available_variant_count": 18,
+          "equivalent_target_sample": [
+            ".gemini/extensions/chthonic-archive-sync/skills::iron-maiden-runtime"
+          ],
+          "command": [
+            "uv",
+            "run",
+            "scripts/skill_path_guard.py",
+            ".gemini\\extensions\\chthonic-archive-sync\\skills\\iron-maiden-runtime\\SKILL.md"
+          ],
+          "expected_artifacts": [
+            "logs/skill_path_guard.log"
+          ],
+          "expected_artifact_class": "log",
+          "operator_mode": "mutating",
+          "operator_capabilities": {
+            "mode": "mutating",
+            "read": true,
+            "mutate": true,
+            "cross_lane_mutate": true,
+            "self_target": true,
+            "recurse": false,
+            "requires_artifacts": true,
+            "requires_review": true
+          },
+          "safety_class": "cross_lane_mutation",
+          "weight": 2.310248,
+          "weight_reasons": [
+            "mutating_operator:+0.4x",
+            "cross_lane:+0.5x",
+            "cross_flavor_interp:+0.25x",
+            "adaptive_weight:1.05x",
+            "operator_weight:0.7625x",
+            "handoff_continuity:+0.8x",
+            "action_group_size:18"
+          ],
+          "transition": {
+            "allowed": true,
+            "previous_target_lane": "codex",
+            "previous_operator": "mailbox-handoff",
+            "transition_weight_multiplier": 1.8,
+            "transition_weight_reasons": [
+              "handoff_continuity:+0.8x"
+            ],
+            "filtered_out_rules": [
+              "duplicate_cell_blocked:36",
+              "history_pruned_action:17",
+              "repeated_target_skill_blocked:252",
+              "same_operator_consecutive_blocked:2322"
+            ]
+          },
+          "stop_condition": "stop_on_nonzero_or_missing_artifact"
+        }
+      ],
+      "execution_status": "failed",
+      "failure_classes": [
+        {
+          "step": 2,
+          "kind": "path_guard_failure",
+          "status": "failed",
+          "command": [
+            "uv",
+            "run",
+            "scripts/skill_path_guard.py",
+            ".claude\\skills\\link-path-guard\\SKILL.md"
+          ],
+          "rc": 1
+        }
+      ],
+      "touched": [
+        {
+          "lane": "gemini",
+          "root": ".gemini/extensions/chthonic-archive-sync/skills",
+          "skill": "gh-mcp-autonomy"
+        },
+        {
+          "lane": "claude",
+          "root": ".claude/skills",
+          "skill": "link-path-guard"
+        },
+        {
+          "lane": "codex",
+          "root": ".codex/skills",
+          "skill": "gh-address-comments"
+        },
+        {
+          "lane": "gemini",
+          "root": ".gemini/extensions/chthonic-archive-sync/skills",
+          "skill": "iron-maiden-runtime"
+        }
+      ],
+      "execution_results": [
+        {
+          "step": 1,
+          "command": [
+            "uv",
+            "run",
+            ".claude\\skills\\skill-polisher\\skill-polisher\\scripts\\polish_skill.py",
+            ".gemini\\extensions\\chthonic-archive-sync\\skills\\gh-mcp-autonomy",
+            "--mode",
+            "verify",
+            "--target-flavor",
+            "codex",
+            "--no-require-assets"
+          ],
+          "rc": 0,
+          "seconds": 0.128,
+          "stdout_tail": "\u2554\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2557\n\u2551                    FEEDING REPORT: gh-mcp-autonomy              \u2551\n\u255a\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u255d\nTASTE: PURE (Clean)\nNUTRITION LEVEL: 100%\n\nDOMAIN SCORES:\n  - structure: 100%\n  - policy: 100%\n  - semantics: 100%\n  - maintainability: 100%\n\nSystem Satisfied. No entropy found.\n\n>>> VERIFY: PASSED (no blocking findings). <<<",
+          "stderr_tail": "",
+          "expected_artifacts": [],
+          "present_artifacts": [],
+          "missing_artifacts": [],
+          "stop_condition": "stop_on_nonzero_or_missing_artifact",
+          "status": "passed",
+          "failure_kind": null
+        },
+        {
+          "step": 2,
+          "command": [
+            "uv",
+            "run",
+            "scripts/skill_path_guard.py",
+            ".claude\\skills\\link-path-guard\\SKILL.md"
+          ],
+          "rc": 1,
+          "seconds": 7.151,
+          "stdout_tail": "[fixable] .claude\\skills\\link-path-guard\\SKILL.md: scripts/skill_path_guard.py\n  -> scripts/skill_path_guard.py\n  :: resolved to repo-root target instead of local skill-relative path\n[broken] .claude\\skills\\link-path-guard\\SKILL.md: C:\\Users\\erdno\\...\n  :: target does not exist\n[fixable] .claude\\skills\\link-path-guard\\SKILL.md: scripts/link_audit.py\n  -> scripts/link_audit.py\n  :: resolved to repo-root target instead of local skill-relative path",
+          "stderr_tail": "",
+          "expected_artifacts": [
+            "logs/skill_path_guard.log"
+          ],
+          "present_artifacts": [
+            "logs/skill_path_guard.log"
+          ],
+          "missing_artifacts": [],
+          "stop_condition": "stop_on_nonzero_or_missing_artifact",
+          "status": "failed",
+          "failure_kind": "path_guard_failure"
+        }
+      ],
+      "sampled_action_keys": [
+        [
+          "skill-polisher",
+          "skill",
+          "verify",
+          "codex",
+          ".gemini/extensions/chthonic-archive-sync/skills",
+          "gh-mcp-autonomy"
+        ],
+        [
+          "link-path-guard",
+          "skill",
+          ".claude/skills",
+          "link-path-guard"
+        ],
+        [
+          "mailbox-handoff",
+          "skill",
+          "codex",
+          "gemini",
+          ".codex/skills",
+          "gh-address-comments"
+        ],
+        [
+          "link-path-guard",
+          "skill",
+          ".gemini/extensions/chthonic-archive-sync/skills",
+          "iron-maiden-runtime"
+        ]
+      ]
+    },
+    {
+      "recorded_at": "2026-03-20T19:07:27.771811+00:00",
+      "seed_text": "trainstop-default-seed",
+      "seed_value": 12077687225398345945,
+      "chain_length": 4,
+      "summary": {
+        "diversity_score": 0.9091,
+        "cross_lane_coverage": 1.0,
+        "operator_spread": 0.75,
+        "target_spread": 1.0,
+        "executor_flavors_seen": [
+          "claude",
+          "codex",
+          "gemini"
+        ],
+        "operator_skills_seen": [
+          "link-path-guard",
+          "mailbox-handoff",
+          "skill-polisher"
+        ],
+        "distinct_targets_seen": 4,
+        "distinct_action_keys_seen": 4,
+        "action_scopes_seen": [
+          "skill"
+        ]
+      },
+      "sampled_steps": [
+        {
+          "step": 1,
+          "cell": {
+            "executor_flavor": "claude",
+            "operator_flavor": "claude",
+            "operator_skill": "skill-polisher",
+            "operator_root": ".claude/skills",
+            "source_root": ".claude/skills",
+            "target_root": ".gemini/extensions/chthonic-archive-sync/skills",
+            "target_flavor": "gemini",
+            "target_skill": "gh-mcp-autonomy",
+            "target_skill_lane": "gemini",
+            "target_flavor_mode": "claude",
+            "action_scope": "skill",
+            "action_key": [
+              "skill-polisher",
+              "skill",
+              "verify",
+              "claude",
+              ".gemini/extensions/chthonic-archive-sync/skills",
+              "gh-mcp-autonomy"
+            ],
+            "adapter_kind": "skill_polisher_verify",
+            "legality_status": "degraded",
+            "legality_reasons": [
+              "interpretation_flavor_mismatch",
+              "registered_adapter:skill_polisher_verify"
+            ]
+          },
+          "action_key": [
+            "skill-polisher",
+            "skill",
+            "verify",
+            "claude",
+            ".gemini/extensions/chthonic-archive-sync/skills",
+            "gh-mcp-autonomy"
+          ],
+          "action_scope": "skill",
+          "equivalent_cell_count": 9,
+          "available_variant_count": 9,
+          "equivalent_target_sample": [
+            ".gemini/extensions/chthonic-archive-sync/skills::gh-mcp-autonomy"
+          ],
+          "weight": 2.804229,
+          "reasons": [
+            "mutating_operator:+0.4x",
+            "cross_lane:+0.5x",
+            "cross_flavor_interp:+0.25x",
+            "adaptive_weight:1.4x",
+            "operator_weight:0.8375x",
+            "initial_step",
+            "action_group_size:9"
+          ],
+          "transition": {
+            "allowed": true,
+            "previous_target_lane": null,
+            "previous_operator": null,
+            "transition_weight_multiplier": 1.0,
+            "transition_weight_reasons": [
+              "initial_step"
+            ],
+            "filtered_out_rules": [
+              "history_pruned_action:14"
+            ]
+          }
+        },
+        {
+          "step": 2,
+          "cell": {
+            "executor_flavor": "gemini",
+            "operator_flavor": "claude",
+            "operator_skill": "link-path-guard",
+            "operator_root": ".claude/skills",
+            "source_root": ".claude/skills",
+            "target_root": ".claude/skills",
+            "target_flavor": "claude",
+            "target_skill": "ingest-research",
+            "target_skill_lane": "claude",
+            "target_flavor_mode": "codex",
+            "action_scope": "skill",
+            "action_key": [
+              "link-path-guard",
+              "skill",
+              ".claude/skills",
+              "ingest-research"
+            ],
+            "adapter_kind": "skill_path_guard",
+            "legality_status": "legal",
+            "legality_reasons": [
+              "registered_adapter:skill_path_guard",
+              "same_root"
+            ]
+          },
+          "action_key": [
+            "link-path-guard",
+            "skill",
+            ".claude/skills",
+            "ingest-research"
+          ],
+          "action_scope": "skill",
+          "equivalent_cell_count": 18,
+          "available_variant_count": 18,
+          "equivalent_target_sample": [
+            ".claude/skills::ingest-research"
+          ],
+          "weight": 2.750295,
+          "reasons": [
+            "mutating_operator:+0.4x",
+            "cross_lane:+0.5x",
+            "cross_flavor_interp:+0.25x",
+            "adaptive_weight:1.25x",
+            "operator_weight:0.7625x",
+            "handoff_continuity:+0.8x",
+            "action_group_size:18"
+          ],
+          "transition": {
+            "allowed": true,
+            "previous_target_lane": "gemini",
+            "previous_operator": "skill-polisher",
+            "transition_weight_multiplier": 1.8,
+            "transition_weight_reasons": [
+              "handoff_continuity:+0.8x"
+            ],
+            "filtered_out_rules": [
+              "duplicate_cell_blocked:9",
+              "history_pruned_action:14",
+              "repeated_target_skill_blocked:90",
+              "same_operator_consecutive_blocked:2322"
+            ]
+          }
+        },
+        {
+          "step": 3,
+          "cell": {
+            "executor_flavor": "claude",
+            "operator_flavor": "claude",
+            "operator_skill": "mailbox-handoff",
+            "operator_root": ".claude/skills",
+            "source_root": ".claude/skills",
+            "target_root": ".codex/skills",
+            "target_flavor": "codex",
+            "target_skill": "gh-address-comments",
+            "target_skill_lane": "codex",
+            "target_flavor_mode": "gemini",
+            "action_scope": "skill",
+            "action_key": [
+              "mailbox-handoff",
+              "skill",
+              "codex",
+              "gemini",
+              ".codex/skills",
+              "gh-address-comments"
+            ],
+            "adapter_kind": "mailbox_link_canon",
+            "legality_status": "degraded",
+            "legality_reasons": [
+              "registered_adapter:mailbox_link_canon",
+              "target_redirect_or_stub"
+            ]
+          },
+          "action_key": [
+            "mailbox-handoff",
+            "skill",
+            "codex",
+            "gemini",
+            ".codex/skills",
+            "gh-address-comments"
+          ],
+          "action_scope": "skill",
+          "equivalent_cell_count": 9,
+          "available_variant_count": 9,
+          "equivalent_target_sample": [
+            ".codex/skills::gh-address-comments"
+          ],
+          "weight": 2.723703,
+          "reasons": [
+            "read_only_operator:+0.1x",
+            "cross_lane:+0.5x",
+            "cross_flavor_interp:+0.25x",
+            "adaptive_weight:1.15x",
+            "operator_weight:0.975x",
+            "handoff_continuity:+0.8x",
+            "action_group_size:9"
+          ],
+          "transition": {
+            "allowed": true,
+            "previous_target_lane": "claude",
+            "previous_operator": "link-path-guard",
+            "transition_weight_multiplier": 1.8,
+            "transition_weight_reasons": [
+              "handoff_continuity:+0.8x"
+            ],
+            "filtered_out_rules": [
+              "duplicate_cell_blocked:27",
+              "history_pruned_action:14",
+              "repeated_target_skill_blocked:171",
+              "same_operator_consecutive_blocked:1440"
+            ]
+          }
+        },
+        {
+          "step": 4,
+          "cell": {
+            "executor_flavor": "codex",
+            "operator_flavor": "claude",
+            "operator_skill": "link-path-guard",
+            "operator_root": ".claude/skills",
+            "source_root": ".claude/skills",
+            "target_root": ".gemini/extensions/chthonic-archive-sync/skills",
+            "target_flavor": "gemini",
+            "target_skill": "ingest-research",
+            "target_skill_lane": "gemini",
+            "target_flavor_mode": "claude",
+            "action_scope": "skill",
+            "action_key": [
+              "link-path-guard",
+              "skill",
+              ".gemini/extensions/chthonic-archive-sync/skills",
+              "ingest-research"
+            ],
+            "adapter_kind": "skill_path_guard",
+            "legality_status": "legal",
+            "legality_reasons": [
+              "registered_adapter:skill_path_guard"
+            ]
+          },
+          "action_key": [
+            "link-path-guard",
+            "skill",
+            ".gemini/extensions/chthonic-archive-sync/skills",
+            "ingest-research"
+          ],
+          "action_scope": "skill",
+          "equivalent_cell_count": 18,
+          "available_variant_count": 18,
+          "equivalent_target_sample": [
+            ".gemini/extensions/chthonic-archive-sync/skills::ingest-research"
+          ],
+          "weight": 2.750295,
+          "reasons": [
+            "mutating_operator:+0.4x",
+            "cross_lane:+0.5x",
+            "cross_flavor_interp:+0.25x",
+            "adaptive_weight:1.25x",
+            "operator_weight:0.7625x",
+            "handoff_continuity:+0.8x",
+            "action_group_size:18"
+          ],
+          "transition": {
+            "allowed": true,
+            "previous_target_lane": "codex",
+            "previous_operator": "mailbox-handoff",
+            "transition_weight_multiplier": 1.8,
+            "transition_weight_reasons": [
+              "handoff_continuity:+0.8x"
+            ],
+            "filtered_out_rules": [
+              "duplicate_cell_blocked:36",
+              "history_pruned_action:14",
+              "repeated_target_skill_blocked:261",
+              "same_operator_consecutive_blocked:2322"
+            ]
+          }
+        }
+      ],
+      "planned_steps": [
+        {
+          "step": 1,
+          "cell": {
+            "executor_flavor": "claude",
+            "operator_flavor": "claude",
+            "operator_skill": "skill-polisher",
+            "operator_root": ".claude/skills",
+            "source_root": ".claude/skills",
+            "target_root": ".gemini/extensions/chthonic-archive-sync/skills",
+            "target_flavor": "gemini",
+            "target_skill": "gh-mcp-autonomy",
+            "target_skill_lane": "gemini",
+            "target_flavor_mode": "claude",
+            "action_scope": "skill",
+            "action_key": [
+              "skill-polisher",
+              "skill",
+              "verify",
+              "claude",
+              ".gemini/extensions/chthonic-archive-sync/skills",
+              "gh-mcp-autonomy"
+            ],
+            "adapter_kind": "skill_polisher_verify",
+            "legality_status": "degraded",
+            "legality_reasons": [
+              "interpretation_flavor_mismatch",
+              "registered_adapter:skill_polisher_verify"
+            ]
+          },
+          "action_key": [
+            "skill-polisher",
+            "skill",
+            "verify",
+            "claude",
+            ".gemini/extensions/chthonic-archive-sync/skills",
+            "gh-mcp-autonomy"
+          ],
+          "action_scope": "skill",
+          "equivalent_cell_count": 9,
+          "available_variant_count": 9,
+          "equivalent_target_sample": [
+            ".gemini/extensions/chthonic-archive-sync/skills::gh-mcp-autonomy"
+          ],
+          "command": [
+            "uv",
+            "run",
+            ".claude\\skills\\skill-polisher\\skill-polisher\\scripts\\polish_skill.py",
+            ".gemini\\extensions\\chthonic-archive-sync\\skills\\gh-mcp-autonomy",
+            "--mode",
+            "verify",
+            "--target-flavor",
+            "claude",
+            "--no-require-assets"
+          ],
+          "expected_artifacts": [],
+          "expected_artifact_class": "verification_report",
+          "operator_mode": "mutating",
+          "operator_capabilities": {
+            "mode": "mutating",
+            "read": true,
+            "mutate": true,
+            "cross_lane_mutate": true,
+            "self_target": true,
+            "recurse": false,
+            "requires_artifacts": true,
+            "requires_review": true
+          },
+          "safety_class": "cross_lane_mutation",
+          "weight": 2.804229,
+          "weight_reasons": [
+            "mutating_operator:+0.4x",
+            "cross_lane:+0.5x",
+            "cross_flavor_interp:+0.25x",
+            "adaptive_weight:1.4x",
+            "operator_weight:0.8375x",
+            "initial_step",
+            "action_group_size:9"
+          ],
+          "transition": {
+            "allowed": true,
+            "previous_target_lane": null,
+            "previous_operator": null,
+            "transition_weight_multiplier": 1.0,
+            "transition_weight_reasons": [
+              "initial_step"
+            ],
+            "filtered_out_rules": [
+              "history_pruned_action:14"
+            ]
+          },
+          "stop_condition": "stop_on_nonzero_or_missing_artifact"
+        },
+        {
+          "step": 2,
+          "cell": {
+            "executor_flavor": "gemini",
+            "operator_flavor": "claude",
+            "operator_skill": "link-path-guard",
+            "operator_root": ".claude/skills",
+            "source_root": ".claude/skills",
+            "target_root": ".claude/skills",
+            "target_flavor": "claude",
+            "target_skill": "ingest-research",
+            "target_skill_lane": "claude",
+            "target_flavor_mode": "codex",
+            "action_scope": "skill",
+            "action_key": [
+              "link-path-guard",
+              "skill",
+              ".claude/skills",
+              "ingest-research"
+            ],
+            "adapter_kind": "skill_path_guard",
+            "legality_status": "legal",
+            "legality_reasons": [
+              "registered_adapter:skill_path_guard",
+              "same_root"
+            ]
+          },
+          "action_key": [
+            "link-path-guard",
+            "skill",
+            ".claude/skills",
+            "ingest-research"
+          ],
+          "action_scope": "skill",
+          "equivalent_cell_count": 18,
+          "available_variant_count": 18,
+          "equivalent_target_sample": [
+            ".claude/skills::ingest-research"
+          ],
+          "command": [
+            "uv",
+            "run",
+            "scripts/skill_path_guard.py",
+            ".claude\\skills\\ingest-research\\SKILL.md"
+          ],
+          "expected_artifacts": [
+            "logs/skill_path_guard.log"
+          ],
+          "expected_artifact_class": "log",
+          "operator_mode": "mutating",
+          "operator_capabilities": {
+            "mode": "mutating",
+            "read": true,
+            "mutate": true,
+            "cross_lane_mutate": true,
+            "self_target": true,
+            "recurse": false,
+            "requires_artifacts": true,
+            "requires_review": true
+          },
+          "safety_class": "cross_lane_mutation",
+          "weight": 2.750295,
+          "weight_reasons": [
+            "mutating_operator:+0.4x",
+            "cross_lane:+0.5x",
+            "cross_flavor_interp:+0.25x",
+            "adaptive_weight:1.25x",
+            "operator_weight:0.7625x",
+            "handoff_continuity:+0.8x",
+            "action_group_size:18"
+          ],
+          "transition": {
+            "allowed": true,
+            "previous_target_lane": "gemini",
+            "previous_operator": "skill-polisher",
+            "transition_weight_multiplier": 1.8,
+            "transition_weight_reasons": [
+              "handoff_continuity:+0.8x"
+            ],
+            "filtered_out_rules": [
+              "duplicate_cell_blocked:9",
+              "history_pruned_action:14",
+              "repeated_target_skill_blocked:90",
+              "same_operator_consecutive_blocked:2322"
+            ]
+          },
+          "stop_condition": "stop_on_nonzero_or_missing_artifact"
+        },
+        {
+          "step": 3,
+          "cell": {
+            "executor_flavor": "claude",
+            "operator_flavor": "claude",
+            "operator_skill": "mailbox-handoff",
+            "operator_root": ".claude/skills",
+            "source_root": ".claude/skills",
+            "target_root": ".codex/skills",
+            "target_flavor": "codex",
+            "target_skill": "gh-address-comments",
+            "target_skill_lane": "codex",
+            "target_flavor_mode": "gemini",
+            "action_scope": "skill",
+            "action_key": [
+              "mailbox-handoff",
+              "skill",
+              "codex",
+              "gemini",
+              ".codex/skills",
+              "gh-address-comments"
+            ],
+            "adapter_kind": "mailbox_link_canon",
+            "legality_status": "degraded",
+            "legality_reasons": [
+              "registered_adapter:mailbox_link_canon",
+              "target_redirect_or_stub"
+            ]
+          },
+          "action_key": [
+            "mailbox-handoff",
+            "skill",
+            "codex",
+            "gemini",
+            ".codex/skills",
+            "gh-address-comments"
+          ],
+          "action_scope": "skill",
+          "equivalent_cell_count": 9,
+          "available_variant_count": 9,
+          "equivalent_target_sample": [
+            ".codex/skills::gh-address-comments"
+          ],
+          "command": [
+            "uv",
+            "run",
+            ".claude\\skills\\mailbox-handoff\\mailbox-handoff\\scripts\\mailbox_check.py",
+            "--mode",
+            "link-canon",
+            "--link-canon-file",
+            ".codex\\skills\\gh-address-comments\\SKILL.md",
+            "--link-canon-no-fail"
+          ],
+          "expected_artifacts": [],
+          "expected_artifact_class": "link_report",
+          "operator_mode": "meta",
+          "operator_capabilities": {
+            "mode": "read_only",
+            "read": true,
+            "mutate": false,
+            "cross_lane_mutate": false,
+            "self_target": true,
+            "recurse": false,
+            "requires_artifacts": false,
+            "requires_review": false
+          },
+          "safety_class": "read_only",
+          "weight": 2.723703,
+          "weight_reasons": [
+            "read_only_operator:+0.1x",
+            "cross_lane:+0.5x",
+            "cross_flavor_interp:+0.25x",
+            "adaptive_weight:1.15x",
+            "operator_weight:0.975x",
+            "handoff_continuity:+0.8x",
+            "action_group_size:9"
+          ],
+          "transition": {
+            "allowed": true,
+            "previous_target_lane": "claude",
+            "previous_operator": "link-path-guard",
+            "transition_weight_multiplier": 1.8,
+            "transition_weight_reasons": [
+              "handoff_continuity:+0.8x"
+            ],
+            "filtered_out_rules": [
+              "duplicate_cell_blocked:27",
+              "history_pruned_action:14",
+              "repeated_target_skill_blocked:171",
+              "same_operator_consecutive_blocked:1440"
+            ]
+          },
+          "stop_condition": "stop_on_nonzero"
+        },
+        {
+          "step": 4,
+          "cell": {
+            "executor_flavor": "codex",
+            "operator_flavor": "claude",
+            "operator_skill": "link-path-guard",
+            "operator_root": ".claude/skills",
+            "source_root": ".claude/skills",
+            "target_root": ".gemini/extensions/chthonic-archive-sync/skills",
+            "target_flavor": "gemini",
+            "target_skill": "ingest-research",
+            "target_skill_lane": "gemini",
+            "target_flavor_mode": "claude",
+            "action_scope": "skill",
+            "action_key": [
+              "link-path-guard",
+              "skill",
+              ".gemini/extensions/chthonic-archive-sync/skills",
+              "ingest-research"
+            ],
+            "adapter_kind": "skill_path_guard",
+            "legality_status": "legal",
+            "legality_reasons": [
+              "registered_adapter:skill_path_guard"
+            ]
+          },
+          "action_key": [
+            "link-path-guard",
+            "skill",
+            ".gemini/extensions/chthonic-archive-sync/skills",
+            "ingest-research"
+          ],
+          "action_scope": "skill",
+          "equivalent_cell_count": 18,
+          "available_variant_count": 18,
+          "equivalent_target_sample": [
+            ".gemini/extensions/chthonic-archive-sync/skills::ingest-research"
+          ],
+          "command": [
+            "uv",
+            "run",
+            "scripts/skill_path_guard.py",
+            ".gemini\\extensions\\chthonic-archive-sync\\skills\\ingest-research\\SKILL.md"
+          ],
+          "expected_artifacts": [
+            "logs/skill_path_guard.log"
+          ],
+          "expected_artifact_class": "log",
+          "operator_mode": "mutating",
+          "operator_capabilities": {
+            "mode": "mutating",
+            "read": true,
+            "mutate": true,
+            "cross_lane_mutate": true,
+            "self_target": true,
+            "recurse": false,
+            "requires_artifacts": true,
+            "requires_review": true
+          },
+          "safety_class": "cross_lane_mutation",
+          "weight": 2.750295,
+          "weight_reasons": [
+            "mutating_operator:+0.4x",
+            "cross_lane:+0.5x",
+            "cross_flavor_interp:+0.25x",
+            "adaptive_weight:1.25x",
+            "operator_weight:0.7625x",
+            "handoff_continuity:+0.8x",
+            "action_group_size:18"
+          ],
+          "transition": {
+            "allowed": true,
+            "previous_target_lane": "codex",
+            "previous_operator": "mailbox-handoff",
+            "transition_weight_multiplier": 1.8,
+            "transition_weight_reasons": [
+              "handoff_continuity:+0.8x"
+            ],
+            "filtered_out_rules": [
+              "duplicate_cell_blocked:36",
+              "history_pruned_action:14",
+              "repeated_target_skill_blocked:261",
+              "same_operator_consecutive_blocked:2322"
+            ]
+          },
+          "stop_condition": "stop_on_nonzero_or_missing_artifact"
+        }
+      ],
+      "execution_status": "passed",
+      "failure_classes": [],
+      "touched": [
+        {
+          "lane": "gemini",
+          "root": ".gemini/extensions/chthonic-archive-sync/skills",
+          "skill": "gh-mcp-autonomy"
+        },
+        {
+          "lane": "claude",
+          "root": ".claude/skills",
+          "skill": "ingest-research"
+        },
+        {
+          "lane": "codex",
+          "root": ".codex/skills",
+          "skill": "gh-address-comments"
+        },
+        {
+          "lane": "gemini",
+          "root": ".gemini/extensions/chthonic-archive-sync/skills",
+          "skill": "ingest-research"
+        }
+      ],
+      "execution_results": [
+        {
+          "step": 1,
+          "command": [
+            "uv",
+            "run",
+            ".claude\\skills\\skill-polisher\\skill-polisher\\scripts\\polish_skill.py",
+            ".gemini\\extensions\\chthonic-archive-sync\\skills\\gh-mcp-autonomy",
+            "--mode",
+            "verify",
+            "--target-flavor",
+            "claude",
+            "--no-require-assets"
+          ],
+          "rc": 0,
+          "seconds": 0.127,
+          "stdout_tail": "\u2554\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2557\n\u2551                    FEEDING REPORT: gh-mcp-autonomy              \u2551\n\u255a\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u255d\nTASTE: PURE (Clean)\nNUTRITION LEVEL: 100%\n\nDOMAIN SCORES:\n  - structure: 100%\n  - policy: 100%\n  - semantics: 100%\n  - maintainability: 100%\n\nSystem Satisfied. No entropy found.\n\n>>> VERIFY: PASSED (no blocking findings). <<<",
+          "stderr_tail": "",
+          "expected_artifacts": [],
+          "present_artifacts": [],
+          "missing_artifacts": [],
+          "stop_condition": "stop_on_nonzero_or_missing_artifact",
+          "status": "passed",
+          "failure_kind": null
+        },
+        {
+          "step": 2,
+          "command": [
+            "uv",
+            "run",
+            "scripts/skill_path_guard.py",
+            ".claude\\skills\\ingest-research\\SKILL.md"
+          ],
+          "rc": 0,
+          "seconds": 6.954,
+          "stdout_tail": "[fixable] .claude\\skills\\ingest-research\\SKILL.md: scripts/ingest_research.py\n  -> scripts/ingest_research.py\n  :: resolved to repo-root target instead of local skill-relative path\n[fixable] .claude\\skills\\ingest-research\\SKILL.md: scripts/chthonic.ps1\n  -> scripts/chthonic.ps1\n  :: resolved to repo-root target instead of local skill-relative path",
+          "stderr_tail": "",
+          "expected_artifacts": [
+            "logs/skill_path_guard.log"
+          ],
+          "present_artifacts": [
+            "logs/skill_path_guard.log"
+          ],
+          "missing_artifacts": [],
+          "stop_condition": "stop_on_nonzero_or_missing_artifact",
+          "status": "passed",
+          "failure_kind": null
+        },
+        {
+          "step": 3,
+          "command": [
+            "uv",
+            "run",
+            ".claude\\skills\\mailbox-handoff\\mailbox-handoff\\scripts\\mailbox_check.py",
+            "--mode",
+            "link-canon",
+            "--link-canon-file",
+            ".codex\\skills\\gh-address-comments\\SKILL.md",
+            "--link-canon-no-fail"
+          ],
+          "rc": 0,
+          "seconds": 9.365,
+          "stdout_tail": "[link-canon:dry-run] .codex/skills/gh-address-comments/SKILL.md\n  malformed=0 missing=0 ambiguous=0 rewritten=0",
+          "stderr_tail": "",
+          "expected_artifacts": [],
+          "present_artifacts": [],
+          "missing_artifacts": [],
+          "stop_condition": "stop_on_nonzero",
+          "status": "passed",
+          "failure_kind": null
+        },
+        {
+          "step": 4,
+          "command": [
+            "uv",
+            "run",
+            "scripts/skill_path_guard.py",
+            ".gemini\\extensions\\chthonic-archive-sync\\skills\\ingest-research\\SKILL.md"
+          ],
+          "rc": 0,
+          "seconds": 6.936,
+          "stdout_tail": "[fixable] .gemini\\extensions\\chthonic-archive-sync\\skills\\ingest-research\\SKILL.md: scripts/ingest_research.py\n  -> scripts/ingest_research.py\n  :: resolved to repo-root target instead of local skill-relative path",
+          "stderr_tail": "",
+          "expected_artifacts": [
+            "logs/skill_path_guard.log"
+          ],
+          "present_artifacts": [
+            "logs/skill_path_guard.log"
+          ],
+          "missing_artifacts": [],
+          "stop_condition": "stop_on_nonzero_or_missing_artifact",
+          "status": "passed",
+          "failure_kind": null
+        }
+      ],
+      "sampled_action_keys": [
+        [
+          "skill-polisher",
+          "skill",
+          "verify",
+          "claude",
+          ".gemini/extensions/chthonic-archive-sync/skills",
+          "gh-mcp-autonomy"
+        ],
+        [
+          "link-path-guard",
+          "skill",
+          ".claude/skills",
+          "ingest-research"
+        ],
+        [
+          "mailbox-handoff",
+          "skill",
+          "codex",
+          "gemini",
+          ".codex/skills",
+          "gh-address-comments"
+        ],
+        [
+          "link-path-guard",
+          "skill",
+          ".gemini/extensions/chthonic-archive-sync/skills",
+          "ingest-research"
+        ]
+      ]
+    },
+    {
+      "recorded_at": "2026-03-20T19:33:20.227405+00:00",
+      "seed_text": "trainstop-default-seed",
+      "seed_value": 12077687225398345945,
+      "chain_length": 4,
+      "summary": {
+        "diversity_score": 0.9091,
+        "cross_lane_coverage": 1.0,
+        "operator_spread": 0.75,
+        "target_spread": 1.0,
+        "executor_flavors_seen": [
+          "claude",
+          "codex",
+          "gemini"
+        ],
+        "operator_skills_seen": [
+          "link-path-guard",
+          "mailbox-handoff",
+          "skill-polisher"
+        ],
+        "distinct_targets_seen": 4,
+        "distinct_action_keys_seen": 4,
+        "action_scopes_seen": [
+          "skill"
+        ]
+      },
+      "sampled_steps": [
+        {
+          "step": 1,
+          "cell": {
+            "executor_flavor": "claude",
+            "operator_flavor": "claude",
+            "operator_skill": "skill-polisher",
+            "operator_root": ".claude/skills",
+            "source_root": ".claude/skills",
+            "target_root": ".gemini/extensions/chthonic-archive-sync/skills",
+            "target_flavor": "gemini",
+            "target_skill": "gh-mcp-autonomy",
+            "target_skill_lane": "gemini",
+            "target_flavor_mode": "codex",
+            "action_scope": "skill",
+            "action_key": [
+              "skill-polisher",
+              "skill",
+              "verify",
+              "codex",
+              ".gemini/extensions/chthonic-archive-sync/skills",
+              "gh-mcp-autonomy"
+            ],
+            "adapter_kind": "skill_polisher_verify",
+            "legality_status": "degraded",
+            "legality_reasons": [
+              "interpretation_flavor_mismatch",
+              "registered_adapter:skill_polisher_verify"
+            ]
+          },
+          "action_key": [
+            "skill-polisher",
+            "skill",
+            "verify",
+            "codex",
+            ".gemini/extensions/chthonic-archive-sync/skills",
+            "gh-mcp-autonomy"
+          ],
+          "action_scope": "skill",
+          "equivalent_cell_count": 9,
+          "available_variant_count": 9,
+          "equivalent_target_sample": [
+            ".gemini/extensions/chthonic-archive-sync/skills::gh-mcp-autonomy"
+          ],
+          "weight": 2.804229,
+          "reasons": [
+            "mutating_operator:+0.4x",
+            "cross_lane:+0.5x",
+            "cross_flavor_interp:+0.25x",
+            "adaptive_weight:1.4x",
+            "operator_weight:0.8375x",
+            "initial_step",
+            "action_group_size:9"
+          ],
+          "transition": {
+            "allowed": true,
+            "previous_target_lane": null,
+            "previous_operator": null,
+            "transition_weight_multiplier": 1.0,
+            "transition_weight_reasons": [
+              "initial_step"
+            ],
+            "filtered_out_rules": [
+              "history_pruned_action:18"
+            ]
+          }
+        },
+        {
+          "step": 2,
+          "cell": {
+            "executor_flavor": "gemini",
+            "operator_flavor": "claude",
+            "operator_skill": "link-path-guard",
+            "operator_root": ".claude/skills",
+            "source_root": ".claude/skills",
+            "target_root": ".claude/skills",
+            "target_flavor": "claude",
+            "target_skill": "imagegen",
+            "target_skill_lane": "claude",
+            "target_flavor_mode": "codex",
+            "action_scope": "skill",
+            "action_key": [
+              "link-path-guard",
+              "skill",
+              ".claude/skills",
+              "imagegen"
+            ],
+            "adapter_kind": "skill_path_guard",
+            "legality_status": "legal",
+            "legality_reasons": [
+              "registered_adapter:skill_path_guard",
+              "same_root"
+            ]
+          },
+          "action_key": [
+            "link-path-guard",
+            "skill",
+            ".claude/skills",
+            "imagegen"
+          ],
+          "action_scope": "skill",
+          "equivalent_cell_count": 18,
+          "available_variant_count": 18,
+          "equivalent_target_sample": [
+            ".claude/skills::imagegen"
+          ],
+          "weight": 2.750295,
+          "reasons": [
+            "mutating_operator:+0.4x",
+            "cross_lane:+0.5x",
+            "cross_flavor_interp:+0.25x",
+            "adaptive_weight:1.25x",
+            "operator_weight:0.7625x",
+            "handoff_continuity:+0.8x",
+            "action_group_size:18"
+          ],
+          "transition": {
+            "allowed": true,
+            "previous_target_lane": "gemini",
+            "previous_operator": "skill-polisher",
+            "transition_weight_multiplier": 1.8,
+            "transition_weight_reasons": [
+              "handoff_continuity:+0.8x"
+            ],
+            "filtered_out_rules": [
+              "duplicate_cell_blocked:9",
+              "history_pruned_action:18",
+              "repeated_target_skill_blocked:81",
+              "same_operator_consecutive_blocked:2322"
+            ]
+          }
+        },
+        {
+          "step": 3,
+          "cell": {
+            "executor_flavor": "claude",
+            "operator_flavor": "claude",
+            "operator_skill": "mailbox-handoff",
+            "operator_root": ".claude/skills",
+            "source_root": ".claude/skills",
+            "target_root": ".codex/skills",
+            "target_flavor": "codex",
+            "target_skill": "gh-fix-ci",
+            "target_skill_lane": "codex",
+            "target_flavor_mode": "codex",
+            "action_scope": "skill",
+            "action_key": [
+              "mailbox-handoff",
+              "skill",
+              "codex",
+              "codex",
+              ".codex/skills",
+              "gh-fix-ci"
+            ],
+            "adapter_kind": "mailbox_link_canon",
+            "legality_status": "legal",
+            "legality_reasons": [
+              "registered_adapter:mailbox_link_canon"
+            ]
+          },
+          "action_key": [
+            "mailbox-handoff",
+            "skill",
+            "codex",
+            "codex",
+            ".codex/skills",
+            "gh-fix-ci"
+          ],
+          "action_scope": "skill",
+          "equivalent_cell_count": 9,
+          "available_variant_count": 9,
+          "equivalent_target_sample": [
+            ".codex/skills::gh-fix-ci"
+          ],
+          "weight": 2.618642,
+          "reasons": [
+            "read_only_operator:+0.1x",
+            "cross_lane:+0.5x",
+            "adaptive_weight:1.4x",
+            "operator_weight:0.9625x",
+            "handoff_continuity:+0.8x",
+            "action_group_size:9"
+          ],
+          "transition": {
+            "allowed": true,
+            "previous_target_lane": "claude",
+            "previous_operator": "link-path-guard",
+            "transition_weight_multiplier": 1.8,
+            "transition_weight_reasons": [
+              "handoff_continuity:+0.8x"
+            ],
+            "filtered_out_rules": [
+              "duplicate_cell_blocked:27",
+              "history_pruned_action:18",
+              "repeated_target_skill_blocked:162",
+              "same_operator_consecutive_blocked:1404"
+            ]
+          }
+        },
+        {
+          "step": 4,
+          "cell": {
+            "executor_flavor": "codex",
+            "operator_flavor": "claude",
+            "operator_skill": "link-path-guard",
+            "operator_root": ".claude/skills",
+            "source_root": ".claude/skills",
+            "target_root": ".gemini/extensions/chthonic-archive-sync/skills",
+            "target_flavor": "gemini",
+            "target_skill": "iron-maiden-runtime",
+            "target_skill_lane": "gemini",
+            "target_flavor_mode": "claude",
+            "action_scope": "skill",
+            "action_key": [
+              "link-path-guard",
+              "skill",
+              ".gemini/extensions/chthonic-archive-sync/skills",
+              "iron-maiden-runtime"
+            ],
+            "adapter_kind": "skill_path_guard",
+            "legality_status": "legal",
+            "legality_reasons": [
+              "registered_adapter:skill_path_guard"
+            ]
+          },
+          "action_key": [
+            "link-path-guard",
+            "skill",
+            ".gemini/extensions/chthonic-archive-sync/skills",
+            "iron-maiden-runtime"
+          ],
+          "action_scope": "skill",
+          "equivalent_cell_count": 18,
+          "available_variant_count": 18,
+          "equivalent_target_sample": [
+            ".gemini/extensions/chthonic-archive-sync/skills::iron-maiden-runtime"
+          ],
+          "weight": 3.080331,
+          "reasons": [
+            "mutating_operator:+0.4x",
+            "cross_lane:+0.5x",
+            "cross_flavor_interp:+0.25x",
+            "adaptive_weight:1.4x",
+            "operator_weight:0.7625x",
+            "handoff_continuity:+0.8x",
+            "action_group_size:18"
+          ],
+          "transition": {
+            "allowed": true,
+            "previous_target_lane": "codex",
+            "previous_operator": "mailbox-handoff",
+            "transition_weight_multiplier": 1.8,
+            "transition_weight_reasons": [
+              "handoff_continuity:+0.8x"
+            ],
+            "filtered_out_rules": [
+              "duplicate_cell_blocked:36",
+              "history_pruned_action:18",
+              "repeated_target_skill_blocked:243",
+              "same_operator_consecutive_blocked:2313"
+            ]
+          }
+        }
+      ],
+      "planned_steps": [
+        {
+          "step": 1,
+          "cell": {
+            "executor_flavor": "claude",
+            "operator_flavor": "claude",
+            "operator_skill": "skill-polisher",
+            "operator_root": ".claude/skills",
+            "source_root": ".claude/skills",
+            "target_root": ".gemini/extensions/chthonic-archive-sync/skills",
+            "target_flavor": "gemini",
+            "target_skill": "gh-mcp-autonomy",
+            "target_skill_lane": "gemini",
+            "target_flavor_mode": "codex",
+            "action_scope": "skill",
+            "action_key": [
+              "skill-polisher",
+              "skill",
+              "verify",
+              "codex",
+              ".gemini/extensions/chthonic-archive-sync/skills",
+              "gh-mcp-autonomy"
+            ],
+            "adapter_kind": "skill_polisher_verify",
+            "legality_status": "degraded",
+            "legality_reasons": [
+              "interpretation_flavor_mismatch",
+              "registered_adapter:skill_polisher_verify"
+            ]
+          },
+          "action_key": [
+            "skill-polisher",
+            "skill",
+            "verify",
+            "codex",
+            ".gemini/extensions/chthonic-archive-sync/skills",
+            "gh-mcp-autonomy"
+          ],
+          "action_scope": "skill",
+          "equivalent_cell_count": 9,
+          "available_variant_count": 9,
+          "equivalent_target_sample": [
+            ".gemini/extensions/chthonic-archive-sync/skills::gh-mcp-autonomy"
+          ],
+          "command": [
+            "uv",
+            "run",
+            ".claude\\skills\\skill-polisher\\skill-polisher\\scripts\\polish_skill.py",
+            ".gemini\\extensions\\chthonic-archive-sync\\skills\\gh-mcp-autonomy",
+            "--mode",
+            "verify",
+            "--target-flavor",
+            "codex",
+            "--no-require-assets"
+          ],
+          "expected_artifacts": [],
+          "expected_artifact_class": "verification_report",
+          "operator_mode": "mutating",
+          "operator_capabilities": {
+            "mode": "mutating",
+            "read": true,
+            "mutate": true,
+            "cross_lane_mutate": true,
+            "self_target": true,
+            "recurse": false,
+            "requires_artifacts": true,
+            "requires_review": true
+          },
+          "safety_class": "cross_lane_mutation",
+          "weight": 2.804229,
+          "weight_reasons": [
+            "mutating_operator:+0.4x",
+            "cross_lane:+0.5x",
+            "cross_flavor_interp:+0.25x",
+            "adaptive_weight:1.4x",
+            "operator_weight:0.8375x",
+            "initial_step",
+            "action_group_size:9"
+          ],
+          "transition": {
+            "allowed": true,
+            "previous_target_lane": null,
+            "previous_operator": null,
+            "transition_weight_multiplier": 1.0,
+            "transition_weight_reasons": [
+              "initial_step"
+            ],
+            "filtered_out_rules": [
+              "history_pruned_action:18"
+            ]
+          },
+          "stop_condition": "stop_on_nonzero_or_missing_artifact"
+        },
+        {
+          "step": 2,
+          "cell": {
+            "executor_flavor": "gemini",
+            "operator_flavor": "claude",
+            "operator_skill": "link-path-guard",
+            "operator_root": ".claude/skills",
+            "source_root": ".claude/skills",
+            "target_root": ".claude/skills",
+            "target_flavor": "claude",
+            "target_skill": "imagegen",
+            "target_skill_lane": "claude",
+            "target_flavor_mode": "codex",
+            "action_scope": "skill",
+            "action_key": [
+              "link-path-guard",
+              "skill",
+              ".claude/skills",
+              "imagegen"
+            ],
+            "adapter_kind": "skill_path_guard",
+            "legality_status": "legal",
+            "legality_reasons": [
+              "registered_adapter:skill_path_guard",
+              "same_root"
+            ]
+          },
+          "action_key": [
+            "link-path-guard",
+            "skill",
+            ".claude/skills",
+            "imagegen"
+          ],
+          "action_scope": "skill",
+          "equivalent_cell_count": 18,
+          "available_variant_count": 18,
+          "equivalent_target_sample": [
+            ".claude/skills::imagegen"
+          ],
+          "command": [
+            "uv",
+            "run",
+            "scripts/skill_path_guard.py",
+            ".claude\\skills\\imagegen\\SKILL.md"
+          ],
+          "expected_artifacts": [
+            "logs/skill_path_guard.log"
+          ],
+          "expected_artifact_class": "log",
+          "operator_mode": "mutating",
+          "operator_capabilities": {
+            "mode": "mutating",
+            "read": true,
+            "mutate": true,
+            "cross_lane_mutate": true,
+            "self_target": true,
+            "recurse": false,
+            "requires_artifacts": true,
+            "requires_review": true
+          },
+          "safety_class": "cross_lane_mutation",
+          "weight": 2.750295,
+          "weight_reasons": [
+            "mutating_operator:+0.4x",
+            "cross_lane:+0.5x",
+            "cross_flavor_interp:+0.25x",
+            "adaptive_weight:1.25x",
+            "operator_weight:0.7625x",
+            "handoff_continuity:+0.8x",
+            "action_group_size:18"
+          ],
+          "transition": {
+            "allowed": true,
+            "previous_target_lane": "gemini",
+            "previous_operator": "skill-polisher",
+            "transition_weight_multiplier": 1.8,
+            "transition_weight_reasons": [
+              "handoff_continuity:+0.8x"
+            ],
+            "filtered_out_rules": [
+              "duplicate_cell_blocked:9",
+              "history_pruned_action:18",
+              "repeated_target_skill_blocked:81",
+              "same_operator_consecutive_blocked:2322"
+            ]
+          },
+          "stop_condition": "stop_on_nonzero_or_missing_artifact"
+        },
+        {
+          "step": 3,
+          "cell": {
+            "executor_flavor": "claude",
+            "operator_flavor": "claude",
+            "operator_skill": "mailbox-handoff",
+            "operator_root": ".claude/skills",
+            "source_root": ".claude/skills",
+            "target_root": ".codex/skills",
+            "target_flavor": "codex",
+            "target_skill": "gh-fix-ci",
+            "target_skill_lane": "codex",
+            "target_flavor_mode": "codex",
+            "action_scope": "skill",
+            "action_key": [
+              "mailbox-handoff",
+              "skill",
+              "codex",
+              "codex",
+              ".codex/skills",
+              "gh-fix-ci"
+            ],
+            "adapter_kind": "mailbox_link_canon",
+            "legality_status": "legal",
+            "legality_reasons": [
+              "registered_adapter:mailbox_link_canon"
+            ]
+          },
+          "action_key": [
+            "mailbox-handoff",
+            "skill",
+            "codex",
+            "codex",
+            ".codex/skills",
+            "gh-fix-ci"
+          ],
+          "action_scope": "skill",
+          "equivalent_cell_count": 9,
+          "available_variant_count": 9,
+          "equivalent_target_sample": [
+            ".codex/skills::gh-fix-ci"
+          ],
+          "command": [
+            "uv",
+            "run",
+            ".claude\\skills\\mailbox-handoff\\mailbox-handoff\\scripts\\mailbox_check.py",
+            "--mode",
+            "link-canon",
+            "--link-canon-file",
+            ".codex\\skills\\gh-fix-ci\\SKILL.md",
+            "--link-canon-no-fail"
+          ],
+          "expected_artifacts": [],
+          "expected_artifact_class": "link_report",
+          "operator_mode": "meta",
+          "operator_capabilities": {
+            "mode": "read_only",
+            "read": true,
+            "mutate": false,
+            "cross_lane_mutate": false,
+            "self_target": true,
+            "recurse": false,
+            "requires_artifacts": false,
+            "requires_review": false
+          },
+          "safety_class": "read_only",
+          "weight": 2.618642,
+          "weight_reasons": [
+            "read_only_operator:+0.1x",
+            "cross_lane:+0.5x",
+            "adaptive_weight:1.4x",
+            "operator_weight:0.9625x",
+            "handoff_continuity:+0.8x",
+            "action_group_size:9"
+          ],
+          "transition": {
+            "allowed": true,
+            "previous_target_lane": "claude",
+            "previous_operator": "link-path-guard",
+            "transition_weight_multiplier": 1.8,
+            "transition_weight_reasons": [
+              "handoff_continuity:+0.8x"
+            ],
+            "filtered_out_rules": [
+              "duplicate_cell_blocked:27",
+              "history_pruned_action:18",
+              "repeated_target_skill_blocked:162",
+              "same_operator_consecutive_blocked:1404"
+            ]
+          },
+          "stop_condition": "stop_on_nonzero"
+        },
+        {
+          "step": 4,
+          "cell": {
+            "executor_flavor": "codex",
+            "operator_flavor": "claude",
+            "operator_skill": "link-path-guard",
+            "operator_root": ".claude/skills",
+            "source_root": ".claude/skills",
+            "target_root": ".gemini/extensions/chthonic-archive-sync/skills",
+            "target_flavor": "gemini",
+            "target_skill": "iron-maiden-runtime",
+            "target_skill_lane": "gemini",
+            "target_flavor_mode": "claude",
+            "action_scope": "skill",
+            "action_key": [
+              "link-path-guard",
+              "skill",
+              ".gemini/extensions/chthonic-archive-sync/skills",
+              "iron-maiden-runtime"
+            ],
+            "adapter_kind": "skill_path_guard",
+            "legality_status": "legal",
+            "legality_reasons": [
+              "registered_adapter:skill_path_guard"
+            ]
+          },
+          "action_key": [
+            "link-path-guard",
+            "skill",
+            ".gemini/extensions/chthonic-archive-sync/skills",
+            "iron-maiden-runtime"
+          ],
+          "action_scope": "skill",
+          "equivalent_cell_count": 18,
+          "available_variant_count": 18,
+          "equivalent_target_sample": [
+            ".gemini/extensions/chthonic-archive-sync/skills::iron-maiden-runtime"
+          ],
+          "command": [
+            "uv",
+            "run",
+            "scripts/skill_path_guard.py",
+            ".gemini\\extensions\\chthonic-archive-sync\\skills\\iron-maiden-runtime\\SKILL.md"
+          ],
+          "expected_artifacts": [
+            "logs/skill_path_guard.log"
+          ],
+          "expected_artifact_class": "log",
+          "operator_mode": "mutating",
+          "operator_capabilities": {
+            "mode": "mutating",
+            "read": true,
+            "mutate": true,
+            "cross_lane_mutate": true,
+            "self_target": true,
+            "recurse": false,
+            "requires_artifacts": true,
+            "requires_review": true
+          },
+          "safety_class": "cross_lane_mutation",
+          "weight": 3.080331,
+          "weight_reasons": [
+            "mutating_operator:+0.4x",
+            "cross_lane:+0.5x",
+            "cross_flavor_interp:+0.25x",
+            "adaptive_weight:1.4x",
+            "operator_weight:0.7625x",
+            "handoff_continuity:+0.8x",
+            "action_group_size:18"
+          ],
+          "transition": {
+            "allowed": true,
+            "previous_target_lane": "codex",
+            "previous_operator": "mailbox-handoff",
+            "transition_weight_multiplier": 1.8,
+            "transition_weight_reasons": [
+              "handoff_continuity:+0.8x"
+            ],
+            "filtered_out_rules": [
+              "duplicate_cell_blocked:36",
+              "history_pruned_action:18",
+              "repeated_target_skill_blocked:243",
+              "same_operator_consecutive_blocked:2313"
+            ]
+          },
+          "stop_condition": "stop_on_nonzero_or_missing_artifact"
+        }
+      ],
+      "execution_status": "failed",
+      "failure_classes": [
+        {
+          "step": 2,
+          "kind": "path_guard_failure",
+          "status": "failed",
+          "command": [
+            "uv",
+            "run",
+            "scripts/skill_path_guard.py",
+            ".claude\\skills\\imagegen\\SKILL.md"
+          ],
+          "rc": 1
+        }
+      ],
+      "touched": [
+        {
+          "lane": "gemini",
+          "root": ".gemini/extensions/chthonic-archive-sync/skills",
+          "skill": "gh-mcp-autonomy"
+        },
+        {
+          "lane": "claude",
+          "root": ".claude/skills",
+          "skill": "imagegen"
+        },
+        {
+          "lane": "codex",
+          "root": ".codex/skills",
+          "skill": "gh-fix-ci"
+        },
+        {
+          "lane": "gemini",
+          "root": ".gemini/extensions/chthonic-archive-sync/skills",
+          "skill": "iron-maiden-runtime"
+        }
+      ],
+      "execution_results": [
+        {
+          "step": 1,
+          "command": [
+            "uv",
+            "run",
+            ".claude\\skills\\skill-polisher\\skill-polisher\\scripts\\polish_skill.py",
+            ".gemini\\extensions\\chthonic-archive-sync\\skills\\gh-mcp-autonomy",
+            "--mode",
+            "verify",
+            "--target-flavor",
+            "codex",
+            "--no-require-assets"
+          ],
+          "rc": 0,
+          "seconds": 0.142,
+          "stdout_tail": "\u2554\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2557\n\u2551                    FEEDING REPORT: gh-mcp-autonomy              \u2551\n\u255a\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u255d\nTASTE: PURE (Clean)\nNUTRITION LEVEL: 100%\n\nDOMAIN SCORES:\n  - structure: 100%\n  - policy: 100%\n  - semantics: 100%\n  - maintainability: 100%\n\nSystem Satisfied. No entropy found.\n\n>>> VERIFY: PASSED (no blocking findings). <<<",
+          "stderr_tail": "",
+          "expected_artifacts": [],
+          "present_artifacts": [],
+          "missing_artifacts": [],
+          "stop_condition": "stop_on_nonzero_or_missing_artifact",
+          "status": "passed",
+          "failure_kind": null
+        },
+        {
+          "step": 2,
+          "command": [
+            "uv",
+            "run",
+            "scripts/skill_path_guard.py",
+            ".claude\\skills\\imagegen\\SKILL.md"
+          ],
+          "rc": 1,
+          "seconds": 7.146,
+          "stdout_tail": "[broken] .claude\\skills\\imagegen\\SKILL.md: scripts/image_gen.py)\n  :: local skill-relative target does not exist\n[broken] .claude\\skills\\imagegen\\SKILL.md: scripts/image_gen.py\n  :: local skill-relative target does not exist\n[fixable] .claude\\skills\\imagegen\\SKILL.md: scripts/skill_audit.py\n  -> scripts/skill_audit.py\n  :: resolved to repo-root target instead of local skill-relative path",
+          "stderr_tail": "",
+          "expected_artifacts": [
+            "logs/skill_path_guard.log"
+          ],
+          "present_artifacts": [
+            "logs/skill_path_guard.log"
+          ],
+          "missing_artifacts": [],
+          "stop_condition": "stop_on_nonzero_or_missing_artifact",
+          "status": "failed",
+          "failure_kind": "path_guard_failure"
+        }
+      ],
+      "sampled_action_keys": [
+        [
+          "skill-polisher",
+          "skill",
+          "verify",
+          "codex",
+          ".gemini/extensions/chthonic-archive-sync/skills",
+          "gh-mcp-autonomy"
+        ],
+        [
+          "link-path-guard",
+          "skill",
+          ".claude/skills",
+          "imagegen"
+        ],
+        [
+          "mailbox-handoff",
+          "skill",
+          "codex",
+          "codex",
+          ".codex/skills",
+          "gh-fix-ci"
+        ],
+        [
+          "link-path-guard",
+          "skill",
+          ".gemini/extensions/chthonic-archive-sync/skills",
+          "iron-maiden-runtime"
+        ]
+      ]
     }
   ]
 }

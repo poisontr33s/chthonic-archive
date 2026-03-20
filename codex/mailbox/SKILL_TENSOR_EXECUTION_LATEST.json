@@ -1,26 +1,27 @@
 {
   "schema_version": 1,
   "plan_source": "codex/mailbox/SKILL_TENSOR_PLAN_LATEST.json",
-  "overall_status": "passed",
+  "overall_status": "failed",
   "results": [
     {
       "step": 1,
       "command": [
         "uv",
         "run",
-        "scripts/skill_path_guard.py",
-        ".codex\\skills\\conceptualize\\SKILL.md"
+        ".claude\\skills\\skill-polisher\\skill-polisher\\scripts\\polish_skill.py",
+        ".gemini\\extensions\\chthonic-archive-sync\\skills\\gh-mcp-autonomy",
+        "--mode",
+        "verify",
+        "--target-flavor",
+        "codex",
+        "--no-require-assets"
       ],
       "rc": 0,
-      "seconds": 7.772,
-      "stdout_tail": "[fixable] .codex\\skills\\conceptualize\\SKILL.md: scripts/skill_audit.py\n  -> scripts/skill_audit.py\n  :: resolved to repo-root target instead of local skill-relative path",
+      "seconds": 0.142,
+      "stdout_tail": "\u2554\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2557\n\u2551                    FEEDING REPORT: gh-mcp-autonomy              \u2551\n\u255a\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u255d\nTASTE: PURE (Clean)\nNUTRITION LEVEL: 100%\n\nDOMAIN SCORES:\n  - structure: 100%\n  - policy: 100%\n  - semantics: 100%\n  - maintainability: 100%\n\nSystem Satisfied. No entropy found.\n\n>>> VERIFY: PASSED (no blocking findings). <<<",
       "stderr_tail": "",
-      "expected_artifacts": [
-        "logs/skill_path_guard.log"
-      ],
-      "present_artifacts": [
-        "logs/skill_path_guard.log"
-      ],
+      "expected_artifacts": [],
+      "present_artifacts": [],
       "missing_artifacts": [],
       "stop_condition": "stop_on_nonzero_or_missing_artifact",
       "status": "passed",
@@ -31,36 +32,12 @@
       "command": [
         "uv",
         "run",
-        "scripts/skill_audit.py",
-        "--flavor",
-        "gemini",
-        "--root",
-        ".gemini/extensions/chthonic-archive-sync/skills",
-        "--skill",
-        "openai-docs"
-      ],
-      "rc": 0,
-      "seconds": 0.126,
-      "stdout_tail": "\n=== POLISHING: openai-docs ===\n+--------------------------------------------------------------+\n|                    FEEDING REPORT: openai-docs                  |\n+--------------------------------------------------------------+\nTASTE: PURE (Clean)\nNUTRITION LEVEL: 100%\n\nSystem Satisfied. No entropy found.",
-      "stderr_tail": "",
-      "expected_artifacts": [],
-      "present_artifacts": [],
-      "missing_artifacts": [],
-      "stop_condition": "stop_on_nonzero",
-      "status": "passed",
-      "failure_kind": null
-    },
-    {
-      "step": 3,
-      "command": [
-        "uv",
-        "run",
         "scripts/skill_path_guard.py",
-        ".claude\\skills\\api-manager\\SKILL.md"
+        ".claude\\skills\\imagegen\\SKILL.md"
       ],
-      "rc": 0,
-      "seconds": 7.553,
-      "stdout_tail": "OK: no stale or broken skill path references found",
+      "rc": 1,
+      "seconds": 7.146,
+      "stdout_tail": "[broken] .claude\\skills\\imagegen\\SKILL.md: scripts/image_gen.py)\n  :: local skill-relative target does not exist\n[broken] .claude\\skills\\imagegen\\SKILL.md: scripts/image_gen.py\n  :: local skill-relative target does not exist\n[fixable] .claude\\skills\\imagegen\\SKILL.md: scripts/skill_audit.py\n  -> scripts/skill_audit.py\n  :: resolved to repo-root target instead of local skill-relative path",
       "stderr_tail": "",
       "expected_artifacts": [
         "logs/skill_path_guard.log"
@@ -70,32 +47,8 @@
       ],
       "missing_artifacts": [],
       "stop_condition": "stop_on_nonzero_or_missing_artifact",
-      "status": "passed",
-      "failure_kind": null
-    },
-    {
-      "step": 4,
-      "command": [
-        "uv",
-        "run",
-        ".codex/skills/skill-polisher/scripts/polish_skill.py",
-        ".claude\\skills\\openai-docs",
-        "--mode",
-        "verify",
-        "--target-flavor",
-        "claude",
-        "--no-require-assets"
-      ],
-      "rc": 0,
-      "seconds": 0.141,
-      "stdout_tail": "\u2554\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2557\n\u2551                    FEEDING REPORT: openai-docs                  \u2551\n\u255a\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u255d\nTASTE: PURE (Clean)\nNUTRITION LEVEL: 100%\n\nDOMAIN SCORES:\n  - structure: 100%\n  - policy: 100%\n  - semantics: 100%\n  - maintainability: 100%\n\nSystem Satisfied. No entropy found.\n\n>>> VERIFY: PASSED (no blocking findings). <<<",
-      "stderr_tail": "",
-      "expected_artifacts": [],
-      "present_artifacts": [],
-      "missing_artifacts": [],
-      "stop_condition": "stop_on_nonzero",
-      "status": "passed",
-      "failure_kind": null
+      "status": "failed",
+      "failure_kind": "path_guard_failure"
     }
   ]
 }

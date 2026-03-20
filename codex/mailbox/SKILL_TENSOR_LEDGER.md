@@ -1,6 +1,6 @@
 # Skill Tensor Ledger
 
-- Entries: `17`
-- Latest Status: `passed`
+- Entries: `24`
+- Latest Status: `failed`
 - Latest Seed: `trainstop-default-seed`
 

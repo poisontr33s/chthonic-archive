@@ -1,8 +1,8 @@
 # Skill Tensor Pool
 
-- Pool Size: `1316`
-- Unique Action Keys: `303`
-- Excluded Size: `880`
+- Pool Size: `11214`
+- Unique Action Keys: `893`
+- Excluded Size: `64962`
 
 ## Notes
 - Pool contains legal run-cells only.

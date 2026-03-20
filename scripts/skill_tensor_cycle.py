@@ -149,6 +149,169 @@ def classify_skill(_name: str, fm: dict[str, str], has_md: bool) -> str:
     return "candidate"
 
 
+KNOWN_OPERATOR_ADAPTERS = {
+    "trainstop-orchestrator": "lane_orchestrator",
+    "skill-polisher": "skill_polisher_verify",
+    "skill-audit": "skill_audit",
+    "link-path-guard": "skill_path_guard",
+    "python-header-canon": "python_header_report",
+    "mailbox-handoff": "mailbox_link_canon",
+}
+
+ADAPTER_DEFAULT_MODES = {
+    "lane_orchestrator": "meta",
+    "skill_polisher_verify": "mutating",
+    "skill_audit": "read_only",
+    "skill_path_guard": "mutating",
+    "python_header_report": "read_only",
+    "mailbox_link_canon": "read_only",
+}
+
+ADAPTER_DEFAULT_CAPABILITIES = {
+    "lane_orchestrator": {
+        "mode": "meta",
+        "read": True,
+        "mutate": False,
+        "cross_lane_mutate": False,
+        "self_target": True,
+        "recurse": True,
+        "requires_artifacts": True,
+        "requires_review": True,
+    },
+    "skill_polisher_verify": {
+        "mode": "mutating",
+        "read": True,
+        "mutate": True,
+        "cross_lane_mutate": True,
+        "self_target": True,
+        "recurse": False,
+        "requires_artifacts": True,
+        "requires_review": True,
+    },
+    "skill_audit": {
+        "mode": "read_only",
+        "read": True,
+        "mutate": False,
+        "cross_lane_mutate": False,
+        "self_target": True,
+        "recurse": False,
+        "requires_artifacts": True,
+        "requires_review": False,
+    },
+    "skill_path_guard": {
+        "mode": "mutating",
+        "read": True,
+        "mutate": True,
+        "cross_lane_mutate": True,
+        "self_target": True,
+        "recurse": False,
+        "requires_artifacts": True,
+        "requires_review": True,
+    },
+    "python_header_report": {
+        "mode": "read_only",
+        "read": True,
+        "mutate": False,
+        "cross_lane_mutate": False,
+        "self_target": True,
+        "recurse": False,
+        "requires_artifacts": False,
+        "requires_review": False,
+    },
+    "mailbox_link_canon": {
+        "mode": "read_only",
+        "read": True,
+        "mutate": False,
+        "cross_lane_mutate": False,
+        "self_target": True,
+        "recurse": False,
+        "requires_artifacts": False,
+        "requires_review": False,
+    },
+}
+
+
+def adapter_kind_for_skill(skill_name: str) -> str | None:
+    return KNOWN_OPERATOR_ADAPTERS.get(skill_name)
+
+
+def operator_mode_for_skill(skill_name: str, rules: dict, adapter_kind: str | None = None) -> str:
+    operator_modes = rules.get("operator_modes", {})
+    if skill_name in operator_modes:
+        return str(operator_modes[skill_name])
+    resolved_kind = adapter_kind or adapter_kind_for_skill(skill_name)
+    if resolved_kind:
+        return ADAPTER_DEFAULT_MODES.get(resolved_kind, "meta")
+    return "meta"
+
+
+def adapter_capabilities_for_skill(skill_name: str, adapter_kind: str | None = None) -> dict:
+    resolved_kind = adapter_kind or adapter_kind_for_skill(skill_name)
+    if not resolved_kind:
+        return {}
+    return dict(ADAPTER_DEFAULT_CAPABILITIES.get(resolved_kind, {}))
+
+
+def resolve_adapter_script_path(operator_root: str, operator_skill: str, filename: str) -> str:
+    candidates = [
+        Path(operator_root) / operator_skill / "scripts" / filename,
+        Path(operator_root) / operator_skill / operator_skill / "scripts" / filename,
+        Path(".codex/skills") / operator_skill / "scripts" / filename,
+        Path(".gemini/extensions/chthonic-archive-sync/skills") / operator_skill / "scripts" / filename,
+        Path(".claude/skills") / operator_skill / "scripts" / filename,
+        Path(".claude/skills") / operator_skill / operator_skill / "scripts" / filename,
+        Path(".gemini/extensions/chthonic-archive-sync/skills") / operator_skill / operator_skill / "scripts" / filename,
+    ]
+    for candidate in candidates:
+        if candidate.exists():
+            return str(candidate)
+    return str(candidates[0])
+
+
+def role_profile_for_skill(row: dict) -> dict:
+    classification = str(row.get("classification", "missing"))
+    has_skill_md = bool(row.get("has_skill_md"))
+    has_scripts_dir = bool(row.get("has_scripts_dir"))
+    adapter_kind = adapter_kind_for_skill(str(row.get("skill", "")))
+
+    operator_role = "blocked"
+    operator_reasons: list[str] = []
+    target_role = "blocked"
+    target_reasons: list[str] = []
+
+    if not has_skill_md or classification == "missing":
+        operator_reasons.append("missing_skill_surface")
+        target_reasons.append("missing_skill_surface")
+    else:
+        target_role = "legal"
+        if classification == "redirect_or_stub":
+            target_role = "degraded"
+            target_reasons.append("target_redirect_or_stub")
+
+        if classification == "redirect_or_stub":
+            operator_role = "legacy_only"
+            operator_reasons.append("operator_redirect_or_stub")
+        elif adapter_kind:
+            operator_role = "executable"
+            operator_reasons.append(f"registered_adapter:{adapter_kind}")
+        elif has_scripts_dir:
+            operator_role = "analysis_only"
+            operator_reasons.append("scripts_present_no_registered_adapter")
+        else:
+            operator_role = "analysis_only"
+            operator_reasons.append("document_only_operator")
+
+    return {
+        "adapter_kind": adapter_kind,
+        "can_target": target_role != "blocked",
+        "can_operator": operator_role != "blocked",
+        "operator_role": operator_role,
+        "operator_reasons": operator_reasons,
+        "target_role": target_role,
+        "target_reasons": target_reasons,
+    }
+
+
 def inventory_root(repo_root: Path, lane: str, root_rel: str) -> list[dict]:
     root = repo_root / root_rel
     if not root.exists():
@@ -172,6 +335,7 @@ def inventory_root(repo_root: Path, lane: str, root_rel: str) -> list[dict]:
                 "classification": classify_skill(skill_dir.name, fm, skill_md.exists()),
             }
         )
+        rows[-1]["role_profile"] = role_profile_for_skill(rows[-1])
     return rows
 
 
@@ -205,26 +369,250 @@ def build_inventory_payload(repo_root: Path) -> dict:
 @dataclass
 class RunCell:
     executor_flavor: str
+    operator_flavor: str
     operator_skill: str
+    operator_root: str
     source_root: str
     target_root: str
+    target_flavor: str
     target_skill: str
     target_skill_lane: str
     target_flavor_mode: str
     action_scope: str
     action_key: list[str]
+    adapter_kind: str | None
+    legality_status: str
+    legality_reasons: list[str]
 
 
 @dataclass
 class ExcludedCell:
     executor_flavor: str
+    operator_flavor: str
     operator_skill: str
     target_root: str
+    target_flavor: str
     target_skill: str
     target_skill_lane: str
     target_flavor_mode: str
     action_scope: str
     reason: str
+
+
+@dataclass
+class UniverseCell:
+    executor_flavor: str
+    operator_flavor: str
+    operator_root: str
+    source_root: str
+    operator_skill: str
+    operator_classification: str
+    operator_role: str
+    target_flavor: str
+    target_root: str
+    target_skill: str
+    target_classification: str
+    target_role: str
+    interpretation_flavor: str
+    target_flavor_mode: str
+    action_scope: str
+    action_key: list[str]
+    symbolic_key: list[str]
+    adapter_kind: str | None
+    execution_kind: str
+    legality_status: str
+    legality_reasons: list[str]
+
+
+def render_universe_markdown(payload: dict) -> str:
+    lines = [
+        "# Skill Tensor Universe",
+        "",
+        f"- Move Count: `{payload.get('move_count')}`",
+        f"- Legal: `{payload.get('status_counts', {}).get('legal', 0)}`",
+        f"- Degraded: `{payload.get('status_counts', {}).get('degraded', 0)}`",
+        f"- Blocked: `{payload.get('status_counts', {}).get('blocked', 0)}`",
+        "",
+        "## Notes",
+        "- Universe includes all inventoried skills, not just runnable candidates.",
+        "- Legality records symbolic moves, even when execution adapters do not exist.",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def symbolic_key_parts(executor_flavor: str, operator: dict, target: dict, interpretation_flavor: str) -> list[str]:
+    return [
+        executor_flavor,
+        str(operator.get("lane", "")),
+        str(operator.get("skill", "")),
+        str(target.get("lane", "")),
+        str(target.get("skill", "")),
+        interpretation_flavor,
+    ]
+
+
+def evaluate_universe_cell(
+    executor_flavor: str,
+    operator: dict,
+    target: dict,
+    interpretation_flavor: str,
+    rules: dict,
+) -> UniverseCell:
+    operator_profile = dict(operator.get("role_profile", {}))
+    target_profile = dict(target.get("role_profile", {}))
+    operator_skill = str(operator.get("skill", ""))
+    target_skill = str(target.get("skill", ""))
+    operator_flavor = str(operator.get("lane", ""))
+    target_flavor = str(target.get("lane", ""))
+    operator_root = str(operator.get("root", ""))
+    target_root = str(target.get("root", ""))
+    action_scope = operator_execution_scope(operator_skill, rules)
+    action_seed = {
+        "executor_flavor": executor_flavor,
+        "operator_flavor": operator_flavor,
+        "operator_skill": operator_skill,
+        "operator_root": operator_root,
+        "target_flavor": target_flavor,
+        "target_root": target_root,
+        "target_skill": target_skill,
+        "target_skill_lane": target_flavor,
+        "target_flavor_mode": interpretation_flavor,
+    }
+    action_key = action_key_parts(action_seed, rules)
+    symbolic_key = symbolic_key_parts(executor_flavor, operator, target, interpretation_flavor)
+    reasons: list[str] = []
+    legality_status = "legal"
+    execution_kind = "native"
+    adapter_kind = operator_profile.get("adapter_kind")
+
+    if not operator_profile.get("can_operator", False):
+        legality_status = "blocked"
+        execution_kind = "none"
+        reasons.extend(operator_profile.get("operator_reasons", []) or ["operator_not_legal"])
+    elif not target_profile.get("can_target", False):
+        legality_status = "blocked"
+        execution_kind = "none"
+        reasons.extend(target_profile.get("target_reasons", []) or ["target_not_legal"])
+    else:
+        reasons.extend(operator_profile.get("operator_reasons", []))
+        reasons.extend(target_profile.get("target_reasons", []))
+        if operator_profile.get("operator_role") in {"legacy_only", "analysis_only"}:
+            legality_status = "degraded"
+            execution_kind = "analysis_only" if adapter_kind is None else "native"
+        if target_profile.get("target_role") == "degraded":
+            legality_status = "degraded"
+        if operator_skill == target_skill and operator_flavor == target_flavor:
+            reasons.append("self_target_skill")
+            if not rules.get("self_target_rules", {}).get("default_allow_same_skill", True):
+                legality_status = "degraded"
+        if operator_root == target_root:
+            reasons.append("same_root")
+            if not rules.get("self_target_rules", {}).get("default_allow_same_root", True):
+                legality_status = "degraded"
+        flavor_rule = rules.get("operator_target_flavor_rules", {}).get(operator_skill)
+        if flavor_rule == "match_target_lane" and interpretation_flavor != target_flavor:
+            legality_status = "degraded"
+            reasons.append("interpretation_flavor_mismatch")
+        if action_scope == "lane":
+            reasons.append("lane_scoped_action")
+        if adapter_kind is None and legality_status != "blocked":
+            execution_kind = "analysis_only"
+
+    if not reasons:
+        reasons.append("native_move")
+
+    return UniverseCell(
+        executor_flavor=executor_flavor,
+        operator_flavor=operator_flavor,
+        operator_root=operator_root,
+        source_root=operator_root,
+        operator_skill=operator_skill,
+        operator_classification=str(operator.get("classification", "missing")),
+        operator_role=str(operator_profile.get("operator_role", "blocked")),
+        target_flavor=target_flavor,
+        target_root=target_root,
+        target_skill=target_skill,
+        target_classification=str(target.get("classification", "missing")),
+        target_role=str(target_profile.get("target_role", "blocked")),
+        interpretation_flavor=interpretation_flavor,
+        target_flavor_mode=interpretation_flavor,
+        action_scope=action_scope,
+        action_key=action_key,
+        symbolic_key=symbolic_key,
+        adapter_kind=adapter_kind,
+        execution_kind=execution_kind,
+        legality_status=legality_status,
+        legality_reasons=sorted(set(reasons)),
+    )
+
+
+def build_universe_payload(rules: dict, inventory: dict, rules_source: str, inventory_source: str) -> dict:
+    agent_flavors = list(rules["agent_flavors"])
+    skills = [row for row in inventory.get("skills", []) if isinstance(row, dict)]
+    moves: list[UniverseCell] = []
+    status_counts = {"legal": 0, "degraded": 0, "blocked": 0}
+    execution_kind_counts: dict[str, int] = defaultdict(int)
+    reason_counts: dict[str, int] = defaultdict(int)
+
+    for executor_flavor in agent_flavors:
+        for operator in skills:
+            for target in skills:
+                for interpretation_flavor in agent_flavors:
+                    move = evaluate_universe_cell(executor_flavor, operator, target, interpretation_flavor, rules)
+                    moves.append(move)
+                    status_counts[move.legality_status] = status_counts.get(move.legality_status, 0) + 1
+                    execution_kind_counts[move.execution_kind] = execution_kind_counts.get(move.execution_kind, 0) + 1
+                    for reason in move.legality_reasons:
+                        reason_counts[reason] = reason_counts.get(reason, 0) + 1
+
+    return {
+        "schema_version": 1,
+        "rules_source": rules_source,
+        "inventory_source": inventory_source,
+        "move_count": len(moves),
+        "status_counts": status_counts,
+        "execution_kind_counts": dict(sorted(execution_kind_counts.items())),
+        "reason_counts": dict(sorted(reason_counts.items())),
+        "moves": [asdict(move) for move in moves],
+    }
+
+
+def render_legality_markdown(payload: dict) -> str:
+    lines = [
+        "# Skill Tensor Legality",
+        "",
+        f"- Legal: `{payload.get('status_counts', {}).get('legal', 0)}`",
+        f"- Degraded: `{payload.get('status_counts', {}).get('degraded', 0)}`",
+        f"- Blocked: `{payload.get('status_counts', {}).get('blocked', 0)}`",
+        "",
+        "## Top Reasons",
+    ]
+    for reason, count in payload.get("reason_counts_top", []):
+        lines.append(f"- `{reason}`: `{count}`")
+    return "\n".join(lines) + "\n"
+
+
+def build_legality_payload(universe: dict, universe_source: str) -> dict:
+    moves = [row for row in universe.get("moves", []) if isinstance(row, dict)]
+    degraded = [row for row in moves if row.get("legality_status") == "degraded"]
+    blocked = [row for row in moves if row.get("legality_status") == "blocked"]
+    reason_counts: dict[str, int] = defaultdict(int)
+    for row in degraded + blocked:
+        for reason in row.get("legality_reasons", []):
+            reason_counts[reason] = reason_counts.get(reason, 0) + 1
+
+    top_reasons = sorted(reason_counts.items(), key=lambda item: (-item[1], item[0]))[:20]
+    return {
+        "schema_version": 1,
+        "universe_source": universe_source,
+        "move_count": universe.get("move_count", 0),
+        "status_counts": dict(universe.get("status_counts", {})),
+        "reason_counts_top": top_reasons,
+        "degraded_count": len(degraded),
+        "blocked_count": len(blocked),
+        "degraded": degraded[:400],
+        "blocked": blocked[:400],
+    }
 
 
 def render_pool_markdown(payload: dict) -> str:
@@ -242,84 +630,54 @@ def render_pool_markdown(payload: dict) -> str:
     return "\n".join(lines) + "\n"
 
 
-def build_pool_payload(rules: dict, inventory: dict, rules_source: str, inventory_source: str) -> dict:
-    agent_flavors = list(rules["agent_flavors"])
-    skill_roots = dict(rules["skill_roots"])
-    operator_skills = list(rules["operator_skills"])
-    target_flavor_modes = list(rules["target_flavor_modes"])
-    excluded_targets = set(rules.get("excluded_targets", []))
-    lane_specific = {k: set(v) for k, v in rules.get("lane_specific_targets", {}).items()}
-    operator_target_flavor_rules = dict(rules.get("operator_target_flavor_rules", {}))
-    self_target_rules = dict(rules.get("self_target_rules", {}))
-    allow_same_skill = bool(self_target_rules.get("default_allow_same_skill", True))
-    allow_same_root = bool(self_target_rules.get("default_allow_same_root", True))
-
-    skills = [row for row in inventory.get("skills", []) if isinstance(row, dict)]
-    target_rows = [row for row in skills if row.get("classification") == "candidate" and row.get("skill") not in excluded_targets]
-
+def build_pool_payload(rules: dict, universe: dict, rules_source: str, universe_source: str) -> dict:
+    moves = [row for row in universe.get("moves", []) if isinstance(row, dict)]
     pool: list[RunCell] = []
     excluded: list[ExcludedCell] = []
-    for executor in agent_flavors:
-        source_root = skill_roots[executor]
-        for operator in operator_skills:
-            for target in target_rows:
-                target_skill = str(target["skill"])
-                target_root = str(target["root"])
-                target_lane = str(target["lane"])
-                for target_flavor in target_flavor_modes:
-                    reason = None
-                    action_scope = operator_execution_scope(operator, rules)
-                    if target_skill in lane_specific.get(target_lane, set()) and executor != target_lane:
-                        reason = f"lane_specific_target_for_{target_lane}"
-                    if reason is None and not allow_same_skill and operator == target_skill:
-                        reason = "self_target_skill_blocked"
-                    if reason is None and not allow_same_root and source_root == target_root:
-                        reason = "self_target_root_blocked"
-                    flavor_rule = operator_target_flavor_rules.get(operator)
-                    if reason is None and flavor_rule == "match_target_lane" and target_flavor != target_lane:
-                        reason = "operator_requires_target_flavor_match"
-                    if reason:
-                        excluded.append(
-                            ExcludedCell(
-                                executor_flavor=executor,
-                                operator_skill=operator,
-                                target_root=target_root,
-                                target_skill=target_skill,
-                                target_skill_lane=target_lane,
-                                target_flavor_mode=target_flavor,
-                                action_scope=action_scope,
-                                reason=reason,
-                            )
-                        )
-                    else:
-                        cell_seed = {
-                            "executor_flavor": executor,
-                            "operator_skill": operator,
-                            "source_root": source_root,
-                            "target_root": target_root,
-                            "target_skill": target_skill,
-                            "target_skill_lane": target_lane,
-                            "target_flavor_mode": target_flavor,
-                        }
-                        pool.append(
-                            RunCell(
-                                executor_flavor=executor,
-                                operator_skill=operator,
-                                source_root=source_root,
-                                target_root=target_root,
-                                target_skill=target_skill,
-                                target_skill_lane=target_lane,
-                                target_flavor_mode=target_flavor,
-                                action_scope=action_scope,
-                                action_key=action_key_parts(cell_seed, rules),
-                            )
-                        )
+
+    for move in moves:
+        action_scope = str(move.get("action_scope", operator_execution_scope(str(move.get("operator_skill", "")), rules)))
+        if move.get("execution_kind") == "native":
+            pool.append(
+                RunCell(
+                    executor_flavor=str(move.get("executor_flavor", "")),
+                    operator_flavor=str(move.get("operator_flavor", "")),
+                    operator_skill=str(move.get("operator_skill", "")),
+                    operator_root=str(move.get("operator_root", "")),
+                    source_root=str(move.get("source_root", move.get("operator_root", ""))),
+                    target_root=str(move.get("target_root", "")),
+                    target_flavor=str(move.get("target_flavor", "")),
+                    target_skill=str(move.get("target_skill", "")),
+                    target_skill_lane=str(move.get("target_flavor", "")),
+                    target_flavor_mode=str(move.get("target_flavor_mode", "")),
+                    action_scope=action_scope,
+                    action_key=list(move.get("action_key", [])),
+                    adapter_kind=move.get("adapter_kind"),
+                    legality_status=str(move.get("legality_status", "legal")),
+                    legality_reasons=list(move.get("legality_reasons", [])),
+                )
+            )
+        else:
+            excluded.append(
+                ExcludedCell(
+                    executor_flavor=str(move.get("executor_flavor", "")),
+                    operator_flavor=str(move.get("operator_flavor", "")),
+                    operator_skill=str(move.get("operator_skill", "")),
+                    target_root=str(move.get("target_root", "")),
+                    target_flavor=str(move.get("target_flavor", "")),
+                    target_skill=str(move.get("target_skill", "")),
+                    target_skill_lane=str(move.get("target_flavor", "")),
+                    target_flavor_mode=str(move.get("target_flavor_mode", "")),
+                    action_scope=action_scope,
+                    reason=";".join(move.get("legality_reasons", [])) or str(move.get("legality_status", "blocked")),
+                )
+            )
 
     unique_action_keys = {json.dumps(cell.action_key, separators=(",", ":")) for cell in pool}
     return {
         "schema_version": 2,
         "rules_source": rules_source,
-        "inventory_source": inventory_source,
+        "universe_source": universe_source,
         "pool_size": len(pool),
         "action_group_count": len(unique_action_keys),
         "excluded_size": len(excluded),
@@ -446,8 +804,7 @@ def weight_cell(cell: dict, rules: dict, weights: dict | None = None) -> tuple[f
     reasons: list[str] = []
     weight = 1.0
 
-    operator_modes = rules.get("operator_modes", {})
-    mode = operator_modes.get(cell["operator_skill"], "meta")
+    mode = operator_mode_for_skill(cell["operator_skill"], rules, cell.get("adapter_kind"))
     if mode == "mutating":
         weight *= 1.4
         reasons.append("mutating_operator:+0.4x")
@@ -784,18 +1141,24 @@ def build_roulette_payload(
 
 def command_for_step(cell: dict) -> list[str]:
     operator = cell["operator_skill"]
+    operator_root = cell.get("operator_root") or cell.get("source_root") or ""
     target_root = cell["target_root"]
     flavor = cell["target_flavor_mode"]
     target_skill = cell["target_skill"]
+    skill_dir = str(Path(target_root) / target_skill)
 
     if operator == "skill-audit":
         return ["uv", "run", "scripts/skill_audit.py", "--flavor", flavor, "--root", target_root, "--skill", target_skill]
     if operator == "skill-polisher":
-        return ["uv", "run", ".codex/skills/skill-polisher/scripts/polish_skill.py", str(Path(target_root) / target_skill), "--mode", "verify", "--target-flavor", flavor, "--no-require-assets"]
+        return ["uv", "run", resolve_adapter_script_path(operator_root, operator, "polish_skill.py"), skill_dir, "--mode", "verify", "--target-flavor", flavor, "--no-require-assets"]
     if operator == "link-path-guard":
-        return ["uv", "run", "scripts/skill_path_guard.py", str(Path(target_root) / target_skill / "SKILL.md")]
+        return ["uv", "run", "scripts/skill_path_guard.py", str(Path(skill_dir) / "SKILL.md")]
     if operator == "trainstop-orchestrator":
-        return ["uv", "run", ".codex/skills/trainstop-orchestrator/scripts/orchestrate.py", "--target", cell["target_skill_lane"], "--lane", "maintenance"]
+        return ["uv", "run", resolve_adapter_script_path(operator_root, operator, "orchestrate.py"), "--target", cell["target_skill_lane"], "--lane", "maintenance"]
+    if operator == "python-header-canon":
+        return ["uv", "run", resolve_adapter_script_path(operator_root, operator, "python_header_canon.py"), "--report-only", skill_dir]
+    if operator == "mailbox-handoff":
+        return ["uv", "run", resolve_adapter_script_path(operator_root, operator, "mailbox_check.py"), "--mode", "link-canon", "--link-canon-file", str(Path(skill_dir) / "SKILL.md"), "--link-canon-no-fail"]
     return ["echo", f"NO_COMMAND_MAPPING:{operator}"]
 
 
@@ -818,11 +1181,15 @@ def expected_artifact_class(cell: dict) -> str:
         return "log"
     if operator == "trainstop-orchestrator":
         return "orchestration_report"
+    if operator == "python-header-canon":
+        return "header_report"
+    if operator == "mailbox-handoff":
+        return "link_report"
     return "unspecified"
 
 
 def safety_class(cell: dict, rules: dict) -> str:
-    mode = rules.get("operator_modes", {}).get(cell["operator_skill"], "meta")
+    mode = operator_mode_for_skill(cell["operator_skill"], rules, cell.get("adapter_kind"))
     if mode == "read_only":
         return "read_only"
     if mode == "mutating":
@@ -840,7 +1207,10 @@ def stop_condition(step: dict) -> str:
 
 
 def capability_for(cell: dict, capabilities: dict) -> dict:
-    return capabilities.get("operators", {}).get(cell["operator_skill"], {})
+    configured = capabilities.get("operators", {}).get(cell["operator_skill"])
+    if configured:
+        return configured
+    return adapter_capabilities_for_skill(cell["operator_skill"], cell.get("adapter_kind"))
 
 
 def render_plan_markdown(payload: dict) -> str:
@@ -1152,8 +1522,10 @@ def phase_status(repo_root: Path) -> dict[str, str]:
     roulette_exists = exists(repo_root, "codex/mailbox/SKILL_TENSOR_ROULETTE_LATEST.json")
     pool_exists = exists(repo_root, "codex/mailbox/SKILL_TENSOR_POOL.json")
     inventory_exists = exists(repo_root, "codex/mailbox/SKILL_TENSOR_INVENTORY.json")
+    universe_exists = exists(repo_root, "codex/mailbox/SKILL_TENSOR_UNIVERSE_LATEST.json")
+    legality_exists = exists(repo_root, "codex/mailbox/SKILL_TENSOR_LEGALITY_LATEST.json")
     return {
-        "phase0": "DONE" if inventory_exists and pool_exists and roulette_exists else "IN PROGRESS",
+        "phase0": "DONE" if inventory_exists and universe_exists and legality_exists and pool_exists and roulette_exists else "IN PROGRESS",
         "phase1": "DONE" if plan_exists else "IN PROGRESS",
         "phase2": "DONE" if ledger_exists else "IN PROGRESS",
         "phase3": "DONE" if weights_exists else "IN PROGRESS",
@@ -1167,10 +1539,16 @@ def phase_status(repo_root: Path) -> dict[str, str]:
 def render_spec(repo_root: Path) -> str:
     statuses = phase_status(repo_root)
     inventory = load_json(repo_root / "codex/mailbox/SKILL_TENSOR_INVENTORY.json")
+    universe = load_json(repo_root / "codex/mailbox/SKILL_TENSOR_UNIVERSE_LATEST.json")
+    legality = load_json(repo_root / "codex/mailbox/SKILL_TENSOR_LEGALITY_LATEST.json")
     pool = load_json(repo_root / "codex/mailbox/SKILL_TENSOR_POOL.json")
     roulette = load_json(repo_root / "codex/mailbox/SKILL_TENSOR_ROULETTE_LATEST.json")
     weights = load_json(repo_root / "codex/mailbox/SKILL_TENSOR_WEIGHTS_LATEST.json")
     skill_count = len(inventory.get("skills", []))
+    move_count = universe.get("move_count", 0)
+    legal_moves = legality.get("status_counts", {}).get("legal", 0)
+    degraded_moves = legality.get("status_counts", {}).get("degraded", 0)
+    blocked_moves = legality.get("status_counts", {}).get("blocked", 0)
     pool_size = pool.get("pool_size", 0)
     action_group_count = pool.get("action_group_count", 0)
     excluded_size = pool.get("excluded_size", 0)
@@ -1195,6 +1573,10 @@ This spec is regenerated from the live tensor artifacts. It is the canonical anc
 
 - Latest execution status: `{statuses["execution_status"]}`
 - Inventory skill count: `{skill_count}`
+- Full move count: `{move_count}`
+- Legal moves: `{legal_moves}`
+- Degraded moves: `{degraded_moves}`
+- Blocked moves: `{blocked_moves}`
 - Pool size: `{pool_size}`
 - Unique action-key groups: `{action_group_count}`
 - Excluded cells: `{excluded_size}`
@@ -1221,10 +1603,16 @@ This spec is regenerated from the live tensor artifacts. It is the canonical anc
 
 ### Operator Skill
 
+Any inventoried skill can appear as a symbolic operator in the tensor universe.
+
+Current native adapter-backed operator families include:
+
 - `trainstop-orchestrator`
 - `skill-polisher`
 - `skill-audit`
 - `link-path-guard`
+- `mailbox-handoff`
+- `python-header-canon`
 
 ### Target Skill
 
@@ -1235,6 +1623,17 @@ Any skill entry discovered under a skill root.
 - `codex`
 - `claude`
 - `gemini`
+
+## Universe
+
+The full tensor is generated across:
+
+- `executor_flavor`
+- `operator_flavor`
+- `operator_skill`
+- `target_flavor`
+- `target_skill`
+- `interpretation_flavor`
 
 ## Tensor Axes
 
@@ -1269,6 +1668,8 @@ Current execution scopes:
 - `config/skill_tensor_rules.json`
 - `config/skill_operator_capabilities.json`
 - `codex/mailbox/SKILL_TENSOR_INVENTORY.json`
+- `codex/mailbox/SKILL_TENSOR_UNIVERSE_LATEST.json`
+- `codex/mailbox/SKILL_TENSOR_LEGALITY_LATEST.json`
 - `codex/mailbox/SKILL_TENSOR_POOL.json`
 - `codex/mailbox/SKILL_TENSOR_ROULETTE_LATEST.json`
 - `codex/mailbox/SKILL_TENSOR_PLAN_LATEST.json`
@@ -1379,6 +1780,10 @@ def build_duplication_summary(repo_root: Path) -> dict:
     canonical = {
         "SKILL_TENSOR_INVENTORY.json",
         "SKILL_TENSOR_INVENTORY.md",
+        "SKILL_TENSOR_UNIVERSE_LATEST.json",
+        "SKILL_TENSOR_UNIVERSE_LATEST.md",
+        "SKILL_TENSOR_LEGALITY_LATEST.json",
+        "SKILL_TENSOR_LEGALITY_LATEST.md",
         "SKILL_TENSOR_POOL.json",
         "SKILL_TENSOR_POOL.md",
         "SKILL_TENSOR_ROULETTE_LATEST.json",
@@ -1446,15 +1851,75 @@ def estimate_dependencies(repo_root: Path) -> dict:
 def collect_sections(repo_root: Path) -> dict:
     mailbox = repo_root / "codex" / "mailbox"
     spec_path = repo_root / "docs" / "ops" / "SKILL_TENSOR_ROULETTE_SPEC.md"
+    inventory = load_json(mailbox / "SKILL_TENSOR_INVENTORY.json")
+    universe = load_json(mailbox / "SKILL_TENSOR_UNIVERSE_LATEST.json")
+    legality = load_json(mailbox / "SKILL_TENSOR_LEGALITY_LATEST.json")
+    pool = load_json(mailbox / "SKILL_TENSOR_POOL.json")
+    roulette = load_json(mailbox / "SKILL_TENSOR_ROULETTE_LATEST.json")
+    plan = load_json(mailbox / "SKILL_TENSOR_PLAN_LATEST.json")
+    execution = load_json(mailbox / "SKILL_TENSOR_EXECUTION_LATEST.json")
+    ledger = load_json(mailbox / "SKILL_TENSOR_LEDGER.json")
+    weights = load_json(mailbox / "SKILL_TENSOR_WEIGHTS_LATEST.json")
+    spec_text = spec_path.read_text(encoding="utf-8") if spec_path.exists() else None
+
+    latest_ledger = {}
+    if ledger.get("entries"):
+        latest_ledger = ledger["entries"][-1]
+
     return {
-        "inventory": load_json(mailbox / "SKILL_TENSOR_INVENTORY.json"),
-        "pool": load_json(mailbox / "SKILL_TENSOR_POOL.json"),
-        "roulette": load_json(mailbox / "SKILL_TENSOR_ROULETTE_LATEST.json"),
-        "plan": load_json(mailbox / "SKILL_TENSOR_PLAN_LATEST.json"),
-        "execution": load_json(mailbox / "SKILL_TENSOR_EXECUTION_LATEST.json"),
-        "ledger": load_json(mailbox / "SKILL_TENSOR_LEDGER.json"),
-        "weights": load_json(mailbox / "SKILL_TENSOR_WEIGHTS_LATEST.json"),
-        "spec": spec_path.read_text(encoding="utf-8") if spec_path.exists() else None,
+        "inventory": {
+            "path": "codex/mailbox/SKILL_TENSOR_INVENTORY.json",
+            "skill_count": len(inventory.get("skills", [])),
+        },
+        "universe": {
+            "path": "codex/mailbox/SKILL_TENSOR_UNIVERSE_LATEST.json",
+            "move_count": universe.get("move_count", 0),
+            "status_counts": universe.get("status_counts", {}),
+            "execution_kind_counts": universe.get("execution_kind_counts", {}),
+        },
+        "legality": {
+            "path": "codex/mailbox/SKILL_TENSOR_LEGALITY_LATEST.json",
+            "blocked_count": legality.get("blocked_count", 0),
+            "degraded_count": legality.get("degraded_count", 0),
+            "reason_counts_top": legality.get("reason_counts_top", []),
+        },
+        "pool": {
+            "path": "codex/mailbox/SKILL_TENSOR_POOL.json",
+            "pool_size": pool.get("pool_size", 0),
+            "action_group_count": pool.get("action_group_count", 0),
+            "excluded_size": pool.get("excluded_size", 0),
+        },
+        "roulette": {
+            "path": "codex/mailbox/SKILL_TENSOR_ROULETTE_LATEST.json",
+            "chain_length": roulette.get("chain_length_actual", 0),
+            "summary": roulette.get("summary", {}),
+        },
+        "plan": {
+            "path": "codex/mailbox/SKILL_TENSOR_PLAN_LATEST.json",
+            "step_count": len(plan.get("steps", [])),
+        },
+        "execution": {
+            "path": "codex/mailbox/SKILL_TENSOR_EXECUTION_LATEST.json",
+            "overall_status": execution.get("overall_status"),
+            "result_count": len(execution.get("results", [])),
+        },
+        "ledger": {
+            "path": "codex/mailbox/SKILL_TENSOR_LEDGER.json",
+            "entry_count": len(ledger.get("entries", [])),
+            "latest_execution_status": latest_ledger.get("execution_status"),
+            "latest_seed_text": latest_ledger.get("seed_text"),
+        },
+        "weights": {
+            "path": "codex/mailbox/SKILL_TENSOR_WEIGHTS_LATEST.json",
+            "recent_entry_count": weights.get("recent_entry_count", 0),
+            "pruned_action_key_count": len(weights.get("pruned_action_keys", [])),
+            "pruned_exact_cell_count": len(weights.get("pruned_exact_cells", [])),
+        },
+        "spec": {
+            "path": "docs/ops/SKILL_TENSOR_ROULETTE_SPEC.md",
+            "exists": spec_text is not None,
+            "length": 0 if spec_text is None else len(spec_text),
+        },
     }
 
 
@@ -1549,10 +2014,29 @@ def stage_inventory(repo_root: Path, output: str) -> dict:
     return payload
 
 
-def stage_pool(repo_root: Path, rules_path: str, inventory_path: str, output: str) -> dict:
+def stage_universe(repo_root: Path, rules_path: str, inventory_path: str, output: str) -> dict:
     rules = load_json(repo_root / rules_path)
     inventory = load_json(repo_root / inventory_path)
-    payload = build_pool_payload(rules, inventory, rules_path, inventory_path)
+    payload = build_universe_payload(rules, inventory, rules_path, inventory_path)
+    out = repo_root / output
+    write_json(out, payload)
+    write_text(out.with_suffix(".md"), render_universe_markdown(payload))
+    return payload
+
+
+def stage_legality(repo_root: Path, universe_path: str, output: str) -> dict:
+    universe = load_json(repo_root / universe_path)
+    payload = build_legality_payload(universe, universe_path)
+    out = repo_root / output
+    write_json(out, payload)
+    write_text(out.with_suffix(".md"), render_legality_markdown(payload))
+    return payload
+
+
+def stage_pool(repo_root: Path, rules_path: str, universe_path: str, output: str) -> dict:
+    rules = load_json(repo_root / rules_path)
+    universe = load_json(repo_root / universe_path)
+    payload = build_pool_payload(rules, universe, rules_path, universe_path)
     out = repo_root / output
     write_json(out, payload)
     write_text(out.with_suffix(".md"), render_pool_markdown(payload))
@@ -1651,6 +2135,8 @@ def run_cycle(args: argparse.Namespace) -> int:
     repo_root = find_repo_root(Path.cwd())
     sequence = [
         "inventory",
+        "universe",
+        "legality",
         "pool",
         "ledger-bootstrap",
         "weights",
@@ -1665,6 +2151,8 @@ def run_cycle(args: argparse.Namespace) -> int:
     continue_after_failure = {"ledger", "execute", "feedback"}
 
     inventory_path = "codex/mailbox/SKILL_TENSOR_INVENTORY.json"
+    universe_path = "codex/mailbox/SKILL_TENSOR_UNIVERSE_LATEST.json"
+    legality_path = "codex/mailbox/SKILL_TENSOR_LEGALITY_LATEST.json"
     pool_path = "codex/mailbox/SKILL_TENSOR_POOL.json"
     roulette_path = "codex/mailbox/SKILL_TENSOR_ROULETTE_LATEST.json"
     plan_path = "codex/mailbox/SKILL_TENSOR_PLAN_LATEST.json"
@@ -1686,8 +2174,14 @@ def run_cycle(args: argparse.Namespace) -> int:
             if name == "inventory":
                 stage_inventory(repo_root, inventory_path)
                 stdout_tail = inventory_path
+            elif name == "universe":
+                stage_universe(repo_root, rules_path, inventory_path, universe_path)
+                stdout_tail = universe_path
+            elif name == "legality":
+                stage_legality(repo_root, universe_path, legality_path)
+                stdout_tail = legality_path
             elif name == "pool":
-                stage_pool(repo_root, rules_path, inventory_path, pool_path)
+                stage_pool(repo_root, rules_path, universe_path, pool_path)
                 stdout_tail = pool_path
             elif name == "ledger-bootstrap":
                 _, bootstrap = ensure_bootstrap_ledger(repo_root, ledger_path)
@@ -1760,9 +2254,18 @@ def build_parser() -> argparse.ArgumentParser:
     p_inventory = sub.add_parser("inventory")
     p_inventory.add_argument("--output", default="codex/mailbox/SKILL_TENSOR_INVENTORY.json")
 
+    p_universe = sub.add_parser("universe")
+    p_universe.add_argument("--rules", default="config/skill_tensor_rules.json")
+    p_universe.add_argument("--inventory", default="codex/mailbox/SKILL_TENSOR_INVENTORY.json")
+    p_universe.add_argument("--output", default="codex/mailbox/SKILL_TENSOR_UNIVERSE_LATEST.json")
+
+    p_legality = sub.add_parser("legality")
+    p_legality.add_argument("--universe", default="codex/mailbox/SKILL_TENSOR_UNIVERSE_LATEST.json")
+    p_legality.add_argument("--output", default="codex/mailbox/SKILL_TENSOR_LEGALITY_LATEST.json")
+
     p_pool = sub.add_parser("pool")
     p_pool.add_argument("--rules", default="config/skill_tensor_rules.json")
-    p_pool.add_argument("--inventory", default="codex/mailbox/SKILL_TENSOR_INVENTORY.json")
+    p_pool.add_argument("--universe", default="codex/mailbox/SKILL_TENSOR_UNIVERSE_LATEST.json")
     p_pool.add_argument("--output", default="codex/mailbox/SKILL_TENSOR_POOL.json")
 
     p_weights = sub.add_parser("weights")
@@ -1824,8 +2327,19 @@ def main(argv: list[str] | None = None) -> int:
         payload = stage_inventory(repo_root, args.output)
         print((repo_root / args.output).relative_to(repo_root).as_posix())
         return 0 if payload else 2
+    if args.command == "universe":
+        payload = stage_universe(repo_root, args.rules, args.inventory, args.output)
+        print((repo_root / args.output).relative_to(repo_root).as_posix())
+        print(f"move_count={payload.get('move_count')}")
+        return 0
+    if args.command == "legality":
+        payload = stage_legality(repo_root, args.universe, args.output)
+        print((repo_root / args.output).relative_to(repo_root).as_posix())
+        print(f"blocked_count={payload.get('blocked_count')}")
+        print(f"degraded_count={payload.get('degraded_count')}")
+        return 0
     if args.command == "pool":
-        payload = stage_pool(repo_root, args.rules, args.inventory, args.output)
+        payload = stage_pool(repo_root, args.rules, args.universe, args.output)
         print((repo_root / args.output).relative_to(repo_root).as_posix())
         print(f"pool_size={payload.get('pool_size')}")
         print(f"excluded_size={payload.get('excluded_size')}")

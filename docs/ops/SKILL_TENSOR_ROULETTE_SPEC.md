@@ -11,17 +11,21 @@ This spec is regenerated from the live tensor artifacts. It is the canonical anc
 
 ## Live Cycle State
 
-- Latest execution status: `passed`
+- Latest execution status: `failed`
 - Inventory skill count: `92`
-- Pool size: `1316`
-- Unique action-key groups: `303`
-- Excluded cells: `880`
+- Full move count: `76176`
+- Legal moves: `5580`
+- Degraded moves: `65709`
+- Blocked moves: `4887`
+- Pool size: `11214`
+- Unique action-key groups: `893`
+- Excluded cells: `64962`
 - Current chain length: `4`
 - Current diversity score: `0.9091`
-- Current cross-lane coverage: `0.75`
+- Current cross-lane coverage: `1.0`
 - Current distinct sampled action keys: `4`
-- Current history-pruned exact cells: `24`
-- Current history-pruned action keys: `23`
+- Current history-pruned exact cells: `20`
+- Current history-pruned action keys: `20`
 
 ## Core Objects
 
@@ -39,10 +43,16 @@ This spec is regenerated from the live tensor artifacts. It is the canonical anc
 
 ### Operator Skill
 
+Any inventoried skill can appear as a symbolic operator in the tensor universe.
+
+Current native adapter-backed operator families include:
+
 - `trainstop-orchestrator`
 - `skill-polisher`
 - `skill-audit`
 - `link-path-guard`
+- `mailbox-handoff`
+- `python-header-canon`
 
 ### Target Skill
 
@@ -53,6 +63,17 @@ Any skill entry discovered under a skill root.
 - `codex`
 - `claude`
 - `gemini`
+
+## Universe
+
+The full tensor is generated across:
+
+- `executor_flavor`
+- `operator_flavor`
+- `operator_skill`
+- `target_flavor`
+- `target_skill`
+- `interpretation_flavor`
 
 ## Tensor Axes
 
@@ -87,6 +108,8 @@ Current execution scopes:
 - `config/skill_tensor_rules.json`
 - `config/skill_operator_capabilities.json`
 - `codex/mailbox/SKILL_TENSOR_INVENTORY.json`
+- `codex/mailbox/SKILL_TENSOR_UNIVERSE_LATEST.json`
+- `codex/mailbox/SKILL_TENSOR_LEGALITY_LATEST.json`
 - `codex/mailbox/SKILL_TENSOR_POOL.json`
 - `codex/mailbox/SKILL_TENSOR_ROULETTE_LATEST.json`
 - `codex/mailbox/SKILL_TENSOR_PLAN_LATEST.json`
@@ -144,7 +167,7 @@ Outputs:
 
 ### Phase 5: Sampled-Chain Executor
 
-Status: `DONE`
+Status: `IN PROGRESS`
 
 Current refinements:
 

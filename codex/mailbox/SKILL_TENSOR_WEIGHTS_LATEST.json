@@ -6,11 +6,11 @@
     "pool": "codex/mailbox/SKILL_TENSOR_POOL.json",
     "ledger": "codex/mailbox/SKILL_TENSOR_LEDGER.json"
   },
-  "pool_size": 1316,
-  "recent_entry_count": 17,
+  "pool_size": 11214,
+  "recent_entry_count": 24,
   "per_skill_weight_adjustments": {
     ".codex/skills::.system": 1.0,
-    ".codex/skills::api-manager": 1.25,
+    ".codex/skills::api-manager": 1.05,
     ".codex/skills::artifact-upcycle": 1.0,
     ".codex/skills::claude-skill-bridge": 1.0,
     ".codex/skills::codekiller-remediation-gate": 1.4,
@@ -19,32 +19,32 @@
     ".codex/skills::corpse-reviver": 1.4,
     ".codex/skills::decision-razor": 1.0,
     ".codex/skills::dumpster-upcycler": 1.4,
-    ".codex/skills::gh-address-comments": 1.0,
+    ".codex/skills::gh-address-comments": 1.15,
     ".codex/skills::gh-fix-ci": 1.4,
     ".codex/skills::gh-mcp-autonomy": 1.25,
-    ".codex/skills::imagegen": 1.05,
-    ".codex/skills::ingest-research": 1.05,
+    ".codex/skills::imagegen": 1.25,
+    ".codex/skills::ingest-research": 1.25,
     ".codex/skills::iron-maiden-runtime": 1.25,
     ".codex/skills::link-path-guard": 1.25,
     ".codex/skills::mailbox-handoff": 1.25,
     ".codex/skills::meta-polisher-validator": 1.0,
     ".codex/skills::openai-docs": 1.25,
-    ".codex/skills::postman": 1.0,
-    ".codex/skills::python-header-canon": 1.25,
+    ".codex/skills::postman": 1.15,
+    ".codex/skills::python-header-canon": 1.05,
     ".codex/skills::scm-triage": 1.25,
     ".codex/skills::script-envelope": 1.0,
     ".codex/skills::session-resumer": 1.0,
     ".codex/skills::skill-polisher": 1.25,
     ".codex/skills::sora": 1.25,
     ".codex/skills::toolchain-doctor": 1.4,
-    ".codex/skills::trainstop-orchestrator": 1.05,
+    ".codex/skills::trainstop-orchestrator": 1.25,
     ".claude/skills::.system": 1.0,
-    ".claude/skills::api-manager": 1.4,
+    ".claude/skills::api-manager": 1.05,
     ".claude/skills::artifact-upcycle": 1.0,
     ".claude/skills::claude-skill-bridge": 1.0,
-    ".claude/skills::codekiller-remediation-gate": 1.05,
+    ".claude/skills::codekiller-remediation-gate": 1.25,
     ".claude/skills::codex-skill-bridge": 1.0,
-    ".claude/skills::conceptualize": 1.4,
+    ".claude/skills::conceptualize": 1.25,
     ".claude/skills::corpse-reviver": 1.25,
     ".claude/skills::decision-razor": 1.0,
     ".claude/skills::dumpster-upcycler": 1.25,
@@ -59,17 +59,17 @@
     ".claude/skills::link-path-guard": 1.4,
     ".claude/skills::mailbox-handoff": 1.4,
     ".claude/skills::meta-polisher-validator": 1.0,
-    ".claude/skills::openai-docs": 1.4,
+    ".claude/skills::openai-docs": 1.05,
     ".claude/skills::overnight-archaeology": 1.4,
     ".claude/skills::postman": 1.0,
-    ".claude/skills::python-header-canon": 1.05,
+    ".claude/skills::python-header-canon": 1.25,
     ".claude/skills::scm-triage": 1.25,
-    ".claude/skills::script-envelope": 1.0,
+    ".claude/skills::script-envelope": 1.15,
     ".claude/skills::session-resumer": 1.0,
     ".claude/skills::sfa": 1.0,
     ".claude/skills::skill-polisher": 1.25,
-    ".claude/skills::sora": 1.25,
-    ".claude/skills::theme-system": 1.4,
+    ".claude/skills::sora": 1.4,
+    ".claude/skills::theme-system": 1.55,
     ".claude/skills::toolchain-doctor": 1.25,
     ".claude/skills::trainstop-orchestrator": 1.25,
     ".gemini/extensions/chthonic-archive-sync/skills::.system": 1.0,
@@ -84,16 +84,16 @@
     ".gemini/extensions/chthonic-archive-sync/skills::dumpster-upcycler": 1.25,
     ".gemini/extensions/chthonic-archive-sync/skills::gh-address-comments": 1.0,
     ".gemini/extensions/chthonic-archive-sync/skills::gh-fix-ci": 1.25,
-    ".gemini/extensions/chthonic-archive-sync/skills::gh-mcp-autonomy": 1.25,
+    ".gemini/extensions/chthonic-archive-sync/skills::gh-mcp-autonomy": 1.4,
     ".gemini/extensions/chthonic-archive-sync/skills::imagegen": 1.25,
-    ".gemini/extensions/chthonic-archive-sync/skills::ingest-research": 1.25,
-    ".gemini/extensions/chthonic-archive-sync/skills::iron-maiden-runtime": 1.25,
+    ".gemini/extensions/chthonic-archive-sync/skills::ingest-research": 1.05,
+    ".gemini/extensions/chthonic-archive-sync/skills::iron-maiden-runtime": 1.4,
     ".gemini/extensions/chthonic-archive-sync/skills::mailbox-handoff": 1.25,
-    ".gemini/extensions/chthonic-archive-sync/skills::meta-polisher-validator": 1.0,
+    ".gemini/extensions/chthonic-archive-sync/skills::meta-polisher-validator": 1.15,
     ".gemini/extensions/chthonic-archive-sync/skills::openai-docs": 1.05,
     ".gemini/extensions/chthonic-archive-sync/skills::postman": 1.0,
     ".gemini/extensions/chthonic-archive-sync/skills::python-header-canon": 1.4,
-    ".gemini/extensions/chthonic-archive-sync/skills::scm-triage": 1.05,
+    ".gemini/extensions/chthonic-archive-sync/skills::scm-triage": 1.25,
     ".gemini/extensions/chthonic-archive-sync/skills::script-envelope": 1.0,
     ".gemini/extensions/chthonic-archive-sync/skills::session-resumer": 1.0,
     ".gemini/extensions/chthonic-archive-sync/skills::skill-polisher": 1.25,
@@ -103,66 +103,115 @@
     ".gemini/extensions/chthonic-archive-sync/skills::triad-velocity-lane": 1.4
   },
   "per_operator_weight_adjustments": {
-    "link-path-guard": 0.7875,
-    "skill-audit": 0.875,
+    "link-path-guard": 0.7625,
+    "mailbox-handoff": 0.95,
+    "python-header-canon": 1.0,
     "skill-polisher": 0.8375,
-    "trainstop-orchestrator": 1.0
+    "trainstop-orchestrator": 0.9875
   },
   "pruned_exact_cells": [
     [
       "claude",
       "link-path-guard",
       ".claude/skills",
+      ".claude/skills",
+      "script-envelope",
+      "codex"
+    ],
+    [
+      "codex",
+      "skill-polisher",
+      ".claude/skills",
       ".codex/skills",
-      "imagegen",
+      "gh-fix-ci",
+      "gemini"
+    ],
+    [
+      "codex",
+      "skill-audit",
+      ".codex/skills",
+      ".gemini/extensions/chthonic-archive-sync/skills",
+      "openai-docs",
+      "gemini"
+    ],
+    [
+      "gemini",
+      "link-path-guard",
+      ".claude/skills",
+      ".claude/skills",
+      "ingest-research",
+      "codex"
+    ],
+    [
+      "claude",
+      "skill-polisher",
+      ".claude/skills",
+      ".codex/skills",
+      "python-header-canon",
+      "claude"
+    ],
+    [
+      "claude",
+      "skill-polisher",
+      ".claude/skills",
+      ".gemini/extensions/chthonic-archive-sync/skills",
+      "gh-mcp-autonomy",
+      "claude"
+    ],
+    [
+      "codex",
+      "link-path-guard",
+      ".claude/skills",
+      ".gemini/extensions/chthonic-archive-sync/skills",
+      "ingest-research",
       "claude"
     ],
     [
       "gemini",
       "link-path-guard",
       ".gemini/extensions/chthonic-archive-sync/skills",
-      ".claude/skills",
-      "mailbox-handoff",
-      "claude"
-    ],
-    [
-      "codex",
-      "skill-polisher",
       ".codex/skills",
-      ".claude/skills",
-      "link-path-guard",
+      "toolchain-doctor",
       "claude"
     ],
     [
       "codex",
       "skill-audit",
       ".codex/skills",
-      ".codex/skills",
-      "gh-fix-ci",
+      ".gemini/extensions/chthonic-archive-sync/skills",
+      "python-header-canon",
       "codex"
     ],
     [
-      "gemini",
-      "link-path-guard",
-      ".gemini/extensions/chthonic-archive-sync/skills",
-      ".claude/skills",
-      "mailbox-handoff",
-      "gemini"
-    ],
-    [
-      "claude",
+      "codex",
       "link-path-guard",
       ".claude/skills",
       ".codex/skills",
-      "conceptualize",
+      "api-manager",
       "claude"
     ],
     [
       "codex",
-      "skill-polisher",
-      ".codex/skills",
+      "link-path-guard",
       ".claude/skills",
-      "imagegen",
+      ".claude/skills",
+      "sora",
+      "codex"
+    ],
+    [
+      "claude",
+      "skill-polisher",
+      ".claude/skills",
+      ".gemini/extensions/chthonic-archive-sync/skills",
+      "iron-maiden-runtime",
+      "claude"
+    ],
+    [
+      "claude",
+      "skill-polisher",
+      ".claude/skills",
+      ".claude/skills",
+      "openai-docs",
       "claude"
     ],
     [
@@ -174,27 +223,11 @@
       "claude"
     ],
     [
-      "codex",
-      "skill-polisher",
-      ".codex/skills",
-      ".claude/skills",
-      "conceptualize",
-      "claude"
-    ],
-    [
       "claude",
       "link-path-guard",
       ".claude/skills",
       ".codex/skills",
-      "ingest-research",
-      "claude"
-    ],
-    [
-      "claude",
-      "skill-polisher",
-      ".claude/skills",
-      ".claude/skills",
-      "python-header-canon",
+      "conceptualize",
       "claude"
     ],
     [
@@ -207,66 +240,10 @@
     ],
     [
       "codex",
-      "skill-audit",
-      ".codex/skills",
-      ".gemini/extensions/chthonic-archive-sync/skills",
-      "python-header-canon",
-      "gemini"
-    ],
-    [
-      "gemini",
-      "link-path-guard",
-      ".gemini/extensions/chthonic-archive-sync/skills",
-      ".claude/skills",
-      "codekiller-remediation-gate",
-      "codex"
-    ],
-    [
-      "codex",
-      "skill-audit",
-      ".codex/skills",
-      ".codex/skills",
-      "dumpster-upcycler",
-      "gemini"
-    ],
-    [
-      "codex",
       "skill-polisher",
       ".codex/skills",
       ".claude/skills",
-      "mailbox-handoff",
-      "claude"
-    ],
-    [
-      "codex",
-      "skill-polisher",
-      ".codex/skills",
-      ".claude/skills",
-      "ingest-research",
-      "claude"
-    ],
-    [
-      "codex",
-      "skill-audit",
-      ".codex/skills",
-      ".gemini/extensions/chthonic-archive-sync/skills",
-      "openai-docs",
-      "gemini"
-    ],
-    [
-      "gemini",
       "link-path-guard",
-      ".gemini/extensions/chthonic-archive-sync/skills",
-      ".codex/skills",
-      "trainstop-orchestrator",
-      "claude"
-    ],
-    [
-      "gemini",
-      "link-path-guard",
-      ".gemini/extensions/chthonic-archive-sync/skills",
-      ".codex/skills",
-      "toolchain-doctor",
       "claude"
     ],
     [
@@ -274,32 +251,24 @@
       "skill-polisher",
       ".claude/skills",
       ".claude/skills",
-      "openai-docs",
-      "claude"
+      "theme-system",
+      "gemini"
     ],
     [
-      "codex",
-      "skill-audit",
-      ".codex/skills",
-      ".gemini/extensions/chthonic-archive-sync/skills",
-      "scm-triage",
-      "codex"
-    ],
-    [
-      "codex",
-      "skill-polisher",
-      ".codex/skills",
+      "gemini",
+      "trainstop-orchestrator",
       ".claude/skills",
+      ".codex/skills",
       "codekiller-remediation-gate",
       "claude"
     ],
     [
-      "codex",
-      "skill-audit",
+      "claude",
+      "mailbox-handoff",
+      ".claude/skills",
       ".codex/skills",
-      ".gemini/extensions/chthonic-archive-sync/skills",
-      "python-header-canon",
-      "codex"
+      "gh-address-comments",
+      "gemini"
     ]
   ],
   "pruned_action_keys": [
@@ -313,13 +282,25 @@
       "link-path-guard",
       "skill",
       ".claude/skills",
-      "codekiller-remediation-gate"
+      "ingest-research"
     ],
     [
       "link-path-guard",
       "skill",
       ".claude/skills",
-      "mailbox-handoff"
+      "script-envelope"
+    ],
+    [
+      "link-path-guard",
+      "skill",
+      ".claude/skills",
+      "sora"
+    ],
+    [
+      "link-path-guard",
+      "skill",
+      ".codex/skills",
+      "api-manager"
     ],
     [
       "link-path-guard",
@@ -332,18 +313,6 @@
       "skill",
       ".codex/skills",
       "dumpster-upcycler"
-    ],
-    [
-      "link-path-guard",
-      "skill",
-      ".codex/skills",
-      "imagegen"
-    ],
-    [
-      "link-path-guard",
-      "skill",
-      ".codex/skills",
-      "ingest-research"
     ],
     [
       "link-path-guard",
@@ -354,15 +323,16 @@
     [
       "link-path-guard",
       "skill",
-      ".codex/skills",
-      "trainstop-orchestrator"
+      ".gemini/extensions/chthonic-archive-sync/skills",
+      "ingest-research"
     ],
     [
-      "skill-audit",
+      "mailbox-handoff",
       "skill",
       "codex",
+      "gemini",
       ".codex/skills",
-      "gh-fix-ci"
+      "gh-address-comments"
     ],
     [
       "skill-audit",
@@ -370,20 +340,6 @@
       "codex",
       ".gemini/extensions/chthonic-archive-sync/skills",
       "python-header-canon"
-    ],
-    [
-      "skill-audit",
-      "skill",
-      "codex",
-      ".gemini/extensions/chthonic-archive-sync/skills",
-      "scm-triage"
-    ],
-    [
-      "skill-audit",
-      "skill",
-      "gemini",
-      ".codex/skills",
-      "dumpster-upcycler"
     ],
     [
       "skill-audit",
@@ -391,45 +347,6 @@
       "gemini",
       ".gemini/extensions/chthonic-archive-sync/skills",
       "openai-docs"
-    ],
-    [
-      "skill-audit",
-      "skill",
-      "gemini",
-      ".gemini/extensions/chthonic-archive-sync/skills",
-      "python-header-canon"
-    ],
-    [
-      "skill-polisher",
-      "skill",
-      "verify",
-      "claude",
-      ".claude/skills",
-      "codekiller-remediation-gate"
-    ],
-    [
-      "skill-polisher",
-      "skill",
-      "verify",
-      "claude",
-      ".claude/skills",
-      "conceptualize"
-    ],
-    [
-      "skill-polisher",
-      "skill",
-      "verify",
-      "claude",
-      ".claude/skills",
-      "imagegen"
-    ],
-    [
-      "skill-polisher",
-      "skill",
-      "verify",
-      "claude",
-      ".claude/skills",
-      "ingest-research"
     ],
     [
       "skill-polisher",
@@ -445,14 +362,6 @@
       "verify",
       "claude",
       ".claude/skills",
-      "mailbox-handoff"
-    ],
-    [
-      "skill-polisher",
-      "skill",
-      "verify",
-      "claude",
-      ".claude/skills",
       "openai-docs"
     ],
     [
@@ -460,8 +369,46 @@
       "skill",
       "verify",
       "claude",
-      ".claude/skills",
+      ".codex/skills",
       "python-header-canon"
+    ],
+    [
+      "skill-polisher",
+      "skill",
+      "verify",
+      "claude",
+      ".gemini/extensions/chthonic-archive-sync/skills",
+      "gh-mcp-autonomy"
+    ],
+    [
+      "skill-polisher",
+      "skill",
+      "verify",
+      "claude",
+      ".gemini/extensions/chthonic-archive-sync/skills",
+      "iron-maiden-runtime"
+    ],
+    [
+      "skill-polisher",
+      "skill",
+      "verify",
+      "gemini",
+      ".claude/skills",
+      "theme-system"
+    ],
+    [
+      "skill-polisher",
+      "skill",
+      "verify",
+      "gemini",
+      ".codex/skills",
+      "gh-fix-ci"
+    ],
+    [
+      "trainstop-orchestrator",
+      "lane",
+      "codex",
+      "maintenance"
     ]
   ]
 }
