@@ -13,12 +13,15 @@ This spec is regenerated from the live tensor artifacts. It is the canonical anc
 
 - Latest execution status: `passed`
 - Inventory skill count: `92`
-- Pool size: `1352`
-- Excluded cells: `844`
+- Pool size: `1316`
+- Unique action-key groups: `303`
+- Excluded cells: `880`
 - Current chain length: `4`
-- Current diversity score: `0.8182`
+- Current diversity score: `0.9091`
 - Current cross-lane coverage: `0.75`
-- Current history-pruned exact cells: `12`
+- Current distinct sampled action keys: `4`
+- Current history-pruned exact cells: `24`
+- Current history-pruned action keys: `23`
 
 ## Core Objects
 
@@ -60,6 +63,17 @@ A minimal run cell is:
 Extended chains add:
 
 `(previous_state, chain_depth, seed, weighting_profile)`
+
+## Action Identity
+
+Each symbolic cell now resolves to a normalized execution identity:
+
+`action_key = (operator, scope, actionable-target...)`
+
+Current execution scopes:
+
+- `skill`
+- `lane`
 
 ## Current Artifact Policy
 

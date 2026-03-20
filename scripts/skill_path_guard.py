@@ -157,6 +157,15 @@ def resolve_token(raw: str, source_file: Path, repo_root: Path, index: dict[str,
     return "broken", None, "target does not exist"
 
 
+def match_is_placeholder_prefixed(text: str, start: int) -> bool:
+    prefix = text[max(0, start - 64):start]
+    if "<path-to-skill>/" in prefix or "<path-to-skill>\\" in prefix:
+        return True
+    if re.search(r"<[^>]+>[\\/]\s*$", prefix):
+        return True
+    return False
+
+
 def scan_file(path: Path, repo_root: Path, index: dict[str, list[Path]], apply: bool) -> list[Finding]:
     text = path.read_text(encoding="utf-8", errors="replace")
     findings: list[Finding] = []
@@ -165,6 +174,8 @@ def scan_file(path: Path, repo_root: Path, index: dict[str, list[Path]], apply: 
     seen: set[str] = set()
     for match in PATH_TOKEN_RE.finditer(text):
         raw = match.group("path")
+        if match_is_placeholder_prefixed(text, match.start()):
+            continue
         if raw in seen:
             continue
         seen.add(raw)

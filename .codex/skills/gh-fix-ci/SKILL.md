@@ -63,7 +63,7 @@ Prereq: authenticate via `gh auth login`, confirm with `gh auth status` (repo + 
 
 When the goal is to address review/issue comments rather than CI failures:
 
-1. **Fetch comments**: Run `scripts/fetch_comments.py` to list all review threads on the PR.
+1. **Fetch comments**: Run `python "<path-to-skill>/scripts/fetch_comments.py"` (or the gh-address-comments version if bundled separately) to list all review threads.
 2. **Triage**: Number each thread, summarize the required fix, present to the user.
 3. **User selects**: User picks which numbered comments to address.
 4. **Apply fixes**: Implement changes for the selected comments, same approval flow as CI fixes.

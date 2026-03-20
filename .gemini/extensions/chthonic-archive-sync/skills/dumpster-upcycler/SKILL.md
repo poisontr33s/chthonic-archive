@@ -3,7 +3,7 @@ name: dumpster-upcycler
 description: Convert raw session dumps into compact structured logs, readable markdown, and warm-start resume packets (no deletion, optional archiving). Absorbs session-resumer.
 metadata:
   short-description: "Upcycle raw dumps into structured logs + resume packets"
-  argument-hint: "uv run .codex/skills/dumpster-upcycler/scripts/dumpster_upcycler.py codex/codex-session-logs/codex-session-log-00001"
+  argument-hint: "uv run .codex/skills/dumpster-upcycler/scripts/dumpster_upcycler.py <session-log-path>"
   tags:
     - log processing
     - session management
@@ -23,7 +23,7 @@ It does not delete history. It can optionally move the raw dump into an archive 
 
 Single file:
 ```powershell
-uv run .codex/skills/dumpster-upcycler/scripts/dumpster_upcycler.py codex/codex-session-logs/codex-session-log-00001
+uv run .codex/skills/dumpster-upcycler/scripts/dumpster_upcycler.py <session-log-path>
 ```
 
 Directory sweep (all matching files):
@@ -40,12 +40,12 @@ uv run .codex/skills/dumpster-upcycler/scripts/dumpster_upcycler.py codex/codex-
 
 Generate a warm-start resume from a raw or structured log:
 ```powershell
-uv run .codex/skills/session-resumer/scripts/session_resumer.py codex/codex-session-logs/codex-session-log-00001.txt
+uv run .codex/skills/session-resumer/scripts/session_resumer.py <session-log-path>.txt
 ```
 
 From Google AI Studio export:
 ```powershell
-uv run .codex/skills/session-resumer/scripts/session_resumer.py codex/codex-session-logs/default-session-code-gemini.py --extract-ai-studio
+uv run .codex/skills/session-resumer/scripts/session_resumer.py <ai-studio-export.py> --extract-ai-studio
 ```
 
 From JSON transcript with canonical emit:
@@ -55,7 +55,7 @@ uv run .codex/skills/session-resumer/scripts/session_resumer.py <transcript>.jso
 
 Append resume into a session trail:
 ```powershell
-uv run .codex/skills/session-resumer/scripts/session_resumer.py codex/codex-session-logs/codex-session-log-00001.txt --trail codex/codex-session-logs/SESSION_TRAIL_00001.md
+uv run .codex/skills/session-resumer/scripts/session_resumer.py <session-log-path>.txt --trail <session-trail-path>.md
 ```
 
 ## Output Convention

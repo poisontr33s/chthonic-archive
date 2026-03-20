@@ -9,11 +9,11 @@
         "uv",
         "run",
         "scripts/skill_path_guard.py",
-        ".claude\\skills\\mailbox-handoff\\SKILL.md"
+        ".codex\\skills\\conceptualize\\SKILL.md"
       ],
       "rc": 0,
-      "seconds": 7.38,
-      "stdout_tail": "[fixable] .claude\\skills\\mailbox-handoff\\SKILL.md: .\\scripts\\mailbox_handoff.ps1\n  -> ../../../scripts/mailbox_handoff.ps1\n  :: unique basename match: scripts/mailbox_handoff.ps1\n[fixable] .claude\\skills\\mailbox-handoff\\SKILL.md: scripts/mailbox_scribe.py\n  -> scripts/mailbox_scribe.py\n  :: resolved to repo-root target instead of local skill-relative path\n[fixable] .claude\\skills\\mailbox-handoff\\SKILL.md: scripts/handoff_loop.py\n  -> scripts/handoff_loop.py\n  :: resolved to repo-root target instead of local skill-relative path\n[fixable] .claude\\skills\\mailbox-handoff\\SKILL.md: scripts/link_audit.py\n  -> scripts/link_audit.py\n  :: resolved to repo-root target instead of local skill-relative path\n[fixable] .claude\\skills\\mailbox-handoff\\SKILL.md: scripts/skill_audit.py\n  -> scripts/skill_audit.py\n  :: resolved to repo-root target instead of local skill-relative path",
+      "seconds": 7.772,
+      "stdout_tail": "[fixable] .codex\\skills\\conceptualize\\SKILL.md: scripts/skill_audit.py\n  -> scripts/skill_audit.py\n  :: resolved to repo-root target instead of local skill-relative path",
       "stderr_tail": "",
       "expected_artifacts": [
         "logs/skill_path_guard.log"
@@ -31,41 +31,17 @@
       "command": [
         "uv",
         "run",
-        ".codex/skills/skill-polisher/scripts/polish_skill.py",
-        ".claude\\skills\\codekiller-remediation-gate",
-        "--mode",
-        "verify",
-        "--target-flavor",
-        "claude",
-        "--no-require-assets"
-      ],
-      "rc": 0,
-      "seconds": 0.144,
-      "stdout_tail": "\u2554\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2557\n\u2551                    FEEDING REPORT: codekiller-remediation-gate           \u2551\n\u255a\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u255d\nTASTE: PURE (Clean)\nNUTRITION LEVEL: 100%\n\nDOMAIN SCORES:\n  - structure: 100%\n  - policy: 100%\n  - semantics: 100%\n  - maintainability: 100%\n\nENTROPY DETECTED:\n  [INFO] #TBD (maintainability) Debt markers detected (TODO:7).\n    -> location: SKILL.md, confidence: 0.90\n    -> Review markers and convert unresolved debt into tracked action items.\n\nSTAMP INDEX: #TBD:1\n\n>>> VERIFY: PASSED (no blocking findings). <<<",
-      "stderr_tail": "",
-      "expected_artifacts": [],
-      "present_artifacts": [],
-      "missing_artifacts": [],
-      "stop_condition": "stop_on_nonzero_or_missing_artifact",
-      "status": "passed",
-      "failure_kind": null
-    },
-    {
-      "step": 3,
-      "command": [
-        "uv",
-        "run",
         "scripts/skill_audit.py",
         "--flavor",
         "gemini",
         "--root",
-        ".codex/skills",
+        ".gemini/extensions/chthonic-archive-sync/skills",
         "--skill",
-        "dumpster-upcycler"
+        "openai-docs"
       ],
       "rc": 0,
-      "seconds": 0.125,
-      "stdout_tail": "\n=== POLISHING: dumpster-upcycler ===\n+--------------------------------------------------------------+\n|                    FEEDING REPORT: dumpster-upcycler            |\n+--------------------------------------------------------------+\nTASTE: PURE (Clean)\nNUTRITION LEVEL: 100%\n\nSystem Satisfied. No entropy found.",
+      "seconds": 0.126,
+      "stdout_tail": "\n=== POLISHING: openai-docs ===\n+--------------------------------------------------------------+\n|                    FEEDING REPORT: openai-docs                  |\n+--------------------------------------------------------------+\nTASTE: PURE (Clean)\nNUTRITION LEVEL: 100%\n\nSystem Satisfied. No entropy found.",
       "stderr_tail": "",
       "expected_artifacts": [],
       "present_artifacts": [],
@@ -75,12 +51,35 @@
       "failure_kind": null
     },
     {
+      "step": 3,
+      "command": [
+        "uv",
+        "run",
+        "scripts/skill_path_guard.py",
+        ".claude\\skills\\api-manager\\SKILL.md"
+      ],
+      "rc": 0,
+      "seconds": 7.553,
+      "stdout_tail": "OK: no stale or broken skill path references found",
+      "stderr_tail": "",
+      "expected_artifacts": [
+        "logs/skill_path_guard.log"
+      ],
+      "present_artifacts": [
+        "logs/skill_path_guard.log"
+      ],
+      "missing_artifacts": [],
+      "stop_condition": "stop_on_nonzero_or_missing_artifact",
+      "status": "passed",
+      "failure_kind": null
+    },
+    {
       "step": 4,
       "command": [
         "uv",
         "run",
         ".codex/skills/skill-polisher/scripts/polish_skill.py",
-        ".claude\\skills\\imagegen",
+        ".claude\\skills\\openai-docs",
         "--mode",
         "verify",
         "--target-flavor",
@@ -88,13 +87,13 @@
         "--no-require-assets"
       ],
       "rc": 0,
-      "seconds": 0.135,
-      "stdout_tail": "\u2554\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2557\n\u2551                    FEEDING REPORT: imagegen                     \u2551\n\u255a\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u255d\nTASTE: PURE (Clean)\nNUTRITION LEVEL: 100%\n\nDOMAIN SCORES:\n  - structure: 100%\n  - policy: 100%\n  - semantics: 100%\n  - maintainability: 100%\n\nSystem Satisfied. No entropy found.\n\n>>> VERIFY: PASSED (no blocking findings). <<<",
+      "seconds": 0.141,
+      "stdout_tail": "\u2554\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2557\n\u2551                    FEEDING REPORT: openai-docs                  \u2551\n\u255a\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u255d\nTASTE: PURE (Clean)\nNUTRITION LEVEL: 100%\n\nDOMAIN SCORES:\n  - structure: 100%\n  - policy: 100%\n  - semantics: 100%\n  - maintainability: 100%\n\nSystem Satisfied. No entropy found.\n\n>>> VERIFY: PASSED (no blocking findings). <<<",
       "stderr_tail": "",
       "expected_artifacts": [],
       "present_artifacts": [],
       "missing_artifacts": [],
-      "stop_condition": "stop_on_nonzero_or_missing_artifact",
+      "stop_condition": "stop_on_nonzero",
       "status": "passed",
       "failure_kind": null
     }

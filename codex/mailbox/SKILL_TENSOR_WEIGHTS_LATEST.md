@@ -1,11 +1,12 @@
 # Skill Tensor Weights
 
-- Pool Size: `1352`
-- Ledger Entries: `9`
-- Pruned Exact Cells: `12`
+- Pool Size: `1316`
+- Ledger Entries: `17`
+- Pruned Exact Cells: `24`
+- Pruned Action Keys: `23`
 
 ## Operator Adjustments
-- `link-path-guard`: `0.875`
+- `link-path-guard`: `0.7875`
 - `skill-audit`: `0.875`
-- `skill-polisher`: `0.8194`
-- `trainstop-orchestrator`: `0.9306`
+- `skill-polisher`: `0.8375`
+- `trainstop-orchestrator`: `1.0`

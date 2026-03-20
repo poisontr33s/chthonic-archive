@@ -2,18 +2,23 @@
 # -*- coding: utf-8 -*-
 
 """
-Canonical single-entry runner for one full skill tensor cycle.
+Single-file authority for the skill tensor cycle and stage compatibility shims.
 """
 
 from __future__ import annotations
 
 import argparse
 import ast
+import hashlib
 import importlib.util
 import json
+import random
 import subprocess
 import sys
 import time
+from collections import defaultdict
+from dataclasses import asdict, dataclass
+from datetime import datetime, timezone
 from pathlib import Path
 
 
@@ -25,52 +30,1341 @@ def find_repo_root(start: Path) -> Path:
     return start.resolve()
 
 
-def write_markdown_summary(path: Path, payload: dict) -> None:
-    lines = [
-        "# Skill Tensor Cycle",
-        "",
-        f"- Overall Status: `{payload.get('overall_status')}`",
-        f"- Queue Length: `{payload.get('queue_length')}`",
-        "",
-        "## Severity",
-        f"- Freshness Status: `{payload.get('freshness', {}).get('status')}`",
-        f"- Critical Issues: `{payload.get('freshness', {}).get('critical_issues')}`",
-        f"- Warnings: `{payload.get('freshness', {}).get('warnings')}`",
-        "",
-        "## Duplication",
-        f"- Managed Artifact Duplicates: `{payload.get('duplication', {}).get('managed_duplicates')}`",
-        f"- Extra Managed Files: `{payload.get('duplication', {}).get('extra_managed_files')}`",
-        "",
-        "## Dependencies",
-        f"- Estimated External Packages: `{payload.get('dependencies', {}).get('count')}`",
-        "",
-        "## Steps",
-    ]
-    for step in payload.get("steps", []):
-        lines += [
-            f"### {step['name']}",
-            f"- Status: `{step['status']}`",
-            f"- RC: `{step['rc']}`",
-            f"- Seconds: `{step['seconds']}`",
-            "",
-        ]
-    path.write_text("\n".join(lines) + "\n", encoding="utf-8")
-
-
-def load_json_if_exists(path: Path) -> dict:
+def load_json(path: Path) -> dict:
     if not path.exists():
         return {}
     return json.loads(path.read_text(encoding="utf-8"))
 
 
-def load_text_if_exists(path: Path) -> str | None:
+def write_json(path: Path, payload: dict) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(json.dumps(payload, indent=2) + "\n", encoding="utf-8")
+
+
+def write_text(path: Path, content: str) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(content, encoding="utf-8")
+
+
+def lane_for_root(root: str) -> str:
+    if ".codex/skills" in root:
+        return "codex"
+    if ".claude/skills" in root:
+        return "claude"
+    if ".gemini/extensions/chthonic-archive-sync/skills" in root:
+        return "gemini"
+    return ""
+
+
+def operator_execution_scope(operator: str, rules: dict | None = None) -> str:
+    scopes = (rules or {}).get("operator_execution_scopes", {})
+    if operator in scopes:
+        return str(scopes[operator])
+    if operator == "trainstop-orchestrator":
+        return "lane"
+    return "skill"
+
+
+def action_key_parts(cell: dict, rules: dict | None = None) -> list[str]:
+    operator = str(cell.get("operator_skill", "unknown"))
+    scope = operator_execution_scope(operator, rules)
+    target_root = str(cell.get("target_root", ""))
+    target_skill = str(cell.get("target_skill", ""))
+    target_lane = str(cell.get("target_skill_lane", ""))
+    target_flavor = str(cell.get("target_flavor_mode", ""))
+
+    if scope == "lane":
+        return [operator, scope, target_lane, "maintenance"]
+    if operator == "skill-audit":
+        return [operator, scope, target_flavor, target_root, target_skill]
+    if operator == "skill-polisher":
+        return [operator, scope, "verify", target_flavor, target_root, target_skill]
+    if operator == "link-path-guard":
+        return [operator, scope, target_root, target_skill]
+    return [operator, scope, target_lane, target_flavor, target_root, target_skill]
+
+
+def action_key_string(cell_or_key: dict | list[str], rules: dict | None = None) -> str:
+    parts = action_key_parts(cell_or_key, rules) if isinstance(cell_or_key, dict) else list(cell_or_key)
+    return json.dumps(parts, separators=(",", ":"))
+
+
+def cell_sort_key(cell: dict) -> tuple[str, ...]:
+    return (
+        str(cell.get("operator_skill", "")),
+        str(cell.get("target_root", "")),
+        str(cell.get("target_skill", "")),
+        str(cell.get("target_skill_lane", "")),
+        str(cell.get("target_flavor_mode", "")),
+        str(cell.get("executor_flavor", "")),
+        str(cell.get("source_root", "")),
+    )
+
+
+def touch_record_for_cell(cell: dict, rules: dict | None = None) -> dict:
+    scope = str(cell.get("action_scope") or operator_execution_scope(str(cell.get("operator_skill", "")), rules))
+    lane = str(cell.get("target_skill_lane", ""))
+    root = str(cell.get("target_root", ""))
+    skill = str(cell.get("target_skill", ""))
+    if scope == "lane":
+        return {"lane": lane, "root": root, "skill": "__lane__maintenance"}
+    return {"lane": lane, "root": root, "skill": skill}
+
+
+def parse_frontmatter(path: Path) -> tuple[dict[str, str], bool]:
     if not path.exists():
+        return {}, False
+    raw = path.read_text(encoding="utf-8", errors="replace")
+    if not raw.startswith("---"):
+        return {}, False
+    parts = raw.split("---", 2)
+    if len(parts) < 3:
+        return {}, False
+    fm: dict[str, str] = {}
+    current_section: str | None = None
+    for line in parts[1].splitlines():
+        if not line.strip():
+            continue
+        if not line.startswith(" ") and line.endswith(":"):
+            current_section = line.strip()[:-1]
+            continue
+        if ":" not in line:
+            continue
+        key, val = line.split(":", 1)
+        key = key.strip()
+        val = val.strip().strip("\"")
+        if current_section == "metadata" and line.startswith(" "):
+            fm[f"metadata.{key}"] = val
+        else:
+            fm[key] = val
+    return fm, True
+
+
+def classify_skill(_name: str, fm: dict[str, str], has_md: bool) -> str:
+    if not has_md:
+        return "missing"
+    desc = fm.get("description", "").lower()
+    if "redirect" in desc or "stashed" in desc or "protocol" in desc:
+        return "redirect_or_stub"
+    return "candidate"
+
+
+def inventory_root(repo_root: Path, lane: str, root_rel: str) -> list[dict]:
+    root = repo_root / root_rel
+    if not root.exists():
+        return []
+    rows: list[dict] = []
+    for skill_dir in sorted([p for p in root.iterdir() if p.is_dir()], key=lambda p: p.name.lower()):
+        skill_md = skill_dir / "SKILL.md"
+        fm, has_yaml = parse_frontmatter(skill_md)
+        rows.append(
+            {
+                "lane": lane,
+                "root": root_rel,
+                "skill": skill_dir.name,
+                "path": str(skill_dir.relative_to(repo_root)).replace("\\", "/"),
+                "has_skill_md": skill_md.exists(),
+                "has_yaml_frontmatter": has_yaml,
+                "has_scripts_dir": (skill_dir / "scripts").exists(),
+                "has_assets_dir": (skill_dir / "assets").exists(),
+                "last_modified": skill_dir.stat().st_mtime,
+                "description": fm.get("description"),
+                "classification": classify_skill(skill_dir.name, fm, skill_md.exists()),
+            }
+        )
+    return rows
+
+
+def render_inventory_markdown(payload: dict) -> str:
+    skills = payload.get("skills", [])
+    by_lane: dict[str, int] = {}
+    for row in skills:
+        by_lane[row["lane"]] = by_lane.get(row["lane"], 0) + 1
+    lines = ["# Skill Tensor Inventory", "", f"- Total Skills: `{len(skills)}`", "", "## Per Lane"]
+    for lane, count in sorted(by_lane.items()):
+        lines.append(f"- `{lane}`: `{count}`")
+    return "\n".join(lines) + "\n"
+
+
+def build_inventory_payload(repo_root: Path) -> dict:
+    roots = {
+        "codex": ".codex/skills",
+        "claude": ".claude/skills",
+        "gemini": ".gemini/extensions/chthonic-archive-sync/skills",
+    }
+    payload = {
+        "schema_version": 1,
+        "generated_from": str(repo_root).replace("\\", "/"),
+        "skills": [],
+    }
+    for lane, root_rel in roots.items():
+        payload["skills"].extend(inventory_root(repo_root, lane, root_rel))
+    return payload
+
+
+@dataclass
+class RunCell:
+    executor_flavor: str
+    operator_skill: str
+    source_root: str
+    target_root: str
+    target_skill: str
+    target_skill_lane: str
+    target_flavor_mode: str
+    action_scope: str
+    action_key: list[str]
+
+
+@dataclass
+class ExcludedCell:
+    executor_flavor: str
+    operator_skill: str
+    target_root: str
+    target_skill: str
+    target_skill_lane: str
+    target_flavor_mode: str
+    action_scope: str
+    reason: str
+
+
+def render_pool_markdown(payload: dict) -> str:
+    lines = [
+        "# Skill Tensor Pool",
+        "",
+        f"- Pool Size: `{payload.get('pool_size')}`",
+        f"- Unique Action Keys: `{payload.get('action_group_count')}`",
+        f"- Excluded Size: `{payload.get('excluded_size')}`",
+        "",
+        "## Notes",
+        "- Pool contains legal run-cells only.",
+        "- Excluded cells include reasons in the JSON artifact.",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def build_pool_payload(rules: dict, inventory: dict, rules_source: str, inventory_source: str) -> dict:
+    agent_flavors = list(rules["agent_flavors"])
+    skill_roots = dict(rules["skill_roots"])
+    operator_skills = list(rules["operator_skills"])
+    target_flavor_modes = list(rules["target_flavor_modes"])
+    excluded_targets = set(rules.get("excluded_targets", []))
+    lane_specific = {k: set(v) for k, v in rules.get("lane_specific_targets", {}).items()}
+    operator_target_flavor_rules = dict(rules.get("operator_target_flavor_rules", {}))
+    self_target_rules = dict(rules.get("self_target_rules", {}))
+    allow_same_skill = bool(self_target_rules.get("default_allow_same_skill", True))
+    allow_same_root = bool(self_target_rules.get("default_allow_same_root", True))
+
+    skills = [row for row in inventory.get("skills", []) if isinstance(row, dict)]
+    target_rows = [row for row in skills if row.get("classification") == "candidate" and row.get("skill") not in excluded_targets]
+
+    pool: list[RunCell] = []
+    excluded: list[ExcludedCell] = []
+    for executor in agent_flavors:
+        source_root = skill_roots[executor]
+        for operator in operator_skills:
+            for target in target_rows:
+                target_skill = str(target["skill"])
+                target_root = str(target["root"])
+                target_lane = str(target["lane"])
+                for target_flavor in target_flavor_modes:
+                    reason = None
+                    action_scope = operator_execution_scope(operator, rules)
+                    if target_skill in lane_specific.get(target_lane, set()) and executor != target_lane:
+                        reason = f"lane_specific_target_for_{target_lane}"
+                    if reason is None and not allow_same_skill and operator == target_skill:
+                        reason = "self_target_skill_blocked"
+                    if reason is None and not allow_same_root and source_root == target_root:
+                        reason = "self_target_root_blocked"
+                    flavor_rule = operator_target_flavor_rules.get(operator)
+                    if reason is None and flavor_rule == "match_target_lane" and target_flavor != target_lane:
+                        reason = "operator_requires_target_flavor_match"
+                    if reason:
+                        excluded.append(
+                            ExcludedCell(
+                                executor_flavor=executor,
+                                operator_skill=operator,
+                                target_root=target_root,
+                                target_skill=target_skill,
+                                target_skill_lane=target_lane,
+                                target_flavor_mode=target_flavor,
+                                action_scope=action_scope,
+                                reason=reason,
+                            )
+                        )
+                    else:
+                        cell_seed = {
+                            "executor_flavor": executor,
+                            "operator_skill": operator,
+                            "source_root": source_root,
+                            "target_root": target_root,
+                            "target_skill": target_skill,
+                            "target_skill_lane": target_lane,
+                            "target_flavor_mode": target_flavor,
+                        }
+                        pool.append(
+                            RunCell(
+                                executor_flavor=executor,
+                                operator_skill=operator,
+                                source_root=source_root,
+                                target_root=target_root,
+                                target_skill=target_skill,
+                                target_skill_lane=target_lane,
+                                target_flavor_mode=target_flavor,
+                                action_scope=action_scope,
+                                action_key=action_key_parts(cell_seed, rules),
+                            )
+                        )
+
+    unique_action_keys = {json.dumps(cell.action_key, separators=(",", ":")) for cell in pool}
+    return {
+        "schema_version": 2,
+        "rules_source": rules_source,
+        "inventory_source": inventory_source,
+        "pool_size": len(pool),
+        "action_group_count": len(unique_action_keys),
+        "excluded_size": len(excluded),
+        "pool": [asdict(cell) for cell in pool],
+        "excluded": [asdict(cell) for cell in excluded],
+    }
+
+
+def render_weights_markdown(payload: dict) -> str:
+    lines = [
+        "# Skill Tensor Weights",
+        "",
+        f"- Pool Size: `{payload.get('pool_size')}`",
+        f"- Ledger Entries: `{payload.get('recent_entry_count')}`",
+        f"- Pruned Exact Cells: `{len(payload.get('pruned_exact_cells', []))}`",
+        f"- Pruned Action Keys: `{len(payload.get('pruned_action_keys', []))}`",
+        "",
+        "## Operator Adjustments",
+    ]
+    for op, val in sorted(payload.get("per_operator_weight_adjustments", {}).items()):
+        lines.append(f"- `{op}`: `{val}`")
+    return "\n".join(lines) + "\n"
+
+
+def build_weights_payload(
+    rules: dict,
+    inventory: dict,
+    pool: dict,
+    ledger: dict,
+    rules_source: str,
+    inventory_source: str,
+    pool_source: str,
+    ledger_source: str,
+) -> dict:
+    skills = inventory.get("skills", [])
+    pool_cells = pool.get("pool", [])
+    entries = ledger.get("entries", [])
+
+    recent_targets = set()
+    failed_targets = set()
+    recent_success_cells = set()
+    recent_success_action_keys = set()
+    operator_counts: dict[str, int] = {}
+    success_window = int(rules.get("history_pruning", {}).get("recent_success_window", 5))
+    for entry in entries[-10:]:
+        for touched in entry.get("touched", []):
+            recent_targets.add((touched.get("root"), touched.get("skill")))
+        for sampled in entry.get("sampled_steps", []):
+            cell = sampled.get("cell", {})
+            op = cell.get("operator_skill")
+            if op:
+                operator_counts[op] = operator_counts.get(op, 0) + 1
+        if entry.get("execution_status") in {"failed", "blocked"}:
+            for touched in entry.get("touched", []):
+                failed_targets.add((touched.get("root"), touched.get("skill")))
+        if entry.get("execution_status") == "passed":
+            for sampled in entry.get("sampled_steps", []):
+                cell = sampled.get("cell", {})
+                ident = (
+                    cell.get("executor_flavor"),
+                    cell.get("operator_skill"),
+                    cell.get("source_root"),
+                    cell.get("target_root"),
+                    cell.get("target_skill"),
+                    cell.get("target_flavor_mode"),
+                )
+                recent_success_cells.add(ident)
+                recent_success_action_keys.add(tuple(sampled.get("action_key") or cell.get("action_key") or action_key_parts(cell, rules)))
+
+    per_skill = {}
+    for row in skills:
+        lane = row["lane"]
+        root = row["root"]
+        skill = row["skill"]
+        stale_bonus = 1.0
+        if row.get("classification") == "candidate":
+            stale_bonus += 0.25
+        if (root, skill) in recent_targets:
+            stale_bonus -= 0.2
+        if (root, skill) in failed_targets:
+            stale_bonus += 0.35
+        if skill in rules.get("lane_specific_targets", {}).get(lane, []):
+            stale_bonus += 0.15
+        per_skill[f"{root}::{skill}"] = round(stale_bonus, 4)
+
+    per_operator = {}
+    total_operator_hits = sum(operator_counts.values()) or 1
+    for op in sorted({cell.get("operator_skill") for cell in pool_cells if isinstance(cell, dict)}):
+        count = operator_counts.get(op, 0)
+        ratio = count / total_operator_hits
+        adj = 1.0 - min(0.25, ratio * 0.5)
+        per_operator[op] = round(adj, 4)
+
+    pruned_exact_cells = []
+    if rules.get("history_pruning", {}).get("prune_exact_success_cells", False):
+        for ident in list(recent_success_cells)[: success_window * 8]:
+            pruned_exact_cells.append(list(ident))
+
+    pruned_action_keys = [list(action_key) for action_key in sorted(recent_success_action_keys)]
+
+    return {
+        "schema_version": 2,
+        "sources": {
+            "rules": rules_source,
+            "inventory": inventory_source,
+            "pool": pool_source,
+            "ledger": ledger_source,
+        },
+        "pool_size": pool.get("pool_size"),
+        "recent_entry_count": len(entries),
+        "per_skill_weight_adjustments": per_skill,
+        "per_operator_weight_adjustments": per_operator,
+        "pruned_exact_cells": pruned_exact_cells,
+        "pruned_action_keys": pruned_action_keys,
+    }
+
+
+def deterministic_seed(seed_text: str) -> int:
+    digest = hashlib.sha256(seed_text.encode("utf-8")).hexdigest()
+    return int(digest[:16], 16)
+
+
+def weight_cell(cell: dict, rules: dict, weights: dict | None = None) -> tuple[float, list[str]]:
+    reasons: list[str] = []
+    weight = 1.0
+
+    operator_modes = rules.get("operator_modes", {})
+    mode = operator_modes.get(cell["operator_skill"], "meta")
+    if mode == "mutating":
+        weight *= 1.4
+        reasons.append("mutating_operator:+0.4x")
+    elif mode == "read_only":
+        weight *= 1.1
+        reasons.append("read_only_operator:+0.1x")
+    else:
+        weight *= 1.2
+        reasons.append("meta_operator:+0.2x")
+
+    if cell["executor_flavor"] != cell["target_skill_lane"]:
+        weight *= 1.5
+        reasons.append("cross_lane:+0.5x")
+    else:
+        weight *= 1.1
+        reasons.append("self_lane:+0.1x")
+
+    if cell["target_flavor_mode"] != cell["target_skill_lane"]:
+        weight *= 1.25
+        reasons.append("cross_flavor_interp:+0.25x")
+
+    if cell["operator_skill"] == "trainstop-orchestrator":
+        weight *= 0.85
+        reasons.append("meta_heavy_penalty:-0.15x")
+
+    if weights:
+        key = f"{cell['target_root']}::{cell['target_skill']}"
+        delta = weights.get("per_skill_weight_adjustments", {}).get(key)
+        if isinstance(delta, (int, float)):
+            weight *= float(delta)
+            reasons.append(f"adaptive_weight:{delta}x")
+        op_delta = weights.get("per_operator_weight_adjustments", {}).get(cell["operator_skill"])
+        if isinstance(op_delta, (int, float)):
+            weight *= float(op_delta)
+            reasons.append(f"operator_weight:{op_delta}x")
+
+    return weight, reasons
+
+
+def cell_identity(cell: dict, rules: dict) -> tuple[str, ...]:
+    return tuple(cell.get("action_key") or action_key_parts(cell, rules))
+
+
+def target_identity(cell: dict, rules: dict) -> tuple[str, str]:
+    action_scope = str(cell.get("action_scope") or operator_execution_scope(cell["operator_skill"], rules))
+    if action_scope == "lane":
+        return (cell["target_root"], "__lane__maintenance")
+    return (cell["target_root"], cell["target_skill"])
+
+
+def transition_allowed(candidate: dict, previous: dict | None, chain: list[dict], rules: dict) -> tuple[bool, list[str]]:
+    reasons: list[str] = []
+    tr = rules.get("transition_rules", {})
+
+    if tr.get("disallow_duplicate_cells_in_chain", False):
+        seen = {
+            tuple(step.get("action_key") or step["cell"].get("action_key") or action_key_parts(step["cell"], rules))
+            for step in chain
+        }
+        if cell_identity(candidate, rules) in seen:
+            return False, ["duplicate_cell_blocked"]
+
+    if tr.get("disallow_same_target_skill_repeat", False):
+        seen_skills = {target_identity(step["cell"], rules) for step in chain}
+        if target_identity(candidate, rules) in seen_skills:
+            return False, ["repeated_target_skill_blocked"]
+
+    if previous and tr.get("disallow_same_operator_consecutive", False):
+        if candidate["operator_skill"] == previous["cell"]["operator_skill"]:
+            return False, ["same_operator_consecutive_blocked"]
+
+    return True, reasons
+
+
+def build_pruned_action_keys(weights: dict | None, rules: dict) -> set[str]:
+    if not weights:
+        return set()
+    pruned = set()
+    for parts in weights.get("pruned_action_keys", []):
+        if isinstance(parts, list):
+            pruned.add(action_key_string(parts))
+    for ident in weights.get("pruned_exact_cells", []):
+        if not isinstance(ident, list) or len(ident) != 6:
+            continue
+        cell = {
+            "executor_flavor": ident[0],
+            "operator_skill": ident[1],
+            "source_root": ident[2],
+            "target_root": ident[3],
+            "target_skill": ident[4],
+            "target_flavor_mode": ident[5],
+            "target_skill_lane": lane_for_root(ident[3]),
+        }
+        pruned.add(action_key_string(cell, rules))
+    return pruned
+
+
+def transition_weight(candidate: dict, previous: dict | None, rules: dict) -> tuple[float, list[str]]:
+    if previous is None:
+        return 1.0, ["initial_step"]
+    tr = rules.get("transition_rules", {})
+    weight = 1.0
+    reasons: list[str] = []
+    if tr.get("prefer_target_lane_to_next_executor", False) and previous["cell"]["target_skill_lane"] == candidate["executor_flavor"]:
+        weight *= 1.8
+        reasons.append("handoff_continuity:+0.8x")
+    if tr.get("prefer_root_continuity", False) and previous["cell"]["target_root"] == candidate["source_root"]:
+        weight *= 1.25
+        reasons.append("root_continuity:+0.25x")
+    return weight, reasons
+
+
+def transition_artifact(candidate: dict, previous: dict | None, chain: list[dict], rules: dict, filtered_out: list[str]) -> dict:
+    allowed, _ = transition_allowed(candidate, previous, chain, rules)
+    weight_mult, weight_reasons = transition_weight(candidate, previous, rules)
+    return {
+        "allowed": allowed,
+        "previous_target_lane": None if previous is None else previous["cell"]["target_skill_lane"],
+        "previous_operator": None if previous is None else previous["cell"]["operator_skill"],
+        "transition_weight_multiplier": round(weight_mult, 6),
+        "transition_weight_reasons": weight_reasons,
+        "filtered_out_rules": filtered_out,
+    }
+
+
+def summarize_chain(chain: list[dict]) -> dict:
+    if not chain:
+        return {
+            "diversity_score": 0.0,
+            "cross_lane_coverage": 0.0,
+            "operator_spread": 0.0,
+            "target_spread": 0.0,
+        }
+
+    executors = {step["cell"]["executor_flavor"] for step in chain}
+    operator_skills = {step["cell"]["operator_skill"] for step in chain}
+    targets = {(step["cell"]["target_root"], step["cell"]["target_skill"]) for step in chain}
+    action_keys = {
+        json.dumps(step.get("action_key") or step["cell"].get("action_key") or action_key_parts(step["cell"]), separators=(",", ":"))
+        for step in chain
+    }
+    action_scopes = {
+        step.get("action_scope") or step["cell"].get("action_scope") or operator_execution_scope(step["cell"]["operator_skill"])
+        for step in chain
+    }
+    cross_lane_steps = [step for step in chain if step["cell"]["executor_flavor"] != step["cell"]["target_skill_lane"]]
+    diversity_score = round((len(executors) + len(operator_skills) + len(targets)) / (3 + 4 + len(chain)), 4)
+    cross_lane_coverage = round(len(cross_lane_steps) / len(chain), 4)
+    operator_spread = round(len(operator_skills) / len(chain), 4)
+    target_spread = round(len(targets) / len(chain), 4)
+    return {
+        "diversity_score": diversity_score,
+        "cross_lane_coverage": cross_lane_coverage,
+        "operator_spread": operator_spread,
+        "target_spread": target_spread,
+        "executor_flavors_seen": sorted(executors),
+        "operator_skills_seen": sorted(operator_skills),
+        "distinct_targets_seen": len(targets),
+        "distinct_action_keys_seen": len(action_keys),
+        "action_scopes_seen": sorted(action_scopes),
+    }
+
+
+def meets_diversity_minimums(summary: dict, rules: dict) -> bool:
+    mins = rules.get("diversity_minimums", {})
+    if len(summary.get("executor_flavors_seen", [])) < mins.get("min_executor_flavors", 1):
+        return False
+    if len(summary.get("operator_skills_seen", [])) < mins.get("min_operator_skills", 1):
+        return False
+    if summary.get("cross_lane_coverage", 0.0) < mins.get("min_cross_lane_coverage", 0.0):
+        return False
+    return True
+
+
+def render_roulette_markdown(payload: dict) -> str:
+    summary = payload.get("summary", {})
+    lines = [
+        "# Skill Tensor Roulette",
+        "",
+        f"- Seed: `{payload.get('seed_text')}`",
+        f"- Seed Value: `{payload.get('seed_value')}`",
+        f"- Chain Length: `{payload.get('chain_length_actual')}`",
+        f"- Pool Size: `{payload.get('pool_size')}`",
+        f"- Diversity Score: `{summary.get('diversity_score')}`",
+        f"- Cross-Lane Coverage: `{summary.get('cross_lane_coverage')}`",
+        f"- Distinct Action Keys: `{summary.get('distinct_action_keys_seen')}`",
+        "",
+        "## Steps",
+    ]
+    for step in payload.get("selected", []):
+        cell = step["cell"]
+        lines += [
+            f"### Step {step['step']}",
+            f"- Executor: `{cell['executor_flavor']}`",
+            f"- Operator: `{cell['operator_skill']}`",
+            f"- Target: `{cell['target_root']}::{cell['target_skill']}`",
+            f"- Flavor: `{cell['target_flavor_mode']}`",
+            f"- Action Scope: `{step.get('action_scope')}`",
+            f"- Action Key: `{step.get('action_key')}`",
+            f"- Equivalent Cells: `{step.get('equivalent_cell_count')}`",
+            f"- Weight: `{step['weight']}`",
+            "",
+        ]
+    return "\n".join(lines) + "\n"
+
+
+def merge_count_dict(dst: dict[str, int], src: dict[str, int]) -> None:
+    for key, value in src.items():
+        dst[key] = dst.get(key, 0) + value
+
+
+def evaluate_action_group(
+    cells: list[dict],
+    previous: dict | None,
+    chain: list[dict],
+    rules: dict,
+    weights: dict | None,
+) -> tuple[dict | None, dict[str, int]]:
+    filtered: dict[str, int] = {}
+    candidates: list[tuple[dict, float, list[str]]] = []
+    for cell in cells:
+        allowed, blocked_reasons = transition_allowed(cell, previous, chain, rules)
+        if not allowed:
+            for reason in blocked_reasons:
+                filtered[reason] = filtered.get(reason, 0) + 1
+            continue
+        base_weight, base_reasons = weight_cell(cell, rules, weights)
+        trans_weight, trans_reasons = transition_weight(cell, previous, rules)
+        candidates.append((cell, base_weight * trans_weight, base_reasons + trans_reasons))
+    if not candidates:
+        return None, filtered
+    candidates.sort(key=lambda item: (-item[1], cell_sort_key(item[0])))
+    representative, _, representative_reasons = candidates[0]
+    group_weight = sum(weight for _, weight, _ in candidates) / len(candidates)
+    target_sample = sorted({f"{cell['target_root']}::{cell['target_skill']}" for cell in cells})[:6]
+    return ({
+        "representative_cell": representative,
+        "group_weight": group_weight,
+        "representative_reasons": representative_reasons,
+        "equivalent_cell_count": len(cells),
+        "available_variant_count": len(candidates),
+        "equivalent_target_sample": target_sample,
+    }, filtered)
+
+
+def sample_chain(pool: list[dict], rules: dict, weights: dict | None, rng: random.Random, chain_length: int) -> list[dict]:
+    action_groups: dict[str, list[dict]] = defaultdict(list)
+    for cell in pool:
+        key = action_key_string(cell.get("action_key") or cell, rules)
+        action_groups[key].append(cell)
+
+    pruned_action_keys = build_pruned_action_keys(weights, rules)
+    chain: list[dict] = []
+    previous: dict | None = None
+    for step_index in range(chain_length):
+        available: list[tuple[dict, float, list[str], list[str], dict]] = []
+        filtered_summary: dict[str, int] = {}
+        for action_key_json, group_cells in action_groups.items():
+            if action_key_json in pruned_action_keys:
+                filtered_summary["history_pruned_action"] = filtered_summary.get("history_pruned_action", 0) + 1
+                continue
+            group_result, group_filtered = evaluate_action_group(group_cells, previous, chain, rules, weights)
+            if group_result is None:
+                merge_count_dict(filtered_summary, group_filtered)
+                continue
+            representative = group_result["representative_cell"]
+            available.append((
+                representative,
+                group_result["group_weight"],
+                group_result["representative_reasons"] + [f"action_group_size:{group_result['equivalent_cell_count']}"],
+                json.loads(action_key_json),
+                group_result,
+            ))
+        if not available:
+            break
+        total = sum(weight for _, weight, _, _, _ in available)
+        pick = rng.uniform(0, total)
+        upto = 0.0
+        chosen_index = 0
+        for i, (_, weight, _, _, _) in enumerate(available):
+            upto += weight
+            if upto >= pick:
+                chosen_index = i
+                break
+        cell, weight, reasons, action_key, group_result = available[chosen_index]
+        chain.append(
+            {
+                "step": step_index + 1,
+                "cell": cell,
+                "action_key": action_key,
+                "action_scope": cell.get("action_scope") or operator_execution_scope(cell["operator_skill"], rules),
+                "equivalent_cell_count": group_result["equivalent_cell_count"],
+                "available_variant_count": group_result["available_variant_count"],
+                "equivalent_target_sample": group_result["equivalent_target_sample"],
+                "weight": round(weight, 6),
+                "reasons": reasons,
+                "transition": transition_artifact(cell, previous, chain, rules, [f"{k}:{v}" for k, v in sorted(filtered_summary.items())]),
+            }
+        )
+        previous = chain[-1]
+    return chain
+
+
+def build_roulette_payload(
+    rules: dict,
+    pool_payload: dict,
+    weights: dict | None,
+    seed_text: str,
+    chain_length: int,
+    weights_source: str | None,
+) -> dict:
+    pool = list(pool_payload.get("pool", []))
+    seed_value = deterministic_seed(seed_text)
+    rng = random.Random(seed_value)
+    chain: list[dict] = []
+    for _ in range(12):
+        chain = sample_chain(pool, rules, weights, rng, chain_length)
+        if meets_diversity_minimums(summarize_chain(chain), rules):
+            break
+    summary = summarize_chain(chain)
+    return {
+        "schema_version": 2,
+        "seed_text": seed_text,
+        "seed_value": seed_value,
+        "chain_length_requested": chain_length,
+        "chain_length_actual": len(chain),
+        "pool_size": pool_payload.get("pool_size"),
+        "action_group_count": pool_payload.get("action_group_count"),
+        "weights_source": weights_source if weights is not None else None,
+        "selected": chain,
+        "summary": summary,
+    }
+
+
+def command_for_step(cell: dict) -> list[str]:
+    operator = cell["operator_skill"]
+    target_root = cell["target_root"]
+    flavor = cell["target_flavor_mode"]
+    target_skill = cell["target_skill"]
+
+    if operator == "skill-audit":
+        return ["uv", "run", "scripts/skill_audit.py", "--flavor", flavor, "--root", target_root, "--skill", target_skill]
+    if operator == "skill-polisher":
+        return ["uv", "run", ".codex/skills/skill-polisher/scripts/polish_skill.py", str(Path(target_root) / target_skill), "--mode", "verify", "--target-flavor", flavor, "--no-require-assets"]
+    if operator == "link-path-guard":
+        return ["uv", "run", "scripts/skill_path_guard.py", str(Path(target_root) / target_skill / "SKILL.md")]
+    if operator == "trainstop-orchestrator":
+        return ["uv", "run", ".codex/skills/trainstop-orchestrator/scripts/orchestrate.py", "--target", cell["target_skill_lane"], "--lane", "maintenance"]
+    return ["echo", f"NO_COMMAND_MAPPING:{operator}"]
+
+
+def expected_artifacts(cell: dict) -> list[str]:
+    operator = cell["operator_skill"]
+    if operator == "link-path-guard":
+        return ["logs/skill_path_guard.log"]
+    if operator == "trainstop-orchestrator":
+        return ["codex/mailbox/TRAINSTOP_ORCHESTRATOR_LATEST.json"]
+    return []
+
+
+def expected_artifact_class(cell: dict) -> str:
+    operator = cell["operator_skill"]
+    if operator == "skill-audit":
+        return "machine_report"
+    if operator == "skill-polisher":
+        return "verification_report"
+    if operator == "link-path-guard":
+        return "log"
+    if operator == "trainstop-orchestrator":
+        return "orchestration_report"
+    return "unspecified"
+
+
+def safety_class(cell: dict, rules: dict) -> str:
+    mode = rules.get("operator_modes", {}).get(cell["operator_skill"], "meta")
+    if mode == "read_only":
+        return "read_only"
+    if mode == "mutating":
+        if cell["executor_flavor"] == cell["target_skill_lane"]:
+            return "local_mutation"
+        return "cross_lane_mutation"
+    return "meta_orchestration"
+
+
+def stop_condition(step: dict) -> str:
+    safety = step["safety_class"]
+    if safety in {"cross_lane_mutation", "meta_orchestration"}:
+        return "stop_on_nonzero_or_missing_artifact"
+    return "stop_on_nonzero"
+
+
+def capability_for(cell: dict, capabilities: dict) -> dict:
+    return capabilities.get("operators", {}).get(cell["operator_skill"], {})
+
+
+def render_plan_markdown(payload: dict) -> str:
+    lines = [
+        "# Skill Tensor Plan",
+        "",
+        f"- Seed: `{payload.get('seed_text')}`",
+        f"- Seed Value: `{payload.get('seed_value')}`",
+        f"- Chain Length: `{payload.get('chain_length')}`",
+        "",
+        "## Steps",
+    ]
+    for step in payload.get("steps", []):
+        cell = step["cell"]
+        lines += [
+            f"### Step {step['step']}",
+            f"- Executor: `{cell['executor_flavor']}`",
+            f"- Operator: `{cell['operator_skill']}`",
+            f"- Target: `{cell['target_root']}::{cell['target_skill']}`",
+            f"- Flavor: `{cell['target_flavor_mode']}`",
+            f"- Action Scope: `{step['action_scope']}`",
+            f"- Action Key: `{step['action_key']}`",
+            f"- Safety: `{step['safety_class']}`",
+            f"- Artifact Class: `{step['expected_artifact_class']}`",
+            f"- Command: `{' '.join(step['command'])}`",
+            "",
+        ]
+    return "\n".join(lines) + "\n"
+
+
+def build_plan_payload(sampled: dict, rules: dict, capabilities: dict, input_source: str, capabilities_source: str) -> dict:
+    plan_steps = []
+    for selected in sampled.get("selected", []):
+        cell = selected["cell"]
+        step_plan = {
+            "step": selected["step"],
+            "cell": cell,
+            "action_key": selected.get("action_key", cell.get("action_key")),
+            "action_scope": selected.get("action_scope", cell.get("action_scope")),
+            "equivalent_cell_count": selected.get("equivalent_cell_count", 1),
+            "available_variant_count": selected.get("available_variant_count", 1),
+            "equivalent_target_sample": selected.get("equivalent_target_sample", []),
+            "command": command_for_step(cell),
+            "expected_artifacts": expected_artifacts(cell),
+            "expected_artifact_class": expected_artifact_class(cell),
+            "operator_mode": rules.get("operator_modes", {}).get(cell["operator_skill"], "meta"),
+            "operator_capabilities": capability_for(cell, capabilities),
+            "safety_class": safety_class(cell, rules),
+            "weight": selected.get("weight"),
+            "weight_reasons": selected.get("reasons", []),
+            "transition": selected.get("transition", {}),
+        }
+        step_plan["stop_condition"] = stop_condition(step_plan)
+        plan_steps.append(step_plan)
+    return {
+        "schema_version": 2,
+        "roulette_source": input_source,
+        "capabilities_source": capabilities_source,
+        "seed_text": sampled.get("seed_text"),
+        "seed_value": sampled.get("seed_value"),
+        "chain_length": sampled.get("chain_length_actual"),
+        "steps": plan_steps,
+    }
+
+
+def render_ledger_markdown(ledger: dict) -> str:
+    entries = ledger.get("entries", [])
+    latest = entries[-1] if entries else {}
+    lines = [
+        "# Skill Tensor Ledger",
+        "",
+        f"- Entries: `{len(entries)}`",
+        f"- Latest Status: `{latest.get('execution_status')}`",
+        f"- Latest Seed: `{latest.get('seed_text')}`",
+        "",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def ensure_bootstrap_ledger(repo_root: Path, ledger_rel: str) -> tuple[dict, dict]:
+    ledger_path = repo_root / ledger_rel
+    if ledger_path.exists():
+        ledger = load_json(ledger_path)
+        return ledger, {
+            "ledger_path": ledger_rel,
+            "ledger_existed": True,
+            "ledger_initialized": False,
+            "entries_before_run": len(ledger.get("entries", [])),
+        }
+    payload = {"schema_version": 2, "entries": []}
+    write_json(ledger_path, payload)
+    write_text(ledger_path.with_suffix(".md"), render_ledger_markdown(payload))
+    return payload, {
+        "ledger_path": ledger_rel,
+        "ledger_existed": False,
+        "ledger_initialized": True,
+        "entries_before_run": 0,
+    }
+
+
+def append_ledger_entry(ledger: dict, roulette: dict, plan: dict, rules: dict) -> tuple[dict, dict]:
+    ledger["schema_version"] = 2
+    steps = plan.get("steps", [])
+    touched = [touch_record_for_cell(step["cell"], rules) for step in steps]
+    entry = {
+        "recorded_at": datetime.now(timezone.utc).isoformat(),
+        "seed_text": roulette.get("seed_text"),
+        "seed_value": roulette.get("seed_value"),
+        "chain_length": roulette.get("chain_length_actual"),
+        "summary": roulette.get("summary", {}),
+        "sampled_steps": roulette.get("selected", []),
+        "planned_steps": steps,
+        "execution_status": "planned",
+        "failure_classes": [],
+        "touched": touched,
+    }
+    ledger.setdefault("entries", []).append(entry)
+    return ledger, entry
+
+
+def capabilities_allow(step: dict) -> tuple[bool, list[str]]:
+    caps = step.get("operator_capabilities", {})
+    reasons: list[str] = []
+    safety = step.get("safety_class")
+    if safety == "read_only" and not caps.get("read", False):
+        reasons.append("missing_read_capability")
+    if safety == "local_mutation" and not caps.get("mutate", False):
+        reasons.append("missing_mutate_capability")
+    if safety == "cross_lane_mutation" and not caps.get("cross_lane_mutate", False):
+        reasons.append("missing_cross_lane_mutate_capability")
+    if safety == "meta_orchestration" and not caps.get("recurse", False):
+        reasons.append("missing_recurse_capability")
+    return len(reasons) == 0, reasons
+
+
+def existing_artifacts(expected_artifacts: list[str], repo_root: Path) -> tuple[list[str], list[str]]:
+    present: list[str] = []
+    missing: list[str] = []
+    for artifact in expected_artifacts:
+        p = Path(artifact)
+        full = p if p.is_absolute() else (repo_root / p)
+        if full.exists():
+            present.append(artifact)
+        else:
+            missing.append(artifact)
+    return present, missing
+
+
+def classify_failure(result: dict) -> str | None:
+    if result.get("status") == "blocked":
+        return "capability_block"
+    if result.get("status") != "failed":
         return None
-    return path.read_text(encoding="utf-8")
+    if result.get("missing_artifacts"):
+        return "missing_artifact"
+    command = " ".join(result.get("command", []))
+    if "trainstop-orchestrator/scripts/orchestrate.py" in command:
+        return "trainstop_gate_failure"
+    if "skill_path_guard.py" in command:
+        return "path_guard_failure"
+    if "skill_audit.py" in command:
+        return "skill_audit_failure"
+    if "polish_skill.py" in command:
+        return "skill_polisher_failure"
+    return "generic_failure"
+
+
+def render_execution_markdown(payload: dict) -> str:
+    lines = ["# Skill Tensor Execution", "", f"- Overall Status: `{payload.get('overall_status')}`", "", "## Steps"]
+    for result in payload.get("results", []):
+        lines += [
+            f"### Step {result.get('step')}",
+            f"- Status: `{result.get('status')}`",
+            f"- Failure Kind: `{result.get('failure_kind')}`",
+            f"- RC: `{result.get('rc')}`",
+            f"- Seconds: `{result.get('seconds')}`",
+            "",
+        ]
+    return "\n".join(lines) + "\n"
+
+
+def execute_plan(plan: dict, repo_root: Path) -> dict:
+    results = []
+    overall_status = "passed"
+    for step in plan.get("steps", []):
+        allowed, deny_reasons = capabilities_allow(step)
+        if not allowed:
+            result = {
+                "step": step.get("step"),
+                "command": step.get("command", []),
+                "rc": None,
+                "seconds": 0.0,
+                "stdout_tail": "",
+                "stderr_tail": "",
+                "expected_artifacts": step.get("expected_artifacts", []),
+                "present_artifacts": [],
+                "missing_artifacts": step.get("expected_artifacts", []),
+                "stop_condition": step.get("stop_condition"),
+                "status": "blocked",
+                "blocked_by": deny_reasons,
+            }
+            result["failure_kind"] = classify_failure(result)
+            results.append(result)
+            overall_status = "blocked"
+            break
+
+        command = step.get("command", [])
+        t0 = time.time()
+        proc = subprocess.run(
+            command,
+            cwd=repo_root,
+            check=False,
+            capture_output=True,
+            text=True,
+            encoding="utf-8",
+            errors="replace",
+        )
+        dt = time.time() - t0
+        expected = step.get("expected_artifacts", [])
+        present, missing = existing_artifacts(expected, repo_root)
+        status = "passed" if proc.returncode == 0 else "failed"
+        if status == "passed" and expected and step.get("stop_condition") == "stop_on_nonzero_or_missing_artifact" and missing:
+            status = "failed"
+        result = {
+            "step": step.get("step"),
+            "command": command,
+            "rc": proc.returncode,
+            "seconds": round(dt, 3),
+            "stdout_tail": "\n".join((proc.stdout or "").splitlines()[-20:]),
+            "stderr_tail": "\n".join((proc.stderr or "").splitlines()[-20:]),
+            "expected_artifacts": expected,
+            "present_artifacts": present,
+            "missing_artifacts": missing,
+            "stop_condition": step.get("stop_condition"),
+            "status": status,
+        }
+        result["failure_kind"] = classify_failure(result)
+        results.append(result)
+        if result["status"] != "passed":
+            overall_status = "failed"
+            break
+
+    return {
+        "schema_version": 1,
+        "plan_source": "codex/mailbox/SKILL_TENSOR_PLAN_LATEST.json",
+        "overall_status": overall_status,
+        "results": results,
+    }
+
+
+def ensure_current_cycle_entry(ledger: dict, roulette: dict, plan: dict, rules: dict) -> dict:
+    entries = ledger.setdefault("entries", [])
+    latest = entries[-1] if entries else None
+    sampled = roulette.get("selected", [])
+    latest_sampled = latest.get("sampled_steps", []) if latest else None
+    if latest is None or latest_sampled != sampled:
+        touched = [touch_record_for_cell(step["cell"], rules) for step in plan.get("steps", [])]
+        latest = {
+            "recorded_at": datetime.now(timezone.utc).isoformat(),
+            "seed_text": roulette.get("seed_text"),
+            "seed_value": roulette.get("seed_value"),
+            "chain_length": roulette.get("chain_length_actual"),
+            "summary": roulette.get("summary", {}),
+            "sampled_steps": sampled,
+            "planned_steps": plan.get("steps", []),
+            "execution_status": "planned",
+            "failure_classes": [],
+            "touched": touched,
+        }
+        entries.append(latest)
+    return latest
+
+
+def apply_feedback(ledger: dict, execution: dict, roulette: dict, plan: dict, rules: dict) -> dict:
+    latest = ensure_current_cycle_entry(ledger, roulette, plan, rules)
+    latest["execution_status"] = execution.get("overall_status", "unknown")
+    failure_classes = []
+    for result in execution.get("results", []):
+        if result.get("status") != "passed":
+            kind = result.get("failure_kind") or "generic_failure"
+            failure_classes.append(
+                {
+                    "step": result.get("step"),
+                    "kind": kind,
+                    "status": result.get("status"),
+                    "command": result.get("command"),
+                    "rc": result.get("rc"),
+                }
+            )
+    latest["failure_classes"] = failure_classes
+    latest["execution_results"] = execution.get("results", [])
+    latest["sampled_action_keys"] = [
+        step.get("action_key") or step.get("cell", {}).get("action_key") or action_key_parts(step.get("cell", {}), rules)
+        for step in roulette.get("selected", [])
+    ]
+    return ledger
+
+
+def exists(repo_root: Path, rel: str) -> bool:
+    return (repo_root / rel).exists()
+
+
+def phase_status(repo_root: Path) -> dict[str, str]:
+    exec_payload = load_json(repo_root / "codex/mailbox/SKILL_TENSOR_EXECUTION_LATEST.json")
+    ledger_exists = exists(repo_root, "codex/mailbox/SKILL_TENSOR_LEDGER.json")
+    weights_exists = exists(repo_root, "codex/mailbox/SKILL_TENSOR_WEIGHTS_LATEST.json")
+    capabilities_exists = exists(repo_root, "config/skill_operator_capabilities.json")
+    plan_exists = exists(repo_root, "codex/mailbox/SKILL_TENSOR_PLAN_LATEST.json")
+    roulette_exists = exists(repo_root, "codex/mailbox/SKILL_TENSOR_ROULETTE_LATEST.json")
+    pool_exists = exists(repo_root, "codex/mailbox/SKILL_TENSOR_POOL.json")
+    inventory_exists = exists(repo_root, "codex/mailbox/SKILL_TENSOR_INVENTORY.json")
+    return {
+        "phase0": "DONE" if inventory_exists and pool_exists and roulette_exists else "IN PROGRESS",
+        "phase1": "DONE" if plan_exists else "IN PROGRESS",
+        "phase2": "DONE" if ledger_exists else "IN PROGRESS",
+        "phase3": "DONE" if weights_exists else "IN PROGRESS",
+        "phase4": "DONE" if capabilities_exists else "IN PROGRESS",
+        "phase5": "DONE" if exec_payload.get("overall_status") == "passed" else ("IN PROGRESS" if exec_payload else "PENDING"),
+        "phase6": "DONE" if ledger_exists and weights_exists and roulette_exists else "IN PROGRESS",
+        "execution_status": exec_payload.get("overall_status", "unknown"),
+    }
+
+
+def render_spec(repo_root: Path) -> str:
+    statuses = phase_status(repo_root)
+    inventory = load_json(repo_root / "codex/mailbox/SKILL_TENSOR_INVENTORY.json")
+    pool = load_json(repo_root / "codex/mailbox/SKILL_TENSOR_POOL.json")
+    roulette = load_json(repo_root / "codex/mailbox/SKILL_TENSOR_ROULETTE_LATEST.json")
+    weights = load_json(repo_root / "codex/mailbox/SKILL_TENSOR_WEIGHTS_LATEST.json")
+    skill_count = len(inventory.get("skills", []))
+    pool_size = pool.get("pool_size", 0)
+    action_group_count = pool.get("action_group_count", 0)
+    excluded_size = pool.get("excluded_size", 0)
+    chain_length = roulette.get("chain_length_actual", 0)
+    diversity_score = roulette.get("summary", {}).get("diversity_score", 0)
+    cross_lane_coverage = roulette.get("summary", {}).get("cross_lane_coverage", 0)
+    distinct_action_keys = roulette.get("summary", {}).get("distinct_action_keys_seen", 0)
+    pruned = len(weights.get("pruned_exact_cells", []))
+    pruned_action_keys = len(weights.get("pruned_action_keys", []))
+    return f"""---
+type: design-spec
+category: operations
+created: 2026-03-19
+description: Ontology and execution model for trainstop skill tensor roulette
+---
+
+# Skill Tensor Roulette Spec
+
+This spec is regenerated from the live tensor artifacts. It is the canonical anchor for current state, not a manually-maintained note.
+
+## Live Cycle State
+
+- Latest execution status: `{statuses["execution_status"]}`
+- Inventory skill count: `{skill_count}`
+- Pool size: `{pool_size}`
+- Unique action-key groups: `{action_group_count}`
+- Excluded cells: `{excluded_size}`
+- Current chain length: `{chain_length}`
+- Current diversity score: `{diversity_score}`
+- Current cross-lane coverage: `{cross_lane_coverage}`
+- Current distinct sampled action keys: `{distinct_action_keys}`
+- Current history-pruned exact cells: `{pruned}`
+- Current history-pruned action keys: `{pruned_action_keys}`
+
+## Core Objects
+
+### Agent Flavor
+
+- `codex`
+- `claude`
+- `gemini`
+
+### Skill Root
+
+- `.codex/skills`
+- `.claude/skills`
+- `.gemini/extensions/chthonic-archive-sync/skills`
+
+### Operator Skill
+
+- `trainstop-orchestrator`
+- `skill-polisher`
+- `skill-audit`
+- `link-path-guard`
+
+### Target Skill
+
+Any skill entry discovered under a skill root.
+
+### Target Flavor Mode
+
+- `codex`
+- `claude`
+- `gemini`
+
+## Tensor Axes
+
+A minimal run cell is:
+
+`(executor_flavor, operator_skill, source_root, target_root, target_skill, target_flavor_mode)`
+
+Extended chains add:
+
+`(previous_state, chain_depth, seed, weighting_profile)`
+
+## Action Identity
+
+Each symbolic cell now resolves to a normalized execution identity:
+
+`action_key = (operator, scope, actionable-target...)`
+
+Current execution scopes:
+
+- `skill`
+- `lane`
+
+## Current Artifact Policy
+
+- `LATEST.json` and `LATEST.md` companions are regenerated in place.
+- No timestamp duplication is required for normal iteration.
+- The loop state should be read from the latest artifacts, not reconstructed manually.
+
+## Canonical Current Artifacts
+
+- `docs/ops/SKILL_TENSOR_ROULETTE_SPEC.md`
+- `config/skill_tensor_rules.json`
+- `config/skill_operator_capabilities.json`
+- `codex/mailbox/SKILL_TENSOR_INVENTORY.json`
+- `codex/mailbox/SKILL_TENSOR_POOL.json`
+- `codex/mailbox/SKILL_TENSOR_ROULETTE_LATEST.json`
+- `codex/mailbox/SKILL_TENSOR_PLAN_LATEST.json`
+- `codex/mailbox/SKILL_TENSOR_EXECUTION_LATEST.json`
+- `codex/mailbox/SKILL_TENSOR_LEDGER.json`
+- `codex/mailbox/SKILL_TENSOR_WEIGHTS_LATEST.json`
+
+## Phases
+
+### Phase 0: Anchors
+
+Status: `{statuses["phase0"]}`
+
+### Phase 1: Plan Layer
+
+Status: `{statuses["phase1"]}`
+
+Outputs:
+
+- `codex/mailbox/SKILL_TENSOR_PLAN_LATEST.json`
+- `codex/mailbox/SKILL_TENSOR_PLAN_LATEST.md`
+
+### Phase 2: Historical Memory
+
+Status: `{statuses["phase2"]}`
+
+Outputs:
+
+- `codex/mailbox/SKILL_TENSOR_LEDGER.json`
+- `codex/mailbox/SKILL_TENSOR_LEDGER.md`
+
+### Phase 3: Adaptive Weighting
+
+Status: `{statuses["phase3"]}`
+
+Current refinements:
+
+- recent-touch penalties
+- failed-target promotion
+- operator-level adjustments
+- exact successful recent-cell pruning
+
+Outputs:
+
+- `codex/mailbox/SKILL_TENSOR_WEIGHTS_LATEST.json`
+- `codex/mailbox/SKILL_TENSOR_WEIGHTS_LATEST.md`
+
+### Phase 4: Operator Capability Manifest
+
+Status: `{statuses["phase4"]}`
+
+Outputs:
+
+- `config/skill_operator_capabilities.json`
+
+### Phase 5: Sampled-Chain Executor
+
+Status: `{statuses["phase5"]}`
+
+Current refinements:
+
+- capability enforcement
+- artifact verification
+- explicit failure kinds
+- advisory trainstop freshness gate
+- operator-specific command templates beyond root-wide defaults
+
+Outputs:
+
+- `codex/mailbox/SKILL_TENSOR_EXECUTION_LATEST.json`
+- `codex/mailbox/SKILL_TENSOR_EXECUTION_LATEST.md`
+
+### Phase 6: Feedback Loop
+
+Status: `{statuses["phase6"]}`
+
+Current refinements:
+
+- execution -> ledger writeback
+- ledger -> weight refresh
+- weights -> next roulette sample
+- stronger history-driven pruning
+- richer diversity constraints
+
+## Next Frontier
+
+- stronger history-driven pruning
+- more sophisticated weight formulas
+- richer roulette diversity constraints
+- operator-specific execution semantics
+- better pruning of low-value chains
+"""
 
 
 def build_freshness_summary(repo_root: Path) -> dict:
-    report = load_json_if_exists(repo_root / "codex/mailbox/SKILL_FRESHNESS_LATEST.json")
+    report = load_json(repo_root / "codex/mailbox/SKILL_FRESHNESS_LATEST.json")
     summary = report.get("summary", {})
     return {
         "status": report.get("status", "unknown"),
@@ -151,85 +1445,440 @@ def estimate_dependencies(repo_root: Path) -> dict:
 
 def collect_sections(repo_root: Path) -> dict:
     mailbox = repo_root / "codex" / "mailbox"
+    spec_path = repo_root / "docs" / "ops" / "SKILL_TENSOR_ROULETTE_SPEC.md"
     return {
-        "inventory": load_json_if_exists(mailbox / "SKILL_TENSOR_INVENTORY.json"),
-        "pool": load_json_if_exists(mailbox / "SKILL_TENSOR_POOL.json"),
-        "roulette": load_json_if_exists(mailbox / "SKILL_TENSOR_ROULETTE_LATEST.json"),
-        "plan": load_json_if_exists(mailbox / "SKILL_TENSOR_PLAN_LATEST.json"),
-        "execution": load_json_if_exists(mailbox / "SKILL_TENSOR_EXECUTION_LATEST.json"),
-        "ledger": load_json_if_exists(mailbox / "SKILL_TENSOR_LEDGER.json"),
-        "weights": load_json_if_exists(mailbox / "SKILL_TENSOR_WEIGHTS_LATEST.json"),
-        "spec": load_text_if_exists(repo_root / "docs" / "ops" / "SKILL_TENSOR_ROULETTE_SPEC.md"),
+        "inventory": load_json(mailbox / "SKILL_TENSOR_INVENTORY.json"),
+        "pool": load_json(mailbox / "SKILL_TENSOR_POOL.json"),
+        "roulette": load_json(mailbox / "SKILL_TENSOR_ROULETTE_LATEST.json"),
+        "plan": load_json(mailbox / "SKILL_TENSOR_PLAN_LATEST.json"),
+        "execution": load_json(mailbox / "SKILL_TENSOR_EXECUTION_LATEST.json"),
+        "ledger": load_json(mailbox / "SKILL_TENSOR_LEDGER.json"),
+        "weights": load_json(mailbox / "SKILL_TENSOR_WEIGHTS_LATEST.json"),
+        "spec": spec_path.read_text(encoding="utf-8") if spec_path.exists() else None,
     }
 
 
-def main() -> int:
-    parser = argparse.ArgumentParser(description="Run one full tensor cycle")
-    parser.add_argument("--output", default="codex/mailbox/SKILL_TENSOR_CYCLE_LATEST.json")
-    args = parser.parse_args()
+def build_action_model_summary(repo_root: Path) -> dict:
+    mailbox = repo_root / "codex" / "mailbox"
+    pool = load_json(mailbox / "SKILL_TENSOR_POOL.json")
+    roulette = load_json(mailbox / "SKILL_TENSOR_ROULETTE_LATEST.json")
+    groups: dict[str, list[dict]] = defaultdict(list)
+    for cell in pool.get("pool", []):
+        if not isinstance(cell, dict):
+            continue
+        key = json.dumps(cell.get("action_key") or action_key_parts(cell), separators=(",", ":"))
+        groups[key].append(cell)
 
-    repo_root = find_repo_root(Path.cwd())
-    sequence = [
-        ("inventory", ["uv", "run", "scripts/skill_tensor_inventory.py"]),
-        ("pool", ["uv", "run", "scripts/skill_tensor_pool.py"]),
-        ("weights", ["uv", "run", "scripts/skill_tensor_weights.py"]),
-        ("roulette", ["uv", "run", "scripts/skill_tensor_roulette.py"]),
-        ("plan", ["uv", "run", "scripts/skill_tensor_plan.py"]),
-        ("execute", ["uv", "run", "scripts/skill_tensor_execute.py"]),
-        ("feedback", ["uv", "run", "scripts/skill_tensor_feedback.py"]),
-    ]
-
-    results = []
-    overall_status = "passed"
-    for name, cmd in sequence:
-        t0 = time.time()
-        proc = subprocess.run(
-            cmd,
-            cwd=repo_root,
-            check=False,
-            capture_output=True,
-            text=True,
-            encoding="utf-8",
-            errors="replace",
-        )
-        dt = time.time() - t0
-        status = "passed" if proc.returncode == 0 else "failed"
-        results.append(
+    collapsed = []
+    for key, cells in groups.items():
+        if len(cells) <= 1:
+            continue
+        distinct_targets = sorted({f"{cell.get('target_root')}::{cell.get('target_skill')}" for cell in cells})
+        if len(distinct_targets) <= 1:
+            continue
+        collapsed.append(
             {
-                "name": name,
-                "cmd": cmd,
-                "rc": proc.returncode,
-                "seconds": round(dt, 3),
-                "status": status,
-                "stdout_tail": "\n".join((proc.stdout or "").splitlines()[-12:]),
-                "stderr_tail": "\n".join((proc.stderr or "").splitlines()[-12:]),
+                "action_key": json.loads(key),
+                "cell_count": len(cells),
+                "distinct_target_count": len(distinct_targets),
+                "sample_targets": distinct_targets[:6],
             }
         )
-        if status != "passed":
+    collapsed.sort(key=lambda row: (row["cell_count"], row["distinct_target_count"]), reverse=True)
+    sampled = roulette.get("selected", [])
+    sampled_keys = [
+        json.dumps(step.get("action_key") or step.get("cell", {}).get("action_key") or action_key_parts(step.get("cell", {})), separators=(",", ":"))
+        for step in sampled
+    ]
+    return {
+        "pool_cell_count": pool.get("pool_size", 0),
+        "unique_action_key_count": len(groups),
+        "collapsed_group_count": len(collapsed),
+        "largest_collision_group": 0 if not collapsed else collapsed[0]["cell_count"],
+        "top_collisions": collapsed[:5],
+        "sampled_chain_length": len(sampled),
+        "sampled_unique_action_keys": len(set(sampled_keys)),
+        "sampled_has_action_collisions": len(sampled_keys) != len(set(sampled_keys)),
+    }
+
+
+def render_cycle_markdown(payload: dict) -> str:
+    bootstrap = payload.get("bootstrap", {})
+    action_model = payload.get("action_model", {})
+    lines = [
+        "# Skill Tensor Cycle",
+        "",
+        f"- Overall Status: `{payload.get('overall_status')}`",
+        f"- Queue Length: `{payload.get('queue_length')}`",
+        "",
+        "## Bootstrap",
+        f"- Ledger Existed: `{bootstrap.get('ledger_existed')}`",
+        f"- Ledger Initialized: `{bootstrap.get('ledger_initialized')}`",
+        f"- Ledger Entries Before Run: `{bootstrap.get('entries_before_run')}`",
+        "",
+        "## Severity",
+        f"- Freshness Status: `{payload.get('freshness', {}).get('status')}`",
+        f"- Critical Issues: `{payload.get('freshness', {}).get('critical_issues')}`",
+        f"- Warnings: `{payload.get('freshness', {}).get('warnings')}`",
+        "",
+        "## Action Model",
+        f"- Pool Unique Action Keys: `{action_model.get('unique_action_key_count')}`",
+        f"- Collapsed Action Groups: `{action_model.get('collapsed_group_count')}`",
+        f"- Largest Collision Group: `{action_model.get('largest_collision_group')}`",
+        f"- Sampled Unique Action Keys: `{action_model.get('sampled_unique_action_keys')}`",
+        "",
+        "## Duplication",
+        f"- Managed Artifact Duplicates: `{payload.get('duplication', {}).get('managed_duplicates')}`",
+        f"- Extra Managed Files: `{payload.get('duplication', {}).get('extra_managed_files')}`",
+        "",
+        "## Dependencies",
+        f"- Estimated External Packages: `{payload.get('dependencies', {}).get('count')}`",
+        "",
+        "## Steps",
+    ]
+    for step in payload.get("steps", []):
+        lines += [f"### {step['name']}", f"- Status: `{step['status']}`", f"- RC: `{step['rc']}`", f"- Seconds: `{step['seconds']}`", ""]
+    return "\n".join(lines) + "\n"
+
+
+def stage_inventory(repo_root: Path, output: str) -> dict:
+    payload = build_inventory_payload(repo_root)
+    out = repo_root / output
+    write_json(out, payload)
+    write_text(out.with_suffix(".md"), render_inventory_markdown(payload))
+    return payload
+
+
+def stage_pool(repo_root: Path, rules_path: str, inventory_path: str, output: str) -> dict:
+    rules = load_json(repo_root / rules_path)
+    inventory = load_json(repo_root / inventory_path)
+    payload = build_pool_payload(rules, inventory, rules_path, inventory_path)
+    out = repo_root / output
+    write_json(out, payload)
+    write_text(out.with_suffix(".md"), render_pool_markdown(payload))
+    return payload
+
+
+def stage_weights(repo_root: Path, rules_path: str, inventory_path: str, pool_path: str, ledger_path: str, output: str) -> dict:
+    rules = load_json(repo_root / rules_path)
+    inventory = load_json(repo_root / inventory_path)
+    pool = load_json(repo_root / pool_path)
+    ledger = load_json(repo_root / ledger_path)
+    payload = build_weights_payload(rules, inventory, pool, ledger, rules_path, inventory_path, pool_path, ledger_path)
+    out = repo_root / output
+    write_json(out, payload)
+    write_text(out.with_suffix(".md"), render_weights_markdown(payload))
+    return payload
+
+
+def stage_roulette(repo_root: Path, rules_path: str, pool_path: str, weights_path: str, output: str, seed: str, chain_length: int) -> dict:
+    rules = load_json(repo_root / rules_path)
+    pool = load_json(repo_root / pool_path)
+    weights_full = load_json(repo_root / weights_path)
+    weights = weights_full if weights_full else None
+    payload = build_roulette_payload(rules, pool, weights, seed, chain_length, weights_path if weights else None)
+    out = repo_root / output
+    write_json(out, payload)
+    write_text(out.with_suffix(".md"), render_roulette_markdown(payload))
+    return payload
+
+
+def stage_plan(repo_root: Path, rules_path: str, capabilities_path: str, input_path: str, output: str) -> dict:
+    rules = load_json(repo_root / rules_path)
+    capabilities = load_json(repo_root / capabilities_path)
+    sampled = load_json(repo_root / input_path)
+    payload = build_plan_payload(sampled, rules, capabilities, input_path, capabilities_path)
+    out = repo_root / output
+    write_json(out, payload)
+    write_text(out.with_suffix(".md"), render_plan_markdown(payload))
+    return payload
+
+
+def stage_ledger(repo_root: Path, rules_path: str, roulette_path: str, plan_path: str, output: str) -> dict:
+    rules = load_json(repo_root / rules_path)
+    roulette = load_json(repo_root / roulette_path)
+    plan = load_json(repo_root / plan_path)
+    out = repo_root / output
+    ledger = load_json(out) if out.exists() else {"schema_version": 2, "entries": []}
+    ledger, _ = append_ledger_entry(ledger, roulette, plan, rules)
+    write_json(out, ledger)
+    write_text(out.with_suffix(".md"), render_ledger_markdown(ledger))
+    return ledger
+
+
+def stage_execute(repo_root: Path, input_path: str, output: str) -> dict:
+    plan = load_json(repo_root / input_path)
+    payload = execute_plan(plan, repo_root)
+    out = repo_root / output
+    write_json(out, payload)
+    write_text(out.with_suffix(".md"), render_execution_markdown(payload))
+    return payload
+
+
+def stage_render_spec(repo_root: Path, output: str) -> str:
+    content = render_spec(repo_root)
+    out = repo_root / output
+    write_text(out, content)
+    return content
+
+
+def stage_feedback(
+    repo_root: Path,
+    rules_path: str,
+    ledger_path: str,
+    execution_path: str,
+    roulette_path: str,
+    plan_path: str,
+    weights_path: str,
+    inventory_path: str,
+    pool_path: str,
+    spec_path: str,
+) -> tuple[dict, dict]:
+    rules = load_json(repo_root / rules_path)
+    ledger = load_json(repo_root / ledger_path)
+    execution = load_json(repo_root / execution_path)
+    roulette = load_json(repo_root / roulette_path)
+    plan = load_json(repo_root / plan_path)
+    ledger = apply_feedback(ledger, execution, roulette, plan, rules)
+    write_json(repo_root / ledger_path, ledger)
+    write_text((repo_root / ledger_path).with_suffix(".md"), render_ledger_markdown(ledger))
+    weights = stage_weights(repo_root, rules_path, inventory_path, pool_path, ledger_path, weights_path)
+    stage_render_spec(repo_root, spec_path)
+    return ledger, weights
+
+
+def run_cycle(args: argparse.Namespace) -> int:
+    repo_root = find_repo_root(Path.cwd())
+    sequence = [
+        "inventory",
+        "pool",
+        "ledger-bootstrap",
+        "weights",
+        "roulette",
+        "plan",
+        "ledger",
+        "execute",
+        "feedback",
+    ]
+    results = []
+    overall_status = "passed"
+    continue_after_failure = {"ledger", "execute", "feedback"}
+
+    inventory_path = "codex/mailbox/SKILL_TENSOR_INVENTORY.json"
+    pool_path = "codex/mailbox/SKILL_TENSOR_POOL.json"
+    roulette_path = "codex/mailbox/SKILL_TENSOR_ROULETTE_LATEST.json"
+    plan_path = "codex/mailbox/SKILL_TENSOR_PLAN_LATEST.json"
+    execution_path = "codex/mailbox/SKILL_TENSOR_EXECUTION_LATEST.json"
+    ledger_path = args.ledger
+    weights_path = "codex/mailbox/SKILL_TENSOR_WEIGHTS_LATEST.json"
+    spec_path = "docs/ops/SKILL_TENSOR_ROULETTE_SPEC.md"
+    rules_path = "config/skill_tensor_rules.json"
+    capabilities_path = "config/skill_operator_capabilities.json"
+    bootstrap = {"ledger_path": args.ledger, "ledger_existed": False, "ledger_initialized": False, "entries_before_run": 0}
+
+    for name in sequence:
+        t0 = time.time()
+        status = "passed"
+        rc = 0
+        stdout_tail = ""
+        stderr_tail = ""
+        try:
+            if name == "inventory":
+                stage_inventory(repo_root, inventory_path)
+                stdout_tail = inventory_path
+            elif name == "pool":
+                stage_pool(repo_root, rules_path, inventory_path, pool_path)
+                stdout_tail = pool_path
+            elif name == "ledger-bootstrap":
+                _, bootstrap = ensure_bootstrap_ledger(repo_root, ledger_path)
+                stdout_tail = json.dumps(bootstrap, sort_keys=True)
+            elif name == "weights":
+                stage_weights(repo_root, rules_path, inventory_path, pool_path, ledger_path, weights_path)
+                stdout_tail = weights_path
+            elif name == "roulette":
+                stage_roulette(repo_root, rules_path, pool_path, weights_path, roulette_path, args.seed, args.chain_length)
+                stdout_tail = roulette_path
+            elif name == "plan":
+                stage_plan(repo_root, rules_path, capabilities_path, roulette_path, plan_path)
+                stdout_tail = plan_path
+            elif name == "ledger":
+                stage_ledger(repo_root, rules_path, roulette_path, plan_path, ledger_path)
+                stdout_tail = ledger_path
+            elif name == "execute":
+                execution = stage_execute(repo_root, plan_path, execution_path)
+                stdout_tail = execution_path
+                if execution.get("overall_status") != "passed":
+                    raise RuntimeError(f"execution:{execution.get('overall_status')}")
+            elif name == "feedback":
+                stage_feedback(repo_root, rules_path, ledger_path, execution_path, roulette_path, plan_path, weights_path, inventory_path, pool_path, spec_path)
+                stdout_tail = ledger_path
+            else:
+                raise RuntimeError(f"unknown-stage:{name}")
+        except Exception as exc:  # noqa: BLE001
+            status = "failed"
+            rc = 2
+            stderr_tail = str(exc)
             overall_status = "failed"
-            # still continue to allow feedback/spec regeneration if execute failed
-            if name not in {"execute", "feedback"}:
+            if name not in continue_after_failure:
+                results.append({"name": name, "cmd": [], "rc": rc, "seconds": round(time.time() - t0, 3), "status": status, "stdout_tail": stdout_tail, "stderr_tail": stderr_tail})
                 break
+        results.append({"name": name, "cmd": [], "rc": rc, "seconds": round(time.time() - t0, 3), "status": status, "stdout_tail": stdout_tail, "stderr_tail": stderr_tail})
 
     payload = {
-        "schema_version": 1,
+        "schema_version": 2,
         "overall_status": overall_status,
         "queue_length": len(sequence),
-        "subprocess_queue": [name for name, _ in sequence],
+        "subprocess_queue": sequence,
+        "bootstrap": bootstrap,
         "freshness": build_freshness_summary(repo_root),
+        "action_model": build_action_model_summary(repo_root),
         "duplication": build_duplication_summary(repo_root),
         "dependencies": estimate_dependencies(repo_root),
         "steps": results,
         "sections": collect_sections(repo_root),
     }
-
     out = repo_root / args.output
-    out.parent.mkdir(parents=True, exist_ok=True)
-    out.write_text(json.dumps(payload, indent=2) + "\n", encoding="utf-8")
-    write_markdown_summary(out.with_suffix(".md"), payload)
+    write_json(out, payload)
+    write_text(out.with_suffix(".md"), render_cycle_markdown(payload))
+    stage_render_spec(repo_root, spec_path)
     print(out.relative_to(repo_root).as_posix())
     print(f"overall_status={overall_status}")
+    print(f"ledger_initialized={bootstrap['ledger_initialized']}")
     return 0 if overall_status == "passed" else 2
+
+
+def build_parser() -> argparse.ArgumentParser:
+    parser = argparse.ArgumentParser(description="Single-file authority for skill tensor stages and full cycle")
+    sub = parser.add_subparsers(dest="command")
+
+    p_cycle = sub.add_parser("cycle")
+    p_cycle.add_argument("--output", default="codex/mailbox/SKILL_TENSOR_CYCLE_LATEST.json")
+    p_cycle.add_argument("--ledger", default="codex/mailbox/SKILL_TENSOR_LEDGER.json")
+    p_cycle.add_argument("--seed", default="trainstop-default-seed")
+    p_cycle.add_argument("--chain-length", type=int, default=4)
+
+    p_inventory = sub.add_parser("inventory")
+    p_inventory.add_argument("--output", default="codex/mailbox/SKILL_TENSOR_INVENTORY.json")
+
+    p_pool = sub.add_parser("pool")
+    p_pool.add_argument("--rules", default="config/skill_tensor_rules.json")
+    p_pool.add_argument("--inventory", default="codex/mailbox/SKILL_TENSOR_INVENTORY.json")
+    p_pool.add_argument("--output", default="codex/mailbox/SKILL_TENSOR_POOL.json")
+
+    p_weights = sub.add_parser("weights")
+    p_weights.add_argument("--rules", default="config/skill_tensor_rules.json")
+    p_weights.add_argument("--inventory", default="codex/mailbox/SKILL_TENSOR_INVENTORY.json")
+    p_weights.add_argument("--pool", default="codex/mailbox/SKILL_TENSOR_POOL.json")
+    p_weights.add_argument("--ledger", default="codex/mailbox/SKILL_TENSOR_LEDGER.json")
+    p_weights.add_argument("--output", default="codex/mailbox/SKILL_TENSOR_WEIGHTS_LATEST.json")
+
+    p_roulette = sub.add_parser("roulette")
+    p_roulette.add_argument("--rules", default="config/skill_tensor_rules.json")
+    p_roulette.add_argument("--pool", default="codex/mailbox/SKILL_TENSOR_POOL.json")
+    p_roulette.add_argument("--weights", default="codex/mailbox/SKILL_TENSOR_WEIGHTS_LATEST.json")
+    p_roulette.add_argument("--output", default="codex/mailbox/SKILL_TENSOR_ROULETTE_LATEST.json")
+    p_roulette.add_argument("--seed", default="trainstop-default-seed")
+    p_roulette.add_argument("--chain-length", type=int, default=4)
+
+    p_plan = sub.add_parser("plan")
+    p_plan.add_argument("--rules", default="config/skill_tensor_rules.json")
+    p_plan.add_argument("--capabilities", default="config/skill_operator_capabilities.json")
+    p_plan.add_argument("--input", default="codex/mailbox/SKILL_TENSOR_ROULETTE_LATEST.json")
+    p_plan.add_argument("--output", default="codex/mailbox/SKILL_TENSOR_PLAN_LATEST.json")
+
+    p_ledger = sub.add_parser("ledger")
+    p_ledger.add_argument("--rules", default="config/skill_tensor_rules.json")
+    p_ledger.add_argument("--roulette", default="codex/mailbox/SKILL_TENSOR_ROULETTE_LATEST.json")
+    p_ledger.add_argument("--plan", default="codex/mailbox/SKILL_TENSOR_PLAN_LATEST.json")
+    p_ledger.add_argument("--output", default="codex/mailbox/SKILL_TENSOR_LEDGER.json")
+
+    p_execute = sub.add_parser("execute")
+    p_execute.add_argument("--input", default="codex/mailbox/SKILL_TENSOR_PLAN_LATEST.json")
+    p_execute.add_argument("--output", default="codex/mailbox/SKILL_TENSOR_EXECUTION_LATEST.json")
+
+    p_feedback = sub.add_parser("feedback")
+    p_feedback.add_argument("--rules", default="config/skill_tensor_rules.json")
+    p_feedback.add_argument("--ledger", default="codex/mailbox/SKILL_TENSOR_LEDGER.json")
+    p_feedback.add_argument("--execution", default="codex/mailbox/SKILL_TENSOR_EXECUTION_LATEST.json")
+    p_feedback.add_argument("--roulette", default="codex/mailbox/SKILL_TENSOR_ROULETTE_LATEST.json")
+    p_feedback.add_argument("--plan", default="codex/mailbox/SKILL_TENSOR_PLAN_LATEST.json")
+
+    p_spec = sub.add_parser("render-spec")
+    p_spec.add_argument("--output", default="docs/ops/SKILL_TENSOR_ROULETTE_SPEC.md")
+    return parser
+
+
+def main(argv: list[str] | None = None) -> int:
+    parser = build_parser()
+    args = parser.parse_args(argv)
+    if args.command in {None, "cycle"}:
+        if args.command is None:
+            args.output = "codex/mailbox/SKILL_TENSOR_CYCLE_LATEST.json"
+            args.ledger = "codex/mailbox/SKILL_TENSOR_LEDGER.json"
+            args.seed = "trainstop-default-seed"
+            args.chain_length = 4
+        return run_cycle(args)
+
+    repo_root = find_repo_root(Path.cwd())
+    if args.command == "inventory":
+        payload = stage_inventory(repo_root, args.output)
+        print((repo_root / args.output).relative_to(repo_root).as_posix())
+        return 0 if payload else 2
+    if args.command == "pool":
+        payload = stage_pool(repo_root, args.rules, args.inventory, args.output)
+        print((repo_root / args.output).relative_to(repo_root).as_posix())
+        print(f"pool_size={payload.get('pool_size')}")
+        print(f"excluded_size={payload.get('excluded_size')}")
+        return 0
+    if args.command == "weights":
+        stage_weights(repo_root, args.rules, args.inventory, args.pool, args.ledger, args.output)
+        print((repo_root / args.output).relative_to(repo_root).as_posix())
+        return 0
+    if args.command == "roulette":
+        payload = stage_roulette(repo_root, args.rules, args.pool, args.weights, args.output, args.seed, args.chain_length)
+        print((repo_root / args.output).relative_to(repo_root).as_posix())
+        print(f"seed_value={payload.get('seed_value')}")
+        print(f"chain_length={payload.get('chain_length_actual')}")
+        return 0
+    if args.command == "plan":
+        stage_plan(repo_root, args.rules, args.capabilities, args.input, args.output)
+        print((repo_root / args.output).relative_to(repo_root).as_posix())
+        return 0
+    if args.command == "ledger":
+        ledger = stage_ledger(repo_root, args.rules, args.roulette, args.plan, args.output)
+        print((repo_root / args.output).relative_to(repo_root).as_posix())
+        print(f"entries={len(ledger.get('entries', []))}")
+        return 0
+    if args.command == "execute":
+        payload = stage_execute(repo_root, args.input, args.output)
+        print((repo_root / args.output).relative_to(repo_root).as_posix())
+        print(f"overall_status={payload.get('overall_status')}")
+        return 0 if payload.get("overall_status") == "passed" else 2
+    if args.command == "feedback":
+        stage_feedback(
+            repo_root,
+            args.rules,
+            args.ledger,
+            args.execution,
+            args.roulette,
+            args.plan,
+            "codex/mailbox/SKILL_TENSOR_WEIGHTS_LATEST.json",
+            "codex/mailbox/SKILL_TENSOR_INVENTORY.json",
+            "codex/mailbox/SKILL_TENSOR_POOL.json",
+            "docs/ops/SKILL_TENSOR_ROULETTE_SPEC.md",
+        )
+        latest = load_json(repo_root / args.ledger).get("entries", [])[-1]
+        print((repo_root / args.ledger).relative_to(repo_root).as_posix())
+        print(f"execution_status={latest.get('execution_status')}")
+        print(f"failure_classes={len(latest.get('failure_classes', []))}")
+        return 0
+    if args.command == "render-spec":
+        stage_render_spec(repo_root, args.output)
+        print((repo_root / args.output).relative_to(repo_root).as_posix())
+        return 0
+
+    parser.print_help()
+    return 2
 
 
 if __name__ == "__main__":
