@@ -71,13 +71,18 @@ def looks_like_path(token: str) -> bool:
 
 
 def normalize_candidate(raw: str, source_file: Path, repo_root: Path) -> Path | None:
-    cleaned = raw.strip().strip("`'\"")
+    cleaned = raw.strip().strip("`'\"").rstrip(",:;.)]")
     if not looks_like_path(cleaned):
         return None
     if "<" in cleaned or ">" in cleaned:
         return None
 
     normalized = cleaned.replace("\\", "/")
+    if "EXAMPLE" in normalized.upper():
+        return None
+    canonical_prefixes = (".codex/", ".claude/", ".gemini/", "codex/", "claude/", "gemini/")
+    if sum(1 for p in canonical_prefixes if p in normalized) > 1:
+        return None
 
     # Within a skill/settings document, bare scripts/assets/references paths
     # often mean local siblings. If not found there, resolution falls back to
@@ -92,7 +97,7 @@ def normalize_candidate(raw: str, source_file: Path, repo_root: Path) -> Path | 
     if re.match(r"^[A-Za-z]:[\\/]", cleaned):
         return Path(cleaned)
 
-    if cleaned.startswith((".codex/", ".claude/", ".gemini/", "codex/", "claude/", "gemini/", "scripts/", "docs/", ".temple/")):
+    if normalized.startswith((".codex/", ".claude/", ".gemini/", "codex/", "claude/", "gemini/", "scripts/", "docs/", ".temple/")):
         return repo_root / Path(normalized)
 
     return (source_file.parent / cleaned).resolve()
@@ -116,7 +121,9 @@ def resolve_token(raw: str, source_file: Path, repo_root: Path, index: dict[str,
 
     # If the token is rooted under a canonical repo path prefix, prefer that
     # exact path rather than basename matching against duplicated filenames.
-    cleaned = raw.strip().strip("`'\"").replace("\\", "/")
+    cleaned = raw.strip().strip("`'\"").rstrip(",:;.)]").replace("\\", "/")
+    if "EXAMPLE" in cleaned.upper():
+        return "skip", None, None
     if cleaned.startswith(("scripts/", "assets/", "references/")):
         if candidate.exists():
             return "ok", None, None

@@ -475,7 +475,7 @@ Every file type in the codebase has a role in supplementing the SSOT. This matri
 | Python Bridge | [scripts/lib/ssot_paths.py](../scripts/lib/ssot_paths.py) | 0.1 |
 | Binding Tests | [mas_mcp/tests/test_ssot_binding.py](../mas_mcp/tests/test_ssot_binding.py) | Pre-0.1, expanded 0.1 |
 | WPTG Methodology | [WET_PAPER_TO_GOLD_METHODOLOGY.md](../WET_PAPER_TO_GOLD_METHODOLOGY.md) | Pre-0.1 |
-| SSOTIFICATION Methodology | [docs/SSOTIFICATION_METHODOLOGY.md](docs/SSOTIFICATION_METHODOLOGY.md) | Pre-0.1 |
+| SSOTIFICATION Methodology | [SSOTIFICATION_METHODOLOGY.md](SSOTIFICATION_METHODOLOGY.md) | Pre-0.1 |
 | This Blueprint | [docs/SSOTIFICATION_BLUEPRINT_PHASE_0.1_TO_1.0.md](SSOTIFICATION_BLUEPRINT_PHASE_0.1_TO_1.0.md) | 0.1 (Anno Baseline) |
 | Codekiller Anti-Pattern | [anti-patterns/codekiller.md](../anti-patterns/codekiller.md) | Pre-0.1 |
 | Harvest Registry | [HARVEST_REGISTRY.md](../HARVEST_REGISTRY.md) | Pre-0.1 |

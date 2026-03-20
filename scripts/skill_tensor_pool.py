@@ -78,6 +78,7 @@ def main() -> int:
     target_flavor_modes = list(rules["target_flavor_modes"])
     excluded_targets = set(rules.get("excluded_targets", []))
     lane_specific = {k: set(v) for k, v in rules.get("lane_specific_targets", {}).items()}
+    operator_target_flavor_rules = dict(rules.get("operator_target_flavor_rules", {}))
 
     skills = [row for row in inventory.get("skills", []) if isinstance(row, dict)]
     target_rows = [row for row in skills if row.get("classification") == "candidate" and row.get("skill") not in excluded_targets]
@@ -99,6 +100,10 @@ def main() -> int:
                     # use should be explicitly allowed later. Stage 1 excludes them.
                     if target_skill in lane_specific.get(target_lane, set()) and executor != target_lane:
                         reason = f"lane_specific_target_for_{target_lane}"
+
+                    flavor_rule = operator_target_flavor_rules.get(operator)
+                    if reason is None and flavor_rule == "match_target_lane" and target_flavor != target_lane:
+                        reason = "operator_requires_target_flavor_match"
 
                     if reason:
                         excluded.append(

@@ -1,11 +1,11 @@
 {
   "schema_version": 1,
-  "generated_on": "2026-03-19T21:55:47Z",
+  "generated_on": "2026-03-20T14:22:43Z",
   "results": [
     {
       "name": "Skill Freshness Gate (Codex)",
       "rc": 0,
-      "seconds": 0.129,
+      "seconds": 0.135,
       "cmd": [
         "uv",
         "run",
@@ -28,7 +28,7 @@
     {
       "name": "API Manager (Doctor)",
       "rc": 0,
-      "seconds": 0.779,
+      "seconds": 0.926,
       "cmd": [
         "pwsh",
         "-NoProfile",
@@ -44,7 +44,7 @@
     {
       "name": "Toolchain Doctor",
       "rc": 0,
-      "seconds": 1.336,
+      "seconds": 1.238,
       "cmd": [
         "uv",
         "run",
@@ -52,7 +52,7 @@
         "--bun",
         "--uv"
       ],
-      "stdout_tail": "Wrote: C:\\Users\\eldno\\chthonic-archive\\codex\\mailbox\\TOOLCHAIN_DOCTOR_REPORT_2026_03_19_215545.md",
+      "stdout_tail": "Wrote: C:\\Users\\eldno\\chthonic-archive\\codex\\mailbox\\TOOLCHAIN_DOCTOR_REPORT_2026_03_20_142241.md",
       "stderr_tail": "",
       "missing_artifacts": [],
       "notes": []
@@ -60,7 +60,7 @@
     {
       "name": "Skill Polisher (Codex on Codex)",
       "rc": 0,
-      "seconds": 0.287,
+      "seconds": 0.29,
       "cmd": [
         "uv",
         "run",
@@ -83,37 +83,37 @@
       "notes": []
     },
     {
-      "name": "Skill Polisher (Gemini contract on Gemini skills)",
+      "name": "Skill Polisher (Claude contract on Claude skills)",
       "rc": 0,
-      "seconds": 0.283,
+      "seconds": 0.233,
       "cmd": [
         "uv",
         "run",
         ".codex/skills/skill-polisher/scripts/polish_skill.py",
-        ".gemini/extensions/chthonic-archive-sync/skills",
+        ".claude/skills",
         "--all",
         "--mode",
         "verify",
         "--target-flavor",
-        "gemini",
+        "claude",
         "--subprocess-fix",
         "--no-require-assets"
       ],
-      "stdout_tail": "\u255a\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u255d\nTASTE: PURE (Clean)\nNUTRITION LEVEL: 100%\n\nDOMAIN SCORES:\n  - structure: 100%\n  - policy: 100%\n  - semantics: 100%\n  - maintainability: 100%\n\nSystem Satisfied. No entropy found.\n\n>>> VERIFY: PASSED (no blocking findings). <<<\n\n=== POLISHING: triad-velocity-lane ===\n\u2554\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2557\n\u2551                    FEEDING REPORT: triad-velocity-lane           \u2551\n\u255a\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u255d\nTASTE: PURE (Clean)\nNUTRITION LEVEL: 100%\n\nDOMAIN SCORES:\n  - structure: 100%\n  - policy: 100%\n  - semantics: 100%\n  - maintainability: 100%\n\nSystem Satisfied. No entropy found.\n\n>>> VERIFY: PASSED (no blocking findings). <<<",
-      "stderr_tail": "<unknown>:8: SyntaxWarning: \"\\s\" is an invalid escape sequence. Such sequences will not work in the future. Did you mean \"\\\\s\"? A raw string is also an option.",
+      "stdout_tail": "\u255a\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u255d\nTASTE: PURE (Clean)\nNUTRITION LEVEL: 100%\n\nDOMAIN SCORES:\n  - structure: 100%\n  - policy: 100%\n  - semantics: 100%\n  - maintainability: 100%\n\nSystem Satisfied. No entropy found.\n\n>>> VERIFY: PASSED (no blocking findings). <<<\n\n=== POLISHING: trainstop-orchestrator ===\n\u2554\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2557\n\u2551                    FEEDING REPORT: trainstop-orchestrator           \u2551\n\u255a\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u255d\nTASTE: PURE (Clean)\nNUTRITION LEVEL: 100%\n\nDOMAIN SCORES:\n  - structure: 100%\n  - policy: 100%\n  - semantics: 100%\n  - maintainability: 100%\n\nSystem Satisfied. No entropy found.\n\n>>> VERIFY: PASSED (no blocking findings). <<<",
+      "stderr_tail": "",
       "missing_artifacts": [],
       "notes": []
     },
     {
-      "name": "Mailbox Polisher (gemini)",
+      "name": "Mailbox Polisher (claude)",
       "rc": 0,
-      "seconds": 0.117,
+      "seconds": 0.122,
       "cmd": [
         "uv",
         "run",
         "scripts/mailbox_polisher.py",
         "--target",
-        "gemini",
+        "claude",
         "--apply"
       ],
       "stdout_tail": "No archivable churn artifacts found.",
@@ -122,19 +122,19 @@
       "notes": []
     },
     {
-      "name": "Mailbox Scribe (gemini)",
+      "name": "Mailbox Scribe (claude)",
       "rc": 0,
-      "seconds": 0.142,
+      "seconds": 0.156,
       "cmd": [
         "uv",
         "run",
         "scripts/mailbox_scribe.py",
         "--target",
-        "gemini",
+        "claude",
         "--packet",
-        "gemini/mailbox/TETRAGRAMMATON_PACKET.md"
+        "claude/mailbox/TETRAGRAMMATON_PACKET.md"
       ],
-      "stdout_tail": "Wrote: gemini/mailbox/TETRAGRAMMATON_PACKET.md",
+      "stdout_tail": "Wrote: claude/mailbox/TETRAGRAMMATON_PACKET.md",
       "stderr_tail": "",
       "missing_artifacts": [],
       "notes": []
@@ -142,7 +142,7 @@
     {
       "name": "Mailbox Manifest Check",
       "rc": 0,
-      "seconds": 0.095,
+      "seconds": 0.098,
       "cmd": [
         "uv",
         "run",

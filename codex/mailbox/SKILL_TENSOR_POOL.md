@@ -1,7 +1,7 @@
 # Skill Tensor Pool
 
-- Pool Size: `2028`
-- Excluded Size: `168`
+- Pool Size: `1352`
+- Excluded Size: `844`
 
 ## Notes
 - Pool contains legal run-cells only.

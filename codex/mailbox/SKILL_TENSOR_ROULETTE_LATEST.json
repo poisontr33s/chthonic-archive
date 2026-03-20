@@ -4,7 +4,7 @@
   "seed_value": 12077687225398345945,
   "chain_length_requested": 4,
   "chain_length_actual": 4,
-  "pool_size": 2028,
+  "pool_size": 1352,
   "weights_source": "codex/mailbox/SKILL_TENSOR_WEIGHTS_LATEST.json",
   "selected": [
     {
@@ -14,7 +14,7 @@
         "operator_skill": "link-path-guard",
         "source_root": ".gemini/extensions/chthonic-archive-sync/skills",
         "target_root": ".claude/skills",
-        "target_skill": "api-manager",
+        "target_skill": "mailbox-handoff",
         "target_skill_lane": "claude",
         "target_flavor_mode": "claude"
       },
@@ -34,27 +34,28 @@
         "transition_weight_reasons": [
           "initial_step"
         ],
-        "filtered_out_rules": []
+        "filtered_out_rules": [
+          "history_pruned:6"
+        ]
       }
     },
     {
       "step": 2,
       "cell": {
         "executor_flavor": "codex",
-        "operator_skill": "trainstop-orchestrator",
+        "operator_skill": "skill-polisher",
         "source_root": ".codex/skills",
-        "target_root": ".gemini/extensions/chthonic-archive-sync/skills",
-        "target_skill": "ingest-research",
-        "target_skill_lane": "gemini",
-        "target_flavor_mode": "gemini"
+        "target_root": ".claude/skills",
+        "target_skill": "codekiller-remediation-gate",
+        "target_skill_lane": "claude",
+        "target_flavor_mode": "claude"
       },
-      "weight": 1.87425,
+      "weight": 2.173762,
       "reasons": [
-        "meta_operator:+0.2x",
+        "mutating_operator:+0.4x",
         "cross_lane:+0.5x",
-        "meta_heavy_penalty:-0.15x",
-        "adaptive_weight:1.4x",
-        "operator_weight:0.875x"
+        "adaptive_weight:1.25x",
+        "operator_weight:0.8281x"
       ],
       "transition": {
         "allowed": true,
@@ -64,8 +65,9 @@
         "transition_weight_reasons": [],
         "filtered_out_rules": [
           "duplicate_cell_blocked:1",
-          "repeated_target_skill_blocked:35",
-          "same_operator_consecutive_blocked:498"
+          "history_pruned:6",
+          "repeated_target_skill_blocked:23",
+          "same_operator_consecutive_blocked:496"
         ]
       }
     },
@@ -73,50 +75,19 @@
       "step": 3,
       "cell": {
         "executor_flavor": "codex",
-        "operator_skill": "skill-polisher",
-        "source_root": ".codex/skills",
-        "target_root": ".claude/skills",
-        "target_skill": "gh-fix-ci",
-        "target_skill_lane": "claude",
-        "target_flavor_mode": "claude"
-      },
-      "weight": 2.5725,
-      "reasons": [
-        "mutating_operator:+0.4x",
-        "cross_lane:+0.5x",
-        "adaptive_weight:1.4x",
-        "operator_weight:0.875x"
-      ],
-      "transition": {
-        "allowed": true,
-        "previous_target_lane": "gemini",
-        "previous_operator": "trainstop-orchestrator",
-        "transition_weight_multiplier": 1.0,
-        "transition_weight_reasons": [],
-        "filtered_out_rules": [
-          "duplicate_cell_blocked:2",
-          "repeated_target_skill_blocked:70",
-          "same_operator_consecutive_blocked:489"
-        ]
-      }
-    },
-    {
-      "step": 4,
-      "cell": {
-        "executor_flavor": "codex",
         "operator_skill": "skill-audit",
         "source_root": ".codex/skills",
-        "target_root": ".claude/skills",
-        "target_skill": "conceptualize",
-        "target_skill_lane": "claude",
+        "target_root": ".codex/skills",
+        "target_skill": "dumpster-upcycler",
+        "target_skill_lane": "codex",
         "target_flavor_mode": "gemini"
       },
-      "weight": 2.526562,
+      "weight": 1.654297,
       "reasons": [
         "read_only_operator:+0.1x",
-        "cross_lane:+0.5x",
+        "self_lane:+0.1x",
         "cross_flavor_interp:+0.25x",
-        "adaptive_weight:1.4x",
+        "adaptive_weight:1.25x",
         "operator_weight:0.875x"
       ],
       "transition": {
@@ -126,17 +97,53 @@
         "transition_weight_multiplier": 1.0,
         "transition_weight_reasons": [],
         "filtered_out_rules": [
+          "duplicate_cell_blocked:2",
+          "history_pruned:6",
+          "repeated_target_skill_blocked:46",
+          "same_operator_consecutive_blocked:162"
+        ]
+      }
+    },
+    {
+      "step": 4,
+      "cell": {
+        "executor_flavor": "codex",
+        "operator_skill": "skill-polisher",
+        "source_root": ".codex/skills",
+        "target_root": ".claude/skills",
+        "target_skill": "imagegen",
+        "target_skill_lane": "claude",
+        "target_flavor_mode": "claude"
+      },
+      "weight": 4.382305,
+      "reasons": [
+        "mutating_operator:+0.4x",
+        "cross_lane:+0.5x",
+        "adaptive_weight:1.4x",
+        "operator_weight:0.8281x",
+        "handoff_continuity:+0.8x"
+      ],
+      "transition": {
+        "allowed": true,
+        "previous_target_lane": "codex",
+        "previous_operator": "skill-audit",
+        "transition_weight_multiplier": 1.8,
+        "transition_weight_reasons": [
+          "handoff_continuity:+0.8x"
+        ],
+        "filtered_out_rules": [
           "duplicate_cell_blocked:3",
-          "repeated_target_skill_blocked:105",
-          "same_operator_consecutive_blocked:480"
+          "history_pruned:6",
+          "repeated_target_skill_blocked:69",
+          "same_operator_consecutive_blocked:478"
         ]
       }
     }
   ],
   "summary": {
-    "diversity_score": 0.9091,
-    "cross_lane_coverage": 1.0,
-    "operator_spread": 1.0,
+    "diversity_score": 0.8182,
+    "cross_lane_coverage": 0.75,
+    "operator_spread": 0.75,
     "target_spread": 1.0,
     "executor_flavors_seen": [
       "codex",
@@ -145,8 +152,7 @@
     "operator_skills_seen": [
       "link-path-guard",
       "skill-audit",
-      "skill-polisher",
-      "trainstop-orchestrator"
+      "skill-polisher"
     ],
     "distinct_targets_seen": 4
   }

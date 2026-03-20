@@ -13,12 +13,12 @@ This spec is regenerated from the live tensor artifacts. It is the canonical anc
 
 - Latest execution status: `passed`
 - Inventory skill count: `92`
-- Pool size: `2028`
-- Excluded cells: `168`
+- Pool size: `1352`
+- Excluded cells: `844`
 - Current chain length: `4`
-- Current diversity score: `0.9091`
-- Current cross-lane coverage: `1.0`
-- Current history-pruned exact cells: `4`
+- Current diversity score: `0.8182`
+- Current cross-lane coverage: `0.75`
+- Current history-pruned exact cells: `12`
 
 ## Core Objects
 
