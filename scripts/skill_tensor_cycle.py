@@ -1900,17 +1900,13 @@ Current execution scopes:
 ## Canonical Current Artifacts
 
 - `docs/ops/SKILL_TENSOR_ROULETTE_SPEC.md`
-- `config/skill_tensor_rules.json`
-- `config/skill_operator_capabilities.json`
-- `codex/mailbox/SKILL_TENSOR_INVENTORY.json`
-- `codex/mailbox/SKILL_TENSOR_UNIVERSE_LATEST.json`
-- `codex/mailbox/SKILL_TENSOR_LEGALITY_LATEST.json`
-- `codex/mailbox/SKILL_TENSOR_POOL.json`
-- `codex/mailbox/SKILL_TENSOR_ROULETTE_LATEST.json`
-- `codex/mailbox/SKILL_TENSOR_PLAN_LATEST.json`
-- `codex/mailbox/SKILL_TENSOR_EXECUTION_LATEST.json`
-- `codex/mailbox/SKILL_TENSOR_LEDGER.json`
-- `codex/mailbox/SKILL_TENSOR_WEIGHTS_LATEST.json`
+- `codex/mailbox/SKILL_TENSOR_CYCLE_LATEST.json`
+- `codex/mailbox/SKILL_TENSOR_CYCLE_LATEST.md`
+
+## Debug / Compatibility Exports
+
+- Stage exports exist only as explicit debug outputs under `codex/mailbox/.tensor_debug/`
+- The cycle JSON embeds the summarized state needed for repo-facing review
 
 ## Phases
 
@@ -1924,8 +1920,7 @@ Status: `{statuses["phase1"]}`
 
 Outputs:
 
-- `codex/mailbox/SKILL_TENSOR_PLAN_LATEST.json`
-- `codex/mailbox/SKILL_TENSOR_PLAN_LATEST.md`
+- Embedded in `codex/mailbox/SKILL_TENSOR_CYCLE_LATEST.json`
 
 ### Phase 2: Historical Memory
 
@@ -1933,8 +1928,7 @@ Status: `{statuses["phase2"]}`
 
 Outputs:
 
-- `codex/mailbox/SKILL_TENSOR_LEDGER.json`
-- `codex/mailbox/SKILL_TENSOR_LEDGER.md`
+- Embedded in `codex/mailbox/SKILL_TENSOR_CYCLE_LATEST.json`
 
 ### Phase 3: Adaptive Weighting
 
@@ -1949,8 +1943,7 @@ Current refinements:
 
 Outputs:
 
-- `codex/mailbox/SKILL_TENSOR_WEIGHTS_LATEST.json`
-- `codex/mailbox/SKILL_TENSOR_WEIGHTS_LATEST.md`
+- Embedded in `codex/mailbox/SKILL_TENSOR_CYCLE_LATEST.json`
 
 ### Phase 4: Operator Capability Manifest
 
@@ -1974,8 +1967,7 @@ Current refinements:
 
 Outputs:
 
-- `codex/mailbox/SKILL_TENSOR_EXECUTION_LATEST.json`
-- `codex/mailbox/SKILL_TENSOR_EXECUTION_LATEST.md`
+- Embedded in `codex/mailbox/SKILL_TENSOR_CYCLE_LATEST.json`
 
 ### Phase 6: Feedback Loop
 
