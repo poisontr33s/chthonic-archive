@@ -1,7 +1,7 @@
 # Skill Tensor Weights
 
 - Pool Size: `2028`
-- Ledger Entries: `1`
+- Ledger Entries: `2`
 - Pruned Exact Cells: `4`
 
 ## Operator Adjustments

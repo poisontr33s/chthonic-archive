@@ -10,6 +10,7 @@ from __future__ import annotations
 import argparse
 import json
 import subprocess
+from datetime import datetime, timezone
 from pathlib import Path
 
 
@@ -25,24 +26,59 @@ def load_json(path: Path) -> dict:
     return json.loads(path.read_text(encoding="utf-8"))
 
 
+def ensure_current_cycle_entry(ledger: dict, roulette: dict, plan: dict) -> dict:
+    entries = ledger.setdefault("entries", [])
+    latest = entries[-1] if entries else None
+
+    sampled = roulette.get("selected", [])
+    latest_sampled = latest.get("sampled_steps", []) if latest else None
+
+    if latest is None or latest_sampled != sampled:
+        touched = [
+            {
+                "lane": step["cell"]["target_skill_lane"],
+                "root": step["cell"]["target_root"],
+                "skill": step["cell"]["target_skill"],
+            }
+            for step in plan.get("steps", [])
+        ]
+        latest = {
+            "recorded_at": datetime.now(timezone.utc).isoformat(),
+            "seed_text": roulette.get("seed_text"),
+            "seed_value": roulette.get("seed_value"),
+            "chain_length": roulette.get("chain_length_actual"),
+            "summary": roulette.get("summary", {}),
+            "sampled_steps": sampled,
+            "planned_steps": plan.get("steps", []),
+            "execution_status": "planned",
+            "failure_classes": [],
+            "touched": touched,
+        }
+        entries.append(latest)
+
+    return latest
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description="Apply latest execution results back into the tensor ledger")
     parser.add_argument("--ledger", default="codex/mailbox/SKILL_TENSOR_LEDGER.json")
     parser.add_argument("--execution", default="codex/mailbox/SKILL_TENSOR_EXECUTION_LATEST.json")
+    parser.add_argument("--roulette", default="codex/mailbox/SKILL_TENSOR_ROULETTE_LATEST.json")
+    parser.add_argument("--plan", default="codex/mailbox/SKILL_TENSOR_PLAN_LATEST.json")
     args = parser.parse_args()
 
     repo_root = find_repo_root(Path.cwd())
     ledger_path = repo_root / args.ledger
     execution_path = repo_root / args.execution
+    roulette_path = repo_root / args.roulette
+    plan_path = repo_root / args.plan
 
     ledger = load_json(ledger_path)
     execution = load_json(execution_path)
+    roulette = load_json(roulette_path)
+    plan = load_json(plan_path)
 
-    entries = ledger.get("entries", [])
-    if not entries:
-        raise SystemExit("No ledger entries to update.")
-
-    latest = entries[-1]
+    latest = ensure_current_cycle_entry(ledger, roulette, plan)
     latest["execution_status"] = execution.get("overall_status", "unknown")
 
     failure_classes = []
@@ -79,7 +115,7 @@ def main() -> int:
         check=False,
     )
     subprocess.run(
-        ["uv", "run", "scripts/skill_tensor_sync_spec.py"],
+        ["uv", "run", "scripts/skill_tensor_render_spec.py"],
         cwd=repo_root,
         check=False,
     )

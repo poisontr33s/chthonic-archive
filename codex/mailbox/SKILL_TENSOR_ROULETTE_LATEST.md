@@ -11,28 +11,28 @@
 ### Step 1
 - Executor: `gemini`
 - Operator: `link-path-guard`
-- Target: `.codex/skills::trainstop-orchestrator`
-- Flavor: `gemini`
-- Weight: `2.871094`
+- Target: `.claude/skills::api-manager`
+- Flavor: `claude`
+- Weight: `2.5725`
 
 ### Step 2
 - Executor: `codex`
 - Operator: `trainstop-orchestrator`
-- Target: `.claude/skills::iron-maiden-runtime`
-- Flavor: `claude`
-- Weight: `3.012187`
+- Target: `.gemini/extensions/chthonic-archive-sync/skills::ingest-research`
+- Flavor: `gemini`
+- Weight: `1.87425`
 
 ### Step 3
 - Executor: `codex`
 - Operator: `skill-polisher`
 - Target: `.claude/skills::gh-fix-ci`
-- Flavor: `gemini`
-- Weight: `2.411719`
+- Flavor: `claude`
+- Weight: `2.5725`
 
 ### Step 4
 - Executor: `codex`
 - Operator: `skill-audit`
-- Target: `.claude/skills::corpse-reviver`
-- Flavor: `codex`
-- Weight: `2.255859`
+- Target: `.claude/skills::conceptualize`
+- Flavor: `gemini`
+- Weight: `2.526562`
 

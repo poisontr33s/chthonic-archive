@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_on": "2026-03-19T21:45:04Z",
+  "generated_on": "2026-03-19T21:55:47Z",
   "results": [
     {
       "name": "Skill Freshness Gate (Codex)",
@@ -28,7 +28,7 @@
     {
       "name": "API Manager (Doctor)",
       "rc": 0,
-      "seconds": 0.773,
+      "seconds": 0.779,
       "cmd": [
         "pwsh",
         "-NoProfile",
@@ -44,7 +44,7 @@
     {
       "name": "Toolchain Doctor",
       "rc": 0,
-      "seconds": 1.291,
+      "seconds": 1.336,
       "cmd": [
         "uv",
         "run",
@@ -52,7 +52,7 @@
         "--bun",
         "--uv"
       ],
-      "stdout_tail": "Wrote: C:\\Users\\eldno\\chthonic-archive\\codex\\mailbox\\TOOLCHAIN_DOCTOR_REPORT_2026_03_19_214501.md",
+      "stdout_tail": "Wrote: C:\\Users\\eldno\\chthonic-archive\\codex\\mailbox\\TOOLCHAIN_DOCTOR_REPORT_2026_03_19_215545.md",
       "stderr_tail": "",
       "missing_artifacts": [],
       "notes": []
@@ -60,7 +60,7 @@
     {
       "name": "Skill Polisher (Codex on Codex)",
       "rc": 0,
-      "seconds": 0.282,
+      "seconds": 0.287,
       "cmd": [
         "uv",
         "run",
@@ -124,7 +124,7 @@
     {
       "name": "Mailbox Scribe (gemini)",
       "rc": 0,
-      "seconds": 0.139,
+      "seconds": 0.142,
       "cmd": [
         "uv",
         "run",
@@ -142,7 +142,7 @@
     {
       "name": "Mailbox Manifest Check",
       "rc": 0,
-      "seconds": 0.094,
+      "seconds": 0.095,
       "cmd": [
         "uv",
         "run",

@@ -77,6 +77,14 @@ def normalize_candidate(raw: str, source_file: Path, repo_root: Path) -> Path | 
     if "<" in cleaned or ">" in cleaned:
         return None
 
+    normalized = cleaned.replace("\\", "/")
+
+    # Within a skill/settings document, bare scripts/assets/references paths
+    # often mean local siblings. If not found there, resolution falls back to
+    # repo-root matching in resolve_token.
+    if normalized.startswith(("scripts/", "assets/", "references/")):
+        return (source_file.parent / Path(normalized)).resolve()
+
     if OLD_ROOT_RE.match(cleaned):
         suffix = re.sub(OLD_ROOT_RE, "", cleaned).lstrip("\\/")
         return repo_root / Path(suffix)
@@ -85,7 +93,7 @@ def normalize_candidate(raw: str, source_file: Path, repo_root: Path) -> Path | 
         return Path(cleaned)
 
     if cleaned.startswith((".codex/", ".claude/", ".gemini/", "codex/", "claude/", "gemini/", "scripts/", "docs/", ".temple/")):
-        return repo_root / Path(cleaned.replace("\\", "/"))
+        return repo_root / Path(normalized)
 
     return (source_file.parent / cleaned).resolve()
 
@@ -105,6 +113,26 @@ def resolve_token(raw: str, source_file: Path, repo_root: Path, index: dict[str,
     candidate = normalize_candidate(raw, source_file, repo_root)
     if candidate is None:
         return "skip", None, None
+
+    # If the token is rooted under a canonical repo path prefix, prefer that
+    # exact path rather than basename matching against duplicated filenames.
+    cleaned = raw.strip().strip("`'\"").replace("\\", "/")
+    if cleaned.startswith(("scripts/", "assets/", "references/")):
+        if candidate.exists():
+            return "ok", None, None
+        repo_candidate = (repo_root / Path(cleaned)).resolve()
+        if repo_candidate.exists():
+            replacement = replacement_style(cleaned, repo_candidate, source_file, repo_root)
+            return "fixable", replacement, "resolved to repo-root target instead of local skill-relative path"
+        return "broken", None, "local skill-relative target does not exist"
+
+    if cleaned.startswith((".codex/", ".claude/", ".gemini/", "codex/", "claude/", "gemini/", "docs/", ".temple/")):
+        if candidate.exists():
+            if OLD_ROOT_RE.match(raw):
+                replacement = replacement_style(raw, candidate, source_file, repo_root)
+                return "stale_root", replacement, "stale username/root path"
+            return "ok", None, None
+        return "broken", None, "canonical repo-relative target does not exist"
 
     if candidate.exists():
         if OLD_ROOT_RE.match(raw):
