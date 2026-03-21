@@ -29,45 +29,45 @@ The lane is now simple:
 ### Governance / Canon
 
 - [WET_PAPER_TO_GOLD_METHODOLOGY.md (repo-root)](../../WET_PAPER_TO_GOLD_METHODOLOGY.md)
-- [docs/design/SFS_WPTG_ITERATION_PLAN.md](../../docs/design/SFS_WPTG_ITERATION_PLAN.md)
-- [docs/design/ANKH_THEME_REFERENCE.md](../../docs/design/ANKH_THEME_REFERENCE.md)
-- [docs/design/ANKH_ICON_GRAMMAR.md](../../docs/design/ANKH_ICON_GRAMMAR.md)
-- [docs/design/ICON_ARCHITECTURE_CONTRACT.md](../../docs/design/ICON_ARCHITECTURE_CONTRACT.md)
-- [docs/design/SFS_SLABSTONE_BASELINE.md](../../docs/design/SFS_SLABSTONE_BASELINE.md)
-- [docs/design/KCP_SESSION_CHECKPOINT.md](../../docs/design/KCP_SESSION_CHECKPOINT.md)
+- [docs/design/SFS_WPTG_ITERATION_PLAN.md](../../../../../docs/design/SFS_WPTG_ITERATION_PLAN.md)
+- [docs/design/ANKH_THEME_REFERENCE.md](../../../../../docs/design/ANKH_THEME_REFERENCE.md)
+- [docs/design/ANKH_ICON_GRAMMAR.md](../../../../../docs/design/ANKH_ICON_GRAMMAR.md)
+- [docs/design/ICON_ARCHITECTURE_CONTRACT.md](../../../../../docs/design/ICON_ARCHITECTURE_CONTRACT.md)
+- [docs/design/SFS_SLABSTONE_BASELINE.md](../../../../../docs/design/SFS_SLABSTONE_BASELINE.md)
+- [docs/design/KCP_SESSION_CHECKPOINT.md](../../../../../docs/design/KCP_SESSION_CHECKPOINT.md)
 
 ### Session / Validation / Research
 
-- [claude/mailbox/BCE_TRIO_VALIDATION_AUDIT.md](../../claude/mailbox/BCE_TRIO_VALIDATION_AUDIT.md)
-- [docs/reference/ETS_ARCHAEOLOGICAL_TOOLFORM_BASELINE.md](../../docs/reference/ETS_ARCHAEOLOGICAL_TOOLFORM_BASELINE.md)
-- [.temple/session-archives/EPOCH_REFERENCE_2026-02-18_to_2026-02-28.md](../../.temple/session-archives/EPOCH_REFERENCE_2026-02-18_to_2026-02-28.md)
-- [.vscode/SETTINGS_LIVE_AUDIT.md](../../.vscode/SETTINGS_LIVE_AUDIT.md)
+- [claude/mailbox/BCE_TRIO_VALIDATION_AUDIT.md](../../../BCE_TRIO_VALIDATION_AUDIT.md)
+- [docs/reference/ETS_ARCHAEOLOGICAL_TOOLFORM_BASELINE.md](../../../../../docs/reference/ETS_ARCHAEOLOGICAL_TOOLFORM_BASELINE.md)
+- [.temple/session-archives/EPOCH_REFERENCE_2026-02-18_to_2026-02-28.md](../../../../../.temple/session-archives/EPOCH_REFERENCE_2026-02-18_to_2026-02-28.md)
+- [.vscode/SETTINGS_LIVE_AUDIT.md](../../../../../.vscode/SETTINGS_LIVE_AUDIT.md)
 
 ### Runtime Artifacts
 
 - [extensions/chthonic-archive/package.json](../../extensions/chthonic-archive/package.json)
-- [extensions/chthonic-archive/themes/chthonic-geology-color-theme.json](../../extensions/chthonic-archive/themes/chthonic-geology-color-theme.json)
-- [extensions/chthonic-archive/themes/chthonic-mandala-color-theme.json](../../extensions/chthonic-archive/themes/chthonic-mandala-color-theme.json)
-- [extensions/chthonic-archive/themes/chthonic-decorator-color-theme.json](../../extensions/chthonic-archive/themes/chthonic-decorator-color-theme.json)
-- [extensions/chthonic-archive/themes/chthonic-rogbiv-color-theme.json](../../extensions/chthonic-archive/themes/chthonic-rogbiv-color-theme.json)
-- [extensions/chthonic-archive/themes/chthonic-file-icon-theme.json](../../extensions/chthonic-archive/themes/chthonic-file-icon-theme.json)
-- [extensions/chthonic-archive/themes/chthonic-product-icon-theme.json](../../extensions/chthonic-archive/themes/chthonic-product-icon-theme.json)
-- [extensions/chthonic-archive/themes/fonts/chthonic-product-icons.json](../../extensions/chthonic-archive/themes/fonts/chthonic-product-icons.json)
-- [extensions/chthonic-archive/themes/fonts/chthonic-product-icons.woff](../../extensions/chthonic-archive/themes/fonts/chthonic-product-icons.woff)
+- extensions/chthonic-archive/themes/chthonic-geology-color-theme.json
+- [extensions/chthonic-archive/themes/chthonic-mandala-color-theme.json](../../../../../dumpster-dive/forge/extension-archaeology/theme-research/chthonic-mandala-color-theme.json)
+- extensions/chthonic-archive/themes/chthonic-decorator-color-theme.json
+- extensions/chthonic-archive/themes/chthonic-rogbiv-color-theme.json
+- extensions/chthonic-archive/themes/chthonic-file-icon-theme.json
+- extensions/chthonic-archive/themes/chthonic-product-icon-theme.json
+- extensions/chthonic-archive/themes/fonts/chthonic-product-icons.json
+- extensions/chthonic-archive/themes/fonts/chthonic-product-icons.woff
 - [.vscode/settings.json](../../.vscode/settings.json)
 
 ### Audit / Generator Scripts
 
-- [scripts/icon_svg_audit.py](../../scripts/icon_svg_audit.py)
-- [scripts/icon_surface_map.py](../../scripts/icon_surface_map.py)
-- [scripts/product_icon_census.py](../../scripts/product_icon_census.py)
-- [scripts/theme_contrast_audit.py](../../scripts/theme_contrast_audit.py)
-- [scripts/theme_token_coverage.py](../../scripts/theme_token_coverage.py)
-- [scripts/theme_parity.py](../../scripts/theme_parity.py)
-- [scripts/vscode_settings_live_audit.py](../../scripts/vscode_settings_live_audit.py)
-- [scripts/sfs_slabstone_baseline.py](../../scripts/sfs_slabstone_baseline.py)
-- [scripts/ankh_theme_reference.py](../../scripts/ankh_theme_reference.py)
-- [scripts/generate-product-icon-font.mjs](../../scripts/generate-product-icon-font.mjs)
+- [scripts/icon_svg_audit.py](../../../../../scripts/icon_svg_audit.py)
+- [scripts/icon_surface_map.py](../../../../../scripts/icon_surface_map.py)
+- [scripts/product_icon_census.py](../../../../../scripts/product_icon_census.py)
+- [scripts/theme_contrast_audit.py](../../../../../scripts/theme_contrast_audit.py)
+- [scripts/theme_token_coverage.py](../../../../../scripts/theme_token_coverage.py)
+- [scripts/theme_parity.py](../../../../../scripts/theme_parity.py)
+- [scripts/vscode_settings_live_audit.py](../../../../../scripts/vscode_settings_live_audit.py)
+- [scripts/sfs_slabstone_baseline.py](../../../../../scripts/sfs_slabstone_baseline.py)
+- [scripts/ankh_theme_reference.py](../../../../../scripts/ankh_theme_reference.py)
+- [scripts/generate-product-icon-font.mjs](../../../../../scripts/generate-product-icon-font.mjs)
 
 ## Frozen Truths
 
@@ -110,22 +110,22 @@ These are the anti-patterns that burned this lane and are now explicitly banned:
 
 As of this handoff, the live uncommitted WPTG/SFS-related worktree state is:
 
-- `M` [extensions/chthonic-archive/themes/chthonic-mandala-color-theme.json](../../extensions/chthonic-archive/themes/chthonic-mandala-color-theme.json)
-- `M` [extensions/chthonic-archive/themes/chthonic-rogbiv-color-theme.json](../../extensions/chthonic-archive/themes/chthonic-rogbiv-color-theme.json)
-- `??` [docs/design/ICON_ARCHITECTURE_CONTRACT.md](../../docs/design/ICON_ARCHITECTURE_CONTRACT.md)
+- `M` [extensions/chthonic-archive/themes/chthonic-mandala-color-theme.json](../../../../../dumpster-dive/forge/extension-archaeology/theme-research/chthonic-mandala-color-theme.json)
+- `M` extensions/chthonic-archive/themes/chthonic-rogbiv-color-theme.json
+- `??` [docs/design/ICON_ARCHITECTURE_CONTRACT.md](../../../../../docs/design/ICON_ARCHITECTURE_CONTRACT.md)
 
 These changes are intentional and should not be reverted blindly.
 
 ## Latest Codex Corrections
 
 1. Fixed the remaining live contrast regressions in Mandala and ROGBIV.
-2. Expanded [scripts/theme_contrast_audit.py](../../scripts/theme_contrast_audit.py) to cover bright status-bar item surfaces:
+2. Expanded [scripts/theme_contrast_audit.py](../../../../../scripts/theme_contrast_audit.py) to cover bright status-bar item surfaces:
    - `statusBarItem.error`
    - `statusBarItem.offline`
    - `statusBarItem.prominent`
    - `statusBarItem.remote`
    - `statusBarItem.warning`
-3. Updated [docs/design/ICON_ARCHITECTURE_CONTRACT.md](../../docs/design/ICON_ARCHITECTURE_CONTRACT.md) so the rule is explicit:
+3. Updated [docs/design/ICON_ARCHITECTURE_CONTRACT.md](../../../../../docs/design/ICON_ARCHITECTURE_CONTRACT.md) so the rule is explicit:
    bright badges and bright status surfaces use the theme's dark foreground lane.
 
 ## Verification
@@ -150,7 +150,7 @@ contract.
 
 1. Sync the updated theme JSON files into the installed Insiders extension copy.
 2. Reload the window and visually confirm the bright-surface fixes in ROGBIV.
-3. Treat [docs/design/ICON_ARCHITECTURE_CONTRACT.md](../../docs/design/ICON_ARCHITECTURE_CONTRACT.md) as the short operational law for this lane.
+3. Treat [docs/design/ICON_ARCHITECTURE_CONTRACT.md](../../../../../docs/design/ICON_ARCHITECTURE_CONTRACT.md) as the short operational law for this lane.
 4. Keep SFS as the authoring baseline; propagate only surface-safe deltas to the other three themes.
 
 ## Bottom Line

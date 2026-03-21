@@ -374,7 +374,7 @@ def resolve_link(
 
     basename = Path(clean).name
 
-    # Case 1: target resolves to a real file → OK, but check collision labeling
+    # Case 1: target resolves to a real file or directory
     if resolved is not None:
         # If the resolved path is outside the repo, it's still valid but skip
         # collision labeling (we can't compute a relative path).
@@ -382,6 +382,48 @@ def resolve_link(
             rel_path = resolved.relative_to(repo_root)
         except ValueError:
             return {"status": "ok", "resolved_path": resolved, "fix": None, "reason": None}
+
+        # Case 0.5: target is a directory.
+        # If the target explicitly ends with "/" the author means the directory
+        # itself — that's intentional, treat it as OK. GitHub renders directory
+        # links correctly even if VS Code's ctrl+click can't open them.
+        # Only flag as dir_link when the target looks like it was meant to be
+        # a file (no trailing slash, no slash in the label).
+        if resolved.is_dir():
+            target_looks_intentional = (
+                target_str.endswith("/")
+                or "/" in link["label"]
+                or "\\" in link["label"]
+            )
+            if target_looks_intentional:
+                # Author explicitly referenced a directory — valid
+                pass  # fall through to normal collision/fragment checks below
+            else:
+                # Target resolves to a directory but doesn't look intentional
+                readme_candidates = ["README.md", "readme.md", "index.md"]
+                for rc in readme_candidates:
+                    readme_path = resolved / rc
+                    if readme_path.is_file():
+                        correct_rel = os.path.relpath(readme_path, file_dir).replace("\\", "/")
+                        fix = f"[{link['label']}]({correct_rel})"
+                        return {
+                            "status": "dir_link",
+                            "resolved_path": resolved,
+                            "fix": fix,
+                            "reason": (
+                                f"Target '{target_str}' resolves to a directory but lacks trailing '/'. "
+                                f"Found '{rc}' inside; linking to that instead"
+                            ),
+                        }
+                return {
+                    "status": "dir_link",
+                    "resolved_path": resolved,
+                    "fix": None,
+                    "reason": (
+                        f"Target '{target_str}' resolves to a directory but lacks trailing '/'. "
+                        f"No README.md found inside to link to"
+                    ),
+                }
 
         # Case 1a: Link resolves from repo root but not from the file's directory.
         # Markdown renderers resolve relative to the file — generate corrected path.
@@ -407,10 +449,19 @@ def resolve_link(
         siblings = collision_index.get(basename, [])
         if len(siblings) > 1:
             # The link works, but the basename is ambiguous in the repo.
+            # However, if the target path already contains directory components
+            # (e.g., "../../AGENT_COMMON.md" or "docs/foo.md"), the path itself
+            # disambiguates which copy is meant — no label fix needed.
+            target_has_dir = "/" in clean or "\\" in clean
             # Check if the label includes a directory qualifier
             label = link["label"]
-            if basename in label and "(" not in label and "/" not in label:
-                # Label is just the basename — recommend disambiguation
+            if (
+                not target_has_dir
+                and basename in label
+                and "(" not in label
+                and "/" not in label
+            ):
+                # Bare basename target AND bare basename label — recommend disambiguation
                 parent_hint = rel_path.parent.name or str(rel_path.parent)
                 if parent_hint == ".":
                     parent_hint = "repo-root"
@@ -1153,6 +1204,7 @@ def main() -> int:
                     "ambiguous": "AMBIG",
                     "empty_label": "EMPTY",
                     "collision_unlabeled": "LABEL",
+                    "dir_link": "DIR",
                 }.get(issue["status"], issue["status"].upper())
                 fix_hint = f" -> {issue['fix']!r}" if issue["fix"] is not None else ""
                 print(f"    L{issue['line']} [{tag}] {issue['original']}{fix_hint}")
@@ -1224,6 +1276,7 @@ def main() -> int:
                 "ambiguous": "AMBIG",
                 "empty_label": "EMPTY",
                 "collision_unlabeled": "LABEL",
+                "dir_link": "DIR",
             }.get(issue["status"], issue["status"].upper())
             print(f"\n  L{issue['line']} [{status_icon}] {issue['original']}")
             print(f"    Reason: {issue['reason']}")

@@ -66,7 +66,7 @@ This is the **single highest-leverage action** — it unblocks Track A items U3,
 
 ### 1B. ~~Dead Code Fix (procedural.rs)~~ — ALREADY RESOLVED
 
-**Source:** [codex/mailbox/FIX_DEAD_CODE_WARNINGS.md](codex/mailbox/FIX_DEAD_CODE_WARNINGS.md)
+**Source:** [codex/mailbox/FIX_DEAD_CODE_WARNINGS.md](../../codex/mailbox/FIX_DEAD_CODE_WARNINGS.md)
 - ✅ `generate_sub_milf`, `generate_agent` — already have `#[allow(dead_code)]` + TODO comments
 - ✅ `FactionCode` — already uses `impl fmt::Display`
 - ✅ `cargo check` returns ZERO warnings as of 2026-03-18
@@ -94,7 +94,7 @@ Per TASK_SCHEDULE — all unblocked, all Claude work:
 
 ### 2A. Skill Consolidation (27 → ≤15)
 
-**Source:** [codex/mailbox/SKILL_CONSOLIDATION_PROPOSAL.md](codex/mailbox/SKILL_CONSOLIDATION_PROPOSAL.md)
+**Source:** [codex/mailbox/SKILL_CONSOLIDATION_PROPOSAL.md](../../codex/mailbox/SKILL_CONSOLIDATION_PROPOSAL.md)
 - 8 archive candidates identified (REDIRECT/STASHED/PROTOCOL)
 - 4 more merges needed to hit target
 - **BLOCKED ON:** User approval of the proposal
@@ -102,7 +102,7 @@ Per TASK_SCHEDULE — all unblocked, all Claude work:
 
 ### 2B. Log Archaeology Untrack (218 files)
 
-**Source:** [codex/mailbox/LOG_ARCHAEOLOGY_TRIAGE.md](codex/mailbox/LOG_ARCHAEOLOGY_TRIAGE.md)
+**Source:** [codex/mailbox/LOG_ARCHAEOLOGY_TRIAGE.md](../../codex/mailbox/LOG_ARCHAEOLOGY_TRIAGE.md)
 - 340 logs triaged: 118 preserve, 218 untrack-after-extraction, 4 extract-then-archive
 - Includes VS2026_ELEVATED_VALIDATE logs, MISTRALRS_CUDA_BUILD logs, VSCODE_INSIDERS_MATRIX logs
 - **BLOCKED ON:** User approval of the untrack list
@@ -116,7 +116,7 @@ Per TASK_SCHEDULE:
 
 ### 2D. .vsconfig Component Additions
 
-Generated [claude/mailbox/VS2026_DESKTOP.vsconfig](claude/mailbox/VS2026_DESKTOP.vsconfig):
+Generated [claude/mailbox/VS2026_DESKTOP.vsconfig](VS2026_DESKTOP.vsconfig):
 - Adds Clang/LLVM, ATL/MFC, diagnostic tools, .NET 4.8.1 SDK
 - Import via: `Tools → Get Tools and Features → Import .vsconfig`
 - Also update VS to 11612.153 (pending update shown in installer)

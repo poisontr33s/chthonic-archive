@@ -62,7 +62,7 @@ With the target parity of **27 shared skills**: that's **243 cells** in the tens
 
 If skills aren't equal across all three, the tensor has holes — some cells are invalid (an agent can't run a skill it doesn't have, or target a lane that doesn't have the skill). Parity means every cell in the 9N pool is a legal execution. Without parity, you need a **legality gate** to filter out invalid cells before the RNG picks.
 
-### What `skill_tensor_cycle.py` Does (Single-File Constraint)
+### What [`skill_tensor_cycle.py`](../../scripts/skill_tensor_cycle.py) Does (Single-File Constraint)
 
 The script must be self-contained because it's the **neutral arbiter** — it can't live inside any one agent's skill tree without bias. It:
 
@@ -82,6 +82,6 @@ To achieve a clean `N × 9` tensor with no legality holes:
 
 - **Codex needs**: `git-snapshot`, `handoff-loop`, `overnight-archaeology`, `sfa`, `theme-system`
 - **Gemini needs**: `link-path-guard`, `git-snapshot`, `handoff-loop`, `overnight-archaeology`, `sfa`, `theme-system`
-- **Decide on**: `triad-velocity-lane` (Gemini-only) — promote to all three or remove
+- **Gemini and Codex needs**: `triad-velocity-lane` (Gemini-only) — promote to all three.
 
 Once parity is achieved, the tensor pool is a clean `N × 9` grid and every RNG pick is guaranteed legal.
