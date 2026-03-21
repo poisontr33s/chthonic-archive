@@ -13,4 +13,4 @@
 - `subscription_required`: `79`
 
 ## Cheapest Callable Candidates
-- `qwen3.5-397b-a17b-t` via `openai` (likely_mid) [openai=callable, sdk=not_tested]
+- `qwen3.5-397b-a17b-t` via `openai` (likely_mid) openai=callable, sdk=not_tested

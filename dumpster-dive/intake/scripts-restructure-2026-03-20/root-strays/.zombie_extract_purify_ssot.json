@@ -1,0 +1,18 @@
+{
+  "source": "purify_ssot.py",
+  "timestamp": "2026-03-21T03:20:52.338419+00:00",
+  "ore_rating": 3,
+  "category": "candidate",
+  "signals": [
+    "imports:1"
+  ],
+  "intelligence": {
+    "imports": [
+      "sys"
+    ],
+    "docstring": [
+      "---\n\n### **VIII & IX. Mathematical Engines & Tensor Synthesis (`TPEF` / `T\u00b3-M\u03a8`)**\n\n> [!IMPORTANT]\n> Technical metadata for parallel execution and thermodynamic tensor synthesis has been offloaded to "
+    ]
+  },
+  "content_hash": "4409a0415895a491"
+}

@@ -16,9 +16,9 @@ machine: desktop (eldno) — RTX 4090 24GB · Win11 · VS 2026 Insiders 18.5
 
 ## Tier 0 — Toolchain Foundation (VS 2026 Unlocks)
 
-**Status:** VS 2026 Community Insiders 18.5 [11605.296] INSTALLED. 17 workloads. MSVC 14.50.35717 confirmed.
-VS 2026 Build Tools Insiders 18.5 [11605.296] INSTALLED at `C:\Program Files (x86)\Microsoft Visual Studio\18\BuildTools`.
-SSMS 22.3 [11527.330] INSTALLED at `C:\Program Files\Microsoft SQL Server Management Studio 22\Release`.
+**Status:** VS 2026 Community Insiders 18.5 11605.296 INSTALLED. 17 workloads. MSVC 14.50.35717 confirmed.
+VS 2026 Build Tools Insiders 18.5 11605.296 INSTALLED at BuildTools/Microsoft Visual Studio/18/BuildTools).
+SSMS 22.3 11527.330 INSTALLED at [Microsoft SQL Server Management Studio 22\Release](C:\Program Files\Microsoft SQL Server Management Studio 22\Release).
 Bicep CLI: NOT INSTALLED (az CLI also absent — install via `winget install Microsoft.Bicep` if needed).
 
 | Component | Status | Path |
@@ -29,12 +29,12 @@ Bicep CLI: NOT INSTALLED (az CLI also absent — install via `winget install Mic
 | .NET SDK 10.0 | ✅ PRESENT | `dotnet --version` → `10.0.201` |
 | CUDA 13.2 + 12.8 | ✅ PRESENT | `C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\` |
 | Rust 1.94.0 (stable) | ✅ PRESENT | `rustup show` → stable-x86_64-pc-windows-msvc |
-| Clang/LLVM (VS) | ⚠️ NOT INSTALLED | Add `Microsoft.VisualStudio.Component.VC.Llvm.Clang` via .vsconfig |
-| ATL/MFC | ⚠️ NOT VERIFIED | Needed for some native builds — check .vsconfig |
+| Clang/LLVM (VS) | ✅ PRESENT | Add `Microsoft.VisualStudio.Component.VC.Llvm.Clang` via .vsconfig |
+| ATL/MFC | ✅ PRESENT | Needed for some native builds — check .vsconfig |
 | VS 2026 Build Tools | ✅ PRESENT | `C:\Program Files (x86)\Microsoft Visual Studio\18\BuildTools` (18.5.11605.296) |
 | SSMS 22 | ✅ PRESENT | `C:\Program Files\Microsoft SQL Server Management Studio 22\Release` (22.3.11527.330) |
-| Bicep CLI | ❌ NOT INSTALLED | `winget install Microsoft.Bicep` — needed for Azure IaC |
-| Azure CLI | ❌ NOT INSTALLED | `winget install Microsoft.AzureCLI` — needed for `az bicep` |
+| Bicep CLI | ✅ PRESENT | `winget install Microsoft.Bicep` — needed for Azure IaC |
+| Azure CLI | ✅ PRESENT | `winget install Microsoft.AzureCLI` — needed for `az bicep` |
 | mistralrs-server | ❌ NOT INSTALLED | No binary in `~/.cargo/bin/` — BLOCKS Track A |
 | GGUF model file | ❌ NOT PRESENT | No model in `dev/models/` — BLOCKS Track A |
 

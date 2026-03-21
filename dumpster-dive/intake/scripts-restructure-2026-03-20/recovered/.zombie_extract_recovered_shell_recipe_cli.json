@@ -1,0 +1,16 @@
+{
+  "source": "scripts/recovered_shell_recipe_cli.go",
+  "timestamp": "2026-03-21T03:22:52.155700+00:00",
+  "ore_rating": 3,
+  "category": "recovered",
+  "signals": [
+    "recovered_salvage",
+    "has_sid:FORGE_SHELL_RECIPE_CLI_PROMOTED_V1"
+  ],
+  "intelligence": {
+    "sid": [
+      "FORGE_SHELL_RECIPE_CLI_PROMOTED_V1"
+    ]
+  },
+  "content_hash": "9acea0d9eaf4c4c2"
+}

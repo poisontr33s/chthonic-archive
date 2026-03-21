@@ -68,7 +68,7 @@ strip_ssot.py
 strip_ssot_v2.py
 ```
 
-**Ore rating: 3** — Mixed. The `strip_ssot*` variants are iteration history — the winning version's logic lives in `scripts/ssot_*.py` now, but the progression shows what was tried. [`get_hash.py`](../../get_hash.py) may have a unique hashing approach.
+**Ore rating: 3** — Mixed. The `strip_ssot*` variants are iteration history — the winning version's logic lives in `scripts/ssot_*.py` now, but the progression shows what was tried. [`get_hash.py`](../../dumpster-dive/intake/scripts-restructure-2026-03-20/root-strays/get_hash.py) may have a unique hashing approach.
 
 ### 0D. Recovered Salvage → `dumpster-dive/intake/scripts-restructure-2026-03-20/recovered/`
 

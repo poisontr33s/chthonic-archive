@@ -1,0 +1,12 @@
+{
+  "source": "scripts/chthonic.ps1.bak-20260316-193628",
+  "timestamp": "2026-03-21T03:20:39.142331+00:00",
+  "ore_rating": 3,
+  "category": "backup",
+  "signals": [
+    "backup_file",
+    "has_decorator_header"
+  ],
+  "intelligence": {},
+  "content_hash": "a3b3b04e5db51a79"
+}

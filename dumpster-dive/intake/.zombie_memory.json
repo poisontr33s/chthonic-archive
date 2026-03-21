@@ -1,0 +1,163 @@
+{
+  "schema_version": 1,
+  "created": "2026-03-21T03:20:38.217726+00:00",
+  "files_consumed": 20,
+  "total_patterns_extracted": 20,
+  "total_imports_seen": [
+    "boto3",
+    "json",
+    "hashlib",
+    "unicodedata",
+    "sys",
+    "pathlib",
+    "scripts.lib.ssot_paths",
+    "os",
+    "__future__",
+    "argparse",
+    "dataclasses"
+  ],
+  "total_sids_seen": [
+    "WPTG_REPEATABLE_CYCLE_V1",
+    "FORGE_BATCH_TRANSLITERATION_PROMOTED_V1",
+    "SCRIPT_RECOVERED_PYTHON_CLUSTER_REGISTRY_V1",
+    "FORGE_SHELL_RECIPE_CLI_PROMOTED_V1"
+  ],
+  "total_functions_seen": [
+    "canonicalize",
+    "ssot_hash",
+    "RecoveredPythonCluster",
+    "top_clusters",
+    "search_clusters",
+    "main"
+  ],
+  "cluster_signals": {
+    "backup": 10,
+    "legacy": 1,
+    "test": 1,
+    "candidate": 5,
+    "recovered": 3
+  },
+  "consumption_log": [
+    {
+      "consumed": "scripts/chthonic.ps1.bak-20260316-181658",
+      "destination": "dumpster-dive\\intake\\scripts-restructure-2026-03-20\\bak\\chthonic.ps1.bak-20260316-181658",
+      "batch": "scripts-restructure-2026-03-20/bak",
+      "timestamp": "2026-03-21T03:20:38.243882+00:00"
+    },
+    {
+      "consumed": "scripts/chthonic.ps1.bak-20260316-185259",
+      "destination": "dumpster-dive\\intake\\scripts-restructure-2026-03-20\\bak\\chthonic.ps1.bak-20260316-185259",
+      "batch": "scripts-restructure-2026-03-20/bak",
+      "timestamp": "2026-03-21T03:20:38.424174+00:00"
+    },
+    {
+      "consumed": "scripts/chthonic.ps1.bak-20260316-190744",
+      "destination": "dumpster-dive\\intake\\scripts-restructure-2026-03-20\\bak\\chthonic.ps1.bak-20260316-190744",
+      "batch": "scripts-restructure-2026-03-20/bak",
+      "timestamp": "2026-03-21T03:20:38.606909+00:00"
+    },
+    {
+      "consumed": "scripts/chthonic.ps1.bak-20260316-193348",
+      "destination": "dumpster-dive\\intake\\scripts-restructure-2026-03-20\\bak\\chthonic.ps1.bak-20260316-193348",
+      "batch": "scripts-restructure-2026-03-20/bak",
+      "timestamp": "2026-03-21T03:20:38.790837+00:00"
+    },
+    {
+      "consumed": "scripts/chthonic.ps1.bak-20260316-193439",
+      "destination": "dumpster-dive\\intake\\scripts-restructure-2026-03-20\\bak\\chthonic.ps1.bak-20260316-193439",
+      "batch": "scripts-restructure-2026-03-20/bak",
+      "timestamp": "2026-03-21T03:20:38.989001+00:00"
+    },
+    {
+      "consumed": "scripts/chthonic.ps1.bak-20260316-193628",
+      "destination": "dumpster-dive\\intake\\scripts-restructure-2026-03-20\\bak\\chthonic.ps1.bak-20260316-193628",
+      "batch": "scripts-restructure-2026-03-20/bak",
+      "timestamp": "2026-03-21T03:20:39.174832+00:00"
+    },
+    {
+      "consumed": "scripts/probe_toolchain_path.ps1.bak-20260316-184959",
+      "destination": "dumpster-dive\\intake\\scripts-restructure-2026-03-20\\bak\\probe_toolchain_path.ps1.bak-20260316-184959",
+      "batch": "scripts-restructure-2026-03-20/bak",
+      "timestamp": "2026-03-21T03:20:39.363367+00:00"
+    },
+    {
+      "consumed": "scripts/probe_toolchain_path.ps1.bak-20260316-185111",
+      "destination": "dumpster-dive\\intake\\scripts-restructure-2026-03-20\\bak\\probe_toolchain_path.ps1.bak-20260316-185111",
+      "batch": "scripts-restructure-2026-03-20/bak",
+      "timestamp": "2026-03-21T03:20:39.548477+00:00"
+    },
+    {
+      "consumed": "scripts/probe_toolchain_path.ps1.bak-20260316-193348",
+      "destination": "dumpster-dive\\intake\\scripts-restructure-2026-03-20\\bak\\probe_toolchain_path.ps1.bak-20260316-193348",
+      "batch": "scripts-restructure-2026-03-20/bak",
+      "timestamp": "2026-03-21T03:20:39.730913+00:00"
+    },
+    {
+      "consumed": "scripts/probe_toolchain_path.ps1.bak-20260316-193439",
+      "destination": "dumpster-dive\\intake\\scripts-restructure-2026-03-20\\bak\\probe_toolchain_path.ps1.bak-20260316-193439",
+      "batch": "scripts-restructure-2026-03-20/bak",
+      "timestamp": "2026-03-21T03:20:39.913349+00:00"
+    },
+    {
+      "consumed": "scripts/wpth_repeatable_cycle_LEGACY",
+      "destination": "dumpster-dive\\intake\\scripts-restructure-2026-03-20\\legacy\\wpth_repeatable_cycle_LEGACY",
+      "batch": "scripts-restructure-2026-03-20/legacy",
+      "timestamp": "2026-03-21T03:20:45.283571+00:00"
+    },
+    {
+      "consumed": "claude_test.py",
+      "destination": "dumpster-dive\\intake\\scripts-restructure-2026-03-20\\root-strays\\claude_test.py",
+      "batch": "scripts-restructure-2026-03-20/root-strays",
+      "timestamp": "2026-03-21T03:20:52.004241+00:00"
+    },
+    {
+      "consumed": "get_hash.py",
+      "destination": "dumpster-dive\\intake\\scripts-restructure-2026-03-20\\root-strays\\get_hash.py",
+      "batch": "scripts-restructure-2026-03-20/root-strays",
+      "timestamp": "2026-03-21T03:20:52.187989+00:00"
+    },
+    {
+      "consumed": "purify_ssot.py",
+      "destination": "dumpster-dive\\intake\\scripts-restructure-2026-03-20\\root-strays\\purify_ssot.py",
+      "batch": "scripts-restructure-2026-03-20/root-strays",
+      "timestamp": "2026-03-21T03:20:52.375874+00:00"
+    },
+    {
+      "consumed": "strip_post_ssot.py",
+      "destination": "dumpster-dive\\intake\\scripts-restructure-2026-03-20\\root-strays\\strip_post_ssot.py",
+      "batch": "scripts-restructure-2026-03-20/root-strays",
+      "timestamp": "2026-03-21T03:20:52.559680+00:00"
+    },
+    {
+      "consumed": "strip_ssot.py",
+      "destination": "dumpster-dive\\intake\\scripts-restructure-2026-03-20\\root-strays\\strip_ssot.py",
+      "batch": "scripts-restructure-2026-03-20/root-strays",
+      "timestamp": "2026-03-21T03:20:52.746288+00:00"
+    },
+    {
+      "consumed": "strip_ssot_v2.py",
+      "destination": "dumpster-dive\\intake\\scripts-restructure-2026-03-20\\root-strays\\strip_ssot_v2.py",
+      "batch": "scripts-restructure-2026-03-20/root-strays",
+      "timestamp": "2026-03-21T03:20:52.934045+00:00"
+    },
+    {
+      "consumed": "scripts/recovered_batch_transliteration.ps1",
+      "destination": "dumpster-dive\\intake\\scripts-restructure-2026-03-20\\recovered\\recovered_batch_transliteration.ps1",
+      "batch": "scripts-restructure-2026-03-20/recovered",
+      "timestamp": "2026-03-21T03:22:51.158365+00:00"
+    },
+    {
+      "consumed": "scripts/recovered_python_cluster_registry.py",
+      "destination": "dumpster-dive\\intake\\scripts-restructure-2026-03-20\\recovered\\recovered_python_cluster_registry.py",
+      "batch": "scripts-restructure-2026-03-20/recovered",
+      "timestamp": "2026-03-21T03:22:51.768052+00:00"
+    },
+    {
+      "consumed": "scripts/recovered_shell_recipe_cli.go",
+      "destination": "dumpster-dive\\intake\\scripts-restructure-2026-03-20\\recovered\\recovered_shell_recipe_cli.go",
+      "batch": "scripts-restructure-2026-03-20/recovered",
+      "timestamp": "2026-03-21T03:22:52.214563+00:00"
+    }
+  ],
+  "last_updated": "2026-03-21T03:22:52.220218+00:00"
+}
