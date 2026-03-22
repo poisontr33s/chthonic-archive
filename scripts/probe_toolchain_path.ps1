@@ -34,54 +34,33 @@ $STATE_DIR = Join-Path $env:USERPROFILE ".chthonic"
 $CONFIG_FILE = Join-Path $STATE_DIR "config.json"
 
 # Resolve the best available RubyInstaller+DevKit root (prefer newest lane).
-function Get-RubyDevKitRoot {
-  $rvCandidates = @(
+function Get-RvExePath {
+  foreach ($candidate in @(
     (Join-Path $env:USERPROFILE ".cargo\bin\rvw.exe"),
     (Join-Path $env:USERPROFILE ".cargo\bin\rv.exe")
-  )
-
-  foreach ($rvExe in $rvCandidates) {
-    if (-not (Test-Path $rvExe)) { continue }
-    try {
-      $rubyExe = (& $rvExe ruby find 2>$null | Select-Object -First 1)
-      if (-not $rubyExe) { continue }
-
-      $rubyRoot = Split-Path (Split-Path $rubyExe -Parent) -Parent
-      $rvDevkit = Join-Path $rubyRoot "msys64\ucrt64\bin\gcc.exe"
-      if (Test-Path $rvDevkit) {
-        return $rubyRoot
-      }
-    } catch {}
-  }
-
-  $rubyRoots = @(
-    "C:\Ruby40-x64",
-    "D:\Ruby40-x64",
-    "C:\Ruby35-x64",
-    "D:\Ruby35-x64",
-    "C:\Ruby34-x64",
-    "D:\Ruby34-x64",
-    "C:\Ruby33-x64",
-    "D:\Ruby33-x64",
-    "C:\Ruby32-x64",
-    "D:\Ruby32-x64",
-    "C:\Ruby31-x64",
-    "D:\Ruby31-x64"
-  )
-
-  foreach ($root in $rubyRoots) {
-    if ([string]::IsNullOrWhiteSpace($root)) { continue }
-
-    $drive = [System.IO.Path]::GetPathRoot($root)
-    if ([string]::IsNullOrWhiteSpace($drive) -or -not (Test-Path $drive)) {
-      continue
-    }
-
-    $candidate = Join-Path $root "bin\ruby.exe"
+  )) {
     if (Test-Path $candidate) {
-      return $root
+      return $candidate
     }
   }
+
+  return $null
+}
+
+function Get-RubyDevKitRoot {
+  $rvExe = Get-RvExePath
+  if (-not $rvExe) { return $null }
+
+  try {
+    $rubyExe = (& $rvExe ruby find 2>$null | Select-Object -First 1)
+    if (-not $rubyExe) { return $null }
+
+    $rubyRoot = Split-Path (Split-Path $rubyExe -Parent) -Parent
+    $rvDevkit = Join-Path $rubyRoot "msys64\ucrt64\bin\gcc.exe"
+    if (Test-Path $rvDevkit) {
+      return $rubyRoot
+    }
+  } catch {}
 
   return $null
 }

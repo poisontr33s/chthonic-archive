@@ -48,12 +48,47 @@ function Complete-ChthonicCommand {
 # POLYGLOT PATHS - ALL GLOBAL NATIVE INSTALLATIONS (Win11)
 # ═══════════════════════════════════════════════════════════════════════════════
 
-# Resolve rv-managed Ruby bin directory (highest installed version).
+# Resolve rv-managed Ruby from rv itself, then fall back to managed ruby-* directories only.
+function Get-RvExePath {
+    foreach ($name in @("rvw", "rv.exe", "rv")) {
+        $cmd = Get-CommandResolution -Name $name
+        if (-not $cmd) { continue }
+
+        if ($cmd.Path) { return $cmd.Path }
+        if ($cmd.Definition -and (Test-Path $cmd.Definition)) { return $cmd.Definition }
+    }
+
+    return $null
+}
+
+function Get-RvRubyExePath {
+    $rvExe = Get-RvExePath
+    if (-not $rvExe) { return $null }
+
+    try {
+        $rubyExe = (& $rvExe ruby find 2>$null | Select-Object -First 1)
+        if ($rubyExe) {
+            $resolved = $rubyExe.ToString().Trim()
+            if ($resolved -and (Test-Path $resolved)) {
+                return $resolved
+            }
+        }
+    } catch {}
+
+    return $null
+}
+
 function Get-RvRubyBinDir {
+    $rubyExe = Get-RvRubyExePath
+    if ($rubyExe) {
+        return (Split-Path $rubyExe -Parent)
+    }
+
     $rvRubies = Join-Path $env:APPDATA "rv\rubies"
     if (-not (Test-Path $rvRubies)) { return $null }
 
-    $latest = Get-ChildItem $rvRubies -Directory |
+    $latest = Get-ChildItem $rvRubies -Directory -ErrorAction SilentlyContinue |
+        Where-Object { $_.Name -like "ruby-*" } |
         Sort-Object Name -Descending |
         Select-Object -First 1
     if ($latest) {
@@ -66,48 +101,24 @@ function Get-RvRubyBinDir {
 # Resolve the best available RubyInstaller DevKit root (for MSYS2/UCRT64 toolchain).
 # Note: rv manages Ruby versions; RubyInstaller provides the DevKit (gcc, make, etc.).
 function Get-RubyDevKitRoot {
-    $rvCmd = Get-CommandResolution -Name "rvw"
-    if (-not $rvCmd) {
-        $rvCmd = Get-CommandResolution -Name "rv.exe"
-    }
-    if (-not $rvCmd) {
-        $rvCmd = Get-CommandResolution -Name "rv"
-    }
-
-    if ($rvCmd) {
-        try {
-            $rvExe = if ($rvCmd.Path) { $rvCmd.Path } elseif ($rvCmd.Definition -and (Test-Path $rvCmd.Definition)) { $rvCmd.Definition } else { $null }
-            if ($rvExe) {
-                $rubyExe = (& $rvExe ruby find 2>$null | Select-Object -First 1)
-                if ($rubyExe) {
-                    $rubyRoot = Split-Path (Split-Path $rubyExe -Parent) -Parent
-                    $rvDevkit = Join-Path $rubyRoot "msys64\ucrt64\bin\gcc.exe"
-                    if (Test-Path $rvDevkit) {
-                        return $rubyRoot
-                    }
-                }
-            }
-        } catch {}
-    }
-
-    $devkitRoots = @(
-        "C:\Ruby40-x64",
-        "D:\Ruby40-x64",
-        "C:\Ruby35-x64",
-        "D:\Ruby35-x64"
-    )
-
-    foreach ($root in $devkitRoots) {
-        if ([string]::IsNullOrWhiteSpace($root)) { continue }
-
-        $drive = [System.IO.Path]::GetPathRoot($root)
-        if ([string]::IsNullOrWhiteSpace($drive) -or -not (Test-Path $drive)) {
-            continue
+    $rubyExe = Get-RvRubyExePath
+    if ($rubyExe) {
+        $rubyRoot = Split-Path (Split-Path $rubyExe -Parent) -Parent
+        $rvDevkit = Join-Path $rubyRoot "msys64\ucrt64\bin\gcc.exe"
+        if (Test-Path $rvDevkit) {
+            return $rubyRoot
         }
+    }
 
-        $candidate = Join-Path $root "msys64\ucrt64\bin\gcc.exe"
-        if (Test-Path $candidate) {
-            return $root
+    $rvRubies = Join-Path $env:APPDATA "rv\rubies"
+    if (Test-Path $rvRubies) {
+        foreach ($root in (Get-ChildItem $rvRubies -Directory -ErrorAction SilentlyContinue |
+                Where-Object { $_.Name -like "ruby-*" } |
+                Sort-Object Name -Descending)) {
+            $candidate = Join-Path $root.FullName "msys64\ucrt64\bin\gcc.exe"
+            if (Test-Path $candidate) {
+                return $root.FullName
+            }
         }
     }
 
