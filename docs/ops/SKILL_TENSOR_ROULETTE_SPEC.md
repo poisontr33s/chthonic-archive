@@ -11,7 +11,7 @@ This spec is regenerated from the live tensor artifacts. It is the canonical anc
 
 ## Live Cycle State
 
-- Latest execution status: `failed`
+- Latest execution status: `passed`
 - Inventory skill count: `92`
 - Full move count: `76176`
 - Legal moves: `5580`
@@ -24,8 +24,8 @@ This spec is regenerated from the live tensor artifacts. It is the canonical anc
 - Current diversity score: `0.9091`
 - Current cross-lane coverage: `1.0`
 - Current distinct sampled action keys: `4`
-- Current history-pruned exact cells: `24`
-- Current history-pruned action keys: `24`
+- Current history-pruned exact cells: `4`
+- Current history-pruned action keys: `4`
 
 ## Core Objects
 
@@ -160,7 +160,7 @@ Outputs:
 
 ### Phase 5: Sampled-Chain Executor
 
-Status: `IN PROGRESS`
+Status: `DONE`
 
 Current refinements:
 

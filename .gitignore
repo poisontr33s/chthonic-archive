@@ -315,6 +315,7 @@ book/
 
 # Re-exclude transient artifacts AFTER the allow-all rules above
 codex/mailbox/.tmp_fixture_eval/
+codex/mailbox/.tensor_debug/
 
 gha-creds-*.json
 claude/SESSION_HANDOFF_2026_02_01_TO_CLAUDE.md

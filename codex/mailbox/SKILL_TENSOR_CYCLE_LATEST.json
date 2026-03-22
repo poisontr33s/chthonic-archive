@@ -1,6 +1,6 @@
 {
   "schema_version": 2,
-  "overall_status": "failed",
+  "overall_status": "passed",
   "queue_length": 11,
   "stage_queue": [
     "inventory",
@@ -19,7 +19,7 @@
     "ledger_path": "codex/mailbox/.tmp_tensor_cycle/SKILL_TENSOR_LEDGER.json",
     "ledger_existed": true,
     "ledger_initialized": false,
-    "entries_before_run": 15
+    "entries_before_run": 0
   },
   "freshness": {
     "status": "FAIL",
@@ -85,7 +85,7 @@
       "name": "inventory",
       "cmd": [],
       "rc": 0,
-      "seconds": 0.023,
+      "seconds": 0.015,
       "status": "passed",
       "stdout_tail": "codex/mailbox/.tmp_tensor_cycle/SKILL_TENSOR_INVENTORY.json",
       "stderr_tail": ""
@@ -94,7 +94,7 @@
       "name": "universe",
       "cmd": [],
       "rc": 0,
-      "seconds": 0.358,
+      "seconds": 0.3,
       "status": "passed",
       "stdout_tail": "codex/mailbox/.tmp_tensor_cycle/SKILL_TENSOR_UNIVERSE_LATEST.json",
       "stderr_tail": ""
@@ -103,7 +103,7 @@
       "name": "legality",
       "cmd": [],
       "rc": 0,
-      "seconds": 0.253,
+      "seconds": 0.206,
       "status": "passed",
       "stdout_tail": "codex/mailbox/.tmp_tensor_cycle/SKILL_TENSOR_LEGALITY_LATEST.json",
       "stderr_tail": ""
@@ -112,7 +112,7 @@
       "name": "pool",
       "cmd": [],
       "rc": 0,
-      "seconds": 0.607,
+      "seconds": 0.564,
       "status": "passed",
       "stdout_tail": "codex/mailbox/.tmp_tensor_cycle/SKILL_TENSOR_POOL.json",
       "stderr_tail": ""
@@ -121,16 +121,16 @@
       "name": "ledger-bootstrap",
       "cmd": [],
       "rc": 0,
-      "seconds": 0.007,
+      "seconds": 0.005,
       "status": "passed",
-      "stdout_tail": "{\"entries_before_run\": 15, \"ledger_existed\": true, \"ledger_initialized\": false, \"ledger_path\": \"codex/mailbox/.tmp_tensor_cycle/SKILL_TENSOR_LEDGER.json\"}",
+      "stdout_tail": "{\"entries_before_run\": 0, \"ledger_existed\": true, \"ledger_initialized\": false, \"ledger_path\": \"codex/mailbox/.tmp_tensor_cycle/SKILL_TENSOR_LEDGER.json\"}",
       "stderr_tail": ""
     },
     {
       "name": "weights",
       "cmd": [],
       "rc": 0,
-      "seconds": 0.153,
+      "seconds": 0.156,
       "status": "passed",
       "stdout_tail": "codex/mailbox/.tmp_tensor_cycle/SKILL_TENSOR_WEIGHTS_LATEST.json",
       "stderr_tail": ""
@@ -139,7 +139,7 @@
       "name": "roulette",
       "cmd": [],
       "rc": 0,
-      "seconds": 0.292,
+      "seconds": 0.307,
       "status": "passed",
       "stdout_tail": "codex/mailbox/.tmp_tensor_cycle/SKILL_TENSOR_ROULETTE_LATEST.json",
       "stderr_tail": ""
@@ -148,7 +148,7 @@
       "name": "plan",
       "cmd": [],
       "rc": 0,
-      "seconds": 0.009,
+      "seconds": 0.008,
       "status": "passed",
       "stdout_tail": "codex/mailbox/.tmp_tensor_cycle/SKILL_TENSOR_PLAN_LATEST.json",
       "stderr_tail": ""
@@ -157,7 +157,7 @@
       "name": "ledger",
       "cmd": [],
       "rc": 0,
-      "seconds": 0.009,
+      "seconds": 0.006,
       "status": "passed",
       "stdout_tail": "codex/mailbox/.tmp_tensor_cycle/SKILL_TENSOR_LEDGER.json",
       "stderr_tail": ""
@@ -165,17 +165,17 @@
     {
       "name": "execute",
       "cmd": [],
-      "rc": 2,
-      "seconds": 7.493,
-      "status": "failed",
+      "rc": 0,
+      "seconds": 23.892,
+      "status": "passed",
       "stdout_tail": "codex/mailbox/.tmp_tensor_cycle/SKILL_TENSOR_EXECUTION_LATEST.json",
-      "stderr_tail": "execution:failed"
+      "stderr_tail": ""
     },
     {
       "name": "feedback",
       "cmd": [],
       "rc": 0,
-      "seconds": 0.239,
+      "seconds": 0.148,
       "status": "passed",
       "stdout_tail": "codex/mailbox/.tmp_tensor_cycle/SKILL_TENSOR_LEDGER.json",
       "stderr_tail": ""
@@ -300,22 +300,22 @@
     },
     "execution": {
       "path": "codex/mailbox/.tmp_tensor_cycle/SKILL_TENSOR_EXECUTION_LATEST.json",
-      "overall_status": "failed",
-      "result_count": 2
+      "overall_status": "passed",
+      "result_count": 4
     },
     "ledger": {
       "path": "codex/mailbox/.tmp_tensor_cycle/SKILL_TENSOR_LEDGER.json",
       "ledger_mode": "bounded-history-v1",
       "max_runs": 15,
-      "run_count": 15,
-      "latest_execution_status": "failed",
+      "run_count": 1,
+      "latest_execution_status": "passed",
       "latest_seed_text": "trainstop-default-seed"
     },
     "weights": {
       "path": "codex/mailbox/.tmp_tensor_cycle/SKILL_TENSOR_WEIGHTS_LATEST.json",
-      "recent_entry_count": 15,
-      "pruned_action_key_count": 24,
-      "pruned_exact_cell_count": 24
+      "recent_entry_count": 1,
+      "pruned_action_key_count": 4,
+      "pruned_exact_cell_count": 4
     }
   }
 }
