@@ -75,7 +75,7 @@ Every consumed file's SHA-256 prefix is stored. On the next `bite()`, if the con
 
 **Source pattern:** [skill_tensor_cycle.py:1679-1706](../../scripts/skill_tensor_cycle.py) — `apply_feedback()`
 
-**What it does:** Closes the loop between zombie consumption and [Sister Ferrum Scoriae's Forge](../../dumpster-dive/DUMPSTER_DIVE_REGISTRY.json):
+**What it does:** Closes the loop between zombie consumption and [Sister Ferrum Scoriae's Forge](../../dumpster-dive/DUMPSTER_DIVE_REGISTRY.json)
 
 ```
 ZOMBIE feeds → dumpster-dive/intake/

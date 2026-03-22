@@ -1222,6 +1222,13 @@ def _copy_tree(src: Path, dst: Path) -> None:
         out.write_bytes(p.read_bytes())
 
 
+def _materialize_fixture_skill_files(skill_copy: Path) -> None:
+    fixture_skill = skill_copy / "SKILL.fixture.md"
+    live_skill = skill_copy / "SKILL.md"
+    if fixture_skill.exists() and not live_skill.exists():
+        live_skill.write_text(fixture_skill.read_text(encoding="utf-8"), encoding="utf-8")
+
+
 def fixture_eval(fixtures_root: Path) -> int:
     """
     FIXTURE_EVAL_V1
@@ -1274,6 +1281,7 @@ def fixture_eval(fixtures_root: Path) -> int:
 
         skill_copy = tmp_root / fixture_dir.name
         _copy_tree(fixture_dir, skill_copy)
+        _materialize_fixture_skill_files(skill_copy)
 
         addict = PolisherAddict(skill_copy)
         addict.target_flavor = target_flavor
