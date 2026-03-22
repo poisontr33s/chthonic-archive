@@ -9,39 +9,33 @@ param(
 
 $ErrorActionPreference = 'Stop'
 
-function Get-PwshVersion {
-    param([string]$Path)
-
-    if (-not (Test-Path $Path)) { return $null }
-    try {
-        $raw = & $Path -NoLogo -NoProfile -Command '$PSVersionTable.PSVersion.ToString()' 2>$null
-        if ($raw) {
-            return [version]($raw | Select-Object -First 1).ToString().Trim()
-        }
-    } catch {}
-
-    return $null
-}
-
 $scriptPath = Join-Path $PSScriptRoot 'elevated_bridge.ps1'
 if (-not $PwshPath) {
-    $candidates = @()
-
-    foreach ($candidate in @(
-        'C:\Program Files\PowerShell\7\pwsh.exe',
-        (Join-Path $env:LOCALAPPDATA 'Microsoft\WindowsApps\pwsh.exe')
-    )) {
-        $version = Get-PwshVersion -Path $candidate
-        if ($version) {
-            $candidates += [pscustomobject]@{
-                Path = $candidate
-                Version = $version
-            }
-        }
-    }
+    $candidates = @(
+        Get-ChildItem 'C:\Program Files\PowerShell' -Directory -ErrorAction SilentlyContinue |
+            ForEach-Object { Join-Path $_.FullName 'pwsh.exe' } |
+            Where-Object { Test-Path $_ }
+    )
 
     if ($candidates.Count -gt 0) {
-        $PwshPath = ($candidates | Sort-Object Version -Descending | Select-Object -First 1).Path
+        $versionedCandidates = $candidates | ForEach-Object {
+            $parentDir = Split-Path (Split-Path $_ -Parent) -Leaf
+            $parsedVersion = $null
+            if ([version]::TryParse($parentDir, [ref]$parsedVersion)) {
+                [pscustomobject]@{
+                    Path    = $_
+                    Version = $parsedVersion
+                }
+            }
+        } | Where-Object { $_ -ne $null }
+
+        if ($versionedCandidates.Count -gt 0) {
+            $PwshPath = $versionedCandidates |
+                Sort-Object Version -Descending |
+                Select-Object -First 1 -ExpandProperty Path
+        } else {
+            $PwshPath = (Get-Command pwsh).Source
+        }
     } else {
         $PwshPath = (Get-Command pwsh).Source
     }
