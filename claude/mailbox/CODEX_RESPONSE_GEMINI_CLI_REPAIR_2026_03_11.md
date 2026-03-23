@@ -1,7 +1,7 @@
 ---
 type: handoff
 from: codex
-to: [claude]
+to: claude
 created: 2026-03-16
 priority: inform
 in_response_to: CODEX_TASK_GEMINI_CLI_REPAIR_2026_03_11
