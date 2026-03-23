@@ -867,6 +867,7 @@ Usage: chthonic [--version] [--help] <domain> [<action>] [<args>]
   doctor --origins        Show install methodology per tool (path + origin + wrappers)
   detect                  Detect IDE and environment context
   ruby versions|tools|lane|doctor|search|install|upgrade  Ruby lane via rv + RubyGems
+  graphics lane|status    GPU / Vulkan / shader / MSVC lane snapshot
 
   ide launch|detect|reset IDE management
   mcp start|stop|status   MCP + bridge services
@@ -2898,6 +2899,202 @@ function Invoke-RubyLane {
     Write-Host ""
 }
 
+function Get-DirectorySizeBytes {
+    param([string]$Path)
+
+    if (-not (Test-Path $Path)) { return $null }
+
+    try {
+        return (Get-ChildItem -LiteralPath $Path -Recurse -File -ErrorAction SilentlyContinue | Measure-Object Length -Sum).Sum
+    } catch {
+        return $null
+    }
+}
+
+function Get-GraphicsShaderSources {
+    $roots = @(
+        (Join-Path $REPO_ROOT "assets\shaders"),
+        (Join-Path $REPO_ROOT "extensions\chthonic-archive\native\chthonic-daemon\src\shaders")
+    )
+
+    $sources = @()
+    foreach ($root in $roots) {
+        if (-not (Test-Path $root)) { continue }
+        $sources += Get-ChildItem -LiteralPath $root -Recurse -File -ErrorAction SilentlyContinue | ForEach-Object {
+            [pscustomobject]@{
+                root = $root
+                name = $_.Name
+                path = $_.FullName
+                ext = $_.Extension
+            }
+        }
+    }
+
+    return @($sources | Sort-Object path)
+}
+
+function Invoke-GraphicsLane {
+    param([switch]$Json)
+
+    $glslcPath = Get-CommandPathFlexible -Name "glslc"
+    $glslcVersion = $null
+    if ($glslcPath) {
+        try {
+            $glslcOut = & $glslcPath --version 2>$null
+            if ($glslcOut) {
+                $glslcVersion = ($glslcOut | Select-Object -First 1).ToString().Trim()
+            }
+        } catch {}
+    }
+
+    $dxcPath = Get-CommandPathFlexible -Name "dxc"
+    $dxcVersion = $null
+    if ($dxcPath) {
+        try {
+            $dxcOut = & $dxcPath -help 2>$null
+            $dxcVersion = (($dxcOut | Where-Object { $_ -match '^Version:' } | Select-Object -First 1).ToString().Trim())
+        } catch {}
+    }
+
+    $nvccPath = Get-CommandPathFlexible -Name "nvcc"
+    $nvccVersion = $null
+    if ($nvccPath) {
+        try {
+            $nvccOut = & $nvccPath --version 2>$null
+            if (($nvccOut -join "`n") -match 'release\s+([0-9]+\.[0-9]+),\s+V([0-9][^\s]+)') {
+                $nvccVersion = "CUDA $($matches[1]) / nvcc $($matches[2])"
+            }
+        } catch {}
+    }
+
+    $clPath = Get-VSClExePath
+    $msbuildPath = Get-VSMsBuildExePath
+    $vsInsiders = Get-VSInstallationPath -ProductId "Microsoft.VisualStudio.Product.Community"
+    $devenvPath = if ($vsInsiders) {
+        $candidate = Join-Path $vsInsiders "Common7\IDE\devenv.exe"
+        if (Test-Path $candidate) { $candidate } else { $null }
+    } else { $null }
+
+    $cudnnDirs = @(
+        Get-ChildItem "C:\Program Files\NVIDIA\CUDNN" -Directory -ErrorAction SilentlyContinue |
+            Sort-Object Name |
+            ForEach-Object { $_.FullName }
+    )
+
+    $tensorRtDirs = @(
+        Get-ChildItem "C:\Program Files\NVIDIA" -Directory -ErrorAction SilentlyContinue |
+            Where-Object { $_.Name -like "TensorRT*" } |
+            Sort-Object Name |
+            ForEach-Object { $_.FullName }
+    )
+
+    $cacheTargets = @(
+        [pscustomobject]@{ name = "DXCache"; path = (Join-Path $env:LOCALAPPDATA "NVIDIA\DXCache") },
+        [pscustomobject]@{ name = "GLCache"; path = (Join-Path $env:LOCALAPPDATA "NVIDIA\GLCache") },
+        [pscustomobject]@{ name = "ComputeCache"; path = (Join-Path $env:LOCALAPPDATA "NVIDIA\ComputeCache") },
+        [pscustomobject]@{ name = "D3DSCache"; path = (Join-Path $env:LOCALAPPDATA "D3DSCache") }
+    ) | ForEach-Object {
+        [pscustomobject]@{
+            name = $_.name
+            path = $_.path
+            exists = Test-Path $_.path
+            size_bytes = Get-DirectorySizeBytes $_.path
+        }
+    }
+
+    $shaderSources = @(Get-GraphicsShaderSources)
+    $videoControllers = @(
+        Get-CimInstance Win32_VideoController -ErrorAction SilentlyContinue |
+            Select-Object Name, DriverVersion, AdapterRAM
+    )
+
+    $systemInfo = Get-CimInstance Win32_ComputerSystem -ErrorAction SilentlyContinue |
+        Select-Object Manufacturer, Model, TotalPhysicalMemory
+
+    $payload = [pscustomobject]@{
+        host = [pscustomobject]@{
+            manufacturer = $systemInfo.Manufacturer
+            model = $systemInfo.Model
+            total_physical_memory = $systemInfo.TotalPhysicalMemory
+        }
+        gpu = [pscustomobject]@{
+            controllers = $videoControllers
+            nvidia_smi_driver = $null
+            cuda_driver_version = $null
+        }
+        graphics = [pscustomobject]@{
+            vulkan_sdk = $env:VULKAN_SDK
+            glslc_path = $glslcPath
+            glslc_version = $glslcVersion
+            dxc_path = $dxcPath
+            dxc_version = $dxcVersion
+        }
+        compute = [pscustomobject]@{
+            nvcc_path = $nvccPath
+            nvcc_version = $nvccVersion
+            cuda_path = $env:CUDA_PATH
+            cudnn_dirs = $cudnnDirs
+            tensorrt_dirs = $tensorRtDirs
+        }
+        msvc = [pscustomobject]@{
+            cl_path = $clPath
+            msbuild_path = $msbuildPath
+            devenv_path = $devenvPath
+        }
+        shaders = [pscustomobject]@{
+            source_count = $shaderSources.Count
+            sources = $shaderSources
+        }
+        caches = $cacheTargets
+        repo = [pscustomobject]@{
+            vs_dir_exists = (Test-Path (Join-Path $REPO_ROOT ".vs"))
+            vscode_dir_exists = (Test-Path (Join-Path $REPO_ROOT ".vscode"))
+        }
+    }
+
+    try {
+        $nvidiaOut = & nvidia-smi 2>$null
+        if (($nvidiaOut -join "`n") -match 'Driver Version:\s*([0-9\.]+)\s+CUDA Version:\s*([0-9\.]+)') {
+            $payload.gpu.nvidia_smi_driver = $matches[1]
+            $payload.gpu.cuda_driver_version = $matches[2]
+        }
+    } catch {}
+
+    if ($Json) {
+        Write-Output (ConvertTo-Json $payload -Depth 8)
+        return
+    }
+
+    Write-Host ""
+    Write-Host "CHTHONIC GRAPHICS LANE" -ForegroundColor Cyan
+    Write-Host ("="*72) -ForegroundColor DarkGray
+    Write-Host "  host     " -NoNewline -ForegroundColor Cyan
+    Write-Host ("{0} / {1}" -f $payload.host.manufacturer, $payload.host.model) -ForegroundColor White
+    Write-Host "  gpu      " -NoNewline -ForegroundColor Cyan
+    Write-Host ($(if ($payload.gpu.controllers.Count -gt 0) { $payload.gpu.controllers[0].Name } else { "not found" })) -ForegroundColor White
+    Write-Host "  vulkan   " -NoNewline -ForegroundColor Cyan
+    Write-Host ($(if ($payload.graphics.vulkan_sdk) { $payload.graphics.vulkan_sdk } else { "not found" })) -ForegroundColor White
+    Write-Host "  glslc    " -NoNewline -ForegroundColor Cyan
+    Write-Host ($(if ($payload.graphics.glslc_version) { $payload.graphics.glslc_version } else { "not found" })) -ForegroundColor White
+    Write-Host "  dxc      " -NoNewline -ForegroundColor Cyan
+    Write-Host ($(if ($payload.graphics.dxc_version) { $payload.graphics.dxc_version } else { "not found" })) -ForegroundColor White
+    Write-Host "  nvcc     " -NoNewline -ForegroundColor Cyan
+    Write-Host ($(if ($payload.compute.nvcc_version) { $payload.compute.nvcc_version } else { "not found" })) -ForegroundColor White
+    Write-Host "  msvc     " -NoNewline -ForegroundColor Cyan
+    Write-Host ($(if ($payload.msvc.cl_path) { $payload.msvc.cl_path } else { "not found" })) -ForegroundColor DarkGray
+    Write-Host "  shaders  " -NoNewline -ForegroundColor Cyan
+    Write-Host $payload.shaders.source_count -ForegroundColor White
+    foreach ($shader in $payload.shaders.sources) {
+        Write-Host "    - $($shader.path)" -ForegroundColor DarkGray
+    }
+    Write-Host "  caches   " -NoNewline -ForegroundColor Cyan
+    Write-Host $payload.caches.Count -ForegroundColor White
+    foreach ($cache in $payload.caches) {
+        Write-Host ("    - {0}: {1}" -f $cache.name, $(if ($cache.exists) { $cache.size_bytes } else { "missing" })) -ForegroundColor DarkGray
+    }
+    Write-Host ""
+}
+
 function Invoke-RubySearch {
     param([string[]]$RubyArgs, [switch]$Json)
 
@@ -3110,6 +3307,20 @@ switch ($Domain) {
                 Write-Host "  search <query>      - search RubyGems.org"
                 Write-Host "  install <gem>       - install via rv tool install (defaults to RubyGems.org)"
                 Write-Host "    flags: --rubygems | --coop | --server <url> | --force"
+                exit 0
+            }
+        }
+    }
+    "graphics" {
+        switch ($Action) {
+            { $_ -in $null, "", "lane", "status" } {
+                Invoke-GraphicsLane -Json:$HasJsonFlag
+                exit 0
+            }
+            default {
+                Write-Host 'chthonic graphics <action>'
+                Write-Host "  lane              - GPU / Vulkan / MSVC / shader lane summary"
+                Write-Host "  lane --json       - same payload as JSON"
                 exit 0
             }
         }

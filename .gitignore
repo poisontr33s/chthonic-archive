@@ -5,6 +5,7 @@
 !.gitignore
 !.copilotignore
 !.gitattributes
+!rust-toolchain.toml
 
 # Allow PR/patch suggestions
 !PR_SUGGESTION.md
