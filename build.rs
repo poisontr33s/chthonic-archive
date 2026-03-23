@@ -23,12 +23,15 @@ enum ShaderCompilerBackend {
 
 fn main() {
     println!("cargo:rerun-if-changed=assets/shaders/");
+    println!("cargo:rerun-if-changed=assets/shaders/hlsl/");
     println!("cargo:rerun-if-changed=build.rs");
     println!("cargo:rerun-if-env-changed=CHTHONIC_SHADER_BACKEND");
 
     let shader_dir = PathBuf::from("assets/shaders");
+    let hlsl_dir = shader_dir.join("hlsl");
     let out_dir = PathBuf::from(env::var("OUT_DIR").unwrap());
     let backend = select_shader_compiler_backend();
+    let dxc = detect_dxc();
 
     // shaderc fallback context: used only when glslc is unavailable or forced off.
     let (shaderc_compiler, shaderc_options) = if matches!(backend, ShaderCompilerBackend::Shaderc)
@@ -83,6 +86,32 @@ fn main() {
     let manifest_path = out_dir.join("shader_manifest.txt");
     fs::write(&manifest_path, manifest.join("\n"))
         .unwrap_or_else(|_| panic!("Failed to write shader manifest: {}", manifest_path.display()));
+
+    let hlsl_sources = discover_hlsl_sources(&hlsl_dir);
+    if !hlsl_sources.is_empty() && dxc.is_none() {
+        println!(
+            "cargo:warning=⚠️ HLSL sources discovered in {} but `dxc` was not found; HLSL runtime selection will be unavailable",
+            hlsl_dir.display()
+        );
+    }
+
+    for source_path in hlsl_sources {
+        let profile = hlsl_profile_for_path(&source_path)
+            .unwrap_or_else(|| panic!("Unsupported HLSL shader stage: {}", source_path.display()));
+        let out_path = compile_hlsl_shader(dxc.as_deref(), &source_path, profile, &out_dir);
+
+        let relative = source_path.strip_prefix(&shader_dir).unwrap_or(&source_path);
+        let source_key = relative.to_string_lossy().replace('\\', "/");
+        let artifact_name = out_path
+            .file_name()
+            .map_or_else(|| String::from(""), |n| n.to_string_lossy().into_owned());
+        println!("cargo:rerun-if-changed={}", source_path.display());
+        fs::write(
+            out_dir.join(format!("{artifact_name}.meta")),
+            format!("{source_key}\nprofile={profile}\n"),
+        )
+        .unwrap_or_else(|_| panic!("Failed to write HLSL artifact metadata for {}", source_path.display()));
+    }
 }
 
 fn select_shader_compiler_backend() -> ShaderCompilerBackend {
@@ -113,6 +142,16 @@ fn detect_glslc() -> Option<PathBuf> {
     }
 }
 
+fn detect_dxc() -> Option<PathBuf> {
+    let dxc = PathBuf::from("dxc");
+    let output = Command::new(&dxc).arg("-help").output().ok()?;
+    if output.status.success() {
+        Some(dxc)
+    } else {
+        None
+    }
+}
+
 fn compile_shader(
     backend: &ShaderCompilerBackend,
     compiler: Option<&shaderc::Compiler>,
@@ -136,6 +175,58 @@ fn compile_shader(
             kind,
             &out_path,
         ),
+    }
+
+    out_path
+}
+
+fn compile_hlsl_shader(
+    dxc_path: Option<&Path>,
+    source_path: &Path,
+    profile: &'static str,
+    out_dir: &Path,
+) -> PathBuf {
+    let out_name = format!(
+        "{}.spv",
+        source_path
+            .file_name()
+            .and_then(|name| name.to_str())
+            .unwrap_or("shader.hlsl")
+    );
+    let out_path = out_dir.join(out_name);
+
+    let Some(dxc_path) = dxc_path else {
+        return out_path;
+    };
+
+    let output = Command::new(dxc_path)
+        .arg("-spirv")
+        .arg("-fspv-target-env=vulkan1.3")
+        .arg("-E")
+        .arg("main")
+        .arg("-T")
+        .arg(profile)
+        .arg("-Fo")
+        .arg(&out_path)
+        .arg(source_path)
+        .output()
+        .unwrap_or_else(|_| panic!("Failed to execute dxc for {}", source_path.display()));
+
+    let stderr = String::from_utf8_lossy(&output.stderr);
+    if !output.status.success() {
+        let stdout = String::from_utf8_lossy(&output.stdout);
+        panic!(
+            "🔥 DXC COMPILATION FAILED: {}\nstdout:\n{}\nstderr:\n{}",
+            source_path.display(),
+            stdout,
+            stderr
+        );
+    }
+
+    for line in stderr.lines() {
+        if line.to_ascii_lowercase().contains("warning") {
+            println!("cargo:warning={line}");
+        }
     }
 
     out_path
@@ -256,6 +347,36 @@ fn discover_shader_sources(shader_dir: &Path) -> Vec<PathBuf> {
     sources
 }
 
+fn discover_hlsl_sources(shader_dir: &Path) -> Vec<PathBuf> {
+    if !shader_dir.exists() {
+        return Vec::new();
+    }
+
+    let mut sources = Vec::new();
+    let mut stack = vec![shader_dir.to_path_buf()];
+
+    while let Some(dir) = stack.pop() {
+        let entries = fs::read_dir(&dir)
+            .unwrap_or_else(|_| panic!("Failed to read HLSL shader directory: {}", dir.display()));
+
+        for entry in entries {
+            let entry = entry.unwrap_or_else(|_| panic!("Failed to read directory entry in {}", dir.display()));
+            let path = entry.path();
+            if path.is_dir() {
+                stack.push(path);
+                continue;
+            }
+
+            if path.is_file() && hlsl_profile_for_path(&path).is_some() {
+                sources.push(path);
+            }
+        }
+    }
+
+    sources.sort();
+    sources
+}
+
 fn output_shader_artifact_name(shader_root: &Path, source_path: &Path) -> String {
     let relative = source_path.strip_prefix(shader_root).unwrap_or(source_path);
     let relative_norm = relative.to_string_lossy().replace('\\', "/");
@@ -311,6 +432,22 @@ fn shader_kind_for_path(path: &Path) -> Option<shaderc::ShaderKind> {
     }
     if file_name.ends_with(".mesh") || file_name.ends_with(".mesh.glsl") {
         return Some(shaderc::ShaderKind::Mesh);
+    }
+
+    None
+}
+
+fn hlsl_profile_for_path(path: &Path) -> Option<&'static str> {
+    let file_name = path.file_name()?.to_str()?.to_ascii_lowercase();
+
+    if file_name.ends_with(".vert.hlsl") {
+        return Some("vs_6_0");
+    }
+    if file_name.ends_with(".frag.hlsl") {
+        return Some("ps_6_0");
+    }
+    if file_name.ends_with(".comp.hlsl") {
+        return Some("cs_6_0");
     }
 
     None

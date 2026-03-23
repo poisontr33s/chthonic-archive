@@ -4,7 +4,7 @@ title: Oxidized Toolchain — Command Cheatsheet & Cross-Tool Pattern Map
 type: reference
 status: canonical
 created: 2026-03-11
-updated: 2026-03-22 (Windows Ruby 4.0.2 migration + ridk sequencing + rv tool/gem split + PowerShell alias note)
+updated: 2026-03-23 (Windows Ruby 4.0.2 + OpenSSL + Agave/Anchor lane repairs)
 authors:
   - Claude
 audience:
@@ -29,6 +29,7 @@ tags:
 > Structure: cross-tool pattern map first (find by concept), per-tool quick ref second.
 > Full command surfaces: documented in source READMEs — this surfaces the non-obvious.
 > Rationale: [OXIDIZED_TOOLCHAIN_RATIONALE.md](OXIDIZED_TOOLCHAIN_RATIONALE.md)
+> Migration memory: [LAPTOP_TO_DESKTOP_EMIGRATION.md](../codex/artifacts/LAPTOP_TO_DESKTOP_EMIGRATION.md)
 > Local note: `uv`, `rv`, `goup`, `bun`, `cargo`, `brush`, `zv`, and `rv-r` are installed here. `rig` is documented, but not currently installed on this workstation.
 
 ---
@@ -476,6 +477,71 @@ This was validated locally with:
 - prefer `brush --sh -c '...'` only when you explicitly want to probe `/bin/sh`-style compatibility
 - for Windows batch probes, prefer builtins or absolute `.exe` paths over bare external command names
 - do not assume `--posix` and `--sh` are interchangeable
+
+---
+
+### Agave / Solana CLI
+
+```
+solana --version                    # show installed Solana CLI version
+agave-install --version             # show installed Agave installer/update lane
+where.exe solana
+where.exe agave-install
+```
+
+**Windows lane note:**
+- In this workstation pass, the official Agave Windows installer required elevation.
+- The working non-admin fallback was the official prebuilt Windows Agave release bundle, which already contained both:
+  - `solana.exe`
+  - `agave-install.exe`
+- User-scoped bundle path used here:
+  - `C:\Users\<user>\AppData\Local\solana\install\releases\v3.1.9\solana-release\bin`
+
+**Verified locally:**
+- `solana-cli 3.1.9`
+- `agave-install 3.1.9`
+
+---
+
+### AVM / Anchor
+
+```
+avm install latest                 # install latest Anchor CLI via AVM
+avm use latest                     # activate latest Anchor CLI
+anchor --version                   # verify active Anchor CLI
+where.exe avm
+where.exe anchor
+```
+
+**Windows lane note:**
+- `avm` installation landed in Cargo's bin lane (`.cargo\bin`).
+- On Windows without symlink privilege, `avm use latest` can fall back from symlink to copy.
+- That fallback is acceptable as long as `anchor --version` resolves afterward.
+
+**Verified locally:**
+- `anchor-cli 0.32.1`
+
+---
+
+### OpenSSL / Native Cargo on Windows
+
+If a native Rust crate on MSVC fails on `openssl-sys`, bind a real Windows OpenSSL install instead of assuming Visual Studio handled it:
+
+```powershell
+[Environment]::SetEnvironmentVariable('OPENSSL_DIR', 'C:\Program Files\OpenSSL-Win64', 'User')
+[Environment]::SetEnvironmentVariable('OPENSSL_INCLUDE_DIR', 'C:\Program Files\OpenSSL-Win64\include', 'User')
+[Environment]::SetEnvironmentVariable('OPENSSL_LIB_DIR', 'C:\Program Files\OpenSSL-Win64\lib\VC\x64\MD', 'User')
+[Environment]::SetEnvironmentVariable('OPENSSL_NO_VENDOR', '1', 'User')
+[Environment]::SetEnvironmentVariable('VCPKG_ROOT', 'C:\Users\<user>\vcpkg', 'User')
+```
+
+**Do not rely on:**
+- vendored OpenSSL via MSYS/Cygwin Perl on an MSVC Rust lane
+- Visual Studio alone to surface a usable OpenSSL install to Cargo
+
+**Verified locally against:**
+- `extensions/chthonic-archive/native/entropy-ledger-host`
+- full native workspace `cargo check --manifest-path extensions/chthonic-archive/native/Cargo.toml`
 
 ---
 

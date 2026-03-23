@@ -15,37 +15,37 @@ repository = "https://github.com/PsychoNoir/chthonic-archive"
 
 [dependencies]
 # === WINDOWING ===
-winit = "0.29"
+winit = "0.30"
 
 # === VULKAN 1.3 (Raw Bindings - Dynamic Rendering + Ray Tracing Ready) ===
 ash = { version = "0.38", features = ["loaded", "debug"] }
 ash-window = "0.13"
 
 # === GPU MEMORY ===
-gpu-allocator = { version = "0.22", features = ["vulkan"] }
+gpu-allocator = { version = "0.28", features = ["vulkan"] }
 
 # === ENTITY COMPONENT SYSTEM (Per Gemini Directive) ===
-bevy_ecs = { version = "0.14", optional = true }
+bevy_ecs = { version = "0.18", optional = true }
 
 # === SERIALIZATION (ASC Lore Ingestion) ===
 serde = { version = "1.0", features = ["derive"] }
 serde_json = "1.0"
 
 # === MATHEMATICS (Vector/Matrix - The WHR Power Law) ===
-glam = "0.24"
-rand = "0.8"
+glam = "0.32"
+rand = "0.10"
 sha2 = "0.10"
 
 # === ASYNC RUNTIME (For Future Solana Integration) ===
-tokio = { version = "1.0", features = ["full"] }
+tokio = { version = "1.50", features = ["full"] }
 
 # === LOGGING ===
-env_logger = "0.10"
+env_logger = "0.11"
 log = "0.4"
 
 # === ERROR HANDLING ===
 anyhow = "1.0"
-thiserror = "1.0"
+thiserror = "2.0"
 
 [features]
 default = ["bevy"]
@@ -63,7 +63,7 @@ bevy = ["dep:bevy_ecs"]
 # ║   shaderc: GLSL → SPIR-V at build time                           ║
 # ╚══════════════════════════════════════════════════════════════════╝
 [build-dependencies]
-shaderc = "0.8"
+shaderc = "0.10"
 
 [profile.release]
 opt-level = 3

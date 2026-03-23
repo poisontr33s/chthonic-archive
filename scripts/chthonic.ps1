@@ -2933,6 +2933,22 @@ function Get-GraphicsShaderSources {
     return @($sources | Sort-Object path)
 }
 
+function Get-HlslShaderSources {
+    $root = Join-Path $REPO_ROOT "assets\shaders\hlsl"
+    if (-not (Test-Path $root)) { return @() }
+
+    return @(
+        Get-ChildItem -LiteralPath $root -Recurse -File -ErrorAction SilentlyContinue | ForEach-Object {
+            [pscustomobject]@{
+                root = $root
+                name = $_.Name
+                path = $_.FullName
+                ext = $_.Extension
+            }
+        } | Sort-Object path
+    )
+}
+
 function Invoke-GraphicsLane {
     param([switch]$Json)
 
@@ -3003,6 +3019,8 @@ function Invoke-GraphicsLane {
     }
 
     $shaderSources = @(Get-GraphicsShaderSources)
+    $hlslSources = @(Get-HlslShaderSources)
+    $cudaProbeSource = Join-Path $REPO_ROOT "native\cuda\chthonic_probe.cu"
     $videoControllers = @(
         Get-CimInstance Win32_VideoController -ErrorAction SilentlyContinue |
             Select-Object Name, DriverVersion, AdapterRAM
@@ -3044,11 +3062,17 @@ function Invoke-GraphicsLane {
         shaders = [pscustomobject]@{
             source_count = $shaderSources.Count
             sources = $shaderSources
+            hlsl_source_count = $hlslSources.Count
+            hlsl_sources = $hlslSources
         }
         caches = $cacheTargets
         repo = [pscustomobject]@{
             vs_dir_exists = (Test-Path (Join-Path $REPO_ROOT ".vs"))
             vscode_dir_exists = (Test-Path (Join-Path $REPO_ROOT ".vscode"))
+            cmake_lists_exists = (Test-Path (Join-Path $REPO_ROOT "CMakeLists.txt"))
+            cmake_presets_exists = (Test-Path (Join-Path $REPO_ROOT "CMakePresets.json"))
+            cuda_probe_exists = (Test-Path $cudaProbeSource)
+            tensor_runtime_host_exists = (Test-Path (Join-Path $REPO_ROOT "extensions\chthonic-archive\native\tensor-runtime-host\Cargo.toml"))
         }
     }
 
@@ -3087,11 +3111,18 @@ function Invoke-GraphicsLane {
     foreach ($shader in $payload.shaders.sources) {
         Write-Host "    - $($shader.path)" -ForegroundColor DarkGray
     }
+    Write-Host "  hlsl     " -NoNewline -ForegroundColor Cyan
+    Write-Host $payload.shaders.hlsl_source_count -ForegroundColor White
+    foreach ($shader in $payload.shaders.hlsl_sources) {
+        Write-Host "    - $($shader.path)" -ForegroundColor DarkGray
+    }
     Write-Host "  caches   " -NoNewline -ForegroundColor Cyan
     Write-Host $payload.caches.Count -ForegroundColor White
     foreach ($cache in $payload.caches) {
         Write-Host ("    - {0}: {1}" -f $cache.name, $(if ($cache.exists) { $cache.size_bytes } else { "missing" })) -ForegroundColor DarkGray
     }
+    Write-Host "  cmake    " -NoNewline -ForegroundColor Cyan
+    Write-Host ("Lists={0} Presets={1} CudaProbe={2} TensorHost={3}" -f $payload.repo.cmake_lists_exists, $payload.repo.cmake_presets_exists, $payload.repo.cuda_probe_exists, $payload.repo.tensor_runtime_host_exists) -ForegroundColor White
     Write-Host ""
 }
 

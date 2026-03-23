@@ -1,0 +1,13 @@
+[package]
+name = "tensor-runtime-host"
+description = "Native TensorRT/cuDNN host surface for Chthonic Archive"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[dependencies]
+anyhow.workspace = true
+clap.workspace = true
+serde.workspace = true
+serde_json.workspace = true
+libloading.workspace = true

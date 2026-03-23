@@ -28,6 +28,7 @@
 use anyhow::{Context, Result};
 use ash::{vk, Device};
 use log::{debug, info, warn};
+use std::env;
 use std::fs;
 use std::io::ErrorKind;
 use std::path::{Path, PathBuf};
@@ -60,6 +61,21 @@ impl PipelineCacheState {
 }
 
 const PIPELINE_CACHE_SCHEMA_VERSION: u32 = 1;
+
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+enum ShaderLanguage {
+    Glsl,
+    Hlsl,
+}
+
+impl ShaderLanguage {
+    fn as_str(self) -> &'static str {
+        match self {
+            Self::Glsl => "glsl",
+            Self::Hlsl => "hlsl",
+        }
+    }
+}
 
 /// Push constants for MVP transformation + Layer Color (208 bytes)
 #[repr(C)]
@@ -143,16 +159,20 @@ impl VulkanPipeline {
         info!("╚══════════════════════════════════════════════════════════════╝");
         let pipeline_start = Instant::now();
 
-        // Load SPIR-V shaders (compiled at build time)
-        let vertex_spv = include_bytes!(concat!(env!("OUT_DIR"), "/iso_grid.vert.spv"));
-        let fragment_spv = include_bytes!(concat!(env!("OUT_DIR"), "/iso_grid.frag.spv"));
+        let shader_language = Self::selected_shader_language();
+        let (vertex_spv, fragment_spv) = Self::load_shader_pair(shader_language)?;
 
+        info!("   Shader language: {}", shader_language.as_str());
         info!("   Vertex shader: {} bytes", vertex_spv.len());
         info!("   Fragment shader: {} bytes", fragment_spv.len());
 
-        let shader_signature = Self::shader_signature(vertex_spv, fragment_spv);
-        let cache_path =
-            Self::pipeline_cache_path(physical_device_properties, color_format, shader_signature);
+        let shader_signature = Self::shader_signature(&vertex_spv, &fragment_spv);
+        let cache_path = Self::pipeline_cache_path(
+            physical_device_properties,
+            color_format,
+            shader_language.as_str(),
+            shader_signature,
+        );
         let (pipeline_cache, cache_state) = Self::create_pipeline_cache(device, &cache_path)?;
         info!(
             "   Pipeline cache: {} ({})",
@@ -160,8 +180,8 @@ impl VulkanPipeline {
             cache_path.display()
         );
 
-        let vertex_shader = Self::create_shader_module(device, vertex_spv)?;
-        let fragment_shader = Self::create_shader_module(device, fragment_spv)?;
+        let vertex_shader = Self::create_shader_module(device, &vertex_spv)?;
+        let fragment_shader = Self::create_shader_module(device, &fragment_spv)?;
         info!("✅ Shader modules created");
 
         // Shader stages
@@ -298,6 +318,48 @@ impl VulkanPipeline {
         })
     }
 
+    fn selected_shader_language() -> ShaderLanguage {
+        match env::var("CHTHONIC_SHADER_LANGUAGE") {
+            Ok(raw) => match raw.trim().to_ascii_lowercase().as_str() {
+                "hlsl" => ShaderLanguage::Hlsl,
+                "glsl" => ShaderLanguage::Glsl,
+                "auto" => {
+                    if Self::shader_artifact_path("iso_grid.vert.hlsl.spv").exists()
+                        && Self::shader_artifact_path("iso_grid.frag.hlsl.spv").exists()
+                    {
+                        ShaderLanguage::Hlsl
+                    } else {
+                        ShaderLanguage::Glsl
+                    }
+                }
+                _ => ShaderLanguage::Glsl,
+            },
+            Err(_) => ShaderLanguage::Glsl,
+        }
+    }
+
+    fn shader_artifact_path(file_name: &str) -> PathBuf {
+        PathBuf::from(env!("OUT_DIR")).join(file_name)
+    }
+
+    fn load_shader_pair(language: ShaderLanguage) -> Result<(Vec<u8>, Vec<u8>)> {
+        match language {
+            ShaderLanguage::Glsl => Ok((
+                include_bytes!(concat!(env!("OUT_DIR"), "/iso_grid.vert.spv")).to_vec(),
+                include_bytes!(concat!(env!("OUT_DIR"), "/iso_grid.frag.spv")).to_vec(),
+            )),
+            ShaderLanguage::Hlsl => {
+                let vert_path = Self::shader_artifact_path("iso_grid.vert.hlsl.spv");
+                let frag_path = Self::shader_artifact_path("iso_grid.frag.hlsl.spv");
+                let vertex = fs::read(&vert_path)
+                    .with_context(|| format!("Failed to read HLSL vertex artifact {}", vert_path.display()))?;
+                let fragment = fs::read(&frag_path)
+                    .with_context(|| format!("Failed to read HLSL fragment artifact {}", frag_path.display()))?;
+                Ok((vertex, fragment))
+            }
+        }
+    }
+
     fn shader_signature(vertex_spv: &[u8], fragment_spv: &[u8]) -> u64 {
         const FNV_OFFSET: u64 = 0xcbf2_9ce4_8422_2325;
         const FNV_PRIME: u64 = 0x0000_0100_0000_01b3;
@@ -320,10 +382,11 @@ impl VulkanPipeline {
     fn pipeline_cache_path(
         physical_device_properties: &vk::PhysicalDeviceProperties,
         color_format: vk::Format,
+        shader_language: &str,
         shader_signature: u64,
     ) -> PathBuf {
         let filename = format!(
-            "iso_grid_v{PIPELINE_CACHE_SCHEMA_VERSION}_ven{:04x}_dev{:04x}_drv{:08x}_fmt{}_sig{shader_signature:016x}.bin",
+            "iso_grid_{shader_language}_v{PIPELINE_CACHE_SCHEMA_VERSION}_ven{:04x}_dev{:04x}_drv{:08x}_fmt{}_sig{shader_signature:016x}.bin",
             physical_device_properties.vendor_id,
             physical_device_properties.device_id,
             physical_device_properties.driver_version,

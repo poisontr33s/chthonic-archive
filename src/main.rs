@@ -28,17 +28,222 @@ mod render;
 use anyhow::Result;
 use log::{info, error};
 use winit::{
-    event::{Event, WindowEvent},
-    event_loop::EventLoop,
-    window::WindowBuilder,
+    application::ApplicationHandler,
     dpi::LogicalSize,
+    event::WindowEvent,
+    event_loop::{ActiveEventLoop, EventLoop},
+    window::{Window, WindowId},
 };
 
 // use data::loader::load_game_data;
 use data::persistence::{load_game_state, save_game_state};
 use data::factions::FactionRegistry;
+use data::game_tree::{inspect_game_tree, log_game_tree_report};
+use data::game_schemas::{load_game_schema_documents, log_game_schema_documents};
+use data::types::GameData;
 use data::verifier::AxiomVerifier;
 use render::{VulkanContext, Renderer};
+
+struct ArchiveApp {
+    save_path: &'static str,
+    game_data: GameData,
+    faction_registry: FactionRegistry,
+    window: Option<Window>,
+    vulkan_context: Option<VulkanContext>,
+    renderer: Option<Renderer>,
+    frame_count: u64,
+}
+
+impl ArchiveApp {
+    fn new(save_path: &'static str, game_data: GameData, faction_registry: FactionRegistry) -> Self {
+        Self {
+            save_path,
+            game_data,
+            faction_registry,
+            window: None,
+            vulkan_context: None,
+            renderer: None,
+            frame_count: 0,
+        }
+    }
+
+    fn cleanup_renderer(&mut self) {
+        if let (Some(renderer), Some(vulkan_context)) =
+            (self.renderer.as_mut(), self.vulkan_context.as_ref())
+        {
+            unsafe {
+                renderer.cleanup(&vulkan_context.device);
+            }
+        }
+        self.renderer = None;
+        self.vulkan_context = None;
+    }
+}
+
+impl ApplicationHandler for ArchiveApp {
+    fn resumed(&mut self, event_loop: &ActiveEventLoop) {
+        if self.window.is_some() {
+            return;
+        }
+
+        info!("🖼️  Initializing windowing system...");
+        let window_attributes = Window::default_attributes()
+            .with_title("The Chthonic Archive: Triumvirate Ascension 🔺")
+            .with_inner_size(LogicalSize::new(1280.0, 720.0))
+            .with_resizable(true);
+
+        let window = match event_loop.create_window(window_attributes) {
+            Ok(window) => window,
+            Err(error) => {
+                error!("❌ Failed to create window: {error}");
+                event_loop.exit();
+                return;
+            }
+        };
+
+        info!("✅ Window created: {}x{}", 1280, 720);
+
+        info!("🔥 Initializing Vulkan 1.3 with Dynamic Rendering...");
+        let vulkan_context = match unsafe { VulkanContext::new(&window) } {
+            Ok(context) => context,
+            Err(error) => {
+                error!("❌ Failed to initialize Vulkan context: {error}");
+                event_loop.exit();
+                return;
+            }
+        };
+
+        info!("🎨 Creating rendering pipeline...");
+        let window_size = window.inner_size();
+        let renderer = match unsafe {
+            Renderer::new(&vulkan_context, (window_size.width, window_size.height))
+        } {
+            Ok(renderer) => renderer,
+            Err(error) => {
+                error!("❌ Failed to create renderer: {error}");
+                event_loop.exit();
+                return;
+            }
+        };
+
+        info!("═══════════════════════════════════════════════════════════════════");
+        info!("   🔥 PHASE 11 COMPLETE: DYNAMIC RENDERING PIPELINE ACTIVE 🔥");
+        info!("   Mode: Dynamic Rendering (cmd_begin_rendering/cmd_end_rendering)");
+        info!("   Shader: iso_grid.vert + iso_grid.frag → SPIR-V");
+        info!("   Ready to render: Hello Triangle 🔺");
+        info!("═══════════════════════════════════════════════════════════════════");
+
+        self.renderer = Some(renderer);
+        self.vulkan_context = Some(vulkan_context);
+        self.window = Some(window);
+    }
+
+    fn window_event(
+        &mut self,
+        event_loop: &ActiveEventLoop,
+        window_id: WindowId,
+        event: WindowEvent,
+    ) {
+        let Some(window) = self.window.as_ref() else {
+            return;
+        };
+
+        if window.id() != window_id {
+            return;
+        }
+
+        match event {
+            WindowEvent::CloseRequested => {
+                info!("👋 Window close requested. Terminating Archive.");
+
+                if let Err(error) = save_game_state(self.save_path, &self.game_data) {
+                    error!("❌ Failed to save game state: {}", error);
+                }
+
+                self.cleanup_renderer();
+                self.window = None;
+                event_loop.exit();
+            }
+            WindowEvent::Resized(size) => {
+                if let Some(renderer) = self.renderer.as_mut() {
+                    if size.width > 0 && size.height > 0 {
+                        let current = renderer.swapchain.extent;
+                        if size.width != current.width || size.height != current.height {
+                            info!(
+                                "📐 Window resized: {}x{} (was {}x{})",
+                                size.width, size.height, current.width, current.height
+                            );
+                            renderer.needs_resize = true;
+                        }
+                    }
+                }
+            }
+            WindowEvent::RedrawRequested => {
+                let Some(vulkan_context) = self.vulkan_context.as_ref() else {
+                    return;
+                };
+                let Some(renderer) = self.renderer.as_mut() else {
+                    return;
+                };
+
+                if renderer.needs_resize {
+                    let size = window.inner_size();
+                    if size.width > 0 && size.height > 0 {
+                        match unsafe {
+                            renderer.handle_resize(vulkan_context, (size.width, size.height))
+                        } {
+                            Ok(()) => return,
+                            Err(error) => {
+                                error!("❌ Resize failed: {error:?}");
+                                return;
+                            }
+                        }
+                    }
+                    return;
+                }
+
+                self.frame_count += 1;
+                let layer_num = ((self.frame_count / 120) % 6) + 1;
+                let layer_code = format!("LAYER-{}", layer_num);
+
+                let layer_color = self
+                    .faction_registry
+                    .districts
+                    .get(&layer_code)
+                    .map(|district| district.visual.primary_color)
+                    .unwrap_or([0.69, 0.0, 0.96]);
+
+                let final_color = [layer_color[0], layer_color[1], layer_color[2], 1.0];
+
+                if self.frame_count % 120 == 0 {
+                    info!(
+                        "🎨 Manifesting Spectral Frequency for {}: [{}, {}, {}]",
+                        layer_code, layer_color[0], layer_color[1], layer_color[2]
+                    );
+                }
+
+                match unsafe { renderer.render_frame(vulkan_context, final_color) } {
+                    Ok(needs_resize) => {
+                        if needs_resize {
+                            renderer.needs_resize = true;
+                            window.request_redraw();
+                        }
+                    }
+                    Err(error) => {
+                        error!("❌ Render failed: {error:?}");
+                    }
+                }
+            }
+            _ => {}
+        }
+    }
+
+    fn about_to_wait(&mut self, _event_loop: &ActiveEventLoop) {
+        if let Some(window) = self.window.as_ref() {
+            window.request_redraw();
+        }
+    }
+}
 
 /// Entry point - The Gate to the Chthonic Archive
 fn main() -> Result<()> {
@@ -86,131 +291,17 @@ fn main() -> Result<()> {
     info!("✅ Data ingestion complete. {} entities ready for manifestation.",
           game_data.entities.len());
 
-    // === PHASE 2: CREATE WINDOW ===
-    info!("🖼️  Initializing windowing system...");
+    // === PHASE 12.5: REPO-LOCAL cRPG CONTENT BRIDGE ===
+    if let Ok(game_tree) = inspect_game_tree("game") {
+        log_game_tree_report(&game_tree);
+    }
+    if let Ok(schema_docs) = load_game_schema_documents("game") {
+        log_game_schema_documents(&schema_docs);
+    }
+
     let event_loop = EventLoop::new()?;
-
-    let window = WindowBuilder::new()
-        .with_title("The Chthonic Archive: Triumvirate Ascension 🔺")
-        .with_inner_size(LogicalSize::new(1280.0, 720.0))
-        .with_resizable(true)
-        .build(&event_loop)?;
-
-    info!("✅ Window created: {}x{}", 1280, 720);
-
-    // === PHASE 3: INITIALIZE VULKAN (Dynamic Rendering) ===
-    info!("🔥 Initializing Vulkan 1.3 with Dynamic Rendering...");
-    let vulkan_context = unsafe { VulkanContext::new(&window)? };
-
-    // === PHASE 11: CREATE RENDERER ===
-    info!("🎨 Creating rendering pipeline...");
-    let window_size = window.inner_size();
-    let mut renderer = unsafe {
-        Renderer::new(&vulkan_context, (window_size.width, window_size.height))?
-    };
-
-    info!("═══════════════════════════════════════════════════════════════════");
-    info!("   🔥 PHASE 11 COMPLETE: DYNAMIC RENDERING PIPELINE ACTIVE 🔥");
-    info!("   Mode: Dynamic Rendering (cmd_begin_rendering/cmd_end_rendering)");
-    info!("   Shader: iso_grid.vert + iso_grid.frag → SPIR-V");
-    info!("   Ready to render: Hello Triangle 🔺");
-    info!("═══════════════════════════════════════════════════════════════════");
-
-    // === PHASE 4: RUN EVENT LOOP ===
-    let mut frame_count: u64 = 0;
-
-    event_loop.run(move |event, elwt| {
-        match event {
-            Event::WindowEvent { event, .. } => match event {
-                WindowEvent::CloseRequested => {
-                    info!("👋 Window close requested. Terminating Archive.");
-
-                    // === PHASE 12: PERSISTENCE (Save on Exit) ===
-                    if let Err(e) = save_game_state(save_path, &game_data) {
-                        error!("❌ Failed to save game state: {}", e);
-                    }
-
-                    // Clean up renderer before exit
-                    unsafe {
-                        renderer.cleanup(&vulkan_context.device);
-                    }
-
-                    elwt.exit();
-                }
-                WindowEvent::Resized(size) => {
-                    // Only log meaningful resizes (not the initial DPI-scaled resize spam)
-                    if size.width > 0 && size.height > 0 {
-                        // Check if size actually changed from current swapchain
-                        let current = renderer.swapchain.extent;
-                        if size.width != current.width || size.height != current.height {
-                            info!("📐 Window resized: {}x{} (was {}x{})",
-                                  size.width, size.height, current.width, current.height);
-                            renderer.needs_resize = true;
-                        }
-                    }
-                }
-                WindowEvent::RedrawRequested => {
-                    // Handle pending resize BEFORE rendering
-                    if renderer.needs_resize {
-                        let size = window.inner_size();
-                        if size.width > 0 && size.height > 0 {
-                            match unsafe {
-                                renderer.handle_resize(&vulkan_context, (size.width, size.height))
-                            } {
-                                Ok(()) => {
-                                    // Skip rendering this frame - wait for next redraw
-                                    // This prevents immediate re-acquire after recreate
-                                    return;
-                                }
-                                Err(e) => {
-                                    error!("❌ Resize failed: {e:?}");
-                                    return;
-                                }
-                            }
-                        }
-                        // Window minimized, skip rendering
-                        return;
-                    }
-
-                    // PHASE 15: SPATIAL ACTUALIZATION
-                    // Cycle through world layers colors every 120 frames
-                    frame_count += 1;
-                    let layer_num = ((frame_count / 120) % 6) + 1;
-                    let layer_code = format!("LAYER-{}", layer_num);
-
-                    let layer_color = faction_registry.districts.get(&layer_code)
-                        .map(|d| d.visual.primary_color)
-                        .unwrap_or([0.69, 0.0, 0.96]); // Fallback Purple
-
-                    let final_color = [layer_color[0], layer_color[1], layer_color[2], 1.0];
-
-                    if frame_count % 120 == 0 {
-                        info!("🎨 Manifesting Spectral Frequency for {}: [{}, {}, {}]",
-                              layer_code, layer_color[0], layer_color[1], layer_color[2]);
-                    }
-
-                    // RENDER THE FRAME! 🔺
-                    match unsafe { renderer.render_frame(&vulkan_context, final_color) } {
-                        Ok(needs_resize) => {
-                            if needs_resize {
-                                renderer.needs_resize = true;
-                                // Request immediate redraw to handle resize
-                                window.request_redraw();
-                            }
-                        }
-                        Err(e) => {
-                            error!("❌ Render failed: {e:?}");
-                        }
-                    }
-                }
-                _ => {}
-            }
-            Event::AboutToWait => {
-                window.request_redraw();
-            }
-            _ => {}
-        }
-    })?;
+    let mut app = ArchiveApp::new(save_path, game_data, faction_registry);
+    event_loop.run_app(&mut app)?;
 
     Ok(())
 }
