@@ -55,6 +55,38 @@ param(
 # Disable MCP discovery to prevent Bun crash during startup
 $env:GEMINI_DISABLE_MCP = "1"
 
+function Get-IsHeadlessInvocation {
+    param(
+        [string[]]$CliArgs
+    )
+
+    foreach ($arg in $CliArgs) {
+        if ($arg -in @("-p", "--prompt", "--prompt-interactive", "--output-format", "--output-format=json", "--output-format=text")) {
+            return $true
+        }
+
+        if ($arg.StartsWith("--prompt=") -or $arg.StartsWith("--output-format=")) {
+            return $true
+        }
+    }
+
+    return $false
+}
+
+function Get-IsInformationalInvocation {
+    param(
+        [string[]]$CliArgs
+    )
+
+    foreach ($arg in $CliArgs) {
+        if ($arg -in @("--version", "--help")) {
+            return $true
+        }
+    }
+
+    return $false
+}
+
 function Get-RepoRoot {
     if ($PSScriptRoot) {
         return (Split-Path -Parent $PSScriptRoot)
@@ -69,6 +101,14 @@ function Get-RepoRoot {
 
 function Get-RepoNodeModulesRoot {
     return (Join-Path (Get-RepoRoot) "node_modules")
+}
+
+function Get-GeminiRegistryPath {
+    return (Join-Path (Get-RepoRoot) ".gemini\local-model-registry.json")
+}
+
+function Get-GeminiRouterScriptPath {
+    return (Join-Path (Get-RepoRoot) "scripts\gemini-model-router.ts")
 }
 
 function Get-GeminiDeclaredSpecifier {
@@ -391,6 +431,123 @@ function Test-LegacyGeminiDependency {
     }
 }
 
+function Set-GeminiModelArg {
+    param(
+        [string[]]$ExistingArgs,
+        [string]$ModelName
+    )
+
+    $cleaned = @()
+    for ($index = 0; $index -lt $ExistingArgs.Count; $index++) {
+        $arg = $ExistingArgs[$index]
+        if ($arg -eq "-m" -or $arg -eq "--model") {
+            $index++
+            continue
+        }
+        if ($arg.StartsWith("--model=")) {
+            continue
+        }
+        $cleaned += $arg
+    }
+
+    return @("-m", $ModelName) + $cleaned
+}
+
+function Invoke-GeminiRouterSync {
+    $routerScript = Get-GeminiRouterScriptPath
+    if (-not (Test-Path $routerScript)) {
+        return
+    }
+
+    & bun run $routerScript sync --write *> $null
+}
+
+function Get-GeminiRouterDecision {
+    param(
+        [string[]]$CliArgs,
+        [bool]$Headless
+    )
+
+    $routerScript = Get-GeminiRouterScriptPath
+    if (-not (Test-Path $routerScript)) {
+        return $null
+    }
+
+    $argsJson = $CliArgs | ConvertTo-Json -Compress
+    $mode = if ($Headless) { "headless" } else { "interactive" }
+    $raw = & bun run $routerScript resolve --mode $mode --args-json $argsJson
+
+    if ($LASTEXITCODE -ne 0 -or -not $raw) {
+        return $null
+    }
+
+    return ($raw | Out-String | ConvertFrom-Json)
+}
+
+function Test-GeminiCompatRetryableError {
+    param(
+        [string]$Text,
+        [object]$Decision
+    )
+
+    if (-not $Decision) {
+        return $false
+    }
+
+    $matchers = @($Decision.fallbackMatchers)
+    if ($matchers.Count -eq 0) {
+        return $false
+    }
+
+    $textToCheck = ($Text ?? "").ToLowerInvariant()
+    foreach ($matcher in $matchers) {
+        if (-not $matcher) {
+            continue
+        }
+
+        if ($textToCheck.Contains(([string]$matcher).ToLowerInvariant())) {
+            return $true
+        }
+    }
+
+    return $false
+}
+
+function Write-GeminiCompatNotice {
+    param(
+        [string]$Message
+    )
+
+    [Console]::Error.WriteLine($Message)
+}
+
+function Invoke-GeminiCommandCapture {
+    param(
+        [string[]]$CliArgs
+    )
+
+    $geminiExe = Resolve-GeminiExecutable
+    $merged = @()
+
+    if ($geminiExe) {
+        $merged = & $geminiExe @CliArgs 2>&1
+    } else {
+        $entry = Get-GeminiEntrypoint
+        if (-not $entry) {
+            throw "Gemini CLI not found in repo-local Bun lane."
+        }
+        $merged = & bun $entry @CliArgs 2>&1
+    }
+
+    $exitCode = $LASTEXITCODE
+    $rawText = ($merged | ForEach-Object { $_.ToString() }) -join [Environment]::NewLine
+
+    return [pscustomobject]@{
+        ExitCode = $exitCode
+        RawText = $rawText
+    }
+}
+
 function Invoke-GeminiSelfUpdate {
     Write-Host "[gemini-wrapper] Updating Gemini CLI in repo-local Bun lane..." -ForegroundColor Cyan
     $geminiChannel = Get-GeminiDeclaredSpecifier
@@ -581,6 +738,51 @@ if ($SelfUpdate -or $positionalUpdate -or ($Arguments -and $Arguments.Count -gt 
 }
 
 Test-LegacyGeminiDependency
+
+$env:CHTHONIC_GEMINI_MODEL_REGISTRY = Get-GeminiRegistryPath
+Invoke-GeminiRouterSync
+
+$isHeadlessInvocation = Get-IsHeadlessInvocation -CliArgs $cliArgs
+$isInformationalInvocation = Get-IsInformationalInvocation -CliArgs $cliArgs
+$routerDecision = $null
+if (-not $isInformationalInvocation) {
+    $routerDecision = Get-GeminiRouterDecision -CliArgs $cliArgs -Headless:$isHeadlessInvocation
+}
+
+if ($routerDecision -and $routerDecision.forceModelFlag -and $routerDecision.effectiveRequestModel) {
+    $cliArgs = Set-GeminiModelArg -ExistingArgs $cliArgs -ModelName $routerDecision.effectiveRequestModel
+}
+
+if (-not $isHeadlessInvocation -and
+    $routerDecision -and
+    $routerDecision.requestedModel -and
+    $routerDecision.effectiveRequestModel -and
+    $routerDecision.requestedModel -ne $routerDecision.effectiveRequestModel) {
+    Write-GeminiCompatNotice ("[gemini-wrapper] Flash-Lite preview compatibility active. Using {0} for this interactive session." -f $routerDecision.effectiveRequestModel)
+}
+
+if ($isHeadlessInvocation) {
+    $captured = Invoke-GeminiCommandCapture -CliArgs $cliArgs
+
+    if ($captured.ExitCode -ne 0 -and
+        $routerDecision -and
+        $routerDecision.headlessRetryAllowed -and
+        $routerDecision.fallbackRequestModel -and
+        (Test-GeminiCompatRetryableError -Text $captured.RawText -Decision $routerDecision)) {
+        Write-GeminiCompatNotice ("[gemini-wrapper] Flash-Lite preview unavailable. Retrying with {0}." -f $routerDecision.fallbackRequestModel)
+        $fallbackArgs = Set-GeminiModelArg -ExistingArgs $cliArgs -ModelName $routerDecision.fallbackRequestModel
+        $captured = Invoke-GeminiCommandCapture -CliArgs $fallbackArgs
+    }
+
+    if (-not [string]::IsNullOrEmpty($captured.RawText)) {
+        [Console]::Out.Write($captured.RawText)
+        if (-not $captured.RawText.EndsWith([Environment]::NewLine)) {
+            [Console]::Out.Write([Environment]::NewLine)
+        }
+    }
+
+    exit $captured.ExitCode
+}
 
 $geminiExe = Resolve-GeminiExecutable
 if ($geminiExe) {

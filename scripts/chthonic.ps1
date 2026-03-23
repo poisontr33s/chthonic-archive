@@ -797,7 +797,7 @@ if ($rvRubyBin) {
     $defaultPolyglotPaths += $rvRubyBin
 }
 
-# R runtime lane (rig-managed)
+# R runtime lane (current unmanaged install)
 $rExePath = Get-RExePath
 if ($rExePath) {
     $defaultPolyglotPaths += (Split-Path -Parent $rExePath)
@@ -852,18 +852,519 @@ function Get-ChthonicStrategicDocs {
             key = "migration"
             title = "Laptop to Desktop Emigration"
             path = (Join-Path $REPO_ROOT "codex\artifacts\LAPTOP_TO_DESKTOP_EMIGRATION.md")
+            commands = @(
+                "toolchain hierarchy",
+                "toolchain verify",
+                "toolchain paths",
+                "r lane",
+                "zig lane"
+            )
         }
         [pscustomobject]@{
             key = "next"
             title = "Codex Next"
             path = (Join-Path $REPO_ROOT "codex\NEXT.md")
+            commands = @(
+                "memory session",
+                "commands counts",
+                "commands inventory"
+            )
         }
         [pscustomobject]@{
             key = "cheatsheet"
             title = "Oxidized Cheatsheet"
             path = (Join-Path $REPO_ROOT "docs\OXIDIZED_CHEATSHEET.md")
+            commands = @(
+                "memory map",
+                "toolchain hierarchy",
+                "commands inventory"
+            )
         }
     )
+}
+
+function Get-ChthonicCommandCatalog {
+    return @(
+        [pscustomobject]@{
+            domain = "env"
+            mode = "canonical"
+            summary = "Activate polyglot environment"
+            preferred_surface = $null
+            claudine_passthrough = $true
+            actions = @()
+        }
+        [pscustomobject]@{
+            domain = "status"
+            mode = "canonical"
+            summary = "Show tool + manager versions"
+            preferred_surface = $null
+            claudine_passthrough = $true
+            actions = @()
+        }
+        [pscustomobject]@{
+            domain = "trend"
+            mode = "canonical"
+            summary = "Rustification trend tracker"
+            preferred_surface = $null
+            claudine_passthrough = $true
+            actions = @()
+        }
+        [pscustomobject]@{
+            domain = "oversight"
+            mode = "canonical"
+            summary = "Hierarchical upcycle oversight stack"
+            preferred_surface = $null
+            claudine_passthrough = $true
+            actions = @()
+        }
+        [pscustomobject]@{
+            domain = "doctor"
+            mode = "canonical"
+            summary = "Check versions + origins + EOL state"
+            preferred_surface = $null
+            claudine_passthrough = $true
+            actions = @()
+        }
+        [pscustomobject]@{
+            domain = "detect"
+            mode = "canonical"
+            summary = "Detect IDE and environment context"
+            preferred_surface = $null
+            claudine_passthrough = $true
+            actions = @()
+        }
+        [pscustomobject]@{
+            domain = "toolchain"
+            mode = "canonical"
+            summary = "High-level verified toolchain control plane"
+            preferred_surface = $null
+            claudine_passthrough = $true
+            actions = @(
+                [pscustomobject]@{ name = "hierarchy"; aliases = @("status", "lane"); summary = "ordered lane hierarchy + current command resolution" }
+                [pscustomobject]@{ name = "verify"; aliases = @(); summary = "run extension host verifier in a fresh env merge" }
+                [pscustomobject]@{ name = "scan"; aliases = @(); summary = "run toolpool scan in the extension lane" }
+                [pscustomobject]@{ name = "paths"; aliases = @(); summary = "show resolved command ownership/paths" }
+            )
+        }
+        [pscustomobject]@{
+            domain = "memory"
+            mode = "canonical"
+            summary = "Strategic runbooks + session wisdom"
+            preferred_surface = $null
+            claudine_passthrough = $true
+            actions = @(
+                [pscustomobject]@{ name = "map"; aliases = @("status", "list"); summary = "show strategic doc map + linked commands" }
+                [pscustomobject]@{ name = "migration"; aliases = @(); summary = "show migration runbook anchors" }
+                [pscustomobject]@{ name = "next"; aliases = @(); summary = "show current waypoint anchors" }
+                [pscustomobject]@{ name = "cheatsheet"; aliases = @(); summary = "show cheatsheet anchors" }
+                [pscustomobject]@{ name = "session"; aliases = @("wisdom"); summary = "synthesize the current winning state + command surface" }
+            )
+        }
+        [pscustomobject]@{
+            domain = "commands"
+            mode = "canonical"
+            summary = "Count and audit the live command surface"
+            preferred_surface = $null
+            claudine_passthrough = $true
+            actions = @(
+                [pscustomobject]@{ name = "inventory"; aliases = @("matrix", "surface"); summary = "show domains, actions, compatibility watch, and wrapper reach" }
+                [pscustomobject]@{ name = "counts"; aliases = @(); summary = "show command/subcommand totals without flags or open-ended args" }
+            )
+        }
+        [pscustomobject]@{
+            domain = "ruby"
+            mode = "canonical"
+            summary = "Ruby lane via rv + RubyGems"
+            preferred_surface = $null
+            claudine_passthrough = $true
+            actions = @(
+                [pscustomobject]@{ name = "versions"; aliases = @("rubies", "list"); summary = "list installed/available Rubies" }
+                [pscustomobject]@{ name = "tools"; aliases = @("tool-list", "installed"); summary = "list rv-installed Ruby CLI tools" }
+                [pscustomobject]@{ name = "lane"; aliases = @("status"); summary = "Ruby lane summary (rv + ruby + gcc + make + pacman)" }
+                [pscustomobject]@{ name = "doctor"; aliases = @(); summary = "detect/repair stale rv Ruby state" }
+                [pscustomobject]@{ name = "upgrade"; aliases = @("install-latest", "latest"); summary = "install latest stable Ruby if newer" }
+                [pscustomobject]@{ name = "search"; aliases = @(); summary = "search RubyGems.org" }
+                [pscustomobject]@{ name = "install"; aliases = @(); summary = "install via rv tool install" }
+            )
+        }
+        [pscustomobject]@{
+            domain = "r"
+            mode = "canonical"
+            summary = "R runtime + rv-r package lane"
+            preferred_surface = $null
+            claudine_passthrough = $true
+            actions = @(
+                [pscustomobject]@{ name = "lane"; aliases = @("status"); summary = "current unmanaged R runtime + rv-r state" }
+            )
+        }
+        [pscustomobject]@{
+            domain = "zig"
+            mode = "canonical"
+            summary = "Zig runtime + zv lane"
+            preferred_surface = $null
+            claudine_passthrough = $true
+            actions = @(
+                [pscustomobject]@{ name = "lane"; aliases = @("status"); summary = "zv + active zig state" }
+            )
+        }
+        [pscustomobject]@{
+            domain = "graphics"
+            mode = "canonical"
+            summary = "GPU / Vulkan / shader / MSVC lane snapshot"
+            preferred_surface = $null
+            claudine_passthrough = $true
+            actions = @(
+                [pscustomobject]@{ name = "lane"; aliases = @("status"); summary = "GPU / Vulkan / shader / MSVC lane snapshot" }
+            )
+        }
+        [pscustomobject]@{
+            domain = "poe"
+            mode = "canonical"
+            summary = "Poe account routing + Poe lanes"
+            preferred_surface = $null
+            claudine_passthrough = $true
+            actions = @(
+                [pscustomobject]@{ name = "account"; aliases = @(); summary = "shell-local account routing + mapping" }
+                [pscustomobject]@{ name = "models"; aliases = @(); summary = "list models" }
+                [pscustomobject]@{ name = "probe"; aliases = @(); summary = "run transport probe + mailbox emission" }
+                [pscustomobject]@{ name = "chat"; aliases = @(); summary = "run a chat request" }
+                [pscustomobject]@{ name = "sdk-probe"; aliases = @(); summary = "probe fastapi-poe SDK lane" }
+                [pscustomobject]@{ name = "audit"; aliases = @(); summary = "audit Poe transport state" }
+            )
+        }
+        [pscustomobject]@{
+            domain = "ide"
+            mode = "canonical"
+            summary = "IDE management"
+            preferred_surface = $null
+            claudine_passthrough = $true
+            actions = @(
+                [pscustomobject]@{ name = "launch"; aliases = @(); summary = "launch Claude Code IDE" }
+                [pscustomobject]@{ name = "detect"; aliases = @(); summary = "check IDE status" }
+                [pscustomobject]@{ name = "reset"; aliases = @(); summary = "reset IDE configuration" }
+            )
+        }
+        [pscustomobject]@{
+            domain = "mcp"
+            mode = "canonical"
+            summary = "MCP + bridge services"
+            preferred_surface = $null
+            claudine_passthrough = $true
+            actions = @(
+                [pscustomobject]@{ name = "start"; aliases = @(); summary = "start MCP services" }
+                [pscustomobject]@{ name = "stop"; aliases = @(); summary = "stop MCP services" }
+                [pscustomobject]@{ name = "status"; aliases = @(); summary = "check service status" }
+                [pscustomobject]@{ name = "logs"; aliases = @(); summary = "tail service logs" }
+            )
+        }
+        [pscustomobject]@{
+            domain = "config"
+            mode = "canonical"
+            summary = "Configuration (~/.chthonic/)"
+            preferred_surface = $null
+            claudine_passthrough = $true
+            actions = @(
+                [pscustomobject]@{ name = "init"; aliases = @(); summary = "initialize configuration" }
+                [pscustomobject]@{ name = "show"; aliases = @(); summary = "display configuration" }
+                [pscustomobject]@{ name = "set"; aliases = @(); summary = "set configuration value" }
+            )
+        }
+        [pscustomobject]@{
+            domain = "new"
+            mode = "canonical"
+            summary = "Scaffold polyglot projects"
+            preferred_surface = $null
+            claudine_passthrough = $true
+            actions = @(
+                [pscustomobject]@{ name = "uv-python-app"; aliases = @(); summary = "uv init --app --package" }
+                [pscustomobject]@{ name = "uv-python-lib"; aliases = @(); summary = "uv init --lib --package" }
+                [pscustomobject]@{ name = "bun-react"; aliases = @(); summary = "bun init --react" }
+                [pscustomobject]@{ name = "bun-react-tailwind"; aliases = @(); summary = "bun init --react=tailwind" }
+                [pscustomobject]@{ name = "bun-next"; aliases = @(); summary = "bun create next-app" }
+                [pscustomobject]@{ name = "cargo-rust-bin"; aliases = @(); summary = "cargo new --bin" }
+                [pscustomobject]@{ name = "cargo-rust-lib"; aliases = @(); summary = "cargo new --lib" }
+                [pscustomobject]@{ name = "go-basic"; aliases = @(); summary = "go mod init + main.go" }
+                [pscustomobject]@{ name = "ruby-gem"; aliases = @(); summary = "bundle gem" }
+                [pscustomobject]@{ name = "azure-azd-template"; aliases = @(); summary = "azd init --template" }
+            )
+        }
+        [pscustomobject]@{
+            domain = "workflow"
+            mode = "canonical"
+            summary = "Higher-level orchestrated profiles"
+            preferred_surface = $null
+            claudine_passthrough = $true
+            actions = @(
+                [pscustomobject]@{ name = "control-plane"; aliases = @(); summary = "validate status, shell probe, ssot queue/drift/lineage, MCP tool exposure" }
+                [pscustomobject]@{ name = "toolchain-governance"; aliases = @(); summary = "validate doctor/origins/toolchain probe surfaces" }
+            )
+        }
+        [pscustomobject]@{
+            domain = "shell"
+            mode = "canonical"
+            summary = "Experimental shell lane + capability probe"
+            preferred_surface = $null
+            claudine_passthrough = $true
+            actions = @(
+                [pscustomobject]@{ name = "probe"; aliases = @(); summary = "show detected shell lanes" }
+                [pscustomobject]@{ name = "brush"; aliases = @(); summary = "launch Brush" }
+                [pscustomobject]@{ name = "pwsh"; aliases = @(); summary = "launch PowerShell 7" }
+                [pscustomobject]@{ name = "bash"; aliases = @(); summary = "launch Bash" }
+            )
+        }
+        [pscustomobject]@{
+            domain = "ssot"
+            mode = "canonical"
+            summary = "SSOT loremaster control plane"
+            preferred_surface = $null
+            claudine_passthrough = $true
+            actions = @(
+                [pscustomobject]@{ name = "queue"; aliases = @(); summary = "show SSOT queue" }
+                [pscustomobject]@{ name = "entity"; aliases = @(); summary = "lookup entity" }
+                [pscustomobject]@{ name = "section"; aliases = @(); summary = "lookup section" }
+                [pscustomobject]@{ name = "drift"; aliases = @(); summary = "show drift" }
+                [pscustomobject]@{ name = "lineage"; aliases = @(); summary = "show lineage" }
+            )
+        }
+        [pscustomobject]@{
+            domain = "book"
+            mode = "canonical"
+            summary = "mdBook documentation lane"
+            preferred_surface = $null
+            claudine_passthrough = $true
+            actions = @(
+                [pscustomobject]@{ name = "build"; aliases = @(); summary = "build docs" }
+                [pscustomobject]@{ name = "serve"; aliases = @(); summary = "serve docs" }
+                [pscustomobject]@{ name = "clean"; aliases = @(); summary = "clean docs" }
+            )
+        }
+        [pscustomobject]@{
+            domain = "gemini"
+            mode = "canonical"
+            summary = "Gemini CLI wrapper with MCP disabled"
+            preferred_surface = $null
+            claudine_passthrough = $true
+            actions = @()
+        }
+        [pscustomobject]@{
+            domain = "claudine"
+            mode = "compatibility"
+            summary = "Compatibility alias to env"
+            preferred_surface = "chthonic env"
+            claudine_passthrough = $true
+            actions = @()
+        }
+        [pscustomobject]@{
+            domain = "audit"
+            mode = "compatibility"
+            summary = "Single-word archive compatibility route"
+            preferred_surface = "keep stable; do not expand beyond archive routing"
+            claudine_passthrough = $true
+            actions = @()
+        }
+        [pscustomobject]@{
+            domain = "compact"
+            mode = "compatibility"
+            summary = "Single-word archive compatibility route"
+            preferred_surface = "keep stable; do not expand beyond archive routing"
+            claudine_passthrough = $true
+            actions = @()
+        }
+        [pscustomobject]@{
+            domain = "extract"
+            mode = "compatibility"
+            summary = "Single-word archive compatibility route"
+            preferred_surface = "keep stable; do not expand beyond archive routing"
+            claudine_passthrough = $true
+            actions = @()
+        }
+        [pscustomobject]@{
+            domain = "resolve"
+            mode = "compatibility"
+            summary = "Single-word archive compatibility route"
+            preferred_surface = "keep stable; do not expand beyond archive routing"
+            claudine_passthrough = $true
+            actions = @()
+        }
+        [pscustomobject]@{
+            domain = "map"
+            mode = "compatibility"
+            summary = "Single-word archive compatibility route"
+            preferred_surface = "keep stable; do not expand beyond archive routing"
+            claudine_passthrough = $true
+            actions = @()
+        }
+        [pscustomobject]@{
+            domain = "analyze"
+            mode = "compatibility"
+            summary = "Single-word archive compatibility route"
+            preferred_surface = "keep stable; do not expand beyond archive routing"
+            claudine_passthrough = $true
+            actions = @()
+        }
+        [pscustomobject]@{
+            domain = "claude-ide"
+            mode = "compatibility"
+            summary = "Legacy alias to ide launch"
+            preferred_surface = "chthonic ide launch"
+            claudine_passthrough = $true
+            actions = @()
+        }
+    )
+}
+
+function Get-ChthonicCommandSurfacePayload {
+    $catalog = @(Get-ChthonicCommandCatalog)
+    $canonicalDomains = @($catalog | Where-Object { $_.mode -eq "canonical" })
+    $compatibilityDomains = @($catalog | Where-Object { $_.mode -eq "compatibility" })
+
+    $canonicalFormCount = (($canonicalDomains | ForEach-Object {
+        if ($_.actions.Count -gt 0) { $_.actions.Count } else { 1 }
+    }) | Measure-Object -Sum).Sum
+
+    $compatibilityFormCount = (($compatibilityDomains | ForEach-Object {
+        if ($_.actions.Count -gt 0) { $_.actions.Count } else { 1 }
+    }) | Measure-Object -Sum).Sum
+
+    $actionAliasCount = (($catalog | ForEach-Object {
+        @($_.actions | ForEach-Object { @($_.aliases).Count })
+    }) | Measure-Object -Sum).Sum
+
+    if ($null -eq $actionAliasCount) { $actionAliasCount = 0 }
+
+    $domains = @($catalog | ForEach-Object {
+        $actionNames = @($_.actions | ForEach-Object { $_.name })
+        $actionAliases = @($_.actions | ForEach-Object { $_.aliases } | Where-Object { $_ })
+
+        [pscustomobject]@{
+            domain = $_.domain
+            mode = $_.mode
+            summary = $_.summary
+            preferred_surface = $_.preferred_surface
+            claudine_passthrough = $_.claudine_passthrough
+            action_count = $_.actions.Count
+            action_names = @($actionNames)
+            action_aliases = @($actionAliases)
+        }
+    })
+
+    $compatibilityWatch = @($domains |
+        Where-Object { $_.mode -eq "compatibility" } |
+        Sort-Object domain |
+        ForEach-Object {
+            [pscustomobject]@{
+                domain = $_.domain
+                summary = $_.summary
+                preferred_surface = $_.preferred_surface
+            }
+        }
+    )
+
+    $directFormCount = $canonicalFormCount + $compatibilityFormCount
+
+    return [pscustomobject]@{
+        summary = [pscustomobject]@{
+            canonical_domains = $canonicalDomains.Count
+            compatibility_domains = $compatibilityDomains.Count
+            canonical_documented_forms = $canonicalFormCount
+            direct_documented_forms = $directFormCount
+            nested_action_aliases = $actionAliasCount
+            claudine_forwarded_forms = $directFormCount
+            claudine_default_forms = 1
+            combined_entrypoint_reach = ($directFormCount * 2) + 1
+            counting_scope = "domains + documented actions; flags and open-ended free-form args are not counted"
+        }
+        domains = @($domains | Sort-Object @{ Expression = { if ($_.mode -eq "canonical") { 0 } else { 1 } } }, domain)
+        compatibility_watch = @($compatibilityWatch)
+    }
+}
+
+function Write-ChthonicCommandSurfaceSummary {
+    param(
+        [Parameter(Mandatory = $true)]$Summary,
+        [string]$Indent = "  "
+    )
+
+    Write-Host ("{0}surface" -f $Indent) -ForegroundColor Cyan
+    Write-Host ("{0}  canonical domains      {1}" -f $Indent, $Summary.canonical_domains) -ForegroundColor White
+    Write-Host ("{0}  compatibility domains  {1}" -f $Indent, $Summary.compatibility_domains) -ForegroundColor White
+    Write-Host ("{0}  canonical forms        {1}" -f $Indent, $Summary.canonical_documented_forms) -ForegroundColor White
+    Write-Host ("{0}  direct forms total     {1}" -f $Indent, $Summary.direct_documented_forms) -ForegroundColor White
+    Write-Host ("{0}  action aliases         {1}" -f $Indent, $Summary.nested_action_aliases) -ForegroundColor White
+    Write-Host ("{0}  claudine forwards      {1}" -f $Indent, $Summary.claudine_forwarded_forms) -ForegroundColor White
+    Write-Host ("{0}  claudine default       {1}" -f $Indent, $Summary.claudine_default_forms) -ForegroundColor White
+    Write-Host ("{0}  combined reach         {1}" -f $Indent, $Summary.combined_entrypoint_reach) -ForegroundColor White
+    Write-Host ("{0}  scope                  {1}" -f $Indent, $Summary.counting_scope) -ForegroundColor DarkGray
+}
+
+function Get-ChthonicCatalogDomain {
+    param([Parameter(Mandatory = $true)][string]$Domain)
+    return (Get-ChthonicCommandCatalog | Where-Object { $_.domain -eq $Domain } | Select-Object -First 1)
+}
+
+function Format-ChthonicActionLabel {
+    param($Action)
+    $label = [string]$Action.name
+    if ($Action.aliases -and $Action.aliases.Count -gt 0) {
+        $label += "|" + (($Action.aliases | ForEach-Object { [string]$_ }) -join "|")
+    }
+    return $label
+}
+
+function Show-DomainCatalogHelp {
+    param(
+        [Parameter(Mandatory = $true)][string]$Domain,
+        [string]$EntryPoint = "chthonic"
+    )
+
+    $entry = Get-ChthonicCatalogDomain -Domain $Domain
+    if (-not $entry) {
+        Write-Host "$EntryPoint $Domain" -ForegroundColor Yellow
+        return
+    }
+
+    Write-Host "$EntryPoint $($entry.domain) <action>" -ForegroundColor White
+    Write-Host "  $($entry.summary)" -ForegroundColor DarkGray
+
+    if ($entry.mode -eq "compatibility" -and $entry.preferred_surface) {
+        Write-Host "  preferred surface: $($entry.preferred_surface)" -ForegroundColor DarkGray
+    }
+
+    if ($entry.actions.Count -eq 0) {
+        Write-Host "  (no nested documented actions)" -ForegroundColor DarkGray
+        return
+    }
+
+    foreach ($action in $entry.actions) {
+        Write-Host ("  {0,-24} {1}" -f (Format-ChthonicActionLabel -Action $action), $action.summary) -ForegroundColor White
+    }
+}
+
+function Show-CommandCatalogHelp {
+    $payload = Get-ChthonicCommandSurfacePayload
+    $canonical = @($payload.domains | Where-Object { $_.mode -eq "canonical" })
+    $compatibility = @($payload.compatibility_watch)
+
+    Write-Host ""
+    Write-Host "Usage: chthonic [--version] [--help] <domain> [<action>] [<args>]" -ForegroundColor White
+    Write-Host ""
+    Write-Host "Canonical Domains" -ForegroundColor Cyan
+    foreach ($domain in $canonical) {
+        $actionPreview = if ($domain.action_names.Count -gt 0) { $domain.action_names -join "|" } else { "[direct]" }
+        Write-Host ("  {0,-12} {1,-36} {2}" -f $domain.domain, $actionPreview, $domain.summary) -ForegroundColor White
+    }
+    Write-Host ""
+    Write-Host "Compatibility Domains" -ForegroundColor Cyan
+    foreach ($domain in $compatibility) {
+        Write-Host ("  {0,-12} {1}" -f $domain.domain, $domain.preferred_surface) -ForegroundColor DarkGray
+    }
+    Write-Host ""
+    Write-ChthonicCommandSurfaceSummary -Summary $payload.summary
+    Write-Host ""
+    Write-Host "Notes" -ForegroundColor Cyan
+    Write-Host "  Use `chthonic commands inventory` for the full live matrix." -ForegroundColor DarkGray
+    Write-Host "  Use `claudine commands counts` to verify wrapper reach from the legacy entrypoint." -ForegroundColor DarkGray
+    Write-Host ""
 }
 
 function Get-MarkdownHeadings {
@@ -1041,10 +1542,12 @@ function Get-ToolchainHierarchyPayload {
                 "bind graphics + native build surfaces",
                 "bind openssl for native cargo",
                 "bind solana + anchor",
+                "publish r + zig control lanes",
                 "rerun verifier in fresh env"
             )
             commands = @($commands)
             docs = @($docs)
+            command_surface = (Get-ChthonicCommandSurfacePayload).summary
         }
     }
     finally {
@@ -1087,6 +1590,7 @@ function Invoke-ToolchainMeta {
             foreach ($doc in $payload.docs) {
                 Write-Host ("    {0,-12} {1}" -f $doc.key, $doc.path) -ForegroundColor White
             }
+            Write-ChthonicCommandSurfaceSummary -Summary $payload.command_surface -Indent "  "
             Write-Host ("="*72) -ForegroundColor DarkGray
             Write-Host ""
             return 0
@@ -1143,6 +1647,7 @@ function Invoke-MemoryLane {
             title = $_.title
             path = $_.path
             exists = (Test-Path -LiteralPath $_.path)
+            commands = @($_.commands)
             headings = @(Get-MarkdownHeadings -Path $_.path -Limit 10)
         }
     })
@@ -1161,7 +1666,11 @@ function Invoke-MemoryLane {
                 foreach ($heading in $doc.headings | Select-Object -First 5) {
                     Write-Host ("    - {0}" -f $heading.text) -ForegroundColor DarkGray
                 }
+                if ($doc.commands.Count -gt 0) {
+                    Write-Host ("    commands: {0}" -f ($doc.commands -join ", ")) -ForegroundColor Cyan
+                }
             }
+            Write-ChthonicCommandSurfaceSummary -Summary (Get-ChthonicCommandSurfacePayload).summary -Indent "  "
             Write-Host ("="*72) -ForegroundColor DarkGray
             Write-Host ""
             return 0
@@ -1186,6 +1695,12 @@ function Invoke-MemoryLane {
             foreach ($heading in $doc.headings) {
                 Write-Host ("    - {0}" -f $heading.text) -ForegroundColor DarkGray
             }
+            if ($doc.commands.Count -gt 0) {
+                Write-Host "  commands" -ForegroundColor Cyan
+                foreach ($command in $doc.commands) {
+                    Write-Host ("    - {0}" -f $command) -ForegroundColor DarkGray
+                }
+            }
             Write-Host ("="*72) -ForegroundColor DarkGray
             Write-Host ""
             return 0
@@ -1202,6 +1717,7 @@ function Invoke-MemoryLane {
                 strategic_next_steps = Get-MarkdownSectionText -Path $migrationPath -Heading "Strategic Next Steps"
                 toolchain_overlay = Get-MarkdownSectionText -Path $nextPath -Heading "Toolchain Overlay (2026-03-23)"
                 pending_work = Get-MarkdownSectionText -Path $nextPath -Heading "Pending Work"
+                command_surface = (Get-ChthonicCommandSurfacePayload).summary
             }
 
             if ($Json) {
@@ -1226,6 +1742,7 @@ function Invoke-MemoryLane {
                 $entry.text -split "`n" | ForEach-Object { Write-Host ("    {0}" -f $_) -ForegroundColor $(if ($_ -match '^#') { "White" } else { "DarkGray" }) }
                 Write-Host ""
             }
+            Write-ChthonicCommandSurfaceSummary -Summary $payload.command_surface -Indent "  "
             Write-Host ("="*72) -ForegroundColor DarkGray
             Write-Host ""
             return 0
@@ -1237,6 +1754,81 @@ function Invoke-MemoryLane {
             Write-Host "  next              - show current waypoint anchors"
             Write-Host "  cheatsheet        - show cheatsheet anchors"
             Write-Host "  session|wisdom    - synthesize this session's winning patterns"
+            return 0
+        }
+    }
+}
+
+function Invoke-CommandSurface {
+    param(
+        [string]$CommandAction,
+        [switch]$Json
+    )
+
+    $payload = Get-ChthonicCommandSurfacePayload
+
+    switch ($CommandAction) {
+        { $_ -in $null, "", "inventory", "matrix", "surface" } {
+            if ($Json) {
+                Write-Host (ConvertTo-Json $payload -Depth 8)
+                return 0
+            }
+
+            Write-Host ""
+            Write-Host "CHTHONIC COMMAND INVENTORY" -ForegroundColor Cyan
+            Write-Host ("="*72) -ForegroundColor DarkGray
+            Write-ChthonicCommandSurfaceSummary -Summary $payload.summary -Indent "  "
+            Write-Host ""
+            Write-Host "  domains" -ForegroundColor Cyan
+            foreach ($domain in $payload.domains) {
+                $modeColor = if ($domain.mode -eq "canonical") { "White" } else { "Yellow" }
+                $actionsText = if ($domain.action_count -gt 0) { $domain.action_count } else { 0 }
+                $wrapperText = if ($domain.claudine_passthrough) { "yes" } else { "no" }
+
+                Write-Host ("    {0,-12} " -f $domain.domain) -NoNewline -ForegroundColor Cyan
+                Write-Host ("{0,-13}" -f $domain.mode) -NoNewline -ForegroundColor $modeColor
+                Write-Host (" actions={0,-2} claudine={1}" -f $actionsText, $wrapperText) -ForegroundColor DarkGray
+                Write-Host ("      {0}" -f $domain.summary) -ForegroundColor DarkGray
+                if ($domain.action_names.Count -gt 0) {
+                    Write-Host ("      actions: {0}" -f ($domain.action_names -join ", ")) -ForegroundColor White
+                }
+                if ($domain.action_aliases.Count -gt 0) {
+                    Write-Host ("      aliases: {0}" -f ($domain.action_aliases -join ", ")) -ForegroundColor DarkGray
+                }
+                if ($domain.preferred_surface) {
+                    Write-Host ("      prefer: {0}" -f $domain.preferred_surface) -ForegroundColor DarkGray
+                }
+            }
+            Write-Host ""
+            Write-Host "  compatibility watch" -ForegroundColor Cyan
+            foreach ($entry in $payload.compatibility_watch) {
+                Write-Host ("    {0,-12} {1}" -f $entry.domain, $entry.summary) -ForegroundColor Yellow
+                if ($entry.preferred_surface) {
+                    Write-Host ("      prefer: {0}" -f $entry.preferred_surface) -ForegroundColor DarkGray
+                }
+            }
+            Write-Host ("="*72) -ForegroundColor DarkGray
+            Write-Host ""
+            return 0
+        }
+        "counts" {
+            if ($Json) {
+                Write-Host (ConvertTo-Json $payload.summary -Depth 6)
+                return 0
+            }
+
+            Write-Host ""
+            Write-Host "CHTHONIC COMMAND COUNTS" -ForegroundColor Cyan
+            Write-Host ("="*72) -ForegroundColor DarkGray
+            Write-ChthonicCommandSurfaceSummary -Summary $payload.summary -Indent "  "
+            Write-Host ("="*72) -ForegroundColor DarkGray
+            Write-Host ""
+            return 0
+        }
+        default {
+            Write-Host "chthonic commands <action>"
+            Write-Host "  inventory|matrix  - show domains, subcommands, compatibility watch, wrapper reach"
+            Write-Host "  counts            - show command/subcommand totals"
             return 0
         }
     }
@@ -1440,44 +2032,86 @@ function Show-StatusBanner {
     }
 }
 
+function Get-ChthonicCatalogDomain {
+    param([Parameter(Mandatory = $true)][string]$Domain)
+
+    return @(Get-ChthonicCommandCatalog | Where-Object { $_.domain -eq $Domain } | Select-Object -First 1)
+}
+
+function Format-ChthonicActionLabel {
+    param($Action)
+
+    $label = $Action.name
+    if ($Action.aliases -and $Action.aliases.Count -gt 0) {
+        $label += "|" + (($Action.aliases | ForEach-Object { [string]$_ }) -join "|")
+    }
+    return $label
+}
+
+function Show-DomainCatalogHelp {
+    param(
+        [Parameter(Mandatory = $true)][string]$Domain,
+        [string]$EntryPoint = "chthonic"
+    )
+
+    $entry = Get-ChthonicCatalogDomain -Domain $Domain
+    if (-not $entry) {
+        Write-Host "$EntryPoint $Domain" -ForegroundColor Yellow
+        return
+    }
+
+    Write-Host "$EntryPoint $($entry.domain) <action>" -ForegroundColor White
+    Write-Host "  $($entry.summary)" -ForegroundColor DarkGray
+
+    if ($entry.mode -eq "compatibility" -and $entry.preferred_surface) {
+        Write-Host "  preferred surface: $($entry.preferred_surface)" -ForegroundColor DarkGray
+    }
+
+    if ($entry.actions.Count -eq 0) {
+        Write-Host "  (no nested documented actions)" -ForegroundColor DarkGray
+        return
+    }
+
+    foreach ($action in $entry.actions) {
+        $label = Format-ChthonicActionLabel -Action $action
+        Write-Host ("  {0,-22} {1}" -f $label, $action.summary) -ForegroundColor White
+    }
+}
+
+function Show-CommandCatalogHelp {
+    $payload = Get-ChthonicCommandSurfacePayload
+    $canonical = @($payload.domains | Where-Object { $_.mode -eq "canonical" })
+    $compatibility = @($payload.compatibility_watch)
+
+    Write-Host ""
+    Write-Host "Usage: chthonic [--version] [--help] <domain> [<action>] [<args>]" -ForegroundColor White
+    Write-Host ""
+    Write-Host "Canonical Domains" -ForegroundColor Cyan
+    foreach ($domain in $canonical) {
+        $actionPreview = if ($domain.action_names.Count -gt 0) {
+            ($domain.action_names -join "|")
+        } else {
+            "[direct]"
+        }
+        Write-Host ("  {0,-12} {1,-32} {2}" -f $domain.domain, $actionPreview, $domain.summary) -ForegroundColor White
+    }
+    Write-Host ""
+    Write-Host "Compatibility Domains" -ForegroundColor Cyan
+    foreach ($domain in $compatibility) {
+        Write-Host ("  {0,-12} {1}" -f $domain.domain, $domain.preferred_surface) -ForegroundColor DarkGray
+    }
+    Write-Host ""
+    Write-ChthonicCommandSurfaceSummary -Summary $payload.summary
+    Write-Host ""
+    Write-Host "Notes" -ForegroundColor Cyan
+    Write-Host "  --help shows this catalog-driven summary without the status banner." -ForegroundColor DarkGray
+    Write-Host "  Use `chthonic commands inventory` for the full live matrix." -ForegroundColor DarkGray
+    Write-Host "  Use `claudine commands counts` to verify wrapper reach from the legacy entrypoint." -ForegroundColor DarkGray
+    Write-Host ""
+}
+
 function Show-Help {
-@"
-
-Usage: chthonic [--version] [--help] <domain> [<action>] [<args>]
-
-  env [--quiet]           Activate polyglot environment
-  claudine [--quiet]      Alias to env (shell compatibility lane)
-  status [--json]         Show tool + manager versions (verbose)
-  trend [--json]          Rustification trend tracker (GitHub + endoflife cross-ref)
-  oversight [--json]      Hierarchical upcycle oversight stack (single LATEST output)
-  doctor [--fix] [--json] Check versions + EOL via endoflife.date; --fix upgrades
-  doctor --dry-run        Simulate --fix without executing anything
-  doctor --origins        Show install methodology per tool (path + origin + wrappers)
-  detect                  Detect IDE and environment context
-  toolchain hierarchy|verify|scan|paths  High-level verified toolchain control plane
-  memory map|migration|next|cheatsheet|session  Strategic runbooks + session wisdom
-  ruby versions|tools|lane|doctor|search|install|upgrade  Ruby lane via rv + RubyGems
-  r lane|status           R runtime + rv-r lane summary
-  zig lane|status         Zig runtime + zv lane summary
-  graphics lane|status    GPU / Vulkan / shader / MSVC lane snapshot
-
-  ide launch|detect|reset IDE management
-  mcp start|stop|status   MCP + bridge services
-  poe account|models|probe|chat|sdk-probe|audit  Poe account routing + Poe lanes
-  config init|show|set    Configuration (~/.chthonic/)
-  new <profile> <path>   Scaffold polyglot projects (uv, bun, cargo, go, ruby, azd)
-  shell brush|pwsh|bash|probe  Experimental shell lane + shell capability probe
-  workflow control-plane|toolchain-governance  Run higher-level orchestrated profiles
-  ssot queue|entity|section|drift|lineage  SSOT loremaster control plane
-
-  audit|compact|extract|resolve|map|analyze  Archive tools (uv run)
-  book [serve|build]      mdBook documentation
-
-  --version               Show version
-  --help                  Show this help (without status banner)
-  --quiet                 Suppress output
-
-"@
+    Show-CommandCatalogHelp
 }
 
 function Format-StatusKeyLabel {
@@ -4139,6 +4773,10 @@ switch ($Domain) {
         $exitCode = Invoke-MemoryLane -MemoryAction $Action -MemoryArgs $RemainingArgs -Json:$HasJsonFlag
         exit $exitCode
     }
+    "commands" {
+        $exitCode = Invoke-CommandSurface -CommandAction $Action -Json:$HasJsonFlag
+        exit $exitCode
+    }
     "ruby" {
         switch ($Action) {
             { $_ -in $null, "", "lane", "status" } {
@@ -4191,9 +4829,7 @@ switch ($Domain) {
                 exit 0
             }
             default {
-                Write-Host 'chthonic r <action>'
-                Write-Host "  lane              - R runtime + rig + rv-r lane summary"
-                Write-Host "  lane --json       - same payload as JSON"
+                Show-DomainCatalogHelp -Domain "r"
                 exit 0
             }
         }
@@ -4205,9 +4841,7 @@ switch ($Domain) {
                 exit 0
             }
             default {
-                Write-Host 'chthonic zig <action>'
-                Write-Host "  lane              - Zig runtime + zv lane summary"
-                Write-Host "  lane --json       - same payload as JSON"
+                Show-DomainCatalogHelp -Domain "zig"
                 exit 0
             }
         }
@@ -4219,9 +4853,7 @@ switch ($Domain) {
                 exit 0
             }
             default {
-                Write-Host 'chthonic graphics <action>'
-                Write-Host "  lane              - GPU / Vulkan / MSVC / shader lane summary"
-                Write-Host "  lane --json       - same payload as JSON"
+                Show-DomainCatalogHelp -Domain "graphics"
                 exit 0
             }
         }
@@ -4317,10 +4949,7 @@ switch ($Domain) {
                 exit 0
             }
             default {
-                Write-Host 'chthonic ide <action>'
-                Write-Host "  launch [path]    - Launch Claude Code IDE"
-                Write-Host "  detect           - Check IDE status"
-                Write-Host "  reset            - Reset IDE configuration"
+                Show-DomainCatalogHelp -Domain "ide"
                 exit 0
             }
         }
@@ -4354,11 +4983,7 @@ switch ($Domain) {
                 exit 0
             }
             default {
-                Write-Host 'chthonic mcp <action>'
-                Write-Host "  start      - Start MCP services"
-                Write-Host "  stop       - Stop MCP services"
-                Write-Host "  status     - Check service status"
-                Write-Host "  logs       - Tail service logs"
+                Show-DomainCatalogHelp -Domain "mcp"
                 exit 0
             }
         }
@@ -4401,10 +5026,7 @@ switch ($Domain) {
                 exit 0
             }
             default {
-                Write-Host 'chthonic config <action>'
-                Write-Host "  init       - Initialize configuration"
-                Write-Host "  show       - Display configuration"
-                Write-Host '  set <k> <v> - Set configuration value'
+                Show-DomainCatalogHelp -Domain "config"
                 exit 0
             }
         }
@@ -4501,14 +5123,7 @@ switch ($Domain) {
                 exit $LASTEXITCODE
             }
             default {
-                Write-Host 'chthonic shell <action>'
-                Write-Host "  probe           - show detected shell lanes"
-                Write-Host "  brush [args...] - launch Brush"
-                Write-Host "  brush --cmd <c> - run one Brush command"
-                Write-Host "  pwsh [args...]  - launch PowerShell 7"
-                Write-Host "  pwsh --cmd <c>  - run one PowerShell command"
-                Write-Host "  bash [args...]  - launch Git/MSYS2 Bash"
-                Write-Host "  bash --cmd <c>  - run one Bash command"
+                Show-DomainCatalogHelp -Domain "shell"
                 exit 0
             }
         }
@@ -4516,12 +5131,7 @@ switch ($Domain) {
 
     "ssot" {
         if (-not $Action) {
-            Write-Host 'chthonic ssot <action>'
-            Write-Host "  queue [--write <path>] [--json]"
-            Write-Host "  entity <name> [--json]"
-            Write-Host "  section <query> [--json]"
-            Write-Host "  drift [--json]"
-            Write-Host "  lineage [--entity <name>] [--write <path>] [--json]"
+            Show-DomainCatalogHelp -Domain "ssot"
             exit 0
         }
         $result = Invoke-SsotLoremaster -Action $Action -ActionArgs $RemainingArgs -Json:$HasJsonFlag

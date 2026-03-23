@@ -43,6 +43,8 @@ Examples:
   claudine --quiet
   claudine status --json
   claudine doctor --origins
+  claudine commands counts
+  claudine commands inventory
   claudine toolchain hierarchy
   claudine toolchain verify
   claudine r lane
@@ -52,6 +54,8 @@ Examples:
 
 Notes:
   - This wrapper delegates to scripts/chthonic.ps1.
+  - It forwards the full chthonic command surface, plus bare claudine => env.
+  - Use claudine commands inventory to audit the current forwarded domains and counts.
   - All advanced logic and manager handling lives in chthonic.
 "@
 }

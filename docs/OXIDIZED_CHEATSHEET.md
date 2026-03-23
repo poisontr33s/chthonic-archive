@@ -550,6 +550,8 @@ If a native Rust crate on MSVC fails on `openssl-sys`, bind a real Windows OpenS
 These are the repo-native meta-commands that surface the repaired workstation state:
 
 ```powershell
+.\scripts\chthonic.ps1 commands counts
+.\scripts\chthonic.ps1 commands inventory
 .\scripts\chthonic.ps1 toolchain hierarchy
 .\scripts\chthonic.ps1 toolchain verify
 .\scripts\chthonic.ps1 toolchain scan --json
@@ -567,11 +569,14 @@ These are the repo-native meta-commands that surface the repaired workstation st
 Compatibility wrapper:
 
 ```powershell
+.\scripts\claudine.ps1 commands counts
 .\scripts\claudine.ps1 toolchain hierarchy
 .\scripts\claudine.ps1 memory session
 ```
 
 **Intent:**
+- `commands counts` gives the current surface arithmetic: `23` canonical domains, `8` compatibility domains, `68` canonical documented forms, `76` direct documented forms, `17` nested action aliases
+- `commands inventory` shows the live domain/action matrix, compatibility watchlist, and `claudine` forward reach (`153` combined entrypoint forms across both executable names)
 - `toolchain hierarchy` shows the ordered lane model plus current command ownership/paths
 - `toolchain verify` runs the extension host verifier in a fresh env merge
 - `memory session` recalls the winning state, order, anti-patterns, and next hierarchy from the migration/session artifacts

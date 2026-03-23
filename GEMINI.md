@@ -81,9 +81,12 @@ This file provides guidance to Google Gemini CLI when working with code in this 
 - **Workspace extension source:** `.gemini/extensions/chthonic-archive-sync/`
 - **Workspace skill source:** `.gemini/extensions/chthonic-archive-sync/skills/`
 - **Workspace model aliases:** `chthonic-fast`, `chthonic-thinking`
+- **Local model registry:** `.gemini/local-model-registry.json`
 - **Activation command:** `gemini extensions link .gemini/extensions/chthonic-archive-sync --consent`
 - **Default workspace model:** `chthonic-fast` (`gemini-3.1-flash-lite-preview`)
+- **Compatibility fallback alias:** `chthonic-fast-stable` (`gemini-3-flash-preview`)
 - **Higher-think workspace model:** `chthonic-thinking` (`gemini-3-flash-preview`)
+- **Wrapper behavior:** `bun run gemini` syncs the local registry into `.gemini/settings.json`, prefers the stable alias for interactive Flash-Lite sessions, and retries headless Flash-Lite failures on the stable alias.
 - **Skill reload:** restart Gemini CLI or run `/skills reload` when available after workspace skill edits
 
 ## Execution Discipline

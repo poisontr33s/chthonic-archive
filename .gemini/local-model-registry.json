@@ -1,0 +1,38 @@
+{
+  "version": 1,
+  "workspaceModel": "chthonic-fast",
+  "aliases": {
+    "chthonic-fast": {
+      "targetModel": "gemini-3.1-flash-lite-preview",
+      "fallbackAlias": "chthonic-fast-stable",
+      "fallbackModel": "gemini-3-flash-preview",
+      "thinkingLevel": "LOW"
+    },
+    "chthonic-fast-stable": {
+      "targetModel": "gemini-3-flash-preview",
+      "thinkingLevel": "LOW"
+    },
+    "chthonic-thinking": {
+      "targetModel": "gemini-3-flash-preview",
+      "thinkingLevel": "HIGH",
+      "includeThoughts": true
+    }
+  },
+  "models": {
+    "gemini-3.1-flash-lite-preview": {
+      "extends": "gemini-3-flash-preview",
+      "fallbackModel": "gemini-3-flash-preview",
+      "matchers": [
+        "was not found or is invalid",
+        "not found or is invalid",
+        "requested entity was not found",
+        "modelnotfounderror",
+        "404",
+        "403",
+        "forbidden",
+        "permission_denied",
+        "model not found"
+      ]
+    }
+  }
+}

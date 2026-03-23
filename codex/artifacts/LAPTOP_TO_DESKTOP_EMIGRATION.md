@@ -208,6 +208,8 @@ bun run scripts/verify-host.ts
 These commands are the durable recall layer for the repaired workstation:
 
 ```powershell
+.\scripts\chthonic.ps1 commands counts
+.\scripts\chthonic.ps1 commands inventory
 .\scripts\chthonic.ps1 toolchain hierarchy
 .\scripts\chthonic.ps1 toolchain verify
 .\scripts\chthonic.ps1 toolchain scan --json
@@ -220,9 +222,19 @@ These commands are the durable recall layer for the repaired workstation:
 Compatibility wrapper:
 
 ```powershell
+.\scripts\claudine.ps1 commands counts
 .\scripts\claudine.ps1 toolchain hierarchy
 .\scripts\claudine.ps1 memory session
 ```
+
+Current command-surface arithmetic:
+
+- `23` canonical domains
+- `8` compatibility domains
+- `68` canonical documented forms
+- `76` direct documented forms
+- `17` nested action aliases
+- `153` combined entrypoint reach across `chthonic` + forwarded `claudine`
 
 ## Strategic Next Steps
 

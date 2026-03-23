@@ -31,6 +31,7 @@ updated: 2026-03-23
 - **Migration memory:** [LAPTOP_TO_DESKTOP_EMIGRATION.md](artifacts/LAPTOP_TO_DESKTOP_EMIGRATION.md)
 - **Strategic control surface:** `chthonic toolchain ...` + `chthonic memory ...` now expose the repaired workstation state directly
 - **Extended lane control:** `chthonic r lane` and `chthonic zig lane` expose the newly bound R and Zig lanes directly
+- **Command surface inventory:** `chthonic commands counts` reports `23` canonical domains, `8` compatibility domains, `68` canonical documented forms, `76` direct documented forms, and `17` nested action aliases; `claudine` forwards the same surface for `153` combined entrypoint forms
 
 ## Active Chore
 
