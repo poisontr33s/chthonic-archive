@@ -43,6 +43,12 @@ Examples:
   claudine --quiet
   claudine status --json
   claudine doctor --origins
+  claudine toolchain hierarchy
+  claudine toolchain verify
+  claudine r lane
+  claudine zig lane
+  claudine memory migration
+  claudine memory session
 
 Notes:
   - This wrapper delegates to scripts/chthonic.ps1.

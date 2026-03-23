@@ -30,7 +30,7 @@ tags:
 > Full command surfaces: documented in source READMEs — this surfaces the non-obvious.
 > Rationale: [OXIDIZED_TOOLCHAIN_RATIONALE.md](OXIDIZED_TOOLCHAIN_RATIONALE.md)
 > Migration memory: [LAPTOP_TO_DESKTOP_EMIGRATION.md](../codex/artifacts/LAPTOP_TO_DESKTOP_EMIGRATION.md)
-> Local note: `uv`, `rv`, `goup`, `bun`, `cargo`, `brush`, `zv`, and `rv-r` are installed here. `rig` is documented, but not currently installed on this workstation.
+> Local note: `uv`, `rv`, `goup`, `bun`, `cargo`, `brush`, `zv`, and `rv-r` are installed here. `rig` remains documented as an R version-manager option, but this workstation centers the unmanaged current `R` runtime plus `rv-r`.
 
 ---
 
@@ -542,6 +542,41 @@ If a native Rust crate on MSVC fails on `openssl-sys`, bind a real Windows OpenS
 **Verified locally against:**
 - `extensions/chthonic-archive/native/entropy-ledger-host`
 - full native workspace `cargo check --manifest-path extensions/chthonic-archive/native/Cargo.toml`
+
+---
+
+### chthonic — Repo Control Surface
+
+These are the repo-native meta-commands that surface the repaired workstation state:
+
+```powershell
+.\scripts\chthonic.ps1 toolchain hierarchy
+.\scripts\chthonic.ps1 toolchain verify
+.\scripts\chthonic.ps1 toolchain scan --json
+.\scripts\chthonic.ps1 toolchain paths
+
+.\scripts\chthonic.ps1 memory map
+.\scripts\chthonic.ps1 memory migration
+.\scripts\chthonic.ps1 memory next
+.\scripts\chthonic.ps1 memory cheatsheet
+.\scripts\chthonic.ps1 memory session
+.\scripts\chthonic.ps1 r lane
+.\scripts\chthonic.ps1 zig lane
+```
+
+Compatibility wrapper:
+
+```powershell
+.\scripts\claudine.ps1 toolchain hierarchy
+.\scripts\claudine.ps1 memory session
+```
+
+**Intent:**
+- `toolchain hierarchy` shows the ordered lane model plus current command ownership/paths
+- `toolchain verify` runs the extension host verifier in a fresh env merge
+- `memory session` recalls the winning state, order, anti-patterns, and next hierarchy from the migration/session artifacts
+- `r lane` shows the current unmanaged `R` runtime plus `rv-r`
+- `zig lane` shows `zv` and active `zig`
 
 ---
 

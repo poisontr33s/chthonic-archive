@@ -21,11 +21,16 @@ updated: 2026-03-23
 - **PowerShell lane:** 7.6.0 active
 - **Ruby lane:** standardized on `rv` `ruby-4.0.2`, with raw-shell `ruby` visibility repaired
 - **Go lane:** standardized through `goup`, default `go1.26.1`
+- **R lane:** unmanaged `R 4.5.3` runtime active, `rv-r 0.19.0` available
+- **Zig lane:** `zv 0.9.2`, `zig 0.15.2`
 - **Brush lane:** repo/global compatibility rescue in place for Windows hybrid behavior
+- **Mise lane:** standardized on Cargo ownership (`mise 2026.3.12`)
 - **Native crypto lane:** `OpenSSL 3.6.1 (64-bit)` installed and bound for MSVC cargo
 - **Solana lane:** `solana-cli 3.1.9`, `agave-install 3.1.9`
 - **Anchor lane:** `avm` installed, `anchor-cli 0.32.1` active
 - **Migration memory:** [LAPTOP_TO_DESKTOP_EMIGRATION.md](artifacts/LAPTOP_TO_DESKTOP_EMIGRATION.md)
+- **Strategic control surface:** `chthonic toolchain ...` + `chthonic memory ...` now expose the repaired workstation state directly
+- **Extended lane control:** `chthonic r lane` and `chthonic zig lane` expose the newly bound R and Zig lanes directly
 
 ## Active Chore
 
@@ -42,6 +47,7 @@ updated: 2026-03-23
 7. **Forge dedup audit** — furnace↔tempered 1:1 mirror after perfect 18/18 graduation
 8. **Native manifest normalization** — advance `extensions/chthonic-archive/native/Cargo.toml` direct deps in a controlled order now that OpenSSL/Solana/Anchor lanes are alive
 9. **Graphics/content continuation** — keep binding HLSL/runtime/content lanes now that workstation blockers are removed
+10. **Control-surface refinement** — continue tightening `chthonic.ps1` / `claudine.ps1` around the now-proven workstation lanes rather than adding parallel wrappers
 
 ## WIP Lanework: MILF-Core
 

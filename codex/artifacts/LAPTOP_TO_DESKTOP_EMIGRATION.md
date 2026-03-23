@@ -34,9 +34,11 @@ Environment repairs that matter:
 - Ruby is standardized on `rv` `ruby-4.0.2`
 - `brush` is usable on Windows with repo/global compatibility rescue
 - Go is standardized through `goup`
+- `mise` is standardized through Cargo ownership
 - native MSVC + Vulkan + CUDA stack is callable
 - `OpenSSL` is bound for MSVC cargo builds
 - `solana`, `agave-install`, `avm`, and `anchor` are visible in fresh shells
+- `R 4.5.3`, `Rscript`, `rv-r 0.19.0`, `zv 0.9.2`, and `zig 0.15.2` are visible in fresh shells
 
 ## Canonical Order
 
@@ -96,6 +98,16 @@ Do the migration in this order.
 - Verify with a fresh environment merge, not a profile-inflated shell only.
 - If the verifier is red, fix the lane, then rerun immediately.
 
+### 9. Expose the repaired state through the control surface
+
+- Add high-level `chthonic` commands for:
+  - toolchain hierarchy
+  - host verification
+  - migration/session memory recall
+  - R lane
+  - Zig lane
+- Keep `claudine` as the compatibility wrapper, but make it advertise the same strategic surfaces.
+
 ## What Worked
 
 - Using `rv` as the single Ruby owner and quarantining/purging old `C:\Ruby*` state.
@@ -105,7 +117,11 @@ Do the migration in this order.
 - Installing `OpenSSL 3.6.1 (64-bit)` for Windows and binding Cargo to it with user env vars.
 - Using the official Agave release bundle directly when the admin installer path was blocked.
 - Letting `avm` fall back from symlink to copy on Windows when symlink privileges were absent.
+- Standardizing `mise` to Cargo ownership after confirming both Cargo and WinGet lanes existed.
+- Removing `.avm\bin` from user `PATH` so Windows stops preferring the extensionless `avm` file over `avm.exe`.
+- Keeping the R runtime current as unmanaged while centering `rv-r` as the first-class R package lane.
 - Verifying every lane immediately after mutation instead of trusting install output.
+- Surfacing the winning state through `chthonic toolchain ...` and `chthonic memory ...` instead of relying on chat recall.
 
 ## Do Not Repeat
 
@@ -117,6 +133,9 @@ Do the migration in this order.
 - Do not use `goup update go`, `goup install go`, or similar fake verbs; they are parsed as versions and fail.
 - Do not expect the official Agave Windows installer to succeed unelevated through restricted automation lanes.
 - Do not stop at “tool installed” if `where.exe <tool>` still fails in a fresh shell.
+- Do not keep duplicate ownership of the same manager when one lane already wins cleanly (`mise` cargo vs WinGet was resolved in favor of Cargo here).
+- Do not leave extensionless `avm` ahead of `avm.exe` in user `PATH`; on this host that produced the Win11 “choose app to open avm” dialog.
+- Do not assume `R` in PowerShell refers to the R runtime; it collides with `Invoke-History` unless the shell or wrapper lane repairs it.
 
 ## Recovery Patterns
 
@@ -143,6 +162,20 @@ Do the migration in this order.
 - Copy fallback is acceptable.
 - What matters is `anchor --version` resolving in a fresh shell afterward.
 
+### If `avm` opens the Win11 "choose app" dialog
+
+- Check `where.exe avm`.
+- If an extensionless file under `.avm\bin\avm` is shadowing `.cargo\bin\avm.exe`, remove `.avm\bin` from user `PATH`.
+- Keep `.cargo\bin\avm.exe` as the canonical command owner.
+
+### If `R` exists but PowerShell still treats it as history
+
+- `R` collides with `Invoke-History` in PowerShell.
+- Prefer:
+  - `Rscript --version`
+  - explicit `R.exe`
+  - `chthonic env` / profile lane to apply the alias repair
+
 ## Verification Set
 
 Run these in a fresh non-profile shell after a migration:
@@ -152,6 +185,10 @@ pwsh --version
 where.exe ruby
 ruby --version
 ridk version
+Rscript --version
+pwsh -NoProfile -File scripts/rv-r.ps1 --version
+where.exe zig
+zig version
 where.exe go
 go version
 where.exe solana
@@ -164,6 +201,27 @@ anchor --version
 cargo check --workspace
 cargo check --manifest-path extensions/chthonic-archive/native/Cargo.toml
 bun run scripts/verify-host.ts
+```
+
+## Chthonic Control Surface
+
+These commands are the durable recall layer for the repaired workstation:
+
+```powershell
+.\scripts\chthonic.ps1 toolchain hierarchy
+.\scripts\chthonic.ps1 toolchain verify
+.\scripts\chthonic.ps1 toolchain scan --json
+.\scripts\chthonic.ps1 toolchain paths
+.\scripts\chthonic.ps1 memory map
+.\scripts\chthonic.ps1 memory migration
+.\scripts\chthonic.ps1 memory session
+```
+
+Compatibility wrapper:
+
+```powershell
+.\scripts\claudine.ps1 toolchain hierarchy
+.\scripts\claudine.ps1 memory session
 ```
 
 ## Strategic Next Steps
@@ -182,4 +240,3 @@ Once the host is green, the next hierarchy is:
 Official references used in the winning path:
 - Agave CLI install: <https://docs.anza.xyz/cli/install>
 - Anchor AVM reference: <https://www.anchor-lang.com/docs/references/avm>
-

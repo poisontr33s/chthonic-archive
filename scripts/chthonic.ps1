@@ -165,6 +165,31 @@ function Get-RExePath {
     return $null
 }
 
+function Get-RScriptExePath {
+    $rExe = Get-RExePath
+    if (-not $rExe) { return $null }
+
+    $candidate = Join-Path (Split-Path -Parent $rExe) "Rscript.exe"
+    if (Test-Path $candidate) { return $candidate }
+    return $null
+}
+
+function Get-RRvExePath {
+    foreach ($candidate in @(
+        (Join-Path $env:USERPROFILE ".r-rv\bin\rv.exe"),
+        (Join-Path $env:USERPROFILE ".r-rv\bin\rv")
+    )) {
+        if (Test-Path $candidate) { return $candidate }
+    }
+    return $null
+}
+
+function Get-RRvScriptPath {
+    $candidate = Join-Path $SCRIPT_DIR "rv-r.ps1"
+    if (Test-Path $candidate) { return $candidate }
+    return $null
+}
+
 function Get-RigExePath {
     foreach ($candidate in @(
         "C:\Program Files\rig\rig.exe",
@@ -172,6 +197,38 @@ function Get-RigExePath {
     )) {
         if ($candidate -and (Test-Path $candidate)) { return $candidate }
     }
+    return $null
+}
+
+function Get-ZvExePath {
+    foreach ($candidate in @(
+        (Join-Path $env:USERPROFILE ".zv\bin\zv.exe"),
+        (Join-Path $env:USERPROFILE ".zv\bin\zv")
+    )) {
+        if (Test-Path $candidate) { return $candidate }
+    }
+
+    try {
+        $cmd = Get-Command zv -ErrorAction Stop
+        if ($cmd.Source -and (Test-Path $cmd.Source)) { return $cmd.Source }
+    } catch {}
+
+    return $null
+}
+
+function Get-ZigExePath {
+    foreach ($candidate in @(
+        (Join-Path $env:USERPROFILE ".zv\bin\zig.exe"),
+        (Join-Path $env:USERPROFILE ".zv\bin\zig")
+    )) {
+        if (Test-Path $candidate) { return $candidate }
+    }
+
+    try {
+        $cmd = Get-Command zig -ErrorAction Stop
+        if ($cmd.Source -and (Test-Path $cmd.Source)) { return $cmd.Source }
+    } catch {}
+
     return $null
 }
 
@@ -621,6 +678,61 @@ function Ensure-RvCommandBinding {
     return [pscustomobject]$result
 }
 
+function Ensure-RCommandBinding {
+    $result = [ordered]@{
+        applied = $false
+        reason = $null
+        r_before = $null
+        r_after = $null
+        rhistory_after = $null
+    }
+
+    $rBefore = Get-CommandResolution -Name "R"
+    if ($rBefore) {
+        $result.r_before = if ($rBefore.Path) { $rBefore.Path } else { $rBefore.Display }
+    }
+
+    $rExe = Get-RExePath
+    if (-not $rExe) {
+        $result.reason = "R runtime not found"
+        return [pscustomobject]$result
+    }
+
+    $isShadowedByInvokeHistory = $false
+    if ($rBefore -and $rBefore.Type -eq "Alias" -and $rBefore.Display -eq "alias -> Invoke-History") {
+        $isShadowedByInvokeHistory = $true
+    }
+
+    if (-not $isShadowedByInvokeHistory) {
+        $result.reason = "R already bound to non-Invoke-History command"
+        $rAfter = Get-CommandResolution -Name "R"
+        if ($rAfter) { $result.r_after = if ($rAfter.Path) { $rAfter.Path } else { $rAfter.Display } }
+        return [pscustomobject]$result
+    }
+
+    try {
+        if (-not (Get-Alias -Name rhistory -ErrorAction SilentlyContinue)) {
+            Set-Alias -Name rhistory -Value Invoke-History -Scope Global -Force
+        }
+        Set-Alias -Name R -Value $rExe -Scope Global -Force
+        $result.applied = $true
+        $result.reason = "R alias redirected to $rExe"
+    } catch {
+        $result.reason = "failed to set alias: $($_.Exception.Message)"
+    }
+
+    $rAfter = Get-CommandResolution -Name "R"
+    if ($rAfter) {
+        $result.r_after = if ($rAfter.Path) { $rAfter.Path } else { $rAfter.Display }
+    }
+    $rhistoryAfter = Get-CommandResolution -Name "rhistory"
+    if ($rhistoryAfter) {
+        $result.rhistory_after = if ($rhistoryAfter.Path) { $rhistoryAfter.Path } else { $rhistoryAfter.Display }
+    }
+
+    return [pscustomobject]$result
+}
+
 function Get-SystemRegistrationPaths {
     $paths = @()
 
@@ -669,14 +781,26 @@ $defaultPolyglotPaths = @(
     # Rust (rustup managed) + Cargo tools (includes rv, rvw)
     "$env:USERPROFILE\.cargo\bin",
 
-    # Go (goup-managed, user-space)
+# Go (goup-managed, user-space)
     "$env:USERPROFILE\.goup\current\bin",
     "$env:USERPROFILE\go\bin"
 )
 
+# Zig (zv-managed)
+$defaultPolyglotPaths += "$env:USERPROFILE\.zv\bin"
+
+# R package manager lane (A2-ai/rv, kept isolated from Ruby rv)
+$defaultPolyglotPaths += "$env:USERPROFILE\.r-rv\bin"
+
 # rv-managed Ruby (exclusive ownership per ANNO manifest)
 if ($rvRubyBin) {
     $defaultPolyglotPaths += $rvRubyBin
+}
+
+# R runtime lane (rig-managed)
+$rExePath = Get-RExePath
+if ($rExePath) {
+    $defaultPolyglotPaths += (Split-Path -Parent $rExePath)
 }
 
 # DevKit toolchain (gcc, make) from RubyInstaller's MSYS2
@@ -712,144 +836,608 @@ function Get-PolyglotPaths {
     return $merged | Select-Object -Unique
 }
 
+function Get-FreshMergedPath {
+    $segments = @()
+    foreach ($scope in @("User", "Machine")) {
+        $raw = [Environment]::GetEnvironmentVariable("Path", $scope)
+        if ([string]::IsNullOrWhiteSpace($raw)) { continue }
+        $segments += ($raw -split ';' | Where-Object { $_ })
+    }
+    return ($segments | Select-Object -Unique) -join ';'
+}
+
+function Get-ChthonicStrategicDocs {
+    return @(
+        [pscustomobject]@{
+            key = "migration"
+            title = "Laptop to Desktop Emigration"
+            path = (Join-Path $REPO_ROOT "codex\artifacts\LAPTOP_TO_DESKTOP_EMIGRATION.md")
+        }
+        [pscustomobject]@{
+            key = "next"
+            title = "Codex Next"
+            path = (Join-Path $REPO_ROOT "codex\NEXT.md")
+        }
+        [pscustomobject]@{
+            key = "cheatsheet"
+            title = "Oxidized Cheatsheet"
+            path = (Join-Path $REPO_ROOT "docs\OXIDIZED_CHEATSHEET.md")
+        }
+    )
+}
+
+function Get-MarkdownHeadings {
+    param(
+        [Parameter(Mandatory = $true)][string]$Path,
+        [int]$Limit = 12
+    )
+
+    if (-not (Test-Path -LiteralPath $Path)) { return @() }
+
+    return @(
+        Get-Content -LiteralPath $Path -ErrorAction SilentlyContinue |
+            Where-Object { $_ -match '^(#+)\s+(.+)$' } |
+            Select-Object -First $Limit |
+            ForEach-Object {
+                [pscustomobject]@{
+                    level = ($matches[1]).Length
+                    text = $matches[2].Trim()
+                }
+            }
+    )
+}
+
+function Get-MarkdownSectionText {
+    param(
+        [Parameter(Mandatory = $true)][string]$Path,
+        [Parameter(Mandatory = $true)][string]$Heading
+    )
+
+    if (-not (Test-Path -LiteralPath $Path)) { return $null }
+
+    $lines = Get-Content -LiteralPath $Path -ErrorAction SilentlyContinue
+    if (-not $lines) { return $null }
+
+    $startIndex = -1
+    $startLevel = $null
+    for ($i = 0; $i -lt $lines.Count; $i++) {
+        if ($lines[$i] -match '^(#+)\s+(.+)$') {
+            $level = ($matches[1]).Length
+            $title = $matches[2].Trim()
+            if ($title -eq $Heading) {
+                $startIndex = $i
+                $startLevel = $level
+                break
+            }
+        }
+    }
+
+    if ($startIndex -lt 0) { return $null }
+
+    $buffer = New-Object System.Collections.Generic.List[string]
+    for ($i = $startIndex; $i -lt $lines.Count; $i++) {
+        $line = $lines[$i]
+        if ($i -gt $startIndex -and $line -match '^(#+)\s+(.+)$') {
+            $level = ($matches[1]).Length
+            if ($level -le $startLevel) { break }
+        }
+        $buffer.Add($line)
+    }
+
+    return ($buffer -join "`n").Trim()
+}
+
+function Invoke-ExtensionToolingCommand {
+    param(
+        [Parameter(Mandatory = $true)][string]$ScriptRelativePath,
+        [string[]]$Args = @()
+    )
+
+    $extensionRoot = Join-Path $REPO_ROOT "extensions\chthonic-archive"
+    $scriptPath = Join-Path $extensionRoot $ScriptRelativePath
+    if (-not (Test-Path -LiteralPath $scriptPath)) {
+        return [pscustomobject]@{
+            ExitCode = 1
+            Output = @("Missing script: $scriptPath")
+        }
+    }
+
+    $oldPath = $env:Path
+    $env:Path = Get-FreshMergedPath
+    Push-Location $extensionRoot
+    try {
+        $output = & bun run $ScriptRelativePath @Args 2>&1
+        return [pscustomobject]@{
+            ExitCode = $LASTEXITCODE
+            Output = @($output | ForEach-Object { [string]$_ })
+        }
+    }
+    finally {
+        Pop-Location
+        $env:Path = $oldPath
+    }
+}
+
+function Get-ToolchainHierarchyPayload {
+    $oldPath = $env:Path
+    $env:Path = Get-FreshMergedPath
+    try {
+        $commands = @(
+            "pwsh", "rv", "ruby", "gcc", "make", "pacman", "uv", "bun",
+            "cargo", "rustup", "go", "goup", "brush", "solana",
+            "agave-install", "avm", "anchor", "mise", "zv", "zig",
+            "r", "rscript", "rv-r"
+        ) | ForEach-Object {
+            $meta = Get-CommandResolution -Name $_
+            $resolvedPath = if ($meta) { if ($meta.Path) { $meta.Path } else { $meta.Display } } else { $null }
+
+            if ($_ -eq "rv" -and (-not $resolvedPath -or $resolvedPath -eq "alias -> Remove-Variable")) {
+                $rvExe = Get-RvExePath
+                if ($rvExe) { $resolvedPath = $rvExe }
+            }
+
+            if ($_ -eq "go" -and -not $resolvedPath) {
+                $goupGo = Join-Path $env:USERPROFILE ".goup\current\bin\go.exe"
+                if (Test-Path $goupGo) { $resolvedPath = $goupGo }
+            }
+
+            if ($_ -eq "zv" -and -not $resolvedPath) {
+                $zvExe = Get-ZvExePath
+                if ($zvExe) { $resolvedPath = $zvExe }
+            }
+
+            if ($_ -eq "zig" -and -not $resolvedPath) {
+                $zigExe = Get-ZigExePath
+                if ($zigExe) { $resolvedPath = $zigExe }
+            }
+
+            if ($_ -eq "r") {
+                $rExe = Get-RExePath
+                if ($rExe) { $resolvedPath = $rExe }
+            }
+
+            if ($_ -eq "rscript") {
+                $rscriptExe = Get-RScriptExePath
+                if ($rscriptExe) { $resolvedPath = $rscriptExe }
+            }
+
+            if ($_ -eq "rv-r") {
+                $rrvScript = Get-RRvScriptPath
+                if ($rrvScript) { $resolvedPath = $rrvScript }
+            }
+
+            $resolvedVersion = Get-InstalledVersion $_
+            if ($_ -eq "avm" -and -not $resolvedVersion -and $resolvedPath) {
+                $resolvedVersion = "installed"
+            }
+
+            [pscustomobject]@{
+                name = $_
+                path = $resolvedPath
+                version = $resolvedVersion
+            }
+        }
+
+        $docs = @(Get-ChthonicStrategicDocs | ForEach-Object {
+            [pscustomobject]@{
+                key = $_.key
+                title = $_.title
+                path = $_.path
+                exists = (Test-Path -LiteralPath $_.path)
+                headings = @(Get-MarkdownHeadings -Path $_.path -Limit 8)
+            }
+        })
+
+        return [pscustomobject]@{
+            shell = [pscustomobject]@{
+                path = (Get-FreshMergedPath)
+                fresh_shell_required = $true
+            }
+            ordered_phases = @(
+                "stabilize shell",
+                "normalize ruby + devkit",
+                "repair raw-shell path visibility",
+                "repair brush windows hybrid lane",
+                "bind graphics + native build surfaces",
+                "bind openssl for native cargo",
+                "bind solana + anchor",
+                "rerun verifier in fresh env"
+            )
+            commands = @($commands)
+            docs = @($docs)
+        }
+    }
+    finally {
+        $env:Path = $oldPath
+    }
+}
+
+function Invoke-ToolchainMeta {
+    param(
+        [string]$ToolchainAction,
+        [string[]]$ToolchainArgs,
+        [switch]$Json
+    )
+
+    switch ($ToolchainAction) {
+        { $_ -in $null, "", "hierarchy", "status", "lane" } {
+            $payload = Get-ToolchainHierarchyPayload
+            if ($Json) {
+                Write-Host (ConvertTo-Json $payload -Depth 8)
+                return 0
+            }
+
+            Write-Host ""
+            Write-Host "CHTHONIC TOOLCHAIN HIERARCHY" -ForegroundColor Cyan
+            Write-Host ("="*72) -ForegroundColor DarkGray
+            Write-Host "  phases" -ForegroundColor Cyan
+            for ($i = 0; $i -lt $payload.ordered_phases.Count; $i++) {
+                Write-Host ("    {0}. {1}" -f ($i + 1), $payload.ordered_phases[$i]) -ForegroundColor White
+            }
+            Write-Host ""
+            Write-Host "  commands" -ForegroundColor Cyan
+            foreach ($command in $payload.commands) {
+                $version = if ($command.version) { $command.version } else { "unresolved" }
+                $path = if ($command.path) { $command.path } else { "not found" }
+                $color = if ($command.path) { "White" } else { "Red" }
+                Write-Host ("    {0,-14} {1,-18} {2}" -f $command.name, $version, $path) -ForegroundColor $color
+            }
+            Write-Host ""
+            Write-Host "  memory" -ForegroundColor Cyan
+            foreach ($doc in $payload.docs) {
+                Write-Host ("    {0,-12} {1}" -f $doc.key, $doc.path) -ForegroundColor White
+            }
+            Write-Host ("="*72) -ForegroundColor DarkGray
+            Write-Host ""
+            return 0
+        }
+        "scan" {
+            $result = Invoke-ExtensionToolingCommand -ScriptRelativePath "scripts/toolpool-scan.ts" -Args $ToolchainArgs
+            if ($result.Output) { $result.Output | ForEach-Object { Write-Host $_ } }
+            return $result.ExitCode
+        }
+        "verify" {
+            $result = Invoke-ExtensionToolingCommand -ScriptRelativePath "scripts/verify-host.ts" -Args $ToolchainArgs
+            if ($result.Output) { $result.Output | ForEach-Object { Write-Host $_ } }
+            return $result.ExitCode
+        }
+        "paths" {
+            $payload = Get-ToolchainHierarchyPayload
+            if ($Json) {
+                Write-Host (ConvertTo-Json $payload.commands -Depth 6)
+                return 0
+            }
+            Write-Host ""
+            Write-Host "CHTHONIC TOOLCHAIN PATHS" -ForegroundColor Cyan
+            Write-Host ("="*72) -ForegroundColor DarkGray
+            foreach ($command in $payload.commands) {
+                $path = if ($command.path) { $command.path } else { "not found" }
+                $color = if ($command.path) { "White" } else { "Red" }
+                Write-Host ("  {0,-14} {1}" -f $command.name, $path) -ForegroundColor $color
+            }
+            Write-Host ("="*72) -ForegroundColor DarkGray
+            Write-Host ""
+            return 0
+        }
+        default {
+            Write-Host "chthonic toolchain <action>"
+            Write-Host "  hierarchy         - ordered lane hierarchy + current command resolution"
+            Write-Host "  verify            - run extension host verifier in a fresh env merge"
+            Write-Host "  scan              - run toolpool scan in the extension lane"
+            Write-Host "  paths             - show resolved command ownership/paths"
+            return 0
+        }
+    }
+}
+
+function Invoke-MemoryLane {
+    param(
+        [string]$MemoryAction,
+        [string[]]$MemoryArgs,
+        [switch]$Json
+    )
+
+    $docs = @(Get-ChthonicStrategicDocs | ForEach-Object {
+        [pscustomobject]@{
+            key = $_.key
+            title = $_.title
+            path = $_.path
+            exists = (Test-Path -LiteralPath $_.path)
+            headings = @(Get-MarkdownHeadings -Path $_.path -Limit 10)
+        }
+    })
+
+    switch ($MemoryAction) {
+        { $_ -in $null, "", "map", "status", "list" } {
+            if ($Json) {
+                Write-Host (ConvertTo-Json $docs -Depth 6)
+                return 0
+            }
+            Write-Host ""
+            Write-Host "CHTHONIC MEMORY MAP" -ForegroundColor Cyan
+            Write-Host ("="*72) -ForegroundColor DarkGray
+            foreach ($doc in $docs) {
+                Write-Host ("  {0,-12} {1}" -f $doc.key, $doc.path) -ForegroundColor White
+                foreach ($heading in $doc.headings | Select-Object -First 5) {
+                    Write-Host ("    - {0}" -f $heading.text) -ForegroundColor DarkGray
+                }
+            }
+            Write-Host ("="*72) -ForegroundColor DarkGray
+            Write-Host ""
+            return 0
+        }
+        { $_ -in "migration", "next", "cheatsheet" } {
+            $doc = $docs | Where-Object { $_.key -eq $MemoryAction } | Select-Object -First 1
+            if (-not $doc) {
+                Write-Error "Unknown memory document: $MemoryAction"
+                return 1
+            }
+
+            if ($Json) {
+                Write-Host (ConvertTo-Json $doc -Depth 6)
+                return 0
+            }
+
+            Write-Host ""
+            Write-Host ("CHTHONIC MEMORY: {0}" -f $doc.title.ToUpperInvariant()) -ForegroundColor Cyan
+            Write-Host ("="*72) -ForegroundColor DarkGray
+            Write-Host ("  path     {0}" -f $doc.path) -ForegroundColor White
+            Write-Host "  headings" -ForegroundColor Cyan
+            foreach ($heading in $doc.headings) {
+                Write-Host ("    - {0}" -f $heading.text) -ForegroundColor DarkGray
+            }
+            Write-Host ("="*72) -ForegroundColor DarkGray
+            Write-Host ""
+            return 0
+        }
+        { $_ -in "session", "wisdom" } {
+            $migrationPath = (Get-ChthonicStrategicDocs | Where-Object { $_.key -eq "migration" } | Select-Object -First 1).path
+            $nextPath = (Get-ChthonicStrategicDocs | Where-Object { $_.key -eq "next" } | Select-Object -First 1).path
+
+            $payload = [pscustomobject]@{
+                winning_state = Get-MarkdownSectionText -Path $migrationPath -Heading "Current Winning State"
+                canonical_order = Get-MarkdownSectionText -Path $migrationPath -Heading "Canonical Order"
+                what_worked = Get-MarkdownSectionText -Path $migrationPath -Heading "What Worked"
+                do_not_repeat = Get-MarkdownSectionText -Path $migrationPath -Heading "Do Not Repeat"
+                strategic_next_steps = Get-MarkdownSectionText -Path $migrationPath -Heading "Strategic Next Steps"
+                toolchain_overlay = Get-MarkdownSectionText -Path $nextPath -Heading "Toolchain Overlay (2026-03-23)"
+                pending_work = Get-MarkdownSectionText -Path $nextPath -Heading "Pending Work"
+            }
+
+            if ($Json) {
+                Write-Host (ConvertTo-Json $payload -Depth 6)
+                return 0
+            }
+
+            Write-Host ""
+            Write-Host "CHTHONIC SESSION WISDOM" -ForegroundColor Cyan
+            Write-Host ("="*72) -ForegroundColor DarkGray
+            foreach ($entry in @(
+                @{ label = "Winning State"; text = $payload.winning_state },
+                @{ label = "Canonical Order"; text = $payload.canonical_order },
+                @{ label = "What Worked"; text = $payload.what_worked },
+                @{ label = "Do Not Repeat"; text = $payload.do_not_repeat },
+                @{ label = "Strategic Next Steps"; text = $payload.strategic_next_steps },
+                @{ label = "Toolchain Overlay"; text = $payload.toolchain_overlay },
+                @{ label = "Pending Work"; text = $payload.pending_work }
+            )) {
+                if (-not $entry.text) { continue }
+                Write-Host ("  {0}" -f $entry.label) -ForegroundColor Cyan
+                $entry.text -split "`n" | ForEach-Object { Write-Host ("    {0}" -f $_) -ForegroundColor $(if ($_ -match '^#') { "White" } else { "DarkGray" }) }
+                Write-Host ""
+            }
+            Write-Host ("="*72) -ForegroundColor DarkGray
+            Write-Host ""
+            return 0
+        }
+        default {
+            Write-Host "chthonic memory <action>"
+            Write-Host "  map               - show strategic doc map"
+            Write-Host "  migration         - show migration runbook anchors"
+            Write-Host "  next              - show current waypoint anchors"
+            Write-Host "  cheatsheet        - show cheatsheet anchors"
+            Write-Host "  session|wisdom    - synthesize this session's winning patterns"
+            return 0
+        }
+    }
+}
+
 function Show-StatusBanner {
     # Compact one-liner version probes grouped by manager
     $W = "White"; $C = "Cyan"; $D = "DarkGray"; $R = "Red"
     function ver($cmd) { try { $v = (& $cmd 2>$null); if ($v) { return ($v -split "`n")[0] } } catch {}; return $null }
 
-    Write-Host "CHTHONIC v$VERSION" -ForegroundColor $C -NoNewline
-    Write-Host " | " -ForegroundColor $D -NoNewline
-    Write-Host "$REPO_ROOT" -ForegroundColor $W
-    Write-Host ("="*72) -ForegroundColor $D
+    $oldPath = $env:Path
+    $env:Path = Get-FreshMergedPath
+    try {
+        Write-Host "CHTHONIC v$VERSION" -ForegroundColor $C -NoNewline
+        Write-Host " | " -ForegroundColor $D -NoNewline
+        Write-Host "$REPO_ROOT" -ForegroundColor $W
+        Write-Host ("="*72) -ForegroundColor $D
 
-    # rv -> Ruby
-    $rubyVer = ver { ruby -e "print RUBY_VERSION" }
-    $rvwVer = ver { rvw --version }; if ($rvwVer -match '(\d+\.\d+\.\d+)') { $rvwVer = $matches[1] } else { $rvwVer = $null }
-    $rvMeta = Get-CommandResolution -Name "rv"
-    $rvVer = $null
-    if ($rvMeta -and $rvMeta.Type -ne "Alias") {
-        $rvProbe = ver { rv --version }
-        if ($rvProbe -match '(\d+\.\d+\.\d+)') { $rvVer = $matches[1] }
-    }
-    if (-not $rvVer -and $rvwVer) { $rvVer = $rvwVer }
-    Write-Host "  rv    " -NoNewline -ForegroundColor $C
-    if ($rubyVer) { Write-Host "ruby $rubyVer" -NoNewline -ForegroundColor $W } else { Write-Host "ruby ?" -NoNewline -ForegroundColor $R }
-    if ($rvVer) { Write-Host "  rv $rvVer" -NoNewline -ForegroundColor $D }
-    if ($rvwVer) { Write-Host "  rvw $rvwVer" -NoNewline -ForegroundColor $D }
-
-    # DevKit (gcc)
-    $gccVer = ver { gcc -dumpfullversion }
-    if ($gccVer) { Write-Host "  gcc $gccVer" -NoNewline -ForegroundColor $D }
-    Write-Host ""
-
-    # uv -> Python
-    $pyVer = ver { uv run python -c "import sys; print(f'{sys.version_info.major}.{sys.version_info.minor}.{sys.version_info.micro}')" }
-    if (-not $pyVer) {
-        $pyVerRaw = ver { python --version }
-        if ($pyVerRaw -match 'Python\s+(\d+\.\d+\.\d+)') { $pyVer = $matches[1] }
-    }
-    $uvVer = ver { uv --version }; if ($uvVer -match '(\d+\.\d+\.\d+)') { $uvVer = $matches[1] } else { $uvVer = $null }
-    $ruffVer = ver { ruff --version }; if ($ruffVer -match '(\d+\.\d+\.\d+)') { $ruffVer = $matches[1] } else { $ruffVer = $null }
-    Write-Host "  uv    " -NoNewline -ForegroundColor $C
-    if ($pyVer) { Write-Host "python $pyVer" -NoNewline -ForegroundColor $W } else { Write-Host "python ?" -NoNewline -ForegroundColor $R }
-    if ($uvVer) { Write-Host "  uv $uvVer" -NoNewline -ForegroundColor $D }
-    if ($ruffVer) { Write-Host "  ruff $ruffVer" -NoNewline -ForegroundColor $D }
-    Write-Host ""
-
-    # bun -> JS/TS
-    $bunVer = ver { bun --version }
-    $biomeVer = ver { biome --version }; if ($biomeVer) { $biomeVer = $biomeVer -replace 'Version:\s*','' }
-    Write-Host "  bun   " -NoNewline -ForegroundColor $C
-    if ($bunVer) { Write-Host "bun $bunVer" -NoNewline -ForegroundColor $W } else { Write-Host "bun ?" -NoNewline -ForegroundColor $R }
-    if ($biomeVer) { Write-Host "  biome $biomeVer" -NoNewline -ForegroundColor $D }
-    Write-Host "  (sql, react, test, bundle built-in)" -ForegroundColor $D
-
-    # rustup -> Rust
-    $rustVer = ver { rustc -V }; if ($rustVer) { $rustVer = ($rustVer -split ' ')[1] }
-    $rustupVer = ver { rustup --version }; if ($rustupVer -match '(\d+\.\d+\.\d+)') { $rustupVer = $matches[1] } else { $rustupVer = $null }
-    $cargoVer = ver { cargo --version }; if ($cargoVer -match '(\d+\.\d+\.\d+)') { $cargoVer = $matches[1] } else { $cargoVer = $null }
-    Write-Host "  rust  " -NoNewline -ForegroundColor $C
-    if ($rustVer) { Write-Host "rustc $rustVer" -NoNewline -ForegroundColor $W } else { Write-Host "rustc ?" -NoNewline -ForegroundColor $R }
-    if ($rustupVer) { Write-Host "  rustup $rustupVer" -NoNewline -ForegroundColor $D }
-    if ($cargoVer) { Write-Host "  cargo $cargoVer" -NoNewline -ForegroundColor $D }
-    $mdbookVer = ver { mdbook --version }; if ($mdbookVer -match '(\d+\.\d+\.\d+)') { $mdbookVer = $matches[1] } else { $mdbookVer = $null }
-    if ($mdbookVer) { Write-Host "  mdbook $mdbookVer" -NoNewline -ForegroundColor $D }
-    Write-Host ""
-
-    # Go (try PATH, then goup)
-    $goVer = ver { go version }
-    if (-not $goVer) { $goupGo = Join-Path $env:USERPROFILE ".goup\current\bin\go.exe"; if (Test-Path $goupGo) { $goVer = ver { & $goupGo version } } }
-    if ($goVer -match 'go(\d+\.\d+\.\d+)') { $goVer = $matches[1] } else { $goVer = $null }
-    $goupVer = ver { goup --version }; if ($goupVer -match '(\d+\.\d+\.\d+)') { $goupVer = $matches[1] } else { $goupVer = $null }
-    Write-Host "  go    " -NoNewline -ForegroundColor $C
-    if ($goVer) { Write-Host "go $goVer" -NoNewline -ForegroundColor $W } else { Write-Host "go ?" -NoNewline -ForegroundColor $R }
-    if ($goupVer) { Write-Host "  goup $goupVer" -NoNewline -ForegroundColor $D }
-    Write-Host ""
-
-    # AI CLI lane (standalone + shell wrappers)
-    $claudeMeta = Get-CommandResolution -Name "claude"
-    $claudineMeta = Get-CommandResolution -Name "claudine"
-    $claudeVer = ver { claude --version }
-    if ($claudeVer -match '(\d+\.\d+\.\d+)') { $claudeVer = $matches[1] }
-    Write-Host "  ai    " -NoNewline -ForegroundColor $C
-    if ($claudeMeta) {
-        if ($claudeVer) {
-            Write-Host "claude $claudeVer" -NoNewline -ForegroundColor $W
-        } else {
-            Write-Host "claude" -NoNewline -ForegroundColor $W
+        # rv -> Ruby
+        $rubyVer = ver { ruby -e "print RUBY_VERSION" }
+        $rvwVer = ver { rvw --version }; if ($rvwVer -match '(\d+\.\d+\.\d+)') { $rvwVer = $matches[1] } else { $rvwVer = $null }
+        $rvMeta = Get-CommandResolution -Name "rv"
+        $rvVer = $null
+        if ($rvMeta -and $rvMeta.Type -ne "Alias") {
+            $rvProbe = ver { rv --version }
+            if ($rvProbe -match '(\d+\.\d+\.\d+)') { $rvVer = $matches[1] }
         }
-    } else {
-        Write-Host "claude ?" -NoNewline -ForegroundColor $R
-    }
-    if ($claudineMeta) {
-        Write-Host "  claudine $($claudineMeta.Type.ToLower())" -NoNewline -ForegroundColor $D
-    }
-    Write-Host ""
+        if (-not $rvVer -and $rvwVer) { $rvVer = $rvwVer }
+        Write-Host "  rv    " -NoNewline -ForegroundColor $C
+        if ($rubyVer) { Write-Host "ruby $rubyVer" -NoNewline -ForegroundColor $W } else { Write-Host "ruby ?" -NoNewline -ForegroundColor $R }
+        if ($rvVer) { Write-Host "  rv $rvVer" -NoNewline -ForegroundColor $D }
+        if ($rvwVer) { Write-Host "  rvw $rvwVer" -NoNewline -ForegroundColor $D }
 
-    # Cloud + data tooling
-    $azVer = Get-AzureCliVersion
-    $ssmsVer = Get-SsmsVersion
-    Write-Host "  cloud " -NoNewline -ForegroundColor $C
-    if ($azVer) { Write-Host "az $azVer" -NoNewline -ForegroundColor $W } else { Write-Host "az ?" -NoNewline -ForegroundColor $R }
-    if ($ssmsVer) { Write-Host "  ssms $ssmsVer" -NoNewline -ForegroundColor $D }
-    Write-Host ""
+        # DevKit (gcc)
+        $gccVer = ver { gcc -dumpfullversion }
+        if ($gccVer) { Write-Host "  gcc $gccVer" -NoNewline -ForegroundColor $D }
+        Write-Host ""
 
-    # Infra line
-    $gitVer = ver { git --version }; if ($gitVer) { $gitVer = ($gitVer -replace 'git version\s*','') -replace '\.windows.*','' }
-    $vulkanVer = if ($env:VULKAN_SDK -match '(\d+\.\d+\.\d+)') { $matches[1] } else { $null }
-    $clExe = Get-VSClExePath
-    $clVer = $null
-    if ($clExe) {
+        # uv -> Python
+        $pyVer = ver { uv run python -c "import sys; print(f'{sys.version_info.major}.{sys.version_info.minor}.{sys.version_info.micro}')" }
+        if (-not $pyVer) {
+            $pyVerRaw = ver { python --version }
+            if ($pyVerRaw -match 'Python\s+(\d+\.\d+\.\d+)') { $pyVer = $matches[1] }
+        }
+        $uvVer = ver { uv --version }; if ($uvVer -match '(\d+\.\d+\.\d+)') { $uvVer = $matches[1] } else { $uvVer = $null }
+        $ruffVer = ver { ruff --version }; if ($ruffVer -match '(\d+\.\d+\.\d+)') { $ruffVer = $matches[1] } else { $ruffVer = $null }
+        Write-Host "  uv    " -NoNewline -ForegroundColor $C
+        if ($pyVer) { Write-Host "python $pyVer" -NoNewline -ForegroundColor $W } else { Write-Host "python ?" -NoNewline -ForegroundColor $R }
+        if ($uvVer) { Write-Host "  uv $uvVer" -NoNewline -ForegroundColor $D }
+        if ($ruffVer) { Write-Host "  ruff $ruffVer" -NoNewline -ForegroundColor $D }
+        Write-Host ""
+
+        # bun -> JS/TS
+        $bunVer = ver { bun --version }
+        $biomeVer = ver { biome --version }; if ($biomeVer) { $biomeVer = $biomeVer -replace 'Version:\s*','' }
+        Write-Host "  bun   " -NoNewline -ForegroundColor $C
+        if ($bunVer) { Write-Host "bun $bunVer" -NoNewline -ForegroundColor $W } else { Write-Host "bun ?" -NoNewline -ForegroundColor $R }
+        if ($biomeVer) { Write-Host "  biome $biomeVer" -NoNewline -ForegroundColor $D }
+        Write-Host "  (sql, react, test, bundle built-in)" -ForegroundColor $D
+
+        # rustup -> Rust
+        $rustVer = ver { rustc -V }; if ($rustVer) { $rustVer = ($rustVer -split ' ')[1] }
+        $rustupVer = ver { rustup --version }; if ($rustupVer -match '(\d+\.\d+\.\d+)') { $rustupVer = $matches[1] } else { $rustupVer = $null }
+        $cargoVer = ver { cargo --version }; if ($cargoVer -match '(\d+\.\d+\.\d+)') { $cargoVer = $matches[1] } else { $cargoVer = $null }
+        Write-Host "  rust  " -NoNewline -ForegroundColor $C
+        if ($rustVer) { Write-Host "rustc $rustVer" -NoNewline -ForegroundColor $W } else { Write-Host "rustc ?" -NoNewline -ForegroundColor $R }
+        if ($rustupVer) { Write-Host "  rustup $rustupVer" -NoNewline -ForegroundColor $D }
+        if ($cargoVer) { Write-Host "  cargo $cargoVer" -NoNewline -ForegroundColor $D }
+        $mdbookVer = ver { mdbook --version }; if ($mdbookVer -match '(\d+\.\d+\.\d+)') { $mdbookVer = $matches[1] } else { $mdbookVer = $null }
+        if ($mdbookVer) { Write-Host "  mdbook $mdbookVer" -NoNewline -ForegroundColor $D }
+        Write-Host ""
+
+        # Go (try PATH, then goup)
+        $goVer = ver { go version }
+        if (-not $goVer) { $goupGo = Join-Path $env:USERPROFILE ".goup\current\bin\go.exe"; if (Test-Path $goupGo) { $goVer = ver { & $goupGo version } } }
+        if ($goVer -match 'go(\d+\.\d+\.\d+)') { $goVer = $matches[1] } else { $goVer = $null }
+        $goupVer = ver { goup --version }
+        if (($goupVer -join "`n") -match '(\d+\.\d+\.\d+)') { $goupVer = $matches[1] } else { $goupVer = $null }
+        $miseVer = ver { mise --version }; if ($miseVer -match '(\d+\.\d+\.\d+)') { $miseVer = $matches[1] } else { $miseVer = $null }
+        Write-Host "  go    " -NoNewline -ForegroundColor $C
+        if ($goVer) { Write-Host "go $goVer" -NoNewline -ForegroundColor $W } else { Write-Host "go ?" -NoNewline -ForegroundColor $R }
+        if ($goupVer) { Write-Host "  goup $goupVer" -NoNewline -ForegroundColor $D }
+        if ($miseVer) { Write-Host "  mise $miseVer" -NoNewline -ForegroundColor $D }
+        Write-Host ""
+
+        # Zig + R
+        $zvVer = ver { zv --version }; if ($zvVer -match '(\d+\.\d+\.\d+)') { $zvVer = $matches[1] } else { $zvVer = $null }
+        $zigVer = ver { zig version }; if ($zigVer -match '([0-9][^\s]+)') { $zigVer = $matches[1] } else { $zigVer = $null }
+        $rVer = $null
+        $rExe = Get-RExePath
+        if ($rExe) {
+            try {
+                $rOut = & $rExe --version 2>&1
+                if (($rOut -join "`n") -match 'R version (\d+\.\d+\.\d+)') { $rVer = $matches[1] }
+            } catch {}
+        }
+        $rrvVer = $null
+        $rrvExe = Get-RRvExePath
+        if ($rrvExe) {
+            try {
+                $rrvOut = & $rrvExe --version 2>$null
+                if (($rrvOut -join "`n") -match '(\d+\.\d+\.\d+)') { $rrvVer = $matches[1] }
+            } catch {}
+        }
+        Write-Host "  alt   " -NoNewline -ForegroundColor $C
+        if ($zigVer) { Write-Host "zig $zigVer" -NoNewline -ForegroundColor $W } else { Write-Host "zig ?" -NoNewline -ForegroundColor $R }
+        if ($zvVer) { Write-Host "  zv $zvVer" -NoNewline -ForegroundColor $D }
+        if ($rVer) { Write-Host "  R $rVer" -NoNewline -ForegroundColor $W } else { Write-Host "  R ?" -NoNewline -ForegroundColor $R }
+        if ($rrvVer) { Write-Host "  rv-r $rrvVer" -NoNewline -ForegroundColor $D }
+        Write-Host ""
+
+        # Chain / ecosystem managers
+        $solanaVer = $null
         try {
-            $clOut = & $clExe /Bv 2>$null
-            if ($clOut -match 'Compiler Version ([0-9\.]+)') { $clVer = $matches[1] }
+            $solanaOut = & solana --version 2>$null
+            if (($solanaOut -join "`n") -match 'solana-cli\s+([0-9][^\s]+)') { $solanaVer = $matches[1] }
         } catch {}
-        if (-not $clVer) { $clVer = "ready" }
-    }
-    $msbuildExe = Get-VSMsBuildExePath
-    $msbuildVer = $null
-    if ($msbuildExe) {
+        $agaveVer = $null
         try {
-            $msbuildOut = & $msbuildExe -version -nologo 2>$null
-            if ($msbuildOut) { $msbuildVer = (($msbuildOut | Select-Object -Last 1).ToString().Trim()) }
+            $agaveOut = & agave-install --version 2>$null
+            if (($agaveOut -join "`n") -match 'agave-install\s+([0-9][^\s]+)') { $agaveVer = $matches[1] }
         } catch {}
-    }
-    $clangBin = Get-VSClangBinDir
-    $clangVer = $null
-    if ($clangBin) {
+        $anchorVer = $null
         try {
-            $clangOut = & (Join-Path $clangBin "clang.exe") --version 2>$null
-            if ($clangOut -and $clangOut[0] -match 'clang version ([0-9\.]+)') { $clangVer = $matches[1] }
+            $anchorOut = & anchor --version 2>$null
+            if (($anchorOut -join "`n") -match 'anchor-cli\s+([0-9][^\s]+)') { $anchorVer = $matches[1] }
         } catch {}
+        Write-Host "  chain " -NoNewline -ForegroundColor $C
+        if ($solanaVer) { Write-Host "solana $solanaVer" -NoNewline -ForegroundColor $W } else { Write-Host "solana ?" -NoNewline -ForegroundColor $R }
+        if ($agaveVer) { Write-Host "  agave $agaveVer" -NoNewline -ForegroundColor $D }
+        if ($anchorVer) { Write-Host "  anchor $anchorVer" -NoNewline -ForegroundColor $D }
+        Write-Host ""
+
+        # AI CLI lane (standalone + shell wrappers)
+        $claudeMeta = Get-CommandResolution -Name "claude"
+        $claudineMeta = Get-CommandResolution -Name "claudine"
+        $claudeVer = ver { claude --version }
+        if ($claudeVer -match '(\d+\.\d+\.\d+)') { $claudeVer = $matches[1] }
+        Write-Host "  ai    " -NoNewline -ForegroundColor $C
+        if ($claudeMeta) {
+            if ($claudeVer) {
+                Write-Host "claude $claudeVer" -NoNewline -ForegroundColor $W
+            } else {
+                Write-Host "claude" -NoNewline -ForegroundColor $W
+            }
+        } else {
+            Write-Host "claude ?" -NoNewline -ForegroundColor $R
+        }
+        if ($claudineMeta) {
+            Write-Host "  claudine $($claudineMeta.Type.ToLower())" -NoNewline -ForegroundColor $D
+        }
+        Write-Host ""
+
+        # Cloud + data tooling
+        $azVer = Get-AzureCliVersion
+        $ssmsVer = Get-SsmsVersion
+        Write-Host "  cloud " -NoNewline -ForegroundColor $C
+        if ($azVer) { Write-Host "az $azVer" -NoNewline -ForegroundColor $W } else { Write-Host "az ?" -NoNewline -ForegroundColor $R }
+        if ($ssmsVer) { Write-Host "  ssms $ssmsVer" -NoNewline -ForegroundColor $D }
+        Write-Host ""
+
+        # Infra line
+        $gitVer = ver { git --version }; if ($gitVer) { $gitVer = ($gitVer -replace 'git version\s*','') -replace '\.windows.*','' }
+        $vulkanVer = if ($env:VULKAN_SDK -match '(\d+\.\d+\.\d+)') { $matches[1] } else { $null }
+        $clExe = Get-VSClExePath
+        $clVer = $null
+        if ($clExe) {
+            try {
+                $clOut = & $clExe /Bv 2>$null
+                if ($clOut -match 'Compiler Version ([0-9\.]+)') { $clVer = $matches[1] }
+            } catch {}
+            if (-not $clVer) { $clVer = "ready" }
+        }
+        $msbuildExe = Get-VSMsBuildExePath
+        $msbuildVer = $null
+        if ($msbuildExe) {
+            try {
+                $msbuildOut = & $msbuildExe -version -nologo 2>$null
+                if ($msbuildOut) { $msbuildVer = (($msbuildOut | Select-Object -Last 1).ToString().Trim()) }
+            } catch {}
+        }
+        $clangBin = Get-VSClangBinDir
+        $clangVer = $null
+        if ($clangBin) {
+            try {
+                $clangOut = & (Join-Path $clangBin "clang.exe") --version 2>$null
+                if ($clangOut -and $clangOut[0] -match 'clang version ([0-9\.]+)') { $clangVer = $matches[1] }
+            } catch {}
+        }
+        Write-Host "  sys   " -NoNewline -ForegroundColor $C
+        Write-Host "git $gitVer" -NoNewline -ForegroundColor $D
+        if ($vulkanVer) { Write-Host "  vulkan $vulkanVer" -NoNewline -ForegroundColor $D }
+        if ($clVer) { Write-Host "  cl $clVer" -NoNewline -ForegroundColor $D }
+        if ($msbuildVer) { Write-Host "  msbuild $msbuildVer" -NoNewline -ForegroundColor $D }
+        if ($clangVer) { Write-Host "  clang $clangVer" -NoNewline -ForegroundColor $D }
+        Write-Host ""
+        Write-Host ("="*72) -ForegroundColor $D
     }
-    Write-Host "  sys   " -NoNewline -ForegroundColor $C
-    Write-Host "git $gitVer" -NoNewline -ForegroundColor $D
-    if ($vulkanVer) { Write-Host "  vulkan $vulkanVer" -NoNewline -ForegroundColor $D }
-    if ($clVer) { Write-Host "  cl $clVer" -NoNewline -ForegroundColor $D }
-    if ($msbuildVer) { Write-Host "  msbuild $msbuildVer" -NoNewline -ForegroundColor $D }
-    if ($clangVer) { Write-Host "  clang $clangVer" -NoNewline -ForegroundColor $D }
-    Write-Host ""
-    Write-Host ("="*72) -ForegroundColor $D
+    finally {
+        $env:Path = $oldPath
+    }
 }
 
 function Show-Help {
@@ -866,7 +1454,11 @@ Usage: chthonic [--version] [--help] <domain> [<action>] [<args>]
   doctor --dry-run        Simulate --fix without executing anything
   doctor --origins        Show install methodology per tool (path + origin + wrappers)
   detect                  Detect IDE and environment context
+  toolchain hierarchy|verify|scan|paths  High-level verified toolchain control plane
+  memory map|migration|next|cheatsheet|session  Strategic runbooks + session wisdom
   ruby versions|tools|lane|doctor|search|install|upgrade  Ruby lane via rv + RubyGems
+  r lane|status           R runtime + rv-r lane summary
+  zig lane|status         Zig runtime + zv lane summary
   graphics lane|status    GPU / Vulkan / shader / MSVC lane snapshot
 
   ide launch|detect|reset IDE management
@@ -1163,6 +1755,13 @@ function Invoke-PolyglotActivation {
         $env:CHTHONIC_RV_BINDING = if ($rvBinding.rv_after) { $rvBinding.rv_after } else { "unresolved" }
         $env:CHTHONIC_RV_BINDING_REASON = if ($rvBinding.reason) { $rvBinding.reason } else { "" }
     }
+
+    # Resolve `R` collision with PowerShell's Invoke-History alias.
+    $rBinding = Ensure-RCommandBinding
+    if ($rBinding) {
+        $env:CHTHONIC_R_BINDING = if ($rBinding.r_after) { $rBinding.r_after } else { "unresolved" }
+        $env:CHTHONIC_R_BINDING_REASON = if ($rBinding.reason) { $rBinding.reason } else { "" }
+    }
     
     # Go environment (goup-managed)
     $goupCurrent = Join-Path $env:USERPROFILE ".goup\current"
@@ -1195,6 +1794,12 @@ function Invoke-PolyglotActivation {
                 Write-Host "  Remove-Variable preserved via: $($rvBinding.rvar_after)" -ForegroundColor DarkGray
             }
         }
+        if ($rBinding -and $rBinding.applied) {
+            Write-Host "  R alias remapped: $($rBinding.r_before) -> $($rBinding.r_after)" -ForegroundColor DarkGray
+            if ($rBinding.rhistory_after) {
+                Write-Host "  Invoke-History preserved via: $($rBinding.rhistory_after)" -ForegroundColor DarkGray
+            }
+        }
         Show-PolyglotStatus
     }
 }
@@ -1213,8 +1818,10 @@ function Show-PolyglotStatus {
     $tools['handler_rust'] = 'rustup/cargo'
     $tools['handler_go'] = 'goup'
     $tools['handler_js'] = 'bun'
+    $tools['handler_zig'] = 'zv'
     $tools['handler_node'] = 'fnm (optional Node version lane)'
-    $tools['handler_r'] = 'rig (optional R version lane)'
+    $tools['handler_r'] = 'none (runtime left as-is)'
+    $tools['handler_r_packages'] = 'rv-r (A2-ai/rv wrapper)'
     $tools['uv_tool_lane'] = 'python,ruff,cmake,ninja'
     $tools['rv'] = 'not found'
     $rvMetaStatus = Get-CommandResolution -Name "rv"
@@ -1264,6 +1871,28 @@ function Show-PolyglotStatus {
             $tools['goup'] = (($goupOut | Select-Object -First 1).ToString().Trim())
         }
     } catch { $tools['goup'] = 'not found' }
+    try {
+        $zvExe = Get-ZvExePath
+        if ($zvExe) {
+            $zvOut = & $zvExe --version 2>$null
+            if (($zvOut -join "`n") -match '(\d+\.\d+\.\d+)') {
+                $tools['zv'] = $matches[1]
+            } else {
+                $tools['zv'] = (($zvOut | Select-Object -First 1).ToString().Trim())
+            }
+        } else {
+            $tools['zv'] = 'not found'
+        }
+    } catch { $tools['zv'] = 'not found' }
+    try {
+        $zigExe = Get-ZigExePath
+        if ($zigExe) {
+            $zigOut = & $zigExe version 2>$null
+            $tools['zig'] = (($zigOut | Select-Object -First 1).ToString().Trim())
+        } else {
+            $tools['zig'] = 'not found'
+        }
+    } catch { $tools['zig'] = 'not found' }
     try {
         $fnmOut = (fnm --version 2>$null)
         if (($fnmOut -join "`n") -match '(\d+\.\d+\.\d+)') {
@@ -1349,21 +1978,6 @@ function Show-PolyglotStatus {
         }
     } catch { $tools['proto'] = 'not found' }
     try {
-        $rigExe = Get-RigExePath
-        if ($rigExe) {
-            $rigOut = (& $rigExe --version 2>$null)
-        } else {
-            $rigOut = $null
-        }
-        if (($rigOut -join "`n") -match '(\d+\.\d+\.\d+)') {
-            $tools['rig'] = $matches[1]
-        } elseif ($rigOut) {
-            $tools['rig'] = (($rigOut | Select-Object -First 1).ToString().Trim())
-        } else {
-            $tools['rig'] = 'not found'
-        }
-    } catch { $tools['rig'] = 'not found' }
-    try {
         $rExe = Get-RExePath
         if ($rExe) {
             $rOut = (& $rExe --version 2>&1)
@@ -1378,6 +1992,32 @@ function Show-PolyglotStatus {
             $tools['r'] = 'not found'
         }
     } catch { $tools['r'] = 'not found' }
+    try {
+        $rscriptExe = Get-RScriptExePath
+        if ($rscriptExe) {
+            $rscriptOut = (& $rscriptExe --version 2>&1)
+            if (($rscriptOut -join "`n") -match 'version (\d+\.\d+\.\d+)') {
+                $tools['rscript'] = $matches[1]
+            } else {
+                $tools['rscript'] = (($rscriptOut | Select-Object -First 1).ToString().Trim())
+            }
+        } else {
+            $tools['rscript'] = 'not found'
+        }
+    } catch { $tools['rscript'] = 'not found' }
+    try {
+        $rrvExe = Get-RRvExePath
+        if ($rrvExe) {
+            $rrvOut = (& $rrvExe --version 2>$null)
+            if (($rrvOut -join "`n") -match '(\d+\.\d+\.\d+)') {
+                $tools['rv_r'] = $matches[1]
+            } else {
+                $tools['rv_r'] = (($rrvOut | Select-Object -First 1).ToString().Trim())
+            }
+        } else {
+            $tools['rv_r'] = 'not found'
+        }
+    } catch { $tools['rv_r'] = 'not found' }
     try {
         $pacmanOut = (& pacman --version 2>$null)
         if (($pacmanOut -join "`n") -match 'Pacman v(\d+\.\d+\.\d+)') {
@@ -1571,12 +2211,19 @@ function Show-PolyglotStatus {
     } else {
         $tools['proto_cmd'] = 'not found'
     }
-    $rigMeta = Get-CommandResolution -Name "rig"
-    if ($rigMeta) {
-        $tools['rig_cmd'] = if ($rigMeta.Path) { $rigMeta.Path } else { $rigMeta.Display }
+    $zvMeta = Get-CommandResolution -Name "zv"
+    if ($zvMeta) {
+        $tools['zv_cmd'] = if ($zvMeta.Path) { $zvMeta.Path } else { $zvMeta.Display }
     } else {
-        $rigExe = Get-RigExePath
-        $tools['rig_cmd'] = if ($rigExe) { $rigExe } else { 'not found' }
+        $zvExe = Get-ZvExePath
+        $tools['zv_cmd'] = if ($zvExe) { $zvExe } else { 'not found' }
+    }
+    $zigMeta = Get-CommandResolution -Name "zig"
+    if ($zigMeta) {
+        $tools['zig_cmd'] = if ($zigMeta.Path) { $zigMeta.Path } else { $zigMeta.Display }
+    } else {
+        $zigExe = Get-ZigExePath
+        $tools['zig_cmd'] = if ($zigExe) { $zigExe } else { 'not found' }
     }
     $nodeMeta = Get-CommandResolution -Name "node"
     if ($nodeMeta) {
@@ -1592,6 +2239,15 @@ function Show-PolyglotStatus {
         $rExe = Get-RExePath
         $tools['r_cmd'] = if ($rExe) { $rExe } else { 'not found' }
     }
+    $rscriptMeta = Get-CommandResolution -Name "Rscript"
+    if ($rscriptMeta) {
+        $tools['rscript_cmd'] = if ($rscriptMeta.Path) { $rscriptMeta.Path } else { $rscriptMeta.Display }
+    } else {
+        $rscriptExe = Get-RScriptExePath
+        $tools['rscript_cmd'] = if ($rscriptExe) { $rscriptExe } else { 'not found' }
+    }
+    $rrvScript = Get-RRvScriptPath
+    $tools['rv_r_cmd'] = if ($rrvScript) { $rrvScript } else { 'not found' }
     $pacmanMeta = Get-CommandResolution -Name "pacman"
     if ($pacmanMeta) {
         $tools['pacman_cmd'] = if ($pacmanMeta.Path) { $pacmanMeta.Path } else { $pacmanMeta.Display }
@@ -1632,6 +2288,28 @@ function Show-PolyglotStatus {
     }
     $tools['rv_binding'] = $rvBindingState
     $tools['rv_binding_reason'] = $rvBindingReason
+
+    $rBindingState = "not set"
+    $rBindingReason = "not set"
+    $rAliasMeta = Get-CommandResolution -Name "R"
+    if ($rAliasMeta) {
+        if ($rAliasMeta.Path) {
+            $rBindingState = $rAliasMeta.Path
+            $rBindingReason = "R mapped to runtime command in current shell"
+        } elseif ($rAliasMeta.Display -eq "alias -> Invoke-History") {
+            $rBindingState = "alias -> Invoke-History"
+            if (Get-RExePath) {
+                $rBindingReason = "not applied in current shell; run 'chthonic env' to apply collision guard"
+            } else {
+                $rBindingReason = "R runtime unavailable; collision guard cannot be applied"
+            }
+        } else {
+            $rBindingState = $rAliasMeta.Display
+            $rBindingReason = "R bound to non-default command"
+        }
+    }
+    $tools['r_binding'] = $rBindingState
+    $tools['r_binding_reason'] = $rBindingReason
 
     $clExe = Get-VSClExePath
     if ($clExe) {
@@ -1710,6 +2388,7 @@ function Show-PolyglotStatus {
         Write-StatusSection -Title "Toolchain" -Tools $tools -Keys @(
             "ruby", "rv", "rvw", "python", "uv", "ruff",
             "bun", "biome", "go", "goup", "cargo", "rust", "rustup",
+            "zig", "zv", "r", "rscript", "rv_r",
             "mdbook", "git", "gcc", "make", "claude", "brush"
         )
 
@@ -1717,7 +2396,8 @@ function Show-PolyglotStatus {
             "chthonic_cmd", "chthonic_binding",
             "claudine_cmd", "claudine_binding",
             "claude_cmd", "brush_cmd", "rv_cmd", "rv_binding", "rv_binding_reason",
-            "rvar_cmd", "mise", "mise_cmd"
+            "rvar_cmd", "r_cmd", "rscript_cmd", "rv_r_cmd",
+            "r_binding", "r_binding_reason", "zv_cmd", "zig_cmd", "mise", "mise_cmd"
         )
 
         Write-StatusSection -Title "Platform" -Tools $tools -Keys @(
@@ -1729,7 +2409,8 @@ function Show-PolyglotStatus {
         Write-StatusSection -Title "Routing Metadata" -Tools $tools -Keys @(
             "orchestrator_ssot", "orchestration_mode", "manager_model",
             "unified_overlay_optional", "handler_ruby", "handler_python",
-            "handler_rust", "handler_go", "handler_js", "handler_shell", "uv_tool_lane",
+            "handler_rust", "handler_go", "handler_js", "handler_zig", "handler_r",
+            "handler_r_packages", "handler_shell", "uv_tool_lane",
             "research_ingest_role"
         )
 
@@ -2014,6 +2695,13 @@ function Get-InstalledVersion {
     param([string]$Tool)
     try {
         switch ($Tool) {
+            "pwsh"       {
+                $pwshExe = Get-CommandPathFlexible -Name "pwsh"
+                if (-not $pwshExe) { return $null }
+                $v = & $pwshExe -NoLogo -NoProfile -Command '$PSVersionTable.PSVersion.ToString()' 2>$null
+                if ($v -match '(\d+\.\d+\.\d+)') { return $matches[1] }
+                return $null
+            }
             "ruby"       { $v = ruby -e "print RUBY_VERSION" 2>$null; return $v }
             "python"     {
                 $v = $null
@@ -2028,6 +2716,7 @@ function Get-InstalledVersion {
                 if ($py -match 'Python\s+(\d+\.\d+\.\d+)') { return $matches[1] }
                 return $null
             }
+            "uv"         { $v = uv --version 2>$null; if ($v -match '(\d+\.\d+\.\d+)') { return $matches[1] }; return $null }
             "bun"        { return (bun --version 2>$null) }
             "brush"      {
                 $v = brush --version 2>$null
@@ -2035,6 +2724,8 @@ function Get-InstalledVersion {
                 return $v
             }
             "rust"       { $v = rustc -V 2>$null; if ($v -match '(\d+\.\d+\.\d+)') { return $matches[1] }; return $null }
+            "cargo"      { $v = cargo --version 2>$null; if ($v -match '(\d+\.\d+\.\d+)') { return $matches[1] }; return $null }
+            "rustup"     { $v = rustup --version 2>$null; if ($v -match '(\d+\.\d+\.\d+)') { return $matches[1] }; return $null }
             "go"         {
                 # Try PATH first, then goup-managed Go
                 $v = try { go version 2>$null } catch { $null }
@@ -2043,6 +2734,18 @@ function Get-InstalledVersion {
                     if (Test-Path $goupGo) { $v = & $goupGo version 2>$null }
                 }
                 if ($v -match 'go(\d+\.\d+\.\d+)') { return $matches[1] }; return $null
+            }
+            "goup"       {
+                $v = goup --version 2>$null
+                if (($v -join "`n") -match '(\d+\.\d+\.\d+)') { return $matches[1] }
+                return $null
+            }
+            "rv"         {
+                $rvExe = Get-RvExePath
+                if (-not $rvExe) { return $null }
+                $v = & $rvExe --version 2>$null
+                if ($v -match '(\d+\.\d+\.\d+)') { return $matches[1] }
+                return $null
             }
             "nodejs"     {
                 $v = $null
@@ -2057,6 +2760,27 @@ function Get-InstalledVersion {
             "fnm"        { $v = fnm --version 2>$null; if ($v -match '(\d+\.\d+\.\d+)') { return $matches[1] }; return $null }
             "proto"      { $v = proto --version 2>$null; if ($v -match '(\d+\.\d+\.\d+)') { return $matches[1] }; return $null }
             "mise"       { $v = mise --version 2>$null; if ($v -match '(\d+\.\d+\.\d+)') { return $matches[1] }; return $null }
+            "solana"     { $v = solana --version 2>$null; if ($v -match 'solana-cli\s+([0-9][^\s]+)') { return $matches[1] }; return $null }
+            "agave-install" { $v = agave-install --version 2>$null; if ($v -match 'agave-install\s+([0-9][^\s]+)') { return $matches[1] }; return $null }
+            "anchor"     { $v = anchor --version 2>$null; if ($v -match 'anchor-cli\s+([0-9][^\s]+)') { return $matches[1] }; return $null }
+            "avm"        { return $null }
+            "zv"         {
+                $zvExe = Get-ZvExePath
+                if (-not $zvExe) { return $null }
+                $v = & $zvExe --version 2>$null
+                if ($v -match '(\d+\.\d+\.\d+)') { return $matches[1] }
+                return $null
+            }
+            "zig"        {
+                $zigExe = Get-ZigExePath
+                if (-not $zigExe) { return $null }
+                $v = & $zigExe version 2>$null
+                if ($v -match '([0-9][^\s]+)') { return $matches[1] }
+                return $null
+            }
+            "gcc"        { $v = gcc --version 2>$null; if (($v -join "`n") -match '(\d+\.\d+\.\d+)') { return $matches[1] }; return $null }
+            "make"       { $v = make --version 2>$null; if (($v -join "`n") -match 'GNU Make\s*([0-9][^\s]*)') { return $matches[1] }; return $null }
+            "pacman"     { $v = pacman --version 2>$null; if (($v -join "`n") -match 'Pacman v(\d+\.\d+\.\d+)') { return $matches[1] }; return $null }
             "rig"        {
                 $rigExe = Get-RigExePath
                 if (-not $rigExe) { return $null }
@@ -2069,6 +2793,20 @@ function Get-InstalledVersion {
                 if (-not $rExe) { return $null }
                 $v = & $rExe --version 2>&1
                 if (($v -join "`n") -match 'R version (\d+\.\d+\.\d+)') { return $matches[1] }
+                return $null
+            }
+            "rscript"    {
+                $rscriptExe = Get-RScriptExePath
+                if (-not $rscriptExe) { return $null }
+                $v = & $rscriptExe --version 2>&1
+                if (($v -join "`n") -match 'version (\d+\.\d+\.\d+)') { return $matches[1] }
+                return $null
+            }
+            "rv-r"       {
+                $rrvExe = Get-RRvExePath
+                if (-not $rrvExe) { return $null }
+                $v = & $rrvExe --version 2>$null
+                if (($v -join "`n") -match '(\d+\.\d+\.\d+)') { return $matches[1] }
                 return $null
             }
             "postgresql" {
@@ -2168,8 +2906,11 @@ function Show-Origins {
         @{ Name = "node";    Cmd = $null;     Method = "fnm-managed Node runtime"; Ecosystem = "system"; Resolver = { Get-FnmNodeExePath } },
         @{ Name = "mise";    Cmd = "mise";    Method = "optional unified overlay (not SSOT)"; Ecosystem = "system" },
         @{ Name = "proto";   Cmd = "proto";   Method = "cargo install proto_cli"; Ecosystem = "cargo" },
-        @{ Name = "rig";     Cmd = $null;     Method = "winget (Posit.rig)"; Ecosystem = "system"; Resolver = { Get-RigExePath } },
-        @{ Name = "R";       Cmd = $null;     Method = "rig-managed R runtime"; Ecosystem = "system"; Resolver = { Get-RExePath } },
+        @{ Name = "zv";      Cmd = $null;     Method = "Zig version manager"; Ecosystem = "cargo"; Resolver = { Get-ZvExePath } },
+        @{ Name = "zig";     Cmd = $null;     Method = "zv-managed Zig runtime"; Ecosystem = "cargo"; Resolver = { Get-ZigExePath } },
+        @{ Name = "R";       Cmd = $null;     Method = "current R runtime (manager intentionally none)"; Ecosystem = "system"; Resolver = { Get-RExePath } },
+        @{ Name = "Rscript"; Cmd = $null;     Method = "current R helper (manager intentionally none)"; Ecosystem = "system"; Resolver = { Get-RScriptExePath } },
+        @{ Name = "rv-r";    Cmd = $null;     Method = "A2-ai/rv via repo wrapper"; Ecosystem = "local"; Resolver = { Get-RRvScriptPath } },
         @{ Name = "goup";    Cmd = "goup";    Method = "GH release binary"; Ecosystem = "cargo" },
         @{ Name = "cargo";   Cmd = "cargo";   Method = "rustup toolchain"; Ecosystem = "cargo" },
         @{ Name = "rustup";  Cmd = "rustup";  Method = "rustup manager"; Ecosystem = "cargo" },
@@ -2899,6 +3640,99 @@ function Invoke-RubyLane {
     Write-Host ""
 }
 
+function Invoke-RLane {
+    param([switch]$Json)
+
+    $rVersion = Get-InstalledVersion "r"
+    $rscriptVersion = Get-InstalledVersion "rscript"
+    $rrvVersion = Get-InstalledVersion "rv-r"
+    $rPath = Get-RExePath
+    $rscriptPath = Get-RScriptExePath
+    $rrvPath = Get-RRvScriptPath
+
+    $payload = [pscustomobject]@{
+        manager = [pscustomobject]@{
+            current = "none"
+        }
+        runtime = [pscustomobject]@{
+            r = $rVersion
+            r_path = $rPath
+            rscript = $rscriptVersion
+            rscript_path = $rscriptPath
+        }
+        packages = [pscustomobject]@{
+            rv_r = $rrvVersion
+            rv_r_wrapper = $rrvPath
+            rv_r_home = (Join-Path $env:USERPROFILE ".r-rv")
+        }
+        shell = [pscustomobject]@{
+            r_binding = $env:CHTHONIC_R_BINDING
+            r_binding_reason = $env:CHTHONIC_R_BINDING_REASON
+        }
+    }
+
+    if ($Json) {
+        Write-Output (ConvertTo-Json $payload -Depth 6)
+        return
+    }
+
+    Write-Host ""
+    Write-Host "CHTHONIC R LANE" -ForegroundColor Cyan
+    Write-Host ("="*72) -ForegroundColor DarkGray
+    Write-Host "  manager  " -NoNewline -ForegroundColor Cyan
+    Write-Host "none" -ForegroundColor DarkGray
+    Write-Host "  R        " -NoNewline -ForegroundColor Cyan
+    Write-Host ($(if ($rVersion) { $rVersion } else { "not found" })) -NoNewline -ForegroundColor White
+    if ($rPath) { Write-Host "  $rPath" -ForegroundColor DarkGray } else { Write-Host "" }
+    Write-Host "  Rscript  " -NoNewline -ForegroundColor Cyan
+    Write-Host ($(if ($rscriptVersion) { $rscriptVersion } else { "not found" })) -NoNewline -ForegroundColor White
+    if ($rscriptPath) { Write-Host "  $rscriptPath" -ForegroundColor DarkGray } else { Write-Host "" }
+    Write-Host "  rv-r     " -NoNewline -ForegroundColor Cyan
+    Write-Host ($(if ($rrvVersion) { $rrvVersion } else { "not found" })) -NoNewline -ForegroundColor White
+    if ($rrvPath) { Write-Host "  $rrvPath" -ForegroundColor DarkGray } else { Write-Host "" }
+    if ($payload.shell.r_binding_reason) {
+        Write-Host "  binding  " -NoNewline -ForegroundColor Cyan
+        Write-Host $payload.shell.r_binding_reason -ForegroundColor DarkGray
+    }
+    Write-Host ""
+}
+
+function Invoke-ZigLane {
+    param([switch]$Json)
+
+    $zvVersion = Get-InstalledVersion "zv"
+    $zigVersion = Get-InstalledVersion "zig"
+    $zvPath = Get-ZvExePath
+    $zigPath = Get-ZigExePath
+
+    $payload = [pscustomobject]@{
+        manager = [pscustomobject]@{
+            zv = $zvVersion
+            zv_path = $zvPath
+        }
+        runtime = [pscustomobject]@{
+            zig = $zigVersion
+            zig_path = $zigPath
+        }
+    }
+
+    if ($Json) {
+        Write-Output (ConvertTo-Json $payload -Depth 5)
+        return
+    }
+
+    Write-Host ""
+    Write-Host "CHTHONIC ZIG LANE" -ForegroundColor Cyan
+    Write-Host ("="*72) -ForegroundColor DarkGray
+    Write-Host "  zv       " -NoNewline -ForegroundColor Cyan
+    Write-Host ($(if ($zvVersion) { $zvVersion } else { "not found" })) -NoNewline -ForegroundColor White
+    if ($zvPath) { Write-Host "  $zvPath" -ForegroundColor DarkGray } else { Write-Host "" }
+    Write-Host "  zig      " -NoNewline -ForegroundColor Cyan
+    Write-Host ($(if ($zigVersion) { $zigVersion } else { "not found" })) -NoNewline -ForegroundColor White
+    if ($zigPath) { Write-Host "  $zigPath" -ForegroundColor DarkGray } else { Write-Host "" }
+    Write-Host ""
+}
+
 function Get-DirectorySizeBytes {
     param([string]$Path)
 
@@ -3297,6 +4131,14 @@ switch ($Domain) {
         $exitCode = Invoke-IDEDetect -Json:$false
         exit $exitCode
     }
+    "toolchain" {
+        $exitCode = Invoke-ToolchainMeta -ToolchainAction $Action -ToolchainArgs $RemainingArgs -Json:$HasJsonFlag
+        exit $exitCode
+    }
+    "memory" {
+        $exitCode = Invoke-MemoryLane -MemoryAction $Action -MemoryArgs $RemainingArgs -Json:$HasJsonFlag
+        exit $exitCode
+    }
     "ruby" {
         switch ($Action) {
             { $_ -in $null, "", "lane", "status" } {
@@ -3338,6 +4180,34 @@ switch ($Domain) {
                 Write-Host "  search <query>      - search RubyGems.org"
                 Write-Host "  install <gem>       - install via rv tool install (defaults to RubyGems.org)"
                 Write-Host "    flags: --rubygems | --coop | --server <url> | --force"
+                exit 0
+            }
+        }
+    }
+    "r" {
+        switch ($Action) {
+            { $_ -in $null, "", "lane", "status" } {
+                Invoke-RLane -Json:$HasJsonFlag
+                exit 0
+            }
+            default {
+                Write-Host 'chthonic r <action>'
+                Write-Host "  lane              - R runtime + rig + rv-r lane summary"
+                Write-Host "  lane --json       - same payload as JSON"
+                exit 0
+            }
+        }
+    }
+    "zig" {
+        switch ($Action) {
+            { $_ -in $null, "", "lane", "status" } {
+                Invoke-ZigLane -Json:$HasJsonFlag
+                exit 0
+            }
+            default {
+                Write-Host 'chthonic zig <action>'
+                Write-Host "  lane              - Zig runtime + zv lane summary"
+                Write-Host "  lane --json       - same payload as JSON"
                 exit 0
             }
         }
