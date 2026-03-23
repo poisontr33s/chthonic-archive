@@ -125,6 +125,12 @@ function Get-RubyDevKitRoot {
     return $null
 }
 
+function Get-BrushRepoRcPath {
+    $candidate = Join-Path $SCRIPT_DIR "brush_repo.rc"
+    if (Test-Path $candidate) { return $candidate }
+    return $null
+}
+
 function Get-FnmNodeExePath {
     $fnmRoot = Join-Path $env:APPDATA "fnm\node-versions"
     if (-not (Test-Path $fnmRoot)) { return $null }
@@ -3342,8 +3348,15 @@ switch ($Domain) {
                     Write-Error "brush not found on PATH"
                     exit 1
                 }
+                $brushRc = Get-BrushRepoRcPath
                 if ($RemainingArgs.Count -ge 2 -and $RemainingArgs[0] -eq "--cmd") {
-                    & $brushExe -c $RemainingArgs[1]
+                    if ($brushRc) {
+                        & $brushExe -i --rcfile $brushRc -c $RemainingArgs[1]
+                    } else {
+                        & $brushExe -c $RemainingArgs[1]
+                    }
+                } elseif ($RemainingArgs.Count -eq 0 -and $brushRc) {
+                    & $brushExe -i --rcfile $brushRc
                 } else {
                     & $brushExe @RemainingArgs
                 }

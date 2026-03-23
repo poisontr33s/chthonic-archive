@@ -106,18 +106,18 @@
     "terminal.integrated.environmentChangesRelaunch": false,
     // Polyglot mode: profile loads chthonic env automatically
     "terminal.integrated.profiles.windows": {
-        "Pwsh 7.5 (Chthonic)": {
-            "path": "C:\\Program Files\\PowerShell\\7\\pwsh.exe",
+        "Pwsh (Chthonic)": {
+            "path": "C:\\Users\\eldno\\AppData\\Local\\Microsoft\\WindowsApps\\pwsh.exe",
             "args": ["-NoLogo"],
             "icon": "terminal-powershell"
         },
         "Pwsh (No Profile)": {
-            "path": "C:\\Program Files\\PowerShell\\7\\pwsh.exe",
+            "path": "C:\\Users\\eldno\\AppData\\Local\\Microsoft\\WindowsApps\\pwsh.exe",
             "args": ["-NoProfile", "-NoLogo"],
             "icon": "terminal"
         }
     },
-    "terminal.integrated.defaultProfile.windows": "Pwsh 7.5 (Chthonic)",
+    "terminal.integrated.defaultProfile.windows": "Pwsh (Chthonic)",
     "terminal.integrated.shellIntegration.enabled": true,
     // THERMAL: Disable decoration rendering — saves per-line DOM ops
     "terminal.integrated.shellIntegration.decorationsEnabled": "never",
@@ -130,7 +130,7 @@
     "terminal.integrated.stickyScroll.enabled": false,
     "terminal.integrated.commandsToSkipShell": ["bash", "wsl", "ubuntu"],
     "terminal.integrated.env.windows": {
-    "PATH": "${env:USERPROFILE}\\.vscode-insiders\\extensions\\openai.chatgpt-26.5313.41514-win32-x64\\bin\\windows-x86_64;${env:PATH};C:\\Program Files\\PowerShell\\7;${env:USERPROFILE}\\.bun\\bin;${env:USERPROFILE}\\.cargo\\bin;${env:USERPROFILE}\\.goup\\current\\bin;${env:USERPROFILE}\\.local\\bin;${env:APPDATA}\\rv\\rubies\\ruby-4.0.1\\bin;C:\\Ruby40-x64\\msys64\\ucrt64\\bin;C:\\Ruby40-x64\\msys64\\usr\\bin;C:\\Program Files\\Git\\cmd;${env:APPDATA}\\Code - Insiders\\User\\globalStorage\\github.copilot-chat\\debugCommand;${env:APPDATA}\\Code - Insiders\\User\\globalStorage\\github.copilot-chat\\copilotCli;C:\\Windows\\System32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0;C:\\Program Files\\GitHub CLI;${env:LOCALAPPDATA}\\Programs\\Microsoft VS Code Insiders\\bin;${env:LOCALAPPDATA}\\Microsoft\\WinGet\\Packages\\GitHub.Copilot.Prerelease_Microsoft.Winget.Source_8wekyb3d8bbwe;${env:LOCALAPPDATA}\\GitHubDesktop\\bin;C:\\Program Files\\Git\\bin;C:\\Program Files\\Git\\usr\\bin",
+    "PATH": "${env:PATH}",
         "RUST_BACKTRACE": "1",
         "RUST_LOG": "info,chthonic_archive=debug"
     },
