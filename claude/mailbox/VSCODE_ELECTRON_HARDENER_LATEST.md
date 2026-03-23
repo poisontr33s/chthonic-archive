@@ -17,15 +17,15 @@
 | SETTINGS | WARN | Failed to parse .vscode/settings.json |
 | GPU | FIXED | Hardware acceleration not explicitly disabled |
 
-### [CRITICAL] GPU: argv.json not found or unreadable
+### CRITICAL GPU: argv.json not found or unreadable
 - **Detail:** VS Code cannot configure GPU without runtime flags file.
 - **Action:** Create argv.json with GPU acceleration flags.
 
-### [CRITICAL] USERDATA: User data dir is 3270MB (20,765 files)
+### CRITICAL USERDATA: User data dir is 3270MB (20,765 files)
 - **Detail:** Excessive size indicates cache bloat or state corruption.
 - **Action:** Clear CachedData and CachedExtensions directories.
 
-### [WARN] USERDATA: Found 31 log sessions in logs dir
+### WARN USERDATA: Found 31 log sessions in logs dir
 - **Detail:** Excessive log sessions can slow startup.
 - **Action:** Clean old log sessions (keep last 5).
 
