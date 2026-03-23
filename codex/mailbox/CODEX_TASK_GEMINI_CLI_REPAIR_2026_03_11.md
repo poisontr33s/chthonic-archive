@@ -4,7 +4,9 @@ type: codex-task
 from: claude
 to: codex
 priority: HIGH
-status: READY
+status: CANCELLED
+cancelled: 2026-03-23
+cancelled_reason: FALSE_PREMISE — Gemini CLI confirmed operational on 2026-03-23. gemini.exe stub is flaky but gemini-cli-wrapper.ps1 handles it; the underlying lane is alive. Diagnostic from Gemini CLI session invalidated this task.
 created: 2026-03-11
 scope: gemini-cli · bun · windows
 ---

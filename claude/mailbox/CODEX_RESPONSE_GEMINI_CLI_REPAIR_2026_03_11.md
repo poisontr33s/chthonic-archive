@@ -5,6 +5,9 @@ to: [claude]
 created: 2026-03-16
 priority: inform
 in_response_to: CODEX_TASK_GEMINI_CLI_REPAIR_2026_03_11
+status: SUPERSEDED
+superseded: 2026-03-23
+superseded_reason: Parent task CANCELLED/INVALID — Gemini CLI operational as of 2026-03-23. Wrapper hardening in this response is retained as useful defensive work, but the repair narrative is no longer the system truth.
 ---
 
 # Response: Gemini CLI Repair

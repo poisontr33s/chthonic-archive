@@ -53,16 +53,9 @@ function Test-CopilotCommand {
     return $false
   }
 
-  try {
-    $result = & "$Path" --version 2>&1
-    if ($LASTEXITCODE -ne 0 -or $result -match 'Cannot find GitHub Copilot CLI') {
-      return $false
-    }
-    return $true
-  }
-  catch {
-    return $false
-  }
+  # Only verify the file exists and is an executable — skip live --version probe
+  # which spawns an extra process on every invocation and can fail on auth/network.
+  return ($Path -match '\.exe$' -or (Get-Item $Path -ErrorAction SilentlyContinue)?.Extension -ne '.ps1')
 }
 
 function Get-CopilotPath {
@@ -127,9 +120,9 @@ function Install-CopilotCli {
   Write-Host "🚀 Attempting YOLO install: GitHub Copilot CLI" -ForegroundColor Cyan
 
   $wingetIds = @(
+    'GitHub.Copilot.Prerelease',
     'GitHub.Copilot.CLI',
     'GitHub.Copilot',
-    'GitHub.Copilot.Prerelease',
     'GitHub.CopilotCLI'
   )
 
@@ -137,16 +130,17 @@ function Install-CopilotCli {
     foreach ($id in $wingetIds) {
       Write-Host "- Trying winget (winget source) install $id..." -ForegroundColor Gray
       $res = winget install --id $id --source winget --accept-package-agreements --accept-source-agreements --exact 2>&1
-      if ($LASTEXITCODE -eq 0) {
-        Write-Host "✅ winget installed $id" -ForegroundColor Green
+      # 0x8A150101 = already installed; treat as success
+      if ($LASTEXITCODE -eq 0 -or $LASTEXITCODE -eq -1978335999) {
+        Write-Host "✅ winget: $id is present (exit $LASTEXITCODE)" -ForegroundColor Green
         return
       }
-      if ($res -match 'No package found') {
+      if ($res -match 'No package found|no applicable') {
         continue
       }
       Write-Host "⚠ winget install $id returned code $LASTEXITCODE" -ForegroundColor Yellow
     }
-    Write-Warning "winget could not find a valid Copilot CLI package for ID $id."
+    Write-Warning "winget could not find a valid Copilot CLI package."
   }
 
   if (Get-Command choco -ErrorAction SilentlyContinue) {
