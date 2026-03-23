@@ -46,9 +46,9 @@ This is a **known bun Windows pattern**: `bun install` / `bun update` in a works
 
 | Item | Value |
 |------|-------|
-| Bun version | 1.3.9 |
-| Installed gemini-cli | 0.33.0 |
-| `gemini.exe` stub | BROKEN at time of writing |
+| Bun version | 1.3.11 |
+| Installed gemini-cli | 0.33.0 (alpha) |
+| `gemini.exe` stub | BROKEN at time of writing, then fixed by wrapper hardening |
 | Wrapper fallback | functional |
 
 ### Tasks — all superseded, do not execute
