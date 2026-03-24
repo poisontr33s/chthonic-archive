@@ -1,0 +1,133 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://github.com/poisontr33s/chthonic-archive/mcp/tools/ExecutionContextSchema.json",
+  "title": "Execution Context Response",
+  "description": "Schema for preflight_execution_context MCP tool response",
+  "type": "object",
+  "required": [
+    "execution_abi",
+    "shell_sovereignty",
+    "permissions",
+    "governance"
+  ],
+  "properties": {
+    "execution_abi": {
+      "type": "object",
+      "required": ["os", "platform", "shell", "runtime", "node_compat"],
+      "properties": {
+        "os": {
+          "type": "string",
+          "description": "Normalized OS name",
+          "enum": ["windows", "macos", "linux"]
+        },
+        "platform": {
+          "type": "string",
+          "description": "Node platform identifier",
+          "enum": ["win32", "darwin", "linux"]
+        },
+        "shell": {
+          "type": "string",
+          "description": "Canonical shell name",
+          "examples": ["pwsh", "bash", "zsh"]
+        },
+        "runtime": {
+          "type": "string",
+          "description": "JavaScript runtime",
+          "enum": ["bun", "node"]
+        },
+        "node_compat": {
+          "type": "boolean",
+          "description": "Whether runtime is Node-compatible",
+          "const": true
+        },
+        "bun_version": {
+          "type": "string",
+          "description": "Bun version (if runtime is bun)",
+          "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"
+        },
+        "node_version": {
+          "type": "string",
+          "description": "Node version (if runtime is node)",
+          "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"
+        }
+      },
+      "additionalProperties": false
+    },
+    "shell_sovereignty": {
+      "type": "object",
+      "required": ["status", "cross_shell_detected", "canonical_shell"],
+      "properties": {
+        "status": {
+          "type": "string",
+          "description": "Shell sovereignty status",
+          "enum": ["clean", "ambiguous"]
+        },
+        "cross_shell_detected": {
+          "type": "boolean",
+          "description": "Whether cross-shell execution was detected"
+        },
+        "canonical_shell": {
+          "type": ["string", "null"],
+          "description": "Canonical shell name or null if ambiguous"
+        }
+      },
+      "additionalProperties": false
+    },
+    "permissions": {
+      "type": "object",
+      "required": ["repo_mutation", "git_commit", "git_push"],
+      "properties": {
+        "repo_mutation": {
+          "type": "string",
+          "description": "Repository mutation permission",
+          "const": "unknown"
+        },
+        "git_commit": {
+          "type": "string",
+          "description": "Git commit permission",
+          "const": "unknown"
+        },
+        "git_push": {
+          "type": "string",
+          "description": "Git push permission",
+          "const": "unknown"
+        }
+      },
+      "additionalProperties": false,
+      "description": "All permissions must be 'unknown' (F3: explicit unknown state)"
+    },
+    "governance": {
+      "type": "object",
+      "required": [
+        "shell_mismatch_retryable",
+        "permission_required_before_narration",
+        "structural_failures_non_retryable"
+      ],
+      "properties": {
+        "shell_mismatch_retryable": {
+          "type": "boolean",
+          "description": "Whether shell mismatch errors are retryable (F1)",
+          "const": false
+        },
+        "permission_required_before_narration": {
+          "type": "boolean",
+          "description": "Whether permission is required before narration (F3)",
+          "const": true
+        },
+        "structural_failures_non_retryable": {
+          "type": "boolean",
+          "description": "Whether structural failures are non-retryable (F2)",
+          "const": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "governance_version": {
+      "type": "string",
+      "description": "Governance schema version",
+      "pattern": "^session-learning\\.v[0-9]+$",
+      "examples": ["session-learning.v1"]
+    }
+  },
+  "additionalProperties": false
+}

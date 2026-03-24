@@ -1,0 +1,10 @@
+{
+  "source_extract": "dumpster-dive/intake/scripts-restructure-2026-03-20/recovered/.zombie_extract_recovered_python_cluster_registry.json",
+  "routed_from": "dumpster-dive/intake/scripts-restructure-2026-03-20/recovered/recovered_python_cluster_registry.py",
+  "routed_to": "dumpster-dive/forge/anvil/recovered_python_cluster_registry.py",
+  "ore_rating": 4,
+  "category": "recovered",
+  "content_hash": "dc1d5dcb740da124",
+  "timestamp": "2026-03-23T22:12:38.413159+00:00",
+  "provenance_sidecar": null
+}
