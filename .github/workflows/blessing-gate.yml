@@ -25,7 +25,7 @@ jobs:
           python -m pip install --upgrade pip
           pip install uv
 
-      - name: Debug: .gitmodules and submodules
+      - name: "Debug: .gitmodules and submodules"
         run: |
           echo "--- .gitmodules ---"
           test -f .gitmodules && sed -n '1,200p' .gitmodules || echo "(no .gitmodules)"
