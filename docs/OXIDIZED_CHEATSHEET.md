@@ -4,7 +4,7 @@ title: Oxidized Toolchain — Command Cheatsheet & Cross-Tool Pattern Map
 type: reference
 status: canonical
 created: 2026-03-11
-updated: 2026-03-11
+updated: 2026-03-23 (Windows Ruby 4.0.2 + OpenSSL + Agave/Anchor lane repairs)
 authors:
   - Claude
 audience:
@@ -28,6 +28,21 @@ tags:
 > Problem this solves: you have the tools but don't know what they can do beyond the basics.
 > Structure: cross-tool pattern map first (find by concept), per-tool quick ref second.
 > Full command surfaces: documented in source READMEs — this surfaces the non-obvious.
+> Rationale: [OXIDIZED_TOOLCHAIN_RATIONALE.md](OXIDIZED_TOOLCHAIN_RATIONALE.md)
+> Migration memory: [LAPTOP_TO_DESKTOP_EMIGRATION.md](../codex/artifacts/LAPTOP_TO_DESKTOP_EMIGRATION.md)
+> Local note: `uv`, `rv`, `goup`, `bun`, `cargo`, `brush`, `zv`, and `rv-r` are installed here. `rig` remains documented as an R version-manager option, but this workstation centers the unmanaged current `R` runtime plus `rv-r`.
+
+---
+
+## Naming Canon
+
+- `rv` = Ruby manager
+- `rig` = R version manager
+- `R rv` / `rv-r` = the A2-ai R package manager in documentation only
+- `zv` = Rust-native Zig version manager
+
+Use that naming in repo docs and tasks so `rv` does not collide with the Ruby lane.
+Repo wrapper: `scripts/rv-r.ps1`
 
 ---
 
@@ -54,7 +69,7 @@ tags:
 |------|---------|
 | Pin Python for current project | `uv python pin 3.13.11` → writes `.python-version` |
 | Pin Ruby for current project | `rv ruby pin 4.0.1` → writes `.ruby-version` |
-| Switch active Go version | `goup set 1.26.1` |
+| Switch default Go version | `goup default 1.26.1` |
 | Switch active Node version (shell) | `fnm use 22` |
 | Set default R version | `rig default 4.4.0` |
 | Set default Node version | `fnm default 22` |
@@ -97,7 +112,7 @@ tags:
 | Python versions (installed) | `uv python list --only-installed` |
 | Python versions (all available) | `uv python list` |
 | Ruby versions (installed + available) | `rv ruby list` |
-| Go versions (installed) | `goup ls` |
+| Go versions (installed) | `goup list` |
 | Go versions (available upstream) | `goup search` |
 | Node versions (installed) | `fnm list` |
 | Node versions (available) | `fnm list-remote` |
@@ -114,7 +129,7 @@ tags:
 |------|---------------------|
 | uv | `uv self update` |
 | rv | `rv selfupdate` |
-| goup | `goup upgrade` |
+| goup | `goup self update` |
 | bun | `bun upgrade` |
 | mise | `mise self-update` |
 | proto | `proto upgrade` |
@@ -226,7 +241,7 @@ uv cache clean               # clear cache
 ```
 rv ruby list                 # installed + available Ruby versions
 rv ruby install 4.0.1        # install a version
-rv ruby install latest       # install latest stable
+rv ruby install              # install pinned/current stable from rv
 rv ruby pin 4.0.1            # write .ruby-version for this project
 rv ruby find                 # show path to active Ruby executable
 rv ruby dir                  # show all Ruby install directory
@@ -252,7 +267,8 @@ rv cache                     # manage rv cache
 - `rvx` is the zero-friction gem runner — `rvx rails`, `rvx rubocop`, `rvx rake` all work without manual gem install
 - `rv tool install` creates isolated envs so global gems don't pollute each other (equivalent of `uv tool install`)
 - `rv clean-install` is the CI-safe command — equivalent of `uv sync --frozen` for Ruby
-- In this workspace, prefer `rv` directly. `rvw` is legacy fallback material for old PowerShell alias-collision situations, not the primary command anymore.
+- In this workspace, prefer `rv` directly. `rvw` is only a fallback when a shell still binds `rv` to PowerShell `Remove-Variable`.
+- `rv r <cmd>` is the short alias for `rv run <cmd>`; e.g. `rv r ruby -v`, `rv r ridk version`, `rv r gem env`
 
 **Windows Ruby lane: what owns what**
 - `rv` owns the Ruby runtime itself: install, switch, pin, and isolated gem tools.
@@ -264,13 +280,20 @@ rv cache                     # manage rv cache
 ```powershell
 rv selfupdate                        # update rv itself
 rv ruby list                         # see installed + available Rubies
-rv ruby install latest              # install latest stable Ruby
-rv ruby pin 4.0.1                   # pin project version explicitly
+rv ruby install 4.0.2               # install the target Ruby runtime
+rv ruby pin 4.0.2                   # pin project version explicitly
+rv ruby find 4.0.2                  # show the exact binary path for 4.0.2
+rv r ruby -v                        # verify active runtime quickly
+rv r gem env                        # inspect active gem paths
+rv r ridk version                   # verify RubyInstaller + MSYS2 binding
 
 ruby --version                      # verify active Ruby
 gcc --version                       # verify C compiler from DevKit/MSYS2
 make --version                      # verify make
 pacman -Q mingw-w64-ucrt-x86_64-gcc make   # verify package ownership/versions
+where.exe ruby                      # verify command resolution on Windows
+where.exe ridk
+where.exe gcc
 ```
 
 **Windows Ruby lane: MSYS2 / DevKit maintenance**
@@ -281,11 +304,61 @@ pacman -Qu                          # list pending package upgrades
 pacman -S mingw-w64-ucrt-x86_64-gcc mingw-w64-ucrt-x86_64-make make
 ```
 
+**Windows Ruby lane: `ridk` component sequencing**
+
+Run the RubyInstaller components one step at a time, not as `1 2 3` in one shot:
+
+```powershell
+rv r ridk install 1                # install MSYS2 base into the active rv Ruby
+rv r ridk install 2                # optional pacman system update
+rv r ridk install 3                # install the MINGW/UCRT dev toolchain
+```
+
+Validated migration pattern for `ruby-4.0.2`:
+
+```powershell
+rv ruby install 4.0.2
+rv ruby pin 4.0.2
+rv r ridk install 1
+rv r ridk install 3
+rv r ridk exec pacman -S --needed --noconfirm mingw-w64-ucrt-x86_64-tcl mingw-w64-ucrt-x86_64-tk
+rv r ridk version
+```
+
+Do not treat `ridk install 1 2 3` as the preferred recovery path when you are intentionally rebuilding the lane. Base first, toolchain second, update only when you actually want the package refresh.
+
+**Windows Ruby lane: migrate old gems/settings into rv**
+
+Library gems that belong to the active Ruby go into the active runtime:
+
+```powershell
+rv r gem install --no-document colorize mini_portile2 sqlite3
+```
+
+CLI gems that should stay isolated go in the tool lane:
+
+```powershell
+rv tool install --gem-server https://rubygems.org/ bundler-audit
+rv tool install --gem-server https://rubygems.org/ thor
+rv tool list
+rv tool run bundler-audit --version
+rv tool run thor version
+```
+
+If Bundler build flags still point at an old `C:\Ruby*` tree, rewrite them to the active `rv` Ruby's `ucrt64` tree:
+
+```powershell
+rv r bundle config list
+rv r bundle config set --global build.tk "--with-tcltk-framework=false --with-tcl-lib=C:/Users/<user>/AppData/Roaming/rv/rubies/ruby-4.0.2/msys64/ucrt64/lib --with-tk-lib=C:/Users/<user>/AppData/Roaming/rv/rubies/ruby-4.0.2/msys64/ucrt64/lib --with-tcl-include=C:/Users/<user>/AppData/Roaming/rv/rubies/ruby-4.0.2/msys64/ucrt64/include --with-tk-include=C:/Users/<user>/AppData/Roaming/rv/rubies/ruby-4.0.2/msys64/ucrt64/include"
+```
+
 **Observed package names in this workspace**
 - `mingw-w64-ucrt-x86_64-gcc`
 - `mingw-w64-ucrt-x86_64-gcc-libs`
 - `mingw-w64-ucrt-x86_64-make`
 - `make`
+- `mingw-w64-ucrt-x86_64-tcl`
+- `mingw-w64-ucrt-x86_64-tk`
 
 **Mental model**
 - `rv` answers: "which Ruby am I using?"
@@ -299,18 +372,216 @@ pacman -S mingw-w64-ucrt-x86_64-gcc mingw-w64-ucrt-x86_64-make make
 goup install                 # install latest stable Go
 goup install 1.26.1          # install specific version
 goup install tip             # install Go development tip
-goup ls                      # list installed versions
+goup install stable          # explicit latest stable form
+goup list                    # list installed versions
 goup search                  # list all available versions
-goup set 1.26.1              # switch active version (updates symlink)
+goup search stable           # list stable remote versions
+goup default 1.26.1          # set default Go version
+goup shell 1.26.1 -s powershell  # activate one version for the current shell
+goup env                     # show current goup environment values
+goup init powershell         # emit/init shell integration material
 goup remove 1.25.0           # remove a version
-goup upgrade                 # update goup itself
+goup self update             # update goup itself
 ```
 
 **Non-obvious:**
+- `goup update` is not a separate upgrade verb; it is an alias of `goup install`
+- `goup self update` is the manager self-update path
+- `goup install` with no argument means "install current stable"; `goup install stable` is the explicit form
+- `goup install go`, `goup update go`, `goup update all` and similar words are parsed as version strings and fail semver parsing
+- For an explicit version, prefer `goup install 1.26.1`; use `--use-raw-version` when you intentionally want raw version parsing
 - `goup install tip` tracks Go's main development branch — useful for testing your code against unreleased Go
-- Version switching is instant — just updates `~/.go/current` symlink, no PATH changes
+- `goup default` changes the default Go version; `goup shell` is the shell-scoped switch
 - `GOUP_GO_HOST=golang.google.cn goup install` uses Chinese mirror (or any custom mirror)
-- After `goup set`, open a new shell or run `source ~/.go/env` for the change to take effect
+- `goup env` is the quickest truth source for current registry/home/version variables
+
+---
+
+### brush — Bash-compatible shell
+
+```
+brush --version                  # show brush version
+brush -c 'echo hi'               # run one command and exit
+brush -lc 'pwd'                  # login-style one-shot command
+brush -i                         # interactive shell
+brush --sh -c 'pwd'              # stricter /bin/sh compatibility mode
+brush --posix -c 'set -o'        # enable POSIX mode inside the default shell
+brush --noprofile -c '...'       # skip profile/login files
+brush --norc -i -c '...'         # skip interactive rc files
+brush --rcfile ./.brushrc -i -c '...'   # use a specific rc file
+brush --noenv -c 'command -v pwd || true'  # start without inherited environment
+```
+
+**Verified behavior on this workstation (`brush 0.3.0`):**
+- `brush -c` is the normal bash-like mode. `BASH_VERSION` is set (`5.2.15(1)-release`) and `set -o` shows `posix off`.
+- `brush --posix` does set `set -o posix` to `on`, but it is not a full hard-POSIX shell fence in this build:
+  - arrays like `x=(a b)` still parse
+  - `[[ ... ]]` still parses
+  - `shopt -p extglob` still reports `extglob` enabled
+- `brush --sh` is materially stricter than `--posix`:
+  - `set -o` also shows `posix on`
+  - array syntax errors near `(`
+  - `pwd` remains a shell builtin
+  - `echo` and `printf` were not available as builtins in the tested Windows path; direct `echo hi` / `printf ...` failed with `command not found`
+- `brush --noenv` starts with `HOME` unset and `PATH` empty. Builtins still work; external commands should not be assumed.
+- In Windows batch / `-c` mode, bare external command names are not trustworthy even when `command -v` resolves them:
+  - `command -v bash` and `command -v go` can report `C\bash` / `C\go`
+  - `bash --version` and `go version` can still fail with `command not found`
+  - absolute Windows executable paths such as `C:/Users/eldno/.cargo/bin/brush.exe --version` do work
+  - MSYS-style paths like `/c/Users/.../brush.exe` did not work in `brush -c`
+- If you need the real GNU/MSYS bash from inside brush on this workstation, invoke the executable explicitly:
+  - `C:/Users/eldno/AppData/Roaming/rv/rubies/ruby-4.0.2/msys64/usr/bin/bash.exe`
+  - once inside that shell, `bash` resolves to `/usr/bin/bash`, `echo`/`printf` are normal bash builtins, and `shopt -p extglob` behaves like GNU bash rather than brush
+- `/dev/null` is not a safe sink in tested Windows brush runs; `echo hi >/dev/null` failed with `C:/dev/null` missing. `NUL` worked.
+- Interactive `set` on this workstation exposed a Windows-specific split:
+  - `PATH=''`
+  - `Path='C:\...;...'` still contained the real Windows search path
+  - inference: interactive command discovery is at least partially consulting Windows `Path`, which helps explain why prompt-time behavior can differ from `brush -c`
+- Interactive prompt/version state also appears inconsistent:
+  - prompt showed `brush.exe-0.4$` with `PS1='\s-\v\$ '`
+  - `BRUSH_VERSION=0.3.0`
+  - `brush --version` reported `0.3.0`
+  - treat `brush --version` / `BRUSH_VERSION` as authoritative, and treat the prompt's `0.4` as a likely brush prompt/version-display quirk
+
+**Practical Windows rescue snippet for `~/.brushrc`:**
+
+```sh
+if [ -z "$PATH" ] && [ -n "$Path" ]; then
+  PATH="$Path"
+  export PATH
+fi
+
+if [ -n "$MSYS2_HOME" ] && [ -x "$MSYS2_HOME/usr/bin/bash.exe" ]; then
+  alias bash="$MSYS2_HOME/usr/bin/bash.exe"
+fi
+
+if [ -n "$MSYS2_HOME" ] && [ -x "$MSYS2_HOME/usr/bin/sh.exe" ]; then
+  alias sh="$MSYS2_HOME/usr/bin/sh.exe"
+fi
+```
+
+This was validated locally with:
+- `brush -i --rcfile <file> -c 'bash --version'` -> succeeded once `PATH` was populated from `Path`
+- `bash --version` then resolved to the GNU/MSYS bash shipped in the active Ruby DevKit lane
+
+**Startup-file behavior verified in a disposable test home:**
+- `brush -i -c ...` loaded both `~/.bashrc` and `~/.brushrc`
+- `brush -i --norc -c ...` suppressed rc loading
+- `brush -i --rcfile <file> -c ...` loaded only the specified rc file and skipped default rc files
+- `brush -l -c ...` and `brush -l -i -c ...` did not load `~/.profile` or `~/.bash_profile` in these Windows tests
+
+**Mental model:**
+- `pwsh` remains the canonical shell in this repo
+- `brush` is the sanctioned bash-compatible companion when you need Bourne/bash semantics on Windows
+- prefer `brush -c '...'` for bash-ish one-shots
+- prefer `brush --sh -c '...'` only when you explicitly want to probe `/bin/sh`-style compatibility
+- for Windows batch probes, prefer builtins or absolute `.exe` paths over bare external command names
+- do not assume `--posix` and `--sh` are interchangeable
+
+---
+
+### Agave / Solana CLI
+
+```
+solana --version                    # show installed Solana CLI version
+agave-install --version             # show installed Agave installer/update lane
+where.exe solana
+where.exe agave-install
+```
+
+**Windows lane note:**
+- In this workstation pass, the official Agave Windows installer required elevation.
+- The working non-admin fallback was the official prebuilt Windows Agave release bundle, which already contained both:
+  - `solana.exe`
+  - `agave-install.exe`
+- User-scoped bundle path used here:
+  - `C:\Users\<user>\AppData\Local\solana\install\releases\v3.1.9\solana-release\bin`
+
+**Verified locally:**
+- `solana-cli 3.1.9`
+- `agave-install 3.1.9`
+
+---
+
+### AVM / Anchor
+
+```
+avm install latest                 # install latest Anchor CLI via AVM
+avm use latest                     # activate latest Anchor CLI
+anchor --version                   # verify active Anchor CLI
+where.exe avm
+where.exe anchor
+```
+
+**Windows lane note:**
+- `avm` installation landed in Cargo's bin lane (`.cargo\bin`).
+- On Windows without symlink privilege, `avm use latest` can fall back from symlink to copy.
+- That fallback is acceptable as long as `anchor --version` resolves afterward.
+
+**Verified locally:**
+- `anchor-cli 0.32.1`
+
+---
+
+### OpenSSL / Native Cargo on Windows
+
+If a native Rust crate on MSVC fails on `openssl-sys`, bind a real Windows OpenSSL install instead of assuming Visual Studio handled it:
+
+```powershell
+[Environment]::SetEnvironmentVariable('OPENSSL_DIR', 'C:\Program Files\OpenSSL-Win64', 'User')
+[Environment]::SetEnvironmentVariable('OPENSSL_INCLUDE_DIR', 'C:\Program Files\OpenSSL-Win64\include', 'User')
+[Environment]::SetEnvironmentVariable('OPENSSL_LIB_DIR', 'C:\Program Files\OpenSSL-Win64\lib\VC\x64\MD', 'User')
+[Environment]::SetEnvironmentVariable('OPENSSL_NO_VENDOR', '1', 'User')
+[Environment]::SetEnvironmentVariable('VCPKG_ROOT', 'C:\Users\<user>\vcpkg', 'User')
+```
+
+**Do not rely on:**
+- vendored OpenSSL via MSYS/Cygwin Perl on an MSVC Rust lane
+- Visual Studio alone to surface a usable OpenSSL install to Cargo
+
+**Verified locally against:**
+- `extensions/chthonic-archive/native/entropy-ledger-host`
+- full native workspace `cargo check --manifest-path extensions/chthonic-archive/native/Cargo.toml`
+
+---
+
+### chthonic — Repo Control Surface
+
+These are the repo-native meta-commands that surface the repaired workstation state:
+
+```powershell
+.\scripts\chthonic.ps1 commands counts
+.\scripts\chthonic.ps1 commands inventory
+.\scripts\chthonic.ps1 toolchain hierarchy
+.\scripts\chthonic.ps1 toolchain verify
+.\scripts\chthonic.ps1 toolchain scan --json
+.\scripts\chthonic.ps1 toolchain paths
+
+.\scripts\chthonic.ps1 memory map
+.\scripts\chthonic.ps1 memory migration
+.\scripts\chthonic.ps1 memory next
+.\scripts\chthonic.ps1 memory cheatsheet
+.\scripts\chthonic.ps1 memory session
+.\scripts\chthonic.ps1 r lane
+.\scripts\chthonic.ps1 zig lane
+```
+
+Compatibility wrapper:
+
+```powershell
+.\scripts\claudine.ps1 commands counts
+.\scripts\claudine.ps1 toolchain hierarchy
+.\scripts\claudine.ps1 memory session
+```
+
+**Intent:**
+- `commands counts` gives the current surface arithmetic: `23` canonical domains, `8` compatibility domains, `68` canonical documented forms, `76` direct documented forms, `17` nested action aliases
+- `commands inventory` shows the live domain/action matrix, compatibility watchlist, and `claudine` forward reach (`153` combined entrypoint forms across both executable names)
+- `toolchain hierarchy` shows the ordered lane model plus current command ownership/paths
+- `toolchain verify` runs the extension host verifier in a fresh env merge
+- `memory session` recalls the winning state, order, anti-patterns, and next hierarchy from the migration/session artifacts
+- `r lane` shows the current unmanaged `R` runtime plus `rv-r`
+- `zig lane` shows `zv` and active `zig`
 
 ---
 
@@ -385,6 +656,8 @@ fnm env --use-on-cd | Out-String | Invoke-Expression  # pwsh auto-switch init
 
 ### rig — R versions
 
+Local status: not currently installed on this workstation.
+
 ```
 rig list                     # installed R versions (alias: ls)
 rig available                # R versions available to install
@@ -414,6 +687,55 @@ rig system rtools            # manage Rtools (compiler toolchain for R on Window
 - `rig system add-pak` installs the `pak` R package manager which is much faster than base `install.packages()`
 - `rig add oldrel-1` / `oldrel-2` symbolic names — don't need to know exact version numbers
 - `rig system rtools` manages Rtools (the Windows C/C++ compiler for R packages with native code)
+
+---
+
+### R rv — R packages
+
+`A2-ai/rv` is the Rust-native R package manager discussed in the reference doc.
+
+Repo naming rule:
+
+- write `R rv` or `rv-r` in docs and tasks
+- do not use bare `rv` for R inside this repo, because bare `rv` is reserved for the Ruby lane
+
+Local status: installed via repo wrapper.
+
+Wrapper path in this repo:
+
+```powershell
+pwsh -NoProfile -File scripts/rv-r.ps1 <args>
+```
+
+Wrapper lookup order:
+
+1. `R_RV_BIN`
+2. `R_RV_HOME`
+3. `%USERPROFILE%\.r-rv\bin\rv.exe`
+
+Architectural cues from the research set:
+
+- `rproject.toml` is the explicit project manifest / lock anchor
+- `.rv` is the local project environment
+- console ergonomics are centered around calls like `.rv$sync()` and `.rv$add("pkg")`
+
+---
+
+### zv — Zig versions
+
+```
+zv --version                 # show installed zv version
+zv install 0.13.0            # install specific Zig version
+zv use 0.13.0                # switch active Zig version
+zv list                      # list installed Zig versions
+zv current                   # show active Zig version
+```
+
+**Non-obvious:**
+- `zv` is the Rust-native Zig lane this repo references
+- `.zigversion` is the project-facing version file in the `zv` ecosystem
+- `zv use <version>` is the core project-aware switching flow
+- keep `zv` distinct from `zigup` and `zvm` when writing repo docs
 
 ---
 
@@ -600,7 +922,7 @@ The compilation probe IS the real Windows test. The reference doc is the verifie
 | Node.js | fnm | `fnm` | runtime |
 | Node.js | volta | *(binary release)* | runtime + project pin |
 | R | rig | *(binary release)* | runtime |
-| R | rv (A2-ai) | `rv` | packages |
+| R | R rv (A2-ai) | `rv` | packages |
 | Zig | zv | `zv` | runtime |
 | Polyglot | mise | `mise` | runtime + tasks |
 | Polyglot | proto | `proto` | runtime + plugins |
@@ -611,3 +933,4 @@ The compilation probe IS the real Windows test. The reference doc is the verifie
 ---
 
 *Authored: 2026-03-11. Command data sourced from official docs for uv, rv, goup, bun, fnm, rig, mise, proto, rustup.*
+

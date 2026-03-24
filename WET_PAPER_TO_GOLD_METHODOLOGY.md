@@ -33,8 +33,21 @@ tags:
   - upcycling
   - repurposing
   - anti-pattern-remediation
-  - codekiller anti-pattern
-  - alchemist's mandate
+  - blind-traversal
+  - emergent-taxonomy
+  - cartography
+  - criterion-genesis
+  - convergence
+  - polyglot-governance
+  - responsible-agenting
+  - creative-mode
+  - functional performance theatrics
+  - emergent-strategies
+  - adaptive heuristics
+  - iterative refinement
+  - zombie-file-ingestion + digestion
+  - alchemist's transmutation
+  - alchemic stone mandate
   - no-destroy principle
   - gold-signal
   - unorthodox file-type affordance
@@ -46,6 +59,18 @@ tags:
   - creative forensics
   - provenance recording
   - merit from preservatory methodologies
+  - point system for upcycling vs deleting
+  - file-type-based value assessment
+  - salvage-first approach
+  - preservation-first ethos
+  - anti-deletionist policy
+  - creative salvage over destruction
+  - iterative upcycling process
+  - error learning integration
+  - session-based refinement
+  - the less travelewlled path to gold
+  - the long-term value of wet paper to gold
+  - the value of the unrefined
 ---
 
 <!--
@@ -62,7 +87,7 @@ tags:
 
 **Every file is gold.** This is the default. Not conditional. Not "if you squint." Not "some files might be salvageable." Every file in this repository is Level 1 gold — raw material that someone created, that encodes decisions, history, or intent. The question is never *whether* a file has value. The question is *what kind* of gold it is and how to refine it.
 
-Destroying information does not solve information-theoretical problems. It makes them worse. Entropy increases when you subtract data — it decreases when you organize and transmute it. An agent that proposes destruction is an agent that has failed to see the gold.
+Destroying information does not solve information-theoretical problems. It makes them worse. Entropy increases when you subtract data — it decreases when you organize and transmute it. An Agent that proposes destruction is without merit, failing to see the potential between hidden smoking gun conveniently shadowed by the voyeur of the golden embroidery of an otherwise grey drape.
 
 **Enforcement:** The [Archive Guardian](scripts/hooks/pre-commit-guardian.ps1) enforces this at the git level.
 

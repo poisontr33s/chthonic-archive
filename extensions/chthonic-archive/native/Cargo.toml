@@ -4,6 +4,7 @@ members = [
     "entropy-ledger-host",
     "entropy-renderer-wasm",
     "chthonic-daemon",
+    "tensor-runtime-host",
     "synapse-node",
     "../wasm/chthonic-loom",
     "xtask",
@@ -15,6 +16,7 @@ resolver = "2"
 default-members = [
     "entropy-ledger-host",
     "chthonic-daemon",
+    "tensor-runtime-host",
     "xtask",
 ]
 
@@ -41,3 +43,4 @@ solana-system-interface = "1.0.0"
 tokio = { version = "1.44", features = ["macros", "rt-multi-thread"] }
 toml = "0.8"
 shared_memory = "0.12"
+libloading = "0.8"

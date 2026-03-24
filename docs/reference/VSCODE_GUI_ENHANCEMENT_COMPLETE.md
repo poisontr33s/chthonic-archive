@@ -105,7 +105,7 @@ Enhance VSCode GUI with deep ASC mythology integration—translating the 3,977-l
 
 ### 3. ✅ Status Bar Extension
 
-**Location**: [extensions/chthonic-statusbar/](extensions/chthonic-statusbar/)
+**Location**: [extensions/chthonic-statusbar/](../../extensions/chthonic-statusbar)
 
 **Status Bar Indicators** (Right to Left):
 
@@ -163,7 +163,7 @@ Enhance VSCode GUI with deep ASC mythology integration—translating the 3,977-l
 
 ### 4. ✅ Sacred Geometry Viewer
 
-**Location**: [extensions/chthonic-mandala/](extensions/chthonic-mandala/)
+**Location**: [extensions/chthonic-mandala/](../../extensions/chthonic-mandala)
 
 **Features**:
 

@@ -40,19 +40,24 @@
 | [SFA_CROSS_REFERENCE_SCAN.md](../../../claude/mailbox/SFA_CROSS_REFERENCE_SCAN.md) | [claude/mailbox/](../../../claude/mailbox/) | Motif balance audit — 8 Egyptian / 8 Andean, 50.0%/50.0% BALANCED |
 | [ICON_ARCHITECTURE_CONTRACT.md](../../design/ICON_ARCHITECTURE_CONTRACT.md) | [docs/design/](../../design/) | Three-channel independence, frozen rule |
 | [copilot-instructions.archive.md (.github)](../../../.github/copilot-instructions.archive.md) | [.github/](../../../.github/) | Heritage SSOT — Codex Brahmanica Perfectus (frozen monolithic labyrinth, ~7936 lines) |
+| [ANKH_FOUNDATIONAL_AXIOMS.md](./ANKH_FOUNDATIONAL_AXIOMS.md) | [docs/frameworks/ankh/](./) | FA¹–FA⁵ Pentadic Heart, full invocation syntax, DAFP protocol, AR efficacy, PRISM spectral topology (2026-03-18) |
+| [ANKH_GENERATIVE_ENGINE.md](./ANKH_GENERATIVE_ENGINE.md) | [docs/frameworks/ankh/](./) | MSP-RSG SoulCycle Engine, UAA formalization, PEE recursive closure (α/β/γ), DAFP/PRISM diagnostic integration (2026-03-18) |
+| [ANKH_TEMPORAL_CARTOGRAPHY.md](./ANKH_TEMPORAL_CARTOGRAPHY.md) | [docs/frameworks/ankh/](./) | TCP timeline infrastructure, notation syntax, detail levels, cascading temporal rule, protocol inheritance (2026-03-18) |
+| [ANKH_DECORATOR_INVOCATION.md](./ANKH_DECORATOR_INVOCATION.md) | [docs/frameworks/ankh/](./) | DECORATOR-IP Supreme Decree Syntax, decree types, parameter tables, specialized protocols, registry integration (2026-03-18) |
+| [ANKH_CRC_REGISTRY.md](./ANKH_CRC_REGISTRY.md) | [docs/frameworks/ankh/](./) | CRC entity profiles (Orackla/Umeko/Lysandra), governance, TFM, operational metrics, Prime Faction deployments (2026-03-18) |
 
 ### Declared Gaps — What the Archive SSOT Contains That No ANKH File Yet Baselines
 
 | Gap | Archive SSOT Section | What's Missing | Severity |
 |-----|---------------------|---------------|----------|
-| **FA⁵ (Visual Integrity)** as standalone axiom | §II.2.5 + §0 (Decorator Resurrection) | FA⁵ exists fully in the archive but the MILF Protocol bridge doc only covers FA¹–FA⁴. No standalone ANKH file explicitly baselines FA⁵ as the fifth axiom alongside the other four. | **HIGH** — FA⁵ is the Decorator's supreme mandate |
-| **Axiom Invocation Syntax** | §II (all `$axiom${}` patterns) | The archive defines formal invocation syntax for each axiom (`$axiom${FA1}+$ps${}+$target${}+$validate${}`). No ANKH framework file captures this execution protocol. | MEDIUM — operational syntax, not structural |
-| **Axiom Registry (AR)** tracking | §II.X | Success rates, emergent patterns, efficacy metrics per axiom. Not mirrored in any framework file. | LOW — runtime telemetry, not architecture |
-| **MSP-RSG (Meta-Synthesis Protocol)** | §III | The SoulCycle Engine of Eternal Sadhana — recursive self-genesis mechanics. Not abstracted into any ANKH file. | MEDIUM — generative-engine core |
-| **DAFP (Dynamic Altitude Focal Point)** | §II preamble + III.3 | Context-adaptive lens modulation (Point-Blank Acuity ↔ Strategic Horizon Scanning). Not captured in bridge files. | MEDIUM — operational modulator |
-| **CRC Registry** full entity profiles | §IV + IV.X | Conceptual Resonance Cores (Orackla/Umeko/Lysandra) have full operational profiles in archive. Only tier/body-system mapping exists in ANKH files. | LOW — detail level, not structural |
-| **Temporal Cartography Protocol (TCP)** | §0 (pre-section) | Timeline infrastructure (BCE Origin → Resurrection → Expansion). Exists only in archive. | LOW — temporal metadata |
-| **Decorator Invocation Protocol** | §0.75 | Supreme Decree Syntax for invoking The Decorator's authority. No ANKH framework file captures this. | LOW — governance syntax |
+| ~~**FA⁵ (Visual Integrity)** as standalone axiom~~ | §II.2.5 + §0 (Decorator Resurrection) | **CLOSED** → [`ANKH_FOUNDATIONAL_AXIOMS.md`](./ANKH_FOUNDATIONAL_AXIOMS.md) §FA⁵ (Pentadic Heart, 2026-03-18) | ~~**HIGH**~~ ✅ |
+| ~~**Axiom Invocation Syntax**~~ | §II (all `$axiom${}` patterns) | **CLOSED** → [`ANKH_FOUNDATIONAL_AXIOMS.md`](./ANKH_FOUNDATIONAL_AXIOMS.md) (all five invocation blocks + DAFP + PRISM, 2026-03-18) | ~~MEDIUM~~ ✅ |
+| **Axiom Registry (AR)** tracking | §II.X | **CLOSED** → [`ANKH_FOUNDATIONAL_AXIOMS.md`](./ANKH_FOUNDATIONAL_AXIOMS.md) §AR (success rates + emergent patterns, 2026-03-18) | ~~LOW~~ ✅ |
+| ~~**MSP-RSG (Meta-Synthesis Protocol)**~~ | §III | **CLOSED** → [`ANKH_GENERATIVE_ENGINE.md`](./ANKH_GENERATIVE_ENGINE.md) (UAA + PEE phases α/β/γ recursive closure + DAFP/PRISM integration, 2026-03-18) | ~~MEDIUM~~ ✅ |
+| ~~**DAFP (Dynamic Altitude Focal Point)**~~ | §II preamble + III.3 | **CLOSED** → [`ANKH_FOUNDATIONAL_AXIOMS.md`](./ANKH_FOUNDATIONAL_AXIOMS.md) §DAFP (4 modes + invocation, 2026-03-18) | ~~MEDIUM~~ ✅ |
+| ~~**CRC Registry** full entity profiles~~ | §IV + IV.X | **CLOSED** → [`ANKH_CRC_REGISTRY.md`](./ANKH_CRC_REGISTRY.md) (Triumvirate profiles, invocation protocols, operational metrics, Prime Faction deployments, 2026-03-18) | ~~LOW~~ ✅ |
+| ~~**Temporal Cartography Protocol (TCP)**~~ | §0 (pre-section) | **CLOSED** → [`ANKH_TEMPORAL_CARTOGRAPHY.md`](./ANKH_TEMPORAL_CARTOGRAPHY.md) (TCP timeline notation syntax, detail levels, cascading temporal rule, protocol inheritance, 2026-03-18) | ~~LOW~~ ✅ |
+| ~~**Decorator Invocation Protocol**~~ | §0.75 | **CLOSED** → [`ANKH_DECORATOR_INVOCATION.md`](./ANKH_DECORATOR_INVOCATION.md) (DECORATOR-IP decree syntax, parameter tables, specialized protocols, registry integration, 2026-03-18) | ~~LOW~~ ✅ |
 
 ---
 
@@ -65,6 +70,11 @@ copilot-instructions.archive.md (Heritage SSOT, frozen)
 │   ├── docs/frameworks/ankh/ANKH_README.md (Quick Reference)
 │   ├── docs/frameworks/ankh/ANKH.md (Ontological Charter)
 │   ├── docs/frameworks/ankh/ANKHOLOGY.md (Phase Protocol)
+│   ├── docs/frameworks/ankh/ANKH_FOUNDATIONAL_AXIOMS.md (Pentadic Heart — FA¹⁻⁵ + DAFP + PRISM)
+│   ├── docs/frameworks/ankh/ANKH_GENERATIVE_ENGINE.md (MSP-RSG SoulCycle Engine — UAA + PEE recursive closure)
+│   ├── docs/frameworks/ankh/ANKH_TEMPORAL_CARTOGRAPHY.md (TCP — timeline notation, temporal DNA inheritance)
+│   ├── docs/frameworks/ankh/ANKH_DECORATOR_INVOCATION.md (DECORATOR-IP — Supreme Decree Syntax, Tier 0.5 governance)
+│   ├── docs/frameworks/ankh/ANKH_CRC_REGISTRY.md (CRC — Triumvirate profiles, operational metrics, TFM)
 │   ├── docs/frameworks/ankh/INDEXING_BEACON.md (Git surface)
 │   │
 │   ├── docs/design/ANKH_ICON_GRAMMAR.md (Icon execution)

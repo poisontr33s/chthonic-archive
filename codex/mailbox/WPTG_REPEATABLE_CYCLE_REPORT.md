@@ -19,7 +19,7 @@
 
 ## Legacy Guard
 
-- Path: [`scripts/wpth_repeatable_cycle_LEGACY`](../../scripts/wpth_repeatable_cycle_LEGACY)
+- Path: [`scripts/wpth_repeatable_cycle_LEGACY`](../../dumpster-dive/intake/scripts-restructure-2026-03-20/legacy/wpth_repeatable_cycle_LEGACY)
 - Present: `True`
 - Size bytes: `20113`
 

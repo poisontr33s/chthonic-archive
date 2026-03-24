@@ -75,7 +75,7 @@ working contract until the research chain itself is deliberately revised.
 
 ## Baseline Doctrine
 
-### SFS Is The First Full Theme Baseline
+### Sister Ferrum Scoriae Is The First Full Theme Baseline
 
 Sister Ferrum Scoriae is the first complete theme-extension baseline for the
 theme / icons / product-icons loop.
@@ -90,7 +90,7 @@ That means later MILF/Sub-MILF themes inherit:
 Later themes may modulate palette and emphasis. They do not get to silently
 replace the grammar with unrelated modern icon tropes.
 
-### Global Svg Rule
+### Global SVG Rule
 
 SVGs are not faction-local one-offs. They are global ANKHological artifacts.
 The chromatic layer may vary by theme. The grammar layer stays stable unless a

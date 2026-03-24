@@ -18,6 +18,7 @@ fn main() -> ExitCode {
         "build" => build_workspace(&args[2..]),
         "build-daemon" => build_crate("chthonic-daemon", &args[2..]),
         "build-ledger" => build_crate("entropy-ledger-host", &args[2..]),
+        "build-tensor" => build_crate("tensor-runtime-host", &args[2..]),
         _ => {
             eprintln!("xtask — Chthonic Archive build orchestrator");
             eprintln!();
@@ -28,6 +29,7 @@ fn main() -> ExitCode {
             eprintln!("  build         Build default workspace members (MAKEFLAGS-clean)");
             eprintln!("  build-daemon  Build chthonic-daemon only");
             eprintln!("  build-ledger  Build entropy-ledger-host only");
+            eprintln!("  build-tensor  Build tensor-runtime-host only");
             ExitCode::from(1)
         }
     }

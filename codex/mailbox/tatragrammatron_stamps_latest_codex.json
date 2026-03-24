@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-02-23T16:57:13.146397+00:00",
-  "count": 26,
+  "generated_at": "2026-03-20T18:51:11.750387+00:00",
+  "count": 32,
   "records": [
     {
       "skill": "api-manager",
@@ -20,7 +20,7 @@
       "domain": "maintainability",
       "file": "SKILL.md",
       "line": null,
-      "message": "Debt markers detected (FIXME:3, TODO:30).",
+      "message": "Debt markers detected (FIXME:3, TODO:28).",
       "remedy": "Review markers and convert unresolved debt into tracked action items.",
       "confidence": 0.9
     },
@@ -47,6 +47,28 @@
       "confidence": 1.0
     },
     {
+      "skill": "codekiller-remediation-gate",
+      "stamp": "#TBD",
+      "severity": "INFO",
+      "domain": "maintainability",
+      "file": "SKILL.md",
+      "line": null,
+      "message": "Debt markers detected (TODO:7).",
+      "remedy": "Review markers and convert unresolved debt into tracked action items.",
+      "confidence": 0.9
+    },
+    {
+      "skill": "codekiller-remediation-gate",
+      "stamp": "#PURE",
+      "severity": "INFO",
+      "domain": "structure",
+      "file": "SKILL.md",
+      "line": null,
+      "message": "TASTE: PURE (Clean) and no blocking entropy detected.",
+      "remedy": "None (record only).",
+      "confidence": 1.0
+    },
+    {
       "skill": "codex-skill-bridge",
       "stamp": "#PURE",
       "severity": "INFO",
@@ -59,6 +81,28 @@
     },
     {
       "skill": "conceptualize",
+      "stamp": "#PURE",
+      "severity": "INFO",
+      "domain": "structure",
+      "file": "SKILL.md",
+      "line": null,
+      "message": "TASTE: PURE (Clean) and no blocking entropy detected.",
+      "remedy": "None (record only).",
+      "confidence": 1.0
+    },
+    {
+      "skill": "corpse-reviver",
+      "stamp": "#TBD",
+      "severity": "INFO",
+      "domain": "maintainability",
+      "file": "SKILL.md",
+      "line": null,
+      "message": "Debt markers detected (FIXME:7, TODO:7, XXX:1).",
+      "remedy": "Review markers and convert unresolved debt into tracked action items.",
+      "confidence": 0.9
+    },
+    {
+      "skill": "corpse-reviver",
       "stamp": "#PURE",
       "severity": "INFO",
       "domain": "structure",
@@ -157,6 +201,17 @@
       "confidence": 1.0
     },
     {
+      "skill": "link-path-guard",
+      "stamp": "#PURE",
+      "severity": "INFO",
+      "domain": "structure",
+      "file": "SKILL.md",
+      "line": null,
+      "message": "TASTE: PURE (Clean) and no blocking entropy detected.",
+      "remedy": "None (record only).",
+      "confidence": 1.0
+    },
+    {
       "skill": "mailbox-handoff",
       "stamp": "#PURE",
       "severity": "INFO",
@@ -212,6 +267,17 @@
       "confidence": 1.0
     },
     {
+      "skill": "scm-triage",
+      "stamp": "#PURE",
+      "severity": "INFO",
+      "domain": "structure",
+      "file": "SKILL.md",
+      "line": null,
+      "message": "TASTE: PURE (Clean) and no blocking entropy detected.",
+      "remedy": "None (record only).",
+      "confidence": 1.0
+    },
+    {
       "skill": "script-envelope",
       "stamp": "#PURE",
       "severity": "INFO",
@@ -240,7 +306,7 @@
       "domain": "maintainability",
       "file": "SKILL.md",
       "line": null,
-      "message": "Debt markers detected (FIXME:16, TBD:5, TODO:10, XXX:3).",
+      "message": "Debt markers detected (FIXME:19, TBD:5, TODO:10, XXX:3).",
       "remedy": "Review markers and convert unresolved debt into tracked action items.",
       "confidence": 0.9
     },
@@ -312,6 +378,13 @@
       "applied_fixes": []
     },
     {
+      "skill": "codekiller-remediation-gate",
+      "exit_code": 0,
+      "score": 100,
+      "pure": true,
+      "applied_fixes": []
+    },
+    {
       "skill": "codex-skill-bridge",
       "exit_code": 0,
       "score": 100,
@@ -320,6 +393,13 @@
     },
     {
       "skill": "conceptualize",
+      "exit_code": 0,
+      "score": 100,
+      "pure": true,
+      "applied_fixes": []
+    },
+    {
+      "skill": "corpse-reviver",
       "exit_code": 0,
       "score": 100,
       "pure": true,
@@ -382,6 +462,13 @@
       "applied_fixes": []
     },
     {
+      "skill": "link-path-guard",
+      "exit_code": 0,
+      "score": 100,
+      "pure": true,
+      "applied_fixes": []
+    },
+    {
       "skill": "mailbox-handoff",
       "exit_code": 0,
       "score": 100,
@@ -411,6 +498,13 @@
     },
     {
       "skill": "python-header-canon",
+      "exit_code": 0,
+      "score": 100,
+      "pure": true,
+      "applied_fixes": []
+    },
+    {
+      "skill": "scm-triage",
       "exit_code": 0,
       "score": 100,
       "pure": true,

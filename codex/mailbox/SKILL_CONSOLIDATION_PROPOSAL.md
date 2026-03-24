@@ -126,4 +126,16 @@ Tracked `.pyc` under skills:
 4. `.codex/skills/script-envelope/scripts/__pycache__/script_envelope.cpython-313.pyc`
 5. `.codex/skills/skill-polisher/scripts/__pycache__/polish_skill.cpython-313.pyc`
 
-`.gitignore` currently lacks explicit `__pycache__/` and `*.pyc` coverage. Those additions are listed in [TRACKED_ARTIFACT_CLEANUP.md](/c:/Users/erdno/chthonic-archive/codex/mailbox/TRACKED_ARTIFACT_CLEANUP.md).
+`.gitignore` currently lacks explicit `__pycache__/` and `*.pyc` coverage. Those additions are listed in [TRACKED_ARTIFACT_CLEANUP.md](TRACKED_ARTIFACT_CLEANUP.md).
+
+---
+
+## Verification Addendum (2026-03-18T01:20:00Z — Claude/Copilot)
+
+Phase 1 audit re-verified by Claude overnight session:
+
+1. **`.pyc` tracking status**: CLEAN — `git ls-files "*.pyc"` returns empty as of 2026-03-18. The 5 files listed above exist on disk only (local `__pycache__/`), not in git index. Likely cleaned by a prior session.
+2. **Inventory confirms 27 skills**, classification aligns with original proposal.
+3. **Additional `.pyc` found on disk** (not in this proposal's list): `python-header-canon/scripts/__pycache__/python_header_canon.cpython-313.pyc`, `trainstop-orchestrator/scripts/__pycache__/orchestrate.cpython-313.pyc`, `trainstop-orchestrator/scripts/__pycache__/skill_freshness_gate.cpython-313.pyc` — total 8 on-disk `.pyc` files across 6 skills.
+4. **`.claude/skills/` parity**: 5 Claude-only skills (git-snapshot, handoff-loop, overnight-archaeology, sfa, theme-system) confirmed. `dumpster-upcycler` still missing from Claude side.
+5. **Proposal status**: PENDING user approval. No skills archived or merged yet.

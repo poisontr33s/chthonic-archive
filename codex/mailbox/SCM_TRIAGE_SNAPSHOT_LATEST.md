@@ -2,135 +2,190 @@
 type: scm-triage-snapshot
 from: scm-triage-skill
 to: codex
-created: 2026-02-25T17:50:56.498163+00:00
+created: 2026-03-23T04:33:17.338412+00:00
 priority: high
 scope: session-resumption
 ---
 
-# SCM Triage Snapshot — 2026-02-25 17:50 UTC
+# SCM Triage Snapshot — 2026-03-23 04:33 UTC
 
 **Branch:** main
-**HEAD:** 9602929e SCM-TRIAGE-1.1: pre-nuke clarity snapshot + Codex handoff
-**Ahead of origin:** 7 commits
-**24h velocity:** 3 commits
+**HEAD:** 617f78f2 feat: add tensor-runtime-host extension and integrate into chthonic-archive
+**Ahead of origin:** 0 commits
+**24h velocity:** 9 commits
 
 ## Recent Commits (last 15)
 ```
-9602929e SCM-TRIAGE-1.1: pre-nuke clarity snapshot + Codex handoff
-c5a17158 SCM-TRIAGE-1.0: source control noise classifier + codebase structurization skill
-eb75d3c1 SCM-HYGIENE: untrack purged daemon outputs + gitignore transients
-3828988a SFS-TRANSMUTE-1.0: WPTG Stage 04 geological identity pass
-554d963f THEME-REFINE-1.0: color diversity pass reduces monotone concentration
-4c1adbe7 THEME-PARITY-1.0: full key + scope coverage across all 4 themes
-c67337b1 SFS-REF: fix registry path prefix for dumpster-dive entries
-af762ddb Add relationship audit JSON files for codebase and documentation checks
-788efe06 SFS-REF-1.0: Sister Ferrum Scoriae Reference Index tool
-7fd3dbee LAT-1.0: Canonical Local AI Teaching specification
-0589d673 KCP-4.0: LEGACY batch — 13 tracked TS files migrated to KCP-COMPLIANT
-ed423c3f KCP-4.0: HYBRID batch — overnight_daemon.ts migrated + normalize spacing fixes
-e0a2ab29 Refactor module documentation and update purpose descriptions across bun-cdp elements
-f4e1e2b0 Add overnight daemon report and run configuration files
-26c8cdbe lane: Local AI Teaching Framework — Gemini deep research brief dispatched
+617f78f2 feat: add tensor-runtime-host extension and integrate into chthonic-archive
+27c1f1fa Enhance project configuration by adding rust-toolchain.toml, updating .gitignore to allow rust-toolchain.toml, and refining tasks in tasks.json for improved graphics lane management in chthonic.ps1
+f349ab7b Refactor headings in VS Code Electron Hardener report for consistency and clarity
+330156fc Update VS Code settings for PowerShell paths and enhance chthonic.ps1 with brush repo configuration
+03a613cb Refactor PowerShell script to streamline candidate selection for pwsh.exe and remove unused version-checking function
+c8e7a1f2 Add new scripts for elevated bridge management and Ruby legacy probing
+6d23b67b Update execution statuses and metrics to reflect successful outcomes in SKILL_TENSOR_CYCLE_LATEST files
+690fbb1a Add fixture skill files and remove obsolete SKILL.md files
+70ea4b4a Add Zombie Evolution Project documentation detailing iterative intelligence upgrades
+9a301a68 Add recovered scripts and corresponding metadata for restructuring
+7eb02e46 Add promoted scripts for recovered batch transliteration, Python cluster registry, and shell recipe CLI
+03e164cf Refactor skill tensor scripts: Introduce roulette and weights probes, restructure zombie consumer for dead file analysis
+bd0d74bf Add Skill Tensor Parity State documentation and system explanation
+2fea7cae Update Skill Tensor Cycle documentation and embed outputs in cycle JSON
+0f103000 Update skill tensor weights and improve ledger handling
 ```
 
 ## Change Classification
-- **Total:** 16
-- **SIGNAL:** 3 (intentional)
+- **Total:** 5
+- **SIGNAL:** 5 (intentional)
 - **NOISE:** 0 (transient)
 - **GHOST:** 0 (deleted but tracked)
-- **MAILBOX:** 13 (agent deliverables)
+- **MAILBOX:** 0 (agent deliverables)
 
 ### Signal Files
-- `.gitignore`
-- `claude-codex-gemini/session_resumption_pickup/SESSION_RESUMPTION_HIGH_COVERAGE_LATEST.md`
-- `scripts/scm_triage.py`
-
-### Mailbox Deliverables (pending)
-- `claude/mailbox/GENRE_EXTRACTION_2026_02_25.md`
-- `claude/mailbox/SCM_TRIAGE_PLAN.json`
-- `claude/mailbox/SCM_TRIAGE_SNAPSHOT_2026_02_25T17_36_38Z.md`
-- `claude/mailbox/SCM_TRIAGE_SNAPSHOT_2026_02_25T17_36_50Z.md`
-- `claude/mailbox/SCM_TRIAGE_SNAPSHOT_LATEST.md`
-- `codex/mailbox/GENRE_DAEMON_NEXT_BATCH.txt`
-- `codex/mailbox/KCP_SPECTRUM_AUDIT.json`
-- `codex/mailbox/SCM_TRIAGE_CODEX_HANDOFF.md`
-- `codex/mailbox/SCM_TRIAGE_SNAPSHOT_2026_02_25T17_49_59Z.md`
-- `codex/mailbox/SCM_TRIAGE_SNAPSHOT_LATEST.md`
-- `codex/mailbox/WPTG_SKILL_ALIGNMENT_BASELINE.json`
-- `codex/mailbox/WPTG_SKILL_ALIGNMENT_BASELINE.md`
-- `codex/mailbox/_KCP_HEADER_CLASSIFICATION.json`
+- `codex/NEXT.md`
+- `codex/artifacts/LAPTOP_TO_DESKTOP_EMIGRATION.md`
+- `docs/OXIDIZED_CHEATSHEET.md`
+- `scripts/chthonic.ps1`
+- `scripts/claudine.ps1`
 
 ## Uncommitted Diff Stats
 ```
-.gitignore                                         |  2 +
- .../SESSION_RESUMPTION_HIGH_COVERAGE_LATEST.md     | 46 +++++++++++-----------
- scripts/scm_triage.py                              | 18 ++++++---
- 3 files changed, 38 insertions(+), 28 deletions(-)
+codex/NEXT.md                                   |    6 +
+ codex/artifacts/LAPTOP_TO_DESKTOP_EMIGRATION.md |   59 +-
+ docs/OXIDIZED_CHEATSHEET.md                     |   37 +-
+ scripts/chthonic.ps1                            | 1162 ++++++++++++++++++++---
+ scripts/claudine.ps1                            |    6 +
+ 5 files changed, 1122 insertions(+), 148 deletions(-)
 ```
 
 ## Mailbox Inventory
 ### claude/mailbox/
-- `ARCHAEOLOGY_DIGEST_2026_02_11.md`
-- `ARCHAEOLOGY_DIGEST_2026_02_13.md`
-- `ARCHAEOLOGY_DIGEST_2026_02_18.md`
-- `ARCHAEOLOGY_DIGEST_2026_02_19.md`
 - `ARCHAEOLOGY_DIGEST_2026_02_20.md`
+- `BCE_TRIO_VALIDATION_AUDIT.md`
+- `CHORE_PHASE3_SCRIPT_VARIANT_TRIAGE.md`
 - `CLAUDE_CODE_CENTRIC_SETUP_2026_02_09.md`
 - `CLAUDE_CODE_HIERARCHICAL_RESEARCH_2026_02_09.md`
 - `CLAUDE_META_VALIDATION_SUMMARY.json`
 - `CLAUDE_SKILL_POLISH_SUMMARY_LATEST.md`
 - `CLAUDE_TASK_SESSION_SYNC_2026_02_09.md`
+- `CODEX_RESPONSE_GEMINI_CLI_REPAIR_2026_03_11.md`
 - `CODEX_TO_CLAUDE_TASK_LATEST.md`
+- `EDFA_OVERNIGHT_AUDIT_REPORT.md`
 - `GEMINI_DEEP_RESEARCH_BRIEF_LOCAL_AI_TEACHING.md`
 - `GEMINI_DEEP_RESEARCH_SOLANA.md`
-- `GENRE_EXTRACTION_2026_02_21.md`
-- `GENRE_EXTRACTION_2026_02_22.md`
-- `GENRE_EXTRACTION_2026_02_23.md`
-- `GENRE_EXTRACTION_2026_02_24.md`
-- `GENRE_EXTRACTION_2026_02_25.md`
+- `GENRE_EXTRACTION_2026_03_16.md`
+- `GIT_SNAPSHOT_LATEST.md`
+- `HANDOFF_AUDIT_LATEST.json`
+- `HANDOFF_AUDIT_LATEST.md`
+- `HIERARCHICAL_WORK_PLAN_2026_03_18.md`
 - `KISS_PARITY_BRIEF_2026_02_06.md`
 - `LOCAL_AI_READINESS_LATEST.json`
 - `LOCAL_AI_READINESS_LATEST.md`
 - `Local_AI_Teaching_Framework_Research_Variant1of2.md`
 - `Local_AI_Teaching_Framework_Research_Variant2of2.md`
 - `MAILBOX_CURRENT_STATE.md`
+- `MAILBOX_HANDOFF_VERIFICATION_LATEST.md`
+- `OVERNIGHT_SESSION_REPORT_20260318.md`
+- `OVERNIGHT_SESSION_REPORT_20260318_C.md`
+- `POE_API_DUAL_DISCREPANCY_LATEST.json`
+- `POE_API_DUAL_DISCREPANCY_LATEST.md`
+- `POE_API_SETUP_PULL_LATEST.json`
+- `POE_API_SETUP_PULL_LATEST.md`
+- `POE_CALLABILITY_REGISTRY_ACCOUNT_1.json`
+- `POE_CALLABILITY_REGISTRY_ACCOUNT_1.md`
+- `POE_CALLABILITY_REGISTRY_ACCOUNT_2.json`
+- `POE_CALLABILITY_REGISTRY_ACCOUNT_2.md`
+- `POE_CALLABILITY_REGISTRY_LATEST.json`
+- `POE_CALLABILITY_REGISTRY_LATEST.md`
+- `POE_CALLABILITY_TARGETED_SAMPLE.json`
+- `POE_CALLABILITY_TARGETED_SAMPLE.md`
+- `POE_CALLABILITY_TARGETED_SAMPLE_ACCOUNT_1.json`
+- `POE_CALLABILITY_TARGETED_SAMPLE_ACCOUNT_1.md`
+- `POE_CALLABILITY_TARGETED_SAMPLE_ACCOUNT_2.json`
+- `POE_CALLABILITY_TARGETED_SAMPLE_ACCOUNT_2.md`
 - `POE_LANE_LATEST.json`
 - `POE_LANE_LATEST.md`
 - `POE_SDK_LATEST.json`
 - `POE_SDK_LATEST.md`
 - `POE_TRANSPORT_AUDIT_LATEST.json`
 - `POE_TRANSPORT_AUDIT_LATEST.md`
+- `PRE_SCM_REVIEW_CLAUDE_RESPONSE_2026_02_26.json`
+- `PRE_SCM_TRIAGE_EXHAUSTIVE_REVIEW_2026_02_25.json`
+- `QMR_EMBALM_CANONIZATION_PROPOSAL.md`
 - `SCM_TRIAGE_PLAN.json`
 - `SCM_TRIAGE_SNAPSHOT_2026_02_25T17_36_38Z.md`
 - `SCM_TRIAGE_SNAPSHOT_2026_02_25T17_36_50Z.md`
 - `SCM_TRIAGE_SNAPSHOT_LATEST.md`
+- `SCRIPTS_RESTRUCTURE_PLAN_20260320.md`
 - `SESSION_CONTEXT_APPENDIX_2026_02_06.md`
 - `SESSION_CONTEXT_CHRONICLE_2026_02_06.md`
 - `SESSION_CONTEXT_CHRONICLE_2026_02_09.md`
-- `SESSION_HANDOFF_2026_02_10_CLAUDE_CODE_OPUS_SETUP.md`
+- `SESSION_HANDOFF_2026_02_27_PATH_LINK_DISAMBIGUATION_CANON.md`
 - `SESSION_HANDOFF_2026_1_9_CLAUDE_SKILL_AUDIT.md`
+- `SESSION_OVERVIEW_20260321.md`
+- `SESSION_PREAMBLE_2026_03_11.md`
 - `SESSION_SYNC_INDEX_2026_02_09.json`
 - `SESSION_SYNC_PACKET_2026_02_09.md`
 - `SFA_CROSS_REFERENCE_SCAN.md`
 - `SFA_FORGE_DIGEST.md`
 - `SKILLS_PARITY_DISCREPANCY_2026_02_06.md`
+- `SKILL_PARITY_STATE_20260320.md`
+- `SKILL_TENSOR_FILE_INVENTORY_20260320.md`
+- `STRATEGIC_PLAN_LOCAL_AI_STACK_2026_03_10.md`
+- `TASK_SCHEDULE_2026_03_11.md`
 - `TETRAGRAMMATON_PACKET.md`
+- `VS2026_DESKTOP.vsconfig`
+- `VSCODE_ELECTRON_HARDENER_LATEST.md`
+- `VSCODE_ERROR_AUTOPSY_LATEST.json`
+- `VSCODE_ERROR_AUTOPSY_LATEST.md`
+- `ZOMBIE_EVOLUTION_PROJECT_20260321.md`
 - `_legacy_ts.txt`
 - `genre_rerun_log.txt`
 - `mailbox_manifest.json`
 - `skill_audit_claude_2026-02-09T22-01-52Z.json`
 - `skills_parity_map_2026_02_06.json`
 ### codex/mailbox/
+- `API_KEY_ENV_TEMPLATE_20260226T045112Z.env`
+- `API_KEY_ENV_TEMPLATE_20260317T233340Z.env`
+- `API_KEY_GAP_REPORT_20260226T032737Z.json`
+- `API_KEY_GAP_REPORT_20260226T032737Z.md`
+- `API_KEY_GAP_REPORT_20260226T033916Z.json`
+- `API_KEY_GAP_REPORT_20260226T033916Z.md`
+- `API_KEY_GAP_REPORT_20260226T042039Z.json`
+- `API_KEY_GAP_REPORT_20260226T042039Z.md`
+- `API_KEY_GAP_REPORT_20260226T043333Z.json`
+- `API_KEY_GAP_REPORT_20260226T043333Z.md`
+- `API_KEY_GAP_REPORT_20260226T043933Z.json`
+- `API_KEY_GAP_REPORT_20260226T043933Z.md`
+- `API_KEY_GAP_REPORT_20260226T044046Z.json`
+- `API_KEY_GAP_REPORT_20260226T044046Z.md`
+- `API_KEY_GAP_REPORT_20260226T044116Z.json`
+- `API_KEY_GAP_REPORT_20260226T044116Z.md`
+- `API_KEY_GAP_REPORT_20260226T045112Z.json`
+- `API_KEY_GAP_REPORT_20260226T045112Z.md`
+- `API_KEY_GAP_REPORT_20260317T233340Z.json`
+- `API_KEY_GAP_REPORT_20260317T233340Z.md`
+- `ART_COP_HISTORY_LATEST.json`
 - `ART_COP_REPORT_LATEST.md`
+- `CHTHONIC_GOLDEN_VSCODE_HARDENING_PLAN_2026_02_26.md`
 - `CLAUDE_IDE_HEALTH_LATEST.json`
+- `CODEBASE_TEMPER_SUMMARY.md`
 - `CODEKILLER_CROSSREF_AUDIT.md`
 - `CODEKILLER_GATE_STATUS.json`
 - `CODEKILLER_GATE_STATUS.md`
 - `CODEKILLER_REMEDIATION_PREREQ_LATEST.json`
 - `CODEKILLER_REMEDIATION_PREREQ_LATEST.md`
 - `CODEKILLER_REPAIR_MANIFEST.md`
+- `CODEX_CONFIG_GPT54_REFRESH_PROPOSAL_2026-03-05.md`
+- `CODEX_TASK_GEMINI_CLI_REPAIR_2026_03_11.md`
+- `EXTENSION_CONTRIBUTION_GRAPH_VALIDATOR_CHORE.md`
+- `EXTENSION_CONTRIBUTION_STAGE_2_PLAN.md`
+- `EXTENSION_CONTRIBUTION_STAGE_3_EXECUTION.md`
 - `FIX_DEAD_CODE_WARNINGS.md`
+- `FORGE_DEDUP_AUDIT.md`
+- `FORGE_TRANSMUTATION_REPORT.md`
 - `GENRE_DAEMON_NEXT_BATCH.txt`
+- `HANDOFF_AUDIT_LATEST.json`
+- `HANDOFF_AUDIT_LATEST.md`
 - `HF_MCP_TOOLS_LATEST.json`
 - `HF_MODEL_RANKING_LATEST.md`
 - `HF_PREP_LATEST.json`
@@ -142,15 +197,42 @@ f4e1e2b0 Add overnight daemon report and run configuration files
 - `KCP_SPECTRUM_AUDIT.json`
 - `LOCAL_AI_READINESS_LATEST.json`
 - `LOCAL_AI_READINESS_LATEST.md`
+- `LOG_ARCHAEOLOGY_TRIAGE.md`
 - `MAILBOX_CURRENT_STATE.md`
+- `MAILBOX_HANDOFF_VERIFICATION_LATEST.md`
+- `MAILBOX_ROTATION_POLICY.md`
+- `MIGRATION_PLAN_STATUS.md`
+- `MISTRALRS_CUDA_BUILD_20260227T194707Z.err.log`
+- `MISTRALRS_CUDA_BUILD_20260227T194707Z.out.log`
+- `MISTRALRS_CUDA_BUILD_20260227T195207Z.err.log`
+- `MISTRALRS_CUDA_BUILD_20260227T195207Z.out.log`
 - `OVERSIGHT_UPCYCLE_LATEST.json`
 - `OVERSIGHT_UPCYCLE_LATEST.md`
+- `OXIDIZED_TOOLING_LANDSCAPE.md`
+- `POE_API_DUAL_DISCREPANCY_LATEST.json`
+- `POE_API_DUAL_DISCREPANCY_LATEST.md`
+- `POE_API_SETUP_PULL_LATEST.json`
+- `POE_API_SETUP_PULL_LATEST.md`
+- `POE_CALLABILITY_REGISTRY_ACCOUNT_1.json`
+- `POE_CALLABILITY_REGISTRY_ACCOUNT_1.md`
+- `POE_CALLABILITY_REGISTRY_ACCOUNT_2.json`
+- `POE_CALLABILITY_REGISTRY_ACCOUNT_2.md`
+- `POE_CALLABILITY_REGISTRY_LATEST.json`
+- `POE_CALLABILITY_REGISTRY_LATEST.md`
+- `POE_CALLABILITY_TARGETED_SAMPLE.json`
+- `POE_CALLABILITY_TARGETED_SAMPLE.md`
+- `POE_CALLABILITY_TARGETED_SAMPLE_ACCOUNT_1.json`
+- `POE_CALLABILITY_TARGETED_SAMPLE_ACCOUNT_1.md`
+- `POE_CALLABILITY_TARGETED_SAMPLE_ACCOUNT_2.json`
+- `POE_CALLABILITY_TARGETED_SAMPLE_ACCOUNT_2.md`
 - `POE_LANE_LATEST.json`
 - `POE_LANE_LATEST.md`
 - `POE_SDK_LATEST.json`
 - `POE_SDK_LATEST.md`
 - `POE_TRANSPORT_AUDIT_LATEST.json`
 - `POE_TRANSPORT_AUDIT_LATEST.md`
+- `PRE_SCM_REVIEW_CLAUDE_RESPONSE_2026_02_26.json`
+- `PRE_SCM_TRIAGE_EXHAUSTIVE_REVIEW_2026_02_25.json`
 - `RELATIONSHIP_AUDIT_CODEBASE_APPLY_CHANGED_FILES.txt`
 - `RELATIONSHIP_AUDIT_CODEBASE_BACKLOG_SUMMARY.json`
 - `RELATIONSHIP_AUDIT_CODEBASE_BACKLOG_SUMMARY.md`
@@ -165,37 +247,53 @@ f4e1e2b0 Add overnight daemon report and run configuration files
 - `RESEARCH_DIGEST_ANNO_RUSTIFICATION_ENDO_DOT_LIFE.md`
 - `RESEARCH_DIGEST_ANNO_RUSTIFICATION_ENDO_DOT_LIFE_CURATED.md`
 - `RESEARCH_DIGEST_THE_RUSTIFICATION_JUSTIFICATION_ARCHITECTURAL_CONVERGENCE_OF_VISUAL_STUDIO_2026_LSL_AND_RUST_NATIVE_TOOLCHAINS_IN_THE_WINDOWS_11_ECOSYSTEM.md`
+- `ROOT_ARCHAEOLOGY_REPORT.md`
 - `RUSTIFICATION_TREND_LATEST.json`
 - `RUSTIFICATION_TREND_LATEST.md`
 - `SCM_TRIAGE_CODEX_HANDOFF.md`
 - `SCM_TRIAGE_SNAPSHOT_2026_02_25T17_49_59Z.md`
+- `SCM_TRIAGE_SNAPSHOT_2026_02_25T17_50_56Z.md`
 - `SCM_TRIAGE_SNAPSHOT_LATEST.md`
-- `SESSION_HANDOFF_2026_02_18_CLAUDINE_ARCHAEOLOGY_UPCYCLE_CLASSIFICATION.md`
-- `SESSION_HANDOFF_2026_02_18_VS2026_TRIO_LEARNING_CACHE.md`
+- `SCRIPTS_VARIANT_TRIAGE.md`
+- `SESSION_COMPACT_2026_02_26.json`
+- `SESSION_COMPACT_2026_02_26.md`
+- `SESSION_HANDOFF_2026_02_27_RCS_CALIBRATION_AND_LINK_AUDIT.md`
 - `SESSION_HANDOFF_CODEKILLER_STRUCTURAL_AUDIT.md`
 - `SESSION_HANDOFF_KCP_2_0_TEMPLATE_CANONIZATION_COMPLETE.md`
 - `SESSION_PLAN_2026_02_18_RUSTIFICATION_DAEMON_BATCH.md`
+- `SKILL_AUDIT_STRUCTURAL_2026_02_26.json`
+- `SKILL_COMPARATIVE_REVIEW_2026_02_26.json`
+- `SKILL_COMPARATIVE_REVIEW_2026_02_26.md`
+- `SKILL_CONSOLIDATION_PROPOSAL.md`
 - `SKILL_FRESHNESS_LATEST.json`
 - `SKILL_FRESHNESS_LATEST.md`
+- `SKILL_TENSOR_CYCLE_LATEST.json`
+- `SKILL_TENSOR_CYCLE_LATEST.md`
 - `SSMS22_ACTUAL_INSTALLED_20260218.vsconfig`
+- `STAGE2_FORGE_DECISIONS.md`
 - `TATRAGRAMMATRON_SUMMARY_LATEST_CODEX.md`
 - `TETRAGRAMMATON_PACKET.md`
 - `TOOLCHAIN_DOCTOR_LATEST.md`
-- `TOOLCHAIN_DOCTOR_REPORT_2026_02_17_015616.md`
-- `TOOLCHAIN_DOCTOR_REPORT_2026_02_23_155943.md`
-- `TOOLCHAIN_DOCTOR_REPORT_2026_02_23_160028.md`
-- `TOOLCHAIN_DOCTOR_REPORT_2026_02_23_160402.md`
-- `TOOLCHAIN_DOCTOR_REPORT_2026_02_23_160433.md`
-- `TOOLCHAIN_DOCTOR_REPORT_2026_02_23_160529.md`
-- `TOOLCHAIN_DOCTOR_REPORT_2026_02_23_160536.md`
-- `TOOLCHAIN_DOCTOR_REPORT_2026_02_23_160715.md`
-- `TOOLCHAIN_DOCTOR_REPORT_2026_02_23_160940.md`
-- `TOOLCHAIN_DOCTOR_REPORT_2026_02_23_161137.md`
-- `TOOLCHAIN_DOCTOR_REPORT_2026_02_23_163122.md`
-- `TOOLCHAIN_DOCTOR_REPORT_2026_02_23_163140.md`
-- `TOOLCHAIN_DOCTOR_REPORT_2026_02_23_163504.md`
-- `TOOLCHAIN_DOCTOR_REPORT_2026_02_23_163616.md`
 - `TOOLCHAIN_DOCTOR_REPORT_2026_02_23_165711.md`
+- `TOOLCHAIN_DOCTOR_REPORT_2026_03_19_211500.md`
+- `TOOLCHAIN_DOCTOR_REPORT_2026_03_19_211847.md`
+- `TOOLCHAIN_DOCTOR_REPORT_2026_03_19_211934.md`
+- `TOOLCHAIN_DOCTOR_REPORT_2026_03_19_212031.md`
+- `TOOLCHAIN_DOCTOR_REPORT_2026_03_19_212315.md`
+- `TOOLCHAIN_DOCTOR_REPORT_2026_03_19_212629.md`
+- `TOOLCHAIN_DOCTOR_REPORT_2026_03_19_212857.md`
+- `TOOLCHAIN_DOCTOR_REPORT_2026_03_19_213007.md`
+- `TOOLCHAIN_DOCTOR_REPORT_2026_03_19_213049.md`
+- `TOOLCHAIN_DOCTOR_REPORT_2026_03_19_213309.md`
+- `TOOLCHAIN_DOCTOR_REPORT_2026_03_19_214501.md`
+- `TOOLCHAIN_DOCTOR_REPORT_2026_03_19_215545.md`
+- `TOOLCHAIN_DOCTOR_REPORT_2026_03_20_140311.md`
+- `TOOLCHAIN_DOCTOR_REPORT_2026_03_20_141441.md`
+- `TOOLCHAIN_DOCTOR_REPORT_2026_03_20_142022.md`
+- `TOOLCHAIN_DOCTOR_REPORT_2026_03_20_142148.md`
+- `TOOLCHAIN_DOCTOR_REPORT_2026_03_20_142241.md`
+- `TOOLCHAIN_DOCTOR_REPORT_2026_03_20_185108.md`
+- `TRACKED_ARTIFACT_CLEANUP.md`
 - `TRAINSTOP_ORCHESTRATOR_LATEST.json`
 - `VS2026_BUILDTOOLS_EXPORT.vsconfig`
 - `VS2026_COMMUNITY_EXPORT.vsconfig`
@@ -210,15 +308,36 @@ f4e1e2b0 Add overnight daemon report and run configuration files
 - `VS2026_ELEVATED_VALIDATE_20260218_001043.log`
 - `VS2026_ELEVATED_VALIDATION_LATEST.json`
 - `VS2026_ELEVATED_VALIDATION_LATEST.md`
+- `VSCODE_ERROR_AUTOPSY_LATEST.md`
+- `VSCODE_ERROR_AUTOPSY_TARGETED_20260226T2003Z.md`
+- `VSCODE_ERROR_AUTOPSY_TARGETED_ONLY_20260226T2003Z.json`
+- `VSCODE_ERROR_AUTOPSY_TARGETED_ONLY_20260226T2003Z.md`
 - `VS_BUILDTOOLS_INSIDERS_ACTUAL_INSTALLED_20260218.vsconfig`
 - `VS_PRO_INSIDERS_ACTUAL_INSTALLED_20260218.vsconfig`
+- `WPTG_FILETYPE_GOVERNANCE_PROPOSAL.md`
+- `WPTG_REPEATABLE_CYCLE_REPORT.md`
+- `WPTG_REPEATABLE_FRAMEWORK.md`
 - `WPTG_SKILL_ALIGNMENT_BASELINE.json`
 - `WPTG_SKILL_ALIGNMENT_BASELINE.md`
 - `_KCP_HEADER_CLASSIFICATION.json`
+- `komplett_reklamasjon_logs_2026_03_12.zip`
 - `mailbox_manifest.json`
 - `skill_audit_claude_2026-02-09T22-02-38Z.json`
 - `skill_audit_codex_2026-02-09T22-02-38Z.json`
+- `skill_matrix_claude_on_claude.json`
+- `skill_matrix_claude_on_codex.json`
+- `skill_matrix_claude_on_gemini.json`
+- `skill_matrix_codex_on_claude.json`
+- `skill_matrix_codex_on_codex.json`
+- `skill_matrix_codex_on_gemini.json`
+- `skill_matrix_gemini_on_claude.json`
+- `skill_matrix_gemini_on_codex.json`
+- `skill_matrix_gemini_on_gemini.json`
 - `tatragrammatron_stamps_latest_codex.json`
+### gemini/mailbox/
+- `MAILBOX_CURRENT_STATE.md`
+- `TETRAGRAMMATON_PACKET.md`
+- `mailbox_manifest.json`
 
 ## Recovery Actions
 ```powershell

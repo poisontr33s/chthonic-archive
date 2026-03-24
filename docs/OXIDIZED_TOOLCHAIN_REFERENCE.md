@@ -4,7 +4,7 @@ title: Oxidized Toolchain Reference — Rust-Native Language Managers
 type: reference
 status: canonical
 created: 2026-03-11
-updated: 2026-03-11 (sweep 2 — R/Lua/PHP/Elixir/Zig/Zed/EOL API)
+updated: 2026-03-16 (rationale cross-link + naming canon for rv/rig/zv + local install validation + rig cleanup + zv install + rv-r install)
 authors:
   - Claude
 audience:
@@ -28,12 +28,13 @@ tags:
 > Rust-native ("Oxidized") language/runtime managers for the chthonic-archive polyglot stack.
 > Pattern: each replaces a legacy ecosystem tool with a single compiled native binary.
 > Primary shell: pwsh 7.5.x. Bash companion: brush (eliminates shell-script OS discrepancies).
+> Rationale: [OXIDIZED_TOOLCHAIN_RATIONALE.md](OXIDIZED_TOOLCHAIN_RATIONALE.md)
 >
 > **Win11 column note:** Any pure-Rust crate compiles to `.exe` via `cargo install`. "No Win11 support" means the maintainer doesn't test on Windows — not that it doesn't work. The compilation probe is the real test. See §OxidizedIndex for the verified-registry approach.
 
 ---
 
-## Current Stack (Installed)
+## Current Stack (Installed Here)
 
 | Tool | Domain | Replaces | Update Command | Windows 11 |
 |------|--------|----------|----------------|------------|
@@ -43,6 +44,36 @@ tags:
 | **bun** | JS/TS runtime + packages | node + npm/nvm | `bun upgrade` | ✅ native |
 | **cargo / rustup** | Rust toolchain | — (canonical) | `rustup update` | ✅ native |
 | **brush** | Bash-compatible shell | Git Bash / WSL bash | `cargo install --locked brush-shell` | ✅ native (.exe) |
+| **zv** | Zig versions | manual Zig SDK installs | reinstall via upstream release / installer | ✅ native |
+
+Validated locally on this workstation:
+
+- `uv 0.10.10`
+- `rv 0.5.3`
+- `goup 0.16.10`
+- `bun 1.3.10`
+- `cargo 1.94.0`
+- `brush 0.3.0`
+- `zv 0.9.2`
+- `rv-r -> rv 0.19.0`
+
+Not currently installed on this workstation:
+
+- `rig`
+
+---
+
+## Naming Canon
+
+Use these names consistently in this repo:
+
+- `rv` = Ruby manager
+- `rig` = R version manager
+- `R rv` / `rv-r` = the A2-ai R package manager when discussed in docs
+- `zv` = Rust-native Zig version manager
+
+This avoids the `rv` binary-name collision between the Ruby lane and the separate R package manager.
+Repo wrapper: `scripts/rv-r.ps1`
 
 ---
 
@@ -67,8 +98,11 @@ bun is a runtime replacement, not a Node version switcher. For projects requirin
 |------|--------|--------|-------|-------|
 | **mise** (formerly rtx) | Python, Node, Ruby, Go, Java, PHP, .NET, + 500+ via asdf plugins | [jdx/mise](https://github.com/jdx/mise) | ✅ experimental but functional | Single replacement for uv+rv+goup+fnm. Also manages env vars and task running. Tradeoff: less language-native than single-purpose tools. |
 | **proto** (moonrepo) | Bun, Deno, Go, Node, Python, Rust, + WASM plugins | [moonrepo/proto](https://github.com/moonrepo/proto) | ✅ first-class | Cleaner plugin architecture than mise (WASM vs shell scripts). Ships `proto mcp` — MCP server so AI agents can query/manage toolchains directly. Newer, less plugin-rich. |
+| **pkgx** | Polyglot runtime execution and package bootstrap | [pkgxdev/pkgx](https://github.com/pkgxdev/pkgx) | Unconfirmed locally | Executes tools on demand with minimal permanent system mutation. Strong fit for ephemeral multi-language workflows. |
+| **vfox** | Cross-language version manager | [version-fox/vfox](https://github.com/version-fox/vfox) | Unconfirmed locally | Polyglot manager in the same problem space as mise/proto, with plugin-driven language support. |
+| **vmr** | Polyglot version manager | research-candidate | Unconfirmed locally | Mentioned in the larger Rustification research set; not yet validated in this repo. |
 
-**Horse-Market note:** mise and proto are both active and competing. mise has the larger plugin ecosystem; proto has the cleaner architecture and the MCP server integration. Neither is clearly dominant yet.
+**Horse-Market note:** mise and proto are the currently grounded references here. `pkgx`, `vfox`, and `vmr` belong to the same architectural class, but they are not yet the repo’s primary canonical picks.
 
 ---
 
@@ -79,6 +113,8 @@ bun is a runtime replacement, not a Node version switcher. For projects requirin
 | **brush** *(installed)* | Full bash/POSIX reimplementation in Rust | [reubeno/brush](https://github.com/reubeno/brush) | ✅ experimental | Bash-compatible — runs `.bashrc`, aliases, bash scripts unchanged |
 | **Nushell** | Structured data shell — every output is a typed table | [nushell/nushell](https://github.com/nushell/nushell) | ✅ native | NOT POSIX-compatible. Different philosophy. Complementary to brush, not competing. |
 | **Fish** | UX-focused shell with autocomplete | [fish-shell/fish-shell](https://github.com/fish-shell/fish-shell) | Partial (WSL) | Rewritten in Rust 2024–2025. Limited Win11 native support. |
+
+`brush` matters here because it is not just a shell replacement. It is a Rust-native compatibility substrate for Bash/POSIX workflows on Win11, with built-in command coverage, shell-script portability, and a safer implementation profile than legacy C shells.
 
 ---
 
@@ -91,9 +127,11 @@ Two distinct Rust tools — different roles:
 | Tool | Role | GitHub | Win11 | Status |
 |------|------|--------|-------|--------|
 | **rig** (r-lib) | R **version** manager — installs/removes/configures R versions | [r-lib/rig](https://github.com/r-lib/rig) | ✅ native (installer, Scoop, WinGet, Chocolatey) | Active, production-ready |
-| **rv** (A2-ai) | R **package** manager — declarative package install (like uv for R) | [A2-ai/rv](https://github.com/A2-ai/rv) | Unconfirmed (bash install script) | Active, v0.19.0 Mar 2026 |
+| **R rv** (A2-ai) | R **package** manager — declarative package install (like uv for R) | [A2-ai/rv](https://github.com/A2-ai/rv) | ✅ native (Windows zip installed via repo wrapper) | Active, v0.19.0 |
 
-Note: `spinel-coop/rv` = Ruby version manager. `A2-ai/rv` = R package manager. `r-lib/rig` = R version manager. Three tools, one name collision.
+Note: `spinel-coop/rv` = Ruby version manager. `A2-ai/rv` = R package manager. `r-lib/rig` = R version manager. Three tools, one name collision. In this repo, keep `rv` reserved for Ruby and use `R rv` / `rv-r` when referring to the R package manager in prose. If you need an execution path, use `scripts/rv-r.ps1`.
+
+R-specific architectural note: `R rv` shifts R package management toward an explicit lockfile model via `rproject.toml` and an `.rv` project environment, instead of relying purely on post-facto snapshotting.
 
 ### Zig
 
@@ -102,6 +140,8 @@ Note: `spinel-coop/rv` = Ruby version manager. `A2-ai/rv` = R package manager. `
 | **zv** | [weezy20/zv](https://github.com/weezy20/zv) | ✅ (PowerShell installer) | Written in Rust, supports `.zigversion` file, inline `zig +<version>` syntax. v0.9.2 Jan 2026. |
 
 `zigup` (marler8997) = written in Zig. `zvm` (tristanisham) = written in Go. Only `zv` is Rust.
+
+Zig-specific architectural note: `zv` follows the rustup-style proxy model, using `.zigversion` for project-aware version switching and reducing manual PATH gymnastics.
 
 ### Node.js (additional — beyond fnm/Volta)
 
@@ -134,6 +174,31 @@ Note: `spinel-coop/rv` = Ruby version manager. `A2-ai/rv` = R package manager. `
 | **.NET** | No Rust-native manager | mise plugin or Microsoft dotnet-install |
 | **R (version)** | `rig` (Rust, Win11 native) ✅ — gap is now closed | rig |
 | **Zig** | `zv` (Rust, Win11 native) ✅ — gap is now closed | zv |
+
+---
+
+### Rust-Enhanced Infrastructure Beyond Version Managers
+
+The Rustification pattern is broader than version management. These are not all "toolchain managers," but they matter because they show the same architectural migration at adjacent layers of the stack.
+
+Validation note:
+
+- existence and role checked against official project repos or official project docs on 2026-03-16
+- the table below is an example set, not an exhaustive canon
+- the repo treats these as validated reference examples, not as new mandatory lanes
+
+| Ecosystem / Tool | Role | Notes |
+|------------------|------|-------|
+| **brush** | Bash/POSIX shell | Rust-native shell/runtime substrate for Win11 Bash-compatible workflows. |
+| **mlua** | Lua interop/bindings | Safe Rust bridge to the Lua runtime; useful reference for embeddable scripting lanes. |
+| **Wirefilter** | Embedded rules/filter engine | Cloudflare example of Rust as a safe embedded interpreter substrate. |
+| **Cobalt** | COBOL compiler | Example of Rust pushing into legacy enterprise compiler/toolchain territory. |
+| **Mago** | PHP formatter/linter/static analysis | Example of Rust replacing slow self-hosted tooling in a dynamic-language ecosystem. |
+| **Explorer** | Elixir dataframe backend over Polars | Example of Rust acceleration under a high-level host VM. |
+| **jlrs** | Julia ↔ Rust bridge | Example of Rust orchestrating scientific compute interop instead of replacing the host language. |
+| **Mojo** | Rust-influenced language design | Not written in Rust, but materially influenced by Rust’s ownership/borrowing model. |
+
+Practical reading: the same force that produces `uv`, `rv`, `zv`, and `brush` also produces Rust-native static analyzers, compilers, embedders, and runtime bridges.
 
 ---
 

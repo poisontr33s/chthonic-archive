@@ -1,5 +1,0 @@
-ParserError: 
-Line |
-   1 |  … .Management.Automation.PSVersionHashTable.PSVersion.ToString(); exit  …
-     |                                                                 ~
-     | An expression was expected after '('.

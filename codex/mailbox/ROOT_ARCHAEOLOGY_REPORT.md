@@ -16,7 +16,7 @@ The root stale-file set is not a trash heap. It is a mixed archaeological layer 
 - session-transcript derivatives,
 - and a live broken-reference scan.
 
-Several of these files are already referenced from [CROSS_REFERENCE_TRIPTYCH.md](/c:/Users/erdno/chthonic-archive/docs/protocols/CROSS_REFERENCE_TRIPTYCH.md), so relocation must be treated as a governed follow-up, not a blind move.
+Several of these files are already referenced from [CROSS_REFERENCE_TRIPTYCH.md](../../docs/protocols/CROSS_REFERENCE_TRIPTYCH.md), so relocation must be treated as a governed follow-up, not a blind move.
 
 ## Inventory
 
@@ -53,10 +53,37 @@ Expected by handoff but already relocated:
 
 Load-bearing references already exist in:
 
-- [CROSS_REFERENCE_TRIPTYCH.md](/c:/Users/erdno/chthonic-archive/docs/protocols/CROSS_REFERENCE_TRIPTYCH.md)
-- [CONTEXT_SURGERY_2026_02_10.md](/c:/Users/erdno/chthonic-archive/codex/mailbox/ACTUAL-WORKING-HANDOFFS/CONTEXT_SURGERY_2026_02_10.md)
+- [CROSS_REFERENCE_TRIPTYCH.md](../../docs/protocols/CROSS_REFERENCE_TRIPTYCH.md)
+- [CONTEXT_SURGERY_2026_02_10.md](ACTUAL-WORKING-HANDOFFS/CONTEXT_SURGERY_2026_02_10.md)
 - `RELATIONSHIP_AUDIT_CODEBASE_LATEST.json`
 - `RELATIONSHIP_AUDIT_CODEBASE_POSTCHECK.json`
+
+---
+
+## Verification Addendum (2026-03-18T01:25:00Z — Claude/Copilot)
+
+### Critical Finding: All Root Stale Files Are UNTRACKED
+
+`git ls-files` confirms **zero** of the inventoried root stale files are in the git index. The repository's `*` ignore-all pattern prevents tracking without explicit whitelisting. This means:
+
+- No `git rm --cached` needed
+- These files are invisible to collaborators
+- Relocation is a local-only operation (user discretion)
+
+### Additional Files Discovered (not in original inventory)
+
+| File | Size | Last Modified | Grade | Notes |
+|---|---:|:---|:---|---|
+| `codexfailsessionDUMP.md` | 69,343 | 2026-03-17 | ARCHIVE | Session dump — NUL file removal from desktop clone. Recent. |
+| `_fidelity.txt` | 555 | 2026-03-03 | ARCHIVE | SVG stroke/scaling calculations for pupil/text rendering |
+| `pathstofiles.md` | 93 | 2026-02-10 | DUPLICATE | Redirect pointer to `.github/pathstofiles.md` |
+| `collisions_tmp.json` | 0 | 2026-03-17 | ARCHIVE | Empty temp file |
+| `scan_audit_tmp.json` | 0 | 2026-03-17 | ARCHIVE | Empty temp file |
+| `.dcrp_state.json` | 55,837 | 2026-02-20 | ARCHIVE | DCRP runtime state — stale, referenced by `scripts/decorator_cross_ref_*.py` |
+
+### Proposal Status
+
+PENDING user approval. No files relocated yet.
 
 That means relocation must be paired with reference repair, especially for:
 

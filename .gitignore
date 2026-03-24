@@ -5,6 +5,7 @@
 !.gitignore
 !.copilotignore
 !.gitattributes
+!rust-toolchain.toml
 
 # Allow PR/patch suggestions
 !PR_SUGGESTION.md
@@ -67,8 +68,32 @@ dumpster-dive/forge/furnace/csharp/obj/
 !mcp/tools/*.ts
 !mcp/tools/*.json
 
+# Allow MAS MCP server (FastMCP — mas_mcp/)
+!mas_mcp/
+!mas_mcp/*.py
+!mas_mcp/*.toml
+!mas_mcp/*.md
+!mas_mcp/*.txt
+!mas_mcp/logic/
+!mas_mcp/logic/*.py
+!mas_mcp/lib/
+!mas_mcp/lib/*.py
+!mas_mcp/tests/
+!mas_mcp/tests/test_ssot_binding.py
+!mas_mcp/abbreviation_system/
+!mas_mcp/abbreviation_system/*.py
+# Exclude mas_mcp transient artifacts
+mas_mcp/.venv/
+mas_mcp/__pycache__/
+mas_mcp/**/__pycache__/
+mas_mcp/uv.lock
+.mas_mcp/
+
 # Allow Bun configuration
 !bunfig.toml
+
+# Allow Python project manifest (Unified Metabolic Field — PMS-v3)
+!pyproject.toml
 
 # Allow Chthonic Golden fork prototype
 !chthonic-golden/
@@ -151,7 +176,9 @@ extensions/*/bun.lock
 !scripts/*.go
 !scripts/*.mjs
 !scripts/lib/
+!scripts/lib/__init__.py
 !scripts/lib/poe_auth.py
+!scripts/lib/ssot_paths.py
 !scripts/CLAUDE_CODE_INTEGRATION.md
 !audit-reports/
 !audit-reports/wptg_cycle_state.json
@@ -289,6 +316,7 @@ book/
 
 # Re-exclude transient artifacts AFTER the allow-all rules above
 codex/mailbox/.tmp_fixture_eval/
+codex/mailbox/.tensor_debug/
 
 gha-creds-*.json
 claude/SESSION_HANDOFF_2026_02_01_TO_CLAUDE.md

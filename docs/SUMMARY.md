@@ -11,7 +11,11 @@
 - [Chromatic Lineage](architecture/MILF_TRINITY_CHROMATIC_LINEAGE.md)
 - [Topology Map](architecture/topology_map.md)
 - [Topology Summary](architecture/topology_summary.md)
+<<<<<<< HEAD
 - [Genre Extraction](design/GENRE_EXTRACTION.md)
+=======
+- Genre Extraction
+>>>>>>> 5422dabc1e8ba366830ba42b15eaeb5046750e7b
 
 # Governance & Contracts
 
@@ -27,7 +31,11 @@
 - [Cross-Reference Triptych](protocols/CROSS_REFERENCE_TRIPTYCH.md)
 - [Cross-Tier Matrix](protocols/CROSS_TIER_MATRIX.md)
 - [TEA Examples](protocols/TEA_EXAMPLES.md)
+<<<<<<< HEAD
 - [Stable Policy](protocols/LATEST_STABLE_POLICY.md)
+=======
+- Stable Policy
+>>>>>>> 5422dabc1e8ba366830ba42b15eaeb5046750e7b
 - [DCRP Synthesis](DCRP_SYNTHESIS.md)
 
 # MCP (Model Context Protocol)
@@ -128,6 +136,12 @@
 - [Bun Compliance](reference/bun-playwright/BUN_COMPLIANCE_COMPLETE.md)
 - [Agent Coordination Win11](reference/bun-playwright/AGENT_COORDINATION_WIN11.md)
 - [Win11 Trajectory](reference/bun-playwright/WIN11_BUN_PLAYWRIGHT_TRAJECTORY.md)
+<<<<<<< HEAD
 - [Epistemograph Custody](reference/epistemograph/EPISTEMOGRAPH_CUSTODY_V1_1_1.md)
 - [Epistemograph to Curriculum](reference/epistemograph/EPISTEMOGRAPH_TO_CURRICULUM_SUMMARY.md)
 - [Scanner Freeze](reference/epistemograph/SCANNER_FREEZE_V1_1_1.md)
+=======
+- Epistemograph Custody
+- [Epistemograph to Curriculum](reference/epistemograph/EPISTEMOGRAPH_TO_CURRICULUM_SUMMARY.md)
+- Scanner Freeze
+>>>>>>> 5422dabc1e8ba366830ba42b15eaeb5046750e7b

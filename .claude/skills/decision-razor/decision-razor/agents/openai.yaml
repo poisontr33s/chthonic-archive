@@ -1,0 +1,6 @@
+interface:
+  display_name: "Decision Razor"
+  short_description: "Single-path execution via reversible, evidence-first choices."
+  icon_small: "./assets/razor-small.svg"
+  icon_large: "./assets/razor-large.svg"
+  brand_color: "#B91C1C"

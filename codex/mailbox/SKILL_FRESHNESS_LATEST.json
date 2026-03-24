@@ -1,11 +1,11 @@
 {
-  "generated_at": "2026-02-24T03:55:52.281880+00:00",
+  "generated_at": "2026-03-20T18:51:07.387388+00:00",
   "skills_root": ".codex/skills",
-  "status": "PASS",
+  "status": "FAIL",
   "summary": {
-    "skills_scanned": 25,
-    "critical_issues": 0,
-    "warnings": 29
+    "skills_scanned": 28,
+    "critical_issues": 3,
+    "warnings": 38
   },
   "skills": [
     {
@@ -29,6 +29,11 @@
           "severity": "WARN",
           "code": "missing_safety_contract_section",
           "message": "Skill guidance does not define an explicit safety/guardrails contract."
+        },
+        {
+          "severity": "WARN",
+          "code": "missing_refresh_marker",
+          "message": "No @REFURBISHED/@POLISHED/refreshed date marker found."
         }
       ]
     },
@@ -48,13 +53,7 @@
       "skill": "codekiller-remediation-gate",
       "path": ".codex/skills/codekiller-remediation-gate",
       "status": "PASS",
-      "issues": [
-        {
-          "severity": "WARN",
-          "code": "missing_refresh_marker",
-          "message": "No @REFURBISHED/@POLISHED/refreshed date marker found."
-        }
-      ]
+      "issues": []
     },
     {
       "skill": "codex-skill-bridge",
@@ -75,10 +74,48 @@
       "issues": []
     },
     {
+      "skill": "corpse-reviver",
+      "path": ".codex/skills/corpse-reviver",
+      "status": "PASS",
+      "issues": [
+        {
+          "severity": "WARN",
+          "code": "missing_safety_contract_section",
+          "message": "Skill guidance does not define an explicit safety/guardrails contract."
+        },
+        {
+          "severity": "WARN",
+          "code": "missing_refresh_marker",
+          "message": "No @REFURBISHED/@POLISHED/refreshed date marker found."
+        }
+      ]
+    },
+    {
       "skill": "decision-razor",
       "path": ".codex/skills/decision-razor",
-      "status": "PASS",
-      "issues": []
+      "status": "FAIL",
+      "issues": [
+        {
+          "severity": "WARN",
+          "code": "missing_safety_contract_section",
+          "message": "Skill guidance does not define an explicit safety/guardrails contract."
+        },
+        {
+          "severity": "CRITICAL",
+          "code": "assume_permission",
+          "message": "Detected stale unsafe pattern `assume_permission` in skill guidance."
+        },
+        {
+          "severity": "CRITICAL",
+          "code": "zero_questions_absolute",
+          "message": "Detected stale unsafe pattern `zero_questions_absolute` in skill guidance."
+        },
+        {
+          "severity": "CRITICAL",
+          "code": "forgiveness_over_permission",
+          "message": "Detected stale unsafe pattern `forgiveness_over_permission` in skill guidance."
+        }
+      ]
     },
     {
       "skill": "dumpster-upcycler",
@@ -106,6 +143,11 @@
           "severity": "WARN",
           "code": "missing_safety_contract_section",
           "message": "Skill guidance does not define an explicit safety/guardrails contract."
+        },
+        {
+          "severity": "WARN",
+          "code": "missing_refresh_marker",
+          "message": "No @REFURBISHED/@POLISHED/refreshed date marker found."
         }
       ]
     },
@@ -165,6 +207,23 @@
     {
       "skill": "iron-maiden-runtime",
       "path": ".codex/skills/iron-maiden-runtime",
+      "status": "PASS",
+      "issues": [
+        {
+          "severity": "WARN",
+          "code": "missing_safety_contract_section",
+          "message": "Skill guidance does not define an explicit safety/guardrails contract."
+        },
+        {
+          "severity": "WARN",
+          "code": "missing_refresh_marker",
+          "message": "No @REFURBISHED/@POLISHED/refreshed date marker found."
+        }
+      ]
+    },
+    {
+      "skill": "link-path-guard",
+      "path": ".codex/skills/link-path-guard",
       "status": "PASS",
       "issues": [
         {
@@ -250,6 +309,18 @@
       ]
     },
     {
+      "skill": "scm-triage",
+      "path": ".codex/skills/scm-triage",
+      "status": "PASS",
+      "issues": [
+        {
+          "severity": "WARN",
+          "code": "missing_safety_contract_section",
+          "message": "Skill guidance does not define an explicit safety/guardrails contract."
+        }
+      ]
+    },
+    {
       "skill": "script-envelope",
       "path": ".codex/skills/script-envelope",
       "status": "PASS",
@@ -258,6 +329,11 @@
           "severity": "WARN",
           "code": "missing_safety_contract_section",
           "message": "Skill guidance does not define an explicit safety/guardrails contract."
+        },
+        {
+          "severity": "WARN",
+          "code": "missing_refresh_marker",
+          "message": "No @REFURBISHED/@POLISHED/refreshed date marker found."
         }
       ]
     },
@@ -287,6 +363,11 @@
           "severity": "WARN",
           "code": "missing_safety_contract_section",
           "message": "Skill guidance does not define an explicit safety/guardrails contract."
+        },
+        {
+          "severity": "WARN",
+          "code": "missing_refresh_marker",
+          "message": "No @REFURBISHED/@POLISHED/refreshed date marker found."
         }
       ]
     },

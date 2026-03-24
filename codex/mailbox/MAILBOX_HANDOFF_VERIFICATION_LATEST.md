@@ -2,13 +2,13 @@
 type: mailbox-handoff-verification
 from: mailbox-handoff-skill
 to: codex
-created: 2026-02-25T20:00:45Z
+created: 2026-03-23T04:33:43Z
 priority: inform
 ---
 
 # Mailbox Handoff Verification
 
-- Generated: `2026-02-25T20:00:45Z`
+- Generated: `2026-03-23T04:33:43Z`
 
 ## Summary
 - root_count: `5`
@@ -19,10 +19,10 @@ priority: inform
 
 ## Roots
 - `codex` -> `codex/mailbox`
-  exists=`True` handoff_count=`4` latest_handoff=`codex/mailbox/SESSION_HANDOFF_CODEKILLER_STRUCTURAL_AUDIT.md`
+  exists=`True` handoff_count=`3` latest_handoff=`codex/mailbox/SESSION_HANDOFF_2026_02_27_RCS_CALIBRATION_AND_LINK_AUDIT.md`
   notes=`['handoff_files_present']`
 - `claude` -> `claude/mailbox`
-  exists=`True` handoff_count=`2` latest_handoff=`claude/mailbox/SESSION_HANDOFF_2026_1_9_CLAUDE_SKILL_AUDIT.md`
+  exists=`True` handoff_count=`2` latest_handoff=`claude/mailbox/SESSION_HANDOFF_2026_02_27_PATH_LINK_DISAMBIGUATION_CANON.md`
   notes=`['handoff_files_present']`
 - `.codex` -> `.codex/mailbox`
   exists=`True` handoff_count=`0` latest_handoff=`None`

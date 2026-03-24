@@ -7,7 +7,7 @@
     "once": "bun run src/index.ts --once"
   },
   "devDependencies": {
-    "@types/bun": "^1.3.9",
-    "@types/node": "^20.19.0"
+    "@types/bun": "^1.3.11",
+    "@types/node": "^25.5.0"
   }
 }
