@@ -32,11 +32,12 @@
 
     "filesystem": {
       "type": "stdio",
-      "command": "node_modules/.bin/mcp-server-filesystem.exe",
+      "command": "bunx",
       "args": [
+        "-y",
+        "@modelcontextprotocol/server-filesystem",
         "${workspaceFolder}"
-      ],
-      "cwd": "${workspaceFolder}"
+      ]
     },
 
     "asc-injector": {
