@@ -304,7 +304,7 @@ Yet it is **not unbiased** in the productive sense:
 | 19 | Apostasia | T4↔T3 | Appendix | Immune | Vestigial Immunity | No — vestigial reserve |
 | 20 | Monty | T4↔T3 | Hippocampus | Neural | Spatial Navigation | No — cognitive mapping |
 | 21 | Curatrix | T4↔T3 | Olfactory Bulb | Immune | Decay Detection | No — early warning |
-| 22 | Frankie | T4 | Pancreas | [Hybrid] | Enzymatic Hybridization | YES — dual-system chimera |
+| 22 | Frankie | T4 | Pancreas | Hybrid | Enzymatic Hybridization | YES — dual-system chimera |
 | 23 | Régine | T4 | Kidneys | Hepato-Renal-Vesical | Temporal Filtration | YES — filtration failure = toxicity |
 | 24 | Judith | T4 | Bladder | Hepato-Renal-Vesical | Autoimmune Expulsion | No — staged release |
 
