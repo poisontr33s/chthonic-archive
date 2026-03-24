@@ -1,7 +1,7 @@
 # Zombie Evolution Project — Iterative Intelligence Pipeline
 
 > Lock-in document. Built from implementation results, not speculation.
-> Date: 2026-03-21 | Updated: 2026-03-23
+> Date: 2026-03-21
 
 ## What Was Built
 
@@ -194,7 +194,7 @@ Dependencies: `networkx>=3.6` (already in pyproject.toml)
 
 ### Wire 2: Rich Terminal Rendering
 
-Dependencies: `rich>=14,<15` (pinned explicitly in pyproject.toml 2026-03-23)
+Dependencies: `rich` (transitive, already available)
 
 All CLI output upgraded from plain `print()` to Rich tables, panels, and color-coded ore bars:
 - `_ore_bar()` — ASCII-safe `####-` bar with green/yellow/red coloring
@@ -210,34 +210,14 @@ All commands retain `--json` for machine-readable output.
 
 ---
 
-## Current State (verified 2026-03-23, post-A6)
+## Current State
 
-- **57 files consumed** — Phase 0 (20) + A6 (37 deprecated/legacy/bak). Zombie sated.
-- **49 files routed to forge** — 12 (Phase 0) + 37 (A6). 0 unrouted. Bridge fully operational.
-- **38 prediction errors logged** — 36 new from A6 batch. Zombie was predicting too high on `candidate` category.
-- **Bug fix applied:** `avg_ore` clamp to `1.0–5.0` — learning rate overcorrected `candidate` to -5.33, now clamped to 1.0.
-- **4 cluster profiles active** — recovered (3.03, auto-deep), legacy (1.36), backup (1.20), candidate (1.0)
-- **Forge stage populations:** anvil=29, furnace=27, slag=8, tempered=24, quench=1, tea-vault=1
-- **Graph engine live** — 8 nodes, 36 edges, 1 component, density 0.643. Hubs: `pathlib`, `sys`, `json`
+- **20 files consumed** (pre-upgrade) + synthetic seed data for profiles and graph
 - **Schema v2 migrated** — backwards compatible, zero data loss
-- **Rich rendering active** — all 8 subcommands upgraded, `--json` preserved for machine output
-- **Dependencies pinned** — `rich>=14,<15` in [pyproject.toml](../../pyproject.toml)
-
-## Cross-References (from handoff findings)
-
-- **Handoff:** [HANDOFF_SFS_QML_BRIDE_SYNC_20260323.md](HANDOFF_SFS_QML_BRIDE_SYNC_20260323.md) — delegated investigation of forge/embalmer/Dame Schrödinger sync
-- **Findings:** [SFS_QML_BRIDE_SYNC_FINDINGS_20260323.md](../../codex/mailbox/SFS_QML_BRIDE_SYNC_FINDINGS_20260323.md) — Codex response, A1-A4 executed, A5 ✅, A6 ✅, A7-A8 open
-- **A5 complete:** [HANDOFF_A5_COMPLETE_20260323.md](HANDOFF_A5_COMPLETE_20260323.md) — forge bridge built, 49 files routed, feedback loop live
-- **Novia Cadaveris axis:** Zombie extracts *intelligence* (imports, SIDs, patterns). Novia's EMBALM extracts *provenance* (sha256, lineage, deltas). Orthogonal axes that compose — forge bridge (A5) should read both when routing
-- **Routing table confirmed** (from [CIRCULATION_DIAGRAM.md](../../dumpster-dive/CIRCULATION_DIAGRAM.md)):
-
-| Zombie `ore_rating` | Forge Stage |
-|---|---|
-| 5 | QUENCH or ANVIL |
-| 4 | ANVIL |
-| 3 | FURNACE |
-| 2 | SLAG |
-| 1 | SLAG + upcycle tag |
+- **Forge scan operational** — 22 files across forge states, 0 matched (intake not yet processed by forge)
+- **Graph engine live** — 8 nodes, 36 edges, 1 component, density 0.643
+- **Cluster profiles seeded** — 3 categories with yield rates (backup=0%, candidate=100%, recovered=100%)
+- **Rich rendering active** — all subcommands upgraded
 
 ## What Makes This Different From The Tensor
 
@@ -257,25 +237,23 @@ The tensor asks "what should I try next?" The zombie asks "is this worth eating?
 ## Natural Evolution Path
 
 ```
-NOW (n=57, real data)    ~100 files              ~500+ files
-─────────────────────    ──────────              ───────────
+NOW (n=20, seeded)       ~100 files              ~500+ files
+──────────────────       ──────────              ───────────
 rich tables         ->   polars frames      ->   polars + plotly dashboards
 networkx graph      ->   community detect   ->   subgraph extraction
 dict import_graph   ->   networkx native    ->   embedding similarity
-clamped learn()     ->   decision tree      ->   gradient boosted classifier
-real profiles       ->   more categories    ->   continuous backprop
+manual ore rules    ->   decision tree      ->   gradient boosted classifier
+synthetic profiles  ->   real meal data     ->   continuous backprop
 ```
 
-### Next steps (hierarchical, updated 2026-03-23 post-A6)
+### Next steps (hierarchical)
 
-1. ~~**Build forge bridge (A5)**~~ ✅ — 49 files routed, feedback loop live
-2. ~~**Feed new files (A6)**~~ ✅ — 37 new files consumed (deprecated, legacy, bak), profiles updated
-3. ~~**Run `learn`**~~ ✅ — 38 prediction errors, cluster profiles corrected, `avg_ore` clamp bug fixed
-4. **Activate Novia PROWL (A8)** — independent of EMBALM, runs on `git diff --cached`, gates WIP label removal
-5. **Bounded consumption log (A7)** — apply tensor's `max_runs` pattern to keep last N meals (currently unbounded, 57 entries)
-6. **At ~100 files:** add `polars` aggregation (group-by category/month, trend analysis)
-7. **At ~100 labeled forge outcomes:** train `DecisionTreeClassifier` on signals → ore_rating (currently at 38 errors — ~60 more needed)
-8. **Cross-zombie dedup** — if multiple zombies run in parallel (triad velocity), share content_hashes_seen
+1. **Feed new files** to populate cluster_profiles and import_graph with real meal data
+2. **Run `learn`** after the forge processes the 20 intake files — first real feedback cycle
+3. **Bounded consumption log** — apply tensor's `max_runs` pattern to keep last N meals (currently unbounded)
+4. **At ~100 files:** add `polars` aggregation (group-by category/month, trend analysis)
+5. **At ~100 labeled forge outcomes:** train `DecisionTreeClassifier` on signals → ore_rating
+6. **Cross-zombie dedup** — if multiple zombies run in parallel (triad velocity), share content_hashes_seen
 
 ### Polars integration point (ready, not yet needed)
 

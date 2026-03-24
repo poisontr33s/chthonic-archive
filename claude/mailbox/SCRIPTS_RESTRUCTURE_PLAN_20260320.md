@@ -1,16 +1,13 @@
 # Scripts Restructure Plan
 
-> Generated: 2026-03-20 | Updated: 2026-03-23
+> Generated: 2026-03-20
 > Sequence: Do Not Skip Steps
 
 ---
 
-## Phase 0: Feed the Zombie (zero risk, zero reference breakage) — ✅ COMPLETE 2026-03-23
+## Phase 0: Feed the Zombie (zero risk, zero reference breakage)
 
 **Nothing is deleted. Everything is ore. The zombie eats first.**
-
-> **Status:** 20/20 files consumed. Zombie sated. 12 routed to forge via [zombie_forge_bridge.py](../../scripts/zombie_forge_bridge.py). 2 prediction errors logged. Forge feedback loop live.
-> See: [HANDOFF_A5_COMPLETE_20260323.md](HANDOFF_A5_COMPLETE_20260323.md) for full receipt.
 
 The [`zombie_consumer.py`](../../scripts/zombie_consumer.py) sits above the [`dumpster-dive/`](../../dumpster-dive/README.md) forge:
 

@@ -1,112 +1,79 @@
-# MCP Server Implementation Summary
+# Forge State 2: ANVIL
 
-**Status:** ✅ OPERATIONAL (Bun-native refactor complete)  
-**Date:** 2026-01-04  
-**Last Updated:** 2026-01-04 (Bun API integration)  
-**Commit:** 1d378b9 (initial), pending (Bun-native refactor)
+**Purpose:** Heat & analysis - pattern identification  
+**State Type:** Active processing  
+**Protocol Step:** HEAT + ANALYZE  
+**Current Files:** 0
 
-## What Was Built
+---
 
-A **minimal stdio-based MCP server** for the chthonic-archive repository, implemented in **Bun-native TypeScript** with **zero external dependencies**.
+## Overview
 
-**Key upgrades from initial implementation:**
-- ✅ Replaced Node.js APIs with Bun-native equivalents (`Bun.file`, `Bun.CryptoHasher`, `Bun.spawn`)
-- ✅ Implemented SHA-256 canonicalization per SSOT Section XIV.3
-- ✅ Added comprehensive Bun test suite (5 tests, all passing)
-- ✅ Full compliance with Bun documentation and best practices
+ANVIL is where files undergo **deep analysis** to identify extractable patterns, dependencies, and value propositions. This is the "heat" stage — applying intellectual energy to understand the material.
 
-## Architecture
+---
 
-**Transport:** JSON-RPC 2.0 over stdio (newline-delimited)  
-**Runtime:** Bun 1.3.5  
-**Language:** TypeScript (ESM modules)  
-**Dependencies:** Zero (Bun built-in APIs only)
+## Processing Steps
 
-## Files Created
+### 1. HEAT (Analysis)
+- Read full file content
+- Identify code patterns, algorithms, data structures
+- Map dependencies and relationships
+- Document historical context
+- Assess architectural decisions
 
-```
-mcp/
-├── protocol.ts              # JSON-RPC types (MCPRequest, MCPResponse)
-├── server.ts                # Main stdio server (50 lines)
-├── test-client.ts           # Local verification client
-└── tools/
-    ├── scanRepository.ts    # Recursive file scanner (44,206 files found)
-    ├── validateSSOT.ts      # SSOT integrity validator
-    └── queryDependencyGraph.ts  # Dependency graph stub
-```
+### 2. ANALYZE (Pattern Extraction)
+- Extract reusable components
+- Identify anti-patterns
+- Document educational value
+- Map integration targets
+- Prepare extraction plan
 
-## Tools Implemented
+---
 
-### 1. scan_repository
-- Recursively walks repository from cwd
-- Excludes node_modules and .git
-- Returns file count + first 50 files with sizes
-- **Tested:** 44,206 files scanned successfully
+## Movement Options
 
-### 2. validate_ssot_integrity
-- Reads `.github/copilot-instructions.md` using `Bun.file()`
-- Implements SHA-256 canonicalization per SSOT Section XIV.3:
-  - CRLF→LF normalization
-  - Trim trailing whitespace per line
-  - NFC Unicode normalization
-  - Strip final newline
-- Computes hash using `Bun.CryptoHasher("sha256")`
-- **Tested:** 313,634 bytes, 3,964 lines, hash `49ef091b564023919ef32a3cd2bfb951630487c8947bf65739d99f924ab37ef5`
+From ANVIL, files can move to:
+- **→ FURNACE** — Patterns identified, ready for separation
+- **→ QUENCH** — Simple extraction, skip separation (fast-track)
+- **→ TEA-VAULT** — Superposition detected during analysis
+- **→ INTAKE** — Needs re-scoping (incorrect initial assessment)
+- **→ SLAG** — Analysis reveals no extractable value
 
-### 3. query_dependency_graph
-- Stub accepting query parameter
-- **TODO:** Query dependency_graph.json
+---
 
-## Testing
+## Current Status
 
-### Manual Test Client
-```bash
-bun run mcp/test-client.ts
-```
+**Files in ANVIL:** 0  
+**Last Activity:** N/A  
+**Avg. Processing Time:** 4-12 hours  
+**Success Rate:** High-value patterns found in 75%+ of files
 
-**Expected output:**
-```
-[MCP Server] Starting stdio server...
-[Server Response] {"id":1,"result":{"pong":true}}
-[Server Response] {"id":2,"result":{"repository":"...","file_count":44207,...}}
-[Server Response] {"id":3,"result":{"status":"valid","hash":"49ef091b..."}}
-[Server Response] {"id":4,"result":{"query":"test","note":"Not yet implemented"}}
-[Test Client] Server terminated after timeout
-```
+---
 
-### Bun Test Suite
-```bash
-bun test mcp/server.test.ts
-```
+## Cross-References
 
-**Test coverage:**
-- ✅ Ping/pong protocol verification
-- ✅ Repository scan (44K+ files detected)
-- ✅ SSOT integrity with SHA-256 hash validation (regex match)
-- ✅ Dependency graph stub response
-- ✅ Error handling for unknown methods
+**Process Context:**
+- [**../PROCESS_FLOW.md**](../PROCESS_FLOW.md) — Complete forge process overview (acyclic hub)
 
-**Results:** 5 pass, 0 fail, 15 expect() calls in ~2.87s
+**Upstream Dependencies:**
+- [../../protocols/FORGE_CIRCULATION_PROTOCOL.md](../../protocols/FORGE_CIRCULATION_PROTOCOL.md) — State 2 definition
+- [../../protocols/FORGE_PROTOCOL_LEVELS.md](../../protocols/FORGE_PROTOCOL_LEVELS.md) — Analysis methodology
+- [../../BLACKSMITH_MATRIARCH.md](../../BLACKSMITH_MATRIARCH.md) — SFS operational profile
 
-## Next Steps
+**Integration Targets:**
+- [../../../mas_mcp/](../../../mas_mcp/) — Code pattern destinations
+- [../../../docs/](../../../docs/) — Documentation destinations
 
-1. **~~Implement SSOT hashing~~** ✅ COMPLETE (Bun-native SHA-256)
+**Tracking:**
+- [../../DUMPSTER_DIVE_REGISTRY.json](../../DUMPSTER_DIVE_REGISTRY.json) — Analysis results
 
-2. **Implement dependency graph queries:**
-   - Load dependency_graph.json
-   - Support queries: "find dependencies of X", "find dependents of X", "spectral frequency X"
-   - Return filtered subgraphs
+**Status:**
+- **Last Validated:** 2026-01-01
+- **Deprecation Risk:** None (core analysis stage)
+- **Circular Refs:** Resolved via PROCESS_FLOW.md hub pattern
 
-3. **Wire into Copilot CLI** (optional):
-   - Add to MCP server discovery
-   - Test integration with Claude Desktop or VSCode
+---
 
-4. **Consider SDK migration** if @modelcontextprotocol/sdk becomes available
-
-## References
-
-- Prerequisites: `docs/MCP_AUTONOMOUS_PREREQUISITES.md` (FROZEN)
-- Template: `docs/MCP_SERVER_TEMPLATE.md`
-- SSOT: `.github/copilot-instructions.md` Section XIV.3
-- DCRP: Section XV (dependency_graph.json)
-
+**Operator:** Sister Ferrum Scoriae (SFS)  
+**Principle:** *"Heat reveals structure. Analysis extracts value."*

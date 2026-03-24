@@ -1,6 +1,5 @@
 {
-  "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Timeline-Entangled Artifact Registry",
+  "$schema": "Timeline-Entangled Artifact Registry",
   "version": "1.0.0",
   "created": "2025-12-09",
   "protocol_reference": "FORGE_PROTOCOL_LEVELS.md#level-3",
@@ -57,7 +56,7 @@
       "recommended_timeline": "C",
       "rationale": "Best value/labor ratio; content already exists in SSOT, only lesson is valuable",
       "collapse_status": "pending",
-      "assigned_knights": ["DM-SCRS-P"]
+      "assigned_knights": ["SR-SCRS-B"]
     },
 
     "mas-inventory.json": {
@@ -143,7 +142,7 @@
       "recommended_timeline": "C+D",
       "rationale": "Phased extraction: prime-factions first (C), then grimoires (D), archive remainder",
       "collapse_status": "pending",
-      "assigned_knights": ["TNKW-RIAT", "DM-SCRS-P"],
+      "assigned_knights": ["TNKW-RIAT", "SR-SCRS-B"],
       "escalation_required": true,
       "escalation_target": "Triumvirate + CRC-GAR",
       "escalation_reason": "Defines Tier 2 entities and CRC documentation — requires architectural approval"
@@ -183,7 +182,7 @@
       "recommended_timeline": "A",
       "rationale": "Proper diff required to assess true value — cannot collapse without analysis",
       "collapse_status": "pending",
-      "assigned_knights": ["DM-SCRS-P"],
+      "assigned_knights": ["SR-SCRS-B"],
       "pre_collapse_requirement": "Run diff tool before timeline selection"
     }
   },
@@ -193,6 +192,6 @@
   "notes": {
     "quantum_metaphor": "TEA artifacts exist in superposition until SFS's forge hammer collapses their state",
     "knight_role": "TNKW-RIAT maps probability space; SFS performs actual collapse via forging",
-    "paradox_role": "DM-SCRS-P embodies the uncertainty — her presence reminds us all assessments are probabilistic"
+    "bastard_role": "SR-SCRS-B embodies the uncertainty — his presence reminds us all assessments are probabilistic"
   }
 }
