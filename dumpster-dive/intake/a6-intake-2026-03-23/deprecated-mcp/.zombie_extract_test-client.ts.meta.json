@@ -1,0 +1,12 @@
+{
+  "source": "scripts/.deprecated/mcp_legacy/test-client.ts.meta.json",
+  "timestamp": "2026-03-23T22:28:50.847587+00:00",
+  "ore_rating": 2,
+  "category": "legacy",
+  "signals": [
+    "legacy_marker",
+    "ore_adapted:3->2"
+  ],
+  "intelligence": {},
+  "content_hash": "c595fb71e9c9eb87"
+}

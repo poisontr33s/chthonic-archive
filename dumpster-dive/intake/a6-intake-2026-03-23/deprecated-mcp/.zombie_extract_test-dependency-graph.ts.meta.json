@@ -1,0 +1,12 @@
+{
+  "source": "scripts/.deprecated/mcp_legacy/test-dependency-graph.ts.meta.json",
+  "timestamp": "2026-03-23T22:28:51.103003+00:00",
+  "ore_rating": 2,
+  "category": "legacy",
+  "signals": [
+    "legacy_marker",
+    "ore_adapted:3->2"
+  ],
+  "intelligence": {},
+  "content_hash": "6a0d1a19cfe76b25"
+}

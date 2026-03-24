@@ -1,0 +1,29 @@
+{
+  "source": "scripts/.deprecated/mcp_legacy/OPTION_A_STATUS.md",
+  "timestamp": "2026-03-23T22:28:35.806764+00:00",
+  "ore_rating": 4,
+  "category": "candidate",
+  "signals": [
+    "ore_adapted:3->4"
+  ],
+  "intelligence": {
+    "md_headings": [
+      "Option A: MCP Client Integration - Execution Summary",
+      "What Was Accomplished",
+      "Phase 1: MCP Discovery Manifest",
+      "Phase 2: Client Configuration",
+      "Phase 3: Documentation",
+      "Phase 4: Validation Automation",
+      "Phase 5: Git Integration",
+      "Validation Results (Pre-Integration)",
+      "Next Steps (User Action Required)",
+      "Step 1: Restart Claude Desktop",
+      "Step 2: Test Tools from Claude Desktop Chat",
+      "Step 3: Document Results (After Successful Testing)",
+      "Step 4: Stop (Do Not Expand Capabilities)",
+      "Troubleshooting (If Issues Occur)",
+      "Server Doesn't Appear in Claude Desktop"
+    ]
+  },
+  "content_hash": "660196f9b4f9d6e8"
+}

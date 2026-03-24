@@ -1,0 +1,11 @@
+{
+  "source": "scripts/.deprecated/ide-detection.ps1",
+  "timestamp": "2026-03-23T22:28:25.362071+00:00",
+  "ore_rating": 4,
+  "category": "candidate",
+  "signals": [
+    "ore_adapted:3->4"
+  ],
+  "intelligence": {},
+  "content_hash": "20f8cdcad25d5756"
+}

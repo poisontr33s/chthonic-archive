@@ -1,0 +1,12 @@
+{
+  "source": "scripts/.deprecated/mcp_legacy/smoke-suite.ts.meta.json",
+  "timestamp": "2026-03-23T22:28:50.592296+00:00",
+  "ore_rating": 2,
+  "category": "legacy",
+  "signals": [
+    "legacy_marker",
+    "ore_adapted:3->2"
+  ],
+  "intelligence": {},
+  "content_hash": "d754e382029ba823"
+}

@@ -1,0 +1,11 @@
+{
+  "source": "scripts/.deprecated/mcp_legacy/preflight_response.json",
+  "timestamp": "2026-03-23T22:28:36.816376+00:00",
+  "ore_rating": 4,
+  "category": "candidate",
+  "signals": [
+    "ore_adapted:3->4"
+  ],
+  "intelligence": {},
+  "content_hash": "0fef0564beabc573"
+}
