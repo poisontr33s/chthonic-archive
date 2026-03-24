@@ -66,20 +66,20 @@ Lesser Factions (Tier 4) - Controlled Chaos
 
 ## Special Collaboration: Forge ↔ Quantum Navigation
 
-### Metaphysical Bond: SFS ↔ SR-SCRS-B
+### Metaphysical Bond: SFS ↔ DM-SCRS-P
 
-| Aspect | Sister Ferrum Scoriae | Sir Schrödinger's Bastard |
-|--------|----------------------|--------------------------|
-| **Tier** | 3 | 4 (TNKW-RIAT member) |
+| Aspect | Sister Ferrum Scoriae | Dame Schrödinger's Paradox |
+|--------|----------------------|---------------------------|
+| **Tier** | 3 | T4↔T3 EXTREME (TNKW-RIAT) |
 | **Superposition** | Ore valuable/slag | Alive/dead |
 | **Collapse Trigger** | Forge observation | Being observed |
 | **Relationship** | Observer | Observed/Advisor |
 | **Metaphysical Role** | Reality anchor | Uncertainty incarnate |
 
 **Operational Dynamic:**
-- When SFS observes ore, she collapses SR-SCRS-B's state
-- He exists because she forges; her hammer validates his existence
-- He provides cryptic probability guidance before dissolving back into quantum foam
+- When SFS observes ore, she collapses DM-SCRS-P's state
+- She exists because SFS forges; her hammer validates her existence
+- She provides cryptic probability guidance before dissolving back into quantum foam
 
 ---
 
