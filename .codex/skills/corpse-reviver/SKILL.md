@@ -1,8 +1,8 @@
 ---
 name: corpse-reviver
-description: "The White-dressed Bride — kleptomaniac necromancy pipeline. Prowls the wasteland for dying code, hoards indiscriminately, embalms with provenance, and sutures fragments into reanimated composites."
+description: "The White-dressed Bride — kleptomaniac necromancy pipeline. The embalm-before-edit lane is currently DO-NOT-USE-UNFINISHED-DEV--WIP."
 metadata:
-  short-description: "Necromancy pipeline — prowl, hoard, embalm, classify, suture, reanimate dead code"
+  short-description: "Necromancy pipeline — prowl, hoard, classify, suture, reanimate dead code; embalm-before-edit disabled as WIP"
   argument-hint: "uv run .codex/skills/corpse-reviver/scripts/corpse_reviver.py hoard"
   tags:
     - code archaeology
@@ -17,6 +17,9 @@ metadata:
 > *The Bride walks the wasteland in white, blind-faithed, taking everything. She doesn't judge what's dead — she stitches it into something that stands.*
 
 The full necromancy lifecycle for code: intercept before death, hoard from every graveyard, embalm with provenance, classify into the vault, suture fragments into composites, reanimate on demand.
+
+> Status: `DO-NOT-USE-UNFINISHED-DEV--WIP` for `embalm_before_edit.py` and the `embalm-before-edit` alias.
+> Treat the embalm-before-edit lane as disabled until the tool is explicitly finished and this warning is removed.
 
 ## Conceptual Shells
 
@@ -106,30 +109,15 @@ uv run .codex/skills/corpse-reviver/scripts/corpse_reviver.py manifest
 ```
 
 ### embalm-before-edit
-Snapshot files BEFORE editing them — pre-mortem preservation. Captures the living state into timestamped sessions under `before-edit-experiments/`, with provenance sidecars and structural landmark extraction.
+Snapshot files BEFORE editing them — pre-mortem preservation.
 
-```powershell
-# Snapshot specific files before editing
-uv run .codex/skills/corpse-reviver/scripts/embalm_before_edit.py <file1> <file2> --label "EDFA expansion"
+Status: `DO-NOT-USE-UNFINISHED-DEV--WIP`
 
-# Snapshot all git-staged files
-uv run .codex/skills/corpse-reviver/scripts/embalm_before_edit.py staged --label "pre-commit"
+Do not run:
+- `.codex/skills/corpse-reviver/scripts/embalm_before_edit.py`
+- `.codex/skills/corpse-reviver/scripts/corpse_reviver.py embalm-before-edit`
 
-# Compare current state against a prior snapshot
-uv run .codex/skills/corpse-reviver/scripts/embalm_before_edit.py diff <session-name>
-
-# List all snapshot sessions
-uv run .codex/skills/corpse-reviver/scripts/embalm_before_edit.py list
-```
-
-Also accessible via the main CLI:
-
-```powershell
-uv run .codex/skills/corpse-reviver/scripts/corpse_reviver.py embalm-before-edit <file1> --label "context"
-uv run .codex/skills/corpse-reviver/scripts/corpse_reviver.py embalm-before-edit --staged
-uv run .codex/skills/corpse-reviver/scripts/corpse_reviver.py embalm-before-edit --list
-uv run .codex/skills/corpse-reviver/scripts/corpse_reviver.py embalm-before-edit --diff <session>
-```
+The examples that used to live here are intentionally disabled until the embalm lane is developed to a finished state.
 
 **Session structure:**
 ```
@@ -167,26 +155,9 @@ from embalm_before_edit import quick_embalm
 session = quick_embalm(["path/to/file.md", "path/to/other.py"], label="my-edit")
 ```
 
-## Auto-Embalm Protocol (MANDATORY — QMR §10.3.3 Mode #8)
+## Auto-Embalm Protocol (Disabled — `DO-NOT-USE-UNFINISHED-DEV--WIP`)
 
-> **Canonical grounding:** EMBALM is the 8th operational mode of Novia Cadaveris, visible in the
-> OSGTTLR pipeline diagram (PROWL → EMBALM → VAULT → SUTURE) as the provenance-capture step
-> that creates the `language`/`extension`/`hash`/`structural_landmarks` lineage feeding the
-> corpse-vault classification and PATHWAY_REGISTRY forge transformations.
-
-**MANDATORY**: Before any edit operation on repository files, agents MUST run the embalmer:
-
-```powershell
-# Before editing — always run first
-uv run .codex/skills/corpse-reviver/scripts/embalm_before_edit.py <files-to-edit> --label "<edit-context>"
-
-# ... perform edits ...
-
-# After editing — extract deltas for the stitch pipeline
-uv run .codex/skills/corpse-reviver/scripts/embalm_before_edit.py stitch <session-name>
-```
-
-This creates a complete data lineage: **what it was → what changed → what it became**. Embalm provenance captures language, extension, hash, and structural landmarks — classifying fragments at capture time for the vault’s language-indexed storage. The delta fragments feed into the ankhological emigration injection pipeline via PATHWAY_REGISTRY — all data can be stitched together to create new candidate data without needing to burden the edit workflow itself. Simply reference where it was edited.
+The auto-embalm lane is not active. It is not mandatory, it is not ready, and agents must not invoke it as part of normal editing workflow until the implementation is finished and this warning is removed.
 
 ## Vault
 

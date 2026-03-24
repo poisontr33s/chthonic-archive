@@ -2,7 +2,7 @@
     // ╔══════════════════════════════════════════════════════════════════╗
     // ║   THE CHTHONIC ARCHIVE - Debug Configuration                     ║
     // ║   RTX 4090 Vulkan Engine | Native Windows Debugging              ║
-    // ║   Visual Studio 2022 for breakpoints, Console for quick runs     ║
+    // ║   Win 11 natural launchers: VS 2026 Insiders, Build Tools, SSMS ║
     // ╚══════════════════════════════════════════════════════════════════╝
     "version": "0.2.0",
     "configurations": [
@@ -21,13 +21,29 @@
             }
         },
         {
-            // Launch Visual Studio 2022's native debugger (breakpoints, watch, etc)
-            "name": "🔥 Debug in Visual Studio",
+            // Launch the installed Visual Studio 2026 Insiders debugger.
+            "name": "🔥 Debug in Visual Studio 2026 Insiders",
             "type": "node-terminal",
             "request": "launch",
-            "command": "& 'C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\Common7\\IDE\\devenv.exe' /debugexe target\\debug\\chthonic-archive.exe",
+            "command": "$vsInsiders = Join-Path $env:ProgramFiles 'Microsoft Visual Studio\\18\\Insiders\\Common7\\IDE\\devenv.exe'; Start-Process -FilePath $vsInsiders -ArgumentList '/debugexe', 'target\\debug\\chthonic-archive.exe'",
             "cwd": "${workspaceFolder}",
             "preLaunchTask": "cargo build"
+        },
+        {
+            // Open the installed Visual Studio 2026 Build Tools developer command prompt.
+            "name": "🧰 Open VS 2026 Build Tools Dev Cmd",
+            "type": "node-terminal",
+            "request": "launch",
+            "command": "$vsBuildTools = Join-Path ${env:ProgramFiles(x86)} 'Microsoft Visual Studio\\18\\BuildTools\\Common7\\Tools\\LaunchDevCmd.bat'; Start-Process -FilePath $vsBuildTools",
+            "cwd": "${workspaceFolder}"
+        },
+        {
+            // Open the installed SQL Server Management Studio 22 release IDE.
+            "name": "🗄️ Open SSMS 22 Release",
+            "type": "node-terminal",
+            "request": "launch",
+            "command": "$ssms = Join-Path $env:ProgramFiles 'Microsoft SQL Server Management Studio 22\\Release\\Common7\\IDE\\SSMS.exe'; Start-Process -FilePath $ssms",
+            "cwd": "${workspaceFolder}"
         },
         {
             // Release mode - optimized, minimal debug info

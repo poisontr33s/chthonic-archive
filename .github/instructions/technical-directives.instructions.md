@@ -62,6 +62,7 @@ Script Description...
 
 @SID:           TOOL_EXAMPLE_V1
 @Type:          Utility
+@Purpose:       Example
 """
 ```
 
@@ -92,39 +93,7 @@ bun pm ls            # List installed packages
 ```
 
 **Version Policy:**
-- **Stable preferred** for production focus (Next.js 15.x, TypeScript 5.8.x)
-- **Canary acceptable** for development (Next.js 16.x, TypeScript 5.9.x) with understanding of potential breakages
-
----
-
-#### **14.3. SSOT Verification Protocol (`SSOT-VP`)**
-
-**Source of Truth:** This document (`.github/copilot-instructions.md`)
-
-**Hash Computation (Python/uv):**
-```python
-# Always invoke via: uv run python -c "..."
-import hashlib
-import unicodedata
-
-def canonicalize(text: str) -> str:
-    text = text.replace('\r\n', '\n').replace('\r', '\n')
-    lines = [line.rstrip() for line in text.split('\n')]
-    text = '\n'.join(lines)
-    text = unicodedata.normalize('NFC', text)
-    return text.strip()
-
-def ssot_hash(filepath: str) -> str:
-    with open(filepath, 'r', encoding='utf-8') as f:
-        content = f.read()
-    canonical = canonicalize(content)
-    return hashlib.sha256(canonical.encode('utf-8')).hexdigest()
-```
-
-**Bookend Verification:**
-- Compute `hash_start` at cycle/session initiation
-- Compute `hash_end` at cycle/session completion
-- If `hash_start != hash_end`: **GOVERNANCE_DRIFT_DETECTED**
+- **Stable preferred** for production focus (Next.js, React, TypeScript)
 
 ---
 
@@ -166,7 +135,7 @@ chthonic-archive/
 - ONNX Runtime GPU 1.16.x
 - PyTorch 2.2.x (with CUDA 12.4 support)
 - Rapids AI 24.x (if needed)
-- Nvidia Proprietary hardware (Helios Predator 18, i-9-14900, Nvidia RTX 4090 Laptop GPU 16 GB VRAM)
+- Nvidia Proprietary hardware (Desktop, i-9-13900, Nvidia RTX 4090 GPU 24 GB VRAM)
 
 **Why Python 3.13?**
 - TensorRT wheels are not yet available for Python 3.14
@@ -184,8 +153,8 @@ uv run python -c "import cupy; print(cupy.cuda.runtime.getDeviceCount())"
 
 * **(`DEVELOPMENT CONVENTIONS SEALED`): → (`DEV-CONV-SLD`): 🔥**
 
-**Date Added**: December 7, 2025
-**Purpose**: Ensure AI assistants correctly invoke uv-managed Python, respect SSOT governance, and maintain version stability across the stack.
+**Date Added**: March 18, 2026
+**Purpose**: Ensure assistance correctly invoke uv-managed Python, respect SSOT governance, and maintain version stability across the stack.
 
 * **(`T-DECOR`)** *approves this structural addition. It serves comprehension.*
 

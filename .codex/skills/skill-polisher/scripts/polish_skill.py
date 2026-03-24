@@ -161,8 +161,9 @@ class SkillDigest:
         # - Claude: requires strict frontmatter fields (name, description).
         target = self._resolve_target_flavor()
         is_claude = target == "claude"
+        is_gemini = target == "gemini"
         yaml_path = self.path / "agents/openai.yaml"
-        if not is_claude and not yaml_path.exists():
+        if not is_claude and not is_gemini and not yaml_path.exists():
             self.log_issue(
                 "CRITICAL",
                 "Missing agents/openai.yaml",
@@ -173,6 +174,8 @@ class SkillDigest:
 
         if is_claude:
             self._require_claude_frontmatter()
+        if is_gemini:
+            self._require_gemini_frontmatter()
 
         if not self.require_assets:
             return
@@ -207,7 +210,7 @@ class SkillDigest:
         return ("allowed-tools" in raw) or ("disable-model-invocation" in raw) or ("user-invocable" in raw)
 
     def _resolve_target_flavor(self) -> str:
-        if self.target_flavor in {"codex", "claude"}:
+        if self.target_flavor in {"codex", "claude", "gemini"}:
             return self.target_flavor
         # auto
         return "claude" if self._is_claude_skill() else "codex"
@@ -240,6 +243,37 @@ class SkillDigest:
             self.log_issue(
                 "CRITICAL",
                 "Claude skill frontmatter missing `description:` field.",
+                "#FIXME",
+                "Add `description:` to SKILL.md frontmatter.",
+            )
+
+    def _require_gemini_frontmatter(self) -> None:
+        skill_md = self.path / "SKILL.md"
+        if not skill_md.exists():
+            return
+        raw = skill_md.read_text(encoding="utf-8", errors="ignore")
+        stripped = raw.lstrip()
+        if not stripped.startswith("---"):
+            self.log_issue(
+                "CRITICAL",
+                "Gemini skill missing frontmatter fence at top.",
+                "#FIXME",
+                "Add YAML frontmatter with at least `name` and `description`.",
+            )
+            return
+        lower = raw.lower()
+        if "name:" not in lower:
+            self.log_issue(
+                "CRITICAL",
+                "Gemini skill frontmatter missing `name:` field.",
+                "#FIXME",
+                "Add `name:` to SKILL.md frontmatter.",
+            )
+        m = re.search(r"(?m)^description[ \t]*:[ \t]*(.*)$", raw)
+        if m is None or not m.group(1).strip():
+            self.log_issue(
+                "CRITICAL",
+                "Gemini skill frontmatter missing `description:` field.",
                 "#FIXME",
                 "Add `description:` to SKILL.md frontmatter.",
             )
@@ -1188,6 +1222,13 @@ def _copy_tree(src: Path, dst: Path) -> None:
         out.write_bytes(p.read_bytes())
 
 
+def _materialize_fixture_skill_files(skill_copy: Path) -> None:
+    fixture_skill = skill_copy / "SKILL.fixture.md"
+    live_skill = skill_copy / "SKILL.md"
+    if fixture_skill.exists() and not live_skill.exists():
+        live_skill.write_text(fixture_skill.read_text(encoding="utf-8"), encoding="utf-8")
+
+
 def fixture_eval(fixtures_root: Path) -> int:
     """
     FIXTURE_EVAL_V1
@@ -1240,6 +1281,7 @@ def fixture_eval(fixtures_root: Path) -> int:
 
         skill_copy = tmp_root / fixture_dir.name
         _copy_tree(fixture_dir, skill_copy)
+        _materialize_fixture_skill_files(skill_copy)
 
         addict = PolisherAddict(skill_copy)
         addict.target_flavor = target_flavor
@@ -1310,7 +1352,7 @@ def main() -> None:
             "Usage: polish_skill.py <skill_path|skills_root> [--all] [--mode detect|plan|verify|apply] "
             "[--subprocess-fix] [--emit-stamps-json <path>] [--emit-summary-md <path>] [--emit-trend-json <path>] "
             "[--emit-wptg-json <path>] [--wptg-profile off|baseline|strict] "
-            "[--target-flavor codex|claude|auto] [--require-assets|--no-require-assets] "
+            "[--target-flavor codex|claude|gemini|auto] [--require-assets|--no-require-assets] "
             "[--halt-after-fix] [--max-fix-per-skill N] [--fixture-eval <fixtures_root>] [--train-stop <op>]"
         )
 
@@ -1326,10 +1368,10 @@ def main() -> None:
     if "--target-flavor" in args:
         tidx = args.index("--target-flavor")
         if tidx + 1 >= len(args):
-            die("--target-flavor requires one of: codex | claude | auto")
+            die("--target-flavor requires one of: codex | claude | gemini | auto")
         target_flavor = args[tidx + 1]
-        if target_flavor not in {"codex", "claude", "auto"}:
-            die("--target-flavor requires one of: codex | claude | auto")
+        if target_flavor not in {"codex", "claude", "gemini", "auto"}:
+            die("--target-flavor requires one of: codex | claude | gemini | auto")
 
     wptg_profile = "off"
     if "--wptg-profile" in args:

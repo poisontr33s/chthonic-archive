@@ -84,7 +84,7 @@ pwsh .\scripts\validate-triad-links.ps1
 ## Key Documents
 
 - Strategy doc: [TRIAD_DOC_CONSOLIDATION_STRATEGY.md](../claude-codex-gemini/TRIAD_DOC_CONSOLIDATION_STRATEGY.md)
-- Shared config: [AGENT_COMMON.md](../AGENT_COMMON.md)
+- Shared config: [AGENT_COMMON.md (repo-root)](../AGENT_COMMON.md)
 - Bun segfault analysis: [BUN_SEGFAULT_2026_02_01.md](../claude-codex-gemini/triadic-session-context/BUN_SEGFAULT_2026_02_01.md)
 - Next steps: [codex/NEXT.md](../codex/NEXT.md)
 

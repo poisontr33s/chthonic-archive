@@ -11,26 +11,12 @@
 # ╚════════════════════════════════════════════════════════════════════════════
 
 """
-Embalm Before Edit — The Bride's Pre-Mortem Preservation Protocol.
+DO-NOT-USE-UNFINISHED-DEV--WIP
 
-Snapshots files BEFORE they are edited, categorizing them into the
-before-edit-experiments vault with provenance sidecars. Enables diff-based
-analysis of what changed, structural indexing of pre-edit state, and
-intelligent fragment extraction from the delta.
+`embalm_before_edit.py` is unfinished and intentionally disabled.
 
-Usage:
-    uv run .codex/skills/corpse-reviver/scripts/embalm_before_edit.py <file> [<file2> ...]
-    uv run .codex/skills/corpse-reviver/scripts/embalm_before_edit.py --staged
-    uv run .codex/skills/corpse-reviver/scripts/embalm_before_edit.py --diff <snapshot-dir>
-
-Modes:
-    (default)   Snapshot specific files before editing them.
-    --staged    Snapshot all files currently staged in git (about to be committed).
-    --diff      Compare current file state against a prior snapshot; extract fragments.
-
-@SID:           TOOL_EMBALM_BEFORE_EDIT_V1
-@Shabti:        CLI Script
-@Purpose:       Embalm Before Edit — The Bride's Pre-Mortem Preservation Protocol.
+Do not run this script or treat it as a mandatory pre-edit gate until the
+implementation is completed and this warning is removed from the repo.
 """
 
 from __future__ import annotations
@@ -60,6 +46,9 @@ def find_repo_root(start: Path) -> Path:
 REPO_ROOT = find_repo_root(Path(__file__))
 VAULT_ROOT = REPO_ROOT / "dumpster-dive" / "corpse-vault"
 BEFORE_EDIT_DIR = VAULT_ROOT / "before-edit-experiments"
+WIP_DISABLE_MESSAGE = (
+    "DO-NOT-USE-UNFINISHED-DEV--WIP: embalm_before_edit.py is unfinished and disabled."
+)
 
 # Extension → language (shared with corpse_reviver.py)
 EXT_TO_LANG: dict[str, str] = {
@@ -507,6 +496,8 @@ def build_parser() -> argparse.ArgumentParser:
 
 
 def main(argv: list[str] | None = None) -> None:
+    raise SystemExit(WIP_DISABLE_MESSAGE)
+
     raw_args = argv if argv is not None else sys.argv[1:]
 
     # If first arg is a file path (not a subcommand), treat as implicit "snapshot"

@@ -6,8 +6,53 @@
   "general": {
     "previewFeatures": true
   },
+  "extensions": {
+    "enabled": []
+  },
+  "skills": {
+    "enabled": true,
+    "disabled": [
+      "azure-observability",
+      "azure-postgres"
+    ]
+  },
   "model": {
-    "name": "gemini-3-pro-preview"
+    "name": "chthonic-fast"
+  },
+  "modelConfigs": {
+    "customAliases": {
+      "chthonic-fast": {
+        "modelConfig": {
+          "model": "gemini-3.1-flash-lite-preview",
+          "generateContentConfig": {
+            "thinkingConfig": {
+              "thinkingLevel": "LOW"
+            }
+          }
+        }
+      },
+      "chthonic-fast-stable": {
+        "modelConfig": {
+          "model": "gemini-3-flash-preview",
+          "generateContentConfig": {
+            "thinkingConfig": {
+              "thinkingLevel": "LOW"
+            }
+          }
+        }
+      },
+      "chthonic-thinking": {
+        "modelConfig": {
+          "model": "gemini-3-flash-preview",
+          "generateContentConfig": {
+            "thinkingConfig": {
+              "thinkingLevel": "HIGH",
+              "includeThoughts": true
+            }
+          }
+        }
+      }
+    }
   },
   "context": {
     "fileFiltering": {
@@ -18,6 +63,69 @@
     "enableRecursiveFileSearch": true
   },
   "experimental": {
-    "plan": true
+    "plan": true,
+    "enableAgents": true,
+    "extensionConfig": true,
+    "extensionReloading": true
+  },
+  "ide": {
+    "enabled": true
+  },
+  "mcpServers": {
+    "github": {
+      "command": "powershell.exe",
+      "args": [
+        "-NoProfile",
+        "-ExecutionPolicy",
+        "Bypass",
+        "-File",
+        "scripts/start_github_mcp.ps1"
+      ]
+    },
+    "browser": {
+      "command": "bun",
+      "args": [
+        "run",
+        "scripts/mcp-browser.ts"
+      ]
+    },
+    "filesystem": {
+      "command": "node_modules/.bin/mcp-server-filesystem.exe",
+      "args": [
+        "C:/Users/eldno/chthonic-archive"
+      ]
+    },
+    "asc-injector": {
+      "command": "bun",
+      "args": [
+        "run",
+        "scripts/mcp-asc-injector.ts"
+      ],
+      "env": {
+        "SSOT_PATH": ".github/copilot-instructions.archive.md"
+      }
+    },
+    "chthonic-v3": {
+      "command": "bun",
+      "args": [
+        "run",
+        "scripts/mcp-chthonic-server.ts"
+      ],
+      "env": {
+        "CHTHONIC_ROOT": "C:/Users/eldno/chthonic-archive"
+      }
+    },
+    "mas-mcp": {
+      "command": "uv",
+      "args": [
+        "run",
+        "--quiet",
+        "--directory",
+        "mas_mcp",
+        "python",
+        "-m",
+        "server"
+      ]
+    }
   }
 }

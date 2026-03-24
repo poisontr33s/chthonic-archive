@@ -247,7 +247,7 @@
 		{
 			"label": "Fix and Test",
 			"type": "shell",
-			"command": "bun install; bun test; ridk version > ridk_info.txt; Get-Command ridk | Out-File ridk_path.txt",
+			"command": "bun install; bun test; rv r ridk version > ridk_info.txt; Get-Command ridk | Out-File ridk_path.txt",
 			"isBackground": false,
 			"group": "test"
 		},
@@ -261,9 +261,204 @@
 		{
 			"label": "Final Verify",
 			"type": "shell",
-			"command": "cargo build; bun install; ridk exec pacman -Syu --noconfirm",
+			"command": "cargo build; bun install; rv r ridk exec pacman -Syu --noconfirm",
 			"isBackground": false,
 			"group": "build"
+		},
+		{
+			"label": "Chthonic: Graphics Lane",
+			"type": "shell",
+			"command": "pwsh",
+			"args": [
+				"-NoProfile",
+				"-File",
+				"${workspaceFolder}/scripts/chthonic.ps1",
+				"graphics",
+				"lane"
+			],
+			"group": "test",
+			"presentation": {
+				"reveal": "always",
+				"panel": "shared",
+				"focus": true
+			},
+			"problemMatcher": []
+		},
+		{
+			"label": "Chthonic: Graphics Lane (JSON)",
+			"type": "shell",
+			"command": "pwsh",
+			"args": [
+				"-NoProfile",
+				"-File",
+				"${workspaceFolder}/scripts/chthonic.ps1",
+				"graphics",
+				"lane",
+				"--json"
+			],
+			"group": "test",
+			"presentation": {
+				"reveal": "always",
+				"panel": "shared",
+				"focus": true
+			},
+			"problemMatcher": []
+		},
+		{
+			"label": "Chthonic: Shader Build (glslc)",
+			"type": "shell",
+			"command": "pwsh",
+			"args": [
+				"-NoProfile",
+				"-Command",
+				"$env:CHTHONIC_SHADER_BACKEND='glslc'; cargo build"
+			],
+			"group": "build",
+			"presentation": {
+				"reveal": "always",
+				"panel": "shared",
+				"focus": true
+			},
+			"problemMatcher": []
+		},
+		{
+			"label": "Chthonic: Shader Build (shaderc)",
+			"type": "shell",
+			"command": "pwsh",
+			"args": [
+				"-NoProfile",
+				"-Command",
+				"$env:CHTHONIC_SHADER_BACKEND='shaderc'; cargo build"
+			],
+			"group": "build",
+			"presentation": {
+				"reveal": "always",
+				"panel": "shared",
+				"focus": true
+			},
+			"problemMatcher": []
+		},
+		{
+			"label": "Chthonic: CMake Configure",
+			"type": "shell",
+			"command": "cmake",
+			"args": [
+				"--preset",
+				"dev-ninja"
+			],
+			"group": "build",
+			"presentation": {
+				"reveal": "always",
+				"panel": "shared",
+				"focus": true
+			},
+			"problemMatcher": []
+		},
+		{
+			"label": "Chthonic: CMake Build Cargo Debug",
+			"type": "shell",
+			"command": "cmake",
+			"args": [
+				"--build",
+				"--preset",
+				"cargo-debug"
+			],
+			"group": "build",
+			"presentation": {
+				"reveal": "always",
+				"panel": "shared",
+				"focus": true
+			},
+			"problemMatcher": []
+		},
+		{
+			"label": "Chthonic: CMake Build GLSL",
+			"type": "shell",
+			"command": "cmake",
+			"args": [
+				"--build",
+				"--preset",
+				"shaders-glsl"
+			],
+			"group": "build",
+			"presentation": {
+				"reveal": "always",
+				"panel": "shared",
+				"focus": true
+			},
+			"problemMatcher": []
+		},
+		{
+			"label": "Chthonic: CMake Build HLSL",
+			"type": "shell",
+			"command": "cmake",
+			"args": [
+				"--build",
+				"--preset",
+				"shaders-hlsl"
+			],
+			"group": "build",
+			"presentation": {
+				"reveal": "always",
+				"panel": "shared",
+				"focus": true
+			},
+			"problemMatcher": []
+		},
+		{
+			"label": "Chthonic: CMake Build CUDA Probe",
+			"type": "shell",
+			"command": "cmake",
+			"args": [
+				"--build",
+				"--preset",
+				"cuda-probe"
+			],
+			"group": "build",
+			"presentation": {
+				"reveal": "always",
+				"panel": "shared",
+				"focus": true
+			},
+			"problemMatcher": []
+		},
+		{
+			"label": "Chthonic: Tensor Runtime Host Status",
+			"type": "shell",
+			"command": "cargo",
+			"args": [
+				"run",
+				"--manifest-path",
+				"extensions/chthonic-archive/native/Cargo.toml",
+				"-p",
+				"tensor-runtime-host",
+				"--",
+				"--json"
+			],
+			"group": "test",
+			"presentation": {
+				"reveal": "always",
+				"panel": "shared",
+				"focus": true
+			},
+			"problemMatcher": []
+		},
+		{
+			"label": "Chthonic: Cargo Build HLSL Renderer",
+			"type": "shell",
+			"command": "pwsh",
+			"args": [
+				"-NoProfile",
+				"-Command",
+				"$env:CHTHONIC_SHADER_LANGUAGE='hlsl'; cargo build"
+			],
+			"group": "build",
+			"presentation": {
+				"reveal": "always",
+				"panel": "shared",
+				"focus": true
+			},
+			"problemMatcher": []
 		},
 		{
 			"label": "Bun Add Vega",
