@@ -39,13 +39,10 @@
       "url": "https://learn.microsoft.com/api/mcp"
     },
 
-    "filesystem": {
+ "filesystem": {
       "type": "stdio",
       "command": "node_modules/.bin/mcp-server-filesystem.exe",
-      "args": [
-        "${workspaceFolder}"
-      ],
-      "cwd": "${workspaceFolder}"
+         "cwd": "${workspaceFolder}"
     },
 
     // artisan: MERGED into chthonic server v3.0.0
