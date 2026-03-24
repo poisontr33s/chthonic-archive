@@ -375,7 +375,7 @@ not a casual local variation.
 
 | File | Relevance |
 |------|-----------|
-| [WET_PAPER_TO_GOLD_METHODOLOGY.md](../../WET_PAPER_TO_GOLD_METHODOLOGY.md) | Governs preservation-first icon/script refinement and the dry-lane contract for static script/skill audits |
+| [WET_PAPER_TO_GOLD_METHODOLOGY.md (repo-root)](../../WET_PAPER_TO_GOLD_METHODOLOGY.md) | Governs preservation-first icon/script refinement and the dry-lane contract for static script/skill audits |
 
 ### Canon Exemplars
 

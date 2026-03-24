@@ -1,7 +1,7 @@
 # CLAUDE.md
 
-Shared rules: [AGENT_COMMON.md](AGENT_COMMON.md) (execution invariants, bifurcation, paths, commands).
-Shell rules: [PWSH_RULES.md](PWSH_RULES.md). Scripts: [SCRIPTS_README.md](SCRIPTS_README.md).
+Shared rules: [AGENT_COMMON.md (repo-root)](AGENT_COMMON.md) (execution invariants, bifurcation, paths, commands).
+Shell rules: [PWSH_RULES.md (repo-root)](PWSH_RULES.md). Scripts: [SCRIPTS_README.md](SCRIPTS_README.md).
 Global linguistic mandate: [.temple/protocols/LINGUISTIC_PROFILE_PROTOCOL.md](.temple/protocols/LINGUISTIC_PROFILE_PROTOCOL.md).
 
 ## Active Protocols

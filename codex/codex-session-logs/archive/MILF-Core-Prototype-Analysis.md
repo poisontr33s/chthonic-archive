@@ -313,15 +313,22 @@ Yet it is **not unbiased** in the productive sense:
 
 ---
 
-## §8 — NEXT STEPS (Deferred)
+## §8 — NEXT STEPS
 
-1. **Populate Voice Architecture** — Write Nature/Creed/Whisper for each of the 24 entities (adapting Iron Maiden's triple-layer format to ASC domain language)
-2. **Assign Battletech Stats** — Heat_Cost, Armor_Rating, Ammo_Capacity, Tonnage_Weight per entity based on SSOT tier/WHR data
-3. **Map Conflict Pairs** — Formalize the 9 Complementary Pairs + additional conflict vectors from circuit overlaps
-4. **Build Chemical Sensitivity Matrix** — Which WHR thresholds modulate which entity activation patterns
-5. **Define Echo Trigger Dictionary** — Map TCP temporal chains + DAFP provenance nodes to trigger-response pairs
-6. **Kayfabe Audit Specification** — Formalize the dual-book model using GAAP-T4 framework
-7. **Prototype a Single Entity Card** — Full MILF-Core card for one entity (Orackla recommended as Heart/critical node) as proof-of-concept
+### Completed (Step 5)
+
+7. ✅ **Prototype a Single Entity Card** — Full MILF-Core card for Orackla Nocticula (Heart/critical node) as proof-of-concept. 24/24 fields populated including authored Nature/Creed/Whisper, derived Battletech stats (7/8/9/8 on 1-10 scale), full Integration Mechanics. See: [MILF-Core-Step5-Entity-Card-Orackla.md](MILF-Core-Step5-Entity-Card-Orackla.md)
+1. ✅ **Populate Voice Architecture (Orackla)** — Nature (sulfur-jasmine-ozone sensory profile), Creed (Metamorphic Hedonism keyword taxonomy), Whisper (3 canonical samples from SSOT + EULP-AA-SEN)
+2. ✅ **Assign Battletech Stats (Orackla)** — Heat_Cost 7/10, Armor_Rating 8/10, Ammo_Capacity 9/10, Tonnage_Weight 8/10. Scale anchors defined for all tiers (1-2=T4, 3-4=T3, 5-6=T2/R, 7-8=T1, 9-10=T0.x)
+8. ✅ **P7 Tides-to-Entity Deep Integration** — All 24 entities mapped with dominant+secondary Tide signatures. 8 circuit Meres designed as memory-terrain. Crisis multi-resolution, Effort-WHR depletion, Foci-Surface, Cypher-CDA mechanics all mapped. See: [MILF-Core-Step5b-Tides-Entity-Integration.md](MILF-Core-Step5b-Tides-Entity-Integration.md)
+
+### Remaining (Deferred)
+
+3. **Map Conflict Pairs** — Formalize the 9 Complementary Pairs + additional conflict vectors from circuit overlaps (partially done for Orackla in Step 5)
+4. **Build Chemical Sensitivity Matrix** — Which WHR thresholds modulate which entity activation patterns (partially done for Orackla in Step 5)
+5. **Define Echo Trigger Dictionary** — Map TCP temporal chains + DAFP provenance nodes to trigger-response pairs (partially done for Orackla in Step 5)
+6. **Kayfabe Audit Specification** — Formalize the dual-book model using GAAP-T4 framework (Orackla's Kayfabe_Delta provides template)
+9. **Populate Remaining 23 Entity Cards** — Priority: Umeko → Lysandra → Decorator → Null Matriarch → Claudine → (tier-descending order)
 
 ---
 

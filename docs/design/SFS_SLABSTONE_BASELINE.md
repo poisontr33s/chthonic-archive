@@ -55,7 +55,7 @@ theme/icon state they govern.
 | [chthonic-geology-color-theme.json](../../extensions/chthonic-archive/themes/chthonic-geology-color-theme.json) | file | YES |
 | [chthonic-file-icon-theme.json](../../extensions/chthonic-archive/themes/chthonic-file-icon-theme.json) | file | YES |
 | [chthonic-product-icon-theme.json](../../extensions/chthonic-archive/themes/chthonic-product-icon-theme.json) | file | YES |
-| [package.json](../../extensions/chthonic-archive/package.json) | file | YES |
+| [package.json (chthonic-archive)](../../extensions/chthonic-archive/package.json) | file | YES |
 | [icons](../../extensions/chthonic-archive/themes/icons) | dir | YES |
 | [product](../../extensions/chthonic-archive/themes/icons/product) | dir | YES |
 
