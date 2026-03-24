@@ -1,5 +1,14 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
+#-*- coding: utf-8 -*-
+
+# ╔════════════════════════════════════════════════════════════════════════════
+# ║ THE DECORATOR'S BLESSING: skill_path_guard.py
+# ╠════════════════════════════════════════════════════════════════════════════
+# ║ Wedjat-Quipu Spectrum: WHITE
+# ║ Temple-Ayllu Zone: 🌿 THE GARDEN
+# ║ Ogdoad-Ceque Radiance:
+# ║   └─◄ (Standalone)
+# ╚════════════════════════════════════════════════════════════════════════════
 
 """
 Skill Path Guard
@@ -13,6 +22,10 @@ Primary scope:
 - .gemini/extensions/**/SKILL.md
 - .claude/settings*.json
 - .gemini/settings.json
+
+@SID:           TOOL_SKILL_PATH_GUARD_V1
+@Shabti:        CLI Script
+@Purpose:       Skill Path Guard
 """
 
 from __future__ import annotations

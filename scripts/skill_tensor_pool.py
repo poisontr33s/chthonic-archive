@@ -1,9 +1,22 @@
 #!/usr/bin/env python3
 #-*- coding: utf-8 -*-
 
+# ╔════════════════════════════════════════════════════════════════════════════
+# ║ THE DECORATOR'S BLESSING: skill_tensor_pool.py
+# ╠════════════════════════════════════════════════════════════════════════════
+# ║ Wedjat-Quipu Spectrum: WHITE
+# ║ Temple-Ayllu Zone: 🌿 THE GARDEN
+# ║ Ogdoad-Ceque Radiance:
+# ║   └─◄ (Standalone)
+# ╚════════════════════════════════════════════════════════════════════════════
+
 """
 POOL PROBE — Pool size, legal vs degraded vs blocked, exclusion ratio.
 The pool is the set of cells eligible for roulette selection.
+
+@SID:           TOOL_SKILL_TENSOR_POOL_V1
+@Shabti:        CLI Script
+@Purpose:       POOL PROBE — Pool size, legal vs degraded vs blocked, exclusion ratio.
 """
 
 from skill_tensor_common import load_latest, print_kv, probe_header, section, step_by_name

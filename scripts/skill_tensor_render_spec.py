@@ -1,9 +1,22 @@
 #!/usr/bin/env python3
 #-*- coding: utf-8 -*-
 
+# ╔════════════════════════════════════════════════════════════════════════════
+# ║ THE DECORATOR'S BLESSING: skill_tensor_render_spec.py
+# ╠════════════════════════════════════════════════════════════════════════════
+# ║ Wedjat-Quipu Spectrum: WHITE
+# ║ Temple-Ayllu Zone: 🌿 THE GARDEN
+# ║ Ogdoad-Ceque Radiance:
+# ║   └─◄ (Standalone)
+# ╚════════════════════════════════════════════════════════════════════════════
+
 """
 RENDER-SPEC PROBE — Spec freshness check, phase status, artifact coherence.
 Validates that docs/ops/SKILL_TENSOR_ROULETTE_SPEC.md reflects current state.
+
+@SID:           TOOL_SKILL_TENSOR_RENDER_SPEC_V1
+@Shabti:        CLI Script
+@Purpose:       RENDER-SPEC PROBE — Spec freshness check, phase status, artifact coherence.
 """
 
 import re

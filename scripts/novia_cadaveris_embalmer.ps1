@@ -83,7 +83,7 @@ function Get-TextSignals {
         contains_ferrum = [bool]($Text -match '(?i)Sister Ferrum Scoriae|SFS')
         contains_qmr = [bool]($Text -match '(?i)\bQMR\b|Quantum Metallurgical Reconnaissance')
         contains_knights = [bool]($Text -match '(?i)Knights Who Rode Into Another Timeline|TNKW-RIAT')
-        contains_schrodinger = [bool]($Text -match "(?i)Schr[öo]dinger|Sir Schr")
+        contains_schrodinger = [bool]($Text -match "(?i)Schr[öo]dinger|(?:Sir|Dame) Schr")
     }
 }
 
@@ -115,7 +115,7 @@ $sources = @(
     (New-SourceRecord -Role "legacy_residue" -Path "$env:USERPROFILE\PsychoNoir-Kontrapunkt\scripts\claudineENV.ps1" -Scope "external" -Note "Historical residue from Local AI era"),
     (New-SourceRecord -Role "context_anchor" -Path (Join-Path $repoRoot ".github\copilot-instructions.archive.md") -Scope "repo" -Note "Frozen SSOT mythology anchor"),
     (New-SourceRecord -Role "context_anchor" -Path (Join-Path $repoRoot "dumpster-dive\BLACKSMITH_MATRIARCH.md") -Scope "repo" -Note "Sister Ferrum Scoriae profile"),
-    (New-SourceRecord -Role "context_timeline" -Path (Join-Path $repoRoot "dumpster-dive\from-github\SR_SCHRODINGERS_BASTARD.md") -Scope "repo" -Note "Sir Schroedinger's Bastard linkage"),
+    (New-SourceRecord -Role "context_timeline" -Path (Join-Path $repoRoot "dumpster-dive\from-github\SR_SCHRODINGERS_BASTARD.md") -Scope "repo" -Note "Dame Schrödinger's Paradox (DM-SCRS-P) linkage — source file path pre-dates rename; file missing"),
     (New-SourceRecord -Role "context_qmr_anomaly" -Path (Join-Path $repoRoot ".github\codex-satellites\MMPS_GENERATION.md") -Scope "repo" -Note "QMR anomaly / Novia Cadaveris / Alabaster Voyde lane")
 )
 

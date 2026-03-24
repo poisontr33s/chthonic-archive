@@ -1,9 +1,22 @@
 #!/usr/bin/env python3
 #-*- coding: utf-8 -*-
 
+# ╔════════════════════════════════════════════════════════════════════════════
+# ║ THE DECORATOR'S BLESSING: skill_tensor_ledger.py
+# ╠════════════════════════════════════════════════════════════════════════════
+# ║ Wedjat-Quipu Spectrum: WHITE
+# ║ Temple-Ayllu Zone: 🌿 THE GARDEN
+# ║ Ogdoad-Ceque Radiance:
+# ║   └─◄ (Standalone)
+# ╚════════════════════════════════════════════════════════════════════════════
+
 """
 LEDGER PROBE — Ledger entries, run history, capacity status.
 The memory of what the tensor has done.
+
+@SID:           TOOL_SKILL_TENSOR_LEDGER_V1
+@Shabti:        CLI Script
+@Purpose:       LEDGER PROBE — Ledger entries, run history, capacity status.
 """
 
 import json

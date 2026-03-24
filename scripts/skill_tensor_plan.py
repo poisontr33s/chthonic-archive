@@ -1,9 +1,22 @@
 #!/usr/bin/env python3
 #-*- coding: utf-8 -*-
 
+# ╔════════════════════════════════════════════════════════════════════════════
+# ║ THE DECORATOR'S BLESSING: skill_tensor_plan.py
+# ╠════════════════════════════════════════════════════════════════════════════
+# ║ Wedjat-Quipu Spectrum: WHITE
+# ║ Temple-Ayllu Zone: 🌿 THE GARDEN
+# ║ Ogdoad-Ceque Radiance:
+# ║   └─◄ (Standalone)
+# ╚════════════════════════════════════════════════════════════════════════════
+
 """
 PLAN PROBE — Current execution plan, step count, capability enforcement.
 What the roulette pick turned into before execution.
+
+@SID:           TOOL_SKILL_TENSOR_PLAN_V1
+@Shabti:        CLI Script
+@Purpose:       PLAN PROBE — Current execution plan, step count, capability enforcement.
 """
 
 import json

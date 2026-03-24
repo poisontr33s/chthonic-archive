@@ -1,11 +1,24 @@
 #!/usr/bin/env python3
 #-*- coding: utf-8 -*-
 
+# ╔════════════════════════════════════════════════════════════════════════════
+# ║ THE DECORATOR'S BLESSING: skill_tensor_common.py
+# ╠════════════════════════════════════════════════════════════════════════════
+# ║ Wedjat-Quipu Spectrum: WHITE
+# ║ Temple-Ayllu Zone: 🌿 THE GARDEN
+# ║ Ogdoad-Ceque Radiance:
+# ║   └─◄ (Standalone)
+# ╚════════════════════════════════════════════════════════════════════════════
+
 """
 Skill Tensor Probe Hub — reads LATEST.json and dispatches stage diagnostics.
 
 Upcycled from the shim-ghost era. This is the shared reader for all 9 probes.
 Each probe imports `load_latest` and `section` from here, then slices its view.
+
+@SID:           TOOL_SKILL_TENSOR_COMMON_V1
+@Shabti:        CLI Script
+@Purpose:       Skill Tensor Probe Hub — reads LATEST.json and dispatches stage diagnostics.
 """
 
 from __future__ import annotations

@@ -1,9 +1,22 @@
 #!/usr/bin/env python3
 #-*- coding: utf-8 -*-
 
+# ╔════════════════════════════════════════════════════════════════════════════
+# ║ THE DECORATOR'S BLESSING: skill_tensor_weights.py
+# ╠════════════════════════════════════════════════════════════════════════════
+# ║ Wedjat-Quipu Spectrum: WHITE
+# ║ Temple-Ayllu Zone: 🌿 THE GARDEN
+# ║ Ogdoad-Ceque Radiance:
+# ║   └─◄ (Standalone)
+# ╚════════════════════════════════════════════════════════════════════════════
+
 """
 WEIGHTS PROBE — Weight distribution, pruning stats, recent-touch penalties.
 How the roulette is biased before selection.
+
+@SID:           TOOL_SKILL_TENSOR_WEIGHTS_V1
+@Shabti:        CLI Script
+@Purpose:       WEIGHTS PROBE — Weight distribution, pruning stats, recent-touch penalties.
 """
 
 from skill_tensor_common import load_latest, print_kv, probe_header, section, step_by_name

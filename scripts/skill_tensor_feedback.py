@@ -1,9 +1,22 @@
 #!/usr/bin/env python3
 #-*- coding: utf-8 -*-
 
+# ╔════════════════════════════════════════════════════════════════════════════
+# ║ THE DECORATOR'S BLESSING: skill_tensor_feedback.py
+# ╠════════════════════════════════════════════════════════════════════════════
+# ║ Wedjat-Quipu Spectrum: WHITE
+# ║ Temple-Ayllu Zone: 🌿 THE GARDEN
+# ║ Ogdoad-Ceque Radiance:
+# ║   └─◄ (Standalone)
+# ╚════════════════════════════════════════════════════════════════════════════
+
 """
 FEEDBACK PROBE — Feedback loop health, ledger writeback status.
 The closed loop: execution -> ledger -> weights -> next roulette.
+
+@SID:           TOOL_SKILL_TENSOR_FEEDBACK_V1
+@Shabti:        CLI Script
+@Purpose:       FEEDBACK PROBE — Feedback loop health, ledger writeback status.
 """
 
 from skill_tensor_common import load_latest, print_kv, probe_header, section, status_badge, step_by_name

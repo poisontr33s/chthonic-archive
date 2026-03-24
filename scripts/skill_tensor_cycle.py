@@ -1,8 +1,21 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
+#-*- coding: utf-8 -*-
+
+# ╔════════════════════════════════════════════════════════════════════════════
+# ║ THE DECORATOR'S BLESSING: skill_tensor_cycle.py
+# ╠════════════════════════════════════════════════════════════════════════════
+# ║ Wedjat-Quipu Spectrum: WHITE
+# ║ Temple-Ayllu Zone: 🌿 THE GARDEN
+# ║ Ogdoad-Ceque Radiance:
+# ║   └─◄ (Standalone)
+# ╚════════════════════════════════════════════════════════════════════════════
 
 """
 Single-file authority for the skill tensor cycle and stage compatibility shims.
+
+@SID:           TOOL_SKILL_TENSOR_CYCLE_V1
+@Shabti:        CLI Script
+@Purpose:       Single-file authority for the skill tensor cycle and stage compatibility shims.
 """
 
 from __future__ import annotations

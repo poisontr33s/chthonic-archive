@@ -1,6 +1,15 @@
 #!/usr/bin/env python3
 #-*- coding: utf-8 -*-
 
+# ╔════════════════════════════════════════════════════════════════════════════
+# ║ THE DECORATOR'S BLESSING: zombie_consumer.py
+# ╠════════════════════════════════════════════════════════════════════════════
+# ║ Wedjat-Quipu Spectrum: WHITE
+# ║ Temple-Ayllu Zone: 🌿 THE GARDEN
+# ║ Ogdoad-Ceque Radiance:
+# ║   └─◄ (Standalone)
+# ╚════════════════════════════════════════════════════════════════════════════
+
 """
 Zombie Consumer — feeds on codebase dead files, extracts intelligence, routes remains to the forge.
 
@@ -36,6 +45,10 @@ Usage:
     uv run scripts/zombie_consumer.py imports                  # show import graph intelligence
     uv run scripts/zombie_consumer.py graph                    # networkx graph analysis + centrality
     uv run scripts/zombie_consumer.py graph --dot out.dot      # export DOT for Graphviz
+
+@SID:           TOOL_ZOMBIE_CONSUMER_V1
+@Shabti:        CLI Script
+@Purpose:       Zombie Consumer — feeds on codebase dead files, extracts intelligence, routes remains to the forge.
 """
 
 from __future__ import annotations
@@ -298,7 +311,7 @@ def learn_from_forge(mem: dict) -> dict:
                 p = profiles[category]
                 # Weighted correction: nudge avg_ore toward actual
                 correction = error * 0.3  # 30% learning rate
-                p["avg_ore"] = round(p["avg_ore"] + correction, 2)
+                p["avg_ore"] = round(max(1.0, min(5.0, p["avg_ore"] + correction)), 2)
             new_lessons += 1
 
         if forge_state == "tempered":

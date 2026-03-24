@@ -1,9 +1,22 @@
 #!/usr/bin/env python3
 #-*- coding: utf-8 -*-
 
+# ╔════════════════════════════════════════════════════════════════════════════
+# ║ THE DECORATOR'S BLESSING: skill_tensor_execute.py
+# ╠════════════════════════════════════════════════════════════════════════════
+# ║ Wedjat-Quipu Spectrum: WHITE
+# ║ Temple-Ayllu Zone: 🌿 THE GARDEN
+# ║ Ogdoad-Ceque Radiance:
+# ║   └─◄ (Standalone)
+# ╚════════════════════════════════════════════════════════════════════════════
+
 """
 EXECUTE PROBE — Last execution status, failure details, timing.
 Where the rubber meets the road.
+
+@SID:           TOOL_SKILL_TENSOR_EXECUTE_V1
+@Shabti:        CLI Script
+@Purpose:       EXECUTE PROBE — Last execution status, failure details, timing.
 """
 
 from skill_tensor_common import load_latest, print_kv, probe_header, section, status_badge, step_by_name

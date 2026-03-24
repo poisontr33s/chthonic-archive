@@ -259,7 +259,7 @@ CROSS_TIER_PROTOCOLS = [
             "the highest-value timeline via the Forge."
         ),
         "approval": "Kali (TMO/T2) approves — probability-mapping is seduction",
-        "key_entity": "SR-SCRS-B (Sir Schrödinger's Bastard) — SFS's Uncertainty Principle Incarnate",
+        "key_entity": "DM-SCRS-P (Dame Schrödinger's Paradox) — SFS's Uncertainty Principle Incarnate",
     },
 ]
 

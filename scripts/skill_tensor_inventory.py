@@ -1,9 +1,22 @@
 #!/usr/bin/env python3
 #-*- coding: utf-8 -*-
 
+# ╔════════════════════════════════════════════════════════════════════════════
+# ║ THE DECORATOR'S BLESSING: skill_tensor_inventory.py
+# ╠════════════════════════════════════════════════════════════════════════════
+# ║ Wedjat-Quipu Spectrum: WHITE
+# ║ Temple-Ayllu Zone: 🌿 THE GARDEN
+# ║ Ogdoad-Ceque Radiance:
+# ║   └─◄ (Standalone)
+# ╚════════════════════════════════════════════════════════════════════════════
+
 """
 INVENTORY PROBE — Skill count per lane, parity gaps, missing surfaces.
 Reads from LATEST.json inventory section + live filesystem for delta detection.
+
+@SID:           TOOL_SKILL_TENSOR_INVENTORY_V1
+@Shabti:        CLI Script
+@Purpose:       INVENTORY PROBE — Skill count per lane, parity gaps, missing surfaces.
 """
 
 from __future__ import annotations

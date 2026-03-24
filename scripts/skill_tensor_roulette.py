@@ -1,9 +1,22 @@
 #!/usr/bin/env python3
 #-*- coding: utf-8 -*-
 
+# ╔════════════════════════════════════════════════════════════════════════════
+# ║ THE DECORATOR'S BLESSING: skill_tensor_roulette.py
+# ╠════════════════════════════════════════════════════════════════════════════
+# ║ Wedjat-Quipu Spectrum: WHITE
+# ║ Temple-Ayllu Zone: 🌿 THE GARDEN
+# ║ Ogdoad-Ceque Radiance:
+# ║   └─◄ (Standalone)
+# ╚════════════════════════════════════════════════════════════════════════════
+
 """
 ROULETTE PROBE — Last sampled chain, diversity score, operator/target spread.
 This is what the RNG actually picked from the pool.
+
+@SID:           TOOL_SKILL_TENSOR_ROULETTE_V1
+@Shabti:        CLI Script
+@Purpose:       ROULETTE PROBE — Last sampled chain, diversity score, operator/target spread.
 """
 
 from skill_tensor_common import load_latest, print_kv, probe_header, section, step_by_name

@@ -7,22 +7,34 @@
 # ║ Wedjat-Quipu Spectrum: WHITE
 # ║ Temple-Ayllu Zone: 🌿 THE GARDEN
 # ║ Ogdoad-Ceque Radiance:
-# ║   └─◄ \s+(.+)")
+# ║   └─◄ scripts/canonize_blessing.py
 # ╚════════════════════════════════════════════════════════════════════════════
 
+"""
+Validate Ogdoad-Ceque Radiance cross-references in all Python envelopes.
 
 @SID:           TOOL_RADIANCE_VALIDATE_V1
 @Shabti:        CLI Script
 @Purpose:       Validate Ogdoad-Ceque Radiance cross-references in all Python envelopes.
-"""Validate Ogdoad-Ceque Radiance cross-references in all Python envelopes."""
+"""
 
+import os
 import re
 import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 RADIANCE_PAT = re.compile(r"║\s+└─◄\s+(.+)")
-SKIP_DIRS = {".venv", "__pycache__", "site-packages", "node_modules", "target"}
+SKIP_DIRS = {".venv", "__pycache__", "site-packages", "node_modules", "target", "NUL"}
+
+
+def _iter_py_files(root: Path):
+    """Walk the tree, pruning SKIP_DIRS in-place for speed."""
+    for dirpath, dirnames, filenames in os.walk(root):
+        dirnames[:] = [d for d in dirnames if d not in SKIP_DIRS]
+        for fn in filenames:
+            if fn.endswith(".py"):
+                yield Path(dirpath) / fn
 
 
 def main() -> int:
@@ -31,9 +43,7 @@ def main() -> int:
     valid = 0
     glob_refs = 0
 
-    for pyfile in sorted(ROOT.rglob("*.py")):
-        if any(p in SKIP_DIRS for p in pyfile.parts):
-            continue
+    for pyfile in sorted(_iter_py_files(ROOT)):
         try:
             text = pyfile.read_text(encoding="utf-8", errors="replace")
         except Exception:
