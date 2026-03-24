@@ -175,6 +175,7 @@ extensions/*/bun.lock
 !scripts/*.ts
 !scripts/*.go
 !scripts/*.mjs
+!scripts/*.sh
 !scripts/lib/
 !scripts/lib/__init__.py
 !scripts/lib/poe_auth.py
