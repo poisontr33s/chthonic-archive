@@ -1,10 +1,10 @@
 ---
 name: mailbox-handoff
 description: Manage Codex/Claude/Gemini mailboxes for handoffs, responses, verification, and routing. Use when checking inboxes, verifying handoff coverage across codex/.codex/claude/.claude/claude-codex-gemini, routing tasks, or running mailbox ops (postman/scribe/polisher).
-allowed-tools: "Read, Write, Glob, Grep"
-user-invocable: true
 metadata:
   short-description: "Triad mailbox operations with cross-root handoff verification."
+allowed-tools: "Read, Write, Glob, Grep"
+user-invocable: true
 ---
 
 # Mailbox Handoff (Claude Code)
@@ -233,5 +233,3 @@ When creating handoff files, always run `link-audit --dry-run` before routing to
 - Codex flavor: requires `agents/openai.yaml` and `assets/` with SVG icons.
 - Claude flavor: requires `SKILL.md` with valid frontmatter (`name`, `description`), optional `allowed-tools`.
 - For shared audits use: `uv run scripts/skill_audit.py --flavor codex --root .codex/skills` and `uv run scripts/skill_audit.py --flavor claude --root .claude/skills`.
-
-

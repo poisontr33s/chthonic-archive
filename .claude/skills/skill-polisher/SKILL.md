@@ -100,4 +100,3 @@ Summarize:
 - For shared audits use: `python scripts/skill_audit.py --flavor codex --root .codex/skills` and `python scripts/skill_audit.py --flavor claude --root .claude/skills`.
 
 
-

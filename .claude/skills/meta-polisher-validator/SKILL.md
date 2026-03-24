@@ -3,6 +3,8 @@ name: meta-polisher-validator
 description: "REDIRECT — Merged into skill-polisher. Use skill-polisher --mode verify for meta-skill validation."
 metadata:
   short-description: "Merged into skill-polisher --mode verify"
+allowed-tools: "Read"
+user-invocable: false
 ---
 
 # Meta Polisher Validator — REDIRECT
