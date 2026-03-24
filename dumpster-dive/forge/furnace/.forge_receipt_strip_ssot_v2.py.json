@@ -1,0 +1,10 @@
+{
+  "source_extract": "dumpster-dive/intake/scripts-restructure-2026-03-20/root-strays/.zombie_extract_strip_ssot_v2.json",
+  "routed_from": "dumpster-dive/intake/scripts-restructure-2026-03-20/root-strays/strip_ssot_v2.py",
+  "routed_to": "dumpster-dive/forge/furnace/strip_ssot_v2.py",
+  "ore_rating": 3,
+  "category": "candidate",
+  "content_hash": "1a7e924941da3fc1",
+  "timestamp": "2026-03-23T22:12:38.458699+00:00",
+  "provenance_sidecar": null
+}

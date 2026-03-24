@@ -1,0 +1,66 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://github.com/poisontr33s/chthonic-archive/mcp/tools/ExecutionContext.schema.json",
+  "title": "MCP Preflight Execution Context",
+  "type": "object",
+  "required": [
+    "execution_abi",
+    "shell_sovereignty",
+    "permissions",
+    "governance"
+  ],
+  "properties": {
+    "execution_abi": {
+      "type": "object",
+      "required": ["os", "platform", "shell", "runtime", "node_compat"],
+      "properties": {
+        "os": { "type": "string" },
+        "platform": { "type": "string" },
+        "shell": { "type": "string" },
+        "runtime": { "type": "string", "enum": ["bun", "node"] },
+        "node_compat": { "type": "boolean" },
+        "bun_version": { "type": "string" },
+        "node_version": { "type": "string" }
+      },
+      "additionalProperties": false
+    },
+    "shell_sovereignty": {
+      "type": "object",
+      "required": ["status", "cross_shell_detected", "canonical_shell"],
+      "properties": {
+        "status": { "type": "string", "enum": ["clean", "ambiguous"] },
+        "cross_shell_detected": { "type": "boolean" },
+        "canonical_shell": { "type": ["string", "null"] }
+      },
+      "additionalProperties": false
+    },
+    "permissions": {
+      "type": "object",
+      "required": ["repo_mutation", "git_commit", "git_push"],
+      "properties": {
+        "repo_mutation": { "const": "unknown" },
+        "git_commit": { "const": "unknown" },
+        "git_push": { "const": "unknown" }
+      },
+      "additionalProperties": false
+    },
+    "governance": {
+      "type": "object",
+      "required": [
+        "shell_mismatch_retryable",
+        "permission_required_before_narration",
+        "structural_failures_non_retryable"
+      ],
+      "properties": {
+        "shell_mismatch_retryable": { "const": false },
+        "permission_required_before_narration": { "const": true },
+        "structural_failures_non_retryable": { "const": true }
+      },
+      "additionalProperties": false
+    },
+    "governance_version": {
+      "type": "string"
+    }
+  },
+  "additionalProperties": false
+}

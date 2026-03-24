@@ -1,0 +1,10 @@
+{
+  "source_extract": "dumpster-dive/intake/a6-intake-2026-03-23/deprecated-mcp/.zombie_extract_claude_code_mcp_hint.json",
+  "routed_from": "dumpster-dive/intake/a6-intake-2026-03-23/deprecated-mcp/claude_code_mcp_hint.json",
+  "routed_to": "dumpster-dive/forge/anvil/claude_code_mcp_hint.json",
+  "ore_rating": 4,
+  "category": "candidate",
+  "content_hash": "f8f5844bf9fc4572",
+  "timestamp": "2026-03-23T22:29:34.200161+00:00",
+  "provenance_sidecar": null
+}

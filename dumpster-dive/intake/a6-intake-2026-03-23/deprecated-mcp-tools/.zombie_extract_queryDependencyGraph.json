@@ -1,0 +1,11 @@
+{
+  "source": "scripts/.deprecated/mcp_legacy/tools/queryDependencyGraph.ts",
+  "timestamp": "2026-03-23T22:28:59.092927+00:00",
+  "ore_rating": 4,
+  "category": "candidate",
+  "signals": [
+    "ore_adapted:3->4"
+  ],
+  "intelligence": {},
+  "content_hash": "7521fb6e66fe5411"
+}

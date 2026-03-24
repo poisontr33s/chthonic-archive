@@ -1,0 +1,10 @@
+{
+  "source_extract": "dumpster-dive/intake/scripts-restructure-2026-03-20/legacy/.zombie_extract_wpth_repeatable_cycle_LEGACY.json",
+  "routed_from": "dumpster-dive/intake/scripts-restructure-2026-03-20/legacy/wpth_repeatable_cycle_LEGACY",
+  "routed_to": "dumpster-dive/forge/furnace/wpth_repeatable_cycle_LEGACY",
+  "ore_rating": 3,
+  "category": "legacy",
+  "content_hash": "1f0737d138d65489",
+  "timestamp": "2026-03-23T22:12:38.399576+00:00",
+  "provenance_sidecar": null
+}

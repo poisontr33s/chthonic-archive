@@ -195,8 +195,8 @@ class LexiconFilter:
             {"name": "Sister Ferrum Scoriae", "regex": r'\bSister Ferrum Scoriae\b', "confidence": 0.98, "tier": 3},
             {"name": "SFS", "regex": r'\bSFS\b', "confidence": 0.85, "tier": 3},
             {"name": "Spectra Chroma Excavatus", "regex": r'\bSpectra Chroma Excavatus\b', "confidence": 0.98, "tier": 3},
-            {"name": "Sir Schrödinger\'s Bastard", "regex": r"Sir Schrödinger'?s Bastard", "confidence": 0.95, "tier": 4},
-            {"name": "SR-SCRS-B", "regex": r'\bSR-SCRS-B\b', "confidence": 0.9, "tier": 4},
+            {"name": "Dame Schrödinger's Paradox", "regex": r"(?:Dame|Sir) Schrödinger'?s (?:Paradox|Bastard)", "confidence": 0.95, "tier": 4},
+            {"name": "DM-SCRS-P", "regex": r'\b(?:DM-SCRS-P|SR-SCRS-B)\b', "confidence": 0.9, "tier": 4},
             {"name": "Alabaster Voyde", "regex": r'\bAlabaster Voyde\b', "confidence": 0.98, "tier": 0.01},
             {"name": "The Null Matriarch", "regex": r'\bThe Null Matriarch\b', "confidence": 0.98, "tier": 0.01},
         ]

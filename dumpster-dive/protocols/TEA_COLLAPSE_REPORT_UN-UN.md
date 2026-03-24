@@ -97,7 +97,7 @@ The file `copilot-un-un-instructions.md` is a **byte-for-byte duplicate** of the
 
 ---
 
-## Sir Schrödinger's Bastard's Whisper
+## Dame Schrödinger's Paradox's Whisper
 
 *"You hoped for hidden treasures in a file named 'un-un-instructions.' The universe gave you a lesson in line endings. In seventeen timelines, this file contained revolutionary insights. In this one, it contains 2,380 carriage returns worth of nothing. Such is the cost of observation."*
 

@@ -1,0 +1,11 @@
+{
+  "source": "scripts/.deprecated/mcp_artisan_server.ts.meta.json",
+  "timestamp": "2026-03-23T22:28:28.488080+00:00",
+  "ore_rating": 3,
+  "category": "legacy",
+  "signals": [
+    "legacy_marker"
+  ],
+  "intelligence": {},
+  "content_hash": "9a69ea2ed3312368"
+}

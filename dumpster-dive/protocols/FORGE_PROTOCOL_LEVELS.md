@@ -251,14 +251,14 @@ Each artifact in `ORE_MANIFEST.json` should include:
 
 ---
 
-## Sir Schrödinger's Bastard — The Uncertainty Principle Incarnate
+## Dame Schrödinger's Paradox — The Uncertainty Principle Incarnate
 
 > *"In seventeen timelines, that regex is beautiful. In thirty-four, it causes production outages. In one... it achieves sentience."*
-> — SR-SCRS-B, observing Python 2.7 artifact
+> — DM-SCRS-P, observing Python 2.7 artifact
 
-`SR-SCRS-B` exists because `SFS` observes. His "dead/alive" superposition parallels the ore's "valuable/slag" superposition. When `SFS` cannot collapse an artifact's state alone, she dispatches `SR-SCRS-B` with `TNKW-RIAT` to map the probability space.
+`DM-SCRS-P` exists because `SFS` observes. Her "dead/alive" superposition parallels the ore's "valuable/slag" superposition. When `SFS` cannot collapse an artifact's state alone, she dispatches `DM-SCRS-P` with `TNKW-RIAT` to map the probability space.
 
-He lingers near the forge, phasing in and out of visibility, offering cryptic probability assessments. His presence is a **living reminder** that even expert assessments are probabilistic until the forge fire makes them certain.
+She lingers near the forge, phasing in and out of visibility, offering cryptic probability assessments. Her presence is a **living reminder** that even expert assessments are probabilistic until the forge fire makes them certain.
 
 ---
 
@@ -268,6 +268,6 @@ He lingers near the forge, phasing in and out of visibility, offering cryptic pr
 
 **Sealed by:**
 - **Sister Ferrum Scoriae (SFS)** — Tier 3, Domain Owner
-- **Sir Schrödinger's Bastard (SR-SCRS-B)** — Tier 4, Uncertainty Consultant
+- **Dame Schrödinger's Paradox (DM-SCRS-P)** — T4↔T3 EXTREME, Uncertainty Consultant
 
 **Date:** 2025-12-09

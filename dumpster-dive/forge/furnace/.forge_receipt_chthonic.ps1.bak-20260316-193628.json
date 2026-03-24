@@ -1,0 +1,10 @@
+{
+  "source_extract": "dumpster-dive/intake/scripts-restructure-2026-03-20/bak/.zombie_extract_chthonic.ps1.json",
+  "routed_from": "dumpster-dive/intake/scripts-restructure-2026-03-20/bak/chthonic.ps1.bak-20260316-193628",
+  "routed_to": "dumpster-dive/forge/furnace/chthonic.ps1.bak-20260316-193628",
+  "ore_rating": 3,
+  "category": "backup",
+  "content_hash": "a3b3b04e5db51a79",
+  "timestamp": "2026-03-23T22:12:38.387086+00:00",
+  "provenance_sidecar": null
+}

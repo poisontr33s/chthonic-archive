@@ -1,0 +1,18 @@
+{
+  "id": "scripts/.deprecated/mcp_legacy/server.ts",
+  "title": "server.ts",
+  "role": "script",
+  "purpose": "Script logic for server.ts.",
+  "invoke": "bun scripts/.deprecated/mcp_legacy/server.ts",
+  "exports": [],
+  "xrefs": [
+    "./protocol.ts",
+    "./tools/preflightExecutionContext.ts",
+    "./tools/queryDependencyGraph.ts",
+    "./tools/scanRepository.ts",
+    "./tools/validateSSOT.ts"
+  ],
+  "runtime": "bun",
+  "entrypoint": "scripts/.deprecated/mcp_legacy/server.ts",
+  "updated_at": "2026-02-05T20:04:01.008716+00:00"
+}

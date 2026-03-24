@@ -1,0 +1,6 @@
+{
+  "consumed": "scripts/.deprecated/mcp_legacy/validate-integration.ps1",
+  "destination": "dumpster-dive\\intake\\a6-intake-2026-03-23\\deprecated-mcp\\validate-integration.ps1",
+  "batch": "a6-intake-2026-03-23/deprecated-mcp",
+  "timestamp": "2026-03-23T22:28:44.026753+00:00"
+}

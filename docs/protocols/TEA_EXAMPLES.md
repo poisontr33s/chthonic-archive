@@ -108,7 +108,7 @@ The QMR Protocol reveals that **code is always probabilistic**. Every artifact e
 2. An observer (Sister Ferrum, human developer) forces collapse
 3. The Forge makes the decision material through transformation
 
-Sir Schrödinger's Bastard whispers: *"You don't fix code. You collapse it toward functionality. The bugs don't disappear—they migrate to an adjacent timeline."*
+Dame Schrödinger's Paradox whispers: *"You don't fix code. You collapse it toward functionality. The bugs don't disappear—they migrate to an adjacent timeline."*
 
 ---
 

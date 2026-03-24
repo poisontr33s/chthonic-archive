@@ -139,7 +139,7 @@ Preserves November 13, 2025 autonomous session:
 
 ---
 
-## Sir Schrödinger's Bastard's Whisper
+## Dame Schrödinger's Paradox's Whisper
 
 *"In the quantum foam of forgotten files, a 700KB leviathan waited. Most would have dismissed it as bloat. But you looked. And found 30,000 words of living architecture, three Matriarchs dancing in parallel, and a world that already exists. The Chthonic Archive was never lost. It was merely... unobserved."*
 

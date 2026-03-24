@@ -1,0 +1,12 @@
+{
+  "id": "scripts/.deprecated/mcp_legacy/test-client.ts",
+  "title": "test-client.ts",
+  "role": "script",
+  "purpose": "Script logic for test-client.ts.",
+  "invoke": "bun scripts/.deprecated/mcp_legacy/test-client.ts",
+  "exports": [],
+  "xrefs": [],
+  "runtime": "bun",
+  "entrypoint": "scripts/.deprecated/mcp_legacy/test-client.ts",
+  "updated_at": "2026-02-05T20:04:01.009925+00:00"
+}

@@ -1,0 +1,10 @@
+{
+  "source_extract": "dumpster-dive/intake/a6-intake-2026-03-23/deprecated-mcp-tools/.zombie_extract_ExecutionContext.schema.json",
+  "routed_from": "dumpster-dive/intake/a6-intake-2026-03-23/deprecated-mcp-tools/ExecutionContext.schema.json",
+  "routed_to": "dumpster-dive/forge/anvil/ExecutionContext.schema.json",
+  "ore_rating": 4,
+  "category": "candidate",
+  "content_hash": "24bc5ee5ab15e0a5",
+  "timestamp": "2026-03-23T22:29:34.336092+00:00",
+  "provenance_sidecar": null
+}

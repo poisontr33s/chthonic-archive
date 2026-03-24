@@ -1,4 +1,4 @@
-# Session Overview — 2026-03-20/21
+# Session Overview — 2026-03-20/21 (updated 2026-03-23)
 
 > Birds-eye: what was built, what exists now, what to do next
 
@@ -49,7 +49,14 @@ New tool: [`zombie_consumer.py`](../../scripts/zombie_consumer.py) — feeds on 
 
 Grows a persistent memory at `dumpster-dive/intake/.zombie_memory.json`.
 
-Current hunger scan: **20 candidates** ready to consume (10 backups, 6 root strays, 3 recovered, 1 legacy).
+**Phase 0 complete:** 20/20 files consumed. Zombie sated. Memory at schema v2 with adaptive bite heuristics, import graph intelligence, and forge feedback loop.
+
+**Post-Phase 0 (2026-03-23):**
+- 3 upgrades wired: adaptive bite (cluster profiles), import graph (co-occurrence + centrality), forge feedback (backprop)
+- 2 wires live: NetworkX graph engine (`zombie graph`), Rich tables (all subcommands)
+- Forge bridge built: [zombie_forge_bridge.py](../../scripts/zombie_forge_bridge.py) routes extracts by ore_rating into forge stages
+- 12 files routed to forge, 2 prediction errors logged, cluster profiles auto-adjusted
+- Dependencies: `rich>=14` pinned, `networkx>=3.6` + `polars>=1` already present
 
 ### 5. Link Audit Hardening
 
@@ -68,24 +75,27 @@ Two fixes to [`link_audit.py`](../../scripts/link_audit.py):
 
 ## Current Anchor Documents
 
-| File | Purpose | Links |
-|------|---------|------:|
-| [`SKILL_PARITY_STATE_20260320.md`](SKILL_PARITY_STATE_20260320.md) | Tensor system explanation + parity table | 1 |
-| [`SKILL_TENSOR_FILE_INVENTORY_20260320.md`](SKILL_TENSOR_FILE_INVENTORY_20260320.md) | 5-layer tensor file map | 25 |
-| [`SCRIPTS_RESTRUCTURE_PLAN_20260320.md`](SCRIPTS_RESTRUCTURE_PLAN_20260320.md) | 6-phase restructure plan | 13 |
-| This file | Session overview + next steps | — |
-
-All links audited clean via `uv run scripts/link_audit.py check`.
+| File | Purpose | Status |
+|------|---------|--------|
+| [`SKILL_PARITY_STATE_20260320.md`](SKILL_PARITY_STATE_20260320.md) | Tensor system explanation + parity table | current |
+| [`SKILL_TENSOR_FILE_INVENTORY_20260320.md`](SKILL_TENSOR_FILE_INVENTORY_20260320.md) | 5-layer tensor file map | current |
+| [`SCRIPTS_RESTRUCTURE_PLAN_20260320.md`](SCRIPTS_RESTRUCTURE_PLAN_20260320.md) | 6-phase restructure plan (Phase 0 ✅) | updated 03-23 |
+| [`ZOMBIE_EVOLUTION_PROJECT_20260321.md`](ZOMBIE_EVOLUTION_PROJECT_20260321.md) | Zombie architecture + evolution path | updated 03-23 |
+| [`HANDOFF_SFS_QML_BRIDE_SYNC_20260323.md`](HANDOFF_SFS_QML_BRIDE_SYNC_20260323.md) | SFS/QML/Bride investigation handoff | delivered |
+| [`HANDOFF_A5_FORGE_BRIDGE_20260323.md`](HANDOFF_A5_FORGE_BRIDGE_20260323.md) | A5 forge bridge spec | delivered |
+| [`HANDOFF_A5_COMPLETE_20260323.md`](HANDOFF_A5_COMPLETE_20260323.md) | A5 completion receipt + verification | ✅ done |
+| This file | Session overview + next steps | updated 03-23 |
 
 ---
 
-## What To Do Next (High-Level) changes are required for steps 3-6. Each depends on the previous, so skip none.
+## What To Do Next (High-Level)
 
-1. **Feed the Zombie** — 20 dead files, zero risk, clears noise
-2. **Freeze Baseline** — snapshot link/collision state before restructure
-3. **Skill Parity** — equalize 27→34 shared skills across all three agents
-4. **Directory Structure** — move clusters one commit at a time
-5. **Tensor Execution** — re-run the cycle once the pool is clean
+1. ~~**Feed the Zombie** — 20 dead files, zero risk, clears noise~~ ✅ DONE
+2. **A6: Feed New Files** — grow cluster profiles with fresh data (adaptive heuristics now live)
+3. **Freeze Baseline** — snapshot link/collision state before restructure
+4. **Skill Parity** — equalize 27→34 shared skills across all three agents
+5. **Directory Structure** — move clusters one commit at a time
+6. **Tensor Execution** — re-run the cycle once the pool is clean
 
 *Reference:* `uv run` — [scripts/link_audit.py](../../scripts/link_audit.py) — *Checks to validate links in all docs after edits.* `uv run` — **scripts/skill_tensor_*.py** — *Per-stage diagnostics of tensor state.* `uv run` — **[scripts/skill_tensor_cycle.py](../../scripts/skill_tensor_cycle.py)** — *Full tensor generation + execution.* 
 - *Checks to validate links in all docs after edits.*
@@ -95,22 +105,22 @@ Each step depends on the one before it. Skip none.
 
 ## What To Do Next (Hierarchical)
 
-### Priority 1: Feed the Zombie (Phase 0)
+### ~~Priority 1: Feed the Zombie (Phase 0)~~ ✅ COMPLETE
 
-The lowest-risk, highest-cleanup-value step. No code changes, no path breaks.
+20/20 files consumed. 12 routed to forge. 2 prediction errors logged. Forge feedback loop live.
+
+See: [ZOMBIE_EVOLUTION_PROJECT_20260321.md](ZOMBIE_EVOLUTION_PROJECT_20260321.md) | [HANDOFF_A5_COMPLETE_20260323.md](HANDOFF_A5_COMPLETE_20260323.md)
+
+### Priority 1 (new): A6 — Feed New Files
+
+Grow cluster profiles beyond the 20-file seed. Adaptive heuristics are live — each new meal adjusts ore predictions.
 
 ```
-uv run scripts/zombie_consumer.py hunger          # see candidates
-uv run scripts/zombie_consumer.py feed <path>     # consume one at a time
+uv run scripts/zombie_consumer.py hunger           # find candidates
+uv run scripts/zombie_consumer.py feed <path>      # consume
+uv run scripts/zombie_forge_bridge.py route        # route to forge
+uv run scripts/zombie_consumer.py learn            # close loop
 ```
-
-**20 files to consume:**
-- 10 `.bak` backup corpses (ore rating 2-3)
-- 6 root-level stray `.py` files (ore rating 2-3)
-- 3 `recovered_*` salvage files (ore rating 3)
-- 1 `wpth_repeatable_cycle_LEGACY` (ore rating 3)
-
-After: collision index is cleaner, `scripts/` root is lighter.
 
 ### Priority 2: Freeze Reference Map (Phase 1)
 
@@ -154,8 +164,10 @@ uv run scripts/skill_tensor_cycle.py cycle
 | Tool | Command | Purpose |
 |------|---------|---------|
 | Zombie | `uv run scripts/zombie_consumer.py` | Consume dead files with intelligence extraction |
+| Forge Bridge | `uv run scripts/zombie_forge_bridge.py` | Route zombie extracts into forge stages by ore_rating |
 | Link Audit | `uv run scripts/link_audit.py` | Validate/fix markdown links and backtick refs |
 | Tensor Probes | `uv run scripts/skill_tensor_*.py` | Per-stage diagnostics of tensor state |
 | Tensor Cycle | `uv run scripts/skill_tensor_cycle.py` | Full tensor generation + execution |
 | Hunger Scan | `uv run scripts/zombie_consumer.py hunger` | Find consumable candidates |
+| Graph Analysis | `uv run scripts/zombie_consumer.py graph` | NetworkX centrality rankings + DOT export |
 | Parity Check | `uv run scripts/skill_tensor_inventory.py` | Live parity gap report |

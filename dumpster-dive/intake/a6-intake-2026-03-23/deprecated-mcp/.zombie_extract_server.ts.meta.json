@@ -1,0 +1,11 @@
+{
+  "source": "scripts/.deprecated/mcp_legacy/server.ts.meta.json",
+  "timestamp": "2026-03-23T22:28:50.337989+00:00",
+  "ore_rating": 3,
+  "category": "legacy",
+  "signals": [
+    "legacy_marker"
+  ],
+  "intelligence": {},
+  "content_hash": "5b004aa26ff4075f"
+}

@@ -1,0 +1,18 @@
+{
+  "id": "scripts/.deprecated/mcp_legacy/smoke-suite.ts",
+  "title": "smoke-suite.ts",
+  "role": "script",
+  "purpose": "MCP Smoke Test Suite Executes all 6 canonical workflows from docs/MCP_USER_WORKFLOWS.md Saves structured results per minimal reporting format (appendix) Usage:",
+  "invoke": "bun scripts/.deprecated/mcp_legacy/smoke-suite.ts",
+  "exports": [],
+  "xrefs": [
+    "./tools/queryDependencyGraph",
+    "./tools/scanRepository",
+    "./tools/validateSSOT",
+    "fs/promises",
+    "path"
+  ],
+  "runtime": "bun",
+  "entrypoint": "scripts/.deprecated/mcp_legacy/smoke-suite.ts",
+  "updated_at": "2026-02-05T20:04:01.009295+00:00"
+}

@@ -1,0 +1,11 @@
+{
+  "source": "scripts/.deprecated/launch-claude-ide.ps1",
+  "timestamp": "2026-03-23T22:28:25.934029+00:00",
+  "ore_rating": 4,
+  "category": "candidate",
+  "signals": [
+    "ore_adapted:3->4"
+  ],
+  "intelligence": {},
+  "content_hash": "84af753efdbb95a2"
+}

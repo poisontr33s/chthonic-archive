@@ -1,0 +1,32 @@
+{
+  "source": "scripts/ruby_legacy_admin.ps1",
+  "timestamp": "2026-03-23T22:28:24.454946+00:00",
+  "ore_rating": 3,
+  "category": "legacy",
+  "signals": [
+    "legacy_marker",
+    "has_decorator_header",
+    "ps1_functions:16"
+  ],
+  "intelligence": {
+    "ps1_functions": [
+      "Test-IsAdmin",
+      "Get-RvExePath",
+      "Get-RvRubyInfo",
+      "Format-Bytes",
+      "Get-DirectorySize",
+      "Get-RubyPathEntries",
+      "Get-LegacyRoots",
+      "Get-QuarantineRoots",
+      "Get-RubyUninstallEntries",
+      "Get-BundleTkConfig",
+      "Get-LegacyUserGemHomes",
+      "Get-ProcessesUsingRoot",
+      "Remove-DeadMachineRubyPathEntries",
+      "Remove-StaleMsys2Entries",
+      "Move-ToQuarantine",
+      "Add-ReportLine"
+    ]
+  },
+  "content_hash": "6184edd781606117"
+}

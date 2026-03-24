@@ -1,0 +1,10 @@
+{
+  "source_extract": "dumpster-dive/intake/a6-intake-2026-03-23/deprecated-mcp/.zombie_extract_smoke-suite.json",
+  "routed_from": "dumpster-dive/intake/a6-intake-2026-03-23/deprecated-mcp/smoke-suite.ts",
+  "routed_to": "dumpster-dive/forge/anvil/smoke-suite.ts",
+  "ore_rating": 4,
+  "category": "candidate",
+  "content_hash": "9d6d5314d353b9d3",
+  "timestamp": "2026-03-23T22:29:34.273774+00:00",
+  "provenance_sidecar": null
+}

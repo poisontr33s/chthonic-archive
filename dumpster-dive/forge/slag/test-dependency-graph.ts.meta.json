@@ -1,0 +1,14 @@
+{
+  "id": "scripts/.deprecated/mcp_legacy/test-dependency-graph.ts",
+  "title": "test-dependency-graph.ts",
+  "role": "script",
+  "purpose": "Test suite for query_dependency_graph tool Run with: bun run test-dependency-graph.ts",
+  "invoke": "bun scripts/.deprecated/mcp_legacy/test-dependency-graph.ts",
+  "exports": [],
+  "xrefs": [
+    "./tools/queryDependencyGraph.ts"
+  ],
+  "runtime": "bun",
+  "entrypoint": "scripts/.deprecated/mcp_legacy/test-dependency-graph.ts",
+  "updated_at": "2026-02-05T20:04:01.010533+00:00"
+}
