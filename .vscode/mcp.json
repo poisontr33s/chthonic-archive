@@ -1,19 +1,10 @@
 {
   // 🔥💀⚓ Chthonic Archive - MCP Server Configuration
   // Bun-native: install once, execute directly, no runtime surprises
-
   "servers": {
     "github": {
-      "type": "stdio",
-      "command": "powershell.exe",
-      "args": [
-        "-NoProfile",
-        "-ExecutionPolicy",
-        "Bypass",
-        "-File",
-        "scripts/start_github_mcp.ps1"
-      ],
-      "cwd": "${workspaceFolder}"
+      "type": "http",
+      "url": "https://api.githubcopilot.com/mcp/insiders"
     },
 
     // Browser automation: bun-cdp (replaces Playwright)
@@ -39,18 +30,15 @@
       "url": "https://learn.microsoft.com/api/mcp"
     },
 
- "filesystem": {
+    "filesystem": {
       "type": "stdio",
       "command": "node_modules/.bin/mcp-server-filesystem.exe",
-         "cwd": "${workspaceFolder}"
+      "args": [
+        "${workspaceFolder}"
+      ],
+      "cwd": "${workspaceFolder}"
     },
 
-    // artisan: MERGED into chthonic server v3.0.0
-    // Unified polyglot MCP: 19 tools (10 polyglot + 7 archive + 2 meta)
-    // Polyglot: cargo, uv, bun_run, gcc, gpp, go_run, ruby, git, bash, make
-    // Archive: chthonic_status, chthonic_resolve, chthonic_audit, chthonic_map, chthonic_analyze, chthonic_compact, chthonic_book
-    // Meta: polyglot_versions, claudine_env
-    
     "asc-injector": {
       "type": "stdio",
       "command": "bun",
@@ -64,6 +52,11 @@
       }
     },
 
+    // artisan: MERGED into chthonic server v3.0.0
+    // Unified polyglot MCP: 19 tools (10 polyglot + 7 archive + 2 meta)
+    // Polyglot: cargo, uv, bun_run, gcc, gpp, go_run, ruby, git, bash, make
+    // Archive: chthonic_status, chthonic_resolve, chthonic_audit, chthonic_map, chthonic_analyze, chthonic_compact, chthonic_book
+    // Meta: polyglot_versions, claudine_env
     "chthonic-v3": {
       "type": "stdio",
       "command": "bun",
