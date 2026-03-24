@@ -20,20 +20,32 @@ jobs:
           python-version: "3.14"
           allow-prereleases: true
 
+      - name: Install uv CLI
+        run: |
+          python -m pip install --upgrade pip
+          pip install uv
+
+      - name: Debug: .gitmodules and submodules
+        run: |
+          echo "--- .gitmodules ---"
+          test -f .gitmodules && sed -n '1,200p' .gitmodules || echo "(no .gitmodules)"
+          echo "--- git submodule status (raw) ---"
+          git submodule status --recursive || true
+
       - name: Envelope drift check (scripts/)
-        run: python scripts/canonize_blessing.py --check --target scripts -v
+        run: uv run scripts/canonize_blessing.py --check --target scripts -v
 
       - name: Envelope drift check (mas_mcp/)
-        run: python scripts/canonize_blessing.py --check --recursive --target mas_mcp
+        run: uv run scripts/canonize_blessing.py --check --recursive --target mas_mcp -v
 
       - name: Envelope drift check (ankh_atlas/)
-        run: python scripts/canonize_blessing.py --check --recursive --target ankh_atlas
+        run: uv run scripts/canonize_blessing.py --check --recursive --target ankh_atlas -v
 
       - name: Envelope drift check (.codex/)
-        run: python scripts/canonize_blessing.py --check --recursive --target .codex
+        run: uv run scripts/canonize_blessing.py --check --recursive --target .codex -v
 
       - name: Envelope drift check (.temple/)
-        run: python scripts/canonize_blessing.py --check --recursive --target .temple
+        run: uv run scripts/canonize_blessing.py --check --recursive --target .temple -v
 
       - name: Radiance cross-reference validation
-        run: python scripts/radiance_validate.py
+        run: uv run scripts/radiance_validate.py
