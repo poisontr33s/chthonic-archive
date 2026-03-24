@@ -12,33 +12,25 @@ import { test, expect } from "bun:test";
 import { existsSync } from "fs";
 import { join } from "path";
 
-const extDir = join(
-  process.env.USERPROFILE || "",
-  ".vscode-insiders",
-  "extensions"
-);
+const statusbarRoot = join("extensions", "chthonic-statusbar");
+const mandalaRoot = join("extensions", "chthonic-mandala");
 
 test("statusbar extension is deployed", () => {
-  const deployPath = join(extDir, "chthonic-statusbar", "dist", "extension.js");
+  const deployPath = join(statusbarRoot, "dist", "extension.js");
   expect(existsSync(deployPath)).toBe(true);
 });
 
 test("mandala extension is deployed", () => {
-  const deployPath = join(extDir, "chthonic-mandala", "dist", "extension.js");
+  const deployPath = join(mandalaRoot, "dist", "extension.js");
   expect(existsSync(deployPath)).toBe(true);
 });
 
 test("theme file is deployed", () => {
-  const themePath = join(
-    extDir,
-    "chthonic-mandala",
-    "themes",
-    "chthonic-mandala-color-theme.json"
-  );
+  const themePath = join(mandalaRoot, "themes", "chthonic-mandala-color-theme.json");
   expect(existsSync(themePath)).toBe(true);
 });
 
 test("icon is deployed", () => {
-  const iconPath = join(extDir, "chthonic-mandala", "icons", "mandala.svg");
+  const iconPath = join(mandalaRoot, "icons", "mandala.svg");
   expect(existsSync(iconPath)).toBe(true);
 });

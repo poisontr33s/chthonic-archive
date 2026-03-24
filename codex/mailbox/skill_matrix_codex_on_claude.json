@@ -1,0 +1,237 @@
+{
+  "schema_version": 1,
+  "flavor": "codex",
+  "root": ".claude/skills",
+  "root_native": ".claude\\skills",
+  "results": [
+    {
+      "name": "api-manager",
+      "score": 80,
+      "issues": [
+        "[CRITICAL] Missing agents/openai.yaml"
+      ]
+    },
+    {
+      "name": "artifact-upcycle",
+      "score": 80,
+      "issues": [
+        "[CRITICAL] Missing agents/openai.yaml"
+      ]
+    },
+    {
+      "name": "claude-skill-bridge",
+      "score": 80,
+      "issues": [
+        "[CRITICAL] Missing agents/openai.yaml"
+      ]
+    },
+    {
+      "name": "codekiller-remediation-gate",
+      "score": 100,
+      "issues": []
+    },
+    {
+      "name": "codex-skill-bridge",
+      "score": 80,
+      "issues": [
+        "[CRITICAL] Missing agents/openai.yaml"
+      ]
+    },
+    {
+      "name": "conceptualize",
+      "score": 80,
+      "issues": [
+        "[CRITICAL] Missing agents/openai.yaml"
+      ]
+    },
+    {
+      "name": "corpse-reviver",
+      "score": 70,
+      "issues": [
+        "[CRITICAL] Missing agents/openai.yaml",
+        "[WARN] Missing assets/ directory"
+      ]
+    },
+    {
+      "name": "decision-razor",
+      "score": 80,
+      "issues": [
+        "[CRITICAL] Missing agents/openai.yaml"
+      ]
+    },
+    {
+      "name": "dumpster-upcycler",
+      "score": 100,
+      "issues": []
+    },
+    {
+      "name": "gh-address-comments",
+      "score": 80,
+      "issues": [
+        "[CRITICAL] Missing agents/openai.yaml"
+      ]
+    },
+    {
+      "name": "gh-fix-ci",
+      "score": 80,
+      "issues": [
+        "[CRITICAL] Missing agents/openai.yaml"
+      ]
+    },
+    {
+      "name": "gh-mcp-autonomy",
+      "score": 80,
+      "issues": [
+        "[CRITICAL] Missing agents/openai.yaml"
+      ]
+    },
+    {
+      "name": "git-snapshot",
+      "score": 70,
+      "issues": [
+        "[CRITICAL] Missing agents/openai.yaml",
+        "[WARN] Missing assets/ directory"
+      ]
+    },
+    {
+      "name": "handoff-loop",
+      "score": 70,
+      "issues": [
+        "[CRITICAL] Missing agents/openai.yaml",
+        "[WARN] Missing assets/ directory"
+      ]
+    },
+    {
+      "name": "imagegen",
+      "score": 80,
+      "issues": [
+        "[CRITICAL] Missing agents/openai.yaml"
+      ]
+    },
+    {
+      "name": "ingest-research",
+      "score": 70,
+      "issues": [
+        "[CRITICAL] Missing agents/openai.yaml",
+        "[WARN] Missing assets/ directory"
+      ]
+    },
+    {
+      "name": "iron-maiden-runtime",
+      "score": 100,
+      "issues": []
+    },
+    {
+      "name": "link-path-guard",
+      "score": 70,
+      "issues": [
+        "[CRITICAL] Missing agents/openai.yaml",
+        "[WARN] Missing assets/ directory"
+      ]
+    },
+    {
+      "name": "mailbox-handoff",
+      "score": 80,
+      "issues": [
+        "[CRITICAL] Missing agents/openai.yaml"
+      ]
+    },
+    {
+      "name": "meta-polisher-validator",
+      "score": 80,
+      "issues": [
+        "[CRITICAL] Missing agents/openai.yaml"
+      ]
+    },
+    {
+      "name": "openai-docs",
+      "score": 80,
+      "issues": [
+        "[CRITICAL] Missing agents/openai.yaml"
+      ]
+    },
+    {
+      "name": "overnight-archaeology",
+      "score": 70,
+      "issues": [
+        "[CRITICAL] Missing agents/openai.yaml",
+        "[WARN] Missing assets/ directory"
+      ]
+    },
+    {
+      "name": "postman",
+      "score": 70,
+      "issues": [
+        "[CRITICAL] Missing agents/openai.yaml",
+        "[WARN] Missing assets/ directory"
+      ]
+    },
+    {
+      "name": "python-header-canon",
+      "score": 80,
+      "issues": [
+        "[CRITICAL] Missing agents/openai.yaml"
+      ]
+    },
+    {
+      "name": "scm-triage",
+      "score": 70,
+      "issues": [
+        "[CRITICAL] Missing agents/openai.yaml",
+        "[WARN] Missing assets/ directory"
+      ]
+    },
+    {
+      "name": "script-envelope",
+      "score": 80,
+      "issues": [
+        "[CRITICAL] Missing agents/openai.yaml"
+      ]
+    },
+    {
+      "name": "session-resumer",
+      "score": 100,
+      "issues": []
+    },
+    {
+      "name": "sfa",
+      "score": 70,
+      "issues": [
+        "[CRITICAL] Missing agents/openai.yaml",
+        "[WARN] Missing assets/ directory"
+      ]
+    },
+    {
+      "name": "skill-polisher",
+      "score": 80,
+      "issues": [
+        "[CRITICAL] Missing agents/openai.yaml"
+      ]
+    },
+    {
+      "name": "sora",
+      "score": 80,
+      "issues": [
+        "[CRITICAL] Missing agents/openai.yaml"
+      ]
+    },
+    {
+      "name": "theme-system",
+      "score": 70,
+      "issues": [
+        "[CRITICAL] Missing agents/openai.yaml",
+        "[WARN] Missing assets/ directory"
+      ]
+    },
+    {
+      "name": "toolchain-doctor",
+      "score": 100,
+      "issues": []
+    },
+    {
+      "name": "trainstop-orchestrator",
+      "score": 100,
+      "issues": []
+    }
+  ]
+}

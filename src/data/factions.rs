@@ -673,10 +673,8 @@ impl Default for FactionRegistry {
 
 /// Bevy resource wrapper for faction registry
 #[cfg(feature = "bevy")]
+#[derive(bevy_ecs::prelude::Resource)]
 pub struct FactionRegistryResource(pub FactionRegistry);
-
-#[cfg(feature = "bevy")]
-impl bevy_ecs::system::Resource for FactionRegistryResource {}
 
 /// System to update faction states
 #[cfg(feature = "bevy")]

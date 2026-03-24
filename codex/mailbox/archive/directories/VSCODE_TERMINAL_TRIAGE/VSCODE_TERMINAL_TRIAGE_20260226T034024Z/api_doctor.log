@@ -1,0 +1,16 @@
+Auth signals (process env, no secrets):
+- HF_TOKEN: True
+- HUGGINGFACE_HUB_TOKEN: True
+- GITHUB_TOKEN: False
+- OPENAI_API_KEY: False
+- GEMINI_API_KEY: False
+- POE_API_KEY: False
+- POE_ACCOUNT_ACTIVE: False
+- POE_BASE_URL: False
+- POE_MODEL: False
+- POE_API_KEY_1: False
+- POE_API_KEY_2: False
+
+HF note: HF_TOKEN is set and takes precedence over hf CLI login; stale HF_TOKEN breaks HF auth.
+Suggested: run -FixHF (clears HF_TOKEN in current shell).
+

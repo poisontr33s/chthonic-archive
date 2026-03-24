@@ -35,14 +35,14 @@ if str(REPO_ROOT) not in sys.path:
     sys.path.insert(0, str(REPO_ROOT))
 
 from scripts.lib.shared import configure_utf8_output, find_repo_root, setup_logging
+from scripts.lib.ssot_paths import resolve_ssot_paths
 from scripts.ssot_structural_extractor import ARCHIVE_REL_PATH, SectionNode, extract_structure
 
-
-ACTIVE_ARCHIVE = REPO_ROOT / ARCHIVE_REL_PATH
+_SSOT = resolve_ssot_paths(REPO_ROOT)
+ACTIVE_ARCHIVE = _SSOT.holder
 QUERY_FILES = [
     ACTIVE_ARCHIVE,
-    REPO_ROOT / ".temple" / "architecture" / "copilot-instructions.archive.md",
-    REPO_ROOT / ".github" / "copilot-instructions-copy.md",
+    _SSOT.proto,
     REPO_ROOT / ".github" / "codex-satellites" / "ENTITY_PROFILES.md",
     REPO_ROOT / ".github" / "codex-satellites" / "MMPS_GENERATION.md",
     REPO_ROOT / "docs" / "lore" / "RESISTANCE_TRIUMVIRATE_COMPLETE.md",

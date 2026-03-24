@@ -1,0 +1,134 @@
+{
+  "schema_version": 1,
+  "generated_on_utc": "2026-02-26T03:42:40.2451954Z",
+  "crash_signature": {
+    "decimal": -1073741819,
+    "hex": "0xC0000005",
+    "meaning": "Access violation (STATUS_ACCESS_VIOLATION)"
+  },
+  "host": {
+    "computer_name": "LAPTOP-DRAQGN8A",
+    "os_version": "Microsoft Windows NT 10.0.26200.0",
+    "pwsh_path": "C:\\Program Files\\PowerShell\\7\\pwsh.exe",
+    "pwsh_version": "7.5.4"
+  },
+  "vscode": {
+    "code_insiders_cmd": "C:\\Users\\erdno\\AppData\\Local\\Programs\\Microsoft VS Code Insiders\\bin\\code-insiders.cmd",
+    "workspace_settings": {
+      "path": "C:\\Users\\erdno\\chthonic-archive\\.vscode\\settings.json",
+      "exists": true,
+      "terminal_log_level": "trace"
+    },
+    "user_settings": {
+      "path": "C:\\Users\\erdno\\AppData\\Roaming\\Code - Insiders\\User\\settings.json",
+      "exists": true,
+      "terminal_log_level": null
+    },
+    "status": {
+      "available": true,
+      "cmd": "C:\\Users\\erdno\\AppData\\Local\\Programs\\Microsoft VS Code Insiders\\bin\\code-insiders.cmd",
+      "exit_code": 0,
+      "stdout_path": "C:\\Users\\erdno\\chthonic-archive\\codex\\mailbox\\VSCODE_TERMINAL_TRIAGE_20260226T034240Z\\code_insiders_status.log",
+      "stderr_path": "C:\\Users\\erdno\\chthonic-archive\\codex\\mailbox\\VSCODE_TERMINAL_TRIAGE_20260226T034240Z\\code_insiders_status.err.log",
+      "renderer_crash_lines": [],
+      "gpu_error_lines": [
+        "GPU Status:       2d_canvas:                              unavailable_software",
+        "                  GPU0:                                   VENDOR= 0xffff [Google Inc. (Google)], DEVICE=0xffff [ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver-5.0.0)], DRIVER_VENDOR=SwANGLE, DRIVER_VERSION=5.0.0 *ACTIVE*",
+        "                  webgl:                                  unavailable_software",
+        "                  webgl2:                                 unavailable_software",
+        "                  webgpu:                                 unavailable_software",
+        "                  webnn:                                  unavailable_software",
+        "GPU Log Messages:",
+        "[20212:0226/041104.328:ERROR:gpu\\command_buffer\\service\\shared_image\\shared_image_manager.cc:526] : SharedImageManager::ProduceMemory: Trying to Produce a Memory representation from a non-existent mailbox.",
+        "[20212:0226/041104.328:ERROR:gpu\\command_buffer\\service\\shared_image\\shared_image_manager.cc:526] : SharedImageManager::ProduceMemory: Trying to Produce a Memory representation from a non-existent mailbox.",
+        "[20212:0226/041104.328:ERROR:gpu\\command_buffer\\service\\shared_image\\shared_image_manager.cc:526] : SharedImageManager::ProduceMemory: Trying to Produce a Memory representation from a non-existent mailbox.",
+        "[20212:0226/041104.329:ERROR:gpu\\command_buffer\\service\\shared_image\\shared_image_manager.cc:526] : SharedImageManager::ProduceMemory: Trying to Produce a Memory representation from a non-existent mailbox.",
+        "[20212:0226/041104.329:ERROR:gpu\\command_buffer\\service\\shared_image\\shared_image_manager.cc:526] : SharedImageManager::ProduceMemory: Trying to Produce a Memory representation from a non-existent mailbox.",
+        "[20212:0226/041104.329:ERROR:gpu\\command_buffer\\service\\shared_image\\shared_image_manager.cc:526] : SharedImageManager::ProduceMemory: Trying to Produce a Memory representation from a non-existent mailbox.",
+        "    0\t   130\t 20212\t   gpu-process",
+        "    0\t   115\t 28792\t               gpu-process"
+      ]
+    }
+  },
+  "probes": [
+    {
+      "name": "no_profile",
+      "args": "-NoLogo -NoProfile -Command $PSVersionTable.PSVersion.ToString(); exit 0",
+      "cwd": "C:\\Users\\erdno\\chthonic-archive",
+      "exit_code": 0,
+      "exit_hex": "0x00000000",
+      "elapsed_ms": 1029,
+      "stdout_path": "C:\\Users\\erdno\\chthonic-archive\\codex\\mailbox\\VSCODE_TERMINAL_TRIAGE_20260226T034240Z\\probe_no_profile_stdout.log",
+      "stderr_path": "C:\\Users\\erdno\\chthonic-archive\\codex\\mailbox\\VSCODE_TERMINAL_TRIAGE_20260226T034240Z\\probe_no_profile_stderr.log"
+    },
+    {
+      "name": "with_profile_repo",
+      "args": "-NoLogo -Command $PSVersionTable.PSVersion.ToString(); exit 0",
+      "cwd": "C:\\Users\\erdno\\chthonic-archive",
+      "exit_code": 0,
+      "exit_hex": "0x00000000",
+      "elapsed_ms": 1026,
+      "stdout_path": "C:\\Users\\erdno\\chthonic-archive\\codex\\mailbox\\VSCODE_TERMINAL_TRIAGE_20260226T034240Z\\probe_with_profile_repo_stdout.log",
+      "stderr_path": "C:\\Users\\erdno\\chthonic-archive\\codex\\mailbox\\VSCODE_TERMINAL_TRIAGE_20260226T034240Z\\probe_with_profile_repo_stderr.log"
+    },
+    {
+      "name": "with_profile_temp",
+      "args": "-NoLogo -Command $PSVersionTable.PSVersion.ToString(); exit 0",
+      "cwd": "C:\\Users\\erdno\\AppData\\Local\\Temp",
+      "exit_code": 0,
+      "exit_hex": "0x00000000",
+      "elapsed_ms": 1014,
+      "stdout_path": "C:\\Users\\erdno\\chthonic-archive\\codex\\mailbox\\VSCODE_TERMINAL_TRIAGE_20260226T034240Z\\probe_with_profile_temp_stdout.log",
+      "stderr_path": "C:\\Users\\erdno\\chthonic-archive\\codex\\mailbox\\VSCODE_TERMINAL_TRIAGE_20260226T034240Z\\probe_with_profile_temp_stderr.log"
+    }
+  ],
+  "findings": [
+    "Smoke tests passed. If VS Code still crashes, focus on VS Code terminal host/extension/GPU path with trace logs.",
+    "Crash signatures detected in latest Insiders logs. Inspect crash_hits in JSON report."
+  ],
+  "log_collection": {
+    "found": true,
+    "source_dir": "C:\\Users\\erdno\\AppData\\Roaming\\Code - Insiders\\logs\\20260226T023137",
+    "copied_files": [
+      "C:\\Users\\erdno\\chthonic-archive\\codex\\mailbox\\VSCODE_TERMINAL_TRIAGE_20260226T034240Z\\insiders_logs\\main.log",
+      "C:\\Users\\erdno\\chthonic-archive\\codex\\mailbox\\VSCODE_TERMINAL_TRIAGE_20260226T034240Z\\insiders_logs\\ptyhost.log",
+      "C:\\Users\\erdno\\chthonic-archive\\codex\\mailbox\\VSCODE_TERMINAL_TRIAGE_20260226T034240Z\\insiders_logs\\sharedprocess.log",
+      "C:\\Users\\erdno\\chthonic-archive\\codex\\mailbox\\VSCODE_TERMINAL_TRIAGE_20260226T034240Z\\insiders_logs\\terminal.log",
+      "C:\\Users\\erdno\\chthonic-archive\\codex\\mailbox\\VSCODE_TERMINAL_TRIAGE_20260226T034240Z\\insiders_logs\\window1\\exthost\\exthost.log",
+      "C:\\Users\\erdno\\chthonic-archive\\codex\\mailbox\\VSCODE_TERMINAL_TRIAGE_20260226T034240Z\\insiders_logs\\window1\\exthost\\extHostTelemetry.log",
+      "C:\\Users\\erdno\\chthonic-archive\\codex\\mailbox\\VSCODE_TERMINAL_TRIAGE_20260226T034240Z\\insiders_logs\\window1\\renderer.log",
+      "C:\\Users\\erdno\\chthonic-archive\\codex\\mailbox\\VSCODE_TERMINAL_TRIAGE_20260226T034240Z\\insiders_logs\\window2\\exthost\\exthost.log",
+      "C:\\Users\\erdno\\chthonic-archive\\codex\\mailbox\\VSCODE_TERMINAL_TRIAGE_20260226T034240Z\\insiders_logs\\window2\\exthost\\extHostTelemetry.log",
+      "C:\\Users\\erdno\\chthonic-archive\\codex\\mailbox\\VSCODE_TERMINAL_TRIAGE_20260226T034240Z\\insiders_logs\\window2\\renderer.log",
+      "C:\\Users\\erdno\\chthonic-archive\\codex\\mailbox\\VSCODE_TERMINAL_TRIAGE_20260226T034240Z\\insiders_logs\\window3\\exthost\\exthost.log",
+      "C:\\Users\\erdno\\chthonic-archive\\codex\\mailbox\\VSCODE_TERMINAL_TRIAGE_20260226T034240Z\\insiders_logs\\window3\\exthost\\extHostTelemetry.log",
+      "C:\\Users\\erdno\\chthonic-archive\\codex\\mailbox\\VSCODE_TERMINAL_TRIAGE_20260226T034240Z\\insiders_logs\\window3\\renderer.log"
+    ],
+    "crash_hits": [
+      {
+        "path": "C:\\Users\\erdno\\chthonic-archive\\codex\\mailbox\\VSCODE_TERMINAL_TRIAGE_20260226T034240Z\\insiders_logs\\main.log",
+        "line": 5,
+        "text": "2026-02-26 03:02:05.039 [error] CodeWindow: renderer process gone (reason: crashed, code: -2147483645)"
+      },
+      {
+        "path": "C:\\Users\\erdno\\chthonic-archive\\codex\\mailbox\\VSCODE_TERMINAL_TRIAGE_20260226T034240Z\\insiders_logs\\main.log",
+        "line": 9,
+        "text": "2026-02-26 03:50:06.777 [error] CodeWindow: renderer process gone (reason: crashed, code: -2147483645)"
+      }
+    ]
+  },
+  "api_doctor": {
+    "script": "C:\\Users\\erdno\\chthonic-archive\\.codex\\skills\\api-manager\\scripts\\api_manager.ps1",
+    "exit_code": 0,
+    "stdout_path": "C:\\Users\\erdno\\chthonic-archive\\codex\\mailbox\\VSCODE_TERMINAL_TRIAGE_20260226T034240Z\\api_doctor.log",
+    "stderr_path": "C:\\Users\\erdno\\chthonic-archive\\codex\\mailbox\\VSCODE_TERMINAL_TRIAGE_20260226T034240Z\\api_doctor.err.log"
+  },
+  "next_steps": [
+    "Inside VS Code Insiders, run: Developer: Set Log Level... -> Trace.",
+    "Inside VS Code Insiders, run: Terminal: Set Log Level... -> Trace.",
+    "Set terminal profile to no-profile during stabilization: args [\"-NoProfile\", \"-NoLogo\"].",
+    "Start Insiders once with --disable-gpu and compare crash frequency.",
+    "Start Insiders once with --disable-extensions and compare crash frequency.",
+    "If no-profile is stable, re-enable profile incrementally and isolate crashing hook."
+  ]
+}

@@ -33,12 +33,18 @@ import { writeFile, mkdir } from "fs/promises";
 // bun-cdp lives in the sibling poc directory
 const BUN_CDP_ROOT = resolve(__dirname, "../bun-playwright-poc/src");
 
-// Dynamic import so the MCP server can find bun-cdp at runtime
-const { launchBrowser, createPage } = await import(
-  resolve(BUN_CDP_ROOT, "index.ts")
-);
-type BunCDPInstance = Awaited<ReturnType<typeof launchBrowser>>;
-type CDPPageInstance = Awaited<ReturnType<typeof createPage>>;
+// bun-cdp loaded lazily inside ensureBrowser() to avoid startup crash
+// if Chrome/bun-cdp is unavailable.
+let _cdpModule: { launchBrowser: any; createPage: any } | null = null;
+type BunCDPInstance = any;
+type CDPPageInstance = any;
+
+async function loadCDP() {
+  if (!_cdpModule) {
+    _cdpModule = await import(resolve(BUN_CDP_ROOT, "index.ts"));
+  }
+  return _cdpModule;
+}
 
 // ═══════════════════════════════════════════════════════════════════════════════
 // STATE — single browser instance, reused across tool calls
@@ -48,9 +54,10 @@ let browser: BunCDPInstance | null = null;
 let page: CDPPageInstance | null = null;
 
 async function ensureBrowser(): Promise<{ browser: BunCDPInstance; page: CDPPageInstance }> {
+  const cdp = await loadCDP();
   if (!browser || !browser.isConnected()) {
-    browser = await launchBrowser({ headless: true });
-    page = await createPage(browser, "about:blank");
+    browser = await cdp.launchBrowser({ headless: true });
+    page = await cdp.createPage(browser, "about:blank");
   }
   return { browser: browser!, page: page! };
 }

@@ -27,9 +27,15 @@ if sys.platform == 'win32':
 import os
 import re
 from pathlib import Path
+import sys
+_REPO_ROOT = Path(__file__).resolve().parent.parent
+if str(_REPO_ROOT) not in sys.path:
+    sys.path.insert(0, str(_REPO_ROOT))
+from scripts.lib.ssot_paths import resolve_ssot_paths
 
 # Configuration
-SSOT_PATH = Path(".github/copilot-instructions.md")
+_SSOT = resolve_ssot_paths(_REPO_ROOT)
+SSOT_PATH = _SSOT.pointer
 IGNORE_DIRS = {".git", "node_modules", "dist", ".venv", "__pycache__", "target"}
 IGNORE_FILES = {"scan_redundancy.py", "package-lock.json", "bun.lock", "uv.lock"}
 

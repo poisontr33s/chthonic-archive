@@ -18,6 +18,10 @@
 
 import sqlite3
 import sys
+from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+from scripts.lib.ssot_paths import SSOT_POINTER
 
 db_path = sys.argv[1] if len(sys.argv) > 1 else 'chthonic_epistemograph_v1.1.sqlite'
 db = sqlite3.connect(db_path)
@@ -25,11 +29,11 @@ cur = db.cursor()
 
 # Q1: SSOT rank
 print('=== Q1: SSOT Rank ===')
-ssot = cur.execute('''
+ssot = cur.execute(f'''
 SELECT f.path, fs.rank, fs.epistemic_score
 FROM files f
 LEFT JOIN file_scores fs ON f.id = fs.file_id
-WHERE f.path LIKE '%copilot-instructions.md'
+WHERE f.path LIKE '%{Path(SSOT_POINTER).name}'
 ''').fetchall()
 for row in ssot:
     print(f'  {row[0]}: rank={row[1]}, score={row[2]}')

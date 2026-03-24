@@ -1,0 +1,68 @@
+{
+  "schema_version": 1,
+  "generated_on_utc": "2026-02-26T19:57:49.5944381Z",
+  "code_insiders_path": "C:\\Users\\erdno\\AppData\\Local\\Programs\\Microsoft VS Code Insiders\\bin\\code-insiders.cmd",
+  "temp_user_data_dir": "C:\\Users\\erdno\\AppData\\Local\\Temp\\vscode-insiders-clean-20260226T195738Z",
+  "results": [
+    {
+      "case": "baseline",
+      "args": "--status",
+      "exit_code": 0,
+      "elapsed_ms": 3035,
+      "renderer_crash_count": 0,
+      "gpu_error_count": 11,
+      "ptyhost_line_count": 4,
+      "stability_score_100": 78,
+      "stdout_path": "C:\\Users\\erdno\\chthonic-archive\\codex\\mailbox\\VSCODE_INSIDERS_MATRIX_20260226T195738Z\\matrix_baseline_status.log",
+      "stderr_path": "C:\\Users\\erdno\\chthonic-archive\\codex\\mailbox\\VSCODE_INSIDERS_MATRIX_20260226T195738Z\\matrix_baseline_status.err.log"
+    },
+    {
+      "case": "disable_gpu",
+      "args": "--disable-gpu --status",
+      "exit_code": 0,
+      "elapsed_ms": 3013,
+      "renderer_crash_count": 0,
+      "gpu_error_count": 11,
+      "ptyhost_line_count": 4,
+      "stability_score_100": 78,
+      "stdout_path": "C:\\Users\\erdno\\chthonic-archive\\codex\\mailbox\\VSCODE_INSIDERS_MATRIX_20260226T195738Z\\matrix_disable_gpu_status.log",
+      "stderr_path": "C:\\Users\\erdno\\chthonic-archive\\codex\\mailbox\\VSCODE_INSIDERS_MATRIX_20260226T195738Z\\matrix_disable_gpu_status.err.log"
+    },
+    {
+      "case": "disable_extensions",
+      "args": "--disable-extensions --status",
+      "exit_code": 0,
+      "elapsed_ms": 3011,
+      "renderer_crash_count": 0,
+      "gpu_error_count": 11,
+      "ptyhost_line_count": 4,
+      "stability_score_100": 78,
+      "stdout_path": "C:\\Users\\erdno\\chthonic-archive\\codex\\mailbox\\VSCODE_INSIDERS_MATRIX_20260226T195738Z\\matrix_disable_extensions_status.log",
+      "stderr_path": "C:\\Users\\erdno\\chthonic-archive\\codex\\mailbox\\VSCODE_INSIDERS_MATRIX_20260226T195738Z\\matrix_disable_extensions_status.err.log"
+    },
+    {
+      "case": "clean_safe_mode",
+      "args": "--user-data-dir C:\\Users\\erdno\\AppData\\Local\\Temp\\vscode-insiders-clean-20260226T195738Z --disable-extensions --disable-gpu --status",
+      "exit_code": 0,
+      "elapsed_ms": 2022,
+      "renderer_crash_count": 0,
+      "gpu_error_count": 0,
+      "ptyhost_line_count": 0,
+      "stability_score_100": 100,
+      "stdout_path": "C:\\Users\\erdno\\chthonic-archive\\codex\\mailbox\\VSCODE_INSIDERS_MATRIX_20260226T195738Z\\matrix_clean_safe_mode_status.log",
+      "stderr_path": "C:\\Users\\erdno\\chthonic-archive\\codex\\mailbox\\VSCODE_INSIDERS_MATRIX_20260226T195738Z\\matrix_clean_safe_mode_status.err.log"
+    }
+  ],
+  "recommended_mode": {
+    "case": "clean_safe_mode",
+    "args": "--user-data-dir C:\\Users\\erdno\\AppData\\Local\\Temp\\vscode-insiders-clean-20260226T195738Z --disable-extensions --disable-gpu --status",
+    "exit_code": 0,
+    "elapsed_ms": 2022,
+    "renderer_crash_count": 0,
+    "gpu_error_count": 0,
+    "ptyhost_line_count": 0,
+    "stability_score_100": 100,
+    "stdout_path": "C:\\Users\\erdno\\chthonic-archive\\codex\\mailbox\\VSCODE_INSIDERS_MATRIX_20260226T195738Z\\matrix_clean_safe_mode_status.log",
+    "stderr_path": "C:\\Users\\erdno\\chthonic-archive\\codex\\mailbox\\VSCODE_INSIDERS_MATRIX_20260226T195738Z\\matrix_clean_safe_mode_status.err.log"
+  }
+}

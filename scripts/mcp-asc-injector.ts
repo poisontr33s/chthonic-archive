@@ -30,7 +30,7 @@ import {
 import { readFile } from "fs/promises";
 import { resolve } from "path";
 
-const SSOT_PATH = resolve(__dirname, "../.github/copilot-instructions.md");
+const SSOT_PATH = resolve(__dirname, process.env.SSOT_PATH ?? "../.github/copilot-instructions.md");
 
 const server = new Server(
   {

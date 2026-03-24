@@ -46,6 +46,7 @@ import sys
 from pathlib import Path
 
 from scripts.lib.shared import configure_utf8_output, find_repo_root, setup_logging
+from scripts.lib.ssot_paths import SSOT_HOLDER
 
 # =============================================================================
 # Constants
@@ -54,7 +55,7 @@ from scripts.lib.shared import configure_utf8_output, find_repo_root, setup_logg
 INDEX_REL = Path("data/indices/SSOT_ARCHIVE_STRUCTURAL_INDEX.json")
 SYNTHESIS_REL = Path("docs/frameworks/ankh/ANKH_SYNTHESIS_BASELINE.md")
 SYNTHESIS_META_REL = Path("docs/frameworks/ankh/ANKH_SYNTHESIS_META.md")
-ARCHIVE_REL = Path(".github/copilot-instructions.archive.md")
+ARCHIVE_REL = Path(SSOT_HOLDER)
 
 # Corpus files — full inventory is in ANKH_SYNTHESIS_META.md, Section IX describes them architecturally
 CORPUS_FILES: list[str] = [

@@ -56,6 +56,8 @@ def mailbox_root(target: str) -> Path:
         return Path("codex/mailbox")
     if target == "claude":
         return Path("claude/mailbox")
+    if target == "gemini":
+        return Path("gemini/mailbox")
     raise ValueError(f"Unknown target: {target}")
 
 
@@ -99,6 +101,12 @@ def build_keep_set(target: str) -> set[str]:
             # Claude mailbox is intentionally smaller and may not have the packet.
             "CLAUDE_META_VALIDATION_SUMMARY.json",
             "skills_parity_map_2026_02_06.json",
+        }
+    if target == "gemini":
+        keep |= {
+            "MAILBOX_CURRENT_STATE.md",
+            "mailbox_manifest.json",
+            "TETRAGRAMMATON_PACKET.md",
         }
     return keep
 
@@ -158,7 +166,7 @@ def apply_moves(plans: list[MovePlan]) -> None:
 
 def main() -> int:
     ap = argparse.ArgumentParser()
-    ap.add_argument("--target", choices=["codex", "claude"], required=True)
+    ap.add_argument("--target", choices=["codex", "claude", "gemini"], required=True)
     ap.add_argument("--apply", action="store_true", help="Move files into archive folders.")
     args = ap.parse_args()
 

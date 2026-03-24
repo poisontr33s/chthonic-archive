@@ -315,7 +315,7 @@ File: `protocols/FORGE_CIRCULATION_PROTOCOL.md`
 - [BLACKSMITH_MATRIARCH.md](../BLACKSMITH_MATRIARCH.md) — SFS operator profile
 
 ### Dependents (What Needs This Document)
-- [README.md](../README.md) — References circulation model
+- [README.md (dumpster-dive)](../README.md) — References circulation model
 - [DUMPSTER_DIVE_REGISTRY.json](../DUMPSTER_DIVE_REGISTRY.json) — Implements state tracking
 - [CIRCULATION_DIAGRAM.md](../CIRCULATION_DIAGRAM.md) — Visual representation
 
@@ -497,7 +497,7 @@ Before marking any file as "complete":
 
 ### Dependencies (What This Document Needs)
 - [FORGE_CIRCULATION_PROTOCOL.md](FORGE_CIRCULATION_PROTOCOL.md) — Defines circulation model this supports
-- [README.md](../README.md) — Root context
+- [README.md (dumpster-dive)](../README.md) — Root context
 
 ### Dependents (What Needs This Document)
 - All .md and .json files in dumpster-dive/ should follow this standard

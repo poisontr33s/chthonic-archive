@@ -1,0 +1,6 @@
+interface:
+  display_name: "Conceptualize"
+  short_description: "Findings + contradiction map + minimal fix set."
+  icon_small: "./assets/conceptualize-small.svg"
+  icon_large: "./assets/conceptualize-small.svg"
+  brand_color: "#9A3412"

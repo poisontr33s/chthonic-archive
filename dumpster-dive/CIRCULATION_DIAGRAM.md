@@ -326,12 +326,12 @@ Future upcycle: If Timeline A becomes viable, SLAG → ANVIL (full modernization
 
 ### Dependencies (What This Document Needs)
 - [protocols/FORGE_CIRCULATION_PROTOCOL.md](protocols/FORGE_CIRCULATION_PROTOCOL.md) — Complete protocol specification
-- [README.md](README.md) — Overview and context
+- [README.md (dumpster-dive)](README.md) — Overview and context
 - [ORE_MANIFEST.json](ORE_MANIFEST.json) — Ore rating system (1-5)
-- [BLACKSMITH_MATRIARCH.md](BLACKSMITH_MATRIARCH.md) — SFS operator profile
+- [BLACKSMITH_MATRIARCH.md (dumpster-dive)](BLACKSMITH_MATRIARCH.md) — SFS operator profile
 
 ### Dependents (What Needs This Document)
-- [README.md](README.md) — Links to this for visual reference
+- [README.md (dumpster-dive)](README.md) — Links to this for visual reference
 - [protocols/FORGE_CIRCULATION_PROTOCOL.md](protocols/FORGE_CIRCULATION_PROTOCOL.md) — References diagrams
 - New users — Quick visual understanding of circulation system
 

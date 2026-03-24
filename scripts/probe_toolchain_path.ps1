@@ -34,27 +34,33 @@ $STATE_DIR = Join-Path $env:USERPROFILE ".chthonic"
 $CONFIG_FILE = Join-Path $STATE_DIR "config.json"
 
 # Resolve the best available RubyInstaller+DevKit root (prefer newest lane).
-function Get-RubyDevKitRoot {
-  $rubyRoots = @(
-    "C:\Ruby40-x64",
-    "D:\Ruby40-x64",
-    "C:\Ruby35-x64",
-    "D:\Ruby35-x64",
-    "C:\Ruby34-x64",
-    "D:\Ruby34-x64",
-    "C:\Ruby33-x64",
-    "D:\Ruby33-x64",
-    "C:\Ruby32-x64",
-    "D:\Ruby32-x64",
-    "C:\Ruby31-x64",
-    "D:\Ruby31-x64"
-  )
-
-  foreach ($root in $rubyRoots) {
-    if (Test-Path (Join-Path $root "bin\ruby.exe")) {
-      return $root
+function Get-RvExePath {
+  foreach ($candidate in @(
+    (Join-Path $env:USERPROFILE ".cargo\bin\rvw.exe"),
+    (Join-Path $env:USERPROFILE ".cargo\bin\rv.exe")
+  )) {
+    if (Test-Path $candidate) {
+      return $candidate
     }
   }
+
+  return $null
+}
+
+function Get-RubyDevKitRoot {
+  $rvExe = Get-RvExePath
+  if (-not $rvExe) { return $null }
+
+  try {
+    $rubyExe = (& $rvExe ruby find 2>$null | Select-Object -First 1)
+    if (-not $rubyExe) { return $null }
+
+    $rubyRoot = Split-Path (Split-Path $rubyExe -Parent) -Parent
+    $rvDevkit = Join-Path $rubyRoot "msys64\ucrt64\bin\gcc.exe"
+    if (Test-Path $rvDevkit) {
+      return $rubyRoot
+    }
+  } catch {}
 
   return $null
 }
@@ -78,6 +84,7 @@ $rubyDevkitPaths = Get-RubyDevKitPaths
 $defaultPolyglotPaths = @(
     "$env:USERPROFILE\.bun\bin",
     "$env:USERPROFILE\.cargo\bin",
+    "$env:USERPROFILE\.goup\current\bin",
     "C:\Go\bin",
     "$env:USERPROFILE\go\bin",
     "$env:USERPROFILE\.local\bin"
@@ -217,3 +224,5 @@ if ($ApplyToSession) {
 }
 
 Log "Probe complete."
+
+

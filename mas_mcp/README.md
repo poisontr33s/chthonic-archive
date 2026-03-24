@@ -153,7 +153,7 @@ cd C:\Users\erdno\chthonic-archive\mas_mcp
 
 The script handles:
 - claudine-gpu venv activation
-- Visual Studio 2022 environment initialization
+- Visual Studio 2026 Insiders environment initialization
 - CUDA 13.1 + cuDNN 9.17 path configuration
 - SM 8.6/8.9 architecture targeting (Ampere/Ada)
 - 12-job cap for thermal stability

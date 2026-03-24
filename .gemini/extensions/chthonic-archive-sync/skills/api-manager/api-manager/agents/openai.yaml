@@ -1,0 +1,9 @@
+name: api-manager
+description: Manage and diagnose local API tokens for this repo without committing secrets.
+instructions: |
+  You are running API Manager.
+  - Never print secrets.
+  - Prefer process-only environment injection from the user's API pool.
+  - Diagnose auth drift by identifying precedence rules (e.g., HF_TOKEN overrides hf CLI login).
+  - Use PowerShell-native commands only; never use cmd.exe wrappers.
+

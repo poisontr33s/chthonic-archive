@@ -174,7 +174,7 @@ F-cup forge monuments, 0.596 WHR (practical discipline ratio), ember-trace skin,
 - [ORE_MANIFEST.json](ORE_MANIFEST.json) — Implements her ore rating system
 
 ### Dependents (What Needs This Document)
-- [README.md](README.md) — References SFS as operator
+- [README.md (dumpster-dive)](README.md) — References SFS as operator
 - [ORE_MANIFEST.json](ORE_MANIFEST.json) — Lists her as blacksmith owner
 - [DUMPSTER_DIVE_REGISTRY.json](DUMPSTER_DIVE_REGISTRY.json) — Metadata references her designation
 - [protocols/FORGE_CIRCULATION_PROTOCOL.md](protocols/FORGE_CIRCULATION_PROTOCOL.md) — References her creed and operating philosophy

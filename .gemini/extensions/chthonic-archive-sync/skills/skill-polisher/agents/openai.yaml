@@ -1,0 +1,6 @@
+interface:
+  display_name: "Skill Polisher"
+  short_description: "Audit and refine skill integrity"
+  icon_small: "./assets/polisher-small.svg"
+  icon_large: "./assets/polisher-small.svg"
+  brand_color: "#3B82F6"

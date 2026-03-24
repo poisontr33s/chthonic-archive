@@ -95,7 +95,7 @@ class SchedulerConfig:
     max_cycle_duration_s: int = 600  # 10 min timebox
     
     # Paths
-    mpw_path: Path = field(default_factory=lambda: Path(__file__).parent.parent / ".github" / "copilot-instructions.md")
+    mpw_path: Path = field(default_factory=lambda: Path(__file__).parent.parent / __import__('mas_mcp.logic.ssot_manifest', fromlist=['SSOT_POINTER_RELPATH']).SSOT_POINTER_RELPATH)
     artifact_dir: Path = field(default_factory=lambda: Path(os.environ.get("GENESIS_ARTIFACT_DIR", "genesis_artifacts")))
     log_dir: Path = field(default_factory=lambda: Path(os.environ.get("GENESIS_LOG_DIR", "logs/genesis")))
     

@@ -1,0 +1,6 @@
+interface:
+  display_name: "Script Envelope"
+  short_description: "Standardize script metadata headers"
+  icon_small: "./assets/envelope-small.svg"
+  icon_large: "./assets/envelope-large.svg"
+  brand_color: "#F59E0B"

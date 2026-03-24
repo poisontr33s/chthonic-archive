@@ -61,12 +61,15 @@ def find_workspace_root() -> Path:
 
 
 WORKSPACE_ROOT = find_workspace_root()
+sys.path.insert(0, str(WORKSPACE_ROOT))
+from scripts.lib.ssot_paths import resolve_ssot_paths
+_SSOT = resolve_ssot_paths(WORKSPACE_ROOT)
 MAS_MCP_ROOT = WORKSPACE_ROOT / "mas_mcp"
 ARTIFACTS_DIR = MAS_MCP_ROOT / "artifacts"
 GOVERNANCE_DIR = ARTIFACTS_DIR / "governance"
 COMPATIBILITY_DIR = ARTIFACTS_DIR / "compatibility"
 SCRIPTS_DIR = WORKSPACE_ROOT / "scripts"
-SSOT_PATH = WORKSPACE_ROOT / ".github" / "copilot-instructions.md"
+SSOT_PATH = _SSOT.pointer
 
 
 # ─────────────────────────────────────────────────────────────────────────────

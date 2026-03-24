@@ -7,19 +7,19 @@
 # ║ Spectral Frequency: WHITE
 # ║ Architectural Role: UTILITY
 # ║ Semantic ID: SCRIPT_GEMINI_CLI_WRAPPER_V1
-# ║ Purpose: Wrap Gemini CLI to disable MCP discovery during Bun startup
+# ║ Purpose: Wrap Gemini CLI from the repo-local Bun lane and disable MCP discovery during startup
 # ║ Exports: (none)
 # ║ Flags/Modes: -m/-p/-i/-u/-v/-h/-y/-c/-r and -Arguments passthrough
 # ║ Cross-References: (none)
 # ╚════════════════════════════════════════════════════════════════════════════
 
-# Gemini CLI Wrapper - Disable MCP crash on startup
-# Bun is drop-in Node replacement with node_modules support
+# Gemini CLI Wrapper - repo-local lane
+# This repo treats Gemini CLI as a workspace dependency under node_modules,
+# not as a global Bun/npm install under ~/.bun or ~/node_modules.
 # Issue: Gemini CLI MCP discovery fails on startup → crash
 # Fix: Set GEMINI_DISABLE_MCP env var before execution
-# Windows note: Bun can generate a corrupted .bunx launcher for Gemini's
-# `#!/usr/bin/env -S node ...` shebang; normalize it back to Bun.
 
+[CmdletBinding(PositionalBinding = $false)]
 param(
     [Alias("m")]
     [string]$Model,
@@ -55,19 +55,160 @@ param(
 # Disable MCP discovery to prevent Bun crash during startup
 $env:GEMINI_DISABLE_MCP = "1"
 
+function Get-IsHeadlessInvocation {
+    param(
+        [string[]]$CliArgs
+    )
+
+    foreach ($arg in $CliArgs) {
+        if ($arg -in @("-p", "--prompt", "--prompt-interactive", "--output-format", "--output-format=json", "--output-format=text")) {
+            return $true
+        }
+
+        if ($arg.StartsWith("--prompt=") -or $arg.StartsWith("--output-format=")) {
+            return $true
+        }
+    }
+
+    return $false
+}
+
+function Get-IsInformationalInvocation {
+    param(
+        [string[]]$CliArgs
+    )
+
+    foreach ($arg in $CliArgs) {
+        if ($arg -in @("--version", "--help")) {
+            return $true
+        }
+    }
+
+    return $false
+}
+
+function Get-RepoRoot {
+    if ($PSScriptRoot) {
+        return (Split-Path -Parent $PSScriptRoot)
+    }
+
+    if ($PSCommandPath) {
+        return (Split-Path -Parent (Split-Path -Parent $PSCommandPath))
+    }
+
+    throw "Unable to resolve repo root for gemini-cli-wrapper.ps1"
+}
+
+function Get-RepoNodeModulesRoot {
+    return (Join-Path (Get-RepoRoot) "node_modules")
+}
+
+function Get-GeminiRegistryPath {
+    return (Join-Path (Get-RepoRoot) ".gemini\local-model-registry.json")
+}
+
+function Get-GeminiRouterScriptPath {
+    return (Join-Path (Get-RepoRoot) "scripts\gemini-model-router.ts")
+}
+
+function Get-GeminiDeclaredSpecifier {
+    $packageJsonPath = Join-Path (Get-RepoRoot) "package.json"
+    if (-not (Test-Path $packageJsonPath)) {
+        return "@latest"
+    }
+
+    try {
+        $pkg = Get-Content $packageJsonPath -Raw | ConvertFrom-Json
+    } catch {
+        return "@latest"
+    }
+
+    $specifier = $null
+    if ($pkg.devDependencies -and $pkg.devDependencies.'@google/gemini-cli') {
+        $specifier = [string]$pkg.devDependencies.'@google/gemini-cli'
+    } elseif ($pkg.dependencies -and $pkg.dependencies.'@google/gemini-cli') {
+        $specifier = [string]$pkg.dependencies.'@google/gemini-cli'
+    }
+
+    if ([string]::IsNullOrWhiteSpace($specifier)) {
+        return "@latest"
+    }
+
+    $specifier = $specifier.Trim()
+    if ($specifier -match 'nightly') { return "@nightly" }
+    if ($specifier -match 'preview') { return "@preview" }
+    return "@latest"
+}
+
 function Get-GeminiExecutablePath {
-    return (Join-Path $env:USERPROFILE ".bun\bin\gemini.exe")
+    foreach ($candidate in @(
+        (Join-Path (Get-RepoNodeModulesRoot) ".bin\gemini"),
+        (Join-Path (Get-RepoNodeModulesRoot) ".bin\gemini.cmd"),
+        (Join-Path (Get-RepoNodeModulesRoot) ".bin\gemini.exe")
+    )) {
+        if (Test-Path $candidate) { return $candidate }
+    }
+    return $null
+}
+
+function Get-GeminiPackageRoot {
+    $candidates = @(
+        (Join-Path (Get-RepoNodeModulesRoot) "@google\gemini-cli")
+    )
+
+    foreach ($candidate in $candidates) {
+        if (Test-Path $candidate) {
+            return $candidate
+        }
+    }
+
+    return $null
 }
 
 function Get-GeminiShimMetadataPath {
-    return (Join-Path $env:USERPROFILE ".bun\bin\gemini.bunx")
+    return (Join-Path (Get-RepoNodeModulesRoot) ".bin\gemini.bunx")
 }
 
 function Get-GeminiEntrypoint {
-    $entry = Join-Path $env:USERPROFILE ".bun\install\global\node_modules\@google\gemini-cli\dist\index.js"
-    if (Test-Path $entry) {
-        return $entry
+    $packageRoot = Get-GeminiPackageRoot
+    if (-not $packageRoot) {
+        return $null
     }
+
+    $packageJsonPath = Join-Path $packageRoot "package.json"
+    if (Test-Path $packageJsonPath) {
+        try {
+            $packageJson = Get-Content $packageJsonPath -Raw | ConvertFrom-Json
+            $candidateScripts = @()
+            if ($packageJson.bin) {
+                if ($packageJson.bin -is [string]) {
+                    $candidateScripts += $packageJson.bin
+                } elseif ($packageJson.bin.PSObject.Properties.Name -contains "gemini") {
+                    $candidateScripts += $packageJson.bin.gemini
+                } elseif ($packageJson.bin.PSObject.Properties.Count -gt 0) {
+                    $candidateScripts += $packageJson.bin.PSObject.Properties[0].Value
+                }
+            }
+            if ($packageJson.main) {
+                $candidateScripts += $packageJson.main
+            }
+
+            foreach ($candidateScript in ($candidateScripts | Where-Object { $_ } | Select-Object -Unique)) {
+                $entry = Join-Path $packageRoot $candidateScript
+                if (Test-Path $entry) {
+                    return $entry
+                }
+            }
+        } catch {
+            # Fall back to the known Gemini dist path below.
+        }
+    }
+
+    $fallback = Join-Path $packageRoot "dist\index.js"
+    if (Test-Path $fallback) {
+        return $fallback
+    }
+
     return $null
 }
 
@@ -205,15 +346,15 @@ function Get-GeminiRelativeEntrypoint {
         return $null
     }
 
-    $bunRoot = Join-Path $env:USERPROFILE ".bun"
     $fullEntry = [System.IO.Path]::GetFullPath($entry)
-    $fullBunRoot = [System.IO.Path]::GetFullPath($bunRoot)
+    $repoNodeModules = [System.IO.Path]::GetFullPath((Get-RepoNodeModulesRoot))
 
-    if (-not $fullEntry.StartsWith($fullBunRoot, [System.StringComparison]::OrdinalIgnoreCase)) {
-        return $null
+    if ($fullEntry.StartsWith($repoNodeModules, [System.StringComparison]::OrdinalIgnoreCase)) {
+        $relative = $fullEntry.Substring($repoNodeModules.Length).TrimStart('\', '/')
+        return (".\node_modules\$relative").Replace('/', '\')
     }
 
-    return ($fullEntry.Substring($fullBunRoot.Length).TrimStart('\', '/'))
+    return $null
 }
 
 function Repair-GeminiWindowsShim {
@@ -240,18 +381,7 @@ function Repair-GeminiWindowsShim {
         return $true
     }
 
-    $relativeEntrypoint = Get-GeminiRelativeEntrypoint
-    if (-not $relativeEntrypoint) {
-        return $false
-    }
-
-    $pathBytes = [System.Text.Encoding]::Unicode.GetBytes($relativeEntrypoint)
-    $version = Get-BunShimVersion
-    Write-GeminiShimMetadata -Path $metadataPath -PathBytes $pathBytes -Launcher "bun --no-warnings=DEP0040 " -Version $version
-    if (-not $Quiet) {
-        Write-Host "[gemini-wrapper] Rebuilt Windows Bun shim metadata: $metadataPath" -ForegroundColor Cyan
-    }
-    return $true
+    return $false
 }
 
 function Test-GeminiExecutable {
@@ -261,7 +391,7 @@ function Test-GeminiExecutable {
     )
 
     try {
-        $null = & $Path --version 2>$null
+        & $Path --version *> $null
         return ($LASTEXITCODE -eq 0)
     } catch {
         return $false
@@ -271,9 +401,9 @@ function Test-GeminiExecutable {
 function Resolve-GeminiExecutable {
     Repair-GeminiWindowsShim -Quiet | Out-Null
 
-    $globalBunGemini = Get-GeminiExecutablePath
-    if ((Test-Path $globalBunGemini) -and (Test-GeminiExecutable -Path $globalBunGemini)) {
-        return $globalBunGemini
+    $repoGemini = Get-GeminiExecutablePath
+    if ($repoGemini -and (Test-GeminiExecutable -Path $repoGemini)) {
+        return $repoGemini
     }
 
     return $null
@@ -301,15 +431,138 @@ function Test-LegacyGeminiDependency {
     }
 }
 
+function Set-GeminiModelArg {
+    param(
+        [string[]]$ExistingArgs,
+        [string]$ModelName
+    )
+
+    $cleaned = @()
+    for ($index = 0; $index -lt $ExistingArgs.Count; $index++) {
+        $arg = $ExistingArgs[$index]
+        if ($arg -eq "-m" -or $arg -eq "--model") {
+            $index++
+            continue
+        }
+        if ($arg.StartsWith("--model=")) {
+            continue
+        }
+        $cleaned += $arg
+    }
+
+    return @("-m", $ModelName) + $cleaned
+}
+
+function Invoke-GeminiRouterSync {
+    $routerScript = Get-GeminiRouterScriptPath
+    if (-not (Test-Path $routerScript)) {
+        return
+    }
+
+    & bun run $routerScript sync --write *> $null
+}
+
+function Get-GeminiRouterDecision {
+    param(
+        [string[]]$CliArgs,
+        [bool]$Headless
+    )
+
+    $routerScript = Get-GeminiRouterScriptPath
+    if (-not (Test-Path $routerScript)) {
+        return $null
+    }
+
+    $argsJson = $CliArgs | ConvertTo-Json -Compress
+    $mode = if ($Headless) { "headless" } else { "interactive" }
+    $raw = & bun run $routerScript resolve --mode $mode --args-json $argsJson
+
+    if ($LASTEXITCODE -ne 0 -or -not $raw) {
+        return $null
+    }
+
+    return ($raw | Out-String | ConvertFrom-Json)
+}
+
+function Test-GeminiCompatRetryableError {
+    param(
+        [string]$Text,
+        [object]$Decision
+    )
+
+    if (-not $Decision) {
+        return $false
+    }
+
+    $matchers = @($Decision.fallbackMatchers)
+    if ($matchers.Count -eq 0) {
+        return $false
+    }
+
+    $textToCheck = ($Text ?? "").ToLowerInvariant()
+    foreach ($matcher in $matchers) {
+        if (-not $matcher) {
+            continue
+        }
+
+        if ($textToCheck.Contains(([string]$matcher).ToLowerInvariant())) {
+            return $true
+        }
+    }
+
+    return $false
+}
+
+function Write-GeminiCompatNotice {
+    param(
+        [string]$Message
+    )
+
+    [Console]::Error.WriteLine($Message)
+}
+
+function Invoke-GeminiCommandCapture {
+    param(
+        [string[]]$CliArgs
+    )
+
+    $geminiExe = Resolve-GeminiExecutable
+    $merged = @()
+
+    if ($geminiExe) {
+        $merged = & $geminiExe @CliArgs 2>&1
+    } else {
+        $entry = Get-GeminiEntrypoint
+        if (-not $entry) {
+            throw "Gemini CLI not found in repo-local Bun lane."
+        }
+        $merged = & bun $entry @CliArgs 2>&1
+    }
+
+    $exitCode = $LASTEXITCODE
+    $rawText = ($merged | ForEach-Object { $_.ToString() }) -join [Environment]::NewLine
+
+    return [pscustomobject]@{
+        ExitCode = $exitCode
+        RawText = $rawText
+    }
+}
+
 function Invoke-GeminiSelfUpdate {
-    Write-Host "[gemini-wrapper] Updating Gemini CLI via Bun global lane..." -ForegroundColor Cyan
+    Write-Host "[gemini-wrapper] Updating Gemini CLI in repo-local Bun lane..." -ForegroundColor Cyan
+    $geminiChannel = Get-GeminiDeclaredSpecifier
     # Keep node-gyp/native addon lanes deterministic on Windows.
     $prevMakeFlags = $env:MAKEFLAGS
     $prevMflags = $env:MFLAGS
     if ($env:MAKEFLAGS) { Remove-Item Env:MAKEFLAGS -ErrorAction SilentlyContinue }
     if ($env:MFLAGS) { Remove-Item Env:MFLAGS -ErrorAction SilentlyContinue }
 
-    & bun add -g @google/gemini-cli@latest
+    Push-Location (Get-RepoRoot)
+    try {
+        & bun add -D ("@google/gemini-cli{0}" -f $geminiChannel)
+    } finally {
+        Pop-Location
+    }
 
     if ($null -ne $prevMakeFlags) { $env:MAKEFLAGS = $prevMakeFlags }
     if ($null -ne $prevMflags) { $env:MFLAGS = $prevMflags }
@@ -317,8 +570,6 @@ function Invoke-GeminiSelfUpdate {
         Write-Error "Gemini CLI self-update failed (exit $LASTEXITCODE)."
         exit $LASTEXITCODE
     }
-
-    Repair-GeminiWindowsShim -Quiet | Out-Null
 
     $geminiExe = Resolve-GeminiExecutable
     $updated = $null
@@ -333,23 +584,27 @@ function Invoke-GeminiSelfUpdate {
     if ($LASTEXITCODE -eq 0 -and $updated) {
         Write-Host "[gemini-wrapper] Updated Gemini CLI version: $updated" -ForegroundColor Green
     } else {
-        Write-Host "[gemini-wrapper] Update completed. Run `~/.bun/bin/gemini.exe --version` (or `gemini --version`) to confirm." -ForegroundColor Yellow
+        Write-Host "[gemini-wrapper] Update completed. Run `gemini --version` from the repo to confirm." -ForegroundColor Yellow
     }
 }
 
 function Invoke-GeminiRepair {
-    Write-Host "[gemini-wrapper] Repairing Gemini CLI global lane..." -ForegroundColor Cyan
+    Write-Host "[gemini-wrapper] Repairing Gemini CLI repo-local lane..." -ForegroundColor Cyan
     Invoke-GeminiSelfUpdate
 
     $geminiExe = Get-GeminiExecutablePath
-    if (-not (Test-Path $geminiExe)) {
-        Write-Error "Gemini CLI repair failed: missing executable shim at $geminiExe"
-        exit 1
+    $validated = $null
+    if ($geminiExe -and (Test-Path $geminiExe)) {
+        $validated = & $geminiExe --version 2>$null
     }
-
-    $validated = & $geminiExe --version 2>$null
     if ($LASTEXITCODE -ne 0 -or -not $validated) {
-        Write-Error "Gemini CLI repair failed: gemini.exe is still not runnable."
+        $entry = Get-GeminiEntrypoint
+        if ($entry) {
+            $validated = & bun $entry --version 2>$null
+        }
+    }
+    if ($LASTEXITCODE -ne 0 -or -not $validated) {
+        Write-Error "Gemini CLI repair failed: repo-local Gemini still is not runnable."
         exit 1
     }
 
@@ -379,7 +634,8 @@ function Get-GeminiCurrentVersion {
 }
 
 function Get-GeminiLatestVersion {
-    $raw = & bun pm view @google/gemini-cli version 2>$null
+    $geminiChannel = Get-GeminiDeclaredSpecifier
+    $raw = & bun pm view ("@google/gemini-cli{0}" -f $geminiChannel) version 2>$null
     if ($LASTEXITCODE -ne 0 -or -not $raw) {
         return $null
     }
@@ -396,7 +652,7 @@ function Invoke-GeminiUpdateCheck {
 
     if (-not $current) {
         Write-Host "[gemini-wrapper] Gemini CLI not found locally." -ForegroundColor Red
-        Write-Host "[gemini-wrapper] Install: bun add -g @google/gemini-cli@latest" -ForegroundColor Yellow
+        Write-Host ("[gemini-wrapper] Install: bun add -D @google/gemini-cli{0}" -f (Get-GeminiDeclaredSpecifier)) -ForegroundColor Yellow
         exit 1
     }
     if (-not $latest) {
@@ -483,18 +739,64 @@ if ($SelfUpdate -or $positionalUpdate -or ($Arguments -and $Arguments.Count -gt 
 
 Test-LegacyGeminiDependency
 
+$env:CHTHONIC_GEMINI_MODEL_REGISTRY = Get-GeminiRegistryPath
+Invoke-GeminiRouterSync
+
+$isHeadlessInvocation = Get-IsHeadlessInvocation -CliArgs $cliArgs
+$isInformationalInvocation = Get-IsInformationalInvocation -CliArgs $cliArgs
+$routerDecision = $null
+if (-not $isInformationalInvocation) {
+    $routerDecision = Get-GeminiRouterDecision -CliArgs $cliArgs -Headless:$isHeadlessInvocation
+}
+
+if ($routerDecision -and $routerDecision.forceModelFlag -and $routerDecision.effectiveRequestModel) {
+    $cliArgs = Set-GeminiModelArg -ExistingArgs $cliArgs -ModelName $routerDecision.effectiveRequestModel
+}
+
+if (-not $isHeadlessInvocation -and
+    $routerDecision -and
+    $routerDecision.requestedModel -and
+    $routerDecision.effectiveRequestModel -and
+    $routerDecision.requestedModel -ne $routerDecision.effectiveRequestModel) {
+    Write-GeminiCompatNotice ("[gemini-wrapper] Flash-Lite preview compatibility active. Using {0} for this interactive session." -f $routerDecision.effectiveRequestModel)
+}
+
+if ($isHeadlessInvocation) {
+    $captured = Invoke-GeminiCommandCapture -CliArgs $cliArgs
+
+    if ($captured.ExitCode -ne 0 -and
+        $routerDecision -and
+        $routerDecision.headlessRetryAllowed -and
+        $routerDecision.fallbackRequestModel -and
+        (Test-GeminiCompatRetryableError -Text $captured.RawText -Decision $routerDecision)) {
+        Write-GeminiCompatNotice ("[gemini-wrapper] Flash-Lite preview unavailable. Retrying with {0}." -f $routerDecision.fallbackRequestModel)
+        $fallbackArgs = Set-GeminiModelArg -ExistingArgs $cliArgs -ModelName $routerDecision.fallbackRequestModel
+        $captured = Invoke-GeminiCommandCapture -CliArgs $fallbackArgs
+    }
+
+    if (-not [string]::IsNullOrEmpty($captured.RawText)) {
+        [Console]::Out.Write($captured.RawText)
+        if (-not $captured.RawText.EndsWith([Environment]::NewLine)) {
+            [Console]::Out.Write([Environment]::NewLine)
+        }
+    }
+
+    exit $captured.ExitCode
+}
+
 $geminiExe = Resolve-GeminiExecutable
 if ($geminiExe) {
     & $geminiExe @cliArgs
     exit $LASTEXITCODE
 }
 
-# Fallback execution via Bun global package path.
+# Fallback execution via repo-local package entrypoint.
 $geminiCliPath = Get-GeminiEntrypoint
-if (-not (Test-Path $geminiCliPath)) {
-    Write-Error "Gemini CLI not found. Checked: gemini.exe on PATH and $geminiCliPath"
-    Write-Host "Reinstall with: bun install -g @google/gemini-cli" -ForegroundColor Yellow
+if (-not $geminiCliPath) {
+    Write-Error "Gemini CLI not found in repo-local Bun lane."
+    Write-Host "Repair with: pwsh -NoProfile -File scripts/gemini-cli-wrapper.ps1 -r" -ForegroundColor Yellow
     exit 1
 }
 
 & bun $geminiCliPath @cliArgs
+exit $LASTEXITCODE

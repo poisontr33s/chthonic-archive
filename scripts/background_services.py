@@ -50,7 +50,10 @@ logger = logging.getLogger("background_services")
 
 # Project paths
 PROJECT_ROOT = Path(__file__).parent.parent
-MPW_PATH = PROJECT_ROOT / ".github" / "copilot-instructions.md"
+sys.path.insert(0, str(PROJECT_ROOT))
+from scripts.lib.ssot_paths import resolve_ssot_paths
+_SSOT = resolve_ssot_paths(PROJECT_ROOT)
+MPW_PATH = _SSOT.pointer
 SRC_PATH = PROJECT_ROOT / "src"
 ASSETS_PATH = PROJECT_ROOT / "assets"
 LOGS_PATH = PROJECT_ROOT / "logs"

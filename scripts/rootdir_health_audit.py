@@ -38,10 +38,14 @@ from __future__ import annotations
 
 import sys
 import io
-if sys.platform == 'win32':
+if sys.platform == 'win32' and __name__ == '__main__':
     sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
     sys.stderr = io.TextIOWrapper(sys.stderr.buffer, encoding='utf-8')
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 5422dabc1e8ba366830ba42b15eaeb5046750e7b
 import argparse
 import hashlib
 import json

@@ -1,0 +1,6 @@
+interface:
+  display_name: "Ingest Research"
+  short_description: "Convert research artifacts into structured digests and mailbox handoffs."
+  icon_small: "./assets/ingest-research-small.svg"
+  icon_large: "./assets/ingest-research-large.svg"
+  brand_color: "#0B7285"

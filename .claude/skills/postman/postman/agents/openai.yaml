@@ -1,0 +1,6 @@
+interface:
+  display_name: "Postman"
+  short_description: "Continuation-first mailbox reader + response skeleton emitter"
+  icon_small: "./assets/mailbox-small.svg"
+  icon_large: "./assets/mailbox-large.svg"
+  brand_color: "#0F172A"

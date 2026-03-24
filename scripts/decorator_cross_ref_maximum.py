@@ -39,7 +39,10 @@ import networkx as nx
 # ═══════════════════════════════════════════════════════════════════════════
 
 REPO_ROOT = Path(__file__).parent.parent  # Script in scripts/ directory
-SSOT_PATH = REPO_ROOT / ".github" / "copilot-instructions.md"
+sys.path.insert(0, str(REPO_ROOT))
+from scripts.lib.ssot_paths import resolve_ssot_paths
+_SSOT = resolve_ssot_paths(REPO_ROOT)
+SSOT_PATH = _SSOT.pointer
 STATE_CACHE = REPO_ROOT / ".dcrp_state.json"  # Track processed files
 
 # Exclusions (build artifacts, dependencies, git internals)

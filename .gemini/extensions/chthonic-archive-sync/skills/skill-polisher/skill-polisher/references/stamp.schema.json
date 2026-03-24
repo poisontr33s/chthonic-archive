@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://chthonic-archive.local/schema/skill-polisher/stamp.schema.json",
+  "title": "Skill Polisher Stamp Record",
+  "description": "Deterministic finding record emitted by skill-polisher.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "stamp",
+    "severity",
+    "domain",
+    "file",
+    "line",
+    "message",
+    "remedy",
+    "confidence"
+  ],
+  "properties": {
+    "stamp": {
+      "type": "string",
+      "enum": ["#FIXME", "#TODO", "#XXX", "#TBD"]
+    },
+    "severity": {
+      "type": "string",
+      "enum": ["CRITICAL", "WARN", "INFO"]
+    },
+    "domain": {
+      "type": "string",
+      "enum": ["structure", "policy", "semantics", "maintainability"]
+    },
+    "file": {
+      "type": "string",
+      "minLength": 1
+    },
+    "line": {
+      "type": ["integer", "null"],
+      "minimum": 1
+    },
+    "message": {
+      "type": "string",
+      "minLength": 1
+    },
+    "remedy": {
+      "type": "string",
+      "minLength": 1
+    },
+    "confidence": {
+      "type": "number",
+      "minimum": 0.0,
+      "maximum": 1.0
+    }
+  }
+}

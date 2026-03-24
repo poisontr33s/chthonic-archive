@@ -299,7 +299,7 @@ def build_packet(root: Path, refs: list[RefDoc], existing_packet: str | None) ->
 
 def main() -> int:
     ap = argparse.ArgumentParser()
-    ap.add_argument("--target", choices=["codex", "claude"], required=True)
+    ap.add_argument("--target", choices=["codex", "claude", "gemini"], required=True)
     ap.add_argument("--packet", required=True, help="Output packet path.")
     args = ap.parse_args()
 
@@ -307,7 +307,12 @@ def main() -> int:
         raise SystemExit(f"Missing policy: {POLICY_PATH}")
     policy = read_json(POLICY_PATH)
 
-    mailbox = Path("codex/mailbox") if args.target == "codex" else Path("claude/mailbox")
+    if args.target == "codex":
+        mailbox = Path("codex/mailbox")
+    elif args.target == "claude":
+        mailbox = Path("claude/mailbox")
+    else:
+        mailbox = Path("gemini/mailbox")
     mailbox.mkdir(parents=True, exist_ok=True)
 
     # Update manifest/state first so the packet snapshot is consistent.

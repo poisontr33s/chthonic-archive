@@ -124,8 +124,8 @@ Examples:
     parser.add_argument(
         '--file',
         type=Path,
-        default=Path(__file__).parent.parent / '.github' / 'copilot-instructions.md',
-        help='Path to SSOT file (default: .github/copilot-instructions.md)'
+        default=None,
+        help='Path to SSOT file (default: resolved via ssot_paths bridge)'
     )
 
     parser.add_argument(
@@ -142,6 +142,13 @@ Examples:
     )
 
     args = parser.parse_args()
+
+    if args.file is None:
+        import sys as _sys
+        _repo = Path(__file__).resolve().parent.parent
+        _sys.path.insert(0, str(_repo))
+        from scripts.lib.ssot_paths import resolve_ssot_paths
+        args.file = resolve_ssot_paths(_repo).pointer
 
     try:
         computed_hash, is_valid = verify_ssot_integrity(

@@ -7,7 +7,7 @@
 ## 🚀 Quick Start: Where to Begin
 
 ### **1. Morning Brief** ☕ (5 minutes)
-**File**: [`claudine-cli/README_MORNING_BRIEF.md`](./claudine-cli/README_MORNING_BRIEF.md)
+**File**: `claudine-cli/README_MORNING_BRIEF.md`
 
 **What it contains**:
 - Visual summary of what happened
@@ -20,7 +20,7 @@
 ---
 
 ### **2. Wake Up Summary** 🌅 (10 minutes)
-**File**: [`claudine-cli/WAKE_UP_SUMMARY.md`](./claudine-cli/WAKE_UP_SUMMARY.md)
+**File**: `claudine-cli/WAKE_UP_SUMMARY.md`
 
 **What it contains**:
 - Phase 9 progress breakdown (70% complete)
@@ -35,7 +35,7 @@
 ---
 
 ### **3. Final Status Report** 📊 (15 minutes)
-**File**: [`claudine-cli/PHASE9_FINAL_STATUS.md`](./claudine-cli/PHASE9_FINAL_STATUS.md)
+**File**: `claudine-cli/PHASE9_FINAL_STATUS.md`
 
 **What it contains**:
 - Comprehensive mission summary
@@ -53,7 +53,7 @@
 ---
 
 ### **4. Autonomous Work Log** 📝 (Deep Dive)
-**File**: [`claudine-cli/PHASE9_AUTONOMOUS_WORK.md`](./claudine-cli/PHASE9_AUTONOMOUS_WORK.md)
+**File**: `claudine-cli/PHASE9_AUTONOMOUS_WORK.md`
 
 **What it contains**:
 - Timestamped work log (05:13 - 07:15 CET)
@@ -71,7 +71,7 @@
 ---
 
 ### **5. Continuation Plan** 🗺️ (Planning Reference)
-**File**: [`claudine-cli/PHASE9_CONTINUATION_PLAN.md`](./claudine-cli/PHASE9_CONTINUATION_PLAN.md)
+**File**: `claudine-cli/PHASE9_CONTINUATION_PLAN.md`
 
 **What it contains**:
 - Priority 1: Test Configuration System (30 min)
@@ -124,13 +124,13 @@ PsychoNoir-Kontrapunkt/
 ## 🎯 Recommended Reading Order
 
 ### **Quick Validation** (5 minutes)
-1. Read [`README_MORNING_BRIEF.md`](./claudine-cli/README_MORNING_BRIEF.md)
+1. Read `README_MORNING_BRIEF.md`
 2. Run `cd claudine-cli && bun test` to see 96 tests passing
 
 ### **Standard Review** (30 minutes)
-1. Read [`README_MORNING_BRIEF.md`](./claudine-cli/README_MORNING_BRIEF.md)
-2. Read [`WAKE_UP_SUMMARY.md`](./claudine-cli/WAKE_UP_SUMMARY.md)
-3. Read [`PHASE9_FINAL_STATUS.md`](./claudine-cli/PHASE9_FINAL_STATUS.md)
+1. Read `README_MORNING_BRIEF.md`
+2. Read `WAKE_UP_SUMMARY.md`
+3. Read `PHASE9_FINAL_STATUS.md`
 4. Run tests: `cd claudine-cli && bun test`
 
 ### **Deep Dive** (1-2 hours)

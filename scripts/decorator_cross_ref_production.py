@@ -56,8 +56,11 @@ from typescript_dependency_resolver import TypeScriptRegexExtractor
 #  CONFIGURATION
 # ═══════════════════════════════════════════════════════════════════════════
 
-REPO_ROOT = Path(__file__).parent
-SSOT_PATH = REPO_ROOT / ".github" / "copilot-instructions.md"
+REPO_ROOT = Path(__file__).parent.parent
+sys.path.insert(0, str(REPO_ROOT))
+from scripts.lib.ssot_paths import resolve_ssot_paths
+_SSOT = resolve_ssot_paths(REPO_ROOT)
+SSOT_PATH = _SSOT.pointer
 
 # Exclusions (never process these)
 EXCLUDE_DIRS = {

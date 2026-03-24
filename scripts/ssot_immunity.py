@@ -54,17 +54,21 @@ import json
 import datetime
 from typing import Dict, Optional, List
 
+_REPO_ROOT = Path(__file__).resolve().parent.parent
+sys.path.insert(0, str(_REPO_ROOT))
+from scripts.lib.ssot_paths import SSOT_POINTER
+
 # ═══════════════════════════════════════════════════════════════════════════════
 # CONFIGURATION
 # ═══════════════════════════════════════════════════════════════════════════════
 
-PROJECT_ROOT = Path(__file__).parent
-STATE_PATH = PROJECT_ROOT / ".dcrp_state.json"
-LOG_PATH = PROJECT_ROOT / "logs" / "ssot_drift.log"
+PROJECT_ROOT = _REPO_ROOT
+STATE_PATH = Path(__file__).resolve().parent / ".dcrp_state.json"
+LOG_PATH = Path(__file__).resolve().parent / "logs" / "ssot_drift.log"
 
 # SSOT files to monitor
 SSOT_FILES = [
-    ".github/copilot-instructions.md",
+    SSOT_POINTER,
     "ankh.md",
     "ANKHOLOGY.md",
     "ANKH_README.md",

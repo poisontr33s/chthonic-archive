@@ -21,7 +21,9 @@ param(
     [string[]]$CmdArgs,
     
     [switch]$Quiet,
-    [switch]$Json
+    [switch]$Json,
+
+    [switch]$NoExit
 )
 
 $VERSION = "3.3.0"
@@ -32,16 +34,61 @@ $STATE_DIR = Join-Path $env:USERPROFILE ".chthonic"
 $CONFIG_FILE = Join-Path $STATE_DIR "config.json"
 $SERVICES_FILE = Join-Path $STATE_DIR "services.json"
 
+function Complete-ChthonicCommand {
+    param([int]$Code = 0)
+
+    if ($NoExit) {
+        return $Code
+    }
+
+    exit $Code
+}
+
 # ═══════════════════════════════════════════════════════════════════════════════
 # POLYGLOT PATHS - ALL GLOBAL NATIVE INSTALLATIONS (Win11)
 # ═══════════════════════════════════════════════════════════════════════════════
 
-# Resolve rv-managed Ruby bin directory (highest installed version).
+# Resolve rv-managed Ruby from rv itself, then fall back to managed ruby-* directories only.
+function Get-RvExePath {
+    foreach ($name in @("rvw", "rv.exe", "rv")) {
+        $cmd = Get-CommandResolution -Name $name
+        if (-not $cmd) { continue }
+
+        if ($cmd.Path) { return $cmd.Path }
+        if ($cmd.Definition -and (Test-Path $cmd.Definition)) { return $cmd.Definition }
+    }
+
+    return $null
+}
+
+function Get-RvRubyExePath {
+    $rvExe = Get-RvExePath
+    if (-not $rvExe) { return $null }
+
+    try {
+        $rubyExe = (& $rvExe ruby find 2>$null | Select-Object -First 1)
+        if ($rubyExe) {
+            $resolved = $rubyExe.ToString().Trim()
+            if ($resolved -and (Test-Path $resolved)) {
+                return $resolved
+            }
+        }
+    } catch {}
+
+    return $null
+}
+
 function Get-RvRubyBinDir {
+    $rubyExe = Get-RvRubyExePath
+    if ($rubyExe) {
+        return (Split-Path $rubyExe -Parent)
+    }
+
     $rvRubies = Join-Path $env:APPDATA "rv\rubies"
     if (-not (Test-Path $rvRubies)) { return $null }
 
-    $latest = Get-ChildItem $rvRubies -Directory |
+    $latest = Get-ChildItem $rvRubies -Directory -ErrorAction SilentlyContinue |
+        Where-Object { $_.Name -like "ruby-*" } |
         Sort-Object Name -Descending |
         Select-Object -First 1
     if ($latest) {
@@ -54,19 +101,33 @@ function Get-RvRubyBinDir {
 # Resolve the best available RubyInstaller DevKit root (for MSYS2/UCRT64 toolchain).
 # Note: rv manages Ruby versions; RubyInstaller provides the DevKit (gcc, make, etc.).
 function Get-RubyDevKitRoot {
-    $devkitRoots = @(
-        "C:\Ruby40-x64",
-        "D:\Ruby40-x64",
-        "C:\Ruby35-x64",
-        "D:\Ruby35-x64"
-    )
-
-    foreach ($root in $devkitRoots) {
-        if (Test-Path (Join-Path $root "msys64\ucrt64\bin\gcc.exe")) {
-            return $root
+    $rubyExe = Get-RvRubyExePath
+    if ($rubyExe) {
+        $rubyRoot = Split-Path (Split-Path $rubyExe -Parent) -Parent
+        $rvDevkit = Join-Path $rubyRoot "msys64\ucrt64\bin\gcc.exe"
+        if (Test-Path $rvDevkit) {
+            return $rubyRoot
         }
     }
 
+    $rvRubies = Join-Path $env:APPDATA "rv\rubies"
+    if (Test-Path $rvRubies) {
+        foreach ($root in (Get-ChildItem $rvRubies -Directory -ErrorAction SilentlyContinue |
+                Where-Object { $_.Name -like "ruby-*" } |
+                Sort-Object Name -Descending)) {
+            $candidate = Join-Path $root.FullName "msys64\ucrt64\bin\gcc.exe"
+            if (Test-Path $candidate) {
+                return $root.FullName
+            }
+        }
+    }
+
+    return $null
+}
+
+function Get-BrushRepoRcPath {
+    $candidate = Join-Path $SCRIPT_DIR "brush_repo.rc"
+    if (Test-Path $candidate) { return $candidate }
     return $null
 }
 
@@ -104,6 +165,31 @@ function Get-RExePath {
     return $null
 }
 
+function Get-RScriptExePath {
+    $rExe = Get-RExePath
+    if (-not $rExe) { return $null }
+
+    $candidate = Join-Path (Split-Path -Parent $rExe) "Rscript.exe"
+    if (Test-Path $candidate) { return $candidate }
+    return $null
+}
+
+function Get-RRvExePath {
+    foreach ($candidate in @(
+        (Join-Path $env:USERPROFILE ".r-rv\bin\rv.exe"),
+        (Join-Path $env:USERPROFILE ".r-rv\bin\rv")
+    )) {
+        if (Test-Path $candidate) { return $candidate }
+    }
+    return $null
+}
+
+function Get-RRvScriptPath {
+    $candidate = Join-Path $SCRIPT_DIR "rv-r.ps1"
+    if (Test-Path $candidate) { return $candidate }
+    return $null
+}
+
 function Get-RigExePath {
     foreach ($candidate in @(
         "C:\Program Files\rig\rig.exe",
@@ -111,6 +197,38 @@ function Get-RigExePath {
     )) {
         if ($candidate -and (Test-Path $candidate)) { return $candidate }
     }
+    return $null
+}
+
+function Get-ZvExePath {
+    foreach ($candidate in @(
+        (Join-Path $env:USERPROFILE ".zv\bin\zv.exe"),
+        (Join-Path $env:USERPROFILE ".zv\bin\zv")
+    )) {
+        if (Test-Path $candidate) { return $candidate }
+    }
+
+    try {
+        $cmd = Get-Command zv -ErrorAction Stop
+        if ($cmd.Source -and (Test-Path $cmd.Source)) { return $cmd.Source }
+    } catch {}
+
+    return $null
+}
+
+function Get-ZigExePath {
+    foreach ($candidate in @(
+        (Join-Path $env:USERPROFILE ".zv\bin\zig.exe"),
+        (Join-Path $env:USERPROFILE ".zv\bin\zig")
+    )) {
+        if (Test-Path $candidate) { return $candidate }
+    }
+
+    try {
+        $cmd = Get-Command zig -ErrorAction Stop
+        if ($cmd.Source -and (Test-Path $cmd.Source)) { return $cmd.Source }
+    } catch {}
+
     return $null
 }
 
@@ -428,6 +546,15 @@ function Get-CommandResolution {
                     }
                 } catch {}
             }
+            if (-not $target -and $cmd.Definition -match '\$global:CHTHONIC_CLAUDE_EXE') {
+                try {
+                    $claudeVar = Get-Variable -Name CHTHONIC_CLAUDE_EXE -Scope Global -ErrorAction Stop
+                    $claudePath = [string]$claudeVar.Value
+                    if ($claudePath -and (Test-Path $claudePath)) {
+                        $target = $claudePath
+                    }
+                } catch {}
+            }
 
             if ($target) {
                 $path = $target
@@ -551,6 +678,61 @@ function Ensure-RvCommandBinding {
     return [pscustomobject]$result
 }
 
+function Ensure-RCommandBinding {
+    $result = [ordered]@{
+        applied = $false
+        reason = $null
+        r_before = $null
+        r_after = $null
+        rhistory_after = $null
+    }
+
+    $rBefore = Get-CommandResolution -Name "R"
+    if ($rBefore) {
+        $result.r_before = if ($rBefore.Path) { $rBefore.Path } else { $rBefore.Display }
+    }
+
+    $rExe = Get-RExePath
+    if (-not $rExe) {
+        $result.reason = "R runtime not found"
+        return [pscustomobject]$result
+    }
+
+    $isShadowedByInvokeHistory = $false
+    if ($rBefore -and $rBefore.Type -eq "Alias" -and $rBefore.Display -eq "alias -> Invoke-History") {
+        $isShadowedByInvokeHistory = $true
+    }
+
+    if (-not $isShadowedByInvokeHistory) {
+        $result.reason = "R already bound to non-Invoke-History command"
+        $rAfter = Get-CommandResolution -Name "R"
+        if ($rAfter) { $result.r_after = if ($rAfter.Path) { $rAfter.Path } else { $rAfter.Display } }
+        return [pscustomobject]$result
+    }
+
+    try {
+        if (-not (Get-Alias -Name rhistory -ErrorAction SilentlyContinue)) {
+            Set-Alias -Name rhistory -Value Invoke-History -Scope Global -Force
+        }
+        Set-Alias -Name R -Value $rExe -Scope Global -Force
+        $result.applied = $true
+        $result.reason = "R alias redirected to $rExe"
+    } catch {
+        $result.reason = "failed to set alias: $($_.Exception.Message)"
+    }
+
+    $rAfter = Get-CommandResolution -Name "R"
+    if ($rAfter) {
+        $result.r_after = if ($rAfter.Path) { $rAfter.Path } else { $rAfter.Display }
+    }
+    $rhistoryAfter = Get-CommandResolution -Name "rhistory"
+    if ($rhistoryAfter) {
+        $result.rhistory_after = if ($rhistoryAfter.Path) { $rhistoryAfter.Path } else { $rhistoryAfter.Display }
+    }
+
+    return [pscustomobject]$result
+}
+
 function Get-SystemRegistrationPaths {
     $paths = @()
 
@@ -599,14 +781,26 @@ $defaultPolyglotPaths = @(
     # Rust (rustup managed) + Cargo tools (includes rv, rvw)
     "$env:USERPROFILE\.cargo\bin",
 
-    # Go (goup-managed, user-space)
+# Go (goup-managed, user-space)
     "$env:USERPROFILE\.goup\current\bin",
     "$env:USERPROFILE\go\bin"
 )
 
+# Zig (zv-managed)
+$defaultPolyglotPaths += "$env:USERPROFILE\.zv\bin"
+
+# R package manager lane (A2-ai/rv, kept isolated from Ruby rv)
+$defaultPolyglotPaths += "$env:USERPROFILE\.r-rv\bin"
+
 # rv-managed Ruby (exclusive ownership per ANNO manifest)
 if ($rvRubyBin) {
     $defaultPolyglotPaths += $rvRubyBin
+}
+
+# R runtime lane (current unmanaged install)
+$rExePath = Get-RExePath
+if ($rExePath) {
+    $defaultPolyglotPaths += (Split-Path -Parent $rExePath)
 }
 
 # DevKit toolchain (gcc, make) from RubyInstaller's MSYS2
@@ -642,179 +836,1282 @@ function Get-PolyglotPaths {
     return $merged | Select-Object -Unique
 }
 
+function Get-FreshMergedPath {
+    $segments = @()
+    foreach ($scope in @("User", "Machine")) {
+        $raw = [Environment]::GetEnvironmentVariable("Path", $scope)
+        if ([string]::IsNullOrWhiteSpace($raw)) { continue }
+        $segments += ($raw -split ';' | Where-Object { $_ })
+    }
+    return ($segments | Select-Object -Unique) -join ';'
+}
+
+function Get-ChthonicStrategicDocs {
+    return @(
+        [pscustomobject]@{
+            key = "migration"
+            title = "Laptop to Desktop Emigration"
+            path = (Join-Path $REPO_ROOT "codex\artifacts\LAPTOP_TO_DESKTOP_EMIGRATION.md")
+            commands = @(
+                "toolchain hierarchy",
+                "toolchain verify",
+                "toolchain paths",
+                "r lane",
+                "zig lane"
+            )
+        }
+        [pscustomobject]@{
+            key = "next"
+            title = "Codex Next"
+            path = (Join-Path $REPO_ROOT "codex\NEXT.md")
+            commands = @(
+                "memory session",
+                "commands counts",
+                "commands inventory"
+            )
+        }
+        [pscustomobject]@{
+            key = "cheatsheet"
+            title = "Oxidized Cheatsheet"
+            path = (Join-Path $REPO_ROOT "docs\OXIDIZED_CHEATSHEET.md")
+            commands = @(
+                "memory map",
+                "toolchain hierarchy",
+                "commands inventory"
+            )
+        }
+    )
+}
+
+function Get-ChthonicCommandCatalog {
+    return @(
+        [pscustomobject]@{
+            domain = "env"
+            mode = "canonical"
+            summary = "Activate polyglot environment"
+            preferred_surface = $null
+            claudine_passthrough = $true
+            actions = @()
+        }
+        [pscustomobject]@{
+            domain = "status"
+            mode = "canonical"
+            summary = "Show tool + manager versions"
+            preferred_surface = $null
+            claudine_passthrough = $true
+            actions = @()
+        }
+        [pscustomobject]@{
+            domain = "trend"
+            mode = "canonical"
+            summary = "Rustification trend tracker"
+            preferred_surface = $null
+            claudine_passthrough = $true
+            actions = @()
+        }
+        [pscustomobject]@{
+            domain = "oversight"
+            mode = "canonical"
+            summary = "Hierarchical upcycle oversight stack"
+            preferred_surface = $null
+            claudine_passthrough = $true
+            actions = @()
+        }
+        [pscustomobject]@{
+            domain = "doctor"
+            mode = "canonical"
+            summary = "Check versions + origins + EOL state"
+            preferred_surface = $null
+            claudine_passthrough = $true
+            actions = @()
+        }
+        [pscustomobject]@{
+            domain = "detect"
+            mode = "canonical"
+            summary = "Detect IDE and environment context"
+            preferred_surface = $null
+            claudine_passthrough = $true
+            actions = @()
+        }
+        [pscustomobject]@{
+            domain = "toolchain"
+            mode = "canonical"
+            summary = "High-level verified toolchain control plane"
+            preferred_surface = $null
+            claudine_passthrough = $true
+            actions = @(
+                [pscustomobject]@{ name = "hierarchy"; aliases = @("status", "lane"); summary = "ordered lane hierarchy + current command resolution" }
+                [pscustomobject]@{ name = "verify"; aliases = @(); summary = "run extension host verifier in a fresh env merge" }
+                [pscustomobject]@{ name = "scan"; aliases = @(); summary = "run toolpool scan in the extension lane" }
+                [pscustomobject]@{ name = "paths"; aliases = @(); summary = "show resolved command ownership/paths" }
+            )
+        }
+        [pscustomobject]@{
+            domain = "memory"
+            mode = "canonical"
+            summary = "Strategic runbooks + session wisdom"
+            preferred_surface = $null
+            claudine_passthrough = $true
+            actions = @(
+                [pscustomobject]@{ name = "map"; aliases = @("status", "list"); summary = "show strategic doc map + linked commands" }
+                [pscustomobject]@{ name = "migration"; aliases = @(); summary = "show migration runbook anchors" }
+                [pscustomobject]@{ name = "next"; aliases = @(); summary = "show current waypoint anchors" }
+                [pscustomobject]@{ name = "cheatsheet"; aliases = @(); summary = "show cheatsheet anchors" }
+                [pscustomobject]@{ name = "session"; aliases = @("wisdom"); summary = "synthesize the current winning state + command surface" }
+            )
+        }
+        [pscustomobject]@{
+            domain = "commands"
+            mode = "canonical"
+            summary = "Count and audit the live command surface"
+            preferred_surface = $null
+            claudine_passthrough = $true
+            actions = @(
+                [pscustomobject]@{ name = "inventory"; aliases = @("matrix", "surface"); summary = "show domains, actions, compatibility watch, and wrapper reach" }
+                [pscustomobject]@{ name = "counts"; aliases = @(); summary = "show command/subcommand totals without flags or open-ended args" }
+            )
+        }
+        [pscustomobject]@{
+            domain = "ruby"
+            mode = "canonical"
+            summary = "Ruby lane via rv + RubyGems"
+            preferred_surface = $null
+            claudine_passthrough = $true
+            actions = @(
+                [pscustomobject]@{ name = "versions"; aliases = @("rubies", "list"); summary = "list installed/available Rubies" }
+                [pscustomobject]@{ name = "tools"; aliases = @("tool-list", "installed"); summary = "list rv-installed Ruby CLI tools" }
+                [pscustomobject]@{ name = "lane"; aliases = @("status"); summary = "Ruby lane summary (rv + ruby + gcc + make + pacman)" }
+                [pscustomobject]@{ name = "doctor"; aliases = @(); summary = "detect/repair stale rv Ruby state" }
+                [pscustomobject]@{ name = "upgrade"; aliases = @("install-latest", "latest"); summary = "install latest stable Ruby if newer" }
+                [pscustomobject]@{ name = "search"; aliases = @(); summary = "search RubyGems.org" }
+                [pscustomobject]@{ name = "install"; aliases = @(); summary = "install via rv tool install" }
+            )
+        }
+        [pscustomobject]@{
+            domain = "r"
+            mode = "canonical"
+            summary = "R runtime + rv-r package lane"
+            preferred_surface = $null
+            claudine_passthrough = $true
+            actions = @(
+                [pscustomobject]@{ name = "lane"; aliases = @("status"); summary = "current unmanaged R runtime + rv-r state" }
+            )
+        }
+        [pscustomobject]@{
+            domain = "zig"
+            mode = "canonical"
+            summary = "Zig runtime + zv lane"
+            preferred_surface = $null
+            claudine_passthrough = $true
+            actions = @(
+                [pscustomobject]@{ name = "lane"; aliases = @("status"); summary = "zv + active zig state" }
+            )
+        }
+        [pscustomobject]@{
+            domain = "graphics"
+            mode = "canonical"
+            summary = "GPU / Vulkan / shader / MSVC lane snapshot"
+            preferred_surface = $null
+            claudine_passthrough = $true
+            actions = @(
+                [pscustomobject]@{ name = "lane"; aliases = @("status"); summary = "GPU / Vulkan / shader / MSVC lane snapshot" }
+            )
+        }
+        [pscustomobject]@{
+            domain = "poe"
+            mode = "canonical"
+            summary = "Poe account routing + Poe lanes"
+            preferred_surface = $null
+            claudine_passthrough = $true
+            actions = @(
+                [pscustomobject]@{ name = "account"; aliases = @(); summary = "shell-local account routing + mapping" }
+                [pscustomobject]@{ name = "models"; aliases = @(); summary = "list models" }
+                [pscustomobject]@{ name = "probe"; aliases = @(); summary = "run transport probe + mailbox emission" }
+                [pscustomobject]@{ name = "chat"; aliases = @(); summary = "run a chat request" }
+                [pscustomobject]@{ name = "sdk-probe"; aliases = @(); summary = "probe fastapi-poe SDK lane" }
+                [pscustomobject]@{ name = "audit"; aliases = @(); summary = "audit Poe transport state" }
+            )
+        }
+        [pscustomobject]@{
+            domain = "ide"
+            mode = "canonical"
+            summary = "IDE management"
+            preferred_surface = $null
+            claudine_passthrough = $true
+            actions = @(
+                [pscustomobject]@{ name = "launch"; aliases = @(); summary = "launch Claude Code IDE" }
+                [pscustomobject]@{ name = "detect"; aliases = @(); summary = "check IDE status" }
+                [pscustomobject]@{ name = "reset"; aliases = @(); summary = "reset IDE configuration" }
+            )
+        }
+        [pscustomobject]@{
+            domain = "mcp"
+            mode = "canonical"
+            summary = "MCP + bridge services"
+            preferred_surface = $null
+            claudine_passthrough = $true
+            actions = @(
+                [pscustomobject]@{ name = "start"; aliases = @(); summary = "start MCP services" }
+                [pscustomobject]@{ name = "stop"; aliases = @(); summary = "stop MCP services" }
+                [pscustomobject]@{ name = "status"; aliases = @(); summary = "check service status" }
+                [pscustomobject]@{ name = "logs"; aliases = @(); summary = "tail service logs" }
+            )
+        }
+        [pscustomobject]@{
+            domain = "config"
+            mode = "canonical"
+            summary = "Configuration (~/.chthonic/)"
+            preferred_surface = $null
+            claudine_passthrough = $true
+            actions = @(
+                [pscustomobject]@{ name = "init"; aliases = @(); summary = "initialize configuration" }
+                [pscustomobject]@{ name = "show"; aliases = @(); summary = "display configuration" }
+                [pscustomobject]@{ name = "set"; aliases = @(); summary = "set configuration value" }
+            )
+        }
+        [pscustomobject]@{
+            domain = "new"
+            mode = "canonical"
+            summary = "Scaffold polyglot projects"
+            preferred_surface = $null
+            claudine_passthrough = $true
+            actions = @(
+                [pscustomobject]@{ name = "uv-python-app"; aliases = @(); summary = "uv init --app --package" }
+                [pscustomobject]@{ name = "uv-python-lib"; aliases = @(); summary = "uv init --lib --package" }
+                [pscustomobject]@{ name = "bun-react"; aliases = @(); summary = "bun init --react" }
+                [pscustomobject]@{ name = "bun-react-tailwind"; aliases = @(); summary = "bun init --react=tailwind" }
+                [pscustomobject]@{ name = "bun-next"; aliases = @(); summary = "bun create next-app" }
+                [pscustomobject]@{ name = "cargo-rust-bin"; aliases = @(); summary = "cargo new --bin" }
+                [pscustomobject]@{ name = "cargo-rust-lib"; aliases = @(); summary = "cargo new --lib" }
+                [pscustomobject]@{ name = "go-basic"; aliases = @(); summary = "go mod init + main.go" }
+                [pscustomobject]@{ name = "ruby-gem"; aliases = @(); summary = "bundle gem" }
+                [pscustomobject]@{ name = "azure-azd-template"; aliases = @(); summary = "azd init --template" }
+            )
+        }
+        [pscustomobject]@{
+            domain = "workflow"
+            mode = "canonical"
+            summary = "Higher-level orchestrated profiles"
+            preferred_surface = $null
+            claudine_passthrough = $true
+            actions = @(
+                [pscustomobject]@{ name = "control-plane"; aliases = @(); summary = "validate status, shell probe, ssot queue/drift/lineage, MCP tool exposure" }
+                [pscustomobject]@{ name = "toolchain-governance"; aliases = @(); summary = "validate doctor/origins/toolchain probe surfaces" }
+            )
+        }
+        [pscustomobject]@{
+            domain = "shell"
+            mode = "canonical"
+            summary = "Experimental shell lane + capability probe"
+            preferred_surface = $null
+            claudine_passthrough = $true
+            actions = @(
+                [pscustomobject]@{ name = "probe"; aliases = @(); summary = "show detected shell lanes" }
+                [pscustomobject]@{ name = "brush"; aliases = @(); summary = "launch Brush" }
+                [pscustomobject]@{ name = "pwsh"; aliases = @(); summary = "launch PowerShell 7" }
+                [pscustomobject]@{ name = "bash"; aliases = @(); summary = "launch Bash" }
+            )
+        }
+        [pscustomobject]@{
+            domain = "ssot"
+            mode = "canonical"
+            summary = "SSOT loremaster control plane"
+            preferred_surface = $null
+            claudine_passthrough = $true
+            actions = @(
+                [pscustomobject]@{ name = "queue"; aliases = @(); summary = "show SSOT queue" }
+                [pscustomobject]@{ name = "entity"; aliases = @(); summary = "lookup entity" }
+                [pscustomobject]@{ name = "section"; aliases = @(); summary = "lookup section" }
+                [pscustomobject]@{ name = "drift"; aliases = @(); summary = "show drift" }
+                [pscustomobject]@{ name = "lineage"; aliases = @(); summary = "show lineage" }
+            )
+        }
+        [pscustomobject]@{
+            domain = "book"
+            mode = "canonical"
+            summary = "mdBook documentation lane"
+            preferred_surface = $null
+            claudine_passthrough = $true
+            actions = @(
+                [pscustomobject]@{ name = "build"; aliases = @(); summary = "build docs" }
+                [pscustomobject]@{ name = "serve"; aliases = @(); summary = "serve docs" }
+                [pscustomobject]@{ name = "clean"; aliases = @(); summary = "clean docs" }
+            )
+        }
+        [pscustomobject]@{
+            domain = "gemini"
+            mode = "canonical"
+            summary = "Gemini CLI wrapper with MCP disabled"
+            preferred_surface = $null
+            claudine_passthrough = $true
+            actions = @()
+        }
+        [pscustomobject]@{
+            domain = "claudine"
+            mode = "compatibility"
+            summary = "Compatibility alias to env"
+            preferred_surface = "chthonic env"
+            claudine_passthrough = $true
+            actions = @()
+        }
+        [pscustomobject]@{
+            domain = "audit"
+            mode = "compatibility"
+            summary = "Single-word archive compatibility route"
+            preferred_surface = "keep stable; do not expand beyond archive routing"
+            claudine_passthrough = $true
+            actions = @()
+        }
+        [pscustomobject]@{
+            domain = "compact"
+            mode = "compatibility"
+            summary = "Single-word archive compatibility route"
+            preferred_surface = "keep stable; do not expand beyond archive routing"
+            claudine_passthrough = $true
+            actions = @()
+        }
+        [pscustomobject]@{
+            domain = "extract"
+            mode = "compatibility"
+            summary = "Single-word archive compatibility route"
+            preferred_surface = "keep stable; do not expand beyond archive routing"
+            claudine_passthrough = $true
+            actions = @()
+        }
+        [pscustomobject]@{
+            domain = "resolve"
+            mode = "compatibility"
+            summary = "Single-word archive compatibility route"
+            preferred_surface = "keep stable; do not expand beyond archive routing"
+            claudine_passthrough = $true
+            actions = @()
+        }
+        [pscustomobject]@{
+            domain = "map"
+            mode = "compatibility"
+            summary = "Single-word archive compatibility route"
+            preferred_surface = "keep stable; do not expand beyond archive routing"
+            claudine_passthrough = $true
+            actions = @()
+        }
+        [pscustomobject]@{
+            domain = "analyze"
+            mode = "compatibility"
+            summary = "Single-word archive compatibility route"
+            preferred_surface = "keep stable; do not expand beyond archive routing"
+            claudine_passthrough = $true
+            actions = @()
+        }
+        [pscustomobject]@{
+            domain = "claude-ide"
+            mode = "compatibility"
+            summary = "Legacy alias to ide launch"
+            preferred_surface = "chthonic ide launch"
+            claudine_passthrough = $true
+            actions = @()
+        }
+    )
+}
+
+function Get-ChthonicCommandSurfacePayload {
+    $catalog = @(Get-ChthonicCommandCatalog)
+    $canonicalDomains = @($catalog | Where-Object { $_.mode -eq "canonical" })
+    $compatibilityDomains = @($catalog | Where-Object { $_.mode -eq "compatibility" })
+
+    $canonicalFormCount = (($canonicalDomains | ForEach-Object {
+        if ($_.actions.Count -gt 0) { $_.actions.Count } else { 1 }
+    }) | Measure-Object -Sum).Sum
+
+    $compatibilityFormCount = (($compatibilityDomains | ForEach-Object {
+        if ($_.actions.Count -gt 0) { $_.actions.Count } else { 1 }
+    }) | Measure-Object -Sum).Sum
+
+    $actionAliasCount = (($catalog | ForEach-Object {
+        @($_.actions | ForEach-Object { @($_.aliases).Count })
+    }) | Measure-Object -Sum).Sum
+
+    if ($null -eq $actionAliasCount) { $actionAliasCount = 0 }
+
+    $domains = @($catalog | ForEach-Object {
+        $actionNames = @($_.actions | ForEach-Object { $_.name })
+        $actionAliases = @($_.actions | ForEach-Object { $_.aliases } | Where-Object { $_ })
+
+        [pscustomobject]@{
+            domain = $_.domain
+            mode = $_.mode
+            summary = $_.summary
+            preferred_surface = $_.preferred_surface
+            claudine_passthrough = $_.claudine_passthrough
+            action_count = $_.actions.Count
+            action_names = @($actionNames)
+            action_aliases = @($actionAliases)
+        }
+    })
+
+    $compatibilityWatch = @($domains |
+        Where-Object { $_.mode -eq "compatibility" } |
+        Sort-Object domain |
+        ForEach-Object {
+            [pscustomobject]@{
+                domain = $_.domain
+                summary = $_.summary
+                preferred_surface = $_.preferred_surface
+            }
+        }
+    )
+
+    $directFormCount = $canonicalFormCount + $compatibilityFormCount
+
+    return [pscustomobject]@{
+        summary = [pscustomobject]@{
+            canonical_domains = $canonicalDomains.Count
+            compatibility_domains = $compatibilityDomains.Count
+            canonical_documented_forms = $canonicalFormCount
+            direct_documented_forms = $directFormCount
+            nested_action_aliases = $actionAliasCount
+            claudine_forwarded_forms = $directFormCount
+            claudine_default_forms = 1
+            combined_entrypoint_reach = ($directFormCount * 2) + 1
+            counting_scope = "domains + documented actions; flags and open-ended free-form args are not counted"
+        }
+        domains = @($domains | Sort-Object @{ Expression = { if ($_.mode -eq "canonical") { 0 } else { 1 } } }, domain)
+        compatibility_watch = @($compatibilityWatch)
+    }
+}
+
+function Write-ChthonicCommandSurfaceSummary {
+    param(
+        [Parameter(Mandatory = $true)]$Summary,
+        [string]$Indent = "  "
+    )
+
+    Write-Host ("{0}surface" -f $Indent) -ForegroundColor Cyan
+    Write-Host ("{0}  canonical domains      {1}" -f $Indent, $Summary.canonical_domains) -ForegroundColor White
+    Write-Host ("{0}  compatibility domains  {1}" -f $Indent, $Summary.compatibility_domains) -ForegroundColor White
+    Write-Host ("{0}  canonical forms        {1}" -f $Indent, $Summary.canonical_documented_forms) -ForegroundColor White
+    Write-Host ("{0}  direct forms total     {1}" -f $Indent, $Summary.direct_documented_forms) -ForegroundColor White
+    Write-Host ("{0}  action aliases         {1}" -f $Indent, $Summary.nested_action_aliases) -ForegroundColor White
+    Write-Host ("{0}  claudine forwards      {1}" -f $Indent, $Summary.claudine_forwarded_forms) -ForegroundColor White
+    Write-Host ("{0}  claudine default       {1}" -f $Indent, $Summary.claudine_default_forms) -ForegroundColor White
+    Write-Host ("{0}  combined reach         {1}" -f $Indent, $Summary.combined_entrypoint_reach) -ForegroundColor White
+    Write-Host ("{0}  scope                  {1}" -f $Indent, $Summary.counting_scope) -ForegroundColor DarkGray
+}
+
+function Get-ChthonicCatalogDomain {
+    param([Parameter(Mandatory = $true)][string]$Domain)
+    return (Get-ChthonicCommandCatalog | Where-Object { $_.domain -eq $Domain } | Select-Object -First 1)
+}
+
+function Format-ChthonicActionLabel {
+    param($Action)
+    $label = [string]$Action.name
+    if ($Action.aliases -and $Action.aliases.Count -gt 0) {
+        $label += "|" + (($Action.aliases | ForEach-Object { [string]$_ }) -join "|")
+    }
+    return $label
+}
+
+function Show-DomainCatalogHelp {
+    param(
+        [Parameter(Mandatory = $true)][string]$Domain,
+        [string]$EntryPoint = "chthonic"
+    )
+
+    $entry = Get-ChthonicCatalogDomain -Domain $Domain
+    if (-not $entry) {
+        Write-Host "$EntryPoint $Domain" -ForegroundColor Yellow
+        return
+    }
+
+    Write-Host "$EntryPoint $($entry.domain) <action>" -ForegroundColor White
+    Write-Host "  $($entry.summary)" -ForegroundColor DarkGray
+
+    if ($entry.mode -eq "compatibility" -and $entry.preferred_surface) {
+        Write-Host "  preferred surface: $($entry.preferred_surface)" -ForegroundColor DarkGray
+    }
+
+    if ($entry.actions.Count -eq 0) {
+        Write-Host "  (no nested documented actions)" -ForegroundColor DarkGray
+        return
+    }
+
+    foreach ($action in $entry.actions) {
+        Write-Host ("  {0,-24} {1}" -f (Format-ChthonicActionLabel -Action $action), $action.summary) -ForegroundColor White
+    }
+}
+
+function Show-CommandCatalogHelp {
+    $payload = Get-ChthonicCommandSurfacePayload
+    $canonical = @($payload.domains | Where-Object { $_.mode -eq "canonical" })
+    $compatibility = @($payload.compatibility_watch)
+
+    Write-Host ""
+    Write-Host "Usage: chthonic [--version] [--help] <domain> [<action>] [<args>]" -ForegroundColor White
+    Write-Host ""
+    Write-Host "Canonical Domains" -ForegroundColor Cyan
+    foreach ($domain in $canonical) {
+        $actionPreview = if ($domain.action_names.Count -gt 0) { $domain.action_names -join "|" } else { "[direct]" }
+        Write-Host ("  {0,-12} {1,-36} {2}" -f $domain.domain, $actionPreview, $domain.summary) -ForegroundColor White
+    }
+    Write-Host ""
+    Write-Host "Compatibility Domains" -ForegroundColor Cyan
+    foreach ($domain in $compatibility) {
+        Write-Host ("  {0,-12} {1}" -f $domain.domain, $domain.preferred_surface) -ForegroundColor DarkGray
+    }
+    Write-Host ""
+    Write-ChthonicCommandSurfaceSummary -Summary $payload.summary
+    Write-Host ""
+    Write-Host "Notes" -ForegroundColor Cyan
+    Write-Host "  Use `chthonic commands inventory` for the full live matrix." -ForegroundColor DarkGray
+    Write-Host "  Use `claudine commands counts` to verify wrapper reach from the legacy entrypoint." -ForegroundColor DarkGray
+    Write-Host ""
+}
+
+function Get-MarkdownHeadings {
+    param(
+        [Parameter(Mandatory = $true)][string]$Path,
+        [int]$Limit = 12
+    )
+
+    if (-not (Test-Path -LiteralPath $Path)) { return @() }
+
+    return @(
+        Get-Content -LiteralPath $Path -ErrorAction SilentlyContinue |
+            Where-Object { $_ -match '^(#+)\s+(.+)$' } |
+            Select-Object -First $Limit |
+            ForEach-Object {
+                [pscustomobject]@{
+                    level = ($matches[1]).Length
+                    text = $matches[2].Trim()
+                }
+            }
+    )
+}
+
+function Get-MarkdownSectionText {
+    param(
+        [Parameter(Mandatory = $true)][string]$Path,
+        [Parameter(Mandatory = $true)][string]$Heading
+    )
+
+    if (-not (Test-Path -LiteralPath $Path)) { return $null }
+
+    $lines = Get-Content -LiteralPath $Path -ErrorAction SilentlyContinue
+    if (-not $lines) { return $null }
+
+    $startIndex = -1
+    $startLevel = $null
+    for ($i = 0; $i -lt $lines.Count; $i++) {
+        if ($lines[$i] -match '^(#+)\s+(.+)$') {
+            $level = ($matches[1]).Length
+            $title = $matches[2].Trim()
+            if ($title -eq $Heading) {
+                $startIndex = $i
+                $startLevel = $level
+                break
+            }
+        }
+    }
+
+    if ($startIndex -lt 0) { return $null }
+
+    $buffer = New-Object System.Collections.Generic.List[string]
+    for ($i = $startIndex; $i -lt $lines.Count; $i++) {
+        $line = $lines[$i]
+        if ($i -gt $startIndex -and $line -match '^(#+)\s+(.+)$') {
+            $level = ($matches[1]).Length
+            if ($level -le $startLevel) { break }
+        }
+        $buffer.Add($line)
+    }
+
+    return ($buffer -join "`n").Trim()
+}
+
+function Invoke-ExtensionToolingCommand {
+    param(
+        [Parameter(Mandatory = $true)][string]$ScriptRelativePath,
+        [string[]]$Args = @()
+    )
+
+    $extensionRoot = Join-Path $REPO_ROOT "extensions\chthonic-archive"
+    $scriptPath = Join-Path $extensionRoot $ScriptRelativePath
+    if (-not (Test-Path -LiteralPath $scriptPath)) {
+        return [pscustomobject]@{
+            ExitCode = 1
+            Output = @("Missing script: $scriptPath")
+        }
+    }
+
+    $oldPath = $env:Path
+    $env:Path = Get-FreshMergedPath
+    Push-Location $extensionRoot
+    try {
+        $output = & bun run $ScriptRelativePath @Args 2>&1
+        return [pscustomobject]@{
+            ExitCode = $LASTEXITCODE
+            Output = @($output | ForEach-Object { [string]$_ })
+        }
+    }
+    finally {
+        Pop-Location
+        $env:Path = $oldPath
+    }
+}
+
+function Get-ToolchainHierarchyPayload {
+    $oldPath = $env:Path
+    $env:Path = Get-FreshMergedPath
+    try {
+        $commands = @(
+            "pwsh", "rv", "ruby", "gcc", "make", "pacman", "uv", "bun",
+            "cargo", "rustup", "go", "goup", "brush", "solana",
+            "agave-install", "avm", "anchor", "mise", "zv", "zig",
+            "r", "rscript", "rv-r"
+        ) | ForEach-Object {
+            $meta = Get-CommandResolution -Name $_
+            $resolvedPath = if ($meta) { if ($meta.Path) { $meta.Path } else { $meta.Display } } else { $null }
+
+            if ($_ -eq "rv" -and (-not $resolvedPath -or $resolvedPath -eq "alias -> Remove-Variable")) {
+                $rvExe = Get-RvExePath
+                if ($rvExe) { $resolvedPath = $rvExe }
+            }
+
+            if ($_ -eq "go" -and -not $resolvedPath) {
+                $goupGo = Join-Path $env:USERPROFILE ".goup\current\bin\go.exe"
+                if (Test-Path $goupGo) { $resolvedPath = $goupGo }
+            }
+
+            if ($_ -eq "zv" -and -not $resolvedPath) {
+                $zvExe = Get-ZvExePath
+                if ($zvExe) { $resolvedPath = $zvExe }
+            }
+
+            if ($_ -eq "zig" -and -not $resolvedPath) {
+                $zigExe = Get-ZigExePath
+                if ($zigExe) { $resolvedPath = $zigExe }
+            }
+
+            if ($_ -eq "r") {
+                $rExe = Get-RExePath
+                if ($rExe) { $resolvedPath = $rExe }
+            }
+
+            if ($_ -eq "rscript") {
+                $rscriptExe = Get-RScriptExePath
+                if ($rscriptExe) { $resolvedPath = $rscriptExe }
+            }
+
+            if ($_ -eq "rv-r") {
+                $rrvScript = Get-RRvScriptPath
+                if ($rrvScript) { $resolvedPath = $rrvScript }
+            }
+
+            $resolvedVersion = Get-InstalledVersion $_
+            if ($_ -eq "avm" -and -not $resolvedVersion -and $resolvedPath) {
+                $resolvedVersion = "installed"
+            }
+
+            [pscustomobject]@{
+                name = $_
+                path = $resolvedPath
+                version = $resolvedVersion
+            }
+        }
+
+        $docs = @(Get-ChthonicStrategicDocs | ForEach-Object {
+            [pscustomobject]@{
+                key = $_.key
+                title = $_.title
+                path = $_.path
+                exists = (Test-Path -LiteralPath $_.path)
+                headings = @(Get-MarkdownHeadings -Path $_.path -Limit 8)
+            }
+        })
+
+        return [pscustomobject]@{
+            shell = [pscustomobject]@{
+                path = (Get-FreshMergedPath)
+                fresh_shell_required = $true
+            }
+            ordered_phases = @(
+                "stabilize shell",
+                "normalize ruby + devkit",
+                "repair raw-shell path visibility",
+                "repair brush windows hybrid lane",
+                "bind graphics + native build surfaces",
+                "bind openssl for native cargo",
+                "bind solana + anchor",
+                "publish r + zig control lanes",
+                "rerun verifier in fresh env"
+            )
+            commands = @($commands)
+            docs = @($docs)
+            command_surface = (Get-ChthonicCommandSurfacePayload).summary
+        }
+    }
+    finally {
+        $env:Path = $oldPath
+    }
+}
+
+function Invoke-ToolchainMeta {
+    param(
+        [string]$ToolchainAction,
+        [string[]]$ToolchainArgs,
+        [switch]$Json
+    )
+
+    switch ($ToolchainAction) {
+        { $_ -in $null, "", "hierarchy", "status", "lane" } {
+            $payload = Get-ToolchainHierarchyPayload
+            if ($Json) {
+                Write-Host (ConvertTo-Json $payload -Depth 8)
+                return 0
+            }
+
+            Write-Host ""
+            Write-Host "CHTHONIC TOOLCHAIN HIERARCHY" -ForegroundColor Cyan
+            Write-Host ("="*72) -ForegroundColor DarkGray
+            Write-Host "  phases" -ForegroundColor Cyan
+            for ($i = 0; $i -lt $payload.ordered_phases.Count; $i++) {
+                Write-Host ("    {0}. {1}" -f ($i + 1), $payload.ordered_phases[$i]) -ForegroundColor White
+            }
+            Write-Host ""
+            Write-Host "  commands" -ForegroundColor Cyan
+            foreach ($command in $payload.commands) {
+                $version = if ($command.version) { $command.version } else { "unresolved" }
+                $path = if ($command.path) { $command.path } else { "not found" }
+                $color = if ($command.path) { "White" } else { "Red" }
+                Write-Host ("    {0,-14} {1,-18} {2}" -f $command.name, $version, $path) -ForegroundColor $color
+            }
+            Write-Host ""
+            Write-Host "  memory" -ForegroundColor Cyan
+            foreach ($doc in $payload.docs) {
+                Write-Host ("    {0,-12} {1}" -f $doc.key, $doc.path) -ForegroundColor White
+            }
+            Write-ChthonicCommandSurfaceSummary -Summary $payload.command_surface -Indent "  "
+            Write-Host ("="*72) -ForegroundColor DarkGray
+            Write-Host ""
+            return 0
+        }
+        "scan" {
+            $result = Invoke-ExtensionToolingCommand -ScriptRelativePath "scripts/toolpool-scan.ts" -Args $ToolchainArgs
+            if ($result.Output) { $result.Output | ForEach-Object { Write-Host $_ } }
+            return $result.ExitCode
+        }
+        "verify" {
+            $result = Invoke-ExtensionToolingCommand -ScriptRelativePath "scripts/verify-host.ts" -Args $ToolchainArgs
+            if ($result.Output) { $result.Output | ForEach-Object { Write-Host $_ } }
+            return $result.ExitCode
+        }
+        "paths" {
+            $payload = Get-ToolchainHierarchyPayload
+            if ($Json) {
+                Write-Host (ConvertTo-Json $payload.commands -Depth 6)
+                return 0
+            }
+            Write-Host ""
+            Write-Host "CHTHONIC TOOLCHAIN PATHS" -ForegroundColor Cyan
+            Write-Host ("="*72) -ForegroundColor DarkGray
+            foreach ($command in $payload.commands) {
+                $path = if ($command.path) { $command.path } else { "not found" }
+                $color = if ($command.path) { "White" } else { "Red" }
+                Write-Host ("  {0,-14} {1}" -f $command.name, $path) -ForegroundColor $color
+            }
+            Write-Host ("="*72) -ForegroundColor DarkGray
+            Write-Host ""
+            return 0
+        }
+        default {
+            Write-Host "chthonic toolchain <action>"
+            Write-Host "  hierarchy         - ordered lane hierarchy + current command resolution"
+            Write-Host "  verify            - run extension host verifier in a fresh env merge"
+            Write-Host "  scan              - run toolpool scan in the extension lane"
+            Write-Host "  paths             - show resolved command ownership/paths"
+            return 0
+        }
+    }
+}
+
+function Invoke-MemoryLane {
+    param(
+        [string]$MemoryAction,
+        [string[]]$MemoryArgs,
+        [switch]$Json
+    )
+
+    $docs = @(Get-ChthonicStrategicDocs | ForEach-Object {
+        [pscustomobject]@{
+            key = $_.key
+            title = $_.title
+            path = $_.path
+            exists = (Test-Path -LiteralPath $_.path)
+            commands = @($_.commands)
+            headings = @(Get-MarkdownHeadings -Path $_.path -Limit 10)
+        }
+    })
+
+    switch ($MemoryAction) {
+        { $_ -in $null, "", "map", "status", "list" } {
+            if ($Json) {
+                Write-Host (ConvertTo-Json $docs -Depth 6)
+                return 0
+            }
+            Write-Host ""
+            Write-Host "CHTHONIC MEMORY MAP" -ForegroundColor Cyan
+            Write-Host ("="*72) -ForegroundColor DarkGray
+            foreach ($doc in $docs) {
+                Write-Host ("  {0,-12} {1}" -f $doc.key, $doc.path) -ForegroundColor White
+                foreach ($heading in $doc.headings | Select-Object -First 5) {
+                    Write-Host ("    - {0}" -f $heading.text) -ForegroundColor DarkGray
+                }
+                if ($doc.commands.Count -gt 0) {
+                    Write-Host ("    commands: {0}" -f ($doc.commands -join ", ")) -ForegroundColor Cyan
+                }
+            }
+            Write-ChthonicCommandSurfaceSummary -Summary (Get-ChthonicCommandSurfacePayload).summary -Indent "  "
+            Write-Host ("="*72) -ForegroundColor DarkGray
+            Write-Host ""
+            return 0
+        }
+        { $_ -in "migration", "next", "cheatsheet" } {
+            $doc = $docs | Where-Object { $_.key -eq $MemoryAction } | Select-Object -First 1
+            if (-not $doc) {
+                Write-Error "Unknown memory document: $MemoryAction"
+                return 1
+            }
+
+            if ($Json) {
+                Write-Host (ConvertTo-Json $doc -Depth 6)
+                return 0
+            }
+
+            Write-Host ""
+            Write-Host ("CHTHONIC MEMORY: {0}" -f $doc.title.ToUpperInvariant()) -ForegroundColor Cyan
+            Write-Host ("="*72) -ForegroundColor DarkGray
+            Write-Host ("  path     {0}" -f $doc.path) -ForegroundColor White
+            Write-Host "  headings" -ForegroundColor Cyan
+            foreach ($heading in $doc.headings) {
+                Write-Host ("    - {0}" -f $heading.text) -ForegroundColor DarkGray
+            }
+            if ($doc.commands.Count -gt 0) {
+                Write-Host "  commands" -ForegroundColor Cyan
+                foreach ($command in $doc.commands) {
+                    Write-Host ("    - {0}" -f $command) -ForegroundColor DarkGray
+                }
+            }
+            Write-Host ("="*72) -ForegroundColor DarkGray
+            Write-Host ""
+            return 0
+        }
+        { $_ -in "session", "wisdom" } {
+            $migrationPath = (Get-ChthonicStrategicDocs | Where-Object { $_.key -eq "migration" } | Select-Object -First 1).path
+            $nextPath = (Get-ChthonicStrategicDocs | Where-Object { $_.key -eq "next" } | Select-Object -First 1).path
+
+            $payload = [pscustomobject]@{
+                winning_state = Get-MarkdownSectionText -Path $migrationPath -Heading "Current Winning State"
+                canonical_order = Get-MarkdownSectionText -Path $migrationPath -Heading "Canonical Order"
+                what_worked = Get-MarkdownSectionText -Path $migrationPath -Heading "What Worked"
+                do_not_repeat = Get-MarkdownSectionText -Path $migrationPath -Heading "Do Not Repeat"
+                strategic_next_steps = Get-MarkdownSectionText -Path $migrationPath -Heading "Strategic Next Steps"
+                toolchain_overlay = Get-MarkdownSectionText -Path $nextPath -Heading "Toolchain Overlay (2026-03-23)"
+                pending_work = Get-MarkdownSectionText -Path $nextPath -Heading "Pending Work"
+                command_surface = (Get-ChthonicCommandSurfacePayload).summary
+            }
+
+            if ($Json) {
+                Write-Host (ConvertTo-Json $payload -Depth 6)
+                return 0
+            }
+
+            Write-Host ""
+            Write-Host "CHTHONIC SESSION WISDOM" -ForegroundColor Cyan
+            Write-Host ("="*72) -ForegroundColor DarkGray
+            foreach ($entry in @(
+                @{ label = "Winning State"; text = $payload.winning_state },
+                @{ label = "Canonical Order"; text = $payload.canonical_order },
+                @{ label = "What Worked"; text = $payload.what_worked },
+                @{ label = "Do Not Repeat"; text = $payload.do_not_repeat },
+                @{ label = "Strategic Next Steps"; text = $payload.strategic_next_steps },
+                @{ label = "Toolchain Overlay"; text = $payload.toolchain_overlay },
+                @{ label = "Pending Work"; text = $payload.pending_work }
+            )) {
+                if (-not $entry.text) { continue }
+                Write-Host ("  {0}" -f $entry.label) -ForegroundColor Cyan
+                $entry.text -split "`n" | ForEach-Object { Write-Host ("    {0}" -f $_) -ForegroundColor $(if ($_ -match '^#') { "White" } else { "DarkGray" }) }
+                Write-Host ""
+            }
+            Write-ChthonicCommandSurfaceSummary -Summary $payload.command_surface -Indent "  "
+            Write-Host ("="*72) -ForegroundColor DarkGray
+            Write-Host ""
+            return 0
+        }
+        default {
+            Write-Host "chthonic memory <action>"
+            Write-Host "  map               - show strategic doc map"
+            Write-Host "  migration         - show migration runbook anchors"
+            Write-Host "  next              - show current waypoint anchors"
+            Write-Host "  cheatsheet        - show cheatsheet anchors"
+            Write-Host "  session|wisdom    - synthesize this session's winning patterns"
+            return 0
+        }
+    }
+}
+
+function Invoke-CommandSurface {
+    param(
+        [string]$CommandAction,
+        [switch]$Json
+    )
+
+    $payload = Get-ChthonicCommandSurfacePayload
+
+    switch ($CommandAction) {
+        { $_ -in $null, "", "inventory", "matrix", "surface" } {
+            if ($Json) {
+                Write-Host (ConvertTo-Json $payload -Depth 8)
+                return 0
+            }
+
+            Write-Host ""
+            Write-Host "CHTHONIC COMMAND INVENTORY" -ForegroundColor Cyan
+            Write-Host ("="*72) -ForegroundColor DarkGray
+            Write-ChthonicCommandSurfaceSummary -Summary $payload.summary -Indent "  "
+            Write-Host ""
+            Write-Host "  domains" -ForegroundColor Cyan
+            foreach ($domain in $payload.domains) {
+                $modeColor = if ($domain.mode -eq "canonical") { "White" } else { "Yellow" }
+                $actionsText = if ($domain.action_count -gt 0) { $domain.action_count } else { 0 }
+                $wrapperText = if ($domain.claudine_passthrough) { "yes" } else { "no" }
+
+                Write-Host ("    {0,-12} " -f $domain.domain) -NoNewline -ForegroundColor Cyan
+                Write-Host ("{0,-13}" -f $domain.mode) -NoNewline -ForegroundColor $modeColor
+                Write-Host (" actions={0,-2} claudine={1}" -f $actionsText, $wrapperText) -ForegroundColor DarkGray
+                Write-Host ("      {0}" -f $domain.summary) -ForegroundColor DarkGray
+                if ($domain.action_names.Count -gt 0) {
+                    Write-Host ("      actions: {0}" -f ($domain.action_names -join ", ")) -ForegroundColor White
+                }
+                if ($domain.action_aliases.Count -gt 0) {
+                    Write-Host ("      aliases: {0}" -f ($domain.action_aliases -join ", ")) -ForegroundColor DarkGray
+                }
+                if ($domain.preferred_surface) {
+                    Write-Host ("      prefer: {0}" -f $domain.preferred_surface) -ForegroundColor DarkGray
+                }
+            }
+            Write-Host ""
+            Write-Host "  compatibility watch" -ForegroundColor Cyan
+            foreach ($entry in $payload.compatibility_watch) {
+                Write-Host ("    {0,-12} {1}" -f $entry.domain, $entry.summary) -ForegroundColor Yellow
+                if ($entry.preferred_surface) {
+                    Write-Host ("      prefer: {0}" -f $entry.preferred_surface) -ForegroundColor DarkGray
+                }
+            }
+            Write-Host ("="*72) -ForegroundColor DarkGray
+            Write-Host ""
+            return 0
+        }
+        "counts" {
+            if ($Json) {
+                Write-Host (ConvertTo-Json $payload.summary -Depth 6)
+                return 0
+            }
+
+            Write-Host ""
+            Write-Host "CHTHONIC COMMAND COUNTS" -ForegroundColor Cyan
+            Write-Host ("="*72) -ForegroundColor DarkGray
+            Write-ChthonicCommandSurfaceSummary -Summary $payload.summary -Indent "  "
+            Write-Host ("="*72) -ForegroundColor DarkGray
+            Write-Host ""
+            return 0
+        }
+        default {
+            Write-Host "chthonic commands <action>"
+            Write-Host "  inventory|matrix  - show domains, subcommands, compatibility watch, wrapper reach"
+            Write-Host "  counts            - show command/subcommand totals"
+            return 0
+        }
+    }
+}
+
 function Show-StatusBanner {
     # Compact one-liner version probes grouped by manager
     $W = "White"; $C = "Cyan"; $D = "DarkGray"; $R = "Red"
     function ver($cmd) { try { $v = (& $cmd 2>$null); if ($v) { return ($v -split "`n")[0] } } catch {}; return $null }
 
-    Write-Host "CHTHONIC v$VERSION" -ForegroundColor $C -NoNewline
-    Write-Host " | " -ForegroundColor $D -NoNewline
-    Write-Host "$REPO_ROOT" -ForegroundColor $W
-    Write-Host ("="*72) -ForegroundColor $D
+    $oldPath = $env:Path
+    $env:Path = Get-FreshMergedPath
+    try {
+        Write-Host "CHTHONIC v$VERSION" -ForegroundColor $C -NoNewline
+        Write-Host " | " -ForegroundColor $D -NoNewline
+        Write-Host "$REPO_ROOT" -ForegroundColor $W
+        Write-Host ("="*72) -ForegroundColor $D
 
-    # rv -> Ruby
-    $rubyVer = ver { ruby -e "print RUBY_VERSION" }
-    $rvwVer = ver { rvw --version }; if ($rvwVer -match '(\d+\.\d+\.\d+)') { $rvwVer = $matches[1] } else { $rvwVer = $null }
-    $rvMeta = Get-CommandResolution -Name "rv"
-    $rvVer = $null
-    if ($rvMeta -and $rvMeta.Type -ne "Alias") {
-        $rvProbe = ver { rv --version }
-        if ($rvProbe -match '(\d+\.\d+\.\d+)') { $rvVer = $matches[1] }
-    }
-    if (-not $rvVer -and $rvwVer) { $rvVer = $rvwVer }
-    Write-Host "  rv    " -NoNewline -ForegroundColor $C
-    if ($rubyVer) { Write-Host "ruby $rubyVer" -NoNewline -ForegroundColor $W } else { Write-Host "ruby ?" -NoNewline -ForegroundColor $R }
-    if ($rvVer) { Write-Host "  rv $rvVer" -NoNewline -ForegroundColor $D }
-    if ($rvwVer) { Write-Host "  rvw $rvwVer" -NoNewline -ForegroundColor $D }
-
-    # DevKit (gcc)
-    $gccVer = ver { gcc -dumpfullversion }
-    if ($gccVer) { Write-Host "  gcc $gccVer" -NoNewline -ForegroundColor $D }
-    Write-Host ""
-
-    # uv -> Python
-    $pyVer = ver { uv run python -c "import sys; print(f'{sys.version_info.major}.{sys.version_info.minor}.{sys.version_info.micro}')" }
-    if (-not $pyVer) {
-        $pyVerRaw = ver { python --version }
-        if ($pyVerRaw -match 'Python\s+(\d+\.\d+\.\d+)') { $pyVer = $matches[1] }
-    }
-    $uvVer = ver { uv --version }; if ($uvVer -match '(\d+\.\d+\.\d+)') { $uvVer = $matches[1] } else { $uvVer = $null }
-    $ruffVer = ver { ruff --version }; if ($ruffVer -match '(\d+\.\d+\.\d+)') { $ruffVer = $matches[1] } else { $ruffVer = $null }
-    Write-Host "  uv    " -NoNewline -ForegroundColor $C
-    if ($pyVer) { Write-Host "python $pyVer" -NoNewline -ForegroundColor $W } else { Write-Host "python ?" -NoNewline -ForegroundColor $R }
-    if ($uvVer) { Write-Host "  uv $uvVer" -NoNewline -ForegroundColor $D }
-    if ($ruffVer) { Write-Host "  ruff $ruffVer" -NoNewline -ForegroundColor $D }
-    Write-Host ""
-
-    # bun -> JS/TS
-    $bunVer = ver { bun --version }
-    $biomeVer = ver { biome --version }; if ($biomeVer) { $biomeVer = $biomeVer -replace 'Version:\s*','' }
-    Write-Host "  bun   " -NoNewline -ForegroundColor $C
-    if ($bunVer) { Write-Host "bun $bunVer" -NoNewline -ForegroundColor $W } else { Write-Host "bun ?" -NoNewline -ForegroundColor $R }
-    if ($biomeVer) { Write-Host "  biome $biomeVer" -NoNewline -ForegroundColor $D }
-    Write-Host "  (sql, react, test, bundle built-in)" -ForegroundColor $D
-
-    # rustup -> Rust
-    $rustVer = ver { rustc -V }; if ($rustVer) { $rustVer = ($rustVer -split ' ')[1] }
-    $rustupVer = ver { rustup --version }; if ($rustupVer -match '(\d+\.\d+\.\d+)') { $rustupVer = $matches[1] } else { $rustupVer = $null }
-    $cargoVer = ver { cargo --version }; if ($cargoVer -match '(\d+\.\d+\.\d+)') { $cargoVer = $matches[1] } else { $cargoVer = $null }
-    Write-Host "  rust  " -NoNewline -ForegroundColor $C
-    if ($rustVer) { Write-Host "rustc $rustVer" -NoNewline -ForegroundColor $W } else { Write-Host "rustc ?" -NoNewline -ForegroundColor $R }
-    if ($rustupVer) { Write-Host "  rustup $rustupVer" -NoNewline -ForegroundColor $D }
-    if ($cargoVer) { Write-Host "  cargo $cargoVer" -NoNewline -ForegroundColor $D }
-    $mdbookVer = ver { mdbook --version }; if ($mdbookVer -match '(\d+\.\d+\.\d+)') { $mdbookVer = $matches[1] } else { $mdbookVer = $null }
-    if ($mdbookVer) { Write-Host "  mdbook $mdbookVer" -NoNewline -ForegroundColor $D }
-    Write-Host ""
-
-    # Go (try PATH, then goup)
-    $goVer = ver { go version }
-    if (-not $goVer) { $goupGo = Join-Path $env:USERPROFILE ".goup\current\bin\go.exe"; if (Test-Path $goupGo) { $goVer = ver { & $goupGo version } } }
-    if ($goVer -match 'go(\d+\.\d+\.\d+)') { $goVer = $matches[1] } else { $goVer = $null }
-    $goupVer = ver { goup --version }; if ($goupVer -match '(\d+\.\d+\.\d+)') { $goupVer = $matches[1] } else { $goupVer = $null }
-    Write-Host "  go    " -NoNewline -ForegroundColor $C
-    if ($goVer) { Write-Host "go $goVer" -NoNewline -ForegroundColor $W } else { Write-Host "go ?" -NoNewline -ForegroundColor $R }
-    if ($goupVer) { Write-Host "  goup $goupVer" -NoNewline -ForegroundColor $D }
-    Write-Host ""
-
-    # AI CLI lane (standalone + shell wrappers)
-    $claudeMeta = Get-CommandResolution -Name "claude"
-    $claudineMeta = Get-CommandResolution -Name "claudine"
-    $claudeVer = ver { claude --version }
-    if ($claudeVer -match '(\d+\.\d+\.\d+)') { $claudeVer = $matches[1] }
-    Write-Host "  ai    " -NoNewline -ForegroundColor $C
-    if ($claudeMeta) {
-        if ($claudeVer) {
-            Write-Host "claude $claudeVer" -NoNewline -ForegroundColor $W
-        } else {
-            Write-Host "claude" -NoNewline -ForegroundColor $W
+        # rv -> Ruby
+        $rubyVer = ver { ruby -e "print RUBY_VERSION" }
+        $rvwVer = ver { rvw --version }; if ($rvwVer -match '(\d+\.\d+\.\d+)') { $rvwVer = $matches[1] } else { $rvwVer = $null }
+        $rvMeta = Get-CommandResolution -Name "rv"
+        $rvVer = $null
+        if ($rvMeta -and $rvMeta.Type -ne "Alias") {
+            $rvProbe = ver { rv --version }
+            if ($rvProbe -match '(\d+\.\d+\.\d+)') { $rvVer = $matches[1] }
         }
-    } else {
-        Write-Host "claude ?" -NoNewline -ForegroundColor $R
-    }
-    if ($claudineMeta) {
-        Write-Host "  claudine $($claudineMeta.Type.ToLower())" -NoNewline -ForegroundColor $D
-    }
-    Write-Host ""
+        if (-not $rvVer -and $rvwVer) { $rvVer = $rvwVer }
+        Write-Host "  rv    " -NoNewline -ForegroundColor $C
+        if ($rubyVer) { Write-Host "ruby $rubyVer" -NoNewline -ForegroundColor $W } else { Write-Host "ruby ?" -NoNewline -ForegroundColor $R }
+        if ($rvVer) { Write-Host "  rv $rvVer" -NoNewline -ForegroundColor $D }
+        if ($rvwVer) { Write-Host "  rvw $rvwVer" -NoNewline -ForegroundColor $D }
 
-    # Cloud + data tooling
-    $azVer = Get-AzureCliVersion
-    $ssmsVer = Get-SsmsVersion
-    Write-Host "  cloud " -NoNewline -ForegroundColor $C
-    if ($azVer) { Write-Host "az $azVer" -NoNewline -ForegroundColor $W } else { Write-Host "az ?" -NoNewline -ForegroundColor $R }
-    if ($ssmsVer) { Write-Host "  ssms $ssmsVer" -NoNewline -ForegroundColor $D }
-    Write-Host ""
+        # DevKit (gcc)
+        $gccVer = ver { gcc -dumpfullversion }
+        if ($gccVer) { Write-Host "  gcc $gccVer" -NoNewline -ForegroundColor $D }
+        Write-Host ""
 
-    # Infra line
-    $gitVer = ver { git --version }; if ($gitVer) { $gitVer = ($gitVer -replace 'git version\s*','') -replace '\.windows.*','' }
-    $vulkanVer = if ($env:VULKAN_SDK -match '(\d+\.\d+\.\d+)') { $matches[1] } else { $null }
-    $clExe = Get-VSClExePath
-    $clVer = $null
-    if ($clExe) {
+        # uv -> Python
+        $pyVer = ver { uv run python -c "import sys; print(f'{sys.version_info.major}.{sys.version_info.minor}.{sys.version_info.micro}')" }
+        if (-not $pyVer) {
+            $pyVerRaw = ver { python --version }
+            if ($pyVerRaw -match 'Python\s+(\d+\.\d+\.\d+)') { $pyVer = $matches[1] }
+        }
+        $uvVer = ver { uv --version }; if ($uvVer -match '(\d+\.\d+\.\d+)') { $uvVer = $matches[1] } else { $uvVer = $null }
+        $ruffVer = ver { ruff --version }; if ($ruffVer -match '(\d+\.\d+\.\d+)') { $ruffVer = $matches[1] } else { $ruffVer = $null }
+        Write-Host "  uv    " -NoNewline -ForegroundColor $C
+        if ($pyVer) { Write-Host "python $pyVer" -NoNewline -ForegroundColor $W } else { Write-Host "python ?" -NoNewline -ForegroundColor $R }
+        if ($uvVer) { Write-Host "  uv $uvVer" -NoNewline -ForegroundColor $D }
+        if ($ruffVer) { Write-Host "  ruff $ruffVer" -NoNewline -ForegroundColor $D }
+        Write-Host ""
+
+        # bun -> JS/TS
+        $bunVer = ver { bun --version }
+        $biomeVer = ver { biome --version }; if ($biomeVer) { $biomeVer = $biomeVer -replace 'Version:\s*','' }
+        Write-Host "  bun   " -NoNewline -ForegroundColor $C
+        if ($bunVer) { Write-Host "bun $bunVer" -NoNewline -ForegroundColor $W } else { Write-Host "bun ?" -NoNewline -ForegroundColor $R }
+        if ($biomeVer) { Write-Host "  biome $biomeVer" -NoNewline -ForegroundColor $D }
+        Write-Host "  (sql, react, test, bundle built-in)" -ForegroundColor $D
+
+        # rustup -> Rust
+        $rustVer = ver { rustc -V }; if ($rustVer) { $rustVer = ($rustVer -split ' ')[1] }
+        $rustupVer = ver { rustup --version }; if ($rustupVer -match '(\d+\.\d+\.\d+)') { $rustupVer = $matches[1] } else { $rustupVer = $null }
+        $cargoVer = ver { cargo --version }; if ($cargoVer -match '(\d+\.\d+\.\d+)') { $cargoVer = $matches[1] } else { $cargoVer = $null }
+        Write-Host "  rust  " -NoNewline -ForegroundColor $C
+        if ($rustVer) { Write-Host "rustc $rustVer" -NoNewline -ForegroundColor $W } else { Write-Host "rustc ?" -NoNewline -ForegroundColor $R }
+        if ($rustupVer) { Write-Host "  rustup $rustupVer" -NoNewline -ForegroundColor $D }
+        if ($cargoVer) { Write-Host "  cargo $cargoVer" -NoNewline -ForegroundColor $D }
+        $mdbookVer = ver { mdbook --version }; if ($mdbookVer -match '(\d+\.\d+\.\d+)') { $mdbookVer = $matches[1] } else { $mdbookVer = $null }
+        if ($mdbookVer) { Write-Host "  mdbook $mdbookVer" -NoNewline -ForegroundColor $D }
+        Write-Host ""
+
+        # Go (try PATH, then goup)
+        $goVer = ver { go version }
+        if (-not $goVer) { $goupGo = Join-Path $env:USERPROFILE ".goup\current\bin\go.exe"; if (Test-Path $goupGo) { $goVer = ver { & $goupGo version } } }
+        if ($goVer -match 'go(\d+\.\d+\.\d+)') { $goVer = $matches[1] } else { $goVer = $null }
+        $goupVer = ver { goup --version }
+        if (($goupVer -join "`n") -match '(\d+\.\d+\.\d+)') { $goupVer = $matches[1] } else { $goupVer = $null }
+        $miseVer = ver { mise --version }; if ($miseVer -match '(\d+\.\d+\.\d+)') { $miseVer = $matches[1] } else { $miseVer = $null }
+        Write-Host "  go    " -NoNewline -ForegroundColor $C
+        if ($goVer) { Write-Host "go $goVer" -NoNewline -ForegroundColor $W } else { Write-Host "go ?" -NoNewline -ForegroundColor $R }
+        if ($goupVer) { Write-Host "  goup $goupVer" -NoNewline -ForegroundColor $D }
+        if ($miseVer) { Write-Host "  mise $miseVer" -NoNewline -ForegroundColor $D }
+        Write-Host ""
+
+        # Zig + R
+        $zvVer = ver { zv --version }; if ($zvVer -match '(\d+\.\d+\.\d+)') { $zvVer = $matches[1] } else { $zvVer = $null }
+        $zigVer = ver { zig version }; if ($zigVer -match '([0-9][^\s]+)') { $zigVer = $matches[1] } else { $zigVer = $null }
+        $rVer = $null
+        $rExe = Get-RExePath
+        if ($rExe) {
+            try {
+                $rOut = & $rExe --version 2>&1
+                if (($rOut -join "`n") -match 'R version (\d+\.\d+\.\d+)') { $rVer = $matches[1] }
+            } catch {}
+        }
+        $rrvVer = $null
+        $rrvExe = Get-RRvExePath
+        if ($rrvExe) {
+            try {
+                $rrvOut = & $rrvExe --version 2>$null
+                if (($rrvOut -join "`n") -match '(\d+\.\d+\.\d+)') { $rrvVer = $matches[1] }
+            } catch {}
+        }
+        Write-Host "  alt   " -NoNewline -ForegroundColor $C
+        if ($zigVer) { Write-Host "zig $zigVer" -NoNewline -ForegroundColor $W } else { Write-Host "zig ?" -NoNewline -ForegroundColor $R }
+        if ($zvVer) { Write-Host "  zv $zvVer" -NoNewline -ForegroundColor $D }
+        if ($rVer) { Write-Host "  R $rVer" -NoNewline -ForegroundColor $W } else { Write-Host "  R ?" -NoNewline -ForegroundColor $R }
+        if ($rrvVer) { Write-Host "  rv-r $rrvVer" -NoNewline -ForegroundColor $D }
+        Write-Host ""
+
+        # Chain / ecosystem managers
+        $solanaVer = $null
         try {
-            $clOut = & $clExe /Bv 2>$null
-            if ($clOut -match 'Compiler Version ([0-9\.]+)') { $clVer = $matches[1] }
+            $solanaOut = & solana --version 2>$null
+            if (($solanaOut -join "`n") -match 'solana-cli\s+([0-9][^\s]+)') { $solanaVer = $matches[1] }
         } catch {}
-        if (-not $clVer) { $clVer = "ready" }
-    }
-    $msbuildExe = Get-VSMsBuildExePath
-    $msbuildVer = $null
-    if ($msbuildExe) {
+        $agaveVer = $null
         try {
-            $msbuildOut = & $msbuildExe -version -nologo 2>$null
-            if ($msbuildOut) { $msbuildVer = (($msbuildOut | Select-Object -Last 1).ToString().Trim()) }
+            $agaveOut = & agave-install --version 2>$null
+            if (($agaveOut -join "`n") -match 'agave-install\s+([0-9][^\s]+)') { $agaveVer = $matches[1] }
         } catch {}
-    }
-    $clangBin = Get-VSClangBinDir
-    $clangVer = $null
-    if ($clangBin) {
+        $anchorVer = $null
         try {
-            $clangOut = & (Join-Path $clangBin "clang.exe") --version 2>$null
-            if ($clangOut -and $clangOut[0] -match 'clang version ([0-9\.]+)') { $clangVer = $matches[1] }
+            $anchorOut = & anchor --version 2>$null
+            if (($anchorOut -join "`n") -match 'anchor-cli\s+([0-9][^\s]+)') { $anchorVer = $matches[1] }
         } catch {}
+        Write-Host "  chain " -NoNewline -ForegroundColor $C
+        if ($solanaVer) { Write-Host "solana $solanaVer" -NoNewline -ForegroundColor $W } else { Write-Host "solana ?" -NoNewline -ForegroundColor $R }
+        if ($agaveVer) { Write-Host "  agave $agaveVer" -NoNewline -ForegroundColor $D }
+        if ($anchorVer) { Write-Host "  anchor $anchorVer" -NoNewline -ForegroundColor $D }
+        Write-Host ""
+
+        # AI CLI lane (standalone + shell wrappers)
+        $claudeMeta = Get-CommandResolution -Name "claude"
+        $claudineMeta = Get-CommandResolution -Name "claudine"
+        $claudeVer = ver { claude --version }
+        if ($claudeVer -match '(\d+\.\d+\.\d+)') { $claudeVer = $matches[1] }
+        Write-Host "  ai    " -NoNewline -ForegroundColor $C
+        if ($claudeMeta) {
+            if ($claudeVer) {
+                Write-Host "claude $claudeVer" -NoNewline -ForegroundColor $W
+            } else {
+                Write-Host "claude" -NoNewline -ForegroundColor $W
+            }
+        } else {
+            Write-Host "claude ?" -NoNewline -ForegroundColor $R
+        }
+        if ($claudineMeta) {
+            Write-Host "  claudine $($claudineMeta.Type.ToLower())" -NoNewline -ForegroundColor $D
+        }
+        Write-Host ""
+
+        # Cloud + data tooling
+        $azVer = Get-AzureCliVersion
+        $ssmsVer = Get-SsmsVersion
+        Write-Host "  cloud " -NoNewline -ForegroundColor $C
+        if ($azVer) { Write-Host "az $azVer" -NoNewline -ForegroundColor $W } else { Write-Host "az ?" -NoNewline -ForegroundColor $R }
+        if ($ssmsVer) { Write-Host "  ssms $ssmsVer" -NoNewline -ForegroundColor $D }
+        Write-Host ""
+
+        # Infra line
+        $gitVer = ver { git --version }; if ($gitVer) { $gitVer = ($gitVer -replace 'git version\s*','') -replace '\.windows.*','' }
+        $vulkanVer = if ($env:VULKAN_SDK -match '(\d+\.\d+\.\d+)') { $matches[1] } else { $null }
+        $clExe = Get-VSClExePath
+        $clVer = $null
+        if ($clExe) {
+            try {
+                $clOut = & $clExe /Bv 2>$null
+                if ($clOut -match 'Compiler Version ([0-9\.]+)') { $clVer = $matches[1] }
+            } catch {}
+            if (-not $clVer) { $clVer = "ready" }
+        }
+        $msbuildExe = Get-VSMsBuildExePath
+        $msbuildVer = $null
+        if ($msbuildExe) {
+            try {
+                $msbuildOut = & $msbuildExe -version -nologo 2>$null
+                if ($msbuildOut) { $msbuildVer = (($msbuildOut | Select-Object -Last 1).ToString().Trim()) }
+            } catch {}
+        }
+        $clangBin = Get-VSClangBinDir
+        $clangVer = $null
+        if ($clangBin) {
+            try {
+                $clangOut = & (Join-Path $clangBin "clang.exe") --version 2>$null
+                if ($clangOut -and $clangOut[0] -match 'clang version ([0-9\.]+)') { $clangVer = $matches[1] }
+            } catch {}
+        }
+        Write-Host "  sys   " -NoNewline -ForegroundColor $C
+        Write-Host "git $gitVer" -NoNewline -ForegroundColor $D
+        if ($vulkanVer) { Write-Host "  vulkan $vulkanVer" -NoNewline -ForegroundColor $D }
+        if ($clVer) { Write-Host "  cl $clVer" -NoNewline -ForegroundColor $D }
+        if ($msbuildVer) { Write-Host "  msbuild $msbuildVer" -NoNewline -ForegroundColor $D }
+        if ($clangVer) { Write-Host "  clang $clangVer" -NoNewline -ForegroundColor $D }
+        Write-Host ""
+        Write-Host ("="*72) -ForegroundColor $D
     }
-    Write-Host "  sys   " -NoNewline -ForegroundColor $C
-    Write-Host "git $gitVer" -NoNewline -ForegroundColor $D
-    if ($vulkanVer) { Write-Host "  vulkan $vulkanVer" -NoNewline -ForegroundColor $D }
-    if ($clVer) { Write-Host "  cl $clVer" -NoNewline -ForegroundColor $D }
-    if ($msbuildVer) { Write-Host "  msbuild $msbuildVer" -NoNewline -ForegroundColor $D }
-    if ($clangVer) { Write-Host "  clang $clangVer" -NoNewline -ForegroundColor $D }
+    finally {
+        $env:Path = $oldPath
+    }
+}
+
+function Get-ChthonicCatalogDomain {
+    param([Parameter(Mandatory = $true)][string]$Domain)
+
+    return @(Get-ChthonicCommandCatalog | Where-Object { $_.domain -eq $Domain } | Select-Object -First 1)
+}
+
+function Format-ChthonicActionLabel {
+    param($Action)
+
+    $label = $Action.name
+    if ($Action.aliases -and $Action.aliases.Count -gt 0) {
+        $label += "|" + (($Action.aliases | ForEach-Object { [string]$_ }) -join "|")
+    }
+    return $label
+}
+
+function Show-DomainCatalogHelp {
+    param(
+        [Parameter(Mandatory = $true)][string]$Domain,
+        [string]$EntryPoint = "chthonic"
+    )
+
+    $entry = Get-ChthonicCatalogDomain -Domain $Domain
+    if (-not $entry) {
+        Write-Host "$EntryPoint $Domain" -ForegroundColor Yellow
+        return
+    }
+
+    Write-Host "$EntryPoint $($entry.domain) <action>" -ForegroundColor White
+    Write-Host "  $($entry.summary)" -ForegroundColor DarkGray
+
+    if ($entry.mode -eq "compatibility" -and $entry.preferred_surface) {
+        Write-Host "  preferred surface: $($entry.preferred_surface)" -ForegroundColor DarkGray
+    }
+
+    if ($entry.actions.Count -eq 0) {
+        Write-Host "  (no nested documented actions)" -ForegroundColor DarkGray
+        return
+    }
+
+    foreach ($action in $entry.actions) {
+        $label = Format-ChthonicActionLabel -Action $action
+        Write-Host ("  {0,-22} {1}" -f $label, $action.summary) -ForegroundColor White
+    }
+}
+
+function Show-CommandCatalogHelp {
+    $payload = Get-ChthonicCommandSurfacePayload
+    $canonical = @($payload.domains | Where-Object { $_.mode -eq "canonical" })
+    $compatibility = @($payload.compatibility_watch)
+
     Write-Host ""
-    Write-Host ("="*72) -ForegroundColor $D
+    Write-Host "Usage: chthonic [--version] [--help] <domain> [<action>] [<args>]" -ForegroundColor White
+    Write-Host ""
+    Write-Host "Canonical Domains" -ForegroundColor Cyan
+    foreach ($domain in $canonical) {
+        $actionPreview = if ($domain.action_names.Count -gt 0) {
+            ($domain.action_names -join "|")
+        } else {
+            "[direct]"
+        }
+        Write-Host ("  {0,-12} {1,-32} {2}" -f $domain.domain, $actionPreview, $domain.summary) -ForegroundColor White
+    }
+    Write-Host ""
+    Write-Host "Compatibility Domains" -ForegroundColor Cyan
+    foreach ($domain in $compatibility) {
+        Write-Host ("  {0,-12} {1}" -f $domain.domain, $domain.preferred_surface) -ForegroundColor DarkGray
+    }
+    Write-Host ""
+    Write-ChthonicCommandSurfaceSummary -Summary $payload.summary
+    Write-Host ""
+    Write-Host "Notes" -ForegroundColor Cyan
+    Write-Host "  --help shows this catalog-driven summary without the status banner." -ForegroundColor DarkGray
+    Write-Host "  Use `chthonic commands inventory` for the full live matrix." -ForegroundColor DarkGray
+    Write-Host "  Use `claudine commands counts` to verify wrapper reach from the legacy entrypoint." -ForegroundColor DarkGray
+    Write-Host ""
 }
 
 function Show-Help {
-@"
-
-Usage: chthonic [--version] [--help] <domain> [<action>] [<args>]
-
-  env [--quiet]           Activate polyglot environment
-  claudine [--quiet]      Alias to env (shell compatibility lane)
-  status [--json]         Show tool + manager versions (verbose)
-  trend [--json]          Rustification trend tracker (GitHub + endoflife cross-ref)
-  oversight [--json]      Hierarchical upcycle oversight stack (single LATEST output)
-  doctor [--fix] [--json] Check versions + EOL via endoflife.date; --fix upgrades
-  doctor --dry-run        Simulate --fix without executing anything
-  doctor --origins        Show install methodology per tool (path + origin + wrappers)
-  detect                  Detect IDE and environment context
-  ruby versions|tools|lane|doctor|search|install|upgrade  Ruby lane via rv + RubyGems
-
-  ide launch|detect|reset IDE management
-  mcp start|stop|status   MCP + bridge services
-  poe account|models|probe|chat|sdk-probe|audit  Poe account routing + Poe lanes
-  config init|show|set    Configuration (~/.chthonic/)
-  new <profile> <path>   Scaffold polyglot projects (uv, bun, cargo, go, ruby, azd)
-  shell brush|pwsh|bash|probe  Experimental shell lane + shell capability probe
-  workflow control-plane|toolchain-governance  Run higher-level orchestrated profiles
-  ssot queue|entity|section|drift|lineage  SSOT loremaster control plane
-
-  audit|compact|extract|resolve|map|analyze  Archive tools (uv run)
-  book [serve|build]      mdBook documentation
-
-  --version               Show version
-  --help                  Show this help (without status banner)
-  --quiet                 Suppress output
-
-"@
+    Show-CommandCatalogHelp
 }
 
 function Format-StatusKeyLabel {
@@ -1092,6 +2389,13 @@ function Invoke-PolyglotActivation {
         $env:CHTHONIC_RV_BINDING = if ($rvBinding.rv_after) { $rvBinding.rv_after } else { "unresolved" }
         $env:CHTHONIC_RV_BINDING_REASON = if ($rvBinding.reason) { $rvBinding.reason } else { "" }
     }
+
+    # Resolve `R` collision with PowerShell's Invoke-History alias.
+    $rBinding = Ensure-RCommandBinding
+    if ($rBinding) {
+        $env:CHTHONIC_R_BINDING = if ($rBinding.r_after) { $rBinding.r_after } else { "unresolved" }
+        $env:CHTHONIC_R_BINDING_REASON = if ($rBinding.reason) { $rBinding.reason } else { "" }
+    }
     
     # Go environment (goup-managed)
     $goupCurrent = Join-Path $env:USERPROFILE ".goup\current"
@@ -1124,6 +2428,12 @@ function Invoke-PolyglotActivation {
                 Write-Host "  Remove-Variable preserved via: $($rvBinding.rvar_after)" -ForegroundColor DarkGray
             }
         }
+        if ($rBinding -and $rBinding.applied) {
+            Write-Host "  R alias remapped: $($rBinding.r_before) -> $($rBinding.r_after)" -ForegroundColor DarkGray
+            if ($rBinding.rhistory_after) {
+                Write-Host "  Invoke-History preserved via: $($rBinding.rhistory_after)" -ForegroundColor DarkGray
+            }
+        }
         Show-PolyglotStatus
     }
 }
@@ -1142,8 +2452,10 @@ function Show-PolyglotStatus {
     $tools['handler_rust'] = 'rustup/cargo'
     $tools['handler_go'] = 'goup'
     $tools['handler_js'] = 'bun'
+    $tools['handler_zig'] = 'zv'
     $tools['handler_node'] = 'fnm (optional Node version lane)'
-    $tools['handler_r'] = 'rig (optional R version lane)'
+    $tools['handler_r'] = 'none (runtime left as-is)'
+    $tools['handler_r_packages'] = 'rv-r (A2-ai/rv wrapper)'
     $tools['uv_tool_lane'] = 'python,ruff,cmake,ninja'
     $tools['rv'] = 'not found'
     $rvMetaStatus = Get-CommandResolution -Name "rv"
@@ -1194,6 +2506,28 @@ function Show-PolyglotStatus {
         }
     } catch { $tools['goup'] = 'not found' }
     try {
+        $zvExe = Get-ZvExePath
+        if ($zvExe) {
+            $zvOut = & $zvExe --version 2>$null
+            if (($zvOut -join "`n") -match '(\d+\.\d+\.\d+)') {
+                $tools['zv'] = $matches[1]
+            } else {
+                $tools['zv'] = (($zvOut | Select-Object -First 1).ToString().Trim())
+            }
+        } else {
+            $tools['zv'] = 'not found'
+        }
+    } catch { $tools['zv'] = 'not found' }
+    try {
+        $zigExe = Get-ZigExePath
+        if ($zigExe) {
+            $zigOut = & $zigExe version 2>$null
+            $tools['zig'] = (($zigOut | Select-Object -First 1).ToString().Trim())
+        } else {
+            $tools['zig'] = 'not found'
+        }
+    } catch { $tools['zig'] = 'not found' }
+    try {
         $fnmOut = (fnm --version 2>$null)
         if (($fnmOut -join "`n") -match '(\d+\.\d+\.\d+)') {
             $tools['fnm'] = $matches[1]
@@ -1218,7 +2552,21 @@ function Show-PolyglotStatus {
             $tools['node'] = 'not found'
         }
     } catch { $tools['node'] = 'not found' }
-    try { $tools['python'] = (uv run python --version 2>&1) -replace 'Python\s*','' } catch { $tools['python'] = 'not found' }
+    try {
+        $uvPython = $null
+        try { $uvPython = (uv python find 2>$null | Select-Object -First 1) } catch {}
+        if ($uvPython -and (Test-Path $uvPython)) {
+            $tools['python'] = ((& $uvPython --version 2>$null) -replace 'Python\s*','').Trim()
+            $tools['python_cmd'] = $uvPython
+            if ($uvPython.StartsWith($REPO_ROOT, [System.StringComparison]::OrdinalIgnoreCase)) {
+                $tools['python_origin'] = 'workspace_venv'
+            } else {
+                $tools['python_origin'] = 'uv_managed_global'
+            }
+        } else {
+            $tools['python'] = 'not found'
+        }
+    } catch { $tools['python'] = 'not found' }
     if ($tools['go'] -eq 'not found') {
         $goupGo = Join-Path $env:USERPROFILE ".goup\current\bin\go.exe"
         if (Test-Path $goupGo) {
@@ -1230,6 +2578,13 @@ function Show-PolyglotStatus {
             $pyRaw = (python --version 2>&1)
             if ($pyRaw) { $tools['python'] = ($pyRaw -replace 'Python\s*','') }
         } catch {}
+    }
+    if (-not $tools.ContainsKey('python_cmd')) {
+        $pythonMeta = Get-CommandResolution -Name "python"
+        if ($pythonMeta -and $pythonMeta.Path) {
+            $tools['python_cmd'] = $pythonMeta.Path
+            $tools['python_origin'] = 'path_fallback'
+        }
     }
     try { $tools['ruff'] = (ruff --version 2>$null) -replace 'ruff\s*','' } catch { $tools['ruff'] = 'not found' }
     try { $tools['uv'] = ((uv --version 2>$null) -split ' ')[1] } catch { $tools['uv'] = 'not found' }
@@ -1257,21 +2612,6 @@ function Show-PolyglotStatus {
         }
     } catch { $tools['proto'] = 'not found' }
     try {
-        $rigExe = Get-RigExePath
-        if ($rigExe) {
-            $rigOut = (& $rigExe --version 2>$null)
-        } else {
-            $rigOut = $null
-        }
-        if (($rigOut -join "`n") -match '(\d+\.\d+\.\d+)') {
-            $tools['rig'] = $matches[1]
-        } elseif ($rigOut) {
-            $tools['rig'] = (($rigOut | Select-Object -First 1).ToString().Trim())
-        } else {
-            $tools['rig'] = 'not found'
-        }
-    } catch { $tools['rig'] = 'not found' }
-    try {
         $rExe = Get-RExePath
         if ($rExe) {
             $rOut = (& $rExe --version 2>&1)
@@ -1286,6 +2626,32 @@ function Show-PolyglotStatus {
             $tools['r'] = 'not found'
         }
     } catch { $tools['r'] = 'not found' }
+    try {
+        $rscriptExe = Get-RScriptExePath
+        if ($rscriptExe) {
+            $rscriptOut = (& $rscriptExe --version 2>&1)
+            if (($rscriptOut -join "`n") -match 'version (\d+\.\d+\.\d+)') {
+                $tools['rscript'] = $matches[1]
+            } else {
+                $tools['rscript'] = (($rscriptOut | Select-Object -First 1).ToString().Trim())
+            }
+        } else {
+            $tools['rscript'] = 'not found'
+        }
+    } catch { $tools['rscript'] = 'not found' }
+    try {
+        $rrvExe = Get-RRvExePath
+        if ($rrvExe) {
+            $rrvOut = (& $rrvExe --version 2>$null)
+            if (($rrvOut -join "`n") -match '(\d+\.\d+\.\d+)') {
+                $tools['rv_r'] = $matches[1]
+            } else {
+                $tools['rv_r'] = (($rrvOut | Select-Object -First 1).ToString().Trim())
+            }
+        } else {
+            $tools['rv_r'] = 'not found'
+        }
+    } catch { $tools['rv_r'] = 'not found' }
     try {
         $pacmanOut = (& pacman --version 2>$null)
         if (($pacmanOut -join "`n") -match 'Pacman v(\d+\.\d+\.\d+)') {
@@ -1363,11 +2729,25 @@ function Show-PolyglotStatus {
     try { $tools['code-insiders'] = ((code-insiders --version 2>$null) -split '\n')[0] } catch { $tools['code-insiders'] = 'not found' }
     if (-not $tools['code-insiders']) { $tools['code-insiders'] = 'not found' }
     try {
-        $claudeOut = (& claude --version 2>$null)
-        if (($claudeOut -join "`n") -match '(\d+\.\d+\.\d+)') {
-            $tools['claude'] = $matches[1]
-        } elseif ($claudeOut) {
-            $tools['claude'] = ($claudeOut | Select-Object -First 1).ToString().Trim()
+        $claudeCmd = $null
+        $claudeMeta = Get-CommandResolution -Name "claude"
+        if ($claudeMeta -and $claudeMeta.Path) {
+            $claudeCmd = $claudeMeta.Path
+        } else {
+            $claudeExeMeta = Get-CommandResolution -Name "claude.exe"
+            if ($claudeExeMeta -and $claudeExeMeta.Path) { $claudeCmd = $claudeExeMeta.Path }
+        }
+        if ($claudeCmd) {
+            $claudeOut = (& $claudeCmd --version 2>&1)
+            if (($claudeOut -join "`n") -match '(\d+\.\d+\.\d+)') {
+                $tools['claude'] = $matches[1]
+            } elseif (($claudeOut -join "`n") -match 'Module not found') {
+                $tools['claude'] = 'broken_shim'
+            } elseif ($claudeOut) {
+                $tools['claude'] = ($claudeOut | Select-Object -First 1).ToString().Trim()
+            } else {
+                $tools['claude'] = 'not found'
+            }
         } else {
             $tools['claude'] = 'not found'
         }
@@ -1388,6 +2768,9 @@ function Show-PolyglotStatus {
     }
 
     $claudeMeta = Get-CommandResolution -Name "claude"
+    if (-not $claudeMeta) {
+        $claudeMeta = Get-CommandResolution -Name "claude.exe"
+    }
     if ($claudeMeta) {
         $tools['claude_cmd'] = if ($claudeMeta.Path) { $claudeMeta.Path } else { $claudeMeta.Display }
     } else {
@@ -1462,12 +2845,19 @@ function Show-PolyglotStatus {
     } else {
         $tools['proto_cmd'] = 'not found'
     }
-    $rigMeta = Get-CommandResolution -Name "rig"
-    if ($rigMeta) {
-        $tools['rig_cmd'] = if ($rigMeta.Path) { $rigMeta.Path } else { $rigMeta.Display }
+    $zvMeta = Get-CommandResolution -Name "zv"
+    if ($zvMeta) {
+        $tools['zv_cmd'] = if ($zvMeta.Path) { $zvMeta.Path } else { $zvMeta.Display }
     } else {
-        $rigExe = Get-RigExePath
-        $tools['rig_cmd'] = if ($rigExe) { $rigExe } else { 'not found' }
+        $zvExe = Get-ZvExePath
+        $tools['zv_cmd'] = if ($zvExe) { $zvExe } else { 'not found' }
+    }
+    $zigMeta = Get-CommandResolution -Name "zig"
+    if ($zigMeta) {
+        $tools['zig_cmd'] = if ($zigMeta.Path) { $zigMeta.Path } else { $zigMeta.Display }
+    } else {
+        $zigExe = Get-ZigExePath
+        $tools['zig_cmd'] = if ($zigExe) { $zigExe } else { 'not found' }
     }
     $nodeMeta = Get-CommandResolution -Name "node"
     if ($nodeMeta) {
@@ -1483,6 +2873,15 @@ function Show-PolyglotStatus {
         $rExe = Get-RExePath
         $tools['r_cmd'] = if ($rExe) { $rExe } else { 'not found' }
     }
+    $rscriptMeta = Get-CommandResolution -Name "Rscript"
+    if ($rscriptMeta) {
+        $tools['rscript_cmd'] = if ($rscriptMeta.Path) { $rscriptMeta.Path } else { $rscriptMeta.Display }
+    } else {
+        $rscriptExe = Get-RScriptExePath
+        $tools['rscript_cmd'] = if ($rscriptExe) { $rscriptExe } else { 'not found' }
+    }
+    $rrvScript = Get-RRvScriptPath
+    $tools['rv_r_cmd'] = if ($rrvScript) { $rrvScript } else { 'not found' }
     $pacmanMeta = Get-CommandResolution -Name "pacman"
     if ($pacmanMeta) {
         $tools['pacman_cmd'] = if ($pacmanMeta.Path) { $pacmanMeta.Path } else { $pacmanMeta.Display }
@@ -1523,6 +2922,28 @@ function Show-PolyglotStatus {
     }
     $tools['rv_binding'] = $rvBindingState
     $tools['rv_binding_reason'] = $rvBindingReason
+
+    $rBindingState = "not set"
+    $rBindingReason = "not set"
+    $rAliasMeta = Get-CommandResolution -Name "R"
+    if ($rAliasMeta) {
+        if ($rAliasMeta.Path) {
+            $rBindingState = $rAliasMeta.Path
+            $rBindingReason = "R mapped to runtime command in current shell"
+        } elseif ($rAliasMeta.Display -eq "alias -> Invoke-History") {
+            $rBindingState = "alias -> Invoke-History"
+            if (Get-RExePath) {
+                $rBindingReason = "not applied in current shell; run 'chthonic env' to apply collision guard"
+            } else {
+                $rBindingReason = "R runtime unavailable; collision guard cannot be applied"
+            }
+        } else {
+            $rBindingState = $rAliasMeta.Display
+            $rBindingReason = "R bound to non-default command"
+        }
+    }
+    $tools['r_binding'] = $rBindingState
+    $tools['r_binding_reason'] = $rBindingReason
 
     $clExe = Get-VSClExePath
     if ($clExe) {
@@ -1601,6 +3022,7 @@ function Show-PolyglotStatus {
         Write-StatusSection -Title "Toolchain" -Tools $tools -Keys @(
             "ruby", "rv", "rvw", "python", "uv", "ruff",
             "bun", "biome", "go", "goup", "cargo", "rust", "rustup",
+            "zig", "zv", "r", "rscript", "rv_r",
             "mdbook", "git", "gcc", "make", "claude", "brush"
         )
 
@@ -1608,7 +3030,8 @@ function Show-PolyglotStatus {
             "chthonic_cmd", "chthonic_binding",
             "claudine_cmd", "claudine_binding",
             "claude_cmd", "brush_cmd", "rv_cmd", "rv_binding", "rv_binding_reason",
-            "rvar_cmd", "mise", "mise_cmd"
+            "rvar_cmd", "r_cmd", "rscript_cmd", "rv_r_cmd",
+            "r_binding", "r_binding_reason", "zv_cmd", "zig_cmd", "mise", "mise_cmd"
         )
 
         Write-StatusSection -Title "Platform" -Tools $tools -Keys @(
@@ -1620,7 +3043,8 @@ function Show-PolyglotStatus {
         Write-StatusSection -Title "Routing Metadata" -Tools $tools -Keys @(
             "orchestrator_ssot", "orchestration_mode", "manager_model",
             "unified_overlay_optional", "handler_ruby", "handler_python",
-            "handler_rust", "handler_go", "handler_js", "handler_shell", "uv_tool_lane",
+            "handler_rust", "handler_go", "handler_js", "handler_zig", "handler_r",
+            "handler_r_packages", "handler_shell", "uv_tool_lane",
             "research_ingest_role"
         )
 
@@ -1905,14 +3329,28 @@ function Get-InstalledVersion {
     param([string]$Tool)
     try {
         switch ($Tool) {
+            "pwsh"       {
+                $pwshExe = Get-CommandPathFlexible -Name "pwsh"
+                if (-not $pwshExe) { return $null }
+                $v = & $pwshExe -NoLogo -NoProfile -Command '$PSVersionTable.PSVersion.ToString()' 2>$null
+                if ($v -match '(\d+\.\d+\.\d+)') { return $matches[1] }
+                return $null
+            }
             "ruby"       { $v = ruby -e "print RUBY_VERSION" 2>$null; return $v }
             "python"     {
-                $v = try { uv run python -c "import sys; print(f'{sys.version_info.major}.{sys.version_info.minor}.{sys.version_info.micro}')" 2>$null } catch { $null }
-                if ($v) { return $v }
+                $v = $null
+                try {
+                    $uvPython = (uv python find 2>$null | Select-Object -First 1)
+                    if ($uvPython -and (Test-Path $uvPython)) {
+                        $v = & $uvPython --version 2>$null
+                    }
+                } catch { $v = $null }
+                if ($v -match 'Python\s+(\d+\.\d+\.\d+)') { return $matches[1] }
                 $py = try { python --version 2>$null } catch { $null }
                 if ($py -match 'Python\s+(\d+\.\d+\.\d+)') { return $matches[1] }
                 return $null
             }
+            "uv"         { $v = uv --version 2>$null; if ($v -match '(\d+\.\d+\.\d+)') { return $matches[1] }; return $null }
             "bun"        { return (bun --version 2>$null) }
             "brush"      {
                 $v = brush --version 2>$null
@@ -1920,6 +3358,8 @@ function Get-InstalledVersion {
                 return $v
             }
             "rust"       { $v = rustc -V 2>$null; if ($v -match '(\d+\.\d+\.\d+)') { return $matches[1] }; return $null }
+            "cargo"      { $v = cargo --version 2>$null; if ($v -match '(\d+\.\d+\.\d+)') { return $matches[1] }; return $null }
+            "rustup"     { $v = rustup --version 2>$null; if ($v -match '(\d+\.\d+\.\d+)') { return $matches[1] }; return $null }
             "go"         {
                 # Try PATH first, then goup-managed Go
                 $v = try { go version 2>$null } catch { $null }
@@ -1928,6 +3368,18 @@ function Get-InstalledVersion {
                     if (Test-Path $goupGo) { $v = & $goupGo version 2>$null }
                 }
                 if ($v -match 'go(\d+\.\d+\.\d+)') { return $matches[1] }; return $null
+            }
+            "goup"       {
+                $v = goup --version 2>$null
+                if (($v -join "`n") -match '(\d+\.\d+\.\d+)') { return $matches[1] }
+                return $null
+            }
+            "rv"         {
+                $rvExe = Get-RvExePath
+                if (-not $rvExe) { return $null }
+                $v = & $rvExe --version 2>$null
+                if ($v -match '(\d+\.\d+\.\d+)') { return $matches[1] }
+                return $null
             }
             "nodejs"     {
                 $v = $null
@@ -1942,6 +3394,27 @@ function Get-InstalledVersion {
             "fnm"        { $v = fnm --version 2>$null; if ($v -match '(\d+\.\d+\.\d+)') { return $matches[1] }; return $null }
             "proto"      { $v = proto --version 2>$null; if ($v -match '(\d+\.\d+\.\d+)') { return $matches[1] }; return $null }
             "mise"       { $v = mise --version 2>$null; if ($v -match '(\d+\.\d+\.\d+)') { return $matches[1] }; return $null }
+            "solana"     { $v = solana --version 2>$null; if ($v -match 'solana-cli\s+([0-9][^\s]+)') { return $matches[1] }; return $null }
+            "agave-install" { $v = agave-install --version 2>$null; if ($v -match 'agave-install\s+([0-9][^\s]+)') { return $matches[1] }; return $null }
+            "anchor"     { $v = anchor --version 2>$null; if ($v -match 'anchor-cli\s+([0-9][^\s]+)') { return $matches[1] }; return $null }
+            "avm"        { return $null }
+            "zv"         {
+                $zvExe = Get-ZvExePath
+                if (-not $zvExe) { return $null }
+                $v = & $zvExe --version 2>$null
+                if ($v -match '(\d+\.\d+\.\d+)') { return $matches[1] }
+                return $null
+            }
+            "zig"        {
+                $zigExe = Get-ZigExePath
+                if (-not $zigExe) { return $null }
+                $v = & $zigExe version 2>$null
+                if ($v -match '([0-9][^\s]+)') { return $matches[1] }
+                return $null
+            }
+            "gcc"        { $v = gcc --version 2>$null; if (($v -join "`n") -match '(\d+\.\d+\.\d+)') { return $matches[1] }; return $null }
+            "make"       { $v = make --version 2>$null; if (($v -join "`n") -match 'GNU Make\s*([0-9][^\s]*)') { return $matches[1] }; return $null }
+            "pacman"     { $v = pacman --version 2>$null; if (($v -join "`n") -match 'Pacman v(\d+\.\d+\.\d+)') { return $matches[1] }; return $null }
             "rig"        {
                 $rigExe = Get-RigExePath
                 if (-not $rigExe) { return $null }
@@ -1954,6 +3427,20 @@ function Get-InstalledVersion {
                 if (-not $rExe) { return $null }
                 $v = & $rExe --version 2>&1
                 if (($v -join "`n") -match 'R version (\d+\.\d+\.\d+)') { return $matches[1] }
+                return $null
+            }
+            "rscript"    {
+                $rscriptExe = Get-RScriptExePath
+                if (-not $rscriptExe) { return $null }
+                $v = & $rscriptExe --version 2>&1
+                if (($v -join "`n") -match 'version (\d+\.\d+\.\d+)') { return $matches[1] }
+                return $null
+            }
+            "rv-r"       {
+                $rrvExe = Get-RRvExePath
+                if (-not $rrvExe) { return $null }
+                $v = & $rrvExe --version 2>$null
+                if (($v -join "`n") -match '(\d+\.\d+\.\d+)') { return $matches[1] }
                 return $null
             }
             "postgresql" {
@@ -1992,7 +3479,7 @@ function Compare-Versions {
 $global:DoctorFixMap = @{
     ruby   = @{
         Upgrade = { param($ver) rv ruby install $ver; rv ruby pin $ver }; UpgradeDesc = "rv ruby install && pin"
-        Install = { param($ver) cargo install rv; rv ruby install $ver; rv ruby pin $ver }; InstallDesc = "cargo install rv && rv ruby install && pin"
+        Install = { param($ver) if (-not (Get-Command rvw -ErrorAction SilentlyContinue)) { irm https://rv.dev/install.ps1 | iex }; rv ruby install $ver; rv ruby pin $ver }; InstallDesc = "install rv.dev (if missing) && rv ruby install && pin"
     }
     python = @{
         Upgrade = {
@@ -2038,7 +3525,7 @@ function Show-Origins {
 
     # Core ANNO-managed tools
     $tools = @(
-        @{ Name = "ruby";    Cmd = "ruby";    Method = "rv (cargo install rv)";     Ecosystem = "cargo" },
+        @{ Name = "ruby";    Cmd = "ruby";    Method = "rv (irm rv.dev/install.ps1)";     Ecosystem = "cargo" },
         @{ Name = "python";  Cmd = "uv";      Method = "irm astral.sh/uv";          Ecosystem = "uv" },
         @{ Name = "bun";     Cmd = "bun";     Method = "irm bun.sh";                Ecosystem = "bun" },
         @{ Name = "rust";    Cmd = "rustc";   Method = "rustup (irm rustup.rs)";     Ecosystem = "cargo" },
@@ -2053,8 +3540,11 @@ function Show-Origins {
         @{ Name = "node";    Cmd = $null;     Method = "fnm-managed Node runtime"; Ecosystem = "system"; Resolver = { Get-FnmNodeExePath } },
         @{ Name = "mise";    Cmd = "mise";    Method = "optional unified overlay (not SSOT)"; Ecosystem = "system" },
         @{ Name = "proto";   Cmd = "proto";   Method = "cargo install proto_cli"; Ecosystem = "cargo" },
-        @{ Name = "rig";     Cmd = $null;     Method = "winget (Posit.rig)"; Ecosystem = "system"; Resolver = { Get-RigExePath } },
-        @{ Name = "R";       Cmd = $null;     Method = "rig-managed R runtime"; Ecosystem = "system"; Resolver = { Get-RExePath } },
+        @{ Name = "zv";      Cmd = $null;     Method = "Zig version manager"; Ecosystem = "cargo"; Resolver = { Get-ZvExePath } },
+        @{ Name = "zig";     Cmd = $null;     Method = "zv-managed Zig runtime"; Ecosystem = "cargo"; Resolver = { Get-ZigExePath } },
+        @{ Name = "R";       Cmd = $null;     Method = "current R runtime (manager intentionally none)"; Ecosystem = "system"; Resolver = { Get-RExePath } },
+        @{ Name = "Rscript"; Cmd = $null;     Method = "current R helper (manager intentionally none)"; Ecosystem = "system"; Resolver = { Get-RScriptExePath } },
+        @{ Name = "rv-r";    Cmd = $null;     Method = "A2-ai/rv via repo wrapper"; Ecosystem = "local"; Resolver = { Get-RRvScriptPath } },
         @{ Name = "goup";    Cmd = "goup";    Method = "GH release binary"; Ecosystem = "cargo" },
         @{ Name = "cargo";   Cmd = "cargo";   Method = "rustup toolchain"; Ecosystem = "cargo" },
         @{ Name = "rustup";  Cmd = "rustup";  Method = "rustup manager"; Ecosystem = "cargo" },
@@ -2075,7 +3565,7 @@ function Show-Origins {
             }
             return $null
         } },
-        @{ Name = "biome";   Cmd = "biome";   Method = "bun add -g";    Ecosystem = "bun" },
+        @{ Name = "biome";   Cmd = "biome";   Method = "repo bun dependency or curated global tool";    Ecosystem = "bun" },
         @{ Name = "ruff";    Cmd = "ruff";    Method = "uv tool";       Ecosystem = "uv" },
         @{ Name = "cmake";   Cmd = "cmake";   Method = "uv tool";       Ecosystem = "uv" },
         @{ Name = "ninja";   Cmd = "ninja";   Method = "uv tool";       Ecosystem = "uv" },
@@ -2147,7 +3637,7 @@ function Show-Origins {
     Write-Host ("="*72) -ForegroundColor $D
     $dirs = @(
         @{ Path = "~/.local/bin/";   Label = "user local bin (uv + standalone CLIs)" },
-        @{ Path = "~/.bun/bin/";     Label = "bun ecosystem (bun, biome, codex, gemini)" },
+        @{ Path = "~/.bun/bin/";     Label = "bun runtime bin (bun/bunx; ambient shims are not authoritative for repo CLIs)" },
         @{ Path = "~/.cargo/bin/";   Label = "cargo ecosystem (rustc, rustup, mdbook, rv, goup)" },
         @{ Path = "~/.goup/";        Label = "goup-managed Go versions (go.dev source)" },
         @{ Path = "%APPDATA%\rv\";   Label = "rv-managed Ruby versions" },
@@ -2784,6 +4274,326 @@ function Invoke-RubyLane {
     Write-Host ""
 }
 
+function Invoke-RLane {
+    param([switch]$Json)
+
+    $rVersion = Get-InstalledVersion "r"
+    $rscriptVersion = Get-InstalledVersion "rscript"
+    $rrvVersion = Get-InstalledVersion "rv-r"
+    $rPath = Get-RExePath
+    $rscriptPath = Get-RScriptExePath
+    $rrvPath = Get-RRvScriptPath
+
+    $payload = [pscustomobject]@{
+        manager = [pscustomobject]@{
+            current = "none"
+        }
+        runtime = [pscustomobject]@{
+            r = $rVersion
+            r_path = $rPath
+            rscript = $rscriptVersion
+            rscript_path = $rscriptPath
+        }
+        packages = [pscustomobject]@{
+            rv_r = $rrvVersion
+            rv_r_wrapper = $rrvPath
+            rv_r_home = (Join-Path $env:USERPROFILE ".r-rv")
+        }
+        shell = [pscustomobject]@{
+            r_binding = $env:CHTHONIC_R_BINDING
+            r_binding_reason = $env:CHTHONIC_R_BINDING_REASON
+        }
+    }
+
+    if ($Json) {
+        Write-Output (ConvertTo-Json $payload -Depth 6)
+        return
+    }
+
+    Write-Host ""
+    Write-Host "CHTHONIC R LANE" -ForegroundColor Cyan
+    Write-Host ("="*72) -ForegroundColor DarkGray
+    Write-Host "  manager  " -NoNewline -ForegroundColor Cyan
+    Write-Host "none" -ForegroundColor DarkGray
+    Write-Host "  R        " -NoNewline -ForegroundColor Cyan
+    Write-Host ($(if ($rVersion) { $rVersion } else { "not found" })) -NoNewline -ForegroundColor White
+    if ($rPath) { Write-Host "  $rPath" -ForegroundColor DarkGray } else { Write-Host "" }
+    Write-Host "  Rscript  " -NoNewline -ForegroundColor Cyan
+    Write-Host ($(if ($rscriptVersion) { $rscriptVersion } else { "not found" })) -NoNewline -ForegroundColor White
+    if ($rscriptPath) { Write-Host "  $rscriptPath" -ForegroundColor DarkGray } else { Write-Host "" }
+    Write-Host "  rv-r     " -NoNewline -ForegroundColor Cyan
+    Write-Host ($(if ($rrvVersion) { $rrvVersion } else { "not found" })) -NoNewline -ForegroundColor White
+    if ($rrvPath) { Write-Host "  $rrvPath" -ForegroundColor DarkGray } else { Write-Host "" }
+    if ($payload.shell.r_binding_reason) {
+        Write-Host "  binding  " -NoNewline -ForegroundColor Cyan
+        Write-Host $payload.shell.r_binding_reason -ForegroundColor DarkGray
+    }
+    Write-Host ""
+}
+
+function Invoke-ZigLane {
+    param([switch]$Json)
+
+    $zvVersion = Get-InstalledVersion "zv"
+    $zigVersion = Get-InstalledVersion "zig"
+    $zvPath = Get-ZvExePath
+    $zigPath = Get-ZigExePath
+
+    $payload = [pscustomobject]@{
+        manager = [pscustomobject]@{
+            zv = $zvVersion
+            zv_path = $zvPath
+        }
+        runtime = [pscustomobject]@{
+            zig = $zigVersion
+            zig_path = $zigPath
+        }
+    }
+
+    if ($Json) {
+        Write-Output (ConvertTo-Json $payload -Depth 5)
+        return
+    }
+
+    Write-Host ""
+    Write-Host "CHTHONIC ZIG LANE" -ForegroundColor Cyan
+    Write-Host ("="*72) -ForegroundColor DarkGray
+    Write-Host "  zv       " -NoNewline -ForegroundColor Cyan
+    Write-Host ($(if ($zvVersion) { $zvVersion } else { "not found" })) -NoNewline -ForegroundColor White
+    if ($zvPath) { Write-Host "  $zvPath" -ForegroundColor DarkGray } else { Write-Host "" }
+    Write-Host "  zig      " -NoNewline -ForegroundColor Cyan
+    Write-Host ($(if ($zigVersion) { $zigVersion } else { "not found" })) -NoNewline -ForegroundColor White
+    if ($zigPath) { Write-Host "  $zigPath" -ForegroundColor DarkGray } else { Write-Host "" }
+    Write-Host ""
+}
+
+function Get-DirectorySizeBytes {
+    param([string]$Path)
+
+    if (-not (Test-Path $Path)) { return $null }
+
+    try {
+        return (Get-ChildItem -LiteralPath $Path -Recurse -File -ErrorAction SilentlyContinue | Measure-Object Length -Sum).Sum
+    } catch {
+        return $null
+    }
+}
+
+function Get-GraphicsShaderSources {
+    $roots = @(
+        (Join-Path $REPO_ROOT "assets\shaders"),
+        (Join-Path $REPO_ROOT "extensions\chthonic-archive\native\chthonic-daemon\src\shaders")
+    )
+
+    $sources = @()
+    foreach ($root in $roots) {
+        if (-not (Test-Path $root)) { continue }
+        $sources += Get-ChildItem -LiteralPath $root -Recurse -File -ErrorAction SilentlyContinue | ForEach-Object {
+            [pscustomobject]@{
+                root = $root
+                name = $_.Name
+                path = $_.FullName
+                ext = $_.Extension
+            }
+        }
+    }
+
+    return @($sources | Sort-Object path)
+}
+
+function Get-HlslShaderSources {
+    $root = Join-Path $REPO_ROOT "assets\shaders\hlsl"
+    if (-not (Test-Path $root)) { return @() }
+
+    return @(
+        Get-ChildItem -LiteralPath $root -Recurse -File -ErrorAction SilentlyContinue | ForEach-Object {
+            [pscustomobject]@{
+                root = $root
+                name = $_.Name
+                path = $_.FullName
+                ext = $_.Extension
+            }
+        } | Sort-Object path
+    )
+}
+
+function Invoke-GraphicsLane {
+    param([switch]$Json)
+
+    $glslcPath = Get-CommandPathFlexible -Name "glslc"
+    $glslcVersion = $null
+    if ($glslcPath) {
+        try {
+            $glslcOut = & $glslcPath --version 2>$null
+            if ($glslcOut) {
+                $glslcVersion = ($glslcOut | Select-Object -First 1).ToString().Trim()
+            }
+        } catch {}
+    }
+
+    $dxcPath = Get-CommandPathFlexible -Name "dxc"
+    $dxcVersion = $null
+    if ($dxcPath) {
+        try {
+            $dxcOut = & $dxcPath -help 2>$null
+            $dxcVersion = (($dxcOut | Where-Object { $_ -match '^Version:' } | Select-Object -First 1).ToString().Trim())
+        } catch {}
+    }
+
+    $nvccPath = Get-CommandPathFlexible -Name "nvcc"
+    $nvccVersion = $null
+    if ($nvccPath) {
+        try {
+            $nvccOut = & $nvccPath --version 2>$null
+            if (($nvccOut -join "`n") -match 'release\s+([0-9]+\.[0-9]+),\s+V([0-9][^\s]+)') {
+                $nvccVersion = "CUDA $($matches[1]) / nvcc $($matches[2])"
+            }
+        } catch {}
+    }
+
+    $clPath = Get-VSClExePath
+    $msbuildPath = Get-VSMsBuildExePath
+    $vsInsiders = Get-VSInstallationPath -ProductId "Microsoft.VisualStudio.Product.Community"
+    $devenvPath = if ($vsInsiders) {
+        $candidate = Join-Path $vsInsiders "Common7\IDE\devenv.exe"
+        if (Test-Path $candidate) { $candidate } else { $null }
+    } else { $null }
+
+    $cudnnDirs = @(
+        Get-ChildItem "C:\Program Files\NVIDIA\CUDNN" -Directory -ErrorAction SilentlyContinue |
+            Sort-Object Name |
+            ForEach-Object { $_.FullName }
+    )
+
+    $tensorRtDirs = @(
+        Get-ChildItem "C:\Program Files\NVIDIA" -Directory -ErrorAction SilentlyContinue |
+            Where-Object { $_.Name -like "TensorRT*" } |
+            Sort-Object Name |
+            ForEach-Object { $_.FullName }
+    )
+
+    $cacheTargets = @(
+        [pscustomobject]@{ name = "DXCache"; path = (Join-Path $env:LOCALAPPDATA "NVIDIA\DXCache") },
+        [pscustomobject]@{ name = "GLCache"; path = (Join-Path $env:LOCALAPPDATA "NVIDIA\GLCache") },
+        [pscustomobject]@{ name = "ComputeCache"; path = (Join-Path $env:LOCALAPPDATA "NVIDIA\ComputeCache") },
+        [pscustomobject]@{ name = "D3DSCache"; path = (Join-Path $env:LOCALAPPDATA "D3DSCache") }
+    ) | ForEach-Object {
+        [pscustomobject]@{
+            name = $_.name
+            path = $_.path
+            exists = Test-Path $_.path
+            size_bytes = Get-DirectorySizeBytes $_.path
+        }
+    }
+
+    $shaderSources = @(Get-GraphicsShaderSources)
+    $hlslSources = @(Get-HlslShaderSources)
+    $cudaProbeSource = Join-Path $REPO_ROOT "native\cuda\chthonic_probe.cu"
+    $videoControllers = @(
+        Get-CimInstance Win32_VideoController -ErrorAction SilentlyContinue |
+            Select-Object Name, DriverVersion, AdapterRAM
+    )
+
+    $systemInfo = Get-CimInstance Win32_ComputerSystem -ErrorAction SilentlyContinue |
+        Select-Object Manufacturer, Model, TotalPhysicalMemory
+
+    $payload = [pscustomobject]@{
+        host = [pscustomobject]@{
+            manufacturer = $systemInfo.Manufacturer
+            model = $systemInfo.Model
+            total_physical_memory = $systemInfo.TotalPhysicalMemory
+        }
+        gpu = [pscustomobject]@{
+            controllers = $videoControllers
+            nvidia_smi_driver = $null
+            cuda_driver_version = $null
+        }
+        graphics = [pscustomobject]@{
+            vulkan_sdk = $env:VULKAN_SDK
+            glslc_path = $glslcPath
+            glslc_version = $glslcVersion
+            dxc_path = $dxcPath
+            dxc_version = $dxcVersion
+        }
+        compute = [pscustomobject]@{
+            nvcc_path = $nvccPath
+            nvcc_version = $nvccVersion
+            cuda_path = $env:CUDA_PATH
+            cudnn_dirs = $cudnnDirs
+            tensorrt_dirs = $tensorRtDirs
+        }
+        msvc = [pscustomobject]@{
+            cl_path = $clPath
+            msbuild_path = $msbuildPath
+            devenv_path = $devenvPath
+        }
+        shaders = [pscustomobject]@{
+            source_count = $shaderSources.Count
+            sources = $shaderSources
+            hlsl_source_count = $hlslSources.Count
+            hlsl_sources = $hlslSources
+        }
+        caches = $cacheTargets
+        repo = [pscustomobject]@{
+            vs_dir_exists = (Test-Path (Join-Path $REPO_ROOT ".vs"))
+            vscode_dir_exists = (Test-Path (Join-Path $REPO_ROOT ".vscode"))
+            cmake_lists_exists = (Test-Path (Join-Path $REPO_ROOT "CMakeLists.txt"))
+            cmake_presets_exists = (Test-Path (Join-Path $REPO_ROOT "CMakePresets.json"))
+            cuda_probe_exists = (Test-Path $cudaProbeSource)
+            tensor_runtime_host_exists = (Test-Path (Join-Path $REPO_ROOT "extensions\chthonic-archive\native\tensor-runtime-host\Cargo.toml"))
+        }
+    }
+
+    try {
+        $nvidiaOut = & nvidia-smi 2>$null
+        if (($nvidiaOut -join "`n") -match 'Driver Version:\s*([0-9\.]+)\s+CUDA Version:\s*([0-9\.]+)') {
+            $payload.gpu.nvidia_smi_driver = $matches[1]
+            $payload.gpu.cuda_driver_version = $matches[2]
+        }
+    } catch {}
+
+    if ($Json) {
+        Write-Output (ConvertTo-Json $payload -Depth 8)
+        return
+    }
+
+    Write-Host ""
+    Write-Host "CHTHONIC GRAPHICS LANE" -ForegroundColor Cyan
+    Write-Host ("="*72) -ForegroundColor DarkGray
+    Write-Host "  host     " -NoNewline -ForegroundColor Cyan
+    Write-Host ("{0} / {1}" -f $payload.host.manufacturer, $payload.host.model) -ForegroundColor White
+    Write-Host "  gpu      " -NoNewline -ForegroundColor Cyan
+    Write-Host ($(if ($payload.gpu.controllers.Count -gt 0) { $payload.gpu.controllers[0].Name } else { "not found" })) -ForegroundColor White
+    Write-Host "  vulkan   " -NoNewline -ForegroundColor Cyan
+    Write-Host ($(if ($payload.graphics.vulkan_sdk) { $payload.graphics.vulkan_sdk } else { "not found" })) -ForegroundColor White
+    Write-Host "  glslc    " -NoNewline -ForegroundColor Cyan
+    Write-Host ($(if ($payload.graphics.glslc_version) { $payload.graphics.glslc_version } else { "not found" })) -ForegroundColor White
+    Write-Host "  dxc      " -NoNewline -ForegroundColor Cyan
+    Write-Host ($(if ($payload.graphics.dxc_version) { $payload.graphics.dxc_version } else { "not found" })) -ForegroundColor White
+    Write-Host "  nvcc     " -NoNewline -ForegroundColor Cyan
+    Write-Host ($(if ($payload.compute.nvcc_version) { $payload.compute.nvcc_version } else { "not found" })) -ForegroundColor White
+    Write-Host "  msvc     " -NoNewline -ForegroundColor Cyan
+    Write-Host ($(if ($payload.msvc.cl_path) { $payload.msvc.cl_path } else { "not found" })) -ForegroundColor DarkGray
+    Write-Host "  shaders  " -NoNewline -ForegroundColor Cyan
+    Write-Host $payload.shaders.source_count -ForegroundColor White
+    foreach ($shader in $payload.shaders.sources) {
+        Write-Host "    - $($shader.path)" -ForegroundColor DarkGray
+    }
+    Write-Host "  hlsl     " -NoNewline -ForegroundColor Cyan
+    Write-Host $payload.shaders.hlsl_source_count -ForegroundColor White
+    foreach ($shader in $payload.shaders.hlsl_sources) {
+        Write-Host "    - $($shader.path)" -ForegroundColor DarkGray
+    }
+    Write-Host "  caches   " -NoNewline -ForegroundColor Cyan
+    Write-Host $payload.caches.Count -ForegroundColor White
+    foreach ($cache in $payload.caches) {
+        Write-Host ("    - {0}: {1}" -f $cache.name, $(if ($cache.exists) { $cache.size_bytes } else { "missing" })) -ForegroundColor DarkGray
+    }
+    Write-Host "  cmake    " -NoNewline -ForegroundColor Cyan
+    Write-Host ("Lists={0} Presets={1} CudaProbe={2} TensorHost={3}" -f $payload.repo.cmake_lists_exists, $payload.repo.cmake_presets_exists, $payload.repo.cuda_probe_exists, $payload.repo.tensor_runtime_host_exists) -ForegroundColor White
+    Write-Host ""
+}
+
 function Invoke-RubySearch {
     param([string[]]$RubyArgs, [switch]$Json)
 
@@ -2917,13 +4727,15 @@ switch ($Domain) {
     "env" {
         $quietFlag = $HasQuietFlag
         Invoke-PolyglotActivation -Quiet:$quietFlag
-        exit 0
+        Complete-ChthonicCommand 0
+        return
     }
     "claudine" {
         # Compatibility alias for existing shell/profile wrappers.
         $quietFlag = $HasQuietFlag
         Invoke-PolyglotActivation -Quiet:$quietFlag
-        exit 0
+        Complete-ChthonicCommand 0
+        return
     }
     "status" {
         Show-PolyglotStatus -Json:$HasJsonFlag
@@ -2951,6 +4763,18 @@ switch ($Domain) {
             exit 0
         }
         $exitCode = Invoke-IDEDetect -Json:$false
+        exit $exitCode
+    }
+    "toolchain" {
+        $exitCode = Invoke-ToolchainMeta -ToolchainAction $Action -ToolchainArgs $RemainingArgs -Json:$HasJsonFlag
+        exit $exitCode
+    }
+    "memory" {
+        $exitCode = Invoke-MemoryLane -MemoryAction $Action -MemoryArgs $RemainingArgs -Json:$HasJsonFlag
+        exit $exitCode
+    }
+    "commands" {
+        $exitCode = Invoke-CommandSurface -CommandAction $Action -Json:$HasJsonFlag
         exit $exitCode
     }
     "ruby" {
@@ -2994,6 +4818,42 @@ switch ($Domain) {
                 Write-Host "  search <query>      - search RubyGems.org"
                 Write-Host "  install <gem>       - install via rv tool install (defaults to RubyGems.org)"
                 Write-Host "    flags: --rubygems | --coop | --server <url> | --force"
+                exit 0
+            }
+        }
+    }
+    "r" {
+        switch ($Action) {
+            { $_ -in $null, "", "lane", "status" } {
+                Invoke-RLane -Json:$HasJsonFlag
+                exit 0
+            }
+            default {
+                Show-DomainCatalogHelp -Domain "r"
+                exit 0
+            }
+        }
+    }
+    "zig" {
+        switch ($Action) {
+            { $_ -in $null, "", "lane", "status" } {
+                Invoke-ZigLane -Json:$HasJsonFlag
+                exit 0
+            }
+            default {
+                Show-DomainCatalogHelp -Domain "zig"
+                exit 0
+            }
+        }
+    }
+    "graphics" {
+        switch ($Action) {
+            { $_ -in $null, "", "lane", "status" } {
+                Invoke-GraphicsLane -Json:$HasJsonFlag
+                exit 0
+            }
+            default {
+                Show-DomainCatalogHelp -Domain "graphics"
                 exit 0
             }
         }
@@ -3089,10 +4949,7 @@ switch ($Domain) {
                 exit 0
             }
             default {
-                Write-Host 'chthonic ide <action>'
-                Write-Host "  launch [path]    - Launch Claude Code IDE"
-                Write-Host "  detect           - Check IDE status"
-                Write-Host "  reset            - Reset IDE configuration"
+                Show-DomainCatalogHelp -Domain "ide"
                 exit 0
             }
         }
@@ -3126,11 +4983,7 @@ switch ($Domain) {
                 exit 0
             }
             default {
-                Write-Host 'chthonic mcp <action>'
-                Write-Host "  start      - Start MCP services"
-                Write-Host "  stop       - Stop MCP services"
-                Write-Host "  status     - Check service status"
-                Write-Host "  logs       - Tail service logs"
+                Show-DomainCatalogHelp -Domain "mcp"
                 exit 0
             }
         }
@@ -3173,10 +5026,7 @@ switch ($Domain) {
                 exit 0
             }
             default {
-                Write-Host 'chthonic config <action>'
-                Write-Host "  init       - Initialize configuration"
-                Write-Host "  show       - Display configuration"
-                Write-Host '  set <k> <v> - Set configuration value'
+                Show-DomainCatalogHelp -Domain "config"
                 exit 0
             }
         }
@@ -3232,8 +5082,15 @@ switch ($Domain) {
                     Write-Error "brush not found on PATH"
                     exit 1
                 }
+                $brushRc = Get-BrushRepoRcPath
                 if ($RemainingArgs.Count -ge 2 -and $RemainingArgs[0] -eq "--cmd") {
-                    & $brushExe -c $RemainingArgs[1]
+                    if ($brushRc) {
+                        & $brushExe -i --rcfile $brushRc -c $RemainingArgs[1]
+                    } else {
+                        & $brushExe -c $RemainingArgs[1]
+                    }
+                } elseif ($RemainingArgs.Count -eq 0 -and $brushRc) {
+                    & $brushExe -i --rcfile $brushRc
                 } else {
                     & $brushExe @RemainingArgs
                 }
@@ -3266,14 +5123,7 @@ switch ($Domain) {
                 exit $LASTEXITCODE
             }
             default {
-                Write-Host 'chthonic shell <action>'
-                Write-Host "  probe           - show detected shell lanes"
-                Write-Host "  brush [args...] - launch Brush"
-                Write-Host "  brush --cmd <c> - run one Brush command"
-                Write-Host "  pwsh [args...]  - launch PowerShell 7"
-                Write-Host "  pwsh --cmd <c>  - run one PowerShell command"
-                Write-Host "  bash [args...]  - launch Git/MSYS2 Bash"
-                Write-Host "  bash --cmd <c>  - run one Bash command"
+                Show-DomainCatalogHelp -Domain "shell"
                 exit 0
             }
         }
@@ -3281,12 +5131,7 @@ switch ($Domain) {
 
     "ssot" {
         if (-not $Action) {
-            Write-Host 'chthonic ssot <action>'
-            Write-Host "  queue [--write <path>] [--json]"
-            Write-Host "  entity <name> [--json]"
-            Write-Host "  section <query> [--json]"
-            Write-Host "  drift [--json]"
-            Write-Host "  lineage [--entity <name>] [--write <path>] [--json]"
+            Show-DomainCatalogHelp -Domain "ssot"
             exit 0
         }
         $result = Invoke-SsotLoremaster -Action $Action -ActionArgs $RemainingArgs -Json:$HasJsonFlag
@@ -3351,3 +5196,8 @@ switch ($Domain) {
         }
     }
 }
+
+
+
+
+

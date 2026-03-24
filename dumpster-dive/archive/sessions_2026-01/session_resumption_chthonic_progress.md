@@ -9,7 +9,7 @@
 **Choose your path based on urgency:**
 
 ### ⚡ Fast Resume (30 seconds)
-→ **[`.github/SESSION_RESUME.md`](.github/SESSION_RESUME.md)**
+→ **[`.github/SESSION_RESUME.md`](../../../.github/SESSION_RESUME.md)**
 - Point-blank context
 - Current active issue
 - Decision tree for next steps
@@ -40,7 +40,7 @@
 **Last Modified**: 2025-12-31T06:35:00Z
 
 **Quick Links to Active Files**:
-- [`chthonic-vscode-extension/src/extension.ts`](chthonic-vscode-extension/src/extension.ts) - Main extension logic
+- [`chthonic-vscode-extension/src/extension.ts`](../../../chthonic-vscode-extension/src/extension.ts) - Main extension logic
 - [`chthonic-vscode-extension/INSTALL.md`](../../../chthonic-vscode-extension/INSTALL.md) - Debug guide
 - [`chthonic-vscode-extension/COPILOT_API.md`](../../../chthonic-vscode-extension/COPILOT_API.md) - Architecture docs
 
@@ -49,16 +49,16 @@
 ## 📖 Documentation Index
 
 ### Core Documentation
-- **[SESSION_RESUME.md](.github/SESSION_RESUME.md)** - Point-blank session recovery (3.5K chars)
+- **[SESSION_RESUME.md (.github)](../../../.github/SESSION_RESUME.md)** - Point-blank session recovery (3.5K chars)
 - **[DEVELOPMENT_STATE.md](../../../docs/DEVELOPMENT_STATE.md)** - Full development context (13.5K chars)
 - **[copilot-instructions.md](../../../.github/copilot-instructions.md)** - SSOT (89K lines)
 
 ### Project-Specific Documentation
-- **[chthonic-vscode-extension/README.md](chthonic-vscode-extension/README.md)** - Extension overview
+- **[chthonic-vscode-extension/README.md](../../../chthonic-vscode-extension/README.md)** - Extension overview
 - **[chthonic-vscode-extension/INSTALL.md](../../../chthonic-vscode-extension/INSTALL.md)** - Installation & debugging
 - **[chthonic-vscode-extension/COPILOT_API.md](../../../chthonic-vscode-extension/COPILOT_API.md)** - API integration details
-- **[mas_mcp/README.md](mas_mcp/README.md)** - Python backend documentation
-- **[mas_mcp/frontend/README.md](mas_mcp/frontend/README.md)** - Dashboard documentation
+- **[mas_mcp/README.md](../../../mas_mcp/README.md)** - Python backend documentation
+- **[mas_mcp/frontend/README.md](../../../mas_mcp/frontend/README.md)** - Dashboard documentation
 
 ---
 
@@ -117,7 +117,7 @@ bun run build        # Production build
 
 ### 1. VSCode Extension - Copilot API
 **Status**: 🔥 Diagnostic build deployed, awaiting user test  
-**Details**: See [SESSION_RESUME.md → Active Issue](.github/SESSION_RESUME.md#-active-issue)  
+**Details**: See [SESSION_RESUME.md (.github)](../../../.github/SESSION_RESUME.md#-active-issue)  
 **Debug Steps**: See [INSTALL.md → Debugging](../../../chthonic-vscode-extension/INSTALL.md)
 
 ### 2. GPU Stack - Python 3.14 Incompatibility
@@ -177,7 +177,7 @@ bun run build        # Production build
 ## 🆘 Emergency Recovery
 
 **If context completely lost:**
-1. Load [SESSION_RESUME.md](.github/SESSION_RESUME.md) (30-sec orientation)
+1. Load [SESSION_RESUME.md (.github)](../../../.github/SESSION_RESUME.md) (30-sec orientation)
 2. Load [DEVELOPMENT_STATE.md](../../../docs/DEVELOPMENT_STATE.md) (full context)
 3. Check `git status` for uncommitted work
 4. Check `git log --oneline -10` for recent activity

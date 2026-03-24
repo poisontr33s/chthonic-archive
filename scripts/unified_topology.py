@@ -38,6 +38,8 @@ if sys.platform == 'win32':
     sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
     sys.stderr = io.TextIOWrapper(sys.stderr.buffer, encoding='utf-8')
 
+sys.path.insert(0, str(__import__('pathlib').Path(__file__).resolve().parent.parent))
+from scripts.lib.ssot_paths import SSOT_POINTER
 
 from __future__ import annotations
 from dataclasses import dataclass, asdict
@@ -144,7 +146,7 @@ def infer_tier(path_str: str, role: Optional[str]) -> Optional[str]:
     p = Path(path_str)
 
     # SSOT files = Tier 0.5
-    if p.name in ["ankh.md", "ANKHOLOGY.md", ".github/copilot-instructions.md"]:
+    if p.name in ["ankh.md", "ANKHOLOGY.md"] or str(p) == SSOT_POINTER:
         return "T0.5"
 
     # Core DCRP scripts = Tier 1

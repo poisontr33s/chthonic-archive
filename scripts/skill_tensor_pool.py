@@ -1,0 +1,48 @@
+#!/usr/bin/env python3
+#-*- coding: utf-8 -*-
+
+"""
+POOL PROBE — Pool size, legal vs degraded vs blocked, exclusion ratio.
+The pool is the set of cells eligible for roulette selection.
+"""
+
+from skill_tensor_common import load_latest, print_kv, probe_header, section, step_by_name
+
+
+def main() -> None:
+    data = load_latest()
+    probe_header("pool", data)
+
+    step = step_by_name(data, "pool")
+    if step:
+        print_kv("Stage status", step["status"])
+        print_kv("Duration", f"{step['seconds']:.3f}s")
+
+    sec = section(data, "pool")
+    pool_size = sec.get("pool_size", 0)
+    excluded = sec.get("excluded_size", 0)
+    groups = sec.get("action_group_count", 0)
+    total = pool_size + excluded
+
+    print_kv("Pool size (legal)", pool_size)
+    print_kv("Excluded cells", excluded)
+    print_kv("Total universe cells", total)
+    print_kv("Inclusion rate", f"{pool_size / total * 100:.1f}%" if total else "N/A")
+    print_kv("Action key groups", groups)
+
+    # Universe breakdown
+    uni = section(data, "universe")
+    if uni:
+        print()
+        print("--- Universe Breakdown ---")
+        print_kv("Total moves", uni.get("move_count", "?"))
+        for status, count in uni.get("status_counts", {}).items():
+            print_kv(f"  {status}", count)
+        print()
+        print("--- Execution Kind ---")
+        for kind, count in uni.get("execution_kind_counts", {}).items():
+            print_kv(f"  {kind}", count)
+
+
+if __name__ == "__main__":
+    main()

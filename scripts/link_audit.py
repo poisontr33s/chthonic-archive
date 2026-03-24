@@ -26,6 +26,9 @@ Usage:
     uv run scripts/link_audit.py check <file>              # audit one file
     uv run scripts/link_audit.py check <file> --fix        # audit + rewrite fixes
     uv run scripts/link_audit.py check <file> --dry-run    # show fixes without writing
+    uv run scripts/link_audit.py scan                       # audit ALL markdown files in repo
+    uv run scripts/link_audit.py scan --dry-run             # preview repo-wide fixes
+    uv run scripts/link_audit.py scan --fix                 # apply repo-wide fixes
     uv run scripts/link_audit.py backticks <file>           # scan for inert backtick file/path refs
     uv run scripts/link_audit.py backticks <file> --dry-run # preview inert backtick upgrades
     uv run scripts/link_audit.py backticks <file> --fix     # rewrite fixable backticks as links
@@ -45,6 +48,7 @@ import re
 import subprocess
 import sys
 from pathlib import Path
+from urllib.parse import unquote as _url_unquote
 
 from scripts.lib.shared import configure_utf8_output, find_repo_root, setup_logging
 
@@ -57,19 +61,105 @@ from scripts.lib.shared import configure_utf8_output, find_repo_root, setup_logg
 RE_MD_LINK = re.compile(r"(\[([^\]]*)\]\(([^)]+)\))")
 
 # Paths that are never internal file references
-EXTERNAL_PREFIXES = ("http://", "https://", "mailto:", "tel:", "#", "ftp://")
+EXTERNAL_PREFIXES = (
+    "http://", "https://", "mailto:", "tel:", "ftp://",
+    "file:///",  # absolute filesystem URIs from VS Code session dumps
+)
 
-# Directories to skip during collision scanning
+# Directories to skip during scanning and collision indexing.
+# Includes build artifacts, vendored third-party content, and directories
+# whose markdown links are not repo-internal (Hugo templates, session dumps).
 SKIP_DIRS = {
     ".git", "node_modules", "target", "__pycache__", ".venv",
     "build", "dist", ".mypy_cache", ".ruff_cache",
+    # Third-party / vendored — links reference their own ecosystems
+    "meta-ide", "extensions",
+    # Session dumps / debugging artifacts — stale file:/// URIs, old usernames
+    "debugging_data",
+    # Archive-heavy salvage vault — 19k+ files, no active links target it
+    "corpse-vault",
 }
+
+# Basenames to skip during scanning (third-party docs whose links are ecosystem-internal)
+RE_SKIP_BASENAME = re.compile(r"^(license|readme|changelog|contributing)\b", re.IGNORECASE)
 
 # Backtick-wrapped content: matches `...` outside of [`...`](...) link labels
 RE_BACKTICK = re.compile(r"`([^`]+)`")
 RE_FILEISH_EXT = re.compile(r"\.(md|py|svg|json|ts|js|toml|yaml|yml|ps1|sh)$")
 RE_WINDOWS_ABS = re.compile(r"^[A-Za-z]:[\\/]")
 RE_GENERIC_DOTTED_NAME = re.compile(r"^[^`\s\\/]+(?:\.[A-Za-z0-9_-]{1,24})+$")
+RE_MD_HEADING = re.compile(r"^(#{1,6})\s+(.+?)\s*$")
+
+
+# =============================================================================
+# Heading Slug Utilities
+# =============================================================================
+
+def markdown_to_slug(heading_text: str) -> str:
+    """Convert a markdown heading to a GitHub-compatible anchor slug.
+
+    Rules (matching GitHub/VS Code behaviour):
+    - Strip leading/trailing whitespace
+    - Downcase
+    - Strip characters that are not alphanumeric, space, or hyphen
+    - Replace spaces with hyphens
+    - Do NOT collapse consecutive hyphens (GitHub preserves them)
+    """
+    slug = heading_text.strip().lower()
+    # Remove inline formatting markers (bold, italic, code, links)
+    slug = re.sub(r"[`*_~\[\]()]", "", slug)
+    # Remove HTML tags
+    slug = re.sub(r"<[^>]+>", "", slug)
+    # Keep only alphanumeric, spaces, hyphens, and unicode letters
+    slug = re.sub(r"[^\w\s-]", "", slug)
+    slug = slug.replace(" ", "-")
+    slug = slug.strip("-")
+    return slug
+
+
+def extract_heading_slugs(text: str) -> set[str]:
+    """Extract all heading anchor slugs from markdown text.
+
+    Handles duplicate headings by appending -1, -2, etc. (GitHub convention).
+    """
+    slugs: set[str] = set()
+    slug_counts: dict[str, int] = {}
+    in_fence = False
+    for line in text.split("\n"):
+        stripped = line.strip()
+        if stripped.startswith("```"):
+            in_fence = not in_fence
+            continue
+        if in_fence:
+            continue
+        m = RE_MD_HEADING.match(stripped)
+        if not m:
+            continue
+        base_slug = markdown_to_slug(m.group(2))
+        if not base_slug:
+            continue
+        count = slug_counts.get(base_slug, 0)
+        if count == 0:
+            slugs.add(base_slug)
+        else:
+            slugs.add(f"{base_slug}-{count}")
+        slug_counts[base_slug] = count + 1
+    return slugs
+
+
+# =============================================================================
+# Serialization Helpers
+# =============================================================================
+
+def _safe_relative_path(p: Path, repo_root: Path) -> str:
+    """Return repo-relative posix string, or absolute string if outside repo."""
+    if isinstance(p, str):
+        return p
+    try:
+        return str(p.relative_to(repo_root))
+    except ValueError:
+        return str(p)
+
 
 # =============================================================================
 # Collision Index
@@ -84,8 +174,13 @@ def build_collision_index(repo_root: Path) -> dict[str, list[Path]]:
     root_str = str(repo_root)
     for dirpath, dirnames, filenames in os.walk(root_str):
         # Prune skip dirs in-place so os.walk won't descend
-        dirnames[:] = [d for d in dirnames if d not in SKIP_DIRS]
+        dirnames[:] = [
+            d for d in dirnames
+            if d not in SKIP_DIRS and not d.startswith(".venv")
+        ]
         for fname in filenames:
+            if RE_SKIP_BASENAME.match(fname):
+                continue
             full = Path(dirpath) / fname
             if fname not in index:
                 index[fname] = []
@@ -121,21 +216,75 @@ def extract_links(text: str) -> list[dict]:
         scanline = re.sub(r"(?<!\[)`[^`]+`(?!\]\()", "", line)
         for match in RE_MD_LINK.finditer(scanline):
             full, label, target = match.group(1), match.group(2), match.group(3)
-            # Skip external links
+            # Skip external links (but NOT Windows absolute paths — resolve_link handles those)
             if any(target.startswith(p) for p in EXTERNAL_PREFIXES):
                 continue
-            # Strip fragment anchors for path resolution
-            path_part = target.split("#")[0] if "#" in target else target
-            if not path_part:
-                continue  # pure anchor link like [foo](#bar)
+            # Split target into path and fragment parts
+            if "#" in target:
+                path_part, fragment = target.split("#", 1)
+            else:
+                path_part, fragment = target, None
+            # Pure anchor links ([foo](#bar)) — path_part is empty, fragment is set
             results.append({
                 "line": lineno,
                 "full_match": full,
                 "label": label,
                 "target": target,
-                "path_part": path_part,
+                "path_part": path_part if path_part else None,
+                "fragment": fragment,
             })
     return results
+
+
+_heading_slug_cache: dict[str, set[str]] = {}
+
+
+def _get_heading_slugs(target_path: Path) -> set[str]:
+    """Get heading slugs for a file, with caching."""
+    key = str(target_path)
+    if key not in _heading_slug_cache:
+        try:
+            text = target_path.read_text(encoding="utf-8", errors="replace")
+            _heading_slug_cache[key] = extract_heading_slugs(text)
+        except OSError:
+            _heading_slug_cache[key] = set()
+    return _heading_slug_cache[key]
+
+
+def _validate_fragment(
+    fragment: str | None,
+    resolved_path: Path | None,
+    file_path: Path,
+    link: dict,
+) -> dict | None:
+    """Check a #fragment against heading slugs. Returns issue dict or None if ok.
+
+    Works for both same-file anchors (resolved_path=file_path) and cross-file.
+    Only validates .md files (fragment anchors in non-md files are ignored).
+    """
+    if not fragment:
+        return None
+    # Determine which file contains the headings
+    target = resolved_path if resolved_path is not None else file_path
+    if not str(target).lower().endswith(".md"):
+        return None  # can't validate headers in non-markdown files
+    if not target.is_file():
+        return None  # file doesn't exist — already handled by path resolution
+    slugs = _get_heading_slugs(target)
+    # Skip line-reference fragments: #1-1, #45-45, #L6812, #L1 (VS Code / GitHub editor refs)
+    if re.match(r"^L?\d+(-L?\d+)?$", fragment):
+        return None  # numeric line ref, not a heading anchor
+    # Case-insensitive comparison (GitHub renders anchors lowercase,
+    # but browsers resolve them case-insensitively)
+    fragment_lower = fragment.lower()
+    if fragment_lower in slugs:
+        return None  # anchor exists, all good
+    return {
+        "status": "broken_anchor",
+        "resolved_path": resolved_path,
+        "fix": None,
+        "reason": f"No header found: '{fragment}' in {target.name}",
+    }
 
 
 def resolve_link(
@@ -147,11 +296,20 @@ def resolve_link(
     """Resolve a single link and return a diagnostic record.
 
     Returns a dict with:
-        status: "ok" | "broken" | "ambiguous" | "collision_unlabeled"
+        status: "ok" | "broken" | "ambiguous" | "empty_label" | "collision_unlabeled" | "broken_anchor"
         resolved_path: the resolved Path (or None)
         fix: suggested replacement string (or None)
         reason: human-readable explanation
     """
+    fragment = link.get("fragment")
+
+    # --- Pure same-file anchor: [text](#slug) ---
+    if link["path_part"] is None:
+        issue = _validate_fragment(fragment, file_path, file_path, link)
+        if issue is not None:
+            return issue
+        return {"status": "ok", "resolved_path": file_path, "fix": None, "reason": None}
+
     target_str = link["path_part"]
     file_dir = file_path.parent
 
@@ -160,30 +318,150 @@ def resolve_link(
     if clean.startswith("./"):
         clean = clean[2:]
 
+    # --- Absolute path detection (Windows C:\... or /c:/... or /repo/path) ---
+    # URL-decode percent-encoded chars (%20 etc.) before path construction
+    decoded = _url_unquote(clean)
+    abs_candidate = None
+    if RE_WINDOWS_ABS.match(decoded):
+        abs_candidate = Path(decoded)
+    elif RE_WINDOWS_ABS.match(decoded.lstrip("/")):
+        # Handle /c:/Users/... (leading slash before drive letter)
+        abs_candidate = Path(decoded.lstrip("/"))
+
+    if abs_candidate is not None:
+        resolved_abs = abs_candidate.resolve()
+        if resolved_abs.is_file() or resolved_abs.is_dir():
+            try:
+                resolved_abs.relative_to(repo_root)
+            except ValueError:
+                return {
+                    "status": "ok",
+                    "resolved_path": resolved_abs,
+                    "fix": None,
+                    "reason": "absolute path points outside repo",
+                }
+            # Absolute path points inside repo — generate correct relative path
+            correct_rel = os.path.relpath(resolved_abs, file_dir).replace("\\", "/")
+            frag = ""
+            if fragment:
+                frag = f"#{fragment}"
+            fix = f"[{link['label']}]({correct_rel}{frag})"
+            return {
+                "status": "broken",
+                "resolved_path": resolved_abs,
+                "fix": fix,
+                "reason": (
+                    f"Absolute path '{target_str}' should be relative; "
+                    f"correct relative path is '{correct_rel}'"
+                ),
+            }
+        # Absolute path doesn't exist — fall through to normal resolution
+
     # Try resolve relative to the file's directory
     candidate_rel = (file_dir / clean).resolve()
     # Try resolve relative to repo root
     candidate_root = (repo_root / clean).resolve()
 
     resolved = None
+    needs_path_fix = False
     if candidate_rel.is_file() or candidate_rel.is_dir():
         resolved = candidate_rel
     elif candidate_root.is_file() or candidate_root.is_dir():
         resolved = candidate_root
+        # The link text resolves from repo root but NOT from the file's directory.
+        # Markdown renderers resolve relative to the file — this link is effectively broken.
+        needs_path_fix = True
 
     basename = Path(clean).name
 
-    # Case 1: target resolves to a real file → OK, but check collision labeling
+    # Case 1: target resolves to a real file or directory
     if resolved is not None:
+        # If the resolved path is outside the repo, it's still valid but skip
+        # collision labeling (we can't compute a relative path).
+        try:
+            rel_path = resolved.relative_to(repo_root)
+        except ValueError:
+            return {"status": "ok", "resolved_path": resolved, "fix": None, "reason": None}
+
+        # Case 0.5: target is a directory.
+        # If the target explicitly ends with "/" the author means the directory
+        # itself — that's intentional, treat it as OK. GitHub renders directory
+        # links correctly even if VS Code's ctrl+click can't open them.
+        # Only flag as dir_link when the target looks like it was meant to be
+        # a file (no trailing slash, no slash in the label).
+        if resolved.is_dir():
+            target_looks_intentional = (
+                target_str.endswith("/")
+                or "/" in link["label"]
+                or "\\" in link["label"]
+            )
+            if target_looks_intentional:
+                # Author explicitly referenced a directory — valid
+                pass  # fall through to normal collision/fragment checks below
+            else:
+                # Target resolves to a directory but doesn't look intentional
+                readme_candidates = ["README.md", "readme.md", "index.md"]
+                for rc in readme_candidates:
+                    readme_path = resolved / rc
+                    if readme_path.is_file():
+                        correct_rel = os.path.relpath(readme_path, file_dir).replace("\\", "/")
+                        fix = f"[{link['label']}]({correct_rel})"
+                        return {
+                            "status": "dir_link",
+                            "resolved_path": resolved,
+                            "fix": fix,
+                            "reason": (
+                                f"Target '{target_str}' resolves to a directory but lacks trailing '/'. "
+                                f"Found '{rc}' inside; linking to that instead"
+                            ),
+                        }
+                return {
+                    "status": "dir_link",
+                    "resolved_path": resolved,
+                    "fix": None,
+                    "reason": (
+                        f"Target '{target_str}' resolves to a directory but lacks trailing '/'. "
+                        f"No README.md found inside to link to"
+                    ),
+                }
+
+        # Case 1a: Link resolves from repo root but not from the file's directory.
+        # Markdown renderers resolve relative to the file — generate corrected path.
+        if needs_path_fix:
+            correct_rel = os.path.relpath(resolved, file_dir).replace("\\", "/")
+            # Preserve fragment if present
+            frag = ""
+            if "#" in link["target"]:
+                frag = "#" + link["target"].split("#", 1)[1]
+            fix = f"[{link['label']}]({correct_rel}{frag})"
+            return {
+                "status": "broken",
+                "resolved_path": resolved,
+                "fix": fix,
+                "reason": (
+                    f"Path '{target_str}' resolves from repo root but not from "
+                    f"file directory '{file_dir.relative_to(repo_root)}'; "
+                    f"correct relative path is '{correct_rel}'"
+                ),
+            }
+
         # Check if the basename has collisions
         siblings = collision_index.get(basename, [])
         if len(siblings) > 1:
             # The link works, but the basename is ambiguous in the repo.
+            # However, if the target path already contains directory components
+            # (e.g., "../../AGENT_COMMON.md" or "docs/foo.md"), the path itself
+            # disambiguates which copy is meant — no label fix needed.
+            target_has_dir = "/" in clean or "\\" in clean
             # Check if the label includes a directory qualifier
             label = link["label"]
-            if basename in label and "(" not in label and "/" not in label:
-                # Label is just the basename — recommend disambiguation
-                rel_path = resolved.relative_to(repo_root)
+            if (
+                not target_has_dir
+                and basename in label
+                and "(" not in label
+                and "/" not in label
+            ):
+                # Bare basename target AND bare basename label — recommend disambiguation
                 parent_hint = rel_path.parent.name or str(rel_path.parent)
                 if parent_hint == ".":
                     parent_hint = "repo-root"
@@ -198,6 +476,10 @@ def resolve_link(
                         f"label should disambiguate with directory qualifier"
                     ),
                 }
+        # File resolves — now validate fragment if present
+        anchor_issue = _validate_fragment(fragment, resolved, file_path, link)
+        if anchor_issue is not None:
+            return anchor_issue
         return {"status": "ok", "resolved_path": resolved, "fix": None, "reason": None}
 
     # Case 2: target doesn't resolve — can we find a unique match?
@@ -206,7 +488,7 @@ def resolve_link(
     if len(candidates) == 1:
         # Unique match — the path was just wrong. Suggest fix.
         correct = candidates[0]
-        correct_rel = correct.relative_to(repo_root).as_posix()
+        correct_rel = os.path.relpath(correct, file_dir).replace("\\", "/")
         # Preserve fragment if present
         fragment = ""
         if "#" in link["target"]:
@@ -222,8 +504,10 @@ def resolve_link(
     if len(candidates) > 1:
         # Multiple candidates — ambiguous, can't auto-fix
         locs = [str(c.relative_to(repo_root)) for c in candidates]
+        # Empty-label links [](path) are structural noise, not real ambiguity
+        status = "empty_label" if not link["label"] else "ambiguous"
         return {
-            "status": "ambiguous",
+            "status": status,
             "resolved_path": None,
             "fix": None,
             "reason": (
@@ -232,12 +516,23 @@ def resolve_link(
             ),
         }
 
-    # Case 3: no match at all
+    # Case 3: no match at all — file is genuinely deleted.
+    # Empty-label links with no matches are structural noise, not broken refs
+    if not link["label"]:
+        return {
+            "status": "empty_label",
+            "resolved_path": None,
+            "fix": None,
+            "reason": f"Empty-label link to '{target_str}'; no file named '{basename}' in repo",
+        }
+    # Delink: replace [label](path) with just the label text.
+    label = link["label"]
+    delink = label if label else ""
     return {
         "status": "broken",
         "resolved_path": None,
-        "fix": None,
-        "reason": f"Path '{target_str}' not found and no file named '{basename}' exists in repo",
+        "fix": delink,
+        "reason": f"Path '{target_str}' not found and no file named '{basename}' exists in repo — delinked",
     }
 
 
@@ -269,8 +564,9 @@ def audit_file(
         })
 
     ok = [r for r in results if r["status"] == "ok"]
-    broken = [r for r in results if r["status"] == "broken"]
+    broken = [r for r in results if r["status"] in ("broken", "broken_anchor")]
     ambiguous = [r for r in results if r["status"] == "ambiguous"]
+    empty_label = [r for r in results if r["status"] == "empty_label"]
     unlabeled = [r for r in results if r["status"] == "collision_unlabeled"]
     fixable = [r for r in results if r["fix"] is not None]
 
@@ -280,6 +576,7 @@ def audit_file(
         "ok": len(ok),
         "broken": len(broken),
         "ambiguous": len(ambiguous),
+        "empty_label": len(empty_label),
         "collision_unlabeled": len(unlabeled),
         "fixable": len(fixable),
         "issues": [r for r in results if r["status"] != "ok"],
@@ -324,9 +621,12 @@ def scan_repo_markdown(repo_root: Path) -> list[Path]:
     files: list[Path] = []
     root_str = str(repo_root)
     for dirpath, dirnames, filenames in os.walk(root_str):
-        dirnames[:] = [d for d in dirnames if d not in SKIP_DIRS]
+        dirnames[:] = [
+            d for d in dirnames
+            if d not in SKIP_DIRS and not d.startswith(".venv")
+        ]
         for fname in filenames:
-            if fname.lower().endswith(".md"):
+            if fname.lower().endswith(".md") and not RE_SKIP_BASENAME.match(fname):
                 files.append(Path(dirpath) / fname)
     return sorted(files)
 
@@ -645,6 +945,18 @@ def main() -> int:
     p_bt.add_argument("--dry-run", action="store_true", help="Show what --fix would rewrite without writing")
     p_bt.add_argument("--json", dest="bt_json", action="store_true", help="JSON output")
 
+    # scan
+    p_scan = sub.add_parser("scan", help="Audit all markdown files in the repo")
+    p_scan.add_argument("--fix", action="store_true",
+                        help="Apply fixes to all files in-place")
+    p_scan.add_argument("--dry-run", action="store_true",
+                        help="Show what --fix would do without writing")
+    p_scan.add_argument("--changed", action="store_true",
+                        help="Only scan files changed vs HEAD (git diff --name-only)")
+    p_scan.add_argument("--paths", nargs="*", type=Path, metavar="FILE",
+                        help="Only scan these specific files")
+    p_scan.add_argument("--json", action="store_true", help="JSON output")
+
     # renames
     p_renames = sub.add_parser("renames", help="Audit markdown links against staged renames")
     p_renames.add_argument("--staged", action="store_true",
@@ -653,9 +965,11 @@ def main() -> int:
                            help="Apply fixable replacements to affected markdown files")
     p_renames.add_argument("--dry-run", action="store_true",
                            help="Show what --fix would do without writing")
+    p_renames.add_argument("--json", action="store_true", help="JSON output")
 
-    # Common options
-    parser.add_argument("--json", action="store_true", help="JSON output")
+    # Common options (--json is now per-subcommand; check + collisions get it here)
+    p_check.add_argument("--json", action="store_true", help="JSON output")
+    p_coll.add_argument("--json", action="store_true", help="JSON output")
     parser.add_argument("--verbose", "-v", action="store_true")
     parser.add_argument("--quiet", "-q", action="store_true")
 
@@ -680,7 +994,7 @@ def main() -> int:
             payload = dict(result)
             for item in payload["hits"]:
                 if item.get("resolved_path"):
-                    item["resolved_path"] = str(item["resolved_path"].relative_to(repo_root))
+                    item["resolved_path"] = _safe_relative_path(item["resolved_path"], repo_root)
             print(json.dumps(payload, indent=2))
         else:
             if not result["hits"]:
@@ -815,6 +1129,109 @@ def main() -> int:
 
         return 0 if impacted_issues == 0 else 1
 
+    # --- scan ---
+    if args.command == "scan":
+        if args.paths:
+            md_files = [p.resolve() for p in args.paths if p.resolve().is_file()]
+        elif args.changed:
+            diff_out = subprocess.run(
+                ["git", "diff", "--name-only", "HEAD"],
+                capture_output=True, text=True, cwd=str(repo_root),
+            )
+            changed = [
+                (repo_root / line.strip()).resolve()
+                for line in diff_out.stdout.splitlines()
+                if line.strip().lower().endswith(".md")
+            ]
+            md_files = sorted(p for p in changed if p.is_file())
+        else:
+            md_files = scan_repo_markdown(repo_root)
+
+        log.info("Building file index ...")
+        index = build_collision_index(repo_root)
+
+        log.info("Scanning %d markdown files ...", len(md_files))
+
+        all_results = []
+        for md_file in md_files:
+            result = audit_file(md_file, repo_root, index)
+            if result["issues"]:
+                all_results.append(result)
+
+        total_files = len(md_files)
+        impacted_files = len(all_results)
+        total_issues = sum(len(r["issues"]) for r in all_results)
+        total_fixable = sum(r["fixable"] for r in all_results)
+        total_broken = sum(r["broken"] for r in all_results)
+        total_ambiguous = sum(r["ambiguous"] for r in all_results)
+        total_empty_label = sum(r["empty_label"] for r in all_results)
+
+        if args.json and not args.fix and not args.dry_run:
+            for result in all_results:
+                for item in result.get("all", []):
+                    if item.get("resolved_path"):
+                        item["resolved_path"] = _safe_relative_path(item["resolved_path"], repo_root)
+                for item in result.get("issues", []):
+                    if item.get("resolved_path"):
+                        item["resolved_path"] = _safe_relative_path(item["resolved_path"], repo_root)
+            print(json.dumps({
+                "total_files": total_files,
+                "impacted_files": impacted_files,
+                "total_issues": total_issues,
+                "total_fixable": total_fixable,
+                "total_broken": total_broken,
+                "total_ambiguous": total_ambiguous,
+                "total_empty_label": total_empty_label,
+                "results": all_results,
+            }, indent=2))
+            return 0 if total_issues == 0 else 1
+
+        if not all_results:
+            print(f"OK: {total_files} files scanned, all links valid")
+            return 0
+
+        print(f"SCAN: {total_files} files, {impacted_files} with issues")
+        print(f"  Issues: {total_issues} total — {total_broken} broken, "
+              f"{total_ambiguous} ambiguous, {total_empty_label} empty-label, "
+              f"{total_fixable} fixable")
+
+        for result in all_results:
+            print(f"\n  {result['file']}:")
+            for issue in result["issues"]:
+                tag = {
+                    "broken": "BROKEN",
+                    "broken_anchor": "ANCHOR",
+                    "ambiguous": "AMBIG",
+                    "empty_label": "EMPTY",
+                    "collision_unlabeled": "LABEL",
+                    "dir_link": "DIR",
+                }.get(issue["status"], issue["status"].upper())
+                fix_hint = f" -> {issue['fix']!r}" if issue["fix"] is not None else ""
+                print(f"    L{issue['line']} [{tag}] {issue['original']}{fix_hint}")
+
+        if args.dry_run:
+            print(f"\n--dry-run: {total_fixable} fixes would be applied "
+                  f"across {impacted_files} file(s) (no changes written)")
+            return 0 if total_issues == 0 else 1
+
+        if args.fix and total_fixable:
+            applied = 0
+            touched = 0
+            for result in all_results:
+                file_path = repo_root / result["file"]
+                count = apply_fixes(file_path, result["issues"])
+                if count:
+                    touched += 1
+                    applied += count
+            print(f"\nApplied {applied} fix(es) across {touched} file(s)")
+            return 0 if applied == total_fixable else 1
+
+        if total_fixable and not args.fix:
+            print(f"\n{total_fixable} fixable issue(s). "
+                  f"Run with --fix to apply or --dry-run to preview.")
+
+        return 1 if total_issues else 0
+
     # --- check ---
     if args.command == "check":
         file_path = args.file.resolve()
@@ -831,10 +1248,10 @@ def main() -> int:
             # Strip non-serializable Path objects
             for item in result.get("all", []):
                 if item.get("resolved_path"):
-                    item["resolved_path"] = str(item["resolved_path"].relative_to(repo_root))
+                    item["resolved_path"] = _safe_relative_path(item["resolved_path"], repo_root)
             for item in result.get("issues", []):
                 if item.get("resolved_path"):
-                    item["resolved_path"] = str(item["resolved_path"].relative_to(repo_root))
+                    item["resolved_path"] = _safe_relative_path(item["resolved_path"], repo_root)
             print(json.dumps(result, indent=2))
             return 0 if not result["issues"] else 1
 
@@ -849,18 +1266,22 @@ def main() -> int:
         print(f"AUDIT: {result['file']}")
         print(f"  Links: {result['total_links']} total, {result['ok']} ok, "
               f"{result['broken']} broken, {result['ambiguous']} ambiguous, "
+              f"{result['empty_label']} empty-label, "
               f"{result['collision_unlabeled']} unlabeled collisions")
 
         for issue in issues:
             status_icon = {
                 "broken": "BROKEN",
+                "broken_anchor": "ANCHOR",
                 "ambiguous": "AMBIG",
+                "empty_label": "EMPTY",
                 "collision_unlabeled": "LABEL",
+                "dir_link": "DIR",
             }.get(issue["status"], issue["status"].upper())
             print(f"\n  L{issue['line']} [{status_icon}] {issue['original']}")
             print(f"    Reason: {issue['reason']}")
-            if issue["fix"]:
-                print(f"    Fix:    {issue['fix']}")
+            if issue["fix"] is not None:
+                print(f"    Fix:    {issue['fix']!r}")
 
         if args.dry_run:
             print(f"\n--dry-run: {len(fixable)} fixes would be applied (no changes written)")

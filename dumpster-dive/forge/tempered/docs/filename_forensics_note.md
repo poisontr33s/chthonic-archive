@@ -9,6 +9,6 @@ discarded: The unsafe path form as an active dependency.
 ---
 # Filename Forensics
 
-- [`"dumpster-dive/from-github/macro-prompt-world/disparate-md-documentation/ASC-BP-V-/316/251.B.X/316/250.md"`](../../../../%22dumpster-dive/from-github/macro-prompt-world/disparate-md-documentation/ASC-BP-V-/316/251.B.X/316/250.md%22)
-- [`"dumpster-dive/from-github/macro-prompt-world/macro-prompt-world-v2/ASC_Brahmanica_Perfectus_V_/316/251.B.X/316/250.md"`](../../../../%22dumpster-dive/from-github/macro-prompt-world/macro-prompt-world-v2/ASC_Brahmanica_Perfectus_V_/316/251.B.X/316/250.md%22)
-- [`"dumpster-dive/from-github/macro-prompt-world/macro-prompt-world-v2/archive-world/ASC-BP-V-/316/251.B.X/316/250.md"`](../../../../%22dumpster-dive/from-github/macro-prompt-world/macro-prompt-world-v2/archive-world/ASC-BP-V-/316/251.B.X/316/250.md%22)
+- `"dumpster-dive/from-github/macro-prompt-world/disparate-md-documentation/ASC-BP-V-/316/251.B.X/316/250.md"`
+- `"dumpster-dive/from-github/macro-prompt-world/macro-prompt-world-v2/ASC_Brahmanica_Perfectus_V_/316/251.B.X/316/250.md"`
+- `"dumpster-dive/from-github/macro-prompt-world/macro-prompt-world-v2/archive-world/ASC-BP-V-/316/251.B.X/316/250.md"`

@@ -1,0 +1,91 @@
+
+Version:          Code - Insiders 1.110.0-insider (7e5adbd392329afffaa38da9e47df976a05e2f2c, 2026-02-25T17:04:31.230Z)
+OS Version:       Windows_NT x64 10.0.26200
+CPUs:             Intel(R) Core(TM) i9-14900HX (32 x 2419)
+Memory (System):  31.71GB (19.61GB free)
+VM:               0%
+Screen Reader:    no
+Process Argv:     --crash-reporter-id 6415fa25-0ca9-4e08-9d8d-cca741148b75
+GPU Status:       2d_canvas:                              unavailable_software
+                  GPU0:                                   VENDOR= 0xffff [Google Inc. (Google)], DEVICE=0xffff [ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver-5.0.0)], DRIVER_VENDOR=SwANGLE, DRIVER_VERSION=5.0.0 *ACTIVE*
+                  Machine model name:                     
+                  Machine model version:                  
+                  direct_rendering_display_compositor:    disabled_off_ok
+                  gpu_compositing:                        disabled_software
+                  multiple_raster_threads:                enabled_on
+                  opengl:                                 disabled_off
+                  rasterization:                          disabled_software
+                  raw_draw:                               disabled_off_ok
+                  skia_graphite:                          disabled_off
+                  trees_in_viz:                           disabled_off
+                  video_decode:                           disabled_software
+                  video_encode:                           disabled_software
+                  webgl:                                  unavailable_software
+                  webgl2:                                 unavailable_software
+                  webgpu:                                 unavailable_software
+                  webnn:                                  unavailable_software
+GPU Log Messages:
+[20212:0226/041104.328:ERROR:gpu\command_buffer\service\shared_image\shared_image_manager.cc:526] : SharedImageManager::ProduceMemory: Trying to Produce a Memory representation from a non-existent mailbox.
+
+[20212:0226/041104.328:ERROR:gpu\command_buffer\service\shared_image\shared_image_manager.cc:526] : SharedImageManager::ProduceMemory: Trying to Produce a Memory representation from a non-existent mailbox.
+
+[20212:0226/041104.328:ERROR:gpu\command_buffer\service\shared_image\shared_image_manager.cc:526] : SharedImageManager::ProduceMemory: Trying to Produce a Memory representation from a non-existent mailbox.
+
+[20212:0226/041104.329:ERROR:gpu\command_buffer\service\shared_image\shared_image_manager.cc:526] : SharedImageManager::ProduceMemory: Trying to Produce a Memory representation from a non-existent mailbox.
+
+[20212:0226/041104.329:ERROR:gpu\command_buffer\service\shared_image\shared_image_manager.cc:526] : SharedImageManager::ProduceMemory: Trying to Produce a Memory representation from a non-existent mailbox.
+
+[20212:0226/041104.329:ERROR:gpu\command_buffer\service\shared_image\shared_image_manager.cc:526] : SharedImageManager::ProduceMemory: Trying to Produce a Memory representation from a non-existent mailbox.
+
+
+CPU %	Mem MB	   PID	Process
+    0	   164	 53132	code-insiders
+    0	   140	  2764	file-watcher [3]
+    0	    48	  4360	   utility-network-service
+    1	   813	  9996	window [3] (CHTHONIC_GOLDEN_VSCODE_HARDENING_PLAN_2026_02_26.md - chthonic-archive - Visual Studio Code - Insiders)
+    0	   329	 11388	   window
+    0	   134	 20212	   gpu-process
+    0	   763	 42796	extension-host [3]
+    0	   118	 32732	     "C:\Users\erdno\AppData\Local\Programs\Microsoft VS Code Insiders\Code - Insiders.exe" "c:\Users\erdno\AppData\Local\Programs\Microsoft VS Code Insiders\7e5adbd392\resources\app\extensions\json-language-features\server\dist\node\jsonServerMain" --node-ipc --clientProcessId=42796
+    0	   119	 45848	     electron-nodejs (server-node.js)
+    0	    78	 47472	     c:\Users\erdno\.vscode-insiders\extensions\openai.chatgpt-0.5.76-win32-x64\bin\windows-x86_64\codex.exe app-server --analytics-default-enabled
+    0	   104	 38540	       "C:\Program Files\PowerShell\7\pwsh.exe" -Command "[Console]::OutputEncoding=[System.Text.Encoding]::UTF8;
+pwsh -NoProfile -File scripts/vscode_insiders_matrix.ps1"
+    0	    99	 49964	         "C:\Program Files\PowerShell\7\pwsh.exe" -NoProfile -File scripts/vscode_insiders_matrix.ps1
+    0	     7	 27684	           C:\WINDOWS\system32\cmd.exe /c ""C:\Users\erdno\AppData\Local\Programs\Microsoft VS Code Insiders\bin\code-insiders.cmd" --disable-extensions --status"
+    0	   117	 46904	             electron-nodejs (cli.js)
+    0	   149	 52684	               "C:\Users\erdno\AppData\Local\Programs\Microsoft VS Code Insiders\Code - Insiders.exe" --disable-extensions --status
+    0	   105	 35116	                 utility-network-service
+    0	    97	 49804	                 crashpad-handler
+    0	   117	 50628	                 gpu-process
+    0	     7	 53436	       C:\WINDOWS\system32\conhost.exe 0x4
+    0	   118	 54136	     "C:\Users\erdno\AppData\Local\Programs\Microsoft VS Code Insiders\Code - Insiders.exe" "c:\Users\erdno\AppData\Local\Programs\Microsoft VS Code Insiders\7e5adbd392\resources\app\extensions\markdown-language-features\dist\serverWorkerMain" --node-ipc --clientProcessId=42796
+    0	    35	 49756	   crashpad-handler
+    0	   124	 50228	pty-host
+    0	     8	 38428	     conpty-agent
+    0	     9	 40392	     conpty-agent
+    0	    94	 42732	     "C:\Program Files\PowerShell\7\pwsh.exe" -noexit -command "try { . \"c:\Users\erdno\AppData\Local\Programs\Microsoft VS Code Insiders\7e5adbd392\resources\app\out\vs\workbench\contrib\terminal\common\scripts\shellIntegration.ps1\" } catch {}"
+    0	   152	 44912	     "C:\Program Files\PowerShell\7\pwsh.exe" -noexit -command "try { . \"c:\Users\erdno\AppData\Local\Programs\Microsoft VS Code Insiders\7e5adbd392\resources\app\out\vs\workbench\contrib\terminal\common\scripts\shellIntegration.ps1\" } catch {}"
+    0	    26	 52024	       "C:\Users\erdno\.local\bin\uv.exe" run scripts/skill_health.py --json
+    0	     4	 42600	         "C:\Users\erdno\chthonic-archive\.venv\Scripts\python.exe" scripts/skill_health.py --json
+    0	    19	 45828	           "C:\Users\erdno\chthonic-archive\.venv\Scripts\python.exe" scripts/skill_health.py --json
+    0	    98	 46064	     "C:\Program Files\PowerShell\7\pwsh.exe" -noexit -command "try { . \"c:\Users\erdno\AppData\Local\Programs\Microsoft VS Code Insiders\7e5adbd392\resources\app\out\vs\workbench\contrib\terminal\common\scripts\shellIntegration.ps1\" } catch {}"
+    0	     9	 51196	     conpty-agent
+    0	     9	 52496	     conpty-agent
+    0	   130	 53120	shared-process
+    0	    21	 40344	     "c:\Users\erdno\AppData\Local\Programs\Microsoft VS Code Insiders\bin\code-tunnel-insiders.exe" tunnel --accept-server-license-terms --log info --name LAPTOP-DRAQGN8A --parent-process-id 53120
+    0	     7	 43548	       C:\WINDOWS\system32\conhost.exe 0x4
+
+Workspace Stats: 
+|  Window (CHTHONIC_GOLDEN_VSCODE_HARDENING_PLAN_2026_02_26.md - chthonic-archive - Visual Studio Code - Insiders)
+|    Folder (chthonic-archive): more than 20518 files
+|      File types: py(5993) cpp(2605) h(1753) pyc(846) cu(769) cuh(410)
+|                  md(379) rst(350) pyi(314) json(283)
+|      Conf files: cmake(77) devcontainer.json(38) claude-skills-dir(27)
+|                  github-prompts-dir(11) package.json(9)
+|                  github-instructions-dir(6) makefile(4) tsconfig.json(3)
+|                  settings.json(3) gemini.md(2) launch.json(2) tasks.json(2)
+|                  dockerfile(2) claude-settings(1)
+|                  claude-settings-local(1) copilot-instructions.md(1) mcp.json(1)
+|                  agents.md(1) claude.md(1)
+|      Launch Configs: node-terminal(4)

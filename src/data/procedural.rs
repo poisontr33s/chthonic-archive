@@ -17,7 +17,7 @@
 //! Implementing Section X (MMPS) and the 6-Layer World Architecture.
 //! This module handles the dynamic expansion of the Chthonic Archive.
 
-use rand::Rng;
+use rand::RngExt;
 use std::fmt;
 use super::faction_types::*;
 use super::factions::FactionRegistry;
@@ -44,8 +44,8 @@ impl ProceduralEngine {
     ) -> Option<Matriarch> {
         let base = registry.matriarchs.get(&base_id)?;
 
-        let mut rng = rand::thread_rng();
-        let suffix_id = rng.gen_range(1000..9999);
+        let mut rng = rand::rng();
+        let suffix_id = rng.random_range(1000..9999);
         let new_id = base_id * 10000 + suffix_id;
 
         log::info!("🌀 MMPS: Manifesting Sub-MILF from base {} with spec: {}", base.name, specialization);
@@ -72,18 +72,18 @@ impl ProceduralEngine {
     /// Generate a Tier 4 Interloper Agent
     #[allow(dead_code)] // TODO: Hook into dynamic faction encounter generation.
     pub fn generate_agent(&self, faction_code: FactionCode) -> AgentTemplate {
-        let mut rng = rand::thread_rng();
-        let agent_id = rng.gen_range(50000..99999);
+        let mut rng = rand::rng();
+        let agent_id = rng.random_range(50000..99999);
 
         let names = ["Calyx", "Rift", "Vane", "Kore", "Axis", "Null", "Echo", "Void"];
-        let name = names[rng.gen_range(0..names.len())];
+        let name = names[rng.random_range(0..names.len())];
 
         AgentTemplate {
             id: agent_id,
             name: format!("{faction_code} Agent {name}"),
             faction: faction_code,
-            chaos_utility: rng.gen_range(0.5..1.5),
-            governance_cost: rng.gen_range(0.2..0.8),
+            chaos_utility: rng.random_range(0.5..1.5),
+            governance_cost: rng.random_range(0.2..0.8),
         }
     }
 

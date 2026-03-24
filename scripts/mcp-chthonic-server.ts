@@ -70,8 +70,8 @@ interface ToolResult {
 // CONFIGURATION
 // ═══════════════════════════════════════════════════════════════════════════════
 
-const VERSION = "3.0.0";
-const CHTHONIC_ROOT = process.env.CHTHONIC_ROOT ?? "C:\\Users\\erdno\\chthonic-archive";
+const VERSION = "3.3.0";
+const CHTHONIC_ROOT = process.env.CHTHONIC_ROOT ?? import.meta.dir.replace(/[\\/]scripts$/, "");
 const CHTHONIC_SCRIPT = join(CHTHONIC_ROOT, "scripts", "chthonic.ps1");
 const HOME = process.env.USERPROFILE ?? "";
 const DEBUG = process.env.MCP_DEBUG === "1";
@@ -119,7 +119,11 @@ const TOOL_PATHS: Record<string, string[]> = {
   bash: [...rubyToolchainCandidates(join("msys64", "usr", "bin", "bash.exe")), "C:\\msys64\\usr\\bin\\bash.exe"],
   mdbook: [join(HOME, ".cargo", "bin", "mdbook.exe")],
   ruff: [join(HOME, ".local", "bin", "ruff.exe")],
-  biome: [join(HOME, ".bun", "bin", "biome.exe")],
+  biome: [
+    join(CHTHONIC_ROOT, "node_modules", ".bin", "biome.cmd"),
+    join(CHTHONIC_ROOT, "node_modules", ".bin", "biome"),
+    join(HOME, ".bun", "bin", "biome.exe"),
+  ],
   pwsh: ["C:\\Program Files\\PowerShell\\7\\pwsh.exe"],
 };
 
