@@ -1,95 +1,93 @@
 {
-  // 🔥💀⚓ Chthonic Archive - MCP Server Configuration
-  // Bun-native: install once, execute directly, no runtime surprises
-  "servers": {
-    "github": {
-      "type": "http",
-      "url": "https://api.githubcopilot.com/mcp/insiders"
-    },
-
-    // Browser automation: bun-cdp (replaces Playwright)
-    // Playwright's IPC layer crashes Bun — raw CDP over WebSocket works.
-    // See bun-playwright-poc/VALIDATION_COMPLETE.md for proof.
-    "browser": {
-      "type": "stdio",
-      "command": "bun",
-      "args": [
-        "run",
-        "scripts/mcp-browser.ts"
-      ],
-      "cwd": "${workspaceFolder}"
-    },
-
-    "bun-docs": {
-      "type": "http",
-      "url": "https://bun.com/docs/mcp"
-    },
-
-    "microsoft-docs": {
-      "type": "http",
-      "url": "https://learn.microsoft.com/api/mcp"
-    },
-
-    "filesystem": {
-      "type": "stdio",
-      "command": "bunx",
-      "args": [
-        "-y",
-        "@modelcontextprotocol/server-filesystem",
-        "${workspaceFolder}"
-      ]
-    },
-
-    "asc-injector": {
-      "type": "stdio",
-      "command": "bun",
-      "args": [
-        "run",
-        "scripts/mcp-asc-injector.ts"
-      ],
-      "cwd": "${workspaceFolder}",
-      "env": {
-        "SSOT_PATH": ".github/copilot-instructions.archive.md"
-      }
-    },
-
-    // artisan: MERGED into chthonic server v3.0.0
-    // Unified polyglot MCP: 19 tools (10 polyglot + 7 archive + 2 meta)
-    // Polyglot: cargo, uv, bun_run, gcc, gpp, go_run, ruby, git, bash, make
-    // Archive: chthonic_status, chthonic_resolve, chthonic_audit, chthonic_map, chthonic_analyze, chthonic_compact, chthonic_book
-    // Meta: polyglot_versions, claudine_env
-    "chthonic-v3": {
-      "type": "stdio",
-      "command": "bun",
-      "args": [
-        "run",
-        "scripts/mcp-chthonic-server.ts"
-      ],
-      "cwd": "${workspaceFolder}",
-      "env": {
-        "CHTHONIC_ROOT": "${workspaceFolder}"
-      }
-    },
-
-    // MAS MCP: Entity analysis, governance, narrative, qualia, GPU probe, workspace health
-    // 11 tools: mas_narrative_scan, mas_qualia_check, mas_scan, mas_pulse,
-    //           mas_gpu_probe, mas_entity_deep, mas_validate_entity, mas_policy_check,
-    //           mas_link_audit, mas_workspace_health, mas_scm_triage
-    // --directory for uv dep resolution; PYTHONPATH for `from mas_mcp.*` imports
-    "mas-mcp": {
-      "type": "stdio",
-      "command": "uv",
-      "args": [
-        "run",
-        "--quiet",
-        "--directory",
-        "${workspaceFolder}/mas_mcp",
-        "python",
-        "-m",
-        "server"
-      ],
-      "cwd": "${workspaceFolder}"
-    }
-  }
+	"servers": {
+		"github": {
+			"type": "http",
+			"url": "https://api.githubcopilot.com/mcp/insiders"
+		},
+		"browser": {
+			"type": "stdio",
+			"command": "bun",
+			"args": [
+				"run",
+				"scripts/mcp-browser.ts"
+			],
+			"cwd": "${workspaceFolder}"
+		},
+		"bun-docs": {
+			"type": "http",
+			"url": "https://bun.com/docs/mcp"
+		},
+		"microsoft-docs": {
+			"type": "http",
+			"url": "https://learn.microsoft.com/api/mcp"
+		},
+		"asc-injector": {
+			"type": "stdio",
+			"command": "bun",
+			"args": [
+				"run",
+				"scripts/mcp-asc-injector.ts"
+			],
+			"cwd": "${workspaceFolder}",
+			"env": {
+				"SSOT_PATH": ".github/copilot-instructions.archive.md"
+			}
+		},
+		"chthonic-v3": {
+			"type": "stdio",
+			"command": "bun",
+			"args": [
+				"run",
+				"scripts/mcp-chthonic-server.ts"
+			],
+			"cwd": "${workspaceFolder}",
+			"env": {
+				"CHTHONIC_ROOT": "${workspaceFolder}"
+			}
+		},
+		"mas-mcp": {
+			"type": "stdio",
+			"command": "uv",
+			"args": [
+				"run",
+				"--quiet",
+				"--directory",
+				"${workspaceFolder}/mas_mcp",
+				"python",
+				"-m",
+				"server"
+			],
+			"cwd": "${workspaceFolder}"
+		},
+		"filesystem": {
+			"type": "stdio",
+			"command": "bun",
+			"args": [
+				"run",
+				"scripts/mcp-filesystem.ts",
+				"${workspaceFolder}/mcp_fs_root"
+			],
+			"cwd": "${workspaceFolder}"
+		},
+		"io.github.upstash/context7": {
+			"type": "stdio",
+			"command": "bunx",
+			"args": [
+				"@upstash/context7-mcp@1.0.31"
+			],
+			"env": {
+				"CONTEXT7_API_KEY": "${input:CONTEXT7_API_KEY}"
+			},
+			"gallery": "https://api.mcp.github.com",
+			"version": "1.0.31"
+		}
+	},
+	"inputs": [
+		{
+			"id": "CONTEXT7_API_KEY",
+			"type": "promptString",
+			"description": "API key for authentication",
+			"password": true
+		}
+	]
 }
-

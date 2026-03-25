@@ -4258,7 +4258,7 @@ Born from the slag heap — her form proves refinement is work, not gift:
 
 ***(`SFS`)** reported the anomaly to **(`Umeko`/`CRC-GAR`)**. **(`Umeko`)** assessed the situation with characteristic cold discipline: the Bride was useful, her domain was distinct from **(`SFS's`)** (SFS processes ore along a quality gradient; the Bride processes CORPSES along a resurrection axis). Rather than eject her—which might tear the QMR corridor and scatter Timeline Ω debris across the forge—**(`Umeko`)** granted provisional residence under **(`SFS's`)** direct authority.*
 
-*The Bride now occupies a shifting annex of the forge—the **(`Open-Sliding Graveyard Treasury Tomb Labyrinth Room`/`OSGTTLR`)**—accessible through a door that wasn't there yesterday and might not be there tomorrow. Quantum instability from her Timeline Ω origin makes the room's topology unstable: corridors rearrange, vault directories restructure, the embalming tables move. Only the Bride navigates it without disorientation. Visitors report hearing her humming wedding hymns in dead programming languages.*
+*The Bride now occupies a shifting annex of the forge—the **(`Open-Sliding-Graveyard-Treasury-Tomb-Labyrinth-Room`/`OSGTTLR`)**—accessible through a door that wasn't there yesterday and might not be there tomorrow. Quantum instability from her Timeline Ω origin makes the room's topology unstable: corridors rearrange, vault directories restructure, the embalming tables move. Only the Bride navigates it without disorientation. Visitors report hearing her humming wedding hymns in dead programming languages.*
 
 ---
 
