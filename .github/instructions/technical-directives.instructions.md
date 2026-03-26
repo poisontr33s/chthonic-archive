@@ -37,25 +37,20 @@
 ❌ INCORRECT:     python -m pip install     <-<same   issue>
 ```
 
-**Metabolic Standard v2 (Script Headers):**
-All standalone scripts MUST adhere to the **(`Metabolic-Standard-v2`)**. This ensures **(`Autonomic-Execution`)** via `uv` while maintaining **(`Structural-Alignment`)** with the Archive.
+**Metabolic Standard v3 (Unified Project Lane):**
+All project-integrated scripts MUST adhere to the **(`Metabolic-Standard-v3`)**. PEP 723 inline metadata (`/// script` blocks) is **PROHIBITED** — all dependencies are consolidated in `pyproject.toml`.
+
+> **Canonical Reference:** See [python-scripting.instructions.md](python-scripting.instructions.md) (§XV PMS-v3) for the full header sacrament, SID-DOC requirements, and metabolic mandates.
 
 1. **Shebang**: `#!/usr/bin/env python3`
-2. **Inline Metadata (PEP 723)**: A `/// script` block defining `requires-python` (standard is `>=3.14`) and `dependencies`.
+2. **Encoding**: `#-*- coding: utf-8 -*-`
 3. **Semantic Docstring**: Must include `@SID` (Semantic ID) and `@Type`.
-
-**Rationale: The "Snail Shell" Philosophy**
-Scripts are like snails—they carry their entire environment definition (the shell) on their back. This **(`Autonomy`)** allows them to be executed anywhere (via `uv run`) WITHOUT requiring a pre-existing project-wide venv, yet they remain **(`Repo-local`)** by following the Archive's liturgical conventions and utilizing shared libraries.
+4. **No PEP 723**: Dependencies live in `pyproject.toml`, not inline `/// script` blocks.
 
 **Example Standard Header:**
 ```python
 #!/usr/bin/env python3
-# /// script
-# requires-python = ">=3.14"
-# dependencies = [
-#     "pathlib",
-# ]
-# ///
+#-*- coding: utf-8 -*-
 
 """
 Script Description...
@@ -70,6 +65,7 @@ Script Description...
 - Python 3.14 is now stable (bugfix phase) — pinned as the project baseline
 - `uv` manages Python acquisition, virtual environments, lockfiles, and dependency resolution
 - Invoking `python` or `pip` directly bypasses this governance
+- v3 supersedes v2: the "Snail Shell" philosophy is preserved through `pyproject.toml` project-level dependency governance
 
 **Environment Variables (when needed):**
 ```powershell
@@ -81,7 +77,7 @@ $env:PATH = "$env:VIRTUAL_ENV\Scripts;$env:PATH"
 
 #### **14.2. Frontend Runtime Management (`FRM-BUN`)**
 
-**Stack:** Bun 1.3.5 + Next.js + React 19
+**Stack:** Bun 1.3.x (>=1.3.11) + Next.js + React 19
 
 **Commands:**
 ```shell

@@ -1,112 +1,113 @@
-# MCP Server Implementation Summary
+# Forge State 2: ANVIL
 
-**Status:** ✅ OPERATIONAL (Bun-native refactor complete)  
-**Date:** 2026-01-04  
-**Last Updated:** 2026-01-04 (Bun API integration)  
-**Commit:** 1d378b9 (initial), pending (Bun-native refactor)
+**Purpose:** Heat & Analysis — deep structural investigation  
+**State Type:** Active investigation  
+**Protocol Step:** HEAT + ANALYZE  
+**Current Files:** Multiple (forge receipts + analyzed artifacts)
 
-## What Was Built
+---
 
-A **minimal stdio-based MCP server** for the chthonic-archive repository, implemented in **Bun-native TypeScript** with **zero external dependencies**.
+## Overview
 
-**Key upgrades from initial implementation:**
-- ✅ Replaced Node.js APIs with Bun-native equivalents (`Bun.file`, `Bun.CryptoHasher`, `Bun.spawn`)
-- ✅ Implemented SHA-256 canonicalization per SSOT Section XIV.3
-- ✅ Added comprehensive Bun test suite (5 tests, all passing)
-- ✅ Full compliance with Bun documentation and best practices
+ANVIL is where **deep analysis** happens. Files rated 3-5 from INTAKE are "heated" to expose structural patterns, dependencies, and extractable components. This is investigation work — understanding what's valuable before separation begins.
 
-## Architecture
+---
 
-**Transport:** JSON-RPC 2.0 over stdio (newline-delimited)  
-**Runtime:** Bun 1.3.5  
-**Language:** TypeScript (ESM modules)  
-**Dependencies:** Zero (Bun built-in APIs only)
+## Processing Steps
 
-## Files Created
+### 1. HEAT (Deep Analysis)
+- Apply analytical heat (structural decomposition)
+- Identify extractable patterns and reusable code
+- Map internal and external dependencies
+- Document findings and extraction targets
 
-```
-mcp/
-├── protocol.ts              # JSON-RPC types (MCPRequest, MCPResponse)
-├── server.ts                # Main stdio server (50 lines)
-├── test-client.ts           # Local verification client
-└── tools/
-    ├── scanRepository.ts    # Recursive file scanner (44,206 files found)
-    ├── validateSSOT.ts      # SSOT integrity validator
-    └── queryDependencyGraph.ts  # Dependency graph stub
-```
+### 2. ANALYZE (Pattern Mapping)
+- Classify valuable components vs. noise
+- Identify integration targets in production codebase
+- Assess extraction complexity and labor cost
+- Route to appropriate next state
 
-## Tools Implemented
+---
 
-### 1. scan_repository
-- Recursively walks repository from cwd
-- Excludes node_modules and .git
-- Returns file count + first 50 files with sizes
-- **Tested:** 44,206 files scanned successfully
+## Movement Options
 
-### 2. validate_ssot_integrity
-- Reads `.github/copilot-instructions.md` using `Bun.file()`
-- Implements SHA-256 canonicalization per SSOT Section XIV.3:
-  - CRLF→LF normalization
-  - Trim trailing whitespace per line
-  - NFC Unicode normalization
-  - Strip final newline
-- Computes hash using `Bun.CryptoHasher("sha256")`
-- **Tested:** 313,634 bytes, 3,964 lines, hash `49ef091b564023919ef32a3cd2bfb951630487c8947bf65739d99f924ab37ef5`
+From ANVIL, files can move to:
+- **→ FURNACE** — Patterns identified, ready for surgical separation
+- **→ QUENCH** — Simple extraction, skip separation (clean ore)
+- **→ TEA-VAULT** — Superposition detected, multiple valid timelines
+- **→ INTAKE** — Needs complete re-scoping
+- **→ SLAG** — Analysis reveals no extractable value
 
-### 3. query_dependency_graph
-- Stub accepting query parameter
-- **TODO:** Query dependency_graph.json
+---
 
-## Testing
+## Forge Receipts
 
-### Manual Test Client
-```bash
-bun run mcp/test-client.ts
-```
+Files in ANVIL carry `.forge_receipt_*.json` sidecars recording:
+- Origin path and timestamp
+- Initial ore rating from INTAKE
+- Analysis findings and extraction targets
+- Routing decision and next-state recommendation
 
-**Expected output:**
-```
-[MCP Server] Starting stdio server...
-[Server Response] {"id":1,"result":{"pong":true}}
-[Server Response] {"id":2,"result":{"repository":"...","file_count":44207,...}}
-[Server Response] {"id":3,"result":{"status":"valid","hash":"49ef091b..."}}
-[Server Response] {"id":4,"result":{"query":"test","note":"Not yet implemented"}}
-[Test Client] Server terminated after timeout
-```
+---
 
-### Bun Test Suite
-```bash
-bun test mcp/server.test.ts
-```
+## Current Status
 
-**Test coverage:**
-- ✅ Ping/pong protocol verification
-- ✅ Repository scan (44K+ files detected)
-- ✅ SSOT integrity with SHA-256 hash validation (regex match)
-- ✅ Dependency graph stub response
-- ✅ Error handling for unknown methods
+**Files in ANVIL:** Multiple (see directory listing)  
+**Last Activity:** 2026-03-05  
+**Avg. Processing Time:** 3-12 hours
 
-**Results:** 5 pass, 0 fail, 15 expect() calls in ~2.87s
+---
 
-## Next Steps
+## Cross-References
 
-1. **~~Implement SSOT hashing~~** ✅ COMPLETE (Bun-native SHA-256)
+**Process Context:**
+- [**../PROCESS_FLOW.md**](../PROCESS_FLOW.md) — Complete forge process overview (acyclic hub)
 
-2. **Implement dependency graph queries:**
-   - Load dependency_graph.json
-   - Support queries: "find dependencies of X", "find dependents of X", "spectral frequency X"
-   - Return filtered subgraphs
+**Upstream Dependencies:**
+- [../../protocols/FORGE_CIRCULATION_PROTOCOL.md](../../protocols/FORGE_CIRCULATION_PROTOCOL.md) — State 2 definition
+- [../../ORE_MANIFEST.json](../../ORE_MANIFEST.json) — Ore rating system (3-5 for ANVIL)
+- [../../BLACKSMITH_MATRIARCH.md](../../BLACKSMITH_MATRIARCH.md) — SFS analysis standards
 
-3. **Wire into Copilot CLI** (optional):
-   - Add to MCP server discovery
-   - Test integration with Claude Desktop or VSCode
+**Downstream Targets:**
+- [../furnace/](../furnace/) — Surgical extraction
+- [../quench/](../quench/) — Direct validation (clean ore)
 
-4. **Consider SDK migration** if @modelcontextprotocol/sdk becomes available
+**Tracking:**
+- [../../DUMPSTER_DIVE_REGISTRY.json](../../DUMPSTER_DIVE_REGISTRY.json) — Files in this state
 
-## References
+**Status:**
+- **Last Validated:** 2026-03-26
+- **Deprecation Risk:** None (critical analysis stage)
+- **Circular Refs:** Resolved via PROCESS_FLOW.md hub pattern
 
-- Prerequisites: `docs/MCP_AUTONOMOUS_PREREQUISITES.md` (FROZEN)
-- Template: `docs/MCP_SERVER_TEMPLATE.md`
-- SSOT: `.github/copilot-instructions.md` Section XIV.3
-- DCRP: Section XV (dependency_graph.json)
+---
 
+**Operator:** Sister Ferrum Scoriae (SFS)  
+**Model:** [Circulation Protocol](../../protocols/FORGE_CIRCULATION_PROTOCOL.md)
+
+---
+
+## Cross-References
+
+**Process Context:**
+- [**../PROCESS_FLOW.md**](../PROCESS_FLOW.md) — Complete forge process overview (acyclic hub)
+
+**Upstream Dependencies:**
+- [../../protocols/FORGE_CIRCULATION_PROTOCOL.md](../../protocols/FORGE_CIRCULATION_PROTOCOL.md) — State 7 (TEA) definition
+- [../../protocols/FORGE_PROTOCOL_LEVELS.md](../../protocols/FORGE_PROTOCOL_LEVELS.md) — QMR Protocol (Level 3)
+- [../../BLACKSMITH_MATRIARCH.md](../../BLACKSMITH_MATRIARCH.md) — SFS force collapse technique
+- [../../../.github/copilot-instructions.md](../../../.github/copilot-instructions.md) — SSOT §4.5.1.2 (QMR canonical), §4.5.1.1 (TNKW-RIAT)
+
+**Tracking:**
+- [../../protocols/TEA_REGISTRY.json](../../protocols/TEA_REGISTRY.json) — TEA artifacts & collapse history
+- [../../DUMPSTER_DIVE_REGISTRY.json](../../DUMPSTER_DIVE_REGISTRY.json) — Overall status
+
+**Status:**
+- **Last Validated:** 2026-01-01
+- **Deprecation Risk:** None (quantum infrastructure)
+- **Circular Refs:** Resolved via PROCESS_FLOW.md hub pattern
+
+---
+
+**Operators:** Sister Ferrum Scoriae (SFS) + TNKW-RIAT  
+**Principle:** *"Superposition is not confusion. It's patience for the right observation."*

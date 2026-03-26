@@ -1,0 +1,280 @@
+# --- [python] from scripts/poe_lane.py (L80-82, deleted_in_commit) ---
+    if account in {"1", "2"}:
+        slot = f"POE_API_KEY_{account}"
+
+# --- [python] from scripts/poe_lane.py (L84-85, deleted_in_commit) ---
+            return v.strip(), account
+
+# --- [python] from scripts/poe_lane.py (L87-89, deleted_in_commit) ---
+            return vp, account
+        return None, account
+
+# --- [python] from scripts/poe_lane.py (L92-94, deleted_in_commit) ---
+        active = os.getenv("POE_ACCOUNT_ACTIVE")
+        return direct.strip(), active.strip() if active and active.strip() else None
+
+# --- [python] from scripts/poe_lane.py (L96-98, deleted_in_commit) ---
+        active = os.getenv("POE_ACCOUNT_ACTIVE") or pool_env.get("POE_ACCOUNT_ACTIVE")
+        return direct_pool, active.strip() if isinstance(active, str) and active.strip() else None
+
+# --- [python] from scripts/poe_lane.py (L99-101, deleted_in_commit) ---
+    active = os.getenv("POE_ACCOUNT_ACTIVE")
+    if active in {"1", "2"}:
+
+# --- [python] from scripts/poe_lane.py (L105-107, deleted_in_commit) ---
+    active_pool = pool_env.get("POE_ACCOUNT_ACTIVE")
+    if active_pool in {"1", "2"}:
+
+# --- [python] from scripts/poe_lane.py (L112-113, deleted_in_commit) ---
+    for candidate in ("POE_API_KEY_1", "POE_API_KEY_2"):
+
+# --- [python] from scripts/poe_lane.py (L115-117, deleted_in_commit) ---
+            return v.strip(), candidate[-1]
+    for candidate in ("POE_API_KEY_1", "POE_API_KEY_2"):
+
+# --- [python] from scripts/poe_lane.py (L119-120, deleted_in_commit) ---
+            return vp, candidate[-1]
+
+# --- [python] from scripts/poe_lane.py (L252-253, deleted_in_commit) ---
+    ap.add_argument("--account", choices=["1", "2"], help="Use POE_API_KEY_1 or POE_API_KEY_2 explicitly.")
+
+# --- [python] from scripts/poe_lane.py (L272-273, deleted_in_commit) ---
+        print("fail: missing POE key (POE_API_KEY or POE_API_KEY_1/_2)")
+
+# --- [python] from scripts/poe_transport_audit.py (L15-16, deleted_in_commit) ---
+poe_transport_audit.py — Poe transport audit.
+
+# --- [python] from scripts/poe_transport_audit.py (L19-21, deleted_in_commit) ---
+@Purpose:       Compares OpenAI-compatible lane vs Poe SDK lane on selected
+                accounts and bots/models. Validates transport parity.
+
+# --- [python] from scripts/poe_transport_audit.py (L109-110, deleted_in_commit) ---
+def probe_openai(account: str, model: str, prompt: str, effort: str = "") -> ProbeResult:
+
+# --- [python] from scripts/poe_transport_audit.py (L129-130, deleted_in_commit) ---
+        return ProbeResult(rc=rc, ok=True, text_preview=(str(text)[:300] if text is not None else None), error=None)
+
+# --- [python] from scripts/poe_transport_audit.py (L131-132, deleted_in_commit) ---
+    return ProbeResult(rc=rc, ok=False, text_preview=None, error=message[:400])
+
+# --- [python] from scripts/poe_transport_audit.py (L134-151, deleted_in_commit) ---
+def probe_sdk(account: str, bot: str, prompt: str) -> ProbeResult:
+    rc, out, err = run_cmd(
+        [
+            "uv",
+            "run",
+            "--with",
+            "fastapi-poe",
+            str(REPO_ROOT / "scripts" / "poe_sdk_lane.py"),
+            "--account",
+            account,
+            "--bot",
+            bot,
+            "--prompt",
+            prompt,
+            "--json",
+        ]
+    )
+
+# --- [python] from scripts/poe_transport_audit.py (L159-161, deleted_in_commit) ---
+def inspect_openai_models(account: str, limit: int) -> tuple[int | None, bool | None]:
+    rc, out, _err = run_cmd(
+
+# --- [python] from scripts/poe_transport_audit.py (L181-182, deleted_in_commit) ---
+    has_app_creator = any(isinstance(m, str) and m.lower() == "app-creator" for m in models)
+
+# --- [python] from scripts/poe_transport_audit.py (L192-193, deleted_in_commit) ---
+        return ("openai-compatible", "App-Creator works on OpenAI-compatible lane; SDK did not match.")
+
+# --- [python] from scripts/poe_transport_audit.py (L194-195, deleted_in_commit) ---
+        return ("poe-sdk", "App-Creator works on Poe SDK lane; OpenAI-compatible did not match.")
+
+# --- [python] from scripts/poe_transport_audit.py (L196-197, deleted_in_commit) ---
+        return ("openai-compatible", "Both lanes can access App-Creator; OpenAI-compatible is better for cross-tool portability.")
+
+# --- [python] from scripts/poe_transport_audit.py (L199-203, deleted_in_commit) ---
+        return (
+            "openai-compatible",
+            "Control probes work on OpenAI-compatible lane while SDK control probes failed.",
+        )
+
+# --- [python] from scripts/poe_transport_audit.py (L204-207, deleted_in_commit) ---
+        return (
+            "openai-compatible",
+            "Both lanes work for control probes, but App-Creator is not API-accessible on tested keys.",
+
+# --- [python] from scripts/poe_transport_audit.py (L208-209, deleted_in_commit) ---
+    return ("indeterminate", "Neither lane passed control probes consistently; re-check account credits and API permissions.")
+
+# --- [python] from scripts/poe_transport_audit.py (L227-231, deleted_in_commit) ---
+        lines.append(f"  - OpenAI control ok: `{acc.openai_control.ok}`")
+        lines.append(f"  - OpenAI app-creator ok: `{acc.openai_app_creator.ok}`")
+        lines.append(f"  - SDK control ok: `{acc.sdk_control.ok}`")
+        lines.append(f"  - SDK app-creator ok: `{acc.sdk_app_creator.ok}`")
+
+# --- [python] from scripts/poe_transport_audit.py (L243-252, deleted_in_commit) ---
+def parse_accounts(raw: str) -> list[str]:
+    out: list[str] = []
+    for token in (raw or "").split(","):
+        v = token.strip()
+        if v in {"1", "2"} and v not in out:
+            out.append(v)
+    if not out:
+        out = ["1", "2"]
+    return out
+
+# --- [python] from scripts/poe_transport_audit.py (L256-257, deleted_in_commit) ---
+    ap.add_argument("--accounts", default="1,2", help="Comma-separated account list from {1,2}.")
+
+# --- [python] from scripts/poe_transport_audit.py (L269-273, deleted_in_commit) ---
+        openai_control = probe_openai(account=account, model=args.control_model, prompt=args.prompt)
+        openai_app = probe_openai(account=account, model=args.target_bot, prompt=args.prompt, effort="max")
+        sdk_control = probe_sdk(account=account, bot=args.control_model, prompt=args.prompt)
+        sdk_app = probe_sdk(account=account, bot=args.target_bot, prompt=args.prompt)
+
+# --- [python] from scripts/poe_transport_audit.py (L300-301, deleted_in_commit) ---
+        write_mailbox(report, parse_mailboxes(args.mailboxes))
+
+# --- [python] from scripts/poe_transport_audit.py (L311-315, deleted_in_commit) ---
+                + f" openai_control={acc.openai_control.ok}"
+                + f" openai_app_creator={acc.openai_app_creator.ok}"
+                + f" sdk_control={acc.sdk_control.ok}"
+                + f" sdk_app_creator={acc.sdk_app_creator.ok}"
+
+# --- [python] from scripts/scm_triage.py (L271-272, deleted_in_commit) ---
+def generate_snapshot(repo_root: Path, audit_result: dict) -> Path:
+
+# --- [python] from scripts/scm_triage.py (L410-411, deleted_in_commit) ---
+        "# cat claude/mailbox/SCM_TRIAGE_SNAPSHOT_LATEST.md",
+
+# --- [python] from scripts/scm_triage.py (L427-428, deleted_in_commit) ---
+    mailbox = repo_root / "claude" / "mailbox"
+
+# --- [python] from scripts/scm_triage.py (L529-530, deleted_in_commit) ---
+        generate_snapshot(repo_root, audit_result)
+
+# --- [python] from scripts/scm_triage.py (L312-313, deleted_in_commit) ---
+    parser.add_argument("--full", action="store_true", help="Audit + fix + plan")
+
+# --- [python] from scripts/genre_extractor.py (L107-108, deleted_in_commit) ---
+            files.append(dir_path)
+
+# --- [python] from scripts/genre_extractor.py (L466-468, deleted_in_commit) ---
+                all_results.extend(parsed_batch)
+                print(f" {elapsed:.1f}s ({len(parsed_batch)} profiles)")
+
+# --- [python] from mas_mcp/lib/gpu_probe.py (L14-25, deleted_in_commit) ---
+"""
+@SID: LIB_GPU_PROBE_V1
+@Type: Library (Infrastructure)
+@Context: GPU Capability Probing with Output Suppression
+"""
+spurious GPU warnings would pollute JSON responses.
+Key Features:
+- OutputSuppressor context manager for silent GPU init
+- Tiered capability detection (CUDA → Numba → CPU fallback)
+- Cached probe results for fast repeated queries
+- MCP-compatible JSON output format
+
+# --- [python] from mas_mcp/lib/gpu_probe.py (L20-28, deleted_in_commit) ---
+Usage:
+    from mas_mcp.lib.gpu_probe import probe_gpu_capabilities, GPUProbeResult
+    
+    result = probe_gpu_capabilities()
+    if result.cuda_available:
+        print(f"CUDA: {result.cuda_device}")
+    else:
+        print(f"Fallback: {result.fallback_reason}")
+
+# --- [python] from mas_mcp/lib/gpu_probe.py (L29-30, deleted_in_commit) ---
+Per Section XIV.1: Always invoke via `uv run python`, never `python` directly.
+
+# --- [python] from mas_mcp/lib/ssot_handler.py (L22-48, deleted_in_commit) ---
+"""
+@SID: LIB_SSOT_HANDLER_V1
+@Type: Library (EPFA)
+@Context: SSOT Handler: Cryptographic Binding to Single Source of Truth
+"""
+
+The SSOT (Single Source of Truth) is `.github/copilot-instructions.md`.
+This module provides cryptographic verification that the ASC Framework
+operates with grounded, consistent governance.
+
+Key Functions:
+- canonicalize_text(): Normalize text for consistent hashing
+- compute_ssot_hash(): SHA-256 of canonical SSOT content
+- verify_bookend(): Compare start/end hashes for drift detection
+Usage:
+    from mas_mcp.lib import compute_ssot_hash, verify_bookend
+    
+    # At session start
+    hash_start = compute_ssot_hash()
+    
+    # ... do work ...
+    
+    # At session end
+    is_consistent, hash_end = verify_bookend(hash_start)
+    if not is_consistent:
+        raise GovernanceDriftError("SSOT modified during session!")
+
+# --- [python] from mas_mcp/server.py (L5-8, deleted_in_commit) ---
+@SID: SERVER_MPW_ROUTER_V1
+@Type: Core Gateway
+@Context: M-P-W Router Server (Modularized)
+
+# --- [python] from scripts/decorator_cross_ref_maximum.py (L4-21, deleted_in_commit) ---
+╔══════════════════════════════════════════════════════════════════════════════
+║  THE DECORATOR'S CROSS-REFERENCE PROTOCOL (DCRP) - UNIFIED PRODUCTION
+║  Self-Updating Architectural Self-Awareness System
+║
+║  Evolutionary Lineage (Capabilities Merged):
+║    - decorator_cross_ref_enhanced.py → AST analysis, Rust parsing
+║    - decorator_cross_ref_maximum.py → State tracking, auto-detection
+║    - decorator_cross_ref_production.py → Cluster resolution, intelligent
+║
+║  Purpose: Automatically inject ML-synthesized cross-references across ALL
+║           repository files (existing + new), resolving circular dependencies
+║           via dependency inversion + acyclic documentation hierarchy
+║
+║  Invocation: uv run python decorator_cross_ref_maximum.py [--inject]
+║
+║  The Decorator's Mandate: "Every file self-aware, sustainable, circular-free"
+╚══════════════════════════════════════════════════════════════════════════════
+
+# --- [python] from scripts/genre_extractor.py (L4-10, deleted_in_commit) ---
+"""
+Genre Extractor — Local uncensored model creative content analysis.
+
+Scans repository creative content files (lore, factions, NSFW, concept art,
+Ankh research, body systems) and extracts structured genre/theme/archetype
+metadata using the abliterated Qwen3 model. Zero API cost, zero censorship.
+
+# --- [python] from scripts/genre_extractor.py (L11-13, deleted_in_commit) ---
+Outputs a human-readable digest to claude/mailbox/.
+JSON output is optional (`--json-out`) to avoid artifact noise.
+
+# --- [python] from scripts/genre_extractor.py (L15-25, deleted_in_commit) ---
+@Type:          Synthesis
+@Context:       Creative Content Analysis / Genre Extraction
+@Implements:    Tribunal SSOT_TRIBUNAL_BRIDGE Local AI Integration Vector
+
+Usage:
+  uv run scripts/genre_extractor.py                    # scan all creative dirs
+  uv run scripts/genre_extractor.py --path game/lore   # scan specific path
+  uv run scripts/genre_extractor.py --dry-run           # list files without inference
+  uv run scripts/genre_extractor.py --coder             # use code-focused model
+  uv run scripts/genre_extractor.py --json-out          # also write JSON artifact
+
+# --- [python] from scripts/local_refiner_v2.py (L4-9, deleted_in_commit) ---
+"""
+Overnight Archaeology Refiner v2 — llama-cpp-python + Structured Output
+
+Uses llama-cpp-python with abliterated/uncensored GGUF models and JSON
+schema constraints for hallucination-free classification. Zero API cost.
+
+# --- [python] from scripts/local_refiner_v2.py (L10-15, deleted_in_commit) ---
+Models (all uncensored, all GGUF, all local):
+  - Default: Qwen3-30B-A3B Instruct abliterated (MoE, 3B active, fast)
+  - Coder:   Qwen3-Coder-30B-A3B abliterated (code-focused analysis)
+  - Heavy:   GPT-OSS-20B NEOPlus Uncensored (dense 20B, Harmony parser)
+  - Legacy:  Qwen 2.5-14B Instruct (CENSORED — deprecated, do not use)

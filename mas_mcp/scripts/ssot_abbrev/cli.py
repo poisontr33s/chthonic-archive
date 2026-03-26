@@ -35,22 +35,20 @@ from pathlib import Path
 from shutil import copy2
 
 
+from mas_mcp.logic.ssot_manifest import SSOT_POINTER_RELPATH
+
+
 def get_ssot_path() -> Path:
-    """Get path to SSOT document."""
-    # Navigate from mas_mcp/scripts/ssot_abbrev to project root
+    """Get path to SSOT document via ssot_manifest cascade."""
     project_root = Path(__file__).parent.parent.parent.parent
-    ssot_path = project_root / ".github" / "copilot-instructions.md"
+    ssot_path = project_root / SSOT_POINTER_RELPATH
 
     if not ssot_path.exists():
-        # Try alternate locations
-        alt_paths = [
-            Path("c:/Users/erdno/chthonic-archive/.github/copilot-instructions.md"),
-            Path(".github/copilot-instructions.md"),
-        ]
-        for alt in alt_paths:
-            if alt.exists():
-                return alt
-        raise FileNotFoundError(f"SSOT not found at {ssot_path} or alternates")
+        # Fallback: try relative path from cwd
+        alt = Path(SSOT_POINTER_RELPATH)
+        if alt.exists():
+            return alt
+        raise FileNotFoundError(f"SSOT not found at {ssot_path}")
 
     return ssot_path
 
@@ -175,7 +173,7 @@ def cmd_backup(args):
     backup_dir.mkdir(parents=True, exist_ok=True)
 
     # Copy SSOT
-    backup_ssot = backup_dir / "copilot-instructions.md"
+    backup_ssot = backup_dir / Path(SSOT_POINTER_RELPATH).name
     copy2(ssot_path, backup_ssot)
     print(f"✅ Copied SSOT to: {backup_ssot}")
 

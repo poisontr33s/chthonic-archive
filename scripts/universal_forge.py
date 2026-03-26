@@ -51,6 +51,9 @@ FORGE_ROOT = ROOT / "dumpster-dive" / "forge"
 ANVIL_ROOT = FORGE_ROOT / "anvil"
 FURNACE_ROOT = FORGE_ROOT / "furnace"
 TEMPERED_ROOT = FORGE_ROOT / "tempered"
+QUENCH_ROOT = FORGE_ROOT / "quench"
+SLAG_ROOT = FORGE_ROOT / "slag"
+TEA_VAULT_ROOT = FORGE_ROOT / "tea-vault"
 CORPSE_ROOT = ROOT / "dumpster-dive" / "corpse-vault"
 
 CENSUS_PATH = ROOT / "audit-reports" / "wptg_filetype_census.json"
@@ -1471,6 +1474,80 @@ def temper_artifacts(artifacts: list[Artifact]) -> dict[str, Any]:
     }
 
 
+def quench_artifacts() -> dict[str, Any]:
+    """Fast-track high-value ore directly to tempered, skipping furnace.
+
+    Per SSOT: ore_rating 5 goes to quench (fast-track — high value).
+    Quench applies temper validation gates WITHOUT furnace transformation.
+    """
+    if not QUENCH_ROOT.exists():
+        return {"quenched": 0, "results": []}
+
+    results: list[dict[str, Any]] = []
+    for item in sorted(QUENCH_ROOT.iterdir()):
+        if item.name.startswith("."):
+            continue
+        syntax_ok, syntax_note = validate_artifact(item)
+        rel = str(item.relative_to(ROOT)).replace("\\", "/")
+        if syntax_ok:
+            dest = TEMPERED_ROOT / item.name
+            dest.parent.mkdir(parents=True, exist_ok=True)
+            shutil.copy2(str(item), str(dest))
+            results.append({"path": rel, "status": "tempered"})
+        else:
+            results.append({"path": rel, "status": "rejected", "reason": syntax_note})
+    return {"quenched": len(results), "results": results}
+
+
+def slag_artifacts() -> dict[str, Any]:
+    """Process slag — mark as rejected, flag upcycle_pending items for review.
+
+    Per SSOT: ore_rating 1-2 goes to slag.
+    Rating 1 items get upcycle_pending flag (may be salvageable).
+    """
+    if not SLAG_ROOT.exists():
+        return {"slagged": 0, "upcycle_candidates": 0, "results": []}
+
+    results: list[dict[str, Any]] = []
+    for receipt_path in sorted(SLAG_ROOT.glob(".forge_receipt_*.json")):
+        try:
+            receipt = json.loads(receipt_path.read_text(encoding="utf-8"))
+        except Exception:
+            continue
+        upcycle = receipt.get("upcycle_pending", False)
+        results.append({
+            "source": receipt.get("routed_from", ""),
+            "upcycle_candidate": upcycle,
+            "ore_rating": receipt.get("ore_rating", 0),
+        })
+    return {
+        "slagged": len(results),
+        "upcycle_candidates": sum(1 for r in results if r["upcycle_candidate"]),
+        "results": results,
+    }
+
+
+def collapse_tea_vault() -> dict[str, Any]:
+    """Collapse superposition-flagged items via forced measurement → anvil.
+
+    Per PROCESS_FLOW.md: tea-vault items undergo forced collapse → anvil
+    for re-evaluation through the standard forge pipeline.
+    """
+    if not TEA_VAULT_ROOT.exists():
+        return {"collapsed": 0, "results": []}
+
+    ANVIL_ROOT.mkdir(parents=True, exist_ok=True)
+    results: list[dict[str, Any]] = []
+    for item in sorted(TEA_VAULT_ROOT.iterdir()):
+        if item.name.startswith("."):
+            continue
+        dest = ANVIL_ROOT / item.name
+        shutil.copy2(str(item), str(dest))
+        rel = str(item.relative_to(ROOT)).replace("\\", "/")
+        results.append({"path": rel, "collapsed_to": "anvil"})
+    return {"collapsed": len(results), "results": results}
+
+
 def write_pathway_registry(artifacts: list[Artifact]) -> dict[str, Any]:
     registry_path = FORGE_ROOT / "PATHWAY_REGISTRY.json"
     existing: list[dict[str, Any]] = []
@@ -1612,6 +1689,12 @@ def main() -> int:
     )
     graduation_manifest = temper_artifacts(artifacts)
     write_json(TEMPERED_ROOT / "GRADUATION_MANIFEST.json", graduation_manifest)
+
+    # Stage transforms: quench (fast-track), slag (rejections), tea-vault (collapse)
+    quench_result = quench_artifacts()
+    slag_result = slag_artifacts()
+    tea_vault_result = collapse_tea_vault()
+
     pathways = write_pathway_registry(artifacts)
     report = write_forge_report(anomaly_harvest, corpse_data, graduation_manifest, pathways)
     write_text(FORGE_REPORT_PATH, report)
@@ -1619,6 +1702,12 @@ def main() -> int:
     print(f"Wrote {ANVIL_ROOT / 'CORPSE_VAULT_DEEP_AUDIT.json'}")
     print(f"Wrote {FURNACE_ROOT / 'FURNACE_MANIFEST.json'}")
     print(f"Wrote {TEMPERED_ROOT / 'GRADUATION_MANIFEST.json'}")
+    if quench_result["quenched"]:
+        print(f"Quench: {quench_result['quenched']} fast-tracked to tempered")
+    if slag_result["slagged"]:
+        print(f"Slag: {slag_result['slagged']} rejected ({slag_result['upcycle_candidates']} upcycle candidates)")
+    if tea_vault_result["collapsed"]:
+        print(f"Tea-vault: {tea_vault_result['collapsed']} collapsed to anvil")
     print(f"Wrote {FORGE_REPORT_PATH}")
     return 0 if graduation_manifest["artifacts_rejected"] == 0 else 1
 

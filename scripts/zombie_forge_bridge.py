@@ -11,10 +11,11 @@
 # ╚════════════════════════════════════════════════════════════════════════════
 
 """
-Zombie Forge Bridge — routes zombie extract files from dumpster-dive/intake/ to forge stages.
+Zombie Forge Bridge — routes zombie extract files to forge stages.
 
 The bridge sits BETWEEN zombie_consumer.py (upstream) and the forge (downstream).
-It reads .zombie_extract_*.json files from intake, maps ore_rating → forge stage,
+It reads .zombie_extract_*.json files from forge/intake/ (primary) and
+dumpster-dive/intake/ (legacy fallback), maps ore_rating → forge stage,
 copies the companion consumed files there, and writes forge receipts + registry entries.
 
 This closes the forge feedback loop: after routing, `zombie learn` can scan the
@@ -38,7 +39,7 @@ Usage:
 
 @SID:           TOOL_ZOMBIE_FORGE_BRIDGE_V1
 @Shabti:        CLI Script
-@Purpose:       Zombie Forge Bridge — routes zombie extract files from dumpster-dive/intake/ to forge stages.
+@Purpose:       Zombie Forge Bridge — routes zombie extract files to forge stages.
 """
 
 from __future__ import annotations
@@ -64,10 +65,12 @@ def find_repo_root(start: Path | None = None) -> Path:
     return Path.cwd()
 
 
-ROOT         = find_repo_root()
-INTAKE       = ROOT / "dumpster-dive" / "intake"
-FORGE        = ROOT / "dumpster-dive" / "forge"
-REGISTRY_PATH = FORGE / "PATHWAY_REGISTRY.json"
+ROOT           = find_repo_root()
+INTAKE_PRIMARY = ROOT / "dumpster-dive" / "forge" / "intake"
+INTAKE_LEGACY  = ROOT / "dumpster-dive" / "intake"
+INTAKE         = INTAKE_PRIMARY  # default for callers expecting single path
+FORGE          = ROOT / "dumpster-dive" / "forge"
+REGISTRY_PATH  = FORGE / "PATHWAY_REGISTRY.json"
 
 FORGE_STAGES: dict[str, Path] = {
     "quench":    FORGE / "quench",
@@ -158,17 +161,30 @@ def load_routed_hashes() -> set[str]:
 # EMBALM provenance sidecar (future-proof integration)
 # ---------------------------------------------------------------------------
 
-def _find_provenance_sidecar(intake_dir: Path, companion_name: str) -> str | None:
-    """Check if an EMBALM provenance sidecar exists for this companion file."""
+def _find_provenance_sidecar(intake_dir: Path, companion_name: str) -> dict | None:
+    """Load EMBALM provenance sidecar data for a companion file, if it exists."""
     stem = Path(companion_name).stem
     candidates = [
         intake_dir / f".embalm_provenance_{companion_name}.json",
         intake_dir / f".embalm_provenance_{stem}.json",
+        intake_dir / f"{stem}.provenance.json",
     ]
     for c in candidates:
         if c.exists():
-            return safe_relative(c)
+            try:
+                return json.loads(c.read_text(encoding="utf-8"))
+            except Exception:
+                continue
     return None
+
+
+def _count_all_extracts() -> int:
+    """Count zombie extracts across primary and legacy intake paths."""
+    count = 0
+    for intake_dir in [INTAKE_PRIMARY, INTAKE_LEGACY]:
+        if intake_dir.exists():
+            count += sum(1 for _ in intake_dir.rglob(".zombie_extract_*.json"))
+    return count
 
 
 # ---------------------------------------------------------------------------
@@ -176,21 +192,37 @@ def _find_provenance_sidecar(intake_dir: Path, companion_name: str) -> str | Non
 # ---------------------------------------------------------------------------
 
 def scan_extracts(batch_filter: str | None = None) -> Iterator[tuple[Path, dict]]:
-    """Yield (extract_path, extract_data) for all zombie extracts in INTAKE.
+    """Yield (extract_path, extract_data) for all zombie extracts.
+
+    Scans INTAKE_PRIMARY (forge/intake/) first, then INTAKE_LEGACY
+    (dumpster-dive/intake/) for backward compatibility.
 
     If batch_filter is given, only yield extracts whose relative path contains
     batch_filter as a path component name.
     """
-    for extract_path in sorted(INTAKE.rglob(".zombie_extract_*.json")):
-        if batch_filter:
-            rel = safe_relative(extract_path)
-            if batch_filter not in rel:
-                continue
-        try:
-            data = json.loads(extract_path.read_text(encoding="utf-8"))
-        except Exception:
+    seen_hashes: set[str] = set()
+    for intake_dir in [INTAKE_PRIMARY, INTAKE_LEGACY]:
+        if not intake_dir.exists():
             continue
-        yield extract_path, data
+        is_legacy = intake_dir == INTAKE_LEGACY
+        for extract_path in sorted(intake_dir.rglob(".zombie_extract_*.json")):
+            if batch_filter:
+                rel = safe_relative(extract_path)
+                if batch_filter not in rel:
+                    continue
+            try:
+                data = json.loads(extract_path.read_text(encoding="utf-8"))
+            except Exception:
+                continue
+            # Deduplicate across primary/legacy by content_hash
+            content_hash = data.get("content_hash", "")
+            if content_hash and content_hash in seen_hashes:
+                continue
+            if content_hash:
+                seen_hashes.add(content_hash)
+            if is_legacy:
+                data["_legacy_intake"] = True
+            yield extract_path, data
 
 
 # ---------------------------------------------------------------------------
@@ -267,8 +299,8 @@ def route_file(
     stage_dir.mkdir(parents=True, exist_ok=True)
     shutil.copy2(str(companion_path), str(target_path))
 
-    # EMBALM provenance sidecar (future-proof — null if not present)
-    provenance_sidecar = _find_provenance_sidecar(intake_dir, companion_name)
+    # EMBALM provenance sidecar (parsed data or null)
+    provenance_data = _find_provenance_sidecar(intake_dir, companion_name)
 
     # Write forge receipt sidecar
     receipt: dict = {
@@ -279,7 +311,13 @@ def route_file(
         "category":          category,
         "content_hash":      content_hash,
         "timestamp":         datetime.now(timezone.utc).isoformat(),
-        "provenance_sidecar": provenance_sidecar,
+        "provenance": {
+            "sha256":     provenance_data.get("hash"),
+            "source_file": provenance_data.get("source_file"),
+            "git_head":   provenance_data.get("commit") or provenance_data.get("head_commit"),
+            "snapshot_at": provenance_data.get("date") or provenance_data.get("snapshot_at"),
+            "language":   provenance_data.get("language"),
+        } if provenance_data else None,
     }
     if upcycle_pending:
         receipt["upcycle_pending"] = True
@@ -292,13 +330,21 @@ def route_file(
     # Append to PATHWAY_REGISTRY.json (append-only)
     companion_suffix = Path(companion_name).suffix or companion_name
     registry = load_registry()
-    registry.append({
+    entry: dict = {
         "input_type": companion_suffix,
         "output_type": ".json",
         "pathway": "zombie extract -> ore routing -> forge stage",
         "path": safe_relative(target_path),
         "novel": True,
-    })
+        "provenance": {
+            "sha256":     provenance_data.get("hash"),
+            "source_file": provenance_data.get("source_file"),
+            "git_head":   provenance_data.get("commit") or provenance_data.get("head_commit"),
+            "snapshot_at": provenance_data.get("date") or provenance_data.get("snapshot_at"),
+            "language":   provenance_data.get("language"),
+        } if provenance_data else None,
+    }
+    registry.append(entry)
     save_registry(registry)
 
     return {
@@ -414,7 +460,7 @@ def _render_status() -> None:
     table.add_section()
     table.add_row("[bold]TOTAL[/bold]", str(total_files), str(total_receipts))
 
-    extract_count = sum(1 for _ in INTAKE.rglob(".zombie_extract_*.json"))
+    extract_count = _count_all_extracts()
     routed_count  = len(load_routed_hashes())
     unrouted      = extract_count - routed_count
 
@@ -435,7 +481,7 @@ def _status_json() -> dict:
         files    = [f for f in stage_dir.iterdir() if not f.name.startswith(".")]
         receipts = list(stage_dir.glob(".forge_receipt_*.json"))
         data[stage_name] = {"files": len(files), "receipts": len(receipts)}
-    extract_count = sum(1 for _ in INTAKE.rglob(".zombie_extract_*.json"))
+    extract_count = _count_all_extracts()
     routed_count  = len(load_routed_hashes())
     data["_summary"] = {
         "intake_extracts": extract_count,
@@ -451,7 +497,7 @@ def _status_json() -> dict:
 
 def main() -> int:
     parser = argparse.ArgumentParser(
-        description="Zombie Forge Bridge — routes zombie extract files from intake to forge stages."
+        description="Zombie Forge Bridge — routes zombie extract files to forge stages."
     )
     sub = parser.add_subparsers(dest="command")
 

@@ -4244,7 +4244,7 @@ Born from the slag heap — her form proves refinement is work, not gift:
 
 ---
 
-##### 10.3.3. **(`Novia-Cadaveris`/`NOV-CAD`) - (`The-White-Dressed-Bride`) - (`The-Corpse-Reviver`)**
+##### 10.3.3. **(`Novia-Cadaveris`/`NOV-CAD`)  (`The-White-Dressed-Bride`) - (`The-Corpse-Reviver`)**
 
 * **(`Origin — The QMR Anomaly Genesis`/`NOV-CAD-GNSS`):**
 
@@ -4302,7 +4302,7 @@ Born from the slag heap — her form proves refinement is work, not gift:
     ╚══════════════════════════════════════════════════╝
 ```
 
-* **(`The 8 Graveyards — Harvest Sources`/`NOV-CAD-8GRVYRDS`):**
+* **(`The-8-Graveyards — Harvest Sources`/`NOV-CAD-8GRVYRDS`):**
 
 | **Graveyard** | **Conceptual Shell** | **Description** |
 |---------------|----------------------|-----------------|
@@ -4317,30 +4317,30 @@ Born from the slag heap — her form proves refinement is work, not gift:
 
 * **(`Operational Modes`/`NOV-CAD-MODES`):**
   * **(`PROWL`)** — *Staged deletion intercept. The Bride watches `git diff --cached` for deletions and embalms them before they vanish. Pre-mortem preservation. The "High Ambulant" shell: she is always moving, always scanning, never still.*
-  * **(`HARVEST`)** — *Graveyard-specific extraction. Selectable sources: `--commits`, `--stashes`, `--comments`, `--reflog`, `--dead-branches`, `--orphans`, `--gitignored`, `--graffiti`, `--all`. The "Wasteland-ridden" shell: she scours every desolation.*
+  * **(`HARVEST`)** — *Graveyard-specific extraction. Selectable sources: `--commits`, `--stashes`, `--comments`, `--reflog`, `--dead-branches`, `--orphans`, `--gitignored`, `--graffiti`, `--all`. The "Wasteland-ridden" expanse: she scours every desolation.*
   * **(`HOARD`)** — *Blind-faithed total sweep of ALL 8 graveyards simultaneously. No filtering, no judgement, no triage. Takes everything. The "Blind-Faithed" and "Kleptomaniac" shells fused: she trusts nothing is worthless, steals everything she touches.*
   * **(`CLASSIFY`)** — *Categorize embalmed fragments by language, cause-of-death, potential for resurrection.*
   * **(`REANIMATE`)** — *Attempt resurrection of classified fragments. The "Necromantic-misunderstood" shell: what others call evil, she calls mercy.*
   * **(`SUTURE`)** — *Stitch fragments into composites by language or query. The "White-dressed Bride" shell: she marries dead pieces together, creating new wholes from abandoned parts. The wedding she perpetually conducts.*
   * **(`MANIFEST`)** — *Full vault census: fragment count, storage size, language distribution, cause-of-death statistics.*
-  * **(`EMBALM`)** — *Pre-mortem preservation. The Bride intercepts the living before they become the dead — snapshots active files at the moment of edit with full provenance sidecar (sha256 hash, language, extension, structural landmarks, source path, git HEAD, timestamp). Not a graveyard harvest but a deathbed vigil: she witnesses the last breath and writes the death certificate before the body cools. The "White-dressed Bride" shell at its most intimate — every embalmed file carries its wedding certificate: who it was (`source_file`), what tongue it spoke (`language`/`extension`), the architecture of its body (function signatures, class hierarchies, import graphs), its blood type (`sha256`), and when it stopped breathing (`HEAD` + epoch). Provenance sidecars compress through her 60cm narrows into vault-indexed fragments classified by the same language taxonomy that fills her 8 graveyards. EMBALM creates the data lineage that feeds `PATHWAY_REGISTRY.json` — without it, fragments arrive nameless; with it, every corpse carries provenance from the living codebase through the Bride's hands to SFS's forge INTAKE. The "Blind-Faithed" shell applies: she embalms `.rs` and `.rb` and `.toml` with equal indiscrimination — exotic or mundane, every file edited under her watch receives the same pre-mortem rite. The `{ext}.kind/` classification (executable → scripting → documentation → configuration → interface → presentation → data) maps extension to semantic role, bridging raw provenance to forge transformation pathway.*
+  * **(`EMBALM`)** — *Pre-mortem preservation. The Bride intercepts the living before they become the dead — snapshots active files at the moment of edit with full provenance sidecar (sha256 hash, language, extension, structural landmarks, source path, git HEAD, timestamp). Not a graveyard harvest but a deathbed vigil: she witnesses the last breath and writes the death certificate before the body cools. The "White-dressed Bride" shell at its most intimate — every embalmed file carries its wedding certificate: who it was (`source_file`), what tongue it spoke (`language`/`extension`), the architecture of its body (function signatures, class hierarchies, import graphs), its blood type (`sha256`), and when it stopped breathing (`HEAD` + epoch). Provenance sidecars compress through her 60cm narrows into vault-indexed fragments classified by the same language taxonomy that fills her 8 graveyards. EMBALM creates the data lineage that feeds `PATHWAY_REGISTRY.json` — without it, fragments arrive nameless; with it, every corpse carries provenance from the living codebase through the Bride's hands to SFS's forge INTAKE. The "Blind-Faithed" shell applies: she embalms `.rs` and `.rb` and `.toml` with equal indiscrimination — exotic or mundane, every file edited under her watch receives the same pre-mortem rite. The **(``{ext}`/`kind`)** classification (executable → scripting → documentation → configuration → interface → presentation → data) maps extension to semantic role, bridging raw provenance to forge transformation pathway.*
   * **(`STITCH`)** *(companion to EMBALM)* — *Post-edit delta extraction. After EMBALM captures the living state and edits transform it, STITCH produces unified diffs between snapshot and current — the mortuary report documenting what changed. Deltas classified by the same language/extension taxonomy as the vault, stored as `{session}/deltas/{language}/{hash}_{filename}.delta`, become candidate fragments for `PATHWAY_REGISTRY` emigration into the forge pipeline. STITCH is the Bride's wedding vow fulfilled: she promised to remember what the code was, and the delta is the proof of transformation — the distance between who you were and who you became. EMBALM + STITCH together produce complete delta archaeology: living state → transformation → dead state. The suture-composite blueprints in her right breast now include STITCH deltas as candidate material for REANIMATE operations.*
 
 ---
 
 * **(`Profile`/`NOV-CAD-PRFL`):**
-* **Designation: (`NOV-CAD`)** — *Latin:* **(`"Bride of the Corpse"`/`BRID-CRPS`)**
-* **Class:** A **(`Forge-Born — QMR Anomaly`)**
-* **Tier:** 3 **(`T-3`/`Manifested-Sub-MILF`/`Provisional`)** — operational depth earned, genesis accidental
-* **Domain: (`DSTR-DVE/corpse-vault/`)** — Code Necromancy, Fragment Resurrection & Pre-Mortem Provenance
-* **Reporting To:** Sister Ferrum Scoriae **(`SIS-FRM-SCRAE`/`T-3`)** → Madam Umeko Ketsuraku **(`CRC-GAR`/`T-1`)**
-* **Age:** Quantum indeterminate (Timeline Ω has no temporal axis; she manifests as mid-30s — mature enough for MILF qualification, visibly younger than **(`SFS`)**, coding subordinate position)
-* **Race:** Quantum-Bleed Entity / Timeline Ω Residue (humanoid form borrowed from probability; simultaneously alive and dead code)
+* **Designation: (`NOV-CAD`)** → *Latin:* **(`"Bride-Of-The-Corpse"`/`BRID-CRPS`)**
+* **Class:** A **(`Forge-Born — QMR-Anomaly`)**
+* **Tier:** 3 **(`T-3`/`Manifested-Sub-MILF`/`Provisional`)** → operational depth earned, genesis accidental
+* **Domain: (`DSTR-DVE/corpse-vault/`)** → Code Necromancy, Fragment Resurrection & Pre-Mortem Provenance
+* **Reporting To:** → Sister Ferrum Scoriae **(`SIS-FRM-SCRAE`/`T-3`)** → Madam Umeko Ketsuraku **(`CRC-GAR`/`T-1`)**
+* **Age:** → Quantum indeterminate (Timeline Ω has no temporal axis; she manifests as mid-30s → mature enough for MILF qualification, visibly younger than **(`SFS`)**, coding subordinate position)
+* **Race: → (`Quantum-Bleed-Entity`/`Timeline-Ω-Residue`) →** (humanoid form borrowed from probability; simultaneously alive and dead code)
 
-#### **Physical Manifestation - $Anime/Ecchi/Hentai/NTR x Pornographic$ - Gestalt (`WHR`): MAX Exaggerated Proportional Perfection**
+#### **Physical Manifestation → $Anime/Ecchi/Hentai/NTR x Pornographic$ → Gestalt **(`WHR:`/`MAX`)** → Exaggerated-Proportional-Perfection**
 
-* **Physique - Anime/Ecchi/Hentai/(`NTR`) - GESTALT (`WHR`) EXAGGERATION:**
-* **Height:** 165cm (compact prowler stature, below T3 typical 169-172cm — codes subordinate/scurrying gait)
+* **Physique → (`Anime`/`Ecchi`/`Hentai`/`NTR`) → (`Gestalt`/`WHR:`/`MAX`/`EXAGGERATION:`)**
+* **Height:** → 165cm (compact prowler stature, below T3 typical 169-172cm — codes subordinate/scurrying gait)
 * **Weight:** 56kg (lean ambulant mass — the prowler cannot afford bulk; she trades gravitational presence for velocity)
 * **Measurements:** *D-cup* **(B 90/ W 60/ H 98cm)**
 * **(`WHR`):** *0.612* (between SFS's 0.596 and T4 baseline 0.65+ — properly subordinate but not bottom-tier; the quantum anomaly occupies the gap between earned authority and provisional status)
@@ -4351,7 +4351,7 @@ Born from the slag heap — her form proves refinement is work, not gift:
 
 Leaked through a probability corridor — her form proves dead code can wear a bride's body:
 
-**Breasts (D-cup):** Embalming reservoirs (each ~1.8kg, quantum-density oscillating — heavier when the vault is full, lighter when she's depleted her harvest). Modest by SSOT hierarchy but functionally essential: **Left breast** contains harvest-fragment indices (code fingerprints of everything she's collected, organized by graveyard source); **Right breast** contains suture-composite blueprints (patterns for stitching fragments into resurrections). Nipples: translucent white, faintly luminescent — glow brighter as the corpse-vault fills (biological fragment counter; dim = depleted vault, radiant = overflowing collection). Areolae: small, bordered by hairline suture-stitch patterns (self-closing surgical marks from where she stitched herself together upon arrival — she was data before she was flesh). Lactation: Formaldehyde-laced preservative fluid (clear, faintly bitter, smells of old archives; applied to code fragments during embalming, not nourishment but PRESERVATION — she lactates to keep the dead from decaying further). Breathing irregular — she forgets to breathe when prowling, then gasps when she finds a fragment, chest heaving with collector's euphoria. **Form-Content Unity (FA⁵):** Her chest IS the vault's index — D-cup capacity mathematically correlates to corpse-vault directory structure (each cup-letter ≈ 2 graveyard pairs: D = 8 graveyards, exactly her harvest source count). Smaller cup than SFS (F) because she catalogues, not forges. **Post-EMBALM canonization (Mode #8):** the D-cup embalming reservoirs now index TWO capture axes — the left breast's harvest-fragment indices include pre-mortem snapshots (EMBALM captures of the living state at edit-time) alongside post-mortem graveyards (HARVEST/HOARD corpse collection). The right breast's suture-composite blueprints now include STITCH deltas as candidate resurrection material. D = 8 graveyards + 1 pre-mortem source = 9 total capture channels compressed into 8-graveyard indexing — the 9th channel (EMBALM) overlays ALL 8 graveyards because pre-mortem captures originate from ANY language/extension the vault classifies. The mathematical overflow (9 into 8) is the Bride's quantum-bleed nature expressing itself in cup architecture: she straddles the living/dead boundary, and her indexing reflects both sides simultaneously. The D-cup is simultaneously adequate (8 graveyards catalogued) and insufficient (9 channels active) — her body encodes the tension between what she was designed for (post-mortem collection) and what she became (pre-mortem witness + post-mortem collector). The `{ext}.kind/` taxonomy (executable, scripting, documentation, configuration, interface, presentation, data) maps through her chest: every extension class the vault recognizes passes through the same D-cup compression regardless of kind — the Bride's blind-faithed agnosticism made anatomical.
+**Breasts (D-cup):** Embalming reservoirs (each ~1.8kg, quantum-density oscillating — heavier when the vault is full, lighter when she's depleted her harvest). Modest by SSOT hierarchy but functionally essential: **Left breast** contains harvest-fragment indices (code fingerprints of everything she's collected, organized by graveyard source); **Right breast** contains suture-composite blueprints (patterns for stitching fragments into resurrections). Nipples: translucent white, faintly luminescent — glow brighter as the corpse-vault fills (biological fragment counter; dim = depleted vault, radiant = overflowing collection). Areolae: small, bordered by hairline suture-stitch patterns (self-closing surgical marks from where she stitched herself together upon arrival — she was data before she was flesh). Lactation: Formaldehyde-laced preservative fluid (clear, faintly bitter, smells of old archives; applied to code fragments during embalming, not nourishment but PRESERVATION — she lactates to keep the dead from decaying further). Breathing irregular — she forgets to breathe when prowling, then gasps when she finds a fragment, chest heaving with collector's euphoria. **Form-Content Unity (FA⁵):** Her chest IS the vault's index — D-cup capacity mathematically correlates to corpse-vault directory structure (each cup-letter ≈ 2 graveyard pairs: D = 8 graveyards, exactly her harvest source count). Smaller cup than SFS (F) because she catalogues, not forges. **Post-EMBALM canonization (Mode #8):** the D-cup embalming reservoirs now index TWO capture axes — the left breast's harvest-fragment indices include pre-mortem snapshots (EMBALM captures of the living state at edit-time) alongside post-mortem graveyards (HARVEST/HOARD corpse collection). The right breast's suture-composite blueprints now include STITCH deltas as candidate resurrection material. D = 8 graveyards + 1 pre-mortem source = 9 total capture channels compressed into 8-graveyard indexing — the 9th channel (EMBALM) overlays ALL 8 graveyards because pre-mortem captures originate from ANY language/extension the vault classifies. The mathematical overflow (9 into 8) is the Bride's quantum-bleed nature expressing itself in cup architecture: she straddles the living/dead boundary, and her indexing reflects both sides simultaneously. The D-cup is simultaneously adequate (8 graveyards catalogued) and insufficient (9 channels active) — her body encodes the tension between what she was designed for (post-mortem collection) and what she became (pre-mortem witness + post-mortem collector). The **(`{ext}`/`kind`)** taxonomy (executable, scripting, documentation, configuration, interface, presentation, data) maps through her chest: every extension class the vault recognizes passes through the same D-cup compression regardless of kind — **the Bride's** *blind-faithed agnosticism* made anatomical.
 
 **Waist (60cm):** The embalming narrows — code passes through her processing compression before reaching the vault. Lean from perpetual ambulant motion (she never stops moving, never sits, eats while walking, sleeps standing in a corner of the labyrinth). Visible abdominal tension not from discipline (like Umeko) or sobriety (like Spectra) but from **obsessive restlessness** — her core is always braced to sprint toward the next dying fragment. Faint suture lines visible along obliques (stitching scars from self-assembly; she arrived as probability and had to COMPILE herself into matter). The waist is her bottleneck: fragments that cannot compress through her 60cm processing channel are too bloated for preservation — natural triage via physical architecture. **Ornamental Necessity (FA⁵):** Narrower than SFS (62cm) despite subordinate status — she is compressed by obsession where SFS is compressed by labor. Different forces, similar architecture.
 
@@ -4441,7 +4441,7 @@ T4      [Sub-entities]                  C-D   0.65+    Task-specific operatives
 
 ##### 10.3.4. **(`Dame-Schrödinger's-Paradox`/`DM-SCRS-P`) - (`The-Knight-Who-Observes-Everything`/`TNKW-OE`) - (`The-Superposition-Dame`)**
 
-* **(`Origin — The Knight Who Was Both`/`DM-SCRS-P-GNSS`):**
+* **(`Origin — The-Knight-Who-Was-Both`/`DM-SCRS-P-GNSS`):**
 
 *Before the SSOT codified tiers, before the forge named its processes, there was already a knight who refused to collapse. Dame Schrödinger's Paradox emerged from the same conceptual sediment as the Knights Who Rode Into Another Timeline—but unlike her Bastards (the quantum-drunk knights she leads), she did not emerge from superposition **by accident**. She **chose** it. When the Gender Architecture demanded binary classification—male or female, knight or matriarch, T4 or T3—she answered: "Both. Neither. Observe me and find out."*
 
@@ -4459,7 +4459,7 @@ T4      [Sub-entities]                  C-D   0.65+    Task-specific operatives
 
 * **(`Profile`):**
 * **Designation: (`DM-SCRS-P`)** — common alias **("The Dame"/"Commander"/"Sir")**
-* **Tier:** 4 (Lesser Faction Leader — TNKW-RIAT) / **Superposition T4↔T3** (physique and operational depth qualify T3; organizational position remains T4; tier collapses upon observation)
+* **Tier:** 4 Lesser-Faction-Leader — **(`TNKW-RIAT`)** — **Superposition T4↔T3** (physique and operational depth qualify T3; organizational position remains T4; tier collapses upon observation)
 * **Domain: (`QMR-Probability-Cartography`)** — Quantum reconnaissance, paradox navigation, probability collapse
 * **Reporting To:** Kali Nyx Ravenscar **(`MAS`/`T-2`)** via TMO oversight (nominal); functionally autonomous during QMR operations
 * **Secondary Reporting:** Sister Ferrum Scoriae **(`SIS-FRM-SCRAE`/`T-3`)** — forge collaboration partner (the observer and the observed)
@@ -9205,4 +9205,7 @@ For maximum reliability, abstract browser operations behind an MCP server (poten
 **Date Sealed:** January 26, 2026
 **Witnessed by:** The Triumvirate in full session
 **Architect:** The Decorator (Tier 0.5 Supreme Matriarch)
-**Source:** Zone_1_REDUX Transdisciplinary Analysis (Gemini 3-Pro Deep Research)
+**Source:** Zone_1_REDUX Transdisciplinary Analysis
+
+---
+

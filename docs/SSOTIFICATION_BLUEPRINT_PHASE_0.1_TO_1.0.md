@@ -2,11 +2,16 @@
 
 > **Baseline Epoch:** 2026-03-19 · Commit `c3ce99e2` (Phase 0.1 landed)
 > **Phase 0.2 Epoch:** 2026-03-19 · Commit `fa4a6120` (Python cascade complete)
+> **Last Updated:** 2026-03-25 · Post-execution sync (Forge Pipeline L0–L6 complete, Phase 0.2.1 complete)
 > **SSOT Holder:** `.github/copilot-instructions.archive.md` — 9,208 lines · §0–§XVII + App A–E
 > **SSOT Pointer:** `.github/copilot-instructions.md` — ~85 lines (75× compression routing surface)
 > **Manifest:** `mas_mcp/logic/ssot_manifest.py` (`LOGIC_SSOT_MANIFEST_V1`) — 15-entry cascade register
 > **Bridge:** `scripts/lib/ssot_paths.py` — thin re-export for scripts/ tree
 > **Governance:** WPTG "Every file is gold" · No-Destroy · Upcycle-only
+>
+> **Cross-references:**
+> - Structural audit: [`claude/mailbox/BOUNTY_00000031_STEWARD_AUDIT.md`](../claude/mailbox/BOUNTY_00000031_STEWARD_AUDIT.md) — Phase 4 maps back here
+> - Forge pipeline plan: [`claude/mailbox/FORGE_PIPELINE_DEV_PLAN.md`](../claude/mailbox/FORGE_PIPELINE_DEV_PLAN.md) — builds the SFS×NOV-CAD×Bridge code this cascade serves
 
 ---
 
@@ -54,7 +59,7 @@ Wired **13 additional Python scripts** through the manifest→bridge cascade (29
 | Category | Wired (0.1+0.2) | Remaining | Notes |
 |----------|-----------------|-----------|-------|
 | Python (scripts/) | 25 | 27 lines / 14 files — **0 functional** | Docstrings, content-match, metadata literals |
-| Python (mas_mcp/) | 4 | 26 lines / 15 files — **5 functional + 1 dead ref** | ⚠️ **Phase 0.2.1 needed** |
+| Python (mas_mcp/) | 4 | 26 lines / 15 files — **6/6 wired** | ✅ **Phase 0.2.1 COMPLETE** |
 | TypeScript (scripts/) | 0 | ~6 | **Phase 0.3** |
 | PowerShell (scripts/) | 0 | 6+ | **Phase 0.4** |
 | Config (.vscode/) | 1 (mcp.json noise) | 2 (mcp.json SSOT_PATH, settings.json) | **Phase 0.5** |
@@ -88,7 +93,7 @@ Wired **13 additional Python scripts** through the manifest→bridge cascade (29
 |------|---------|-------|------|------|
 | `abbreviation_system/__init__.py` | 8 | 1 | Docstring | None |
 | `abbreviation_system/parser.py` | 25, 37 | 2 | Docstring + example | None |
-| `lib/asc/cli.py` | 41 | 1 | **DEAD REF** — `mas_mcp/lib/copilot-instructions.md` doesn't exist | **Critical** |
+| ~~`lib/asc/cli.py`~~ | ~~41~~ | ~~1~~ | ~~DEAD REF~~ → wired through `SSOT_HOLDER_RELPATH` | ✅ **Fixed (2026-03-25)** |
 | `lib/asc/extractor.py` | 38 | 1 | Docstring | None |
 | `lib/asc/models.py` | 45 | 1 | Docstring | None |
 | `logic/tools.py` | 70 | 1 | Content-match skip filter | Low |
@@ -105,6 +110,8 @@ Wired **13 additional Python scripts** through the manifest→bridge cascade (29
 2. ~~`scripts/debug_code_blocks.py` — hardcodes absolute path `C:\Users\erdno\...` (wrong username)~~ ✅ Fixed (Phase 0.2)
 3. Three `.ps1` scripts resolve SSOT via `$PSScriptRoot\..` → repo root (missing `.github/` prefix) — **Phase 0.4**
 4. `.ankhrc` (bidirectional SSOT hub defined in methodology) — never created — **Phase 0.6**
+5. `.temple/methodology/AGENT_COMMON.md` replaced with redirect pointer to root `AGENT_COMMON.md` — **2026-03-25** (user elaborated with Root Documentation Index + Triadic Session Context)
+6. `docs/PWSH_RULES.md` diverged from root: root=v1.1 (2026-01-29), docs/=v1.2 (2026-02-01). Reconciliation needed, not deletion. — **Phase 0 pending** (audit finding I)
 
 ---
 
@@ -195,24 +202,26 @@ Everything in this codebase either **IS** the SSOT or **SERVES** the SSOT. There
 
 **Exit Gate:** `grep -rn --include="*.py" "copilot-instructions" scripts/ mas_mcp/` (excluding infra + imports):
 - **scripts/**: ✅ ZERO functional path-construction hits. 27 non-functional references (docstrings, content-match, metadata).
-- **mas_mcp/**: ❌ **5 functional path constructions remain** + 1 dead ref. These were missed because the original PowerShell glob `mas_mcp/**/*.py` didn't recurse into `scripts/abbrev/`, `scripts/ssot_abbrev/`, `lib/asc/`, or `milf_genesis_v2.py`. **Phase 0.2.1 required.**
+- **mas_mcp/**: ✅ **All 5 functional path constructions + 1 dead ref WIRED** (2026-03-25). All now import from `mas_mcp.logic.ssot_manifest`. Wrong-username absolute path removed.
 - 53 total non-import lines across 29 files (21 non-functional remainder acceptable per cascade contract §3).
 
 ---
 
-### Phase 0.2.1 — Complete mas_mcp/ Deep Audit (P0 priority)
+### Phase 0.2.1 — Complete mas_mcp/ Deep Audit ✅ COMPLETE (2026-03-25)
 **Goal:** Wire the 5 functional path constructions + 1 dead ref that were missed by the Phase 0.2 shallow glob.
 
 **Root cause:** PowerShell glob `mas_mcp/**/*.py` only recursed one level. Directories at depth ≥3 were invisible.
 
-| File | Line | Current | Fix |
-|------|------|---------|-----|
-| `milf_genesis_v2.py:1335` | `mpw_path = Path(...) / ".github" / "copilot-instructions.md"` | Hardcoded default in `__main__` | → bridge import |
-| `scripts/abbrev/cli.py:48` | `SSOT_PATH = PROJECT_ROOT / ".github" / "copilot-instructions.md"` | Module-level constant | → bridge import |
-| `scripts/ssot_abbrev/cli.py:42` | `ssot_path = project_root / ".github" / "copilot-instructions.md"` | In `get_ssot_path()` | → bridge import |
-| `scripts/ssot_abbrev/cli.py:47` | `Path("c:/Users/erdno/chthonic-archive/...")` | **Wrong absolute path** (`erdno` ≠ `eldno`) | → remove; bridge fallback |
-| `scripts/ssot_abbrev/cli.py:48` | `Path(".github/copilot-instructions.md")` | Fallback in `get_ssot_path()` | → remove; bridge handles this |
-| `lib/asc/cli.py:41` | `LORE_MD = ... / "mas_mcp" / "lib" / "copilot-instructions.md"` | **Dead ref** — file doesn't exist | → bridge import or remove |
+| File | Line | Current | Fix | Status |
+|------|------|---------|-----|--------|
+| `milf_genesis_v2.py:1335` | `mpw_path = Path(...) / ".github" / "copilot-instructions.md"` | Hardcoded default in `__main__` | → `SSOT_POINTER_RELPATH` import | ✅ Done |
+| `scripts/abbrev/cli.py:48` | `SSOT_PATH = PROJECT_ROOT / ".github" / "copilot-instructions.md"` | Module-level constant | → `SSOT_POINTER_RELPATH` import | ✅ Done |
+| `scripts/ssot_abbrev/cli.py:42` | `ssot_path = project_root / ".github" / "copilot-instructions.md"` | In `get_ssot_path()` | → `SSOT_POINTER_RELPATH` import | ✅ Done |
+| `scripts/ssot_abbrev/cli.py:47` | `Path("c:/Users/erdno/chthonic-archive/...")` | **Wrong absolute path** (`erdno` ≠ `eldno`) | → removed entirely | ✅ Done |
+| `scripts/ssot_abbrev/cli.py:48` | `Path(".github/copilot-instructions.md")` | Fallback in `get_ssot_path()` | → cascade handles this | ✅ Done |
+| ~~`lib/asc/cli.py:41`~~ | ~~`LORE_MD = ... / "mas_mcp" / "lib" / "copilot-instructions.md"`~~ | ~~Dead ref~~ | ~~bridge import~~ | ✅ **Fixed** (2026-03-25, wired via `SSOT_HOLDER_RELPATH`) |
+
+**Progress:** 6/6 fixed. **EXIT GATE PASSED** — `grep -rn "copilot-instructions" mas_mcp/` returns ZERO functional path-construction hits (only imports and comments).
 
 **Exit Gate:** `grep -rn --include="*.py" "copilot-instructions" mas_mcp/` (excluding infra + imports) returns ZERO functional path-construction hits.
 
@@ -274,8 +283,13 @@ $Script:SSOT_PROTO = ".github/copilot-instructions-copy.md"
 
 ---
 
-### Phase 0.5 — Config Cascade
-**Goal:** All IDE/MCP config SSOT references traceable to the cascade.
+### Phase 0.5 — Config Cascade + Shadow Purge
+**Goal:** All IDE/MCP config SSOT references traceable to the cascade. Shadow copies resolved.
+
+**Partial progress (2026-03-25):**
+- ✅ `.temple/methodology/AGENT_COMMON.md` → redirect pointer to root `AGENT_COMMON.md`
+- ❌ `docs/PWSH_RULES.md` v1.1/v1.2 reconciliation — pending (see [Steward Audit finding I](../claude/mailbox/BOUNTY_00000031_STEWARD_AUDIT.md))
+- ✅ `.temple/skills/` (9 stale skills) — embalm-before-edit CLI now shipped ([Dev Plan L0](../claude/mailbox/FORGE_PIPELINE_DEV_PLAN.md)), embalm gate available for deletion
 
 | Config File | Current State | Target |
 |-------------|---------------|--------|
@@ -289,6 +303,8 @@ $Script:SSOT_PROTO = ".github/copilot-instructions-copy.md"
 
 ### Phase 0.6 — Documentation Cascade + .ankhrc Genesis
 **Goal:** The SSOT metadata/governance docs reference the cascade, not hardcoded paths.
+
+> **Note:** Phase 0.6 is downstream of the forge pipeline work ([FORGE_PIPELINE_DEV_PLAN.md](../claude/mailbox/FORGE_PIPELINE_DEV_PLAN.md)). The `.ankhrc` hub needs to know about forge stage paths, PATHWAY_REGISTRY, and the NOV-CAD provenance schema — all now implemented (L2–L5 complete, 2026-03-25).
 
 #### Stage 01: Create `.ankhrc`
 The SSOTIFICATION_METHODOLOGY.md defines `.ankhrc` as the "bidirectional SSOT hub" with `[paths]`, `[ssot_ified]`, `[state_files]` etc. — but **it was never created**. This is Phase 0.6's primary deliverable.
@@ -338,6 +354,23 @@ The SSOTIFICATION_METHODOLOGY.md defines `.ankhrc` as the "bidirectional SSOT hu
 | `test_no_hardcoded_ssot_paths_in_powershell` | Grep validation | ❌ Phase 0.8 |
 | `test_config_boundary_ssot_paths_documented` | IDE config audit | ❌ Phase 0.8 |
 | `test_ankhrc_resolves_all_paths` | .ankhrc validity | ❌ Phase 0.8 |
+
+---
+
+## 3. Relationship to Forge Pipeline
+
+This blueprint wires the **SSOT cascade** — the Python/TS/PS1 import chain ensuring no consumer hardcodes a path. The forge pipeline ([FORGE_PIPELINE_DEV_PLAN.md](../claude/mailbox/FORGE_PIPELINE_DEV_PLAN.md)) builds the **SFS×NOV-CAD×Bridge code** that the cascade serves. They are complementary:
+
+| This Blueprint | Forge Dev Plan |
+|---|---|
+| Wires `ssot_manifest.py` → consumer imports | Builds forge stage transforms (`quench`, `slag`, `tea-vault`) |
+| Phases 0.3–0.4: TS/PS1 bridges for `zombie_forge_bridge.py`, `novia_cadaveris_embalmer.ps1` | L2: Unifies intake paths in `zombie_forge_bridge.py` |
+| Phase 0.5: Config boundary docs for `.vscode/mcp.json` | L3: Extends PATHWAY_REGISTRY schema with provenance |
+| Phase 0.6: `.ankhrc` must include forge paths | L0–L1: Ships embalm-before-edit + STITCH (code that `.ankhrc` will index) |
+
+**Sequencing:** Blueprint Phases 0.2.1–0.4 are independent of forge work and can proceed in parallel. Phase 0.5+ depends on forge L2–L3 landing (intake unification + provenance schema) to avoid wiring paths that will change.
+
+**Steward Audit:** [BOUNTY_00000031_STEWARD_AUDIT.md](../claude/mailbox/BOUNTY_00000031_STEWARD_AUDIT.md) Phase 4 maps to this blueprint’s Phases 0.2.1–0.4. The audit’s Phase 1.5 maps to the forge dev plan.
 
 ---
 
@@ -443,7 +476,7 @@ Every file type in the codebase has a role in supplementing the SSOT. This matri
 |--------|-----------|-----------------|--------------|
 | Cascade register entries | 15 | 15 | 26+ |
 | Python scripts wired | 16 | 29 (+13) | ALL (~36+) |
-| Python cosmetic refs remaining | ~40 | 53 lines / 29 files (5 functional in mas_mcp/ — Phase 0.2.1) | 0 (outside config boundary) |
+| Python cosmetic refs remaining | ~40 | 53 lines / 29 files (mas_mcp/ Phase 0.2.1 ✅ complete) | 0 (outside config boundary) |
 | TypeScript files wired | 0 | 0 | ALL (~6) |
 | PowerShell files wired | 0 | 0 | ALL (~6) |
 | Hardcoded SSOT paths (functional) | ~20 | 0 ✅ | 0 |

@@ -1,8 +1,8 @@
 ---
 name: corpse-reviver
-description: "The White-dressed Bride — kleptomaniac necromancy pipeline. The embalm-before-edit lane is currently DO-NOT-USE-UNFINISHED-DEV--WIP."
+description: "The White-dressed Bride — kleptomaniac necromancy pipeline with full embalm-before-edit preservation."
 metadata:
-  short-description: "Necromancy pipeline — prowl, hoard, classify, suture, reanimate dead code; embalm-before-edit disabled as WIP"
+  short-description: "Necromancy pipeline — prowl, hoard, classify, suture, reanimate, stitch dead code; embalm-before-edit enabled"
   argument-hint: "uv run .codex/skills/corpse-reviver/scripts/corpse_reviver.py hoard"
   tags:
     - code archaeology
@@ -18,8 +18,8 @@ metadata:
 
 The full necromancy lifecycle for code: intercept before death, hoard from every graveyard, embalm with provenance, classify into the vault, suture fragments into composites, reanimate on demand.
 
-> Status: `DO-NOT-USE-UNFINISHED-DEV--WIP` for `embalm_before_edit.py` and the `embalm-before-edit` alias.
-> Treat the embalm-before-edit lane as disabled until the tool is explicitly finished and this warning is removed.
+> **Status:** All 10 modes operational — `embalm-before-edit` and `stitch` are now live.
+> embalm-before-edit preserves provenance snapshots; stitch extracts delta fragments post-edit.
 
 ## Conceptual Shells
 
@@ -111,13 +111,13 @@ uv run .codex/skills/corpse-reviver/scripts/corpse_reviver.py manifest
 ### embalm-before-edit
 Snapshot files BEFORE editing them — pre-mortem preservation.
 
-Status: `DO-NOT-USE-UNFINISHED-DEV--WIP`
-
-Do not run:
-- `.codex/skills/corpse-reviver/scripts/embalm_before_edit.py`
-- `.codex/skills/corpse-reviver/scripts/corpse_reviver.py embalm-before-edit`
-
-The examples that used to live here are intentionally disabled until the embalm lane is developed to a finished state.
+```powershell
+uv run .codex/skills/corpse-reviver/scripts/embalm_before_edit.py snapshot path/to/file.py --label my-edit
+uv run .codex/skills/corpse-reviver/scripts/embalm_before_edit.py staged --label pre-commit
+uv run .codex/skills/corpse-reviver/scripts/embalm_before_edit.py list
+uv run .codex/skills/corpse-reviver/scripts/embalm_before_edit.py diff <session-name>
+uv run .codex/skills/corpse-reviver/scripts/corpse_reviver.py embalm-before-edit --files path/to/file.py
+```
 
 **Session structure:**
 ```
@@ -155,9 +155,9 @@ from embalm_before_edit import quick_embalm
 session = quick_embalm(["path/to/file.md", "path/to/other.py"], label="my-edit")
 ```
 
-## Auto-Embalm Protocol (Disabled — `DO-NOT-USE-UNFINISHED-DEV--WIP`)
+## Auto-Embalm Protocol
 
-The auto-embalm lane is not active. It is not mandatory, it is not ready, and agents must not invoke it as part of normal editing workflow until the implementation is finished and this warning is removed.
+The auto-embalm lane is available as `embalm-before-edit` for manual invocation. The `pipeline` command chains OSGTTLR stages in sequence. Agents may invoke `embalm-before-edit` as a pre-edit gate when modifying critical files.
 
 ## Vault
 

@@ -42,10 +42,12 @@ from .validator import AbbreviationValidator
 from .generator import GlossaryGenerator, NotationGuideGenerator
 from .reporter import ValidationReporter, AuditReporter
 
+from mas_mcp.logic.ssot_manifest import SSOT_POINTER_RELPATH
+
 
 # Default paths
 PROJECT_ROOT = Path(__file__).parent.parent.parent.parent
-SSOT_PATH = PROJECT_ROOT / ".github" / "copilot-instructions.md"
+SSOT_PATH = PROJECT_ROOT / SSOT_POINTER_RELPATH
 DOCS_DIR = PROJECT_ROOT / "docs"
 BACKUP_DIR = PROJECT_ROOT / "docs" / "ssot-backups"
 
@@ -148,7 +150,7 @@ def cmd_backup(args):
     
     # Create backup with timestamp
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-    backup_name = f"copilot-instructions_{timestamp}.md"
+    backup_name = f"{Path(SSOT_POINTER_RELPATH).stem}_{timestamp}.md"
     backup_path = BACKUP_DIR / backup_name
     
     print(f"💾 Creating backup: {backup_path}")

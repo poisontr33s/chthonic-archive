@@ -11,12 +11,14 @@
 # ╚════════════════════════════════════════════════════════════════════════════
 
 """
-DO-NOT-USE-UNFINISHED-DEV--WIP
+The Bride's Pre-Mortem Preservation — snapshot files before editing.
 
-`embalm_before_edit.py` is unfinished and intentionally disabled.
+Captures provenance snapshots of files prior to modification, enabling
+diff/stitch recovery of changes via session-based delta extraction.
 
-Do not run this script or treat it as a mandatory pre-edit gate until the
-implementation is completed and this warning is removed from the repo.
+@SID:   EMBALM_BEFORE_EDIT_V1
+@Shabti: CLI Script
+@Purpose: Pre-mortem file preservation with provenance metadata.
 """
 
 from __future__ import annotations
@@ -46,9 +48,7 @@ def find_repo_root(start: Path) -> Path:
 REPO_ROOT = find_repo_root(Path(__file__))
 VAULT_ROOT = REPO_ROOT / "dumpster-dive" / "corpse-vault"
 BEFORE_EDIT_DIR = VAULT_ROOT / "before-edit-experiments"
-WIP_DISABLE_MESSAGE = (
-    "DO-NOT-USE-UNFINISHED-DEV--WIP: embalm_before_edit.py is unfinished and disabled."
-)
+
 
 # Extension → language (shared with corpse_reviver.py)
 EXT_TO_LANG: dict[str, str] = {
@@ -496,68 +496,35 @@ def build_parser() -> argparse.ArgumentParser:
 
 
 def main(argv: list[str] | None = None) -> None:
-    raise SystemExit(WIP_DISABLE_MESSAGE)
-
-    raw_args = argv if argv is not None else sys.argv[1:]
-
-    # If first arg is a file path (not a subcommand), treat as implicit "snapshot"
-    if raw_args and raw_args[0] not in ("snapshot", "staged", "diff", "list", "stitch", "-h", "--help"):
-        raw_args = ["snapshot"] + raw_args
-
-    args = build_parser().parse_args(raw_args)
-
+    parser = build_parser()
+    args = parser.parse_args(argv)
     if not args.command:
-        build_parser().print_help()
-        return
-
+        parser.print_help()
+        raise SystemExit(1)
     if args.command == "snapshot":
-        session_dir = create_session_dir(getattr(args, "label", None))
-        print(f"Session: {session_dir.name}\n")
-        snapshots = []
-        for f in args.files:
-            fp = Path(f)
-            if not fp.is_absolute():
-                fp = REPO_ROOT / fp
-            result = snapshot_file(fp, session_dir)
-            if result:
-                snapshots.append(result)
-        if snapshots:
-            write_session_manifest(session_dir, snapshots)
-            print(f"\nEmbalmed {len(snapshots)} file(s) before edit.")
+        result = quick_embalm(args.files, label=args.label or "manual")
+        if result:
+            print(f"\nSession: {result.relative_to(REPO_ROOT)}")
         else:
-            print("\nNo files snapshotted.")
-            # Clean up empty session
-            if not any(session_dir.iterdir()):
-                session_dir.rmdir()
-
+            print("No files snapshotted.")
     elif args.command == "staged":
         staged_output = git("diff", "--cached", "--name-only")
-        if not staged_output:
-            print("No files staged. Nothing to snapshot.")
+        if not staged_output.strip():
+            print("No staged files.")
             return
-        files = [f for f in staged_output.splitlines() if f.strip()]
-        session_dir = create_session_dir(getattr(args, "label", None) or "staged")
-        print(f"Session: {session_dir.name}")
-        print(f"Snapshotting {len(files)} staged file(s):\n")
-        snapshots = []
-        for f in files:
-            fp = REPO_ROOT / f
-            result = snapshot_file(fp, session_dir)
-            if result:
-                snapshots.append(result)
-        if snapshots:
-            write_session_manifest(session_dir, snapshots)
-            print(f"\nEmbalmed {len(snapshots)} staged file(s) before edit.")
-
+        files = [f.strip() for f in staged_output.splitlines() if f.strip()]
+        result = quick_embalm(files, label=args.label or "staged")
+        if result:
+            print(f"\nSession: {result.relative_to(REPO_ROOT)}")
+        else:
+            print("No staged files snapshotted.")
     elif args.command == "diff":
         cmd_diff(args.session)
-
     elif args.command == "list":
         cmd_list_sessions()
-
     elif args.command == "stitch":
-        out = Path(args.output) if args.output else None
-        cmd_stitch(args.session, out)
+        output = Path(args.output) if args.output else None
+        cmd_stitch(args.session, output_dir=output)
 
 
 if __name__ == "__main__":

@@ -14,6 +14,9 @@ INTAKE is the **entry point** for all materials entering the dumpster-dive forge
 - External sources
 - User uploads
 - Other project locations
+- **NOV-CAD return path** — composites routed back via `corpse_reviver.py suture --forge-eligible`
+
+**Dual-scan (L2):** `zombie_forge_bridge.py` scans both `forge/intake/` (primary) and `dumpster-dive/intake/` (legacy fallback) for incoming materials.
 
 ---
 
@@ -65,7 +68,7 @@ From INTAKE, files can move to:
 - [../../DUMPSTER_DIVE_REGISTRY.json](../../DUMPSTER_DIVE_REGISTRY.json) — Files entering this state
 
 **Status:**
-- **Last Validated:** 2026-01-01
+- **Last Validated:** 2026-03-26
 - **Deprecation Risk:** None (permanent entry point)
 - **Circular Refs:** Resolved via PROCESS_FLOW.md hub pattern
 

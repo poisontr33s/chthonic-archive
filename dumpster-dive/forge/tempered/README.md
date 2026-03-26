@@ -1,31 +1,31 @@
 # Forge State 5: TEMPERED
 
-**Purpose:** Integration-ready outputs  
-**State Type:** Staging area  
-**Protocol Step:** TEMPER + STAGE  
-**Current Files:** 9
+**Purpose:** Integration-ready artifacts for production deployment  
+**State Type:** Production-ready (exit point)  
+**Protocol Step:** STAGE + INTEGRATE  
+**Current Files:** Multiple (organized by language/type)
 
 ---
 
 ## Overview
 
-TEMPERED is the **staging area** for validated, integration-ready artifacts. Files here have passed FA⁴ validation and are awaiting merge into production (SSOT or codebase).
+TEMPERED is the **exit point** of the forge. Artifacts here have passed FA⁴ validation in QUENCH, are fully documented, and are staged for integration into the production codebase (`mas_mcp/`, `scripts/`, `docs/`, etc.).
 
 ---
 
-## Current Inventory
+## Processing Steps
 
-| File | Type | Source | Target | Status |
-|------|------|--------|--------|--------|
-| ASC_SESSION1_METADATA_v1.0.json | Metadata | Session 1 extraction | Archive | Ready |
-| EXTENDED_GLOSSARY_v1.0.md | Documentation | MPW glossary | SSOT Section IV | Ready |
-| GRIMOIRE_INTEGRATION_EXAMPLES.md | Documentation | MPW grimoires | SSOT Sections III/VIII/IX/X | Ready |
-| ORE_MANIFEST_v1.0.json | Metadata | ORE_MANIFEST snapshot | Archive | Ready |
-| PHASE_1_COMPLETION_SUMMARY.md | Documentation | Session 3 synthesis | Archive | Complete |
-| PHASE_1_JSON_EXTRACTION_LOG.md | Documentation | Session 1 log | Archive | Complete |
-| PRIME_FACTION_OPERATIONAL_SIGNATURES_v1.0.md | Documentation | MPW characters | SSOT Section 4.4 | Ready |
-| TEA_REGISTRY_v1.0.json | Protocol | TEA tracking | SSOT Section 4.5.1.2 | Ready |
-| TOAR_v1.0.md | Documentation | MPW TOAR | SSOT Appendix | Ready |
+### 1. STAGE (Deployment Preparation)
+- Verify all documentation is complete
+- Confirm integration path is clear
+- Cross-reference in DUMPSTER_DIVE_REGISTRY.json
+- Create integration manifest entry
+
+### 2. INTEGRATE (Production Merge)
+- Merge artifact into target location
+- Update SSOT cross-references
+- Validate post-integration (no regressions)
+- Archive forge receipt as provenance trail
 
 ---
 
@@ -38,65 +38,55 @@ From TEMPERED, files can move to:
 
 ---
 
-## Integration Process
+## FA⁴ Compliance (Inherited from QUENCH)
 
-### Before Integration
-1. Verify target location exists/is appropriate
-2. Check for conflicts with existing content
-3. Update cross-references
-4. Create integration plan
-5. Get approval if needed (CTF for cross-tier)
-
-### During Integration
-1. Copy/move to target location
-2. Update DUMPSTER_DIVE_REGISTRY
-3. Add integration metadata
-4. Verify all references work
-
-### After Integration
-1. Mark as integrated in registry
-2. File remains in tempered/ as backup
-3. Periodic review for deprecation
+Before a file enters TEMPERED, it must have passed:
+- [x] Code compiles/runs without errors
+- [x] Documentation is complete and clear
+- [x] Integration path identified
+- [x] Dependencies documented
+- [x] FA⁴ (Architectonic Integrity) verified
+- [x] Cross-references added
 
 ---
 
 ## Current Status
 
-**Files in TEMPERED:** 9  
-**Last Activity:** Phase 1 completion (2025-12-08)  
-**Avg. Time in TEMPERED:** Indefinite (staging area)  
-**Integration Rate:** On hold pending Phase 2 planning
+**Files in TEMPERED:** Multiple (see directory listing)  
+**Last Activity:** 2026-03-05  
+**Subdirectories:** csharp, c_cpp, docs, go, powershell, python, ruby, schemas, typescript, workflows
 
 ---
 
 ## Cross-References
 
-### Dependencies
-- [../../README.md](../../README.md) — Overview and context
+**Process Context:**
+- [**../PROCESS_FLOW.md**](../PROCESS_FLOW.md) — Complete forge process overview (acyclic hub)
+
+**Upstream Dependencies:**
 - [../../protocols/FORGE_CIRCULATION_PROTOCOL.md](../../protocols/FORGE_CIRCULATION_PROTOCOL.md) — State 5 definition
-- [../../DUMPSTER_DIVE_REGISTRY.json](../../DUMPSTER_DIVE_REGISTRY.json) — Tracks all 9 artifacts with metadata
-- [../../BLACKSMITH_MATRIARCH.md](../../BLACKSMITH_MATRIARCH.md) — SFS integration standards
+- [../quench/](../quench/) — Validation gate (all tempered artifacts pass through)
 
-### Dependents
-- [../../README.md](../../README.md) — Reports current file count
-- [../../protocols/FORGE_CIRCULATION_PROTOCOL.md](../../protocols/FORGE_CIRCULATION_PROTOCOL.md) — References as successful outcome
-- All tempered artifacts — Depend on this staging area
+**Integration Targets:**
+- [`../../../mas_mcp/lib/`](../../../mas_mcp/lib/) — Code extraction destinations
+- [`../../../scripts/`](../../../scripts/) — Script integration destinations
+- [`../../../docs/`](../../../docs/) — Documentation destinations
 
-### Related
-- [../quench/README.md](../quench/README.md) — Source of validated artifacts
-- [../../forge/tempered/](.) — Contains the actual artifacts
+**Tracking:**
+- [../../DUMPSTER_DIVE_REGISTRY.json](../../DUMPSTER_DIVE_REGISTRY.json) — Files in this state
+- [../PATHWAY_REGISTRY.json](../PATHWAY_REGISTRY.json) — Pathway registry
 
-### External
-- [../../../.github/copilot-instructions.md](../../../.github/copilot-instructions.md) — Primary integration target (SSOT)
-- [../../../mas_mcp/](../../../mas_mcp/) — Code integration target
-- [../../../docs/](../../../docs/) — Documentation integration target
-
-### Status
-- **Last Validated:** 2025-12-24
-- **Deprecation Risk:** None (active staging area)
-- **Upcycle Potential:** N/A
+**Status:**
+- **Last Validated:** 2026-03-26
+- **Deprecation Risk:** None (critical exit point)
+- **Circular Refs:** Resolved via PROCESS_FLOW.md hub pattern
 
 ---
 
 **Operator:** Sister Ferrum Scoriae (SFS)  
-**Principle:** *"Tempered steel awaits the sword-maker. Patience before integration."*
+**Model:** [Circulation Protocol](../../protocols/FORGE_CIRCULATION_PROTOCOL.md)
+
+---
+
+**Operator:** Sister Ferrum Scoriae (SFS)  
+**Principle:** *"The quench solidifies truth. What breaks here would break in production."*

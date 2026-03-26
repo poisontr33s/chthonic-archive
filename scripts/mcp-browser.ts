@@ -19,6 +19,11 @@
  * @Purpose       Replaces the dead Playwright MCP entry. Uses raw CDP
  *                over WebSocket (proven working where Playwright's IPC
  *                crashes Bun).
+ *
+ * @UpstreamReady When Playwright IPC no longer crashes Bun, this server
+ *                can be replaced by @playwright/mcp (already in devDeps).
+ *                mcp.json config: "command": "bunx", "args": ["@playwright/mcp@latest"]
+ *                See: https://github.com/microsoft/playwright-mcp
  */
 
 import { Server } from "@modelcontextprotocol/sdk/server/index.js";

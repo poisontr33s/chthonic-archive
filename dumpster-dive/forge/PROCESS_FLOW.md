@@ -4,7 +4,7 @@
 **Matriarch:** Sister Ferrum Scoriae (Tier 3 Sub-MILF)  
 **Domain:** Ore Processing & Conceptual Metallurgy  
 **Status:** Operational  
-**Last Updated:** January 1, 2026
+**Last Updated:** March 26, 2026
 
 ---
 
@@ -79,23 +79,25 @@ The forge operates as a **directional acyclic graph** with multiple entry/exit p
 - **Inputs:** Rating 5 from INTAKE (fast-track), refined from FURNACE, clean from ANVIL
 - **Outputs:** Locked stable state → TEMPERED (deployment ready)
 
-### 5. SLAG (Rejection)
+### 5. TEMPERED (Exit Point)
+- **Function:** Deployment-ready integration
+- **Protocol:** Final validation & integration into active systems
+- **Inputs:** Stabilized ore from QUENCH
+- **Outputs:** Integrated into `mas_mcp/`, `scripts/`, `docs/`, etc.
+
+### 6. SLAG (Rejection)
 - **Function:** Pedagogical waste archival
 - **Protocol:** Document failures for learning
 - **Inputs:** Rating 1-2 from INTAKE, failed purification from FURNACE
 - **Outputs:** Anti-pattern archive, no further processing
 
-### 6. TEA-VAULT (Quantum Superposition)
+### 7. TEA-VAULT (Quantum Superposition)
 - **Function:** Timeline-entangled artifact holding
 - **Protocol:** QMR (Quantum Metallurgical Reconnaissance) via TNKW-RIAT collaboration
 - **Inputs:** Superposition-detected from INTAKE (cannot rate traditionally)
 - **Outputs:** Probability map → ANVIL (forced collapse to highest-value timeline)
 
-### 7. TEMPERED (Exit Point)
-- **Function:** Deployment-ready integration
-- **Protocol:** Final validation & integration into active systems
-- **Inputs:** Stabilized ore from QUENCH
-- **Outputs:** Integrated into `mas_mcp/`, `scripts/`, `docs/`, etc.
+> **Numbering note:** State numbers 1-7 follow the Forge Circulation Protocol (FCP) classification, not processing order. All sub-folder READMEs use FCP numbering.
 
 ---
 
@@ -133,6 +135,44 @@ The forge operates as a **directional acyclic graph** with multiple entry/exit p
 - Metallurgical process IS cyclical conceptually (ore → slag → recycled ore)
 - Documentation structure MUST BE acyclic (DAG) for AI parsing
 - Hub-spoke pattern resolves this tension: concept = cycle, docs = tree
+
+---
+
+## Implementation Notes (L0-L6 Execution — March 2026)
+
+The following CLI tooling now implements the forge stages programmatically:
+
+| Work Item | Script | What It Added |
+|-----------|--------|---------------|
+| **L0** | `embalm_before_edit.py` | Provenance preservation gate — embalm-before-edit for all corpse-reviver operations |
+| **L1** | `corpse_reviver.py stitch` | STITCH subcommand — reassemble fragments from multiple forge stages |
+| **L2** | `zombie_forge_bridge.py` | Dual-scan intake: `forge/intake/` (primary) + `dumpster-dive/intake/` (legacy fallback) |
+| **L3** | `zombie_forge_bridge.py` | PATHWAY_REGISTRY provenance bridging — `.provenance.json` sidecars parsed into routing |
+| **L4** | `corpse_reviver.py suture --forge-eligible` | NOV-CAD return path — composites route back to `forge/intake/` for re-assessment |
+| **L5** | `universal_forge.py` | `quench_artifacts()`, `slag_artifacts()`, `collapse_tea_vault()` — programmatic stage transforms |
+| **L6** | `corpse_reviver.py pipeline` | OSGTTLR pipeline coordinator — orchestrates full intake→tempered flow |
+
+### CLI Invocation Reference
+
+```bash
+# Dual-scan intake (L2) — scan both forge/intake/ and dumpster-dive/intake/
+uv run scripts/zombie_forge_bridge.py
+
+# Quench artifacts (L5)
+uv run scripts/universal_forge.py quench <artifact-path>
+
+# Slag artifacts (L5)
+uv run scripts/universal_forge.py slag <artifact-path>
+
+# TEA-VAULT collapse (L5)
+uv run scripts/universal_forge.py collapse-tea <artifact-path>
+
+# NOV-CAD return path (L4) — route composites back to forge/intake/
+uv run .codex/skills/corpse-reviver/scripts/corpse_reviver.py suture --forge-eligible
+
+# Full pipeline (L6) — OSGTTLR orchestrator
+uv run .codex/skills/corpse-reviver/scripts/corpse_reviver.py pipeline
+```
 
 ---
 

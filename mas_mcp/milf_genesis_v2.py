@@ -171,7 +171,7 @@ if not GPU_AVAILABLE:
 # CONSTITUTIONAL SCHEMA (SSOT-DRIVEN — NO HARDCODING)
 # =============================================================================
 # The Decorator's Decree: "All truth flows from the Codex."
-# All constants are now extracted from copilot-instructions.md via ssot_extractor.
+# All constants are now extracted from the SSOT via ssot_manifest cascade.
 # DO NOT add hardcoded values here — modify SSOT and reload.
 
 SCHEMA_VERSION = "2.0.0-SSOT"  # Upgraded to SSOT-driven
@@ -1332,7 +1332,8 @@ class BackgroundGenesisService:
 # =============================================================================
 
 if __name__ == "__main__":
-    mpw_path = Path(__file__).parent.parent / ".github" / "copilot-instructions.md"
+    from mas_mcp.logic.ssot_manifest import SSOT_POINTER_RELPATH
+    mpw_path = Path(__file__).parent.parent / SSOT_POINTER_RELPATH
     artifacts_dir = Path(__file__).parent / "genesis_artifacts"
 
     print("=" * 70)

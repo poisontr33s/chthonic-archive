@@ -77,7 +77,7 @@ Every file in SLAG must have:
 
 **Files in SLAG:** 0  
 **Last Activity:** N/A  
-**Next Quarterly Review:** 2026-03-24  
+**Next Quarterly Review:** 2026-06-26  
 **Historical Upcycle Rate:** N/A (new system)
 
 ---
