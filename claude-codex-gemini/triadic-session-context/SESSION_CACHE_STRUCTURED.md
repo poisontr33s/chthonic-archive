@@ -3,8 +3,37 @@
 > ⚠️ **AUTO-UPDATE NOTICE**: After SSOT edits, run `.\ssot_outline_extractor.ps1 -UpdateIndex`
 
 **Generated:** January 26, 2026  
+**Refreshed Coordinates:** March 27, 2026  
 **Source:** Raw session dump `SSOTI_FIED_SESSION_LOG.md`  
 **Purpose:** Cross-session memory for Claude Opus 4.5
+
+---
+
+## Session 6: Zombie x Dumpster-Bridge Lane Lock (Current)
+
+### Variant Chosen
+
+- Variant ID: `ZD-XB-LV1`
+- Definition: Zombie (NOV-CAD) implementation + Dumpster-Bridge (SFS) implementation + triadic-session-context upcycle governance.
+
+### Hierarchy Snapshot
+
+1. SSOT source: `.github/copilot-instructions.archive.md`
+2. Triad governance: blueprint + steward audit + forge dev plan
+3. Operational nucleus: `COMPREHENSIVE IMPROVEMENT PLAN PROPOSAL.md`
+4. Runtime memory/index: `SESSION_CACHE_STRUCTURED.md`, `SSOT_NAVIGATION_INDEX.md`, `SSOT_STRUCTURAL_INDEX.json`
+5. Historical evidence reservoir: triadic transcript/incident artifacts
+
+### Executed in This Session
+
+- Phase 0.9.2 classification stamp completed in nucleus file.
+- Warm-start coordinates refreshed in this cache file.
+- Embalm-first verification completed for high-entropy transcript set (4/4).
+- Bridge routing evidence verified (`intake_extracts=50`, `routed=50`, `unrouted=0`; dry-run all `already_routed`).
+
+### Next Iteration Gate
+
+- Promote validated doctrine deltas from `historical_evidence` into triad docs (blueprint/steward/forge) with one cycle block per promotion batch.
 
 ---
 
@@ -24,7 +53,7 @@
 
 ### Solution Implemented: BunCDP Library
 
-**Location:** `C:\Users\erdno\chthonic-archive\bun-playwright-poc\`
+**Location:** `bun-playwright-poc/`
 
 **Architecture:**
 ```
@@ -157,15 +186,15 @@ External sessions do NOT upstream into SSOT directly.
 
 | File | Location |
 |------|----------|
-| `SSOT_STRUCTURAL_INDEX.json` | `.github/Claude_Opus_4_5_grade_lossless_compr_SSOT-IFICATION_cross_REF_data/` |
-| `SSOT_NAVIGATION_INDEX.md` | Same |
-| `ssot_outline_extractor.ps1` | Same |
-| `ssot_acronym_audit.ps1` | Same |
-| `ssot_crc_selector.ps1` | Same |
-| `ssot_registry_query.ps1` | Same |
-| `ssot_tier_query.ps1` | Same |
-| `SESSION_LOG.md` | Same |
-| `SESSION_CACHE_STRUCTURED.md` | Same (this file) |
+| `SSOT_STRUCTURAL_INDEX.json` | `claude-codex-gemini/triadic-session-context/` |
+| `SSOT_NAVIGATION_INDEX.md` | `claude-codex-gemini/triadic-session-context/` |
+| `ssot_outline_extractor.ps1` | `scripts/` |
+| `ssot_acronym_audit.ps1` | `scripts/` |
+| `ssot_crc_selector.ps1` | `scripts/` |
+| `ssot_registry_query.ps1` | `scripts/` |
+| `ssot_tier_query.ps1` | `scripts/` |
+| `SESSION_LOG.md` | `claude-codex-gemini/triadic-session-context/` |
+| `SESSION_CACHE_STRUCTURED.md` | `claude-codex-gemini/triadic-session-context/` (this file) |
 
 ---
 

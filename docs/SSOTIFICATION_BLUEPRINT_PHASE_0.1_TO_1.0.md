@@ -2,7 +2,7 @@
 
 > **Baseline Epoch:** 2026-03-19 · Commit `c3ce99e2` (Phase 0.1 landed)
 > **Phase 0.2 Epoch:** 2026-03-19 · Commit `fa4a6120` (Python cascade complete)
-> **Last Updated:** 2026-03-26 · Phases 0.3–0.9 complete (TS/PS1/Extension bridges, .ankhrc, root hygiene, 21 tests, register expansion)
+> **Last Updated:** 2026-03-27 · Phases 0.3–0.9 complete. Phase 0.9.1 complete. Phase 0.9.2 (Triadic Context Upcycle) defined.
 > **SSOT Holder:** `.github/copilot-instructions.archive.md` — 9,208 lines · §0–§XVII + App A–E
 > **SSOT Pointer:** `.github/copilot-instructions.md` — ~85 lines (75× compression routing surface)
 > **Manifest:** `mas_mcp/logic/ssot_manifest.py` (`LOGIC_SSOT_MANIFEST_V1`) — 28-entry cascade register
@@ -10,8 +10,9 @@
 > **Governance:** WPTG "Every file is gold" · No-Destroy · Upcycle-only
 >
 > **Cross-references:**
-> - Structural audit: [`claude/mailbox/BOUNTY_00000031_STEWARD_AUDIT.md`](../claude/mailbox/BOUNTY_00000031_STEWARD_AUDIT.md) — Phase 4 maps back here
-> - Forge pipeline plan: [`claude/mailbox/FORGE_PIPELINE_DEV_PLAN.md`](../claude/mailbox/FORGE_PIPELINE_DEV_PLAN.md) — builds the SFS×NOV-CAD×Bridge code this cascade serves
+> - Structural audit: [`claude/mailbox/BOUNTY_00000031_STEWARD_AUDIT.md`](../claude/mailbox/BOUNTY_00000031_STEWARD_AUDIT.md) — Phase 4 maps back here; Phase 1.5 → Forge Dev Plan
+> - Forge pipeline plan: [`claude/mailbox/FORGE_PIPELINE_DEV_PLAN.md`](../claude/mailbox/FORGE_PIPELINE_DEV_PLAN.md) — L0–L6 ✅ complete (2026-03-25), ~85% compliance
+> - Session context: [`claude-codex-gemini/triadic-session-context/`](../claude-codex-gemini/triadic-session-context/) — entropy survey, Zone_1 provenance, nascent ANKH archaeology, Redux source nucleus (`COMPREHENSIVE IMPROVEMENT PLAN PROPOSAL.md`)
 
 ---
 
@@ -304,7 +305,7 @@ $Script:SSOT_PROTO = ".github/copilot-instructions-copy.md"
 ### Phase 0.6 — Documentation Cascade + .ankhrc Genesis
 **Goal:** The SSOT metadata/governance docs reference the cascade, not hardcoded paths.
 
-> **Note:** Phase 0.6 is downstream of the forge pipeline work ([FORGE_PIPELINE_DEV_PLAN.md](../claude/mailbox/FORGE_PIPELINE_DEV_PLAN.md)). The `.ankhrc` hub needs to know about forge stage paths, PATHWAY_REGISTRY, and the NOV-CAD provenance schema — all now implemented (L2–L5 complete, 2026-03-25).
+> **Note:** Phase 0.6 was downstream of the forge pipeline work ([FORGE_PIPELINE_DEV_PLAN.md](../claude/mailbox/FORGE_PIPELINE_DEV_PLAN.md)). All forge dependencies resolved: L0–L6 complete (2026-03-25), Phase 0.9.1 corpus verification complete (2026-03-27).
 
 #### Stage 01: Create `.ankhrc`
 The SSOTIFICATION_METHODOLOGY.md defines `.ankhrc` as the "bidirectional SSOT hub" with `[paths]`, `[ssot_ified]`, `[state_files]` etc. — but **it was never created**. This is Phase 0.6's primary deliverable.
@@ -359,7 +360,7 @@ The SSOTIFICATION_METHODOLOGY.md defines `.ankhrc` as the "bidirectional SSOT hu
 
 ## 3. Relationship to Forge Pipeline
 
-This blueprint wires the **SSOT cascade** — the Python/TS/PS1 import chain ensuring no consumer hardcodes a path. The forge pipeline ([FORGE_PIPELINE_DEV_PLAN.md](../claude/mailbox/FORGE_PIPELINE_DEV_PLAN.md)) builds the **SFS×NOV-CAD×Bridge code** that the cascade serves. They are complementary:
+This blueprint wires the **SSOT cascade** — the Python/TS/PS1 import chain ensuring no consumer hardcodes a path. The forge pipeline ([FORGE_PIPELINE_DEV_PLAN.md](../claude/mailbox/FORGE_PIPELINE_DEV_PLAN.md)) built the **SFS×NOV-CAD×Bridge code** that the cascade serves. Both are now substantially complete (L0–L6 ✅, ~85% compliance):
 
 | This Blueprint | Forge Dev Plan |
 |---|---|
@@ -368,9 +369,9 @@ This blueprint wires the **SSOT cascade** — the Python/TS/PS1 import chain ens
 | Phase 0.5: Config boundary docs for `.vscode/mcp.json` | L3: Extends PATHWAY_REGISTRY schema with provenance |
 | Phase 0.6: `.ankhrc` must include forge paths | L0–L1: Ships embalm-before-edit + STITCH (code that `.ankhrc` will index) |
 
-**Sequencing:** Blueprint Phases 0.2.1–0.4 are independent of forge work and can proceed in parallel. Phase 0.5+ depends on forge L2–L3 landing (intake unification + provenance schema) to avoid wiring paths that will change.
+**Sequencing (resolved):** All blueprint phases 0.2.1–0.9.1 and forge L0–L6 are complete. Phase 1.0 (bidirectional amendment protocol) is the remaining structural work.
 
-**Steward Audit:** [BOUNTY_00000031_STEWARD_AUDIT.md](../claude/mailbox/BOUNTY_00000031_STEWARD_AUDIT.md) Phase 4 maps to this blueprint’s Phases 0.2.1–0.4. The audit’s Phase 1.5 maps to the forge dev plan.
+**Steward Audit:** [BOUNTY_00000031_STEWARD_AUDIT.md](../claude/mailbox/BOUNTY_00000031_STEWARD_AUDIT.md) — canon-first gap analysis. Phase 4 → this blueprint (0.2.1–0.4). Phase 1.5 → forge dev plan (L0–L6, all complete). Addendum A → SFS/NOV-CAD compliance matrix validated by Phase 0.9.1.
 
 ---
 
@@ -395,6 +396,63 @@ Previously listed candidates already covered:
 - `ps1_bridge` → already `ssot_paths_ps1_bridge` (Phase 0.4)
 - `pointer_instructions` → already `pointer` (Phase 0.1)
 - `pre_commit_guardian` → deferred to Phase 0.9 candidate (file exists: `scripts/hooks/pre-commit-guardian.ps1`, Gate 5 wired via Phase 2.1)
+
+---
+
+### Phase 0.9.1 — Corpus Integrity Verification (✅ 2026-03-27)
+**Goal:** Verify the SSOT's downstream ANKH framework corpus is structurally sound after cascade wiring — fix corruption, stale drift, and wire missing envelope tooling.
+
+**Provenance:** KCP gap analysis → FA⁵ discovery → entropy topology quantification → autonomous execution (Phases A–F).
+
+| Finding | Severity | Fix | Status |
+|---------|----------|-----|--------|
+| `docs/frameworks/ankh/ankh.md` — 12× UTF-8 mojibake (FAÔü┤→FA⁴, FAÔüÁ→FA⁵, ÔåÆ→→, ÔÇö→—) | 💀 Corrupted | 9× multi_replace_string_in_file | ✅ Verified: 0 Ô chars remaining |
+| `docs/frameworks/ankh/ankh.md` §8.2 — FA(1-4) missing FA⁵ | 🔴 Stale | Updated to FA(1-5) | ✅ |
+| `docs/standards/LAT_CANONICAL_SPEC.md` — 7× FA¹-FA⁴ (excluded FA⁵) | 🔴 Stale | 7× replaced to FA¹-FA⁵ | ✅ Verified: 0 stale refs |
+| `docs/standards/templates/kcp_template.ts` — bare `@SID` Phase 5 damage above shebang | 💀 Corrupted | Removed bare stamp, shebang restored to L1 | ✅ |
+| `scripts/overnight_daemon.ts` — suspected bare `@SID` damage | Audit | False positive — @SID at L3 is inside proper KCP header | ✅ No action |
+| `docs/standards/ANKH_CRC_REGISTRY.md` — suspected FA⁵ absence | Audit | 🟡 Integrated — uses specific axioms per CRC role (correct by design) | ✅ No action |
+| `scripts/envelope_census.py` — `--kcp-stamp` flag phantom (argparse existed, not wired) | 🔴 Gap | Wired to `kcp_stamp_files()` | ✅ `--kcp-stamp --dry-run --ext .rs` |
+| `scripts/envelope_census.py` — `--kcp-audit` flag phantom (argparse existed, not wired) | 🔴 Gap | Wired to `print_kcp_audit()` | ✅ `--kcp-audit --ext .rs` (39 files, tier breakdown + heat map) |
+
+**Entropy topology (new framework, not a phase deliverable — observational):**
+- 6 gradient classes defined: 🟢 Saturated, 🟡 Integrated, 🟠 Skewed, 🔴 StaleDrift, 💀 Corrupted, ⬛ Pre-axiomatic
+- Axiom entropy measured per cascade layer (L0–L4), KCP envelope entropy per language (.py/.ts/.ps1/.rs)
+- Triadic-session-context directory surveyed (19 files): 4×🟢, 4×🟡, 4×🟠, 3×🔴, 1×⬛
+
+**FA⁵ closure confirmed:** FA⁵ ("Visual/Ornamental Integrity") formally CLOSED at L2 via `ANKH_FOUNDATIONAL_AXIOMS.md` ("Pentadic Heart"). 40+ references across SSOT. Not new — was always implicit in the canon, now explicit and auditable via `--kcp-audit`.
+
+**Exit Gate:** `grep -rn "Ô" docs/frameworks/ankh/ankh.md` = 0 matches. `grep -rn "FA¹-FA⁴" docs/standards/LAT_CANONICAL_SPEC.md` = 0 matches. `envelope_census.py --help` shows both `--kcp-stamp` and `--kcp-audit`.
+
+---
+
+### Phase 0.9.2 — Triadic Session Context Upcycle (✅ active lock 2026-03-27)
+**Goal:** Convert triadic-session-context from mixed historical dump state into an active governance substrate for dumpster-dive × zombie-loop operations, without deletion.
+
+**Source nucleus:** `claude-codex-gemini/triadic-session-context/COMPREHENSIVE IMPROVEMENT PLAN PROPOSAL.md`
+
+| File / Cluster | Current State | Action (Upcycle, not purge) | Target Outcome |
+|---|---|---|---|
+| `SESSION_PROTOCOL.md` | 🟢 Canon runtime playbook | Keep authoritative; treat as operational contract | Stable invocation doctrine for current loops |
+| `SESSION_CACHE_STRUCTURED.md` | 🟠 Path drift (`.github/Claude_Opus_4_5...`) | Refresh paths to current triadic-session-context topology | Warm-start memory without stale coordinates |
+| `SSOT_NAVIGATION_INDEX.md` + `SSOT_STRUCTURAL_INDEX.json` | 🟡 Healthy, generated artifacts | Keep regen-only discipline; do not hand-edit | Fast SSOT navigation and provenance lookup |
+| `Zone_1_REDUX_implementation_ripe_for_SSOT_canon.md` | 🟢 Read-only research pool | Keep frozen; cite as source-of-truth provenance only | No lore drift in Appendix A-E integrations |
+| `COMPREHENSIVE IMPROVEMENT PLAN PROPOSAL.md` | 🟠 Raw transcript nucleus | Repurpose as Redux ledger: add concise frontmatter/status block and index to derived governance decisions | Single high-level origin document for iterative cleanup direction |
+| `SSOTI_FIED_SESSION_LOG.md` + `Claude_Code_Session_Dump_0001` + ad-hoc session dumps | 🔴 High-entropy historical transcript mass | Route through forge intake classification (EMBALM -> PROWL/HARVEST -> route) and reference from nucleus, not direct day-to-day consumption | Preserved forensic history with low operational noise |
+| Point-fix snapshots (`BUN_SEGFAULT...`, `OpenAI_Codex...`, `Accurate_PEP...`, `Python_Metabolic_Standard...`, `gemini-cli-session-fix-too-large.md`) | 🟠 Useful but fragmented | Reclassify into either "active doctrine" or "historical incident" buckets using intake metadata | Explicit keep/park semantics per file |
+
+**Execution discipline (matches existing forge canon):**
+1. EMBALM all high-entropy transcript files before structural edits/moves.
+2. Route repurpose candidates through forge intake metadata (PATHWAY_REGISTRY-aware), not ad-hoc relocation.
+3. Keep one active narrative entrypoint (the nucleus file) and demote raw dumps to referenced evidence.
+
+**Exit Gate:** Every file in `triadic-session-context/` has one of three explicit states: `active_doctrine`, `active_index`, or `historical_evidence`.
+
+**Current state (lock achieved):**
+- Lane variant `ZD-XB-LV1` recorded in session nucleus
+- Full classification stamp complete
+- Warm-start coordinates refreshed
+- Embalm-first + route-visibility verification logged in nucleus (`4/4` embalmed; bridge summary `50/50/0`)
 
 ---
 
@@ -469,6 +527,8 @@ Every file type in the codebase has a role in supplementing the SSOT. This matri
 | **P4** | 0.7 | Root hygiene (WPTG upcycle) | Medium | None (parallel) | ✅ 2026-03-26 |
 | **P4** | 0.8 | Full cascade test suite (21 tests) | Medium | 0.2-0.6 | ✅ 2026-03-26 |
 | **P5** | 0.9 | Register expansion (20 → 28) | Small | 0.8 | ✅ 2026-03-26 |
+| **P5** | 0.9.1 | Corpus integrity verification | Medium | 0.9 | ✅ 2026-03-27 |
+| **P5** | 0.9.2 | Triadic session context upcycle lane | Medium | 0.9.1 | ✅ Active (Cycle 1 lock, 2026-03-27) |
 | **P5** | 1.0 | Bidirectional amendment protocol | Large | All prior phases | — |
 
 ---
@@ -488,6 +548,9 @@ Every file type in the codebase has a role in supplementing the SSOT. This matri
 | Critical drift items | 4 | 0 ✅ | 0 ✅ |
 | HARVEST_REGISTRY current | Stale (2 months) | Stale | Current |
 | Root stale artifacts | ~22 | 0 ✅ (12 relocated) | 0 ✅ |
+| Corpus integrity (mojibake/FA⁵ drift) | Unknown | 0 ✅ (8 fixes, Phase 0.9.1) | 0 ✅ |
+| Envelope CLI tooling (--kcp-stamp/--kcp-audit) | Phantom | Wired ✅ (Phase 0.9.1) | Operational ✅ |
+| Triadic session context classification | Mixed entropy | 100% classified ✅ (Phase 0.9.2 Cycle 1) | 100% maintained per cycle |
 | Bidirectional amendment protocol | None | None | Draft operational |
 
 ---

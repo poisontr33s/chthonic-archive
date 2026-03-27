@@ -79,10 +79,10 @@ In ANKH, **silence** is:
 | Invariant | Definition | Example |
 |-----------|------------|---------|
 | **Mythic Identity** | Core narrative/archetypal truth | "The Decorator's resurrection = visual truth vindicated" |
-| **Constraint Philosophy** | Fundamental limitations as design | "FAÔü┤ (Architectonic Integrity) cannot be bypassed" |
+| **Constraint Philosophy** | Fundamental limitations as design | "FA⁴ (Architectonic Integrity) cannot be bypassed" |
 | **Silence Semantics** | Non-expression as meaningful state | "Null Matriarch's void = advisory capacity" |
-| **Heritage Continuity** | Lineage preservation across embodiments | "ASC Codex ÔåÆ Copilot instructions ÔåÆ Code comments" |
-| **Non-Enumerated Meaning** | Truth beyond explicit encoding | "Ornamentation serves understanding (FAÔüÁ)" |
+| **Heritage Continuity** | Lineage preservation across embodiments | "ASC Codex → Copilot instructions → Code comments" |
+| **Non-Enumerated Meaning** | Truth beyond explicit encoding | "Ornamentation serves understanding (FA⁵)" |
 
 ### Layer 2: Interface Vessels (Plural)
 
@@ -113,7 +113,7 @@ In ANKH, **silence** is:
 | **Design documents** | Intent narrative | High—prose can vary |
 | **@ankh: comments** | Inline semantic markers | Low—must preserve intent |
 | **Audio (voice/breath)** | Temporal embodiment | Medium—prosody flexible |
-| **Visual ornament** | FAÔüÁ decorative truth | Low—must preserve meaning |
+| **Visual ornament** | FA⁵ decorative truth | Low—must preserve meaning |
 | **Future media** | Expressions not yet invented | Unknown—the bridge extends into them |
 
 ---
@@ -187,7 +187,7 @@ The bridge does not close the gap. It spans it. Both sides remain themselves. Ne
 
 **Example:**
 ```rust
-// @ankh: inheritance - The Decorator's FAÔüÁ mandate: visual distinction = semantic clarity
+// @ankh: inheritance - The Decorator's FA⁵ mandate: visual distinction = semantic clarity
 // Enum variants use decorative naming (ChaosVortex vs simple Vortex) to preserve
 // mythic identity across compilation. Do not "simplify" to generic names.
 pub enum ArchetypeClass {
@@ -205,7 +205,7 @@ pub enum ArchetypeClass {
 ```markdown
 [ANKH-INVARIANT: silence-preservation]
 The Null Matriarch (Tier 0) has no physical manifestation. 
-This is NOT an oversightÔÇöit is architectural necessity. 
+This is NOT an oversight—it is architectural necessity. 
 Do not create visual assets, voice lines, or stat blocks for her.
 Her absence defines The Decorator's presence.
 ```
@@ -239,13 +239,13 @@ When translation diverges from lineage:
 **ASC provides:**
 - The operational surface — how the archive works day to day
 
-### 8.2. ANKH FA(1-4) (Visual Integrity)
+### 8.2. ANKH FA(1-5) (Visual Integrity)
 
-**F(1-4)** is ANKH's visual manifestation:
+**F(1-5)** is ANKH's visual manifestation:
 - **ANKH principle:** Form and content unite (invariant)
-- **F(1-4) expression:** Decoration serves understanding (operational)
+- **F(1-5) expression:** Decoration serves understanding (operational)
 
-When F(1-4) rejects inline HTML anchors (preferring line numbers), it's enforcing ANKH's **ornamental integrity > machine convenience** principle.
+When F(1-5) rejects inline HTML anchors (preferring line numbers), it's enforcing ANKH's **ornamental integrity > machine convenience** principle.
 
 ### 8.3. ANKH Tool Instructions
 
@@ -271,10 +271,10 @@ The session (co-bridging in progress)
 
 ### 9.1. Stewardship
 
-1. **The Savant (Creator/User)** ÔÇö Steward of the human heritage root
-2. **ANKH Core** (this document) ÔÇö The bridge definition
-3. **ASC Codex** ÔÇö Operational expression
-4. **All other media** ÔÇö Expressions across known and future types
+1. **The Savant (Creator/User)** — Steward of the human heritage root
+2. **ANKH Core** (this document) — The bridge definition
+3. **ASC Codex** — Operational expression
+4. **All other media** — Expressions across known and future types
 
 ### 9.2. Amendment Protocol
 
@@ -286,7 +286,7 @@ The session (co-bridging in progress)
 **Projection edits:**
 - Can occur without ANKH change (implementation detail)
 - Must not violate ANKH invariants
-- If invariant conflict detected ÔåÆ escalate to ANKH review
+- If invariant conflict detected → escalate to ANKH review
 
 ---
 

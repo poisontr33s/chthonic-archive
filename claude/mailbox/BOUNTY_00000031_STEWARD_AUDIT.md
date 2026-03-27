@@ -232,7 +232,7 @@ The SSOT §10.3.3 already addresses this in the D-cup post-EMBALM canonization p
 ### Phase 4: SSOT-ification Continuation (✅ COMPLETE through Phase 0.9)
 
 **Objective:** Resume the SSOT cascade register from where it stalled.
-**Master blueprint:** [`docs/SSOTIFICATION_BLUEPRINT_PHASE_0.1_TO_1.0.md`](../../docs/SSOTIFICATION_BLUEPRINT_PHASE_0.1_TO_1.0.md) — phases, exit gates, and wiring tables live there. Updated 2026-03-26.
+**Master blueprint:** [`docs/SSOTIFICATION_BLUEPRINT_PHASE_0.1_TO_1.0.md`](../../docs/SSOTIFICATION_BLUEPRINT_PHASE_0.1_TO_1.0.md) — phases, exit gates, and wiring tables live there. Updated 2026-03-27 (Phase 0.9.1 complete).
 
 | Step | Phase | Action | Status |
 |------|-------|--------|--------|

@@ -758,9 +758,19 @@ def main() -> int:
         help="Batch-insert @SID headers on files that don't have one",
     )
     parser.add_argument(
+        "--kcp-stamp",
+        action="store_true",
+        help="Batch-insert full KCP headers (Cartouche + Khipu) on files missing them",
+    )
+    parser.add_argument(
+        "--kcp-audit",
+        action="store_true",
+        help="Show per-file KCP tier breakdown with field heat map",
+    )
+    parser.add_argument(
         "--dry-run",
         action="store_true",
-        help="Show what --stamp would do without writing files",
+        help="Show what --stamp/--kcp-stamp would do without writing files",
     )
 
     args = parser.parse_args()
@@ -769,6 +779,22 @@ def main() -> int:
     extensions = set(args.ext) if args.ext else SCANNABLE_EXTENSIONS
 
     results = run_census(repo_root, extensions, missing_only=args.missing_only)
+
+    if args.kcp_stamp or (args.kcp_stamp and args.dry_run):
+        actions = kcp_stamp_files(repo_root, results, dry_run=args.dry_run)
+        if args.json:
+            json.dump({"actions": actions, "count": len(actions)}, sys.stdout, indent=2)
+            print()
+        else:
+            mode = "DRY RUN" if args.dry_run else "KCP STAMPED"
+            for a in actions:
+                status = a.get("status", "unknown")
+                if status == "error":
+                    print(f"  ⚠️  SKIP  {a['file']} ({a.get('reason', '')})")
+                else:
+                    print(f"  {'🔍' if args.dry_run else '✅'} {a['sid']:40s} → {a['file']}")
+            print(f"\n  {mode}: {len(actions)} files")
+        return 0 if not actions else (0 if not args.dry_run else 1)
 
     if args.stamp or args.dry_run:
         actions = stamp_files(repo_root, results, dry_run=args.dry_run)
@@ -799,7 +825,10 @@ def main() -> int:
         json.dump(output, sys.stdout, indent=2)
         print()
     else:
-        print_report(results, summary_only=args.summary)
+        if args.kcp_audit:
+            print_kcp_audit(results)
+        else:
+            print_report(results, summary_only=args.summary)
 
     # Exit code: 0 = all compliant, 1 = some missing
     missing = sum(1 for r in results if not r.get("has_sid"))

@@ -188,7 +188,7 @@ convergence.
 │                                                          │
 │ System: You are a JSON extraction evaluator. Evaluate    │
 │ the local model's output against the FileGenreProfile    │
-│ schema. Apply FA¹-FA⁴ axioms. Enforce the 50/50         │
+│ schema. Apply FA¹-FA⁵ axioms. Enforce the 50/50         │
 │ Egypto-Andean balance mandate.                           │
 │                                                          │
 │ Input:                                                   │
@@ -218,7 +218,7 @@ reason in natural language before committing to structured output:
   "messages": [
     {
       "role": "system",
-      "content": "Extract the SFS aesthetic profile. Maintain the 50/50 Egypto-Andean balance mandate. Apply FA¹-FA⁴ axioms. Provide reasoning inside <think></think> tags, then the final JSON inside <answer></answer> tags. JSON must conform to the FileGenreProfile schema."
+      "content": "Extract the SFS aesthetic profile. Maintain the 50/50 Egypto-Andean balance mandate. Apply FA¹-FA⁵ axioms. Provide reasoning inside <think></think> tags, then the final JSON inside <answer></answer> tags. JSON must conform to the FileGenreProfile schema."
     },
     {
       "role": "user",
@@ -232,7 +232,7 @@ reason in natural language before committing to structured output:
 }
 ```
 
-**Rationale:** Permits the MoE experts to perform semantic analysis (FA¹-FA⁴
+**Rationale:** Permits the MoE experts to perform semantic analysis (FA¹-FA⁵
 evaluation, motif matching) in an unconstrained natural-language latent space
 *before* transitioning into strict JSON syntax. This directly eliminates the
 root cause of GBNF logit coercion failures.
@@ -243,7 +243,7 @@ root cause of GBNF logit coercion failures.
 |--------------|------------|--------------------------------------------|
 | Bootstrap    | 150–200    | Baseline Egypto-Andean balance, NONE/SUGGESTIVE tiers |
 | Intermediate | 300–500    | EXPLICIT tier, cross-referential motif matching |
-| Advanced     | 500–1000   | EXTREME tier, dense FA¹-FA⁴ interpolations |
+| Advanced     | 500–1000   | EXTREME tier, dense FA¹-FA⁵ interpolations |
 | Convergence  | Throttle   | Auto-stop when schema compliance > 98%     |
 
 **Key insight:** Diversity vastly outweighs volume. 500-1000 curated examples
@@ -399,7 +399,7 @@ pip install --no-deps trl peft accelerate bitsandbytes
 ║                              │                               ║
 ║  23:30  ┌─ Phase 3: Teacher Evaluation ────────────────────┐ ║
 ║         │ • Package failures → Claude API                  │ ║
-║         │ • Claude evaluates against FA¹-FA⁴ axioms        │ ║
+║         │ • Claude evaluates against FA¹-FA⁵ axioms        │ ║
 ║         │ • Generates <think> trace + <answer> JSON        │ ║
 ║         │ • Gate: only 100% schema-compliant corrections   │ ║
 ║         │   enter the training queue                       │ ║
@@ -481,7 +481,7 @@ pip install --no-deps trl peft accelerate bitsandbytes
 | Hallucination rate | ~10% | < 1% | % of outputs with fabricated references |
 | "Summary unavailable" rate | ~5% | 0% | % of generation collapses |
 | Egypto-Andean balance deviation | ±15% | ±5% | Mean absolute deviation from 50/50 |
-| FA¹-FA⁴ axiom coverage | ~70% | > 95% | % of axioms correctly applied |
+| FA¹-FA⁵ axiom coverage | ~70% | > 95% | % of axioms correctly applied |
 | Inference latency (post-SFT) | Baseline | ≤ Baseline | No regression from GBNF synergy |
 
 ---
@@ -503,7 +503,7 @@ Phase 2 — Intermediate (Weeks 3-4)
 
 Phase 3 — Advanced (Weeks 5-8)
 ├── EXPLICIT / EXTREME texts
-├── Dense FA¹-FA⁴ MILFological interpolations
+├── Dense FA¹-FA⁵ MILFological interpolations
 ├── Body-as-architecture metaphor resolution
 ├── Ambiguous texts requiring LOW confidence flags
 └── Goal: >98% schema compliance across all tiers
