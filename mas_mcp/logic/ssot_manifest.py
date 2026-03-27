@@ -61,6 +61,7 @@ SSOTRole = Literal[
     "journal",      # Records SSOT state transitions
     "artifact",     # Generated against a specific SSOT state
     "bridge",       # Translates SSOT into another runtime/language/domain
+    "config",       # IDE/tool config endpoint — cannot import, must be manually synced
 ]
 
 SSOT_ROLES: List[str] = list(SSOTRole.__args__)
@@ -79,6 +80,7 @@ SSOTRelation = Literal[
     "projecting",     # Derived form for consumption
     "caching",        # Memoized/precomputed from canon
     "historizing",    # Records canon evolution over time
+    "config_boundary",  # IDE/MCP config endpoint — literal required, update manually when SSOT paths change
 ]
 
 SSOT_RELATIONS: List[str] = list(SSOTRelation.__args__)
@@ -208,7 +210,7 @@ CASCADE_REGISTER: List[CascadeEntry] = [
         identity="ssot_binding_tests",
         relpath="mas_mcp/tests/test_ssot_binding.py",
         relation="validating",
-        description="14-test suite verifying manifest, binding, provenance, and cascade integrity",
+        description="21-test suite verifying manifest, binding, provenance, cascade integrity, and grep validation",
     ),
     # ── Projections (readable/navigable derived forms) ───────────────────────
     CascadeEntry(
@@ -239,6 +241,27 @@ CASCADE_REGISTER: List[CascadeEntry] = [
         relpath="scripts/lib/ssot_paths.py",
         relation="indexing",
         description="Thin re-export bridge for scripts/ — resolves SSOT paths from manifest",
+    ),
+    CascadeEntry(
+        role="bridge",
+        identity="ssot_paths_ts_bridge",
+        relpath="scripts/lib/ssot-paths.ts",
+        relation="indexing",
+        description="TypeScript SSOT cascade bridge — re-exports SSOT paths for TS consumers",
+    ),
+    CascadeEntry(
+        role="bridge",
+        identity="ssot_paths_ps1_bridge",
+        relpath="scripts/lib/ssot-paths.ps1",
+        relation="indexing",
+        description="PowerShell SSOT cascade bridge — dot-source for PS1 consumers",
+    ),
+    CascadeEntry(
+        role="bridge",
+        identity="ssot_paths_ext_bridge",
+        relpath="extensions/chthonic-archive/src/ssot-paths.ts",
+        relation="indexing",
+        description="VS Code extension-local SSOT bridge — mirrors canonical TS bridge for extension build context",
     ),
     CascadeEntry(
         role="bridge",
@@ -275,6 +298,80 @@ CASCADE_REGISTER: List[CascadeEntry] = [
         relpath="mas_mcp/abbreviation_system/cli.py",
         relation="indexing",
         description="Abbreviation system CLI — reads SSOT for canonical abbreviation registry",
+    ),
+    # ── Navigation Hubs ────────────────────────────────────────────────────────
+    CascadeEntry(
+        role="bridge",
+        identity="ankhrc",
+        relpath=".ankhrc",
+        relation="indexing",
+        description="Bidirectional SSOT hub — canonical navigation index mapping symbolic names to cascade paths",
+    ),
+    CascadeEntry(
+        role="bridge",
+        identity="pathstofiles",
+        relpath="pathstofiles.md",
+        relation="indexing",
+        description="Flat file-path listing — rapid-reference navigation surface for repo contents",
+    ),
+    # ── Validators (integrity + policy checks) ──────────────────────────────
+    CascadeEntry(
+        role="validator",
+        identity="ssot_hash",
+        relpath="scripts/ssot_hash.py",
+        relation="validating",
+        description="SSOT hash computation — SHA-256 fingerprint for drift detection at CLI level",
+    ),
+    CascadeEntry(
+        role="validator",
+        identity="ssot_immunity",
+        relpath="scripts/ssot_immunity.py",
+        relation="validating",
+        description="SSOT immunity scanner — detects unauthorized mutations against canonical state",
+    ),
+    CascadeEntry(
+        role="validator",
+        identity="check_python_policy",
+        relpath="scripts/check_python_policy.py",
+        relation="validating",
+        description="Python header policy auditor — validates shebang/encoding against SSOT_PROTO glob list",
+    ),
+    CascadeEntry(
+        role="validator",
+        identity="wptg_methodology",
+        relpath="WET_PAPER_TO_GOLD_METHODOLOGY.md",
+        relation="validating",
+        description="Wet Paper to Gold governance methodology — defines upcycle-only, no-destroy invariants",
+    ),
+    # ── Projections (documentation cascade) ──────────────────────────────────
+    CascadeEntry(
+        role="projection",
+        identity="ssotification_methodology",
+        relpath="docs/SSOTIFICATION_METHODOLOGY.md",
+        relation="projecting",
+        description="SSOT-ification methodology doc — cascade philosophy and wiring patterns",
+    ),
+    CascadeEntry(
+        role="projection",
+        identity="ssotification_blueprint",
+        relpath="docs/SSOTIFICATION_BLUEPRINT_PHASE_0.1_TO_1.0.md",
+        relation="projecting",
+        description="SSOT-ification strategic blueprint — phase tracker, exit gates, and wiring tables",
+    ),
+    # ── Config Boundaries (IDE/MCP — cannot import, manual sync required) ────
+    CascadeEntry(
+        role="config",
+        identity="vscode_mcp_config",
+        relpath=".vscode/mcp.json",
+        relation="config_boundary",
+        description="VS Code MCP config — SSOT_PATH env var must match SSOT_HOLDER_RELPATH",
+    ),
+    CascadeEntry(
+        role="config",
+        identity="vscode_settings",
+        relpath=".vscode/settings.json",
+        relation="config_boundary",
+        description="VS Code settings — validation ignore + chat location refs must match SSOT paths",
     ),
 ]
 

@@ -1,3 +1,4 @@
+// @SID: SCRIPT_CROSS_CRITIQUE_V1
 #!/usr/bin/env bun
 
 /**
@@ -24,6 +25,7 @@
 
 import { readFileSync, writeFileSync, existsSync } from "node:fs";
 import path from "node:path";
+import { SSOT_HOLDER } from "./lib/ssot-paths";
 
 // ── CLI args ──────────────────────────────────────────────────────────────────
 
@@ -46,7 +48,7 @@ function parseArgs(): Args {
     section: "",
     start: 0,
     end: 0,
-    ssotPath: path.resolve(import.meta.dir, "../.github/copilot-instructions.archive.md"),
+    ssotPath: path.resolve(import.meta.dir, "..", SSOT_HOLDER),
     out: null,
     opusModel: "claude-opus-4-0",
     sonnetModel: "claude-sonnet-4-5-20250514",
@@ -107,7 +109,7 @@ REQUIRED:
   --end <line>         1-based end line of SSOT context window
 
 OPTIONS:
-  --ssot <path>        Path to SSOT file (default: .github/copilot-instructions.archive.md)
+  --ssot <path>        Path to SSOT file (default: ${SSOT_HOLDER})
   --out <path>         Write output to file instead of stdout
   --opus-model <id>    Opus model ID (default: claude-opus-4-0)
   --sonnet-model <id>  Sonnet model ID (default: claude-sonnet-4-5-20250514)

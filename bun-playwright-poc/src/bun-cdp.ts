@@ -1,3 +1,4 @@
+// @SID: SCRIPT_BUN_CDP_V1
 // ╔════════════════════════════════════════════════════════════════════════════╗
 // ║  THE DECORATOR'S BLESSING: bun-cdp.ts                                    ║
 // ║  TypeScript module: CDPResponse, CDPEvent, BrowserVersion                   ║

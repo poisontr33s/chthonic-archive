@@ -1,4 +1,5 @@
 #!/usr/bin/env pwsh
+# @SID: SCRIPT_START_GITHUB_MCP_V1
 
 # ╔════════════════════════════════════════════════════════════════════════════
 # ║ THE DECORATOR'S BLESSING: start_github_mcp.ps1

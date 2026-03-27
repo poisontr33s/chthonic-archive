@@ -1,4 +1,11 @@
 #!/usr/bin/env pwsh
+#
+# @SID: SCRIPT_RECOVER_IDE_SESSIONS_V1
+# @Type: UTILITY
+# @Spectrum: WHITE
+# @Zone: THE GARDEN
+# @Purpose: Recover path-bound Copilot and Claude IDE sessions after a user-profile rename d
+#
 
 <#
 .SYNOPSIS

@@ -1,3 +1,4 @@
+// @SID: EXT_LEDGERBROKER_V1
 import * as vscode from 'vscode';
 import { EntropySettlement, LedgerReceipt } from './types';
 import { RustLedgerHostClient } from './solanaLedger';

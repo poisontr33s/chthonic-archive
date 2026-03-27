@@ -1,3 +1,4 @@
+// @SID: EXT_SYNAPSEBRIDGE_V1
 import * as fs from 'fs';
 import { createRequire } from 'module';
 import * as path from 'path';

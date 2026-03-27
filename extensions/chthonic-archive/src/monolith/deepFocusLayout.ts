@@ -1,3 +1,4 @@
+// @SID: EXT_DEEPFOCUSLAYOUT_V1
 import * as vscode from 'vscode';
 
 export class DeepFocusLayout {

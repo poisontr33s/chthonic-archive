@@ -1,4 +1,11 @@
 #!/usr/bin/env pwsh
+#
+# @SID: SCRIPT_MCP_WRITE_LOCAL_V1
+# @Type: INFRASTRUCTURE
+# @Spectrum: WHITE
+# @Zone: THE GARDEN
+# @Purpose: Purpose: Generate a local, secret-bearing `.mcp.json` from the user's API pool/e
+#
 # Purpose: Generate a local, secret-bearing `.mcp.json` from the user's API pool/env.
 #
 # Why:

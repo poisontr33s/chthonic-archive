@@ -1,3 +1,4 @@
+// @SID: SCRIPT_MCP_CHTHONIC_SERVER_V1
 #!/usr/bin/env bun
 
 // ╔════════════════════════════════════════════════════════════════════════════
@@ -27,6 +28,7 @@
  */
 
 import { join, resolve } from "path";
+import { SSOT_POINTER } from "./lib/ssot-paths";
 import { existsSync } from "fs";
 import { readdir, stat } from "fs/promises";
 import { initSentry } from "./sentry_init";
@@ -283,7 +285,7 @@ const ARCHIVE_TOOLS: ToolDefinition[] = [
   { name: "chthonic_compact", description: "Compact markdown files using noise pattern removal.", inputSchema: { type: "object", properties: { file: { type: "string", description: "File to compact" }, dry_run: { type: "boolean", description: "Preview without changes" }, stats: { type: "boolean", description: "Show compaction statistics" } }, required: ["file"] } },
   { name: "chthonic_book", description: "Build/serve mdBook documentation site.", inputSchema: { type: "object", properties: { action: { type: "string", enum: ["build", "serve", "clean"], default: "build", description: "Action to perform" } }, required: [] } },
   { name: "chthonic_scan", description: "Scan the repository and return file statistics (legacy scanRepository ported).", inputSchema: { type: "object", properties: {}, required: [] } },
-  { name: "chthonic_validate_ssot", description: "Validate SSOT (.github/copilot-instructions.md) integrity via SHA-256 hash (legacy validateSSOT ported).", inputSchema: { type: "object", properties: {}, required: [] } },
+  { name: "chthonic_validate_ssot", description: `Validate SSOT (${SSOT_POINTER}) integrity via SHA-256 hash (legacy validateSSOT ported).`, inputSchema: { type: "object", properties: {}, required: [] } },
   { name: "toolchain_probe", description: "Run repo-local toolchain probe and write a deterministic manifest under dumpster-dive/intake/toolchain-probe/.", inputSchema: { type: "object", properties: { writeVscodeSnippet: { type: "boolean", default: false } }, required: [] } },
   { name: "overnight_report", description: "Run the Bun overnight daemon once to generate a report under dumpster-dive/intake/overnight-daemon/.", inputSchema: { type: "object", properties: { top: { type: "integer", minimum: 1, default: 20 }, maxTodo: { type: "integer", minimum: 1, default: 80 }, siphon: { type: "boolean", default: false }, classify: { type: "boolean", default: false, description: "Enable enhanced classification and complexity analysis" } }, required: [] } },
 ];
@@ -427,7 +429,7 @@ function canonicalizeSSOT(text: string): string {
 }
 
 async function chthonicValidateSSOT(): Promise<string> {
-  const ssotPath = join(CHTHONIC_ROOT, ".github", "copilot-instructions.md");
+  const ssotPath = join(CHTHONIC_ROOT, SSOT_POINTER);
   try {
     const file = Bun.file(ssotPath);
     const content = await file.text();

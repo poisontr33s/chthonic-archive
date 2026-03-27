@@ -1,3 +1,4 @@
+// @SID: EXT_RESTOREORDERLAYOUT_V1
 import * as vscode from 'vscode';
 
 export class RestoreOrderLayout {

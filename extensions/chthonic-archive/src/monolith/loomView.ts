@@ -1,3 +1,4 @@
+// @SID: EXT_LOOMVIEW_V1
 import * as vscode from 'vscode';
 import type { EntropySnapshot } from '../entropy/entropyWorkerClient';
 import type { RustificationReport } from './rustificationScore';

@@ -1,3 +1,4 @@
+// @SID: EXT_TOOLPOOL_SCAN_V1
 import * as fs from 'fs';
 import * as path from 'path';
 import { spawnSync } from 'child_process';

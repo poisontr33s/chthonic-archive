@@ -1,3 +1,4 @@
+// @SID: FORGE_ASSISTANT_NONBUN_PATTERNS_V1
 /**
  * EXTRACTED NON-BUN CODE: chthonic-vscode-extension/src/extension.ts
  * 

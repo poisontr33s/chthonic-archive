@@ -1,4 +1,5 @@
 #!/usr/bin/env pwsh
+# @SID: SCRIPT_RV_R_V1
 
 # ╔════════════════════════════════════════════════════════════════════════════
 # ║ THE DECORATOR'S BLESSING: rv-r.ps1

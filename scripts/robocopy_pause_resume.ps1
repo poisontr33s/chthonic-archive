@@ -1,4 +1,11 @@
 #!/usr/bin/env pwsh
+#
+# @SID: SCRIPT_ROBOCOPY_PAUSE_RESUME_V1
+# @Type: UTILITY
+# @Spectrum: WHITE
+# @Zone: THE GARDEN
+# @Purpose: Pause, resume, or inspect a running robocopy process.
+#
 
 <#
 .SYNOPSIS

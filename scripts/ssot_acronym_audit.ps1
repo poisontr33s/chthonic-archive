@@ -1,4 +1,5 @@
 #!/usr/bin/env pwsh
+# @SID: SCRIPT_SSOT_ACRONYM_AUDIT_V1
 
 <#
 # ╔════════════════════════════════════════════════════════════════════════════
@@ -47,7 +48,8 @@ param(
     [string]$FindLines
 )
 
-$ssotPath = Join-Path $PSScriptRoot "..\copilot-instructions.md"
+. (Join-Path $PSScriptRoot "lib\ssot-paths.ps1")
+$ssotPath = Resolve-SsotPath -Root (Resolve-Path "$PSScriptRoot\..") -Which pointer
 $lines = Get-Content $ssotPath
 
 # Build acronym index with line numbers

@@ -1,3 +1,4 @@
+// @SID: SCRIPT_VSCODE_ART_COP_V1
 #!/usr/bin/env bun
 
 /**

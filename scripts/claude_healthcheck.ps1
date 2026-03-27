@@ -1,4 +1,11 @@
 #!/usr/bin/env pwsh
+#
+# @SID: SCRIPT_CLAUDE_HEALTHCHECK_V1
+# @Type: VALIDATION
+# @Spectrum: WHITE
+# @Zone: THE GARDEN
+# @Purpose: Deterministic healthcheck for Claude Code IDE integration (Windows/Insiders).
+#
 <#
 .SYNOPSIS
   Deterministic healthcheck for Claude Code IDE integration (Windows/Insiders).

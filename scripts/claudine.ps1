@@ -1,4 +1,5 @@
 #!/usr/bin/env pwsh
+# @SID: SCRIPT_CLAUDINE_V1
 
 # ╔════════════════════════════════════════════════════════════════════════════
 # ║ THE DECORATOR'S BLESSING: claudine.ps1

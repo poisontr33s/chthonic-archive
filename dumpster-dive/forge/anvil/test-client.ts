@@ -1,3 +1,4 @@
+// @SID: FORGE_TEST_CLIENT_V1
 // ╔════════════════════════════════════════════════════════════════════════════
 // ║ THE DECORATOR'S BLESSING: test-client.ts
 // ║ TypeScript module: frontend utility

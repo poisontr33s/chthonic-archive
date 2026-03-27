@@ -1,4 +1,5 @@
 #!/usr/bin/env pwsh
+# @SID: SCRIPT_RUN_ARCHAEOLOGY_V1
 
 # ╔════════════════════════════════════════════════════════════════════════════
 # ║ Nightly Daemon Launcher

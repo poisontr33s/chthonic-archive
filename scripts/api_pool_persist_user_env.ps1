@@ -1,4 +1,11 @@
 #!/usr/bin/env pwsh
+#
+# @SID: SCRIPT_API_POOL_PERSIST_USER_ENV_V1
+# @Type: UTILITY
+# @Spectrum: WHITE
+# @Zone: THE GARDEN
+# @Purpose: Persist API pool env vars into Windows *User* environment variables.
+#
 
 <#
 .SYNOPSIS

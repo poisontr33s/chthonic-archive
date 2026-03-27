@@ -1,3 +1,4 @@
+// @SID: MAS_CYCLES_V1
 // ═══════════════════════════════════════════════════════════════════════════════
 // 🧬 MAS-MCP Dashboard - /api/cycles
 // Returns cycle reports with optional date filter and pagination

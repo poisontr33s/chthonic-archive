@@ -1,4 +1,5 @@
 #!/usr/bin/env pwsh
+# @SID: SCRIPT_BRIDGE_DIAGNOSTIC_V1
 # ╔════════════════════════════════════════════════════════════════════════════
 # ║ THE DECORATOR'S BLESSING: bridge-diagnostic.ps1
 # ║ Module: Bridge diagnostic

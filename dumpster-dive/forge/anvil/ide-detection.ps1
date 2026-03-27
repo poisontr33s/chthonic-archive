@@ -1,4 +1,5 @@
 #!/usr/bin/env pwsh
+# @SID: FORGE_IDE_DETECTION_V1
 # 🔥💀⚓ Claude Code IDE Detection & Setup Diagnostic
 
 Write-Host "

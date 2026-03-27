@@ -1,3 +1,4 @@
+// @SID: EXT_ENTROPYWORKERCLIENT_V1
 import * as path from 'path';
 import * as vscode from 'vscode';
 import { Worker } from 'worker_threads';

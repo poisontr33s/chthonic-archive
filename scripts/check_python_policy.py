@@ -28,6 +28,8 @@ import argparse
 import re
 from pathlib import Path
 
+from lib.ssot_paths import SSOT_PROTO
+
 SKIP_DIRS = {".git", ".venv", "venv", "__pycache__", "node_modules", ".next", "dist", "build"}
 DEFAULT_GLOBS = [
     "scripts/*.py",
@@ -42,7 +44,7 @@ DOC_GLOBS = [
     ".claude/skills/**/SKILL.md",
 ]
 PROTO_GLOBS = [
-    ".github/copilot-instructions-copy.md",
+    SSOT_PROTO,
     "codex/mailbox/*.md",
     "claude/mailbox/*.md",
 ]

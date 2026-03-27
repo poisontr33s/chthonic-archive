@@ -1,3 +1,4 @@
+// @SID: MAS_DIGEST_V1
 // ═══════════════════════════════════════════════════════════════════════════════
 // 🧬 MAS-MCP Dashboard - /api/digest
 // Returns current day's digest aggregation

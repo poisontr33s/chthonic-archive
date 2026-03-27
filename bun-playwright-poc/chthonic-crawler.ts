@@ -1,3 +1,4 @@
+// @SID: SCRIPT_CHTHONIC_CRAWLER_V1
 // ╔════════════════════════════════════════════════════════════════════════════╗
 // ║  THE DECORATOR'S BLESSING: chthonic-crawler.ts                           ║
 // ║  TypeScript module: frontend utility                                        ║

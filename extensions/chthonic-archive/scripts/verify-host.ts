@@ -1,3 +1,4 @@
+// @SID: EXT_VERIFY_HOST_V1
 import { spawnSync } from 'bun';
 import { existsSync, readFileSync, readdirSync } from 'fs';
 import path from 'path';

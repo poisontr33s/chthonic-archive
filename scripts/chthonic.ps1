@@ -1,5 +1,7 @@
 #!/usr/bin/env pwsh
 
+# @SID: SCRIPT_CHTHONIC_V1
+
 # ╔════════════════════════════════════════════════════════════════════════════
 # ║ THE DECORATOR'S BLESSING: chthonic.ps1
 # ║ Module: Unified polyglot CLI router
@@ -2420,6 +2422,13 @@ function Invoke-PolyglotActivation {
     $env:CLAUDINE_ACTIVATED = "1"
     $env:CLAUDINE_VERSION = $VERSION
     $env:CHTHONIC_REPO_ROOT = $REPO_ROOT
+    
+    # Idempotent git hook installation (silent, no-op if already installed)
+    $hookInstaller = Join-Path $REPO_ROOT "scripts" "hooks" "install-hooks.ps1"
+    $hookTarget = Join-Path $REPO_ROOT ".git" "hooks" "pre-commit"
+    if ((Test-Path $hookInstaller) -and -not (Test-Path $hookTarget)) {
+        & pwsh -NoProfile -File $hookInstaller 2>$null
+    }
     
     if (-not $Quiet) {
         if ($rvBinding -and $rvBinding.applied) {
@@ -5160,7 +5169,20 @@ switch ($Domain) {
     }
     
     # Backward compatibility: single-word archive commands
-    { $_ -in "audit", "compact", "extract", "resolve", "map", "analyze" } {
+    "audit" {
+        if ($Action -eq "envelope") {
+            $envelopeScript = Join-Path $REPO_ROOT "scripts" "envelope_census.py"
+            if (-not (Test-Path -LiteralPath $envelopeScript)) {
+                Write-Error "Missing script: $envelopeScript"
+                exit 1
+            }
+            & uv run $envelopeScript @RemainingArgs
+            exit $LASTEXITCODE
+        }
+        $exitCode = Invoke-ArchiveCommand -Cmd $Domain -CmdArgs @($Action) + $RemainingArgs
+        exit $exitCode
+    }
+    { $_ -in "compact", "extract", "resolve", "map", "analyze" } {
         $exitCode = Invoke-ArchiveCommand -Cmd $Domain -CmdArgs @($Action) + $RemainingArgs
         exit $exitCode
     }

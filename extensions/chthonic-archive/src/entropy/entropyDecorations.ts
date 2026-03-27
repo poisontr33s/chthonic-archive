@@ -1,3 +1,4 @@
+// @SID: EXT_ENTROPYDECORATIONS_V1
 import * as vscode from 'vscode';
 import type { EntropyFileRecord } from './types';
 import { EntropyWorkerClient } from './entropyWorkerClient';

@@ -1,5 +1,6 @@
 #!/usr/bin/env bun
 
+// @SID: SCRIPT_OVERNIGHT_DAEMON_V1
 // ╔════════════════════════════════════════════════════════════════════════════
 // ║ THE DECORATOR'S BLESSING: overnight_daemon.ts
 // ╠════════════════════════════════════════════════════════════════════════════
@@ -25,6 +26,7 @@
 
 import { join, resolve, dirname } from "path";
 import { mkdir } from "fs/promises";
+import { SSOT_POINTER } from "./lib/ssot-paths";
 // import { initSentry } from "./sentry_init";
 
 type TodoHit = {
@@ -352,7 +354,7 @@ function baseScoreFor(relPath: string, fc?: FileClassification): { score: number
   }
 
   if (p.startsWith(".github/instructions/")) bump(50, "governance: path-specific instructions");
-  if (p === ".github/copilot-instructions.md") bump(45, "governance: SSOT monolith");
+  if (p === SSOT_POINTER) bump(45, "governance: SSOT monolith");
   if (p.startsWith(".github/tools/")) bump(35, "governance tooling");
   if (p.startsWith("scripts/")) bump(30, "repo tooling");
   if (p.startsWith("src/")) bump(25, "product code");

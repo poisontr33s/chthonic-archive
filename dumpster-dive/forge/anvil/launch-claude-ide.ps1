@@ -1,4 +1,5 @@
 #!/usr/bin/env pwsh
+# @SID: FORGE_LAUNCH_CLAUDE_IDE_V1
 
 #Requires -Version 7.0
 <#

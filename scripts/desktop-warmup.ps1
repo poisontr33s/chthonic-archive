@@ -1,4 +1,11 @@
 #!/usr/bin/env pwsh
+#
+# @SID: SCRIPT_DESKTOP_WARMUP_V1
+# @Type: UTILITY
+# @Spectrum: WHITE
+# @Zone: THE GARDEN
+# @Purpose: Post-pull desktop environment warmup for the Chthonic Archive.
+#
 <#
 .SYNOPSIS
   Post-pull desktop environment warmup for the Chthonic Archive.

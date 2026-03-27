@@ -1,3 +1,4 @@
+// @SID: MAS_TYPES_V1
 // ═══════════════════════════════════════════════════════════════════════════════
 // 🧬 MAS-MCP Dashboard Types
 // Bun-native TypeScript definitions for Genesis artifacts

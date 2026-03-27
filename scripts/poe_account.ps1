@@ -1,4 +1,11 @@
 #!/usr/bin/env pwsh
+#
+# @SID: SCRIPT_POE_ACCOUNT_V1
+# @Type: UTILITY
+# @Spectrum: WHITE
+# @Zone: THE GARDEN
+# @Purpose: Select active Poe API account for the current shell process.
+#
 
 <#
 .SYNOPSIS

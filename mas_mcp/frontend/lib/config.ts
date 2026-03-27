@@ -1,3 +1,4 @@
+// @SID: MAS_CONFIG_V1
 // ═══════════════════════════════════════════════════════════════════════════════
 // 🧬 MAS-MCP Dashboard Configuration
 // Bun-native config with environment variable parsing

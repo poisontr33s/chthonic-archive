@@ -1,3 +1,4 @@
+// @SID: FORGE_QUERYDEPENDENCYGRAPH_V1
 // ╔════════════════════════════════════════════════════════════════════════════
 // ║ THE DECORATOR'S BLESSING: queryDependencyGraph.ts
 // ║ TypeScript module: frontend utility

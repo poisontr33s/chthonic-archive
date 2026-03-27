@@ -1,4 +1,5 @@
 #!/usr/bin/env pwsh
+# @SID: GOLDEN_PACKAGE_V1
 # @ankh: heritage-continuity — Package Chthonic Golden into distributable format
 # SID: chthonic-golden-package
 # Usage: .\package.ps1 -UpstreamPath .\upstream-vscode [-Output .\dist] [-Quality stable|insider]

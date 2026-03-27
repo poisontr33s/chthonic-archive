@@ -1,3 +1,4 @@
+// @SID: EXT_SETUP_OXIDIZED_V1
 import * as fs from 'fs';
 import * as path from 'path';
 

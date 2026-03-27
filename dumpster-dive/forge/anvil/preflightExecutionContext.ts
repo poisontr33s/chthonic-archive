@@ -1,3 +1,4 @@
+// @SID: FORGE_PREFLIGHTEXECUTIONCONTEXT_V1
 // ╔════════════════════════════════════════════════════════════════════════════
 // ║ THE DECORATOR'S BLESSING: preflightExecutionContext.ts
 // ║ MCP client integration - Observatory communication layer

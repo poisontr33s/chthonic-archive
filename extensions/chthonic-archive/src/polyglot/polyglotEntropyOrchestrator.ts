@@ -1,3 +1,4 @@
+// @SID: EXT_POLYGLOTENTROPYORCHESTRATOR_V1
 import * as fs from 'fs/promises';
 import * as path from 'path';
 import * as vscode from 'vscode';

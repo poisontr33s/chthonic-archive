@@ -1,3 +1,5 @@
+// @SID: SCRIPT_EXAMPLE_BUNCDP_V1
+
 // ╔════════════════════════════════════════════════════════════════════════════╗
 // ║  THE DECORATOR'S BLESSING: example-buncdp.ts                             ║
 // ║  TypeScript module: frontend utility                                        ║

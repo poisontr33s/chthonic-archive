@@ -1,4 +1,11 @@
 #!/usr/bin/env pwsh
+#
+# @SID: SCRIPT_LAUNCH_ELEVATED_BRIDGE_V1
+# @Type: RUNNER
+# @Spectrum: WHITE
+# @Zone: THE GARDEN
+# @Purpose: [CmdletBinding()]
+#
 
 [CmdletBinding()]
 param(

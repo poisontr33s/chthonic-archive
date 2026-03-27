@@ -1,3 +1,4 @@
+// @SID: EXT_ANNOCLIENT_V1
 import * as path from 'path';
 import { spawn } from 'child_process';
 import * as vscode from 'vscode';

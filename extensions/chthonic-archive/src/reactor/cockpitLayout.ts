@@ -1,3 +1,4 @@
+// @SID: EXT_COCKPITLAYOUT_V1
 import * as vscode from 'vscode';
 import type { EnvReport } from './types';
 

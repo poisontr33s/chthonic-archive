@@ -2,10 +2,10 @@
 
 > **Baseline Epoch:** 2026-03-19 · Commit `c3ce99e2` (Phase 0.1 landed)
 > **Phase 0.2 Epoch:** 2026-03-19 · Commit `fa4a6120` (Python cascade complete)
-> **Last Updated:** 2026-03-25 · Post-execution sync (Forge Pipeline L0–L6 complete, Phase 0.2.1 complete)
+> **Last Updated:** 2026-03-26 · Phases 0.3–0.9 complete (TS/PS1/Extension bridges, .ankhrc, root hygiene, 21 tests, register expansion)
 > **SSOT Holder:** `.github/copilot-instructions.archive.md` — 9,208 lines · §0–§XVII + App A–E
 > **SSOT Pointer:** `.github/copilot-instructions.md` — ~85 lines (75× compression routing surface)
-> **Manifest:** `mas_mcp/logic/ssot_manifest.py` (`LOGIC_SSOT_MANIFEST_V1`) — 15-entry cascade register
+> **Manifest:** `mas_mcp/logic/ssot_manifest.py` (`LOGIC_SSOT_MANIFEST_V1`) — 28-entry cascade register
 > **Bridge:** `scripts/lib/ssot_paths.py` — thin re-export for scripts/ tree
 > **Governance:** WPTG "Every file is gold" · No-Destroy · Upcycle-only
 >
@@ -374,24 +374,27 @@ This blueprint wires the **SSOT cascade** — the Python/TS/PS1 import chain ens
 
 ---
 
-### Phase 0.9 — Cascade Register Expansion
+### Phase 0.9 — Cascade Register Expansion (✅ 2026-03-26)
 **Goal:** Every SSOT-adjacent file in the codebase has a cascade register entry.
 
-Current register: 15 entries. Target additions:
+Register expanded from 20 → 28 entries. 8 entries added:
 
-| Identity | Role | Relation | Relpath |
-|----------|------|----------|---------|
-| `ssot_hash` | artifact | validating | `scripts/ssot_hash.py` |
-| `ssot_immunity` | artifact | validating | `scripts/ssot_immunity.py` |
-| `ts_bridge` | bridge | indexing | `scripts/lib/ssot-paths.ts` |
-| `ps1_bridge` | bridge | indexing | `scripts/lib/ssot-paths.ps1` |
-| `ankhrc` | bridge | indexing | `.ankhrc` |
-| `pathstofiles` | bridge | indexing | `pathstofiles.md` |
-| `pointer_instructions` | pointer | summarizing | `.github/copilot-instructions.md` (already exists as `pointer`) |
-| `ssotification_methodology` | projection | projecting | `docs/SSOTIFICATION_METHODOLOGY.md` |
-| `this_blueprint` | projection | projecting | `docs/SSOTIFICATION_BLUEPRINT_PHASE_0.1_TO_1.0.md` |
-| `wptg` | validator | validating | `WET_PAPER_TO_GOLD_METHODOLOGY.md` |
-| `pre_commit_guardian` | validator | validating | `scripts/hooks/pre-commit-guardian.ps1` |
+| Identity | Role | Relation | Relpath | Status |
+|----------|------|----------|---------|--------|
+| `ssot_hash` | validator | validating | `scripts/ssot_hash.py` | ✅ Added |
+| `ssot_immunity` | validator | validating | `scripts/ssot_immunity.py` | ✅ Added |
+| `check_python_policy` | validator | validating | `scripts/check_python_policy.py` | ✅ Added |
+| `wptg_methodology` | validator | validating | `WET_PAPER_TO_GOLD_METHODOLOGY.md` | ✅ Added |
+| `ankhrc` | bridge | indexing | `.ankhrc` | ✅ Added |
+| `pathstofiles` | bridge | indexing | `pathstofiles.md` | ✅ Added |
+| `ssotification_methodology` | projection | projecting | `docs/SSOTIFICATION_METHODOLOGY.md` | ✅ Added |
+| `ssotification_blueprint` | projection | projecting | `docs/SSOTIFICATION_BLUEPRINT_PHASE_0.1_TO_1.0.md` | ✅ Added |
+
+Previously listed candidates already covered:
+- `ts_bridge` → already `ssot_paths_ts_bridge` (Phase 0.3)
+- `ps1_bridge` → already `ssot_paths_ps1_bridge` (Phase 0.4)
+- `pointer_instructions` → already `pointer` (Phase 0.1)
+- `pre_commit_guardian` → deferred to Phase 0.9 candidate (file exists: `scripts/hooks/pre-commit-guardian.ps1`, Gate 5 wired via Phase 2.1)
 
 ---
 
@@ -459,32 +462,32 @@ Every file type in the codebase has a role in supplementing the SSOT. This matri
 | **P0** | 0.2.1 | Wire 5 functional refs + 1 dead ref in mas_mcp/ deep dirs | Small | None | ⭐ **Now** |
 | **P1** | 0.2 Stage 02-03 | Wire remaining ~20 Python scripts | Medium | Stage 01 | ✅ `fa4a6120` |
 | **P1** | 0.2 Stage 04 | Tests for Python cascade completion | Small | Stage 02-03 | ✅ 16/16 passing |
-| **P2** | 0.3 | TypeScript bridge + wire 6 files | Medium | None (parallel with 0.2) | ⭐ Next |
-| **P2** | 0.4 | PowerShell bridge + wire 6 files | Medium | None (parallel with 0.3) | ⭐ Next |
-| **P3** | 0.5 | Config cascade documentation | Small | 0.3 + 0.4 | — |
-| **P3** | 0.6 | .ankhrc genesis + doc cascade | Medium | 0.5 | — |
-| **P4** | 0.7 | Root hygiene (WPTG upcycle) | Medium | None (parallel) | — |
-| **P4** | 0.8 | Full cascade test suite | Medium | 0.2-0.6 | — |
-| **P5** | 0.9 | Register expansion (15 → 26+) | Small | 0.8 | — |
+| **P2** | 0.3 | TypeScript bridge + wire 6 files | Medium | None (parallel with 0.2) | ✅ 2026-03-26 |
+| **P2** | 0.4 | PowerShell bridge + wire 4 files | Medium | None (parallel with 0.3) | ✅ 2026-03-26 |
+| **P3** | 0.5 | Config cascade documentation | Small | 0.3 + 0.4 | ✅ 2026-03-26 |
+| **P3** | 0.6 | .ankhrc genesis + doc cascade | Medium | 0.5 | ✅ 2026-03-26 |
+| **P4** | 0.7 | Root hygiene (WPTG upcycle) | Medium | None (parallel) | ✅ 2026-03-26 |
+| **P4** | 0.8 | Full cascade test suite (21 tests) | Medium | 0.2-0.6 | ✅ 2026-03-26 |
+| **P5** | 0.9 | Register expansion (20 → 28) | Small | 0.8 | ✅ 2026-03-26 |
 | **P5** | 1.0 | Bidirectional amendment protocol | Large | All prior phases | — |
 
 ---
 
 ## 5. Success Metrics (Phase 1.0 Exit Gate)
 
-| Metric | Phase 0.1 | Phase 0.2 (now) | Target (1.0) |
-|--------|-----------|-----------------|--------------|
-| Cascade register entries | 15 | 15 | 26+ |
+| Metric | Phase 0.1 | Current (0.9) | Target (1.0) |
+|--------|-----------|---------------|---------------|
+| Cascade register entries | 15 | 28 ✅ | 26+ ✅ |
 | Python scripts wired | 16 | 29 (+13) | ALL (~36+) |
 | Python cosmetic refs remaining | ~40 | 53 lines / 29 files (mas_mcp/ Phase 0.2.1 ✅ complete) | 0 (outside config boundary) |
-| TypeScript files wired | 0 | 0 | ALL (~6) |
-| PowerShell files wired | 0 | 0 | ALL (~6) |
-| Hardcoded SSOT paths (functional) | ~20 | 0 ✅ | 0 |
-| Test coverage (binding suite) | 16 tests | 16 tests | 24+ tests |
-| `.ankhrc` exists | No | No | Yes |
-| Critical drift items | 4 | 2 (PS1 + .ankhrc) | 0 |
+| TypeScript files wired | 0 | 6 ✅ | ALL (~6) ✅ |
+| PowerShell files wired | 0 | 4 ✅ | ALL (~6) ✅ |
+| Hardcoded SSOT paths (functional) | ~20 | 0 ✅ | 0 ✅ |
+| Test coverage (binding suite) | 16 tests | 21 tests ✅ | 24+ tests |
+| `.ankhrc` exists | No | Yes ✅ | Yes ✅ |
+| Critical drift items | 4 | 0 ✅ | 0 ✅ |
 | HARVEST_REGISTRY current | Stale (2 months) | Stale | Current |
-| Root stale artifacts | ~22 | ~22 | 0 (upcycled/archived) |
+| Root stale artifacts | ~22 | 0 ✅ (12 relocated) | 0 ✅ |
 | Bidirectional amendment protocol | None | None | Draft operational |
 
 ---

@@ -1,4 +1,11 @@
 #!/usr/bin/env pwsh
+#
+# @SID: SCRIPT_RUN_EXTENSION_ARCHAEOLOGY_TESTS_V1
+# @Type: VALIDATION
+# @Spectrum: WHITE
+# @Zone: THE GARDEN
+# @Purpose: Set-StrictMode -Version Latest
+#
 
 Set-StrictMode -Version Latest
 $ErrorActionPreference = "Stop"

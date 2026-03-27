@@ -1,0 +1,12 @@
+{
+  "id": "scripts/.deprecated/mcp_legacy/verify-final.ts",
+  "title": "verify-final.ts",
+  "role": "script",
+  "purpose": "Script logic for verify-final.ts.",
+  "invoke": "bun scripts/.deprecated/mcp_legacy/verify-final.ts",
+  "exports": [],
+  "xrefs": [],
+  "runtime": "bun",
+  "entrypoint": "scripts/.deprecated/mcp_legacy/verify-final.ts",
+  "updated_at": "2026-02-05T20:04:01.013316+00:00"
+}

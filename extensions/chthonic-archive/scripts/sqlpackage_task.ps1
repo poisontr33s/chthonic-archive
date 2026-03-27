@@ -1,3 +1,4 @@
+# @SID: EXT_SQLPACKAGE_TASK_V1
 [CmdletBinding()]
 param(
     [Parameter(Mandatory = $true)]

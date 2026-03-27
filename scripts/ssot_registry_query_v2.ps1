@@ -1,4 +1,5 @@
 #!/usr/bin/env pwsh
+# @SID: SCRIPT_SSOT_REGISTRY_QUERY_V2_V1
 
 <#
 # ╔════════════════════════════════════════════════════════════════════════════
@@ -43,11 +44,11 @@ param(
     [string]$Entity
 )
 
-# Relative to this script's directory (toolbox)
-$ssotPath = Resolve-Path "$PSScriptRoot\..\copilot-instructions.md" -ErrorAction SilentlyContinue
-if (-not $ssotPath) {
-    # Try the copy if original not found
-    $ssotPath = Resolve-Path "$PSScriptRoot\..\copilot-instructions copy.md" -ErrorAction SilentlyContinue
+. (Join-Path $PSScriptRoot "lib\ssot-paths.ps1")
+$repoRoot = Resolve-Path "$PSScriptRoot\.."
+$ssotPath = Resolve-SsotPath -Root $repoRoot -Which pointer
+if (-not (Test-Path $ssotPath)) {
+    $ssotPath = Resolve-SsotPath -Root $repoRoot -Which proto
 }
 
 if (-not $ssotPath) {

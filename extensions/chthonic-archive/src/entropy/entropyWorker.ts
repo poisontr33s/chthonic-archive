@@ -1,3 +1,4 @@
+// @SID: EXT_ENTROPYWORKER_V1
 import * as fs from 'fs/promises';
 import * as path from 'path';
 import { parentPort } from 'worker_threads';

@@ -1,4 +1,11 @@
 #!/usr/bin/env pwsh
+#
+# @SID: SCRIPT_RUN_CROSS_AUDIT_V1
+# @Type: VALIDATION
+# @Spectrum: WHITE
+# @Zone: THE GARDEN
+# @Purpose: [string]$CodexRoot = ".codex/skills",
+#
 
 param(
   [string]$CodexRoot = ".codex/skills",

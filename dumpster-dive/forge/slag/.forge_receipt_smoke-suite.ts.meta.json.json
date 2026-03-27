@@ -1,0 +1,10 @@
+{
+  "source_extract": "dumpster-dive/intake/a6-intake-2026-03-23/deprecated-mcp/.zombie_extract_smoke-suite.ts.meta.json",
+  "routed_from": "dumpster-dive/intake/a6-intake-2026-03-23/deprecated-mcp/smoke-suite.ts.meta.json",
+  "routed_to": "dumpster-dive/forge/slag/smoke-suite.ts.meta.json",
+  "ore_rating": 2,
+  "category": "legacy",
+  "content_hash": "d754e382029ba823",
+  "timestamp": "2026-03-26T20:18:14.768932+00:00",
+  "provenance": null
+}

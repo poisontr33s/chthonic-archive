@@ -1,4 +1,11 @@
 #!/usr/bin/env pwsh
+#
+# @SID: SCRIPT_RUN_SENTRY_MCP_V1
+# @Type: RUNNER
+# @Spectrum: WHITE
+# @Zone: THE GARDEN
+# @Purpose: [CmdletBinding()]
+#
 
 [CmdletBinding()]
 param(

@@ -1,4 +1,6 @@
+// @SID: SCRIPT_BUN_PRACTICES_AUDIT_V1
 #!/usr/bin/env bun
+
 import { mkdirSync, readFileSync, readdirSync, statSync, writeFileSync } from 'node:fs';
 import path from 'node:path';
 

@@ -1,4 +1,11 @@
 #!/usr/bin/env pwsh
+#
+# @SID: SCRIPT_SERVE_UNCENSORED_LANE_V1
+# @Type: RUNNER
+# @Spectrum: WHITE
+# @Zone: THE GARDEN
+# @Purpose: Launch llama_cpp.server from the latest uncensored lane runtime manifest.
+#
 
 # Launch llama_cpp.server from the latest uncensored lane runtime manifest.
 param(

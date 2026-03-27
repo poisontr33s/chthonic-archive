@@ -1,4 +1,11 @@
 #!/usr/bin/env pwsh
+#
+# @SID: SCRIPT_CLAUDE_IDE_V1
+# @Type: AGENT
+# @Spectrum: WHITE
+# @Zone: THE GARDEN
+# @Purpose: Canonical entrypoint for Claude Code IDE hardening on Windows/VS Code Insiders.
+#
 <#
 .SYNOPSIS
   Canonical entrypoint for Claude Code IDE hardening on Windows/VS Code Insiders.

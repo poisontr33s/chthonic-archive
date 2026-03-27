@@ -1,0 +1,10 @@
+{
+  "source_extract": "dumpster-dive/forge/intake/.zombie_extract_bride_20260325T032219Z.json",
+  "routed_from": "dumpster-dive/forge/intake/bride_20260325T032219Z.txt",
+  "routed_to": "dumpster-dive/forge/anvil/bride_20260325T032219Z.txt",
+  "ore_rating": 4,
+  "category": "resurrection-candidate",
+  "content_hash": "c1b63831db69241935127d64b14708cb080ecfeb1fbec347234ac5c815f23812",
+  "timestamp": "2026-03-26T20:18:14.702791+00:00",
+  "provenance": null
+}

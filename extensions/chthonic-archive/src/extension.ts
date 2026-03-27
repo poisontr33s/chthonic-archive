@@ -1,3 +1,4 @@
+// @SID: EXT_EXTENSION_V1
 import * as vscode from 'vscode';
 import * as crypto from 'crypto';
 import * as fs from 'fs';
@@ -17,6 +18,7 @@ import { RestoreOrderLayout } from './monolith/restoreOrderLayout';
 import { LoomViewProvider } from './monolith/loomView';
 import { SelfHealingLoop } from './monolith/selfHealingLoop';
 import { computeRustificationReport } from './monolith/rustificationScore';
+import { SSOT_POINTER } from './ssot-paths';
 import type { EntropyState, FiredancerSurgeState } from './reactor/types';
 
 export function activate(context: vscode.ExtensionContext) {
@@ -585,7 +587,7 @@ export function activate(context: vscode.ExtensionContext) {
         // Re-check on save
         context.subscriptions.push(
             vscode.workspace.onDidSaveTextDocument(doc => {
-                if (doc.fileName.includes('copilot-instructions')) {
+                if (doc.fileName.includes(path.basename(SSOT_POINTER, '.md'))) {
                     updatePolicyFingerprint(fpItem);
                 }
             })
@@ -680,7 +682,7 @@ async function ensureDefaultChthonicPlacement(
 function computePolicyFingerprint(): string | null {
     const ws = vscode.workspace.workspaceFolders?.[0];
     if (!ws) return null;
-    const policyRel = vscode.workspace.getConfiguration('chthonic').get<string>('ssotPath', '.github/copilot-instructions.md');
+    const policyRel = vscode.workspace.getConfiguration('chthonic').get<string>('ssotPath', SSOT_POINTER);
     const policyPath = path.join(ws.uri.fsPath, policyRel);
     if (!fs.existsSync(policyPath)) return null;
     const content = fs.readFileSync(policyPath, 'utf-8');

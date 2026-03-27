@@ -1,3 +1,4 @@
+// @SID: FORGE_MANDALA_NONBUN_PATTERNS_V1
 /**
  * EXTRACTED NON-BUN CODE: chthonic-mandala/src/extension.ts
  * 

@@ -1,4 +1,11 @@
 #!/usr/bin/env pwsh
+#
+# @SID: SCRIPT_GEMINI_IDE_AUDIT_V1
+# @Type: VALIDATION
+# @Spectrum: WHITE
+# @Zone: THE GARDEN
+# @Purpose: Purpose: Audit Gemini CLI IDE integration prerequisites after VS Code Insiders o
+#
 # Purpose: Audit Gemini CLI IDE integration prerequisites after VS Code Insiders or Gemini updates.
 
 [CmdletBinding()]

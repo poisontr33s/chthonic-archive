@@ -467,5 +467,189 @@
     "pathway": "zombie extract -> ore routing -> forge stage",
     "path": "dumpster-dive/forge/furnace/ruby_legacy_admin.ps1",
     "novel": true
+  },
+  {
+    "input_type": ".txt",
+    "output_type": ".json",
+    "pathway": "zombie extract -> ore routing -> forge stage",
+    "path": "dumpster-dive/forge/anvil/bride_20260325T032219Z.txt",
+    "novel": true,
+    "provenance": null
+  },
+  {
+    "input_type": ".bak",
+    "output_type": ".json",
+    "pathway": "zombie extract -> ore routing -> forge stage",
+    "path": "dumpster-dive/forge/slag/config.yml.bak",
+    "novel": true,
+    "provenance": null
+  },
+  {
+    "input_type": ".bak-20260316-181658",
+    "output_type": ".json",
+    "pathway": "zombie extract -> ore routing -> forge stage",
+    "path": "dumpster-dive/forge/slag/settings.json.bak-20260316-181658",
+    "novel": true,
+    "provenance": null
+  },
+  {
+    "input_type": ".json",
+    "output_type": ".json",
+    "pathway": "zombie extract -> ore routing -> forge stage",
+    "path": "dumpster-dive/forge/furnace/mcp_artisan_server.ts.meta.json",
+    "novel": true,
+    "provenance": null
+  },
+  {
+    "input_type": ".json",
+    "output_type": ".json",
+    "pathway": "zombie extract -> ore routing -> forge stage",
+    "path": "dumpster-dive/forge/furnace/protocol.ts.meta.json",
+    "novel": true,
+    "provenance": null
+  },
+  {
+    "input_type": ".json",
+    "output_type": ".json",
+    "pathway": "zombie extract -> ore routing -> forge stage",
+    "path": "dumpster-dive/forge/furnace/server.test.ts.meta.json",
+    "novel": true,
+    "provenance": null
+  },
+  {
+    "input_type": ".json",
+    "output_type": ".json",
+    "pathway": "zombie extract -> ore routing -> forge stage",
+    "path": "dumpster-dive/forge/furnace/server.ts.meta.json",
+    "novel": true,
+    "provenance": null
+  },
+  {
+    "input_type": ".json",
+    "output_type": ".json",
+    "pathway": "zombie extract -> ore routing -> forge stage",
+    "path": "dumpster-dive/forge/slag/smoke-suite.ts.meta.json",
+    "novel": true,
+    "provenance": null
+  },
+  {
+    "input_type": ".json",
+    "output_type": ".json",
+    "pathway": "zombie extract -> ore routing -> forge stage",
+    "path": "dumpster-dive/forge/slag/test-client.ts.meta.json",
+    "novel": true,
+    "provenance": null
+  },
+  {
+    "input_type": ".json",
+    "output_type": ".json",
+    "pathway": "zombie extract -> ore routing -> forge stage",
+    "path": "dumpster-dive/forge/slag/test-dependency-graph.ts.meta.json",
+    "novel": true,
+    "provenance": null
+  },
+  {
+    "input_type": ".json",
+    "output_type": ".json",
+    "pathway": "zombie extract -> ore routing -> forge stage",
+    "path": "dumpster-dive/forge/slag/verify-final.ts.meta.json",
+    "novel": true,
+    "provenance": null
+  },
+  {
+    "input_type": ".ps1",
+    "output_type": ".json",
+    "pathway": "zombie extract -> ore routing -> forge stage",
+    "path": "dumpster-dive/forge/furnace/ruby_legacy_admin.ps1",
+    "novel": true,
+    "provenance": null
+  },
+  {
+    "input_type": ".bak-20260316-193628",
+    "output_type": ".json",
+    "pathway": "zombie extract -> ore routing -> forge stage",
+    "path": "dumpster-dive/forge/furnace/chthonic.ps1.bak-20260316-193628",
+    "novel": true,
+    "provenance": null
+  },
+  {
+    "input_type": ".bak-20260316-193439",
+    "output_type": ".json",
+    "pathway": "zombie extract -> ore routing -> forge stage",
+    "path": "dumpster-dive/forge/furnace/probe_toolchain_path.ps1.bak-20260316-193439",
+    "novel": true,
+    "provenance": null
+  },
+  {
+    "input_type": "wpth_repeatable_cycle_LEGACY",
+    "output_type": ".json",
+    "pathway": "zombie extract -> ore routing -> forge stage",
+    "path": "dumpster-dive/forge/furnace/wpth_repeatable_cycle_LEGACY",
+    "novel": true,
+    "provenance": null
+  },
+  {
+    "input_type": ".ps1",
+    "output_type": ".json",
+    "pathway": "zombie extract -> ore routing -> forge stage",
+    "path": "dumpster-dive/forge/furnace/recovered_batch_transliteration.ps1",
+    "novel": true,
+    "provenance": null
+  },
+  {
+    "input_type": ".go",
+    "output_type": ".json",
+    "pathway": "zombie extract -> ore routing -> forge stage",
+    "path": "dumpster-dive/forge/furnace/recovered_shell_recipe_cli.go",
+    "novel": true,
+    "provenance": null
+  },
+  {
+    "input_type": ".py",
+    "output_type": ".json",
+    "pathway": "zombie extract -> ore routing -> forge stage",
+    "path": "dumpster-dive/forge/slag/claude_test.py",
+    "novel": true,
+    "provenance": null
+  },
+  {
+    "input_type": ".py",
+    "output_type": ".json",
+    "pathway": "zombie extract -> ore routing -> forge stage",
+    "path": "dumpster-dive/forge/furnace/get_hash.py",
+    "novel": true,
+    "provenance": null
+  },
+  {
+    "input_type": ".py",
+    "output_type": ".json",
+    "pathway": "zombie extract -> ore routing -> forge stage",
+    "path": "dumpster-dive/forge/furnace/purify_ssot.py",
+    "novel": true,
+    "provenance": null
+  },
+  {
+    "input_type": ".py",
+    "output_type": ".json",
+    "pathway": "zombie extract -> ore routing -> forge stage",
+    "path": "dumpster-dive/forge/furnace/strip_post_ssot.py",
+    "novel": true,
+    "provenance": null
+  },
+  {
+    "input_type": ".py",
+    "output_type": ".json",
+    "pathway": "zombie extract -> ore routing -> forge stage",
+    "path": "dumpster-dive/forge/furnace/strip_ssot.py",
+    "novel": true,
+    "provenance": null
+  },
+  {
+    "input_type": ".py",
+    "output_type": ".json",
+    "pathway": "zombie extract -> ore routing -> forge stage",
+    "path": "dumpster-dive/forge/furnace/strip_ssot_v2.py",
+    "novel": true,
+    "provenance": null
   }
 ]

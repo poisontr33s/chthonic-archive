@@ -85,29 +85,3 @@ Files in ANVIL carry `.forge_receipt_*.json` sidecars recording:
 **Operator:** Sister Ferrum Scoriae (SFS)  
 **Model:** [Circulation Protocol](../../protocols/FORGE_CIRCULATION_PROTOCOL.md)
 
----
-
-## Cross-References
-
-**Process Context:**
-- [**../PROCESS_FLOW.md**](../PROCESS_FLOW.md) — Complete forge process overview (acyclic hub)
-
-**Upstream Dependencies:**
-- [../../protocols/FORGE_CIRCULATION_PROTOCOL.md](../../protocols/FORGE_CIRCULATION_PROTOCOL.md) — State 7 (TEA) definition
-- [../../protocols/FORGE_PROTOCOL_LEVELS.md](../../protocols/FORGE_PROTOCOL_LEVELS.md) — QMR Protocol (Level 3)
-- [../../BLACKSMITH_MATRIARCH.md](../../BLACKSMITH_MATRIARCH.md) — SFS force collapse technique
-- [../../../.github/copilot-instructions.md](../../../.github/copilot-instructions.md) — SSOT §4.5.1.2 (QMR canonical), §4.5.1.1 (TNKW-RIAT)
-
-**Tracking:**
-- [../../protocols/TEA_REGISTRY.json](../../protocols/TEA_REGISTRY.json) — TEA artifacts & collapse history
-- [../../DUMPSTER_DIVE_REGISTRY.json](../../DUMPSTER_DIVE_REGISTRY.json) — Overall status
-
-**Status:**
-- **Last Validated:** 2026-01-01
-- **Deprecation Risk:** None (quantum infrastructure)
-- **Circular Refs:** Resolved via PROCESS_FLOW.md hub pattern
-
----
-
-**Operators:** Sister Ferrum Scoriae (SFS) + TNKW-RIAT  
-**Principle:** *"Superposition is not confusion. It's patience for the right observation."*

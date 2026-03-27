@@ -1,3 +1,4 @@
+// @SID: EXT_BOOTSTRAP_ENV_V1
 import * as fs from 'fs';
 import * as path from 'path';
 import { spawn } from 'child_process';

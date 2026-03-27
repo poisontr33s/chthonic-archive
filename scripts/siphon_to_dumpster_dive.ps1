@@ -1,4 +1,11 @@
 #!/usr/bin/env pwsh
+#
+# @SID: SCRIPT_SIPHON_TO_DUMPSTER_DIVE_V1
+# @Type: UTILITY
+# @Spectrum: WHITE
+# @Zone: THE GARDEN
+# @Purpose: Siphon selected repo files into dumpster-dive for local iteration.
+#
 
 # Siphon selected repo files into dumpster-dive for local iteration.
 #

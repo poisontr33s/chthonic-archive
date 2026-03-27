@@ -1,4 +1,5 @@
 #!/usr/bin/env pwsh
+# @SID: MAS_PREBUILD_CHECK_V1
 <#
 .SYNOPSIS
     Pre-build validation for CuPy source build environment

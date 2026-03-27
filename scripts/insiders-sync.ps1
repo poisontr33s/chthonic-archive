@@ -1,4 +1,11 @@
 #!/usr/bin/env pwsh
+#
+# @SID: SCRIPT_INSIDERS_SYNC_V1
+# @Type: UTILITY
+# @Spectrum: WHITE
+# @Zone: THE GARDEN
+# @Purpose: Deterministic VS Code Insiders convergence lane for Chthonic extensions.
+#
 <#
 SYNOPSIS
   Deterministic VS Code Insiders convergence lane for Chthonic extensions.

@@ -1,4 +1,11 @@
 #!/usr/bin/env pwsh
+#
+# @SID: SCRIPT_THEME_SYNC_V1
+# @Type: UTILITY
+# @Spectrum: WHITE
+# @Zone: THE GARDEN
+# @Purpose: Rebuild and sync chthonic-archive extension to VS Code Insiders.
+#
 <#
 .SYNOPSIS
     Rebuild and sync chthonic-archive extension to VS Code Insiders.

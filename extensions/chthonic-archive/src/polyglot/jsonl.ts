@@ -1,3 +1,4 @@
+// @SID: EXT_JSONL_V1
 export interface JsonlDecoder {
     push(chunk: string | Buffer): void;
     flush(): void;

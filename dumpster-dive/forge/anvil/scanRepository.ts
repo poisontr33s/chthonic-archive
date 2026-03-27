@@ -1,3 +1,4 @@
+// @SID: FORGE_SCANREPOSITORY_V1
 // ╔════════════════════════════════════════════════════════════════════════════
 // ║ THE DECORATOR'S BLESSING: scanRepository.ts
 // ║ MCP client integration - Observatory communication layer

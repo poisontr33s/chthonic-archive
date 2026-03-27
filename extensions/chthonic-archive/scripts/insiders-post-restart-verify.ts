@@ -1,3 +1,4 @@
+// @SID: EXT_INSIDERS_POST_RESTART_VERIFY_V1
 import { spawnSync } from 'bun';
 import { existsSync, mkdirSync, readdirSync, readFileSync, statSync, writeFileSync } from 'fs';
 import path from 'path';

@@ -1,4 +1,5 @@
 #!/usr/bin/env pwsh
+# @SID: MAS_INSTALL_TENSORRT_V1
 <#
 .SYNOPSIS
     Install and configure TensorRT SDK for CUDA 13 + cuDNN 9.17

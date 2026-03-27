@@ -10,11 +10,11 @@
 # ║   └─◄ (Standalone)
 # ╚════════════════════════════════════════════════════════════════════════════
 
-
-@SID:           TOOL_BENCHMARK_GPU_VS_CPU_V1
-@Shabti:        CLI Script
-@Purpose:       Benchmark GPU vs CPU scoring with warmup.
-"""Benchmark GPU vs CPU scoring with warmup."""
+"""
+@SID TOOL_BENCHMARK_GPU_VS_CPU_V1
+@Shabti CLI Script
+@Purpose Benchmark GPU vs CPU scoring with warmup.
+"""
 
 import sys
 sys.path.insert(0, '.')

@@ -1,3 +1,4 @@
+// @SID: MAS_ROUTES_V1
 // ═══════════════════════════════════════════════════════════════════════════════
 // 🧬 MAS-MCP Dashboard - API Routes
 // Bun-native HTTP handlers for Genesis artifact access

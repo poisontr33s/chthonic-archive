@@ -1,3 +1,4 @@
+// @SID: MAS_ARTIFACTS_V1
 // ═══════════════════════════════════════════════════════════════════════════════
 // 🧬 MAS-MCP Dashboard - Artifact Reader
 // Bun-native file access for Genesis JSON artifacts

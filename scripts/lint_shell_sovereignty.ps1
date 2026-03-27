@@ -1,4 +1,11 @@
 #!/usr/bin/env pwsh
+#
+# @SID: SCRIPT_LINT_SHELL_SOVEREIGNTY_V1
+# @Type: VALIDATION
+# @Spectrum: WHITE
+# @Zone: THE GARDEN
+# @Purpose: scripts/lint_shell_sovereignty.ps1
+#
 
 # scripts/lint_shell_sovereignty.ps1
 # Fails if PowerShell is nested inside Bash (hard violation)

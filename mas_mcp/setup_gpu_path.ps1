@@ -1,4 +1,5 @@
 #!/usr/bin/env pwsh
+# @SID: MAS_SETUP_GPU_PATH_V1
 
 #Requires -RunAsAdministrator
 <#

@@ -1,3 +1,4 @@
+// @SID: FORGE_SERVER_TEST_V1
 // ╔════════════════════════════════════════════════════════════════════════════
 // ║ THE DECORATOR'S BLESSING: server.test.ts
 // ║ MCP client integration - Observatory communication layer

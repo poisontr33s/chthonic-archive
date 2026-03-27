@@ -1,3 +1,4 @@
+// @SID: EXT_BUILD_WASM_V1
 import * as fs from 'fs';
 import * as path from 'path';
 import { spawn } from 'child_process';

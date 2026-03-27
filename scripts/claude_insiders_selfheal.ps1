@@ -1,4 +1,11 @@
 #!/usr/bin/env pwsh
+#
+# @SID: SCRIPT_CLAUDE_INSIDERS_SELFHEAL_V1
+# @Type: AGENT
+# @Spectrum: WHITE
+# @Zone: THE GARDEN
+# @Purpose: Self-heal Claude Code IDE integration after VS Code Insiders / Claude updates.
+#
 <#
 SYNOPSIS
   Self-heal Claude Code IDE integration after VS Code Insiders / Claude updates.

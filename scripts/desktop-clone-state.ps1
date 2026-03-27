@@ -1,4 +1,11 @@
 #!/usr/bin/env pwsh
+#
+# @SID: SCRIPT_DESKTOP_CLONE_STATE_V1
+# @Type: UTILITY
+# @Spectrum: WHITE
+# @Zone: THE GARDEN
+# @Purpose: Export, restore, or verify a high-fidelity Chthonic desktop-clone state package.
+#
 
 <#
 .SYNOPSIS

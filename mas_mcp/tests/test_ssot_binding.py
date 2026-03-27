@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 #-*- coding: utf-8 -*-
+
 """Regression tests for SSOT binding across MAS scan tools."""
 
 from __future__ import annotations
@@ -248,7 +249,8 @@ def test_manifest_role_taxonomy():
     assert "journal" in SSOT_ROLES
     assert "artifact" in SSOT_ROLES
     assert "bridge" in SSOT_ROLES
-    assert len(SSOT_ROLES) == 7
+    assert "config" in SSOT_ROLES
+    assert len(SSOT_ROLES) == 8
 
 
 def test_manifest_relation_taxonomy():
@@ -260,7 +262,8 @@ def test_manifest_relation_taxonomy():
     assert "projecting" in SSOT_RELATIONS
     assert "caching" in SSOT_RELATIONS
     assert "historizing" in SSOT_RELATIONS
-    assert len(SSOT_RELATIONS) == 7
+    assert "config_boundary" in SSOT_RELATIONS
+    assert len(SSOT_RELATIONS) == 8
 
 
 def test_manifest_journal_event_taxonomy():
@@ -377,6 +380,158 @@ def test_cascade_register_all_relpaths_exist():
     for entry in CASCADE_REGISTER:
         target = PROJECT_ROOT / entry.relpath
         # Journal and SSOT content files may not exist in test environments,
-        # but code files (validators, projections, bridges, artifacts) should.
-        if entry.role in ("validator", "projection", "bridge", "artifact"):
+        # but code files (validators, projections, bridges, artifacts, configs) should.
+        if entry.role in ("validator", "projection", "bridge", "artifact", "config"):
             assert target.exists(), f"CASCADE_REGISTER[{entry.identity}]: {entry.relpath} not found"
+
+
+# ── Phase 0.8: Cascade Grep Validation Tests ────────────────────────────────
+
+import re
+import subprocess
+
+
+def _grep_ts_files_for_ssot_literals() -> list[str]:
+    """Find hardcoded copilot-instructions paths in TS files (excluding bridges and comments)."""
+    hits = []
+    bridge_files = {"ssot-paths.ts"}
+    ts_dirs = [PROJECT_ROOT / "scripts", PROJECT_ROOT / "extensions"]
+    for d in ts_dirs:
+        if not d.exists():
+            continue
+        for f in d.rglob("*.ts"):
+            if f.name in bridge_files:
+                continue
+            content = f.read_text(encoding="utf-8", errors="replace")
+            for i, line in enumerate(content.splitlines(), 1):
+                stripped = line.strip()
+                # Skip comments
+                if stripped.startswith("//") or stripped.startswith("*") or stripped.startswith("/*"):
+                    continue
+                if "copilot-instructions" in line:
+                    hits.append(f"{f.relative_to(PROJECT_ROOT)}:{i}")
+    return hits
+
+
+def _grep_ps1_files_for_ssot_literals() -> list[str]:
+    """Find hardcoded copilot-instructions path constructions in PS1 files."""
+    hits = []
+    bridge_files = {"ssot-paths.ps1"}
+    scripts_dir = PROJECT_ROOT / "scripts"
+    if not scripts_dir.exists():
+        return hits
+    for f in scripts_dir.rglob("*.ps1"):
+        if f.name in bridge_files:
+            continue
+        content = f.read_text(encoding="utf-8", errors="replace")
+        in_block_comment = False
+        for i, line in enumerate(content.splitlines(), 1):
+            stripped = line.strip()
+            # Track <# #> block comments
+            if "<#" in stripped:
+                in_block_comment = True
+            if "#>" in stripped:
+                in_block_comment = False
+                continue
+            if in_block_comment:
+                continue
+            # Skip single-line comments
+            if stripped.startswith("#"):
+                continue
+            # Skip evidence citation data (line-numbered archive references)
+            if re.search(r'copilot-instructions\.\w+\.md:\d+', line):
+                continue
+            # Skip regex pattern strings (e.g., pre-commit guardian)
+            if re.search(r'\\\..*copilot-instructions', line):
+                continue
+            if "copilot-instructions" in line:
+                hits.append(f"{f.relative_to(PROJECT_ROOT)}:{i}")
+    return hits
+
+
+def test_no_hardcoded_ssot_paths_in_typescript():
+    """No TS consumer outside bridge files should hardcode copilot-instructions paths."""
+    hits = _grep_ts_files_for_ssot_literals()
+    assert hits == [], f"Hardcoded SSOT paths in TS: {hits}"
+
+
+def test_no_hardcoded_ssot_paths_in_powershell():
+    """No PS1 consumer outside bridge files should hardcode copilot-instructions paths."""
+    hits = _grep_ps1_files_for_ssot_literals()
+    assert hits == [], f"Hardcoded SSOT paths in PS1: {hits}"
+
+
+def test_config_boundary_ssot_paths_documented():
+    """Every config-boundary entry in CASCADE_REGISTER must have relation 'config_boundary'."""
+    config_entries = [e for e in CASCADE_REGISTER if e.role == "config"]
+    assert len(config_entries) >= 2, "Expected at least 2 config boundary entries"
+    for entry in config_entries:
+        assert entry.relation == "config_boundary", (
+            f"Config entry {entry.identity} should have relation 'config_boundary', got '{entry.relation}'"
+        )
+        target = PROJECT_ROOT / entry.relpath
+        assert target.exists(), f"Config boundary {entry.identity}: {entry.relpath} not found"
+
+
+def test_ankhrc_resolves_all_paths():
+    """Every path value in .ankhrc must resolve to an existing file."""
+    ankhrc_path = PROJECT_ROOT / ".ankhrc"
+    assert ankhrc_path.exists(), ".ankhrc not found at repo root"
+
+    content = ankhrc_path.read_text(encoding="utf-8")
+    # Parse simple TOML key = "value" lines
+    path_pattern = re.compile(r'^[A-Z_]+\s*=\s*"([^"]+)"', re.MULTILINE)
+    paths = path_pattern.findall(content)
+    assert len(paths) > 0, ".ankhrc has no path entries"
+
+    missing = []
+    for relpath in paths:
+        if not (PROJECT_ROOT / relpath).exists():
+            missing.append(relpath)
+
+    assert missing == [], f".ankhrc paths not found: {missing}"
+
+
+def _grep_py_files_for_ssot_literals() -> list[str]:
+    """Find hardcoded copilot-instructions PATH CONSTRUCTIONS in Python files.
+
+    Only catches actual path-building patterns (/, join, resolve with the literal).
+    Runtime detection (if "copilot" in name), output paths (.readable.md), and
+    data/documentation strings are exempt — they don't violate the cascade contract.
+    """
+    hits = []
+    bridge_files = {"ssot_paths.py", "ssot_manifest.py", "test_ssot_binding.py", "stamp_sid.py"}
+    # Pattern: path construction ops with copilot-instructions as a segment
+    path_construction = re.compile(
+        r'(?:'
+        r'(?:Path|join|resolve|os\.path)\s*\(.*copilot-instructions'  # join/resolve calls
+        r'|/\s*["\']\.github/copilot-instructions'  # / operator path building
+        r'|["\']\.github/copilot-instructions[^.]*\.md["\']'  # bare string that IS an SSOT relpath
+        r')'
+    )
+    scripts_dir = PROJECT_ROOT / "scripts"
+    if not scripts_dir.exists():
+        return hits
+    for f in scripts_dir.rglob("*.py"):
+        if f.name in bridge_files:
+            continue
+        content = f.read_text(encoding="utf-8", errors="replace")
+        in_docstring = False
+        for i, line in enumerate(content.splitlines(), 1):
+            stripped = line.strip()
+            triple_count = line.count('"""') + line.count("'''")
+            if triple_count % 2 == 1:
+                in_docstring = not in_docstring
+            if in_docstring:
+                continue
+            if stripped.startswith("#"):
+                continue
+            if path_construction.search(line):
+                hits.append(f"{f.relative_to(PROJECT_ROOT)}:{i}")
+    return hits
+
+
+def test_no_hardcoded_ssot_paths_in_python():
+    """No Python consumer outside bridge/manifest should hardcode copilot-instructions path constructions."""
+    hits = _grep_py_files_for_ssot_literals()
+    assert hits == [], f"Hardcoded SSOT paths in Python: {hits}"

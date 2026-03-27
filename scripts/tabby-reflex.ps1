@@ -1,4 +1,11 @@
 #!/usr/bin/env pwsh
+#
+# @SID: SCRIPT_TABBY_REFLEX_V1
+# @Type: UTILITY
+# @Spectrum: WHITE
+# @Zone: THE GARDEN
+# @Purpose: Starts/stops/checks the local TabbyAPI reflex service used by the triad lane.
+#
 
 # Starts/stops/checks the local TabbyAPI reflex service used by the triad lane.
 

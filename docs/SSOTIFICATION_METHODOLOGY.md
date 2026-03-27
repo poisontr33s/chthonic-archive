@@ -232,4 +232,30 @@ echo 'NEW_FILE = "path/to/file.py"' >> .ankhrc  # under [ssot_ified]
 
 ---
 
+## 8. Cascade Register Architecture (Phases 0.1–0.5)
+
+The SSOT cascade is a chain: **Manifest → Bridge → Consumer**. No consumer ever hardcodes an SSOT path.
+
+### Chain of Authority
+
+| Layer | File | Language | Purpose |
+|-------|------|----------|---------|
+| Manifest | `mas_mcp/logic/ssot_manifest.py` | Python | Canonical path constants + `CASCADE_REGISTER` (20 entries) |
+| Bridge (Python) | `scripts/lib/ssot_paths.py` | Python | Re-export for `scripts/*.py` |
+| Bridge (TypeScript) | `scripts/lib/ssot-paths.ts` | TypeScript | Re-export for `scripts/*.ts` |
+| Bridge (PowerShell) | `scripts/lib/ssot-paths.ps1` | PowerShell | Dot-source for `scripts/*.ps1` |
+| Bridge (Extension) | `extensions/chthonic-archive/src/ssot-paths.ts` | TypeScript | Local mirror for VS Code extension build context |
+| Config Boundary | `.vscode/mcp.json`, `.vscode/settings.json` | JSON | IDE endpoints — cannot import, documented as manual-sync |
+
+### Relation Taxonomy
+
+Roles: `holder`, `pointer`, `projection`, `validator`, `journal`, `artifact`, `bridge`, `config`
+Relations: `authoritative`, `summarizing`, `indexing`, `validating`, `projecting`, `caching`, `historizing`, `config_boundary`
+
+### Navigation Hub
+
+`.ankhrc` (repo root) is the bidirectional SSOT hub — maps symbolic names to paths and tracks migration status per file category.
+
+---
+
 *This methodology document ensures SSOT-ification patterns are not hidden in session context but are reproducible by future agents and sessions.*

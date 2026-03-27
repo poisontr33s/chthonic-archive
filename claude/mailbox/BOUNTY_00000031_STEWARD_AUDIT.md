@@ -1,7 +1,7 @@
 # Bounty 00000031 — Senior Steward Structural Audit
 
 > **@SID:** SESSION_STEWARD_AUDIT_00000031
-> **Date:** 2026-03-25 (revised)
+> **Date:** 2026-03-26 (revised)
 > **Agent:** Claude (Dr. Lysandra Thorne — Truth Chain)
 > **Scope:** Full-archive integrity audit + architectural roadmap
 > **Framing:** Canon-first. The SSOT (`.github/copilot-instructions.archive.md`) is the generative origin. All code is downstream projection. Divergence = implementation drift, never canon drift.
@@ -32,7 +32,7 @@ The chthonic-archive is a polyglot (Rust/Python/TypeScript/PowerShell/Ruby/R/Zig
 | **D1** | `.temple/methodology/AGENT_COMMON.md` diverged | `.temple/methodology/AGENT_COMMON.md` (missing Triad, Linguistic Invariants, contains hardcoded path typo `erdno`) | Root `AGENT_COMMON.md` |
 | **D2** | `.temple/skills/` (9 skills) frozen pre-Feb 2026 | `.temple/skills/*` | `.claude/skills/*` |
 | **D3** | `docs/PWSH_RULES.md` exact duplicate | `docs/PWSH_RULES.md` | Root `PWSH_RULES.md` |
-| **D4** | Gemini skill mirror 53 days stale | `.gemini/extensions/.../skills/` (28, last sync 2026-02-01) | `.claude/skills/` (32) |
+| ~~**D4**~~ | ~~Gemini skill mirror 53 days stale~~ | ~~`.gemini/extensions/.../skills/`~~ | ✅ **RESOLVED** (2026-03-26) — corpse-reviver SKILL.md, corpse_reviver.py, embalm_before_edit.py synced from `.codex/` canonical. `.claude/` also synced (was 2637 lines behind on corpse_reviver.py + had stale WIP gate on embalm_before_edit.py). Full triad parity: `.codex` = `.claude` = `.gemini`. |
 
 ### C. Parity Gaps (Cross-Agent)
 
@@ -53,11 +53,11 @@ The chthonic-archive is a polyglot (Rust/Python/TypeScript/PowerShell/Ruby/R/Zig
 | Language | Coverage | Gap |
 |----------|----------|-----|
 | Python (scripts/) | ~98% (162/164) | `_scm_classify.py` (temp), `_envelope_census.py` (no SID) |
-| TypeScript | ~70% (16/23) | 7 scripts missing @SID |
-| PowerShell | ~10% (8/84) | **76 scripts have no @SID** — massive non-compliance |
+| TypeScript | ~100% (24/24) | ✅ **RESOLVED** (2026-03-26 — all TS in scripts/ already compliant) |
+| PowerShell | ~100% (97/97) | ✅ **RESOLVED** (2026-03-26 — 54 stamped by `scripts/lib/stamp_sid.py`, 43 already compliant via Decorator's Blessing or prior @SID) |
 | Python (lib/) | 90% | `ssot_paths.py` missing @SID |
 
-No automated enforcement exists. `script-envelope` skill is STASHED. The `_envelope_census.py` auditor tool doesn't exist despite being referenced.
+Automated stamper: `uv run scripts/lib/stamp_sid.py` (idempotent, detects both `@SID:` and `Semantic ID:` patterns). `script-envelope` skill remains STASHED — `stamp_sid.py` is the operational replacement.
 
 ### E. File Placement Violations
 
@@ -178,8 +178,8 @@ The SSOT §10.3.3 already addresses this in the D-cup post-EMBALM canonization p
 | 0.2 | Fix dead SSOT ref in `mas_mcp/lib/asc/cli.py:41` | ✅ **DONE** (2026-03-25) — wired through `SSOT_HOLDER_RELPATH` from `ssot_manifest.py` |
 | 0.3 | Root temp JSON cleanup | ✅ **ALREADY GONE** — confirmed 2026-03-25 |
 | 0.4 | `github-mcp-server.exe` in `scripts/aws/` | ✅ **ALREADY GONE** |
-| 0.5 | Replace `.temple/methodology/AGENT_COMMON.md` with redirect pointer | ⏳ PENDING (safe — no embalm gate needed, overwrite not delete) |
-| 0.6 | Reconcile PWSH_RULES.md v1.1 (root) vs v1.2 (docs/) | ⏳ PENDING — determine which is canonical per SSOT |
+| 0.5 | Replace `.temple/methodology/AGENT_COMMON.md` with redirect pointer | ✅ **DONE** (2026-03-26) — 45-line partial redirect → 3-line pointer to root |
+| 0.6 | Reconcile PWSH_RULES.md v1.1 (root) vs v1.2 (docs/) | ✅ **DONE** (2026-03-26) — root is canonical (CLAUDE.md references it); docs/ replaced with 3-line redirect pointer |
 
 ### Phase 1: Shadow Purge (Embalm-gated)
 
@@ -206,16 +206,16 @@ The SSOT §10.3.3 already addresses this in the D-cup post-EMBALM canonization p
 | 1.5.6 | **Implement QUENCH/SLAG/TEA-VAULT transforms** in `universal_forge.py` | §10.3.2 7-stage protocol | ✅ L5 |
 | 1.5.7 | **Add OSGTTLR pipeline coordinator** — `corpse_reviver.py pipeline` command | §10.3.3 OSGTTLR flow diagram | ✅ L6 |
 
-### Phase 2: Hook Gate (Guards against future drift)
+### Phase 2: Hook Gate (✅ COMPLETE)
 
 **Objective:** Make file-move breakage impossible to commit silently.
 
-| Step | Action |
-|------|--------|
-| 2.1 | Wire `link_audit.py renames --staged --dry-run` into `scripts/hooks/pre-commit-guardian.ps1` |
-| 2.2 | Add `install-hooks.ps1` call to `chthonic env` activation (opt-in, idempotent) |
-| 2.3 | Create `scripts/envelope_census.py` — lightweight @SID header compliance auditor across `.py`, `.ps1`, `.ts` |
-| 2.4 | Add envelope census as a `chthonic audit envelope` subcommand |
+| Step | Action | Status |
+|------|--------|--------|
+| 2.1 | Wire `link_audit.py renames --staged --dry-run` into `scripts/hooks/pre-commit-guardian.ps1` as Gate 5 | ✅ DONE (2026-03-26) |
+| 2.2 | Add `install-hooks.ps1` call to `chthonic env` activation (opt-in, idempotent) | ✅ DONE (2026-03-26) |
+| 2.3 | Create `scripts/envelope_census.py` — lightweight @SID header compliance auditor across `.py`, `.ps1`, `.ts` | ✅ DONE (2026-03-26) |
+| 2.4 | Add envelope census as a `chthonic audit envelope` subcommand | ✅ DONE (2026-03-26) |
 
 ### Phase 3: Parity Manifesto (Cross-agent alignment)
 
@@ -229,28 +229,38 @@ The SSOT §10.3.3 already addresses this in the D-cup post-EMBALM canonization p
 | 3.4 | Add parity check to `trainstop-orchestrator` lane (automated gate) |
 | 3.5 | Record Gemini `triad-velocity-lane` as intentionally exclusive (manifest annotation) |
 
-### Phase 4: SSOT-ification Continuation (0.2.1 → 0.4)
+### Phase 4: SSOT-ification Continuation (✅ COMPLETE through Phase 0.9)
 
 **Objective:** Resume the SSOT cascade register from where it stalled.
-**Master blueprint:** [`docs/SSOTIFICATION_BLUEPRINT_PHASE_0.1_TO_1.0.md`](../../docs/SSOTIFICATION_BLUEPRINT_PHASE_0.1_TO_1.0.md) — phases, exit gates, and wiring tables live there. Updated 2026-03-25.
+**Master blueprint:** [`docs/SSOTIFICATION_BLUEPRINT_PHASE_0.1_TO_1.0.md`](../../docs/SSOTIFICATION_BLUEPRINT_PHASE_0.1_TO_1.0.md) — phases, exit gates, and wiring tables live there. Updated 2026-03-26.
 
-| Step | Phase | Action |
-|------|-------|--------|
-| 4.1 | 0.2.1 | ~~Fix 5 unwired functional refs + 1 dead ref in `mas_mcp/`~~ | ✅ DONE (2026-03-25) |
-| 4.2 | 0.3 | Wire ~6 TypeScript scripts to SSOT cascade via `ssot_paths` bridge |
-| 4.3 | 0.4 | Wire 6+ PowerShell scripts to SSOT cascade |
-| 4.4 | 0.5 | Wire `.vscode/mcp.json` + `settings.json` SSOT_PATH refs |
+| Step | Phase | Action | Status |
+|------|-------|--------|--------|
+| 4.1 | 0.2.1 | Fix 5 unwired functional refs + 1 dead ref in `mas_mcp/` | ✅ DONE (2026-03-25) |
+| 4.2 | 0.3 | TypeScript bridge + wire 6 files | ✅ DONE (2026-03-26) |
+| 4.3 | 0.4 | PowerShell bridge + wire 4 files | ✅ DONE (2026-03-26) |
+| 4.4 | 0.5 | Config boundary documentation (2 IDE configs) | ✅ DONE (2026-03-26) |
+| 4.5 | 0.6 | .ankhrc genesis + methodology doc | ✅ DONE (2026-03-26) |
+| 4.6 | 0.7 | Root hygiene — 12 artifacts → intake | ✅ DONE (2026-03-26) |
+| 4.7 | 0.8 | Cascade testing expansion (21/21 tests) | ✅ DONE (2026-03-26) |
+| 4.8 | 0.9 | Register expansion (20 → 28 entries) | ✅ DONE (2026-03-26) |
 
-### Phase 5: Envelope Canonization (PowerShell blitz)
+**Remaining:** Phase 1.0 (bidirectional amendment protocol) — tracked in blueprint
 
-**Objective:** Bring PS1 @SID coverage from 10% to ≥80%.
+### Phase 5: Envelope Canonization (🔄 IN PROGRESS — bare stamp deployed, KCP upgrade pending)
 
-| Step | Action |
-|------|--------|
-| 5.1 | Use `python-header-canon` skill pattern to define PS1 canonical header |
-| 5.2 | Run `envelope_census.py` (from Phase 2.3) to generate hit list |
-| 5.3 | Batch-stamp @SID headers on 76 non-compliant PS1 files |
-| 5.4 | Stamp @SID on 7 non-compliant TS files |
+**Objective:** Bring all executable files to KCP-compliant headers (two-stratum: Cartouche + Khipu).
+
+| Step | Action | Status |
+|------|--------|--------|
+| 5.1 | Define `@SID` naming pattern (`{PREFIX}_{UPPER_STEM}_V1`) | ✅ 2026-03-27 |
+| 5.2 | Build `envelope_census.py` with `--stamp`/`--dry-run` modes | ✅ 2026-03-27 |
+| 5.3 | Bare-stamp `@SID` on 64 PS1 + 171 TS files | ✅ 2026-03-27 (Stratum 2 K1 only) |
+| 5.4 | Upgrade stamper to full KCP (Cartouche + Khipu per-language encapsulation) | ❌ NOT STARTED |
+| 5.5 | Re-stamp with Spectrum/Zone inference, @Shabti, @Purpose per file | ❌ NOT STARTED |
+| 5.6 | Update compliance census to audit KCP field completeness (not just @SID presence) | ❌ NOT STARTED |
+
+**Current state:** 235 files have bare `@SID` only (1/5 required KCP fields). Full KCP gold standard requires: Cartouche (Spectrum + Zone + Radiance), Khipu (@SID + @Shabti + @Purpose). Reference templates: `docs/standards/templates/kcp_template.{py,ps1,ts,rs}`. Protocol spec: `docs/standards/KCP_PROTOCOL_ONTOLOGY.md`.
 
 ### Phase 6: Inert Lane Decision (Strategic)
 
@@ -291,7 +301,7 @@ SSOT Canon (§10.3.2 SFS + §10.3.3 NOV-CAD = generative origin)
 **Critical path:** 0 → 1.5.1-1.5.3 → 1.5.7 → 1 (forge completion unblocks safe automated purge)
 **Parallel track:** 0 → 2 → 5 (hook infra + envelope enforcement)
 **Independent:** 0 → 4 (SSOT cascade resumes from existing blueprint)
-**Dominant debt:** ~~Phase 1.5 — the SFS×NOV-CAD pipeline is ~35% implemented against SSOT canon~~ ✅ **RESOLVED** (2026-03-25, ~85% post-execution). Remaining dominant debts: Phase 2 (hook infrastructure) + Phase 3 (agent parity) + Phase 5 (envelope canonization).
+**Dominant debt:** ~~Phase 1.5 — the SFS×NOV-CAD pipeline is ~35% implemented against SSOT canon~~ ✅ **RESOLVED** (2026-03-25, ~85% post-execution). ~~D4 (Gemini stale copies)~~ ✅ **RESOLVED** (2026-03-26, full triad parity on corpse-reviver). ~~Phase 4 (SSOT cascade)~~ ✅ **RESOLVED** (2026-03-26, 0.2.1→0.9 complete, 28-entry register). ~~Phase 2 (hook infrastructure)~~ ✅ **RESOLVED** (2026-03-26, Gate 5 + env hook + envelope census + CLI subcommand). Remaining dominant debts: **Phase 5** (envelope canonization — bare @SID deployed, full KCP upgrade pending: Cartouche + Khipu encapsulation) + Phase 3 (agent parity) + Phase 1 (shadow purge).
 **Phase 1.5 execution detail:** [FORGE_PIPELINE_DEV_PLAN.md](FORGE_PIPELINE_DEV_PLAN.md) (L0–L6 — all complete)
 
 ---

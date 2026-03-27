@@ -1,4 +1,11 @@
 #!/usr/bin/env pwsh
+#
+# @SID: SCRIPT_PURGE_CLAUDE_BUN_V1
+# @Type: MAINTENANCE
+# @Spectrum: WHITE
+# @Zone: THE GARDEN
+# @Purpose: ═══════════════════════════════════════════════════════════════════════════════
+#
 # ═══════════════════════════════════════════════════════════════════════════════
 # purge-claude-bun.ps1 - Remove bun/npm Claude Code artifacts, install native
 # Run this OUTSIDE of Claude Code (from a fresh pwsh terminal)

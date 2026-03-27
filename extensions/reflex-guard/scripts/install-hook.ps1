@@ -1,4 +1,5 @@
 #!/usr/bin/env pwsh
+# @SID: EXT_INSTALL_HOOK_V1
 
 Set-StrictMode -Version Latest
 $ErrorActionPreference = "Stop"

@@ -26,6 +26,11 @@ Also fixes:
 
 @SID:           TOOL_CANONIZE_BLESSING_V1
 @Shabti:        CLI Script
+@Wedjat-Quipu:  WHITE
+@Temple-Ayllu:  🌿 THE GARDEN
+@Ogdoad-Ceque:  .codex/skills/script-envelope/scripts/script_envelope.py
+@Tinku-Ayni:    None (one-shot utility)
+@Ayna-Heka:     None (no external calls)
 @Purpose:       Normalize all script envelopes to Wedjat-Quipu canon format.
 """
 

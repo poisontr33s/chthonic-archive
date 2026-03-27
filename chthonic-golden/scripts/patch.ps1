@@ -1,4 +1,5 @@
 #!/usr/bin/env pwsh
+# @SID: GOLDEN_PATCH_V1
 # @ankh: heritage-continuity — Apply Chthonic Golden patches to upstream VS Code
 # SID: chthonic-golden-patch
 # Usage: .\patch.ps1 -UpstreamPath .\upstream-vscode [-DryRun]

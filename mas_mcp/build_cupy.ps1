@@ -1,4 +1,5 @@
 #!/usr/bin/env pwsh
+# @SID: MAS_BUILD_CUPY_V1
 
 <#
 .SYNOPSIS

@@ -1,4 +1,11 @@
 #!/usr/bin/env pwsh
+#
+# @SID: SCRIPT_RUN_CLAUDE_LOCAL_AUDIT_V1
+# @Type: VALIDATION
+# @Spectrum: WHITE
+# @Zone: THE GARDEN
+# @Purpose: [string]$Root = ".claude/skills"
+#
 
 param(
   [string]$Root = ".claude/skills"

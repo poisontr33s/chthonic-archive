@@ -1,4 +1,11 @@
 #!/usr/bin/env pwsh
+#
+# @SID: SCRIPT_CLAUDE_IDE_SETTINGS_GENERATE_V1
+# @Type: AGENT
+# @Spectrum: WHITE
+# @Zone: THE GARDEN
+# @Purpose: Generate a minimal Claude Code settings overlay for IDE-launched sessions.
+#
 <#
 .SYNOPSIS
   Generate a minimal Claude Code settings overlay for IDE-launched sessions.

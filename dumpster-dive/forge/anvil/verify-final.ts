@@ -1,3 +1,4 @@
+// @SID: FORGE_VERIFY_FINAL_V1
 // ╔════════════════════════════════════════════════════════════════════════════
 // ║ THE DECORATOR'S BLESSING: verify-final.ts
 // ║ MCP client integration - Observatory communication layer

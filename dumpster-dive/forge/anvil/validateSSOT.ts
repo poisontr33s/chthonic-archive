@@ -1,3 +1,4 @@
+// @SID: FORGE_VALIDATESSOT_V1
 // ╔════════════════════════════════════════════════════════════════════════════
 // ║ THE DECORATOR'S BLESSING: validateSSOT.ts
 // ║ MCP client integration - Observatory communication layer

@@ -1,4 +1,11 @@
 #!/usr/bin/env pwsh
+#
+# @SID: SCRIPT_FIX_VSCODE_CLI_V1
+# @Type: MAINTENANCE
+# @Spectrum: WHITE
+# @Zone: THE GARDEN
+# @Purpose: fix_vscode_cli.ps1 — Ensure `code` CLI is available and Claude integrator can de
+#
 
 # fix_vscode_cli.ps1 — Ensure `code` CLI is available and Claude integrator can detect VS Code
 # Idempotent script: creates a `code` shim if only `code-insiders` exists,

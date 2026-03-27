@@ -1,3 +1,4 @@
+# @SID: EXT_VS2026_AUDIT_V1
 [CmdletBinding()]
 param(
     [switch]$Json,

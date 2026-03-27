@@ -1,4 +1,11 @@
 #!/usr/bin/env pwsh
+#
+# @SID: SCRIPT_RUN_E2E_SKILL_MATRIX_CLAUDE_V1
+# @Type: RUNNER
+# @Spectrum: WHITE
+# @Zone: THE GARDEN
+# @Purpose: [string]$CodexRoot = ".codex/skills",
+#
 
 param(
   [string]$CodexRoot = ".codex/skills",

@@ -1,5 +1,7 @@
 #!/usr/bin/env pwsh
 
+# @SID: TOOL_INDEXING_COMMIT_V1
+
 [CmdletBinding()]
 param(
     # Glob patterns (repo-relative) that are allowed to be staged/committed.

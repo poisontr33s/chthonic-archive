@@ -1,3 +1,4 @@
+// @SID: SCRIPT_GEMINI_MODEL_ROUTER_V1
 #!/usr/bin/env bun
 
 import { readFileSync, writeFileSync } from "node:fs";

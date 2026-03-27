@@ -1,3 +1,4 @@
+// @SID: EXT_HEDONISTICVALIDATION_V1
 // Legacy preservation file: restored per WPTG non-delete policy.
 // Not imported by the active bridge lane, retained for upcycle continuity.
 // ╔════════════════════════════════════════════════════════════════════════════

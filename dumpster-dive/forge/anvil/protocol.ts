@@ -1,3 +1,4 @@
+// @SID: FORGE_PROTOCOL_V1
 // ╔════════════════════════════════════════════════════════════════════════════
 // ║ THE DECORATOR'S BLESSING: protocol.ts
 // ║ MCP client integration - Observatory communication layer

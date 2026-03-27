@@ -83,10 +83,5 @@ Before a file enters TEMPERED, it must have passed:
 
 ---
 
-**Operator:** Sister Ferrum Scoriae (SFS)  
+**Operator:** Sister Ferrum Scoriae (SFS)
 **Model:** [Circulation Protocol](../../protocols/FORGE_CIRCULATION_PROTOCOL.md)
-
----
-
-**Operator:** Sister Ferrum Scoriae (SFS)  
-**Principle:** *"The quench solidifies truth. What breaks here would break in production."*

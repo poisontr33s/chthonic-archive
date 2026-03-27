@@ -1,3 +1,4 @@
+// @SID: EXT_TYPES_V1
 export interface EntropyFileRecord {
     path: string;
     entropy: number; // 0.0 -> 1.0

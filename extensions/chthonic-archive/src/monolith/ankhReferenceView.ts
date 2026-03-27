@@ -1,6 +1,8 @@
+// @SID: EXT_ANKHREFERENCEVIEW_V1
 import * as vscode from 'vscode';
 import * as fs from 'fs';
 import * as path from 'path';
+import { SSOT_HOLDER } from '../ssot-paths';
 
 type SectionKind = 'heading' | 'entity' | 'tier' | 'xref' | 'anchor' | 'mention';
 
@@ -214,7 +216,7 @@ export class AnkhReferenceProvider implements vscode.WebviewViewProvider {
         }
 
         // 3. Legacy archive
-        const legacy = path.join(this.workspaceRoot, '.github', 'copilot-instructions.archive.md');
+        const legacy = path.join(this.workspaceRoot, SSOT_HOLDER);
         if (fs.existsSync(legacy)) { return legacy; }
 
         return null;

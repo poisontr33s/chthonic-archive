@@ -1,4 +1,11 @@
 #!/usr/bin/env pwsh
+#
+# @SID: SCRIPT_HF_AUTH_DOCTOR_V1
+# @Type: UTILITY
+# @Spectrum: WHITE
+# @Zone: THE GARDEN
+# @Purpose: Hugging Face auth doctor (local, non-secret).
+#
 
 # Hugging Face auth doctor (local, non-secret).
 #

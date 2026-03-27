@@ -9165,8 +9165,8 @@ For maximum reliability, abstract browser operations behind an MCP server (poten
 ### **APPENDIX E: Zone_1_REDUX Integration Summary**
 
 **Date:** January 26, 2026
-**Source Document:** `Zone_1_REDUX_implementation_ripe_for_SSOT_canon.md`
-**Research Origin:** Gemini 3-Pro Deep Research Session
+**Source Document:** [Zone_1_REDUX_implementation_ripe_for_SSOT_canon.md](../../zone_1_redux_implementation_ripe_for_ssot_canon.md)
+**Research Origin:** Gemini
 **Integration Architect:** Claude **-> (`T-DECOR's`)** *instrument in the analysis and integration planning*
 
 ---

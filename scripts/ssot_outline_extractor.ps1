@@ -1,4 +1,5 @@
 #!/usr/bin/env pwsh
+# @SID: SCRIPT_SSOT_OUTLINE_EXTRACTOR_V1
 
 <#
 # ╔════════════════════════════════════════════════════════════════════════════
@@ -42,7 +43,8 @@ param(
     [switch]$UpdateIndex
 )
 
-$SSOTPath = Join-Path $PSScriptRoot "..\copilot-instructions.md"
+. (Join-Path $PSScriptRoot "lib\ssot-paths.ps1")
+$SSOTPath = Resolve-SsotPath -Root (Resolve-Path "$PSScriptRoot\..") -Which pointer
 $IndexPath = Join-Path $PSScriptRoot "SSOT_STRUCTURAL_INDEX.json"
 
 if (-not (Test-Path $SSOTPath)) {
@@ -143,7 +145,7 @@ if ($UpdateIndex) {
     $indexData = [ordered]@{
         _WARNING = "AUTO-GENERATED FILE - Do not edit manually. Regenerate via: .\ssot_outline_extractor.ps1 -UpdateIndex"
         _toolbox = ".github/instructions/ssot-toolbox.instructions.md"
-        _source = ".github/copilot-instructions.md"
+        _source = $Script:SSOT_POINTER
         _generated = (Get-Date -Format "yyyy-MM-dd HH:mm:ss")
         total_lines = $lineNum
         headers = @($headers | ForEach-Object {

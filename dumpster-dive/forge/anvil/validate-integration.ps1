@@ -1,4 +1,5 @@
 #!/usr/bin/env pwsh
+# @SID: FORGE_VALIDATE_INTEGRATION_V1
 
 # MCP Integration Validation Script
 # Run this after restarting Claude Desktop to verify end-to-end integration

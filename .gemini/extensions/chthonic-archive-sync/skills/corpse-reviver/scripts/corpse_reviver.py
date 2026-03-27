@@ -42,6 +42,7 @@ import argparse
 import hashlib
 import json
 import re
+import shutil
 import subprocess
 import sys
 from dataclasses import asdict, dataclass, field
@@ -825,6 +826,7 @@ def cmd_suture(
     lang: str | None,
     query: str | None,
     output: str | None,
+    forge_eligible: bool = False,
 ) -> None:
     """Stitch fragments together into a composite file — the Bride's act."""
     if not MANIFEST_PATH.exists():
@@ -883,6 +885,29 @@ def cmd_suture(
     out_path.write_text(composite, encoding="utf-8")
     print(f"Sutured {len(parts)} fragment(s) into {out_path}")
     print(f"  Total size: {len(composite):,} bytes")
+
+    # L4: Route suture output to forge/intake/ as resurrection candidate
+    if forge_eligible and out_path.exists():
+        forge_intake = REPO_ROOT / "dumpster-dive" / "forge" / "intake"
+        forge_intake.mkdir(parents=True, exist_ok=True)
+
+        dest = forge_intake / out_path.name
+        shutil.copy2(str(out_path), str(dest))
+
+        content_hash = hashlib.sha256(out_path.read_bytes()).hexdigest()
+        extract = {
+            "source": str(out_path.relative_to(REPO_ROOT)).replace("\\", "/"),
+            "ore_rating": 4,
+            "category": "resurrection-candidate",
+            "content_hash": content_hash,
+            "signals": ["suture-return"],
+            "timestamp": datetime.now(timezone.utc).isoformat(),
+        }
+        extract_path = forge_intake / f".zombie_extract_{out_path.stem}.json"
+        extract_path.write_text(
+            json.dumps(extract, indent=2) + "\n", encoding="utf-8"
+        )
+        print(f"  -> Routed to forge/intake/ as resurrection candidate (ore_rating=4)")
 
 def embalm(fragments: list[Fragment]) -> Manifest:
     """Write fragments to the vault with provenance sidecars."""
@@ -1123,23 +1148,105 @@ def build_parser() -> argparse.ArgumentParser:
     s.add_argument("--lang", help="Select fragments by language.")
     s.add_argument("--query", "-q", help="Select fragments matching text.")
     s.add_argument("--output", "-o", help="Output filename (default: auto-timestamped in sutures/).")
+    s.add_argument("--forge-eligible", action="store_true",
+                   help="Route suture output to forge/intake/ as resurrection candidate.")
 
     # manifest
     sub.add_parser("manifest", help="Print vault summary — the morgue ledger.")
 
+    # stitch (delta extraction between embalm snapshot and current state)
+    st = sub.add_parser("stitch", help="Extract delta fragments between snapshot and current state.")
+    st.add_argument("session", help="Session directory name (or partial match).")
+    st.add_argument("--output", "-o", help="Output directory for delta files.")
+
     # embalm-before-edit
     ebe = sub.add_parser(
         "embalm-before-edit",
-        help="DO-NOT-USE-UNFINISHED-DEV--WIP: embalm-before-edit is disabled until finished.",
+        help="Pre-mortem preservation — snapshot files before editing.",
     )
-    ebe.add_argument("files", nargs="*", help="Disabled WIP lane.")
-    ebe.add_argument("--label", "-l", help="Disabled WIP lane.")
-    ebe.add_argument("--staged", action="store_true", help="Disabled WIP lane.")
-    ebe.add_argument("--diff", metavar="SESSION", help="Disabled WIP lane.")
-    ebe.add_argument("--stitch", metavar="SESSION", help="Disabled WIP lane.")
-    ebe.add_argument("--list", action="store_true", dest="list_sessions", help="Disabled WIP lane.")
+    ebe.add_argument("files", nargs="*", help="Files to snapshot before editing.")
+    ebe.add_argument("--label", "-l", help="Label for this snapshot session.")
+    ebe.add_argument("--staged", action="store_true", help="Snapshot all files currently staged in git.")
+    ebe.add_argument("--diff", metavar="SESSION", help="Compare current state against a prior snapshot.")
+    ebe.add_argument("--stitch", metavar="SESSION", help="Extract delta fragments from session.")
+    ebe.add_argument("--output", "-o", help="Output directory for stitch deltas.")
+    ebe.add_argument("--list", action="store_true", dest="list_sessions", help="List all snapshot sessions.")
+
+    # pipeline (OSGTTLR orchestrator)
+    pipe = sub.add_parser("pipeline", help="OSGTTLR orchestrated pipeline — chained mode execution.")
+    pipe.add_argument("--since", default="30d", help="How far back for harvest. Default: 30d")
+    pipe.add_argument("--max-commits", type=int, default=200, help="Max commits to scan.")
+    pipe.add_argument("--forge-eligible", action="store_true",
+                      help="Route suture output to forge as resurrection candidate.")
+    pipe.add_argument("--dry-run", action="store_true", help="Print plan without executing.")
 
     return p
+
+
+def _harvest_all(since: str, max_commits: int) -> None:
+    """Run all harvest sources and embalm results."""
+    all_fragments: list[Fragment] = []
+    harvesters = [
+        ("commits",       lambda: harvest_deleted_from_commits(since, max_commits)),
+        ("stashes",       harvest_stashes),
+        ("comments",      harvest_commented_code),
+        ("reflog",        harvest_reflog),
+        ("dead branches", harvest_dead_branches),
+        ("orphans",       harvest_orphans),
+        ("gitignored",    harvest_gitignored),
+        ("graffiti",      harvest_graffiti),
+    ]
+    for label, fn in harvesters:
+        print(f"  Harvesting {label}...")
+        frags = fn()
+        print(f"    Found {len(frags)} fragment(s).")
+        all_fragments.extend(frags)
+
+    if all_fragments:
+        manifest, new_count = embalm(all_fragments)
+        print(
+            f"  Embalmed {new_count} new fragment(s) "
+            f"(vault total: {manifest.total_fragments}, "
+            f"{manifest.total_bytes:,} bytes)."
+        )
+    else:
+        print("  No fragments harvested.")
+
+
+def cmd_pipeline(since: str, max_commits: int, forge_eligible: bool, dry_run: bool) -> None:
+    """OSGTTLR orchestrated pipeline.
+
+    Executes: PROWL -> HARVEST(all) -> CLASSIFY -> MANIFEST
+    EMBALM runs automatically as part of harvest.
+    STITCH available post-pipeline via `stitch` command.
+    """
+    stages = [
+        ("PROWL",    lambda: cmd_prowl()),
+        ("HARVEST",  lambda: _harvest_all(since, max_commits)),
+        ("CLASSIFY", lambda: cmd_classify()),
+        ("MANIFEST", lambda: cmd_manifest()),
+    ]
+
+    if dry_run:
+        print("OSGTTLR Pipeline (dry run):")
+        for name, _ in stages:
+            print(f"  [{name}] — would execute")
+        if forge_eligible:
+            print("  [SUTURE -> FORGE] — would route composites to forge/intake/")
+        return
+
+    print("═══ OSGTTLR Pipeline ═══\n")
+    for name, fn in stages:
+        print(f"──── {name} ────")
+        fn()
+        print()
+
+    if forge_eligible:
+        print("──── SUTURE -> FORGE ────")
+        cmd_suture(None, None, None, None, forge_eligible=True)
+        print()
+
+    print("═══ Pipeline complete. Run `stitch <session>` for post-edit delta extraction. ═══")
 
 
 def main(argv: Sequence[str] | None = None) -> None:
@@ -1236,15 +1343,53 @@ def main(argv: Sequence[str] | None = None) -> None:
         cmd_reanimate(args.query, args.lang, args.ext)
 
     elif args.command == "suture":
-        cmd_suture(args.fragments, args.lang, args.query, args.output)
+        cmd_suture(args.fragments, args.lang, args.query, args.output,
+                   forge_eligible=args.forge_eligible)
 
     elif args.command == "manifest":
         cmd_manifest()
 
+    elif args.command == "stitch":
+        _here = Path(__file__).resolve().parent
+        if str(_here) not in sys.path:
+            sys.path.insert(0, str(_here))
+        from embalm_before_edit import cmd_stitch
+        output = Path(args.output) if args.output else None
+        cmd_stitch(args.session, output_dir=output)
+
     elif args.command == "embalm-before-edit":
-        raise SystemExit(
-            "DO-NOT-USE-UNFINISHED-DEV--WIP: embalm-before-edit is unfinished and disabled."
+        _here = Path(__file__).resolve().parent
+        if str(_here) not in sys.path:
+            sys.path.insert(0, str(_here))
+        from embalm_before_edit import (
+            quick_embalm, cmd_diff, cmd_stitch as ebe_stitch,
+            cmd_list_sessions, git as ebe_git, REPO_ROOT as EBE_ROOT,
         )
+        if args.list_sessions:
+            cmd_list_sessions()
+        elif args.diff:
+            cmd_diff(args.diff)
+        elif getattr(args, 'stitch', None):
+            output = Path(args.output) if getattr(args, 'output', None) else None
+            ebe_stitch(args.stitch, output_dir=output)
+        elif args.staged:
+            staged_output = ebe_git("diff", "--cached", "--name-only")
+            if not staged_output.strip():
+                print("No staged files.")
+            else:
+                files = [f.strip() for f in staged_output.splitlines() if f.strip()]
+                result = quick_embalm(files, label=args.label or "staged")
+                if result:
+                    print(f"\nSession: {result.relative_to(EBE_ROOT)}")
+        elif args.files:
+            result = quick_embalm(args.files, label=args.label or "manual")
+            if result:
+                print(f"\nSession: {result.relative_to(EBE_ROOT)}")
+        else:
+            print("embalm-before-edit: specify files, --staged, --diff, --stitch, or --list")
+
+    elif args.command == "pipeline":
+        cmd_pipeline(args.since, args.max_commits, args.forge_eligible, args.dry_run)
 
 
 if __name__ == "__main__":

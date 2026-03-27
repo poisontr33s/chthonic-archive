@@ -1,3 +1,4 @@
+// @SID: EXT_ACTIVITYBARMORPH_V1
 import * as vscode from 'vscode';
 import type { RustificationReport, RustificationTier } from './rustificationScore';
 import { iconFileForTier } from './rustificationScore';

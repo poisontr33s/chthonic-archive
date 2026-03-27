@@ -1,4 +1,11 @@
 #!/usr/bin/env pwsh
+#
+# @SID: SCRIPT_VALIDATE_SESSION_CHANGES_V1
+# @Type: VALIDATION
+# @Spectrum: WHITE
+# @Zone: THE GARDEN
+# @Purpose: Requires -Version 7.0
+#
 #Requires -Version 7.0
 
 <#

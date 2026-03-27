@@ -1,3 +1,4 @@
+// @SID: EXT_E2E_EXTENSION_HOST_V1
 import { existsSync } from 'node:fs';
 import path from 'node:path';
 import { runTests } from '@vscode/test-electron';

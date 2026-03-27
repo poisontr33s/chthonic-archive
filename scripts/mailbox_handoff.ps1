@@ -1,4 +1,11 @@
 #!/usr/bin/env pwsh
+#
+# @SID: SCRIPT_MAILBOX_HANDOFF_V1
+# @Type: UTILITY
+# @Spectrum: WHITE
+# @Zone: THE GARDEN
+# @Purpose: [Parameter(Mandatory=$true)][ValidateSet("claude","codex","gemini")][string]$Tar
+#
 
 param(
   [Parameter(Mandatory=$true)][ValidateSet("claude","codex","gemini")][string]$Target,

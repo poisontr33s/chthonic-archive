@@ -1,0 +1,956 @@
+{
+  "total_file_icons": 44,
+  "threshold": 0.85,
+  "collisions": [
+    {
+      "icon_a": "file-audio.svg",
+      "icon_b": "file-go.svg",
+      "similarity": 0.995,
+      "shared_colors": [
+        "#8CB87A"
+      ]
+    },
+    {
+      "icon_a": "file-cpp.svg",
+      "icon_b": "file-rb.svg",
+      "similarity": 0.942,
+      "shared_colors": [
+        "#E05545"
+      ]
+    },
+    {
+      "icon_a": "file-cmake.svg",
+      "icon_b": "file-img.svg",
+      "similarity": 0.925,
+      "shared_colors": [
+        "#F4C430"
+      ]
+    },
+    {
+      "icon_a": "file-json.svg",
+      "icon_b": "file-ps1.svg",
+      "similarity": 0.886,
+      "shared_colors": [
+        "#B9A37A"
+      ]
+    },
+    {
+      "icon_a": "file-bat.svg",
+      "icon_b": "file-proto.svg",
+      "similarity": 0.884,
+      "shared_colors": [
+        "#D4714E"
+      ]
+    },
+    {
+      "icon_a": "file-img.svg",
+      "icon_b": "file-rs.svg",
+      "similarity": 0.857,
+      "shared_colors": [
+        "#F4C430"
+      ]
+    }
+  ],
+  "collision_count": 6,
+  "color_distribution": {
+    "#050505": {
+      "count": 1,
+      "icons": [
+        "file-html.svg"
+      ]
+    },
+    "#7AAAB2": {
+      "count": 3,
+      "icons": [
+        "file-copilot.svg",
+        "file-ts.svg",
+        "file-yml.svg"
+      ]
+    },
+    "#8CB87A": {
+      "count": 5,
+      "icons": [
+        "file-audio.svg",
+        "file-cfg.svg",
+        "file-claude.svg",
+        "file-go.svg",
+        "file-sh.svg"
+      ]
+    },
+    "#B9A37A": {
+      "count": 6,
+      "icons": [
+        "file-default.svg",
+        "file-json.svg",
+        "file-md.svg",
+        "file-ps1.svg",
+        "file-rst.svg",
+        "file-toml.svg"
+      ]
+    },
+    "#D4714E": {
+      "count": 7,
+      "icons": [
+        "file-bat.svg",
+        "file-docker.svg",
+        "file-git.svg",
+        "file-html.svg",
+        "file-map.svg",
+        "file-proto.svg",
+        "file-py.svg"
+      ]
+    },
+    "#D4907A": {
+      "count": 4,
+      "icons": [
+        "file-css.svg",
+        "file-svg.svg",
+        "file-wasm.svg",
+        "file-xml.svg"
+      ]
+    },
+    "#D7B562": {
+      "count": 8,
+      "icons": [
+        "file-c.svg",
+        "file-csv.svg",
+        "file-env.svg",
+        "file-font.svg",
+        "file-js.svg",
+        "file-jsx.svg",
+        "file-rst.svg",
+        "file-sql.svg"
+      ]
+    },
+    "#E05545": {
+      "count": 4,
+      "icons": [
+        "file-cpp.svg",
+        "file-h.svg",
+        "file-rb.svg",
+        "file-txt.svg"
+      ]
+    },
+    "#F4C430": {
+      "count": 6,
+      "icons": [
+        "file-cmake.svg",
+        "file-img.svg",
+        "file-lock.svg",
+        "file-rs.svg",
+        "file-rust-toml.svg",
+        "file-tsx.svg"
+      ]
+    }
+  },
+  "fingerprints": [
+    {
+      "file": "file-audio.svg",
+      "motif_comment": "Stele base",
+      "motif_colors": [
+        "#8CB87A"
+      ],
+      "element_types": {
+        "rect": 1,
+        "path": 5,
+        "circle": 1
+      },
+      "element_count": 7,
+      "path_count": 5,
+      "circle_count": 1,
+      "line_count": 0,
+      "rect_count": 1,
+      "has_ellipse": false
+    },
+    {
+      "file": "file-bat.svg",
+      "motif_comment": "Stele base",
+      "motif_colors": [
+        "#D4714E"
+      ],
+      "element_types": {
+        "rect": 6,
+        "path": 4,
+        "circle": 1,
+        "line": 4
+      },
+      "element_count": 15,
+      "path_count": 4,
+      "circle_count": 1,
+      "line_count": 4,
+      "rect_count": 6,
+      "has_ellipse": false
+    },
+    {
+      "file": "file-binary.svg",
+      "motif_comment": "Stele base",
+      "motif_colors": [],
+      "element_types": {
+        "rect": 1,
+        "line": 5,
+        "path": 2
+      },
+      "element_count": 8,
+      "path_count": 2,
+      "circle_count": 0,
+      "line_count": 5,
+      "rect_count": 1,
+      "has_ellipse": false
+    },
+    {
+      "file": "file-c.svg",
+      "motif_comment": "Stele base",
+      "motif_colors": [
+        "#D7B562"
+      ],
+      "element_types": {
+        "rect": 2,
+        "path": 1,
+        "line": 2
+      },
+      "element_count": 5,
+      "path_count": 1,
+      "circle_count": 0,
+      "line_count": 2,
+      "rect_count": 2,
+      "has_ellipse": false
+    },
+    {
+      "file": "file-cfg.svg",
+      "motif_comment": "Stele base",
+      "motif_colors": [
+        "#8CB87A"
+      ],
+      "element_types": {
+        "rect": 1,
+        "ellipse": 1,
+        "circle": 2,
+        "path": 9
+      },
+      "element_count": 13,
+      "path_count": 9,
+      "circle_count": 2,
+      "line_count": 0,
+      "rect_count": 1,
+      "has_ellipse": true
+    },
+    {
+      "file": "file-claude.svg",
+      "motif_comment": "Stele base",
+      "motif_colors": [
+        "#8CB87A"
+      ],
+      "element_types": {
+        "rect": 1,
+        "ellipse": 1,
+        "line": 2,
+        "path": 2
+      },
+      "element_count": 6,
+      "path_count": 2,
+      "circle_count": 0,
+      "line_count": 2,
+      "rect_count": 1,
+      "has_ellipse": true
+    },
+    {
+      "file": "file-cmake.svg",
+      "motif_comment": "Stele base",
+      "motif_colors": [
+        "#F4C430"
+      ],
+      "element_types": {
+        "rect": 1,
+        "circle": 3,
+        "path": 5,
+        "line": 4
+      },
+      "element_count": 13,
+      "path_count": 5,
+      "circle_count": 3,
+      "line_count": 4,
+      "rect_count": 1,
+      "has_ellipse": false
+    },
+    {
+      "file": "file-copilot.svg",
+      "motif_comment": "Stele base",
+      "motif_colors": [
+        "#7AAAB2"
+      ],
+      "element_types": {
+        "rect": 1,
+        "ellipse": 1,
+        "line": 3,
+        "path": 2
+      },
+      "element_count": 7,
+      "path_count": 2,
+      "circle_count": 0,
+      "line_count": 3,
+      "rect_count": 1,
+      "has_ellipse": true
+    },
+    {
+      "file": "file-cpp.svg",
+      "motif_comment": "Stele base",
+      "motif_colors": [
+        "#E05545"
+      ],
+      "element_types": {
+        "rect": 1,
+        "path": 3,
+        "line": 3
+      },
+      "element_count": 7,
+      "path_count": 3,
+      "circle_count": 0,
+      "line_count": 3,
+      "rect_count": 1,
+      "has_ellipse": false
+    },
+    {
+      "file": "file-css.svg",
+      "motif_comment": "Stele base",
+      "motif_colors": [
+        "#D4907A"
+      ],
+      "element_types": {
+        "rect": 1,
+        "line": 4,
+        "path": 6
+      },
+      "element_count": 11,
+      "path_count": 6,
+      "circle_count": 0,
+      "line_count": 4,
+      "rect_count": 1,
+      "has_ellipse": false
+    },
+    {
+      "file": "file-csv.svg",
+      "motif_comment": "Stele base",
+      "motif_colors": [
+        "#D7B562"
+      ],
+      "element_types": {
+        "rect": 1,
+        "line": 6,
+        "circle": 6
+      },
+      "element_count": 13,
+      "path_count": 0,
+      "circle_count": 6,
+      "line_count": 6,
+      "rect_count": 1,
+      "has_ellipse": false
+    },
+    {
+      "file": "file-default.svg",
+      "motif_comment": "Stele: rounded-top tablet (Egyptian memorial stone)",
+      "motif_colors": [
+        "#B9A37A"
+      ],
+      "element_types": {
+        "path": 2,
+        "ellipse": 1,
+        "line": 2
+      },
+      "element_count": 5,
+      "path_count": 2,
+      "circle_count": 0,
+      "line_count": 2,
+      "rect_count": 0,
+      "has_ellipse": true
+    },
+    {
+      "file": "file-docker.svg",
+      "motif_comment": "Stele base",
+      "motif_colors": [
+        "#D4714E"
+      ],
+      "element_types": {
+        "rect": 3,
+        "path": 2,
+        "line": 3
+      },
+      "element_count": 8,
+      "path_count": 2,
+      "circle_count": 0,
+      "line_count": 3,
+      "rect_count": 3,
+      "has_ellipse": false
+    },
+    {
+      "file": "file-env.svg",
+      "motif_comment": "Stele base",
+      "motif_colors": [
+        "#D7B562"
+      ],
+      "element_types": {
+        "rect": 1,
+        "ellipse": 1,
+        "line": 4,
+        "circle": 1
+      },
+      "element_count": 7,
+      "path_count": 0,
+      "circle_count": 1,
+      "line_count": 4,
+      "rect_count": 1,
+      "has_ellipse": true
+    },
+    {
+      "file": "file-font.svg",
+      "motif_comment": "Stele base",
+      "motif_colors": [
+        "#D7B562"
+      ],
+      "element_types": {
+        "rect": 1,
+        "path": 3,
+        "line": 2,
+        "circle": 1
+      },
+      "element_count": 7,
+      "path_count": 3,
+      "circle_count": 1,
+      "line_count": 2,
+      "rect_count": 1,
+      "has_ellipse": false
+    },
+    {
+      "file": "file-git.svg",
+      "motif_comment": "Stele base",
+      "motif_colors": [
+        "#D4714E"
+      ],
+      "element_types": {
+        "rect": 1,
+        "path": 5
+      },
+      "element_count": 6,
+      "path_count": 5,
+      "circle_count": 0,
+      "line_count": 0,
+      "rect_count": 1,
+      "has_ellipse": false
+    },
+    {
+      "file": "file-go.svg",
+      "motif_comment": "Stele base",
+      "motif_colors": [
+        "#8CB87A"
+      ],
+      "element_types": {
+        "rect": 1,
+        "circle": 2,
+        "path": 4
+      },
+      "element_count": 7,
+      "path_count": 4,
+      "circle_count": 2,
+      "line_count": 0,
+      "rect_count": 1,
+      "has_ellipse": false
+    },
+    {
+      "file": "file-h.svg",
+      "motif_comment": "Stele base",
+      "motif_colors": [
+        "#E05545"
+      ],
+      "element_types": {
+        "rect": 1,
+        "circle": 4,
+        "path": 7
+      },
+      "element_count": 12,
+      "path_count": 7,
+      "circle_count": 4,
+      "line_count": 0,
+      "rect_count": 1,
+      "has_ellipse": false
+    },
+    {
+      "file": "file-html.svg",
+      "motif_comment": "Stele base",
+      "motif_colors": [
+        "#050505",
+        "#D4714E"
+      ],
+      "element_types": {
+        "rect": 3,
+        "path": 3,
+        "circle": 1
+      },
+      "element_count": 7,
+      "path_count": 3,
+      "circle_count": 1,
+      "line_count": 0,
+      "rect_count": 3,
+      "has_ellipse": false
+    },
+    {
+      "file": "file-img.svg",
+      "motif_comment": "Stele base",
+      "motif_colors": [
+        "#F4C430"
+      ],
+      "element_types": {
+        "rect": 1,
+        "circle": 2,
+        "line": 5,
+        "path": 1
+      },
+      "element_count": 9,
+      "path_count": 1,
+      "circle_count": 2,
+      "line_count": 5,
+      "rect_count": 1,
+      "has_ellipse": false
+    },
+    {
+      "file": "file-js.svg",
+      "motif_comment": "Stele base",
+      "motif_colors": [
+        "#D7B562"
+      ],
+      "element_types": {
+        "rect": 1,
+        "ellipse": 1,
+        "path": 3,
+        "line": 3
+      },
+      "element_count": 8,
+      "path_count": 3,
+      "circle_count": 0,
+      "line_count": 3,
+      "rect_count": 1,
+      "has_ellipse": true
+    },
+    {
+      "file": "file-json.svg",
+      "motif_comment": "Stele base",
+      "motif_colors": [
+        "#B9A37A"
+      ],
+      "element_types": {
+        "rect": 1,
+        "line": 2,
+        "path": 4,
+        "circle": 7
+      },
+      "element_count": 14,
+      "path_count": 4,
+      "circle_count": 7,
+      "line_count": 2,
+      "rect_count": 1,
+      "has_ellipse": false
+    },
+    {
+      "file": "file-jsx.svg",
+      "motif_comment": "Stele base",
+      "motif_colors": [
+        "#D7B562"
+      ],
+      "element_types": {
+        "rect": 1,
+        "ellipse": 1,
+        "circle": 2,
+        "path": 4
+      },
+      "element_count": 8,
+      "path_count": 4,
+      "circle_count": 2,
+      "line_count": 0,
+      "rect_count": 1,
+      "has_ellipse": true
+    },
+    {
+      "file": "file-lock.svg",
+      "motif_comment": "Stele base",
+      "motif_colors": [
+        "#F4C430"
+      ],
+      "element_types": {
+        "rect": 1,
+        "ellipse": 1,
+        "path": 2,
+        "line": 3
+      },
+      "element_count": 7,
+      "path_count": 2,
+      "circle_count": 0,
+      "line_count": 3,
+      "rect_count": 1,
+      "has_ellipse": true
+    },
+    {
+      "file": "file-log.svg",
+      "motif_comment": "Stele base",
+      "motif_colors": [],
+      "element_types": {
+        "rect": 1,
+        "line": 5,
+        "circle": 3
+      },
+      "element_count": 9,
+      "path_count": 0,
+      "circle_count": 3,
+      "line_count": 5,
+      "rect_count": 1,
+      "has_ellipse": false
+    },
+    {
+      "file": "file-map.svg",
+      "motif_comment": "Stele base",
+      "motif_colors": [
+        "#D4714E"
+      ],
+      "element_types": {
+        "rect": 1,
+        "circle": 5,
+        "line": 6
+      },
+      "element_count": 12,
+      "path_count": 0,
+      "circle_count": 5,
+      "line_count": 6,
+      "rect_count": 1,
+      "has_ellipse": false
+    },
+    {
+      "file": "file-md.svg",
+      "motif_comment": "Stele base",
+      "motif_colors": [
+        "#B9A37A"
+      ],
+      "element_types": {
+        "rect": 1,
+        "line": 1,
+        "path": 9
+      },
+      "element_count": 11,
+      "path_count": 9,
+      "circle_count": 0,
+      "line_count": 1,
+      "rect_count": 1,
+      "has_ellipse": false
+    },
+    {
+      "file": "file-proto.svg",
+      "motif_comment": "Stele base",
+      "motif_colors": [
+        "#D4714E"
+      ],
+      "element_types": {
+        "rect": 1,
+        "line": 2,
+        "path": 2,
+        "circle": 4
+      },
+      "element_count": 9,
+      "path_count": 2,
+      "circle_count": 4,
+      "line_count": 2,
+      "rect_count": 1,
+      "has_ellipse": false
+    },
+    {
+      "file": "file-ps1.svg",
+      "motif_comment": "Stele base",
+      "motif_colors": [
+        "#B9A37A"
+      ],
+      "element_types": {
+        "rect": 1,
+        "path": 3,
+        "line": 2,
+        "circle": 1
+      },
+      "element_count": 7,
+      "path_count": 3,
+      "circle_count": 1,
+      "line_count": 2,
+      "rect_count": 1,
+      "has_ellipse": false
+    },
+    {
+      "file": "file-py.svg",
+      "motif_comment": "Stele base",
+      "motif_colors": [
+        "#D4714E"
+      ],
+      "element_types": {
+        "rect": 1,
+        "path": 4,
+        "circle": 1
+      },
+      "element_count": 6,
+      "path_count": 4,
+      "circle_count": 1,
+      "line_count": 0,
+      "rect_count": 1,
+      "has_ellipse": false
+    },
+    {
+      "file": "file-rb.svg",
+      "motif_comment": "Stele base",
+      "motif_colors": [
+        "#E05545"
+      ],
+      "element_types": {
+        "rect": 1,
+        "path": 3,
+        "line": 1
+      },
+      "element_count": 5,
+      "path_count": 3,
+      "circle_count": 0,
+      "line_count": 1,
+      "rect_count": 1,
+      "has_ellipse": false
+    },
+    {
+      "file": "file-rs.svg",
+      "motif_comment": "Stele base",
+      "motif_colors": [
+        "#F4C430"
+      ],
+      "element_types": {
+        "rect": 1,
+        "line": 5,
+        "path": 1
+      },
+      "element_count": 7,
+      "path_count": 1,
+      "circle_count": 0,
+      "line_count": 5,
+      "rect_count": 1,
+      "has_ellipse": false
+    },
+    {
+      "file": "file-rst.svg",
+      "motif_comment": "Stele base",
+      "motif_colors": [
+        "#B9A37A",
+        "#D7B562"
+      ],
+      "element_types": {
+        "rect": 1,
+        "ellipse": 1,
+        "line": 4,
+        "path": 2,
+        "circle": 1
+      },
+      "element_count": 9,
+      "path_count": 2,
+      "circle_count": 1,
+      "line_count": 4,
+      "rect_count": 1,
+      "has_ellipse": true
+    },
+    {
+      "file": "file-rust-toml.svg",
+      "motif_comment": "Stele base",
+      "motif_colors": [
+        "#F4C430"
+      ],
+      "element_types": {
+        "rect": 4,
+        "line": 4
+      },
+      "element_count": 8,
+      "path_count": 0,
+      "circle_count": 0,
+      "line_count": 4,
+      "rect_count": 4,
+      "has_ellipse": false
+    },
+    {
+      "file": "file-sh.svg",
+      "motif_comment": "Stele base",
+      "motif_colors": [
+        "#8CB87A"
+      ],
+      "element_types": {
+        "rect": 1,
+        "path": 3
+      },
+      "element_count": 4,
+      "path_count": 3,
+      "circle_count": 0,
+      "line_count": 0,
+      "rect_count": 1,
+      "has_ellipse": false
+    },
+    {
+      "file": "file-sql.svg",
+      "motif_comment": "Stele base",
+      "motif_colors": [
+        "#D7B562"
+      ],
+      "element_types": {
+        "rect": 2,
+        "path": 4,
+        "circle": 3
+      },
+      "element_count": 9,
+      "path_count": 4,
+      "circle_count": 3,
+      "line_count": 0,
+      "rect_count": 2,
+      "has_ellipse": false
+    },
+    {
+      "file": "file-svg.svg",
+      "motif_comment": "Stele base",
+      "motif_colors": [
+        "#D4907A"
+      ],
+      "element_types": {
+        "rect": 1,
+        "path": 4,
+        "circle": 2
+      },
+      "element_count": 7,
+      "path_count": 4,
+      "circle_count": 2,
+      "line_count": 0,
+      "rect_count": 1,
+      "has_ellipse": false
+    },
+    {
+      "file": "file-toml.svg",
+      "motif_comment": "Stele base",
+      "motif_colors": [
+        "#B9A37A"
+      ],
+      "element_types": {
+        "rect": 4,
+        "path": 1,
+        "circle": 1
+      },
+      "element_count": 6,
+      "path_count": 1,
+      "circle_count": 1,
+      "line_count": 0,
+      "rect_count": 4,
+      "has_ellipse": false
+    },
+    {
+      "file": "file-ts.svg",
+      "motif_comment": "Stele base",
+      "motif_colors": [
+        "#7AAAB2"
+      ],
+      "element_types": {
+        "rect": 1,
+        "path": 4,
+        "circle": 2
+      },
+      "element_count": 7,
+      "path_count": 4,
+      "circle_count": 2,
+      "line_count": 0,
+      "rect_count": 1,
+      "has_ellipse": false
+    },
+    {
+      "file": "file-tsx.svg",
+      "motif_comment": "Stele base",
+      "motif_colors": [
+        "#F4C430"
+      ],
+      "element_types": {
+        "rect": 1,
+        "path": 7,
+        "circle": 1
+      },
+      "element_count": 9,
+      "path_count": 7,
+      "circle_count": 1,
+      "line_count": 0,
+      "rect_count": 1,
+      "has_ellipse": false
+    },
+    {
+      "file": "file-txt.svg",
+      "motif_comment": "Stele base",
+      "motif_colors": [
+        "#E05545"
+      ],
+      "element_types": {
+        "rect": 4,
+        "path": 2,
+        "circle": 3,
+        "line": 1
+      },
+      "element_count": 10,
+      "path_count": 2,
+      "circle_count": 3,
+      "line_count": 1,
+      "rect_count": 4,
+      "has_ellipse": false
+    },
+    {
+      "file": "file-wasm.svg",
+      "motif_comment": "Stele base",
+      "motif_colors": [
+        "#D4907A"
+      ],
+      "element_types": {
+        "rect": 1,
+        "ellipse": 1,
+        "line": 1,
+        "path": 4,
+        "circle": 1
+      },
+      "element_count": 8,
+      "path_count": 4,
+      "circle_count": 1,
+      "line_count": 1,
+      "rect_count": 1,
+      "has_ellipse": true
+    },
+    {
+      "file": "file-xml.svg",
+      "motif_comment": "Stele base",
+      "motif_colors": [
+        "#D4907A"
+      ],
+      "element_types": {
+        "rect": 2,
+        "line": 4,
+        "path": 2,
+        "circle": 1
+      },
+      "element_count": 9,
+      "path_count": 2,
+      "circle_count": 1,
+      "line_count": 4,
+      "rect_count": 2,
+      "has_ellipse": false
+    },
+    {
+      "file": "file-yml.svg",
+      "motif_comment": "Stele base",
+      "motif_colors": [
+        "#7AAAB2"
+      ],
+      "element_types": {
+        "rect": 1,
+        "line": 1,
+        "path": 8,
+        "circle": 2
+      },
+      "element_count": 12,
+      "path_count": 8,
+      "circle_count": 2,
+      "line_count": 1,
+      "rect_count": 1,
+      "has_ellipse": false
+    }
+  ]
+}

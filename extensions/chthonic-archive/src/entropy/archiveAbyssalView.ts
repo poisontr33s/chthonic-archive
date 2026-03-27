@@ -1,3 +1,4 @@
+// @SID: EXT_ARCHIVEABYSSALVIEW_V1
 import * as path from 'path';
 import * as vscode from 'vscode';
 import type { EntropyGraphPayload } from './types';

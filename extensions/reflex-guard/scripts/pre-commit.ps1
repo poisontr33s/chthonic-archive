@@ -1,4 +1,5 @@
 #!/usr/bin/env pwsh
+# @SID: EXT_PRE_COMMIT_V1
 
 Set-StrictMode -Version Latest
 $ErrorActionPreference = "Stop"

@@ -1,4 +1,11 @@
 #!/usr/bin/env pwsh
+#
+# @SID: SCRIPT_TEST_CHTHONIC_MCP_V1
+# @Type: VALIDATION
+# @Spectrum: WHITE
+# @Zone: THE GARDEN
+# @Purpose: Test chthonic v3.3.0 meta-CLI through MCP server
+#
 # Test chthonic v3.3.0 meta-CLI through MCP server
 
 $REPO_ROOT = Split-Path -Parent (Split-Path -Parent $MyInvocation.MyCommand.Path)

@@ -1,3 +1,4 @@
+// @SID: EXT_INDEX_V1
 import { spawn } from "node:child_process";
 import { watch } from "node:fs";
 import { promises as fs } from "node:fs";

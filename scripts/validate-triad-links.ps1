@@ -1,4 +1,11 @@
 #!/usr/bin/env pwsh
+#
+# @SID: SCRIPT_VALIDATE_TRIAD_LINKS_V1
+# @Type: VALIDATION
+# @Spectrum: WHITE
+# @Zone: THE GARDEN
+# @Purpose: [string]$RepoRoot = "C:\Users\erdno\chthonic-archive"
+#
 
 param(
     [string]$RepoRoot = "C:\Users\erdno\chthonic-archive"

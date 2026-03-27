@@ -1,4 +1,11 @@
 #!/usr/bin/env pwsh
+#
+# @SID: SCRIPT_ELEVATED_BRIDGE_SEND_V1
+# @Type: INFRASTRUCTURE
+# @Spectrum: WHITE
+# @Zone: THE GARDEN
+# @Purpose: [CmdletBinding()]
+#
 
 [CmdletBinding()]
 param(

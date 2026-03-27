@@ -1,4 +1,11 @@
 #!/usr/bin/env pwsh
+#
+# @SID: SCRIPT_CLAUDE_IDE_E2E_CHECK_V1
+# @Type: VALIDATION
+# @Spectrum: WHITE
+# @Zone: THE GARDEN
+# @Purpose: Requires -Version 7.0
+#
 
 #Requires -Version 7.0
 <#

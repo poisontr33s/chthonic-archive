@@ -1,3 +1,4 @@
+// @SID: EXT_TYPES_V1
 export type PolyglotScanReason = 'interval' | 'save' | 'manual' | 'commit';
 
 export interface RuffFileSummary {

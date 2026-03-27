@@ -1,3 +1,4 @@
+// @SID: MAS_INDEX_V1
 // ═══════════════════════════════════════════════════════════════════════════════
 // 🧬 MAS-MCP Dashboard - /api/metrics
 // Returns aggregated metrics for the last 7 days

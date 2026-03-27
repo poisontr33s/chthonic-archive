@@ -1,3 +1,4 @@
+// @SID: MAS_SSOT_V1
 // ═══════════════════════════════════════════════════════════════════════════════
 // 🧬 MAS-MCP Dashboard - SSOT Handler
 // Cryptographic binding to Single Source of Truth

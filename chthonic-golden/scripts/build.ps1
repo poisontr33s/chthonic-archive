@@ -1,4 +1,5 @@
 #!/usr/bin/env pwsh
+# @SID: GOLDEN_BUILD_V1
 # @ankh: heritage-continuity — Build pipeline for Chthonic Golden VS Code distribution
 # SID: chthonic-golden-build
 # Usage: .\build.ps1 -UpstreamPath .\upstream-vscode [-Quality stable|insider] [-SkipPatches]

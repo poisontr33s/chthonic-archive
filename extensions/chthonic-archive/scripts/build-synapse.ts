@@ -1,3 +1,4 @@
+// @SID: EXT_BUILD_SYNAPSE_V1
 import { copyFileSync, existsSync, mkdirSync } from 'fs';
 import path from 'path';
 import { spawnSync } from 'child_process';

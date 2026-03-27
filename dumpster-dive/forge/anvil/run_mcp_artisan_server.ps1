@@ -1,4 +1,5 @@
 #!/usr/bin/env pwsh
+# @SID: FORGE_RUN_MCP_ARTISAN_SERVER_V1
 
 [CmdletBinding()]
 param()

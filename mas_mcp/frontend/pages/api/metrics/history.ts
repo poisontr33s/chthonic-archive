@@ -1,3 +1,4 @@
+// @SID: MAS_HISTORY_V1
 // ═══════════════════════════════════════════════════════════════════════════════
 // 🧬 MAS-MCP Dashboard - /api/metrics/history
 // Returns historical monitoring scores for trend charting

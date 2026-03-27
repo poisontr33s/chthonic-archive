@@ -1,3 +1,4 @@
+// @SID: MAS_MONITORING_V1
 // ═══════════════════════════════════════════════════════════════════════════════
 // 🧬 MAS-MCP Dashboard - /api/monitoring
 // Returns current monitoring score artifact

@@ -1,3 +1,4 @@
+// @SID: EXT_MERKLEACCUMULATOR_V1
 import * as crypto from 'crypto';
 import type { EntropyMerkleLeaf, EntropySettlement, PolyglotScanReason } from './types';
 

@@ -1,4 +1,5 @@
 #!/usr/bin/env pwsh
+# @SID: SCRIPT_FIX_MD_LINKS_V1
 # ╔════════════════════════════════════════════════════════════════════════════
 # ║ THE DECORATOR'S BLESSING: fix-md-links.ps1
 # ║ Module: Markdown link repair

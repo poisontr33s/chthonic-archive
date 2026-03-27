@@ -1,4 +1,5 @@
 #!/usr/bin/env pwsh
+# @SID: SCRIPT_NOVIA_CADAVERIS_EMBALMER_V1
 
 # ╔════════════════════════════════════════════════════════════════════════════
 # ║ THE DECORATOR'S BLESSING: novia cadaveris_embalmer_WIP.ps1
@@ -29,6 +30,7 @@ $ErrorActionPreference = "Stop"
 
 $scriptDir = Split-Path -Parent $MyInvocation.MyCommand.Path
 $repoRoot = Split-Path -Parent $scriptDir
+. (Join-Path $scriptDir "lib\ssot-paths.ps1")
 $resolvedOutputRoot = if ($OutputRoot) {
     $OutputRoot
 } else {
@@ -113,7 +115,7 @@ $sources = @(
     (New-SourceRecord -Role "profile_stub" -Path $currentUserCurrentHostProfile -Scope "external" -Note "Current user current host profile stub"),
     (New-SourceRecord -Role "profile_stub" -Path $currentUserAllHostsProfile -Scope "external" -Note "Current user all hosts profile"),
     (New-SourceRecord -Role "legacy_residue" -Path "$env:USERPROFILE\PsychoNoir-Kontrapunkt\scripts\claudineENV.ps1" -Scope "external" -Note "Historical residue from Local AI era"),
-    (New-SourceRecord -Role "context_anchor" -Path (Join-Path $repoRoot ".github\copilot-instructions.archive.md") -Scope "repo" -Note "Frozen SSOT mythology anchor"),
+    (New-SourceRecord -Role "context_anchor" -Path (Resolve-SsotPath -Root $repoRoot -Which holder) -Scope "repo" -Note "Frozen SSOT mythology anchor"),
     (New-SourceRecord -Role "context_anchor" -Path (Join-Path $repoRoot "dumpster-dive\BLACKSMITH_MATRIARCH.md") -Scope "repo" -Note "Sister Ferrum Scoriae profile"),
     (New-SourceRecord -Role "context_timeline" -Path (Join-Path $repoRoot "dumpster-dive\from-github\SR_SCHRODINGERS_BASTARD.md") -Scope "repo" -Note "Dame Schrödinger's Paradox (DM-SCRS-P) linkage — source file path pre-dates rename; file missing"),
     (New-SourceRecord -Role "context_qmr_anomaly" -Path (Join-Path $repoRoot ".github\codex-satellites\MMPS_GENERATION.md") -Scope "repo" -Note "QMR anomaly / Novia Cadaveris / Alabaster Voyde lane")

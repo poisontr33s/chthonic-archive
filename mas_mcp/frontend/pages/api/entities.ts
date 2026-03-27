@@ -1,3 +1,4 @@
+// @SID: MAS_ENTITIES_V1
 // ═══════════════════════════════════════════════════════════════════════════════
 // 🧬 MAS-MCP Dashboard - /api/entities
 // Returns entity registry data

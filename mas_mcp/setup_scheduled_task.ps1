@@ -1,4 +1,5 @@
 #!/usr/bin/env pwsh
+# @SID: MAS_SETUP_SCHEDULED_TASK_V1
 <#
 .SYNOPSIS
     Setup Windows Task Scheduler for Genesis Engine v2.

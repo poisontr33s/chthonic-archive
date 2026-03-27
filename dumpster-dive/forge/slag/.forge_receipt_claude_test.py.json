@@ -1,0 +1,10 @@
+{
+  "source_extract": "dumpster-dive/intake/scripts-restructure-2026-03-20/root-strays/.zombie_extract_claude_test.json",
+  "routed_from": "dumpster-dive/intake/scripts-restructure-2026-03-20/root-strays/claude_test.py",
+  "routed_to": "dumpster-dive/forge/slag/claude_test.py",
+  "ore_rating": 2,
+  "category": "test",
+  "content_hash": "7feeab51c64ff52a",
+  "timestamp": "2026-03-26T20:18:14.837405+00:00",
+  "provenance": null
+}

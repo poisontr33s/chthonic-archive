@@ -1,4 +1,5 @@
 #!/usr/bin/env pwsh
+# @SID: SCRIPT_VALIDATE_DOCS_CONTENT_V1
 # -*- coding: utf-8 -*-
 # Validate documentation content: file references, paths, and @SID claims
 # Usage: .\validate_docs_content.ps1

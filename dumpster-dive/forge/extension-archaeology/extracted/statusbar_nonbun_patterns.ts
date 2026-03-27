@@ -1,3 +1,4 @@
+// @SID: FORGE_STATUSBAR_NONBUN_PATTERNS_V1
 /**
  * EXTRACTED NON-BUN CODE: chthonic-statusbar/src/extension.ts
  * 

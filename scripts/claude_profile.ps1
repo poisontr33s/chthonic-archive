@@ -1,4 +1,11 @@
 #!/usr/bin/env pwsh
+#
+# @SID: SCRIPT_CLAUDE_PROFILE_V1
+# @Type: AGENT
+# @Spectrum: WHITE
+# @Zone: THE GARDEN
+# @Purpose: Launch Claude Code with a profile override for this repository.
+#
 <#
 .SYNOPSIS
   Launch Claude Code with a profile override for this repository.

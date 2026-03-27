@@ -1,3 +1,4 @@
+// @SID: SCRIPT_GEMINI_MODEL_ROUTER_TEST_V1
 import { describe, expect, test } from "bun:test";
 
 import {

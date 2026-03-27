@@ -1,4 +1,11 @@
 #!/usr/bin/env pwsh
+#
+# @SID: SCRIPT_DISCOVER_SSOT_TREASURE_V1
+# @Type: ANALYSIS
+# @Spectrum: WHITE
+# @Zone: THE GARDEN
+# @Purpose: Requires -Version 7.0
+#
 
 #Requires -Version 7.0
 

@@ -1,4 +1,11 @@
 #!/usr/bin/env pwsh
+#
+# @SID: SCRIPT_VALIDATE_VS2026_ELEVATED_V1
+# @Type: VALIDATION
+# @Spectrum: WHITE
+# @Zone: THE GARDEN
+# @Purpose: [switch]$SkipModify
+#
 
 param(
     [switch]$SkipModify

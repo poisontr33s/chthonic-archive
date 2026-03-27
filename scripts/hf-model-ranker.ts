@@ -1,3 +1,4 @@
+// @SID: SCRIPT_HF_MODEL_RANKER_V1
 #!/usr/bin/env bun
 
 /**

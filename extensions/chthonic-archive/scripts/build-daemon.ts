@@ -1,3 +1,4 @@
+// @SID: EXT_BUILD_DAEMON_V1
 import { existsSync } from 'fs';
 import path from 'path';
 import { spawnSync } from 'child_process';

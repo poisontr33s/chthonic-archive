@@ -1,3 +1,4 @@
+// @SID: MAS_SSOT_V1
 // ═══════════════════════════════════════════════════════════════════════════════
 // 🧬 MAS-MCP Dashboard - /api/ssot
 // Returns current SSOT hash and metadata

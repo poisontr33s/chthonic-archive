@@ -1,3 +1,4 @@
+# @SID: SKILL_API_MANAGER_V1
 # API Manager (local tokens + auth drift doctor)
 #
 # Purpose:

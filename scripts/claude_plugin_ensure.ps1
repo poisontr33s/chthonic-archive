@@ -1,4 +1,11 @@
 #!/usr/bin/env pwsh
+#
+# @SID: SCRIPT_CLAUDE_PLUGIN_ENSURE_V1
+# @Type: AGENT
+# @Spectrum: WHITE
+# @Zone: THE GARDEN
+# @Purpose: Idempotently ensure a Claude Code plugin is enabled (no false "Failed" noise).
+#
 <#
 SYNOPSIS
   Idempotently ensure a Claude Code plugin is enabled (no false "Failed" noise).

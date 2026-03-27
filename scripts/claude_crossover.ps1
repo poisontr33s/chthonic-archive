@@ -1,4 +1,11 @@
 #!/usr/bin/env pwsh
+#
+# @SID: SCRIPT_CLAUDE_CROSSOVER_V1
+# @Type: AGENT
+# @Spectrum: WHITE
+# @Zone: THE GARDEN
+# @Purpose: Codex -> Claude Code IDE crossover: emit a deterministic task + continuation art
+#
 
 <#
 .SYNOPSIS

@@ -1,3 +1,4 @@
+// @SID: SCRIPT_MCP_ASC_INJECTOR_V1
 #!/usr/bin/env bun
 
 // ╔════════════════════════════════════════════════════════════════════════════
@@ -30,7 +31,9 @@ import {
 import { readFile } from "fs/promises";
 import { resolve } from "path";
 
-const SSOT_PATH = resolve(__dirname, process.env.SSOT_PATH ?? "../.github/copilot-instructions.md");
+import { SSOT_POINTER } from "./lib/ssot-paths";
+
+const SSOT_PATH = resolve(__dirname, process.env.SSOT_PATH ?? (".." + "/" + SSOT_POINTER));
 
 const server = new Server(
   {
