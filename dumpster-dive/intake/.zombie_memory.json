@@ -1269,7 +1269,7 @@
       "timestamp": "2026-03-28T03:36:23.486296+00:00"
     }
   ],
-  "last_updated": "2026-03-28T03:36:23.495441+00:00",
+  "last_updated": "2026-03-28T19:30:16.247365+00:00",
   "cluster_profiles": {
     "backup": {
       "count": 5,
@@ -1920,5 +1920,31 @@
         "timestamp": "2026-03-23T22:29:39.484345+00:00"
       }
     ]
+  },
+  "ml_model": {
+    "n_samples": 171,
+    "accuracy": 0.844,
+    "trained_at": "2026-03-28T19:30:16.246927+00:00",
+    "feature_names": [
+      "ext",
+      "category",
+      "signal_count",
+      "has_sid",
+      "has_functions",
+      "community_id",
+      "semantic_similarity_max"
+    ]
+  },
+  "community_map": {
+    "membership": {},
+    "labels": {},
+    "modularity": 0.0,
+    "n_communities": 0
+  },
+  "semantic_index": {
+    "size": 0,
+    "model": "",
+    "index_path": "",
+    "updated_at": ""
   }
 }

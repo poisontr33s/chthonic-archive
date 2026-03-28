@@ -28,6 +28,9 @@ The zombie evolves through three feedback mechanisms:
   1. Adaptive Bite Heuristics — cluster_profiles adjust ore_rating from meal history
   2. Import Graph Intelligence — tracks co-occurrence, detects redundancy, skips duplicates
   3. Forge Feedback Loop  — reads forge outcomes, backpropagates into ore predictions
+  4. ML Ore Rating        — DecisionTree on forge feedback (activates at 50+ training samples)
+  5. Semantic Dedup       — sentence-transformers cosine similarity; `zombie similar <path>` for neighbors
+  6. Community Detection  — Louvain on import graph; `zombie graph --communities`; community ore prior in bite()
 
 Usage:
     uv run scripts/zombie_consumer.py bite <path>              # assess one file
@@ -46,6 +49,9 @@ Usage:
     uv run scripts/zombie_consumer.py imports                  # show import graph intelligence
     uv run scripts/zombie_consumer.py graph                    # networkx graph analysis + centrality
     uv run scripts/zombie_consumer.py graph --dot out.dot      # export DOT for Graphviz
+    uv run scripts/zombie_consumer.py graph --communities      # Louvain community detection
+    uv run scripts/zombie_consumer.py train                    # train DecisionTree on forge feedback
+    uv run scripts/zombie_consumer.py similar <path>           # find semantic neighbors in corpus
 
 @SID:           TOOL_ZOMBIE_CONSUMER_V1
 @Shabti:        CLI Script
@@ -126,12 +132,33 @@ def _empty_memory() -> dict:
             "ore_prediction_errors": [],
         },
         "consumption_log": [],
+        # --- Upgrade A2: Community Detection ---
+        "community_map": {
+            "membership": {},
+            "labels": {},
+            "modularity": 0.0,
+            "n_communities": 0,
+        },
+        # --- Upgrade 5: Semantic Dedup ---
+        "semantic_index": {
+            "size": 0,
+            "model": "",
+            "index_path": "",
+            "updated_at": "",
+        },
     }
 
 
 def _migrate_memory(mem: dict) -> dict:
     """Forward-migrate schema 1 → 2 without data loss."""
     if mem.get("schema_version", 1) >= 2:
+        # Patch in post-schema-v2 keys if missing
+        mem.setdefault("community_map", {
+            "membership": {}, "labels": {}, "modularity": 0.0, "n_communities": 0,
+        })
+        mem.setdefault("semantic_index", {
+            "size": 0, "model": "", "index_path": "", "updated_at": "",
+        })
         return mem
     mem["schema_version"] = 2
     mem.setdefault("cluster_profiles", {})
@@ -141,6 +168,9 @@ def _migrate_memory(mem: dict) -> dict:
         "total_tempered": 0,
         "total_slag": 0,
         "ore_prediction_errors": [],
+    })
+    mem.setdefault("semantic_index", {
+        "size": 0, "model": "", "index_path": "", "updated_at": "",
     })
     return mem
 
@@ -301,8 +331,43 @@ def _update_cluster_profile(mem: dict, category: str, ore_rating: int, extractab
     )
 
 
-def _adaptive_ore_rating(category: str, base_rating: int, mem: dict) -> tuple[int, bool]:
-    """Adjust ore_rating from cluster history. Returns (adjusted_rating, auto_deep)."""
+def _community_ore_prior(imports: list[str], mem: dict) -> int:
+    """Return a community-derived ore prior for a set of imports, or 0 if unavailable.
+
+    Looks up each import's community, computes the avg_ore across all members of
+    the dominant community, and returns a rounded nudge value (+1, 0, or -1).
+    Only fires when community_map has been populated (requires 3+ graph nodes).
+    """
+    community_map = mem.get("community_map", {})
+    membership = community_map.get("membership", {})
+    if not membership or not imports:
+        return 0
+
+    graph = mem.get("import_graph", {})
+    from collections import Counter
+    cid_counts = Counter(membership.get(i) for i in imports if i in membership)
+    if not cid_counts:
+        return 0
+
+    dominant_cid = cid_counts.most_common(1)[0][0]
+    # Compute avg ore_avg for all nodes in this community
+    community_nodes = [n for n, cid in membership.items() if cid == dominant_cid]
+    ore_values = [graph[n]["ore_avg"] for n in community_nodes if n in graph]
+    if not ore_values:
+        return 0
+
+    community_avg = sum(ore_values) / len(ore_values)
+    if community_avg >= 3.5:
+        return 1   # high-ore community → nudge up
+    if community_avg < 2.0:
+        return -1  # low-ore community → nudge down
+    return 0
+
+
+def _adaptive_ore_rating(
+    category: str, base_rating: int, mem: dict, imports: list[str] | None = None
+) -> tuple[int, bool]:
+    """Adjust ore_rating from cluster history + community prior. Returns (adjusted_rating, auto_deep)."""
     profiles = mem.get("cluster_profiles", {})
     p = profiles.get(category)
     if p is None or p.get("count", 0) < 3:
@@ -313,6 +378,11 @@ def _adaptive_ore_rating(category: str, base_rating: int, mem: dict) -> tuple[in
     # Penalty: categories that consistently produce nothing get downgraded
     if p.get("avg_extractable", 0) < 0.3 and p["count"] >= 5:
         learned_ore = max(1, learned_ore - 1)
+    # --- A2: Community prior nudge ---
+    if imports:
+        nudge = _community_ore_prior(imports, mem)
+        if nudge != 0:
+            learned_ore = max(1, min(5, learned_ore + nudge))
     return max(1, min(5, learned_ore)), auto_deep
 
 
@@ -321,7 +391,11 @@ def _adaptive_ore_rating(category: str, base_rating: int, mem: dict) -> tuple[in
 # ---------------------------------------------------------------------------
 
 def _update_import_graph(mem: dict, imports: list[str], ore_rating: int) -> None:
-    """Track import co-occurrence and ore correlation."""
+    """Track import co-occurrence and ore correlation.
+
+    After updating the graph, recomputes community membership and stores a
+    compact {node: community_id} snapshot in mem["community_map"].
+    """
     graph = mem.setdefault("import_graph", {})
     import_set = set(imports)
     for imp in imports:
@@ -334,6 +408,19 @@ def _update_import_graph(mem: dict, imports: list[str], ore_rating: int) -> None
         node["ore_avg"] = round(node["ore_sum"] / node["seen"], 2)
         for other in import_set - {imp}:
             node["co_occurs"][other] = node["co_occurs"].get(other, 0) + 1
+
+    # Recompute community snapshot after every graph mutation
+    if len(graph) >= 3:
+        G = build_nx_graph(mem)
+        membership = detect_communities(G)
+        if membership:
+            labels = label_communities(G, membership)
+            mem["community_map"] = {
+                "membership": membership,        # {node: community_id}
+                "labels": {str(k): v for k, v in labels.items()},  # {str(cid): anchor_node}
+                "modularity": modularity_score(G, membership),
+                "n_communities": len(set(membership.values())),
+            }
 
 
 def _import_redundancy_score(imports: list[str], mem: dict) -> float:
@@ -451,6 +538,405 @@ def learn_from_forge(mem: dict) -> dict:
     }
 
 # ---------------------------------------------------------------------------
+# Upgrade 4 — ML Ore Rating (scikit-learn DecisionTree)
+# ---------------------------------------------------------------------------
+
+ML_MODEL_PATH = INTAKE / ".zombie_ml_model.pkl"
+ML_TRAIN_THRESHOLD = 50
+
+
+def _load_sklearn():
+    """Lazy-load sklearn — returns (GradientBoostingClassifier, LabelEncoder) or (None, None)."""
+    try:
+        from sklearn.ensemble import GradientBoostingClassifier
+        from sklearn.preprocessing import LabelEncoder
+        return GradientBoostingClassifier, LabelEncoder
+    except ImportError:
+        return None, None
+
+
+def _collect_training_data(mem: dict) -> list[dict]:
+    """Build ML training rows from ALL matched forge outcomes (not just prediction errors).
+
+    Sources:
+    - _scan_forge_outcomes()   → forge_state (actual label) for each file in the forge dirs
+    - compact manifests        → features (ext, signals, category, intelligence)
+    - consumption_log          → confirms the file was consumed by the zombie
+
+    Returns list of dicts with features: ext, category, signal_count, has_sid, has_functions,
+    community_id, semantic_similarity_max, ore (label).
+    """
+    log = mem.get("consumption_log", [])
+    if not log:
+        return []
+
+    consumed_names = {Path(e["consumed"]).name for e in log}
+
+    # Build lookup: source_basename → payload from all compact manifests
+    payload_lookup: dict[str, dict] = {}
+    for manifest_path in INTAKE.rglob(".zombie_compact_manifest.json"):
+        try:
+            m = json.loads(manifest_path.read_text(encoding="utf-8"))
+            for ext_entry in m.get("extracts", []):
+                payload = ext_entry.get("payload", {})
+                src = payload.get("source", "")
+                if src:
+                    payload_lookup[Path(src).name] = payload
+        except Exception:
+            continue
+
+    forge_ore_map = {"tempered": 5, "quench": 4, "furnace": 3, "anvil": 3, "intake": 2, "slag": 1}
+
+    # Community membership snapshot for community_id feature
+    community_map = mem.get("community_map", {})
+    community_membership: dict[str, int] = community_map.get("membership", {})
+
+    rows = []
+    seen: set[str] = set()
+    for outcome in _scan_forge_outcomes():
+        fname = outcome["name"]
+        if fname not in consumed_names or fname in seen:
+            continue
+        payload = payload_lookup.get(fname)
+        if payload is None:
+            continue
+        seen.add(fname)
+
+        forge_state = outcome["forge_state"]
+        actual_ore = forge_ore_map.get(forge_state, 3)
+        category = payload.get("category", "unknown")
+        ext = Path(payload.get("source", fname)).suffix.lower() or "(none)"
+        signals = payload.get("signals", [])
+        signal_count = len(signals)
+        has_sid = int(any(s.startswith("has_sid:") for s in signals))
+        intel = payload.get("intelligence", {})
+        has_functions = int(
+            bool(intel.get("ps1_functions") or intel.get("py_functions") or intel.get("ts_functions"))
+        )
+
+        # community_id: dominant community of the file's imports (−1 = unknown)
+        imports_found = intel.get("imports", [])
+        community_id = -1
+        if imports_found and community_membership:
+            from collections import Counter
+            cid_counts = Counter(
+                community_membership[i] for i in imports_found if i in community_membership
+            )
+            if cid_counts:
+                community_id = cid_counts.most_common(1)[0][0]
+
+        # semantic_similarity_max: highest cosine sim signal recorded at BITE (0.0 if none)
+        sem_max = 0.0
+        for s in signals:
+            if s.startswith("semantic_duplicate:"):
+                parts = s.split(":")
+                if len(parts) >= 2:
+                    try:
+                        sem_max = max(sem_max, float(parts[1]))
+                    except ValueError:
+                        pass
+
+        rows.append({
+            "ext": ext,
+            "category": category,
+            "signal_count": signal_count,
+            "has_sid": has_sid,
+            "has_functions": has_functions,
+            "community_id": community_id,
+            "semantic_similarity_max": sem_max,
+            "ore": actual_ore,
+        })
+    return rows
+
+
+_GBT_FEATURE_NAMES = ["ext", "category", "signal_count", "has_sid", "has_functions", "community_id", "semantic_similarity_max"]
+_GBT_RETRAIN_GROWTH = 0.20  # auto-retrain when corpus grows ≥20% since last train
+
+
+def train_ml_model(mem: dict, force: bool = False) -> dict:
+    """Train GradientBoostingClassifier on forge feedback. Persists model to .zombie_ml_model.pkl.
+
+    Guards at ML_TRAIN_THRESHOLD samples. Auto-skips if corpus hasn't grown ≥20% since last
+    train unless force=True. Returns status dict.
+    """
+    rows = _collect_training_data(mem)
+    n = len(rows)
+    if n < ML_TRAIN_THRESHOLD:
+        return {
+            "status": "insufficient",
+            "n_samples": n,
+            "threshold": ML_TRAIN_THRESHOLD,
+            "needed": ML_TRAIN_THRESHOLD - n,
+        }
+
+    # Auto-retrain guard: skip if corpus hasn't grown by threshold since last train
+    if not force:
+        last_n = mem.get("ml_model", {}).get("n_samples", 0)
+        if last_n > 0 and (n - last_n) / last_n < _GBT_RETRAIN_GROWTH:
+            return {
+                "status": "skipped",
+                "n_samples": n,
+                "last_trained_n": last_n,
+                "growth_needed_pct": int(_GBT_RETRAIN_GROWTH * 100),
+                "growth_actual_pct": round((n - last_n) / last_n * 100, 1),
+                "hint": "use --force to bypass",
+            }
+
+    GBT, LE = _load_sklearn()
+    if GBT is None:
+        return {"status": "sklearn_missing", "n_samples": n}
+
+    import pickle
+
+    le_ext = LE()
+    le_cat = LE()
+    exts = [r["ext"] for r in rows]
+    cats = [r["category"] for r in rows]
+    ext_codes = le_ext.fit_transform(exts)
+    cat_codes = le_cat.fit_transform(cats)
+
+    X = [
+        [
+            int(ext_codes[i]),
+            int(cat_codes[i]),
+            rows[i]["signal_count"],
+            rows[i]["has_sid"],
+            rows[i]["has_functions"],
+            rows[i]["community_id"],
+            rows[i]["semantic_similarity_max"],
+        ]
+        for i in range(n)
+    ]
+    y = [r["ore"] for r in rows]
+
+    clf = GBT(n_estimators=100, max_depth=3, learning_rate=0.1, random_state=42, subsample=0.8)
+    clf.fit(X, y)
+
+    try:
+        from sklearn.model_selection import cross_val_score
+        cv_folds = min(5, max(2, n // 10))
+        scores = cross_val_score(clf, X, y, cv=cv_folds, scoring="accuracy")
+        accuracy = round(float(scores.mean()), 3)
+    except Exception:
+        accuracy = None
+
+    bundle = {
+        "clf": clf,
+        "le_ext": le_ext,
+        "le_cat": le_cat,
+        "feature_names": _GBT_FEATURE_NAMES,
+        "n_samples": n,
+        "accuracy": accuracy,
+    }
+    ML_MODEL_PATH.write_bytes(pickle.dumps(bundle))
+
+    mem.setdefault("ml_model", {}).update({
+        "n_samples": n,
+        "accuracy": accuracy,
+        "trained_at": datetime.now(timezone.utc).isoformat(),
+        "feature_names": _GBT_FEATURE_NAMES,
+    })
+
+    return {
+        "status": "trained",
+        "n_samples": n,
+        "accuracy": accuracy,
+        "model_path": str(safe_relative(ML_MODEL_PATH)),
+    }
+
+
+def _ml_ore_rating(
+    category: str,
+    ext: str,
+    signal_count: int,
+    has_sid: bool,
+    has_functions: bool,
+    mem: dict,
+    community_id: int = -1,
+    semantic_similarity_max: float = 0.0,
+) -> int | None:
+    """Return GBT-predicted ore_rating, or None if model unavailable/below threshold."""
+    ml_meta = mem.get("ml_model", {})
+    if ml_meta.get("n_samples", 0) < ML_TRAIN_THRESHOLD:
+        return None
+    if not ML_MODEL_PATH.exists():
+        return None
+    try:
+        import pickle
+        bundle = pickle.loads(ML_MODEL_PATH.read_bytes())
+        le_ext = bundle["le_ext"]
+        le_cat = bundle["le_cat"]
+        clf = bundle["clf"]
+        ext_code = int(le_ext.transform([ext])[0]) if ext in le_ext.classes_ else 0
+        cat_code = int(le_cat.transform([category])[0]) if category in le_cat.classes_ else 0
+        feature_names = bundle.get("feature_names", [])
+        if len(feature_names) == 7:
+            # GBT bundle with community + semantic features
+            X = [[ext_code, cat_code, signal_count, int(has_sid), int(has_functions), community_id, semantic_similarity_max]]
+        else:
+            # Legacy 5-feature bundle (DecisionTree) — degrade gracefully until retrain
+            X = [[ext_code, cat_code, signal_count, int(has_sid), int(has_functions)]]
+        pred = int(clf.predict(X)[0])
+        return max(1, min(5, pred))
+    except Exception:
+        return None
+
+
+# ---------------------------------------------------------------------------
+# Upgrade 5 — Semantic Dedup (sentence-transformers / all-MiniLM-L6-v2)
+# ---------------------------------------------------------------------------
+# Install the embeddings extra: uv sync --extra embeddings
+# sentence-transformers>=5.3 + transformers>=5.4 are now compatible with
+# huggingface-hub>=1.5,<2 — no version conflict with the base dependencies.
+
+SEMANTIC_MODEL_NAME = "sentence-transformers/all-MiniLM-L6-v2"
+SEMANTIC_INDEX_PATH = INTAKE / ".zombie_semantic_index.pkl"
+SEMANTIC_DEDUP_THRESHOLD = 0.92   # above → semantic duplicate, ore -1
+SEMANTIC_SIMILAR_DEFAULT = 0.70   # floor for `zombie similar` results
+
+# Max content chars to embed — truncate long files to keep inference fast
+_EMBED_MAX_CHARS = 4096
+
+_st_model_cache: object = None  # module-level singleton
+
+
+def _load_st_model():
+    """Lazy-load SentenceTransformer singleton. Returns model or None.
+
+    Requires the embeddings extra: uv sync --extra embeddings
+    Falls back to None silently — all callers guard against None.
+    """
+    global _st_model_cache
+    if _st_model_cache is not None:
+        return _st_model_cache
+    try:
+        from sentence_transformers import SentenceTransformer
+        _st_model_cache = SentenceTransformer(SEMANTIC_MODEL_NAME)
+        return _st_model_cache
+    except Exception:
+        return None
+
+
+def _load_semantic_index() -> dict:
+    """Load semantic index from pkl. Returns {content_hash: {"vector": np.ndarray, "source": str}}."""
+    if not SEMANTIC_INDEX_PATH.exists():
+        return {}
+    try:
+        import pickle
+        return pickle.loads(SEMANTIC_INDEX_PATH.read_bytes())
+    except Exception:
+        return {}
+
+
+def _save_semantic_index(index: dict) -> None:
+    import pickle
+    SEMANTIC_INDEX_PATH.write_bytes(pickle.dumps(index))
+
+
+def _embed_text(text: str) -> "np.ndarray | None":
+    """Embed a text string. Returns a 1-D numpy array or None on failure."""
+    model = _load_st_model()
+    if model is None:
+        return None
+    try:
+        import numpy as np
+        truncated = text[:_EMBED_MAX_CHARS]
+        vector = model.encode(truncated, convert_to_numpy=True, show_progress_bar=False)
+        return np.array(vector, dtype=np.float32)
+    except Exception:
+        return None
+
+
+def _cosine_similarity(a: "np.ndarray", b: "np.ndarray") -> float:
+    """Cosine similarity between two 1-D arrays."""
+    import numpy as np
+    denom = np.linalg.norm(a) * np.linalg.norm(b)
+    if denom == 0.0:
+        return 0.0
+    return float(np.dot(a, b) / denom)
+
+
+def _semantic_similarity_check(
+    content_hash: str, content: str, threshold: float = SEMANTIC_DEDUP_THRESHOLD
+) -> tuple[float, str | None]:
+    """Embed content, compare against index. Returns (max_sim, most_similar_source).
+
+    Returns (0.0, None) if index is empty, embedding fails, or nothing exceeds threshold.
+    Only returns a match when similarity >= threshold.
+    """
+    index = _load_semantic_index()
+    if not index:
+        return 0.0, None
+
+    vector = _embed_text(content)
+    if vector is None:
+        return 0.0, None
+
+    best_sim = 0.0
+    best_source: str | None = None
+    for h, entry in index.items():
+        if h == content_hash:
+            continue  # skip exact self
+        sim = _cosine_similarity(vector, entry["vector"])
+        if sim > best_sim:
+            best_sim = sim
+            best_source = entry.get("source", "?")
+
+    if best_sim >= threshold:
+        return round(best_sim, 4), best_source
+    return 0.0, None
+
+
+def _semantic_neighbors(
+    content: str, top_n: int = 5, threshold: float = SEMANTIC_SIMILAR_DEFAULT
+) -> list[dict]:
+    """Find top-N semantic neighbors for arbitrary content. Used by `zombie similar`."""
+    index = _load_semantic_index()
+    if not index:
+        return []
+
+    vector = _embed_text(content)
+    if vector is None:
+        return []
+
+    scores = []
+    for h, entry in index.items():
+        sim = _cosine_similarity(vector, entry["vector"])
+        if sim >= threshold:
+            scores.append({
+                "source": entry.get("source", "?"),
+                "similarity": round(sim, 4),
+                "content_hash": h,
+                "embedded_at": entry.get("embedded_at", "?"),
+            })
+
+    scores.sort(key=lambda x: x["similarity"], reverse=True)
+    return scores[:top_n]
+
+
+def _update_semantic_index(content_hash: str, vector: "np.ndarray", source: str) -> None:
+    """Add or update an entry in the semantic index pkl."""
+    index = _load_semantic_index()
+    index[content_hash] = {
+        "vector": vector,
+        "source": source,
+        "embedded_at": datetime.now(timezone.utc).isoformat(),
+    }
+    _save_semantic_index(index)
+
+
+def _update_semantic_memory_meta(mem: dict) -> None:
+    """Sync semantic_index metadata in the memory JSON (size + model name)."""
+    index = _load_semantic_index()
+    mem["semantic_index"] = {
+        "size": len(index),
+        "model": SEMANTIC_MODEL_NAME,
+        "index_path": str(safe_relative(SEMANTIC_INDEX_PATH)),
+        "updated_at": datetime.now(timezone.utc).isoformat(),
+    }
+
+
+# ---------------------------------------------------------------------------
 # BITE — assess a file for ore signals
 # ---------------------------------------------------------------------------
 
@@ -523,11 +1009,18 @@ def bite(path: Path, deep: bool = False) -> dict:
         deep = True
         result["signals"].append("auto_deep_from_history")
 
-    # --- Upgrade 2: Content dedup check ---
+    # --- Upgrade 2: Content dedup check (exact hash) ---
     content_hash = hashlib.sha256(content.encode()).hexdigest()[:16]
     if _is_content_duplicate(content_hash, mem):
         result["signals"].append("content_duplicate")
         result["ore_rating"] = max(1, result["ore_rating"] - 1)
+
+    # --- Upgrade 5: Semantic dedup (cosine similarity via sentence-transformers) ---
+    sem_sim, sem_source = _semantic_similarity_check(content_hash, content)
+    if sem_sim > 0.0:
+        result["signals"].append(f"semantic_duplicate:{round(sem_sim, 2)}:{Path(sem_source).name}")
+        result["ore_rating"] = max(1, result["ore_rating"] - 1)
+    result["content_hash"] = content_hash  # set early so render can use it
 
     # Extract signals
     sids = RE_SID.findall(content)
@@ -570,8 +1063,47 @@ def bite(path: Path, deep: bool = False) -> dict:
             result["signals"].append(f"high_import_redundancy:{redundancy}")
             result["ore_rating"] = max(1, result["ore_rating"] - 1)
 
-    # Hash for dedup
-    result["content_hash"] = content_hash
+    # --- Upgrade A2: Community prior nudge (fires after imports are known) ---
+    bite_community_id = -1
+    if imports_found:
+        nudge = _community_ore_prior(imports_found, mem)
+        if nudge > 0:
+            result["signals"].append(f"community_ore_nudge:+{nudge}")
+            result["ore_rating"] = min(5, result["ore_rating"] + nudge)
+        elif nudge < 0:
+            result["signals"].append(f"community_ore_nudge:{nudge}")
+            result["ore_rating"] = max(1, result["ore_rating"] + nudge)
+        # Capture dominant community_id for GBT feature
+        community_membership = mem.get("community_map", {}).get("membership", {})
+        if community_membership:
+            from collections import Counter
+            cid_counts = Counter(
+                community_membership[i] for i in imports_found if i in community_membership
+            )
+            if cid_counts:
+                bite_community_id = cid_counts.most_common(1)[0][0]
+
+    # --- Upgrade A3: GBT Ore Rating (fires last — has all signals, community, semantic) ---
+    has_sid_flag = any(s.startswith("has_sid:") for s in result["signals"])
+    has_fn_flag = any("functions" in s for s in result["signals"])
+    sem_max = 0.0
+    for s in result["signals"]:
+        if s.startswith("semantic_duplicate:"):
+            parts = s.split(":")
+            if len(parts) >= 2:
+                try:
+                    sem_max = max(sem_max, float(parts[1]))
+                except ValueError:
+                    pass
+    ml_ore = _ml_ore_rating(
+        result["category"], ext, len(result["signals"]),
+        has_sid_flag, has_fn_flag, mem,
+        community_id=bite_community_id,
+        semantic_similarity_max=sem_max,
+    )
+    if ml_ore is not None and ml_ore != result["ore_rating"]:
+        result["signals"].append(f"ore_ml:{result['ore_rating']}->{ml_ore}")
+        result["ore_rating"] = ml_ore
 
     return result
 
@@ -731,6 +1263,31 @@ def chew(path: Path) -> dict:
 
     extract["content_hash"] = assessment.get("content_hash", "")
     extract["provenance"] = _build_bride_provenance(path, assessment)
+
+    # --- Upgrade A2: Annotate community membership for this file's imports ---
+    imports_found = [
+        v for ex in assessment.get("extractable", [])
+        if ex["type"] == "imports" for v in ex["values"]
+    ]
+    if imports_found:
+        mem = load_memory()
+        community_map = mem.get("community_map", {})
+        membership = community_map.get("membership", {})
+        labels = community_map.get("labels", {})
+        # Find which community IDs appear among this file's imports
+        cids = {membership[i] for i in imports_found if i in membership}
+        if cids:
+            # Dominant community = most frequent among this file's imports
+            from collections import Counter
+            cid_counts = Counter(membership.get(i) for i in imports_found if i in membership)
+            dominant_cid = cid_counts.most_common(1)[0][0]
+            extract["cluster_membership"] = {
+                "community_id": dominant_cid,
+                "community_label": labels.get(str(dominant_cid), f"community_{dominant_cid}"),
+                "communities_present": sorted(cids),
+                "modularity": community_map.get("modularity", 0.0),
+            }
+
     return extract
 
 # ---------------------------------------------------------------------------
@@ -787,6 +1344,19 @@ def digest(path: Path, output_dir: Path | None = None) -> dict:
         hashes = mem.setdefault("content_hashes_seen", [])
         if content_hash not in hashes:
             hashes.append(content_hash)
+
+    # --- Upgrade 5: Embed and store in semantic index ---
+    source_path = intelligence.get("source", str(path))
+    _sem_content = None
+    try:
+        _sem_content = path.read_text(encoding="utf-8", errors="replace")
+    except Exception:
+        pass
+    if _sem_content and content_hash:
+        _sem_vector = _embed_text(_sem_content)
+        if _sem_vector is not None:
+            _update_semantic_index(content_hash, _sem_vector, source_path)
+            _update_semantic_memory_meta(mem)
 
     save_memory(mem)
 
@@ -1123,6 +1693,81 @@ def graph_centrality(G: "nx.DiGraph") -> dict[str, dict[str, float]]:
     return result
 
 
+def detect_communities(G: "nx.DiGraph") -> dict[str, int]:
+    """Run Louvain community detection on the undirected import graph.
+
+    Returns {import_name: community_id} — community IDs are stable integers
+    assigned in descending order of community size (0 = largest).
+    Returns empty dict if the graph has fewer than 3 nodes.
+    """
+    import networkx as nx
+    from networkx.algorithms import community as nx_community
+
+    if len(G) < 3:
+        return {}
+
+    U = G.to_undirected()
+    # Louvain is non-deterministic — seed for reproducibility
+    try:
+        comms = nx_community.louvain_communities(U, seed=42)
+    except Exception:
+        # Fallback to greedy modularity (deterministic, slower)
+        comms = list(nx_community.greedy_modularity_communities(U))
+
+    # Sort communities by size descending so community 0 is always the largest
+    comms_sorted = sorted(comms, key=len, reverse=True)
+    membership: dict[str, int] = {}
+    for cid, members in enumerate(comms_sorted):
+        for node in members:
+            membership[node] = cid
+    return membership
+
+
+def label_communities(G: "nx.DiGraph", membership: dict[str, int]) -> dict[int, str]:
+    """Derive a human-readable label for each community from its dominant signals.
+
+    Strategy: the node with highest degree centrality in each community is used
+    as the community representative. The label is that node's name.
+    """
+    import networkx as nx
+
+    if not membership:
+        return {}
+
+    U = G.to_undirected()
+    degree = dict(nx.degree_centrality(U))
+    by_community: dict[int, list[str]] = {}
+    for node, cid in membership.items():
+        by_community.setdefault(cid, []).append(node)
+
+    labels: dict[int, str] = {}
+    for cid, members in by_community.items():
+        # Pick the highest-degree member as the label anchor
+        anchor = max(members, key=lambda n: degree.get(n, 0))
+        labels[cid] = anchor
+    return labels
+
+
+def modularity_score(G: "nx.DiGraph", membership: dict[str, int]) -> float:
+    """Return the modularity Q-score for the detected partition."""
+    import networkx as nx
+    from networkx.algorithms import community as nx_community
+
+    if not membership or len(G) < 3:
+        return 0.0
+
+    U = G.to_undirected()
+    # Reconstruct partition as list of sets for nx modularity()
+    by_community: dict[int, set] = {}
+    for node, cid in membership.items():
+        by_community.setdefault(cid, set()).add(node)
+    partition = list(by_community.values())
+    try:
+        return round(nx_community.modularity(U, partition), 4)
+    except Exception:
+        return 0.0
+
+
 def export_dot(G: "nx.DiGraph") -> str:
     """Export the import graph as DOT format for Graphviz."""
     lines = ["digraph zombie_imports {", '  rankdir=LR;', '  node [shape=box, style=filled];']
@@ -1214,6 +1859,9 @@ def _render_memory(mem: dict) -> None:
     stats.add_row("Unique SIDs", str(len(mem.get("total_sids_seen", []))))
     stats.add_row("Unique functions", str(len(mem.get("total_functions_seen", []))))
     stats.add_row("Content hashes", str(len(mem.get("content_hashes_seen", []))))
+    sem = mem.get("semantic_index", {})
+    sem_size = sem.get("size", 0)
+    stats.add_row("Semantic embeddings", str(sem_size) if sem_size else "[dim]0 (run zombie feed to build)[/dim]")
     console.print(Panel(stats, title="[bold]ZOMBIE MEMORY[/bold]", border_style="dim"))
 
     # Cluster signals
@@ -1493,6 +2141,59 @@ def _render_graph(G: "nx.DiGraph", centrality: dict, dot_path: str | None = None
             console.print(f"  {i}. {', '.join(sorted(comp))}")
 
 
+def _render_communities(G: "nx.DiGraph", membership: dict, labels: dict, modularity: float) -> None:
+    from rich.table import Table
+    from rich.panel import Panel
+
+    console = _get_console()
+
+    if not membership:
+        console.print("[dim]Not enough nodes for community detection (need 3+).[/dim]")
+        return
+
+    # Community palette — cycle through a few colors
+    _COMMUNITY_COLORS = ["bold cyan", "bold green", "bold yellow", "bold magenta", "bold blue"]
+
+    n_communities = len(set(membership.values()))
+    import networkx as nx
+    U = G.to_undirected()
+    degree = dict(nx.degree_centrality(U))
+
+    summary = Table(show_header=False, box=None, padding=(0, 2))
+    summary.add_column("Key", style="bold cyan")
+    summary.add_column("Value")
+    summary.add_row("Communities detected", str(n_communities))
+    summary.add_row("Modularity Q", f"{modularity:.4f}")
+    summary.add_row("Total nodes", str(len(G)))
+    console.print(Panel(summary, title="[bold]IMPORT COMMUNITIES[/bold]", border_style="dim"))
+
+    # Group nodes by community, sorted by size
+    by_community: dict[int, list[str]] = {}
+    for node, cid in membership.items():
+        by_community.setdefault(cid, []).append(node)
+    by_community_sorted = sorted(by_community.items(), key=lambda x: len(x[1]), reverse=True)
+
+    for cid, members in by_community_sorted:
+        color = _COMMUNITY_COLORS[cid % len(_COMMUNITY_COLORS)]
+        anchor = labels.get(str(cid), labels.get(cid, f"community_{cid}"))
+        members_sorted = sorted(members, key=lambda n: degree.get(n, 0), reverse=True)
+
+        table = Table(title=f"[{color}]Community {cid}: {anchor} ({len(members)} nodes)[/{color}]",
+                      box=None)
+        table.add_column("Node", style="bold")
+        table.add_column("Degree", justify="right")
+        table.add_column("Ore Avg")
+
+        for node in members_sorted:
+            node_data = G.nodes.get(node, {})
+            table.add_row(
+                node,
+                f"{degree.get(node, 0):.3f}",
+                _ore_bar(node_data.get("ore_avg", 0)),
+            )
+        console.print(table)
+
+
 def _render_hunger(candidates: list[dict]) -> None:
     from rich.table import Table
 
@@ -1518,6 +2219,89 @@ def _render_hunger(candidates: list[dict]) -> None:
         )
 
     console.print(table)
+
+
+def _render_train(result: dict) -> None:
+    from rich.panel import Panel
+    from rich.table import Table
+
+    console = _get_console()
+    status = result.get("status", "?")
+
+    if status == "sklearn_missing":
+        console.print("[bold red]scikit-learn not installed.[/bold red] Run: uv add scikit-learn")
+        return
+
+    if status == "skipped":
+        n = result.get("n_samples", 0)
+        last_n = result.get("last_trained_n", 0)
+        summary = Table(show_header=False, box=None, padding=(0, 2))
+        summary.add_column("Key", style="bold cyan")
+        summary.add_column("Value")
+        summary.add_row("Status", "[yellow]SKIPPED[/yellow] — corpus growth below threshold")
+        summary.add_row("Current samples", str(n))
+        summary.add_row("Last trained at", str(last_n))
+        summary.add_row("Growth needed", f"{result.get('growth_needed_pct', 20)}%")
+        summary.add_row("Growth actual", f"{result.get('growth_actual_pct', 0):.1f}%")
+        summary.add_row("Hint", result.get("hint", "use --force to bypass"))
+        console.print(Panel(summary, title="[bold]ZOMBIE TRAIN[/bold]", border_style="dim"))
+        return
+
+    if status == "insufficient":
+        n = result.get("n_samples", 0)
+        needed = result.get("needed", 0)
+        threshold = result.get("threshold", ML_TRAIN_THRESHOLD)
+        summary = Table(show_header=False, box=None, padding=(0, 2))
+        summary.add_column("Key", style="bold cyan")
+        summary.add_column("Value")
+        summary.add_row("Status", "[yellow]WAITING[/yellow] — insufficient training samples")
+        summary.add_row("Samples collected", str(n))
+        summary.add_row("Activation threshold", str(threshold))
+        summary.add_row("Samples needed", f"[bold]{needed} more[/bold]")
+        summary.add_row("Path", "run `zombie learn` after more forge outcomes accumulate")
+        console.print(Panel(summary, title="[bold]ZOMBIE TRAIN[/bold]", border_style="dim"))
+        return
+
+    # Trained successfully
+    n = result.get("n_samples", 0)
+    acc = result.get("accuracy")
+    acc_str = f"{acc:.1%}" if acc is not None else "n/a"
+    summary = Table(show_header=False, box=None, padding=(0, 2))
+    summary.add_column("Key", style="bold cyan")
+    summary.add_column("Value")
+    summary.add_row("Status", "[bold green]TRAINED[/bold green]")
+    summary.add_row("Training samples", str(n))
+    summary.add_row("Cross-val accuracy", acc_str)
+    summary.add_row("Model path", result.get("model_path", "?"))
+    summary.add_row("Features", "ext · category · signal_count · has_sid · has_functions · community_id · semantic_similarity_max")
+    console.print(Panel(summary, title="[bold]ZOMBIE TRAIN[/bold]", border_style="dim"))
+
+
+def _render_similar(neighbors: list[dict], query_path: str) -> None:
+    from rich.table import Table
+    from rich.panel import Panel
+
+    console = _get_console()
+    index_size = len(_load_semantic_index())
+
+    if not neighbors:
+        console.print(
+            f"[dim]No semantic neighbors found for [bold]{query_path}[/bold] "
+            f"(index size: {index_size})[/dim]"
+        )
+        return
+
+    table = Table(title=f"Semantic Neighbors — {query_path}", box=None)
+    table.add_column("Sim", justify="right", style="bold cyan")
+    table.add_column("Source", style="bold")
+    table.add_column("Embedded At", style="dim")
+
+    for n in neighbors:
+        sim_pct = f"{n['similarity']:.0%}"
+        table.add_row(sim_pct, n["source"], n.get("embedded_at", "?")[:19])
+
+    console.print(table)
+    console.print(f"[dim]Index size: {index_size} · Model: {SEMANTIC_MODEL_NAME}[/dim]")
 
 
 # ---------------------------------------------------------------------------
@@ -1574,6 +2358,19 @@ def main() -> int:
     p_graph.add_argument("--json", action="store_true")
     p_graph.add_argument("--dot", type=str, default=None, metavar="FILE",
                          help="Export DOT file (e.g. --dot zombie_imports.dot)")
+    p_graph.add_argument("--communities", action="store_true",
+                         help="Run community detection and show cluster labels")
+
+    p_train = sub.add_parser("train", help="Train GBT classifier on forge feedback (needs 50+ samples)")
+    p_train.add_argument("--force", action="store_true", help="Retrain even if corpus hasn't grown 20%%")
+    p_train.add_argument("--json", action="store_true")
+
+    p_similar = sub.add_parser("similar", help="Find semantic neighbors of a file in the zombie corpus")
+    p_similar.add_argument("path", type=Path)
+    p_similar.add_argument("--top", type=int, default=5, metavar="N", help="Max results (default 5)")
+    p_similar.add_argument("--threshold", type=float, default=SEMANTIC_SIMILAR_DEFAULT,
+                           help=f"Minimum similarity (default {SEMANTIC_SIMILAR_DEFAULT})")
+    p_similar.add_argument("--json", action="store_true")
 
     args = parser.parse_args()
 
@@ -1712,13 +2509,29 @@ def main() -> int:
     if args.command == "graph":
         mem = load_memory()
         G = build_nx_graph(mem)
+        show_communities = getattr(args, "communities", False)
         if getattr(args, "json", False):
             centrality = graph_centrality(G)
-            print(json.dumps({
+            result_data: dict = {
                 "nodes": len(G),
                 "edges": len(G.edges),
                 "centrality": centrality,
-            }, indent=2))
+            }
+            if show_communities:
+                membership = detect_communities(G)
+                labels = label_communities(G, membership)
+                result_data["communities"] = {
+                    "membership": membership,
+                    "labels": {str(k): v for k, v in labels.items()},
+                    "modularity": modularity_score(G, membership),
+                    "n_communities": len(set(membership.values())) if membership else 0,
+                }
+            print(json.dumps(result_data, indent=2))
+        elif show_communities:
+            membership = detect_communities(G)
+            labels = label_communities(G, membership)
+            q = modularity_score(G, membership)
+            _render_communities(G, membership, labels, q)
         else:
             centrality = graph_centrality(G)
             dot_path = None
@@ -1728,6 +2541,34 @@ def main() -> int:
                 dot_file.write_text(dot_content, encoding="utf-8")
                 dot_path = str(dot_file)
             _render_graph(G, centrality, dot_path)
+        return 0
+
+    if args.command == "train":
+        mem = load_memory()
+        result = train_ml_model(mem, force=getattr(args, "force", False))
+        if result.get("status") == "trained":
+            save_memory(mem)
+        if getattr(args, "json", False):
+            print(json.dumps(result, indent=2))
+        else:
+            _render_train(result)
+        return 0
+
+    if args.command == "similar":
+        target = args.path.resolve()
+        if not target.exists():
+            print(f"ERROR: path not found: {target}", file=sys.stderr)
+            return 1
+        try:
+            query_content = target.read_text(encoding="utf-8", errors="replace")
+        except Exception as exc:
+            print(f"ERROR: cannot read {target}: {exc}", file=sys.stderr)
+            return 1
+        neighbors = _semantic_neighbors(query_content, top_n=args.top, threshold=args.threshold)
+        if getattr(args, "json", False):
+            print(json.dumps(neighbors, indent=2))
+        else:
+            _render_similar(neighbors, str(safe_relative(target)))
         return 0
 
     parser.print_help()
