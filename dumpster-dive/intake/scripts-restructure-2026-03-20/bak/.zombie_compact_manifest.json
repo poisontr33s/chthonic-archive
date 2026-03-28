@@ -1,0 +1,70 @@
+{
+  "kind": "zombie_intake_compaction",
+  "generated_at": "2026-03-27T21:28:55.610753+00:00",
+  "batch": "dumpster-dive/intake/scripts-restructure-2026-03-20/bak",
+  "apply_mode": true,
+  "extract_count": 2,
+  "receipt_count": 2,
+  "ore_histogram": {
+    "3": 2
+  },
+  "category_histogram": {
+    "backup": 2
+  },
+  "extracts": [
+    {
+      "path": "dumpster-dive/intake/scripts-restructure-2026-03-20/bak/.zombie_extract_chthonic.ps1.json",
+      "name": ".zombie_extract_chthonic.ps1.json",
+      "payload": {
+        "source": "scripts/chthonic.ps1.bak-20260316-193628",
+        "timestamp": "2026-03-21T03:20:39.142331+00:00",
+        "ore_rating": 3,
+        "category": "backup",
+        "signals": [
+          "backup_file",
+          "has_decorator_header"
+        ],
+        "intelligence": {},
+        "content_hash": "a3b3b04e5db51a79"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/scripts-restructure-2026-03-20/bak/.zombie_extract_probe_toolchain_path.ps1.json",
+      "name": ".zombie_extract_probe_toolchain_path.ps1.json",
+      "payload": {
+        "source": "scripts/probe_toolchain_path.ps1.bak-20260316-193439",
+        "timestamp": "2026-03-21T03:20:39.881265+00:00",
+        "ore_rating": 3,
+        "category": "backup",
+        "signals": [
+          "backup_file",
+          "has_decorator_header"
+        ],
+        "intelligence": {},
+        "content_hash": "3347d43810316ce1"
+      }
+    }
+  ],
+  "receipts": [
+    {
+      "path": "dumpster-dive/intake/scripts-restructure-2026-03-20/bak/.zombie_receipt_chthonic.ps1.json",
+      "name": ".zombie_receipt_chthonic.ps1.json",
+      "payload": {
+        "consumed": "scripts/chthonic.ps1.bak-20260316-193628",
+        "destination": "dumpster-dive\\intake\\scripts-restructure-2026-03-20\\bak\\chthonic.ps1.bak-20260316-193628",
+        "batch": "scripts-restructure-2026-03-20/bak",
+        "timestamp": "2026-03-21T03:20:39.174832+00:00"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/scripts-restructure-2026-03-20/bak/.zombie_receipt_probe_toolchain_path.ps1.json",
+      "name": ".zombie_receipt_probe_toolchain_path.ps1.json",
+      "payload": {
+        "consumed": "scripts/probe_toolchain_path.ps1.bak-20260316-193439",
+        "destination": "dumpster-dive\\intake\\scripts-restructure-2026-03-20\\bak\\probe_toolchain_path.ps1.bak-20260316-193439",
+        "batch": "scripts-restructure-2026-03-20/bak",
+        "timestamp": "2026-03-21T03:20:39.913349+00:00"
+      }
+    }
+  ]
+}

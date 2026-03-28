@@ -1,0 +1,145 @@
+{
+  "kind": "zombie_intake_compaction",
+  "generated_at": "2026-03-27T21:28:55.578529+00:00",
+  "batch": "dumpster-dive/intake/a6-intake-2026-03-23/deprecated",
+  "apply_mode": true,
+  "extract_count": 5,
+  "receipt_count": 5,
+  "ore_histogram": {
+    "4": 4,
+    "3": 1
+  },
+  "category_histogram": {
+    "candidate": 4,
+    "legacy": 1
+  },
+  "extracts": [
+    {
+      "path": "dumpster-dive/intake/a6-intake-2026-03-23/deprecated/.zombie_extract_ide-detection.json",
+      "name": ".zombie_extract_ide-detection.json",
+      "payload": {
+        "source": "scripts/.deprecated/ide-detection.ps1",
+        "timestamp": "2026-03-23T22:28:25.362071+00:00",
+        "ore_rating": 4,
+        "category": "candidate",
+        "signals": [
+          "ore_adapted:3->4"
+        ],
+        "intelligence": {},
+        "content_hash": "20f8cdcad25d5756"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/a6-intake-2026-03-23/deprecated/.zombie_extract_launch-claude-ide.json",
+      "name": ".zombie_extract_launch-claude-ide.json",
+      "payload": {
+        "source": "scripts/.deprecated/launch-claude-ide.ps1",
+        "timestamp": "2026-03-23T22:28:25.934029+00:00",
+        "ore_rating": 4,
+        "category": "candidate",
+        "signals": [
+          "ore_adapted:3->4"
+        ],
+        "intelligence": {},
+        "content_hash": "84af753efdbb95a2"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/a6-intake-2026-03-23/deprecated/.zombie_extract_mcp_artisan_server.json",
+      "name": ".zombie_extract_mcp_artisan_server.json",
+      "payload": {
+        "source": "scripts/.deprecated/mcp_artisan_server.ts",
+        "timestamp": "2026-03-23T22:28:27.672053+00:00",
+        "ore_rating": 4,
+        "category": "candidate",
+        "signals": [
+          "ore_adapted:3->4"
+        ],
+        "intelligence": {},
+        "content_hash": "874e73e0786550f6"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/a6-intake-2026-03-23/deprecated/.zombie_extract_mcp_artisan_server.ts.meta.json",
+      "name": ".zombie_extract_mcp_artisan_server.ts.meta.json",
+      "payload": {
+        "source": "scripts/.deprecated/mcp_artisan_server.ts.meta.json",
+        "timestamp": "2026-03-23T22:28:28.488080+00:00",
+        "ore_rating": 3,
+        "category": "legacy",
+        "signals": [
+          "legacy_marker"
+        ],
+        "intelligence": {},
+        "content_hash": "9a69ea2ed3312368"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/a6-intake-2026-03-23/deprecated/.zombie_extract_run_mcp_artisan_server.json",
+      "name": ".zombie_extract_run_mcp_artisan_server.json",
+      "payload": {
+        "source": "scripts/.deprecated/run_mcp_artisan_server.ps1",
+        "timestamp": "2026-03-23T22:28:26.825762+00:00",
+        "ore_rating": 4,
+        "category": "candidate",
+        "signals": [
+          "ore_adapted:3->4"
+        ],
+        "intelligence": {},
+        "content_hash": "d1452de5dd4cb9df"
+      }
+    }
+  ],
+  "receipts": [
+    {
+      "path": "dumpster-dive/intake/a6-intake-2026-03-23/deprecated/.zombie_receipt_ide-detection.json",
+      "name": ".zombie_receipt_ide-detection.json",
+      "payload": {
+        "consumed": "scripts/.deprecated/ide-detection.ps1",
+        "destination": "dumpster-dive\\intake\\a6-intake-2026-03-23\\deprecated\\ide-detection.ps1",
+        "batch": "a6-intake-2026-03-23/deprecated",
+        "timestamp": "2026-03-23T22:28:25.390574+00:00"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/a6-intake-2026-03-23/deprecated/.zombie_receipt_launch-claude-ide.json",
+      "name": ".zombie_receipt_launch-claude-ide.json",
+      "payload": {
+        "consumed": "scripts/.deprecated/launch-claude-ide.ps1",
+        "destination": "dumpster-dive\\intake\\a6-intake-2026-03-23\\deprecated\\launch-claude-ide.ps1",
+        "batch": "a6-intake-2026-03-23/deprecated",
+        "timestamp": "2026-03-23T22:28:25.961366+00:00"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/a6-intake-2026-03-23/deprecated/.zombie_receipt_mcp_artisan_server.json",
+      "name": ".zombie_receipt_mcp_artisan_server.json",
+      "payload": {
+        "consumed": "scripts/.deprecated/mcp_artisan_server.ts",
+        "destination": "dumpster-dive\\intake\\a6-intake-2026-03-23\\deprecated\\mcp_artisan_server.ts",
+        "batch": "a6-intake-2026-03-23/deprecated",
+        "timestamp": "2026-03-23T22:28:27.699751+00:00"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/a6-intake-2026-03-23/deprecated/.zombie_receipt_mcp_artisan_server.ts.meta.json",
+      "name": ".zombie_receipt_mcp_artisan_server.ts.meta.json",
+      "payload": {
+        "consumed": "scripts/.deprecated/mcp_artisan_server.ts.meta.json",
+        "destination": "dumpster-dive\\intake\\a6-intake-2026-03-23\\deprecated\\mcp_artisan_server.ts.meta.json",
+        "batch": "a6-intake-2026-03-23/deprecated",
+        "timestamp": "2026-03-23T22:28:28.514883+00:00"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/a6-intake-2026-03-23/deprecated/.zombie_receipt_run_mcp_artisan_server.json",
+      "name": ".zombie_receipt_run_mcp_artisan_server.json",
+      "payload": {
+        "consumed": "scripts/.deprecated/run_mcp_artisan_server.ps1",
+        "destination": "dumpster-dive\\intake\\a6-intake-2026-03-23\\deprecated\\run_mcp_artisan_server.ps1",
+        "batch": "a6-intake-2026-03-23/deprecated",
+        "timestamp": "2026-03-23T22:28:26.852317+00:00"
+      }
+    }
+  ]
+}

@@ -558,3 +558,29 @@ These are independent of forge pipeline work and can proceed in parallel:
 - `.ankhrc` genesis (Phase 0.6 of SSOT-ification blueprint — depends on Phase 0.5 config cascade)
 
 These are valid work but don't close the SFS×NOV-CAD×Bridge compliance gap.
+
+---
+
+## 6. Amendment Integration — Forge-Relevant Pull-Throughs (2026-03-27)
+
+Source: Phase 0.9.3/0.9.4 amendment cycle (12 candidates, 11 approved)
+Repository: `mas_mcp/amendments/amendments_cycle1.jsonl`
+
+### Forge Pipeline Implications
+
+| Amendment | Forge Impact | Action Required |
+|---|---|---|
+| ZDB-AM-001 (Adaptive Ore Assessment) | Ore rating logic in zombie_consumer.py is now SSOT-governed. Assessment MUST be adaptive with cluster profiling. | Verify zombie v3 `bite()` complies with §XIV.5 audit trail requirements. |
+| ZDB-AM-002 (Dependency Topology) | Import graph analysis in `chew()` is now governed by Appendix G. Centrality ranking and dedup authority chain are canonical. | No code change needed; v3 implementation already compliant. |
+| ZDB-AM-003 (Feedback-Driven Learning) | Forge feedback loop metrics are now non-overlapping (`outcomes_total`, `outcomes_matched`, `outcomes_error`). Invariant enforced. | Verify forge bridge outcome scanning uses updated metric names. |
+| ZDB-AM-004 (Consumable Classification) | 7 candidate categories are now canonical. Hunger scanner must classify candidates by category. | Verify `hunger()` output includes category labels per Appendix H. |
+| ZDB-AM-006 (I/O Encoding) | All forge scripts using `uv run` MUST prefix with `PYTHONIOENCODING=utf-8`. | Already compliant per technical-directives.instructions.md. |
+| ZDB-AM-007 (Landscape Mapping) | Zone expansion priority is now canonical (Appendix H.2). Sequential burn-down from 178 → 200 → 500. | Phase B planning follows burn-down targets. |
+
+### Non-Forge Amendments (No Action)
+
+Z1-AM-001 (Runtime Selection), Z1-AM-002 (Sensory Canon), Z1-AM-003 (MILF Stages), Z1-AM-004 (Entity Constraints), Z1-AM-005 (Amendment Protocol): These are lore/dev-convention amendments with no direct forge pipeline impact.
+
+### Deferred: ZDB-AM-005 (Embalm-First Protocol)
+
+Blocked: corpse_reviver.py integration with forge intake classification. Resolve before Phase 1.0.

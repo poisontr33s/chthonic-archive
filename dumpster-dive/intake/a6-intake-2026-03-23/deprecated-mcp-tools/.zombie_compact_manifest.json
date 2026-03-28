@@ -1,0 +1,193 @@
+{
+  "kind": "zombie_intake_compaction",
+  "generated_at": "2026-03-27T21:28:55.605402+00:00",
+  "batch": "dumpster-dive/intake/a6-intake-2026-03-23/deprecated-mcp-tools",
+  "apply_mode": true,
+  "extract_count": 7,
+  "receipt_count": 7,
+  "ore_histogram": {
+    "4": 7
+  },
+  "category_histogram": {
+    "candidate": 7
+  },
+  "extracts": [
+    {
+      "path": "dumpster-dive/intake/a6-intake-2026-03-23/deprecated-mcp-tools/.zombie_extract_ExecutionContext.schema.json",
+      "name": ".zombie_extract_ExecutionContext.schema.json",
+      "payload": {
+        "source": "scripts/.deprecated/mcp_legacy/tools/ExecutionContext.schema.json",
+        "timestamp": "2026-03-23T22:28:58.063183+00:00",
+        "ore_rating": 4,
+        "category": "candidate",
+        "signals": [
+          "ore_adapted:3->4"
+        ],
+        "intelligence": {},
+        "content_hash": "24bc5ee5ab15e0a5"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/a6-intake-2026-03-23/deprecated-mcp-tools/.zombie_extract_ExecutionContextSchema.json",
+      "name": ".zombie_extract_ExecutionContextSchema.json",
+      "payload": {
+        "source": "scripts/.deprecated/mcp_legacy/tools/ExecutionContextSchema.json",
+        "timestamp": "2026-03-23T22:28:58.320754+00:00",
+        "ore_rating": 4,
+        "category": "candidate",
+        "signals": [
+          "ore_adapted:3->4"
+        ],
+        "intelligence": {},
+        "content_hash": "4ed7dca5ae4e4d4c"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/a6-intake-2026-03-23/deprecated-mcp-tools/.zombie_extract_preflightExecutionContext.json",
+      "name": ".zombie_extract_preflightExecutionContext.json",
+      "payload": {
+        "source": "scripts/.deprecated/mcp_legacy/tools/preflightExecutionContext.ts",
+        "timestamp": "2026-03-23T22:28:58.833004+00:00",
+        "ore_rating": 4,
+        "category": "candidate",
+        "signals": [
+          "ore_adapted:3->4"
+        ],
+        "intelligence": {},
+        "content_hash": "fd49ab07e58e01d8"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/a6-intake-2026-03-23/deprecated-mcp-tools/.zombie_extract_preflightExecutionContext.test.json",
+      "name": ".zombie_extract_preflightExecutionContext.test.json",
+      "payload": {
+        "source": "scripts/.deprecated/mcp_legacy/tools/preflightExecutionContext.test.json",
+        "timestamp": "2026-03-23T22:28:58.574266+00:00",
+        "ore_rating": 4,
+        "category": "candidate",
+        "signals": [
+          "ore_adapted:3->4"
+        ],
+        "intelligence": {},
+        "content_hash": "c1f0835b31349efb"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/a6-intake-2026-03-23/deprecated-mcp-tools/.zombie_extract_queryDependencyGraph.json",
+      "name": ".zombie_extract_queryDependencyGraph.json",
+      "payload": {
+        "source": "scripts/.deprecated/mcp_legacy/tools/queryDependencyGraph.ts",
+        "timestamp": "2026-03-23T22:28:59.092927+00:00",
+        "ore_rating": 4,
+        "category": "candidate",
+        "signals": [
+          "ore_adapted:3->4"
+        ],
+        "intelligence": {},
+        "content_hash": "7521fb6e66fe5411"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/a6-intake-2026-03-23/deprecated-mcp-tools/.zombie_extract_scanRepository.json",
+      "name": ".zombie_extract_scanRepository.json",
+      "payload": {
+        "source": "scripts/.deprecated/mcp_legacy/tools/scanRepository.ts",
+        "timestamp": "2026-03-23T22:28:59.349944+00:00",
+        "ore_rating": 4,
+        "category": "candidate",
+        "signals": [
+          "ore_adapted:3->4"
+        ],
+        "intelligence": {},
+        "content_hash": "c710fad1aab697f9"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/a6-intake-2026-03-23/deprecated-mcp-tools/.zombie_extract_validateSSOT.json",
+      "name": ".zombie_extract_validateSSOT.json",
+      "payload": {
+        "source": "scripts/.deprecated/mcp_legacy/tools/validateSSOT.ts",
+        "timestamp": "2026-03-23T22:28:59.605740+00:00",
+        "ore_rating": 4,
+        "category": "candidate",
+        "signals": [
+          "ore_adapted:3->4"
+        ],
+        "intelligence": {},
+        "content_hash": "a1fe0f92b76152aa"
+      }
+    }
+  ],
+  "receipts": [
+    {
+      "path": "dumpster-dive/intake/a6-intake-2026-03-23/deprecated-mcp-tools/.zombie_receipt_ExecutionContext.schema.json",
+      "name": ".zombie_receipt_ExecutionContext.schema.json",
+      "payload": {
+        "consumed": "scripts/.deprecated/mcp_legacy/tools/ExecutionContext.schema.json",
+        "destination": "dumpster-dive\\intake\\a6-intake-2026-03-23\\deprecated-mcp-tools\\ExecutionContext.schema.json",
+        "batch": "a6-intake-2026-03-23/deprecated-mcp-tools",
+        "timestamp": "2026-03-23T22:28:58.092308+00:00"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/a6-intake-2026-03-23/deprecated-mcp-tools/.zombie_receipt_ExecutionContextSchema.json",
+      "name": ".zombie_receipt_ExecutionContextSchema.json",
+      "payload": {
+        "consumed": "scripts/.deprecated/mcp_legacy/tools/ExecutionContextSchema.json",
+        "destination": "dumpster-dive\\intake\\a6-intake-2026-03-23\\deprecated-mcp-tools\\ExecutionContextSchema.json",
+        "batch": "a6-intake-2026-03-23/deprecated-mcp-tools",
+        "timestamp": "2026-03-23T22:28:58.347666+00:00"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/a6-intake-2026-03-23/deprecated-mcp-tools/.zombie_receipt_preflightExecutionContext.json",
+      "name": ".zombie_receipt_preflightExecutionContext.json",
+      "payload": {
+        "consumed": "scripts/.deprecated/mcp_legacy/tools/preflightExecutionContext.ts",
+        "destination": "dumpster-dive\\intake\\a6-intake-2026-03-23\\deprecated-mcp-tools\\preflightExecutionContext.ts",
+        "batch": "a6-intake-2026-03-23/deprecated-mcp-tools",
+        "timestamp": "2026-03-23T22:28:58.860313+00:00"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/a6-intake-2026-03-23/deprecated-mcp-tools/.zombie_receipt_preflightExecutionContext.test.json",
+      "name": ".zombie_receipt_preflightExecutionContext.test.json",
+      "payload": {
+        "consumed": "scripts/.deprecated/mcp_legacy/tools/preflightExecutionContext.test.json",
+        "destination": "dumpster-dive\\intake\\a6-intake-2026-03-23\\deprecated-mcp-tools\\preflightExecutionContext.test.json",
+        "batch": "a6-intake-2026-03-23/deprecated-mcp-tools",
+        "timestamp": "2026-03-23T22:28:58.602932+00:00"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/a6-intake-2026-03-23/deprecated-mcp-tools/.zombie_receipt_queryDependencyGraph.json",
+      "name": ".zombie_receipt_queryDependencyGraph.json",
+      "payload": {
+        "consumed": "scripts/.deprecated/mcp_legacy/tools/queryDependencyGraph.ts",
+        "destination": "dumpster-dive\\intake\\a6-intake-2026-03-23\\deprecated-mcp-tools\\queryDependencyGraph.ts",
+        "batch": "a6-intake-2026-03-23/deprecated-mcp-tools",
+        "timestamp": "2026-03-23T22:28:59.119695+00:00"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/a6-intake-2026-03-23/deprecated-mcp-tools/.zombie_receipt_scanRepository.json",
+      "name": ".zombie_receipt_scanRepository.json",
+      "payload": {
+        "consumed": "scripts/.deprecated/mcp_legacy/tools/scanRepository.ts",
+        "destination": "dumpster-dive\\intake\\a6-intake-2026-03-23\\deprecated-mcp-tools\\scanRepository.ts",
+        "batch": "a6-intake-2026-03-23/deprecated-mcp-tools",
+        "timestamp": "2026-03-23T22:28:59.377336+00:00"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/a6-intake-2026-03-23/deprecated-mcp-tools/.zombie_receipt_validateSSOT.json",
+      "name": ".zombie_receipt_validateSSOT.json",
+      "payload": {
+        "consumed": "scripts/.deprecated/mcp_legacy/tools/validateSSOT.ts",
+        "destination": "dumpster-dive\\intake\\a6-intake-2026-03-23\\deprecated-mcp-tools\\validateSSOT.ts",
+        "batch": "a6-intake-2026-03-23/deprecated-mcp-tools",
+        "timestamp": "2026-03-23T22:28:59.634497+00:00"
+      }
+    }
+  ]
+}

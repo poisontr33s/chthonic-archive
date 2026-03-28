@@ -1,0 +1,135 @@
+{
+  "kind": "zombie_intake_compaction",
+  "generated_at": "2026-03-27T21:28:55.615306+00:00",
+  "batch": "dumpster-dive/intake/scripts-restructure-2026-03-20/recovered",
+  "apply_mode": true,
+  "extract_count": 3,
+  "receipt_count": 3,
+  "ore_histogram": {
+    "3": 2,
+    "4": 1
+  },
+  "category_histogram": {
+    "recovered": 3
+  },
+  "extracts": [
+    {
+      "path": "dumpster-dive/intake/scripts-restructure-2026-03-20/recovered/.zombie_extract_recovered_batch_transliteration.json",
+      "name": ".zombie_extract_recovered_batch_transliteration.json",
+      "payload": {
+        "source": "scripts/recovered_batch_transliteration.ps1",
+        "timestamp": "2026-03-21T03:22:51.097439+00:00",
+        "ore_rating": 3,
+        "category": "recovered",
+        "signals": [
+          "recovered_salvage",
+          "has_sid:FORGE_BATCH_TRANSLITERATION_PROMOTED_V1",
+          "ps1_functions:3",
+          "ps1_params:1"
+        ],
+        "intelligence": {
+          "sid": [
+            "FORGE_BATCH_TRANSLITERATION_PROMOTED_V1"
+          ],
+          "ps1_functions": [
+            "Get-RecoveredBatchTranscript",
+            "Show-RecoveredBatchTranscript",
+            "Invoke-RecoveredBatchWrapper"
+          ]
+        },
+        "content_hash": "bc2097b9e1a9bff9"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/scripts-restructure-2026-03-20/recovered/.zombie_extract_recovered_python_cluster_registry.json",
+      "name": ".zombie_extract_recovered_python_cluster_registry.json",
+      "payload": {
+        "source": "scripts/recovered_python_cluster_registry.py",
+        "timestamp": "2026-03-21T03:22:51.708325+00:00",
+        "ore_rating": 4,
+        "category": "recovered",
+        "signals": [
+          "recovered_salvage",
+          "has_sid:SCRIPT_RECOVERED_PYTHON_CLUSTER_REGISTRY_V1",
+          "imports:4",
+          "definitions:4",
+          "has_main",
+          "has_cli"
+        ],
+        "intelligence": {
+          "sid": [
+            "SCRIPT_RECOVERED_PYTHON_CLUSTER_REGISTRY_V1"
+          ],
+          "imports": [
+            "__future__",
+            "argparse",
+            "json",
+            "dataclasses"
+          ],
+          "definitions": [
+            "RecoveredPythonCluster",
+            "top_clusters",
+            "search_clusters",
+            "main"
+          ],
+          "docstring": [
+            "@SID: SCRIPT_RECOVERED_PYTHON_CLUSTER_REGISTRY_V1\n@Purpose: Promote tempered recovered Python cluster metadata into active scripts lane.\n@Source: dumpster-dive/forge/tempered/python/consolidated_pytho"
+          ]
+        },
+        "content_hash": "dc1d5dcb740da124"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/scripts-restructure-2026-03-20/recovered/.zombie_extract_recovered_shell_recipe_cli.json",
+      "name": ".zombie_extract_recovered_shell_recipe_cli.json",
+      "payload": {
+        "source": "scripts/recovered_shell_recipe_cli.go",
+        "timestamp": "2026-03-21T03:22:52.155700+00:00",
+        "ore_rating": 3,
+        "category": "recovered",
+        "signals": [
+          "recovered_salvage",
+          "has_sid:FORGE_SHELL_RECIPE_CLI_PROMOTED_V1"
+        ],
+        "intelligence": {
+          "sid": [
+            "FORGE_SHELL_RECIPE_CLI_PROMOTED_V1"
+          ]
+        },
+        "content_hash": "9acea0d9eaf4c4c2"
+      }
+    }
+  ],
+  "receipts": [
+    {
+      "path": "dumpster-dive/intake/scripts-restructure-2026-03-20/recovered/.zombie_receipt_recovered_batch_transliteration.json",
+      "name": ".zombie_receipt_recovered_batch_transliteration.json",
+      "payload": {
+        "consumed": "scripts/recovered_batch_transliteration.ps1",
+        "destination": "dumpster-dive\\intake\\scripts-restructure-2026-03-20\\recovered\\recovered_batch_transliteration.ps1",
+        "batch": "scripts-restructure-2026-03-20/recovered",
+        "timestamp": "2026-03-21T03:22:51.158365+00:00"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/scripts-restructure-2026-03-20/recovered/.zombie_receipt_recovered_python_cluster_registry.json",
+      "name": ".zombie_receipt_recovered_python_cluster_registry.json",
+      "payload": {
+        "consumed": "scripts/recovered_python_cluster_registry.py",
+        "destination": "dumpster-dive\\intake\\scripts-restructure-2026-03-20\\recovered\\recovered_python_cluster_registry.py",
+        "batch": "scripts-restructure-2026-03-20/recovered",
+        "timestamp": "2026-03-21T03:22:51.768052+00:00"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/scripts-restructure-2026-03-20/recovered/.zombie_receipt_recovered_shell_recipe_cli.json",
+      "name": ".zombie_receipt_recovered_shell_recipe_cli.json",
+      "payload": {
+        "consumed": "scripts/recovered_shell_recipe_cli.go",
+        "destination": "dumpster-dive\\intake\\scripts-restructure-2026-03-20\\recovered\\recovered_shell_recipe_cli.go",
+        "batch": "scripts-restructure-2026-03-20/recovered",
+        "timestamp": "2026-03-21T03:22:52.214563+00:00"
+      }
+    }
+  ]
+}

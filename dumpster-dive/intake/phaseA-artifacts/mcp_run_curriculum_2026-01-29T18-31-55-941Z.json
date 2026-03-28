@@ -1,0 +1,17 @@
+{
+  "run_id": "2026-01-29T18-31-55-941Z",
+  "workflow": "curriculum",
+  "inputs": {
+    "spectral_frequency": "GOLD"
+  },
+  "outputs": null,
+  "elapsed_ms": 2,
+  "tool_versions": {
+    "server_commit": "5c666b2",
+    "bootstrap_spec": "1752952",
+    "workflows_doc": "622e57f"
+  },
+  "notes": "smoke suite validation run",
+  "success": false,
+  "error": "undefined is not an object (evaluating 'graph.links.filter')"
+}

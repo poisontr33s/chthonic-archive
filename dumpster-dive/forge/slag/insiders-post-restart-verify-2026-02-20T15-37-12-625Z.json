@@ -1,0 +1,113 @@
+{
+  "generatedAt": "2026-02-20T15:37:13.075Z",
+  "sequence": [
+    "check-restart-gate"
+  ],
+  "insidersVersion": [
+    "1.110.0-insider",
+    "61a6cf592925fe49b1cea1c7fb72a26be59f9725",
+    "x64"
+  ],
+  "restartGate": {
+    "required": false,
+    "reasons": [],
+    "currentCommit": "61a6cf592925fe49b1cea1c7fb72a26be59f9725",
+    "latestCommitOnDisk": "61a6cf5929",
+    "duplicateExtensionInstalls": []
+  },
+  "insidersChangedSincePrevious": null,
+  "installedExtensions": [
+    {
+      "id": "anthropic.claude-code",
+      "version": "2.1.49"
+    },
+    {
+      "id": "chthonic-archive.chthonic-archive",
+      "version": "0.2.0"
+    },
+    {
+      "id": "chthonic-archive.chthonic-mandala",
+      "version": "0.1.0"
+    },
+    {
+      "id": "donjayamanne.githistory",
+      "version": "0.6.20"
+    },
+    {
+      "id": "github.codespaces",
+      "version": "1.18.5"
+    },
+    {
+      "id": "github.copilot-chat",
+      "version": "0.38.2026022001"
+    },
+    {
+      "id": "github.remotehub",
+      "version": "0.65.2026012801"
+    },
+    {
+      "id": "github.vscode-github-actions",
+      "version": "0.31.0"
+    },
+    {
+      "id": "github.vscode-pull-request-github",
+      "version": "0.129.2026022004"
+    },
+    {
+      "id": "google.gemini-cli-vscode-ide-companion",
+      "version": "0.20.0"
+    },
+    {
+      "id": "ms-azuretools.vscode-azure-github-copilot",
+      "version": "1.0.162"
+    },
+    {
+      "id": "ms-azuretools.vscode-azure-mcp-server",
+      "version": "2.0.21"
+    },
+    {
+      "id": "ms-azuretools.vscode-azureresourcegroups",
+      "version": "0.12.1"
+    },
+    {
+      "id": "ms-vscode.azure-repos",
+      "version": "0.41.2026012801"
+    },
+    {
+      "id": "ms-vscode.remote-repositories",
+      "version": "0.43.2026012801"
+    },
+    {
+      "id": "openai.chatgpt",
+      "version": "0.5.76"
+    }
+  ],
+  "changedSincePrevious": [],
+  "stepResults": [
+    {
+      "name": "VS Code Insiders version",
+      "command": [
+        "code-insiders",
+        "--version"
+      ],
+      "cwd": "C:\\Users\\erdno\\chthonic-archive",
+      "exitCode": 0,
+      "durationMs": 185,
+      "stdout": "1.110.0-insider\n61a6cf592925fe49b1cea1c7fb72a26be59f9725\nx64\n",
+      "stderr": ""
+    },
+    {
+      "name": "VS Code Insiders extension versions",
+      "command": [
+        "code-insiders",
+        "--list-extensions",
+        "--show-versions"
+      ],
+      "cwd": "C:\\Users\\erdno\\chthonic-archive",
+      "exitCode": 0,
+      "durationMs": 262,
+      "stdout": "anthropic.claude-code@2.1.49\nchthonic-archive.chthonic-archive@0.2.0\nchthonic-archive.chthonic-mandala@0.1.0\ndonjayamanne.githistory@0.6.20\ngithub.codespaces@1.18.5\ngithub.copilot-chat@0.38.2026022001\ngithub.remotehub@0.65.2026012801\ngithub.vscode-github-actions@0.31.0\ngithub.vscode-pull-request-github@0.129.2026022004\ngoogle.gemini-cli-vscode-ide-companion@0.20.0\nms-azuretools.vscode-azure-github-copilot@1.0.162\nms-azuretools.vscode-azure-mcp-server@2.0.21\nms-azuretools.vscode-azureresourcegroups@0.12.1\nms-vscode.azure-repos@0.41.2026012801\nms-vscode.remote-repositories@0.43.2026012801\nopenai.chatgpt@0.5.76\n",
+      "stderr": ""
+    }
+  ]
+}

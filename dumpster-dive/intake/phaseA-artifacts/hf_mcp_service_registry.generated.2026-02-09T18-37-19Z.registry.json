@@ -1,0 +1,731 @@
+{
+  "schema_version": 1,
+  "generated_on": "2026-02-09T18:37:19Z",
+  "source_url": "https://huggingface.co/docs/hub/en/agents-mcp",
+  "features": [
+    "text extraction",
+    "ocr"
+  ],
+  "items": [
+    {
+      "title": "API docs",
+      "url": "https://huggingface.co/spaces/huggingface/openapi",
+      "kind": "space",
+      "score": 0,
+      "matched": [],
+      "creed": "Order from Chaos",
+      "inner_voice": "Logic"
+    },
+    {
+      "title": "https://www.gradio.app/guides/building-mcp-server-with-gradio",
+      "url": "https://www.gradio.app/guides/building-mcp-server-with-gradio",
+      "kind": "unknown",
+      "score": 0,
+      "matched": [],
+      "creed": "Order from Chaos",
+      "inner_voice": "Logic"
+    },
+    {
+      "title": "https://huggingface.co/changelog/hf-mcp-server",
+      "url": "https://huggingface.co/changelog/hf-mcp-server",
+      "kind": "unknown",
+      "score": 0,
+      "matched": [],
+      "creed": "Order from Chaos",
+      "inner_voice": "Logic"
+    },
+    {
+      "title": "Getting Started with Repositories",
+      "url": "https://huggingface.co/docs/hub/en/repositories-getting-started",
+      "kind": "doc",
+      "score": 0,
+      "matched": [],
+      "creed": "Order from Chaos",
+      "inner_voice": "Logic"
+    },
+    {
+      "title": "Data Studio for Private datasets",
+      "url": "https://huggingface.co/docs/hub/en/enterprise-datasets",
+      "kind": "doc",
+      "score": 0,
+      "matched": [],
+      "creed": "Order from Chaos",
+      "inner_voice": "Logic"
+    },
+    {
+      "title": "Resource Groups (Access Control)",
+      "url": "https://huggingface.co/docs/hub/en/enterprise-resource-groups",
+      "kind": "doc",
+      "score": 0,
+      "matched": [],
+      "creed": "Order from Chaos",
+      "inner_voice": "Logic"
+    },
+    {
+      "title": "Digital Object Identifier (DOI)",
+      "url": "https://huggingface.co/docs/hub/en/doi",
+      "kind": "doc",
+      "score": 0,
+      "matched": [],
+      "creed": "Order from Chaos",
+      "inner_voice": "Logic"
+    },
+    {
+      "title": "Spaces Configuration Reference",
+      "url": "https://huggingface.co/docs/hub/en/spaces-config-reference",
+      "kind": "doc",
+      "score": 0,
+      "matched": [],
+      "creed": "Order from Chaos",
+      "inner_voice": "Logic"
+    },
+    {
+      "title": "Advanced Single Sign-On (SSO)",
+      "url": "https://huggingface.co/docs/hub/en/enterprise-advanced-sso",
+      "kind": "doc",
+      "score": 0,
+      "matched": [],
+      "creed": "Order from Chaos",
+      "inner_voice": "Logic"
+    },
+    {
+      "title": "Uploading Datasets (for LLMs)",
+      "url": "https://huggingface.co/docs/hub/en/datasets-upload-guide-llm",
+      "kind": "doc",
+      "score": 0,
+      "matched": [],
+      "creed": "Order from Chaos",
+      "inner_voice": "Logic"
+    },
+    {
+      "title": "Building agents with the SDK",
+      "url": "https://huggingface.co/docs/hub/en/agents-sdk",
+      "kind": "doc",
+      "score": 0,
+      "matched": [],
+      "creed": "Order from Chaos",
+      "inner_voice": "Logic"
+    },
+    {
+      "title": "Pull Requests & Discussions",
+      "url": "https://huggingface.co/docs/hub/en/repositories-pull-requests-discussions",
+      "kind": "doc",
+      "score": 0,
+      "matched": [],
+      "creed": "Order from Chaos",
+      "inner_voice": "Logic"
+    },
+    {
+      "title": "#add-community-tools-spaces",
+      "url": "https://huggingface.co/docs/hub/en/agents-mcp/#add-community-tools-spaces",
+      "kind": "doc",
+      "score": 0,
+      "matched": [],
+      "creed": "Order from Chaos",
+      "inner_voice": "Logic"
+    },
+    {
+      "title": "Frequently Asked Questions",
+      "url": "https://huggingface.co/docs/hub/en/models-faq",
+      "kind": "doc",
+      "score": 0,
+      "matched": [],
+      "creed": "Order from Chaos",
+      "inner_voice": "Logic"
+    },
+    {
+      "title": "https://huggingface.co/mcp",
+      "url": "https://huggingface.co/mcp",
+      "kind": "unknown",
+      "score": 0,
+      "matched": [],
+      "creed": "Order from Chaos",
+      "inner_voice": "Logic"
+    },
+    {
+      "title": "Spaces Persistent Storage",
+      "url": "https://huggingface.co/docs/hub/en/spaces-storage",
+      "kind": "doc",
+      "score": 0,
+      "matched": [],
+      "creed": "Order from Chaos",
+      "inner_voice": "Logic"
+    },
+    {
+      "title": "Hugging Face Agent Skills",
+      "url": "https://huggingface.co/docs/hub/en/agents-skills",
+      "kind": "doc",
+      "score": 0,
+      "matched": [],
+      "creed": "Order from Chaos",
+      "inner_voice": "Logic"
+    },
+    {
+      "title": "User Provisioning (SCIM)",
+      "url": "https://huggingface.co/docs/hub/en/enterprise-scim",
+      "kind": "doc",
+      "score": 0,
+      "matched": [],
+      "creed": "Order from Chaos",
+      "inner_voice": "Logic"
+    },
+    {
+      "title": "Advanced Compute Options",
+      "url": "https://huggingface.co/docs/hub/en/advanced-compute-options",
+      "kind": "doc",
+      "score": 0,
+      "matched": [],
+      "creed": "Order from Chaos",
+      "inner_voice": "Logic"
+    },
+    {
+      "title": "Gating Group Collections",
+      "url": "https://huggingface.co/docs/hub/en/enterprise-gating-group-collections",
+      "kind": "doc",
+      "score": 0,
+      "matched": [],
+      "creed": "Order from Chaos",
+      "inner_voice": "Logic"
+    },
+    {
+      "title": "Data files Configuration",
+      "url": "https://huggingface.co/docs/hub/en/datasets-data-files-configuration",
+      "kind": "doc",
+      "score": 0,
+      "matched": [],
+      "creed": "Order from Chaos",
+      "inner_voice": "Logic"
+    },
+    {
+      "title": "#hugging-face-mcp-server",
+      "url": "https://huggingface.co/docs/hub/en/agents-mcp/#hugging-face-mcp-server",
+      "kind": "doc",
+      "score": 0,
+      "matched": [],
+      "creed": "Order from Chaos",
+      "inner_voice": "Logic"
+    },
+    {
+      "title": "Team & Enterprise Plans",
+      "url": "https://huggingface.co/docs/hub/en/enterprise",
+      "kind": "doc",
+      "score": 0,
+      "matched": [],
+      "creed": "Order from Chaos",
+      "inner_voice": "Logic"
+    },
+    {
+      "title": "Model Release Checklist",
+      "url": "https://huggingface.co/docs/hub/en/model-release-checklist",
+      "kind": "doc",
+      "score": 0,
+      "matched": [],
+      "creed": "Order from Chaos",
+      "inner_voice": "Logic"
+    },
+    {
+      "title": "Datasets Download Stats",
+      "url": "https://huggingface.co/docs/hub/en/datasets-download-stats",
+      "kind": "doc",
+      "score": 0,
+      "matched": [],
+      "creed": "Order from Chaos",
+      "inner_voice": "Logic"
+    },
+    {
+      "title": "Hugging Face MCP Server",
+      "url": "https://huggingface.co/docs/hub/en/agents-mcp",
+      "kind": "doc",
+      "score": 0,
+      "matched": [],
+      "creed": "Order from Chaos",
+      "inner_voice": "Logic"
+    },
+    {
+      "title": "Agents and the `hf` CLI",
+      "url": "https://huggingface.co/docs/hub/en/agents-cli",
+      "kind": "doc",
+      "score": 0,
+      "matched": [],
+      "creed": "Order from Chaos",
+      "inner_voice": "Logic"
+    },
+    {
+      "title": "OAuth / Sign in with HF",
+      "url": "https://huggingface.co/docs/hub/en/oauth",
+      "kind": "doc",
+      "score": 0,
+      "matched": [],
+      "creed": "Order from Chaos",
+      "inner_voice": "Logic"
+    },
+    {
+      "title": "Run Spaces with Docker",
+      "url": "https://huggingface.co/docs/hub/en/spaces-run-with-docker",
+      "kind": "doc",
+      "score": 0,
+      "matched": [],
+      "creed": "Order from Chaos",
+      "inner_voice": "Logic"
+    },
+    {
+      "title": "Sign-In with HF button",
+      "url": "https://huggingface.co/docs/hub/en/spaces-oauth",
+      "kind": "doc",
+      "score": 0,
+      "matched": [],
+      "creed": "Order from Chaos",
+      "inner_voice": "Logic"
+    },
+    {
+      "title": "Storage Backend (Xet)",
+      "url": "https://huggingface.co/docs/hub/en/xet/index",
+      "kind": "doc",
+      "score": 0,
+      "matched": [],
+      "creed": "Order from Chaos",
+      "inner_voice": "Logic"
+    },
+    {
+      "title": "Models Download Stats",
+      "url": "https://huggingface.co/docs/hub/en/models-download-stats",
+      "kind": "doc",
+      "score": 0,
+      "matched": [],
+      "creed": "Order from Chaos",
+      "inner_voice": "Logic"
+    },
+    {
+      "title": "Spaces as MCP servers",
+      "url": "https://huggingface.co/docs/hub/en/spaces-mcp-servers",
+      "kind": "doc",
+      "score": 0,
+      "matched": [],
+      "creed": "Order from Chaos",
+      "inner_voice": "Logic"
+    },
+    {
+      "title": "Single Sign-On (SSO)",
+      "url": "https://huggingface.co/docs/hub/en/enterprise-sso",
+      "kind": "doc",
+      "score": 0,
+      "matched": [],
+      "creed": "Order from Chaos",
+      "inner_voice": "Logic"
+    },
+    {
+      "title": "Integrated Libraries",
+      "url": "https://huggingface.co/docs/hub/en/models-libraries",
+      "kind": "doc",
+      "score": 0,
+      "matched": [],
+      "creed": "Order from Chaos",
+      "inner_voice": "Logic"
+    },
+    {
+      "title": "Downloading Datasets",
+      "url": "https://huggingface.co/docs/hub/en/datasets-downloading",
+      "kind": "doc",
+      "score": 0,
+      "matched": [],
+      "creed": "Order from Chaos",
+      "inner_voice": "Logic"
+    },
+    {
+      "title": "Integrated Libraries",
+      "url": "https://huggingface.co/docs/hub/en/datasets-libraries",
+      "kind": "doc",
+      "score": 0,
+      "matched": [],
+      "creed": "Order from Chaos",
+      "inner_voice": "Logic"
+    },
+    {
+      "title": "Spaces Custom Domain",
+      "url": "https://huggingface.co/docs/hub/en/spaces-custom-domain",
+      "kind": "doc",
+      "score": 0,
+      "matched": [],
+      "creed": "Order from Chaos",
+      "inner_voice": "Logic"
+    },
+    {
+      "title": "Publisher Analytics",
+      "url": "https://huggingface.co/docs/hub/en/enterprise-analytics",
+      "kind": "doc",
+      "score": 0,
+      "matched": [],
+      "creed": "Order from Chaos",
+      "inner_voice": "Logic"
+    },
+    {
+      "title": "Repository Settings",
+      "url": "https://huggingface.co/docs/hub/en/repositories-settings",
+      "kind": "doc",
+      "score": 0,
+      "matched": [],
+      "creed": "Order from Chaos",
+      "inner_voice": "Logic"
+    },
+    {
+      "title": "Spaces GPU Upgrades",
+      "url": "https://huggingface.co/docs/hub/en/spaces-gpus",
+      "kind": "doc",
+      "score": 0,
+      "matched": [],
+      "creed": "Order from Chaos",
+      "inner_voice": "Logic"
+    },
+    {
+      "title": "Pricing and Billing",
+      "url": "https://huggingface.co/docs/hub/en/jobs-pricing",
+      "kind": "doc",
+      "score": 0,
+      "matched": [],
+      "creed": "Order from Chaos",
+      "inner_voice": "Logic"
+    },
+    {
+      "title": "\ud83e\udd17 Hugging Face Hub",
+      "url": "https://huggingface.co/docs/hub/en/index",
+      "kind": "doc",
+      "score": 0,
+      "matched": [],
+      "creed": "Order from Chaos",
+      "inner_voice": "Logic"
+    },
+    {
+      "title": "Downloading Models",
+      "url": "https://huggingface.co/docs/hub/en/models-downloading",
+      "kind": "doc",
+      "score": 0,
+      "matched": [],
+      "creed": "Order from Chaos",
+      "inner_voice": "Logic"
+    },
+    {
+      "title": "Uploading Datasets",
+      "url": "https://huggingface.co/docs/hub/en/datasets-adding",
+      "kind": "doc",
+      "score": 0,
+      "matched": [],
+      "creed": "Order from Chaos",
+      "inner_voice": "Logic"
+    },
+    {
+      "title": "Streaming Datasets",
+      "url": "https://huggingface.co/docs/hub/en/datasets-streaming",
+      "kind": "doc",
+      "score": 0,
+      "matched": [],
+      "creed": "Order from Chaos",
+      "inner_voice": "Logic"
+    },
+    {
+      "title": "Static HTML Spaces",
+      "url": "https://huggingface.co/docs/hub/en/spaces-sdks-static",
+      "kind": "doc",
+      "score": 0,
+      "matched": [],
+      "creed": "Order from Chaos",
+      "inner_voice": "Logic"
+    },
+    {
+      "title": "Webhook Automation",
+      "url": "https://huggingface.co/docs/hub/en/jobs-webhooks",
+      "kind": "doc",
+      "score": 0,
+      "matched": [],
+      "creed": "Order from Chaos",
+      "inner_voice": "Logic"
+    },
+    {
+      "title": "Advanced Security",
+      "url": "https://huggingface.co/docs/hub/en/enterprise-advanced-security",
+      "kind": "doc",
+      "score": 0,
+      "matched": [],
+      "creed": "Order from Chaos",
+      "inner_voice": "Logic"
+    },
+    {
+      "title": "Tokens Management",
+      "url": "https://huggingface.co/docs/hub/en/enterprise-tokens-management",
+      "kind": "doc",
+      "score": 0,
+      "matched": [],
+      "creed": "Order from Chaos",
+      "inner_voice": "Logic"
+    },
+    {
+      "title": "Datasets Overview",
+      "url": "https://huggingface.co/docs/hub/en/datasets-overview",
+      "kind": "doc",
+      "score": 0,
+      "matched": [],
+      "creed": "Order from Chaos",
+      "inner_voice": "Logic"
+    },
+    {
+      "title": "Agents on the Hub",
+      "url": "https://huggingface.co/docs/hub/en/agents-overview",
+      "kind": "doc",
+      "score": 0,
+      "matched": [],
+      "creed": "Order from Chaos",
+      "inner_voice": "Logic"
+    },
+    {
+      "title": "Hub API Endpoints",
+      "url": "https://huggingface.co/docs/hub/en/api",
+      "kind": "doc",
+      "score": 0,
+      "matched": [],
+      "creed": "Order from Chaos",
+      "inner_voice": "Logic"
+    },
+    {
+      "title": "#using-the-server",
+      "url": "https://huggingface.co/docs/hub/en/agents-mcp/#using-the-server",
+      "kind": "doc",
+      "score": 0,
+      "matched": [],
+      "creed": "Order from Chaos",
+      "inner_voice": "Logic"
+    },
+    {
+      "title": "Network Security",
+      "url": "https://huggingface.co/docs/hub/en/enterprise-network-security",
+      "kind": "doc",
+      "score": 0,
+      "matched": [],
+      "creed": "Order from Chaos",
+      "inner_voice": "Logic"
+    },
+    {
+      "title": "Uploading Models",
+      "url": "https://huggingface.co/docs/hub/en/models-uploading",
+      "kind": "doc",
+      "score": 0,
+      "matched": [],
+      "creed": "Order from Chaos",
+      "inner_voice": "Logic"
+    },
+    {
+      "title": "Streamlit Spaces",
+      "url": "https://huggingface.co/docs/hub/en/spaces-sdks-streamlit",
+      "kind": "doc",
+      "score": 0,
+      "matched": [],
+      "creed": "Order from Chaos",
+      "inner_voice": "Logic"
+    },
+    {
+      "title": "Embed your Space",
+      "url": "https://huggingface.co/docs/hub/en/spaces-embed",
+      "kind": "doc",
+      "score": 0,
+      "matched": [],
+      "creed": "Order from Chaos",
+      "inner_voice": "Logic"
+    },
+    {
+      "title": "Spaces Changelog",
+      "url": "https://huggingface.co/docs/hub/en/spaces-changelog",
+      "kind": "doc",
+      "score": 0,
+      "matched": [],
+      "creed": "Order from Chaos",
+      "inner_voice": "Logic"
+    },
+    {
+      "title": "#what-you-can-do",
+      "url": "https://huggingface.co/docs/hub/en/agents-mcp/#what-you-can-do",
+      "kind": "doc",
+      "score": 0,
+      "matched": [],
+      "creed": "Order from Chaos",
+      "inner_voice": "Logic"
+    },
+    {
+      "title": "Update on GitHub",
+      "url": "https://github.com/huggingface/hub-docs/blob/main/docs/hub/agents-mcp.md",
+      "kind": "doc",
+      "score": 0,
+      "matched": [],
+      "creed": "Order from Chaos",
+      "inner_voice": "Logic"
+    },
+    {
+      "title": "Storage Regions",
+      "url": "https://huggingface.co/docs/hub/en/storage-regions",
+      "kind": "doc",
+      "score": 0,
+      "matched": [],
+      "creed": "Order from Chaos",
+      "inner_voice": "Logic"
+    },
+    {
+      "title": "Model Inference",
+      "url": "https://huggingface.co/docs/hub/en/models-inference",
+      "kind": "doc",
+      "score": 0,
+      "matched": [],
+      "creed": "Order from Chaos",
+      "inner_voice": "Logic"
+    },
+    {
+      "title": "Advanced Topics",
+      "url": "https://huggingface.co/docs/hub/en/models-advanced",
+      "kind": "doc",
+      "score": 0,
+      "matched": [],
+      "creed": "Order from Chaos",
+      "inner_voice": "Logic"
+    },
+    {
+      "title": "Spaces Overview",
+      "url": "https://huggingface.co/docs/hub/en/spaces-overview",
+      "kind": "doc",
+      "score": 0,
+      "matched": [],
+      "creed": "Order from Chaos",
+      "inner_voice": "Logic"
+    },
+    {
+      "title": "Spaces Dev Mode",
+      "url": "https://huggingface.co/docs/hub/en/spaces-dev-mode",
+      "kind": "doc",
+      "score": 0,
+      "matched": [],
+      "creed": "Order from Chaos",
+      "inner_voice": "Logic"
+    },
+    {
+      "title": "Featured Spaces",
+      "url": "https://huggingface.co/docs/hub/en/spaces-featured",
+      "kind": "doc",
+      "score": 0,
+      "matched": [],
+      "creed": "Order from Chaos",
+      "inner_voice": "Logic"
+    },
+    {
+      "title": "Advanced Topics",
+      "url": "https://huggingface.co/docs/hub/en/spaces-advanced",
+      "kind": "doc",
+      "score": 0,
+      "matched": [],
+      "creed": "Order from Chaos",
+      "inner_voice": "Logic"
+    },
+    {
+      "title": "#built-in-tools",
+      "url": "https://huggingface.co/docs/hub/en/agents-mcp/#built-in-tools",
+      "kind": "doc",
+      "score": 0,
+      "matched": [],
+      "creed": "Order from Chaos",
+      "inner_voice": "Logic"
+    },
+    {
+      "title": "#spaces-options",
+      "url": "https://huggingface.co/docs/hub/en/agents-mcp/#spaces-options",
+      "kind": "doc",
+      "score": 0,
+      "matched": [],
+      "creed": "Order from Chaos",
+      "inner_voice": "Logic"
+    },
+    {
+      "title": "Storage Limits",
+      "url": "https://huggingface.co/docs/hub/en/storage-limits",
+      "kind": "doc",
+      "score": 0,
+      "matched": [],
+      "creed": "Order from Chaos",
+      "inner_voice": "Logic"
+    },
+    {
+      "title": "Gated Datasets",
+      "url": "https://huggingface.co/docs/hub/en/datasets-gated",
+      "kind": "doc",
+      "score": 0,
+      "matched": [],
+      "creed": "Order from Chaos",
+      "inner_voice": "Logic"
+    },
+    {
+      "title": "Spaces ZeroGPU",
+      "url": "https://huggingface.co/docs/hub/en/spaces-zerogpu",
+      "kind": "doc",
+      "score": 0,
+      "matched": [],
+      "creed": "Order from Chaos",
+      "inner_voice": "Logic"
+    },
+    {
+      "title": "Popular Images",
+      "url": "https://huggingface.co/docs/hub/en/jobs-popular-images",
+      "kind": "doc",
+      "score": 0,
+      "matched": [],
+      "creed": "Order from Chaos",
+      "inner_voice": "Logic"
+    },
+    {
+      "title": "Blog Articles",
+      "url": "https://huggingface.co/docs/hub/en/enterprise-blog-articles",
+      "kind": "doc",
+      "score": 0,
+      "matched": [],
+      "creed": "Order from Chaos",
+      "inner_voice": "Logic"
+    },
+    {
+      "title": "Notifications",
+      "url": "https://huggingface.co/docs/hub/en/notifications",
+      "kind": "doc",
+      "score": 0,
+      "matched": [],
+      "creed": "Order from Chaos",
+      "inner_voice": "Logic"
+    },
+    {
+      "title": "The Model Hub",
+      "url": "https://huggingface.co/docs/hub/en/models-the-hub",
+      "kind": "doc",
+      "score": 0,
+      "matched": [],
+      "creed": "Order from Chaos",
+      "inner_voice": "Logic"
+    },
+    {
+      "title": "Model Widgets",
+      "url": "https://huggingface.co/docs/hub/en/models-widgets",
+      "kind": "doc",
+      "score": 0,
+      "matched": [],
+      "creed": "Order from Chaos",
+      "inner_voice": "Logic"
+    },
+    {
+      "title": "Dataset Cards",
+      "url": "https://huggingface.co/docs/hub/en/datasets-cards",
+      "kind": "doc",
+      "score": 0,
+      "matched": [],
+      "creed": "Order from Chaos",
+      "inner_voice": "Logic"
+    },
+    {
+      "title": "Gradio Spaces",
+      "url": "https://huggingface.co/docs/hub/en/spaces-sdks-gradio",
+      "kind": "doc",
+      "score": 0,
+      "matched": [],
+      "creed": "Order from Chaos",
+      "inner_voice": "Logic"
+    }
+  ]
+}

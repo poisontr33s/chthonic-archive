@@ -1,0 +1,114 @@
+{
+  "name": "chthonic-mandala",
+  "displayName": "Chthonic Mandala Viewer",
+  "description": "Sacred geometry visualization of repository topology (10,110 nodes)",
+  "version": "0.1.0",
+  "publisher": "chthonic-archive",
+  "icon": "icons/mandala.svg",
+  "engines": {
+    "vscode": "^1.109.0"
+  },
+  "categories": ["Visualization", "Themes"],
+  "activationEvents": [
+    "onCommand:chthonic.openMandala",
+    "onCommand:chthonic.openDependencyGraph",
+    "onCommand:chthonic.openHealthReport",
+    "onCommand:chthonic.switchTheme",
+    "onView:chthonic.mandalaView",
+    "onView:chthonic.dependencyView",
+    "onView:chthonic.healthView",
+    "onView:chthonic.themeView"
+  ],
+  "main": "./dist/extension.js",
+  "sideEffects": false,
+  "bun": {
+    "treeShaking": true,
+    "minify": true,
+    "define": {
+      "process.env.NODE_ENV": "\"production\""
+    }
+  },
+  "contributes": {
+    "themes": [
+      {
+        "label": "Chthonic Mandala - Flesh & Earth",
+        "uiTheme": "vs-dark",
+        "path": "./themes/chthonic-mandala-color-theme.json"
+      },
+      {
+        "label": "Chthonic Mandala - ROGBIV",
+        "uiTheme": "vs-dark",
+        "path": "./themes/chthonic-rogbiv-color-theme.json"
+      }
+    ],
+    "commands": [
+      {
+        "command": "chthonic.openMandala",
+        "title": "Chthonic: Open Sacred Mandala",
+        "icon": "$(symbol-misc)"
+      },
+      {
+        "command": "chthonic.openDependencyGraph",
+        "title": "Chthonic: Open Dependency Graph"
+      },
+      {
+        "command": "chthonic.openHealthReport",
+        "title": "Chthonic: Open Health Report"
+      },
+      {
+        "command": "chthonic.switchTheme",
+        "title": "Chthonic: Switch Theme",
+        "icon": "$(paintcan)"
+      }
+    ],
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "chthonic-geometry",
+          "title": "Chthonic Geometry",
+          "icon": "resources/mandala.svg"
+        }
+      ]
+    },
+    "views": {
+      "chthonic-geometry": [
+        {
+          "id": "chthonic.mandalaView",
+          "name": "Sacred Mandala",
+          "icon": "resources/mandala.svg",
+          "contextualTitle": "Sacred Geometry"
+        },
+        {
+          "id": "chthonic.dependencyView",
+          "name": "Dependency Graph",
+          "icon": "resources/mandala.svg"
+        },
+        {
+          "id": "chthonic.healthView",
+          "name": "Health Report",
+          "icon": "resources/mandala.svg"
+        },
+        {
+          "id": "chthonic.themeView",
+          "name": "Themes",
+          "icon": "resources/mandala.svg"
+        }
+      ]
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "bun run compile",
+    "compile": "bun build src/extension.ts --outdir dist --target node --format cjs --external vscode --minify",
+    "watch": "bun build src/extension.ts --outdir dist --target node --format cjs --external vscode --watch",
+    "insiders:run": "code-insiders --extensionDevelopmentPath=.",
+    "insiders:dts:sync": "vscode-dts main"
+  },
+  "devDependencies": {
+    "@types/node": "^20.x",
+    "@types/vscode": "^1.109.0",
+    "@vscode/dts": "^0.4.1",
+    "@vscode/test-cli": "^0.0.12",
+    "@vscode/test-electron": "^2.5.2",
+    "typescript": "^5.x"
+  }
+}

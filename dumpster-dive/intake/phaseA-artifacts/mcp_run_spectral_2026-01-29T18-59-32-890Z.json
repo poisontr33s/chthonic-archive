@@ -1,0 +1,60 @@
+{
+  "run_id": "2026-01-29T18-59-32-890Z",
+  "workflow": "spectral",
+  "inputs": {
+    "thresholds": {
+      "min": 5,
+      "max": 50
+    }
+  },
+  "outputs": {
+    "distribution": {
+      "VIOLET": 89,
+      "BLUE": 104,
+      "GOLD": 158,
+      "WHITE": 61,
+      "ORANGE": 63,
+      "RED": 12,
+      "INDIGO": 2
+    },
+    "flags": [
+      {
+        "frequency": "RED",
+        "count": 12,
+        "percentage": "2.5",
+        "status": "under-represented"
+      },
+      {
+        "frequency": "INDIGO",
+        "count": 2,
+        "percentage": "0.4",
+        "status": "under-represented"
+      }
+    ],
+    "representatives": {
+      "RED": [
+        "src/main.rs",
+        "src/data/factions.rs",
+        "src/data/faction_types.rs",
+        "src/data/loader.rs",
+        "src/data/mod.rs"
+      ],
+      "INDIGO": [
+        "assets/shaders/iso_grid.frag",
+        "assets/shaders/iso_grid.vert"
+      ]
+    },
+    "recommendations": [
+      "Consider expanding RED category (currently 2.5%)",
+      "Consider expanding INDIGO category (currently 0.4%)"
+    ]
+  },
+  "elapsed_ms": 2,
+  "tool_versions": {
+    "server_commit": "5c666b2",
+    "bootstrap_spec": "1752952",
+    "workflows_doc": "622e57f"
+  },
+  "notes": "smoke suite validation run",
+  "success": true
+}

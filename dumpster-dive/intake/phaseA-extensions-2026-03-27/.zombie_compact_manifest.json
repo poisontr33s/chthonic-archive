@@ -1,0 +1,624 @@
+{
+  "kind": "zombie_intake_compaction",
+  "generated_at": "2026-03-27T21:27:40.866132+00:00",
+  "batch": "dumpster-dive/intake/phaseA-extensions-2026-03-27",
+  "apply_mode": true,
+  "extract_count": 24,
+  "receipt_count": 24,
+  "ore_histogram": {
+    "2": 21,
+    "1": 3
+  },
+  "category_histogram": {
+    "candidate": 22,
+    "legacy": 2
+  },
+  "extracts": [
+    {
+      "path": "dumpster-dive/intake/phaseA-extensions-2026-03-27/.zombie_extract_chthonic-archive-0.2.1_06b8ea00.json",
+      "name": ".zombie_extract_chthonic-archive-0.2.1_06b8ea00.json",
+      "payload": {
+        "source": "extensions/chthonic-archive/chthonic-archive-0.2.1.vsix",
+        "timestamp": "2026-03-27T21:02:32.535376+00:00",
+        "ore_rating": 2,
+        "category": "candidate",
+        "signals": [
+          "ore_adapted:3->2"
+        ],
+        "intelligence": {},
+        "content_hash": "f63696c528a79315"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-extensions-2026-03-27/.zombie_extract_chthonic-archive-insiders_4ade8c56.json",
+      "name": ".zombie_extract_chthonic-archive-insiders_4ade8c56.json",
+      "payload": {
+        "source": "extensions/chthonic-archive/chthonic-archive-insiders.vsix",
+        "timestamp": "2026-03-27T21:02:32.798973+00:00",
+        "ore_rating": 2,
+        "category": "candidate",
+        "signals": [
+          "ore_adapted:3->2"
+        ],
+        "intelligence": {},
+        "content_hash": "c973c265730f6200"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-extensions-2026-03-27/.zombie_extract_chthonic-mandala-insiders_74db503d.json",
+      "name": ".zombie_extract_chthonic-mandala-insiders_74db503d.json",
+      "payload": {
+        "source": "extensions/chthonic-mandala/chthonic-mandala-insiders.vsix",
+        "timestamp": "2026-03-27T21:02:33.057483+00:00",
+        "ore_rating": 2,
+        "category": "candidate",
+        "signals": [
+          "ore_adapted:3->2"
+        ],
+        "intelligence": {},
+        "content_hash": "597663c8b290bc52"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-extensions-2026-03-27/.zombie_extract_chthonic-statusbar-insiders_dc36991e.json",
+      "name": ".zombie_extract_chthonic-statusbar-insiders_dc36991e.json",
+      "payload": {
+        "source": "extensions/chthonic-statusbar/chthonic-statusbar-insiders.vsix",
+        "timestamp": "2026-03-27T21:02:33.310205+00:00",
+        "ore_rating": 2,
+        "category": "candidate",
+        "signals": [
+          "ore_adapted:3->2"
+        ],
+        "intelligence": {},
+        "content_hash": "cb8557011dfcfb4b"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-extensions-2026-03-27/.zombie_extract_insiders-post-restart-verify-2026-02-20T15-18-56-505Z_e00a996c.json",
+      "name": ".zombie_extract_insiders-post-restart-verify-2026-02-20T15-18-56-505Z_e00a996c.json",
+      "payload": {
+        "source": "extensions/chthonic-archive/.chthonic/cache/insiders-post-restart-verify-2026-02-20T15-18-56-505Z.json",
+        "timestamp": "2026-03-27T21:02:33.571100+00:00",
+        "ore_rating": 2,
+        "category": "candidate",
+        "signals": [
+          "ore_adapted:3->2"
+        ],
+        "intelligence": {},
+        "content_hash": "51e0ea641929c4f9"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-extensions-2026-03-27/.zombie_extract_insiders-post-restart-verify-2026-02-20T15-21-45-993Z_79b51a3f.json",
+      "name": ".zombie_extract_insiders-post-restart-verify-2026-02-20T15-21-45-993Z_79b51a3f.json",
+      "payload": {
+        "source": "extensions/chthonic-archive/.chthonic/cache/insiders-post-restart-verify-2026-02-20T15-21-45-993Z.json",
+        "timestamp": "2026-03-27T21:02:33.827985+00:00",
+        "ore_rating": 2,
+        "category": "candidate",
+        "signals": [
+          "ore_adapted:3->2"
+        ],
+        "intelligence": {},
+        "content_hash": "016aa79f2c942f3f"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-extensions-2026-03-27/.zombie_extract_insiders-post-restart-verify-2026-02-20T15-30-04-644Z_88e24416.json",
+      "name": ".zombie_extract_insiders-post-restart-verify-2026-02-20T15-30-04-644Z_88e24416.json",
+      "payload": {
+        "source": "extensions/chthonic-archive/.chthonic/cache/insiders-post-restart-verify-2026-02-20T15-30-04-644Z.json",
+        "timestamp": "2026-03-27T21:02:34.082045+00:00",
+        "ore_rating": 2,
+        "category": "candidate",
+        "signals": [
+          "ore_adapted:3->2"
+        ],
+        "intelligence": {},
+        "content_hash": "e0262c73438dc917"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-extensions-2026-03-27/.zombie_extract_insiders-post-restart-verify-2026-02-20T15-31-11-426Z_5a977b27.json",
+      "name": ".zombie_extract_insiders-post-restart-verify-2026-02-20T15-31-11-426Z_5a977b27.json",
+      "payload": {
+        "source": "extensions/chthonic-archive/.chthonic/cache/insiders-post-restart-verify-2026-02-20T15-31-11-426Z.json",
+        "timestamp": "2026-03-27T21:02:34.332314+00:00",
+        "ore_rating": 2,
+        "category": "candidate",
+        "signals": [
+          "ore_adapted:3->2"
+        ],
+        "intelligence": {},
+        "content_hash": "90ac80374d8b352d"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-extensions-2026-03-27/.zombie_extract_insiders-post-restart-verify-2026-02-20T15-33-03-546Z_decc666a.json",
+      "name": ".zombie_extract_insiders-post-restart-verify-2026-02-20T15-33-03-546Z_decc666a.json",
+      "payload": {
+        "source": "extensions/chthonic-archive/.chthonic/cache/insiders-post-restart-verify-2026-02-20T15-33-03-546Z.json",
+        "timestamp": "2026-03-27T21:02:34.586021+00:00",
+        "ore_rating": 2,
+        "category": "candidate",
+        "signals": [
+          "ore_adapted:3->2"
+        ],
+        "intelligence": {},
+        "content_hash": "c2e6bb915388245e"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-extensions-2026-03-27/.zombie_extract_insiders-post-restart-verify-2026-02-20T15-37-12-604Z_6cae9f63.json",
+      "name": ".zombie_extract_insiders-post-restart-verify-2026-02-20T15-37-12-604Z_6cae9f63.json",
+      "payload": {
+        "source": "extensions/chthonic-archive/.chthonic/cache/insiders-post-restart-verify-2026-02-20T15-37-12-604Z.json",
+        "timestamp": "2026-03-27T21:02:34.835298+00:00",
+        "ore_rating": 2,
+        "category": "candidate",
+        "signals": [
+          "ore_adapted:3->2"
+        ],
+        "intelligence": {},
+        "content_hash": "73b29d286a65e81d"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-extensions-2026-03-27/.zombie_extract_insiders-post-restart-verify-2026-02-20T15-37-12-625Z_9202a9ac.json",
+      "name": ".zombie_extract_insiders-post-restart-verify-2026-02-20T15-37-12-625Z_9202a9ac.json",
+      "payload": {
+        "source": "extensions/chthonic-archive/.chthonic/cache/insiders-post-restart-verify-2026-02-20T15-37-12-625Z.json",
+        "timestamp": "2026-03-27T21:02:35.083324+00:00",
+        "ore_rating": 2,
+        "category": "candidate",
+        "signals": [
+          "ore_adapted:3->2"
+        ],
+        "intelligence": {},
+        "content_hash": "31591eecc0bcbfd7"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-extensions-2026-03-27/.zombie_extract_insiders-post-restart-verify-2026-02-20T15-40-20-511Z_a56c3bbd.json",
+      "name": ".zombie_extract_insiders-post-restart-verify-2026-02-20T15-40-20-511Z_a56c3bbd.json",
+      "payload": {
+        "source": "extensions/chthonic-archive/.chthonic/cache/insiders-post-restart-verify-2026-02-20T15-40-20-511Z.json",
+        "timestamp": "2026-03-27T21:02:35.333764+00:00",
+        "ore_rating": 2,
+        "category": "candidate",
+        "signals": [
+          "ore_adapted:3->2"
+        ],
+        "intelligence": {},
+        "content_hash": "044e2193d48c0ff0"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-extensions-2026-03-27/.zombie_extract_insiders-post-restart-verify-2026-02-20T15-40-20-531Z_afced291.json",
+      "name": ".zombie_extract_insiders-post-restart-verify-2026-02-20T15-40-20-531Z_afced291.json",
+      "payload": {
+        "source": "extensions/chthonic-archive/.chthonic/cache/insiders-post-restart-verify-2026-02-20T15-40-20-531Z.json",
+        "timestamp": "2026-03-27T21:02:35.586588+00:00",
+        "ore_rating": 2,
+        "category": "candidate",
+        "signals": [
+          "ore_adapted:3->2"
+        ],
+        "intelligence": {},
+        "content_hash": "caa385e9f8fcc15b"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-extensions-2026-03-27/.zombie_extract_insiders-post-restart-verify-2026-02-20T16-23-35-681Z_44bc709f.json",
+      "name": ".zombie_extract_insiders-post-restart-verify-2026-02-20T16-23-35-681Z_44bc709f.json",
+      "payload": {
+        "source": "extensions/chthonic-archive/.chthonic/cache/insiders-post-restart-verify-2026-02-20T16-23-35-681Z.json",
+        "timestamp": "2026-03-27T21:02:35.834551+00:00",
+        "ore_rating": 2,
+        "category": "candidate",
+        "signals": [
+          "ore_adapted:3->2"
+        ],
+        "intelligence": {},
+        "content_hash": "dda67ba60f226ccf"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-extensions-2026-03-27/.zombie_extract_insiders-post-restart-verify-2026-02-20T16-26-03-722Z_1cf061f8.json",
+      "name": ".zombie_extract_insiders-post-restart-verify-2026-02-20T16-26-03-722Z_1cf061f8.json",
+      "payload": {
+        "source": "extensions/chthonic-archive/.chthonic/cache/insiders-post-restart-verify-2026-02-20T16-26-03-722Z.json",
+        "timestamp": "2026-03-27T21:02:36.086061+00:00",
+        "ore_rating": 2,
+        "category": "candidate",
+        "signals": [
+          "ore_adapted:3->2"
+        ],
+        "intelligence": {},
+        "content_hash": "23e996212e7c268f"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-extensions-2026-03-27/.zombie_extract_insiders-post-restart-verify-2026-02-20T18-00-49-353Z_7e023a30.json",
+      "name": ".zombie_extract_insiders-post-restart-verify-2026-02-20T18-00-49-353Z_7e023a30.json",
+      "payload": {
+        "source": "extensions/chthonic-archive/.chthonic/cache/insiders-post-restart-verify-2026-02-20T18-00-49-353Z.json",
+        "timestamp": "2026-03-27T21:02:36.337821+00:00",
+        "ore_rating": 2,
+        "category": "candidate",
+        "signals": [
+          "ore_adapted:3->2"
+        ],
+        "intelligence": {},
+        "content_hash": "8e8ef164f6c5616b"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-extensions-2026-03-27/.zombie_extract_insiders-post-restart-verify-2026-03-03T01-10-46-372Z_99e2d17a.json",
+      "name": ".zombie_extract_insiders-post-restart-verify-2026-03-03T01-10-46-372Z_99e2d17a.json",
+      "payload": {
+        "source": "extensions/chthonic-archive/.chthonic/cache/insiders-post-restart-verify-2026-03-03T01-10-46-372Z.json",
+        "timestamp": "2026-03-27T21:02:36.588932+00:00",
+        "ore_rating": 2,
+        "category": "candidate",
+        "signals": [
+          "ore_adapted:3->2"
+        ],
+        "intelligence": {},
+        "content_hash": "1a9a26eafa2b9497"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-extensions-2026-03-27/.zombie_extract_insiders-post-restart-verify-latest_e5a8f297.json",
+      "name": ".zombie_extract_insiders-post-restart-verify-latest_e5a8f297.json",
+      "payload": {
+        "source": "extensions/chthonic-archive/.chthonic/cache/insiders-post-restart-verify-latest.json",
+        "timestamp": "2026-03-27T21:02:36.842581+00:00",
+        "ore_rating": 1,
+        "category": "candidate",
+        "signals": [
+          "ore_adapted:3->2",
+          "content_duplicate"
+        ],
+        "intelligence": {},
+        "content_hash": "1a9a26eafa2b9497"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-extensions-2026-03-27/.zombie_extract_legacy.package.snapshot_97feea7f.json",
+      "name": ".zombie_extract_legacy.package.snapshot_97feea7f.json",
+      "payload": {
+        "source": "extensions/chthonic-statusbar/legacy.package.snapshot.json",
+        "timestamp": "2026-03-27T21:03:55.862607+00:00",
+        "ore_rating": 1,
+        "category": "legacy",
+        "signals": [
+          "legacy_marker",
+          "ore_adapted:3->1",
+          "content_duplicate"
+        ],
+        "intelligence": {},
+        "content_hash": "f0a96ef9f4ff57fd"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-extensions-2026-03-27/.zombie_extract_legacy.package.snapshot_9f3a4dd8.json",
+      "name": ".zombie_extract_legacy.package.snapshot_9f3a4dd8.json",
+      "payload": {
+        "source": "extensions/chthonic-mandala/legacy.package.snapshot.json",
+        "timestamp": "2026-03-27T21:02:32.012318+00:00",
+        "ore_rating": 1,
+        "category": "legacy",
+        "signals": [
+          "legacy_marker",
+          "ore_adapted:3->1"
+        ],
+        "intelligence": {},
+        "content_hash": "dd8c9924f7ef5543"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-extensions-2026-03-27/.zombie_extract_mkmf_2d7d2001.json",
+      "name": ".zombie_extract_mkmf_2d7d2001.json",
+      "payload": {
+        "source": "extensions/chthonic-archive/.chthonic/ruby/vendor/bundle/ruby/3.4.0/extensions/x64-mingw-ucrt/3.4.0/json-2.18.1/mkmf.log",
+        "timestamp": "2026-03-27T21:03:56.149243+00:00",
+        "ore_rating": 2,
+        "category": "candidate",
+        "signals": [
+          "ore_adapted:3->2"
+        ],
+        "intelligence": {},
+        "content_hash": "0deb03ff608810de"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-extensions-2026-03-27/.zombie_extract_mkmf_572e8ce2.json",
+      "name": ".zombie_extract_mkmf_572e8ce2.json",
+      "payload": {
+        "source": "extensions/chthonic-archive/.chthonic/ruby/vendor/bundle/ruby/3.4.0/extensions/x64-mingw-ucrt/3.4.0/prism-1.9.0/mkmf.log",
+        "timestamp": "2026-03-27T21:03:56.400599+00:00",
+        "ore_rating": 2,
+        "category": "candidate",
+        "signals": [
+          "ore_adapted:3->2"
+        ],
+        "intelligence": {},
+        "content_hash": "6a11a79ae526776a"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-extensions-2026-03-27/.zombie_extract_mkmf_97ef525a.json",
+      "name": ".zombie_extract_mkmf_97ef525a.json",
+      "payload": {
+        "source": "extensions/chthonic-archive/.chthonic/ruby/vendor/bundle/ruby/4.0.0/extensions/x64-mingw-ucrt/4.0.0/prism-1.9.0/mkmf.log",
+        "timestamp": "2026-03-27T21:02:37.344346+00:00",
+        "ore_rating": 2,
+        "category": "candidate",
+        "signals": [
+          "ore_adapted:3->2"
+        ],
+        "intelligence": {},
+        "content_hash": "33e175bd91dfec3a"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-extensions-2026-03-27/.zombie_extract_mkmf_f3bf0d75.json",
+      "name": ".zombie_extract_mkmf_f3bf0d75.json",
+      "payload": {
+        "source": "extensions/chthonic-archive/.chthonic/ruby/vendor/bundle/ruby/4.0.0/extensions/x64-mingw-ucrt/4.0.0/json-2.18.1/mkmf.log",
+        "timestamp": "2026-03-27T21:02:37.093276+00:00",
+        "ore_rating": 2,
+        "category": "candidate",
+        "signals": [
+          "ore_adapted:3->2"
+        ],
+        "intelligence": {},
+        "content_hash": "bfb789b75f13ce87"
+      }
+    }
+  ],
+  "receipts": [
+    {
+      "path": "dumpster-dive/intake/phaseA-extensions-2026-03-27/.zombie_receipt_chthonic-archive-0.2.1_06b8ea00.json",
+      "name": ".zombie_receipt_chthonic-archive-0.2.1_06b8ea00.json",
+      "payload": {
+        "consumed": "extensions/chthonic-archive/chthonic-archive-0.2.1.vsix",
+        "destination": "dumpster-dive\\intake\\phaseA-extensions-2026-03-27\\chthonic-archive-0.2.1.vsix",
+        "batch": "phaseA-extensions-2026-03-27",
+        "timestamp": "2026-03-27T21:02:32.571099+00:00"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-extensions-2026-03-27/.zombie_receipt_chthonic-archive-insiders_4ade8c56.json",
+      "name": ".zombie_receipt_chthonic-archive-insiders_4ade8c56.json",
+      "payload": {
+        "consumed": "extensions/chthonic-archive/chthonic-archive-insiders.vsix",
+        "destination": "dumpster-dive\\intake\\phaseA-extensions-2026-03-27\\chthonic-archive-insiders.vsix",
+        "batch": "phaseA-extensions-2026-03-27",
+        "timestamp": "2026-03-27T21:02:32.834537+00:00"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-extensions-2026-03-27/.zombie_receipt_chthonic-mandala-insiders_74db503d.json",
+      "name": ".zombie_receipt_chthonic-mandala-insiders_74db503d.json",
+      "payload": {
+        "consumed": "extensions/chthonic-mandala/chthonic-mandala-insiders.vsix",
+        "destination": "dumpster-dive\\intake\\phaseA-extensions-2026-03-27\\chthonic-mandala-insiders.vsix",
+        "batch": "phaseA-extensions-2026-03-27",
+        "timestamp": "2026-03-27T21:02:33.093438+00:00"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-extensions-2026-03-27/.zombie_receipt_chthonic-statusbar-insiders_dc36991e.json",
+      "name": ".zombie_receipt_chthonic-statusbar-insiders_dc36991e.json",
+      "payload": {
+        "consumed": "extensions/chthonic-statusbar/chthonic-statusbar-insiders.vsix",
+        "destination": "dumpster-dive\\intake\\phaseA-extensions-2026-03-27\\chthonic-statusbar-insiders.vsix",
+        "batch": "phaseA-extensions-2026-03-27",
+        "timestamp": "2026-03-27T21:02:33.345801+00:00"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-extensions-2026-03-27/.zombie_receipt_insiders-post-restart-verify-2026-02-20T15-18-56-505Z_e00a996c.json",
+      "name": ".zombie_receipt_insiders-post-restart-verify-2026-02-20T15-18-56-505Z_e00a996c.json",
+      "payload": {
+        "consumed": "extensions/chthonic-archive/.chthonic/cache/insiders-post-restart-verify-2026-02-20T15-18-56-505Z.json",
+        "destination": "dumpster-dive\\intake\\phaseA-extensions-2026-03-27\\insiders-post-restart-verify-2026-02-20T15-18-56-505Z.json",
+        "batch": "phaseA-extensions-2026-03-27",
+        "timestamp": "2026-03-27T21:02:33.606506+00:00"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-extensions-2026-03-27/.zombie_receipt_insiders-post-restart-verify-2026-02-20T15-21-45-993Z_79b51a3f.json",
+      "name": ".zombie_receipt_insiders-post-restart-verify-2026-02-20T15-21-45-993Z_79b51a3f.json",
+      "payload": {
+        "consumed": "extensions/chthonic-archive/.chthonic/cache/insiders-post-restart-verify-2026-02-20T15-21-45-993Z.json",
+        "destination": "dumpster-dive\\intake\\phaseA-extensions-2026-03-27\\insiders-post-restart-verify-2026-02-20T15-21-45-993Z.json",
+        "batch": "phaseA-extensions-2026-03-27",
+        "timestamp": "2026-03-27T21:02:33.864020+00:00"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-extensions-2026-03-27/.zombie_receipt_insiders-post-restart-verify-2026-02-20T15-30-04-644Z_88e24416.json",
+      "name": ".zombie_receipt_insiders-post-restart-verify-2026-02-20T15-30-04-644Z_88e24416.json",
+      "payload": {
+        "consumed": "extensions/chthonic-archive/.chthonic/cache/insiders-post-restart-verify-2026-02-20T15-30-04-644Z.json",
+        "destination": "dumpster-dive\\intake\\phaseA-extensions-2026-03-27\\insiders-post-restart-verify-2026-02-20T15-30-04-644Z.json",
+        "batch": "phaseA-extensions-2026-03-27",
+        "timestamp": "2026-03-27T21:02:34.116803+00:00"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-extensions-2026-03-27/.zombie_receipt_insiders-post-restart-verify-2026-02-20T15-31-11-426Z_5a977b27.json",
+      "name": ".zombie_receipt_insiders-post-restart-verify-2026-02-20T15-31-11-426Z_5a977b27.json",
+      "payload": {
+        "consumed": "extensions/chthonic-archive/.chthonic/cache/insiders-post-restart-verify-2026-02-20T15-31-11-426Z.json",
+        "destination": "dumpster-dive\\intake\\phaseA-extensions-2026-03-27\\insiders-post-restart-verify-2026-02-20T15-31-11-426Z.json",
+        "batch": "phaseA-extensions-2026-03-27",
+        "timestamp": "2026-03-27T21:02:34.367431+00:00"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-extensions-2026-03-27/.zombie_receipt_insiders-post-restart-verify-2026-02-20T15-33-03-546Z_decc666a.json",
+      "name": ".zombie_receipt_insiders-post-restart-verify-2026-02-20T15-33-03-546Z_decc666a.json",
+      "payload": {
+        "consumed": "extensions/chthonic-archive/.chthonic/cache/insiders-post-restart-verify-2026-02-20T15-33-03-546Z.json",
+        "destination": "dumpster-dive\\intake\\phaseA-extensions-2026-03-27\\insiders-post-restart-verify-2026-02-20T15-33-03-546Z.json",
+        "batch": "phaseA-extensions-2026-03-27",
+        "timestamp": "2026-03-27T21:02:34.621531+00:00"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-extensions-2026-03-27/.zombie_receipt_insiders-post-restart-verify-2026-02-20T15-37-12-604Z_6cae9f63.json",
+      "name": ".zombie_receipt_insiders-post-restart-verify-2026-02-20T15-37-12-604Z_6cae9f63.json",
+      "payload": {
+        "consumed": "extensions/chthonic-archive/.chthonic/cache/insiders-post-restart-verify-2026-02-20T15-37-12-604Z.json",
+        "destination": "dumpster-dive\\intake\\phaseA-extensions-2026-03-27\\insiders-post-restart-verify-2026-02-20T15-37-12-604Z.json",
+        "batch": "phaseA-extensions-2026-03-27",
+        "timestamp": "2026-03-27T21:02:34.870196+00:00"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-extensions-2026-03-27/.zombie_receipt_insiders-post-restart-verify-2026-02-20T15-37-12-625Z_9202a9ac.json",
+      "name": ".zombie_receipt_insiders-post-restart-verify-2026-02-20T15-37-12-625Z_9202a9ac.json",
+      "payload": {
+        "consumed": "extensions/chthonic-archive/.chthonic/cache/insiders-post-restart-verify-2026-02-20T15-37-12-625Z.json",
+        "destination": "dumpster-dive\\intake\\phaseA-extensions-2026-03-27\\insiders-post-restart-verify-2026-02-20T15-37-12-625Z.json",
+        "batch": "phaseA-extensions-2026-03-27",
+        "timestamp": "2026-03-27T21:02:35.118033+00:00"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-extensions-2026-03-27/.zombie_receipt_insiders-post-restart-verify-2026-02-20T15-40-20-511Z_a56c3bbd.json",
+      "name": ".zombie_receipt_insiders-post-restart-verify-2026-02-20T15-40-20-511Z_a56c3bbd.json",
+      "payload": {
+        "consumed": "extensions/chthonic-archive/.chthonic/cache/insiders-post-restart-verify-2026-02-20T15-40-20-511Z.json",
+        "destination": "dumpster-dive\\intake\\phaseA-extensions-2026-03-27\\insiders-post-restart-verify-2026-02-20T15-40-20-511Z.json",
+        "batch": "phaseA-extensions-2026-03-27",
+        "timestamp": "2026-03-27T21:02:35.369018+00:00"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-extensions-2026-03-27/.zombie_receipt_insiders-post-restart-verify-2026-02-20T15-40-20-531Z_afced291.json",
+      "name": ".zombie_receipt_insiders-post-restart-verify-2026-02-20T15-40-20-531Z_afced291.json",
+      "payload": {
+        "consumed": "extensions/chthonic-archive/.chthonic/cache/insiders-post-restart-verify-2026-02-20T15-40-20-531Z.json",
+        "destination": "dumpster-dive\\intake\\phaseA-extensions-2026-03-27\\insiders-post-restart-verify-2026-02-20T15-40-20-531Z.json",
+        "batch": "phaseA-extensions-2026-03-27",
+        "timestamp": "2026-03-27T21:02:35.621010+00:00"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-extensions-2026-03-27/.zombie_receipt_insiders-post-restart-verify-2026-02-20T16-23-35-681Z_44bc709f.json",
+      "name": ".zombie_receipt_insiders-post-restart-verify-2026-02-20T16-23-35-681Z_44bc709f.json",
+      "payload": {
+        "consumed": "extensions/chthonic-archive/.chthonic/cache/insiders-post-restart-verify-2026-02-20T16-23-35-681Z.json",
+        "destination": "dumpster-dive\\intake\\phaseA-extensions-2026-03-27\\insiders-post-restart-verify-2026-02-20T16-23-35-681Z.json",
+        "batch": "phaseA-extensions-2026-03-27",
+        "timestamp": "2026-03-27T21:02:35.868995+00:00"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-extensions-2026-03-27/.zombie_receipt_insiders-post-restart-verify-2026-02-20T16-26-03-722Z_1cf061f8.json",
+      "name": ".zombie_receipt_insiders-post-restart-verify-2026-02-20T16-26-03-722Z_1cf061f8.json",
+      "payload": {
+        "consumed": "extensions/chthonic-archive/.chthonic/cache/insiders-post-restart-verify-2026-02-20T16-26-03-722Z.json",
+        "destination": "dumpster-dive\\intake\\phaseA-extensions-2026-03-27\\insiders-post-restart-verify-2026-02-20T16-26-03-722Z.json",
+        "batch": "phaseA-extensions-2026-03-27",
+        "timestamp": "2026-03-27T21:02:36.121187+00:00"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-extensions-2026-03-27/.zombie_receipt_insiders-post-restart-verify-2026-02-20T18-00-49-353Z_7e023a30.json",
+      "name": ".zombie_receipt_insiders-post-restart-verify-2026-02-20T18-00-49-353Z_7e023a30.json",
+      "payload": {
+        "consumed": "extensions/chthonic-archive/.chthonic/cache/insiders-post-restart-verify-2026-02-20T18-00-49-353Z.json",
+        "destination": "dumpster-dive\\intake\\phaseA-extensions-2026-03-27\\insiders-post-restart-verify-2026-02-20T18-00-49-353Z.json",
+        "batch": "phaseA-extensions-2026-03-27",
+        "timestamp": "2026-03-27T21:02:36.373366+00:00"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-extensions-2026-03-27/.zombie_receipt_insiders-post-restart-verify-2026-03-03T01-10-46-372Z_99e2d17a.json",
+      "name": ".zombie_receipt_insiders-post-restart-verify-2026-03-03T01-10-46-372Z_99e2d17a.json",
+      "payload": {
+        "consumed": "extensions/chthonic-archive/.chthonic/cache/insiders-post-restart-verify-2026-03-03T01-10-46-372Z.json",
+        "destination": "dumpster-dive\\intake\\phaseA-extensions-2026-03-27\\insiders-post-restart-verify-2026-03-03T01-10-46-372Z.json",
+        "batch": "phaseA-extensions-2026-03-27",
+        "timestamp": "2026-03-27T21:02:36.623424+00:00"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-extensions-2026-03-27/.zombie_receipt_insiders-post-restart-verify-latest_e5a8f297.json",
+      "name": ".zombie_receipt_insiders-post-restart-verify-latest_e5a8f297.json",
+      "payload": {
+        "consumed": "extensions/chthonic-archive/.chthonic/cache/insiders-post-restart-verify-latest.json",
+        "destination": "dumpster-dive\\intake\\phaseA-extensions-2026-03-27\\insiders-post-restart-verify-latest.json",
+        "batch": "phaseA-extensions-2026-03-27",
+        "timestamp": "2026-03-27T21:02:36.877930+00:00"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-extensions-2026-03-27/.zombie_receipt_legacy.package.snapshot_97feea7f.json",
+      "name": ".zombie_receipt_legacy.package.snapshot_97feea7f.json",
+      "payload": {
+        "consumed": "extensions/chthonic-statusbar/legacy.package.snapshot.json",
+        "destination": "dumpster-dive\\intake\\phaseA-extensions-2026-03-27\\legacy.package.snapshot_97feea7f.json",
+        "batch": "phaseA-extensions-2026-03-27",
+        "timestamp": "2026-03-27T21:03:55.933617+00:00"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-extensions-2026-03-27/.zombie_receipt_legacy.package.snapshot_9f3a4dd8.json",
+      "name": ".zombie_receipt_legacy.package.snapshot_9f3a4dd8.json",
+      "payload": {
+        "consumed": "extensions/chthonic-mandala/legacy.package.snapshot.json",
+        "destination": "dumpster-dive\\intake\\phaseA-extensions-2026-03-27\\legacy.package.snapshot.json",
+        "batch": "phaseA-extensions-2026-03-27",
+        "timestamp": "2026-03-27T21:02:32.082981+00:00"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-extensions-2026-03-27/.zombie_receipt_mkmf_2d7d2001.json",
+      "name": ".zombie_receipt_mkmf_2d7d2001.json",
+      "payload": {
+        "consumed": "extensions/chthonic-archive/.chthonic/ruby/vendor/bundle/ruby/3.4.0/extensions/x64-mingw-ucrt/3.4.0/json-2.18.1/mkmf.log",
+        "destination": "dumpster-dive\\intake\\phaseA-extensions-2026-03-27\\mkmf_2d7d2001.log",
+        "batch": "phaseA-extensions-2026-03-27",
+        "timestamp": "2026-03-27T21:03:56.184167+00:00"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-extensions-2026-03-27/.zombie_receipt_mkmf_572e8ce2.json",
+      "name": ".zombie_receipt_mkmf_572e8ce2.json",
+      "payload": {
+        "consumed": "extensions/chthonic-archive/.chthonic/ruby/vendor/bundle/ruby/3.4.0/extensions/x64-mingw-ucrt/3.4.0/prism-1.9.0/mkmf.log",
+        "destination": "dumpster-dive\\intake\\phaseA-extensions-2026-03-27\\mkmf_572e8ce2.log",
+        "batch": "phaseA-extensions-2026-03-27",
+        "timestamp": "2026-03-27T21:03:56.435968+00:00"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-extensions-2026-03-27/.zombie_receipt_mkmf_97ef525a.json",
+      "name": ".zombie_receipt_mkmf_97ef525a.json",
+      "payload": {
+        "consumed": "extensions/chthonic-archive/.chthonic/ruby/vendor/bundle/ruby/4.0.0/extensions/x64-mingw-ucrt/4.0.0/prism-1.9.0/mkmf.log",
+        "destination": "dumpster-dive\\intake\\phaseA-extensions-2026-03-27\\mkmf.log",
+        "batch": "phaseA-extensions-2026-03-27",
+        "timestamp": "2026-03-27T21:02:37.380337+00:00"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-extensions-2026-03-27/.zombie_receipt_mkmf_f3bf0d75.json",
+      "name": ".zombie_receipt_mkmf_f3bf0d75.json",
+      "payload": {
+        "consumed": "extensions/chthonic-archive/.chthonic/ruby/vendor/bundle/ruby/4.0.0/extensions/x64-mingw-ucrt/4.0.0/json-2.18.1/mkmf.log",
+        "destination": "dumpster-dive\\intake\\phaseA-extensions-2026-03-27\\mkmf.log",
+        "batch": "phaseA-extensions-2026-03-27",
+        "timestamp": "2026-03-27T21:02:37.129077+00:00"
+      }
+    }
+  ]
+}

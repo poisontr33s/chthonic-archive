@@ -1,0 +1,627 @@
+{
+  "kind": "zombie_intake_compaction",
+  "generated_at": "2026-03-27T21:28:55.595234+00:00",
+  "batch": "dumpster-dive/intake/a6-intake-2026-03-23/deprecated-mcp",
+  "apply_mode": true,
+  "extract_count": 22,
+  "receipt_count": 22,
+  "ore_histogram": {
+    "4": 15,
+    "3": 3,
+    "2": 4
+  },
+  "category_histogram": {
+    "candidate": 15,
+    "legacy": 7
+  },
+  "extracts": [
+    {
+      "path": "dumpster-dive/intake/a6-intake-2026-03-23/deprecated-mcp/.zombie_extract_claude_code_mcp_hint.json",
+      "name": ".zombie_extract_claude_code_mcp_hint.json",
+      "payload": {
+        "source": "scripts/.deprecated/mcp_legacy/claude_code_mcp_hint.json",
+        "timestamp": "2026-03-23T22:28:36.316640+00:00",
+        "ore_rating": 4,
+        "category": "candidate",
+        "signals": [
+          "ore_adapted:3->4"
+        ],
+        "intelligence": {},
+        "content_hash": "f8f5844bf9fc4572"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/a6-intake-2026-03-23/deprecated-mcp/.zombie_extract_INTEGRATION_GUIDE.json",
+      "name": ".zombie_extract_INTEGRATION_GUIDE.json",
+      "payload": {
+        "source": "scripts/.deprecated/mcp_legacy/INTEGRATION_GUIDE.md",
+        "timestamp": "2026-03-23T22:28:35.547971+00:00",
+        "ore_rating": 4,
+        "category": "candidate",
+        "signals": [
+          "ore_adapted:3->4"
+        ],
+        "intelligence": {
+          "md_headings": [
+            "MCP Client Integration Guide",
+            "Quick Start: Claude Desktop Integration",
+            "1. Locate Claude Desktop Config",
+            "2. Add MCP Server Configuration",
+            "3. Restart Claude Desktop",
+            "4. Verify Integration",
+            "VSCode Integration (Alternative)",
+            "1. Install MCP Extension",
+            "2. Configure Server",
+            "3. Reload Window",
+            "Troubleshooting",
+            "Server Not Appearing in Client",
+            "Test server manually",
+            "Then send test request:",
+            "Server Starts But Tools Fail"
+          ]
+        },
+        "content_hash": "1d8e63659d12e77a"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/a6-intake-2026-03-23/deprecated-mcp/.zombie_extract_mcp.json",
+      "name": ".zombie_extract_mcp.json",
+      "payload": {
+        "source": "scripts/.deprecated/mcp_legacy/mcp.json",
+        "timestamp": "2026-03-23T22:28:36.565218+00:00",
+        "ore_rating": 4,
+        "category": "candidate",
+        "signals": [
+          "ore_adapted:3->4"
+        ],
+        "intelligence": {},
+        "content_hash": "0b191122d0651f95"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/a6-intake-2026-03-23/deprecated-mcp/.zombie_extract_OPTION_A_STATUS.json",
+      "name": ".zombie_extract_OPTION_A_STATUS.json",
+      "payload": {
+        "source": "scripts/.deprecated/mcp_legacy/OPTION_A_STATUS.md",
+        "timestamp": "2026-03-23T22:28:35.806764+00:00",
+        "ore_rating": 4,
+        "category": "candidate",
+        "signals": [
+          "ore_adapted:3->4"
+        ],
+        "intelligence": {
+          "md_headings": [
+            "Option A: MCP Client Integration - Execution Summary",
+            "What Was Accomplished",
+            "Phase 1: MCP Discovery Manifest",
+            "Phase 2: Client Configuration",
+            "Phase 3: Documentation",
+            "Phase 4: Validation Automation",
+            "Phase 5: Git Integration",
+            "Validation Results (Pre-Integration)",
+            "Next Steps (User Action Required)",
+            "Step 1: Restart Claude Desktop",
+            "Step 2: Test Tools from Claude Desktop Chat",
+            "Step 3: Document Results (After Successful Testing)",
+            "Step 4: Stop (Do Not Expand Capabilities)",
+            "Troubleshooting (If Issues Occur)",
+            "Server Doesn't Appear in Claude Desktop"
+          ]
+        },
+        "content_hash": "660196f9b4f9d6e8"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/a6-intake-2026-03-23/deprecated-mcp/.zombie_extract_preflight_response.json",
+      "name": ".zombie_extract_preflight_response.json",
+      "payload": {
+        "source": "scripts/.deprecated/mcp_legacy/preflight_response.json",
+        "timestamp": "2026-03-23T22:28:36.816376+00:00",
+        "ore_rating": 4,
+        "category": "candidate",
+        "signals": [
+          "ore_adapted:3->4"
+        ],
+        "intelligence": {},
+        "content_hash": "0fef0564beabc573"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/a6-intake-2026-03-23/deprecated-mcp/.zombie_extract_protocol.json",
+      "name": ".zombie_extract_protocol.json",
+      "payload": {
+        "source": "scripts/.deprecated/mcp_legacy/protocol.ts",
+        "timestamp": "2026-03-23T22:28:42.245630+00:00",
+        "ore_rating": 4,
+        "category": "candidate",
+        "signals": [
+          "ore_adapted:3->4"
+        ],
+        "intelligence": {},
+        "content_hash": "ac50fa46ba40ae95"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/a6-intake-2026-03-23/deprecated-mcp/.zombie_extract_protocol.ts.meta.json",
+      "name": ".zombie_extract_protocol.ts.meta.json",
+      "payload": {
+        "source": "scripts/.deprecated/mcp_legacy/protocol.ts.meta.json",
+        "timestamp": "2026-03-23T22:28:49.833038+00:00",
+        "ore_rating": 3,
+        "category": "legacy",
+        "signals": [
+          "legacy_marker"
+        ],
+        "intelligence": {},
+        "content_hash": "cd2f4ac4d03f34e3"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/a6-intake-2026-03-23/deprecated-mcp/.zombie_extract_README.json",
+      "name": ".zombie_extract_README.json",
+      "payload": {
+        "source": "scripts/.deprecated/mcp_legacy/README.md",
+        "timestamp": "2026-03-23T22:28:36.059512+00:00",
+        "ore_rating": 4,
+        "category": "candidate",
+        "signals": [
+          "ore_adapted:3->4"
+        ],
+        "intelligence": {
+          "md_headings": [
+            "MCP Server Implementation Summary",
+            "What Was Built",
+            "Architecture",
+            "Files Created",
+            "Tools Implemented",
+            "1. scan_repository",
+            "2. validate_ssot_integrity",
+            "3. query_dependency_graph",
+            "Testing",
+            "Manual Test Client",
+            "Bun Test Suite",
+            "Next Steps",
+            "References"
+          ]
+        },
+        "content_hash": "a3c32acffcc07e31"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/a6-intake-2026-03-23/deprecated-mcp/.zombie_extract_server.json",
+      "name": ".zombie_extract_server.json",
+      "payload": {
+        "source": "scripts/.deprecated/mcp_legacy/server.ts",
+        "timestamp": "2026-03-23T22:28:42.501724+00:00",
+        "ore_rating": 4,
+        "category": "candidate",
+        "signals": [
+          "ore_adapted:3->4"
+        ],
+        "intelligence": {},
+        "content_hash": "69d29b35e32d291c"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/a6-intake-2026-03-23/deprecated-mcp/.zombie_extract_server.test.json",
+      "name": ".zombie_extract_server.test.json",
+      "payload": {
+        "source": "scripts/.deprecated/mcp_legacy/server.test.ts",
+        "timestamp": "2026-03-23T22:28:42.754093+00:00",
+        "ore_rating": 4,
+        "category": "candidate",
+        "signals": [
+          "ore_adapted:3->4"
+        ],
+        "intelligence": {},
+        "content_hash": "b43d8127359b78e7"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/a6-intake-2026-03-23/deprecated-mcp/.zombie_extract_server.test.ts.meta.json",
+      "name": ".zombie_extract_server.test.ts.meta.json",
+      "payload": {
+        "source": "scripts/.deprecated/mcp_legacy/server.test.ts.meta.json",
+        "timestamp": "2026-03-23T22:28:50.084403+00:00",
+        "ore_rating": 3,
+        "category": "legacy",
+        "signals": [
+          "legacy_marker"
+        ],
+        "intelligence": {},
+        "content_hash": "37d975fa05c80bc9"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/a6-intake-2026-03-23/deprecated-mcp/.zombie_extract_server.ts.meta.json",
+      "name": ".zombie_extract_server.ts.meta.json",
+      "payload": {
+        "source": "scripts/.deprecated/mcp_legacy/server.ts.meta.json",
+        "timestamp": "2026-03-23T22:28:50.337989+00:00",
+        "ore_rating": 3,
+        "category": "legacy",
+        "signals": [
+          "legacy_marker"
+        ],
+        "intelligence": {},
+        "content_hash": "5b004aa26ff4075f"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/a6-intake-2026-03-23/deprecated-mcp/.zombie_extract_smoke-suite.json",
+      "name": ".zombie_extract_smoke-suite.json",
+      "payload": {
+        "source": "scripts/.deprecated/mcp_legacy/smoke-suite.ts",
+        "timestamp": "2026-03-23T22:28:43.002844+00:00",
+        "ore_rating": 4,
+        "category": "candidate",
+        "signals": [
+          "ore_adapted:3->4"
+        ],
+        "intelligence": {},
+        "content_hash": "9d6d5314d353b9d3"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/a6-intake-2026-03-23/deprecated-mcp/.zombie_extract_smoke-suite.ts.meta.json",
+      "name": ".zombie_extract_smoke-suite.ts.meta.json",
+      "payload": {
+        "source": "scripts/.deprecated/mcp_legacy/smoke-suite.ts.meta.json",
+        "timestamp": "2026-03-23T22:28:50.592296+00:00",
+        "ore_rating": 2,
+        "category": "legacy",
+        "signals": [
+          "legacy_marker",
+          "ore_adapted:3->2"
+        ],
+        "intelligence": {},
+        "content_hash": "d754e382029ba823"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/a6-intake-2026-03-23/deprecated-mcp/.zombie_extract_test-client.json",
+      "name": ".zombie_extract_test-client.json",
+      "payload": {
+        "source": "scripts/.deprecated/mcp_legacy/test-client.ts",
+        "timestamp": "2026-03-23T22:28:43.253663+00:00",
+        "ore_rating": 4,
+        "category": "candidate",
+        "signals": [
+          "ore_adapted:3->4"
+        ],
+        "intelligence": {},
+        "content_hash": "d3809a64d959e8da"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/a6-intake-2026-03-23/deprecated-mcp/.zombie_extract_test-client.ts.meta.json",
+      "name": ".zombie_extract_test-client.ts.meta.json",
+      "payload": {
+        "source": "scripts/.deprecated/mcp_legacy/test-client.ts.meta.json",
+        "timestamp": "2026-03-23T22:28:50.847587+00:00",
+        "ore_rating": 2,
+        "category": "legacy",
+        "signals": [
+          "legacy_marker",
+          "ore_adapted:3->2"
+        ],
+        "intelligence": {},
+        "content_hash": "c595fb71e9c9eb87"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/a6-intake-2026-03-23/deprecated-mcp/.zombie_extract_test-dependency-graph.json",
+      "name": ".zombie_extract_test-dependency-graph.json",
+      "payload": {
+        "source": "scripts/.deprecated/mcp_legacy/test-dependency-graph.ts",
+        "timestamp": "2026-03-23T22:28:43.502072+00:00",
+        "ore_rating": 4,
+        "category": "candidate",
+        "signals": [
+          "ore_adapted:3->4"
+        ],
+        "intelligence": {},
+        "content_hash": "2bc6ebcc12e5b59c"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/a6-intake-2026-03-23/deprecated-mcp/.zombie_extract_test-dependency-graph.ts.meta.json",
+      "name": ".zombie_extract_test-dependency-graph.ts.meta.json",
+      "payload": {
+        "source": "scripts/.deprecated/mcp_legacy/test-dependency-graph.ts.meta.json",
+        "timestamp": "2026-03-23T22:28:51.103003+00:00",
+        "ore_rating": 2,
+        "category": "legacy",
+        "signals": [
+          "legacy_marker",
+          "ore_adapted:3->2"
+        ],
+        "intelligence": {},
+        "content_hash": "6a0d1a19cfe76b25"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/a6-intake-2026-03-23/deprecated-mcp/.zombie_extract_test-input.json",
+      "name": ".zombie_extract_test-input.json",
+      "payload": {
+        "source": "scripts/.deprecated/mcp_legacy/test-input.json",
+        "timestamp": "2026-03-23T22:28:44.252071+00:00",
+        "ore_rating": 4,
+        "category": "candidate",
+        "signals": [
+          "ore_adapted:3->4"
+        ],
+        "intelligence": {},
+        "content_hash": "79110071baba377d"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/a6-intake-2026-03-23/deprecated-mcp/.zombie_extract_validate-integration.json",
+      "name": ".zombie_extract_validate-integration.json",
+      "payload": {
+        "source": "scripts/.deprecated/mcp_legacy/validate-integration.ps1",
+        "timestamp": "2026-03-23T22:28:44.000577+00:00",
+        "ore_rating": 4,
+        "category": "candidate",
+        "signals": [
+          "ore_adapted:3->4"
+        ],
+        "intelligence": {},
+        "content_hash": "16fd3fe2c38f09c1"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/a6-intake-2026-03-23/deprecated-mcp/.zombie_extract_verify-final.json",
+      "name": ".zombie_extract_verify-final.json",
+      "payload": {
+        "source": "scripts/.deprecated/mcp_legacy/verify-final.ts",
+        "timestamp": "2026-03-23T22:28:43.750662+00:00",
+        "ore_rating": 4,
+        "category": "candidate",
+        "signals": [
+          "ore_adapted:3->4"
+        ],
+        "intelligence": {},
+        "content_hash": "542de819724f8480"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/a6-intake-2026-03-23/deprecated-mcp/.zombie_extract_verify-final.ts.meta.json",
+      "name": ".zombie_extract_verify-final.ts.meta.json",
+      "payload": {
+        "source": "scripts/.deprecated/mcp_legacy/verify-final.ts.meta.json",
+        "timestamp": "2026-03-23T22:28:51.357926+00:00",
+        "ore_rating": 2,
+        "category": "legacy",
+        "signals": [
+          "legacy_marker",
+          "ore_adapted:3->2"
+        ],
+        "intelligence": {},
+        "content_hash": "3e712aa23be4d961"
+      }
+    }
+  ],
+  "receipts": [
+    {
+      "path": "dumpster-dive/intake/a6-intake-2026-03-23/deprecated-mcp/.zombie_receipt_claude_code_mcp_hint.json",
+      "name": ".zombie_receipt_claude_code_mcp_hint.json",
+      "payload": {
+        "consumed": "scripts/.deprecated/mcp_legacy/claude_code_mcp_hint.json",
+        "destination": "dumpster-dive\\intake\\a6-intake-2026-03-23\\deprecated-mcp\\claude_code_mcp_hint.json",
+        "batch": "a6-intake-2026-03-23/deprecated-mcp",
+        "timestamp": "2026-03-23T22:28:36.343467+00:00"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/a6-intake-2026-03-23/deprecated-mcp/.zombie_receipt_INTEGRATION_GUIDE.json",
+      "name": ".zombie_receipt_INTEGRATION_GUIDE.json",
+      "payload": {
+        "consumed": "scripts/.deprecated/mcp_legacy/INTEGRATION_GUIDE.md",
+        "destination": "dumpster-dive\\intake\\a6-intake-2026-03-23\\deprecated-mcp\\INTEGRATION_GUIDE.md",
+        "batch": "a6-intake-2026-03-23/deprecated-mcp",
+        "timestamp": "2026-03-23T22:28:35.576321+00:00"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/a6-intake-2026-03-23/deprecated-mcp/.zombie_receipt_mcp.json",
+      "name": ".zombie_receipt_mcp.json",
+      "payload": {
+        "consumed": "scripts/.deprecated/mcp_legacy/mcp.json",
+        "destination": "dumpster-dive\\intake\\a6-intake-2026-03-23\\deprecated-mcp\\mcp.json",
+        "batch": "a6-intake-2026-03-23/deprecated-mcp",
+        "timestamp": "2026-03-23T22:28:36.593039+00:00"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/a6-intake-2026-03-23/deprecated-mcp/.zombie_receipt_OPTION_A_STATUS.json",
+      "name": ".zombie_receipt_OPTION_A_STATUS.json",
+      "payload": {
+        "consumed": "scripts/.deprecated/mcp_legacy/OPTION_A_STATUS.md",
+        "destination": "dumpster-dive\\intake\\a6-intake-2026-03-23\\deprecated-mcp\\OPTION_A_STATUS.md",
+        "batch": "a6-intake-2026-03-23/deprecated-mcp",
+        "timestamp": "2026-03-23T22:28:35.833546+00:00"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/a6-intake-2026-03-23/deprecated-mcp/.zombie_receipt_preflight_response.json",
+      "name": ".zombie_receipt_preflight_response.json",
+      "payload": {
+        "consumed": "scripts/.deprecated/mcp_legacy/preflight_response.json",
+        "destination": "dumpster-dive\\intake\\a6-intake-2026-03-23\\deprecated-mcp\\preflight_response.json",
+        "batch": "a6-intake-2026-03-23/deprecated-mcp",
+        "timestamp": "2026-03-23T22:28:36.843209+00:00"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/a6-intake-2026-03-23/deprecated-mcp/.zombie_receipt_protocol.json",
+      "name": ".zombie_receipt_protocol.json",
+      "payload": {
+        "consumed": "scripts/.deprecated/mcp_legacy/protocol.ts",
+        "destination": "dumpster-dive\\intake\\a6-intake-2026-03-23\\deprecated-mcp\\protocol.ts",
+        "batch": "a6-intake-2026-03-23/deprecated-mcp",
+        "timestamp": "2026-03-23T22:28:42.272591+00:00"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/a6-intake-2026-03-23/deprecated-mcp/.zombie_receipt_protocol.ts.meta.json",
+      "name": ".zombie_receipt_protocol.ts.meta.json",
+      "payload": {
+        "consumed": "scripts/.deprecated/mcp_legacy/protocol.ts.meta.json",
+        "destination": "dumpster-dive\\intake\\a6-intake-2026-03-23\\deprecated-mcp\\protocol.ts.meta.json",
+        "batch": "a6-intake-2026-03-23/deprecated-mcp",
+        "timestamp": "2026-03-23T22:28:49.859780+00:00"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/a6-intake-2026-03-23/deprecated-mcp/.zombie_receipt_README.json",
+      "name": ".zombie_receipt_README.json",
+      "payload": {
+        "consumed": "scripts/.deprecated/mcp_legacy/README.md",
+        "destination": "dumpster-dive\\intake\\a6-intake-2026-03-23\\deprecated-mcp\\README.md",
+        "batch": "a6-intake-2026-03-23/deprecated-mcp",
+        "timestamp": "2026-03-23T22:28:36.086305+00:00"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/a6-intake-2026-03-23/deprecated-mcp/.zombie_receipt_server.json",
+      "name": ".zombie_receipt_server.json",
+      "payload": {
+        "consumed": "scripts/.deprecated/mcp_legacy/server.ts",
+        "destination": "dumpster-dive\\intake\\a6-intake-2026-03-23\\deprecated-mcp\\server.ts",
+        "batch": "a6-intake-2026-03-23/deprecated-mcp",
+        "timestamp": "2026-03-23T22:28:42.528471+00:00"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/a6-intake-2026-03-23/deprecated-mcp/.zombie_receipt_server.test.json",
+      "name": ".zombie_receipt_server.test.json",
+      "payload": {
+        "consumed": "scripts/.deprecated/mcp_legacy/server.test.ts",
+        "destination": "dumpster-dive\\intake\\a6-intake-2026-03-23\\deprecated-mcp\\server.test.ts",
+        "batch": "a6-intake-2026-03-23/deprecated-mcp",
+        "timestamp": "2026-03-23T22:28:42.781446+00:00"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/a6-intake-2026-03-23/deprecated-mcp/.zombie_receipt_server.test.ts.meta.json",
+      "name": ".zombie_receipt_server.test.ts.meta.json",
+      "payload": {
+        "consumed": "scripts/.deprecated/mcp_legacy/server.test.ts.meta.json",
+        "destination": "dumpster-dive\\intake\\a6-intake-2026-03-23\\deprecated-mcp\\server.test.ts.meta.json",
+        "batch": "a6-intake-2026-03-23/deprecated-mcp",
+        "timestamp": "2026-03-23T22:28:50.111300+00:00"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/a6-intake-2026-03-23/deprecated-mcp/.zombie_receipt_server.ts.meta.json",
+      "name": ".zombie_receipt_server.ts.meta.json",
+      "payload": {
+        "consumed": "scripts/.deprecated/mcp_legacy/server.ts.meta.json",
+        "destination": "dumpster-dive\\intake\\a6-intake-2026-03-23\\deprecated-mcp\\server.ts.meta.json",
+        "batch": "a6-intake-2026-03-23/deprecated-mcp",
+        "timestamp": "2026-03-23T22:28:50.365522+00:00"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/a6-intake-2026-03-23/deprecated-mcp/.zombie_receipt_smoke-suite.json",
+      "name": ".zombie_receipt_smoke-suite.json",
+      "payload": {
+        "consumed": "scripts/.deprecated/mcp_legacy/smoke-suite.ts",
+        "destination": "dumpster-dive\\intake\\a6-intake-2026-03-23\\deprecated-mcp\\smoke-suite.ts",
+        "batch": "a6-intake-2026-03-23/deprecated-mcp",
+        "timestamp": "2026-03-23T22:28:43.029905+00:00"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/a6-intake-2026-03-23/deprecated-mcp/.zombie_receipt_smoke-suite.ts.meta.json",
+      "name": ".zombie_receipt_smoke-suite.ts.meta.json",
+      "payload": {
+        "consumed": "scripts/.deprecated/mcp_legacy/smoke-suite.ts.meta.json",
+        "destination": "dumpster-dive\\intake\\a6-intake-2026-03-23\\deprecated-mcp\\smoke-suite.ts.meta.json",
+        "batch": "a6-intake-2026-03-23/deprecated-mcp",
+        "timestamp": "2026-03-23T22:28:50.620715+00:00"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/a6-intake-2026-03-23/deprecated-mcp/.zombie_receipt_test-client.json",
+      "name": ".zombie_receipt_test-client.json",
+      "payload": {
+        "consumed": "scripts/.deprecated/mcp_legacy/test-client.ts",
+        "destination": "dumpster-dive\\intake\\a6-intake-2026-03-23\\deprecated-mcp\\test-client.ts",
+        "batch": "a6-intake-2026-03-23/deprecated-mcp",
+        "timestamp": "2026-03-23T22:28:43.281181+00:00"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/a6-intake-2026-03-23/deprecated-mcp/.zombie_receipt_test-client.ts.meta.json",
+      "name": ".zombie_receipt_test-client.ts.meta.json",
+      "payload": {
+        "consumed": "scripts/.deprecated/mcp_legacy/test-client.ts.meta.json",
+        "destination": "dumpster-dive\\intake\\a6-intake-2026-03-23\\deprecated-mcp\\test-client.ts.meta.json",
+        "batch": "a6-intake-2026-03-23/deprecated-mcp",
+        "timestamp": "2026-03-23T22:28:50.874907+00:00"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/a6-intake-2026-03-23/deprecated-mcp/.zombie_receipt_test-dependency-graph.json",
+      "name": ".zombie_receipt_test-dependency-graph.json",
+      "payload": {
+        "consumed": "scripts/.deprecated/mcp_legacy/test-dependency-graph.ts",
+        "destination": "dumpster-dive\\intake\\a6-intake-2026-03-23\\deprecated-mcp\\test-dependency-graph.ts",
+        "batch": "a6-intake-2026-03-23/deprecated-mcp",
+        "timestamp": "2026-03-23T22:28:43.529099+00:00"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/a6-intake-2026-03-23/deprecated-mcp/.zombie_receipt_test-dependency-graph.ts.meta.json",
+      "name": ".zombie_receipt_test-dependency-graph.ts.meta.json",
+      "payload": {
+        "consumed": "scripts/.deprecated/mcp_legacy/test-dependency-graph.ts.meta.json",
+        "destination": "dumpster-dive\\intake\\a6-intake-2026-03-23\\deprecated-mcp\\test-dependency-graph.ts.meta.json",
+        "batch": "a6-intake-2026-03-23/deprecated-mcp",
+        "timestamp": "2026-03-23T22:28:51.130671+00:00"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/a6-intake-2026-03-23/deprecated-mcp/.zombie_receipt_test-input.json",
+      "name": ".zombie_receipt_test-input.json",
+      "payload": {
+        "consumed": "scripts/.deprecated/mcp_legacy/test-input.json",
+        "destination": "dumpster-dive\\intake\\a6-intake-2026-03-23\\deprecated-mcp\\test-input.json",
+        "batch": "a6-intake-2026-03-23/deprecated-mcp",
+        "timestamp": "2026-03-23T22:28:44.279716+00:00"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/a6-intake-2026-03-23/deprecated-mcp/.zombie_receipt_validate-integration.json",
+      "name": ".zombie_receipt_validate-integration.json",
+      "payload": {
+        "consumed": "scripts/.deprecated/mcp_legacy/validate-integration.ps1",
+        "destination": "dumpster-dive\\intake\\a6-intake-2026-03-23\\deprecated-mcp\\validate-integration.ps1",
+        "batch": "a6-intake-2026-03-23/deprecated-mcp",
+        "timestamp": "2026-03-23T22:28:44.026753+00:00"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/a6-intake-2026-03-23/deprecated-mcp/.zombie_receipt_verify-final.json",
+      "name": ".zombie_receipt_verify-final.json",
+      "payload": {
+        "consumed": "scripts/.deprecated/mcp_legacy/verify-final.ts",
+        "destination": "dumpster-dive\\intake\\a6-intake-2026-03-23\\deprecated-mcp\\verify-final.ts",
+        "batch": "a6-intake-2026-03-23/deprecated-mcp",
+        "timestamp": "2026-03-23T22:28:43.778731+00:00"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/a6-intake-2026-03-23/deprecated-mcp/.zombie_receipt_verify-final.ts.meta.json",
+      "name": ".zombie_receipt_verify-final.ts.meta.json",
+      "payload": {
+        "consumed": "scripts/.deprecated/mcp_legacy/verify-final.ts.meta.json",
+        "destination": "dumpster-dive\\intake\\a6-intake-2026-03-23\\deprecated-mcp\\verify-final.ts.meta.json",
+        "batch": "a6-intake-2026-03-23/deprecated-mcp",
+        "timestamp": "2026-03-23T22:28:51.384784+00:00"
+      }
+    }
+  ]
+}

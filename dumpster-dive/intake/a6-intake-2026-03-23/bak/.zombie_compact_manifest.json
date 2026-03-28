@@ -1,0 +1,68 @@
+{
+  "kind": "zombie_intake_compaction",
+  "generated_at": "2026-03-27T21:28:55.574590+00:00",
+  "batch": "dumpster-dive/intake/a6-intake-2026-03-23/bak",
+  "apply_mode": true,
+  "extract_count": 2,
+  "receipt_count": 2,
+  "ore_histogram": {
+    "2": 2
+  },
+  "category_histogram": {
+    "backup": 2
+  },
+  "extracts": [
+    {
+      "path": "dumpster-dive/intake/a6-intake-2026-03-23/bak/.zombie_extract_config.yml.json",
+      "name": ".zombie_extract_config.yml.json",
+      "payload": {
+        "source": "dev/tabbyAPI/config.yml.bak",
+        "timestamp": "2026-03-23T22:29:06.868532+00:00",
+        "ore_rating": 2,
+        "category": "backup",
+        "signals": [
+          "backup_file"
+        ],
+        "intelligence": {},
+        "content_hash": "55319774bdf4f6f2"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/a6-intake-2026-03-23/bak/.zombie_extract_settings.json.json",
+      "name": ".zombie_extract_settings.json.json",
+      "payload": {
+        "source": ".vscode/settings.json.bak-20260316-181658",
+        "timestamp": "2026-03-23T22:29:06.420237+00:00",
+        "ore_rating": 2,
+        "category": "backup",
+        "signals": [
+          "backup_file"
+        ],
+        "intelligence": {},
+        "content_hash": "8822e803c23d231c"
+      }
+    }
+  ],
+  "receipts": [
+    {
+      "path": "dumpster-dive/intake/a6-intake-2026-03-23/bak/.zombie_receipt_config.yml.json",
+      "name": ".zombie_receipt_config.yml.json",
+      "payload": {
+        "consumed": "dev/tabbyAPI/config.yml.bak",
+        "destination": "dumpster-dive\\intake\\a6-intake-2026-03-23\\bak\\config.yml.bak",
+        "batch": "a6-intake-2026-03-23/bak",
+        "timestamp": "2026-03-23T22:29:06.896046+00:00"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/a6-intake-2026-03-23/bak/.zombie_receipt_settings.json.json",
+      "name": ".zombie_receipt_settings.json.json",
+      "payload": {
+        "consumed": ".vscode/settings.json.bak-20260316-181658",
+        "destination": "dumpster-dive\\intake\\a6-intake-2026-03-23\\bak\\settings.json.bak-20260316-181658",
+        "batch": "a6-intake-2026-03-23/bak",
+        "timestamp": "2026-03-23T22:29:06.447372+00:00"
+      }
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "run_id": "2026-01-05T00-43-12-981Z",
+  "workflow": "spectral",
+  "inputs": {
+    "thresholds": {
+      "min": 5,
+      "max": 50
+    }
+  },
+  "outputs": {
+    "distribution": {
+      "BLUE": 414,
+      "VIOLET": 30,
+      "GOLD": 308,
+      "WHITE": 80,
+      "RED": 15,
+      "ORANGE": 100,
+      "INDIGO": 2
+    },
+    "flags": [],
+    "representatives": {},
+    "recommendations": []
+  },
+  "elapsed_ms": 1,
+  "tool_versions": {
+    "server_commit": "5c666b2",
+    "bootstrap_spec": "1752952",
+    "workflows_doc": "622e57f"
+  },
+  "notes": "smoke suite validation run",
+  "success": true
+}

@@ -1,0 +1,217 @@
+{
+  "kind": "zombie_intake_compaction",
+  "generated_at": "2026-03-27T21:28:55.619700+00:00",
+  "batch": "dumpster-dive/intake/scripts-restructure-2026-03-20/root-strays",
+  "apply_mode": true,
+  "extract_count": 6,
+  "receipt_count": 6,
+  "ore_histogram": {
+    "2": 1,
+    "3": 5
+  },
+  "category_histogram": {
+    "test": 1,
+    "candidate": 5
+  },
+  "extracts": [
+    {
+      "path": "dumpster-dive/intake/scripts-restructure-2026-03-20/root-strays/.zombie_extract_claude_test.json",
+      "name": ".zombie_extract_claude_test.json",
+      "payload": {
+        "source": "claude_test.py",
+        "timestamp": "2026-03-21T03:20:51.970814+00:00",
+        "ore_rating": 2,
+        "category": "test",
+        "signals": [
+          "test_file",
+          "imports:2"
+        ],
+        "intelligence": {
+          "imports": [
+            "boto3",
+            "json"
+          ]
+        },
+        "content_hash": "7feeab51c64ff52a"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/scripts-restructure-2026-03-20/root-strays/.zombie_extract_get_hash.json",
+      "name": ".zombie_extract_get_hash.json",
+      "payload": {
+        "source": "get_hash.py",
+        "timestamp": "2026-03-21T03:20:52.155440+00:00",
+        "ore_rating": 3,
+        "category": "candidate",
+        "signals": [
+          "imports:5",
+          "definitions:2"
+        ],
+        "intelligence": {
+          "imports": [
+            "hashlib",
+            "unicodedata",
+            "sys",
+            "pathlib",
+            "scripts.lib.ssot_paths"
+          ],
+          "definitions": [
+            "canonicalize",
+            "ssot_hash"
+          ]
+        },
+        "content_hash": "5dd147a5a67eb8d6"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/scripts-restructure-2026-03-20/root-strays/.zombie_extract_purify_ssot.json",
+      "name": ".zombie_extract_purify_ssot.json",
+      "payload": {
+        "source": "purify_ssot.py",
+        "timestamp": "2026-03-21T03:20:52.338419+00:00",
+        "ore_rating": 3,
+        "category": "candidate",
+        "signals": [
+          "imports:1"
+        ],
+        "intelligence": {
+          "imports": [
+            "sys"
+          ],
+          "docstring": [
+            "---\n\n### **VIII & IX. Mathematical Engines & Tensor Synthesis (`TPEF` / `T\u00b3-M\u03a8`)**\n\n> [!IMPORTANT]\n> Technical metadata for parallel execution and thermodynamic tensor synthesis has been offloaded to "
+          ]
+        },
+        "content_hash": "4409a0415895a491"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/scripts-restructure-2026-03-20/root-strays/.zombie_extract_strip_post_ssot.json",
+      "name": ".zombie_extract_strip_post_ssot.json",
+      "payload": {
+        "source": "strip_post_ssot.py",
+        "timestamp": "2026-03-21T03:20:52.527697+00:00",
+        "ore_rating": 3,
+        "category": "candidate",
+        "signals": [
+          "imports:1"
+        ],
+        "intelligence": {
+          "imports": [
+            "os"
+          ],
+          "docstring": [
+            "---\n\n> [!IMPORTANT]\n> **SECTION VIII & IX OFFLOADED (MECHANICAL ENGINES)**\n> The TPEF and Tensor Synthesis (T\u00b3-M\u03a8) frameworks have been moved to:\n> [.github/instructions/mathematical-engines.instructi"
+          ]
+        },
+        "content_hash": "e4f19adf8cbdeeb3"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/scripts-restructure-2026-03-20/root-strays/.zombie_extract_strip_ssot.json",
+      "name": ".zombie_extract_strip_ssot.json",
+      "payload": {
+        "source": "strip_ssot.py",
+        "timestamp": "2026-03-21T03:20:52.713603+00:00",
+        "ore_rating": 3,
+        "category": "candidate",
+        "signals": [
+          "imports:1"
+        ],
+        "intelligence": {
+          "imports": [
+            "os"
+          ],
+          "docstring": [
+            "---\n\n> [!IMPORTANT]\n> **SECTION X.6-X.12 & SECTIONS XI-XIII OFFLOADED**\n> The Magistra Logic, Sealing Protocols, and Liturgical Incantations have been moved to:\n> [.github/instructions/magistra-logic."
+          ]
+        },
+        "content_hash": "1099eacf6e1c1b99"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/scripts-restructure-2026-03-20/root-strays/.zombie_extract_strip_ssot_v2.json",
+      "name": ".zombie_extract_strip_ssot_v2.json",
+      "payload": {
+        "source": "strip_ssot_v2.py",
+        "timestamp": "2026-03-21T03:20:52.901497+00:00",
+        "ore_rating": 3,
+        "category": "candidate",
+        "signals": [
+          "imports:1"
+        ],
+        "intelligence": {
+          "imports": [
+            "os"
+          ],
+          "docstring": [
+            "---\n\n> [!IMPORTANT]\n> **SECTION X.6-X.12 & SECTIONS XI-XIII OFFLOADED**\n> The Magistra Logic, Sealing Protocols, and Liturgical Incantations have been moved to:\n> [.github/instructions/magistra-logic."
+          ]
+        },
+        "content_hash": "1a7e924941da3fc1"
+      }
+    }
+  ],
+  "receipts": [
+    {
+      "path": "dumpster-dive/intake/scripts-restructure-2026-03-20/root-strays/.zombie_receipt_claude_test.json",
+      "name": ".zombie_receipt_claude_test.json",
+      "payload": {
+        "consumed": "claude_test.py",
+        "destination": "dumpster-dive\\intake\\scripts-restructure-2026-03-20\\root-strays\\claude_test.py",
+        "batch": "scripts-restructure-2026-03-20/root-strays",
+        "timestamp": "2026-03-21T03:20:52.004241+00:00"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/scripts-restructure-2026-03-20/root-strays/.zombie_receipt_get_hash.json",
+      "name": ".zombie_receipt_get_hash.json",
+      "payload": {
+        "consumed": "get_hash.py",
+        "destination": "dumpster-dive\\intake\\scripts-restructure-2026-03-20\\root-strays\\get_hash.py",
+        "batch": "scripts-restructure-2026-03-20/root-strays",
+        "timestamp": "2026-03-21T03:20:52.187989+00:00"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/scripts-restructure-2026-03-20/root-strays/.zombie_receipt_purify_ssot.json",
+      "name": ".zombie_receipt_purify_ssot.json",
+      "payload": {
+        "consumed": "purify_ssot.py",
+        "destination": "dumpster-dive\\intake\\scripts-restructure-2026-03-20\\root-strays\\purify_ssot.py",
+        "batch": "scripts-restructure-2026-03-20/root-strays",
+        "timestamp": "2026-03-21T03:20:52.375874+00:00"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/scripts-restructure-2026-03-20/root-strays/.zombie_receipt_strip_post_ssot.json",
+      "name": ".zombie_receipt_strip_post_ssot.json",
+      "payload": {
+        "consumed": "strip_post_ssot.py",
+        "destination": "dumpster-dive\\intake\\scripts-restructure-2026-03-20\\root-strays\\strip_post_ssot.py",
+        "batch": "scripts-restructure-2026-03-20/root-strays",
+        "timestamp": "2026-03-21T03:20:52.559680+00:00"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/scripts-restructure-2026-03-20/root-strays/.zombie_receipt_strip_ssot.json",
+      "name": ".zombie_receipt_strip_ssot.json",
+      "payload": {
+        "consumed": "strip_ssot.py",
+        "destination": "dumpster-dive\\intake\\scripts-restructure-2026-03-20\\root-strays\\strip_ssot.py",
+        "batch": "scripts-restructure-2026-03-20/root-strays",
+        "timestamp": "2026-03-21T03:20:52.746288+00:00"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/scripts-restructure-2026-03-20/root-strays/.zombie_receipt_strip_ssot_v2.json",
+      "name": ".zombie_receipt_strip_ssot_v2.json",
+      "payload": {
+        "consumed": "strip_ssot_v2.py",
+        "destination": "dumpster-dive\\intake\\scripts-restructure-2026-03-20\\root-strays\\strip_ssot_v2.py",
+        "batch": "scripts-restructure-2026-03-20/root-strays",
+        "timestamp": "2026-03-21T03:20:52.934045+00:00"
+      }
+    }
+  ]
+}

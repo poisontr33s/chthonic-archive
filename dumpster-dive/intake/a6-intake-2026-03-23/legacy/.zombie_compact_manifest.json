@@ -1,0 +1,64 @@
+{
+  "kind": "zombie_intake_compaction",
+  "generated_at": "2026-03-27T21:28:55.608632+00:00",
+  "batch": "dumpster-dive/intake/a6-intake-2026-03-23/legacy",
+  "apply_mode": true,
+  "extract_count": 1,
+  "receipt_count": 1,
+  "ore_histogram": {
+    "3": 1
+  },
+  "category_histogram": {
+    "legacy": 1
+  },
+  "extracts": [
+    {
+      "path": "dumpster-dive/intake/a6-intake-2026-03-23/legacy/.zombie_extract_ruby_legacy_admin.json",
+      "name": ".zombie_extract_ruby_legacy_admin.json",
+      "payload": {
+        "source": "scripts/ruby_legacy_admin.ps1",
+        "timestamp": "2026-03-23T22:28:24.454946+00:00",
+        "ore_rating": 3,
+        "category": "legacy",
+        "signals": [
+          "legacy_marker",
+          "has_decorator_header",
+          "ps1_functions:16"
+        ],
+        "intelligence": {
+          "ps1_functions": [
+            "Test-IsAdmin",
+            "Get-RvExePath",
+            "Get-RvRubyInfo",
+            "Format-Bytes",
+            "Get-DirectorySize",
+            "Get-RubyPathEntries",
+            "Get-LegacyRoots",
+            "Get-QuarantineRoots",
+            "Get-RubyUninstallEntries",
+            "Get-BundleTkConfig",
+            "Get-LegacyUserGemHomes",
+            "Get-ProcessesUsingRoot",
+            "Remove-DeadMachineRubyPathEntries",
+            "Remove-StaleMsys2Entries",
+            "Move-ToQuarantine",
+            "Add-ReportLine"
+          ]
+        },
+        "content_hash": "6184edd781606117"
+      }
+    }
+  ],
+  "receipts": [
+    {
+      "path": "dumpster-dive/intake/a6-intake-2026-03-23/legacy/.zombie_receipt_ruby_legacy_admin.json",
+      "name": ".zombie_receipt_ruby_legacy_admin.json",
+      "payload": {
+        "consumed": "scripts/ruby_legacy_admin.ps1",
+        "destination": "dumpster-dive\\intake\\a6-intake-2026-03-23\\legacy\\ruby_legacy_admin.ps1",
+        "batch": "a6-intake-2026-03-23/legacy",
+        "timestamp": "2026-03-23T22:28:24.525058+00:00"
+      }
+    }
+  ]
+}

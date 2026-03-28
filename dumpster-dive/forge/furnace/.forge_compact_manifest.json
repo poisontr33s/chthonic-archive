@@ -1,0 +1,852 @@
+{
+  "kind": "forge_stage_compaction",
+  "generated_at": "2026-03-27T21:27:40.916530+00:00",
+  "stage": "furnace",
+  "directory": "dumpster-dive/forge/furnace",
+  "apply_mode": true,
+  "receipt_count": 56,
+  "targets": {
+    "dumpster-dive/forge/furnace/chthonic.ps1.bak-20260316-193628": 1,
+    "dumpster-dive/forge/furnace/claude.exe.frozen.2026-02-10T15-28-22": 1,
+    "dumpster-dive/forge/furnace/get_hash.py": 1,
+    "dumpster-dive/forge/furnace/github.copilot-chat.github.copilot-chat-0.38.2026021002.frozen.2026-02-10T15-32-14.vsix": 1,
+    "dumpster-dive/forge/furnace/github.copilot-chat.globalStorage.frozen.2026-02-10T15-32-14.zip": 1,
+    "dumpster-dive/forge/furnace/hf_discovery_spaces_2026-02-09T18-13-17Z.md": 1,
+    "dumpster-dive/forge/furnace/hf_discovery_spaces_2026-02-09T18-13-53Z.md": 1,
+    "dumpster-dive/forge/furnace/hf_discovery_spaces_2026-02-23T16-04-45Z.md": 1,
+    "dumpster-dive/forge/furnace/hf_mcp_service_registry.generated.2026-02-09T19-24-21Z.registry.json": 1,
+    "dumpster-dive/forge/furnace/hf_mcp_tools_2026-02-09T19-34-17Z.json": 1,
+    "dumpster-dive/forge/furnace/hf_mcp_tools_2026-02-09T19-34-32Z.json": 1,
+    "dumpster-dive/forge/furnace/hf_mcp_tools_2026-02-09T19-36-40Z.json": 1,
+    "dumpster-dive/forge/furnace/hf_mcp_tools_2026-02-09T19-37-17-949Z.json": 1,
+    "dumpster-dive/forge/furnace/hf_mcp_tools_2026-02-09T19-37-43-498Z.json": 1,
+    "dumpster-dive/forge/furnace/hf_mcp_tools_2026-02-09T19-37-43-512Z.json": 1,
+    "dumpster-dive/forge/furnace/hf_mcp_tools_2026-02-09T19-38-02-929Z.json": 1,
+    "dumpster-dive/forge/furnace/hf_mcp_tools_2026-02-09T20-22-05-320Z.json": 1,
+    "dumpster-dive/forge/furnace/hf_mcp_tools_2026-02-23T16-05-10-559Z.json": 1,
+    "dumpster-dive/forge/furnace/hf_mcp_tools_2026-02-23T16-09-22-257Z.json": 1,
+    "dumpster-dive/forge/furnace/mcp_artisan_server.ts.meta.json": 1,
+    "dumpster-dive/forge/furnace/mcp_run_audit_2026-01-05T00-42-49-176Z.json": 1,
+    "dumpster-dive/forge/furnace/mcp_run_audit_2026-01-05T00-43-12-981Z.json": 1,
+    "dumpster-dive/forge/furnace/mcp_run_audit_2026-01-05T00-43-47-483Z.json": 1,
+    "dumpster-dive/forge/furnace/mcp_run_audit_2026-01-29T18-30-47-901Z.json": 1,
+    "dumpster-dive/forge/furnace/mcp_run_audit_2026-01-29T18-31-55-941Z.json": 1,
+    "dumpster-dive/forge/furnace/mcp_run_audit_2026-01-29T18-35-18-246Z.json": 1,
+    "dumpster-dive/forge/furnace/mcp_run_audit_2026-01-29T18-36-11-723Z.json": 1,
+    "dumpster-dive/forge/furnace/mcp_run_audit_2026-01-29T18-36-43-813Z.json": 1,
+    "dumpster-dive/forge/furnace/mcp_run_audit_2026-01-29T18-52-46-564Z.json": 1,
+    "dumpster-dive/forge/furnace/mcp_run_audit_2026-01-29T18-53-31-593Z.json": 1,
+    "dumpster-dive/forge/furnace/mcp_run_audit_2026-01-29T18-59-32-890Z.json": 1,
+    "dumpster-dive/forge/furnace/mcp_run_curriculum_2026-01-05T00-42-49-176Z.json": 1,
+    "dumpster-dive/forge/furnace/mcp_run_curriculum_2026-01-05T00-43-12-981Z.json": 1,
+    "dumpster-dive/forge/furnace/mcp_run_curriculum_2026-01-05T00-43-47-483Z.json": 1,
+    "dumpster-dive/forge/furnace/mcp_run_curriculum_2026-01-29T18-30-47-901Z.json": 1,
+    "dumpster-dive/forge/furnace/mcp_run_curriculum_2026-01-29T18-31-55-941Z.json": 1,
+    "dumpster-dive/forge/furnace/mcp_run_curriculum_2026-01-29T18-35-18-246Z.json": 1,
+    "dumpster-dive/forge/furnace/mcp_run_curriculum_2026-01-29T18-36-11-723Z.json": 1,
+    "dumpster-dive/forge/furnace/mcp_run_curriculum_2026-01-29T18-36-43-813Z.json": 1,
+    "dumpster-dive/forge/furnace/mcp_run_curriculum_2026-01-29T18-52-46-564Z.json": 1,
+    "dumpster-dive/forge/furnace/mcp_run_curriculum_2026-01-29T18-53-31-593Z.json": 1,
+    "dumpster-dive/forge/furnace/mcp_run_curriculum_2026-01-29T18-59-32-890Z.json": 1,
+    "dumpster-dive/forge/furnace/mcp_run_discovery_2026-01-05T00-42-49-176Z.json": 1,
+    "dumpster-dive/forge/furnace/mcp_run_discovery_2026-01-05T00-43-12-981Z.json": 1,
+    "dumpster-dive/forge/furnace/probe_toolchain_path.ps1.bak-20260316-193439": 1,
+    "dumpster-dive/forge/furnace/protocol.ts.meta.json": 1,
+    "dumpster-dive/forge/furnace/purify_ssot.py": 1,
+    "dumpster-dive/forge/furnace/recovered_batch_transliteration.ps1": 1,
+    "dumpster-dive/forge/furnace/recovered_shell_recipe_cli.go": 1,
+    "dumpster-dive/forge/furnace/ruby_legacy_admin.ps1": 1,
+    "dumpster-dive/forge/furnace/server.test.ts.meta.json": 1,
+    "dumpster-dive/forge/furnace/server.ts.meta.json": 1,
+    "dumpster-dive/forge/furnace/strip_post_ssot.py": 1,
+    "dumpster-dive/forge/furnace/strip_ssot.py": 1,
+    "dumpster-dive/forge/furnace/strip_ssot_v2.py": 1,
+    "dumpster-dive/forge/furnace/wpth_repeatable_cycle_LEGACY": 1
+  },
+  "receipts": [
+    {
+      "path": "dumpster-dive/forge/furnace/.forge_receipt_chthonic.ps1.bak-20260316-193628.json",
+      "name": ".forge_receipt_chthonic.ps1.bak-20260316-193628.json",
+      "payload": {
+        "source_extract": "dumpster-dive/intake/scripts-restructure-2026-03-20/bak/.zombie_extract_chthonic.ps1.json",
+        "routed_from": "dumpster-dive/intake/scripts-restructure-2026-03-20/bak/chthonic.ps1.bak-20260316-193628",
+        "routed_to": "dumpster-dive/forge/furnace/chthonic.ps1.bak-20260316-193628",
+        "ore_rating": 3,
+        "category": "backup",
+        "content_hash": "a3b3b04e5db51a79",
+        "timestamp": "2026-03-26T20:18:14.803174+00:00",
+        "provenance": null
+      }
+    },
+    {
+      "path": "dumpster-dive/forge/furnace/.forge_receipt_claude.exe.frozen.2026-02-10T15-28-22.json",
+      "name": ".forge_receipt_claude.exe.frozen.2026-02-10T15-28-22.json",
+      "payload": {
+        "source_extract": "dumpster-dive/intake/phaseA-artifacts/.zombie_extract_claude.exe.frozen.json",
+        "routed_from": "dumpster-dive/intake/phaseA-artifacts/claude.exe.frozen.2026-02-10T15-28-22",
+        "routed_to": "dumpster-dive/forge/furnace/claude.exe.frozen.2026-02-10T15-28-22",
+        "ore_rating": 3,
+        "category": "candidate",
+        "content_hash": "16fe8e9fb002a1a2",
+        "timestamp": "2026-03-27T21:21:38.822398+00:00",
+        "provenance": null
+      }
+    },
+    {
+      "path": "dumpster-dive/forge/furnace/.forge_receipt_get_hash.py.json",
+      "name": ".forge_receipt_get_hash.py.json",
+      "payload": {
+        "source_extract": "dumpster-dive/intake/scripts-restructure-2026-03-20/root-strays/.zombie_extract_get_hash.json",
+        "routed_from": "dumpster-dive/intake/scripts-restructure-2026-03-20/root-strays/get_hash.py",
+        "routed_to": "dumpster-dive/forge/furnace/get_hash.py",
+        "ore_rating": 3,
+        "category": "candidate",
+        "content_hash": "5dd147a5a67eb8d6",
+        "timestamp": "2026-03-26T20:18:14.843973+00:00",
+        "provenance": null
+      }
+    },
+    {
+      "path": "dumpster-dive/forge/furnace/.forge_receipt_github.copilot-chat.github.copilot-chat-0.38.2026021002.frozen.2026-02-10T15-32-14.vsix.json",
+      "name": ".forge_receipt_github.copilot-chat.github.copilot-chat-0.38.2026021002.frozen.2026-02-10T15-32-14.vsix.json",
+      "payload": {
+        "source_extract": "dumpster-dive/intake/phaseA-artifacts/.zombie_extract_github.copilot-chat.github.copilot-chat-0.38.2026021002.frozen.2026-02-10T15-32-14.json",
+        "routed_from": "dumpster-dive/intake/phaseA-artifacts/github.copilot-chat.github.copilot-chat-0.38.2026021002.frozen.2026-02-10T15-32-14.vsix",
+        "routed_to": "dumpster-dive/forge/furnace/github.copilot-chat.github.copilot-chat-0.38.2026021002.frozen.2026-02-10T15-32-14.vsix",
+        "ore_rating": 3,
+        "category": "candidate",
+        "content_hash": "cd039a4436060c42",
+        "timestamp": "2026-03-27T21:21:38.848572+00:00",
+        "provenance": null
+      }
+    },
+    {
+      "path": "dumpster-dive/forge/furnace/.forge_receipt_github.copilot-chat.globalStorage.frozen.2026-02-10T15-32-14.zip.json",
+      "name": ".forge_receipt_github.copilot-chat.globalStorage.frozen.2026-02-10T15-32-14.zip.json",
+      "payload": {
+        "source_extract": "dumpster-dive/intake/phaseA-artifacts/.zombie_extract_github.copilot-chat.globalStorage.frozen.2026-02-10T15-32-14.json",
+        "routed_from": "dumpster-dive/intake/phaseA-artifacts/github.copilot-chat.globalStorage.frozen.2026-02-10T15-32-14.zip",
+        "routed_to": "dumpster-dive/forge/furnace/github.copilot-chat.globalStorage.frozen.2026-02-10T15-32-14.zip",
+        "ore_rating": 3,
+        "category": "candidate",
+        "content_hash": "92445c5f3b545670",
+        "timestamp": "2026-03-27T21:21:38.861637+00:00",
+        "provenance": null
+      }
+    },
+    {
+      "path": "dumpster-dive/forge/furnace/.forge_receipt_hf_discovery_spaces_2026-02-09T18-13-17Z.md.json",
+      "name": ".forge_receipt_hf_discovery_spaces_2026-02-09T18-13-17Z.md.json",
+      "payload": {
+        "source_extract": "dumpster-dive/intake/phaseA-artifacts/.zombie_extract_hf_discovery_spaces_2026-02-09T18-13-17Z.json",
+        "routed_from": "dumpster-dive/intake/phaseA-artifacts/hf_discovery_spaces_2026-02-09T18-13-17Z.md",
+        "routed_to": "dumpster-dive/forge/furnace/hf_discovery_spaces_2026-02-09T18-13-17Z.md",
+        "ore_rating": 3,
+        "category": "candidate",
+        "content_hash": "448bf8651aa00c1d",
+        "timestamp": "2026-03-27T21:21:38.870459+00:00",
+        "provenance": null
+      }
+    },
+    {
+      "path": "dumpster-dive/forge/furnace/.forge_receipt_hf_discovery_spaces_2026-02-09T18-13-53Z.md.json",
+      "name": ".forge_receipt_hf_discovery_spaces_2026-02-09T18-13-53Z.md.json",
+      "payload": {
+        "source_extract": "dumpster-dive/intake/phaseA-artifacts/.zombie_extract_hf_discovery_spaces_2026-02-09T18-13-53Z.json",
+        "routed_from": "dumpster-dive/intake/phaseA-artifacts/hf_discovery_spaces_2026-02-09T18-13-53Z.md",
+        "routed_to": "dumpster-dive/forge/furnace/hf_discovery_spaces_2026-02-09T18-13-53Z.md",
+        "ore_rating": 3,
+        "category": "candidate",
+        "content_hash": "62076507e6f4be4f",
+        "timestamp": "2026-03-27T21:21:38.878481+00:00",
+        "provenance": null
+      }
+    },
+    {
+      "path": "dumpster-dive/forge/furnace/.forge_receipt_hf_discovery_spaces_2026-02-23T16-04-45Z.md.json",
+      "name": ".forge_receipt_hf_discovery_spaces_2026-02-23T16-04-45Z.md.json",
+      "payload": {
+        "source_extract": "dumpster-dive/intake/phaseA-artifacts/.zombie_extract_hf_discovery_spaces_2026-02-23T16-04-45Z.json",
+        "routed_from": "dumpster-dive/intake/phaseA-artifacts/hf_discovery_spaces_2026-02-23T16-04-45Z.md",
+        "routed_to": "dumpster-dive/forge/furnace/hf_discovery_spaces_2026-02-23T16-04-45Z.md",
+        "ore_rating": 3,
+        "category": "candidate",
+        "content_hash": "7fc0380eab63e271",
+        "timestamp": "2026-03-27T21:21:38.886563+00:00",
+        "provenance": null
+      }
+    },
+    {
+      "path": "dumpster-dive/forge/furnace/.forge_receipt_hf_mcp_service_registry.generated.2026-02-09T19-24-21Z.registry.json.json",
+      "name": ".forge_receipt_hf_mcp_service_registry.generated.2026-02-09T19-24-21Z.registry.json.json",
+      "payload": {
+        "source_extract": "dumpster-dive/intake/phaseA-artifacts/.zombie_extract_hf_mcp_service_registry.generated.2026-02-09T19-24-21Z.registry.json",
+        "routed_from": "dumpster-dive/intake/phaseA-artifacts/hf_mcp_service_registry.generated.2026-02-09T19-24-21Z.registry.json",
+        "routed_to": "dumpster-dive/forge/furnace/hf_mcp_service_registry.generated.2026-02-09T19-24-21Z.registry.json",
+        "ore_rating": 3,
+        "category": "candidate",
+        "content_hash": "8896e5ed23d2e3f3",
+        "timestamp": "2026-03-27T21:21:38.953598+00:00",
+        "provenance": null
+      }
+    },
+    {
+      "path": "dumpster-dive/forge/furnace/.forge_receipt_hf_mcp_tools_2026-02-09T19-34-17Z.json.json",
+      "name": ".forge_receipt_hf_mcp_tools_2026-02-09T19-34-17Z.json.json",
+      "payload": {
+        "source_extract": "dumpster-dive/intake/phaseA-artifacts/.zombie_extract_hf_mcp_tools_2026-02-09T19-34-17Z.json",
+        "routed_from": "dumpster-dive/intake/phaseA-artifacts/hf_mcp_tools_2026-02-09T19-34-17Z.json",
+        "routed_to": "dumpster-dive/forge/furnace/hf_mcp_tools_2026-02-09T19-34-17Z.json",
+        "ore_rating": 3,
+        "category": "candidate",
+        "content_hash": "362f926dd622d06e",
+        "timestamp": "2026-03-27T21:21:38.962424+00:00",
+        "provenance": null
+      }
+    },
+    {
+      "path": "dumpster-dive/forge/furnace/.forge_receipt_hf_mcp_tools_2026-02-09T19-34-32Z.json.json",
+      "name": ".forge_receipt_hf_mcp_tools_2026-02-09T19-34-32Z.json.json",
+      "payload": {
+        "source_extract": "dumpster-dive/intake/phaseA-artifacts/.zombie_extract_hf_mcp_tools_2026-02-09T19-34-32Z.json",
+        "routed_from": "dumpster-dive/intake/phaseA-artifacts/hf_mcp_tools_2026-02-09T19-34-32Z.json",
+        "routed_to": "dumpster-dive/forge/furnace/hf_mcp_tools_2026-02-09T19-34-32Z.json",
+        "ore_rating": 3,
+        "category": "candidate",
+        "content_hash": "4ff357051a76f935",
+        "timestamp": "2026-03-27T21:21:38.970594+00:00",
+        "provenance": null
+      }
+    },
+    {
+      "path": "dumpster-dive/forge/furnace/.forge_receipt_hf_mcp_tools_2026-02-09T19-36-40Z.json.json",
+      "name": ".forge_receipt_hf_mcp_tools_2026-02-09T19-36-40Z.json.json",
+      "payload": {
+        "source_extract": "dumpster-dive/intake/phaseA-artifacts/.zombie_extract_hf_mcp_tools_2026-02-09T19-36-40Z.json",
+        "routed_from": "dumpster-dive/intake/phaseA-artifacts/hf_mcp_tools_2026-02-09T19-36-40Z.json",
+        "routed_to": "dumpster-dive/forge/furnace/hf_mcp_tools_2026-02-09T19-36-40Z.json",
+        "ore_rating": 3,
+        "category": "candidate",
+        "content_hash": "8ea0718803040cbc",
+        "timestamp": "2026-03-27T21:21:38.978118+00:00",
+        "provenance": null
+      }
+    },
+    {
+      "path": "dumpster-dive/forge/furnace/.forge_receipt_hf_mcp_tools_2026-02-09T19-37-17-949Z.json.json",
+      "name": ".forge_receipt_hf_mcp_tools_2026-02-09T19-37-17-949Z.json.json",
+      "payload": {
+        "source_extract": "dumpster-dive/intake/phaseA-artifacts/.zombie_extract_hf_mcp_tools_2026-02-09T19-37-17-949Z.json",
+        "routed_from": "dumpster-dive/intake/phaseA-artifacts/hf_mcp_tools_2026-02-09T19-37-17-949Z.json",
+        "routed_to": "dumpster-dive/forge/furnace/hf_mcp_tools_2026-02-09T19-37-17-949Z.json",
+        "ore_rating": 3,
+        "category": "candidate",
+        "content_hash": "6d99108c8ab77e83",
+        "timestamp": "2026-03-27T21:21:38.986178+00:00",
+        "provenance": null
+      }
+    },
+    {
+      "path": "dumpster-dive/forge/furnace/.forge_receipt_hf_mcp_tools_2026-02-09T19-37-43-498Z.json.json",
+      "name": ".forge_receipt_hf_mcp_tools_2026-02-09T19-37-43-498Z.json.json",
+      "payload": {
+        "source_extract": "dumpster-dive/intake/phaseA-artifacts/.zombie_extract_hf_mcp_tools_2026-02-09T19-37-43-498Z.json",
+        "routed_from": "dumpster-dive/intake/phaseA-artifacts/hf_mcp_tools_2026-02-09T19-37-43-498Z.json",
+        "routed_to": "dumpster-dive/forge/furnace/hf_mcp_tools_2026-02-09T19-37-43-498Z.json",
+        "ore_rating": 3,
+        "category": "candidate",
+        "content_hash": "3156487dd65d309b",
+        "timestamp": "2026-03-27T21:21:38.993271+00:00",
+        "provenance": null
+      }
+    },
+    {
+      "path": "dumpster-dive/forge/furnace/.forge_receipt_hf_mcp_tools_2026-02-09T19-37-43-512Z.json.json",
+      "name": ".forge_receipt_hf_mcp_tools_2026-02-09T19-37-43-512Z.json.json",
+      "payload": {
+        "source_extract": "dumpster-dive/intake/phaseA-artifacts/.zombie_extract_hf_mcp_tools_2026-02-09T19-37-43-512Z.json",
+        "routed_from": "dumpster-dive/intake/phaseA-artifacts/hf_mcp_tools_2026-02-09T19-37-43-512Z.json",
+        "routed_to": "dumpster-dive/forge/furnace/hf_mcp_tools_2026-02-09T19-37-43-512Z.json",
+        "ore_rating": 3,
+        "category": "candidate",
+        "content_hash": "6542be04ef205668",
+        "timestamp": "2026-03-27T21:21:39.003887+00:00",
+        "provenance": null
+      }
+    },
+    {
+      "path": "dumpster-dive/forge/furnace/.forge_receipt_hf_mcp_tools_2026-02-09T19-38-02-929Z.json.json",
+      "name": ".forge_receipt_hf_mcp_tools_2026-02-09T19-38-02-929Z.json.json",
+      "payload": {
+        "source_extract": "dumpster-dive/intake/phaseA-artifacts/.zombie_extract_hf_mcp_tools_2026-02-09T19-38-02-929Z.json",
+        "routed_from": "dumpster-dive/intake/phaseA-artifacts/hf_mcp_tools_2026-02-09T19-38-02-929Z.json",
+        "routed_to": "dumpster-dive/forge/furnace/hf_mcp_tools_2026-02-09T19-38-02-929Z.json",
+        "ore_rating": 3,
+        "category": "candidate",
+        "content_hash": "f366de5cceae8e16",
+        "timestamp": "2026-03-27T21:21:39.012717+00:00",
+        "provenance": null
+      }
+    },
+    {
+      "path": "dumpster-dive/forge/furnace/.forge_receipt_hf_mcp_tools_2026-02-09T20-22-05-320Z.json.json",
+      "name": ".forge_receipt_hf_mcp_tools_2026-02-09T20-22-05-320Z.json.json",
+      "payload": {
+        "source_extract": "dumpster-dive/intake/phaseA-artifacts/.zombie_extract_hf_mcp_tools_2026-02-09T20-22-05-320Z.json",
+        "routed_from": "dumpster-dive/intake/phaseA-artifacts/hf_mcp_tools_2026-02-09T20-22-05-320Z.json",
+        "routed_to": "dumpster-dive/forge/furnace/hf_mcp_tools_2026-02-09T20-22-05-320Z.json",
+        "ore_rating": 3,
+        "category": "candidate",
+        "content_hash": "68104f75b1c70c98",
+        "timestamp": "2026-03-27T21:21:39.021193+00:00",
+        "provenance": null
+      }
+    },
+    {
+      "path": "dumpster-dive/forge/furnace/.forge_receipt_hf_mcp_tools_2026-02-23T16-05-10-559Z.json.json",
+      "name": ".forge_receipt_hf_mcp_tools_2026-02-23T16-05-10-559Z.json.json",
+      "payload": {
+        "source_extract": "dumpster-dive/intake/phaseA-artifacts/.zombie_extract_hf_mcp_tools_2026-02-23T16-05-10-559Z.json",
+        "routed_from": "dumpster-dive/intake/phaseA-artifacts/hf_mcp_tools_2026-02-23T16-05-10-559Z.json",
+        "routed_to": "dumpster-dive/forge/furnace/hf_mcp_tools_2026-02-23T16-05-10-559Z.json",
+        "ore_rating": 3,
+        "category": "candidate",
+        "content_hash": "61e39c11d1d7e78f",
+        "timestamp": "2026-03-27T21:21:39.029454+00:00",
+        "provenance": null
+      }
+    },
+    {
+      "path": "dumpster-dive/forge/furnace/.forge_receipt_hf_mcp_tools_2026-02-23T16-09-22-257Z.json.json",
+      "name": ".forge_receipt_hf_mcp_tools_2026-02-23T16-09-22-257Z.json.json",
+      "payload": {
+        "source_extract": "dumpster-dive/intake/phaseA-artifacts/.zombie_extract_hf_mcp_tools_2026-02-23T16-09-22-257Z.json",
+        "routed_from": "dumpster-dive/intake/phaseA-artifacts/hf_mcp_tools_2026-02-23T16-09-22-257Z.json",
+        "routed_to": "dumpster-dive/forge/furnace/hf_mcp_tools_2026-02-23T16-09-22-257Z.json",
+        "ore_rating": 3,
+        "category": "candidate",
+        "content_hash": "d1596c845ea8b2a1",
+        "timestamp": "2026-03-27T21:21:39.037118+00:00",
+        "provenance": null
+      }
+    },
+    {
+      "path": "dumpster-dive/forge/furnace/.forge_receipt_mcp_artisan_server.ts.meta.json.json",
+      "name": ".forge_receipt_mcp_artisan_server.ts.meta.json.json",
+      "payload": {
+        "source_extract": "dumpster-dive/intake/a6-intake-2026-03-23/deprecated/.zombie_extract_mcp_artisan_server.ts.meta.json",
+        "routed_from": "dumpster-dive/intake/a6-intake-2026-03-23/deprecated/mcp_artisan_server.ts.meta.json",
+        "routed_to": "dumpster-dive/forge/furnace/mcp_artisan_server.ts.meta.json",
+        "ore_rating": 3,
+        "category": "legacy",
+        "content_hash": "9a69ea2ed3312368",
+        "timestamp": "2026-03-26T20:18:14.739500+00:00",
+        "provenance": null
+      }
+    },
+    {
+      "path": "dumpster-dive/forge/furnace/.forge_receipt_mcp_run_audit_2026-01-05T00-42-49-176Z.json.json",
+      "name": ".forge_receipt_mcp_run_audit_2026-01-05T00-42-49-176Z.json.json",
+      "payload": {
+        "source_extract": "dumpster-dive/intake/phaseA-artifacts/.zombie_extract_mcp_run_audit_2026-01-05T00-42-49-176Z.json",
+        "routed_from": "dumpster-dive/intake/phaseA-artifacts/mcp_run_audit_2026-01-05T00-42-49-176Z.json",
+        "routed_to": "dumpster-dive/forge/furnace/mcp_run_audit_2026-01-05T00-42-49-176Z.json",
+        "ore_rating": 3,
+        "category": "candidate",
+        "content_hash": "801998e6ecf226ab",
+        "timestamp": "2026-03-27T21:21:39.044317+00:00",
+        "provenance": null
+      }
+    },
+    {
+      "path": "dumpster-dive/forge/furnace/.forge_receipt_mcp_run_audit_2026-01-05T00-43-12-981Z.json.json",
+      "name": ".forge_receipt_mcp_run_audit_2026-01-05T00-43-12-981Z.json.json",
+      "payload": {
+        "source_extract": "dumpster-dive/intake/phaseA-artifacts/.zombie_extract_mcp_run_audit_2026-01-05T00-43-12-981Z.json",
+        "routed_from": "dumpster-dive/intake/phaseA-artifacts/mcp_run_audit_2026-01-05T00-43-12-981Z.json",
+        "routed_to": "dumpster-dive/forge/furnace/mcp_run_audit_2026-01-05T00-43-12-981Z.json",
+        "ore_rating": 3,
+        "category": "candidate",
+        "content_hash": "040795d9231e66e5",
+        "timestamp": "2026-03-27T21:21:39.051542+00:00",
+        "provenance": null
+      }
+    },
+    {
+      "path": "dumpster-dive/forge/furnace/.forge_receipt_mcp_run_audit_2026-01-05T00-43-47-483Z.json.json",
+      "name": ".forge_receipt_mcp_run_audit_2026-01-05T00-43-47-483Z.json.json",
+      "payload": {
+        "source_extract": "dumpster-dive/intake/phaseA-artifacts/.zombie_extract_mcp_run_audit_2026-01-05T00-43-47-483Z.json",
+        "routed_from": "dumpster-dive/intake/phaseA-artifacts/mcp_run_audit_2026-01-05T00-43-47-483Z.json",
+        "routed_to": "dumpster-dive/forge/furnace/mcp_run_audit_2026-01-05T00-43-47-483Z.json",
+        "ore_rating": 3,
+        "category": "candidate",
+        "content_hash": "17e68b3f3fd7fb2d",
+        "timestamp": "2026-03-27T21:21:39.058911+00:00",
+        "provenance": null
+      }
+    },
+    {
+      "path": "dumpster-dive/forge/furnace/.forge_receipt_mcp_run_audit_2026-01-29T18-30-47-901Z.json.json",
+      "name": ".forge_receipt_mcp_run_audit_2026-01-29T18-30-47-901Z.json.json",
+      "payload": {
+        "source_extract": "dumpster-dive/intake/phaseA-artifacts/.zombie_extract_mcp_run_audit_2026-01-29T18-30-47-901Z.json",
+        "routed_from": "dumpster-dive/intake/phaseA-artifacts/mcp_run_audit_2026-01-29T18-30-47-901Z.json",
+        "routed_to": "dumpster-dive/forge/furnace/mcp_run_audit_2026-01-29T18-30-47-901Z.json",
+        "ore_rating": 3,
+        "category": "candidate",
+        "content_hash": "a30ccb3cafd942e5",
+        "timestamp": "2026-03-27T21:21:39.066113+00:00",
+        "provenance": null
+      }
+    },
+    {
+      "path": "dumpster-dive/forge/furnace/.forge_receipt_mcp_run_audit_2026-01-29T18-31-55-941Z.json.json",
+      "name": ".forge_receipt_mcp_run_audit_2026-01-29T18-31-55-941Z.json.json",
+      "payload": {
+        "source_extract": "dumpster-dive/intake/phaseA-artifacts/.zombie_extract_mcp_run_audit_2026-01-29T18-31-55-941Z.json",
+        "routed_from": "dumpster-dive/intake/phaseA-artifacts/mcp_run_audit_2026-01-29T18-31-55-941Z.json",
+        "routed_to": "dumpster-dive/forge/furnace/mcp_run_audit_2026-01-29T18-31-55-941Z.json",
+        "ore_rating": 3,
+        "category": "candidate",
+        "content_hash": "e4f485db652675dd",
+        "timestamp": "2026-03-27T21:21:39.074007+00:00",
+        "provenance": null
+      }
+    },
+    {
+      "path": "dumpster-dive/forge/furnace/.forge_receipt_mcp_run_audit_2026-01-29T18-35-18-246Z.json.json",
+      "name": ".forge_receipt_mcp_run_audit_2026-01-29T18-35-18-246Z.json.json",
+      "payload": {
+        "source_extract": "dumpster-dive/intake/phaseA-artifacts/.zombie_extract_mcp_run_audit_2026-01-29T18-35-18-246Z.json",
+        "routed_from": "dumpster-dive/intake/phaseA-artifacts/mcp_run_audit_2026-01-29T18-35-18-246Z.json",
+        "routed_to": "dumpster-dive/forge/furnace/mcp_run_audit_2026-01-29T18-35-18-246Z.json",
+        "ore_rating": 3,
+        "category": "candidate",
+        "content_hash": "5d0c2814b582a49e",
+        "timestamp": "2026-03-27T21:21:39.083003+00:00",
+        "provenance": null
+      }
+    },
+    {
+      "path": "dumpster-dive/forge/furnace/.forge_receipt_mcp_run_audit_2026-01-29T18-36-11-723Z.json.json",
+      "name": ".forge_receipt_mcp_run_audit_2026-01-29T18-36-11-723Z.json.json",
+      "payload": {
+        "source_extract": "dumpster-dive/intake/phaseA-artifacts/.zombie_extract_mcp_run_audit_2026-01-29T18-36-11-723Z.json",
+        "routed_from": "dumpster-dive/intake/phaseA-artifacts/mcp_run_audit_2026-01-29T18-36-11-723Z.json",
+        "routed_to": "dumpster-dive/forge/furnace/mcp_run_audit_2026-01-29T18-36-11-723Z.json",
+        "ore_rating": 3,
+        "category": "candidate",
+        "content_hash": "3e61d74e677d5139",
+        "timestamp": "2026-03-27T21:21:39.090467+00:00",
+        "provenance": null
+      }
+    },
+    {
+      "path": "dumpster-dive/forge/furnace/.forge_receipt_mcp_run_audit_2026-01-29T18-36-43-813Z.json.json",
+      "name": ".forge_receipt_mcp_run_audit_2026-01-29T18-36-43-813Z.json.json",
+      "payload": {
+        "source_extract": "dumpster-dive/intake/phaseA-artifacts/.zombie_extract_mcp_run_audit_2026-01-29T18-36-43-813Z.json",
+        "routed_from": "dumpster-dive/intake/phaseA-artifacts/mcp_run_audit_2026-01-29T18-36-43-813Z.json",
+        "routed_to": "dumpster-dive/forge/furnace/mcp_run_audit_2026-01-29T18-36-43-813Z.json",
+        "ore_rating": 3,
+        "category": "candidate",
+        "content_hash": "08233504181638b9",
+        "timestamp": "2026-03-27T21:21:39.097626+00:00",
+        "provenance": null
+      }
+    },
+    {
+      "path": "dumpster-dive/forge/furnace/.forge_receipt_mcp_run_audit_2026-01-29T18-52-46-564Z.json.json",
+      "name": ".forge_receipt_mcp_run_audit_2026-01-29T18-52-46-564Z.json.json",
+      "payload": {
+        "source_extract": "dumpster-dive/intake/phaseA-artifacts/.zombie_extract_mcp_run_audit_2026-01-29T18-52-46-564Z.json",
+        "routed_from": "dumpster-dive/intake/phaseA-artifacts/mcp_run_audit_2026-01-29T18-52-46-564Z.json",
+        "routed_to": "dumpster-dive/forge/furnace/mcp_run_audit_2026-01-29T18-52-46-564Z.json",
+        "ore_rating": 3,
+        "category": "candidate",
+        "content_hash": "f1e322ddd4dc99c3",
+        "timestamp": "2026-03-27T21:21:39.104948+00:00",
+        "provenance": null
+      }
+    },
+    {
+      "path": "dumpster-dive/forge/furnace/.forge_receipt_mcp_run_audit_2026-01-29T18-53-31-593Z.json.json",
+      "name": ".forge_receipt_mcp_run_audit_2026-01-29T18-53-31-593Z.json.json",
+      "payload": {
+        "source_extract": "dumpster-dive/intake/phaseA-artifacts/.zombie_extract_mcp_run_audit_2026-01-29T18-53-31-593Z.json",
+        "routed_from": "dumpster-dive/intake/phaseA-artifacts/mcp_run_audit_2026-01-29T18-53-31-593Z.json",
+        "routed_to": "dumpster-dive/forge/furnace/mcp_run_audit_2026-01-29T18-53-31-593Z.json",
+        "ore_rating": 3,
+        "category": "candidate",
+        "content_hash": "5957c11b5ee60643",
+        "timestamp": "2026-03-27T21:21:39.112149+00:00",
+        "provenance": null
+      }
+    },
+    {
+      "path": "dumpster-dive/forge/furnace/.forge_receipt_mcp_run_audit_2026-01-29T18-59-32-890Z.json.json",
+      "name": ".forge_receipt_mcp_run_audit_2026-01-29T18-59-32-890Z.json.json",
+      "payload": {
+        "source_extract": "dumpster-dive/intake/phaseA-artifacts/.zombie_extract_mcp_run_audit_2026-01-29T18-59-32-890Z.json",
+        "routed_from": "dumpster-dive/intake/phaseA-artifacts/mcp_run_audit_2026-01-29T18-59-32-890Z.json",
+        "routed_to": "dumpster-dive/forge/furnace/mcp_run_audit_2026-01-29T18-59-32-890Z.json",
+        "ore_rating": 3,
+        "category": "candidate",
+        "content_hash": "fed59c5a9037eb47",
+        "timestamp": "2026-03-27T21:21:39.120618+00:00",
+        "provenance": null
+      }
+    },
+    {
+      "path": "dumpster-dive/forge/furnace/.forge_receipt_mcp_run_curriculum_2026-01-05T00-42-49-176Z.json.json",
+      "name": ".forge_receipt_mcp_run_curriculum_2026-01-05T00-42-49-176Z.json.json",
+      "payload": {
+        "source_extract": "dumpster-dive/intake/phaseA-artifacts/.zombie_extract_mcp_run_curriculum_2026-01-05T00-42-49-176Z.json",
+        "routed_from": "dumpster-dive/intake/phaseA-artifacts/mcp_run_curriculum_2026-01-05T00-42-49-176Z.json",
+        "routed_to": "dumpster-dive/forge/furnace/mcp_run_curriculum_2026-01-05T00-42-49-176Z.json",
+        "ore_rating": 3,
+        "category": "candidate",
+        "content_hash": "b1f34c9b8cd9737b",
+        "timestamp": "2026-03-27T21:21:39.127776+00:00",
+        "provenance": null
+      }
+    },
+    {
+      "path": "dumpster-dive/forge/furnace/.forge_receipt_mcp_run_curriculum_2026-01-05T00-43-12-981Z.json.json",
+      "name": ".forge_receipt_mcp_run_curriculum_2026-01-05T00-43-12-981Z.json.json",
+      "payload": {
+        "source_extract": "dumpster-dive/intake/phaseA-artifacts/.zombie_extract_mcp_run_curriculum_2026-01-05T00-43-12-981Z.json",
+        "routed_from": "dumpster-dive/intake/phaseA-artifacts/mcp_run_curriculum_2026-01-05T00-43-12-981Z.json",
+        "routed_to": "dumpster-dive/forge/furnace/mcp_run_curriculum_2026-01-05T00-43-12-981Z.json",
+        "ore_rating": 3,
+        "category": "candidate",
+        "content_hash": "73d29f26f15f1ce5",
+        "timestamp": "2026-03-27T21:21:39.135238+00:00",
+        "provenance": null
+      }
+    },
+    {
+      "path": "dumpster-dive/forge/furnace/.forge_receipt_mcp_run_curriculum_2026-01-05T00-43-47-483Z.json.json",
+      "name": ".forge_receipt_mcp_run_curriculum_2026-01-05T00-43-47-483Z.json.json",
+      "payload": {
+        "source_extract": "dumpster-dive/intake/phaseA-artifacts/.zombie_extract_mcp_run_curriculum_2026-01-05T00-43-47-483Z.json",
+        "routed_from": "dumpster-dive/intake/phaseA-artifacts/mcp_run_curriculum_2026-01-05T00-43-47-483Z.json",
+        "routed_to": "dumpster-dive/forge/furnace/mcp_run_curriculum_2026-01-05T00-43-47-483Z.json",
+        "ore_rating": 3,
+        "category": "candidate",
+        "content_hash": "bcdb03edd5a3e29a",
+        "timestamp": "2026-03-27T21:21:39.142257+00:00",
+        "provenance": null
+      }
+    },
+    {
+      "path": "dumpster-dive/forge/furnace/.forge_receipt_mcp_run_curriculum_2026-01-29T18-30-47-901Z.json.json",
+      "name": ".forge_receipt_mcp_run_curriculum_2026-01-29T18-30-47-901Z.json.json",
+      "payload": {
+        "source_extract": "dumpster-dive/intake/phaseA-artifacts/.zombie_extract_mcp_run_curriculum_2026-01-29T18-30-47-901Z.json",
+        "routed_from": "dumpster-dive/intake/phaseA-artifacts/mcp_run_curriculum_2026-01-29T18-30-47-901Z.json",
+        "routed_to": "dumpster-dive/forge/furnace/mcp_run_curriculum_2026-01-29T18-30-47-901Z.json",
+        "ore_rating": 3,
+        "category": "candidate",
+        "content_hash": "4078ab643959bce6",
+        "timestamp": "2026-03-27T21:21:39.149561+00:00",
+        "provenance": null
+      }
+    },
+    {
+      "path": "dumpster-dive/forge/furnace/.forge_receipt_mcp_run_curriculum_2026-01-29T18-31-55-941Z.json.json",
+      "name": ".forge_receipt_mcp_run_curriculum_2026-01-29T18-31-55-941Z.json.json",
+      "payload": {
+        "source_extract": "dumpster-dive/intake/phaseA-artifacts/.zombie_extract_mcp_run_curriculum_2026-01-29T18-31-55-941Z.json",
+        "routed_from": "dumpster-dive/intake/phaseA-artifacts/mcp_run_curriculum_2026-01-29T18-31-55-941Z.json",
+        "routed_to": "dumpster-dive/forge/furnace/mcp_run_curriculum_2026-01-29T18-31-55-941Z.json",
+        "ore_rating": 3,
+        "category": "candidate",
+        "content_hash": "21623e599bd40b68",
+        "timestamp": "2026-03-27T21:21:39.156668+00:00",
+        "provenance": null
+      }
+    },
+    {
+      "path": "dumpster-dive/forge/furnace/.forge_receipt_mcp_run_curriculum_2026-01-29T18-35-18-246Z.json.json",
+      "name": ".forge_receipt_mcp_run_curriculum_2026-01-29T18-35-18-246Z.json.json",
+      "payload": {
+        "source_extract": "dumpster-dive/intake/phaseA-artifacts/.zombie_extract_mcp_run_curriculum_2026-01-29T18-35-18-246Z.json",
+        "routed_from": "dumpster-dive/intake/phaseA-artifacts/mcp_run_curriculum_2026-01-29T18-35-18-246Z.json",
+        "routed_to": "dumpster-dive/forge/furnace/mcp_run_curriculum_2026-01-29T18-35-18-246Z.json",
+        "ore_rating": 3,
+        "category": "candidate",
+        "content_hash": "d231cbe703b98149",
+        "timestamp": "2026-03-27T21:21:39.164195+00:00",
+        "provenance": null
+      }
+    },
+    {
+      "path": "dumpster-dive/forge/furnace/.forge_receipt_mcp_run_curriculum_2026-01-29T18-36-11-723Z.json.json",
+      "name": ".forge_receipt_mcp_run_curriculum_2026-01-29T18-36-11-723Z.json.json",
+      "payload": {
+        "source_extract": "dumpster-dive/intake/phaseA-artifacts/.zombie_extract_mcp_run_curriculum_2026-01-29T18-36-11-723Z.json",
+        "routed_from": "dumpster-dive/intake/phaseA-artifacts/mcp_run_curriculum_2026-01-29T18-36-11-723Z.json",
+        "routed_to": "dumpster-dive/forge/furnace/mcp_run_curriculum_2026-01-29T18-36-11-723Z.json",
+        "ore_rating": 3,
+        "category": "candidate",
+        "content_hash": "16699d66d452c2a1",
+        "timestamp": "2026-03-27T21:21:39.172284+00:00",
+        "provenance": null
+      }
+    },
+    {
+      "path": "dumpster-dive/forge/furnace/.forge_receipt_mcp_run_curriculum_2026-01-29T18-36-43-813Z.json.json",
+      "name": ".forge_receipt_mcp_run_curriculum_2026-01-29T18-36-43-813Z.json.json",
+      "payload": {
+        "source_extract": "dumpster-dive/intake/phaseA-artifacts/.zombie_extract_mcp_run_curriculum_2026-01-29T18-36-43-813Z.json",
+        "routed_from": "dumpster-dive/intake/phaseA-artifacts/mcp_run_curriculum_2026-01-29T18-36-43-813Z.json",
+        "routed_to": "dumpster-dive/forge/furnace/mcp_run_curriculum_2026-01-29T18-36-43-813Z.json",
+        "ore_rating": 3,
+        "category": "candidate",
+        "content_hash": "2a7fd5c3c51b3814",
+        "timestamp": "2026-03-27T21:21:39.179991+00:00",
+        "provenance": null
+      }
+    },
+    {
+      "path": "dumpster-dive/forge/furnace/.forge_receipt_mcp_run_curriculum_2026-01-29T18-52-46-564Z.json.json",
+      "name": ".forge_receipt_mcp_run_curriculum_2026-01-29T18-52-46-564Z.json.json",
+      "payload": {
+        "source_extract": "dumpster-dive/intake/phaseA-artifacts/.zombie_extract_mcp_run_curriculum_2026-01-29T18-52-46-564Z.json",
+        "routed_from": "dumpster-dive/intake/phaseA-artifacts/mcp_run_curriculum_2026-01-29T18-52-46-564Z.json",
+        "routed_to": "dumpster-dive/forge/furnace/mcp_run_curriculum_2026-01-29T18-52-46-564Z.json",
+        "ore_rating": 3,
+        "category": "candidate",
+        "content_hash": "845e8da566a7fcae",
+        "timestamp": "2026-03-27T21:21:39.187518+00:00",
+        "provenance": null
+      }
+    },
+    {
+      "path": "dumpster-dive/forge/furnace/.forge_receipt_mcp_run_curriculum_2026-01-29T18-53-31-593Z.json.json",
+      "name": ".forge_receipt_mcp_run_curriculum_2026-01-29T18-53-31-593Z.json.json",
+      "payload": {
+        "source_extract": "dumpster-dive/intake/phaseA-artifacts/.zombie_extract_mcp_run_curriculum_2026-01-29T18-53-31-593Z.json",
+        "routed_from": "dumpster-dive/intake/phaseA-artifacts/mcp_run_curriculum_2026-01-29T18-53-31-593Z.json",
+        "routed_to": "dumpster-dive/forge/furnace/mcp_run_curriculum_2026-01-29T18-53-31-593Z.json",
+        "ore_rating": 3,
+        "category": "candidate",
+        "content_hash": "f2670e99f75e9c63",
+        "timestamp": "2026-03-27T21:21:39.195002+00:00",
+        "provenance": null
+      }
+    },
+    {
+      "path": "dumpster-dive/forge/furnace/.forge_receipt_mcp_run_curriculum_2026-01-29T18-59-32-890Z.json.json",
+      "name": ".forge_receipt_mcp_run_curriculum_2026-01-29T18-59-32-890Z.json.json",
+      "payload": {
+        "source_extract": "dumpster-dive/intake/phaseA-artifacts/.zombie_extract_mcp_run_curriculum_2026-01-29T18-59-32-890Z.json",
+        "routed_from": "dumpster-dive/intake/phaseA-artifacts/mcp_run_curriculum_2026-01-29T18-59-32-890Z.json",
+        "routed_to": "dumpster-dive/forge/furnace/mcp_run_curriculum_2026-01-29T18-59-32-890Z.json",
+        "ore_rating": 3,
+        "category": "candidate",
+        "content_hash": "91ea980f0ba68aaf",
+        "timestamp": "2026-03-27T21:21:39.202622+00:00",
+        "provenance": null
+      }
+    },
+    {
+      "path": "dumpster-dive/forge/furnace/.forge_receipt_mcp_run_discovery_2026-01-05T00-42-49-176Z.json.json",
+      "name": ".forge_receipt_mcp_run_discovery_2026-01-05T00-42-49-176Z.json.json",
+      "payload": {
+        "source_extract": "dumpster-dive/intake/phaseA-artifacts/.zombie_extract_mcp_run_discovery_2026-01-05T00-42-49-176Z.json",
+        "routed_from": "dumpster-dive/intake/phaseA-artifacts/mcp_run_discovery_2026-01-05T00-42-49-176Z.json",
+        "routed_to": "dumpster-dive/forge/furnace/mcp_run_discovery_2026-01-05T00-42-49-176Z.json",
+        "ore_rating": 3,
+        "category": "candidate",
+        "content_hash": "ca5592420ad61c0d",
+        "timestamp": "2026-03-27T21:21:39.209799+00:00",
+        "provenance": null
+      }
+    },
+    {
+      "path": "dumpster-dive/forge/furnace/.forge_receipt_mcp_run_discovery_2026-01-05T00-43-12-981Z.json.json",
+      "name": ".forge_receipt_mcp_run_discovery_2026-01-05T00-43-12-981Z.json.json",
+      "payload": {
+        "source_extract": "dumpster-dive/intake/phaseA-artifacts/.zombie_extract_mcp_run_discovery_2026-01-05T00-43-12-981Z.json",
+        "routed_from": "dumpster-dive/intake/phaseA-artifacts/mcp_run_discovery_2026-01-05T00-43-12-981Z.json",
+        "routed_to": "dumpster-dive/forge/furnace/mcp_run_discovery_2026-01-05T00-43-12-981Z.json",
+        "ore_rating": 3,
+        "category": "candidate",
+        "content_hash": "58bf49b63870056a",
+        "timestamp": "2026-03-27T21:21:39.218027+00:00",
+        "provenance": null
+      }
+    },
+    {
+      "path": "dumpster-dive/forge/furnace/.forge_receipt_probe_toolchain_path.ps1.bak-20260316-193439.json",
+      "name": ".forge_receipt_probe_toolchain_path.ps1.bak-20260316-193439.json",
+      "payload": {
+        "source_extract": "dumpster-dive/intake/scripts-restructure-2026-03-20/bak/.zombie_extract_probe_toolchain_path.ps1.json",
+        "routed_from": "dumpster-dive/intake/scripts-restructure-2026-03-20/bak/probe_toolchain_path.ps1.bak-20260316-193439",
+        "routed_to": "dumpster-dive/forge/furnace/probe_toolchain_path.ps1.bak-20260316-193439",
+        "ore_rating": 3,
+        "category": "backup",
+        "content_hash": "3347d43810316ce1",
+        "timestamp": "2026-03-26T20:18:14.809953+00:00",
+        "provenance": null
+      }
+    },
+    {
+      "path": "dumpster-dive/forge/furnace/.forge_receipt_protocol.ts.meta.json.json",
+      "name": ".forge_receipt_protocol.ts.meta.json.json",
+      "payload": {
+        "source_extract": "dumpster-dive/intake/a6-intake-2026-03-23/deprecated-mcp/.zombie_extract_protocol.ts.meta.json",
+        "routed_from": "dumpster-dive/intake/a6-intake-2026-03-23/deprecated-mcp/protocol.ts.meta.json",
+        "routed_to": "dumpster-dive/forge/furnace/protocol.ts.meta.json",
+        "ore_rating": 3,
+        "category": "legacy",
+        "content_hash": "cd2f4ac4d03f34e3",
+        "timestamp": "2026-03-26T20:18:14.747701+00:00",
+        "provenance": null
+      }
+    },
+    {
+      "path": "dumpster-dive/forge/furnace/.forge_receipt_purify_ssot.py.json",
+      "name": ".forge_receipt_purify_ssot.py.json",
+      "payload": {
+        "source_extract": "dumpster-dive/intake/scripts-restructure-2026-03-20/root-strays/.zombie_extract_purify_ssot.json",
+        "routed_from": "dumpster-dive/intake/scripts-restructure-2026-03-20/root-strays/purify_ssot.py",
+        "routed_to": "dumpster-dive/forge/furnace/purify_ssot.py",
+        "ore_rating": 3,
+        "category": "candidate",
+        "content_hash": "4409a0415895a491",
+        "timestamp": "2026-03-26T20:18:14.850838+00:00",
+        "provenance": null
+      }
+    },
+    {
+      "path": "dumpster-dive/forge/furnace/.forge_receipt_recovered_batch_transliteration.ps1.json",
+      "name": ".forge_receipt_recovered_batch_transliteration.ps1.json",
+      "payload": {
+        "source_extract": "dumpster-dive/intake/scripts-restructure-2026-03-20/recovered/.zombie_extract_recovered_batch_transliteration.json",
+        "routed_from": "dumpster-dive/intake/scripts-restructure-2026-03-20/recovered/recovered_batch_transliteration.ps1",
+        "routed_to": "dumpster-dive/forge/furnace/recovered_batch_transliteration.ps1",
+        "ore_rating": 3,
+        "category": "recovered",
+        "content_hash": "bc2097b9e1a9bff9",
+        "timestamp": "2026-03-26T20:18:14.823471+00:00",
+        "provenance": null
+      }
+    },
+    {
+      "path": "dumpster-dive/forge/furnace/.forge_receipt_recovered_shell_recipe_cli.go.json",
+      "name": ".forge_receipt_recovered_shell_recipe_cli.go.json",
+      "payload": {
+        "source_extract": "dumpster-dive/intake/scripts-restructure-2026-03-20/recovered/.zombie_extract_recovered_shell_recipe_cli.json",
+        "routed_from": "dumpster-dive/intake/scripts-restructure-2026-03-20/recovered/recovered_shell_recipe_cli.go",
+        "routed_to": "dumpster-dive/forge/furnace/recovered_shell_recipe_cli.go",
+        "ore_rating": 3,
+        "category": "recovered",
+        "content_hash": "9acea0d9eaf4c4c2",
+        "timestamp": "2026-03-26T20:18:14.830706+00:00",
+        "provenance": null
+      }
+    },
+    {
+      "path": "dumpster-dive/forge/furnace/.forge_receipt_ruby_legacy_admin.ps1.json",
+      "name": ".forge_receipt_ruby_legacy_admin.ps1.json",
+      "payload": {
+        "source_extract": "dumpster-dive/intake/a6-intake-2026-03-23/legacy/.zombie_extract_ruby_legacy_admin.json",
+        "routed_from": "dumpster-dive/intake/a6-intake-2026-03-23/legacy/ruby_legacy_admin.ps1",
+        "routed_to": "dumpster-dive/forge/furnace/ruby_legacy_admin.ps1",
+        "ore_rating": 3,
+        "category": "legacy",
+        "content_hash": "6184edd781606117",
+        "timestamp": "2026-03-26T20:18:14.796329+00:00",
+        "provenance": null
+      }
+    },
+    {
+      "path": "dumpster-dive/forge/furnace/.forge_receipt_server.test.ts.meta.json.json",
+      "name": ".forge_receipt_server.test.ts.meta.json.json",
+      "payload": {
+        "source_extract": "dumpster-dive/intake/a6-intake-2026-03-23/deprecated-mcp/.zombie_extract_server.test.ts.meta.json",
+        "routed_from": "dumpster-dive/intake/a6-intake-2026-03-23/deprecated-mcp/server.test.ts.meta.json",
+        "routed_to": "dumpster-dive/forge/furnace/server.test.ts.meta.json",
+        "ore_rating": 3,
+        "category": "legacy",
+        "content_hash": "37d975fa05c80bc9",
+        "timestamp": "2026-03-26T20:18:14.755036+00:00",
+        "provenance": null
+      }
+    },
+    {
+      "path": "dumpster-dive/forge/furnace/.forge_receipt_server.ts.meta.json.json",
+      "name": ".forge_receipt_server.ts.meta.json.json",
+      "payload": {
+        "source_extract": "dumpster-dive/intake/a6-intake-2026-03-23/deprecated-mcp/.zombie_extract_server.ts.meta.json",
+        "routed_from": "dumpster-dive/intake/a6-intake-2026-03-23/deprecated-mcp/server.ts.meta.json",
+        "routed_to": "dumpster-dive/forge/furnace/server.ts.meta.json",
+        "ore_rating": 3,
+        "category": "legacy",
+        "content_hash": "5b004aa26ff4075f",
+        "timestamp": "2026-03-26T20:18:14.762044+00:00",
+        "provenance": null
+      }
+    },
+    {
+      "path": "dumpster-dive/forge/furnace/.forge_receipt_strip_post_ssot.py.json",
+      "name": ".forge_receipt_strip_post_ssot.py.json",
+      "payload": {
+        "source_extract": "dumpster-dive/intake/scripts-restructure-2026-03-20/root-strays/.zombie_extract_strip_post_ssot.json",
+        "routed_from": "dumpster-dive/intake/scripts-restructure-2026-03-20/root-strays/strip_post_ssot.py",
+        "routed_to": "dumpster-dive/forge/furnace/strip_post_ssot.py",
+        "ore_rating": 3,
+        "category": "candidate",
+        "content_hash": "e4f19adf8cbdeeb3",
+        "timestamp": "2026-03-26T20:18:14.857527+00:00",
+        "provenance": null
+      }
+    },
+    {
+      "path": "dumpster-dive/forge/furnace/.forge_receipt_strip_ssot.py.json",
+      "name": ".forge_receipt_strip_ssot.py.json",
+      "payload": {
+        "source_extract": "dumpster-dive/intake/scripts-restructure-2026-03-20/root-strays/.zombie_extract_strip_ssot.json",
+        "routed_from": "dumpster-dive/intake/scripts-restructure-2026-03-20/root-strays/strip_ssot.py",
+        "routed_to": "dumpster-dive/forge/furnace/strip_ssot.py",
+        "ore_rating": 3,
+        "category": "candidate",
+        "content_hash": "1099eacf6e1c1b99",
+        "timestamp": "2026-03-26T20:18:14.864351+00:00",
+        "provenance": null
+      }
+    },
+    {
+      "path": "dumpster-dive/forge/furnace/.forge_receipt_strip_ssot_v2.py.json",
+      "name": ".forge_receipt_strip_ssot_v2.py.json",
+      "payload": {
+        "source_extract": "dumpster-dive/intake/scripts-restructure-2026-03-20/root-strays/.zombie_extract_strip_ssot_v2.json",
+        "routed_from": "dumpster-dive/intake/scripts-restructure-2026-03-20/root-strays/strip_ssot_v2.py",
+        "routed_to": "dumpster-dive/forge/furnace/strip_ssot_v2.py",
+        "ore_rating": 3,
+        "category": "candidate",
+        "content_hash": "1a7e924941da3fc1",
+        "timestamp": "2026-03-26T20:18:14.870907+00:00",
+        "provenance": null
+      }
+    },
+    {
+      "path": "dumpster-dive/forge/furnace/.forge_receipt_wpth_repeatable_cycle_LEGACY.json",
+      "name": ".forge_receipt_wpth_repeatable_cycle_LEGACY.json",
+      "payload": {
+        "source_extract": "dumpster-dive/intake/scripts-restructure-2026-03-20/legacy/.zombie_extract_wpth_repeatable_cycle_LEGACY.json",
+        "routed_from": "dumpster-dive/intake/scripts-restructure-2026-03-20/legacy/wpth_repeatable_cycle_LEGACY",
+        "routed_to": "dumpster-dive/forge/furnace/wpth_repeatable_cycle_LEGACY",
+        "ore_rating": 3,
+        "category": "legacy",
+        "content_hash": "1f0737d138d65489",
+        "timestamp": "2026-03-26T20:18:14.816823+00:00",
+        "provenance": null
+      }
+    }
+  ]
+}

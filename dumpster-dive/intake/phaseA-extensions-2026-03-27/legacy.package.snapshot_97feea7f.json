@@ -1,0 +1,117 @@
+{
+  "name": "chthonic-statusbar",
+  "displayName": "Chthonic Archive Status Bar",
+  "description": "SSOT verification, lineage tracking, GPU monitoring, and metabolic cycle indicators",
+  "version": "0.1.0",
+  "publisher": "chthonic-archive",
+  "engines": {
+    "vscode": "^1.90.0"
+  },
+  "categories": ["Other"],
+  "activationEvents": [
+    "onStartupFinished",
+    "onCommand:chthonic.refreshStatus",
+    "onCommand:chthonic.verifySSO_T",
+    "onLanguage:python"
+  ],
+  "main": "./dist/extension.js",
+  "sideEffects": false,
+  "bun": {
+    "treeShaking": true,
+    "minify": true,
+    "define": {
+      "process.env.NODE_ENV": "\"production\""
+    }
+  },
+  "contributes": {
+    "commands": [
+      {
+        "command": "chthonic.refreshStatus",
+        "title": "Chthonic: Refresh All Status Indicators"
+      },
+      {
+        "command": "chthonic.verifySSO_T",
+        "title": "Chthonic: Verify SSOT Integrity"
+      },
+      {
+        "command": "chthonic.runMetabolicCycle",
+        "title": "Chthonic: Run Metabolic Cycle"
+      },
+      {
+        "command": "chthonic.showGPUStats",
+        "title": "Chthonic: Show GPU Statistics"
+      }
+    ],
+    "configuration": {
+      "title": "Chthonic Archive",
+      "properties": {
+        "chthonic.statusBar.enabled": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable Chthonic status bar indicators"
+        },
+        "chthonic.statusBar.ssotHashEnabled": {
+          "type": "boolean",
+          "default": true,
+          "description": "Show SSOT hash verification status"
+        },
+        "chthonic.statusBar.lineageEnabled": {
+          "type": "boolean",
+          "default": true,
+          "description": "Show active lineage (A/B/C)"
+        },
+        "chthonic.statusBar.pythonLaneEnabled": {
+          "type": "boolean",
+          "default": true,
+          "description": "Show Python lane version"
+        },
+        "chthonic.statusBar.gpuEnabled": {
+          "type": "boolean",
+          "default": true,
+          "description": "Show GPU VRAM usage"
+        },
+        "chthonic.statusBar.metabolicCycleEnabled": {
+          "type": "boolean",
+          "default": true,
+          "description": "Show metabolic cycle heartbeat"
+        },
+        "chthonic.statusBar.refreshInterval": {
+          "type": "number",
+          "default": 30000,
+          "description": "Refresh interval in milliseconds"
+        },
+        "chthonic.validation.enabled": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable hedonistic validation notifications"
+        },
+        "chthonic.validation.enableAutoValidation": {
+          "type": "boolean",
+          "default": true,
+          "description": "Automatically trigger validation on file saves and builds"
+        },
+        "chthonic.validation.celebrateCommits": {
+          "type": "boolean",
+          "default": true,
+          "description": "Show potent validation on git commits"
+        },
+        "chthonic.validation.transcendentThreshold": {
+          "type": "number",
+          "default": 3,
+          "description": "Number of potent validations before transcendent promotion"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "bun run compile",
+    "compile": "bun build src/extension.ts --outdir dist --target node --format cjs --external vscode --minify",
+    "watch": "bun build src/extension.ts --outdir dist --target node --format cjs --external vscode --watch"
+  },
+  "devDependencies": {
+    "@types/node": "^20.x",
+    "@types/vscode": "^1.90.0",
+    "typescript": "^5.x"
+  },
+  "dependencies": {}
+}

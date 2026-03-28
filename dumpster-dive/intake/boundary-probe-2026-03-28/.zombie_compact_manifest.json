@@ -1,0 +1,78 @@
+{
+  "kind": "zombie_intake_compaction",
+  "generated_at": "2026-03-28T03:36:23.551817+00:00",
+  "batch": "dumpster-dive/intake/boundary-probe-2026-03-28",
+  "apply_mode": true,
+  "extract_count": 1,
+  "receipt_count": 1,
+  "ore_histogram": {
+    "2": 1
+  },
+  "category_histogram": {
+    "candidate": 1
+  },
+  "extracts": [
+    {
+      "path": "dumpster-dive/intake/boundary-probe-2026-03-28/.zombie_extract_zombie_boundary_probe_3_420347fc.json",
+      "name": ".zombie_extract_zombie_boundary_probe_3_420347fc.json",
+      "payload": {
+        "source": "zombie_boundary_probe_3.md",
+        "timestamp": "2026-03-28T03:36:23.368749+00:00",
+        "ore_rating": 2,
+        "category": "candidate",
+        "signals": [
+          "ore_adapted:3->2"
+        ],
+        "intelligence": {
+          "md_headings": [
+            "Zombie Boundary Probe 3"
+          ]
+        },
+        "content_hash": "90afa20324086274",
+        "provenance": {
+          "operator": "Novia Cadaveris",
+          "forge_matriarch": "Sister Ferrum Scoriae",
+          "pathway": "zombie -> bridge -> forge",
+          "source_file": "zombie_boundary_probe_3.md",
+          "hash": "90afa20324086274",
+          "content_hash": "90afa20324086274",
+          "language": ".md",
+          "byte_size": 92,
+          "line_count": 4,
+          "category": "candidate",
+          "signals": [
+            "ore_adapted:3->2"
+          ],
+          "landmarks": {
+            "md_headings": [
+              "Zombie Boundary Probe 3"
+            ]
+          },
+          "head_commit": "7ea9ac7bf114d14b5344fd4c03b6f2ce5ae96d25",
+          "git_status": "clean",
+          "snapshot_at": "2026-03-28T03:36:23.446428+00:00",
+          "canon": {
+            "dumpster_domain": "dumpster-dive",
+            "corpse_axis": "Novia Cadaveris",
+            "forge_axis": "Sister Ferrum Scoriae"
+          }
+        },
+        "batch": "boundary-probe-2026-03-28",
+        "intake_destination": "dumpster-dive/intake/boundary-probe-2026-03-28/zombie_boundary_probe_3.md",
+        "intake_companion": "zombie_boundary_probe_3.md"
+      }
+    }
+  ],
+  "receipts": [
+    {
+      "path": "dumpster-dive/intake/boundary-probe-2026-03-28/.zombie_receipt_zombie_boundary_probe_3_420347fc.json",
+      "name": ".zombie_receipt_zombie_boundary_probe_3_420347fc.json",
+      "payload": {
+        "consumed": "zombie_boundary_probe_3.md",
+        "destination": "dumpster-dive\\intake\\boundary-probe-2026-03-28\\zombie_boundary_probe_3.md",
+        "batch": "boundary-probe-2026-03-28",
+        "timestamp": "2026-03-28T03:36:23.486296+00:00"
+      }
+    }
+  ]
+}

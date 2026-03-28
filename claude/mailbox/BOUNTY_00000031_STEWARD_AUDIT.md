@@ -342,4 +342,48 @@ SSOT Canon (§10.3.2 SFS + §10.3.3 NOV-CAD = generative origin)
 
 ---
 
+## VI. AMENDMENT INTEGRATION — Cycle 1 (2026-03-27)
+
+Source: Phase 0.9.3 (Zone 1) + Phase 0.9.4 (Zombie × Dumpster-Bridge)
+Repository: `mas_mcp/amendments/amendments_cycle1.jsonl`
+Status: 11 APPROVED (8 APPROVE + 3 MODIFY applied), 1 DEFERRED
+
+### Steward-Relevant Amendments (Dev Conventions / Appendices)
+
+| Amendment | Title | SSOT Target | Disposition | Steward Impact |
+|---|---|---|---|---|
+| Z1-AM-001 | Polyglot Runtime Governance | §XIV.4 | APPROVE | Runtime selection rule for browser automation; Node.js canonical, Bun deferred |
+| Z1-AM-005 | Bidirectional Amendment Protocol | Phase 1.0 | APPROVE | Master protocol for inbound SSOT amendments; formalizes discovery→cascade chain |
+| ZDB-AM-001 | Adaptive Ore Assessment Canon | §XIV.5 | APPROVE | Mandatory adaptive assessment; cluster profiling + audit trail |
+| ZDB-AM-002 | Dependency Topology Governance | Appendix G | APPROVE | Module centrality ranking + dedup authority chain |
+| ZDB-AM-006 | I/O Encoding Canon | §XIV.4.2 | APPROVE | Universal PYTHONIOENCODING=utf-8 for all uv run invocations |
+
+### Lore-Relevant Amendments (Entity Systems / Content)
+
+| Amendment | Title | SSOT Target | Disposition | Content Impact |
+|---|---|---|---|---|
+| Z1-AM-002 | Sensory Language Canon | Appendix F | MODIFY | 15-entry vocabulary across 4 sense palettes |
+| Z1-AM-003 | MILF Transmutation Stages | §X.3.7 | APPROVE | Alchemical Nigredo/Albedo/Rubedo lifecycle mapping |
+| Z1-AM-004 | Entity Design Constraints | Appendix D.3 | MODIFY | 3 governance rules for supernormal stimulus usage |
+| ZDB-AM-003 | Feedback-Driven Learning | §X.6 | MODIFY | Non-overlapping metrics + integration thresholds |
+
+### Operational Amendments (Zombie Pipeline)
+
+| Amendment | Title | SSOT Target | Disposition | Pipeline Impact |
+|---|---|---|---|---|
+| ZDB-AM-004 | Consumable Classification | Appendix H | APPROVE | 7 candidate categories + burn-down threshold gates |
+| ZDB-AM-007 | Landscape Mapping | Appendix H.2 | APPROVE | 5 expansion zones + sequential burn-down plan |
+
+### Deferred
+
+| Amendment | Title | Reason |
+|---|---|---|
+| ZDB-AM-005 | Embalm-First Protocol | Embalm tooling (corpse_reviver.py) still WIP; defer until operational |
+
+### Integration Gate
+
+Next action: User blesses approved amendments into SSOT holder (`.github/copilot-instructions.archive.md`) as additive sections. Each integration is atomic (one amendment = one edit). `ssot_hash` detects drift; binding tests validate coherence.
+
+---
+
 *Filed to `claude/mailbox/` per mailbox protocol. No commits made — user owns the commit lifecycle.*

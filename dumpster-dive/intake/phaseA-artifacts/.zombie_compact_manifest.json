@@ -1,0 +1,2701 @@
+{
+  "kind": "zombie_intake_compaction",
+  "generated_at": "2026-03-27T21:27:40.802721+00:00",
+  "batch": "dumpster-dive/intake/phaseA-artifacts",
+  "apply_mode": true,
+  "extract_count": 109,
+  "receipt_count": 109,
+  "ore_histogram": {
+    "4": 11,
+    "3": 41,
+    "2": 43,
+    "1": 14
+  },
+  "category_histogram": {
+    "candidate": 109
+  },
+  "extracts": [
+    {
+      "path": "dumpster-dive/intake/phaseA-artifacts/.zombie_extract_anthropic.claude-code-2.1.38-win32-x64.frozen.2026-02-10T15-28-13.json",
+      "name": ".zombie_extract_anthropic.claude-code-2.1.38-win32-x64.frozen.2026-02-10T15-28-13.json",
+      "payload": {
+        "source": "artifacts/anthropic.claude-code-2.1.38-win32-x64.frozen.2026-02-10T15-28-13.vsix",
+        "timestamp": "2026-03-27T17:39:46.235834+00:00",
+        "ore_rating": 4,
+        "category": "candidate",
+        "signals": [
+          "ore_adapted:3->4"
+        ],
+        "intelligence": {},
+        "content_hash": "b050c6fb97356b4a"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-artifacts/.zombie_extract_claude-code-extension.package.json.snapshot.json",
+      "name": ".zombie_extract_claude-code-extension.package.json.snapshot.json",
+      "payload": {
+        "source": "artifacts/claude-code-extension.package.json.snapshot.txt",
+        "timestamp": "2026-03-27T17:39:46.501184+00:00",
+        "ore_rating": 4,
+        "category": "candidate",
+        "signals": [
+          "ore_adapted:3->4"
+        ],
+        "intelligence": {},
+        "content_hash": "7de7f65d04b81d82"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-artifacts/.zombie_extract_claude-code.cli.2.1.38.frozen.2026-02-10T15-28-36.cli.json",
+      "name": ".zombie_extract_claude-code.cli.2.1.38.frozen.2026-02-10T15-28-36.cli.json",
+      "payload": {
+        "source": "artifacts/claude-code.cli.2.1.38.frozen.2026-02-10T15-28-36.cli.js",
+        "timestamp": "2026-03-27T17:39:46.864857+00:00",
+        "ore_rating": 4,
+        "category": "candidate",
+        "signals": [
+          "ore_adapted:3->4"
+        ],
+        "intelligence": {},
+        "content_hash": "c169b2fc19d31828"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-artifacts/.zombie_extract_claude.exe.frozen.json",
+      "name": ".zombie_extract_claude.exe.frozen.json",
+      "payload": {
+        "source": "artifacts/claude.exe.frozen.2026-02-10T15-28-22",
+        "timestamp": "2026-03-27T17:39:47.381852+00:00",
+        "ore_rating": 3,
+        "category": "candidate",
+        "signals": [
+          "ore_adapted:3->4",
+          "content_duplicate"
+        ],
+        "intelligence": {},
+        "content_hash": "16fe8e9fb002a1a2"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-artifacts/.zombie_extract_github-mcp-server.exe.pre-v0.30.3.backup.json",
+      "name": ".zombie_extract_github-mcp-server.exe.pre-v0.30.3.backup.json",
+      "payload": {
+        "source": "artifacts/github-mcp-server.exe.pre-v0.30.3.backup.2026-02-10T15-44-11",
+        "timestamp": "2026-03-27T17:39:48.143128+00:00",
+        "ore_rating": 4,
+        "category": "candidate",
+        "signals": [
+          "ore_adapted:3->4"
+        ],
+        "intelligence": {},
+        "content_hash": "a818f8ceb78da190"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-artifacts/.zombie_extract_github.copilot-chat.github.copilot-chat-0.38.2026021002.frozen.2026-02-10T15-32-14.json",
+      "name": ".zombie_extract_github.copilot-chat.github.copilot-chat-0.38.2026021002.frozen.2026-02-10T15-32-14.json",
+      "payload": {
+        "source": "artifacts/github.copilot-chat.github.copilot-chat-0.38.2026021002.frozen.2026-02-10T15-32-14.vsix",
+        "timestamp": "2026-03-27T17:39:49.120378+00:00",
+        "ore_rating": 3,
+        "category": "candidate",
+        "signals": [],
+        "intelligence": {},
+        "content_hash": "cd039a4436060c42"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-artifacts/.zombie_extract_github.copilot-chat.globalStorage.frozen.2026-02-10T15-32-14.json",
+      "name": ".zombie_extract_github.copilot-chat.globalStorage.frozen.2026-02-10T15-32-14.json",
+      "payload": {
+        "source": "artifacts/github.copilot-chat.globalStorage.frozen.2026-02-10T15-32-14.zip",
+        "timestamp": "2026-03-27T17:39:49.924342+00:00",
+        "ore_rating": 3,
+        "category": "candidate",
+        "signals": [],
+        "intelligence": {},
+        "content_hash": "92445c5f3b545670"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-artifacts/.zombie_extract_hf_discovery_spaces_2026-02-09T18-13-17Z.json",
+      "name": ".zombie_extract_hf_discovery_spaces_2026-02-09T18-13-17Z.json",
+      "payload": {
+        "source": "artifacts/hf_discovery_spaces_2026-02-09T18-13-17Z.md",
+        "timestamp": "2026-03-27T17:39:50.442096+00:00",
+        "ore_rating": 3,
+        "category": "candidate",
+        "signals": [],
+        "intelligence": {
+          "md_headings": [
+            "HF Discovery (spaces)"
+          ]
+        },
+        "content_hash": "448bf8651aa00c1d"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-artifacts/.zombie_extract_hf_discovery_spaces_2026-02-09T18-13-53Z.json",
+      "name": ".zombie_extract_hf_discovery_spaces_2026-02-09T18-13-53Z.json",
+      "payload": {
+        "source": "artifacts/hf_discovery_spaces_2026-02-09T18-13-53Z.md",
+        "timestamp": "2026-03-27T17:39:50.962076+00:00",
+        "ore_rating": 3,
+        "category": "candidate",
+        "signals": [],
+        "intelligence": {
+          "md_headings": [
+            "HF Discovery (spaces)"
+          ]
+        },
+        "content_hash": "62076507e6f4be4f"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-artifacts/.zombie_extract_hf_discovery_spaces_2026-02-23T16-04-45Z.json",
+      "name": ".zombie_extract_hf_discovery_spaces_2026-02-23T16-04-45Z.json",
+      "payload": {
+        "source": "artifacts/hf_discovery_spaces_2026-02-23T16-04-45Z.md",
+        "timestamp": "2026-03-27T17:39:51.501175+00:00",
+        "ore_rating": 3,
+        "category": "candidate",
+        "signals": [],
+        "intelligence": {
+          "md_headings": [
+            "HF Discovery (spaces)"
+          ]
+        },
+        "content_hash": "7fc0380eab63e271"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-artifacts/.zombie_extract_hf_discovery_spaces_2026-02-23T16-05-09Z.json",
+      "name": ".zombie_extract_hf_discovery_spaces_2026-02-23T16-05-09Z.json",
+      "payload": {
+        "source": "artifacts/hf_discovery_spaces_2026-02-23T16-05-09Z.md",
+        "timestamp": "2026-03-27T17:39:52.020356+00:00",
+        "ore_rating": 4,
+        "category": "candidate",
+        "signals": [
+          "ore_adapted:3->4"
+        ],
+        "intelligence": {
+          "md_headings": [
+            "HF Discovery (spaces)"
+          ]
+        },
+        "content_hash": "ec0769eafac4f61d"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-artifacts/.zombie_extract_hf_discovery_spaces_2026-02-23T16-09-21Z.json",
+      "name": ".zombie_extract_hf_discovery_spaces_2026-02-23T16-09-21Z.json",
+      "payload": {
+        "source": "artifacts/hf_discovery_spaces_2026-02-23T16-09-21Z.md",
+        "timestamp": "2026-03-27T17:39:52.536935+00:00",
+        "ore_rating": 4,
+        "category": "candidate",
+        "signals": [
+          "ore_adapted:3->4"
+        ],
+        "intelligence": {
+          "md_headings": [
+            "HF Discovery (spaces)"
+          ]
+        },
+        "content_hash": "1e4f9514a86f65c5"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-artifacts/.zombie_extract_hf_mcp_service_registry.generated.2026-02-09T18-29-43Z.registry.json",
+      "name": ".zombie_extract_hf_mcp_service_registry.generated.2026-02-09T18-29-43Z.registry.json",
+      "payload": {
+        "source": "artifacts/hf_mcp_service_registry.generated.2026-02-09T18-29-43Z.registry.json",
+        "timestamp": "2026-03-27T17:39:52.794357+00:00",
+        "ore_rating": 4,
+        "category": "candidate",
+        "signals": [
+          "ore_adapted:3->4"
+        ],
+        "intelligence": {},
+        "content_hash": "d024ef50be302906"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-artifacts/.zombie_extract_hf_mcp_service_registry.generated.2026-02-09T18-30-28Z.registry.json",
+      "name": ".zombie_extract_hf_mcp_service_registry.generated.2026-02-09T18-30-28Z.registry.json",
+      "payload": {
+        "source": "artifacts/hf_mcp_service_registry.generated.2026-02-09T18-30-28Z.registry.json",
+        "timestamp": "2026-03-27T17:39:53.054929+00:00",
+        "ore_rating": 4,
+        "category": "candidate",
+        "signals": [
+          "ore_adapted:3->4"
+        ],
+        "intelligence": {},
+        "content_hash": "97bccbcb7d9ec727"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-artifacts/.zombie_extract_hf_mcp_service_registry.generated.2026-02-09T18-37-19Z.registry.json",
+      "name": ".zombie_extract_hf_mcp_service_registry.generated.2026-02-09T18-37-19Z.registry.json",
+      "payload": {
+        "source": "artifacts/hf_mcp_service_registry.generated.2026-02-09T18-37-19Z.registry.json",
+        "timestamp": "2026-03-27T17:39:53.309094+00:00",
+        "ore_rating": 4,
+        "category": "candidate",
+        "signals": [
+          "ore_adapted:3->4"
+        ],
+        "intelligence": {},
+        "content_hash": "c14e829d1c3c580e"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-artifacts/.zombie_extract_hf_mcp_service_registry.generated.2026-02-09T18-47-15Z.registry.json",
+      "name": ".zombie_extract_hf_mcp_service_registry.generated.2026-02-09T18-47-15Z.registry.json",
+      "payload": {
+        "source": "artifacts/hf_mcp_service_registry.generated.2026-02-09T18-47-15Z.registry.json",
+        "timestamp": "2026-03-27T17:39:53.568836+00:00",
+        "ore_rating": 4,
+        "category": "candidate",
+        "signals": [
+          "ore_adapted:3->4"
+        ],
+        "intelligence": {},
+        "content_hash": "9276cd9d85f5d2b0"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-artifacts/.zombie_extract_hf_mcp_service_registry.generated.2026-02-09T19-10-08Z.registry.json",
+      "name": ".zombie_extract_hf_mcp_service_registry.generated.2026-02-09T19-10-08Z.registry.json",
+      "payload": {
+        "source": "artifacts/hf_mcp_service_registry.generated.2026-02-09T19-10-08Z.registry.json",
+        "timestamp": "2026-03-27T17:39:53.825315+00:00",
+        "ore_rating": 4,
+        "category": "candidate",
+        "signals": [
+          "ore_adapted:3->4"
+        ],
+        "intelligence": {},
+        "content_hash": "641d0e9780e90459"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-artifacts/.zombie_extract_hf_mcp_service_registry.generated.2026-02-09T19-24-21Z.registry.json",
+      "name": ".zombie_extract_hf_mcp_service_registry.generated.2026-02-09T19-24-21Z.registry.json",
+      "payload": {
+        "source": "artifacts/hf_mcp_service_registry.generated.2026-02-09T19-24-21Z.registry.json",
+        "timestamp": "2026-03-27T17:39:54.083522+00:00",
+        "ore_rating": 3,
+        "category": "candidate",
+        "signals": [],
+        "intelligence": {},
+        "content_hash": "8896e5ed23d2e3f3"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-artifacts/.zombie_extract_hf_mcp_tools_2026-02-09T19-34-17Z.json",
+      "name": ".zombie_extract_hf_mcp_tools_2026-02-09T19-34-17Z.json",
+      "payload": {
+        "source": "artifacts/hf_mcp_tools_2026-02-09T19-34-17Z.json",
+        "timestamp": "2026-03-27T17:39:54.342104+00:00",
+        "ore_rating": 3,
+        "category": "candidate",
+        "signals": [],
+        "intelligence": {},
+        "content_hash": "362f926dd622d06e"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-artifacts/.zombie_extract_hf_mcp_tools_2026-02-09T19-34-32Z.json",
+      "name": ".zombie_extract_hf_mcp_tools_2026-02-09T19-34-32Z.json",
+      "payload": {
+        "source": "artifacts/hf_mcp_tools_2026-02-09T19-34-32Z.json",
+        "timestamp": "2026-03-27T17:39:54.596954+00:00",
+        "ore_rating": 3,
+        "category": "candidate",
+        "signals": [],
+        "intelligence": {},
+        "content_hash": "4ff357051a76f935"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-artifacts/.zombie_extract_hf_mcp_tools_2026-02-09T19-36-40Z.json",
+      "name": ".zombie_extract_hf_mcp_tools_2026-02-09T19-36-40Z.json",
+      "payload": {
+        "source": "artifacts/hf_mcp_tools_2026-02-09T19-36-40Z.json",
+        "timestamp": "2026-03-27T17:39:54.850292+00:00",
+        "ore_rating": 3,
+        "category": "candidate",
+        "signals": [],
+        "intelligence": {},
+        "content_hash": "8ea0718803040cbc"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-artifacts/.zombie_extract_hf_mcp_tools_2026-02-09T19-37-17-949Z.json",
+      "name": ".zombie_extract_hf_mcp_tools_2026-02-09T19-37-17-949Z.json",
+      "payload": {
+        "source": "artifacts/hf_mcp_tools_2026-02-09T19-37-17-949Z.json",
+        "timestamp": "2026-03-27T17:39:55.106085+00:00",
+        "ore_rating": 3,
+        "category": "candidate",
+        "signals": [],
+        "intelligence": {},
+        "content_hash": "6d99108c8ab77e83"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-artifacts/.zombie_extract_hf_mcp_tools_2026-02-09T19-37-43-498Z.json",
+      "name": ".zombie_extract_hf_mcp_tools_2026-02-09T19-37-43-498Z.json",
+      "payload": {
+        "source": "artifacts/hf_mcp_tools_2026-02-09T19-37-43-498Z.json",
+        "timestamp": "2026-03-27T17:39:55.364270+00:00",
+        "ore_rating": 3,
+        "category": "candidate",
+        "signals": [],
+        "intelligence": {},
+        "content_hash": "3156487dd65d309b"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-artifacts/.zombie_extract_hf_mcp_tools_2026-02-09T19-37-43-512Z.json",
+      "name": ".zombie_extract_hf_mcp_tools_2026-02-09T19-37-43-512Z.json",
+      "payload": {
+        "source": "artifacts/hf_mcp_tools_2026-02-09T19-37-43-512Z.json",
+        "timestamp": "2026-03-27T17:39:55.621848+00:00",
+        "ore_rating": 3,
+        "category": "candidate",
+        "signals": [],
+        "intelligence": {},
+        "content_hash": "6542be04ef205668"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-artifacts/.zombie_extract_hf_mcp_tools_2026-02-09T19-38-02-929Z.json",
+      "name": ".zombie_extract_hf_mcp_tools_2026-02-09T19-38-02-929Z.json",
+      "payload": {
+        "source": "artifacts/hf_mcp_tools_2026-02-09T19-38-02-929Z.json",
+        "timestamp": "2026-03-27T17:39:55.877183+00:00",
+        "ore_rating": 3,
+        "category": "candidate",
+        "signals": [],
+        "intelligence": {},
+        "content_hash": "f366de5cceae8e16"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-artifacts/.zombie_extract_hf_mcp_tools_2026-02-09T20-22-05-320Z.json",
+      "name": ".zombie_extract_hf_mcp_tools_2026-02-09T20-22-05-320Z.json",
+      "payload": {
+        "source": "artifacts/hf_mcp_tools_2026-02-09T20-22-05-320Z.json",
+        "timestamp": "2026-03-27T17:39:56.138863+00:00",
+        "ore_rating": 3,
+        "category": "candidate",
+        "signals": [],
+        "intelligence": {},
+        "content_hash": "68104f75b1c70c98"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-artifacts/.zombie_extract_hf_mcp_tools_2026-02-23T16-05-10-559Z.json",
+      "name": ".zombie_extract_hf_mcp_tools_2026-02-23T16-05-10-559Z.json",
+      "payload": {
+        "source": "artifacts/hf_mcp_tools_2026-02-23T16-05-10-559Z.json",
+        "timestamp": "2026-03-27T17:39:56.392232+00:00",
+        "ore_rating": 3,
+        "category": "candidate",
+        "signals": [],
+        "intelligence": {},
+        "content_hash": "61e39c11d1d7e78f"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-artifacts/.zombie_extract_hf_mcp_tools_2026-02-23T16-09-22-257Z.json",
+      "name": ".zombie_extract_hf_mcp_tools_2026-02-23T16-09-22-257Z.json",
+      "payload": {
+        "source": "artifacts/hf_mcp_tools_2026-02-23T16-09-22-257Z.json",
+        "timestamp": "2026-03-27T17:39:56.650541+00:00",
+        "ore_rating": 3,
+        "category": "candidate",
+        "signals": [],
+        "intelligence": {},
+        "content_hash": "d1596c845ea8b2a1"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-artifacts/.zombie_extract_mcp_run_audit_2026-01-05T00-42-49-176Z.json",
+      "name": ".zombie_extract_mcp_run_audit_2026-01-05T00-42-49-176Z.json",
+      "payload": {
+        "source": "artifacts/mcp_run_audit_2026-01-05T00-42-49-176Z.json",
+        "timestamp": "2026-03-27T17:39:56.907149+00:00",
+        "ore_rating": 3,
+        "category": "candidate",
+        "signals": [],
+        "intelligence": {},
+        "content_hash": "801998e6ecf226ab"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-artifacts/.zombie_extract_mcp_run_audit_2026-01-05T00-43-12-981Z.json",
+      "name": ".zombie_extract_mcp_run_audit_2026-01-05T00-43-12-981Z.json",
+      "payload": {
+        "source": "artifacts/mcp_run_audit_2026-01-05T00-43-12-981Z.json",
+        "timestamp": "2026-03-27T17:39:57.204365+00:00",
+        "ore_rating": 3,
+        "category": "candidate",
+        "signals": [],
+        "intelligence": {},
+        "content_hash": "040795d9231e66e5"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-artifacts/.zombie_extract_mcp_run_audit_2026-01-05T00-43-47-483Z.json",
+      "name": ".zombie_extract_mcp_run_audit_2026-01-05T00-43-47-483Z.json",
+      "payload": {
+        "source": "artifacts/mcp_run_audit_2026-01-05T00-43-47-483Z.json",
+        "timestamp": "2026-03-27T17:39:57.497967+00:00",
+        "ore_rating": 3,
+        "category": "candidate",
+        "signals": [],
+        "intelligence": {},
+        "content_hash": "17e68b3f3fd7fb2d"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-artifacts/.zombie_extract_mcp_run_audit_2026-01-29T18-30-47-901Z.json",
+      "name": ".zombie_extract_mcp_run_audit_2026-01-29T18-30-47-901Z.json",
+      "payload": {
+        "source": "artifacts/mcp_run_audit_2026-01-29T18-30-47-901Z.json",
+        "timestamp": "2026-03-27T17:39:57.798333+00:00",
+        "ore_rating": 3,
+        "category": "candidate",
+        "signals": [],
+        "intelligence": {},
+        "content_hash": "a30ccb3cafd942e5"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-artifacts/.zombie_extract_mcp_run_audit_2026-01-29T18-31-55-941Z.json",
+      "name": ".zombie_extract_mcp_run_audit_2026-01-29T18-31-55-941Z.json",
+      "payload": {
+        "source": "artifacts/mcp_run_audit_2026-01-29T18-31-55-941Z.json",
+        "timestamp": "2026-03-27T17:39:58.096242+00:00",
+        "ore_rating": 3,
+        "category": "candidate",
+        "signals": [],
+        "intelligence": {},
+        "content_hash": "e4f485db652675dd"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-artifacts/.zombie_extract_mcp_run_audit_2026-01-29T18-35-18-246Z.json",
+      "name": ".zombie_extract_mcp_run_audit_2026-01-29T18-35-18-246Z.json",
+      "payload": {
+        "source": "artifacts/mcp_run_audit_2026-01-29T18-35-18-246Z.json",
+        "timestamp": "2026-03-27T17:39:58.392725+00:00",
+        "ore_rating": 3,
+        "category": "candidate",
+        "signals": [],
+        "intelligence": {},
+        "content_hash": "5d0c2814b582a49e"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-artifacts/.zombie_extract_mcp_run_audit_2026-01-29T18-36-11-723Z.json",
+      "name": ".zombie_extract_mcp_run_audit_2026-01-29T18-36-11-723Z.json",
+      "payload": {
+        "source": "artifacts/mcp_run_audit_2026-01-29T18-36-11-723Z.json",
+        "timestamp": "2026-03-27T17:39:58.688835+00:00",
+        "ore_rating": 3,
+        "category": "candidate",
+        "signals": [],
+        "intelligence": {},
+        "content_hash": "3e61d74e677d5139"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-artifacts/.zombie_extract_mcp_run_audit_2026-01-29T18-36-43-813Z.json",
+      "name": ".zombie_extract_mcp_run_audit_2026-01-29T18-36-43-813Z.json",
+      "payload": {
+        "source": "artifacts/mcp_run_audit_2026-01-29T18-36-43-813Z.json",
+        "timestamp": "2026-03-27T17:39:58.983360+00:00",
+        "ore_rating": 3,
+        "category": "candidate",
+        "signals": [],
+        "intelligence": {},
+        "content_hash": "08233504181638b9"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-artifacts/.zombie_extract_mcp_run_audit_2026-01-29T18-52-46-564Z.json",
+      "name": ".zombie_extract_mcp_run_audit_2026-01-29T18-52-46-564Z.json",
+      "payload": {
+        "source": "artifacts/mcp_run_audit_2026-01-29T18-52-46-564Z.json",
+        "timestamp": "2026-03-27T17:39:59.278423+00:00",
+        "ore_rating": 3,
+        "category": "candidate",
+        "signals": [],
+        "intelligence": {},
+        "content_hash": "f1e322ddd4dc99c3"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-artifacts/.zombie_extract_mcp_run_audit_2026-01-29T18-53-31-593Z.json",
+      "name": ".zombie_extract_mcp_run_audit_2026-01-29T18-53-31-593Z.json",
+      "payload": {
+        "source": "artifacts/mcp_run_audit_2026-01-29T18-53-31-593Z.json",
+        "timestamp": "2026-03-27T17:39:59.576377+00:00",
+        "ore_rating": 3,
+        "category": "candidate",
+        "signals": [],
+        "intelligence": {},
+        "content_hash": "5957c11b5ee60643"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-artifacts/.zombie_extract_mcp_run_audit_2026-01-29T18-59-32-890Z.json",
+      "name": ".zombie_extract_mcp_run_audit_2026-01-29T18-59-32-890Z.json",
+      "payload": {
+        "source": "artifacts/mcp_run_audit_2026-01-29T18-59-32-890Z.json",
+        "timestamp": "2026-03-27T17:39:59.870571+00:00",
+        "ore_rating": 3,
+        "category": "candidate",
+        "signals": [],
+        "intelligence": {},
+        "content_hash": "fed59c5a9037eb47"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-artifacts/.zombie_extract_mcp_run_curriculum_2026-01-05T00-42-49-176Z.json",
+      "name": ".zombie_extract_mcp_run_curriculum_2026-01-05T00-42-49-176Z.json",
+      "payload": {
+        "source": "artifacts/mcp_run_curriculum_2026-01-05T00-42-49-176Z.json",
+        "timestamp": "2026-03-27T17:40:00.170467+00:00",
+        "ore_rating": 3,
+        "category": "candidate",
+        "signals": [],
+        "intelligence": {},
+        "content_hash": "b1f34c9b8cd9737b"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-artifacts/.zombie_extract_mcp_run_curriculum_2026-01-05T00-43-12-981Z.json",
+      "name": ".zombie_extract_mcp_run_curriculum_2026-01-05T00-43-12-981Z.json",
+      "payload": {
+        "source": "artifacts/mcp_run_curriculum_2026-01-05T00-43-12-981Z.json",
+        "timestamp": "2026-03-27T17:40:00.467488+00:00",
+        "ore_rating": 3,
+        "category": "candidate",
+        "signals": [],
+        "intelligence": {},
+        "content_hash": "73d29f26f15f1ce5"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-artifacts/.zombie_extract_mcp_run_curriculum_2026-01-05T00-43-47-483Z.json",
+      "name": ".zombie_extract_mcp_run_curriculum_2026-01-05T00-43-47-483Z.json",
+      "payload": {
+        "source": "artifacts/mcp_run_curriculum_2026-01-05T00-43-47-483Z.json",
+        "timestamp": "2026-03-27T17:40:00.766693+00:00",
+        "ore_rating": 3,
+        "category": "candidate",
+        "signals": [],
+        "intelligence": {},
+        "content_hash": "bcdb03edd5a3e29a"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-artifacts/.zombie_extract_mcp_run_curriculum_2026-01-29T18-30-47-901Z.json",
+      "name": ".zombie_extract_mcp_run_curriculum_2026-01-29T18-30-47-901Z.json",
+      "payload": {
+        "source": "artifacts/mcp_run_curriculum_2026-01-29T18-30-47-901Z.json",
+        "timestamp": "2026-03-27T17:40:01.063779+00:00",
+        "ore_rating": 3,
+        "category": "candidate",
+        "signals": [],
+        "intelligence": {},
+        "content_hash": "4078ab643959bce6"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-artifacts/.zombie_extract_mcp_run_curriculum_2026-01-29T18-31-55-941Z.json",
+      "name": ".zombie_extract_mcp_run_curriculum_2026-01-29T18-31-55-941Z.json",
+      "payload": {
+        "source": "artifacts/mcp_run_curriculum_2026-01-29T18-31-55-941Z.json",
+        "timestamp": "2026-03-27T17:40:01.363455+00:00",
+        "ore_rating": 3,
+        "category": "candidate",
+        "signals": [],
+        "intelligence": {},
+        "content_hash": "21623e599bd40b68"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-artifacts/.zombie_extract_mcp_run_curriculum_2026-01-29T18-35-18-246Z.json",
+      "name": ".zombie_extract_mcp_run_curriculum_2026-01-29T18-35-18-246Z.json",
+      "payload": {
+        "source": "artifacts/mcp_run_curriculum_2026-01-29T18-35-18-246Z.json",
+        "timestamp": "2026-03-27T17:40:01.659708+00:00",
+        "ore_rating": 3,
+        "category": "candidate",
+        "signals": [],
+        "intelligence": {},
+        "content_hash": "d231cbe703b98149"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-artifacts/.zombie_extract_mcp_run_curriculum_2026-01-29T18-36-11-723Z.json",
+      "name": ".zombie_extract_mcp_run_curriculum_2026-01-29T18-36-11-723Z.json",
+      "payload": {
+        "source": "artifacts/mcp_run_curriculum_2026-01-29T18-36-11-723Z.json",
+        "timestamp": "2026-03-27T17:40:01.956024+00:00",
+        "ore_rating": 3,
+        "category": "candidate",
+        "signals": [],
+        "intelligence": {},
+        "content_hash": "16699d66d452c2a1"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-artifacts/.zombie_extract_mcp_run_curriculum_2026-01-29T18-36-43-813Z.json",
+      "name": ".zombie_extract_mcp_run_curriculum_2026-01-29T18-36-43-813Z.json",
+      "payload": {
+        "source": "artifacts/mcp_run_curriculum_2026-01-29T18-36-43-813Z.json",
+        "timestamp": "2026-03-27T17:40:02.253620+00:00",
+        "ore_rating": 3,
+        "category": "candidate",
+        "signals": [],
+        "intelligence": {},
+        "content_hash": "2a7fd5c3c51b3814"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-artifacts/.zombie_extract_mcp_run_curriculum_2026-01-29T18-52-46-564Z.json",
+      "name": ".zombie_extract_mcp_run_curriculum_2026-01-29T18-52-46-564Z.json",
+      "payload": {
+        "source": "artifacts/mcp_run_curriculum_2026-01-29T18-52-46-564Z.json",
+        "timestamp": "2026-03-27T17:40:02.557657+00:00",
+        "ore_rating": 3,
+        "category": "candidate",
+        "signals": [],
+        "intelligence": {},
+        "content_hash": "845e8da566a7fcae"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-artifacts/.zombie_extract_mcp_run_curriculum_2026-01-29T18-53-31-593Z.json",
+      "name": ".zombie_extract_mcp_run_curriculum_2026-01-29T18-53-31-593Z.json",
+      "payload": {
+        "source": "artifacts/mcp_run_curriculum_2026-01-29T18-53-31-593Z.json",
+        "timestamp": "2026-03-27T17:40:02.854953+00:00",
+        "ore_rating": 3,
+        "category": "candidate",
+        "signals": [],
+        "intelligence": {},
+        "content_hash": "f2670e99f75e9c63"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-artifacts/.zombie_extract_mcp_run_curriculum_2026-01-29T18-59-32-890Z.json",
+      "name": ".zombie_extract_mcp_run_curriculum_2026-01-29T18-59-32-890Z.json",
+      "payload": {
+        "source": "artifacts/mcp_run_curriculum_2026-01-29T18-59-32-890Z.json",
+        "timestamp": "2026-03-27T17:40:03.154980+00:00",
+        "ore_rating": 3,
+        "category": "candidate",
+        "signals": [],
+        "intelligence": {},
+        "content_hash": "91ea980f0ba68aaf"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-artifacts/.zombie_extract_mcp_run_discovery_2026-01-05T00-42-49-176Z.json",
+      "name": ".zombie_extract_mcp_run_discovery_2026-01-05T00-42-49-176Z.json",
+      "payload": {
+        "source": "artifacts/mcp_run_discovery_2026-01-05T00-42-49-176Z.json",
+        "timestamp": "2026-03-27T17:40:03.453463+00:00",
+        "ore_rating": 3,
+        "category": "candidate",
+        "signals": [],
+        "intelligence": {},
+        "content_hash": "ca5592420ad61c0d"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-artifacts/.zombie_extract_mcp_run_discovery_2026-01-05T00-43-12-981Z.json",
+      "name": ".zombie_extract_mcp_run_discovery_2026-01-05T00-43-12-981Z.json",
+      "payload": {
+        "source": "artifacts/mcp_run_discovery_2026-01-05T00-43-12-981Z.json",
+        "timestamp": "2026-03-27T17:40:03.749711+00:00",
+        "ore_rating": 3,
+        "category": "candidate",
+        "signals": [],
+        "intelligence": {},
+        "content_hash": "58bf49b63870056a"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-artifacts/.zombie_extract_mcp_run_discovery_2026-01-05T00-43-47-483Z.json",
+      "name": ".zombie_extract_mcp_run_discovery_2026-01-05T00-43-47-483Z.json",
+      "payload": {
+        "source": "artifacts/mcp_run_discovery_2026-01-05T00-43-47-483Z.json",
+        "timestamp": "2026-03-27T17:40:04.049107+00:00",
+        "ore_rating": 2,
+        "category": "candidate",
+        "signals": [
+          "ore_adapted:3->2"
+        ],
+        "intelligence": {},
+        "content_hash": "4b34047c701591d2"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-artifacts/.zombie_extract_mcp_run_discovery_2026-01-29T18-30-47-901Z.json",
+      "name": ".zombie_extract_mcp_run_discovery_2026-01-29T18-30-47-901Z.json",
+      "payload": {
+        "source": "artifacts/mcp_run_discovery_2026-01-29T18-30-47-901Z.json",
+        "timestamp": "2026-03-27T17:40:04.350931+00:00",
+        "ore_rating": 2,
+        "category": "candidate",
+        "signals": [
+          "ore_adapted:3->2"
+        ],
+        "intelligence": {},
+        "content_hash": "690dfc6027c5d8c1"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-artifacts/.zombie_extract_mcp_run_discovery_2026-01-29T18-31-55-941Z.json",
+      "name": ".zombie_extract_mcp_run_discovery_2026-01-29T18-31-55-941Z.json",
+      "payload": {
+        "source": "artifacts/mcp_run_discovery_2026-01-29T18-31-55-941Z.json",
+        "timestamp": "2026-03-27T17:40:04.652190+00:00",
+        "ore_rating": 2,
+        "category": "candidate",
+        "signals": [
+          "ore_adapted:3->2"
+        ],
+        "intelligence": {},
+        "content_hash": "0f82629f2f7d9c5e"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-artifacts/.zombie_extract_mcp_run_discovery_2026-01-29T18-35-18-246Z.json",
+      "name": ".zombie_extract_mcp_run_discovery_2026-01-29T18-35-18-246Z.json",
+      "payload": {
+        "source": "artifacts/mcp_run_discovery_2026-01-29T18-35-18-246Z.json",
+        "timestamp": "2026-03-27T17:40:04.954078+00:00",
+        "ore_rating": 2,
+        "category": "candidate",
+        "signals": [
+          "ore_adapted:3->2"
+        ],
+        "intelligence": {},
+        "content_hash": "ddd07f654c74f967"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-artifacts/.zombie_extract_mcp_run_discovery_2026-01-29T18-36-11-723Z.json",
+      "name": ".zombie_extract_mcp_run_discovery_2026-01-29T18-36-11-723Z.json",
+      "payload": {
+        "source": "artifacts/mcp_run_discovery_2026-01-29T18-36-11-723Z.json",
+        "timestamp": "2026-03-27T17:40:05.252099+00:00",
+        "ore_rating": 2,
+        "category": "candidate",
+        "signals": [
+          "ore_adapted:3->2"
+        ],
+        "intelligence": {},
+        "content_hash": "efc1f9d0b5692341"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-artifacts/.zombie_extract_mcp_run_discovery_2026-01-29T18-36-43-813Z.json",
+      "name": ".zombie_extract_mcp_run_discovery_2026-01-29T18-36-43-813Z.json",
+      "payload": {
+        "source": "artifacts/mcp_run_discovery_2026-01-29T18-36-43-813Z.json",
+        "timestamp": "2026-03-27T17:40:05.551086+00:00",
+        "ore_rating": 2,
+        "category": "candidate",
+        "signals": [
+          "ore_adapted:3->2"
+        ],
+        "intelligence": {},
+        "content_hash": "ddbabf89ec73cfad"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-artifacts/.zombie_extract_mcp_run_discovery_2026-01-29T18-52-46-564Z.json",
+      "name": ".zombie_extract_mcp_run_discovery_2026-01-29T18-52-46-564Z.json",
+      "payload": {
+        "source": "artifacts/mcp_run_discovery_2026-01-29T18-52-46-564Z.json",
+        "timestamp": "2026-03-27T17:40:05.847667+00:00",
+        "ore_rating": 2,
+        "category": "candidate",
+        "signals": [
+          "ore_adapted:3->2"
+        ],
+        "intelligence": {},
+        "content_hash": "d39ca7f70ab402fd"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-artifacts/.zombie_extract_mcp_run_discovery_2026-01-29T18-53-31-593Z.json",
+      "name": ".zombie_extract_mcp_run_discovery_2026-01-29T18-53-31-593Z.json",
+      "payload": {
+        "source": "artifacts/mcp_run_discovery_2026-01-29T18-53-31-593Z.json",
+        "timestamp": "2026-03-27T17:40:06.149140+00:00",
+        "ore_rating": 2,
+        "category": "candidate",
+        "signals": [
+          "ore_adapted:3->2"
+        ],
+        "intelligence": {},
+        "content_hash": "b37b244bc31cc8e6"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-artifacts/.zombie_extract_mcp_run_discovery_2026-01-29T18-59-32-890Z.json",
+      "name": ".zombie_extract_mcp_run_discovery_2026-01-29T18-59-32-890Z.json",
+      "payload": {
+        "source": "artifacts/mcp_run_discovery_2026-01-29T18-59-32-890Z.json",
+        "timestamp": "2026-03-27T17:40:06.454368+00:00",
+        "ore_rating": 2,
+        "category": "candidate",
+        "signals": [
+          "ore_adapted:3->2"
+        ],
+        "intelligence": {},
+        "content_hash": "05e9959c944c9bdf"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-artifacts/.zombie_extract_mcp_run_impact_2026-01-05T00-42-49-176Z.json",
+      "name": ".zombie_extract_mcp_run_impact_2026-01-05T00-42-49-176Z.json",
+      "payload": {
+        "source": "artifacts/mcp_run_impact_2026-01-05T00-42-49-176Z.json",
+        "timestamp": "2026-03-27T17:40:06.750110+00:00",
+        "ore_rating": 2,
+        "category": "candidate",
+        "signals": [
+          "ore_adapted:3->2"
+        ],
+        "intelligence": {},
+        "content_hash": "50dbc5f40555cefd"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-artifacts/.zombie_extract_mcp_run_impact_2026-01-05T00-43-12-981Z.json",
+      "name": ".zombie_extract_mcp_run_impact_2026-01-05T00-43-12-981Z.json",
+      "payload": {
+        "source": "artifacts/mcp_run_impact_2026-01-05T00-43-12-981Z.json",
+        "timestamp": "2026-03-27T17:40:07.050038+00:00",
+        "ore_rating": 2,
+        "category": "candidate",
+        "signals": [
+          "ore_adapted:3->2"
+        ],
+        "intelligence": {},
+        "content_hash": "ae4b537e64df2a8d"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-artifacts/.zombie_extract_mcp_run_impact_2026-01-05T00-43-47-483Z.json",
+      "name": ".zombie_extract_mcp_run_impact_2026-01-05T00-43-47-483Z.json",
+      "payload": {
+        "source": "artifacts/mcp_run_impact_2026-01-05T00-43-47-483Z.json",
+        "timestamp": "2026-03-27T17:40:07.346762+00:00",
+        "ore_rating": 2,
+        "category": "candidate",
+        "signals": [
+          "ore_adapted:3->2"
+        ],
+        "intelligence": {},
+        "content_hash": "d82f5a69f74b77c0"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-artifacts/.zombie_extract_mcp_run_impact_2026-01-29T18-30-47-901Z.json",
+      "name": ".zombie_extract_mcp_run_impact_2026-01-29T18-30-47-901Z.json",
+      "payload": {
+        "source": "artifacts/mcp_run_impact_2026-01-29T18-30-47-901Z.json",
+        "timestamp": "2026-03-27T17:40:07.648904+00:00",
+        "ore_rating": 2,
+        "category": "candidate",
+        "signals": [
+          "ore_adapted:3->2"
+        ],
+        "intelligence": {},
+        "content_hash": "75964160698952e8"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-artifacts/.zombie_extract_mcp_run_impact_2026-01-29T18-31-55-941Z.json",
+      "name": ".zombie_extract_mcp_run_impact_2026-01-29T18-31-55-941Z.json",
+      "payload": {
+        "source": "artifacts/mcp_run_impact_2026-01-29T18-31-55-941Z.json",
+        "timestamp": "2026-03-27T17:40:07.953802+00:00",
+        "ore_rating": 2,
+        "category": "candidate",
+        "signals": [
+          "ore_adapted:3->2"
+        ],
+        "intelligence": {},
+        "content_hash": "9dabbec81dbb1533"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-artifacts/.zombie_extract_mcp_run_impact_2026-01-29T18-35-18-246Z.json",
+      "name": ".zombie_extract_mcp_run_impact_2026-01-29T18-35-18-246Z.json",
+      "payload": {
+        "source": "artifacts/mcp_run_impact_2026-01-29T18-35-18-246Z.json",
+        "timestamp": "2026-03-27T17:40:08.252730+00:00",
+        "ore_rating": 2,
+        "category": "candidate",
+        "signals": [
+          "ore_adapted:3->2"
+        ],
+        "intelligence": {},
+        "content_hash": "6bf04768e19c8421"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-artifacts/.zombie_extract_mcp_run_impact_2026-01-29T18-36-11-723Z.json",
+      "name": ".zombie_extract_mcp_run_impact_2026-01-29T18-36-11-723Z.json",
+      "payload": {
+        "source": "artifacts/mcp_run_impact_2026-01-29T18-36-11-723Z.json",
+        "timestamp": "2026-03-27T17:40:08.554394+00:00",
+        "ore_rating": 2,
+        "category": "candidate",
+        "signals": [
+          "ore_adapted:3->2"
+        ],
+        "intelligence": {},
+        "content_hash": "35b3fef2f8bee83e"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-artifacts/.zombie_extract_mcp_run_impact_2026-01-29T18-36-43-813Z.json",
+      "name": ".zombie_extract_mcp_run_impact_2026-01-29T18-36-43-813Z.json",
+      "payload": {
+        "source": "artifacts/mcp_run_impact_2026-01-29T18-36-43-813Z.json",
+        "timestamp": "2026-03-27T17:40:08.854290+00:00",
+        "ore_rating": 2,
+        "category": "candidate",
+        "signals": [
+          "ore_adapted:3->2"
+        ],
+        "intelligence": {},
+        "content_hash": "e5ea006971406c5c"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-artifacts/.zombie_extract_mcp_run_impact_2026-01-29T18-52-46-564Z.json",
+      "name": ".zombie_extract_mcp_run_impact_2026-01-29T18-52-46-564Z.json",
+      "payload": {
+        "source": "artifacts/mcp_run_impact_2026-01-29T18-52-46-564Z.json",
+        "timestamp": "2026-03-27T17:40:09.153508+00:00",
+        "ore_rating": 2,
+        "category": "candidate",
+        "signals": [
+          "ore_adapted:3->2"
+        ],
+        "intelligence": {},
+        "content_hash": "f13d75f6506beea2"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-artifacts/.zombie_extract_mcp_run_impact_2026-01-29T18-53-31-593Z.json",
+      "name": ".zombie_extract_mcp_run_impact_2026-01-29T18-53-31-593Z.json",
+      "payload": {
+        "source": "artifacts/mcp_run_impact_2026-01-29T18-53-31-593Z.json",
+        "timestamp": "2026-03-27T17:40:09.450979+00:00",
+        "ore_rating": 2,
+        "category": "candidate",
+        "signals": [
+          "ore_adapted:3->2"
+        ],
+        "intelligence": {},
+        "content_hash": "3ce71b8b387cd4c4"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-artifacts/.zombie_extract_mcp_run_impact_2026-01-29T18-59-32-890Z.json",
+      "name": ".zombie_extract_mcp_run_impact_2026-01-29T18-59-32-890Z.json",
+      "payload": {
+        "source": "artifacts/mcp_run_impact_2026-01-29T18-59-32-890Z.json",
+        "timestamp": "2026-03-27T17:40:09.748643+00:00",
+        "ore_rating": 2,
+        "category": "candidate",
+        "signals": [
+          "ore_adapted:3->2"
+        ],
+        "intelligence": {},
+        "content_hash": "1f10be7b803c5369"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-artifacts/.zombie_extract_mcp_run_spectral_2026-01-05T00-42-49-176Z.json",
+      "name": ".zombie_extract_mcp_run_spectral_2026-01-05T00-42-49-176Z.json",
+      "payload": {
+        "source": "artifacts/mcp_run_spectral_2026-01-05T00-42-49-176Z.json",
+        "timestamp": "2026-03-27T17:40:10.055350+00:00",
+        "ore_rating": 2,
+        "category": "candidate",
+        "signals": [
+          "ore_adapted:3->2"
+        ],
+        "intelligence": {},
+        "content_hash": "9e946a0ed7682e0a"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-artifacts/.zombie_extract_mcp_run_spectral_2026-01-05T00-43-12-981Z.json",
+      "name": ".zombie_extract_mcp_run_spectral_2026-01-05T00-43-12-981Z.json",
+      "payload": {
+        "source": "artifacts/mcp_run_spectral_2026-01-05T00-43-12-981Z.json",
+        "timestamp": "2026-03-27T17:40:10.360910+00:00",
+        "ore_rating": 2,
+        "category": "candidate",
+        "signals": [
+          "ore_adapted:3->2"
+        ],
+        "intelligence": {},
+        "content_hash": "abb664ae0446cb28"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-artifacts/.zombie_extract_mcp_run_spectral_2026-01-05T00-43-47-483Z.json",
+      "name": ".zombie_extract_mcp_run_spectral_2026-01-05T00-43-47-483Z.json",
+      "payload": {
+        "source": "artifacts/mcp_run_spectral_2026-01-05T00-43-47-483Z.json",
+        "timestamp": "2026-03-27T17:40:10.662644+00:00",
+        "ore_rating": 2,
+        "category": "candidate",
+        "signals": [
+          "ore_adapted:3->2"
+        ],
+        "intelligence": {},
+        "content_hash": "5260a23c25f02bbc"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-artifacts/.zombie_extract_mcp_run_spectral_2026-01-29T18-30-47-901Z.json",
+      "name": ".zombie_extract_mcp_run_spectral_2026-01-29T18-30-47-901Z.json",
+      "payload": {
+        "source": "artifacts/mcp_run_spectral_2026-01-29T18-30-47-901Z.json",
+        "timestamp": "2026-03-27T17:40:10.966765+00:00",
+        "ore_rating": 2,
+        "category": "candidate",
+        "signals": [
+          "ore_adapted:3->2"
+        ],
+        "intelligence": {},
+        "content_hash": "356661dc6b8f3f6f"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-artifacts/.zombie_extract_mcp_run_spectral_2026-01-29T18-31-55-941Z.json",
+      "name": ".zombie_extract_mcp_run_spectral_2026-01-29T18-31-55-941Z.json",
+      "payload": {
+        "source": "artifacts/mcp_run_spectral_2026-01-29T18-31-55-941Z.json",
+        "timestamp": "2026-03-27T17:40:11.267592+00:00",
+        "ore_rating": 2,
+        "category": "candidate",
+        "signals": [
+          "ore_adapted:3->2"
+        ],
+        "intelligence": {},
+        "content_hash": "f25ffd701c542f8d"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-artifacts/.zombie_extract_mcp_run_spectral_2026-01-29T18-35-18-246Z.json",
+      "name": ".zombie_extract_mcp_run_spectral_2026-01-29T18-35-18-246Z.json",
+      "payload": {
+        "source": "artifacts/mcp_run_spectral_2026-01-29T18-35-18-246Z.json",
+        "timestamp": "2026-03-27T17:40:11.567950+00:00",
+        "ore_rating": 2,
+        "category": "candidate",
+        "signals": [
+          "ore_adapted:3->2"
+        ],
+        "intelligence": {},
+        "content_hash": "8335d8368cd9a91d"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-artifacts/.zombie_extract_mcp_run_spectral_2026-01-29T18-36-11-723Z.json",
+      "name": ".zombie_extract_mcp_run_spectral_2026-01-29T18-36-11-723Z.json",
+      "payload": {
+        "source": "artifacts/mcp_run_spectral_2026-01-29T18-36-11-723Z.json",
+        "timestamp": "2026-03-27T17:40:11.869731+00:00",
+        "ore_rating": 2,
+        "category": "candidate",
+        "signals": [
+          "ore_adapted:3->2"
+        ],
+        "intelligence": {},
+        "content_hash": "b82f7132bf7a8696"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-artifacts/.zombie_extract_mcp_run_spectral_2026-01-29T18-36-43-813Z.json",
+      "name": ".zombie_extract_mcp_run_spectral_2026-01-29T18-36-43-813Z.json",
+      "payload": {
+        "source": "artifacts/mcp_run_spectral_2026-01-29T18-36-43-813Z.json",
+        "timestamp": "2026-03-27T17:40:12.174787+00:00",
+        "ore_rating": 2,
+        "category": "candidate",
+        "signals": [
+          "ore_adapted:3->2"
+        ],
+        "intelligence": {},
+        "content_hash": "0c574fe76933344b"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-artifacts/.zombie_extract_mcp_run_spectral_2026-01-29T18-52-46-564Z.json",
+      "name": ".zombie_extract_mcp_run_spectral_2026-01-29T18-52-46-564Z.json",
+      "payload": {
+        "source": "artifacts/mcp_run_spectral_2026-01-29T18-52-46-564Z.json",
+        "timestamp": "2026-03-27T17:40:12.472088+00:00",
+        "ore_rating": 2,
+        "category": "candidate",
+        "signals": [
+          "ore_adapted:3->2"
+        ],
+        "intelligence": {},
+        "content_hash": "c093da462a54c0ee"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-artifacts/.zombie_extract_mcp_run_spectral_2026-01-29T18-53-31-593Z.json",
+      "name": ".zombie_extract_mcp_run_spectral_2026-01-29T18-53-31-593Z.json",
+      "payload": {
+        "source": "artifacts/mcp_run_spectral_2026-01-29T18-53-31-593Z.json",
+        "timestamp": "2026-03-27T17:40:12.772497+00:00",
+        "ore_rating": 2,
+        "category": "candidate",
+        "signals": [
+          "ore_adapted:3->2"
+        ],
+        "intelligence": {},
+        "content_hash": "d3747d4c79281460"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-artifacts/.zombie_extract_mcp_run_spectral_2026-01-29T18-59-32-890Z.json",
+      "name": ".zombie_extract_mcp_run_spectral_2026-01-29T18-59-32-890Z.json",
+      "payload": {
+        "source": "artifacts/mcp_run_spectral_2026-01-29T18-59-32-890Z.json",
+        "timestamp": "2026-03-27T17:40:13.074654+00:00",
+        "ore_rating": 2,
+        "category": "candidate",
+        "signals": [
+          "ore_adapted:3->2"
+        ],
+        "intelligence": {},
+        "content_hash": "196ff7b24033f3fb"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-artifacts/.zombie_extract_mcp_run_trace_2026-01-05T00-42-49-176Z.json",
+      "name": ".zombie_extract_mcp_run_trace_2026-01-05T00-42-49-176Z.json",
+      "payload": {
+        "source": "artifacts/mcp_run_trace_2026-01-05T00-42-49-176Z.json",
+        "timestamp": "2026-03-27T17:40:13.375533+00:00",
+        "ore_rating": 2,
+        "category": "candidate",
+        "signals": [
+          "ore_adapted:3->2"
+        ],
+        "intelligence": {},
+        "content_hash": "c2846ad75799b516"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-artifacts/.zombie_extract_mcp_run_trace_2026-01-05T00-43-12-981Z.json",
+      "name": ".zombie_extract_mcp_run_trace_2026-01-05T00-43-12-981Z.json",
+      "payload": {
+        "source": "artifacts/mcp_run_trace_2026-01-05T00-43-12-981Z.json",
+        "timestamp": "2026-03-27T17:40:13.675474+00:00",
+        "ore_rating": 2,
+        "category": "candidate",
+        "signals": [
+          "ore_adapted:3->2"
+        ],
+        "intelligence": {},
+        "content_hash": "9e72259be1e740d4"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-artifacts/.zombie_extract_mcp_run_trace_2026-01-05T00-43-47-483Z.json",
+      "name": ".zombie_extract_mcp_run_trace_2026-01-05T00-43-47-483Z.json",
+      "payload": {
+        "source": "artifacts/mcp_run_trace_2026-01-05T00-43-47-483Z.json",
+        "timestamp": "2026-03-27T17:40:13.973926+00:00",
+        "ore_rating": 2,
+        "category": "candidate",
+        "signals": [
+          "ore_adapted:3->2"
+        ],
+        "intelligence": {},
+        "content_hash": "ff86d47c387ba4eb"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-artifacts/.zombie_extract_mcp_run_trace_2026-01-29T18-30-47-901Z.json",
+      "name": ".zombie_extract_mcp_run_trace_2026-01-29T18-30-47-901Z.json",
+      "payload": {
+        "source": "artifacts/mcp_run_trace_2026-01-29T18-30-47-901Z.json",
+        "timestamp": "2026-03-27T17:40:14.269687+00:00",
+        "ore_rating": 2,
+        "category": "candidate",
+        "signals": [
+          "ore_adapted:3->2"
+        ],
+        "intelligence": {},
+        "content_hash": "45131e101e440dab"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-artifacts/.zombie_extract_mcp_run_trace_2026-01-29T18-31-55-941Z.json",
+      "name": ".zombie_extract_mcp_run_trace_2026-01-29T18-31-55-941Z.json",
+      "payload": {
+        "source": "artifacts/mcp_run_trace_2026-01-29T18-31-55-941Z.json",
+        "timestamp": "2026-03-27T17:40:14.570109+00:00",
+        "ore_rating": 2,
+        "category": "candidate",
+        "signals": [
+          "ore_adapted:3->2"
+        ],
+        "intelligence": {},
+        "content_hash": "2161d9f07d5dc8e9"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-artifacts/.zombie_extract_mcp_run_trace_2026-01-29T18-35-18-246Z.json",
+      "name": ".zombie_extract_mcp_run_trace_2026-01-29T18-35-18-246Z.json",
+      "payload": {
+        "source": "artifacts/mcp_run_trace_2026-01-29T18-35-18-246Z.json",
+        "timestamp": "2026-03-27T17:40:14.870607+00:00",
+        "ore_rating": 2,
+        "category": "candidate",
+        "signals": [
+          "ore_adapted:3->2"
+        ],
+        "intelligence": {},
+        "content_hash": "3d70473eb5c64a24"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-artifacts/.zombie_extract_mcp_run_trace_2026-01-29T18-36-11-723Z.json",
+      "name": ".zombie_extract_mcp_run_trace_2026-01-29T18-36-11-723Z.json",
+      "payload": {
+        "source": "artifacts/mcp_run_trace_2026-01-29T18-36-11-723Z.json",
+        "timestamp": "2026-03-27T17:40:15.172558+00:00",
+        "ore_rating": 2,
+        "category": "candidate",
+        "signals": [
+          "ore_adapted:3->2"
+        ],
+        "intelligence": {},
+        "content_hash": "4b634aa8d7747f2d"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-artifacts/.zombie_extract_mcp_run_trace_2026-01-29T18-36-43-813Z.json",
+      "name": ".zombie_extract_mcp_run_trace_2026-01-29T18-36-43-813Z.json",
+      "payload": {
+        "source": "artifacts/mcp_run_trace_2026-01-29T18-36-43-813Z.json",
+        "timestamp": "2026-03-27T17:40:15.471438+00:00",
+        "ore_rating": 2,
+        "category": "candidate",
+        "signals": [
+          "ore_adapted:3->2"
+        ],
+        "intelligence": {},
+        "content_hash": "8f6b9765ebafd56d"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-artifacts/.zombie_extract_mcp_run_trace_2026-01-29T18-52-46-564Z.json",
+      "name": ".zombie_extract_mcp_run_trace_2026-01-29T18-52-46-564Z.json",
+      "payload": {
+        "source": "artifacts/mcp_run_trace_2026-01-29T18-52-46-564Z.json",
+        "timestamp": "2026-03-27T17:40:15.769486+00:00",
+        "ore_rating": 2,
+        "category": "candidate",
+        "signals": [
+          "ore_adapted:3->2"
+        ],
+        "intelligence": {},
+        "content_hash": "9b6ca278797fc707"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-artifacts/.zombie_extract_mcp_run_trace_2026-01-29T18-53-31-593Z.json",
+      "name": ".zombie_extract_mcp_run_trace_2026-01-29T18-53-31-593Z.json",
+      "payload": {
+        "source": "artifacts/mcp_run_trace_2026-01-29T18-53-31-593Z.json",
+        "timestamp": "2026-03-27T17:40:16.070286+00:00",
+        "ore_rating": 2,
+        "category": "candidate",
+        "signals": [
+          "ore_adapted:3->2"
+        ],
+        "intelligence": {},
+        "content_hash": "e5bb9934db0506a4"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-artifacts/.zombie_extract_mcp_run_trace_2026-01-29T18-59-32-890Z.json",
+      "name": ".zombie_extract_mcp_run_trace_2026-01-29T18-59-32-890Z.json",
+      "payload": {
+        "source": "artifacts/mcp_run_trace_2026-01-29T18-59-32-890Z.json",
+        "timestamp": "2026-03-27T17:40:16.373827+00:00",
+        "ore_rating": 2,
+        "category": "candidate",
+        "signals": [
+          "ore_adapted:3->2"
+        ],
+        "intelligence": {},
+        "content_hash": "1a8d136b02d0781b"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-artifacts/.zombie_extract_mcp_run_validation_2026-02-09T17-44-09-423Z.json",
+      "name": ".zombie_extract_mcp_run_validation_2026-02-09T17-44-09-423Z.json",
+      "payload": {
+        "source": "artifacts/mcp_run_validation_2026-02-09T17-44-09-423Z.json",
+        "timestamp": "2026-03-27T17:40:16.676604+00:00",
+        "ore_rating": 2,
+        "category": "candidate",
+        "signals": [
+          "ore_adapted:3->2"
+        ],
+        "intelligence": {},
+        "content_hash": "e3b0c44298fc1c14"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-artifacts/.zombie_extract_mcp_run_validation_2026-02-09T17-44-39-067Z.json",
+      "name": ".zombie_extract_mcp_run_validation_2026-02-09T17-44-39-067Z.json",
+      "payload": {
+        "source": "artifacts/mcp_run_validation_2026-02-09T17-44-39-067Z.json",
+        "timestamp": "2026-03-27T17:40:16.975319+00:00",
+        "ore_rating": 1,
+        "category": "candidate",
+        "signals": [
+          "ore_adapted:3->2",
+          "content_duplicate"
+        ],
+        "intelligence": {},
+        "content_hash": "e3b0c44298fc1c14"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-artifacts/.zombie_extract_mcp_run_validation_2026-02-09T17-45-34-183Z.json",
+      "name": ".zombie_extract_mcp_run_validation_2026-02-09T17-45-34-183Z.json",
+      "payload": {
+        "source": "artifacts/mcp_run_validation_2026-02-09T17-45-34-183Z.json",
+        "timestamp": "2026-03-27T17:40:17.280273+00:00",
+        "ore_rating": 1,
+        "category": "candidate",
+        "signals": [
+          "ore_adapted:3->2",
+          "content_duplicate"
+        ],
+        "intelligence": {},
+        "content_hash": "e3b0c44298fc1c14"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-artifacts/.zombie_extract_mcp_run_validation_2026-02-09T20-21-45-744Z.json",
+      "name": ".zombie_extract_mcp_run_validation_2026-02-09T20-21-45-744Z.json",
+      "payload": {
+        "source": "artifacts/mcp_run_validation_2026-02-09T20-21-45-744Z.json",
+        "timestamp": "2026-03-27T17:40:17.584051+00:00",
+        "ore_rating": 1,
+        "category": "candidate",
+        "signals": [
+          "ore_adapted:3->2",
+          "content_duplicate"
+        ],
+        "intelligence": {},
+        "content_hash": "e3b0c44298fc1c14"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-artifacts/.zombie_extract_mcp_run_validation_2026-02-23T16-04-20-940Z.json",
+      "name": ".zombie_extract_mcp_run_validation_2026-02-23T16-04-20-940Z.json",
+      "payload": {
+        "source": "artifacts/mcp_run_validation_2026-02-23T16-04-20-940Z.json",
+        "timestamp": "2026-03-27T17:40:17.883619+00:00",
+        "ore_rating": 1,
+        "category": "candidate",
+        "signals": [
+          "ore_adapted:3->2",
+          "content_duplicate"
+        ],
+        "intelligence": {},
+        "content_hash": "e3b0c44298fc1c14"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-artifacts/.zombie_extract_mcp_run_validation_2026-02-23T16-05-00-983Z.json",
+      "name": ".zombie_extract_mcp_run_validation_2026-02-23T16-05-00-983Z.json",
+      "payload": {
+        "source": "artifacts/mcp_run_validation_2026-02-23T16-05-00-983Z.json",
+        "timestamp": "2026-03-27T17:40:18.185465+00:00",
+        "ore_rating": 1,
+        "category": "candidate",
+        "signals": [
+          "ore_adapted:3->2",
+          "content_duplicate"
+        ],
+        "intelligence": {},
+        "content_hash": "e3b0c44298fc1c14"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-artifacts/.zombie_extract_mcp_run_validation_2026-02-23T16-07-37-061Z.json",
+      "name": ".zombie_extract_mcp_run_validation_2026-02-23T16-07-37-061Z.json",
+      "payload": {
+        "source": "artifacts/mcp_run_validation_2026-02-23T16-07-37-061Z.json",
+        "timestamp": "2026-03-27T17:40:18.485205+00:00",
+        "ore_rating": 1,
+        "category": "candidate",
+        "signals": [
+          "ore_adapted:3->2",
+          "content_duplicate"
+        ],
+        "intelligence": {},
+        "content_hash": "e3b0c44298fc1c14"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-artifacts/.zombie_extract_mcp_run_validation_2026-02-23T16-09-58-757Z.json",
+      "name": ".zombie_extract_mcp_run_validation_2026-02-23T16-09-58-757Z.json",
+      "payload": {
+        "source": "artifacts/mcp_run_validation_2026-02-23T16-09-58-757Z.json",
+        "timestamp": "2026-03-27T17:40:18.783853+00:00",
+        "ore_rating": 1,
+        "category": "candidate",
+        "signals": [
+          "ore_adapted:3->2",
+          "content_duplicate"
+        ],
+        "intelligence": {},
+        "content_hash": "e3b0c44298fc1c14"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-artifacts/.zombie_extract_mcp_run_validation_2026-02-23T16-09-59-039Z.json",
+      "name": ".zombie_extract_mcp_run_validation_2026-02-23T16-09-59-039Z.json",
+      "payload": {
+        "source": "artifacts/mcp_run_validation_2026-02-23T16-09-59-039Z.json",
+        "timestamp": "2026-03-27T17:40:19.083462+00:00",
+        "ore_rating": 1,
+        "category": "candidate",
+        "signals": [
+          "ore_adapted:3->2",
+          "content_duplicate"
+        ],
+        "intelligence": {},
+        "content_hash": "e3b0c44298fc1c14"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-artifacts/.zombie_extract_mcp_run_validation_2026-02-23T16-11-56-191Z.json",
+      "name": ".zombie_extract_mcp_run_validation_2026-02-23T16-11-56-191Z.json",
+      "payload": {
+        "source": "artifacts/mcp_run_validation_2026-02-23T16-11-56-191Z.json",
+        "timestamp": "2026-03-27T17:40:19.381941+00:00",
+        "ore_rating": 1,
+        "category": "candidate",
+        "signals": [
+          "ore_adapted:3->2",
+          "content_duplicate"
+        ],
+        "intelligence": {},
+        "content_hash": "e3b0c44298fc1c14"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-artifacts/.zombie_extract_mcp_run_validation_2026-02-23T16-11-56-459Z.json",
+      "name": ".zombie_extract_mcp_run_validation_2026-02-23T16-11-56-459Z.json",
+      "payload": {
+        "source": "artifacts/mcp_run_validation_2026-02-23T16-11-56-459Z.json",
+        "timestamp": "2026-03-27T17:40:19.679631+00:00",
+        "ore_rating": 1,
+        "category": "candidate",
+        "signals": [
+          "ore_adapted:3->2",
+          "content_duplicate"
+        ],
+        "intelligence": {},
+        "content_hash": "e3b0c44298fc1c14"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-artifacts/.zombie_extract_mcp_run_validation_2026-02-23T16-31-58-790Z.json",
+      "name": ".zombie_extract_mcp_run_validation_2026-02-23T16-31-58-790Z.json",
+      "payload": {
+        "source": "artifacts/mcp_run_validation_2026-02-23T16-31-58-790Z.json",
+        "timestamp": "2026-03-27T17:40:19.982595+00:00",
+        "ore_rating": 1,
+        "category": "candidate",
+        "signals": [
+          "ore_adapted:3->2",
+          "content_duplicate"
+        ],
+        "intelligence": {},
+        "content_hash": "e3b0c44298fc1c14"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-artifacts/.zombie_extract_mcp_run_validation_2026-02-23T16-35-22-500Z.json",
+      "name": ".zombie_extract_mcp_run_validation_2026-02-23T16-35-22-500Z.json",
+      "payload": {
+        "source": "artifacts/mcp_run_validation_2026-02-23T16-35-22-500Z.json",
+        "timestamp": "2026-03-27T17:40:20.282584+00:00",
+        "ore_rating": 1,
+        "category": "candidate",
+        "signals": [
+          "ore_adapted:3->2",
+          "content_duplicate"
+        ],
+        "intelligence": {},
+        "content_hash": "e3b0c44298fc1c14"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-artifacts/.zombie_extract_mcp_run_validation_2026-02-23T16-36-34-357Z.json",
+      "name": ".zombie_extract_mcp_run_validation_2026-02-23T16-36-34-357Z.json",
+      "payload": {
+        "source": "artifacts/mcp_run_validation_2026-02-23T16-36-34-357Z.json",
+        "timestamp": "2026-03-27T17:40:20.589391+00:00",
+        "ore_rating": 1,
+        "category": "candidate",
+        "signals": [
+          "ore_adapted:3->2",
+          "content_duplicate"
+        ],
+        "intelligence": {},
+        "content_hash": "e3b0c44298fc1c14"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-artifacts/.zombie_extract_mcp_run_validation_2026-02-23T16-57-30-026Z.json",
+      "name": ".zombie_extract_mcp_run_validation_2026-02-23T16-57-30-026Z.json",
+      "payload": {
+        "source": "artifacts/mcp_run_validation_2026-02-23T16-57-30-026Z.json",
+        "timestamp": "2026-03-27T17:40:20.891854+00:00",
+        "ore_rating": 1,
+        "category": "candidate",
+        "signals": [
+          "ore_adapted:3->2",
+          "content_duplicate"
+        ],
+        "intelligence": {},
+        "content_hash": "e3b0c44298fc1c14"
+      }
+    }
+  ],
+  "receipts": [
+    {
+      "path": "dumpster-dive/intake/phaseA-artifacts/.zombie_receipt_anthropic.claude-code-2.1.38-win32-x64.frozen.2026-02-10T15-28-13.json",
+      "name": ".zombie_receipt_anthropic.claude-code-2.1.38-win32-x64.frozen.2026-02-10T15-28-13.json",
+      "payload": {
+        "consumed": "artifacts/anthropic.claude-code-2.1.38-win32-x64.frozen.2026-02-10T15-28-13.vsix",
+        "destination": "dumpster-dive\\intake\\phaseA-artifacts\\anthropic.claude-code-2.1.38-win32-x64.frozen.2026-02-10T15-28-13.vsix",
+        "batch": "phaseA-artifacts",
+        "timestamp": "2026-03-27T17:39:46.280892+00:00"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-artifacts/.zombie_receipt_claude-code-extension.package.json.snapshot.json",
+      "name": ".zombie_receipt_claude-code-extension.package.json.snapshot.json",
+      "payload": {
+        "consumed": "artifacts/claude-code-extension.package.json.snapshot.txt",
+        "destination": "dumpster-dive\\intake\\phaseA-artifacts\\claude-code-extension.package.json.snapshot.txt",
+        "batch": "phaseA-artifacts",
+        "timestamp": "2026-03-27T17:39:46.541642+00:00"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-artifacts/.zombie_receipt_claude-code.cli.2.1.38.frozen.2026-02-10T15-28-36.cli.json",
+      "name": ".zombie_receipt_claude-code.cli.2.1.38.frozen.2026-02-10T15-28-36.cli.json",
+      "payload": {
+        "consumed": "artifacts/claude-code.cli.2.1.38.frozen.2026-02-10T15-28-36.cli.js",
+        "destination": "dumpster-dive\\intake\\phaseA-artifacts\\claude-code.cli.2.1.38.frozen.2026-02-10T15-28-36.cli.js",
+        "batch": "phaseA-artifacts",
+        "timestamp": "2026-03-27T17:39:46.905988+00:00"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-artifacts/.zombie_receipt_claude.exe.frozen.json",
+      "name": ".zombie_receipt_claude.exe.frozen.json",
+      "payload": {
+        "consumed": "artifacts/claude.exe.frozen.2026-02-10T15-28-22",
+        "destination": "dumpster-dive\\intake\\phaseA-artifacts\\claude.exe.frozen.2026-02-10T15-28-22",
+        "batch": "phaseA-artifacts",
+        "timestamp": "2026-03-27T17:39:47.422054+00:00"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-artifacts/.zombie_receipt_github-mcp-server.exe.pre-v0.30.3.backup.json",
+      "name": ".zombie_receipt_github-mcp-server.exe.pre-v0.30.3.backup.json",
+      "payload": {
+        "consumed": "artifacts/github-mcp-server.exe.pre-v0.30.3.backup.2026-02-10T15-44-11",
+        "destination": "dumpster-dive\\intake\\phaseA-artifacts\\github-mcp-server.exe.pre-v0.30.3.backup.2026-02-10T15-44-11",
+        "batch": "phaseA-artifacts",
+        "timestamp": "2026-03-27T17:39:48.184231+00:00"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-artifacts/.zombie_receipt_github.copilot-chat.github.copilot-chat-0.38.2026021002.frozen.2026-02-10T15-32-14.json",
+      "name": ".zombie_receipt_github.copilot-chat.github.copilot-chat-0.38.2026021002.frozen.2026-02-10T15-32-14.json",
+      "payload": {
+        "consumed": "artifacts/github.copilot-chat.github.copilot-chat-0.38.2026021002.frozen.2026-02-10T15-32-14.vsix",
+        "destination": "dumpster-dive\\intake\\phaseA-artifacts\\github.copilot-chat.github.copilot-chat-0.38.2026021002.frozen.2026-02-10T15-32-14.vsix",
+        "batch": "phaseA-artifacts",
+        "timestamp": "2026-03-27T17:39:49.162009+00:00"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-artifacts/.zombie_receipt_github.copilot-chat.globalStorage.frozen.2026-02-10T15-32-14.json",
+      "name": ".zombie_receipt_github.copilot-chat.globalStorage.frozen.2026-02-10T15-32-14.json",
+      "payload": {
+        "consumed": "artifacts/github.copilot-chat.globalStorage.frozen.2026-02-10T15-32-14.zip",
+        "destination": "dumpster-dive\\intake\\phaseA-artifacts\\github.copilot-chat.globalStorage.frozen.2026-02-10T15-32-14.zip",
+        "batch": "phaseA-artifacts",
+        "timestamp": "2026-03-27T17:39:49.965978+00:00"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-artifacts/.zombie_receipt_hf_discovery_spaces_2026-02-09T18-13-17Z.json",
+      "name": ".zombie_receipt_hf_discovery_spaces_2026-02-09T18-13-17Z.json",
+      "payload": {
+        "consumed": "artifacts/hf_discovery_spaces_2026-02-09T18-13-17Z.md",
+        "destination": "dumpster-dive\\intake\\phaseA-artifacts\\hf_discovery_spaces_2026-02-09T18-13-17Z.md",
+        "batch": "phaseA-artifacts",
+        "timestamp": "2026-03-27T17:39:50.483175+00:00"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-artifacts/.zombie_receipt_hf_discovery_spaces_2026-02-09T18-13-53Z.json",
+      "name": ".zombie_receipt_hf_discovery_spaces_2026-02-09T18-13-53Z.json",
+      "payload": {
+        "consumed": "artifacts/hf_discovery_spaces_2026-02-09T18-13-53Z.md",
+        "destination": "dumpster-dive\\intake\\phaseA-artifacts\\hf_discovery_spaces_2026-02-09T18-13-53Z.md",
+        "batch": "phaseA-artifacts",
+        "timestamp": "2026-03-27T17:39:51.003020+00:00"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-artifacts/.zombie_receipt_hf_discovery_spaces_2026-02-23T16-04-45Z.json",
+      "name": ".zombie_receipt_hf_discovery_spaces_2026-02-23T16-04-45Z.json",
+      "payload": {
+        "consumed": "artifacts/hf_discovery_spaces_2026-02-23T16-04-45Z.md",
+        "destination": "dumpster-dive\\intake\\phaseA-artifacts\\hf_discovery_spaces_2026-02-23T16-04-45Z.md",
+        "batch": "phaseA-artifacts",
+        "timestamp": "2026-03-27T17:39:51.543077+00:00"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-artifacts/.zombie_receipt_hf_discovery_spaces_2026-02-23T16-05-09Z.json",
+      "name": ".zombie_receipt_hf_discovery_spaces_2026-02-23T16-05-09Z.json",
+      "payload": {
+        "consumed": "artifacts/hf_discovery_spaces_2026-02-23T16-05-09Z.md",
+        "destination": "dumpster-dive\\intake\\phaseA-artifacts\\hf_discovery_spaces_2026-02-23T16-05-09Z.md",
+        "batch": "phaseA-artifacts",
+        "timestamp": "2026-03-27T17:39:52.060612+00:00"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-artifacts/.zombie_receipt_hf_discovery_spaces_2026-02-23T16-09-21Z.json",
+      "name": ".zombie_receipt_hf_discovery_spaces_2026-02-23T16-09-21Z.json",
+      "payload": {
+        "consumed": "artifacts/hf_discovery_spaces_2026-02-23T16-09-21Z.md",
+        "destination": "dumpster-dive\\intake\\phaseA-artifacts\\hf_discovery_spaces_2026-02-23T16-09-21Z.md",
+        "batch": "phaseA-artifacts",
+        "timestamp": "2026-03-27T17:39:52.578056+00:00"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-artifacts/.zombie_receipt_hf_mcp_service_registry.generated.2026-02-09T18-29-43Z.registry.json",
+      "name": ".zombie_receipt_hf_mcp_service_registry.generated.2026-02-09T18-29-43Z.registry.json",
+      "payload": {
+        "consumed": "artifacts/hf_mcp_service_registry.generated.2026-02-09T18-29-43Z.registry.json",
+        "destination": "dumpster-dive\\intake\\phaseA-artifacts\\hf_mcp_service_registry.generated.2026-02-09T18-29-43Z.registry.json",
+        "batch": "phaseA-artifacts",
+        "timestamp": "2026-03-27T17:39:52.836135+00:00"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-artifacts/.zombie_receipt_hf_mcp_service_registry.generated.2026-02-09T18-30-28Z.registry.json",
+      "name": ".zombie_receipt_hf_mcp_service_registry.generated.2026-02-09T18-30-28Z.registry.json",
+      "payload": {
+        "consumed": "artifacts/hf_mcp_service_registry.generated.2026-02-09T18-30-28Z.registry.json",
+        "destination": "dumpster-dive\\intake\\phaseA-artifacts\\hf_mcp_service_registry.generated.2026-02-09T18-30-28Z.registry.json",
+        "batch": "phaseA-artifacts",
+        "timestamp": "2026-03-27T17:39:53.095419+00:00"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-artifacts/.zombie_receipt_hf_mcp_service_registry.generated.2026-02-09T18-37-19Z.registry.json",
+      "name": ".zombie_receipt_hf_mcp_service_registry.generated.2026-02-09T18-37-19Z.registry.json",
+      "payload": {
+        "consumed": "artifacts/hf_mcp_service_registry.generated.2026-02-09T18-37-19Z.registry.json",
+        "destination": "dumpster-dive\\intake\\phaseA-artifacts\\hf_mcp_service_registry.generated.2026-02-09T18-37-19Z.registry.json",
+        "batch": "phaseA-artifacts",
+        "timestamp": "2026-03-27T17:39:53.349874+00:00"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-artifacts/.zombie_receipt_hf_mcp_service_registry.generated.2026-02-09T18-47-15Z.registry.json",
+      "name": ".zombie_receipt_hf_mcp_service_registry.generated.2026-02-09T18-47-15Z.registry.json",
+      "payload": {
+        "consumed": "artifacts/hf_mcp_service_registry.generated.2026-02-09T18-47-15Z.registry.json",
+        "destination": "dumpster-dive\\intake\\phaseA-artifacts\\hf_mcp_service_registry.generated.2026-02-09T18-47-15Z.registry.json",
+        "batch": "phaseA-artifacts",
+        "timestamp": "2026-03-27T17:39:53.610881+00:00"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-artifacts/.zombie_receipt_hf_mcp_service_registry.generated.2026-02-09T19-10-08Z.registry.json",
+      "name": ".zombie_receipt_hf_mcp_service_registry.generated.2026-02-09T19-10-08Z.registry.json",
+      "payload": {
+        "consumed": "artifacts/hf_mcp_service_registry.generated.2026-02-09T19-10-08Z.registry.json",
+        "destination": "dumpster-dive\\intake\\phaseA-artifacts\\hf_mcp_service_registry.generated.2026-02-09T19-10-08Z.registry.json",
+        "batch": "phaseA-artifacts",
+        "timestamp": "2026-03-27T17:39:53.865656+00:00"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-artifacts/.zombie_receipt_hf_mcp_service_registry.generated.2026-02-09T19-24-21Z.registry.json",
+      "name": ".zombie_receipt_hf_mcp_service_registry.generated.2026-02-09T19-24-21Z.registry.json",
+      "payload": {
+        "consumed": "artifacts/hf_mcp_service_registry.generated.2026-02-09T19-24-21Z.registry.json",
+        "destination": "dumpster-dive\\intake\\phaseA-artifacts\\hf_mcp_service_registry.generated.2026-02-09T19-24-21Z.registry.json",
+        "batch": "phaseA-artifacts",
+        "timestamp": "2026-03-27T17:39:54.125123+00:00"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-artifacts/.zombie_receipt_hf_mcp_tools_2026-02-09T19-34-17Z.json",
+      "name": ".zombie_receipt_hf_mcp_tools_2026-02-09T19-34-17Z.json",
+      "payload": {
+        "consumed": "artifacts/hf_mcp_tools_2026-02-09T19-34-17Z.json",
+        "destination": "dumpster-dive\\intake\\phaseA-artifacts\\hf_mcp_tools_2026-02-09T19-34-17Z.json",
+        "batch": "phaseA-artifacts",
+        "timestamp": "2026-03-27T17:39:54.382803+00:00"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-artifacts/.zombie_receipt_hf_mcp_tools_2026-02-09T19-34-32Z.json",
+      "name": ".zombie_receipt_hf_mcp_tools_2026-02-09T19-34-32Z.json",
+      "payload": {
+        "consumed": "artifacts/hf_mcp_tools_2026-02-09T19-34-32Z.json",
+        "destination": "dumpster-dive\\intake\\phaseA-artifacts\\hf_mcp_tools_2026-02-09T19-34-32Z.json",
+        "batch": "phaseA-artifacts",
+        "timestamp": "2026-03-27T17:39:54.637642+00:00"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-artifacts/.zombie_receipt_hf_mcp_tools_2026-02-09T19-36-40Z.json",
+      "name": ".zombie_receipt_hf_mcp_tools_2026-02-09T19-36-40Z.json",
+      "payload": {
+        "consumed": "artifacts/hf_mcp_tools_2026-02-09T19-36-40Z.json",
+        "destination": "dumpster-dive\\intake\\phaseA-artifacts\\hf_mcp_tools_2026-02-09T19-36-40Z.json",
+        "batch": "phaseA-artifacts",
+        "timestamp": "2026-03-27T17:39:54.890784+00:00"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-artifacts/.zombie_receipt_hf_mcp_tools_2026-02-09T19-37-17-949Z.json",
+      "name": ".zombie_receipt_hf_mcp_tools_2026-02-09T19-37-17-949Z.json",
+      "payload": {
+        "consumed": "artifacts/hf_mcp_tools_2026-02-09T19-37-17-949Z.json",
+        "destination": "dumpster-dive\\intake\\phaseA-artifacts\\hf_mcp_tools_2026-02-09T19-37-17-949Z.json",
+        "batch": "phaseA-artifacts",
+        "timestamp": "2026-03-27T17:39:55.146468+00:00"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-artifacts/.zombie_receipt_hf_mcp_tools_2026-02-09T19-37-43-498Z.json",
+      "name": ".zombie_receipt_hf_mcp_tools_2026-02-09T19-37-43-498Z.json",
+      "payload": {
+        "consumed": "artifacts/hf_mcp_tools_2026-02-09T19-37-43-498Z.json",
+        "destination": "dumpster-dive\\intake\\phaseA-artifacts\\hf_mcp_tools_2026-02-09T19-37-43-498Z.json",
+        "batch": "phaseA-artifacts",
+        "timestamp": "2026-03-27T17:39:55.405422+00:00"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-artifacts/.zombie_receipt_hf_mcp_tools_2026-02-09T19-37-43-512Z.json",
+      "name": ".zombie_receipt_hf_mcp_tools_2026-02-09T19-37-43-512Z.json",
+      "payload": {
+        "consumed": "artifacts/hf_mcp_tools_2026-02-09T19-37-43-512Z.json",
+        "destination": "dumpster-dive\\intake\\phaseA-artifacts\\hf_mcp_tools_2026-02-09T19-37-43-512Z.json",
+        "batch": "phaseA-artifacts",
+        "timestamp": "2026-03-27T17:39:55.662632+00:00"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-artifacts/.zombie_receipt_hf_mcp_tools_2026-02-09T19-38-02-929Z.json",
+      "name": ".zombie_receipt_hf_mcp_tools_2026-02-09T19-38-02-929Z.json",
+      "payload": {
+        "consumed": "artifacts/hf_mcp_tools_2026-02-09T19-38-02-929Z.json",
+        "destination": "dumpster-dive\\intake\\phaseA-artifacts\\hf_mcp_tools_2026-02-09T19-38-02-929Z.json",
+        "batch": "phaseA-artifacts",
+        "timestamp": "2026-03-27T17:39:55.917635+00:00"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-artifacts/.zombie_receipt_hf_mcp_tools_2026-02-09T20-22-05-320Z.json",
+      "name": ".zombie_receipt_hf_mcp_tools_2026-02-09T20-22-05-320Z.json",
+      "payload": {
+        "consumed": "artifacts/hf_mcp_tools_2026-02-09T20-22-05-320Z.json",
+        "destination": "dumpster-dive\\intake\\phaseA-artifacts\\hf_mcp_tools_2026-02-09T20-22-05-320Z.json",
+        "batch": "phaseA-artifacts",
+        "timestamp": "2026-03-27T17:39:56.180210+00:00"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-artifacts/.zombie_receipt_hf_mcp_tools_2026-02-23T16-05-10-559Z.json",
+      "name": ".zombie_receipt_hf_mcp_tools_2026-02-23T16-05-10-559Z.json",
+      "payload": {
+        "consumed": "artifacts/hf_mcp_tools_2026-02-23T16-05-10-559Z.json",
+        "destination": "dumpster-dive\\intake\\phaseA-artifacts\\hf_mcp_tools_2026-02-23T16-05-10-559Z.json",
+        "batch": "phaseA-artifacts",
+        "timestamp": "2026-03-27T17:39:56.431882+00:00"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-artifacts/.zombie_receipt_hf_mcp_tools_2026-02-23T16-09-22-257Z.json",
+      "name": ".zombie_receipt_hf_mcp_tools_2026-02-23T16-09-22-257Z.json",
+      "payload": {
+        "consumed": "artifacts/hf_mcp_tools_2026-02-23T16-09-22-257Z.json",
+        "destination": "dumpster-dive\\intake\\phaseA-artifacts\\hf_mcp_tools_2026-02-23T16-09-22-257Z.json",
+        "batch": "phaseA-artifacts",
+        "timestamp": "2026-03-27T17:39:56.692331+00:00"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-artifacts/.zombie_receipt_mcp_run_audit_2026-01-05T00-42-49-176Z.json",
+      "name": ".zombie_receipt_mcp_run_audit_2026-01-05T00-42-49-176Z.json",
+      "payload": {
+        "consumed": "artifacts/mcp_run_audit_2026-01-05T00-42-49-176Z.json",
+        "destination": "dumpster-dive\\intake\\phaseA-artifacts\\mcp_run_audit_2026-01-05T00-42-49-176Z.json",
+        "batch": "phaseA-artifacts",
+        "timestamp": "2026-03-27T17:39:56.990273+00:00"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-artifacts/.zombie_receipt_mcp_run_audit_2026-01-05T00-43-12-981Z.json",
+      "name": ".zombie_receipt_mcp_run_audit_2026-01-05T00-43-12-981Z.json",
+      "payload": {
+        "consumed": "artifacts/mcp_run_audit_2026-01-05T00-43-12-981Z.json",
+        "destination": "dumpster-dive\\intake\\phaseA-artifacts\\mcp_run_audit_2026-01-05T00-43-12-981Z.json",
+        "batch": "phaseA-artifacts",
+        "timestamp": "2026-03-27T17:39:57.284817+00:00"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-artifacts/.zombie_receipt_mcp_run_audit_2026-01-05T00-43-47-483Z.json",
+      "name": ".zombie_receipt_mcp_run_audit_2026-01-05T00-43-47-483Z.json",
+      "payload": {
+        "consumed": "artifacts/mcp_run_audit_2026-01-05T00-43-47-483Z.json",
+        "destination": "dumpster-dive\\intake\\phaseA-artifacts\\mcp_run_audit_2026-01-05T00-43-47-483Z.json",
+        "batch": "phaseA-artifacts",
+        "timestamp": "2026-03-27T17:39:57.578954+00:00"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-artifacts/.zombie_receipt_mcp_run_audit_2026-01-29T18-30-47-901Z.json",
+      "name": ".zombie_receipt_mcp_run_audit_2026-01-29T18-30-47-901Z.json",
+      "payload": {
+        "consumed": "artifacts/mcp_run_audit_2026-01-29T18-30-47-901Z.json",
+        "destination": "dumpster-dive\\intake\\phaseA-artifacts\\mcp_run_audit_2026-01-29T18-30-47-901Z.json",
+        "batch": "phaseA-artifacts",
+        "timestamp": "2026-03-27T17:39:57.879285+00:00"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-artifacts/.zombie_receipt_mcp_run_audit_2026-01-29T18-31-55-941Z.json",
+      "name": ".zombie_receipt_mcp_run_audit_2026-01-29T18-31-55-941Z.json",
+      "payload": {
+        "consumed": "artifacts/mcp_run_audit_2026-01-29T18-31-55-941Z.json",
+        "destination": "dumpster-dive\\intake\\phaseA-artifacts\\mcp_run_audit_2026-01-29T18-31-55-941Z.json",
+        "batch": "phaseA-artifacts",
+        "timestamp": "2026-03-27T17:39:58.177256+00:00"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-artifacts/.zombie_receipt_mcp_run_audit_2026-01-29T18-35-18-246Z.json",
+      "name": ".zombie_receipt_mcp_run_audit_2026-01-29T18-35-18-246Z.json",
+      "payload": {
+        "consumed": "artifacts/mcp_run_audit_2026-01-29T18-35-18-246Z.json",
+        "destination": "dumpster-dive\\intake\\phaseA-artifacts\\mcp_run_audit_2026-01-29T18-35-18-246Z.json",
+        "batch": "phaseA-artifacts",
+        "timestamp": "2026-03-27T17:39:58.473961+00:00"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-artifacts/.zombie_receipt_mcp_run_audit_2026-01-29T18-36-11-723Z.json",
+      "name": ".zombie_receipt_mcp_run_audit_2026-01-29T18-36-11-723Z.json",
+      "payload": {
+        "consumed": "artifacts/mcp_run_audit_2026-01-29T18-36-11-723Z.json",
+        "destination": "dumpster-dive\\intake\\phaseA-artifacts\\mcp_run_audit_2026-01-29T18-36-11-723Z.json",
+        "batch": "phaseA-artifacts",
+        "timestamp": "2026-03-27T17:39:58.771029+00:00"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-artifacts/.zombie_receipt_mcp_run_audit_2026-01-29T18-36-43-813Z.json",
+      "name": ".zombie_receipt_mcp_run_audit_2026-01-29T18-36-43-813Z.json",
+      "payload": {
+        "consumed": "artifacts/mcp_run_audit_2026-01-29T18-36-43-813Z.json",
+        "destination": "dumpster-dive\\intake\\phaseA-artifacts\\mcp_run_audit_2026-01-29T18-36-43-813Z.json",
+        "batch": "phaseA-artifacts",
+        "timestamp": "2026-03-27T17:39:59.063706+00:00"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-artifacts/.zombie_receipt_mcp_run_audit_2026-01-29T18-52-46-564Z.json",
+      "name": ".zombie_receipt_mcp_run_audit_2026-01-29T18-52-46-564Z.json",
+      "payload": {
+        "consumed": "artifacts/mcp_run_audit_2026-01-29T18-52-46-564Z.json",
+        "destination": "dumpster-dive\\intake\\phaseA-artifacts\\mcp_run_audit_2026-01-29T18-52-46-564Z.json",
+        "batch": "phaseA-artifacts",
+        "timestamp": "2026-03-27T17:39:59.359386+00:00"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-artifacts/.zombie_receipt_mcp_run_audit_2026-01-29T18-53-31-593Z.json",
+      "name": ".zombie_receipt_mcp_run_audit_2026-01-29T18-53-31-593Z.json",
+      "payload": {
+        "consumed": "artifacts/mcp_run_audit_2026-01-29T18-53-31-593Z.json",
+        "destination": "dumpster-dive\\intake\\phaseA-artifacts\\mcp_run_audit_2026-01-29T18-53-31-593Z.json",
+        "batch": "phaseA-artifacts",
+        "timestamp": "2026-03-27T17:39:59.657855+00:00"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-artifacts/.zombie_receipt_mcp_run_audit_2026-01-29T18-59-32-890Z.json",
+      "name": ".zombie_receipt_mcp_run_audit_2026-01-29T18-59-32-890Z.json",
+      "payload": {
+        "consumed": "artifacts/mcp_run_audit_2026-01-29T18-59-32-890Z.json",
+        "destination": "dumpster-dive\\intake\\phaseA-artifacts\\mcp_run_audit_2026-01-29T18-59-32-890Z.json",
+        "batch": "phaseA-artifacts",
+        "timestamp": "2026-03-27T17:39:59.950752+00:00"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-artifacts/.zombie_receipt_mcp_run_curriculum_2026-01-05T00-42-49-176Z.json",
+      "name": ".zombie_receipt_mcp_run_curriculum_2026-01-05T00-42-49-176Z.json",
+      "payload": {
+        "consumed": "artifacts/mcp_run_curriculum_2026-01-05T00-42-49-176Z.json",
+        "destination": "dumpster-dive\\intake\\phaseA-artifacts\\mcp_run_curriculum_2026-01-05T00-42-49-176Z.json",
+        "batch": "phaseA-artifacts",
+        "timestamp": "2026-03-27T17:40:00.250369+00:00"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-artifacts/.zombie_receipt_mcp_run_curriculum_2026-01-05T00-43-12-981Z.json",
+      "name": ".zombie_receipt_mcp_run_curriculum_2026-01-05T00-43-12-981Z.json",
+      "payload": {
+        "consumed": "artifacts/mcp_run_curriculum_2026-01-05T00-43-12-981Z.json",
+        "destination": "dumpster-dive\\intake\\phaseA-artifacts\\mcp_run_curriculum_2026-01-05T00-43-12-981Z.json",
+        "batch": "phaseA-artifacts",
+        "timestamp": "2026-03-27T17:40:00.547968+00:00"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-artifacts/.zombie_receipt_mcp_run_curriculum_2026-01-05T00-43-47-483Z.json",
+      "name": ".zombie_receipt_mcp_run_curriculum_2026-01-05T00-43-47-483Z.json",
+      "payload": {
+        "consumed": "artifacts/mcp_run_curriculum_2026-01-05T00-43-47-483Z.json",
+        "destination": "dumpster-dive\\intake\\phaseA-artifacts\\mcp_run_curriculum_2026-01-05T00-43-47-483Z.json",
+        "batch": "phaseA-artifacts",
+        "timestamp": "2026-03-27T17:40:00.848037+00:00"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-artifacts/.zombie_receipt_mcp_run_curriculum_2026-01-29T18-30-47-901Z.json",
+      "name": ".zombie_receipt_mcp_run_curriculum_2026-01-29T18-30-47-901Z.json",
+      "payload": {
+        "consumed": "artifacts/mcp_run_curriculum_2026-01-29T18-30-47-901Z.json",
+        "destination": "dumpster-dive\\intake\\phaseA-artifacts\\mcp_run_curriculum_2026-01-29T18-30-47-901Z.json",
+        "batch": "phaseA-artifacts",
+        "timestamp": "2026-03-27T17:40:01.146992+00:00"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-artifacts/.zombie_receipt_mcp_run_curriculum_2026-01-29T18-31-55-941Z.json",
+      "name": ".zombie_receipt_mcp_run_curriculum_2026-01-29T18-31-55-941Z.json",
+      "payload": {
+        "consumed": "artifacts/mcp_run_curriculum_2026-01-29T18-31-55-941Z.json",
+        "destination": "dumpster-dive\\intake\\phaseA-artifacts\\mcp_run_curriculum_2026-01-29T18-31-55-941Z.json",
+        "batch": "phaseA-artifacts",
+        "timestamp": "2026-03-27T17:40:01.444830+00:00"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-artifacts/.zombie_receipt_mcp_run_curriculum_2026-01-29T18-35-18-246Z.json",
+      "name": ".zombie_receipt_mcp_run_curriculum_2026-01-29T18-35-18-246Z.json",
+      "payload": {
+        "consumed": "artifacts/mcp_run_curriculum_2026-01-29T18-35-18-246Z.json",
+        "destination": "dumpster-dive\\intake\\phaseA-artifacts\\mcp_run_curriculum_2026-01-29T18-35-18-246Z.json",
+        "batch": "phaseA-artifacts",
+        "timestamp": "2026-03-27T17:40:01.741313+00:00"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-artifacts/.zombie_receipt_mcp_run_curriculum_2026-01-29T18-36-11-723Z.json",
+      "name": ".zombie_receipt_mcp_run_curriculum_2026-01-29T18-36-11-723Z.json",
+      "payload": {
+        "consumed": "artifacts/mcp_run_curriculum_2026-01-29T18-36-11-723Z.json",
+        "destination": "dumpster-dive\\intake\\phaseA-artifacts\\mcp_run_curriculum_2026-01-29T18-36-11-723Z.json",
+        "batch": "phaseA-artifacts",
+        "timestamp": "2026-03-27T17:40:02.036685+00:00"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-artifacts/.zombie_receipt_mcp_run_curriculum_2026-01-29T18-36-43-813Z.json",
+      "name": ".zombie_receipt_mcp_run_curriculum_2026-01-29T18-36-43-813Z.json",
+      "payload": {
+        "consumed": "artifacts/mcp_run_curriculum_2026-01-29T18-36-43-813Z.json",
+        "destination": "dumpster-dive\\intake\\phaseA-artifacts\\mcp_run_curriculum_2026-01-29T18-36-43-813Z.json",
+        "batch": "phaseA-artifacts",
+        "timestamp": "2026-03-27T17:40:02.335277+00:00"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-artifacts/.zombie_receipt_mcp_run_curriculum_2026-01-29T18-52-46-564Z.json",
+      "name": ".zombie_receipt_mcp_run_curriculum_2026-01-29T18-52-46-564Z.json",
+      "payload": {
+        "consumed": "artifacts/mcp_run_curriculum_2026-01-29T18-52-46-564Z.json",
+        "destination": "dumpster-dive\\intake\\phaseA-artifacts\\mcp_run_curriculum_2026-01-29T18-52-46-564Z.json",
+        "batch": "phaseA-artifacts",
+        "timestamp": "2026-03-27T17:40:02.639244+00:00"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-artifacts/.zombie_receipt_mcp_run_curriculum_2026-01-29T18-53-31-593Z.json",
+      "name": ".zombie_receipt_mcp_run_curriculum_2026-01-29T18-53-31-593Z.json",
+      "payload": {
+        "consumed": "artifacts/mcp_run_curriculum_2026-01-29T18-53-31-593Z.json",
+        "destination": "dumpster-dive\\intake\\phaseA-artifacts\\mcp_run_curriculum_2026-01-29T18-53-31-593Z.json",
+        "batch": "phaseA-artifacts",
+        "timestamp": "2026-03-27T17:40:02.937567+00:00"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-artifacts/.zombie_receipt_mcp_run_curriculum_2026-01-29T18-59-32-890Z.json",
+      "name": ".zombie_receipt_mcp_run_curriculum_2026-01-29T18-59-32-890Z.json",
+      "payload": {
+        "consumed": "artifacts/mcp_run_curriculum_2026-01-29T18-59-32-890Z.json",
+        "destination": "dumpster-dive\\intake\\phaseA-artifacts\\mcp_run_curriculum_2026-01-29T18-59-32-890Z.json",
+        "batch": "phaseA-artifacts",
+        "timestamp": "2026-03-27T17:40:03.237008+00:00"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-artifacts/.zombie_receipt_mcp_run_discovery_2026-01-05T00-42-49-176Z.json",
+      "name": ".zombie_receipt_mcp_run_discovery_2026-01-05T00-42-49-176Z.json",
+      "payload": {
+        "consumed": "artifacts/mcp_run_discovery_2026-01-05T00-42-49-176Z.json",
+        "destination": "dumpster-dive\\intake\\phaseA-artifacts\\mcp_run_discovery_2026-01-05T00-42-49-176Z.json",
+        "batch": "phaseA-artifacts",
+        "timestamp": "2026-03-27T17:40:03.533582+00:00"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-artifacts/.zombie_receipt_mcp_run_discovery_2026-01-05T00-43-12-981Z.json",
+      "name": ".zombie_receipt_mcp_run_discovery_2026-01-05T00-43-12-981Z.json",
+      "payload": {
+        "consumed": "artifacts/mcp_run_discovery_2026-01-05T00-43-12-981Z.json",
+        "destination": "dumpster-dive\\intake\\phaseA-artifacts\\mcp_run_discovery_2026-01-05T00-43-12-981Z.json",
+        "batch": "phaseA-artifacts",
+        "timestamp": "2026-03-27T17:40:03.832681+00:00"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-artifacts/.zombie_receipt_mcp_run_discovery_2026-01-05T00-43-47-483Z.json",
+      "name": ".zombie_receipt_mcp_run_discovery_2026-01-05T00-43-47-483Z.json",
+      "payload": {
+        "consumed": "artifacts/mcp_run_discovery_2026-01-05T00-43-47-483Z.json",
+        "destination": "dumpster-dive\\intake\\phaseA-artifacts\\mcp_run_discovery_2026-01-05T00-43-47-483Z.json",
+        "batch": "phaseA-artifacts",
+        "timestamp": "2026-03-27T17:40:04.129865+00:00"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-artifacts/.zombie_receipt_mcp_run_discovery_2026-01-29T18-30-47-901Z.json",
+      "name": ".zombie_receipt_mcp_run_discovery_2026-01-29T18-30-47-901Z.json",
+      "payload": {
+        "consumed": "artifacts/mcp_run_discovery_2026-01-29T18-30-47-901Z.json",
+        "destination": "dumpster-dive\\intake\\phaseA-artifacts\\mcp_run_discovery_2026-01-29T18-30-47-901Z.json",
+        "batch": "phaseA-artifacts",
+        "timestamp": "2026-03-27T17:40:04.434329+00:00"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-artifacts/.zombie_receipt_mcp_run_discovery_2026-01-29T18-31-55-941Z.json",
+      "name": ".zombie_receipt_mcp_run_discovery_2026-01-29T18-31-55-941Z.json",
+      "payload": {
+        "consumed": "artifacts/mcp_run_discovery_2026-01-29T18-31-55-941Z.json",
+        "destination": "dumpster-dive\\intake\\phaseA-artifacts\\mcp_run_discovery_2026-01-29T18-31-55-941Z.json",
+        "batch": "phaseA-artifacts",
+        "timestamp": "2026-03-27T17:40:04.734280+00:00"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-artifacts/.zombie_receipt_mcp_run_discovery_2026-01-29T18-35-18-246Z.json",
+      "name": ".zombie_receipt_mcp_run_discovery_2026-01-29T18-35-18-246Z.json",
+      "payload": {
+        "consumed": "artifacts/mcp_run_discovery_2026-01-29T18-35-18-246Z.json",
+        "destination": "dumpster-dive\\intake\\phaseA-artifacts\\mcp_run_discovery_2026-01-29T18-35-18-246Z.json",
+        "batch": "phaseA-artifacts",
+        "timestamp": "2026-03-27T17:40:05.034484+00:00"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-artifacts/.zombie_receipt_mcp_run_discovery_2026-01-29T18-36-11-723Z.json",
+      "name": ".zombie_receipt_mcp_run_discovery_2026-01-29T18-36-11-723Z.json",
+      "payload": {
+        "consumed": "artifacts/mcp_run_discovery_2026-01-29T18-36-11-723Z.json",
+        "destination": "dumpster-dive\\intake\\phaseA-artifacts\\mcp_run_discovery_2026-01-29T18-36-11-723Z.json",
+        "batch": "phaseA-artifacts",
+        "timestamp": "2026-03-27T17:40:05.332871+00:00"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-artifacts/.zombie_receipt_mcp_run_discovery_2026-01-29T18-36-43-813Z.json",
+      "name": ".zombie_receipt_mcp_run_discovery_2026-01-29T18-36-43-813Z.json",
+      "payload": {
+        "consumed": "artifacts/mcp_run_discovery_2026-01-29T18-36-43-813Z.json",
+        "destination": "dumpster-dive\\intake\\phaseA-artifacts\\mcp_run_discovery_2026-01-29T18-36-43-813Z.json",
+        "batch": "phaseA-artifacts",
+        "timestamp": "2026-03-27T17:40:05.634989+00:00"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-artifacts/.zombie_receipt_mcp_run_discovery_2026-01-29T18-52-46-564Z.json",
+      "name": ".zombie_receipt_mcp_run_discovery_2026-01-29T18-52-46-564Z.json",
+      "payload": {
+        "consumed": "artifacts/mcp_run_discovery_2026-01-29T18-52-46-564Z.json",
+        "destination": "dumpster-dive\\intake\\phaseA-artifacts\\mcp_run_discovery_2026-01-29T18-52-46-564Z.json",
+        "batch": "phaseA-artifacts",
+        "timestamp": "2026-03-27T17:40:05.928641+00:00"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-artifacts/.zombie_receipt_mcp_run_discovery_2026-01-29T18-53-31-593Z.json",
+      "name": ".zombie_receipt_mcp_run_discovery_2026-01-29T18-53-31-593Z.json",
+      "payload": {
+        "consumed": "artifacts/mcp_run_discovery_2026-01-29T18-53-31-593Z.json",
+        "destination": "dumpster-dive\\intake\\phaseA-artifacts\\mcp_run_discovery_2026-01-29T18-53-31-593Z.json",
+        "batch": "phaseA-artifacts",
+        "timestamp": "2026-03-27T17:40:06.239562+00:00"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-artifacts/.zombie_receipt_mcp_run_discovery_2026-01-29T18-59-32-890Z.json",
+      "name": ".zombie_receipt_mcp_run_discovery_2026-01-29T18-59-32-890Z.json",
+      "payload": {
+        "consumed": "artifacts/mcp_run_discovery_2026-01-29T18-59-32-890Z.json",
+        "destination": "dumpster-dive\\intake\\phaseA-artifacts\\mcp_run_discovery_2026-01-29T18-59-32-890Z.json",
+        "batch": "phaseA-artifacts",
+        "timestamp": "2026-03-27T17:40:06.534802+00:00"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-artifacts/.zombie_receipt_mcp_run_impact_2026-01-05T00-42-49-176Z.json",
+      "name": ".zombie_receipt_mcp_run_impact_2026-01-05T00-42-49-176Z.json",
+      "payload": {
+        "consumed": "artifacts/mcp_run_impact_2026-01-05T00-42-49-176Z.json",
+        "destination": "dumpster-dive\\intake\\phaseA-artifacts\\mcp_run_impact_2026-01-05T00-42-49-176Z.json",
+        "batch": "phaseA-artifacts",
+        "timestamp": "2026-03-27T17:40:06.831698+00:00"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-artifacts/.zombie_receipt_mcp_run_impact_2026-01-05T00-43-12-981Z.json",
+      "name": ".zombie_receipt_mcp_run_impact_2026-01-05T00-43-12-981Z.json",
+      "payload": {
+        "consumed": "artifacts/mcp_run_impact_2026-01-05T00-43-12-981Z.json",
+        "destination": "dumpster-dive\\intake\\phaseA-artifacts\\mcp_run_impact_2026-01-05T00-43-12-981Z.json",
+        "batch": "phaseA-artifacts",
+        "timestamp": "2026-03-27T17:40:07.130361+00:00"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-artifacts/.zombie_receipt_mcp_run_impact_2026-01-05T00-43-47-483Z.json",
+      "name": ".zombie_receipt_mcp_run_impact_2026-01-05T00-43-47-483Z.json",
+      "payload": {
+        "consumed": "artifacts/mcp_run_impact_2026-01-05T00-43-47-483Z.json",
+        "destination": "dumpster-dive\\intake\\phaseA-artifacts\\mcp_run_impact_2026-01-05T00-43-47-483Z.json",
+        "batch": "phaseA-artifacts",
+        "timestamp": "2026-03-27T17:40:07.429774+00:00"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-artifacts/.zombie_receipt_mcp_run_impact_2026-01-29T18-30-47-901Z.json",
+      "name": ".zombie_receipt_mcp_run_impact_2026-01-29T18-30-47-901Z.json",
+      "payload": {
+        "consumed": "artifacts/mcp_run_impact_2026-01-29T18-30-47-901Z.json",
+        "destination": "dumpster-dive\\intake\\phaseA-artifacts\\mcp_run_impact_2026-01-29T18-30-47-901Z.json",
+        "batch": "phaseA-artifacts",
+        "timestamp": "2026-03-27T17:40:07.734350+00:00"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-artifacts/.zombie_receipt_mcp_run_impact_2026-01-29T18-31-55-941Z.json",
+      "name": ".zombie_receipt_mcp_run_impact_2026-01-29T18-31-55-941Z.json",
+      "payload": {
+        "consumed": "artifacts/mcp_run_impact_2026-01-29T18-31-55-941Z.json",
+        "destination": "dumpster-dive\\intake\\phaseA-artifacts\\mcp_run_impact_2026-01-29T18-31-55-941Z.json",
+        "batch": "phaseA-artifacts",
+        "timestamp": "2026-03-27T17:40:08.037086+00:00"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-artifacts/.zombie_receipt_mcp_run_impact_2026-01-29T18-35-18-246Z.json",
+      "name": ".zombie_receipt_mcp_run_impact_2026-01-29T18-35-18-246Z.json",
+      "payload": {
+        "consumed": "artifacts/mcp_run_impact_2026-01-29T18-35-18-246Z.json",
+        "destination": "dumpster-dive\\intake\\phaseA-artifacts\\mcp_run_impact_2026-01-29T18-35-18-246Z.json",
+        "batch": "phaseA-artifacts",
+        "timestamp": "2026-03-27T17:40:08.334381+00:00"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-artifacts/.zombie_receipt_mcp_run_impact_2026-01-29T18-36-11-723Z.json",
+      "name": ".zombie_receipt_mcp_run_impact_2026-01-29T18-36-11-723Z.json",
+      "payload": {
+        "consumed": "artifacts/mcp_run_impact_2026-01-29T18-36-11-723Z.json",
+        "destination": "dumpster-dive\\intake\\phaseA-artifacts\\mcp_run_impact_2026-01-29T18-36-11-723Z.json",
+        "batch": "phaseA-artifacts",
+        "timestamp": "2026-03-27T17:40:08.637572+00:00"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-artifacts/.zombie_receipt_mcp_run_impact_2026-01-29T18-36-43-813Z.json",
+      "name": ".zombie_receipt_mcp_run_impact_2026-01-29T18-36-43-813Z.json",
+      "payload": {
+        "consumed": "artifacts/mcp_run_impact_2026-01-29T18-36-43-813Z.json",
+        "destination": "dumpster-dive\\intake\\phaseA-artifacts\\mcp_run_impact_2026-01-29T18-36-43-813Z.json",
+        "batch": "phaseA-artifacts",
+        "timestamp": "2026-03-27T17:40:08.936210+00:00"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-artifacts/.zombie_receipt_mcp_run_impact_2026-01-29T18-52-46-564Z.json",
+      "name": ".zombie_receipt_mcp_run_impact_2026-01-29T18-52-46-564Z.json",
+      "payload": {
+        "consumed": "artifacts/mcp_run_impact_2026-01-29T18-52-46-564Z.json",
+        "destination": "dumpster-dive\\intake\\phaseA-artifacts\\mcp_run_impact_2026-01-29T18-52-46-564Z.json",
+        "batch": "phaseA-artifacts",
+        "timestamp": "2026-03-27T17:40:09.235869+00:00"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-artifacts/.zombie_receipt_mcp_run_impact_2026-01-29T18-53-31-593Z.json",
+      "name": ".zombie_receipt_mcp_run_impact_2026-01-29T18-53-31-593Z.json",
+      "payload": {
+        "consumed": "artifacts/mcp_run_impact_2026-01-29T18-53-31-593Z.json",
+        "destination": "dumpster-dive\\intake\\phaseA-artifacts\\mcp_run_impact_2026-01-29T18-53-31-593Z.json",
+        "batch": "phaseA-artifacts",
+        "timestamp": "2026-03-27T17:40:09.532922+00:00"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-artifacts/.zombie_receipt_mcp_run_impact_2026-01-29T18-59-32-890Z.json",
+      "name": ".zombie_receipt_mcp_run_impact_2026-01-29T18-59-32-890Z.json",
+      "payload": {
+        "consumed": "artifacts/mcp_run_impact_2026-01-29T18-59-32-890Z.json",
+        "destination": "dumpster-dive\\intake\\phaseA-artifacts\\mcp_run_impact_2026-01-29T18-59-32-890Z.json",
+        "batch": "phaseA-artifacts",
+        "timestamp": "2026-03-27T17:40:09.834752+00:00"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-artifacts/.zombie_receipt_mcp_run_spectral_2026-01-05T00-42-49-176Z.json",
+      "name": ".zombie_receipt_mcp_run_spectral_2026-01-05T00-42-49-176Z.json",
+      "payload": {
+        "consumed": "artifacts/mcp_run_spectral_2026-01-05T00-42-49-176Z.json",
+        "destination": "dumpster-dive\\intake\\phaseA-artifacts\\mcp_run_spectral_2026-01-05T00-42-49-176Z.json",
+        "batch": "phaseA-artifacts",
+        "timestamp": "2026-03-27T17:40:10.137749+00:00"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-artifacts/.zombie_receipt_mcp_run_spectral_2026-01-05T00-43-12-981Z.json",
+      "name": ".zombie_receipt_mcp_run_spectral_2026-01-05T00-43-12-981Z.json",
+      "payload": {
+        "consumed": "artifacts/mcp_run_spectral_2026-01-05T00-43-12-981Z.json",
+        "destination": "dumpster-dive\\intake\\phaseA-artifacts\\mcp_run_spectral_2026-01-05T00-43-12-981Z.json",
+        "batch": "phaseA-artifacts",
+        "timestamp": "2026-03-27T17:40:10.442999+00:00"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-artifacts/.zombie_receipt_mcp_run_spectral_2026-01-05T00-43-47-483Z.json",
+      "name": ".zombie_receipt_mcp_run_spectral_2026-01-05T00-43-47-483Z.json",
+      "payload": {
+        "consumed": "artifacts/mcp_run_spectral_2026-01-05T00-43-47-483Z.json",
+        "destination": "dumpster-dive\\intake\\phaseA-artifacts\\mcp_run_spectral_2026-01-05T00-43-47-483Z.json",
+        "batch": "phaseA-artifacts",
+        "timestamp": "2026-03-27T17:40:10.747056+00:00"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-artifacts/.zombie_receipt_mcp_run_spectral_2026-01-29T18-30-47-901Z.json",
+      "name": ".zombie_receipt_mcp_run_spectral_2026-01-29T18-30-47-901Z.json",
+      "payload": {
+        "consumed": "artifacts/mcp_run_spectral_2026-01-29T18-30-47-901Z.json",
+        "destination": "dumpster-dive\\intake\\phaseA-artifacts\\mcp_run_spectral_2026-01-29T18-30-47-901Z.json",
+        "batch": "phaseA-artifacts",
+        "timestamp": "2026-03-27T17:40:11.048445+00:00"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-artifacts/.zombie_receipt_mcp_run_spectral_2026-01-29T18-31-55-941Z.json",
+      "name": ".zombie_receipt_mcp_run_spectral_2026-01-29T18-31-55-941Z.json",
+      "payload": {
+        "consumed": "artifacts/mcp_run_spectral_2026-01-29T18-31-55-941Z.json",
+        "destination": "dumpster-dive\\intake\\phaseA-artifacts\\mcp_run_spectral_2026-01-29T18-31-55-941Z.json",
+        "batch": "phaseA-artifacts",
+        "timestamp": "2026-03-27T17:40:11.349519+00:00"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-artifacts/.zombie_receipt_mcp_run_spectral_2026-01-29T18-35-18-246Z.json",
+      "name": ".zombie_receipt_mcp_run_spectral_2026-01-29T18-35-18-246Z.json",
+      "payload": {
+        "consumed": "artifacts/mcp_run_spectral_2026-01-29T18-35-18-246Z.json",
+        "destination": "dumpster-dive\\intake\\phaseA-artifacts\\mcp_run_spectral_2026-01-29T18-35-18-246Z.json",
+        "batch": "phaseA-artifacts",
+        "timestamp": "2026-03-27T17:40:11.651048+00:00"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-artifacts/.zombie_receipt_mcp_run_spectral_2026-01-29T18-36-11-723Z.json",
+      "name": ".zombie_receipt_mcp_run_spectral_2026-01-29T18-36-11-723Z.json",
+      "payload": {
+        "consumed": "artifacts/mcp_run_spectral_2026-01-29T18-36-11-723Z.json",
+        "destination": "dumpster-dive\\intake\\phaseA-artifacts\\mcp_run_spectral_2026-01-29T18-36-11-723Z.json",
+        "batch": "phaseA-artifacts",
+        "timestamp": "2026-03-27T17:40:11.955373+00:00"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-artifacts/.zombie_receipt_mcp_run_spectral_2026-01-29T18-36-43-813Z.json",
+      "name": ".zombie_receipt_mcp_run_spectral_2026-01-29T18-36-43-813Z.json",
+      "payload": {
+        "consumed": "artifacts/mcp_run_spectral_2026-01-29T18-36-43-813Z.json",
+        "destination": "dumpster-dive\\intake\\phaseA-artifacts\\mcp_run_spectral_2026-01-29T18-36-43-813Z.json",
+        "batch": "phaseA-artifacts",
+        "timestamp": "2026-03-27T17:40:12.255850+00:00"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-artifacts/.zombie_receipt_mcp_run_spectral_2026-01-29T18-52-46-564Z.json",
+      "name": ".zombie_receipt_mcp_run_spectral_2026-01-29T18-52-46-564Z.json",
+      "payload": {
+        "consumed": "artifacts/mcp_run_spectral_2026-01-29T18-52-46-564Z.json",
+        "destination": "dumpster-dive\\intake\\phaseA-artifacts\\mcp_run_spectral_2026-01-29T18-52-46-564Z.json",
+        "batch": "phaseA-artifacts",
+        "timestamp": "2026-03-27T17:40:12.554797+00:00"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-artifacts/.zombie_receipt_mcp_run_spectral_2026-01-29T18-53-31-593Z.json",
+      "name": ".zombie_receipt_mcp_run_spectral_2026-01-29T18-53-31-593Z.json",
+      "payload": {
+        "consumed": "artifacts/mcp_run_spectral_2026-01-29T18-53-31-593Z.json",
+        "destination": "dumpster-dive\\intake\\phaseA-artifacts\\mcp_run_spectral_2026-01-29T18-53-31-593Z.json",
+        "batch": "phaseA-artifacts",
+        "timestamp": "2026-03-27T17:40:12.854266+00:00"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-artifacts/.zombie_receipt_mcp_run_spectral_2026-01-29T18-59-32-890Z.json",
+      "name": ".zombie_receipt_mcp_run_spectral_2026-01-29T18-59-32-890Z.json",
+      "payload": {
+        "consumed": "artifacts/mcp_run_spectral_2026-01-29T18-59-32-890Z.json",
+        "destination": "dumpster-dive\\intake\\phaseA-artifacts\\mcp_run_spectral_2026-01-29T18-59-32-890Z.json",
+        "batch": "phaseA-artifacts",
+        "timestamp": "2026-03-27T17:40:13.157371+00:00"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-artifacts/.zombie_receipt_mcp_run_trace_2026-01-05T00-42-49-176Z.json",
+      "name": ".zombie_receipt_mcp_run_trace_2026-01-05T00-42-49-176Z.json",
+      "payload": {
+        "consumed": "artifacts/mcp_run_trace_2026-01-05T00-42-49-176Z.json",
+        "destination": "dumpster-dive\\intake\\phaseA-artifacts\\mcp_run_trace_2026-01-05T00-42-49-176Z.json",
+        "batch": "phaseA-artifacts",
+        "timestamp": "2026-03-27T17:40:13.457779+00:00"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-artifacts/.zombie_receipt_mcp_run_trace_2026-01-05T00-43-12-981Z.json",
+      "name": ".zombie_receipt_mcp_run_trace_2026-01-05T00-43-12-981Z.json",
+      "payload": {
+        "consumed": "artifacts/mcp_run_trace_2026-01-05T00-43-12-981Z.json",
+        "destination": "dumpster-dive\\intake\\phaseA-artifacts\\mcp_run_trace_2026-01-05T00-43-12-981Z.json",
+        "batch": "phaseA-artifacts",
+        "timestamp": "2026-03-27T17:40:13.756294+00:00"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-artifacts/.zombie_receipt_mcp_run_trace_2026-01-05T00-43-47-483Z.json",
+      "name": ".zombie_receipt_mcp_run_trace_2026-01-05T00-43-47-483Z.json",
+      "payload": {
+        "consumed": "artifacts/mcp_run_trace_2026-01-05T00-43-47-483Z.json",
+        "destination": "dumpster-dive\\intake\\phaseA-artifacts\\mcp_run_trace_2026-01-05T00-43-47-483Z.json",
+        "batch": "phaseA-artifacts",
+        "timestamp": "2026-03-27T17:40:14.056132+00:00"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-artifacts/.zombie_receipt_mcp_run_trace_2026-01-29T18-30-47-901Z.json",
+      "name": ".zombie_receipt_mcp_run_trace_2026-01-29T18-30-47-901Z.json",
+      "payload": {
+        "consumed": "artifacts/mcp_run_trace_2026-01-29T18-30-47-901Z.json",
+        "destination": "dumpster-dive\\intake\\phaseA-artifacts\\mcp_run_trace_2026-01-29T18-30-47-901Z.json",
+        "batch": "phaseA-artifacts",
+        "timestamp": "2026-03-27T17:40:14.352509+00:00"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-artifacts/.zombie_receipt_mcp_run_trace_2026-01-29T18-31-55-941Z.json",
+      "name": ".zombie_receipt_mcp_run_trace_2026-01-29T18-31-55-941Z.json",
+      "payload": {
+        "consumed": "artifacts/mcp_run_trace_2026-01-29T18-31-55-941Z.json",
+        "destination": "dumpster-dive\\intake\\phaseA-artifacts\\mcp_run_trace_2026-01-29T18-31-55-941Z.json",
+        "batch": "phaseA-artifacts",
+        "timestamp": "2026-03-27T17:40:14.652308+00:00"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-artifacts/.zombie_receipt_mcp_run_trace_2026-01-29T18-35-18-246Z.json",
+      "name": ".zombie_receipt_mcp_run_trace_2026-01-29T18-35-18-246Z.json",
+      "payload": {
+        "consumed": "artifacts/mcp_run_trace_2026-01-29T18-35-18-246Z.json",
+        "destination": "dumpster-dive\\intake\\phaseA-artifacts\\mcp_run_trace_2026-01-29T18-35-18-246Z.json",
+        "batch": "phaseA-artifacts",
+        "timestamp": "2026-03-27T17:40:14.952850+00:00"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-artifacts/.zombie_receipt_mcp_run_trace_2026-01-29T18-36-11-723Z.json",
+      "name": ".zombie_receipt_mcp_run_trace_2026-01-29T18-36-11-723Z.json",
+      "payload": {
+        "consumed": "artifacts/mcp_run_trace_2026-01-29T18-36-11-723Z.json",
+        "destination": "dumpster-dive\\intake\\phaseA-artifacts\\mcp_run_trace_2026-01-29T18-36-11-723Z.json",
+        "batch": "phaseA-artifacts",
+        "timestamp": "2026-03-27T17:40:15.255637+00:00"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-artifacts/.zombie_receipt_mcp_run_trace_2026-01-29T18-36-43-813Z.json",
+      "name": ".zombie_receipt_mcp_run_trace_2026-01-29T18-36-43-813Z.json",
+      "payload": {
+        "consumed": "artifacts/mcp_run_trace_2026-01-29T18-36-43-813Z.json",
+        "destination": "dumpster-dive\\intake\\phaseA-artifacts\\mcp_run_trace_2026-01-29T18-36-43-813Z.json",
+        "batch": "phaseA-artifacts",
+        "timestamp": "2026-03-27T17:40:15.552866+00:00"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-artifacts/.zombie_receipt_mcp_run_trace_2026-01-29T18-52-46-564Z.json",
+      "name": ".zombie_receipt_mcp_run_trace_2026-01-29T18-52-46-564Z.json",
+      "payload": {
+        "consumed": "artifacts/mcp_run_trace_2026-01-29T18-52-46-564Z.json",
+        "destination": "dumpster-dive\\intake\\phaseA-artifacts\\mcp_run_trace_2026-01-29T18-52-46-564Z.json",
+        "batch": "phaseA-artifacts",
+        "timestamp": "2026-03-27T17:40:15.851688+00:00"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-artifacts/.zombie_receipt_mcp_run_trace_2026-01-29T18-53-31-593Z.json",
+      "name": ".zombie_receipt_mcp_run_trace_2026-01-29T18-53-31-593Z.json",
+      "payload": {
+        "consumed": "artifacts/mcp_run_trace_2026-01-29T18-53-31-593Z.json",
+        "destination": "dumpster-dive\\intake\\phaseA-artifacts\\mcp_run_trace_2026-01-29T18-53-31-593Z.json",
+        "batch": "phaseA-artifacts",
+        "timestamp": "2026-03-27T17:40:16.154647+00:00"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-artifacts/.zombie_receipt_mcp_run_trace_2026-01-29T18-59-32-890Z.json",
+      "name": ".zombie_receipt_mcp_run_trace_2026-01-29T18-59-32-890Z.json",
+      "payload": {
+        "consumed": "artifacts/mcp_run_trace_2026-01-29T18-59-32-890Z.json",
+        "destination": "dumpster-dive\\intake\\phaseA-artifacts\\mcp_run_trace_2026-01-29T18-59-32-890Z.json",
+        "batch": "phaseA-artifacts",
+        "timestamp": "2026-03-27T17:40:16.455152+00:00"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-artifacts/.zombie_receipt_mcp_run_validation_2026-02-09T17-44-09-423Z.json",
+      "name": ".zombie_receipt_mcp_run_validation_2026-02-09T17-44-09-423Z.json",
+      "payload": {
+        "consumed": "artifacts/mcp_run_validation_2026-02-09T17-44-09-423Z.json",
+        "destination": "dumpster-dive\\intake\\phaseA-artifacts\\mcp_run_validation_2026-02-09T17-44-09-423Z.json",
+        "batch": "phaseA-artifacts",
+        "timestamp": "2026-03-27T17:40:16.758294+00:00"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-artifacts/.zombie_receipt_mcp_run_validation_2026-02-09T17-44-39-067Z.json",
+      "name": ".zombie_receipt_mcp_run_validation_2026-02-09T17-44-39-067Z.json",
+      "payload": {
+        "consumed": "artifacts/mcp_run_validation_2026-02-09T17-44-39-067Z.json",
+        "destination": "dumpster-dive\\intake\\phaseA-artifacts\\mcp_run_validation_2026-02-09T17-44-39-067Z.json",
+        "batch": "phaseA-artifacts",
+        "timestamp": "2026-03-27T17:40:17.058582+00:00"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-artifacts/.zombie_receipt_mcp_run_validation_2026-02-09T17-45-34-183Z.json",
+      "name": ".zombie_receipt_mcp_run_validation_2026-02-09T17-45-34-183Z.json",
+      "payload": {
+        "consumed": "artifacts/mcp_run_validation_2026-02-09T17-45-34-183Z.json",
+        "destination": "dumpster-dive\\intake\\phaseA-artifacts\\mcp_run_validation_2026-02-09T17-45-34-183Z.json",
+        "batch": "phaseA-artifacts",
+        "timestamp": "2026-03-27T17:40:17.363296+00:00"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-artifacts/.zombie_receipt_mcp_run_validation_2026-02-09T20-21-45-744Z.json",
+      "name": ".zombie_receipt_mcp_run_validation_2026-02-09T20-21-45-744Z.json",
+      "payload": {
+        "consumed": "artifacts/mcp_run_validation_2026-02-09T20-21-45-744Z.json",
+        "destination": "dumpster-dive\\intake\\phaseA-artifacts\\mcp_run_validation_2026-02-09T20-21-45-744Z.json",
+        "batch": "phaseA-artifacts",
+        "timestamp": "2026-03-27T17:40:17.665672+00:00"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-artifacts/.zombie_receipt_mcp_run_validation_2026-02-23T16-04-20-940Z.json",
+      "name": ".zombie_receipt_mcp_run_validation_2026-02-23T16-04-20-940Z.json",
+      "payload": {
+        "consumed": "artifacts/mcp_run_validation_2026-02-23T16-04-20-940Z.json",
+        "destination": "dumpster-dive\\intake\\phaseA-artifacts\\mcp_run_validation_2026-02-23T16-04-20-940Z.json",
+        "batch": "phaseA-artifacts",
+        "timestamp": "2026-03-27T17:40:17.966978+00:00"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-artifacts/.zombie_receipt_mcp_run_validation_2026-02-23T16-05-00-983Z.json",
+      "name": ".zombie_receipt_mcp_run_validation_2026-02-23T16-05-00-983Z.json",
+      "payload": {
+        "consumed": "artifacts/mcp_run_validation_2026-02-23T16-05-00-983Z.json",
+        "destination": "dumpster-dive\\intake\\phaseA-artifacts\\mcp_run_validation_2026-02-23T16-05-00-983Z.json",
+        "batch": "phaseA-artifacts",
+        "timestamp": "2026-03-27T17:40:18.268150+00:00"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-artifacts/.zombie_receipt_mcp_run_validation_2026-02-23T16-07-37-061Z.json",
+      "name": ".zombie_receipt_mcp_run_validation_2026-02-23T16-07-37-061Z.json",
+      "payload": {
+        "consumed": "artifacts/mcp_run_validation_2026-02-23T16-07-37-061Z.json",
+        "destination": "dumpster-dive\\intake\\phaseA-artifacts\\mcp_run_validation_2026-02-23T16-07-37-061Z.json",
+        "batch": "phaseA-artifacts",
+        "timestamp": "2026-03-27T17:40:18.567532+00:00"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-artifacts/.zombie_receipt_mcp_run_validation_2026-02-23T16-09-58-757Z.json",
+      "name": ".zombie_receipt_mcp_run_validation_2026-02-23T16-09-58-757Z.json",
+      "payload": {
+        "consumed": "artifacts/mcp_run_validation_2026-02-23T16-09-58-757Z.json",
+        "destination": "dumpster-dive\\intake\\phaseA-artifacts\\mcp_run_validation_2026-02-23T16-09-58-757Z.json",
+        "batch": "phaseA-artifacts",
+        "timestamp": "2026-03-27T17:40:18.866395+00:00"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-artifacts/.zombie_receipt_mcp_run_validation_2026-02-23T16-09-59-039Z.json",
+      "name": ".zombie_receipt_mcp_run_validation_2026-02-23T16-09-59-039Z.json",
+      "payload": {
+        "consumed": "artifacts/mcp_run_validation_2026-02-23T16-09-59-039Z.json",
+        "destination": "dumpster-dive\\intake\\phaseA-artifacts\\mcp_run_validation_2026-02-23T16-09-59-039Z.json",
+        "batch": "phaseA-artifacts",
+        "timestamp": "2026-03-27T17:40:19.163546+00:00"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-artifacts/.zombie_receipt_mcp_run_validation_2026-02-23T16-11-56-191Z.json",
+      "name": ".zombie_receipt_mcp_run_validation_2026-02-23T16-11-56-191Z.json",
+      "payload": {
+        "consumed": "artifacts/mcp_run_validation_2026-02-23T16-11-56-191Z.json",
+        "destination": "dumpster-dive\\intake\\phaseA-artifacts\\mcp_run_validation_2026-02-23T16-11-56-191Z.json",
+        "batch": "phaseA-artifacts",
+        "timestamp": "2026-03-27T17:40:19.463370+00:00"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-artifacts/.zombie_receipt_mcp_run_validation_2026-02-23T16-11-56-459Z.json",
+      "name": ".zombie_receipt_mcp_run_validation_2026-02-23T16-11-56-459Z.json",
+      "payload": {
+        "consumed": "artifacts/mcp_run_validation_2026-02-23T16-11-56-459Z.json",
+        "destination": "dumpster-dive\\intake\\phaseA-artifacts\\mcp_run_validation_2026-02-23T16-11-56-459Z.json",
+        "batch": "phaseA-artifacts",
+        "timestamp": "2026-03-27T17:40:19.762810+00:00"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-artifacts/.zombie_receipt_mcp_run_validation_2026-02-23T16-31-58-790Z.json",
+      "name": ".zombie_receipt_mcp_run_validation_2026-02-23T16-31-58-790Z.json",
+      "payload": {
+        "consumed": "artifacts/mcp_run_validation_2026-02-23T16-31-58-790Z.json",
+        "destination": "dumpster-dive\\intake\\phaseA-artifacts\\mcp_run_validation_2026-02-23T16-31-58-790Z.json",
+        "batch": "phaseA-artifacts",
+        "timestamp": "2026-03-27T17:40:20.064908+00:00"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-artifacts/.zombie_receipt_mcp_run_validation_2026-02-23T16-35-22-500Z.json",
+      "name": ".zombie_receipt_mcp_run_validation_2026-02-23T16-35-22-500Z.json",
+      "payload": {
+        "consumed": "artifacts/mcp_run_validation_2026-02-23T16-35-22-500Z.json",
+        "destination": "dumpster-dive\\intake\\phaseA-artifacts\\mcp_run_validation_2026-02-23T16-35-22-500Z.json",
+        "batch": "phaseA-artifacts",
+        "timestamp": "2026-03-27T17:40:20.368746+00:00"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-artifacts/.zombie_receipt_mcp_run_validation_2026-02-23T16-36-34-357Z.json",
+      "name": ".zombie_receipt_mcp_run_validation_2026-02-23T16-36-34-357Z.json",
+      "payload": {
+        "consumed": "artifacts/mcp_run_validation_2026-02-23T16-36-34-357Z.json",
+        "destination": "dumpster-dive\\intake\\phaseA-artifacts\\mcp_run_validation_2026-02-23T16-36-34-357Z.json",
+        "batch": "phaseA-artifacts",
+        "timestamp": "2026-03-27T17:40:20.672201+00:00"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-artifacts/.zombie_receipt_mcp_run_validation_2026-02-23T16-57-30-026Z.json",
+      "name": ".zombie_receipt_mcp_run_validation_2026-02-23T16-57-30-026Z.json",
+      "payload": {
+        "consumed": "artifacts/mcp_run_validation_2026-02-23T16-57-30-026Z.json",
+        "destination": "dumpster-dive\\intake\\phaseA-artifacts\\mcp_run_validation_2026-02-23T16-57-30-026Z.json",
+        "batch": "phaseA-artifacts",
+        "timestamp": "2026-03-27T17:40:20.973868+00:00"
+      }
+    }
+  ]
+}

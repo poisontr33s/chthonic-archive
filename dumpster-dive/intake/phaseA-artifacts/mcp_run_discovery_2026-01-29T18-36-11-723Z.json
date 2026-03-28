@@ -1,0 +1,17 @@
+{
+  "run_id": "2026-01-29T18-36-11-723Z",
+  "workflow": "discovery",
+  "inputs": {
+    "search_term": "main"
+  },
+  "outputs": null,
+  "elapsed_ms": 3,
+  "tool_versions": {
+    "server_commit": "5c666b2",
+    "bootstrap_spec": "1752952",
+    "workflows_doc": "622e57f"
+  },
+  "notes": "smoke suite validation run",
+  "success": false,
+  "error": "undefined is not an object (evaluating 'depsData.dependencies.slice')"
+}

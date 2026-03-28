@@ -1,0 +1,33 @@
+{
+  "kind": "forge_stage_compaction",
+  "generated_at": "2026-03-28T03:36:23.557853+00:00",
+  "stage": "slag",
+  "directory": "dumpster-dive/forge/slag",
+  "apply_mode": true,
+  "receipt_count": 1,
+  "targets": {
+    "dumpster-dive/forge/slag/zombie_boundary_probe_3.md": 1
+  },
+  "receipts": [
+    {
+      "path": "dumpster-dive/forge/slag/.forge_receipt_zombie_boundary_probe_3.md.json",
+      "name": ".forge_receipt_zombie_boundary_probe_3.md.json",
+      "payload": {
+        "source_extract": "dumpster-dive/intake/boundary-probe-2026-03-28/.zombie_extract_zombie_boundary_probe_3_420347fc.json",
+        "routed_from": "dumpster-dive/intake/boundary-probe-2026-03-28/zombie_boundary_probe_3.md",
+        "routed_to": "dumpster-dive/forge/slag/zombie_boundary_probe_3.md",
+        "ore_rating": 2,
+        "category": "candidate",
+        "content_hash": "90afa20324086274",
+        "timestamp": "2026-03-28T03:36:23.515580+00:00",
+        "provenance": {
+          "sha256": "90afa20324086274",
+          "source_file": "zombie_boundary_probe_3.md",
+          "git_head": "7ea9ac7bf114d14b5344fd4c03b6f2ce5ae96d25",
+          "snapshot_at": "2026-03-28T03:36:23.446428+00:00",
+          "language": ".md"
+        }
+      }
+    }
+  ]
+}

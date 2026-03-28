@@ -1,0 +1,169 @@
+{
+  "kind": "zombie_intake_compaction",
+  "generated_at": "2026-03-27T21:27:40.879467+00:00",
+  "batch": "dumpster-dive/intake/phaseA-zone0",
+  "apply_mode": true,
+  "extract_count": 6,
+  "receipt_count": 6,
+  "ore_histogram": {
+    "1": 1,
+    "4": 5
+  },
+  "category_histogram": {
+    "candidate": 6
+  },
+  "extracts": [
+    {
+      "path": "dumpster-dive/intake/phaseA-zone0/.zombie_extract_cargo_test.json",
+      "name": ".zombie_extract_cargo_test.json",
+      "payload": {
+        "source": "cargo_test.json",
+        "timestamp": "2026-03-27T17:36:19.193646+00:00",
+        "ore_rating": 1,
+        "category": "candidate",
+        "signals": [
+          "ore_adapted:3->1"
+        ],
+        "intelligence": {},
+        "content_hash": "7bcf7d509138efd8"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-zone0/.zombie_extract_meta_cli_test.json",
+      "name": ".zombie_extract_meta_cli_test.json",
+      "payload": {
+        "source": "meta_cli_test.json",
+        "timestamp": "2026-03-27T17:36:23.041410+00:00",
+        "ore_rating": 4,
+        "category": "candidate",
+        "signals": [
+          "ore_adapted:3->4"
+        ],
+        "intelligence": {},
+        "content_hash": "e7aa9bee3f7ad05d"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-zone0/.zombie_extract_mkmf.json",
+      "name": ".zombie_extract_mkmf.json",
+      "payload": {
+        "source": "mkmf.log",
+        "timestamp": "2026-03-27T17:38:52.130030+00:00",
+        "ore_rating": 4,
+        "category": "candidate",
+        "signals": [
+          "ore_adapted:3->4"
+        ],
+        "intelligence": {},
+        "content_hash": "52fbb3cad1a9f9c5"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-zone0/.zombie_extract_NUL.kcp_template.aa8cdf7db131a871-cgu.0.rcgu.json",
+      "name": ".zombie_extract_NUL.kcp_template.aa8cdf7db131a871-cgu.0.rcgu.json",
+      "payload": {
+        "source": "NUL.kcp_template.aa8cdf7db131a871-cgu.0.rcgu.o",
+        "timestamp": "2026-03-27T17:38:57.073450+00:00",
+        "ore_rating": 4,
+        "category": "candidate",
+        "signals": [
+          "ore_adapted:3->4"
+        ],
+        "intelligence": {},
+        "content_hash": "6abea50e6163f402"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-zone0/.zombie_extract_status_test.json",
+      "name": ".zombie_extract_status_test.json",
+      "payload": {
+        "source": "status_test.json",
+        "timestamp": "2026-03-27T17:36:27.420583+00:00",
+        "ore_rating": 4,
+        "category": "candidate",
+        "signals": [
+          "ore_adapted:3->4"
+        ],
+        "intelligence": {},
+        "content_hash": "ba68bec6b207f690"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-zone0/.zombie_extract_validate_test.json",
+      "name": ".zombie_extract_validate_test.json",
+      "payload": {
+        "source": "validate_test.json",
+        "timestamp": "2026-03-27T17:36:30.903617+00:00",
+        "ore_rating": 4,
+        "category": "candidate",
+        "signals": [
+          "ore_adapted:3->4"
+        ],
+        "intelligence": {},
+        "content_hash": "fe75bb6f64188bc9"
+      }
+    }
+  ],
+  "receipts": [
+    {
+      "path": "dumpster-dive/intake/phaseA-zone0/.zombie_receipt_cargo_test.json",
+      "name": ".zombie_receipt_cargo_test.json",
+      "payload": {
+        "consumed": "cargo_test.json",
+        "destination": "dumpster-dive\\intake\\phaseA-zone0\\cargo_test.json",
+        "batch": "phaseA-zone0",
+        "timestamp": "2026-03-27T17:36:19.237053+00:00"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-zone0/.zombie_receipt_meta_cli_test.json",
+      "name": ".zombie_receipt_meta_cli_test.json",
+      "payload": {
+        "consumed": "meta_cli_test.json",
+        "destination": "dumpster-dive\\intake\\phaseA-zone0\\meta_cli_test.json",
+        "batch": "phaseA-zone0",
+        "timestamp": "2026-03-27T17:36:23.082660+00:00"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-zone0/.zombie_receipt_mkmf.json",
+      "name": ".zombie_receipt_mkmf.json",
+      "payload": {
+        "consumed": "mkmf.log",
+        "destination": "dumpster-dive\\intake\\phaseA-zone0\\mkmf.log",
+        "batch": "phaseA-zone0",
+        "timestamp": "2026-03-27T17:38:52.174248+00:00"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-zone0/.zombie_receipt_NUL.kcp_template.aa8cdf7db131a871-cgu.0.rcgu.json",
+      "name": ".zombie_receipt_NUL.kcp_template.aa8cdf7db131a871-cgu.0.rcgu.json",
+      "payload": {
+        "consumed": "NUL.kcp_template.aa8cdf7db131a871-cgu.0.rcgu.o",
+        "destination": "dumpster-dive\\intake\\phaseA-zone0\\NUL.kcp_template.aa8cdf7db131a871-cgu.0.rcgu.o",
+        "batch": "phaseA-zone0",
+        "timestamp": "2026-03-27T17:38:57.114449+00:00"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-zone0/.zombie_receipt_status_test.json",
+      "name": ".zombie_receipt_status_test.json",
+      "payload": {
+        "consumed": "status_test.json",
+        "destination": "dumpster-dive\\intake\\phaseA-zone0\\status_test.json",
+        "batch": "phaseA-zone0",
+        "timestamp": "2026-03-27T17:36:27.463142+00:00"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/phaseA-zone0/.zombie_receipt_validate_test.json",
+      "name": ".zombie_receipt_validate_test.json",
+      "payload": {
+        "consumed": "validate_test.json",
+        "destination": "dumpster-dive\\intake\\phaseA-zone0\\validate_test.json",
+        "batch": "phaseA-zone0",
+        "timestamp": "2026-03-27T17:36:30.943815+00:00"
+      }
+    }
+  ]
+}

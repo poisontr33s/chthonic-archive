@@ -2,7 +2,7 @@
 
 > **Baseline Epoch:** 2026-03-19 · Commit `c3ce99e2` (Phase 0.1 landed)
 > **Phase 0.2 Epoch:** 2026-03-19 · Commit `fa4a6120` (Python cascade complete)
-> **Last Updated:** 2026-03-27 · Phases 0.3–0.9 complete. Phase 0.9.1 complete. Phase 0.9.2 (Triadic Context Upcycle) defined.
+> **Last Updated:** 2026-03-27 · Phases 0.3–0.9.1 complete. Phase 0.9.2 active. Phases 0.9.3/0.9.4 ratified (12 amendments, 178 files consumed). Phase 1.0 next.
 > **SSOT Holder:** `.github/copilot-instructions.archive.md` — 9,208 lines · §0–§XVII + App A–E
 > **SSOT Pointer:** `.github/copilot-instructions.md` — ~85 lines (75× compression routing surface)
 > **Manifest:** `mas_mcp/logic/ssot_manifest.py` (`LOGIC_SSOT_MANIFEST_V1`) — 28-entry cascade register
@@ -528,8 +528,10 @@ Every file type in the codebase has a role in supplementing the SSOT. This matri
 | **P4** | 0.8 | Full cascade test suite (21 tests) | Medium | 0.2-0.6 | ✅ 2026-03-26 |
 | **P5** | 0.9 | Register expansion (20 → 28) | Small | 0.8 | ✅ 2026-03-26 |
 | **P5** | 0.9.1 | Corpus integrity verification | Medium | 0.9 | ✅ 2026-03-27 |
-| **P5** | 0.9.2 | Triadic session context upcycle lane | Medium | 0.9.1 | ✅ Active (Cycle 1 lock, 2026-03-27) |
-| **P5** | 1.0 | Bidirectional amendment protocol | Large | All prior phases | — |
+| **P5** | 0.9.2 | Triadic session context upcycle lane | Medium | 0.9.1 | ✅ Active (Cycle 1 lock + S7 supplement, 2026-03-27) |
+| **P5** | 0.9.3 | Zone 1 research escalation to amendment candidates | Medium | 0.9.2 | ✅ Ratified (5 amendments: 4 APPROVE, 1 MODIFY applied, 2026-03-27) |
+| **P5** | 0.9.4 | Zombie × Dumpster-Bridge operational governance escalation | Medium | 0.9.2 | ✅ Ratified (7 amendments: 4 APPROVE, 2 MODIFY applied, 1 DEFER; 178 files consumed, 2026-03-27) |
+| **P5** | 1.0 | Bidirectional amendment protocol (formalized in Phase 0.9.3/0.9.4) | Large | All prior phases | 🟡 Next (amendment integration to governance tiers) |
 
 ---
 
@@ -550,8 +552,8 @@ Every file type in the codebase has a role in supplementing the SSOT. This matri
 | Root stale artifacts | ~22 | 0 ✅ (12 relocated) | 0 ✅ |
 | Corpus integrity (mojibake/FA⁵ drift) | Unknown | 0 ✅ (8 fixes, Phase 0.9.1) | 0 ✅ |
 | Envelope CLI tooling (--kcp-stamp/--kcp-audit) | Phantom | Wired ✅ (Phase 0.9.1) | Operational ✅ |
-| Triadic session context classification | Mixed entropy | 100% classified ✅ (Phase 0.9.2 Cycle 1) | 100% maintained per cycle |
-| Bidirectional amendment protocol | None | None | Draft operational |
+| Triadic session context classification | Mixed entropy | 100% classified ✅ + v3 verified ✅ + zombie governance escalated ✅ + lane kickoff ✅ + ratified ✅ + 178 consumed ✅ (Phase 0.9.2–0.9.4 S7–S10) | 100% maintained per cycle |
+| Bidirectional amendment protocol | None | Draft (12 amendments ratified, 3 MODIFY deltas applied, integration pending) | Draft operational |
 
 ---
 

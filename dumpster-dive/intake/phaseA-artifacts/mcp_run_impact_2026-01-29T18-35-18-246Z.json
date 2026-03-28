@@ -1,0 +1,17 @@
+{
+  "run_id": "2026-01-29T18-35-18-246Z",
+  "workflow": "impact",
+  "inputs": {
+    "component": "src/main.rs"
+  },
+  "outputs": null,
+  "elapsed_ms": 2,
+  "tool_versions": {
+    "server_commit": "5c666b2",
+    "bootstrap_spec": "1752952",
+    "workflows_doc": "622e57f"
+  },
+  "notes": "smoke suite validation run",
+  "success": false,
+  "error": "undefined is not an object (evaluating 'dependentsData.dependents.slice')"
+}

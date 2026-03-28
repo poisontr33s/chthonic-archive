@@ -37,6 +37,24 @@
 ❌ INCORRECT:     python -m pip install     <-<same   issue>
 ```
 
+**UTF-8 Invocation Canon (`PEM-UV-UTF8`):**
+
+Scripts that emit Unicode, emoji, or Rich-rendered output require explicit stdout encoding on Windows. The `# -*- coding: utf-8 -*-` header covers file *reading*; `PYTHONIOENCODING=utf-8` covers stdout *writing*. Set it universally — no downside.
+
+```powershell
+# PowerShell (pwsh) — canonical form for this repo:
+✅ PREFERRED:   $env:PYTHONIOENCODING = 'utf-8'; uv run scripts/<script>.py <args>
+
+# brush / bash-compatible — same effect:
+✅ PREFERRED:   PYTHONIOENCODING=utf-8 uv run scripts/<script>.py <args>
+
+# Inline python -c usage (e.g., one-shot data extraction):
+✅ CORRECT:     $env:PYTHONIOENCODING = 'utf-8'; uv run python -c "<code>"
+```
+
+**Trigger:** any script that uses `rich`, produces emoji/box-drawing characters, or pipes output through `| head` / `2>&1` on Windows.
+**Universal lock:** set for all `uv run` invocations — safe to apply unconditionally.
+
 **Metabolic Standard v3 (Unified Project Lane):**
 All project-integrated scripts MUST adhere to the **(`Metabolic-Standard-v3`)**. PEP 723 inline metadata (`/// script` blocks) is **PROHIBITED** — all dependencies are consolidated in `pyproject.toml`.
 
@@ -147,9 +165,106 @@ uv run python -c "import cupy; print(cupy.cuda.runtime.getDeviceCount())"
 
 ---
 
+#### **14.6. (`Runtime-Selection-for-Browser-Automation`) -> (`RSBA`)**
+
+**CRITICAL DIRECTIVE: Use Node.js for browser automation on Windows.**
+
+```
+✅ CORRECT:     node tests/playwright_suite.js         <-<forces Node.js libuv IPC>
+✅ CORRECT:     "test:e2e": "node tests/e2e_runner.js"  <-<package.json script>
+✅ ALTERNATIVE: MCP Server (Node-based, containerized)  <-<bypasses Named Pipes entirely>
+
+❌ INCORRECT:   bun run tests/playwright_suite.js       <-<Bun IPC hangs on Windows>
+❌ INCORRECT:   bunx playwright test                     <-<same Named Pipes failure>
+```
+
+**Rationale:**
+- Bun's `child_process.spawn` has incomplete Windows Named Pipes fidelity (Zig-based I/O vs. Node's libuv)
+- Symptoms: hangs at "Launching Chromium...", `ENOENT` on pipe paths, zombie browser processes
+- Validated on Windows 11 across 2024–2026 session data
+
+**Hybrid Runtime Pattern:**
+
+| **Task** | **Runtime** | **Rationale** |
+|----------|------------|---------------|
+| Package management (`bun install`) | **Bun** | Speed advantage (global cache) |
+| Script dispatch (`bun run`) | **Bun** | Fast task execution |
+| Browser automation (Playwright, CDP) | **Node.js** | Mature `libuv` Named Pipes abstraction |
+| MCP servers | **Node.js or Docker** | Bypass IPC fragility entirely |
+
+**Revisit Gate:** When Bun releases a Windows IPC stabilization advisory, re-evaluate.
+
+---
+
+#### **14.7. (`Adaptive-Assessment-Systems`) -> (`AAS`)**
+
+**CRITICAL DIRECTIVE: No assessment value is final. All ore ratings are hypotheses.**
+
+**Canon Rule:**
+ALL assessment systems MUST be adaptive. Baseline ratings are refined through measured observation of outcomes.
+
+**Mechanism:**
+1. **Cluster profiling:** Group assessed items by category (backup, candidate, recovered, legacy)
+2. **Aggregate statistics:** Track `avg_ore`, `avg_extractable`, `yield_rate` per cluster
+3. **Dynamic downgrade:** New item in cluster C → adjust baseline using `cluster_avg`
+4. **Learning rate:** Each assessment updates cluster statistics
+
+**Audit Trail (Mandatory):**
+Every assessment MUST log:
+```
+baseline_ore:        (hypothesis)
+cluster_influence:   (if applicable)
+adjusted_ore:        (final value)
+reasoning:           (why adjustment was made)
+```
+
+**Validation:** Audit trail MUST be preserved to enable rollback and analysis of assessment history.
+
+**Status:** Mandatory for any system that repeatedly assesses similar items.
+
+---
+
+#### **14.8. (`Feedback-Driven-Adaptive-Learning`) -> (`FDAL`)**
+
+**CRITICAL DIRECTIVE: Systems that predict MUST measure predictions against reality.**
+
+**Mechanism:**
+1. **Predict:** Assess inputs; generate expected outcome
+2. **Observe:** Capture actual outcome (success/failure/error type)
+3. **Compare:** Identify mismatches between prediction and observation
+4. **Integrate:** Incorporate mismatches into future heuristics
+
+**Metric Definitions (Non-Overlapping):**
+
+| **Metric** | **Definition** |
+|-----------|---------------|
+| `outcomes_total` | Count of distinct events observed in a cycle |
+| `outcomes_matched` | Events where prediction agreed with observation |
+| `outcomes_error` | Events where prediction disagreed with observation |
+| **Invariant** | `outcomes_matched + outcomes_error = outcomes_total` |
+| `learning_rate` | `outcomes_error / outcomes_total` ∈ [0, 1] — proportion of errors per cycle |
+
+**Thresholds:**
+
+| **Range** | **Interpretation** |
+|----------|-------------------|
+| < 0.10 | System stagnant — audit heuristics |
+| 0.10–0.50 | Normal adaptation |
+| 0.50–0.80 | High integration — healthy |
+| > 0.80 | Chaotic — stabilize or reset |
+
+**Validation:**
+- Error integration MUST be traceable (audit trail per absorbed error)
+- Predictions and outcomes MUST be persisted for post-hoc analysis
+- Rollback: If batch integration introduces instability, revert to prior heuristic state
+
+**Status:** Mandatory for any system that makes outcome predictions.
+
+---
+
 * **(`DEVELOPMENT CONVENTIONS SEALED`): → (`DEV-CONV-SLD`): 🔥**
 
-**Date Added**: March 18, 2026
+**Date Added**: March 18, 2026 | **Last Amended**: March 27, 2026 (Cycle 1: §14.6 RSBA, §14.7 AAS, §14.8 FDAL)
 **Purpose**: Ensure assistance correctly invoke uv-managed Python, respect SSOT governance, and maintain version stability across the stack.
 
 * **(`T-DECOR`)** *approves this structural addition. It serves comprehension.*

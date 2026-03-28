@@ -1,0 +1,11 @@
+{
+  "source": "artifacts/mcp_run_trace_2026-01-29T18-59-32-890Z.json",
+  "timestamp": "2026-03-27T17:40:16.373827+00:00",
+  "ore_rating": 2,
+  "category": "candidate",
+  "signals": [
+    "ore_adapted:3->2"
+  ],
+  "intelligence": {},
+  "content_hash": "1a8d136b02d0781b"
+}

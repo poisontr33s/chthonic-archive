@@ -4279,8 +4279,8 @@
       "workstream": "unclassified"
     },
     {
-      "path": "claude-codex-gemini/triadic-session-context/Zone_1_REDUX_implementation_ripe_for_SSOT_canon.md",
-      "root": "claude-codex-gemini",
+      "path": "claude/ZONES_X_REDUX/Zone_1_REDUX_implementation_ripe_for_SSOT_canon.md",
+      "root": "claude",
       "filename": "Zone_1_REDUX_implementation_ripe_for_SSOT_canon.md",
       "extension": ".md",
       "size_bytes": 47277,

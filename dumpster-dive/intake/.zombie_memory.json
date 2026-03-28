@@ -1,8 +1,8 @@
 {
   "schema_version": 2,
   "created": "2026-03-21T03:20:38.217726+00:00",
-  "files_consumed": 57,
-  "total_patterns_extracted": 24,
+  "files_consumed": 206,
+  "total_patterns_extracted": 32,
   "total_imports_seen": [
     "boto3",
     "json",
@@ -32,9 +32,9 @@
   ],
   "cluster_signals": {
     "backup": 12,
-    "legacy": 10,
+    "legacy": 13,
     "test": 1,
-    "candidate": 31,
+    "candidate": 177,
     "recovered": 3
   },
   "consumption_log": [
@@ -379,9 +379,897 @@
       "destination": "dumpster-dive\\intake\\a6-intake-2026-03-23\\bak\\config.yml.bak",
       "batch": "a6-intake-2026-03-23/bak",
       "timestamp": "2026-03-23T22:29:06.896046+00:00"
+    },
+    {
+      "consumed": "cargo_test.json",
+      "destination": "dumpster-dive\\intake\\phaseA-zone0\\cargo_test.json",
+      "batch": "phaseA-zone0",
+      "timestamp": "2026-03-27T17:36:19.237053+00:00"
+    },
+    {
+      "consumed": "meta_cli_test.json",
+      "destination": "dumpster-dive\\intake\\phaseA-zone0\\meta_cli_test.json",
+      "batch": "phaseA-zone0",
+      "timestamp": "2026-03-27T17:36:23.082660+00:00"
+    },
+    {
+      "consumed": "status_test.json",
+      "destination": "dumpster-dive\\intake\\phaseA-zone0\\status_test.json",
+      "batch": "phaseA-zone0",
+      "timestamp": "2026-03-27T17:36:27.463142+00:00"
+    },
+    {
+      "consumed": "validate_test.json",
+      "destination": "dumpster-dive\\intake\\phaseA-zone0\\validate_test.json",
+      "batch": "phaseA-zone0",
+      "timestamp": "2026-03-27T17:36:30.943815+00:00"
+    },
+    {
+      "consumed": "mkmf.log",
+      "destination": "dumpster-dive\\intake\\phaseA-zone0\\mkmf.log",
+      "batch": "phaseA-zone0",
+      "timestamp": "2026-03-27T17:38:52.174248+00:00"
+    },
+    {
+      "consumed": "NUL.kcp_template.aa8cdf7db131a871-cgu.0.rcgu.o",
+      "destination": "dumpster-dive\\intake\\phaseA-zone0\\NUL.kcp_template.aa8cdf7db131a871-cgu.0.rcgu.o",
+      "batch": "phaseA-zone0",
+      "timestamp": "2026-03-27T17:38:57.114449+00:00"
+    },
+    {
+      "consumed": "artifacts/anthropic.claude-code-2.1.38-win32-x64.frozen.2026-02-10T15-28-13.vsix",
+      "destination": "dumpster-dive\\intake\\phaseA-artifacts\\anthropic.claude-code-2.1.38-win32-x64.frozen.2026-02-10T15-28-13.vsix",
+      "batch": "phaseA-artifacts",
+      "timestamp": "2026-03-27T17:39:46.280892+00:00"
+    },
+    {
+      "consumed": "artifacts/claude-code-extension.package.json.snapshot.txt",
+      "destination": "dumpster-dive\\intake\\phaseA-artifacts\\claude-code-extension.package.json.snapshot.txt",
+      "batch": "phaseA-artifacts",
+      "timestamp": "2026-03-27T17:39:46.541642+00:00"
+    },
+    {
+      "consumed": "artifacts/claude-code.cli.2.1.38.frozen.2026-02-10T15-28-36.cli.js",
+      "destination": "dumpster-dive\\intake\\phaseA-artifacts\\claude-code.cli.2.1.38.frozen.2026-02-10T15-28-36.cli.js",
+      "batch": "phaseA-artifacts",
+      "timestamp": "2026-03-27T17:39:46.905988+00:00"
+    },
+    {
+      "consumed": "artifacts/claude.exe.frozen.2026-02-10T15-27-59",
+      "destination": "dumpster-dive\\intake\\phaseA-artifacts\\claude.exe.frozen.2026-02-10T15-27-59",
+      "batch": "phaseA-artifacts",
+      "timestamp": "2026-03-27T17:39:47.161970+00:00"
+    },
+    {
+      "consumed": "artifacts/claude.exe.frozen.2026-02-10T15-28-22",
+      "destination": "dumpster-dive\\intake\\phaseA-artifacts\\claude.exe.frozen.2026-02-10T15-28-22",
+      "batch": "phaseA-artifacts",
+      "timestamp": "2026-03-27T17:39:47.422054+00:00"
+    },
+    {
+      "consumed": "artifacts/github-mcp-server.exe.pre-v0.30.3.backup.2026-02-10T15-44-11",
+      "destination": "dumpster-dive\\intake\\phaseA-artifacts\\github-mcp-server.exe.pre-v0.30.3.backup.2026-02-10T15-44-11",
+      "batch": "phaseA-artifacts",
+      "timestamp": "2026-03-27T17:39:48.184231+00:00"
+    },
+    {
+      "consumed": "artifacts/github.copilot-chat.github.copilot-chat-0.38.2026021002.frozen.2026-02-10T15-32-14.vsix",
+      "destination": "dumpster-dive\\intake\\phaseA-artifacts\\github.copilot-chat.github.copilot-chat-0.38.2026021002.frozen.2026-02-10T15-32-14.vsix",
+      "batch": "phaseA-artifacts",
+      "timestamp": "2026-03-27T17:39:49.162009+00:00"
+    },
+    {
+      "consumed": "artifacts/github.copilot-chat.globalStorage.frozen.2026-02-10T15-32-14.zip",
+      "destination": "dumpster-dive\\intake\\phaseA-artifacts\\github.copilot-chat.globalStorage.frozen.2026-02-10T15-32-14.zip",
+      "batch": "phaseA-artifacts",
+      "timestamp": "2026-03-27T17:39:49.965978+00:00"
+    },
+    {
+      "consumed": "artifacts/hf_discovery_spaces_2026-02-09T18-13-17Z.json",
+      "destination": "dumpster-dive\\intake\\phaseA-artifacts\\hf_discovery_spaces_2026-02-09T18-13-17Z.json",
+      "batch": "phaseA-artifacts",
+      "timestamp": "2026-03-27T17:39:50.224552+00:00"
+    },
+    {
+      "consumed": "artifacts/hf_discovery_spaces_2026-02-09T18-13-17Z.md",
+      "destination": "dumpster-dive\\intake\\phaseA-artifacts\\hf_discovery_spaces_2026-02-09T18-13-17Z.md",
+      "batch": "phaseA-artifacts",
+      "timestamp": "2026-03-27T17:39:50.483175+00:00"
+    },
+    {
+      "consumed": "artifacts/hf_discovery_spaces_2026-02-09T18-13-53Z.json",
+      "destination": "dumpster-dive\\intake\\phaseA-artifacts\\hf_discovery_spaces_2026-02-09T18-13-53Z.json",
+      "batch": "phaseA-artifacts",
+      "timestamp": "2026-03-27T17:39:50.744140+00:00"
+    },
+    {
+      "consumed": "artifacts/hf_discovery_spaces_2026-02-09T18-13-53Z.md",
+      "destination": "dumpster-dive\\intake\\phaseA-artifacts\\hf_discovery_spaces_2026-02-09T18-13-53Z.md",
+      "batch": "phaseA-artifacts",
+      "timestamp": "2026-03-27T17:39:51.003020+00:00"
+    },
+    {
+      "consumed": "artifacts/hf_discovery_spaces_2026-02-23T16-04-45Z.json",
+      "destination": "dumpster-dive\\intake\\phaseA-artifacts\\hf_discovery_spaces_2026-02-23T16-04-45Z.json",
+      "batch": "phaseA-artifacts",
+      "timestamp": "2026-03-27T17:39:51.263761+00:00"
+    },
+    {
+      "consumed": "artifacts/hf_discovery_spaces_2026-02-23T16-04-45Z.md",
+      "destination": "dumpster-dive\\intake\\phaseA-artifacts\\hf_discovery_spaces_2026-02-23T16-04-45Z.md",
+      "batch": "phaseA-artifacts",
+      "timestamp": "2026-03-27T17:39:51.543077+00:00"
+    },
+    {
+      "consumed": "artifacts/hf_discovery_spaces_2026-02-23T16-05-09Z.json",
+      "destination": "dumpster-dive\\intake\\phaseA-artifacts\\hf_discovery_spaces_2026-02-23T16-05-09Z.json",
+      "batch": "phaseA-artifacts",
+      "timestamp": "2026-03-27T17:39:51.801101+00:00"
+    },
+    {
+      "consumed": "artifacts/hf_discovery_spaces_2026-02-23T16-05-09Z.md",
+      "destination": "dumpster-dive\\intake\\phaseA-artifacts\\hf_discovery_spaces_2026-02-23T16-05-09Z.md",
+      "batch": "phaseA-artifacts",
+      "timestamp": "2026-03-27T17:39:52.060612+00:00"
+    },
+    {
+      "consumed": "artifacts/hf_discovery_spaces_2026-02-23T16-09-21Z.json",
+      "destination": "dumpster-dive\\intake\\phaseA-artifacts\\hf_discovery_spaces_2026-02-23T16-09-21Z.json",
+      "batch": "phaseA-artifacts",
+      "timestamp": "2026-03-27T17:39:52.316909+00:00"
+    },
+    {
+      "consumed": "artifacts/hf_discovery_spaces_2026-02-23T16-09-21Z.md",
+      "destination": "dumpster-dive\\intake\\phaseA-artifacts\\hf_discovery_spaces_2026-02-23T16-09-21Z.md",
+      "batch": "phaseA-artifacts",
+      "timestamp": "2026-03-27T17:39:52.578056+00:00"
+    },
+    {
+      "consumed": "artifacts/hf_mcp_service_registry.generated.2026-02-09T18-29-43Z.registry.json",
+      "destination": "dumpster-dive\\intake\\phaseA-artifacts\\hf_mcp_service_registry.generated.2026-02-09T18-29-43Z.registry.json",
+      "batch": "phaseA-artifacts",
+      "timestamp": "2026-03-27T17:39:52.836135+00:00"
+    },
+    {
+      "consumed": "artifacts/hf_mcp_service_registry.generated.2026-02-09T18-30-28Z.registry.json",
+      "destination": "dumpster-dive\\intake\\phaseA-artifacts\\hf_mcp_service_registry.generated.2026-02-09T18-30-28Z.registry.json",
+      "batch": "phaseA-artifacts",
+      "timestamp": "2026-03-27T17:39:53.095419+00:00"
+    },
+    {
+      "consumed": "artifacts/hf_mcp_service_registry.generated.2026-02-09T18-37-19Z.registry.json",
+      "destination": "dumpster-dive\\intake\\phaseA-artifacts\\hf_mcp_service_registry.generated.2026-02-09T18-37-19Z.registry.json",
+      "batch": "phaseA-artifacts",
+      "timestamp": "2026-03-27T17:39:53.349874+00:00"
+    },
+    {
+      "consumed": "artifacts/hf_mcp_service_registry.generated.2026-02-09T18-47-15Z.registry.json",
+      "destination": "dumpster-dive\\intake\\phaseA-artifacts\\hf_mcp_service_registry.generated.2026-02-09T18-47-15Z.registry.json",
+      "batch": "phaseA-artifacts",
+      "timestamp": "2026-03-27T17:39:53.610881+00:00"
+    },
+    {
+      "consumed": "artifacts/hf_mcp_service_registry.generated.2026-02-09T19-10-08Z.registry.json",
+      "destination": "dumpster-dive\\intake\\phaseA-artifacts\\hf_mcp_service_registry.generated.2026-02-09T19-10-08Z.registry.json",
+      "batch": "phaseA-artifacts",
+      "timestamp": "2026-03-27T17:39:53.865656+00:00"
+    },
+    {
+      "consumed": "artifacts/hf_mcp_service_registry.generated.2026-02-09T19-24-21Z.registry.json",
+      "destination": "dumpster-dive\\intake\\phaseA-artifacts\\hf_mcp_service_registry.generated.2026-02-09T19-24-21Z.registry.json",
+      "batch": "phaseA-artifacts",
+      "timestamp": "2026-03-27T17:39:54.125123+00:00"
+    },
+    {
+      "consumed": "artifacts/hf_mcp_tools_2026-02-09T19-34-17Z.json",
+      "destination": "dumpster-dive\\intake\\phaseA-artifacts\\hf_mcp_tools_2026-02-09T19-34-17Z.json",
+      "batch": "phaseA-artifacts",
+      "timestamp": "2026-03-27T17:39:54.382803+00:00"
+    },
+    {
+      "consumed": "artifacts/hf_mcp_tools_2026-02-09T19-34-32Z.json",
+      "destination": "dumpster-dive\\intake\\phaseA-artifacts\\hf_mcp_tools_2026-02-09T19-34-32Z.json",
+      "batch": "phaseA-artifacts",
+      "timestamp": "2026-03-27T17:39:54.637642+00:00"
+    },
+    {
+      "consumed": "artifacts/hf_mcp_tools_2026-02-09T19-36-40Z.json",
+      "destination": "dumpster-dive\\intake\\phaseA-artifacts\\hf_mcp_tools_2026-02-09T19-36-40Z.json",
+      "batch": "phaseA-artifacts",
+      "timestamp": "2026-03-27T17:39:54.890784+00:00"
+    },
+    {
+      "consumed": "artifacts/hf_mcp_tools_2026-02-09T19-37-17-949Z.json",
+      "destination": "dumpster-dive\\intake\\phaseA-artifacts\\hf_mcp_tools_2026-02-09T19-37-17-949Z.json",
+      "batch": "phaseA-artifacts",
+      "timestamp": "2026-03-27T17:39:55.146468+00:00"
+    },
+    {
+      "consumed": "artifacts/hf_mcp_tools_2026-02-09T19-37-43-498Z.json",
+      "destination": "dumpster-dive\\intake\\phaseA-artifacts\\hf_mcp_tools_2026-02-09T19-37-43-498Z.json",
+      "batch": "phaseA-artifacts",
+      "timestamp": "2026-03-27T17:39:55.405422+00:00"
+    },
+    {
+      "consumed": "artifacts/hf_mcp_tools_2026-02-09T19-37-43-512Z.json",
+      "destination": "dumpster-dive\\intake\\phaseA-artifacts\\hf_mcp_tools_2026-02-09T19-37-43-512Z.json",
+      "batch": "phaseA-artifacts",
+      "timestamp": "2026-03-27T17:39:55.662632+00:00"
+    },
+    {
+      "consumed": "artifacts/hf_mcp_tools_2026-02-09T19-38-02-929Z.json",
+      "destination": "dumpster-dive\\intake\\phaseA-artifacts\\hf_mcp_tools_2026-02-09T19-38-02-929Z.json",
+      "batch": "phaseA-artifacts",
+      "timestamp": "2026-03-27T17:39:55.917635+00:00"
+    },
+    {
+      "consumed": "artifacts/hf_mcp_tools_2026-02-09T20-22-05-320Z.json",
+      "destination": "dumpster-dive\\intake\\phaseA-artifacts\\hf_mcp_tools_2026-02-09T20-22-05-320Z.json",
+      "batch": "phaseA-artifacts",
+      "timestamp": "2026-03-27T17:39:56.180210+00:00"
+    },
+    {
+      "consumed": "artifacts/hf_mcp_tools_2026-02-23T16-05-10-559Z.json",
+      "destination": "dumpster-dive\\intake\\phaseA-artifacts\\hf_mcp_tools_2026-02-23T16-05-10-559Z.json",
+      "batch": "phaseA-artifacts",
+      "timestamp": "2026-03-27T17:39:56.431882+00:00"
+    },
+    {
+      "consumed": "artifacts/hf_mcp_tools_2026-02-23T16-09-22-257Z.json",
+      "destination": "dumpster-dive\\intake\\phaseA-artifacts\\hf_mcp_tools_2026-02-23T16-09-22-257Z.json",
+      "batch": "phaseA-artifacts",
+      "timestamp": "2026-03-27T17:39:56.692331+00:00"
+    },
+    {
+      "consumed": "artifacts/mcp_run_audit_2026-01-05T00-42-49-176Z.json",
+      "destination": "dumpster-dive\\intake\\phaseA-artifacts\\mcp_run_audit_2026-01-05T00-42-49-176Z.json",
+      "batch": "phaseA-artifacts",
+      "timestamp": "2026-03-27T17:39:56.990273+00:00"
+    },
+    {
+      "consumed": "artifacts/mcp_run_audit_2026-01-05T00-43-12-981Z.json",
+      "destination": "dumpster-dive\\intake\\phaseA-artifacts\\mcp_run_audit_2026-01-05T00-43-12-981Z.json",
+      "batch": "phaseA-artifacts",
+      "timestamp": "2026-03-27T17:39:57.284817+00:00"
+    },
+    {
+      "consumed": "artifacts/mcp_run_audit_2026-01-05T00-43-47-483Z.json",
+      "destination": "dumpster-dive\\intake\\phaseA-artifacts\\mcp_run_audit_2026-01-05T00-43-47-483Z.json",
+      "batch": "phaseA-artifacts",
+      "timestamp": "2026-03-27T17:39:57.578954+00:00"
+    },
+    {
+      "consumed": "artifacts/mcp_run_audit_2026-01-29T18-30-47-901Z.json",
+      "destination": "dumpster-dive\\intake\\phaseA-artifacts\\mcp_run_audit_2026-01-29T18-30-47-901Z.json",
+      "batch": "phaseA-artifacts",
+      "timestamp": "2026-03-27T17:39:57.879285+00:00"
+    },
+    {
+      "consumed": "artifacts/mcp_run_audit_2026-01-29T18-31-55-941Z.json",
+      "destination": "dumpster-dive\\intake\\phaseA-artifacts\\mcp_run_audit_2026-01-29T18-31-55-941Z.json",
+      "batch": "phaseA-artifacts",
+      "timestamp": "2026-03-27T17:39:58.177256+00:00"
+    },
+    {
+      "consumed": "artifacts/mcp_run_audit_2026-01-29T18-35-18-246Z.json",
+      "destination": "dumpster-dive\\intake\\phaseA-artifacts\\mcp_run_audit_2026-01-29T18-35-18-246Z.json",
+      "batch": "phaseA-artifacts",
+      "timestamp": "2026-03-27T17:39:58.473961+00:00"
+    },
+    {
+      "consumed": "artifacts/mcp_run_audit_2026-01-29T18-36-11-723Z.json",
+      "destination": "dumpster-dive\\intake\\phaseA-artifacts\\mcp_run_audit_2026-01-29T18-36-11-723Z.json",
+      "batch": "phaseA-artifacts",
+      "timestamp": "2026-03-27T17:39:58.771029+00:00"
+    },
+    {
+      "consumed": "artifacts/mcp_run_audit_2026-01-29T18-36-43-813Z.json",
+      "destination": "dumpster-dive\\intake\\phaseA-artifacts\\mcp_run_audit_2026-01-29T18-36-43-813Z.json",
+      "batch": "phaseA-artifacts",
+      "timestamp": "2026-03-27T17:39:59.063706+00:00"
+    },
+    {
+      "consumed": "artifacts/mcp_run_audit_2026-01-29T18-52-46-564Z.json",
+      "destination": "dumpster-dive\\intake\\phaseA-artifacts\\mcp_run_audit_2026-01-29T18-52-46-564Z.json",
+      "batch": "phaseA-artifacts",
+      "timestamp": "2026-03-27T17:39:59.359386+00:00"
+    },
+    {
+      "consumed": "artifacts/mcp_run_audit_2026-01-29T18-53-31-593Z.json",
+      "destination": "dumpster-dive\\intake\\phaseA-artifacts\\mcp_run_audit_2026-01-29T18-53-31-593Z.json",
+      "batch": "phaseA-artifacts",
+      "timestamp": "2026-03-27T17:39:59.657855+00:00"
+    },
+    {
+      "consumed": "artifacts/mcp_run_audit_2026-01-29T18-59-32-890Z.json",
+      "destination": "dumpster-dive\\intake\\phaseA-artifacts\\mcp_run_audit_2026-01-29T18-59-32-890Z.json",
+      "batch": "phaseA-artifacts",
+      "timestamp": "2026-03-27T17:39:59.950752+00:00"
+    },
+    {
+      "consumed": "artifacts/mcp_run_curriculum_2026-01-05T00-42-49-176Z.json",
+      "destination": "dumpster-dive\\intake\\phaseA-artifacts\\mcp_run_curriculum_2026-01-05T00-42-49-176Z.json",
+      "batch": "phaseA-artifacts",
+      "timestamp": "2026-03-27T17:40:00.250369+00:00"
+    },
+    {
+      "consumed": "artifacts/mcp_run_curriculum_2026-01-05T00-43-12-981Z.json",
+      "destination": "dumpster-dive\\intake\\phaseA-artifacts\\mcp_run_curriculum_2026-01-05T00-43-12-981Z.json",
+      "batch": "phaseA-artifacts",
+      "timestamp": "2026-03-27T17:40:00.547968+00:00"
+    },
+    {
+      "consumed": "artifacts/mcp_run_curriculum_2026-01-05T00-43-47-483Z.json",
+      "destination": "dumpster-dive\\intake\\phaseA-artifacts\\mcp_run_curriculum_2026-01-05T00-43-47-483Z.json",
+      "batch": "phaseA-artifacts",
+      "timestamp": "2026-03-27T17:40:00.848037+00:00"
+    },
+    {
+      "consumed": "artifacts/mcp_run_curriculum_2026-01-29T18-30-47-901Z.json",
+      "destination": "dumpster-dive\\intake\\phaseA-artifacts\\mcp_run_curriculum_2026-01-29T18-30-47-901Z.json",
+      "batch": "phaseA-artifacts",
+      "timestamp": "2026-03-27T17:40:01.146992+00:00"
+    },
+    {
+      "consumed": "artifacts/mcp_run_curriculum_2026-01-29T18-31-55-941Z.json",
+      "destination": "dumpster-dive\\intake\\phaseA-artifacts\\mcp_run_curriculum_2026-01-29T18-31-55-941Z.json",
+      "batch": "phaseA-artifacts",
+      "timestamp": "2026-03-27T17:40:01.444830+00:00"
+    },
+    {
+      "consumed": "artifacts/mcp_run_curriculum_2026-01-29T18-35-18-246Z.json",
+      "destination": "dumpster-dive\\intake\\phaseA-artifacts\\mcp_run_curriculum_2026-01-29T18-35-18-246Z.json",
+      "batch": "phaseA-artifacts",
+      "timestamp": "2026-03-27T17:40:01.741313+00:00"
+    },
+    {
+      "consumed": "artifacts/mcp_run_curriculum_2026-01-29T18-36-11-723Z.json",
+      "destination": "dumpster-dive\\intake\\phaseA-artifacts\\mcp_run_curriculum_2026-01-29T18-36-11-723Z.json",
+      "batch": "phaseA-artifacts",
+      "timestamp": "2026-03-27T17:40:02.036685+00:00"
+    },
+    {
+      "consumed": "artifacts/mcp_run_curriculum_2026-01-29T18-36-43-813Z.json",
+      "destination": "dumpster-dive\\intake\\phaseA-artifacts\\mcp_run_curriculum_2026-01-29T18-36-43-813Z.json",
+      "batch": "phaseA-artifacts",
+      "timestamp": "2026-03-27T17:40:02.335277+00:00"
+    },
+    {
+      "consumed": "artifacts/mcp_run_curriculum_2026-01-29T18-52-46-564Z.json",
+      "destination": "dumpster-dive\\intake\\phaseA-artifacts\\mcp_run_curriculum_2026-01-29T18-52-46-564Z.json",
+      "batch": "phaseA-artifacts",
+      "timestamp": "2026-03-27T17:40:02.639244+00:00"
+    },
+    {
+      "consumed": "artifacts/mcp_run_curriculum_2026-01-29T18-53-31-593Z.json",
+      "destination": "dumpster-dive\\intake\\phaseA-artifacts\\mcp_run_curriculum_2026-01-29T18-53-31-593Z.json",
+      "batch": "phaseA-artifacts",
+      "timestamp": "2026-03-27T17:40:02.937567+00:00"
+    },
+    {
+      "consumed": "artifacts/mcp_run_curriculum_2026-01-29T18-59-32-890Z.json",
+      "destination": "dumpster-dive\\intake\\phaseA-artifacts\\mcp_run_curriculum_2026-01-29T18-59-32-890Z.json",
+      "batch": "phaseA-artifacts",
+      "timestamp": "2026-03-27T17:40:03.237008+00:00"
+    },
+    {
+      "consumed": "artifacts/mcp_run_discovery_2026-01-05T00-42-49-176Z.json",
+      "destination": "dumpster-dive\\intake\\phaseA-artifacts\\mcp_run_discovery_2026-01-05T00-42-49-176Z.json",
+      "batch": "phaseA-artifacts",
+      "timestamp": "2026-03-27T17:40:03.533582+00:00"
+    },
+    {
+      "consumed": "artifacts/mcp_run_discovery_2026-01-05T00-43-12-981Z.json",
+      "destination": "dumpster-dive\\intake\\phaseA-artifacts\\mcp_run_discovery_2026-01-05T00-43-12-981Z.json",
+      "batch": "phaseA-artifacts",
+      "timestamp": "2026-03-27T17:40:03.832681+00:00"
+    },
+    {
+      "consumed": "artifacts/mcp_run_discovery_2026-01-05T00-43-47-483Z.json",
+      "destination": "dumpster-dive\\intake\\phaseA-artifacts\\mcp_run_discovery_2026-01-05T00-43-47-483Z.json",
+      "batch": "phaseA-artifacts",
+      "timestamp": "2026-03-27T17:40:04.129865+00:00"
+    },
+    {
+      "consumed": "artifacts/mcp_run_discovery_2026-01-29T18-30-47-901Z.json",
+      "destination": "dumpster-dive\\intake\\phaseA-artifacts\\mcp_run_discovery_2026-01-29T18-30-47-901Z.json",
+      "batch": "phaseA-artifacts",
+      "timestamp": "2026-03-27T17:40:04.434329+00:00"
+    },
+    {
+      "consumed": "artifacts/mcp_run_discovery_2026-01-29T18-31-55-941Z.json",
+      "destination": "dumpster-dive\\intake\\phaseA-artifacts\\mcp_run_discovery_2026-01-29T18-31-55-941Z.json",
+      "batch": "phaseA-artifacts",
+      "timestamp": "2026-03-27T17:40:04.734280+00:00"
+    },
+    {
+      "consumed": "artifacts/mcp_run_discovery_2026-01-29T18-35-18-246Z.json",
+      "destination": "dumpster-dive\\intake\\phaseA-artifacts\\mcp_run_discovery_2026-01-29T18-35-18-246Z.json",
+      "batch": "phaseA-artifacts",
+      "timestamp": "2026-03-27T17:40:05.034484+00:00"
+    },
+    {
+      "consumed": "artifacts/mcp_run_discovery_2026-01-29T18-36-11-723Z.json",
+      "destination": "dumpster-dive\\intake\\phaseA-artifacts\\mcp_run_discovery_2026-01-29T18-36-11-723Z.json",
+      "batch": "phaseA-artifacts",
+      "timestamp": "2026-03-27T17:40:05.332871+00:00"
+    },
+    {
+      "consumed": "artifacts/mcp_run_discovery_2026-01-29T18-36-43-813Z.json",
+      "destination": "dumpster-dive\\intake\\phaseA-artifacts\\mcp_run_discovery_2026-01-29T18-36-43-813Z.json",
+      "batch": "phaseA-artifacts",
+      "timestamp": "2026-03-27T17:40:05.634989+00:00"
+    },
+    {
+      "consumed": "artifacts/mcp_run_discovery_2026-01-29T18-52-46-564Z.json",
+      "destination": "dumpster-dive\\intake\\phaseA-artifacts\\mcp_run_discovery_2026-01-29T18-52-46-564Z.json",
+      "batch": "phaseA-artifacts",
+      "timestamp": "2026-03-27T17:40:05.928641+00:00"
+    },
+    {
+      "consumed": "artifacts/mcp_run_discovery_2026-01-29T18-53-31-593Z.json",
+      "destination": "dumpster-dive\\intake\\phaseA-artifacts\\mcp_run_discovery_2026-01-29T18-53-31-593Z.json",
+      "batch": "phaseA-artifacts",
+      "timestamp": "2026-03-27T17:40:06.239562+00:00"
+    },
+    {
+      "consumed": "artifacts/mcp_run_discovery_2026-01-29T18-59-32-890Z.json",
+      "destination": "dumpster-dive\\intake\\phaseA-artifacts\\mcp_run_discovery_2026-01-29T18-59-32-890Z.json",
+      "batch": "phaseA-artifacts",
+      "timestamp": "2026-03-27T17:40:06.534802+00:00"
+    },
+    {
+      "consumed": "artifacts/mcp_run_impact_2026-01-05T00-42-49-176Z.json",
+      "destination": "dumpster-dive\\intake\\phaseA-artifacts\\mcp_run_impact_2026-01-05T00-42-49-176Z.json",
+      "batch": "phaseA-artifacts",
+      "timestamp": "2026-03-27T17:40:06.831698+00:00"
+    },
+    {
+      "consumed": "artifacts/mcp_run_impact_2026-01-05T00-43-12-981Z.json",
+      "destination": "dumpster-dive\\intake\\phaseA-artifacts\\mcp_run_impact_2026-01-05T00-43-12-981Z.json",
+      "batch": "phaseA-artifacts",
+      "timestamp": "2026-03-27T17:40:07.130361+00:00"
+    },
+    {
+      "consumed": "artifacts/mcp_run_impact_2026-01-05T00-43-47-483Z.json",
+      "destination": "dumpster-dive\\intake\\phaseA-artifacts\\mcp_run_impact_2026-01-05T00-43-47-483Z.json",
+      "batch": "phaseA-artifacts",
+      "timestamp": "2026-03-27T17:40:07.429774+00:00"
+    },
+    {
+      "consumed": "artifacts/mcp_run_impact_2026-01-29T18-30-47-901Z.json",
+      "destination": "dumpster-dive\\intake\\phaseA-artifacts\\mcp_run_impact_2026-01-29T18-30-47-901Z.json",
+      "batch": "phaseA-artifacts",
+      "timestamp": "2026-03-27T17:40:07.734350+00:00"
+    },
+    {
+      "consumed": "artifacts/mcp_run_impact_2026-01-29T18-31-55-941Z.json",
+      "destination": "dumpster-dive\\intake\\phaseA-artifacts\\mcp_run_impact_2026-01-29T18-31-55-941Z.json",
+      "batch": "phaseA-artifacts",
+      "timestamp": "2026-03-27T17:40:08.037086+00:00"
+    },
+    {
+      "consumed": "artifacts/mcp_run_impact_2026-01-29T18-35-18-246Z.json",
+      "destination": "dumpster-dive\\intake\\phaseA-artifacts\\mcp_run_impact_2026-01-29T18-35-18-246Z.json",
+      "batch": "phaseA-artifacts",
+      "timestamp": "2026-03-27T17:40:08.334381+00:00"
+    },
+    {
+      "consumed": "artifacts/mcp_run_impact_2026-01-29T18-36-11-723Z.json",
+      "destination": "dumpster-dive\\intake\\phaseA-artifacts\\mcp_run_impact_2026-01-29T18-36-11-723Z.json",
+      "batch": "phaseA-artifacts",
+      "timestamp": "2026-03-27T17:40:08.637572+00:00"
+    },
+    {
+      "consumed": "artifacts/mcp_run_impact_2026-01-29T18-36-43-813Z.json",
+      "destination": "dumpster-dive\\intake\\phaseA-artifacts\\mcp_run_impact_2026-01-29T18-36-43-813Z.json",
+      "batch": "phaseA-artifacts",
+      "timestamp": "2026-03-27T17:40:08.936210+00:00"
+    },
+    {
+      "consumed": "artifacts/mcp_run_impact_2026-01-29T18-52-46-564Z.json",
+      "destination": "dumpster-dive\\intake\\phaseA-artifacts\\mcp_run_impact_2026-01-29T18-52-46-564Z.json",
+      "batch": "phaseA-artifacts",
+      "timestamp": "2026-03-27T17:40:09.235869+00:00"
+    },
+    {
+      "consumed": "artifacts/mcp_run_impact_2026-01-29T18-53-31-593Z.json",
+      "destination": "dumpster-dive\\intake\\phaseA-artifacts\\mcp_run_impact_2026-01-29T18-53-31-593Z.json",
+      "batch": "phaseA-artifacts",
+      "timestamp": "2026-03-27T17:40:09.532922+00:00"
+    },
+    {
+      "consumed": "artifacts/mcp_run_impact_2026-01-29T18-59-32-890Z.json",
+      "destination": "dumpster-dive\\intake\\phaseA-artifacts\\mcp_run_impact_2026-01-29T18-59-32-890Z.json",
+      "batch": "phaseA-artifacts",
+      "timestamp": "2026-03-27T17:40:09.834752+00:00"
+    },
+    {
+      "consumed": "artifacts/mcp_run_spectral_2026-01-05T00-42-49-176Z.json",
+      "destination": "dumpster-dive\\intake\\phaseA-artifacts\\mcp_run_spectral_2026-01-05T00-42-49-176Z.json",
+      "batch": "phaseA-artifacts",
+      "timestamp": "2026-03-27T17:40:10.137749+00:00"
+    },
+    {
+      "consumed": "artifacts/mcp_run_spectral_2026-01-05T00-43-12-981Z.json",
+      "destination": "dumpster-dive\\intake\\phaseA-artifacts\\mcp_run_spectral_2026-01-05T00-43-12-981Z.json",
+      "batch": "phaseA-artifacts",
+      "timestamp": "2026-03-27T17:40:10.442999+00:00"
+    },
+    {
+      "consumed": "artifacts/mcp_run_spectral_2026-01-05T00-43-47-483Z.json",
+      "destination": "dumpster-dive\\intake\\phaseA-artifacts\\mcp_run_spectral_2026-01-05T00-43-47-483Z.json",
+      "batch": "phaseA-artifacts",
+      "timestamp": "2026-03-27T17:40:10.747056+00:00"
+    },
+    {
+      "consumed": "artifacts/mcp_run_spectral_2026-01-29T18-30-47-901Z.json",
+      "destination": "dumpster-dive\\intake\\phaseA-artifacts\\mcp_run_spectral_2026-01-29T18-30-47-901Z.json",
+      "batch": "phaseA-artifacts",
+      "timestamp": "2026-03-27T17:40:11.048445+00:00"
+    },
+    {
+      "consumed": "artifacts/mcp_run_spectral_2026-01-29T18-31-55-941Z.json",
+      "destination": "dumpster-dive\\intake\\phaseA-artifacts\\mcp_run_spectral_2026-01-29T18-31-55-941Z.json",
+      "batch": "phaseA-artifacts",
+      "timestamp": "2026-03-27T17:40:11.349519+00:00"
+    },
+    {
+      "consumed": "artifacts/mcp_run_spectral_2026-01-29T18-35-18-246Z.json",
+      "destination": "dumpster-dive\\intake\\phaseA-artifacts\\mcp_run_spectral_2026-01-29T18-35-18-246Z.json",
+      "batch": "phaseA-artifacts",
+      "timestamp": "2026-03-27T17:40:11.651048+00:00"
+    },
+    {
+      "consumed": "artifacts/mcp_run_spectral_2026-01-29T18-36-11-723Z.json",
+      "destination": "dumpster-dive\\intake\\phaseA-artifacts\\mcp_run_spectral_2026-01-29T18-36-11-723Z.json",
+      "batch": "phaseA-artifacts",
+      "timestamp": "2026-03-27T17:40:11.955373+00:00"
+    },
+    {
+      "consumed": "artifacts/mcp_run_spectral_2026-01-29T18-36-43-813Z.json",
+      "destination": "dumpster-dive\\intake\\phaseA-artifacts\\mcp_run_spectral_2026-01-29T18-36-43-813Z.json",
+      "batch": "phaseA-artifacts",
+      "timestamp": "2026-03-27T17:40:12.255850+00:00"
+    },
+    {
+      "consumed": "artifacts/mcp_run_spectral_2026-01-29T18-52-46-564Z.json",
+      "destination": "dumpster-dive\\intake\\phaseA-artifacts\\mcp_run_spectral_2026-01-29T18-52-46-564Z.json",
+      "batch": "phaseA-artifacts",
+      "timestamp": "2026-03-27T17:40:12.554797+00:00"
+    },
+    {
+      "consumed": "artifacts/mcp_run_spectral_2026-01-29T18-53-31-593Z.json",
+      "destination": "dumpster-dive\\intake\\phaseA-artifacts\\mcp_run_spectral_2026-01-29T18-53-31-593Z.json",
+      "batch": "phaseA-artifacts",
+      "timestamp": "2026-03-27T17:40:12.854266+00:00"
+    },
+    {
+      "consumed": "artifacts/mcp_run_spectral_2026-01-29T18-59-32-890Z.json",
+      "destination": "dumpster-dive\\intake\\phaseA-artifacts\\mcp_run_spectral_2026-01-29T18-59-32-890Z.json",
+      "batch": "phaseA-artifacts",
+      "timestamp": "2026-03-27T17:40:13.157371+00:00"
+    },
+    {
+      "consumed": "artifacts/mcp_run_trace_2026-01-05T00-42-49-176Z.json",
+      "destination": "dumpster-dive\\intake\\phaseA-artifacts\\mcp_run_trace_2026-01-05T00-42-49-176Z.json",
+      "batch": "phaseA-artifacts",
+      "timestamp": "2026-03-27T17:40:13.457779+00:00"
+    },
+    {
+      "consumed": "artifacts/mcp_run_trace_2026-01-05T00-43-12-981Z.json",
+      "destination": "dumpster-dive\\intake\\phaseA-artifacts\\mcp_run_trace_2026-01-05T00-43-12-981Z.json",
+      "batch": "phaseA-artifacts",
+      "timestamp": "2026-03-27T17:40:13.756294+00:00"
+    },
+    {
+      "consumed": "artifacts/mcp_run_trace_2026-01-05T00-43-47-483Z.json",
+      "destination": "dumpster-dive\\intake\\phaseA-artifacts\\mcp_run_trace_2026-01-05T00-43-47-483Z.json",
+      "batch": "phaseA-artifacts",
+      "timestamp": "2026-03-27T17:40:14.056132+00:00"
+    },
+    {
+      "consumed": "artifacts/mcp_run_trace_2026-01-29T18-30-47-901Z.json",
+      "destination": "dumpster-dive\\intake\\phaseA-artifacts\\mcp_run_trace_2026-01-29T18-30-47-901Z.json",
+      "batch": "phaseA-artifacts",
+      "timestamp": "2026-03-27T17:40:14.352509+00:00"
+    },
+    {
+      "consumed": "artifacts/mcp_run_trace_2026-01-29T18-31-55-941Z.json",
+      "destination": "dumpster-dive\\intake\\phaseA-artifacts\\mcp_run_trace_2026-01-29T18-31-55-941Z.json",
+      "batch": "phaseA-artifacts",
+      "timestamp": "2026-03-27T17:40:14.652308+00:00"
+    },
+    {
+      "consumed": "artifacts/mcp_run_trace_2026-01-29T18-35-18-246Z.json",
+      "destination": "dumpster-dive\\intake\\phaseA-artifacts\\mcp_run_trace_2026-01-29T18-35-18-246Z.json",
+      "batch": "phaseA-artifacts",
+      "timestamp": "2026-03-27T17:40:14.952850+00:00"
+    },
+    {
+      "consumed": "artifacts/mcp_run_trace_2026-01-29T18-36-11-723Z.json",
+      "destination": "dumpster-dive\\intake\\phaseA-artifacts\\mcp_run_trace_2026-01-29T18-36-11-723Z.json",
+      "batch": "phaseA-artifacts",
+      "timestamp": "2026-03-27T17:40:15.255637+00:00"
+    },
+    {
+      "consumed": "artifacts/mcp_run_trace_2026-01-29T18-36-43-813Z.json",
+      "destination": "dumpster-dive\\intake\\phaseA-artifacts\\mcp_run_trace_2026-01-29T18-36-43-813Z.json",
+      "batch": "phaseA-artifacts",
+      "timestamp": "2026-03-27T17:40:15.552866+00:00"
+    },
+    {
+      "consumed": "artifacts/mcp_run_trace_2026-01-29T18-52-46-564Z.json",
+      "destination": "dumpster-dive\\intake\\phaseA-artifacts\\mcp_run_trace_2026-01-29T18-52-46-564Z.json",
+      "batch": "phaseA-artifacts",
+      "timestamp": "2026-03-27T17:40:15.851688+00:00"
+    },
+    {
+      "consumed": "artifacts/mcp_run_trace_2026-01-29T18-53-31-593Z.json",
+      "destination": "dumpster-dive\\intake\\phaseA-artifacts\\mcp_run_trace_2026-01-29T18-53-31-593Z.json",
+      "batch": "phaseA-artifacts",
+      "timestamp": "2026-03-27T17:40:16.154647+00:00"
+    },
+    {
+      "consumed": "artifacts/mcp_run_trace_2026-01-29T18-59-32-890Z.json",
+      "destination": "dumpster-dive\\intake\\phaseA-artifacts\\mcp_run_trace_2026-01-29T18-59-32-890Z.json",
+      "batch": "phaseA-artifacts",
+      "timestamp": "2026-03-27T17:40:16.455152+00:00"
+    },
+    {
+      "consumed": "artifacts/mcp_run_validation_2026-02-09T17-44-09-423Z.json",
+      "destination": "dumpster-dive\\intake\\phaseA-artifacts\\mcp_run_validation_2026-02-09T17-44-09-423Z.json",
+      "batch": "phaseA-artifacts",
+      "timestamp": "2026-03-27T17:40:16.758294+00:00"
+    },
+    {
+      "consumed": "artifacts/mcp_run_validation_2026-02-09T17-44-39-067Z.json",
+      "destination": "dumpster-dive\\intake\\phaseA-artifacts\\mcp_run_validation_2026-02-09T17-44-39-067Z.json",
+      "batch": "phaseA-artifacts",
+      "timestamp": "2026-03-27T17:40:17.058582+00:00"
+    },
+    {
+      "consumed": "artifacts/mcp_run_validation_2026-02-09T17-45-34-183Z.json",
+      "destination": "dumpster-dive\\intake\\phaseA-artifacts\\mcp_run_validation_2026-02-09T17-45-34-183Z.json",
+      "batch": "phaseA-artifacts",
+      "timestamp": "2026-03-27T17:40:17.363296+00:00"
+    },
+    {
+      "consumed": "artifacts/mcp_run_validation_2026-02-09T20-21-45-744Z.json",
+      "destination": "dumpster-dive\\intake\\phaseA-artifacts\\mcp_run_validation_2026-02-09T20-21-45-744Z.json",
+      "batch": "phaseA-artifacts",
+      "timestamp": "2026-03-27T17:40:17.665672+00:00"
+    },
+    {
+      "consumed": "artifacts/mcp_run_validation_2026-02-23T16-04-20-940Z.json",
+      "destination": "dumpster-dive\\intake\\phaseA-artifacts\\mcp_run_validation_2026-02-23T16-04-20-940Z.json",
+      "batch": "phaseA-artifacts",
+      "timestamp": "2026-03-27T17:40:17.966978+00:00"
+    },
+    {
+      "consumed": "artifacts/mcp_run_validation_2026-02-23T16-05-00-983Z.json",
+      "destination": "dumpster-dive\\intake\\phaseA-artifacts\\mcp_run_validation_2026-02-23T16-05-00-983Z.json",
+      "batch": "phaseA-artifacts",
+      "timestamp": "2026-03-27T17:40:18.268150+00:00"
+    },
+    {
+      "consumed": "artifacts/mcp_run_validation_2026-02-23T16-07-37-061Z.json",
+      "destination": "dumpster-dive\\intake\\phaseA-artifacts\\mcp_run_validation_2026-02-23T16-07-37-061Z.json",
+      "batch": "phaseA-artifacts",
+      "timestamp": "2026-03-27T17:40:18.567532+00:00"
+    },
+    {
+      "consumed": "artifacts/mcp_run_validation_2026-02-23T16-09-58-757Z.json",
+      "destination": "dumpster-dive\\intake\\phaseA-artifacts\\mcp_run_validation_2026-02-23T16-09-58-757Z.json",
+      "batch": "phaseA-artifacts",
+      "timestamp": "2026-03-27T17:40:18.866395+00:00"
+    },
+    {
+      "consumed": "artifacts/mcp_run_validation_2026-02-23T16-09-59-039Z.json",
+      "destination": "dumpster-dive\\intake\\phaseA-artifacts\\mcp_run_validation_2026-02-23T16-09-59-039Z.json",
+      "batch": "phaseA-artifacts",
+      "timestamp": "2026-03-27T17:40:19.163546+00:00"
+    },
+    {
+      "consumed": "artifacts/mcp_run_validation_2026-02-23T16-11-56-191Z.json",
+      "destination": "dumpster-dive\\intake\\phaseA-artifacts\\mcp_run_validation_2026-02-23T16-11-56-191Z.json",
+      "batch": "phaseA-artifacts",
+      "timestamp": "2026-03-27T17:40:19.463370+00:00"
+    },
+    {
+      "consumed": "artifacts/mcp_run_validation_2026-02-23T16-11-56-459Z.json",
+      "destination": "dumpster-dive\\intake\\phaseA-artifacts\\mcp_run_validation_2026-02-23T16-11-56-459Z.json",
+      "batch": "phaseA-artifacts",
+      "timestamp": "2026-03-27T17:40:19.762810+00:00"
+    },
+    {
+      "consumed": "artifacts/mcp_run_validation_2026-02-23T16-31-58-790Z.json",
+      "destination": "dumpster-dive\\intake\\phaseA-artifacts\\mcp_run_validation_2026-02-23T16-31-58-790Z.json",
+      "batch": "phaseA-artifacts",
+      "timestamp": "2026-03-27T17:40:20.064908+00:00"
+    },
+    {
+      "consumed": "artifacts/mcp_run_validation_2026-02-23T16-35-22-500Z.json",
+      "destination": "dumpster-dive\\intake\\phaseA-artifacts\\mcp_run_validation_2026-02-23T16-35-22-500Z.json",
+      "batch": "phaseA-artifacts",
+      "timestamp": "2026-03-27T17:40:20.368746+00:00"
+    },
+    {
+      "consumed": "artifacts/mcp_run_validation_2026-02-23T16-36-34-357Z.json",
+      "destination": "dumpster-dive\\intake\\phaseA-artifacts\\mcp_run_validation_2026-02-23T16-36-34-357Z.json",
+      "batch": "phaseA-artifacts",
+      "timestamp": "2026-03-27T17:40:20.672201+00:00"
+    },
+    {
+      "consumed": "artifacts/mcp_run_validation_2026-02-23T16-57-30-026Z.json",
+      "destination": "dumpster-dive\\intake\\phaseA-artifacts\\mcp_run_validation_2026-02-23T16-57-30-026Z.json",
+      "batch": "phaseA-artifacts",
+      "timestamp": "2026-03-27T17:40:20.973868+00:00"
+    },
+    {
+      "consumed": "extensions/chthonic-mandala/legacy.package.snapshot.json",
+      "destination": "dumpster-dive\\intake\\phaseA-extensions-2026-03-27\\legacy.package.snapshot.json",
+      "batch": "phaseA-extensions-2026-03-27",
+      "timestamp": "2026-03-27T21:02:32.082981+00:00"
+    },
+    {
+      "consumed": "extensions/chthonic-archive/chthonic-archive-0.2.1.vsix",
+      "destination": "dumpster-dive\\intake\\phaseA-extensions-2026-03-27\\chthonic-archive-0.2.1.vsix",
+      "batch": "phaseA-extensions-2026-03-27",
+      "timestamp": "2026-03-27T21:02:32.571099+00:00"
+    },
+    {
+      "consumed": "extensions/chthonic-archive/chthonic-archive-insiders.vsix",
+      "destination": "dumpster-dive\\intake\\phaseA-extensions-2026-03-27\\chthonic-archive-insiders.vsix",
+      "batch": "phaseA-extensions-2026-03-27",
+      "timestamp": "2026-03-27T21:02:32.834537+00:00"
+    },
+    {
+      "consumed": "extensions/chthonic-mandala/chthonic-mandala-insiders.vsix",
+      "destination": "dumpster-dive\\intake\\phaseA-extensions-2026-03-27\\chthonic-mandala-insiders.vsix",
+      "batch": "phaseA-extensions-2026-03-27",
+      "timestamp": "2026-03-27T21:02:33.093438+00:00"
+    },
+    {
+      "consumed": "extensions/chthonic-statusbar/chthonic-statusbar-insiders.vsix",
+      "destination": "dumpster-dive\\intake\\phaseA-extensions-2026-03-27\\chthonic-statusbar-insiders.vsix",
+      "batch": "phaseA-extensions-2026-03-27",
+      "timestamp": "2026-03-27T21:02:33.345801+00:00"
+    },
+    {
+      "consumed": "extensions/chthonic-archive/.chthonic/cache/insiders-post-restart-verify-2026-02-20T15-18-56-505Z.json",
+      "destination": "dumpster-dive\\intake\\phaseA-extensions-2026-03-27\\insiders-post-restart-verify-2026-02-20T15-18-56-505Z.json",
+      "batch": "phaseA-extensions-2026-03-27",
+      "timestamp": "2026-03-27T21:02:33.606506+00:00"
+    },
+    {
+      "consumed": "extensions/chthonic-archive/.chthonic/cache/insiders-post-restart-verify-2026-02-20T15-21-45-993Z.json",
+      "destination": "dumpster-dive\\intake\\phaseA-extensions-2026-03-27\\insiders-post-restart-verify-2026-02-20T15-21-45-993Z.json",
+      "batch": "phaseA-extensions-2026-03-27",
+      "timestamp": "2026-03-27T21:02:33.864020+00:00"
+    },
+    {
+      "consumed": "extensions/chthonic-archive/.chthonic/cache/insiders-post-restart-verify-2026-02-20T15-30-04-644Z.json",
+      "destination": "dumpster-dive\\intake\\phaseA-extensions-2026-03-27\\insiders-post-restart-verify-2026-02-20T15-30-04-644Z.json",
+      "batch": "phaseA-extensions-2026-03-27",
+      "timestamp": "2026-03-27T21:02:34.116803+00:00"
+    },
+    {
+      "consumed": "extensions/chthonic-archive/.chthonic/cache/insiders-post-restart-verify-2026-02-20T15-31-11-426Z.json",
+      "destination": "dumpster-dive\\intake\\phaseA-extensions-2026-03-27\\insiders-post-restart-verify-2026-02-20T15-31-11-426Z.json",
+      "batch": "phaseA-extensions-2026-03-27",
+      "timestamp": "2026-03-27T21:02:34.367431+00:00"
+    },
+    {
+      "consumed": "extensions/chthonic-archive/.chthonic/cache/insiders-post-restart-verify-2026-02-20T15-33-03-546Z.json",
+      "destination": "dumpster-dive\\intake\\phaseA-extensions-2026-03-27\\insiders-post-restart-verify-2026-02-20T15-33-03-546Z.json",
+      "batch": "phaseA-extensions-2026-03-27",
+      "timestamp": "2026-03-27T21:02:34.621531+00:00"
+    },
+    {
+      "consumed": "extensions/chthonic-archive/.chthonic/cache/insiders-post-restart-verify-2026-02-20T15-37-12-604Z.json",
+      "destination": "dumpster-dive\\intake\\phaseA-extensions-2026-03-27\\insiders-post-restart-verify-2026-02-20T15-37-12-604Z.json",
+      "batch": "phaseA-extensions-2026-03-27",
+      "timestamp": "2026-03-27T21:02:34.870196+00:00"
+    },
+    {
+      "consumed": "extensions/chthonic-archive/.chthonic/cache/insiders-post-restart-verify-2026-02-20T15-37-12-625Z.json",
+      "destination": "dumpster-dive\\intake\\phaseA-extensions-2026-03-27\\insiders-post-restart-verify-2026-02-20T15-37-12-625Z.json",
+      "batch": "phaseA-extensions-2026-03-27",
+      "timestamp": "2026-03-27T21:02:35.118033+00:00"
+    },
+    {
+      "consumed": "extensions/chthonic-archive/.chthonic/cache/insiders-post-restart-verify-2026-02-20T15-40-20-511Z.json",
+      "destination": "dumpster-dive\\intake\\phaseA-extensions-2026-03-27\\insiders-post-restart-verify-2026-02-20T15-40-20-511Z.json",
+      "batch": "phaseA-extensions-2026-03-27",
+      "timestamp": "2026-03-27T21:02:35.369018+00:00"
+    },
+    {
+      "consumed": "extensions/chthonic-archive/.chthonic/cache/insiders-post-restart-verify-2026-02-20T15-40-20-531Z.json",
+      "destination": "dumpster-dive\\intake\\phaseA-extensions-2026-03-27\\insiders-post-restart-verify-2026-02-20T15-40-20-531Z.json",
+      "batch": "phaseA-extensions-2026-03-27",
+      "timestamp": "2026-03-27T21:02:35.621010+00:00"
+    },
+    {
+      "consumed": "extensions/chthonic-archive/.chthonic/cache/insiders-post-restart-verify-2026-02-20T16-23-35-681Z.json",
+      "destination": "dumpster-dive\\intake\\phaseA-extensions-2026-03-27\\insiders-post-restart-verify-2026-02-20T16-23-35-681Z.json",
+      "batch": "phaseA-extensions-2026-03-27",
+      "timestamp": "2026-03-27T21:02:35.868995+00:00"
+    },
+    {
+      "consumed": "extensions/chthonic-archive/.chthonic/cache/insiders-post-restart-verify-2026-02-20T16-26-03-722Z.json",
+      "destination": "dumpster-dive\\intake\\phaseA-extensions-2026-03-27\\insiders-post-restart-verify-2026-02-20T16-26-03-722Z.json",
+      "batch": "phaseA-extensions-2026-03-27",
+      "timestamp": "2026-03-27T21:02:36.121187+00:00"
+    },
+    {
+      "consumed": "extensions/chthonic-archive/.chthonic/cache/insiders-post-restart-verify-2026-02-20T18-00-49-353Z.json",
+      "destination": "dumpster-dive\\intake\\phaseA-extensions-2026-03-27\\insiders-post-restart-verify-2026-02-20T18-00-49-353Z.json",
+      "batch": "phaseA-extensions-2026-03-27",
+      "timestamp": "2026-03-27T21:02:36.373366+00:00"
+    },
+    {
+      "consumed": "extensions/chthonic-archive/.chthonic/cache/insiders-post-restart-verify-2026-03-03T01-10-46-372Z.json",
+      "destination": "dumpster-dive\\intake\\phaseA-extensions-2026-03-27\\insiders-post-restart-verify-2026-03-03T01-10-46-372Z.json",
+      "batch": "phaseA-extensions-2026-03-27",
+      "timestamp": "2026-03-27T21:02:36.623424+00:00"
+    },
+    {
+      "consumed": "extensions/chthonic-archive/.chthonic/cache/insiders-post-restart-verify-latest.json",
+      "destination": "dumpster-dive\\intake\\phaseA-extensions-2026-03-27\\insiders-post-restart-verify-latest.json",
+      "batch": "phaseA-extensions-2026-03-27",
+      "timestamp": "2026-03-27T21:02:36.877930+00:00"
+    },
+    {
+      "consumed": "extensions/chthonic-archive/.chthonic/ruby/vendor/bundle/ruby/4.0.0/extensions/x64-mingw-ucrt/4.0.0/json-2.18.1/mkmf.log",
+      "destination": "dumpster-dive\\intake\\phaseA-extensions-2026-03-27\\mkmf.log",
+      "batch": "phaseA-extensions-2026-03-27",
+      "timestamp": "2026-03-27T21:02:37.129077+00:00"
+    },
+    {
+      "consumed": "extensions/chthonic-archive/.chthonic/ruby/vendor/bundle/ruby/4.0.0/extensions/x64-mingw-ucrt/4.0.0/prism-1.9.0/mkmf.log",
+      "destination": "dumpster-dive\\intake\\phaseA-extensions-2026-03-27\\mkmf.log",
+      "batch": "phaseA-extensions-2026-03-27",
+      "timestamp": "2026-03-27T21:02:37.380337+00:00"
+    },
+    {
+      "consumed": "extensions/chthonic-statusbar/legacy.package.snapshot.json",
+      "destination": "dumpster-dive\\intake\\phaseA-extensions-2026-03-27\\legacy.package.snapshot_97feea7f.json",
+      "batch": "phaseA-extensions-2026-03-27",
+      "timestamp": "2026-03-27T21:03:55.933617+00:00"
+    },
+    {
+      "consumed": "extensions/chthonic-archive/.chthonic/ruby/vendor/bundle/ruby/3.4.0/extensions/x64-mingw-ucrt/3.4.0/json-2.18.1/mkmf.log",
+      "destination": "dumpster-dive\\intake\\phaseA-extensions-2026-03-27\\mkmf_2d7d2001.log",
+      "batch": "phaseA-extensions-2026-03-27",
+      "timestamp": "2026-03-27T21:03:56.184167+00:00"
+    },
+    {
+      "consumed": "extensions/chthonic-archive/.chthonic/ruby/vendor/bundle/ruby/3.4.0/extensions/x64-mingw-ucrt/3.4.0/prism-1.9.0/mkmf.log",
+      "destination": "dumpster-dive\\intake\\phaseA-extensions-2026-03-27\\mkmf_572e8ce2.log",
+      "batch": "phaseA-extensions-2026-03-27",
+      "timestamp": "2026-03-27T21:03:56.435968+00:00"
+    },
+    {
+      "consumed": "zombie_bridge_probe.md",
+      "destination": "dumpster-dive\\intake\\integration-probe-2026-03-27\\zombie_bridge_probe.md",
+      "batch": "integration-probe-2026-03-27",
+      "timestamp": "2026-03-27T21:14:02.817610+00:00"
+    },
+    {
+      "consumed": "zombie_bridge_probe_2.md",
+      "destination": "dumpster-dive\\intake\\integration-probe-2026-03-27\\zombie_bridge_probe_2.md",
+      "batch": "integration-probe-2026-03-27",
+      "timestamp": "2026-03-27T21:15:11.837294+00:00"
+    },
+    {
+      "consumed": "zombie_boundary_probe_3.md",
+      "destination": "dumpster-dive\\intake\\boundary-probe-2026-03-28\\zombie_boundary_probe_3.md",
+      "batch": "boundary-probe-2026-03-28",
+      "timestamp": "2026-03-28T03:36:23.486296+00:00"
     }
   ],
-  "last_updated": "2026-03-27T03:21:16.165032+00:00",
+  "last_updated": "2026-03-28T03:36:23.495441+00:00",
   "cluster_profiles": {
     "backup": {
       "count": 5,
@@ -393,12 +1281,12 @@
       "yield_rate": 0.0
     },
     "candidate": {
-      "count": 29,
-      "ore_sum": 115,
-      "extractable_sum": 12,
+      "count": 175,
+      "ore_sum": 474,
+      "extractable_sum": 20,
       "top_signals": {},
-      "avg_ore": 1.0,
-      "avg_extractable": 0.41,
+      "avg_ore": 2.71,
+      "avg_extractable": 0.11,
       "yield_rate": 0.0
     },
     "recovered": {
@@ -411,12 +1299,12 @@
       "yield_rate": 1.0
     },
     "legacy": {
-      "count": 9,
-      "ore_sum": 23,
+      "count": 12,
+      "ore_sum": 26,
       "extractable_sum": 1,
       "top_signals": {},
-      "avg_ore": 1.36,
-      "avg_extractable": 0.11,
+      "avg_ore": 2.17,
+      "avg_extractable": 0.08,
       "yield_rate": 0.0
     }
   },
@@ -551,7 +1439,139 @@
     "c710fad1aab697f9",
     "a1fe0f92b76152aa",
     "8822e803c23d231c",
-    "55319774bdf4f6f2"
+    "55319774bdf4f6f2",
+    "7bcf7d509138efd8",
+    "e7aa9bee3f7ad05d",
+    "ba68bec6b207f690",
+    "fe75bb6f64188bc9",
+    "52fbb3cad1a9f9c5",
+    "6abea50e6163f402",
+    "b050c6fb97356b4a",
+    "7de7f65d04b81d82",
+    "c169b2fc19d31828",
+    "16fe8e9fb002a1a2",
+    "a818f8ceb78da190",
+    "cd039a4436060c42",
+    "92445c5f3b545670",
+    "d50a0c82f77c1d1c",
+    "448bf8651aa00c1d",
+    "9c8b5bbaf8146e98",
+    "62076507e6f4be4f",
+    "144f0ba0b4bce82b",
+    "7fc0380eab63e271",
+    "d890bbedb0f9a563",
+    "ec0769eafac4f61d",
+    "770b9d82e35bfa88",
+    "1e4f9514a86f65c5",
+    "d024ef50be302906",
+    "97bccbcb7d9ec727",
+    "c14e829d1c3c580e",
+    "9276cd9d85f5d2b0",
+    "641d0e9780e90459",
+    "8896e5ed23d2e3f3",
+    "362f926dd622d06e",
+    "4ff357051a76f935",
+    "8ea0718803040cbc",
+    "6d99108c8ab77e83",
+    "3156487dd65d309b",
+    "6542be04ef205668",
+    "f366de5cceae8e16",
+    "68104f75b1c70c98",
+    "61e39c11d1d7e78f",
+    "d1596c845ea8b2a1",
+    "801998e6ecf226ab",
+    "040795d9231e66e5",
+    "17e68b3f3fd7fb2d",
+    "a30ccb3cafd942e5",
+    "e4f485db652675dd",
+    "5d0c2814b582a49e",
+    "3e61d74e677d5139",
+    "08233504181638b9",
+    "f1e322ddd4dc99c3",
+    "5957c11b5ee60643",
+    "fed59c5a9037eb47",
+    "b1f34c9b8cd9737b",
+    "73d29f26f15f1ce5",
+    "bcdb03edd5a3e29a",
+    "4078ab643959bce6",
+    "21623e599bd40b68",
+    "d231cbe703b98149",
+    "16699d66d452c2a1",
+    "2a7fd5c3c51b3814",
+    "845e8da566a7fcae",
+    "f2670e99f75e9c63",
+    "91ea980f0ba68aaf",
+    "ca5592420ad61c0d",
+    "58bf49b63870056a",
+    "4b34047c701591d2",
+    "690dfc6027c5d8c1",
+    "0f82629f2f7d9c5e",
+    "ddd07f654c74f967",
+    "efc1f9d0b5692341",
+    "ddbabf89ec73cfad",
+    "d39ca7f70ab402fd",
+    "b37b244bc31cc8e6",
+    "05e9959c944c9bdf",
+    "50dbc5f40555cefd",
+    "ae4b537e64df2a8d",
+    "d82f5a69f74b77c0",
+    "75964160698952e8",
+    "9dabbec81dbb1533",
+    "6bf04768e19c8421",
+    "35b3fef2f8bee83e",
+    "e5ea006971406c5c",
+    "f13d75f6506beea2",
+    "3ce71b8b387cd4c4",
+    "1f10be7b803c5369",
+    "9e946a0ed7682e0a",
+    "abb664ae0446cb28",
+    "5260a23c25f02bbc",
+    "356661dc6b8f3f6f",
+    "f25ffd701c542f8d",
+    "8335d8368cd9a91d",
+    "b82f7132bf7a8696",
+    "0c574fe76933344b",
+    "c093da462a54c0ee",
+    "d3747d4c79281460",
+    "196ff7b24033f3fb",
+    "c2846ad75799b516",
+    "9e72259be1e740d4",
+    "ff86d47c387ba4eb",
+    "45131e101e440dab",
+    "2161d9f07d5dc8e9",
+    "3d70473eb5c64a24",
+    "4b634aa8d7747f2d",
+    "8f6b9765ebafd56d",
+    "9b6ca278797fc707",
+    "e5bb9934db0506a4",
+    "1a8d136b02d0781b",
+    "e3b0c44298fc1c14",
+    "dd8c9924f7ef5543",
+    "f0a96ef9f4ff57fd",
+    "f63696c528a79315",
+    "c973c265730f6200",
+    "597663c8b290bc52",
+    "cb8557011dfcfb4b",
+    "51e0ea641929c4f9",
+    "016aa79f2c942f3f",
+    "e0262c73438dc917",
+    "90ac80374d8b352d",
+    "c2e6bb915388245e",
+    "73b29d286a65e81d",
+    "31591eecc0bcbfd7",
+    "044e2193d48c0ff0",
+    "caa385e9f8fcc15b",
+    "dda67ba60f226ccf",
+    "23e996212e7c268f",
+    "8e8ef164f6c5616b",
+    "1a9a26eafa2b9497",
+    "bfb789b75f13ce87",
+    "33e175bd91dfec3a",
+    "0deb03ff608810de",
+    "6a11a79ae526776a",
+    "955d02c8175d7f50",
+    "6e233bc348ddf63b",
+    "90afa20324086274"
   ],
   "forge_feedback": {
     "total_tempered": 1,

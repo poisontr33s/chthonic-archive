@@ -62,7 +62,8 @@ Hidden mailbox dirs (`.codex/mailbox`, `.claude/mailbox`) are non-canonical — 
 | `bun run test` | Test |
 | `bun run lint` | Lint |
 | `cargo build` | Rust build |
-| `uv run <script>` | Python execution |
+| `$env:PYTHONIOENCODING = 'utf-8'; uv run <script>` | Python execution (preferred — Unicode-safe on Windows) |
+| `uv run <script>` | Python execution (bare form — use when output is ASCII-only) |
 | `uv run scripts/link_audit.py check <file> --dry-run` | Markdown link audit (dry-run) |
 | `uv run scripts/link_audit.py check <file> --fix` | Markdown link auto-fix |
 | `uv run scripts/link_audit.py backticks <file> --fix` | Upgrade inert backtick refs to links |

@@ -1,0 +1,137 @@
+{
+  "kind": "zombie_intake_compaction",
+  "generated_at": "2026-03-27T21:27:40.746074+00:00",
+  "batch": "dumpster-dive/intake/integration-probe-2026-03-27",
+  "apply_mode": true,
+  "extract_count": 2,
+  "receipt_count": 2,
+  "ore_histogram": {
+    "2": 2
+  },
+  "category_histogram": {
+    "candidate": 2
+  },
+  "extracts": [
+    {
+      "path": "dumpster-dive/intake/integration-probe-2026-03-27/.zombie_extract_zombie_bridge_probe_2807a018.json",
+      "name": ".zombie_extract_zombie_bridge_probe_2807a018.json",
+      "payload": {
+        "source": "zombie_bridge_probe.md",
+        "timestamp": "2026-03-27T21:14:02.700813+00:00",
+        "ore_rating": 2,
+        "category": "candidate",
+        "signals": [
+          "ore_adapted:3->2"
+        ],
+        "intelligence": {
+          "md_headings": [
+            "Zombie Bridge Probe"
+          ]
+        },
+        "content_hash": "955d02c8175d7f50",
+        "provenance": {
+          "operator": "Novia Cadaveris",
+          "forge_matriarch": "Sister Ferrum Scoriae",
+          "pathway": "zombie -> bridge -> forge",
+          "source_file": "zombie_bridge_probe.md",
+          "content_hash": "955d02c8175d7f50",
+          "language": ".md",
+          "byte_size": 104,
+          "line_count": 4,
+          "category": "candidate",
+          "signals": [
+            "ore_adapted:3->2"
+          ],
+          "landmarks": {
+            "md_headings": [
+              "Zombie Bridge Probe"
+            ]
+          },
+          "head_commit": "7ea9ac7bf114d14b5344fd4c03b6f2ce5ae96d25",
+          "git_status": "clean",
+          "snapshot_at": "2026-03-27T21:14:02.777538+00:00",
+          "canon": {
+            "dumpster_domain": "dumpster-dive",
+            "corpse_axis": "Novia Cadaveris",
+            "forge_axis": "Sister Ferrum Scoriae"
+          }
+        },
+        "batch": "integration-probe-2026-03-27",
+        "intake_destination": "dumpster-dive/intake/integration-probe-2026-03-27/zombie_bridge_probe.md",
+        "intake_companion": "zombie_bridge_probe.md"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/integration-probe-2026-03-27/.zombie_extract_zombie_bridge_probe_2_8bfd6df1.json",
+      "name": ".zombie_extract_zombie_bridge_probe_2_8bfd6df1.json",
+      "payload": {
+        "source": "zombie_bridge_probe_2.md",
+        "timestamp": "2026-03-27T21:15:11.699954+00:00",
+        "ore_rating": 2,
+        "category": "candidate",
+        "signals": [
+          "ore_adapted:3->2"
+        ],
+        "intelligence": {
+          "md_headings": [
+            "Zombie Bridge Probe 2"
+          ]
+        },
+        "content_hash": "6e233bc348ddf63b",
+        "provenance": {
+          "operator": "Novia Cadaveris",
+          "forge_matriarch": "Sister Ferrum Scoriae",
+          "pathway": "zombie -> bridge -> forge",
+          "source_file": "zombie_bridge_probe_2.md",
+          "hash": "6e233bc348ddf63b",
+          "content_hash": "6e233bc348ddf63b",
+          "language": ".md",
+          "byte_size": 79,
+          "line_count": 4,
+          "category": "candidate",
+          "signals": [
+            "ore_adapted:3->2"
+          ],
+          "landmarks": {
+            "md_headings": [
+              "Zombie Bridge Probe 2"
+            ]
+          },
+          "head_commit": "7ea9ac7bf114d14b5344fd4c03b6f2ce5ae96d25",
+          "git_status": "clean",
+          "snapshot_at": "2026-03-27T21:15:11.784139+00:00",
+          "canon": {
+            "dumpster_domain": "dumpster-dive",
+            "corpse_axis": "Novia Cadaveris",
+            "forge_axis": "Sister Ferrum Scoriae"
+          }
+        },
+        "batch": "integration-probe-2026-03-27",
+        "intake_destination": "dumpster-dive/intake/integration-probe-2026-03-27/zombie_bridge_probe_2.md",
+        "intake_companion": "zombie_bridge_probe_2.md"
+      }
+    }
+  ],
+  "receipts": [
+    {
+      "path": "dumpster-dive/intake/integration-probe-2026-03-27/.zombie_receipt_zombie_bridge_probe_2807a018.json",
+      "name": ".zombie_receipt_zombie_bridge_probe_2807a018.json",
+      "payload": {
+        "consumed": "zombie_bridge_probe.md",
+        "destination": "dumpster-dive\\intake\\integration-probe-2026-03-27\\zombie_bridge_probe.md",
+        "batch": "integration-probe-2026-03-27",
+        "timestamp": "2026-03-27T21:14:02.817610+00:00"
+      }
+    },
+    {
+      "path": "dumpster-dive/intake/integration-probe-2026-03-27/.zombie_receipt_zombie_bridge_probe_2_8bfd6df1.json",
+      "name": ".zombie_receipt_zombie_bridge_probe_2_8bfd6df1.json",
+      "payload": {
+        "consumed": "zombie_bridge_probe_2.md",
+        "destination": "dumpster-dive\\intake\\integration-probe-2026-03-27\\zombie_bridge_probe_2.md",
+        "batch": "integration-probe-2026-03-27",
+        "timestamp": "2026-03-27T21:15:11.837294+00:00"
+      }
+    }
+  ]
+}

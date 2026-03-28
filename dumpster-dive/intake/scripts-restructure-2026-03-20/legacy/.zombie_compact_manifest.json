@@ -1,0 +1,52 @@
+{
+  "kind": "zombie_intake_compaction",
+  "generated_at": "2026-03-27T21:28:55.612551+00:00",
+  "batch": "dumpster-dive/intake/scripts-restructure-2026-03-20/legacy",
+  "apply_mode": true,
+  "extract_count": 1,
+  "receipt_count": 1,
+  "ore_histogram": {
+    "3": 1
+  },
+  "category_histogram": {
+    "legacy": 1
+  },
+  "extracts": [
+    {
+      "path": "dumpster-dive/intake/scripts-restructure-2026-03-20/legacy/.zombie_extract_wpth_repeatable_cycle_LEGACY.json",
+      "name": ".zombie_extract_wpth_repeatable_cycle_LEGACY.json",
+      "payload": {
+        "source": "scripts/wpth_repeatable_cycle_LEGACY",
+        "timestamp": "2026-03-21T03:20:45.251097+00:00",
+        "ore_rating": 3,
+        "category": "legacy",
+        "signals": [
+          "legacy_marker",
+          "has_sid:WPTG_REPEATABLE_CYCLE_V1",
+          "has_shabti"
+        ],
+        "intelligence": {
+          "sid": [
+            "WPTG_REPEATABLE_CYCLE_V1"
+          ],
+          "shabti": [
+            "CLI Script"
+          ]
+        },
+        "content_hash": "1f0737d138d65489"
+      }
+    }
+  ],
+  "receipts": [
+    {
+      "path": "dumpster-dive/intake/scripts-restructure-2026-03-20/legacy/.zombie_receipt_wpth_repeatable_cycle_LEGACY.json",
+      "name": ".zombie_receipt_wpth_repeatable_cycle_LEGACY.json",
+      "payload": {
+        "consumed": "scripts/wpth_repeatable_cycle_LEGACY",
+        "destination": "dumpster-dive\\intake\\scripts-restructure-2026-03-20\\legacy\\wpth_repeatable_cycle_LEGACY",
+        "batch": "scripts-restructure-2026-03-20/legacy",
+        "timestamp": "2026-03-21T03:20:45.283571+00:00"
+      }
+    }
+  ]
+}
