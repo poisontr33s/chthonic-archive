@@ -635,6 +635,8 @@ def resolve_staged_rename_fix(link: dict, file_path: Path, repo_root: Path, rena
     """Resolve a markdown link against staged rename pairs."""
     target = link["target"]
     path_part = link["path_part"]
+    if path_part is None:
+        return None
     fragment = ""
     if "#" in target:
         fragment = "#" + target.split("#", 1)[1]
