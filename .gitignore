@@ -328,3 +328,6 @@ claude/SESSION_HANDOFF_2026_02_01_TO_CLAUDE.md
 
 # sentence-transformers downloaded model cache (populated on first embed)
 .fastembed_cache/
+
+# MCP filesystem server sandbox
+mcp_fs_root/

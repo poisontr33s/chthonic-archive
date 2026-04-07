@@ -1,5 +1,5 @@
-// @SID: SCRIPT_MCP_FILESYSTEM_V1
 #!/usr/bin/env bun
+// @SID: SCRIPT_MCP_FILESYSTEM_V1
 
 /**
  * MCP Filesystem Server launcher — patches upstream Windows file URI bug
