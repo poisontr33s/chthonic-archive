@@ -38,8 +38,8 @@ use winit::{
 // use data::loader::load_game_data;
 use data::persistence::{load_game_state, save_game_state};
 use data::factions::FactionRegistry;
-use data::game_tree::{inspect_game_tree, log_game_tree_report};
-use data::game_schemas::{load_game_schema_documents, log_game_schema_documents};
+// use data::game_tree::{inspect_game_tree, log_game_tree_report}; // TODO: implement game_tree module
+// use data::game_schemas::{load_game_schema_documents, log_game_schema_documents}; // TODO: implement game_schemas module
 use data::types::GameData;
 use data::verifier::AxiomVerifier;
 use render::{VulkanContext, Renderer};
@@ -292,12 +292,13 @@ fn main() -> Result<()> {
           game_data.entities.len());
 
     // === PHASE 12.5: REPO-LOCAL cRPG CONTENT BRIDGE ===
-    if let Ok(game_tree) = inspect_game_tree("game") {
-        log_game_tree_report(&game_tree);
-    }
-    if let Ok(schema_docs) = load_game_schema_documents("game") {
-        log_game_schema_documents(&schema_docs);
-    }
+    // TODO: implement game_tree and game_schemas modules
+    // if let Ok(game_tree) = inspect_game_tree("game") {
+    //     log_game_tree_report(&game_tree);
+    // }
+    // if let Ok(schema_docs) = load_game_schema_documents("game") {
+    //     log_game_schema_documents(&schema_docs);
+    // }
 
     let event_loop = EventLoop::new()?;
     let mut app = ArchiveApp::new(save_path, game_data, faction_registry);

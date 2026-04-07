@@ -27,5 +27,3 @@ pub mod faction_types;
 pub mod factions;
 pub mod procedural;
 pub mod verifier;
-pub mod game_tree;
-pub mod game_schemas;
