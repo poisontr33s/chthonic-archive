@@ -1,4 +1,5 @@
 #!/usr/bin/env bun
+
 // @SID: SCRIPT_MCP_FILESYSTEM_V1
 
 /**
