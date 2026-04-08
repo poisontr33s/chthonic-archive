@@ -1,4 +1,5 @@
 #!/usr/bin/env pwsh
+
 # @SID: SCRIPT_CLAUDINE_V1
 
 # ╔════════════════════════════════════════════════════════════════════════════
@@ -33,32 +34,53 @@ if (-not (Test-Path $ChthonicScript)) {
     exit 1
 }
 
+function Get-ClaudineGuidePayload {
+    try {
+        $json = & $ChthonicScript "commands" "guide" "--json"
+        if ($LASTEXITCODE -eq 0 -and $json) {
+            return ($json | ConvertFrom-Json -ErrorAction Stop)
+        }
+    } catch {}
+
+    return [pscustomobject]@{
+        entrypoint = "claudine"
+        default_action = "env"
+        start_here = @(
+            [pscustomobject]@{ command = "claudine start"; summary = "desktop-oriented overview" }
+            [pscustomobject]@{ command = "claudine repair"; summary = "doctor dry-run guidance" }
+        )
+        domains = @()
+        notes = @(
+            "Claudine is the human-facing guide shell.",
+            "Chthonic remains the execution shell."
+        )
+    }
+}
+
 function Show-ClaudineHelp {
-@"
-Usage: claudine [action] [args]
+    $guide = Get-ClaudineGuidePayload
 
-Default action: env
-
-Examples:
-  claudine
-  claudine --quiet
-  claudine status --json
-  claudine doctor --origins
-  claudine commands counts
-  claudine commands inventory
-  claudine toolchain hierarchy
-  claudine toolchain verify
-  claudine r lane
-  claudine zig lane
-  claudine memory migration
-  claudine memory session
-
-Notes:
-  - This wrapper delegates to scripts/chthonic.ps1.
-  - It forwards the full chthonic command surface, plus bare claudine => env.
-  - Use claudine commands inventory to audit the current forwarded domains and counts.
-  - All advanced logic and manager handling lives in chthonic.
-"@
+    Write-Host "Usage: claudine [action] [args]"
+    Write-Host ""
+    Write-Host ("Default action: {0}" -f $guide.default_action)
+    Write-Host ""
+    Write-Host "Start Here:"
+    foreach ($entry in $guide.start_here) {
+        Write-Host ("  {0,-26} {1}" -f $entry.command, $entry.summary)
+    }
+    Write-Host ""
+    Write-Host "Examples:"
+    Write-Host "  claudine start"
+    Write-Host "  claudine repair"
+    Write-Host "  claudine status --json"
+    foreach ($entry in $guide.domains | Select-Object -First 6) {
+        Write-Host ("  {0}" -f $entry.suggested_command)
+    }
+    Write-Host ""
+    Write-Host "Notes:"
+    foreach ($note in $guide.notes) {
+        Write-Host ("  - {0}" -f $note)
+    }
 }
 
 # If Action used default and the first remaining token is actually the intended action
@@ -80,6 +102,17 @@ if ($Action -in @("--help", "-h", "help")) {
 if ($Action -in @("--version", "-v")) {
     & $ChthonicScript "--version"
     exit $LASTEXITCODE
+}
+
+switch ($Action) {
+    "start" {
+        & $ChthonicScript "status"
+        exit $LASTEXITCODE
+    }
+    "repair" {
+        & $ChthonicScript "doctor" "--dry-run"
+        exit $LASTEXITCODE
+    }
 }
 
 # Backward compatibility:

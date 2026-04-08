@@ -1,17 +1,15 @@
 #!/usr/bin/env pwsh
-#
 # @SID: SCRIPT_TEST_META_CLI_V1
 # @Type: VALIDATION
 # @Spectrum: WHITE
 # @Zone: THE GARDEN
 # @Purpose: Quick validation of refactored chthonic.ps1
-#
 # Quick validation of refactored chthonic.ps1
 
 $REPO_ROOT = Split-Path -Parent (Split-Path -Parent $MyInvocation.MyCommand.Path)
 $SCRIPT_DIR = Join-Path $REPO_ROOT "scripts"
 
-Write-Host "Testing refactored chthonic v3.3.0 meta-CLI...`n" -ForegroundColor Cyan
+Write-Host "Testing refactored chthonic meta-CLI...`n" -ForegroundColor Cyan
 
 # Test 1: Help
 Write-Host "✅ Test 1: chthonic --help" -ForegroundColor Green
@@ -78,5 +76,45 @@ Write-Host "✅ Test 8: chthonic new uv-python-app --dry-run --json" -Foreground
 " 2>&1 | Select-Object -First 12
 Write-Host ""
 
-Write-Host "✅ All tests passed! Meta-CLI is working." -ForegroundColor Cyan
+# Test 9: Python lane
+Write-Host "✅ Test 9: chthonic python lane" -ForegroundColor Green
+& pwsh -NoProfile -Command "
+  Set-Location '$REPO_ROOT'
+  & '$SCRIPT_DIR\chthonic.ps1' python lane
+" 2>&1 | Select-Object -First 10
+Write-Host ""
+
+# Test 10: Bun lane
+Write-Host "✅ Test 10: chthonic bun lane" -ForegroundColor Green
+& pwsh -NoProfile -Command "
+  Set-Location '$REPO_ROOT'
+  & '$SCRIPT_DIR\chthonic.ps1' bun lane
+" 2>&1 | Select-Object -First 10
+Write-Host ""
+
+# Test 11: Rust lane
+Write-Host "✅ Test 11: chthonic rust lane" -ForegroundColor Green
+& pwsh -NoProfile -Command "
+  Set-Location '$REPO_ROOT'
+  & '$SCRIPT_DIR\chthonic.ps1' rust lane
+" 2>&1 | Select-Object -First 10
+Write-Host ""
+
+# Test 12: Go lane
+Write-Host "✅ Test 12: chthonic go lane" -ForegroundColor Green
+& pwsh -NoProfile -Command "
+  Set-Location '$REPO_ROOT'
+  & '$SCRIPT_DIR\chthonic.ps1' go lane
+" 2>&1 | Select-Object -First 10
+Write-Host ""
+
+# Test 13: Claudine wrapper parity
+Write-Host "✅ Test 13: claudine python lane" -ForegroundColor Green
+& pwsh -NoProfile -Command "
+  Set-Location '$REPO_ROOT'
+  & '$SCRIPT_DIR\claudine.ps1' python lane
+" 2>&1 | Select-Object -First 10
+Write-Host ""
+
+Write-Host "✅ Meta-CLI smoke tests completed." -ForegroundColor Cyan
 

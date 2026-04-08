@@ -35,6 +35,7 @@ $LIB_DIR = Join-Path $SCRIPT_DIR "lib"
 $STATE_DIR = Join-Path $env:USERPROFILE ".chthonic"
 $CONFIG_FILE = Join-Path $STATE_DIR "config.json"
 $SERVICES_FILE = Join-Path $STATE_DIR "services.json"
+$script:CommandSurfaceJsonPayload = $null
 
 function Complete-ChthonicCommand {
     param([int]$Code = 0)
@@ -885,8 +886,134 @@ function Get-ChthonicStrategicDocs {
     )
 }
 
+function Get-ChthonicSemanticMetadata {
+    return @{
+        env = [pscustomobject]@{
+            guide = "Activate the repo's in-house desktop toolchain shell."
+            operator = "Session-scoped PATH/binding activation."
+            capability = [pscustomobject]@{
+                observe = @("effective command bindings", "current lane visibility")
+                change = @("current shell environment only")
+                limits = @("does not install toolchains", "does not rewrite repo pins")
+                pins = @()
+                retention = "No version mutation; session activation only."
+            }
+        }
+        status = [pscustomobject]@{
+            guide = "See what is actually available on this machine right now."
+            operator = "Read-only machine + toolchain state snapshot."
+            capability = [pscustomobject]@{
+                observe = @("manager versions", "resolved command paths", "platform bindings")
+                change = @()
+                limits = @("observation only")
+                pins = @()
+                retention = "Read-only."
+            }
+        }
+        doctor = [pscustomobject]@{
+            guide = "Check what is outdated, what is pinned, and what can be fixed safely."
+            operator = "Version/EOL drift analysis plus bounded upgrade/install vectors."
+            capability = [pscustomobject]@{
+                observe = @("installed versions", "repo pins", "endoflife.date targets", "optional missing lanes")
+                change = @("manager-driven upgrades when --fix is used")
+                limits = @("does not upgrade every language blindly", "respects repo pins such as rust-toolchain.toml and .python-version", "cannot install versions a manager does not publish")
+                pins = @(".python-version", "rust-toolchain.toml")
+                retention = "Most managers retain installed versions; bun replaces the active binary."
+            }
+        }
+        toolchain = [pscustomobject]@{
+            guide = "Inspect the intended toolchain hierarchy before changing the desktop."
+            operator = "Control-plane summary for lane ownership and command resolution."
+            capability = [pscustomobject]@{
+                observe = @("tool ownership", "path resolution", "lane hierarchy")
+                change = @("verifier/scan commands only when invoked")
+                limits = @("not a universal installer", "hierarchy is descriptive unless an action subcommand is called")
+                pins = @("toolchain config files when present")
+                retention = "Mostly observational; delegated actions follow underlying tool semantics."
+            }
+        }
+        python = [pscustomobject]@{
+            guide = "One-line Python + uv state."
+            operator = "Reports active interpreter path, uv version, and repo pin."
+            capability = [pscustomobject]@{
+                observe = @("uv", "active python", ".python-version")
+                change = @()
+                limits = @("lane view only; use doctor/new for mutation")
+                pins = @(".python-version")
+                retention = "uv retains runtimes side-by-side."
+            }
+        }
+        bun = [pscustomobject]@{
+            guide = "One-line Bun + Node state."
+            operator = "Reports bun binary and detectable Node runtime."
+            capability = [pscustomobject]@{
+                observe = @("bun", "node")
+                change = @()
+                limits = @("lane view only", "Node may be absent even when bun is present")
+                pins = @()
+                retention = "bun is a single active binary."
+            }
+        }
+        rust = [pscustomobject]@{
+            guide = "One-line Rust toolchain state."
+            operator = "Reports rustup, rustc, cargo, and toolchain pin."
+            capability = [pscustomobject]@{
+                observe = @("rustup", "rustc", "cargo", "rust-toolchain.toml")
+                change = @()
+                limits = @("lane view only; doctor handles bounded upgrade logic")
+                pins = @("rust-toolchain.toml")
+                retention = "rustup retains toolchains/components unless pruned."
+            }
+        }
+        go = [pscustomobject]@{
+            guide = "One-line Go + goup state."
+            operator = "Reports goup and active Go runtime path."
+            capability = [pscustomobject]@{
+                observe = @("goup", "go")
+                change = @()
+                limits = @("lane view only")
+                pins = @()
+                retention = "goup keeps versions and switches the current link."
+            }
+        }
+        ruby = [pscustomobject]@{
+            guide = "One-line Ruby lane plus a richer Ruby management surface."
+            operator = "Reports rv-managed Ruby plus DevKit and tool inventory."
+            capability = [pscustomobject]@{
+                observe = @("rv", "ruby", "gcc", "make", "pacman", "installed Ruby tools")
+                change = @("rv Ruby installs/upgrades through explicit ruby subcommands")
+                limits = @("lane view only unless a Ruby action is chosen")
+                pins = @("rv ruby pin")
+                retention = "rv installs versions side-by-side."
+            }
+        }
+        r = [pscustomobject]@{
+            guide = "One-line R runtime + rv-r package lane."
+            operator = "Reports unmanaged R runtime and repo wrapper state."
+            capability = [pscustomobject]@{
+                observe = @("R", "Rscript", "rv-r")
+                change = @()
+                limits = @("runtime manager intentionally none")
+                pins = @()
+                retention = "Read-only lane view."
+            }
+        }
+        zig = [pscustomobject]@{
+            guide = "One-line Zig + zv state."
+            operator = "Reports manager and active Zig runtime."
+            capability = [pscustomobject]@{
+                observe = @("zv", "zig")
+                change = @()
+                limits = @("lane view only")
+                pins = @()
+                retention = "zv-managed runtimes are retained in manager storage."
+            }
+        }
+    }
+}
+
 function Get-ChthonicCommandCatalog {
-    return @(
+    $catalog = @(
         [pscustomobject]@{
             domain = "env"
             mode = "canonical"
@@ -971,6 +1098,7 @@ function Get-ChthonicCommandCatalog {
             actions = @(
                 [pscustomobject]@{ name = "inventory"; aliases = @("matrix", "surface"); summary = "show domains, actions, compatibility watch, and wrapper reach" }
                 [pscustomobject]@{ name = "counts"; aliases = @(); summary = "show command/subcommand totals without flags or open-ended args" }
+                [pscustomobject]@{ name = "guide"; aliases = @(); summary = "show human-facing guide output from the semantic core" }
             )
         }
         [pscustomobject]@{
@@ -987,6 +1115,46 @@ function Get-ChthonicCommandCatalog {
                 [pscustomobject]@{ name = "upgrade"; aliases = @("install-latest", "latest"); summary = "install latest stable Ruby if newer" }
                 [pscustomobject]@{ name = "search"; aliases = @(); summary = "search RubyGems.org" }
                 [pscustomobject]@{ name = "install"; aliases = @(); summary = "install via rv tool install" }
+            )
+        }
+        [pscustomobject]@{
+            domain = "python"
+            mode = "canonical"
+            summary = "Python runtime + uv lane"
+            preferred_surface = $null
+            claudine_passthrough = $true
+            actions = @(
+                [pscustomobject]@{ name = "lane"; aliases = @("status"); summary = "uv + active Python runtime + pin state" }
+            )
+        }
+        [pscustomobject]@{
+            domain = "bun"
+            mode = "canonical"
+            summary = "Bun runtime + Node lane"
+            preferred_surface = $null
+            claudine_passthrough = $true
+            actions = @(
+                [pscustomobject]@{ name = "lane"; aliases = @("status"); summary = "bun + active Node runtime state" }
+            )
+        }
+        [pscustomobject]@{
+            domain = "rust"
+            mode = "canonical"
+            summary = "Rust toolchain lane"
+            preferred_surface = $null
+            claudine_passthrough = $true
+            actions = @(
+                [pscustomobject]@{ name = "lane"; aliases = @("status"); summary = "rustup + rustc + cargo + toolchain pin" }
+            )
+        }
+        [pscustomobject]@{
+            domain = "go"
+            mode = "canonical"
+            summary = "Go runtime + goup lane"
+            preferred_surface = $null
+            claudine_passthrough = $true
+            actions = @(
+                [pscustomobject]@{ name = "lane"; aliases = @("status"); summary = "goup + active Go runtime state" }
             )
         }
         [pscustomobject]@{
@@ -1213,6 +1381,34 @@ function Get-ChthonicCommandCatalog {
             actions = @()
         }
     )
+
+    $semantic = Get-ChthonicSemanticMetadata
+    return @($catalog | ForEach-Object {
+        $entrySemantic = if ($semantic.ContainsKey($_.domain)) { $semantic[$_.domain] } else {
+            [pscustomobject]@{
+                guide = $_.summary
+                operator = $_.summary
+                capability = [pscustomobject]@{
+                    observe = @()
+                    change = @()
+                    limits = @()
+                    pins = @()
+                    retention = "Not specified."
+                }
+            }
+        }
+        [pscustomobject]@{
+            domain = $_.domain
+            mode = $_.mode
+            summary = $_.summary
+            preferred_surface = $_.preferred_surface
+            claudine_passthrough = $_.claudine_passthrough
+            actions = $_.actions
+            guide = $entrySemantic.guide
+            operator = $entrySemantic.operator
+            capability = $entrySemantic.capability
+        }
+    })
 }
 
 function Get-ChthonicCommandSurfacePayload {
@@ -1299,6 +1495,110 @@ function Write-ChthonicCommandSurfaceSummary {
     Write-Host ("{0}  scope                  {1}" -f $Indent, $Summary.counting_scope) -ForegroundColor DarkGray
 }
 
+function Write-ChthonicCapabilityContract {
+    param(
+        [Parameter(Mandatory = $true)]$Entry,
+        [string]$Indent = "  "
+    )
+
+    Write-Host ("{0}{1}" -f $Indent, $Entry.domain) -ForegroundColor Cyan
+    Write-Host ("{0}  guide     {1}" -f $Indent, $Entry.guide) -ForegroundColor White
+    Write-Host ("{0}  operator  {1}" -f $Indent, $Entry.operator) -ForegroundColor DarkGray
+    if ($Entry.capability.observe.Count -gt 0) {
+        Write-Host ("{0}  observes  {1}" -f $Indent, ($Entry.capability.observe -join ", ")) -ForegroundColor DarkGray
+    }
+    if ($Entry.capability.change.Count -gt 0) {
+        Write-Host ("{0}  changes   {1}" -f $Indent, ($Entry.capability.change -join ", ")) -ForegroundColor DarkGray
+    }
+    if ($Entry.capability.limits.Count -gt 0) {
+        Write-Host ("{0}  limits    {1}" -f $Indent, ($Entry.capability.limits -join "; ")) -ForegroundColor Yellow
+    }
+    if ($Entry.capability.pins.Count -gt 0) {
+        Write-Host ("{0}  pins      {1}" -f $Indent, ($Entry.capability.pins -join ", ")) -ForegroundColor DarkGray
+    }
+    Write-Host ("{0}  retains   {1}" -f $Indent, $Entry.capability.retention) -ForegroundColor DarkGray
+}
+
+function Get-ChthonicGuidePayload {
+    $focusDomains = @("env", "status", "doctor", "python", "rust", "go", "bun", "toolchain", "memory")
+    $catalog = @($focusDomains | ForEach-Object {
+        Get-ChthonicCatalogDomain -Domain $_
+    } | Where-Object { $_ })
+
+    $startHere = @(
+        [pscustomobject]@{
+            command = "claudine start"
+            summary = "desktop-oriented overview of what is actually bound right now"
+        }
+        [pscustomobject]@{
+            command = "claudine repair"
+            summary = "safe doctor dry-run before changing the desktop state"
+        }
+        [pscustomobject]@{
+            command = "chthonic env"
+            summary = "activate the in-house desktop toolchain shell"
+        }
+    )
+
+    $domains = @($catalog | ForEach-Object {
+        [pscustomobject]@{
+            domain = $_.domain
+            guide = $_.guide
+            operator = $_.operator
+            limits = @($_.capability.limits)
+            pins = @($_.capability.pins)
+            suggested_command = if ($_.domain -in @("env", "status", "doctor")) {
+                "claudine $($_.domain)"
+            } else {
+                "claudine $($_.domain) lane"
+            }
+        }
+    })
+
+    return [pscustomobject]@{
+        entrypoint = "claudine"
+        default_action = "env"
+        start_here = $startHere
+        domains = $domains
+        notes = @(
+            "Claudine is the human-facing guide shell; chthonic is the execution shell.",
+            "Use `chthonic commands inventory` for the full operator matrix.",
+            "Guide output is generated from the semantic core, not a separate domain list."
+        )
+    }
+}
+
+function Write-ChthonicGuide {
+    param([Parameter(Mandatory = $true)]$GuidePayload)
+
+    Write-Host ""
+    Write-Host "CHTHONIC GUIDE" -ForegroundColor Cyan
+    Write-Host ("="*72) -ForegroundColor DarkGray
+    Write-Host "  start here" -ForegroundColor Cyan
+    foreach ($entry in $GuidePayload.start_here) {
+        Write-Host ("    {0,-26} {1}" -f $entry.command, $entry.summary) -ForegroundColor White
+    }
+    Write-Host ""
+    Write-Host "  domains" -ForegroundColor Cyan
+    foreach ($entry in $GuidePayload.domains) {
+        Write-Host ("    {0,-12} {1}" -f $entry.domain, $entry.guide) -ForegroundColor White
+        Write-Host ("      use: {0}" -f $entry.suggested_command) -ForegroundColor DarkGray
+        if ($entry.limits.Count -gt 0) {
+            Write-Host ("      limits: {0}" -f ($entry.limits -join "; ")) -ForegroundColor DarkGray
+        }
+        if ($entry.pins.Count -gt 0) {
+            Write-Host ("      pins: {0}" -f ($entry.pins -join ", ")) -ForegroundColor DarkGray
+        }
+    }
+    Write-Host ""
+    Write-Host "  notes" -ForegroundColor Cyan
+    foreach ($note in $GuidePayload.notes) {
+        Write-Host ("    - {0}" -f $note) -ForegroundColor DarkGray
+    }
+    Write-Host ("="*72) -ForegroundColor DarkGray
+    Write-Host ""
+}
+
 function Get-ChthonicCatalogDomain {
     param([Parameter(Mandatory = $true)][string]$Domain)
     return (Get-ChthonicCommandCatalog | Where-Object { $_.domain -eq $Domain } | Select-Object -First 1)
@@ -1363,7 +1663,15 @@ function Show-CommandCatalogHelp {
     Write-Host ""
     Write-ChthonicCommandSurfaceSummary -Summary $payload.summary
     Write-Host ""
+    Write-Host "Start Here" -ForegroundColor Cyan
+    Write-Host "  chthonic env               - activate the in-house desktop toolchain shell" -ForegroundColor DarkGray
+    Write-Host "  chthonic status            - see what is actually available right now" -ForegroundColor DarkGray
+    Write-Host "  claudine doctor --dry-run  - see what the doctor can fix versus only observe" -ForegroundColor DarkGray
+    Write-Host "  chthonic python lane       - one-line Python + uv state" -ForegroundColor DarkGray
+    Write-Host "  chthonic rust lane         - one-line rustup/rustc/cargo + pin state" -ForegroundColor DarkGray
+    Write-Host ""
     Write-Host "Notes" -ForegroundColor Cyan
+    Write-Host "  --help is the human-facing catalog; `commands inventory` is the full matrix." -ForegroundColor DarkGray
     Write-Host "  Use `chthonic commands inventory` for the full live matrix." -ForegroundColor DarkGray
     Write-Host "  Use `claudine commands counts` to verify wrapper reach from the legacy entrypoint." -ForegroundColor DarkGray
     Write-Host ""
@@ -1764,15 +2072,17 @@ function Invoke-MemoryLane {
 function Invoke-CommandSurface {
     param(
         [string]$CommandAction,
+        [string[]]$CommandArgs,
         [switch]$Json
     )
 
+    $script:CommandSurfaceJsonPayload = $null
     $payload = Get-ChthonicCommandSurfacePayload
 
     switch ($CommandAction) {
         { $_ -in $null, "", "inventory", "matrix", "surface" } {
             if ($Json) {
-                Write-Host (ConvertTo-Json $payload -Depth 8)
+                $script:CommandSurfaceJsonPayload = ConvertTo-Json $payload -Depth 8
                 return 0
             }
 
@@ -1815,7 +2125,7 @@ function Invoke-CommandSurface {
         }
         "counts" {
             if ($Json) {
-                Write-Host (ConvertTo-Json $payload.summary -Depth 6)
+                $script:CommandSurfaceJsonPayload = ConvertTo-Json $payload.summary -Depth 6
                 return 0
             }
 
@@ -1827,10 +2137,44 @@ function Invoke-CommandSurface {
             Write-Host ""
             return 0
         }
+        "guide" {
+            $guide = Get-ChthonicGuidePayload
+            if ($Json) {
+                $script:CommandSurfaceJsonPayload = ConvertTo-Json $guide -Depth 8
+                return 0
+            }
+            Write-ChthonicGuide -GuidePayload $guide
+            return 0
+        }
+        "contract" {
+            $target = if ($CommandArgs.Count -gt 0) { $CommandArgs[0] } else { $null }
+            if (-not $target) {
+                Write-Host "chthonic commands contract <domain>" -ForegroundColor Yellow
+                return 1
+            }
+            $entry = Get-ChthonicCatalogDomain -Domain $target
+            if (-not $entry) {
+                Write-Host "Unknown domain: $target" -ForegroundColor Red
+                return 1
+            }
+            if ($Json) {
+                $script:CommandSurfaceJsonPayload = ConvertTo-Json $entry -Depth 8
+                return 0
+            }
+            Write-Host ""
+            Write-Host "CHTHONIC COMMAND CONTRACT" -ForegroundColor Cyan
+            Write-Host ("="*72) -ForegroundColor DarkGray
+            Write-ChthonicCapabilityContract -Entry $entry -Indent "  "
+            Write-Host ("="*72) -ForegroundColor DarkGray
+            Write-Host ""
+            return 0
+        }
         default {
             Write-Host "chthonic commands <action>"
             Write-Host "  inventory|matrix  - show domains, subcommands, compatibility watch, wrapper reach"
             Write-Host "  counts            - show command/subcommand totals"
+            Write-Host "  guide             - show human-facing guide output from the semantic core"
+            Write-Host "  contract <domain> - show guide/operator/capability contract for one domain"
             return 0
         }
     }
@@ -2032,84 +2376,6 @@ function Show-StatusBanner {
     finally {
         $env:Path = $oldPath
     }
-}
-
-function Get-ChthonicCatalogDomain {
-    param([Parameter(Mandatory = $true)][string]$Domain)
-
-    return @(Get-ChthonicCommandCatalog | Where-Object { $_.domain -eq $Domain } | Select-Object -First 1)
-}
-
-function Format-ChthonicActionLabel {
-    param($Action)
-
-    $label = $Action.name
-    if ($Action.aliases -and $Action.aliases.Count -gt 0) {
-        $label += "|" + (($Action.aliases | ForEach-Object { [string]$_ }) -join "|")
-    }
-    return $label
-}
-
-function Show-DomainCatalogHelp {
-    param(
-        [Parameter(Mandatory = $true)][string]$Domain,
-        [string]$EntryPoint = "chthonic"
-    )
-
-    $entry = Get-ChthonicCatalogDomain -Domain $Domain
-    if (-not $entry) {
-        Write-Host "$EntryPoint $Domain" -ForegroundColor Yellow
-        return
-    }
-
-    Write-Host "$EntryPoint $($entry.domain) <action>" -ForegroundColor White
-    Write-Host "  $($entry.summary)" -ForegroundColor DarkGray
-
-    if ($entry.mode -eq "compatibility" -and $entry.preferred_surface) {
-        Write-Host "  preferred surface: $($entry.preferred_surface)" -ForegroundColor DarkGray
-    }
-
-    if ($entry.actions.Count -eq 0) {
-        Write-Host "  (no nested documented actions)" -ForegroundColor DarkGray
-        return
-    }
-
-    foreach ($action in $entry.actions) {
-        $label = Format-ChthonicActionLabel -Action $action
-        Write-Host ("  {0,-22} {1}" -f $label, $action.summary) -ForegroundColor White
-    }
-}
-
-function Show-CommandCatalogHelp {
-    $payload = Get-ChthonicCommandSurfacePayload
-    $canonical = @($payload.domains | Where-Object { $_.mode -eq "canonical" })
-    $compatibility = @($payload.compatibility_watch)
-
-    Write-Host ""
-    Write-Host "Usage: chthonic [--version] [--help] <domain> [<action>] [<args>]" -ForegroundColor White
-    Write-Host ""
-    Write-Host "Canonical Domains" -ForegroundColor Cyan
-    foreach ($domain in $canonical) {
-        $actionPreview = if ($domain.action_names.Count -gt 0) {
-            ($domain.action_names -join "|")
-        } else {
-            "[direct]"
-        }
-        Write-Host ("  {0,-12} {1,-32} {2}" -f $domain.domain, $actionPreview, $domain.summary) -ForegroundColor White
-    }
-    Write-Host ""
-    Write-Host "Compatibility Domains" -ForegroundColor Cyan
-    foreach ($domain in $compatibility) {
-        Write-Host ("  {0,-12} {1}" -f $domain.domain, $domain.preferred_surface) -ForegroundColor DarkGray
-    }
-    Write-Host ""
-    Write-ChthonicCommandSurfaceSummary -Summary $payload.summary
-    Write-Host ""
-    Write-Host "Notes" -ForegroundColor Cyan
-    Write-Host "  --help shows this catalog-driven summary without the status banner." -ForegroundColor DarkGray
-    Write-Host "  Use `chthonic commands inventory` for the full live matrix." -ForegroundColor DarkGray
-    Write-Host "  Use `claudine commands counts` to verify wrapper reach from the legacy entrypoint." -ForegroundColor DarkGray
-    Write-Host ""
 }
 
 function Show-Help {
@@ -3493,7 +3759,20 @@ $global:DoctorFixMap = @{
     python = @{
         Upgrade = {
             param($ver)
-            uv python install $ver
+            # Verify the version is available before attempting install + pin
+            $available = uv python list 2>$null | Where-Object { $_ -match "cpython-$([regex]::Escape($ver))-" }
+            if (-not $available) {
+                # Try install anyway — uv may fetch it; but guard the pin
+                uv python install $ver
+                if ($LASTEXITCODE -ne 0) {
+                    Write-Host "  !! uv has no binary for cpython-$ver on this platform" -ForegroundColor Red
+                    Write-Host "  !! skipping pin — run 'uv python upgrade' to stay on latest available" -ForegroundColor DarkGray
+                    return
+                }
+            } else {
+                uv python install $ver
+                if ($LASTEXITCODE -ne 0) { return }
+            }
             uv python pin $ver
         }; UpgradeDesc = "uv python install && uv python pin"
         Install = {
@@ -3502,6 +3781,11 @@ $global:DoctorFixMap = @{
                 irm https://astral.sh/uv/install.ps1 | iex
             }
             uv python install $ver
+            if ($LASTEXITCODE -ne 0) {
+                Write-Host "  !! uv has no binary for cpython-$ver on this platform" -ForegroundColor Red
+                Write-Host "  !! skipping pin — run 'uv python upgrade' to stay on latest available" -ForegroundColor DarkGray
+                return
+            }
             uv python pin $ver
         }; InstallDesc = "install uv (if missing) && uv python install && uv python pin"
     }
@@ -3514,13 +3798,70 @@ $global:DoctorFixMap = @{
         Install = { cargo install --locked brush-shell }; InstallDesc = "cargo install --locked brush-shell"
     }
     rust   = @{
-        Upgrade = { rustup update stable }; UpgradeDesc = "rustup update stable"
+        Upgrade = {
+            param($ver)
+            # Check for rust-toolchain.toml override
+            $toolchainToml = Join-Path (Get-Location) "rust-toolchain.toml"
+            if (Test-Path $toolchainToml) {
+                $content = Get-Content $toolchainToml -Raw
+                if ($content -match 'channel\s*=\s*"([^"]+)"') {
+                    $pinned = $matches[1]
+                    if ($pinned -ne "stable" -and $pinned -ne "nightly" -and $pinned -ne "beta") {
+                        Write-Host "  !! rust-toolchain.toml pins channel = `"$pinned`"" -ForegroundColor Yellow
+                        $newContent = $content -replace "channel\s*=\s*`"$([regex]::Escape($pinned))`"", "channel = `"$ver`""
+                        Set-Content $toolchainToml $newContent -NoNewline
+                        Write-Host "  -> updated rust-toolchain.toml channel to `"$ver`"" -ForegroundColor Green
+                        rustup toolchain install $ver
+                        return
+                    }
+                }
+            }
+            rustup update stable
+        }; UpgradeDesc = "rustup update stable"
         Install = { irm https://sh.rustup.rs -useb | iex }; InstallDesc = "irm rustup.rs | iex"
     }
     go     = @{
         Upgrade = { param($ver) goup install "=$ver" }; UpgradeDesc = "goup install"
         Install = { goup install stable }; InstallDesc = "goup install stable"
     }
+}
+
+function Get-DoctorPinState {
+    $pins = @()
+
+    if (Test-Path ".python-version") {
+        $pyPin = Get-Content ".python-version" -ErrorAction SilentlyContinue | Select-Object -First 1
+        if ($pyPin) {
+            $pins += [pscustomobject]@{
+                name = ".python-version"
+                value = $pyPin
+                effect = "Python upgrades pin uv to the requested version when install succeeds."
+            }
+        }
+    }
+
+    if (Test-Path "rust-toolchain.toml") {
+        $toolchainToml = Get-Content "rust-toolchain.toml" -Raw -ErrorAction SilentlyContinue
+        if ($toolchainToml -match 'channel\s*=\s*"([^"]+)"') {
+            $pins += [pscustomobject]@{
+                name = "rust-toolchain.toml"
+                value = $matches[1]
+                effect = "Rust upgrades follow the pinned channel in rust-toolchain.toml."
+            }
+        }
+    }
+
+    return @($pins)
+}
+
+function Get-DoctorRetentionNotes {
+    return @(
+        [pscustomobject]@{ manager = "rv"; note = "installs new Ruby versions alongside older ones until you prune them manually." }
+        [pscustomobject]@{ manager = "uv"; note = "installs Python runtimes side-by-side; pin changes interpreter selection, not historical deletion." }
+        [pscustomobject]@{ manager = "goup"; note = "keeps Go versions in its store and switches the active current link." }
+        [pscustomobject]@{ manager = "rustup"; note = "keeps toolchains/components in rustup home; updates do not delete older channels automatically." }
+        [pscustomobject]@{ manager = "bun"; note = "is a single runtime binary; upgrade replaces the active bun install rather than managing side-by-side versions." }
+    )
 }
 
 # Origin map: where each tool actually lives and how it was installed.
@@ -3727,17 +4068,23 @@ function Invoke-Doctor {
 
     $results = @()
     $fixable = @()
+    $skippedOptional = @()
 
-    Write-Host ""
-    Write-Host "CHTHONIC DOCTOR v$VERSION" -ForegroundColor Cyan -NoNewline
-    Write-Host " | endoflife.date" -ForegroundColor DarkGray
-    Write-Host ("="*72) -ForegroundColor DarkGray
+    if (-not $Json) {
+        Write-Host ""
+        Write-Host "CHTHONIC DOCTOR v$VERSION" -ForegroundColor Cyan -NoNewline
+        Write-Host " | endoflife.date" -ForegroundColor DarkGray
+        Write-Host ("="*72) -ForegroundColor DarkGray
+    }
 
     foreach ($check in $checks) {
         $installed = Get-InstalledVersion $check.Name
 
         # Skip optional tools that aren't installed
-        if ($check.Optional -and -not $installed) { continue }
+        if ($check.Optional -and -not $installed) {
+            $skippedOptional += $check.Name
+            continue
+        }
 
         $eolData = Get-EndOfLifeData $check.Product
 
@@ -3800,7 +4147,20 @@ function Invoke-Doctor {
             $badge = "no API data"
         }
 
+        $results += [pscustomobject]@{
+            tool = $check.Name
+            manager = $check.Manager
+            installed = $installed
+            latest = $latest
+            badge = $badge
+            eol = $eolDate
+            fix_target = $fixTarget
+            auto_fix = [bool]$global:DoctorFixMap[$check.Name]
+            optional = [bool]$check.Optional
+        }
+
         # Display line
+        if ($Json) { continue }
         $mgr = $check.Manager.PadRight(6)
         $name = $check.Name.PadRight(10)
         $instStr = if ($installed) { $installed.PadRight(12) } else { "(missing)".PadRight(12) }
@@ -3832,18 +4192,44 @@ function Invoke-Doctor {
         }
     }
 
-    Write-Host ("="*72) -ForegroundColor DarkGray
     $currentCount = ($results.Count -gt 0) ? ($results | Where-Object { $_.status -eq "current" }).Count : (($checks | ForEach-Object { $_.Name }) | Where-Object { $_ -notin ($fixable.Tool) }).Count
     $checkedCount = $checks.Count - ($checks | Where-Object { $_.Optional -and -not (Get-InstalledVersion $_.Name) }).Count
     $fixCount = $fixable.Count
     $okCount = $checkedCount - $fixCount
-    Write-Host "  $okCount/$checkedCount current" -NoNewline -ForegroundColor $(if ($fixCount -eq 0) { "Green" } else { "Yellow" })
-    if ($fixCount -gt 0) {
-        Write-Host "  |  $fixCount fixable" -NoNewline -ForegroundColor Yellow
-        Write-Host "  (--dry-run | --fix)" -NoNewline -ForegroundColor DarkGray
+    $pins = @(Get-DoctorPinState)
+    $retentionNotes = @(Get-DoctorRetentionNotes)
+
+    if (-not $Json) {
+        Write-Host ("="*72) -ForegroundColor DarkGray
+        Write-Host "  $okCount/$checkedCount current" -NoNewline -ForegroundColor $(if ($fixCount -eq 0) { "Green" } else { "Yellow" })
+        if ($fixCount -gt 0) {
+            Write-Host "  |  $fixCount fixable" -NoNewline -ForegroundColor Yellow
+            Write-Host "  (--dry-run | --fix)" -NoNewline -ForegroundColor DarkGray
+        }
+        Write-Host "  | endoflife.date" -ForegroundColor DarkGray
+        Write-Host ""
+
+        Write-Host "DOCTOR MODEL" -ForegroundColor Cyan
+        Write-Host ("="*72) -ForegroundColor DarkGray
+        Write-Host "  auto-fix managers   rv, uv, bun, rustup, goup, cargo(brush)" -ForegroundColor White
+        Write-Host "  observed-only       visualstudio, dotnet, optional system lanes" -ForegroundColor DarkGray
+        if ($skippedOptional.Count -gt 0) {
+            Write-Host ("  skipped optional    {0}" -f ($skippedOptional -join ", ")) -ForegroundColor DarkGray
+        }
+        if ($pins.Count -gt 0) {
+            Write-Host "  repo pins" -ForegroundColor Cyan
+            foreach ($pin in $pins) {
+                Write-Host ("    - {0} = {1}" -f $pin.name, $pin.value) -ForegroundColor White
+                Write-Host ("      {0}" -f $pin.effect) -ForegroundColor DarkGray
+            }
+        }
+        Write-Host "  retention" -ForegroundColor Cyan
+        foreach ($note in $retentionNotes) {
+            Write-Host ("    - {0}: {1}" -f $note.manager, $note.note) -ForegroundColor DarkGray
+        }
+        Write-Host ("="*72) -ForegroundColor DarkGray
+        Write-Host ""
     }
-    Write-Host "  | endoflife.date" -ForegroundColor DarkGray
-    Write-Host ""
 
     # --fix / --dry-run mode: execute or simulate upgrades and installs
     if (($Fix -or $DryRun) -and $fixable.Count -gt 0) {
@@ -3898,12 +4284,32 @@ function Invoke-Doctor {
     }
 
     if ($Json) {
-        $jsonResults = $checks | ForEach-Object {
-            $inst = Get-InstalledVersion $_.Name
-            if ($_.Optional -and -not $inst) { return }
-            @{ tool = $_.Name; manager = $_.Manager; installed = $inst }
+        $payload = [pscustomobject]@{
+            version = $VERSION
+            provider = "endoflife.date"
+            summary = [pscustomobject]@{
+                checked = $checkedCount
+                current = $okCount
+                fixable = $fixCount
+                skipped_optional = @($skippedOptional)
+            }
+            model = [pscustomobject]@{
+                auto_fix_managers = @("rv", "uv", "bun", "rustup", "goup", "cargo(brush)")
+                observed_only = @("visualstudio", "dotnet", "optional system lanes")
+                repo_pins = $pins
+                retention = $retentionNotes
+            }
+            checks = $results
+            planned_fixes = @($fixable | ForEach-Object {
+                [pscustomobject]@{
+                    tool = $_.Tool
+                    target = $_.Target
+                    mode = $_.Mode
+                    description = if ($_.Mode -eq "install") { $_.FixInfo.InstallDesc } else { $_.FixInfo.UpgradeDesc }
+                }
+            })
         }
-        Write-Output (ConvertTo-Json $jsonResults -Depth 5)
+        Write-Output (ConvertTo-Json $payload -Depth 8)
     }
 }
 
@@ -4280,6 +4686,188 @@ function Invoke-RubyLane {
             Write-Host ""
         }
     }
+    Write-Host ""
+}
+
+function Invoke-PythonLane {
+    param([switch]$Json)
+
+    $pythonVersion = Get-InstalledVersion "python"
+    $uvVersion = Get-InstalledVersion "uv"
+    $pythonPath = $null
+    try {
+        $uvPython = (uv python find 2>$null | Select-Object -First 1)
+        if ($uvPython -and (Test-Path $uvPython)) {
+            $pythonPath = $uvPython
+        }
+    } catch {}
+    if (-not $pythonPath) {
+        try {
+            $pythonCmd = Get-Command python -ErrorAction Stop
+            if ($pythonCmd.Source -and (Test-Path $pythonCmd.Source)) { $pythonPath = $pythonCmd.Source }
+        } catch {}
+    }
+
+    $payload = [pscustomobject]@{
+        manager = [pscustomobject]@{
+            uv = $uvVersion
+            uv_path = (Get-CommandPathFlexible -Name "uv")
+        }
+        runtime = [pscustomobject]@{
+            python = $pythonVersion
+            python_path = $pythonPath
+            pin = if (Test-Path ".python-version") { (Get-Content ".python-version" -ErrorAction SilentlyContinue | Select-Object -First 1) } else { $null }
+        }
+    }
+
+    if ($Json) {
+        Write-Output (ConvertTo-Json $payload -Depth 5)
+        return
+    }
+
+    Write-Host ""
+    Write-Host "CHTHONIC PYTHON LANE" -ForegroundColor Cyan
+    Write-Host ("="*72) -ForegroundColor DarkGray
+    Write-Host "  uv       " -NoNewline -ForegroundColor Cyan
+    Write-Host ($(if ($uvVersion) { $uvVersion } else { "not found" })) -NoNewline -ForegroundColor White
+    if ($payload.manager.uv_path) { Write-Host "  $($payload.manager.uv_path)" -ForegroundColor DarkGray } else { Write-Host "" }
+    Write-Host "  python   " -NoNewline -ForegroundColor Cyan
+    Write-Host ($(if ($pythonVersion) { $pythonVersion } else { "not found" })) -NoNewline -ForegroundColor White
+    if ($pythonPath) { Write-Host "  $pythonPath" -ForegroundColor DarkGray } else { Write-Host "" }
+    if ($payload.runtime.pin) {
+        Write-Host "  pin      " -NoNewline -ForegroundColor Cyan
+        Write-Host $payload.runtime.pin -ForegroundColor DarkGray
+    }
+    Write-Host ""
+}
+
+function Invoke-BunLane {
+    param([switch]$Json)
+
+    $bunVersion = Get-InstalledVersion "bun"
+    $bunPath = Get-CommandPathFlexible -Name "bun"
+    $nodeVersion = Get-InstalledVersion "nodejs"
+    $nodePath = Get-FnmNodeExePath
+
+    $payload = [pscustomobject]@{
+        manager = [pscustomobject]@{
+            bun = $bunVersion
+            bun_path = $bunPath
+        }
+        runtime = [pscustomobject]@{
+            node = $nodeVersion
+            node_path = $nodePath
+        }
+    }
+
+    if ($Json) {
+        Write-Output (ConvertTo-Json $payload -Depth 5)
+        return
+    }
+
+    Write-Host ""
+    Write-Host "CHTHONIC BUN LANE" -ForegroundColor Cyan
+    Write-Host ("="*72) -ForegroundColor DarkGray
+    Write-Host "  bun      " -NoNewline -ForegroundColor Cyan
+    Write-Host ($(if ($bunVersion) { $bunVersion } else { "not found" })) -NoNewline -ForegroundColor White
+    if ($bunPath) { Write-Host "  $bunPath" -ForegroundColor DarkGray } else { Write-Host "" }
+    Write-Host "  node     " -NoNewline -ForegroundColor Cyan
+    Write-Host ($(if ($nodeVersion) { $nodeVersion } else { "not found" })) -NoNewline -ForegroundColor White
+    if ($nodePath) { Write-Host "  $nodePath" -ForegroundColor DarkGray } else { Write-Host "" }
+    Write-Host ""
+}
+
+function Invoke-RustLane {
+    param([switch]$Json)
+
+    $rustVersion = Get-InstalledVersion "rust"
+    $cargoVersion = Get-InstalledVersion "cargo"
+    $rustupVersion = Get-InstalledVersion "rustup"
+    $rustToolchainPin = $null
+    if (Test-Path "rust-toolchain.toml") {
+        $content = Get-Content "rust-toolchain.toml" -Raw
+        if ($content -match 'channel\s*=\s*"([^"]+)"') {
+            $rustToolchainPin = $matches[1]
+        }
+    }
+
+    $payload = [pscustomobject]@{
+        manager = [pscustomobject]@{
+            rustup = $rustupVersion
+            rustup_path = (Get-CommandPathFlexible -Name "rustup")
+        }
+        runtime = [pscustomobject]@{
+            rustc = $rustVersion
+            rustc_path = (Get-CommandPathFlexible -Name "rustc")
+            cargo = $cargoVersion
+            cargo_path = (Get-CommandPathFlexible -Name "cargo")
+            toolchain_pin = $rustToolchainPin
+        }
+    }
+
+    if ($Json) {
+        Write-Output (ConvertTo-Json $payload -Depth 5)
+        return
+    }
+
+    Write-Host ""
+    Write-Host "CHTHONIC RUST LANE" -ForegroundColor Cyan
+    Write-Host ("="*72) -ForegroundColor DarkGray
+    Write-Host "  rustup   " -NoNewline -ForegroundColor Cyan
+    Write-Host ($(if ($rustupVersion) { $rustupVersion } else { "not found" })) -NoNewline -ForegroundColor White
+    if ($payload.manager.rustup_path) { Write-Host "  $($payload.manager.rustup_path)" -ForegroundColor DarkGray } else { Write-Host "" }
+    Write-Host "  rustc    " -NoNewline -ForegroundColor Cyan
+    Write-Host ($(if ($rustVersion) { $rustVersion } else { "not found" })) -NoNewline -ForegroundColor White
+    if ($payload.runtime.rustc_path) { Write-Host "  $($payload.runtime.rustc_path)" -ForegroundColor DarkGray } else { Write-Host "" }
+    Write-Host "  cargo    " -NoNewline -ForegroundColor Cyan
+    Write-Host ($(if ($cargoVersion) { $cargoVersion } else { "not found" })) -ForegroundColor White
+    if ($rustToolchainPin) {
+        Write-Host "  pin      " -NoNewline -ForegroundColor Cyan
+        Write-Host $rustToolchainPin -ForegroundColor DarkGray
+    }
+    Write-Host ""
+}
+
+function Invoke-GoLane {
+    param([switch]$Json)
+
+    $goVersion = Get-InstalledVersion "go"
+    $goupVersion = Get-InstalledVersion "goup"
+    $goPath = $null
+    try {
+        $goCmd = Get-Command go -ErrorAction Stop
+        if ($goCmd.Source -and (Test-Path $goCmd.Source)) { $goPath = $goCmd.Source }
+    } catch {}
+    if (-not $goPath) {
+        $candidate = Join-Path $env:USERPROFILE ".goup\current\bin\go.exe"
+        if (Test-Path $candidate) { $goPath = $candidate }
+    }
+
+    $payload = [pscustomobject]@{
+        manager = [pscustomobject]@{
+            goup = $goupVersion
+            goup_path = (Get-CommandPathFlexible -Name "goup")
+        }
+        runtime = [pscustomobject]@{
+            go = $goVersion
+            go_path = $goPath
+        }
+    }
+
+    if ($Json) {
+        Write-Output (ConvertTo-Json $payload -Depth 5)
+        return
+    }
+
+    Write-Host ""
+    Write-Host "CHTHONIC GO LANE" -ForegroundColor Cyan
+    Write-Host ("="*72) -ForegroundColor DarkGray
+    Write-Host "  goup     " -NoNewline -ForegroundColor Cyan
+    Write-Host ($(if ($goupVersion) { $goupVersion } else { "not found" })) -NoNewline -ForegroundColor White
+    if ($payload.manager.goup_path) { Write-Host "  $($payload.manager.goup_path)" -ForegroundColor DarkGray } else { Write-Host "" }
+    Write-Host "  go       " -NoNewline -ForegroundColor Cyan
+    Write-Host ($(if ($goVersion) { $goVersion } else { "not found" })) -NoNewline -ForegroundColor White
+    if ($goPath) { Write-Host "  $goPath" -ForegroundColor DarkGray } else { Write-Host "" }
     Write-Host ""
 }
 
@@ -4783,7 +5371,11 @@ switch ($Domain) {
         exit $exitCode
     }
     "commands" {
-        $exitCode = Invoke-CommandSurface -CommandAction $Action -Json:$HasJsonFlag
+        $exitCode = Invoke-CommandSurface -CommandAction $Action -CommandArgs $RemainingArgs -Json:$HasJsonFlag
+        if ($HasJsonFlag -and $script:CommandSurfaceJsonPayload) {
+            Write-Output $script:CommandSurfaceJsonPayload
+            $script:CommandSurfaceJsonPayload = $null
+        }
         exit $exitCode
     }
     "ruby" {
@@ -4827,6 +5419,54 @@ switch ($Domain) {
                 Write-Host "  search <query>      - search RubyGems.org"
                 Write-Host "  install <gem>       - install via rv tool install (defaults to RubyGems.org)"
                 Write-Host "    flags: --rubygems | --coop | --server <url> | --force"
+                exit 0
+            }
+        }
+    }
+    "python" {
+        switch ($Action) {
+            { $_ -in $null, "", "lane", "status" } {
+                Invoke-PythonLane -Json:$HasJsonFlag
+                exit 0
+            }
+            default {
+                Show-DomainCatalogHelp -Domain "python"
+                exit 0
+            }
+        }
+    }
+    "bun" {
+        switch ($Action) {
+            { $_ -in $null, "", "lane", "status" } {
+                Invoke-BunLane -Json:$HasJsonFlag
+                exit 0
+            }
+            default {
+                Show-DomainCatalogHelp -Domain "bun"
+                exit 0
+            }
+        }
+    }
+    "rust" {
+        switch ($Action) {
+            { $_ -in $null, "", "lane", "status" } {
+                Invoke-RustLane -Json:$HasJsonFlag
+                exit 0
+            }
+            default {
+                Show-DomainCatalogHelp -Domain "rust"
+                exit 0
+            }
+        }
+    }
+    "go" {
+        switch ($Action) {
+            { $_ -in $null, "", "lane", "status" } {
+                Invoke-GoLane -Json:$HasJsonFlag
+                exit 0
+            }
+            default {
+                Show-DomainCatalogHelp -Domain "go"
                 exit 0
             }
         }
