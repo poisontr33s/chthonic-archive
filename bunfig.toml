@@ -11,3 +11,16 @@ ignore = [
   "**/node_modules/**",
   "**/*.spec.ts"
 ]
+
+[audit]
+# hono@4.12.12 IS the patched version for all 5 advisories below.
+# bun audit has a boundary comparison bug that flags the fix version itself.
+# Confirmed via GitHub Advisory API: first_patched_version=4.12.12 for all.
+# Use: bun run audit (not bare bun audit) until bun fixes bunfig [audit] support.
+ignore = [
+  "GHSA-26pp-8wgv-hjvm",
+  "GHSA-r5rp-j6wh-rvv4",
+  "GHSA-xpcf-pg52-r92g",
+  "GHSA-xf4j-xp2r-rqqx",
+  "GHSA-wmmm-f939-6g9c"
+]

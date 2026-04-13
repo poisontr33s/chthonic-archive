@@ -1311,10 +1311,12 @@ function Get-ChthonicCommandCatalog {
         [pscustomobject]@{
             domain = "gemini"
             mode = "canonical"
-            summary = "Gemini CLI wrapper with MCP disabled"
+            summary = "Gemini CLI workspace dep (bun-managed repo-local lane)"
             preferred_surface = $null
             claudine_passthrough = $true
-            actions = @()
+            actions = @(
+                [pscustomobject]@{ name = "update"; aliases = @("upgrade"); summary = "update Gemini CLI to latest in both home-dir and repo workspaces; validates bun audit in both scopes" }
+            )
         }
         [pscustomobject]@{
             domain = "claudine"
@@ -3041,6 +3043,17 @@ function Show-PolyglotStatus {
     } catch {
         $tools['brush'] = 'not found'
     }
+    try {
+        $geminiPkgPath = Join-Path $REPO_ROOT "node_modules\@google\gemini-cli\package.json"
+        if (Test-Path $geminiPkgPath) {
+            $geminiPkg = Get-Content $geminiPkgPath -Raw | ConvertFrom-Json
+            $tools['gemini'] = $geminiPkg.version
+        } else {
+            $tools['gemini'] = 'not found'
+        }
+    } catch {
+        $tools['gemini'] = 'not found'
+    }
 
     $claudeMeta = Get-CommandResolution -Name "claude"
     if (-not $claudeMeta) {
@@ -3057,6 +3070,8 @@ function Show-PolyglotStatus {
     } else {
         $tools['brush_cmd'] = 'not found'
     }
+    $geminiExe = Join-Path $REPO_ROOT "node_modules\.bin\gemini.exe"
+    $tools['gemini_cmd'] = if (Test-Path $geminiExe) { $geminiExe } else { 'not found' }
 
     $claudineMeta = Get-CommandResolution -Name "claudine"
     $claudineScriptPath = Get-ClaudineScriptPath
@@ -3305,13 +3320,13 @@ function Show-PolyglotStatus {
             "ruby", "rv", "rvw", "python", "uv", "ruff",
             "bun", "biome", "go", "goup", "cargo", "rust", "rustup",
             "zig", "zv", "r", "rscript", "rv_r",
-            "mdbook", "git", "gcc", "make", "claude", "brush"
+            "mdbook", "git", "gcc", "make", "claude", "brush", "gemini"
         )
 
         Write-StatusSection -Title "Commands" -Tools $tools -Keys @(
             "chthonic_cmd", "chthonic_binding",
             "claudine_cmd", "claudine_binding",
-            "claude_cmd", "brush_cmd", "rv_cmd", "rv_binding", "rv_binding_reason",
+            "claude_cmd", "brush_cmd", "gemini_cmd", "rv_cmd", "rv_binding", "rv_binding_reason",
             "rvar_cmd", "r_cmd", "rscript_cmd", "rv_r_cmd",
             "r_binding", "r_binding_reason", "zv_cmd", "zig_cmd", "mise", "mise_cmd"
         )
@@ -3929,6 +3944,11 @@ function Show-Origins {
             $resolved = Get-CommandDisplayFlexible -Name "claudine"
             if ($resolved) { return $resolved }
             return (Get-ClaudineScriptPath)
+        } },
+        @{ Name = "gemini";   Cmd = $null;    Method = "bun-managed workspace dep (repo-local)"; Ecosystem = "bun"; Resolver = {
+            $geminiExe = Join-Path $REPO_ROOT "node_modules\.bin\gemini.exe"
+            if (Test-Path $geminiExe) { return $geminiExe }
+            return $null
         } }
     )
 
@@ -4736,6 +4756,94 @@ function Invoke-PythonLane {
     if ($payload.runtime.pin) {
         Write-Host "  pin      " -NoNewline -ForegroundColor Cyan
         Write-Host $payload.runtime.pin -ForegroundColor DarkGray
+    }
+    Write-Host ""
+}
+
+function Invoke-GeminiUpdate {
+    [CmdletBinding()]
+    param()
+
+    Write-Host ""
+    Write-Host "GEMINI CLI VERSION POLICY" -ForegroundColor Cyan
+    Write-Host ("="*72) -ForegroundColor DarkGray
+
+    # Read currently installed version from repo node_modules
+    $repoGeminiPkg = Join-Path $REPO_ROOT "node_modules\@google\gemini-cli\package.json"
+    $installedVersion = $null
+    if (Test-Path $repoGeminiPkg) {
+        try {
+            $pkgJson = Get-Content $repoGeminiPkg -Raw | ConvertFrom-Json
+            $installedVersion = $pkgJson.version
+        } catch {}
+    }
+    Write-Host "  Installed (repo node_modules): " -NoNewline -ForegroundColor White
+    Write-Host ($(if ($installedVersion) { $installedVersion } else { "not found" })) -ForegroundColor $(if ($installedVersion) { "Green" } else { "Red" })
+
+    # Fetch latest version from npm registry
+    $latestVersion = $null
+    try {
+        $resp = Invoke-RestMethod "https://registry.npmjs.org/@google%2Fgemini-cli/latest" -TimeoutSec 10
+        $latestVersion = $resp.version
+    } catch {
+        Write-Warning "Could not fetch latest from npm registry: $($_.Exception.Message)"
+    }
+    Write-Host "  Latest    (npm registry):      " -NoNewline -ForegroundColor White
+    if ($latestVersion) {
+        $versionColor = if ($installedVersion -and ($latestVersion -eq $installedVersion)) { "Green" } else { "Yellow" }
+        Write-Host $latestVersion -ForegroundColor $versionColor
+    } else {
+        Write-Host "unavailable" -ForegroundColor Red
+    }
+
+    Write-Host ""
+    $needsInstall = $false
+    if ($latestVersion -and $installedVersion -and ($latestVersion -ne $installedVersion)) {
+        Write-Host "  → Updating @google/gemini-cli $installedVersion → $latestVersion in both workspaces..." -ForegroundColor Cyan
+        $needsInstall = $true
+        # bun update --latest scoped to just this package — preserves overrides block
+        Push-Location $REPO_ROOT
+        & bun update "@google/gemini-cli" --latest
+        Pop-Location
+        Push-Location $env:USERPROFILE
+        & bun update "@google/gemini-cli" --latest
+        Pop-Location
+    } elseif ($latestVersion -and $installedVersion) {
+        Write-Host "  ✅ Already at latest. Running bun audit verification..." -ForegroundColor Green
+    }
+
+    # bun audit in both scopes (always run — adversarial lockfile test)
+    Write-Host ""
+    Write-Host "  → bun audit (repo scope)..." -ForegroundColor DarkGray
+    Push-Location $REPO_ROOT
+    $repoAudit = & bun audit 2>&1
+    $repoClean = ($repoAudit -join "") -match "No vulnerabilities found"
+    Pop-Location
+    if ($repoClean) {
+        Write-Host "  ✅ Repo:     No vulnerabilities" -ForegroundColor Green
+    } else {
+        Write-Host "  ⚠️  Repo audit output:" -ForegroundColor Yellow
+        $repoAudit | ForEach-Object { Write-Host "     $_" -ForegroundColor Yellow }
+    }
+
+    Write-Host "  → bun audit (home scope:  ~)..." -ForegroundColor DarkGray
+    Push-Location $env:USERPROFILE
+    $homeAudit = & bun audit 2>&1
+    $homeClean = ($homeAudit -join "") -match "No vulnerabilities found"
+    Pop-Location
+    if ($homeClean) {
+        Write-Host "  ✅ Home (~): No vulnerabilities" -ForegroundColor Green
+    } else {
+        Write-Host "  ⚠️  Home audit output:" -ForegroundColor Yellow
+        $homeAudit | ForEach-Object { Write-Host "     $_" -ForegroundColor Yellow }
+    }
+
+    Write-Host ""
+    if ($repoClean -and $homeClean) {
+        Write-Host "  ✅ Gemini version policy: CLEAN across all scopes." -ForegroundColor Green
+    } else {
+        Write-Host "  ⚠️  Gemini version policy: audit findings above require remediation." -ForegroundColor Yellow
+        Write-Host "     See PWSH_RULES.md §Package Management for override fix strategy." -ForegroundColor DarkGray
     }
     Write-Host ""
 }
@@ -5826,11 +5934,21 @@ switch ($Domain) {
         exit $exitCode
     }
     
-    # Gemini CLI - disable MCP to avoid startup crash
+    # Gemini CLI — bun-managed repo-local lane with version policy
     "gemini" {
-        $env:GEMINI_DISABLE_MCP = "1"
-        & pwsh (Join-Path $SCRIPT_DIR "gemini-cli-wrapper.ps1") @CmdArgs
-        exit $LASTEXITCODE
+        switch ($Action) {
+            { $_ -in "update", "upgrade" } {
+                Invoke-GeminiUpdate
+                exit 0
+            }
+            default {
+                # MCP disabled prophylactically; all 6 server scripts confirmed present.
+                # Remove GEMINI_DISABLE_MCP once interactive MCP session validates all servers.
+                $env:GEMINI_DISABLE_MCP = "1"
+                & pwsh (Join-Path $SCRIPT_DIR "gemini-cli-wrapper.ps1") @CmdArgs
+                exit $LASTEXITCODE
+            }
+        }
     }
     
     # Claude-IDE backward compatibility (legacy)
