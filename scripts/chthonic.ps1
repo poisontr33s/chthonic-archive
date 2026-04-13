@@ -4760,6 +4760,94 @@ function Invoke-PythonLane {
     Write-Host ""
 }
 
+function Repair-WorkspaceAudit {
+    # Parse bun audit output, auto-update overrides in package.json, re-install, re-audit.
+    # Returns $true if workspace is clean (either initially or after auto-patch).
+    [CmdletBinding()]
+    param(
+        [Parameter(Mandatory)][string]$WorkspaceDir,
+        [Parameter(Mandatory)][string]$Label
+    )
+    Push-Location $WorkspaceDir
+    try {
+        $auditLines = @(& bun audit 2>&1)
+        $auditStr   = $auditLines -join "`n"
+
+        if ($auditStr -match "No vulnerabilities found") {
+            Write-Host "  ✅ $Label`: CLEAN" -ForegroundColor Green
+            return $true
+        }
+
+        Write-Host "  ⚠️  $Label`: vulnerabilities found — auto-patching overrides..." -ForegroundColor Yellow
+        $auditLines | Where-Object { $_ -match '^\s+\S' -or ($_ -match '^@?[a-z]' -and $_ -match '<|>=') } |
+            ForEach-Object { Write-Host "     $_" -ForegroundColor DarkYellow }
+
+        $pkgJsonPath = Join-Path $WorkspaceDir "package.json"
+        if (-not (Test-Path $pkgJsonPath)) {
+            Write-Host "  ❌ $Label`: no package.json found at $WorkspaceDir — cannot auto-patch" -ForegroundColor Red
+            return $false
+        }
+        $pkg = Get-Content $pkgJsonPath -Raw | ConvertFrom-Json
+        if (-not $pkg.PSObject.Properties['overrides']) {
+            $pkg | Add-Member -MemberType NoteProperty -Name 'overrides' -Value ([PSCustomObject]@{}) -Force
+        }
+
+        # Collect (package → minSafeVersion) pairs; keep highest min-safe per package
+        $needed = @{}
+        foreach ($line in $auditLines) {
+            # Only process vulnerability-range lines (start with package name, no leading space)
+            if ($line -notmatch '^(@?[a-z0-9][a-z0-9_@/.-]*)\s+') { continue }
+            $pkgName = $matches[1].Trim()
+            $spec    = $null
+
+            if ($line -match '<=\s*([0-9][0-9a-z.-]*)') {
+                # Vulnerable up to and including version — need strictly greater
+                $spec = ">$($matches[1].Trim())"
+            } elseif ($line -match '<([0-9][0-9a-z.-]*)') {
+                # Exclusive upper bound — that version is the minimum safe (exact pin)
+                $spec = $matches[1].Trim()
+            }
+
+            if (-not $spec) { continue }
+
+            # Keep the higher minimum when the same package appears more than once
+            if ($needed.ContainsKey($pkgName)) {
+                try {
+                    $curVer  = [version]($needed[$pkgName] -replace '^[>= ]+', '')
+                    $newVer  = [version]($spec -replace '^[>= ]+', '')
+                    if ($newVer -gt $curVer) { $needed[$pkgName] = $spec }
+                } catch { $needed[$pkgName] = $spec }
+            } else {
+                $needed[$pkgName] = $spec
+            }
+        }
+
+        if ($needed.Count -eq 0) {
+            Write-Host "  ❌ $Label`: could not parse vulnerability lines — manual remediation required" -ForegroundColor Red
+            return $false
+        }
+
+        foreach ($kv in $needed.GetEnumerator()) {
+            $pkg.overrides | Add-Member -MemberType NoteProperty -Name $kv.Key -Value $kv.Value -Force
+            Write-Host "    + override: $($kv.Key) $($kv.Value)" -ForegroundColor DarkYellow
+        }
+
+        Set-Content $pkgJsonPath (ConvertTo-Json $pkg -Depth 20) -Encoding utf8NoBOM
+        Write-Host "  → bun install (applying $($needed.Count) new overrides)..." -ForegroundColor DarkGray
+        & bun install 2>&1 | Out-Null
+
+        $recheck = @(& bun audit 2>&1) -join ""
+        if ($recheck -match "No vulnerabilities found") {
+            Write-Host "  ✅ $Label`: CLEAN after auto-patch" -ForegroundColor Green
+            return $true
+        }
+        Write-Host "  ❌ $Label`: still dirty after auto-patch — manual remediation required" -ForegroundColor Red
+        return $false
+    } finally {
+        Pop-Location
+    }
+}
+
 function Invoke-GeminiUpdate {
     [CmdletBinding()]
     param()
@@ -4780,15 +4868,15 @@ function Invoke-GeminiUpdate {
     Write-Host "  Installed (repo node_modules): " -NoNewline -ForegroundColor White
     Write-Host ($(if ($installedVersion) { $installedVersion } else { "not found" })) -ForegroundColor $(if ($installedVersion) { "Green" } else { "Red" })
 
-    # Fetch latest version from npm registry
+    # Fetch preview version from npm registry (preview dist-tag is the active lane)
     $latestVersion = $null
     try {
-        $resp = Invoke-RestMethod "https://registry.npmjs.org/@google%2Fgemini-cli/latest" -TimeoutSec 10
+        $resp = Invoke-RestMethod "https://registry.npmjs.org/@google%2Fgemini-cli/preview" -TimeoutSec 10
         $latestVersion = $resp.version
     } catch {
-        Write-Warning "Could not fetch latest from npm registry: $($_.Exception.Message)"
+        Write-Warning "Could not fetch preview from npm registry: $($_.Exception.Message)"
     }
-    Write-Host "  Latest    (npm registry):      " -NoNewline -ForegroundColor White
+    Write-Host "  Preview   (npm registry):      " -NoNewline -ForegroundColor White
     if ($latestVersion) {
         $versionColor = if ($installedVersion -and ($latestVersion -eq $installedVersion)) { "Green" } else { "Yellow" }
         Write-Host $latestVersion -ForegroundColor $versionColor
@@ -4797,53 +4885,36 @@ function Invoke-GeminiUpdate {
     }
 
     Write-Host ""
-    $needsInstall = $false
     if ($latestVersion -and $installedVersion -and ($latestVersion -ne $installedVersion)) {
         Write-Host "  → Updating @google/gemini-cli $installedVersion → $latestVersion in both workspaces..." -ForegroundColor Cyan
-        $needsInstall = $true
-        # bun update --latest scoped to just this package — preserves overrides block
+        # bun add @preview resolves the dist-tag and writes the exact version to package.json
+        # preserves overrides block; does NOT use --latest (stable) tag
         Push-Location $REPO_ROOT
-        & bun update "@google/gemini-cli" --latest
+        & bun add -D "@google/gemini-cli@preview"
         Pop-Location
         Push-Location $env:USERPROFILE
-        & bun update "@google/gemini-cli" --latest
+        & bun add "@google/gemini-cli@preview"
         Pop-Location
-    } elseif ($latestVersion -and $installedVersion) {
-        Write-Host "  ✅ Already at latest. Running bun audit verification..." -ForegroundColor Green
+        Write-Host ""
+    } else {
+        Write-Host "  ✅ Already at preview." -ForegroundColor Green
+        Write-Host ""
     }
 
-    # bun audit in both scopes (always run — adversarial lockfile test)
-    Write-Host ""
-    Write-Host "  → bun audit (repo scope)..." -ForegroundColor DarkGray
-    Push-Location $REPO_ROOT
-    $repoAudit = & bun audit 2>&1
-    $repoClean = ($repoAudit -join "") -match "No vulnerabilities found"
-    Pop-Location
-    if ($repoClean) {
-        Write-Host "  ✅ Repo:     No vulnerabilities" -ForegroundColor Green
-    } else {
-        Write-Host "  ⚠️  Repo audit output:" -ForegroundColor Yellow
-        $repoAudit | ForEach-Object { Write-Host "     $_" -ForegroundColor Yellow }
-    }
+    # Self-healing audit: detect new transitive vulns from updated gemini-cli deps,
+    # auto-patch overrides in package.json, re-install, re-verify in BOTH scopes.
+    Write-Host "  → Audit + self-heal (repo scope)..." -ForegroundColor DarkGray
+    $repoClean = Repair-WorkspaceAudit -WorkspaceDir $REPO_ROOT -Label "Repo"
 
-    Write-Host "  → bun audit (home scope:  ~)..." -ForegroundColor DarkGray
-    Push-Location $env:USERPROFILE
-    $homeAudit = & bun audit 2>&1
-    $homeClean = ($homeAudit -join "") -match "No vulnerabilities found"
-    Pop-Location
-    if ($homeClean) {
-        Write-Host "  ✅ Home (~): No vulnerabilities" -ForegroundColor Green
-    } else {
-        Write-Host "  ⚠️  Home audit output:" -ForegroundColor Yellow
-        $homeAudit | ForEach-Object { Write-Host "     $_" -ForegroundColor Yellow }
-    }
+    Write-Host "  → Audit + self-heal (home scope ~)..." -ForegroundColor DarkGray
+    $homeClean = Repair-WorkspaceAudit -WorkspaceDir $env:USERPROFILE -Label "Home (~)"
 
     Write-Host ""
     if ($repoClean -and $homeClean) {
         Write-Host "  ✅ Gemini version policy: CLEAN across all scopes." -ForegroundColor Green
     } else {
-        Write-Host "  ⚠️  Gemini version policy: audit findings above require remediation." -ForegroundColor Yellow
-        Write-Host "     See PWSH_RULES.md §Package Management for override fix strategy." -ForegroundColor DarkGray
+        Write-Host "  ❌ Gemini version policy: auto-patch failed. See output above." -ForegroundColor Red
+        Write-Host "     Manual fix: update 'overrides' in package.json then run 'bun install'." -ForegroundColor DarkGray
     }
     Write-Host ""
 }

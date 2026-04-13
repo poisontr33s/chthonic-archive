@@ -167,32 +167,52 @@ uv run python -c "import cupy; print(cupy.cuda.runtime.getDeviceCount())"
 
 #### **14.6. (`Runtime-Selection-for-Browser-Automation`) -> (`RSBA`)**
 
-**CRITICAL DIRECTIVE: Use Node.js for browser automation on Windows.**
+**DIRECTIVE (Updated — Bun 1.3.12):** Prefer `Bun.WebView` (Chrome backend) for browser automation. `child_process.spawn` + Playwright via Bun still broken on Windows.
 
 ```
-✅ CORRECT:     node tests/playwright_suite.js         <-<forces Node.js libuv IPC>
-✅ CORRECT:     "test:e2e": "node tests/e2e_runner.js"  <-<package.json script>
-✅ ALTERNATIVE: MCP Server (Node-based, containerized)  <-<bypasses Named Pipes entirely>
+✅ PREFERRED:   Bun.WebView({ backend: { type: "chrome" } })  <-<CDP direct, no Named Pipes, Bun-native>
+✅ FALLBACK:    node tests/playwright_suite.js                 <-<forces Node.js libuv IPC>
+✅ FALLBACK:    "test:e2e": "node tests/e2e_runner.js"         <-<package.json script>
+✅ ALTERNATIVE: MCP Server (Node-based, containerized)         <-<bypasses Named Pipes entirely>
 
-❌ INCORRECT:   bun run tests/playwright_suite.js       <-<Bun IPC hangs on Windows>
-❌ INCORRECT:   bunx playwright test                     <-<same Named Pipes failure>
+❌ BROKEN:      bun run tests/playwright_suite.js              <-<Bun child_process.spawn + Named Pipes = hang>
+❌ BROKEN:      bunx playwright test                            <-<same Named Pipes failure>
 ```
 
-**Rationale:**
-- Bun's `child_process.spawn` has incomplete Windows Named Pipes fidelity (Zig-based I/O vs. Node's libuv)
+**Bun.WebView Chrome backend (why it works):**
+- Uses Chrome DevTools Protocol (CDP) over TCP — NOT Windows Named Pipes
+- Auto-detects installed Chrome/Chromium or accepts a custom `executablePath`
+- No Playwright, no `child_process.spawn` — entirely Bun-native I/O
+- Cross-platform: WebKit (macOS default), Chrome (Windows/Linux)
+- Available since Bun 1.3.12 — this is the revisit gate resolved
+
+```typescript
+// Bun.WebView — canonical form for browser automation on Windows
+const view = new Bun.WebView({
+  url: "https://example.com",
+  backend: { type: "chrome" },       // required on Windows (no WKWebView)
+  headless: true,                    // omit for visible window
+});
+const page = await view.open();
+// CDP-based: evaluate JS, screenshot, navigate, intercept requests
+```
+
+**`child_process.spawn` issue (still present, unchanged):**
+- Bun's Zig-based I/O has incomplete Windows Named Pipes fidelity vs. Node's `libuv`
 - Symptoms: hangs at "Launching Chromium...", `ENOENT` on pipe paths, zombie browser processes
-- Validated on Windows 11 across 2024–2026 session data
+- Playwright requires Named Pipes for browser process IPC → use Node.js for Playwright-specific needs
 
-**Hybrid Runtime Pattern:**
+**Hybrid Runtime Pattern (updated):**
 
 | **Task** | **Runtime** | **Rationale** |
 |----------|------------|---------------|
 | Package management (`bun install`) | **Bun** | Speed advantage (global cache) |
 | Script dispatch (`bun run`) | **Bun** | Fast task execution |
-| Browser automation (Playwright, CDP) | **Node.js** | Mature `libuv` Named Pipes abstraction |
+| Browser automation (CDP/headless) | **Bun.WebView** | Native, no IPC fragility (Bun 1.3.12+) |
+| Playwright-specific suites | **Node.js** | Playwright requires Named Pipes; use `node` runner |
 | MCP servers | **Node.js or Docker** | Bypass IPC fragility entirely |
 
-**Revisit Gate:** When Bun releases a Windows IPC stabilization advisory, re-evaluate.
+**Revisit Gate:** ✅ RESOLVED — Bun 1.3.12 `Bun.WebView` (Chrome backend, CDP-direct) is the resolution. Update Playwright suites incrementally to `Bun.WebView` as bandwidth allows.
 
 ---
 
