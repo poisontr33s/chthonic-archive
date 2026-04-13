@@ -3767,7 +3767,7 @@ $global:DoctorFixMap = @{
         Upgrade = {
             param($ver)
             # Verify the version is available before attempting install + pin
-            $available = uv python list 2>$null | Where-Object { $_ -match "cpython-$([regex]::Escape($ver))-" }
+            $available = uv python list --all-versions 2>$null | Where-Object { $_ -match "cpython-$([regex]::Escape($ver))-" }
             if (-not $available) {
                 # Try install anyway — uv may fetch it; but guard the pin
                 uv python install $ver
@@ -4144,6 +4144,15 @@ function Invoke-Doctor {
                 } elseif ($cmp -and $cmp -lt 0) {
                     $badge = "patch $($installedCycle.latest)"
                     $fixTarget = $installedCycle.latest
+                    # Guard: uv-managed lanes — endoflife.date publishes a version before
+                    # python-build-standalone builds it. Verify the patch is in uv's index.
+                    if ($check.Manager -eq "uv" -and $fixTarget) {
+                        $uvIdx = (uv python list --all-versions 2>$null) -join "`n"
+                        if ($uvIdx -notmatch "cpython-$([regex]::Escape($fixTarget))-") {
+                            $badge = "current"
+                            $fixTarget = $null
+                        }
+                    }
                 } else {
                     $badge = "current"
                 }
