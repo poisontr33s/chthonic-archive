@@ -20,7 +20,7 @@
 //   [70+N..]  PAYLOAD (zstd-compressed bincode of Vec<TrailEvent>)
 
 use std::fs;
-use std::io::{BufRead, BufReader, Read, Write};
+use std::io::{BufRead, BufReader, Read};
 use std::path::Path;
 
 use anyhow::{Context, Result, bail};
@@ -36,6 +36,26 @@ const HEADER_SIZE: usize = 70;
 
 // Flag bits
 const FLAG_CPU_COMPRESSED: u32 = 1 << 1;
+const FLAG_GPU_COMPRESSED: u32 = 1 << 0;
+const FLAGS_KNOWN: u32 = FLAG_CPU_COMPRESSED | FLAG_GPU_COMPRESSED;
+
+/// Validate flags before any decode. Rejects unknown bits, conflicting modes,
+/// and the unimplemented GPU path. Must be called before block extraction.
+fn validate_flags(flags: u32) -> Result<()> {
+    let unknown = flags & !FLAGS_KNOWN;
+    if unknown != 0 {
+        bail!("unknown flag bits: 0x{unknown:08x}");
+    }
+    let cpu = flags & FLAG_CPU_COMPRESSED != 0;
+    let gpu = flags & FLAG_GPU_COMPRESSED != 0;
+    if cpu && gpu {
+        bail!("conflicting flags: both CPU and GPU compression set");
+    }
+    if gpu {
+        bail!("GPU compression (flag bit 0) is not yet supported in CPU-path binary");
+    }
+    Ok(())
+}
 
 /// Bincode-native representation of a TrailEvent.
 /// Avoids serde attribute conflicts (skip_serializing_if) that break bincode 2.0.
@@ -156,17 +176,38 @@ pub fn compile(trail_dir: &Path, date: &str) -> Result<()> {
     let spirv_bytes: &[u8] = &[];
     let spirv_len: u32 = 0;
 
-    // SHA-256 over schema + spirv + payload_compressed
+    // Build fixed header with zeroed hash digest slot — hash covers full file
+    let flags: u32 = FLAG_CPU_COMPRESSED;
+    let mut header = [0u8; HEADER_SIZE];
+    header[0..8].copy_from_slice(MAGIC);
+    header[8..10].copy_from_slice(&FORMAT_VERSION.to_le_bytes());
+    header[10..14].copy_from_slice(&SCHEMA_VERSION.to_le_bytes());
+    header[14..18].copy_from_slice(&event_count.to_le_bytes());
+    header[18..22].copy_from_slice(&flags.to_le_bytes());
+    // [22..54] = hash slot: zero during digest computation, filled after
+    header[54..58].copy_from_slice(&spirv_len.to_le_bytes());
+    header[58..62].copy_from_slice(&schema_len.to_le_bytes());
+    header[62..66].copy_from_slice(&payload_compressed_len.to_le_bytes());
+    header[66..70].copy_from_slice(&payload_uncompressed_len.to_le_bytes());
+
+    // SHA-256 covers the full stone: zeroed header + schema + spirv + payload.
+    // This authenticates event_count, flags, and all length fields.
     let mut hasher = Sha256::new();
+    hasher.update(&header);
     hasher.update(&schema_bytes);
     hasher.update(spirv_bytes);
     hasher.update(&payload_compressed);
     let hash: [u8; 32] = hasher.finalize().into();
+    header[22..54].copy_from_slice(&hash);
 
-    // Flags
-    let flags: u32 = FLAG_CPU_COMPRESSED;
+    // Assemble the full stone
+    let mut out = Vec::with_capacity(HEADER_SIZE + schema_bytes.len() + payload_compressed.len());
+    out.extend_from_slice(&header);
+    out.extend_from_slice(&schema_bytes);
+    out.extend_from_slice(spirv_bytes);
+    out.extend_from_slice(&payload_compressed);
 
-    // Build the stone file
+    // Atomic write: temp file → rename to avoid truncated stones on crash or kill
     let stones_dir = trail_dir.parent()
         .context("trail_dir has no parent")?
         .join("stones");
@@ -174,27 +215,12 @@ pub fn compile(trail_dir: &Path, date: &str) -> Result<()> {
         .with_context(|| format!("creating stones dir {}", stones_dir.display()))?;
 
     let stone_path = stones_dir.join(format!("{date}.runestone"));
-    let mut out = Vec::with_capacity(HEADER_SIZE + schema_bytes.len() + payload_compressed.len());
+    let tmp_path = stones_dir.join(format!("{date}.runestone.tmp.{}", std::process::id()));
 
-    // Write fixed header (70 bytes)
-    out.write_all(MAGIC)?;                                   // [0..8]
-    out.write_all(&FORMAT_VERSION.to_le_bytes())?;           // [8..10]
-    out.write_all(&SCHEMA_VERSION.to_le_bytes())?;           // [10..14]
-    out.write_all(&event_count.to_le_bytes())?;              // [14..18]
-    out.write_all(&flags.to_le_bytes())?;                    // [18..22]
-    out.write_all(&hash)?;                                   // [22..54]
-    out.write_all(&spirv_len.to_le_bytes())?;                // [54..58]
-    out.write_all(&schema_len.to_le_bytes())?;               // [58..62]
-    out.write_all(&payload_compressed_len.to_le_bytes())?;   // [62..66]
-    out.write_all(&payload_uncompressed_len.to_le_bytes())?; // [66..70]
-
-    // Variable blocks
-    out.write_all(&schema_bytes)?;
-    out.write_all(spirv_bytes)?;
-    out.write_all(&payload_compressed)?;
-
-    fs::write(&stone_path, &out)
-        .with_context(|| format!("writing {}", stone_path.display()))?;
+    fs::write(&tmp_path, &out)
+        .with_context(|| format!("writing temp stone {}", tmp_path.display()))?;
+    fs::rename(&tmp_path, &stone_path)
+        .with_context(|| format!("atomically installing stone {}", stone_path.display()))?;
 
     eprintln!(
         "stoned {} → {} ({} events, {} bytes)",
@@ -236,6 +262,9 @@ pub fn query(stone_path: &Path) -> Result<()> {
     let payload_compressed_len = u32::from_le_bytes(data[62..66].try_into().unwrap()) as usize;
     let _payload_uncompressed_len = u32::from_le_bytes(data[66..70].try_into().unwrap()) as usize;
 
+    // Validate flags before any block extraction or decode
+    validate_flags(flags)?;
+
     // Bounds check
     let total_needed = HEADER_SIZE + schema_len + spirv_len + payload_compressed_len;
     if data.len() < total_needed {
@@ -254,8 +283,12 @@ pub fn query(stone_path: &Path) -> Result<()> {
     let spirv_bytes = &data[spirv_start..payload_start];
     let payload_compressed = &data[payload_start..payload_start + payload_compressed_len];
 
-    // Verify SHA-256 BEFORE decoding
+    // Verify SHA-256: reconstruct canonical hash (header with zeroed digest slot)
+    let mut header_for_hash = data[0..HEADER_SIZE].to_vec();
+    header_for_hash[22..54].fill(0);
+
     let mut hasher = Sha256::new();
+    hasher.update(&header_for_hash);
     hasher.update(schema_bytes);
     hasher.update(spirv_bytes);
     hasher.update(payload_compressed);
@@ -290,6 +323,12 @@ pub fn query(stone_path: &Path) -> Result<()> {
             "event count mismatch: header says {event_count}, decoded {}",
             events.len()
         );
+    }
+
+    // Validate every decoded event against the REM schema
+    for (i, event) in events.iter().enumerate() {
+        event.validate()
+            .with_context(|| format!("granite event {i} schema violation"))?;
     }
 
     // Print header info
@@ -420,6 +459,34 @@ mod tests {
         // Query must fail with integrity error
         let result = query(&stone_path);
         assert!(result.is_err(), "tampered stone must fail query");
+        let err_msg = format!("{}", result.unwrap_err());
+        assert!(
+            err_msg.contains("SHA-256") || err_msg.contains("integrity") || err_msg.contains("corrupted"),
+            "error should mention integrity: {err_msg}"
+        );
+
+        Ok(())
+    }
+
+    #[test]
+    fn test_header_tamper_detection() -> Result<()> {
+        let tmp = tempfile::tempdir()?;
+        let chthonic = tmp.path().join(".chthonic");
+        let trail_dir = chthonic.join("trail");
+        let date = "2026-07-15";
+
+        make_cold_file(&trail_dir, date, &sample_events());
+        compile(&trail_dir, date)?;
+
+        let stone_path = chthonic.join("stones").join(format!("{date}.runestone"));
+        let mut data = fs::read(&stone_path)?;
+
+        // Flip a byte in event_count [14..18] — outside old partial-hash coverage
+        data[15] ^= 0x01;
+        fs::write(&stone_path, &data)?;
+
+        let result = query(&stone_path);
+        assert!(result.is_err(), "header tamper must fail integrity check");
         let err_msg = format!("{}", result.unwrap_err());
         assert!(
             err_msg.contains("SHA-256") || err_msg.contains("integrity") || err_msg.contains("corrupted"),
