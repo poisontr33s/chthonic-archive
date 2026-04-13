@@ -7,13 +7,8 @@ use flate2::Compression;
 use flate2::read::GzDecoder;
 use flate2::write::GzEncoder;
 
-use super::event::TrailEvent;
+use super::event::{TrailEvent, strip_bom};
 use super::hot;
-
-/// Strip UTF-8 BOM if present.
-fn strip_bom(line: &str) -> &str {
-    line.strip_prefix('\u{FEFF}').unwrap_or(line)
-}
 
 /// Build the filename for a cold trail file.
 pub fn cold_path(trail_dir: &Path, date: &str) -> std::path::PathBuf {

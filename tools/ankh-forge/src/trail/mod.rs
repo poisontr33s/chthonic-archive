@@ -115,6 +115,19 @@ pub enum TrailCommand {
         #[arg(long)]
         date: Option<String>,
     },
+
+    /// Compile a cold archive into a .runestone binary stone.
+    Stone {
+        /// Date to stone (YYYY-MM-DD). Defaults to today.
+        #[arg(long)]
+        date: Option<String>,
+    },
+
+    /// Query/inspect a .runestone binary stone.
+    Query {
+        /// Path to the .runestone file.
+        stone: std::path::PathBuf,
+    },
 }
 
 /// Dispatch a trail subcommand.
@@ -158,6 +171,15 @@ pub fn run(args: TrailArgs) -> Result<()> {
         TrailCommand::Forge { date } => {
             let d = date.unwrap_or_else(today);
             cold::forge(&trail_dir, &d)
+        }
+
+        TrailCommand::Stone { date } => {
+            let d = date.unwrap_or_else(today);
+            granite::compile(&trail_dir, &d)
+        }
+
+        TrailCommand::Query { stone } => {
+            granite::query(&stone)
         }
     }
 }

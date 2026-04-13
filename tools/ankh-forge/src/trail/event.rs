@@ -19,6 +19,11 @@ const VALID_TYPES: &[&str] = &[
 /// Priority levels: 1 = critical, 2 = important, 3 = informational.
 const VALID_PRIORITIES: std::ops::RangeInclusive<u8> = 1..=3;
 
+/// Strip UTF-8 BOM if present at the start of a line.
+pub(crate) fn strip_bom(line: &str) -> &str {
+    line.strip_prefix('\u{FEFF}').unwrap_or(line)
+}
+
 /// A single event in the Runestone Execution Model trail.
 ///
 /// Serialized as one JSON line in `.hot.ndjson` files.

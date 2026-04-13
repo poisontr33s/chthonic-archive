@@ -6,12 +6,7 @@ use anyhow::{Context, Result, bail};
 use chrono::Utc;
 use serde_json::Value;
 
-use super::event::TrailEvent;
-
-/// Strip UTF-8 BOM if present at the start of a line.
-fn strip_bom(line: &str) -> &str {
-    line.strip_prefix('\u{FEFF}').unwrap_or(line)
-}
+use super::event::{TrailEvent, strip_bom};
 
 /// Build the filename for a hot trail file.
 pub fn hot_path(trail_dir: &Path, date: &str) -> std::path::PathBuf {
