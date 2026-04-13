@@ -1,3 +1,5 @@
+mod trail;
+
 use std::path::PathBuf;
 
 use anyhow::Result;
@@ -57,6 +59,8 @@ enum Commands {
     },
     /// Inspect a binary header and suggest extractable intelligence.
     Forensics { path: PathBuf },
+    /// Runestone Execution Model — typed event trail (hot/cold/granite).
+    Trail(trail::TrailArgs),
 }
 
 fn main() -> Result<()> {
@@ -86,6 +90,9 @@ fn main() -> Result<()> {
         }
         Commands::Forensics { path } => {
             ankh_forge::emit_json(ankh_forge::forensics_command(&path)?, None)?;
+        }
+        Commands::Trail(args) => {
+            trail::run(args)?;
         }
     }
 
