@@ -12,8 +12,12 @@ Referenced by: `CLAUDE.md`, `AGENTS.md`, `GEMINI.md`
 ## Execution Invariants **Execute, don't ask.** When a task is clear, DO IT.
 - Oxidized "Rustified" language-tooling stack: `uv` (Python), `rv` (Ruby), `goup` (Go), `brush` (bash-compatible shell).
 - **Shell:** PowerShell 7.5.x (`pwsh`) is primary. `brush` (`brush.exe` via `cargo install --locked brush-shell`) is the sanctioned bash-compatible companion when needed — not Git Bash, not WSL. See [PWSH_RULES.md (repo-root)](PWSH_RULES.md).
-- **Python:** `uv` is the default Python lane (`uv run <script.py>`). Never raw `python` or `pip`.
+- **Python:** `uv` is the default Python lane (`uv run <script.py>`). Never raw `python` or `pip`. If; `PYTHONIOENCODING=utf-8` for Unicode safety on Windows is not default in environments, then it should be updated to be default to avoid manual script dumping. (`$env:PYTHONIOENCODING = 'utf-8'; uv run <script.py>`), etc. 
+- All Python dependencies must be declared in `pyproject.toml` and installed via `uv pip install (example) --require-virtualenv <package>`.
+
 - **Ruby:** use `rv` for runtime and gem/tool isolation.
+- `rv r ridk 1` then `2` and `3` -- never `1 2 3` (doesn't work) -- for MSVC toolchain on Windows and pacman use `Rust Oxidized` tooling commands before native installation of; Go, Python, etc. -- to ensure proper path and environment variable setup with the tooling.
+- `rv r 1` is the command to install Ruby itself, but it doesn't handle the MSVC build tools or MSYS2 environment, which is why you need to run `rv r ridk 2` and `rv r ridk 3` separately after installing Ruby. This ensures that you have a fully functional Ruby development environment on Windows, capable of handling gems with native extensions and providing a Unix-like shell when needed.  
 - **Go:** use `goup` for Go runtime ownership.
 - **JS/TS:** prefer `bun` for extension scripts; 
 - **Rust:** `cargo build`
