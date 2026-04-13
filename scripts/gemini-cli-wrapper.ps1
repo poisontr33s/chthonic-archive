@@ -91,6 +91,77 @@ if (-not $env:GEMINI_CLI_IDE_PID) {
     }
 }
 
+# Serializable snapshot of the current VS Code session topology.
+# Call before updating VS Code to capture baseline; compare after restart to verify lane integrity.
+# Output is a PSObject — pipe to ConvertTo-Json for machine-readable storage.
+# Survives updates: post-restart, RootPid changes but structure is identical.
+function Export-VsCodeSession {
+    [CmdletBinding()]
+    param()
+    try {
+        $map = @{}
+        Get-CimInstance Win32_Process -Property ProcessId, ParentProcessId, Name, CommandLine -EA SilentlyContinue |
+            ForEach-Object { $map[[int]$_.ProcessId] = $_ }
+
+        $rootPid = Get-VsCodeInsidersPid
+
+        # Extension host = Code-Insiders child of root that is our direct ancestor
+        $extHostPid = $null
+        if ($rootPid) {
+            $cur = $PID
+            while ($cur -and $map[$cur]) {
+                $p = $map[$cur]
+                if ($p.Name -match '^Code\s*-\s*Insiders\.exe$' -and [int]$p.ParentProcessId -eq $rootPid) {
+                    $extHostPid = [int]$p.ProcessId
+                    break
+                }
+                $cur = [int]$p.ParentProcessId
+            }
+        }
+
+        # VS Code version from crashpad child command line annotation
+        $vsVersion = 'unknown'
+        if ($rootPid) {
+            $crashpad = $map.Values |
+                Where-Object { $_.Name -match '^Code' -and $_.CommandLine -like '*crashpad-handler*' -and [int]$_.ParentProcessId -eq $rootPid } |
+                Select-Object -First 1
+            if ($crashpad -and $crashpad.CommandLine -match '_version=([0-9.]+)') { $vsVersion = $Matches[1] }
+        }
+
+        # Staged update installer detection (Inno Setup child of root window)
+        $updateInstaller = $map.Values |
+            Where-Object { $_.Name -like 'CodeSetup-insider*.exe' -and [int]$_.ParentProcessId -eq $rootPid } |
+            Select-Object -First 1
+        $updateHash = $null
+        if ($updateInstaller -and $updateInstaller.Name -match 'CodeSetup-insider-([0-9a-f]+)\.exe') {
+            $updateHash = $Matches[1]
+        }
+
+        # IDE companion port file (written by extension host; named with root VS Code ppid)
+        $portFileDir  = "$env:TEMP\gemini\ide"
+        $portFileGlob = "gemini-ide-server-$rootPid-*.json"
+        $portFile     = $null
+        if ($rootPid -and (Test-Path $portFileDir -EA SilentlyContinue)) {
+            $portFile = Get-ChildItem $portFileDir -Filter $portFileGlob -EA SilentlyContinue |
+                Sort-Object LastWriteTime -Descending | Select-Object -First 1 -ExpandProperty FullName
+        }
+
+        return [PSCustomObject]@{
+            CapturedAt       = [datetime]::UtcNow.ToString('o')
+            VSCodeVersion    = $vsVersion
+            RootPid          = $rootPid
+            ExtensionHostPid = $extHostPid
+            ShellPid         = $PID
+            PortFilePath     = $portFile
+            PortFilePattern  = if ($rootPid) { Join-Path $portFileDir $portFileGlob } else { $null }
+            UpdateStaged     = [bool]$updateInstaller
+            UpdateHash       = $updateHash
+        }
+    } catch {
+        return [PSCustomObject]@{ Error = $_.Exception.Message }
+    }
+}
+
 function Get-IsHeadlessInvocation {
     param(
         [string[]]$CliArgs
