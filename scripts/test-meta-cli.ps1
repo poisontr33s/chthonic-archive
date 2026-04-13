@@ -1,4 +1,5 @@
 #!/usr/bin/env pwsh
+
 # @SID: SCRIPT_TEST_META_CLI_V1
 # @Type: VALIDATION
 # @Spectrum: WHITE
