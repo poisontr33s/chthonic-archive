@@ -3185,7 +3185,11 @@ function Show-PolyglotStatus {
             $rvBindingReason = "rv mapped to rvw in current shell"
         } elseif ($rvMetaStatus.Display -eq "alias -> Remove-Variable") {
             $rvBindingState = "alias -> Remove-Variable"
-            if ((Get-CommandResolution -Name "rv.exe") -or (Get-CommandResolution -Name "rvw")) {
+            $rvRScript = Join-Path $SCRIPT_DIR "rv-r.ps1"
+            $hasRvExe = (Get-CommandResolution -Name "rv.exe") -or (Get-CommandResolution -Name "rvw")
+            if ($hasRvExe -and (Test-Path $rvRScript)) {
+                $rvBindingReason = "accepted by design; R handled via rv-r, Remove-Variable unused"
+            } elseif ($hasRvExe) {
                 $rvBindingReason = "not applied in current shell; run 'chthonic env' to apply collision guard"
             } else {
                 $rvBindingReason = "rv unavailable; collision guard cannot be applied"
@@ -3207,7 +3211,10 @@ function Show-PolyglotStatus {
             $rBindingReason = "R mapped to runtime command in current shell"
         } elseif ($rAliasMeta.Display -eq "alias -> Invoke-History") {
             $rBindingState = "alias -> Invoke-History"
-            if (Get-RExePath) {
+            $rRvRScript = Join-Path $SCRIPT_DIR "rv-r.ps1"
+            if (Test-Path $rRvRScript) {
+                $rBindingReason = "accepted by design; R accessed via rv-r"
+            } elseif (Get-RExePath) {
                 $rBindingReason = "not applied in current shell; run 'chthonic env' to apply collision guard"
             } else {
                 $rBindingReason = "R runtime unavailable; collision guard cannot be applied"

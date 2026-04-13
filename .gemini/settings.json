@@ -4,7 +4,10 @@
     "defaultMode": "bypassPermissions"
   },
   "general": {
-    "previewFeatures": true
+    "previewFeatures": true,
+    "plan": {
+      "enabled": true
+    }
   },
   "extensions": {
     "enabled": []
@@ -63,7 +66,6 @@
     "enableRecursiveFileSearch": true
   },
   "experimental": {
-    "plan": true,
     "enableAgents": true,
     "extensionConfig": true,
     "extensionReloading": true
@@ -127,5 +129,8 @@
         "server"
       ]
     }
+  },
+  "agents": {
+    "overrides": {}
   }
 }
