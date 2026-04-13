@@ -940,7 +940,7 @@ function Get-ChthonicSemanticMetadata {
                 change = @()
                 limits = @("lane view only; use doctor/new for mutation")
                 pins = @(".python-version")
-                retention = "uv retains runtimes side-by-side."
+                retention = "uv python upgrade <series> upgrades within the lane; old patches remain in the store until uv python uninstall is run."
             }
         }
         bun = [pscustomobject]@{
@@ -3622,7 +3622,7 @@ function Get-InstalledVersion {
             "python"     {
                 $v = $null
                 try {
-                    $uvPython = (uv python find 2>$null | Select-Object -First 1)
+                    $uvPython = (uv python find --system 2>$null | Select-Object -First 1)
                     if ($uvPython -and (Test-Path $uvPython)) {
                         $v = & $uvPython --version 2>$null
                     }
@@ -3766,35 +3766,18 @@ $global:DoctorFixMap = @{
     python = @{
         Upgrade = {
             param($ver)
-            # Verify the version is available before attempting install + pin
-            $available = uv python list --all-versions 2>$null | Where-Object { $_ -match "cpython-$([regex]::Escape($ver))-" }
-            if (-not $available) {
-                # Try install anyway — uv may fetch it; but guard the pin
-                uv python install $ver
-                if ($LASTEXITCODE -ne 0) {
-                    Write-Host "  !! uv has no binary for cpython-$ver on this platform" -ForegroundColor Red
-                    Write-Host "  !! skipping pin — run 'uv python upgrade' to stay on latest available" -ForegroundColor DarkGray
-                    return
-                }
-            } else {
-                uv python install $ver
-                if ($LASTEXITCODE -ne 0) { return }
-            }
-            uv python pin $ver
-        }; UpgradeDesc = "uv python install && uv python pin"
+            # Extract series (e.g. "3.14" from "3.14.4") for uv python upgrade
+            $series = ($ver -replace '\.\d+$', '')
+            uv python upgrade $series
+        }; UpgradeDesc = "uv python upgrade <series>"
         Install = {
             param($ver)
             if (-not (Get-Command uv -ErrorAction SilentlyContinue)) {
                 irm https://astral.sh/uv/install.ps1 | iex
             }
-            uv python install $ver
-            if ($LASTEXITCODE -ne 0) {
-                Write-Host "  !! uv has no binary for cpython-$ver on this platform" -ForegroundColor Red
-                Write-Host "  !! skipping pin — run 'uv python upgrade' to stay on latest available" -ForegroundColor DarkGray
-                return
-            }
-            uv python pin $ver
-        }; InstallDesc = "install uv (if missing) && uv python install && uv python pin"
+            $series = ($ver -replace '\.\d+$', '')
+            uv python upgrade $series
+        }; InstallDesc = "install uv (if missing) && uv python upgrade <series>"
     }
     bun    = @{
         Upgrade = { bun upgrade }; UpgradeDesc = "bun upgrade"
@@ -3864,7 +3847,7 @@ function Get-DoctorPinState {
 function Get-DoctorRetentionNotes {
     return @(
         [pscustomobject]@{ manager = "rv"; note = "installs new Ruby versions alongside older ones until you prune them manually." }
-        [pscustomobject]@{ manager = "uv"; note = "installs Python runtimes side-by-side; pin changes interpreter selection, not historical deletion." }
+        [pscustomobject]@{ manager = "uv"; note = "upgrades Python within the same series lane (uv python upgrade 3.14); old patch versions may remain in the store until pruned with uv python uninstall." }
         [pscustomobject]@{ manager = "goup"; note = "keeps Go versions in its store and switches the active current link." }
         [pscustomobject]@{ manager = "rustup"; note = "keeps toolchains/components in rustup home; updates do not delete older channels automatically." }
         [pscustomobject]@{ manager = "bun"; note = "is a single runtime binary; upgrade replaces the active bun install rather than managing side-by-side versions." }
