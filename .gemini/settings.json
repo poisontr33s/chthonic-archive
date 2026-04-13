@@ -10,7 +10,7 @@
     }
   },
   "extensions": {
-    "enabled": []
+    "enabled": ["chthonic-archive-sync"]
   },
   "skills": {
     "enabled": true,

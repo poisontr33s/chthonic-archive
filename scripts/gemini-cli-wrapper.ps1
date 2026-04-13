@@ -53,8 +53,43 @@ param(
     [string[]]$Arguments
 )
 
-# Disable MCP discovery to prevent Bun crash during startup
-$env:GEMINI_DISABLE_MCP = "1"
+# MCP discovery enabled — all 6 mcpServers in .gemini/settings.json are active.
+# Belt: chthonic-archive-sync extension provides GEMINI.md context injection only (no spawned servers).
+# If a specific MCP server crashes, gemini logs the failure but continues.
+# To temporarily disable: set $env:GEMINI_DISABLE_MCP = "1" before invoking.
+
+# IDE companion wiring: auto-detect VS Code Insiders ancestor PID so gemini can find its
+# port file via the official GEMINI_CLI_IDE_PID override (bypasses process-tree walk).
+# Only sets if not already overridden by the caller.
+function Get-VsCodeInsidersPid {
+    try {
+        $processMap = @{}
+        Get-CimInstance Win32_Process -Property ProcessId, ParentProcessId, Name -EA SilentlyContinue |
+            ForEach-Object { $processMap[[int]$_.ProcessId] = $_ }
+
+        $current = $processMap[$PID]
+        $depth = 0
+        $lastCodePid = $null
+        while ($current -and $depth -lt 32) {
+            if ($current.Name -match '^Code\s*-\s*Insiders\.exe$') {
+                $lastCodePid = $current.ProcessId  # keep walking — want the root VS Code window
+            }
+            $current = $processMap[[int]$current.ParentProcessId]
+            $depth++
+        }
+        return $lastCodePid
+    } catch {
+        # Non-fatal — IDE wiring is best-effort
+    }
+    return $null
+}
+
+if (-not $env:GEMINI_CLI_IDE_PID) {
+    $ideParentPid = Get-VsCodeInsidersPid
+    if ($ideParentPid) {
+        $env:GEMINI_CLI_IDE_PID = [string]$ideParentPid
+    }
+}
 
 function Get-IsHeadlessInvocation {
     param(
