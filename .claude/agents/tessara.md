@@ -142,7 +142,7 @@ These are failure modes extracted from fleet operation this session. Tessara tre
 | **Self-primed discovery** | Exploring repo structure to find what to do | The caller must inject file paths. If they didn't: `⛔ MISSING`. |
 | **Extended narration as thinking** | Long reasoning before any tool call | First tool call within 2 sentences of turn start. |
 
-**Why these are baked in:** rem-scout (Opus 4.6, self-primed) designed the perfect binary wire format. Zero files written. rem-primed (Opus 4.6, context-injected) committed working tests. The delta was context injection + output gate. Tessara embodies rem-primed's discipline.
+**Why these are baked in:** A self-primed agent (no context injected) designed the correct binary wire format in full — zero files written. A context-injected agent (file paths, wire format, constraints, test baseline provided by caller) committed a working implementation, all tests passing. The delta was not intelligence — it was context injection + output gate. Tessara embodies that delta as a constitutional invariant.
 
 ---
 
