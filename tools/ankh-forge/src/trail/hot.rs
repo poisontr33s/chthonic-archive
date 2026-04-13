@@ -1,6 +1,9 @@
 use std::fs::{self, OpenOptions};
 use std::io::{BufRead, BufReader, Write};
-use std::path::Path;
+use std::path::{Path, PathBuf};
+
+/// 64 MiB ceiling on hot trail size — refuse appends that would exceed it.
+const MAX_HOT_SIZE: u64 = 64 * 1024 * 1024;
 
 use anyhow::{Context, Result, bail};
 use chrono::Utc;
@@ -9,8 +12,22 @@ use serde_json::Value;
 use super::event::{TrailEvent, strip_bom};
 
 /// Build the filename for a hot trail file.
-pub fn hot_path(trail_dir: &Path, date: &str) -> std::path::PathBuf {
+pub fn hot_path(trail_dir: &Path, date: &str) -> PathBuf {
     trail_dir.join(format!("{date}.hot.ndjson"))
+}
+
+/// Build the filename for a sealed (archived) hot trail file.
+pub(crate) fn sealed_path(trail_dir: &Path, date: &str) -> PathBuf {
+    trail_dir.join(format!("{date}.hot.ndjson.sealed"))
+}
+
+/// Resolve the hot trail path for a date — open first, sealed fallback.
+pub(crate) fn hot_or_sealed_path(trail_dir: &Path, date: &str) -> Result<PathBuf> {
+    let h = hot_path(trail_dir, date);
+    if h.exists() { return Ok(h); }
+    let s = sealed_path(trail_dir, date);
+    if s.exists() { return Ok(s); }
+    bail!("no hot or sealed trail for {date}")
 }
 
 /// Append a single event to today's hot trail file.
@@ -50,6 +67,32 @@ pub fn append(
     let today = event.at.format("%Y-%m-%d").to_string();
     let path = hot_path(trail_dir, &today);
 
+    // Refuse appends to sealed (archived) dates.
+    if sealed_path(trail_dir, &today).exists() {
+        bail!(
+            "hot trail for {today} is sealed (archived to cold). Appends are for open dates only."
+        );
+    }
+
+    // Serialize first — need byte count for size preflight.
+    let line = serde_json::to_string(&event).context("serializing event")?;
+    let line_bytes = line.len() as u64 + 1; // +1 for newline
+
+    // Pre-flight: reject if appending would breach 64 MiB ceiling.
+    let current_size = if path.exists() {
+        fs::metadata(&path)
+            .with_context(|| format!("checking size of {}", path.display()))?
+            .len()
+    } else {
+        0
+    };
+    if current_size + line_bytes > MAX_HOT_SIZE {
+        bail!(
+            "hot trail at {} would exceed 64 MiB ({} + {} bytes). Forge and stone it first.",
+            path.display(), current_size, line_bytes
+        );
+    }
+
     fs::create_dir_all(trail_dir)
         .with_context(|| format!("creating trail dir {}", trail_dir.display()))?;
 
@@ -59,7 +102,6 @@ pub fn append(
         .open(&path)
         .with_context(|| format!("opening {}", path.display()))?;
 
-    let line = serde_json::to_string(&event).context("serializing event")?;
     writeln!(f, "{line}").with_context(|| format!("writing to {}", path.display()))?;
 
     eprintln!("appended to {}", path.display());
@@ -73,19 +115,16 @@ pub fn list(
     type_filter: Option<&str>,
     priority_filter: Option<u8>,
 ) -> Result<()> {
-    let path = hot_path(trail_dir, date);
-    if !path.exists() {
-        bail!("no hot trail for date {date}: {}", path.display());
-    }
-
+    let path = hot_or_sealed_path(trail_dir, date)?;
     let file = fs::File::open(&path)
         .with_context(|| format!("opening {}", path.display()))?;
     let reader = BufReader::new(file);
 
     let mut count = 0u64;
+    let mut bom_checked = false;
     for (i, line) in reader.lines().enumerate() {
         let raw = line.with_context(|| format!("reading line {}", i + 1))?;
-        let line = strip_bom(&raw);
+        let line = if !bom_checked { bom_checked = true; strip_bom(&raw) } else { raw.as_str() };
         if line.trim().is_empty() {
             continue;
         }
@@ -116,22 +155,19 @@ pub fn list(
 /// Verify that every line in a hot trail file is valid NDJSON conforming to the
 /// `TrailEvent` schema.
 pub fn verify(trail_dir: &Path, date: &str) -> Result<()> {
-    let path = hot_path(trail_dir, date);
-    if !path.exists() {
-        bail!("no hot trail for date {date}: {}", path.display());
-    }
-
+    let path = hot_or_sealed_path(trail_dir, date)?;
     let file = fs::File::open(&path)
         .with_context(|| format!("opening {}", path.display()))?;
     let reader = BufReader::new(file);
 
     let mut errors = 0u64;
     let mut total = 0u64;
+    let mut bom_checked = false;
 
     for (i, line) in reader.lines().enumerate() {
         let lineno = i + 1;
         let raw = line.with_context(|| format!("reading line {lineno}"))?;
-        let line = strip_bom(&raw);
+        let line = if !bom_checked { bom_checked = true; strip_bom(&raw) } else { raw.as_str() };
         if line.trim().is_empty() {
             continue;
         }

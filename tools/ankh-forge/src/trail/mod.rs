@@ -3,6 +3,7 @@ pub mod event;
 pub mod granite;
 pub mod hot;
 
+use std::fs;
 use std::path::{Path, PathBuf};
 
 use anyhow::{Context, Result, bail};
@@ -121,6 +122,10 @@ pub enum TrailCommand {
         /// Date to stone (YYYY-MM-DD). Defaults to today.
         #[arg(long)]
         date: Option<String>,
+
+        /// Overwrite an existing stone. Stones are immutable by default.
+        #[arg(long, default_value_t = false)]
+        force: bool,
     },
 
     /// Query/inspect a .runestone binary stone.
@@ -128,6 +133,9 @@ pub enum TrailCommand {
         /// Path to the .runestone file.
         stone: std::path::PathBuf,
     },
+
+    /// Initialize the .chthonic/ directory structure in the current repo root.
+    Init,
 }
 
 /// Dispatch a trail subcommand.
@@ -173,13 +181,36 @@ pub fn run(args: TrailArgs) -> Result<()> {
             cold::forge(&trail_dir, &d)
         }
 
-        TrailCommand::Stone { date } => {
+        TrailCommand::Stone { date, force } => {
             let d = date.unwrap_or_else(today);
-            granite::compile(&trail_dir, &d)
+            granite::compile(&trail_dir, &d, force)
         }
 
         TrailCommand::Query { stone } => {
             granite::query(&stone)
+        }
+
+        TrailCommand::Init => {
+            let cwd = std::env::current_dir().context("getting current directory")?;
+            // Walk up to find an existing .chthonic; otherwise create in cwd.
+            let chthonic = {
+                let mut dir = cwd.clone();
+                loop {
+                    let c = dir.join(".chthonic");
+                    if c.is_dir() { break c; }
+                    if !dir.pop() { break cwd.join(".chthonic"); }
+                }
+            };
+            let trail_d = chthonic.join("trail");
+            let stones_d = chthonic.join("stones");
+            fs::create_dir_all(&trail_d)
+                .with_context(|| format!("creating {}", trail_d.display()))?;
+            fs::create_dir_all(&stones_d)
+                .with_context(|| format!("creating {}", stones_d.display()))?;
+            eprintln!("initialized .chthonic/ → {}", chthonic.display());
+            eprintln!("  trail:  {}", trail_d.display());
+            eprintln!("  stones: {}", stones_d.display());
+            Ok(())
         }
     }
 }

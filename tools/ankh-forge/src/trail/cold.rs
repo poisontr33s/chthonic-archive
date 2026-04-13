@@ -34,12 +34,21 @@ pub fn forge(trail_dir: &Path, date: &str) -> Result<()> {
     }
 
     // Validate every event before forging — refuse to archive invalid data.
+    if hot_bytes.len() > 64 * 1024 * 1024 {
+        bail!(
+            "hot trail exceeds 64 MiB ({} bytes): {}. Stone it in segments if intentional.",
+            hot_bytes.len(),
+            src.display()
+        );
+    }
+
     {
         let reader = BufReader::new(hot_bytes.as_slice());
+        let mut bom_checked = false;
         for (i, line) in reader.lines().enumerate() {
             let lineno = i + 1;
             let raw = line.with_context(|| format!("reading line {lineno}"))?;
-            let clean = strip_bom(&raw);
+            let clean = if !bom_checked { bom_checked = true; strip_bom(&raw) } else { raw.as_str() };
             if clean.trim().is_empty() {
                 continue;
             }
@@ -72,6 +81,12 @@ pub fn forge(trail_dir: &Path, date: &str) -> Result<()> {
     // Write the cold file.
     fs::write(&dst, &compressed)
         .with_context(|| format!("writing {}", dst.display()))?;
+
+    // Seal the hot file to prevent further appends after archiving.
+    let sealed = super::hot::sealed_path(trail_dir, date);
+    fs::rename(&src, &sealed)
+        .with_context(|| format!("sealing {} → {}", src.display(), sealed.display()))?;
+    eprintln!("sealed → {}", sealed.display());
 
     let ratio = if !hot_bytes.is_empty() {
         (compressed.len() as f64 / hot_bytes.len() as f64) * 100.0
@@ -109,11 +124,12 @@ pub fn verify_cold(trail_dir: &Path, date: &str) -> Result<()> {
     let reader = BufReader::new(decompressed.as_slice());
     let mut total = 0u64;
     let mut errors = 0u64;
+    let mut bom_checked = false;
 
     for (i, line) in reader.lines().enumerate() {
         let lineno = i + 1;
         let raw = line.with_context(|| format!("reading line {lineno}"))?;
-        let clean = strip_bom(&raw);
+        let clean = if !bom_checked { bom_checked = true; strip_bom(&raw) } else { raw.as_str() };
         if clean.trim().is_empty() {
             continue;
         }

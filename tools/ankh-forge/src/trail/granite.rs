@@ -132,9 +132,10 @@ fn read_cold_events(trail_dir: &Path, date: &str) -> Result<Vec<TrailEvent>> {
     let reader = BufReader::new(decompressed.as_slice());
     let mut events = Vec::new();
 
+    let mut bom_checked = false;
     for (i, line) in reader.lines().enumerate() {
         let raw = line.with_context(|| format!("reading line {}", i + 1))?;
-        let clean = strip_bom(&raw);
+        let clean = if !bom_checked { bom_checked = true; strip_bom(&raw) } else { raw.as_str() };
         if clean.trim().is_empty() {
             continue;
         }
@@ -153,7 +154,21 @@ fn read_cold_events(trail_dir: &Path, date: &str) -> Result<Vec<TrailEvent>> {
 }
 
 /// Compile a cold archive into a `.runestone` binary stone.
-pub fn compile(trail_dir: &Path, date: &str) -> Result<()> {
+pub fn compile(trail_dir: &Path, date: &str, force: bool) -> Result<()> {
+    // Stone immutability: one immutable stone per day unless --force overrides.
+    {
+        let stones_dir = trail_dir.parent()
+            .context("trail_dir has no parent")?
+            .join("stones");
+        let existing = stones_dir.join(format!("{date}.runestone"));
+        if existing.exists() && !force {
+            bail!(
+                "stone already exists: {}\nStones are immutable by default. Use --force to overwrite.",
+                existing.display()
+            );
+        }
+    }
+
     let events = read_cold_events(trail_dir, date)?;
     let event_count = events.len() as u32;
 
@@ -166,6 +181,12 @@ pub fn compile(trail_dir: &Path, date: &str) -> Result<()> {
     // Compress with zstd
     let payload_compressed = zstd::encode_all(payload_raw.as_slice(), 3)
         .context("zstd compression failed")?;
+    if payload_compressed.len() > 256 * 1024 * 1024 {
+        bail!(
+            "compressed payload exceeds 256 MiB ({} bytes) for {date}. Split the trail first.",
+            payload_compressed.len()
+        );
+    }
     let payload_compressed_len = payload_compressed.len() as u32;
 
     // Schema block
@@ -416,7 +437,7 @@ mod tests {
         make_cold_file(&trail_dir, date, &events);
 
         // Compile
-        compile(&trail_dir, date)?;
+        compile(&trail_dir, date, false)?;
 
         // Verify stone exists
         let stone_path = chthonic.join("stones").join(format!("{date}.runestone"));
@@ -443,7 +464,7 @@ mod tests {
         let date = "2026-07-14";
 
         make_cold_file(&trail_dir, date, &sample_events());
-        compile(&trail_dir, date)?;
+        compile(&trail_dir, date, false)?;
 
         let stone_path = chthonic.join("stones").join(format!("{date}.runestone"));
         let mut data = fs::read(&stone_path)?;
@@ -476,7 +497,7 @@ mod tests {
         let date = "2026-07-15";
 
         make_cold_file(&trail_dir, date, &sample_events());
-        compile(&trail_dir, date)?;
+        compile(&trail_dir, date, false)?;
 
         let stone_path = chthonic.join("stones").join(format!("{date}.runestone"));
         let mut data = fs::read(&stone_path)?;
