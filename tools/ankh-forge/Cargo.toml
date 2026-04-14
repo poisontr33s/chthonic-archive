@@ -5,6 +5,12 @@ edition = "2024"
 description = "Rust-native WPTG acceleration CLI for extension scanning, census, and file intelligence."
 license = "WTFPL"
 
+[features]
+# GPU path: Vulkan compute decompression via ash + gpu-allocator.
+# Requires Vulkan SDK + glslc at build time.
+# Build: cargo build -p ankh-forge --features gpu
+gpu = ["dep:ash", "dep:gpu-allocator", "dep:bytemuck", "dep:lz4_flex"]
+
 [dependencies]
 anyhow = "1.0"
 chrono = { version = "0.4", features = ["serde"] }
@@ -16,6 +22,12 @@ serde_json = "1.0"
 zstd = "0.13"
 bincode = { version = "2.0", features = ["std", "serde"] }
 sha2 = "0.10"
+
+# GPU feature dependencies (optional)
+ash           = { version = "0.38", optional = true }
+gpu-allocator = { version = "0.28", features = ["vulkan"], optional = true }
+bytemuck      = { version = "1",    features = ["derive"], optional = true }
+lz4_flex      = { version = "0.11", optional = true }
 
 [dev-dependencies]
 tempfile = "3.27"

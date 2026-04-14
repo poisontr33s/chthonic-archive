@@ -1,6 +1,8 @@
 pub mod cold;
 pub mod event;
 pub mod granite;
+#[cfg(feature = "gpu")]
+pub mod gpu;
 pub mod hot;
 
 use std::fs;
@@ -126,10 +128,20 @@ pub enum TrailCommand {
         /// Overwrite an existing stone. Stones are immutable by default.
         #[arg(long, default_value_t = false)]
         force: bool,
+
+        /// GPU path: LZ4 compression + embedded Vulkan compute shader (requires --features gpu).
+        #[arg(long, default_value_t = false)]
+        gpu: bool,
     },
 
     /// Query/inspect a .runestone binary stone.
     Query {
+        /// Path to the .runestone file.
+        stone: std::path::PathBuf,
+    },
+
+    /// GPU-decode a .runestone compiled with --gpu (requires --features gpu).
+    Execute {
         /// Path to the .runestone file.
         stone: std::path::PathBuf,
     },
@@ -181,13 +193,24 @@ pub fn run(args: TrailArgs) -> Result<()> {
             cold::forge(&trail_dir, &d)
         }
 
-        TrailCommand::Stone { date, force } => {
+        TrailCommand::Stone { date, force, gpu } => {
             let d = date.unwrap_or_else(today);
+            if gpu {
+                #[cfg(feature = "gpu")]
+                return granite::compile_gpu(&trail_dir, &d, force);
+                #[cfg(not(feature = "gpu"))]
+                bail!("--gpu requires: cargo build -p ankh-forge --features gpu");
+            }
             granite::compile(&trail_dir, &d, force)
         }
 
-        TrailCommand::Query { stone } => {
-            granite::query(&stone)
+        TrailCommand::Query { stone } => granite::query(&stone),
+
+        TrailCommand::Execute { stone: _stone } => {
+            #[cfg(feature = "gpu")]
+            return granite::query_gpu(&_stone);
+            #[cfg(not(feature = "gpu"))]
+            bail!("execute requires: cargo build -p ankh-forge --features gpu");
         }
 
         TrailCommand::Init => {

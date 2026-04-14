@@ -52,7 +52,7 @@ fn validate_flags(flags: u32) -> Result<()> {
         bail!("conflicting flags: both CPU and GPU compression set");
     }
     if gpu {
-        bail!("GPU compression (flag bit 0) is not yet supported in CPU-path binary");
+        bail!("GPU-compressed stone: decode with `ankh-forge trail execute <stone>`");
     }
     Ok(())
 }
@@ -367,6 +367,256 @@ pub fn query(stone_path: &Path) -> Result<()> {
     eprintln!("{event_count} event(s) decoded from {}", stone_path.display());
     Ok(())
 }
+
+// ── Phase 4: GPU path ─────────────────────────────────────────────────────────
+
+/// Static SPIR-V blob compiled from trail_decompress.comp.glsl at build time.
+/// Only present when building with --features gpu (build.rs generates the .spv).
+#[cfg(feature = "gpu")]
+static TRAIL_DECOMPRESS_SPIRV: &[u8] =
+    include_bytes!(concat!(env!("OUT_DIR"), "/trail_decompress.spv"));
+
+/// Compile a cold archive into a GPU-path `.runestone` — LZ4-compressed payload
+/// with the Vulkan compute decompressor shader embedded as the SPIRV block.
+///
+/// The stone is self-decoding: `trail execute` extracts the SPIRV and dispatches
+/// it on the GPU to recover the events without any external shader binary.
+#[cfg(feature = "gpu")]
+pub fn compile_gpu(trail_dir: &Path, date: &str, force: bool) -> Result<()> {
+    // Stone immutability gate (same as compile()).
+    {
+        let stones_dir = trail_dir
+            .parent()
+            .context("trail_dir has no parent")?
+            .join("stones");
+        let existing = stones_dir.join(format!("{date}.runestone"));
+        if existing.exists() && !force {
+            bail!(
+                "stone already exists: {}\n\
+                 Stones are immutable by default. Use --force to overwrite.",
+                existing.display()
+            );
+        }
+    }
+
+    let events = read_cold_events(trail_dir, date)?;
+    let event_count = events.len() as u32;
+
+    // Encode events via bincode 2.0 (same as CPU path).
+    let stone_events: Vec<StoneEvent> = events.iter().map(StoneEvent::from_trail).collect();
+    let payload_raw = bincode::encode_to_vec(&stone_events, bincode::config::standard())
+        .context("bincode encoding failed")?;
+    let payload_uncompressed_len = payload_raw.len() as u32;
+
+    // GPU path: LZ4 block compression (the shader decompresses on the GPU).
+    let payload_compressed = lz4_flex::block::compress(&payload_raw);
+    let payload_compressed_len = payload_compressed.len() as u32;
+
+    let schema_bytes = schema_json();
+    let schema_len = schema_bytes.len() as u32;
+
+    // Embed the compile-time SPIR-V — the stone carries its own decompressor.
+    let spirv_bytes: &[u8] = TRAIL_DECOMPRESS_SPIRV;
+    let spirv_len = spirv_bytes.len() as u32;
+
+    // Build header with FLAG_GPU_COMPRESSED.
+    let flags: u32 = FLAG_GPU_COMPRESSED;
+    let mut header = [0u8; HEADER_SIZE];
+    header[0..8].copy_from_slice(MAGIC);
+    header[8..10].copy_from_slice(&FORMAT_VERSION.to_le_bytes());
+    header[10..14].copy_from_slice(&SCHEMA_VERSION.to_le_bytes());
+    header[14..18].copy_from_slice(&event_count.to_le_bytes());
+    header[18..22].copy_from_slice(&flags.to_le_bytes());
+    // [22..54] = hash slot: zero during digest computation, filled after.
+    header[54..58].copy_from_slice(&spirv_len.to_le_bytes());
+    header[58..62].copy_from_slice(&schema_len.to_le_bytes());
+    header[62..66].copy_from_slice(&payload_compressed_len.to_le_bytes());
+    header[66..70].copy_from_slice(&payload_uncompressed_len.to_le_bytes());
+
+    let mut hasher = Sha256::new();
+    hasher.update(&header);
+    hasher.update(&schema_bytes);
+    hasher.update(spirv_bytes);
+    hasher.update(&payload_compressed);
+    let hash: [u8; 32] = hasher.finalize().into();
+    header[22..54].copy_from_slice(&hash);
+
+    let mut out = Vec::with_capacity(
+        HEADER_SIZE + schema_bytes.len() + spirv_bytes.len() + payload_compressed.len(),
+    );
+    out.extend_from_slice(&header);
+    out.extend_from_slice(&schema_bytes);
+    out.extend_from_slice(spirv_bytes);
+    out.extend_from_slice(&payload_compressed);
+
+    // Atomic write.
+    let stones_dir = trail_dir
+        .parent()
+        .context("trail_dir has no parent")?
+        .join("stones");
+    fs::create_dir_all(&stones_dir)
+        .with_context(|| format!("creating stones dir {}", stones_dir.display()))?;
+
+    let stone_path = stones_dir.join(format!("{date}.runestone"));
+    let tmp_path =
+        stones_dir.join(format!("{date}.runestone.tmp.{}", std::process::id()));
+
+    fs::write(&tmp_path, &out)
+        .with_context(|| format!("writing temp stone {}", tmp_path.display()))?;
+    fs::rename(&tmp_path, &stone_path)
+        .with_context(|| format!("atomically installing stone {}", stone_path.display()))?;
+
+    eprintln!(
+        "stoned {} → {} ({} events, {} bytes, GPU/LZ4, SPIRV={}B)",
+        date,
+        stone_path.display(),
+        event_count,
+        out.len(),
+        spirv_len
+    );
+
+    Ok(())
+}
+
+/// GPU-decode a `.runestone` compiled with `--gpu`.
+///
+/// Reads the stone, verifies SHA-256 integrity, extracts the embedded SPIR-V,
+/// initialises a Vulkan compute context, dispatches the LZ4 decompressor shader,
+/// and decodes the recovered bincode payload.
+#[cfg(feature = "gpu")]
+pub fn query_gpu(stone_path: &Path) -> Result<()> {
+    if !stone_path.exists() {
+        bail!("stone not found: {}", stone_path.display());
+    }
+
+    let data = fs::read(stone_path)
+        .with_context(|| format!("reading {}", stone_path.display()))?;
+
+    if data.len() < HEADER_SIZE {
+        bail!(
+            "file too small for runestone header ({} < {HEADER_SIZE})",
+            data.len()
+        );
+    }
+    if &data[0..8] != MAGIC {
+        bail!(
+            "invalid magic: expected {:?}, got {:?}",
+            MAGIC,
+            &data[0..8]
+        );
+    }
+
+    let format_version = u16::from_le_bytes(data[8..10].try_into().unwrap());
+    let schema_version = u32::from_le_bytes(data[10..14].try_into().unwrap());
+    let event_count = u32::from_le_bytes(data[14..18].try_into().unwrap());
+    let flags = u32::from_le_bytes(data[18..22].try_into().unwrap());
+    let stored_hash: [u8; 32] = data[22..54].try_into().unwrap();
+    let spirv_len = u32::from_le_bytes(data[54..58].try_into().unwrap()) as usize;
+    let schema_len = u32::from_le_bytes(data[58..62].try_into().unwrap()) as usize;
+    let payload_compressed_len =
+        u32::from_le_bytes(data[62..66].try_into().unwrap()) as usize;
+    let payload_uncompressed_len =
+        u32::from_le_bytes(data[66..70].try_into().unwrap()) as usize;
+
+    // Flag validation for GPU-execute path.
+    let unknown = flags & !FLAGS_KNOWN;
+    if unknown != 0 {
+        bail!("unknown flag bits: 0x{unknown:08x}");
+    }
+    if flags & FLAG_GPU_COMPRESSED == 0 {
+        bail!(
+            "stone does not have FLAG_GPU_COMPRESSED — use `trail query` for CPU stones"
+        );
+    }
+    if flags & FLAG_CPU_COMPRESSED != 0 {
+        bail!("conflicting flags: both CPU and GPU compression set");
+    }
+    if spirv_len == 0 {
+        bail!("GPU stone has no embedded SPIRV (spirv_len=0)");
+    }
+
+    // Bounds check.
+    let total_needed = HEADER_SIZE + schema_len + spirv_len + payload_compressed_len;
+    if data.len() < total_needed {
+        bail!(
+            "truncated stone: need {total_needed} bytes, have {}",
+            data.len()
+        );
+    }
+
+    // Extract blocks.
+    let schema_start = HEADER_SIZE;
+    let spirv_start = schema_start + schema_len;
+    let payload_start = spirv_start + spirv_len;
+
+    let schema_bytes = &data[schema_start..spirv_start];
+    let spirv_bytes = &data[spirv_start..payload_start];
+    let payload_compressed = &data[payload_start..payload_start + payload_compressed_len];
+
+    // SHA-256 integrity verification (same algorithm as CPU path).
+    let mut header_for_hash = data[0..HEADER_SIZE].to_vec();
+    header_for_hash[22..54].fill(0);
+    let mut hasher = Sha256::new();
+    hasher.update(&header_for_hash);
+    hasher.update(schema_bytes);
+    hasher.update(spirv_bytes);
+    hasher.update(payload_compressed);
+    let computed_hash: [u8; 32] = hasher.finalize().into();
+    if computed_hash != stored_hash {
+        bail!("SHA-256 integrity check failed — stone is corrupted or tampered");
+    }
+
+    // Initialise Vulkan compute context from the stone's own SPIR-V.
+    let mut ctx = super::gpu::GpuContext::init(spirv_bytes)
+        .context("failed to initialise Vulkan GPU context")?;
+
+    // GPU decompression: LZ4 block → raw bincode payload.
+    let payload_raw = ctx
+        .execute(payload_compressed, payload_uncompressed_len as u32)
+        .context("GPU decompression failed")?;
+
+    // Decode events (same as CPU path).
+    let (stone_events, _): (Vec<StoneEvent>, _) =
+        bincode::decode_from_slice(&payload_raw, bincode::config::standard())
+            .context("bincode decoding failed")?;
+
+    let events: Vec<TrailEvent> = stone_events
+        .into_iter()
+        .map(|se| se.to_trail())
+        .collect::<Result<Vec<_>>>()
+        .context("converting stone events")?;
+
+    if events.len() as u32 != event_count {
+        bail!(
+            "event count mismatch: header says {event_count}, decoded {}",
+            events.len()
+        );
+    }
+
+    for (i, event) in events.iter().enumerate() {
+        event
+            .validate()
+            .with_context(|| format!("granite event {i} schema violation"))?;
+    }
+
+    eprintln!(
+        "runestone v{format_version} schema={schema_version} events={event_count} \
+         flags=0x{flags:04x} GPU/LZ4 spirv_len={spirv_len} payload={payload_compressed_len}B"
+    );
+
+    for event in &events {
+        println!("{event}");
+    }
+
+    eprintln!(
+        "{event_count} event(s) GPU-decoded from {}",
+        stone_path.display()
+    );
+
+    Ok(())
+}
+
+// ── Tests ─────────────────────────────────────────────────────────────────────
 
 #[cfg(test)]
 mod tests {
