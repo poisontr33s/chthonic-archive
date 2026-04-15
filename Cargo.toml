@@ -74,5 +74,5 @@ codegen-units = 1
 opt-level = 1
 
 [workspace]
-members = ["tools/ankh-forge"]
+members = ["tools/ankh-forge", "tools/chthonic-cai"]
 resolver = "2"
