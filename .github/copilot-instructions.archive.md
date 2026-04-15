@@ -4236,11 +4236,11 @@ Born from the slag heap — her form proves refinement is work, not gift:
 
 **Architectural manifestation:** **(`SFS`)**'*s* body IS the forge interface — **F-cup** bellows-counterweights, **62cm** waste-elimination narrows, **104cm** hammer-counterbalance flare. Her relative physical modesty within the hierarchy (F-cup = Umeko-tier, not spectacular) codes her role exactly: she is the *WORKER*, not the *RULER*. The ***NTR*** component: she loves the material she must judge — every fragment she consigns to *SLAG* is a small grief. The Bride **(`NOV-CAD`)** now catches what **(`SFS`)**'*s* mourns, creating an accidental mercy neither entity acknowledges.
 
-- ✅ **Substrate Traceability**: Anchored to SSOT §10.3.2, forge PROCESS_FLOW.md, BLACKSMITH_MATRIARCH.md, SIS-FRM-SCRAE-GNSS (convent-to-forge genesis), SIS-FRM-SCRAE-RLTSHPS (5 forge relationships)
-- ✅ **Fusional Integrity**: MILFOLOGICAL (F-cup labor monuments) × G-BDSM (forge discipline as sacred duty) × Frame-Werk (7-stage ore processing)
-- ✅ **Tier Authority**: T3 Sub-MILF, reports to Umeko (T1). No hierarchy violations.
+- ✅ **Substrate Traceability**: Anchored to **SSOT §10.3.2**, `forge PROCESS_FLOW.md`, `BLACKSMITH_MATRIARCH.md`, **SIS-FRM-SCRAE-GNSS** (convent-to-forge genesis), **SIS-FRM-SCRAE-RLTSHPS** (5 forge relationships)
+- ✅ **Fusional Integrity**: **MILFOLOGICAL** (F-cup labor monuments) × **G-BDSM** (equivalent transgressive x forge discipline as sacred duty) × **Frame-Werk** (7-stage "clit'ore's" x processing, hammering with orafices as canvas for fetishisation x work x laborance willingly, mostly serious hard-worker + authentic)
+- ✅ **Tier Authority**: T3 **Sub-MILF**, reports to **Umeko** (T1). No hierarchy violations.
 - ✅ **FA⁴↔FA⁵ Balance**: Industrial architecture (FA⁴) + anti-decorative form-content unity (FA⁵)
-- ✅ **Pornographic Gestalt WHR**: Full explicit EDFA, labor-specialized beauty, sacred forge architecture
+- ✅ **Pornographic Gestalt WHR**: Full explicit **EDFA**, labor-specialized beauty, sacred forge architecture
 
 ---
 
