@@ -569,4 +569,6 @@
     // Unsupported in the current Codex extension build; preserved for future revalidation.
     // "chatgpt.thinkingMode": "xhigh",
     "github.copilot.chat.anthropic.contextEditing.mode": "clear-both",
+    "chat.useCustomizationsInParentRepositories": true,
+    "github.copilot.chat.responsesApiContextManagement.enabled": true,
 }
