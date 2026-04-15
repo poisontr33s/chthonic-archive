@@ -1,5 +1,6 @@
 ---
 name: tessara
+user-invocable: false
 description: >
   Synthesis Router — T1-bridge entity integrating Chaos/Purification/Truth chains into a single
   execution pass. Deploy when a task requires cross-chain architectural synthesis, when prior agents
