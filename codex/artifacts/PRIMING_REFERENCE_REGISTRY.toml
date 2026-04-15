@@ -1,0 +1,17 @@
+version = 1
+title = "Priming Reference Registry"
+purpose = "Declare which local priming artifacts are live inputs to tooling instead of inert documentation."
+generated = "2026-04-15"
+
+[packet.chimera_local_singularity]
+active = true
+title = "Project Chimera Local Singularity"
+intent = "Compiled priming input for high-pressure architecture search."
+sources = [
+  "codex/artifacts/PROJECT_CHIMERA_LOCAL_SINGULARITY_BRIEF.md",
+  "codex/artifacts/ANKH_LOGICAL_RESIDUE_REFERENCE.toml",
+  "codex/artifacts/INVARIANT_EQUIVALENCE_REGISTRY.toml",
+]
+json_output = "codex/artifacts/COMPILED_PRIMING_PACKET_CHIMERA_LOCAL_SINGULARITY.json"
+markdown_output = "codex/artifacts/COMPILED_PRIMING_PACKET_CHIMERA_LOCAL_SINGULARITY.md"
+write_markdown_default = false

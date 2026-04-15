@@ -3,6 +3,22 @@
 **Session:** 2026-04-13 | Copilot CLI (Claude Sonnet 4.6)
 **Status:** Complete — no blockers
 
+## 2026-04-15 Reality Check
+
+This handoff remains accurate for the relocation itself, but it is stale about the REM implementation frontier.
+
+- **Trail canon is real:** repo-local `.chthonic/` is present and active
+- **Phase 1 / Phase 2 are no longer pending:** `tools/ankh-forge/src/trail/` now exists with `event.rs`, `hot.rs`, `cold.rs`, `granite.rs`, `gpu.rs`, `mod.rs`
+- **CLI surface is live:** `cargo run -p ankh-forge -- trail --help` exposes `append | list | verify | forge | stone | query | execute | init`
+- **Current verification:** `cargo test -p ankh-forge --quiet` passed on 2026-04-15
+
+The actual next decision surface is no longer "should Step 2 be built?".
+It is:
+
+1. keep Rust as the owner of the trail / stone runtime
+2. treat Vulkan as the acceleration backend inside Rust, not as a competing architecture
+3. decide whether the current raw `ash` path should be continued as-is, or whether an abstraction rewrite would buy anything before the shader/decompression semantics are proven
+
 ## What Changed
 
 ### 1. Chthonic Trail relocated (BREAKING for stale memory)
@@ -23,6 +39,13 @@
 - Phase 1 (CPU path): now unblocked — zstd + incode added to 	ools/ankh-forge/Cargo.toml
 - Phase 2 (GPU path): sh, gpu-allocator, sha2, shaderc already in root Cargo.toml
 
+### 5. Current code reality (2026-04-15)
+- `ankh-forge` is already a workspace member and owns the trail CLI surface
+- `granite.rs` implements the CPU `.runestone` path
+- `gpu.rs` already scaffolds Vulkan compute execution from stone-embedded SPIR-V
+- `build.rs` already compiles `assets/shaders/trail_decompress.comp.glsl` when `--features gpu` is enabled
+- `target/generated/bincode/StoneEvent_*` exists, so the typed event encoding path is active
+
 ### 4. .chthonic/ tree (current)
 ```
 .chthonic/
@@ -40,11 +63,18 @@
 - Stale memory (~/.chthonic/trail/) was overwritten with corrected path
 
 ## Next Session Entry Point
-- Step 2 (REM Phase 1 CPU implementation) is scope-ready
-  - Add 	rail/ module to 	ools/ankh-forge/src/
-  - Implement vent.rs, hot.rs, cold.rs, granite.rs
-  - Subcommands: nkh-forge trail append|list|forge|verify|dump
-- scripts/chthonic.ps1:1233 help string Configuration (~/.chthonic/) — review if user-facing or internal
+- **Do not restart at Step 2** — it is already built.
+- Immediate entry point is the **Phase 3 GPU decision surface**:
+  - keep `Rust` as the owner
+  - keep `Vulkan` as the GPU execution backend candidate inside Rust
+  - continue from `tools/ankh-forge/src/trail/gpu.rs` and `assets/shaders/trail_decompress.comp.glsl`
+- Relevant frameworks at this stage:
+  - **keep:** `ash`, `gpu-allocator`, `shaderc/glslc`, `bytemuck`, `lz4_flex`
+  - **not yet worth a rewrite tax:** `wgpu`, `vulkano`
+- Open implementation friction:
+  - repo-local `.chthonic/` is canonical, but code still allows home-dir fallback in `trail/mod.rs`
+  - GPU path exists as scaffolding; what remains is proving decompression semantics and query correctness, not choosing a different language stack
+- scripts/chthonic.ps1:1233 help string Configuration (~/.chthonic/) — still worth reviewing if user-facing or internal
 
 ## No Action Needed
 - ~/.chthonic/api_pool.json refs in api-manager skills — intentionally home-dir, correct

@@ -1,5 +1,8 @@
 # Zombie Evolution Project — Iterative Intelligence Pipeline
 
+> **ARCHIVED 2026-04-15** — Content absorbed into [`docs/zombie/UPGRADE_LOG.md`](../../docs/zombie/UPGRADE_LOG.md) (U1–U3 history) and [`docs/zombie/README.md`](../../docs/zombie/README.md) (architecture).
+> This file is preserved as the original session record. Do not edit.
+>
 > Lock-in document. Built from implementation results, not speculation.
 > Date: 2026-03-21 | Updated: 2026-03-23
 

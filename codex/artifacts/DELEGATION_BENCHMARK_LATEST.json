@@ -1,0 +1,70 @@
+{
+  "generated": "2026-04-15T05:06:16.983479+00:00",
+  "results": [
+    {
+      "lane": "qwen25_14b_baseline",
+      "model_file": "C:\\Users\\eldno\\chthonic-archive\\models\\Qwen2.5-14B-Instruct-GGUF\\qwen2.5-14b-instruct-q4_k_m-00001-of-00003.gguf",
+      "load_seconds": 5.781,
+      "tasks": [
+        {
+          "task": "schema_task",
+          "ok": true,
+          "detail": "ok",
+          "elapsed_s": 7.1145,
+          "out_tokens": 30,
+          "toks_per_s": 4.22,
+          "output_preview": "{   \"verdict\": \"HOLD\",   \"confidence\": 85,   \"reason\": \"Insufficient data for promotion\" }"
+        },
+        {
+          "task": "plan_task",
+          "ok": true,
+          "detail": "ok",
+          "elapsed_s": 31.4382,
+          "out_tokens": 161,
+          "toks_per_s": 5.12,
+          "output_preview": "{\"steps\":[{\"id\":\"S1\",\"action\":\"Reduce model size\",\"why\":\"To fit within the VRAM capacity\"},{\"id\":\"S2\",\"action\":\"Use 8-bit floating point precision\",\"why\":\"To further reduce the model size while maintaining acceptable performance\"},{\"id\":\"S3\",\"action\":\"Implemen"
+        },
+        {
+          "task": "tool_task",
+          "ok": true,
+          "detail": "ok",
+          "elapsed_s": 8.3488,
+          "out_tokens": 38,
+          "toks_per_s": 4.55,
+          "output_preview": "{\"tool_calls\":[{\"name\":\"benchmark_candidate\",\"arguments\":{\"model\":\"Gemma 4\",\"runtime\":\"vllm\",\"reason\":\"Initial benchmark on a 4090 GPU\"}}]}"
+        },
+        {
+          "task": "synthesis_task",
+          "ok": true,
+          "detail": "ok",
+          "elapsed_s": 4.8502,
+          "out_tokens": 15,
+          "toks_per_s": 3.09,
+          "output_preview": "{\"winner\":\"B\",\"evidence_ids\":[\"E2\",\"E4\"]}"
+        },
+        {
+          "task": "revision_task",
+          "ok": true,
+          "detail": "ok",
+          "elapsed_s": 13.7498,
+          "out_tokens": 66,
+          "toks_per_s": 4.8,
+          "output_preview": "{   \"final_answer\": \"vLLM lists Gemma 4 31B BF16 at 1x80 GB, while NVFP4 is the plausible 24 GB route.\",   \"superseded_claim\": \"BF16 is feasible on a single 4090.\" }"
+        }
+      ],
+      "passes": 5,
+      "task_count": 5,
+      "composite_score": 100.0,
+      "avg_toks_per_s": 4.73,
+      "total_tokens": 310,
+      "total_infer_seconds": 65.5015
+    }
+  ],
+  "failures": [],
+  "config": {
+    "n_ctx": 4096,
+    "n_gpu_layers": -1,
+    "lanes": "qwen25_14b_baseline",
+    "include_qwen25": true
+  }
+}

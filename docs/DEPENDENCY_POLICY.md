@@ -24,19 +24,22 @@ If `pydantic 2.12.5` declares `pydantic-core==2.41.5`, do not force `pydantic-co
 "pydantic-core>=2.44.0"   # WRONG — forces past pydantic's own constraint
 ```
 
-### 3. Optional ML/GPU lanes go in extras, not base deps
+### 3. Optional ML/GPU lanes go in dependency-groups, not base deps
 
-Heavy stacks (torch, transformers, sentence-transformers) are optional extras:
+Heavy stacks (torch, transformers, sentence-transformers) are dependency-groups:
 ```toml
-[project.optional-dependencies]
+[dependency-groups]
 embeddings = [
     "sentence-transformers>=5.3.0,<6",
     "transformers>=5.4.0,<6",
     "torch>=2.11.0,<3",
 ]
+
+[tool.uv]
+default-groups = ["dev", "analysis", "embeddings", "hf", "openai", "poe"]
 ```
 
-Install with `uv sync --extra embeddings`. Never in `dependencies = [...]`.
+All groups are in `default-groups` — plain `uv sync` installs the full environment. Never move heavy deps into `dependencies = [...]`.
 
 ### 4. Packages with version-sensitive transitive chains get exact major ceilings
 
@@ -54,7 +57,7 @@ Dev tools (`ruff`, `mypy`, `pytest`) do not need to be compatible with productio
 
 ---
 
-## Structure (as of 2026-03-28)
+## Structure (as of 2026-04-15)
 
 All lanes are `dependency-groups` (not `optional-dependencies`), all included in `tool.uv.default-groups`. A plain `uv sync` restores the full environment — no flags needed.
 
@@ -83,7 +86,7 @@ When deps drift:
 
 ---
 
-## Known Constraints (current as of 2026-03-28)
+## Known Constraints (current as of 2026-04-15)
 
 | Package | Constraint | Reason |
 |---------|-----------|--------|

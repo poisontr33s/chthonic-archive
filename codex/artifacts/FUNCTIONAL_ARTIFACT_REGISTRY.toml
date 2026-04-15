@@ -1,0 +1,107 @@
+version = 1
+title = "Functional Artifact Registry"
+purpose = "Declare live sources, canonical outputs, helper code, and residue patterns."
+generated = "2026-04-15"
+
+[artifact.priming_registry]
+path = "codex/artifacts/PRIMING_REFERENCE_REGISTRY.toml"
+kind = "live-input"
+producer = "manual"
+consumer = "scripts/render_priming_packet.py"
+
+[artifact.residue_reference]
+path = "codex/artifacts/ANKH_LOGICAL_RESIDUE_REFERENCE.toml"
+kind = "live-input"
+producer = "manual"
+consumer = "scripts/build_delegation_packet.py,scripts/render_priming_packet.py"
+
+[artifact.equivalence_registry]
+path = "codex/artifacts/INVARIANT_EQUIVALENCE_REGISTRY.toml"
+kind = "live-input"
+producer = "manual"
+consumer = "scripts/build_delegation_packet.py,scripts/render_priming_packet.py"
+
+[artifact.chimera_brief]
+path = "codex/artifacts/PROJECT_CHIMERA_LOCAL_SINGULARITY_BRIEF.md"
+kind = "live-input"
+producer = "manual"
+consumer = "scripts/render_priming_packet.py"
+
+[artifact.delegation_packet_json]
+path = "codex/artifacts/DELEGATION_PACKET_CANONICAL.json"
+kind = "canonical-output"
+producer = "scripts/build_delegation_packet.py"
+consumer = "operator or downstream agent"
+optional_human_mirror = "codex/artifacts/DELEGATION_PACKET_CANONICAL.md"
+
+[artifact.delegation_benchmark_json]
+path = "codex/artifacts/DELEGATION_BENCHMARK_CANONICAL.json"
+kind = "canonical-output"
+producer = "scripts/benchmark_delegation_lanes.py"
+consumer = "operator or downstream model selection"
+optional_human_mirror = "codex/artifacts/DELEGATION_BENCHMARK_CANONICAL.md"
+
+[artifact.compiled_priming_json]
+path = "codex/artifacts/COMPILED_PRIMING_PACKET_CHIMERA_LOCAL_SINGULARITY.json"
+kind = "canonical-output"
+producer = "scripts/render_priming_packet.py"
+consumer = "operator or downstream frontier model"
+optional_human_mirror = "codex/artifacts/COMPILED_PRIMING_PACKET_CHIMERA_LOCAL_SINGULARITY.md"
+
+[artifact.functional_reference_doc]
+path = "codex/artifacts/FUNCTIONAL_PRIMING_SYSTEM.md"
+kind = "human-reference"
+producer = "manual"
+consumer = "operator"
+
+[artifact.packet_builder]
+path = "scripts/build_delegation_packet.py"
+kind = "helper-code"
+producer = "manual"
+consumer = "operator"
+
+[artifact.benchmark_runner]
+path = "scripts/benchmark_delegation_lanes.py"
+kind = "helper-code"
+producer = "manual"
+consumer = "operator"
+
+[artifact.priming_compiler]
+path = "scripts/render_priming_packet.py"
+kind = "helper-code"
+producer = "manual"
+consumer = "operator"
+
+[artifact.validator]
+path = "scripts/validate_functional_artifacts.py"
+kind = "helper-code"
+producer = "manual"
+consumer = "operator"
+
+[[residue_pattern]]
+glob = "codex/artifacts/DELEGATION_PACKET_20*.json"
+reason = "timestamped packet snapshot residue"
+
+[[residue_pattern]]
+glob = "codex/artifacts/DELEGATION_PACKET_20*.md"
+reason = "timestamped packet mirror residue"
+
+[[residue_pattern]]
+glob = "codex/artifacts/DELEGATION_PACKET_LATEST.*"
+reason = "legacy latest packet mirrors superseded by canonical output"
+
+[[residue_pattern]]
+glob = "codex/artifacts/DELEGATION_BENCHMARK_20*.json"
+reason = "timestamped benchmark snapshot residue"
+
+[[residue_pattern]]
+glob = "codex/artifacts/DELEGATION_BENCHMARK_20*.md"
+reason = "timestamped benchmark mirror residue"
+
+[[residue_pattern]]
+glob = "codex/artifacts/DELEGATION_BENCHMARK_LATEST.*"
+reason = "legacy latest benchmark mirrors superseded by canonical output"
+
+[[residue_pattern]]
+glob = "codex/artifacts/PROJECT_CHIMERA_RUSTED_SINGULARITY_BRIEF.md"
+reason = "superseded draft"

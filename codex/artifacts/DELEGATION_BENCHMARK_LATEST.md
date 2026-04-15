@@ -1,0 +1,23 @@
+---
+type: local-delegation-benchmark
+generated: 2026-04-15T05:06:16.983479+00:00
+---
+
+# Local Delegation Benchmark
+
+| Lane | Composite | Passes | Avg toks/s | Load(s) | Model file |
+| --- | --- | --- | --- | --- | --- |
+| qwen25_14b_baseline | 100.0 | 5/5 | 4.73 | 5.781 | qwen2.5-14b-instruct-q4_k_m-00001-of-00003.gguf |
+
+## qwen25_14b_baseline
+
+- Composite: **100.0** (5/5)
+- Throughput: `4.73 tokens/s`
+
+| Task | Status | Detail | toks/s | Output preview |
+| --- | --- | --- | --- | --- |
+| schema_task | OK | ok | 4.22 | {   "verdict": "HOLD",   "confidence": 85,   "reason": "Insufficient data for promotion" } |
+| plan_task | OK | ok | 5.12 | {"steps":[{"id":"S1","action":"Reduce model size","why":"To fit within the VRAM capacity"},{"id":"S2","action":"Use 8-bit floating point precision","why":"To further reduce the model size while maintaining acceptable performance"},{"id":"S3","action":"Implemen |
+| tool_task | OK | ok | 4.55 | {"tool_calls":[{"name":"benchmark_candidate","arguments":{"model":"Gemma 4","runtime":"vllm","reason":"Initial benchmark on a 4090 GPU"}}]} |
+| synthesis_task | OK | ok | 3.09 | {"winner":"B","evidence_ids":["E2","E4"]} |
+| revision_task | OK | ok | 4.8 | {   "final_answer": "vLLM lists Gemma 4 31B BF16 at 1x80 GB, while NVFP4 is the plausible 24 GB route.",   "superseded_claim": "BF16 is feasible on a single 4090." } |

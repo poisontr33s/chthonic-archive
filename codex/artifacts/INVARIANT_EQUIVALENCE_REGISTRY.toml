@@ -1,0 +1,45 @@
+version = 1
+title = "Invariant Equivalence Registry"
+purpose = "Preserve equivalent operational meaning across variant expression without forcing one reducer vocabulary."
+generated = "2026-04-15"
+
+[[family]]
+id = "bridge_without_middle_loss"
+invariant = "Bridge across distinct expression without flattening either side into a generic middle."
+preserve_as = [
+  "cross-reference intent before normalization",
+  "retain variant phrasing when it carries load-bearing meaning",
+  "treat methodology as the transport, not the mutation target",
+]
+avoid_reduction_to = ["wire", "baseline", "packet", "middle ground"]
+
+[[family]]
+id = "pressure_into_search"
+invariant = "Convert impossibility pressure into an attack tree rather than a stop condition."
+preserve_as = [
+  "state the law",
+  "state the masquerading habit",
+  "generate loophole classes",
+  "bind each loophole to a falsification test",
+]
+avoid_reduction_to = ["guardrail", "warning", "safe summary"]
+
+[[family]]
+id = "circulation_over_stack_labels"
+invariant = "Model the system as circulation, residency, and reciprocity rather than fixed stack labels."
+preserve_as = [
+  "track what circulates",
+  "track what stays resident",
+  "track where pressure moves when one tier tightens",
+]
+avoid_reduction_to = ["lane", "layer", "level", "pipeline"]
+
+[[family]]
+id = "equivalence_without_mutation"
+invariant = "Ordinary instruction evolution is not the same thing as protected self-modification."
+preserve_as = [
+  "read first",
+  "cross-reference intent",
+  "separate protected self-modification from normal evolution",
+]
+avoid_reduction_to = ["mutation", "permutation", "noise"]

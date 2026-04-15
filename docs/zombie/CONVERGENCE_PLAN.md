@@ -1,6 +1,6 @@
 # Zombie × Dumpster-Dive Convergence Plan
 
-> **Created:** 2026-03-28 | **Updated:** 2026-03-28
+> **Created:** 2026-03-28 | **Updated:** 2026-04-15
 > **Status:** Tier A — A1 ✅ A2 ✅ A3 ✅ complete, A4 (slag upcycle detector) is next
 > **Governing constraint:** Zombie is an external anomaly. Convergence is a protocol stabilization, not a merge. Both systems retain their identities.
 
@@ -13,8 +13,8 @@
 | U1 — Adaptive Bite Heuristics | `_adaptive_ore_rating()` adjusts ore from cluster history | ✅ live |
 | U2 — Import Graph Intelligence | NetworkX co-occurrence, content hash dedup, redundancy scoring | ✅ live |
 | U3 — Forge Feedback Loop | `learn_from_forge()` backpropagates prediction errors at 30% LR | ✅ live |
-| U4 — ML Ore Rating | DecisionTree via scikit-learn, 171 samples, 79.2% CV accuracy | ✅ live |
-| U5 — Semantic Dedup | fastembed `all-MiniLM-L6-v2`, cosine sim, `zombie similar`, `digest` auto-embeds | ✅ live |
+| U4 — ML Ore Rating | DecisionTree (initial) → superseded by A3 GBT, 84.4% CV accuracy | ✅ live |
+| U5 — Semantic Dedup | `sentence-transformers/all-MiniLM-L6-v2` (384-dim), cosine sim, `zombie similar`, `digest` auto-embeds | ✅ live |
 | Bridge auto-routing | `feed` pipeline automatically routes after `excrete` | ✅ live |
 | SSOT Cascade | Phases 0.1–0.9, 21/21 binding tests passing | ✅ live |
 
@@ -27,7 +27,7 @@
 > No forge-side changes. No NOV-CAD contact. Zombie gets smarter internally.
 
 ### A1. Semantic Dedup — `zombie similar` ✅ COMPLETE
-**Package:** `sentence-transformers>=5.3` via `uv sync --extra embeddings` (now cleanly locked)
+**Package:** `sentence-transformers>=5.3` — in `embeddings` dependency-group, included in `default-groups`; plain `uv sync` installs it
 **Model:** `sentence-transformers/all-MiniLM-L6-v2` — 384-dim float32
 **Resolved:** `sentence-transformers 5.3` + `transformers 5.4` now require `huggingface-hub>=1.5,<2` — compatible with the project's base pin. The fastembed workaround is retired.
 **Built:**

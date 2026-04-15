@@ -3783,7 +3783,15 @@ $global:DoctorFixMap = @{
             param($ver)
             # Extract series (e.g. "3.14" from "3.14.4") for uv python upgrade
             $series = ($ver -replace '\.\d+$', '')
+            $env:UV_PYTHON_INSTALL_BIN = "0"
             uv python upgrade $series
+            # uv always creates a minor-version junction alias after upgrade (by design,
+            # not a bug — used for venv patch transparency). Remove it so `uv python list`
+            # stays clean. Junction removal is safe: only the pointer is deleted, not contents.
+            $junctionPath = "$env:APPDATA\uv\python\cpython-$series-windows-x86_64-none"
+            if ((Test-Path $junctionPath) -and ((Get-Item $junctionPath -Force).LinkType -eq 'Junction')) {
+                [System.IO.Directory]::Delete($junctionPath)
+            }
         }; UpgradeDesc = "uv python upgrade <series>"
         Install = {
             param($ver)
@@ -3791,7 +3799,12 @@ $global:DoctorFixMap = @{
                 irm https://astral.sh/uv/install.ps1 | iex
             }
             $series = ($ver -replace '\.\d+$', '')
+            $env:UV_PYTHON_INSTALL_BIN = "0"
             uv python upgrade $series
+            $junctionPath = "$env:APPDATA\uv\python\cpython-$series-windows-x86_64-none"
+            if ((Test-Path $junctionPath) -and ((Get-Item $junctionPath -Force).LinkType -eq 'Junction')) {
+                [System.IO.Directory]::Delete($junctionPath)
+            }
         }; InstallDesc = "install uv (if missing) && uv python upgrade <series>"
     }
     bun    = @{
