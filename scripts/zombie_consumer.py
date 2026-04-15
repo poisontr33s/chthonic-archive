@@ -2305,6 +2305,174 @@ def _render_similar(neighbors: list[dict], query_path: str) -> None:
 
 
 # ---------------------------------------------------------------------------
+# A4 — Slag Upcycle Detector
+# ---------------------------------------------------------------------------
+
+def _build_slag_manifest_lookup() -> dict[str, int]:
+    """Build {basename: original_ore} from all compact manifests under INTAKE."""
+    lookup: dict[str, int] = {}
+    for manifest_path in INTAKE.rglob(".zombie_compact_manifest.json"):
+        try:
+            data = json.loads(manifest_path.read_text(encoding="utf-8"))
+        except Exception:
+            continue
+        for entry in data.get("extracts", []):
+            payload = entry.get("payload", {})
+            source = payload.get("source", "")
+            ore = payload.get("ore_rating")
+            if source and ore is not None:
+                basename = Path(source).name
+                if basename not in lookup:
+                    lookup[basename] = int(ore)
+    return lookup
+
+
+def scan_slag_for_upcycles(mem: dict) -> dict:
+    """Scan the slag forge stage for files whose ore has risen since routing.
+
+    Read-only — no files are moved, written, or deleted.
+    Returns an envelope dict with items list + counters.
+    """
+    slag_dir = FORGE_STATES.get("slag")
+    if not slag_dir or not slag_dir.exists():
+        return {
+            "slag_scanned": 0,
+            "candidates": 0,
+            "no_baseline": 0,
+            "skipped_duplicate": 0,
+            "items": [],
+        }
+
+    manifest_lookup = _build_slag_manifest_lookup()
+    slag_files = [p for p in slag_dir.iterdir() if p.is_file()]
+    slag_scanned = len(slag_files)
+
+    no_baseline = 0
+    skipped_duplicate = 0
+    items: list[dict] = []
+
+    for path in slag_files:
+        assessment = bite(path, deep=False)
+        if "error" in assessment:
+            continue
+
+        signals = assessment.get("signals", [])
+
+        # Skip exact content duplicates — they add no intelligence
+        if "content_duplicate" in signals:
+            skipped_duplicate += 1
+            continue
+
+        # Look up original ore from compact manifests
+        original_ore = manifest_lookup.get(path.name)
+        if original_ore is None:
+            no_baseline += 1
+            continue
+
+        current_ore = assessment.get("ore_rating", 0)
+        delta = current_ore - original_ore
+        if delta < 1:
+            continue
+
+        # Determine reason from signals (deterministic priority order)
+        has_ml = any(s.startswith("ore_ml:") for s in signals)
+        has_adapted = False
+        for s in signals:
+            if s.startswith("ore_adapted:") and "->" in s:
+                parts = s.split(":", 1)[1].split("->")
+                if len(parts) == 2:
+                    try:
+                        if int(parts[1]) > int(parts[0]):
+                            has_adapted = True
+                    except ValueError:
+                        pass
+        has_community = any(s.startswith("community_ore_nudge:+") for s in signals)
+
+        lift_count = sum([has_ml, has_adapted, has_community])
+        if lift_count >= 2:
+            reason = "Multiple signals lift ore"
+        elif has_ml:
+            reason = "ML model re-scores ore higher than original slag routing"
+        elif has_adapted:
+            reason = "Adaptive heuristics re-score ore higher"
+        elif has_community:
+            reason = "Community prior lifts ore"
+        else:
+            reason = "Ore re-scored higher than original slag routing"
+
+        items.append({
+            "name": path.name,
+            "path": assessment.get("path", safe_relative(path)),
+            "ext": assessment.get("ext", path.suffix.lower()),
+            "category": assessment.get("category", "unknown"),
+            "original_ore": original_ore,
+            "current_ore": current_ore,
+            "delta": delta,
+            "signals": signals,
+            "reason": reason,
+        })
+
+    items.sort(key=lambda x: x["delta"], reverse=True)
+
+    return {
+        "slag_scanned": slag_scanned,
+        "candidates": len(items),
+        "no_baseline": no_baseline,
+        "skipped_duplicate": skipped_duplicate,
+        "items": items,
+    }
+
+
+def _render_upcycle(result: dict) -> None:
+    from rich.table import Table
+    from rich.panel import Panel
+
+    console = _get_console()
+
+    slag_scanned = result.get("slag_scanned", 0)
+    candidates = result.get("candidates", 0)
+    no_baseline = result.get("no_baseline", 0)
+    skipped_dup = result.get("skipped_duplicate", 0)
+    items = result.get("items", [])
+
+    summary = Table(show_header=False, box=None, padding=(0, 2))
+    summary.add_column("Key", style="bold cyan")
+    summary.add_column("Value")
+    summary.add_row("Slag files scanned", str(slag_scanned))
+    summary.add_row(
+        "Upcycle candidates",
+        f"[bold green]{candidates}[/bold green]" if candidates else str(candidates),
+    )
+    summary.add_row("No baseline (skipped)", str(no_baseline))
+    summary.add_row("Content duplicates (skipped)", str(skipped_dup))
+    console.print(Panel(summary, title="[bold]SLAG UPCYCLE DETECTOR[/bold]", border_style="dim"))
+
+    if not items:
+        console.print("[dim]No upcycle candidates — slag is appropriately classified.[/dim]")
+        return
+
+    table = Table(title=f"Upcycle Candidates ({candidates})")
+    table.add_column("Ore Now")
+    table.add_column("Orig", justify="right")
+    table.add_column("Delta", justify="right", style="bold green")
+    table.add_column("Name", style="bold")
+    table.add_column("Category")
+    table.add_column("Reason")
+
+    for item in items:
+        table.add_row(
+            _ore_bar(item["current_ore"]),
+            str(item["original_ore"]),
+            f"+{item['delta']}",
+            item["name"],
+            item["category"],
+            item["reason"],
+        )
+
+    console.print(table)
+
+
+# ---------------------------------------------------------------------------
 # CLI
 # ---------------------------------------------------------------------------
 
@@ -2371,6 +2539,9 @@ def main() -> int:
     p_similar.add_argument("--threshold", type=float, default=SEMANTIC_SIMILAR_DEFAULT,
                            help=f"Minimum similarity (default {SEMANTIC_SIMILAR_DEFAULT})")
     p_similar.add_argument("--json", action="store_true")
+
+    p_upcycle = sub.add_parser("upcycle", help="Detect slag files whose ore has risen since routing")
+    p_upcycle.add_argument("--json", action="store_true")
 
     args = parser.parse_args()
 
@@ -2569,6 +2740,15 @@ def main() -> int:
             print(json.dumps(neighbors, indent=2))
         else:
             _render_similar(neighbors, str(safe_relative(target)))
+        return 0
+
+    if args.command == "upcycle":
+        mem = load_memory()
+        result = scan_slag_for_upcycles(mem)
+        if getattr(args, "json", False):
+            print(json.dumps(result, indent=2))
+        else:
+            _render_upcycle(result)
         return 0
 
     parser.print_help()
