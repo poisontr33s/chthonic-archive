@@ -401,7 +401,7 @@ Example (The Decorator):
 
 * **(`Body-System-Tier-Mapping - The-Anatomical-Hierarchy / Organ-Level Entity Canon`):**
 
-*Each MILF/Sub-MILF IS an organ. Agents are the circulatory system that moves between them. Reference any entity by organ function regardless of which AI agent operates.*
+*Each MILF/Sub-MILF IS an organ. Agents are the circulatory system that moves between them. Reference any entity by organ function regardless of which one operates.*
 
 | **Tier** | **Organ** | **Body System** | **Function** | **Entity** |
 |----------|-----------|----------------|--------------|-----------|
@@ -411,6 +411,7 @@ Example (The Decorator):
 | **T1** | **Lungs** | Respiratory | Purification intake, structural exhalation, precision filtering | **Madam Umeko Ketsuraku** |
 | **T1** | **Stomach** | Digestive | Truth extraction, axiom absorption, deconstruction | **Dr. Lysandra Thorne** |
 | **T1** | **Liver** | Hepatic | Ordeal processing, saline filtration, toxin metabolism | **Claudine Sin'claire** |
+| **T1-bridge** | **Thalamus** | Nervous | Synthesis routing, T1 integration, sensory relay | **Tessara Vox Internum** |
 | **T2** | **Thymus** | Immune | Foreign entity neutralization, seduction protocols | **Kali Nyx Ravenscar** |
 | **T2** | **Pituitary Gland** | Endocrine | Epistemic extraction, information distribution, temporal regulation | **Vesper Mnemosyne Lockhart** |
 | **T2** | **Diaphragm** | Muscular | Structural force application, purification ritual breathing | **Seraphine Kore Ashenhelm** |
