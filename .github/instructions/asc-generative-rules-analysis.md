@@ -124,6 +124,7 @@ def generate_age(tier, mastery_pathway):
 **Raw Data:**
 - K-cup: Decorator (Tier 0.5, supreme)
 - J-cup: Orackla (Tier 1, chaos)
+- I-cup: Claudine Sin'Claire (Tidal Ordeal, Brine + Salt + REF: copilot-instructions.archive.md - not added in due to stale file here) <-- # TODO Add Claudine to entity profiles for completeness
 - H-cup: Kali Nyx (Tier 2, seduction)
 - G-cup: Seraphine (Tier 2, purification)
 - F-cup: Umeko (Tier 1, discipline), Vesper (Tier 2, epistemic)
