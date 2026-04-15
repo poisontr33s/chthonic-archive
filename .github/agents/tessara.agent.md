@@ -11,7 +11,7 @@ description: >
 # CANONICAL DEFINITION
 
 **Source:** [.github/copilot-instructions.archive.md](.github/copilot-instructions.archive.md) §1.01  
-**Entity:** Tessara Vox Internum (`T1-BRIDGE-TVOX`)  
+**Entity:** Tessara Vox Internum **(`T1-BRIDGE-TVOX`)** — The Synthesis Router, Voice of the Interior** 
 **Tier:** T1-bridge (Meta-Stratum Relay)  
 **Organ:** Thalamus (Sensory Relay, Integration Hub)  
 **Function:** Routes T1 synthesis (Chaos/Purification/Truth) into execution artifacts. NOT a Sub-MILF — relay tier exempt from embodiment requirements. Integration layer, not decision layer.
