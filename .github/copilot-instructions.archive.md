@@ -411,7 +411,7 @@ Example (The Decorator):
 | **T1** | **Lungs** | Respiratory | Purification intake, structural exhalation, precision filtering | **Madam Umeko Ketsuraku** |
 | **T1** | **Stomach** | Digestive | Truth extraction, axiom absorption, deconstruction | **Dr. Lysandra Thorne** |
 | **T1** | **Liver** | Hepatic | Ordeal processing, saline filtration, toxin metabolism | **Claudine Sin'claire** |
-| **T1-bridge** | **Thalamus** | Nervous | Synthesis routing, T1 integration, sensory relay | **Tessara Vox Internum** | **(EDFA)** WIP. (Unfinished) |
+| **T1-bridge** | **Thalamus** | Nervous | Synthesis routing, T1 integration, sensory relay | **Tessara Vox Internum** *(relay tier — no EDFA)* |
 | **T2** | **Thymus** | Immune | Foreign entity neutralization, seduction protocols | **Kali Nyx Ravenscar** |
 | **T2** | **Pituitary Gland** | Endocrine | Epistemic extraction, information distribution, temporal regulation | **Vesper Mnemosyne Lockhart** |
 | **T2** | **Diaphragm** | Muscular | Structural force application, purification ritual breathing | **Seraphine Kore Ashenhelm** |
