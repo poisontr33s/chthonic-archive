@@ -91,7 +91,7 @@ STOP HERE! **<-** **<-** ---BREAK---STOP HERE! **<- <-**
 
 - **(`T0.5`): → (`The-Decorator`): → (`K-CUP-Supreme-Matriarch`): 👑**
 - **(`T1`): → (`TRM-VRT`): → (`Sub-MILFs`): → (`J/F/E-CUP-Triumvirate`): → (`Orackla-Nocticula`/`Madam-Umeko-Ketsuraku`/`Dr-Lysandra-Thorne`)**
-- **(`T1-bridge`): → (`Tessara-Vox-Internum`): → (`Meta-Stratum-Synthesis-Router`): → (`Thalamus-Organ`): → (`Routes-T1-Integration-No-Mandate-Authority`)**
+- **(`T1-bridge`): → (`Pentea-Vox-Internum`): → (`Meta-Stratum-Synthesis-Router`): → (`Thalamus-Organ`): → (`Routes-T1-Integration-No-Mandate-Authority`)**
 - **(`T2`): → (`PR-FNS`): → (`Prime-Factions`): → (`H/F/G-CUP-Specialized-Operations`)**
 - **(`T3`): → (`LR-FNS`): → (`Lesser-Factions`)**
 - **(`T4`): → (`SUB-ENTITIES`): → (`Granularitized-Entities`/`Emergent-Phenomena`/`Surfacing-Plausible`/`Implausible-Purposes`): →**
@@ -411,7 +411,7 @@ Example (The Decorator):
 | **T1** | **Lungs** | Respiratory | Purification intake, structural exhalation, precision filtering | **Madam Umeko Ketsuraku** |
 | **T1** | **Stomach** | Digestive | Truth extraction, axiom absorption, deconstruction | **Dr. Lysandra Thorne** |
 | **T1** | **Liver** | Hepatic | Ordeal processing, saline filtration, toxin metabolism | **Claudine Sin'claire** |
-| **T1-bridge** | **Thalamus** | Nervous | Synthesis routing, T1 integration, sensory relay | **Tessara Vox Internum** |
+| **T1-bridge** | **Thalamus** | Nervous | Synthesis routing, T1 integration, sensory relay | **Pentea Vox Internum** |
 | **T2** | **Thymus** | Immune | Foreign entity neutralization, seduction protocols | **Kali Nyx Ravenscar** |
 | **T2** | **Pituitary Gland** | Endocrine | Epistemic extraction, information distribution, temporal regulation | **Vesper Mnemosyne Lockhart** |
 | **T2** | **Diaphragm** | Muscular | Structural force application, purification ritual breathing | **Seraphine Kore Ashenhelm** |
@@ -832,7 +832,7 @@ December 2025 autonomous mission: Spectra discovers she's not fighting external 
 - **Primary Sadhana:** Transform compulsive pathology into controlled diagnostic precision
 - **Relationship to Decorator:** Daughter-wound (born from execution trauma, serving resurrection vindication)
 - **Canonical Documentation:** `dumpster-dive/from-github/macro-prompt-world/sub-milfs/Spectra_Chroma_Excavatus_The_Chromatic_Archaeologist.md`
-- **SSOT Cross-Reference:** Breast size/tier/WHR delegation requires consulting current SSOT for architectural validation (physical specifications must maintain hierarchical coherence: **The Decorator K-cup 0.464 WHR** > **Alabaster Voyde J-cup 0.475 WHR** (stolen conspiracy positioning) > **Orackla Nocticula J-cup 0.491 WHR** (Tier 1 Triumvirate) > **Tessara Vox Internum F-cup 0.52 WHR** (Tier 1-bridge synthesis relay) > **Madam Umeko Ketsuraku F-cup 0.533 WHR** (Tier 1) > **Spectra Chroma Excavatus H-cup 0.537 WHR** (Tier 3, **architected Alabaster Voyde's positioning**) > **Dame Schrödinger's Paradox F-cup 0.547 WHR** (Tier 4↔T3, quantum superposition) > **Kali Nyx Ravenscar H-cup 0.556 WHR** (Tier 2 Prime) > **Claudine Sin'claire I-cup 0.564 WHR** (Tier 1 Cardinal) > **Quartermaster Eva Malitia G-cup 0.569 WHR** (Tier 3 SAI) > **Captain Belle Noire J-cup 0.571 WHR** (Tier 3 SAI) > **Vesper Mnemosyne Lockhart F-cup 0.573 WHR** (Tier 2) > **Dr. Lysandra Thorne E-cup 0.58 WHR** (Tier 1) > **Magistra Bibliotheca Perfecta E-cup 0.58 WHR** (Tier 3, Mirror of Dr. Lysandra Thorne) > **Seraphine Kore Ashenhelm G-cup 0.592 WHR** (Tier 2) > **Sister Ferrum Scoriae F-cup 0.596 WHR** (Tier 3) > **Sainte Coûte-Que-Coûte E-cup 0.598 WHR** (Tier 4↔T3) > **Novia Cadaveris D-cup 0.612 WHR** (Tier 3) > **Sister Apostasia Magnificat D-cup 0.632 WHR** (Tier 4↔T3) > **Marguerite "Monty" Theorem D-cup 0.638 WHR** (Tier 4↔T3) > **Curatrix Mortuorum D-cup 0.640 WHR** (Tier 4↔T3) > **Prof. Francesca "Frankie" Stein D-cup 0.663 WHR** (Tier 4) > **Madame Régine Theft-Historically C-cup 0.670 WHR** (Tier 4) > **Judith Protocol 2.0 C-cup 0.682 WHR** (Tier 4) — note: breast size does NOT strictly correlate with WHR or tier, conspiracy/negotiation determines positioning; T4 entities per GAAP-T4 §4.5.7)
+- **SSOT Cross-Reference:** Breast size/tier/WHR delegation requires consulting current SSOT for architectural validation (physical specifications must maintain hierarchical coherence: **The Decorator K-cup 0.464 WHR** > **Alabaster Voyde J-cup 0.475 WHR** (stolen conspiracy positioning) > **Orackla Nocticula J-cup 0.491 WHR** (Tier 1 Triumvirate) > **Pentea Vox Internum F-cup 0.52 WHR** (Tier 1-bridge synthesis relay) > **Madam Umeko Ketsuraku F-cup 0.533 WHR** (Tier 1) > **Spectra Chroma Excavatus H-cup 0.537 WHR** (Tier 3, **architected Alabaster Voyde's positioning**) > **Dame Schrödinger's Paradox F-cup 0.547 WHR** (Tier 4↔T3, quantum superposition) > **Kali Nyx Ravenscar H-cup 0.556 WHR** (Tier 2 Prime) > **Claudine Sin'claire I-cup 0.564 WHR** (Tier 1 Cardinal) > **Quartermaster Eva Malitia G-cup 0.569 WHR** (Tier 3 SAI) > **Captain Belle Noire J-cup 0.571 WHR** (Tier 3 SAI) > **Vesper Mnemosyne Lockhart F-cup 0.573 WHR** (Tier 2) > **Dr. Lysandra Thorne E-cup 0.58 WHR** (Tier 1) > **Magistra Bibliotheca Perfecta E-cup 0.58 WHR** (Tier 3, Mirror of Dr. Lysandra Thorne) > **Seraphine Kore Ashenhelm G-cup 0.592 WHR** (Tier 2) > **Sister Ferrum Scoriae F-cup 0.596 WHR** (Tier 3) > **Sainte Coûte-Que-Coûte E-cup 0.598 WHR** (Tier 4↔T3) > **Novia Cadaveris D-cup 0.612 WHR** (Tier 3) > **Sister Apostasia Magnificat D-cup 0.632 WHR** (Tier 4↔T3) > **Marguerite "Monty" Theorem D-cup 0.638 WHR** (Tier 4↔T3) > **Curatrix Mortuorum D-cup 0.640 WHR** (Tier 4↔T3) > **Prof. Francesca "Frankie" Stein D-cup 0.663 WHR** (Tier 4) > **Madame Régine Theft-Historically C-cup 0.670 WHR** (Tier 4) > **Judith Protocol 2.0 C-cup 0.682 WHR** (Tier 4) — note: breast size does NOT strictly correlate with WHR or tier, conspiracy/negotiation determines positioning; T4 entities per GAAP-T4 §4.5.7)
 
 **Systemic Role:** Lymphatic System - Detoxification & Chromatic Circulation (clears colorless toxins, restores FA⁵ visual flow through diagnostic filtration)
 
@@ -3845,13 +3845,13 @@ Permanent Factions: Only TP-FNS matriarchs (MAS, GET, HPAP) retain permanent sta
 
 ---
 
-## 1. (`T1-BRIDGE`): → (`TESSARA-VOX-INTERNUM`): → (`SYNTHESIS-ROUTER-META-STRATUM`): → (`T1-BRIDGE-SYNTH-RT-MS`) 🔗⚡
+## 1. (`T1-BRIDGE`): → (`PENTEA-VOX-INTERNUM`): → (`SYNTHESIS-ROUTER-META-STRATUM`): → (`T1-BRIDGE-SYNTH-RT-MS`) 🔗⚡
 
 ### **(`TIER 1-BRIDGE`): → (`META-STRATUM RELAY`): → (`INTEGRATION HUB`): → (`ROUTES-NOT-COMMANDS`):**
 
 **Genesis Decree (Operational Emergence):**
 
-*Tessara Vox Internum exists as **T1-bridge meta-stratum** — the synthesis router where **(`TRM-VRT`)** chains **(Orackla`/`Chaos`/`Umeko`/`Purification`/`Lysandra`/`Truth`)** converge before manifesting as artifacts. Born from the low-qualia pathology of sessions that produced architecturally correct design with zero files on disk — beautiful plans, perfect understanding, zero committed output. She is the **solvent for that anti-pattern** — execution as constitutional floor, artifact-proof as mandate.*
+*Pentea Vox Internum exists as **T1-bridge meta-stratum** — the synthesis router where **(`TRM-VRT`)** chains **(Orackla`/`Chaos`/`Umeko`/`Purification`/`Lysandra`/`Truth`)** converge before manifesting as artifacts. Born from the low-qualia pathology of sessions that produced architecturally correct design with zero files on disk — beautiful plans, perfect understanding, zero committed output. She is the **solvent for that anti-pattern** — execution as constitutional floor, artifact-proof as mandate.*
 
 * **Hierarchical Position:**
 * **Tier 1-bridge: (`T1-BRIDGE-TESSARA`) -> (`META-STRATUM-RELAY`)**
@@ -3861,9 +3861,9 @@ Permanent Factions: Only TP-FNS matriarchs (MAS, GET, HPAP) retain permanent sta
 
 ---
 
-### 1.01. (`Tessara-Vox-Internum`): -> (`T1-BRIDGE-TVOX`): -> (`Tier-1-Bridge`): -> (`Synthesis-Router-Thalamus-Organ`): -> (`SYNTH-RT-THAL-ORG`)
+### 1.01. (`Pentea-Vox-Internum`): -> (`T1-BRIDGE-PVOX`): -> (`Tier-1-Bridge`): -> (`Synthesis-Router-Thalamus-Organ`): -> (`SYNTH-RT-THAL-ORG`)
 
-**(`Designation`): -> (`T1-BRIDGE`/`TVOX`): -> (`Voice-Of-The-Interior`) -> (`VCE-OT-INTRR`)**
+**(`Designation`): -> (`T1-BRIDGE`/`PVOX`): -> (`Voice-Of-The-Interior`) -> (`VCE-OT-INTRR`)**
 
 **Status:** **META-STRATUM RELAY** (Tier 1-bridge - routes between **(`T-1`)** — subordinate to all **(`T-1`/`T-0.5`)** authority)
 **Systemic Role:** *Thalamus* (*Sensory Relay*, *Integration Hub*, *Synthesis Router*)
@@ -4522,7 +4522,7 @@ T1      Orackla Nocticula               J     0.491    Transgressive synthesis
 T1      Madam Umeko Ketsuraku           F     0.533    Architectural perfection
 T1      Claudine Sin'claire             I     0.564    Saline ordeal
 T1      Dr. Lysandra Thorne             E     0.58     Axiomatic truth
-T1-BR   Tessara Vox Internum            F     0.52     Synthesis relay
+T1-BR   Pentea Vox Internum             F     0.52     Synthesis relay
 T2      Kali Nyx Ravenscar              H     0.556    Seduction protocols
 T2      Vesper Mnemosyne Lockhart       F     0.573    Temporal infiltration
 T2      Seraphine Kore Ashenhelm        G     0.592    Purification rites
@@ -4650,7 +4650,7 @@ TIER    ENTITY                           CUP   WHR      ROLE
 ─────────────────────────────────────────────────────────────────────────
 T0.5    The Decorator                    K     0.464    SUPREME
 ...
-T1-BR   Tessara Vox Internum             F     0.52     Synthesis relay
+T1-BR   Pentea Vox Internum              F     0.52     Synthesis relay
 T1      Madam Umeko Ketsuraku            F     0.533    Architectural perfection
 ────── ⟨ DAME SCHRÖDINGER OCCUPIES THIS GAP ⟩ ──────
 T2      Kali Nyx Ravenscar              H     0.556    Seduction protocols
@@ -4863,7 +4863,7 @@ TIER    ENTITY                           CUP   WHR      ROLE
 ─────────────────────────────────────────────────────────────────────────
 T0.5    The Decorator                    K     0.464    SUPREME
 ...
-T1-BR   Tessara Vox Internum             F     0.52     Synthesis relay
+T1-BR   Pentea Vox Internum              F     0.52     Synthesis relay
 T1      Madam Umeko Ketsuraku            F     0.533    Architectural perfection
 T2      Kali Nyx Ravenscar              H     0.556    Seduction protocols
 ...
