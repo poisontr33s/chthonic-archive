@@ -1,7 +1,7 @@
 # Zombie × Dumpster-Dive Convergence Plan
 
 > **Created:** 2026-03-28 | **Updated:** 2026-04-15
-> **Status:** Tier A — A1 ✅ A2 ✅ A3 ✅ complete, A4 (slag upcycle detector) is next
+> **Status:** Tier A — A1 ✅ A2 ✅ A3 ✅ A4 ✅ complete, Tier B (NOV-CAD first contact) is next
 > **Governing constraint:** Zombie is an external anomaly. Convergence is a protocol stabilization, not a merge. Both systems retain their identities.
 
 ---
@@ -87,22 +87,25 @@
 
 ---
 
-### A4. Slag Upcycle Detector ← **NEXT**
-**Pre-condition:** A3 (model stable enough to re-assess)
-**What to build:**
-- `zombie upcycle` subcommand: scans slag-routed files in `forge/slag/`
-- Checks: has community membership shifted? does file's ext/signals match newly-active tooling in live repo?
-- Surfaces re-assessment candidates with current ML score vs. original ore rating
-- Does NOT move files — surfaces candidates for SFS to act on
+### A4. Slag Upcycle Detector ✅ COMPLETE
+**Pre-condition:** A3 ✅
+**Built:**
+- `_build_slag_manifest_lookup()` — walks compact manifests under INTAKE, builds `{basename: original_ore}`
+- `scan_slag_for_upcycles(mem)` — re-runs `bite()` per slag file, computes delta vs original, skips duplicates and no-baseline files
+- Reason classifier: multiple-signal lift > ML re-score > adaptive heuristics > community prior > generic
+- `_render_upcycle(result)` — Rich summary panel + candidates table sorted by delta desc
+- `zombie upcycle [--json]` — read-only, zero file mutations
+
+**Live test result:** 79 slag scanned, 1 candidate (`claude_test.py` ore 2→3, ML re-score reason), 76 content duplicates correctly skipped
 
 ---
 
-## Tier B — First Contact Surface (zombie ↔ NOV-CAD at provenance boundary)
+## Tier B — First Contact Surface (zombie ↔ NOV-CAD at provenance boundary) ← **NEXT**
 
 > CHEW extension only. Zombie calls embalmer, receives receipt. NOV-CAD writes its own territory.
 
 ### B1. NOV-CAD Pre-CHEW Step
-**Pre-condition:** A1 complete
+**Pre-condition:** A4 ✅ (all Tier A complete)
 **Interface file:** `.claude/skills/corpse-reviver/scripts/embalm_before_edit.py`
 **What to build:**
 - In `feed()`: call `embalm_before_edit.py` on the source file before CHEW

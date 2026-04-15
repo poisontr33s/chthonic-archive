@@ -164,6 +164,31 @@ This is U5 formalized as the entry point of the 4-tier convergence plan (`docs/z
 
 ---
 
+## A4 — Slag Upcycle Detector (2026-04-15)
+
+**Session:** Tessara/Copilot, 2026-04-15
+
+**What:** `zombie upcycle` subcommand — scans all files in `forge/slag/`, re-runs `bite()` on each, compares current ML/adaptive ore score against original ore from compact manifests. Surfaces candidates where `delta >= 1`. Read-only — zero file mutations.
+
+**Logic:**
+- `_build_slag_manifest_lookup()` — walks `INTAKE.rglob(".zombie_compact_manifest.json")`, builds `{basename: original_ore}` from stored extracts
+- `scan_slag_for_upcycles(mem)` — iterates slag files, skips exact duplicates (`content_duplicate` signal), skips files with no baseline, calls `bite()` per file, fires delta check
+- Reason classification (deterministic priority): multiple-signal lift > ML re-score > adaptive heuristics > community prior > generic
+- `_render_upcycle(result)` — Rich panel summary + sortable candidates table (`Ore Now · Orig · Delta · Name · Category · Reason`)
+- CLI: `zombie upcycle [--json]`
+
+**Live test result (2026-04-15):**
+- Slag files scanned: 79
+- Upcycle candidates: 1 (`claude_test.py` — ore 2 → 3, delta +1, reason: ML model re-scores ore higher than original slag routing)
+- No baseline (skipped): 1
+- Content duplicates (skipped): 76
+
+**Key functions:** `_build_slag_manifest_lookup()`, `scan_slag_for_upcycles()`, `_render_upcycle()`
+**CLI:** `zombie upcycle` | `zombie upcycle --json`
+**No new dependencies** — reuses existing `bite()`, ML bundle, Rich.
+
+---
+
 ## Recovery Checklist (zombie apocalypse protocol)
 
 If context is fully lost and you need to re-establish:

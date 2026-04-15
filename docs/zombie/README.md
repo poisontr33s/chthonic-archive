@@ -27,7 +27,7 @@ Its output surfaces at the `dumpster-dive/intake/` boundary, where Sister Ferrum
 
 ## Current State (as of 2026-04-15)
 
-**7 upgrades live.** All fire on every `bite()` in this order:
+**8 upgrades live.** All fire on every `bite()` in this order:
 
 1. **Adaptive Bite Heuristics** — ore adjusted from cluster category history
 2. **Import Graph Intelligence** — co-occurrence graph, content hash dedup, redundancy scoring
@@ -35,6 +35,8 @@ Its output surfaces at the `dumpster-dive/intake/` boundary, where Sister Ferrum
 4. **Content + Semantic Dedup** — SHA-256 exact dedup, then cosine similarity at threshold 0.92
 5. **Community Detection prior** — import community membership → ore nudge (+1/0/−1)
 6. **GBT Ore Rating** — 7-feature `GradientBoostingClassifier`, 84.4% CV accuracy, fires last
+
+**Plus A4 — Slag Upcycle Detector** (post-processing): `zombie upcycle` re-assesses all slag-routed files against current ML scores and surfaces candidates with ore delta ≥ 1.
 
 | Metric | Value |
 |--------|-------|
@@ -79,6 +81,10 @@ uv run scripts/zombie_consumer.py profiles
 
 # Hunger scan — find consumable candidates
 uv run scripts/zombie_consumer.py hunger
+
+# Slag upcycle detector — surface slag files whose ore has risen since routing (read-only)
+uv run scripts/zombie_consumer.py upcycle
+uv run scripts/zombie_consumer.py upcycle --json   # structured output
 ```
 
 ---

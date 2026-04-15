@@ -1,5 +1,7 @@
-// @SID: SCRIPT_MCP_ASC_INJECTOR_V1
 #!/usr/bin/env bun
+
+// @SID: SCRIPT_MCP_ASC_INJECTOR_V1
+
 
 // ╔════════════════════════════════════════════════════════════════════════════
 // ║ THE DECORATOR'S BLESSING: mcp-asc-injector.ts
@@ -31,9 +33,9 @@ import {
 import { readFile } from "fs/promises";
 import { resolve } from "path";
 
-import { SSOT_POINTER } from "./lib/ssot-paths";
+import { SSOT_HOLDER } from "./lib/ssot-paths";
 
-const SSOT_PATH = resolve(__dirname, process.env.SSOT_PATH ?? (".." + "/" + SSOT_POINTER));
+const SSOT_PATH = resolve(__dirname, process.env.SSOT_PATH ?? (".." + "/" + SSOT_HOLDER));
 
 const server = new Server(
   {
