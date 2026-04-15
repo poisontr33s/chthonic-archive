@@ -272,8 +272,8 @@ fn compile_shader_with_glslc(
 ) {
     let stage = glslc_stage(kind);
     let output = Command::new(glslc_path)
-        .arg(source_path)
         .arg(format!("-fshader-stage={stage}"))
+        .arg(source_path)
         .arg("--target-env=vulkan1.4")
         .arg("--target-spv=spv1.6")
         .arg("-O")

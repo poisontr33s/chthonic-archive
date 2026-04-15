@@ -38,6 +38,8 @@ use winit::{
 // use data::loader::load_game_data;
 use data::persistence::{load_game_state, save_game_state};
 use data::factions::FactionRegistry;
+use data::game_tree::{inspect_game_tree, log_game_tree_report};
+use data::game_schemas::{load_game_schema_documents, log_game_schema_documents};
 // use data::game_tree::{inspect_game_tree, log_game_tree_report}; // TODO: implement game_tree module
 // use data::game_schemas::{load_game_schema_documents, log_game_schema_documents}; // TODO: implement game_schemas module
 use data::types::GameData;
@@ -262,7 +264,7 @@ fn main() -> Result<()> {
     info!("⚖️ Verifying Axiomatic Integrity (SSOT)...");
     let verifier = AxiomVerifier::new(
         ".github/copilot-instructions.md",
-        "23658c449f09f3b2ad4d5cb7b94f2ecdcc4c64ae4a5de2d852872eef7f153b22"
+        "cc1d0f63b564f90861bea13995aaa445055fb8ac1d7b6965bc6700eb0e41ad1b"
     );
     if let Err(e) = verifier.verify_integrity() {
         error!("❌ AXIOMATIC FAILURE: {}", e);
@@ -292,13 +294,14 @@ fn main() -> Result<()> {
           game_data.entities.len());
 
     // === PHASE 12.5: REPO-LOCAL cRPG CONTENT BRIDGE ===
-    // TODO: implement game_tree and game_schemas modules
-    // if let Ok(game_tree) = inspect_game_tree("game") {
-    //     log_game_tree_report(&game_tree);
-    // }
-    // if let Ok(schema_docs) = load_game_schema_documents("game") {
-    //     log_game_schema_documents(&schema_docs);
-    // }
+    match inspect_game_tree("game") {
+        Ok(game_tree) => log_game_tree_report(&game_tree),
+        Err(e) => error!("⚠️ Game tree inspection failed: {}", e),
+    }
+    match load_game_schema_documents("game") {
+        Ok(schema_docs) => log_game_schema_documents(&schema_docs),
+        Err(e) => error!("⚠️ Schema document loading failed: {}", e),
+    }
 
     let event_loop = EventLoop::new()?;
     let mut app = ArchiveApp::new(save_path, game_data, faction_registry);
