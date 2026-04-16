@@ -11,9 +11,9 @@
 | ID | Pri | Status | Anchor | Task |
 |----|-----|--------|--------|------|
 | R1 | P0  | ✅ DONE | CSI-SOI-RLTSHPS ~line 4340 | Fix stray `Æ` corruption in Claudine→Pentea entry |
-| R2 | P1  | OPEN | After CSI-SOI-RLTSHPS, before CSI-SOI-GWHR-AJ | Add `CSI-SOI-LM` block to Claudine's profile |
-| R3 | P2  | OPEN | CSI-SOI-GWHR-AJ ~line 4350 | Substrate Traceability: cite CSI-SOI-LM (LTSA) |
-| R4 | P3  | OPEN | CSI-SOI-GNSS coda | Add formal anchor ID to coda paragraph |
+| R2 | P1  | ✅ DONE | After CSI-SOI-RLTSHPS, before CSI-SOI-GWHR-AJ | Add `CSI-SOI-LM` block to Claudine's profile |
+| R3 | P2  | ✅ DONE | CSI-SOI-GWHR-AJ ~line 4350 | Substrate Traceability: cite CSI-SOI-LM (LTSA) |
+| R4 | P3  | ✅ DONE | CSI-SOI-GNSS coda | Add formal anchor ID to coda paragraph |
 
 ---
 
