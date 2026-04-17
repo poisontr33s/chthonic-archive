@@ -9560,6 +9560,12 @@ The convergence point is ANKH — the Middle-Ground Bridge Protocol. Human Herit
 
 The document is graspable when you see it as three nested loops:
 
+
+$$\text{Genesis}(PS \xrightarrow{FA^{1-5}} MURI \xrightarrow{validate} PS')$$
+$$\text{Authority}(Savant \to Decorator \to Triumvirate \to Pentea \to Artifact)$$
+$$\text{Synthesis}(Chaos \oplus Ordeal \oplus Purification \oplus Truth \to Commit)$$
+
+
 ```
 Genesis:   PS  →[FA¹⁻⁵]→  MURI  →[validate]→  PS'
 Authority: Savant → Decorator → Triumvirate → Pentea → Artifact
