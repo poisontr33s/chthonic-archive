@@ -11,6 +11,8 @@
 #   .\nvidia_drs_tool.ps1 -Profile "World Of Warcraft" -Watch          # Live-watch for changes
 #   .\nvidia_drs_tool.ps1 -Profile "World Of Warcraft" -Watch -Interval 5 -Filter "DLSS"
 #   .\nvidia_drs_tool.ps1 -Profile "World Of Warcraft" -Export out.json
+#   .\nvidia_drs_tool.ps1 -Profile "World Of Warcraft" -Apply out.json  # Batch-restore from JSON
+#   .\nvidia_drs_tool.ps1 -Profile "World Of Warcraft" -NpiRef path\to\Reference.xml  # Use NPI names
 
 param(
     [switch]$List,
@@ -20,10 +22,13 @@ param(
     [string]$SetId,
     [uint32]$SetValue,
     [string]$Export,
+    [string]$Apply,
     [switch]$Watch,
     [int]$Interval = 2,
     [switch]$Snapshot,
-    [switch]$Effective
+    [switch]$Effective,
+    [switch]$Audit,
+    [string]$NpiRef
 )
 
 # --- NVAPI P/Invoke wrapper ---
@@ -392,6 +397,67 @@ try {
 }
 
 # --- Main ---
+# --- Load NPI Reference.xml for human-readable setting names ---
+$npiNames = @{}  # HexID string → friendly name
+$npiValues = @{} # HexID string → @{ hexVal → friendlyName }
+$npiGroups = @{} # HexID string → group name
+
+if (-not $NpiRef) {
+    # Auto-detect: look for Reference.xml alongside known NPI installations
+    $candidates = @(
+        "$env:USERPROFILE\Downloads\nvidiaProfileInspector-v3.0.1.12\Reference.xml",
+        "$env:USERPROFILE\Downloads\nvidiaProfileInspector\Reference.xml",
+        "$env:ProgramFiles\NVIDIA Profile Inspector\Reference.xml"
+    )
+    foreach ($c in $candidates) {
+        if (Test-Path $c) { $NpiRef = $c; break }
+    }
+}
+
+if ($NpiRef -and (Test-Path $NpiRef)) {
+    try {
+        [xml]$refXml = Get-Content $NpiRef -ErrorAction Stop
+        $refSettings = $refXml.CustomSettingNames.Settings.CustomSetting
+        foreach ($rs in $refSettings) {
+            $hexId = $rs.HexSettingID.ToUpper()
+            $npiNames[$hexId] = $rs.UserfriendlyName
+            if ($rs.GroupName) { $npiGroups[$hexId] = $rs.GroupName }
+            if ($rs.SettingValues -and $rs.SettingValues.CustomSettingValue) {
+                $valMap = @{}
+                foreach ($sv in $rs.SettingValues.CustomSettingValue) {
+                    $valMap[$sv.HexValue.ToUpper()] = $sv.UserfriendlyName
+                }
+                $npiValues[$hexId] = $valMap
+            }
+        }
+        if (-not $Snapshot) {
+            Write-Host "  NPI Reference: $($npiNames.Count) settings loaded from $(Split-Path $NpiRef -Leaf)" -ForegroundColor DarkGray
+        }
+    } catch {
+        Write-Warning "Failed to load NPI Reference.xml: $_"
+    }
+}
+
+# Helper: resolve a setting name using NPI reference, falling back to NVAPI name
+function Resolve-SettingName {
+    param([string]$NvapiName, [uint32]$Id)
+    $hexKey = "0x{0:X8}" -f $Id
+    if ($npiNames.ContainsKey($hexKey)) { return $npiNames[$hexKey] }
+    if ($NvapiName -and $NvapiName -notmatch '^0x') { return $NvapiName }
+    return $hexKey
+}
+
+# Helper: resolve a setting value to friendly name
+function Resolve-SettingValue {
+    param([uint32]$Id, [uint32]$Value)
+    $hexKey = "0x{0:X8}" -f $Id
+    $valHex = "0x{0:X8}" -f $Value
+    if ($npiValues.ContainsKey($hexKey) -and $npiValues[$hexKey].ContainsKey($valHex)) {
+        return $npiValues[$hexKey][$valHex]
+    }
+    return $null
+}
+
 try {
     [NvAPI]::Initialize()
 
@@ -419,7 +485,10 @@ try {
         Write-Output "  -Filter 'DLSS|DLAA'             Regex filter on setting names"
         Write-Output "  -SetId 0x... -SetValue N        Write a DWORD setting (auto-elevates to admin)"
         Write-Output "  -Export file.json                Export settings to JSON"
+        Write-Output "  -Apply file.json                Batch-restore DWORD settings from exported JSON"
+        Write-Output "  -NpiRef path\Reference.xml      Use NPI Reference.xml for human-readable names"
         Write-Output "  -Effective                       Show effective values (predefined when not overridden)"
+        Write-Output "  -Audit                           Classify settings as ACTIVE/DEAD/MARGINAL"
         Write-Output "  -Watch                           Live-watch for setting changes"
         Write-Output "  -Interval 5                      Poll interval in seconds (default 2)"
         return
@@ -473,11 +542,58 @@ try {
         Write-Output "Done. Setting saved to driver."
     }
 
+    # Batch-apply from JSON export
+    if ($Apply) {
+        if (-not (Test-Path $Apply)) {
+            Write-Error "Apply file not found: $Apply"
+            return
+        }
+        $applyData = Get-Content $Apply -Raw | ConvertFrom-Json
+        $toApply = $applyData | Where-Object { [uint32]($_.ValueDecimal) -ne 0 -and $_.Type -eq 0 }
+        Write-Output "`n--- Applying $($toApply.Count) DWORD settings from: $Apply ---"
+
+        $isAdmin = ([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)
+        if (-not $isAdmin) {
+            Write-Host "Write requires admin. Relaunching elevated..." -ForegroundColor Yellow
+            $elevLog = Join-Path $env:TEMP "nvidia_drs_elev.log"
+            $elevScript = Join-Path $env:TEMP "nvidia_drs_elev.ps1"
+            $elevArgs = @('-NoProfile', '-File', $PSCommandPath, '-Apply', "`"$Apply`"")
+            if ($Global) { $elevArgs += '-Global' } elseif ($Profile) { $elevArgs += '-Profile'; $elevArgs += "`"$Profile`"" }
+            $wrapperContent = "& pwsh $($elevArgs -join ' ') *> '$elevLog'"
+            Set-Content -Path $elevScript -Value $wrapperContent -Force
+            Start-Process pwsh -ArgumentList @('-NoProfile', '-ExecutionPolicy', 'Bypass', '-File', $elevScript) -Verb RunAs -Wait
+            if (Test-Path $elevLog) { Write-Host (Get-Content $elevLog -Raw) -ForegroundColor Cyan }
+            Remove-Item -Path $elevScript, $elevLog -Force -ErrorAction SilentlyContinue
+            return
+        }
+
+        $applied = 0
+        foreach ($entry in $toApply) {
+            $sid = [uint32]$entry.Id
+            $val = [uint32]($entry.ValueDecimal)
+            $name = Resolve-SettingName -NvapiName $entry.Name -Id $sid
+            try {
+                [NvAPI]::SetDwordSetting($ph, $sid, $val)
+                $valLabel = Resolve-SettingValue -Id $sid -Value $val
+                $valDisp = if ($valLabel) { "$val ($valLabel)" } else { "$val (0x{0:X8})" -f $val }
+                Write-Host "  OK: $name = $valDisp" -ForegroundColor Green
+                $applied++
+            } catch {
+                Write-Host "  FAIL: $name — $_" -ForegroundColor Red
+            }
+        }
+        Write-Output "Applied $applied/$($toApply.Count) settings."
+        return
+    }
+
     # Enumerate and display settings
     $settings = [NvAPI]::EnumSettings($ph)
 
     if ($Filter) {
-        $settings = $settings | Where-Object { $_.Name -match $Filter -or ("0x{0:X8}" -f $_.Id) -match $Filter }
+        $settings = $settings | Where-Object {
+            $resolved = Resolve-SettingName -NvapiName $_.Name -Id $_.Id
+            $resolved -match $Filter -or $_.Name -match $Filter -or ("0x{0:X8}" -f $_.Id) -match $Filter
+        }
     }
 
     # Snapshot mode: output JSON and exit (used by watch subprocess)
@@ -485,9 +601,9 @@ try {
         $snap = @{}
         foreach ($s in $settings) {
             $key = $s.Id.ToString()
-            # Effective value: use predefined when current is 0 and predefined is non-zero
             $eff = if ($s.Value -ne 0) { $s.Value } elseif ($s.PredefinedValue -ne 0) { $s.PredefinedValue } else { $s.Value }
-            $snap[$key] = @{ n = $s.Name; v = $s.Value; p = $s.PredefinedValue; e = $eff }
+            $resolvedName = Resolve-SettingName -NvapiName $s.Name -Id $s.Id
+            $snap[$key] = @{ n = $resolvedName; v = $s.Value; p = $s.PredefinedValue; e = $eff }
         }
         # Also include DRS file timestamps for file-level change detection
         $drsPath = "C:\ProgramData\NVIDIA Corporation\Drs"
@@ -505,8 +621,9 @@ try {
 
     if ($Export) {
         $exportData = $settings | ForEach-Object {
+            $resolvedName = Resolve-SettingName -NvapiName $_.Name -Id $_.Id
             [PSCustomObject]@{
-                Name = $_.Name
+                Name = $resolvedName
                 Id = "0x{0:X8}" -f $_.Id
                 Type = $_.Type
                 Value = "0x{0:X8}" -f $_.Value
@@ -531,24 +648,115 @@ try {
     }
     $settings = $deduped
 
+    # --- Audit mode: classify settings by relevance ---
+    if ($Audit) {
+        # Dead-weight classification rules for single-GPU desktop + DX12
+        $deadPatterns = @(
+            @{ Match = '08 - SLI'; Reason = 'SLI/NVLink — single GPU, no effect' }
+            @{ Match = '10 - OpenGL'; Reason = 'OpenGL path — WoW is DX12, never executes' }
+        )
+        # Use string hex keys to avoid int32/uint32 type mismatch
+        $deadIds = @{
+            '0x10F9DC81' = 'Optimus allow-list — desktop GPU, no iGPU mux'
+            '0x10F9DC84' = 'Optimus shim — desktop GPU, no iGPU mux'
+            '0x10AAA36C' = 'Quadro disable — already GeForce, no-op'
+            '0x20797D6C' = 'OpenGL texture quality — DX12 game, OGL path never runs'
+        }
+        $marginalIds = @{
+            '0x10E74421' = 'NvCamera depth block — low cost, niche use'
+            '0x1034CB89' = 'Predefined FXAA=0 — already default, redundant entry'
+            '0x006BDD49' = 'Surface max priority — 4090 is 384-bit, setting targets 192-bit'
+            '0x00EA83C5' = 'DX10 surface priority — DX10 path on DX12 game'
+            '0x105E2A1D' = 'CPU Expr Modes — experimental/undocumented'
+            '0x80857A28' = 'VSync Expr — telemetry flag per NPI, not rendering'
+            '0x00664339' = 'Predefined AO usage — companion to AO, probably needed'
+        }
+
+        $active = @(); $dead = @(); $marginal = @()
+        foreach ($s in $settings) {
+            $hexKey = "0x{0:X8}" -f $s.Id
+            $resolvedName = Resolve-SettingName -NvapiName $s.Name -Id $s.Id
+            $group = if ($npiGroups.ContainsKey($hexKey)) { $npiGroups[$hexKey] } else { '' }
+            $classified = $false
+
+            # Check dead by ID (string key match)
+            if ($deadIds.ContainsKey($hexKey)) {
+                $dead += [PSCustomObject]@{ Name=$resolvedName; Id=$hexKey; Value=$s.Value; Reason=$deadIds[$hexKey] }
+                $classified = $true
+            }
+            # Check dead by group pattern
+            if (-not $classified) {
+                foreach ($dp in $deadPatterns) {
+                    if ($group -like "*$($dp.Match)*") {
+                        $dead += [PSCustomObject]@{ Name=$resolvedName; Id=$hexKey; Value=$s.Value; Reason=$dp.Reason }
+                        $classified = $true
+                        break
+                    }
+                }
+            }
+            # Check unknown hex prefix 0x20 = OpenGL namespace
+            if (-not $classified -and $hexKey -match '^0x20' -and $group -eq '') {
+                $dead += [PSCustomObject]@{ Name=$resolvedName; Id=$hexKey; Value=$s.Value; Reason='0x20 prefix = OpenGL namespace, DX12 game' }
+                $classified = $true
+            }
+            # Check marginal by ID
+            if (-not $classified -and $marginalIds.ContainsKey($hexKey)) {
+                $marginal += [PSCustomObject]@{ Name=$resolvedName; Id=$hexKey; Value=$s.Value; Reason=$marginalIds[$hexKey] }
+                $classified = $true
+            }
+            # Unknown settings with no NPI entry
+            if (-not $classified -and -not $npiNames.ContainsKey($hexKey) -and $resolvedName -match '^0x') {
+                $marginal += [PSCustomObject]@{ Name=$resolvedName; Id=$hexKey; Value=$s.Value; Reason='Unknown — not in NPI Reference.xml' }
+                $classified = $true
+            }
+            if (-not $classified) {
+                $active += [PSCustomObject]@{ Name=$resolvedName; Id=$hexKey; Value=$s.Value; Reason='' }
+            }
+        }
+
+        Write-Host "`n=== Audit: $($settings.Count) settings ===" -ForegroundColor White
+        Write-Host "`n  ACTIVE ($($active.Count)) — real work on this GPU/API:" -ForegroundColor Green
+        foreach ($a in ($active | Sort-Object Name)) {
+            $valLabel = Resolve-SettingValue -Id ([uint32]$a.Id) -Value $a.Value
+            $vDisp = if ($valLabel) { "$($a.Value) ($valLabel)" } else { "0x{0:X8}" -f $a.Value }
+            Write-Host ("    {0,-55} {1}" -f "$($a.Name) [$($a.Id)]", $vDisp) -ForegroundColor Green
+        }
+
+        Write-Host "`n  DEAD ($($dead.Count)) — zero effect, safe to remove:" -ForegroundColor Red
+        foreach ($d in ($dead | Sort-Object Name)) {
+            Write-Host ("    {0,-55} {1}" -f "$($d.Name) [$($d.Id)]", $d.Reason) -ForegroundColor Red
+        }
+
+        Write-Host "`n  MARGINAL ($($marginal.Count)) — debatable, low/no impact:" -ForegroundColor Yellow
+        foreach ($m in ($marginal | Sort-Object Name)) {
+            Write-Host ("    {0,-55} {1}" -f "$($m.Name) [$($m.Id)]", $m.Reason) -ForegroundColor Yellow
+        }
+
+        Write-Host "`n  Summary: $($active.Count) active, $($dead.Count) dead, $($marginal.Count) marginal" -ForegroundColor White
+        return
+    }
+
     Write-Output "`n  $($settings.Count) settings$(if($Filter){' (filtered)'}else{''}):`n"
-    $settings | Sort-Object Name | ForEach-Object {
+    $settings | Sort-Object { Resolve-SettingName -NvapiName $_.Name -Id $_.Id } | ForEach-Object {
         $id  = "0x{0:X8}" -f $_.Id
         $cur = "0x{0:X8}" -f $_.Value
         $pre = "0x{0:X8}" -f $_.PredefinedValue
+        $resolvedName = Resolve-SettingName -NvapiName $_.Name -Id $_.Id
         # Effective: show predefined when current is 0 and predefined exists
         $effVal = if ($_.Value -ne 0) { $_.Value } elseif ($_.PredefinedValue -ne 0) { $_.PredefinedValue } else { $_.Value }
         $eff = "0x{0:X8}" -f $effVal
         $loc = switch ($_.Location) { 0 {"cur"} 1 {"global"} 2 {"base"} 3 {"default"} default {"?"} }
-        $label = if ($_.Name -match '^0x') { $_.Name } else { "$($_.Name) [$id]" }
+        $label = "$resolvedName [$id]"
+        # Append enum value name if available
+        $valLabel = Resolve-SettingValue -Id $_.Id -Value ([uint32]$(if ($Effective) { $effVal } else { $_.Value }))
+        $valSuffix = if ($valLabel) { " ($valLabel)" } else { "" }
         if ($Effective) {
-            # Show effective value with layer detail
             $layer = if ($_.Value -ne 0) { 'override' } elseif ($_.PredefinedValue -ne 0) { 'predefined' } else { 'zero' }
             $mod = if ($_.Value -ne 0 -and $_.PredefinedValue -ne 0 -and $_.Value -ne $_.PredefinedValue) { " [overrides $pre]" } else { "" }
-            Write-Output ("  {0,-60} {1}  ({2}/{3}){4}" -f $label, $eff, $loc, $layer, $mod)
+            Write-Output ("  {0,-60} {1}{2}  ({3}/{4}){5}" -f $label, $eff, $valSuffix, $loc, $layer, $mod)
         } else {
             $mod = if ($_.Value -ne $_.PredefinedValue -and $_.PredefinedValue -ne 0) { " [MOD from $pre]" } else { "" }
-            Write-Output ("  {0,-65} {1}  ({2}){3}" -f $label, $cur, $loc, $mod)
+            Write-Output ("  {0,-65} {1}{2}  ({3}){4}" -f $label, $cur, $valSuffix, $loc, $mod)
         }
     }
 
