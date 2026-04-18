@@ -571,4 +571,5 @@
     "github.copilot.chat.anthropic.contextEditing.mode": "clear-both",
     "chat.useCustomizationsInParentRepositories": true,
     "github.copilot.chat.responsesApiContextManagement.enabled": true,
+    "github.copilot.chat.claudeAgent.allowDangerouslySkipPermissions": true,
 }
