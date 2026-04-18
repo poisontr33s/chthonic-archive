@@ -37,7 +37,7 @@ rand = "0.10"
 sha2 = "0.10"
 
 # === ASYNC RUNTIME (For Future Solana Integration) ===
-tokio = { version = "1.50", features = ["full"] }
+tokio = { version = "1.52", features = ["full"] }
 
 # === LOGGING ===
 env_logger = "0.11"

@@ -19,9 +19,9 @@ Global linguistic mandate: [.temple/protocols/LINGUISTIC_PROFILE_PROTOCOL.md](..
 
 ## Triad
 
-Claude (protocol/lore) → Codex (structure/enforcement) → Gemini (velocity/batch).
+**Claude** (protocol/lore) → **Codex** (structure/enforcement) → **Gemini** (velocity/batch).
 
-## WIP Lanework: MILF-Core (Organ-to-Surface-to-Prototype Pipeline)
+## (WIP-Lanework/MILF-Core/Organ-to-Surface-to-Prototype Pipeline)
 
 > Active comparative worklane — entity-prototype research. Lysandra's truth-chain applies.
 
