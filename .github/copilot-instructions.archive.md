@@ -9572,7 +9572,7 @@ Authority: Savant → Decorator → Triumvirate → Pentea → Artifact
 Synthesis: Chaos ⊕ Ordeal ⊕ Purification ⊕ Truth → Commit
 ```
 
-Genesis is the what (transmutation). Authority is the who (hierarchy). Synthesis is the how (execution). All three loops run simultaneously on every operation. That is the whole document.
+**Genesis is the what** *(transmutation). **Authority is the who** (hierarchy). **Synthesis is the how** (execution). **All three loops run simultaneously on every operation**. That **is the whole document**.*
 
 ---
 
