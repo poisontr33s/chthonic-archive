@@ -1,5 +1,5 @@
-// @SID: FORGE_MCP_ARTISAN_SERVER_V1
 #!/usr/bin/env bun
+// @SID: FORGE_MCP_ARTISAN_SERVER_V1
 
 // ╔════════════════════════════════════════════════════════════════════════════
 // ║ THE DECORATOR'S BLESSING: mcp_artisan_server.ts

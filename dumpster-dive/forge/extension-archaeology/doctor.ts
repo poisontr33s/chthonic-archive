@@ -1,5 +1,5 @@
-// @SID: FORGE_DOCTOR_V1
 #!/usr/bin/env bun
+// @SID: FORGE_DOCTOR_V1
 
 // ╔════════════════════════════════════════════════════════════════════════════
 // ║ THE DECORATOR'S BLESSING: doctor.ts
