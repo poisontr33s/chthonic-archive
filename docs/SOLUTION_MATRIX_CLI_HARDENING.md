@@ -277,3 +277,101 @@ Total estimated implementation surface: ~2.5 hours across 4 lanes.
 | `.cargo/config.toml` linker pin | rv is uninstalled OR rv stops bundling MSYS2 usr/bin on PATH |
 | `Get-DevKitPaths` usr/bin exclusion | rv is uninstalled (but safe to keep — zero cost) |
 | OPENSSL env var auto-set in `env` | Never (system OpenSSL may change paths on upgrade) |
+
+---
+
+## §4 — Mitigation Chain Architecture
+
+### Problem: Detection-Mitigation Asymmetry
+
+Raw diagnostic output ("SHADOWED") reports error existence without evaluating whether active defenses neutralize the risk. This produces false urgency — the system flags a problem that the codebase already handles.
+
+### Three-Layer Model
+
+Each infrastructure error path carries an ordered set of defense mechanisms. The effective state is the residual risk after evaluating all active mitigations.
+
+| Layer | Mechanism | Applied at | Survives session restart? |
+|---|---|---|---|
+| L1 | Config file pin (`.cargo/config.toml`) | Cargo invocation | Yes — checked into repo |
+| L2 | Env var (User scope) | Shell startup | Yes — persisted to registry |
+| L3 | Code guard (PATH filter) | Activation function | Yes — embedded in script |
+
+### Effective State Enum
+
+Each check reports one of five states:
+
+| State | Meaning | Display color |
+|---|---|---|
+| `clear` / `compatible` | No problem exists | Green |
+| `mitigated` / `fully mitigated` | Problem exists, all active defenses neutralize it | Yellow→Green |
+| `patched (env drift risk)` | Cargo patch active, env vars missing (build works, IDE may not) | Yellow |
+| `env set (no cargo patch)` | Env vars set but no Cargo patch — partial mitigation | Yellow+Red |
+| `vulnerable` | Problem exists, no active defenses | Red |
+
+### Linker Mitigation Chain (E1)
+
+```
+M1: .cargo/config.toml linker pin  — bypasses PATH resolution entirely
+M2: CARGO_TARGET_*_LINKER env var  — session-scoped override
+M3: Get-DevKitPaths PATH guard     — prevents msys64\usr\bin from entering PATH
+```
+
+When M1 is active: effective = `mitigated` (shadow exists on PATH but Cargo never calls it).  
+When only M3 active: effective = `mitigated` (shadow never enters PATH).  
+When neither: effective = `vulnerable`.
+
+### OpenSSL Mitigation Chain (E2/E3)
+
+```
+M1: [patch.crates-io] openssl-sys git  — bypasses crates.io version gate entirely
+M2: OPENSSL env vars persisted (User)  — survives session restart
+M3: PolyglotActivation auto-set        — session fallback when vars missing
+```
+
+When M1+M2 active: effective = `fully mitigated`.  
+When M1 only: effective = `patched (env drift risk)`.  
+When M2+M3 only: effective = `env set (no cargo patch)`.  
+When none: effective = `vulnerable`.
+
+### CLI Surface
+
+- `chthonic doctor` INFRASTRUCTURE section — per-check effective state + active mitigation list
+- `chthonic graphics lane --json` — `msvc.linker_effective`, `msvc.linker_mitigations`, `openssl.effective`, `openssl.mitigations`
+- `claudine repair --fix` — delegates to `chthonic doctor --fix` to persist User-scope env vars
+
+---
+
+## §5 — Branch D: Tool Crate Dependency Updates (2026-04-19)
+
+Completed as part of the same dependency update trail. All bumps verified clean against the mitigation chain — doctor post-update still reports `linker: mitigated`, `openssl: fully mitigated`.
+
+### ankh-forge (`tools/ankh-forge/Cargo.toml`)
+
+| Crate | Before | After | Risk | API impact |
+|---|---|---|---|---|
+| clap | 4.6.0 | 4.6.1 | patch | none |
+| zstd | 0.13 | 0.13.3 | patch | none |
+| sha2 | 0.10 | 0.11 | semver-minor | `Sha256::new()` / `.update()` / `.finalize().into()` — stable |
+| lz4_flex | 0.11 | 0.13 | semver-minor | `block::compress()` — stable; GPU feature only |
+| bincode | 2.0 | **SKIPPED** | POISON | v3.0.0 is unmaintained with compiler errors — do not upgrade |
+
+### chthonic-cai (`tools/chthonic-cai/Cargo.toml`)
+
+| Crate | Before | After | Risk | API impact |
+|---|---|---|---|---|
+| crossterm | 0.28 | 0.29 | semver-minor | execute!, SetForegroundColor, Print, ResetColor, SetTitle, Color::* — all stable; breaking changes in 0.29 are in Event/KeyCode which this codebase does not use |
+
+### Verification
+
+- `cargo check -p ankh-forge` — clean, 27.86s
+- `cargo check -p chthonic-cai` — clean, 3.90s
+- `cargo check -p entropy-ledger-host -p chthonic-daemon -p tensor-runtime-host -p xtask` — clean
+- `chthonic doctor` post-update — INFRASTRUCTURE section unchanged, mitigations intact
+
+### Removal Criteria
+
+| Workaround | Remove when |
+|---|---|
+| `[patch.crates-io]` openssl-sys git | openssl-sys ≥ 0.9.114 ships on crates.io |
+| `.cargo/config.toml` linker pin | rv stops bundling MSYS2 `link.exe`, or rv is removed from the toolchain |
+| OPENSSL env vars (User scope) | Remove when patch is removed and openssl-sys finds headers natively |
