@@ -1,7 +1,7 @@
 #!/bin/sh
 # Chthonic Archive — pre-commit hook (source)
 # Installed to .git/hooks/pre-commit by: bun run hooks:install
-# Blocks commits containing displaced shebangs in .ts files.
+# Runs local CI checks in staged mode: shebang, python-headers, sid-envelope.
 
-bun run "$(git rev-parse --show-toplevel)/scripts/shebang-guard.ts" --staged
+bun run "$(git rev-parse --show-toplevel)/ci/run.ts" --staged
 exit $?

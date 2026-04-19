@@ -49,7 +49,12 @@
     "biome:version": "bunx @biomejs/biome --version",
     "lint:shebang": "bun run scripts/shebang-guard.ts",
     "lint:shebang:staged": "bun run scripts/shebang-guard.ts --staged",
-    "hooks:install": "pwsh -NoProfile -File scripts/install-hooks.ps1"
+    "hooks:install": "pwsh -NoProfile -File scripts/install-hooks.ps1",
+    "ci": "bun run ci/run.ts",
+    "ci:staged": "bun run ci/run.ts --staged",
+    "ci:full": "bun run ci/run.ts --full",
+    "ci:check": "bun run ci/run.ts --check",
+    "ci:list": "bun run ci/run.ts --list"
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.29.0",

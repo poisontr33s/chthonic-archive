@@ -178,6 +178,10 @@ extensions/*/bun.lock
 # Allow root-level MCP validation runner
 !run_mcp_validation.ts
 
+# Allow local CI folder (orchestrator + checks)
+!ci/
+!ci/**
+
 # Allow Claude Code integration scripts — all source files tracked by default
 !scripts/
 !scripts/*.py
