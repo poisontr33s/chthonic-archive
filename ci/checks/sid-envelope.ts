@@ -13,7 +13,7 @@
  *
  * Every script committed to scripts/ or ci/ must carry a Semantic ID.
  * Format (TypeScript): // @SID: DOMAIN_NAME_V1
- * Format (Python):     @SID: DOMAIN_NAME_V1  (inside docstring)
+ * Format (Python):    // @SID: DOMAIN_NAME_V1  (inside docstring)
  *
  * Behavior:
  *   --staged  STRICT on Added .ts and .py files in scripts/ and ci/. (exit 1)
