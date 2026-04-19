@@ -78,6 +78,11 @@ const CHTHONIC_SCRIPT = join(CHTHONIC_ROOT, "scripts", "chthonic.ps1");
 const HOME = process.env.USERPROFILE ?? "";
 const DEBUG = process.env.MCP_DEBUG === "1";
 
+if (!existsSync(CHTHONIC_SCRIPT)) {
+  console.error(`[chthonic-mcp] FATAL: chthonic.ps1 not found at ${CHTHONIC_SCRIPT}. Set CHTHONIC_ROOT env var.`);
+  process.exit(1);
+}
+
 function log(msg: string): void {
   if (DEBUG) console.error(`[chthonic-mcp] ${msg}`);
 }
@@ -112,11 +117,18 @@ const TOOL_PATHS: Record<string, string[]> = {
   uv: [join(HOME, ".local", "bin", "uv.exe")],
   cargo: [join(HOME, ".cargo", "bin", "cargo.exe")],
   rustc: [join(HOME, ".cargo", "bin", "rustc.exe")],
-  go: ["C:\\Go\\bin\\go.exe", "C:\\Program Files\\Go\\bin\\go.exe"],
+  go: [
+    ...(process.env.GO_PATH ? [process.env.GO_PATH] : []),
+    "C:\\Go\\bin\\go.exe",
+    "C:\\Program Files\\Go\\bin\\go.exe",
+  ],
   ruby: rubyToolchainCandidates(join("bin", "ruby.exe")),
   gcc: rubyToolchainCandidates(join("msys64", "ucrt64", "bin", "gcc.exe")),
   "g++": rubyToolchainCandidates(join("msys64", "ucrt64", "bin", "g++.exe")),
-  git: ["C:\\Program Files\\Git\\cmd\\git.exe"],
+  git: [
+    ...(process.env.GIT_PATH ? [process.env.GIT_PATH] : []),
+    "C:\\Program Files\\Git\\cmd\\git.exe",
+  ],
   make: rubyToolchainCandidates(join("msys64", "usr", "bin", "make.exe")),
   bash: [...rubyToolchainCandidates(join("msys64", "usr", "bin", "bash.exe")), "C:\\msys64\\usr\\bin\\bash.exe"],
   mdbook: [join(HOME, ".cargo", "bin", "mdbook.exe")],
@@ -126,7 +138,11 @@ const TOOL_PATHS: Record<string, string[]> = {
     join(CHTHONIC_ROOT, "node_modules", ".bin", "biome"),
     join(HOME, ".bun", "bin", "biome.exe"),
   ],
-  pwsh: ["C:\\Program Files\\PowerShell\\7\\pwsh.exe"],
+  pwsh: [
+    ...(process.env.PWSH_PATH ? [process.env.PWSH_PATH] : []),
+    "C:\\Program Files\\PowerShell\\7\\pwsh.exe",
+    join(process.env.LOCALAPPDATA ?? "", "Microsoft", "WindowsApps", "pwsh.exe"),
+  ],
 };
 
 function resolveToolPath(tool: string): string {

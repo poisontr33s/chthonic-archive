@@ -13,7 +13,7 @@
  */
 
 import { resolve } from "path";
-import { readFileSync, writeFileSync } from "fs";
+import { existsSync, readFileSync, writeFileSync } from "fs";
 
 const distDir = resolve(
   import.meta.dir,
@@ -21,17 +21,27 @@ const distDir = resolve(
 );
 const rootsUtilsPath = resolve(distDir, "roots-utils.js");
 
+if (!existsSync(distDir)) {
+  console.error(`[mcp-filesystem] FATAL: server-filesystem not installed. Run: bun install`);
+  process.exit(1);
+}
+
 // Ensure the fileURLToPath fix is present (idempotent, survives bun install)
-const src = readFileSync(rootsUtilsPath, "utf-8");
-if (!src.includes("fileURLToPath")) {
-  writeFileSync(
-    rootsUtilsPath,
-    "import { fileURLToPath } from 'url';\n" +
-      src.replace(
-        "const rawPath = rootUri.startsWith('file://') ? rootUri.slice(7) : rootUri;",
-        "const rawPath = rootUri.startsWith('file://') ? fileURLToPath(rootUri) : rootUri;",
-      ),
-  );
+try {
+  const src = readFileSync(rootsUtilsPath, "utf-8");
+  if (!src.includes("fileURLToPath")) {
+    writeFileSync(
+      rootsUtilsPath,
+      "import { fileURLToPath } from 'url';\n" +
+        src.replace(
+          "const rawPath = rootUri.startsWith('file://') ? rootUri.slice(7) : rootUri;",
+          "const rawPath = rootUri.startsWith('file://') ? fileURLToPath(rootUri) : rootUri;",
+        ),
+    );
+  }
+} catch (e) {
+  console.error(`[mcp-filesystem] Warning: could not apply fileURLToPath patch: ${e instanceof Error ? e.message : String(e)}`);
+  // Non-fatal: proceed without patch; Windows paths may fail for percent-encoded URIs
 }
 
 // Forward CLI args and run the actual server

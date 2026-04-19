@@ -35,7 +35,9 @@ import { resolve } from "path";
 
 import { SSOT_HOLDER } from "./lib/ssot-paths";
 
-const SSOT_PATH = resolve(__dirname, process.env.SSOT_PATH ?? (".." + "/" + SSOT_HOLDER));
+const SSOT_PATH = process.env.SSOT_PATH
+  ? resolve(import.meta.dir, "..", process.env.SSOT_PATH)
+  : resolve(import.meta.dir, "..", SSOT_HOLDER);
 
 const server = new Server(
   {
@@ -66,16 +68,20 @@ server.setRequestHandler(ListResourcesRequestSchema, async () => {
 
 server.setRequestHandler(ReadResourceRequestSchema, async (request) => {
   if (request.params.uri === "asc://ssot") {
-    const content = await readFile(SSOT_PATH, "utf-8");
-    return {
-      contents: [
-        {
-          uri: request.params.uri,
-          mimeType: "text/markdown",
-          text: content,
-        },
-      ],
-    };
+    try {
+      const content = await readFile(SSOT_PATH, "utf-8");
+      return {
+        contents: [
+          {
+            uri: request.params.uri,
+            mimeType: "text/markdown",
+            text: content,
+          },
+        ],
+      };
+    } catch (e) {
+      throw new Error(`Failed to read SSOT at ${SSOT_PATH}: ${e instanceof Error ? e.message : String(e)}`);
+    }
   }
   throw new Error(`Unknown resource: ${request.params.uri}`);
 });
@@ -123,7 +129,12 @@ server.setRequestHandler(ListToolsRequestSchema, async () => {
 server.setRequestHandler(CallToolRequestSchema, async (request) => {
   if (request.params.name === "inject_asc_context") {
     const section = request.params.arguments?.section || "all";
-    const fullContent = await readFile(SSOT_PATH, "utf-8");
+    let fullContent: string;
+    try {
+      fullContent = await readFile(SSOT_PATH, "utf-8");
+    } catch (e) {
+      throw new Error(`Failed to read SSOT at ${SSOT_PATH}: ${e instanceof Error ? e.message : String(e)}`);
+    }
 
     let injectedContent: string;
     if (section === "all") {
