@@ -582,10 +582,10 @@ unsafe fn load_vulkan_secure() -> Result<ash::Entry> {
 
 fn compile_sediment_shader() -> Result<Vec<u32>> {
     let compiler = shaderc::Compiler::new()
-        .ok_or_else(|| anyhow::anyhow!("failed to create shaderc compiler"))?;
+        .context("failed to create shaderc compiler")?;
 
     let mut options = shaderc::CompileOptions::new()
-        .ok_or_else(|| anyhow::anyhow!("failed to create shaderc options"))?;
+        .context("failed to create shaderc options")?;
     options.set_target_env(
         shaderc::TargetEnv::Vulkan,
         shaderc::EnvVersion::Vulkan1_2 as u32,

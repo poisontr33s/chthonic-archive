@@ -31,16 +31,25 @@ anchor-client = "0.32.1"
 anchor-lang = "0.32.1"
 ash = "0.38"
 borsh = "0.10.4"
-clap = { version = "4.5", features = ["derive"] }
-gix = { version = "0.71", default-features = false, features = ["max-performance-safe"] }
+clap = { version = "4.6", features = ["derive"] }
+gix = { version = "0.79", default-features = false, features = ["max-performance-safe"] }
 hex = "0.4"
 serde = { version = "1.0", features = ["derive"] }
 serde_json = "1.0"
 sha2 = "0.10"
-shaderc = "0.8"
+shaderc = "0.10"
 solana-sdk = "2.3.1"
 solana-system-interface = "1.0.0"
-tokio = { version = "1.44", features = ["macros", "rt-multi-thread"] }
+tokio = { version = "1.52", features = ["macros", "rt-multi-thread"] }
 toml = "0.8"
 shared_memory = "0.12"
 libloading = "0.8"
+
+# ── OpenSSL 4.0 forward-fix ─────────────────────────────────────────
+# System has OpenSSL 4.0.0; openssl-sys 0.9.113 only supports up to 3.x.
+# PR #2591 (merged 2026-04-16) added 4.0 support to rust-openssl master
+# but hasn't been released to crates.io yet.
+# REMOVE this [patch] block once openssl-sys ≥ 0.9.114 ships with 4.0 support.
+[patch.crates-io]
+openssl      = { git = "https://github.com/rust-openssl/rust-openssl.git", branch = "master" }
+openssl-sys  = { git = "https://github.com/rust-openssl/rust-openssl.git", branch = "master" }

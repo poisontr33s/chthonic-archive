@@ -48,6 +48,8 @@ function Get-ClaudineGuidePayload {
         start_here = @(
             [pscustomobject]@{ command = "claudine start"; summary = "desktop-oriented overview" }
             [pscustomobject]@{ command = "claudine repair"; summary = "doctor dry-run guidance" }
+            [pscustomobject]@{ command = "claudine repair --fix"; summary = "apply doctor fixes (env persistence, etc.)" }
+            [pscustomobject]@{ command = "claudine build-check"; summary = "pre-build sanity (linker, OpenSSL, MSVC) as JSON" }
         )
         domains = @()
         notes = @(
@@ -110,7 +112,15 @@ switch ($Action) {
         exit $LASTEXITCODE
     }
     "repair" {
-        & $ChthonicScript "doctor" "--dry-run"
+        if ($Args -contains "--fix") {
+            & $ChthonicScript "doctor" "--fix"
+        } else {
+            & $ChthonicScript "doctor" "--dry-run"
+        }
+        exit $LASTEXITCODE
+    }
+    "build-check" {
+        & $ChthonicScript "graphics" "lane" "--json"
         exit $LASTEXITCODE
     }
 }

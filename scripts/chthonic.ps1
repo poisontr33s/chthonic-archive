@@ -235,14 +235,194 @@ function Get-ZigExePath {
     return $null
 }
 
+function Get-MSVCLinkerPath {
+    # Resolve the MSVC link.exe path from the same VS install that provides cl.exe.
+    $clExe = Get-VSClExePath
+    if ($clExe) {
+        $linkExe = Join-Path (Split-Path -Parent $clExe) "link.exe"
+        if (Test-Path $linkExe) { return $linkExe }
+    }
+    return $null
+}
+
 function Get-DevKitPaths {
     $root = Get-RubyDevKitRoot
     if (-not $root) { return @() }
 
-    return @(
-        (Join-Path $root "msys64\ucrt64\bin"),
-        (Join-Path $root "msys64\usr\bin")
+    $paths = @(
+        (Join-Path $root "msys64\ucrt64\bin")   # gcc, make, pkg-config — always safe
     )
+
+    # GUARD: msys64\usr\bin contains a Unix link.exe (hardlink utility) that fatally
+    # shadows MSVC's linker when both are on PATH. Only include usr\bin when MSVC
+    # toolchain is NOT present — otherwise Cargo builds fail with:
+    #   /usr/bin/link: extra operand '...\symbols.o'
+    $msvcLinker = Get-MSVCLinkerPath
+    if (-not $msvcLinker) {
+        $paths += (Join-Path $root "msys64\usr\bin")
+    }
+
+    return $paths
+}
+
+function Get-OpenSSLStatus {
+    $dir = $env:OPENSSL_DIR
+    $libDir = $env:OPENSSL_LIB_DIR
+    $incDir = $env:OPENSSL_INCLUDE_DIR
+
+    $version = $null
+    $opensslExe = $null
+    if ($dir) {
+        $candidate = Join-Path $dir "bin\openssl.exe"
+        if (Test-Path $candidate) { $opensslExe = $candidate }
+    }
+    if (-not $opensslExe) {
+        try { $opensslExe = (Get-Command openssl -ErrorAction Stop).Source } catch {}
+    }
+
+    if ($opensslExe) {
+        try {
+            $out = & $opensslExe version 2>$null
+            if ($out -match 'OpenSSL\s+([0-9]+\.[0-9]+\.[0-9]+)') {
+                $version = $matches[1]
+            }
+        } catch {}
+    }
+
+    $major = if ($version -match '^(\d+)') { [int]$matches[1] } else { $null }
+    $envPersisted = [bool]([Environment]::GetEnvironmentVariable('OPENSSL_DIR', 'User'))
+
+    # Mitigation chain for OpenSSL version gap (E2) and env drift (E3).
+    # M1: [patch.crates-io] openssl-sys git override in Cargo.toml
+    # M2: OPENSSL env vars persisted to User scope
+    # M3: Invoke-PolyglotActivation auto-set (session fallback)
+    $mitigations = @()
+    $cargoTomlPath = Join-Path $REPO_ROOT "extensions\chthonic-archive\native\Cargo.toml"
+    $hasCargoPatch = $false
+    if (Test-Path $cargoTomlPath) {
+        $cargoContent = Get-Content $cargoTomlPath -Raw
+        if ($cargoContent -match 'openssl-sys\s*=\s*\{.*git') {
+            $hasCargoPatch = $true
+            $mitigations += [pscustomobject]@{
+                id     = "M1"
+                name   = "[patch.crates-io] openssl-sys git"
+                active = $true
+                value  = "master branch (pre-0.9.114)"
+            }
+        }
+    }
+    if ($envPersisted) {
+        $mitigations += [pscustomobject]@{
+            id     = "M2"
+            name   = "OPENSSL env vars (User scope)"
+            active = $true
+            value  = $dir
+        }
+    }
+    $opensslAutoSetDir = "C:\Program Files\OpenSSL-Win64"
+    if ((Test-Path $opensslAutoSetDir) -and -not $envPersisted) {
+        $mitigations += [pscustomobject]@{
+            id     = "M3"
+            name   = "PolyglotActivation auto-set (session only)"
+            active = $true
+            value  = $opensslAutoSetDir
+        }
+    }
+
+    $needsPatch = $major -ge 4
+    $mitigated = (-not $needsPatch) -or (($mitigations | Where-Object { $_.active }).Count -gt 0)
+    $effective = if (-not $needsPatch) { "compatible" }
+                elseif ($hasCargoPatch -and $envPersisted) { "fully mitigated" }
+                elseif ($hasCargoPatch) { "patched (env drift risk)" }
+                elseif ($envPersisted) { "env set (no cargo patch)" }
+                else { "vulnerable" }
+
+    return [pscustomobject]@{
+        version        = $version
+        major          = $major
+        dir            = $dir
+        lib_dir        = $libDir
+        include_dir    = $incDir
+        dir_exists     = [bool]($dir -and (Test-Path $dir))
+        lib_dir_exists = [bool]($libDir -and (Test-Path $libDir))
+        inc_dir_exists = [bool]($incDir -and (Test-Path $incDir))
+        env_persisted  = $envPersisted
+        has_cargo_patch = $hasCargoPatch
+        mitigations    = $mitigations
+        mitigated      = $mitigated
+        effective      = $effective
+    }
+}
+
+function Get-LinkerShadowStatus {
+    $msvcLinker = Get-MSVCLinkerPath
+    $resolvedFirst = $null
+    $shadow = $false
+    $linkResults = @()
+
+    try {
+        $linkResults = @(where.exe link.exe 2>$null)
+        if ($linkResults.Count -gt 0) {
+            $resolvedFirst = $linkResults[0]
+            if ($resolvedFirst -and $resolvedFirst -notlike '*VC\Tools\MSVC*') {
+                $shadow = $true
+            }
+        }
+    } catch {}
+
+    # Mitigation chain: evaluate all active defenses against linker shadow.
+    # M1: .cargo/config.toml linker pin (bypasses PATH entirely)
+    # M2: CARGO_TARGET env var (session-level override)
+    # M3: Get-DevKitPaths guard (prevents chthonic from adding usr\bin)
+    $mitigations = @()
+    $cargoConfigPath = Join-Path $REPO_ROOT "extensions\chthonic-archive\native\.cargo\config.toml"
+    $cargoConfigLinker = $null
+    if (Test-Path $cargoConfigPath) {
+        $configContent = Get-Content $cargoConfigPath -Raw
+        if ($configContent -match 'linker\s*=\s*"([^"]+)"') {
+            $cargoConfigLinker = $matches[1]
+            $mitigations += [pscustomobject]@{
+                id     = "M1"
+                name   = ".cargo/config.toml linker pin"
+                active = $true
+                value  = $cargoConfigLinker
+            }
+        }
+    }
+    $cargoEnvLinker = $env:CARGO_TARGET_X86_64_PC_WINDOWS_MSVC_LINKER
+    if ($cargoEnvLinker) {
+        $mitigations += [pscustomobject]@{
+            id     = "M2"
+            name   = "CARGO_TARGET env var"
+            active = $true
+            value  = $cargoEnvLinker
+        }
+    }
+    # M3 is structural — it's in Get-DevKitPaths. Report if MSVC is present (guard would activate).
+    if ($msvcLinker) {
+        $mitigations += [pscustomobject]@{
+            id     = "M3"
+            name   = "Get-DevKitPaths PATH guard"
+            active = $true
+            value  = "usr\bin excluded when MSVC present"
+        }
+    }
+
+    $mitigated = ($mitigations | Where-Object { $_.active }).Count -gt 0
+    $effective = if ($shadow -and $mitigated) { "mitigated" }
+                elseif ($shadow) { "vulnerable" }
+                else { "clear" }
+
+    return [pscustomobject]@{
+        msvc_linker        = $msvcLinker
+        resolved_first     = $resolvedFirst
+        shadow             = $shadow
+        all_results        = $linkResults
+        cargo_config_linker = $cargoConfigLinker
+        mitigations        = $mitigations
+        mitigated          = $mitigated
+        effective          = $effective
+    }
 }
 
 function Get-VSWhereExe {
@@ -2683,6 +2863,15 @@ function Invoke-PolyglotActivation {
         }
     }
     
+    # OpenSSL (required for native Cargo builds with openssl-sys).
+    # Auto-set when OpenSSL-Win64 exists and vars are unset — prevents env drift across terminals.
+    $opensslDir = "C:\Program Files\OpenSSL-Win64"
+    if ((Test-Path $opensslDir) -and -not $env:OPENSSL_DIR) {
+        $env:OPENSSL_DIR = $opensslDir
+        $env:OPENSSL_LIB_DIR = Join-Path $opensslDir "lib\VC\x64\MD"
+        $env:OPENSSL_INCLUDE_DIR = Join-Path $opensslDir "include"
+    }
+    
     # Canon markers for the active Chthonic environment.
     # Keep the older Claudine markers mirrored for compatibility during transition.
     $env:CHTHONIC_ACTIVATED = "1"
@@ -4241,6 +4430,56 @@ function Invoke-Doctor {
         Write-Host "  | endoflife.date" -ForegroundColor DarkGray
         Write-Host ""
 
+        # ── Infrastructure checks (linker shadow, OpenSSL) ──
+        Write-Host "INFRASTRUCTURE" -ForegroundColor Cyan
+        Write-Host ("="*72) -ForegroundColor DarkGray
+
+        $linkerStatus = Get-LinkerShadowStatus
+        Write-Host "  link.exe  " -NoNewline -ForegroundColor Cyan
+        switch ($linkerStatus.effective) {
+            "clear" {
+                Write-Host "ok" -NoNewline -ForegroundColor Green
+                if ($linkerStatus.resolved_first) {
+                    Write-Host " — $($linkerStatus.resolved_first)" -ForegroundColor DarkGray
+                } else { Write-Host "" }
+            }
+            "mitigated" {
+                Write-Host "SHADOWED → mitigated" -ForegroundColor Yellow
+                Write-Host "            raw PATH: $($linkerStatus.resolved_first)" -ForegroundColor DarkGray
+                foreach ($m in $linkerStatus.mitigations) {
+                    Write-Host "            [$($m.id)] $($m.name): $($m.value)" -ForegroundColor DarkGray
+                }
+            }
+            "vulnerable" {
+                Write-Host "SHADOWED → VULNERABLE" -ForegroundColor Red
+                Write-Host "            raw PATH: $($linkerStatus.resolved_first)" -ForegroundColor DarkGray
+                Write-Host "            expected MSVC: $($linkerStatus.msvc_linker)" -ForegroundColor DarkGray
+                Write-Host "            no active mitigations — cargo builds will fail" -ForegroundColor Red
+            }
+        }
+
+        $openssl = Get-OpenSSLStatus
+        Write-Host "  openssl   " -NoNewline -ForegroundColor Cyan
+        if ($openssl.version) {
+            $opensslBadge = "v$($openssl.version)"
+            switch ($openssl.effective) {
+                "compatible"              { Write-Host "$opensslBadge" -ForegroundColor Green }
+                "fully mitigated"         { Write-Host "$opensslBadge → fully mitigated" -ForegroundColor Green }
+                "patched (env drift risk)" { Write-Host "$opensslBadge → patched" -NoNewline -ForegroundColor Green; Write-Host " (env drift risk — run doctor --fix)" -ForegroundColor Yellow }
+                "env set (no cargo patch)" { Write-Host "$opensslBadge → env set" -NoNewline -ForegroundColor Yellow; Write-Host " (missing [patch.crates-io])" -ForegroundColor Red }
+                "vulnerable"              { Write-Host "$opensslBadge → VULNERABLE" -ForegroundColor Red }
+            }
+            if (-not $openssl.dir_exists) {
+                Write-Host "            OPENSSL_DIR missing or invalid: $($openssl.dir)" -ForegroundColor Red
+            }
+            foreach ($m in $openssl.mitigations) {
+                Write-Host "            [$($m.id)] $($m.name): $($m.value)" -ForegroundColor DarkGray
+            }
+        } else {
+            Write-Host "not found" -ForegroundColor DarkGray
+        }
+        Write-Host ""
+
         Write-Host "DOCTOR MODEL" -ForegroundColor Cyan
         Write-Host ("="*72) -ForegroundColor DarkGray
         Write-Host "  auto-fix managers   rv, uv, bun, rustup, goup, cargo(brush)" -ForegroundColor White
@@ -4315,6 +4554,33 @@ function Invoke-Doctor {
         Write-Host ""
     }
 
+    # Infrastructure fixes (OpenSSL env var persistence)
+    if ($Fix -or $DryRun) {
+        $openssl = Get-OpenSSLStatus
+        if ($openssl.version -and -not $openssl.env_persisted -and $openssl.dir_exists) {
+            Write-Host "INFRASTRUCTURE FIX" -ForegroundColor Cyan
+            Write-Host ("="*72) -ForegroundColor DarkGray
+            $opensslVars = @{
+                OPENSSL_DIR         = $openssl.dir
+                OPENSSL_LIB_DIR     = Join-Path $openssl.dir "lib\VC\x64\MD"
+                OPENSSL_INCLUDE_DIR = Join-Path $openssl.dir "include"
+            }
+            foreach ($k in $opensslVars.Keys) {
+                $v = $opensslVars[$k]
+                Write-Host "  $k = $v" -ForegroundColor Yellow
+                if ($DryRun) {
+                    Write-Host "  -> would persist to User scope (skipped)" -ForegroundColor Magenta
+                } else {
+                    [Environment]::SetEnvironmentVariable($k, $v, 'User')
+                    Set-Item "env:$k" $v
+                    Write-Host "  -> persisted to User scope" -ForegroundColor Green
+                }
+            }
+            Write-Host ("="*72) -ForegroundColor DarkGray
+            Write-Host ""
+        }
+    }
+
     if ($Json) {
         $payload = [pscustomobject]@{
             version = $VERSION
@@ -4340,6 +4606,10 @@ function Invoke-Doctor {
                     description = if ($_.Mode -eq "install") { $_.FixInfo.InstallDesc } else { $_.FixInfo.UpgradeDesc }
                 }
             })
+            infrastructure = [pscustomobject]@{
+                linker = (Get-LinkerShadowStatus)
+                openssl = (Get-OpenSSLStatus)
+            }
         }
         Write-Output (ConvertTo-Json $payload -Depth 8)
     }
@@ -5285,6 +5555,9 @@ function Invoke-GraphicsLane {
     $systemInfo = Get-CimInstance Win32_ComputerSystem -ErrorAction SilentlyContinue |
         Select-Object Manufacturer, Model, TotalPhysicalMemory
 
+    $linkerStatus = Get-LinkerShadowStatus
+    $opensslStatus = Get-OpenSSLStatus
+
     $payload = [pscustomobject]@{
         host = [pscustomobject]@{
             manufacturer = $systemInfo.Manufacturer
@@ -5314,6 +5587,23 @@ function Invoke-GraphicsLane {
             cl_path = $clPath
             msbuild_path = $msbuildPath
             devenv_path = $devenvPath
+            link_path = $linkerStatus.resolved_first
+            linker_shadow = $linkerStatus.shadow
+            linker_effective = $linkerStatus.effective
+            linker_mitigations = $linkerStatus.mitigations
+            cargo_config_linker = $linkerStatus.cargo_config_linker
+        }
+        openssl = [pscustomobject]@{
+            version = $opensslStatus.version
+            major = $opensslStatus.major
+            effective = $opensslStatus.effective
+            mitigations = $opensslStatus.mitigations
+            dir = $opensslStatus.dir
+            lib_dir = $opensslStatus.lib_dir
+            include_dir = $opensslStatus.include_dir
+            dir_exists = $opensslStatus.dir_exists
+            env_persisted = $opensslStatus.env_persisted
+            has_cargo_patch = $opensslStatus.has_cargo_patch
         }
         shaders = [pscustomobject]@{
             source_count = $shaderSources.Count
@@ -5362,6 +5652,25 @@ function Invoke-GraphicsLane {
     Write-Host ($(if ($payload.compute.nvcc_version) { $payload.compute.nvcc_version } else { "not found" })) -ForegroundColor White
     Write-Host "  msvc     " -NoNewline -ForegroundColor Cyan
     Write-Host ($(if ($payload.msvc.cl_path) { $payload.msvc.cl_path } else { "not found" })) -ForegroundColor DarkGray
+    Write-Host "  linker   " -NoNewline -ForegroundColor Cyan
+    switch ($payload.msvc.linker_effective) {
+        "clear"      { Write-Host ($(if ($payload.msvc.link_path) { $payload.msvc.link_path } else { "not found" })) -ForegroundColor DarkGray }
+        "mitigated"  { Write-Host "shadow → mitigated" -NoNewline -ForegroundColor Yellow; Write-Host " ($($payload.msvc.cargo_config_linker))" -ForegroundColor DarkGray }
+        "vulnerable" { Write-Host "SHADOWED → VULNERABLE" -NoNewline -ForegroundColor Red; Write-Host (" — {0}" -f $payload.msvc.link_path) -ForegroundColor DarkGray }
+    }
+    Write-Host "  openssl  " -NoNewline -ForegroundColor Cyan
+    if ($payload.openssl.version) {
+        $badge = "v$($payload.openssl.version)"
+        switch ($payload.openssl.effective) {
+            "compatible"              { Write-Host $badge -ForegroundColor Green }
+            "fully mitigated"         { Write-Host "$badge → mitigated" -ForegroundColor Green }
+            "patched (env drift risk)" { Write-Host "$badge → patched" -NoNewline -ForegroundColor Green; Write-Host " (env drift)" -ForegroundColor Yellow }
+            "env set (no cargo patch)" { Write-Host "$badge → env only" -NoNewline -ForegroundColor Yellow; Write-Host " (no patch)" -ForegroundColor Red }
+            "vulnerable"              { Write-Host "$badge → VULNERABLE" -ForegroundColor Red }
+        }
+    } else {
+        Write-Host "not found" -ForegroundColor DarkGray
+    }
     Write-Host "  shaders  " -NoNewline -ForegroundColor Cyan
     Write-Host $payload.shaders.source_count -ForegroundColor White
     foreach ($shader in $payload.shaders.sources) {

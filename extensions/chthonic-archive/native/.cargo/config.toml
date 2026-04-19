@@ -1,3 +1,10 @@
+# ── Linker fix ───────────────────────────────────────────────────────
+# Ruby rv's MSYS2 bundles /usr/bin/link.exe (Unix hardlink utility)
+# which shadows MSVC link.exe on PATH. Pin the real linker here.
+# KEEP until rv is uninstalled or rv stops polluting PATH.
+[target.x86_64-pc-windows-msvc]
+linker = "C:\\Program Files\\Microsoft Visual Studio\\18\\Insiders\\VC\\Tools\\MSVC\\14.51.36231\\bin\\Hostx64\\x64\\link.exe"
+
 [alias]
 xtask = "run --package xtask --"
 daemon-fast = "build -p chthonic-daemon --target x86_64-pc-windows-msvc"
