@@ -119,6 +119,11 @@
         "icon": "$(layers)"
       },
       {
+        "command": "chthonic.openStylusInput",
+        "title": "Chthonic: Open Stylus / Handwriting Pad",
+        "icon": "$(edit)"
+      },
+      {
         "command": "chthonic.deepFocus",
         "title": "Chthonic: Deep Focus Layout",
         "icon": "$(target)"
@@ -207,6 +212,13 @@
           "type": "webview",
           "name": "The Loom",
           "icon": "resources/loom.svg"
+        },
+        {
+          "id": "chthonic.stylusView",
+          "type": "webview",
+          "name": "✍️ Stylus Pad",
+          "icon": "$(edit)",
+          "visibility": "collapsed"
         }
       ]
     },

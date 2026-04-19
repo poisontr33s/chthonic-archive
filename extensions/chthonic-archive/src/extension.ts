@@ -18,6 +18,7 @@ import { RestoreOrderLayout } from './monolith/restoreOrderLayout';
 import { LoomViewProvider } from './monolith/loomView';
 import { SelfHealingLoop } from './monolith/selfHealingLoop';
 import { computeRustificationReport } from './monolith/rustificationScore';
+import { StylusInputProvider } from './monolith/stylusInputView';
 import { SSOT_POINTER } from './ssot-paths';
 import type { EntropyState, FiredancerSurgeState } from './reactor/types';
 
@@ -49,6 +50,17 @@ export function activate(context: vscode.ExtensionContext) {
         loomProvider,
         selfHealingLoop,
         vscode.window.registerWebviewViewProvider(LoomViewProvider.viewType, loomProvider),
+    );
+
+    // --- Stylus / Handwriting Input Pad ---
+    const stylusProvider = new StylusInputProvider(context.extensionUri);
+    context.subscriptions.push(
+        vscode.window.registerWebviewViewProvider(StylusInputProvider.viewType, stylusProvider),
+        vscode.commands.registerCommand('chthonic.openStylusInput', () => {
+            void vscode.commands.executeCommand('workbench.view.extension.chthonic-archive');
+            void vscode.commands.executeCommand('chthonic.stylusView.focus');
+            stylusProvider.focus();
+        }),
     );
 
     // --- Entropy Engine (worker + decorations + webview) ---
