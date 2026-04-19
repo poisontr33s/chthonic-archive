@@ -96,6 +96,9 @@ mas_mcp/**/__pycache__/
 mas_mcp/uv.lock
 .mas_mcp/
 
+# Allow root-level package.json (Bun workspace manifest)
+!package.json
+
 # Allow Bun configuration
 !bunfig.toml
 
