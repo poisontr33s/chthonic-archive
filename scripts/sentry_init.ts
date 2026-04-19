@@ -1,5 +1,5 @@
-// @SID: SCRIPT_SENTRY_INIT_V1
 #!/usr/bin/env bun
+// @SID: SCRIPT_SENTRY_INIT_V1
 
 // ╔════════════════════════════════════════════════════════════════════════════
 // ║ THE DECORATOR'S BLESSING: sentry_init.ts

@@ -1,5 +1,5 @@
-// @SID: SCRIPT_RUN_MCP_VALIDATION_V1
 #!/usr/bin/env bun
+// @SID: SCRIPT_RUN_MCP_VALIDATION_V1
 
 // ╔════════════════════════════════════════════════════════════════════════════
 // ║ THE DECORATOR'S BLESSING: run_mcp_validation.ts

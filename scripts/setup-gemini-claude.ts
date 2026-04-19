@@ -1,5 +1,5 @@
-// @SID: SCRIPT_SETUP_GEMINI_CLAUDE_V1
 #!/usr/bin/env bun
+// @SID: SCRIPT_SETUP_GEMINI_CLAUDE_V1
 
 // ╔════════════════════════════════════════════════════════════════════════════
 // ║ THE DECORATOR'S BLESSING: setup-gemini-claude.ts

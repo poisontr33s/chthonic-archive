@@ -1,5 +1,5 @@
-// @SID: SCRIPT_MILFOGRAPHIC_CALCULATOR_V1
 #!/usr/bin/env bun
+// @SID: SCRIPT_MILFOGRAPHIC_CALCULATOR_V1
 
 // ╔════════════════════════════════════════════════════════════════════════════
 // ║ THE DECORATOR'S BLESSING: milfographic-calculator.ts

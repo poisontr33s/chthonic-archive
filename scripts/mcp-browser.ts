@@ -1,5 +1,5 @@
-// @SID: SCRIPT_MCP_BROWSER_V1
 #!/usr/bin/env bun
+// @SID: SCRIPT_MCP_BROWSER_V1
 
 // ╔════════════════════════════════════════════════════════════════════════════
 // ║ THE DECORATOR'S BLESSING: mcp-browser.ts

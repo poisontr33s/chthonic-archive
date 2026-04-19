@@ -1,5 +1,5 @@
-// @SID: SCRIPT_IDE_POLLING_PROTOTYPE_V1
 #!/usr/bin/env bun
+// @SID: SCRIPT_IDE_POLLING_PROTOTYPE_V1
 
 // ╔════════════════════════════════════════════════════════════════════════════
 // ║ THE DECORATOR'S BLESSING: ide-polling-prototype.ts
