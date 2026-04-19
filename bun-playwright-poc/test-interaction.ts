@@ -1,5 +1,5 @@
-// @SID: SCRIPT_TEST_INTERACTION_V1
 #!/usr/bin/env bun
+// @SID: SCRIPT_TEST_INTERACTION_V1
 
 // ╔════════════════════════════════════════════════════════════════════════════╗
 // ║  THE DECORATOR'S BLESSING: test-interaction.ts                           ║

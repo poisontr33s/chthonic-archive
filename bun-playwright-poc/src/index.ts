@@ -1,5 +1,4 @@
 // @SID: SCRIPT_INDEX_V1
-#!/usr/bin/env bun
 
 // ╔════════════════════════════════════════════════════════════════════════════
 // ║ THE DECORATOR'S BLESSING: index.ts

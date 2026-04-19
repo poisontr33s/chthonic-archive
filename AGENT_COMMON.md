@@ -19,7 +19,19 @@ Referenced by: `CLAUDE.md`, `AGENTS.md`, `GEMINI.md`
 - `rv r ridk 1` then `2` and `3` -- never `1 2 3` (doesn't work) -- for MSVC toolchain on Windows and pacman use `Rust Oxidized` tooling commands before native installation of; Go, Python, etc. -- to ensure proper path and environment variable setup with the tooling.
 - `rv r 1` is the command to install Ruby itself, but it doesn't handle the MSVC build tools or MSYS2 environment, which is why you need to run `rv r ridk 2` and `rv r ridk 3` separately after installing Ruby. This ensures that you have a fully functional Ruby development environment on Windows, capable of handling gems with native extensions and providing a Unix-like shell when needed.  
 - **Go:** use `goup` for Go runtime ownership.
-- **JS/TS:** prefer `bun` for extension scripts; 
+- **JS/TS:** prefer `bun` for extension scripts.
+  - **Shebang rule (CRITICAL — recurring bug):** `#!/usr/bin/env bun` MUST be **line 1** of any CLI `.ts` script. All other content (`// @SID:`, comments, envelope blocks) comes AFTER the shebang. Library modules (non-CLI, `src/` files imported but not executed directly) omit the shebang entirely.
+  - **Anti-pattern (causes Bun SyntaxError — this is why shebangs keep breaking):**
+    ```typescript
+    // @SID: SCRIPT_XXX_V1  ← ❌ NEVER put any comment before shebang
+    #!/usr/bin/env bun       ← ❌ Bun SyntaxError: shebang must be line 1
+    ```
+  - **Correct form:**
+    ```typescript
+    #!/usr/bin/env bun       ← ✅ Line 1, always first
+    // @SID: SCRIPT_XXX_V1  ← ✅ Line 2+, after shebang
+    ```
+  - **Lint:** `bun run lint:shebang` checks all tracked `.ts` files. Run before committing new scripts.
 - **Rust:** `cargo build`
 - **cmd.exe:** Never. No `cmd /c` wrappers. Will trigger Windows "open with" dialogs.
 - **Platform:** Windows 11, VS Code Insiders, repo root = working dir.

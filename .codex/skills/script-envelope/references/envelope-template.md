@@ -55,6 +55,33 @@ Description of what the script does.
 """
 ```
 
+## TypeScript Prologue (Canonical)
+
+```typescript
+#!/usr/bin/env bun
+// @SID: SCRIPT_EXAMPLE_V1
+
+// ╔════════════════════════════════════════════════════════════════════════════
+// ║ THE DECORATOR'S BLESSING: <filename>.ts
+// ╠════════════════════════════════════════════════════════════════════════════
+// ║ Wedjat-Quipu Spectrum: ORANGE
+// ║ Temple-Ayllu Zone: 🔭 THE OBSERVATORY
+// ║ Ogdoad-Ceque Radiance:
+// ║   └─◄ (Standalone)
+// ╚════════════════════════════════════════════════════════════════════════════
+```
+
+**Rules:**
+- `#!/usr/bin/env bun` is ALWAYS line 1 for CLI scripts. No exceptions.
+- `// @SID:` and ALL other comments come AFTER the shebang (line 2+).
+- Library modules (files in `src/`, imported but not executed directly) omit the shebang entirely.
+
+**Anti-pattern — causes Bun SyntaxError every time:**
+```typescript
+// @SID: SCRIPT_EXAMPLE_V1   ← ❌ WRONG: any comment before shebang is fatal
+#!/usr/bin/env bun            ← ❌ WRONG: shebang must be line 1
+```
+
 ## Followed by docstring with @SID / @Shabti / @Purpose
 
 The docstring immediately below the envelope block carries the semantic identity:

@@ -1,5 +1,4 @@
 // @SID: SCRIPT_BUN_CDP_ELEMENT_V1
-#!/usr/bin/env bun
 
 // ╔════════════════════════════════════════════════════════════════════════════
 // ║ THE DECORATOR'S BLESSING: bun-cdp-element.ts
