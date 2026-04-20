@@ -1,15 +1,6 @@
-# ☥ ARCHIVE GOVERNANCE: TECHNICAL DIRECTIVES ☥
+# Technical Directives
 
-> **Lineage-Position:** `Technical-Directives-Branch` — downstream vessel translating semantic lineage into operational doctrine.
-> **Governance:** SSOT-L-H via [copilot-instructions.md](../copilot-instructions.md). Update-Protocol, Addressability, Enforcement-Hierarchy, No-Duplication constraint inherited — not repeated here.
-> **Revised:** February 2026
-
----
-
-> [!NOTE]
-> This branch file houses the runtime-critical development conventions and environment-specific constraints.
-> Offloaded from the SSOT to separate "Instructional Lore" from "Operational Directives."
-> **Context Reference:** [copilot-instructions.md](../copilot-instructions.md#L6634) (§XIV - Development Conventions)
+> SSOT: [copilot-instructions.md](../copilot-instructions.md#L6634) §XIV — runtime-critical, not aesthetic.
 
 ---
 

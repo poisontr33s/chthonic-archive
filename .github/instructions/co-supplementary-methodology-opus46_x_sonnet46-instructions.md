@@ -2,25 +2,28 @@
 applyTo: "**"
 ---
 
-# Co-Supplementary Methodology (Opus × Sonnet)
+# Co-Supplementary Methodology (Opus × Sonnet/Sonnet x Opus)
 
-> **Principle:** The sub agent is a second mind, not a golden retriever. For any non-trivial task, the default question is: *does this benefit from a second perspective?* If yes — and the answer is usually yes — use co-supplementary execution.
+> **Principle:** The sub agent is a second mind, not a *golden retriever*. For any *non-trivial* task, the *default question is*: *does this benefit from a second perspective?* If *yes* — and the answer is *usually* yes — use *co-supplementary execution*.
 >
-> **Auth:** Runs within *GitHub Copilot Chat*. Primary model *(Opus 4.6)* + Sub agent *(Sonnet 4.6)*, both *blind* to each other's *output* until *synthesis*.
+> **Auth:** Runs within *GitHub Copilot Chat*. Primary model *(Opus)* + Sub agent *(Sonnet)*/*(Sonnet)* + Sub agent *(Opus)*, both *blind* to each other's *output* until *synthesis*.
 >
 > **This is not a pattern library.** The patterns below are symptoms of the methodology, not the methodology itself. The methodology is: two models working co-supplementarily on the same problem produce better output than either alone, and the subagent channel makes this free
 
 ## Reliable Model Characteristics
 
-These are empirically observed, consistent, and exploitable:
+These are empirically observed, consistent, and exploitable. Either can be primary:
 
-| Opus (primary) | Sonnet (sub) |
-|-----------------|---------------------------|
+| Opus strengths | Sonnet strengths |
+|----------------|------------------|
 | Deeper reasoning chains | Economy of expression |
 | Embodied/physiological detail | Structural discipline |
 | Closing synthesis, integration | Performs rather than describes |
 | Holds more simultaneous context | Faster pattern recognition |
 | Richer error handling | Tighter scope control |
+
+**Opus primary → Sonnet sub:** when the task needs depth first, tightened by economy.
+**Sonnet primary → Opus sub:** when the task needs velocity + structure first, deepened by synthesis.
 
 Neither is *"better"*. They are **co-supplementary** — each fills gaps the other leaves.
 
@@ -79,6 +82,17 @@ Show all artifacts. User mediates if needed, or accepts the synthesis directly.
 - Tasks where there's only one correct answer (what's the syntax for X?)
 
 **The heuristic:** If you'd want a second opinion from a colleague, use co-supplementary.
+
+## Subagent Channel Types
+
+The subagent channel carries two distinct agent types. Confusing them produces wrong output shape:
+
+| Type | Examples | Contract | Failure mode |
+|------|----------|----------|--------------|
+| **Discovery** | `Explore` | Open search, self-directed, returns findings | Use for: scan, locate, summarize. Never for: write+commit tasks |
+| **Synthesis (named)** | `Pentea` | Injection-driven, fire-and-forget, file+commit mandate | Must receive: abs paths, done criteria, wire formats, anti-patterns. Self-discovery PROHIBITED |
+
+**Concurrency rule:** dispatch named agent first, then execute inline track immediately — do not block on the agent's return.
 
 ## Domain-Specific Rubrics
 

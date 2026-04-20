@@ -14,7 +14,7 @@ metadata:
     - "judge"
     - "audit"
 allowed-tools: "Read, Write, Glob, Grep, Bash"
-user-invocable: true
+user-invocable: false
 ---
 
 # Conceptualize (Refurbished)

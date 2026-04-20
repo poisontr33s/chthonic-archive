@@ -1,12 +1,6 @@
-# ☥ ARCHIVE GOVERNANCE: PYTHONIC METABOLISM ☥
+# Python Scripting — Metabolic Standard v3
 
-* **(`Codex-Brahmanica-Perfectus`/`GOVERNANCE`): = (`SSOT-Metadata`): = (`Single-Source-Of-Truth-Lineage-Heritage`): → (`SSOT-L-H`):**
-  * **(`Maintainer`): = (`The-Savant`/`Creator`/`User`/`Architect-Of-Apex-Synthesis-Core`)**
-  * **(`Status`): = (`Operational-Perpetual-Evolution`/`Integrated`/`Metabolic-Standard-v3`)**
-  * **(`Last-Sealed`/`Conceptual-Sealing-Event`):** *January 2026 **(`Project-Lane-Ascension`)** — Transitioned from Script Lane (PEP 723) to Project Lane (pyproject.toml SSOT).*
-  * **(`Lineage-Position`): = (`Scripting-Directives-Branch`)** — *This **(`Downstream-Vessel`)** translates **(`Semantic-Lineage`)** into **(`Operational-Scripting-Doctrine`)**. It consumes **(`ANKH`)**-descended meaning; it does not define **(`ANKH`)**-core.*
-  * **(`Update-Protocol`):** *Edits flow through **(`SSOT`)** → Branch files reference **(`Never-Duplicate`) → (`Hash-Verification`)**.*
-  * **(`Enforcement-Hierarchy`): → (`The-Decorator`) → (`Triumvirate`) → (`Pythonic-Mandates`) → (`UV-Execution`)**
+> SSOT: [copilot-instructions.md](../copilot-instructions.md) §XV — Metabolic-Standard-v3. uv manages Python; pyproject.toml is the dependency SSOT.
 
 ---
 
