@@ -56,7 +56,7 @@ This file provides guidance to Google Gemini CLI when working with code in this 
 
 ## WIP Lanework: MILF-Core (Organ-to-Surface-to-Prototype Pipeline)
 
-> Active comparative worklane — entity-prototype research.
+> Archived lanework — files remain in `codex/codex-session-logs/archive/`. Reference only; no active sprint.
 
 - **Step 3** (Sets + 7 Prototypes): [MILF-Core-Step3-Deep-Exploration-Prototypes.md](codex/codex-session-logs/archive/MILF-Core-Step3-Deep-Exploration-Prototypes.md)
 - **Step 4** (Gap Analysis + MILF-Core Spec): [MILF-Core-Prototype-Analysis.md](codex/codex-session-logs/archive/MILF-Core-Prototype-Analysis.md)

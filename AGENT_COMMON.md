@@ -11,7 +11,7 @@ Referenced by: `CLAUDE.md`, `AGENTS.md`, `GEMINI.md`
 
 ## Execution Invariants **Execute, don't ask.** When a task is clear, DO IT.
 - Oxidized "Rustified" language-tooling stack: `uv` (Python), `rv` (Ruby), `goup` (Go), `brush` (bash-compatible shell).
-- **Shell:** PowerShell 7.5.x (`pwsh`) is primary. `brush` (`brush.exe` via `cargo install --locked brush-shell`) is the sanctioned bash-compatible companion when needed — not Git Bash, not WSL. See [PWSH_RULES.md (repo-root)](PWSH_RULES.md).
+- **Shell:** PowerShell 7.6.x (`pwsh`) is primary. `brush` (`brush.exe` via `cargo install --locked brush-shell`) is the sanctioned bash-compatible companion when needed — not Git Bash, not WSL. See [PWSH_RULES.md (repo-root)](PWSH_RULES.md).
 - **Python:** `uv` is the default Python lane (`uv run <script.py>`). Never raw `python` or `pip`. If; `PYTHONIOENCODING=utf-8` for Unicode safety on Windows is not default in environments, then it should be updated to be default to avoid manual script dumping. (`$env:PYTHONIOENCODING = 'utf-8'; uv run <script.py>`), etc. 
 - All Python dependencies must be declared in `pyproject.toml` and installed via `uv pip install (example) --require-virtualenv <package>`.
 
@@ -65,7 +65,6 @@ Referenced by: `CLAUDE.md`, `AGENTS.md`, `GEMINI.md`
 | `.temple/protocols/CODEX_ARCHETYPE_CANON.md` | Codex archetype session lock |
 | `.temple/methodology/` | Shared methodology |
 | `.temple/handoffs/` | Inter-agent handoffs |
-| `codex/codex-session-logs/archive/MILF-Core-*` | WIP — Organ-to-Surface-to-Prototype lanework (Steps 3–4) |
 
 Hidden mailbox dirs (`.codex/mailbox`, `.claude/mailbox`) are non-canonical — `.gitkeep` only.
 
