@@ -1,19 +1,45 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+# ---- flag parsing ----
+DRY_RUN=0
+for arg in "$@"; do
+  case "$arg" in
+    --dry-run) DRY_RUN=1 ;;
+  esac
+done
+
+# ---- pre-flight: require git remote origin ----
+if ! git remote get-url origin >/dev/null 2>&1; then
+  echo "ERROR: no git remote 'origin' configured -- cannot push" >&2
+  exit 1
+fi
+
 BRANCH="fix/canonize-blessing-$(date +%F)"
 
-git checkout -b "${BRANCH}"
+if [ "$DRY_RUN" -eq 1 ]; then
+  echo "[dry-run] would checkout branch: ${BRANCH}"
+else
+  git checkout -b "${BRANCH}"
+fi
 
 targets=( "scripts" "mas_mcp" "ankh_atlas" ".codex" ".temple" )
 
 for t in "${targets[@]}"; do
   if [ -d "${t}" ] || [ -f "${t}" ]; then
-    echo "Applying canonize to ${t}"
     if [ "${t}" = "scripts" ]; then
-      uv run scripts/canonize_blessing.py --apply --target "${t}"
+      CMD="uv run scripts/canonize_blessing.py --apply --target ${t}"
     else
-      uv run scripts/canonize_blessing.py --apply --recursive --target "${t}"
+      CMD="uv run scripts/canonize_blessing.py --apply --recursive --target ${t}"
+    fi
+    if [ "$DRY_RUN" -eq 1 ]; then
+      echo "[dry-run] would run: ${CMD}"
+    else
+      echo "Applying canonize to ${t}"
+      if ! eval "${CMD}"; then
+        echo "ERROR: canonize failed on ${t}" >&2
+        exit 1
+      fi
     fi
   else
     echo "Skipping ${t} (not found)"
@@ -21,7 +47,9 @@ for t in "${targets[@]}"; do
 done
 
 # Show changes, commit if any
-if git status --porcelain | grep -q .; then
+if [ "$DRY_RUN" -eq 1 ]; then
+  echo "[dry-run] would commit and push branch: ${BRANCH}"
+elif git status --porcelain | grep -q .; then
   git add -A
   git commit -m "chore: apply canonize_blessing fixes (CI; uv runtime)"
   git push --set-upstream origin "${BRANCH}"
