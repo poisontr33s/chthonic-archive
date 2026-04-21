@@ -8,21 +8,23 @@
 # @Zone: THE GARDEN
 
 param(
-    [string]$OutRoot = "codex/mailbox"
+    [string]$OutRoot = "codex/mailbox",
+    [string[]]$Skip = @(),
+    [switch]$Json
 )
 
 Set-StrictMode -Version Latest
 $ErrorActionPreference = "Stop"
 
 function Get-RepoRoot {
-    $dir = (Get-Location).Path
+    $dir = $PSScriptRoot
     while ($true) {
         if ((Test-Path (Join-Path $dir "pyproject.toml")) -and (Test-Path (Join-Path $dir "AGENTS.md"))) {
             return $dir
         }
         $parent = Split-Path -Parent $dir
         if ($parent -eq $dir) {
-            throw "Could not locate repo root from current directory."
+            throw "Could not locate repo root from $PSScriptRoot."
         }
         $dir = $parent
     }
@@ -104,6 +106,9 @@ $cases = @(
     [ordered]@{ name = "disable_extensions"; args = @("--disable-extensions", "--status") },
     [ordered]@{ name = "clean_safe_mode"; args = @("--user-data-dir", $tempUserData, "--disable-extensions", "--disable-gpu", "--status") }
 )
+if ($Skip.Count -gt 0) {
+    $cases = @($cases | Where-Object { $Skip -notcontains $_.name })
+}
 
 $results = @()
 foreach ($c in $cases) {
@@ -129,6 +134,10 @@ $jsonPath = Join-Path $outDir "matrix_report.json"
 $mdPath = Join-Path $outDir "matrix_report.md"
 
 $report | ConvertTo-Json -Depth 8 | Set-Content -Path $jsonPath -Encoding UTF8
+
+if ($Json) {
+    $report | ConvertTo-Json -Depth 8 | Write-Output
+}
 
 $md = @()
 $md += "# VS Code Insiders Stability Matrix"
