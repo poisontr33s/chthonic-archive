@@ -4,11 +4,11 @@
 # @Type: VALIDATION
 # @Spectrum: WHITE
 # @Zone: THE GARDEN
-# @Purpose: [string]$RepoRoot = "C:\Users\erdno\chthonic-archive"
+# @Purpose: PSScriptRoot-relative repo root (default: two dirs up from scripts/)
 #
 
 param(
-    [string]$RepoRoot = "C:\Users\erdno\chthonic-archive"
+    [string]$RepoRoot = (Resolve-Path (Join-Path $PSScriptRoot "..")).Path
 )
 
 Set-StrictMode -Version Latest

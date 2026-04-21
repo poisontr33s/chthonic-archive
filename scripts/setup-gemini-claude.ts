@@ -25,7 +25,7 @@
 import { resolve } from "path";
 import { writeFileSync, readFileSync, existsSync } from "fs";
 
-const CHTHONIC_ROOT = process.env.CHTHONIC_ROOT || "C:\\Users\\erdno\\chthonic-archive";
+const CHTHONIC_ROOT = process.env.CHTHONIC_ROOT ?? `${import.meta.dir}/../..`.replace(/\/+$/, "");
 const ENV_FILE = resolve(CHTHONIC_ROOT, ".env.local");
 const SETUP_FILE = resolve(CHTHONIC_ROOT, "SETUP_GEMINI_CLAUDE.md");
 
@@ -168,7 +168,7 @@ GOOGLE_API_KEY=your_google_api_key_here
 claude --ide
 
 # Or with specific project directory
-cd C:\\Users\\erdno\\chthonic-archive
+cd C:\\Users\\eldno\\chthonic-archive
 claude --ide
 \`\`\`
 

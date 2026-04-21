@@ -19,7 +19,7 @@ Implements approved scanner constraints from scanner_approval.md.
 Respects DCRP authority, fills gaps, extracts signals, computes topology.
 
 Usage:
-    uv run python build_epistemograph.py --root "C:\Users\erdno\chthonic-archive"
+    uv run python build_epistemograph.py --root "C:/Users/eldno/chthonic-archive"
 
 @SID:           TOOL_BUILD_EPISTEMOGRAPH_V1
 @Shabti:        CLI Script
@@ -648,11 +648,23 @@ def run_scanner(root: Path, db_path: Path):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Epistemograph Hybrid Scanner")
     parser.add_argument("--root", required=True, help="Repository root path")
+    parser.add_argument(
+        "--no-deprecation-warning",
+        action="store_true",
+        help="Suppress v1 deprecation warning",
+    )
     parser.add_argument("--out", default="chthonic_epistemograph.sqlite", 
                        help="Output SQLite file")
     
     args = parser.parse_args()
-    
+
+    if not args.no_deprecation_warning:
+        print(
+            "DEPRECATION: build_epistemograph.py (v1) is superseded by "
+            "build_epistemograph_v1.1.py. Use --no-deprecation-warning to suppress.",
+            file=sys.stderr,
+        )
+
     root = Path(args.root).resolve()
     db_path = Path(args.out).resolve()
     

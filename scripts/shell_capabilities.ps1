@@ -28,6 +28,7 @@ $report.bun    = (Get-Command bun    -ErrorAction SilentlyContinue)?.Source
 $report.cargo  = (Get-Command cargo  -ErrorAction SilentlyContinue)?.Source
 $report.uv     = (Get-Command uv     -ErrorAction SilentlyContinue)?.Source
 $report.git    = (Get-Command git    -ErrorAction SilentlyContinue)?.Source
+$report.gh     = (Get-Command gh     -ErrorAction SilentlyContinue)?.Source
 $report.claude = (Get-Command claude -ErrorAction SilentlyContinue)?.Source
 
 # PATH snapshot (process-local, ordered)
