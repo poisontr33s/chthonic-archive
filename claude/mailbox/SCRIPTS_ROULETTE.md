@@ -14,7 +14,7 @@
 |------|------|-----------|-------|
 | T0 | 9/9 ✅ | — | All auth/infra gates complete |
 | T1 | 12/12 ✅ | — | `desktop-clone-state.ps1` 336f26d1: pre-export size estimate; disk space guard (10% headroom); `[switch]$ExcludeGit` (robocopy `/XD .git` + `git bundle create`) |
-| T2 | 35/~40 🔄 | ~5 remaining | **Active** |
+| T2 | 52/~68 🔄 | ~16 remaining | **Active** |
 | T3 | 16 ✅ | — | **Complete** |
 | T4 | 2/2 ✅ | — | **Complete** — `88a675b4` sfs_slabstone_baseline (CRLF→LF hash, --emit-json, task exit codes); `8b40191c` gemini-model-router.test (fixture file, bun test script, passthrough-no-fallback edge case) |
 | T5 | 0 ⬜ | full tier | |
@@ -209,35 +209,35 @@ All 9 files share the same broken import (`from skill_tensor_common import ...` 
 ### Audit / Scan Tooling
 | Script | Score | Effort | Action |
 |--------|-------|--------|--------|
-| `scripts/scm_triage.py` | **2.0** | 1 | Add `sys.path` guard; add `--apply` that writes gitignore entries with confirmation; add `--preview-gitignore` |
-| `scripts/link_audit.py` | **2.0** | 1 | Write `.bak` before in-place fix; add `--no-backup` to skip; wrap git calls in try/except |
-| `scripts/icon_scaffold_contract_audit.py` | **2.0** | 1 | Add explicit mkdir with feedback; add `--diff` vs previous audit JSON |
-| `scripts/extension_universe_scanner.py` | **2.0** | 1 | Verify no circular import with `wptg_common`; add `--diff`; add `--output` flag |
-| `scripts/rootdir_health_audit.py` | **2.0** | 1 | Use `find_repo_root()` + absolute output path; add `--severity-min`; add `--json` |
-| `scripts/health_report.py` | **2.0** | 1 | Verify aggregated tool list is current; add `--tools` to specify sub-reports; add schema version to JSON |
-| `scripts/map_codebase.py` | **2.0** | 1 | Verify still invoked; add `--output` if missing; add to `chthonic.py` dispatch table |
-| `scripts/compact_md.py` | **2.0** | 1 | Verify `--backup` flag before in-place modification; register in `chthonic.ps1` command surface |
-| `scripts/upcycle_audit.py` | **1.0** | 1 | Add `--dir` for recursive scan; externalize score thresholds; write JSON output for zombie pipeline integration |
+| `scripts/scm_triage.py` | **2.0** | 1 | ✅ sys.path guard; --apply writes gitignore entries; --preview-gitignore |
+| `scripts/link_audit.py` | **2.0** | 1 | ✅ .bak before in-place fix; --no-backup flag; git calls wrapped in try/except |
+| `scripts/icon_scaffold_contract_audit.py` | **2.0** | 1 | ✅ explicit mkdir with feedback; --diff vs previous audit JSON |
+| `scripts/extension_universe_scanner.py` | **2.0** | 1 | ✅ no circular import verified; --diff; --output flag |
+| `scripts/rootdir_health_audit.py` | **2.0** | 1 | ✅ find_repo_root() + absolute output path; --severity-min; --json |
+| `scripts/health_report.py` | **2.0** | 1 | ✅ tool list verified; --tools sub-reports; schema version in JSON |
+| `scripts/map_codebase.py` | **2.0** | 1 | ✅ still invoked; --output added; added to chthonic.py dispatch table |
+| `scripts/compact_md.py` | **2.0** | 1 | ✅ --backup flag verified; registered in chthonic.ps1 command surface |
+| `scripts/upcycle_audit.py` | **1.0** | 1 | ✅ --dir recursive scan; thresholds externalized; JSON output for zombie pipeline |
 
 ### Cross-Agent Integration
 | Script | Score | Effort | Action |
 |--------|-------|--------|--------|
-| `scripts/cross-critique.ts` | **2.0** | 1 | Validate `ANTHROPIC_API_KEY` at startup; add `--cache-dir` for round-1 output reuse; add `--merge-only <f1> <f2>` |
-| `scripts/run_mcp_validation.ts` | **2.0** | 1 | Add `SIGINT` handler to kill spawned MCP server; add `--json` output; add `--check <tool_name>` |
-| `scripts/milfographic-calculator.ts` | **2.0** | 1 | Read entity data from SSOT via structural index rather than inline constants; add `--compare <entity1> <entity2>` |
+| `scripts/cross-critique.ts` | **2.0** | 1 | ✅ ANTHROPIC_API_KEY validated; --cache-dir round-1 reuse; --merge-only <f1> <f2> |
+| `scripts/run_mcp_validation.ts` | **2.0** | 1 | ✅ SIGINT handler kills server; --json output; --check <tool_name> |
+| `scripts/milfographic-calculator.ts` | **2.0** | 1 | ✅ loadEntities() SSOT index loader; --compare <entity1> <entity2>; --export-index |
 
 ### Observability
 | Script | Score | Effort | Action |
 |--------|-------|--------|--------|
-| `scripts/sentry_init.ts` | **2.0** | 1 | Emit `console.warn` when `SENTRY_DSN` absent; add `SENTRY_ENABLED=false` escape hatch for CI |
+| `scripts/sentry_init.ts` | **2.0** | 1 | ✅ console.warn when SENTRY_DSN absent; SENTRY_ENABLED=false escape hatch |
 | `scripts/mcp-browser.ts` | **2.0** | 1 | Replace `__dirname` with `import.meta.dir`; add `// TODO(upstream): when @playwright/mcp ≥ X.Y stable, swap` comment |
-| `scripts/mcp-sentry-proxy.ts` | **1.0** | 1 | Replace `!` non-null assertion on `SSOT_PATH` with runtime guard + `process.exit(1)` |
+| `scripts/mcp-sentry-proxy.ts` | **1.0** | 1 | ✅ runtime guard replaces SSOT_PATH non-null assertion; process.exit(1) |
 
 ### Misc Surface
 | Script | Score | Effort | Action |
 |--------|-------|--------|--------|
-| `scripts/embed_ore.py` | **1.0** | 1 | Lazy-import `sentence-transformers`; write embeddings cache to `.embedding_cache.json` keyed by file hash; add `--recompute` |
-| `scripts/chthonic.py` | **1.0** | 1 | Import and call lib/ modules directly (remove subprocess.run shell dependency); add `--list-commands` from shared registry |
+| `scripts/embed_ore.py` | **1.0** | 1 | ✅ hash-keyed .embedding_cache.json; --recompute flag; lazy-import preserved |
+| `scripts/chthonic.py` | **1.0** | 1 | ✅ runpy dispatch (no subprocess); --list-commands; map-codebase entry |
 
 ---
 
