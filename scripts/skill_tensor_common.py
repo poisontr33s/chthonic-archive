@@ -40,12 +40,15 @@ ROOT = find_repo_root()
 LATEST = ROOT / "codex" / "mailbox" / "SKILL_TENSOR_CYCLE_LATEST.json"
 
 
-def load_latest() -> dict:
-    """Load the cycle LATEST.json or die with a clear message."""
-    if not LATEST.exists():
-        print(f"ERROR: {LATEST.relative_to(ROOT)} not found — run a cycle first.", file=sys.stderr)
-        sys.exit(1)
-    return json.loads(LATEST.read_text(encoding="utf-8"))
+def load_latest(path: Path | None = None) -> dict:
+    """Load the cycle LATEST.json or raise FileNotFoundError with a clear message."""
+    target = path or LATEST
+    if not target.exists():
+        raise FileNotFoundError(
+            f"{target.relative_to(ROOT) if target.is_absolute() and ROOT in target.parents else target} "
+            f"not found — run skill_tensor_cycle.py first."
+        )
+    return json.loads(target.read_text(encoding="utf-8"))
 
 
 def section(data: dict, key: str) -> dict:
@@ -78,7 +81,21 @@ def probe_header(name: str, data: dict) -> None:
 
 
 if __name__ == "__main__":
-    data = load_latest()
+    import argparse
+
+    ap = argparse.ArgumentParser(description="Skill Tensor probe hub — summary view")
+    ap.add_argument(
+        "--latest-path",
+        default=None,
+        metavar="PATH",
+        help="Override path to SKILL_TENSOR_CYCLE_LATEST.json (default: codex/mailbox/SKILL_TENSOR_CYCLE_LATEST.json)",
+    )
+    _args = ap.parse_args()
+    try:
+        data = load_latest(Path(_args.latest_path) if _args.latest_path else None)
+    except FileNotFoundError as e:
+        print(f"ERROR: {e}", file=sys.stderr)
+        sys.exit(1)
     print(f"Cycle status: {data.get('overall_status')}")
     print(f"Stages: {data.get('queue_length')}")
     print(f"Sections available: {', '.join(data.get('sections', {}).keys())}")

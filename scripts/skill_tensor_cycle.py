@@ -35,13 +35,8 @@ from dataclasses import asdict, dataclass
 from datetime import datetime, timezone
 from pathlib import Path
 
-
-def find_repo_root(start: Path) -> Path:
-    cur = start.resolve()
-    for p in [cur, *cur.parents]:
-        if (p / "AGENTS.md").exists() and (p / "pyproject.toml").exists():
-            return p
-    return start.resolve()
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from lib.shared import find_repo_root
 
 
 def load_json(path: Path) -> dict:
@@ -2408,6 +2403,18 @@ def run_cycle(args: argparse.Namespace) -> int:
         "execute",
         "feedback",
     ]
+
+    # --stages: restrict to named subset
+    stages_arg = getattr(args, "stages", None)
+    if stages_arg:
+        allowed = {s.strip() for s in stages_arg.split(",") if s.strip()}
+        sequence = [s for s in sequence if s in allowed]
+
+    # --resume: drop stages before the named stage
+    resume_arg = getattr(args, "resume", None)
+    if resume_arg and resume_arg in sequence:
+        resume_idx = sequence.index(resume_arg)
+        sequence = sequence[resume_idx:]
     results = []
     overall_status = "passed"
     continue_after_failure = {"ledger", "execute", "feedback"}
@@ -2591,6 +2598,19 @@ def build_parser() -> argparse.ArgumentParser:
     p_cycle.add_argument("--ledger", default="codex/mailbox/SKILL_TENSOR_LEDGER.json")
     p_cycle.add_argument("--seed", default="trainstop-default-seed")
     p_cycle.add_argument("--chain-length", type=int, default=4)
+    p_cycle.add_argument(
+        "--stages",
+        default=None,
+        metavar="STAGE,...",
+        help="Comma-separated list of stage names to run (default: all). "
+             "E.g. --stages inventory,universe,pool",
+    )
+    p_cycle.add_argument(
+        "--resume",
+        default=None,
+        metavar="STAGE",
+        help="Skip all stages before this one (resume from mid-cycle).",
+    )
 
     p_inventory = sub.add_parser("inventory")
     p_inventory.add_argument("--output", default="codex/mailbox/.tensor_debug/SKILL_TENSOR_INVENTORY.json")
