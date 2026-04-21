@@ -16,7 +16,7 @@
 | T1 | 12/12 ✅ | — | `desktop-clone-state.ps1` 336f26d1: pre-export size estimate; disk space guard (10% headroom); `[switch]$ExcludeGit` (robocopy `/XD .git` + `git bundle create`) |
 | T2 | 35/~40 🔄 | ~5 remaining | **Active** |
 | T3 | 16 ✅ | — | **Complete** |
-| T4 | 0 ⬜ | full tier | |
+| T4 | 2/2 ✅ | — | **Complete** — `88a675b4` sfs_slabstone_baseline (CRLF→LF hash, --emit-json, task exit codes); `8b40191c` gemini-model-router.test (fixture file, bun test script, passthrough-no-fallback edge case) |
 | T5 | 0 ⬜ | full tier | |
 
 ---
@@ -245,8 +245,8 @@ All 9 files share the same broken import (`from skill_tensor_common import ...` 
 
 | Script | Score | Effort | Action |
 |--------|-------|--------|--------|
-| `scripts/sfs_slabstone_baseline.py` | **2.0** | 1 | Normalize line endings in hash computation (CRLF→LF, same pattern as ssot_hash.py); add `--emit-json`; document exit codes in VS Code task |
-| `scripts/gemini-model-router.test.ts` | **2.0** | 1 | Add `bun:test` to CI via `package.json test` script; parameterize registry with fixture file; add edge-case test for missing `fallbackModel` |
+| `scripts/sfs_slabstone_baseline.py` | **2.0** | 1 | ✅ CRLF→LF normalization in `short_hash()`; `--emit-json FILE` flag added; VS Code task `detail` documents exit codes 0/1 |
+| `scripts/gemini-model-router.test.ts` | **2.0** | 1 | ✅ Registry extracted to `scripts/__fixtures__/gemini-model-router-registry.ts`; `"test": "bun test scripts/gemini-model-router.test.ts"` in `package.json`; `passthrough-no-fallback` edge-case test added (5/5 pass) |
 
 ---
 
