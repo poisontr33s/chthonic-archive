@@ -267,21 +267,54 @@ def collect_preceding_comment_block(lines: list[str], zero_based_index: int) -> 
     return " ".join(note_lines)
 
 
+def _find_insiders_root_from_registry() -> Path | None:
+    """Query HKCU Uninstall registry for VS Code Insiders InstallLocation (Windows only)."""
+    if sys.platform != "win32":
+        return None
+    try:
+        import winreg
+
+        subkey = r"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall"
+        with winreg.OpenKey(winreg.HKEY_CURRENT_USER, subkey) as hkey:
+            count = winreg.QueryInfoKey(hkey)[0]
+            for i in range(count):
+                try:
+                    name = winreg.EnumKey(hkey, i)
+                    with winreg.OpenKey(hkey, name) as entry:
+                        try:
+                            display_name, _ = winreg.QueryValueEx(entry, "DisplayName")
+                            if "Visual Studio Code" in str(display_name) and "Insiders" in str(display_name):
+                                location, _ = winreg.QueryValueEx(entry, "InstallLocation")
+                                if location:
+                                    return Path(str(location))
+                        except OSError:
+                            continue
+                except OSError:
+                    continue
+    except (ImportError, OSError):
+        pass
+    return None
+
+
 def find_insiders_install_root() -> Path | None:
     base = Path(os.environ.get("LOCALAPPDATA", "")) / "Programs" / "Microsoft VS Code Insiders"
     if not base.exists():
-        return None
+        reg_root = _find_insiders_root_from_registry()
+        if reg_root is not None and reg_root.exists():
+            base = reg_root
+        else:
+            return None
     candidates = [child for child in base.iterdir() if child.is_dir() and INSTALL_HASH_RE.fullmatch(child.name)]
     if candidates:
         return sorted(candidates)[-1]
     return None
 
 
-def run_command(args: list[str]) -> subprocess.CompletedProcess[str]:
-    return subprocess.run(args, capture_output=True, text=True, encoding="utf-8")
+def run_command(args: list[str], timeout: int | None = None) -> subprocess.CompletedProcess[str]:
+    return subprocess.run(args, capture_output=True, text=True, encoding="utf-8", timeout=timeout)
 
 
-def get_insiders_version(install_root: Path | None) -> dict[str, str | None]:
+def get_insiders_version(install_root: Path | None, timeout: int | None = None) -> dict[str, str | None]:
     candidates: list[Path | str] = ["code-insiders"]
     if install_root:
         candidates.insert(0, install_root.parent / "bin" / "code-insiders.cmd")
@@ -290,9 +323,11 @@ def get_insiders_version(install_root: Path | None) -> dict[str, str | None]:
     result: subprocess.CompletedProcess[str] | None = None
     for candidate in candidates:
         try:
-            result = run_command([str(candidate), "--version"])
+            result = run_command([str(candidate), "--version"], timeout=timeout)
         except FileNotFoundError:
             continue
+        except subprocess.TimeoutExpired:
+            return {"version": None, "commit": None, "arch": None}
         if result.returncode == 0:
             break
 
@@ -980,6 +1015,13 @@ def main() -> int:
         action="store_true",
         help="Exit non-zero when active settings lack live evidence, active values drift, or commented settings have come back.",
     )
+    parser.add_argument(
+        "--timeout",
+        type=int,
+        default=None,
+        metavar="SECONDS",
+        help="Timeout in seconds for code-insiders --version subprocess call (default: no limit).",
+    )
     args = parser.parse_args()
 
     repo_root = find_repo_root(Path(__file__).resolve())
@@ -989,7 +1031,7 @@ def main() -> int:
 
     active_entries, commented_entries = extract_settings(settings_path)
     install_root = find_insiders_install_root()
-    version_info = get_insiders_version(install_root)
+    version_info = get_insiders_version(install_root, timeout=args.timeout)
     manifest_index = build_manifest_index(repo_root, install_root)
     schema_index = build_manifest_schema_index(repo_root, install_root)
     catalogs = build_catalogs(repo_root, install_root)
