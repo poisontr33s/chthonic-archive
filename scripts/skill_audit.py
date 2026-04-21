@@ -30,7 +30,28 @@ import json
 from dataclasses import dataclass
 from pathlib import Path
 
-CLAUDE_TOOLS = {"Read", "Write", "Glob", "Grep", "Bash"}
+# CLAUDE_TOOLS is loaded from .meta/skill-audit-tools.json if present.
+# This allows the allowed-tools list to evolve without code changes.
+# Fallback: the historical static set used before 2026-04.
+_DEFAULT_CLAUDE_TOOLS = {"Read", "Write", "Glob", "Grep", "Bash"}
+
+
+def _load_claude_tools() -> set[str]:
+    config_path = Path(__file__).resolve().parents[1] / ".meta" / "skill-audit-tools.json"
+    if config_path.exists():
+        try:
+            with open(config_path, encoding="utf-8") as f:
+                data = json.load(f)
+            if isinstance(data, list):
+                return set(data)
+            if isinstance(data, dict) and "allowed_tools" in data:
+                return set(data["allowed_tools"])
+        except (json.JSONDecodeError, ValueError):
+            pass
+    return set(_DEFAULT_CLAUDE_TOOLS)
+
+
+CLAUDE_TOOLS = _load_claude_tools()
 
 
 @dataclass
@@ -170,23 +191,14 @@ def audit_gemini_skill(skill_dir: Path) -> AuditResult:
     return AuditResult(skill_dir.name, max(score, 0), issues)
 
 
-def print_report(result: AuditResult) -> None:
-    print("+--------------------------------------------------------------+")
-    print(f"|                    FEEDING REPORT: {result.name:<18}           |")
-    print("+--------------------------------------------------------------+")
-    flavor = "PURE (Clean)"
-    if result.score < 50:
-        flavor = "BITTER (Broken)"
-    elif result.score < 90:
-        flavor = "BLAND (Dirty)"
-    print(f"TASTE: {flavor}")
-    print(f"NUTRITION LEVEL: {result.score}%\n")
-    if result.issues:
-        print("ENTROPY DETECTED:")
-        for issue in result.issues:
-            print(f"  {issue}")
-    else:
-        print("System Satisfied. No entropy found.")
+def print_report(result: AuditResult, flavor: str = "") -> None:
+    """Print audit result aligned with skill_health.py output style."""
+    grade = "PASS" if result.score >= 90 else "WARN" if result.score >= 50 else "FAIL"
+    status_char = "✅" if grade == "PASS" else "⚠️" if grade == "WARN" else "❌"
+    label = f"[{flavor.upper()}]" if flavor else ""
+    print(f"  {status_char} {label} {result.name}: {result.score}%")
+    for issue in result.issues:
+        print(f"    {issue}")
 
 
 def main() -> None:
@@ -200,11 +212,15 @@ def main() -> None:
 
     root = Path(args.root)
     if not root.exists():
-        raise SystemExit(f"Root not found: {root}")
+        print(f"ERROR: --root path not found: {root}", file=__import__('sys').stderr)
+        raise SystemExit(1)
+    if not root.is_dir():
+        print(f"ERROR: --root must be a directory, got: {root}", file=__import__('sys').stderr)
+        raise SystemExit(1)
 
     results: list[AuditResult] = []
+    print(f"☥ Skill Audit [{args.flavor.upper()}] — {root}\n")
     for skill_dir in list_skills(root, args.skill):
-        print(f"\n=== POLISHING: {skill_dir.name} ===")
         if args.flavor == "codex":
             result = audit_codex_skill(skill_dir)
         elif args.flavor == "claude":
@@ -212,7 +228,7 @@ def main() -> None:
         else:
             result = audit_gemini_skill(skill_dir)
         results.append(result)
-        print_report(result)
+        print_report(result, args.flavor)
 
     if args.json_out:
         root_posix = root.as_posix()

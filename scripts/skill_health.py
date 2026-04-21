@@ -82,8 +82,10 @@ COMMAND_PREFIXES = (
     "pytest", "npm ", "node ", "ruby ", "rv ", "goup ",
 )
 
-# Scoring weights — each dimension is 0-10, final score is weighted average
-SCORING_WEIGHTS = {
+# Scoring weights — each dimension is 0-10, final score is weighted average.
+# Override by placing a JSON object at .meta/skill-health-rubric.json:
+#   { "has_cli": 2.5, "scripts_exist": 2.5, ... }
+_DEFAULT_SCORING_WEIGHTS = {
     "has_cli":       2.5,  # concrete CLI commands in SKILL.md
     "scripts_exist": 2.5,  # referenced scripts physically present
     "deterministic": 2.0,  # produces deterministic artifact (not just LLM text)
@@ -91,6 +93,23 @@ SCORING_WEIGHTS = {
     "active_status": 1.0,  # not redirect/stashed
     "description":   1.0,  # has meaningful description (not just a redirect notice)
 }
+
+def _load_scoring_weights() -> dict[str, float]:
+    """Load rubric from .meta/skill-health-rubric.json, fall back to defaults."""
+    rubric_path = Path(__file__).resolve().parents[1] / ".meta" / "skill-health-rubric.json"
+    if rubric_path.exists():
+        try:
+            with open(rubric_path, encoding="utf-8") as f:
+                data = json.load(f)
+            # Validate all expected keys are present
+            if all(k in data for k in _DEFAULT_SCORING_WEIGHTS):
+                return {k: float(data[k]) for k in _DEFAULT_SCORING_WEIGHTS}
+        except (json.JSONDecodeError, ValueError):
+            pass
+    return dict(_DEFAULT_SCORING_WEIGHTS)
+
+
+SCORING_WEIGHTS = _load_scoring_weights()
 
 
 # =============================================================================
@@ -575,6 +594,10 @@ def main() -> None:
     parser.add_argument("--emit", metavar="PATH", help="Write report to file (JSON or MD by extension)")
     parser.add_argument("--min-score", type=float, help="Show only skills >= this score")
     parser.add_argument("--below", type=float, help="Show only skills < this score")
+    parser.add_argument("--since", metavar="ISO_DATETIME",
+                        help="Show only skills whose SKILL.md was modified after this ISO datetime (e.g. 2026-01-01)")
+    parser.add_argument("--emit-badge", metavar="PATH",
+                        help="Write a shields.io JSON badge for average skill score to PATH")
     parser.add_argument("--active-only", action="store_true", help="Hide redirect/stashed skills")
     args = parser.parse_args()
 
@@ -590,6 +613,24 @@ def main() -> None:
         reports = [r for r in reports if r.score < args.below]
     if args.active_only:
         reports = [r for r in reports if r.status == "ACTIVE"]
+    if args.since:
+        from datetime import datetime, timezone
+        try:
+            since_dt = datetime.fromisoformat(args.since)
+            # Make timezone-aware if not already
+            if since_dt.tzinfo is None:
+                since_dt = since_dt.replace(tzinfo=timezone.utc)
+            filtered = []
+            for r in reports:
+                skill_md = repo_root / SKILL_LANES.get(r.lane, r.lane) / r.name / "SKILL.md"
+                if skill_md.exists():
+                    mtime = datetime.fromtimestamp(skill_md.stat().st_mtime, tz=timezone.utc)
+                    if mtime >= since_dt:
+                        filtered.append(r)
+            reports = filtered
+        except ValueError as e:
+            print(f"ERROR: invalid --since datetime: {e}", file=sys.stderr)
+            return
 
     # Output
     if args.json:
@@ -605,6 +646,20 @@ def main() -> None:
         print(f"Report written to {emit_path}")
     else:
         print(format_summary(reports))
+
+    if args.emit_badge:
+        avg = sum(r.score for r in reports) / len(reports) if reports else 0.0
+        color = "brightgreen" if avg >= 8 else "yellow" if avg >= 5 else "red"
+        badge = {
+            "schemaVersion": 1,
+            "label": "skill health",
+            "message": f"{avg:.1f}/10",
+            "color": color,
+        }
+        badge_path = Path(args.emit_badge)
+        badge_path.parent.mkdir(parents=True, exist_ok=True)
+        badge_path.write_text(json.dumps(badge, indent=2), encoding="utf-8")
+        print(f"Badge written to {badge_path}")
 
 
 if __name__ == "__main__":

@@ -1,0 +1,10 @@
+{
+  "_comment": "Canonical allowed-tools list for skill_audit.py. Add new tool names here as the MCP/skill toolchain evolves.",
+  "allowed_tools": [
+    "Read",
+    "Write",
+    "Glob",
+    "Grep",
+    "Bash"
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "_comment": "Scoring weights for skill_health.py. Each dimension is 0-10; final score is the weighted average.",
+  "has_cli":       2.5,
+  "scripts_exist": 2.5,
+  "deterministic": 2.0,
+  "cross_lane":    1.0,
+  "active_status": 1.0,
+  "description":   1.0
+}

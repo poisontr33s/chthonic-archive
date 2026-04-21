@@ -11,11 +11,14 @@
 # ╚════════════════════════════════════════════════════════════════════════════
 
 """
-build_skill_index.py — Script logic for build_skill_index.py.
+build_skill_index.py — Scan skill lanes and emit a deterministic JSON index.
+
+For each skill directory under .claude/skills/ or .codex/skills/, records:
+  name, description, SKILL.md SHA-256, asset/agent/script inventory, metadata.
 
 @SID:           TOOL_BUILD_SKILL_INDEX_V1
 @Shabti:        CLI Script
-@Purpose:       Script logic for build_skill_index.py.
+@Purpose:       Scan skill lanes and emit deterministic JSON index for downstream consumers.
 """
 
 from __future__ import annotations
@@ -102,18 +105,54 @@ def build_index(skills_root: Path) -> dict:
 
 
 def main() -> int:
+    _REPO_ROOT = Path(__file__).resolve().parents[1]
+    _DEFAULT_OUT = _REPO_ROOT / "codex" / "mailbox" / "SKILL_INDEX_LATEST.json"
+
     parser = argparse.ArgumentParser(description="Build deterministic skills index JSON.")
-    parser.add_argument("--root", required=True, help="Skills root path (.codex/skills or .claude/skills)")
-    parser.add_argument("--out", required=True, help="Output JSON path")
+    parser.add_argument("--root", default=None,
+                        help="Skills root path (default: .claude/skills)")
+    parser.add_argument("--out", "--output", default=str(_DEFAULT_OUT),
+                        dest="out",
+                        help=f"Output JSON path (default: {_DEFAULT_OUT.relative_to(_REPO_ROOT)})")
+    parser.add_argument("--diff", metavar="PREV_INDEX",
+                        help="Compare against a previous index JSON; print added/removed/changed skill names")
     args = parser.parse_args()
 
-    root = Path(args.root)
+    root = Path(args.root) if args.root else _REPO_ROOT / ".claude" / "skills"
     out = Path(args.out)
+
+    if not root.exists():
+        print(f"ERROR: skills root not found: {root}", file=__import__('sys').stderr)
+        return 1
+
     payload = build_index(root)
     out.parent.mkdir(parents=True, exist_ok=True)
     out.write_text(json.dumps(payload, indent=2, ensure_ascii=True) + "\n", encoding="utf-8")
-    print(f"Wrote: {out.as_posix()}")
+    print(f"Wrote: {out}")
     print(f"Skills indexed: {payload['count']}")
+
+    if args.diff:
+        prev_path = Path(args.diff)
+        if not prev_path.exists():
+            print(f"WARN: diff target not found: {prev_path}")
+        else:
+            with open(prev_path, encoding="utf-8") as f:
+                prev = json.load(f)
+            prev_names = {s["folder"] for s in prev.get("skills", [])}
+            curr_names = {s["folder"] for s in payload["skills"]}
+            added = sorted(curr_names - prev_names)
+            removed = sorted(prev_names - curr_names)
+            changed = []
+            prev_map = {s["folder"]: s for s in prev.get("skills", [])}
+            curr_map = {s["folder"]: s for s in payload["skills"]}
+            for name in curr_names & prev_names:
+                if curr_map[name]["skill_md_sha256"] != prev_map[name].get("skill_md_sha256"):
+                    changed.append(name)
+            print(f"\nDiff vs {prev_path.name}:")
+            print(f"  Added   ({len(added)}): {', '.join(added) or 'none'}")
+            print(f"  Removed ({len(removed)}): {', '.join(removed) or 'none'}")
+            print(f"  Changed ({len(changed)}): {', '.join(sorted(changed)) or 'none'}")
+
     return 0
 
 
