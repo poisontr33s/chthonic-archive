@@ -149,16 +149,24 @@ KNOWN_UQFF: dict[str, str] = {
 
 # ── HTTP ─────────────────────────────────────────────────────────────────────
 
-def http_get(url: str, timeout: int = 15) -> dict | list | None:
-    try:
-        req = urllib.request.Request(url, headers={
-            "User-Agent": "chthonic-hf-scout/1.0",
-            "Accept": "application/json",
-        })
-        with urllib.request.urlopen(req, timeout=timeout) as resp:
-            return json.loads(resp.read())
-    except (urllib.error.URLError, TimeoutError, json.JSONDecodeError, OSError):
-        return None
+def http_get(url: str, timeout: int = 15, _retries: int = 3) -> dict | list | None:
+    for attempt in range(_retries):
+        try:
+            req = urllib.request.Request(url, headers={
+                "User-Agent": "chthonic-hf-scout/1.0",
+                "Accept": "application/json",
+            })
+            with urllib.request.urlopen(req, timeout=timeout) as resp:
+                return json.loads(resp.read())
+        except urllib.error.HTTPError as e:
+            if e.code == 429:
+                wait = 2 ** attempt
+                time.sleep(wait)
+                continue
+            return None
+        except (urllib.error.URLError, TimeoutError, json.JSONDecodeError, OSError):
+            return None
+    return None
 
 
 # ── Detection ────────────────────────────────────────────────────────────────
@@ -411,9 +419,9 @@ def fetch_all(queries: list[tuple[str, str]]) -> dict[str, dict]:
     return models
 
 
-def verify_config(model_id: str) -> dict | None:
+def verify_config(model_id: str, timeout: int = 10) -> dict | None:
     """Fetch model metadata from HF to verify architecture, safetensors, GPTQ."""
-    data = http_get(f"{HF_API}/{urllib.parse.quote(model_id, safe='/')}", timeout=10)
+    data = http_get(f"{HF_API}/{urllib.parse.quote(model_id, safe='/')}", timeout=timeout)
     if not data or not isinstance(data, dict):
         return None
 
@@ -563,6 +571,8 @@ def main() -> None:
                         help="JSON output")
     parser.add_argument("--verify", action="store_true",
                         help="Verify top results via HF config.json")
+    parser.add_argument("--verify-timeout", type=int, default=10,
+                        help="Per-model timeout for --verify requests in seconds (default: 10)")
     parser.add_argument("--include-moe", action="store_true",
                         help="Include MoE architectures (risky on v0.7.0)")
     parser.add_argument("--limit", type=int, default=80,
@@ -628,7 +638,7 @@ def main() -> None:
             print(f"  Verifying top {len(top)} configs...", flush=True)
 
         def verify_one(m: dict) -> dict:
-            m["_verified"] = verify_config(m["id"])
+            m["_verified"] = verify_config(m["id"], timeout=args.verify_timeout)
             return m
 
         with concurrent.futures.ThreadPoolExecutor(max_workers=4) as pool:

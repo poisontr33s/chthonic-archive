@@ -23,7 +23,8 @@
 #     .\scripts\api_pool.ps1 -Load
 
 param(
-  [switch]$UnsetProcessHFToken
+  [switch]$UnsetProcessHFToken,
+  [switch]$Verify
 )
 
 Set-StrictMode -Version Latest
@@ -42,10 +43,12 @@ if ($UnsetProcessHFToken) {
 
 $hasHFToken = Has-Env "HF_TOKEN"
 $hasHubToken = Has-Env "HUGGINGFACE_HUB_TOKEN"
+$hasHFTokenUser = -not [string]::IsNullOrWhiteSpace([System.Environment]::GetEnvironmentVariable("HF_TOKEN", "User"))
+$hasHubTokenUser = -not [string]::IsNullOrWhiteSpace([System.Environment]::GetEnvironmentVariable("HUGGINGFACE_HUB_TOKEN", "User"))
 
 Write-Host "HF auth signal (no secrets):"
-Write-Host ("- HF_TOKEN (process): " + ($hasHFToken))
-Write-Host ("- HUGGINGFACE_HUB_TOKEN (process): " + ($hasHubToken))
+Write-Host ("- HF_TOKEN              — process: " + ($hasHFToken) + "  user-scope: " + ($hasHFTokenUser))
+Write-Host ("- HUGGINGFACE_HUB_TOKEN — process: " + ($hasHubToken) + "  user-scope: " + ($hasHubTokenUser))
 Write-Host ""
 
 if ($hasHFToken) {
@@ -71,3 +74,26 @@ Write-Host ""
 
 Write-Host "Verify (no secrets printed):"
 Write-Host "  uv run scripts\\hf_probe.py"
+
+if ($Verify) {
+  $token = $null
+  if ($hasHFToken) {
+    $token = [System.Environment]::GetEnvironmentVariable("HF_TOKEN", "Process")
+  } elseif ($hasHubToken) {
+    $token = [System.Environment]::GetEnvironmentVariable("HUGGINGFACE_HUB_TOKEN", "Process")
+  } elseif ($hasHFTokenUser) {
+    $token = [System.Environment]::GetEnvironmentVariable("HF_TOKEN", "User")
+  }
+  if (-not $token) {
+    Write-Host "Verify: no token available in process or user scope."
+  } else {
+    try {
+      $response = Invoke-RestMethod -Uri "https://huggingface.co/api/whoami" `
+        -Headers @{Authorization="Bearer $token"} -Method Get -TimeoutSec 10
+      Write-Host ("Verify: authenticated as '" + $response.name + "'")
+    } catch {
+      $status = $_.Exception.Response.StatusCode.value__
+      Write-Host ("Verify: failed — status " + $status + " (" + $_.Exception.Message + ")")
+    }
+  }
+}
