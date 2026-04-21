@@ -19,7 +19,42 @@
  * @Purpose       Canonical breast size and WHR calculator based on SSOT
  *                measurements. Extracts SSOT canon, provides WHR calculation,
  *                cup size estimation, tier positioning, entity comparison.
+ *
+ * SSOT Structural Index: assets/entities/milfographic-index.json
+ *   If this file exists, entity data is loaded from it (overrides embedded canon).
+ *   Use --export-index to write the embedded canon to that path.
  */
+
+// ============================================================================
+// SSOT STRUCTURAL INDEX — loader
+// ============================================================================
+
+import { existsSync, readFileSync, writeFileSync, mkdirSync } from "node:fs";
+import path from "node:path";
+
+const DEFAULT_INDEX_PATH = path.resolve(import.meta.dir, "..", "assets", "entities", "milfographic-index.json");
+
+function loadEntities(indexPath: string = DEFAULT_INDEX_PATH): MILFEntity[] {
+  if (existsSync(indexPath)) {
+    try {
+      const raw = readFileSync(indexPath, "utf-8");
+      const parsed = JSON.parse(raw) as { entities?: MILFEntity[]; data?: MILFEntity[] };
+      const arr = parsed.entities ?? parsed.data ?? (Array.isArray(parsed) ? parsed as MILFEntity[] : null);
+      if (arr && arr.length > 0) {
+        return arr as MILFEntity[];
+      }
+    } catch {
+      // fall through to embedded canon
+    }
+  }
+  return SSOT_CANON;
+}
+
+function exportIndex(indexPath: string = DEFAULT_INDEX_PATH): void {
+  mkdirSync(path.dirname(indexPath), { recursive: true });
+  writeFileSync(indexPath, JSON.stringify({ schema: "milfographic-index.v1", entities: SSOT_CANON }, null, 2) + "\n", "utf-8");
+  console.log(`[milfographic] index exported: ${indexPath}`);
+}
 
 // ============================================================================
 // SSOT CANONICAL DATA (Lossless Transfer)
@@ -317,13 +352,84 @@ function printCalculationResult(result: CalculationResult) {
 }
 
 // ============================================================================
+// COMPARISON
+// ============================================================================
+
+function compareEntities(entityA: string, entityB: string, entities: MILFEntity[]): void {
+  const a = entities.find(e => e.name.toLowerCase().includes(entityA.toLowerCase()));
+  const b = entities.find(e => e.name.toLowerCase().includes(entityB.toLowerCase()));
+
+  if (!a) { console.error(`Entity not found: "${entityA}"`); process.exit(1); }
+  if (!b) { console.error(`Entity not found: "${entityB}"`); process.exit(1); }
+
+  const whrDiff = (a.whr - b.whr);
+  const cupA = cupToNumericValue(a.cup);
+  const cupB = cupToNumericValue(b.cup);
+  const cupDiff = cupA - cupB;
+
+  console.log("\n┌────────────────────────────────────────────────────────────────┐");
+  console.log("│                    ENTITY COMPARISON                           │");
+  console.log("├────────────────────────────────────────────────────────────────┤");
+  console.log(`│ A: ${a.name.padEnd(28)} Tier ${a.tier.padStart(4)} │ Cup ${a.cup.padStart(2)} │ WHR ${a.whr.toFixed(3)} │`);
+  console.log(`│ B: ${b.name.padEnd(28)} Tier ${b.tier.padStart(4)} │ Cup ${b.cup.padStart(2)} │ WHR ${b.whr.toFixed(3)} │`);
+  console.log("├────────────────────────────────────────────────────────────────┤");
+  console.log(`│ WHR  delta (A-B): ${whrDiff >= 0 ? "+" : ""}${whrDiff.toFixed(3).padStart(6)} (${whrDiff < 0 ? "A is tighter" : whrDiff > 0 ? "B is tighter" : "equal"})`);
+  console.log(`│ Cup  delta (A-B): ${cupDiff >= 0 ? "+" : ""}${cupDiff.toString().padStart(2)} (${CUP_SIZES[cupA] ?? "?"} vs ${CUP_SIZES[cupB] ?? "?"})`);
+  console.log(`│ Bust delta (A-B): ${(a.bust - b.bust) >= 0 ? "+" : ""}${(a.bust - b.bust).toString().padStart(3)} cm`);
+  console.log(`│ Hierarchy: A ${whrDiff < 0 ? "ABOVE" : whrDiff > 0 ? "BELOW" : "EQUAL TO"} B`);
+  console.log("└────────────────────────────────────────────────────────────────┘\n");
+}
+
+// ============================================================================
 // MAIN EXECUTION
 // ============================================================================
 
 function main() {
+  const argv = process.argv.slice(2);
+  let indexPath = DEFAULT_INDEX_PATH;
+  let comparePair: [string, string] | null = null;
+  let exportIdx = false;
+
+  for (let i = 0; i < argv.length; i++) {
+    if (argv[i] === "--index" && argv[i + 1]) {
+      indexPath = path.resolve(argv[++i]);
+    } else if (argv[i] === "--compare" && argv[i + 1] && argv[i + 2]) {
+      comparePair = [argv[++i], argv[++i]];
+    } else if (argv[i] === "--export-index") {
+      exportIdx = true;
+    } else if (argv[i] === "--help" || argv[i] === "-h") {
+      console.log(`
+milfographic-calculator.ts — SSOT canonical body metrics calculator.
+
+USAGE:
+  bun run scripts/milfographic-calculator.ts [options]
+
+OPTIONS:
+  --compare <A> <B>    Compare two entities by name (partial match)
+  --index <path>       Load entity data from JSON index (default: ${DEFAULT_INDEX_PATH})
+  --export-index       Export embedded SSOT_CANON to the index path and exit
+  -h, --help           Show this help
+`);
+      process.exit(0);
+    }
+  }
+
+  if (exportIdx) {
+    exportIndex(indexPath);
+    process.exit(0);
+  }
+
+  const entities = loadEntities(indexPath);
+
+  if (comparePair) {
+    compareEntities(comparePair[0], comparePair[1], entities);
+    process.exit(0);
+  }
+
   console.log("\n═══════════════════════════════════════════════════════════════════");
   console.log("           MILFOGRAPHIC GESTALT CALCULATOR v1.0");
   console.log("           Based on SSOT Canonical Measurements");
+  if (existsSync(indexPath)) console.log(`           Index: ${indexPath}`);
   console.log("═══════════════════════════════════════════════════════════════════\n");
 
   // Print canonical hierarchy
