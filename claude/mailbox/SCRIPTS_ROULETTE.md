@@ -15,7 +15,7 @@
 | T0 | 9/9 ✅ | — | All auth/infra gates complete |
 | T1 | 12/12 ✅ | — | `desktop-clone-state.ps1` 336f26d1: pre-export size estimate; disk space guard (10% headroom); `[switch]$ExcludeGit` (robocopy `/XD .git` + `git bundle create`) |
 | T2 | 35/~40 🔄 | ~5 remaining | **Active** |
-| T3 | 3 🔄 | ~11 remaining | **Active** |
+| T3 | 13 🔄 | ~3 remaining | **Active** |
 | T4 | 0 ⬜ | full tier | |
 | T5 | 0 ⬜ | full tier | |
 
@@ -148,24 +148,24 @@ All 9 files share the same broken import (`from skill_tensor_common import ...` 
 ### Consolidation / Deduplication
 | Script | Score | Effort | Action |
 |--------|-------|--------|--------|
-| `scripts/sfs.ps1` | **3.0** | 1 | Make thin shim that dots-sources `shell_capabilities.ps1`; or add `gh`/`uv` keys to `shell_capabilities.ps1` and tombstone `sfs.ps1` with redirect comment |
+| `scripts/sfs.ps1` | **3.0** | 1 | ✅ Thin shim delegating to `shell_capabilities.ps1`; body replaced with `& "$PSScriptRoot/shell_capabilities.ps1"` |
 
 ### Path Fix Hotspot (hardcoded `erdno` bug)
 | Script | Score | Effort | Action |
 |--------|-------|--------|--------|
-| `scripts/setup-gemini-claude.ts` | **2.0** | 1 | Fix `erdno`→`eldno`; use `import.meta.dir` to derive `CHTHONIC_ROOT`; add `CHTHONIC_ROOT` to `desktop-warmup.ps1` |
-| `scripts/validate-triad-links.ps1` | **1.0** | 1 | Fix hardcoded path `erdno`→`eldno`; use PSScriptRoot-relative repo root; wrap `link_audit.py scan` instead of duplicating logic |
-| `scripts/build_epistemograph.py` | **1.0** | 1 | Fix `erdno`→`eldno` in default `--root`; deprecate v1 in favor of v1.1 |
+| `scripts/setup-gemini-claude.ts` | **2.0** | 1 | ✅ `erdno`→`eldno`; use `import.meta.dir`-relative `CHTHONIC_ROOT` default |
+| `scripts/validate-triad-links.ps1` | **1.0** | 1 | ✅ `erdno`→`eldno`; `$RepoRoot` default now `PSScriptRoot`-relative |
+| `scripts/build_epistemograph.py` | **1.0** | 1 | ✅ `erdno`→`eldno` in docstring; v1 deprecation warning + `--no-deprecation-warning` flag |
 
 ### Lint / Validation Infrastructure
 | Script | Score | Effort | Action |
 |--------|-------|--------|--------|
-| `scripts/shebang-guard.ts` | **2.0** | 1 | Extend to scan `.py` files for `#!/usr/bin/env python3` on line 1 + `# -*- coding: utf-8 -*-` on line 2; add `.sh` check |
-| `scripts/validate_script_headers.py` | **2.0** | 1 | Add `.ps1` and `.ts` header support via type-specific regex; add `--fix` to append missing metadata; emit per-file results |
-| `scripts/install-hooks.ps1` | **2.0** | 1 | Add post-merge hook running `bun install --frozen-lockfile` if lockfile changed; add `-Force/-DryRun`; report existing hooks before overwrite |
-| `scripts/bun-practices-audit.ts` | **2.0** | 1 | Read `skipDirs` from `bunfig.toml` or `.bun-practices.json`; add `--fix` to auto-replace npm/npx → bun/bunx |
-| `scripts/bun_compliance_audit.py` | **2.0** | 1 | Verify `--fix` is implemented; add to pre-commit hook alongside `shebang-guard.ts`; add `--except` whitelist |
-| `scripts/ankhrc_validator.py` | **2.0** | 1 | Use `find_repo_root()` from `lib/shared.py`; emit deprecation warning on tomllib fallback; add `--fix` |
+| `scripts/shebang-guard.ts` | **2.0** | 1 | ✅ Extended to .py (shebang line 1 + encoding line 2) and .sh (displaced shebang); SCAN_EXTENSIONS set; typed violation.issue field |
+| `scripts/validate_script_headers.py` | **2.0** | 1 | ✅ _validate_ts() for .ts files; .ts scan in _scan_scripts(); --fix appends missing @SID/@Shabti/@Purpose per type |
+| `scripts/install-hooks.ps1` | **2.0** | 1 | ✅ -Force/-DryRun params; report existing hooks pre-write; inline post-merge hook (bun install --frozen-lockfile on lockfile change) |
+| `scripts/bun-practices-audit.ts` | **2.0** | 1 | ✅ loadSkipDirs() reads .bun-practices.json then bunfig.toml [bun-practices]; --fix: replaces npx→bunx, npm run→bun run in package.json scripts |
+| `scripts/bun_compliance_audit.py` | **2.0** | 1 | ✅ --except PATTERN (repeatable); fnmatch whitelist in should_skip_path; except_globs in BunComplianceScanner.__init__ |
+| `scripts/ankhrc_validator.py` | **2.0** | 1 | ✅ find_repo_root() from lib/shared; tomllib fallback emits WARNING to stderr; --fix: creates missing paths (mkdir/touch) |
 
 ### Mailbox / Handoff Pipeline
 | Script | Score | Effort | Action |
