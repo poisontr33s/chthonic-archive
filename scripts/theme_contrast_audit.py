@@ -37,6 +37,8 @@ import json
 import sys
 from pathlib import Path
 
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+
 from scripts.lib.shared import configure_utf8_output, find_repo_root, setup_logging
 
 # =============================================================================
@@ -193,6 +195,12 @@ def audit_theme(theme_path: Path, min_ratio: float) -> dict:
 # =============================================================================
 
 def main() -> int:
+    """
+    Exit codes:
+      0  All pairs at or above --min-ratio (or --strict not set with failures)
+      1  Contrast failures found and --strict set; or themes-dir missing; or
+         --theme filter matched nothing; or --emit-junit write error
+    """
     configure_utf8_output()
 
     parser = argparse.ArgumentParser(
@@ -210,6 +218,10 @@ def main() -> int:
     parser.add_argument("--strict", action="store_true", help="Exit 1 on any failure")
     parser.add_argument("--verbose", "-v", action="store_true")
     parser.add_argument("--quiet", "-q", action="store_true")
+    parser.add_argument(
+        "--emit-junit", type=str, metavar="FILE",
+        help="Write JUnit XML report to FILE (for CI integration)"
+    )
     args = parser.parse_args()
 
     log = setup_logging(verbose=args.verbose, quiet=args.quiet)
@@ -252,6 +264,33 @@ def main() -> int:
 
     if args.strict and total_failures > 0:
         return 1
+
+    if args.emit_junit:
+        import xml.etree.ElementTree as ET
+        root_el = ET.Element("testsuites")
+        for result in all_results:
+            ts = ET.SubElement(root_el, "testsuite",
+                name=result["theme"],
+                tests=str(result["total_pairs"]),
+                failures=str(result["failing"]))
+            passing = result["total_pairs"] - result["failing"]
+            failing_keys = {(f["fg_key"], f["bg_key"]) for f in result["failures"]}
+            # emit one testcase per failure
+            for f in result["failures"]:
+                tc = ET.SubElement(ts, "testcase",
+                    name=f"{f['fg_key']} on {f['bg_key']}",
+                    classname=result["theme"])
+                ET.SubElement(tc, "failure",
+                    message=f"contrast {f['ratio']:.1f}:1 below {args.min_ratio}:1"
+                ).text = f"[{f['category']}] {f['fg_key']}={f['fg_color']} on {f['bg_key']}={f['bg_color']}"
+        tree = ET.ElementTree(root_el)
+        ET.indent(tree, space="  ")
+        try:
+            tree.write(args.emit_junit, encoding="unicode", xml_declaration=True)
+        except OSError as exc:
+            log.error("Failed to write JUnit report: %s", exc)
+            return 1
+
     return 0
 
 
