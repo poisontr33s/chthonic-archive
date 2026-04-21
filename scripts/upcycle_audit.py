@@ -28,6 +28,13 @@ import sys
 from pathlib import Path
 from typing import Dict, List
 
+# sys.path guard: ensure repo root is importable regardless of invocation CWD
+_REPO_ROOT_CANDIDATE = Path(__file__).resolve().parent.parent
+if str(_REPO_ROOT_CANDIDATE) not in sys.path:
+    sys.path.insert(0, str(_REPO_ROOT_CANDIDATE))
+
+from scripts.lib.shared import find_repo_root as _find_repo_root
+
 
 # Filetype comment markers for density calculation
 COMMENT_MARKERS = {
@@ -100,7 +107,15 @@ def should_skip(path: Path) -> bool:
     return False
 
 
-def analyze_file(path: Path) -> Dict:
+def analyze_file(
+    path: Path,
+    text_ratio_code: float = 0.30,
+    text_ratio_md: float = 0.70,
+    blank_ratio_min: float = 0.30,
+    min_lines_upcycle: int = 30,
+    md_min_lines: int = 80,
+    md_code_ratio: float = 0.20,
+) -> Dict:
     """
     Analyze a single file for code/text density.
 
@@ -150,15 +165,15 @@ def analyze_file(path: Path) -> Dict:
     flags = []
 
     # Too small to meaningfully upcycle
-    if total < 30:
+    if total < min_lines_upcycle:
         flags.append("too_small_to_upcycle")
 
     # Code files with high prose ratio (over-documented?)
-    if ext in {".ps1", ".py", ".sh", ".bash"} and text_ratio > 0.30:
+    if ext in {".ps1", ".py", ".sh", ".bash"} and text_ratio > text_ratio_code:
         flags.append("high_prose_for_code_file")
 
     # Heavy prose docs (potential consolidation candidates)
-    if ext == ".md" and text_ratio > 0.70 and total > 80:
+    if ext == ".md" and text_ratio > text_ratio_md and total > md_min_lines:
         flags.append("heavy_prose_doc")
 
     # Probe contract violation (shell_capabilities.ps1 must be probe-only)
@@ -166,11 +181,11 @@ def analyze_file(path: Path) -> Dict:
         flags.append("probe_contract_violation")
 
     # High blank ratio (formatting bloat?)
-    if blank_ratio > 0.30 and total > 50:
+    if blank_ratio > blank_ratio_min and total > 50:
         flags.append("high_blank_ratio")
 
     # Markdown with code blocks (might belong in code file)
-    if ext == ".md" and code_ratio > 0.20:
+    if ext == ".md" and code_ratio > md_code_ratio:
         flags.append("md_with_code_blocks")
 
     # PNPM references (deprecated per bun-first policy)
@@ -240,9 +255,25 @@ def analyze_file(path: Path) -> Dict:
     return result
 
 
-def scan_paths(paths: List[str]) -> List[Dict]:
+def scan_paths(
+    paths: List[str],
+    text_ratio_code: float = 0.30,
+    text_ratio_md: float = 0.70,
+    blank_ratio_min: float = 0.30,
+    min_lines_upcycle: int = 30,
+    md_min_lines: int = 80,
+    md_code_ratio: float = 0.20,
+) -> List[Dict]:
     """Scan provided paths and return analysis results."""
     results = []
+    thresholds = dict(
+        text_ratio_code=text_ratio_code,
+        text_ratio_md=text_ratio_md,
+        blank_ratio_min=blank_ratio_min,
+        min_lines_upcycle=min_lines_upcycle,
+        md_min_lines=md_min_lines,
+        md_code_ratio=md_code_ratio,
+    )
 
     for p in paths:
         path = Path(p)
@@ -254,12 +285,12 @@ def scan_paths(paths: List[str]) -> List[Dict]:
         if path.is_dir():
             for file in path.rglob("*"):
                 if file.is_file() and not should_skip(file):
-                    result = analyze_file(file)
+                    result = analyze_file(file, **thresholds)
                     if result:
                         results.append(result)
         else:
             if not should_skip(path):
-                result = analyze_file(path)
+                result = analyze_file(path, **thresholds)
                 if result:
                     results.append(result)
 
@@ -303,8 +334,12 @@ def main() -> None:
     )
     parser.add_argument(
         "paths",
-        nargs="+",
-        help="Files or directories to scan"
+        nargs="*",
+        help="Files or directories to scan (optional when --dir is used)"
+    )
+    parser.add_argument(
+        "--dir", "-d", type=Path, default=None,
+        help="Recursively scan a directory (appended to positional paths; defaults to repo root when neither paths nor --dir are given).",
     )
     parser.add_argument(
         "--candidates-only",
@@ -316,8 +351,36 @@ def main() -> None:
         action="store_true",
         help="Show summary statistics instead of full JSON"
     )
+    parser.add_argument(
+        "--text-ratio-code", type=float, default=0.30, metavar="FLOAT",
+        help="Max text ratio before flagging code file (default: 0.30).",
+    )
+    parser.add_argument(
+        "--text-ratio-md", type=float, default=0.70, metavar="FLOAT",
+        help="Min text ratio to flag .md file as heavy prose (default: 0.70).",
+    )
+    parser.add_argument(
+        "--blank-ratio-min", type=float, default=0.30, metavar="FLOAT",
+        help="Min blank-line ratio to flag formatting bloat (default: 0.30).",
+    )
+    parser.add_argument(
+        "--min-lines-upcycle", type=int, default=30, metavar="INT",
+        help="Skip files with fewer lines than this (default: 30).",
+    )
+    parser.add_argument(
+        "--output", "-o", type=Path, default=None,
+        help="Write JSON output to this file (for zombie pipeline integration).",
+    )
 
     args = parser.parse_args()
+
+    # Build effective path list
+    all_paths: List[str] = list(args.paths)
+    if args.dir:
+        all_paths.append(str(args.dir))
+    if not all_paths:
+        # Default: repo root
+        all_paths = [str(_find_repo_root())]
 
     # Interactive mode selection if no explicit intent provided
     args = prompt_mode_if_ambiguous(args)
@@ -327,7 +390,13 @@ def main() -> None:
     print(f"[upcycle-audit] mode = {mode}", file=sys.stderr)
 
     # Scan paths
-    results = scan_paths(args.paths)
+    thresholds = dict(
+        text_ratio_code=args.text_ratio_code,
+        text_ratio_md=args.text_ratio_md,
+        blank_ratio_min=args.blank_ratio_min,
+        min_lines_upcycle=args.min_lines_upcycle,
+    )
+    results = scan_paths(all_paths, **thresholds)
 
     # Filter if requested
     if args.candidates_only:
@@ -356,7 +425,7 @@ def main() -> None:
 
         # Build schema envelope for JSON output
         from datetime import datetime, UTC
-        output = {
+        output_payload = {
             "schema": "upcycle-audit.v1",
             "generated_at": datetime.now(UTC).isoformat(),
             "summary": {
@@ -367,16 +436,27 @@ def main() -> None:
             },
             "results": results
         }
-        print(json.dumps(output, indent=2))
+        _emit(output_payload, args.output)
     else:
         # JSON output (default) - still needs schema envelope
         from datetime import datetime, UTC
-        output = {
+        output_payload = {
             "schema": "upcycle-audit.v1",
             "generated_at": datetime.now(UTC).isoformat(),
             "results": results
         }
-        print(json.dumps(output, indent=2))
+        _emit(output_payload, args.output)
+
+
+def _emit(payload: Dict, output_path: "Path | None") -> None:
+    """Print JSON to stdout or write to output_path."""
+    text = json.dumps(payload, indent=2)
+    if output_path:
+        output_path.parent.mkdir(parents=True, exist_ok=True)
+        output_path.write_text(text, encoding="utf-8")
+        print(f"[upcycle-audit] written: {output_path}", file=sys.stderr)
+    else:
+        print(text)
 
 
 if __name__ == "__main__":
