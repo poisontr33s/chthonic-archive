@@ -17,7 +17,7 @@
 | T2 | ~68/~68 ✅ | — | **Complete** — e9a9fc93 skill_index+skill_health+skill_audit trio |
 | T3 | 16 ✅ | — | **Complete** |
 | T4 | 2/2 ✅ | — | **Complete** — `88a675b4` sfs_slabstone_baseline (CRLF→LF hash, --emit-json, task exit codes); `8b40191c` gemini-model-router.test (fixture file, bun test script, passthrough-no-fallback edge case) |
-| T5 | 0 ⬜ | full tier | |
+| T5 | ✅ complete | — | thin-shims `798150e1`; assess-before-act `a01857f0`; prototypes+WIP `d8912727` |
 
 ---
 

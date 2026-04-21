@@ -101,32 +101,22 @@ This is the re-entry point for the next session. No Savant briefing required.
 
 ---
 
-## Priority Queue (current state — 2026-04-21)
+## Priority Queue — 2026-04-21 (COMPLETE)
 
-**Execute in this order:**
+**All tiers T0→T5 are done. No ⬜ items remain.**
 
-### T1 Remaining (2 items)
-1. `scripts/claude_ide.ps1` (score 1.5) — `.mcp.json` validation + backup + `verify-mcp` subcommand
-2. `scripts/desktop-clone-state.ps1` (score 1.0) — size estimate + disk space check + `--exclude-git`
+| Tier | Completed | Last commit |
+|------|-----------|-------------|
+| T0 | 9/9 ✅ | prior sessions |
+| T1 | 12/12 ✅ | `336f26d1` |
+| T2 | ~68/~68 ✅ | `e9a9fc93`, `9e1d70c1` |
+| T3 | 16/16 ✅ | prior sessions |
+| T4 | 2/2 ✅ | `88a675b4`, `8b40191c` |
+| T5 thin-shims | 5/5 ✅ | `798150e1` |
+| T5 assess-before-act | 11/11 ✅ | `a01857f0` |
+| T5 prototypes + WIP | 5/5 + 1/1 ✅ | `d8912727` |
 
-### T2 — start score-descending
-3. `scripts/theme_contrast_audit.py` (score 3.0) — `sys.path.insert` guard; exit codes; `--emit-junit`
-4. `scripts/theme-sync.ps1` (score 3.0) — hash verify after copy; `-VerifyOnly`; glob-based path-finding
-5. `scripts/git_snapshot.py` (score 3.0) — `--quiet/-q`; `resolve_ssot_paths()` for mailbox dir; `--since <ISO>`
-6. `scripts/run_archaeology.ps1` (score 3.0) — print `$runFailures` at end; remove dead `-LocalV2`; `-What` switch
-7. `scripts/mcp-asc-injector.ts` (score 2.0) — SSOT existence check at startup; `ping` tool
-8. `scripts/run_overnight_daemon.ps1` (score 2.0) — `Get-Command bun` first; `-Timeout N`; exit code propagation
-9. `scripts/local_refiner_v2.py` (score 2.0) — normalize output schema; `--validate`; `--model-list`
-10. `scripts/hf_refiner.py` (score 2.0) — exponential backoff; `--model` flag; `--ore-dir` configurable
-11. ... *(continue score-descending through T2, then T3 batch, then T4, then T5)*
-
-### T3 Batch (execute as single unit)
-- All 9 `skill_tensor_*.py` files — `sys.path.insert(0, str(Path(__file__).resolve().parent))` on each
-- Then `skill_tensor_cycle.py` and `skill_tensor_common.py` individually
-
-### T3 Hotspot
-- `sfs.ps1` consolidation (score 3.0) — shim or tombstone
-- `erdno`→`eldno` in `setup-gemini-claude.ts`, `validate-triad-links.ps1`, `build_epistemograph.py`
+**Next session:** No roulette work remains. Steward is idle — await new blueprint or The Savant direction.
 
 ---
 
