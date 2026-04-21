@@ -27,7 +27,7 @@
 import { join, resolve, dirname } from "path";
 import { mkdir } from "fs/promises";
 import { SSOT_POINTER } from "./lib/ssot-paths";
-// import { initSentry } from "./sentry_init";
+import { initSentry } from "./sentry_init";
 
 type TodoHit = {
   file: string;
@@ -690,6 +690,7 @@ async function runAndLog(
 
 async function main() {
   try {
+    initSentry({ dsn: process.env.SENTRY_DSN });
     const args = parseArgs(Bun.argv.slice(2));
   const topN = Number(args.get("top") ?? 20);
   const maxTodoHits = Number(args.get("maxTodo") ?? 80);
@@ -697,6 +698,7 @@ async function main() {
   const enableClassification = Boolean(args.get("classify")); // NEW
   const durationMinutes = Number(args.get("durationMinutes") ?? 0);
   const intervalMinutes = Number(args.get("intervalMinutes") ?? 15);
+  const emitDigest = Boolean(args.get("emit-digest"));
   const verifyRaw = args.get("verify");
   const verify = typeof verifyRaw === "string"
     ? verifyRaw
@@ -1233,6 +1235,30 @@ async function main() {
       console.log(`report: ${cycles[0]?.report ?? runSummaryPath.replaceAll("\\", "/")}`);
       console.log(`top: ${cycles[0]?.top ?? "(none)"}`);
     }
+
+  // --emit-digest: write DAEMON_DIGEST_<date>.md to claude/mailbox/
+  if (emitDigest) {
+    const dateStr = new Date().toISOString().slice(0, 10);
+    const digestPath = join(repoRoot, "claude", "mailbox", `DAEMON_DIGEST_${dateStr}.md`);
+    const lastCycle = cycles[cycles.length - 1];
+    const digestLines: string[] = [
+      `# Daemon Digest — ${dateStr}`,
+      "",
+      `- Run stamp: ${runStamp}`,
+      `- Cycles: ${cycles.length}`,
+      `- Top file: ${lastCycle?.top ?? "(none)"}`,
+      `- Run summary: ${runSummaryPath.replaceAll("\\", "/")}`,
+      "",
+      "## Cycle Index",
+    ];
+    for (const c of cycles) {
+      digestLines.push(`- cycle ${c.cycleIndex}: ${c.report} (top: ${c.top})`);
+    }
+    digestLines.push("");
+    await mkdir(join(repoRoot, "claude", "mailbox"), { recursive: true });
+    await Bun.write(digestPath, digestLines.join("\n") + "\n");
+    console.log(`digest: ${digestPath.replaceAll("\\", "/")}`);
+  }
   } catch (err: any) {
     console.error("FATAL ERROR:", err);
     throw err;
