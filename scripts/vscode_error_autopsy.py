@@ -638,6 +638,12 @@ def build_parser() -> argparse.ArgumentParser:
         help="Additional log directory/file to scan (repeatable)",
     )
     parser.add_argument(
+        "--log-dir",
+        type=str,
+        default=None,
+        help="Override log discovery: scan only this directory (bypasses all default discovery)",
+    )
+    parser.add_argument(
         "--matrix-dir",
         action="append",
         default=[],
@@ -661,8 +667,15 @@ def build_parser() -> argparse.ArgumentParser:
     )
     parser.add_argument(
         "--severity", "-s", type=str, default=None,
+        dest="severity",
         choices=["critical", "high", "medium", "low", "info"],
         help="Filter errors to this severity or above",
+    )
+    parser.add_argument(
+        "--severity-min", type=str, default=None,
+        dest="severity",
+        choices=["critical", "high", "medium", "low", "info"],
+        help="Alias for --severity: filter errors at or above this minimum severity level",
     )
     parser.add_argument(
         "--category", "-c", type=str, default=None,
@@ -695,18 +708,23 @@ def main(argv: list[str] | None = None) -> int:
     log.info("Repo root: %s", repo)
 
     # Discover logs
-    extra_inputs = list(args.logs_dir or []) + list(args.matrix_dir or [])
-    extra = [Path(d) for d in extra_inputs] if extra_inputs else None
-    if args.no_appdata:
-        # Temporarily disable AppData scanning
-        global INSIDERS_LOGS_DIR
-        INSIDERS_LOGS_DIR = Path("/nonexistent")
+    if args.log_dir:
+        # --log-dir overrides all discovery: scan only the specified directory
+        extra = [Path(args.log_dir)]
+        log_files = discover_log_files(repo, extra, include_defaults=False)
+    else:
+        extra_inputs = list(args.logs_dir or []) + list(args.matrix_dir or [])
+        extra = [Path(d) for d in extra_inputs] if extra_inputs else None
+        if args.no_appdata:
+            # Temporarily disable AppData scanning
+            global INSIDERS_LOGS_DIR
+            INSIDERS_LOGS_DIR = Path("/nonexistent")
 
-    log_files = discover_log_files(
-        repo,
-        extra,
-        include_defaults=not args.only_provided,
-    )
+        log_files = discover_log_files(
+            repo,
+            extra,
+            include_defaults=not args.only_provided,
+        )
     log.info("Discovered %d log files", len(log_files))
 
     if not log_files:
