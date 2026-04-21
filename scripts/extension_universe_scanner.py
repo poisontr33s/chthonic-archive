@@ -21,8 +21,15 @@ Polyglot extension universe scanner for Phase 0.
 from __future__ import annotations
 
 import argparse
+import json
+import sys
 from collections import Counter, defaultdict
 from pathlib import Path
+
+# sys.path guard: ensure repo root is importable regardless of invocation CWD
+_REPO_ROOT_CANDIDATE = Path(__file__).resolve().parent.parent
+if str(_REPO_ROOT_CANDIDATE) not in sys.path:
+    sys.path.insert(0, str(_REPO_ROOT_CANDIDATE))
 
 from scripts.wptg_common import (
     alchemy_opportunities,
@@ -155,13 +162,68 @@ def main() -> int:
         default=Path("audit-reports/extension_universe.json"),
         help="Output JSON path.",
     )
+    parser.add_argument(
+        "--diff",
+        type=Path,
+        metavar="PREV_JSON",
+        help="Compare current scan against a previous JSON output and print diff summary.",
+    )
     args = parser.parse_args()
 
     root = repo_root()
     payload = build_extension_universe(root)
     write_json(root / args.output, payload)
     print(f"Wrote {args.output}")
+
+    if getattr(args, "diff", None) and args.diff.is_file():
+        try:
+            prev = json.loads(args.diff.read_text(encoding="utf-8"))
+            _print_universe_diff(prev, payload)
+        except Exception as exc:  # noqa: BLE001
+            print(f"  [diff] failed to compare: {exc}", file=sys.stderr)
+
     return determine_exit_code(payload)
+
+
+def _print_universe_diff(prev: dict, curr: dict) -> None:
+    """Print a human-readable diff between two extension_universe JSON payloads."""
+    print("\n[diff] Extension universe comparison:")
+    changed = False
+
+    prev_inv = prev.get("codebase_extensions", {}).get("inventory", {})
+    curr_inv = curr.get("codebase_extensions", {}).get("inventory", {})
+    added = set(curr_inv) - set(prev_inv)
+    removed = set(prev_inv) - set(curr_inv)
+    if added:
+        print(f"  Extensions added   (+{len(added)}): {', '.join(sorted(added)[:10])}")
+        changed = True
+    if removed:
+        print(f"  Extensions removed (-{len(removed)}): {', '.join(sorted(removed)[:10])}")
+        changed = True
+
+    # Count delta
+    prev_total = prev.get("summary", {}).get("tracked_files", 0)
+    curr_total = curr.get("summary", {}).get("tracked_files", 0)
+    if prev_total != curr_total:
+        delta = curr_total - prev_total
+        sign = "+" if delta > 0 else ""
+        print(f"  Tracked files: {prev_total} → {curr_total} ({sign}{delta})")
+        changed = True
+
+    # Toolchain installs delta
+    prev_inst = set(prev.get("system_toolchains", {}).get("installed", []))
+    curr_inst = set(curr.get("system_toolchains", {}).get("installed", []))
+    new_inst = curr_inst - prev_inst
+    lost_inst = prev_inst - curr_inst
+    if new_inst:
+        print(f"  Toolchains gained: {', '.join(sorted(new_inst))}")
+        changed = True
+    if lost_inst:
+        print(f"  Toolchains lost:   {', '.join(sorted(lost_inst))}")
+        changed = True
+
+    if not changed:
+        print("  No structural changes detected.")
 
 
 if __name__ == "__main__":
