@@ -34,15 +34,21 @@ Output:
 @Purpose:       📊 HEALTH REPORT GENERATOR
 """
 
+from __future__ import annotations
+
 import sys
 import io
-if sys.platform == 'win32':
-    sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
-    sys.stderr = io.TextIOWrapper(sys.stderr.buffer, encoding='utf-8')
 
+# sys.path guard: ensure repo root is importable
+from pathlib import Path as _Path
+_REPO_ROOT_CANDIDATE = _Path(__file__).resolve().parent.parent
+if str(_REPO_ROOT_CANDIDATE) not in sys.path:
+    sys.path.insert(0, str(_REPO_ROOT_CANDIDATE))
 
-from __future__ import annotations
+from scripts.lib.shared import find_repo_root as _find_repo_root
+
 from pathlib import Path
+import argparse
 import datetime
 import json
 import subprocess
@@ -52,11 +58,12 @@ from typing import Dict, Optional
 # CONFIGURATION
 # ═══════════════════════════════════════════════════════════════════════════════
 
-PROJECT_ROOT = Path(__file__).parent
+PROJECT_ROOT = _find_repo_root()
 HEALTH_REPORTS_DIR = PROJECT_ROOT / "health_reports"
 TOPOLOGY_GRAPH = PROJECT_ROOT / "topology_graph.json"
 SSOT_STATE = PROJECT_ROOT / ".dcrp_state.json"
 DCRP_GRAPH = PROJECT_ROOT / "dependency_graph_production.json"
+SCHEMA_VERSION = "1.0"
 
 # ═══════════════════════════════════════════════════════════════════════════════
 # DATA COLLECTION
@@ -164,15 +171,29 @@ def check_lane_population() -> Dict:
 # REPORT GENERATION
 # ═══════════════════════════════════════════════════════════════════════════════
 
-def generate_health_report() -> None:
-    """Generate comprehensive health report."""
+def generate_health_report(
+    json_mode: bool = False,
+    enabled_tools: "set[str] | None" = None,
+    dry_run: bool = False,
+) -> None:
+    """Generate comprehensive health report.
+
+    Args:
+        json_mode: Emit JSON (with schema_version) instead of Markdown.
+        enabled_tools: Optional set of tool names to include
+            (``topology``, ``dcrp``, ``ssot``, ``lanes``). ``None`` = all.
+        dry_run: Print to stdout instead of writing to file.
+    """
+    def _enabled(name: str) -> bool:
+        return enabled_tools is None or name in enabled_tools
+
     timestamp = datetime.datetime.now(datetime.UTC).replace(microsecond=0).isoformat().replace(":", "-")
     commit = get_current_commit()
     branch = get_current_branch()
-    topo = summarize_topology()
-    dcrp = summarize_dcrp()
-    ssot = check_ssot_status()
-    lanes = check_lane_population()
+    topo = summarize_topology() if _enabled("topology") else {"nodes": 0, "edges": 0, "lanes": {}}
+    dcrp = summarize_dcrp() if _enabled("dcrp") else {"files_analyzed": 0, "dependencies": 0}
+    ssot = check_ssot_status() if _enabled("ssot") else {"status": "SKIPPED", "files_monitored": 0}
+    lanes = check_lane_population() if _enabled("lanes") else {}
 
     # Determine overall health
     health_checks = [
@@ -182,10 +203,6 @@ def generate_health_report() -> None:
     ]
     overall_healthy = all(health_checks)
     overall_status = "✅ HEALTHY" if overall_healthy else "⚠️ NEEDS ATTENTION"
-
-    # Generate report
-    HEALTH_REPORTS_DIR.mkdir(parents=True, exist_ok=True)
-    report_path = HEALTH_REPORTS_DIR / f"HEALTH_REPORT_{timestamp}.md"
 
     lines = [
         "# 🏥 CHTHONIC ARCHIVE HEALTH REPORT",
@@ -287,7 +304,32 @@ def generate_health_report() -> None:
         "- **Health Report:** On next commit (via autonomous_coordinator.py)",
     ])
 
-    report_path.write_text("\n".join(lines), encoding="utf-8")
+    # --- output selection ---
+    if json_mode:
+        output_text = json.dumps(
+            {
+                "schema_version": SCHEMA_VERSION,
+                "generated": datetime.datetime.now(datetime.UTC).replace(microsecond=0).isoformat() + "Z",
+                "commit": commit,
+                "branch": branch,
+                "topology": topo,
+                "dcrp": dcrp,
+                "ssot": ssot,
+                "lanes": lanes,
+                "recommendations": recommendations,
+            },
+            indent=2,
+        )
+    else:
+        output_text = "\n".join(lines)
+
+    if dry_run:
+        print(output_text)
+        return
+
+    HEALTH_REPORTS_DIR.mkdir(parents=True, exist_ok=True)
+    report_path = HEALTH_REPORTS_DIR / f"HEALTH_REPORT_{timestamp}.{'json' if json_mode else 'md'}"
+    report_path.write_text(output_text, encoding="utf-8")
     print(f"📊 Health report generated: {report_path.name}")
 
 # ═══════════════════════════════════════════════════════════════════════════════
@@ -296,8 +338,30 @@ def generate_health_report() -> None:
 
 def main() -> None:
     """CLI entry point."""
+    parser = argparse.ArgumentParser(
+        description="Generate Archive health report."
+    )
+    parser.add_argument(
+        "--tools",
+        default=None,
+        help="Comma-separated list of sub-reports to include: topology,dcrp,ssot,lanes (default: all).",
+    )
+    parser.add_argument(
+        "--json", action="store_true",
+        help="Emit JSON (includes schema_version) instead of Markdown.",
+    )
+    parser.add_argument(
+        "--dry-run", action="store_true",
+        help="Print report to stdout without writing to file.",
+    )
+    args = parser.parse_args()
+
+    enabled: set[str] | None = None
+    if args.tools:
+        enabled = {t.strip().lower() for t in args.tools.split(",") if t.strip()}
+
     print("📊 Generating health report...")
-    generate_health_report()
+    generate_health_report(json_mode=args.json, enabled_tools=enabled, dry_run=args.dry_run)
     print("✅ Complete")
 
 if __name__ == "__main__":
