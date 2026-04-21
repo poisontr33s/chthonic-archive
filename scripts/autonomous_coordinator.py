@@ -191,5 +191,26 @@ class TheDecorator:
             )
 
 if __name__ == "__main__":
-    TheDecorator().manifest_will()
+    import argparse as _ap
+
+    _parser = _ap.ArgumentParser(
+        description=(
+            "Metabolic cycle coordinator for topology, SSOT, and health checks.\n\n"
+            "Metabolize: each cycle runs immune response → lane validation → topology\n"
+            "regeneration → mandala reveal → SSOT drift check → health confessional.\n"
+            "Optional pleasure protocol (pleasure_protocol.py) fires on cycle completion."
+        )
+    )
+    _parser.add_argument(
+        "--dry-run",
+        action="store_true",
+        help="Print what would run without executing mutations or emitting files.",
+    )
+    _args = _parser.parse_args()
+
+    if _args.dry_run:
+        print("[DRY-RUN] TheDecorator.manifest_will() — no mutations, no file writes.")
+        print("  Phases: immune_response → lineage_validation → regenerate_topology → reveal_mandala → check_ssot_integrity → generate_confessional → pleasure_protocol")
+    else:
+        TheDecorator().manifest_will()
 

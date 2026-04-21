@@ -314,7 +314,13 @@ async function analyzeImages(
       throw new Error(`endpoint returned ${response.status}`);
     }
 
-    const payload = (await response.json()) as ChatCompletionResponse;
+    const rawText = await response.text();
+    let payload: ChatCompletionResponse;
+    try {
+      payload = JSON.parse(rawText) as ChatCompletionResponse;
+    } catch {
+      throw new Error(`endpoint returned non-JSON response: ${rawText.slice(0, 120)}`);
+    }
     const rawModelText = payload.choices?.[0]?.message?.content || '';
     const parsed = parseJsonObject(rawModelText);
     if (!parsed) {
@@ -335,6 +341,39 @@ async function analyzeImages(
     };
   }
 }
+
+/**
+ * Probe the LLM endpoint with a minimal models-list request.
+ * Returns null on success, an error message string on failure.
+ */
+async function checkLlmEndpointHealth(endpoint: string): Promise<string | null> {
+  // Derive base URL: strip path segments after /v1/
+  const baseUrl = endpoint.replace(/\/chat\/completions.*$/, '/models');
+  const headers: Record<string, string> = {};
+  if (process.env.LOCAL_LLM_API_KEY) {
+    headers.Authorization = `Bearer ${process.env.LOCAL_LLM_API_KEY}`;
+  }
+  try {
+    const response = await fetch(baseUrl, {
+      method: 'GET',
+      headers,
+      signal: AbortSignal.timeout(5000),
+    });
+    if (!response.ok) {
+      return `health check failed: endpoint ${baseUrl} returned HTTP ${response.status}`;
+    }
+    const rawText = await response.text();
+    try {
+      JSON.parse(rawText);
+    } catch {
+      return `health check failed: endpoint ${baseUrl} returned non-JSON: ${rawText.slice(0, 80)}`;
+    }
+    return null;
+  } catch (err) {
+    return `health check failed: ${(err as Error).message}`;
+  }
+}
+
 
 function reportMarkdown(params: {
   cycle: number;
@@ -450,6 +489,15 @@ async function main() {
   const runStartedAt = new Date().toISOString();
   const runRootId = runStartedAt.replace(/[:.]/g, '-');
   const cycleSummaries: CycleSummary[] = [];
+
+  // Pre-flight: verify LLM endpoint is reachable before submitting screenshots
+  if (!noLlm) {
+    const healthErr = await checkLlmEndpointHealth(endpoint);
+    if (healthErr) {
+      console.warn(`[art-cop] WARNING: ${healthErr}`);
+      console.warn('[art-cop] Continuing with fallback results — use --no-llm to suppress.');
+    }
+  }
 
   let previousFingerprint: string | null = null;
   let previousResult: ArtCopResult | null = null;

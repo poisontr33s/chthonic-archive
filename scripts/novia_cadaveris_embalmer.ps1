@@ -242,8 +242,7 @@ $summary = [ordered]@{
     records = $records
 }
 
-$summary | ConvertTo-Json -Depth 8 | Set-Content -Encoding UTF8 -LiteralPath $latestJson
-$summary | ConvertTo-Json -Depth 8 | Set-Content -Encoding UTF8 -LiteralPath (Join-Path $sessionDir "session.json")
+if (-not $DryRun) {\n    $summary | ConvertTo-Json -Depth 8 | Set-Content -Encoding UTF8 -LiteralPath $latestJson\n    $summary | ConvertTo-Json -Depth 8 | Set-Content -Encoding UTF8 -LiteralPath (Join-Path $sessionDir \"session.json\")\n} else {\n    Write-Host \"[DRY-RUN] Would write JSON to: $latestJson\" -ForegroundColor DarkYellow\n    Write-Host \"[DRY-RUN] Would write JSON to: $(Join-Path $sessionDir 'session.json')\" -ForegroundColor DarkYellow\n}
 
 $tick = [char]96
 $generatedAt = (Get-Date).ToUniversalTime().ToString("s") + "Z"
@@ -309,8 +308,13 @@ $mdLines += @(
     "- Prefer the older names where user-directed canon judgement says the newer local-AI injection is lower quality."
 )
 
-$mdLines -join "`r`n" | Set-Content -Encoding UTF8 -LiteralPath $latestMd
-$mdLines -join "`r`n" | Set-Content -Encoding UTF8 -LiteralPath (Join-Path $sessionDir "session.md")
+if (-not $DryRun) {
+    $mdLines -join "`r`n" | Set-Content -Encoding UTF8 -LiteralPath $latestMd
+    $mdLines -join "`r`n" | Set-Content -Encoding UTF8 -LiteralPath (Join-Path $sessionDir "session.md")
+} else {
+    Write-Host "[DRY-RUN] Would write Markdown to: $latestMd" -ForegroundColor DarkYellow
+    Write-Host "[DRY-RUN] Would write Markdown to: $(Join-Path $sessionDir 'session.md')" -ForegroundColor DarkYellow
+}
 
 if ($Json) {
     $summary | ConvertTo-Json -Depth 8

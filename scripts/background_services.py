@@ -34,6 +34,7 @@ import json
 import logging
 import os
 import re
+import signal
 import sys
 import time
 from datetime import datetime
@@ -346,6 +347,30 @@ class BackgroundServiceManager:
         self.arch_validator = ArchitectureValidator()
         self.session_logger = SessionLogger()
         self.running = False
+        self._stop_event: asyncio.Event | None = None
+        self._pid_file: Path | None = None
+
+    def _write_pid(self) -> None:
+        """Write current PID to data/background_services.pid."""
+        pid_path = REPO_ROOT / "data" / "background_services.pid"
+        pid_path.parent.mkdir(parents=True, exist_ok=True)
+        pid_path.write_text(str(os.getpid()), encoding="utf-8")
+        self._pid_file = pid_path
+        logger.info(f"PID {os.getpid()} written to {pid_path}")
+
+    def _remove_pid(self) -> None:
+        """Remove PID file on clean shutdown."""
+        if self._pid_file and self._pid_file.exists():
+            self._pid_file.unlink(missing_ok=True)
+
+    def _register_sigint(self) -> None:
+        """Register SIGINT handler that sets the stop event."""
+        def _handler(sig, frame):  # noqa: ANN001
+            logger.info("SIGINT received — requesting graceful shutdown")
+            if self._stop_event is not None:
+                self._stop_event.set()
+            self.running = False
+        signal.signal(signal.SIGINT, _handler)
 
     async def run_watcher(self, interval: int = 5):
         """Run file watcher service."""
@@ -390,7 +415,10 @@ class BackgroundServiceManager:
     async def run_all(self):
         """Run all services concurrently."""
         self.running = True
-        logger.info("🚀 Starting all background services...")
+        self._stop_event = asyncio.Event()
+        self._write_pid()
+        self._register_sigint()
+        logger.info("\U0001f680 Starting all background services...")
 
         try:
             await asyncio.gather(
@@ -399,15 +427,18 @@ class BackgroundServiceManager:
                 self.run_arch_validator(interval=300),
             )
         except asyncio.CancelledError:
-            logger.info("🛑 Services cancelled")
+            logger.info("\U0001f6d1 Services cancelled")
         finally:
             self.running = False
+            self._remove_pid()
             self.session_logger.log_event("shutdown", self.session_logger.get_summary())
-            logger.info(f"📝 Session log: {self.session_logger.log_file}")
+            logger.info(f"\U0001f4dd Session log: {self.session_logger.log_file}")
 
     def stop(self):
         """Stop all services."""
         self.running = False
+        if self._stop_event is not None:
+            self._stop_event.set()
 
 
 def main():
@@ -465,14 +496,25 @@ Examples:
         if args.service == "all":
             asyncio.run(manager.run_all())
         elif args.service == "watcher":
+            manager._stop_event = asyncio.Event()
+            manager._write_pid()
+            manager._register_sigint()
             asyncio.run(manager.run_watcher(args.interval))
         elif args.service == "entity":
+            manager._stop_event = asyncio.Event()
+            manager._write_pid()
+            manager._register_sigint()
             asyncio.run(manager.run_entity_monitor(args.interval))
         elif args.service == "arch":
+            manager._stop_event = asyncio.Event()
+            manager._write_pid()
+            manager._register_sigint()
             asyncio.run(manager.run_arch_validator(args.interval))
     except KeyboardInterrupt:
-        logger.info("👋 Shutdown requested")
+        logger.info("\U0001f44b Shutdown requested")
         manager.stop()
+    finally:
+        manager._remove_pid()
 
 
 if __name__ == "__main__":
