@@ -155,7 +155,7 @@ All 9 files share the same broken import (`from skill_tensor_common import ...` 
 |--------|-------|--------|--------|
 | `scripts/setup-gemini-claude.ts` | **2.0** | 1 | ✅ `erdno`→`eldno`; use `import.meta.dir`-relative `CHTHONIC_ROOT` default |
 | `scripts/validate-triad-links.ps1` | **1.0** | 1 | ✅ `erdno`→`eldno`; `$RepoRoot` default now `PSScriptRoot`-relative |
-| `scripts/build_epistemograph.py` | **1.0** | 1 | ✅ `erdno`→`eldno` in docstring; v1 deprecation warning + `--no-deprecation-warning` flag |
+| `scripts/build_epistemograph.py` | **1.0** | 1 | ✅ `erdno`→`eldno` in docstring; v1 deprecation warning + `--no-deprecation-warning` flag — `66cf0b59` |
 
 ### Lint / Validation Infrastructure
 | Script | Score | Effort | Action |
@@ -173,31 +173,31 @@ All 9 files share the same broken import (`from skill_tensor_common import ...` 
 | `scripts/handoff_loop.py` | **2.0** | 1 | ✅ `--stale-hours` arg; `compute_obligations(stale_hours=)` param; `ROUTE_RECEIPT_<ts>.json` emitted to `codex/mailbox/` on route |
 | `scripts/mailbox_handoff.ps1` | **2.0** | 1 | ✅ `$repoRoot` PSScriptRoot-relative; `Validate-HandoffSchema` checks frontmatter + keys + sections; validation gate on SendAll loop + single-source route |
 | `scripts/mailbox_scribe.py` | **2.0** | 1 | ✅ `find_repo_root()` for `REPO_ROOT` + `POLICY_PATH`; `POLICY_DEFAULTS`; `UserWarning` with default documentation when policy absent |
-| `scripts/mailbox_polisher.py` | **2.0** | 1 | Externalize patterns to `.meta/mailbox-polisher-patterns.json`; `--dry-run` should print table of files-to-archive + target path |
-| `scripts/mailbox_compactor.py` | **2.0** | 1 | Use `find_repo_root()`; add `--since <ISO>` for incremental compaction; add `--max-files N` |
+| `scripts/mailbox_polisher.py` | **2.0** | 1 | ✅ Externalize patterns to `.meta/mailbox-polisher-patterns.json`; `--dry-run` prints table of files-to-archive + target path |
+| `scripts/mailbox_compactor.py` | **2.0** | 1 | ✅ Uses `find_repo_root()`; `--since <ISO>` incremental compaction; `--max-files N` |
 
 ### SSOT Tools
 | Script | Score | Effort | Action |
 |--------|-------|--------|--------|
-| `scripts/ssot_hash.py` | **2.0** | 1 | Import `SSOT_HOLDER` from `scripts.lib.ssot_paths`; add `--compare <hash_or_file>`; add `--write` to `.chthonic/ssot.sha256` |
-| `scripts/ssot_structural_extractor.py` | **2.0** | 1 | Add `--output` flag; add `--quiet`/`--progress`; add `--verify-only` (hash comparison, no re-parse) |
-| `scripts/ankh_theme_reference.py` | **2.0** | 1 | Use `SSOT_ARCHIVE_STRUCTURAL_INDEX.json` as parse source; add SSOT hash check to invalidate cached output |
+| `scripts/ssot_hash.py` | **2.0** | 1 | ✅ `SSOT_HOLDER` from `scripts.lib.ssot_paths`; `--compare <hash_or_file>`; `--write` to `.chthonic/ssot.sha256` |
+| `scripts/ssot_structural_extractor.py` | **2.0** | 1 | ✅ `--output` flag; `--quiet`/`--progress`; `--verify-only` (hash comparison, no re-parse) |
+| `scripts/ankh_theme_reference.py` | **2.0** | 1 | ✅ Uses `SSOT_ARCHIVE_STRUCTURAL_INDEX.json`; SSOT hash check to invalidate cached output |
 
 ### Theme Pipeline
 | Script | Score | Effort | Action |
 |--------|-------|--------|--------|
-| `scripts/theme_parity.py` | **2.0** | 1 | Fix `MASTER_NAME` to actual comprehensive theme (not mandala); add `--master` flag; emit per-theme missing key count |
-| `scripts/theme_promote_master.py` | **2.0** | 1 | Write `.bak` before any modification; add `--dry-run`; add `--distance-metric` flag |
-| `scripts/theme_color_diversity.py` | **2.0** | 1 | Backup before modification; document threshold rationale in docstring; add `--variants N`; add `--report-only` |
-| `scripts/theme_token_coverage.py` | **2.0** | 1 | Add `--theme` flag; add `--update-universe` fetching from vscode-textmate GitHub; add coverage % output |
-| `scripts/theme_sfs_transmute.py` | **2.0** | 1 | Use absolute path via `Path(__file__).resolve().parents[1]`; add changeset hash for idempotency; add `--verify` |
-| `scripts/theme_artcop.py` | **2.0** | 1 | Read and verify relationship with `vscode-art-cop.ts`; if duplicate, consolidate; add `--compare` for before/after |
-| `scripts/milf_scanner.py` | **2.0** | 1 | Add `--dump-json` to emit full registry for TS/PS1 consumers; add sanity check for 14 required palette role keys |
+| `scripts/theme_parity.py` | **2.0** | 1 | ✅ `MASTER_NAME` fixed to decorator theme; `--master` flag; per-theme missing key count |
+| `scripts/theme_promote_master.py` | **2.0** | 1 | ✅ `.bak` before modification; `--dry-run`; `--distance-metric` flag |
+| `scripts/theme_color_diversity.py` | **2.0** | 1 | ✅ Backup before modification; `--variants N`; `--report-only` |
+| `scripts/theme_token_coverage.py` | **2.0** | 1 | ✅ `--theme` flag; `--update-universe`; coverage % output |
+| `scripts/theme_sfs_transmute.py` | **2.0** | 1 | ✅ Absolute path via `parents[1]`; `_CHANGESET_HASH` idempotency; `--verify` |
+| `scripts/theme_artcop.py` | **2.0** | 1 | ✅ Relationship with `vscode-art-cop.ts` documented; `--compare` for before/after |
+| `scripts/milf_scanner.py` | **2.0** | 1 | ✅ `--dump-json` emits full registry; sanity check for 14 required palette role keys |
 
 ### Icon / Font Pipeline
 | Script | Score | Effort | Action |
 |--------|-------|--------|--------|
-| `scripts/generate-product-icon-font.mjs` | **2.0** | 1 | Add `#!/usr/bin/env bun` shebang; add `@SID` comment block; add pre-flight check validating all SVG paths exist |
+| `scripts/generate-product-icon-font.mjs` | **2.0** | 1 | ✅ `#!/usr/bin/env bun` shebang; `@SID` comment block; pre-flight SVG path validation |
 
 ### Skill Tooling
 | Script | Score | Effort | Action |
