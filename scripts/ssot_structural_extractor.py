@@ -401,6 +401,20 @@ def main() -> int:
     )
     parser.add_argument("--verbose", "-v", action="store_true")
     parser.add_argument("--quiet", "-q", action="store_true")
+    parser.add_argument(
+        "--progress", action="store_true", help="Print section-by-section parse progress"
+    )
+    parser.add_argument(
+        "--output",
+        type=Path,
+        default=None,
+        help="Override output path for --update-index (default: data/indices/SSOT_ARCHIVE_STRUCTURAL_INDEX.json)",
+    )
+    parser.add_argument(
+        "--verify-only",
+        action="store_true",
+        help="Compare current file hash against hash stored in existing index; no re-parse",
+    )
 
     args = parser.parse_args()
     log = setup_logging(verbose=args.verbose, quiet=args.quiet)
@@ -411,8 +425,31 @@ def main() -> int:
         log.error("Archive SSOT not found: %s", archive_path)
         return 1
 
-    log.info("Parsing %s ...", ARCHIVE_REL_PATH)
+    # --verify-only: hash check against stored index, no full parse
+    if args.verify_only:
+        index_path = args.output if args.output else repo_root / "data" / "indices" / "SSOT_ARCHIVE_STRUCTURAL_INDEX.json"
+        if not index_path.exists():
+            log.error("Index not found for --verify-only: %s", index_path)
+            return 1
+        stored = json.loads(index_path.read_text(encoding="utf-8"))
+        stored_hash = stored.get("file_hash_sha256", "")
+        current_hash = hashlib.sha256(archive_path.read_text(encoding="utf-8").encode("utf-8")).hexdigest()
+        if current_hash == stored_hash:
+            print(f"VERIFY: MATCH  {current_hash[:16]}...")
+            return 0
+        else:
+            print(f"VERIFY: MISMATCH")
+            print(f"  stored:  {stored_hash[:16]}...")
+            print(f"  current: {current_hash[:16]}...")
+            return 1
+
+    if getattr(args, "progress", False):
+        log.info("Parsing %s (progress mode)...", ARCHIVE_REL_PATH)
+    else:
+        log.info("Parsing %s ...", ARCHIVE_REL_PATH)
     nodes, lines = extract_structure(archive_path)
+    if getattr(args, "progress", False):
+        print(f"Parsed {len(nodes)} sections from {archive_path.name}")
     payload = build_payload(nodes, lines, archive_path, repo_root)
 
     if args.json:
@@ -424,9 +461,13 @@ def main() -> int:
         return 0
 
     if args.update_index:
-        index_dir = repo_root / "data" / "indices"
-        index_dir.mkdir(parents=True, exist_ok=True)
-        index_path = index_dir / "SSOT_ARCHIVE_STRUCTURAL_INDEX.json"
+        index_dir_default = repo_root / "data" / "indices"
+        if args.output:
+            index_path = args.output
+            index_path.parent.mkdir(parents=True, exist_ok=True)
+        else:
+            index_dir_default.mkdir(parents=True, exist_ok=True)
+            index_path = index_dir_default / "SSOT_ARCHIVE_STRUCTURAL_INDEX.json"
         index_path.write_text(
             json.dumps(payload, indent=2, ensure_ascii=False),
             encoding="utf-8",

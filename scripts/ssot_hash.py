@@ -21,8 +21,15 @@ ssot_hash.py — SSOT Hash Verification
 """
 
 import hashlib
+import sys
 import unicodedata
 from pathlib import Path
+
+_REPO_ROOT = Path(__file__).resolve().parent.parent
+if str(_REPO_ROOT) not in sys.path:
+    sys.path.insert(0, str(_REPO_ROOT))
+
+from scripts.lib.ssot_paths import SSOT_HOLDER  # noqa: E402
 
 
 def canonicalize(text: str) -> str:
@@ -122,6 +129,19 @@ Examples:
     )
 
     parser.add_argument(
+        '--compare',
+        type=str,
+        metavar='HASH_OR_FILE',
+        help='Compare computed hash against a hash string or a file containing a hash',
+    )
+
+    parser.add_argument(
+        '--write',
+        action='store_true',
+        help='Write the computed hash to .chthonic/ssot.sha256',
+    )
+
+    parser.add_argument(
         '--file',
         type=Path,
         default=None,
@@ -144,17 +164,36 @@ Examples:
     args = parser.parse_args()
 
     if args.file is None:
-        import sys as _sys
-        _repo = Path(__file__).resolve().parent.parent
-        _sys.path.insert(0, str(_repo))
-        from scripts.lib.ssot_paths import resolve_ssot_paths
-        args.file = resolve_ssot_paths(_repo).pointer
+        args.file = _REPO_ROOT / SSOT_HOLDER
 
     try:
         computed_hash, is_valid = verify_ssot_integrity(
             args.file,
             args.verify
         )
+
+        # --write: persist hash to .chthonic/ssot.sha256
+        if args.write:
+            sha_path = _REPO_ROOT / ".chthonic" / "ssot.sha256"
+            sha_path.parent.mkdir(parents=True, exist_ok=True)
+            sha_path.write_text(computed_hash + "\n", encoding="utf-8")
+            print(f"Written: {sha_path.relative_to(_REPO_ROOT)}")
+
+        # --compare: compare against hash string or file containing hash
+        if args.compare:
+            compare_hash = args.compare
+            cmp_path = Path(args.compare)
+            if cmp_path.exists():
+                compare_hash = cmp_path.read_text(encoding="utf-8").strip()
+            match = computed_hash == compare_hash
+            if match:
+                print(f"MATCH: {computed_hash}")
+                sys.exit(0)
+            else:
+                print(f"MISMATCH")
+                print(f"  computed:  {computed_hash}")
+                print(f"  reference: {compare_hash}")
+                sys.exit(1)
 
         # Output format depends on mode
         if args.bookend:
@@ -174,11 +213,11 @@ Examples:
         elif args.verify:
             # Verification mode
             if is_valid:
-                print(f"Ô£à SSOT Integrity: VALID")
+                print(f"✅ SSOT Integrity: VALID")
                 print(f"Hash: {computed_hash}")
                 sys.exit(0)
             else:
-                print(f"ÔØî SSOT Integrity: DRIFT_DETECTED")
+                print(f"⚠️  SSOT Integrity: DRIFT_DETECTED")
                 print(f"Expected: {args.verify}")
                 print(f"Computed: {computed_hash}")
                 sys.exit(1)
@@ -189,11 +228,11 @@ Examples:
             sys.exit(0)
 
     except FileNotFoundError as e:
-        print(f"ÔØî Error: {e}", file=sys.stderr)
+        print(f"⚠️  Error: {e}", file=sys.stderr)
         sys.exit(2)
 
     except Exception as e:
-        print(f"ÔØî Unexpected error: {e}", file=sys.stderr)
+        print(f"⚠️  Unexpected error: {e}", file=sys.stderr)
         import traceback
         traceback.print_exc()
         sys.exit(3)
