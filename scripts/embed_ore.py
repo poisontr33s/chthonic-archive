@@ -23,6 +23,7 @@ and deduplication of archaeology results.
 """
 
 from __future__ import annotations
+import hashlib
 import json
 import sys
 import os
@@ -42,6 +43,29 @@ if sys.stdout and hasattr(sys.stdout, 'reconfigure'):
 REPO_ROOT = Path(__file__).resolve().parent.parent
 MODEL_NAME = "Snowflake/snowflake-arctic-embed-xs"  # Upgraded from all-MiniLM-L6-v2 (better retrieval, same speed)
 EMBEDDINGS_DIR = REPO_ROOT / "dumpster-dive" / "intake" / "embeddings"
+CACHE_PATH = EMBEDDINGS_DIR / ".embedding_cache.json"
+
+
+def _file_hash(path: Path) -> str:
+    """SHA-256 of file content for cache keying."""
+    h = hashlib.sha256()
+    with open(path, "rb") as f:
+        for chunk in iter(lambda: f.read(65536), b""):
+            h.update(chunk)
+    return h.hexdigest()
+
+
+def _load_cache() -> dict:
+    if CACHE_PATH.exists():
+        with open(CACHE_PATH, "r", encoding="utf-8") as f:
+            return json.load(f)
+    return {}
+
+
+def _save_cache(cache: dict) -> None:
+    CACHE_PATH.parent.mkdir(parents=True, exist_ok=True)
+    with open(CACHE_PATH, "w", encoding="utf-8") as f:
+        json.dump(cache, f)
 
 
 def get_model():
@@ -58,10 +82,12 @@ def embed_texts(texts: list[str], model=None) -> list[list[float]]:
     return embeddings.tolist()
 
 
-def embed_ore(ore_path: Path | None = None) -> dict:
+def embed_ore(ore_path: Path | None = None, recompute: bool = False) -> dict:
     """
     Embed all file descriptions from the latest ore JSON.
     Returns {path: embedding_vector} dict.
+    Embeddings are cached in CACHE_PATH keyed by ore file SHA-256.
+    Pass recompute=True (or --recompute on CLI) to bypass cache.
     """
     if ore_path is None:
         ore_dir = REPO_ROOT / "dumpster-dive" / "intake" / "overnight-intelligence"
@@ -70,6 +96,13 @@ def embed_ore(ore_path: Path | None = None) -> dict:
             print("No ore.json found")
             return {}
         ore_path = candidates[0]
+
+    ore_hash = _file_hash(ore_path)
+    if not recompute:
+        cache = _load_cache()
+        if ore_hash in cache:
+            print(f"Cache hit for {ore_path.name} [{ore_hash[:8]}] — use --recompute to force")
+            return cache[ore_hash]
 
     with open(ore_path, "r", encoding="utf-8") as f:
         ore = json.load(f)
@@ -100,12 +133,11 @@ def embed_ore(ore_path: Path | None = None) -> dict:
 
     result = {p: v for p, v in zip(paths, vectors)}
 
-    # Save embeddings
-    EMBEDDINGS_DIR.mkdir(parents=True, exist_ok=True)
-    out_path = EMBEDDINGS_DIR / f"ore_embeddings_{ore_path.parent.name}.json"
-    with open(out_path, "w", encoding="utf-8") as f:
-        json.dump(result, f)
-    print(f"Saved {len(result)} embeddings → {out_path.relative_to(REPO_ROOT)}")
+    # Persist to hash-keyed cache
+    cache = _load_cache()
+    cache[ore_hash] = result
+    _save_cache(cache)
+    print(f"Saved {len(result)} embeddings \u2192 {CACHE_PATH.relative_to(REPO_ROOT)} [{ore_hash[:8]}]")
 
     return result
 
@@ -130,18 +162,21 @@ def find_similar(query: str, embeddings: dict, top_k: int = 10) -> list[tuple[st
 # ── CLI ──────────────────────────────────────────────────────────────────
 
 if __name__ == "__main__":
-    if len(sys.argv) > 1 and sys.argv[1] == "search":
-        query = " ".join(sys.argv[2:]) if len(sys.argv) > 2 else "CUDA GPU configuration"
-        # Load latest embeddings
-        candidates = sorted(EMBEDDINGS_DIR.glob("ore_embeddings_*.json"), reverse=True)
-        if not candidates:
+    recompute = "--recompute" in sys.argv
+    filtered_args = [a for a in sys.argv[1:] if a != "--recompute"]
+    if filtered_args and filtered_args[0] == "search":
+        query = " ".join(filtered_args[1:]) if len(filtered_args) > 1 else "CUDA GPU configuration"
+        # Load latest embeddings from cache
+        cache = _load_cache()
+        if not cache:
             print("No embeddings found. Run without args first to embed ore.")
             sys.exit(1)
-        with open(candidates[0], "r", encoding="utf-8") as f:
-            embeddings = json.load(f)
+        # Use the last-cached embedding set
+        latest_key = list(cache.keys())[-1]
+        embeddings = cache[latest_key]
         results = find_similar(query, embeddings)
         print(f"\nTop matches for: '{query}'")
         for path, score in results:
             print(f"  {score:.3f}  {path}")
     else:
-        embed_ore()
+        embed_ore(recompute=recompute)
