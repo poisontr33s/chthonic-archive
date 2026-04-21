@@ -35,6 +35,7 @@ from __future__ import annotations
 import argparse
 import json
 import os
+import sys
 import time
 from dataclasses import asdict, dataclass
 from pathlib import Path
@@ -149,6 +150,14 @@ def main() -> int:
     token = _get_token()
     api = HfApi(token=token)
 
+    # Auth check at startup: fail fast with a clear error if unauthenticated.
+    try:
+        api.whoami()
+    except Exception as e:
+        print(f"error: HF authentication failed — {type(e).__name__}: {e}", file=sys.stderr)
+        print("Hint: set HF_TOKEN or HUGGINGFACE_HUB_TOKEN in your environment.", file=sys.stderr)
+        return 1
+
     q = args.q.strip()
     limit = max(1, min(50, int(args.limit)))
 
@@ -162,6 +171,14 @@ def main() -> int:
 
     results = [_to_result(args.kind, it) for it in items if getattr(it, "id", None) or getattr(it, "modelId", None) or getattr(it, "repo_id", None)]
     json_path, md_path = write_artifacts(args.kind, q, limit, results)
+
+    # Write LATEST alias (overwrites each run — always points at most recent output).
+    for src_path, alias_name in [
+        (json_path, f"hf_discovery_{args.kind}_LATEST.json"),
+        (md_path, f"hf_discovery_{args.kind}_LATEST.md"),
+    ]:
+        alias_path = ARTIFACTS_DIR / alias_name
+        alias_path.write_bytes(src_path.read_bytes())
 
     # Print only artifact paths (no secrets, minimal noise).
     print(f"Wrote: {json_path.as_posix()}")

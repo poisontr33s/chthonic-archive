@@ -1,5 +1,6 @@
 #!/usr/bin/env bun
 // @SID: SCRIPT_HF_MODEL_RANKER_V1
+// Requirement: Bun runtime (https://bun.sh). Run with: bun run scripts/hf-model-ranker.ts
 
 /**
  * SID: HF_MODEL_RANKER_2026_02_20
@@ -211,20 +212,28 @@ function estimateHardware(model: HfModel, targetVramGb: number): HardwareEstimat
 }
 
 async function fetchModels(url: string): Promise<HfModel[]> {
-  const response = await fetch(url, {
-    headers: {
-      'User-Agent': 'chthonic-hf-ranker/2.0',
-      'Accept': 'application/json',
-    },
-  });
-  if (!response.ok) {
-    throw new Error(`HF request failed ${response.status} for ${url}`);
+  const MAX_RETRIES = 3;
+  for (let attempt = 0; attempt < MAX_RETRIES; attempt++) {
+    const response = await fetch(url, {
+      headers: {
+        'User-Agent': 'chthonic-hf-ranker/2.0',
+        'Accept': 'application/json',
+      },
+    });
+    if (response.status === 429) {
+      await Bun.sleep(Math.pow(2, attempt) * 1000);
+      continue;
+    }
+    if (!response.ok) {
+      throw new Error(`HF request failed ${response.status} for ${url}`);
+    }
+    const payload = await response.json();
+    if (!Array.isArray(payload)) {
+      throw new Error(`Unexpected payload for ${url}`);
+    }
+    return payload as HfModel[];
   }
-  const payload = await response.json();
-  if (!Array.isArray(payload)) {
-    throw new Error(`Unexpected payload for ${url}`);
-  }
-  return payload as HfModel[];
+  throw new Error(`HF request failed after ${MAX_RETRIES} retries (429) for ${url}`);
 }
 
 function uniqueModelId(model: HfModel): string {
@@ -389,7 +398,7 @@ function ensureColumns(db: Database, table: string, columns: Record<string, stri
 
 async function main() {
   const limit = toInt(argValue('limit'), DEFAULT_LIMIT);
-  const repoRoot = process.cwd();
+  const repoRoot = path.join(import.meta.dir, '..');
   const outDir = argValue('out-dir') || path.join('codex', 'mailbox', 'cache');
   const mailboxDir = argValue('mailbox-dir') || path.join('codex', 'mailbox');
   const searchCsv = argValue('search');

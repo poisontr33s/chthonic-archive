@@ -29,17 +29,25 @@ from __future__ import annotations
 
 import os
 
-from huggingface_hub import HfApi
+try:
+    from huggingface_hub import HfApi
+except ImportError:
+    raise SystemExit(
+        "huggingface_hub not installed — run: uv add huggingface_hub"
+    )
 
 
 def main() -> int:
+    # Build a process-local env copy so we don't mutate os.environ.
+    env = dict(os.environ)
+
     # hf_hub auth precedence:
     # - HF_TOKEN overrides other auth sources and can be stale.
     # - Prefer HUGGINGFACE_HUB_TOKEN when present (API pool), and ignore HF_TOKEN for this probe.
-    if os.getenv("HUGGINGFACE_HUB_TOKEN") and os.getenv("HF_TOKEN"):
-        os.environ.pop("HF_TOKEN", None)
+    if env.get("HUGGINGFACE_HUB_TOKEN") and env.get("HF_TOKEN"):
+        env.pop("HF_TOKEN", None)
 
-    token = os.getenv("HF_TOKEN") or os.getenv("HUGGINGFACE_HUB_TOKEN") or None
+    token = env.get("HF_TOKEN") or env.get("HUGGINGFACE_HUB_TOKEN") or None
     api = HfApi(token=token)
     try:
         who = api.whoami()
