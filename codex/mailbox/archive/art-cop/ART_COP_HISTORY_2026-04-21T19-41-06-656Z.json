@@ -1,0 +1,24 @@
+{
+  "runStartedAt": "2026-04-21T19:41:06.656Z",
+  "runRootId": "2026-04-21T19-41-06-656Z",
+  "endpoint": "http://127.0.0.1:5000/v1/chat/completions",
+  "model": "local-vlm",
+  "goal": "Improve hierarchy, readability, interaction clarity, and mobile resilience.",
+  "baseline": null,
+  "noLlm": true,
+  "waitForChange": false,
+  "cyclesRequested": 1,
+  "cyclesCompleted": 1,
+  "cycles": [
+    {
+      "cycle": 1,
+      "capturedAt": "2026-04-21T19:41:06.657Z",
+      "reportPath": "codex\\mailbox\\archive\\art-cop\\ART_COP_REPORT_2026-04-21T19-41-06-657Z_c01.md",
+      "imageCount": 1,
+      "imageFingerprint": "44d39174f06c11f4fab39efa0b287d229c87b9a5",
+      "score": 0,
+      "verdict": "iterate",
+      "note": "LLM call skipped by flag."
+    }
+  ]
+}

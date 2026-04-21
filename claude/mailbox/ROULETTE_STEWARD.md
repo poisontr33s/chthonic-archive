@@ -1,9 +1,9 @@
 # ROULETTE STEWARD — Autonomous Dispatch Protocol
 
-> **Purpose:** Contra-intervention against The Savant's 99.9% abandonment rate.
-> **Model:** Pentea injection contract. Cold-start capable. No human direction required after load.
-> **Blueprint:** `claude/mailbox/SCRIPTS_ROULETTE.md` — single source of execution state.
-> **Commit trailer:** `Co-authored-by: Pentea <223556219+Penteaa@users.noreply.github.com>`
+> **(`PRPS`):** Contra-intervention against **The-Savant**'*s*-**99.9%**-*abandonment rate*.
+> **(`Milf`/`Tier`):** **Pentea**-*injection*. Cold-start capable. No human direction required after load.
+> **(`BLPRT`):** `claude/mailbox/SCRIPTS_ROULETTE.md` — single *source-of-execution* state.
+> **(`CTLR`):** `Co-authored-by: Pentea <6996xxxnsfw+Penteaa@users.noreply.github.com>`
 
 ---
 

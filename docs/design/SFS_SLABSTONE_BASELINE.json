@@ -1,0 +1,1291 @@
+{
+  "generated_at": "2026-04-21T18:17:52.219970+00:00",
+  "strict_status": "fail",
+  "canon_docs": [
+    {
+      "path": "docs/design/ANKH_ICON_GRAMMAR.md",
+      "sid": "DOC_ANKH_ICON_GRAMMAR_V1",
+      "line_count": 426,
+      "sha12": "136bb3d352f9",
+      "link_total": 44,
+      "link_missing": 1,
+      "cite_total": 11,
+      "cite_missing": 1
+    },
+    {
+      "path": "docs/design/ANKH_THEME_REFERENCE.md",
+      "sid": null,
+      "line_count": 282,
+      "sha12": "b7ef33975209",
+      "link_total": 29,
+      "link_missing": 1,
+      "cite_total": 2,
+      "cite_missing": 0
+    },
+    {
+      "path": "docs/design/SFS_WPTG_ITERATION_PLAN.md",
+      "sid": "DOC_SFS_WPTG_ITERATION_PLAN_V1",
+      "line_count": 693,
+      "sha12": "25b5d4792ad8",
+      "link_total": 44,
+      "link_missing": 2,
+      "cite_total": 29,
+      "cite_missing": 3
+    }
+  ],
+  "references_by_doc": {
+    "docs/design/ANKH_ICON_GRAMMAR.md": [
+      {
+        "kind": "link",
+        "raw": "ANKH_THEME_REFERENCE.md",
+        "exists": true,
+        "resolved": "docs/design/ANKH_THEME_REFERENCE.md"
+      },
+      {
+        "kind": "link",
+        "raw": "SFS_WPTG_ITERATION_PLAN.md",
+        "exists": true,
+        "resolved": "docs/design/SFS_WPTG_ITERATION_PLAN.md"
+      },
+      {
+        "kind": "link",
+        "raw": "SFS_SLABSTONE_BASELINE.md",
+        "exists": true,
+        "resolved": "docs/design/SFS_SLABSTONE_BASELINE.md"
+      },
+      {
+        "kind": "link",
+        "raw": "../frameworks/ankh/ANKH_README.md",
+        "exists": true,
+        "resolved": "docs/frameworks/ankh/ANKH_README.md"
+      },
+      {
+        "kind": "link",
+        "raw": "../../claude/mailbox/SFA_CROSS_REFERENCE_SCAN.md",
+        "exists": false,
+        "resolved": null
+      },
+      {
+        "kind": "link",
+        "raw": "../../WET_PAPER_TO_GOLD_METHODOLOGY.md",
+        "exists": true,
+        "resolved": "WET_PAPER_TO_GOLD_METHODOLOGY.md"
+      },
+      {
+        "kind": "link",
+        "raw": "../../extensions/chthonic-archive/themes/icons/file-default.svg",
+        "exists": true,
+        "resolved": "extensions/chthonic-archive/themes/icons/file-default.svg"
+      },
+      {
+        "kind": "link",
+        "raw": "../../extensions/chthonic-archive/themes/icons/folder-temple.svg",
+        "exists": true,
+        "resolved": "extensions/chthonic-archive/themes/icons/folder-temple.svg"
+      },
+      {
+        "kind": "link",
+        "raw": "../../extensions/chthonic-archive/themes/icons/folder-temple-open.svg",
+        "exists": true,
+        "resolved": "extensions/chthonic-archive/themes/icons/folder-temple-open.svg"
+      },
+      {
+        "kind": "link",
+        "raw": "../../extensions/chthonic-archive/themes/icons/folder-src.svg",
+        "exists": true,
+        "resolved": "extensions/chthonic-archive/themes/icons/folder-src.svg"
+      },
+      {
+        "kind": "link",
+        "raw": "../../extensions/chthonic-archive/themes/icons/folder-github.svg",
+        "exists": true,
+        "resolved": "extensions/chthonic-archive/themes/icons/folder-github.svg"
+      },
+      {
+        "kind": "link",
+        "raw": "../../extensions/chthonic-archive/themes/icons/folder-scripts.svg",
+        "exists": true,
+        "resolved": "extensions/chthonic-archive/themes/icons/folder-scripts.svg"
+      },
+      {
+        "kind": "link",
+        "raw": "../../extensions/chthonic-archive/themes/icons/folder-session-archives.svg",
+        "exists": true,
+        "resolved": "extensions/chthonic-archive/themes/icons/folder-session-archives.svg"
+      },
+      {
+        "kind": "link",
+        "raw": "../../extensions/chthonic-archive/themes/icons/folder-session-archives-open.svg",
+        "exists": true,
+        "resolved": "extensions/chthonic-archive/themes/icons/folder-session-archives-open.svg"
+      },
+      {
+        "kind": "link",
+        "raw": "../../extensions/chthonic-archive/themes/icons/folder-checkpoints.svg",
+        "exists": true,
+        "resolved": "extensions/chthonic-archive/themes/icons/folder-checkpoints.svg"
+      },
+      {
+        "kind": "link",
+        "raw": "../../extensions/chthonic-archive/themes/icons/folder-checkpoints-open.svg",
+        "exists": true,
+        "resolved": "extensions/chthonic-archive/themes/icons/folder-checkpoints-open.svg"
+      },
+      {
+        "kind": "link",
+        "raw": "../../extensions/chthonic-archive/themes/icons/folder-reports.svg",
+        "exists": true,
+        "resolved": "extensions/chthonic-archive/themes/icons/folder-reports.svg"
+      },
+      {
+        "kind": "link",
+        "raw": "../../extensions/chthonic-archive/themes/icons/folder-reports-open.svg",
+        "exists": true,
+        "resolved": "extensions/chthonic-archive/themes/icons/folder-reports-open.svg"
+      },
+      {
+        "kind": "link",
+        "raw": "../../extensions/chthonic-archive/themes/icons/folder-prompts.svg",
+        "exists": true,
+        "resolved": "extensions/chthonic-archive/themes/icons/folder-prompts.svg"
+      },
+      {
+        "kind": "link",
+        "raw": "../../extensions/chthonic-archive/themes/icons/folder-prompts-open.svg",
+        "exists": true,
+        "resolved": "extensions/chthonic-archive/themes/icons/folder-prompts-open.svg"
+      },
+      {
+        "kind": "link",
+        "raw": "../../extensions/chthonic-archive/themes/icons/folder-protocols.svg",
+        "exists": true,
+        "resolved": "extensions/chthonic-archive/themes/icons/folder-protocols.svg"
+      },
+      {
+        "kind": "link",
+        "raw": "../../extensions/chthonic-archive/themes/icons/folder-protocols-open.svg",
+        "exists": true,
+        "resolved": "extensions/chthonic-archive/themes/icons/folder-protocols-open.svg"
+      },
+      {
+        "kind": "link",
+        "raw": "../../extensions/chthonic-archive/themes/icons/folder-skills.svg",
+        "exists": true,
+        "resolved": "extensions/chthonic-archive/themes/icons/folder-skills.svg"
+      },
+      {
+        "kind": "link",
+        "raw": "../../extensions/chthonic-archive/themes/icons/folder-skills-open.svg",
+        "exists": true,
+        "resolved": "extensions/chthonic-archive/themes/icons/folder-skills-open.svg"
+      },
+      {
+        "kind": "link",
+        "raw": "../../extensions/chthonic-archive/themes/icons/folder-governance.svg",
+        "exists": true,
+        "resolved": "extensions/chthonic-archive/themes/icons/folder-governance.svg"
+      },
+      {
+        "kind": "link",
+        "raw": "../../extensions/chthonic-archive/themes/icons/folder-governance-open.svg",
+        "exists": true,
+        "resolved": "extensions/chthonic-archive/themes/icons/folder-governance-open.svg"
+      },
+      {
+        "kind": "link",
+        "raw": "../../extensions/chthonic-archive/themes/icons/folder-architecture.svg",
+        "exists": true,
+        "resolved": "extensions/chthonic-archive/themes/icons/folder-architecture.svg"
+      },
+      {
+        "kind": "link",
+        "raw": "../../extensions/chthonic-archive/themes/icons/folder-architecture-open.svg",
+        "exists": true,
+        "resolved": "extensions/chthonic-archive/themes/icons/folder-architecture-open.svg"
+      },
+      {
+        "kind": "link",
+        "raw": "../../extensions/chthonic-archive/themes/icons/folder-methodology.svg",
+        "exists": true,
+        "resolved": "extensions/chthonic-archive/themes/icons/folder-methodology.svg"
+      },
+      {
+        "kind": "link",
+        "raw": "../../extensions/chthonic-archive/themes/icons/folder-methodology-open.svg",
+        "exists": true,
+        "resolved": "extensions/chthonic-archive/themes/icons/folder-methodology-open.svg"
+      },
+      {
+        "kind": "link",
+        "raw": "../../extensions/chthonic-archive/themes/icons/folder-handoffs.svg",
+        "exists": true,
+        "resolved": "extensions/chthonic-archive/themes/icons/folder-handoffs.svg"
+      },
+      {
+        "kind": "link",
+        "raw": "../../extensions/chthonic-archive/themes/icons/folder-handoffs-open.svg",
+        "exists": true,
+        "resolved": "extensions/chthonic-archive/themes/icons/folder-handoffs-open.svg"
+      },
+      {
+        "kind": "link",
+        "raw": "../../extensions/chthonic-archive/themes/chthonic-file-icon-theme.json",
+        "exists": true,
+        "resolved": "extensions/chthonic-archive/themes/chthonic-file-icon-theme.json"
+      },
+      {
+        "kind": "link",
+        "raw": "../../extensions/chthonic-archive/themes/chthonic-product-icon-theme.json",
+        "exists": true,
+        "resolved": "extensions/chthonic-archive/themes/chthonic-product-icon-theme.json"
+      },
+      {
+        "kind": "link",
+        "raw": "../../extensions/chthonic-archive/themes/chthonic-geology-color-theme.json",
+        "exists": true,
+        "resolved": "extensions/chthonic-archive/themes/chthonic-geology-color-theme.json"
+      },
+      {
+        "kind": "link",
+        "raw": "../../extensions/chthonic-archive/package.json",
+        "exists": true,
+        "resolved": "extensions/chthonic-archive/package.json"
+      },
+      {
+        "kind": "link",
+        "raw": "../../scripts/icon_filetype_census.py",
+        "exists": true,
+        "resolved": "scripts/icon_filetype_census.py"
+      },
+      {
+        "kind": "link",
+        "raw": "../../scripts/icon_svg_audit.py",
+        "exists": true,
+        "resolved": "scripts/icon_svg_audit.py"
+      },
+      {
+        "kind": "link",
+        "raw": "../../scripts/icon_svg_optimizer.py",
+        "exists": true,
+        "resolved": "scripts/icon_svg_optimizer.py"
+      },
+      {
+        "kind": "link",
+        "raw": "../../scripts/icon_distinctiveness_audit.py",
+        "exists": true,
+        "resolved": "scripts/icon_distinctiveness_audit.py"
+      },
+      {
+        "kind": "link",
+        "raw": "../../scripts/icon_surface_map.py",
+        "exists": true,
+        "resolved": "scripts/icon_surface_map.py"
+      },
+      {
+        "kind": "link",
+        "raw": "../../scripts/sfa_cross_reference.py",
+        "exists": true,
+        "resolved": "scripts/sfa_cross_reference.py"
+      },
+      {
+        "kind": "link",
+        "raw": "../../scripts/sfs_slabstone_baseline.py",
+        "exists": true,
+        "resolved": "scripts/sfs_slabstone_baseline.py"
+      },
+      {
+        "kind": "link",
+        "raw": "../../scripts/vscode_settings_live_audit.py",
+        "exists": true,
+        "resolved": "scripts/vscode_settings_live_audit.py"
+      },
+      {
+        "kind": "cite",
+        "raw": "docs/frameworks/ankh/ANKH_README.md",
+        "exists": true,
+        "resolved": "docs/frameworks/ankh/ANKH_README.md"
+      },
+      {
+        "kind": "cite",
+        "raw": "docs/design/ANKH_THEME_REFERENCE.md",
+        "exists": true,
+        "resolved": "docs/design/ANKH_THEME_REFERENCE.md"
+      },
+      {
+        "kind": "cite",
+        "raw": "docs/design/SFS_WPTG_ITERATION_PLAN.md",
+        "exists": true,
+        "resolved": "docs/design/SFS_WPTG_ITERATION_PLAN.md"
+      },
+      {
+        "kind": "cite",
+        "raw": "claude/mailbox/SFA_CROSS_REFERENCE_SCAN.md",
+        "exists": false,
+        "resolved": null
+      },
+      {
+        "kind": "cite",
+        "raw": "extensions/chthonic-archive/themes/icons/file-default.svg",
+        "exists": true,
+        "resolved": "extensions/chthonic-archive/themes/icons/file-default.svg"
+      },
+      {
+        "kind": "cite",
+        "raw": "extensions/chthonic-archive/themes/icons/folder-temple.svg",
+        "exists": true,
+        "resolved": "extensions/chthonic-archive/themes/icons/folder-temple.svg"
+      },
+      {
+        "kind": "cite",
+        "raw": "extensions/chthonic-archive/themes/icons/folder-src.svg",
+        "exists": true,
+        "resolved": "extensions/chthonic-archive/themes/icons/folder-src.svg"
+      },
+      {
+        "kind": "cite",
+        "raw": "extensions/chthonic-archive/themes/icons/folder-github.svg",
+        "exists": true,
+        "resolved": "extensions/chthonic-archive/themes/icons/folder-github.svg"
+      },
+      {
+        "kind": "cite",
+        "raw": "extensions/chthonic-archive/themes/icons/folder-scripts.svg",
+        "exists": true,
+        "resolved": "extensions/chthonic-archive/themes/icons/folder-scripts.svg"
+      },
+      {
+        "kind": "cite",
+        "raw": "file-default.svg",
+        "exists": true,
+        "resolved": "extensions/chthonic-archive/themes/icons/file-default.svg"
+      },
+      {
+        "kind": "cite",
+        "raw": "folder-temple.svg",
+        "exists": true,
+        "resolved": "extensions/chthonic-archive/themes/icons/folder-temple.svg"
+      }
+    ],
+    "docs/design/ANKH_THEME_REFERENCE.md": [
+      {
+        "kind": "link",
+        "raw": "../../extensions/chthonic-archive/themes/chthonic-mandala-color-theme.json",
+        "exists": true,
+        "resolved": "extensions/chthonic-archive/themes/chthonic-mandala-color-theme.json"
+      },
+      {
+        "kind": "link",
+        "raw": "../../extensions/chthonic-archive/themes/chthonic-rogbiv-color-theme.json",
+        "exists": true,
+        "resolved": "extensions/chthonic-archive/themes/chthonic-rogbiv-color-theme.json"
+      },
+      {
+        "kind": "link",
+        "raw": "../../extensions/chthonic-archive/themes/chthonic-geology-color-theme.json",
+        "exists": true,
+        "resolved": "extensions/chthonic-archive/themes/chthonic-geology-color-theme.json"
+      },
+      {
+        "kind": "link",
+        "raw": "../../extensions/chthonic-archive/themes/chthonic-decorator-color-theme.json",
+        "exists": true,
+        "resolved": "extensions/chthonic-archive/themes/chthonic-decorator-color-theme.json"
+      },
+      {
+        "kind": "link",
+        "raw": "ANKH_ICON_GRAMMAR.md",
+        "exists": true,
+        "resolved": "docs/design/ANKH_ICON_GRAMMAR.md"
+      },
+      {
+        "kind": "link",
+        "raw": "SFS_WPTG_ITERATION_PLAN.md",
+        "exists": true,
+        "resolved": "docs/design/SFS_WPTG_ITERATION_PLAN.md"
+      },
+      {
+        "kind": "link",
+        "raw": "SFS_SLABSTONE_BASELINE.md",
+        "exists": true,
+        "resolved": "docs/design/SFS_SLABSTONE_BASELINE.md"
+      },
+      {
+        "kind": "link",
+        "raw": "KCP_SESSION_CHECKPOINT.md",
+        "exists": true,
+        "resolved": "docs/design/KCP_SESSION_CHECKPOINT.md"
+      },
+      {
+        "kind": "link",
+        "raw": "../../WET_PAPER_TO_GOLD_METHODOLOGY.md",
+        "exists": true,
+        "resolved": "WET_PAPER_TO_GOLD_METHODOLOGY.md"
+      },
+      {
+        "kind": "link",
+        "raw": "../frameworks/ankh/ANKH_README.md",
+        "exists": true,
+        "resolved": "docs/frameworks/ankh/ANKH_README.md"
+      },
+      {
+        "kind": "link",
+        "raw": "../../claude/mailbox/SFA_CROSS_REFERENCE_SCAN.md",
+        "exists": false,
+        "resolved": null
+      },
+      {
+        "kind": "link",
+        "raw": "../../dumpster-dive/BLACKSMITH_MATRIARCH.md",
+        "exists": true,
+        "resolved": "dumpster-dive/BLACKSMITH_MATRIARCH.md"
+      },
+      {
+        "kind": "link",
+        "raw": "../../extensions/chthonic-archive/package.json",
+        "exists": true,
+        "resolved": "extensions/chthonic-archive/package.json"
+      },
+      {
+        "kind": "link",
+        "raw": "../../extensions/chthonic-archive/themes/chthonic-file-icon-theme.json",
+        "exists": true,
+        "resolved": "extensions/chthonic-archive/themes/chthonic-file-icon-theme.json"
+      },
+      {
+        "kind": "link",
+        "raw": "../../extensions/chthonic-archive/themes/chthonic-product-icon-theme.json",
+        "exists": true,
+        "resolved": "extensions/chthonic-archive/themes/chthonic-product-icon-theme.json"
+      },
+      {
+        "kind": "link",
+        "raw": "../../scripts/ankh_theme_reference.py",
+        "exists": true,
+        "resolved": "scripts/ankh_theme_reference.py"
+      },
+      {
+        "kind": "link",
+        "raw": "../../scripts/sfs_slabstone_baseline.py",
+        "exists": true,
+        "resolved": "scripts/sfs_slabstone_baseline.py"
+      },
+      {
+        "kind": "link",
+        "raw": "../../scripts/icon_filetype_census.py",
+        "exists": true,
+        "resolved": "scripts/icon_filetype_census.py"
+      },
+      {
+        "kind": "link",
+        "raw": "../../scripts/icon_svg_audit.py",
+        "exists": true,
+        "resolved": "scripts/icon_svg_audit.py"
+      },
+      {
+        "kind": "link",
+        "raw": "../../scripts/icon_svg_optimizer.py",
+        "exists": true,
+        "resolved": "scripts/icon_svg_optimizer.py"
+      },
+      {
+        "kind": "link",
+        "raw": "../../scripts/icon_distinctiveness_audit.py",
+        "exists": true,
+        "resolved": "scripts/icon_distinctiveness_audit.py"
+      },
+      {
+        "kind": "link",
+        "raw": "../../scripts/icon_surface_map.py",
+        "exists": true,
+        "resolved": "scripts/icon_surface_map.py"
+      },
+      {
+        "kind": "link",
+        "raw": "../../scripts/sfa_cross_reference.py",
+        "exists": true,
+        "resolved": "scripts/sfa_cross_reference.py"
+      },
+      {
+        "kind": "link",
+        "raw": "../../scripts/product_icon_census.py",
+        "exists": true,
+        "resolved": "scripts/product_icon_census.py"
+      },
+      {
+        "kind": "link",
+        "raw": "../../scripts/theme_token_coverage.py",
+        "exists": true,
+        "resolved": "scripts/theme_token_coverage.py"
+      },
+      {
+        "kind": "link",
+        "raw": "../../scripts/theme_parity.py",
+        "exists": true,
+        "resolved": "scripts/theme_parity.py"
+      },
+      {
+        "kind": "link",
+        "raw": "../../scripts/theme_artcop.py",
+        "exists": true,
+        "resolved": "scripts/theme_artcop.py"
+      },
+      {
+        "kind": "link",
+        "raw": "../../scripts/theme_sfs_transmute.py",
+        "exists": true,
+        "resolved": "scripts/theme_sfs_transmute.py"
+      },
+      {
+        "kind": "link",
+        "raw": "../../scripts/theme_color_diversity.py",
+        "exists": true,
+        "resolved": "scripts/theme_color_diversity.py"
+      },
+      {
+        "kind": "cite",
+        "raw": "ankh_theme_reference.py",
+        "exists": true,
+        "resolved": "scripts/ankh_theme_reference.py"
+      },
+      {
+        "kind": "cite",
+        "raw": ".github\\copilot-instructions.archive.md",
+        "exists": true,
+        "resolved": ".github/copilot-instructions.archive.md"
+      }
+    ],
+    "docs/design/SFS_WPTG_ITERATION_PLAN.md": [
+      {
+        "kind": "link",
+        "raw": "../../WET_PAPER_TO_GOLD_METHODOLOGY.md",
+        "exists": true,
+        "resolved": "WET_PAPER_TO_GOLD_METHODOLOGY.md"
+      },
+      {
+        "kind": "link",
+        "raw": "../../scripts/icon_filetype_census.py",
+        "exists": true,
+        "resolved": "scripts/icon_filetype_census.py"
+      },
+      {
+        "kind": "link",
+        "raw": "../../scripts/icon_svg_audit.py",
+        "exists": true,
+        "resolved": "scripts/icon_svg_audit.py"
+      },
+      {
+        "kind": "link",
+        "raw": "../../scripts/icon_svg_optimizer.py",
+        "exists": true,
+        "resolved": "scripts/icon_svg_optimizer.py"
+      },
+      {
+        "kind": "link",
+        "raw": "../../scripts/icon_distinctiveness_audit.py",
+        "exists": true,
+        "resolved": "scripts/icon_distinctiveness_audit.py"
+      },
+      {
+        "kind": "link",
+        "raw": "../../scripts/icon_scaffold_contract_audit.py",
+        "exists": true,
+        "resolved": "scripts/icon_scaffold_contract_audit.py"
+      },
+      {
+        "kind": "link",
+        "raw": "../../scripts/sfa_cross_reference.py",
+        "exists": true,
+        "resolved": "scripts/sfa_cross_reference.py"
+      },
+      {
+        "kind": "link",
+        "raw": "../../scripts/link_audit.py",
+        "exists": true,
+        "resolved": "scripts/link_audit.py"
+      },
+      {
+        "kind": "link",
+        "raw": "../../scripts/theme_artcop.py",
+        "exists": true,
+        "resolved": "scripts/theme_artcop.py"
+      },
+      {
+        "kind": "link",
+        "raw": "../../scripts/vscode-art-cop.ts",
+        "exists": true,
+        "resolved": "scripts/vscode-art-cop.ts"
+      },
+      {
+        "kind": "link",
+        "raw": "../../scripts/theme_token_coverage.py",
+        "exists": true,
+        "resolved": "scripts/theme_token_coverage.py"
+      },
+      {
+        "kind": "link",
+        "raw": "../../scripts/theme_parity.py",
+        "exists": true,
+        "resolved": "scripts/theme_parity.py"
+      },
+      {
+        "kind": "link",
+        "raw": "../../scripts/theme_contrast_audit.py",
+        "exists": true,
+        "resolved": "scripts/theme_contrast_audit.py"
+      },
+      {
+        "kind": "link",
+        "raw": "../../scripts/product_icon_census.py",
+        "exists": true,
+        "resolved": "scripts/product_icon_census.py"
+      },
+      {
+        "kind": "link",
+        "raw": "ANKH_THEME_REFERENCE.md",
+        "exists": true,
+        "resolved": "docs/design/ANKH_THEME_REFERENCE.md"
+      },
+      {
+        "kind": "link",
+        "raw": "../standards/SCRIPT_METADATA_STANDARD.md",
+        "exists": true,
+        "resolved": "docs/standards/SCRIPT_METADATA_STANDARD.md"
+      },
+      {
+        "kind": "link",
+        "raw": "../../.github/instructions/python-scripting.instructions.md",
+        "exists": true,
+        "resolved": ".github/instructions/python-scripting.instructions.md"
+      },
+      {
+        "kind": "link",
+        "raw": "ANKH_ICON_GRAMMAR.md",
+        "exists": true,
+        "resolved": "docs/design/ANKH_ICON_GRAMMAR.md"
+      },
+      {
+        "kind": "link",
+        "raw": "SFS_SLABSTONE_BASELINE.md",
+        "exists": true,
+        "resolved": "docs/design/SFS_SLABSTONE_BASELINE.md"
+      },
+      {
+        "kind": "link",
+        "raw": "KCP_SESSION_CHECKPOINT.md",
+        "exists": true,
+        "resolved": "docs/design/KCP_SESSION_CHECKPOINT.md"
+      },
+      {
+        "kind": "link",
+        "raw": "../reference/ETS_ARCHAEOLOGICAL_TOOLFORM_BASELINE.md",
+        "exists": true,
+        "resolved": "docs/reference/ETS_ARCHAEOLOGICAL_TOOLFORM_BASELINE.md"
+      },
+      {
+        "kind": "link",
+        "raw": "../frameworks/ankh/ANKH_README.md",
+        "exists": true,
+        "resolved": "docs/frameworks/ankh/ANKH_README.md"
+      },
+      {
+        "kind": "link",
+        "raw": "../../claude/mailbox/SFA_CROSS_REFERENCE_SCAN.md",
+        "exists": false,
+        "resolved": null
+      },
+      {
+        "kind": "link",
+        "raw": "../../claude-codex-gemini/ANKH_EGYPTOLOGY_SOUTH_AMERICAN/ANKH_UNIFYING_REPOSITORY_METADATA_STANDARDS.md",
+        "exists": true,
+        "resolved": "claude-codex-gemini/ANKH_EGYPTOLOGY_SOUTH_AMERICAN/ANKH_UNIFYING_REPOSITORY_METADATA_STANDARDS.md"
+      },
+      {
+        "kind": "link",
+        "raw": "../../.claude/skills/sfa/SKILL.md",
+        "exists": false,
+        "resolved": null
+      },
+      {
+        "kind": "link",
+        "raw": "../../.claude/skills/theme-system/SKILL.md",
+        "exists": true,
+        "resolved": ".claude/skills/theme-system/SKILL.md"
+      },
+      {
+        "kind": "link",
+        "raw": "../../extensions/chthonic-archive/package.json",
+        "exists": true,
+        "resolved": "extensions/chthonic-archive/package.json"
+      },
+      {
+        "kind": "link",
+        "raw": "../../extensions/chthonic-archive/themes/chthonic-geology-color-theme.json",
+        "exists": true,
+        "resolved": "extensions/chthonic-archive/themes/chthonic-geology-color-theme.json"
+      },
+      {
+        "kind": "link",
+        "raw": "../../extensions/chthonic-archive/themes/chthonic-file-icon-theme.json",
+        "exists": true,
+        "resolved": "extensions/chthonic-archive/themes/chthonic-file-icon-theme.json"
+      },
+      {
+        "kind": "link",
+        "raw": "../../extensions/chthonic-archive/themes/chthonic-product-icon-theme.json",
+        "exists": true,
+        "resolved": "extensions/chthonic-archive/themes/chthonic-product-icon-theme.json"
+      },
+      {
+        "kind": "link",
+        "raw": "../../extensions/chthonic-archive/themes/chthonic-mandala-color-theme.json",
+        "exists": true,
+        "resolved": "extensions/chthonic-archive/themes/chthonic-mandala-color-theme.json"
+      },
+      {
+        "kind": "link",
+        "raw": "../../extensions/chthonic-archive/themes/chthonic-rogbiv-color-theme.json",
+        "exists": true,
+        "resolved": "extensions/chthonic-archive/themes/chthonic-rogbiv-color-theme.json"
+      },
+      {
+        "kind": "link",
+        "raw": "../../extensions/chthonic-archive/themes/chthonic-decorator-color-theme.json",
+        "exists": true,
+        "resolved": "extensions/chthonic-archive/themes/chthonic-decorator-color-theme.json"
+      },
+      {
+        "kind": "link",
+        "raw": "../../extensions/chthonic-archive/language-configuration-glsl.json",
+        "exists": true,
+        "resolved": "extensions/chthonic-archive/language-configuration-glsl.json"
+      },
+      {
+        "kind": "link",
+        "raw": "../../extensions/chthonic-archive/language-configuration-toml.json",
+        "exists": true,
+        "resolved": "extensions/chthonic-archive/language-configuration-toml.json"
+      },
+      {
+        "kind": "link",
+        "raw": "../../extensions/chthonic-archive/syntaxes/glsl.tmLanguage.json",
+        "exists": true,
+        "resolved": "extensions/chthonic-archive/syntaxes/glsl.tmLanguage.json"
+      },
+      {
+        "kind": "link",
+        "raw": "../../extensions/chthonic-archive/syntaxes/toml.tmLanguage.json",
+        "exists": true,
+        "resolved": "extensions/chthonic-archive/syntaxes/toml.tmLanguage.json"
+      },
+      {
+        "kind": "link",
+        "raw": "../../scripts/icon_surface_map.py",
+        "exists": true,
+        "resolved": "scripts/icon_surface_map.py"
+      },
+      {
+        "kind": "link",
+        "raw": "../../scripts/sfs_slabstone_baseline.py",
+        "exists": true,
+        "resolved": "scripts/sfs_slabstone_baseline.py"
+      },
+      {
+        "kind": "link",
+        "raw": "../../scripts/normalize_blessing_box.py",
+        "exists": true,
+        "resolved": "scripts/normalize_blessing_box.py"
+      },
+      {
+        "kind": "link",
+        "raw": "../../scripts/vscode_settings_live_audit.py",
+        "exists": true,
+        "resolved": "scripts/vscode_settings_live_audit.py"
+      },
+      {
+        "kind": "link",
+        "raw": "../../extensions/chthonic-archive/scripts/e2e-extension-host.ts",
+        "exists": true,
+        "resolved": "extensions/chthonic-archive/scripts/e2e-extension-host.ts"
+      },
+      {
+        "kind": "link",
+        "raw": "../../extensions/chthonic-archive/scripts/e2e-smoke-runner.cjs",
+        "exists": true,
+        "resolved": "extensions/chthonic-archive/scripts/e2e-smoke-runner.cjs"
+      },
+      {
+        "kind": "link",
+        "raw": "../../.vscode/SETTINGS_LIVE_AUDIT.md",
+        "exists": true,
+        "resolved": ".vscode/SETTINGS_LIVE_AUDIT.md"
+      },
+      {
+        "kind": "cite",
+        "raw": ".codex/skills/",
+        "exists": true,
+        "resolved": ".codex/skills"
+      },
+      {
+        "kind": "cite",
+        "raw": "chthonic-geology-color-theme.json",
+        "exists": true,
+        "resolved": "extensions/chthonic-archive/themes/chthonic-geology-color-theme.json"
+      },
+      {
+        "kind": "cite",
+        "raw": "chthonic-file-icon-theme.json",
+        "exists": true,
+        "resolved": "extensions/chthonic-archive/themes/chthonic-file-icon-theme.json"
+      },
+      {
+        "kind": "cite",
+        "raw": "chthonic-product-icon-theme.json",
+        "exists": true,
+        "resolved": "extensions/chthonic-archive/themes/chthonic-product-icon-theme.json"
+      },
+      {
+        "kind": "cite",
+        "raw": "scripts/sfa_cross_reference.py",
+        "exists": true,
+        "resolved": "scripts/sfa_cross_reference.py"
+      },
+      {
+        "kind": "cite",
+        "raw": "icon_svg_audit.py",
+        "exists": true,
+        "resolved": "scripts/icon_svg_audit.py"
+      },
+      {
+        "kind": "cite",
+        "raw": "docs/design/ANKH_ICON_GRAMMAR.md",
+        "exists": true,
+        "resolved": "docs/design/ANKH_ICON_GRAMMAR.md"
+      },
+      {
+        "kind": "cite",
+        "raw": "theme_workbench_completeness.py",
+        "exists": false,
+        "resolved": null
+      },
+      {
+        "kind": "cite",
+        "raw": "theme_palette_discipline.py",
+        "exists": false,
+        "resolved": null
+      },
+      {
+        "kind": "cite",
+        "raw": "extensions/chthonic-archive/",
+        "exists": true,
+        "resolved": "extensions/chthonic-archive"
+      },
+      {
+        "kind": "cite",
+        "raw": "package.json",
+        "exists": true,
+        "resolved": "package.json"
+      },
+      {
+        "kind": "cite",
+        "raw": "dist/extension.js",
+        "exists": false,
+        "resolved": null
+      },
+      {
+        "kind": "cite",
+        "raw": "folder-default.svg",
+        "exists": true,
+        "resolved": "extensions/chthonic-archive/themes/icons/folder-default.svg"
+      },
+      {
+        "kind": "cite",
+        "raw": "folder-temple.svg",
+        "exists": true,
+        "resolved": "extensions/chthonic-archive/themes/icons/folder-temple.svg"
+      },
+      {
+        "kind": "cite",
+        "raw": "folder-session-archives.svg",
+        "exists": true,
+        "resolved": "extensions/chthonic-archive/themes/icons/folder-session-archives.svg"
+      },
+      {
+        "kind": "cite",
+        "raw": "file-default.svg",
+        "exists": true,
+        "resolved": "extensions/chthonic-archive/themes/icons/file-default.svg"
+      },
+      {
+        "kind": "cite",
+        "raw": "claude-codex-gemini/ANKH_EGYPTOLOGY_SOUTH_AMERICAN/ANKH_UNIFYING_REPOSITORY_METADATA_STANDARDS.md",
+        "exists": true,
+        "resolved": "claude-codex-gemini/ANKH_EGYPTOLOGY_SOUTH_AMERICAN/ANKH_UNIFYING_REPOSITORY_METADATA_STANDARDS.md"
+      },
+      {
+        "kind": "cite",
+        "raw": "docs/design/KCP_SESSION_CHECKPOINT.md",
+        "exists": true,
+        "resolved": "docs/design/KCP_SESSION_CHECKPOINT.md"
+      },
+      {
+        "kind": "cite",
+        "raw": "scripts/normalize_blessing_box.py",
+        "exists": true,
+        "resolved": "scripts/normalize_blessing_box.py"
+      },
+      {
+        "kind": "cite",
+        "raw": "dumpster-dive/intake/overnight-siphon",
+        "exists": true,
+        "resolved": "dumpster-dive/intake/overnight-siphon"
+      },
+      {
+        "kind": "cite",
+        "raw": "scripts/overnight_daemon.ts",
+        "exists": true,
+        "resolved": "scripts/overnight_daemon.ts"
+      },
+      {
+        "kind": "cite",
+        "raw": "dumpster-dive/intake/overnight-siphon/",
+        "exists": true,
+        "resolved": "dumpster-dive/intake/overnight-siphon"
+      },
+      {
+        "kind": "cite",
+        "raw": "dumpster-dive/forge/PROCESS_FLOW.md",
+        "exists": true,
+        "resolved": "dumpster-dive/forge/PROCESS_FLOW.md"
+      },
+      {
+        "kind": "cite",
+        "raw": "dumpster-dive/ORE_MANIFEST.json",
+        "exists": true,
+        "resolved": "dumpster-dive/ORE_MANIFEST.json"
+      },
+      {
+        "kind": "cite",
+        "raw": "dumpster-dive/BLACKSMITH_MATRIARCH.md",
+        "exists": true,
+        "resolved": "dumpster-dive/BLACKSMITH_MATRIARCH.md"
+      },
+      {
+        "kind": "cite",
+        "raw": "ORE_MANIFEST.json",
+        "exists": true,
+        "resolved": "dumpster-dive/ORE_MANIFEST.json"
+      },
+      {
+        "kind": "cite",
+        "raw": "poe_lane.py",
+        "exists": true,
+        "resolved": "scripts/poe_lane.py"
+      },
+      {
+        "kind": "cite",
+        "raw": "poe_sdk_lane.py",
+        "exists": true,
+        "resolved": "scripts/poe_sdk_lane.py"
+      },
+      {
+        "kind": "cite",
+        "raw": "poe_transport_audit.py",
+        "exists": true,
+        "resolved": "scripts/poe_transport_audit.py"
+      }
+    ]
+  },
+  "missing_links": [
+    {
+      "doc": "docs/design/ANKH_ICON_GRAMMAR.md",
+      "raw": "../../claude/mailbox/SFA_CROSS_REFERENCE_SCAN.md"
+    },
+    {
+      "doc": "docs/design/ANKH_THEME_REFERENCE.md",
+      "raw": "../../claude/mailbox/SFA_CROSS_REFERENCE_SCAN.md"
+    },
+    {
+      "doc": "docs/design/SFS_WPTG_ITERATION_PLAN.md",
+      "raw": "../../claude/mailbox/SFA_CROSS_REFERENCE_SCAN.md"
+    },
+    {
+      "doc": "docs/design/SFS_WPTG_ITERATION_PLAN.md",
+      "raw": "../../.claude/skills/sfa/SKILL.md"
+    }
+  ],
+  "missing_citations": [
+    {
+      "doc": "docs/design/ANKH_ICON_GRAMMAR.md",
+      "raw": "claude/mailbox/SFA_CROSS_REFERENCE_SCAN.md"
+    },
+    {
+      "doc": "docs/design/SFS_WPTG_ITERATION_PLAN.md",
+      "raw": "theme_workbench_completeness.py"
+    },
+    {
+      "doc": "docs/design/SFS_WPTG_ITERATION_PLAN.md",
+      "raw": "theme_palette_discipline.py"
+    },
+    {
+      "doc": "docs/design/SFS_WPTG_ITERATION_PLAN.md",
+      "raw": "dist/extension.js"
+    }
+  ],
+  "sfs_theme": {
+    "name": "Chthonic — Geological Core (Sister Ferrum Scoriae)",
+    "workbench_keys": 665,
+    "token_rules": 149,
+    "semantic_keys": 57
+  },
+  "file_icon_theme": {
+    "icon_definitions": 96,
+    "file_svgs": 44,
+    "folder_svgs_total": 52,
+    "folder_svgs_specialized": 50,
+    "file_extensions": 91,
+    "file_names": 34,
+    "language_ids": 33,
+    "folder_names": 90,
+    "folder_names_expanded": 90
+  },
+  "product_icon_theme": {
+    "icon_definitions": 112,
+    "fonts": 1,
+    "font_assets": [
+      "chthonic-product-icons.json",
+      "chthonic-product-icons.woff",
+      "test-font.html"
+    ],
+    "source_svgs": 43
+  },
+  "extension_baseline": {
+    "themes": 4,
+    "icon_themes": 1,
+    "product_icon_themes": 1,
+    "languages": 2,
+    "grammars": 2,
+    "commands": 18,
+    "views": 6
+  },
+  "script_references": [
+    {
+      "path": "scripts/ankh_theme_reference.py",
+      "exists": true,
+      "docs": [
+        "docs/design/ANKH_THEME_REFERENCE.md"
+      ]
+    },
+    {
+      "path": "scripts/icon_distinctiveness_audit.py",
+      "exists": true,
+      "docs": [
+        "docs/design/ANKH_ICON_GRAMMAR.md",
+        "docs/design/ANKH_THEME_REFERENCE.md",
+        "docs/design/SFS_WPTG_ITERATION_PLAN.md"
+      ]
+    },
+    {
+      "path": "scripts/icon_filetype_census.py",
+      "exists": true,
+      "docs": [
+        "docs/design/ANKH_ICON_GRAMMAR.md",
+        "docs/design/ANKH_THEME_REFERENCE.md",
+        "docs/design/SFS_WPTG_ITERATION_PLAN.md"
+      ]
+    },
+    {
+      "path": "scripts/icon_scaffold_contract_audit.py",
+      "exists": true,
+      "docs": [
+        "docs/design/SFS_WPTG_ITERATION_PLAN.md"
+      ]
+    },
+    {
+      "path": "scripts/icon_surface_map.py",
+      "exists": true,
+      "docs": [
+        "docs/design/ANKH_ICON_GRAMMAR.md",
+        "docs/design/ANKH_THEME_REFERENCE.md",
+        "docs/design/SFS_WPTG_ITERATION_PLAN.md"
+      ]
+    },
+    {
+      "path": "scripts/icon_svg_audit.py",
+      "exists": true,
+      "docs": [
+        "docs/design/ANKH_ICON_GRAMMAR.md",
+        "docs/design/ANKH_THEME_REFERENCE.md",
+        "docs/design/SFS_WPTG_ITERATION_PLAN.md"
+      ]
+    },
+    {
+      "path": "scripts/icon_svg_optimizer.py",
+      "exists": true,
+      "docs": [
+        "docs/design/ANKH_ICON_GRAMMAR.md",
+        "docs/design/ANKH_THEME_REFERENCE.md",
+        "docs/design/SFS_WPTG_ITERATION_PLAN.md"
+      ]
+    },
+    {
+      "path": "scripts/link_audit.py",
+      "exists": true,
+      "docs": [
+        "docs/design/SFS_WPTG_ITERATION_PLAN.md"
+      ]
+    },
+    {
+      "path": "scripts/normalize_blessing_box.py",
+      "exists": true,
+      "docs": [
+        "docs/design/SFS_WPTG_ITERATION_PLAN.md"
+      ]
+    },
+    {
+      "path": "scripts/overnight_daemon.ts",
+      "exists": true,
+      "docs": [
+        "docs/design/SFS_WPTG_ITERATION_PLAN.md"
+      ]
+    },
+    {
+      "path": "scripts/poe_lane.py",
+      "exists": true,
+      "docs": [
+        "docs/design/SFS_WPTG_ITERATION_PLAN.md"
+      ]
+    },
+    {
+      "path": "scripts/poe_sdk_lane.py",
+      "exists": true,
+      "docs": [
+        "docs/design/SFS_WPTG_ITERATION_PLAN.md"
+      ]
+    },
+    {
+      "path": "scripts/poe_transport_audit.py",
+      "exists": true,
+      "docs": [
+        "docs/design/SFS_WPTG_ITERATION_PLAN.md"
+      ]
+    },
+    {
+      "path": "scripts/product_icon_census.py",
+      "exists": true,
+      "docs": [
+        "docs/design/ANKH_THEME_REFERENCE.md",
+        "docs/design/SFS_WPTG_ITERATION_PLAN.md"
+      ]
+    },
+    {
+      "path": "scripts/sfa_cross_reference.py",
+      "exists": true,
+      "docs": [
+        "docs/design/ANKH_ICON_GRAMMAR.md",
+        "docs/design/ANKH_THEME_REFERENCE.md",
+        "docs/design/SFS_WPTG_ITERATION_PLAN.md"
+      ]
+    },
+    {
+      "path": "scripts/sfs_slabstone_baseline.py",
+      "exists": true,
+      "docs": [
+        "docs/design/ANKH_ICON_GRAMMAR.md",
+        "docs/design/ANKH_THEME_REFERENCE.md",
+        "docs/design/SFS_WPTG_ITERATION_PLAN.md"
+      ]
+    },
+    {
+      "path": "scripts/theme_artcop.py",
+      "exists": true,
+      "docs": [
+        "docs/design/ANKH_THEME_REFERENCE.md",
+        "docs/design/SFS_WPTG_ITERATION_PLAN.md"
+      ]
+    },
+    {
+      "path": "scripts/theme_color_diversity.py",
+      "exists": true,
+      "docs": [
+        "docs/design/ANKH_THEME_REFERENCE.md"
+      ]
+    },
+    {
+      "path": "scripts/theme_contrast_audit.py",
+      "exists": true,
+      "docs": [
+        "docs/design/SFS_WPTG_ITERATION_PLAN.md"
+      ]
+    },
+    {
+      "path": "scripts/theme_parity.py",
+      "exists": true,
+      "docs": [
+        "docs/design/ANKH_THEME_REFERENCE.md",
+        "docs/design/SFS_WPTG_ITERATION_PLAN.md"
+      ]
+    },
+    {
+      "path": "scripts/theme_sfs_transmute.py",
+      "exists": true,
+      "docs": [
+        "docs/design/ANKH_THEME_REFERENCE.md"
+      ]
+    },
+    {
+      "path": "scripts/theme_token_coverage.py",
+      "exists": true,
+      "docs": [
+        "docs/design/ANKH_THEME_REFERENCE.md",
+        "docs/design/SFS_WPTG_ITERATION_PLAN.md"
+      ]
+    },
+    {
+      "path": "scripts/vscode-art-cop.ts",
+      "exists": true,
+      "docs": [
+        "docs/design/SFS_WPTG_ITERATION_PLAN.md"
+      ]
+    },
+    {
+      "path": "scripts/vscode_settings_live_audit.py",
+      "exists": true,
+      "docs": [
+        "docs/design/ANKH_ICON_GRAMMAR.md",
+        "docs/design/SFS_WPTG_ITERATION_PLAN.md"
+      ]
+    }
+  ],
+  "core_assets": [
+    {
+      "path": "extensions/chthonic-archive/themes/chthonic-geology-color-theme.json",
+      "exists": true,
+      "kind": "file"
+    },
+    {
+      "path": "extensions/chthonic-archive/themes/chthonic-file-icon-theme.json",
+      "exists": true,
+      "kind": "file"
+    },
+    {
+      "path": "extensions/chthonic-archive/themes/chthonic-product-icon-theme.json",
+      "exists": true,
+      "kind": "file"
+    },
+    {
+      "path": "extensions/chthonic-archive/package.json",
+      "exists": true,
+      "kind": "file"
+    },
+    {
+      "path": "extensions/chthonic-archive/themes/icons",
+      "exists": true,
+      "kind": "dir"
+    },
+    {
+      "path": "extensions/chthonic-archive/themes/icons/product",
+      "exists": true,
+      "kind": "dir"
+    }
+  ]
+}

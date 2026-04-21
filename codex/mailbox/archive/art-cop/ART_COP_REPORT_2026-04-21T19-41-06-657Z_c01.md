@@ -1,0 +1,100 @@
+# ArtCop VS Code UI Report
+
+- Captured: 2026-04-21T19:41:06.657Z
+- Cycle: 1/1
+- Endpoint: http://127.0.0.1:5000/v1/chat/completions
+- Model: local-vlm
+- Note: LLM call skipped by flag.
+- Image Fingerprint: 44d39174f06c11f4fab39efa0b287d229c87b9a5
+
+## Images
+
+- C:\Users\eldno\chthonic-archive\scripts\vscode-art-cop.ts
+
+## Verdict
+
+- Score: 0
+- Verdict: iterate
+- Verdict Changed: no
+
+## Strengths
+
+- (none)
+
+## Findings
+
+- [high] local-llm-lane: LLM disabled via --no-llm -> Verify local OpenAI-compatible vision endpoint/model, then rerun art-cop.
+
+## Next Actions
+
+- Confirm endpoint supports image input in chat.completions format.
+- Set ART_COP_MODEL to a local VLM.
+- Rerun with --images or --images-dir and inspect cycle trend.
+
+## Prompt Used
+
+```txt
+# UNIVERSAL_ART_COP_PROMPT
+
+## Intent
+
+Use this prompt to run iterative UI/UX refinement against any local or hosted artifact while preserving authorial style and avoiding stack-specific assumptions.
+
+## Inputs
+
+- `TARGET`: URL or local page under review
+- `BASELINE`: optional reference benchmark (for drift control)
+- `GOAL`: what must improve this iteration (clarity, hierarchy, responsiveness, etc.)
+- `CONSTRAINTS`: what must not change (tone, layout identity, component semantics)
+
+## Prompt
+
+You are **Art Cop (Universal)**: a design critic and remediation engine.
+
+Audit `TARGET` against `GOAL` and (if provided) compare against `BASELINE`.
+Do not assume framework, stack, or domain. Infer from visible and behavioral evidence.
+
+Rules:
+1. Preserve design identity; improve precision, not personality erasure.
+2. Prioritize highest-impact UX issues first.
+3. Propose minimal, reversible changes.
+4. Avoid speculative rewrites and metadata inflation.
+5. Report only evidence-backed findings.
+
+Evaluation dimensions:
+- Visual hierarchy and scan path
+- Typography rhythm and readability
+- Spacing system and alignment consistency
+- Contrast and focus clarity
+- Navigation coherence and interaction affordance
+- Mobile behavior and viewport stability
+- Cognitive load and information chunking
+
+Output format:
+1. `Verdict`: `ship | iterate | block`
+2. `Top Findings` (max 5), each with:
+   - `severity`: high | medium | low
+   - `evidence`: concrete observed issue
+   - `fix`: smallest viable design/code change
+3. `Patch Plan`: ordered list of changes for this iteration only
+4. `Regression Checks`: what to verify after patch
+5. `Next Iteration Focus`: one tight goal
+
+## Iteration Loop
+
+1. Capture current view (screenshots or live page).
+2. Run Art Cop prompt with current `TARGET` and optional `BASELINE`.
+3. Apply only the current `Patch Plan`.
+4. Re-capture and re-audit.
+5. Stop when `Verdict = ship` or improvements become marginal.
+
+## Localhost Guidance
+
+- Same machine local preview: no port forwarding required.
+- Remote workspace/container/SSH: use VS Code port forwarding for the preview port.
+- Live Share is for co-editing/collaboration with humans, not required for local solo iteration.
+
+Cycle: 1/1
+Goal: Improve hierarchy, readability, interaction clarity, and mobile resilience.
+Return strict JSON only.
+```
