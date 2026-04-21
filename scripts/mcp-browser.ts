@@ -37,7 +37,8 @@ import { resolve } from "path";
 import { writeFile, mkdir } from "fs/promises";
 
 // bun-cdp lives in the sibling poc directory
-const BUN_CDP_ROOT = resolve(__dirname, "../bun-playwright-poc/src");
+// TODO: upstream — replace with @playwright/mcp once Playwright IPC stabilises on Bun (see @UpstreamReady in JSDoc above)
+const BUN_CDP_ROOT = resolve(import.meta.dir, "../bun-playwright-poc/src");
 
 // bun-cdp loaded lazily inside ensureBrowser() to avoid startup crash
 // if Chrome/bun-cdp is unavailable.
