@@ -37,6 +37,7 @@ import hashlib
 import re
 import time
 import argparse
+import warnings
 from pathlib import Path
 from typing import Dict, List, Tuple, Optional
 
@@ -748,8 +749,18 @@ if __name__ == "__main__":
                        help="Output SQLite file")
     parser.add_argument("--schema-path", default=None,
                        help="Path to epistemograph_schema.sql (default: <root>/scripts/epistemograph_schema.sql)")
+    parser.add_argument("--no-deprecation-warning", action="store_true",
+                       help="Suppress the v1 deprecation warning")
 
     args = parser.parse_args()
+
+    if not args.no_deprecation_warning:
+        warnings.warn(
+            "build_epistemograph.py is a v1 script and is deprecated; "
+            "migrate to the v2 pipeline. Pass --no-deprecation-warning to suppress.",
+            DeprecationWarning,
+            stacklevel=1,
+        )
 
     root = Path(args.root).resolve()
     db_path = Path(args.out).resolve()
