@@ -1,7 +1,7 @@
 #!/usr/bin/env bun
 // @SID: SCRIPT_GEMINI_MODEL_ROUTER_V1
 
-import { readFileSync, writeFileSync } from "node:fs";
+import { copyFileSync, readFileSync, writeFileSync } from "node:fs";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -73,6 +73,8 @@ type SyncResult = {
   settingsPath: string;
   workspaceModel: string;
   aliasNames: string[];
+  dryRun: boolean;
+  backedUp: boolean;
 };
 
 const SCRIPT_DIR = dirname(fileURLToPath(import.meta.url));
@@ -80,6 +82,16 @@ const REPO_ROOT = resolve(SCRIPT_DIR, "..");
 const DEFAULT_REGISTRY_PATH = resolve(REPO_ROOT, ".gemini", "local-model-registry.json");
 const DEFAULT_SETTINGS_PATH = resolve(REPO_ROOT, ".gemini", "settings.json");
 const DEFAULT_MODE_PREFERENCE: PreferenceMode = "auto";
+const EXPECTED_REGISTRY_VERSION = 1;
+
+function validateRegistryVersion(registry: RegistryFile, registryPath: string): void {
+  if (registry.version !== EXPECTED_REGISTRY_VERSION) {
+    console.error(
+      `[gemini-model-router] WARN: registry version mismatch — expected ${EXPECTED_REGISTRY_VERSION}, found ${registry.version}. ` +
+        `Migration: update "version" field in ${registryPath} to ${EXPECTED_REGISTRY_VERSION} and verify all "aliases" and "models" entries match the current schema.`,
+    );
+  }
+}
 
 function readJsonFile<T>(path: string): T {
   return JSON.parse(readFileSync(path, "utf-8")) as T;
@@ -327,15 +339,19 @@ function parseCliArgs(argv: string[]) {
   return { command, flags };
 }
 
-function syncCommand(writeChanges: boolean): SyncResult {
+function syncCommand(writeChanges: boolean, dryRun = false): SyncResult {
   const registryPath = getRegistryPath();
   const settingsPath = getSettingsPath();
   const registry = readJsonFile<RegistryFile>(registryPath);
+  validateRegistryVersion(registry, registryPath);
   const settings = readJsonFile<GeminiSettings>(settingsPath);
   const nextSettings = syncWorkspaceSettings(settings, registry);
   const changed = JSON.stringify(settings) !== JSON.stringify(nextSettings);
+  let backedUp = false;
 
   if (changed && writeChanges) {
+    copyFileSync(settingsPath, `${settingsPath}.bak`);
+    backedUp = true;
     writeJsonFile(settingsPath, nextSettings);
   }
 
@@ -345,6 +361,8 @@ function syncCommand(writeChanges: boolean): SyncResult {
     settingsPath,
     workspaceModel: registry.workspaceModel,
     aliasNames: Object.keys(registry.aliases),
+    dryRun,
+    backedUp,
   };
 }
 
@@ -353,7 +371,9 @@ function resolveCommand(flags: Map<string, string | boolean>): RoutingDecision {
   const mode: RoutingMode = modeFlag === "headless" ? "headless" : "interactive";
   const argsJson = String(flags.get("--args-json") || "[]");
   const rawArgs = JSON.parse(argsJson) as string[];
-  const registry = readJsonFile<RegistryFile>(getRegistryPath());
+  const registryPath = getRegistryPath();
+  const registry = readJsonFile<RegistryFile>(registryPath);
+  validateRegistryVersion(registry, registryPath);
   const settings = readJsonFile<GeminiSettings>(getSettingsPath());
   return resolveRoutingDecision(rawArgs, mode, settings, registry);
 }
@@ -375,8 +395,9 @@ function main() {
 
   switch (command) {
     case "sync": {
-      const writeChanges = flags.get("--write") !== false;
-      console.log(JSON.stringify(syncCommand(writeChanges), null, 2));
+      const dryRun = flags.get("--dry-run") === true;
+      const writeChanges = !dryRun && flags.get("--write") !== false;
+      console.log(JSON.stringify(syncCommand(writeChanges, dryRun), null, 2));
       return;
     }
     case "resolve": {
