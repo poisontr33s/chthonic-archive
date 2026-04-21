@@ -30,14 +30,25 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import sys
+import warnings
 from dataclasses import dataclass
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from lib.shared import find_repo_root
 
-POLICY_PATH = Path(".meta/mailbox-scribe-policy.json")
-REPO_ROOT = Path.cwd().resolve()
+REPO_ROOT = find_repo_root()
+POLICY_PATH = REPO_ROOT / ".meta" / "mailbox-scribe-policy.json"
+
+POLICY_DEFAULTS: dict[str, Any] = {
+    "update_manifest": True,
+    "update_current_state": True,
+    "prefer_files": [],
+    "include_patterns": ["*.md", "*.json"],
+}
 
 
 def utc_now() -> str:
@@ -304,8 +315,17 @@ def main() -> int:
     args = ap.parse_args()
 
     if not POLICY_PATH.exists():
-        raise SystemExit(f"Missing policy: {POLICY_PATH}")
-    policy = read_json(POLICY_PATH)
+        warnings.warn(
+            f"Policy file absent: {POLICY_PATH}\n"
+            "Using defaults: update_manifest=True, update_current_state=True, "
+            "prefer_files=[], include_patterns=['*.md', '*.json'].\n"
+            "Create .meta/mailbox-scribe-policy.json to override.",
+            UserWarning,
+            stacklevel=1,
+        )
+        policy = POLICY_DEFAULTS.copy()
+    else:
+        policy = read_json(POLICY_PATH)
 
     if args.target == "codex":
         mailbox = Path("codex/mailbox")

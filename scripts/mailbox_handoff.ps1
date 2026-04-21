@@ -18,7 +18,7 @@ param(
   [switch]$RunAudit
 )
 
-$repoRoot = Resolve-Path -Path (Get-Location)
+$repoRoot = (Resolve-Path (Join-Path $PSScriptRoot "..")).Path
 
 function Resolve-TargetDir {
   param([string]$Lane, [string]$Root)
@@ -39,7 +39,31 @@ function To-RepoRelative {
   return ($resolvedPath -replace "\\", "/")
 }
 
-function Get-HandoffScoreMap {
+function Validate-HandoffSchema {
+  param([string]$FilePath)
+  if (-not (Test-Path $FilePath)) { throw "File not found for schema validation: $FilePath" }
+  $text = Get-Content $FilePath -Raw
+  $errors = @()
+  # YAML frontmatter presence
+  if ($text -notmatch '(?s)^---\s*\r?\n.*?\r?\n---') {
+    $errors += "Missing YAML frontmatter block (--- delimiters)"
+  }
+  # Required frontmatter keys
+  foreach ($key in @('type', 'from', 'to', 'created', 'priority', 'scope')) {
+    if ($text -notmatch "(?m)^${key}\s*:") {
+      $errors += "Missing required frontmatter field: $key"
+    }
+  }
+  # Required sections (loose match)
+  foreach ($section in @('Actions Taken', 'Files Changed', 'How to[Vv]erify', 'Next Actions')) {
+    if ($text -notmatch "(?m)^#{1,6}\s+$section") {
+      $errors += "Missing required section: $section"
+    }
+  }
+  return $errors
+}
+
+
   param([string]$AuditPath)
   if (-not (Test-Path $AuditPath)) {
     throw "Audit JSON not found: $AuditPath"
@@ -107,6 +131,13 @@ if ($SendLatest -or $SendAll) {
   }
 
   foreach ($item in $items) {
+    # JSON schema validation before copy
+    $schemaErrors = Validate-HandoffSchema -FilePath $item.FullName
+    if ($schemaErrors.Count -gt 0) {
+      Write-Warning "[schema] Skipping $($item.Name) — validation errors:"
+      foreach ($err in $schemaErrors) { Write-Warning "  $err" }
+      continue
+    }
     $dest = Join-Path $targetDir $item.Name
     Copy-Item -Path $item.FullName -Destination $dest -Force
     Write-Host "Mailbox sent -> $dest"
@@ -139,6 +170,13 @@ if ($RequireScoreMin -gt 0.0) {
   } else {
     throw "Source file not present in audit handoff set: $relative"
   }
+}
+
+# Single source route — validate schema before copy
+$schemaErrors = Validate-HandoffSchema -FilePath $resolvedSource
+if ($schemaErrors.Count -gt 0) {
+  $schemaErrors | ForEach-Object { Write-Warning "[schema] $_" }
+  throw "Source handoff failed schema validation: $Source"
 }
 
 $dest = Join-Path $targetDir (Split-Path $Source -Leaf)

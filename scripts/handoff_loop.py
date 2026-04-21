@@ -288,13 +288,13 @@ def find_handoffs(repo_root: Path) -> list[dict]:
     return handoffs
 
 
-def compute_obligations(repo_root: Path) -> dict:
+def compute_obligations(repo_root: Path, stale_hours: float = STALE_HOURS) -> dict:
     """Identify pending (unACK'd) handoffs and stale ones."""
     handoffs = find_handoffs(repo_root)
     receipt_log = load_receipt_log(repo_root)
     receipts = receipt_log.get("receipts", {})
     now = datetime.now(tz=timezone.utc)
-    stale_cutoff = now - timedelta(hours=STALE_HOURS)
+    stale_cutoff = now - timedelta(hours=stale_hours)
 
     pending = []
     stale = []
@@ -329,7 +329,7 @@ def compute_obligations(repo_root: Path) -> dict:
         "acked": len(acked),
         "pending": len(pending),
         "stale": len(stale),
-        "stale_threshold_hours": STALE_HOURS,
+        "stale_threshold_hours": stale_hours,
         "pending_items": sorted(pending, key=lambda x: -x["age_hours"]),
         "stale_items": sorted(stale, key=lambda x: -x["age_hours"]),
         "acked_items": acked,
@@ -364,6 +364,22 @@ def route_handoff(file_path: Path, target_lane: str, repo_root: Path, threshold:
     fm, _ = parse_frontmatter(fm_text)
     sender = fm.get("from", "unknown")
     record_receipt(repo_root, file_path, sender)
+
+    # Emit per-route receipt to codex/mailbox/
+    ts = datetime.now(tz=timezone.utc).strftime("%Y%m%dT%H%M%SZ")
+    receipt_path = repo_root / MAILBOX_DIRS["codex"] / f"ROUTE_RECEIPT_{ts}.json"
+    receipt_path.parent.mkdir(parents=True, exist_ok=True)
+    route_receipt = {
+        "receipt_at": datetime.now(tz=timezone.utc).isoformat(),
+        "source": file_path.relative_to(repo_root).as_posix(),
+        "destination": dest.relative_to(repo_root).as_posix(),
+        "target_lane": target_lane,
+        "score": gate_result.get("score", 0.0),
+        "sha256": file_sha256(file_path),
+    }
+    with open(receipt_path, "w", encoding="utf-8") as f:
+        json.dump(route_receipt, f, indent=2, ensure_ascii=False)
+    log.info("Receipt written: %s", receipt_path.relative_to(repo_root))
 
     return {
         "routed": True,
@@ -423,6 +439,8 @@ def main() -> int:
     parser.add_argument("--verbose", "-v", action="store_true")
     parser.add_argument("--quiet", "-q", action="store_true")
     parser.add_argument("--json", action="store_true", help="JSON output")
+    parser.add_argument("--stale-hours", type=float, default=STALE_HOURS,
+                        help=f"Hours before unACK'd handoff is flagged stale (default: {STALE_HOURS})")
 
     args = parser.parse_args()
     log = setup_logging(verbose=args.verbose, quiet=args.quiet)
@@ -434,7 +452,7 @@ def main() -> int:
 
     # --- status ---
     if args.command == "status":
-        oblig = compute_obligations(repo_root)
+        oblig = compute_obligations(repo_root, stale_hours=args.stale_hours)
         if args.json:
             print(json.dumps(oblig, indent=2, ensure_ascii=False, default=str))
         else:
@@ -499,7 +517,7 @@ def main() -> int:
 
     # --- obligations ---
     if args.command == "obligations":
-        oblig = compute_obligations(repo_root)
+        oblig = compute_obligations(repo_root, stale_hours=args.stale_hours)
         if args.json:
             print(json.dumps(oblig, indent=2, default=str))
         else:
@@ -530,7 +548,7 @@ def main() -> int:
 
     # --- sweep ---
     if args.command == "sweep":
-        oblig = compute_obligations(repo_root)
+        oblig = compute_obligations(repo_root, stale_hours=args.stale_hours)
         if args.json:
             print(json.dumps(oblig, indent=2, default=str))
         else:
