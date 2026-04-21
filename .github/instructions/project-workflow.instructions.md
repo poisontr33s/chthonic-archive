@@ -61,7 +61,7 @@ We maintain three sovereign lanes:
 - **Lineage B:** Instruction consolidation, archive operations, protective oversight infrastructure
 - **Lineage C:** Heritage instruction consolidation, CRC methodology preservation, format standardization
 
-Each lineage operates within declared boundaries. Cross-lane material requires slavedriver submission.
+Each **lineage** *operates* within declared boundaries. *Cross-lane* material requires **slavedriver-submission**.
 
 ---
 
