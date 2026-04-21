@@ -41,6 +41,13 @@ from typing import NamedTuple
 import argparse
 import sys
 
+# sys.path guard: ensure repo root is importable regardless of invocation CWD
+_REPO_ROOT_CANDIDATE = Path(__file__).resolve().parent.parent
+if str(_REPO_ROOT_CANDIDATE) not in sys.path:
+    sys.path.insert(0, str(_REPO_ROOT_CANDIDATE))
+
+from scripts.lib.shared import find_repo_root as _find_repo_root
+
 # Configuration
 IGNORE_DIRS = {
     ".git", "node_modules", ".venv", "__pycache__", "dist", ".bun",
@@ -186,39 +193,47 @@ def generate_proposal(mapping: dict[Path, FolderStats]) -> str:
 def main():
     parser = argparse.ArgumentParser(description="Codebase Cartographer & README Proposer")
     parser.add_argument("--dry-run", action="store_true", help="Print output to stdout instead of writing file")
+    parser.add_argument(
+        "--output", "-o", type=Path, default=None,
+        help="Explicit output file path (overrides SID anchor resolution).",
+    )
     args = parser.parse_args()
 
-    root = Path(".")
-    print(f"Mapping codebase from: {root.absolute()}")
+    root = _find_repo_root()
+    print(f"Mapping codebase from: {root}")
 
     mapping = scan_tree(root)
     report = generate_proposal(mapping)
 
     # Dynamic Output Path Resolution (Anchor & Signal Protocol)
-    target_sid = "STATE_CODEBASE_INVENTORY"
-    default_path = Path("docs/CODEBASE_INVENTORY.md")
-
-    found_path = None
-    docs_dir = Path("docs")
-    if docs_dir.exists():
-        try:
-            for md_file in docs_dir.glob("*.md"):
-                try:
-                    content = md_file.read_text(encoding="utf-8", errors="ignore")
-                    if f"@SID:           {target_sid}" in content or f"@SID: {target_sid}" in content:
-                        found_path = md_file
-                        break
-                except OSError:
-                    continue
-        except OSError:
-            pass
-
-    if found_path:
-        output_path = found_path
-        print(f"Resolving output to existing State File: {output_path}")
+    if args.output:
+        output_path = args.output
+        print(f"Using explicit output path: {output_path}")
     else:
-        output_path = default_path
-        print(f"State File not found. Creating default: {output_path}")
+        target_sid = "STATE_CODEBASE_INVENTORY"
+        default_path = root / "docs" / "CODEBASE_INVENTORY.md"
+
+        found_path = None
+        docs_dir = root / "docs"
+        if docs_dir.exists():
+            try:
+                for md_file in docs_dir.glob("*.md"):
+                    try:
+                        content = md_file.read_text(encoding="utf-8", errors="ignore")
+                        if f"@SID:           {target_sid}" in content or f"@SID: {target_sid}" in content:
+                            found_path = md_file
+                            break
+                    except OSError:
+                        continue
+            except OSError:
+                pass
+
+        if found_path:
+            output_path = found_path
+            print(f"Resolving output to existing State File: {output_path}")
+        else:
+            output_path = default_path
+            print(f"State File not found. Creating default: {output_path}")
 
     if args.dry_run:
         print("\n[DRY RUN] Output content preview:")
