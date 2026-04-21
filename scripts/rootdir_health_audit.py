@@ -38,14 +38,18 @@ from __future__ import annotations
 
 import sys
 import io
-if sys.platform == 'win32' and __name__ == '__main__':
-    sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
-    sys.stderr = io.TextIOWrapper(sys.stderr.buffer, encoding='utf-8')
+# if sys.platform == 'win32' and __name__ == '__main__':
+#     sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
+#     sys.stderr = io.TextIOWrapper(sys.stderr.buffer, encoding='utf-8')
 
-<<<<<<< HEAD
-=======
+# sys.path guard: ensure repo root is importable regardless of invocation CWD
+from pathlib import Path as _Path
+_REPO_ROOT_CANDIDATE = _Path(__file__).resolve().parent.parent
+if str(_REPO_ROOT_CANDIDATE) not in sys.path:
+    sys.path.insert(0, str(_REPO_ROOT_CANDIDATE))
 
->>>>>>> 5422dabc1e8ba366830ba42b15eaeb5046750e7b
+from scripts.lib.shared import find_repo_root as _find_repo_root
+
 import argparse
 import hashlib
 import json
@@ -558,8 +562,8 @@ def main():
         description="Audit root directory health and hygiene."
     )
     parser.add_argument(
-        "--root", type=Path, default=Path("."),
-        help="Root directory to scan (default: current)"
+        "--root", type=Path, default=None,
+        help="Root directory to scan (default: repo root via find_repo_root())"
     )
     parser.add_argument(
         "--output", "-o", type=Path,
@@ -573,10 +577,16 @@ def main():
         "--dry-run", action="store_true",
         help="Print report to console without saving"
     )
+    parser.add_argument(
+        "--severity-min",
+        choices=["low", "medium", "high", "critical"],
+        default=None,
+        help="Only include findings at or above this severity level (low < medium < high < critical).",
+    )
 
     args = parser.parse_args()
 
-    root = args.root.resolve()
+    root = args.root.resolve() if args.root else _find_repo_root()
     print(f"Scanning: {root}")
 
     files = scan_directory(root)
