@@ -28,9 +28,16 @@ param(
     [switch]$NoExit
 )
 
-$VERSION = "3.3.0"
+$ErrorActionPreference = 'Stop'
+
 $SCRIPT_DIR = Split-Path -Parent $MyInvocation.MyCommand.Path
-$REPO_ROOT = Split-Path -Parent $SCRIPT_DIR
+$REPO_ROOT   = Split-Path -Parent $SCRIPT_DIR
+try {
+    $pkg = Get-Content (Join-Path $REPO_ROOT 'package.json') -Raw | ConvertFrom-Json
+    $VERSION = if ($pkg.version) { $pkg.version } else { "3.3.0" }
+} catch {
+    $VERSION = "3.3.0"  # fallback if package.json is missing or malformed
+}
 $LIB_DIR = Join-Path $SCRIPT_DIR "lib"
 $STATE_DIR = Join-Path $env:USERPROFILE ".chthonic"
 $CONFIG_FILE = Join-Path $STATE_DIR "config.json"
@@ -2900,7 +2907,6 @@ function Invoke-PolyglotActivation {
                 Write-Host "  Invoke-History preserved via: $($rBinding.rhistory_after)" -ForegroundColor DarkGray
             }
         }
-        Show-PolyglotStatus
     }
 }
 
@@ -6196,7 +6202,7 @@ switch ($Domain) {
             Write-Host "  go-basic             - go mod init + main.go"
             Write-Host "  ruby-gem             - bundle gem"
             Write-Host "  azure-azd-template   - azd init --template (requires azd)"
-            Write-Host "  add --dry-run and/or --json as needed"
+            Write-Host "  add --dry-run, --verify, and/or --json as needed"
             exit 0
         }
         $result = Invoke-ChthonicNew -Profile $Action -CreateArgs $RemainingArgs -Json:$HasJsonFlag

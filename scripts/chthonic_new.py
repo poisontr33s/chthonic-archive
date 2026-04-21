@@ -230,16 +230,43 @@ def execute_profile(profile: str, dest: Path, module: str | None, dry_run: bool)
         "destination": str(dest),
         "docs": PROFILES[profile].docs,
         "steps": steps,
+        "errors": [
+            {"command": s["command"], "exit_code": s["exit_code"], "stderr": s["stderr"]}
+            for s in steps if s["exit_code"] != 0
+        ],
         "ok": all(step["exit_code"] == 0 for step in steps),
     }
 
 
 def main() -> int:
+    # =============================================================================
+    # Verify scaffold expectations per profile
+    # =============================================================================
+
+    VERIFY_CHECKS: dict[str, list[str]] = {
+        "uv-python-app": ["pyproject.toml"],
+        "uv-python-lib": ["pyproject.toml", "src"],
+        "bun-react": ["package.json"],
+        "bun-react-tailwind": ["package.json"],
+        "bun-next": ["package.json"],
+        "cargo-rust-bin": ["Cargo.toml", "src/main.rs"],
+        "cargo-rust-lib": ["Cargo.toml", "src/lib.rs"],
+        "go-basic": ["go.mod", "main.go"],
+        "ruby-gem": ["Gemfile"],
+        "azure-azd-template": ["azure.yaml"],
+    }
+
+    def verify_scaffold(profile: str, dest: Path) -> dict:
+        checks = VERIFY_CHECKS.get(profile, [])
+        missing = [p for p in checks if not (dest / p).exists()]
+        return {"ok": not missing, "missing": missing, "checked": checks}
+
     parser = argparse.ArgumentParser(description="Scaffold new projects for the Chthonic polyglot stack.")
     parser.add_argument("profile", choices=sorted(PROFILES.keys()))
     parser.add_argument("destination")
     parser.add_argument("--module", help="Optional module/template name (used by Go/Azure profiles).")
     parser.add_argument("--dry-run", action="store_true")
+    parser.add_argument("--verify", action="store_true", help="After scaffold, verify expected files exist.")
     parser.add_argument("--json", action="store_true")
     parser.add_argument("--list", action="store_true", help="List profiles and exit.")
     args = parser.parse_args()
@@ -254,6 +281,11 @@ def main() -> int:
         dest = (REPO_ROOT / dest).resolve()
 
     result = execute_profile(args.profile, dest, args.module, args.dry_run)
+
+    if args.verify and not args.dry_run:
+        result["verify"] = verify_scaffold(args.profile, dest)
+        if not result["verify"]["ok"]:
+            result["ok"] = False
 
     if args.json:
         print(json.dumps(result, indent=2, ensure_ascii=False))
