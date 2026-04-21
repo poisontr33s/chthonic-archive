@@ -34,13 +34,19 @@ from __future__ import annotations
 import argparse
 import json
 import re
+import sys
 from dataclasses import dataclass
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
+_REPO_ROOT_CANDIDATE = Path(__file__).resolve().parent.parent
+if str(_REPO_ROOT_CANDIDATE) not in sys.path:
+    sys.path.insert(0, str(_REPO_ROOT_CANDIDATE))
 
-REPO_ROOT = Path(__file__).resolve().parents[1]
+from scripts.lib.shared import find_repo_root  # noqa: E402
+
+REPO_ROOT = find_repo_root()
 MAILBOX = REPO_ROOT / "codex" / "mailbox"
 
 
@@ -61,10 +67,20 @@ def read_text(path: Path) -> str:
     return path.read_text(encoding="utf-8", errors="replace")
 
 
-def list_artifacts() -> tuple[list[Artifact], list[Artifact]]:
+def list_artifacts(since: datetime | None = None, max_files: int | None = None) -> tuple[list[Artifact], list[Artifact]]:
+    def _filter(paths: list[Artifact]) -> list[Artifact]:
+        if since is not None:
+            paths = [
+                a for a in paths
+                if datetime.fromtimestamp(a.path.stat().st_mtime, tz=timezone.utc) >= since
+            ]
+        if max_files is not None:
+            paths = paths[:max_files]
+        return paths
+
     md = sorted([Artifact(p) for p in MAILBOX.glob("*.md") if p.is_file()], key=lambda a: a.name)
     js = sorted([Artifact(p) for p in MAILBOX.glob("*.json") if p.is_file()], key=lambda a: a.name)
-    return md, js
+    return _filter(md), _filter(js)
 
 
 def is_low_signal_duplicate(name: str) -> bool:
@@ -138,9 +154,15 @@ def update_manifest(manifest_path: Path, keep_md: list[str], keep_json: list[str
 def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--apply", action="store_true", help="Update mailbox_manifest.json active lists")
+    ap.add_argument("--since", metavar="ISO", default=None, help="Only compact artifacts modified after this ISO timestamp (e.g. 2026-04-01T00:00:00Z)")
+    ap.add_argument("--max-files", metavar="N", type=int, default=None, help="Limit the number of files included per type (MD, JSON)")
     args = ap.parse_args()
 
-    md, js = list_artifacts()
+    since: datetime | None = None
+    if args.since:
+        since = datetime.fromisoformat(args.since.replace("Z", "+00:00"))
+
+    md, js = list_artifacts(since=since, max_files=args.max_files)
 
     # Candidate compaction: keep high-signal MDs; treat low-signal dated duplicates as excluded from packet.
     md_keep = [a for a in md if not is_low_signal_duplicate(a.name)]
