@@ -149,6 +149,12 @@ if ($Paths -and $Paths.Count -gt 0) {
 
 $selected = @($selected | Select-Object -Unique | Sort-Object)
 
+# Exclude the script itself from the siphon list
+$scriptSelfRel = [System.IO.Path]::GetRelativePath($repoRoot, $PSCommandPath) -replace '\\', '/'
+if ($scriptSelfRel) {
+    $selected = @($selected | Where-Object { $_ -ne $scriptSelfRel })
+}
+
 $manifest = @()
 foreach ($rel in $selected) {
     $src = Join-Path $repoRoot ($rel -replace '/', '\')
@@ -171,7 +177,19 @@ foreach ($rel in $selected) {
 $manifestPath = Join-Path $destRootFull 'manifest.json'
 $manifest | ConvertTo-Json -Depth 4 | Set-Content -Encoding UTF8 -LiteralPath $manifestPath
 
+# Write siphon-manifest.json summary to DestRoot (base directory, not stamped subdir)
+$siphonManifest = [pscustomobject]@{
+    run_at = (Get-Date).ToString('o')
+    stamp = $stamp
+    dest = $destRootFull
+    file_count = $manifest.Count
+    files = $manifest
+}
+$siphonManifestPath = Join-Path $destBase 'siphon-manifest.json'
+$siphonManifest | ConvertTo-Json -Depth 5 | Set-Content -Encoding UTF8 -LiteralPath $siphonManifestPath
+
 Write-Host "Siphoned files: $($manifest.Count)" -ForegroundColor Green
 Write-Host "Dest: $destRootFull" -ForegroundColor DarkGray
 Write-Host "Manifest: $manifestPath" -ForegroundColor DarkGray
+Write-Host "siphon-manifest.json: $siphonManifestPath" -ForegroundColor DarkGray
 
