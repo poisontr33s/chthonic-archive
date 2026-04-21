@@ -31,6 +31,11 @@ from collections import defaultdict
 from datetime import datetime, timezone
 from pathlib import Path
 
+# sys.path guard: ensure repo root is importable regardless of invocation CWD
+_REPO_ROOT_CANDIDATE = Path(__file__).resolve().parent.parent
+if str(_REPO_ROOT_CANDIDATE) not in sys.path:
+    sys.path.insert(0, str(_REPO_ROOT_CANDIDATE))
+
 from scripts.lib.shared import configure_utf8_output, find_repo_root, setup_logging
 
 # =============================================================================
@@ -512,6 +517,19 @@ def generate_snapshot(repo_root: Path, audit_result: dict, target_lane: str) -> 
     return latest_path
 
 
+def _new_gitignore_patterns(repo_root: Path, fix_recs: dict) -> list[str]:
+    """Return gitignore patterns from fix_recs that are not already in .gitignore."""
+    gitignore_path = repo_root / ".gitignore"
+    existing: set[str] = set()
+    if gitignore_path.exists():
+        existing = {
+            ln.strip()
+            for ln in gitignore_path.read_text(encoding="utf-8").splitlines()
+            if ln.strip() and not ln.strip().startswith("#")
+        }
+    return [p for p in fix_recs.get("gitignore_additions", []) if p not in existing]
+
+
 def apply_ghost_cleanup(repo_root: Path, ghost_paths: list[str], dry_run: bool) -> int:
     """Remove ghost entries from git index."""
     if not ghost_paths:
@@ -551,7 +569,17 @@ def main():
     parser = argparse.ArgumentParser(
         description="SCM Triage — Source Control Noise Reduction & Structurization"
     )
-    parser.add_argument("--fix", action="store_true", help="Apply noise fixes")
+    parser.add_argument("--fix", action="store_true", help="Apply noise fixes (ghost cleanup; show gitignore candidates)")
+    parser.add_argument(
+        "--apply",
+        action="store_true",
+        help="Write new gitignore entries to .gitignore (prompts for confirmation unless --dry-run)",
+    )
+    parser.add_argument(
+        "--preview-gitignore",
+        action="store_true",
+        help="Print new .gitignore entries that would be added without writing anything",
+    )
     parser.add_argument("--plan", action="store_true", help="Generate migration plan")
     parser.add_argument("--snapshot", action="store_true",
                         help="Write pre-nuke clarity snapshot to mailbox")
@@ -583,18 +611,52 @@ def main():
         return
 
     # Phase 2: Fix (if requested)
-    if args.fix:
+    if args.fix or args.apply or args.preview_gitignore:
         fix_recs = generate_fix_recommendations(audit_result)
-        if fix_recs["ghost_removals"]:
-            removed = apply_ghost_cleanup(
-                repo_root, fix_recs["ghost_removals"], args.dry_run
-            )
-            print(f"  Ghost cleanup: {removed} entries removed from index")
 
-        if fix_recs["gitignore_additions"]:
-            print(f"\n  Recommended .gitignore additions:")
-            for pattern in fix_recs["gitignore_additions"]:
-                print(f"    + {pattern}")
+        # --preview-gitignore: show candidates, no write
+        if args.preview_gitignore:
+            new_patterns = _new_gitignore_patterns(repo_root, fix_recs)
+            if new_patterns:
+                print(f"  .gitignore — {len(new_patterns)} new pattern(s) would be added:")
+                for p in new_patterns:
+                    print(f"    + {p}")
+            else:
+                print("  .gitignore — no new patterns needed.")
+
+        if args.fix:
+            if fix_recs["ghost_removals"]:
+                removed = apply_ghost_cleanup(
+                    repo_root, fix_recs["ghost_removals"], args.dry_run
+                )
+                print(f"  Ghost cleanup: {removed} entries removed from index")
+
+            if fix_recs["gitignore_additions"]:
+                print(f"\n  Recommended .gitignore additions:")
+                for pattern in fix_recs["gitignore_additions"]:
+                    print(f"    + {pattern}")
+
+        if args.apply:
+            new_patterns = _new_gitignore_patterns(repo_root, fix_recs)
+            if not new_patterns:
+                print("  .gitignore — already up-to-date, nothing to apply.")
+            elif args.dry_run:
+                print(f"  [dry-run] Would append {len(new_patterns)} pattern(s) to .gitignore:")
+                for p in new_patterns:
+                    print(f"    + {p}")
+            else:
+                print(f"  About to append {len(new_patterns)} pattern(s) to .gitignore:")
+                for p in new_patterns:
+                    print(f"    + {p}")
+                try:
+                    confirm = input("  Apply? [y/N] ").strip().lower()
+                except EOFError:
+                    confirm = ""
+                if confirm == "y":
+                    suppress_noise(repo_root, fix_recs, dry_run=False)
+                    print("  .gitignore updated.")
+                else:
+                    print("  Skipped — nothing written.")
     else:
         fix_recs = generate_fix_recommendations(audit_result)
 
