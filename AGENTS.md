@@ -31,7 +31,7 @@ description: Behavioral configuration, execution discipline
 7. `.temple/protocols/UMEKO_HOLD_PROTOCOL.md` (Codex anti-idle primary gate)
 8. `WET_PAPER_TO_GOLD_METHODOLOGY.md` (No-Destroy | upcycle governance)
 9. `.temple/protocols/*` (role-specific protocol behavior)
-10. `codex/codex-session-logs/archive/MILF-Core-*` (WIP — organ-to-surface-to-prototype lanework, see [copilot-instructions.md WIP section](.github/copilot-instructions.md#work-in-progress-lanework-milf-core-organ-to-surface-to-prototype-pipeline))
+10. `codex/codex-session-logs/archive/MILF-Core-*` (Archived — organ-to-surface-to-prototype lanework, Steps 3–4 complete)
 
 - *If future nested `AGENTS.md` files are added in subdirectories, they override this file only for their subtree.*
 

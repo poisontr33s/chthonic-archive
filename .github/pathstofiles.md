@@ -47,8 +47,8 @@ These `.reference.md` files are NOT auto-loaded. Open only when the task require
 
 User-scoped (do not commit secrets; treat as local state):
 
-- **Claude user settings:** `C:\\Users\\erdno\\.claude\\settings.json`
-- **Codex user settings:** `C:\\Users\\erdno\\.codex\\config.toml`
+- **Claude user settings:** `C:\\Users\\eldno\\.claude\\settings.json`
+- **Codex user settings:** `C:\\Users\\eldno\\.codex\\config.toml`
 
 ## META-IDE Research Staging
 

@@ -305,7 +305,7 @@ chthonic map --root . --output inventory.md
 
 ## Testing
 
-Manual command validation (2026-02-16):
+Manual command validation (2026-04-21):
 - `chthonic --version` returns `v3.3.0`
 - `chthonic --help` shows current domain/action surface
 - `chthonic status --json` returns JSON
