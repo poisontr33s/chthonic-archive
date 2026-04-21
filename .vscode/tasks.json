@@ -801,6 +801,7 @@
 				"--strict"
 			],
 			"group": "test",
+			"detail": "Regenerates docs/design/SFS_SLABSTONE_BASELINE.md. Exit codes: 0=pass, 1=broken canon links or missing core assets (--strict). Use --emit-json FILE to also write JSON payload. Use --json for JSON-only stdout.",
 			"presentation": {
 				"reveal": "always",
 				"panel": "shared",

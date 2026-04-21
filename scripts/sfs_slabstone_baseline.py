@@ -104,7 +104,15 @@ def load_json(path: Path) -> Any:
 
 
 def short_hash(path: Path) -> str:
-    digest = hashlib.sha256(path.read_bytes()).hexdigest()
+    raw = path.read_bytes()
+    # Normalize CRLF→LF for text-like files so hashes are platform-independent
+    if path.suffix.lower() not in {".png", ".woff", ".woff2", ".ttf", ".otf", ".svg"}:
+        try:
+            normalized = raw.decode("utf-8").replace("\r\n", "\n").replace("\r", "\n").encode("utf-8")
+            raw = normalized
+        except UnicodeDecodeError:
+            pass  # binary file — use raw bytes
+    digest = hashlib.sha256(raw).hexdigest()
     return digest[:12]
 
 
@@ -573,7 +581,14 @@ def main() -> int:
     parser = argparse.ArgumentParser(
         description="Generate the SFS slabstone baseline from canon docs and live extension assets."
     )
-    parser.add_argument("--json", action="store_true", help="Emit JSON to stdout.")
+    parser.add_argument("--json", action="store_true", help="Emit JSON payload to stdout.")
+    parser.add_argument(
+        "--emit-json",
+        metavar="FILE",
+        type=Path,
+        default=None,
+        help="Write JSON payload to FILE instead of stdout (default: docs/design/SFS_SLABSTONE_BASELINE.json when flag is bare).",
+    )
     parser.add_argument(
         "--output",
         type=Path,
@@ -593,11 +608,25 @@ def main() -> int:
 
     payload = build_payload()
 
+    # --- JSON output branch ---
     if args.json:
-        rendered = json.dumps(payload, indent=2, ensure_ascii=False)
-    else:
-        render_target = args.output if args.output else OUTPUT_PATH
-        rendered = render_markdown(payload, output_path=render_target)
+        print(json.dumps(payload, indent=2, ensure_ascii=False))
+        if args.strict:
+            has_missing_links = bool(payload["missing_links"])
+            has_missing_core_assets = any(not row["exists"] for row in payload["core_assets"])
+            return 1 if (has_missing_links or has_missing_core_assets) else 0
+        return 0
+
+    if args.emit_json is not None:
+        json_target: Path = args.emit_json if str(args.emit_json) != "-" else REPO_ROOT / "docs" / "design" / "SFS_SLABSTONE_BASELINE.json"
+        json_target.parent.mkdir(parents=True, exist_ok=True)
+        json_payload = json.dumps(payload, indent=2, ensure_ascii=False)
+        json_target.write_text(json_payload + "\n", encoding="utf-8")
+        print(f"[emit-json] wrote {repo_rel(json_target)}")
+
+    # --- Markdown output branch ---
+    render_target = args.output if args.output else OUTPUT_PATH
+    rendered = render_markdown(payload, output_path=render_target)
 
     output_path = args.output
     if args.report and output_path is None:
@@ -606,9 +635,12 @@ def main() -> int:
     if output_path:
         output_path.parent.mkdir(parents=True, exist_ok=True)
         output_path.write_text(rendered if rendered.endswith("\n") else rendered + "\n", encoding="utf-8")
-    else:
+    elif not args.emit_json:
         print(rendered)
 
+    # Exit codes:
+    #   0 — success (no --strict issues found)
+    #   1 — strict mode: broken canon links OR missing core assets
     if args.strict:
         has_missing_links = bool(payload["missing_links"])
         has_missing_core_assets = any(not row["exists"] for row in payload["core_assets"])
