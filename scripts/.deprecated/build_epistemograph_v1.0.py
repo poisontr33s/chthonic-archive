@@ -2,7 +2,7 @@
 #-*- coding: utf-8 -*-
 
 # ╔════════════════════════════════════════════════════════════════════════════
-# ║ THE DECORATOR'S BLESSING: build_epistemograph_v1.1.py
+# ║ THE DECORATOR'S BLESSING: build_epistemograph.py
 # ╠════════════════════════════════════════════════════════════════════════════
 # ║ Wedjat-Quipu Spectrum: WHITE
 # ║ Temple-Ayllu Zone: 🌿 THE GARDEN
@@ -11,22 +11,19 @@
 # ╚════════════════════════════════════════════════════════════════════════════
 
 """
-Epistemograph Hybrid Scanner - PATH NORMALIZATION FIX
-Version: 1.1.1
+Epistemograph Hybrid Scanner
+Version: 1.0.0
 Date: 2026-01-04
 
-CRITICAL FIXES APPLIED:
-1. SSOT Bootstrap Fix: SSOT files get sha256 + metadata in Phase 1, never subject to gap validation
-2. Topology Ingestion Fix: DCRP edges now properly inserted into dependencies table
-3. Authority Precedence Fix: Categorical governance enforcement via score floors
-4. Path Normalization Fix: GOVERNANCE_FILES uses canonical paths; exact match (not substring) for SSOT detection
+Implements approved scanner constraints from scanner_approval.md.
+Respects DCRP authority, fills gaps, extracts signals, computes topology.
 
-Usage: 
-uv run python build_epistemograph.py --root "C:\\\\Users\\\\eldno\\\\chthonic-archive"
+Usage:
+    uv run python build_epistemograph.py --root "C:/Users/eldno/chthonic-archive"
 
-@SID:           TOOL_BUILD_EPISTEMOGRAPH_V1.1_V1
+@SID:           TOOL_BUILD_EPISTEMOGRAPH_V1
 @Shabti:        CLI Script
-@Purpose:       Script logic for build_epistemograph_v1.1.py.
+@Purpose:       Script logic for build_epistemograph.py.
 """
 
 import os
@@ -44,10 +41,10 @@ sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 from scripts.lib.ssot_paths import SSOT_POINTER
 
 # ============================================================================
-# CONSTANTS
+# CONSTANTS (from approval document)
 # ============================================================================
 
-VERSION = "1.1.1"
+VERSION = "1.0.0"
 
 PROTECTED_FIELDS = [
     'dcrp_spectral_freq',
@@ -71,174 +68,158 @@ SKIP_DIRECTORIES = {
 }
 
 TEXT_EXTENSIONS = {
-    '.md', '.py', '.rs', '.toml', '.json', '.yaml', '.yml',
-    '.txt', '.rst', '.sql', '.sh', '.ps1', '.ts', '.tsx',
-    '.js', '.jsx', '.csv'
+    '.md', '.py', '.json', '.yaml', '.yml', '.txt', '.rst',
+    '.toml', '.csv', '.rs', '.java', '.ts', '.tsx', '.js', '.jsx'
 }
 
-GOVERNANCE_FILES = [
+REPO_SPECIFIC = {
+    'ssot_marker', 'tier_marker', 'triumvirate',
+    'protocol_ref', 'ankh_marker'
+}
+
+SIGNAL_PATTERNS = {
+    'ssot_marker': re.compile(r'\b(SSOT|Codex-Brahmanica-Perfectus|FA[¹²³⁴⁵])\b'),
+    'tier_marker': re.compile(r'\b(Tier\s*[0-9.]+|T-[0-9]+)\b'),
+    'triumvirate': re.compile(r'\b(CRC-AS|CRC-GAR|CRC-MEDAT|Orackla|Umeko|Lysandra)\b'),
+    'protocol_ref': re.compile(r'\b(DCRP|TPEF|T³-MΨ|MMPS|MSP-RSG)\b'),
+    'ankh_marker': re.compile(r'\b(ANKH|Ankhological|⚓)\b'),
+    'contract': re.compile(r'\b(MUST|SHALL|REQUIRED|MANDATORY|FORBIDDEN)\b', re.I),
+    'agent': re.compile(r'\b(TODO|FIXME|HACK|NOTE|WARNING|DEPRECATED)\b', re.I),
+}
+
+GOVERNANCE_FILES = {
     SSOT_POINTER,
-    'dumpster-dive/protocols/CONSOLIDATED_OPERATIONAL_INSTRUCTIONS.md',
-    'CROSS_REFERENCE_TRIPTYCH.md',
-    'scripts/scanner_approval.md'
-]
+    'ANKHOLOGY.md',
+    'ANKH_README.md',
+}
 
 MAX_PREVIEW_BYTES = 8192
-
-# Repo-specific signal patterns
-SIGNAL_PATTERNS = {
-    'ssot_marker': re.compile(r'\bSSOT\b|Single.?Source.?of.?Truth', re.IGNORECASE),
-    'tier_marker': re.compile(r'Tier\s*[0-9]+|T-[0-9]+', re.IGNORECASE),
-    'triumvirate': re.compile(r'\b(Orackla|Umeko|Lysandra|CRC-AS|CRC-GAR|CRC-MEDAT)\b'),
-    'protocol_ref': re.compile(r'Protocol|Prt\.|FA[0-9]+|DAFP|MSP-RSG|TPEF'),
-    'ankh_marker': re.compile(r'\bANKH\b|Ankhological'),
-    'cross_ref': re.compile(r'Section\s+[IVX]+|\u00a7\s*[0-9]+'),
-}
+MAX_TEXT_SIZE = 1_048_576  # 1MB
 
 # ============================================================================
 # UTILITIES
 # ============================================================================
 
 def log(msg: str, level: str = "INFO"):
-    """Thread-safe logging with Unicode handling."""
-    timestamp = time.strftime('%H:%M:%S')
-    try:
-        print(f"[{timestamp}] [{level}] {msg}", flush=True)
-    except UnicodeEncodeError:
-        # Fallback for Windows console encoding issues
-        safe_msg = msg.encode('ascii', 'replace').decode('ascii')
-        print(f"[{timestamp}] [{level}] {safe_msg}", flush=True)
+    """Simple logging."""
+    timestamp = time.strftime('%Y-%m-%d %H:%M:%S')
+    print(f"[{timestamp}] [{level}] {msg}")
 
-def compute_sha256(filepath: Path) -> str:
-    """Compute file hash."""
+def compute_sha256(path: Path) -> str:
+    """Compute SHA256 hash of file."""
     h = hashlib.sha256()
     try:
-        with open(filepath, 'rb') as f:
+        with open(path, 'rb') as f:
             for chunk in iter(lambda: f.read(8192), b''):
                 h.update(chunk)
         return h.hexdigest()
     except Exception as e:
-        log(f"Hash failed for {filepath}: {e}", "WARN")
-        return "hash_error"
+        log(f"Hash error for {path}: {e}", "WARN")
+        return "error_" + str(hash(str(path)))
 
-def normalize_path(p: str) -> str:
-    """Normalize path separators to forward slash."""
-    return p.replace('\\', '/')
-
-def sample_content(filepath: Path, max_bytes: int = MAX_PREVIEW_BYTES) -> Tuple[str, str]:
+def sample_content(path: Path, max_bytes: int = MAX_PREVIEW_BYTES) -> Tuple[str, str]:
     """
-    Sample file content conservatively.
-    Returns (content, method).
-    Method must be one of: 'none', 'head_tail', 'dcrp', 'skipped_large'
+    Conservative content sampling per approval constraints.
+    
+    Returns: (content_text, sample_method)
+    Schema-compliant methods: 'none', 'head_tail', 'dcrp', 'skipped_large'
     """
     try:
-        size = filepath.stat().st_size
+        size = path.stat().st_size
+        
         if size == 0:
             return "", "none"
         
-        if filepath.suffix.lower() not in TEXT_EXTENSIONS:
-            return "", "none"  # Binary files get 'none'
+        if size > MAX_TEXT_SIZE:
+            # Check allowlist for governance files
+            if str(path).replace('\\', '/') not in GOVERNANCE_FILES:
+                return "[SKIPPED_LARGE]", "skipped_large"
         
-        if size > 1_048_576:  # Skip >1MB
-            return "", "skipped_large"
+        if size <= max_bytes:
+            with open(path, 'rb') as f:
+                data = f.read()
+            try:
+                text = data.decode('utf-8')
+                return text, "head_tail"  # Changed from "full" to "head_tail"
+            except:
+                text = data.decode('latin-1', errors='replace')
+                return text, "head_tail"  # Changed from "full_fallback"
         
-        # Read with fallback encoding
-        try:
-            content = filepath.read_text(encoding='utf-8')
-        except UnicodeDecodeError:
-            content = filepath.read_text(encoding='latin-1', errors='replace')
+        # Head + tail
+        with open(path, 'rb') as f:
+            head = f.read(4096)
+            f.seek(max(0, size - 4096))
+            tail = f.read(4096)
         
-        if len(content) <= max_bytes:
-            return content, "head_tail"  # Full content treated as head_tail
-        else:
-            # Head + tail
-            lines = content.splitlines()
-            if len(lines) <= 100:
-                return content[:max_bytes], "head_tail"
-            head = '\n'.join(lines[:50])
-            tail = '\n'.join(lines[-50:])
-            return head + "\n\n[...MIDDLE OMITTED...]\n\n" + tail, "head_tail"
-    
+        head_text = head.decode('utf-8', errors='replace')
+        tail_text = tail.decode('utf-8', errors='replace')
+        
+        return f"{head_text}\n\n--TAIL--\n\n{tail_text}", "head_tail"
+        
     except Exception as e:
-        log(f"Sample failed for {filepath}: {e}", "WARN")
-        return "", "none"
+        log(f"Content read error for {path}: {e}", "WARN")
+        return f"[ERROR: {e}]", "none"  # Changed from "error"
 
-def detect_signals(content: str, filepath: str) -> List[Tuple[str, int, str, str]]:
+def detect_signals(text: str, file_path: str) -> List[Tuple[str, int, str, float]]:
     """
-    Extract signals from content.
-    Returns [(category, line_num, snippet, confidence), ...]
-    """
-    signals = []
-    if not content:
-        return signals
+    Extract epistemic signals from text.
     
-    lines = content.splitlines()
-    for i, line in enumerate(lines, start=1):
+    Returns: [(category, line_num, snippet, confidence), ...]
+    """
+    if not text or text.startswith("["):
+        return []
+    
+    signals = []
+    for i, line in enumerate(text.splitlines(), 1):
         for category, pattern in SIGNAL_PATTERNS.items():
             if pattern.search(line):
+                confidence = 1.0 if category in REPO_SPECIFIC else 0.8
                 snippet = line.strip()[:600]
-                confidence = "high" if category in ('ssot_marker', 'tier_marker') else "medium"
                 signals.append((category, i, snippet, confidence))
     
     return signals
 
 # ============================================================================
-# PHASE 1: DCRP INGESTION (FIXED)
+# PHASE 1: DCRP INGESTION
 # ============================================================================
 
 def phase1_ingest_dcrp(db: sqlite3.Connection, root: Path):
     """
-    Ingest DCRP dependency graph as Tier-0 authority.
-    
-    CRITICAL FIX 1: SSOT Bootstrap
-    - SSOT files immediately get real sha256 and size
-    - Never marked as placeholder
-    - Never subject to gap validation
-    
-    CRITICAL FIX 2: Topology Ingestion
-    - DCRP edges properly inserted into dependencies table
-    - Path normalization applied consistently
-    - Hard guard added: abort if edges present but table empty
+    Load dependency_graph_production.json as authoritative source.
+    Mark all data with source='dcrp'.
     """
-    log("PHASE 1: DCRP Ingestion (with SSOT bootstrap + topology fixes)")
+    log("PHASE 1: DCRP Ingestion")
     start = time.time()
     
     cur = db.cursor()
     
-    # Load DCRP graph
-    dcrp_path = root / "dependency_graph_production.json"
-    if not dcrp_path.exists():
-        log("DCRP file not found - skipping Phase 1", "WARN")
+    # Load graph
+    graph_path = root / "dependency_graph_production.json"
+    if not graph_path.exists():
+        log("dependency_graph_production.json not found - skipping DCRP ingestion", "WARN")
         return
     
-    with open(dcrp_path, 'r', encoding='utf-8') as f:
+    with open(graph_path, 'r', encoding='utf-8') as f:
         graph = json.load(f)
     
-    # Identify SSOT files for bootstrap (already normalized in constant definition)
-    ssot_files = set(GOVERNANCE_FILES)
+    # Record provenance
+    cur.execute("""
+        INSERT INTO artifact_provenance 
+        (artifact_name, artifact_path, sha256, size_bytes, authority_level)
+        VALUES (?, ?, ?, ?, 'primary')
+    """, (
+        'dependency_graph_production.json',
+        str(graph_path.relative_to(root)),
+        compute_sha256(graph_path),
+        graph_path.stat().st_size
+    ))
     
-    # Ingest nodes with SSOT bootstrap
+    # Ingest nodes
     node_count = 0
     for node in graph.get('nodes', []):
         try:
-            node_id = normalize_path(node['id'])
+            node_id = node['id']
             ext = '.' + node_id.split('.')[-1] if '.' in node_id else ''
-            
-            # CRITICAL FIX 1: Bootstrap SSOT files (exact match, not substring)
-            if node_id in ssot_files:
-                # Compute real metadata immediately
-                full_path = root / node_id.replace('/', os.sep)
-                if full_path.exists():
-                    real_sha = compute_sha256(full_path)
-                    real_size = full_path.stat().st_size
-                else:
-                    log(f"SSOT file {node_id} not found on disk", "WARN")
-                    real_sha = "ssot_missing"
-                    real_size = 0
-            else:
-                # Non-SSOT files use placeholder (will be updated in Phase 2)
-                real_sha = "dcrp_placeholder"
-                real_size = 0
             
             cur.execute("""
                 INSERT OR IGNORE INTO files 
@@ -248,8 +229,8 @@ def phase1_ingest_dcrp(db: sqlite3.Connection, root: Path):
                 VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, 'dcrp', 'dcrp')
             """, (
                 node_id,
-                real_sha,
-                real_size,
+                'dcrp_placeholder',  # Will update in gap phase if needed
+                0,  # Will update in gap phase
                 ext,
                 node.get('spectral_freq', 'UNKNOWN'),
                 node.get('role', 'UNKNOWN'),
@@ -261,19 +242,16 @@ def phase1_ingest_dcrp(db: sqlite3.Connection, root: Path):
         except Exception as e:
             log(f"Error ingesting node {node.get('id', 'unknown')}: {e}", "ERROR")
     
-    # CRITICAL FIX 2: Topology ingestion
+    # Ingest edges
     edge_count = 0
-    edges_in_graph = len(graph.get('edges', []))
-    
-    for edge in graph.get('edges', []):
+    for edge in graph.get('links', []):
         try:
-            source_path = normalize_path(edge['source'])
-            target_path = normalize_path(edge['target'])
+            source_path = edge['source']
+            target_path = edge['target']
             
             # Get source file_id
             source_row = cur.execute("SELECT id FROM files WHERE path = ?", (source_path,)).fetchone()
             if not source_row:
-                log(f"Edge source not found: {source_path}", "WARN")
                 continue
             source_id = source_row[0]
             
@@ -288,17 +266,12 @@ def phase1_ingest_dcrp(db: sqlite3.Connection, root: Path):
             """, (source_id, target_path, target_id))
             edge_count += 1
         except Exception as e:
-            log(f"Error ingesting edge {edge.get('source', '?')} -> {edge.get('target', '?')}: {e}", "ERROR")
+            log(f"Error ingesting edge: {e}", "ERROR")
     
-    # HARD GUARD: Verify topology ingestion
-    if edges_in_graph > 0 and edge_count == 0:
-        raise RuntimeError(f"TOPOLOGY INGESTION FAILURE: {edges_in_graph} edges in graph but 0 inserted")
+    # db.commit() removed - single transaction
     
     elapsed = time.time() - start
     log(f"PHASE 1 COMPLETE: {node_count} files, {edge_count} edges in {elapsed:.1f}s")
-    
-    if edge_count < edges_in_graph:
-        log(f"WARNING: {edges_in_graph - edge_count} edges failed to insert", "WARN")
 
 # ============================================================================
 # PHASE 2: GAP DETECTION
@@ -308,8 +281,6 @@ def phase2_detect_gaps(db: sqlite3.Connection, root: Path) -> List[Path]:
     """
     Find files not in DCRP coverage.
     Update missing metadata (sha256, size) for DCRP files.
-    
-    NOTE: SSOT files already have real metadata from Phase 1.
     """
     log("PHASE 2: Gap Detection")
     start = time.time()
@@ -329,7 +300,7 @@ def phase2_detect_gaps(db: sqlite3.Connection, root: Path) -> List[Path]:
         
         for filename in filenames:
             filepath = Path(dirpath) / filename
-            relpath = normalize_path(str(filepath.relative_to(root)))
+            relpath = str(filepath.relative_to(root)).replace('\\', '/')
             
             # Skip excluded extensions
             if filepath.suffix.lower() in SKIP_EXTENSIONS:
@@ -354,6 +325,8 @@ def phase2_detect_gaps(db: sqlite3.Connection, root: Path) -> List[Path]:
                         WHERE id = ?
                     """, (compute_sha256(filepath), filepath.stat().st_size, file_id))
                     updated_count += 1
+    
+    # db.commit() removed - single transaction
     
     elapsed = time.time() - start
     log(f"PHASE 2 COMPLETE: {len(gap_files)} gaps, {updated_count} updated in {elapsed:.1f}s")
@@ -388,7 +361,7 @@ def phase3_extract_signals(db: sqlite3.Connection, root: Path, gap_files: List[P
     total_signals = 0
     for filepath in files_to_scan:
         try:
-            relpath = normalize_path(str(filepath.relative_to(root)))
+            relpath = str(filepath.relative_to(root)).replace('\\', '/')
             
             # Get or create file_id
             row = cur.execute("SELECT id FROM files WHERE path = ?", (relpath,)).fetchone()
@@ -428,6 +401,8 @@ def phase3_extract_signals(db: sqlite3.Connection, root: Path, gap_files: List[P
         except Exception as e:
             log(f"Error processing {filepath}: {e}", "ERROR")
     
+    # db.commit() removed - single transaction
+    
     elapsed = time.time() - start
     log(f"PHASE 3 COMPLETE: {total_signals} signals from {len(files_to_scan)} files in {elapsed:.1f}s")
 
@@ -444,53 +419,85 @@ def phase4_compute_topology(db: sqlite3.Connection):
     
     cur = db.cursor()
     
-    # Verify dependencies exist
-    dep_count = cur.execute("SELECT COUNT(*) FROM dependencies").fetchone()[0]
-    if dep_count == 0:
-        log("No dependencies found - topology will be empty", "WARN")
+    # Initialize topology_nodes
+    cur.execute("""
+        INSERT OR IGNORE INTO topology_nodes (file_id)
+        SELECT id FROM files
+    """)
     
-    # Compute degree for each file
-    for row in cur.execute("SELECT id FROM files").fetchall():
-        file_id = row[0]
+    # Compute in_degree
+    cur.execute("""
+        UPDATE topology_nodes
+        SET in_degree = (
+            SELECT COUNT(*) 
+            FROM dependencies 
+            WHERE target_file_id = topology_nodes.file_id
+        )
+    """)
+    
+    # Compute out_degree
+    cur.execute("""
+        UPDATE topology_nodes
+        SET out_degree = (
+            SELECT COUNT(*) 
+            FROM dependencies 
+            WHERE source_file_id = topology_nodes.file_id
+        )
+    """)
+    
+    # Compute total_degree
+    cur.execute("""
+        UPDATE topology_nodes
+        SET total_degree = in_degree + out_degree
+    """)
+    
+    # Mark hubs (top 10%)
+    total_nodes = cur.execute("SELECT COUNT(*) FROM topology_nodes").fetchone()[0]
+    if total_nodes > 0:
+        threshold_row = cur.execute("""
+            SELECT total_degree 
+            FROM topology_nodes 
+            ORDER BY total_degree DESC 
+            LIMIT 1 OFFSET ?
+        """, (total_nodes // 10,)).fetchone()
         
-        in_degree = cur.execute("""
-            SELECT COUNT(*) FROM dependencies WHERE target_file_id = ?
-        """, (file_id,)).fetchone()[0]
-        
-        out_degree = cur.execute("""
-            SELECT COUNT(*) FROM dependencies WHERE source_file_id = ?
-        """, (file_id,)).fetchone()[0]
-        
-        total_degree = in_degree + out_degree
-        
-        cur.execute("""
-            INSERT OR REPLACE INTO topology_nodes 
-            (file_id, in_degree, out_degree, total_degree)
-            VALUES (?, ?, ?, ?)
-        """, (file_id, in_degree, out_degree, total_degree))
+        if threshold_row:
+            threshold = threshold_row[0]
+            cur.execute("""
+                UPDATE topology_nodes
+                SET is_hub = 1
+                WHERE total_degree >= ?
+            """, (threshold,))
+    
+    # Mark orphans
+    cur.execute("""
+        UPDATE topology_nodes
+        SET is_orphan = 1
+        WHERE total_degree = 0
+    """)
+    
+    # db.commit() removed - single transaction
+    
+    hub_count = cur.execute("SELECT COUNT(*) FROM topology_nodes WHERE is_hub = 1").fetchone()[0]
+    orphan_count = cur.execute("SELECT COUNT(*) FROM topology_nodes WHERE is_orphan = 1").fetchone()[0]
     
     elapsed = time.time() - start
-    log(f"PHASE 4 COMPLETE: Topology computed in {elapsed:.1f}s")
+    log(f"PHASE 4 COMPLETE: {hub_count} hubs, {orphan_count} orphans in {elapsed:.1f}s")
 
 # ============================================================================
-# PHASE 5: SCORING (FIXED)
+# PHASE 5: SCORING
 # ============================================================================
 
 def phase5_score_files(db: sqlite3.Connection):
     """
-    Compute epistemic scores with CATEGORICAL governance enforcement.
-    
-    CRITICAL FIX 3: Authority Precedence
-    - SSOT file gets rank = 1 (hard-set, not computed)
-    - DCRP files get floor score of 0.9 * theoretical max
-    - gap_scan files capped at max rank 50
+    Compute epistemic scores per approval weights.
     """
-    log("PHASE 5: Scoring (with categorical authority enforcement)")
+    log("PHASE 5: Scoring")
     start = time.time()
     
     cur = db.cursor()
     
-    # Get SSOT file_id
+    # Get SSOT file_id for lineage computation
     ssot_row = cur.execute(f"""
         SELECT id FROM files 
         WHERE path LIKE '%{SSOT_POINTER}'
@@ -499,15 +506,9 @@ def phase5_score_files(db: sqlite3.Connection):
     """).fetchone()
     ssot_id = ssot_row[0] if ssot_row else None
     
-    if not ssot_id:
-        log("WARNING: SSOT file not found", "WARN")
-    
-    # Compute component scores for all files
-    max_possible_score = 0.0
-    file_scores = []
-    
-    for row in cur.execute("SELECT id, path, source FROM files").fetchall():
-        file_id, path, source = row
+    # For each file, compute score components
+    for row in cur.execute("SELECT id, path FROM files").fetchall():
+        file_id, path = row
         
         # Signal density
         signal_count = cur.execute("""
@@ -547,58 +548,25 @@ def phase5_score_files(db: sqlite3.Connection):
         else:
             governance_weight = 0.0
         
-        # Lineage depth
+        # Lineage depth (simplified: 1.0 if SSOT, 0.5 if references SSOT, 0.0 otherwise)
         if file_id == ssot_id:
             lineage_depth = 1.0
         else:
+            # Check if references SSOT
             has_ssot_signal = cur.execute("""
                 SELECT COUNT(*) FROM signals 
                 WHERE file_id = ? AND category = 'ssot_marker'
             """, (file_id,)).fetchone()[0]
             lineage_depth = 0.5 if has_ssot_signal > 0 else 0.0
         
-        # Compute raw epistemic score
-        raw_score = (
-            0.30 * signal_density +
-            0.25 * centrality +
-            0.30 * governance_weight +
-            0.15 * lineage_depth
-        )
-        
-        file_scores.append((file_id, source, raw_score, signal_density, centrality, 
-                           governance_weight, lineage_depth))
-        max_possible_score = max(max_possible_score, raw_score)
-    
-    # CRITICAL FIX 3: Apply categorical authority via component score boosting
-    # Note: epistemic_score is GENERATED column, so we boost components instead
-    for file_id, source, raw_score, sd, cent, gw, ld in file_scores:
-        if file_id == ssot_id:
-            # SSOT: Boost all components to maximum
-            sd_adj = 1.0
-            cent_adj = 1.0
-            gw_adj = 1.0
-            ld_adj = 1.0
-        elif source == 'dcrp':
-            # DCRP files: Floor governance_weight at 0.9
-            sd_adj = sd
-            cent_adj = cent
-            gw_adj = max(gw, 0.9)
-            ld_adj = ld
-        elif source == 'gap_scan':
-            # Gap scan: Cap governance_weight at 0.1
-            sd_adj = sd
-            cent_adj = cent
-            gw_adj = min(gw, 0.1)
-            ld_adj = ld
-        else:
-            sd_adj, cent_adj, gw_adj, ld_adj = sd, cent, gw, ld
-        
+        # Insert score
         cur.execute("""
             INSERT OR REPLACE INTO file_scores 
-            (file_id, signal_density, topology_centrality, governance_weight, 
-             lineage_depth)
+            (file_id, signal_density, topology_centrality, governance_weight, lineage_depth)
             VALUES (?, ?, ?, ?, ?)
-        """, (file_id, sd_adj, cent_adj, gw_adj, ld_adj))
+        """, (file_id, signal_density, centrality, governance_weight, lineage_depth))
+    
+    # db.commit() removed - single transaction
     
     # Compute ranks
     cur.execute("""
@@ -610,16 +578,7 @@ def phase5_score_files(db: sqlite3.Connection):
         ) + 1
     """)
     
-    # Verify SSOT rank
-    if ssot_id:
-        ssot_rank = cur.execute("""
-            SELECT rank FROM file_scores WHERE file_id = ?
-        """, (ssot_id,)).fetchone()[0]
-        
-        if ssot_rank != 1:
-            log(f"ERROR: SSOT rank is {ssot_rank}, not 1!", "ERROR")
-        else:
-            log("✓ SSOT rank verification passed (rank = 1)")
+    # db.commit() removed - single transaction
     
     elapsed = time.time() - start
     log(f"PHASE 5 COMPLETE: Scores computed in {elapsed:.1f}s")
@@ -628,16 +587,16 @@ def phase5_score_files(db: sqlite3.Connection):
 # MAIN SCANNER
 # ============================================================================
 
-def run_scanner(root: Path, db_path: Path, args_schema_path: Optional[str] = None):
+def run_scanner(root: Path, db_path: Path):
     """Execute all scanner phases with transaction safety."""
     log(f"Starting epistemograph scanner v{VERSION}")
     log(f"Root: {root}")
     log(f"Output: {db_path}")
     
     # Initialize database with schema
-    schema_path = Path(args_schema_path).resolve() if args_schema_path else root / "scripts" / "epistemograph_schema.sql"
+    schema_path = root / "scripts" / "epistemograph_schema.sql"
     if not schema_path.exists():
-        log(f"Schema file not found: {schema_path}", "ERROR")
+        log("Schema file not found", "ERROR")
         return
     
     db = sqlite3.connect(str(db_path))
@@ -653,60 +612,18 @@ def run_scanner(root: Path, db_path: Path, args_schema_path: Optional[str] = Non
                 ("scanner_version", VERSION))
     cur.execute("INSERT OR REPLACE INTO metadata (key, value) VALUES (?, ?)", 
                 ("root_path", str(root)))
-    cur.execute("INSERT OR REPLACE INTO metadata (key, value) VALUES (?, ?)", 
-                ("fixes_applied", "ssot_bootstrap,topology_ingestion,authority_precedence,path_normalization"))
-    
-    # CRITICAL: Compute SSOT sha256 BEFORE Phase 1 (satisfies schema trigger)
-    ssot_primary = root / SSOT_POINTER
-    if ssot_primary.exists():
-        ssot_hash = compute_sha256(ssot_primary)
-        cur.execute("INSERT OR REPLACE INTO metadata (key, value) VALUES (?, ?)", 
-                    ("ssot_sha256", ssot_hash))
-        log(f"SSOT hash pre-computed: {ssot_hash[:16]}...")
-    else:
-        log("WARNING: Primary SSOT file not found", "WARN")
-    
     db.commit()
     
     try:
+        # Don't use explicit BEGIN - autocommit off by default
+        
         phase1_ingest_dcrp(db, root)
-        
-        # CRITICAL ASSERTION: Verify SSOT bootstrap succeeded
-        cur = db.cursor()
-        ssot_verified_count = 0
-        for ssot_path in GOVERNANCE_FILES:
-            ssot_row = cur.execute("""
-                SELECT id, sha256, size_bytes, source 
-                FROM files 
-                WHERE path = ?
-            """, (ssot_path,)).fetchone()
-            
-            if not ssot_row:
-                # File may not be in DCRP if created after DCRP snapshot - this is acceptable
-                log(f"SSOT file not in DCRP (will be added in gap scan): {ssot_path}", "WARN")
-                continue
-            
-            file_id, sha, size, source = ssot_row
-            if sha in ('dcrp_placeholder', 'hash_error', 'ssot_missing'):
-                raise RuntimeError(f"SSOT BOOTSTRAP FAILURE: {ssot_path} has invalid sha256={sha}")
-            
-            if source != 'dcrp':
-                raise RuntimeError(f"SSOT BOOTSTRAP FAILURE: {ssot_path} has source={source} (expected 'dcrp')")
-            
-            log(f"✓ SSOT verified: {ssot_path} (sha={sha[:8]}...)")
-            ssot_verified_count += 1
-        
-        if ssot_verified_count == 0:
-            raise RuntimeError("SSOT BOOTSTRAP FAILURE: No SSOT files found in DCRP")
-        
-        log(f"SSOT bootstrap complete: {ssot_verified_count}/{len(GOVERNANCE_FILES)} files in DCRP")
-        
         gap_files = phase2_detect_gaps(db, root)
         phase3_extract_signals(db, root, gap_files)
         phase4_compute_topology(db)
         phase5_score_files(db)
         
-        db.commit()
+        db.commit()  # Single commit at end
         log("✅ Scanner completed successfully")
         
         # Print summary
@@ -717,22 +634,9 @@ def run_scanner(root: Path, db_path: Path, args_schema_path: Optional[str] = Non
         
         log(f"Summary: {total_files} files, {total_deps} deps, {total_signals} signals")
         
-        # Verify SSOT integrity
-        ssot_check = cur.execute(f"""
-            SELECT f.path, fs.rank, fs.epistemic_score
-            FROM files f
-            JOIN file_scores fs ON f.id = fs.file_id
-            WHERE f.path LIKE '%{SSOT_POINTER}'
-        """).fetchone()
-        
-        if ssot_check:
-            log(f"SSOT Verification: {ssot_check[0]} rank={ssot_check[1]} score={ssot_check[2]:.3f}")
-        
     except Exception as e:
         db.rollback()
         log(f"❌ Scanner failed: {e}", "ERROR")
-        import traceback
-        traceback.print_exc()
         raise
     finally:
         db.close()
@@ -742,21 +646,30 @@ def run_scanner(root: Path, db_path: Path, args_schema_path: Optional[str] = Non
 # ============================================================================
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="Epistemograph Hybrid Scanner v1.1 (FIXED)")
+    parser = argparse.ArgumentParser(description="Epistemograph Hybrid Scanner")
     parser.add_argument("--root", required=True, help="Repository root path")
-    parser.add_argument("--out", default="chthonic_epistemograph.sqlite",
+    parser.add_argument(
+        "--no-deprecation-warning",
+        action="store_true",
+        help="Suppress v1 deprecation warning",
+    )
+    parser.add_argument("--out", default="chthonic_epistemograph.sqlite", 
                        help="Output SQLite file")
-    parser.add_argument("--schema-path", default=None,
-                       help="Path to epistemograph_schema.sql (default: <root>/scripts/epistemograph_schema.sql)")
-
+    
     args = parser.parse_args()
+
+    if not args.no_deprecation_warning:
+        print(
+            "DEPRECATION: build_epistemograph.py (v1) is superseded by "
+            "build_epistemograph_v1.1.py. Use --no-deprecation-warning to suppress.",
+            file=sys.stderr,
+        )
 
     root = Path(args.root).resolve()
     db_path = Path(args.out).resolve()
-
+    
     if not root.exists():
         print(f"Error: Root path {root} does not exist")
         sys.exit(1)
-
-    run_scanner(root, db_path, args_schema_path=args.schema_path)
-
+    
+    run_scanner(root, db_path)

@@ -255,11 +255,11 @@ All 9 files share the same broken import (`from skill_tensor_common import ...` 
 ### Thin-shim conversions (retired scripts → delegates)
 | Script | Action |
 |--------|--------|
-| `scripts/patch-claude-insiders.ps1` | Move to `scripts/.deprecated/`; remove call from `update-claude-code.ps1`; update SCRIPTS_README |
-| `scripts/claude_healthcheck.ps1` | Thin shim → `& "$PSScriptRoot/claude_ide.ps1" health @args` |
-| `scripts/claude_insiders_selfheal.ps1` | Thin shim → `& "$PSScriptRoot/claude_ide.ps1" heal @args` |
-| `scripts/mcp_write_local.ps1` | Thin shim → `& "$PSScriptRoot/claude_ide.ps1" write-mcp @args`; remove from SCRIPTS_README active list |
-| `scripts/validate-triad-links.ps1` | Fix `erdno`→`eldno`; thin-wrap around `link_audit.py scan`; or move to `.deprecated/` |
+| `scripts/patch-claude-insiders.ps1` | ✅ Moved to `scripts/.deprecated/`; CLAUDE.md updated — `c9832116` |
+| `scripts/claude_healthcheck.ps1` | ✅ Thin shim → `& "$PSScriptRoot/claude_ide.ps1" health @args`; original → `.deprecated/` — `798150e1` |
+| `scripts/claude_insiders_selfheal.ps1` | ✅ Thin shim → `& "$PSScriptRoot/claude_ide.ps1" heal @args`; original → `.deprecated/` — `798150e1` |
+| `scripts/mcp_write_local.ps1` | ✅ Thin shim → `& "$PSScriptRoot/claude_ide.ps1" write-mcp @args`; original → `.deprecated/` — `798150e1` |
+| `scripts/validate-triad-links.ps1` | ✅ Thin-wrap → `uv run link_audit.py scan`; original → `.deprecated/` (typo already fixed T3) — `798150e1` |
 
 ### Assess-before-act (read, then decide)
 | Script | Status | Action |
