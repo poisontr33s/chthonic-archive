@@ -59,6 +59,7 @@ MISTRALRS_EXE = "mistralrs"
 HF_API = "https://huggingface.co/api/models"
 SCOUT_SCRIPT = "scripts/hf_model_scout.py"
 UQFF_CACHE = pathlib.Path.home() / ".cache" / "mistralrs" / "uqff"
+MISTRALRS_PID = pathlib.Path.home() / ".chthonic" / "mistralrs.pid"
 
 
 def _get_format_rec(model: str, vram_gb: float = 16.0) -> dict:
@@ -185,6 +186,33 @@ def cmd_start(args: argparse.Namespace) -> None:
             print(f"  Use 'swap' to change models, or 'stop' first.")
             return
 
+    # PID file guard — catch stale or live mistralrs processes.
+    if MISTRALRS_PID.exists():
+        try:
+            existing_pid = int(MISTRALRS_PID.read_text(encoding="utf-8").strip())
+            alive = False
+            if sys.platform == "win32":
+                chk = subprocess.run(
+                    ["tasklist", "/FI", f"PID eq {existing_pid}", "/NH"],
+                    capture_output=True, text=True, timeout=5,
+                )
+                alive = str(existing_pid) in chk.stdout
+            else:
+                import os as _os
+                try:
+                    _os.kill(existing_pid, 0)
+                    alive = True
+                except ProcessLookupError:
+                    alive = False
+            if alive:
+                print(f"  mistral.rs PID {existing_pid} already running (pid file: {MISTRALRS_PID}).")
+                print("  Use 'stop' first, or delete the PID file manually.")
+                return
+            # Stale PID file — clean and proceed.
+            MISTRALRS_PID.unlink(missing_ok=True)
+        except (ValueError, OSError):
+            MISTRALRS_PID.unlink(missing_ok=True)
+
     cmd = [MISTRALRS_EXE, "serve", "--ui", "-p", str(port)]
 
     if isq_override is not None:
@@ -246,6 +274,9 @@ def cmd_stop(args: argparse.Namespace) -> None:
             )
         if result.returncode == 0:
             print("  Server stopped.")
+            if MISTRALRS_PID.exists():
+                MISTRALRS_PID.unlink(missing_ok=True)
+                print(f"  PID file cleaned ({MISTRALRS_PID}).")
         else:
             print("  No running server found (or already stopped).")
     except FileNotFoundError:
