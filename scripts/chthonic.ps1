@@ -1055,8 +1055,8 @@ function Get-ChthonicStrategicDocs {
         }
         [pscustomobject]@{
             key = "cheatsheet"
-            title = "Oxidized Cheatsheet"
-            path = (Join-Path $REPO_ROOT "docs\OXIDIZED_CHEATSHEET.md")
+            title = "Oxidized Polyglot Surface"
+            path = (Join-Path $REPO_ROOT "docs\OXIDIZED_POLYGLOT_SURFACE.md")
             commands = @(
                 "memory map",
                 "toolchain hierarchy",
@@ -2920,8 +2920,8 @@ function Show-PolyglotStatus {
     $tools['handler_js'] = 'bun'
     $tools['handler_zig'] = 'zv'
     $tools['handler_node'] = 'fnm (optional Node version lane)'
-    $tools['handler_r'] = 'none (runtime left as-is)'
-    $tools['handler_r_packages'] = 'rv-r (A2-ai/rv wrapper)'
+    $tools['handler_r'] = 'unmanaged runtime (rig not installed — R 4.5.3 ucrt installed externally)'
+    $tools['handler_r_packages'] = 'rv-r (A2-ai/rv — rproject.toml + rv.lock)'
     $tools['uv_tool_lane'] = 'python,ruff,cmake,ninja'
     $tools['rv'] = 'not found'
     $rvMetaStatus = Get-CommandResolution -Name "rv"
@@ -5344,7 +5344,8 @@ function Invoke-RLane {
 
     $payload = [pscustomobject]@{
         manager = [pscustomobject]@{
-            current = "none"
+            current = "rv-r (packages)"
+            note    = "R runtime has no version manager (rig not installed)"
         }
         runtime = [pscustomobject]@{
             r = $rVersion
@@ -5372,7 +5373,8 @@ function Invoke-RLane {
     Write-Host "CHTHONIC R LANE" -ForegroundColor Cyan
     Write-Host ("="*72) -ForegroundColor DarkGray
     Write-Host "  manager  " -NoNewline -ForegroundColor Cyan
-    Write-Host "none" -ForegroundColor DarkGray
+    Write-Host "rv-r (packages)" -NoNewline -ForegroundColor White
+    Write-Host "  R runtime unmanaged — rig not installed" -ForegroundColor DarkGray
     Write-Host "  R        " -NoNewline -ForegroundColor Cyan
     Write-Host ($(if ($rVersion) { $rVersion } else { "not found" })) -NoNewline -ForegroundColor White
     if ($rPath) { Write-Host "  $rPath" -ForegroundColor DarkGray } else { Write-Host "" }

@@ -49,7 +49,7 @@ INCORRECT:     python -m pip install     same issue
 
 **Environment Variables (when needed):**
 ```powershell
-$env:VIRTUAL_ENV = "c:\Users\erdno\chthonic-archive\mas_mcp\.venv"
+$env:VIRTUAL_ENV = "c:\Users\eldno\chthonic-archive\mas_mcp\.venv"
 $env:PATH = "$env:VIRTUAL_ENV\Scripts;$env:PATH"
 ```
 
@@ -148,7 +148,7 @@ chthonic-archive/
 Ôöé   Ôö£ÔöÇÔöÇ copilot-instructions.md    ÔåÉ SSOT
 Ôöé   ÔööÔöÇÔöÇ instructions/              ÔåÉ Operational directives (this file)
 Ôö£ÔöÇÔöÇ mas_mcp/                        ÔåÉ Python Backend (uv-managed)
-Ôöé   Ôö£ÔöÇÔöÇ .venv/                      ÔåÉ Python 3.13.10 virtual environment
+Ôöé   Ôö£ÔöÇÔöÇ .venv/                      ÔåÉ Python 3.14.4 virtual environment
 Ôöé   Ôö£ÔöÇÔöÇ pyproject.toml              ÔåÉ uv project definition
 Ôöé   Ôö£ÔöÇÔöÇ uv.lock                     ÔåÉ Locked dependencies
 Ôöé   Ôö£ÔöÇÔöÇ server.py                   ÔåÉ MCP Server entry point
@@ -170,22 +170,18 @@ chthonic-archive/
 ## GPU Stack Compatibility (`GSC`)
 
 **Target Configuration:**
-- CUDA 12.4+ (CUDA 13.1.x NOT FULLY SUPPORTED by CPython 3.13.x stack)
+- CUDA 13.2+
 - cuDNN 9.x
 - TensorRT 10.x
-- Python 3.13.x (NOT 3.14)
+- Python 3.14.x
 - Numpy 1.26.x
 - CuPy 12.x
 - ONNX Runtime GPU 1.16.x
-- PyTorch 2.2.x (with CUDA 12.4 support)
+- PyTorch 2.2.x (with CUDA 13.2 support)
 - Rapids AI 24.x (if needed)
-- Nvidia Proprietary hardware (Helios Predator 18, i-9-14900, Nvidia RTX 4090 Laptop GPU 16 GB VRAM)
+- Nvidia Proprietary hardware (Desktop, i-9-13900, Nvidia RTX 4090 GPU 24 GB VRAM)
 
-**Why Python 3.13?**
-- TensorRT wheels are not yet available for Python 3.14
-- CuPy CUDA bindings require 3.13 or earlier
-- ONNX Runtime GPU requires 3.13 for stable operation
-- It's just too new; ecosystem not yet caught up
+**Note (migrated April 2026):** Repo is now on Python 3.14.4 (`pyproject.toml: requires-python = ">=3.14"`). Prior 3.13 constraint was ecosystem-driven (TensorRT/CuPy/ONNX). Validate GPU library wheels against 3.14 before adding new ML dependencies.
 
 **Validation:**
 ```powershell

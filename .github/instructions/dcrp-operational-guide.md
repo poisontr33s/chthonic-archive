@@ -63,7 +63,7 @@ The **Decorator's Cross-Reference Protocol (DCRP)** operationalizes **FA⁵ (Vis
 
 **Dry Run (Analysis Only):**
 ```powershell
-cd C:\Users\erdno\chthonic-archive
+cd C:\Users\eldno\chthonic-archive
 uv run python scripts/decorator_cross_ref_maximum.py
 ```
 

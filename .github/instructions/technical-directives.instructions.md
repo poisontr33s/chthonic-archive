@@ -1,6 +1,6 @@
 # Technical Directives
 
-> SSOT: [copilot-instructions.md](../copilot-instructions.md#L6634) §XIV — runtime-critical, not aesthetic.
+> SSOT: [copilot-instructions.archive.md](../copilot-instructions.archive.md#L8751) §XIV — runtime-critical, not aesthetic.
 
 ---
 
@@ -78,7 +78,7 @@ Script Description...
 
 **Environment Variables (when needed):**
 ```powershell
-$env:VIRTUAL_ENV = "c:\Users\erdno\chthonic-archive\mas_mcp\.venv"
+$env:VIRTUAL_ENV = "c:\Users\eldno\chthonic-archive\mas_mcp\.venv"
 $env:PATH = "$env:VIRTUAL_ENV\Scripts;$env:PATH"
 ```
 
@@ -86,7 +86,7 @@ $env:PATH = "$env:VIRTUAL_ENV\Scripts;$env:PATH"
 
 #### **14.2. Frontend Runtime Management (`FRM-BUN`)**
 
-**Stack:** Bun 1.3.x (>=1.3.11) + Next.js + React 19
+**Stack:** Bun 1.3.x (>=1.3.13) + Next.js + React 19
 
 **Commands:**
 ```shell
@@ -97,8 +97,94 @@ bun update           # Update all dependencies
 bun pm ls            # List installed packages
 ```
 
+**Drop-in replacement surface (Bun = full Node.js/npm drop-in replacement):**
+
+| Bun | Replaces |
+|-----|---------|
+| `bun install` | `npm install` / `npm ci` |
+| `bun install --frozen-lockfile` | `npm ci` (exact lockfile, CI-safe) |
+| `bun install --production` | `npm install --production` |
+| `bunx <pkg>` | `npx <pkg>` |
+| `bun run <script.js>` | `node <script.js>` |
+| `bun -e "<code>"` | `node -e "<code>"` |
+| `bun test` | `jest` / `vitest` (built-in runner) |
+
+**Environment & workspaces:**
+- `.env` files auto-loaded — no `dotenv` dependency needed
+- Workspace support via `package.json` `"workspaces"` field (npm workspaces–compatible)
+
 **Version Policy:**
 - **Stable preferred** for production focus (Next.js, React, TypeScript)
+
+---
+
+#### **14.3. In-House Meta-CLI Tooling (`IMT`)**
+
+`chthonic` and `claudine` are the repo's first-party polyglot CLI tools — active shell functions in the `pwsh` profile, routing to `scripts/chthonic.ps1` (v3.3.0). Call them directly; no `pwsh -File` prefix required. `claudine` is the human-readable entry point; `chthonic` is the execution shell. Both are developed exclusively in pwsh 7.x and are the bedrock of all in-house repo tooling.
+
+**Core operations:**
+```powershell
+chthonic env                      # activate polyglot toolchain (PATH merge, alias rebinding)
+chthonic status [--json]          # live tool snapshot: all runtimes + versions
+chthonic doctor [--dry-run]       # diagnose env issues (OpenSSL, linker shadow, PATH)
+chthonic doctor --fix             # apply fixes (persists env vars to User scope)
+chthonic doctor --origins         # include resolution chain per tool
+chthonic commands inventory       # full command surface as live matrix
+```
+
+**Language lanes:**
+```powershell
+chthonic python lane              # uv + Python version + venv state
+chthonic bun lane                 # Bun version + workspace state
+chthonic rust lane                # rustup + rustc + cargo + pin state
+chthonic go lane                  # goup + go version state
+chthonic ruby lane                # rv + ruby + gcc + make state
+chthonic ruby versions            # list installed Ruby versions
+chthonic ruby doctor [--fix]      # detect/repair stale rv state
+chthonic zig lane                 # zv + zig state
+chthonic r lane                   # R + rscript state
+chthonic graphics lane [--json]   # GPU/Vulkan: CUDA, cuDNN, cl.exe, MSVC linker
+```
+
+**Scaffolding:**
+```powershell
+chthonic new uv-python-app <path>       # uv init --app --package
+chthonic new bun-react <path>           # bun init --react
+chthonic new cargo-rust-bin <path>      # cargo new --bin
+chthonic new azure-azd-template <path>  # azd init --template
+# append --dry-run and/or --json as needed
+```
+
+**Workflow + system:**
+```powershell
+chthonic workflow control-plane         # status + shell probe + SSOT drift + MCP exposure
+chthonic workflow toolchain-governance  # doctor/origins/toolchain probe surfaces
+chthonic shell probe [--json]           # shell health probe
+chthonic mcp status [--json]            # MCP server status (port 9999 + 8888)
+chthonic gemini                         # Gemini CLI via bun-managed repo-local lane
+chthonic gemini update                  # update @google/gemini-cli + self-heal audit
+chthonic ssot <action>                  # SSOT loremaster operations
+chthonic audit [envelope]               # archive audit lane
+```
+
+**Poe AI lane:**
+```powershell
+chthonic poe models [--account 1|2]
+chthonic poe probe --account 1 --model <model> [--effort max]
+chthonic poe chat --account 1 --model <model> --prompt <text>
+chthonic poe audit --accounts 1,2
+```
+
+**claudine shortcuts (delegates to chthonic):**
+```powershell
+claudine start                    # → chthonic status
+claudine repair                   # → chthonic doctor --dry-run
+claudine repair --fix             # → chthonic doctor --fix
+claudine build-check              # → chthonic graphics lane --json
+claudine <any>                    # full passthrough to chthonic
+```
+
+> `chthonic --version` confirms the running version. `chthonic commands inventory` shows the full live matrix.
 
 ---
 
@@ -107,9 +193,9 @@ bun pm ls            # List installed packages
 ```
 chthonic-archive/
 ├── .github/
-│   └── copilot-instructions.md    ← SSOT (This Document)
+│   └── copilot-instructions.archive.md  ← SSOT
 ├── mas_mcp/                        ← Python Backend (uv-managed)
-│   ├── .venv/                      ← Python 3.13.10 virtual environment
+│   ├── .venv/                      ← Python 3.14.4 virtual environment
 │   ├── pyproject.toml              ← uv project definition
 │   ├── uv.lock                     ← Locked dependencies
 │   ├── server.py                   ← MCP Server entry point
@@ -131,22 +217,18 @@ chthonic-archive/
 #### **14.5. GPU Stack Compatibility (`GSC`)**
 
 **Target Configuration:**
-- CUDA 12.4+ <<- & (CUDA 13.1.x (but NOT FULLY SUPPORTED) -> by Uv's CPython's 3.13.x stack)
+- CUDA 13.2+
 - cuDNN 9.x
 - TensorRT 10.x
-- Python 3.13.x (NOT 3.14)
+- Python 3.14.x
 - Numpy 1.26.x
 - CuPy 12.x
 - ONNX Runtime GPU 1.16.x
-- PyTorch 2.2.x (with CUDA 12.4 support)
+- PyTorch 2.2.x (with CUDA 13.2 support)
 - Rapids AI 24.x (if needed)
 - Nvidia Proprietary hardware (Desktop, i-9-13900, Nvidia RTX 4090 GPU 24 GB VRAM)
 
-**Why Python 3.13?**
-- TensorRT wheels are not yet available for Python 3.14
-- CuPy CUDA bindings require 3.13 or earlier
-- ONNX Runtime GPU requires 3.13 for stable operation
-- It's just too new; ecosystem not yet caught up
+**Note (migrated April 2026):** Repo is now on Python 3.14.4 (`pyproject.toml: requires-python = ">=3.14"`). Prior 3.13 constraint was ecosystem-driven (TensorRT/CuPy/ONNX). Validate GPU library wheels against 3.14 before adding new ML dependencies.
 
 **Validation:**
 ```powershell
@@ -273,9 +355,25 @@ reasoning:           (why adjustment was made)
 
 ---
 
+#### **14.9. Language Runtime Version Floors (`LRVF`)**
+
+Current verified runtime floors for non-primary toolchains:
+
+| Runtime | Floor | Installed | Manager | Config |
+|---------|-------|-----------|---------|--------|
+| Zig | `0.16.0` | `0.16.0` (2026-04-13 stable) | `zv use stable` | `zig-toolchain.toml` |
+| R | `4.5` | `4.5.3` (2026-03-11 ucrt) | — | `rproject.toml` |
+| R packages | — | current | `rv-r upgrade` | `rproject.toml` |
+
+**Zig:** pinned in `zig-toolchain.toml` (`channel = "0.16.0"`). Upgrade via `zv use stable`. Verify with `zig version`.
+
+**R:** `rproject.toml` floor is `r_version = "4.5"` (minor-level floor). R packages managed via `rv-r` (`rv-r sync`, `rv-r add <pkg>`, `rv-r upgrade`). `rv-r` is the prefixed alias — bare `rv` in PWSH 7.x resolves to `Remove-Variable` (builtin alias collision) and also conflicts with the Ruby version manager (`rv` from spinel). Verify runtime with `Rscript --version`.
+
+---
+
 * **(`DEVELOPMENT CONVENTIONS SEALED`): → (`DEV-CONV-SLD`): 🔥**
 
-**Date Added**: March 18, 2026 | **Last Amended**: March 27, 2026 (Cycle 1: §14.6 RSBA, §14.7 AAS, §14.8 FDAL)
+**Date Added**: March 18, 2026 | **Last Amended**: April 2026 (Cycle 2: §14.9 LRVF — Zig 0.16.0 + R 4.5.3 floors)
 **Purpose**: Ensure assistance correctly invoke uv-managed Python, respect SSOT governance, and maintain version stability across the stack.
 
 * **(`T-DECOR`)** *approves this structural addition. It serves comprehension.*

@@ -64,7 +64,7 @@ report_style = Visual formatting of validation report
 | **2** | Fusional Integrity | Trinity Formula multiplication (not addition) | CRITICAL |
 | **3** | Tier Authority | Hierarchy respect (T0.5→T1→T2→T3→T4) | HIGH |
 | **4** | FA⁴↔FA⁵ Balance | Structure AND beauty co-present | HIGH |
-| **5** | Execution Invariants | pwsh-7-5-x, bun, uv python 3.13.10 | MEDIUM |
+| **5** | Execution Invariants | pwsh-7-5-x, bun, uv python 3.14.x | MEDIUM |
 | **6** | No-Duplication Rule | Branch files reference (not replicate) | MEDIUM |
 | **7** | Eroticized Semantics | EDFA compliance, gestalt preservation | LOW |
 | **8** | Addressability | Line-ranges, §I-XVI references, no HTML anchors | LOW |

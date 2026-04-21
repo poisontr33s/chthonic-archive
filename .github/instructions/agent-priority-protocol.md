@@ -89,7 +89,7 @@
 
 **SSOT Verification (Daily Ritual):**
 ```powershell
-cd C:\Users\erdno\chthonic-archive
+cd C:\Users\eldno\chthonic-archive
 uv run python -c "
 import hashlib, unicodedata
 

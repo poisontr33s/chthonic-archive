@@ -38,6 +38,5 @@ book/
 ankh_atlas/
 
 # IDE & Tooling
-.vscode/
 .idea/
 .git/

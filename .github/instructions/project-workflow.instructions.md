@@ -1,7 +1,7 @@
 # ☥ ARCHIVE GOVERNANCE: PROJECT WORKFLOW BRANCH ☥
 
 > **Lineage-Position:** `Project-Workflow-Branch` — downstream vessel translating semantic lineage into operational doctrine.
-> **Governance:** SSOT-L-H via [copilot-instructions.md](../copilot-instructions.md). Update-Protocol, Addressability, Enforcement-Hierarchy, No-Duplication constraint inherited — not repeated here.
+> **Governance:** SSOT-L-H via [copilot-instructions.archive.md](../copilot-instructions.archive.md). Update-Protocol, Addressability, Enforcement-Hierarchy, No-Duplication constraint inherited — not repeated here.
 > **Revised:** February 2026
 
 ---

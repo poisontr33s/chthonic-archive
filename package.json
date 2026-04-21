@@ -59,14 +59,14 @@
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.29.0",
     "@modelcontextprotocol/server-filesystem": "^2026.1.14",
-    "@sentry/bun": "^10.48.0",
+    "@sentry/bun": "^10.49.0",
     "ajv": "^8.18.0",
     "hono": "^4.12.12",
     "minimatch": "^10.2.4"
   },
   "devDependencies": {
     "@davestewart/outliner": "^1.2.0",
-    "@google/gemini-cli": "^0.38.0-preview.0",
+    "@google/gemini-cli": "^0.38.2",
     "@playwright/mcp": "^0.0.70",
     "svg2ttf": "^6.0.3",
     "svgicons2svgfont": "^16.0.0",

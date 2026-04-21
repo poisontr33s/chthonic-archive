@@ -11,7 +11,7 @@
 # ║ Purpose: Route R package-manager calls to an isolated A2-ai/rv install
 # ║ Exports: (none)
 # ║ Flags/Modes: passthrough only
-# ║ Cross-References: docs/OXIDIZED_TOOLCHAIN_REFERENCE.md, docs/OXIDIZED_CHEATSHEET.md
+# ║ Cross-References: docs/OXIDIZED_POLYGLOT_SURFACE.md
 # ╚════════════════════════════════════════════════════════════════════════════
 
 [CmdletBinding(PositionalBinding = $false)]

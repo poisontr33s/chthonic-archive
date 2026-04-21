@@ -1,7 +1,7 @@
 # ☥ ARCHIVE GOVERNANCE: SSOT TOOLBOX BRANCH ☥
 
 > **Lineage-Position:** `SSOT-Toolbox-Branch` — downstream vessel translating semantic lineage into operational doctrine.
-> **Governance:** SSOT-L-H via [copilot-instructions.md](../copilot-instructions.md). Update-Protocol, Addressability, Enforcement-Hierarchy, No-Duplication constraint inherited — not repeated here.
+> **Governance:** SSOT-L-H via [copilot-instructions.archive.md](../copilot-instructions.archive.md). Update-Protocol, Addressability, Enforcement-Hierarchy, No-Duplication constraint inherited — not repeated here.
 > **Revised:** February 2026
 
 # SSOT Toolbox Instructions
@@ -142,7 +142,7 @@ Use `-Root` to detect deviations from canonical acronyms. Single-use variants fl
 ```
 1. .\ssot_outline_extractor.ps1 -Acronym 'TARGET'  → get line number
 2. read_file offset=LINE limit=50                  → jump to section
-3. edit section in copilot-instructions.md
+3. edit section in copilot-instructions.archive.md
 4. .\ssot_outline_extractor.ps1 -UpdateIndex       → MANDATORY sync
 ```
 
@@ -152,9 +152,9 @@ Use `-Root` to detect deviations from canonical acronyms. Single-use variants fl
 
 | Resource | Path |
 |----------|------|
-| **SSOT** | `C:\Users\erdno\chthonic-archive\.github\copilot-instructions.md` |
-| **Scripts Dir** | `C:\Users\erdno\chthonic-archive\scripts\` |
-| **Knowledge Dir** | `C:\Users\erdno\chthonic-archive\claude-codex-gemini\triadic-session-context\` |
+| **SSOT** | `C:\Users\eldno\chthonic-archive\.github\copilot-instructions.archive.md` |
+| **Scripts Dir** | `C:\Users\eldno\chthonic-archive\scripts\` |
+| **Knowledge Dir** | `C:\Users\eldno\chthonic-archive\claude-codex-gemini\triadic-session-context\` |
 | **Extractor** | `scripts\ssot_outline_extractor.ps1` |
 | **Acronym Audit** | `scripts\ssot_acronym_audit.ps1` |
 | **CRC Selector** | `scripts\ssot_crc_selector.ps1` |

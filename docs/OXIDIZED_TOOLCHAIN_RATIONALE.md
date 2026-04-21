@@ -27,8 +27,7 @@ tags:
 
 > This document is the short architectural rationale behind the repo's oxidized toolchain policy.
 > It distills the larger "Rustification" research into repo-usable rules.
-> For the actual tool inventory, use [OXIDIZED_TOOLCHAIN_REFERENCE.md](OXIDIZED_TOOLCHAIN_REFERENCE.md).
-> For commands, use [OXIDIZED_CHEATSHEET.md](OXIDIZED_CHEATSHEET.md).
+> For the toolchain inventory, commands, and meta-CLI sync map, use [OXIDIZED_POLYGLOT_SURFACE.md](OXIDIZED_POLYGLOT_SURFACE.md).
 
 ---
 

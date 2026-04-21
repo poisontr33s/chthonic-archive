@@ -1,6 +1,6 @@
 # Python Scripting — Metabolic Standard v3
 
-> SSOT: [copilot-instructions.md](../copilot-instructions.md) §XV — Metabolic-Standard-v3. uv manages Python; pyproject.toml is the dependency SSOT.
+> SSOT: [copilot-instructions.archive.md](../copilot-instructions.archive.md) §XV — Metabolic-Standard-v3. uv manages Python; pyproject.toml is the dependency SSOT.
 
 ---
 
