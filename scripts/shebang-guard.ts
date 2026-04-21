@@ -11,17 +11,22 @@
 // ╚════════════════════════════════════════════════════════════════════════════
 
 /**
- * shebang-guard.ts — Detects displaced shebangs in TypeScript files.
+ * shebang-guard.ts — Detects displaced shebangs in TypeScript, Python, and shell files.
  *
- * A "displaced shebang" is any .ts file where:
+ * For .ts files: a "displaced shebang" is any file where:
  *   - Line 1 is NOT "#!/usr/bin/env bun"
  *   - Line 2 IS "#!/usr/bin/env bun"
  *
- * This is caused by agents placing // @SID: or other comments on line 1,
- * pushing the shebang to line 2. Bun treats this as a SyntaxError.
+ * For .py files: checks that:
+ *   - Line 1 is "#!/usr/bin/env python3" (if a shebang is present anywhere in first 3 lines)
+ *   - Line 2 is "#-*- coding: utf-8 -*-" (when a shebang is on line 1)
+ *
+ * For .sh files: checks that:
+ *   - Line 1 is a valid bash shebang (#!/usr/bin/env bash or #!/bin/bash)
+ *   - Displaced: shebang NOT on line 1, but IS on line 2
  *
  * Usage:
- *   bun run scripts/shebang-guard.ts           # check all tracked .ts files
+ *   bun run scripts/shebang-guard.ts           # check all tracked files
  *   bun run scripts/shebang-guard.ts --staged  # check only git-staged files
  *   bun run scripts/shebang-guard.ts --all     # check all files (inc. untracked)
  */
@@ -36,8 +41,9 @@ const REPO_ROOT = resolve(import.meta.dir, "..");
 
 // Files/dirs to exclude from --all scan
 const EXCLUDE_DIRS = new Set(["node_modules", "target", "build", ".git", "__pycache__"]);
+const SCAN_EXTENSIONS = new Set([".ts", ".py", ".sh"]);
 
-function getStagedTsFiles(): string[] {
+function getStagedFiles(): string[] {
   try {
     const out = execSync("git diff --cached --name-only --diff-filter=ACM", {
       encoding: "utf8",
@@ -45,14 +51,18 @@ function getStagedTsFiles(): string[] {
     });
     return out
       .split("\n")
-      .filter((f) => f.endsWith(".ts") && !f.endsWith(".d.ts") && f.length > 0)
+      .filter((f) => {
+        if (!f.length) return false;
+        const ext = f.slice(f.lastIndexOf("."));
+        return (ext === ".ts" && !f.endsWith(".d.ts")) || ext === ".py" || ext === ".sh";
+      })
       .map((f) => resolve(REPO_ROOT, f));
   } catch {
     return [];
   }
 }
 
-function getTrackedTsFiles(): string[] {
+function getTrackedFiles(): string[] {
   try {
     const out = execSync("git ls-files", {
       encoding: "utf8",
@@ -60,14 +70,18 @@ function getTrackedTsFiles(): string[] {
     });
     return out
       .split("\n")
-      .filter((f) => f.endsWith(".ts") && !f.endsWith(".d.ts") && f.length > 0)
+      .filter((f) => {
+        if (!f.length) return false;
+        const ext = f.slice(f.lastIndexOf("."));
+        return (ext === ".ts" && !f.endsWith(".d.ts")) || ext === ".py" || ext === ".sh";
+      })
       .map((f) => resolve(REPO_ROOT, f));
   } catch {
     return [];
   }
 }
 
-function walkTs(dir: string, found: string[] = []): string[] {
+function walkFiles(dir: string, found: string[] = []): string[] {
   let entries: string[];
   try {
     entries = readdirSync(dir);
@@ -84,21 +98,29 @@ function walkTs(dir: string, found: string[] = []): string[] {
       continue;
     }
     if (stat.isDirectory()) {
-      walkTs(full, found);
-    } else if (entry.endsWith(".ts") && !entry.endsWith(".d.ts")) {
-      found.push(full);
+      walkFiles(full, found);
+    } else {
+      const ext = entry.slice(entry.lastIndexOf("."));
+      if (SCAN_EXTENSIONS.has(ext) && !entry.endsWith(".d.ts")) {
+        found.push(full);
+      }
     }
   }
   return found;
 }
 
 const files: string[] = STAGED
-  ? getStagedTsFiles()
+  ? getStagedFiles()
   : ALL
-  ? walkTs(REPO_ROOT)
-  : getTrackedTsFiles();
+  ? walkFiles(REPO_ROOT)
+  : getTrackedFiles();
 
-const violations: { path: string; line1: string }[] = [];
+const TS_SHEBANG = "#!/usr/bin/env bun";
+const PY_SHEBANG = "#!/usr/bin/env python3";
+const PY_ENCODING = "#-*- coding: utf-8 -*-";
+const SH_SHEBANGS = new Set(["#!/usr/bin/env bash", "#!/bin/bash", "#!/usr/bin/env sh", "#!/bin/sh"]);
+
+const violations: { path: string; line1: string; issue: string }[] = [];
 
 for (const absPath of files) {
   let content: string;
@@ -111,26 +133,47 @@ for (const absPath of files) {
   if (lines.length < 2) continue;
   const line1 = lines[0].trimEnd();
   const line2 = lines[1].trimEnd();
-  // Displaced: shebang NOT on line 1, shebang IS on line 2
-  if (line1 !== "#!/usr/bin/env bun" && line2 === "#!/usr/bin/env bun") {
-    violations.push({ path: relative(REPO_ROOT, absPath), line1 });
+  const ext = absPath.slice(absPath.lastIndexOf("."));
+
+  if (ext === ".ts") {
+    // Displaced: shebang NOT on line 1, shebang IS on line 2
+    if (line1 !== TS_SHEBANG && line2 === TS_SHEBANG) {
+      violations.push({ path: relative(REPO_ROOT, absPath), line1, issue: "displaced shebang (line 2)" });
+    }
+  } else if (ext === ".py") {
+    const hasPyShebangAnywhere = [line1, line2, (lines[2] ?? "").trimEnd()].some((l) => l === PY_SHEBANG);
+    if (hasPyShebangAnywhere) {
+      if (line1 !== PY_SHEBANG && line2 === PY_SHEBANG) {
+        violations.push({ path: relative(REPO_ROOT, absPath), line1, issue: "displaced shebang (line 2)" });
+      } else if (line1 === PY_SHEBANG && line2 !== PY_ENCODING) {
+        violations.push({ path: relative(REPO_ROOT, absPath), line1, issue: `missing encoding on line 2 (got: "${line2.slice(0, 40)}")` });
+      }
+    }
+  } else if (ext === ".sh") {
+    const hasSh = SH_SHEBANGS.has(line1) || SH_SHEBANGS.has(line2);
+    if (hasSh && !SH_SHEBANGS.has(line1) && SH_SHEBANGS.has(line2)) {
+      violations.push({ path: relative(REPO_ROOT, absPath), line1, issue: "displaced shebang (line 2)" });
+    }
   }
 }
 
 if (violations.length > 0) {
-  console.error(`\n[shebang-guard] \u274C ${violations.length} file(s) with displaced shebangs:\n`);
+  console.error(`\n[shebang-guard] \u274C ${violations.length} file(s) with shebang violations:\n`);
   for (const v of violations) {
     console.error(`  ${v.path}`);
     console.error(`    line 1: "${v.line1.slice(0, 72)}"`);
+    console.error(`    issue:  ${v.issue}`);
   }
   console.error(`
-Fix: \u23E9 move #!/usr/bin/env bun to line 1.
-     All content (// @SID:, envelope blocks) comes AFTER the shebang.
-     Library modules (non-CLI src/ files) omit the shebang entirely.
+Fix: \u23E9 move shebang to line 1.
+     .ts: #!/usr/bin/env bun
+     .py: #!/usr/bin/env python3 on line 1, # -*- coding: utf-8 -*- on line 2.
+     .sh: #!/usr/bin/env bash on line 1.
+     All content (@SID:, envelope blocks) comes AFTER.
 `);
   process.exit(1);
 } else {
   const scope = STAGED ? "staged" : ALL ? "all" : "tracked";
-  console.log(`[shebang-guard] \u2713 No displaced shebangs in ${files.length} ${scope} .ts file(s)`);
+  console.log(`[shebang-guard] \u2713 No shebang violations in ${files.length} ${scope} file(s)`);
   process.exit(0);
 }

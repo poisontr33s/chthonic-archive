@@ -27,18 +27,33 @@ const cacheDir = path.join(root, '.chthonic', 'cache');
 const outputPath = path.join(cacheDir, 'bun-practices-audit.json');
 const strict = process.argv.includes('--strict');
 const jsonOnly = process.argv.includes('--json');
+const fixMode = process.argv.includes('--fix');
 
-const skipDirs = new Set([
-  '.git',
-  '.chthonic',
-  '.vscode-test',
-  'node_modules',
-  'dist',
-  'target',
-  '.venv',
-  '.next',
-  '.turbo',
-]);
+// Load skipDirs from bunfig.toml [bun-practices] or .bun-practices.json
+function loadSkipDirs(repoRoot: string): Set<string> {
+  const defaults = ['.git', '.chthonic', '.vscode-test', 'node_modules', 'dist', 'target', '.venv', '.next', '.turbo'];
+  const practicesJson = path.join(repoRoot, '.bun-practices.json');
+  if (Bun.file(practicesJson).size > 0) {
+    try {
+      const cfg = JSON.parse(readFileSync(practicesJson, 'utf8')) as { skipDirs?: string[] };
+      if (Array.isArray(cfg.skipDirs)) return new Set([...defaults, ...cfg.skipDirs]);
+    } catch { /* ignore */ }
+  }
+  const bunfig = path.join(repoRoot, 'bunfig.toml');
+  if (Bun.file(bunfig).size > 0) {
+    try {
+      const text = readFileSync(bunfig, 'utf8');
+      const m = text.match(/\[bun-practices\][\s\S]*?skipDirs\s*=\s*\[([^\]]+)\]/);
+      if (m) {
+        const extra = m[1].split(',').map((s) => s.trim().replace(/["']/g, '')).filter(Boolean);
+        return new Set([...defaults, ...extra]);
+      }
+    } catch { /* ignore */ }
+  }
+  return new Set(defaults);
+}
+
+const skipDirs = loadSkipDirs(root);
 
 const sourceExtensions = new Set(['.js', '.jsx', '.mjs', '.cjs', '.ts', '.tsx']);
 
@@ -273,4 +288,33 @@ function main(): number {
   return 0;
 }
 
-process.exit(main());
+function applyFix(): number {
+  const files = collectFiles();
+  const packageFiles = files.filter((f) => path.basename(f) === 'package.json');
+  let fixCount = 0;
+  for (const pkgPath of packageFiles) {
+    const parsed = parseJson(pkgPath) as { scripts?: Record<string, string> } | null;
+    if (!parsed?.scripts) continue;
+    let changed = false;
+    for (const [name, value] of Object.entries(parsed.scripts)) {
+      const fixed = value
+        .replace(/\bnpx\b/g, 'bunx')
+        .replace(/\bnpm run\b/g, 'bun run')
+        .replace(/\bnpm install\b/g, 'bun install')
+        .replace(/\bnpm ci\b/g, 'bun install --frozen-lockfile');
+      if (fixed !== value) {
+        parsed.scripts[name] = fixed;
+        changed = true;
+        console.log(`[bun-audit:fix] ${rel(pkgPath)} '${name}': ${value} -> ${fixed}`);
+        fixCount++;
+      }
+    }
+    if (changed) {
+      writeFileSync(pkgPath, JSON.stringify(parsed, null, 2) + '\n', 'utf8');
+    }
+  }
+  console.log(`[bun-audit:fix] ${fixCount} script(s) fixed.`);
+  return 0;
+}
+
+process.exit(fixMode ? applyFix() : main());

@@ -214,10 +214,11 @@ class BunComplianceScanner:
         'WIN11_CONFIGURATION.md',  # Historical setup documentation
     }
 
-    def __init__(self, repo_root: Path, verbose: bool = False):
+    def __init__(self, repo_root: Path, verbose: bool = False, except_globs: list | None = None):
         self.repo_root = repo_root
         self.verbose = verbose
         self.violations: List[Violation] = []
+        self._except_globs: list = except_globs or []
 
     def is_excluded_line(self, line: str) -> bool:
         """Check if line matches exclusion patterns"""
@@ -228,7 +229,11 @@ class BunComplianceScanner:
 
     def should_skip_path(self, path: Path) -> bool:
         """Check if path should be skipped"""
+        import fnmatch
         path_str = str(path.relative_to(self.repo_root)).replace('\\', '/')
+        for pat in self._except_globs:
+            if fnmatch.fnmatch(path.name, pat) or fnmatch.fnmatch(path_str, pat):
+                return True
         for skip in self.SKIP_PATHS:
             if skip in path_str:
                 return True
@@ -357,6 +362,9 @@ def main():
                        help='Auto-fix mode (NOT IMPLEMENTED - placeholder)')
     parser.add_argument('--verbose', '-v', action='store_true',
                        help='Verbose output')
+    parser.add_argument('--except', dest='except_globs', action='append', default=[],
+                       metavar='PATTERN',
+                       help='Glob pattern to whitelist from violations (repeatable). E.g. --except "legacy/*.ts"')
 
     args = parser.parse_args()
 
@@ -367,7 +375,7 @@ def main():
     if args.verbose:
         safe_print(f"[SCAN] Checking {repo_root} for Bun compliance violations...")
 
-    scanner = BunComplianceScanner(repo_root, verbose=args.verbose)
+    scanner = BunComplianceScanner(repo_root, verbose=args.verbose, except_globs=args.except_globs)
     scanner.scan()
     scanner.print_report()
 

@@ -27,13 +27,23 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
 
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from lib.shared import find_repo_root
+
 try:
     import tomllib
 except ModuleNotFoundError:  # pragma: no cover
+    import sys as _sys
+    print(
+        "WARNING: tomllib not available (requires Python 3.11+). "
+        "ankhrc_validator.py may produce incomplete results. "
+        "Upgrade to Python 3.11+ to resolve.",
+        file=_sys.stderr,
+    )
     tomllib = None
 
 
-REPO_ROOT = Path(__file__).resolve().parents[1]
+REPO_ROOT = find_repo_root()
 
 
 @dataclass
@@ -97,6 +107,11 @@ def validate_paths(config: Any) -> list[PathRecord]:
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Validate .ankhrc path declarations.")
     parser.add_argument("--json", action="store_true", help="Emit JSON instead of text.")
+    parser.add_argument(
+        "--fix",
+        action="store_true",
+        help="Create missing files/directories declared in .ankhrc (mkdir -p for dirs, touch for files).",
+    )
     return parser.parse_args()
 
 
@@ -120,6 +135,24 @@ def main() -> int:
     config = load_ankhrc(ankhrc)
     records = validate_paths(config)
     broken = [record for record in records if not record.exists]
+
+    if args.fix and broken:
+        fixed = 0
+        for record in broken:
+            target = Path(record.resolved_path)
+            if not target.is_absolute():
+                target = REPO_ROOT / target
+            # Heuristic: if the raw value ends with / or has no suffix treat as dir
+            if record.raw_value.endswith("/") or not target.suffix:
+                target.mkdir(parents=True, exist_ok=True)
+            else:
+                target.parent.mkdir(parents=True, exist_ok=True)
+                target.touch(exist_ok=True)
+            print(f"[fix] created: {record.resolved_path}")
+            fixed += 1
+        print(f"Fixed: {fixed} path(s)")
+        return 0
+
     payload = {
         "status": "valid" if not broken else "broken",
         "path_count": len(records),
