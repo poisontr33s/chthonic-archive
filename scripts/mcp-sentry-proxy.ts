@@ -35,7 +35,11 @@ function reply(id: any, result?: any, error?: any) {
   process.stdout.write(JSON.stringify(msg) + "\n");
 }
 
-const SSOT_PATH = process.env.SSOT_PATH!;
+const SSOT_PATH = process.env.SSOT_PATH;
+if (!SSOT_PATH) {
+  process.stderr.write("[mcp-sentry-proxy] SSOT_PATH env var not set — cannot start\n");
+  process.exit(1);
+}
 
 function readSSOT() {
   try {
