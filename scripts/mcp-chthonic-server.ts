@@ -342,6 +342,9 @@ const ALL_TOOLS: ToolDefinition[] = [...POLYGLOT_TOOLS, ...ARCHIVE_TOOLS, ...MET
 // ═══════════════════════════════════════════════════════════════════════════════
 
 initSentry();
+if (!process.env.SENTRY_DSN) {
+  console.error("[chthonic-mcp] WARN: SENTRY_DSN not set — error telemetry disabled");
+}
 
 async function polyglotVersions(includePaths: boolean): Promise<string> {
   const checks = [
@@ -629,6 +632,25 @@ async function handleRequest(request: MCPRequest): Promise<MCPResponse> {
     case "tools/list":
       return { jsonrpc: "2.0", id, result: { tools: ALL_TOOLS } };
 
+    case "tools/describe": {
+      const describeName = (params as { name?: string })?.name;
+      if (describeName) {
+        const tool = ALL_TOOLS.find((t) => t.name === describeName);
+        if (!tool) {
+          return {
+            jsonrpc: "2.0", id,
+            error: {
+              code: -32602,
+              message: `Unknown tool: ${describeName}`,
+              data: { context: { available: ALL_TOOLS.map((t) => t.name) } },
+            },
+          };
+        }
+        return { jsonrpc: "2.0", id, result: { tool } };
+      }
+      return { jsonrpc: "2.0", id, result: { tools: ALL_TOOLS } };
+    }
+
     case "tools/call": {
       const { name, arguments: callArgs } = params as { name: string; arguments?: Record<string, unknown> };
       try {
@@ -636,7 +658,14 @@ async function handleRequest(request: MCPRequest): Promise<MCPResponse> {
         return { jsonrpc: "2.0", id, result: { content: [{ type: "text", text: result }] } };
       } catch (e) {
         const errMsg = e instanceof Error ? e.message : String(e);
-        return { jsonrpc: "2.0", id, error: { code: -32000, message: `Tool execution failed: ${errMsg}` } };
+        return {
+          jsonrpc: "2.0", id,
+          error: {
+            code: -32000,
+            message: `Tool execution failed: ${errMsg}`,
+            data: { context: { tool: name, args: callArgs ?? {} } },
+          },
+        };
       }
     }
 
@@ -677,7 +706,12 @@ async function processLine(line: string): Promise<void> {
   } catch (e) {
     const errMsg = e instanceof Error ? e.message : String(e);
     log(`parse error: ${errMsg}`);
-    process.stdout.write(JSON.stringify({ jsonrpc: "2.0", error: { code: -32700, message: `Parse error: ${errMsg}` } }) + "\n");
+    process.stdout.write(
+      JSON.stringify({
+        jsonrpc: "2.0",
+        error: { code: -32700, message: `Parse error: ${errMsg}`, data: { context: "parse" } },
+      }) + "\n",
+    );
   } finally {
     pendingOps--;
     checkExit();
