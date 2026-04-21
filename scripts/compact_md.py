@@ -36,9 +36,15 @@ from __future__ import annotations
 import argparse
 import json
 import re
+import shutil
 import sys
 from dataclasses import dataclass, field
 from pathlib import Path
+
+# sys.path guard: ensure repo root is importable regardless of invocation CWD
+_REPO_ROOT_CANDIDATE = Path(__file__).resolve().parent.parent
+if str(_REPO_ROOT_CANDIDATE) not in sys.path:
+    sys.path.insert(0, str(_REPO_ROOT_CANDIDATE))
 
 # Force UTF-8 output on Windows
 if sys.stdout.encoding != "utf-8":
@@ -325,6 +331,10 @@ def main():
         "--min-lines", type=int, default=100,
         help="Skip files shorter than this (batch mode, default: 100)"
     )
+    parser.add_argument(
+        "--backup", action="store_true",
+        help="Write a .bak copy of the original before overwriting (single-file and batch).",
+    )
 
     args = parser.parse_args()
 
@@ -341,6 +351,8 @@ def main():
             output, stats = compact_file(f)
             results.append({"file": str(f), "stats": stats})
             if not args.dry_run and not args.stats:
+                if args.backup:
+                    shutil.copy2(f, f.with_suffix(f.suffix + ".bak"))
                 f.write_text(output, encoding="utf-8")
                 print(f"  Compacted: {f} ({stats.original_lines} -> {stats.output_lines}, {stats.ratio:.0%} reduction)")
             elif args.stats or args.dry_run:
@@ -396,6 +408,8 @@ def main():
         return
 
     # Write in-place
+    if args.backup:
+        shutil.copy2(args.target, args.target.with_suffix(args.target.suffix + ".bak"))
     args.target.write_text(output, encoding="utf-8")
     print(f"Compacted: {args.target}")
     print(f"  {stats.original_lines} -> {stats.output_lines} lines ({stats.ratio:.0%} reduction)")
