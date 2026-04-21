@@ -12,21 +12,22 @@ param(
     [switch]$SkipSmokeTests,
     [switch]$SkipLogCollection,
     [switch]$SkipApiDoctor,
-    [switch]$SkipCodeStatus
+    [switch]$SkipCodeStatus,
+    [switch]$ScoreOnly
 )
 
 Set-StrictMode -Version Latest
 $ErrorActionPreference = "Stop"
 
 function Get-RepoRoot {
-    $dir = (Get-Location).Path
+    $dir = $PSScriptRoot
     while ($true) {
         if ((Test-Path (Join-Path $dir "pyproject.toml")) -and (Test-Path (Join-Path $dir "AGENTS.md"))) {
             return $dir
         }
         $parent = Split-Path -Parent $dir
         if ($parent -eq $dir) {
-            throw "Could not locate repo root from current directory."
+            throw "Could not locate repo root from $PSScriptRoot."
         }
         $dir = $parent
     }
@@ -287,6 +288,15 @@ function Invoke-CodeStatus {
     return $summary
 }
 
+# Scoring Formula (Classify-ProbeFindings):
+#   NoProfile.exit==0 AND ProfileTemp.exit==0 AND ProfileRepo.exit!=0
+#     => Score: PROFILE_REPO_PATH  — repo-triggered profile hook is the suspect
+#   NoProfile.exit==0 AND (ProfileRepo OR ProfileTemp).exit!=0
+#     => Score: PROFILE_STARTUP    — startup profile logic / module import / alias
+#   NoProfile.exit!=0
+#     => Score: BINARY_LEVEL       — pwsh binary/runtime or native module crash
+#   All probes pass:
+#     => Score: EXTERNAL           — VS Code terminal host / extension / GPU path
 function Classify-ProbeFindings {
     param([Parameter(Mandatory = $true)]$Probes)
 
@@ -312,6 +322,28 @@ function Classify-ProbeFindings {
 }
 
 $repoRoot = Get-RepoRoot
+
+if ($ScoreOnly) {
+    $pwshPath = (Get-Command pwsh -ErrorAction Stop).Source
+    $tempBundle = Join-Path ([System.IO.Path]::GetTempPath()) ("vscode_crash_scoreonly_" + [System.Diagnostics.Process]::GetCurrentProcess().Id)
+    New-Item -ItemType Directory -Path $tempBundle -Force | Out-Null
+    try {
+        $p0 = Invoke-PwshProbe -Name "no_profile"         -PwshPath $pwshPath -ArgumentList @("-NoLogo", "-NoProfile", "-Command", '$PSVersionTable.PSVersion.ToString(); exit 0') -WorkingDirectory $repoRoot -BundleDir $tempBundle
+        $p1 = Invoke-PwshProbe -Name "with_profile_repo"  -PwshPath $pwshPath -ArgumentList @("-NoLogo", "-Command",    '$PSVersionTable.PSVersion.ToString(); exit 0') -WorkingDirectory $repoRoot   -BundleDir $tempBundle
+        $p2 = Invoke-PwshProbe -Name "with_profile_temp"  -PwshPath $pwshPath -ArgumentList @("-NoLogo", "-Command",    '$PSVersionTable.PSVersion.ToString(); exit 0') -WorkingDirectory $env:TEMP  -BundleDir $tempBundle
+        $score = Classify-ProbeFindings -Probes @($p0, $p1, $p2)
+        [ordered]@{
+            score  = $score
+            probes = @($p0, $p1, $p2) | ForEach-Object {
+                [ordered]@{ name = $_.name; exit_code = $_.exit_code; exit_hex = $_.exit_hex; elapsed_ms = $_.elapsed_ms }
+            }
+        } | ConvertTo-Json -Depth 5 | Write-Output
+    } finally {
+        Remove-Item -Path $tempBundle -Recurse -Force -ErrorAction SilentlyContinue
+    }
+    exit 0
+}
+
 $timestamp = (Get-Date).ToUniversalTime().ToString("yyyyMMddTHHmmssZ")
 $bundleDir = Join-Path $repoRoot (Join-Path $OutRoot ("VSCODE_TERMINAL_TRIAGE_" + $timestamp))
 New-Item -ItemType Directory -Path $bundleDir -Force | Out-Null
