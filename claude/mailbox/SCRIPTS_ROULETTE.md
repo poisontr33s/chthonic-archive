@@ -264,31 +264,31 @@ All 9 files share the same broken import (`from skill_tensor_common import ...` 
 ### Assess-before-act (read, then decide)
 | Script | Status | Action |
 |--------|--------|--------|
-| `scripts/hf_gemma_probe.py` | Probable stale | Read; if one-off Gemma probe, merge useful logic into `hf_model_scout.py --family gemma`; move to `.deprecated/` |
-| `scripts/hf_prep.py` | Probable stale | Read; if setup wrapper superseded by `desktop-warmup.ps1`, consolidate and tombstone |
-| `scripts/mistralrs_client.py` | Probable dup | Read; if duplicates `mistralrs_model_manager.py ask`, consolidate as `lib/mistralrs_client.py` |
-| `scripts/local_refiner.py` | Superseded v1 | Confirm `run_archaeology.ps1` calls v2; move v1 to `.deprecated/` |
-| `scripts/vector_db.py` | Probable orphan | Read; determine if used by any active pipeline; tombstone if orphaned |
-| `scripts/setup_db.py` | Probable dup | Read; consolidate with `build_epistemograph.py --init-db` if schema setup |
-| `scripts/mandala_topology.py` | Ambiguous | Read; if theme-related → `theme_parity.py` pipeline; if dependency topology → `build_epistemograph.py` |
-| `scripts/unified_topology.py` | Probable stale | Read; determine relationship with `build_epistemograph.py`; consolidate or tombstone |
-| `scripts/extract_session_value.py` | Probable stale | Read; if superseded by dumpster-upcycler skill, tombstone |
-| `scripts/chthonic.sh` | Probable stale | Read; if thin alias, document relationship with `chthonic.py`; otherwise `.deprecated/` |
-| `scripts/build_epistemograph_v1.1.py` | Canonical v1.1 | Rename to `build_epistemograph.py` after v1 is tombstoned; add `--schema-path` flag |
+| `scripts/hf_gemma_probe.py` | ✅ Tombstoned → `.deprecated/` (one-off Gemma probe) — `a01857f0` |
+| `scripts/hf_prep.py` | ✅ Keep active — distinct HF env-readiness checker; no change needed |
+| `scripts/mistralrs_client.py` | ✅ Promoted → `scripts/lib/mistralrs_client.py` (already LIB_ SID) — `a01857f0` |
+| `scripts/local_refiner.py` | ✅ Tombstoned → `.deprecated/local_refiner.py`; `run_archaeology.ps1` calls v2 — `a01857f0` |
+| `scripts/vector_db.py` | ✅ Keep active — part of overnight archaeology pipeline; no change needed |
+| `scripts/setup_db.py` | ✅ Tombstoned → `.deprecated/` (hardcoded erdno path, superseded by build_epistemograph inline schema init) — `a01857f0` |
+| `scripts/mandala_topology.py` | ✅ Keep active — topology report from graph JSON; no change needed |
+| `scripts/unified_topology.py` | ✅ Keep active — cross-lane dependency graph generator; no change needed |
+| `scripts/extract_session_value.py` | ✅ Tombstoned → `.deprecated/` (superseded by dumpster-upcycler skill) — `a01857f0` |
+| `scripts/chthonic.sh` | ✅ Keep active — bash router for Unix platforms (companion to chthonic.py); no change needed |
+| `scripts/build_epistemograph_v1.1.py` | ✅ Renamed → `build_epistemograph.py`; v1.0 → `.deprecated/`; `--schema-path` added; `erdno→eldno` fixed — `a01857f0` |
 
 ### Prototypes (integrate or tombstone)
 | Script | Action |
-|--------|--------|
-| `scripts/ide-polling-prototype.ts` | Integrate polling logic into `mcp-chthonic-server.ts` as health-check event; or move to `.deprecated/` |
-| `scripts/claude-chthonic-bridge.ts` | Tombstone — `mcp-chthonic-server.ts` already provides MCP integration making this redundant |
-| `scripts/background_services.py` | Add graceful shutdown via `asyncio.Event()` + SIGINT handler; write service PIDs; otherwise scope is too large for T5 |
-| `scripts/autonomous_coordinator.py` | Decouple from `pleasure_protocol.py` (lazy import); add `--dry-run`; document "metabolize" concretely |
-| `scripts/novia_cadaveris_embalmer.ps1` | Fix `Join-Path` for ssot-paths include; add source file existence validation in `-DryRun` |
+|--------|---------|
+| ✅ `scripts/ide-polling-prototype.ts` | Tombstoned → `scripts/.deprecated/ide-polling-prototype.ts` (`798150e1`) |
+| ✅ `scripts/claude-chthonic-bridge.ts` | Tombstoned → `scripts/.deprecated/claude-chthonic-bridge.ts` (`798150e1`) |
+| ✅ `scripts/background_services.py` | Graceful shutdown via `asyncio.Event()` + SIGINT handler + PID file (`d8912727`) |
+| ✅ `scripts/autonomous_coordinator.py` | `pleasure_protocol` lazy import confirmed; `--dry-run` flag added; metabolize documented (`d8912727`) |
+| ✅ `scripts/novia_cadaveris_embalmer.ps1` | All 4 `Set-Content` calls guarded with `if (-not $DryRun)`; dry-run prints what would be written (`d8912727`) |
 
 ### Partial / WIP (not worth active maintenance)
 | Script | Action |
-|--------|--------|
-| `scripts/vscode-art-cop.ts` | Add LLM endpoint health check before screenshot submission; handle non-JSON responses |
+|--------|---------|
+| ✅ `scripts/vscode-art-cop.ts` | LLM endpoint health check before submission; non-JSON response guard (`d8912727`) |
 
 ---
 
