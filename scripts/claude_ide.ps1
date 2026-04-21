@@ -27,10 +27,11 @@
   pwsh -NoProfile -File scripts/claude_ide.ps1 write-mcp -GitHubMode copilot
   pwsh -NoProfile -File scripts/claude_ide.ps1 persist-env
   pwsh -NoProfile -File scripts/claude_ide.ps1 crossover -Topic "..."
+  pwsh -NoProfile -File scripts/claude_ide.ps1 verify-mcp
 #>
 
 param(
-  [Parameter(Position=0)][ValidateSet("heal","health","write-mcp","persist-env","crossover")][string]$Cmd = "heal",
+  [Parameter(Position=0)][ValidateSet("heal","health","write-mcp","persist-env","crossover","verify-mcp")][string]$Cmd = "heal",
   [ValidateSet("official","copilot")][string]$GitHubMode = "copilot",
   [switch]$Full,
   [string]$Topic,
@@ -54,9 +55,40 @@ try {
       exit $LASTEXITCODE
     }
     "write-mcp" {
+      $mcpPath = ".mcp.json"
+      if (Test-Path $mcpPath) {
+        $bakPath = ".mcp.json.bak"
+        Copy-Item -LiteralPath $mcpPath -Destination $bakPath -Force
+        Write-Host "Backed up $mcpPath -> $bakPath" -ForegroundColor DarkGray
+      }
       . "scripts/api_pool.ps1" -Load | Out-Null
       pwsh -NoProfile -File "scripts/mcp_write_local.ps1" -GitHubMode $GitHubMode | Out-Null
+      if (Test-Path $mcpPath) {
+        try {
+          $null = Get-Content $mcpPath -Raw | ConvertFrom-Json -ErrorAction Stop
+          Write-Host ".mcp.json validation: OK" -ForegroundColor Green
+        } catch {
+          Write-Error ".mcp.json written but failed JSON validation: $_"
+          exit 1
+        }
+      }
       exit 0
+    }
+    "verify-mcp" {
+      $mcpPath = ".mcp.json"
+      if (-not (Test-Path $mcpPath)) {
+        Write-Host ".mcp.json not found — run 'write-mcp' first" -ForegroundColor Yellow
+        exit 1
+      }
+      try {
+        $parsed = Get-Content $mcpPath -Raw | ConvertFrom-Json -ErrorAction Stop
+        $serverCount = if ($parsed.mcpServers) { ($parsed.mcpServers | Get-Member -MemberType NoteProperty).Count } else { 0 }
+        Write-Host ".mcp.json OK — $serverCount server(s) registered" -ForegroundColor Green
+        exit 0
+      } catch {
+        Write-Error ".mcp.json invalid JSON: $_"
+        exit 1
+      }
     }
     "persist-env" {
       pwsh -NoProfile -File "scripts/api_pool_persist_user_env.ps1" -Apply | Out-Null
