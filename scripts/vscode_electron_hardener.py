@@ -48,12 +48,43 @@ import json
 import os
 import re
 import shutil
+import subprocess
 import sys
 from dataclasses import dataclass, field, asdict
 from datetime import datetime, timezone
 from pathlib import Path
 
 from scripts.lib.shared import configure_utf8_output, find_repo_root, setup_logging
+
+# =============================================================================
+# Path Discovery via code-insiders --status
+# =============================================================================
+
+def discover_user_data_dir(stable: bool = False) -> Path | None:
+    """Run code-insiders --status and parse 'User Data:' line for actual user-data-dir."""
+    cmd = "code" if stable else "code-insiders"
+    try:
+        result = subprocess.run(
+            [cmd, "--status"],
+            capture_output=True,
+            text=True,
+            encoding="utf-8",
+            timeout=30,
+        )
+        if result.returncode != 0:
+            return None
+        for line in result.stdout.splitlines():
+            line = line.strip()
+            if line.lower().startswith("user data:"):
+                raw = line.split(":", 1)[1].strip()
+                if raw:
+                    p = Path(raw)
+                    if p.exists():
+                        return p
+    except (FileNotFoundError, subprocess.TimeoutExpired, OSError):
+        pass
+    return None
+
 
 # =============================================================================
 # Constants — VS Code Insiders Paths
@@ -653,13 +684,16 @@ def main(argv: list[str] | None = None) -> int:
 
     repo = find_repo_root()
 
-    # Select target paths
+    # Select target paths — try code-insiders --status first, fall back to env-based defaults
     if args.stable:
         argv_path = STABLE_ARGV
-        user_data = STABLE_USER_DATA
+        user_data = discover_user_data_dir(stable=True) or STABLE_USER_DATA
     else:
         argv_path = INSIDERS_ARGV
-        user_data = INSIDERS_USER_DATA
+        user_data = discover_user_data_dir(stable=False) or INSIDERS_USER_DATA
+
+    if not args.quiet and user_data != (STABLE_USER_DATA if args.stable else INSIDERS_USER_DATA):
+        log.debug("user-data-dir discovered via code-insiders --status: %s", user_data)
 
     report = HardeningReport(
         generated_utc=datetime.now(timezone.utc).isoformat(),
