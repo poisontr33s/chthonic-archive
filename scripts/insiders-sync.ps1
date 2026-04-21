@@ -24,7 +24,8 @@ USAGE
 param(
     [switch]$Quick,
     [switch]$WithDts,
-    [switch]$Package
+    [switch]$Package,
+    [switch]$DryRun
 )
 
 Set-StrictMode -Version Latest
@@ -32,6 +33,7 @@ $ErrorActionPreference = "Stop"
 
 Push-Location (Split-Path -Parent $PSScriptRoot)
 try {
+    $RepoRoot = Split-Path -Parent $PSScriptRoot
     function Invoke-Bun {
         param(
             [Parameter(Mandatory = $true, ValueFromRemainingArguments = $true)][string[]]$Args
@@ -50,8 +52,12 @@ try {
         )
 
         Write-Host "==> $Label" -ForegroundColor Cyan
-        & $Body
-        Write-Host "ok: $Label" -ForegroundColor Green
+        if ($DryRun) {
+            Write-Host "[dry-run] Would run: $Label" -ForegroundColor Yellow
+        } else {
+            & $Body
+            Write-Host "ok: $Label" -ForegroundColor Green
+        }
     }
 
     Invoke-Step -Label "Insiders dev kits check" -Body {
@@ -89,6 +95,17 @@ try {
     if ($Package) {
         Invoke-Step -Label "Package Insiders VSIX" -Body {
             Invoke-Bun run ext:package:insiders
+        }
+        if (-not $DryRun) {
+            $vsixFiles = @(Get-ChildItem -Path $RepoRoot -Filter "*.vsix" -Recurse -ErrorAction SilentlyContinue)
+            if ($vsixFiles.Count -eq 0) {
+                throw "Package step produced no .vsix files under $RepoRoot"
+            }
+            $zeroSize = @($vsixFiles | Where-Object { $_.Length -eq 0 })
+            if ($zeroSize.Count -gt 0) {
+                throw "Package step produced 0-byte .vsix file(s): $($zeroSize.FullName -join ', ')"
+            }
+            Write-Host "vsix validation OK: $($vsixFiles.Count) file(s), all > 0 bytes" -ForegroundColor Green
         }
     }
 
