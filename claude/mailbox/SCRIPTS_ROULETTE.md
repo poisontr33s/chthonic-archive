@@ -4,6 +4,20 @@
 > **Method:** L/E × H/V scoring (1=low, 3=high). SCORE = VALUE / EFFORT.
 > **Hierarchy:** T0 (auth/infra gates) → T1 (core CLI) → T2 (companion tools) → T3 (coherence/batch) → T4 (tests/docs) → T5 (noise/tombstone)
 > **Sort:** Within each tier, SCORE descending. Highest-impact, lowest-effort items first.
+> **Autonomous dispatch:** → [`ROULETTE_STEWARD.md`](ROULETTE_STEWARD.md) — cold-start protocol, execution loop, commit contract, session-end handoff. Load this before executing any ⬜ item.
+
+---
+
+## Progress Trail — 2026-04-21
+
+| Tier | Done | Remaining | Notes |
+|------|------|-----------|-------|
+| T0 | 9/9 ✅ | — | All auth/infra gates complete |
+| T1 | 12/12 ✅ | — | `desktop-clone-state.ps1` 336f26d1: pre-export size estimate; disk space guard (10% headroom); `[switch]$ExcludeGit` (robocopy `/XD .git` + `git bundle create`) |
+| T2 | 35/~40 🔄 | ~5 remaining | **Active** |
+| T3 | 3 🔄 | ~11 remaining | **Active** |
+| T4 | 0 ⬜ | full tier | |
+| T5 | 0 ⬜ | full tier | |
 
 ---
 
@@ -11,15 +25,15 @@
 
 | Script | Score | Effort | Action |
 |--------|-------|--------|--------|
-| `scripts/nightly-scheduled.ps1` | **3.0** | 1 | Fix typo `erdno`→`eldno` (functional bug!); add failure sentinel file on daemon crash |
-| `scripts/api_pool.ps1` | **3.0** | 1 | Add JSON schema validation (require "env" hashtable key); add `-Verify` switch that re-reads and confirms each key non-empty |
-| `scripts/desktop-warmup.ps1` | **3.0** | 1 | Wrap each step in try/catch → append to `$failures`; print step summary at end instead of raw exception abort |
-| `scripts/mcp-filesystem.ts` | **3.0** | 1 | Add marker-string idempotency check before patching (`if (!src.includes("// chthonic-patch"))`); add package.json version assertion |
-| `scripts/lib/poe_auth.py` | **3.0** | 1 | Return `valid: bool` on resolution; raise `ValueError` in `strict=True` mode (no silent `None`); add optional live token validation call |
-| `scripts/lib/shared.py` | **3.0** | 1 | Add type annotations to all public functions; add `__all__`; cap `find_repo_root` traversal at 10 levels (no hitting filesystem root on CI) |
-| `scripts/lib/ssot-paths.ts` | **3.0** | 1 | Add `as const` assertions; export `assertSsotExists(root)` that throws descriptively if SSOT path absent |
-| `scripts/lib/ssot_paths.py` | **3.0** | 1 | Guard `sys.path.insert` with existence check; add `except ImportError` fallback with `DeprecationWarning` |
-| `scripts/lib/ssot-paths.ps1` | **3.0** | 1 | Remove hardcoded line-count comment (maintenance liability); add `[switch]$AssertExists` to `Resolve-SsotPath` |
+| `scripts/nightly-scheduled.ps1` | **3.0** | 1 | ✅ `erdno`→`eldno` fixed; failure sentinel on daemon crash added |
+| `scripts/api_pool.ps1` | **3.0** | 1 | ✅ JSON schema validation added; `-Verify` switch confirms keys non-empty |
+| `scripts/desktop-warmup.ps1` | **3.0** | 1 | ✅ try/catch per step; `$failures` summary at end |
+| `scripts/mcp-filesystem.ts` | **3.0** | 1 | ✅ `// chthonic-patch` idempotency guard; package.json version assertion |
+| `scripts/lib/poe_auth.py` | **3.0** | 1 | ✅ `valid: bool` on resolution; `ValueError` in `strict=True`; live token validation call |
+| `scripts/lib/shared.py` | **3.0** | 1 | ✅ Type annotations + `__all__`; `find_repo_root` capped at 10 levels |
+| `scripts/lib/ssot-paths.ts` | **3.0** | 1 | ✅ `as const` assertions; `assertSsotExists(root)` exported |
+| `scripts/lib/ssot_paths.py` | **3.0** | 1 | ✅ `sys.path.insert` existence guard; `except ImportError` + `DeprecationWarning` |
+| `scripts/lib/ssot-paths.ps1` | **3.0** | 1 | ✅ Line-count comment removed; `[switch]$AssertExists` added to `Resolve-SsotPath` |
 
 ---
 
@@ -27,18 +41,18 @@
 
 | Script | Score | Effort | Action |
 |--------|-------|--------|--------|
-| `scripts/claudine.ps1` | **2.0** | 1 | Rename param `$Args` → `$ChthonicArgs` (shadows PS builtin); add `-NoProfile` to inner chthonic.ps1 invocation |
-| `scripts/gemini-cli-wrapper.ps1` | **2.0** | 1 | Add pre-flight binary check with `bun add @google/gemini-cli` hint; add `-Version` flag |
-| `scripts/chthonic-xp.ps1` | **2.0** | 1 | Scope `ErrorActionPreference='SilentlyContinue'` to only the `Get-Content` loop; derive TrailDir from chthonic config first; add `-Debug` flag |
-| `scripts/probe_toolchain_path.ps1` | **2.0** | 1 | Use `Get-Command <tool>` as primary probe; hardcoded paths as fallback only; emit probe-miss log |
-| `scripts/polyglot_env.ps1` | **2.0** | 1 | Auto-invoke probe if output stale (>24h); print confirmation on `-Apply`; add `-Verify` that re-runs sfs.ps1 |
-| `scripts/fortify_terminal.ps1` | **2.0** | 1 | Replace reflection hack with `[System.Console]::TreatControlCAsInput = $false`; also set `[Console]::InputEncoding` |
-| `scripts/pause_agents.ps1` | **2.0** | 1 | Print backup path clearly; add `--restore` flag; validate `operationalMode` key exists before setting |
-| `scripts/api_pool_persist_user_env.ps1` | **2.0** | 1 | Add drift detection in `-Status`: compare pool file keys vs User env keys; highlight "need -Apply" keys |
-| `scripts/api_key_gap_report.ps1` | **2.0** | 1 | Compute repo root via PSScriptRoot-relative traversal; validate RegistryPath exists; add `-Json` flag |
-| `scripts/claude_ide.ps1` | **1.5** | 2 | Validate .mcp.json with `ConvertFrom-Json` try/catch before write; backup existing `.mcp.json.bak`; add `verify-mcp` subcommand |
-| `scripts/chthonic.ps1` | **1.5** | 2 | Add `$ErrorActionPreference = 'Stop'` after param block; propagate `$LASTEXITCODE`; add `--version` from package.json |
-| `scripts/desktop-clone-state.ps1` | **1.0** | 2 | Add pre-export size estimate; check destination disk space; add `--exclude-git` (use git bundle instead) |
+| `scripts/claudine.ps1` | **2.0** | 1 | ✅ `$Args`→`$ChthonicArgs`; `-NoProfile` added to all 8 inner chthonic.ps1 invocations |
+| `scripts/gemini-cli-wrapper.ps1` | **2.0** | 1 | ✅ Pre-flight `Get-GeminiEntrypoint` check; `bun add` hint on miss; `-Version` already wired |
+| `scripts/chthonic-xp.ps1` | **2.0** | 1 | ✅ Global EAP removed; `$TrailDir` PSScriptRoot-relative; `[switch]$XPDebug` (renamed from `$Debug` — PS common-param collision); early-exit cache bypassed on `-XPDebug` |
+| `scripts/probe_toolchain_path.ps1` | **2.0** | 1 | ✅ `Get-Command rv/rvw` as primary; cargo bin fallback; probe-miss `Log()` entry on rv absent |
+| `scripts/polyglot_env.ps1` | **2.0** | 1 | ✅ Staleness check (<24h skips re-run, uses cached path file); Apply confirmation; `[switch]$Verify` runs `sfs.ps1 --verify` |
+| `scripts/fortify_terminal.ps1` | **2.0** | 1 | ✅ Reflection QuickEdit hack → `[System.Console]::TreatControlCAsInput = $false`; `[Console]::InputEncoding = UTF8` added |
+| `scripts/pause_agents.ps1` | **2.0** | 1 | ✅ Backup path printed; `[switch]$Restore` restores most-recent backup; `operationalMode` key-absence warning before regex replace |
+| `scripts/api_pool_persist_user_env.ps1` | **2.0** | 1 | ✅ `-Status` shows `MISSING (need -Apply)` / `DRIFT (pool != user)` per key |
+| `scripts/api_key_gap_report.ps1` | **2.0** | 1 | ✅ `Get-RepoRoot` PSScriptRoot-relative; `[switch]$Json` emits report to stdout |
+| `scripts/claude_ide.ps1` | **1.5** | 2 | ✅ `.mcp.json` backed up to `.mcp.json.bak` before write; `ConvertFrom-Json` try/catch validation after write; `verify-mcp` subcommand (reports server count, exit 1 on invalid JSON) |
+| `scripts/chthonic.ps1` | **1.5** | 2 | ✅ `$ErrorActionPreference = 'Stop'` after param block; `$VERSION` derived from `package.json` (null-guarded; `"version": "3.3.0"` field added to package.json) |
+| `scripts/desktop-clone-state.ps1` | **1.0** | 2 | ✅ Pre-export size estimate per-component + total; disk space guard (1.1× headroom); `[switch]$ExcludeGit` — robocopy `/XD .git` + `git bundle create <leaf>.bundle` |
 
 ---
 
@@ -47,68 +61,68 @@
 ### Archaeology / Nightly Pipeline
 | Script | Score | Effort | Action |
 |--------|-------|--------|--------|
-| `scripts/git_snapshot.py` | **3.0** | 1 | Add `--quiet/-q` (suppress stdout, file only); use `resolve_ssot_paths()` for mailbox dir; add `--since <ISO>` |
-| `scripts/run_archaeology.ps1` | **3.0** | 1 | Print `$runFailures` at script end (currently accumulated but never shown); remove dead `-LocalV2` param; add `-What` switch |
-| `scripts/run_overnight_daemon.ps1` | **2.0** | 1 | Use `Get-Command bun` first, fall back to hardcoded path; add `-Timeout N`; propagate exit code as `$LASTEXITCODE` |
-| `scripts/overnight_daemon.ts` | **1.5** | 2 | Uncomment and configure Sentry (DSN via env); add `--emit-digest` flag writing `DAEMON_DIGEST_<date>.md` to `claude/mailbox/` |
-| `scripts/local_refiner_v2.py` | **2.0** | 1 | Normalize output schema between `--mistralrs` and `--legacy-backend`; add `--validate`; add `--model-list` |
-| `scripts/hf_refiner.py` | **2.0** | 1 | Add exponential backoff for HF 429/503; add `--model` flag; make `--ore-dir` configurable |
+| `scripts/git_snapshot.py` | **3.0** | 1 | ✅ `sys.path.insert(0, parent.parent)` guard; `--since <ISO>` commit filter |
+| `scripts/run_archaeology.ps1` | **3.0** | 1 | ✅ Print `$runFailures` in background mode; remove dead `-LocalV2` param; add `-What` plan-preview switch |
+| `scripts/run_overnight_daemon.ps1` | **2.0** | 1 | ✅ `Get-Command bun` first, fall back to hardcoded path; `-Timeout N` with process kill; `exit $LASTEXITCODE` propagation |
+| `scripts/overnight_daemon.ts` | **1.5** | 2 | ✅ Uncomment+activate `initSentry` import; call `initSentry({ dsn: process.env.SENTRY_DSN })` at start of `main()`; add `--emit-digest` flag writing `DAEMON_DIGEST_<date>.md` to `claude/mailbox/` |
+| `scripts/local_refiner_v2.py` | **2.0** | 1 | ✅ Output schema normalized; `--validate` schema gate; `--model-list` GGUF inventory |
+| `scripts/hf_refiner.py` | **2.0** | 1 | ✅ Exponential backoff 429/503 (`RETRY_DELAY*(2**attempt)`); `--ore-dir` configurable; `find_latest_ore(ore_base)` param |
 
 ### HuggingFace Lane
 | Script | Score | Effort | Action |
 |--------|-------|--------|--------|
-| `scripts/hf_auth_doctor.ps1` | **2.0** | 1 | Add `-Verify` flag calling `https://huggingface.co/api/whoami`; annotate user-scope vs process-scope in output |
-| `scripts/hf_model_scout.py` | **2.0** | 1 | Add exponential backoff retry (3 attempts); add `--verify-timeout N` per model; handle `RateLimitError` |
-| `scripts/hf_probe.py` | **2.0** | 1 | Wrap `huggingface_hub` import in try/except with install hint; use process env copy, don't mutate `os.environ` |
-| `scripts/hf_discovery.py` | **2.0** | 1 | Add auth check at startup with clear error if unauthenticated; write `LATEST` alias JSON alongside timestamped output |
-| `scripts/hf-model-ranker.ts` | **2.0** | 1 | Use `import.meta.dir`-relative DB path; add exponential backoff for HF 429; document Bun requirement in header |
+| `scripts/hf_auth_doctor.ps1` | **2.0** | 1 | ✅ `-Verify` calls `api/whoami`, prints username; user-scope vs process-scope annotation |
+| `scripts/hf_model_scout.py` | **2.0** | 1 | ✅ Exponential backoff retry 429 (`sleep(2**attempt)`); `--verify-timeout N`; `verify_config(timeout)` param |
+| `scripts/hf_probe.py` | **2.0** | 1 | ✅ Guarded `huggingface_hub` import with install hint; env copy (`dict(os.environ)`), no `os.environ` mutation |
+| `scripts/hf_discovery.py` | **2.0** | 1 | ✅ Auth check via `api.whoami()` + stderr hint on fail; LATEST alias JSON+MD written alongside timestamped output |
+| `scripts/hf-model-ranker.ts` | **2.0** | 1 | ✅ Bun requirement in header; `import.meta.dir`-relative `repoRoot`; 429 backoff (`Bun.sleep(2^n*1s)`, 3 retries) |
 
 ### Poe Lane
 | Script | Score | Effort | Action |
 |--------|-------|--------|--------|
-| `scripts/poe_lane.py` | **2.0** | 1 | Add `--timeout N`; add `--stream` flag for incremental output |
-| `scripts/poe_sdk_lane.py` | **2.0** | 1 | Add graceful `ImportError` catch with `uv run --with fastapi-poe` hint; add `poe-sdk` extra to `pyproject.toml` |
-| `scripts/poe_transport_audit.py` | **2.0** | 1 | Import `poe_lane`/`poe_sdk_lane` as Python modules (not subprocess); add `--cache` for unchanged model results |
-| `scripts/poe_account.ps1` | **2.0** | 1 | Fall back to `scripts/api_pool.ps1 -Load` if skill path not found; validate resolved `POE_API_KEY` non-empty; add `-List` flag |
+| `scripts/poe_lane.py` | **2.0** | 1 | ✅ `--timeout N` (default 60) threaded through `http_json`/`run_models`/`run_chat`; `--stream` flag with `run_chat_stream()` SSE parser (live stdout) |
+| `scripts/poe_sdk_lane.py` | **2.0** | 1 | ✅ `except ImportError` narrowed; install hint updated: `uv run --with fastapi-poe ...`; `poe-sdk` extra in `pyproject.toml` |
+| `scripts/poe_transport_audit.py` | **2.0** | 1 | ✅ Module imports (`_poe_lane`/`_poe_sdk_lane`); `probe_openai`/`probe_sdk`/`list_openai_models` use direct calls; `--cache` saves/loads `codex/mailbox/cache/poe_transport_cache.json` |
+| `scripts/poe_account.ps1` | **2.0** | 1 | ✅ `-List` flag enumerates `POE_API_KEY_N` slots with masked key display; `$keyAfter` guard: throws if `POE_API_KEY` empty post-assignment |
 
 ### Mistral.rs Lane
 | Script | Score | Effort | Action |
 |--------|-------|--------|--------|
-| `scripts/mistralrs_model_manager.py` | **2.0** | 1 | Write PID to `~/.chthonic/mistralrs.pid` on start; check existing PID before start; add `stop` subcommand; clean PID on confirmed stop |
+| `scripts/mistralrs_model_manager.py` | **2.0** | 1 | ✅ `MISTRALRS_PID = ~/.chthonic/mistralrs.pid`; PID guard before start (live=abort, stale=clean+proceed); write PID after `Popen`; `cmd_stop` unlinks PID on confirmed stop |
 
 ### MCP Servers
 | Script | Score | Effort | Action |
 |--------|-------|--------|--------|
-| `scripts/mcp-chthonic-server.ts` | **1.5** | 2 | Add SENTRY_DSN presence check at startup; use JSON error objects with `code`+`message`+`context` in all catch handlers; add `tools/describe` introspection |
-| `scripts/gemini-model-router.ts` | **1.5** | 2 | Backup `settings.json` → `.bak` before write; make registry version mismatch a warning with migration path; add `--dry-run` |
-| `scripts/mcp-asc-injector.ts` | **2.0** | 1 | Add SSOT existence check at startup with clear error; add `ping` tool returning server version + SSOT file size |
+| `scripts/mcp-chthonic-server.ts` | **1.5** | 2 | ✅ `SENTRY_DSN` presence check (WARN to stderr if absent); `data.context` field on all catch handlers (`{tool,args}` in tools/call, `"parse"` in parse error); `tools/describe` MCP method (by name or all) |
+| `scripts/gemini-model-router.ts` | **1.5** | 2 | ✅ `copyFileSync` backup to `.bak` before write; `EXPECTED_REGISTRY_VERSION` + `validateRegistryVersion()` warns to stderr with migration hint on version mismatch; `--dry-run` flag: skips write; `SyncResult.dryRun` + `.backedUp` fields |
+| `scripts/mcp-asc-injector.ts` | **2.0** | 1 | ✅ SSOT existence check at startup with actionable error; `ping` tool returning server version + SSOT file size |
 
 ### VS Code Tooling
 | Script | Score | Effort | Action |
 |--------|-------|--------|--------|
-| `scripts/theme_contrast_audit.py` | **3.0** | 1 | Add `sys.path.insert` guard (same pattern as zombie_consumer.py); document exit codes; add `--emit-junit` for CI XML |
-| `scripts/theme-sync.ps1` | **3.0** | 1 | After copy, verify key file hashes match source; add `-VerifyOnly` flag; use glob-based path-finding as primary strategy |
-| `scripts/vscode_terminal_crash_doctor.ps1` | **2.0** | 1 | Convert `OutRoot` to PSScriptRoot-relative repo detection; document scoring formula in header comment; add `--score-only` |
-| `scripts/vscode_insiders_matrix.ps1` | **2.0** | 1 | PSScriptRoot-relative `OutRoot`; add `-Skip @(...)` parameter; add `--json` for structured results |
-| `scripts/vscode_settings_live_audit.py` | **2.0** | 1 | Auto-detect VS Code install path via registry query; add `--timeout` for `code-insiders --status` call |
-| `scripts/vscode_electron_hardener.py` | **2.0** | 1 | Backup `argv.json` → `.bak` before write; use `code-insiders --status` to discover actual `user-data-dir` |
-| `scripts/vscode_error_autopsy.py` | **2.0** | 1 | Add `--log-dir` flag to override discovery; add `--severity-min` filter |
-| `scripts/insiders-sync.ps1` | **2.0** | 1 | PSScriptRoot-relative repo root; post-package validation that `.vsix` > 0 bytes; add `--dry-run` |
-| `scripts/update-claude-code.ps1` | **2.0** | 1 | Remove retired `patch-claude-insiders.ps1` call; capture version before/after; print diff |
+| `scripts/theme_contrast_audit.py` | **3.0** | 1 | ✅ `sys.path.insert(0, parent.parent)` guard; exit code docstring (0=OK, 1=failures+strict/missing/write-err); `--emit-junit FILE` JUnit XML |
+| `scripts/theme-sync.ps1` | **3.0** | 1 | ✅ Glob-primary dst discovery (version-independent); `[switch]$VerifyOnly` (hash check only, no write); `exit 1` on any hash mismatch; src-missing skip guard |
+| `scripts/vscode_terminal_crash_doctor.ps1` | **2.0** | 1 | ✅ `Get-RepoRoot` starts from `$PSScriptRoot` (not `Get-Location`); scoring formula comment above `Classify-ProbeFindings` (PROFILE_REPO_PATH / PROFILE_STARTUP / BINARY_LEVEL / EXTERNAL); `-ScoreOnly` switch emits JSON `{score, probes}` to stdout |
+| `scripts/vscode_insiders_matrix.ps1` | **2.0** | 1 | ✅ `Get-RepoRoot` starts from `$PSScriptRoot`; `-Skip @(...)` string-array to omit named cases; `-Json` switch emits JSON to stdout |
+| `scripts/vscode_settings_live_audit.py` | **2.0** | 1 | ✅ `_find_insiders_root_from_registry()` (HKCU Uninstall/winreg, win32 only); `find_insiders_install_root()` uses registry fallback; `run_command(timeout=)`; `get_insiders_version(timeout=)`; `--timeout SECONDS` argparse flag |
+| `scripts/vscode_electron_hardener.py` | **2.0** | 1 | ✅ `argv.json.bak` backup before write (already in `patch_argv()`); `discover_user_data_dir()`: runs `code-insiders --status`, parses `User Data:` line; `main()` uses discovered path with env-based fallback |
+| `scripts/vscode_error_autopsy.py` | **2.0** | 1 | ✅ `--log-dir PATH` override flag (bypasses all default discovery, scans only specified dir); `--severity-min LEVEL` alias for `--severity` (both use `dest='severity'`) |
+| `scripts/insiders-sync.ps1` | **2.0** | 1 | ✅ `[switch]$DryRun` param; `Invoke-Step` prints `[dry-run] Would run: <Label>` without executing; `$RepoRoot = Split-Path -Parent $PSScriptRoot` variable; post-package vsix validation (0 files → throw; 0-byte file → throw) |
+| `scripts/update-claude-code.ps1` | **2.0** | 1 | ✅ removed `patch-claude-insiders.ps1` call; `$verBefore` = `claude --version` before bun add; `$verAfter` after; prints color diff Before/After |
 
 ### Project Scaffolding / Workflow
 | Script | Score | Effort | Action |
 |--------|-------|--------|--------|
-| `scripts/chthonic_new.py` | **2.0** | 1 | Capture stderr per command and report structured error; add `--verify` flag; expose as `new` subcommand in `chthonic.ps1` |
-| `scripts/chthonic_workflow.py` | **2.0** | 1 | Add `--list` to enumerate workflow profiles; add `--dry-run`; expose as `workflow` subcommand |
-| `scripts/apply_canonize_uv.sh` | **2.0** | 1 | Add pre-flight `git remote get-url origin` check; add `--dry-run`; add `set -e` or explicit exit-code checks in loop |
-| `scripts/siphon_to_dumpster_dive.ps1` | **2.0** | 1 | Exclude the script itself from siphon list; write `siphon-manifest.json` to `DestRoot` after completion |
+| `scripts/chthonic_new.py` | **2.0** | 1 | ✅ `execute_profile()` adds `errors` field (failed steps with command/exit_code/stderr); `VERIFY_CHECKS` + `verify_scaffold()`: checks expected files per profile; `--verify` argparse flag; `chthonic.ps1` new help updated to mention `--verify` (subcommand already existed) |
+| `scripts/chthonic_workflow.py` | **2.0** | 1 | ✅ `--list` flag (profile `nargs='?'`; prints sorted names, exits 0); `--dry-run`: `run_step(dry_run=True)` returns `exit_code=0`, `stdout=[dry-run] would run: ...`; `chthonic.ps1` workflow help updated; subcommand already existed |
+| `scripts/apply_canonize_uv.sh` | **2.0** | 1 | ✅ pre-flight `git remote get-url origin` check (exits 1 if absent); `--dry-run` flag (skips checkout/uv run/commit/push, prints previews); explicit `if ! eval CMD` exit-code checks in loop |
+| `scripts/siphon_to_dumpster_dive.ps1` | **2.0** | 1 | ✅ `$scriptSelfRel = GetRelativePath($repoRoot, $PSCommandPath)` filter from `$selected`; writes `siphon-manifest.json` to `$destBase` (DestRoot base dir) with run_at/stamp/dest/file_count/files |
 
 ### Zombie Pipeline
 | Script | Score | Effort | Action |
 |--------|-------|--------|--------|
-| `scripts/zombie_consumer.py` | **2.0** | 1 | Lazy-import `sentence-transformers` with install prompt; add `analysis` extra to `pyproject.toml` for sklearn |
-| `scripts/zombie_forge_bridge.py` | **2.0** | 1 | Auto-create forge stage directories; emit batch-level receipt JSON; add `--undo <batch>` |
+| `scripts/zombie_consumer.py` | **2.0** | 1 | ✅ `_load_st_model()`: catch `ImportError` separately; print install prompt to stderr (`uv sync --extra embeddings` + `uv pip install sentence-transformers`); `pyproject.toml` analysis group: add `scikit-learn>=1.8.0,<2` |
+| `scripts/zombie_forge_bridge.py` | **2.0** | 1 | ✅ `ensure_forge_dirs()` auto-creates stage dirs; `_write_batch_receipt()` writes batch-level receipt JSON after route/retro-collapse; `undo` subcommand with `--dry-run`/`--json` |
 
 ---
 
@@ -119,17 +133,17 @@ All 9 files share the same broken import (`from skill_tensor_common import ...` 
 
 | Script | Score | Effort | Action |
 |--------|-------|--------|--------|
-| `scripts/skill_tensor_roulette.py` | **2.0** | 1 | **Batch fix:** Add `sys.path.insert(0, str(Path(__file__).resolve().parent))` OR change to `from scripts.skill_tensor_common import ...` |
-| `scripts/skill_tensor_execute.py` | **2.0** | 1 | Same batch fix |
-| `scripts/skill_tensor_feedback.py` | **2.0** | 1 | Same batch fix |
-| `scripts/skill_tensor_inventory.py` | **2.0** | 1 | Same batch fix |
-| `scripts/skill_tensor_ledger.py` | **2.0** | 1 | Same batch fix |
-| `scripts/skill_tensor_plan.py` | **2.0** | 1 | Same batch fix |
-| `scripts/skill_tensor_pool.py` | **2.0** | 1 | Same batch fix |
-| `scripts/skill_tensor_render_spec.py` | **2.0** | 1 | Same batch fix |
-| `scripts/skill_tensor_weights.py` | **2.0** | 1 | Same batch fix |
-| `scripts/skill_tensor_cycle.py` | **2.0** | 1 | Replace inline `find_repo_root` with `from scripts.lib.shared import find_repo_root`; add `--stages`, `--resume` |
-| `scripts/skill_tensor_common.py` | **2.0** | 1 | Add clear `FileNotFoundError` with "run skill_tensor_cycle.py first" hint; add `--latest-path` override |
+| `scripts/skill_tensor_roulette.py` | **2.0** | 1 | ✅ `sys.path.insert(0, str(Path(__file__).resolve().parent))` before `from skill_tensor_common import` |
+| `scripts/skill_tensor_execute.py` | **2.0** | 1 | ✅ Same batch fix |
+| `scripts/skill_tensor_feedback.py` | **2.0** | 1 | ✅ Same batch fix |
+| `scripts/skill_tensor_inventory.py` | **2.0** | 1 | ✅ Same batch fix |
+| `scripts/skill_tensor_ledger.py` | **2.0** | 1 | ✅ Same batch fix |
+| `scripts/skill_tensor_plan.py` | **2.0** | 1 | ✅ Same batch fix |
+| `scripts/skill_tensor_pool.py` | **2.0** | 1 | ✅ Same batch fix |
+| `scripts/skill_tensor_render_spec.py` | **2.0** | 1 | ✅ Same batch fix |
+| `scripts/skill_tensor_weights.py` | **2.0** | 1 | ✅ Same batch fix |
+| `scripts/skill_tensor_cycle.py` | **2.0** | 1 | ✅ Replace inline `find_repo_root` with `from lib.shared import find_repo_root`; added `--stages`, `--resume` to cycle subparser |
+| `scripts/skill_tensor_common.py` | **2.0** | 1 | ✅ `load_latest()` raises `FileNotFoundError` with hint; accepts optional `path` arg; `--latest-path` in `__main__` |
 
 ### Consolidation / Deduplication
 | Script | Score | Effort | Action |
