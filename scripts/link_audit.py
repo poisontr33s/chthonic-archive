@@ -50,6 +50,11 @@ import sys
 from pathlib import Path
 from urllib.parse import unquote as _url_unquote
 
+# sys.path guard: ensure repo root is importable regardless of invocation CWD
+_REPO_ROOT_CANDIDATE = Path(__file__).resolve().parent.parent
+if str(_REPO_ROOT_CANDIDATE) not in sys.path:
+    sys.path.insert(0, str(_REPO_ROOT_CANDIDATE))
+
 from scripts.lib.shared import configure_utf8_output, find_repo_root, setup_logging
 
 # =============================================================================
@@ -689,7 +694,7 @@ def audit_file_against_staged_renames(file_path: Path, repo_root: Path, renames:
     }
 
 
-def apply_fixes(file_path: Path, issues: list[dict]) -> int:
+def apply_fixes(file_path: Path, issues: list[dict], backup: bool = True) -> int:
     """Apply fixable replacements to a file. Returns count of fixes applied."""
     fixable = [i for i in issues if i["fix"] is not None]
     if not fixable:
@@ -704,7 +709,11 @@ def apply_fixes(file_path: Path, issues: list[dict]) -> int:
             text = text.replace(old, new, 1)
             count += 1
 
-    file_path.write_text(text, encoding="utf-8")
+    if count:
+        if backup:
+            bak = file_path.with_name(file_path.name + ".bak")
+            bak.write_bytes(file_path.read_bytes())
+        file_path.write_text(text, encoding="utf-8")
     return count
 
 
@@ -894,7 +903,7 @@ def audit_inert_backticks(
     }
 
 
-def apply_backtick_fixes(file_path: Path, hits: list[dict]) -> int:
+def apply_backtick_fixes(file_path: Path, hits: list[dict], backup: bool = True) -> int:
     """Apply fixable inert-backtick rewrites to a file."""
     fixable = [item for item in hits if item["fix"] is not None]
     if not fixable:
@@ -909,7 +918,11 @@ def apply_backtick_fixes(file_path: Path, hits: list[dict]) -> int:
             text = text.replace(old, new, 1)
             applied += 1
 
-    file_path.write_text(text, encoding="utf-8")
+    if applied:
+        if backup:
+            bak = file_path.with_name(file_path.name + ".bak")
+            bak.write_bytes(file_path.read_bytes())
+        file_path.write_text(text, encoding="utf-8")
     return applied
 
 
@@ -932,6 +945,8 @@ def main() -> int:
                          help="Apply fixes to the file in-place")
     p_check.add_argument("--dry-run", action="store_true",
                          help="Show what --fix would do without writing")
+    p_check.add_argument("--no-backup", action="store_true",
+                         help="Skip .bak backup before in-place rewrite")
 
     # collisions
     p_coll = sub.add_parser("collisions", help="List all basename collisions in the repo")
@@ -945,6 +960,7 @@ def main() -> int:
     p_bt.add_argument("file", type=Path, help="File to scan")
     p_bt.add_argument("--fix", action="store_true", help="Upgrade fixable inert backticks to markdown links")
     p_bt.add_argument("--dry-run", action="store_true", help="Show what --fix would rewrite without writing")
+    p_bt.add_argument("--no-backup", action="store_true", help="Skip .bak backup before in-place rewrite")
     p_bt.add_argument("--json", dest="bt_json", action="store_true", help="JSON output")
 
     # scan
@@ -953,6 +969,8 @@ def main() -> int:
                         help="Apply fixes to all files in-place")
     p_scan.add_argument("--dry-run", action="store_true",
                         help="Show what --fix would do without writing")
+    p_scan.add_argument("--no-backup", action="store_true",
+                        help="Skip .bak backups before in-place rewrites")
     p_scan.add_argument("--changed", action="store_true",
                         help="Only scan files changed vs HEAD (git diff --name-only)")
     p_scan.add_argument("--paths", nargs="*", type=Path, metavar="FILE",
@@ -967,6 +985,8 @@ def main() -> int:
                            help="Apply fixable replacements to affected markdown files")
     p_renames.add_argument("--dry-run", action="store_true",
                            help="Show what --fix would do without writing")
+    p_renames.add_argument("--no-backup", action="store_true",
+                           help="Skip .bak backup before in-place rewrite")
     p_renames.add_argument("--json", action="store_true", help="JSON output")
 
     # Common options (--json is now per-subcommand; check + collisions get it here)
@@ -983,7 +1003,7 @@ def main() -> int:
         parser.print_help()
         return 0
 
-    # --- backticks ---
+    no_backup = getattr(args, "no_backup", False)
     if args.command == "backticks":
         file_path = args.file.resolve()
         if not file_path.is_file():
@@ -1027,7 +1047,7 @@ def main() -> int:
             return 0 if result["inert_backtick_refs"] == 0 else 1
 
         if args.fix and result["fixable"]:
-            applied = apply_backtick_fixes(file_path, result["hits"])
+            applied = apply_backtick_fixes(file_path, result["hits"], backup=not no_backup)
             rerun = audit_inert_backticks(file_path, repo_root, index)
             print(f"\nApplied {applied} fix(es)")
             return 0 if rerun["inert_backtick_refs"] == 0 else 1
@@ -1071,7 +1091,11 @@ def main() -> int:
             log.error("renames currently requires --staged")
             return 1
 
-        renames = load_staged_renames(repo_root)
+        try:
+            renames = load_staged_renames(repo_root)
+        except RuntimeError as exc:
+            log.error("Failed to load staged renames: %s", exc)
+            return 1
         if not renames:
             print("No staged renames found.")
             return 0
@@ -1122,7 +1146,7 @@ def main() -> int:
             touched = 0
             for result in results:
                 file_path = repo_root / result["file"]
-                count = apply_fixes(file_path, result["issues"])
+                count = apply_fixes(file_path, result["issues"], backup=not no_backup)
                 if count:
                     touched += 1
                     applied += count
@@ -1136,10 +1160,14 @@ def main() -> int:
         if args.paths:
             md_files = [p.resolve() for p in args.paths if p.resolve().is_file()]
         elif args.changed:
-            diff_out = subprocess.run(
-                ["git", "diff", "--name-only", "HEAD"],
-                capture_output=True, text=True, cwd=str(repo_root),
-            )
+            try:
+                diff_out = subprocess.run(
+                    ["git", "diff", "--name-only", "HEAD"],
+                    capture_output=True, text=True, cwd=str(repo_root),
+                )
+            except FileNotFoundError:
+                log.error("git not found — cannot use --changed")
+                return 1
             changed = [
                 (repo_root / line.strip()).resolve()
                 for line in diff_out.stdout.splitlines()
@@ -1221,7 +1249,7 @@ def main() -> int:
             touched = 0
             for result in all_results:
                 file_path = repo_root / result["file"]
-                count = apply_fixes(file_path, result["issues"])
+                count = apply_fixes(file_path, result["issues"], backup=not no_backup)
                 if count:
                     touched += 1
                     applied += count
