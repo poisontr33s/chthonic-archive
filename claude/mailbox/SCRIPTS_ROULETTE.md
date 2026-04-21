@@ -14,7 +14,7 @@
 |------|------|-----------|-------|
 | T0 | 9/9 ✅ | — | All auth/infra gates complete |
 | T1 | 12/12 ✅ | — | `desktop-clone-state.ps1` 336f26d1: pre-export size estimate; disk space guard (10% headroom); `[switch]$ExcludeGit` (robocopy `/XD .git` + `git bundle create`) |
-| T2 | 52/~68 🔄 | ~16 remaining | **Active** |
+| T2 | ~68/~68 ✅ | — | **Complete** — e9a9fc93 skill_index+skill_health+skill_audit trio |
 | T3 | 16 ✅ | — | **Complete** |
 | T4 | 2/2 ✅ | — | **Complete** — `88a675b4` sfs_slabstone_baseline (CRLF→LF hash, --emit-json, task exit codes); `8b40191c` gemini-model-router.test (fixture file, bun test script, passthrough-no-fallback edge case) |
 | T5 | 0 ⬜ | full tier | |
@@ -202,9 +202,9 @@ All 9 files share the same broken import (`from skill_tensor_common import ...` 
 ### Skill Tooling
 | Script | Score | Effort | Action |
 |--------|-------|--------|--------|
-| `scripts/build_skill_index.py` | **2.0** | 1 | Fix Purpose string in header; add `--output` defaulting to `codex/mailbox/SKILL_INDEX_LATEST.json`; add `--diff` |
-| `scripts/skill_health.py` | **2.0** | 1 | Externalize rubric to `.meta/skill-health-rubric.json`; add `--since <ISO>`; add `--emit-badge` |
-| `scripts/skill_audit.py` | **2.0** | 1 | Validate `--root` exists; read `CLAUDE_TOOLS` from config not hardcoded set; align output format with `skill_health.py` |
+| `scripts/build_skill_index.py` | **2.0** | 1 | ✅ Fix Purpose string in header; add `--output` defaulting to `codex/mailbox/SKILL_INDEX_LATEST.json`; add `--diff` |
+| `scripts/skill_health.py` | **2.0** | 1 | ✅ Externalize rubric to `.meta/skill-health-rubric.json`; add `--since <ISO>`; add `--emit-badge` |
+| `scripts/skill_audit.py` | **2.0** | 1 | ✅ Validate `--root` exists; read `CLAUDE_TOOLS` from config not hardcoded set; align output format with `skill_health.py` |
 
 ### Audit / Scan Tooling
 | Script | Score | Effort | Action |
