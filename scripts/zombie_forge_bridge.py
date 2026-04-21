@@ -81,6 +81,13 @@ FORGE_STAGES: dict[str, Path] = {
     "tea-vault": FORGE / "tea-vault",
 }
 
+
+def ensure_forge_dirs() -> None:
+    """Create FORGE root + all stage directories if they do not exist."""
+    FORGE.mkdir(parents=True, exist_ok=True)
+    for stage_dir in FORGE_STAGES.values():
+        stage_dir.mkdir(parents=True, exist_ok=True)
+
 # ore_rating → forge stage (default routing, no superposition)
 ORE_TO_STAGE: dict[int, str] = {
     5: "quench",
@@ -843,6 +850,74 @@ def _render_compact_results(results: list[dict], apply: bool) -> None:
 
 
 # ---------------------------------------------------------------------------
+# Batch-level receipt + undo
+# ---------------------------------------------------------------------------
+
+def _write_batch_receipt(batch: str | None, results: list[dict], dry_run: bool) -> Path | None:
+    """Write a batch-level summary receipt JSON to FORGE/.forge_batch_receipt_*.json.
+
+    Returns the path written, or None when dry_run.
+    """
+    if dry_run:
+        return None
+    FORGE.mkdir(parents=True, exist_ok=True)
+    label = batch or "unfiltered"
+    ts = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
+    receipt_path = FORGE / f".forge_batch_receipt_{label}_{ts}.json"
+    payload: dict = {
+        "batch":     label,
+        "timestamp": datetime.now(timezone.utc).isoformat(),
+        "dry_run":   dry_run,
+        "summary":   _route_results_summary(results),
+        "results":   results,
+    }
+    receipt_path.write_text(json.dumps(payload, indent=2) + "\n", encoding="utf-8")
+    return receipt_path
+
+
+def undo_batch(batch: str, dry_run: bool = False) -> list[dict]:
+    """Reverse a named batch route: remove staged files + forge receipt sidecars.
+
+    Scans every forge stage for receipts whose source_extract contains `batch`.
+    Returns a list of action dicts.
+    """
+    actions: list[dict] = []
+    for stage_name, stage_dir in FORGE_STAGES.items():
+        if not stage_dir.exists():
+            continue
+        for receipt_path in stage_dir.glob(".forge_receipt_*.json"):
+            try:
+                data = json.loads(receipt_path.read_text(encoding="utf-8"))
+            except Exception:
+                continue
+            source_extract = data.get("source_extract", "")
+            if batch not in source_extract:
+                continue
+            routed_to = data.get("routed_to", "")
+            staged_path = ROOT / routed_to if routed_to and not Path(routed_to).is_absolute() else Path(routed_to)
+            action: dict = {
+                "batch":        batch,
+                "stage":        stage_name,
+                "receipt":      safe_relative(receipt_path),
+                "staged_file":  routed_to,
+                "dry_run":      dry_run,
+            }
+            if dry_run:
+                action["status"] = "would_remove"
+            else:
+                removed: list[str] = []
+                if staged_path.exists():
+                    staged_path.unlink()
+                    removed.append("staged_file")
+                receipt_path.unlink(missing_ok=True)
+                removed.append("receipt")
+                action["status"] = "removed"
+                action["removed"] = removed
+            actions.append(action)
+    return actions
+
+
+# ---------------------------------------------------------------------------
 # CLI
 # ---------------------------------------------------------------------------
 
@@ -882,6 +957,11 @@ def main() -> int:
                            help="Restrict forge compaction to one stage")
     p_compact.add_argument("--json", action="store_true", help="JSON output")
 
+    p_undo = sub.add_parser("undo", help="Reverse a named batch route: remove staged files + receipt sidecars")
+    p_undo.add_argument("batch", type=str, metavar="BATCH", help="Batch name to undo (substring match on source_extract)")
+    p_undo.add_argument("--dry-run", action="store_true", help="Preview removals without deleting")
+    p_undo.add_argument("--json", action="store_true", help="JSON output")
+
     args = parser.parse_args()
 
     if not args.command:
@@ -889,6 +969,7 @@ def main() -> int:
         return 0
 
     if args.command == "route":
+        ensure_forge_dirs()
         routed_hashes = load_routed_hashes()
         results: list[dict] = []
         for extract_path, extract_data in scan_extracts(batch_filter=args.batch):
@@ -896,6 +977,7 @@ def main() -> int:
                 extract_path, extract_data, routed_hashes, dry_run=args.dry_run
             )
             results.append(result)
+        _write_batch_receipt(args.batch, results, dry_run=args.dry_run)
         if getattr(args, "json", False):
             print(json.dumps(results, indent=2))
         else:
@@ -910,6 +992,7 @@ def main() -> int:
         return 0
 
     if args.command == "retro-collapse":
+        ensure_forge_dirs()
         routed_hashes = load_routed_hashes()
         results: list[dict] = []
         for extract_path, extract_data in scan_extracts(batch_filter=args.batch):
@@ -917,6 +1000,7 @@ def main() -> int:
                 extract_path, extract_data, routed_hashes, dry_run=args.dry_run
             )
             results.append(result)
+        _write_batch_receipt(args.batch, results, dry_run=args.dry_run)
         payload = {
             "summary": _route_results_summary(results),
             "results": results,
@@ -942,6 +1026,21 @@ def main() -> int:
             print(json.dumps(payload, indent=2))
         else:
             _render_compact_results(results, apply=not args.dry_run)
+        return 0
+
+    if args.command == "undo":
+        actions = undo_batch(args.batch, dry_run=args.dry_run)
+        if getattr(args, "json", False):
+            print(json.dumps(actions, indent=2))
+        else:
+            console = _get_console()
+            for a in actions:
+                status_color = "yellow" if a.get("dry_run") else "red"
+                console.print(
+                    f"[{status_color}]{a['status']}[/{status_color}] "
+                    f"[dim]{a['stage']}[/dim] {a.get('staged_file', '')}"
+                )
+            console.print(f"[dim]{len(actions)} entries processed for batch '{args.batch}'[/dim]")
         return 0
 
     parser.print_help()
