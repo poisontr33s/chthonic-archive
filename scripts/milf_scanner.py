@@ -23,10 +23,34 @@ VS Code color theme JSONs from character specifications.
 @Purpose:       MILF Scanner — Central character design system registry for the
 """
 
+import argparse
 import json
 import sys
 
 from scripts.lib.shared import configure_utf8_output
+
+# The 14 canonical palette role keys every character entry must define.
+# Derived from the theme_scaffold.py consumer contract — all 14 slots are
+# required for mechanical theme generation.
+_REQUIRED_PALETTE_KEYS: tuple[str, ...] = (
+    "background", "foreground", "accent", "keyword", "function",
+    "type", "constant", "string", "comment", "variable",
+    "error", "success", "warning", "info",
+)
+
+
+def _sanity_check_registry() -> list[str]:
+    """Verify all characters define all 14 required palette roles.
+
+    Returns a list of violation strings (empty = OK).
+    """
+    violations: list[str] = []
+    for cid, char in CHARACTERS.items():
+        palette = char.get("palette", {})
+        missing = [k for k in _REQUIRED_PALETTE_KEYS if k not in palette]
+        if missing:
+            violations.append(f"  {cid}: missing palette keys: {', '.join(missing)}")
+    return violations
 
 # ═══════════════════════════════════════════════════════════════════════════════
 # **(`MILF's`/`REG`): -> *Canonical-Palette-Data-Per -> (`MILF/Sub-MILF`):**
@@ -285,10 +309,32 @@ def list_characters(mapped_only: bool = False) -> list[dict]:
 def main() -> None:
     configure_utf8_output()
 
-    mode = sys.argv[1] if len(sys.argv) > 1 else "--summary"
+    # Run sanity check at startup — exits 1 if registry has violations
+    violations = _sanity_check_registry()
+    if violations:
+        print("❌ MILF REGISTRY SANITY FAILURE — missing required palette keys:", file=sys.stderr)
+        for v in violations:
+            print(v, file=sys.stderr)
+        sys.exit(1)
 
-    if mode == "--json":
-        char_id = sys.argv[2] if len(sys.argv) > 2 else None
+    parser = argparse.ArgumentParser(
+        description="MILF Scanner — Chthonic character design system registry")
+    parser.add_argument("--summary", action="store_true",
+                        help="Print human-readable character registry (default)")
+    parser.add_argument("--json", dest="json_mode", metavar="CHAR_ID", nargs="?", const="",
+                        help="Emit JSON for a single character (CHAR_ID) or all if omitted")
+    parser.add_argument("--dump-json", action="store_true",
+                        help="Emit full registry as JSON (TS/PS1 consumer format; equivalent to --json with no arg)")
+    parser.add_argument("--palette", metavar="CHAR_ID",
+                        help="Print color palette for a character")
+    args = parser.parse_args()
+
+    if args.dump_json:
+        print(json.dumps(CHARACTERS, indent=2, ensure_ascii=False))
+        return
+
+    if args.json_mode is not None:
+        char_id = args.json_mode or None
         if char_id:
             data = get_character(char_id)
             if not data:
@@ -297,12 +343,10 @@ def main() -> None:
             print(json.dumps(data, indent=2, ensure_ascii=False))
         else:
             print(json.dumps(CHARACTERS, indent=2, ensure_ascii=False))
+        return
 
-    elif mode == "--palette":
-        char_id = sys.argv[2] if len(sys.argv) > 2 else None
-        if not char_id:
-            print("Usage: milf_scanner.py --palette <char_id>", file=sys.stderr)
-            sys.exit(1)
+    if args.palette:
+        char_id = args.palette
         data = get_character(char_id)
         if not data:
             print(f"Unknown character: {char_id}", file=sys.stderr)
@@ -310,22 +354,22 @@ def main() -> None:
         print(f"☥ Palette: {data['name']} {data['sigil']}\n")
         for key, val in data["palette"].items():
             print(f"  {val}  {key}")
+        return
 
-    elif mode == "--summary":
-        print("☥ MILFOLOGICAL DESIGN SYSTEM — Character Registry\n")
-        for cid, c in CHARACTERS.items():
-            mapped = "✅" if c.get("theme_id") else "⬜"
-            print(f"  {mapped} [{cid:10s}] {c['sigil']} {c['name']}")
-            print(f"     Tier {c['tier']} ({c['cup']}-cup) — {c['fa_axiom']}")
-            if c.get("theme_id"):
-                print(f"     Theme: {c['theme_id']}")
-            print()
-        mapped_n = sum(1 for c in CHARACTERS.values() if c.get("theme_id"))
-        print(f"  Mapped: {mapped_n}/{len(CHARACTERS)} characters have themes")
-
-    else:
-        print("Usage: milf_scanner.py [--summary | --json [char_id] | --palette <char_id>]")
+    # Default: --summary
+    print("☥ MILFOLOGICAL DESIGN SYSTEM — Character Registry\n")
+    for cid, c in CHARACTERS.items():
+        mapped = "✅" if c.get("theme_id") else "⬜"
+        print(f"  {mapped} [{cid:10s}] {c['sigil']} {c['name']}")
+        print(f"     Tier {c['tier']} ({c['cup']}-cup) — {c['fa_axiom']}")
+        if c.get("theme_id"):
+            print(f"     Theme: {c['theme_id']}")
+        print()
+    mapped_n = sum(1 for c in CHARACTERS.values() if c.get("theme_id"))
+    print(f"  Mapped: {mapped_n}/{len(CHARACTERS)} characters have themes")
+    print(f"  Palette sanity: {len(CHARACTERS)}/{len(CHARACTERS)} entries pass 14-key check ✅")
 
 
 if __name__ == "__main__":
     main()
+

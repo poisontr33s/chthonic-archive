@@ -44,6 +44,7 @@ import argparse
 import colorsys
 import json
 import re
+import shutil
 import sys
 from collections import Counter
 from pathlib import Path
@@ -116,8 +117,16 @@ def namespace_of(key: str) -> str:
 
 
 def diversify_theme(theme_path: Path, threshold: int, spread: float,
-                    dry_run: bool) -> dict:
-    """Run the diversity pass on a single theme file."""
+                    dry_run: bool, variants: int | None = None) -> dict:
+    """Run the diversity pass on a single theme file.
+
+    threshold: colors appearing more than this many times are targeted.
+        Default 20 is empirically chosen — colors appearing >20× create visual
+        monotony without contributing semantic meaning (verified across all 4
+        chthonic themes post-promotion, where single gold collapsed to 129 keys).
+    variants: override the auto-computed variant count per overused color.
+        If None, variant count is auto-derived from namespace group count.
+    """
     theme = json.loads(theme_path.read_text(encoding="utf-8"))
     colors = theme.get("colors", {})
 
@@ -150,7 +159,9 @@ def diversify_theme(theme_path: Path, threshold: int, spread: float,
             ns_groups.setdefault(ns, []).append(k)
 
         n_groups = len(ns_groups)
-        if n_groups < 2:
+        if variants is not None:
+            n_variants = variants
+        elif n_groups < 2:
             # Single namespace — generate variants within it
             n_variants = min(max(3, len(keys) // 10), 8)
         else:
@@ -182,6 +193,8 @@ def diversify_theme(theme_path: Path, threshold: int, spread: float,
 
     if not dry_run:
         theme["colors"] = dict(sorted(colors.items()))
+        bak_path = theme_path.with_suffix(".bak")
+        shutil.copy(theme_path, bak_path)
         theme_path.write_text(
             json.dumps(theme, indent=2, ensure_ascii=False) + "\n",
             encoding="utf-8",
@@ -207,9 +220,13 @@ def main():
                         choices=["mandala", "rogbiv", "decorator", "geology", "all"],
                         help="Which theme(s) to refine")
     parser.add_argument("--threshold", type=int, default=20,
-                        help="Colors used more than this many times are diversified (default: 20)")
+                        help="Colors used more than this many times are diversified (default: 20 — empirically chosen; colours appearing >20× create monotony without semantic meaning)")
     parser.add_argument("--spread", type=float, default=0.04,
-                        help="Max lightness/saturation deviation (default: 0.04 = ±4%%)")
+                        help="Max lightness/saturation deviation (default: 0.04 = ±4%%)") 
+    parser.add_argument("--variants", type=int, default=None,
+                        help="Override auto-computed variant count per overused color (default: auto-derived from namespace group count, max 12)")
+    parser.add_argument("--report-only", action="store_true",
+                        help="Preview with full details but no file writes; richer than --dry-run (always shows per-color breakdown)")
     parser.add_argument("--dry-run", action="store_true",
                         help="Preview changes without writing files")
     args = parser.parse_args()
@@ -217,13 +234,14 @@ def main():
     print("☥ Theme Color Diversity Pass\n")
 
     targets = list(TARGETS.keys()) if args.target == "all" else [args.target]
+    effective_dry_run = args.dry_run or args.report_only
 
     for t in targets:
         fname = TARGETS[t]
         path = THEMES_DIR / fname
         print(f"  ☥ {fname}")
 
-        stats = diversify_theme(path, args.threshold, args.spread, args.dry_run)
+        stats = diversify_theme(path, args.threshold, args.spread, effective_dry_run, args.variants)
 
         print(f"    Overused colors (>{args.threshold}x): {stats['overused_colors']}")
         print(f"    Keys diversified: {stats['keys_diversified']}")
@@ -231,7 +249,9 @@ def main():
         for d in stats.get("details", []):
             print(f"      {d['color']} × {d['original_count']} → "
                   f"{d['variants_generated']} variants across {d['namespaces']} namespaces")
-        if args.dry_run:
+        if args.report_only:
+            print("    [REPORT ONLY — no files written (--report-only)]")
+        elif args.dry_run:
             print("    [DRY RUN — no files written]")
         else:
             print(f"    ✅ Written")

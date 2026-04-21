@@ -46,6 +46,7 @@ import argparse
 import colorsys
 import json
 import re
+import shutil
 import sys
 from pathlib import Path
 
@@ -89,8 +90,29 @@ def hex_to_hsl(h: str) -> tuple[float, float, float] | None:
     return colorsys.rgb_to_hls(*rgb)  # note: hls not hsl
 
 
-def color_distance(c1: str, c2: str) -> float:
-    """Perceptual distance between two hex colors (simple HSL delta)."""
+def color_distance(c1: str, c2: str, metric: str = "hsl") -> float:
+    """Distance between two hex colors.
+
+    metric='hsl'  (default): perceptual HSL delta — weight hue×3 + light + sat
+    metric='euclidean': sRGB Euclidean distance (0..1 normalised per channel)
+    """
+    if metric == "euclidean":
+        def _parse_rgb(h: str) -> tuple[float, float, float] | None:
+            h = h.lstrip("#")
+            if len(h) < 6:
+                return None
+            try:
+                r, g, b = int(h[0:2], 16), int(h[2:4], 16), int(h[4:6], 16)
+                return r / 255.0, g / 255.0, b / 255.0
+            except ValueError:
+                return None
+        rgb1 = _parse_rgb(c1)
+        rgb2 = _parse_rgb(c2)
+        if rgb1 is None or rgb2 is None:
+            return 999.0
+        import math
+        return math.sqrt(sum((a - b) ** 2 for a, b in zip(rgb1, rgb2)))
+
     hsl1 = hex_to_hsl(c1)
     hsl2 = hex_to_hsl(c2)
     if hsl1 is None or hsl2 is None:
@@ -288,11 +310,15 @@ def run(target_name: str, dry_run: bool = False, reference: str | None = None) -
     if "colors" in target_theme:
         target_theme["colors"] = dict(sorted(target_theme["colors"].items()))
 
+    # Backup before any modification
+    bak_path = target_path.with_suffix(".bak")
+    shutil.copy(target_path, bak_path)
+
     target_path.write_text(
         json.dumps(target_theme, indent=2, ensure_ascii=False) + "\n",
         encoding="utf-8",
     )
-    print(f"    ✅ Written: {target_path.name}")
+    print(f"    ✅ Written: {target_path.name}  (backup: {bak_path.name})")
     return True
 
 
@@ -305,6 +331,8 @@ def main():
                         help="Override reference theme file (default: geology)")
     parser.add_argument("--dry-run", action="store_true",
                         help="Preview changes without writing files")
+    parser.add_argument("--distance-metric", choices=["hsl", "euclidean"], default="hsl",
+                        help="Color distance formula: hsl (default, perceptual HSL weighting) or euclidean (sRGB L2 norm)")
     args = parser.parse_args()
 
     print("☥ Theme Promote Master")

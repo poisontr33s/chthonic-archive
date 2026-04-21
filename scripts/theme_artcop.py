@@ -19,11 +19,20 @@ Reads a VS Code theme JSON and reports:
 - Palette temperature analysis (warm vs cold)
 - Missing UI chrome coverage
 
+Relationship with scripts/vscode-art-cop.ts:
+  vscode-art-cop.ts is a screenshot-based LLM visual auditor (AI-powered,
+  requires a running local API endpoint and captures live UI screenshots).
+  This script (theme_artcop.py) is a deterministic JSON structure auditor
+  that reads theme files directly — no screenshots, no LLM, no API needed.
+  They are complementary, not duplicate: TS = visual/perceptual; Py = structural/WCAG.
+
 @SID:           TOOL_THEME_ARTCOP_V1
 @Shabti:          Utility
 @Purpose:       Theme Art Cop — WCAG contrast auditor and palette quality checker.
 """
 
+import argparse
+import argparse
 import json
 import math
 import sys
@@ -214,25 +223,71 @@ def print_report(result: dict) -> None:
     print()
 
 
+def compare_audits(before: dict, after: dict) -> None:
+    """Print a before/after comparison of two audit results."""
+    print(f"\n{'='*60}")
+    print(f"  BEFORE/AFTER COMPARISON: {after['name']}")
+    print(f"{'='*60}")
+    for field, label in [
+        ("wcag_fails", "WCAG fails"),
+        ("missing_count", "Missing chrome keys"),
+    ]:
+        bv = len(before[field]) if isinstance(before[field], list) else before[field]
+        av = len(after[field]) if isinstance(after[field], list) else after[field]
+        delta = av - bv
+        arrow = f"{bv} → {av}" + (f" (Δ{delta:+d})" if delta != 0 else " (no change)")
+        print(f"  {label}: {arrow}")
+    brate = before['wcag_pass_rate']
+    arate = after['wcag_pass_rate']
+    print(f"  WCAG pass rate: {brate} → {arate}")
+    print()
+
+
 def main():
-    if len(sys.argv) < 2:
+    parser = argparse.ArgumentParser(
+        description="Theme Art Cop — WCAG contrast auditor and palette quality checker")
+    parser.add_argument("themes", nargs="*", metavar="THEME",
+                        help="Theme file(s) to audit (default: all themes in extension)")
+    parser.add_argument("--json", dest="json_mode", action="store_true",
+                        help="Emit results as JSON")
+    parser.add_argument("--compare", metavar="BEFORE_SNAPSHOT",
+                        help="Path to a before-snapshot JSON (output of --json) for before/after diff")
+    args = parser.parse_args()
+
+    if args.themes:
+        themes = [Path(a) for a in args.themes]
+    else:
         # Default: audit all themes in canonical extension
         theme_dir = Path(__file__).parent.parent / 'extensions' / 'chthonic-archive' / 'themes'
         if not theme_dir.exists():
             theme_dir = Path(__file__).parent.parent / 'extensions' / 'chthonic-mandala' / 'themes'
         themes = list(theme_dir.glob('*.json'))
-    else:
-        themes = [Path(a) for a in sys.argv[1:]]
+
+    # Load before-snapshot if provided
+    before_map: dict[str, dict] = {}
+    if args.compare:
+        compare_path = Path(args.compare)
+        if not compare_path.exists():
+            print(f"ERROR: compare snapshot not found: {compare_path}", file=sys.stderr)
+            sys.exit(1)
+        with open(compare_path, encoding="utf-8") as f:
+            before_list = json.load(f)
+        if isinstance(before_list, list):
+            before_map = {r["name"]: r for r in before_list}
+        elif isinstance(before_list, dict):
+            before_map = {before_list.get("name", ""): before_list}
 
     all_results = []
     for t in themes:
         result = audit_theme(str(t))
         all_results.append(result)
-        if '--json' in sys.argv:
+        if args.json_mode:
             continue
         print_report(result)
+        if args.compare and result["name"] in before_map:
+            compare_audits(before_map[result["name"]], result)
 
-    if '--json' in sys.argv:
+    if args.json_mode:
         print(json.dumps(all_results, indent=2))
         return
 
@@ -253,3 +308,4 @@ def main():
 
 if __name__ == '__main__':
     main()
+

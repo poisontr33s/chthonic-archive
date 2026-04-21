@@ -561,7 +561,8 @@ def format_report(
 
     lines.append("## TextMate Scope Coverage")
     lines.append(f"  Categories in universe:        {total_cats}")
-    lines.append(f"  Fully/partially covered:       {covered_cats}")
+    textmate_pct = covered_cats / total_cats * 100 if total_cats else 0
+    lines.append(f"  Fully/partially covered:       {covered_cats}/{total_cats} ({textmate_pct:.1f}%)")
     lines.append(f"  Completely uncovered:           {uncovered_cats}")
     lines.append("")
 
@@ -638,14 +639,48 @@ def format_report(
 
 
 def main() -> int:
+    import argparse
+    import urllib.request
+
     repo_root = Path(__file__).resolve().parent.parent
-    theme_path = (
-        repo_root
-        / "extensions"
-        / "chthonic-archive"
-        / "themes"
-        / "chthonic-geology-color-theme.json"
-    )
+
+    parser = argparse.ArgumentParser(
+        description="SFS Token Scope Coverage Audit")
+    parser.add_argument("--theme", metavar="PATH",
+                        help="Path to a theme JSON file to audit (default: geology theme)")
+    parser.add_argument("--update-universe", action="store_true",
+                        help="Fetch updated TextMate scope universe from vscode-textmate GitHub and write to data/indices/textmate_universe.json")
+    args = parser.parse_args()
+
+    if args.update_universe:
+        _URL = (
+            "https://raw.githubusercontent.com/microsoft/vscode-textmate/main/src/grammar.ts"
+        )
+        out_dir = repo_root / "data" / "indices"
+        out_dir.mkdir(parents=True, exist_ok=True)
+        out_path = out_dir / "textmate_universe_raw.ts"
+        print(f"Fetching TextMate grammar source: {_URL} ...")
+        try:
+            with urllib.request.urlopen(_URL, timeout=15) as resp:  # noqa: S310
+                content = resp.read().decode("utf-8")
+            out_path.write_text(content, encoding="utf-8")
+            print(f"Written: {out_path}")
+            print("NOTE: Universe raw source fetched — parse manually or run scope extractor.")
+        except Exception as e:
+            print(f"ERROR fetching universe: {e}", file=sys.stderr)
+            return 1
+        return 0
+
+    if args.theme:
+        theme_path = Path(args.theme)
+    else:
+        theme_path = (
+            repo_root
+            / "extensions"
+            / "chthonic-archive"
+            / "themes"
+            / "chthonic-geology-color-theme.json"
+        )
 
     if not theme_path.exists():
         print(f"ERROR: Theme file not found: {theme_path}", file=sys.stderr)

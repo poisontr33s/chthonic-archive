@@ -23,6 +23,7 @@ Reports missing/extra keys per theme relative to the canonical master
 @Purpose:       Theme Parity Checker — ensures all Chthonic VS Code color themes share
 """
 
+import argparse
 import json
 import sys
 from pathlib import Path
@@ -31,7 +32,9 @@ from scripts.lib.shared import configure_utf8_output
 
 REPO = Path(__file__).resolve().parent.parent
 THEME_DIR = REPO / "extensions" / "chthonic-archive" / "themes"
-MASTER_NAME = "chthonic-mandala-color-theme.json"
+# The Decorator theme has the most comprehensive key coverage and is the
+# T0.5 authority in the chthonic palette hierarchy. Mandala is a subset.
+MASTER_NAME = "chthonic-decorator-color-theme.json"
 
 
 def _load_theme(path: Path) -> dict:
@@ -68,7 +71,15 @@ def check_parity(master_path: Path, target_path: Path) -> dict:
 def main() -> None:
     configure_utf8_output()
 
-    master_path = THEME_DIR / MASTER_NAME
+    parser = argparse.ArgumentParser(
+        description="Check structural parity of all Chthonic VS Code themes against a master")
+    parser.add_argument("--master", default=MASTER_NAME,
+                        help=f"Master theme filename (default: {MASTER_NAME})")
+    parser.add_argument("--json", dest="json_mode", action="store_true",
+                        help="Emit results as JSON")
+    args = parser.parse_args()
+
+    master_path = THEME_DIR / args.master
     if not master_path.exists():
         print(f"Master theme not found: {master_path}", file=sys.stderr)
         sys.exit(1)
@@ -76,19 +87,19 @@ def main() -> None:
     # Discover all color theme JSONs except the master and icon themes
     targets = sorted(
         p for p in THEME_DIR.glob("*-color-theme.json")
-        if p.name != MASTER_NAME
+        if p.name != args.master
     )
 
     if not targets:
         print("No target themes found alongside master.", file=sys.stderr)
         sys.exit(1)
 
-    json_mode = "--json" in sys.argv
+    json_mode = args.json_mode
 
     all_results = []
     all_pass = True
 
-    print(f"☥ THEME PARITY CHECK — Master: {MASTER_NAME}\n")
+    print(f"☥ THEME PARITY CHECK — Master: {args.master}\n")
 
     for t in targets:
         result = check_parity(master_path, t)
@@ -134,7 +145,7 @@ def main() -> None:
         print(json.dumps(all_results, indent=2, ensure_ascii=False))
         return
 
-    # Summary
+    # Summary — per-theme missing key count
     total = len(targets)
     passed = sum(1 for r in all_results
                  if not r["colors_missing"] and not r["colors_extra"]
@@ -142,6 +153,14 @@ def main() -> None:
                  and r["token_count_master"] == r["token_count_target"])
     grade = "🟢 ALL PASS" if all_pass else f"🔴 {total - passed}/{total} DIVERGENT"
     print(f"  Parity: {passed}/{total} themes match master — {grade}")
+    print()
+    print("  Missing key counts (colors | semantic | token rules):")
+    for r in all_results:
+        cm = len(r["colors_missing"])
+        sm = len(r["semantic_missing"])
+        tc_delta = r["token_count_master"] - r["token_count_target"]
+        icon = "✅" if cm == 0 and sm == 0 and tc_delta == 0 else "❌"
+        print(f"  {icon} {r['file']}: {cm} colors | {sm} semantic | {tc_delta:+d} token rules")
 
     if not all_pass:
         sys.exit(1)

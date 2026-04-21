@@ -23,12 +23,15 @@ independently reversible (Atomic Reversibility directive).
 @Purpose:       SFS (Sister Ferrum Scoriae) Geological Core Transmutation — WPTG Stage 04.
 """
 
+import argparse
+import hashlib
 import json
 import sys
 import colorsys
 from pathlib import Path
 
-THEME_PATH = Path("extensions/chthonic-archive/themes/chthonic-geology-color-theme.json")
+_REPO_ROOT = Path(__file__).resolve().parents[1]
+THEME_PATH = _REPO_ROOT / "extensions" / "chthonic-archive" / "themes" / "chthonic-geology-color-theme.json"
 
 # --- SFS Geological Background Hierarchy ---
 # Ferrum Scoriae = iron slag. Backgrounds evoke deep iron with warm undertones.
@@ -67,6 +70,15 @@ WCAG_FOREGROUND_FIXES = {
     "statusBarItem.warningForeground":  "#0C0A08",
     "editorCursor.background":          "#0C0A08",
 }
+
+# Stable content hash of all changeset constants — used for idempotency check.
+# Recomputed each import so it always reflects the current state of the consts.
+_CHANGESET_HASH: str = hashlib.sha256(
+    json.dumps(
+        {"backgrounds": GEOLOGICAL_BACKGROUNDS, "wcag_fg": WCAG_FOREGROUND_FIXES},
+        sort_keys=True,
+    ).encode()
+).hexdigest()[:16]
 
 
 def hex_to_hsl(hex_color: str) -> tuple[float, float, float]:
@@ -188,22 +200,53 @@ def apply_transmutation(theme: dict, dry_run: bool = False) -> dict:
     return changes
 
 
+def _verify_idempotent(theme_path: Path) -> bool:
+    """Check whether the theme already reflects all changeset values (idempotent state)."""
+    with open(theme_path, "r", encoding="utf-8") as f:
+        theme = json.load(f)
+    colors = theme.get("colors", {})
+    pending = []
+    for key, expected in {**GEOLOGICAL_BACKGROUNDS, **WCAG_FOREGROUND_FIXES}.items():
+        if key in colors and colors[key].lower() != expected.lower():
+            pending.append((key, colors[key], expected))
+    if pending:
+        print(f"  VERIFY: PENDING — {len(pending)} changeset value(s) not yet applied")
+        for key, current, expected in pending[:10]:
+            print(f"    {key}: {current} → {expected}")
+        if len(pending) > 10:
+            print(f"    ... and {len(pending) - 10} more")
+        return False
+    print(f"  VERIFY: IDEMPOTENT — all changeset values already present in theme")
+    print(f"  Changeset hash: {_CHANGESET_HASH}")
+    return True
+
+
 def main():
-    dry_run = "--dry-run" in sys.argv
+    parser = argparse.ArgumentParser(description="SFS Geological Core Transmutation — WPTG Stage 04")
+    parser.add_argument("--dry-run", action="store_true",
+                        help="Preview changes without writing files")
+    parser.add_argument("--verify", action="store_true",
+                        help="Check if theme is already in idempotent (fully-applied) state; exit 0 if yes, 1 if not")
+    args = parser.parse_args()
 
     if not THEME_PATH.exists():
         print(f"ERROR: Theme not found at {THEME_PATH}")
         sys.exit(1)
+
+    if args.verify:
+        ok = _verify_idempotent(THEME_PATH)
+        sys.exit(0 if ok else 1)
 
     with open(THEME_PATH, 'r', encoding='utf-8') as f:
         theme = json.load(f)
 
     print(f"☥ SFS TRANSMUTATION — WPTG Stage 04")
     print(f"  Theme: {theme.get('name', 'Unknown')}")
-    print(f"  Mode:  {'DRY RUN' if dry_run else 'LIVE'}")
+    print(f"  Changeset hash: {_CHANGESET_HASH}")
+    print(f"  Mode:  {'DRY RUN' if args.dry_run else 'LIVE'}")
     print()
 
-    changes = apply_transmutation(theme, dry_run=dry_run)
+    changes = apply_transmutation(theme, dry_run=args.dry_run)
 
     # Report
     categories = {}
@@ -221,14 +264,15 @@ def main():
     total = len(changes)
     print(f"  Total changesets: {total}")
 
-    if not dry_run and total > 0:
+    if not args.dry_run and total > 0:
         with open(THEME_PATH, 'w', encoding='utf-8') as f:
             json.dump(theme, f, indent=2, ensure_ascii=False)
             f.write('\n')
         print(f"\n  ✅ Written to {THEME_PATH}")
-    elif dry_run:
+    elif args.dry_run:
         print(f"\n  (dry run — no files modified)")
 
 
 if __name__ == "__main__":
     main()
+
