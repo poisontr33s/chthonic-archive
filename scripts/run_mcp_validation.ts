@@ -63,6 +63,8 @@ const args = process.argv.slice(2);
 let customQuery: string | null = null;
 let dryRun = false;
 let ensureClaudeCode = false;
+let jsonOutput = false;
+let checkTool: string | null = null;
 
 for (let i = 0; i < args.length; i++) {
   if (args[i] === "--node" && args[i + 1]) {
@@ -81,6 +83,10 @@ for (let i = 0; i < args.length; i++) {
     dryRun = true;
   } else if (args[i] === "--ensure-claude-code") {
     ensureClaudeCode = true;
+  } else if (args[i] === "--json") {
+    jsonOutput = true;
+  } else if (args[i] === "--check" && args[i + 1]) {
+    checkTool = args[++i];
   }
 }
 
@@ -166,7 +172,14 @@ if (dryRun) {
 
 // Spawn MCP server
 // Repo moved the server implementation into scripts/ (no top-level mcp/ directory).
-const server = Bun.spawn(["bun", "run", "scripts/mcp-chthonic-server.ts"], {
+let server: ReturnType<typeof Bun.spawn> | null = null;
+
+process.on("SIGINT", () => {
+  server?.kill();
+  process.exit(130);
+});
+
+server = Bun.spawn(["bun", "run", "scripts/mcp-chthonic-server.ts"], {
   stdin: "pipe",
   stdout: "pipe",
   stderr: "inherit",
@@ -186,6 +199,10 @@ const requests = [
 // Write all requests immediately
 for (const req of requests) {
   server.stdin.write(JSON.stringify({ jsonrpc: "2.0", ...req }) + "\n");
+}
+
+if (checkTool) {
+  server.stdin.write(JSON.stringify({ jsonrpc: "2.0", id: 7, method: "tools/call", params: { name: checkTool, arguments: {} } }) + "\n");
 }
 
 // Collect responses
@@ -300,6 +317,17 @@ setTimeout(() => {
     });
   }
 
+  // Validation 8 (optional): --check <tool_name>
+  if (checkTool) {
+    const checkResp = responses.find(r => r.id === 7);
+    const checkText = checkResp?.result?.content?.[0]?.text ?? "";
+    logResult({
+      name: `--check: ${checkTool}`,
+      passed: okToolText(checkText),
+      details: { tail: checkText.split(/\r?\n/).slice(-5).join("\\n") },
+    });
+  }
+
   // Summary
   const passCount = results.filter(r => r.passed).length;
   const totalCount = results.length;
@@ -324,14 +352,19 @@ setTimeout(() => {
     mkdirSync("artifacts", { recursive: true });
     const runId = new Date().toISOString().replace(/[:.]/g, "-");
     const outPath = `artifacts/mcp_run_validation_${runId}.json`;
-    Bun.write(outPath, JSON.stringify({
+    const artifact = JSON.stringify({
       schema_version: 1,
       generated_on: new Date().toISOString(),
       server: { name: "chthonic-polyglot", tool_count: tools.length },
       results,
       all_passed: allPassed,
-    }, null, 2) + "\n");
-    console.log(`Wrote artifact: ${outPath}`);
+    }, null, 2) + "\n";
+    Bun.write(outPath, artifact);
+    if (jsonOutput) {
+      process.stdout.write(artifact);
+    } else {
+      console.log(`Wrote artifact: ${outPath}`);
+    }
   } catch (e) {
     console.error(`Failed to write mcp_run artifact: ${e instanceof Error ? e.message : String(e)}`);
   }
