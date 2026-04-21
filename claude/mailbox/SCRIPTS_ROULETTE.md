@@ -8,7 +8,7 @@
 
 ---
 
-## Progress Trail — 2026-04-21
+## Progress Trail — 2026-04-22
 
 | Tier | Done | Remaining | Notes |
 |------|------|-----------|-------|
@@ -29,7 +29,7 @@
 | `scripts/api_pool.ps1` | **3.0** | 1 | ✅ JSON schema validation added; `-Verify` switch confirms keys non-empty |
 | `scripts/desktop-warmup.ps1` | **3.0** | 1 | ✅ try/catch per step; `$failures` summary at end |
 | `scripts/mcp-filesystem.ts` | **3.0** | 1 | ✅ `// chthonic-patch` idempotency guard; package.json version assertion |
-| `scripts/lib/poe_auth.py` | **3.0** | 1 | ✅ `valid: bool` on resolution; `ValueError` in `strict=True`; live token validation call |
+| `scripts/lib/poe_auth.py` | **3.0** | 1 | ✅ `valid: bool` on resolution; `ValueError` in `strict=True`; `validate_poe_token()` — `GET /models` live call; `PoeTokenValidation` dataclass (ok/status_code/model_count/error) — `0cbbaab8` |
 | `scripts/lib/shared.py` | **3.0** | 1 | ✅ Type annotations + `__all__`; `find_repo_root` capped at 10 levels |
 | `scripts/lib/ssot-paths.ts` | **3.0** | 1 | ✅ `as const` assertions; `assertSsotExists(root)` exported |
 | `scripts/lib/ssot_paths.py` | **3.0** | 1 | ✅ `sys.path.insert` existence guard; `except ImportError` + `DeprecationWarning` |
