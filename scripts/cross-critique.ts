@@ -24,8 +24,9 @@
  * Env: ANTHROPIC_API_KEY (required)
  */
 
-import { readFileSync, writeFileSync, existsSync } from "node:fs";
+import { readFileSync, writeFileSync, existsSync, mkdirSync } from "node:fs";
 import path from "node:path";
+import { createHash } from "node:crypto";
 import { SSOT_HOLDER } from "./lib/ssot-paths";
 
 // ── CLI args ──────────────────────────────────────────────────────────────────
@@ -40,6 +41,10 @@ interface Args {
   sonnetModel: string;
   mergeModel: string;
   maxTokens: number;
+  cacheDir: string | null;
+  mergeOnly: boolean;
+  versionA: string | null;
+  versionB: string | null;
   help: boolean;
 }
 
@@ -55,6 +60,10 @@ function parseArgs(): Args {
     sonnetModel: "claude-sonnet-4-5-20250514",
     mergeModel: "claude-opus-4-0",
     maxTokens: 2048,
+    cacheDir: null,
+    mergeOnly: false,
+    versionA: null,
+    versionB: null,
     help: false,
   };
 
@@ -88,6 +97,18 @@ function parseArgs(): Args {
       case "--max-tokens":
         defaults.maxTokens = parseInt(args[++i] ?? "2048", 10);
         break;
+      case "--cache-dir":
+        defaults.cacheDir = args[++i] ?? null;
+        break;
+      case "--merge-only":
+        defaults.mergeOnly = true;
+        break;
+      case "--version-a":
+        defaults.versionA = args[++i] ?? null;
+        break;
+      case "--version-b":
+        defaults.versionB = args[++i] ?? null;
+        break;
       case "--help":
       case "-h":
         defaults.help = true;
@@ -116,6 +137,10 @@ OPTIONS:
   --sonnet-model <id>  Sonnet model ID (default: claude-sonnet-4-5-20250514)
   --merge-model <id>   Model for merge step (default: claude-opus-4-0)
   --max-tokens <n>     Max output tokens per call (default: 2048)
+  --cache-dir <path>   Cache API responses in directory (hash-keyed, skips repeat calls)
+  --merge-only         Skip Round 1; use --version-a and --version-b as inputs
+  --version-a <path>   Path to pre-written Version A file (requires --merge-only)
+  --version-b <path>   Path to pre-written Version B file (requires --merge-only)
   -h, --help           Show this help
   `);
 }
@@ -124,15 +149,32 @@ OPTIONS:
 
 const ANTHROPIC_API_URL = "https://api.anthropic.com/v1/messages";
 
+function cacheKey(model: string, systemPrompt: string, userPrompt: string): string {
+  return createHash("sha256")
+    .update(JSON.stringify({ model, systemPrompt, userPrompt }))
+    .digest("hex")
+    .slice(0, 16);
+}
+
 async function callAnthropic(
   model: string,
   systemPrompt: string,
   userPrompt: string,
   maxTokens: number,
+  cacheDir?: string | null,
 ): Promise<string> {
   const apiKey = process.env.ANTHROPIC_API_KEY;
   if (!apiKey) {
     throw new Error("ANTHROPIC_API_KEY not set in environment");
+  }
+
+  if (cacheDir) {
+    mkdirSync(cacheDir, { recursive: true });
+    const cachePath = path.join(cacheDir, `${cacheKey(model, systemPrompt, userPrompt)}.txt`);
+    if (existsSync(cachePath)) {
+      console.log(`  [cache hit] ${path.basename(cachePath)}`);
+      return readFileSync(cachePath, "utf-8");
+    }
   }
 
   const response = await fetch(ANTHROPIC_API_URL, {
@@ -163,6 +205,11 @@ async function callAnthropic(
     .filter((block) => block.type === "text" && block.text)
     .map((block) => block.text!)
     .join("\n");
+
+  if (cacheDir) {
+    const cachePath = path.join(cacheDir, `${cacheKey(model, systemPrompt, userPrompt)}.txt`);
+    writeFileSync(cachePath, text, "utf-8");
+  }
 
   return text;
 }
@@ -257,8 +304,18 @@ async function main(): Promise<void> {
     process.exit(1);
   }
 
-  if (!process.env.ANTHROPIC_API_KEY) {
+  if (!args.mergeOnly && !process.env.ANTHROPIC_API_KEY) {
     console.error("ERROR: ANTHROPIC_API_KEY not set in environment.");
+    process.exit(1);
+  }
+
+  if (args.mergeOnly && (!args.versionA || !args.versionB)) {
+    console.error("ERROR: --merge-only requires --version-a <path> and --version-b <path>.");
+    process.exit(1);
+  }
+
+  if (args.mergeOnly && (!existsSync(args.versionA!) || !existsSync(args.versionB!))) {
+    console.error("ERROR: --version-a or --version-b file not found.");
     process.exit(1);
   }
 
@@ -276,27 +333,40 @@ async function main(): Promise<void> {
   console.log(`║  Merge model:  ${args.mergeModel}`.padEnd(63) + `║`);
   console.log(`╚══════════════════════════════════════════════════════════════╝\n`);
 
-  // ── Round 1: Parallel blind-writes ──────────────────────────────────────
-  console.log("⏳ Round 1: Parallel blind-writes (Opus + Sonnet)...");
-  const t1 = performance.now();
+  // ── Round 1: Parallel blind-writes (or load from files) ─────────────────
+  let opusVersion: string;
+  let sonnetVersion: string;
+  let t1Elapsed: string;
 
-  const [opusVersion, sonnetVersion] = await Promise.all([
-    callAnthropic(
-      args.opusModel,
-      blindWriteSystem(args.section),
-      blindWriteUser(args.section, context),
-      args.maxTokens,
-    ),
-    callAnthropic(
-      args.sonnetModel,
-      blindWriteSystem(args.section),
-      blindWriteUser(args.section, context),
-      args.maxTokens,
-    ),
-  ]);
+  if (args.mergeOnly) {
+    opusVersion = readFileSync(args.versionA!, "utf-8");
+    sonnetVersion = readFileSync(args.versionB!, "utf-8");
+    t1Elapsed = "0.0";
+    console.log("⏭️  Round 1 skipped (--merge-only): loaded version-a + version-b from files.\n");
+  } else {
+    console.log("⏳ Round 1: Parallel blind-writes (Opus + Sonnet)...");
+    const t1 = performance.now();
 
-  const t1Elapsed = ((performance.now() - t1) / 1000).toFixed(1);
-  console.log(`✅ Round 1 complete (${t1Elapsed}s)\n`);
+    [opusVersion, sonnetVersion] = await Promise.all([
+      callAnthropic(
+        args.opusModel,
+        blindWriteSystem(args.section),
+        blindWriteUser(args.section, context),
+        args.maxTokens,
+        args.cacheDir,
+      ),
+      callAnthropic(
+        args.sonnetModel,
+        blindWriteSystem(args.section),
+        blindWriteUser(args.section, context),
+        args.maxTokens,
+        args.cacheDir,
+      ),
+    ]);
+
+    t1Elapsed = ((performance.now() - t1) / 1000).toFixed(1);
+    console.log(`✅ Round 1 complete (${t1Elapsed}s)\n`);
+  }
 
   // ── Round 2: Automated merge ────────────────────────────────────────────
   console.log("⏳ Round 2: Automated merge...");
@@ -307,6 +377,7 @@ async function main(): Promise<void> {
     mergeSystem(),
     mergeUser(args.section, opusVersion, sonnetVersion, context),
     args.maxTokens,
+    args.cacheDir,
   );
 
   const t2Elapsed = ((performance.now() - t2) / 1000).toFixed(1);
