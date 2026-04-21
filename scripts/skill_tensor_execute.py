@@ -19,6 +19,10 @@ Where the rubber meets the road.
 @Purpose:       EXECUTE PROBE — Last execution status, failure details, timing.
 """
 
+import sys
+from pathlib import Path
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+
 from skill_tensor_common import load_latest, print_kv, probe_header, section, status_badge, step_by_name
 
 

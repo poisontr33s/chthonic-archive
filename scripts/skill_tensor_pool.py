@@ -19,6 +19,10 @@ The pool is the set of cells eligible for roulette selection.
 @Purpose:       POOL PROBE — Pool size, legal vs degraded vs blocked, exclusion ratio.
 """
 
+import sys
+from pathlib import Path
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+
 from skill_tensor_common import load_latest, print_kv, probe_header, section, step_by_name
 
 

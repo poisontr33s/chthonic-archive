@@ -19,6 +19,10 @@ The closed loop: execution -> ledger -> weights -> next roulette.
 @Purpose:       FEEDBACK PROBE — Feedback loop health, ledger writeback status.
 """
 
+import sys
+from pathlib import Path
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+
 from skill_tensor_common import load_latest, print_kv, probe_header, section, status_badge, step_by_name
 
 

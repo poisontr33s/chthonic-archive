@@ -20,6 +20,9 @@ Validates that docs/ops/SKILL_TENSOR_ROULETTE_SPEC.md reflects current state.
 """
 
 import re
+import sys
+from pathlib import Path
+sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 from skill_tensor_common import ROOT, load_latest, print_kv, probe_header, section
 

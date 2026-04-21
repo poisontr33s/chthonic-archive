@@ -20,6 +20,9 @@ What the roulette pick turned into before execution.
 """
 
 import json
+import sys
+from pathlib import Path
+sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 from skill_tensor_common import ROOT, load_latest, print_kv, probe_header, section, step_by_name
 

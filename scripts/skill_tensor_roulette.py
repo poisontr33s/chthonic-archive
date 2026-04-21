@@ -19,6 +19,10 @@ This is what the RNG actually picked from the pool.
 @Purpose:       ROULETTE PROBE — Last sampled chain, diversity score, operator/target spread.
 """
 
+import sys
+from pathlib import Path
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+
 from skill_tensor_common import load_latest, print_kv, probe_header, section, step_by_name
 
 
