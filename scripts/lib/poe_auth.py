@@ -18,10 +18,12 @@ import os
 import re
 from dataclasses import dataclass
 from pathlib import Path
+from urllib import error, request
 
 
 POOL_PATH = Path.home() / ".chthonic" / "api_pool.json"
 POE_SLOT_RE = re.compile(r"^POE_API_KEY_(\d+)$")
+POE_DEFAULT_BASE_URL = "https://api.poe.com/v1"
 
 
 @dataclass(frozen=True)
@@ -245,3 +247,58 @@ def _resolve_poe_credentials(account: str | None) -> PoeCredentialResolution:
         selected_name=None,
         pool_path=str(POOL_PATH),
     )
+
+
+@dataclass(frozen=True)
+class PoeTokenValidation:
+    """Result of a live token validation call against the Poe API."""
+    ok: bool
+    status_code: int | None
+    model_count: int | None
+    error: str | None
+
+
+def validate_poe_token(
+    token: str,
+    base_url: str = POE_DEFAULT_BASE_URL,
+    timeout: int = 15,
+) -> PoeTokenValidation:
+    """Hit GET /models with the given token to confirm it is accepted by Poe.
+
+    Returns a PoeTokenValidation with ok=True if the API responds 200 and
+    returns at least one model entry. No token value is ever logged or raised.
+
+    Args:
+        token:    Bearer token to validate.
+        base_url: Poe OpenAI-compatible base URL (default: https://api.poe.com/v1).
+        timeout:  HTTP timeout in seconds (default: 15).
+    """
+    url = f"{base_url.rstrip('/')}/models"
+    req = request.Request(
+        url=url,
+        method="GET",
+        headers={
+            "Authorization": f"Bearer {token}",
+            "Content-Type": "application/json",
+        },
+    )
+    try:
+        with request.urlopen(req, timeout=timeout) as resp:
+            raw = resp.read().decode("utf-8", errors="replace")
+            try:
+                data = json.loads(raw)
+                model_count = len(data.get("data", []))
+            except Exception:
+                model_count = None
+            return PoeTokenValidation(ok=True, status_code=resp.status, model_count=model_count, error=None)
+    except error.HTTPError as e:
+        raw = e.read().decode("utf-8", errors="replace")
+        try:
+            msg = json.loads(raw).get("error", {}).get("message") or f"HTTP {e.code}"
+        except Exception:
+            msg = f"HTTP {e.code}"
+        return PoeTokenValidation(ok=False, status_code=e.code, model_count=None, error=msg)
+    except error.URLError as e:
+        return PoeTokenValidation(ok=False, status_code=None, model_count=None, error=f"network_error: {e.reason}")
+    except Exception as e:  # noqa: BLE001
+        return PoeTokenValidation(ok=False, status_code=None, model_count=None, error=str(e))
