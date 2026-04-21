@@ -20,7 +20,7 @@ param(
     [string]$Action = "env",
 
     [Parameter(ValueFromRemainingArguments = $true)]
-    [string[]]$Args,
+    [string[]]$ChthonicArgs,
 
     [switch]$Quiet,
     [switch]$Json
@@ -36,7 +36,7 @@ if (-not (Test-Path $ChthonicScript)) {
 
 function Get-ClaudineGuidePayload {
     try {
-        $json = & $ChthonicScript "commands" "guide" "--json"
+        $json = & pwsh -NoProfile -File $ChthonicScript "commands" "guide" "--json"
         if ($LASTEXITCODE -eq 0 -and $json) {
             return ($json | ConvertFrom-Json -ErrorAction Stop)
         }
@@ -87,12 +87,12 @@ function Show-ClaudineHelp {
 
 # If Action used default and the first remaining token is actually the intended action
 # (common for `--help`, `--version`, `--quiet` forms), normalize it.
-if (-not $PSBoundParameters.ContainsKey("Action") -and $Args -and $Args.Count -gt 0) {
-    $Action = $Args[0]
-    if ($Args.Count -gt 1) {
-        $Args = $Args[1..($Args.Count - 1)]
+if (-not $PSBoundParameters.ContainsKey("Action") -and $ChthonicArgs -and $ChthonicArgs.Count -gt 0) {
+    $Action = $ChthonicArgs[0]
+    if ($ChthonicArgs.Count -gt 1) {
+        $ChthonicArgs = $ChthonicArgs[1..($ChthonicArgs.Count - 1)]
     } else {
-        $Args = @()
+        $ChthonicArgs = @()
     }
 }
 
@@ -102,25 +102,25 @@ if ($Action -in @("--help", "-h", "help")) {
 }
 
 if ($Action -in @("--version", "-v")) {
-    & $ChthonicScript "--version"
+    & pwsh -NoProfile -File $ChthonicScript "--version"
     exit $LASTEXITCODE
 }
 
 switch ($Action) {
     "start" {
-        & $ChthonicScript "status"
+        & pwsh -NoProfile -File $ChthonicScript "status"
         exit $LASTEXITCODE
     }
     "repair" {
-        if ($Args -contains "--fix") {
-            & $ChthonicScript "doctor" "--fix"
+        if ($ChthonicArgs -contains "--fix") {
+            & pwsh -NoProfile -File $ChthonicScript "doctor" "--fix"
         } else {
-            & $ChthonicScript "doctor" "--dry-run"
+            & pwsh -NoProfile -File $ChthonicScript "doctor" "--dry-run"
         }
         exit $LASTEXITCODE
     }
     "build-check" {
-        & $ChthonicScript "graphics" "lane" "--json"
+        & pwsh -NoProfile -File $ChthonicScript "graphics" "lane" "--json"
         exit $LASTEXITCODE
     }
 }
@@ -131,17 +131,17 @@ switch ($Action) {
 # should behave as env activation with flags.
 if ($Action -match '^--') {
     if ($Action -in @("--quiet", "--json")) {
-        $Args = @($Action) + $Args
+        $ChthonicArgs = @($Action) + $ChthonicArgs
         $Action = "env"
     } else {
-        & $ChthonicScript $Action @Args
+        & pwsh -NoProfile -File $ChthonicScript $Action @ChthonicArgs
         exit $LASTEXITCODE
     }
 }
 
 $forward = @()
 if ($Action) { $forward += $Action }
-if ($Args) { $forward += $Args }
+if ($ChthonicArgs) { $forward += $ChthonicArgs }
 if ($Quiet -and -not ($forward -contains "--quiet")) { $forward += "--quiet" }
 if ($Json -and -not ($forward -contains "--json")) { $forward += "--json" }
 
@@ -149,5 +149,5 @@ $env:CLAUDINE_COMPAT = "1"
 $env:CLAUDINE_COMPAT_WRAPPER = $MyInvocation.MyCommand.Path
 $env:CHTHONIC_SCRIPT = $ChthonicScript
 
-& $ChthonicScript @forward
+& pwsh -NoProfile -File $ChthonicScript @forward
 exit $LASTEXITCODE

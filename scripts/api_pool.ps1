@@ -30,6 +30,7 @@
 
 param(
   [switch]$Load,
+  [switch]$Verify,
   [switch]$Quiet
 )
 
@@ -139,4 +140,17 @@ if (Has-EnvVar -Name "GITHUB_TOKEN") {
 
 if (-not $Quiet) {
   Write-Host "Loaded $count env var(s) into this shell process."
+}
+
+if ($Verify) {
+  $missing = @()
+  foreach ($k in $json.env.PSObject.Properties.Name) {
+    $v = [System.Environment]::GetEnvironmentVariable($k, "Process")
+    if ([string]::IsNullOrWhiteSpace($v)) { $missing += $k }
+  }
+  if ($missing.Count -gt 0) {
+    Write-Warning "api_pool -Verify: $($missing.Count) key(s) empty after load: $($missing -join ', ')"
+    exit 4
+  }
+  if (-not $Quiet) { Write-Host "Verify: all $($json.env.PSObject.Properties.Name.Count) key(s) non-empty." }
 }

@@ -33,6 +33,11 @@ class PoeCredentialResolution:
     selected_name: str | None
     pool_path: str
 
+    @property
+    def valid(self) -> bool:
+        """True if a non-None token was resolved."""
+        return self.token is not None
+
 
 def normalize_account(value: str | None) -> str | None:
     if value is None:
@@ -83,7 +88,23 @@ def load_local_pool_env() -> dict[str, str]:
     return out
 
 
-def resolve_poe_credentials(account: str | None) -> PoeCredentialResolution:
+def resolve_poe_credentials(account: str | None, strict: bool = False) -> PoeCredentialResolution:
+    """Resolve Poe credentials for the given account.
+
+    Args:
+        account: Explicit account number, or None for auto-discovery.
+        strict: If True, raise ValueError when no token is found.
+    """
+    result = _resolve_poe_credentials(account)
+    if strict and not result.valid:
+        raise ValueError(
+            f"Poe credential resolution failed: no token found for "
+            f"account={account!r} (source: {result.auth_source})"
+        )
+    return result
+
+
+def _resolve_poe_credentials(account: str | None) -> PoeCredentialResolution:
     pool_env = load_local_pool_env()
     normalized_account = normalize_account(account)
 

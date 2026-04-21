@@ -844,6 +844,12 @@ if ($SelfUpdate -or $positionalUpdate -or ($Arguments -and $Arguments.Count -gt 
     exit 0
 }
 
+# Pre-flight: fail fast with install hint if gemini is not installed.
+if (-not (Get-GeminiEntrypoint)) {
+    Write-Host "[gemini-cli-wrapper] Not installed. Run: bun add @google/gemini-cli" -ForegroundColor Yellow
+    exit 1
+}
+
 Test-LegacyGeminiDependency
 
 $env:CHTHONIC_GEMINI_MODEL_REGISTRY = Get-GeminiRegistryPath

@@ -21,7 +21,7 @@
 
 .NOTES
   Register with (hidden window, no popup):
-    schtasks /Create /TN "ChthonicNightly" /TR "pwsh -NoProfile -WindowStyle Hidden -File C:\Users\erdno\chthonic-archive\scripts\nightly-scheduled.ps1" /SC DAILY /ST 03:00 /F
+    schtasks /Create /TN "ChthonicNightly" /TR "pwsh -NoProfile -WindowStyle Hidden -File C:\Users\eldno\chthonic-archive\scripts\nightly-scheduled.ps1" /SC DAILY /ST 03:00 /F
 
   03:00 UTC = 04:00 CET (Norway winter) / 05:00 CEST (Norway summer)
 #>
@@ -51,6 +51,8 @@ try {
 
 if ($exitCode -ne 0) {
   Write-Host "Nightly run failed (exit code $exitCode). See log: $logFile" -ForegroundColor Red
+  $sentinelPath = Join-Path $logDir "NIGHTLY_FAILED_$(Get-Date -Format 'yyyy-MM-dd_HHmmss').sentinel"
+  Set-Content -Path $sentinelPath -Value "exit=$exitCode log=$logFile" -Encoding utf8 -ErrorAction SilentlyContinue
 } else {
   $resumptionScript = Join-Path $PSScriptRoot 'session_resumption_high_coverage.py'
   if (Test-Path -LiteralPath $resumptionScript) {

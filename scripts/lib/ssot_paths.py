@@ -27,11 +27,23 @@ _REPO_ROOT = Path(__file__).resolve().parent.parent.parent
 if str(_REPO_ROOT) not in sys.path:
     sys.path.insert(0, str(_REPO_ROOT))
 
-from mas_mcp.logic.ssot_manifest import (  # noqa: E402
-    SSOT_HOLDER_RELPATH,
-    SSOT_POINTER_RELPATH,
-    SSOT_PROTO_RELPATH,
-)
+try:
+    from mas_mcp.logic.ssot_manifest import (  # noqa: E402
+        SSOT_HOLDER_RELPATH,
+        SSOT_POINTER_RELPATH,
+        SSOT_PROTO_RELPATH,
+    )
+except ImportError:
+    import warnings
+    warnings.warn(
+        "mas_mcp.logic.ssot_manifest not importable — using hardcoded fallback paths. "
+        "Install the package or run from the repo root.",
+        DeprecationWarning,
+        stacklevel=2,
+    )
+    SSOT_HOLDER_RELPATH = ".github/copilot-instructions.archive.md"
+    SSOT_POINTER_RELPATH = ".github/copilot-instructions.md"
+    SSOT_PROTO_RELPATH = ".github/copilot-instructions-copy.md"
 
 # ─── Re-exported constants (relative paths as strings) ──────────────────────
 SSOT_HOLDER = SSOT_HOLDER_RELPATH

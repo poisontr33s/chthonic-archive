@@ -1,5 +1,6 @@
 {
   "name": "chthonic-archive-root",
+  "version": "3.3.0",
   "private": true,
   "type": "module",
   "scripts": {

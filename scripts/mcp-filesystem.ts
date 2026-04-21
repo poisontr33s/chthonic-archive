@@ -26,13 +26,23 @@ if (!existsSync(distDir)) {
   process.exit(1);
 }
 
+// Package version assertion — detects upstream changes that may invalidate the patch
+try {
+  const pkgJson = JSON.parse(readFileSync(resolve(distDir, "../package.json"), "utf-8"));
+  if (pkgJson.name !== "@modelcontextprotocol/server-filesystem") {
+    console.warn(`[mcp-filesystem] Warning: unexpected package name '${pkgJson.name}' at server-filesystem location`);
+  }
+} catch {
+  // Non-fatal: version check failure doesn't block server startup
+}
+
 // Ensure the fileURLToPath fix is present (idempotent, survives bun install)
 try {
   const src = readFileSync(rootsUtilsPath, "utf-8");
-  if (!src.includes("fileURLToPath")) {
+  if (!src.includes("// chthonic-patch") && !src.includes("fileURLToPath")) {
     writeFileSync(
       rootsUtilsPath,
-      "import { fileURLToPath } from 'url';\n" +
+      "// chthonic-patch\nimport { fileURLToPath } from 'url';\n" +
         src.replace(
           "const rawPath = rootUri.startsWith('file://') ? rootUri.slice(7) : rootUri;",
           "const rawPath = rootUri.startsWith('file://') ? fileURLToPath(rootUri) : rootUri;",

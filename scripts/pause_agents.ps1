@@ -14,6 +14,10 @@
 # ║ Cross-References: .vscode/settings.json
 # ╚════════════════════════════════════════════════════════════════════════════
 
+param(
+    [switch]$Restore  # Restore settings.json from the most recent backup
+)
+
 # ============================================================================
 # PAUSE ALL AGENTS - Emergency Cognitive Relief
 # Chthonic Archive - Information Sovereignty Protocol
@@ -32,6 +36,19 @@ Write-Host ""
 $REPO_ROOT = (Resolve-Path -LiteralPath (Join-Path $PSScriptRoot '..')).Path
 $settingsPath = Join-Path $REPO_ROOT ".vscode\settings.json"
 
+if ($Restore) {
+    $backupDir = Split-Path $settingsPath
+    $backups = Get-ChildItem -Path $backupDir -Filter 'settings_backup_*.json' -EA SilentlyContinue | Sort-Object Name -Descending
+    if (-not $backups) {
+        Write-Host "No backup files found in $backupDir" -ForegroundColor Red
+        exit 1
+    }
+    $mostRecent = $backups | Select-Object -First 1
+    Copy-Item $mostRecent.FullName $settingsPath -Force
+    Write-Host "Restored settings from: $($mostRecent.Name)" -ForegroundColor Green
+    exit 0
+}
+
 if (-not (Test-Path $settingsPath)) {
     Write-Host "\u274c ERROR: Settings file not found at: $settingsPath" -ForegroundColor Red
     exit 1
@@ -46,6 +63,11 @@ Write-Host "\u2705 Settings backup created: $backupPath" -ForegroundColor Green
 # Read and parse settings
 try {
     $settingsContent = Get-Content $settingsPath -Raw
+
+    # Warn if operationalMode key is absent — the replace will be a no-op
+    if ($settingsContent -notmatch '"chthonic\.operationalMode"') {
+        Write-Host "Warning: 'chthonic.operationalMode' key not found in settings.json — mode change will not be applied." -ForegroundColor Yellow
+    }
 
     # Update operational mode to paused (simple string replacement for JSONC)
     $settingsContent = $settingsContent -replace '"chthonic\.operationalMode"\s*:\s*"[^"]*"', '"chthonic.operationalMode": "paused"'

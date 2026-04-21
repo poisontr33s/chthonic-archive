@@ -36,6 +36,12 @@ $CONFIG_FILE = Join-Path $STATE_DIR "config.json"
 
 # Resolve the best available RubyInstaller+DevKit root (prefer newest lane).
 function Get-RvExePath {
+  # Try PATH first via Get-Command
+  foreach ($cmd in @('rvw', 'rv')) {
+    $found = Get-Command $cmd -ErrorAction SilentlyContinue
+    if ($found) { return $found.Source }
+  }
+  # Fall back to hardcoded cargo paths
   foreach ($candidate in @(
     (Join-Path $env:USERPROFILE ".cargo\bin\rvw.exe"),
     (Join-Path $env:USERPROFILE ".cargo\bin\rv.exe")
@@ -162,6 +168,10 @@ $pathDirs = [System.Collections.Generic.List[string]]::new()
 # 2. Add Polyglot Paths (Config or Default)
 Log "Loading polyglot paths..."
 $polyglotPaths = Get-PolyglotConfig
+# Emit probe-miss if rv/rvw is unavailable (Ruby DevKit paths will be absent)
+if (-not (Get-RvExePath)) {
+    Log "  [MISS] rv/rvw not found via PATH or cargo bin — Ruby DevKit paths unavailable"
+}
 foreach ($p in $polyglotPaths) {
     if (Test-Path $p) {
         Add-UniqueDir $pathDirs $p

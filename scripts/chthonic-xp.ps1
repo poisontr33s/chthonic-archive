@@ -1,5 +1,5 @@
 #!/usr/bin/env pwsh
-# -*- coding: utf-8 -*-
+#-*- coding: utf-8 -*-
 <#
 .SYNOPSIS
 Chthonic Archive XP Engine — derives XP and achievements from .chthonic/trail/ events.
@@ -10,13 +10,13 @@ Chthonic Archive XP Engine — derives XP and achievements from .chthonic/trail/
 #>
 
 param(
-    [string]$TrailDir = (Join-Path $env:USERPROFILE 'chthonic-archive\.chthonic\trail'),
+    [string]$TrailDir = (Join-Path (Split-Path -Parent $PSScriptRoot) '.chthonic\trail'),
     [string]$StateFile = (Join-Path $env:USERPROFILE 'chthonic-archive\.chthonic\xp-state.json'),
-    [switch]$Quiet   # suppress output, just update state
+    [switch]$Quiet,   # suppress output, just update state
+    [switch]$XPDebug  # print event count and XP breakdown
 )
 
 Set-StrictMode -Off
-$ErrorActionPreference = 'SilentlyContinue'
 
 # ── XP table: type → base XP (priority multiplier applied below) ──────────────
 $XP_BASE = @{
@@ -105,6 +105,26 @@ function Get-XpBar { param([int]$xp, [int]$level)
 }
 
 # ── Main ──────────────────────────────────────────────────────────────────────
+
+# Early-exit: if state was written today, emit cached line and stop — no trail I/O.
+# Skip cache when -XPDebug is set so live trail data and event count are printed.
+if (-not $Quiet -and -not $XPDebug -and (Test-Path $StateFile)) {
+    try {
+        $cached = Get-Content $StateFile -Raw -ErrorAction Stop | ConvertFrom-Json
+        if ($cached.updated -and ([datetime]$cached.updated).Date -eq (Get-Date).Date) {
+            $cachedLevel = $cached.level
+            $cachedTitle = if ($cachedLevel -lt $LEVELS.Count) { $LEVELS[$cachedLevel] } else { 'Sovereign' }
+            $cachedBar   = Get-XpBar -xp $cached.xp -level $cachedLevel
+            $cachedNext  = ($cachedLevel * $cachedLevel * 10 + 2 * $cachedLevel * 10 + 10) - $cached.xp
+            $cachedIcons = ($ACHIEVEMENTS | Where-Object { $_.id -in $cached.unlocked } | ForEach-Object { $_.icon }) -join ' '
+            Write-Host ""
+            Write-Host ("  [XP] Lv.{0} {1}  {2}  {3} XP  (+{4} -> Lv.{5})  {6}" -f `
+                $cachedLevel, $cachedTitle, $cachedBar, $cached.xp, $cachedNext, ($cachedLevel + 1), $cachedIcons) -ForegroundColor Cyan
+            exit 0
+        }
+    } catch {}
+}
+
 $events = Read-TrailEvents -Dir $TrailDir
 $xp     = Measure-XP -events $events
 $level  = Get-Level -xp $xp
@@ -143,5 +163,9 @@ if (-not $Quiet) {
         $level, $title, $bar, $xp, $xpNext, ($level + 1), $achieveStr) -ForegroundColor Cyan
     if ($newStr) {
         Write-Host "  $newStr" -ForegroundColor Yellow
+    }
+    if ($XPDebug) {
+        Write-Host ("  [XP Debug] Events: {0}  Raw XP: {1}  Level: {2}  To Next: {3}" -f `
+            $events.Count, $xp, $level, $xpNext) -ForegroundColor DarkCyan
     }
 }

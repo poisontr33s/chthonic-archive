@@ -9,24 +9,18 @@
 
 param(
     [string]$OutRoot = "codex/mailbox",
-    [string]$RegistryPath = "docs/standards/API_PROVIDER_REGISTRY.json"
+    [string]$RegistryPath = "docs/standards/API_PROVIDER_REGISTRY.json",
+    [switch]$Json
 )
 
 Set-StrictMode -Version Latest
 $ErrorActionPreference = "Stop"
 
 function Get-RepoRoot {
-    $dir = (Get-Location).Path
-    while ($true) {
-        if ((Test-Path (Join-Path $dir "pyproject.toml")) -and (Test-Path (Join-Path $dir "AGENTS.md"))) {
-            return $dir
-        }
-        $parent = Split-Path -Parent $dir
-        if ($parent -eq $dir) {
-            throw "Could not locate repo root from current directory."
-        }
-        $dir = $parent
+    if ($PSScriptRoot) {
+        return (Resolve-Path -LiteralPath (Join-Path $PSScriptRoot '..')).Path
     }
+    throw "Unable to resolve repo root: PSScriptRoot unavailable."
 }
 
 function Has-NonEmpty {
@@ -383,3 +377,7 @@ $envTemplate -join "`n" | Set-Content -Path $envTemplatePath -Encoding UTF8
 Write-Host "Wrote JSON report: $jsonPath"
 Write-Host "Wrote Markdown report: $mdPath"
 Write-Host "Wrote env template: $envTemplatePath"
+
+if ($Json) {
+    $report | ConvertTo-Json -Depth 8
+}

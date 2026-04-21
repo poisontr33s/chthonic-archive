@@ -131,8 +131,17 @@ if (-not $wanted -or $wanted.Count -eq 0) {
 
 if ($Status) {
   foreach ($k in $wanted) {
-    $present = -not [string]::IsNullOrWhiteSpace((Get-UserVar -Name $k))
-    Write-Output ("{0}: {1}" -f $k, ($(if ($present) { "True" } else { "False" })))
+    $userVal = Get-UserVar -Name $k
+    $poolVal = if ($map.ContainsKey($k)) { $map[$k] } else { $null }
+    $present = -not [string]::IsNullOrWhiteSpace($userVal)
+    $inPool  = -not [string]::IsNullOrWhiteSpace($poolVal)
+    if ($inPool -and -not $present) {
+      Write-Output ("{0}: MISSING (need -Apply)" -f $k)
+    } elseif ($inPool -and $present -and $userVal -ne $poolVal) {
+      Write-Output ("{0}: DRIFT (pool != user)" -f $k)
+    } else {
+      Write-Output ("{0}: {1}" -f $k, ($(if ($present) { "True" } else { "False" })))
+    }
   }
   exit 0
 }

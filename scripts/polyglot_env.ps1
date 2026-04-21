@@ -20,7 +20,10 @@ param(
   [switch]$Apply,
 
   # Print resolved tool locations (from the probe output on disk).
-  [switch]$Show
+  [switch]$Show,
+
+  # Validate toolchain health via sfs.ps1 --verify.
+  [switch]$Verify
 )
 
 $ErrorActionPreference = 'Stop'
@@ -32,17 +35,42 @@ if (-not (Test-Path -LiteralPath $probe)) {
   throw "Missing probe script: $probe"
 }
 
-$doApply = [bool]$Apply -or (-not $Show)
+$probeRoot = Join-Path $repoRoot 'dumpster-dive\intake\toolchain-probe'
+$latestExisting = if (Test-Path -LiteralPath $probeRoot) {
+  Get-ChildItem -LiteralPath $probeRoot -Directory | Sort-Object Name -Descending | Select-Object -First 1
+} else { $null }
+
+$doApply = [bool]$Apply -or (-not $Show -and -not $Verify)
 if ($doApply) {
-  & $probe -ApplyToSession | Out-Null
+  $probeFresh = $latestExisting -and ((Get-Date) - $latestExisting.LastWriteTime).TotalHours -lt 24 -and -not $Apply
+  if ($probeFresh) {
+    Write-Host "polyglot_env: probe output fresh (< 24h), skipping re-run" -ForegroundColor DarkGray
+    $cachedPathFile = Get-ChildItem -LiteralPath $latestExisting.FullName -Filter 'probed_path_*.txt' -EA SilentlyContinue | Select-Object -First 1
+    if ($cachedPathFile) {
+      $env:Path = (Get-Content -LiteralPath $cachedPathFile.FullName -Raw).Trim()
+    }
+  } else {
+    & $probe -ApplyToSession | Out-Null
+  }
+  Write-Host "polyglot_env: Applied — PATH updated for this session." -ForegroundColor Green
 }
 
-$probeRoot = Join-Path $repoRoot 'dumpster-dive\intake\toolchain-probe'
+if ($Verify) {
+  $sfsScript = Join-Path $PSScriptRoot 'sfs.ps1'
+  if (Test-Path -LiteralPath $sfsScript) {
+    & $sfsScript --verify
+  } else {
+    Write-Warning "polyglot_env: sfs.ps1 not found — skipping verify"
+  }
+}
+
 if (-not (Test-Path -LiteralPath $probeRoot)) {
   throw "Missing probe output root: $probeRoot"
 }
 
-$latest = Get-ChildItem -LiteralPath $probeRoot -Directory | Sort-Object Name -Descending | Select-Object -First 1
+$latest = if ($latestExisting) { $latestExisting } else {
+  Get-ChildItem -LiteralPath $probeRoot -Directory | Sort-Object Name -Descending | Select-Object -First 1
+}
 if (-not $latest) {
   throw "No probe runs found under: $probeRoot"
 }
