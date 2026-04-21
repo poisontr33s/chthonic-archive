@@ -54,6 +54,8 @@ param(
 
     [switch]$CompressPackage,
 
+    [switch]$ExcludeGit,
+
     [switch]$DryRun
 )
 
@@ -959,10 +961,48 @@ function Export-ClonePackage {
     Ensure-Directory -Path $manifestRoot
 
     $selected = @($ComponentSelection)
+
+    Write-Section "Pre-export size estimate"
+    $totalBytes = [int64]0
+    foreach ($component in $selected) {
+        $src = [string]$component.source
+        if (Test-Path -LiteralPath $src) {
+            $stats = Get-PathStats -Path $src -Kind $component.kind
+            $totalBytes += $stats.bytes
+            Write-Info ("{0,-30} {1}" -f $component.id, (Format-ByteSize -Bytes $stats.bytes))
+        }
+    }
+    Write-Host ("  Total estimated export size: {0}" -f (Format-ByteSize -Bytes $totalBytes)) -ForegroundColor Cyan
+
+    $destDrive = [System.IO.Path]::GetPathRoot((Resolve-NormalizedPath -Path $DestinationPackageRoot))
+    try {
+        $freeBytes = [System.IO.DriveInfo]::new($destDrive).AvailableFreeSpace
+        Write-Info ("Destination drive {0} free: {1}" -f $destDrive.TrimEnd('\'), (Format-ByteSize -Bytes $freeBytes))
+        if ($freeBytes -lt ($totalBytes * 1.1)) {
+            throw ("Insufficient disk space on {0}: need {1}, have {2}" -f $destDrive, (Format-ByteSize -Bytes ([int64]($totalBytes * 1.1))), (Format-ByteSize -Bytes $freeBytes))
+        }
+    } catch [System.IO.IOException] {
+        Write-Info "Could not determine free space on destination drive — continuing."
+    }
+
     Write-Section "Exporting components"
     $componentResults = @()
     foreach ($component in $selected) {
-        $componentResults += Copy-ComponentIntoPackage -Component $component -PackagePayloadRoot $payloadRoot
+        if ($ExcludeGit -and $component.id -eq 'repo' -and $component.kind -eq 'directory') {
+            $source = [string]$component.source
+            $payloadPath = Join-Path $payloadRoot ([string]$component.payload_rel)
+            Write-Info "copying repo (--exclude-git: .git excluded via robocopy /XD)"
+            Ensure-Directory -Path $payloadPath
+            & robocopy $source $payloadPath /E /COPY:DAT /DCOPY:DAT /R:1 /W:1 /XJ /FFT /NP /NFL /NDL /NJH /NJS /XD '.git' | Out-Null
+            $bundleName = (Split-Path -Leaf $source) + '.bundle'
+            $bundlePath = Join-Path $payloadPath $bundleName
+            Write-Info "creating git bundle: $bundleName"
+            & git -C $source bundle create $bundlePath --all 2>&1 | Out-Null
+            if ($LASTEXITCODE -ne 0) { throw "git bundle create failed (exit $LASTEXITCODE)" }
+            $componentResults += @{ id = $component.id; status = 'copied+bundled'; source = $source; payload = $payloadPath; description = $component.description }
+        } else {
+            $componentResults += Copy-ComponentIntoPackage -Component $component -PackagePayloadRoot $payloadRoot
+        }
     }
 
     Write-Section "Exporting env vars"
