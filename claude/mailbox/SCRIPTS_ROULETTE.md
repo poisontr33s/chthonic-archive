@@ -15,7 +15,7 @@
 | T0 | 9/9 ✅ | — | All auth/infra gates complete |
 | T1 | 12/12 ✅ | — | `desktop-clone-state.ps1` 336f26d1: pre-export size estimate; disk space guard (10% headroom); `[switch]$ExcludeGit` (robocopy `/XD .git` + `git bundle create`) |
 | T2 | 35/~40 🔄 | ~5 remaining | **Active** |
-| T3 | 13 🔄 | ~3 remaining | **Active** |
+| T3 | 16 ✅ | — | **Complete** |
 | T4 | 0 ⬜ | full tier | |
 | T5 | 0 ⬜ | full tier | |
 
@@ -170,9 +170,9 @@ All 9 files share the same broken import (`from skill_tensor_common import ...` 
 ### Mailbox / Handoff Pipeline
 | Script | Score | Effort | Action |
 |--------|-------|--------|--------|
-| `scripts/handoff_loop.py` | **2.0** | 1 | Emit JSON receipt to `codex/mailbox/ROUTE_RECEIPT_<timestamp>.json`; make stale threshold configurable via `--stale-hours` |
-| `scripts/mailbox_handoff.ps1` | **2.0** | 1 | Add JSON schema validation before routing; use PSScriptRoot-relative repo root detection |
-| `scripts/mailbox_scribe.py` | **2.0** | 1 | Compute `POLICY_PATH` relative to `find_repo_root()`; warn explicitly if policy absent and document defaults |
+| `scripts/handoff_loop.py` | **2.0** | 1 | ✅ `--stale-hours` arg; `compute_obligations(stale_hours=)` param; `ROUTE_RECEIPT_<ts>.json` emitted to `codex/mailbox/` on route |
+| `scripts/mailbox_handoff.ps1` | **2.0** | 1 | ✅ `$repoRoot` PSScriptRoot-relative; `Validate-HandoffSchema` checks frontmatter + keys + sections; validation gate on SendAll loop + single-source route |
+| `scripts/mailbox_scribe.py` | **2.0** | 1 | ✅ `find_repo_root()` for `REPO_ROOT` + `POLICY_PATH`; `POLICY_DEFAULTS`; `UserWarning` with default documentation when policy absent |
 | `scripts/mailbox_polisher.py` | **2.0** | 1 | Externalize patterns to `.meta/mailbox-polisher-patterns.json`; `--dry-run` should print table of files-to-archive + target path |
 | `scripts/mailbox_compactor.py` | **2.0** | 1 | Use `find_repo_root()`; add `--since <ISO>` for incremental compaction; add `--max-files N` |
 
