@@ -230,7 +230,7 @@ All 9 files share the same broken import (`from skill_tensor_common import ...` 
 | Script | Score | Effort | Action |
 |--------|-------|--------|--------|
 | `scripts/sentry_init.ts` | **2.0** | 1 | ✅ console.warn when SENTRY_DSN absent; SENTRY_ENABLED=false escape hatch |
-| `scripts/mcp-browser.ts` | **2.0** | 1 | Replace `__dirname` with `import.meta.dir`; add `// TODO(upstream): when @playwright/mcp ≥ X.Y stable, swap` comment |
+| `scripts/mcp-browser.ts` | **2.0** | 1 | ✅ `import.meta.dir` confirmed (no `__dirname`); `TODO(upstream)` comment formatted to spec |
 | `scripts/mcp-sentry-proxy.ts` | **1.0** | 1 | ✅ runtime guard replaces SSOT_PATH non-null assertion; process.exit(1) |
 
 ### Misc Surface
