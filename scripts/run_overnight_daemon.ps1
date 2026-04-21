@@ -18,17 +18,24 @@
 param(
   [int]$Top = 20,
   [int]$MaxTodo = 80,
+  [int]$Timeout = 0,
   [switch]$Siphon
 )
 
 $ErrorActionPreference = 'Stop'
 
 $repoRoot = (Resolve-Path -LiteralPath (Join-Path $PSScriptRoot '..')).Path
-$bunExe = Join-Path $env:USERPROFILE '.bun\bin\bun.exe'
 $tsScript = Join-Path $repoRoot 'scripts\overnight_daemon.ts'
 
-if (-not (Test-Path -LiteralPath $bunExe)) {
-  throw "Bun not found at '$bunExe'. Install Bun or adjust this script to point to bun.exe."
+# Prefer bun on PATH; fall back to user-local install
+$bunCmd = Get-Command bun -ErrorAction SilentlyContinue
+if ($bunCmd) {
+  $bunExe = $bunCmd.Source
+} else {
+  $bunExe = Join-Path $env:USERPROFILE '.bun\bin\bun.exe'
+  if (-not (Test-Path -LiteralPath $bunExe)) {
+    throw "Bun not found on PATH or at '$bunExe'. Install Bun or adjust this script."
+  }
 }
 if (-not (Test-Path -LiteralPath $tsScript)) {
   throw "Daemon script not found at '$tsScript'."
@@ -43,5 +50,16 @@ if ($Siphon) {
   $argsList += '--siphon'
 }
 
-& $bunExe @argsList
-
+if ($Timeout -gt 0) {
+  $proc = Start-Process -FilePath $bunExe -ArgumentList $argsList -NoNewWindow -PassThru
+  $exited = $proc.WaitForExit($Timeout * 1000)
+  if (-not $exited) {
+    $proc.Kill()
+    Write-Host "\u274c Daemon timed out after ${Timeout}s" -ForegroundColor Red
+    exit 1
+  }
+  exit $proc.ExitCode
+} else {
+  & $bunExe @argsList
+  exit $LASTEXITCODE
+}
