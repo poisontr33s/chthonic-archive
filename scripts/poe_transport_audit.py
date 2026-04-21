@@ -25,7 +25,6 @@ from __future__ import annotations
 
 import argparse
 import json
-import subprocess
 import sys
 import time
 from dataclasses import asdict, dataclass
@@ -34,6 +33,9 @@ from typing import Any
 
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(REPO_ROOT))
+import scripts.poe_lane as _poe_lane  # noqa: E402
+import scripts.poe_sdk_lane as _poe_sdk_lane  # noqa: E402
 STATUS_PRIORITY = [
     "callable",
     "insufficient_fund",
@@ -182,7 +184,9 @@ def parse_models(raw: str) -> list[str]:
 
 
 def run_cmd(cmd: list[str]) -> tuple[int, str, str]:
-    proc = subprocess.run(
+    """Kept for backward compatibility — no longer used internally."""
+    import subprocess as _sp
+    proc = _sp.run(
         cmd,
         cwd=REPO_ROOT,
         check=False,
@@ -308,134 +312,82 @@ def probe_openai(
     max_tokens: int = 1,
 ) -> ProbeResult:
     requested_tokens = max(1, int(max_tokens))
+    try:
+        acct_int = int(account) if account and str(account).isdigit() else None
+    except (TypeError, ValueError):
+        acct_int = None
+    try:
+        resolution = _poe_lane.resolve_poe_credentials(acct_int)
+    except Exception as e:
+        return ProbeResult(rc=2, ok=False, status="missing_key", text_preview=None, error=str(e)[:600])
+    if not resolution.token:
+        return ProbeResult(rc=2, ok=False, status="missing_key", text_preview=None, error="missing POE key")
 
-    def build_cmd(tokens: int) -> list[str]:
-        cmd = [
-            sys.executable,
-            str(REPO_ROOT / "scripts" / "poe_lane.py"),
-            "--mode",
-            "probe",
-            "--account",
-            account,
-            "--model",
-            model,
-            "--prompt",
-            prompt,
-            "--max-tokens",
-            str(tokens),
-            "--json",
-        ]
-        if effort.strip():
-            cmd.extend(["--effort", effort.strip()])
-        return cmd
-
-    rc, out, err = run_cmd(build_cmd(requested_tokens))
-    payload = parse_json_line(out)
-    if rc == 0 and isinstance(payload, dict):
-        text = payload.get("text")
-        return ProbeResult(
-            rc=rc,
-            ok=True,
-            status="callable",
-            text_preview=(str(text)[:300] if text is not None else None),
-            error=None,
-        )
-    message = (out.strip() or err.strip() or "probe_failed").strip()
-
-    if needs_min_token_retry(message, requested_tokens):
-        rc, out, err = run_cmd(build_cmd(16))
-        payload = parse_json_line(out)
-        if rc == 0 and isinstance(payload, dict):
-            text = payload.get("text")
-            return ProbeResult(
-                rc=rc,
-                ok=True,
-                status="callable",
-                text_preview=(str(text)[:300] if text is not None else None),
-                error=None,
+    def _do_probe(tokens: int) -> ProbeResult:
+        try:
+            text, _ = _poe_lane.run_chat(
+                base_url=_poe_lane.DEFAULT_BASE_URL,
+                token=resolution.token,
+                model=model,
+                prompt=prompt,
+                system="",
+                max_tokens=tokens,
+                effort=effort or None,
             )
-        message = (out.strip() or err.strip() or "probe_failed").strip()
+            return ProbeResult(
+                rc=0, ok=True, status="callable",
+                text_preview=(text[:300] if text else None), error=None,
+            )
+        except Exception as e:
+            message = str(e)
+            return ProbeResult(
+                rc=1, ok=False, status=classify_status(False, message),
+                text_preview=None, error=message[:600],
+            )
 
-    return ProbeResult(
-        rc=rc,
-        ok=False,
-        status=classify_status(False, message),
-        text_preview=None,
-        error=message[:600],
-    )
+    result = _do_probe(requested_tokens)
+    if not result.ok and needs_min_token_retry(result.error or "", requested_tokens):
+        result = _do_probe(16)
+    return result
 
 
 def probe_sdk(account: str, bot: str, prompt: str, effort: str = "") -> ProbeResult:
-    cmd = [
-        "uv",
-        "run",
-        "--with",
-        "fastapi-poe",
-        str(REPO_ROOT / "scripts" / "poe_sdk_lane.py"),
-        "--account",
-        account,
-        "--bot",
-        bot,
-        "--prompt",
-        prompt,
-        "--effort",
-        effort,
-        "--json",
-    ]
-    rc, out, err = run_cmd(cmd)
-    payload = parse_json_line(out)
-    if rc == 0 and isinstance(payload, dict):
-        text = payload.get("text")
-        return ProbeResult(
-            rc=rc,
-            ok=True,
-            status="callable",
-            text_preview=(str(text)[:300] if text is not None else None),
-            error=None,
-        )
-    message = (out.strip() or err.strip() or "probe_failed").strip()
-    return ProbeResult(
-        rc=rc,
-        ok=False,
-        status=classify_status(False, message),
-        text_preview=None,
-        error=message[:600],
-    )
+    try:
+        acct_int = int(account) if account and str(account).isdigit() else None
+    except (TypeError, ValueError):
+        acct_int = None
+    try:
+        resolution = _poe_lane.resolve_poe_credentials(acct_int)
+    except Exception as e:
+        return ProbeResult(rc=2, ok=False, status="missing_key", text_preview=None, error=str(e)[:600])
+    if not resolution.token:
+        return ProbeResult(rc=2, ok=False, status="missing_key", text_preview=None, error="missing POE key")
+    try:
+        text = _poe_sdk_lane.run_probe(bot=bot, prompt=prompt, token=resolution.token, effort=effort or None)
+        return ProbeResult(rc=0, ok=True, status="callable",
+                          text_preview=(text[:300] if text else None), error=None)
+    except Exception as e:
+        message = str(e)
+        return ProbeResult(rc=1, ok=False, status=classify_status(False, message),
+                          text_preview=None, error=message[:600])
 
 
 def list_openai_models(account: str, limit: int) -> tuple[list[str], str | None]:
-    rc, out, err = run_cmd(
-        [
-            sys.executable,
-            str(REPO_ROOT / "scripts" / "poe_lane.py"),
-            "--mode",
-            "models",
-            "--account",
-            account,
-            "--limit",
-            str(max(1, int(limit))),
-            "--json",
-        ]
-    )
-    if rc != 0:
-        return [], (out.strip() or err.strip() or "models_probe_failed")[:600]
-    payload = parse_json_line(out)
-    if not isinstance(payload, dict):
-        return [], "invalid_models_payload"
-    models = payload.get("models")
-    if not isinstance(models, list):
-        return [], "missing_models_list"
-    out_models: list[str] = []
-    seen: set[str] = set()
-    for item in models:
-        if not isinstance(item, str):
-            continue
-        model = item.strip()
-        if not model or model in seen:
-            continue
-        seen.add(model)
-        out_models.append(model)
-    return out_models, None
+    try:
+        acct_int = int(account) if account and str(account).isdigit() else None
+    except (TypeError, ValueError):
+        acct_int = None
+    try:
+        resolution = _poe_lane.resolve_poe_credentials(acct_int)
+    except Exception as e:
+        return [], str(e)[:600]
+    if not resolution.token:
+        return [], "missing POE key"
+    try:
+        model_ids, _ = _poe_lane.run_models(_poe_lane.DEFAULT_BASE_URL, resolution.token, max(1, int(limit)))
+        return model_ids, None
+    except Exception as e:
+        return [], str(e)[:600]
 
 
 def inspect_openai_models(account: str, limit: int) -> tuple[int | None, bool | None]:
@@ -576,6 +528,7 @@ def run_registry_audit(
     sdk_probe_limit: int,
     model_source: str,
     source_error: str | None,
+    cache: dict[str, Any] | None = None,
 ) -> RegistryAudit:
     models_sorted = sort_models_for_cost(models)
 
@@ -584,8 +537,36 @@ def run_registry_audit(
     sdk_statuses: list[str] = []
 
     for idx, model in enumerate(models_sorted):
-        openai_result: ProbeResult | None = None
-        sdk_result: ProbeResult | None = None
+        # Use cached result when available (skips live probe).
+        if cache is not None and model in cache:
+            cached = cache[model]
+            cached_openai_status = cached.get("openai_status", "not_tested")
+            cached_sdk_status = cached.get("sdk_status", "not_tested")
+            openai_result: ProbeResult | None = (
+                ProbeResult(rc=0, ok=(cached_openai_status == "callable"),
+                            status=cached_openai_status, text_preview=None, error=None)
+                if "openai" in transports else None
+            )
+            sdk_result: ProbeResult | None = (
+                ProbeResult(rc=0, ok=(cached_sdk_status == "callable"),
+                            status=cached_sdk_status, text_preview=None, error=None)
+                if "sdk" in transports else None
+            )
+            if openai_result:
+                openai_statuses.append(openai_result.status)
+            if sdk_result:
+                sdk_statuses.append(sdk_result.status)
+            audits.append(RegistryModelAudit(
+                model=model, cost_tier=infer_cost_tier(model),
+                openai=openai_result, sdk=sdk_result,
+                best_transport=cached.get("best_transport"),
+                best_status=cached.get("best_status", "not_tested"),
+                discrepancy=None,
+            ))
+            continue
+
+        openai_result = None
+        sdk_result = None
 
         if "openai" in transports:
             openai_result = probe_openai(
@@ -689,6 +670,8 @@ def main() -> int:
     ap.add_argument("--emit-mailbox", action="store_true")
     ap.add_argument("--mailboxes", default="codex,claude")
     ap.add_argument("--json", action="store_true")
+    ap.add_argument("--cache", action="store_true",
+                    help="Load/save model probe results to cache; skip re-probing cached models.")
     args = ap.parse_args()
 
     mailboxes = parse_mailboxes(args.mailboxes)
@@ -697,6 +680,17 @@ def main() -> int:
         accounts = parse_accounts(args.accounts)
         account = normalize_account(args.registry_account) or accounts[0]
         transports = parse_transports(args.registry_transports)
+
+        # Cache load.
+        cache_path = REPO_ROOT / "codex" / "mailbox" / "cache" / "poe_transport_cache.json"
+        cache: dict[str, Any] = {}
+        if args.cache and cache_path.exists():
+            try:
+                loaded = json.loads(cache_path.read_text(encoding="utf-8"))
+                if isinstance(loaded, dict):
+                    cache = loaded
+            except Exception:
+                cache = {}
 
         explicit_models = parse_models(args.registry_models)
         if explicit_models:
@@ -720,7 +714,20 @@ def main() -> int:
             sdk_probe_limit=int(args.sdk_probe_limit),
             model_source=source,
             source_error=source_error,
+            cache=cache if args.cache else None,
         )
+
+        # Cache save — write updated results back.
+        if args.cache:
+            for audit in report.models:
+                cache[audit.model] = {
+                    "best_transport": audit.best_transport,
+                    "best_status": audit.best_status,
+                    "openai_status": audit.openai.status if audit.openai else "not_tested",
+                    "sdk_status": audit.sdk.status if audit.sdk else "not_tested",
+                }
+            cache_path.parent.mkdir(parents=True, exist_ok=True)
+            cache_path.write_text(json.dumps(cache, indent=2) + "\n", encoding="utf-8")
 
         if args.emit_mailbox:
             write_registry_mailbox(report, mailboxes)

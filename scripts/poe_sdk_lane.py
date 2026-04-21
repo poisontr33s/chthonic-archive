@@ -97,9 +97,9 @@ def write_mailbox(report: PoeSdkReport, mailboxes: list[str]) -> None:
 def run_probe(bot: str, prompt: str, token: str, effort: str | None) -> str:
     try:
         import fastapi_poe as fp  # type: ignore
-    except Exception as e:
+    except ImportError as e:
         raise RuntimeError(
-            "fastapi_poe_missing: run with `uv run --with fastapi-poe scripts/poe_sdk_lane.py ...`"
+            "fastapi_poe not installed — run: uv run --with fastapi-poe scripts/poe_sdk_lane.py ..."
         ) from e
 
     msg_kwargs: dict[str, object] = {"role": "user", "content": prompt}

@@ -61,7 +61,7 @@ def now_utc() -> str:
     return time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())
 
 
-def http_json(method: str, url: str, token: str, payload: dict[str, Any] | None = None) -> dict[str, Any]:
+def http_json(method: str, url: str, token: str, payload: dict[str, Any] | None = None, timeout: int = 60) -> dict[str, Any]:
     body = None
     if payload is not None:
         body = json.dumps(payload).encode("utf-8")
@@ -75,7 +75,7 @@ def http_json(method: str, url: str, token: str, payload: dict[str, Any] | None 
         data=body,
     )
     try:
-        with request.urlopen(req, timeout=60) as resp:
+        with request.urlopen(req, timeout=timeout) as resp:
             raw = resp.read().decode("utf-8", errors="replace")
             return json.loads(raw)
     except error.HTTPError as e:
@@ -90,8 +90,8 @@ def http_json(method: str, url: str, token: str, payload: dict[str, Any] | None 
         raise RuntimeError(f"network_error: {e}") from e
 
 
-def run_models(base_url: str, token: str, limit: int) -> tuple[list[str], dict[str, Any]]:
-    data = http_json("GET", f"{base_url.rstrip('/')}/models", token, None)
+def run_models(base_url: str, token: str, limit: int, timeout: int = 60) -> tuple[list[str], dict[str, Any]]:
+    data = http_json("GET", f"{base_url.rstrip('/')}/models", token, None, timeout=timeout)
     ids: list[str] = []
     for item in data.get("data", []):
         model_id = item.get("id")
@@ -122,6 +122,7 @@ def run_chat(
     system: str,
     max_tokens: int,
     effort: str | None,
+    timeout: int = 60,
 ) -> tuple[str, dict[str, Any]]:
     messages: list[dict[str, str]] = []
     if system.strip():
@@ -135,13 +136,87 @@ def run_chat(
     }
     if effort and effort.strip():
         payload["extra_body"] = {"effort": effort.strip()}
-    data = http_json("POST", f"{base_url.rstrip('/')}/chat/completions", token, payload)
+    data = http_json("POST", f"{base_url.rstrip('/')}/chat/completions", token, payload, timeout=timeout)
     choices = data.get("choices", [])
     if not choices:
         raise RuntimeError("no choices returned")
     msg = choices[0].get("message", {})
     content = normalize_content(msg.get("content", ""))
     return content.strip(), data
+
+
+def run_chat_stream(
+    base_url: str,
+    token: str,
+    model: str,
+    prompt: str,
+    system: str,
+    max_tokens: int,
+    effort: str | None,
+    timeout: int = 60,
+) -> str:
+    """Send a chat completion with stream=True; print tokens as received and return the full text."""
+    import sys as _sys
+    messages: list[dict[str, str]] = []
+    if system.strip():
+        messages.append({"role": "system", "content": system.strip()})
+    messages.append({"role": "user", "content": prompt})
+    payload: dict[str, Any] = {
+        "model": model,
+        "messages": messages,
+        "max_tokens": max(1, int(max_tokens)),
+        "stream": True,
+    }
+    if effort and effort.strip():
+        payload["extra_body"] = {"effort": effort.strip()}
+    body = json.dumps(payload).encode("utf-8")
+    req = request.Request(
+        url=f"{base_url.rstrip('/')}/chat/completions",
+        method="POST",
+        headers={
+            "Authorization": f"Bearer {token}",
+            "Content-Type": "application/json",
+            "Accept": "text/event-stream",
+        },
+        data=body,
+    )
+    pieces: list[str] = []
+    try:
+        with request.urlopen(req, timeout=timeout) as resp:
+            for raw_line in resp:
+                line = raw_line.decode("utf-8", errors="replace").strip()
+                if not line.startswith("data:"):
+                    continue
+                data_str = line[5:].strip()
+                if data_str == "[DONE]":
+                    break
+                try:
+                    chunk = json.loads(data_str)
+                except Exception:
+                    continue
+                choices = chunk.get("choices", [])
+                if not choices:
+                    continue
+                delta = choices[0].get("delta", {})
+                content = delta.get("content")
+                if isinstance(content, str) and content:
+                    pieces.append(content)
+                    _sys.stdout.write(content)
+                    _sys.stdout.flush()
+    except error.HTTPError as e:
+        raw = e.read().decode("utf-8", errors="replace")
+        try:
+            parsed = json.loads(raw)
+            msg = parsed.get("error", {}).get("message") or raw
+        except Exception:
+            msg = raw
+        raise RuntimeError(f"HTTP {e.code}: {msg}") from e
+    except error.URLError as e:
+        raise RuntimeError(f"network_error: {e}") from e
+    full = "".join(pieces)
+    _sys.stdout.write("\n")
+    _sys.stdout.flush()
+    return full
 
 
 def parse_mailboxes(value: str) -> list[str]:
@@ -207,6 +282,8 @@ def main() -> int:
         help="Mailbox targets for --emit-mailbox: codex, claude, or codex,claude.",
     )
     ap.add_argument("--json", action="store_true", help="Emit JSON payload to stdout.")
+    ap.add_argument("--timeout", type=int, default=60, help="HTTP request timeout in seconds (default: 60).")
+    ap.add_argument("--stream", action="store_true", help="Stream output incrementally (chat/probe modes only).")
     args = ap.parse_args()
     mailbox_targets = parse_mailboxes(args.mailboxes)
 
@@ -277,15 +354,28 @@ def main() -> int:
                     print(f"MODEL={model_id}")
                 print(f"COUNT={len(model_ids)}")
         else:
-            text, _raw = run_chat(
-                base_url=args.base_url,
-                token=resolution.token,
-                model=args.model,
-                prompt=args.prompt,
-                system=args.system,
-                max_tokens=args.max_tokens,
-                effort=args.effort,
-            )
+            if args.stream:
+                text = run_chat_stream(
+                    base_url=args.base_url,
+                    token=resolution.token,
+                    model=args.model,
+                    prompt=args.prompt,
+                    system=args.system,
+                    max_tokens=args.max_tokens,
+                    effort=args.effort,
+                    timeout=args.timeout,
+                )
+            else:
+                text, _raw = run_chat(
+                    base_url=args.base_url,
+                    token=resolution.token,
+                    model=args.model,
+                    prompt=args.prompt,
+                    system=args.system,
+                    max_tokens=args.max_tokens,
+                    effort=args.effort,
+                    timeout=args.timeout,
+                )
             report.ok = True
             report.response_preview = text[:400]
             if args.json:
