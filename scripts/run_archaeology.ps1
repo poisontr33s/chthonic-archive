@@ -18,11 +18,11 @@ param(
   [switch]$WithLLM,       # Opt-in: Copilot SDK Loop 2 (costs ~14 haiku calls from YOUR quota)
   [switch]$WithHF,        # Opt-in: HuggingFace open-source LLM refinement (free, separate pool)
   [switch]$Local,         # Opt-in: Local GPU inference (Qwen3-30B-A3B abliterated, default)
-  [switch]$LocalV2,       # Opt-in: Force v2 refiner (same as -Local, kept for compatibility)
   [switch]$LocalCoder,    # Opt-in: Qwen3-Coder-30B-A3B abliterated (code-focused)
   [switch]$LocalHeavy,    # Opt-in: GPT-OSS-20B dense model (Harmony parser)
   [switch]$Genre,          # Opt-in: Genre extraction on creative content (local GPU)
   [switch]$DryRun,        # Preview without writing
+  [switch]$What,          # List what would run based on flags, then exit (no execution)
   [switch]$SkipDaemon,    # Skip the debt/complexity daemon
   [switch]$SkipArchaeology, # Skip the file archaeology scavenge
   [int]$Top = 20,         # Top N candidates for daemon
@@ -35,6 +35,22 @@ $repoRoot   = (Resolve-Path -LiteralPath (Join-Path $PSScriptRoot '..')).Path
 $bunExe     = Join-Path $env:USERPROFILE '.bun\bin\bun.exe'
 $stamp      = Get-Date -Format 'yyyy-MM-ddTHH-mm-ss'
 $runFailures = [System.Collections.Generic.List[string]]::new()
+
+# ── -What: show execution plan and exit ──────────────────────────────────
+if ($What) {
+  Write-Host '  ☥ Execution plan (no steps will run):' -ForegroundColor Cyan
+  if (-not $SkipDaemon)      { Write-Host '    [1] Overnight Daemon   — debt scoring + complexity' -ForegroundColor DarkGray }
+  if (-not $SkipArchaeology) { Write-Host '    [2] Archaeology Scavenge — file walk + gold tier' -ForegroundColor DarkGray }
+  if ($WithHF)               { Write-Host '    [3] HF Refiner         — open-source LLM (free)' -ForegroundColor DarkGray }
+  if ($Local -or $LocalCoder -or $LocalHeavy) {
+    $label = if ($LocalCoder) { 'Qwen3-Coder' } elseif ($LocalHeavy) { 'GPT-OSS-20B' } else { 'Qwen3-30B' }
+    Write-Host "    [4] Local Refiner      — $label" -ForegroundColor DarkGray
+  }
+  if ($Genre)                { Write-Host '    [5] Genre Extractor    — creative content (local)' -ForegroundColor DarkGray }
+  if ($Background)           { Write-Host '    Mode: Background (detached processes)' -ForegroundColor Yellow }
+  if ($DryRun)               { Write-Host '    Mode: DryRun (scripts called with --dry-run)' -ForegroundColor Yellow }
+  exit 0
+}
 
 if (-not (Test-Path -LiteralPath $bunExe)) {
   throw "Bun not found at '$bunExe'. Install Bun or adjust path."
@@ -219,7 +235,7 @@ if ($WithHF) {
 
 # ── 4. Local Refiner (GPU inference, zero network) ──────────────────────
 
-if ($Local -or $LocalV2 -or $LocalCoder -or $LocalHeavy) {
+if ($Local -or $LocalCoder -or $LocalHeavy) {
   $v2Script    = Join-Path $repoRoot 'scripts\local_refiner_v2.py'
   $uvExe       = Join-Path $env:USERPROFILE '.local\bin\uv.exe'
   if (-not (Test-Path -LiteralPath $uvExe)) { $uvExe = 'uv' }
@@ -316,10 +332,16 @@ if (-not $Background -and $runFailures.Count -gt 0) {
 }
 
 if ($Background) {
+  if ($runFailures.Count -gt 0) {
+    Write-Host '  ☥ Step start errors detected:' -ForegroundColor Red
+    foreach ($failure in $runFailures) {
+      Write-Host "    - $failure" -ForegroundColor Yellow
+    }
+  }
   Write-Host '  ☥ Daemons detached. Check in the morning:' -ForegroundColor Green
   Write-Host '    Daemon reports:      dumpster-dive\intake\overnight-daemon\' -ForegroundColor DarkGray
   Write-Host '    Archaeology ore:     dumpster-dive\intake\overnight-intelligence\' -ForegroundColor DarkGray
-  if ($WithLLM -or $WithHF -or $Local -or $LocalV2) {
+  if ($WithLLM -or $WithHF -or $Local) {
     Write-Host '    LLM digest:          claude\mailbox\ARCHAEOLOGY_DIGEST_*.md' -ForegroundColor DarkGray
   }
   Write-Host ''
