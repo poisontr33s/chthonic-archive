@@ -496,7 +496,25 @@ def main():
     parser.add_argument("--no-digest", action="store_true", help="Don't write digest to mailbox")
     parser.add_argument("--no-filter", action="store_true", help="Skip path exclusion filtering")
     parser.add_argument("--n-ctx", type=int, default=N_CTX, help="Context length (default: 4096)")
+    parser.add_argument("--validate", action="store_true", help="Validate output schema after refinement (exit 1 on violations)")
+    parser.add_argument("--model-list", action="store_true", help="List available GGUF models and exit")
     args = parser.parse_args()
+
+    if args.model_list:
+        print("Available models:")
+        for label, mdir in [
+            ("default", DEFAULT_MODEL_DIR),
+            ("coder",   CODER_MODEL_DIR),
+            ("heavy",   HEAVY_MODEL_DIR),
+            ("legacy",  LEGACY_MODEL_DIR),
+        ]:
+            status = "✅ present" if mdir.exists() else "❌ not found"
+            gguf_count = len(list(mdir.glob("*.gguf"))) if mdir.exists() else 0
+            print(f"  --{label}: {mdir.name} ({status}, {gguf_count} GGUFs)")
+            if mdir.exists():
+                for g in sorted(mdir.glob("*.gguf"))[:3]:
+                    print(f"    {g.name}")
+        return
 
     # Backend selection: --mistralrs flag, or auto-detect if server is running
     use_mistralrs = args.mistralrs
@@ -601,6 +619,21 @@ def main():
     flags = [f for f in findings if f["verdict"] == "FLAG"]
     print(f"\n  L2 complete: {processed} domains, {len(promotes)} promotions, {len(flags)} flags")
     print(f"  Total: {total_time:.1f}s ({total_time / max(processed, 1):.1f}s/domain)")
+
+    if args.validate:
+        errors = 0
+        valid_verdicts = {"PROMOTE", "FLAG", "SKIP"}
+        for f in findings:
+            if f["verdict"] not in valid_verdicts:
+                print(f"  ⚠ INVALID verdict: {f['verdict']!r} in {f['path']!r}")
+                errors += 1
+            if not f.get("path", "").strip():
+                print(f"  ⚠ EMPTY path in finding: {f}")
+                errors += 1
+        if errors:
+            print(f"  ❌ VALIDATION FAILED: {errors} schema violations")
+            sys.exit(1)
+        print(f"  ✅ Validation passed: {len(findings)} findings, 0 violations")
 
     if not args.no_digest:
         write_digest(findings, model_dir_resolved, prior, processed)

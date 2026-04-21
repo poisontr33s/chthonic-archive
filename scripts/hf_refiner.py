@@ -69,12 +69,13 @@ def get_hf_token() -> str:
     return token
 
 
-def find_latest_ore() -> Path | None:
+def find_latest_ore(ore_base: Path | None = None) -> Path | None:
     """Find the most recent L1-ore.json from the overnight scavenge."""
-    if not ORE_BASE.exists():
+    base = ore_base if ore_base is not None else ORE_BASE
+    if not base.exists():
         return None
     arch_dirs = sorted(
-        [d for d in ORE_BASE.iterdir() if d.is_dir() and d.name.startswith("arch-")],
+        [d for d in base.iterdir() if d.is_dir() and d.name.startswith("arch-")],
         reverse=True,
     )
     for d in arch_dirs:
@@ -166,12 +167,14 @@ def query_hf(prompt: str, token: str, model: str) -> str:
         except urllib.error.HTTPError as e:
             body = e.read().decode("utf-8", errors="replace")
             if e.code == 503:
-                print(f"    Model loading (503)... waiting {RETRY_DELAY}s (attempt {attempt + 1})")
-                time.sleep(RETRY_DELAY)
+                wait = RETRY_DELAY * (2 ** attempt)
+                print(f"    Model loading (503)... waiting {wait}s (attempt {attempt + 1})")
+                time.sleep(wait)
                 continue
             if e.code == 429:
-                print(f"    Rate limited (429)... waiting {RETRY_DELAY * 2}s")
-                time.sleep(RETRY_DELAY * 2)
+                wait = RETRY_DELAY * 2 * (2 ** attempt)
+                print(f"    Rate limited (429)... waiting {wait}s (attempt {attempt + 1})")
+                time.sleep(wait)
                 continue
             raise RuntimeError(f"HF API error {e.code}: {body[:200]}")
         except TimeoutError:
@@ -356,6 +359,7 @@ def main():
     parser = argparse.ArgumentParser(description="Refine L1 ore using HuggingFace Inference API")
     parser.add_argument("--ore", type=str, help="Path to L1-ore.json (auto-detects latest if omitted)")
     parser.add_argument("--model", type=str, default=DEFAULT_MODEL, help=f"HF model ID (default: {DEFAULT_MODEL})")
+    parser.add_argument("--ore-dir", type=str, default=None, help="Override ore base directory (default: dumpster-dive/intake/overnight-intelligence)")
     parser.add_argument("--dry-run", action="store_true", help="Show what would be sent without calling API")
     parser.add_argument("--no-digest", action="store_true", help="Don't write digest to mailbox")
     args = parser.parse_args()
@@ -367,7 +371,8 @@ def main():
     if args.ore:
         ore_path = Path(args.ore)
     else:
-        ore_path = find_latest_ore()
+        ore_base_override = Path(args.ore_dir) if args.ore_dir else None
+        ore_path = find_latest_ore(ore_base_override)
 
     if not ore_path or not ore_path.exists():
         print("ERROR: No L1 ore found. Run the nightly scavenge first:")
