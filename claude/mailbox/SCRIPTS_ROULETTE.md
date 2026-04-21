@@ -294,25 +294,7 @@ All 9 files share the same broken import (`from skill_tensor_common import ...` 
 
 ## Quick-Win Cluster Summary
 
-> Highest-ROI sprint: run all **Score 3.0** items first. All are Effort=1 (minutes each).
-
-1. Fix `erdno`→`eldno` typo in `nightly-scheduled.ps1` + add failure sentinel — **2 min**
-2. `api_pool.ps1` schema validation + `-Verify` switch — **10 min**
-3. `desktop-warmup.ps1` try/catch accumulation — **15 min**
-4. `mcp-filesystem.ts` marker-string idempotency — **10 min**
-5. `lib/shared.py` type annotations + `__all__` + `find_repo_root` depth cap — **20 min**
-6. `lib/ssot-paths.ts` as-const + `assertSsotExists` — **5 min**
-7. `lib/ssot_paths.py` sys.path guard + ImportError fallback — **5 min**
-8. `lib/ssot-paths.ps1` remove line-count comment + `AssertExists` param — **5 min**
-9. `lib/poe_auth.py` strict mode + valid field — **10 min**
-10. `sfs.ps1` → shim to `shell_capabilities.ps1` consolidation — **5 min**
-11. `git_snapshot.py` `--quiet` + ssot_paths + `--since` — **15 min**
-12. `run_archaeology.ps1` print failures + remove dead `-LocalV2` — **5 min**
-13. `theme_contrast_audit.py` sys.path guard + `--emit-junit` — **10 min**
-14. `theme-sync.ps1` post-copy hash verification — **15 min**
-
-**Batch fix** the 9× `skill_tensor_*.py` import issue in one `sed`/grep-replace pass — **5 min total**.
-
----
+> **Status: COMPLETE — 2026-04-21.** All T0→T5 items executed. No ⬜ items remain.
+> Prior sprint guidance (Score 3.0 items, batch fixes) fulfilled — preserved in git history.
 
 *Generated: scripts/ full recursive scan → Explore agent (thorough mode) → L/E × H/V ranking*

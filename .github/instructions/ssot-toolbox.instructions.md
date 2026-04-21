@@ -2,7 +2,7 @@
 
 > **Lineage-Position:** `SSOT-Toolbox-Branch` — downstream vessel translating semantic lineage into operational doctrine.
 > **Governance:** SSOT-L-H via [copilot-instructions.archive.md](../copilot-instructions.archive.md). Update-Protocol, Addressability, Enforcement-Hierarchy, No-Duplication constraint inherited — not repeated here.
-> **Revised:** February 2026
+> **Revised:** April 2026
 
 # SSOT Toolbox Instructions
 

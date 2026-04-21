@@ -8,7 +8,7 @@
 >
 > **Constraints:** No content duplication across `.github/instructions/*.instructions.md`. Branch files are declarative manifests, not replicas. Substantive edits flow through SSOT. Addressability by line-range and section title.
 >
-> **Revised:** February 2026
+> **Revised:** April 2026
 
 ---
 
