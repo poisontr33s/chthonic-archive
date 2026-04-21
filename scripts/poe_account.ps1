@@ -21,6 +21,7 @@ param(
   [string]$Account = "1",
   [switch]$MapOpenAICompat,
   [switch]$Doctor,
+  [switch]$List,
   [string]$Model
 )
 
@@ -49,6 +50,25 @@ if (Test-Path -LiteralPath $apiManager) {
   throw "No token loader found (.codex api-manager or scripts/api_pool.ps1)."
 }
 
+if ($List) {
+  $slots = Get-ChildItem Env: |
+    Where-Object { $_.Name -match '^POE_API_KEY_[0-9]+$' } |
+    Sort-Object Name
+  if (-not $slots -or $slots.Count -eq 0) {
+    Write-Host "No POE_API_KEY_N slots found in current process."
+    exit 0
+  }
+  Write-Host "Available Poe API account slots:"
+  foreach ($s in $slots) {
+    $n = $s.Name -replace '^POE_API_KEY_', ''
+    $v = $s.Value
+    $masked = if ($v.Length -gt 8) { $v.Substring(0, 4) + '...' + $v.Substring($v.Length - 4) } else { '****' }
+    $active = if ($n -eq $Account) { ' (active)' } else { '' }
+    Write-Host "  account $n — key: $masked$active"
+  }
+  exit 0
+}
+
 $slot = "POE_API_KEY_$Account"
 $selected = [System.Environment]::GetEnvironmentVariable($slot, "Process")
 if ([string]::IsNullOrWhiteSpace([string]$selected)) {
@@ -56,6 +76,11 @@ if ([string]::IsNullOrWhiteSpace([string]$selected)) {
 }
 
 [System.Environment]::SetEnvironmentVariable("POE_API_KEY", $selected, "Process")
+# Explicit post-set validation.
+$keyAfter = [System.Environment]::GetEnvironmentVariable("POE_API_KEY", "Process")
+if ([string]::IsNullOrWhiteSpace([string]$keyAfter)) {
+  throw "POE_API_KEY is empty after assignment — SetEnvironmentVariable failed or key value is blank."
+}
 [System.Environment]::SetEnvironmentVariable("POE_ACCOUNT_ACTIVE", $Account, "Process")
 
 if (-not (Has-Env "POE_BASE_URL")) {
