@@ -1,3 +1,9 @@
+#!/usr/bin/env bun
+// @SID:     TOOL_ICON_FONT_GEN_V1
+// @Shabti:  CLI Script
+// @Purpose: Generate product icon woff font from 43 product SVGs.
+//           Bypasses fantasticon CLI (broken glob on Windows); uses svgicons2svgfont + svg2ttf + ttf2woff.
+//           Stroke-to-fill via @davestewart/outliner ensures glyph mass survives font rendering.
 // generate-product-icon-font.mjs
 // One-shot: converts 43 product SVGs into a woff icon font for the product icon theme.
 // Bypasses fantasticon CLI (broken glob on Windows) and uses underlying libs directly.
@@ -7,7 +13,7 @@ import { SVGIcons2SVGFontStream } from 'svgicons2svgfont';
 import svgpath from 'svgpath';
 import svg2ttf from 'svg2ttf';
 import ttf2woff from 'ttf2woff';
-import { readFileSync, writeFileSync, mkdirSync, createReadStream } from 'fs';
+import { readFileSync, writeFileSync, mkdirSync, createReadStream, existsSync } from 'fs';
 import { resolve, join } from 'path';
 import { outlineSvg } from '@davestewart/outliner';
 
@@ -65,9 +71,27 @@ const ICONS = [
   { name: 'tools',               codepoint: 0xE02C },
 ];
 
+
 const svgDir = resolve('extensions/chthonic-archive/themes/icons/product');
 const outDir = resolve('extensions/chthonic-archive/themes/fonts');
 const outlinedDir = resolve('extensions/chthonic-archive/themes/icons/product-outlined');
+
+// ── Pre-flight: verify all expected SVG paths exist before processing ──
+const preflight = ICONS.map(icon => ({
+  name: icon.name,
+  path: join(svgDir, `${icon.name}.svg`),
+}));
+const missing = preflight.filter(({ path }) => !existsSync(path));
+if (missing.length > 0) {
+  console.error(`\n❌ Pre-flight failed — ${missing.length} SVG(s) not found in ${svgDir}:`);
+  for (const { name, path } of missing) {
+    console.error(`   ✗ ${name}.svg → ${path}`);
+  }
+  console.error('\nFix missing SVGs before running font generation.\n');
+  process.exit(1);
+}
+console.log(`✅ Pre-flight passed — ${preflight.length}/${preflight.length} SVG paths verified.`);
+
 mkdirSync(outDir, { recursive: true });
 mkdirSync(outlinedDir, { recursive: true });
 
