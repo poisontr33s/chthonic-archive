@@ -16,10 +16,12 @@
     .\scripts\theme-sync.ps1
     .\scripts\theme-sync.ps1 -SkipBuild       # sync only, no recompile
     .\scripts\theme-sync.ps1 -SkipFontBuild   # skip product icon font regeneration
+    .\scripts\theme-sync.ps1 -VerifyOnly       # hash-verify installed copy, no build/copy
 #>
 param(
     [switch]$SkipBuild,
-    [switch]$SkipFontBuild
+    [switch]$SkipFontBuild,
+    [switch]$VerifyOnly
 )
 
 $ErrorActionPreference = 'Stop'
@@ -27,23 +29,26 @@ $src = Join-Path $PSScriptRoot '..\extensions\chthonic-archive'
 $pkgContent = Get-Content (Join-Path $src 'package.json') -Raw | ConvertFrom-Json
 $version = $pkgContent.version
 $extensionId = "$($pkgContent.publisher).$($pkgContent.name)-$version"
-$dst = Join-Path $env:USERPROFILE ".vscode-insiders\extensions\$extensionId"
 
-if (!(Test-Path $dst)) {
-    # Fallback: try to find the folder if version suffix varies slightly
-    $extDir = Join-Path $env:USERPROFILE ".vscode-insiders\extensions\"
-    $folders = Get-ChildItem -Path $extDir -Directory -Filter "$($pkgContent.publisher).$($pkgContent.name)-*"
-    if ($folders.Count -eq 1) {
-        $dst = $folders[0].FullName
-        Write-Host "ℹ️ Using auto-detected destination: $dst" -ForegroundColor Gray
-    } else {
-        Write-Host "❌ Installed extension not found for version $version at: $dst" -ForegroundColor Red
-        exit 1
-    }
+# Primary: glob-based discovery (version-independent)
+$extDir = Join-Path $env:USERPROFILE ".vscode-insiders\extensions\"
+$folders = Get-ChildItem -Path $extDir -Directory -Filter "$($pkgContent.publisher).$($pkgContent.name)-*" -ErrorAction SilentlyContinue
+if ($folders.Count -eq 1) {
+    $dst = $folders[0].FullName
+    Write-Host "Extension: $dst" -ForegroundColor DarkGray
+} elseif ($folders.Count -gt 1) {
+    # Multiple versions installed — prefer exact version match
+    $exact = $folders | Where-Object { $_.Name -eq $extensionId }
+    if ($exact) { $dst = $exact.FullName }
+    else { $dst = ($folders | Sort-Object Name -Descending | Select-Object -First 1).FullName }
+    Write-Host "Multiple installs found — using: $dst" -ForegroundColor Yellow
+} else {
+    Write-Host "❌ Installed extension not found for $($pkgContent.publisher).$($pkgContent.name)" -ForegroundColor Red
+    exit 1
 }
 
 # Step 1: Rebuild extension
-if (!$SkipBuild) {
+if (!$SkipBuild -and !$VerifyOnly) {
     Write-Host "🔨 Building extension..." -ForegroundColor Cyan
     Push-Location $src
     bun run compile 2>&1 | Write-Host
@@ -51,13 +56,17 @@ if (!$SkipBuild) {
 }
 
 # Step 1b: Regenerate product icon font
-if (!$SkipFontBuild) {
+if (!$SkipFontBuild -and !$VerifyOnly) {
     Write-Host "🔤 Generating product icon font..." -ForegroundColor Cyan
     bun run scripts/generate-product-icon-font.mjs 2>&1 | Write-Host
 }
 
 # Step 2: Sync all relevant files
-Write-Host "📦 Syncing to installed copy..." -ForegroundColor Cyan
+if ($VerifyOnly) {
+    Write-Host "🔍 Verifying installed copy (no write)..." -ForegroundColor Cyan
+} else {
+    Write-Host "📦 Syncing to installed copy..." -ForegroundColor Cyan
+}
 $files = @(
     'package.json',
     'dist\extension.js'
@@ -75,15 +84,28 @@ if (Test-Path $fontsDir) {
     }
 }
 
+$script:hashFailures = 0
+
 foreach ($f in $files) {
     $s = Join-Path $src $f
     $d = Join-Path $dst $f
     $dDir = Split-Path $d -Parent
-    if (!(Test-Path $dDir)) { New-Item $dDir -ItemType Directory -Force | Out-Null }
-    Copy-Item $s $d -Force
-    $match = (Get-FileHash $s).Hash -eq (Get-FileHash $d).Hash
-    $icon = if ($match) { '✅' } else { '❌' }
-    Write-Host "  $icon $f"
+    if (!(Test-Path $s)) {
+        Write-Host "  ⚠️ SKIP (src missing) $f" -ForegroundColor Yellow
+        continue
+    }
+    if (!$VerifyOnly) {
+        if (!(Test-Path $dDir)) { New-Item $dDir -ItemType Directory -Force | Out-Null }
+        Copy-Item $s $d -Force
+    }
+    if (Test-Path $d) {
+        $match = (Get-FileHash $s).Hash -eq (Get-FileHash $d).Hash
+        $icon = if ($match) { '✅' } else { '❌' }
+        Write-Host "  $icon $f"
+        if (-not $match) { $script:hashFailures++ }
+    } else {
+        Write-Host "  ⚠️ NOT INSTALLED $f" -ForegroundColor Yellow
+    }
 }
 
 # Step 3: Report
@@ -106,3 +128,7 @@ if ($pkg.contributes.productIconThemes) {
 }
 
 Write-Host "`n⚡ Done. Run 'Developer: Reload Window' in VS Code Insiders." -ForegroundColor Green
+if ($script:hashFailures -gt 0) {
+    Write-Host "❌ $($script:hashFailures) file(s) failed hash verification." -ForegroundColor Red
+    exit 1
+}
