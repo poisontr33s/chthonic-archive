@@ -39,10 +39,14 @@ export function initSentry(opts: SentryInitOptions = {}): void {
   if (didInit) return;
 
   const dsn = opts.dsn ?? process.env.SENTRY_DSN ?? "";
-  const enabled = opts.enabled ?? process.env.SENTRY_ENABLED !== "0";
+  const enabled = opts.enabled ?? (process.env.SENTRY_ENABLED !== "0" && process.env.SENTRY_ENABLED !== "false");
 
   // Smallest-correct-change: if no DSN, stay a no-op.
-  if (!enabled || !dsn) return;
+  if (!enabled) return;
+  if (!dsn) {
+    console.warn("[sentry] SENTRY_DSN not set — Sentry disabled. Set SENTRY_DSN to enable error reporting.");
+    return;
+  }
 
   Sentry.init({
     dsn,
