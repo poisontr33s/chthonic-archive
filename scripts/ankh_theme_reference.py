@@ -38,6 +38,7 @@ Usage:
                 before creating any new MILF/Sub-MILF VS Code color theme.
 """
 
+import hashlib
 import json
 import re
 import sys
@@ -58,6 +59,28 @@ ARCHIVE_PATH = _SSOT.holder
 PACKAGE_JSON_PATH = REPO_ROOT / "extensions" / "chthonic-archive" / "package.json"
 THEMES_DIR = REPO_ROOT / "extensions" / "chthonic-archive" / "themes"
 DEFAULT_OUTPUT = REPO_ROOT / "docs" / "design" / "ANKH_THEME_REFERENCE.md"
+_INDEX_PATH = REPO_ROOT / "data" / "indices" / "SSOT_ARCHIVE_STRUCTURAL_INDEX.json"
+_CACHE_HASH_PATH = REPO_ROOT / ".chthonic" / "ankh_theme_reference.ssot_hash"
+
+
+def _ssot_hash() -> str:
+    """SHA-256 of the raw SSOT archive content (no canonicalization — byte-exact)."""
+    return hashlib.sha256(ARCHIVE_PATH.read_bytes()).hexdigest()
+
+
+def _load_structural_index() -> dict | None:
+    """Load SSOT_ARCHIVE_STRUCTURAL_INDEX.json if it exists and its hash matches current SSOT."""
+    if not _INDEX_PATH.exists():
+        return None
+    try:
+        idx = json.loads(_INDEX_PATH.read_text(encoding="utf-8"))
+    except (json.JSONDecodeError, OSError):
+        return None
+    stored = idx.get("file_hash_sha256", "")
+    current = hashlib.sha256(ARCHIVE_PATH.read_text(encoding="utf-8").encode("utf-8")).hexdigest()
+    if stored != current:
+        return None  # stale — caller should re-parse
+    return idx
 
 # ---------------------------------------------------------------------------
 # Tier Hierarchy (Canonical from SSOT §83 + §X MMPS)
@@ -443,8 +466,18 @@ def load_existing_themes(themes_dir: Path) -> list[dict]:
 
 def build_reference() -> dict:
     """Build the complete Ankh Theme Reference structure."""
-    archive_metrics = {}
-    if ARCHIVE_PATH.exists():
+    # Prefer pre-computed structural index (avoids re-parsing 9k-line archive)
+    idx = _load_structural_index()
+    archive_metrics: dict = {}
+    if idx is not None:
+        # Use index metadata if available
+        archive_metrics = {
+            "lines": idx.get("total_lines", 0),
+            "headings": idx.get("total_headings", 0),
+            "words": idx.get("total_words", 0),
+            "source": "SSOT_ARCHIVE_STRUCTURAL_INDEX.json",
+        }
+    elif ARCHIVE_PATH.exists():
         archive_metrics = count_archive_sections(ARCHIVE_PATH)
 
     theme_summaries = []
@@ -639,11 +672,28 @@ def render_markdown(ref: dict) -> str:
 def main() -> None:
     args = sys.argv[1:]
     json_mode = "--json" in args
+    force = "--force" in args
     output_path = DEFAULT_OUTPUT
 
     for i, arg in enumerate(args):
         if arg == "--output" and i + 1 < len(args):
             output_path = Path(args[i + 1])
+
+    if not output_path.is_absolute():
+        output_path = (REPO_ROOT / output_path).resolve()
+    else:
+        output_path = output_path.resolve()
+
+    # SSOT hash cache check — skip regeneration if nothing changed
+    if not json_mode and not force and output_path.exists() and ARCHIVE_PATH.exists():
+        current_hash = _ssot_hash()
+        _CACHE_HASH_PATH.parent.mkdir(parents=True, exist_ok=True)
+        cached_hash = _CACHE_HASH_PATH.read_text(encoding="utf-8").strip() if _CACHE_HASH_PATH.exists() else ""
+        if cached_hash == current_hash:
+            print(f"☥ Cache valid (SSOT unchanged) — {output_path.relative_to(REPO_ROOT)}")
+            return
+    else:
+        current_hash = _ssot_hash() if ARCHIVE_PATH.exists() else ""
 
     if not output_path.is_absolute():
         output_path = (REPO_ROOT / output_path).resolve()
@@ -660,6 +710,10 @@ def main() -> None:
 
     output_path.parent.mkdir(parents=True, exist_ok=True)
     output_path.write_text(md, encoding="utf-8")
+    # Persist hash so next run can skip regeneration
+    if current_hash:
+        _CACHE_HASH_PATH.parent.mkdir(parents=True, exist_ok=True)
+        _CACHE_HASH_PATH.write_text(current_hash + "\n", encoding="utf-8")
     print(f"☥ Ankh Theme Reference written to: {output_path.relative_to(REPO_ROOT)}")
     print(f"  Tiers: {len(ref['tier_hierarchy'])}")
     print(f"  SAI entries: {len(ref['sai_registry'])}")
