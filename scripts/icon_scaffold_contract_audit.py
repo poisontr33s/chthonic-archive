@@ -38,6 +38,11 @@ import sys
 from collections import Counter, defaultdict
 from pathlib import Path, PurePosixPath
 
+# sys.path guard: ensure repo root is importable regardless of invocation CWD
+_REPO_ROOT_CANDIDATE = Path(__file__).resolve().parent.parent
+if str(_REPO_ROOT_CANDIDATE) not in sys.path:
+    sys.path.insert(0, str(_REPO_ROOT_CANDIDATE))
+
 from scripts.icon_surface_map import (
     build_file_icon_entries,
     build_folder_icon_entries,
@@ -503,6 +508,39 @@ def build_audit(repo_root: Path) -> dict[str, object]:
     }
 
 
+def _print_audit_diff(prev: dict, curr: dict) -> None:
+    """Print a human-readable diff summary between two audit JSON snapshots."""
+    sections = ["product_scaffold", "file_scaffold", "folder_scaffold"]
+    print("\n[diff] Audit comparison:")
+    changed = False
+    for section in sections:
+        prev_sec = prev.get(section, {})
+        curr_sec = curr.get(section, {})
+        # Compare entry counts
+        prev_count = len(prev_sec.get("entries", []))
+        curr_count = len(curr_sec.get("entries", []))
+        if prev_count != curr_count:
+            delta = curr_count - prev_count
+            sign = "+" if delta > 0 else ""
+            print(f"  {section}: entries {prev_count} → {curr_count} ({sign}{delta})")
+            changed = True
+        # Compare summary dicts if present
+        for key in ("by_tier", "by_bucket", "by_category"):
+            prev_val = prev_sec.get(key, {})
+            curr_val = curr_sec.get(key, {})
+            if prev_val != curr_val:
+                all_keys = set(prev_val) | set(curr_val)
+                for k in sorted(all_keys):
+                    pv = prev_val.get(k, 0)
+                    cv = curr_val.get(k, 0)
+                    if pv != cv:
+                        sign = "+" if cv - pv > 0 else ""
+                        print(f"  {section}.{key}[{k!r}]: {pv} → {cv} ({sign}{cv - pv})")
+                        changed = True
+    if not changed:
+        print("  No structural changes detected.")
+
+
 def main() -> int:
     configure_utf8_output()
 
@@ -518,6 +556,12 @@ def main() -> int:
         action="store_true",
         help="Exit non-zero if runtime IDs are invalid or any mapped SVG source is missing.",
     )
+    parser.add_argument(
+        "--diff",
+        type=Path,
+        metavar="PREV_JSON",
+        help="Compare current audit JSON against a previous JSON snapshot and print diff summary.",
+    )
     args = parser.parse_args()
 
     repo_root = find_repo_root(Path(__file__).resolve())
@@ -529,9 +573,21 @@ def main() -> int:
         output = build_report(audit)
 
     if args.output:
+        if not args.output.parent.exists():
+            args.output.parent.mkdir(parents=True, exist_ok=True)
+            print(f"  mkdir: {args.output.parent}", file=sys.stderr)
         args.output.write_text(output, encoding="utf-8")
     else:
         print(output, end="")
+
+    # --diff: compare current JSON against previous snapshot
+    if getattr(args, "diff", None) and args.diff.is_file():
+        try:
+            prev = json.loads(args.diff.read_text(encoding="utf-8"))
+            curr = json.loads(json.dumps(audit, ensure_ascii=False))  # normalise
+            _print_audit_diff(prev, curr)
+        except Exception as exc:  # noqa: BLE001
+            print(f"  [diff] failed to compare: {exc}", file=sys.stderr)
 
     if args.strict:
         product_entries = audit["product_scaffold"]["entries"]
