@@ -6217,7 +6217,7 @@ switch ($Domain) {
             Write-Host 'chthonic workflow <profile>'
             Write-Host "  control-plane         - validate status, shell probe, ssot queue/drift/lineage, MCP tool exposure"
             Write-Host "  toolchain-governance  - validate doctor/origins/toolchain probe surfaces"
-            Write-Host "  add --write to persist report artifacts"
+            Write-Host "  add --write to persist report artifacts; --dry-run to preview steps; --list to enumerate profiles"
             exit 0
         }
         $result = Invoke-ChthonicWorkflow -Profile $Action -WorkflowArgs $RemainingArgs -Json:$HasJsonFlag

@@ -97,7 +97,16 @@ WORKFLOWS: dict[str, list[tuple[str, list[str]]]] = {
 }
 
 
-def run_step(step_id: str, command: list[str]) -> StepResult:
+def run_step(step_id: str, command: list[str], dry_run: bool = False) -> StepResult:
+    if dry_run:
+        return StepResult(
+            step_id=step_id,
+            command=command,
+            exit_code=0,
+            duration_seconds=0.0,
+            stdout=f"[dry-run] would run: {' '.join(command)}",
+            stderr="",
+        )
     start = time.perf_counter()
     proc = subprocess.run(
         command,
@@ -118,8 +127,8 @@ def run_step(step_id: str, command: list[str]) -> StepResult:
     )
 
 
-def build_report(profile: str) -> WorkflowReport:
-    steps = [run_step(step_id, command) for step_id, command in WORKFLOWS[profile]]
+def build_report(profile: str, dry_run: bool = False) -> WorkflowReport:
+    steps = [run_step(step_id, command, dry_run=dry_run) for step_id, command in WORKFLOWS[profile]]
     failed = sum(1 for step in steps if step.exit_code != 0)
     return WorkflowReport(
         profile=profile,
@@ -179,12 +188,23 @@ def default_output_dir() -> Path:
 
 def main() -> int:
     parser = argparse.ArgumentParser(description="Run higher-level Chthonic workflow profiles.")
-    parser.add_argument("profile", choices=sorted(WORKFLOWS.keys()))
+    parser.add_argument("profile", nargs="?", choices=sorted(WORKFLOWS.keys()), help="Workflow profile to run.")
+    parser.add_argument("--list", action="store_true", help="List available workflow profiles and exit.")
     parser.add_argument("--json", action="store_true", help="Emit JSON to stdout.")
+    parser.add_argument("--dry-run", action="store_true", help="Show what steps would run without executing.")
     parser.add_argument("--write", action="store_true", help="Write markdown/json artifacts under dumpster-dive/intake/chthonic-workflows/.")
     args = parser.parse_args()
 
-    report = build_report(args.profile)
+    if args.list:
+        for name in sorted(WORKFLOWS.keys()):
+            print(name)
+        return 0
+
+    if not args.profile:
+        parser.print_help()
+        return 1
+
+    report = build_report(args.profile, dry_run=args.dry_run)
 
     if args.write:
         out_dir = default_output_dir()
