@@ -15,7 +15,7 @@ Global linguistic mandate: [.temple/protocols/LINGUISTIC_PROFILE_PROTOCOL.md](.t
 
 - `.temple/` = agent infrastructure. `game/` = cRPG content. Ask "TEMPLE or GAME?" before creating files.
 - `claude/mailbox/` = inbound handoffs. `codex/mailbox/` = outbound to Codex.
-- IDE patch after updates: `.\scripts\patch-claude-insiders.ps1`
+- IDE patch after updates: ~~`.\scripts\patch-claude-insiders.ps1`~~ (retired → `scripts/.deprecated/`; Claude Code v2.1.x+ uses compiled binary, no patch needed)
 
 ## Triad
 
