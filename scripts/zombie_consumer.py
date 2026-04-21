@@ -813,6 +813,14 @@ def _load_st_model():
         from sentence_transformers import SentenceTransformer
         _st_model_cache = SentenceTransformer(SEMANTIC_MODEL_NAME)
         return _st_model_cache
+    except ImportError:
+        print(
+            "[zombie] sentence-transformers not found -- semantic dedup unavailable.\n"
+            "  Install with: uv sync --extra embeddings\n"
+            "  or: uv pip install sentence-transformers",
+            file=sys.stderr,
+        )
+        return None
     except Exception:
         return None
 
