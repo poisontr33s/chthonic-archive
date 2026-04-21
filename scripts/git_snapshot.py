@@ -38,6 +38,8 @@ import sys
 from datetime import datetime, timezone
 from pathlib import Path
 
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+
 from scripts.lib.shared import configure_utf8_output, find_repo_root, setup_logging
 
 # =============================================================================
@@ -71,13 +73,19 @@ def get_branch(repo: Path) -> str:
     return _git(repo, "branch", "--show-current") or "(detached)"
 
 
-def get_log_oneline(repo: Path, count: int) -> list[str]:
-    raw = _git(repo, "log", f"--oneline", f"-{count}")
+def get_log_oneline(repo: Path, count: int, since: str | None = None) -> list[str]:
+    args = ["log", "--oneline", f"-{count}"]
+    if since:
+        args += [f"--since={since}"]
+    raw = _git(repo, *args)
     return raw.splitlines() if raw else []
 
 
-def get_log_full(repo: Path, count: int) -> list[str]:
-    raw = _git(repo, "log", f"--format=%h %s (%an, %ar)", f"-{count}")
+def get_log_full(repo: Path, count: int, since: str | None = None) -> list[str]:
+    args = ["log", f"--format=%h %s (%an, %ar)", f"-{count}"]
+    if since:
+        args += [f"--since={since}"]
+    raw = _git(repo, *args)
     return raw.splitlines() if raw else []
 
 
@@ -108,7 +116,7 @@ def get_remote_url(repo: Path) -> str:
 # Snapshot Assembly
 # =============================================================================
 
-def build_snapshot(repo: Path, mode: str) -> dict:
+def build_snapshot(repo: Path, mode: str, since: str | None = None) -> dict:
     """Collect git state into a structured dict."""
     branch = get_branch(repo)
     status_lines = get_status_short(repo)
@@ -127,9 +135,9 @@ def build_snapshot(repo: Path, mode: str) -> dict:
     if mode != "diff":
         count = COMMIT_COUNT_FULL if mode == "full" else COMMIT_COUNT_DEFAULT
         if mode == "full":
-            data["commits"] = get_log_full(repo, count)
+            data["commits"] = get_log_full(repo, count, since=since)
         else:
-            data["commits"] = get_log_oneline(repo, count)
+            data["commits"] = get_log_oneline(repo, count, since=since)
         data["velocity_24h"] = get_velocity_24h(repo)
 
     data["status"] = status_lines if status_lines else ["Clean"]
@@ -229,6 +237,11 @@ def build_parser() -> argparse.ArgumentParser:
         metavar="PATH",
         help="Write snapshot to custom path instead of mailbox",
     )
+    p.add_argument(
+        "--since",
+        metavar="ISO",
+        help="Filter commits since this ISO date/datetime (e.g. 2026-04-20 or 2026-04-20T00:00:00)",
+    )
     p.add_argument("--verbose", "-v", action="store_true", help="Debug logging")
     p.add_argument("--quiet", "-q", action="store_true", help="Suppress info output")
     return p
@@ -243,8 +256,7 @@ def main() -> int:
     repo = find_repo_root()
     log.info("Repository root: %s", repo)
 
-    data = build_snapshot(repo, args.mode)
-
+    data = build_snapshot(repo, args.mode, since=getattr(args, 'since', None))
     # JSON to stdout
     if args.json:
         print(render_json(data))
