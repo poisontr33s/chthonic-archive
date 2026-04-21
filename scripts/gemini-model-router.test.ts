@@ -6,43 +6,10 @@ import {
   resolveRoutingDecision,
   syncWorkspaceSettings,
 } from "./gemini-model-router";
-
-const registry = {
-  version: 1,
-  workspaceModel: "chthonic-fast",
-  aliases: {
-    "chthonic-fast": {
-      targetModel: "gemini-3.1-flash-lite-preview",
-      fallbackAlias: "chthonic-fast-stable",
-      fallbackModel: "gemini-3-flash-preview",
-      thinkingLevel: "LOW" as const,
-    },
-    "chthonic-fast-stable": {
-      targetModel: "gemini-3-flash-preview",
-      thinkingLevel: "LOW" as const,
-    },
-    "chthonic-thinking": {
-      targetModel: "gemini-3-flash-preview",
-      thinkingLevel: "HIGH" as const,
-      includeThoughts: true,
-    },
-  },
-  models: {
-    "gemini-3.1-flash-lite-preview": {
-      extends: "gemini-3-flash-preview",
-      fallbackModel: "gemini-3-flash-preview",
-      matchers: [
-        "was not found or is invalid",
-        "not found or is invalid",
-        "requested entity was not found",
-        "modelnotfounderror",
-        "404",
-        "403",
-        "forbidden",
-      ],
-    },
-  },
-};
+import {
+  noFallbackRegistry,
+  registry,
+} from "./__fixtures__/gemini-model-router-registry";
 
 describe("syncWorkspaceSettings", () => {
   test("aligns the workspace aliases with the local registry", () => {
@@ -125,5 +92,21 @@ describe("matchesCompatFallback", () => {
         registry.models["gemini-3.1-flash-lite-preview"].matchers,
       ),
     ).toBe(true);
+  });
+});
+
+describe("resolveRoutingDecision — edge cases", () => {
+  test("returns passthrough-no-fallback when alias has no fallback and model carries no fallbackModel", () => {
+    const decision = resolveRoutingDecision(
+      [],
+      "interactive",
+      { model: { name: "chthonic-direct" } },
+      noFallbackRegistry as Parameters<typeof resolveRoutingDecision>[3],
+      "auto",
+    );
+
+    expect(decision.appliedPolicy).toBe("passthrough-no-fallback");
+    expect(decision.fallbackRequestModel).toBeUndefined();
+    expect(decision.headlessRetryAllowed).toBe(false);
   });
 });

@@ -55,7 +55,8 @@
     "ci:staged": "bun run ci/run.ts --staged",
     "ci:full": "bun run ci/run.ts --full",
     "ci:check": "bun run ci/run.ts --check",
-    "ci:list": "bun run ci/run.ts --list"
+    "ci:list": "bun run ci/run.ts --list",
+    "test": "bun test scripts/gemini-model-router.test.ts"
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.29.0",
