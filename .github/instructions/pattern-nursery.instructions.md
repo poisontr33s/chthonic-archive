@@ -146,37 +146,41 @@ Discovery agents (`Explore`) and synthesis agents (`Pentea`) are different chann
 
 Session failures that are general enough for future sessions → user memory (`/memories/`). Session failures specific to this repo → repo memory (`/memories/repo/`). Session failures specific to a skill's invocation contract → into the skill's `applyTo: "**"` instruction file directly. Do not put everything in one bucket.
 
-**Shape:** classify → route to correct memory tier → do not duplicate across tiers.
+**Shape:** classify → route to correct **memory-tier** → do not **duplicate across tiers**.
 
-**Promotion criteria:** used correctly in ≥2 subsequent sessions without misfiling.
+**Promotion criteria:** used correctly in **≥2 subsequent-sessions** without **misfiling**.
 
 ---
 
-### Cross-Platform Port Artifact Lifecycle — `novel`
+### Cross-Platform-Port-Artifact-Lifecycle — `familiar`
 *Origin: 2026-04-22 — Ruby 4.0.3 ZJIT Win32 porting session*
+*Promoted: 2026-04-22 — all criteria met (build ✅, rv verify ✅, artifacts deprecated ✅, AGENT_COMMON.md updated ✅)*
 
 When porting a codebase (here: CRuby YJIT/ZJIT) to a new platform, the build session generates a layered artifact set with distinct signal-to-noise ratios:
 
 | Artifact | Classification | Disposition |
 |----------|---------------|-------------|
-| `patch-*.py` scripts | **Canonical signal** — reproducible, idempotent, ground-truth for the port | Keep, version, extend |
-| `build.sh` / `build-win32-native.ps1` | **Canonical signal** — orchestration layer | Keep |
+| `patch-*.py` scripts | **Canonical signal** — reproducible, idempotent, ground-truth for the port | Keep, version, extend — SSOT for source patches |
+| `build.sh` / `build-win32-native.ps1` | **Canonical signal** — orchestration layer | Keep; `build.sh` calls patch scripts directly (Redux 2026-04-22) |
 | `preflight.sh` | **Canonical signal** — dependency validation gate | Keep |
-| `build-wsl2.sh` + `ruby-zjit.ps1` | **Superseded** — WSL2 shim path replaced by native Win32 | Stale: promote to `.deprecated/` once native build validates |
-| `shim/` Rust crate | **Superseded** — runtime shim replaced by rv integration | Stale: same |
+| `build-wsl2.sh` + `ruby-zjit.ps1` | **Superseded** — WSL2 shim path retired | ✅ Moved to `.deprecated/` (2026-04-22) |
+| `shim/` Rust crate | **Superseded** — runtime shim retired | ✅ Moved to `.deprecated/shim/` (2026-04-22) |
 | `/tmp/*.o` MSYS2 build objects | **Transient** — diagnostic only | Delete after build succeeds |
 | `C:\ruby-zjit-build\` source tree | **Transient build artifact** — not repo content | Keep until rv verify passes, then document only the patch scripts |
 
 **ICE Classification Signal** (learned 2026-04-22): `internal compiler error: error reporting routines re-entered` under GCC 15.x is *not* a real compile error in the source — it is a warning cascade (hundreds of `-Wundef` hits from `windows.h` `#if` expressions on undeclared macros) that overflows GCC's error-reporting stack. Compiles cleanly with `-w`. Fix: `#pragma GCC diagnostic push/pop` around the Windows include. This pattern generalizes: any POSIX codebase ported to Win32 with `-Wundef` active will hit this.
 
+**Alchemy signal** (2026-04-22 Redux): the canonical patch script (`patch-jit-win32.py`) was itself wrong — it applied `VirtualProtect` which fails on MEM_RESERVE-only pages. The inline hotfix in `build.sh` had the correct `VirtualAlloc(MEM_COMMIT)` form. Redux promoted the correct form into the patch script and delegated from `build.sh` — making `patch-jit-win32.py` the SSOT.
+
 **Shape:** at build success → move superseded artifacts to `.deprecated/`, delete transient build objects, lock patch scripts as the canonical port record.
 
-**Promotion criteria:** build success + rv verify pass → move artifacts, update AGENT_COMMON.md, promote pattern to `technical-directives.instructions.md`.
+**Promotion criteria:** ✅ build success + rv verify pass → artifacts deprecated, AGENT_COMMON.md updated, pattern added to `technical-directives.instructions.md` §14.10.
 
 ---
 
-### GCC Warning-Flood ICE Signature — `novel`
+### GCC Warning-Flood ICE Signature — `familiar`
 *Origin: 2026-04-22 — GCC 15.2 + windows.h + -Wundef*
+*Promoted: 2026-04-22 — confirmed + fixed in Ruby 4.0.3 ZJIT Win32 port; awaiting second codebase for `tested`*
 
 **Pattern:** GCC crashes with "error reporting routines re-entered" when `-Wundef` is active and a translation unit includes `windows.h` (or any header that uses `#if MACRO` on hundreds of undeclared macros). This is not a source code bug — the `-w` flag makes it vanish. Classification: GCC 15.x diagnostic-stack overflow.
 
@@ -186,13 +190,13 @@ When porting a codebase (here: CRuby YJIT/ZJIT) to a new platform, the build ses
 
 **Shape:** identify ICE → test with `-w` → if success, it's a warning-cascade ICE → add pragma guards → verify with full flags.
 
-**Promotion criteria:** observed in ≥2 different codebases/platforms.
+**Promotion criteria:** observed in **≥2 different codebases/platforms** → `tested`. Currently: 1 (Ruby 4.0.3/jit.c, GCC 15.2, MSYS2 UCRT64).
 
 ---
 
 ## Stale Queue
 
-*Patterns that have shown no usage signal — candidates for removal next sweep.*
+*Patterns that have **shown no usage signal** — **candidates** for **removal next-sweep**.*
 
 *(empty)*
 
@@ -203,3 +207,5 @@ When porting a codebase (here: CRuby YJIT/ZJIT) to a new platform, the build ses
 | Pattern | Promoted to | Date |
 |---------|-------------|------|
 | Dispatch Channel Typing | `co-supplementary-methodology` §Subagent Channel Types | 2026-04-20 |
+| Cross-Platform-Port-Artifact-Lifecycle | `technical-directives.instructions.md` §14.10 | 2026-04-22 |
+| GCC Warning-Flood ICE Signature | `technical-directives.instructions.md` §14.10 | 2026-04-22 |

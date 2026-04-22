@@ -1,0 +1,302 @@
+{
+  "schema_version": 2,
+  "seed_text": "ruby-zjit-win32-epoch-close-2026-04-22",
+  "seed_value": 3967558786338717695,
+  "chain_length_requested": 4,
+  "chain_length_actual": 4,
+  "pool_size": 11592,
+  "action_group_count": 921,
+  "weights_source": "codex/mailbox/SKILL_TENSOR_WEIGHTS_LATEST.json",
+  "selected": [
+    {
+      "step": 1,
+      "cell": {
+        "executor_flavor": "claude",
+        "operator_flavor": "claude",
+        "operator_skill": "python-header-canon",
+        "operator_root": ".claude/skills",
+        "source_root": ".claude/skills",
+        "target_root": ".codex/skills",
+        "target_flavor": "codex",
+        "target_skill": "scm-triage",
+        "target_skill_lane": "codex",
+        "target_flavor_mode": "claude",
+        "action_scope": "skill",
+        "action_key": [
+          "python-header-canon",
+          "skill",
+          "",
+          "claude",
+          ".codex/skills",
+          "scm-triage"
+        ],
+        "adapter_kind": "python_header_report",
+        "legality_status": "legal",
+        "legality_reasons": [
+          "registered_adapter:python_header_report"
+        ]
+      },
+      "action_key": [
+        "python-header-canon",
+        "skill",
+        "",
+        "claude",
+        ".codex/skills",
+        "scm-triage"
+      ],
+      "action_scope": "skill",
+      "equivalent_cell_count": 9,
+      "available_variant_count": 9,
+      "equivalent_target_sample": [
+        ".codex/skills::scm-triage"
+      ],
+      "weight": 2.348958,
+      "reasons": [
+        "read_only_operator:+0.1x",
+        "cross_lane:+0.5x",
+        "cross_flavor_interp:+0.25x",
+        "adaptive_weight:1.25x",
+        "operator_weight:1.0x",
+        "initial_step",
+        "action_group_size:9"
+      ],
+      "transition": {
+        "allowed": true,
+        "previous_target_lane": null,
+        "previous_operator": null,
+        "transition_weight_multiplier": 1.0,
+        "transition_weight_reasons": [
+          "initial_step"
+        ],
+        "filtered_out_rules": []
+      }
+    },
+    {
+      "step": 2,
+      "cell": {
+        "executor_flavor": "codex",
+        "operator_flavor": "claude",
+        "operator_skill": "skill-polisher",
+        "operator_root": ".claude/skills",
+        "source_root": ".claude/skills",
+        "target_root": ".gemini/extensions/chthonic-archive-sync/skills",
+        "target_flavor": "gemini",
+        "target_skill": "sora",
+        "target_skill_lane": "gemini",
+        "target_flavor_mode": "claude",
+        "action_scope": "skill",
+        "action_key": [
+          "skill-polisher",
+          "skill",
+          "verify",
+          "claude",
+          ".gemini/extensions/chthonic-archive-sync/skills",
+          "sora"
+        ],
+        "adapter_kind": "skill_polisher_verify",
+        "legality_status": "degraded",
+        "legality_reasons": [
+          "interpretation_flavor_mismatch",
+          "registered_adapter:skill_polisher_verify"
+        ]
+      },
+      "action_key": [
+        "skill-polisher",
+        "skill",
+        "verify",
+        "claude",
+        ".gemini/extensions/chthonic-archive-sync/skills",
+        "sora"
+      ],
+      "action_scope": "skill",
+      "equivalent_cell_count": 9,
+      "available_variant_count": 9,
+      "equivalent_target_sample": [
+        ".gemini/extensions/chthonic-archive-sync/skills::sora"
+      ],
+      "weight": 3.864583,
+      "reasons": [
+        "mutating_operator:+0.4x",
+        "cross_lane:+0.5x",
+        "cross_flavor_interp:+0.25x",
+        "adaptive_weight:1.25x",
+        "operator_weight:1.0x",
+        "handoff_continuity:+0.8x",
+        "action_group_size:9"
+      ],
+      "transition": {
+        "allowed": true,
+        "previous_target_lane": "codex",
+        "previous_operator": "python-header-canon",
+        "transition_weight_multiplier": 1.8,
+        "transition_weight_reasons": [
+          "handoff_continuity:+0.8x"
+        ],
+        "filtered_out_rules": [
+          "duplicate_cell_blocked:9",
+          "repeated_target_skill_blocked:90",
+          "same_operator_consecutive_blocked:2457"
+        ]
+      }
+    },
+    {
+      "step": 3,
+      "cell": {
+        "executor_flavor": "gemini",
+        "operator_flavor": "claude",
+        "operator_skill": "mailbox-handoff",
+        "operator_root": ".claude/skills",
+        "source_root": ".claude/skills",
+        "target_root": ".claude/skills",
+        "target_flavor": "claude",
+        "target_skill": "skill-polisher",
+        "target_skill_lane": "claude",
+        "target_flavor_mode": "codex",
+        "action_scope": "skill",
+        "action_key": [
+          "mailbox-handoff",
+          "skill",
+          "",
+          "codex",
+          ".claude/skills",
+          "skill-polisher"
+        ],
+        "adapter_kind": "mailbox_link_canon",
+        "legality_status": "legal",
+        "legality_reasons": [
+          "registered_adapter:mailbox_link_canon",
+          "same_root"
+        ]
+      },
+      "action_key": [
+        "mailbox-handoff",
+        "skill",
+        "",
+        "codex",
+        ".claude/skills",
+        "skill-polisher"
+      ],
+      "action_scope": "skill",
+      "equivalent_cell_count": 9,
+      "available_variant_count": 9,
+      "equivalent_target_sample": [
+        ".claude/skills::skill-polisher"
+      ],
+      "weight": 3.036458,
+      "reasons": [
+        "read_only_operator:+0.1x",
+        "cross_lane:+0.5x",
+        "cross_flavor_interp:+0.25x",
+        "adaptive_weight:1.25x",
+        "operator_weight:1.0x",
+        "handoff_continuity:+0.8x",
+        "action_group_size:9"
+      ],
+      "transition": {
+        "allowed": true,
+        "previous_target_lane": "gemini",
+        "previous_operator": "skill-polisher",
+        "transition_weight_multiplier": 1.8,
+        "transition_weight_reasons": [
+          "handoff_continuity:+0.8x"
+        ],
+        "filtered_out_rules": [
+          "duplicate_cell_blocked:18",
+          "repeated_target_skill_blocked:180",
+          "same_operator_consecutive_blocked:2430"
+        ]
+      }
+    },
+    {
+      "step": 4,
+      "cell": {
+        "executor_flavor": "claude",
+        "operator_flavor": "claude",
+        "operator_skill": "skill-polisher",
+        "operator_root": ".claude/skills",
+        "source_root": ".claude/skills",
+        "target_root": ".claude/skills",
+        "target_flavor": "claude",
+        "target_skill": "decision-razor",
+        "target_skill_lane": "claude",
+        "target_flavor_mode": "gemini",
+        "action_scope": "skill",
+        "action_key": [
+          "skill-polisher",
+          "skill",
+          "verify",
+          "gemini",
+          ".claude/skills",
+          "decision-razor"
+        ],
+        "adapter_kind": "skill_polisher_verify",
+        "legality_status": "degraded",
+        "legality_reasons": [
+          "interpretation_flavor_mismatch",
+          "registered_adapter:skill_polisher_verify",
+          "same_root",
+          "target_redirect_or_stub"
+        ]
+      },
+      "action_key": [
+        "skill-polisher",
+        "skill",
+        "verify",
+        "gemini",
+        ".claude/skills",
+        "decision-razor"
+      ],
+      "action_scope": "skill",
+      "equivalent_cell_count": 9,
+      "available_variant_count": 9,
+      "equivalent_target_sample": [
+        ".claude/skills::decision-razor"
+      ],
+      "weight": 2.905,
+      "reasons": [
+        "mutating_operator:+0.4x",
+        "self_lane:+0.1x",
+        "cross_flavor_interp:+0.25x",
+        "adaptive_weight:1.0x",
+        "operator_weight:1.0x",
+        "handoff_continuity:+0.8x",
+        "action_group_size:9"
+      ],
+      "transition": {
+        "allowed": true,
+        "previous_target_lane": "claude",
+        "previous_operator": "mailbox-handoff",
+        "transition_weight_multiplier": 1.8,
+        "transition_weight_reasons": [
+          "handoff_continuity:+0.8x"
+        ],
+        "filtered_out_rules": [
+          "duplicate_cell_blocked:27",
+          "repeated_target_skill_blocked:270",
+          "same_operator_consecutive_blocked:2403"
+        ]
+      }
+    }
+  ],
+  "summary": {
+    "diversity_score": 0.9091,
+    "cross_lane_coverage": 0.75,
+    "operator_spread": 0.75,
+    "target_spread": 1.0,
+    "executor_flavors_seen": [
+      "claude",
+      "codex",
+      "gemini"
+    ],
+    "operator_skills_seen": [
+      "mailbox-handoff",
+      "python-header-canon",
+      "skill-polisher"
+    ],
+    "distinct_targets_seen": 4,
+    "distinct_action_keys_seen": 4,
+    "action_scopes_seen": [
+      "skill"
+    ]
+  }
+}

@@ -378,6 +378,101 @@ Current verified runtime floors for non-primary toolchains:
 
 ---
 
+#### **14.10. Win32 Native Toolchain Port Patterns (`W32-NTP`)**
+
+*Graduated from pattern-nursery.instructions.md — 2026-04-22. Ruby 4.0.3 ZJIT+YJIT native Windows port.*
+
+**Context:** These patterns govern POSIX-codebase → Win32 ports under MSYS2 UCRT64 + GCC 15.x + GNU rustc. Proven against CRuby 4.0.3 YJIT/ZJIT (`x64-mingw-ucrt`, build: `build/ruby-zjit/build.sh`).
+
+---
+
+**W32-NTP-1: GCC 15.x Warning-Flood ICE**
+
+GCC ≥15.x crashes with `internal compiler error: error reporting routines re-entered` when `-Wundef` (or `-Wall -Wextra`) is active and the TU includes `windows.h`. Root cause: `windows.h` `#if` expressions on hundreds of undeclared macros overflow GCC's diagnostic stack at `-O3`.
+
+| Signal | Meaning |
+|--------|---------|
+| ICE message: `error reporting routines re-entered` | Diagnostic stack overflow — NOT a source bug |
+| `compile -O0 -w` succeeds | Confirms warning-cascade ICE (not a logic error) |
+| `compile -O3 -Wall -Wundef` → ICE | Confirms this pattern |
+
+**Fix (primary):** Blank `warnflags` in the generated Makefile post-configure:
+```bash
+sed -i 's/^warnflags =.*/warnflags =/' Makefile
+```
+**Fix (belt-and-suspenders):** `#pragma GCC diagnostic push/pop` guarding `#include <windows.h>`:
+```c
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wundef"
+#include <windows.h>
+#pragma GCC diagnostic pop
+```
+**Generalizes to:** any POSIX codebase ported to Win32 with `-Wundef` active.
+
+---
+
+**W32-NTP-2: VirtualAlloc vs VirtualProtect — Memory Commitment Model**
+
+Win32 memory has two commitment states: `MEM_RESERVE` (address space claimed, no physical backing) and `MEM_COMMIT` (physical pages allocated). `VirtualProtect` requires committed pages — it only changes access flags. Calling `VirtualProtect` on `MEM_RESERVE`-only memory fails silently or returns error.
+
+**ZJIT application:** ZJIT reserves code regions at startup (`MEM_RESERVE`, `PAGE_NOACCESS`). When `gen_entry_trampoline` attempts to write the first trampoline, it calls `rb_jit_mark_writable`. The original POSIX `mprotect` wrapper called `VirtualProtect` — which fails on the uncommitted reservation, causing `OutOfMemory` panic.
+
+**Canonical fix for write-permission on reserved regions:**
+```c
+// VirtualAlloc(MEM_COMMIT, PAGE_READWRITE) atomically commits + grants write permission.
+// Idempotent on already-committed pages. Use this, not VirtualProtect.
+return VirtualAlloc(mem_block, mem_size, MEM_COMMIT, PAGE_READWRITE) != NULL;
+```
+
+**Rule:** In any Win32 port where POSIX code calls `mprotect(PROT_READ|PROT_WRITE)`, check whether the target pages are `MEM_RESERVE`-only. If yes, use `VirtualAlloc(MEM_COMMIT)` not `VirtualProtect`.
+
+---
+
+**W32-NTP-3: NT API Link Requirements for Rust std**
+
+Rust `std` on `x86_64-pc-windows-gnu` uses NT APIs not linked by default in a C project's MAINLIBS. Missing symbols: `NtReadFile`, `NtOpenFile`, `NtWriteFile`, `NtCreateFile`, `NtCreateNamedPipeFile`, `RtlNtStatusToDosError` (`-lntdll`), and `GetUserProfileDirectoryW` (`-luserenv`).
+
+**Required additions to MAINLIBS and RUSTLIBS:**
+```makefile
+MAINLIBS += -lntdll -luserenv -Wl,--allow-multiple-definition
+RUSTLIBS  = -Wl,--whole-archive,libruby.a,--no-whole-archive -lntdll -luserenv -Wl,--allow-multiple-definition
+```
+`--allow-multiple-definition` resolves `lgamma_r` conflict between Ruby's `missing/lgamma_r.c` and Rust `compiler_builtins`.
+
+---
+
+**W32-NTP-4: Rust Staticlib TLS Partial-Link Failure**
+
+`ld -r --whole-archive` on a Rust staticlib fails on Win32 because Rust's TLS initializers (`_tls_used`) cannot be resolved in a COFF partial link. Fix: emit an empty sentinel `.o` instead of partial-linking. Rust symbols still reach the DLL via `--whole-archive` in the final `gcc -shared` link.
+
+```makefile
+# In defs/jit.mk, mingw branch:
+else ifneq ($(findstring mingw,$(target_os)),)
+    $(Q) echo '' | $(CC) -x c - -c -o $@
+```
+
+---
+
+**W32-NTP-5: Build Orchestration Canonical Form**
+
+| Role | File | Status |
+|------|------|--------|
+| All-in-one MSYS2 build | `build/ruby-zjit/build.sh` | Canonical — handles download/extract/configure/patch/make/install |
+| Win32 JIT source patches | `build/ruby-zjit/patch-jit-win32.py` | SSOT for jit.c (5 patches: pragma block, windows.h guards, page_size, reserve, mark_writable) |
+| Win32 Rust type patches | `build/ruby-zjit/patch-rust-win32.py` | SSOT for yjit/*.rs + zjit/*.rs (32 patches) |
+| PowerShell launcher | `build/ruby-zjit/build-win32-native.ps1` | Thin wrapper — delegates to build.sh |
+| Deprecated | `build/ruby-zjit/.deprecated/` | WSL2 build, PS1 shim, shim/ Rust crate |
+
+**Invoke:** `bash.exe -l build/ruby-zjit/build.sh` (from MSYS2 bash) or `.\build-win32-native.ps1` (from pwsh).
+
+---
+
+* **(`W32-NTP SEALED`): → (`WIN32-NATIVE-TOOLCHAIN-PATTERNS-SLD`): 🔥**
+
+**Date Added**: April 22, 2026 | Ruby 4.0.3 ZJIT+YJIT native Windows port session.
+
+---
+
 * **(`DEVELOPMENT CONVENTIONS SEALED`): → (`DEV-CONV-SLD`): 🔥**
 
 **Date Added**: March 18, 2026 | **Last Amended**: April 2026 (Cycle 2: §14.9 LRVF — Zig 0.16.0 + R 4.5.3 floors)

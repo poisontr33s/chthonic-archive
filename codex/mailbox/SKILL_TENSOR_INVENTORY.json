@@ -1,0 +1,2364 @@
+{
+  "schema_version": 1,
+  "generated_from": "C:/Users/eldno/chthonic-archive",
+  "skills": [
+    {
+      "lane": "codex",
+      "root": ".codex/skills",
+      "skill": ".system",
+      "path": ".codex/skills/.system",
+      "has_skill_md": false,
+      "has_yaml_frontmatter": false,
+      "has_scripts_dir": false,
+      "has_assets_dir": false,
+      "last_modified": 1770132430.3506656,
+      "description": null,
+      "classification": "missing",
+      "role_profile": {
+        "adapter_kind": null,
+        "can_target": false,
+        "can_operator": false,
+        "operator_role": "blocked",
+        "operator_reasons": [
+          "missing_skill_surface"
+        ],
+        "target_role": "blocked",
+        "target_reasons": [
+          "missing_skill_surface"
+        ]
+      }
+    },
+    {
+      "lane": "codex",
+      "root": ".codex/skills",
+      "skill": "api-manager",
+      "path": ".codex/skills/api-manager",
+      "has_skill_md": true,
+      "has_yaml_frontmatter": true,
+      "has_scripts_dir": true,
+      "has_assets_dir": true,
+      "last_modified": 1770656515.4544551,
+      "description": "Local API/token manager for this repo (no secrets in git). Diagnoses auth drift and loads tokens into the current shell from the user API pool.",
+      "classification": "candidate",
+      "role_profile": {
+        "adapter_kind": null,
+        "can_target": true,
+        "can_operator": true,
+        "operator_role": "analysis_only",
+        "operator_reasons": [
+          "scripts_present_no_registered_adapter"
+        ],
+        "target_role": "legal",
+        "target_reasons": []
+      }
+    },
+    {
+      "lane": "codex",
+      "root": ".codex/skills",
+      "skill": "artifact-upcycle",
+      "path": ".codex/skills/artifact-upcycle",
+      "has_skill_md": true,
+      "has_yaml_frontmatter": true,
+      "has_scripts_dir": true,
+      "has_assets_dir": true,
+      "last_modified": 1774384735.5558684,
+      "description": "STASHED - Salvage concept absorbed into dumpster-upcycler. Use dumpster-upcycler for converting raw artifacts into structured outputs.",
+      "classification": "redirect_or_stub",
+      "role_profile": {
+        "adapter_kind": null,
+        "can_target": true,
+        "can_operator": true,
+        "operator_role": "legacy_only",
+        "operator_reasons": [
+          "operator_redirect_or_stub"
+        ],
+        "target_role": "degraded",
+        "target_reasons": [
+          "target_redirect_or_stub"
+        ]
+      }
+    },
+    {
+      "lane": "codex",
+      "root": ".codex/skills",
+      "skill": "claude-skill-bridge",
+      "path": ".codex/skills/claude-skill-bridge",
+      "has_skill_md": true,
+      "has_yaml_frontmatter": true,
+      "has_scripts_dir": false,
+      "has_assets_dir": false,
+      "last_modified": 1774294292.662706,
+      "description": "REDIRECT \u2014 Merged into skill-polisher. Use skill-polisher for Claude skill audits and cross-flavor checks.",
+      "classification": "redirect_or_stub",
+      "role_profile": {
+        "adapter_kind": null,
+        "can_target": true,
+        "can_operator": true,
+        "operator_role": "legacy_only",
+        "operator_reasons": [
+          "operator_redirect_or_stub"
+        ],
+        "target_role": "degraded",
+        "target_reasons": [
+          "target_redirect_or_stub"
+        ]
+      }
+    },
+    {
+      "lane": "codex",
+      "root": ".codex/skills",
+      "skill": "codekiller-remediation-gate",
+      "path": ".codex/skills/codekiller-remediation-gate",
+      "has_skill_md": true,
+      "has_yaml_frontmatter": true,
+      "has_scripts_dir": true,
+      "has_assets_dir": true,
+      "last_modified": 1771904614.0384455,
+      "description": "Forensic prerequisite gate for Codekiller (CDE-KLLR) recovery. Audits governance arithmetic, evidence integrity, frontmatter reference drift, tribunal chain presence, and telemetry anomalies before conceptual review.",
+      "classification": "candidate",
+      "role_profile": {
+        "adapter_kind": null,
+        "can_target": true,
+        "can_operator": true,
+        "operator_role": "analysis_only",
+        "operator_reasons": [
+          "scripts_present_no_registered_adapter"
+        ],
+        "target_role": "legal",
+        "target_reasons": []
+      }
+    },
+    {
+      "lane": "codex",
+      "root": ".codex/skills",
+      "skill": "codex-skill-bridge",
+      "path": ".codex/skills/codex-skill-bridge",
+      "has_skill_md": true,
+      "has_yaml_frontmatter": true,
+      "has_scripts_dir": false,
+      "has_assets_dir": false,
+      "last_modified": 1774294292.6680224,
+      "description": "REDIRECT \u2014 Merged into skill-polisher. Use skill-polisher for Codex skill audits.",
+      "classification": "redirect_or_stub",
+      "role_profile": {
+        "adapter_kind": null,
+        "can_target": true,
+        "can_operator": true,
+        "operator_role": "legacy_only",
+        "operator_reasons": [
+          "operator_redirect_or_stub"
+        ],
+        "target_role": "degraded",
+        "target_reasons": [
+          "target_redirect_or_stub"
+        ]
+      }
+    },
+    {
+      "lane": "codex",
+      "root": ".codex/skills",
+      "skill": "conceptualize",
+      "path": ".codex/skills/conceptualize",
+      "has_skill_md": true,
+      "has_yaml_frontmatter": true,
+      "has_scripts_dir": false,
+      "has_assets_dir": true,
+      "last_modified": 1770673232.8333688,
+      "description": "Perform high-rigor structural and aesthetic audits with findings-first output, actionable remediation, and governance-aware preconditions.",
+      "classification": "candidate",
+      "role_profile": {
+        "adapter_kind": null,
+        "can_target": true,
+        "can_operator": true,
+        "operator_role": "analysis_only",
+        "operator_reasons": [
+          "document_only_operator"
+        ],
+        "target_role": "legal",
+        "target_reasons": []
+      }
+    },
+    {
+      "lane": "codex",
+      "root": ".codex/skills",
+      "skill": "corpse-reviver",
+      "path": ".codex/skills/corpse-reviver",
+      "has_skill_md": true,
+      "has_yaml_frontmatter": true,
+      "has_scripts_dir": true,
+      "has_assets_dir": true,
+      "last_modified": 1774384735.5586238,
+      "description": "The White-dressed Bride \u2014 kleptomaniac necromancy pipeline with full embalm-before-edit preservation.",
+      "classification": "candidate",
+      "role_profile": {
+        "adapter_kind": null,
+        "can_target": true,
+        "can_operator": true,
+        "operator_role": "analysis_only",
+        "operator_reasons": [
+          "scripts_present_no_registered_adapter"
+        ],
+        "target_role": "legal",
+        "target_reasons": []
+      }
+    },
+    {
+      "lane": "codex",
+      "root": ".codex/skills",
+      "skill": "decision-razor",
+      "path": ".codex/skills/decision-razor",
+      "has_skill_md": true,
+      "has_yaml_frontmatter": true,
+      "has_scripts_dir": false,
+      "has_assets_dir": true,
+      "last_modified": 1774296532.0249772,
+      "description": "PROTOCOL \u2014 Anti-paralysis behavior. Not a separate execution lane. When stuck in permission loops or ambiguity, apply the razor: infer, execute, never ask. Embedded into all agent behavior by default.",
+      "classification": "redirect_or_stub",
+      "role_profile": {
+        "adapter_kind": null,
+        "can_target": true,
+        "can_operator": true,
+        "operator_role": "legacy_only",
+        "operator_reasons": [
+          "operator_redirect_or_stub"
+        ],
+        "target_role": "degraded",
+        "target_reasons": [
+          "target_redirect_or_stub"
+        ]
+      }
+    },
+    {
+      "lane": "codex",
+      "root": ".codex/skills",
+      "skill": "dumpster-upcycler",
+      "path": ".codex/skills/dumpster-upcycler",
+      "has_skill_md": true,
+      "has_yaml_frontmatter": true,
+      "has_scripts_dir": true,
+      "has_assets_dir": true,
+      "last_modified": 1774384735.5601254,
+      "description": "Convert raw session dumps into compact structured logs, readable markdown, and warm-start resume packets (no deletion, optional archiving). Absorbs session-resumer.",
+      "classification": "candidate",
+      "role_profile": {
+        "adapter_kind": null,
+        "can_target": true,
+        "can_operator": true,
+        "operator_role": "analysis_only",
+        "operator_reasons": [
+          "scripts_present_no_registered_adapter"
+        ],
+        "target_role": "legal",
+        "target_reasons": []
+      }
+    },
+    {
+      "lane": "codex",
+      "root": ".codex/skills",
+      "skill": "gh-address-comments",
+      "path": ".codex/skills/gh-address-comments",
+      "has_skill_md": true,
+      "has_yaml_frontmatter": true,
+      "has_scripts_dir": true,
+      "has_assets_dir": true,
+      "last_modified": 1774384735.5601254,
+      "description": "REDIRECT - PR comment handling is now in gh-fix-ci. Use gh-fix-ci for both CI failures and review comment triage.",
+      "classification": "redirect_or_stub",
+      "role_profile": {
+        "adapter_kind": null,
+        "can_target": true,
+        "can_operator": true,
+        "operator_role": "legacy_only",
+        "operator_reasons": [
+          "operator_redirect_or_stub"
+        ],
+        "target_role": "degraded",
+        "target_reasons": [
+          "target_redirect_or_stub"
+        ]
+      }
+    },
+    {
+      "lane": "codex",
+      "root": ".codex/skills",
+      "skill": "gh-fix-ci",
+      "path": ".codex/skills/gh-fix-ci",
+      "has_skill_md": true,
+      "has_yaml_frontmatter": true,
+      "has_scripts_dir": true,
+      "has_assets_dir": true,
+      "last_modified": 1774384735.5621276,
+      "description": "Debug and fix failing GitHub PR checks via GitHub Actions. Inspect checks and logs with `gh`, summarize failure context, draft a fix plan, implement after explicit approval. External providers (e.g. Buildkite) are out of scope\u2014report the details URL only.",
+      "classification": "candidate",
+      "role_profile": {
+        "adapter_kind": null,
+        "can_target": true,
+        "can_operator": true,
+        "operator_role": "analysis_only",
+        "operator_reasons": [
+          "scripts_present_no_registered_adapter"
+        ],
+        "target_role": "legal",
+        "target_reasons": []
+      }
+    },
+    {
+      "lane": "codex",
+      "root": ".codex/skills",
+      "skill": "gh-mcp-autonomy",
+      "path": ".codex/skills/gh-mcp-autonomy",
+      "has_skill_md": true,
+      "has_yaml_frontmatter": true,
+      "has_scripts_dir": false,
+      "has_assets_dir": true,
+      "last_modified": 1770299005.1658401,
+      "description": "Autonomous GitHub MCP usage for repo/issue/PR data and synthesis. Use when the user asks for repo facts, recent commits, issues/PRs, contributors, or creative priming. Execute without menus and write results to the specified file.",
+      "classification": "candidate",
+      "role_profile": {
+        "adapter_kind": null,
+        "can_target": true,
+        "can_operator": true,
+        "operator_role": "analysis_only",
+        "operator_reasons": [
+          "document_only_operator"
+        ],
+        "target_role": "legal",
+        "target_reasons": []
+      }
+    },
+    {
+      "lane": "codex",
+      "root": ".codex/skills",
+      "skill": "git-snapshot",
+      "path": ".codex/skills/git-snapshot",
+      "has_skill_md": true,
+      "has_yaml_frontmatter": true,
+      "has_scripts_dir": false,
+      "has_assets_dir": false,
+      "last_modified": 1776057422.349639,
+      "description": "Snapshot the latest git state (recent commits, branch, diff stats, changed files) into claude/mailbox/ as a structured handoff. Zero context burn \u2014 run at session start or before handoff.",
+      "classification": "candidate",
+      "role_profile": {
+        "adapter_kind": null,
+        "can_target": true,
+        "can_operator": true,
+        "operator_role": "analysis_only",
+        "operator_reasons": [
+          "document_only_operator"
+        ],
+        "target_role": "legal",
+        "target_reasons": []
+      }
+    },
+    {
+      "lane": "codex",
+      "root": ".codex/skills",
+      "skill": "handoff-loop",
+      "path": ".codex/skills/handoff-loop",
+      "has_skill_md": true,
+      "has_yaml_frontmatter": true,
+      "has_scripts_dir": false,
+      "has_assets_dir": false,
+      "last_modified": 1776057422.349639,
+      "description": "Unified handoff-loop orchestrator \u2014 validates, gates, routes, and tracks agent handoffs with receipt confirmation and obligation monitoring. Use when checking handoff status, validating before sending, routing with quality gates, or sweeping for stale/overdue items.",
+      "classification": "candidate",
+      "role_profile": {
+        "adapter_kind": null,
+        "can_target": true,
+        "can_operator": true,
+        "operator_role": "analysis_only",
+        "operator_reasons": [
+          "document_only_operator"
+        ],
+        "target_role": "legal",
+        "target_reasons": []
+      }
+    },
+    {
+      "lane": "codex",
+      "root": ".codex/skills",
+      "skill": "imagegen",
+      "path": ".codex/skills/imagegen",
+      "has_skill_md": true,
+      "has_yaml_frontmatter": true,
+      "has_scripts_dir": true,
+      "has_assets_dir": true,
+      "last_modified": 1770132430.4073288,
+      "description": "Use when the user asks to generate or edit images via the OpenAI Image API (for example: generate image, edit/inpaint/mask, background removal or replacement, transparent background, product shots, concept art, covers, or batch variants); run the bundled CLI (`scripts/image_gen.py`) and require `OPENAI_API_KEY` for live calls.",
+      "classification": "candidate",
+      "role_profile": {
+        "adapter_kind": null,
+        "can_target": true,
+        "can_operator": true,
+        "operator_role": "analysis_only",
+        "operator_reasons": [
+          "scripts_present_no_registered_adapter"
+        ],
+        "target_role": "legal",
+        "target_reasons": []
+      }
+    },
+    {
+      "lane": "codex",
+      "root": ".codex/skills",
+      "skill": "ingest-research",
+      "path": ".codex/skills/ingest-research",
+      "has_skill_md": true,
+      "has_yaml_frontmatter": true,
+      "has_scripts_dir": false,
+      "has_assets_dir": true,
+      "last_modified": 1771291806.1361454,
+      "description": "Ingest Gemini/Deep Research artifacts into structured digests and optional cross-mailbox handoff notes.",
+      "classification": "candidate",
+      "role_profile": {
+        "adapter_kind": null,
+        "can_target": true,
+        "can_operator": true,
+        "operator_role": "analysis_only",
+        "operator_reasons": [
+          "document_only_operator"
+        ],
+        "target_role": "legal",
+        "target_reasons": []
+      }
+    },
+    {
+      "lane": "codex",
+      "root": ".codex/skills",
+      "skill": "iron-maiden-runtime",
+      "path": ".codex/skills/iron-maiden-runtime",
+      "has_skill_md": true,
+      "has_yaml_frontmatter": true,
+      "has_scripts_dir": true,
+      "has_assets_dir": true,
+      "last_modified": 1770505158.0937252,
+      "description": "Deterministic runtime harness for The Iron Maiden voicepack (state model, contract schema, scene renderer).",
+      "classification": "candidate",
+      "role_profile": {
+        "adapter_kind": null,
+        "can_target": true,
+        "can_operator": true,
+        "operator_role": "analysis_only",
+        "operator_reasons": [
+          "scripts_present_no_registered_adapter"
+        ],
+        "target_role": "legal",
+        "target_reasons": []
+      }
+    },
+    {
+      "lane": "codex",
+      "root": ".codex/skills",
+      "skill": "link-path-guard",
+      "path": ".codex/skills/link-path-guard",
+      "has_skill_md": true,
+      "has_yaml_frontmatter": true,
+      "has_scripts_dir": false,
+      "has_assets_dir": true,
+      "last_modified": 1773954903.7540226,
+      "description": "Validate skill and settings path references across .codex/.claude/.gemini, then fix stale or broken repo-local file and directory links in-place.",
+      "classification": "candidate",
+      "role_profile": {
+        "adapter_kind": "skill_path_guard",
+        "can_target": true,
+        "can_operator": true,
+        "operator_role": "executable",
+        "operator_reasons": [
+          "registered_adapter:skill_path_guard"
+        ],
+        "target_role": "legal",
+        "target_reasons": []
+      }
+    },
+    {
+      "lane": "codex",
+      "root": ".codex/skills",
+      "skill": "mailbox-handoff",
+      "path": ".codex/skills/mailbox-handoff",
+      "has_skill_md": true,
+      "has_yaml_frontmatter": true,
+      "has_scripts_dir": true,
+      "has_assets_dir": true,
+      "last_modified": 1770673368.8157556,
+      "description": "Manage Codex/Claude/Gemini mailboxes for handoffs, responses, verification, and routing. Use when checking inboxes, verifying handoff coverage across codex/.codex/claude/.claude/claude-codex-gemini, routing tasks, or running mailbox ops (postman/scribe/polisher).",
+      "classification": "candidate",
+      "role_profile": {
+        "adapter_kind": "mailbox_link_canon",
+        "can_target": true,
+        "can_operator": true,
+        "operator_role": "executable",
+        "operator_reasons": [
+          "registered_adapter:mailbox_link_canon"
+        ],
+        "target_role": "legal",
+        "target_reasons": []
+      }
+    },
+    {
+      "lane": "codex",
+      "root": ".codex/skills",
+      "skill": "meta-polisher-validator",
+      "path": ".codex/skills/meta-polisher-validator",
+      "has_skill_md": true,
+      "has_yaml_frontmatter": true,
+      "has_scripts_dir": false,
+      "has_assets_dir": true,
+      "last_modified": 1774296532.0353558,
+      "description": "REDIRECT \u2014 Merged into skill-polisher. Use skill-polisher --mode verify for meta-skill validation.",
+      "classification": "redirect_or_stub",
+      "role_profile": {
+        "adapter_kind": null,
+        "can_target": true,
+        "can_operator": true,
+        "operator_role": "legacy_only",
+        "operator_reasons": [
+          "operator_redirect_or_stub"
+        ],
+        "target_role": "degraded",
+        "target_reasons": [
+          "target_redirect_or_stub"
+        ]
+      }
+    },
+    {
+      "lane": "codex",
+      "root": ".codex/skills",
+      "skill": "openai-docs",
+      "path": ".codex/skills/openai-docs",
+      "has_skill_md": true,
+      "has_yaml_frontmatter": true,
+      "has_scripts_dir": false,
+      "has_assets_dir": true,
+      "last_modified": 1770132430.4153636,
+      "description": "Use when the user asks how to build with OpenAI products or APIs and needs up-to-date official documentation with citations (for example: Codex, Responses API, Chat Completions, Apps SDK, Agents SDK, Realtime, model capabilities or limits); prioritize OpenAI docs MCP tools and restrict any fallback browsing to official OpenAI domains.",
+      "classification": "candidate",
+      "role_profile": {
+        "adapter_kind": null,
+        "can_target": true,
+        "can_operator": true,
+        "operator_role": "analysis_only",
+        "operator_reasons": [
+          "document_only_operator"
+        ],
+        "target_role": "legal",
+        "target_reasons": []
+      }
+    },
+    {
+      "lane": "codex",
+      "root": ".codex/skills",
+      "skill": "overnight-archaeology",
+      "path": ".codex/skills/overnight-archaeology",
+      "has_skill_md": true,
+      "has_yaml_frontmatter": true,
+      "has_scripts_dir": false,
+      "has_assets_dir": false,
+      "last_modified": 1776057422.349639,
+      "description": "Read the latest nightly daemon reports (debt scores + archaeology ore) from dumpster-dive/ and claude/mailbox/. Show status, findings, and launch commands. Does NOT run the daemons \u2014 zero API overhead. Use when asked about overnight findings, nightly status, debt scores, or archaeology digest.",
+      "classification": "candidate",
+      "role_profile": {
+        "adapter_kind": null,
+        "can_target": true,
+        "can_operator": true,
+        "operator_role": "analysis_only",
+        "operator_reasons": [
+          "document_only_operator"
+        ],
+        "target_role": "legal",
+        "target_reasons": []
+      }
+    },
+    {
+      "lane": "codex",
+      "root": ".codex/skills",
+      "skill": "pentea-dispatch",
+      "path": ".codex/skills/pentea-dispatch",
+      "has_skill_md": true,
+      "has_yaml_frontmatter": true,
+      "has_scripts_dir": false,
+      "has_assets_dir": true,
+      "last_modified": 1776631655.244329,
+      "description": "Dispatch protocol for Pentea (injection-driven synthesis agent). Encodes Pentea's injection contract, concurrency track rules, and anti-patterns for Codex-side enforcement.",
+      "classification": "redirect_or_stub",
+      "role_profile": {
+        "adapter_kind": null,
+        "can_target": true,
+        "can_operator": true,
+        "operator_role": "legacy_only",
+        "operator_reasons": [
+          "operator_redirect_or_stub"
+        ],
+        "target_role": "degraded",
+        "target_reasons": [
+          "target_redirect_or_stub"
+        ]
+      }
+    },
+    {
+      "lane": "codex",
+      "root": ".codex/skills",
+      "skill": "postman",
+      "path": ".codex/skills/postman",
+      "has_skill_md": true,
+      "has_yaml_frontmatter": true,
+      "has_scripts_dir": false,
+      "has_assets_dir": true,
+      "last_modified": 1774384735.5631275,
+      "description": "REDIRECT - All postman commands are now in mailbox-handoff. Use mailbox-handoff for the full mailbox workflow.",
+      "classification": "redirect_or_stub",
+      "role_profile": {
+        "adapter_kind": null,
+        "can_target": true,
+        "can_operator": true,
+        "operator_role": "legacy_only",
+        "operator_reasons": [
+          "operator_redirect_or_stub"
+        ],
+        "target_role": "degraded",
+        "target_reasons": [
+          "target_redirect_or_stub"
+        ]
+      }
+    },
+    {
+      "lane": "codex",
+      "root": ".codex/skills",
+      "skill": "python-header-canon",
+      "path": ".codex/skills/python-header-canon",
+      "has_skill_md": true,
+      "has_yaml_frontmatter": true,
+      "has_scripts_dir": true,
+      "has_assets_dir": true,
+      "last_modified": 1770673362.6571884,
+      "description": "Normalize Python file headers to the repository canon: #!/usr/bin/env python3 plus UTF-8 coding line. Use when standardizing .py files across Codex or Claude skill/script lanes.",
+      "classification": "candidate",
+      "role_profile": {
+        "adapter_kind": "python_header_report",
+        "can_target": true,
+        "can_operator": true,
+        "operator_role": "executable",
+        "operator_reasons": [
+          "registered_adapter:python_header_report"
+        ],
+        "target_role": "legal",
+        "target_reasons": []
+      }
+    },
+    {
+      "lane": "codex",
+      "root": ".codex/skills",
+      "skill": "scm-triage",
+      "path": ".codex/skills/scm-triage",
+      "has_skill_md": true,
+      "has_yaml_frontmatter": true,
+      "has_scripts_dir": false,
+      "has_assets_dir": true,
+      "last_modified": 1772041784.871343,
+      "description": "Audit git status, classify signal/noise/ghost/mailbox changes, clean index ghosts, generate triage plans, and write pre-nuke clarity snapshots for Codex lane recovery.",
+      "classification": "candidate",
+      "role_profile": {
+        "adapter_kind": null,
+        "can_target": true,
+        "can_operator": true,
+        "operator_role": "analysis_only",
+        "operator_reasons": [
+          "document_only_operator"
+        ],
+        "target_role": "legal",
+        "target_reasons": []
+      }
+    },
+    {
+      "lane": "codex",
+      "root": ".codex/skills",
+      "skill": "script-envelope",
+      "path": ".codex/skills/script-envelope",
+      "has_skill_md": true,
+      "has_yaml_frontmatter": true,
+      "has_scripts_dir": true,
+      "has_assets_dir": true,
+      "last_modified": 1774296532.0644107,
+      "description": "STASHED - Script metadata envelope standardization. This is a protocol rule (SID, shebang, flags), not a skill. Rule belongs in AGENT_COMMON.md.",
+      "classification": "redirect_or_stub",
+      "role_profile": {
+        "adapter_kind": null,
+        "can_target": true,
+        "can_operator": true,
+        "operator_role": "legacy_only",
+        "operator_reasons": [
+          "operator_redirect_or_stub"
+        ],
+        "target_role": "degraded",
+        "target_reasons": [
+          "target_redirect_or_stub"
+        ]
+      }
+    },
+    {
+      "lane": "codex",
+      "root": ".codex/skills",
+      "skill": "session-resumer",
+      "path": ".codex/skills/session-resumer",
+      "has_skill_md": true,
+      "has_yaml_frontmatter": true,
+      "has_scripts_dir": true,
+      "has_assets_dir": true,
+      "last_modified": 1774384735.5631275,
+      "description": "REDIRECT - Resume packet generation is now in dumpster-upcycler. Use dumpster-upcycler for all session dump processing.",
+      "classification": "redirect_or_stub",
+      "role_profile": {
+        "adapter_kind": null,
+        "can_target": true,
+        "can_operator": true,
+        "operator_role": "legacy_only",
+        "operator_reasons": [
+          "operator_redirect_or_stub"
+        ],
+        "target_role": "degraded",
+        "target_reasons": [
+          "target_redirect_or_stub"
+        ]
+      }
+    },
+    {
+      "lane": "codex",
+      "root": ".codex/skills",
+      "skill": "skill-polisher",
+      "path": ".codex/skills/skill-polisher",
+      "has_skill_md": true,
+      "has_yaml_frontmatter": true,
+      "has_scripts_dir": true,
+      "has_assets_dir": true,
+      "last_modified": 1770435459.150892,
+      "description": "Meta-skill to audit, validate, and fix other skills. Structural integrity checks, cross-flavor audits, WPTG alignment, fixture eval.",
+      "classification": "candidate",
+      "role_profile": {
+        "adapter_kind": "skill_polisher_verify",
+        "can_target": true,
+        "can_operator": true,
+        "operator_role": "executable",
+        "operator_reasons": [
+          "registered_adapter:skill_polisher_verify"
+        ],
+        "target_role": "legal",
+        "target_reasons": []
+      }
+    },
+    {
+      "lane": "codex",
+      "root": ".codex/skills",
+      "skill": "sora",
+      "path": ".codex/skills/sora",
+      "has_skill_md": true,
+      "has_yaml_frontmatter": true,
+      "has_scripts_dir": true,
+      "has_assets_dir": true,
+      "last_modified": 1770132430.4477978,
+      "description": "Use when the user asks to generate, remix, poll, list, download, or delete Sora videos via OpenAI\\u2019s video API using the bundled CLI (`scripts/sora.py`), including requests like \\u201cgenerate AI video,\\u201d \\u201cSora,\\u201d \\u201cvideo remix,\\u201d \\u201cdownload video/thumbnail/spritesheet,\\u201d and batch video generation; requires `OPENAI_API_KEY` and Sora API access.",
+      "classification": "candidate",
+      "role_profile": {
+        "adapter_kind": null,
+        "can_target": true,
+        "can_operator": true,
+        "operator_role": "analysis_only",
+        "operator_reasons": [
+          "scripts_present_no_registered_adapter"
+        ],
+        "target_role": "legal",
+        "target_reasons": []
+      }
+    },
+    {
+      "lane": "codex",
+      "root": ".codex/skills",
+      "skill": "toolchain-doctor",
+      "path": ".codex/skills/toolchain-doctor",
+      "has_skill_md": true,
+      "has_yaml_frontmatter": true,
+      "has_scripts_dir": true,
+      "has_assets_dir": true,
+      "last_modified": 1770486352.4580762,
+      "description": "Diagnose and remediate common Bun + uv drift in this repo (audit vulnerabilities, lockfile inconsistencies, uv sync health) with an opt-in apply mode that only performs safe fixes.",
+      "classification": "candidate",
+      "role_profile": {
+        "adapter_kind": null,
+        "can_target": true,
+        "can_operator": true,
+        "operator_role": "analysis_only",
+        "operator_reasons": [
+          "scripts_present_no_registered_adapter"
+        ],
+        "target_role": "legal",
+        "target_reasons": []
+      }
+    },
+    {
+      "lane": "codex",
+      "root": ".codex/skills",
+      "skill": "trainstop-orchestrator",
+      "path": ".codex/skills/trainstop-orchestrator",
+      "has_skill_md": true,
+      "has_yaml_frontmatter": true,
+      "has_scripts_dir": true,
+      "has_assets_dir": true,
+      "last_modified": 1770658205.7442183,
+      "description": "Proxy runner that chains the repo's non-official maintenance skills/tools in a deterministic order (skill freshness gate -> toolchain doctor -> skill polisher -> mailbox polish -> scribe -> manifest checks).",
+      "classification": "candidate",
+      "role_profile": {
+        "adapter_kind": "lane_orchestrator",
+        "can_target": true,
+        "can_operator": true,
+        "operator_role": "executable",
+        "operator_reasons": [
+          "registered_adapter:lane_orchestrator"
+        ],
+        "target_role": "legal",
+        "target_reasons": []
+      }
+    },
+    {
+      "lane": "claude",
+      "root": ".claude/skills",
+      "skill": ".system",
+      "path": ".claude/skills/.system",
+      "has_skill_md": false,
+      "has_yaml_frontmatter": false,
+      "has_scripts_dir": false,
+      "has_assets_dir": false,
+      "last_modified": 1773945759.3299043,
+      "description": null,
+      "classification": "missing",
+      "role_profile": {
+        "adapter_kind": null,
+        "can_target": false,
+        "can_operator": false,
+        "operator_role": "blocked",
+        "operator_reasons": [
+          "missing_skill_surface"
+        ],
+        "target_role": "blocked",
+        "target_reasons": [
+          "missing_skill_surface"
+        ]
+      }
+    },
+    {
+      "lane": "claude",
+      "root": ".claude/skills",
+      "skill": "_deprecated",
+      "path": ".claude/skills/_deprecated",
+      "has_skill_md": false,
+      "has_yaml_frontmatter": false,
+      "has_scripts_dir": false,
+      "has_assets_dir": false,
+      "last_modified": 1776605850.428506,
+      "description": null,
+      "classification": "missing",
+      "role_profile": {
+        "adapter_kind": null,
+        "can_target": false,
+        "can_operator": false,
+        "operator_role": "blocked",
+        "operator_reasons": [
+          "missing_skill_surface"
+        ],
+        "target_role": "blocked",
+        "target_reasons": [
+          "missing_skill_surface"
+        ]
+      }
+    },
+    {
+      "lane": "claude",
+      "root": ".claude/skills",
+      "skill": "api-manager",
+      "path": ".claude/skills/api-manager",
+      "has_skill_md": true,
+      "has_yaml_frontmatter": true,
+      "has_scripts_dir": false,
+      "has_assets_dir": true,
+      "last_modified": 1773945759.4416602,
+      "description": "Local API/token manager for this repo (no secrets in git). Diagnoses auth drift and loads tokens into the current shell from the user API pool.",
+      "classification": "candidate",
+      "role_profile": {
+        "adapter_kind": null,
+        "can_target": true,
+        "can_operator": true,
+        "operator_role": "analysis_only",
+        "operator_reasons": [
+          "document_only_operator"
+        ],
+        "target_role": "legal",
+        "target_reasons": []
+      }
+    },
+    {
+      "lane": "claude",
+      "root": ".claude/skills",
+      "skill": "artifact-upcycle",
+      "path": ".claude/skills/artifact-upcycle",
+      "has_skill_md": true,
+      "has_yaml_frontmatter": true,
+      "has_scripts_dir": false,
+      "has_assets_dir": true,
+      "last_modified": 1773945759.4526727,
+      "description": "STASHED - Salvage concept absorbed into dumpster-upcycler. Use dumpster-upcycler for converting raw artifacts into structured outputs.",
+      "classification": "redirect_or_stub",
+      "role_profile": {
+        "adapter_kind": null,
+        "can_target": true,
+        "can_operator": true,
+        "operator_role": "legacy_only",
+        "operator_reasons": [
+          "operator_redirect_or_stub"
+        ],
+        "target_role": "degraded",
+        "target_reasons": [
+          "target_redirect_or_stub"
+        ]
+      }
+    },
+    {
+      "lane": "claude",
+      "root": ".claude/skills",
+      "skill": "codekiller-remediation-gate",
+      "path": ".claude/skills/codekiller-remediation-gate",
+      "has_skill_md": true,
+      "has_yaml_frontmatter": true,
+      "has_scripts_dir": true,
+      "has_assets_dir": true,
+      "last_modified": 1773945759.5244095,
+      "description": "Forensic prerequisite gate for Codekiller (CDE-KLLR) recovery. Audits governance arithmetic, evidence integrity, frontmatter reference drift, tribunal chain presence, and telemetry anomalies before conceptual review.",
+      "classification": "candidate",
+      "role_profile": {
+        "adapter_kind": null,
+        "can_target": true,
+        "can_operator": true,
+        "operator_role": "analysis_only",
+        "operator_reasons": [
+          "scripts_present_no_registered_adapter"
+        ],
+        "target_role": "legal",
+        "target_reasons": []
+      }
+    },
+    {
+      "lane": "claude",
+      "root": ".claude/skills",
+      "skill": "conceptualize",
+      "path": ".claude/skills/conceptualize",
+      "has_skill_md": true,
+      "has_yaml_frontmatter": true,
+      "has_scripts_dir": false,
+      "has_assets_dir": true,
+      "last_modified": 1774384735.5178335,
+      "description": "Perform high-rigor structural and aesthetic audits with findings-first output, actionable remediation, and governance-aware preconditions.",
+      "classification": "candidate",
+      "role_profile": {
+        "adapter_kind": null,
+        "can_target": true,
+        "can_operator": true,
+        "operator_role": "analysis_only",
+        "operator_reasons": [
+          "document_only_operator"
+        ],
+        "target_role": "legal",
+        "target_reasons": []
+      }
+    },
+    {
+      "lane": "claude",
+      "root": ".claude/skills",
+      "skill": "corpse-reviver",
+      "path": ".claude/skills/corpse-reviver",
+      "has_skill_md": true,
+      "has_yaml_frontmatter": true,
+      "has_scripts_dir": true,
+      "has_assets_dir": false,
+      "last_modified": 1773945759.5963929,
+      "description": "The White-dressed Bride \u2014 kleptomaniac necromancy pipeline with full embalm-before-edit preservation.",
+      "classification": "candidate",
+      "role_profile": {
+        "adapter_kind": null,
+        "can_target": true,
+        "can_operator": true,
+        "operator_role": "analysis_only",
+        "operator_reasons": [
+          "scripts_present_no_registered_adapter"
+        ],
+        "target_role": "legal",
+        "target_reasons": []
+      }
+    },
+    {
+      "lane": "claude",
+      "root": ".claude/skills",
+      "skill": "decision-razor",
+      "path": ".claude/skills/decision-razor",
+      "has_skill_md": true,
+      "has_yaml_frontmatter": true,
+      "has_scripts_dir": false,
+      "has_assets_dir": true,
+      "last_modified": 1774384735.5208366,
+      "description": "PROTOCOL \u2014 Anti-paralysis behavior. Not a separate execution lane. When stuck in permission loops or ambiguity, apply the razor: infer, execute, never ask. Embedded into all agent behavior by default.",
+      "classification": "redirect_or_stub",
+      "role_profile": {
+        "adapter_kind": null,
+        "can_target": true,
+        "can_operator": true,
+        "operator_role": "legacy_only",
+        "operator_reasons": [
+          "operator_redirect_or_stub"
+        ],
+        "target_role": "degraded",
+        "target_reasons": [
+          "target_redirect_or_stub"
+        ]
+      }
+    },
+    {
+      "lane": "claude",
+      "root": ".claude/skills",
+      "skill": "dumpster-upcycler",
+      "path": ".claude/skills/dumpster-upcycler",
+      "has_skill_md": true,
+      "has_yaml_frontmatter": true,
+      "has_scripts_dir": true,
+      "has_assets_dir": true,
+      "last_modified": 1773945759.6309469,
+      "description": "Convert raw session dumps into compact structured logs, readable markdown, and warm-start resume packets (no deletion, optional archiving). Absorbs session-resumer.",
+      "classification": "candidate",
+      "role_profile": {
+        "adapter_kind": null,
+        "can_target": true,
+        "can_operator": true,
+        "operator_role": "analysis_only",
+        "operator_reasons": [
+          "scripts_present_no_registered_adapter"
+        ],
+        "target_role": "legal",
+        "target_reasons": []
+      }
+    },
+    {
+      "lane": "claude",
+      "root": ".claude/skills",
+      "skill": "gh-address-comments",
+      "path": ".claude/skills/gh-address-comments",
+      "has_skill_md": true,
+      "has_yaml_frontmatter": true,
+      "has_scripts_dir": false,
+      "has_assets_dir": true,
+      "last_modified": 1774384735.5238366,
+      "description": "REDIRECT - PR comment handling is now in gh-fix-ci. Use gh-fix-ci for both CI failures and review comment triage.",
+      "classification": "redirect_or_stub",
+      "role_profile": {
+        "adapter_kind": null,
+        "can_target": true,
+        "can_operator": true,
+        "operator_role": "legacy_only",
+        "operator_reasons": [
+          "operator_redirect_or_stub"
+        ],
+        "target_role": "degraded",
+        "target_reasons": [
+          "target_redirect_or_stub"
+        ]
+      }
+    },
+    {
+      "lane": "claude",
+      "root": ".claude/skills",
+      "skill": "gh-fix-ci",
+      "path": ".claude/skills/gh-fix-ci",
+      "has_skill_md": true,
+      "has_yaml_frontmatter": true,
+      "has_scripts_dir": false,
+      "has_assets_dir": true,
+      "last_modified": 1774384735.5263386,
+      "description": "Debug and fix failing GitHub PR checks via GitHub Actions. Inspect checks and logs with `gh`, summarize failure context, draft a fix plan, implement after explicit approval. External providers (e.g. Buildkite) are out of scope\u2014report the details URL only.",
+      "classification": "candidate",
+      "role_profile": {
+        "adapter_kind": null,
+        "can_target": true,
+        "can_operator": true,
+        "operator_role": "analysis_only",
+        "operator_reasons": [
+          "document_only_operator"
+        ],
+        "target_role": "legal",
+        "target_reasons": []
+      }
+    },
+    {
+      "lane": "claude",
+      "root": ".claude/skills",
+      "skill": "gh-mcp-autonomy",
+      "path": ".claude/skills/gh-mcp-autonomy",
+      "has_skill_md": true,
+      "has_yaml_frontmatter": true,
+      "has_scripts_dir": false,
+      "has_assets_dir": true,
+      "last_modified": 1773945759.683694,
+      "description": "Autonomous GitHub MCP usage for repo/issue/PR data and synthesis. Use when the user asks for repo facts, recent commits, issues/PRs, contributors, or creative priming. Execute without menus and write results to the specified file.",
+      "classification": "candidate",
+      "role_profile": {
+        "adapter_kind": null,
+        "can_target": true,
+        "can_operator": true,
+        "operator_role": "analysis_only",
+        "operator_reasons": [
+          "document_only_operator"
+        ],
+        "target_role": "legal",
+        "target_reasons": []
+      }
+    },
+    {
+      "lane": "claude",
+      "root": ".claude/skills",
+      "skill": "git-snapshot",
+      "path": ".claude/skills/git-snapshot",
+      "has_skill_md": true,
+      "has_yaml_frontmatter": true,
+      "has_scripts_dir": false,
+      "has_assets_dir": false,
+      "last_modified": 1771556293.9756768,
+      "description": "Snapshot the latest git state (recent commits, branch, diff stats, changed files) into claude/mailbox/ as a structured handoff. Zero context burn \u2014 run at session start or before handoff.",
+      "classification": "candidate",
+      "role_profile": {
+        "adapter_kind": null,
+        "can_target": true,
+        "can_operator": true,
+        "operator_role": "analysis_only",
+        "operator_reasons": [
+          "document_only_operator"
+        ],
+        "target_role": "legal",
+        "target_reasons": []
+      }
+    },
+    {
+      "lane": "claude",
+      "root": ".claude/skills",
+      "skill": "handoff-loop",
+      "path": ".claude/skills/handoff-loop",
+      "has_skill_md": true,
+      "has_yaml_frontmatter": true,
+      "has_scripts_dir": false,
+      "has_assets_dir": false,
+      "last_modified": 1772069344.692283,
+      "description": "Unified handoff-loop orchestrator \u2014 validates, gates, routes, and tracks agent handoffs with receipt confirmation and obligation monitoring. Use when checking handoff status, validating before sending, routing with quality gates, or sweeping for stale/overdue items.",
+      "classification": "candidate",
+      "role_profile": {
+        "adapter_kind": null,
+        "can_target": true,
+        "can_operator": true,
+        "operator_role": "analysis_only",
+        "operator_reasons": [
+          "document_only_operator"
+        ],
+        "target_role": "legal",
+        "target_reasons": []
+      }
+    },
+    {
+      "lane": "claude",
+      "root": ".claude/skills",
+      "skill": "imagegen",
+      "path": ".claude/skills/imagegen",
+      "has_skill_md": true,
+      "has_yaml_frontmatter": true,
+      "has_scripts_dir": false,
+      "has_assets_dir": true,
+      "last_modified": 1773945759.6935706,
+      "description": "Use when the user asks to generate or edit images via the OpenAI Image API (for example: generate image, edit/inpaint/mask, background removal or replacement, transparent background, product shots, concept art, covers, or batch variants); run the bundled CLI (scripts/image_gen.py) and require OPENAI_API_KEY for live calls.",
+      "classification": "candidate",
+      "role_profile": {
+        "adapter_kind": null,
+        "can_target": true,
+        "can_operator": true,
+        "operator_role": "analysis_only",
+        "operator_reasons": [
+          "document_only_operator"
+        ],
+        "target_role": "legal",
+        "target_reasons": []
+      }
+    },
+    {
+      "lane": "claude",
+      "root": ".claude/skills",
+      "skill": "ingest-research",
+      "path": ".claude/skills/ingest-research",
+      "has_skill_md": true,
+      "has_yaml_frontmatter": true,
+      "has_scripts_dir": false,
+      "has_assets_dir": false,
+      "last_modified": 1773945759.7110443,
+      "description": "Ingest a deep research artifact into a structured digest and optional mailbox handoff packet.",
+      "classification": "candidate",
+      "role_profile": {
+        "adapter_kind": null,
+        "can_target": true,
+        "can_operator": true,
+        "operator_role": "analysis_only",
+        "operator_reasons": [
+          "document_only_operator"
+        ],
+        "target_role": "legal",
+        "target_reasons": []
+      }
+    },
+    {
+      "lane": "claude",
+      "root": ".claude/skills",
+      "skill": "iron-maiden-runtime",
+      "path": ".claude/skills/iron-maiden-runtime",
+      "has_skill_md": true,
+      "has_yaml_frontmatter": true,
+      "has_scripts_dir": true,
+      "has_assets_dir": true,
+      "last_modified": 1773945759.72055,
+      "description": "Deterministic runtime harness for The Iron Maiden voicepack (state model, contract schema, scene renderer).",
+      "classification": "candidate",
+      "role_profile": {
+        "adapter_kind": null,
+        "can_target": true,
+        "can_operator": true,
+        "operator_role": "analysis_only",
+        "operator_reasons": [
+          "scripts_present_no_registered_adapter"
+        ],
+        "target_role": "legal",
+        "target_reasons": []
+      }
+    },
+    {
+      "lane": "claude",
+      "root": ".claude/skills",
+      "skill": "link-path-guard",
+      "path": ".claude/skills/link-path-guard",
+      "has_skill_md": true,
+      "has_yaml_frontmatter": true,
+      "has_scripts_dir": false,
+      "has_assets_dir": false,
+      "last_modified": 1773948573.121173,
+      "description": "Validate skill and settings path references across .codex/.claude/.gemini, then fix stale or broken repo-local file and directory links in-place.",
+      "classification": "candidate",
+      "role_profile": {
+        "adapter_kind": "skill_path_guard",
+        "can_target": true,
+        "can_operator": true,
+        "operator_role": "executable",
+        "operator_reasons": [
+          "registered_adapter:skill_path_guard"
+        ],
+        "target_role": "legal",
+        "target_reasons": []
+      }
+    },
+    {
+      "lane": "claude",
+      "root": ".claude/skills",
+      "skill": "mailbox-handoff",
+      "path": ".claude/skills/mailbox-handoff",
+      "has_skill_md": true,
+      "has_yaml_frontmatter": true,
+      "has_scripts_dir": false,
+      "has_assets_dir": true,
+      "last_modified": 1774384735.5303466,
+      "description": "Manage Codex/Claude/Gemini mailboxes for handoffs, responses, verification, and routing. Use when checking inboxes, verifying handoff coverage across codex/.codex/claude/.claude/claude-codex-gemini, routing tasks, or running mailbox ops (postman/scribe/polisher).",
+      "classification": "candidate",
+      "role_profile": {
+        "adapter_kind": "mailbox_link_canon",
+        "can_target": true,
+        "can_operator": true,
+        "operator_role": "executable",
+        "operator_reasons": [
+          "registered_adapter:mailbox_link_canon"
+        ],
+        "target_role": "legal",
+        "target_reasons": []
+      }
+    },
+    {
+      "lane": "claude",
+      "root": ".claude/skills",
+      "skill": "openai-docs",
+      "path": ".claude/skills/openai-docs",
+      "has_skill_md": true,
+      "has_yaml_frontmatter": true,
+      "has_scripts_dir": false,
+      "has_assets_dir": true,
+      "last_modified": 1773945759.7621627,
+      "description": "Use when the user asks how to build with OpenAI products or APIs and needs up-to-date official documentation with citations (for example: Codex, Responses API, Chat Completions, Apps SDK, Agents SDK, Realtime, model capabilities or limits); prioritize OpenAI docs MCP tools and restrict any fallback browsing to official OpenAI domains.",
+      "classification": "candidate",
+      "role_profile": {
+        "adapter_kind": null,
+        "can_target": true,
+        "can_operator": true,
+        "operator_role": "analysis_only",
+        "operator_reasons": [
+          "document_only_operator"
+        ],
+        "target_role": "legal",
+        "target_reasons": []
+      }
+    },
+    {
+      "lane": "claude",
+      "root": ".claude/skills",
+      "skill": "overnight-archaeology",
+      "path": ".claude/skills/overnight-archaeology",
+      "has_skill_md": true,
+      "has_yaml_frontmatter": true,
+      "has_scripts_dir": false,
+      "has_assets_dir": false,
+      "last_modified": 1770778358.424456,
+      "description": "Read the latest nightly daemon reports (debt scores + archaeology ore) from dumpster-dive/ and claude/mailbox/. Show status, findings, and launch commands. Does NOT run the daemons \u2014 zero API overhead. Use when asked about overnight findings, nightly status, debt scores, or archaeology digest.",
+      "classification": "candidate",
+      "role_profile": {
+        "adapter_kind": null,
+        "can_target": true,
+        "can_operator": true,
+        "operator_role": "analysis_only",
+        "operator_reasons": [
+          "document_only_operator"
+        ],
+        "target_role": "legal",
+        "target_reasons": []
+      }
+    },
+    {
+      "lane": "claude",
+      "root": ".claude/skills",
+      "skill": "pentea-dispatch",
+      "path": ".claude/skills/pentea-dispatch",
+      "has_skill_md": true,
+      "has_yaml_frontmatter": true,
+      "has_scripts_dir": false,
+      "has_assets_dir": true,
+      "last_modified": 1776631654.9550402,
+      "description": "Dispatch protocol for Pentea (injection-driven synthesis agent). Encodes Pentea's injection contract, my concurrency track, and anti-patterns. Load when any task requires Pentea or async agent+inline parallel execution.",
+      "classification": "redirect_or_stub",
+      "role_profile": {
+        "adapter_kind": null,
+        "can_target": true,
+        "can_operator": true,
+        "operator_role": "legacy_only",
+        "operator_reasons": [
+          "operator_redirect_or_stub"
+        ],
+        "target_role": "degraded",
+        "target_reasons": [
+          "target_redirect_or_stub"
+        ]
+      }
+    },
+    {
+      "lane": "claude",
+      "root": ".claude/skills",
+      "skill": "python-header-canon",
+      "path": ".claude/skills/python-header-canon",
+      "has_skill_md": true,
+      "has_yaml_frontmatter": true,
+      "has_scripts_dir": false,
+      "has_assets_dir": true,
+      "last_modified": 1773945759.7881722,
+      "description": "Normalize Python file headers to the repository canon: #!/usr/bin/env python3 plus UTF-8 coding line. Use when standardizing .py files across Codex or Claude skill/script lanes.",
+      "classification": "candidate",
+      "role_profile": {
+        "adapter_kind": "python_header_report",
+        "can_target": true,
+        "can_operator": true,
+        "operator_role": "executable",
+        "operator_reasons": [
+          "registered_adapter:python_header_report"
+        ],
+        "target_role": "legal",
+        "target_reasons": []
+      }
+    },
+    {
+      "lane": "claude",
+      "root": ".claude/skills",
+      "skill": "scm-triage",
+      "path": ".claude/skills/scm-triage",
+      "has_skill_md": true,
+      "has_yaml_frontmatter": true,
+      "has_scripts_dir": false,
+      "has_assets_dir": false,
+      "last_modified": 1774384735.5378547,
+      "description": "Audit git status, classify changes as signal/noise/transient, generate gitignore/exclude fixes, identify files needing relocation to canonical paths, produce structured migration plans, and write pre-nuke clarity snapshots. Use when source control is noisy, before bulk commits, when the codebase needs structural housekeeping, or before risky operations to preserve working context.",
+      "classification": "candidate",
+      "role_profile": {
+        "adapter_kind": null,
+        "can_target": true,
+        "can_operator": true,
+        "operator_role": "analysis_only",
+        "operator_reasons": [
+          "document_only_operator"
+        ],
+        "target_role": "legal",
+        "target_reasons": []
+      }
+    },
+    {
+      "lane": "claude",
+      "root": ".claude/skills",
+      "skill": "script-envelope",
+      "path": ".claude/skills/script-envelope",
+      "has_skill_md": true,
+      "has_yaml_frontmatter": true,
+      "has_scripts_dir": false,
+      "has_assets_dir": true,
+      "last_modified": 1773945759.8067932,
+      "description": "STASHED - Script metadata envelope standardization. This is a protocol rule (SID, shebang, flags), not a skill. Rule belongs in AGENT_COMMON.md.",
+      "classification": "redirect_or_stub",
+      "role_profile": {
+        "adapter_kind": null,
+        "can_target": true,
+        "can_operator": true,
+        "operator_role": "legacy_only",
+        "operator_reasons": [
+          "operator_redirect_or_stub"
+        ],
+        "target_role": "degraded",
+        "target_reasons": [
+          "target_redirect_or_stub"
+        ]
+      }
+    },
+    {
+      "lane": "claude",
+      "root": ".claude/skills",
+      "skill": "session-resumer",
+      "path": ".claude/skills/session-resumer",
+      "has_skill_md": true,
+      "has_yaml_frontmatter": true,
+      "has_scripts_dir": true,
+      "has_assets_dir": true,
+      "last_modified": 1773945759.842523,
+      "description": "REDIRECT - Resume packet generation is now in dumpster-upcycler. Use dumpster-upcycler for all session dump processing.",
+      "classification": "redirect_or_stub",
+      "role_profile": {
+        "adapter_kind": null,
+        "can_target": true,
+        "can_operator": true,
+        "operator_role": "legacy_only",
+        "operator_reasons": [
+          "operator_redirect_or_stub"
+        ],
+        "target_role": "degraded",
+        "target_reasons": [
+          "target_redirect_or_stub"
+        ]
+      }
+    },
+    {
+      "lane": "claude",
+      "root": ".claude/skills",
+      "skill": "skill-polisher",
+      "path": ".claude/skills/skill-polisher",
+      "has_skill_md": true,
+      "has_yaml_frontmatter": true,
+      "has_scripts_dir": false,
+      "has_assets_dir": true,
+      "last_modified": 1774384735.543855,
+      "description": "Meta-skill for Claude Code to validate and polish Codex skills under `.codex/skills/` by running the skill-polisher and reviewing structural integrity. Use when auditing Codex skills, enforcing standardization, or running integrity sweeps across the Codex skill set.",
+      "classification": "candidate",
+      "role_profile": {
+        "adapter_kind": "skill_polisher_verify",
+        "can_target": true,
+        "can_operator": true,
+        "operator_role": "executable",
+        "operator_reasons": [
+          "registered_adapter:skill_polisher_verify"
+        ],
+        "target_role": "legal",
+        "target_reasons": []
+      }
+    },
+    {
+      "lane": "claude",
+      "root": ".claude/skills",
+      "skill": "sora",
+      "path": ".claude/skills/sora",
+      "has_skill_md": true,
+      "has_yaml_frontmatter": true,
+      "has_scripts_dir": false,
+      "has_assets_dir": true,
+      "last_modified": 1773945759.8950996,
+      "description": "Use when the user asks to generate, remix, poll, list, download, or delete Sora videos via OpenAI\\u2019s video API using the bundled CLI (`<path-to-skill>/scripts/sora.py`), including requests like \\u201cgenerate AI video,\\u201d \\u201cSora,\\u201d \\u201cvideo remix,\\u201d \\u201cdownload video/thumbnail/spritesheet,\\u201d and batch video generation; requires `OPENAI_API_KEY` and Sora API access.",
+      "classification": "candidate",
+      "role_profile": {
+        "adapter_kind": null,
+        "can_target": true,
+        "can_operator": true,
+        "operator_role": "analysis_only",
+        "operator_reasons": [
+          "document_only_operator"
+        ],
+        "target_role": "legal",
+        "target_reasons": []
+      }
+    },
+    {
+      "lane": "claude",
+      "root": ".claude/skills",
+      "skill": "theme-system",
+      "path": ".claude/skills/theme-system",
+      "has_skill_md": true,
+      "has_yaml_frontmatter": true,
+      "has_scripts_dir": false,
+      "has_assets_dir": false,
+      "last_modified": 1770766763.9854438,
+      "description": "Automate VS Code theme design, icon font generation, and validation for the chthonic-archive extension.",
+      "classification": "candidate",
+      "role_profile": {
+        "adapter_kind": null,
+        "can_target": true,
+        "can_operator": true,
+        "operator_role": "analysis_only",
+        "operator_reasons": [
+          "document_only_operator"
+        ],
+        "target_role": "legal",
+        "target_reasons": []
+      }
+    },
+    {
+      "lane": "claude",
+      "root": ".claude/skills",
+      "skill": "toolchain-doctor",
+      "path": ".claude/skills/toolchain-doctor",
+      "has_skill_md": true,
+      "has_yaml_frontmatter": true,
+      "has_scripts_dir": true,
+      "has_assets_dir": true,
+      "last_modified": 1773945759.914654,
+      "description": "Diagnose and remediate common Bun + uv + rv drift in this repo (audit vulnerabilities, lockfile inconsistencies, uv sync health, rv stale installer dirs) with an opt-in apply mode that only performs safe fixes.",
+      "classification": "candidate",
+      "role_profile": {
+        "adapter_kind": null,
+        "can_target": true,
+        "can_operator": true,
+        "operator_role": "analysis_only",
+        "operator_reasons": [
+          "scripts_present_no_registered_adapter"
+        ],
+        "target_role": "legal",
+        "target_reasons": []
+      }
+    },
+    {
+      "lane": "claude",
+      "root": ".claude/skills",
+      "skill": "trainstop-orchestrator",
+      "path": ".claude/skills/trainstop-orchestrator",
+      "has_skill_md": true,
+      "has_yaml_frontmatter": true,
+      "has_scripts_dir": true,
+      "has_assets_dir": true,
+      "last_modified": 1773945759.9266636,
+      "description": "Proxy runner that chains the repo's non-official maintenance skills/tools in a deterministic order (skill freshness gate -> toolchain doctor -> skill polisher -> mailbox polish -> scribe -> manifest checks).",
+      "classification": "candidate",
+      "role_profile": {
+        "adapter_kind": "lane_orchestrator",
+        "can_target": true,
+        "can_operator": true,
+        "operator_role": "executable",
+        "operator_reasons": [
+          "registered_adapter:lane_orchestrator"
+        ],
+        "target_role": "legal",
+        "target_reasons": []
+      }
+    },
+    {
+      "lane": "gemini",
+      "root": ".gemini/extensions/chthonic-archive-sync/skills",
+      "skill": ".system",
+      "path": ".gemini/extensions/chthonic-archive-sync/skills/.system",
+      "has_skill_md": false,
+      "has_yaml_frontmatter": false,
+      "has_scripts_dir": false,
+      "has_assets_dir": false,
+      "last_modified": 1774384735.5726335,
+      "description": null,
+      "classification": "missing",
+      "role_profile": {
+        "adapter_kind": null,
+        "can_target": false,
+        "can_operator": false,
+        "operator_role": "blocked",
+        "operator_reasons": [
+          "missing_skill_surface"
+        ],
+        "target_role": "blocked",
+        "target_reasons": [
+          "missing_skill_surface"
+        ]
+      }
+    },
+    {
+      "lane": "gemini",
+      "root": ".gemini/extensions/chthonic-archive-sync/skills",
+      "skill": "api-manager",
+      "path": ".gemini/extensions/chthonic-archive-sync/skills/api-manager",
+      "has_skill_md": true,
+      "has_yaml_frontmatter": true,
+      "has_scripts_dir": true,
+      "has_assets_dir": true,
+      "last_modified": 1774384735.581641,
+      "description": "Local API/token manager for this repo (no secrets in git). Diagnoses auth drift and loads tokens into the current shell from the user API pool.",
+      "classification": "candidate",
+      "role_profile": {
+        "adapter_kind": null,
+        "can_target": true,
+        "can_operator": true,
+        "operator_role": "analysis_only",
+        "operator_reasons": [
+          "scripts_present_no_registered_adapter"
+        ],
+        "target_role": "legal",
+        "target_reasons": []
+      }
+    },
+    {
+      "lane": "gemini",
+      "root": ".gemini/extensions/chthonic-archive-sync/skills",
+      "skill": "artifact-upcycle",
+      "path": ".gemini/extensions/chthonic-archive-sync/skills/artifact-upcycle",
+      "has_skill_md": true,
+      "has_yaml_frontmatter": true,
+      "has_scripts_dir": false,
+      "has_assets_dir": false,
+      "last_modified": 1773944886.5782413,
+      "description": "Preserve and restructure stale or messy artifacts instead of deleting them blindly.",
+      "classification": "candidate",
+      "role_profile": {
+        "adapter_kind": null,
+        "can_target": true,
+        "can_operator": true,
+        "operator_role": "analysis_only",
+        "operator_reasons": [
+          "document_only_operator"
+        ],
+        "target_role": "legal",
+        "target_reasons": []
+      }
+    },
+    {
+      "lane": "gemini",
+      "root": ".gemini/extensions/chthonic-archive-sync/skills",
+      "skill": "claude-skill-bridge",
+      "path": ".gemini/extensions/chthonic-archive-sync/skills/claude-skill-bridge",
+      "has_skill_md": true,
+      "has_yaml_frontmatter": true,
+      "has_scripts_dir": false,
+      "has_assets_dir": true,
+      "last_modified": 1774384735.5876462,
+      "description": "REDIRECT \u2014 Merged into skill-polisher. Use skill-polisher for Claude skill audits and cross-flavor checks.",
+      "classification": "redirect_or_stub",
+      "role_profile": {
+        "adapter_kind": null,
+        "can_target": true,
+        "can_operator": true,
+        "operator_role": "legacy_only",
+        "operator_reasons": [
+          "operator_redirect_or_stub"
+        ],
+        "target_role": "degraded",
+        "target_reasons": [
+          "target_redirect_or_stub"
+        ]
+      }
+    },
+    {
+      "lane": "gemini",
+      "root": ".gemini/extensions/chthonic-archive-sync/skills",
+      "skill": "codekiller-remediation-gate",
+      "path": ".gemini/extensions/chthonic-archive-sync/skills/codekiller-remediation-gate",
+      "has_skill_md": true,
+      "has_yaml_frontmatter": true,
+      "has_scripts_dir": true,
+      "has_assets_dir": true,
+      "last_modified": 1774384735.5896482,
+      "description": "Forensic prerequisite gate for Codekiller (CDE-KLLR) recovery. Audits governance arithmetic, evidence integrity, frontmatter reference drift, tribunal chain presence, and telemetry anomalies before conceptual review.",
+      "classification": "candidate",
+      "role_profile": {
+        "adapter_kind": null,
+        "can_target": true,
+        "can_operator": true,
+        "operator_role": "analysis_only",
+        "operator_reasons": [
+          "scripts_present_no_registered_adapter"
+        ],
+        "target_role": "legal",
+        "target_reasons": []
+      }
+    },
+    {
+      "lane": "gemini",
+      "root": ".gemini/extensions/chthonic-archive-sync/skills",
+      "skill": "codex-skill-bridge",
+      "path": ".gemini/extensions/chthonic-archive-sync/skills/codex-skill-bridge",
+      "has_skill_md": true,
+      "has_yaml_frontmatter": true,
+      "has_scripts_dir": false,
+      "has_assets_dir": true,
+      "last_modified": 1774384735.5926483,
+      "description": "REDIRECT \u2014 Merged into skill-polisher. Use skill-polisher for Codex skill audits.",
+      "classification": "redirect_or_stub",
+      "role_profile": {
+        "adapter_kind": null,
+        "can_target": true,
+        "can_operator": true,
+        "operator_role": "legacy_only",
+        "operator_reasons": [
+          "operator_redirect_or_stub"
+        ],
+        "target_role": "degraded",
+        "target_reasons": [
+          "target_redirect_or_stub"
+        ]
+      }
+    },
+    {
+      "lane": "gemini",
+      "root": ".gemini/extensions/chthonic-archive-sync/skills",
+      "skill": "conceptualize",
+      "path": ".gemini/extensions/chthonic-archive-sync/skills/conceptualize",
+      "has_skill_md": true,
+      "has_yaml_frontmatter": true,
+      "has_scripts_dir": false,
+      "has_assets_dir": true,
+      "last_modified": 1774384735.5996554,
+      "description": "Perform high-rigor structural and aesthetic audits with findings-first output, actionable remediation, and governance-aware preconditions.",
+      "classification": "candidate",
+      "role_profile": {
+        "adapter_kind": null,
+        "can_target": true,
+        "can_operator": true,
+        "operator_role": "analysis_only",
+        "operator_reasons": [
+          "document_only_operator"
+        ],
+        "target_role": "legal",
+        "target_reasons": []
+      }
+    },
+    {
+      "lane": "gemini",
+      "root": ".gemini/extensions/chthonic-archive-sync/skills",
+      "skill": "corpse-reviver",
+      "path": ".gemini/extensions/chthonic-archive-sync/skills/corpse-reviver",
+      "has_skill_md": true,
+      "has_yaml_frontmatter": true,
+      "has_scripts_dir": true,
+      "has_assets_dir": false,
+      "last_modified": 1774384735.6006556,
+      "description": "The White-dressed Bride \u2014 kleptomaniac necromancy pipeline with full embalm-before-edit preservation.",
+      "classification": "candidate",
+      "role_profile": {
+        "adapter_kind": null,
+        "can_target": true,
+        "can_operator": true,
+        "operator_role": "analysis_only",
+        "operator_reasons": [
+          "scripts_present_no_registered_adapter"
+        ],
+        "target_role": "legal",
+        "target_reasons": []
+      }
+    },
+    {
+      "lane": "gemini",
+      "root": ".gemini/extensions/chthonic-archive-sync/skills",
+      "skill": "decision-razor",
+      "path": ".gemini/extensions/chthonic-archive-sync/skills/decision-razor",
+      "has_skill_md": true,
+      "has_yaml_frontmatter": true,
+      "has_scripts_dir": false,
+      "has_assets_dir": false,
+      "last_modified": 1774384735.6016555,
+      "description": "Break ambiguity fast: infer the obvious path, execute it, and avoid menu-mode drift.",
+      "classification": "candidate",
+      "role_profile": {
+        "adapter_kind": null,
+        "can_target": true,
+        "can_operator": true,
+        "operator_role": "analysis_only",
+        "operator_reasons": [
+          "document_only_operator"
+        ],
+        "target_role": "legal",
+        "target_reasons": []
+      }
+    },
+    {
+      "lane": "gemini",
+      "root": ".gemini/extensions/chthonic-archive-sync/skills",
+      "skill": "dumpster-upcycler",
+      "path": ".gemini/extensions/chthonic-archive-sync/skills/dumpster-upcycler",
+      "has_skill_md": true,
+      "has_yaml_frontmatter": true,
+      "has_scripts_dir": true,
+      "has_assets_dir": true,
+      "last_modified": 1774384735.6091626,
+      "description": "Convert raw session dumps into compact structured logs, readable markdown, and warm-start resume packets (no deletion, optional archiving). Absorbs session-resumer.",
+      "classification": "candidate",
+      "role_profile": {
+        "adapter_kind": null,
+        "can_target": true,
+        "can_operator": true,
+        "operator_role": "analysis_only",
+        "operator_reasons": [
+          "scripts_present_no_registered_adapter"
+        ],
+        "target_role": "legal",
+        "target_reasons": []
+      }
+    },
+    {
+      "lane": "gemini",
+      "root": ".gemini/extensions/chthonic-archive-sync/skills",
+      "skill": "gh-address-comments",
+      "path": ".gemini/extensions/chthonic-archive-sync/skills/gh-address-comments",
+      "has_skill_md": true,
+      "has_yaml_frontmatter": true,
+      "has_scripts_dir": true,
+      "has_assets_dir": true,
+      "last_modified": 1774384735.6121647,
+      "description": "REDIRECT - PR comment handling is now in gh-fix-ci. Use gh-fix-ci for both CI failures and review comment triage.",
+      "classification": "redirect_or_stub",
+      "role_profile": {
+        "adapter_kind": null,
+        "can_target": true,
+        "can_operator": true,
+        "operator_role": "legacy_only",
+        "operator_reasons": [
+          "operator_redirect_or_stub"
+        ],
+        "target_role": "degraded",
+        "target_reasons": [
+          "target_redirect_or_stub"
+        ]
+      }
+    },
+    {
+      "lane": "gemini",
+      "root": ".gemini/extensions/chthonic-archive-sync/skills",
+      "skill": "gh-fix-ci",
+      "path": ".gemini/extensions/chthonic-archive-sync/skills/gh-fix-ci",
+      "has_skill_md": true,
+      "has_yaml_frontmatter": true,
+      "has_scripts_dir": true,
+      "has_assets_dir": true,
+      "last_modified": 1774384735.6191702,
+      "description": "Debug and fix failing GitHub PR checks via GitHub Actions. Inspect checks and logs with `gh`, summarize failure context, draft a fix plan, implement after explicit approval. External providers (e.g. Buildkite) are out of scope\u2014report the details URL only.",
+      "classification": "candidate",
+      "role_profile": {
+        "adapter_kind": null,
+        "can_target": true,
+        "can_operator": true,
+        "operator_role": "analysis_only",
+        "operator_reasons": [
+          "scripts_present_no_registered_adapter"
+        ],
+        "target_role": "legal",
+        "target_reasons": []
+      }
+    },
+    {
+      "lane": "gemini",
+      "root": ".gemini/extensions/chthonic-archive-sync/skills",
+      "skill": "gh-mcp-autonomy",
+      "path": ".gemini/extensions/chthonic-archive-sync/skills/gh-mcp-autonomy",
+      "has_skill_md": true,
+      "has_yaml_frontmatter": true,
+      "has_scripts_dir": false,
+      "has_assets_dir": true,
+      "last_modified": 1774384735.6216738,
+      "description": "Autonomous GitHub MCP usage for repo/issue/PR data and synthesis. Use when the user asks for repo facts, recent commits, issues/PRs, contributors, or creative priming. Execute without menus and write results to the specified file.",
+      "classification": "candidate",
+      "role_profile": {
+        "adapter_kind": null,
+        "can_target": true,
+        "can_operator": true,
+        "operator_role": "analysis_only",
+        "operator_reasons": [
+          "document_only_operator"
+        ],
+        "target_role": "legal",
+        "target_reasons": []
+      }
+    },
+    {
+      "lane": "gemini",
+      "root": ".gemini/extensions/chthonic-archive-sync/skills",
+      "skill": "git-snapshot",
+      "path": ".gemini/extensions/chthonic-archive-sync/skills/git-snapshot",
+      "has_skill_md": true,
+      "has_yaml_frontmatter": true,
+      "has_scripts_dir": false,
+      "has_assets_dir": false,
+      "last_modified": 1776057422.349639,
+      "description": "Snapshot the latest git state (recent commits, branch, diff stats, changed files) into claude/mailbox/ as a structured handoff. Zero context burn \u2014 run at session start or before handoff.",
+      "classification": "candidate",
+      "role_profile": {
+        "adapter_kind": null,
+        "can_target": true,
+        "can_operator": true,
+        "operator_role": "analysis_only",
+        "operator_reasons": [
+          "document_only_operator"
+        ],
+        "target_role": "legal",
+        "target_reasons": []
+      }
+    },
+    {
+      "lane": "gemini",
+      "root": ".gemini/extensions/chthonic-archive-sync/skills",
+      "skill": "handoff-loop",
+      "path": ".gemini/extensions/chthonic-archive-sync/skills/handoff-loop",
+      "has_skill_md": true,
+      "has_yaml_frontmatter": true,
+      "has_scripts_dir": false,
+      "has_assets_dir": false,
+      "last_modified": 1776057422.349639,
+      "description": "Unified handoff-loop orchestrator \u2014 validates, gates, routes, and tracks agent handoffs with receipt confirmation and obligation monitoring. Use when checking handoff status, validating before sending, routing with quality gates, or sweeping for stale/overdue items.",
+      "classification": "candidate",
+      "role_profile": {
+        "adapter_kind": null,
+        "can_target": true,
+        "can_operator": true,
+        "operator_role": "analysis_only",
+        "operator_reasons": [
+          "document_only_operator"
+        ],
+        "target_role": "legal",
+        "target_reasons": []
+      }
+    },
+    {
+      "lane": "gemini",
+      "root": ".gemini/extensions/chthonic-archive-sync/skills",
+      "skill": "imagegen",
+      "path": ".gemini/extensions/chthonic-archive-sync/skills/imagegen",
+      "has_skill_md": true,
+      "has_yaml_frontmatter": true,
+      "has_scripts_dir": true,
+      "has_assets_dir": true,
+      "last_modified": 1774384735.6356862,
+      "description": "Use when the user asks to generate or edit images via the OpenAI Image API (for example: generate image, edit/inpaint/mask, background removal or replacement, transparent background, product shots, concept art, covers, or batch variants); run the bundled CLI (`scripts/image_gen.py`) and require `OPENAI_API_KEY` for live calls.",
+      "classification": "candidate",
+      "role_profile": {
+        "adapter_kind": null,
+        "can_target": true,
+        "can_operator": true,
+        "operator_role": "analysis_only",
+        "operator_reasons": [
+          "scripts_present_no_registered_adapter"
+        ],
+        "target_role": "legal",
+        "target_reasons": []
+      }
+    },
+    {
+      "lane": "gemini",
+      "root": ".gemini/extensions/chthonic-archive-sync/skills",
+      "skill": "ingest-research",
+      "path": ".gemini/extensions/chthonic-archive-sync/skills/ingest-research",
+      "has_skill_md": true,
+      "has_yaml_frontmatter": true,
+      "has_scripts_dir": false,
+      "has_assets_dir": true,
+      "last_modified": 1774384735.6396902,
+      "description": "Ingest Gemini/Deep Research artifacts into structured digests and optional cross-mailbox handoff notes.",
+      "classification": "candidate",
+      "role_profile": {
+        "adapter_kind": null,
+        "can_target": true,
+        "can_operator": true,
+        "operator_role": "analysis_only",
+        "operator_reasons": [
+          "document_only_operator"
+        ],
+        "target_role": "legal",
+        "target_reasons": []
+      }
+    },
+    {
+      "lane": "gemini",
+      "root": ".gemini/extensions/chthonic-archive-sync/skills",
+      "skill": "iron-maiden-runtime",
+      "path": ".gemini/extensions/chthonic-archive-sync/skills/iron-maiden-runtime",
+      "has_skill_md": true,
+      "has_yaml_frontmatter": true,
+      "has_scripts_dir": true,
+      "has_assets_dir": true,
+      "last_modified": 1774384735.6502004,
+      "description": "Deterministic runtime harness for The Iron Maiden voicepack (state model, contract schema, scene renderer).",
+      "classification": "candidate",
+      "role_profile": {
+        "adapter_kind": null,
+        "can_target": true,
+        "can_operator": true,
+        "operator_role": "analysis_only",
+        "operator_reasons": [
+          "scripts_present_no_registered_adapter"
+        ],
+        "target_role": "legal",
+        "target_reasons": []
+      }
+    },
+    {
+      "lane": "gemini",
+      "root": ".gemini/extensions/chthonic-archive-sync/skills",
+      "skill": "mailbox-handoff",
+      "path": ".gemini/extensions/chthonic-archive-sync/skills/mailbox-handoff",
+      "has_skill_md": true,
+      "has_yaml_frontmatter": true,
+      "has_scripts_dir": false,
+      "has_assets_dir": false,
+      "last_modified": 1773944886.908235,
+      "description": "Continue triad work from the latest mailbox handoff and respond with one concise completion note.",
+      "classification": "candidate",
+      "role_profile": {
+        "adapter_kind": "mailbox_link_canon",
+        "can_target": true,
+        "can_operator": true,
+        "operator_role": "executable",
+        "operator_reasons": [
+          "registered_adapter:mailbox_link_canon"
+        ],
+        "target_role": "legal",
+        "target_reasons": []
+      }
+    },
+    {
+      "lane": "gemini",
+      "root": ".gemini/extensions/chthonic-archive-sync/skills",
+      "skill": "meta-polisher-validator",
+      "path": ".gemini/extensions/chthonic-archive-sync/skills/meta-polisher-validator",
+      "has_skill_md": true,
+      "has_yaml_frontmatter": true,
+      "has_scripts_dir": false,
+      "has_assets_dir": true,
+      "last_modified": 1774384735.653705,
+      "description": "REDIRECT \u2014 Merged into skill-polisher. Use skill-polisher --mode verify for meta-skill validation.",
+      "classification": "redirect_or_stub",
+      "role_profile": {
+        "adapter_kind": null,
+        "can_target": true,
+        "can_operator": true,
+        "operator_role": "legacy_only",
+        "operator_reasons": [
+          "operator_redirect_or_stub"
+        ],
+        "target_role": "degraded",
+        "target_reasons": [
+          "target_redirect_or_stub"
+        ]
+      }
+    },
+    {
+      "lane": "gemini",
+      "root": ".gemini/extensions/chthonic-archive-sync/skills",
+      "skill": "openai-docs",
+      "path": ".gemini/extensions/chthonic-archive-sync/skills/openai-docs",
+      "has_skill_md": true,
+      "has_yaml_frontmatter": true,
+      "has_scripts_dir": false,
+      "has_assets_dir": true,
+      "last_modified": 1774384735.658712,
+      "description": "Use when the user asks how to build with OpenAI products or APIs and needs up-to-date official documentation with citations (for example: Codex, Responses API, Chat Completions, Apps SDK, Agents SDK, Realtime, model capabilities or limits); prioritize OpenAI docs MCP tools and restrict any fallback browsing to official OpenAI domains.",
+      "classification": "candidate",
+      "role_profile": {
+        "adapter_kind": null,
+        "can_target": true,
+        "can_operator": true,
+        "operator_role": "analysis_only",
+        "operator_reasons": [
+          "document_only_operator"
+        ],
+        "target_role": "legal",
+        "target_reasons": []
+      }
+    },
+    {
+      "lane": "gemini",
+      "root": ".gemini/extensions/chthonic-archive-sync/skills",
+      "skill": "overnight-archaeology",
+      "path": ".gemini/extensions/chthonic-archive-sync/skills/overnight-archaeology",
+      "has_skill_md": true,
+      "has_yaml_frontmatter": true,
+      "has_scripts_dir": false,
+      "has_assets_dir": false,
+      "last_modified": 1776057422.349639,
+      "description": "Read the latest nightly daemon reports (debt scores + archaeology ore) from dumpster-dive/ and claude/mailbox/. Show status, findings, and launch commands. Does NOT run the daemons \u2014 zero API overhead. Use when asked about overnight findings, nightly status, debt scores, or archaeology digest.",
+      "classification": "candidate",
+      "role_profile": {
+        "adapter_kind": null,
+        "can_target": true,
+        "can_operator": true,
+        "operator_role": "analysis_only",
+        "operator_reasons": [
+          "document_only_operator"
+        ],
+        "target_role": "legal",
+        "target_reasons": []
+      }
+    },
+    {
+      "lane": "gemini",
+      "root": ".gemini/extensions/chthonic-archive-sync/skills",
+      "skill": "postman",
+      "path": ".gemini/extensions/chthonic-archive-sync/skills/postman",
+      "has_skill_md": true,
+      "has_yaml_frontmatter": true,
+      "has_scripts_dir": false,
+      "has_assets_dir": true,
+      "last_modified": 1774384735.6627119,
+      "description": "REDIRECT - All postman commands are now in mailbox-handoff. Use mailbox-handoff for the full mailbox workflow.",
+      "classification": "redirect_or_stub",
+      "role_profile": {
+        "adapter_kind": null,
+        "can_target": true,
+        "can_operator": true,
+        "operator_role": "legacy_only",
+        "operator_reasons": [
+          "operator_redirect_or_stub"
+        ],
+        "target_role": "degraded",
+        "target_reasons": [
+          "target_redirect_or_stub"
+        ]
+      }
+    },
+    {
+      "lane": "gemini",
+      "root": ".gemini/extensions/chthonic-archive-sync/skills",
+      "skill": "python-header-canon",
+      "path": ".gemini/extensions/chthonic-archive-sync/skills/python-header-canon",
+      "has_skill_md": true,
+      "has_yaml_frontmatter": true,
+      "has_scripts_dir": true,
+      "has_assets_dir": true,
+      "last_modified": 1774384735.6642134,
+      "description": "Normalize Python file headers to the repository canon: #!/usr/bin/env python3 plus UTF-8 coding line. Use when standardizing .py files across Codex or Claude skill/script lanes.",
+      "classification": "candidate",
+      "role_profile": {
+        "adapter_kind": "python_header_report",
+        "can_target": true,
+        "can_operator": true,
+        "operator_role": "executable",
+        "operator_reasons": [
+          "registered_adapter:python_header_report"
+        ],
+        "target_role": "legal",
+        "target_reasons": []
+      }
+    },
+    {
+      "lane": "gemini",
+      "root": ".gemini/extensions/chthonic-archive-sync/skills",
+      "skill": "scm-triage",
+      "path": ".gemini/extensions/chthonic-archive-sync/skills/scm-triage",
+      "has_skill_md": true,
+      "has_yaml_frontmatter": true,
+      "has_scripts_dir": false,
+      "has_assets_dir": false,
+      "last_modified": 1774384735.6682684,
+      "description": "Audit working tree state, classify edits, and move forward without clobbering user work.",
+      "classification": "candidate",
+      "role_profile": {
+        "adapter_kind": null,
+        "can_target": true,
+        "can_operator": true,
+        "operator_role": "analysis_only",
+        "operator_reasons": [
+          "document_only_operator"
+        ],
+        "target_role": "legal",
+        "target_reasons": []
+      }
+    },
+    {
+      "lane": "gemini",
+      "root": ".gemini/extensions/chthonic-archive-sync/skills",
+      "skill": "script-envelope",
+      "path": ".gemini/extensions/chthonic-archive-sync/skills/script-envelope",
+      "has_skill_md": true,
+      "has_yaml_frontmatter": true,
+      "has_scripts_dir": true,
+      "has_assets_dir": true,
+      "last_modified": 1774384735.6722686,
+      "description": "STASHED - Script metadata envelope standardization. This is a protocol rule (SID, shebang, flags), not a skill. Rule belongs in AGENT_COMMON.md.",
+      "classification": "redirect_or_stub",
+      "role_profile": {
+        "adapter_kind": null,
+        "can_target": true,
+        "can_operator": true,
+        "operator_role": "legacy_only",
+        "operator_reasons": [
+          "operator_redirect_or_stub"
+        ],
+        "target_role": "degraded",
+        "target_reasons": [
+          "target_redirect_or_stub"
+        ]
+      }
+    },
+    {
+      "lane": "gemini",
+      "root": ".gemini/extensions/chthonic-archive-sync/skills",
+      "skill": "session-resumer",
+      "path": ".gemini/extensions/chthonic-archive-sync/skills/session-resumer",
+      "has_skill_md": true,
+      "has_yaml_frontmatter": true,
+      "has_scripts_dir": true,
+      "has_assets_dir": true,
+      "last_modified": 1774384735.6787782,
+      "description": "REDIRECT - Resume packet generation is now in dumpster-upcycler. Use dumpster-upcycler for all session dump processing.",
+      "classification": "redirect_or_stub",
+      "role_profile": {
+        "adapter_kind": null,
+        "can_target": true,
+        "can_operator": true,
+        "operator_role": "legacy_only",
+        "operator_reasons": [
+          "operator_redirect_or_stub"
+        ],
+        "target_role": "degraded",
+        "target_reasons": [
+          "target_redirect_or_stub"
+        ]
+      }
+    },
+    {
+      "lane": "gemini",
+      "root": ".gemini/extensions/chthonic-archive-sync/skills",
+      "skill": "skill-polisher",
+      "path": ".gemini/extensions/chthonic-archive-sync/skills/skill-polisher",
+      "has_skill_md": true,
+      "has_yaml_frontmatter": true,
+      "has_scripts_dir": true,
+      "has_assets_dir": true,
+      "last_modified": 1774384735.6907916,
+      "description": "Meta-skill to audit, validate, and fix other skills. Structural integrity checks, cross-flavor audits, WPTG alignment, fixture eval.",
+      "classification": "candidate",
+      "role_profile": {
+        "adapter_kind": "skill_polisher_verify",
+        "can_target": true,
+        "can_operator": true,
+        "operator_role": "executable",
+        "operator_reasons": [
+          "registered_adapter:skill_polisher_verify"
+        ],
+        "target_role": "legal",
+        "target_reasons": []
+      }
+    },
+    {
+      "lane": "gemini",
+      "root": ".gemini/extensions/chthonic-archive-sync/skills",
+      "skill": "sora",
+      "path": ".gemini/extensions/chthonic-archive-sync/skills/sora",
+      "has_skill_md": true,
+      "has_yaml_frontmatter": true,
+      "has_scripts_dir": true,
+      "has_assets_dir": true,
+      "last_modified": 1774384735.7133121,
+      "description": "Use when the user asks to generate, remix, poll, list, download, or delete Sora videos via OpenAI\\u2019s video API using the bundled CLI (`scripts/sora.py`), including requests like \\u201cgenerate AI video,\\u201d \\u201cSora,\\u201d \\u201cvideo remix,\\u201d \\u201cdownload video/thumbnail/spritesheet,\\u201d and batch video generation; requires `OPENAI_API_KEY` and Sora API access.",
+      "classification": "candidate",
+      "role_profile": {
+        "adapter_kind": null,
+        "can_target": true,
+        "can_operator": true,
+        "operator_role": "analysis_only",
+        "operator_reasons": [
+          "scripts_present_no_registered_adapter"
+        ],
+        "target_role": "legal",
+        "target_reasons": []
+      }
+    },
+    {
+      "lane": "gemini",
+      "root": ".gemini/extensions/chthonic-archive-sync/skills",
+      "skill": "toolchain-doctor",
+      "path": ".gemini/extensions/chthonic-archive-sync/skills/toolchain-doctor",
+      "has_skill_md": true,
+      "has_yaml_frontmatter": true,
+      "has_scripts_dir": true,
+      "has_assets_dir": true,
+      "last_modified": 1774384735.7228248,
+      "description": "Diagnose and remediate common Bun + uv drift in this repo (audit vulnerabilities, lockfile inconsistencies, uv sync health) with an opt-in apply mode that only performs safe fixes.",
+      "classification": "candidate",
+      "role_profile": {
+        "adapter_kind": null,
+        "can_target": true,
+        "can_operator": true,
+        "operator_role": "analysis_only",
+        "operator_reasons": [
+          "scripts_present_no_registered_adapter"
+        ],
+        "target_role": "legal",
+        "target_reasons": []
+      }
+    },
+    {
+      "lane": "gemini",
+      "root": ".gemini/extensions/chthonic-archive-sync/skills",
+      "skill": "trainstop-orchestrator",
+      "path": ".gemini/extensions/chthonic-archive-sync/skills/trainstop-orchestrator",
+      "has_skill_md": true,
+      "has_yaml_frontmatter": true,
+      "has_scripts_dir": true,
+      "has_assets_dir": true,
+      "last_modified": 1774384735.7285078,
+      "description": "Proxy runner that chains the repo's non-official maintenance skills/tools in a deterministic order (skill freshness gate -> toolchain doctor -> skill polisher -> mailbox polish -> scribe -> manifest checks).",
+      "classification": "candidate",
+      "role_profile": {
+        "adapter_kind": "lane_orchestrator",
+        "can_target": true,
+        "can_operator": true,
+        "operator_role": "executable",
+        "operator_reasons": [
+          "registered_adapter:lane_orchestrator"
+        ],
+        "target_role": "legal",
+        "target_reasons": []
+      }
+    },
+    {
+      "lane": "gemini",
+      "root": ".gemini/extensions/chthonic-archive-sync/skills",
+      "skill": "triad-velocity-lane",
+      "path": ".gemini/extensions/chthonic-archive-sync/skills/triad-velocity-lane",
+      "has_skill_md": true,
+      "has_yaml_frontmatter": true,
+      "has_scripts_dir": false,
+      "has_assets_dir": false,
+      "last_modified": 1773698714.3857386,
+      "description": "Gemini\u2019s local triad role: execute batch work, maintain momentum, and stay aligned with Codex and Claude.",
+      "classification": "candidate",
+      "role_profile": {
+        "adapter_kind": null,
+        "can_target": true,
+        "can_operator": true,
+        "operator_role": "analysis_only",
+        "operator_reasons": [
+          "document_only_operator"
+        ],
+        "target_role": "legal",
+        "target_reasons": []
+      }
+    }
+  ]
+}

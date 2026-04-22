@@ -12,20 +12,20 @@ This spec is regenerated from the live tensor artifacts. It is the canonical anc
 ## Live Cycle State
 
 - Latest execution status: `passed`
-- Inventory skill count: `92`
-- Full move count: `76176`
-- Legal moves: `5580`
-- Degraded moves: `65709`
-- Blocked moves: `4887`
-- Pool size: `11214`
-- Unique action-key groups: `891`
-- Excluded cells: `64962`
-- Current chain length: `4`
-- Current diversity score: `0.9091`
-- Current cross-lane coverage: `1.0`
-- Current distinct sampled action keys: `4`
-- Current history-pruned exact cells: `4`
-- Current history-pruned action keys: `4`
+- Inventory skill count: `0`
+- Full move count: `0`
+- Legal moves: `0`
+- Degraded moves: `0`
+- Blocked moves: `0`
+- Pool size: `0`
+- Unique action-key groups: `0`
+- Excluded cells: `0`
+- Current chain length: `0`
+- Current diversity score: `0.0`
+- Current cross-lane coverage: `0.0`
+- Current distinct sampled action keys: `0`
+- Current history-pruned exact cells: `0`
+- Current history-pruned action keys: `0`
 
 ## Core Objects
 

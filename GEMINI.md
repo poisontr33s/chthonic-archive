@@ -69,8 +69,9 @@ This file provides guidance to Google Gemini CLI when working with code in this 
 |--------|-----------|
 | **Temple** ([.temple/](.temple/)) | Velocity tasks, batch migrations |
 | **Game** ([game/](game/)) | Batch content generation, parallel ops |
+| **Bifurcation** ([bifurcation/](bifurcation/)) | Experimental or divergent workflows |
 
-**Before creating anything, ask:** "Is this TEMPLE or GAME?"
+**Before creating anything, ask:** "Is this *TEMPLE*, *GAME* or *BIFURCATIONS*?"
 
 ---
 
@@ -93,7 +94,7 @@ This file provides guidance to Google Gemini CLI when working with code in this 
 
 1. Execute, do not stall in analysis.
 2. Prefer PowerShell-native commands.
-3. Use `bun` for JS/TS, `uv run <script>` for Python, `cargo` for Rust, `rv` for Ruby, `goup` for Go.
+3. Use `bun` for JS/TS, `uv run <script>` for Python, `cargo` for Rust, `rv` for Ruby, `goup` for Go, `rv-r` for R, (`shell`/`bash`) for Brush *(prefer one-liners)*.
 4. Trust mailbox handoffs and continue from the latest actionable artifact.
 5. Treat `GEMINI.md`, `AGENT_COMMON.md`, and `AGENTS.md` as the primary local instruction stack.
 

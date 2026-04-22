@@ -32,6 +32,7 @@ $XP_KIND_BONUS = @{
     'epoch-close' = 45   # stacks with meta base = 50 total
     git_commit    = 5    # stacks with artifact base = 15 total
     wiring        = 3    # stacks with diagnostic/decision
+    redux         = 8    # alchemy/SSOT-promotion transforms — stacks with artifact/decision/meta
 }
 $PRIORITY_MULT = @{ 1 = 1.5; 2 = 1.0; 3 = 0.75 }
 
@@ -58,6 +59,8 @@ $ACHIEVEMENTS = @(
         param($ev) ($ev | Where-Object { $_.kind -eq 'git_commit' }).Count -ge 3 }}
     @{ id = 'recover-ward';   name = 'Recovery Ward';  icon = '[R]'; check = {
         param($ev) ($ev | Where-Object { $_.type -eq 'recovery' }).Count -gt 0 }}
+    @{ id = 'alchemist';      name = 'Alchemist';       icon = '[A]'; check = {
+        param($ev) ($ev | Where-Object { $_.kind -eq 'redux' }).Count -gt 0 }}
 )
 
 # ── Ingest trail ──────────────────────────────────────────────────────────────
