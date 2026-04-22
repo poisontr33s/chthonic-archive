@@ -36,8 +36,6 @@ $XP_KIND_BONUS = @{
     roulette_steward  = 12   # roulette chain item completion — stacks with artifact/meta base
     bounty_hunt       = 20   # Bounty-Hunt-Sync metadata enrichment cycle
     pwsh_fullstack    = 15   # full-stack pwsh engineering: backend dispatch + frontend display
-    'zjit-session'    = 2    # ZJIT ruby binary active in current pwsh session (path-probe, once/day)
-    'msys2-session'   = 1    # MSYS2 DevKit gcc present in current pwsh session (once/day)
 }
 $PRIORITY_MULT = @{ 1 = 1.5; 2 = 1.0; 3 = 0.75 }
 
@@ -75,10 +73,33 @@ $ACHIEVEMENTS = @(
         $hasBackend  = ($ev | Where-Object { $_.msg -match 'chthonic\.ps1|dispatch|bridge.*service|Invoke-Chthonic' }).Count -gt 0
         $hasFrontend = ($ev | Where-Object { $_.msg -match 'chthonic-xp|cai\.exe|xp-state|XP.*bar|XP.*engine' }).Count -gt 0
         $hasBackend -and $hasFrontend }}
-    @{ id = 'zjit-rider';   name = 'ZJIT Rider';   icon = '[Z]'; check = {
-        param($ev) ($ev | Where-Object { $_.kind -eq 'zjit-session' }).Count -gt 0 }}
-    @{ id = 'forge-ready';  name = 'Forge Ready';  icon = '[M]'; check = {
-        param($ev) ($ev | Where-Object { $_.kind -eq 'msys2-session' }).Count -gt 0 }}
+    @{ id = 'zjit-rider'; name = 'ZJIT Rider'; icon = '[Z]'; check = {
+        param($ev)
+        # ZJIT recorded in trail (legacy zjit-session marker OR session_start.zjit)
+        # AND real work must exist — env presence alone does not unlock this
+        $hasZjit = ($ev | Where-Object {
+            ($_.kind -eq 'zjit-session') -or
+            ($_.kind -eq 'session_start' -and $_.zjit -and ([string]$_.zjit -match 'zjit'))
+        }).Count -gt 0
+        if (-not $hasZjit) { return $false }
+        ($ev | Where-Object {
+            $_.type -in @('diagnostic','artifact','decision','recovery') -and
+            $_.kind -notin @('zjit-session','msys2-session','session_start','session_end')
+        }).Count -ge 3
+    }}
+    @{ id = 'forge-ready'; name = 'Forge Ready'; icon = '[M]'; check = {
+        param($ev)
+        # MSYS2 recorded in trail AND real work must exist
+        $hasMsys2 = ($ev | Where-Object {
+            ($_.kind -eq 'msys2-session') -or
+            ($_.kind -eq 'session_start' -and $_.msys2 -eq $true)
+        }).Count -gt 0
+        if (-not $hasMsys2) { return $false }
+        ($ev | Where-Object {
+            $_.type -in @('diagnostic','artifact','decision','recovery') -and
+            $_.kind -notin @('zjit-session','msys2-session','session_start','session_end')
+        }).Count -ge 3
+    }}
 )
 
 # ── Ingest trail ──────────────────────────────────────────────────────────────
@@ -98,7 +119,12 @@ function Read-TrailEvents {
 function Measure-XP {
     param($events)
     $total = 0
+    # Metadata kinds — session bookkeeping and env markers; earn no XP (work earns, presence doesn't)
+    $metaKinds = [System.Collections.Generic.HashSet[string]]@(
+        'session_start', 'session_end', 'zjit-session', 'msys2-session'
+    )
     foreach ($e in $events) {
+        if ($e.kind -and $metaKinds.Contains([string]$e.kind)) { continue }
         $base = if ($XP_BASE.ContainsKey($e.type)) { $XP_BASE[$e.type] } else { 1 }
         $kind = if ($e.kind -and $XP_KIND_BONUS.ContainsKey($e.kind)) { $XP_KIND_BONUS[$e.kind] } else { 0 }
         $prio = if ($e.p -and $PRIORITY_MULT.ContainsKey([int]$e.p)) { $PRIORITY_MULT[[int]$e.p] } else { 1.0 }
@@ -125,6 +151,13 @@ function Get-XpBar { param([int]$xp, [int]$level)
     return "[${bar}]"
 }
 
+# ── Trail event date helper (handles both 'at' ISO and 'ts' epoch-ms fields) ──
+function Get-TrailDay { param($e)
+    if ($e.at)  { try { return ([datetime]$e.at).ToString('yyyy-MM-dd')  } catch {} }
+    if ($e.ts)  { try { return ([DateTimeOffset]::FromUnixTimeMilliseconds([long]$e.ts)).ToString('yyyy-MM-dd') } catch {} }
+    return $null
+}
+
 # ── Main ──────────────────────────────────────────────────────────────────────
 
 # ── Env probe — path-check only, zero subprocess cost ────────────────────────
@@ -149,28 +182,6 @@ try {
     }
 } catch {}
 
-# Auto-emit one trail event per day per env capability (feeds XP accumulation)
-if (($zjitActive -or $msys2Active) -and (Test-Path $TrailDir)) {
-    $todayFile   = Join-Path $TrailDir "$((Get-Date -Format 'yyyy-MM-dd')).hot.ndjson"
-    $todayEvents = @()
-    if (Test-Path $todayFile) {
-        $todayEvents = Get-Content $todayFile -ErrorAction SilentlyContinue |
-            Where-Object { $_.Trim() } | ForEach-Object { try { $_ | ConvertFrom-Json } catch {} }
-    }
-    if ($zjitActive -and -not ($todayEvents | Where-Object { $_.kind -eq 'zjit-session' })) {
-        $ev = [ordered]@{ ts = [DateTimeOffset]::UtcNow.ToUnixTimeMilliseconds()
-            type = 'diagnostic'; kind = 'zjit-session'; p = 3
-            msg  = "pwsh session: ZJIT ruby active ($rubyEnvTag)" }
-        Add-Content -Path $todayFile -Value ($ev | ConvertTo-Json -Compress) -Encoding UTF8 -ErrorAction SilentlyContinue
-    }
-    if ($msys2Active -and -not ($todayEvents | Where-Object { $_.kind -eq 'msys2-session' })) {
-        $ev = [ordered]@{ ts = [DateTimeOffset]::UtcNow.ToUnixTimeMilliseconds()
-            type = 'diagnostic'; kind = 'msys2-session'; p = 3
-            msg  = "pwsh session: MSYS2 DevKit active" }
-        Add-Content -Path $todayFile -Value ($ev | ConvertTo-Json -Compress) -Encoding UTF8 -ErrorAction SilentlyContinue
-    }
-}
-
 # Env display string — shown below XP bar, only when env is populated
 $envParts = @()
 if ($rubyEnvTag) { $envParts += "rb:$rubyEnvTag" }
@@ -192,12 +203,21 @@ if (-not $Quiet -and -not $XPDebug -and (Test-Path $StateFile)) {
             Write-Host ("  [XP] Lv.{0} {1}  {2}  {3} XP  (+{4} -> Lv.{5})  {6}" -f `
                 $cachedLevel, $cachedTitle, $cachedBar, $cached.xp, $cachedNext, ($cachedLevel + 1), $cachedIcons) -ForegroundColor Cyan
             if ($envLine) { Write-Host $envLine -ForegroundColor DarkGray }
+            if ($cached.last_session_xp -and [int]$cached.last_session_xp -gt 0) {
+                Write-Host ("       last session: +{0} XP  ({1})" -f [int]$cached.last_session_xp, $cached.last_session_date) -ForegroundColor DarkGray
+            }
             exit 0
         }
     } catch {}
 }
 
 $events = Read-TrailEvents -Dir $TrailDir
+
+# ── Last session delta — most recent session_end with positive XP ─────────────
+$lastEndEv       = $events | Where-Object { $_.kind -eq 'session_end' -and $_.xp_delta -and [int]$_.xp_delta -gt 0 } | Select-Object -Last 1
+$lastSessionXp   = if ($lastEndEv) { [int]$lastEndEv.xp_delta } else { $null }
+$lastSessionDate = if ($lastEndEv) { Get-TrailDay $lastEndEv } else { $null }
+
 $xp     = Measure-XP -events $events
 $level  = Get-Level -xp $xp
 $title  = if ($level -lt $LEVELS.Count) { $LEVELS[$level] } else { 'Sovereign' }
@@ -217,7 +237,8 @@ $unlocked = $ACHIEVEMENTS | Where-Object {
 $newUnlocks = $unlocked | Where-Object { $_ -notin $prior }
 
 # Persist state
-@{ xp = $xp; level = $level; unlocked = $unlocked; updated = (Get-Date -Format 'o') } |
+@{  xp = $xp; level = $level; unlocked = $unlocked; updated = (Get-Date -Format 'o')
+    last_session_xp = $lastSessionXp; last_session_date = $lastSessionDate } |
     ConvertTo-Json -Depth 5 | Set-Content -Path $StateFile -Encoding UTF8 -ErrorAction SilentlyContinue
 
 # ── Output ────────────────────────────────────────────────────────────────────
@@ -234,6 +255,9 @@ if (-not $Quiet) {
     Write-Host ("  [XP] Lv.{0} {1}  {2}  {3} XP  (+{4} -> Lv.{5})  {6}" -f `
         $level, $title, $bar, $xp, $xpNext, ($level + 1), $achieveStr) -ForegroundColor Cyan
     if ($envLine) { Write-Host $envLine -ForegroundColor DarkGray }
+    if ($lastSessionXp) {
+        Write-Host ("       last session: +{0} XP  ({1})" -f $lastSessionXp, $lastSessionDate) -ForegroundColor DarkGray
+    }
     if ($newStr) {
         Write-Host "  $newStr" -ForegroundColor Yellow
     }
