@@ -4636,6 +4636,7 @@ function Get-RubyInstalledVersions {
             [pscustomobject]@{
                 name = $_.Name
                 path = $_.FullName
+                zjit = [bool]($_.Name -match 'zjit')
             }
         }
 }
@@ -4751,6 +4752,9 @@ function Invoke-RubyDoctor {
     $currentVersion = Get-RubyCurrentVersion
     $currentPath = $null
     try { $currentPath = (& rv ruby find 2>$null | Select-Object -First 1).ToString().Trim() } catch {}
+    $jitBuild = if ($currentPath -and $currentPath -match 'zjit') { "zjit" } else { "standard" }
+    # zjit build: socket.so/bigdecimal/json/parser load failures are expected and non-fatal
+    $zjitKnownWarnings = $jitBuild -eq "zjit"
     $latestStable = Get-RubyLatestStableVersion
     $problemDirs = @(Get-RubyProblemDirs)
     $interpreterIssues = @(Get-RubyInterpreterMetadataIssues)
@@ -4793,6 +4797,8 @@ function Invoke-RubyDoctor {
         manager_version = (Get-InstalledVersion "rv")
         current_version = $currentVersion
         current_path = $currentPath
+        jit_build = $jitBuild
+        zjit_known_warnings_expected = $zjitKnownWarnings
         latest_stable = $latestStable
         status = $status
         problem_dirs = @($problemDirs | ForEach-Object {
@@ -4817,6 +4823,11 @@ function Invoke-RubyDoctor {
     Write-Host ($(if ($payload.latest_stable) { $payload.latest_stable } else { "unknown" })) -ForegroundColor White
     Write-Host "  status        " -NoNewline -ForegroundColor Cyan
     Write-Host $payload.status -ForegroundColor $(if ($payload.status -eq "current") { "Green" } else { "Yellow" })
+    Write-Host "  jit build     " -NoNewline -ForegroundColor Cyan
+    Write-Host $payload.jit_build -ForegroundColor $(if ($payload.jit_build -eq "zjit") { "Green" } else { "White" })
+    if ($payload.zjit_known_warnings_expected) {
+        Write-Host "  note: socket.so/bigdecimal/json/parser load warnings are expected in zjit build (non-fatal)" -ForegroundColor DarkYellow
+    }
     Write-Host "  problem dirs  " -NoNewline -ForegroundColor Cyan
     Write-Host $payload.problem_dirs.Count -ForegroundColor White
     foreach ($item in $payload.problem_dirs) {
@@ -4941,6 +4952,21 @@ function Invoke-RubyLane {
         } else { $null }
     }
 
+    # JIT probe — detect zjit build and query enabled state (2>$null silences RubyGems load warnings)
+    $jitBuild = if ($rubyPath -and $rubyPath -match 'zjit') { "zjit" } else { "standard" }
+    $zjitEnabled = $false
+    $yjitEnabled = $false
+    if ($jitBuild -eq "zjit" -and $rubyPath -and (Test-Path $rubyPath)) {
+        try {
+            $zjitOut = (& $rubyPath --zjit -e "print (RubyVM::ZJIT.enabled? rescue false)" 2>$null)
+            $zjitEnabled = "$zjitOut".Trim() -eq 'true'
+        } catch {}
+        try {
+            $yjitOut = (& $rubyPath --yjit -e "print (RubyVM::YJIT.enabled? rescue false)" 2>$null)
+            $yjitEnabled = "$yjitOut".Trim() -eq 'true'
+        } catch {}
+    }
+
     $payload = [pscustomobject]@{
         manager = [pscustomobject]@{
             name = "rv"
@@ -4949,6 +4975,11 @@ function Invoke-RubyLane {
         runtime = [pscustomobject]@{
             ruby = $rubyVersion
             ruby_path = $rubyPath
+        }
+        jit = [pscustomobject]@{
+            build = $jitBuild
+            zjit_enabled = $zjitEnabled
+            yjit_enabled = $yjitEnabled
         }
         toolchain = [pscustomobject]@{
             gcc = $gccVersion
@@ -4976,6 +5007,12 @@ function Invoke-RubyLane {
     } else {
         Write-Host ""
     }
+    Write-Host "  jit      " -NoNewline -ForegroundColor Cyan
+    $jitBuildLabel = $payload.jit.build
+    $zjitTag = if ($payload.jit.zjit_enabled) { "ZJIT:on" } else { "ZJIT:off" }
+    $yjitTag = if ($payload.jit.yjit_enabled) { "YJIT:on" } else { "YJIT:off" }
+    $jitColor = if ($payload.jit.zjit_enabled -or $payload.jit.yjit_enabled) { "Green" } else { "DarkGray" }
+    Write-Host "$jitBuildLabel  $zjitTag  $yjitTag" -ForegroundColor $jitColor
     Write-Host "  gcc      " -NoNewline -ForegroundColor Cyan
     Write-Host ($(if ($payload.toolchain.gcc) { $payload.toolchain.gcc } else { "not found" })) -NoNewline -ForegroundColor White
     Write-Host "  make " -NoNewline -ForegroundColor DarkGray

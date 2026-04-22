@@ -100,7 +100,7 @@ Hidden mailbox dirs (`.codex/mailbox`, `.claude/mailbox`) are non-canonical — 
 | `rv r bundle exec ruby -e "require 'minitest/autorun'"` | Run ruby tests (= `uv run pytest`) |
 | `goup --version` | Go lane health |
 | `brush --version` | Bash-compatible shell health |
-| `pwsh --version` | PowerShell 7.5.x health |
+| `pwsh --version` | PowerShell 7.6.x health |
 | `bun upgrade` | Upgrade bun itself (self-hosted, no winget needed) |
 | `chthonic gemini update` | Update Gemini CLI + self-heal audit in both scopes (canonical path) |
 
@@ -135,7 +135,7 @@ Every file is gold. Agents propose changes; user executes. See [WET_PAPER_TO_GOL
 ## Architecture
 
 Rust-native polyglot: `uv` (Python), `rv` (Ruby), `goup` (Go), `rv-r` (R --tool uses 'rv'- **prefix**, ***is*** altered to: -> **rv-r** -> since the `Rust Oxidized` -tooling equal same name-scheme, that'd cause -- **both** `remove-variable` in `pwsh 7.x.x` **series** + resolve language(s) -- with smallest change as workaround to avoid collision + 'confucious'), `brush` (bash/posix shell), + `bun` (Node/JS/TS/React/Next.js/Vercel/Biome/LightningCSS/TailwindCSS/etc. -- a non dependent npm/node drop-in replacement written in zig). `Zg` (Zig). 
-All follow the same pattern as `uv` — canonical version/runtime manager for their language. No global installs outside of these tools. No `pip install`, no `gem install`, no `npm install -g`. All dependencies are project-local and invoked via the respective tool. This ensures consistent environments, reproducible builds, and clear ownership of runtimes, context and dependencies. No `cmd.exe` or `cmd /c` wrappers — will trigger Windows "open with" dialogs and are not cross-platform. PowerShell 7.5.x (`pwsh`) is the primary shell for interactive use and scripting; `brush` is the sanctioned bash-compatible companion when needed (installed via `cargo install --locked brush-shell`). See [PWSH_RULES.md (repo-root)](PWSH_RULES.md) for usage guidelines.
+All follow the same pattern as `uv` — canonical version/runtime manager for their language. No global installs outside of these tools. No `pip install`, no `gem install`, no `npm install -g`. All dependencies are project-local and invoked via the respective tool. This ensures consistent environments, reproducible builds, and clear ownership of runtimes, context and dependencies. No `cmd.exe` or `cmd /c` wrappers — will trigger Windows "open with" dialogs and are not cross-platform. PowerShell 7.6.x (`pwsh`) is the primary shell for interactive use and scripting; `brush` is the sanctioned bash-compatible companion when needed (installed via `cargo install --locked brush-shell`). See [PWSH_RULES.md (repo-root)](PWSH_RULES.md) for usage guidelines.
 - Polyglot toolchain surface (reference + cheatsheet + meta-CLI sync): [docs/OXIDIZED_POLYGLOT_SURFACE.md](docs/OXIDIZED_POLYGLOT_SURFACE.md)
 
 Rust core. `src/` = Rust core.
