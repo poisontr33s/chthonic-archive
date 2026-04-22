@@ -25,11 +25,15 @@ Write-Host "   ✅ Output Encoding set to UTF-8" -ForegroundColor Gray
 Write-Host "   ✅ Input Encoding set to UTF-8" -ForegroundColor Gray
 Write-Host "   ✅ OutputEncoding set to UTF-8 (pwsh pipeline serialization)" -ForegroundColor Gray
 
-# 2. Python UTF-8 mode (PEP 540)
+# 2. Python UTF-8 mode (PEP 540 + PEP 597)
 # Covers uv run, python3, and subprocesses that inherit this environment.
-# Idempotent — safe if PYTHONUTF8 is already set in the calling shell.
-if (-not $env:PYTHONUTF8) { $env:PYTHONUTF8 = "1" }
-Write-Host "   ✅ PYTHONUTF8=1 (Python PEP 540 UTF-8 mode active)" -ForegroundColor Gray
+# PYTHONUTF8=1  → PEP 540: global UTF-8 mode (file I/O, stdio, locale)
+# PYTHONIOENCODING → PEP 597: explicit stdin/stdout/stderr encoding for pipes/ttys
+# Both are required for full coverage. Idempotent — safe if already set.
+if (-not $env:PYTHONUTF8)       { $env:PYTHONUTF8       = "1" }
+if (-not $env:PYTHONIOENCODING) { $env:PYTHONIOENCODING = "utf-8" }
+Write-Host "   ✅ PYTHONUTF8=1 (PEP 540 — global UTF-8 mode)" -ForegroundColor Gray
+Write-Host "   ✅ PYTHONIOENCODING=utf-8 (PEP 597 — stdin/stdout/stderr)" -ForegroundColor Gray
 
 # 2. Disable QuickEdit Mode
 # In QuickEdit mode, clicking in the console pauses output processing,

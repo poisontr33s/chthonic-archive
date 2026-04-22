@@ -449,7 +449,11 @@ When bun installs global packages (gemini-cli, claude-code, etc.), it creates `C
 **Mandatory Encoding Preamble (First Line):**
 ```powershell
 [Console]::InputEncoding = [Console]::OutputEncoding = $OutputEncoding = [System.Text.Encoding]::UTF8
+$env:PYTHONIOENCODING = "utf-8"   # PEP 597 — stream encoding for pipes/ttys
+$env:PYTHONUTF8      = "1"        # PEP 540 — global UTF-8 mode (file I/O + locale)
+chcp 65001 | Out-Null             # Win32 console code page — covers legacy tools
 ```
+All four are already set in `~/.config/powershell/profile.ps1`. The Microsoft.PowerShell_profile.ps1 stub sets them as fallback (guarded, idempotent). `fortify_terminal.ps1` applies them in automation contexts.
 
 **OneDrive Performance Fix (Stub Pattern):**
 If `$PROFILE` resides on OneDrive, replace it with a stub that sources a local file to bypass sync latency (60s -> 65ms):

@@ -30,21 +30,28 @@
 
 **UTF-8 Invocation Canon (`PEM-UV-UTF8`):**
 
-Scripts that emit Unicode, emoji, or Rich-rendered output require explicit stdout encoding on Windows. The `# -*- coding: utf-8 -*-` header covers file *reading*; `PYTHONIOENCODING=utf-8` covers stdout *writing*. Set it universally — no downside.
+Scripts that emit Unicode, emoji, or Rich-rendered output require explicit stdout encoding on Windows. The `# -*- coding: utf-8 -*-` header covers file *reading*; `PYTHONIOENCODING=utf-8` covers stdout *writing* via PEP 597; `PYTHONUTF8=1` activates PEP 540 global UTF-8 mode.
+
+**Profile-managed (zero per-command overhead):**
+Both env vars are now set in the pwsh profile chain (`~/.config/powershell/profile.ps1`). Every `uv run` invocation inherits them automatically — no inline prefix needed in normal interactive sessions.
 
 ```powershell
-# PowerShell (pwsh) — canonical form for this repo:
-✅ PREFERRED:   $env:PYTHONIOENCODING = 'utf-8'; uv run scripts/<script>.py <args>
+# ✅ SUFFICIENT in any shell that loaded the profile:
+uv run scripts/<script>.py <args>
+
+# ✅ STILL CORRECT for CI / non-profile shells (belt-and-suspenders):
+$env:PYTHONIOENCODING = 'utf-8'; $env:PYTHONUTF8 = '1'; uv run scripts/<script>.py <args>
 
 # brush / bash-compatible — same effect:
-✅ PREFERRED:   PYTHONIOENCODING=utf-8 uv run scripts/<script>.py <args>
+PYTHONIOENCODING=utf-8 PYTHONUTF8=1 uv run scripts/<script>.py <args>
 
-# Inline python -c usage (e.g., one-shot data extraction):
-✅ CORRECT:     $env:PYTHONIOENCODING = 'utf-8'; uv run python -c "<code>"
+# Inline python -c usage:
+uv run python -c "<code>"
 ```
 
-**Trigger:** any script that uses `rich`, produces emoji/box-drawing characters, or pipes output through `| head` / `2>&1` on Windows.
-**Universal lock:** set for all `uv run` invocations — safe to apply unconditionally.
+**Profile coverage:** `PYTHONUTF8=1` (PEP 540) + `PYTHONIOENCODING=utf-8` (PEP 597) + `[Console]::OutputEncoding=UTF8` + `$OutputEncoding=UTF8` + `chcp 65001`.
+**Trigger (inline form still needed):** CI environments, bare-pwsh invocations without `-NoProfile`, or any subprocess spawned without inheriting the parent environment.
+**`fortify_terminal.ps1`:** Sets both idempotently for automation contexts (Playwright CDP, long-running daemons). Run once per session if encoding symptoms appear.
 
 **Metabolic Standard v3 (Unified Project Lane):**
 All project-integrated scripts MUST adhere to the **(`Metabolic-Standard-v3`)**. PEP 723 inline metadata (`/// script` blocks) is **PROHIBITED** — all dependencies are consolidated in `pyproject.toml`.
