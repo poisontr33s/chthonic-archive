@@ -294,7 +294,38 @@ All 9 files share the same broken import (`from skill_tensor_common import ...` 
 
 ## Quick-Win Cluster Summary
 
-> **Status: COMPLETE — 2026-04-21.** All T0→T5 items executed. No ⬜ items remain.
+> **Status: COMPLETE — 2026-04-22.** All T0→T5 items executed, T-Entity prep appended. No ⬜ items remain in script tiers.
 > Prior sprint guidance (Score 3.0 items, batch fixes) fulfilled — preserved in git history.
 
 *Generated: scripts/ full recursive scan → Explore agent (thorough mode) → L/E × H/V ranking*
+
+---
+
+## T-Entity — Pentad Documentation Surface Corrections
+
+> **Source:** SSOT `.github/copilot-instructions.archive.md` — acquired prerequisite pass 2026-04-22.
+> **Method:** Same L/E × H/V scoring. SCORE = VALUE / EFFORT.
+> **Scope:** Documentation surfaces only (no scripts). Target: align existing `.github/instructions/` branch files with the SSOT-canonical Pentad structure.
+> **SSOT Truth (canonical, do not re-derive):**
+> - **Triumvirate** = Orackla / Umeko / Lysandra — T1 triadic core. Fixed at 3. Cannot expand by definition. (SSOT L93)
+> - **Cardinals** = T1-Cardinal sub-classification. Claudine Sin'claire is already seated here. (SSOT L837, L413, L5111)
+> - **T1-bridge** = Pentea Vox Internum — Fifth Element relay router. Distinct from Cardinal. (SSOT L3902, L3978)
+> - **Pentad** = full 5-entity operative collective (Triumvirate ×3 + Cardinal ×1 + T1-bridge ×1). SSOT-canonical group name.
+> **Hierarchy:** Tier 1 = Triumvirate (T1) → Cardinals (T1-Cardinal) → Relay (T1-bridge) → collectively = Pentad.
+
+| File | Score | Effort | Action |
+|------|-------|--------|--------|
+| `.github/instructions/asc-entity-generation.reference.md` | **3.0** | 1 | ⬜ L73: Claudine listed as "Tier 3 SAI" — **wrong tier** per SSOT. Correct to "Tier 1 (Cardinal)". Also L445: "§4.2.4 for 4th Triumvirate member" framing — update to "T1-Cardinal slot" (Triumvirate stays triadic). |
+| `.github/instructions/asc-entity-generation-validation-workflow.md` | **3.0** | 1 | ⬜ L61: "3 Triumvirate members (fixed)" rule — add exception note: Claudine (T1-Cardinal) and Pentea (T1-bridge) are SSOT-seated Pentad positions, not violations. L35: "Tier 1 (Triumvirate - Sub-MILFs)" header — expand to include Cardinals/T1-bridge sub-tiers. L383: "Expand Triumvirate → Quadrate" option in Meridian scenario — replace with canonical framing: add to T1-Cardinal, not Triumvirate expansion. |
+| `.github/instructions/ssot-toolbox.instructions.md` | **2.0** | 1 | ⬜ L112: Table row "Tier 1 (Triumvirate)" — expand label to "Tier 1 (Triumvirate / Cardinals / T1-bridge)" to surface the Pentad sub-tiers. L20: `$triumvirate${}` invocation token — add footnote or sibling entry for `$cardinal${}` and `$t1-bridge${}` channels. |
+| `AGENTS.md` | **1.0** | 1 | ⬜ L27: "Penta" reference is informal/lowercase — formalize to `Pentea` and tighten the Pentad reference from prose to canonical shorthand: `(Triumvirate: Orackla/Umeko/Lysandra) + (Cardinal: Claudine) + (T1-bridge: Pentea) = Pentad`. |
+
+### T-Entity Progress Trail
+
+| Item | Done | Notes |
+|------|------|-------|
+| SSOT prerequisite acquisition | ✅ 2026-04-22 | Triumvirate L93, Cardinals L837/L413, T1-bridge L3902, Pentad L3978 |
+| `asc-entity-generation.reference.md` | ⬜ | Claudine tier correction + Triumvirate framing |
+| `asc-entity-generation-validation-workflow.md` | ⬜ | Rule-of-Three exception + sub-tier headers |
+| `ssot-toolbox.instructions.md` | ⬜ | Table label + invocation token expansion |
+| `AGENTS.md` | ⬜ | Formalize Pentea reference + canonical shorthand |
