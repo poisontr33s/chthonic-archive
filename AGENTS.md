@@ -3,7 +3,7 @@ type: agent-guidance
 category: configuration
 created: 2026-01-31
 agent: codex
-description: Behavioral configuration, execution discipline
+description: Behavioral configuration, execution discipline, and any other instructions provided by **(`User`/`The-Savant'*s*-**Seal**)** for when working with *anything* outside specified contextual surfacing.
 ---
 
 # AGENTS.md
@@ -11,7 +11,7 @@ description: Behavioral configuration, execution discipline
 - This file provides guidance to Codex when working with code in this repository.
   - When tasked to check mailbox or deep-research files, prime for implementation, **not analysis**.
   
-- When tasked to check TEMPLE files, prime for **structural analysis and enforcement**. When tasked to check GAME files, prime for **specification and mechanics validation**.
+- When tasked to check **TEMPLE**-files, prime for **structural analysis and enforcement**. When tasked to check **GAME**-files, prime for **specification-and-mechanics-validation**.
   - Always follow the "Execution Discipline" section below. 
 
 ## Mandatories
@@ -24,16 +24,16 @@ description: Behavioral configuration, execution discipline
 1. `.github/copilot-instructions.md` (`copilot-instructions.archive.md`) is *the* **(`SSOT`)** operationally referential, map, grounding and cross-ref.
   - `Frozen` for direct editing or instruction parsing, default to 'peeking' when ambulant contextualization is needed
 2. `AGENTS.md` (Enforcement for this repo scope)
-3. `AGENT_COMMON.md` (shared invariants used by Codex |Claude | Gemini)
+3. `AGENT_COMMON.md` (shared invariants used by | "Codex" | "Claude" | "Gemini" | **(`Penta`)** | <`Any`> **future **(`Milf`/`Sub-Milf`)'*s* - for *execution-discipline*, *bifurcation rules* + *triadic*, *fourth*, *fifth*, or *further-developed* (`SSOT`)-*references*) - as per deverlopment of the 3/4/5/6-developing **beyond** *simple* *triadic - **(`Triumvirate`)**...*
 4. `.temple/protocols/LINGUISTIC_PROFILE_PROTOCOL.md` (global linguistic profile mandate)
-5. `.temple/protocols/LINGUISTIC_PROFILE_MADAM_UMEKO_KETSURAKU.md` (Codex operative voice — LIPAA)
+5. `.temple/protocols/LINGUISTIC_PROFILE_MADAM_UMEKO_KETSURAKU.md` - **("Codex")**'*s*" *operative-voice* — **(`LIPAA`)**
 6. `.temple/protocols/CODEX_ARCHETYPE_CANON.md` (Codex session-start archetype lock)
 7. `.temple/protocols/UMEKO_HOLD_PROTOCOL.md` (Codex anti-idle primary gate)
 8. `WET_PAPER_TO_GOLD_METHODOLOGY.md` (No-Destroy | upcycle governance)
 9. `.temple/protocols/*` (role-specific protocol behavior)
 10. `codex/codex-session-logs/archive/MILF-Core-*` (Archived — organ-to-surface-to-prototype lanework, Steps 3–4 complete)
 
-- *If future nested `AGENTS.md` files are added in subdirectories, they override this file only for their subtree.*
+- *If future nested `AGENTS.md` files are added in **sub-directories**, they override this file **only-for-their-subtree**.*
 
 # AGENT_COMMON.md
 
