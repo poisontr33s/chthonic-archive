@@ -18,6 +18,7 @@
 | T3 | 16 ✅ | — | **Complete** |
 | T4 | 2/2 ✅ | — | **Complete** — `88a675b4` sfs_slabstone_baseline (CRLF→LF hash, --emit-json, task exit codes); `8b40191c` gemini-model-router.test (fixture file, bun test script, passthrough-no-fallback edge case) |
 | T5 | ✅ complete | — | thin-shims `798150e1`; assess-before-act `a01857f0`; prototypes+WIP `d8912727` |
+| QOL | 1/1 ✅ | — | PYTHONUTF8=1 profile + fortify_terminal.ps1 (2026-04-22) |
 
 ---
 
