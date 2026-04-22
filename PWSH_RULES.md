@@ -9,10 +9,10 @@
 @ReferencedBy:  DOC_CLAUDE_MD_ROOT
 -->
 
-**Version:** 1.5
+**Version:** 1.6
 **Status:** VERIFIED
 **Validation Date:** 2026-04-21
-**Authority:** `.github/copilot-instructions.md` (SSOT-companion .github/copilot-instructions.archive.md (SSOT-canon) --monolith 'macro.prompt-world'
+**Authority:** `.github/copilot-instructions.md` [SSOT-companion](.github/copilot-instructions.archive.md) (SSOT-canon) --monolith 'macro.prompt-world'
 
 ---
 
@@ -604,10 +604,48 @@ rv ruby pin <new-version>        # update .ruby-version, commit
 
 ---
 
+## R Toolchain (rv-r)
+
+> **Origin:** Session 2026-04-22. Disambiguation: `rv` = Ruby version manager. `rv-r` = R package manager. Same binary namespace prefix, different tools — no collision when the suffix is correct.
+
+### Rule RR-1: `rv-r` is R packages — `rv` is Ruby versions
+
+| Invocation | Manages | Config file |
+|------------|---------|-------------|
+| `rv` | Ruby versions (install/uninstall/pin) | `.ruby-version` |
+| `rv r ridk` | Ruby DevKit / MSYS2 (via rv proxy) | — |
+| `rv-r` | R packages (add/sync/upgrade) | `rproject.toml` |
+
+```powershell
+# R package operations — rv-r only
+rv-r sync              # install locked packages
+rv-r add <pkg>         # add package and sync
+rv-r upgrade           # upgrade all packages
+rv-r plan              # dry-run of sync
+rv-r summary           # project status
+
+# FORBIDDEN — rv manages Ruby versions, not R packages
+rv install ggplot2
+```
+
+### Rule RR-2: R version is pinned in `rproject.toml`
+
+Unlike Ruby (`.ruby-version`), R version is declared directly in `rproject.toml`:
+
+```toml
+[project]
+r_version = "4.5"   # R version constraint — not a rv-r subcommand
+```
+
+`rproject.toml` is the `rv-r` project manifest (equivalent to `pyproject.toml` for `uv`). It holds both the R version constraint and package dependencies. Committed at repo root.
+
+---
+
 ## Version History
 
 | Version | Date | Changes |
 |---------|------|---------|
+| 1.6 | 2026-04-22 | Added R Toolchain section (RR-1/RR-2): rv-r vs rv disambiguation, rproject.toml as R manifest, R version pin location; rproject.toml whitelisted in .gitignore |
 | 1.5 | 2026-04-22 | Added Ruby Toolchain section (R-1 through R-4): rv r ridk canonical form, sequential DevKit install, version pin (.ruby-version), upgrade path |
 | 1.4 | 2026-04-21 | Hash refresh (shell_capabilities.ps1 → `934B9E30...`); `erdno` → `eldno` typo fix |
 | 1.3 | 2026-04-15 | Added PATH Integrity & Invocation Rules (P-1 through P-5): bare-name phantom risk, MSYS2 usr\bin demotion, extensionless file prohibition, powershell.exe/pwsh.exe disambiguation |

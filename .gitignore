@@ -7,6 +7,7 @@
 !.gitattributes
 !rust-toolchain.toml
 !.ruby-version
+!rproject.toml
 
 # Allow PR/patch suggestions
 !PR_SUGGESTION.md

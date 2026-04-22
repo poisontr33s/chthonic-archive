@@ -1,0 +1,33 @@
+[project]
+name = "chthonic-archive"
+r_version = "4.5"
+
+# Repository resolution order — binary packages preferred via P3M (faster).
+# P3M Windows binary lane resolves pre-compiled DLLs; CRAN is source fallback.
+# r-universe added for ropensci ecosystem access.
+repositories = [
+  { alias = "P3M-WIN", url = "https://packagemanager.posit.co/cran/latest" },
+  { alias = "CRAN", url = "https://cloud.r-project.org/" },
+  # r-universe removed — non-CRAN mirror structure triggers rv-r remotes.rs panic (off-by-one bug)
+]
+
+dependencies = [
+  # Data wrangling
+  "dplyr",
+  "tidyr",
+  "purrr",
+  "stringr",
+  # Data I/O
+  "jsonlite",
+  "yaml",
+  # Plotting
+  "ggplot2",
+  # Dev tooling (rv-r has no [dev-dependencies] concept — merged here)
+  "devtools",
+  "usethis",
+  "testthat",
+  "rmarkdown",
+  "knitr",
+  "lintr",
+  "pak",
+]
