@@ -16,8 +16,12 @@ Referenced by: `CLAUDE.md`, `AGENTS.md`, `GEMINI.md`
 - All Python dependencies must be declared in `pyproject.toml` and installed via `uv pip install (example) --require-virtualenv <package>`.
 
 - **Ruby:** use `rv` for runtime and gem/tool isolation.
-- `rv r ridk 1` then `2` and `3` -- never `1 2 3` (doesn't work) -- for MSVC toolchain on Windows and pacman use `Rust Oxidized` tooling commands before native installation of; Go, Python, etc. -- to ensure proper path and environment variable setup with the tooling.
-- `rv r 1` is the command to install Ruby itself, but it doesn't handle the MSVC build tools or MSYS2 environment, which is why you need to run `rv r ridk 2` and `rv r ridk 3` separately after installing Ruby. This ensures that you have a fully functional Ruby development environment on Windows, capable of handling gems with native extensions and providing a Unix-like shell when needed.  
+  - Install a Ruby version: `rv ruby install ruby-4.0.3` (downloads RubyInstaller + embedded MSYS2).
+  - Pin repo version: `rv ruby pin 4.0.3` (writes `.ruby-version`).
+  - MSYS2 devkit components (run once after install, separately — combined args don't work): `rv r ridk install 1` → `rv r ridk install 2` → `rv r ridk install 3`. Component 1 = MSYS2 base, 2 = system update, 3 = MINGW toolchain (gcc, required for native gems).
+  - Run with ruby on PATH: `rv r <cmd>` (e.g. `rv r bundle install`, `rv r gem list`).
+  - Config anchors: `.ruby-version` (version pin, tracked), `Gemfile`/`Gemfile.lock` (deps + runtime constraint, tracked), `.bundle/config` (vendor path isolation, tracked — equivalent to `uv.toml`'s `python-preference = "only-managed"`). No `rv.toml` exists — rv config surface is intentionally minimal.
+  - No bare `gem install`. All gems are project-local via `rv r bundle install`.
 - **Go:** use `goup` for Go runtime ownership.
 - **JS/TS:** prefer `bun` for extension scripts.
   - **Shebang rule (CRITICAL — recurring bug):** `#!/usr/bin/env bun` MUST be **line 1** of any CLI `.ts` script. All other content (`// @SID:`, comments, envelope blocks) comes AFTER the shebang. Library modules (non-CLI, `src/` files imported but not executed directly) omit the shebang entirely.
@@ -85,7 +89,7 @@ Hidden mailbox dirs (`.codex/mailbox`, `.claude/mailbox`) are non-canonical — 
 | `uv run scripts/link_audit.py check <file> --dry-run` | Markdown link audit (dry-run) |
 | `uv run scripts/link_audit.py check <file> --fix` | Markdown link auto-fix |
 | `uv run scripts/link_audit.py backticks <file> --fix` | Upgrade inert backtick refs to links |
-| `rv --version` | Ruby lane health |
+| `rv ruby list` | Ruby lane health (lists installed + active version) |
 | `goup --version` | Go lane health |
 | `brush --version` | Bash-compatible shell health |
 | `pwsh --version` | PowerShell 7.5.x health |

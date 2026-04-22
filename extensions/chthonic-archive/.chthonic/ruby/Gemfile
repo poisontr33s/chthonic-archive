@@ -1,5 +1,12 @@
+# frozen_string_literal: true
+
 source "https://rubygems.org"
 
-gem "json"
-gem "prism"
-gem "syntax_tree"
+ruby "~> 4.0"
+
+# json: explicit for version control; bundled gem in Ruby 4.0 stdlib
+gem "json", ">= 2.9"
+# prism: builtin (+PRISM) in Ruby 4.0 — no gem needed; require "prism" resolves to core
+# gem "prism"
+# syntax_tree: formatting/AST walk for lore.rb
+gem "syntax_tree", ">= 6.3"

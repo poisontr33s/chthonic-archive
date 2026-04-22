@@ -163,7 +163,8 @@ extensions/*/.chthonic/cache/
 extensions/*/.chthonic/python/.venv/
 extensions/*/.chthonic/python/uv.lock
 extensions/*/.chthonic/ruby/vendor/
-extensions/*/.chthonic/ruby/.bundle/
+extensions/*/.chthonic/ruby/.bundle/*
+!extensions/*/.chthonic/ruby/.bundle/config
 extensions/*/.chthonic/rust-target/
 extensions/*/native/target/
 extensions/*/media/wasm/pkg/
