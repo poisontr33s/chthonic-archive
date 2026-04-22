@@ -139,7 +139,7 @@ export class PolyglotBroker implements vscode.Disposable {
             this.fireSidecarError('ruby', `ruby sidecar missing: ${scriptPath}`);
             return;
         }
-        this.rubySidecar = spawn('ruby', [scriptPath], {
+        this.rubySidecar = spawn('ruby', ['--zjit', scriptPath], {
             cwd: this.rootPath,
             stdio: ['pipe', 'pipe', 'pipe'],
         });

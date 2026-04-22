@@ -2384,6 +2384,8 @@ function Show-StatusBanner {
 
         # rv -> Ruby
         $rubyVer = ver { ruby -e "print RUBY_VERSION" }
+        $rubyJitTag = $null
+        try { $rubyCmd = Get-Command ruby -ErrorAction SilentlyContinue; if ($rubyCmd -and $rubyCmd.Source -match 'zjit') { $rubyJitTag = '+zjit' } } catch {}
         $rvwVer = ver { rvw --version }; if ($rvwVer -match '(\d+\.\d+\.\d+)') { $rvwVer = $matches[1] } else { $rvwVer = $null }
         $rvMeta = Get-CommandResolution -Name "rv"
         $rvVer = $null
@@ -2393,7 +2395,7 @@ function Show-StatusBanner {
         }
         if (-not $rvVer -and $rvwVer) { $rvVer = $rvwVer }
         Write-Host "  rv    " -NoNewline -ForegroundColor $C
-        if ($rubyVer) { Write-Host "ruby $rubyVer" -NoNewline -ForegroundColor $W } else { Write-Host "ruby ?" -NoNewline -ForegroundColor $R }
+        if ($rubyVer) { Write-Host "ruby $rubyVer$rubyJitTag" -NoNewline -ForegroundColor $W } else { Write-Host "ruby ?" -NoNewline -ForegroundColor $R }
         if ($rvVer) { Write-Host "  rv $rvVer" -NoNewline -ForegroundColor $D }
         if ($rvwVer) { Write-Host "  rvw $rvwVer" -NoNewline -ForegroundColor $D }
 
@@ -3828,7 +3830,11 @@ function Get-InstalledVersion {
                 if ($v -match '(\d+\.\d+\.\d+)') { return $matches[1] }
                 return $null
             }
-            "ruby"       { $v = ruby -e "print RUBY_VERSION" 2>$null; return $v }
+            "ruby"       {
+                $v = ruby -e "print RUBY_VERSION" 2>$null
+                try { $rubyCmd = Get-Command ruby -ErrorAction SilentlyContinue; if ($rubyCmd -and $rubyCmd.Source -match 'zjit') { return "$v+zjit" } } catch {}
+                return $v
+            }
             "python"     {
                 $v = $null
                 try {
