@@ -6,6 +6,7 @@
 !.copilotignore
 !.gitattributes
 !rust-toolchain.toml
+!.ruby-version
 
 # Allow PR/patch suggestions
 !PR_SUGGESTION.md

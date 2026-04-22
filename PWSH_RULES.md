@@ -9,7 +9,7 @@
 @ReferencedBy:  DOC_CLAUDE_MD_ROOT
 -->
 
-**Version:** 1.4
+**Version:** 1.5
 **Status:** VERIFIED
 **Validation Date:** 2026-04-21
 **Authority:** `.github/copilot-instructions.md` (SSOT-companion .github/copilot-instructions.archive.md (SSOT-canon) --monolith 'macro.prompt-world'
@@ -548,10 +548,67 @@ $env:PATH -split ';' | Select-Object -First 30 | ForEach-Object {
 
 ---
 
+## Ruby Toolchain (rv + ridk)
+
+> **Origin:** Session 2026-04-22. Root cause: bare `ridk` resolves via PATH without rv version binding — targets the wrong version's `msys64`. `rv r ridk` is the only canonical form.
+
+### Rule R-1: Never invoke bare `ridk`
+
+```powershell
+# CORRECT — rv proxy routes to active version's own msys64
+rv r ridk version
+rv r ridk install 1
+
+# FORBIDDEN — PATH resolution bypasses rv binding, targets wrong msys64
+ridk version
+ridk install 1 2 3
+```
+
+### Rule R-2: DevKit install is sequential — never combined
+
+```powershell
+# CORRECT — one phase at a time
+rv r ridk install 1   # MSYS2 base
+rv r ridk install 2   # MSYS2 system update (pacman -Syu)
+rv r ridk install 3   # MINGW toolchain (gcc, binutils, ucrt64, winpthreads, pkgconf)
+
+# FORBIDDEN — combined hides per-phase failure
+rv r ridk install 1 2 3
+```
+
+Phase 2 and 3 depend on phase 1. Sequential runs surface failure at the correct step and allow retry without repeating prior phases.
+
+### Rule R-3: Pin Ruby version per repo
+
+```powershell
+# Pin active version — run once, commit .ruby-version
+rv ruby pin <version>   # writes .ruby-version to repo root
+```
+
+`.ruby-version` is rv's per-project pin file. `rv` reads it on directory entry and activates the matching installed version automatically.
+
+**Current repo pin:** `4.0.3` (`.ruby-version` committed 2026-04-22)
+
+### Rule R-4: Upgrade path — no `upgrade` subcommand
+
+`rv ruby upgrade` does not exist. The canonical upgrade sequence:
+
+```powershell
+rv ruby install <new-version>    # install new version
+rv r ridk install 1              # MSYS2 base in new version's msys64
+rv r ridk install 2              # MSYS2 system update
+rv r ridk install 3              # MINGW DevKit
+rv ruby uninstall <old-version>  # remove old (no stacking)
+rv ruby pin <new-version>        # update .ruby-version, commit
+```
+
+---
+
 ## Version History
 
 | Version | Date | Changes |
 |---------|------|---------|
+| 1.5 | 2026-04-22 | Added Ruby Toolchain section (R-1 through R-4): rv r ridk canonical form, sequential DevKit install, version pin (.ruby-version), upgrade path |
 | 1.4 | 2026-04-21 | Hash refresh (shell_capabilities.ps1 → `934B9E30...`); `erdno` → `eldno` typo fix |
 | 1.3 | 2026-04-15 | Added PATH Integrity & Invocation Rules (P-1 through P-5): bare-name phantom risk, MSYS2 usr\bin demotion, extensionless file prohibition, powershell.exe/pwsh.exe disambiguation |
 | 1.2 | 2026-04-13 | Added bun audit architecture, precedence chain, hono boundary bug, home-dir workspace scope, npm death strategy |
