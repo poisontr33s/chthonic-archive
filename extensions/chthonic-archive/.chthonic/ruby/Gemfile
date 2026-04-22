@@ -4,9 +4,30 @@ source "https://rubygems.org"
 
 ruby "~> 4.0"
 
-# json: explicit for version control; bundled gem in Ruby 4.0 stdlib
-gem "json", ">= 2.9"
+# --- core ---
+# oj: optimized JSON (C extension, 2-10x faster than stdlib json). drop-in via Oj.load/Oj.dump
+gem "oj", ">= 3.16"
+# syntax_tree: AST walk + formatting for lore.rb
+gem "syntax_tree", ">= 6.3"
+# async: Fiber::Scheduler-based async I/O (Ruby 4.0 Ractor-compatible). For when lore.rb grows concurrent.
+gem "async", ">= 2.21"
 # prism: builtin (+PRISM) in Ruby 4.0 — no gem needed; require "prism" resolves to core
 # gem "prism"
-# syntax_tree: formatting/AST walk for lore.rb
-gem "syntax_tree", ">= 6.3"
+
+# --- development (equivalent to uv [dev] group) ---
+# rubocop: linter + formatter (= ruff for Python). run: rv r bundle exec rubocop
+# rubocop-performance: performance cop extension
+# minitest: test runner (= pytest). stdlib in Ruby 4.0 but pinned explicitly here.
+# flog: cyclomatic complexity scorer (= radon for Python). run: rv r bundle exec flog lore.rb
+# benchmark-ips: iterations/sec benchmarking (= pytest-benchmark). run: rv r bundle exec ruby bench.rb
+# steep: RBS-based type checker (= mypy). run: rvx steep check
+# rbs: RBS type signature format. stdlib in Ruby 4.0 but pinned for version control.
+group :development do
+  gem "rubocop", ">= 1.70", require: false
+  gem "rubocop-performance", ">= 1.23", require: false
+  gem "minitest", ">= 6.0", require: false
+  gem "flog", ">= 4.8", require: false
+  gem "benchmark-ips", ">= 2.14", require: false
+  gem "steep", ">= 1.9", require: false
+  gem "rbs", ">= 3.8", require: false
+end

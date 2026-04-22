@@ -21,7 +21,7 @@ Referenced by: `CLAUDE.md`, `AGENTS.md`, `GEMINI.md`
   - MSYS2 devkit components (run once after install, separately — combined args don't work): `rv r ridk install 1` → `rv r ridk install 2` → `rv r ridk install 3`. Component 1 = MSYS2 base, 2 = system update, 3 = MINGW toolchain (gcc, required for native gems).
   - Run with ruby on PATH: `rv r <cmd>` (e.g. `rv r bundle install`, `rv r gem list`).
   - Config anchors: `.ruby-version` (version pin, tracked), `Gemfile`/`Gemfile.lock` (deps + runtime constraint, tracked), `.bundle/config` (vendor path isolation, tracked — equivalent to `uv.toml`'s `python-preference = "only-managed"`). No `rv.toml` exists — rv config surface is intentionally minimal.
-  - No bare `gem install`. All gems are project-local via `rv r bundle install`.
+  - No bare `gem install`. Frozen lockfile install: `rv ci`. Dev install (allows lockfile updates): `rv r bundle install`. Run gem CLI without bundle: `rvx <gem>`. Isolated global tool: `rv tool install <gem>`.
 - **Go:** use `goup` for Go runtime ownership.
 - **JS/TS:** prefer `bun` for extension scripts.
   - **Shebang rule (CRITICAL — recurring bug):** `#!/usr/bin/env bun` MUST be **line 1** of any CLI `.ts` script. All other content (`// @SID:`, comments, envelope blocks) comes AFTER the shebang. Library modules (non-CLI, `src/` files imported but not executed directly) omit the shebang entirely.
@@ -90,6 +90,13 @@ Hidden mailbox dirs (`.codex/mailbox`, `.claude/mailbox`) are non-canonical — 
 | `uv run scripts/link_audit.py check <file> --fix` | Markdown link auto-fix |
 | `uv run scripts/link_audit.py backticks <file> --fix` | Upgrade inert backtick refs to links |
 | `rv ruby list` | Ruby lane health (lists installed + active version) |
+| `rv ci` | Install ruby deps from lockfile, frozen (= `uv sync --frozen`) |
+| `rv r bundle install` | Install ruby deps, allows lockfile updates (dev use only) |
+| `rv r bundle exec rubocop` | Ruby lint + style (= `uv run ruff check`) |
+| `rv r bundle exec rubocop -A` | Ruby lint autocorrect (= `uv run ruff check --fix`) |
+| `rvx <gem> [args]` | Run gem CLI without project bundle (= `uvx`) |
+| `rv tool install <gem>` | Install gem as isolated global tool (= `uv tool install`) |
+| `rv r bundle exec ruby -e "require 'minitest/autorun'"` | Run ruby tests (= `uv run pytest`) |
 | `goup --version` | Go lane health |
 | `brush --version` | Bash-compatible shell health |
 | `pwsh --version` | PowerShell 7.5.x health |

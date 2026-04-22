@@ -1,16 +1,16 @@
 #!/usr/bin/env ruby
 # frozen_string_literal: true
 
-require "json"
+require 'oj'
 begin
-  require "prism"
+  require 'prism'
   PRISM_AVAILABLE = true
 rescue LoadError => e
   PRISM_AVAILABLE = false
   PRISM_ERROR = e.message
 end
 
-STDOUT.sync = true
+$stdout.sync = true
 
 BRANCH_NODE_SUFFIXES = %w[
   IfNode
@@ -24,7 +24,7 @@ BRANCH_NODE_SUFFIXES = %w[
 ].freeze
 
 def emit(payload)
-  puts(payload.to_json)
+  puts(Oj.dump(payload, mode: :compat))
 end
 
 def node_children(node)
@@ -38,7 +38,7 @@ def branch_node?(node)
 end
 
 def inherited_class?(node)
-  return false unless node.class.name.end_with?("ClassNode")
+  return false unless node.class.name.end_with?('ClassNode')
   return false unless node.respond_to?(:superclass)
 
   !node.superclass.nil?
@@ -48,7 +48,7 @@ def traverse(node, metrics, depth = 0)
   metrics[:max_nesting_depth] = [metrics[:max_nesting_depth], depth].max
 
   class_name = node.class.name
-  metrics[:method_definitions] += 1 if class_name.end_with?("DefNode")
+  metrics[:method_definitions] += 1 if class_name.end_with?('DefNode')
   metrics[:inherited_classes] += 1 if inherited_class?(node)
 
   next_depth = depth
@@ -63,14 +63,14 @@ def traverse(node, metrics, depth = 0)
 end
 
 def lore_line(entropy, violations, metrics)
-  return "The geometry is non-Euclidean here; recursion folds back into itself." if metrics[:max_nesting_depth] >= 7
-  return "This class inherits from too many ancestors; the lineage is diluted." if metrics[:inherited_classes] >= 3
-  return "Method sigils crowd the walls. Entropy has found a permanent chamber." if metrics[:method_definitions] >= 20
-  return "Branching paths fork into shadow. The temple refuses a straight corridor." if metrics[:branch_nodes] >= 14
+  return 'The geometry is non-Euclidean here; recursion folds back into itself.' if metrics[:max_nesting_depth] >= 7
+  return 'This class inherits from too many ancestors; the lineage is diluted.' if metrics[:inherited_classes] >= 3
+  return 'Method sigils crowd the walls. Entropy has found a permanent chamber.' if metrics[:method_definitions] >= 20
+  return 'Branching paths fork into shadow. The temple refuses a straight corridor.' if metrics[:branch_nodes] >= 14
   return "Ruff's crows circle overhead; this vault is drawing technical debt." if violations >= 12
-  return "The stone sweats sepia. Refactor before sunset." if entropy >= 0.68
+  return 'The stone sweats sepia. Refactor before sunset.' if entropy >= 0.68
 
-  "The archive breathes evenly. Keep the invariants fed."
+  'The archive breathes evenly. Keep the invariants fed.'
 end
 
 def heuristic_metrics(source)
@@ -88,28 +88,28 @@ ARGF.each_line do |raw|
   next if line.empty?
 
   begin
-    payload = JSON.parse(line)
-    unless payload["type"] == "lore-request"
+    payload = Oj.load(line, mode: :compat)
+    unless payload['type'] == 'lore-request'
       emit(
         {
-          type: "error",
-          source: "ruby",
-          message: "unknown request type: #{payload["type"]}"
+          type: 'error',
+          source: 'ruby',
+          message: "unknown request type: #{payload['type']}"
         }
       )
       next
     end
 
-    root = payload.fetch("root")
-    relative_path = payload.fetch("path")
-    entropy = payload.fetch("entropy").to_f
-    violations = payload.fetch("violations").to_i
+    root = payload.fetch('root')
+    relative_path = payload.fetch('path')
+    entropy = payload.fetch('entropy').to_f
+    violations = payload.fetch('violations').to_i
 
     unless PRISM_AVAILABLE
       emit(
         {
-          type: "error",
-          source: "ruby",
+          type: 'error',
+          source: 'ruby',
           message: "prism unavailable: #{PRISM_ERROR}"
         }
       )
@@ -117,7 +117,7 @@ ARGF.each_line do |raw|
     end
 
     absolute_path = File.expand_path(relative_path, root)
-    source = File.read(absolute_path, encoding: "utf-8")
+    source = File.read(absolute_path, encoding: 'utf-8')
     parse_result = Prism.parse(source)
     metrics = if parse_result.errors.empty?
                 parsed = {
@@ -134,7 +134,7 @@ ARGF.each_line do |raw|
 
     emit(
       {
-        type: "lore",
+        type: 'lore',
         root: root,
         path: relative_path,
         entropy: entropy,
@@ -147,8 +147,8 @@ ARGF.each_line do |raw|
   rescue StandardError => e
     emit(
       {
-        type: "error",
-        source: "ruby",
+        type: 'error',
+        source: 'ruby',
         message: e.message
       }
     )

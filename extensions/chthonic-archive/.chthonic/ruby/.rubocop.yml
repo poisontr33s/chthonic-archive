@@ -1,0 +1,43 @@
+# .rubocop.yml — chthonic-archive ruby lane
+# Equivalent role to ruff.toml for the Python lane.
+# Run: rv r bundle exec rubocop
+
+plugins:
+  - rubocop-performance
+
+AllCops:
+  TargetRubyVersion: 4.0
+  NewCops: enable
+  SuggestExtensions: false
+  Include:
+    - "lore.rb"
+    - "**/*.rb"
+  Exclude:
+    - "vendor/**/*"
+
+# Repo enforces LF via .gitattributes (core.autocrlf=false)
+Layout/EndOfLine:
+  EnforcedStyle: lf
+
+# Lore.rb is a single-file daemon script — long blocks/methods are intentional
+Metrics/BlockLength:
+  Max: 70
+
+Metrics/MethodLength:
+  Max: 40
+
+Metrics/AbcSize:
+  Max: 30
+
+# Frozen string literal is enforced at file level
+Style/FrozenStringLiteralComment:
+  Enabled: true
+  EnforcedStyle: always
+
+# Prism builtin — rescue LoadError legacy branch in lore.rb is intentional
+Lint/SuppressedException:
+  Enabled: false
+
+# Allow SCREAMING_SNAKE_CASE constants (BRANCH_NODE_SUFFIXES, PRISM_AVAILABLE etc.)
+Naming/ConstantName:
+  Enabled: true
