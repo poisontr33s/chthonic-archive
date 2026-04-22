@@ -75,30 +75,59 @@ $ACHIEVEMENTS = @(
         $hasBackend -and $hasFrontend }}
     @{ id = 'zjit-rider'; name = 'ZJIT Rider'; icon = '[Z]'; check = {
         param($ev)
-        # ZJIT recorded in trail (legacy zjit-session marker OR session_start.zjit)
-        # AND real work must exist — env presence alone does not unlock this
+        # Primary: session-datetime-scoped — find a session_start with zjit, pair to session_end
+        # by sid, then verify >=3 real work events within [start_ts, end_ts] window.
+        # The current open session has no end yet — endTs = MaxValue (all events from start count).
+        $META_KINDS = @('zjit-session','msys2-session','session_start','session_end')
+        $zjitStarts = @($ev | Where-Object { $_.kind -eq 'session_start' -and $_.zjit -and ([string]$_.zjit -match 'zjit') })
+        foreach ($start in $zjitStarts) {
+            $startTs = Get-EventTs $start
+            if ($startTs -le 0) { continue }
+            $sid = $start.sid
+            $endEv = $ev | Where-Object { $_.kind -eq 'session_end' -and $_.sid -eq $sid } | Select-Object -First 1
+            $endTs = if ($endEv) { Get-EventTs $endEv } else { [long]::MaxValue }
+            $work = @($ev | Where-Object {
+                $eTs = Get-EventTs $_
+                $eTs -ge $startTs -and $eTs -le $endTs -and
+                $_.type -in @('diagnostic','artifact','decision','recovery') -and
+                $_.kind -notin $META_KINDS
+            })
+            if ($work.Count -ge 3) { return $true }
+        }
+        # Legacy fallback: zjit marker in trail + >=3 real work events (any time)
         $hasZjit = ($ev | Where-Object {
-            ($_.kind -eq 'zjit-session') -or
-            ($_.kind -eq 'session_start' -and $_.zjit -and ([string]$_.zjit -match 'zjit'))
+            ($_.kind -eq 'zjit-session') -or ($_.kind -eq 'session_start' -and $_.zjit -and ([string]$_.zjit -match 'zjit'))
         }).Count -gt 0
-        if (-not $hasZjit) { return $false }
-        ($ev | Where-Object {
-            $_.type -in @('diagnostic','artifact','decision','recovery') -and
-            $_.kind -notin @('zjit-session','msys2-session','session_start','session_end')
-        }).Count -ge 3
+        $hasZjit -and (@($ev | Where-Object {
+            $_.type -in @('diagnostic','artifact','decision','recovery') -and $_.kind -notin $META_KINDS
+        }).Count -ge 3)
     }}
     @{ id = 'forge-ready'; name = 'Forge Ready'; icon = '[M]'; check = {
         param($ev)
-        # MSYS2 recorded in trail AND real work must exist
+        # Primary: session-datetime-scoped — same pattern as zjit-rider but for MSYS2.
+        $META_KINDS = @('zjit-session','msys2-session','session_start','session_end')
+        $msys2Starts = @($ev | Where-Object { $_.kind -eq 'session_start' -and $_.msys2 -eq $true })
+        foreach ($start in $msys2Starts) {
+            $startTs = Get-EventTs $start
+            if ($startTs -le 0) { continue }
+            $sid = $start.sid
+            $endEv = $ev | Where-Object { $_.kind -eq 'session_end' -and $_.sid -eq $sid } | Select-Object -First 1
+            $endTs = if ($endEv) { Get-EventTs $endEv } else { [long]::MaxValue }
+            $work = @($ev | Where-Object {
+                $eTs = Get-EventTs $_
+                $eTs -ge $startTs -and $eTs -le $endTs -and
+                $_.type -in @('diagnostic','artifact','decision','recovery') -and
+                $_.kind -notin $META_KINDS
+            })
+            if ($work.Count -ge 3) { return $true }
+        }
+        # Legacy fallback
         $hasMsys2 = ($ev | Where-Object {
-            ($_.kind -eq 'msys2-session') -or
-            ($_.kind -eq 'session_start' -and $_.msys2 -eq $true)
+            ($_.kind -eq 'msys2-session') -or ($_.kind -eq 'session_start' -and $_.msys2 -eq $true)
         }).Count -gt 0
-        if (-not $hasMsys2) { return $false }
-        ($ev | Where-Object {
-            $_.type -in @('diagnostic','artifact','decision','recovery') -and
-            $_.kind -notin @('zjit-session','msys2-session','session_start','session_end')
-        }).Count -ge 3
+        $hasMsys2 -and (@($ev | Where-Object {
+            $_.type -in @('diagnostic','artifact','decision','recovery') -and $_.kind -notin $META_KINDS
+        }).Count -ge 3)
     }}
 )
 
@@ -158,6 +187,13 @@ function Get-TrailDay { param($e)
     return $null
 }
 
+# ── Event epoch-ms helper (ts preferred; falls back to at ISO parse) ─────────
+function Get-EventTs { param($e)
+    if ($e.ts) { try { return [long]$e.ts } catch {} }
+    if ($e.at) { try { return [long]([DateTimeOffset]::Parse($e.at)).ToUnixTimeMilliseconds() } catch {} }
+    return [long]0
+}
+
 # ── Main ──────────────────────────────────────────────────────────────────────
 
 # ── Env probe — path-check only, zero subprocess cost ────────────────────────
@@ -188,25 +224,41 @@ if ($rubyEnvTag) { $envParts += "rb:$rubyEnvTag" }
 if ($msys2Active) { $envParts += 'gcc/msys2' }
 $envLine = if ($envParts -and -not $Quiet) { "       env: $($envParts -join ' | ')" } else { $null }
 
-# Early-exit: if state was written today, emit cached line and stop — no trail I/O.
+# Early-exit: use cached state if written today AND no new session_end arrived after last write.
+# The session_end check reads only -Tail 30 of today's trail — O(1), not full I/O.
 # Skip cache when -XPDebug is set so live trail data and event count are printed.
 if (-not $Quiet -and -not $XPDebug -and (Test-Path $StateFile)) {
     try {
         $cached = Get-Content $StateFile -Raw -ErrorAction Stop | ConvertFrom-Json
         if ($cached.updated -and ([datetime]$cached.updated).Date -eq (Get-Date).Date) {
-            $cachedLevel = $cached.level
-            $cachedTitle = if ($cachedLevel -lt $LEVELS.Count) { $LEVELS[$cachedLevel] } else { 'Sovereign' }
-            $cachedBar   = Get-XpBar -xp $cached.xp -level $cachedLevel
-            $cachedNext  = ($cachedLevel * $cachedLevel * 10 + 2 * $cachedLevel * 10 + 10) - $cached.xp
-            $cachedIcons = ($ACHIEVEMENTS | Where-Object { $_.id -in $cached.unlocked } | ForEach-Object { $_.icon }) -join ' '
-            Write-Host ""
-            Write-Host ("  [XP] Lv.{0} {1}  {2}  {3} XP  (+{4} -> Lv.{5})  {6}" -f `
-                $cachedLevel, $cachedTitle, $cachedBar, $cached.xp, $cachedNext, ($cachedLevel + 1), $cachedIcons) -ForegroundColor Cyan
-            if ($envLine) { Write-Host $envLine -ForegroundColor DarkGray }
-            if ($cached.last_session_xp -and [int]$cached.last_session_xp -gt 0) {
-                Write-Host ("       last session: +{0} XP  ({1})" -f [int]$cached.last_session_xp, $cached.last_session_date) -ForegroundColor DarkGray
+            # Session freshness: invalidate cache if a session_end was written after last state update.
+            # This ensures same-day new sessions show accurate XP arc.
+            $cacheValid   = $true
+            $todayTrail   = Join-Path $TrailDir "$((Get-Date -Format 'yyyy-MM-dd')).hot.ndjson"
+            if (Test-Path $todayTrail) {
+                $recentEnd = Get-Content $todayTrail -Tail 30 -ErrorAction SilentlyContinue |
+                    Where-Object { $_ -match '"session_end"' } | Select-Object -Last 1 |
+                    ForEach-Object { try { $_ | ConvertFrom-Json } catch {} }
+                if ($recentEnd -and $recentEnd.ts) {
+                    $stateTs = try { [long]([DateTimeOffset]::Parse($cached.updated)).ToUnixTimeMilliseconds() } catch { [long]0 }
+                    if ([long]$recentEnd.ts -gt $stateTs) { $cacheValid = $false }
+                }
             }
-            exit 0
+            if ($cacheValid) {
+                $cachedLevel = $cached.level
+                $cachedTitle = if ($cachedLevel -lt $LEVELS.Count) { $LEVELS[$cachedLevel] } else { 'Sovereign' }
+                $cachedBar   = Get-XpBar -xp $cached.xp -level $cachedLevel
+                $cachedNext  = ($cachedLevel * $cachedLevel * 10 + 2 * $cachedLevel * 10 + 10) - $cached.xp
+                $cachedIcons = ($ACHIEVEMENTS | Where-Object { $_.id -in $cached.unlocked } | ForEach-Object { $_.icon }) -join ' '
+                Write-Host ""
+                Write-Host ("  [XP] Lv.{0} {1}  {2}  {3} XP  (+{4} -> Lv.{5})  {6}" -f `
+                    $cachedLevel, $cachedTitle, $cachedBar, $cached.xp, $cachedNext, ($cachedLevel + 1), $cachedIcons) -ForegroundColor Cyan
+                if ($envLine) { Write-Host $envLine -ForegroundColor DarkGray }
+                if ($cached.last_session_xp -and [int]$cached.last_session_xp -gt 0) {
+                    Write-Host ("       last session: +{0} XP  ({1})" -f [int]$cached.last_session_xp, $cached.last_session_date) -ForegroundColor DarkGray
+                }
+                exit 0
+            }
         }
     } catch {}
 }
