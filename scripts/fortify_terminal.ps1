@@ -20,8 +20,10 @@ Write-Host "🛡️  Fortifying Terminal for High-Throughput Automation..." -For
 # Prevents character encoding mismatches that can sever pipes or crash the runner
 [Console]::OutputEncoding = [System.Text.Encoding]::UTF8
 [Console]::InputEncoding = [System.Text.Encoding]::UTF8
+$OutputEncoding = [System.Text.Encoding]::UTF8
 Write-Host "   ✅ Output Encoding set to UTF-8" -ForegroundColor Gray
 Write-Host "   ✅ Input Encoding set to UTF-8" -ForegroundColor Gray
+Write-Host "   ✅ OutputEncoding set to UTF-8 (pwsh pipeline serialization)" -ForegroundColor Gray
 
 # 2. Python UTF-8 mode (PEP 540)
 # Covers uv run, python3, and subprocesses that inherit this environment.
