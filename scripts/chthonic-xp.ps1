@@ -29,10 +29,13 @@ $XP_BASE = @{
     meta       = 5
 }
 $XP_KIND_BONUS = @{
-    'epoch-close' = 45   # stacks with meta base = 50 total
-    git_commit    = 5    # stacks with artifact base = 15 total
-    wiring        = 3    # stacks with diagnostic/decision
-    redux         = 8    # alchemy/SSOT-promotion transforms — stacks with artifact/decision/meta
+    'epoch-close'     = 45   # stacks with meta base = 50 total
+    git_commit        = 5    # stacks with artifact base = 15 total
+    wiring            = 3    # stacks with diagnostic/decision
+    redux             = 8    # alchemy/SSOT-promotion transforms — stacks with artifact/decision/meta
+    roulette_steward  = 12   # roulette chain item completion — stacks with artifact/meta base
+    bounty_hunt       = 20   # Bounty-Hunt-Sync metadata enrichment cycle
+    pwsh_fullstack    = 15   # full-stack pwsh engineering: backend dispatch + frontend display
 }
 $PRIORITY_MULT = @{ 1 = 1.5; 2 = 1.0; 3 = 0.75 }
 
@@ -61,6 +64,15 @@ $ACHIEVEMENTS = @(
         param($ev) ($ev | Where-Object { $_.type -eq 'recovery' }).Count -gt 0 }}
     @{ id = 'alchemist';      name = 'Alchemist';       icon = '[A]'; check = {
         param($ev) ($ev | Where-Object { $_.kind -eq 'redux' }).Count -gt 0 }}
+    @{ id = 'roulette-steward'; name = 'Roulette Steward'; icon = '[S]'; check = {
+        param($ev) ($ev | Where-Object { $_.kind -eq 'roulette_steward' -or $_.msg -match 'roulette' }).Count -ge 1 }}
+    @{ id = 'bounty-hunter';    name = 'Bounty Hunter';    icon = '[B]'; check = {
+        param($ev) ($ev | Where-Object { $_.kind -eq 'bounty_hunt' -or $_.msg -match 'Bounty-Hunt' }).Count -ge 1 }}
+    @{ id = 'shell-architect';  name = 'Shell Architect';  icon = '[F]'; check = {
+        param($ev)
+        $hasBackend  = ($ev | Where-Object { $_.msg -match 'chthonic\.ps1|dispatch|bridge.*service|Invoke-Chthonic' }).Count -gt 0
+        $hasFrontend = ($ev | Where-Object { $_.msg -match 'chthonic-xp|cai\.exe|xp-state|XP.*bar|XP.*engine' }).Count -gt 0
+        $hasBackend -and $hasFrontend }}
 )
 
 # ── Ingest trail ──────────────────────────────────────────────────────────────
