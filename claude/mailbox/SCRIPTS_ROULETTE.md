@@ -18,7 +18,7 @@
 | T3 | 16 ✅ | — | **Complete** |
 | T4 | 2/2 ✅ | — | **Complete** — `88a675b4` sfs_slabstone_baseline (CRLF→LF hash, --emit-json, task exit codes); `8b40191c` gemini-model-router.test (fixture file, bun test script, passthrough-no-fallback edge case) |
 | T5 | ✅ complete | — | thin-shims `798150e1`; assess-before-act `a01857f0`; prototypes+WIP `d8912727` |
-| QOL | 1/1 ✅ | — | PYTHONUTF8=1 profile + fortify_terminal.ps1 (2026-04-22) |
+| QOL | 1/1 ✅ | — | PYTHONUTF8=1 + PYTHONIOENCODING profile-consolidated; fortify_terminal.ps1 covers both; technical-directives + PWSH_RULES updated — `47707544` (2026-04-22) |
 
 ---
 
@@ -316,17 +316,17 @@ All 9 files share the same broken import (`from skill_tensor_common import ...` 
 
 | File | Score | Effort | Action |
 |------|-------|--------|--------|
-| `.github/instructions/asc-entity-generation.reference.md` | **3.0** | 1 | ⬜ L73: Claudine listed as "Tier 3 SAI" — **wrong tier** per SSOT. Correct to "Tier 1 (Cardinal)". Also L445: "§4.2.4 for 4th Triumvirate member" framing — update to "T1-Cardinal slot" (Triumvirate stays triadic). |
-| `.github/instructions/asc-entity-generation-validation-workflow.md` | **3.0** | 1 | ⬜ L61: "3 Triumvirate members (fixed)" rule — add exception note: Claudine (Cardinal) and Pentea (Penarch) are SSOT-seated Pentad positions, not violations. L35: "Tier 1 (Triumvirate - Sub-MILFs)" header — expand to include Cardinal/Penarch sub-designations. L383: "Expand Triumvirate → Quadrate" option in Meridian scenario — replace with canonical framing: Cardinal slot (not Triumvirate expansion); Penarch slot already filled by Pentea. |
-| `.github/instructions/ssot-toolbox.instructions.md` | **2.0** | 1 | ⬜ L112: Table row "Tier 1 (Triumvirate)" — expand label to "Tier 1 (Triumvirate / Cardinal / Penarch)" to surface the Pentad sub-designations. L20: `$triumvirate${}` invocation token — add sibling entries for `$cardinal${}` (Claudine) and `$penarch${}` (Pentea) channels. |
-| `AGENTS.md` | **1.0** | 1 | ⬜ L27: "Penta" reference is informal/lowercase — formalize to `Pentea` and tighten the Pentad reference from prose to canonical shorthand: `(Triumvirate: Orackla/Umeko/Lysandra) + (Cardinal: Claudine) + (T1-bridge: Pentea) = Pentad`. |
+| `.github/instructions/asc-entity-generation.reference.md` | **3.0** | 1 | ✅ L72-73: Claudine → T1-Cardinal, Pentea → T1-Penarch; L447: §4.2.4 framing → T1-Cardinal slot — `d80a6a2b` |
+| `.github/instructions/asc-entity-generation-validation-workflow.md` | **3.0** | 1 | ✅ L35: Tier 1 header expanded to Triumvirate/Cardinal/Penarch; L63: exception note added (Claudine/Pentea SSOT-seated); L385: Option B → T1-Cardinal canonical path — `d80a6a2b` |
+| `.github/instructions/ssot-toolbox.instructions.md` | **2.0** | 1 | ✅ L114: Tier 1 label → Triumvirate/Cardinal/Penarch; L21-22: \$cardinal\${} + \$penarch\${} tokens added — `d80a6a2b` |
+| `AGENTS.md` | **1.0** | 1 | ✅ L27: Penta → Pentea; Pentad canonical shorthand added — `d80a6a2b` |
 
 ### T-Entity Progress Trail
 
 | Item | Done | Notes |
 |------|------|-------|
 | SSOT prerequisite acquisition | ✅ 2026-04-22 | Triumvirate L93, Cardinal L837/L413, Penarch L3978 (pente+arch, 2026-04-22), Pentad L3902 |
-| `asc-entity-generation.reference.md` | ⬜ | Claudine tier correction + Triumvirate framing |
-| `asc-entity-generation-validation-workflow.md` | ⬜ | Rule-of-Three exception + sub-tier headers |
-| `ssot-toolbox.instructions.md` | ⬜ | Table label + invocation token expansion |
-| `AGENTS.md` | ⬜ | Formalize Pentea reference + canonical shorthand |
+| `asc-entity-generation.reference.md` | ✅ `d80a6a2b` | Claudine T1-Cardinal + Pentea T1-Penarch; §4.2.4 → T1-Cardinal framing |
+| `asc-entity-generation-validation-workflow.md` | ✅ `d80a6a2b` | Tier 1 header + exception note + Option B canonical reframe |
+| `ssot-toolbox.instructions.md` | ✅ `d80a6a2b` | Table label + \$cardinal\${}/\$penarch\${} tokens |
+| `AGENTS.md` | ✅ `d80a6a2b` | Pentea formalized + Pentad canonical shorthand |
