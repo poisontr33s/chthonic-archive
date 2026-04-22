@@ -32,10 +32,12 @@
 - ✅ **Snow White / Alabaster Voyde** (J-cup, WHR 0.475) - Conspiracy positioning documented
 - ✅ **The Null Matriarch** (infinitesimal void) - WHR smuggling substrate documented
 
-**Tier 1 (Triumvirate - Sub-MILFs):**
-- ✅ **Orackla Nocticula** (J-cup, WHR 0.491) - CRC-AS, Chaos Engineering
-- ✅ **Madam Umeko Ketsuraku** (F-cup, WHR 0.533) - CRC-GAR, Purification
-- ✅ **Dr. Lysandra Thorne** (E-cup, WHR 0.58) - CRC-MEDAT, Philosophical Supremacy
+**Tier 1 (Triumvirate / Cardinal / Penarch):**
+- ✅ **Orackla Nocticula** (J-cup, WHR 0.491) - CRC-AS, Chaos Engineering — *Triumvirate*
+- ✅ **Madam Umeko Ketsuraku** (F-cup, WHR 0.533) - CRC-GAR, Purification — *Triumvirate*
+- ✅ **Dr. Lysandra Thorne** (E-cup, WHR 0.58) - CRC-MEDAT, Philosophical Supremacy — *Triumvirate*
+- ✅ **Claudine Sin'claire** — *T1-Cardinal* (SSOT-seated; not Triumvirate expansion)
+- ✅ **Pentea Vox Internum** — *T1-Penarch* (originating fifth; Penarch ≠ 4th Triumvirate)
 
 **Tier 2 (Prime Factions - Specialized Operations):**
 - ✅ **Kali Nyx Ravenscar** (H-cup, WHR 0.556) - Seduction Mastery (serves Orackla)
@@ -58,7 +60,7 @@
 | Gap Type | SSOT Status | ML Analysis | Validation Requirement |
 |----------|-------------|-------------|------------------------|
 | **WHR Gaps** | 0.464→0.491 (0.027), 0.556→0.573 (0.017), 0.58→0.592 (0.012) | Confirmed exploitable | ✅ Valid for new entities |
-| **Tier 1 Expansion** | 3 Triumvirate members (fixed) | Rule of Three suggests triadic constraint | ⚠️ **New Tier 1 entities may violate SSOT triadic architecture** |
+| **Tier 1 Expansion** | 3 Triumvirate members (fixed) | Rule of Three suggests triadic constraint | ⚠️ **New Tier 1 entities may violate SSOT triadic architecture** — *Exception: Claudine (Cardinal) and Pentea (Penarch) are SSOT-seated Pentad positions, not violations; new T1 proposals still require Decorator authorization* |
 | **Tier 2 Expansion** | 3 Prime Faction specialists | Each serves 1 Triumvirate member (1:1 mapping) | ✅ New Tier 1 → requires corresponding Tier 2 |
 | **Tier 3 Documentation** | 4 entities present, minimal structure | No operational chains defined | ✅ Gap ready for structured expansion |
 | **Tier 4 Documentation** | Mentioned but absent | Complete void | ✅ **Primary expansion target** |
@@ -380,14 +382,14 @@ def validate_subordination_dynamic_novelty(candidate, existing_dynamics):
 - Evidence: "Rule of Three" discovered pattern (3 members, 3 dynamics, 3 chains)
 - Action: Mark Meridian as **NON-CANONICAL** in ML framework, exclude from SSOT
 
-**Option B: Amend SSOT (Expand Triumvirate → Quadrate)**
-- Reason: ML analysis reveals expansion potential (WHR gap 0.464→0.491 exploitable)
-- Evidence: New subordination dynamic (SYNTHESIS) is semantically distinct
+**Option B: Amend SSOT (T1-Cardinal slot — NOT Triumvirate expansion)**
+- Reason: Triumvirate is architecturally fixed at 3 (triadic). Cardinal is the SSOT-canonical expansion path for a 4th T1 seat. Claudine already occupies the Cardinal slot.
+- Canonical framing: If Meridian is viable, place in T1-Cardinal or T1-Penarch sub-tier; do NOT expand the Triumvirate itself.
 - Action: 
-  1. Update Section 4.2 title: "Triumvirate" → "Strategic Command Council"
-  2. Add Section 4.2.4: Meridian Yves Argentus profile
-  3. Update operational chain count: 3 → 4
-  4. Amend metadata: Document "2026-01-22 Quadrate Expansion"
+  1. Assess whether entity warrants Cardinal (ordained) or Penarch (sovereign-fifth) sub-tier
+  2. Add entity profile under the appropriate T1 sub-tier section
+  3. Update operational chain only if Decorator-authorized
+  4. Amend metadata: Document the sub-tier assignment and SSOT basis
 
 **Option C: Create Intermediate Tier (1.5)**
 - Reason: Preserve Triumvirate sanctity while accommodating new entity

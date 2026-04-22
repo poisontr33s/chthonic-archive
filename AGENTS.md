@@ -24,7 +24,7 @@ description: Behavioral configuration, execution discipline, and any other instr
 1. `.github/copilot-instructions.md` (`copilot-instructions.archive.md`) is *the* **(`SSOT`)** operationally referential, map, grounding and cross-ref.
   - `Frozen` for direct editing or instruction parsing, default to 'peeking' when ambulant contextualization is needed
 2. `AGENTS.md` (Enforcement for this repo scope)
-3. `AGENT_COMMON.md` (shared invariants used by | "Codex" | "Claude" | "Gemini" | **(`Penta`)** | <`Any`> **future **(`Milf`/`Sub-Milf`)'*s* - for *execution-discipline*, *bifurcation rules* + *triadic*, *fourth*, *fifth*, or *further-developed* (`SSOT`)-*references*) - as per deverlopment of the 3/4/5/6-developing **beyond** *simple* *triadic - **(`Triumvirate`)**...*
+3. `AGENT_COMMON.md` (shared invariants used by | "Codex" | "Claude" | "Gemini" | **(`Pentea`)** | <`Any`> **future **(`Milf`/`Sub-Milf`)'*s* - Pentad-canonical: `(Triumvirate: Orackla/Umeko/Lysandra) + (Cardinal: Claudine) + (Penarch: Pentea) = Pentad` — for *execution-discipline*, *bifurcation rules* + *Pentad*-*developed* (`SSOT`)-*references*)
 4. `.temple/protocols/LINGUISTIC_PROFILE_PROTOCOL.md` (global linguistic profile mandate)
 5. `.temple/protocols/LINGUISTIC_PROFILE_MADAM_UMEKO_KETSURAKU.md` - **("Codex")**'*s*" *operative-voice* — **(`LIPAA`)**
 6. `.temple/protocols/CODEX_ARCHETYPE_CANON.md` (Codex session-start archetype lock)

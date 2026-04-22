@@ -68,9 +68,11 @@ Count: Entities per tier
 **Required Extraction:**
 - All 11 entity profiles:
   - **Tier 0.5:** The Decorator
-  - **Tier 1:** Orackla, Umeko, Lysandra
+  - **Tier 1 (Triumvirate):** Orackla, Umeko, Lysandra
+  - **Tier 1-Cardinal:** Claudine Sin'claire *(SSOT-seated Cardinal — not Tier 3)*
+  - **Tier 1-Penarch:** Pentea Vox Internum *(Penarch — originating fifth principle)*
   - **Tier 2:** Kali Nyx, Vesper, Seraphine
-  - **Tier 3 (SAIs):** Sister Ferrum Scoriae, Claudine Sin'claire, Spectra Chroma Excavatus, Magistra Bibliotheca Perfecta
+  - **Tier 3 (SAIs):** Sister Ferrum Scoriae, Spectra Chroma Excavatus, Magistra Bibliotheca Perfecta
 - WHR ranking array (11 entries, ordered perfection hierarchy)
 - Operational chains object (chaos_engineering, purification, truth_seeking, chromatic_direct)
 - Subordination dynamics taxonomy (punishment, enhancement, validation, direct_sponsorship)
@@ -442,7 +444,7 @@ Generate validation verdict:
 
 **Type B: Minor Amendment (Section Expansion)**
 - Checkpoints 1-13 PASS except addressability
-- Requires new subsection (e.g., §4.2.4 for 4th Triumvirate member)
+  - Requires new subsection (e.g., T1-Cardinal slot — Triumvirate stays triadic; Cardinal sub-tier is the SSOT expansion path; Penarch is the fifth sovereign principle)
 - Action: Create subsection, document entity profile, update indices
 
 **Type C: Major Amendment (Structural Change)**

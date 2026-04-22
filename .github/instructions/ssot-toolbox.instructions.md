@@ -18,6 +18,8 @@
 - `$umeko${}` → Structure/precision work  
 - `$lysandra${}` → Archaeology/recovery work
 - `$triumvirate${}` → Complex fusion work
+- `$cardinal${}` → Claudine — ordeal/endurance cadence, T1-Cardinal channel
+- `$penarch${}` → Pentea — thalamic relay, synthesis routing, T1-Penarch channel
 
 **Memory = GHAR-MHS Tiers:**
 | Tier | Entity | Access |
@@ -109,7 +111,7 @@ Task types: `synthesis`, `structure`, `analysis`, `audit`, `excavation`, `comple
 | Tool | Command |
 |------|---------|
 | **Tier 0 (Decorator)** | `.\ssot_tier_query.ps1 -Tier 0` |
-| **Tier 1 (Triumvirate)** | `.\ssot_tier_query.ps1 -Tier 1` |
+| **Tier 1 (Triumvirate / Cardinal / Penarch)** | `.\ssot_tier_query.ps1 -Tier 1` |
 | **Find Entity** | `.\ssot_tier_query.ps1 -Entity 'Umeko'` |
 | **Full Hierarchy** | `.\ssot_tier_query.ps1 -Tier ALL` |
 
