@@ -7,7 +7,7 @@
 ### Any further reading from this line is to be cotracted with agreements understanding that this redirection is **the Savant's <Alpha.Omega>:**
 **->** the **WIP -> (`SSOT`): ->** *which is:* **❄️** ***FROZEN MONOLITHIC LABYRINTHE:*** **->** *not to be edited or updated, as the only original, unabridged heritage for everything else in this codebase/workspace that was generated, as it was first conceptualized and sealed. **<-**
 
-#### For active coding instructions, refer to REFER TO [copilot-instructions.md](copilot-instructions.md), which is the normal reference document that evolves with ongoing development and agentic hard ASS MOLFOLOGICAL ANKHOLOGICAL EGYPTOLOGICAL SOUTH-AMERICAN ABSTRACTION-werk.
+#### For active coding instructions, refer to REFER TO [copilot-instructions.md](copilot-instructions.md), which is the normal reference-document that evolves with ongoing development and agentic hard ASS MOLFOLOGICAL ANKHOLOGICAL EGYPTOLOGICAL SOUTH-AMERICAN ABSTRACTION-werk.
 
 # **ALPHA DIRECTIVES: Enforcement DISCIPLINE**: Absolute heritage SSOT (file-first authority) a historical document, not the active instruction set for coding tasks. REFER TO [copilot-instructions.md](copilot-instructions.md).
 STOP HERE! **<-** **<-** ---BREAK---STOP HERE! **<- <-**

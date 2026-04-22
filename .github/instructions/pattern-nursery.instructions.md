@@ -152,6 +152,44 @@ Session failures that are general enough for future sessions → user memory (`/
 
 ---
 
+### Cross-Platform Port Artifact Lifecycle — `novel`
+*Origin: 2026-04-22 — Ruby 4.0.3 ZJIT Win32 porting session*
+
+When porting a codebase (here: CRuby YJIT/ZJIT) to a new platform, the build session generates a layered artifact set with distinct signal-to-noise ratios:
+
+| Artifact | Classification | Disposition |
+|----------|---------------|-------------|
+| `patch-*.py` scripts | **Canonical signal** — reproducible, idempotent, ground-truth for the port | Keep, version, extend |
+| `build.sh` / `build-win32-native.ps1` | **Canonical signal** — orchestration layer | Keep |
+| `preflight.sh` | **Canonical signal** — dependency validation gate | Keep |
+| `build-wsl2.sh` + `ruby-zjit.ps1` | **Superseded** — WSL2 shim path replaced by native Win32 | Stale: promote to `.deprecated/` once native build validates |
+| `shim/` Rust crate | **Superseded** — runtime shim replaced by rv integration | Stale: same |
+| `/tmp/*.o` MSYS2 build objects | **Transient** — diagnostic only | Delete after build succeeds |
+| `C:\ruby-zjit-build\` source tree | **Transient build artifact** — not repo content | Keep until rv verify passes, then document only the patch scripts |
+
+**ICE Classification Signal** (learned 2026-04-22): `internal compiler error: error reporting routines re-entered` under GCC 15.x is *not* a real compile error in the source — it is a warning cascade (hundreds of `-Wundef` hits from `windows.h` `#if` expressions on undeclared macros) that overflows GCC's error-reporting stack. Compiles cleanly with `-w`. Fix: `#pragma GCC diagnostic push/pop` around the Windows include. This pattern generalizes: any POSIX codebase ported to Win32 with `-Wundef` active will hit this.
+
+**Shape:** at build success → move superseded artifacts to `.deprecated/`, delete transient build objects, lock patch scripts as the canonical port record.
+
+**Promotion criteria:** build success + rv verify pass → move artifacts, update AGENT_COMMON.md, promote pattern to `technical-directives.instructions.md`.
+
+---
+
+### GCC Warning-Flood ICE Signature — `novel`
+*Origin: 2026-04-22 — GCC 15.2 + windows.h + -Wundef*
+
+**Pattern:** GCC crashes with "error reporting routines re-entered" when `-Wundef` is active and a translation unit includes `windows.h` (or any header that uses `#if MACRO` on hundreds of undeclared macros). This is not a source code bug — the `-w` flag makes it vanish. Classification: GCC 15.x diagnostic-stack overflow.
+
+**Diagnosis shortcut:** `compile -O0 -w` → success + `compile -O3 -Wall -Wundef` → ICE → this pattern.
+
+**Fix:** `#pragma GCC diagnostic push/pop` guarding the problematic include. One pragma block, surgical, forward-compatible.
+
+**Shape:** identify ICE → test with `-w` → if success, it's a warning-cascade ICE → add pragma guards → verify with full flags.
+
+**Promotion criteria:** observed in ≥2 different codebases/platforms.
+
+---
+
 ## Stale Queue
 
 *Patterns that have shown no usage signal — candidates for removal next sweep.*
