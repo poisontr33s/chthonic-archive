@@ -17,6 +17,10 @@
 #
 # SDK auto-detection: version-agnostic glob (latest installed wins).
 # Override via env vars: CUDA_PATH, VULKAN_SDK, TRT_PATH, CUDNN_PATH
+#
+# rv spinel source + docs: https://rv.dev  (Software Version: 0.5.3)
+# Ruby path resolution uses: rv ruby find [VERSION]  → canonical per-version path
+# Toolchain root uses:       rv ruby dir             → rv rubies root for MSYS2 derivation
 
 [CmdletBinding()]
 param(
@@ -55,18 +59,20 @@ $CUDNN_PATH  = $env:CUDNN_PATH ??
     ""
 
 # ── Ruby Targets ─────────────────────────────────────────────────────────────
-# Primary: the ZJIT-patched binary from C:\ruby-zjit-build (custom source build)
-# Fallback: rv-installed zjit binary
+# Primary: custom ZJIT source build (hardcoded path — always wins if present)
+# Fallback: rv ruby find <version>  — canonical rv resolution (rv.dev API)
 $RUBY_ZJIT_BUILD = "C:\ruby-zjit-build\ruby-4.0.3\ruby.exe"
-$RUBY_RV_ZJIT    = Join-Path $env:APPDATA "rv\rubies\ruby-4.0.3-zjit\bin\ruby.exe"
-$RUBY_RV_STD     = Join-Path $env:APPDATA "rv\rubies\ruby-4.0.3\bin\ruby.exe"
 
-# ── MSYS2 UCRT64 Toolchain (from rv devkit) ──────────────────────────────────
-$MSYS2_ROOT = Join-Path $env:APPDATA "rv\rubies\ruby-4.0.3\msys64"
-$UCRT64_BIN = Join-Path $MSYS2_ROOT  "ucrt64\bin"
-$GCC        = Join-Path $UCRT64_BIN  "gcc.exe"
-$GPP        = Join-Path $UCRT64_BIN  "g++.exe"
-$MAKE       = Join-Path $UCRT64_BIN  "mingw32-make.exe"
+# ── MSYS2 UCRT64 Toolchain (derived from rv ruby dir) ────────────────────────
+# rv ruby dir → rubies root (e.g. %APPDATA%\rv\rubies)
+# Avoids hardcoded version in toolchain path — rv dir is version-managed.
+$_rvCmd     = Get-Command rv -ErrorAction SilentlyContinue
+$RUBIES_ROOT = if ($_rvCmd) { & rv ruby dir 2>$null } else { Join-Path $env:APPDATA 'rv\rubies' }
+$MSYS2_ROOT  = Join-Path $RUBIES_ROOT "ruby-4.0.3\msys64"
+$UCRT64_BIN  = Join-Path $MSYS2_ROOT  "ucrt64\bin"
+$GCC         = Join-Path $UCRT64_BIN  "gcc.exe"
+$GPP         = Join-Path $UCRT64_BIN  "g++.exe"
+$MAKE        = Join-Path $UCRT64_BIN  "mingw32-make.exe"
 
 # ── Ext source root ───────────────────────────────────────────────────────────
 $EXT_SRC    = Join-Path $PSScriptRoot "..\ext"
@@ -87,8 +93,17 @@ function Write-Fail([string]$msg) {
 }
 
 function Find-RubyExe {
-    foreach ($candidate in @($RUBY_ZJIT_BUILD, $RUBY_RV_ZJIT, $RUBY_RV_STD)) {
-        if (Test-Path $candidate) { return $candidate }
+    # Tier 1: custom ZJIT source build — highest capability, Win32-native ZJIT+YJIT
+    if (Test-Path $RUBY_ZJIT_BUILD) { return $RUBY_ZJIT_BUILD }
+
+    # Tier 2-3: rv ruby find — canonical rv path resolution (rv.dev)
+    # rv ruby find <version> resolves the installed path for a given version label.
+    # Prefers zjit variant; falls back to standard.
+    if ($_rvCmd) {
+        foreach ($ver in @('4.0.3-zjit', '4.0.3')) {
+            $p = & rv ruby find $ver 2>$null
+            if ($LASTEXITCODE -eq 0 -and $p -and (Test-Path $p)) { return $p }
+        }
     }
     return $null
 }
