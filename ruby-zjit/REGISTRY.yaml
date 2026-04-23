@@ -1,13 +1,15 @@
 # Extension Registry — chthonic-archive Ruby ZJIT GPU extensions
-# Win32 primary lane : scripts/ruby_zjit_ext_build.ps1
-# Podman lane        : build/ruby-zjit-podman/Containerfile
-# Machine baseline   : build/ruby-zjit-podman/WIN32_PROFILE.yaml
+# Win32 primary lane : ruby-zjit/scripts/build_win32.ps1
+# Win32 test lane    : ruby-zjit/scripts/test_win32.ps1
+# Podman lane        : ruby-zjit/Containerfile
+# Machine baseline   : ruby-zjit/WIN32_PROFILE.yaml
 #
 # To add a new extension:
-#   1. Create build/ruby-zjit-podman/ext/<name>/extconf.rb  (+ source file)
+#   1. Create ruby-zjit/ext/<name>/extconf.rb  (+ source file)
 #   2. Add entry here with status: pending
-#   3. The Win32 builder auto-discovers it (no changes to the builder needed)
-#   4. For Podman: add a RUN block to the Containerfile (Layer 8 pattern)
+#   3. Add test file: ruby-zjit/tests/test_<name>.rb
+#   4. The Win32 builder auto-discovers it (no changes to the builder needed)
+#   5. For Podman: add a RUN block to the Containerfile (Layer 8 pattern)
 #
 # status lifecycle:  idea → pending → ready
 #   idea    = concept identified, no source yet
