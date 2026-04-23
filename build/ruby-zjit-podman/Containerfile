@@ -1,0 +1,55 @@
+# Ruby 4.0.3 — ZJIT + YJIT + Prism full build
+# Platform: Fedora 40 (Podman lane — Linux native, no Win32 ABI constraints)
+# Output: /opt/ruby-zjit/ — copy out via podman cp or bind mount
+
+FROM fedora:40
+
+LABEL description="Ruby 4.0.3 ZJIT+YJIT+Prism+ devkit build" \
+      ruby.version="4.0.3" \
+      jit.flags="--enable-zjit --enable-yjit" \
+      lane="chthonic-archive/build/ruby-zjit-podman"
+
+# Build deps
+RUN dnf install -y \
+    gcc gcc-c++ make autoconf automake libtool \
+    openssl-devel readline-devel zlib-devel \
+    libffi-devel libyaml-devel gdbm-devel \
+    rustup cargo git wget tar bzip2 \
+    && dnf clean all
+
+# Rust toolchain (ZJIT requires Rust 1.85+)
+RUN rustup-init -y --default-toolchain stable --no-modify-path 2>/dev/null || true
+ENV PATH="/root/.cargo/bin:${PATH}"
+RUN rustup toolchain install stable 2>/dev/null || rustup update stable
+
+# Fetch Ruby 4.0.3 source
+WORKDIR /build
+RUN wget -q https://cache.ruby-lang.org/pub/ruby/4.0/ruby-4.0.3.tar.gz \
+    && tar xzf ruby-4.0.3.tar.gz \
+    && rm ruby-4.0.3.tar.gz
+
+# Configure — ZJIT + YJIT + Prism (default in 4.0) + shared lib
+WORKDIR /build/ruby-4.0.3
+RUN ./configure \
+    --prefix=/opt/ruby-zjit \
+    --enable-shared \
+    --enable-yjit \
+    --enable-zjit \
+    --with-openssl-dir=/usr \
+    --disable-install-doc \
+    --with-compress-debug-sections=no \
+    CFLAGS="-O3 -march=native" \
+    RUSTFLAGS="-C opt-level=3"
+
+RUN make -j$(nproc) 2>&1 | tail -20
+RUN make install
+
+# Verify
+RUN /opt/ruby-zjit/bin/ruby --zjit -e "puts RUBY_DESCRIPTION; require 'prism'; puts 'Prism: ' + Prism::VERSION"
+RUN /opt/ruby-zjit/bin/ruby --yjit -e "puts RUBY_DESCRIPTION"
+
+# Install common gems into the build
+RUN /opt/ruby-zjit/bin/gem install bundler rake --no-document
+
+WORKDIR /opt/ruby-zjit
+CMD ["/opt/ruby-zjit/bin/ruby", "--zjit", "-e", "puts RUBY_DESCRIPTION"]

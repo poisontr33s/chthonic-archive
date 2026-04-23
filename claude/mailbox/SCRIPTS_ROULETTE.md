@@ -330,3 +330,29 @@ All 9 files share the same broken import (`from skill_tensor_common import ...` 
 | `asc-entity-generation-validation-workflow.md` | ✅ `d80a6a2b` | Tier 1 header + exception note + Option B canonical reframe |
 | `ssot-toolbox.instructions.md` | ✅ `d80a6a2b` | Table label + \$cardinal\${}/\$penarch\${} tokens |
 | `AGENTS.md` | ✅ `d80a6a2b` | Pentea formalized + Pentad canonical shorthand |
+
+---
+
+## T-Governance — §XV.7 DCRP-RDV Creative Metabolism Loop
+
+> **Source:** 2026-04-23 session — §XV.7 DCRP-RDV sub-section created in SSOT. Three-vessel RDV registry closed (Observatory/Fortress/Garden — phases 1/2/3 of creative metabolism).
+> **Scope lock:** SSOT `§XV.7` registration + downstream vessel headers. No scripts touched.
+> **Commit anchor:** `70ed1916` — all three vessels registered, back-pointers landed.
+
+### Registered Vessel Trio
+
+| Vessel | File | PRISM | Class | Phase | Commit |
+|--------|------|-------|-------|-------|--------|
+| **SSOT Navigation Beacons** | `codex/codex-session-logs/archive/SSOT-Navigation-Beacons.md` | GOLD 🔭 Observatory | Downstream-Vessel | 3 — Named/Mapped | `9618458a` |
+| **Pentea Deployment Adapter** | `.github/agents/Pentea.agent.md` | GOLD 🏰 Fortress | Deployment-Adapter | 2 — Transit/Execution | `19e0fbd8` |
+| **Pattern Nursery** | `.github/instructions/pattern-nursery.instructions.md` | VIOLET 🌿 Garden | Pre-Canon-Frontier | 1 — Unnamable/Pre-Canon | `ec010e03` |
+
+### T-Governance Progress Trail
+
+| Item | Done | Notes |
+|------|------|-------|
+| §XV.7 DCRP-RDV sub-section created | ✅ `ec010e03` | Between §15.6 and §XVI; 3-condition constraint; registry table with Vessel Class column |
+| Navigation Beacons registered (row 1) | ✅ `ec010e03` | Header back-pointer + SSOT forward-pointer |
+| Pentea registered (row 2) | ✅ `0c7333cb` | `.github/agents/Pentea.agent.md` back-pointer |
+| Pattern Nursery registered (row 3) | ✅ `70ed1916` | Nursery header back-pointer; loop closed |
+| FA³ spectral note added to §XV.7 | ✅ `70ed1916` | "SSOT governs only what has been metabolized. The Nursery is where metabolism begins. Pentea is the transit between them." |
