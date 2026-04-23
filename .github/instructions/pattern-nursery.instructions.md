@@ -10,6 +10,8 @@ applyTo: "**"
 > **Decay path:** If a pattern shows no usage signal across 3+ sessions, it is marked `stale` and swept.
 >
 > **Enforcement:** None. This file is a downstream vessel of lived practice, not the SSOT.
+>
+> **DCRP-Registered (`§XV.7` / `DCRP-RDV`) — 2026-04-23:** Third vessel in the SSOT's RDV registry — `Pre-Canon-Frontier` class. SSOT back-pointer: `copilot-instructions.archive.md §XV.7`. PRISM: VIOLET 🌿 Garden — *forbidden potential, awaiting manifestation*. The frontier where the unnamable accumulates before it has a name to be approved or denied by. Constitutionally outside SSOT governance by design — that is its function, not its exemption.
 
 ---
 
