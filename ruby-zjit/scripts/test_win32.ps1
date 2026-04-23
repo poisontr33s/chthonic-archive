@@ -21,15 +21,19 @@
 # Ruby path resolution: rv ruby find [VERSION]  →  canonical installed path
 #
 # WINDOWS rv OVERHEAD DIAGNOSIS (run.rs — crates/rv/src/commands/run.rs):
-#   On Unix:    rv r ruby  →  exec() replaces rv.exe with ruby.exe  — zero extra process
-#   On Windows: rv r ruby  →  CreateProcessW(ruby.exe) + wait  — two live processes
-#   Windows has no exec() syscall. The overhead is the Win32 process model, not Rust.
-#   Rust rv.exe binary startup: ~5-10ms. CreateProcessW tax per invocation: ~15-30ms.
-#   Total systematic rv overhead on Win32: ~25-50ms per ruby invocation.
+#   On Unix:    rv r ruby  →  exec() replaces rv.exe with ruby.exe after setup
+#               rv still pays startup + config/env resolution before exec();
+#               after exec() it is gone — only one process runs the test.
+#   On Windows: rv r ruby  →  cmd.status() (child spawn + wait) + process::exit(code)
+#               Windows has no exec() syscall, so rv cannot replace itself.
+#               rv wrapper + ruby child both live concurrently. Two processes.
+#   The measured overhead is the Windows process model cost. Rust is not the
+#   main explanation, but rv's own startup/config/env work also contributes.
+#   Run -StartupProbe to measure the actual overhead on this machine.
 #
-# -StartupProbe: measures ruby -e 'exit 0' vs rv r ruby -e 'exit 0' in alternating order
-#   (N=6 samples each). No test content — isolates CreateProcessW chain cost.
-#   Use this to get the true rv overhead number, uncontaminated by test run variance.
+# -StartupProbe: measures ruby -e 'exit 0' vs rv r ruby -e 'exit 0' in alternating order.
+#   No test content — isolates wrapper-process chain cost from test run variance.
+#   Use this to get the real overhead number for this machine.
 #
 # -Bench: measures full test file runs (direct vs rv r). MEASUREMENT POLLUTION WARNING:
 #   runs are sequential (direct first, rv second) — GPU/DLL/filesystem cache warmup
@@ -148,8 +152,8 @@ if ($StartupProbe -gt 0) {
     Write-Host ("  median rv r   : {0}ms" -f $rMedian) -ForegroundColor Cyan
     Write-Host ("  rv overhead   : {0:+#;-#;0}ms  (Windows CreateProcessW chain cost)" -f $overhead) -ForegroundColor DarkYellow
     Write-Host ""
-    Write-Host "  Unix equivalent overhead: ~0ms  (rv exec()-replaces itself on Unix)" -ForegroundColor DarkGray
-    Write-Host "  Source: crates/rv/src/commands/run.rs  exec() / CreateProcessW split" -ForegroundColor DarkGray
+    Write-Host "  Unix: rv pays startup+config then exec()-replaces itself — one process runs the test" -ForegroundColor DarkGray
+    Write-Host "  Source: crates/rv/src/commands/run.rs  exec() [unix] / cmd.status() [windows] split" -ForegroundColor DarkGray
     Write-Host ""
     exit 0
 }
