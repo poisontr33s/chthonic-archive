@@ -1,13 +1,14 @@
 require 'mkmf'
 
 # cuda_rb — CUDA runtime device query extension
-# Detects CUDA_PATH from environment or common install locations.
-# On Linux: /usr/local/cuda (NVIDIA official)
-# On Win32 (MSYS2): set CUDA_PATH to C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v13.2
+# Version-agnostic: picks the latest CUDA toolkit found, or uses CUDA_PATH env.
+# On Linux: /usr/local/cuda (symlink managed by NVIDIA installer)
+# On Win32 (MSYS2): set CUDA_PATH, or auto-detects latest under
+#   C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v*
 
 cuda_base = ENV['CUDA_PATH'] ||
             (Dir.exist?('/usr/local/cuda') ? '/usr/local/cuda' : nil) ||
-            (Dir.exist?('/usr/local/cuda-13.2') ? '/usr/local/cuda-13.2' : nil) ||
+            Dir.glob('/usr/local/cuda-*').sort.last ||
             abort('Cannot find CUDA — set CUDA_PATH environment variable')
 
 $INCFLAGS  += " -I#{cuda_base}/include"

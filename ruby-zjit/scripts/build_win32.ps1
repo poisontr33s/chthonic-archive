@@ -5,17 +5,18 @@
 # against the custom ZJIT binary at C:\ruby-zjit-build\ruby-4.0.3\ruby.exe
 # Uses MSYS2 UCRT64 toolchain from rv's ruby-4.0.3 devkit.
 #
-# Usage:
-#   .\scripts\ruby_zjit_ext_build.ps1                   # Build all extensions
-#   .\scripts\ruby_zjit_ext_build.ps1 -Ext cuda_rb      # Build specific extension
-#   .\scripts\ruby_zjit_ext_build.ps1 -Probe            # SDK detection only (dry-run)
-#   .\scripts\ruby_zjit_ext_build.ps1 -Clean            # Remove build artifacts
+# Project root: ruby-zjit/ (self-contained — ext/, scripts/, REGISTRY.yaml, WIN32_PROFILE.yaml)
+# Registry    : ruby-zjit/REGISTRY.yaml  — add new extension dirs to ext/ + update registry
+# Profile     : ruby-zjit/WIN32_PROFILE.yaml — pinned SDK + machine baseline
 #
-# SDK auto-detection paths (override via env vars):
-#   CUDA_PATH   — defaults to C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v13.2
-#   VULKAN_SDK  — defaults to C:\VulkanSDK\1.4.341.1
-#   TRT_PATH    — defaults to C:\Program Files\NVIDIA\TensorRT-10.16.0.72
-#   CUDNN_PATH  — defaults to C:\Program Files\NVIDIA\CUDNN\v9.20
+# Usage:
+#   .\ruby-zjit\scripts\build_win32.ps1             # Build all extensions
+#   .\ruby-zjit\scripts\build_win32.ps1 -Ext cuda_rb # Build specific extension
+#   .\ruby-zjit\scripts\build_win32.ps1 -Probe       # SDK detection only (dry-run)
+#   .\ruby-zjit\scripts\build_win32.ps1 -Clean       # Remove build artifacts
+#
+# SDK auto-detection: version-agnostic glob (latest installed wins).
+# Override via env vars: CUDA_PATH, VULKAN_SDK, TRT_PATH, CUDNN_PATH
 
 [CmdletBinding()]
 param(
@@ -27,11 +28,31 @@ param(
 Set-StrictMode -Version Latest
 $ErrorActionPreference = "Stop"
 
-# ── SDK Paths ────────────────────────────────────────────────────────────────
-$CUDA_PATH   = $env:CUDA_PATH   ?? "C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v13.2"
-$VULKAN_SDK  = $env:VULKAN_SDK  ?? "C:\VulkanSDK\1.4.341.1"
-$TRT_PATH    = $env:TRT_PATH    ?? "C:\Program Files\NVIDIA\TensorRT-10.16.0.72"
-$CUDNN_PATH  = $env:CUDNN_PATH  ?? "C:\Program Files\NVIDIA\CUDNN\v9.20"
+# ── SDK Paths (version-agnostic: picks latest installed unless overridden) ────
+# Override any of these by setting the corresponding env var before running.
+# See: build/ruby-zjit-podman/WIN32_PROFILE.yaml for the canonical pinned state.
+function Find-LatestSdkDir([string]$parent, [string]$filter) {
+    if (-not (Test-Path $parent)) { return $null }
+    Get-ChildItem $parent -Directory -Filter $filter -ErrorAction SilentlyContinue |
+        Sort-Object Name -Descending |
+        Select-Object -First 1 -ExpandProperty FullName
+}
+
+$CUDA_PATH   = $env:CUDA_PATH  ??
+    (Find-LatestSdkDir "C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA" "v*") ??
+    "C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v13.2"
+
+$VULKAN_SDK  = $env:VULKAN_SDK ??
+    (Find-LatestSdkDir "C:\VulkanSDK" "*") ??
+    "C:\VulkanSDK\1.4.341.1"
+
+$TRT_PATH    = $env:TRT_PATH   ??
+    (Find-LatestSdkDir "C:\Program Files\NVIDIA" "TensorRT-*") ??
+    ""
+
+$CUDNN_PATH  = $env:CUDNN_PATH ??
+    (Find-LatestSdkDir "C:\Program Files\NVIDIA\CUDNN" "v*") ??
+    ""
 
 # ── Ruby Targets ─────────────────────────────────────────────────────────────
 # Primary: the ZJIT-patched binary from C:\ruby-zjit-build (custom source build)
@@ -48,8 +69,8 @@ $GPP        = Join-Path $UCRT64_BIN  "g++.exe"
 $MAKE       = Join-Path $UCRT64_BIN  "mingw32-make.exe"
 
 # ── Ext source root ───────────────────────────────────────────────────────────
-$EXT_SRC    = Join-Path $PSScriptRoot "..\build\ruby-zjit-podman\ext"
-$BUILD_DIR  = Join-Path $PSScriptRoot "..\build\ruby-zjit-podman\ext-win32-build"
+$EXT_SRC    = Join-Path $PSScriptRoot "..\ext"
+$BUILD_DIR  = Join-Path $PSScriptRoot "..\..\build\ruby-zjit-ext-win32"
 
 # ── Helpers ───────────────────────────────────────────────────────────────────
 function Write-Step([string]$msg) {
@@ -189,12 +210,29 @@ function Clean-Build {
 
 # ── Main ──────────────────────────────────────────────────────────────────────
 Write-Host "`nchthonic ruby-zjit Win32 extension builder" -ForegroundColor Magenta
-Write-Host "Extensions: cuda_rb (CUDA device info) | vk_rb (Vulkan) | trt_rb (TensorRT)`n"
+Write-Host "Registry : build/ruby-zjit-podman/REGISTRY.yaml"
+Write-Host "Profile  : build/ruby-zjit-podman/WIN32_PROFILE.yaml`n"
 
 if ($Clean) {
     Clean-Build
     exit 0
 }
+
+# Discover extensions dynamically — any ext/ subdir containing extconf.rb is a target.
+# To add a new extension: create ext/<name>/extconf.rb + source, then update REGISTRY.yaml.
+$targets = if ($Ext -eq "all") {
+    Get-ChildItem -Path $EXT_SRC -Directory -ErrorAction SilentlyContinue |
+        Where-Object { Test-Path (Join-Path $_.FullName "extconf.rb") } |
+        Select-Object -ExpandProperty Name |
+        Sort-Object
+} else {
+    @($Ext)
+}
+
+if ($targets.Count -eq 0 -and $Ext -eq "all") {
+    Write-Warn "No ext/ subdirs with extconf.rb found under $EXT_SRC"
+}
+Write-Host ("Extensions ($($targets.Count)): " + ($targets -join " | ")) + "`n"
 
 $probeResult = Probe-SDKs
 
@@ -203,12 +241,6 @@ if ($Probe) {
 }
 
 New-Item -ItemType Directory -Force -Path $BUILD_DIR | Out-Null
-
-$targets = if ($Ext -eq "all") {
-    @("cuda_rb", "vk_rb", "trt_rb")
-} else {
-    @($Ext)
-}
 
 $results = @{}
 foreach ($t in $targets) {

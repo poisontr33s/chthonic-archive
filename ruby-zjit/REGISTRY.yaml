@@ -1,0 +1,159 @@
+# Extension Registry — chthonic-archive Ruby ZJIT GPU extensions
+# Win32 primary lane : scripts/ruby_zjit_ext_build.ps1
+# Podman lane        : build/ruby-zjit-podman/Containerfile
+# Machine baseline   : build/ruby-zjit-podman/WIN32_PROFILE.yaml
+#
+# To add a new extension:
+#   1. Create build/ruby-zjit-podman/ext/<name>/extconf.rb  (+ source file)
+#   2. Add entry here with status: pending
+#   3. The Win32 builder auto-discovers it (no changes to the builder needed)
+#   4. For Podman: add a RUN block to the Containerfile (Layer 8 pattern)
+#
+# status lifecycle:  idea → pending → ready
+#   idea    = concept identified, no source yet
+#   pending = source started or spec'd, not yet buildable
+#   ready   = buildable + verified on WIN32_PROFILE machine
+
+meta:
+  ruby: "4.0.3+ZJIT+YJIT+PRISM"
+  profile: "WIN32_PROFILE.yaml"
+  ext_root: "ruby-zjit/ext/"
+  build_script: "ruby-zjit/scripts/build_win32.ps1"
+  containerfile: "ruby-zjit/Containerfile"
+
+# ── Ready ─────────────────────────────────────────────────────────────────────
+extensions:
+  cuda_rb:
+    status: ready
+    lang: C
+    sdks: [cuda]
+    links: [-lcudart]
+    description: >
+      CUDA runtime device enumeration.
+      Methods: device_count, device_name(idx), device_compute_capability(idx),
+      driver_version, runtime_version, devices → Array<Hash>.
+    source: "ext/cuda_rb/"
+    verified_on: "WIN32_PROFILE / RTX 4090 / CUDA 13.2"
+
+  vk_rb:
+    status: ready
+    lang: C
+    sdks: [vulkan]
+    links: [-lvulkan]
+    description: >
+      Vulkan instance + physical device query.
+      Methods: instance_version, physical_devices → Array<Hash>,
+      instance_extensions → Array<String>, has_extension?(name).
+    source: "ext/vk_rb/"
+    verified_on: "WIN32_PROFILE / Vulkan SDK 1.4.341.1"
+
+  trt_rb:
+    status: ready
+    lang: C++17
+    sdks: [cuda, tensorrt]
+    links: [-lcudart, -lnvinfer]  # Win32: -lnvinfer_10
+    description: >
+      TensorRT version + IBuilder capability probe. SilentLogger shim.
+      Methods: version, nvinfer_version → [maj,min,patch],
+      cuda_version, builder_available?, network_flags.
+      Graceful no-GPU fallback (builder_available? → false).
+    source: "ext/trt_rb/"
+    verified_on: "WIN32_PROFILE / TRT 10.16.0.72"
+
+# ── Pending (spec'd, source not yet written) ──────────────────────────────────
+  cudnn_rb:
+    status: pending
+    lang: C
+    sdks: [cuda, cudnn]
+    links: [-lcudart, -lcudnn]
+    description: >
+      cuDNN version + convolution/activation primitive availability probe.
+      cuDNN v9.x header layout: include/<cuda-ver>/cudnn.h (glob detection needed).
+    source: "ext/cudnn_rb/"
+    notes: "cuDNN v9.x header at include/<cuda-ver>/cudnn.h, not flat include/"
+
+  nvml_rb:
+    status: pending
+    lang: C
+    sdks: [nvml]  # nvml.h ships inside CUDA toolkit at include/nvml.h
+    links: [-lnvidia-ml]  # Win32: nvml.lib in CUDA toolkit lib/x64/
+    description: >
+      NVIDIA Management Library — power draw (W), temperature (°C), fan speed (%),
+      SM clock, memory clock, utilization (gpu/mem %), ECC error counts,
+      throttle reasons, PCI topology. One physical device query loop.
+    source: "ext/nvml_rb/"
+    notes: "nvml.h is at CUDA_PATH/include/nvml.h on both Linux and Win32"
+
+  nvrtc_rb:
+    status: pending
+    lang: C
+    sdks: [cuda, nvrtc]
+    links: [-lnvrtc]  # libnvrtc.so / nvrtc64_*.dll
+    description: >
+      NVRTC (NVIDIA Runtime Compilation) — compile CUDA C strings to PTX at runtime.
+      Methods: compile(src_string, opts) → ptx_string, version → [maj,min].
+      Enables Ruby-driven GPU kernel authoring without offline nvcc.
+    source: "ext/nvrtc_rb/"
+
+  spirv_rb:
+    status: pending
+    lang: C++17
+    sdks: [spirv_cross]  # C API: spirv_cross_c.h (included in Vulkan SDK)
+    links: [-lspirv-cross-c]
+    description: >
+      SPIR-V binary reflection via spirv-cross C API.
+      Methods: disassemble(binary_bytes) → glsl/msl/hlsl string,
+      reflect(binary_bytes) → Hash of inputs/outputs/uniforms/push_constants.
+    source: "ext/spirv_rb/"
+    notes: "spirv_cross_c.h is in Vulkan SDK include/spirv_cross/"
+
+# ── Ideas (concept only, no spec yet) ────────────────────────────────────────
+  cublas_rb:
+    status: idea
+    lang: C
+    sdks: [cuda, cublas]
+    description: >
+      cuBLAS SGEMM/DGEMM — GPU matrix multiply from Ruby numeric arrays.
+      Host-side alloc + cublasSgemm + result readback in one call.
+
+  cufft_rb:
+    status: idea
+    lang: C
+    sdks: [cuda, cufft]
+    description: >
+      cuFFT 1D/2D FFT from Ruby arrays (float/double, real/complex).
+
+  d3d12_rb:
+    status: idea
+    lang: C++17
+    sdks: [d3d12, dxgi, dxc]
+    platform: win32_only
+    description: >
+      Direct3D 12 compute dispatch from Ruby. Shader pipeline via HLSL+dxc.
+      RTX 4090 mesh shader + RT pipeline capable. Win32-only (no Podman lane).
+
+  nvapi_rb:
+    status: idea
+    lang: C
+    sdks: [nvapi]  # NVAPI SDK: private NVIDIA API, separate download
+    platform: win32_only
+    description: >
+      NVAPI — frame stats, G-Sync status, Reflex latency markers,
+      display enumeration, boost clock override query. Win32-only.
+
+  onnxruntime_rb:
+    status: idea
+    lang: C++17
+    sdks: [onnxruntime]  # onnxruntime-gpu: separate install
+    description: >
+      ONNX Runtime inference with CUDA + TensorRT execution providers.
+      Methods: load(model_path), run(inputs_hash) → outputs_hash, providers.
+
+  slang_rb:
+    status: idea
+    lang: C++17
+    sdks: [slang]  # slang C API: slang.h from Vulkan SDK or standalone
+    description: >
+      Slang shader language compilation from Ruby (slang C++ API).
+      Compile .slang → SPIR-V / HLSL / GLSL / CUDA from a Ruby string.
+      Slang ships in Vulkan SDK 1.4+ (slangc/slangd binaries).

@@ -1,20 +1,24 @@
 require 'mkmf'
 
 # trt_rb — TensorRT version + capability probe (C++ extension)
+# Version-agnostic: picks latest TensorRT install found, or uses TRT_PATH env.
 # Requires: libnvinfer-devel (Linux) or TensorRT SDK (Win32)
 # Depends on: CUDA headers (NvInfer.h includes cuda_runtime_api.h)
 
 cuda_base = ENV['CUDA_PATH'] ||
-            (Dir.exist?('/usr/local/cuda') ? '/usr/local/cuda' : '/usr/local/cuda-13.2')
+            (Dir.exist?('/usr/local/cuda') ? '/usr/local/cuda' : nil) ||
+            Dir.glob('/usr/local/cuda-*').sort.last ||
+            '/usr/local/cuda'
 
-trt_base  = ENV['TRT_PATH'] ||
-            (Dir.exist?('/usr/include/NvInfer.h') ? '' : nil) ||
-            ENV.fetch('TRT_PATH', '')
+trt_base  = ENV['TRT_PATH'] || ''
 
-# Attempt known Win32 TRT location
+# Linux: check standard system header location (e.g. Fedora dnf install libnvinfer-devel)
+trt_base = '' if trt_base.empty? && File.exist?('/usr/include/NvInfer.h')
+
+# Win32: glob for latest TensorRT install (version-agnostic)
 if trt_base.empty? && RUBY_PLATFORM =~ /mswin|mingw/
-  candidate = 'C:/Program Files/NVIDIA/TensorRT-10.16.0.72'
-  trt_base  = candidate if Dir.exist?(candidate)
+  candidate = Dir.glob('C:/Program Files/NVIDIA/TensorRT-*').sort.last
+  trt_base  = candidate if candidate && Dir.exist?(candidate)
 end
 
 $INCFLAGS  += " -I#{cuda_base}/include"

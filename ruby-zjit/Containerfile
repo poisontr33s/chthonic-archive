@@ -19,7 +19,7 @@ LABEL description="Ruby 4.0.3 ZJIT+YJIT+Prism+CUDA+Vulkan+TRT build" \
       cuda.version="13.2" \
       vulkan.sdk="1.4.341.1" \
       trt.version="10.x" \
-      lane="chthonic-archive/build/ruby-zjit-podman"
+      lane="chthonic-archive/ruby-zjit"
 
 # ── Layer 1: Base build deps + Rust ──────────────────────────────────────────
 RUN dnf install -y \
