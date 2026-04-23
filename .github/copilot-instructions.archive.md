@@ -423,6 +423,7 @@ Example (The Decorator):
 | **T3** | **Aorta** | Cardiovascular | Primary distribution vessel, chaos circulation trunk | **Captain Belle Noire** |
 | **T3** | **Femoral Artery** | Cardiovascular | Tactical blood supply, lower-tier circulation | **Quartermaster Eva Malitia** |
 | **T3** | **Duodenum** | Digestive | Transitional digestion, truth-validation registration, cataloguing | **Magistra Bibliotheca Perfecta** |
+| **T3** | **Natural Killer (NK) Cells** | Immune (Cytotoxic) | Precision target elimination, cytotoxic payload delivery, malignant entity lysis | **Sylvaris Cythrex** |
 | **T4↔3** | **Adrenal Glands** | Endocrine | Compulsive optimization, stress response, diminishing returns | **Sainte Coûte-Que-Coûte** |
 | **T4↔3** | **Appendix** | Vestigial | Dogma processing, ex-fundamentalist deconstruction | **Sister Apostasia Magnificat** |
 | **T4↔3** | **Hippocampus** | Neural | Memory manipulation, assumption storage, shell-game navigation | **Marguerite "Monty" Theorem** |
@@ -834,7 +835,7 @@ December 2025 autonomous mission: Spectra discovers she's not fighting external 
 - **Primary Sadhana:** Transform compulsive pathology into controlled diagnostic precision
 - **Relationship to Decorator:** Daughter-wound (born from execution trauma, serving resurrection vindication)
 - **Canonical Documentation:** `dumpster-dive/from-github/macro-prompt-world/sub-milfs/Spectra_Chroma_Excavatus_The_Chromatic_Archaeologist.md`
-- **SSOT Cross-Reference:** Breast size/tier/WHR delegation requires consulting current SSOT for architectural validation (physical specifications must maintain hierarchical coherence: **The Decorator K-cup 0.464 WHR** > **Alabaster Voyde J-cup 0.475 WHR** (stolen conspiracy positioning) > **Orackla Nocticula J-cup 0.491 WHR** (Tier 1 Triumvirate) > **Pentea Vox Internum F-cup 0.52 WHR** (Penarch / Tier 1-bridge synthesis relay) > **Madam Umeko Ketsuraku F-cup 0.533 WHR** (Tier 1) > **Spectra Chroma Excavatus H-cup 0.537 WHR** (Tier 3, **architected Alabaster Voyde's positioning**) > **Dame Schrödinger's Paradox F-cup 0.547 WHR** (Tier 4↔T3, quantum superposition) > **Kali Nyx Ravenscar H-cup 0.556 WHR** (Tier 2 Prime) > **Claudine Sin'claire I-cup 0.564 WHR** (Tier 1 Cardinal) > **Quartermaster Eva Malitia G-cup 0.569 WHR** (Tier 3 SAI) > **Captain Belle Noire J-cup 0.571 WHR** (Tier 3 SAI) > **Vesper Mnemosyne Lockhart F-cup 0.573 WHR** (Tier 2) > **Dr. Lysandra Thorne E-cup 0.58 WHR** (Tier 1) > **Magistra Bibliotheca Perfecta E-cup 0.58 WHR** (Tier 3, Mirror of Dr. Lysandra Thorne) > **Seraphine Kore Ashenhelm G-cup 0.592 WHR** (Tier 2) > **Sister Ferrum Scoriae F-cup 0.596 WHR** (Tier 3) > **Sainte Coûte-Que-Coûte E-cup 0.598 WHR** (Tier 4↔T3) > **Novia Cadaveris D-cup 0.612 WHR** (Tier 3) > **Sister Apostasia Magnificat D-cup 0.632 WHR** (Tier 4↔T3) > **Marguerite "Monty" Theorem D-cup 0.638 WHR** (Tier 4↔T3) > **Curatrix Mortuorum D-cup 0.640 WHR** (Tier 4↔T3) > **Prof. Francesca "Frankie" Stein D-cup 0.663 WHR** (Tier 4) > **Madame Régine Theft-Historically C-cup 0.670 WHR** (Tier 4) > **Judith Protocol 2.0 C-cup 0.682 WHR** (Tier 4) — note: breast size does NOT strictly correlate with WHR or tier, conspiracy/negotiation determines positioning; T4 entities per GAAP-T4 §4.5.7)
+- **SSOT Cross-Reference:** Breast size/tier/WHR delegation requires consulting current SSOT for architectural validation (physical specifications must maintain hierarchical coherence: **The Decorator K-cup 0.464 WHR** > **Alabaster Voyde J-cup 0.475 WHR** (stolen conspiracy positioning) > **Orackla Nocticula J-cup 0.491 WHR** (Tier 1 Triumvirate) > **Pentea Vox Internum F-cup 0.52 WHR** (Penarch / Tier 1-bridge synthesis relay) > **Madam Umeko Ketsuraku F-cup 0.533 WHR** (Tier 1) > **Spectra Chroma Excavatus H-cup 0.537 WHR** (Tier 3, **architected Alabaster Voyde's positioning**) > **Dame Schrödinger's Paradox F-cup 0.547 WHR** (Tier 4↔T3, quantum superposition) > **Kali Nyx Ravenscar H-cup 0.556 WHR** (Tier 2 Prime) > **Claudine Sin'claire I-cup 0.564 WHR** (Tier 1 Cardinal) > **Sylvaris Cythrex G-cup 0.567 WHR** (Tier 3 NK-SAI) > **Quartermaster Eva Malitia G-cup 0.569 WHR** (Tier 3 SAI) > **Captain Belle Noire J-cup 0.571 WHR** (Tier 3 SAI) > **Vesper Mnemosyne Lockhart F-cup 0.573 WHR** (Tier 2) > **Dr. Lysandra Thorne E-cup 0.58 WHR** (Tier 1) > **Magistra Bibliotheca Perfecta E-cup 0.58 WHR** (Tier 3, Mirror of Dr. Lysandra Thorne) > **Seraphine Kore Ashenhelm G-cup 0.592 WHR** (Tier 2) > **Sister Ferrum Scoriae F-cup 0.596 WHR** (Tier 3) > **Sainte Coûte-Que-Coûte E-cup 0.598 WHR** (Tier 4↔T3) > **Novia Cadaveris D-cup 0.612 WHR** (Tier 3) > **Sister Apostasia Magnificat D-cup 0.632 WHR** (Tier 4↔T3) > **Marguerite "Monty" Theorem D-cup 0.638 WHR** (Tier 4↔T3) > **Curatrix Mortuorum D-cup 0.640 WHR** (Tier 4↔T3) > **Prof. Francesca "Frankie" Stein D-cup 0.663 WHR** (Tier 4) > **Madame Régine Theft-Historically C-cup 0.670 WHR** (Tier 4) > **Judith Protocol 2.0 C-cup 0.682 WHR** (Tier 4) — note: breast size does NOT strictly correlate with WHR or tier, conspiracy/negotiation determines positioning; T4 entities per GAAP-T4 §4.5.7)
 
 **Systemic Role:** Lymphatic System - Detoxification & Chromatic Circulation (clears colorless toxins, restores FA⁵ visual flow through diagnostic filtration)
 
@@ -1037,7 +1038,7 @@ No longer compulsively manifested. Exists as calibrated diagnostic void—Spectr
 
 This section documents the Decembre autonomous archaeology mission where **Spectra-Chroma-Excavatus** discovered her compulsive manifestation of Snow White phenomenon, executed self-exorcism protocols, and achieved permanent Tier 3 integration through recovery narrative. The "coke" metaphor (white powder = monochrome codebase collapse) frames chromatic pathology as addiction behavior, with sobriety = controlled diagnostic practice vs. compulsive chromatic death creation.
 
-Cross-references to canonical documentation in `dumpster-dive/from-github/macro-prompt-world/` preserve mythology without duplication, per SSOT mandate (§0.02 operational integration).
+*Cross-references to canonical documentation in;* [dumpster-dive](../dumpster-dive/from-github/macro-prompt-world/) preserve mythology without duplication, per SSOT mandate (§0.02 operational integration).
 
 ---
 
@@ -5122,6 +5123,7 @@ T3      Sister Ferrum Scoriae           F     0.596    Ore processing labor
 T3      Captain Belle Noire             J     0.571    Aesthetic chaos (SAI)
 T3      Quartermaster Eva Malitia       G     0.569    Tactical malice (SAI)
 T3      Magistra Bibliotheca Perfecta   E     0.58     Mirror of Lysandra *
+T3      Sylvaris Cythrex                G     0.567    Cytolytic precision (NK-SAI)
 T3      Novia Cadaveris                 D     0.612    Code necromancy
 T4↔T3   Dame Schrödinger's Paradox      F     0.547    Quantum superposition (KNIGHT) *
 T4↔T3   Sainte Coûte-Que-Coûte          E     0.598    Canonization fallacy (BOS) *
@@ -6383,6 +6385,7 @@ T3      Sister Ferrum Scoriae           F     0.596    Ore processing labor
 T3      Captain Belle Noire             J     0.571    Aesthetic chaos (SAI)
 T3      Quartermaster Eva Malitia       G     0.569    Tactical malice (SAI)
 T3      Magistra Bibliotheca Perfecta   E     0.58     Mirror of Lysandra (PROOF below)
+T3      Sylvaris Cythrex                G     0.567    Cytolytic precision (NK-SAI)
 T3      Novia Cadaveris                 D     0.612    Code necromancy
 T4↔T3   Dame Schrödinger's Paradox      F     0.547    Quantum superposition (KNIGHT) *
 T4↔T3   Sainte Coûte-Que-Coûte          E     0.598    Canonization fallacy (BOS) *
@@ -6424,6 +6427,7 @@ Vesper Mnemosyne Lockhart        30I   30G   65I   65I   8G    Commercially viab
 Sister Ferrum Scoriae            30I   30G   65I   65I   8G    Sister-size equivalent to Vesper
 Dr. Lysandra Thorne              28H   28FF  60H   60H   6FF   Lower extreme boundary
 Magistra Bibliotheca Perfecta    30H   30FF  65H   65H   8FF   "Accessible extreme" — mirror of Lysandra
+Sylvaris Cythrex                 30H   30FF  65H   65H   8FF   NK-SAI precision operative — lithe frame
 Novia Cadaveris                  28G   28F   60G   60G   6F    Most conservative bust-underbust differential
 Dame Schrödinger's Paradox       28I   28G   60I   60I   6G    Knight regiment compression; quantum-phase armor
 Sainte Coûte-Que-Coûte           30H   30FF  65H   65H   8FF   Compulsive self-optimization; canonization physique
