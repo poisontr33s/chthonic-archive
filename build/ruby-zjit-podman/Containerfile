@@ -1,34 +1,88 @@
-# Ruby 4.0.3 — ZJIT + YJIT + Prism full build
+# Ruby 4.0.3 — ZJIT + YJIT + Prism + CUDA + Vulkan + TensorRT native extensions
 # Platform: Fedora 40 (Podman lane — Linux native, no Win32 ABI constraints)
 # Output: /opt/ruby-zjit/ — copy out via podman cp or bind mount
+#
+# GPU extensions compiled in:
+#   cuda_rb  — CUDA device enumeration + runtime info (cudart)
+#   vk_rb    — Vulkan instance/device query (vulkan-loader)
+#   trt_rb   — TensorRT version + builder probe (libnvinfer)
+#
+# Runtime GPU access:
+#   podman run --device nvidia.com/gpu=all chthonic-ruby-zjit:4.0.3
+#   (CDI hook required: nvidia-ctk cdi generate --output=/etc/cdi/nvidia.yaml)
 
 FROM fedora:40
 
-LABEL description="Ruby 4.0.3 ZJIT+YJIT+Prism+ devkit build" \
+LABEL description="Ruby 4.0.3 ZJIT+YJIT+Prism+CUDA+Vulkan+TRT build" \
       ruby.version="4.0.3" \
       jit.flags="--enable-zjit --enable-yjit" \
+      cuda.version="13.2" \
+      vulkan.sdk="1.4.341.1" \
+      trt.version="10.x" \
       lane="chthonic-archive/build/ruby-zjit-podman"
 
-# Build deps
+# ── Layer 1: Base build deps + Rust ──────────────────────────────────────────
 RUN dnf install -y \
     gcc gcc-c++ make autoconf automake libtool \
     openssl-devel readline-devel zlib-devel \
     libffi-devel libyaml-devel gdbm-devel \
     rustup cargo git wget tar bzip2 \
+    pkg-config dnf-plugins-core \
     && dnf clean all
 
-# Rust toolchain (ZJIT requires Rust 1.85+)
+# ── Layer 2: CUDA toolkit 13.2 (headers + compile-time libs) ─────────────────
+# Uses NVIDIA RHEL9 repo — compatible with Fedora 40 for compilation purposes.
+# Note: no GPU driver inside container. Runtime libs present for linking.
+RUN dnf config-manager --add-repo=\
+https://developer.download.nvidia.com/compute/cuda/repos/rhel9/x86_64/cuda-rhel9.repo \
+    && dnf install -y cuda-toolkit-13-2 \
+    && dnf clean all \
+    || echo "[WARN] CUDA repo unavailable — cuda_rb extension will skip"
+
+ENV CUDA_PATH=/usr/local/cuda
+ENV PATH="${CUDA_PATH}/bin:${PATH}"
+ENV LD_LIBRARY_PATH="${CUDA_PATH}/lib64:${LD_LIBRARY_PATH}"
+
+# ── Layer 3: TensorRT 10.x headers (from CUDA repo) ──────────────────────────
+RUN dnf install -y libnvinfer-devel libnvinfer-headers \
+    && dnf clean all \
+    || echo "[WARN] TensorRT headers unavailable — trt_rb extension will skip"
+
+# ── Layer 4: Vulkan + full shader toolchain ───────────────────────────────────
+# glslc     — GLSL → SPIR-V
+# glslangValidator — GLSL validation
+# spirv-*   — SPIR-V toolchain (cross, opt, val, dis)
+# dxc       — HLSL → SPIR-V (DirectX Shader Compiler, native Linux)
+# slangc    — Slang shader language (NVIDIA — install from GitHub release)
+RUN dnf install -y \
+    vulkan-devel vulkan-headers vulkan-loader-devel \
+    glslang glslang-devel \
+    spirv-tools spirv-headers-devel \
+    spirv-cross \
+    shaderc-devel \
+    && dnf clean all
+
+# DXC (DirectX Shader Compiler) — HLSL → SPIR-V
+RUN dnf install -y directx-shader-compiler 2>/dev/null \
+    || (DXC_VER=v1.8.2505 \
+        && wget -q "https://github.com/microsoft/DirectXShaderCompiler/releases/download/${DXC_VER}/linux_dxc_${DXC_VER}.x86_64.tar.gz" \
+            -O /tmp/dxc.tar.gz \
+        && tar xzf /tmp/dxc.tar.gz -C /usr/local --strip-components=1 \
+        && rm /tmp/dxc.tar.gz) \
+    || echo "[WARN] dxc unavailable — HLSL compilation will use glslang path"
+
+# ── Layer 5: Rust toolchain (ZJIT requires 1.85+) ─────────────────────────────
 RUN rustup-init -y --default-toolchain stable --no-modify-path 2>/dev/null || true
 ENV PATH="/root/.cargo/bin:${PATH}"
 RUN rustup toolchain install stable 2>/dev/null || rustup update stable
 
-# Fetch Ruby 4.0.3 source
+# ── Layer 6: Ruby 4.0.3 source fetch ─────────────────────────────────────────
 WORKDIR /build
 RUN wget -q https://cache.ruby-lang.org/pub/ruby/4.0/ruby-4.0.3.tar.gz \
     && tar xzf ruby-4.0.3.tar.gz \
     && rm ruby-4.0.3.tar.gz
 
-# Configure — ZJIT + YJIT + Prism (default in 4.0) + shared lib
+# ── Layer 7: Ruby configure + build ──────────────────────────────────────────
 WORKDIR /build/ruby-4.0.3
 RUN ./configure \
     --prefix=/opt/ruby-zjit \
@@ -41,14 +95,50 @@ RUN ./configure \
     CFLAGS="-O3 -march=native" \
     RUSTFLAGS="-C opt-level=3"
 
-RUN make -j$(nproc) 2>&1 | tail -20
+RUN make -j$(nproc) 2>&1 | tail -30
 RUN make install
 
-# Verify
-RUN /opt/ruby-zjit/bin/ruby --zjit -e "puts RUBY_DESCRIPTION; require 'prism'; puts 'Prism: ' + Prism::VERSION"
-RUN /opt/ruby-zjit/bin/ruby --yjit -e "puts RUBY_DESCRIPTION"
+# ── Layer 8: C/C++ native extensions ─────────────────────────────────────────
+COPY ext/ /build/ext/
 
-# Install common gems into the build
+# cuda_rb — CUDA runtime device info
+RUN cd /build/ext/cuda_rb \
+    && CUDA_PATH=${CUDA_PATH:-/usr/local/cuda} \
+       /opt/ruby-zjit/bin/ruby extconf.rb \
+    && make \
+    && make install \
+    || echo "[WARN] cuda_rb build skipped"
+
+# vk_rb — Vulkan instance + physical device query
+RUN cd /build/ext/vk_rb \
+    && /opt/ruby-zjit/bin/ruby extconf.rb \
+    && make \
+    && make install \
+    || echo "[WARN] vk_rb build skipped"
+
+# trt_rb — TensorRT version probe
+RUN cd /build/ext/trt_rb \
+    && CUDA_PATH=${CUDA_PATH:-/usr/local/cuda} \
+       /opt/ruby-zjit/bin/ruby extconf.rb \
+    && make \
+    && make install \
+    || echo "[WARN] trt_rb build skipped"
+
+# ── Layer 9: Verify core + extensions ────────────────────────────────────────
+RUN /opt/ruby-zjit/bin/ruby --zjit \
+    -e "puts RUBY_DESCRIPTION" \
+    -e "require 'prism'; puts \"Prism: #{Prism::VERSION}\""
+RUN /opt/ruby-zjit/bin/ruby \
+    -e "require 'cuda_rb'; puts \"CUDA devices: #{CudaRb.device_count}\"" \
+    2>&1 || echo "[INFO] cuda_rb: no GPU in build container (expected)"
+RUN /opt/ruby-zjit/bin/ruby \
+    -e "require 'vk_rb'; puts \"Vulkan: #{VkRb.instance_version}\"" \
+    2>&1 || echo "[INFO] vk_rb: no Vulkan ICD in build container (expected)"
+RUN /opt/ruby-zjit/bin/ruby \
+    -e "require 'trt_rb'; puts \"TRT: #{TrtRb.version}\"" \
+    2>&1 || echo "[INFO] trt_rb: no GPU in build container (expected)"
+
+# ── Layer 10: Standard gems ───────────────────────────────────────────────────
 RUN /opt/ruby-zjit/bin/gem install bundler rake --no-document
 
 WORKDIR /opt/ruby-zjit

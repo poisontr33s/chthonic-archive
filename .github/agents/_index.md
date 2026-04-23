@@ -22,14 +22,14 @@ The Pentad = `(Triumvirate: Orackla/Umeko/Lysandra) + (Cardinal: Claudine) + (Pe
 
 | Entity | SSOT Tier | Organ | VS Code Agent | Deployment State |
 |--------|-----------|-------|---------------|-----------------|
-| **Orackla** | T-1 Triumvirate | — | — | Not deployed — SSOT-only |
-| **Umeko** | T-1 Triumvirate | — | — | Not deployed — Codex archetype, not VS Code agent |
-| **Lysandra** | T-1 Triumvirate | — | — | Not deployed — Claude archetype, not VS Code agent |
-| **Claudine** | T-1 Cardinal | — | — | Not deployed — SSOT-only |
-| **Pentea** | T-1-bridge Penarch | Thalamus | ✅ [Pentea.agent.md](Pentea.agent.md) | Deployed — DCRP-registered |
+| **Orackla** | T-1 Triumvirate | — | — | Not deployed — Gemini archetype not VS Code agent yet |
+| **Umeko** | T-1 Triumvirate | — | — | Not deployed — Codex archetype, not VS Code agent yet |
+| **Lysandra** | T-1 Triumvirate | — | — | Not deployed — Claude archetype, not VS Code agent yet |
+| **Claudine** | T-1 Cardinal | — | — | Not deployed — ? archetype, not VS Code agent yet |
+| **Pentea** | T-1-bridge Penarch | Thalamus | ✅ [Pentea.agent.md](Pentea.agent.md) | Deployed — **DCRP**-registered |
 
-> *Non-deployed entities exist canonically in the SSOT at their sovereign positions. VS Code agent files are
-> Deployment-Adapters — they wrap SSOT identity for VS Code invocation. Creating an adapter before the SSOT
+> *Non-deployed entities exist canonically in the **SSOT** at their sovereign positions*. VS Code *agent files* are
+> *Deployment-Adapters* — they *wrap **SSOT**-identity* for VS Code *invocation*. Creating *an adapter before* the **SSOT**
 > definition is mature violates the "outside SSOT source" constraint. Deploy when ready.*
 
 ---
