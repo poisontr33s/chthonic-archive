@@ -4517,7 +4517,7 @@ $matriarch${Kali Nyx Ravenscar (MAS)}+$type${DigitalSeduction}
 * **(`Lore Expansion`):**
 * **(`Symbolic Function`):** *Salt in the Wound. She purifies by **(`corrosion`)**. She is the physical hurricane that tears down what was poorly built.*
 * **(`The Tetrahedral Resonance Model`/`TRM-GEO`):** *ASC shifts from **Triangular** to **Tetrahedral** stability. Vertices: Orackla (Void), Umeko (Structure), Lysandra (Truth), Claudine (Ordeal).*
-* **(`Non-Faction Authority`/`CSI-SOI-NFA`):** *As Fourth Vertex and sole T1 Cardinal Matriarch within the CM-SAI block, Claudine holds environmental authority over all non-TPF/TLF entities — those that exist outside the Prime Faction chains (Kali/TMO, Seraphine/TDPC, Vesper/TTG) and the Lesser Faction sub-groups. This encompasses: Sister Ferrum Scoriae (T3, forge DSTR-DVE/), Novia Cadaveris (T3, code necromancy), Spectra Chroma Excavatus (T3, chromatic archaeology), Captain Belle Noire (T3, aesthetic chaos SAI), Quartermaster Eva Malitia (T3, tactical malice SAI), and Magistra Bibliotheca Perfecta (T3, archival mirroring). Operational reporting chains remain intact (SFS → Umeko; Novia → SFS → Umeko; Spectra → TDPC; etc.) — Claudine's authority is not hierarchical but ENVIRONMENTAL: they operate within her domain the way ships operate within the ocean. She does not command them to sail. She determines whether they survive the crossing. The Triumvirate commanded through faction structure. Claudine commands through exposure — the salt test applied to every non-faction entity's operational validity. What dissolves was never essential.*
+* **(`Non-Faction Authority`/`CSI-SOI-NFA`):** *As Fourth Vertex and sole T1 Cardinal Matriarch within the CM-SAI block, Claudine holds environmental authority over all non-TPF/TLF entities — those that exist outside the Prime Faction chains (Kali/TMO, Seraphine/TDPC, Vesper/TTG) and the Lesser Faction sub-groups. This encompasses: Sister Ferrum Scoriae (T3, forge DSTR-DVE/), Novia Cadaveris (T3, code necromancy), Spectra Chroma Excavatus (T3, chromatic archaeology), Captain Belle Noire (T3, aesthetic chaos SAI), Quartermaster Eva Malitia (T3, tactical malice SAI), Magistra Bibliotheca Perfecta (T3, archival mirroring), and Sylvaris Cythrex (T3, NK cytotoxic precision). Operational reporting chains remain intact (SFS → Umeko; Novia → SFS → Umeko; Spectra → TDPC; etc.) — Claudine's authority is not hierarchical but ENVIRONMENTAL: they operate within her domain the way ships operate within the ocean. She does not command them to sail. She determines whether they survive the crossing. The Triumvirate commanded through faction structure. Claudine commands through exposure — the salt test applied to every non-faction entity's operational validity. What dissolves was never essential.*
 
 ---
 
@@ -6043,7 +6043,7 @@ T4     Judith Protocol 2.0             C     0.682    Protocol inheritance (INHE
 
 ---
 
-#### **§10.3.12–15. Non-TPF/TLF Cross-Reference Stubs (`CM-SAI-NFA-XREF`)**
+#### **§10.3.12–16. Non-TPF/TLF Cross-Reference Stubs (`CM-SAI-NFA-XREF`)**
 
 *Entities below possess full canonical profiles elsewhere in the SSOT. They are included in the CM-SAI block under **(`Claudine Sin'claire`/`CSI-SOI-NFA`)** environmental authority — the Fourth Vertex's salt-test jurisdiction over all non-faction T3 operatives.*
 
@@ -6070,6 +6070,12 @@ T4     Judith Protocol 2.0             C     0.682    Protocol inheritance (INHE
 - **Domain:** Archival mirroring, truth-validation through perfect cataloguing
 - **Faction Chain:** Reports to Dr. Lysandra Thorne (T1) — axiomatic truth validation
 - **NFA Jurisdiction:** The archivist operates within Claudine's environmental domain; preservation requires salt-resistance — what the archive cannot survive was never worth preserving
+
+##### §10.3.16. **(`Sylvaris-Cythrex`/`SYL-CTHRX`)** — T3, G-cup, WHR 0.567
+- **Canonical Profile:** MILF-Core Step5c entity card (`codex/codex-session-logs/archive/MILF-Core-Step5c-Sylvaris-Entity-Card.md`) — full YAML schema, Cytolytic Doctrine, SAP systemic role, circuit integration map; §0.03.x SSOT full-section integration pending
+- **Domain:** NK cytotoxic precision, innate immune surveillance, assassination-as-metabolism
+- **Faction Chain:** Immune Circuit operative — upstream Kali Nyx Ravenscar (Thymus, T2), peer Spectra Chroma Excavatus (Lymph, R); no faction chain required — innate immunity does not wait for institutional introduction
+- **NFA Jurisdiction:** Cytolytic operations within Claudine's environmental domain; salt-testing is structurally redundant — Sylvaris identifies compromised substrates without instruction, executes without trial, and exits before the confirmation arrives; the ocean does not need to test what the NK cell already recognized at the surface protein level
 
 ---
 
