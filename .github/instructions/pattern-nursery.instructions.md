@@ -196,6 +196,41 @@ When porting a codebase (here: CRuby YJIT/ZJIT) to a new platform, the build ses
 
 ---
 
+### ZJIT Win32 Prism Shape-System Crash — `novel`
+*Origin: 2026-04-23 — Ruby 4.0.3-zjit bin-only stub + junctioned stdlib*
+
+The `ruby-4.0.3-zjit` binary distributed by rv (v0.5.3) is a **bin-only stub** — only `bin/` is present, no `lib/`, `include/`, `msys64/`. The stdlib gap can be patched via NTFS directory junctions pointing to the standard `ruby-4.0.3` install. After junctions: `require 'rbconfig'` and `require 'prism'` (without JIT) work. But `ruby --zjit -e "require 'prism'"` and `ruby --yjit -e "require 'prism'"` both crash with AV (exit -1073741819 / 0xC0000005).
+
+**Crash signature:** `rb_shape_free_all+0x74b` → `pm_ast_new+0x13e53` in `x64-ucrt-ruby400.dll` from the zjit bin. The shape-system corruption fires during `prism/pack.rb`'s `Pack` module autoload (module definition + `Array#each` iterating format constants). The crash is JIT-specific — same code runs clean without `--zjit`/`--yjit`.
+
+**Root cause:** The zjit DLL was compiled with a different object shape layout than what the junctioned stdlib (from the standard install) expects. JIT-compiled stubs hold stale shape IDs. The DLL mismatch between zjit's binary and the stdlib from standard install is the trigger.
+
+**Workaround (Win32):** Use `ruby-4.0.3` (standard install) for all Prism/gem work. YJIT support is not compiled into the standard RubyInstaller Win32 binary (prints a warning, falls back to interpreter). Win32 YJIT/ZJIT + Prism = currently broken without a from-source build.
+
+**Fix path:** Podman lane — `build/ruby-zjit-podman/Containerfile`. Builds Ruby 4.0.3 from source with `--enable-zjit --enable-yjit` in a Fedora 40 Linux environment. Linux native build avoids Win32 ABI shape-system issues. Script: `scripts/ruby_podman_build.ps1 -Build`.
+
+**Shape:** identify AV on `--zjit -e "require 'prism'"` → test same without JIT → if passes = JIT+Prism shape mismatch → Podman lane or source build with matching devkit.
+
+**Promotion criteria:** observed in ≥2 Ruby builds (different rv versions or platforms) → `familiar`. Currently: 1 (ruby-4.0.3-zjit rv 0.5.3, Win11 x64-mingw-ucrt).
+
+---
+
+### rv Flat-Earther Naming vs MILFOLOGICAL Identity — `novel`
+*Origin: 2026-04-23 — `.github/agents/` enhancement*
+
+VS Code agent invocation requires `*.agent.md` flat files under `.github/agents/`. No subdirectories, no tier-encoded filenames — the gitological standard is structurally flat. This conflicts with the MILFOLOGICAL naming hierarchy where entities have Tier, Organ, PRISM, and SSOT anchor positions.
+
+**Resolution:** Two surfaces, two layers of identity:
+- **Filename** (`Pentea.agent.md`): VS Code invocation key — PascalCase entity name + `.agent.md`
+- **Frontmatter** (`name:`, `description:`, `argument-hint:`): MILFOLOGICAL identity at picker-glance — Tier/Organ/PRISM/injection contract
+- **`_index.md`** (underscore prefix = VS Code ignores): Pentad map + naming convention doc + anti-pattern table — the identity registry over the flat layer
+
+**Shape:** flat filename → MILFOLOGICAL frontmatter + `_index.md` registry → SSOT adapter file body.
+
+**Promotion criteria:** used across ≥2 deployed agents with no picker UX regression → `familiar`.
+
+---
+
 ## Stale Queue
 
 *Patterns that have **shown no usage signal** — **candidates** for **removal next-sweep**.*
