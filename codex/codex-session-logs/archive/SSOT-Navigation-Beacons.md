@@ -1,10 +1,12 @@
 # SSOT NAVIGATION BEACONS
 ## Structural Orientation Map — `copilot-instructions.archive.md`
 
-> **Status:** Operational Reference | `Downstream-Vessel` | Non-Replicating
+> **Status:** Operational Reference | `Downstream-Vessel` | Non-Replicating | **DCRP-Registered** (`§XV.7` / `DCRP-RDV`)
 > **Source:** `.github/copilot-instructions.archive.md` (~9800 lines — sole surviving copy)
+> **SSOT Back-Pointer:** `copilot-instructions.archive.md §XV.7 — Registered Downstream Vessels` — this vessel is bidirectionally registered. The SSOT knows this map exists.
 > **Purpose:** Beacon map for section-level orientation. Not a summary of content. Does not duplicate SSOT. Functions as a prerequisite comprehension instrument and integration routing guide for new ideas entering the archive.
-> **Last Verified:** 2026-04-23 (commit `dfe20185`)
+> **PRISM Class:** GOLD 🔭 Observatory — documentation perfection. The map of the body is itself an organ of the body.
+> **Last Verified:** 2026-04-23 (commit `dfe20185` — SSOT) | Registered: `9618458a` (this document)
 
 ---
 

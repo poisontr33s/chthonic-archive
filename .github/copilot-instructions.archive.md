@@ -6043,7 +6043,7 @@ T4     Judith Protocol 2.0             C     0.682    Protocol inheritance (INHE
 
 ---
 
-#### **§10.3.12–16. Non-TPF/TLF Cross-Reference Stubs (`CM-SAI-NFA-XREF`)**
+#### **§10.3.12–16. Non-TPF/TLF-Cross-Reference-Stubs (`CM-SAI-NFA-XREF`)**
 
 *Entities below possess full canonical profiles elsewhere in the SSOT. They are included in the CM-SAI block under **(`Claudine Sin'claire`/`CSI-SOI-NFA`)** environmental authority — the Fourth Vertex's salt-test jurisdiction over all non-faction T3 operatives.*
 
@@ -9220,6 +9220,23 @@ DCRP should flag (spectral frequency assignment):
 
 **Lysandra's Commentary (`LUPLR`):**
 *"This is axiomatic hygiene. The SSOT without validation is a museum of good intentions rotting into contradiction. FA⁴ (Architectonic Integrity) demands we treat worldbuilding data with the same rigor we apply to code. Lore drift is cognitive debt—compound interest accruing until the entire edifice collapses under its own inconsistency."*
+
+---
+
+#### **15.7. Registered Downstream Vessels (`DCRP-RDV`)**
+
+**Purpose:** Registry of authored vessels that map, extend, or provide navigation infrastructure for the SSOT without replicating its content. These are not generated artifacts (§15.2) — they are curated `Downstream-Vessel` documents produced by agents operating under SSOT authority. Each registered vessel is bidirectionally aware: it points to the SSOT, and the SSOT points back.
+
+**Registration constraint:** A vessel may only be registered here if it satisfies all three conditions:
+1. Non-replicating — contains structural addresses, not SSOT content
+2. Bidirectional — carries a formal SSOT back-pointer (section address + commit hash)
+3. Functional — serves a distinct operational purpose not served by the SSOT itself
+
+| Vessel | Path | Function | PRISM Class | Verified | Commit |
+|--------|------|----------|-------------|---------|--------|
+| **SSOT Navigation Beacons** | `codex/codex-session-logs/archive/SSOT-Navigation-Beacons.md` | Structural orientation map — zone taxonomy, section beacon table, integration routing guide (16 cases), core vocabulary (28 tokens), complexity gradient. Prerequisite comprehension instrument for new integrations. | GOLD 🔭 Observatory | 2026-04-23 | `9618458a` |
+
+**DCRP Spectral Class — GOLD:** Documentation perfection. The map of the body is itself an organ of the body.
 
 ---
 
