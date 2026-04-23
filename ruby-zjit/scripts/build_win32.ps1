@@ -158,21 +158,39 @@ function Build-Extension([string]$extName) {
     $env:CUDA_PATH  = $CUDA_PATH
     $env:VULKAN_SDK = $VULKAN_SDK
     $env:TRT_PATH   = $TRT_PATH
+    $env:CUDNN_PATH = $CUDNN_PATH
 
-    # Add UCRT64 bin to PATH for gcc/make visibility
-    $env:PATH = "${UCRT64_BIN};$($env:PATH)"
+    # Detect rv — use ridk exec for MSYS2/UCRT64 environment activation when available.
+    # rv r ridk exec sets MSYSTEM=UCRT64, injects UCRT64 bin (gcc/g++/mingw32-make) into PATH,
+    # and handles devkit versioning automatically. Falls back to manual PATH injection.
+    $rvCmd = Get-Command rv -ErrorAction SilentlyContinue
+    $useRv = $null -ne $rvCmd
+
+    if (-not $useRv) {
+        # Manual fallback: inject UCRT64 bin into PATH directly
+        $env:PATH = "${UCRT64_BIN};$($env:PATH)"
+    }
 
     Push-Location $dst
     try {
         # Run extconf.rb
-        & $ruby extconf.rb 2>&1
+        if ($useRv) {
+            Write-Host "  (rv r ridk exec)"
+            rv r ridk exec -- $ruby extconf.rb 2>&1
+        } else {
+            & $ruby extconf.rb 2>&1
+        }
         if ($LASTEXITCODE -ne 0) {
             Write-Fail "${extName}: extconf.rb failed (exit $LASTEXITCODE)"
             return $false
         }
 
-        # Run make
-        & $MAKE 2>&1
+        # Run make (always via ridk exec when rv is present — ridk owns the MSYS2 make)
+        if ($useRv) {
+            rv r ridk exec -- mingw32-make 2>&1
+        } else {
+            & $MAKE 2>&1
+        }
         if ($LASTEXITCODE -ne 0) {
             Write-Fail "${extName}: make failed"
             return $false
@@ -210,8 +228,8 @@ function Clean-Build {
 
 # ── Main ──────────────────────────────────────────────────────────────────────
 Write-Host "`nchthonic ruby-zjit Win32 extension builder" -ForegroundColor Magenta
-Write-Host "Registry : build/ruby-zjit-podman/REGISTRY.yaml"
-Write-Host "Profile  : build/ruby-zjit-podman/WIN32_PROFILE.yaml`n"
+Write-Host "Registry : ruby-zjit/REGISTRY.yaml"
+Write-Host "Profile  : ruby-zjit/WIN32_PROFILE.yaml`n"
 
 if ($Clean) {
     Clean-Build
