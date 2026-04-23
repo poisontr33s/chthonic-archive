@@ -62,50 +62,61 @@ extensions:
 
 # ── Pending (spec'd, source not yet written) ──────────────────────────────────
   cudnn_rb:
-    status: pending
+    status: ready
     lang: C
     sdks: [cuda, cudnn]
     links: [-lcudart, -lcudnn]
     description: >
       cuDNN version + convolution/activation primitive availability probe.
       cuDNN v9.x header layout: include/<cuda-ver>/cudnn.h (glob detection needed).
+      Methods: version → [maj,min,patch], cuda_version → Integer,
+      available? (creates/destroys cudnnHandle_t), status_string(n) → String.
     source: "ext/cudnn_rb/"
-    notes: "cuDNN v9.x header at include/<cuda-ver>/cudnn.h, not flat include/"
+    notes: "cuDNN v9.x header at CUDNN_PATH/include/<cuda-ver>/cudnn.h, not flat"
 
   nvml_rb:
-    status: pending
+    status: ready
     lang: C
     sdks: [nvml]  # nvml.h ships inside CUDA toolkit at include/nvml.h
     links: [-lnvidia-ml]  # Win32: nvml.lib in CUDA toolkit lib/x64/
     description: >
       NVIDIA Management Library — power draw (W), temperature (°C), fan speed (%),
       SM clock, memory clock, utilization (gpu/mem %), ECC error counts,
-      throttle reasons, PCI topology. One physical device query loop.
+      throttle reasons, total/free VRAM. One physical device query loop.
+      Methods: version → String, device_count → Integer,
+      devices → Array<Hash{name:,index:,total_memory_mib:,free_memory_mib:,
+        temperature_c:,fan_speed_pct:,power_draw_w:,power_limit_w:,
+        sm_clock_mhz:,mem_clock_mhz:,gpu_util_pct:,mem_util_pct:,
+        ecc_errors:,throttle_reasons:}>.
     source: "ext/nvml_rb/"
     notes: "nvml.h is at CUDA_PATH/include/nvml.h on both Linux and Win32"
 
   nvrtc_rb:
-    status: pending
+    status: ready
     lang: C
     sdks: [cuda, nvrtc]
     links: [-lnvrtc]  # libnvrtc.so / nvrtc64_*.dll
     description: >
       NVRTC (NVIDIA Runtime Compilation) — compile CUDA C strings to PTX at runtime.
-      Methods: compile(src_string, opts) → ptx_string, version → [maj,min].
+      Methods: version → [maj,min],
+      compile(src_string, opts=[]) → ptx_string (raises on failure with log),
+      compile_log(src_string, opts=[]) → {ptx:, log:, success:}.
       Enables Ruby-driven GPU kernel authoring without offline nvcc.
     source: "ext/nvrtc_rb/"
 
   spirv_rb:
-    status: pending
+    status: ready
     lang: C++17
     sdks: [spirv_cross]  # C API: spirv_cross_c.h (included in Vulkan SDK)
-    links: [-lspirv-cross-c]
+    links: [-lspirv-cross-c-shared]  # or -lspirv-cross-c
     description: >
-      SPIR-V binary reflection via spirv-cross C API.
-      Methods: disassemble(binary_bytes) → glsl/msl/hlsl string,
-      reflect(binary_bytes) → Hash of inputs/outputs/uniforms/push_constants.
+      SPIR-V binary reflection + transpilation via spirv-cross C API.
+      Methods: disassemble(binary_bytes, target: :glsl) → glsl/msl/hlsl string,
+      reflect(binary_bytes) → Hash{stage_inputs:,stage_outputs:,uniform_buffers:,
+        storage_buffers:,push_constants:,sampled_images:,separate_images:,
+        separate_samplers:}.
     source: "ext/spirv_rb/"
-    notes: "spirv_cross_c.h is in Vulkan SDK include/spirv_cross/"
+    notes: "spirv_cross_c.h is in Vulkan SDK include/spirv_cross/ or system spirv-cross-devel"
 
 # ── Ideas (concept only, no spec yet) ────────────────────────────────────────
   cublas_rb:

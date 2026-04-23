@@ -124,6 +124,37 @@ RUN cd /build/ext/trt_rb \
     && make install \
     || echo "[WARN] trt_rb build skipped"
 
+# cudnn_rb — cuDNN version + handle probe
+RUN cd /build/ext/cudnn_rb \
+    && CUDA_PATH=${CUDA_PATH:-/usr/local/cuda} \
+       /opt/ruby-zjit/bin/ruby extconf.rb \
+    && make \
+    && make install \
+    || echo "[WARN] cudnn_rb build skipped (cuDNN devel not installed)"
+
+# nvml_rb — NVML power / thermals / clocks
+RUN cd /build/ext/nvml_rb \
+    && CUDA_PATH=${CUDA_PATH:-/usr/local/cuda} \
+       /opt/ruby-zjit/bin/ruby extconf.rb \
+    && make \
+    && make install \
+    || echo "[WARN] nvml_rb build skipped"
+
+# nvrtc_rb — NVRTC runtime CUDA kernel compilation
+RUN cd /build/ext/nvrtc_rb \
+    && CUDA_PATH=${CUDA_PATH:-/usr/local/cuda} \
+       /opt/ruby-zjit/bin/ruby extconf.rb \
+    && make \
+    && make install \
+    || echo "[WARN] nvrtc_rb build skipped"
+
+# spirv_rb — SPIR-V reflection + transpilation via spirv-cross
+RUN cd /build/ext/spirv_rb \
+    && /opt/ruby-zjit/bin/ruby extconf.rb \
+    && make \
+    && make install \
+    || echo "[WARN] spirv_rb build skipped (spirv-cross-devel not installed)"
+
 # ── Layer 9: Verify core + extensions ────────────────────────────────────────
 RUN /opt/ruby-zjit/bin/ruby --zjit \
     -e "puts RUBY_DESCRIPTION" \
@@ -137,6 +168,18 @@ RUN /opt/ruby-zjit/bin/ruby \
 RUN /opt/ruby-zjit/bin/ruby \
     -e "require 'trt_rb'; puts \"TRT: #{TrtRb.version}\"" \
     2>&1 || echo "[INFO] trt_rb: no GPU in build container (expected)"
+RUN /opt/ruby-zjit/bin/ruby \
+    -e "require 'cudnn_rb'; puts \"cuDNN: #{CudnnRb.version.join('.')} (avail: #{CudnnRb.available?})\"" \
+    2>&1 || echo "[INFO] cudnn_rb: no GPU or cuDNN libs in build container (expected)"
+RUN /opt/ruby-zjit/bin/ruby \
+    -e "require 'nvml_rb'; puts \"NVML driver: #{NvmlRb.version} devices: #{NvmlRb.device_count}\"" \
+    2>&1 || echo "[INFO] nvml_rb: no GPU in build container (expected)"
+RUN /opt/ruby-zjit/bin/ruby \
+    -e "require 'nvrtc_rb'; puts \"NVRTC: #{NvrtcRb.version.join('.')}\"" \
+    2>&1 || echo "[INFO] nvrtc_rb: NVRTC probe (expected in build env)"
+RUN /opt/ruby-zjit/bin/ruby \
+    -e "require 'spirv_rb'; puts 'spirv_rb: loaded'" \
+    2>&1 || echo "[INFO] spirv_rb: probe (expected in build env)"
 
 # ── Layer 10: Standard gems ───────────────────────────────────────────────────
 RUN /opt/ruby-zjit/bin/gem install bundler rake --no-document
