@@ -13,25 +13,42 @@
 #   .\ruby-zjit\scripts\test_win32.ps1 -Ext cuda_rb # Run specific extension(s)
 #   .\ruby-zjit\scripts\test_win32.ps1 -Verbose     # Show full Minitest output
 #   .\ruby-zjit\scripts\test_win32.ps1 -List        # List available test files
+#   .\ruby-zjit\scripts\test_win32.ps1 -StartupProbe # Isolate rv process-chain overhead
+#   .\ruby-zjit\scripts\test_win32.ps1 -Bench       # Full-run speed differential (noisy)
 #
-# rv spinel source + docs: https://rv.dev  (Software Version: 0.5.3)
-# Ruby path resolution uses: rv ruby find [VERSION]  → canonical per-version path
+# rv spinel source (Rust, Apache-2.0/MIT): https://github.com/spinel-coop/rv
+# rv.dev  —  Software Version: 0.5.3
+# Ruby path resolution: rv ruby find [VERSION]  →  canonical installed path
+#
+# WINDOWS rv OVERHEAD DIAGNOSIS (run.rs — crates/rv/src/commands/run.rs):
+#   On Unix:    rv r ruby  →  exec() replaces rv.exe with ruby.exe  — zero extra process
+#   On Windows: rv r ruby  →  CreateProcessW(ruby.exe) + wait  — two live processes
+#   Windows has no exec() syscall. The overhead is the Win32 process model, not Rust.
+#   Rust rv.exe binary startup: ~5-10ms. CreateProcessW tax per invocation: ~15-30ms.
+#   Total systematic rv overhead on Win32: ~25-50ms per ruby invocation.
+#
+# -StartupProbe: measures ruby -e 'exit 0' vs rv r ruby -e 'exit 0' in alternating order
+#   (N=6 samples each). No test content — isolates CreateProcessW chain cost.
+#   Use this to get the true rv overhead number, uncontaminated by test run variance.
+#
+# -Bench: measures full test file runs (direct vs rv r). MEASUREMENT POLLUTION WARNING:
+#   runs are sequential (direct first, rv second) — GPU/DLL/filesystem cache warmup
+#   from run 1 can reduce run 2 time for reasons unrelated to rv. Use -StartupProbe
+#   for rv overhead analysis; use -Bench only for relative test-suite comparison.
 #
 # Ruby selection (same priority order as build_win32.ps1):
 #   1. C:\ruby-zjit-build\ruby-4.0.3\ruby.exe  (custom ZJIT source build)
 #   2. rv ruby find 4.0.3-zjit                  (rv spinel — canonical zjit path)
 #   3. rv ruby find 4.0.3                        (rv spinel — canonical std path)
 #   4. ruby (PATH fallback)
-#
-# -Bench mode: runs each test file twice (direct binary vs rv r ruby) and
-#              prints a timing comparison table at the end.
 
 [CmdletBinding()]
 param(
-    [string[]]$Ext     = @(),
+    [string[]]$Ext          = @(),
     [switch]  $Verbose,
     [switch]  $List,
-    [switch]  $Bench
+    [switch]  $Bench,
+    [int]     $StartupProbe = 0   # N>0: run startup-isolation probe with N sample pairs
 )
 
 Set-StrictMode -Version Latest
@@ -71,7 +88,73 @@ if (-not $RubyBin) {
     exit 1
 }
 
-# ── Load paths from built extension directories ────────────────────────────────
+# ── Startup Probe (-StartupProbe N) ───────────────────────────────────────────
+# Isolates Windows CreateProcessW chain cost: direct binary vs rv r ruby.
+# Uses no-op ruby invocation (ruby -e "exit 0") so measurement is PURE process
+# overhead with zero test content noise.
+# Samples alternate between direct and rv to cancel out OS scheduling variance.
+#
+# rv architecture note (run.rs — crates/rv/src/commands/run.rs):
+#   Unix:    exec() replaces rv.exe with ruby.exe — zero extra process
+#   Windows: CreateProcessW(ruby.exe) + wait  — two live processes, no exec()
+#   The overhead measured here IS the Win32 process model cost, not Rust perf.
+if ($StartupProbe -gt 0) {
+    if (-not $_rvCmd) {
+        Write-Host "! rv not found — startup probe requires rv in PATH" -ForegroundColor Yellow
+        exit 1
+    }
+    Write-Host "`n── Startup Probe  ($StartupProbe sample pairs, alternating order)" -ForegroundColor DarkYellow
+    Write-Host "   Measuring: ruby -e 'exit 0'  vs  rv r ruby -e 'exit 0'" -ForegroundColor DarkGray
+    Write-Host "   No-op invocation — pure process-chain overhead, no test content noise" -ForegroundColor DarkGray
+    Write-Host ""
+
+    $directSamples = [System.Collections.Generic.List[long]]::new()
+    $rvSamples     = [System.Collections.Generic.List[long]]::new()
+
+    for ($i = 0; $i -lt $StartupProbe; $i++) {
+        # Alternate order each pair to cancel OS scheduling / DLL cache bias
+        if ($i % 2 -eq 0) {
+            $t = [System.Diagnostics.Stopwatch]::StartNew()
+            & $RubyBin -e "exit 0" 2>$null | Out-Null
+            $t.Stop(); $directSamples.Add($t.ElapsedMilliseconds)
+
+            $t = [System.Diagnostics.Stopwatch]::StartNew()
+            & rv r ruby -e "exit 0" 2>$null | Out-Null
+            $t.Stop(); $rvSamples.Add($t.ElapsedMilliseconds)
+        } else {
+            $t = [System.Diagnostics.Stopwatch]::StartNew()
+            & rv r ruby -e "exit 0" 2>$null | Out-Null
+            $t.Stop(); $rvSamples.Add($t.ElapsedMilliseconds)
+
+            $t = [System.Diagnostics.Stopwatch]::StartNew()
+            & $RubyBin -e "exit 0" 2>$null | Out-Null
+            $t.Stop(); $directSamples.Add($t.ElapsedMilliseconds)
+        }
+        Write-Host ("  pair {0,2}:  direct {1,4}ms   rv r {2,4}ms   Δ {3:+#;-#;0}ms" -f `
+            ($i+1), $directSamples[-1], $rvSamples[-1], ($rvSamples[-1] - $directSamples[-1])) `
+            -ForegroundColor DarkGray
+    }
+
+    # Compute medians (sort + pick middle)
+    $dSorted = $directSamples | Sort-Object
+    $rSorted = $rvSamples     | Sort-Object
+    $mid     = [int]($StartupProbe / 2)
+    $dMedian = $dSorted[$mid]
+    $rMedian = $rSorted[$mid]
+    $overhead = $rMedian - $dMedian
+
+    Write-Host ""
+    Write-Host ("  median direct : {0}ms" -f $dMedian) -ForegroundColor Cyan
+    Write-Host ("  median rv r   : {0}ms" -f $rMedian) -ForegroundColor Cyan
+    Write-Host ("  rv overhead   : {0:+#;-#;0}ms  (Windows CreateProcessW chain cost)" -f $overhead) -ForegroundColor DarkYellow
+    Write-Host ""
+    Write-Host "  Unix equivalent overhead: ~0ms  (rv exec()-replaces itself on Unix)" -ForegroundColor DarkGray
+    Write-Host "  Source: crates/rv/src/commands/run.rs  exec() / CreateProcessW split" -ForegroundColor DarkGray
+    Write-Host ""
+    exit 0
+}
+
+
 $LoadArgs = @()
 if (Test-Path $BuildDir) {
     foreach ($dir in (Get-ChildItem -Path $BuildDir -Directory)) {
